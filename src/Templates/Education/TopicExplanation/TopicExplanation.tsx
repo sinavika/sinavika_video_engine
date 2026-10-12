@@ -111,6 +111,7 @@ export const TopicExplanation = defineTemplate({
 	sampleContent: TOPIC_EXPLANATION_SAMPLE,
 	defaultTheme: 'AcademicLight',
 	transition: {preset: 'slide', direction: 'from-right', durationSeconds: 0.5},
+	voiceProfile: 'Lecturer',
 	buildScenes,
 	renderOverlay: (content, plan) => <TopicChrome content={content} plan={plan} />,
 });

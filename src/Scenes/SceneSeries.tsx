@@ -45,7 +45,7 @@ const SceneVoice: React.FC<{scene: TemplateScene; clips: VoiceClips}> = ({scene,
 						name={`Voice: ${slot.id}`}
 						from={plan.scenes[index].from + secondsToFrames(VOICE_LEAD_SECONDS, fps)}
 					>
-						<Audio src={staticFile(clip.src)} />
+						<Audio src={staticFile(clip.src)} playbackRate={clip.playbackRate} />
 					</Sequence>
 				);
 			})}

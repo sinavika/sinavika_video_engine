@@ -5,8 +5,9 @@ import {fileURLToPath} from 'node:url';
 import {bundle} from '@remotion/bundler';
 import {renderMedia, renderStill, selectComposition} from '@remotion/renderer';
 import {planTemplateScenes} from '../Scenes/SceneSeries';
-import type {SpeechSynthesizer} from '../Services/SpeechSynthesizer';
-import {generateVoiceClips} from '../Services/VoiceoverGenerator';
+import type {SpeechBackend} from '../Services/ElevenLabsSpeech';
+import type {VoiceCast} from '../Services/VoiceCasting';
+import {generateVoiceover} from '../Services/VoiceoverGenerator';
 import {durationWarnings, resolveVideoJob, voiceLines, withVoiceClips, type ResolvedVideoJob} from './VideoJob';
 
 const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -30,8 +31,8 @@ export type RenderOptions = {
 	concurrency?: number;
 	/** Skip narration even if the job asks for it, e.g. for quick layout checks. */
 	withoutVoiceover?: boolean;
-	/** Replaces the job's speech provider. Used by tests to stay offline. */
-	speechSynthesizer?: SpeechSynthesizer;
+	/** Replaces ElevenLabs. Used by tests to stay offline. */
+	speech?: SpeechBackend;
 };
 
 export type RenderResult = {
@@ -45,6 +46,8 @@ export type RenderResult = {
 	elapsedMilliseconds: number;
 	/** Number of narrated lines; 0 for a silent video. */
 	voiceLineCount: number;
+	/** Who narrated: voice, model and tempo. Null for a silent video. */
+	voiceCast: VoiceCast | null;
 	/** Problems the page reported while rendering, e.g. text that could not be fitted. */
 	warnings: string[];
 };
@@ -89,17 +92,17 @@ const collectWarnings = (warnings: string[]) => (log: PageLog) => {
 export const narrateVideoJob = async (
 	job: ResolvedVideoJob,
 	onProgress?: (progress: RenderProgress) => void,
-	synthesizer?: SpeechSynthesizer,
+	speech?: SpeechBackend,
 ): Promise<ResolvedVideoJob> => {
 	if (!job.voiceover) return job;
 	onProgress?.({stage: 'voiceover', progress: 0});
 	try {
-		const clips = await generateVoiceClips(voiceLines(job), job.voiceover, {
+		const {clips, cast} = await generateVoiceover(voiceLines(job), job.voiceover, {
 			publicDirectory: PUBLIC_DIRECTORY,
-			synthesizer,
+			speech,
 			onProgress: (done, total) => onProgress?.({stage: 'voiceover', progress: done / total}),
 		});
-		return withVoiceClips(job, clips);
+		return withVoiceClips(job, clips, cast);
 	} catch (error) {
 		throw new VideoRenderError('voiceover', error);
 	}
@@ -118,7 +121,7 @@ const publishVoiceClips = async (job: ResolvedVideoJob, serveUrl: string): Promi
 const prepare = async (rawJob: unknown, options: RenderOptions) => {
 	// Throws VideoJobValidationError before any expensive work begins.
 	const resolved = resolveVideoJob(rawJob);
-	const job = options.withoutVoiceover ? resolved : await narrateVideoJob(resolved, options.onProgress, options.speechSynthesizer);
+	const job = options.withoutVoiceover ? resolved : await narrateVideoJob(resolved, options.onProgress, options.speech);
 	options.onProgress?.({stage: 'bundling', progress: 0});
 	const serveUrl = await bundleProject((progress) => options.onProgress?.({stage: 'bundling', progress}));
 	await publishVoiceClips(job, serveUrl);
@@ -153,6 +156,7 @@ const toResult = (
 	durationSeconds: job.durationInFrames / job.fps,
 	elapsedMilliseconds: Date.now() - startedAt,
 	voiceLineCount: Object.keys(job.inputProps.voiceClips).length,
+	voiceCast: job.voiceCast,
 	warnings: [...new Set([...warnings, ...durationWarnings(job)])],
 });
 

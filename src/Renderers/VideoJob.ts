@@ -7,11 +7,12 @@ import {
 	type RenderQuality,
 	type VideoFormatId,
 } from '../Configurations/VideoFormats';
-import {VOICEOVER_DEFAULTS, VOICEOVER_PROVIDERS} from '../Configurations/Voiceover';
+import {PACE_RANGE, VOICE_KEYS, VOICE_MODEL_KEYS, VOICE_PROFILE_KEYS} from '../Configurations/Voices';
 import {OUTRO_SCENE_ID} from '../Scenes/BrandOutroScene';
 import type {VoiceClips} from '../Scenes/Voiceover';
 import {createVideoPropsSchema, type VideoProps} from '../Schemas/VideoProps';
-import type {VoiceLine, VoiceoverSettings} from '../Services/VoiceoverGenerator';
+import type {VoiceCast, VoiceoverRequest} from '../Services/VoiceCasting';
+import type {VoiceLine} from '../Services/VoiceoverGenerator';
 import {compositionId, templateDurationInFrames, type AnyTemplateDefinition} from '../Templates/TemplateDefinition';
 import {TEMPLATE_IDS, findTemplate} from '../Templates/TemplateRegistry';
 
@@ -28,18 +29,18 @@ export const VideoJobSchema = z.object({
 	fps: z.number().optional(),
 	quality: z.enum(RENDER_QUALITY_IDS).default('1080p'),
 	/**
-	 * `true` narrates the video with the default voice; an object picks the
-	 * provider, voice or delivery. Scene durations then follow the audio.
+	 * `true` narrates the video in Turkish with the template's voice profile.
+	 * An object casts differently: another profile, a specific voice from the
+	 * catalogue, the steadier model, or a different tempo.
 	 */
 	voiceover: z
 		.union([
 			z.boolean(),
 			z.object({
-				provider: z.enum(VOICEOVER_PROVIDERS).optional(),
-				voice: z.string().min(1).optional(),
-				language: z.string().min(2).optional(),
-				rate: z.string().regex(/^[+-]\d{1,3}%$/, 'rate must look like "+6%" or "-10%"').optional(),
-				pitch: z.string().regex(/^[+-]\d{1,3}%$/, 'pitch must look like "+2%" or "-5%"').optional(),
+				profile: z.enum(VOICE_PROFILE_KEYS).optional(),
+				voice: z.enum(VOICE_KEYS).optional(),
+				model: z.enum(VOICE_MODEL_KEYS).optional(),
+				pace: z.number().min(PACE_RANGE.min).max(PACE_RANGE.max).optional(),
 			}),
 		])
 		.default(false),
@@ -61,8 +62,10 @@ export type ResolvedVideoJob = {
 	fps: number;
 	durationInFrames: number;
 	inputProps: VideoProps<unknown>;
-	/** Voice settings when the job asks for narration, otherwise null. */
-	voiceover: VoiceoverSettings | null;
+	/** What the job asks of the narrator, or null for a silent video. */
+	voiceover: VoiceoverRequest | null;
+	/** Who ended up narrating. Set once the voice-over has been generated. */
+	voiceCast: VoiceCast | null;
 };
 
 /** Thrown when a job is rejected. `issues` lists every problem with its JSON path. */
@@ -123,7 +126,8 @@ export const resolveVideoJob = (raw: unknown): ResolvedVideoJob => {
 		voiceover:
 			job.voiceover === false
 				? null
-				: {...VOICEOVER_DEFAULTS, ...template.voiceover, ...(job.voiceover === true ? {} : job.voiceover)},
+				: {profile: template.voiceProfile, ...(job.voiceover === true ? {} : job.voiceover)},
+		voiceCast: null,
 	};
 };
 
@@ -148,8 +152,13 @@ export const durationWarnings = (job: ResolvedVideoJob): string[] => {
 };
 
 /** The same job with generated audio attached; its duration now follows the clips. */
-export const withVoiceClips = (job: ResolvedVideoJob, voiceClips: VoiceClips): ResolvedVideoJob => ({
+export const withVoiceClips = (
+	job: ResolvedVideoJob,
+	voiceClips: VoiceClips,
+	voiceCast: VoiceCast | null = null,
+): ResolvedVideoJob => ({
 	...job,
+	voiceCast,
 	inputProps: {...job.inputProps, voiceClips},
 	durationInFrames: templateDurationInFrames(job.template, job.inputProps.content, job.fps, voiceClips),
 });

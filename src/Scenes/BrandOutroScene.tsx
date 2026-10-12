@@ -16,7 +16,7 @@ const OUTRO_SECONDS = 2.6;
 const BrandOutroScene: React.FC<{callToAction: string}> = ({callToAction}) => (
 	<SafeArea gap={SPACING.xl} style={{alignItems: 'center', justifyContent: 'center'}}>
 		<Animated animation={{preset: 'scale', easing: 'overshoot'}}>
-			<BrandMark height={132} />
+			<BrandMark size="hero" />
 		</Animated>
 		<Animated animation="fade" delaySeconds={0.35}>
 			<Text variant="subtitle" tone="muted" align="center">

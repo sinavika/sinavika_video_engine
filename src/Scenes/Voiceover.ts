@@ -8,7 +8,10 @@ import {z} from 'zod';
 export const VoiceClipSchema = z.object({
 	/** Path inside `public/`. */
 	src: z.string().min(1),
+	/** How long the clip lasts in the video, i.e. at its playback rate. */
 	durationSeconds: z.number().positive(),
+	/** Tempo the clip is played at; 1 is the voice's natural pace. */
+	playbackRate: z.number().min(0.5).max(2).default(1),
 });
 
 export type VoiceClip = z.infer<typeof VoiceClipSchema>;

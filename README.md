@@ -6,7 +6,7 @@ Sınavika için veri odaklı eğitim videosu üretim motoru. Bir JSON işi (job)
 - **5 eğitim template'i:** soru çözümü, konu anlatımı, hızlı tekrar, kavram açıklama, sınav hazırlığı
 - **6 tema:** template'lerden bağımsız; her template her temayla çalışır
 - **3 format:** 9:16, 16:9, 1:1 (720p – 2160p, 24/25/30/50/60 fps)
-- **Seslendirme:** Türkçe kadın sesiyle anlatım; sahne süreleri sese göre ayarlanır
+- **Seslendirme:** ElevenLabs ile Türkçe anlatım; içerik türüne göre ses profili, sahne süreleri sese göre ayarlanır
 - **LaTeX**, Türkçe karakterler, görselli sorular, otomatik taşma kontrolü
 
 ## Kurulum
@@ -18,6 +18,9 @@ npm install
 ```
 
 İlk render sırasında Remotion, Chrome Headless Shell'i (~120 MB) bir kez indirir.
+
+Seslendirme için ElevenLabs API anahtarı gerekir. `.env.example` dosyasını `.env` olarak kopyalayıp anahtarı yazın
+(`ELEVENLABS_API_KEY=...`) ya da aynı adlı ortam değişkenini tanımlayın. `.env` git tarafından yok sayılır.
 
 ## Komutlar
 
@@ -32,6 +35,8 @@ npm install
 | `npm run stills -- --job <job.json> --formats all` | Her sahneden bir PNG üretir (yerleşim kontrolü) |
 | `npm run render:samples` | Bütün örnek videoları `out/Samples/` altına üretir |
 | `npm run schema -- <TemplateId>` | Template içerik şemasını JSON Schema olarak yazdırır |
+| `npm run voices` | Ses profilleri, hesabın kullanabildiği sesler ve şu an kimin seslendirdiği |
+| `npm run voices -- --audition "<cümle>"` | Cümleyi kullanılabilir seslerle üretir (`out/Auditions/`), dinleyip seçmek için |
 | `npm run typecheck` | TypeScript derleme kontrolü |
 | `npm test` | Birim testleri (şema, zamanlama, animasyon, tema kontrastı) |
 | `npm run test:render` | Gerçek render testleri (headless Chrome; birkaç dakika sürer) |
@@ -71,7 +76,7 @@ Motorun tek girdisi düz bir JSON nesnesidir:
 | `theme` | `SinavikaBrand`, `WhiteboardMinimal`, `AcademicLight`, `TechDark`, `VibrantDynamic`, `ExamFocus` | template'in kendi teması |
 | `fps` | 24, 25, 30, 50, 60 | 30 |
 | `quality` | `720p`, `1080p`, `1440p`, `2160p` | `1080p` |
-| `voiceover` | `true`, `false` ya da `{provider, voice, rate, pitch}` | `false` |
+| `voiceover` | `true`, `false` ya da `{profile, voice, model, pace}` | `false` |
 | `content` | Template'e özel içerik | zorunlu |
 
 Her template için eksiksiz örnekler [samples/](samples) klasöründedir. Bir template'in içerik şemasını görmek için
@@ -92,23 +97,47 @@ Açıklama alanları düz metindir ve üç işaret destekler:
 
 ### Seslendirme
 
-`"voiceover": true` videoyu varsayılan sesle (Türkçe kadın sesi, `tr-TR-EmelNeural`) seslendirir. Akış:
+Bütün anlatım Türkçedir ve ElevenLabs ile üretilir. `"voiceover": true` videoyu template'in ses profiliyle seslendirir.
 
-1. Her sahne için bir anlatım satırı üretilir. Satırlar içerikten otomatik kurulur ve dikkat çekici bir girişle
-   başlar ("Dikkat! Bu soru tipi sınavda karşına çıkabilir...", "Hızlı tekrar: ... Hazır mısın?").
-2. Satırlar sese çevrilir ve `public/Voiceovers/` altında önbelleğe alınır (aynı metin ve ses tekrar üretilmez).
-3. Sahne süreleri ses uzunluğuna göre ayarlanır; ekrandaki öğeler de anlatımın hızına göre sırayla gelir.
+**Ses yapısı üç katmandır** ve tek dosyada yönetilir ([src/Configurations/Voices.ts](src/Configurations/Voices.ts)):
 
-Sesi ya da okuma biçimini değiştirmek için nesne verin:
+| Katman | Ne | Örnek |
+| --- | --- | --- |
+| Ses | Kim konuşuyor: bir ElevenLabs sesi ve karakteri | Derya: dinamik, samimi anlatıcı |
+| Profil | Nasıl konuşuyor: rol, tercih sırasıyla sesler, model, tempo | `Teacher`, `Energizer`, `Coach` |
+| Seçim | Hangi içerik hangi profili kullanıyor | Hızlı tekrar → `Energizer` |
+
+| Profil | Kullanım | İlk tercih (Türkçe ses) | Tempo |
+| --- | --- | --- | --- |
+| `Teacher` | Soru çözümü, kavram açıklama | Derya | 1,00 |
+| `Lecturer` | Konu anlatımı | Melis Akcan | 1,00 |
+| `Energizer` | Hızlı tekrar | Damla | 1,12 |
+| `Coach` | Sınav hazırlığı | Ayça | 1,03 |
+| `Promoter` | Reklam ve tanıtım | Nisa | 1,05 |
+| `Creator` | Sosyal medya | Damla | 1,08 |
+
+Her profilin sıralı bir ses listesi vardır; hesabın kullanabildiği ilk ses seçilir. Türkçe (ana dili) sesler
+ElevenLabs ses kütüphanesindendir: hesaba eklenmeleri ve API'den kullanmak için ücretli plan gerekir. O zamana
+kadar aynı profil, her planda çalışan çok dilli varsayılan seslerle (Sarah, Alice, Jessica...) konuşur. Sesler
+hesaba eklendiğinde kod değişmeden Türkçe seslere geçilir. Güncel durumu `npm run voices` gösterir.
+
+Bir işte farklı ses, model ya da tempo istemek için:
 
 ```json
-"voiceover": {"voice": "tr-TR-AhmetNeural", "rate": "+10%", "pitch": "-2%", "provider": "edge"}
+"voiceover": {"profile": "Creator", "voice": "Damla", "model": "stable", "pace": 1.1}
 ```
 
-| Sağlayıcı | Açıklama |
+| Alan | Değerler |
 | --- | --- |
-| `edge` (varsayılan) | Microsoft Edge'in sesli okuma servisi. Hesap gerektirmez; geliştirme ve önizleme içindir. Resmî bir API değildir, art arda isteklerde hız sınırına takılabilir. |
-| `azure` | Azure AI Speech (resmî, aynı sesler). `AZURE_SPEECH_KEY` ve `AZURE_SPEECH_REGION` ortam değişkenlerini okur. Canlı kullanım için bu önerilir. |
+| `profile` | `Teacher`, `Lecturer`, `Energizer`, `Coach`, `Promoter`, `Creator` |
+| `voice` | Katalogdaki bir ses (ör. `Derya`, `Sarah`, erkek ses için `Liam`, `Daniel`). Hesapta yoksa iş hata verir |
+| `model` | `expressive` (Eleven v3, varsayılan: en duygulu ve insansı) ya da `stable` (Multilingual v2: tonlaması daha istikrarlı) |
+| `pace` | 0,8 – 1,3. Ses oynatılırken uygulanır; ses dosyası yeniden üretilmez |
+
+**Akış.** (1) Her sahne için bir anlatım satırı kurulur; satırlar dikkat çekici bir girişle başlar. (2) Satırlar
+sese çevrilir ve `public/Voiceovers/` altında önbelleğe alınır: aynı metin ve ses için bir daha kredi harcanmaz.
+(3) Sahne süreleri ses uzunluğuna göre ayarlanır, ekrandaki öğeler anlatım hızına yayılır. Üretimden önce
+hesapta yeterli karakter olup olmadığı denetlenir; yetmiyorsa hiçbir satır üretilmeden hata verilir.
 
 **Anlatım metnini yazmak.** Otomatik satırlar formülleri de okur (`$x^2$` → "x kare"), ama bu en iyi çabadır.
 Formül ağırlıklı içerikte metni kendiniz verin; iki yolu var:
@@ -160,7 +189,7 @@ npm run --silent render -- --job job.json --out out/video.mp4 --json
 ```json
 {"type":"progress","stage":"rendering","progress":0.42,"renderedFrames":412,"totalFrames":980,"percent":42}
 {"type":"progress","stage":"voiceover","progress":0.5,"percent":50}
-{"type":"done","outputPath":"...","width":1080,"height":1920,"fps":30,"durationSeconds":32.7,"voiceLineCount":9,"warnings":[]}
+{"type":"done","outputPath":"...","width":1080,"height":1920,"fps":30,"durationSeconds":32.7,"voiceLineCount":9,"voiceCast":{"voiceName":"Sarah","modelId":"eleven_v3","pace":1},"warnings":[]}
 {"type":"error","kind":"validation","message":"...","issues":["content.title: ..."]}
 ```
 
@@ -181,7 +210,7 @@ Her çağrı kendi tarayıcısını açar ve yalnızca kendi çıktı dosyasına
 
 ```
 src/
-  Configurations/   Video formatları, FPS, kalite, güvenli alanlar; marka kuralları
+  Configurations/   Video formatları, FPS, kalite, güvenli alanlar; marka kuralları; ses kataloğu ve profilleri
   Themes/           Tasarım token'ları, 6 tema, tema kaydı, font yükleme
   Animations/       Saf animasyon matematiği: süreler, easing, preset → CSS
   Components/
@@ -194,7 +223,7 @@ src/
   Schemas/          Ortak Zod şemaları: zengin metin, okunacak metin, görsel, video props
   Templates/        TemplateDefinition, TemplateRegistry, Education/<Template>/
   Compositions/     Template → Remotion composition köprüsü
-  Services/         Ses sentezi sağlayıcıları ve önbellekli seslendirme üretimi
+  Services/         ElevenLabs konuşma servisi, ses seçimi (casting), önbellekli seslendirme üretimi
   Renderers/        VideoJob (doğrulama) ve VideoRenderer (MP4/PNG)
   Root.tsx          Kayıtlı bütün template'ler × bütün formatlar
 samples/            Her template için örnek JSON işi

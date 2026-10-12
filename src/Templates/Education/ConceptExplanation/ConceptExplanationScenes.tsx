@@ -58,7 +58,7 @@ export const focusLevelsAt = (
 
 export const ConceptChrome: React.FC<{content: Content}> = ({content}) => (
 	<ChromeBar style={{justifyContent: 'space-between'}}>
-		<BrandMark height={44} />
+		<BrandMark />
 		<Badge tone="surface" icon="target">
 			{content.concept}
 		</Badge>

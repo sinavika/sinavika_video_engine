@@ -4,6 +4,9 @@
  *
  *   npm run render:samples
  *   npm run render:samples -- --quality 720p --only QuickRevision
+ *   npm run render:samples -- --narrate-all    (also narrates the built-in samples; spends more credits)
+ *
+ * The jobs in samples/ are narrated as written. Built-in samples are silent by default.
  *
  * Output: out/Samples/*.mp4 and out/Samples/Report.json
  */
@@ -18,6 +21,7 @@ const {values} = parseArgs({
 	options: {
 		quality: {type: 'string'},
 		only: {type: 'string'},
+		'narrate-all': {type: 'boolean', default: false},
 		out: {type: 'string', default: 'out/Samples'},
 	},
 });
@@ -37,7 +41,7 @@ TEMPLATES.forEach((template, index) => {
 	const format = VIDEO_FORMAT_IDS[index % VIDEO_FORMAT_IDS.length];
 	jobs.push({
 		name: `${template.id}-BuiltIn-${format}`,
-		job: {template: template.id, format, voiceover: true, content: template.sampleContent},
+		job: {template: template.id, format, voiceover: values['narrate-all'], content: template.sampleContent},
 	});
 });
 
@@ -53,6 +57,7 @@ for (const {name, job} of selected) {
 		report.push({name, ...result});
 		console.log(
 			`${result.width}x${result.height}, ${result.durationSeconds.toFixed(1)} sn, ${(result.elapsedMilliseconds / 1000).toFixed(0)} sn içinde` +
+				(result.voiceCast ? `, ses: ${result.voiceCast.voiceName}` : ', sessiz') +
 				(result.warnings.length ? `, ${result.warnings.length} uyarı` : ''),
 		);
 		result.warnings.forEach((warning) => console.warn(`  Uyarı: ${warning}`));

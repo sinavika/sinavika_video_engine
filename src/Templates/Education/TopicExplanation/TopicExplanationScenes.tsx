@@ -29,7 +29,7 @@ export const TopicChrome: React.FC<{content: Content; plan: ScenePlan}> = ({cont
 	const {isLandscape} = useVideoLayout();
 	return (
 		<ChromeBar style={{alignItems: 'flex-start'}}>
-			<BrandMark height={40} showName={isLandscape} />
+			<BrandMark />
 			<SegmentedProgress
 				plan={plan}
 				sceneIds={content.sections.map((_, index) => sectionSceneId(index))}

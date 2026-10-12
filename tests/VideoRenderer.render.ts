@@ -5,8 +5,10 @@ import path from 'node:path';
 import {PNG} from 'pngjs';
 import {beforeAll, describe, expect, it} from 'vitest';
 import {VIDEO_FORMAT_IDS} from '../src/Configurations/VideoFormats';
+import {VOICES} from '../src/Configurations/Voices';
 import {VideoJobValidationError} from '../src/Renderers/VideoJob';
 import {bundleProject, renderFrame, renderVideo, sceneFrames, type RenderProgress} from '../src/Renderers/VideoRenderer';
+import type {SpeechBackend} from '../src/Services/ElevenLabsSpeech';
 import {THEME_IDS} from '../src/Themes/ThemeRegistry';
 import {TEMPLATES} from '../src/Templates/TemplateRegistry';
 
@@ -124,11 +126,16 @@ describe('video output', () => {
 
 	it('narrates a video: audio is audible and the timeline follows the clips', async () => {
 		// Offline stand-in for the speech provider: every line gets the same short clip.
-		// A made-up voice name keeps these clips out of the cache of real voices.
 		const clip = readFileSync(path.resolve(__dirname, 'Fixtures', 'Voice.mp3'));
 		const cacheDirectory = path.resolve(__dirname, '..', 'public', 'Voiceovers');
 		const cachedBefore = new Set(existsSync(cacheDirectory) ? readdirSync(cacheDirectory) : []);
-		const job = sampleJob('QuickRevision', {format: 'Square', voiceover: {voice: 'Test-Fixture-Voice'}});
+		const job = sampleJob('QuickRevision', {format: 'Square', voiceover: true});
+		const speech: SpeechBackend = {
+			cacheTag: 'render-test',
+			availableVoiceIds: async () => new Set([VOICES.Jessica.elevenLabsId]),
+			remainingCharacters: async () => null,
+			synthesize: async () => clip,
+		};
 
 		try {
 			const silent = await renderVideo(job, {
@@ -137,11 +144,13 @@ describe('video output', () => {
 			});
 			const narrated = await renderVideo(job, {
 				outputPath: path.join(outputDirectory, 'Narrated.mp4'),
-				speechSynthesizer: async () => clip,
+				speech,
 			});
 
 			expect(silent.voiceLineCount).toBe(0);
 			expect(narrated.voiceLineCount).toBe(9);
+			expect(narrated.voiceCast).toMatchObject({profile: 'Energizer', voice: 'Jessica', pace: 1.12});
+			expect(silent.voiceCast).toBeNull();
 			expect(narrated.durationSeconds).not.toBe(silent.durationSeconds);
 			expect(narrated.warnings).toEqual([]);
 

@@ -133,7 +133,7 @@ export const QuestionSolution = defineTemplate({
 	buildScenes,
 	renderOverlay: (content) => (
 		<ChromeBar style={{justifyContent: 'space-between'}}>
-			<BrandMark height={44} />
+			<BrandMark />
 			{content.subject ? (
 				<Badge tone="surface" icon="book">
 					{content.subject}

@@ -4,17 +4,10 @@ import {mkdir, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {parseMedia} from '@remotion/media-parser';
 import {nodeReader} from '@remotion/media-parser/node';
-import {VOICEOVER_DIRECTORY, type VoiceoverProvider} from '../Configurations/Voiceover';
+import {VOICEOVER_DIRECTORY, VOICE_MODELS} from '../Configurations/Voices';
 import type {VoiceClips} from '../Scenes/Voiceover';
-import {SPEECH_SYNTHESIZERS, type SpeechSynthesizer} from './SpeechSynthesizer';
-
-export type VoiceoverSettings = {
-	provider: VoiceoverProvider;
-	voice: string;
-	language: string;
-	rate: string;
-	pitch: string;
-};
+import {ELEVENLABS_SPEECH, SpeechError, type SpeechBackend} from './ElevenLabsSpeech';
+import {castVoice, type VoiceCast, type VoiceoverRequest} from './VoiceCasting';
 
 export type VoiceLine = {id: string; text: string};
 
@@ -22,27 +15,29 @@ export type VoiceoverOptions = {
 	/** The project's `public/` folder; clips are written to its Voiceovers subfolder. */
 	publicDirectory: string;
 	onProgress?: (done: number, total: number) => void;
-	/** Replaces the provider lookup. Used by tests. */
-	synthesizer?: SpeechSynthesizer;
+	/** Replaces ElevenLabs. Used by tests. */
+	speech?: SpeechBackend;
 };
 
-/** Thrown when a line could not be synthesised after all retries. */
+export type Voiceover = {clips: VoiceClips; cast: VoiceCast};
+
+/** Thrown when narration could not be produced. The message says which line and why. */
 export class VoiceoverError extends Error {
-	constructor(line: VoiceLine, cause: unknown) {
-		const reason = cause instanceof Error ? cause.message : String(cause);
-		super(`Voice-over failed for line "${line.id}": ${reason}`, {cause});
+	constructor(message: string, cause?: unknown) {
+		super(message, {cause});
 		this.name = 'VoiceoverError';
 	}
 }
 
-const ATTEMPTS = 5;
+const ATTEMPTS = 4;
 const RETRY_DELAY_MILLISECONDS = 2_000;
 
 const wait = (milliseconds: number) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 
-const clipFileName = (text: string, settings: VoiceoverSettings): string => {
-	const key = [settings.provider, settings.voice, settings.rate, settings.pitch, text].join('|');
-	return `${createHash('sha256').update(key).digest('hex').slice(0, 20)}.mp3`;
+/** Everything that changes how a line sounds is part of its cache key; tempo is not, it is applied at playback. */
+const clipFileName = (text: string, cast: VoiceCast, cacheTag = ''): string => {
+	const key = [cacheTag, cast.elevenLabsVoiceId, cast.modelId, cast.languageCode, cast.stability, cast.similarity, cast.seed, text];
+	return `${createHash('sha256').update(key.join('|')).digest('hex').slice(0, 20)}.mp3`;
 };
 
 const durationOf = async (file: string): Promise<number> => {
@@ -56,35 +51,74 @@ const durationOf = async (file: string): Promise<number> => {
 	return durationInSeconds;
 };
 
+const synthesizeWithRetry = async (line: VoiceLine, cast: VoiceCast, speech: SpeechBackend): Promise<Buffer> => {
+	for (let attempt = 1; ; attempt++) {
+		try {
+			return await speech.synthesize(line.text, cast);
+		} catch (error) {
+			const retryable = !(error instanceof SpeechError) || error.retryable;
+			if (!retryable || attempt >= ATTEMPTS) {
+				const reason = error instanceof Error ? error.message : String(error);
+				throw new VoiceoverError(`Voice-over failed for line "${line.id}": ${reason}`, error);
+			}
+			await wait(RETRY_DELAY_MILLISECONDS * attempt);
+		}
+	}
+};
+
 /**
- * Produces one audio clip per voice line and reports how long each one is.
- * Clips are cached by a hash of text and voice settings, so re-rendering a
- * video (or another format of it) costs no further synthesis.
+ * Casts a voice and produces one audio clip per line.
+ *
+ * Clips are cached by a hash of text, voice and delivery, so re-rendering a
+ * video, or rendering it in another format, spends no further credits.
+ * Before anything is generated the lines are checked against the model's
+ * length limit and the account's remaining characters, so a video is never
+ * left half narrated.
  */
-export const generateVoiceClips = async (
+export const generateVoiceover = async (
 	lines: readonly VoiceLine[],
-	settings: VoiceoverSettings,
-	{publicDirectory, onProgress, synthesizer = SPEECH_SYNTHESIZERS[settings.provider]}: VoiceoverOptions,
-): Promise<VoiceClips> => {
+	request: VoiceoverRequest,
+	{publicDirectory, onProgress, speech = ELEVENLABS_SPEECH}: VoiceoverOptions,
+): Promise<Voiceover> => {
+	let cast: VoiceCast;
+	try {
+		cast = castVoice(request, await speech.availableVoiceIds());
+	} catch (error) {
+		throw new VoiceoverError(error instanceof Error ? error.message : String(error), error);
+	}
+
 	const directory = path.join(publicDirectory, VOICEOVER_DIRECTORY);
 	await mkdir(directory, {recursive: true});
+	const planned = lines.map((line) => {
+		const fileName = clipFileName(line.text, cast, speech.cacheTag);
+		return {line, fileName, file: path.join(directory, fileName)};
+	});
+
+	const limit = VOICE_MODELS[cast.model].maxCharacters;
+	const tooLong = planned.find(({line}) => line.text.length > limit);
+	if (tooLong) {
+		throw new VoiceoverError(`Line "${tooLong.line.id}" has ${tooLong.line.text.length} characters; ${cast.modelId} accepts at most ${limit}.`);
+	}
+
+	const missing = planned.filter(({file}) => !existsSync(file));
+	const needed = missing.reduce((total, {line}) => total + line.text.length, 0);
+	const remaining = needed > 0 ? await speech.remainingCharacters() : null;
+	if (remaining !== null && needed > remaining) {
+		throw new VoiceoverError(
+			`This narration needs ${needed} new characters but the ElevenLabs account has ${remaining} left this period.`,
+		);
+	}
+
 	const clips: VoiceClips = {};
-
-	for (const [index, line] of lines.entries()) {
-		const fileName = clipFileName(line.text, settings);
-		const file = path.join(directory, fileName);
-
-		for (let attempt = 1; !existsSync(file); attempt++) {
-			try {
-				await writeFile(file, await synthesizer({...settings, text: line.text}));
-			} catch (error) {
-				if (attempt >= ATTEMPTS) throw new VoiceoverError(line, error);
-				await wait(RETRY_DELAY_MILLISECONDS * attempt);
-			}
-		}
-
-		clips[line.id] = {src: `${VOICEOVER_DIRECTORY}/${fileName}`, durationSeconds: await durationOf(file)};
+	for (const [index, {line, fileName, file}] of planned.entries()) {
+		if (!existsSync(file)) await writeFile(file, await synthesizeWithRetry(line, cast, speech));
+		clips[line.id] = {
+			src: `${VOICEOVER_DIRECTORY}/${fileName}`,
+			// The clip is played at the cast's pace, so that is how long it lasts in the video.
+			durationSeconds: (await durationOf(file)) / cast.pace,
+			playbackRate: cast.pace,
+		};
 		onProgress?.(index + 1, lines.length);
 	}
-	return clips;
+	return {clips, cast};
 };

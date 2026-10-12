@@ -1,13 +1,14 @@
 import type {ReactNode} from 'react';
 import type {z} from 'zod';
 import type {VideoFormatId} from '../Configurations/VideoFormats';
+import {CATEGORY_VOICE_PROFILES, type VoiceProfileKey} from '../Configurations/Voices';
 import type {ScenePlan, TemplateScene} from '../Scenes/ScenePlan';
 import {planTemplateScenes} from '../Scenes/SceneSeries';
 import type {SceneTransition} from '../Scenes/SceneTransition';
 import type {VoiceClips} from '../Scenes/Voiceover';
 import {THEME_IDS, type ThemeId} from '../Themes/ThemeRegistry';
 
-export type TemplateCategory = 'Education' | 'Advertisements' | 'SocialMedia';
+export type TemplateCategory = keyof typeof CATEGORY_VOICE_PROFILES;
 
 /**
  * Everything the engine needs to know about a template. A template owns its
@@ -33,21 +34,29 @@ export type TemplateDefinition<Schema extends z.ZodType> = {
 	 * its length sets the timing.
 	 */
 	buildScenes: (content: z.output<Schema>, voiceClips?: VoiceClips) => TemplateScene[];
-	/** Delivery this template wants from the narrator, e.g. a faster pace for short-form video. */
-	voiceover?: {rate?: string; pitch?: string};
+	/** Who narrates this template. See Configurations/Voices. Defaults to the category's profile. */
+	voiceProfile: VoiceProfileKey;
 	/** Intended length of the video without its outro. Rendering outside it is reported as a warning. */
 	targetSeconds?: {min: number; max: number};
 	/** Persistent chrome above the scenes. Hidden during the outro. */
 	renderOverlay?: (content: z.output<Schema>, plan: ScenePlan) => ReactNode;
 };
 
-type TemplateInput<Schema extends z.ZodType> = Omit<TemplateDefinition<Schema>, 'supportedThemes'> &
-	Partial<Pick<TemplateDefinition<Schema>, 'supportedThemes'>>;
+type Defaulted = 'supportedThemes' | 'voiceProfile';
+type TemplateInput<Schema extends z.ZodType> = Omit<TemplateDefinition<Schema>, Defaulted> &
+	Partial<Pick<TemplateDefinition<Schema>, Defaulted>>;
 
-/** Themes are opt-out: a template supports every theme unless it lists a subset. */
+/**
+ * Themes are opt-out: a template supports every theme unless it lists a subset.
+ * The narrator defaults to the voice profile of the template's category.
+ */
 export const defineTemplate = <Schema extends z.ZodType>(
 	template: TemplateInput<Schema>,
-): TemplateDefinition<Schema> => ({supportedThemes: THEME_IDS, ...template});
+): TemplateDefinition<Schema> => ({
+	supportedThemes: THEME_IDS,
+	voiceProfile: CATEGORY_VOICE_PROFILES[template.category],
+	...template,
+});
 
 // The registry holds templates with different schemas; their content types are erased there.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

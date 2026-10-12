@@ -67,6 +67,11 @@ const main = async (): Promise<number> => {
 			console.log(
 				`Tamamlandı: ${result.outputPath}\n  ${result.width}x${result.height}, ${result.fps} fps, ${result.durationSeconds.toFixed(1)} sn, ${(result.elapsedMilliseconds / 1000).toFixed(1)} sn içinde`,
 			);
+			if (result.voiceCast) {
+				const {voiceName, modelId, profile, pace} = result.voiceCast;
+				console.log(`  Seslendirme: ${voiceName} (${profile}, ${modelId}, tempo ${pace}), ${result.voiceLineCount} satır`);
+				if (result.voiceCast.note) console.log(`  Not: ${result.voiceCast.note}`);
+			}
 			result.warnings.forEach((warning) => console.warn(`  Uyarı: ${warning}`));
 		}
 		return 0;

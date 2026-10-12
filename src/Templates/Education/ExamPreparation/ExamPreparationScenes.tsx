@@ -28,7 +28,7 @@ export const ExamChrome: React.FC<{content: Content; plan: ScenePlan; labels: Re
 	const sceneIds = plan.scenes.map((scene) => scene.id).filter((id) => id !== OUTRO_SCENE_ID);
 	return (
 		<ChromeBar style={{alignItems: 'flex-start'}}>
-			<BrandMark height={40} showName={false} />
+			<BrandMark />
 			<Badge tone="primary" icon="flag">
 				{content.exam.name}
 			</Badge>

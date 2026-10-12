@@ -1,68 +1,60 @@
 import React from 'react';
-import {BRAND} from '../../Configurations/Brand';
-import {useInk, useTheme} from '../../Themes/ThemeContext';
+import {Img, staticFile} from 'remotion';
+import {BRAND, type BrandLogoSize} from '../../Configurations/Brand';
+import {useInk} from '../../Themes/ThemeContext';
 import {useVideoLayout} from '../Layouts/VideoLayout';
 
 type BrandMarkProps = {
-	/** Height in reference pixels. Never drawn smaller than the brand's minimum. */
-	height?: number;
-	showName?: boolean;
+	/** Where the logo sits. Sizes are defined once, in Configurations/Brand. */
+	size?: BrandLogoSize;
+	/** CSS colour. Defaults to the text colour of the backdrop, so the logo is readable on any theme. */
+	color?: string;
 };
 
 /**
- * The Sınavika logo lock-up. Enforces the usage rules from Configurations/Brand:
- * minimum size and clear space. Swap the monogram for the real logo asset here
- * and every template picks it up.
+ * The Sınavika logo. Every video draws its logo through this component, so
+ * the asset, its sizes and its usage rules (minimum size, clear space) are
+ * changed in one place: Configurations/Brand.
+ *
+ * The logo file is white with transparency. It is used as a mask and filled
+ * with `color`, which is how the same file appears dark on light themes and
+ * light on dark ones.
  */
-export const BrandMark: React.FC<BrandMarkProps> = ({height = 48, showName = true}) => {
-	const {colors, typography} = useTheme();
+export const BrandMark: React.FC<BrandMarkProps> = ({size = 'chrome', color}) => {
 	const ink = useInk();
 	const {u} = useVideoLayout();
-	const size = u(Math.max(height, BRAND.logo.minHeight));
+	const {logo} = BRAND;
+	const height = u(Math.max(logo.sizes[size], logo.minHeight));
+	const source = staticFile(logo.src);
+	const mask = `url("${source}")`;
 
 	return (
 		<div
+			role="img"
+			aria-label={BRAND.name}
 			style={{
-				display: 'inline-flex',
-				alignItems: 'center',
-				gap: size * 0.28,
-				margin: size * BRAND.logo.clearSpaceRatio * 0.25,
+				position: 'relative',
+				height,
+				width: height * logo.aspectRatio,
+				margin: height * logo.clearSpaceRatio,
 				flexShrink: 0,
 			}}
 		>
+			{/* Invisible, but makes Remotion wait until the logo file is loaded before a frame is captured. */}
+			<Img src={source} alt="" style={{position: 'absolute', width: '100%', height: '100%', opacity: 0}} />
 			<div
 				style={{
-					width: size,
-					height: size,
-					borderRadius: size * 0.28,
-					backgroundColor: colors.primary,
-					color: colors.onPrimary,
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-					fontFamily: typography.display,
-					fontWeight: 800,
-					fontSize: size * 0.62,
-					lineHeight: 1,
+					position: 'absolute',
+					inset: 0,
+					backgroundColor: color ?? ink.text,
+					maskImage: mask,
+					WebkitMaskImage: mask,
+					maskSize: '100% 100%',
+					WebkitMaskSize: '100% 100%',
+					maskRepeat: 'no-repeat',
+					WebkitMaskRepeat: 'no-repeat',
 				}}
-			>
-				{BRAND.monogram}
-			</div>
-			{showName ? (
-				<div
-					style={{
-						fontFamily: typography.display,
-						fontWeight: 800,
-						fontSize: size * 0.6 * typography.displayScale,
-						letterSpacing: typography.displayLetterSpacing,
-						lineHeight: 1,
-						color: ink.text,
-						whiteSpace: 'nowrap',
-					}}
-				>
-					{BRAND.name}
-				</div>
-			) : null}
+			/>
 		</div>
 	);
 };

@@ -85,8 +85,7 @@ export const QuickRevision = defineTemplate({
 		{preset: 'slide', direction: 'from-right', durationSeconds: 0.3},
 		{preset: 'slide', direction: 'from-bottom', durationSeconds: 0.3},
 	],
-	// Short-form pace: the narrator speaks faster here than in the other templates.
-	voiceover: {rate: '+16%'},
+	voiceProfile: 'Energizer',
 	targetSeconds: {min: QUICK_REVISION_MIN_SECONDS, max: QUICK_REVISION_MAX_SECONDS},
 	buildScenes,
 	renderOverlay: (_content, plan) => <RevisionChrome plan={plan} />,

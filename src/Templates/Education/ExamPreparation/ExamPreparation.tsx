@@ -143,6 +143,7 @@ export const ExamPreparation = defineTemplate({
 	sampleContent: EXAM_PREPARATION_SAMPLE,
 	defaultTheme: 'ExamFocus',
 	transition: {preset: 'slide', direction: 'from-bottom', durationSeconds: 0.45},
+	voiceProfile: 'Coach',
 	buildScenes,
 	renderOverlay: (content, plan) => {
 		const labels = Object.fromEntries(buildScenes(content).map((scene) => [scene.id, scene.label ?? scene.id]));

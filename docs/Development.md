@@ -57,6 +57,14 @@ de döndürür. Ses üretimi (`Services/`) motorun dışındadır: satırları a
 sesli ve sessiz videoyu üretir. `SceneSeries` klipleri sahnenin içinde sırayla çalar. Klipler metin + ses ayarının
 özetiyle adlandırılıp önbelleğe alınır; aynı iş tekrar render edildiğinde aynı ses dosyaları kullanılır.
 
+**Ses merkezîdir: katalog → profil → seçim.** `Configurations/Voices.ts` kimin (ses), nasıl (profil: rol, sıralı
+ses listesi, model, tempo) ve nerede (kategori/template → profil) konuştuğunu tanımlar. Template'ler ses kimliği
+bilmez, yalnızca profil adı verir. `Services/VoiceCasting.ts` isteği hesabın kullanabildiği seslere göre somut bir
+sese çevirir (saf fonksiyon); `Services/ElevenLabsSpeech.ts` ElevenLabs'e giden tek kapıdır. Profilin ilk tercihi
+hesapta yoksa listedeki sıradaki ses seçilir ve bu, sonuçta `voiceCast.note` olarak bildirilir; işte açıkça
+istenen bir ses yoksa sessizce değiştirilmez, hata verilir. Tempo ses üretilirken değil oynatılırken uygulanır
+(Eleven v3 `speed` ayarını dikkate almıyor), bu yüzden tempo değişikliği yeniden üretim ve kredi gerektirmez.
+
 **Kapsam dışı bırakılanlar.** HTTP sunucusu, kuyruk, bulut depolama, LLM çağrısı, altyazı yoktur. Girdi JSON, çıktı dosyadır;
 bunların hepsi bu sınırın dışına eklenebilir.
 
@@ -106,10 +114,12 @@ kurup `FontFamilies.ts` ve `FontFaces.ts` içine ekleyin (Türkçe için `latin-
 | Yeni animasyon preset'i | `AnimationSpec.ts` içindeki liste, `AnimationStyle.ts` içine bir `case` |
 | Yeni sahne geçişi | `SceneTransition.ts` (sahneler saydamdır; yalnızca eski sahneyi götüren geçişler uygundur) |
 | Yeni video formatı veya kalite | `Configurations/VideoFormats.ts` |
-| Yeni ses sağlayıcısı (ElevenLabs, OpenAI...) | `Services/SpeechSynthesizer.ts` içine bir fonksiyon, `Configurations/Voiceover.ts` listesine bir ad |
-| Varsayılan ses, hız, ton | `Configurations/Voiceover.ts`; template'e özel tempo için tanımdaki `voiceover` alanı |
+| Yeni ses | `Configurations/Voices.ts` içindeki `VOICES`; sonra bir profilin listesine (denemek için başına) ekleyin |
+| Yeni ses profili (ör. çocuklara yönelik) | `VOICE_PROFILES`; template tanımında `voiceProfile` ile kullanın |
+| Bir içerik türünün sesi, modeli, temposu | İlgili profil. Model: `expressive` (v3) ya da `stable` (Multilingual v2) |
+| Yeni model (ör. Eleven v4) | `VOICE_MODELS` içine bir satır |
 | Okunuş kuralı (birim, formül) | `Schemas/SpokenText.ts` |
-| Gerçek logo | `Components/Overlays/BrandMark.tsx` ve `Configurations/Brand.ts` |
+| Logoyu ya da boyutlarını değiştirmek | `public/Brand/SinavikaLogo.png` (şeffaf zeminli PNG) ve `Configurations/Brand.ts`. Logo yalnızca `BrandMark` ile çizilir; dosyanın rengi önemli değildir, zeminin metin rengine boyanır |
 | Derse özel bileşen | `Components/` altına; ilgili template sahnesinde kullanılır. Derse özel render motoru yoktur |
 
 ## Claude ile içerik üretimi (sonraki faz)
@@ -132,16 +142,23 @@ sandbox'ta derlenip render edilmeli ve insan onayından geçmelidir.
 
 ## Bilinen kısıtlar
 
-- **Varsayılan ses sağlayıcısı (`edge`) resmî bir API değildir.** Hesap gerektirmediği için geliştirmede
-  kullanışlıdır; hız sınırına takılabilir (403) ve hizmet garantisi yoktur. Canlıda `azure` sağlayıcısını kullanın.
-  `azure` sağlayıcısı Azure'un REST arayüzüne göre yazıldı ama anahtar olmadığı için **çalıştırılıp denenmedi**.
-- **Seslendirme ağ gerektirir** (önbellekte olmayan satırlar için) ve anlatım metni ses sağlayıcısına gönderilir.
+- **Türkçe (ana dili) sesler ücretli plan ister.** Ücretsiz planda ElevenLabs kütüphane seslerini API'den
+  kullandırmaz; profiller o durumda çok dilli varsayılan seslere düşer. Bu sesler Türkçe konuşur ama ana dili
+  Türkçe olan seslendirmenler değildir.
+- **Ücretsiz planın çıktısı ticari kullanıma uygun değildir** (ElevenLabs lisansı ücretli planla gelir) ve dönem
+  başına 10.000 karakterle sınırlıdır; bir video kabaca 700–1.100 karakter harcar.
+- **Ses seçimi kulakla doğrulanmadı.** Katalogdaki Türkçe sesler kütüphane verisine (kullanım amacı, yaygınlık,
+  açıklama) göre seçildi. `npm run voices -- --audition "..."` ile dinleyip listeleri düzenleyin.
+- **Eleven v3 tonlaması satırdan satıra değişebilir** ve `seed` yalnızca en iyi çabadır: aynı satır yeniden
+  üretilirse biraz farklı duyulabilir. Önbellek, render edilmiş bir videonun sesini sabit tutar. İstikrar
+  gereken içerikte işte `"model": "stable"` kullanın.
+- **Seslendirme ağ gerektirir** (önbellekte olmayan satırlar için) ve anlatım metni ElevenLabs'e gönderilir.
 - **Formül okuma en iyi çabadır.** Okul düzeyi ifadeler okunur; karmaşık ifadelerde `narration` verin.
 - **Altyazı ve arka plan müziği yok.** Satır metinleri ve süreleri elde olduğu için altyazı eklenebilir.
 - **Ses ile ekran eşlemesi sahne düzeyindedir:** sahne, sesi kadar sürer ve öğeler süreye yayılır; kelime
   kelime eşleme yapılmaz.
-- **Logo yer tutucudur.** `BrandMark` "S" monogramı çizer; gerçek logo ve marka renkleri eklenmeli.
-  `SinavikaBrand` temasındaki renkler de varsayımdır.
+- **Marka renkleri varsayımdır.** Logo gerçek Sınavika logosudur (`public/Brand/SinavikaLogo.png`), ama
+  `SinavikaBrand` temasındaki renkler henüz resmî marka renkleri değildir.
 - **Görseller yalnızca `public/` içinden ya da URL'den okunur.** URL'li görsel render sırasında ağ gerektirir.
   SVG görsellerin içindeki yazılar sistem fontuyla çizilir.
 - **Studio'da "Can't save default props" uyarısı** beklenen bir durumdur: varsayılan props dosyadaki sabit bir
