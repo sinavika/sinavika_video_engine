@@ -1,0 +1,85 @@
+import {Easing, interpolate} from 'remotion';
+
+/**
+ * Motion tokens and frame math. Everything here is a pure function of the
+ * frame number, which is what keeps renders deterministic: no timers, no
+ * randomness, no dependence on when or where a frame is rendered.
+ *
+ * Durations are in seconds so animations look the same at any FPS.
+ */
+export const MOTION_DURATIONS = {
+	instant: 0.15,
+	fast: 0.3,
+	base: 0.5,
+	slow: 0.8,
+	deliberate: 1.2,
+} as const;
+
+export const STAGGER_STEPS = {
+	tight: 0.06,
+	base: 0.12,
+	relaxed: 0.22,
+} as const;
+
+export const EASINGS = {
+	linear: Easing.linear,
+	standard: Easing.bezier(0.4, 0, 0.2, 1),
+	enter: Easing.bezier(0.16, 1, 0.3, 1),
+	exit: Easing.bezier(0.7, 0, 0.84, 0),
+	overshoot: Easing.bezier(0.34, 1.56, 0.64, 1),
+} as const;
+
+export type EasingName = keyof typeof EASINGS;
+export const EASING_NAMES = Object.keys(EASINGS) as [EasingName, ...EasingName[]];
+
+export const secondsToFrames = (seconds: number, fps: number): number => Math.round(seconds * fps);
+
+export const clamp01 = (value: number): number => Math.min(1, Math.max(0, value));
+
+export type ProgressInput = {
+	frame: number;
+	fps: number;
+	delaySeconds?: number;
+	durationSeconds?: number;
+	easing?: EasingName;
+};
+
+/** 0 before the animation starts, 1 after it ends. May exceed 1 mid-way with `overshoot`. */
+export const animationProgress = ({
+	frame,
+	fps,
+	delaySeconds = 0,
+	durationSeconds = MOTION_DURATIONS.base,
+	easing = 'enter',
+}: ProgressInput): number => {
+	const start = delaySeconds * fps;
+	const length = Math.max(1, durationSeconds * fps);
+	return interpolate(frame, [start, start + length], [0, 1], {
+		extrapolateLeft: 'clamp',
+		extrapolateRight: 'clamp',
+		easing: EASINGS[easing],
+	});
+};
+
+/**
+ * Spreads `count` items over a scene: the delay between consecutive items so
+ * the last one arrives before the scene ends. Keeps on-screen reveals in step
+ * with a voice-over of any length.
+ */
+export const paceSeconds = (
+	sceneSeconds: number,
+	count: number,
+	{leadSeconds = 1.2, minSeconds = 0.4, maxSeconds = 6} = {},
+): number => Math.min(maxSeconds, Math.max(minSeconds, (sceneSeconds - leadSeconds) / Math.max(1, count)));
+
+/** Number of characters a typewriter has revealed at `frame`. */
+export const typewriterLength = (
+	totalCharacters: number,
+	frame: number,
+	fps: number,
+	delaySeconds: number,
+	charactersPerSecond: number,
+): number => {
+	const elapsed = frame / fps - delaySeconds;
+	return Math.min(totalCharacters, Math.max(0, Math.floor(elapsed * charactersPerSecond)));
+};
