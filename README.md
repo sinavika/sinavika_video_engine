@@ -256,6 +256,17 @@ içine sürüm adıyla eklenir (`SinavikaV1`, sonra `SinavikaV2`…) ve işte ad
 temalarını değiştirmez; bir paleti videolara da sunmak için `ThemeRegistry` içine `applyPalette` ile kurulmuş bir
 tema eklenir.
 
+**Kurumsal palet.** Sınavika'nın resmî renkleri tek dosyada durur: [src/Configurations/BrandColors.ts](src/Configurations/BrandColors.ts).
+Bu renklerden iki palet (`SinavikaLightV1`, `SinavikaDarkV1`) ve aynı renkleri taşıyan iki tema (`SinavikaLight`,
+`SinavikaDark`) kurulur. Sosyal medya içeriklerinin tamamı bu iki temayla üretilir; hangi içerik türünün hangi temayı
+kullandığı [docs/SocialPlan.md](docs/SocialPlan.md) içindedir. Eski temalar (`SinavikaBrand` dahil) kendi renklerini korur.
+
+```bash
+npm run image -- --job samples/Images/QuestionSolution-QuestionCard.json --theme SinavikaLight --size Portrait
+```
+
+Videoda tema işin içinde seçilir: `"theme": "SinavikaLight"`.
+
 ## Çıktı dosyaları
 
 `--out` verilmeyen her üretim `Outputs/` altına sıralı ve anlamlı bir adla kaydedilir:
@@ -275,6 +286,33 @@ Outputs/
   zaman). Aynı bilgiler komutun ve API'nin sonucunda da döner.
 - Klasörü değiştirmek için `SINAVIKA_OUTPUT_DIRECTORY` ortam değişkeni kullanılabilir. `Outputs/` git tarafından
   yok sayılır.
+
+## Sosyal medya teslimi (SocialHub)
+
+Üretilen görsel ve videolar Sınavika API'ye teslim edilir; orada admin onayını bekler ve onaylanınca Buffer üzerinden Instagram, TikTok ve YouTube'da paylaşılır. Bu araç onay veremez ve yayın yapamaz.
+
+```bash
+npm run social -- accounts
+npm run social -- plan --month 2026-11 --out Plans/2026-11.json
+npm run social -- submit --post samples/Social/Post.json
+npm run social -- calendar --from 2026-11-01 --to 2026-12-01
+npm run social -- revisions
+npm run social -- sources --kind Question --unused
+npm run social -- import-sources --file samples/Social/Sources.json
+```
+
+| Komut | Ne yapar |
+| --- | --- |
+| `accounts` | Aktif hesaplar ve Buffer'ın her biri için önerdiği saatler |
+| `plan` | Standart haftalık plandan tarihli takvim: gün, saat (Buffer'dan), içerik türü, format, platformlar. Kurallar: [docs/SocialPlan.md](docs/SocialPlan.md) |
+| `submit` | Gönderi dosyasındaki medyayı yükler, gönderiyi "onay bekliyor" olarak oluşturur |
+| `calendar` | Tarih aralığındaki plan, hesap bazında durumla |
+| `revisions` | Adminin reddettiği, yeniden hazırlanacak gönderiler ve notları |
+| `sources`, `import-sources` | Kaynak veriler (soru, konu, hook) ve kullanıldı bilgisi |
+
+Gönderi dosyası [`samples/Social/Post.json`](samples/Social/Post.json) biçimindedir; `media` yolları dosyanın bulunduğu klasöre göredir, `scheduledAt` saat dilimiyle yazılır (`+03:00`). Reddedilen bir gönderinin yerine hazırlananda `replacesPostId` eskisinin kimliğidir. Bir kaynak yalnız bir gönderide kullanılabilir; API ikinci kullanımı reddeder.
+
+`.env`: `SINAVIKA_API_URL` ve `SINAVIKA_SOCIALHUB_KEY` (sunucudaki `SocialHub__ClaudeApiKey` ile aynı). İstemci: [`src/Services/SocialHubClient.ts`](src/Services/SocialHubClient.ts). Sunucu tarafı ve uçlar: Sınavika deposunda `docs/social-hub-integration.md`.
 
 ## Video template'leri
 

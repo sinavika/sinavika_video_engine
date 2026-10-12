@@ -74,6 +74,9 @@ export const applyPalette = (base: Theme, palette: ColorPalette, name = `${base.
 	const muted = palette.muted ?? mixColors(text, background, 0.38);
 	const fills = [primary, accent, palette.secondary, palette.success ?? base.colors.success, palette.warning ?? base.colors.warning];
 	const success = palette.success ?? base.colors.success;
+	const danger = palette.error ?? base.colors.danger;
+	// One ink sits on both status colours, so it is the one whose worse case is better.
+	const worstOnStatus = (ink: string) => Math.min(contrastRatio(ink, success), contrastRatio(ink, danger));
 
 	return {
 		...base,
@@ -95,9 +98,9 @@ export const applyPalette = (base: Theme, palette: ColorPalette, name = `${base.
 			accent,
 			onAccent: readableOn(accent),
 			success,
-			danger: palette.error ?? base.colors.danger,
+			danger,
 			warning: palette.warning ?? base.colors.warning,
-			onStatus: readableOn(success),
+			onStatus: worstOnStatus(LIGHT_INK) >= worstOnStatus(DARK_INK) ? LIGHT_INK : DARK_INK,
 			highlight: accent,
 			categorical: fills
 				.filter((fill): fill is string => Boolean(fill))

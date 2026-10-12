@@ -1,9 +1,9 @@
 import {existsSync} from 'node:fs';
-import {copyFile, mkdir} from 'node:fs/promises';
+import {copyFile, mkdir, rename} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {bundle} from '@remotion/bundler';
-import {renderMedia, renderStill, selectComposition} from '@remotion/renderer';
+import {RenderInternals, renderMedia, renderStill, selectComposition} from '@remotion/renderer';
 import {planTemplateScenes} from '../Scenes/SceneSeries';
 import type {SpeechBackend} from '../Services/ElevenLabsSpeech';
 import {saveNumberedOutput} from '../Services/OutputFiles';
@@ -192,11 +192,30 @@ export const renderVideo = async (rawJob: unknown, options: RenderOptions): Prom
 					totalFrames: composition.durationInFrames,
 				}),
 		});
+		await stripFileTags(outputPath);
 	} catch (error) {
 		throw new VideoRenderError('rendering', error);
 	}
 
 	return toResult(job, outputPath, warnings, startedAt);
+};
+
+/**
+ * Rewrites the container without its tags, so the published file carries no
+ * note about the tools that produced it. The video and audio streams are
+ * copied as they are; nothing is re-encoded.
+ */
+const stripFileTags = async (file: string): Promise<void> => {
+	const clean = `${file}.clean.mp4`;
+	await RenderInternals.callFf({
+		bin: 'ffmpeg',
+		args: ['-y', '-i', file, '-map', '0', '-c', 'copy', '-map_metadata', '-1', '-fflags', '+bitexact', '-movflags', '+faststart', clean],
+		indent: false,
+		logLevel: 'error',
+		binariesDirectory: null,
+		cancelSignal: undefined,
+	});
+	await rename(clean, file);
 };
 
 export type NumberedRenderResult = RenderResult & {

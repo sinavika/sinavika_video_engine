@@ -1,19 +1,49 @@
+import {BRAND_COLORS} from '../Configurations/BrandColors';
 import type {ColorPalette} from './ColorPalette';
+
+const {brand, light, dark, status} = BRAND_COLORS;
 
 /**
  * Named colour palettes. Names carry a version so that a palette, once used
  * in published content, never changes meaning: a revised palette is added as
  * V2, it does not replace V1.
  *
- * To add the official Sınavika palette: add an entry here. Image jobs can
- * then select it with `"palette": "<Name>"`. Existing video themes are not
- * affected; to offer the palette to videos as well, register a theme built
- * with `applyPalette` in ThemeRegistry.
+ * SinavikaLightV1 and SinavikaDarkV1 are the official brand palettes, built
+ * from Configurations/BrandColors.ts. They are also registered as the themes
+ * SinavikaLight and SinavikaDark, which is how videos use them.
  *
- * The two entries below are starter palettes to exercise the mechanism, not
- * brand decisions.
+ * MidnightGoldV1 and FreshMintV1 are starter palettes that exercise the
+ * mechanism; they are not brand colours and are not used for published content.
  */
 export const PALETTES = {
+	SinavikaLightV1: {
+		primary: brand.primary,
+		accent: brand.primaryContainer,
+		secondary: brand.charcoal,
+		background: light.background,
+		surface: light.card,
+		text: brand.textPrimary,
+		muted: light.textSecondary,
+		border: light.border,
+		success: status.success.light,
+		warning: status.warning.light,
+		error: status.error.light,
+		gradient: [brand.primary, brand.primaryContainer],
+	},
+	SinavikaDarkV1: {
+		primary: dark.primaryAccent,
+		accent: brand.primaryContainer,
+		secondary: brand.primaryDim,
+		background: dark.background,
+		surface: dark.surface,
+		text: dark.textPrimary,
+		muted: dark.textSecondary,
+		border: dark.border,
+		success: status.success.dark,
+		warning: status.warning.dark,
+		error: status.error.dark,
+		gradient: [dark.background, dark.surfaceLow, dark.elevatedSurface],
+	},
 	MidnightGoldV1: {
 		primary: '#F5B83D',
 		accent: '#7C9CFF',
