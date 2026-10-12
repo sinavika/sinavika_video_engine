@@ -1,6 +1,7 @@
 import {
 	PLAN_TIME_ZONE,
 	PLAN_TIMING,
+	POST_TYPES,
 	SOCIAL_CONTENT,
 	SOCIAL_FORMATS,
 	WEEKDAYS,
@@ -17,15 +18,25 @@ import {
  */
 export type AccountSchedule = {platform: string; postingSchedule?: {day: string; times: string[]; paused?: boolean}[] | null};
 
+/** One platform of a slot: the post type it is published as there, and its own hour. */
+export type PlannedTarget = {
+	platform: SocialPlatform;
+	postType: string;
+	scheduledAt: string;
+	timeSource: `buffer:${SocialPlatform}` | 'fallback';
+};
+
 export type PlannedSlot = PlanEntry & {
 	/** Calendar day in Istanbul, YYYY-MM-DD. */
 	date: string;
 	weekday: Weekday;
 	label: string;
-	/** ISO 8601 with the Istanbul offset. */
+	/** The post's main hour, ISO 8601 with the Istanbul offset. Platforms may differ; see `targets`. */
 	scheduledAt: string;
-	/** Where the hour came from: the Buffer schedule of a platform, or the plan's fallback. */
+	/** Where the main hour came from: the Buffer schedule of a platform, or the plan's fallback. */
 	timeSource: `buffer:${SocialPlatform}` | 'fallback';
+	/** Per platform: the real post type and the hour it publishes at. This is what gets submitted. */
+	targets: PlannedTarget[];
 	theme: string;
 	imageSize: string | null;
 	videoFormat: string | null;
@@ -49,11 +60,16 @@ const toMinutes = (time: string): number => {
 
 const toTime = (minutes: number): string => `${String(Math.floor(minutes / 60)).padStart(2, '0')}:${String(minutes % 60).padStart(2, '0')}`;
 
+const platformTime = (platform: SocialPlatform, weekday: Weekday, accounts: AccountSchedule[]): string | null => {
+	const slot = accounts.find((account) => account.platform === platform)?.postingSchedule?.find((day) => day.day === weekday && !day.paused);
+	return slot?.times.length ? slot.times[0] : null;
+};
+
 const bufferTime = (entry: PlanEntry, weekday: Weekday, accounts: AccountSchedule[]): {time: string; platform: SocialPlatform} | null => {
 	for (const platform of PLAN_TIMING.platformPriority) {
 		if (!entry.platforms.includes(platform)) continue;
-		const slot = accounts.find((account) => account.platform === platform)?.postingSchedule?.find((day) => day.day === weekday && !day.paused);
-		if (slot?.times.length) return {time: slot.times[0], platform};
+		const time = platformTime(platform, weekday, accounts);
+		if (time) return {time, platform};
 	}
 	return null;
 };
@@ -81,14 +97,29 @@ export const planRange = (from: string, to: string, accounts: AccountSchedule[] 
 			const source = entry.channel === 'Story' ? feedTime : own;
 			const content = SOCIAL_CONTENT[entry.content];
 			const format = SOCIAL_FORMATS[entry.format];
+			const stamp = (clock: string) => `${date}T${clock}:00${PLAN_TIME_ZONE.offset}`;
+			const types: Partial<Record<SocialPlatform, string>> = POST_TYPES[entry.format];
+			const targets = entry.platforms.map((platform): PlannedTarget => {
+				const postType = types[platform];
+				if (!postType) throw new Error(`${platform} cannot publish the format ${entry.format} (${weekday}, ${entry.content}).`);
+				// A story keeps the hour worked out above; everything else uses the platform's own Buffer hour.
+				const ownTime = entry.channel === 'Story' ? null : platformTime(platform, weekday, accounts);
+				return {
+					platform,
+					postType,
+					scheduledAt: stamp(ownTime ?? time),
+					timeSource: ownTime ? `buffer:${platform}` : source ? `buffer:${source.platform}` : 'fallback',
+				};
+			});
 
 			slots.push({
 				...entry,
 				date,
 				weekday,
 				label: content.label,
-				scheduledAt: `${date}T${time}:00${PLAN_TIME_ZONE.offset}`,
+				scheduledAt: stamp(time),
 				timeSource: source ? `buffer:${source.platform}` : 'fallback',
+				targets,
 				theme: content.theme,
 				imageSize: format.imageSize,
 				videoFormat: format.videoFormat,

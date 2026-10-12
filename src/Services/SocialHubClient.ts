@@ -3,7 +3,8 @@ import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {z} from 'zod';
-import {SOCIAL_PLATFORMS} from '../Configurations/SocialPlan';
+import {POST_TYPE_NAMES, SOCIAL_PLATFORMS} from '../Configurations/SocialPlan';
+import {VIDEO_COVER} from '../Configurations/VideoCover';
 
 /**
  * Delivers finished posts to the Sınavika API (SocialHub). The API stores the
@@ -29,10 +30,30 @@ export const SocialPostSchema = z.object({
 	lesson: z.string().max(100).optional(),
 	/** With an explicit offset, e.g. 2026-11-02T20:00:00+03:00, so the hour is never ambiguous. */
 	scheduledAt: z.iso.datetime({offset: true}),
-	/** Paths of the rendered files, in the order they should appear. */
-	media: z.array(z.string().min(1)).min(1).max(10),
-	/** Empty means every active account the media fits. */
-	targets: z.array(z.object({platform: z.enum(SOCIAL_PLATFORMS), caption: z.string().max(5000).optional()})).default([]),
+	/** Paths of the rendered files, in the order they should appear. Empty only for a LinkedIn text post. */
+	media: z.array(z.string().min(1)).max(10).default([]),
+	/**
+	 * The cover image of a video post. Left out, the `_Kapak.png` saved next to
+	 * the video is used. A cover is never one of the media files.
+	 */
+	cover: z.string().min(1).optional(),
+	/** The moment of the video to use as its cover frame where the platform allows choosing one. */
+	coverOffsetMs: z.number().int().min(0).max(600_000).optional(),
+	/**
+	 * Where the post goes: the platform, the real post type there (left out, it
+	 * follows from the media), and the platform's own hour (left out, the
+	 * post's). Empty means every active account the media fits.
+	 */
+	targets: z
+		.array(
+			z.object({
+				platform: z.enum(SOCIAL_PLATFORMS),
+				postType: z.enum(POST_TYPE_NAMES).optional(),
+				scheduledAt: z.iso.datetime({offset: true}).optional(),
+				caption: z.string().max(5000).optional(),
+			}),
+		)
+		.default([]),
 	sources: z.array(SourceKeySchema).default([]),
 	replacesPostId: z.uuid().optional(),
 });
@@ -40,6 +61,14 @@ export type SocialPost = z.infer<typeof SocialPostSchema>;
 
 export const SocialSourceSchema = SourceKeySchema.extend({content: z.json().refine((value) => value !== null, 'content is required')});
 export type SocialSource = z.infer<typeof SocialSourceSchema>;
+
+/** The cover saved with a video (`03_Name.mp4` → `03_Name_Kapak.png`), if the post is a single video that has one. */
+const linkedCover = (media: string[], baseDirectory: string): string | undefined => {
+	if (media.length !== 1 || path.extname(media[0]).toLowerCase() !== '.mp4') return undefined;
+	const {dir, name} = path.parse(media[0]);
+	const cover = path.join(dir, `${name}_${VIDEO_COVER.fileSuffix}.png`);
+	return existsSync(path.resolve(baseDirectory, cover)) ? cover : undefined;
+};
 
 export class SocialHubError extends Error {
 	constructor(
@@ -96,15 +125,19 @@ export const createSocialHubClient = (options: {apiUrl?: string; apiKey?: string
 		importSources: async (items: SocialSource[]) => request<{created: number; updated: number}>('POST', 'sources/import', {items: z.array(SocialSourceSchema).min(1).parse(items)}),
 		/** Uploads the media and creates the post, waiting for approval. Media paths resolve against `baseDirectory`. */
 		submit: async (rawPost: unknown, baseDirectory = process.cwd()) => {
-			const {media, ...payload} = SocialPostSchema.parse(rawPost);
-			const form = new FormData();
-			form.set('payload', JSON.stringify(payload));
-			for (const file of media) {
+			const {media, cover, ...payload} = SocialPostSchema.parse(rawPost);
+			const attach = async (field: string, file: string) => {
 				const fullPath = path.resolve(baseDirectory, file);
 				const type = MEDIA_TYPES[path.extname(fullPath).toLowerCase()];
 				if (!type) throw new Error(`Unsupported media file: ${file}. Use PNG, JPEG, WebP or MP4.`);
-				form.append('files', new Blob([await readFile(fullPath)], {type}), path.basename(fullPath));
-			}
+				form.append(field, new Blob([await readFile(fullPath)], {type}), path.basename(fullPath));
+			};
+			const form = new FormData();
+			const coverFile = cover ?? linkedCover(media, baseDirectory);
+			if (coverFile) payload.coverOffsetMs ??= VIDEO_COVER.frameOffsetMilliseconds;
+			form.set('payload', JSON.stringify(payload));
+			for (const file of media) await attach('files', file);
+			if (coverFile) await attach('cover', coverFile);
 			return request<{id: string; status: number}>('POST', 'posts', form);
 		},
 	};

@@ -36,6 +36,10 @@ export const createVideoPropsSchema = <Content extends z.ZodType>(
 		content: contentSchema,
 		/** Filled in by the voice-over generator; scene durations follow the audio. */
 		voiceClips: VoiceClipsSchema,
+		/** The lesson whose colour tints the accent on the brand themes. See Configurations/LessonColors. */
+		lesson: z.string().optional(),
+		/** Path of the cover image inside `public/`; shown for the first moment of the video. Set by the renderer. */
+		coverSrc: z.string().optional(),
 	});
 
-export type VideoProps<Content> = {theme: ThemeId; fps: number; content: Content; voiceClips: VoiceClips};
+export type VideoProps<Content> = {theme: ThemeId; fps: number; content: Content; voiceClips: VoiceClips; lesson?: string; coverSrc?: string};

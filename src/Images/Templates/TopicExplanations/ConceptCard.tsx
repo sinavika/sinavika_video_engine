@@ -45,7 +45,7 @@ const ConceptCardImage: React.FC<{content: Content}> = ({content}) => {
 			<FitBox fill>
 				<div style={{display: 'flex', flexDirection: 'column', gap: u(30)}}>
 					{content.subject ? (
-						<Badge tone="accent" icon="book" size={27}>
+						<Badge lesson tone="accent" icon="book" size={27}>
 							{content.subject} · Konu özeti
 						</Badge>
 					) : null}

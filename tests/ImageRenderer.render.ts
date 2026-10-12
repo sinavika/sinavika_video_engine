@@ -88,6 +88,37 @@ describe('themes and palettes', () => {
 	});
 });
 
+describe('lesson colours', () => {
+	const render = async (name: string, overrides: Record<string, unknown>) =>
+		pixels((await renderImage(sampleJob('QuestionCard', {size: 'Portrait', ...overrides}), {outputPath: path.join(outputDirectory, `${name}.png`)})).files[0]);
+
+	it('tints the accent by lesson on the brand themes and leaves the older themes alone', async () => {
+		const maths = await render('Lesson-Maths', {theme: 'SinavikaLight'});
+		const turkish = await render('Lesson-Turkish', {theme: 'SinavikaLight', lesson: 'Türkçe'});
+		const unknown = await render('Lesson-Unknown', {theme: 'SinavikaLight', lesson: 'Rehberlik'});
+		const oldMaths = await render('Lesson-Old-Maths', {theme: 'SinavikaBrand'});
+		const oldTurkish = await render('Lesson-Old-Turkish', {theme: 'SinavikaBrand', lesson: 'Türkçe'});
+
+		// A controlled difference: visible, but only in the accents.
+		expect(differingShare(maths, turkish)).toBeGreaterThan(0.002);
+		expect(differingShare(maths, turkish)).toBeLessThan(0.2);
+		expect(differingShare(maths, unknown)).toBeGreaterThan(0.002);
+		expect(differingShare(oldMaths, oldTurkish)).toBeLessThan(0.0005);
+	});
+});
+
+describe('carousel without page indicators', () => {
+	it('leaves the footer of every slide to the brand mark alone', async () => {
+		const result = await renderImage(sampleJob('SlideDeck', {theme: 'SinavikaLight'}), {outputPath: path.join(outputDirectory, 'Clean.png')});
+		const [cover, first, second] = result.files.map(pixels);
+		// Content slides differ only in their content area: with no counter or progress strip, the bottom band is identical.
+		const bottomBand = (page: PNG) => page.data.subarray(page.width * 4 * (page.height - 140)).toString('hex');
+		expect(bottomBand(first)).toBe(bottomBand(second));
+		expect(result.warnings).toEqual([]);
+		expect(cover.height).toBe(1350);
+	});
+});
+
 describe('long Turkish content', () => {
 	it('fits a long question with long options instead of overflowing', async () => {
 		const job = sampleJob('QuestionCard', {

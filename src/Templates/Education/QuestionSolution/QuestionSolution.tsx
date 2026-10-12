@@ -135,7 +135,7 @@ export const QuestionSolution = defineTemplate({
 		<ChromeBar style={{justifyContent: 'space-between'}}>
 			<BrandMark />
 			{content.subject ? (
-				<Badge tone="surface" icon="book">
+				<Badge lesson tone="surface" icon="book">
 					{content.subject}
 				</Badge>
 			) : null}

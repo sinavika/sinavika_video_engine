@@ -7,6 +7,8 @@ import {useVideoLayout} from '../Layouts/VideoLayout';
 
 type BadgeProps = {
 	tone?: Tone;
+	/** A subject label: drawn in the lesson's colour when the theme carries one, in `tone` otherwise. */
+	lesson?: boolean;
 	icon?: IconName;
 	/** Font size in reference pixels. */
 	size?: number;
@@ -14,10 +16,10 @@ type BadgeProps = {
 };
 
 /** Small pill label: subject, card type, step counter. */
-export const Badge: React.FC<BadgeProps> = ({tone = 'primary', icon, size = FONT_SIZES.label, children}) => {
+export const Badge: React.FC<BadgeProps> = ({tone = 'primary', lesson = false, icon, size = FONT_SIZES.label, children}) => {
 	const theme = useTheme();
 	const {u} = useVideoLayout();
-	const {fill, ink, outlined} = resolveTone(theme, tone);
+	const {fill, ink, outlined} = resolveTone(theme, lesson && theme.colors.lesson ? theme.colors.lesson : tone);
 	const pill = theme.shape.radius.sm < 10 ? theme.shape.radius.sm : 999;
 
 	return (

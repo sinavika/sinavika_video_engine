@@ -13,6 +13,8 @@ export const createImagePropsSchema = <Content extends z.ZodType>(contentSchema:
 		theme: z.enum(THEME_IDS),
 		/** Replaces the theme's colours. */
 		palette: ColorPaletteSchema.optional(),
+		/** The lesson whose colour tints the accent on the brand themes. See Configurations/LessonColors. */
+		lesson: z.string().optional(),
 		size: ImageDimensionsSchema,
 		/** Which image of a multi-image design (carousel) to draw; 0 otherwise. */
 		page: z.number().int().min(0).default(0),
@@ -22,6 +24,7 @@ export const createImagePropsSchema = <Content extends z.ZodType>(contentSchema:
 export type ImageProps<Content> = {
 	theme: ThemeId;
 	palette?: ColorPalette;
+	lesson?: string;
 	size: ImageDimensions;
 	page: number;
 	content: Content;

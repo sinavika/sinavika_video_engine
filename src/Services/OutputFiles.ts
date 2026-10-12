@@ -96,14 +96,20 @@ const claimNumber = async (directory: string, claims: string): Promise<{number: 
 	}
 };
 
+export type OutputPart = string | {suffix: string; extension: string};
+
 export type OutputRequest<Result> = {
 	kind: OutputKind;
 	/** Free text the file name is derived from, e.g. the content's title. */
 	title: string;
 	/** Without the dot: "mp4", "png". */
 	extension: string;
-	/** For productions made of several files (carousels): one suffix per file, e.g. ["1", "2", "3"]. */
-	parts?: string[];
+	/**
+	 * For productions made of several files: one entry per file. A string is a
+	 * suffix (a carousel's "1", "2", "3"); an object can also name its own
+	 * extension, e.g. a video with its cover: ["", {suffix: "Kapak", extension: "png"}].
+	 */
+	parts?: OutputPart[];
 	/** Renders to the given temporary paths, one per part. Whatever it returns is passed through. */
 	produce: (temporaryPaths: string[]) => Promise<Result>;
 	/** Extra facts stored with the output: template, theme, size... */
@@ -145,10 +151,10 @@ export const saveNumberedOutput = async <Result>({
 
 	const {number, release} = await claimNumber(directory, claims);
 	const name = toFileName(title);
-	const suffixes = parts ?? [''];
-	const temporaryPaths = suffixes.map(() => path.join(work, `${randomUUID()}.${extension}`));
-	const finalPaths = suffixes.map((suffix) =>
-		path.join(directory, `${pad(number)}_${name}${suffix ? `_${suffix}` : ''}.${extension}`),
+	const files = (parts ?? ['']).map((part) => (typeof part === 'string' ? {suffix: part, extension} : part));
+	const temporaryPaths = files.map((file) => path.join(work, `${randomUUID()}.${file.extension}`));
+	const finalPaths = files.map((file) =>
+		path.join(directory, `${pad(number)}_${name}${file.suffix ? `_${file.suffix}` : ''}.${file.extension}`),
 	);
 
 	try {

@@ -1,11 +1,13 @@
 # Sosyal Medya Yayın Planı ve Üretim Kuralları
 
-Sınavika'nın standart haftalık ve aylık yayın planı ile bu plana göre içerik hazırlamanın kuralları. Planın kendisi koddadır; bu belge onu açıklar. Plan değişecekse [`src/Configurations/SocialPlan.ts`](../src/Configurations/SocialPlan.ts) değiştirilir, takvimler oradan yeniden üretilir.
+Sınavika'nın standart haftalık ve aylık yayın planı ile bu plana göre içerik hazırlamanın kuralları. Planın kendisi koddadır; bu belge onu açıklar. Bir kural değişecekse aşağıdaki dosyada değiştirilir, takvimler ve üretim oradan beslenir.
 
 | Ne | Nerede |
 | --- | --- |
-| Haftalık plan, içerik türleri, formatlar, saat kuralları | [`src/Configurations/SocialPlan.ts`](../src/Configurations/SocialPlan.ts) |
+| Haftalık plan, içerik türleri, formatlar, gönderi türleri, saat kuralları | [`src/Configurations/SocialPlan.ts`](../src/Configurations/SocialPlan.ts) |
 | Kurumsal renk paleti (tek kaynak) | [`src/Configurations/BrandColors.ts`](../src/Configurations/BrandColors.ts) |
+| Ders renkleri | [`src/Configurations/LessonColors.ts`](../src/Configurations/LessonColors.ts) |
+| Video kapağı ayarları | [`src/Configurations/VideoCover.ts`](../src/Configurations/VideoCover.ts) |
 | Paletler ve temalar | [`src/Themes/Palettes.ts`](../src/Themes/Palettes.ts), [`src/Themes/ThemeRegistry.ts`](../src/Themes/ThemeRegistry.ts) |
 | Takvim üretimi | [`src/Services/SocialPlanner.ts`](../src/Services/SocialPlanner.ts) |
 | API'ye teslim | [`src/Services/SocialHubClient.ts`](../src/Services/SocialHubClient.ts), `npm run social` |
@@ -16,7 +18,7 @@ Sınavika'nın standart haftalık ve aylık yayın planı ile bu plana göre iç
 | --- | --- | --- | --- | --- | --- |
 | Pazartesi | Soru çözümü (Matematik) | Kaydırmalı | — | Günün sorusu / Anket | Hook / Problem–Çözüm |
 | Salı | Konu anlatımı | Video | aynı video | Kısa bilgi / Reels yönlendirmesi | — |
-| Çarşamba | Hook / Sınav taktiği | Görsel | — | Sınav taktiği / Mini bilgi | Ürün tanıtımı |
+| Çarşamba | Hook / Sınav taktiği | Tekli görsel | — | Sınav taktiği / Mini bilgi | Ürün tanıtımı |
 | Perşembe | Soru çözümü (Türkçe veya başka ders) | Kaydırmalı | — | Çoktan seçmeli soru | — |
 | Cuma | Sınavika tanıtımı | Video | aynı video | Uygulama özelliği | Marka / Girişim tanıtımı |
 | Cumartesi | Zor soru / Mini test | Kaydırmalı | — | Mini test / Doğru cevap | — |
@@ -24,34 +26,44 @@ Sınavika'nın standart haftalık ve aylık yayın planı ile bu plana göre iç
 
 Haftalık toplam: 7 ana gönderi (Instagram ve TikTok'ta aynı içerik), 7 Story, 3 YouTube Shorts, 3 LinkedIn gönderisi. Aylık takvim aynı düzenin tekrarıdır; ayın 29–31. günleri de haftanın gününe göre dolar.
 
-## 2. Platform kuralları
+## 2. Gönderi türleri
 
-- **Instagram + TikTok:** aynı içerik, aynı dosyalar. Kaydırmalı gönderi TikTok'ta fotoğraf serisi olarak gider. Açıklama platforma göre ayrı yazılabilir (`targets[].caption`).
-- **YouTube:** bağımsız içerik üretilmez. Yalnız Salı, Cuma ve Pazar videoları Shorts olarak gider; kaydırmalı gönderi ve görsel hiçbir zaman gitmez (API de reddeder). `title` video başlığıdır.
-- **Instagram Story:** günün ana gönderisini destekler, aynısını tekrar etmez. Tek görsel veya tek video; kategori `Story` olarak teslim edilir, API bunu hikâye olarak yayınlar.
-- **LinkedIn:** yalnız Sınavika'nın tanıtımı, ürünü ve girişim hikâyesi. Ders anlatımı, soru çözümü, mini test paylaşılmaz. Yalnız gerçek özellikler ve doğrulanmış başarılar anlatılır.
+Her içeriğin iki etiketi vardır: **içerik kategorisi** (soru çözümü, konu anlatımı…) ve paylaşıldığı platformdaki **gerçek gönderi türü**. Tür, formata ve platforma göre belirlenir; bir platformun sahip olmadığı tür planlanamaz ve API tarafından reddedilir.
 
-| Platform | Medya | Metin sınırı (açıklama + hashtag) |
-| --- | --- | --- |
-| Instagram | 1 video (Reel) veya 1–10 görsel; Story'de tek dosya | 2.196 |
-| TikTok | 1 video veya 1–10 görsel | videoda 2.200, görselde 4.000 |
-| YouTube | 1 video | 5.000; başlık 100 |
-| LinkedIn | 1 video veya 1–10 görsel | 3.000 |
+| Format | Instagram | TikTok | YouTube | LinkedIn |
+| --- | --- | --- | --- | --- |
+| Kaydırmalı (2–10 görsel) | `carousel` | `photo` | — | `images` |
+| Tekli görsel | `image` | `photo` | — | `image` |
+| Kısa video | `reel` | `video` | `short` | `video` |
+| Story (tek görsel veya video) | `story` | — | — | — |
+| Metin | — | — | — | `text` |
+
+- **Instagram + TikTok:** aynı içerik, aynı dosyalar. Açıklama platforma göre ayrı yazılabilir (`targets[].caption`).
+- **YouTube:** bağımsız içerik üretilmez. Yalnız Salı, Cuma ve Pazar videoları Shorts olarak gider; görsel ve kaydırmalı gönderi hiçbir zaman gitmez. `title` video başlığıdır.
+- **Instagram Story:** günün ana gönderisini destekler, aynısını tekrar etmez.
+- **LinkedIn:** yalnız tanıtım, marka ve hook içerikleri. Ders anlatımı, soru çözümü, mini test paylaşılmaz. Yalnız gerçek özellikler ve doğrulanmış başarılar anlatılır.
+
+| Platform | Metin sınırı (açıklama + hashtag) |
+| --- | --- |
+| Instagram | 2.196 |
+| TikTok | videoda 2.200, görselde 4.000 |
+| YouTube | 5.000; başlık 100 |
+| LinkedIn | 3.000 |
 
 ## 3. Yayın saatleri
 
 Saatler Buffer'da her hesap için tanımlı yayın saatlerinden alınır (`npm run social -- accounts`).
 
-- Bir gönderinin tek saati vardır ve tüm platformlarında o saatte yayınlanır. Saat, gönderinin platformları içinde şu sırayla ilk Buffer saati olan hesaptan gelir: Instagram, TikTok, YouTube, LinkedIn.
-- Buffer'da o gün hiç saat yoksa plandaki yedek saat kullanılır: ana gönderi 20:00, LinkedIn 09:30.
+- **Her platform kendi Buffer saatinde yayınlar.** Aynı video Instagram'da Instagram'ın, YouTube'da YouTube'un saatinde çıkar.
+- Buffer saatleri hesap başına tanımlıdır, gönderi türü başına değil: aynı hesaptaki Reel ile kaydırmalı gönderi o hesabın saatlerini paylaşır. Buffer API'sinde gönderi türüne göre ayrı saat yoktur.
+- Bir platformun o gün Buffer saati yoksa, gönderinin ana saatini kullanır: sırayla Instagram, TikTok, YouTube, LinkedIn içinde saati olan ilk hesabınki.
+- Hiçbir hesabın saati yoksa plandaki yedek saat kullanılır: ana gönderi 20:00, LinkedIn 09:30. Takvimde bunlar `*` ile işaretlenir.
 - Story, günün ana gönderisinden 3 saat önce yayınlanır (en erken 07:00).
 - Tüm saatler İstanbul saatidir ve teslimde `+03:00` ile yazılır.
 
-Takvimdeki her satır saatin kaynağını gösterir (`buffer:instagram`, `fallback`).
-
 ## 4. Tasarım ve renk
 
-- Tüm sosyal medya içerikleri iki resmî temadan biriyle üretilir: `SinavikaLight` veya `SinavikaDark`. Başka tema kullanılmaz.
+- Tüm sosyal medya içerikleri iki resmî temadan biriyle üretilir: `SinavikaLight` veya `SinavikaDark`.
 - Tema içerik türüne bağlıdır, tek tek gönderiye göre seçilmez; böylece profil akışında açık–koyu ritmi sabit kalır:
 
 | Tema | İçerik türleri |
@@ -60,10 +72,48 @@ Takvimdeki her satır saatin kaynağını gösterir (`buffer:instagram`, `fallba
 | `SinavikaDark` | Hook / sınav taktiği, Sınavika tanıtımı, zor soru / mini test, LinkedIn marka |
 
 - Aynı içerik türü her zaman aynı tasarım şablonuyla üretilir. Şablon içinde yerleşim, yazı tipi ve logo konumu değişmez.
-- Renk kullanımı: turuncu yalnız vurgu ve çağrı için; antrasit başlık ve metin; nötr griler yüzey ve ayırıcı; yeşil, sarı, kırmızı, mavi yalnız durum (doğru, uyarı, yanlış, bilgi). Mor, mobildeki çözüm inceleme deneyimine ayrılmıştır ve içeriklerde kullanılmaz.
-- Ders ve kategoriye göre renk farkı için ayrı bir ders rengi tanımlı değildir; palet buna izin veren bir renk içermiyor. Dersler şimdilik etiket metniyle ayrılır.
+- Turuncu yalnız vurgu ve çağrı için; üstündeki yazı sinavika.com'daki gibi beyazdır. Antrasit başlık ve metin; nötr griler yüzey ve ayırıcı; yeşil, sarı, kırmızı, mavi yalnız durum (doğru, uyarı, yanlış, bilgi). Mor, mobildeki çözüm inceleme deneyimine ayrılmıştır.
 
-## 5. Kaynak veriler
+### Ders renkleri
+
+Turuncu her tasarımda marka rengi olarak kalır. Ders yalnız küçük vurguları değiştirir: ders etiketi, fosforlu vurgu ve vurgu rengini kullanan küçük öğeler. Dersler beş aileye ayrılır; ailesi olmayan içerik (rehberlik, tanıtım) marka turuncusunu kullanır.
+
+| Aile | Dersler | Açık tema | Koyu tema |
+| --- | --- | --- | --- |
+| Sayısal | Matematik, Geometri | `#1E40AF` | `#93B4FF` |
+| Fen | Fizik, Kimya, Biyoloji, Fen Bilimleri | `#0F766E` | `#5EEAD4` |
+| Türkçe | Türkçe, Edebiyat, Paragraf, Dil Bilgisi | `#BE185D` | `#F9A8D4` |
+| Sosyal | Tarih, Coğrafya, Felsefe, Din Kültürü, Vatandaşlık | `#4D7C0F` | `#BEF264` |
+| Yabancı dil | İngilizce, Almanca, Fransızca | `#0E7490` | `#67E8F9` |
+
+Neden böyle: her derse ayrı renk yerine beş aile seçildi, çünkü az sayıda sabit renk akışta hızla öğrenilir ve marka bütünlüğünü bozmaz. Tonlar markanın antrasit ve turuncusunun yanında duran koyu "mürekkep" tonlarıdır; hiçbiri uygulamadaki durum renkleriyle ya da ayrılmış morla aynı değildir ve hepsi üstündeki yazıyla 4,5:1 kontrastı sağlar. Ders–renk eşlemesi için yerleşik bir standart yoktur (yaygın eğilim matematik için mavi, fen için yeşildir); bu yüzden seçim bir kez yapılıp sabitlenmiştir. Ders, işteki `lesson` alanından ya da içerikteki `subject` alanından otomatik alınır.
+
+## 5. Görsel türleri
+
+Kaydırmalı gönderi, tekli görsel, Story ve video kapağı ayrı türlerdir; biri diğerinin yerine kullanılmaz.
+
+| Tür | Boyut | Kural |
+| --- | --- | --- |
+| Kaydırmalı gönderi | 1080×1350 | İlk görsel güçlü bir kapak, son görsel sonuç ve etkileşim çağrısıdır. Sayfa sayacı (`1/5`), ilerleme çubuğu ve kaydırma oku **yoktur**; bunları Instagram ve TikTok kendi arayüzünde gösterir. İçeriğin parçası olan `01`, `02`, `03` kural numaraları kalır. |
+| Tekli görsel | 1080×1350 | Kaydırmaya işaret eden hiçbir öğe (ok, sayaç, "kaydır" çağrısı) bulunmaz. |
+| Story | 1080×1920 | Tek görsel veya tek video. Günün ana gönderisinin kopyası olmaz. |
+| Video kapağı | videonun boyutu | Yalnız videonun kapağıdır; kaydırmalı gönderinin görseli olarak kullanılmaz ve medya listesine girmez. |
+
+## 6. Video kapağı
+
+- **Her kısa video için kapak görseli otomatik üretilir.** Kapak, `VideoCover` tasarımıyla, videonun boyutu, teması ve ders rengiyle hazırlanır; başlığı, dersi ve içerik türü videonun içeriğinden alınır. İş dosyasındaki `cover` alanı metinleri değiştirebilir; `"cover": false` kapağı kapatır.
+- Kapak, videoyla aynı numara altında kaydedilir: `03_Turkce_Ses_Olaylari.mp4` ve `03_Turkce_Ses_Olaylari_Kapak.png`.
+- Teslimde kapak videoyla birlikte, medya listesinden ayrı olarak API'ye yüklenir.
+- **Platformlar ayrı yüklenen kapak görselini kabul etmez.** Buffer üzerinden yapılabilen tek şey, videonun bir karesini kapak olarak seçmektir (Instagram Reels ve TikTok). Bu yüzden kapak, videonun ilk 0,2 saniyesinde ekranda tutulur ve platforma kapak karesi olarak bu an (100. milisaniye) bildirilir.
+- YouTube Shorts'ta API ile kapak seçilemez. Kapak görseli orada elle ayarlamak için saklanır; API bunu "uygulandı" saymaz.
+
+| Platform | Kapak nasıl uygulanır |
+| --- | --- |
+| Instagram Reels | Otomatik: videodaki kapak karesi |
+| TikTok | Otomatik: videodaki kapak karesi |
+| YouTube Shorts | Elle (YouTube uygulamasından); görsel API'de hazır durur |
+
+## 7. Kaynak veriler
 
 - Soru, konu ve hook içerikleri yalnız verilen JSON kaynaklarından üretilir; kaynakta olmayan bilgi eklenmez. Soru ve cevabın doğruluğu teslimden önce kontrol edilir.
 - Her kaynak bir kez kullanılır. Teslimde `sources` alanına yazılan kaynak API'de "kullanıldı" olur; başka gönderide kullanılmak istenirse API reddeder.
@@ -76,34 +126,30 @@ Takvimdeki her satır saatin kaynağını gösterir (`buffer:instagram`, `fallba
 | Hook / sınav taktiği, LinkedIn hook | `Hook` |
 | Tanıtım, Story, LinkedIn ürün ve marka | kaynak gerekmez; brifingden yazılır |
 
-## 6. Metin
+## 8. Metin ve teslim
 
-- Her gönderi açıklama, hashtag, medya, platform ve yayın zamanıyla eksiksiz teslim edilir.
+- Her gönderi açıklama, hashtag, medya, platformlar, gönderi türleri ve yayın zamanıyla eksiksiz teslim edilir.
 - `#sinavika` her gönderide bulunur; diğer hashtag'ler ders ve konuya göre eklenir.
 - Görselde "cevap açıklamada" deniyorsa cevap açıklamada gerçekten yer alır.
 - Fiyat, kampanya, kullanıcı sayısı gibi iddialar yalnız doğrulanmış bilgiyle yazılır.
+- Video dosyalarında üretim aracına dair etiket bulunmaz; görseller üst veri taşımaz. Buffer'a "yapay zekâ ile üretildi" işareti gönderilmez.
 
-## 7. Dosyalar
-
-- Video dosyalarının üst verisinde yalnız marka adı bulunur; üretim aracına dair not yazılmaz. Görseller üst veri taşımaz.
-- Buffer'a "yapay zekâ ile üretildi" işareti gönderilmez.
-
-## 8. Onay ve revizyon
+## 9. Onay ve revizyon
 
 1. İçerikler API'ye teslim edilir ve admin onayını bekler. Onay olmadan hiçbir şey yayınlanmaz.
 2. Reddedilen gönderi notuyla birlikte `npm run social -- revisions` listesinde görünür.
-3. Yenisi aynı tarih ve saatle hazırlanır ve `replacesPostId` ile teslim edilir; eski gönderi geçmiş olarak kalır, kaynakları yenisine devredilir.
+3. Yenisi aynı tarih ve saatlerle hazırlanır ve `replacesPostId` ile teslim edilir; eski gönderi geçmiş olarak kalır, kaynakları yenisine devredilir.
 
-## 9. Komutlar
+## 10. Komutlar
 
 ```bash
 npm run social -- plan --month 2026-11 --out Plans/2026-11.json
-npm run social -- plan --from 2026-11-02 --to 2026-11-09
 npm run social -- sources --kind Question --unused
 npm run image -- --job Jobs/soru.json --theme SinavikaLight --size Portrait
-npm run social -- submit --post Posts/2026-11-02_mon.json
+npm run render -- --job Jobs/konu.json
+npm run social -- submit --post Posts/2026-11-03_tue.json
 npm run social -- calendar --from 2026-11-01 --to 2026-12-01
 npm run social -- revisions
 ```
 
-Plan dosyasındaki her satır hazırlanacak bir içeriğin brifingidir: tarih, saat, kanal, içerik türü, format, platformlar, tema, boyut ve kullanılacak kaynak türü.
+Plan dosyasındaki her satır hazırlanacak bir içeriğin brifingidir: tarih, kanal, içerik türü, format, tema, boyut, kaynak türü ve `targets` (platform, gönderi türü, o platformun saati). `targets` gönderi dosyasına olduğu gibi kopyalanır. `npm run render` videoyu kapağıyla birlikte `Outputs/Videos` altına kaydeder; gönderi dosyasında videoyu göstermek yeterlidir, yanındaki kapak kendiliğinden yüklenir.

@@ -62,7 +62,6 @@ const BoldQuestionImage: React.FC<{content: Content}> = ({content}) => {
 					<Text size={32} weight={700}>
 						{content.cue}
 					</Text>
-					<Icon name="arrowRight" size={34} strokeWidth={2.8} />
 				</div>
 			</div>
 		</ImageFrame>

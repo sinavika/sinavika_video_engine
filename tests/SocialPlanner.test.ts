@@ -62,6 +62,27 @@ describe('planRange', () => {
 		expect(week.find((slot) => slot.channel === 'LinkedIn')).toMatchObject({scheduledAt: '2026-11-02T09:30:00+03:00', timeSource: 'fallback'});
 	});
 
+	it('gives every platform its real post type and its own Buffer hour', () => {
+		const week = planRange('2026-11-02', '2026-11-09', accounts);
+		const targetsOf = (weekday: string, channel: string) => week.find((slot) => slot.weekday === weekday && slot.channel === channel)!.targets;
+		const brief = (weekday: string, channel = 'Feed') => targetsOf(weekday, channel).map((target) => `${target.platform}:${target.postType} ${target.scheduledAt.slice(11, 16)} ${target.timeSource}`);
+
+		expect(brief('mon')).toEqual(['instagram:carousel 20:53 buffer:instagram', 'tiktok:photo 09:47 buffer:tiktok']);
+		// TikTok has no Buffer hour on Tuesday here, so it follows the post's main hour; YouTube has its own.
+		expect(brief('tue')).toEqual(['instagram:reel 19:09 buffer:instagram', 'tiktok:video 19:09 buffer:instagram', 'youtube:short 20:07 buffer:youtube']);
+		expect(brief('wed')).toEqual(['instagram:image 18:50 buffer:instagram', 'tiktok:photo 18:50 buffer:instagram']);
+		expect(brief('mon', 'Story')).toEqual(['instagram:story 17:53 buffer:instagram']);
+		expect(brief('mon', 'LinkedIn')).toEqual(['linkedin:image 09:30 fallback']);
+	});
+
+	it('never plans a post type a platform does not have', () => {
+		const allowed: Record<string, string[]> = {instagram: ['carousel', 'image', 'reel', 'story'], tiktok: ['photo', 'video'], youtube: ['short'], linkedin: ['image', 'images', 'video', 'text']};
+		for (const slot of planMonth('2026-11', accounts)) {
+			expect(slot.targets.map((target) => target.platform)).toEqual(slot.platforms);
+			slot.targets.forEach((target) => expect(allowed[target.platform], `${slot.date} ${target.platform}`).toContain(target.postType));
+		}
+	});
+
 	it('puts the story ahead of the feed post, never before 07:00', () => {
 		const stories = Object.fromEntries(planRange('2026-11-02', '2026-11-09', accounts).filter((slot) => slot.channel === 'Story').map((slot) => [slot.weekday, slot.scheduledAt]));
 		expect(stories.mon).toBe('2026-11-02T17:53:00+03:00');
@@ -109,8 +130,10 @@ describe('brand palette', () => {
 			const {colors} = THEMES[theme];
 			expect(contrastRatio(colors.text, colors.background)).toBeGreaterThanOrEqual(7);
 			expect(contrastRatio(colors.onSurface, colors.surface)).toBeGreaterThanOrEqual(7);
-			expect(contrastRatio(colors.onPrimary, colors.primary)).toBeGreaterThanOrEqual(4.5);
+			expect(contrastRatio(colors.onPrimary, colors.primary)).toBeGreaterThanOrEqual(3);
 		}
+		// White on the brand orange, as on sinavika.com.
+		expect(THEMES.SinavikaLight.colors.onPrimary).toBe('#FFFFFF');
 		expect(THEMES.SinavikaLight.colors.primary).toBe('#EA580C');
 		expect(THEMES.SinavikaBrand.colors.primary).toBe('#5B3DF5');
 	});

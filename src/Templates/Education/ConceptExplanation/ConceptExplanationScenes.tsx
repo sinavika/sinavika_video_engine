@@ -75,7 +75,7 @@ export const TitleScene: React.FC<{content: Content}> = ({content}) => {
 			style={{alignItems: 'center', justifyContent: 'center', ...(isLandscape ? {paddingLeft: '14%', paddingRight: '14%'} : {})}}
 		>
 			<Animated>
-				<Badge tone="primary" icon="target" size={30}>
+				<Badge lesson tone="primary" icon="target" size={30}>
 					{content.subject ? `${content.subject} · Kavram` : 'Kavram'}
 				</Badge>
 			</Animated>

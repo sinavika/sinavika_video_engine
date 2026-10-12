@@ -1,13 +1,16 @@
+import {randomUUID} from 'node:crypto';
 import {existsSync} from 'node:fs';
 import {copyFile, mkdir, rename} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {bundle} from '@remotion/bundler';
 import {RenderInternals, renderMedia, renderStill, selectComposition} from '@remotion/renderer';
+import {VIDEO_COVER} from '../Configurations/VideoCover';
 import {planTemplateScenes} from '../Scenes/SceneSeries';
 import type {SpeechBackend} from '../Services/ElevenLabsSpeech';
 import {saveNumberedOutput} from '../Services/OutputFiles';
 import type {VoiceCast} from '../Services/VoiceCasting';
+import {renderVideoCover} from '../Services/VideoCoverGenerator';
 import {generateVoiceover} from '../Services/VoiceoverGenerator';
 import {durationWarnings, resolveVideoJob, voiceLines, withVoiceClips, type ResolvedVideoJob} from './VideoJob';
 
@@ -27,6 +30,12 @@ export type RenderProgress = {
 
 export type RenderOptions = {
 	outputPath: string;
+	/**
+	 * Where to save the video's cover image. Giving a path makes a cover even
+	 * if the job does not ask for one; a job with `"cover": false` never gets one.
+	 * Without a path, a job that asks for a cover gets it next to the video.
+	 */
+	coverPath?: string;
 	onProgress?: (progress: RenderProgress) => void;
 	/** Parallel browser tabs. Defaults to Remotion's choice (half the CPU threads). */
 	concurrency?: number;
@@ -38,6 +47,10 @@ export type RenderOptions = {
 
 export type RenderResult = {
 	outputPath: string;
+	/** The cover image made with the video, or null. */
+	coverPath: string | null;
+	/** The moment of the video that shows the cover; what a platform is told to use as the cover frame. */
+	coverOffsetMilliseconds: number | null;
 	compositionId: string;
 	width: number;
 	height: number;
@@ -119,15 +132,41 @@ const publishVoiceClips = async (job: ResolvedVideoJob, serveUrl: string): Promi
 	}
 };
 
+/** `out/video.mp4` gets `out/video_Kapak.png`. */
+const coverPathBeside = (videoPath: string): string => {
+	const {dir, name} = path.parse(videoPath);
+	return path.join(dir, `${name}_${VIDEO_COVER.fileSuffix}.png`);
+};
+
+/**
+ * Renders the cover, and puts a copy into the bundle so the video can show it
+ * as its opening frame. Returns the job with the cover attached.
+ */
+const attachCover = async (job: ResolvedVideoJob, serveUrl: string, coverPath: string): Promise<ResolvedVideoJob> => {
+	try {
+		await mkdir(path.dirname(coverPath), {recursive: true});
+		await renderVideoCover(job, coverPath);
+		const coverSrc = `${VIDEO_COVER.publicDirectory}/${randomUUID()}.png`;
+		const published = path.join(serveUrl, 'public', coverSrc);
+		await mkdir(path.dirname(published), {recursive: true});
+		await copyFile(coverPath, published);
+		return {...job, inputProps: {...job.inputProps, coverSrc}};
+	} catch (error) {
+		throw new VideoRenderError('rendering', error);
+	}
+};
+
 const prepare = async (rawJob: unknown, options: RenderOptions) => {
 	// Throws VideoJobValidationError before any expensive work begins.
 	const resolved = resolveVideoJob(rawJob);
-	const job = options.withoutVoiceover ? resolved : await narrateVideoJob(resolved, options.onProgress, options.speech);
+	const narrated = options.withoutVoiceover ? resolved : await narrateVideoJob(resolved, options.onProgress, options.speech);
 	options.onProgress?.({stage: 'bundling', progress: 0});
 	const serveUrl = await bundleProject((progress) => options.onProgress?.({stage: 'bundling', progress}));
-	await publishVoiceClips(job, serveUrl);
+	await publishVoiceClips(narrated, serveUrl);
 	const outputPath = path.resolve(options.outputPath);
 	await mkdir(path.dirname(outputPath), {recursive: true});
+	const coverPath = narrated.cover === false ? null : options.coverPath ? path.resolve(options.coverPath) : narrated.cover ? coverPathBeside(outputPath) : null;
+	const job = coverPath ? await attachCover(narrated, serveUrl, coverPath) : narrated;
 	const warnings: string[] = [];
 	try {
 		const composition = await selectComposition({
@@ -136,7 +175,7 @@ const prepare = async (rawJob: unknown, options: RenderOptions) => {
 			inputProps: job.inputProps,
 			onBrowserLog: collectWarnings(warnings),
 		});
-		return {job, serveUrl, outputPath, composition, warnings};
+		return {job, serveUrl, outputPath, coverPath, composition, warnings};
 	} catch (error) {
 		throw new VideoRenderError('rendering', error);
 	}
@@ -147,8 +186,11 @@ const toResult = (
 	outputPath: string,
 	warnings: string[],
 	startedAt: number,
+	coverPath: string | null = null,
 ): RenderResult => ({
 	outputPath,
+	coverPath,
+	coverOffsetMilliseconds: coverPath ? VIDEO_COVER.frameOffsetMilliseconds : null,
 	compositionId: job.compositionId,
 	width: job.width,
 	height: job.height,
@@ -168,7 +210,7 @@ const toResult = (
  */
 export const renderVideo = async (rawJob: unknown, options: RenderOptions): Promise<RenderResult> => {
 	const startedAt = Date.now();
-	const {job, serveUrl, outputPath, composition, warnings} = await prepare(rawJob, options);
+	const {job, serveUrl, outputPath, coverPath, composition, warnings} = await prepare(rawJob, options);
 
 	try {
 		await renderMedia({
@@ -197,7 +239,7 @@ export const renderVideo = async (rawJob: unknown, options: RenderOptions): Prom
 		throw new VideoRenderError('rendering', error);
 	}
 
-	return toResult(job, outputPath, warnings, startedAt);
+	return toResult(job, outputPath, warnings, startedAt, coverPath);
 };
 
 /**
@@ -226,9 +268,11 @@ export type NumberedRenderResult = RenderResult & {
 
 /**
  * Renders a job into Outputs/Videos under the next free number, e.g.
- * `03_Matematik_Denklem_Cozumu.mp4`. The video is rendered to a temporary
- * file first, so a failed render saves nothing and existing outputs are
- * never overwritten. Use `renderVideo` to write to a path of your choosing.
+ * `03_Matematik_Denklem_Cozumu.mp4`, together with its cover image
+ * `03_Matematik_Denklem_Cozumu_Kapak.png` (unless the job says
+ * `"cover": false`). Both are rendered to temporary files first, so a failed
+ * render saves nothing and existing outputs are never overwritten. Use
+ * `renderVideo` to write to a path of your choosing.
  */
 export const renderVideoToOutputs = async (
 	rawJob: unknown,
@@ -237,10 +281,12 @@ export const renderVideoToOutputs = async (
 	const {rootDirectory, ...renderOptions} = options;
 	// Throws VideoJobValidationError before a number is claimed.
 	const job = resolveVideoJob(rawJob);
+	const withCover = job.cover !== false;
 	const saved = await saveNumberedOutput({
 		kind: 'Videos',
 		title: job.outputName,
 		extension: 'mp4',
+		parts: withCover ? ['', {suffix: VIDEO_COVER.fileSuffix, extension: 'png'}] : undefined,
 		rootDirectory,
 		metadata: {
 			template: job.template.id,
@@ -250,10 +296,12 @@ export const renderVideoToOutputs = async (
 			height: job.height,
 			fps: job.fps,
 			voiceover: Boolean(job.voiceover) && !renderOptions.withoutVoiceover,
+			lesson: job.inputProps.lesson ?? null,
+			coverOffsetMilliseconds: withCover ? VIDEO_COVER.frameOffsetMilliseconds : null,
 		},
-		produce: ([temporaryPath]) => renderVideo(rawJob, {...renderOptions, outputPath: temporaryPath}),
+		produce: ([videoPath, coverPath]) => renderVideo(rawJob, {...renderOptions, outputPath: videoPath, coverPath}),
 	});
-	return {...saved.result, outputPath: saved.files[0], number: saved.number, createdAt: saved.createdAt};
+	return {...saved.result, outputPath: saved.files[0], coverPath: saved.files[1] ?? null, number: saved.number, createdAt: saved.createdAt};
 };
 
 export type StillResult = RenderResult & {frame: number};
@@ -264,7 +312,7 @@ export const renderFrame = async (
 	options: RenderOptions & {frame: number},
 ): Promise<StillResult> => {
 	const startedAt = Date.now();
-	const {job, serveUrl, outputPath, composition, warnings} = await prepare(rawJob, options);
+	const {job, serveUrl, outputPath, coverPath, composition, warnings} = await prepare(rawJob, options);
 	const frame = Math.min(Math.max(0, options.frame), composition.durationInFrames - 1);
 
 	try {
@@ -282,7 +330,7 @@ export const renderFrame = async (
 		throw new VideoRenderError('rendering', error);
 	}
 
-	return {...toResult(job, outputPath, warnings, startedAt), frame};
+	return {...toResult(job, outputPath, warnings, startedAt, coverPath), frame};
 };
 
 export type SceneFrame = {

@@ -46,9 +46,29 @@ export const VideoJobSchema = z.object({
 			}),
 		])
 		.default(false),
+	/** The lesson whose colour tints the accent on the brand themes. Defaults to the content's `subject`. */
+	lesson: z.string().trim().min(1).max(60).optional(),
+	/**
+	 * The cover image made with the video. `false` skips it; an object replaces
+	 * what would otherwise be taken from the content. See Configurations/VideoCover.
+	 */
+	cover: z
+		.union([
+			z.boolean(),
+			z.object({
+				title: z.string().trim().min(1).max(48).optional(),
+				emphasis: z.string().trim().min(1).max(30).optional(),
+				kicker: z.string().trim().min(1).max(30).optional(),
+				badge: z.string().trim().min(1).max(14).optional(),
+				glyph: z.string().trim().min(1).max(4).optional(),
+			}),
+		])
+		.optional(),
 	/** Validated against the chosen template's content schema. */
 	content: z.unknown(),
 });
+
+export type VideoCoverRequest = Exclude<z.infer<typeof VideoJobSchema>['cover'], boolean | undefined>;
 
 export type VideoJob = z.input<typeof VideoJobSchema>;
 
@@ -66,6 +86,8 @@ export type ResolvedVideoJob = {
 	inputProps: VideoProps<unknown>;
 	/** Text the output file is named after when it is saved under a number. */
 	outputName: string;
+	/** What the job says about its cover: `false` for none, overrides, or null when it says nothing. */
+	cover: VideoCoverRequest | false | null;
 	/** What the job asks of the narrator, or null for a silent video. */
 	voiceover: VoiceoverRequest | null;
 	/** Who ended up narrating. Set once the voice-over has been generated. */
@@ -90,9 +112,13 @@ const describeIssues = (error: z.ZodError, prefix: string[] = []): string[] =>
 	});
 
 /** "Matematik Denklem Çözümü": the content's subject and headline, whatever the template calls them. */
+export const contentText = (content: unknown, key: string): string | undefined => {
+	const value = ((content ?? {}) as Record<string, unknown>)[key];
+	return typeof value === 'string' ? value : undefined;
+};
+
 const contentName = (content: unknown, fallback: string): string => {
-	const fields = (content ?? {}) as Record<string, unknown>;
-	const text = (key: string) => (typeof fields[key] === 'string' ? (fields[key] as string) : undefined);
+	const text = (key: string) => contentText(content, key);
 	const headline = text('title') ?? text('concept') ?? fallback;
 	const subject = text('subject');
 	return subject && !headline.includes(subject) ? `${subject} ${headline}` : headline;
@@ -118,6 +144,7 @@ export const resolveVideoJob = (raw: unknown): ResolvedVideoJob => {
 		theme: job.theme ?? template.defaultTheme,
 		fps: job.fps,
 		content: job.content,
+		lesson: job.lesson ?? contentText(job.content, 'subject'),
 	});
 	if (!props.success) throw new VideoJobValidationError(describeIssues(props.error));
 
@@ -137,6 +164,7 @@ export const resolveVideoJob = (raw: unknown): ResolvedVideoJob => {
 		durationInFrames: templateDurationInFrames(template, inputProps.content, inputProps.fps),
 		inputProps,
 		outputName: job.name ?? contentName(inputProps.content, template.title),
+		cover: job.cover === undefined ? null : job.cover === true ? {} : job.cover,
 		voiceover:
 			job.voiceover === false
 				? null

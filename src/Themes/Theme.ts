@@ -27,6 +27,8 @@ export type ThemeColors = {
 	onStatus: string;
 	highlight: string;
 	categorical: CategoricalColor[];
+	/** The colour of the lesson being shown, when it has one. Subject labels use it instead of their usual tone. */
+	lesson?: CategoricalColor;
 };
 
 export type ThemeBackground =

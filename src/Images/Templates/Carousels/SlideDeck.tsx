@@ -8,8 +8,7 @@ import {MathExpression} from '../../../Components/Typography/MathExpression';
 import {RichText} from '../../../Components/Typography/RichText';
 import {Text} from '../../../Components/Typography/Text';
 import {latex, plainText, richText} from '../../../Schemas/RichText';
-import {withAlpha} from '../../../Themes/Theme';
-import {useInk, useTheme} from '../../../Themes/ThemeContext';
+import {useTheme} from '../../../Themes/ThemeContext';
 import {ImageFrame, useImageLayout} from '../../Components/ImageFrame';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
 import {BrandingSchema} from '../../Schemas/ImageFields';
@@ -38,26 +37,6 @@ type Content = z.infer<typeof SlideDeckSchema>;
 /** Cover + content slides + closing. */
 const pageCount = (content: Content): number => content.slides.length + 2;
 
-/** The strip every slide shares: where you are, and that there is more. It is what makes the set one piece. */
-const DeckFooter: React.FC<{page: number; total: number}> = ({page, total}) => {
-	const ink = useInk();
-	const {u} = useImageLayout();
-	const isLast = page === total - 1;
-	return (
-		<div style={{display: 'flex', alignItems: 'center', gap: u(20), flexShrink: 0, marginTop: u(28)}}>
-			<div style={{display: 'flex', gap: u(8), flex: 1}}>
-				{Array.from({length: total}, (_, index) => (
-					<div key={index} style={{flex: index === page ? 3 : 1, height: u(8), borderRadius: u(8), backgroundColor: withAlpha(ink.text, index === page ? 1 : 0.25)}} />
-				))}
-			</div>
-			<Text size={26} weight={700} style={{whiteSpace: 'nowrap'}}>
-				{page + 1} / {total}
-			</Text>
-			{isLast ? null : <Icon name="arrowRight" size={38} color={ink.text} strokeWidth={2.8} />}
-		</div>
-	);
-};
-
 const SlideDeckImage: React.FC<{content: Content; page: number}> = ({content, page}) => {
 	const {colors, typography} = useTheme();
 	const {u} = useImageLayout();
@@ -68,7 +47,7 @@ const SlideDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 			<ImageFrame backdrop="gradient" branding={content.branding}>
 				<div style={{flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: u(30)}}>
 					{content.subject ? (
-						<Badge tone={{fill: colors.accent, on: colors.onAccent}} icon="book" size={28}>
+						<Badge lesson tone={{fill: colors.accent, on: colors.onAccent}} icon="book" size={28}>
 							{content.subject}
 						</Badge>
 					) : null}
@@ -81,7 +60,6 @@ const SlideDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 						</Text>
 					) : null}
 				</div>
-				<DeckFooter page={page} total={total} />
 			</ImageFrame>
 		);
 	}
@@ -94,11 +72,12 @@ const SlideDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 					<Text variant="headline" size={90} align="center">
 						{content.closing.title}
 					</Text>
-					<Badge tone={{fill: colors.accent, on: colors.onAccent}} icon="flag" size={34}>
-						{content.closing.action}
-					</Badge>
+					<div style={{display: 'flex'}}>
+						<Badge tone={{fill: colors.accent, on: colors.onAccent}} icon="flag" size={34}>
+							{content.closing.action}
+						</Badge>
+					</div>
 				</div>
-				<DeckFooter page={page} total={total} />
 			</ImageFrame>
 		);
 	}
@@ -134,26 +113,28 @@ const SlideDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 					))}
 				</div>
 			</FitBox>
-			<DeckFooter page={page} total={total} />
 		</ImageFrame>
 	);
 };
 
 /**
- * A swipeable series from one job: a cover, numbered content slides and a
- * closing slide. All slides share the frame, type and the progress strip, so
- * the set stays one design however many slides it has.
+ * A swipeable series from one job: a strong cover, numbered content slides
+ * and a closing slide with the takeaway and a call to act. All slides share
+ * the frame and the type, so the set stays one design however many slides it
+ * has. There is no page counter, progress bar or swipe arrow: Instagram and
+ * TikTok draw their own, and a second set would only clutter the design. The
+ * big 01, 02, 03 on the content slides number the rules, not the pages.
  */
 export const SlideDeck = defineImageTemplate({
 	category: 'Carousel',
 	variant: 'SlideDeck',
 	title: 'Kaydırmalı seri',
-	description: 'Kapak, numaralı içerik slaytları ve kapanış; hepsinde ortak ilerleme şeridi.',
+	description: 'Güçlü kapak, numaralı içerik slaytları ve sonuç + çağrı içeren kapanış.',
 	contentSchema: SlideDeckSchema,
 	sampleContent: {
 		subject: 'Matematik',
 		title: 'Üslü sayılarda 3 kural',
-		subtitle: 'Kaydır, 30 saniyede tekrar et.',
+		subtitle: '30 saniyede tekrar et.',
 		slides: [
 			{heading: 'Çarpmada üsler toplanır', formula: 'a^m \\cdot a^n = a^{m+n}', text: 'Tabanlar aynı olmalı: $2^3 \\cdot 2^4 = 2^7$'},
 			{heading: 'Bölmede üsler çıkarılır', formula: '\\dfrac{a^m}{a^n} = a^{m-n}', text: 'Örnek: $\\dfrac{5^6}{5^2} = 5^4$'},

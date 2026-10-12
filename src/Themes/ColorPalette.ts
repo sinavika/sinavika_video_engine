@@ -15,6 +15,13 @@ export const ColorPaletteSchema = z.object({
 	background: HexColor,
 	surface: HexColor,
 	text: HexColor,
+	/**
+	 * Text colour on the primary and accent colours, when the brand fixes it
+	 * (e.g. white on the brand orange). Used if it reaches the contrast of
+	 * large text; otherwise, and when left out, the more readable ink is chosen.
+	 */
+	onPrimary: HexColor.optional(),
+	onAccent: HexColor.optional(),
 	/** Everything below is optional and derived from the colours above when left out. */
 	secondary: HexColor.optional(),
 	muted: HexColor.optional(),
@@ -60,6 +67,11 @@ const DARK_INK = '#111827';
 export const readableOn = (backdrop: string): string =>
 	contrastRatio(LIGHT_INK, backdrop) >= contrastRatio(DARK_INK, backdrop) ? LIGHT_INK : DARK_INK;
 
+const LARGE_TEXT_CONTRAST = 3;
+
+const inkOn = (backdrop: string, declared: string | undefined): string =>
+	declared && contrastRatio(declared, backdrop) >= LARGE_TEXT_CONTRAST ? declared : readableOn(backdrop);
+
 const firstReadable = (candidates: (string | undefined)[], backdrop: string, minimum: number, fallback: string): string =>
 	candidates.find((color): color is string => Boolean(color) && contrastRatio(color as string, backdrop) >= minimum) ?? fallback;
 
@@ -93,10 +105,10 @@ export const applyPalette = (base: Theme, palette: ColorPalette, name = `${base.
 			onSurfaceMuted: contrastRatio(muted, surface) >= 3 ? muted : mixColors(onSurface, surface, 0.35),
 			border: palette.border ?? mixColors(surface, onSurface, 0.16),
 			primary,
-			onPrimary: readableOn(primary),
+			onPrimary: inkOn(primary, palette.onPrimary),
 			primaryText: firstReadable([primary, palette.secondary, accent], surface, 4.5, onSurface),
 			accent,
-			onAccent: readableOn(accent),
+			onAccent: inkOn(accent, palette.onAccent),
 			success,
 			danger,
 			warning: palette.warning ?? base.colors.warning,

@@ -56,7 +56,7 @@ export const CoverScene: React.FC<{content: Content}> = ({content}) => {
 					<div style={{flex: 1.15, minWidth: 0, display: 'flex', flexDirection: 'column', gap: u(SPACING.lg)}}>
 						{content.subject ? (
 							<Animated>
-								<Badge tone="primary" icon="book">
+								<Badge lesson tone="primary" icon="book">
 									{content.subject} · Konu Anlatımı
 								</Badge>
 							</Animated>

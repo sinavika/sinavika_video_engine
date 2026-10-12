@@ -52,13 +52,19 @@ const {values, positionals} = parseArgs({
 
 const POST_STATUS = ['onay bekliyor', 'onaylandı', 'reddedildi'];
 const TARGET_STATUS = ['bekliyor', 'gönderiliyor', 'planlandı', 'yayınlandı', 'başarısız'];
-type Target = {platform: string; status: number; error?: string | null; publishedUrl?: string | null};
-type Post = {id: string; title: string; category: string; lesson?: string | null; scheduledAt: string; status: number; reviewNote?: string | null; targets: Target[]; sources?: {kind: string; key: string}[]};
+type Target = {platform: string; postType?: string; scheduledAt?: string; coverFrameApplied?: boolean; status: number; error?: string | null; publishedUrl?: string | null};
+type Post = {id: string; hasCover?: boolean; title: string; category: string; lesson?: string | null; scheduledAt: string; status: number; reviewNote?: string | null; targets: Target[]; sources?: {kind: string; key: string}[]};
 
 const localTime = (iso: string) => new Date(iso).toLocaleString('tr-TR', {timeZone: 'Europe/Istanbul', dateStyle: 'medium', timeStyle: 'short'});
 const describePost = (post: Post) =>
 	`${localTime(post.scheduledAt).padEnd(22)} ${POST_STATUS[post.status].padEnd(14)} ${post.category.padEnd(18)} ${post.title}\n` +
-	post.targets.map((target) => `    ${target.platform.padEnd(10)} ${TARGET_STATUS[target.status]}${target.error ? `: ${target.error}` : ''}${target.publishedUrl ? `  ${target.publishedUrl}` : ''}`).join('\n');
+	post.targets
+		.map(
+			(target) =>
+				`    ${target.platform.padEnd(10)} ${(target.postType ?? '').padEnd(9)} ${target.scheduledAt ? localTime(target.scheduledAt).slice(-5) : '     '}  ${TARGET_STATUS[target.status]}` +
+				`${target.coverFrameApplied ? '  kapak karesi' : post.hasCover ? '  kapak elle' : ''}${target.error ? `: ${target.error}` : ''}${target.publishedUrl ? `  ${target.publishedUrl}` : ''}`,
+		)
+		.join('\n');
 const print = (result: unknown, text: () => string) => console.log(values.json ? JSON.stringify(result, null, 2) : text());
 const readJson = async (file: string) => JSON.parse(await readFile(file, 'utf8')) as unknown;
 
@@ -81,7 +87,7 @@ try {
 			await writeFile(values.out, `${JSON.stringify(slots, null, 2)}\n`);
 		}
 		const describeSlot = (slot: (typeof slots)[number]) =>
-			`${slot.date} ${slot.weekday} ${slot.scheduledAt.slice(11, 16)}  ${slot.channel.padEnd(8)} ${slot.label.padEnd(26)} ${slot.format.padEnd(15)} ${slot.platforms.join('+').padEnd(25)} ${slot.timeSource}`;
+			`${slot.date} ${slot.weekday}  ${slot.channel.padEnd(8)} ${slot.label.padEnd(26)} ${slot.targets.map((target) => `${target.platform}:${target.postType} ${target.scheduledAt.slice(11, 16)}${target.timeSource === 'fallback' ? '*' : ''}`).join('  ')}`;
 		print(slots, () => [...slots.map(describeSlot), `${slots.length} içerik${values.out ? ` → ${values.out}` : ''}`].join('\n'));
 	} else if (command === 'submit') {
 		if (!values.post?.length) throw new Error('--post <dosya> gerekli.');

@@ -5,6 +5,7 @@ import {imageCompositionId, type AnyImageTemplateDefinition} from '../Images/Ima
 import {IMAGE_SIZES} from '../Images/Schemas/ImageSizes';
 import {createImagePropsSchema, type ImageProps} from '../Images/Schemas/ImageProps';
 import {applyPalette} from '../Themes/ColorPalette';
+import {lessonTheme} from '../Themes/LessonAccent';
 import {getTheme} from '../Themes/ThemeRegistry';
 
 /**
@@ -18,10 +19,10 @@ const SETTLED_FRAME = 600;
 const IMAGE_FPS = 30;
 
 const createImageComponent = (template: AnyImageTemplateDefinition) => {
-	const TemplateImage: React.FC<ImageProps<unknown>> = ({theme, palette, content, page}) => {
-		const paletteTheme = useMemo(() => (palette ? applyPalette(getTheme(theme), palette) : undefined), [theme, palette]);
+	const TemplateImage: React.FC<ImageProps<unknown>> = ({theme, palette, lesson, content, page}) => {
+		const customTheme = useMemo(() => (palette ? applyPalette(getTheme(theme), palette) : lessonTheme(theme, lesson)), [theme, palette, lesson]);
 		return (
-			<VideoFrame themeId={theme} theme={paletteTheme}>
+			<VideoFrame themeId={theme} theme={customTheme}>
 				<Freeze frame={SETTLED_FRAME}>
 					<template.Component content={content} page={page} />
 				</Freeze>

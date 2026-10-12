@@ -122,6 +122,18 @@ describe('saveNumberedOutput', () => {
 		expect((await save(root, 'Sonraki', 'Images')).number).toBe(2);
 	});
 
+	it('saves a video with its cover under one number, each with its own extension', async () => {
+		const root = newRoot();
+		const saved = await saveNumberedOutput({kind: 'Videos', title: 'Ses Olayları', extension: 'mp4', parts: ['', {suffix: 'Kapak', extension: 'png'}], rootDirectory: root, produce: write('x')});
+		expect(outputsIn(root)).toEqual(['01_Ses_Olaylari.mp4', '01_Ses_Olaylari_Kapak.png']);
+		expect(saved.files.map((file) => path.basename(file))).toEqual(['01_Ses_Olaylari.mp4', '01_Ses_Olaylari_Kapak.png']);
+		expect((await save(root, 'Sonraki')).number).toBe(2);
+
+		const failing = saveNumberedOutput({kind: 'Videos', title: 'Kapaksız', extension: 'mp4', parts: ['', {suffix: 'Kapak', extension: 'png'}], rootDirectory: root, produce: async ([video]) => writeFileSync(video, 'x')});
+		await expect(failing).rejects.toThrow(/nothing was saved/);
+		expect(outputsIn(root).filter((file) => file.includes('Kapaksiz'))).toEqual([]);
+	});
+
 	it('gives every one of 30 simultaneous productions its own number', async () => {
 		const root = newRoot();
 		const saved = await Promise.all(Array.from({length: 30}, (_, index) => save(root, `Eşzamanlı ${index % 3}`)));

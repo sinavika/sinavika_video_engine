@@ -35,7 +35,7 @@ const SolutionStepsImage: React.FC<{content: Content}> = ({content}) => {
 		<ImageFrame backdrop="canvas" branding={content.branding}>
 			<FitBox fill>
 				<div style={{display: 'flex', flexDirection: 'column', gap: u(30)}}>
-					<Badge tone="primary" icon="pencil" size={28}>
+					<Badge lesson tone="primary" icon="pencil" size={28}>
 						{content.subject ? `${content.subject} · Adım adım çözüm` : 'Adım adım çözüm'}
 					</Badge>
 					<Card padding={32} radius="md">

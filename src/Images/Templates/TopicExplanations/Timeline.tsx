@@ -78,7 +78,7 @@ const TimelineImage: React.FC<{content: Content}> = ({content}) => {
 				<div style={{display: 'flex', flexDirection: 'column', gap: u(44)}}>
 					<div style={{display: 'flex', flexDirection: 'column', gap: u(18)}}>
 						{content.subject ? (
-							<Badge tone="primary" icon="clock" size={27}>
+							<Badge lesson tone="primary" icon="clock" size={27}>
 								{content.subject} · Zaman çizelgesi
 							</Badge>
 						) : null}

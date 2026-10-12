@@ -46,6 +46,22 @@ export const SOCIAL_FORMATS = {
 } as const satisfies Record<string, {label: string; imageSize: ImageSizeName | null; videoFormat: VideoFormatId | null}>;
 export type SocialFormat = keyof typeof SOCIAL_FORMATS;
 
+/**
+ * What a format is called on each platform: the real post type it is
+ * published as. A platform missing from a format cannot publish it, so a
+ * plan entry may only name platforms listed for its format.
+ */
+export const POST_TYPES = {
+	Carousel: {instagram: 'carousel', tiktok: 'photo', linkedin: 'images'},
+	Image: {instagram: 'image', tiktok: 'photo', linkedin: 'image'},
+	Video: {instagram: 'reel', tiktok: 'video', youtube: 'short', linkedin: 'video'},
+	StoryImage: {instagram: 'story'},
+	LandscapeImage: {linkedin: 'image'},
+} as const satisfies Record<SocialFormat, Partial<Record<SocialPlatform, string>>>;
+
+export const POST_TYPE_NAMES = ['carousel', 'image', 'images', 'reel', 'story', 'photo', 'video', 'short', 'text'] as const;
+export type PostType = (typeof POST_TYPE_NAMES)[number];
+
 /** A line of the plan: one post, on one or more platforms. */
 export type PlanEntry = {
 	/** Feed posts, Instagram stories and LinkedIn run on separate calendars. */
@@ -98,9 +114,15 @@ export const WEEKLY_PLAN: Record<Weekday, readonly PlanEntry[]> = {
 
 /**
  * Publishing hours come from the posting schedule defined in Buffer for each
- * account. A post has one hour for all its platforms: the Buffer hour of the
- * first platform below that has one on that weekday. The fallback hours apply
- * only where Buffer has none (or the account is not connected yet).
+ * account, and every platform publishes at its own hour: a video goes out at
+ * Instagram's hour on Instagram and at YouTube's hour on YouTube. Buffer keeps
+ * one schedule per account, not per post type, so a reel and a carousel on
+ * the same account share its hours.
+ *
+ * A platform with no Buffer hour on a weekday publishes with the post's main
+ * hour: that of the first platform below that does have one. The fallback
+ * hours apply only when no platform of the post has a Buffer hour that day
+ * (or the account is not connected yet).
  */
 export const PLAN_TIMING = {
 	platformPriority: ['instagram', 'tiktok', 'youtube', 'linkedin'],
@@ -108,8 +130,5 @@ export const PLAN_TIMING = {
 	/** A story supports the day's feed post, so it goes out this many minutes before it. */
 	storyLeadMinutes: 180,
 } as const satisfies {platformPriority: readonly SocialPlatform[]; fallbackTime: Record<PlanEntry['channel'], string>; storyLeadMinutes: number};
-
-/** The category the API files a post under; "Story" also tells it to publish as an Instagram story. */
-export const STORY_CATEGORY = 'Story';
 
 export const BRAND_HASHTAG = '#sinavika';

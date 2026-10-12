@@ -18,7 +18,10 @@ const {brand, light, dark, status} = BRAND_COLORS;
 export const PALETTES = {
 	SinavikaLightV1: {
 		primary: brand.primary,
-		accent: brand.primaryContainer,
+		// White on the brand orange, as on sinavika.com. The accent is the same orange so that it carries white text too.
+		onPrimary: '#FFFFFF',
+		accent: brand.primary,
+		onAccent: '#FFFFFF',
 		secondary: brand.charcoal,
 		background: light.background,
 		surface: light.card,

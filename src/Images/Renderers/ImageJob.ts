@@ -23,6 +23,8 @@ export const ImageJobSchema = z.object({
 	theme: z.string().min(1).optional(),
 	/** A registered palette name or an inline palette; replaces the theme's colours. */
 	palette: z.union([z.enum(PALETTE_NAMES), ColorPaletteSchema]).optional(),
+	/** The lesson whose colour tints the accent on the brand themes. Defaults to the content's `subject`. */
+	lesson: plainText(60).optional(),
 	format: z.enum(IMAGE_FORMATS).default('png'),
 	/** JPEG quality, 1-100. */
 	quality: z.number().int().min(1).max(100).optional(),
@@ -55,6 +57,11 @@ const describeIssues = (error: z.ZodError): string[] =>
 		return path ? `${path}: ${issue.message}` : issue.message;
 	});
 
+const subjectOf = (content: unknown): string | undefined => {
+	const subject = (content as {subject?: unknown} | null)?.subject;
+	return typeof subject === 'string' ? subject : undefined;
+};
+
 /** Validates an image job completely before anything is rendered. */
 export const resolveImageJob = (raw: unknown): ResolvedImageJob => {
 	const envelope = ImageJobSchema.safeParse(raw);
@@ -75,6 +82,7 @@ export const resolveImageJob = (raw: unknown): ResolvedImageJob => {
 	const props = createImagePropsSchema(template.contentSchema).safeParse({
 		theme: job.theme ?? template.defaultTheme,
 		palette: typeof job.palette === 'string' ? PALETTES[job.palette] : job.palette,
+		lesson: job.lesson ?? subjectOf(job.content),
 		size,
 		content: job.content,
 	});

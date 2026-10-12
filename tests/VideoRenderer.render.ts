@@ -7,7 +7,7 @@ import {beforeAll, describe, expect, it} from 'vitest';
 import {VIDEO_FORMAT_IDS} from '../src/Configurations/VideoFormats';
 import {VOICES} from '../src/Configurations/Voices';
 import {VideoJobValidationError} from '../src/Renderers/VideoJob';
-import {bundleProject, renderFrame, renderVideo, sceneFrames, type RenderProgress} from '../src/Renderers/VideoRenderer';
+import {bundleProject, renderFrame, renderVideo, renderVideoToOutputs, sceneFrames, type RenderProgress} from '../src/Renderers/VideoRenderer';
 import type {SpeechBackend} from '../src/Services/ElevenLabsSpeech';
 import {THEME_IDS} from '../src/Themes/ThemeRegistry';
 import {TEMPLATES} from '../src/Templates/TemplateRegistry';
@@ -98,6 +98,58 @@ describe('determinism', () => {
 		expect(countDifferentPixels(first, third, 2)).toBe(0);
 		// And even that rounding noise must stay negligible: at most 0.01% of the pixels.
 		expect(countDifferentPixels(first, second, 0)).toBeLessThan(first.length / 4 / 10_000);
+	});
+});
+
+describe('video cover', () => {
+	const job = sampleJob('QuickRevision', {format: 'Vertical', theme: 'SinavikaLight'});
+
+	it('holds the cover on the opening frames of the video, then gives way to it', async () => {
+		const opening = await renderFrame({...job, cover: true}, {outputPath: path.join(outputDirectory, 'Cover-Opening.png'), frame: 3});
+		expect(opening.coverPath).toBe(path.join(outputDirectory, 'Cover-Opening_Kapak.png'));
+		expect(opening.coverOffsetMilliseconds).toBe(100);
+
+		const cover = readPixels(opening.coverPath!);
+		const shown = readPixels(opening.outputPath);
+		expect(cover.length).toBe(shown.length);
+		expect(countDifferentPixels(cover, shown, 2)).toBeLessThan(cover.length / 4 / 1_000);
+
+		const later = await renderFrame({...job, cover: true}, {outputPath: path.join(outputDirectory, 'Cover-Later.png'), frame: 45});
+		expect(countDifferentPixels(cover, readPixels(later.outputPath), 24)).toBeGreaterThan(cover.length / 4 / 20);
+	});
+
+	it('makes no cover unless asked, and never when the job refuses one', async () => {
+		const plain = await renderFrame(job, {outputPath: path.join(outputDirectory, 'Cover-None.png'), frame: 3});
+		expect(plain.coverPath).toBeNull();
+		expect(existsSync(path.join(outputDirectory, 'Cover-None_Kapak.png'))).toBe(false);
+
+		const refused = await renderFrame({...job, cover: false}, {outputPath: path.join(outputDirectory, 'Cover-Refused.png'), coverPath: path.join(outputDirectory, 'Refused_Kapak.png'), frame: 3});
+		expect(refused.coverPath).toBeNull();
+		expect(existsSync(path.join(outputDirectory, 'Refused_Kapak.png'))).toBe(false);
+		expect(countDifferentPixels(readPixels(plain.outputPath), readPixels(refused.outputPath), 2)).toBe(0);
+	});
+
+	it('saves a numbered video together with its cover, and alone when the job refuses one', async () => {
+		const rootDirectory = mkdtempSync(path.join(os.tmpdir(), 'sinavika-video-outputs-'));
+		const first = await renderVideoToOutputs(job, {rootDirectory, withoutVoiceover: true});
+		const second = await renderVideoToOutputs({...job, cover: false}, {rootDirectory, withoutVoiceover: true});
+
+		const saved = readdirSync(path.join(rootDirectory, 'Videos')).filter((file) => /^\d+_/.test(file)).sort();
+		expect(saved).toEqual(['01_Fizik_Newtonin_Hareket_Yasalari.mp4', '01_Fizik_Newtonin_Hareket_Yasalari_Kapak.png', '02_Fizik_Newtonin_Hareket_Yasalari.mp4']);
+		expect(first.coverPath).toBe(path.join(rootDirectory, 'Videos', '01_Fizik_Newtonin_Hareket_Yasalari_Kapak.png'));
+		expect(first.coverOffsetMilliseconds).toBe(100);
+		expect(second.coverPath).toBeNull();
+
+		const cover = PNG.sync.read(readFileSync(first.coverPath!));
+		expect([cover.width, cover.height]).toEqual([first.width, first.height]);
+		const manifest = readFileSync(path.join(rootDirectory, 'Videos', 'Manifest.jsonl'), 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+		expect(manifest[0]).toMatchObject({number: 1, metadata: {lesson: 'Fizik', coverOffsetMilliseconds: 100}});
+		expect(manifest[0].files).toHaveLength(2);
+		expect(manifest[1].metadata.coverOffsetMilliseconds).toBeNull();
+
+		const video = readFileSync(first.outputPath);
+		expect(video.includes('Remotion')).toBe(false);
+		expect(video.includes('Lavf')).toBe(false);
 	});
 });
 

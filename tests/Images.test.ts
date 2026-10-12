@@ -135,6 +135,13 @@ describe('image jobs', () => {
 		expect(issues[0]).toMatch(/content\.emphasis: emphasis must be a part of the hook/);
 	});
 
+	it('takes the lesson from the job or the content subject', () => {
+		const question = IMAGE_TEMPLATES.find((template) => template.variant === 'QuestionCard')!;
+		expect(resolveImageJob({category: 'QuestionSolution', content: question.sampleContent}).inputProps.lesson).toBe('Matematik');
+		expect(resolveImageJob({category: 'QuestionSolution', lesson: 'Fizik', content: question.sampleContent}).inputProps.lesson).toBe('Fizik');
+		expect(resolveImageJob(base).inputProps.lesson).toBeUndefined();
+	});
+
 	it('counts the images of a carousel and names files from the content or the job', () => {
 		const carousel = IMAGE_TEMPLATES.find((template) => template.category === 'Carousel')!;
 		const job = resolveImageJob({category: 'Carousel', content: carousel.sampleContent});
@@ -151,8 +158,9 @@ describe('colour palettes', () => {
 		'keeps %s readable once applied',
 		(_name, palette) => {
 			const {colors} = applyPalette(THEMES.SinavikaBrand, palette);
-			expect(contrastRatio(colors.onPrimary, colors.primary)).toBeGreaterThanOrEqual(4.5);
-			expect(contrastRatio(colors.onAccent, colors.accent)).toBeGreaterThanOrEqual(4.5);
+			// A palette may fix the text colour on its brand colour (white on Sınavika orange); it then has to reach large-text contrast.
+			expect(contrastRatio(colors.onPrimary, colors.primary)).toBeGreaterThanOrEqual(palette.onPrimary ? 3 : 4.5);
+			expect(contrastRatio(colors.onAccent, colors.accent)).toBeGreaterThanOrEqual(palette.onAccent ? 3 : 4.5);
 			expect(contrastRatio(colors.onSurface, colors.surface)).toBeGreaterThanOrEqual(4.5);
 			expect(contrastRatio(colors.primaryText, colors.surface)).toBeGreaterThanOrEqual(4.5);
 			expect(contrastRatio(colors.canvasAccent, colors.background)).toBeGreaterThanOrEqual(3);
@@ -174,6 +182,13 @@ describe('colour palettes', () => {
 		expect(JSON.stringify(THEMES)).toBe(before);
 		// Themes keep their own colours; a palette only exists where a job asks for it.
 		expect(THEMES.SinavikaBrand.colors.primary).toBe('#5B3DF5');
+	});
+
+	it('uses a declared text colour only when it is readable enough', () => {
+		const base = {primary: '#EA580C', accent: '#EA580C', background: '#FAFAFA', surface: '#FFFFFF', text: '#0B1C30'};
+		expect(applyPalette(THEMES.SinavikaBrand, {...base, onPrimary: '#FFFFFF'}).colors.onPrimary).toBe('#FFFFFF');
+		expect(applyPalette(THEMES.SinavikaBrand, base).colors.onPrimary).toBe('#111827');
+		expect(applyPalette(THEMES.SinavikaBrand, {...base, primary: '#FDE68A', onPrimary: '#FFFFFF'}).colors.onPrimary).toBe('#111827');
 	});
 
 	it('has working colour helpers', () => {

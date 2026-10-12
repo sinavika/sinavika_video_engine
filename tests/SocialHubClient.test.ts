@@ -30,7 +30,9 @@ describe('SocialPostSchema', () => {
 
 	it('requires an explicit time zone, media and known platforms', () => {
 		expect(SocialPostSchema.safeParse({...post, scheduledAt: '2026-11-02T20:00:00'}).success).toBe(false);
-		expect(SocialPostSchema.safeParse({...post, media: []}).success).toBe(false);
+		expect(SocialPostSchema.safeParse({...post, media: Array(11).fill('a.png')}).success).toBe(false);
+		expect(SocialPostSchema.safeParse({...post, targets: [{platform: 'instagram', postType: 'shorts'}]}).success).toBe(false);
+		expect(SocialPostSchema.safeParse({...post, targets: [{platform: 'tiktok', scheduledAt: '2026-11-02T09:47:00'}]}).success).toBe(false);
 		expect(SocialPostSchema.safeParse({...post, targets: [{platform: 'facebook'}]}).success).toBe(false);
 		expect(SocialPostSchema.safeParse({...post, replacesPostId: 'not-an-id'}).success).toBe(false);
 	});
@@ -60,6 +62,45 @@ describe('createSocialHubClient', () => {
 			['cozum.png', 'image/png'],
 		]);
 		expect(await files[1].text()).toBe('second');
+	});
+
+	it('sends each platform its post type and hour, and a text post without media', async () => {
+		const {calls, fake} = recordingFetch();
+		const client = createSocialHubClient({apiKey: 'secret', fetch: fake});
+		const targets = [
+			{platform: 'instagram', postType: 'story'},
+			{platform: 'tiktok', postType: 'photo', scheduledAt: '2026-11-02T09:47:00+03:00'},
+		];
+
+		await client.submit({...post, media: [], targets: [{platform: 'linkedin', postType: 'text'}]});
+		const text = calls[0].init.body as FormData;
+		expect(text.getAll('files')).toHaveLength(0);
+		expect(JSON.parse(text.get('payload') as string).targets).toEqual([{platform: 'linkedin', postType: 'text'}]);
+		expect(SocialPostSchema.parse({...post, targets}).targets).toEqual(targets);
+	});
+
+	it('uploads the cover saved with a video apart from the media, with its cover frame', async () => {
+		const directory = mkdtempSync(path.join(os.tmpdir(), 'sinavika-social-'));
+		writeFileSync(path.join(directory, '03_Konu.mp4'), 'video');
+		writeFileSync(path.join(directory, '03_Konu_Kapak.png'), 'cover');
+		writeFileSync(path.join(directory, 'ozel.png'), 'custom');
+		writeFileSync(path.join(directory, 'tek.mp4'), 'alone');
+		const {calls, fake} = recordingFetch();
+		const client = createSocialHubClient({apiKey: 'secret', fetch: fake});
+
+		await client.submit({...post, media: ['03_Konu.mp4']}, directory);
+		await client.submit({...post, media: ['03_Konu.mp4'], cover: 'ozel.png', coverOffsetMs: 0}, directory);
+		await client.submit({...post, media: ['tek.mp4']}, directory);
+
+		const [linked, custom, none] = calls.map((call) => call.init.body as FormData);
+		expect((linked.getAll('files') as File[]).map((file) => file.name)).toEqual(['03_Konu.mp4']);
+		expect((linked.get('cover') as File).name).toBe('03_Konu_Kapak.png');
+		expect(JSON.parse(linked.get('payload') as string)).toMatchObject({coverOffsetMs: 100});
+		expect(JSON.parse(linked.get('payload') as string).cover).toBeUndefined();
+		expect(await (custom.get('cover') as File).text()).toBe('custom');
+		expect(JSON.parse(custom.get('payload') as string).coverOffsetMs).toBe(0);
+		expect(none.get('cover')).toBeNull();
+		expect(JSON.parse(none.get('payload') as string).coverOffsetMs).toBeUndefined();
 	});
 
 	it('refuses media it cannot deliver before calling the API', async () => {

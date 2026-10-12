@@ -38,7 +38,7 @@ const QuestionCardImage: React.FC<{content: Content}> = ({content}) => {
 	return (
 		<ImageFrame backdrop="canvas" branding={content.branding}>
 			<div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: u(20), marginBottom: u(28)}}>
-				<Badge tone="primary" icon="question" size={28}>
+				<Badge lesson tone="primary" icon="question" size={28}>
 					{content.subject ? `${content.subject} · Günün sorusu` : 'Günün sorusu'}
 				</Badge>
 				{content.source ? (
