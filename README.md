@@ -1,9 +1,15 @@
 # Sınavika Video Engine
 
-Sınavika için veri odaklı eğitim videosu üretim motoru. Bir JSON işi (job) alır, şemaya göre doğrular ve
-[Remotion](https://www.remotion.dev) ile MP4 üretir. Ana .NET backend'den bağımsız çalışır.
+Sınavika için veri odaklı video ve görsel üretim motoru. Bir JSON işi (job) alır, şemaya göre doğrular ve
+[Remotion](https://www.remotion.dev) ile MP4 ya da PNG/JPEG/WebP üretir. Ana .NET backend'den bağımsız çalışır.
 
-- **5 eğitim template'i:** soru çözümü, konu anlatımı, hızlı tekrar, kavram açıklama, sınav hazırlığı
+Video ve görsel üretimi iki ayrı alandır: kendi şablonları, şemaları, kayıtları ve renderer'ları vardır. İkisi
+aynı tasarım sistemini (temalar, tipografi, bileşenler, marka, logo) paylaşır.
+
+- **Video: 5 eğitim template'i:** soru çözümü, konu anlatımı, hızlı tekrar, kavram açıklama, sınav hazırlığı
+- **Görsel: 12 kategoride 18 tasarım:** mobil ve web tanıtımı, soru, konu, hook, özellik, infografik, sınav
+  taktikleri, kaydırmalı seri, duyuru, kampanya, video kapağı
+- **Numaralı çıktılar:** `Outputs/Videos/01_Matematik_Denklem_Cozumu.mp4`, `Outputs/Images/01_...png`
 - **6 tema:** template'lerden bağımsız; her template her temayla çalışır
 - **3 format:** 9:16, 16:9, 1:1 (720p – 2160p, 24/25/30/50/60 fps)
 - **Seslendirme:** ElevenLabs ile Türkçe anlatım; içerik türüne göre ses profili, sahne süreleri sese göre ayarlanır
@@ -27,14 +33,18 @@ Seslendirme için ElevenLabs API anahtarı gerekir. `.env.example` dosyasını `
 | Komut | Ne yapar |
 | --- | --- |
 | `npm run studio` | Remotion Studio: bütün template'leri önizle, props'ları canlı düzenle |
-| `npm run render -- --job <job.json> --out <video.mp4>` | Tek video render eder |
+| `npm run render -- --job <job.json>` | Video render eder, `Outputs/Videos` altına sıradaki numarayla kaydeder |
+| `npm run render -- --job <job.json> --out <video.mp4>` | Videoyu tam olarak verilen yola yazar |
+| `npm run image -- --job <job.json> [--job ...]` | Görsel render eder, `Outputs/Images` altına sıradaki numarayla kaydeder |
+| `npm run image -- --job <job.json> --out <görsel.png>` | Görseli tam olarak verilen yola yazar |
 | `npm run render -- --job <job.json> --out <kare.png> --frame 120` | Tek kare render eder |
 | `npm run render -- ... --concurrency 4 --json` | Paralel sekme sayısı; makine tarafından okunabilir çıktı |
 | `npm run validate -- <job.json> [...]` | Render etmeden doğrular, süreyi raporlar |
 | `npm run validate -- <job.json> --narration` | Ayrıca seslendirme metnini satır satır yazdırır |
 | `npm run stills -- --job <job.json> --formats all` | Her sahneden bir PNG üretir (yerleşim kontrolü) |
 | `npm run render:samples` | Bütün örnek videoları `out/Samples/` altına üretir |
-| `npm run schema -- <TemplateId>` | Template içerik şemasını JSON Schema olarak yazdırır |
+| `npm run schema` | Video şablonlarını ve görsel tasarımlarını listeler |
+| `npm run schema -- <TemplateId>` ya da `Image:<Kategori>[:<Tasarım>]` | İçerik şemasını JSON Schema olarak yazdırır |
 | `npm run voices` | Ses profilleri, hesabın kullanabildiği sesler ve şu an kimin seslendirdiği |
 | `npm run voices -- --audition "<cümle>"` | Cümleyi kullanılabilir seslerle üretir (`out/Auditions/`), dinleyip seçmek için |
 | `npm run typecheck` | TypeScript derleme kontrolü |
@@ -166,7 +176,107 @@ GEÇERSİZ job.json
 Eksik alan, fazla uzun metin, bozuk LaTeX, eşleşmeyen `$`, var olmayan seçenek/düğüm indeksi, toplamı tutmayan süre
 planı ve 15–60 saniye dışına çıkan hızlı tekrar videosu doğrulamadan geçemez.
 
-## Template'ler
+## Görsel işi (image job)
+
+Görsellerin girdisi de düz bir JSON nesnesidir:
+
+```json
+{
+  "category": "HookContent",
+  "variant": "BoldQuestion",
+  "size": "Square",
+  "theme": "SinavikaBrand",
+  "palette": "MidnightGoldV1",
+  "format": "png",
+  "name": "Günlük Soru Hook",
+  "content": {
+    "eyebrow": "Günün sorusu",
+    "hook": "0,999… gerçekten 1’e eşit mi?",
+    "emphasis": "1’e eşit",
+    "teaser": "Evet, tam olarak eşit. İspatı tek satır sürüyor.",
+    "cue": "Cevap açıklamada"
+  }
+}
+```
+
+| Alan | Değerler | Varsayılan |
+| --- | --- | --- |
+| `category` | Aşağıdaki 12 kategoriden biri | zorunlu |
+| `variant` | Kategorinin bir tasarımı | kategorinin ilk tasarımı |
+| `size` | `Square` 1080×1080, `Portrait` 1080×1350, `Story` 1080×1920, `Landscape` 1920×1080 ya da `{"width": 1200, "height": 628}` | tasarımın kendi boyutu |
+| `theme` | Videolarla aynı 6 tema | tasarımın kendi teması |
+| `palette` | Kayıtlı palet adı ya da satır içi palet nesnesi; temanın renklerinin yerine geçer | yok |
+| `format` | `png`, `jpeg`, `webp` | `png` |
+| `quality` | JPEG kalitesi, 1–100 | 92 |
+| `name` | Çıktı dosyasına verilecek ad | içerikten türetilir |
+| `content` | Tasarıma özel içerik | zorunlu |
+
+| Kategori | Tasarımlar | Ne için |
+| --- | --- | --- |
+| `MobilePromotion` | `HeroPhone`, `DualPhones` | Telefon mockup'lı uygulama tanıtımı; tek ekran ya da 2–3 ekran yan yana |
+| `WebPromotion` | `BrowserHero`, `DeviceDuo` | Tarayıcı penceresinde web paneli; masaüstü + mobil birlikte |
+| `QuestionSolution` | `QuestionCard`, `SolutionSteps` | Tek soruluk paylaşım; adım adım çözüm ve cevap |
+| `TopicExplanation` | `ConceptCard`, `Timeline` | Kavram ve formül kartı; zaman çizelgesi |
+| `HookContent` | `BoldQuestion`, `MythFact` | Merak uyandıran dev soru; doğru bilinen yanlış |
+| `FeatureSpotlight` | `Spotlight` | Tek bir özelliği öne çıkarma |
+| `Infographics` | `Stats`, `Process` | Büyük rakamlar ve çubuk grafik; süreç adımları |
+| `ExamTips` | `TipList` | Numaralı sınav taktikleri |
+| `Carousel` | `SlideDeck` | Kapak + içerik slaytları + kapanış; tek işten birden çok görsel |
+| `Announcements` | `Update` | Yenilik ve güncelleme duyurusu |
+| `Campaigns` | `Offer` | İndirim, fiyat, kupon kodu, son tarih |
+| `Thumbnails` | `VideoCover` | YouTube / Reels kapağı |
+
+Her tasarım için eksiksiz örnek [samples/Images/](samples/Images) klasöründedir.
+
+**Ekran görüntüleri.** Tanıtım tasarımlarındaki `screenshot` alanlarına `public/` içindeki bir dosya yolu ya da
+URL verilir; görüntü olduğu gibi, değiştirilmeden çerçeveye yerleştirilir. Alan boş bırakılırsa tarafsız bir
+yer tutucu ekran çizilir (örnekler bu şekilde üretildi).
+
+**Kaydırmalı seri.** `Carousel` işi slayt sayısı kadar görsel üretir; hepsi aynı numara altında
+(`03_Uslu_Sayilar_1.png`, `03_Uslu_Sayilar_2.png`…) kaydedilir.
+
+### Renk paletleri
+
+Temalar tipografi, biçim ve renk taşır. Bir **palet** yalnızca renktir ve bir temanın renklerinin yerine geçer;
+böylece yeni marka renkleri mevcut hiçbir şeyi değiştirmeden eklenir.
+
+```json
+"palette": {
+  "primary": "#0057B8", "accent": "#FFD700",
+  "background": "#FFFFFF", "surface": "#F5F7FA", "text": "#0B1F33",
+  "secondary": "#00A3A3", "muted": "#5B6B7B", "border": "#D5DCE5",
+  "success": "#12A66A", "warning": "#F59E0B", "error": "#E5484D",
+  "gradient": ["#0057B8", "#00A3A3"]
+}
+```
+
+İlk beş alan zorunludur, diğerleri verilmezse türetilir. Renk üstü yazı renkleri (ör. buton üzerindeki metin)
+okunaklı kalacak şekilde otomatik seçilir. Kalıcı paletler [src/Themes/Palettes.ts](src/Themes/Palettes.ts)
+içine sürüm adıyla eklenir (`SinavikaV1`, sonra `SinavikaV2`…) ve işte adıyla seçilir. Palet eklemek mevcut video
+temalarını değiştirmez; bir paleti videolara da sunmak için `ThemeRegistry` içine `applyPalette` ile kurulmuş bir
+tema eklenir.
+
+## Çıktı dosyaları
+
+`--out` verilmeyen her üretim `Outputs/` altına sıralı ve anlamlı bir adla kaydedilir:
+
+```
+Outputs/
+  Videos/   01_Geometri_Dik_Ucgende_Hipotenus.mp4   02_Turkce_Ses_Olaylari.mp4
+  Images/   01_Sinavika_Mobil.png   02_Gunun_Sorusu_Hook.png   03_Matematik_Uslu_Sayilarda_3_Kural_1.png …
+```
+
+- Videolar ve görseller ayrı ayrı numaralanır; numara 99'dan sonra 100, 101 diye sürer.
+- Ad içerikten türetilir (ya da işteki `name` alanından), Türkçe karakterler ASCII'ye çevrilir.
+- Numara, render başlamadan önce atomik olarak ayrılır; eşzamanlı üretimler aynı numarayı alamaz.
+- Render geçici bir dosyaya yapılır, yalnızca tamamlanan dosya son adına taşınır. Başarısız render hiçbir şey
+  bırakmaz; mevcut bir dosyanın üzerine asla yazılmaz.
+- Her üretim `Outputs/<Tür>/Manifest.jsonl` dosyasına bir satır ekler (numara, ad, dosyalar, şablon, tema, boyut,
+  zaman). Aynı bilgiler komutun ve API'nin sonucunda da döner.
+- Klasörü değiştirmek için `SINAVIKA_OUTPUT_DIRECTORY` ortam değişkeni kullanılabilir. `Outputs/` git tarafından
+  yok sayılır.
+
+## Video template'leri
 
 | Template | Karakter | Sahne akışı |
 | --- | --- | --- |
@@ -196,13 +306,15 @@ npm run --silent render -- --job job.json --out out/video.mp4 --json
 Çıkış kodları: `0` başarılı, `2` geçersiz iş, `1` render hatası. Aynı işlev Node içinden de kullanılabilir:
 
 ```ts
-import {renderVideo} from './src/Renderers/VideoRenderer';
+import {renderVideo, renderVideoToOutputs} from './src/Renderers/VideoRenderer';
+import {renderImage, renderImageToOutputs} from './src/Images/Renderers/ImageRenderer';
 
-const result = await renderVideo(job, {
-  outputPath: 'out/video.mp4',
-  onProgress: ({stage, progress}) => console.log(stage, progress),
-});
+const video = await renderVideo(job, {outputPath: 'out/video.mp4', onProgress: ({stage, progress}) => console.log(stage, progress)});
+const numbered = await renderVideoToOutputs(job);        // Outputs/Videos/NN_Ad.mp4
+const image = await renderImageToOutputs(imageJob);      // Outputs/Images/NN_Ad.png
 ```
+
+Görseller için de aynı sözleşme geçerlidir: `npm run --silent image -- --job job.json --json`.
 
 Her çağrı kendi tarayıcısını açar ve yalnızca kendi çıktı dosyasına yazar; işler yan yana çalıştırılabilir.
 
@@ -211,7 +323,7 @@ Her çağrı kendi tarayıcısını açar ve yalnızca kendi çıktı dosyasına
 ```
 src/
   Configurations/   Video formatları, FPS, kalite, güvenli alanlar; marka kuralları; ses kataloğu ve profilleri
-  Themes/           Tasarım token'ları, 6 tema, tema kaydı, font yükleme
+  Themes/           Tasarım token'ları, 6 tema, tema kaydı, renk paletleri, font yükleme
   Animations/       Saf animasyon matematiği: süreler, easing, preset → CSS
   Components/
     Animations/     Animated, Stagger, Typewriter, Highlight, DrawPath, ProgressBar
@@ -221,12 +333,15 @@ src/
     Overlays/       BrandMark, SegmentedProgress
   Scenes/           Sahne planlama, süre tahmini, geçişler, seslendirme modeli, ortak kapanış sahnesi
   Schemas/          Ortak Zod şemaları: zengin metin, okunacak metin, görsel, video props
-  Templates/        TemplateDefinition, TemplateRegistry, Education/<Template>/
-  Compositions/     Template → Remotion composition köprüsü
-  Services/         ElevenLabs konuşma servisi, ses seçimi (casting), önbellekli seslendirme üretimi
+  Templates/        Video: TemplateDefinition, TemplateRegistry, Education/<Template>/
+  Images/           Görsel: ImageTemplateDefinition, ImageTemplateRegistry,
+                    Templates/<Kategori>/, Schemas/, Renderers/, Components/ (mockup'lar, çerçeve, CTA)
+  Compositions/     Video ve görsel şablonlarını Remotion composition'larına bağlar
+  Services/         ElevenLabs konuşma servisi, ses seçimi, seslendirme üretimi; numaralı çıktı kaydı (OutputFiles)
   Renderers/        VideoJob (doğrulama) ve VideoRenderer (MP4/PNG)
   Root.tsx          Kayıtlı bütün template'ler × bütün formatlar
-samples/            Her template için örnek JSON işi
+samples/            Her video template'i için örnek iş; samples/Images/ altında her görsel tasarımı için örnek iş
+Outputs/            Numaralı video ve görsel çıktıları (git dışında)
 scripts/            Komut satırı araçları
 tests/              Birim testleri (*.test.ts) ve render testleri (*.render.ts)
 public/             Görsellerin okunduğu statik klasör

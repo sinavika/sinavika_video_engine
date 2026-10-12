@@ -1,7 +1,10 @@
 /**
  * Renders one video job.
  *
+ *   npm run render -- --job samples/QuestionSolution.json
+ *       Saves to Outputs/Videos under the next free number, e.g. 03_Geometri_Dik_Ucgende_Hipotenus.mp4
  *   npm run render -- --job samples/QuestionSolution.json --out out/video.mp4
+ *       Writes exactly there instead.
  *   npm run render -- --job job.json --out out/frame.png --frame 120
  *   npm run render -- --job job.json --out out/video.mp4 --json
  *
@@ -12,7 +15,7 @@
 import {readFile} from 'node:fs/promises';
 import {parseArgs} from 'node:util';
 import {VideoJobValidationError} from '../src/Renderers/VideoJob';
-import {renderFrame, renderVideo, type RenderProgress} from '../src/Renderers/VideoRenderer';
+import {renderFrame, renderVideo, renderVideoToOutputs, type RenderProgress} from '../src/Renderers/VideoRenderer';
 
 const {values} = parseArgs({
 	options: {
@@ -44,22 +47,23 @@ const reportProgress = () => {
 };
 
 const main = async (): Promise<number> => {
-	if (!values.job || !values.out) {
-		console.error('Kullanım: npm run render -- --job <job.json> --out <çıktı.mp4> [--frame N] [--concurrency N] [--json]');
+	if (!values.job || (values.frame !== undefined && !values.out)) {
+		console.error('Kullanım: npm run render -- --job <job.json> [--out <çıktı.mp4>] [--frame N --out <kare.png>] [--concurrency N] [--json]');
 		return 2;
 	}
 
 	try {
 		const job: unknown = JSON.parse(await readFile(values.job, 'utf8'));
 		const options = {
-			outputPath: values.out,
 			onProgress: reportProgress(),
 			concurrency: values.concurrency ? Number(values.concurrency) : undefined,
 		};
-		const result =
-			values.frame === undefined
-				? await renderVideo(job, options)
-				: await renderFrame(job, {...options, frame: Number(values.frame)});
+		// Without --out the video is saved under the next number in Outputs/Videos.
+		const result = !values.out
+			? await renderVideoToOutputs(job, options)
+			: values.frame === undefined
+				? await renderVideo(job, {...options, outputPath: values.out})
+				: await renderFrame(job, {...options, outputPath: values.out, frame: Number(values.frame)});
 
 		if (values.json) {
 			emit({type: 'done', ...result});

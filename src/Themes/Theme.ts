@@ -70,6 +70,8 @@ export type Theme = {
 	shape: ThemeShape;
 	background: ThemeBackground;
 	motion: ThemeMotion;
+	/** Stops for gradient fills. Themes without one fall back to primary and accent. */
+	gradient?: readonly string[];
 };
 
 export const withAlpha = (hex: string, alpha: number): string => {

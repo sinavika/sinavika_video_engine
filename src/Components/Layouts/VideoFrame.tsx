@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {AbsoluteFill, cancelRender, continueRender, delayRender} from 'remotion';
 import {loadFontFaces} from '../../Themes/FontFaces';
+import type {Theme} from '../../Themes/Theme';
 import {ThemeProvider} from '../../Themes/ThemeContext';
 import {getTheme, type ThemeId} from '../../Themes/ThemeRegistry';
 import {ThemeBackground} from './ThemeBackground';
@@ -29,11 +30,15 @@ const useFontFaces = (): boolean => {
  * Root of every video: applies the theme, paints the background and holds
  * rendering until fonts are ready so text is measured with its final metrics.
  */
-export const VideoFrame: React.FC<{themeId: ThemeId; children: React.ReactNode}> = ({
-	themeId,
-	children,
-}) => {
-	const theme = getTheme(themeId);
+type VideoFrameProps = {
+	themeId: ThemeId;
+	/** A ready-made theme, e.g. one built from a colour palette. Takes precedence over `themeId`. */
+	theme?: Theme;
+	children: React.ReactNode;
+};
+
+export const VideoFrame: React.FC<VideoFrameProps> = ({themeId, theme: customTheme, children}) => {
+	const theme = customTheme ?? getTheme(themeId);
 	const fontsReady = useFontFaces();
 
 	return (

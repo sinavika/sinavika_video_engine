@@ -1,0 +1,123 @@
+import React from 'react';
+import {Img, staticFile} from 'remotion';
+import {z} from 'zod';
+import {Highlight} from '../../../Components/Animations/Highlight';
+import {Text} from '../../../Components/Typography/Text';
+import {plainText} from '../../../Schemas/RichText';
+import {ImageSchema} from '../../../Schemas/Visual';
+import {withAlpha} from '../../../Themes/Theme';
+import {useInk, useTheme} from '../../../Themes/ThemeContext';
+import {ImageFrame, useImageLayout} from '../../Components/ImageFrame';
+import {defineImageTemplate} from '../../ImageTemplateDefinition';
+import {BrandingSchema} from '../../Schemas/ImageFields';
+
+const VideoCoverSchema = z.object({
+	/** Five words or fewer read best at thumbnail size. */
+	title: plainText(48),
+	/** The words of the title to mark with the highlighter. Must appear in the title. */
+	emphasis: plainText(30).optional(),
+	kicker: plainText(30).optional(),
+	/** A short tag in the corner, e.g. "TYT" or "5 dk". */
+	badge: plainText(14).optional(),
+	/** A big number or symbol on the right when there is no picture, e.g. "5" or "x²". */
+	glyph: plainText(4).optional(),
+	/** A picture for the right side: a teacher, a figure, a screenshot. */
+	image: ImageSchema.optional(),
+	branding: BrandingSchema,
+}).refine((content) => !content.emphasis || content.title.includes(content.emphasis), {
+	path: ['emphasis'],
+	message: 'emphasis must be a part of the title.',
+});
+
+type Content = z.infer<typeof VideoCoverSchema>;
+
+const resolveSource = (src: string): string => (/^(https?:|data:)/.test(src) ? src : staticFile(src));
+
+const VideoCoverImage: React.FC<{content: Content}> = ({content}) => {
+	const {colors, typography} = useTheme();
+	const ink = useInk();
+	const {u, wide, tall, width, height} = useImageLayout();
+	const [before, after] = content.emphasis ? content.title.split(content.emphasis) : [content.title, ''];
+	const side = Math.min(width, height) * (wide ? 0.78 : 0.5);
+	const size = (content.title.length <= 20 ? 190 : content.title.length <= 34 ? 150 : 124) * (wide ? 1 : 0.86);
+
+	// Right-hand visual: the supplied picture in a tilted frame, or an oversized glyph in a disc.
+	const visual = content.image ? (
+		<div style={{width: side, height: side, borderRadius: u(48), overflow: 'hidden', transform: 'rotate(4deg)', border: `${u(12)}px solid ${ink.text}`, boxShadow: `0 ${u(30)}px ${u(80)}px rgba(0, 0, 0, 0.35)`, flexShrink: 0}}>
+			<Img src={resolveSource(content.image.src)} alt={content.image.alt ?? ''} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+		</div>
+	) : content.glyph ? (
+		<div
+			style={{
+				width: side,
+				height: side,
+				borderRadius: '50%',
+				backgroundColor: colors.accent,
+				color: colors.onAccent,
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+				fontFamily: typography.display,
+				fontWeight: 900,
+				fontSize: side * (content.glyph.length > 2 ? 0.4 : 0.6),
+				lineHeight: 1,
+				transform: 'rotate(-6deg)',
+				boxShadow: `0 ${u(30)}px ${u(80)}px rgba(0, 0, 0, 0.3), 0 0 0 ${u(22)}px ${withAlpha(colors.accent, 0.28)}`,
+				flexShrink: 0,
+			}}
+		>
+			{content.glyph}
+		</div>
+	) : null;
+
+	return (
+		<ImageFrame backdrop="gradient" branding={content.branding} padding={64}>
+			<div style={{flex: 1, minHeight: 0, display: 'flex', flexDirection: wide ? 'row' : 'column', alignItems: 'center', justifyContent: 'space-between', gap: u(48)}}>
+				<div style={{display: 'flex', flexDirection: 'column', gap: u(26), flex: 1, minWidth: 0, justifyContent: 'center', alignSelf: tall ? 'stretch' : undefined}}>
+					<div style={{display: 'flex', alignItems: 'center', gap: u(20)}}>
+						{content.badge ? (
+							<div style={{padding: `${u(12)}px ${u(26)}px`, borderRadius: u(14), backgroundColor: ink.text, color: colors.primary, fontFamily: typography.display, fontWeight: 900, fontSize: u(44), lineHeight: 1}}>
+								{content.badge}
+							</div>
+						) : null}
+						{content.kicker ? (
+							<Text variant="label" size={38}>
+								{content.kicker}
+							</Text>
+						) : null}
+					</div>
+					<Text variant="display" size={size} weight={900} style={{lineHeight: 1, textShadow: `0 ${u(6)}px ${u(24)}px rgba(0, 0, 0, 0.25)`}}>
+						{before}
+						{content.emphasis ? (
+							<span style={{color: colors.onAccent, textShadow: 'none'}}>
+								<Highlight color={colors.accent}>{content.emphasis}</Highlight>
+							</span>
+						) : null}
+						{after}
+					</Text>
+				</div>
+				{visual}
+			</div>
+		</ImageFrame>
+	);
+};
+
+/** A cover that reads at postage-stamp size: few words set huge, one highlighted, next to a picture or a giant glyph. */
+export const VideoCover = defineImageTemplate({
+	category: 'Thumbnails',
+	variant: 'VideoCover',
+	title: 'Kapak: video kapağı',
+	description: 'Dev başlık, fosforlu vurgu, köşe etiketi ve sağda görsel ya da dev bir sayı.',
+	contentSchema: VideoCoverSchema,
+	sampleContent: {
+		title: 'Üslü sayılar 5 dakikada',
+		emphasis: '5 dakikada',
+		kicker: 'Hızlı tekrar',
+		badge: 'TYT',
+		glyph: 'xⁿ',
+	},
+	defaultTheme: 'VibrantDynamic',
+	defaultSize: 'Landscape',
+	outputName: (content) => `Kapak ${content.title}`,
+	Component: VideoCoverImage,
+});

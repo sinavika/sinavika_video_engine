@@ -6,6 +6,7 @@ import {bundle} from '@remotion/bundler';
 import {renderMedia, renderStill, selectComposition} from '@remotion/renderer';
 import {planTemplateScenes} from '../Scenes/SceneSeries';
 import type {SpeechBackend} from '../Services/ElevenLabsSpeech';
+import {saveNumberedOutput} from '../Services/OutputFiles';
 import type {VoiceCast} from '../Services/VoiceCasting';
 import {generateVoiceover} from '../Services/VoiceoverGenerator';
 import {durationWarnings, resolveVideoJob, voiceLines, withVoiceClips, type ResolvedVideoJob} from './VideoJob';
@@ -196,6 +197,44 @@ export const renderVideo = async (rawJob: unknown, options: RenderOptions): Prom
 	}
 
 	return toResult(job, outputPath, warnings, startedAt);
+};
+
+export type NumberedRenderResult = RenderResult & {
+	/** The production's number in Outputs/Videos. */
+	number: number;
+	createdAt: string;
+};
+
+/**
+ * Renders a job into Outputs/Videos under the next free number, e.g.
+ * `03_Matematik_Denklem_Cozumu.mp4`. The video is rendered to a temporary
+ * file first, so a failed render saves nothing and existing outputs are
+ * never overwritten. Use `renderVideo` to write to a path of your choosing.
+ */
+export const renderVideoToOutputs = async (
+	rawJob: unknown,
+	options: Omit<RenderOptions, 'outputPath'> & {rootDirectory?: string} = {},
+): Promise<NumberedRenderResult> => {
+	const {rootDirectory, ...renderOptions} = options;
+	// Throws VideoJobValidationError before a number is claimed.
+	const job = resolveVideoJob(rawJob);
+	const saved = await saveNumberedOutput({
+		kind: 'Videos',
+		title: job.outputName,
+		extension: 'mp4',
+		rootDirectory,
+		metadata: {
+			template: job.template.id,
+			format: job.formatId,
+			theme: job.inputProps.theme,
+			width: job.width,
+			height: job.height,
+			fps: job.fps,
+			voiceover: Boolean(job.voiceover) && !renderOptions.withoutVoiceover,
+		},
+		produce: ([temporaryPath]) => renderVideo(rawJob, {...renderOptions, outputPath: temporaryPath}),
+	});
+	return {...saved.result, outputPath: saved.files[0], number: saved.number, createdAt: saved.createdAt};
 };
 
 export type StillResult = RenderResult & {frame: number};

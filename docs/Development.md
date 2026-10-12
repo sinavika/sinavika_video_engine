@@ -1,5 +1,28 @@
 # Geliştirme Rehberi
 
+## İki üretim alanı, tek tasarım sistemi
+
+| | Video | Görsel |
+| --- | --- | --- |
+| Şablon modeli | `Templates/TemplateDefinition.ts` | `Images/ImageTemplateDefinition.ts` |
+| Kayıt | `Templates/TemplateRegistry.ts` | `Images/ImageTemplateRegistry.ts` |
+| İş şeması ve doğrulama | `Renderers/VideoJob.ts` | `Images/Renderers/ImageJob.ts` |
+| Renderer | `Renderers/VideoRenderer.ts` | `Images/Renderers/ImageRenderer.ts` |
+| Composition kaydı | `Compositions/TemplateCompositions.tsx` | `Compositions/ImageCompositions.tsx` |
+| Komut | `npm run render` | `npm run image` |
+
+Ortak olanlar: `Themes/` (temalar, token'lar, paletler, fontlar), `Components/` (tipografi, yerleşim, ikon, logo),
+`Configurations/` (marka, ses, formatlar), `Schemas/` (zengin metin, görsel), `Services/OutputFiles.ts`.
+
+Video kodu bulunduğu yerde bırakıldı (`src/Templates`, `src/Renderers`, `src/Scenes`); bir `src/Videos/` klasörüne
+taşınmadı. Taşıma, çalışan video akışında onlarca import'u değiştirip hiçbir davranış kazandırmayacaktı. Ayrım
+klasör adıyla değil bağımlılık yönüyle kuruldu: görsel tarafı video şablonlarını, sahnelerini ya da kaydını
+import etmez; video tarafı da `src/Images` altındaki hiçbir şeyi. İkisi yalnızca ortak katmanda buluşur.
+
+Görsel tarafının videodan aldığı iki şey vardır ve ikisi de altyapıdır: derlenmiş paket (`bundleProject`) ve
+doğrulama hatası sınıfı (`VideoJobValidationError`).
+
+
 ## Akış
 
 ```
@@ -98,6 +121,28 @@ Sahne yazarken:
   ekrandaki akış da onunla birlikte yavaşlar.
 - Sahne içinde alt adımlar varsa `planScenes` + `Sequence layout="none"` kullanın (bkz. `SolutionScene`).
 
+## Yeni görsel tasarımı eklemek
+
+`src/Images/Templates/<Kategoriler>/<Tasarım>.tsx` adında tek dosya: içerik şeması (Zod), bileşen ve
+`defineImageTemplate({...})`. Sonra `ImageTemplateRegistry.ts` içine bir satır. Yeni kategori için ayrıca bir şey
+gerekmez: kategori, tasarımın `category` alanından doğar. Tasarım Studio'da "Images" klasöründe görünür,
+`npm run image`/`validate`/`schema` ile çalışır ve genel testlere (her boyutta render, örnek içerik, şema)
+otomatik girer.
+
+Tasarım yazarken:
+
+- Kökte `<ImageFrame backdrop=... branding={content.branding}>` kullanın: zemini boyar, kenar boşluğunu ve logoyu
+  yönetir, zemine uygun metin rengini ayarlar.
+- Boyuta göre yerleşim için `useImageLayout()` (`wide`, `tall`, `u`, `padding`) kullanın. Her tasarım dört adlandırılmış
+  boyutta ve özel boyutlarda render edilir.
+- Uzunluğu değişen içeriği `<FitBox>` içine koyun. `FitBox` dışında kalan, sabit boyutlu öğeler (mockup'lar gibi)
+  için taşma otomatik yakalanmaz: ya kalan alanı dolduran bir sahneye koyun (`BrowserHero`), ya da bilinçli olarak
+  kenardan kırpın (`HeroPhone`, `DualPhones`).
+- Ortak animasyonlu bileşenler (`Highlight`, diyagramlar) görselde son hâlleriyle çizilir; ayrı bir "statik" sürüm
+  yazmanız gerekmez.
+- Gerçek ekran görüntülerini `PhoneMockup`/`BrowserMockup` ile gösterin; bu bileşenler görüntüye filtre, kırpma
+  dışında bir işlem uygulamaz.
+
 ## Yeni tema eklemek
 
 `src/Themes/<TemaAdı>.ts` dosyasında bir `Theme` nesnesi tanımlayın ve `ThemeRegistry.ts` içine ekleyin. Bütün
@@ -122,6 +167,14 @@ kurup `FontFamilies.ts` ve `FontFaces.ts` içine ekleyin (Türkçe için `latin-
 | Logoyu ya da boyutlarını değiştirmek | `public/Brand/SinavikaLogo.png` (şeffaf zeminli PNG) ve `Configurations/Brand.ts`. Logo yalnızca `BrandMark` ile çizilir; dosyanın rengi önemli değildir, zeminin metin rengine boyanır |
 | Derse özel bileşen | `Components/` altına; ilgili template sahnesinde kullanılır. Derse özel render motoru yoktur |
 
+## Yeni renk paleti eklemek
+
+`Themes/Palettes.ts` içine sürümlü bir adla (`SinavikaV1`) ekleyin. `applyPalette(tema, palet)` paleti bir temanın
+tipografi ve biçimiyle birleştirip yeni bir tema üretir; renk üstü yazı renklerini kontrasta göre kendisi seçer.
+Mevcut temalar değişmez (`tests/Images.test.ts` bunu denetler). Görsel işleri paleti adıyla seçer; videolar
+yalnızca `ThemeRegistry` içindeki temaları kullanır, bu yüzden bir palet videoları ancak siz onu orada bir tema
+olarak kaydederseniz etkiler.
+
 ## Claude ile içerik üretimi (sonraki faz)
 
 Motor şimdiden bu akışa uygun: LLM kod değil, şemaya uyan **veri** üretir.
@@ -136,11 +189,28 @@ Motor şimdiden bu akışa uygun: LLM kod değil, şemaya uyan **veri** üretir.
 Bu katman `src/Services/` altında (ör. `ContentPlanner.ts`) yaşayabilir; motorun geri kalanı değişmez. Modelden
 ekran metninin yanında `narration`/`script` alanlarını da doldurması istenirse formüllerin okunuşu doğal olur.
 
-Template'in karşılayamadığı özel animasyonlar için LLM'in **kod** üretmesi ayrı bir konudur ve bilinçli olarak
-uygulanmamıştır. Eklenecekse üretilen kod uygulama sunucusunda değil, ağ ve dosya erişimi kısıtlı ayrı bir
+Aynı akış görseller için de geçerlidir: kategori ve tasarım `npm run schema` listesinden seçilir,
+`npm run schema -- Image:<Kategori>:<Tasarım>` çıktısı yapılandırılmış çıktı şeması olur, sonuç `resolveImageJob`
+ile doğrulanır, `renderImageToOutputs` ile kaydedilir.
+
+Mevcut tasarımların karşılamadığı bir istek için yeni bir tasarım dosyası yazılabilir (yukarıdaki "Yeni görsel
+tasarımı eklemek" tek dosyalık bir iştir). Bu, üretim anında çalışan bir yol değildir: yeni dosya bir geliştirme
+dalında yazılır, tip denetiminden ve render testlerinden geçer (testler her kayıtlı tasarımı her boyutta render
+eder), gözden geçirilir ve ancak ondan sonra kayda eklenir.
+
+Template'in karşılayamadığı özel animasyonlar için LLM'in üretim anında **kod** üretmesi ayrı bir konudur ve
+bilinçli olarak uygulanmamıştır. Eklenecekse üretilen kod uygulama sunucusunda değil, ağ ve dosya erişimi kısıtlı ayrı bir
 sandbox'ta derlenip render edilmeli ve insan onayından geçmelidir.
 
 ## Bilinen kısıtlar
+
+- **Görsel örneklerindeki ekranlar yer tutucudur.** Gerçek uygulama/web ekran görüntüleri verilmedi; tanıtım
+  tasarımları tarafsız iskelet ekranlarla render edildi. Örnek metinler (web adresi, fiyat, kampanya, "ücretsiz
+  dene") de yer tutucudur.
+- **Mağaza rozetleri düz metindir.** App Store / Google Play logoları tescilli olduğu için çizilmedi.
+- **Görsellerde taşma denetimi `FitBox` içindeki içerik içindir.** Sabit boyutlu öğelerin birbirine binmesi
+  otomatik yakalanmaz; yeni bir tasarım dört boyutta gözle kontrol edilmelidir.
+- **Başlangıç paletleri marka kararı değildir** (`MidnightGoldV1`, `FreshMintV1`); mekanizmayı göstermek içindir.
 
 - **Türkçe (ana dili) sesler ücretli plan ister.** Ücretsiz planda ElevenLabs kütüphane seslerini API'den
   kullandırmaz; profiller o durumda çok dilli varsayılan seslere düşer. Bu sesler Türkçe konuşur ama ana dili

@@ -28,6 +28,8 @@ export const VideoJobSchema = z.object({
 	theme: z.string().min(1).optional(),
 	fps: z.number().optional(),
 	quality: z.enum(RENDER_QUALITY_IDS).default('1080p'),
+	/** Names the output file when it is saved to Outputs/Videos. Defaults to a name derived from the content. */
+	name: z.string().trim().min(1).max(80).optional(),
 	/**
 	 * `true` narrates the video in Turkish with the template's voice profile.
 	 * An object casts differently: another profile, a specific voice from the
@@ -62,6 +64,8 @@ export type ResolvedVideoJob = {
 	fps: number;
 	durationInFrames: number;
 	inputProps: VideoProps<unknown>;
+	/** Text the output file is named after when it is saved under a number. */
+	outputName: string;
 	/** What the job asks of the narrator, or null for a silent video. */
 	voiceover: VoiceoverRequest | null;
 	/** Who ended up narrating. Set once the voice-over has been generated. */
@@ -84,6 +88,15 @@ const describeIssues = (error: z.ZodError, prefix: string[] = []): string[] =>
 		const path = [...prefix, ...issue.path.map(String)].join('.');
 		return path ? `${path}: ${issue.message}` : issue.message;
 	});
+
+/** "Matematik Denklem Çözümü": the content's subject and headline, whatever the template calls them. */
+const contentName = (content: unknown, fallback: string): string => {
+	const fields = (content ?? {}) as Record<string, unknown>;
+	const text = (key: string) => (typeof fields[key] === 'string' ? (fields[key] as string) : undefined);
+	const headline = text('title') ?? text('concept') ?? fallback;
+	const subject = text('subject');
+	return subject && !headline.includes(subject) ? `${subject} ${headline}` : headline;
+};
 
 /**
  * Validates a job completely before any rendering starts: the envelope, the
@@ -123,6 +136,7 @@ export const resolveVideoJob = (raw: unknown): ResolvedVideoJob => {
 		fps: inputProps.fps,
 		durationInFrames: templateDurationInFrames(template, inputProps.content, inputProps.fps),
 		inputProps,
+		outputName: job.name ?? contentName(inputProps.content, template.title),
 		voiceover:
 			job.voiceover === false
 				? null
