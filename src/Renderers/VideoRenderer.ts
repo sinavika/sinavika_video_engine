@@ -183,7 +183,7 @@ const soundtrackCues = (job: ResolvedVideoJob): SoundtrackCues => {
 const attachSoundtrack = async (job: ResolvedVideoJob, serveUrl: string): Promise<ResolvedVideoJob> => {
 	try {
 		const soundtrackSrc = `Soundtracks/${randomUUID()}.wav`;
-		await writeSoundtrack(soundtrackCues(job), path.join(serveUrl, 'public', soundtrackSrc));
+		await writeSoundtrack(soundtrackCues(job), path.join(serveUrl, 'public', soundtrackSrc), job.soundtrackStyle);
 		return {...job, inputProps: {...job.inputProps, soundtrackSrc}};
 	} catch (error) {
 		throw new VideoRenderError('rendering', error);

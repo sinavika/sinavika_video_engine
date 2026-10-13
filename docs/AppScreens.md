@@ -41,7 +41,7 @@ npm run screens -- --list
 
 ## Nerede kullanılır
 
-**1. Tanıtım videosu.** `AppPromotion` şablonunda her özellik, `MobilePromotion` şablonunda her adım bir ekran adıyla eşleşir; `appMode` uygulamanın temasını seçer. `MobilePromotion` adımlarında `focus` (`top`, `height`: ekran yüksekliğinin oranı) ekranın bir bölümünü uygulamanın dışına çizilen bir çerçeveyle işaretler.
+**1. Tanıtım videosu.** `AppPromotion` şablonunda her özellik bir ekran adıyla eşleşir, `ExamJourney` şablonunda uygulama sahnesi (`product.screen`) bir ekran adıdır; `appMode` uygulamanın temasını seçer.
 
 ```json
 "appMode": "light",

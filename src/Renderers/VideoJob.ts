@@ -11,6 +11,7 @@ import {PACE_RANGE, VOICE_KEYS, VOICE_MODEL_KEYS, VOICE_PROFILE_KEYS} from '../C
 import {OUTRO_SCENE_ID} from '../Scenes/BrandOutroScene';
 import type {VoiceClips} from '../Scenes/Voiceover';
 import {createVideoPropsSchema, type VideoProps} from '../Schemas/VideoProps';
+import {DEFAULT_SOUNDTRACK_STYLE, SOUNDTRACK_STYLE_KEYS, type SoundtrackStyleKey} from '../Services/SoundtrackComposer';
 import type {VoiceCast, VoiceoverRequest} from '../Services/VoiceCasting';
 import type {VoiceLine} from '../Services/VoiceoverGenerator';
 import {compositionId, templateDurationInFrames, type AnyTemplateDefinition} from '../Templates/TemplateDefinition';
@@ -70,7 +71,7 @@ export const VideoJobSchema = z.object({
 	 * Adds original music and sound design, composed for this video's timing,
 	 * under the narration, and masters the result to -14 LUFS. See Services/SoundtrackComposer.
 	 */
-	soundtrack: z.boolean().default(false),
+	soundtrack: z.union([z.boolean(), z.enum(SOUNDTRACK_STYLE_KEYS)]).default(false),
 	/** Validated against the chosen template's content schema. */
 	content: z.unknown(),
 });
@@ -97,6 +98,7 @@ export type ResolvedVideoJob = {
 	cover: VideoCoverRequest | false | null;
 	/** Whether the video gets music and sound design. */
 	soundtrack: boolean;
+	soundtrackStyle: SoundtrackStyleKey;
 	/** What the job asks of the narrator, or null for a silent video. */
 	voiceover: VoiceoverRequest | null;
 	/** Who ended up narrating. Set once the voice-over has been generated. */
@@ -174,7 +176,8 @@ export const resolveVideoJob = (raw: unknown): ResolvedVideoJob => {
 		inputProps,
 		outputName: job.name ?? contentName(inputProps.content, template.title),
 		cover: job.cover === undefined ? null : job.cover === true ? {} : job.cover,
-		soundtrack: job.soundtrack,
+		soundtrack: job.soundtrack !== false,
+		soundtrackStyle: typeof job.soundtrack === 'string' ? job.soundtrack : DEFAULT_SOUNDTRACK_STYLE,
 		voiceover:
 			job.voiceover === false
 				? null

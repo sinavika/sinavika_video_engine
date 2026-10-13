@@ -53,7 +53,7 @@ describe('image template registry', () => {
 
 	it('is independent of the video registry', () => {
 		const videoIds = TEMPLATES.map((template) => template.id);
-		expect(videoIds).toEqual(['QuestionSolution', 'TopicExplanation', 'QuickRevision', 'ConceptExplanation', 'ExamPreparation', 'AppPromotion', 'MobilePromotion']);
+		expect(videoIds).toEqual(['QuestionSolution', 'TopicExplanation', 'QuickRevision', 'ConceptExplanation', 'ExamPreparation', 'AppPromotion', 'ExamJourney']);
 		// Same-named categories exist on both sides; composition ids must still not collide.
 		IMAGE_TEMPLATES.forEach((template) => expect(imageCompositionId(template.category, template.variant).startsWith('Image-')).toBe(true));
 	});

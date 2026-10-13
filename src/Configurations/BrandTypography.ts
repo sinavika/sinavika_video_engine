@@ -40,6 +40,8 @@ export const BRAND_TYPOGRAPHY = {
 	 * Few sizes, far apart: one job each, so every ad has the same hierarchy.
 	 */
 	adScale: {
+		/** One number filling the frame: a timer, a score. */
+		numeral: 230,
 		/** The opening lines. */
 		hook: 112,
 		/** The headline above the product. */
@@ -57,7 +59,7 @@ export const BRAND_TYPOGRAPHY = {
 	displayLetterSpacing: string;
 	labelTransform: ThemeTypography['labelTransform'];
 	displayLineHeight: number;
-	adScale: Record<'hook' | 'headline' | 'closing' | 'action' | 'subtitle', number>;
+	adScale: Record<'numeral' | 'hook' | 'headline' | 'closing' | 'action' | 'subtitle', number>;
 };
 
 const {families, weights} = BRAND_TYPOGRAPHY;

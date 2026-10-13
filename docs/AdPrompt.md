@@ -22,8 +22,9 @@ Kaçınılacaklar: [ör. "fiyat yok", "geçen seferki gibi olmasın"]
 
 - **Gerçek marka:** resmî logo (`public/Brand`), uygulamanın kodundan yeniden çizilmiş gerçek ekranlar (`src/Components/AppScreens`, katalog: [`AppScreens.md`](AppScreens.md)), sitede ve uygulamada doğrulanmış özellikler. Hayalî ekran ya da karikatür çizim yok.
 - **Fotoğraf kullanılmaz.** Dışarıdan görsel indirilmez. Gerekirse önce sorulur; kaynak ve lisans kaydedilir.
-- **Stil:** `SinavikaDark` teması; koyu sahne, yavaşça kayan turuncu ışıma, dev hareketli yazı, sahnede kalan tek telefon ve onun üstünde değişen ekranlar. Kurumsal palet ve yazı tipi düzeni (`src/Configurations/BrandTypography.ts`) dışına çıkılmaz; yazı boyutları oradaki tanıtım ölçeğinden alınır.
-- Her videoda hareketler yenilenir; bir öncekinin aynısı tekrar edilmez. İki şablon vardır: `AppPromotion` (sahnede kalan tek telefon, çok özellik) ve `MobilePromotion` (açılış sorusu, adım adım ekranlar, yan yana ekranlar, çağrı, marka kartı).
+- **Stil:** videodan videoya değişir (yukarıdaki kural). Sabit kalan: `SinavikaLight` / `SinavikaDark` temaları, kurumsal palet ve yazı tipi düzeni (`src/Configurations/BrandTypography.ts`) dışına çıkılmaz; yazı boyutları oradaki tanıtım ölçeğinden alınır.
+- **Her tanıtım videosu kendine özgüdür.** "Aynı şablonu kullan" denmedikçe yeni bir tanıtım, öncekiyle aynı şablonu, sahne düzenini, renk kurgusunu ve müziği kullanamaz; küçük hareket farkları yenilik sayılmaz. Yeni fikir yeni bir şablon olarak eklenir (eğitim videoları ve hook içerikleri bu kuralın dışındadır, aynı şablonla üretilebilir). Mevcut tanıtım şablonları: `AppPromotion` (koyu sahne, tek telefon, çok özellik) ve `ExamJourney` (düz renk blokları, bir denemenin hikâyesi, telefon yalnız sonda).
+- Üretimden önce son tanıtımların brifine (`Posts/`) bakılır ve yeni videonun onlardan neyle ayrıldığı brife yazılır.
 - Hızlı giriş ve çıkışlar hareket bulanıklığıyla yapılır; okunacak yazı ve ürün ekranı durduğu anda nettir.
 - Sessiz izleyen için anlatım altyazı olarak gösterilir; altyazı ekran yazısıyla aynıysa çizilmez.
 - **60 fps, 9:16** (Reels, TikTok, Shorts). İstenirse 16:9.
@@ -31,7 +32,7 @@ Kaçınılacaklar: [ör. "fiyat yok", "geçen seferki gibi olmasın"]
 
 ### Ses
 
-- Marka sesi kullanılamıyorsa video seslendirmesiz (müzik + altyazı) üretilip teslim edilebilir; bu, brifte ve raporda açıkça yazılır. Yedek (ana dili Türkçe olmayan) ses yalnız kullanıcı isterse.
+- Tanıtım videosu seslidir. Marka sesi kullanılamıyorsa yedek (ana dili Türkçe olmayan) sesle üretilir ve bu, brifte ve raporda açıkça yazılır.
 - **Marka sesi.** Ana dili Türkçe tek ses (`BRAND_VOICES`), doğal hızda (tempo 1,0), abartısız: reklam okur gibi değil, bir arkadaşın önerisi gibi. Yabancı (çok dilli) sese kendiliğinden geçilmez; marka sesi kullanılamıyorsa üretim durur ve bu bildirilir.
 - **Metin bütün olarak üretilir:** kısa reklam metni tek istekte seslendirilir, cümle cümle değil.
 - **ElevenLabs.** Üretimden önce karakter sayısı hesaplanır ve kalan krediyle karşılaştırılır. Kredi sınırlı olduğu için tek kayıt alınır; ikinci kayıt yalnız istenirse.
@@ -45,7 +46,7 @@ Kaçınılacaklar: [ör. "fiyat yok", "geçen seferki gibi olmasın"]
 - Müzik sesin çevresinde düzenlenir ve konuşma sırasında sesin en az 15 dB altında kalır.
 - Ses efektleri de kodla üretilir: her cümleye girişte bir hava sesi, her sahne değişiminde yumuşak bir vuruş, kapanışta çınlayan son akor.
 - Ana çıkış **−14 LUFS, −1 dBTP**.
-- İş dosyasında `"soundtrack": true` ile açılır.
+- İş dosyasında `"soundtrack": true` ya da bir stil adıyla açılır (`Bright`, `Pulse`); art arda iki tanıtım aynı stili kullanmaz. Yeni stil `SOUNDTRACK_STYLES` içine eklenir.
 
 ### Kapanış
 

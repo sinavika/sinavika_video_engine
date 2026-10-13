@@ -15,7 +15,7 @@ describe('brand typography', () => {
 			displayLetterSpacing: '-0.02em',
 			labelTransform: 'uppercase',
 			displayLineHeight: 1.05,
-			adScale: {hook: 112, headline: 92, closing: 84, action: 36, subtitle: 40},
+			adScale: {numeral: 230, hook: 112, headline: 92, closing: 84, action: 36, subtitle: 40},
 		});
 	});
 
@@ -40,7 +40,7 @@ describe('brand typography', () => {
 	});
 
 	it('leaves no type size or weight hard-coded in the ad templates', () => {
-		for (const file of ['AppPromotion/AppPromotionScenes.tsx', 'MobilePromotion/MobilePromotionScenes.tsx']) {
+		for (const file of ['AppPromotion/AppPromotionScenes.tsx', 'ExamJourney/ExamJourneyScenes.tsx']) {
 			const scenes = source(`Templates/Advertisements/${file}`);
 			expect(scenes, file).not.toMatch(/\bsize=\{\d+\}/);
 			expect(scenes, file).not.toMatch(/\bweight=\{\d+\}/);

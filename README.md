@@ -300,16 +300,19 @@ değiştirilir. Ayrıntı: [docs/SocialPlan.md](docs/SocialPlan.md).
 `AppPromotion` şablonu Sınavika mobil uygulamasını tanıtır: dev hareketli yazıyla giriş, uygulamanın gerçek ekranlarını gezen tek telefon ve
 mağaza adlı kapanış. Ekran çizimleri [src/Components/AppScreens](src/Components/AppScreens) içindedir ve mobil uygulamanın kodundan yeniden çizilmiştir.
 
-`MobilePromotion` şablonu aynı ürünü adım adım anlatır: açılış sorusu, her adım için bir uygulama ekranı (ekranın ilgili yerini uygulamanın
-dışındaki bir çerçeve işaretler), ekranların yan yana hizalanması, çağrı düğmesi ve logo + site + mağaza adlı marka kartı. Anlatım altyazı
-olarak da gösterilir (`"subtitles": false` ile kapatılır); video seslendirmesiz de eksiksizdir.
+`ExamJourney` şablonu telefon göstermek yerine bir denemeyi oynatır: süre başlar, bir soru işaretlenir, sonuç kendini çizen bir çizgi olur,
+en zayıf ders işaretlenir ve uygulama en sonda görünür. Düz renk blokları (turuncu, açık, koyu lacivert) ve itmeli geçişler kullanır;
+`AppPromotion`'ın koyu sahnesinin bilerek tersidir. Anlatım altyazı olarak da gösterilir (`"subtitles": false` ile kapatılır).
+
+**Her tanıtım videosu kendine özgüdür.** Aynı ürün için arka arkaya iki tanıtım aynı şablonla, aynı görünümle ve aynı müzikle yapılmaz;
+yeni fikir yeni bir şablon olarak eklenir. Müzik de değişir: `"soundtrack": "Pulse"` (stiller: `Bright`, `Pulse`; `true` = `Bright`).
 
 ```bash
 npm run render -- --job samples/AppPromotion.json
 ```
 
 ```bash
-npm run render -- --job samples/MobilePromotion.json
+npm run render -- --job samples/ExamJourney.json
 ```
 
 - `"fps": 60` ile akıcı hareket, `"soundtrack": true` ile kodla üretilen özgün müzik ve ses tasarımı eklenir; ses −14 LUFS'e ayarlanır.

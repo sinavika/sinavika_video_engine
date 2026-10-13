@@ -1,54 +1,55 @@
-# Brif — Sınavika Mobil: Deneme çöz, sonucunu gör
+# Brif — Sınavika Mobil: Bir Deneme Hikâyesi
 
 - **Yayın:** 14 Ekim 2026, 18:00 (İstanbul) — Instagram Reels, TikTok, YouTube Shorts
-- **Şablon:** `MobilePromotion` (yeni), `SinavikaDark`, 1080×1920, 60 fps
-- **Süre:** 19,2 sn (marka kartı dahil)
+- **Şablon:** `ExamJourney` (yeni), `SinavikaLight`, 1080×1920, 60 fps, müzik stili `Pulse`
+- **Süre:** 16,6 sn
 - **İş dosyası:** [`Job.json`](Job.json) · **Gönderi dosyası:** [`Post.json`](Post.json)
-- **Çıktı:** `Outputs/Videos/05_Sinavika_Mobil_Deneme_Coz_Sonucunu_Gor.mp4` ve `…_Kapak.png`
-- **Sunucu:** gönderi `bd306a1f-828c-4956-869f-7d21a5cc8e4f`, admin onayı bekliyor
+- **Çıktı:** `Outputs/Videos/05_Sinavika_Bir_Deneme_Hikayesi.mp4` ve `…_Kapak.png`
+- **Sunucu:** gönderi `e9ea0235-69b3-4ad7-a0b4-1d44b081425c`, admin onayı bekliyor. Reddedilen `bd306a1f-828c-4956-869f-7d21a5cc8e4f` gönderisinin yerine geçer.
 
-## Fikir
+## Neden yeniden üretildi
 
-Ana mesaj: **Sınava hazırlık, tek uygulamada.** Hazırlık üç net hareketle anlatılır: denemeni çöz, sonucunu gör, hedefine yaklaş. Bu videoda yalnız deneme çözme ve sonuç analizi gösterilir; başka modül yoktur.
+İlk sürüm reddedildi: "sesli üretim olsun, ayın 13'ü için hazırlanan videonun aynısı olmuş, daha yenilikçi." İlk sürüm 13 Ekim videosuyla aynı dili kullanıyordu (koyu sahne, turuncu ışıma, telefon ve üstünde büyük başlık) ve sessizdi.
+
+## 13 Ekim videosundan farkı
+
+| | 13 Ekim (`AppPromotion`) | 14 Ekim (`ExamJourney`) |
+| --- | --- | --- |
+| Fikir | Özellik turu: tek telefon, beş modül | Bir denemenin hikâyesi: süre, soru, sonuç, eksik |
+| Görünüm | Koyu sahne, turuncu ışıma | Düz renk blokları: turuncu, açık, koyu lacivert; ışıma yok |
+| Ürün | Telefon baştan sona sahnede | Uygulamanın öğeleri tam ekran; telefon yalnız sonda |
+| Yazı | Aşağıdan gelen dev hareketli kelimeler | Bir renk bloğunun arkasından açılan, sola yaslı başlıklar |
+| Geçiş | Yumuşak geçiş (fade) | Her sahne farklı yönden iterek girer |
+| Müzik | `Bright`: Fa majör, 100 BPM | `Pulse`: La minör, 120 BPM, ters vuruşlu bas |
+| Kapak | Koyu | Turuncu |
 
 ## Zaman çizelgesi
 
-| Süre | Sahne | Ekranda | Hareket | Anlatım (altyazı) |
-| --- | --- | --- | --- | --- |
-| 0,0–0,2 | Kapak | "Deneme çöz, **sonucunu gör**" | — | — |
-| 0,2–3,2 | Soru | "Sınava **nasıl** hazırlanıyorsun?" | Kelimeler yandan, hareket bulanıklığıyla tek tek gelir; turuncu çizgi aşağıyı, ürünün geleceği yeri gösterir | Sınava nasıl hazırlanıyorsun? |
-| 3,2–6,2 | Adım 1 | **TYT Denemesi** ekranı · "Denemeni çöz." | Telefon ışığın içinden, büyükten küçülerek gelir ve netleşir; soru kartını uygulamanın dışındaki turuncu çerçeve işaretler | Sınavika ile denemeni çöz. |
-| 6,2–10,2 | Adım 2 | **İstatistikler** ekranı · "Sonucunu gör." | Ekran büyüyen bir daire maskesiyle açılır; çerçeve net trendi kartına oturur | Sonuçlarını gör, eksiklerini fark et. |
-| 10,2–14,2 | Tek uygulama | İki ekran yan yana · "Hazırlığın tek uygulamada." | Telefonlar iki yandan gelip hizalanır; altlarına tek bir turuncu çizgi çekilir | Hazırlığını tek uygulamada sürdür. |
-| 14,2–17,8 | Çağrı | **Denemeler** ekranı · "Hedefine yaklaş." · "Sınavika'yı keşfet" düğmesi | Telefon ortada dengelenir; düğmenin üstünden ışık geçer | Sınavika ile hedefine yaklaş. |
-| 17,8–19,2 | Marka kartı | Logo · sinavika.com · App Store · Google Play | Logo netleşerek yerine oturur; son akor çınlar | — |
+| Sahne | Ekranda | Hareket | Seslendirme |
+| --- | --- | --- | --- |
+| Kapak (0,2 sn) | "Süre başladı. **Hazır mısın?**" | — | — |
+| Süre | Turuncu zemin, "TYT Denemesi", dev sayaç 120:00'dan geri sayar | Kadran çizilir, sayaç her saniye atar; başlık blokla açılır | Süre başladı. |
+| Soru | "Denemeni çöz." · soru kartı · A–E şıkları · süre | Şıklar sırayla gelir; C şıkkına dokunulur, dalga yayılır | Sınavika'da denemeni çöz. |
+| Sonuç | Koyu zemin, "Sonucunu gör." · net trendi | Çizgi kendini çizer, son nokta atar | Bitince sonucunu gör. |
+| Eksikler | "Eksiğini fark et." · ders çubukları | Çubuklar dolar; en düşük ders çerçevelenir, "Buraya odaklan" etiketi gelir | Hangi derste eksiğin var, hemen fark et. |
+| Uygulama | "Hepsi tek uygulamada." · Denemeler ekranı | Turuncu daire yükselir, telefon eğik durur | Hepsi tek uygulamada. |
+| Kapanış | Turuncu zemin, logo · "Sınavika'yı keşfet" · sinavika.com · App Store · Google Play | Son akor çınlar | Sınavika'yı keşfet. |
+
+Sahne süreleri seslendirmenin gerçek uzunluğundan çıkar; anlatım altyazı olarak da görünür.
 
 ## Ses
 
-- **Bu sürümde seslendirme yok.** Ana dili Türkçe marka sesleri ElevenLabs kütüphane sesleridir ve hesap ücretsiz planda olduğu için API'den kullanılamıyor (`npm run voices`). Ana dili Türkçe olmayan yedek sesle üretim, 13 Ekim'de konan kural gereği kendiliğinden yapılmadı; ücretli üretim de yapılmadı (0 karakter harcandı).
-- Mesajı ekran yazıları ve altyazılar taşır; video sessiz izlenince de eksiksizdir.
-- Seslendirme metni hazır (toplam 158 karakter, tek istek): "Sınava nasıl hazırlanıyorsun? Sınavika ile denemeni çöz. Sonuçlarını gör, eksiklerini fark et. Hazırlığını tek uygulamada sürdür. Sınavika ile hedefine yaklaş. Sınavika'yı keşfet." Marka sesi hesaba eklenince `Job.json` içinde `"voiceover": true` yapılıp yeniden üretilir; görüntü sese göre kendiliğinden yeniden zamanlanır ve gönderi `replacesPostId` ile yenilenir.
+- **Seslendiren: Bella (Eleven v3, tempo 1,0, abartısız ayar) — ana dili Türkçe değil.** Ret notu sesli üretim istediği ve ana dili Türkçe marka sesleri hesapta hâlâ kullanılamadığı için (ücretsiz plan; `npm run voices`) yedek ses bilerek kullanıldı (`"voiceover": {"standIn": true}`).
+- Metin tek istekte, bütün olarak üretildi (149 karakter); hız değiştirilmedi.
+- Marka sesi hesaba eklenince `Job.json` içinde `"voiceover": true` yapılıp yeniden üretilir; görüntü yeni sese göre kendiliğinden zamanlanır.
 
 ## Müzik ve ses tasarımı
 
-- Kodla üretilen özgün müzik ve efektler (`SoundtrackComposer`): her satır girişinde hava sesi, her sahne değişiminde yumuşak vuruş, marka kartında çınlayan son akor.
-- Ölçüm: **−13,7 LUFS, −1,0 dBTP**.
-- İstenen harici SFX kütüphanesi (`/Volumes/Extreme Pro/…`) bu bilgisayarda yok; kullanılmadı, yerine başka kaynak da indirilmedi.
+- Kodla üretilen özgün müzik, `Pulse` stili (bu video için eklendi). Her satır girişinde hava sesi, sahne değişimlerinde yumuşak vuruş, kapanışta çınlayan Do majör akoru.
+- Ölçüm: **−15,1 LUFS, −1,0 dBTP**.
 
-## Kullanılan varlıklar
+## Kullanılan varlıklar ve doğruluk
 
-- Logo: `public/Brand/SinavikaLogo.png` (özgün dosya; yalnız konumu ve netliği canlandırıldı, biçimi değişmedi).
-- Uygulama ekranları: `src/Components/AppScreens` kataloğundan `Exam`, `Analysis`, `ExamHome` — mobil uygulamanın kodundan yeniden çizilmiş ekranlar. Vurgu çerçeveleri uygulamanın dışındadır, ekran içeriğini değiştirmez.
-- Mağazalar düz yazıyla (App Store, Google Play); resmî rozet dosyaları projede olmadığı için rozet kullanılmadı.
-- Yazı tipi: projenin merkezî marka tipografisi (`BrandTypography.ts`). Manrope'a geçiş ayrı bir marka kararıdır, yapılmadı.
-- Dışarıdan görsel, fotoğraf, müzik ya da ses efekti indirilmedi.
-
-## Doğruluk
-
-- Yalnız deneme çözme ve sonuç/istatistik ekranları gösterilir. Fiyat, kullanıcı sayısı, başarı garantisi ya da sıralama iddiası yoktur.
-- Ekranlardaki sayılar (118:42, 78,5 net, %72) ürün gösterimi için örnek veridir; hiçbiri vurgulanıp vaat gibi sunulmaz, anlatımda geçmez.
-
-## Bu istekten yapılmayanlar
-
-- 16:9 sürüm üretilmedi (istek Reels / TikTok / Shorts içindi). Şablon yatay yerleşimi destekler: `"format": "Horizontal"`.
-- Ayrı VO / müzik / SFX stem dosyaları teslim edilmedi; seslendirme olmadığı için tek ses katmanı var.
+- Logo: `public/Brand/SinavikaLogo.png`. Uygulama ekranı: katalogdan `ExamHome`.
+- Soru, şıklar, net trendi ve ders çubukları uygulamanın deneme ve istatistik ekranlarındaki öğelerin tam ekran çizimidir; sayılar örnek veridir. Net sayısı ekranda yazılmaz, anlatımda geçmez; fiyat, kullanıcı sayısı ya da başarı vaadi yoktur.
+- Mağazalar düz yazıyla. Dışarıdan görsel, müzik ya da ses efekti indirilmedi. 16:9 sürüm üretilmedi (şablon destekler).

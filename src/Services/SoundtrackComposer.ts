@@ -21,17 +21,63 @@ export type SoundtrackCues = {
 };
 
 const RATE = 48_000;
-const BEAT_SECONDS = 0.6;
 const BAR_BEATS = 4;
 
-/** F – C – Dm – B♭, one bar each: bright and forward without sounding like a jingle. */
-const CHORDS: readonly {notes: number[]; bass: number}[] = [
-	{notes: [53, 57, 60], bass: 41},
-	{notes: [52, 55, 60], bass: 36},
-	{notes: [53, 57, 62], bass: 38},
-	{notes: [53, 58, 62], bass: 34},
-];
-const CLOSING_CHORD = [41, 53, 57, 60, 67];
+type Chord = {notes: number[]; bass: number};
+
+type SoundtrackStyle = {
+	beatSeconds: number;
+	/** One bar each, repeated. */
+	chords: readonly Chord[];
+	closingChord: number[];
+	/** Eighth notes of a bar (0 to 7) on which each instrument plays. */
+	kick: number[];
+	hat: number[];
+	bass: number[];
+	/** Noise seed: each style has its own air and hi-hats. */
+	seed: number;
+};
+
+/**
+ * The music an ad can have. Each ad should sound like itself: pick a style
+ * another recent ad has not used, or add one here.
+ */
+export const SOUNDTRACK_STYLES = {
+	/** F – C – Dm – B♭ at 100 BPM: bright and forward without sounding like a jingle. */
+	Bright: {
+		beatSeconds: 0.6,
+		chords: [
+			{notes: [53, 57, 60], bass: 41},
+			{notes: [52, 55, 60], bass: 36},
+			{notes: [53, 57, 62], bass: 38},
+			{notes: [53, 58, 62], bass: 34},
+		],
+		closingChord: [41, 53, 57, 60, 67],
+		kick: [0, 2, 4, 6],
+		hat: [1, 3, 5, 7],
+		bass: [0, 4, 7],
+		seed: 20261013,
+	},
+	/** Am – F – C – G at 120 BPM: a focused pulse with an off-beat bass, resolving to C at the end. */
+	Pulse: {
+		beatSeconds: 0.5,
+		chords: [
+			{notes: [57, 60, 64], bass: 33},
+			{notes: [57, 60, 65], bass: 41},
+			{notes: [55, 60, 64], bass: 36},
+			{notes: [55, 59, 62], bass: 43},
+		],
+		closingChord: [36, 55, 60, 64, 72],
+		kick: [0, 3, 4],
+		hat: [2, 5, 6, 7],
+		bass: [1, 3, 5, 7],
+		seed: 20261014,
+	},
+} as const satisfies Record<string, SoundtrackStyle>;
+
+export type SoundtrackStyleKey = keyof typeof SOUNDTRACK_STYLES;
+export const SOUNDTRACK_STYLE_KEYS = Object.keys(SOUNDTRACK_STYLES) as [SoundtrackStyleKey, ...SoundtrackStyleKey[]];
+export const DEFAULT_SOUNDTRACK_STYLE: SoundtrackStyleKey = 'Bright';
 
 const frequency = (note: number): number => 440 * 2 ** ((note - 69) / 12);
 
@@ -125,10 +171,14 @@ const hit = (mix: Mix, cue: number, gain: number, noise: () => number): void => 
 };
 
 /** The whole soundtrack as stereo samples. */
-export const composeSoundtrack = ({durationSeconds, sceneStarts, lineStarts, closingStart}: SoundtrackCues): Mix => {
+export const composeSoundtrack = ({durationSeconds, sceneStarts, lineStarts, closingStart}: SoundtrackCues, styleKey: SoundtrackStyleKey = DEFAULT_SOUNDTRACK_STYLE): Mix => {
+	const style: SoundtrackStyle = SOUNDTRACK_STYLES[styleKey];
+	const BEAT_SECONDS = style.beatSeconds;
+	const CHORDS = style.chords;
+	const CLOSING_CHORD = style.closingChord;
 	const length = Math.ceil(durationSeconds * RATE);
 	const mix: Mix = {left: new Float32Array(length), right: new Float32Array(length)};
-	const noise = createNoise(20261013);
+	const noise = createNoise(style.seed);
 	const rhythmStart = sceneStarts[0] ?? 0;
 	const barSeconds = BEAT_SECONDS * BAR_BEATS;
 
@@ -143,9 +193,9 @@ export const composeSoundtrack = ({durationSeconds, sceneStarts, lineStarts, clo
 			if (time >= closingStart) break;
 			pluck(mix, time, chord.notes[eighth % chord.notes.length] + 12, 0.03, eighth % 2 === 0 ? -0.45 : 0.45);
 			if (time < rhythmStart) continue;
-			if (eighth % 2 === 0) kick(mix, time, 0.11);
-			else hat(mix, time, 0.014, noise);
-			if (eighth === 0 || eighth === 4 || eighth === 7) bass(mix, time, chord.bass, 0.075);
+			if (style.kick.includes(eighth)) kick(mix, time, 0.11);
+			if (style.hat.includes(eighth)) hat(mix, time, 0.014, noise);
+			if (style.bass.includes(eighth)) bass(mix, time, chord.bass, 0.075);
 		}
 	}
 
@@ -167,8 +217,8 @@ export const composeSoundtrack = ({durationSeconds, sceneStarts, lineStarts, clo
 };
 
 /** Writes the soundtrack as a 16-bit stereo WAV. */
-export const writeSoundtrack = async (cues: SoundtrackCues, outputPath: string): Promise<void> => {
-	const {left, right} = composeSoundtrack(cues);
+export const writeSoundtrack = async (cues: SoundtrackCues, outputPath: string, style?: SoundtrackStyleKey): Promise<void> => {
+	const {left, right} = composeSoundtrack(cues, style);
 	const dataBytes = left.length * 4;
 	const wav = Buffer.alloc(44 + dataBytes);
 	wav.write('RIFF', 0, 'latin1');
