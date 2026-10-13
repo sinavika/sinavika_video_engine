@@ -77,16 +77,25 @@ içerik render uyarısı olarak raporlanır (`RenderResult.warnings`); render te
 **Seslendirme sahne modelinin parçasıdır.** `buildScenes` her sahne için ne söyleneceğini (`voice` satırları)
 de döndürür. Ses üretimi (`Services/`) motorun dışındadır: satırları alır, klipleri ve sürelerini döndürür.
 `buildScenes(content, voiceClips)` klip varsa süreyi klipten, yoksa okuma süresi tahmininden alır; yani aynı kod
-sesli ve sessiz videoyu üretir. `SceneSeries` klipleri sahnenin içinde sırayla çalar. Klipler metin + ses ayarının
-özetiyle adlandırılıp önbelleğe alınır; aynı iş tekrar render edildiğinde aynı ses dosyaları kullanılır.
+sesli ve sessiz videoyu üretir. `SceneSeries` klipleri sahnenin içinde sırayla çalar.
 
-**Ses merkezîdir: katalog → profil → seçim.** `Configurations/Voices.ts` kimin (ses), nasıl (profil: rol, sıralı
-ses listesi, model, tempo) ve nerede (kategori/template → profil) konuştuğunu tanımlar. Template'ler ses kimliği
-bilmez, yalnızca profil adı verir. `Services/VoiceCasting.ts` isteği hesabın kullanabildiği seslere göre somut bir
-sese çevirir (saf fonksiyon); `Services/ElevenLabsSpeech.ts` ElevenLabs'e giden tek kapıdır. Profilin ilk tercihi
-hesapta yoksa listedeki sıradaki ses seçilir ve bu, sonuçta `voiceCast.note` olarak bildirilir; işte açıkça
-istenen bir ses yoksa sessizce değiştirilmez, hata verilir. Tempo ses üretilirken değil oynatılırken uygulanır
-(Eleven v3 `speed` ayarını dikkate almıyor), bu yüzden tempo değişikliği yeniden üretim ve kredi gerektirmez.
+**Anlatım tek metin olarak üretilir.** Satırlar paragraf aralarıyla birleştirilir ve tek istekte seslendirilir
+(`Services/NarrationScript.ts`); model her cümleyi bağlamıyla duyar, tonlama satırdan satıra sıfırlanmaz. Servis
+her karakterin ne zaman söylendiğini döndürür; bir klip, o tek ses dosyasının bir parçasıdır (`startSeconds` +
+`durationSeconds`). Yalnızca modelin sınırını aşan metin, satır aralarından bölünür. Ses dosyası ve satır
+zamanları (`.mp3` + `.json`) metin + ses ayarının özetiyle adlandırılıp önbelleğe alınır; aynı iş tekrar render
+edildiğinde aynı dosya kullanılır.
+
+**Ses merkezîdir: katalog → marka sesi → profil.** `Configurations/Voices.ts` kimin konuştuğunu (ses kataloğu ve
+`BRAND_VOICES`: ana dili Türkçe seslerin tercih sırası) ve nasıl konuştuğunu (profil: rol, söyleyiş ayarı, yedek
+sesler) tanımlar. Template'ler ses kimliği bilmez, yalnızca profil adı verir. `Services/VoiceCasting.ts` isteği
+hesabın kullanabildiği seslere göre somut bir sese çevirir (saf fonksiyon): `BRAND_VOICES` içindeki ilk
+kullanılabilir ses her profili seslendirir. Hiçbiri kullanılamıyorsa **hata verilir**; çok dilli yedek sese ancak
+iş `standIn: true` derse geçilir ve bu `voiceCast.note` ile bildirilir. İşte açıkça istenen ses yoksa da hata
+verilir. Model sesin kökenine göre seçilir (`VOICE_MODEL_BY_ORIGIN`: Türkçe sesler Multilingual v2, yedekler
+Eleven v3). `Services/ElevenLabsSpeech.ts` ElevenLabs'e giden tek kapıdır. Bütün profiller doğal hızda (tempo 1)
+ve `style: 0` ile konuşur; tempo ses üretilirken değil oynatılırken uygulanır, bu yüzden tempo değişikliği yeniden
+üretim ve kredi gerektirmez.
 
 **Kapsam dışı bırakılanlar.** HTTP sunucusu, kuyruk, bulut depolama, LLM çağrısı, altyazı yoktur. Girdi JSON, çıktı dosyadır;
 bunların hepsi bu sınırın dışına eklenebilir.
@@ -159,9 +168,10 @@ kurup `FontFamilies.ts` ve `FontFaces.ts` içine ekleyin (Türkçe için `latin-
 | Yeni animasyon preset'i | `AnimationSpec.ts` içindeki liste, `AnimationStyle.ts` içine bir `case` |
 | Yeni sahne geçişi | `SceneTransition.ts` (sahneler saydamdır; yalnızca eski sahneyi götüren geçişler uygundur) |
 | Yeni video formatı veya kalite | `Configurations/VideoFormats.ts` |
-| Yeni ses | `Configurations/Voices.ts` içindeki `VOICES`; sonra bir profilin listesine (denemek için başına) ekleyin |
+| Yeni ses | `Configurations/Voices.ts` içindeki `VOICES`; marka sesi yapmak için `BRAND_VOICES` listesinin başına ekleyin |
 | Yeni ses profili (ör. çocuklara yönelik) | `VOICE_PROFILES`; template tanımında `voiceProfile` ile kullanın |
-| Bir içerik türünün sesi, modeli, temposu | İlgili profil. Model: `expressive` (v3) ya da `stable` (Multilingual v2) |
+| Marka sesini değiştirmek | `BRAND_VOICES` sırası (ilk kullanılabilir ses her şeyi seslendirir) |
+| Bir içerik türünün söyleyişi | İlgili profil (`stability`, `similarity`, `style`, `pace`) |
 | Yeni model (ör. Eleven v4) | `VOICE_MODELS` içine bir satır |
 | Okunuş kuralı (birim, formül) | `Schemas/SpokenText.ts` |
 | Logoyu ya da boyutlarını değiştirmek | `public/Brand/SinavikaLogo.png` (şeffaf zeminli PNG) ve `Configurations/Brand.ts`. Logo yalnızca `BrandMark` ile çizilir; dosyanın rengi önemli değildir, zeminin metin rengine boyanır |
@@ -213,16 +223,19 @@ sandbox'ta derlenip render edilmeli ve insan onayından geçmelidir.
 - **Başlangıç paletleri marka kararı değildir** (`MidnightGoldV1`, `FreshMintV1`); mekanizmayı göstermek içindir.
 
 - **Türkçe (ana dili) sesler ücretli plan ister.** Ücretsiz planda ElevenLabs kütüphane seslerini API'den
-  kullandırmaz; profiller o durumda çok dilli varsayılan seslere düşer. Bu sesler Türkçe konuşur ama ana dili
-  Türkçe olan seslendirmenler değildir.
+  kullandırmaz (402 `paid_plan_required`). O durumda seslendirme hata verir; çok dilli yedek ses yalnızca işte
+  `"voiceover": {"standIn": true}` denirse kullanılır ve ana dili Türkçe olan bir seslendirmen gibi duyulmaz.
 - **Ücretsiz planın çıktısı ticari kullanıma uygun değildir** (ElevenLabs lisansı ücretli planla gelir) ve dönem
   başına 10.000 karakterle sınırlıdır; bir video kabaca 700–1.100 karakter harcar.
-- **Ses seçimi kulakla doğrulanmadı.** Katalogdaki Türkçe sesler kütüphane verisine (kullanım amacı, yaygınlık,
-  açıklama) göre seçildi. `npm run voices -- --audition "..."` ile dinleyip listeleri düzenleyin.
-- **Eleven v3 tonlaması satırdan satıra değişebilir** ve `seed` yalnızca en iyi çabadır: aynı satır yeniden
-  üretilirse biraz farklı duyulabilir. Önbellek, render edilmiş bir videonun sesini sabit tutar. İstikrar
+- **Ses seçimi kulakla doğrulanmadı.** `BRAND_VOICES` sırası kütüphane verisine (açıklama, kullanım amacı,
+  yaygınlık) göre kuruldu. `npm run voices` bağlantılarından ya da `npm run voices -- --audition "..." --brand`
+  ile dinleyip sırayı düzenleyin.
+- **Satır sınırları karakter zamanlarından gelir.** Sınır iki satır arasındaki duraklamanın ortasına konur ve
+  uçlar iki karelik geçişle yumuşatılır; çok kısa duraklamalarda komşu satırın nefesi duyulabilir.
+- **`seed` yalnızca en iyi çabadır:** aynı metin yeniden üretilirse biraz farklı duyulabilir (Eleven v3'te daha
+  belirgin). Önbellek, render edilmiş bir videonun sesini sabit tutar. İstikrar
   gereken içerikte işte `"model": "stable"` kullanın.
-- **Seslendirme ağ gerektirir** (önbellekte olmayan satırlar için) ve anlatım metni ElevenLabs'e gönderilir.
+- **Seslendirme ağ gerektirir** (önbellekte olmayan metinler için) ve anlatım metni ElevenLabs'e gönderilir.
 - **Formül okuma en iyi çabadır.** Okul düzeyi ifadeler okunur; karmaşık ifadelerde `narration` verin.
 - **Altyazı ve arka plan müziği yok.** Satır metinleri ve süreleri elde olduğu için altyazı eklenebilir.
 - **Ses ile ekran eşlemesi sahne düzeyindedir:** sahne, sesi kadar sürer ve öğeler süreye yayılır; kelime

@@ -23,7 +23,7 @@ import {TEMPLATES, findTemplate} from '../src/Templates/TemplateRegistry';
 describe('template registry', () => {
 	it('contains the education and advertisement templates with unique ids', () => {
 		const ids = TEMPLATES.map((template) => template.id);
-		expect(ids).toEqual(['QuestionSolution', 'TopicExplanation', 'QuickRevision', 'ConceptExplanation', 'ExamPreparation', 'AppPromotion']);
+		expect(ids).toEqual(['QuestionSolution', 'TopicExplanation', 'QuickRevision', 'ConceptExplanation', 'ExamPreparation', 'AppPromotion', 'MobilePromotion']);
 		expect(new Set(ids).size).toBe(ids.length);
 		expect(findTemplate('Nope')).toBeUndefined();
 	});

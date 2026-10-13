@@ -6,8 +6,10 @@ import {z} from 'zod';
  * producing the audio is the job of src/Services.
  */
 export const VoiceClipSchema = z.object({
-	/** Path inside `public/`. */
+	/** Path inside `public/`. A narration is one file; its lines are parts of it. */
 	src: z.string().min(1),
+	/** Where this line begins inside the file, at the voice's natural pace. */
+	startSeconds: z.number().min(0).default(0),
 	/** How long the clip lasts in the video, i.e. at its playback rate. */
 	durationSeconds: z.number().positive(),
 	/** Tempo the clip is played at; 1 is the voice's natural pace. */

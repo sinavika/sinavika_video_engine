@@ -5,10 +5,11 @@ import path from 'node:path';
 import {PNG} from 'pngjs';
 import {beforeAll, describe, expect, it} from 'vitest';
 import {VIDEO_FORMAT_IDS} from '../src/Configurations/VideoFormats';
-import {VOICES} from '../src/Configurations/Voices';
+import {BRAND_VOICES, VOICES} from '../src/Configurations/Voices';
 import {VideoJobValidationError} from '../src/Renderers/VideoJob';
 import {bundleProject, renderFrame, renderVideo, renderVideoToOutputs, sceneFrames, type RenderProgress} from '../src/Renderers/VideoRenderer';
 import type {SpeechBackend} from '../src/Services/ElevenLabsSpeech';
+import {fakeNarration} from './Fixtures/FakeNarration';
 import {THEME_IDS} from '../src/Themes/ThemeRegistry';
 import {TEMPLATES} from '../src/Templates/TemplateRegistry';
 
@@ -177,16 +178,15 @@ describe('video output', () => {
 	});
 
 	it('narrates a video: audio is audible and the timeline follows the clips', async () => {
-		// Offline stand-in for the speech provider: every line gets the same short clip.
-		const clip = readFileSync(path.resolve(__dirname, 'Fixtures', 'Voice.mp3'));
+		// Offline stand-in for the speech provider: the script is spread over one short clip.
 		const cacheDirectory = path.resolve(__dirname, '..', 'public', 'Voiceovers');
 		const cachedBefore = new Set(existsSync(cacheDirectory) ? readdirSync(cacheDirectory) : []);
 		const job = sampleJob('QuickRevision', {format: 'Square', voiceover: true});
 		const speech: SpeechBackend = {
 			cacheTag: 'render-test',
-			availableVoiceIds: async () => new Set([VOICES.Jessica.elevenLabsId]),
+			availableVoiceIds: async () => new Set([VOICES[BRAND_VOICES[0]].elevenLabsId]),
 			remainingCharacters: async () => null,
-			synthesize: async () => clip,
+			narrate: async (script) => fakeNarration(script),
 		};
 
 		try {
@@ -201,7 +201,7 @@ describe('video output', () => {
 
 			expect(silent.voiceLineCount).toBe(0);
 			expect(narrated.voiceLineCount).toBe(9);
-			expect(narrated.voiceCast).toMatchObject({profile: 'Energizer', voice: 'Jessica', pace: 1.12});
+			expect(narrated.voiceCast).toMatchObject({profile: 'Energizer', voice: BRAND_VOICES[0], native: true, pace: 1});
 			expect(silent.voiceCast).toBeNull();
 			expect(narrated.durationSeconds).not.toBe(silent.durationSeconds);
 			expect(narrated.warnings).toEqual([]);

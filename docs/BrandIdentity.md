@@ -104,7 +104,7 @@ Tanıtım videolarında yazı boyutları (1080 piksel kısa kenara göre): giri�
 - Kısa, tam cümleler. Telefon hoparlöründen her kelime anlaşılmalı.
 - Emir kipinde, eyleme çağıran fiiller: çöz, gör, öğren, takip et, sor.
 - Emoji yok ya da çok az; ünlem tek tük.
-- Seslendirme: ElevenLabs, kadın sesi. Eğitimde açıklayıcı ve sakin, tanıtımda parlak ve ikna edici. Profiller: [`src/Configurations/Voices.ts`](../src/Configurations/Voices.ts).
+- Seslendirme: ElevenLabs. **Tek marka sesi, ana dili Türkçe olan bir kadın seslendirmen**; bütün içerikler aynı sesle konuşur. Ton günlük konuşma gibidir, abartılı reklam tonu yoktur; hız doğaldır (tempo 1,0), ses hızlandırılmaz. Metin bütün olarak üretilir, görüntü sese göre zamanlanır. Ana dili Türkçe olmayan (çok dilli) ses yalnızca açıkça istenirse kullanılır. Ses listesi ve sırası: [`src/Configurations/Voices.ts`](../src/Configurations/Voices.ts) (`BRAND_VOICES`), durum: `npm run voices`.
 - LinkedIn'de dil profesyoneldir: "siz" ya da kişisiz anlatım, ürün ve girişim odaklı.
 
 Örnekler:

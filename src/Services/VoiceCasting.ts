@@ -1,8 +1,9 @@
 import {
-	DEFAULT_VOICE_MODEL,
+	BRAND_VOICES,
 	VOICES,
 	VOICE_LANGUAGE,
 	VOICE_MODELS,
+	VOICE_MODEL_BY_ORIGIN,
 	VOICE_PROFILES,
 	VOICE_SEED,
 	type VoiceKey,
@@ -17,9 +18,11 @@ export type VoiceoverRequest = {
 	voice?: VoiceKey;
 	model?: VoiceModelKey;
 	pace?: number;
+	/** Accept a multilingual stand-in when no native Turkish voice can be used. Off unless the job says so. */
+	standIn?: boolean;
 };
 
-/** A fully decided voice: everything the speech service needs to produce a line. */
+/** A fully decided voice: everything the speech service needs to produce a narration. */
 export type VoiceCast = {
 	profile: VoiceProfileKey;
 	voice: VoiceKey;
@@ -33,13 +36,14 @@ export type VoiceCast = {
 	languageCode?: string;
 	stability: number;
 	similarity: number;
+	style: number;
 	pace: number;
 	seed: number;
-	/** Why this voice was chosen when it is not the profile's first choice. */
+	/** Why this voice was chosen when it is not the brand's first choice. */
 	note?: string;
 };
 
-/** Thrown when none of a profile's voices can be used with the account. */
+/** Thrown when no acceptable voice can be used with the account. */
 export class VoiceCastingError extends Error {
 	constructor(message: string) {
 		super(message);
@@ -47,12 +51,18 @@ export class VoiceCastingError extends Error {
 	}
 }
 
+const NATIVE_VOICE_HELP =
+	'Native Turkish voices are ElevenLabs library voices: the account needs a paid plan (or API credits) and the voice added to "My Voices". ' +
+	'Run "npm run voices" to see what the account can use. To narrate with a non-native stand-in anyway, set "voiceover": {"standIn": true} in the job.';
+
 /**
- * Picks the voice for a request. An explicitly requested voice must be
- * usable; otherwise the profile's shortlist is walked in order and the first
- * voice the account has is cast. This is what lets the engine speak with
- * default voices today and switch to native Turkish voices the moment they
- * are added to the account, with no code change.
+ * Picks the voice for a request.
+ *
+ * Everything is narrated by the brand voice: the first native Turkish voice
+ * of BRAND_VOICES the account can use. If none is usable the request fails
+ * rather than quietly falling back to a multilingual voice, because a
+ * non-native voice is exactly what makes narration sound artificial. A job
+ * can accept a stand-in explicitly, and can always name a voice itself.
  */
 export const castVoice = (request: VoiceoverRequest, availableVoiceIds: ReadonlySet<string>): VoiceCast => {
 	const profile: VoiceProfile = VOICE_PROFILES[request.profile];
@@ -62,27 +72,25 @@ export const castVoice = (request: VoiceoverRequest, availableVoiceIds: Readonly
 	let note: string | undefined;
 	if (request.voice) {
 		if (!usable(request.voice)) {
-			throw new VoiceCastingError(
-				`Voice "${request.voice}" (${VOICES[request.voice].name}) is not available in this ElevenLabs account. ` +
-					'Native Turkish voices must be added to "My Voices" and need a paid plan.',
-			);
+			throw new VoiceCastingError(`Voice "${request.voice}" (${VOICES[request.voice].name}) is not available in this ElevenLabs account. ${NATIVE_VOICE_HELP}`);
 		}
 		chosen = request.voice;
 	} else {
-		chosen = profile.voices.find(usable);
-		if (!chosen) {
-			throw new VoiceCastingError(
-				`None of the voices of profile "${request.profile}" (${profile.voices.join(', ')}) is available in this ElevenLabs account.`,
-			);
+		chosen = BRAND_VOICES.find(usable);
+		if (chosen && chosen !== BRAND_VOICES[0]) {
+			note = `Brand voice ${VOICES[BRAND_VOICES[0]].name} is not in the account; using ${VOICES[chosen].name}, also a native Turkish voice.`;
 		}
-		const first = profile.voices[0];
-		if (chosen !== first) {
-			note = `Preferred voice ${VOICES[first].name} is not in the account; using ${VOICES[chosen].name} instead.`;
+		if (!chosen && request.standIn) {
+			chosen = profile.standIns.find(usable);
+			if (chosen) note = `No native Turkish voice is usable; ${VOICES[chosen].name} is a multilingual stand-in and will not sound native.`;
+		}
+		if (!chosen) {
+			throw new VoiceCastingError(`No native Turkish voice (${BRAND_VOICES.map((key) => VOICES[key].name).join(', ')}) is usable in this ElevenLabs account. ${NATIVE_VOICE_HELP}`);
 		}
 	}
 
 	const voice = VOICES[chosen];
-	const modelKey = request.model ?? profile.model ?? DEFAULT_VOICE_MODEL;
+	const modelKey = request.model ?? VOICE_MODEL_BY_ORIGIN[voice.origin];
 	const model = VOICE_MODELS[modelKey];
 	return {
 		profile: request.profile,
@@ -95,6 +103,7 @@ export const castVoice = (request: VoiceoverRequest, availableVoiceIds: Readonly
 		languageCode: model.acceptsLanguageCode ? VOICE_LANGUAGE : undefined,
 		stability: profile.stability,
 		similarity: profile.similarity,
+		style: profile.style,
 		pace: request.pace ?? profile.pace,
 		seed: VOICE_SEED,
 		note,

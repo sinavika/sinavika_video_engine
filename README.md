@@ -46,7 +46,7 @@ Seslendirme için ElevenLabs API anahtarı gerekir. `.env.example` dosyasını `
 | `npm run render:samples` | Bütün örnek videoları `out/Samples/` altına üretir |
 | `npm run schema` | Video şablonlarını ve görsel tasarımlarını listeler |
 | `npm run schema -- <TemplateId>` ya da `Image:<Kategori>[:<Tasarım>]` | İçerik şemasını JSON Schema olarak yazdırır |
-| `npm run voices` | Ses profilleri, hesabın kullanabildiği sesler ve şu an kimin seslendirdiği |
+| `npm run voices` | Marka sesleri (ana dili Türkçe), hesabın kullanabildikleri, dinleme bağlantıları ve şu an kimin seslendirdiği |
 | `npm run voices -- --audition "<cümle>"` | Cümleyi kullanılabilir seslerle üretir (`out/Auditions/`), dinleyip seçmek için |
 | `npm run typecheck` | TypeScript derleme kontrolü |
 | `npm test` | Birim testleri (şema, zamanlama, animasyon, tema kontrastı) |
@@ -87,7 +87,7 @@ Motorun tek girdisi düz bir JSON nesnesidir:
 | `theme` | `SinavikaBrand`, `WhiteboardMinimal`, `AcademicLight`, `TechDark`, `VibrantDynamic`, `ExamFocus` | template'in kendi teması |
 | `fps` | 24, 25, 30, 50, 60 | 30 |
 | `quality` | `720p`, `1080p`, `1440p`, `2160p` | `1080p` |
-| `voiceover` | `true`, `false` ya da `{profile, voice, model, pace}` | `false` |
+| `voiceover` | `true`, `false` ya da `{profile, voice, model, pace, standIn}` | `false` |
 | `content` | Template'e özel içerik | zorunlu |
 
 Her template için eksiksiz örnekler [samples/](samples) klasöründedir. Bir template'in içerik şemasını görmek için
@@ -108,47 +108,50 @@ Açıklama alanları düz metindir ve üç işaret destekler:
 
 ### Seslendirme
 
-Bütün anlatım Türkçedir ve ElevenLabs ile üretilir. `"voiceover": true` videoyu template'in ses profiliyle seslendirir.
+Bütün anlatım Türkçedir ve ElevenLabs ile üretilir. `"voiceover": true` videoyu **marka sesiyle** seslendirir.
 
-**Ses yapısı üç katmandır** ve tek dosyada yönetilir ([src/Configurations/Voices.ts](src/Configurations/Voices.ts)):
+**Sınavika tek sesle konuşur ve o ses ana dili Türkçe olan bir seslendirmendir.** Çok dilli (ana dili İngilizce)
+bir ses Türkçeyi okuyabilir ama kendi aksanını ve ritmini korur, yapay durur; bu yüzden böyle bir sese
+**kendiliğinden geçilmez**. Yapı tek dosyada yönetilir ([src/Configurations/Voices.ts](src/Configurations/Voices.ts)):
 
 | Katman | Ne | Örnek |
 | --- | --- | --- |
-| Ses | Kim konuşuyor: bir ElevenLabs sesi ve karakteri | Derya: dinamik, samimi anlatıcı |
-| Profil | Nasıl konuşuyor: rol, tercih sırasıyla sesler, model, tempo | `Teacher`, `Energizer`, `Coach` |
-| Seçim | Hangi içerik hangi profili kullanıyor | Hızlı tekrar → `Energizer` |
+| Ses | Kim konuşuyor: bir ElevenLabs sesi ve karakteri | Gözde Arıkan: yumuşak, sıcak, gündelik konuşma tonu |
+| Marka sesi | Her şeyi seslendiren tek ses: `BRAND_VOICES` listesinde hesabın kullanabildiği ilk ses | Gözde → Eda → Derya → Ayça → Duygu → Melis → Nisa |
+| Profil | Nasıl konuşuyor: rol ve söyleyiş ayarı (kim konuştuğu değil) | `Teacher`, `Energizer`, `Promoter` |
 
-| Profil | Kullanım | İlk tercih (Türkçe ses) | Tempo |
-| --- | --- | --- | --- |
-| `Teacher` | Soru çözümü, kavram açıklama | Derya | 1,00 |
-| `Lecturer` | Konu anlatımı | Melis Akcan | 1,00 |
-| `Energizer` | Hızlı tekrar | Damla | 1,12 |
-| `Coach` | Sınav hazırlığı | Ayça | 1,03 |
-| `Promoter` | Reklam ve tanıtım | Nisa | 1,05 |
-| `Creator` | Sosyal medya | Damla | 1,08 |
+Üç kural her profilde aynıdır:
 
-Her profilin sıralı bir ses listesi vardır; hesabın kullanabildiği ilk ses seçilir. Türkçe (ana dili) sesler
-ElevenLabs ses kütüphanesindendir: hesaba eklenmeleri ve API'den kullanmak için ücretli plan gerekir. O zamana
-kadar aynı profil, her planda çalışan çok dilli varsayılan seslerle (Sarah, Alice, Jessica...) konuşur. Sesler
-hesaba eklendiğinde kod değişmeden Türkçe seslere geçilir. Güncel durumu `npm run voices` gösterir.
+- **Doğal hız.** Tempo 1,0'dır; ses hızlandırılmaz. (Bir iş `pace` ile kendi temposunu isteyebilir.)
+- **Abartısız ton.** `style` 0'dır: anlatım reklam okur gibi değil, günlük konuşma gibidir.
+- **Metin bütün olarak üretilir.** Satırlar tek tek değil, tek istekte ve tek ses dosyası olarak seslendirilir;
+  tonlama cümleden cümleye taşınır. Her satırın dosyadaki yeri ElevenLabs'in karakter zamanlarından bulunur ve
+  görüntü bu sürelere göre zamanlanır.
 
-Bir işte farklı ses, model ya da tempo istemek için:
+Ana dili Türkçe sesler ElevenLabs ses kütüphanesindedir: API'den kullanmak için hesabın **ücretli planda (ya da
+API kredili)** olması ve sesin **"My Voices"a eklenmiş** olması gerekir. Marka seslerinden hiçbiri kullanılamıyorsa
+seslendirme **hata verir**; yabancı sese sessizce düşmez. Güncel durumu, dinleme bağlantılarıyla birlikte
+`npm run voices` gösterir. Marka sesini değiştirmek için `BRAND_VOICES` listesinin sırasını değiştirin.
+
+Bir işte farklı ses, model ya da tempo istemek, ya da ana dili Türkçe olmayan yedek sesi bilerek kabul etmek için:
 
 ```json
-"voiceover": {"profile": "Creator", "voice": "Damla", "model": "stable", "pace": 1.1}
+"voiceover": {"profile": "Creator", "voice": "Derya", "model": "stable", "pace": 1.05}
+"voiceover": {"standIn": true}
 ```
 
 | Alan | Değerler |
 | --- | --- |
 | `profile` | `Teacher`, `Lecturer`, `Energizer`, `Coach`, `Promoter`, `Creator` |
-| `voice` | Katalogdaki bir ses (ör. `Derya`, `Sarah`, erkek ses için `Liam`, `Daniel`). Hesapta yoksa iş hata verir |
-| `model` | `expressive` (Eleven v3, varsayılan: en duygulu ve insansı) ya da `stable` (Multilingual v2: tonlaması daha istikrarlı) |
-| `pace` | 0,8 – 1,3. Ses oynatılırken uygulanır; ses dosyası yeniden üretilmez |
+| `voice` | Katalogdaki bir ses (ör. `Gozde`, `Derya`, `Sarah`, erkek ses için `Liam`, `Daniel`). Hesapta yoksa iş hata verir |
+| `model` | `stable` (Multilingual v2: Türkçe seslerin varsayılanı, bu sesler onun için ayarlıdır) ya da `expressive` (Eleven v3: yedek seslerin varsayılanı) |
+| `pace` | 0,8 – 1,3; varsayılan 1,0. Ses oynatılırken uygulanır; ses dosyası yeniden üretilmez |
+| `standIn` | `true`: hiçbir Türkçe ses kullanılamıyorsa profilin çok dilli yedek sesiyle (Sarah, Bella, Jessica...) üret. Sonuçta `voiceCast.note` bunu belirtir |
 
-**Akış.** (1) Her sahne için bir anlatım satırı kurulur; satırlar dikkat çekici bir girişle başlar. (2) Satırlar
-sese çevrilir ve `public/Voiceovers/` altında önbelleğe alınır: aynı metin ve ses için bir daha kredi harcanmaz.
+**Akış.** (1) Her sahne için bir anlatım satırı kurulur; satırlar dikkat çekici bir girişle başlar. (2) Metnin tamamı
+tek istekte sese çevrilir ve `public/Voiceovers/` altında önbelleğe alınır: aynı metin ve ses için bir daha kredi harcanmaz.
 (3) Sahne süreleri ses uzunluğuna göre ayarlanır, ekrandaki öğeler anlatım hızına yayılır. Üretimden önce
-hesapta yeterli karakter olup olmadığı denetlenir; yetmiyorsa hiçbir satır üretilmeden hata verilir.
+hesapta yeterli karakter olup olmadığı denetlenir; yetmiyorsa hiçbir şey üretilmeden hata verilir.
 
 **Anlatım metnini yazmak.** Otomatik satırlar formülleri de okur (`$x^2$` → "x kare"), ama bu en iyi çabadır.
 Formül ağırlıklı içerikte metni kendiniz verin; iki yolu var:
@@ -297,8 +300,16 @@ değiştirilir. Ayrıntı: [docs/SocialPlan.md](docs/SocialPlan.md).
 `AppPromotion` şablonu Sınavika mobil uygulamasını tanıtır: dev hareketli yazıyla giriş, uygulamanın gerçek ekranlarını gezen tek telefon ve
 mağaza adlı kapanış. Ekran çizimleri [src/Components/AppScreens](src/Components/AppScreens) içindedir ve mobil uygulamanın kodundan yeniden çizilmiştir.
 
+`MobilePromotion` şablonu aynı ürünü adım adım anlatır: açılış sorusu, her adım için bir uygulama ekranı (ekranın ilgili yerini uygulamanın
+dışındaki bir çerçeve işaretler), ekranların yan yana hizalanması, çağrı düğmesi ve logo + site + mağaza adlı marka kartı. Anlatım altyazı
+olarak da gösterilir (`"subtitles": false` ile kapatılır); video seslendirmesiz de eksiksizdir.
+
 ```bash
 npm run render -- --job samples/AppPromotion.json
+```
+
+```bash
+npm run render -- --job samples/MobilePromotion.json
 ```
 
 - `"fps": 60` ile akıcı hareket, `"soundtrack": true` ile kodla üretilen özgün müzik ve ses tasarımı eklenir; ses −14 LUFS'e ayarlanır.
@@ -355,7 +366,7 @@ npm run --silent render -- --job job.json --out out/video.mp4 --json
 ```json
 {"type":"progress","stage":"rendering","progress":0.42,"renderedFrames":412,"totalFrames":980,"percent":42}
 {"type":"progress","stage":"voiceover","progress":0.5,"percent":50}
-{"type":"done","outputPath":"...","width":1080,"height":1920,"fps":30,"durationSeconds":32.7,"voiceLineCount":9,"voiceCast":{"voiceName":"Sarah","modelId":"eleven_v3","pace":1},"warnings":[]}
+{"type":"done","outputPath":"...","width":1080,"height":1920,"fps":30,"durationSeconds":32.7,"voiceLineCount":9,"voiceCast":{"voiceName":"Gözde Arıkan","native":true,"modelId":"eleven_multilingual_v2","pace":1},"warnings":[]}
 {"type":"error","kind":"validation","message":"...","issues":["content.title: ..."]}
 ```
 

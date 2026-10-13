@@ -1,4 +1,5 @@
 import {AppPromotion} from './Advertisements/AppPromotion/AppPromotion';
+import {MobilePromotion} from './Advertisements/MobilePromotion/MobilePromotion';
 import {ConceptExplanation} from './Education/ConceptExplanation/ConceptExplanation';
 import {ExamPreparation} from './Education/ExamPreparation/ExamPreparation';
 import {QuestionSolution} from './Education/QuestionSolution/QuestionSolution';
@@ -17,6 +18,7 @@ export const TEMPLATES: readonly AnyTemplateDefinition[] = [
 	ConceptExplanation,
 	ExamPreparation,
 	AppPromotion,
+	MobilePromotion,
 ];
 
 export const TEMPLATE_IDS: readonly string[] = TEMPLATES.map((template) => template.id);

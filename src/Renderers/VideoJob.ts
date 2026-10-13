@@ -31,9 +31,10 @@ export const VideoJobSchema = z.object({
 	/** Names the output file when it is saved to Outputs/Videos. Defaults to a name derived from the content. */
 	name: z.string().trim().min(1).max(80).optional(),
 	/**
-	 * `true` narrates the video in Turkish with the template's voice profile.
-	 * An object casts differently: another profile, a specific voice from the
-	 * catalogue, the steadier model, or a different tempo.
+	 * `true` narrates the video in Turkish with the brand voice, in the delivery
+	 * of the template's voice profile. An object casts differently: another
+	 * profile, a specific voice from the catalogue, another model or tempo, or
+	 * `standIn: true` to accept a non-native voice when no native one is usable.
 	 */
 	voiceover: z
 		.union([
@@ -43,6 +44,7 @@ export const VideoJobSchema = z.object({
 				voice: z.enum(VOICE_KEYS).optional(),
 				model: z.enum(VOICE_MODEL_KEYS).optional(),
 				pace: z.number().min(PACE_RANGE.min).max(PACE_RANGE.max).optional(),
+				standIn: z.boolean().optional(),
 			}),
 		])
 		.default(false),

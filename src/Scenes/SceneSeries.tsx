@@ -1,6 +1,6 @@
 import {TransitionSeries, linearTiming} from '@remotion/transitions';
 import React from 'react';
-import {Audio, Sequence, staticFile, useVideoConfig} from 'remotion';
+import {Audio, Sequence, interpolate, staticFile, useVideoConfig} from 'remotion';
 import {secondsToFrames} from '../Animations/Motion';
 import {planScenes, type ScenePlan, type TemplateScene} from './ScenePlan';
 import {toPresentation, transitionSeconds, type SceneTransition} from './SceneTransition';
@@ -28,6 +28,8 @@ export const planTemplateScenes = (
 	fps: number,
 ): ScenePlan => planScenes(scenes, fps, transitionSeconds(asList(transition)[0]));
 
+const CLIP_FADE_FRAMES = 2;
+
 /** The audio of one scene: each line starts when the lines before it have had their time. */
 const SceneVoice: React.FC<{scene: TemplateScene; clips: VoiceClips}> = ({scene, clips}) => {
 	const {fps} = useVideoConfig();
@@ -38,14 +40,24 @@ const SceneVoice: React.FC<{scene: TemplateScene; clips: VoiceClips}> = ({scene,
 			{slots.map((slot, index) => {
 				const clip = clips[slot.id];
 				if (!clip) return null;
+				// The clip is a part of the narration file: start at its offset, stop when its time is up,
+				// and ease the ends so a cut inside continuous speech is never heard as a click.
+				const frames = Math.max(1, Math.ceil(clip.durationSeconds * fps));
+				const edge = Math.min(CLIP_FADE_FRAMES, Math.floor(frames / 2));
 				return (
 					<Sequence
 						key={slot.id}
 						layout="none"
 						name={`Voice: ${slot.id}`}
 						from={plan.scenes[index].from + secondsToFrames(VOICE_LEAD_SECONDS, fps)}
+						durationInFrames={frames}
 					>
-						<Audio src={staticFile(clip.src)} playbackRate={clip.playbackRate} />
+						<Audio
+							src={staticFile(clip.src)}
+							trimBefore={Math.round(clip.startSeconds * fps)}
+							playbackRate={clip.playbackRate}
+							volume={(frame) => (edge === 0 ? 1 : interpolate(frame, [0, edge, frames - edge, frames], [0, 1, 1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}))}
+						/>
 					</Sequence>
 				);
 			})}

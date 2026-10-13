@@ -1,31 +1,32 @@
-import {mkdtempSync, readFileSync, readdirSync} from 'node:fs';
+import {mkdtempSync, readdirSync} from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {describe, expect, it} from 'vitest';
-import {VOICES, VOICE_PROFILES, VOICE_PROFILE_KEYS, type VoiceKey} from '../src/Configurations/Voices';
+import {BRAND_VOICES, VOICES, VOICE_PROFILES, VOICE_PROFILE_KEYS, type VoiceKey} from '../src/Configurations/Voices';
 import {resolveVideoJob, voiceLines, withVoiceClips} from '../src/Renderers/VideoJob';
 import {VOICE_LEAD_SECONDS, VOICE_TAIL_SECONDS, createNarrator, type VoiceClips} from '../src/Scenes/Voiceover';
 import {lowerFirst, sentences, toSpokenText, verbalizeLatex} from '../src/Schemas/SpokenText';
 import {SpeechError, type SpeechBackend} from '../src/Services/ElevenLabsSpeech';
+import {groupLines, joinScript, segmentLines} from '../src/Services/NarrationScript';
 import {VoiceCastingError, castVoice, type VoiceCast} from '../src/Services/VoiceCasting';
 import {VoiceoverError, generateVoiceover} from '../src/Services/VoiceoverGenerator';
 import {TEMPLATES} from '../src/Templates/TemplateRegistry';
-
-const FIXTURE = readFileSync(path.resolve(__dirname, 'Fixtures', 'Voice.mp3'));
+import {fakeNarration} from './Fixtures/FakeNarration';
 
 const idsOf = (...voices: VoiceKey[]) => new Set(voices.map((voice) => VOICES[voice].elevenLabsId));
 const DEFAULT_VOICES = (Object.keys(VOICES) as VoiceKey[]).filter((voice) => VOICES[voice].origin === 'multilingual');
 const EVERY_VOICE = Object.keys(VOICES) as VoiceKey[];
+const BRAND_VOICE = BRAND_VOICES[0];
 
 /** Offline stand-in for ElevenLabs that records what it was asked to say. */
 const fakeSpeech = (overrides: Partial<SpeechBackend> = {}) => {
 	const spoken: {text: string; cast: VoiceCast}[] = [];
 	const speech: SpeechBackend = {
-		availableVoiceIds: async () => idsOf(...DEFAULT_VOICES),
+		availableVoiceIds: async () => idsOf(...EVERY_VOICE),
 		remainingCharacters: async () => 10_000,
-		synthesize: async (text, cast) => {
+		narrate: async (text, cast) => {
 			spoken.push({text, cast});
-			return FIXTURE;
+			return fakeNarration(text);
 		},
 		...overrides,
 	};
@@ -69,7 +70,7 @@ describe('spoken text', () => {
 });
 
 describe('narrator', () => {
-	const clips: VoiceClips = {intro: {src: 'Voiceovers/a.mp3', durationSeconds: 5, playbackRate: 1}};
+	const clips: VoiceClips = {intro: {src: 'Voiceovers/a.mp3', startSeconds: 0, durationSeconds: 5, playbackRate: 1}};
 
 	it('times a line to its audio when there is a clip, to the estimate otherwise', () => {
 		const say = createNarrator(clips);
@@ -78,7 +79,7 @@ describe('narrator', () => {
 	});
 
 	it('never goes below the floor a scene needs for its animations', () => {
-		const say = createNarrator({short: {src: 'Voiceovers/b.mp3', durationSeconds: 0.8, playbackRate: 1}});
+		const say = createNarrator({short: {src: 'Voiceovers/b.mp3', startSeconds: 0, durationSeconds: 0.8, playbackRate: 1}});
 		expect(say('short', 'Evet', 2, 4).seconds).toBe(4);
 	});
 
@@ -108,7 +109,7 @@ describe.each(TEMPLATES.map((template) => [template.id, template] as const))('%s
 
 	it('stretches the video to fit the audio once clips are attached', () => {
 		const clips: VoiceClips = Object.fromEntries(
-			voiceLines(job).map((line) => [line.id, {src: `Voiceovers/${line.id}.mp3`, durationSeconds: 12.25, playbackRate: 1}]),
+			voiceLines(job).map((line) => [line.id, {src: `Voiceovers/${line.id}.mp3`, startSeconds: 0, durationSeconds: 12.25, playbackRate: 1}]),
 		);
 		const narrated = withVoiceClips(job, clips);
 		expect(narrated.durationInFrames).toBeGreaterThan(job.durationInFrames);
@@ -120,18 +121,20 @@ describe.each(TEMPLATES.map((template) => [template.id, template] as const))('%s
 });
 
 describe('voice catalogue', () => {
-	it('gives every profile a native Turkish first choice and a default-voice fallback', () => {
+	it('has a brand voice list made only of native Turkish women', () => {
+		expect(BRAND_VOICES.length).toBeGreaterThan(0);
+		expect(new Set(BRAND_VOICES).size).toBe(BRAND_VOICES.length);
+		BRAND_VOICES.forEach((voice) => expect(VOICES[voice], voice).toMatchObject({origin: 'native', gender: 'female'}));
+	});
+
+	it('keeps multilingual voices as stand-ins only', () => {
 		for (const key of VOICE_PROFILE_KEYS) {
-			const voices = VOICE_PROFILES[key].voices.map((voice) => VOICES[voice]);
-			expect(voices[0].origin, key).toBe('native');
-			expect(voices.some((voice) => voice.origin === 'multilingual'), key).toBe(true);
+			VOICE_PROFILES[key].standIns.forEach((voice) => expect(VOICES[voice], `${key}/${voice}`).toMatchObject({origin: 'multilingual', gender: 'female'}));
 		}
 	});
 
-	it('casts only female voices by default', () => {
-		for (const key of VOICE_PROFILE_KEYS) {
-			VOICE_PROFILES[key].voices.forEach((voice) => expect(VOICES[voice].gender, `${key}/${voice}`).toBe('female'));
-		}
+	it('speaks every role at the natural pace, without style exaggeration', () => {
+		for (const key of VOICE_PROFILE_KEYS) expect(VOICE_PROFILES[key], key).toMatchObject({pace: 1, style: 0});
 	});
 
 	it('has no two catalogue entries pointing at the same ElevenLabs voice', () => {
@@ -141,36 +144,81 @@ describe('voice catalogue', () => {
 });
 
 describe('castVoice', () => {
-	it('casts the native Turkish voice when the account has it', () => {
+	it('casts the brand voice with the model native voices are tuned for', () => {
 		const cast = castVoice({profile: 'Teacher'}, idsOf(...EVERY_VOICE));
-		expect(cast).toMatchObject({voice: 'Derya', native: true, modelId: 'eleven_v3', languageCode: 'tr'});
+		expect(cast).toMatchObject({voice: BRAND_VOICE, native: true, modelId: 'eleven_multilingual_v2', pace: 1, style: 0});
+		expect(cast.languageCode).toBeUndefined();
 		expect(cast.note).toBeUndefined();
 	});
 
-	it('falls back along the shortlist and says so', () => {
-		const cast = castVoice({profile: 'Teacher'}, idsOf(...DEFAULT_VOICES));
-		expect(cast).toMatchObject({voice: 'Sarah', native: false});
-		expect(cast.note).toMatch(/Derya is not in the account; using Sarah/);
+	it('narrates every kind of video with the same voice', () => {
+		const available = idsOf(...EVERY_VOICE);
+		VOICE_PROFILE_KEYS.forEach((profile) => expect(castVoice({profile}, available).voice, profile).toBe(BRAND_VOICE));
 	});
 
-	it('gives each kind of video its own narrator and tempo', () => {
-		const available = idsOf(...EVERY_VOICE);
-		expect(castVoice({profile: 'Energizer'}, available)).toMatchObject({voice: 'Damla', pace: 1.12});
-		expect(castVoice({profile: 'Lecturer'}, available).voice).toBe('Melis');
-		expect(castVoice({profile: 'Coach'}, available).voice).toBe('Ayca');
-		expect(castVoice({profile: 'Promoter'}, available).voice).toBe('Nisa');
+	it('moves to the next native voice when the first is not in the account, and says so', () => {
+		const cast = castVoice({profile: 'Teacher'}, idsOf(BRAND_VOICES[1], ...DEFAULT_VOICES));
+		expect(cast).toMatchObject({voice: BRAND_VOICES[1], native: true});
+		expect(cast.note).toMatch(/also a native Turkish voice/);
+	});
+
+	it('never falls back to a non-native voice on its own', () => {
+		expect(() => castVoice({profile: 'Teacher'}, idsOf(...DEFAULT_VOICES))).toThrow(VoiceCastingError);
+		expect(() => castVoice({profile: 'Teacher'}, idsOf(...DEFAULT_VOICES))).toThrow(/No native Turkish voice.*paid plan.*standIn/);
+	});
+
+	it('casts a stand-in only when the job accepts one, and says it is not native', () => {
+		const cast = castVoice({profile: 'Teacher', standIn: true}, idsOf(...DEFAULT_VOICES));
+		expect(cast).toMatchObject({voice: 'Sarah', native: false, modelId: 'eleven_v3', languageCode: 'tr'});
+		expect(cast.note).toMatch(/multilingual stand-in/);
+		expect(castVoice({profile: 'Teacher', standIn: true}, idsOf(...EVERY_VOICE)).voice).toBe(BRAND_VOICE);
+		expect(() => castVoice({profile: 'Teacher', standIn: true}, new Set())).toThrow(VoiceCastingError);
 	});
 
 	it('honours an explicit voice, model and pace', () => {
 		const cast = castVoice({profile: 'Teacher', voice: 'Daniel', model: 'stable', pace: 0.95}, idsOf(...EVERY_VOICE));
 		expect(cast).toMatchObject({voice: 'Daniel', modelId: 'eleven_multilingual_v2', pace: 0.95});
-		// Multilingual v2 does not take a language hint.
-		expect(cast.languageCode).toBeUndefined();
 	});
 
 	it('refuses an explicit voice the account cannot use, instead of silently swapping it', () => {
-		expect(() => castVoice({profile: 'Teacher', voice: 'Derya'}, idsOf(...DEFAULT_VOICES))).toThrow(VoiceCastingError);
-		expect(() => castVoice({profile: 'Teacher'}, new Set())).toThrow(/None of the voices of profile "Teacher"/);
+		expect(() => castVoice({profile: 'Teacher', voice: 'Derya'}, idsOf(...DEFAULT_VOICES))).toThrow(/"Derya".*not available/);
+	});
+});
+
+describe('narration script', () => {
+	const lines = ['Merhaba.', 'Bugün üslü sayılar.', 'Hoşça kal.'];
+	// Every character takes 0.1 s, so times can be read off character positions.
+	const timing = (script: string) => ({
+		characters: [...script],
+		startSeconds: [...script].map((_, index) => index * 0.1),
+		endSeconds: [...script].map((_, index) => (index + 1) * 0.1),
+	});
+
+	it('joins lines into one script with paragraph breaks', () => {
+		expect(joinScript(lines)).toBe('Merhaba.\n\nBugün üslü sayılar.\n\nHoşça kal.');
+	});
+
+	it('finds each line in the audio, in order and without overlap', () => {
+		const segments = segmentLines(lines, timing(joinScript(lines)));
+		expect(segments).toHaveLength(3);
+		expect(segments[0].startSeconds).toBe(0);
+		// "Merhaba." ends at 0.8 s; the pause to the next line is 0.2 s, so each side takes half of it.
+		expect(segments[0].endSeconds).toBeCloseTo(0.9, 5);
+		expect(segments[1].startSeconds).toBeCloseTo(0.9, 5);
+		segments.forEach((segment, index) => {
+			expect(segment.endSeconds).toBeGreaterThan(segment.startSeconds);
+			if (index > 0) expect(segment.startSeconds).toBeGreaterThanOrEqual(segments[index - 1].endSeconds);
+		});
+	});
+
+	it('refuses timings that do not match the script', () => {
+		expect(() => segmentLines(lines, timing('Merhaba.'))).toThrow(/lines cannot be located/);
+	});
+
+	it('splits only a script longer than the model accepts, and only between lines', () => {
+		expect(groupLines(lines, 5_000)).toEqual([[0, 1, 2]]);
+		expect(groupLines(lines, 30)).toEqual([[0, 1], [2]]);
+		expect(groupLines([], 30)).toEqual([]);
 	});
 });
 
@@ -195,6 +243,10 @@ describe('voice-over in a job', () => {
 		expect(job.voiceover).toEqual({profile: 'Creator', voice: 'Liam', model: 'stable', pace: 1.1});
 	});
 
+	it('lets a job accept a stand-in voice', () => {
+		expect(resolveVideoJob({...base, voiceover: {standIn: true}}).voiceover).toEqual({profile: 'Teacher', standIn: true});
+	});
+
 	it('rejects unknown voices, profiles and extreme tempos', () => {
 		expect(() => resolveVideoJob({...base, voiceover: {voice: 'Morgan'}})).toThrow();
 		expect(() => resolveVideoJob({...base, voiceover: {profile: 'Robot'}})).toThrow();
@@ -209,45 +261,48 @@ describe('generateVoiceover', () => {
 	];
 	const publicDirectory = () => mkdtempSync(path.join(os.tmpdir(), 'sinavika-voice-'));
 
-	it('casts a voice, writes one clip per line and measures it', async () => {
+	it('speaks the whole script in one request and gives every line its part of the audio', async () => {
 		const {speech, spoken} = fakeSpeech();
 		const {clips, cast} = await generateVoiceover(lines, {profile: 'Teacher'}, {publicDirectory: publicDirectory(), speech});
 
-		expect(cast.voice).toBe('Sarah');
+		expect(cast.voice).toBe(BRAND_VOICE);
+		expect(spoken.map((entry) => entry.text)).toEqual(['Merhaba\n\nHoşça kal']);
 		expect(Object.keys(clips)).toEqual(['intro', 'outro']);
 		expect(clips.intro.src).toMatch(/^Voiceovers\/[0-9a-f]{20}\.mp3$/);
-		expect(clips.intro.src).not.toBe(clips.outro.src);
+		expect(clips.outro.src).toBe(clips.intro.src);
+		expect(clips.intro.startSeconds).toBe(0);
 		expect(clips.intro.durationSeconds).toBeGreaterThan(1);
-		expect(spoken.map((entry) => entry.text)).toEqual(['Merhaba', 'Hoşça kal']);
-		expect(spoken[0].cast).toMatchObject({modelId: 'eleven_v3', languageCode: 'tr'});
+		expect(clips.outro.startSeconds).toBeGreaterThanOrEqual(clips.intro.startSeconds + clips.intro.durationSeconds);
+		expect(clips.intro.playbackRate).toBe(1);
 	});
 
-	it('spends nothing on lines it has already generated, but regenerates for another voice', async () => {
+	it('spends nothing on a script it has already narrated, but regenerates for another voice', async () => {
 		const directory = publicDirectory();
 		const {speech, spoken} = fakeSpeech();
 		await generateVoiceover(lines, {profile: 'Teacher'}, {publicDirectory: directory, speech});
 		await generateVoiceover(lines, {profile: 'Teacher'}, {publicDirectory: directory, speech});
-		expect(spoken).toHaveLength(2);
+		expect(spoken).toHaveLength(1);
 		await generateVoiceover(lines, {profile: 'Teacher', voice: 'Alice'}, {publicDirectory: directory, speech});
-		expect(spoken).toHaveLength(4);
-		expect(readdirSync(path.join(directory, 'Voiceovers'))).toHaveLength(4);
+		expect(spoken).toHaveLength(2);
+		expect(readdirSync(path.join(directory, 'Voiceovers')).filter((file) => file.endsWith('.mp3'))).toHaveLength(2);
 	});
 
 	it('applies tempo at playback: same audio file, shorter clip', async () => {
 		const directory = publicDirectory();
 		const {speech, spoken} = fakeSpeech();
-		const natural = await generateVoiceover(lines, {profile: 'Teacher', pace: 1}, {publicDirectory: directory, speech});
+		const natural = await generateVoiceover(lines, {profile: 'Teacher'}, {publicDirectory: directory, speech});
 		const brisk = await generateVoiceover(lines, {profile: 'Teacher', pace: 1.25}, {publicDirectory: directory, speech});
-		expect(spoken).toHaveLength(2);
-		expect(brisk.clips.intro.src).toBe(natural.clips.intro.src);
-		expect(brisk.clips.intro.playbackRate).toBe(1.25);
-		expect(brisk.clips.intro.durationSeconds).toBeCloseTo(natural.clips.intro.durationSeconds / 1.25, 5);
+		expect(spoken).toHaveLength(1);
+		expect(brisk.clips.outro.src).toBe(natural.clips.outro.src);
+		expect(brisk.clips.outro.startSeconds).toBe(natural.clips.outro.startSeconds);
+		expect(brisk.clips.outro.playbackRate).toBe(1.25);
+		expect(brisk.clips.outro.durationSeconds).toBeCloseTo(natural.clips.outro.durationSeconds / 1.25, 5);
 	});
 
 	it('stops before generating anything when the account is short of characters', async () => {
 		const {speech, spoken} = fakeSpeech({remainingCharacters: async () => 5});
 		await expect(generateVoiceover(lines, {profile: 'Teacher'}, {publicDirectory: publicDirectory(), speech})).rejects.toThrow(
-			/needs 16 new characters but the ElevenLabs account has 5 left/,
+			/needs 18 new characters but the ElevenLabs account has 5 left/,
 		);
 		expect(spoken).toHaveLength(0);
 	});
@@ -255,33 +310,42 @@ describe('generateVoiceover', () => {
 	it('retries a temporary failure', async () => {
 		let calls = 0;
 		const {speech} = fakeSpeech({
-			synthesize: async () => {
+			narrate: async (script) => {
 				if (++calls === 1) throw new SpeechError('ElevenLabs 503', true);
-				return FIXTURE;
+				return fakeNarration(script);
 			},
 		});
 		await generateVoiceover([lines[0]], {profile: 'Teacher'}, {publicDirectory: publicDirectory(), speech});
 		expect(calls).toBe(2);
 	}, 20_000);
 
-	it('does not retry a failure that cannot succeed, and names the line', async () => {
+	it('does not retry a failure that cannot succeed', async () => {
 		let calls = 0;
 		const {speech} = fakeSpeech({
-			synthesize: async () => {
+			narrate: async () => {
 				calls++;
 				throw new SpeechError('ElevenLabs 402 paid_plan_required: Free users cannot use library voices via the API.', false);
 			},
 		});
 		const attempt = generateVoiceover(lines, {profile: 'Teacher'}, {publicDirectory: publicDirectory(), speech});
 		await expect(attempt).rejects.toBeInstanceOf(VoiceoverError);
-		await expect(attempt).rejects.toThrow(/line "intro".*paid_plan_required/);
+		await expect(attempt).rejects.toThrow(/Voice-over failed.*paid_plan_required/);
 		expect(calls).toBe(1);
 	});
 
 	it('reports a missing voice as a voice-over error', async () => {
 		const {speech} = fakeSpeech({availableVoiceIds: async () => new Set()});
 		await expect(generateVoiceover(lines, {profile: 'Teacher'}, {publicDirectory: publicDirectory(), speech})).rejects.toThrow(
-			/None of the voices of profile "Teacher"/,
+			/No native Turkish voice/,
 		);
+	});
+
+	it('does not narrate with a non-native voice unless the job accepts a stand-in', async () => {
+		const {speech, spoken} = fakeSpeech({availableVoiceIds: async () => idsOf(...DEFAULT_VOICES)});
+		await expect(generateVoiceover(lines, {profile: 'Teacher'}, {publicDirectory: publicDirectory(), speech})).rejects.toBeInstanceOf(VoiceoverError);
+		expect(spoken).toHaveLength(0);
+		const {cast} = await generateVoiceover(lines, {profile: 'Teacher', standIn: true}, {publicDirectory: publicDirectory(), speech});
+		expect(cast).toMatchObject({voice: 'Sarah', native: false});
+		expect(spoken).toHaveLength(1);
 	});
 });

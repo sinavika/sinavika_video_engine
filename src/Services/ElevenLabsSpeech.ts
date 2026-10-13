@@ -2,6 +2,7 @@ import {existsSync} from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {ElevenLabsClient, ElevenLabsError} from '@elevenlabs/elevenlabs-js';
+import type {CharacterTiming} from './NarrationScript';
 import type {VoiceCast} from './VoiceCasting';
 
 /**
@@ -13,11 +14,13 @@ export type SpeechBackend = {
 	availableVoiceIds: () => Promise<ReadonlySet<string>>;
 	/** Characters left in the current billing period, or null when unknown. */
 	remainingCharacters: () => Promise<number | null>;
-	/** MP3 bytes for one line. */
-	synthesize: (text: string, cast: VoiceCast) => Promise<Buffer>;
+	/** MP3 bytes for a whole script, spoken in one go, and when each of its characters is spoken. */
+	narrate: (script: string, cast: VoiceCast) => Promise<Narration>;
 	/** Set by stand-ins so their audio is never mistaken for real clips in the cache. */
 	cacheTag?: string;
 };
+
+export type Narration = {audio: Buffer; timing: CharacterTiming};
 
 /** A speech request that failed. `retryable` tells the caller whether trying again can help. */
 export class SpeechError extends Error {
@@ -101,19 +104,26 @@ export const ELEVENLABS_SPEECH: SpeechBackend = {
 		}
 	},
 
-	synthesize: async (text, cast) => {
+	narrate: async (script, cast) => {
 		try {
-			const stream = await elevenLabs().textToSpeech.convert(cast.elevenLabsVoiceId, {
-				text,
+			const {audioBase64, alignment} = await elevenLabs().textToSpeech.convertWithTimestamps(cast.elevenLabsVoiceId, {
+				text: script,
 				modelId: cast.modelId,
 				languageCode: cast.languageCode,
 				outputFormat: OUTPUT_FORMAT,
 				seed: cast.seed,
-				voiceSettings: {stability: cast.stability, similarityBoost: cast.similarity},
+				voiceSettings: {stability: cast.stability, similarityBoost: cast.similarity, style: cast.style, useSpeakerBoost: true},
 			});
-			const audio = Buffer.from(await new Response(stream).arrayBuffer());
-			if (audio.length === 0) throw new SpeechError('ElevenLabs returned no audio.', true);
-			return audio;
+			const audio = Buffer.from(audioBase64, 'base64');
+			if (audio.length === 0 || !alignment) throw new SpeechError('ElevenLabs returned no audio.', true);
+			return {
+				audio,
+				timing: {
+					characters: alignment.characters,
+					startSeconds: alignment.characterStartTimesSeconds,
+					endSeconds: alignment.characterEndTimesSeconds,
+				},
+			};
 		} catch (error) {
 			throw toSpeechError(error);
 		}

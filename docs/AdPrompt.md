@@ -23,12 +23,17 @@ Kaçınılacaklar: [ör. "fiyat yok", "geçen seferki gibi olmasın"]
 - **Gerçek marka:** resmî logo (`public/Brand`), uygulamanın kodundan yeniden çizilmiş gerçek ekranlar (`src/Components/AppScreens`, katalog: [`AppScreens.md`](AppScreens.md)), sitede ve uygulamada doğrulanmış özellikler. Hayalî ekran ya da karikatür çizim yok.
 - **Fotoğraf kullanılmaz.** Dışarıdan görsel indirilmez. Gerekirse önce sorulur; kaynak ve lisans kaydedilir.
 - **Stil:** `SinavikaDark` teması; koyu sahne, yavaşça kayan turuncu ışıma, dev hareketli yazı, sahnede kalan tek telefon ve onun üstünde değişen ekranlar. Kurumsal palet ve yazı tipi düzeni (`src/Configurations/BrandTypography.ts`) dışına çıkılmaz; yazı boyutları oradaki tanıtım ölçeğinden alınır.
-- Her videoda hareketler yenilenir; bir öncekinin aynısı tekrar edilmez.
+- Her videoda hareketler yenilenir; bir öncekinin aynısı tekrar edilmez. İki şablon vardır: `AppPromotion` (sahnede kalan tek telefon, çok özellik) ve `MobilePromotion` (açılış sorusu, adım adım ekranlar, yan yana ekranlar, çağrı, marka kartı).
+- Hızlı giriş ve çıkışlar hareket bulanıklığıyla yapılır; okunacak yazı ve ürün ekranı durduğu anda nettir.
+- Sessiz izleyen için anlatım altyazı olarak gösterilir; altyazı ekran yazısıyla aynıysa çizilmez.
 - **60 fps, 9:16** (Reels, TikTok, Shorts). İstenirse 16:9.
 - Platform arayüzlerinin kapladığı üst ve alt bölgeler boş bırakılır.
 
 ### Ses
 
+- Marka sesi kullanılamıyorsa video seslendirmesiz (müzik + altyazı) üretilip teslim edilebilir; bu, brifte ve raporda açıkça yazılır. Yedek (ana dili Türkçe olmayan) ses yalnız kullanıcı isterse.
+- **Marka sesi.** Ana dili Türkçe tek ses (`BRAND_VOICES`), doğal hızda (tempo 1,0), abartısız: reklam okur gibi değil, bir arkadaşın önerisi gibi. Yabancı (çok dilli) sese kendiliğinden geçilmez; marka sesi kullanılamıyorsa üretim durur ve bu bildirilir.
+- **Metin bütün olarak üretilir:** kısa reklam metni tek istekte seslendirilir, cümle cümle değil.
 - **ElevenLabs.** Üretimden önce karakter sayısı hesaplanır ve kalan krediyle karşılaştırılır. Kredi sınırlı olduğu için tek kayıt alınır; ikinci kayıt yalnız istenirse.
 - Metin tam ve açık cümlelerle yazılır; telefon hoparlöründe her kelime anlaşılmalıdır.
 - Marka ve modül adları doğru okunacak şekilde yazılır; okunuşu belirsiz ad (ör. SinoAI) seslendirmede tarif edilir, ekranda gerçek adıyla görünür.

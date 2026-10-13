@@ -48,6 +48,8 @@ export const BRAND_TYPOGRAPHY = {
 		closing: 84,
 		/** Buttons and store names. */
 		action: 36,
+		/** Subtitles: the narration, for viewers without sound. */
+		subtitle: 40,
 	},
 } as const satisfies {
 	families: Record<'display' | 'body' | 'mono', keyof typeof FONT_FAMILIES>;
@@ -55,7 +57,7 @@ export const BRAND_TYPOGRAPHY = {
 	displayLetterSpacing: string;
 	labelTransform: ThemeTypography['labelTransform'];
 	displayLineHeight: number;
-	adScale: Record<'hook' | 'headline' | 'closing' | 'action', number>;
+	adScale: Record<'hook' | 'headline' | 'closing' | 'action' | 'subtitle', number>;
 };
 
 const {families, weights} = BRAND_TYPOGRAPHY;
