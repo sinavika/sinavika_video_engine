@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {Composition, Folder, Img, Sequence, staticFile, useVideoConfig} from 'remotion';
+import {Audio, Composition, Folder, Img, Sequence, staticFile, useVideoConfig} from 'remotion';
 import {VideoFrame} from '../Components/Layouts/VideoFrame';
 import {VIDEO_COVER} from '../Configurations/VideoCover';
 import {DEFAULT_FPS, VIDEO_FORMATS, VIDEO_FORMAT_IDS} from '../Configurations/VideoFormats';
@@ -15,7 +15,7 @@ import {lessonTheme} from '../Themes/LessonAccent';
 
 /** The component Remotion renders for a template: theme and fonts around the template's scenes. */
 const createVideoComponent = (template: AnyTemplateDefinition) => {
-	const TemplateVideo: React.FC<VideoProps<unknown>> = ({theme, content, voiceClips, lesson, coverSrc}) => {
+	const TemplateVideo: React.FC<VideoProps<unknown>> = ({theme, content, voiceClips, lesson, coverSrc, soundtrackSrc}) => {
 		const scenes = useMemo(() => template.buildScenes(content, voiceClips), [content, voiceClips]);
 		const {fps} = useVideoConfig();
 		return (
@@ -27,6 +27,7 @@ const createVideoComponent = (template: AnyTemplateDefinition) => {
 					overlayEndsAt={OUTRO_SCENE_ID}
 					voiceClips={voiceClips}
 				/>
+				{soundtrackSrc ? <Audio src={staticFile(soundtrackSrc)} /> : null}
 				{coverSrc ? (
 					<Sequence name="Cover" durationInFrames={Math.max(1, Math.round(VIDEO_COVER.holdSeconds * fps))}>
 						<Img src={staticFile(coverSrc)} style={{width: '100%', height: '100%', objectFit: 'cover'}} />

@@ -12,7 +12,7 @@ import {CallToAction, StoreBadges} from '../../Components/CallToAction';
 import {PhoneMockup} from '../../Components/DeviceMockups';
 import {ImageFrame, useImageLayout} from '../../Components/ImageFrame';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
-import {BrandingSchema, CallToActionSchema, ScreenshotSchema} from '../../Schemas/ImageFields';
+import {AppScreenSchema, BrandingSchema, CallToActionSchema, ScreenshotSchema} from '../../Schemas/ImageFields';
 
 const HeroPhoneSchema = z.object({
 	eyebrow: plainText(36).optional(),
@@ -22,6 +22,8 @@ const HeroPhoneSchema = z.object({
 	features: z.array(plainText(42)).max(4).default([]),
 	/** The real app screen to show. Without one, a neutral placeholder screen is drawn. */
 	screenshot: ScreenshotSchema.optional(),
+	/** The drawn app screen to show when no screenshot is given. */
+	appScreen: AppScreenSchema.optional(),
 	cta: CallToActionSchema.optional(),
 	/** Show App Store / Google Play availability. */
 	stores: z.boolean().default(true),
@@ -69,7 +71,7 @@ const HeroPhoneImage: React.FC<{content: Content}> = ({content}) => {
 				filter: `drop-shadow(0 0 ${u(90)}px ${withAlpha(colors.primary, 0.35)})`,
 			}}
 		>
-			<PhoneMockup screenshot={content.screenshot} width={phoneWidth} tilt={wide ? 5 : 7} />
+			<PhoneMockup screenshot={content.screenshot} screen={content.appScreen} width={phoneWidth} tilt={wide ? 5 : 7} />
 		</div>
 	);
 

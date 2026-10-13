@@ -64,6 +64,11 @@ export const VideoJobSchema = z.object({
 			}),
 		])
 		.optional(),
+	/**
+	 * Adds original music and sound design, composed for this video's timing,
+	 * under the narration, and masters the result to -14 LUFS. See Services/SoundtrackComposer.
+	 */
+	soundtrack: z.boolean().default(false),
 	/** Validated against the chosen template's content schema. */
 	content: z.unknown(),
 });
@@ -88,6 +93,8 @@ export type ResolvedVideoJob = {
 	outputName: string;
 	/** What the job says about its cover: `false` for none, overrides, or null when it says nothing. */
 	cover: VideoCoverRequest | false | null;
+	/** Whether the video gets music and sound design. */
+	soundtrack: boolean;
 	/** What the job asks of the narrator, or null for a silent video. */
 	voiceover: VoiceoverRequest | null;
 	/** Who ended up narrating. Set once the voice-over has been generated. */
@@ -165,6 +172,7 @@ export const resolveVideoJob = (raw: unknown): ResolvedVideoJob => {
 		inputProps,
 		outputName: job.name ?? contentName(inputProps.content, template.title),
 		cover: job.cover === undefined ? null : job.cover === true ? {} : job.cover,
+		soundtrack: job.soundtrack,
 		voiceover:
 			job.voiceover === false
 				? null

@@ -11,7 +11,9 @@ import {WhiteboardMinimal} from './WhiteboardMinimal';
 /**
  * Adding a theme: create its file and add one line here. Nothing else changes.
  *
- * SinavikaLight and SinavikaDark carry the official brand palette and are the
+ * SinavikaLight and SinavikaDark carry the official brand palette
+ * (Configurations/BrandColors.ts) and the brand typography
+ * (Configurations/BrandTypography.ts, through SinavikaBrand) and are the
  * themes of all social media content. The older themes keep their own colours,
  * so anything already rendered with them looks the same.
  */

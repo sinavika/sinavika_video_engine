@@ -7,14 +7,14 @@ import {CallToAction} from '../../Components/CallToAction';
 import {PhoneMockup} from '../../Components/DeviceMockups';
 import {ImageFrame, useImageLayout} from '../../Components/ImageFrame';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
-import {BrandingSchema, CallToActionSchema, ScreenshotSchema} from '../../Schemas/ImageFields';
+import {AppScreenSchema, BrandingSchema, CallToActionSchema, ScreenshotSchema} from '../../Schemas/ImageFields';
 
 const DualPhonesSchema = z.object({
 	title: richText(70),
 	subtitle: richText(140).optional(),
 	/** Two or three app screens shown side by side, each with a short caption. */
 	screens: z
-		.array(z.object({label: plainText(28), screenshot: ScreenshotSchema.optional()}))
+		.array(z.object({label: plainText(28), screenshot: ScreenshotSchema.optional(), appScreen: AppScreenSchema.optional()}))
 		.min(2)
 		.max(3),
 	cta: CallToActionSchema.optional(),
@@ -72,7 +72,7 @@ const DualPhonesImage: React.FC<{content: Content}> = ({content}) => {
 							>
 								{screen.label}
 							</div>
-							<PhoneMockup screenshot={screen.screenshot} width={phoneWidth} tilt={(index - middle) * 4} />
+							<PhoneMockup screenshot={screen.screenshot} screen={screen.appScreen} width={phoneWidth} tilt={(index - middle) * 4} />
 						</div>
 					))}
 				</div>
@@ -91,7 +91,11 @@ export const DualPhones = defineImageTemplate({
 	sampleContent: {
 		title: 'Çöz, öğren, **takip et**',
 		subtitle: 'Sınavika’nın üç ekranı, tek bir çalışma düzeni.',
-		screens: [{label: 'Soru çözümü'}, {label: 'Konu tekrarı'}, {label: 'İlerleme'}],
+		screens: [
+			{label: 'Denemeler', appScreen: 'Exam'},
+			{label: 'Bilgi Kartları', appScreen: 'Flashcards'},
+			{label: 'İstatistikler', appScreen: 'Analysis'},
+		],
 		cta: {label: 'Uygulamayı indir'},
 	},
 	defaultTheme: 'SinavikaBrand',

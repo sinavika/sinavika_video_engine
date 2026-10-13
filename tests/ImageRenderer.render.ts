@@ -3,7 +3,9 @@ import os from 'node:os';
 import path from 'node:path';
 import {PNG} from 'pngjs';
 import {beforeAll, describe, expect, it} from 'vitest';
+import {APP_SCREEN_NAMES} from '../src/Components/AppScreens/AppScreenRegistry';
 import {IMAGE_TEMPLATES} from '../src/Images/ImageTemplateRegistry';
+import {renderAppScreen} from '../src/Renderers/AppScreenRenderer';
 import {renderImage, renderImageToOutputs} from '../src/Images/Renderers/ImageRenderer';
 import {IMAGE_SIZES, IMAGE_SIZE_NAMES} from '../src/Images/Schemas/ImageSizes';
 import {VideoJobValidationError} from '../src/Renderers/VideoJob';
@@ -116,6 +118,38 @@ describe('carousel without page indicators', () => {
 		expect(bottomBand(first)).toBe(bottomBand(second));
 		expect(result.warnings).toEqual([]);
 		expect(cover.height).toBe(1350);
+	});
+});
+
+describe('app screens', () => {
+	it.each(APP_SCREEN_NAMES)('exports %s in both app themes at screenshot resolution', async (screen) => {
+		const [light, dark] = await Promise.all(
+			(['light', 'dark'] as const).map(async (mode) => pixels((await renderAppScreen({screen, mode}, {outputPath: path.join(outputDirectory, `Screen-${screen}-${mode}.png`)})).outputPath)),
+		);
+		expect([light.width, light.height]).toEqual([1170, 2532]);
+		expect([dark.width, dark.height]).toEqual([1170, 2532]);
+		expect(differingShare(light, dark)).toBeGreaterThan(0.5);
+		// A drawn screen, not a blank canvas: plenty of pixels differ from the top-left background.
+		const background = light.data.subarray(0, 3);
+		let drawn = 0;
+		for (let offset = 0; offset < light.data.length; offset += 4) if (Math.abs(light.data[offset] - background[0]) + Math.abs(light.data[offset + 1] - background[1]) + Math.abs(light.data[offset + 2] - background[2]) > 30) drawn++;
+		expect(drawn / (light.data.length / 4)).toBeGreaterThan(0.03);
+	});
+
+	it('exports a screen inside the phone, and refuses unknown screens', async () => {
+		const result = await renderAppScreen({screen: 'Exam', mode: 'dark', device: true}, {outputPath: path.join(outputDirectory, 'Screen-Device.png')});
+		const image = pixels(result.outputPath);
+		expect([image.width, image.height]).toEqual([result.width, result.height]);
+		expect(result.width).toBe(1120);
+		await expect(renderAppScreen({screen: 'Settings'}, {outputPath: path.join(outputDirectory, 'Never.png')})).rejects.toBeInstanceOf(VideoJobValidationError);
+	});
+
+	it('shows the chosen screen in a phone image, and a different one when another is chosen', async () => {
+		const render = async (name: string, appScreen?: string) =>
+			pixels((await renderImage(sampleJob('HeroPhone', {theme: 'SinavikaLight', content: {...IMAGE_TEMPLATES.find((entry) => entry.variant === 'HeroPhone')!.sampleContent, appScreen}}), {outputPath: path.join(outputDirectory, `${name}.png`)})).files[0]);
+		const [home, defaulted, exam] = [await render('Phone-Home', 'Home'), await render('Phone-Default'), await render('Phone-Exam', 'Exam')];
+		expect(differingShare(home, defaulted)).toBeLessThan(0.0005);
+		expect(differingShare(home, exam)).toBeGreaterThan(0.01);
 	});
 });
 

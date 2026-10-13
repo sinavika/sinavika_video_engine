@@ -9,13 +9,15 @@ import {CallToAction} from '../../Components/CallToAction';
 import {BrowserMockup, PhoneMockup} from '../../Components/DeviceMockups';
 import {ImageFrame, useImageLayout} from '../../Components/ImageFrame';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
-import {BrandingSchema, CallToActionSchema, ScreenshotSchema} from '../../Schemas/ImageFields';
+import {AppScreenSchema, BrandingSchema, CallToActionSchema, ScreenshotSchema} from '../../Schemas/ImageFields';
 
 const DeviceDuoSchema = z.object({
 	title: richText(70),
 	subtitle: richText(140).optional(),
 	desktopScreenshot: ScreenshotSchema.optional(),
 	mobileScreenshot: ScreenshotSchema.optional(),
+	/** The drawn app screen for the phone when no mobile screenshot is given. */
+	appScreen: AppScreenSchema.optional(),
 	url: plainText(60).optional(),
 	points: z.array(plainText(50)).max(3).default([]),
 	cta: CallToActionSchema.optional(),
@@ -35,7 +37,7 @@ const DeviceDuoImage: React.FC<{content: Content}> = ({content}) => {
 		<div style={{position: 'relative', width: u(stageWidth), height: u(windowHeight + 70), flexShrink: 0, alignSelf: 'center'}}>
 			<BrowserMockup screenshot={content.desktopScreenshot} url={content.url} width={windowWidth} height={windowHeight} />
 			{/* The phone stands in front of the window's corner: same product, two screens. */}
-			<PhoneMockup screenshot={content.mobileScreenshot} width={stageWidth * 0.27} style={{position: 'absolute', right: 0, bottom: 0}} />
+			<PhoneMockup screenshot={content.mobileScreenshot} screen={content.appScreen} width={stageWidth * 0.27} style={{position: 'absolute', right: 0, bottom: 0}} />
 		</div>
 	);
 

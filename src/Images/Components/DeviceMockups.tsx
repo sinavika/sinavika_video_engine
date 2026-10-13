@@ -4,23 +4,20 @@ import type {Image} from '../../Schemas/Visual';
 import {withAlpha} from '../../Themes/Theme';
 import {useTheme} from '../../Themes/ThemeContext';
 import {useImageLayout} from './ImageFrame';
+import {APP_SCREENS, type AppScreenName} from '../../Components/AppScreens/AppScreenRegistry';
+import type {AppMode} from '../../Components/AppScreens/AppScreenTokens';
+import {PhoneFrame} from '../../Components/AppScreens/PhoneFrame';
 
 const resolveSource = (src: string): string => (/^(https?:|data:)/.test(src) ? src : staticFile(src));
 
-const DEVICE_BODY = '#0E0F14';
-
-/** A skeleton stand-in for a real screen. Shown only until a screenshot is supplied. */
-const PlaceholderScreen: React.FC<{kind: 'app' | 'dashboard'}> = ({kind}) => {
+/** A skeleton stand-in for a web page. Shown only until a screenshot is supplied; phones show the drawn app screens instead. */
+const PlaceholderScreen: React.FC = () => {
 	const {colors} = useTheme();
 	const bar = (width: string, tone = withAlpha(colors.onSurface, 0.14), height = '2.4%') => (
 		<div style={{width, height, minHeight: 6, borderRadius: 999, backgroundColor: tone}} />
 	);
-	const card = (children: React.ReactNode, fill = colors.surfaceAlt) => (
-		<div style={{borderRadius: '6%/9%', backgroundColor: fill, padding: '6%', display: 'flex', flexDirection: 'column', gap: '10%'}}>{children}</div>
-	);
 
-	if (kind === 'dashboard') {
-		return (
+	return (
 			<div style={{width: '100%', height: '100%', display: 'flex', backgroundColor: colors.surface}}>
 				<div style={{width: '19%', backgroundColor: colors.surfaceAlt, padding: '2.5%', display: 'flex', flexDirection: 'column', gap: '4%'}}>
 					{bar('70%', colors.primary, '3%')}
@@ -43,35 +40,16 @@ const PlaceholderScreen: React.FC<{kind: 'app' | 'dashboard'}> = ({kind}) => {
 					</div>
 				</div>
 			</div>
-		);
-	}
-
-	return (
-		<div style={{width: '100%', height: '100%', boxSizing: 'border-box', padding: '16% 7% 7%', display: 'flex', flexDirection: 'column', gap: '3.2%', backgroundColor: colors.surface}}>
-			{bar('46%', withAlpha(colors.onSurface, 0.32), '3%')}
-			{bar('70%')}
-			<div style={{height: '24%', borderRadius: '7%/14%', background: `linear-gradient(135deg, ${colors.primary}, ${colors.accent})`}} />
-			{card(
-				<>
-					{bar('55%', withAlpha(colors.onSurface, 0.28))}
-					{bar('90%')}
-					{bar('80%')}
-				</>,
-			)}
-			{card(
-				<>
-					{bar('40%', withAlpha(colors.onSurface, 0.28))}
-					{bar('85%')}
-				</>,
-			)}
-			<div style={{marginTop: 'auto', height: '7%', borderRadius: 999, backgroundColor: colors.primary}} />
-		</div>
 	);
 };
 
 type PhoneMockupProps = {
-	/** A real app screenshot. It is shown exactly as supplied. */
+	/** A real app screenshot. It is shown exactly as supplied and takes precedence over `screen`. */
 	screenshot?: Image;
+	/** Which drawn app screen to show when there is no screenshot. Defaults to the app's home. */
+	screen?: AppScreenName;
+	/** The app theme the drawn screen uses. */
+	mode?: AppMode;
 	/** Device width in reference pixels. */
 	width: number;
 	/** Degrees of rotation, for layered compositions. */
@@ -79,45 +57,14 @@ type PhoneMockupProps = {
 	style?: React.CSSProperties;
 };
 
-/** A phone showing an app screen. */
-export const PhoneMockup: React.FC<PhoneMockupProps> = ({screenshot, width, tilt = 0, style}) => {
+/** A phone showing an app screen: the project's shared phone, sized for images. */
+export const PhoneMockup: React.FC<PhoneMockupProps> = ({screenshot, screen = 'Home', mode = 'light', width, tilt = 0, style}) => {
 	const {u} = useImageLayout();
-	const size = u(width);
+	const Screen = APP_SCREENS[screen].Component;
 	return (
-		<div
-			style={{
-				boxSizing: 'border-box',
-				width: size,
-				height: size * 2.06,
-				padding: size * 0.034,
-				borderRadius: size * 0.15,
-				backgroundColor: DEVICE_BODY,
-				boxShadow: `0 ${size * 0.08}px ${size * 0.2}px rgba(0, 0, 0, 0.32), inset 0 0 0 ${Math.max(1, size * 0.006)}px rgba(255, 255, 255, 0.18)`,
-				transform: tilt ? `rotate(${tilt}deg)` : undefined,
-				flexShrink: 0,
-				...style,
-			}}
-		>
-			<div style={{position: 'relative', width: '100%', height: '100%', borderRadius: size * 0.118, overflow: 'hidden', backgroundColor: '#FFFFFF'}}>
-				{screenshot ? (
-					<Img src={resolveSource(screenshot.src)} alt={screenshot.alt ?? ''} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top'}} />
-				) : (
-					<PlaceholderScreen kind="app" />
-				)}
-				<div
-					style={{
-						position: 'absolute',
-						top: size * 0.03,
-						left: '50%',
-						width: size * 0.3,
-						height: size * 0.075,
-						marginLeft: -size * 0.15,
-						borderRadius: 999,
-						backgroundColor: DEVICE_BODY,
-					}}
-				/>
-			</div>
-		</div>
+		<PhoneFrame width={u(width)} mode={mode} style={{transform: tilt ? `rotate(${tilt}deg)` : undefined, ...style}}>
+			{screenshot ? <Img src={resolveSource(screenshot.src)} alt={screenshot.alt ?? ''} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top'}} /> : <Screen />}
+		</PhoneFrame>
 	);
 };
 
@@ -181,7 +128,7 @@ export const BrowserMockup: React.FC<BrowserMockupProps> = ({screenshot, url, wi
 				{screenshot ? (
 					<Img src={resolveSource(screenshot.src)} alt={screenshot.alt ?? ''} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top'}} />
 				) : (
-					<PlaceholderScreen kind="dashboard" />
+					<PlaceholderScreen />
 				)}
 			</div>
 		</div>

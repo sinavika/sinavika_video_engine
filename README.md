@@ -38,6 +38,7 @@ Seslendirme için ElevenLabs API anahtarı gerekir. `.env.example` dosyasını `
 | `npm run image -- --job <job.json> [--job ...]` | Görsel render eder, `Outputs/Images` altına sıradaki numarayla kaydeder |
 | `npm run image -- --job <job.json> --out <görsel.png>` | Görseli tam olarak verilen yola yazar |
 | `npm run render -- --job <job.json> --out <kare.png> --frame 120` | Tek kare render eder |
+| `npm run screens [-- --mode both --device]` | Mobil uygulama ekranlarını PNG olarak `Outputs/AppScreens` altına çıkarır |
 | `npm run render -- ... --concurrency 4 --json` | Paralel sekme sayısı; makine tarafından okunabilir çıktı |
 | `npm run validate -- <job.json> [...]` | Render etmeden doğrular, süreyi raporlar |
 | `npm run validate -- <job.json> --narration` | Ayrıca seslendirme metnini satır satır yazdırır |
@@ -290,6 +291,19 @@ Outputs/
 Video, kapağıyla birlikte aynı numara altında kaydedilir: `03_Turkce_Ses_Olaylari.mp4` ve `03_Turkce_Ses_Olaylari_Kapak.png`. Kapak videonun
 açılış karesi olarak da videoya yerleştirilir; `"cover": false` ile kapatılır, `"cover": {"title": "...", "emphasis": "..."}` ile metinleri
 değiştirilir. Ayrıntı: [docs/SocialPlan.md](docs/SocialPlan.md).
+
+## Tanıtım videosu
+
+`AppPromotion` şablonu Sınavika mobil uygulamasını tanıtır: dev hareketli yazıyla giriş, uygulamanın gerçek ekranlarını gezen tek telefon ve
+mağaza adlı kapanış. Ekran çizimleri [src/Components/AppScreens](src/Components/AppScreens) içindedir ve mobil uygulamanın kodundan yeniden çizilmiştir.
+
+```bash
+npm run render -- --job samples/AppPromotion.json
+```
+
+- `"fps": 60` ile akıcı hareket, `"soundtrack": true` ile kodla üretilen özgün müzik ve ses tasarımı eklenir; ses −14 LUFS'e ayarlanır.
+- Uygulama ekranları merkezi bir katalogdur (11 ekran, açık ve koyu tema); videoda, telefonlu görsellerde (`appScreen`) ve tek başına kullanılır: `npm run screens`. Ayrıntı: [docs/AppScreens.md](docs/AppScreens.md).
+- Tanıtım videolarının standart brifi: [docs/AdPrompt.md](docs/AdPrompt.md). Marka kimliği: [docs/BrandIdentity.md](docs/BrandIdentity.md).
 
 ## Sosyal medya teslimi (SocialHub)
 

@@ -12,7 +12,7 @@ import {CallToAction} from '../../Components/CallToAction';
 import {PhoneMockup} from '../../Components/DeviceMockups';
 import {ImageFrame, useImageLayout} from '../../Components/ImageFrame';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
-import {BrandingSchema, CallToActionSchema, IconNameSchema, ScreenshotSchema} from '../../Schemas/ImageFields';
+import {AppScreenSchema, BrandingSchema, CallToActionSchema, IconNameSchema, ScreenshotSchema} from '../../Schemas/ImageFields';
 
 const SpotlightSchema = z.object({
 	eyebrow: plainText(36).default('Öne çıkan özellik'),
@@ -24,6 +24,8 @@ const SpotlightSchema = z.object({
 		.max(4),
 	/** The screen where the feature lives. Without one, a neutral placeholder screen is drawn. */
 	screenshot: ScreenshotSchema.optional(),
+	/** The drawn app screen to show when no screenshot is given. */
+	appScreen: AppScreenSchema.optional(),
 	cta: CallToActionSchema.optional(),
 	branding: BrandingSchema,
 });
@@ -51,7 +53,7 @@ const SpotlightImage: React.FC<{content: Content}> = ({content}) => {
 					}}
 				/>
 			))}
-			<PhoneMockup screenshot={content.screenshot} width={ring * 0.4} />
+			<PhoneMockup screenshot={content.screenshot} screen={content.appScreen} width={ring * 0.4} />
 		</div>
 	);
 

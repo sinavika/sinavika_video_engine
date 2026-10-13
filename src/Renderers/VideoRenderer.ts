@@ -7,9 +7,11 @@ import {bundle} from '@remotion/bundler';
 import {RenderInternals, renderMedia, renderStill, selectComposition} from '@remotion/renderer';
 import {VIDEO_COVER} from '../Configurations/VideoCover';
 import {planTemplateScenes} from '../Scenes/SceneSeries';
+import {VOICE_LEAD_SECONDS} from '../Scenes/Voiceover';
 import type {SpeechBackend} from '../Services/ElevenLabsSpeech';
 import {saveNumberedOutput} from '../Services/OutputFiles';
 import type {VoiceCast} from '../Services/VoiceCasting';
+import {writeSoundtrack, type SoundtrackCues} from '../Services/SoundtrackComposer';
 import {renderVideoCover} from '../Services/VideoCoverGenerator';
 import {generateVoiceover} from '../Services/VoiceoverGenerator';
 import {durationWarnings, resolveVideoJob, voiceLines, withVoiceClips, type ResolvedVideoJob} from './VideoJob';
@@ -156,6 +158,38 @@ const attachCover = async (job: ResolvedVideoJob, serveUrl: string, coverPath: s
 	}
 };
 
+/** When the scenes and the spoken lines of a job begin, for the music to be arranged around. */
+const soundtrackCues = (job: ResolvedVideoJob): SoundtrackCues => {
+	const scenes = job.template.buildScenes(job.inputProps.content, job.inputProps.voiceClips);
+	const plan = planTemplateScenes(scenes, job.template.transition, job.fps);
+	const startOf = (index: number) => plan.scenes[index].from / job.fps;
+	const lineStarts = scenes.flatMap((scene, index) => {
+		let offset = 0;
+		return (scene.voice ?? []).map((slot) => {
+			const start = startOf(index) + offset + VOICE_LEAD_SECONDS;
+			offset += slot.seconds;
+			return start;
+		});
+	});
+	return {
+		durationSeconds: plan.durationInFrames / job.fps,
+		sceneStarts: scenes.slice(1, -1).map((_, index) => startOf(index + 1)),
+		lineStarts,
+		closingStart: startOf(scenes.length - 1),
+	};
+};
+
+/** Composes the soundtrack for the job's final timing and puts it into the bundle. */
+const attachSoundtrack = async (job: ResolvedVideoJob, serveUrl: string): Promise<ResolvedVideoJob> => {
+	try {
+		const soundtrackSrc = `Soundtracks/${randomUUID()}.wav`;
+		await writeSoundtrack(soundtrackCues(job), path.join(serveUrl, 'public', soundtrackSrc));
+		return {...job, inputProps: {...job.inputProps, soundtrackSrc}};
+	} catch (error) {
+		throw new VideoRenderError('rendering', error);
+	}
+};
+
 const prepare = async (rawJob: unknown, options: RenderOptions) => {
 	// Throws VideoJobValidationError before any expensive work begins.
 	const resolved = resolveVideoJob(rawJob);
@@ -166,7 +200,8 @@ const prepare = async (rawJob: unknown, options: RenderOptions) => {
 	const outputPath = path.resolve(options.outputPath);
 	await mkdir(path.dirname(outputPath), {recursive: true});
 	const coverPath = narrated.cover === false ? null : options.coverPath ? path.resolve(options.coverPath) : narrated.cover ? coverPathBeside(outputPath) : null;
-	const job = coverPath ? await attachCover(narrated, serveUrl, coverPath) : narrated;
+	const covered = coverPath ? await attachCover(narrated, serveUrl, coverPath) : narrated;
+	const job = covered.soundtrack ? await attachSoundtrack(covered, serveUrl) : covered;
 	const warnings: string[] = [];
 	try {
 		const composition = await selectComposition({
@@ -234,7 +269,7 @@ export const renderVideo = async (rawJob: unknown, options: RenderOptions): Prom
 					totalFrames: composition.durationInFrames,
 				}),
 		});
-		await stripFileTags(outputPath);
+		await finishFile(outputPath, Boolean(job.inputProps.soundtrackSrc));
 	} catch (error) {
 		throw new VideoRenderError('rendering', error);
 	}
@@ -244,14 +279,17 @@ export const renderVideo = async (rawJob: unknown, options: RenderOptions): Prom
 
 /**
  * Rewrites the container without its tags, so the published file carries no
- * note about the tools that produced it. The video and audio streams are
- * copied as they are; nothing is re-encoded.
+ * note about the tools that produced it. The video stream is copied as it is.
+ * A video with a soundtrack is also mastered here: its mix of voice, music
+ * and effects is brought to -14 LUFS with a -1 dB true-peak ceiling, the
+ * level the platforms play at. Other videos keep their audio untouched.
  */
-const stripFileTags = async (file: string): Promise<void> => {
+const finishFile = async (file: string, master: boolean): Promise<void> => {
 	const clean = `${file}.clean.mp4`;
+	const audio = master ? ['-c:v', 'copy', '-af', 'loudnorm=I=-14:TP=-1:LRA=11', '-ar', '48000', '-c:a', 'aac', '-b:a', '256k'] : ['-c', 'copy'];
 	await RenderInternals.callFf({
 		bin: 'ffmpeg',
-		args: ['-y', '-i', file, '-map', '0', '-c', 'copy', '-map_metadata', '-1', '-fflags', '+bitexact', '-movflags', '+faststart', clean],
+		args: ['-y', '-i', file, '-map', '0', ...audio, '-map_metadata', '-1', '-fflags', '+bitexact', '-movflags', '+faststart', clean],
 		indent: false,
 		logLevel: 'error',
 		binariesDirectory: null,

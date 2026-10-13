@@ -1,4 +1,4 @@
-import {FONT_FAMILIES, fontStack} from './FontFamilies';
+import {BRAND_THEME_TYPOGRAPHY} from '../Configurations/BrandTypography';
 import type {Theme} from './Theme';
 
 export const SinavikaBrand: Theme = {
@@ -32,17 +32,7 @@ export const SinavikaBrand: Theme = {
 			{fill: '#0284C7', on: '#FFFFFF'},
 		],
 	},
-	typography: {
-		display: fontStack(FONT_FAMILIES.plusJakartaSans),
-		body: fontStack(FONT_FAMILIES.inter),
-		mono: fontStack(FONT_FAMILIES.jetBrainsMono, 'monospace'),
-		displayWeight: 800,
-		bodyWeight: 450,
-		strongWeight: 700,
-		displayScale: 1,
-		displayLetterSpacing: '-0.02em',
-		labelTransform: 'uppercase',
-	},
+	typography: BRAND_THEME_TYPOGRAPHY,
 	shape: {radius: {sm: 14, md: 24, lg: 36}, borderWidth: 1.5, elevation: 'soft'},
 	background: {kind: 'glow', colors: ['#CFC5FF', '#FFE3AD']},
 	motion: {speed: 1, enter: {preset: 'slide', direction: 'up'}},

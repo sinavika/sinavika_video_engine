@@ -1,3 +1,4 @@
+import {APP_SCREEN_NAMES} from '../../Components/AppScreens/AppScreenRegistry';
 import {z} from 'zod';
 import {ICON_PATHS, type IconName} from '../../Components/Illustrations/Icon';
 import {plainText} from '../../Schemas/RichText';
@@ -7,6 +8,13 @@ import {ImageSchema} from '../../Schemas/Visual';
 
 /** A real screenshot or reference picture: a path inside `public/` or a URL. Shown as is, never altered. */
 export const ScreenshotSchema = ImageSchema;
+
+/**
+ * One of the app screens drawn in Components/AppScreens, by name (Home, Exam,
+ * Analysis, SmartSummary, SinoAi, Flashcards, ...). Used when there is no
+ * screenshot to show; a supplied screenshot always wins.
+ */
+export const AppScreenSchema = z.enum(APP_SCREEN_NAMES);
 
 export const CallToActionSchema = z.object({
 	label: plainText(36),

@@ -40,6 +40,8 @@ export const createVideoPropsSchema = <Content extends z.ZodType>(
 		lesson: z.string().optional(),
 		/** Path of the cover image inside `public/`; shown for the first moment of the video. Set by the renderer. */
 		coverSrc: z.string().optional(),
+		/** Path of the music and sound-design track inside `public/`. Set by the renderer. */
+		soundtrackSrc: z.string().optional(),
 	});
 
-export type VideoProps<Content> = {theme: ThemeId; fps: number; content: Content; voiceClips: VoiceClips; lesson?: string; coverSrc?: string};
+export type VideoProps<Content> = {theme: ThemeId; fps: number; content: Content; voiceClips: VoiceClips; lesson?: string; coverSrc?: string; soundtrackSrc?: string};
