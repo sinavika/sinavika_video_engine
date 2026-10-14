@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill} from 'remotion';
+import {AbsoluteFill, Easing, interpolate} from 'remotion';
 import {Animated, Stagger} from '../../../Components/Animations/Animated';
 import {Icon} from '../../../Components/Illustrations/Icon';
 import {Card} from '../../../Components/Layouts/Card';
@@ -13,6 +13,7 @@ import {RichText} from '../../../Components/Typography/RichText';
 import {Text} from '../../../Components/Typography/Text';
 import {CourseVisual} from '../../../Components/Visuals/CourseVisual';
 import {useSceneSeconds} from '../../../Components/Visuals/VisualFrame';
+import {VisualTimelineProvider} from '../../../Components/Visuals/VisualTimeline';
 import type {CourseVisual as CourseVisualSpec} from '../../../Components/Visuals/VisualSchemas';
 import {COURSE_DESIGN} from '../../../Courses/CourseDesign';
 import type {LessonCard, LessonScript, Question} from '../../../Courses/LessonScript';
@@ -23,7 +24,7 @@ import {InkProvider, useTheme} from '../../../Themes/ThemeContext';
 const TYPE = COURSE_DESIGN.type;
 const OPTION_LETTERS = 'ABCDE';
 
-const CARD_KINDS: Record<Exclude<LessonCard['kind'], 'question'>, string> = {
+const CARD_KINDS: Record<Exclude<LessonCard['kind'], 'question' | 'predict'>, string> = {
 	concept: 'Kavram',
 	rule: 'Kural',
 	example: 'Örnek',
@@ -138,7 +139,10 @@ const useVisualBox = (fullWidth: boolean) => {
 	return isLandscape ? {width: contentWidth * COURSE_DESIGN.visualShare, height} : {width: contentWidth, height: height * 0.5};
 };
 
-const CardText: React.FC<{card: Exclude<LessonCard, {kind: 'question' | 'visual'}>}> = ({card}) => {
+type TextCard = Exclude<LessonCard, {kind: 'question' | 'visual' | 'predict'}>;
+type FigureCard = Exclude<LessonCard, {kind: 'question' | 'predict'}>;
+
+const CardText: React.FC<{card: TextCard}> = ({card}) => {
 	const {colors, typography} = useTheme();
 	const {u} = useVideoLayout();
 	switch (card.kind) {
@@ -191,8 +195,12 @@ const CardText: React.FC<{card: Exclude<LessonCard, {kind: 'question' | 'visual'
 	}
 };
 
-/** One card of a section: its kind, its title, the text, and its visual beside or under it. */
-export const LessonCardScene: React.FC<{card: Exclude<LessonCard, {kind: 'question'}>; section: string; number: string}> = ({card, section, number}) => {
+/**
+ * One card of a section: its kind, its title, the text, and its visual beside
+ * or under it. With beats, the visual follows them: `beatStarts` are the
+ * seconds into the scene at which each beat's sentence starts.
+ */
+export const LessonCardScene: React.FC<{card: FigureCard; section: string; number: string; beatStarts?: number[]; beatEnds?: number[]; sceneSeconds?: number}> = ({card, section, number, beatStarts, beatEnds, sceneSeconds}) => {
 	const {u, isLandscape} = useVideoLayout();
 	const visual: CourseVisualSpec | undefined = 'visual' in card ? card.visual : undefined;
 	const onlyVisual = card.kind === 'visual';
@@ -233,9 +241,111 @@ export const LessonCardScene: React.FC<{card: Exclude<LessonCard, {kind: 'questi
 				</div>
 				{visual ? (
 					<div style={{width: box.width, height: box.height, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-						<CourseVisual visual={visual} width={box.width} height={box.height} delaySeconds={0.5} />
+						<VisualTimelineProvider beats={'beats' in card ? card.beats : undefined} starts={beatStarts} ends={beatEnds} sceneSeconds={sceneSeconds}>
+							<CourseVisual visual={visual} width={box.width} height={box.height} delaySeconds={0.5} />
+						</VisualTimelineProvider>
 					</div>
 				) : null}
+			</div>
+		</SafeArea>
+	);
+};
+
+type PredictCard = Extract<LessonCard, {kind: 'predict'}>;
+
+/** When the parts of a predict card happen, in seconds into its scene. */
+export type PredictTiming = {thinkAt: number; thinkSeconds: number; beatStarts: number[]; beatEnds: number[]; explainAt: number};
+
+/** A ring that empties over the thinking time, with the seconds left in it. */
+const Countdown: React.FC<{left: number; total: number}> = ({left, total}) => {
+	const {colors, typography} = useTheme();
+	const {u} = useVideoLayout();
+	const size = u(200);
+	const radius = size / 2 - u(14);
+	const share = Math.max(0, left / total);
+	const lesson = colors.lesson?.fill ?? colors.accent;
+	return (
+		<div style={{position: 'relative', width: size, height: size}}>
+			<svg width={size} height={size} style={{position: 'absolute', inset: 0, transform: 'rotate(-90deg)'}}>
+				<circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke={withAlpha(lesson, 0.15)} strokeWidth={u(18)} />
+				<circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke={lesson} strokeWidth={u(18)} strokeLinecap="round" strokeDasharray={2 * Math.PI * radius} strokeDashoffset={2 * Math.PI * radius * (1 - share)} />
+			</svg>
+			<div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: typography.display, fontWeight: 900, fontSize: u(84), color: lesson}}>{Math.ceil(left)}</div>
+		</div>
+	);
+};
+
+/**
+ * Predict, then see. The question fills the card while it is read; a
+ * countdown gives time to think; then the question steps aside, the figure
+ * plays its beats, and the explanation comes with the right choice lit.
+ */
+export const PredictScene: React.FC<{card: PredictCard; timing: PredictTiming; section: string; number: string}> = ({card, timing, section, number}) => {
+	const {colors, typography} = useTheme();
+	const {u, isLandscape} = useVideoLayout();
+	const seconds = useSceneSeconds();
+	const box = useVisualBox(false);
+	const lesson = colors.lesson?.fill ?? colors.accent;
+	const showAt = timing.thinkAt + timing.thinkSeconds;
+	const aside = interpolate(seconds, [showAt, showAt + 0.8], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(0.33, 0, 0.2, 1)});
+	const explained = seconds >= timing.explainAt;
+	const thinking = seconds >= timing.thinkAt && seconds < showAt;
+	return (
+		<SafeArea chrome gap={SPACING.lg}>
+			<div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0}}>
+				<Badge lesson icon="question" size={TYPE.label}>
+					Önce tahmin et
+				</Badge>
+				<Text variant="label" tone="muted" size={TYPE.label}>
+					{section} · {number}
+				</Text>
+			</div>
+			<div style={{flex: 1, minHeight: 0, display: 'flex', flexDirection: isLandscape ? 'row' : 'column', gap: u(SPACING.xl), alignItems: 'stretch'}}>
+				<div style={{flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: u(SPACING.md)}}>
+					<Text variant="title" size={TYPE.cardTitle * (1 - 0.25 * aside)}>
+						{card.title}
+					</Text>
+					<RichText text={card.prompt} size={(TYPE.example + 6) * (1 - 0.3 * aside)} weight={typography.strongWeight} />
+					{card.choices.length ? (
+						<div style={{display: 'flex', flexDirection: 'column', gap: u(10)}}>
+							{card.choices.map((choice, index) => {
+								const right = explained && index === card.answer;
+								return (
+									<div key={index} style={{display: 'flex', alignItems: 'center', gap: u(14), padding: `${u(10)}px ${u(16)}px`, borderRadius: u(16), border: `${u(3)}px solid ${right ? lesson : colors.border}`, backgroundColor: right ? withAlpha(lesson, 0.14) : colors.surface}}>
+										<div style={{width: u(44), height: u(44), borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: right ? lesson : colors.surfaceAlt, color: right ? (colors.lesson?.on ?? colors.onAccent) : colors.onSurface, fontFamily: typography.display, fontWeight: 900, fontSize: u(24)}}>
+											{OPTION_LETTERS[index]}
+										</div>
+										<RichText text={choice} size={32} />
+									</div>
+								);
+							})}
+						</div>
+					) : null}
+					{explained ? (
+						<Animated animation={{preset: 'slide', direction: 'up', distance: 30}} delaySeconds={timing.explainAt}>
+							<div style={{padding: `${u(18)}px ${u(24)}px`, borderLeft: `${u(10)}px solid ${lesson}`, backgroundColor: withAlpha(lesson, 0.08), borderRadius: u(16)}}>
+								<RichText text={card.explanation} size={TYPE.cardBody - 6} />
+							</div>
+						</Animated>
+					) : null}
+				</div>
+				<div style={{width: box.width, height: box.height, flexShrink: 0, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+					{thinking ? (
+						<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(SPACING.md)}}>
+							<Countdown left={showAt - seconds} total={timing.thinkSeconds} />
+							<Text variant="subtitle" tone="muted" size={40}>
+								Düşün…
+							</Text>
+						</div>
+					) : null}
+					{seconds >= showAt ? (
+						<div style={{opacity: aside}}>
+							<VisualTimelineProvider beats={card.beats} starts={timing.beatStarts} ends={timing.beatEnds}>
+								<CourseVisual visual={card.visual} width={box.width} height={box.height} delaySeconds={showAt} />
+							</VisualTimelineProvider>
+						</div>
+					) : null}
+				</div>
 			</div>
 		</SafeArea>
 	);

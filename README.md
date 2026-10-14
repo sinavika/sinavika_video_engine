@@ -297,7 +297,7 @@ değiştirilir. Ayrıntı: [docs/SocialPlan.md](docs/SocialPlan.md).
 
 ## Eğitim videoları (YouTube dersi + kısa özet)
 
-Ders ve konu listesine bağlı üretim: `Curriculum/` (katalog, üretim kontrol listesi, konuya göre gruplanmış kaynaklar), senaryo şeması, `CourseLesson` (YouTube, 16:9) ve `CourseShort` (Reels/TikTok/Shorts) şablonları, derslere özel görseller (grafik, geometri, kuvvet, hareket, molekül, atom, tepkime, zaman çizelgesi, harita, cümle şeması…). Ayrıntı: [docs/Courses.md](docs/Courses.md).
+Ders ve konu listesine bağlı üretim: `Curriculum/` (katalog, üretim kontrol listesi, konuya göre gruplanmış kaynaklar), senaryo şeması, `CourseLesson` (YouTube, 16:9) ve `CourseShort` (Reels/TikTok/Shorts) şablonları, derslere özel görseller (grafik, geometri, kuvvet, hareket, molekül, atom, tepkime, zaman çizelgesi, harita, cümle şeması…). Görseller anlatımla eşzamanlı değişir (beat: göster, vurgula, yakınlaştır, katsayı değiştir, aşama ilerlet); süreç görselleri (akarsu, deprem, kuvvet → ivme → hareket, denklem terazisi), önce tahmin sonra gösterim kartı ve 3B görseller (cisim ve açınım, molekül şekli, fay blokları; three.js) vardır. Ayrıntı: [docs/Courses.md](docs/Courses.md).
 
 | Komut | Ne yapar |
 | --- | --- |
@@ -307,7 +307,7 @@ Ders ve konu listesine bağlı üretim: `Curriculum/` (katalog, üretim kontrol 
 | `npm run curriculum -- check <senaryo> [--mark]` | Senaryoyu doğrular, hedeflere göre denetler, "Hazırlandı" işaretler |
 | `npm run curriculum -- mark <konu> --stage youtube\|short` | Üretim aşamasını işaretler |
 | `npm run media -- --commons "File:…" --to <yol>` | Wikimedia Commons görselini lisans kaydıyla ekler |
-| `npm run geo -- turkey` | Türkiye il sınırlarını (Natural Earth) indirir |
+| `npm run geo` | Harita verilerini kurar: Türkiye (il, bölge, ilçe, akarsu, göl) ve dünya, Türkçe adlarla |
 
 ## Tanıtım videosu
 

@@ -215,6 +215,7 @@ const prepare = async (rawJob: unknown, options: RenderOptions) => {
 			serveUrl,
 			id: job.compositionId,
 			inputProps: job.inputProps,
+			chromiumOptions: CHROMIUM_OPTIONS,
 			onBrowserLog: collectWarnings(warnings),
 		});
 		return {job, serveUrl, outputPath, coverPath, composition, warnings};
@@ -245,6 +246,9 @@ const toResult = (
 	warnings: [...new Set([...warnings, ...durationWarnings(job)])],
 });
 
+/** WebGL through ANGLE, so the 3D visuals (three.js) render in the headless browser as they do in the Studio. */
+const CHROMIUM_OPTIONS = {gl: 'angle'} as const;
+
 /**
  * Renders a job to an MP4 (H.264 + AAC). Each call is self-contained: it
  * validates its own input, opens its own browser and writes only to
@@ -268,6 +272,7 @@ export const renderVideo = async (rawJob: unknown, options: RenderOptions): Prom
 			outputLocation: outputPath,
 			inputProps: job.inputProps,
 			scale: job.scale,
+			chromiumOptions: CHROMIUM_OPTIONS,
 			concurrency: options.concurrency ?? null,
 			onBrowserLog: collectWarnings(warnings),
 			onProgress: ({progress, renderedFrames, encodedFrames, stitchStage}) =>
@@ -370,6 +375,7 @@ export const renderFrame = async (
 			frame,
 			inputProps: job.inputProps,
 			scale: job.scale,
+			chromiumOptions: CHROMIUM_OPTIONS,
 			imageFormat: 'png',
 			onBrowserLog: collectWarnings(warnings),
 		});

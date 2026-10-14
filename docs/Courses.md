@@ -112,15 +112,21 @@ Tek yer: [`src/Courses/CourseDesign.ts`](../src/Courses/CourseDesign.ts) (`COURS
 | --- | --- | --- | --- |
 | `formula` | Matematik, fizik, kimya | Formül | KaTeX |
 | `reaction` | Kimya | Tepkime denklemi (alt simge, ok, hâl) | KaTeX mhchem |
-| `plot` | Matematik, fizik, coğrafya | Fonksiyon grafikleri sırayla çizilir; ölçüm verisi sütun ya da çizgi; işaretli noktalar | d3-scale, d3-shape |
+| `plot` | Matematik, fizik, coğrafya | Fonksiyon grafikleri sırayla çizilir; ölçüm verisi sütun ya da çizgi; işaretli noktalar. **Katsayılar** (`parameters`: a, b, c, k, m, n) anlatımla değişir ve eğri yeniden biçimlenir; **hareketli teğet** (`tangent`, eğim değeriyle); **alan** (`area`) bütün ya da şeritlere bölünmüş (şerit sayısı artarak gerçek alana yaklaşır) | d3-scale, d3-shape |
+| `equation` | Matematik | Denklem çözümü terazide: her adımda aynı işlem iki kefeye düşer, terazi dengede kalır; adımlar yanda listelenir | KaTeX |
 | `geometry` | Geometri | Nokta, kenar uzunluğu, çember, açı (dik açı işareti), dolgulu çokgen | SVG (kendi) |
-| `forces` | Fizik | Serbest cisim diyagramı; düz ya da eğik zemin | SVG (kendi) |
-| `motion` | Fizik | x(t), y(t) ile hareket simülasyonu: iz ve hız oku | SVG (kendi) + güvenli ifade çözücü |
+| `solid` | Geometri, matematik | 3B cisim döner; ayrıtlar ve ölçüler; `unfold` ile **açınım** (küp, dikdörtgenler prizması, üçgen prizma, kare piramit, silindir) | three.js (@remotion/three) |
+| `forces` | Fizik | Serbest cisim diyagramı; düz ya da eğik zemin. Yön yüzeye göre verilir (`weight`, `normal`, `upSlope`…): N her zaman yüzeye diktir; ok boyları `magnitude` ile orantılıdır. Eğik zeminde dik olmayan bir N şemada reddedilir | SVG (kendi) |
+| `dynamics` | Fizik | **Kuvvet → ivme → hareket** tek sahnede: kuvvetler ölçekli, net kuvvet ve a = F/m yazılır, cisim hesaplanan ivmeyle hareket eder, hız oku hızla büyür, v-t / x-t / a-t grafikleri hareketle eşzamanlı çizilir. Sürtünme (statik/kinetik) ve eğik düzlem | SVG (kendi) + sayısal çözüm |
+| `motion` | Fizik | x(t), y(t) ile hareket simülasyonu: iz ve hız oku (oku boyu hızın büyüklüğüdür) | SVG (kendi) + güvenli ifade çözücü |
 | `molecule` | Kimya | SMILES'tan molekül çizimi | SmilesDrawer |
 | `atom` | Kimya, fizik | Bohr modeli: çekirdek, katmanlar, elektronlar | SVG (kendi) |
+| `molecule3d` | Kimya | VSEPR ile 3B molekül şekli: merkez atom, bağlar, ortaklanmamış çiftler, şekil adı ve bağ açısı | three.js |
 | `flow`, `cycle` | Her ders, biyoloji, coğrafya | Süreç adımları, döngüler | Mevcut diyagramlar |
 | `timeline` | Tarih, edebiyat, vatandaşlık | Zaman ölçekli olay çizelgesi (MÖ yılları) | SVG (kendi) |
-| `map` | Coğrafya, tarih | Harita: vurgulu alanlar, etiketler, işaretler, rotalar (sefer, göç) | d3-geo, topojson-client, world-atlas (Natural Earth) |
+| `map` | Coğrafya, tarih | Harita: dünya, Türkiye'nin bölge/il/ilçeleri, akarsu ve göller; vurgu, etiket, işaret, rota (sefer, göç) | d3-geo, topojson (veri: Natural Earth, OpenStreetMap) |
+| `river` | Coğrafya | Akarsuyun çalışması aşama aşama: `profile` (kaynaktan denize kesit: eğime göre akış hızı, yukarı çığırda derine aşındırma ve V vadi, taşıma türleri, biriktirme), `meander` (kıvrımlar büyür, dış kıyı aşınır, iç kıyıda birikir, boyun kopar → menderes gölü), `delta` (yük çöker, kollara ayrılır, delta ovası) | SVG (kendi) |
+| `earthquake` | Coğrafya | Deprem aşama aşama: fay, gerilme birikimi (kayaç bükülür, gerilme göstergesi), kırılma (odak, merkez üssü, bloklar kayar), P/S/yüzey dalgaları. Ters, normal, doğrultu atımlı fay; `block3d` ile 3B fay blokları ve fay dikliği | SVG (kendi), three.js |
 | `sentence` | Türkçe, yabancı dil | Cümle ögeleri / dil bilgisi rolü, vurgu, çeviri | — |
 | `comparison` | Her ders | İki-üç sütunlu karşılaştırma | — |
 | `table` | Her ders, mantık | Tablo, doğruluk tablosu (vurgulu sütun) | — |
@@ -128,9 +134,50 @@ Tek yer: [`src/Courses/CourseDesign.ts`](../src/Courses/CourseDesign.ts) (`COURS
 | `conceptMap` | Felsefe, sosyoloji, din | Kavram haritası | Mevcut |
 | `picture` | Tarih, biyoloji, edebiyat | Lisansı kayıtlı görsel ve kaynak satırı | — |
 
-Görsel galerisi: `samples/Courses/VisualGallery.json` (`npm run stills -- --job samples/Courses/VisualGallery.json`).
+Görsel galerisi: `samples/Courses/VisualGallery.json` (`npm run stills -- --job samples/Courses/VisualGallery.json`). Canlandırılmış görseller, beat'ler ve tahmin kartı: `samples/Courses/AnimatedVisuals.json`.
 
-**Haritalar.** Dünya haritası pakete dahildir (world-atlas, Natural Earth, kamu malı). Türkiye'nin illeri için `npm run geo -- turkey` Natural Earth il sınırlarını indirir (~40 MB bir kez; yalnız Türkiye saklanır) ve `public/Geo/TurkeyProvinces.json` yazar; harita görseli onu `{"kind": "file", "src": "Geo/TurkeyProvinces.json"}` ile kullanır. Henüz çalıştırılmadı. Coğrafi bölgeler (7 bölge) ve tarihî sınırlar için ayrı veri gerekir; tarihî sınır verilerinin çoğunun lisansı kontrol edilmeden kullanılmamalıdır.
+### Anlatımla eşzamanlı görseller (beat)
+
+Bir şekil ilk saniyelerde çizilip bitmez; öğretmen hangi parçayı anlatıyorsa o parça gelir, vurgulanır, değişir ya da yakınlaşır. Görselli bir kart (`concept`, `rule`, `example`, `visual`) `beats` taşıyabilir: kartın kendi anlatımından sonra her beat'in cümlesi okunur ve şekil o cümle boyunca beat'in söylediğini yapar ([`VisualTimeline`](../src/Components/Visuals/VisualTimeline.tsx)):
+
+| Alan | Ne yapar |
+| --- | --- |
+| `narration` | Beat'in cümlesi (ayrı seslendirme satırı: `<kart>-b1`, `-b2`…) |
+| `show` | Bu beat'le gelen parçalar (öncesinde görünmez) |
+| `focus` | Bu beat'te gösterilen parçalar; geri kalanı soluklaşır |
+| `zoom` | Kamera: çizimin bir bölümü, oran olarak `[sol, üst, sağ, alt]`; `null` bütüne döner |
+| `params` | Katsayıların yeni değerleri (eğri beat boyunca biçimlenir) |
+| `stage` | Süreç görsellerinin (akarsu, deprem, dinamik, denklem, cisim) aşaması |
+| `note` | Şeklin altında kısa not |
+
+Parça adları: grafikte `c1…` eğriler, `p1…` noktalar, `tangent`, `area`; geometride nokta adları, kenarlar uçlarıyla (`AB`), çokgenler noktalarıyla (`ABC`), açılar `angle-A`; kuvvetlerde etiket; akış ve döngüde `n1…`; zaman çizelgesinde `e1…`; haritada vurgu ve işaret adları. Beat'i olmayan görsel eskisi gibi kendi kendine çizilir, süreçler aşamalarını sırayla oynatır. Görseli olmayan karta beat yazılırsa şema reddeder (anlatım kaybolmasın).
+
+### Önce tahmin, sonra gösterim (`predict` kartı)
+
+"Eğim artarsa ne olur?" gibi kısa bir soru okunur (`narration`), isteğe bağlı şıklarla; ardından geri sayımlı bir düşünme süresi (`thinkSeconds`, sessiz); sonra soru kenara çekilir ve görsel beat'leriyle oynar; en sonda açıklama (`explanation`, `explanationNarration`) gelir ve doğru şık yanar.
+
+**3B.** `solid`, `molecule3d` ve `earthquake` (`block3d`) three.js ile çizilir (@remotion/three). Her kare kare numarasından hesaplanır; render WebGL için ANGLE kullanır (`VideoRenderer` ve `remotion.config.ts`). 3B'yi derinliğin anlamaya katkı sağladığı yerde kullanın: cisimler ve açınımlar, molekül şekilleri, fay blokları.
+
+**Haritalar.** Harita verileri `public/Geo/` altındadır ve `npm run geo` ile ücretsiz kaynaklardan yeniden kurulur (bir kerelik ~60 MB indirme; projede ~1,8 MB kalır). Ücretli bir kütüphane ya da servis gerekmez. Bütün adlar Türkçedir.
+
+| Dosya | Katmanlar | Kaynak · lisans |
+| --- | --- | --- |
+| `Turkey.json` | `provinces` (81 il, plaka kodu ve bölgesiyle) · `regions` (7 bölge) · `country` (Türkiye) · `rivers` · `lakes` | Natural Earth 5.1.2 · kamu malı |
+| `TurkeyDistricts.json` | `districts` (973 ilçe, iliyle) | geoBoundaries / OpenStreetMap · ODbL; haritada "© OpenStreetMap katkıda bulunanlar" yazar (otomatik) |
+| `World.json` | `countries` (Türkçe ülke adları) | Natural Earth 5.1.2 · kamu malı |
+| `Sources.json` | Her dosyanın kaynağı ve lisansı | — |
+
+Merkezi tanım: [`src/Configurations/GeoData.ts`](../src/Configurations/GeoData.ts) (dosyalar, katmanlar, atıf, su/kara renkleri). Harita görseli bir **taban** (`countries`, `country`, `regions`, `provinces`, `districts` ya da `public/Geo` içinde kendi dosyan) ve üstüne en fazla dört **katman** (akarsu, göl, bölge/il sınırı) çizer; vurgular ders renginde, etiketler Türkçe adlarla:
+
+```json
+{"kind": "map", "base": "provinces", "overlays": [{"layer": "regions"}, {"layer": "rivers", "labels": true}, {"layer": "lakes"}], "highlights": [{"name": "Konya", "label": "Konya"}]}
+```
+
+- **7 bölge**, illerin ders kitaplarındaki bölgelerine göre birleştirilerek çizilir: [`src/Configurations/TurkeyRegions.ts`](../src/Configurations/TurkeyRegions.ts). Gerçek bölge sınırları il sınırlarını izlemez; birkaç il iki bölgeye bölünür. Tablo bir coğrafya öğretmenince kontrol edilmeli.
+- İlçelerin hangi ile ait olduğu aynı kaynağın il sınırlarıyla bulundu; il başına ilçe sayıları resmî sayılarla aynı (ör. İstanbul 39, Ankara 25, Konya 31).
+- **Akarsular sınırlı**: Natural Earth Türkiye'de 13 akarsu (Kızılırmak, Sakarya, Fırat, Dicle, Ceyhan, Büyük Menderes, Aras, Murat, Kelkit, Simav, Meriç, Kura…) ve 6 göl içeriyor. Yeşilırmak, Gediz, Seyhan, Göksu gibi akarsular için OpenStreetMap ya da HydroRIVERS verisi eklenmeli (ücretsiz; HydroRIVERS kendi atıf koşuluyla).
+- **Tarihî sınırlar** hazır veri olarak eklenmedi: ücretsiz setlerin lisansı ve doğruluğu konu konu kontrol edilmeli. Gerektiğinde konu için çizilen GeoJSON `public/Geo` içine konur ve `base: {"src": "Geo/…json"}` ile kullanılır.
+- Yükselti (rölyef) ve iklim verisi henüz yok; ihtiyaç olursa Natural Earth gölgeli rölyef (kamu malı) ve WorldClim (CC BY) eklenebilir.
 
 **Görseller (stok).** `npm run media -- --commons "File:…" --to Tarih/…` Wikimedia Commons'tan görseli indirir ve yazarını, kaynağını, lisansını `public/Media/Credits.json` dosyasına yazar. Yalnız kamu malı, CC0, CC BY ve CC BY-SA kabul edilir; kaynak satırı karta yazılır. Pexels ve Unsplash da uygundur (kendi lisansları atıf istemez) ama API anahtarı gerektirir; eklenirse aynı kayda yazılmalıdır.
 
@@ -147,6 +194,6 @@ Görsel galerisi: `samples/Courses/VisualGallery.json` (`npm run stills -- --job
 
 1. İlk konunun (TYT Türkçe · Sözcükte Anlam, 13 alt başlık) tam senaryosunu yazmak; `check --mark`.
 2. Örnek YouTube videosu ve kısa videoyu üretip birlikte değerlendirmek; kart süreleri ve görsel payını buna göre ayarlamak.
-3. Coğrafya için Türkiye il haritasını indirmek (`npm run geo -- turkey`) ve bölge tablosunu eklemek.
+3. Bölge tablosunun (TurkeyRegions.ts) bir coğrafya öğretmenince kontrolü; eksik akarsuların eklenmesi.
 4. Tarih ve biyoloji için kullanılacak görselleri seçip lisanslarıyla kütüphaneye almak.
 5. Konu anlatımı paketi olmayan konular (ör. TYT'de 68 konu) için anlatımın hangi kaynaktan doğrulanacağına karar vermek.

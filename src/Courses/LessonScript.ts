@@ -1,5 +1,5 @@
 import {z} from 'zod';
-import {CourseVisualSchema} from '../Components/Visuals/VisualSchemas';
+import {CourseVisualSchema, VisualBeatSchema} from '../Components/Visuals/VisualSchemas';
 import {latex, plainText, richText} from '../Schemas/RichText';
 import {RevisionCardSchema} from '../Templates/Education/QuickRevision/QuickRevisionSchema';
 import {COURSE_DESIGN} from './CourseDesign';
@@ -49,18 +49,50 @@ export const QuestionSchema = z
 
 export type Question = z.infer<typeof QuestionSchema>;
 
+/**
+ * The visual told in beats: after the card's own narration, each beat's
+ * sentence is spoken while the figure does what the beat says (shows, points
+ * at, zooms, changes a coefficient, moves to a stage). See
+ * Components/Visuals/VisualTimeline.
+ */
+const beats = z.array(VisualBeatSchema).max(10).default([]);
+
 /** The cards of a lesson. Every kind can carry a visual; `visual` is a card that is mostly a visual. */
 export const LessonCardSchema = z.discriminatedUnion('kind', [
 	/** A definition or an explanation. */
-	z.object({kind: z.literal('concept'), title: plainText(70), text: richText(420), visual: CourseVisualSchema.optional(), narration}),
+	z.object({kind: z.literal('concept'), title: plainText(70), text: richText(420), visual: CourseVisualSchema.optional(), beats, narration}),
 	/** Rules or properties as a short list. */
-	z.object({kind: z.literal('rule'), title: plainText(70), items: z.array(richText(160)).min(1).max(6), visual: CourseVisualSchema.optional(), narration}),
+	z.object({kind: z.literal('rule'), title: plainText(70), items: z.array(richText(160)).min(1).max(6), visual: CourseVisualSchema.optional(), beats, narration}),
 	/** An example and what it shows. */
-	z.object({kind: z.literal('example'), title: plainText(70), example: richText(300), explanation: richText(300).optional(), visual: CourseVisualSchema.optional(), narration}),
+	z.object({kind: z.literal('example'), title: plainText(70), example: richText(300), explanation: richText(300).optional(), visual: CourseVisualSchema.optional(), beats, narration}),
 	/** A common mistake: what students do, what is right, and why. */
 	z.object({kind: z.literal('mistake'), title: plainText(70), wrong: richText(220), right: richText(220), why: richText(260).optional(), narration}),
 	/** A card that is mostly a figure: a map, a plot, a molecule, a timeline. */
-	z.object({kind: z.literal('visual'), title: plainText(70), visual: CourseVisualSchema, caption: richText(200).optional(), narration}),
+	z.object({kind: z.literal('visual'), title: plainText(70), visual: CourseVisualSchema, caption: richText(200).optional(), beats, narration}),
+	/**
+	 * Predict, then see: a short question ("Eğim artarsa ne olur?") is asked and
+	 * the viewer gets a few seconds to think, with a countdown; then the figure
+	 * shows what happens, beat by beat, and the explanation closes it.
+	 */
+	z
+		.object({
+			kind: z.literal('predict'),
+			title: plainText(70),
+			prompt: richText(200),
+			/** Short choices when the prediction is a choice. */
+			choices: z.array(richText(60)).max(4).default([]),
+			/** Index of the right choice, lit with the explanation. */
+			answer: z.number().int().min(0).max(3).optional(),
+			thinkSeconds: z.number().min(2).max(10).default(4),
+			visual: CourseVisualSchema,
+			beats: z.array(VisualBeatSchema).min(1).max(10),
+			explanation: richText(300),
+			/** Read while the question is on screen. */
+			narration,
+			/** Read with the explanation, after the figure. */
+			explanationNarration: narration,
+		})
+		.refine((card) => card.answer === undefined || card.answer < card.choices.length, {path: ['answer'], message: 'answer must be the index of one of the choices.'}),
 	/** A worked question. */
 	z.object({kind: z.literal('question'), question: QuestionSchema}),
 ]);
@@ -72,7 +104,15 @@ export const LessonSectionSchema = z.object({
 	subtopic: z.string().max(80).optional(),
 	title: plainText(60),
 	narration,
-	cards: z.array(LessonCardSchema).min(1).max(14),
+	cards: z
+		.array(LessonCardSchema)
+		.min(1)
+		.max(14)
+		.superRefine((cards, context) => {
+			cards.forEach((card, index) => {
+				if ('beats' in card && card.beats.length > 0 && !('visual' in card && card.visual)) context.addIssue({code: 'custom', path: [index, 'beats'], message: 'Beats move a visual; this card has none.'});
+			});
+		}),
 });
 
 /** A card of the short: the Reels cards (QuickRevision) plus a visual card. */
@@ -131,7 +171,11 @@ export const lessonNarrations = (script: LessonScript): string[] => [
 	script.lesson.hook.narration,
 	...script.lesson.sections.flatMap((section) => [
 		section.narration,
-		...section.cards.flatMap((card) => (card.kind === 'question' ? [card.question.narration, ...card.question.steps.map((step) => step.narration)] : [card.narration])),
+		...section.cards.flatMap((card) => {
+			if (card.kind === 'question') return [card.question.narration, ...card.question.steps.map((step) => step.narration)];
+			if (card.kind === 'predict') return [card.narration, ...card.beats.map((beat) => beat.narration), card.explanationNarration];
+			return [card.narration, ...('beats' in card ? card.beats.map((beat) => beat.narration) : [])];
+		}),
 	]),
 	script.lesson.summary.narration,
 ];

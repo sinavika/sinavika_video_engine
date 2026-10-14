@@ -8,7 +8,10 @@ import {LESSON_VISUAL_KITS, visualKitOf} from '../src/Courses/CourseDesign';
 import {ChecklistSchema, inProductionOrder, nextEntry, type Category} from '../src/Courses/Curriculum';
 import {checklistMarkdown, parseLessonList} from '../src/Courses/CurriculumImport';
 import {LESSON_SCRIPT_SAMPLE} from '../src/Courses/LessonScriptSample';
-import {LessonScriptSchema, reviewScript} from '../src/Courses/LessonScript';
+import {LessonScriptSchema, lessonNarrations, reviewScript} from '../src/Courses/LessonScript';
+import {forceAngle} from '../src/Components/Visuals/ScienceVisuals';
+import {simulateDynamics} from '../src/Components/Visuals/SimulationVisuals';
+import {CourseLesson} from '../src/Templates/Courses/CourseLesson/CourseLesson';
 import {creditLine} from '../src/Courses/MediaLibrary';
 import {contrastRatio} from '../src/Themes/ColorPalette';
 import {courseLessonTheme} from '../src/Themes/LessonAccent';
@@ -154,5 +157,108 @@ describe('media library', () => {
 	it('writes the credit line a licence asks for', () => {
 		expect(creditLine({author: 'Anonim', license: 'PD'}, 'Wikimedia Commons')).toBe('Anonim · Kamu malı · Wikimedia Commons');
 		expect(creditLine({author: 'A. Yazar', license: 'CC BY-SA', licenseVersion: '4.0'}, 'Wikimedia Commons')).toBe('A. Yazar · CC BY-SA 4.0 · Wikimedia Commons');
+	});
+});
+
+describe('map data', () => {
+	it('puts each of the 81 provinces in exactly one of the seven regions', async () => {
+		const {TURKEY_REGIONS, regionOfProvince} = await import('../src/Configurations/TurkeyRegions');
+		const codes = Object.values(TURKEY_REGIONS).flatMap((region) => [...region.provinces]);
+		expect(Object.keys(TURKEY_REGIONS)).toHaveLength(7);
+		expect(codes).toHaveLength(81);
+		expect(new Set(codes).size).toBe(81);
+		expect(regionOfProvince('TR-34')).toBe('Marmara');
+		expect(regionOfProvince('TR-42')).toBe('CentralAnatolia');
+	});
+
+	it.runIf(existsSync(path.resolve(__dirname, '..', 'public', 'Geo', 'Turkey.json')))('ships Turkey with 81 provinces, 7 regions and 973 districts under Turkish names', () => {
+		const read = (file: string) => JSON.parse(readFileSync(path.resolve(__dirname, '..', 'public', 'Geo', file), 'utf8'));
+		const turkey = read('Turkey.json');
+		const names = (object: string, data = turkey) => data.objects[object].geometries.map((item: {properties: {name: string}}) => item.properties.name);
+		expect(names('provinces')).toHaveLength(81);
+		expect(names('provinces')).toEqual(expect.arrayContaining(['İstanbul', 'Elazığ', 'Hakkari', 'Kahramanmaraş']));
+		expect(names('regions')).toHaveLength(7);
+		expect(names('rivers')).toEqual(expect.arrayContaining(['Kızılırmak', 'Fırat', 'Dicle']));
+		const districts = read('TurkeyDistricts.json').objects.districts.geometries;
+		expect(districts).toHaveLength(973);
+		expect(districts.filter((item: {properties: {province: string}}) => item.properties.province === 'İstanbul')).toHaveLength(39);
+		expect(names('countries', read('World.json'))).toContain('Türkiye');
+	});
+
+	it('accepts maps of the named layers and of a file in public/Geo only', () => {
+		expect(CourseVisualSchema.safeParse({kind: 'map', base: 'provinces', overlays: [{layer: 'rivers', labels: true}]}).success).toBe(true);
+		expect(CourseVisualSchema.safeParse({kind: 'map', base: {src: 'Geo/Ottoman1683.json'}}).success).toBe(true);
+		expect(CourseVisualSchema.safeParse({kind: 'map', base: {src: 'https://example.com/a.json'}}).success).toBe(false);
+		expect(CourseVisualSchema.safeParse({kind: 'map', base: 'oceans'}).success).toBe(false);
+	});
+});
+
+describe('animated visuals', () => {
+	const sample = JSON.parse(readFileSync(path.resolve(__dirname, '..', 'samples', 'Courses', 'AnimatedVisuals.json'), 'utf8'));
+
+	it('the animated sample (beats, predict, processes, 3D) is valid', () => {
+		const result = LessonScriptSchema.safeParse(sample.content);
+		expect(result.success, JSON.stringify(result.error?.issues.slice(0, 3))).toBe(true);
+	});
+
+	it('pushes a box with F = ma, kinetic friction against the motion', () => {
+		const {samples} = simulateDynamics({mass: 2, incline: 0, friction: 0.25, forces: [{label: 'F', magnitude: 20, direction: 'right'}], initialVelocity: 0, time: 4, g: 9.8});
+		// (20 − 0.25·2·9.8) / 2 = 7.55 m/s²
+		expect(samples[10].a).toBeCloseTo(7.55, 2);
+		expect(samples.at(-1)!.v).toBeCloseTo(7.55 * 4, 1);
+		expect(samples.at(-1)!.x).toBeCloseTo(0.5 * 7.55 * 16, 0);
+	});
+
+	it('keeps a body at rest while static friction holds it, and stops a sliding one without pushing it back', () => {
+		const resting = simulateDynamics({mass: 2, incline: 0, friction: 0.25, forces: [{label: 'F', magnitude: 3, direction: 'right'}], initialVelocity: 0, time: 2, g: 9.8});
+		expect(resting.samples.every((sample) => sample.x === 0 && sample.v === 0)).toBe(true);
+		const sliding = simulateDynamics({mass: 1, incline: 0, friction: 0.5, forces: [], initialVelocity: 4, time: 3, g: 10});
+		// a = −5 m/s²: it stops after 0.8 s, 1.6 m on, and stays.
+		expect(sliding.samples.at(-1)!.v).toBe(0);
+		expect(sliding.samples.at(-1)!.x).toBeCloseTo(1.6, 1);
+		expect(Math.min(...sliding.samples.map((sample) => sample.v))).toBeGreaterThanOrEqual(0);
+	});
+
+	it('slides down an incline at g(sin θ − μ cos θ)', () => {
+		const {samples, normal} = simulateDynamics({mass: 1, incline: 30, friction: 0.1, forces: [], initialVelocity: 0, time: 1, g: 9.8});
+		expect(samples[5].a).toBeCloseTo(-9.8 * (0.5 - 0.1 * Math.cos(Math.PI / 6)), 2);
+		expect(normal).toBeCloseTo(9.8 * Math.cos(Math.PI / 6), 5);
+	});
+
+	it('draws the normal force perpendicular to the surface and rejects one that is not', () => {
+		expect(forceAngle({label: 'N', direction: 'normal'}, 30)).toBe(120);
+		expect(forceAngle({label: 'f', direction: 'downSlope'}, 30)).toBe(210);
+		expect(forceAngle({label: 'G', direction: 'weight'}, 30)).toBe(-90);
+		expect(CourseVisualSchema.safeParse({kind: 'forces', surface: 25, forces: [{label: 'N', angle: 65, size: 0.7}]}).success).toBe(false);
+		expect(CourseVisualSchema.safeParse({kind: 'forces', surface: 25, forces: [{label: 'N', angle: 115, size: 0.7}]}).success).toBe(true);
+		expect(CourseVisualSchema.safeParse({kind: 'forces', surface: 25, forces: [{label: 'N', direction: 'normal', magnitude: 17}]}).success).toBe(true);
+	});
+
+	it('lets a plot use only the coefficients it declares', () => {
+		const base = {kind: 'plot', x: [-3, 3], y: [-3, 9]};
+		expect(CourseVisualSchema.safeParse({...base, curves: [{expression: 'a*x^2'}]}).success).toBe(false);
+		expect(CourseVisualSchema.safeParse({...base, curves: [{expression: 'a*x^2'}], parameters: {a: {from: 1, to: 3}}}).success).toBe(true);
+		expect(CourseVisualSchema.safeParse({...base, curves: [{expression: 'x^2'}], tangent: {at: 'k'}}).success).toBe(false);
+		expect(CourseVisualSchema.safeParse({...base, curves: [{expression: 'x^2'}], parameters: {k: {from: 0}}, tangent: {at: 'k'}, area: {from: 0, to: 2, rectangles: 8}}).success).toBe(true);
+	});
+
+	it('refuses beats on a card without a visual, and a prediction whose answer is not a choice', () => {
+		const card = {kind: 'concept', title: 'T', text: 'Metin', narration: 'Anlatım', beats: [{narration: 'Bir'}]};
+		const section = (cards: unknown[]) => ({...LESSON_SCRIPT_SAMPLE, lesson: {...LESSON_SCRIPT_SAMPLE.lesson, sections: [{title: 'B', narration: 'N', cards}, ...LESSON_SCRIPT_SAMPLE.lesson.sections]}});
+		expect(LessonScriptSchema.safeParse(section([card])).success).toBe(false);
+		const predict = {kind: 'predict', title: 'T', prompt: 'Ne olur?', choices: ['A', 'B'], answer: 3, visual: {kind: 'river', view: 'delta'}, beats: [{narration: 'Bak'}], explanation: 'Çünkü', narration: 'Soru', explanationNarration: 'Açıklama'};
+		expect(LessonScriptSchema.safeParse(section([predict])).success).toBe(false);
+		expect(LessonScriptSchema.safeParse(section([{...predict, answer: 1}])).success).toBe(true);
+	});
+
+	it('speaks a card and then each of its beats, and a prediction with a silent pause to think', () => {
+		const scenes = CourseLesson.buildScenes(LessonScriptSchema.parse(sample.content));
+		const river = scenes.find((scene) => scene.id === 's1-c1')!;
+		expect(river.voice!.map((slot) => slot.id)).toEqual(['s1-c1', 's1-c1-b1', 's1-c1-b2', 's1-c1-b3', 's1-c1-b4', 's1-c1-b5']);
+		const predict = scenes.find((scene) => scene.id === 's1-c4')!;
+		expect(predict.voice!.map((slot) => slot.id)).toEqual(['s1-c4-q', 's1-c4-b1', 's1-c4-b2', 's1-c4-b3', 's1-c4-b4', 's1-c4-e']);
+		// The question's slot holds its reading plus the thinking time.
+		expect(predict.voice![0].seconds).toBeGreaterThan(4);
+		expect(lessonNarrations(LessonScriptSchema.parse(sample.content))).toContain('Fayın iki yanında kayaç blokları var.');
 	});
 });

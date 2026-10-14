@@ -8,7 +8,7 @@ import {createNarrator, type VoiceClips} from '../../../Scenes/Voiceover';
 import {courseLessonTheme} from '../../../Themes/LessonAccent';
 import {defineTemplate} from '../../TemplateDefinition';
 import {promotionScene} from '../CoursePromotionScenes';
-import {LessonCardScene, LessonChrome, LessonIntroScene, LessonSummaryScene, QuestionScene, SectionScene} from './CourseLessonScenes';
+import {LessonCardScene, LessonChrome, LessonIntroScene, LessonSummaryScene, PredictScene, QuestionScene, SectionScene} from './CourseLessonScenes';
 
 const {pacing} = COURSE_DESIGN;
 const estimate = (text: string, minSeconds: number = pacing.minCardSeconds) => estimateReadingSeconds([text], {baseSeconds: 0.8, minSeconds, maxSeconds: 90});
@@ -51,8 +51,33 @@ const buildScenes = (script: LessonScript, voiceClips: VoiceClips = {}): Templat
 				});
 				return;
 			}
+			if (card.kind === 'predict') {
+				// Asked, a silent pause to think (the countdown), the figure beat by beat, then the explanation.
+				const asked = say(`${id}-q`, card.narration, estimate(card.narration));
+				const ask = {...asked, seconds: asked.seconds + card.thinkSeconds};
+				const beatSlots = card.beats.map((beat, beatIndex) => say(`${id}-b${beatIndex + 1}`, beat.narration, estimate(beat.narration, 2.5), 2.5));
+				const explain = say(`${id}-e`, card.explanationNarration, estimate(card.explanationNarration), 3);
+				const slots = [ask, ...beatSlots, explain];
+				const startOf = (slotIndex: number) => slots.slice(0, slotIndex).reduce((sum, slot) => sum + slot.seconds, 0);
+				const timing = {
+					thinkAt: asked.seconds,
+					thinkSeconds: card.thinkSeconds,
+					beatStarts: beatSlots.map((_, beatIndex) => startOf(beatIndex + 1)),
+					beatEnds: beatSlots.map((_, beatIndex) => startOf(beatIndex + 2)),
+					explainAt: startOf(slots.length - 1),
+				};
+				scenes.push({id, seconds: startOf(slots.length), label: `Tahmin ${number}`, voice: slots, element: withChrome(script, <PredictScene card={card} timing={timing} section={section.title} number={number} />)});
+				return;
+			}
 			const line = say(id, card.narration, estimate(card.narration), pacing.minCardSeconds);
-			scenes.push({id, seconds: line.seconds, label: `${section.title} ${number}`, voice: [line], element: withChrome(script, <LessonCardScene card={card} section={section.title} number={number} />)});
+			// A visual told in beats: each beat's sentence follows the card's, and the figure follows the sentences.
+			const beats = 'beats' in card && card.visual ? card.beats : [];
+			const beatSlots = beats.map((beat, beatIndex) => say(`${id}-b${beatIndex + 1}`, beat.narration, estimate(beat.narration, 2.5), 2.5));
+			const slots = [line, ...beatSlots];
+			const startOf = (slotIndex: number) => slots.slice(0, slotIndex).reduce((sum, slot) => sum + slot.seconds, 0);
+			const beatStarts = beatSlots.map((_, beatIndex) => startOf(beatIndex + 1));
+			const beatEnds = beatSlots.map((_, beatIndex) => startOf(beatIndex + 2));
+			scenes.push({id, seconds: startOf(slots.length), label: `${section.title} ${number}`, voice: slots, element: withChrome(script, <LessonCardScene card={card} section={section.title} number={number} beatStarts={beatStarts} beatEnds={beatEnds} sceneSeconds={startOf(slots.length)} />)});
 		});
 	});
 

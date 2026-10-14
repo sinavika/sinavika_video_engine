@@ -3,42 +3,732 @@
   "format": "Horizontal",
   "theme": "SinavikaLight",
   "content": {
-    "topic": {"id": "GALLERY", "category": "YKS_TYT", "lesson": "MAT", "code": "VISUAL_GALLERY"},
+    "topic": {
+      "id": "GALLERY",
+      "category": "YKS_TYT",
+      "lesson": "MAT",
+      "code": "VISUAL_GALLERY"
+    },
     "title": "Görsel Galerisi",
     "lessonName": "Matematik",
-    "exams": ["YKS", "TYT"],
+    "exams": [
+      "YKS",
+      "TYT"
+    ],
     "lesson": {
-      "hook": {"headline": "Derslere özel görsel anlatım bileşenleri.", "narration": "Bu senaryo görsel bileşenleri denemek içindir."},
-      "objectives": ["Her görsel türünü görmek", "Yerleşimi kontrol etmek"],
-      "sections": [
-        {"title": "Matematik", "narration": "Matematik.", "cards": [
-          {"kind": "concept", "title": "Parabol", "text": "$y = x^2 - 4x + 3$ grafiği $x = 1$ ve $x = 3$ noktalarında **x eksenini keser**.", "visual": {"kind": "plot", "x": [-1, 5], "y": [-2, 6], "xLabel": "x", "yLabel": "y", "curves": [{"expression": "x^2 - 4x + 3", "label": "y = x² − 4x + 3"}], "points": [{"x": 1, "y": 0, "label": "(1, 0)"}, {"x": 3, "y": 0, "label": "(3, 0)"}, {"x": 2, "y": -1, "label": "tepe (2, −1)"}]}, "narration": "Parabol."},
-          {"kind": "concept", "title": "Dik üçgen", "text": "Kenarları 3 ve 4 olan dik üçgende hipotenüs **5**'tir.", "visual": {"kind": "geometry", "view": [-0.8, -0.8, 4.8, 3.8], "points": [{"id": "A", "at": [0, 0]}, {"id": "B", "at": [4, 0]}, {"id": "C", "at": [0, 3]}], "polygons": [{"points": ["A", "B", "C"]}], "segments": [{"from": "A", "to": "B", "label": "4"}, {"from": "A", "to": "C", "label": "3"}, {"from": "B", "to": "C", "label": "5"}], "angles": [{"at": "A", "from": "B", "to": "C", "right": true}, {"at": "B", "from": "A", "to": "C", "label": "α"}]}, "narration": "Dik üçgen."},
-          {"kind": "visual", "title": "Kümeler", "visual": {"kind": "venn", "sets": [{"label": "A", "items": ["1", "2"]}, {"label": "B", "items": ["5", "6"]}], "shared": ["3", "4"]}, "narration": "Kümeler."}
-        ]},
-        {"title": "Fen", "narration": "Fen.", "cards": [
-          {"kind": "concept", "title": "Eğik düzlem", "text": "Cisme etki eden kuvvetler: **ağırlık**, **tepki** ve **sürtünme**.", "visual": {"kind": "forces", "surface": 25, "forces": [{"label": "G", "angle": -90, "size": 0.9}, {"label": "N", "angle": 65, "size": 0.7}, {"label": "F", "angle": 25, "size": 0.5}]}, "narration": "Kuvvetler."},
-          {"kind": "visual", "title": "Eğik atış", "visual": {"kind": "motion", "x": "12t", "y": "16t - 5t^2", "t": [0, 3.2], "view": [-2, -2, 42, 16], "duration": 3, "velocity": true, "label": "top"}, "narration": "Eğik atış."},
-          {"kind": "concept", "title": "Etanol", "text": "Etanolün formülü $C_2H_5OH$'dir.", "visual": {"kind": "molecule", "smiles": "CCO", "caption": "Etanol (C₂H₅OH)"}, "narration": "Etanol."},
-          {"kind": "concept", "title": "Sodyum atomu", "text": "Sodyumun 11 elektronu **2, 8, 1** şeklinde dizilir.", "visual": {"kind": "atom", "symbol": "Na", "protons": 11, "neutrons": 12, "shells": [2, 8, 1]}, "narration": "Sodyum."},
-          {"kind": "visual", "title": "Suyun oluşumu", "visual": {"kind": "reaction", "equation": "2H2(g) + O2(g) -> 2H2O(s)", "caption": "Hidrojen ile oksijen tepkimeye girer, su oluşur."}, "narration": "Tepkime."},
-          {"kind": "visual", "title": "Su döngüsü", "visual": {"kind": "cycle", "center": "Su döngüsü", "nodes": [{"label": "Buharlaşma"}, {"label": "Yoğuşma"}, {"label": "Yağış"}, {"label": "Akış"}]}, "narration": "Su döngüsü."}
-        ]},
-        {"title": "Sosyal", "narration": "Sosyal.", "cards": [
-          {"kind": "visual", "title": "Kurtuluş Savaşı'na giden yol", "visual": {"kind": "timeline", "events": [{"year": 1919, "label": "Samsun", "detail": "19 Mayıs"}, {"year": 1920, "label": "TBMM açıldı", "detail": "23 Nisan"}, {"year": 1922, "label": "Büyük Taarruz"}, {"year": 1923, "label": "Cumhuriyet", "detail": "29 Ekim"}]}, "narration": "Zaman çizelgesi."},
-          {"kind": "visual", "title": "Türkiye ve komşuları", "visual": {"kind": "map", "source": {"kind": "world", "detail": "50m"}, "focus": ["Turkey", "Greece", "Georgia", "Iraq"], "highlights": [{"name": "Turkey", "label": "Türkiye"}], "markers": [{"at": [32.85, 39.93], "label": "Ankara"}, {"at": [28.98, 41.01], "label": "İstanbul"}]}, "narration": "Harita."},
-          {"kind": "concept", "title": "Yağış (aylık)", "text": "Akdeniz ikliminde yağış **kışın** artar, yazın azalır.", "visual": {"kind": "plot", "x": [0.5, 12.5], "y": [0, 220], "yLabel": "mm", "series": {"kind": "bars", "values": [{"x": 1, "y": 190, "label": "O"}, {"x": 2, "y": 150, "label": "Ş"}, {"x": 3, "y": 100, "label": "M"}, {"x": 4, "y": 60, "label": "N"}, {"x": 5, "y": 30, "label": "M"}, {"x": 6, "y": 10, "label": "H"}, {"x": 7, "y": 5, "label": "T"}, {"x": 8, "y": 5, "label": "A"}, {"x": 9, "y": 20, "label": "E"}, {"x": 10, "y": 70, "label": "E"}, {"x": 11, "y": 130, "label": "K"}, {"x": 12, "y": 200, "label": "A"}]}}, "narration": "Yağış grafiği."}
-        ]},
-        {"title": "Dil", "narration": "Dil.", "cards": [
-          {"kind": "concept", "title": "Cümlenin ögeleri", "text": "Yüklemi bulup **kim?** diye sorarsan özneyi bulursun.", "visual": {"kind": "sentence", "parts": [{"text": "Ali", "role": "Özne", "highlight": true}, {"text": "kitabı", "role": "Nesne"}, {"text": "dün", "role": "Zarf tümleci"}, {"text": "okudu.", "role": "Yüklem", "highlight": true}]}, "narration": "Ögeler."},
-          {"kind": "concept", "title": "Present Perfect", "text": "Geçmişte başlayıp **etkisi süren** eylemler.", "visual": {"kind": "sentence", "parts": [{"text": "She"}, {"text": "has lived", "role": "present perfect", "highlight": true}, {"text": "here"}, {"text": "since 2020."}], "translation": "2020'den beri burada yaşıyor."}, "narration": "İngilizce."},
-          {"kind": "visual", "title": "Ve bağlacı", "visual": {"kind": "table", "header": ["p", "q", "p ∧ q"], "rows": [["1", "1", "1"], ["1", "0", "0"], ["0", "1", "0"], ["0", "0", "0"]], "highlightColumn": 2}, "narration": "Doğruluk tablosu."},
-          {"kind": "visual", "title": "Bilgi felsefesi", "visual": {"kind": "conceptMap", "center": "Bilgi", "related": [{"name": "Rasyonalizm", "relation": "akıl"}, {"name": "Empirizm", "relation": "deney"}, {"name": "Kritisizm", "relation": "akıl + deney"}, {"name": "Sezgicilik", "relation": "sezgi"}]}, "narration": "Kavram haritası."},
-          {"kind": "question", "question": {"style": "TYT tarzı", "stem": "$2x + 5 = 17$ ise $x$ kaçtır?", "options": ["4", "5", "6", "7", "8"], "answer": 2, "narration": "Soru.", "steps": [{"text": "5'i karşıya at.", "latex": "2x = 12", "narration": "Bir."}, {"text": "2'ye böl.", "latex": "x = 6", "narration": "İki."}]}}
-        ]}
+      "hook": {
+        "headline": "Derslere özel görsel anlatım bileşenleri.",
+        "narration": "Bu senaryo görsel bileşenleri denemek içindir."
+      },
+      "objectives": [
+        "Her görsel türünü görmek",
+        "Yerleşimi kontrol etmek"
       ],
-      "summary": {"points": ["Görseller veriden çizilir.", "Her ders kendi görsel setini kullanır."], "warnings": ["Görseldeki sayı ile metindeki sayı aynı olmalı."], "narration": "Özet."}
+      "sections": [
+        {
+          "title": "Matematik",
+          "narration": "Matematik.",
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Parabol",
+              "text": "$y = x^2 - 4x + 3$ grafiği $x = 1$ ve $x = 3$ noktalarında **x eksenini keser**.",
+              "visual": {
+                "kind": "plot",
+                "x": [
+                  -1,
+                  5
+                ],
+                "y": [
+                  -2,
+                  6
+                ],
+                "xLabel": "x",
+                "yLabel": "y",
+                "curves": [
+                  {
+                    "expression": "x^2 - 4x + 3",
+                    "label": "y = x² − 4x + 3"
+                  }
+                ],
+                "points": [
+                  {
+                    "x": 1,
+                    "y": 0,
+                    "label": "(1, 0)"
+                  },
+                  {
+                    "x": 3,
+                    "y": 0,
+                    "label": "(3, 0)"
+                  },
+                  {
+                    "x": 2,
+                    "y": -1,
+                    "label": "tepe (2, −1)"
+                  }
+                ]
+              },
+              "narration": "Parabol."
+            },
+            {
+              "kind": "concept",
+              "title": "Dik üçgen",
+              "text": "Kenarları 3 ve 4 olan dik üçgende hipotenüs **5**'tir.",
+              "visual": {
+                "kind": "geometry",
+                "view": [
+                  -0.8,
+                  -0.8,
+                  4.8,
+                  3.8
+                ],
+                "points": [
+                  {
+                    "id": "A",
+                    "at": [
+                      0,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "B",
+                    "at": [
+                      4,
+                      0
+                    ]
+                  },
+                  {
+                    "id": "C",
+                    "at": [
+                      0,
+                      3
+                    ]
+                  }
+                ],
+                "polygons": [
+                  {
+                    "points": [
+                      "A",
+                      "B",
+                      "C"
+                    ]
+                  }
+                ],
+                "segments": [
+                  {
+                    "from": "A",
+                    "to": "B",
+                    "label": "4"
+                  },
+                  {
+                    "from": "A",
+                    "to": "C",
+                    "label": "3"
+                  },
+                  {
+                    "from": "B",
+                    "to": "C",
+                    "label": "5"
+                  }
+                ],
+                "angles": [
+                  {
+                    "at": "A",
+                    "from": "B",
+                    "to": "C",
+                    "right": true
+                  },
+                  {
+                    "at": "B",
+                    "from": "A",
+                    "to": "C",
+                    "label": "α"
+                  }
+                ]
+              },
+              "narration": "Dik üçgen."
+            },
+            {
+              "kind": "visual",
+              "title": "Kümeler",
+              "visual": {
+                "kind": "venn",
+                "sets": [
+                  {
+                    "label": "A",
+                    "items": [
+                      "1",
+                      "2"
+                    ]
+                  },
+                  {
+                    "label": "B",
+                    "items": [
+                      "5",
+                      "6"
+                    ]
+                  }
+                ],
+                "shared": [
+                  "3",
+                  "4"
+                ]
+              },
+              "narration": "Kümeler."
+            }
+          ]
+        },
+        {
+          "title": "Fen",
+          "narration": "Fen.",
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Eğik düzlem",
+              "text": "Cisme etki eden kuvvetler: **ağırlık**, **tepki** ve **sürtünme**.",
+              "visual": {
+                "kind": "forces",
+                "surface": 25,
+                "forces": [
+                  {
+                    "label": "G",
+                    "direction": "weight",
+                    "magnitude": 19.6
+                  },
+                  {
+                    "label": "N",
+                    "direction": "normal",
+                    "magnitude": 17.8
+                  },
+                  {
+                    "label": "F",
+                    "direction": "upSlope",
+                    "magnitude": 10
+                  }
+                ]
+              },
+              "narration": "Kuvvetler."
+            },
+            {
+              "kind": "visual",
+              "title": "Eğik atış",
+              "visual": {
+                "kind": "motion",
+                "x": "12t",
+                "y": "16t - 5t^2",
+                "t": [
+                  0,
+                  3.2
+                ],
+                "view": [
+                  -2,
+                  -2,
+                  42,
+                  16
+                ],
+                "duration": 3,
+                "velocity": true,
+                "label": "top"
+              },
+              "narration": "Eğik atış."
+            },
+            {
+              "kind": "concept",
+              "title": "Etanol",
+              "text": "Etanolün formülü $C_2H_5OH$'dir.",
+              "visual": {
+                "kind": "molecule",
+                "smiles": "CCO",
+                "caption": "Etanol (C₂H₅OH)"
+              },
+              "narration": "Etanol."
+            },
+            {
+              "kind": "concept",
+              "title": "Sodyum atomu",
+              "text": "Sodyumun 11 elektronu **2, 8, 1** şeklinde dizilir.",
+              "visual": {
+                "kind": "atom",
+                "symbol": "Na",
+                "protons": 11,
+                "neutrons": 12,
+                "shells": [
+                  2,
+                  8,
+                  1
+                ]
+              },
+              "narration": "Sodyum."
+            },
+            {
+              "kind": "visual",
+              "title": "Suyun oluşumu",
+              "visual": {
+                "kind": "reaction",
+                "equation": "2H2(g) + O2(g) -> 2H2O(s)",
+                "caption": "Hidrojen ile oksijen tepkimeye girer, su oluşur."
+              },
+              "narration": "Tepkime."
+            },
+            {
+              "kind": "visual",
+              "title": "Su döngüsü",
+              "visual": {
+                "kind": "cycle",
+                "center": "Su döngüsü",
+                "nodes": [
+                  {
+                    "label": "Buharlaşma"
+                  },
+                  {
+                    "label": "Yoğuşma"
+                  },
+                  {
+                    "label": "Yağış"
+                  },
+                  {
+                    "label": "Akış"
+                  }
+                ]
+              },
+              "narration": "Su döngüsü."
+            }
+          ]
+        },
+        {
+          "title": "Sosyal",
+          "narration": "Sosyal.",
+          "cards": [
+            {
+              "kind": "visual",
+              "title": "Kurtuluş Savaşı'na giden yol",
+              "visual": {
+                "kind": "timeline",
+                "events": [
+                  {
+                    "year": 1919,
+                    "label": "Samsun",
+                    "detail": "19 Mayıs"
+                  },
+                  {
+                    "year": 1920,
+                    "label": "TBMM açıldı",
+                    "detail": "23 Nisan"
+                  },
+                  {
+                    "year": 1922,
+                    "label": "Büyük Taarruz"
+                  },
+                  {
+                    "year": 1923,
+                    "label": "Cumhuriyet",
+                    "detail": "29 Ekim"
+                  }
+                ]
+              },
+              "narration": "Zaman çizelgesi."
+            },
+            {
+              "kind": "visual",
+              "title": "Türkiye ve komşuları",
+              "visual": {
+                "kind": "map",
+                "base": "countries",
+                "focus": [
+                  "Türkiye",
+                  "Yunanistan",
+                  "Gürcistan",
+                  "Irak"
+                ],
+                "highlights": [
+                  {
+                    "name": "Türkiye",
+                    "label": "Türkiye"
+                  }
+                ],
+                "markers": [
+                  {
+                    "at": [
+                      32.85,
+                      39.93
+                    ],
+                    "label": "Ankara"
+                  },
+                  {
+                    "at": [
+                      28.98,
+                      41.01
+                    ],
+                    "label": "İstanbul"
+                  }
+                ]
+              },
+              "narration": "Harita."
+            },
+            {
+              "kind": "visual",
+              "title": "Türkiye'nin bölgeleri ve akarsuları",
+              "visual": {
+                "kind": "map",
+                "base": "provinces",
+                "overlays": [
+                  {
+                    "layer": "regions"
+                  },
+                  {
+                    "layer": "rivers",
+                    "labels": true
+                  },
+                  {
+                    "layer": "lakes"
+                  }
+                ],
+                "highlights": [
+                  {
+                    "name": "Konya",
+                    "label": "Konya"
+                  },
+                  {
+                    "name": "Erzurum",
+                    "label": "Erzurum"
+                  }
+                ]
+              },
+              "narration": "İller, bölgeler ve akarsular."
+            },
+            {
+              "kind": "visual",
+              "title": "İstanbul'un ilçeleri",
+              "visual": {
+                "kind": "map",
+                "base": "districts",
+                "focus": [
+                  "Kadıköy",
+                  "Beşiktaş",
+                  "Fatih",
+                  "Üsküdar",
+                  "Bakırköy",
+                  "Sarıyer"
+                ],
+                "highlights": [
+                  {
+                    "name": "Kadıköy",
+                    "label": "Kadıköy"
+                  },
+                  {
+                    "name": "Fatih",
+                    "label": "Fatih"
+                  }
+                ]
+              },
+              "narration": "İlçeler."
+            },
+            {
+              "kind": "concept",
+              "title": "Yağış (aylık)",
+              "text": "Akdeniz ikliminde yağış **kışın** artar, yazın azalır.",
+              "visual": {
+                "kind": "plot",
+                "x": [
+                  0.5,
+                  12.5
+                ],
+                "y": [
+                  0,
+                  220
+                ],
+                "yLabel": "mm",
+                "series": {
+                  "kind": "bars",
+                  "values": [
+                    {
+                      "x": 1,
+                      "y": 190,
+                      "label": "O"
+                    },
+                    {
+                      "x": 2,
+                      "y": 150,
+                      "label": "Ş"
+                    },
+                    {
+                      "x": 3,
+                      "y": 100,
+                      "label": "M"
+                    },
+                    {
+                      "x": 4,
+                      "y": 60,
+                      "label": "N"
+                    },
+                    {
+                      "x": 5,
+                      "y": 30,
+                      "label": "M"
+                    },
+                    {
+                      "x": 6,
+                      "y": 10,
+                      "label": "H"
+                    },
+                    {
+                      "x": 7,
+                      "y": 5,
+                      "label": "T"
+                    },
+                    {
+                      "x": 8,
+                      "y": 5,
+                      "label": "A"
+                    },
+                    {
+                      "x": 9,
+                      "y": 20,
+                      "label": "E"
+                    },
+                    {
+                      "x": 10,
+                      "y": 70,
+                      "label": "E"
+                    },
+                    {
+                      "x": 11,
+                      "y": 130,
+                      "label": "K"
+                    },
+                    {
+                      "x": 12,
+                      "y": 200,
+                      "label": "A"
+                    }
+                  ]
+                }
+              },
+              "narration": "Yağış grafiği."
+            }
+          ]
+        },
+        {
+          "title": "Dil",
+          "narration": "Dil.",
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Cümlenin ögeleri",
+              "text": "Yüklemi bulup **kim?** diye sorarsan özneyi bulursun.",
+              "visual": {
+                "kind": "sentence",
+                "parts": [
+                  {
+                    "text": "Ali",
+                    "role": "Özne",
+                    "highlight": true
+                  },
+                  {
+                    "text": "kitabı",
+                    "role": "Nesne"
+                  },
+                  {
+                    "text": "dün",
+                    "role": "Zarf tümleci"
+                  },
+                  {
+                    "text": "okudu.",
+                    "role": "Yüklem",
+                    "highlight": true
+                  }
+                ]
+              },
+              "narration": "Ögeler."
+            },
+            {
+              "kind": "concept",
+              "title": "Present Perfect",
+              "text": "Geçmişte başlayıp **etkisi süren** eylemler.",
+              "visual": {
+                "kind": "sentence",
+                "parts": [
+                  {
+                    "text": "She"
+                  },
+                  {
+                    "text": "has lived",
+                    "role": "present perfect",
+                    "highlight": true
+                  },
+                  {
+                    "text": "here"
+                  },
+                  {
+                    "text": "since 2020."
+                  }
+                ],
+                "translation": "2020'den beri burada yaşıyor."
+              },
+              "narration": "İngilizce."
+            },
+            {
+              "kind": "visual",
+              "title": "Ve bağlacı",
+              "visual": {
+                "kind": "table",
+                "header": [
+                  "p",
+                  "q",
+                  "p ∧ q"
+                ],
+                "rows": [
+                  [
+                    "1",
+                    "1",
+                    "1"
+                  ],
+                  [
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "highlightColumn": 2
+              },
+              "narration": "Doğruluk tablosu."
+            },
+            {
+              "kind": "visual",
+              "title": "Bilgi felsefesi",
+              "visual": {
+                "kind": "conceptMap",
+                "center": "Bilgi",
+                "related": [
+                  {
+                    "name": "Rasyonalizm",
+                    "relation": "akıl"
+                  },
+                  {
+                    "name": "Empirizm",
+                    "relation": "deney"
+                  },
+                  {
+                    "name": "Kritisizm",
+                    "relation": "akıl + deney"
+                  },
+                  {
+                    "name": "Sezgicilik",
+                    "relation": "sezgi"
+                  }
+                ]
+              },
+              "narration": "Kavram haritası."
+            },
+            {
+              "kind": "question",
+              "question": {
+                "style": "TYT tarzı",
+                "stem": "$2x + 5 = 17$ ise $x$ kaçtır?",
+                "options": [
+                  "4",
+                  "5",
+                  "6",
+                  "7",
+                  "8"
+                ],
+                "answer": 2,
+                "narration": "Soru.",
+                "steps": [
+                  {
+                    "text": "5'i karşıya at.",
+                    "latex": "2x = 12",
+                    "narration": "Bir."
+                  },
+                  {
+                    "text": "2'ye böl.",
+                    "latex": "x = 6",
+                    "narration": "İki."
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "points": [
+          "Görseller veriden çizilir.",
+          "Her ders kendi görsel setini kullanır."
+        ],
+        "warnings": [
+          "Görseldeki sayı ile metindeki sayı aynı olmalı."
+        ],
+        "narration": "Özet."
+      }
     },
-    "short": {"hook": "Galeri.", "cards": [{"kind": "term", "term": "Galeri", "definition": "Görsel bileşenler."}, {"kind": "visual", "title": "Parabol", "visual": {"kind": "plot", "x": [-1, 5], "y": [-2, 6], "curves": [{"expression": "x^2 - 4x + 3"}]}, "narration": "Parabol."}, {"kind": "visual", "title": "Türkiye", "visual": {"kind": "map", "source": {"kind": "world"}, "focus": ["Turkey"], "highlights": [{"name": "Turkey", "label": "Türkiye"}]}, "narration": "Harita."}], "summary": ["Görseller"]}
+    "short": {
+      "hook": "Galeri.",
+      "cards": [
+        {
+          "kind": "term",
+          "term": "Galeri",
+          "definition": "Görsel bileşenler."
+        },
+        {
+          "kind": "visual",
+          "title": "Parabol",
+          "visual": {
+            "kind": "plot",
+            "x": [
+              -1,
+              5
+            ],
+            "y": [
+              -2,
+              6
+            ],
+            "curves": [
+              {
+                "expression": "x^2 - 4x + 3"
+              }
+            ]
+          },
+          "narration": "Parabol."
+        },
+        {
+          "kind": "visual",
+          "title": "Türkiye",
+          "visual": {
+            "kind": "map",
+            "base": "regions",
+            "overlays": [
+              {
+                "layer": "rivers"
+              },
+              {
+                "layer": "lakes"
+              }
+            ],
+            "highlights": [
+              {
+                "name": "Karadeniz Bölgesi",
+                "label": "Karadeniz"
+              }
+            ]
+          },
+          "narration": "Harita."
+        }
+      ],
+      "summary": [
+        "Görseller"
+      ]
+    }
   }
 }
