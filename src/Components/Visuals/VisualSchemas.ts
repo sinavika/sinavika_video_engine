@@ -150,13 +150,20 @@ export const CourseVisualSchema = z.discriminatedUnion('kind', [
 	 * accordingly, its velocity arrow grows with its speed, and the v-t / x-t /
 	 * a-t graphs are drawn in step with the motion.
 	 */
-	z.object({
+	z
+		.object({
 		kind: z.literal('dynamics'),
 		mass: z.number().positive().max(1000),
 		/** Incline angle in degrees; 0 is flat ground. */
 		incline: z.number().min(0).max(60).default(0),
-		/** Coefficient of kinetic friction. */
-		friction: z.number().min(0).max(1).default(0),
+		/** Coefficient of kinetic friction μk: the friction on a sliding body, μk·N. */
+		friction: z.number().min(0).max(1.5).default(0),
+		/**
+		 * Coefficient of static friction μs: a body at rest stays at rest while the other forces along the surface
+		 * do not exceed μs·N. Not less than μk; when left out it is taken equal to μk (a simplification to avoid
+		 * where the difference is taught).
+		 */
+		staticFriction: z.number().min(0).max(1.5).optional(),
 		/** Applied forces in newtons, along the ground (right/left) or the incline (upSlope/downSlope). */
 		forces: z.array(z.object({label: plainText(12), magnitude: z.number().min(0).max(10000), direction: z.enum(['right', 'left', 'upSlope', 'downSlope'])})).max(3).default([]),
 		/** Initial velocity in m/s, positive to the right / up the slope. */
@@ -165,7 +172,8 @@ export const CourseVisualSchema = z.discriminatedUnion('kind', [
 		time: z.number().min(0.5).max(30).default(4),
 		g: z.number().min(1).max(20).default(9.8),
 		graphs: z.array(z.enum(['v', 'x', 'a'])).max(3).default(['v', 'x']),
-	}),
+	})
+		.refine((visual) => visual.staticFriction === undefined || visual.staticFriction >= visual.friction, {path: ['staticFriction'], message: 'Static friction (μs) cannot be less than kinetic friction (μk).'}),
 	/** Physics: a body moving along x(t), y(t), leaving a trail, over `duration` seconds of the video. */
 	z.object({
 		kind: z.literal('motion'),

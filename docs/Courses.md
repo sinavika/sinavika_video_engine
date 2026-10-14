@@ -117,7 +117,7 @@ Tek yer: [`src/Courses/CourseDesign.ts`](../src/Courses/CourseDesign.ts) (`COURS
 | `geometry` | Geometri | Nokta, kenar uzunluğu, çember, açı (dik açı işareti), dolgulu çokgen | SVG (kendi) |
 | `solid` | Geometri, matematik | 3B cisim döner; ayrıtlar ve ölçüler; `unfold` ile **açınım** (küp, dikdörtgenler prizması, üçgen prizma, kare piramit, silindir) | three.js (@remotion/three) |
 | `forces` | Fizik | Serbest cisim diyagramı; düz ya da eğik zemin. Yön yüzeye göre verilir (`weight`, `normal`, `upSlope`…): N her zaman yüzeye diktir; ok boyları `magnitude` ile orantılıdır. Eğik zeminde dik olmayan bir N şemada reddedilir | SVG (kendi) |
-| `dynamics` | Fizik | **Kuvvet → ivme → hareket** tek sahnede: kuvvetler ölçekli, net kuvvet ve a = F/m yazılır, cisim hesaplanan ivmeyle hareket eder, hız oku hızla büyür, v-t / x-t / a-t grafikleri hareketle eşzamanlı çizilir. Sürtünme (statik/kinetik) ve eğik düzlem | SVG (kendi) + sayısal çözüm |
+| `dynamics` | Fizik | **Kuvvet → ivme → hareket** tek sahnede: kuvvetler ölçekli, net kuvvet ve a = F/m yazılır, cisim hesaplanan ivmeyle hareket eder, hız oku hızla büyür, v-t / x-t / a-t grafikleri hareketle eşzamanlı çizilir. Eğik düzlem. **Statik ve kinetik sürtünme ayrı katsayılardır**: `staticFriction` (μs) cismin harekete geçip geçmeyeceğini belirler (itici kuvvet ≤ μs·N ise kıpırdamaz, sürtünme itici kuvvete eşittir), `friction` (μk) kayarken etki eder (μk·N); ekranda "fs,max = μs·N … → kayar / kıpırdamaz" yazılır. μs verilmezse μk'ye eşit alınır (sadeleştirme; ayrımın öğretildiği konularda ikisi de verilmeli), μs < μk şemada reddedilir | SVG (kendi) + sayısal çözüm |
 | `motion` | Fizik | x(t), y(t) ile hareket simülasyonu: iz ve hız oku (oku boyu hızın büyüklüğüdür) | SVG (kendi) + güvenli ifade çözücü |
 | `molecule` | Kimya | SMILES'tan molekül çizimi | SmilesDrawer |
 | `atom` | Kimya, fizik | Bohr modeli: çekirdek, katmanlar, elektronlar | SVG (kendi) |
@@ -158,14 +158,18 @@ Parça adları: grafikte `c1…` eğriler, `p1…` noktalar, `tangent`, `area`; 
 
 **3B.** `solid`, `molecule3d` ve `earthquake` (`block3d`) three.js ile çizilir (@remotion/three). Her kare kare numarasından hesaplanır; render WebGL için ANGLE kullanır (`VideoRenderer` ve `remotion.config.ts`). 3B'yi derinliğin anlamaya katkı sağladığı yerde kullanın: cisimler ve açınımlar, molekül şekilleri, fay blokları.
 
-**Haritalar.** Harita verileri `public/Geo/` altındadır ve `npm run geo` ile ücretsiz kaynaklardan yeniden kurulur (bir kerelik ~60 MB indirme; projede ~1,8 MB kalır). Ücretli bir kütüphane ya da servis gerekmez. Bütün adlar Türkçedir.
+**Haritalar.** Harita verileri `public/Geo/` altındadır ve `npm run geo` ile ücretsiz kaynaklardan yeniden kurulur (bir kerelik ~200 MB indirme; projede ~1,8 MB kalır). Ücretli bir kütüphane ya da servis gerekmez. Bütün adlar Türkçedir. Atıf isteyen bir katman çizildiğinde atfı haritanın köşesine kendiliğinden yazılır.
 
 | Dosya | Katmanlar | Kaynak · lisans |
 | --- | --- | --- |
-| `Turkey.json` | `provinces` (81 il, plaka kodu ve bölgesiyle) · `regions` (7 bölge) · `country` (Türkiye) · `rivers` · `lakes` | Natural Earth 5.1.2 · kamu malı |
-| `TurkeyDistricts.json` | `districts` (973 ilçe, iliyle) | geoBoundaries / OpenStreetMap · ODbL; haritada "© OpenStreetMap katkıda bulunanlar" yazar (otomatik) |
+| `Turkey.json` | `provinces` (81 il, plaka kodu ve ders kitabındaki bölgesiyle) · `country` (Türkiye) | Natural Earth 5.1.2 · kamu malı |
+| | `regions` (7 coğrafi bölge, **doğal sınırlarıyla**) | The Emirr'in Wikimedia Commons bölge haritaları · CC BY 3.0; haritada "Bölge sınırları: The Emirr / Wikimedia Commons, CC BY 3.0" yazar |
+| | `provinceRegions` (7 bölge, **bütün iller** olarak) | Natural Earth illerinin birleşimi · kamu malı |
+| `TurkeyWater.json` | `rivers` (51 akarsu) | HydroRIVERS (Lehner & Grill 2013) · ücretsiz, atıfla; haritada "Akarsular: HydroRIVERS (…)" yazar |
+| | `lakes` (24 göl ve baraj gölü) | Natural Earth 5.1.2 ve Avrupa eki · kamu malı |
+| `TurkeyDistricts.json` | `districts` (973 ilçe, iliyle) | geoBoundaries / OpenStreetMap · ODbL; haritada "© OpenStreetMap katkıda bulunanlar" yazar |
 | `World.json` | `countries` (Türkçe ülke adları) | Natural Earth 5.1.2 · kamu malı |
-| `Sources.json` | Her dosyanın kaynağı ve lisansı | — |
+| `Sources.json` | Her dosyanın kaynağı, lisansı, bölge oturtma hatası ve her akarsuyun nasıl bulunduğu | — |
 
 Merkezi tanım: [`src/Configurations/GeoData.ts`](../src/Configurations/GeoData.ts) (dosyalar, katmanlar, atıf, su/kara renkleri). Harita görseli bir **taban** (`countries`, `country`, `regions`, `provinces`, `districts` ya da `public/Geo` içinde kendi dosyan) ve üstüne en fazla dört **katman** (akarsu, göl, bölge/il sınırı) çizer; vurgular ders renginde, etiketler Türkçe adlarla:
 
@@ -173,9 +177,13 @@ Merkezi tanım: [`src/Configurations/GeoData.ts`](../src/Configurations/GeoData.
 {"kind": "map", "base": "provinces", "overlays": [{"layer": "regions"}, {"layer": "rivers", "labels": true}, {"layer": "lakes"}], "highlights": [{"name": "Konya", "label": "Konya"}]}
 ```
 
-- **7 bölge**, illerin ders kitaplarındaki bölgelerine göre birleştirilerek çizilir: [`src/Configurations/TurkeyRegions.ts`](../src/Configurations/TurkeyRegions.ts). Gerçek bölge sınırları il sınırlarını izlemez; birkaç il iki bölgeye bölünür. Tablo bir coğrafya öğretmenince kontrol edilmeli.
+- **Coğrafi bölgeler iki katmandır.** Hangisinin kullanılacağı ne öğretildiğine bağlıdır:
+  - `regions`: 1941 Coğrafya Kongresi bölgeleri **doğal sınırlarıyla**; sınırlar illeri keser (ör. Çorum, Kahramanmaraş, Erzurum iki bölgeye bölünür). Bölge sınırı, yer şekli ve iklimle bölge ilişkisi anlatılırken bu kullanılır. Bu sınırlar için açık bir veri seti yok (OpenStreetMap'te ve Wikidata'da bölge şekli bulunmuyor). Bu yüzden Wikimedia Commons'taki elle çizilmiş bölge haritalarından alındı ve koordinata oturtuldu: haritadaki Türkiye dış sınırı Natural Earth sınırıyla eşleştirildi (Mercator, en yakın noktalar yöntemi), kıyı ve kara sınırları Natural Earth'ten, yalnız iç sınırlar çizimden gelir. Oturtma sonrası dış sınır farkı medyan **3,1 km**, en kötü %10'da **8,2 km**; iç sınırların isabeti çizimin isabetiyle sınırlıdır. Alanlar ders kitaplarındaki değerlerden en çok ~%10 sapar (Akdeniz ve Güneydoğu Anadolu biraz küçük çıkar). Yani `regions` öğretim için doğru biçimi verir, ama sınır üzerindeki bir noktanın hangi bölgede olduğunu kesin olarak söylemez; kesin konum ve alan soruları için kullanılmamalıdır.
+  - `provinceRegions`: her il bütünüyle bir bölgede ([`TurkeyRegions.ts`](../src/Configurations/TurkeyRegions.ts), ders kitabı ataması). "Hangi il hangi bölgede" ve il bazlı istatistikler için. Sınırları gerçek bölge sınırı değildir; tablo bir coğrafya öğretmenince kontrol edilmeli.
 - İlçelerin hangi ile ait olduğu aynı kaynağın il sınırlarıyla bulundu; il başına ilçe sayıları resmî sayılarla aynı (ör. İstanbul 39, Ankara 25, Konya 31).
-- **Akarsular sınırlı**: Natural Earth Türkiye'de 13 akarsu (Kızılırmak, Sakarya, Fırat, Dicle, Ceyhan, Büyük Menderes, Aras, Murat, Kelkit, Simav, Meriç, Kura…) ve 6 göl içeriyor. Yeşilırmak, Gediz, Seyhan, Göksu gibi akarsular için OpenStreetMap ya da HydroRIVERS verisi eklenmeli (ücretsiz; HydroRIVERS kendi atıf koşuluyla).
+- **Akarsular** HydroRIVERS'ın yükseklik verisinden türetilmiş akarsu ağı üzerinde, her akarsuyun Wikidata'daki kaynak ve ağız koordinatlarından izlenir ([`scripts/GeoRivers.ts`](../scripts/GeoRivers.ts)): kaynak ve ağız biliniyorsa akış yönünde kaynaktan inilir ve yol ağza 3 km'den yakın geçmelidir; tek nokta biliniyorsa ana kol (her kavşakta en büyük drenaj alanı) izlenir, adı olan kollara girilmez. Doğrulanamayan akarsu atlanır ve raporlanır, tahmin edilmez. 51 akarsu: Kızılırmak, Yeşilırmak, Sakarya, Fırat (Karasu ve Murat'ın birleşiminden), Dicle, Aras, Kura, Çoruh, Meriç, Ergene, Gediz, Büyük ve Küçük Menderes, Seyhan, Ceyhan, Göksu, Asi, Susurluk, Bakırçay, Biga, Gönen, Filyos, Bartın, Devrekâni, Gökırmak, Kelkit, Çekerek, Delice, Porsuk, Ankara Çayı, Melet, Harşit, Karasu, Murat, Munzur, Peri, Tohma, Botan, Batman, Habur, Zap, Arpaçay, Manavgat, Köprüçay, Aksu, Dalaman, Eşen, Berdan, Nilüfer, Mustafakemalpaşa ve Çarşamba Çayı (Konya kapalı havzasında kanallaştığı için Natural Earth çizgisi). Yükseklik verisinden türetildiği için menderesler düzleşir; çizilen uzunluk resmî uzunluktan kısadır (ör. Kızılırmak 1.189 km çizilir, resmî 1.355 km). Uzunluk öğretilirken resmî değer metinde verilmelidir.
+- **Göller**: Van, Tuz, Beyşehir, Eğirdir, Akşehir, Burdur, Salda, Sapanca, İznik, Uluabat, Kuş (Manyas), Terkos, Bafa, Köyceğiz, Marmara, Çıldır, Erçek, Hazar, Seyfe, Yay ve Atatürk, Keban, Karakaya, Seyhan baraj gölleri. Eksik kalanlar (ör. Eber, Acıgöl, Işıklı, Hirfanlı) gerektiğinde aynı yolla eklenir.
+- Etiketler çakışmaz: önce vurgu ve işaret adları, sonra büyükten küçüğe akarsu ve göl adları yerleşir; yer kalmayan ad yazılmaz. Belirli adlar için katmana `names` verilir.
 - **Tarihî sınırlar** hazır veri olarak eklenmedi: ücretsiz setlerin lisansı ve doğruluğu konu konu kontrol edilmeli. Gerektiğinde konu için çizilen GeoJSON `public/Geo` içine konur ve `base: {"src": "Geo/…json"}` ile kullanılır.
 - Yükselti (rölyef) ve iklim verisi henüz yok; ihtiyaç olursa Natural Earth gölgeli rölyef (kamu malı) ve WorldClim (CC BY) eklenebilir.
 

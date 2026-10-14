@@ -21,40 +21,45 @@ const number = (value: number, digits = 1) => {
 
 // ---------------------------------------------------------------- dynamics
 
-export type DynamicsSample = {t: number; x: number; v: number; a: number; friction: number};
+/** `static`: at rest, held by static friction (fs ≤ μs·N); `kinetic`: sliding, fk = μk·N against the motion. */
+export type DynamicsSample = {t: number; x: number; v: number; a: number; friction: number; state: 'static' | 'kinetic'};
 
 /**
  * Newton's second law along the ground or the incline (positive: right / up
- * the slope). Weight's component along the incline, the applied forces and
- * kinetic friction (opposite to the motion) give the net force; a = F / m.
- * A body at rest stays at rest while the other forces do not beat static
- * friction (taken as μ·N). Integrated in small steps; a velocity that would
- * change sign under friction stops at zero instead.
+ * the slope). The weight's component along the incline and the applied
+ * forces make the driving force. A body at rest stays at rest while the
+ * driving force is not more than the largest static friction μs·N (the
+ * friction is then just what holds it); once it slides, kinetic friction
+ * μk·N acts against the motion and a = ΣF / m. A sliding body that comes to
+ * a stop is held again by static friction if μs·N can hold it, otherwise it
+ * slides back. Integrated in small steps.
  */
-export const simulateDynamics = (visual: Pick<Dynamics, 'mass' | 'incline' | 'friction' | 'forces' | 'initialVelocity' | 'time' | 'g'>, steps = 600): {samples: DynamicsSample[]; normal: number; weight: number; driving: number} => {
+export const simulateDynamics = (visual: Pick<Dynamics, 'mass' | 'incline' | 'friction' | 'staticFriction' | 'forces' | 'initialVelocity' | 'time' | 'g'>, steps = 600) => {
 	const angle = (visual.incline * Math.PI) / 180;
 	const weight = visual.mass * visual.g;
 	const normal = weight * Math.cos(angle);
 	const applied = visual.forces.reduce((sum, force) => sum + (force.direction === 'right' || force.direction === 'upSlope' ? force.magnitude : -force.magnitude), 0);
 	const driving = applied - weight * Math.sin(angle);
-	const frictionMax = visual.friction * normal;
+	const kineticFriction = visual.friction * normal;
+	const staticLimit = (visual.staticFriction ?? visual.friction) * normal;
 	const dt = visual.time / steps;
 	const samples: DynamicsSample[] = [];
 	let [x, v] = [0, visual.initialVelocity];
 	for (let step = 0; step <= steps; step++) {
-		let friction: number;
-		if (Math.abs(v) < 1e-9) friction = Math.abs(driving) <= frictionMax ? -driving : -Math.sign(driving) * frictionMax;
-		else friction = -Math.sign(v) * frictionMax;
+		const resting = Math.abs(v) < 1e-9;
+		const held = resting && Math.abs(driving) <= staticLimit;
+		// At rest and held: friction cancels the driving force. Starting to slide or sliding: kinetic friction.
+		const friction = held ? -driving : resting ? -Math.sign(driving) * kineticFriction : -Math.sign(v) * kineticFriction;
 		const a = (driving + friction) / visual.mass;
-		samples.push({t: step * dt, x, v, a, friction});
+		samples.push({t: step * dt, x, v, a, friction, state: held ? 'static' : 'kinetic'});
 		const next = v + a * dt;
-		// Friction can stop a body but never push it back.
-		const stops = Math.abs(v) > 1e-9 && Math.sign(next) !== Math.sign(v) && Math.abs(driving) <= frictionMax;
+		// Kinetic friction can stop a body but never push it back: where the velocity would change sign it stops.
+		const stops = !resting && Math.sign(next) !== Math.sign(v);
 		const vNext = stops || Math.abs(next) < 1e-9 ? 0 : next;
 		x += ((v + vNext) / 2) * dt;
 		v = vNext;
 	}
-	return {samples, normal, weight, driving};
+	return {samples, normal, weight, driving, staticLimit, kineticFriction};
 };
 
 const DYNAMICS_STAGES = ['Kuvvetler', 'Net kuvvet ve ivme', 'Hareket'] as const;
@@ -69,7 +74,8 @@ const DYNAMICS_STAGES = ['Kuvvetler', 'Net kuvvet ve ivme', 'Hareket'] as const;
 export const DynamicsVisual: React.FC<VisualBoxProps & {visual: Dynamics}> = ({visual, width, height, delaySeconds = 0}) => {
 	const palette = useVisualPalette();
 	const {stage, progress} = useStageClock(DYNAMICS_STAGES.length, {delaySeconds, secondsPerStage: 4});
-	const {samples, normal, weight, driving} = useMemo(() => simulateDynamics(visual), [visual]);
+	const {samples, normal, weight, driving, staticLimit, kineticFriction} = useMemo(() => simulateDynamics(visual), [visual]);
+	const slides = samples.some((sample) => sample.state === 'kinetic');
 	const tilt = (visual.incline * Math.PI) / 180;
 	const playing = stage === 2 ? progress : stage > 2 ? 1 : 0;
 	const index = Math.min(samples.length - 1, Math.round(playing * (samples.length - 1)));
@@ -78,12 +84,12 @@ export const DynamicsVisual: React.FC<VisualBoxProps & {visual: Dynamics}> = ({v
 	// Flat ground: the track across the middle, the graphs in a row under it. An incline: the slope on the
 	// left, rising to the right, and the graphs stacked on the right.
 	const inclined = visual.incline > 0;
-	const trackStart = inclined ? ([60, H - 40] as const) : ([60, graphs.length ? 280 : 420] as const);
+	const trackStart = inclined ? ([60, H - 40] as const) : ([60, graphs.length ? 300 : 420] as const);
 	const trackLength = inclined ? Math.min(560 / Math.cos(tilt), (H - 200) / Math.sin(tilt)) : 880;
 	const graphBoxes = graphs.map((_, graphIndex) =>
 		inclined
-			? {x: 650, y: 120 + graphIndex * ((H - 130) / graphs.length), width: 340, height: (H - 130) / graphs.length - 14}
-			: {x: 20 + graphIndex * ((W - 20) / graphs.length), y: 410, width: (W - 20) / graphs.length - 20, height: H - 420},
+			? {x: 650, y: 150 + graphIndex * ((H - 160) / graphs.length), width: 340, height: (H - 160) / graphs.length - 14}
+			: {x: 20 + graphIndex * ((W - 20) / graphs.length), y: 432, width: (W - 20) / graphs.length - 20, height: H - 442},
 	);
 
 	// The body's x maps onto the track.
@@ -92,16 +98,17 @@ export const DynamicsVisual: React.FC<VisualBoxProps & {visual: Dynamics}> = ({v
 	const span = Math.max(1e-6, maxX - minX);
 	const along = [Math.cos(tilt), -Math.sin(tilt)] as const;
 	const up = [-Math.sin(tilt), -Math.cos(tilt)] as const;
-	const position = (x: number) => 70 + ((x - minX) / span) * (trackLength - 180);
+	// The body starts far enough in for the labels of the forces on its left.
+	const position = (x: number) => 150 + ((x - minX) / span) * (trackLength - 260);
 	const body = 70;
 	const at = (distance: number, lift: number) => [trackStart[0] + along[0] * distance + up[0] * lift, trackStart[1] + along[1] * distance + up[1] * lift] as const;
 	const centre = at(position(now.x), body / 2);
 
-	// Forces to scale: the largest force gets 100 px.
+	// Forces to scale: the largest force gets 90 px.
 	const applied = visual.forces.map((force) => ({label: force.label, magnitude: force.magnitude, sign: force.direction === 'right' || force.direction === 'upSlope' ? 1 : -1}));
 	const friction = stage >= 2 ? now.friction : samples[0].friction;
 	const largest = Math.max(weight, normal, Math.abs(friction), ...applied.map((force) => force.magnitude), 1e-6);
-	const scale = 100 / largest;
+	const scale = 90 / largest;
 	const net = driving + friction;
 	const acceleration = stage >= 2 ? now.a : net / visual.mass;
 	const forcesShow = stage === 0 ? smooth(progress * 2) : 1;
@@ -113,7 +120,8 @@ export const DynamicsVisual: React.FC<VisualBoxProps & {visual: Dynamics}> = ({v
 		{label: `N = ${number(normal)} N`, dx: up[0] * normal * scale, dy: up[1] * normal * scale, color: palette.brand},
 		...applied.map((force) => ({label: `${force.label} = ${number(force.magnitude)} N`, dx: along[0] * force.sign * force.magnitude * scale, dy: along[1] * force.sign * force.magnitude * scale, color: palette.lesson})),
 	];
-	if (Math.abs(friction) > 1e-6) arrows.push({label: `f = ${number(Math.abs(friction))} N`, dx: along[0] * friction * scale, dy: along[1] * friction * scale, color: '#E4572E'});
+	const frictionState = (stage >= 2 ? now : samples[0]).state;
+	if (Math.abs(friction) > 1e-6) arrows.push({label: `${frictionState === 'static' ? 'fs' : 'fk'} = ${number(Math.abs(friction))} N`, dx: along[0] * friction * scale, dy: along[1] * friction * scale, color: '#E4572E'});
 
 	return (
 		<svg width={width} height={height} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{overflow: 'visible', fontFamily: palette.fontBody}}>
@@ -135,10 +143,20 @@ export const DynamicsVisual: React.FC<VisualBoxProps & {visual: Dynamics}> = ({v
 			{netShow > 0 && Math.abs(net) > 1e-6 ? <VectorArrow from={at(position(now.x), -48)} dx={along[0] * net * scale * netShow} dy={along[1] * net * scale * netShow} color={palette.lesson} label={`a = ${number(acceleration, 2)} m/s²`} thick /> : null}
 			{stage === 2 && Math.abs(now.v) > 1e-3 ? <VectorArrow from={at(position(now.x), -96)} dx={along[0] * Math.sign(now.v) * 160 * (Math.abs(now.v) / vMax)} dy={along[1] * Math.sign(now.v) * 160 * (Math.abs(now.v) / vMax)} color={palette.brand} label={`v = ${number(now.v)} m/s`} /> : null}
 			{netShow > 0 ? (
-				<text x={W / 2} y={92} textAnchor="middle" fontSize={28} fontWeight={800} opacity={netShow}>
-					<tspan fill={palette.ink}>{`ΣF = ${number(net)} N`}</tspan>
-					<tspan fill={palette.lesson} dx={28}>{`a = ΣF / m = ${number(net)} / ${number(visual.mass)} = ${number(net / visual.mass, 2)} m/s²`}</tspan>
-				</text>
+				<g opacity={netShow}>
+					{/* First whether it moves at all (static friction), then the net force and the acceleration. */}
+					{staticLimit > 0 || kineticFriction > 0 ? (
+						<text x={W / 2} y={92} textAnchor="middle" fontSize={24} fontWeight={800} fill={palette.muted}>
+							{slides
+								? `fs,max = μs·N = ${number(staticLimit)} N < ${number(Math.abs(driving))} N → kayar;  fk = μk·N = ${number(kineticFriction)} N`
+								: `${number(Math.abs(driving))} N ≤ fs,max = μs·N = ${number(staticLimit)} N → kıpırdamaz (fs = ${number(Math.abs(driving))} N)`}
+						</text>
+					) : null}
+					<text x={W / 2} y={126} textAnchor="middle" fontSize={28} fontWeight={800}>
+						<tspan fill={palette.ink}>{`ΣF = ${number(net)} N`}</tspan>
+						<tspan fill={palette.lesson} dx={28}>{`a = ΣF / m = ${number(net)} / ${number(visual.mass)} = ${number(net / visual.mass, 2)} m/s²`}</tspan>
+					</text>
+				</g>
 			) : null}
 			{graphs.map((kind, graphIndex) => (
 				<MotionGraph key={kind} kind={kind} samples={samples} upTo={index} {...graphBoxes[graphIndex]} show={stage >= 2 ? 1 : 0.35} />

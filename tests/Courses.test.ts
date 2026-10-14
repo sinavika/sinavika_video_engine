@@ -178,11 +178,52 @@ describe('map data', () => {
 		expect(names('provinces')).toHaveLength(81);
 		expect(names('provinces')).toEqual(expect.arrayContaining(['İstanbul', 'Elazığ', 'Hakkari', 'Kahramanmaraş']));
 		expect(names('regions')).toHaveLength(7);
-		expect(names('rivers')).toEqual(expect.arrayContaining(['Kızılırmak', 'Fırat', 'Dicle']));
+		expect(names('provinceRegions')).toHaveLength(7);
+		const water = read('TurkeyWater.json');
+		expect(names('rivers', water)).toEqual(expect.arrayContaining(['Kızılırmak', 'Fırat', 'Dicle', 'Yeşilırmak', 'Gediz', 'Seyhan', 'Asi', 'Zap Suyu', 'Manavgat Çayı']));
+		expect(names('lakes', water)).toEqual(expect.arrayContaining(['Van Gölü', 'Tuz Gölü', 'Salda Gölü', 'Sapanca Gölü', 'Hazar Gölü']));
 		const districts = read('TurkeyDistricts.json').objects.districts.geometries;
 		expect(districts).toHaveLength(973);
 		expect(districts.filter((item: {properties: {province: string}}) => item.properties.province === 'İstanbul')).toHaveLength(39);
 		expect(names('countries', read('World.json'))).toContain('Türkiye');
+	});
+
+	it.runIf(existsSync(path.resolve(__dirname, '..', 'public', 'Geo', 'Turkey.json')))('draws the regions with natural borders that tile the country and cross provinces', async () => {
+		const {feature} = await import('topojson-client');
+		const turkey = JSON.parse(readFileSync(path.resolve(__dirname, '..', 'public', 'Geo', 'Turkey.json'), 'utf8'));
+		const area = (geometry: {type: string; coordinates: number[][][][] | number[][][]}) =>
+			(geometry.type === 'Polygon' ? [geometry.coordinates as number[][][]] : (geometry.coordinates as number[][][][])).reduce(
+				(sum, polygon) =>
+					sum +
+					polygon.reduce((ringSum, ring, index) => {
+						let doubled = 0;
+						for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) doubled += ring[j][0] * ring[i][1] - ring[i][0] * ring[j][1];
+						return ringSum + (index === 0 ? 1 : -1) * Math.abs(doubled / 2);
+					}, 0),
+				0,
+			);
+		const shapes = (object: string) => (feature(turkey, turkey.objects[object]) as unknown as {features: {properties: {name: string}; geometry: never}[]}).features;
+		const country = area(shapes('country')[0].geometry);
+		const regions = shapes('regions');
+		// Together the seven regions cover the country (within half a percent: rounding of the shared borders).
+		expect(regions.reduce((sum, region) => sum + area(region.geometry), 0) / country).toBeCloseTo(1, 2);
+		// Each region's share is near its official one (Doğu Anadolu ≈ 21 %, Güneydoğu ≈ 7.8 %); a drawn map, so within 2.5 points.
+		const share = (name: string) => area(regions.find((region) => region.properties.name === name)!.geometry) / country;
+		expect(Math.abs(share('Doğu Anadolu Bölgesi') - 0.21)).toBeLessThan(0.025);
+		expect(Math.abs(share('Güneydoğu Anadolu Bölgesi') - 0.078)).toBeLessThan(0.025);
+		// Natural borders are not unions of provinces: the regions differ from the province-based ones.
+		const byProvince = shapes('provinceRegions');
+		const blackSea = (list: typeof regions) => area(list.find((region) => region.properties.name === 'Karadeniz Bölgesi')!.geometry);
+		expect(Math.abs(blackSea(regions) - blackSea(byProvince)) / country).toBeGreaterThan(0.005);
+	});
+
+	it('names a credit for each layer that needs one, and none for public-domain data', async () => {
+		const {geoCredit, GEO_FILES} = await import('../src/Configurations/GeoData');
+		expect(geoCredit(GEO_FILES.turkey.src, 'regions')).toMatch(/CC BY 3\.0/);
+		expect(geoCredit(GEO_FILES.turkey.src, 'provinceRegions')).toBeNull();
+		expect(geoCredit(GEO_FILES.turkeyWater.src, 'rivers')).toMatch(/HydroRIVERS/);
+		expect(geoCredit(GEO_FILES.turkeyWater.src, 'lakes')).toBeNull();
+		expect(geoCredit(GEO_FILES.turkeyDistricts.src, 'districts')).toMatch(/OpenStreetMap/);
 	});
 
 	it('accepts maps of the named layers and of a file in public/Geo only', () => {
@@ -217,6 +258,22 @@ describe('animated visuals', () => {
 		expect(sliding.samples.at(-1)!.v).toBe(0);
 		expect(sliding.samples.at(-1)!.x).toBeCloseTo(1.6, 1);
 		expect(Math.min(...sliding.samples.map((sample) => sample.v))).toBeGreaterThanOrEqual(0);
+	});
+
+	it('keeps static and kinetic friction apart: μs·N decides whether it moves, μk·N acts while it slides', () => {
+		const base = {mass: 2, incline: 0, friction: 0.25, staticFriction: 0.4, initialVelocity: 0, time: 2, g: 9.8};
+		// μs·N = 0.4 · 19.6 = 7.84 N: a 6 N pull does not move the box; static friction is exactly 6 N.
+		const held = simulateDynamics({...base, forces: [{label: 'F', magnitude: 6, direction: 'right'}]});
+		expect(held.staticLimit).toBeCloseTo(7.84, 5);
+		expect(held.samples.every((sample) => sample.state === 'static' && sample.x === 0)).toBe(true);
+		expect(held.samples[0].friction).toBeCloseTo(-6, 5);
+		// A 10 N pull beats 7.84 N; sliding, friction is μk·N = 4.9 N, so a = (10 − 4.9) / 2.
+		const sliding = simulateDynamics({...base, forces: [{label: 'F', magnitude: 10, direction: 'right'}]});
+		expect(sliding.samples[50].state).toBe('kinetic');
+		expect(sliding.samples[50].a).toBeCloseTo((10 - 4.9) / 2, 5);
+		// With one coefficient (no staticFriction) the same 6 N pull would start it sliding at μ = 0.25.
+		expect(simulateDynamics({...base, staticFriction: undefined, forces: [{label: 'F', magnitude: 6, direction: 'right'}]}).samples.at(-1)!.x).toBeGreaterThan(0);
+		expect(CourseVisualSchema.safeParse({kind: 'dynamics', mass: 1, friction: 0.5, staticFriction: 0.3}).success).toBe(false);
 	});
 
 	it('slides down an incline at g(sin θ − μ cos θ)', () => {

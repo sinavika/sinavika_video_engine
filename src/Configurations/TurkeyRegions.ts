@@ -2,11 +2,13 @@
  * Turkey's seven geographical regions, by province plate code (TR-01 ...).
  *
  * The regions of the 1941 Geography Congress follow landforms and climate,
- * not provincial borders, and a few provinces lie across two regions. Maps
- * and lessons that colour whole provinces need each province in one region;
- * this table uses the assignment of the school textbooks (MEB), where each
- * province belongs to the region its centre lies in. It is the input of the
- * region shapes in public/Geo/Turkey.json (`npm run geo`).
+ * not provincial borders, and many provinces lie across two regions. Their
+ * natural borders are the `regions` layer of public/Geo/Turkey.json
+ * (scripts/GeoRegions.ts). Lessons that need each province in one region
+ * ("which province is in which region", statistics by province) use this
+ * table: the assignment of the school textbooks (MEB), where a province
+ * belongs to the region its centre lies in. It makes the `provinceRegions`
+ * layer and each province's `region`.
  *
  * To be checked by a geography teacher before it is relied on in a lesson.
  */

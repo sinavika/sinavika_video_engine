@@ -5,18 +5,22 @@
  *
  * Writes TopoJSON files to public/Geo, each with Turkish names in `name`:
  *
- *   Turkey.json           provinces (81, with plate code and region), regions (7),
- *                         country (outline), rivers, lakes
+ *   Turkey.json           provinces (81, with plate code and region), regions (7, natural borders),
+ *                         provinceRegions (7, unions of provinces), country (outline)
+ *   TurkeyWater.json      rivers (traced on HydroRIVERS), lakes
  *   TurkeyDistricts.json  districts (973, with their province)
  *   World.json            countries of the world
  *   Sources.json          where each layer comes from and its licence
  *
  * A map visual uses them as {"kind": "file", "src": "Geo/Turkey.json", "object": "provinces"}.
  *
- * Sources: Natural Earth 5.1.2 (public domain) for provinces, countries,
- * rivers and lakes; geoBoundaries (OpenStreetMap, ODbL) for districts, which
- * requires the credit "© OpenStreetMap katkıda bulunanlar" on maps that show
- * them. Downloads are about 60 MB once; only what is needed is kept.
+ * Sources: Natural Earth 5.1.2 (public domain) for provinces, countries and
+ * lakes; geoBoundaries (OpenStreetMap, ODbL) for districts, which requires
+ * the credit "© OpenStreetMap katkıda bulunanlar" on maps that show them;
+ * the regional maps of The Emirr on Wikimedia Commons (CC BY 3.0) for the
+ * regions' natural borders (scripts/GeoRegions.ts); HydroRIVERS (free, with
+ * credit) for rivers (scripts/GeoRivers.ts). Maps show each credit when they
+ * draw that layer. Downloads are about 200 MB once; only what is needed is kept.
  */
 import {mkdir, writeFile} from 'node:fs/promises';
 import path from 'node:path';
@@ -24,7 +28,10 @@ import type {Feature, FeatureCollection, Geometry, MultiPolygon, Position} from 
 import {merge} from 'topojson-client';
 import {topology} from 'topojson-server';
 import type {GeometryCollection, Topology} from 'topojson-specification';
+import polygonClipping, {type MultiPolygon as ClipMultiPolygon} from 'polygon-clipping';
 import {TURKEY_REGIONS, regionOfProvince} from '../src/Configurations/TurkeyRegions';
+import {REGION_MAPS, buildRegions} from './GeoRegions';
+import {HYDRORIVERS_URL, RIVERS, readReaches, traceRivers} from './GeoRivers';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const GEO = path.join(ROOT, 'public', 'Geo');
@@ -37,29 +44,41 @@ const AROUND_TURKEY = [25.5, 35.8, 44.9, 42.2] as const;
 /** Coordinates are rounded to this grid (about 100 m), which is far below what a video can show. */
 const QUANTIZATION = 1e5;
 
-/** Turkish names of the rivers and lakes Natural Earth has in Turkey. Others are left out. */
-const WATER_NAMES: Record<string, string> = {
-	'Al Furat': 'Fırat',
-	Firat: 'Fırat',
-	Aras: 'Aras',
-	'Byk Menderes': 'Büyük Menderes',
-	Ceyhan: 'Ceyhan',
-	Dicle: 'Dicle',
-	Tigris: 'Dicle',
-	Evros: 'Meriç',
-	Kelkit: 'Kelkit',
-	'Kiz?lirmak': 'Kızılırmak',
-	Kura: 'Kura',
-	Murat: 'Murat',
-	Sakarya: 'Sakarya',
-	Simav: 'Simav',
+/**
+ * Turkish names of the lakes Natural Earth has in Turkey (its world set and its European supplement), by
+ * Natural Earth's own name; others are left out. Two are named after a mountain beside them in the data and
+ * are put right by their position: "Saksak Dagi" is Karakaya Baraj Gölü, "Hazar Dagi" is Hazar Gölü.
+ */
+const LAKE_NAMES: Record<string, string> = {
 	'Ataturk Barajt': 'Atatürk Baraj Gölü',
 	'Beyşehir': 'Beyşehir Gölü',
 	'Eğirdir': 'Eğirdir Gölü',
 	'Keban Baraji': 'Keban Baraj Gölü',
 	'Lake Tuz': 'Tuz Gölü',
 	'Lake Van': 'Van Gölü',
+	'Saksak Dagi': 'Karakaya Baraj Gölü',
+	'Akşehir Gölü': 'Akşehir Gölü',
+	'Bafa Gölü': 'Bafa Gölü',
+	'Burdur Gölü': 'Burdur Gölü',
+	'Durusu Golu': 'Terkos (Durusu) Gölü',
+	'Erçek': 'Erçek Gölü',
+	'Hazar Dagi': 'Hazar Gölü',
+	'Kuş Gölü': 'Kuş (Manyas) Gölü',
+	'Kyceiz Gölü': 'Köyceğiz Gölü',
+	'Marmara Gölü': 'Marmara Gölü',
+	'Salda Gölü': 'Salda Gölü',
+	'Sapanca Gölü': 'Sapanca Gölü',
+	'Seyfe Gölü': 'Seyfe Gölü',
+	'Seyhan Baraji': 'Seyhan Baraj Gölü',
+	'Ulubat Gölü': 'Uluabat Gölü',
+	'Yay Gölü': 'Yay Gölü',
+	'Çıldır': 'Çıldır Gölü',
+	'İznik Gölü': 'İznik Gölü',
 };
+/** The regional maps of Wikimedia Commons, by file name. */
+const commonsFile = (file: string) => `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}`;
+/** Wikimedia and HydroSHEDS ask for a user agent that names the tool. */
+const HEADERS = {'User-Agent': 'SinavikaVideoEngine/1.0 (npm run geo)'};
 /** Official spellings where Natural Earth uses an older one. */
 const PROVINCE_SPELLING: Record<string, string> = {'Elâzığ': 'Elazığ', 'Hakkâri': 'Hakkari'};
 
@@ -67,10 +86,17 @@ type Props = Record<string, unknown>;
 
 const download = async (url: string): Promise<FeatureCollection<Geometry, Props>> => {
 	console.log(`indiriliyor: ${url}`);
-	const response = await fetch(url);
+	const response = await fetch(url, {headers: HEADERS});
 	if (!response.ok) throw new Error(`${url}: ${response.status}`);
 	return (await response.json()) as FeatureCollection<Geometry, Props>;
 };
+const downloadBytes = async (url: string): Promise<Uint8Array> => {
+	console.log(`indiriliyor: ${url}`);
+	const response = await fetch(url, {headers: HEADERS});
+	if (!response.ok) throw new Error(`${url}: ${response.status}`);
+	return new Uint8Array(await response.arrayBuffer());
+};
+const downloadText = async (url: string): Promise<string> => new TextDecoder().decode(await downloadBytes(url));
 
 const positions = function* (coordinates: unknown): Generator<Position> {
 	if (!Array.isArray(coordinates) || coordinates.length === 0) return;
@@ -128,20 +154,42 @@ const provinces = (await download(`${NATURAL_EARTH}/ne_10m_admin_1_states_provin
 	});
 if (provinces.length !== 81) throw new Error(`Expected 81 provinces, got ${provinces.length}.`);
 
-// Rivers and lakes in and around Turkey, under their Turkish names.
-const water = (features: Feature<Geometry, Props>[]) =>
-	features.filter((item) => nearTurkey(item.geometry) && WATER_NAMES[String(item.properties.name)]).map((item) => feature(item.geometry, {name: WATER_NAMES[String(item.properties.name)]}));
-const rivers = water((await download(`${NATURAL_EARTH}/ne_10m_rivers_lake_centerlines.geojson`)).features);
-const lakes = water((await download(`${NATURAL_EARTH}/ne_10m_lakes.geojson`)).features);
+// Lakes in and around Turkey, under their Turkish names.
+const lakes = [
+	...(await download(`${NATURAL_EARTH}/ne_10m_lakes.geojson`)).features,
+	...(await download(`${NATURAL_EARTH}/ne_10m_lakes_europe.geojson`)).features,
+]
+	.filter((item) => item.geometry && nearTurkey(item.geometry) && LAKE_NAMES[String(item.properties.name)])
+	.map((item) => feature(item.geometry, {name: LAKE_NAMES[String(item.properties.name)]}));
 
-// Regions and the country outline are unions of provinces, so their borders follow the provinces.
+// Rivers, traced on HydroRIVERS from the sources and mouths in scripts/GeoRivers.ts; the few it cannot carry come from Natural Earth.
+const {traced, problems: riverProblems} = traceRivers(await readReaches(await downloadBytes(HYDRORIVERS_URL)));
+riverProblems.forEach((problem) => console.warn(`  akarsu atlandı: ${problem}`));
+const europeRivers = (await download(`${NATURAL_EARTH}/ne_10m_rivers_europe.geojson`)).features;
+const rivers = [
+	...traced.map((river) => feature({type: 'MultiLineString', coordinates: river.lines}, {name: river.name, wikidata: river.wikidata, source: 'HydroRIVERS'})),
+	...RIVERS.filter((spec) => spec.naturalEarth).flatMap((spec) =>
+		europeRivers.filter((item) => item.properties.name === spec.naturalEarth && item.geometry).map((item) => feature(item.geometry, {name: spec.name, wikidata: spec.wikidata, source: 'Natural Earth'})),
+	),
+];
+await write('TurkeyWater.json', {rivers: collection(rivers), lakes: collection(lakes)});
+
+// The country outline and the textbook regions are unions of provinces (each province in one region).
 const provinceTopology = topology({provinces: collection(provinces)}, QUANTIZATION) as unknown as Topology;
 const provinceGeometries = (provinceTopology.objects.provinces as GeometryCollection<Props>).geometries;
-const regions = Object.values(TURKEY_REGIONS).map((region) =>
+const provinceRegions = Object.values(TURKEY_REGIONS).map((region) =>
 	feature(merge(provinceTopology, provinceGeometries.filter((item) => (item.properties as Props | undefined)?.region === region.name) as never) as MultiPolygon, {name: region.name}),
 );
-const country = feature(merge(provinceTopology, provinceGeometries as never) as MultiPolygon, {name: 'Türkiye'});
-await write('Turkey.json', {provinces: collection(provinces), regions: collection(regions), country: collection([country]), rivers: collection(rivers), lakes: collection(lakes)});
+const countryShape = merge(provinceTopology, provinceGeometries as never) as MultiPolygon;
+const country = feature(countryShape, {name: 'Türkiye'});
+
+// The regions with their natural borders, from the regional maps (scripts/GeoRegions.ts).
+const regionMaps = [];
+for (const map of REGION_MAPS) regionMaps.push({name: map.name, svg: await downloadText(commonsFile(map.file))});
+const natural = buildRegions(regionMaps, polygonClipping.union(countryShape.coordinates as ClipMultiPolygon));
+console.log(`  bölge haritaları oturtuldu (${natural.fit.fit.mercator ? 'Mercator' : 'eş dikdörtgen'}): dış sınır farkı medyan ${natural.fit.medianKm.toFixed(1)} km, %90 ${natural.fit.p90Km.toFixed(1)} km`);
+const regions = natural.regions.map((region) => feature({type: 'MultiPolygon', coordinates: region.shape}, {name: region.name}));
+await write('Turkey.json', {provinces: collection(provinces), regions: collection(regions), provinceRegions: collection(provinceRegions), country: collection([country])});
 
 /**
  * Point-in-polygon on longitude and latitude (ray casting). At the scale of a
@@ -214,7 +262,26 @@ await writeFile(
 	path.join(GEO, 'Sources.json'),
 	`${JSON.stringify(
 		{
-			'Turkey.json': {source: 'Natural Earth 5.1.2: Admin 1 (1:10m), rivers and lake centerlines (1:10m), lakes (1:10m)', url: 'https://www.naturalearthdata.com/', license: 'Public domain', credit: null, regions: 'Union of provinces by src/Configurations/TurkeyRegions.ts', accessed},
+			'Turkey.json': {
+				source: 'Natural Earth 5.1.2: Admin 1 (1:10m)',
+				url: 'https://www.naturalearthdata.com/',
+				license: 'Public domain',
+				credit: null,
+				regions: {
+					source: 'Regional location maps by The Emirr, Wikimedia Commons (2010), georeferenced to the Natural Earth outline; coast and borders from Natural Earth',
+					files: REGION_MAPS.map((map) => commonsFile(map.file)),
+					license: 'CC BY 3.0',
+					credit: 'Bölge sınırları: The Emirr / Wikimedia Commons, CC BY 3.0',
+					fit: {projection: natural.fit.fit.mercator ? 'Mercator' : 'equirectangular', medianKm: Number(natural.fit.medianKm.toFixed(1)), p90Km: Number(natural.fit.p90Km.toFixed(1))},
+				},
+				provinceRegions: 'Union of provinces by src/Configurations/TurkeyRegions.ts (textbook assignment of each province to one region)',
+				accessed,
+			},
+			'TurkeyWater.json': {
+				rivers: {source: 'HydroRIVERS v1.0 (Lehner & Grill 2013), traced from Wikidata sources and mouths; Çarşamba Çayı from Natural Earth', url: 'https://www.hydrosheds.org/products/hydrorivers', license: 'HydroSHEDS licence (free for commercial and non-commercial use, with credit)', credit: 'Akarsular: HydroRIVERS (Lehner & Grill 2013, hydrosheds.org)', rivers: traced.map((river) => ({name: river.name, wikidata: river.wikidata, km: river.km, method: river.method})), skipped: riverProblems},
+				lakes: {source: 'Natural Earth 5.1.2: lakes (1:10m) and the European supplement', license: 'Public domain', credit: null},
+				accessed,
+			},
 			'TurkeyDistricts.json': {source: 'geoBoundaries gbOpen TUR ADM2 (OpenStreetMap, OSM Boundaries), simplified', url: 'https://www.geoboundaries.org/', license: 'ODbL 1.0', credit: '© OpenStreetMap katkıda bulunanlar', accessed},
 			'World.json': {source: 'Natural Earth 5.1.2: Admin 0 countries (1:50m), Turkish names (NAME_TR)', url: 'https://www.naturalearthdata.com/', license: 'Public domain', credit: null, accessed},
 		},

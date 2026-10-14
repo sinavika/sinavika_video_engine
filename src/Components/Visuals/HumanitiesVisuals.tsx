@@ -142,7 +142,46 @@ export const MapVisual: React.FC<VisualBoxProps & {visual: MapSpec}> = ({visual,
 	if (!drawing) return <svg width={width} height={height} />;
 	const {projection, path, base, overlays, highlighted} = drawing;
 	const point = (at: [number, number]) => projection(at) ?? [0, 0];
-	const credits = [...new Set([baseSource.src, ...overlaySources.map((source) => source.src)].map(geoCredit).filter(Boolean))];
+	const credits = [...new Set([baseSource, ...overlaySources].map((source) => geoCredit(source.src, source.object)).filter(Boolean))];
+
+	// Names of rivers and lakes: each once, on its largest piece, largest features first; a name that would cover
+	// one already placed (or a highlight's or marker's label) is left out rather than piled on top.
+	const placed = [
+		...visual.highlights.flatMap((item) => {
+			const area = base.find((entry) => nameOf(entry) === item.name);
+			if (!area || !item.label) return [];
+			const [cx, cy] = path.centroid(area);
+			return [labelBox(cx, cy, item.label, u(1), false)];
+		}),
+		...visual.markers.map((marker) => {
+			const [mx, my] = point(marker.at);
+			return labelBox(mx, my - u(36), marker.label, u(1), false);
+		}),
+	];
+	const overlayLabels: {key: string; x: number; y: number; text: string}[] = [];
+	const candidates = overlays
+		.filter((overlay) => overlay.labels)
+		.flatMap((overlay) => {
+			const largest = new Map<string, {item: Features[number]; size: number}>();
+			for (const item of overlay.features) {
+				// Pieces whose middle is off the map cannot carry the label.
+				const [mx, my] = path.centroid(item);
+				if (!(mx >= 0 && mx <= width && my >= 0 && my <= height)) continue;
+				const size = overlay.draw === 'lines' ? path.measure(item) * 40 : path.area(item);
+				const best = largest.get(nameOf(item));
+				if (!best || size > best.size) largest.set(nameOf(item), {item, size});
+			}
+			return [...largest.entries()].map(([name, {item, size}]) => ({key: `${overlay.layer}-${name}`, name, item, size}));
+		})
+		.sort((a, b) => b.size - a.size);
+	for (const candidate of candidates) {
+		const [cx, cy] = path.centroid(candidate.item);
+		if (!Number.isFinite(cx)) continue;
+		const box = labelBox(cx, cy, candidate.name, u(1), true);
+		if (placed.some((other) => box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top)) continue;
+		placed.push(box);
+		overlayLabels.push({key: candidate.key, x: cx, y: cy, text: candidate.name});
+	}
 
 	return (
 		<svg width={width} height={height} style={{overflow: 'hidden', fontFamily: palette.fontBody, borderRadius: u(24)}}>
@@ -182,24 +221,9 @@ export const MapVisual: React.FC<VisualBoxProps & {visual: MapSpec}> = ({visual,
 				);
 			})}
 			<g opacity={marks}>
-				{overlays
-					.filter((overlay) => overlay.labels)
-					.flatMap((overlay) => {
-						// A name is written once, on its largest piece: a river comes in many segments.
-						const largest = new Map<string, {item: Features[number]; size: number}>();
-						for (const item of overlay.features) {
-							// Pieces whose middle is off the map cannot carry the label.
-							const [mx, my] = path.centroid(item);
-							if (!(mx >= 0 && mx <= width && my >= 0 && my <= height)) continue;
-							const size = overlay.draw === 'lines' ? path.measure(item) : path.area(item);
-							const best = largest.get(nameOf(item));
-							if (!best || size > best.size) largest.set(nameOf(item), {item, size});
-						}
-						return [...largest.entries()].map(([name, {item}]) => {
-							const [cx, cy] = path.centroid(item);
-							return Number.isFinite(cx) ? <MapLabel key={`${overlay.layer}-${name}`} x={cx} y={cy} text={name} small /> : null;
-						});
-					})}
+				{overlayLabels.map((label) => (
+					<MapLabel key={label.key} x={label.x} y={label.y} text={label.text} small />
+				))}
 				{visual.highlights.map((item) => {
 					const area = base.find((entry) => nameOf(entry) === item.name);
 					if (!area || !item.label) return null;
@@ -227,6 +251,13 @@ export const MapVisual: React.FC<VisualBoxProps & {visual: MapSpec}> = ({visual,
 			) : null}
 		</svg>
 	);
+};
+
+/** The box a label takes, as MapLabel draws it. */
+const labelBox = (x: number, y: number, text: string, unit: number, small: boolean) => {
+	const scale = unit * (small ? 0.8 : 1);
+	const width = 18 * scale * text.length + 28 * scale;
+	return {left: x - width / 2, right: x + width / 2, top: y - 24 * scale, bottom: y + 20 * scale};
 };
 
 const MapLabel: React.FC<{x: number; y: number; text: string; small?: boolean}> = ({x, y, text, small = false}) => {
