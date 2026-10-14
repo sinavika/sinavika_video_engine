@@ -2,10 +2,10 @@
 
 - **Yayın:** 14 Ekim 2026, 18:00 (İstanbul) — Instagram Reels, TikTok, YouTube Shorts
 - **Şablon:** `ExamJourney` (yeni), `SinavikaLight`, 1080×1920, 60 fps, müzik stili `Pulse`
-- **Süre:** 16,6 sn
+- **Süre:** 16,8 sn
 - **İş dosyası:** [`Job.json`](Job.json) · **Gönderi dosyası:** [`Post.json`](Post.json)
-- **Çıktı:** `Outputs/Videos/05_Sinavika_Bir_Deneme_Hikayesi.mp4` ve `…_Kapak.png`
-- **Sunucu:** gönderi `e9ea0235-69b3-4ad7-a0b4-1d44b081425c`, admin onayı bekliyor. Reddedilen `bd306a1f-828c-4956-869f-7d21a5cc8e4f` gönderisinin yerine geçer.
+- **Çıktı:** `Outputs/Videos/07_Sinavika_Bir_Deneme_Hikayesi.mp4` ve `…_Kapak.png`
+- **Sunucu:** gönderi `d620c0cb-538a-433b-816a-7a557d976ec7`, admin onayı bekliyor (üçüncü sürüm: Türkçe ses ve kodlama iyileştirmesi).
 
 ## Neden yeniden üretildi
 
@@ -39,14 +39,15 @@ Sahne süreleri seslendirmenin gerçek uzunluğundan çıkar; anlatım altyazı 
 
 ## Ses
 
-- **Seslendiren: Bella (Eleven v3, tempo 1,0, abartısız ayar) — ana dili Türkçe değil.** Ret notu sesli üretim istediği ve ana dili Türkçe marka sesleri hesapta hâlâ kullanılamadığı için (ücretsiz plan; `npm run voices`) yedek ses bilerek kullanıldı (`"voiceover": {"standIn": true}`).
-- Metin tek istekte, bütün olarak üretildi (149 karakter); hız değiştirilmedi.
-- Marka sesi hesaba eklenince `Job.json` içinde `"voiceover": true` yapılıp yeniden üretilir; görüntü yeni sese göre kendiliğinden zamanlanır.
+- **Seslendiren: Lisa** — ana dili Türkçe (İstanbul), marka sesi. Model: Multilingual v2 (Lisa'nın doğrulandığı en iyi model), tempo 1,0, abartısız ayar, 192 kbps kaynak.
+- Metin tek istekte, bütün olarak üretildi; görüntü sesin gerçek sürelerine göre zamanlandı.
+- Ses, yazıya dökülerek denetlendi (ElevenLabs Scribe): çıkan metin, "Sınavika" dahil, yazılan metinle kelimesi kelimesine aynı.
 
 ## Müzik ve ses tasarımı
 
-- Kodla üretilen özgün müzik, `Pulse` stili (bu video için eklendi). Her satır girişinde hava sesi, sahne değişimlerinde yumuşak vuruş, kapanışta çınlayan Do majör akoru.
-- Ölçüm: **−15,1 LUFS, −1,0 dBTP**.
+- Müzik bu video için ElevenLabs Music ile yaptırıldı; tarifi `Job.json` içindeki `soundtrack.music` alanındadır. Önceki sürümlerdeki kodla üretilen müzik ve efektler beğenilmediği için kaldırıldı.
+- Seslendirme karışıma seviyelenmiş olarak girer (−20 LUFS dolayı), müzik 16 dB altındadır. Önceki sürümdeki cızırtının nedeni, tam seviyede gelen sesin müzikle toplanınca taşmasıydı.
+- Ana çıkış −14 LUFS; ses yazıya dökülerek denetlendi, metinle aynı.
 
 ## Kullanılan varlıklar ve doğruluk
 

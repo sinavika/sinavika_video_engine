@@ -29,10 +29,11 @@ describe('video cover', () => {
 
 	it('takes its texts from the content, highlights the last word, and lets the job replace them', () => {
 		const automatic = videoCoverJob(resolveVideoJob(sample('QuickRevision')));
-		expect(automatic.content).toMatchObject({title: 'Ses Olayları', emphasis: 'Olayları', badge: 'Türkçe'});
+		expect(automatic.content).toMatchObject({title: 'Ses Olayları', emphasis: 'Olayları', lesson: 'Türkçe', exams: ['KPSS', 'YKS']});
+		expect(automatic.content.badge).toBeUndefined();
 
-		const custom = videoCoverJob(resolveVideoJob({...sample('QuickRevision'), cover: {title: 'Ses olayları 60 saniyede', emphasis: '60 saniyede', glyph: '60'}}));
-		expect(custom.content).toMatchObject({title: 'Ses olayları 60 saniyede', emphasis: '60 saniyede', glyph: '60', badge: 'Türkçe'});
+		const custom = videoCoverJob(resolveVideoJob({...sample('QuickRevision'), cover: {title: 'Ses olayları 60 saniyede', emphasis: '60 saniyede', glyph: '60', exams: ['KPSS']}}));
+		expect(custom.content).toMatchObject({title: 'Ses olayları 60 saniyede', emphasis: '60 saniyede', glyph: '60', lesson: 'Türkçe', exams: ['KPSS']});
 	});
 
 	it('shortens long titles at a word and drops formula marks', () => {

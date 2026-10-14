@@ -1,9 +1,10 @@
 import {createHash} from 'node:crypto';
 import {existsSync} from 'node:fs';
-import {mkdir, readFile, writeFile} from 'node:fs/promises';
+import {mkdir, readFile, rm, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {VOICEOVER_DIRECTORY, VOICE_MODELS} from '../Configurations/Voices';
 import type {VoiceClips} from '../Scenes/Voiceover';
+import {AUDIO_LEVELS, levelAudio} from './AudioLeveling';
 import {ELEVENLABS_SPEECH, SpeechError, type Narration, type SpeechBackend} from './ElevenLabsSpeech';
 import {groupLines, joinScript, segmentLines, type LineSegment} from './NarrationScript';
 import {castVoice, type VoiceCast, type VoiceoverRequest} from './VoiceCasting';
@@ -92,7 +93,7 @@ export const generateVoiceover = async (
 		const groupTexts = indexes.map((index) => texts[index]);
 		const script = joinScript(groupTexts);
 		const name = narrationName(script, cast, speech.cacheTag);
-		return {indexes, texts: groupTexts, script, name, audio: path.join(directory, `${name}.mp3`), segments: path.join(directory, `${name}.json`)};
+		return {indexes, texts: groupTexts, script, name, audio: path.join(directory, `${name}.wav`), segments: path.join(directory, `${name}.json`)};
 	});
 
 	const cached = (group: (typeof planned)[number]) => existsSync(group.audio) && existsSync(group.segments);
@@ -115,14 +116,18 @@ export const generateVoiceover = async (
 			} catch (error) {
 				throw new VoiceoverError(error instanceof Error ? error.message : String(error), error);
 			}
-			await writeFile(group.audio, audio);
+			// The service delivers speech at full scale; it is stored at the level narration has in a mix (see AudioLeveling).
+			const delivered = path.join(directory, `${group.name}.source.mp3`);
+			await writeFile(delivered, audio);
+			await levelAudio(delivered, group.audio, AUDIO_LEVELS.narration);
+			await rm(delivered, {force: true});
 			await writeFile(group.segments, JSON.stringify(segments));
 		}
 		const segments = JSON.parse(await readFile(group.segments, 'utf8')) as LineSegment[];
 		group.indexes.forEach((lineIndex, position) => {
 			const {startSeconds, endSeconds} = segments[position];
 			clips[lines[lineIndex].id] = {
-				src: `${VOICEOVER_DIRECTORY}/${group.name}.mp3`,
+				src: `${VOICEOVER_DIRECTORY}/${group.name}.wav`,
 				startSeconds,
 				// The line is played at the cast's pace, so that is how long it lasts in the video.
 				durationSeconds: (endSeconds - startSeconds) / cast.pace,

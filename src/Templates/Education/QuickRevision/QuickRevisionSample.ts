@@ -4,6 +4,7 @@ import type {QuickRevisionSchema} from './QuickRevisionSchema';
 export const QUICK_REVISION_SAMPLE: z.input<typeof QuickRevisionSchema> = {
 	title: "Newton'ın Hareket Yasaları",
 	subject: 'Fizik',
+	exams: ['YKS'],
 	cards: [
 		{
 			kind: 'term',

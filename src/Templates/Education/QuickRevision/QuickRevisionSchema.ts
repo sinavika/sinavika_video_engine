@@ -24,7 +24,10 @@ export type RevisionCard = z.infer<typeof RevisionCardSchema>;
 
 const QuickRevisionShape = z.object({
 	title: plainText(60),
+	/** The lesson: "Türkçe", "Matematik". Shown in the corner of the cover and the opening, and it picks the lesson colour. */
 	subject: plainText(40).optional(),
+	/** The exams this revision is for, shown on the cover and the opening: "KPSS", "YKS". */
+	exams: z.array(plainText(10)).max(4).default([]),
 	cards: z.array(RevisionCardSchema).min(3).max(12),
 	summary: z.array(richText(90)).min(1).max(4),
 	/** Voice-over text per line id, replacing the automatic line. */

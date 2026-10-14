@@ -63,15 +63,19 @@ export const VideoJobSchema = z.object({
 				emphasis: z.string().trim().min(1).max(30).optional(),
 				kicker: z.string().trim().min(1).max(30).optional(),
 				badge: z.string().trim().min(1).max(14).optional(),
+				lesson: z.string().trim().min(1).max(24).optional(),
+				exams: z.array(z.string().trim().min(1).max(10)).max(4).optional(),
 				glyph: z.string().trim().min(1).max(4).optional(),
 			}),
 		])
 		.optional(),
 	/**
-	 * Adds original music and sound design, composed for this video's timing,
-	 * under the narration, and masters the result to -14 LUFS. See Services/SoundtrackComposer.
+	 * Adds music under the narration and masters the result to -14 LUFS.
+	 * `{music: "..."}` describes the music in words and has it made for this
+	 * video (ElevenLabs Music, see Services/MusicLibrary); `true` or a style name
+	 * uses the music the engine composes itself (Services/SoundtrackComposer).
 	 */
-	soundtrack: z.union([z.boolean(), z.enum(SOUNDTRACK_STYLE_KEYS)]).default(false),
+	soundtrack: z.union([z.boolean(), z.enum(SOUNDTRACK_STYLE_KEYS), z.object({music: z.string().trim().min(20).max(900)})]).default(false),
 	/** Validated against the chosen template's content schema. */
 	content: z.unknown(),
 });
@@ -99,6 +103,8 @@ export type ResolvedVideoJob = {
 	/** Whether the video gets music and sound design. */
 	soundtrack: boolean;
 	soundtrackStyle: SoundtrackStyleKey;
+	/** A description of the music to have made for this video, instead of the engine's own. */
+	soundtrackMusic: string | null;
 	/** What the job asks of the narrator, or null for a silent video. */
 	voiceover: VoiceoverRequest | null;
 	/** Who ended up narrating. Set once the voice-over has been generated. */
@@ -128,6 +134,12 @@ export const contentText = (content: unknown, key: string): string | undefined =
 	return typeof value === 'string' ? value : undefined;
 };
 
+/** A list of short texts of the content, e.g. the exams a video is for. Empty when the content has none. */
+export const contentList = (content: unknown, key: string): string[] => {
+	const value = ((content ?? {}) as Record<string, unknown>)[key];
+	return Array.isArray(value) ? value.filter((item): item is string => typeof item === 'string') : [];
+};
+
 const contentName = (content: unknown, fallback: string): string => {
 	const text = (key: string) => contentText(content, key);
 	const headline = text('title') ?? text('concept') ?? fallback;
@@ -155,7 +167,7 @@ export const resolveVideoJob = (raw: unknown): ResolvedVideoJob => {
 		theme: job.theme ?? template.defaultTheme,
 		fps: job.fps,
 		content: job.content,
-		lesson: job.lesson ?? contentText(job.content, 'subject'),
+		lesson: job.lesson ?? contentText(job.content, 'subject') ?? contentText(job.content, 'lessonName'),
 	});
 	if (!props.success) throw new VideoJobValidationError(describeIssues(props.error));
 
@@ -178,6 +190,7 @@ export const resolveVideoJob = (raw: unknown): ResolvedVideoJob => {
 		cover: job.cover === undefined ? null : job.cover === true ? {} : job.cover,
 		soundtrack: job.soundtrack !== false,
 		soundtrackStyle: typeof job.soundtrack === 'string' ? job.soundtrack : DEFAULT_SOUNDTRACK_STYLE,
+		soundtrackMusic: typeof job.soundtrack === 'object' ? job.soundtrack.music : null,
 		voiceover:
 			job.voiceover === false
 				? null

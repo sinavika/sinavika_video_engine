@@ -4,11 +4,14 @@ import {copyFile, mkdir, rename} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {bundle} from '@remotion/bundler';
-import {RenderInternals, renderMedia, renderStill, selectComposition} from '@remotion/renderer';
+import {renderMedia, renderStill, selectComposition} from '@remotion/renderer';
 import {VIDEO_COVER} from '../Configurations/VideoCover';
+import {VIDEO_ENCODING} from '../Configurations/VideoFormats';
 import {planTemplateScenes} from '../Scenes/SceneSeries';
 import {VOICE_LEAD_SECONDS} from '../Scenes/Voiceover';
+import {AUDIO_LEVELS, ffmpeg, masterFilter, measureLoudness} from '../Services/AudioLeveling';
 import type {SpeechBackend} from '../Services/ElevenLabsSpeech';
+import {writeMusicBed} from '../Services/MusicLibrary';
 import {saveNumberedOutput} from '../Services/OutputFiles';
 import type {VoiceCast} from '../Services/VoiceCasting';
 import {writeSoundtrack, type SoundtrackCues} from '../Services/SoundtrackComposer';
@@ -183,7 +186,11 @@ const soundtrackCues = (job: ResolvedVideoJob): SoundtrackCues => {
 const attachSoundtrack = async (job: ResolvedVideoJob, serveUrl: string): Promise<ResolvedVideoJob> => {
 	try {
 		const soundtrackSrc = `Soundtracks/${randomUUID()}.wav`;
-		await writeSoundtrack(soundtrackCues(job), path.join(serveUrl, 'public', soundtrackSrc), job.soundtrackStyle);
+		const cues = soundtrackCues(job);
+		const outputPath = path.join(serveUrl, 'public', soundtrackSrc);
+		await mkdir(path.dirname(outputPath), {recursive: true});
+		if (job.soundtrackMusic) await writeMusicBed({description: job.soundtrackMusic, videoSeconds: cues.durationSeconds, publicDirectory: PUBLIC_DIRECTORY, outputPath});
+		else await writeSoundtrack(cues, outputPath, job.soundtrackStyle);
 		return {...job, inputProps: {...job.inputProps, soundtrackSrc}};
 	} catch (error) {
 		throw new VideoRenderError('rendering', error);
@@ -252,6 +259,9 @@ export const renderVideo = async (rawJob: unknown, options: RenderOptions): Prom
 			composition,
 			serveUrl,
 			codec: 'h264',
+			crf: VIDEO_ENCODING.crf,
+			x264Preset: VIDEO_ENCODING.x264Preset,
+			audioBitrate: VIDEO_ENCODING.audioBitrate,
 			// Standard-range BT.709 and a (silent) audio track: what players and social platforms expect.
 			colorSpace: 'bt709',
 			enforceAudioTrack: true,
@@ -269,7 +279,8 @@ export const renderVideo = async (rawJob: unknown, options: RenderOptions): Prom
 					totalFrames: composition.durationInFrames,
 				}),
 		});
-		await finishFile(outputPath, Boolean(job.inputProps.soundtrackSrc));
+		const audioWarning = await finishFile(outputPath, Boolean(job.inputProps.soundtrackSrc));
+		if (audioWarning) warnings.push(audioWarning);
 	} catch (error) {
 		throw new VideoRenderError('rendering', error);
 	}
@@ -284,18 +295,16 @@ export const renderVideo = async (rawJob: unknown, options: RenderOptions): Prom
  * and effects is brought to -14 LUFS with a -1 dB true-peak ceiling, the
  * level the platforms play at. Other videos keep their audio untouched.
  */
-const finishFile = async (file: string, master: boolean): Promise<void> => {
+/** Finishes the file and returns a warning when its sound was cut off in the mix. */
+const finishFile = async (file: string, master: boolean): Promise<string | null> => {
 	const clean = `${file}.clean.mp4`;
-	const audio = master ? ['-c:v', 'copy', '-af', 'loudnorm=I=-14:TP=-1:LRA=11', '-ar', '48000', '-c:a', 'aac', '-b:a', '256k'] : ['-c', 'copy'];
-	await RenderInternals.callFf({
-		bin: 'ffmpeg',
-		args: ['-y', '-i', file, '-map', '0', ...audio, '-map_metadata', '-1', '-fflags', '+bitexact', '-movflags', '+faststart', clean],
-		indent: false,
-		logLevel: 'error',
-		binariesDirectory: null,
-		cancelSignal: undefined,
-	});
+	const measured = master ? await measureLoudness(file) : null;
+	const audio = master ? ['-c:v', 'copy', '-af', masterFilter(measured), '-ar', '48000', '-c:a', 'aac', '-b:a', VIDEO_ENCODING.audioBitrate] : ['-c', 'copy'];
+	await ffmpeg(['-y', '-i', file, '-map', '0', ...audio, '-map_metadata', '-1', '-fflags', '+bitexact', '-movflags', '+faststart', clean]);
 	await rename(clean, file);
+	return measured && measured.truePeak > AUDIO_LEVELS.clippingTruePeak
+		? `Audio mix peaks at ${measured.truePeak} dBTP before mastering: voice and music together reach full scale and may crackle.`
+		: null;
 };
 
 export type NumberedRenderResult = RenderResult & {

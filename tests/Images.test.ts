@@ -25,7 +25,7 @@ const issuesOf = (job: unknown): string[] => {
 };
 
 describe('image template registry', () => {
-	it('covers the twelve image categories', () => {
+	it('covers the thirteen image categories', () => {
 		expect([...IMAGE_CATEGORIES].sort()).toEqual(
 			[
 				'Announcements',
@@ -36,6 +36,7 @@ describe('image template registry', () => {
 				'HookContent',
 				'Infographics',
 				'MobilePromotion',
+				'ProfileGrid',
 				'QuestionSolution',
 				'Thumbnails',
 				'TopicExplanation',
@@ -53,7 +54,7 @@ describe('image template registry', () => {
 
 	it('is independent of the video registry', () => {
 		const videoIds = TEMPLATES.map((template) => template.id);
-		expect(videoIds).toEqual(['QuestionSolution', 'TopicExplanation', 'QuickRevision', 'ConceptExplanation', 'ExamPreparation', 'AppPromotion', 'ExamJourney']);
+		expect(videoIds).toEqual(['QuestionSolution', 'TopicExplanation', 'QuickRevision', 'ConceptExplanation', 'ExamPreparation', 'AppPromotion', 'ExamJourney', 'CourseLesson', 'CourseShort']);
 		// Same-named categories exist on both sides; composition ids must still not collide.
 		IMAGE_TEMPLATES.forEach((template) => expect(imageCompositionId(template.category, template.variant).startsWith('Image-')).toBe(true));
 	});

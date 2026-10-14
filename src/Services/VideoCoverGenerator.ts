@@ -1,5 +1,5 @@
 import {renderImage} from '../Images/Renderers/ImageRenderer';
-import {contentText, type ResolvedVideoJob} from '../Renderers/VideoJob';
+import {contentList, contentText, type ResolvedVideoJob} from '../Renderers/VideoJob';
 
 /**
  * Builds and renders the cover of a video: the VideoCover design, in the
@@ -8,7 +8,7 @@ import {contentText, type ResolvedVideoJob} from '../Renderers/VideoJob';
  */
 const TITLE_LIMIT = 48;
 const KICKER_LIMIT = 30;
-const BADGE_LIMIT = 14;
+const LESSON_LIMIT = 24;
 
 /** Cover texts are plain: formula and emphasis marks of the content are dropped, long titles end at a word. */
 const plain = (text: string, limit: number): string => {
@@ -22,7 +22,7 @@ const plain = (text: string, limit: number): string => {
 export const videoCoverJob = (job: ResolvedVideoJob) => {
 	const {content, theme, lesson} = job.inputProps;
 	const requested = job.cover || {};
-	const subject = contentText(content, 'subject');
+	const subject = contentText(content, 'subject') ?? contentText(content, 'lessonName');
 	const headline = contentText(content, 'title') ?? contentText(content, 'concept') ?? job.template.title;
 
 	const title = requested.title ?? plain(headline, TITLE_LIMIT);
@@ -40,7 +40,9 @@ export const videoCoverJob = (job: ResolvedVideoJob) => {
 			title,
 			emphasis: requested.emphasis ?? lastWord,
 			kicker: requested.kicker ?? plain(job.template.title, KICKER_LIMIT),
-			badge: requested.badge ?? (subject && subject.length <= BADGE_LIMIT ? subject : undefined),
+			badge: requested.badge,
+			lesson: requested.lesson ?? (subject && subject.length <= LESSON_LIMIT ? subject : undefined),
+			exams: requested.exams ?? contentList(content, 'exams'),
 			glyph: requested.glyph,
 		},
 	};

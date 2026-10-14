@@ -17,8 +17,12 @@ const VideoCoverSchema = z.object({
 	/** The words of the title to mark with the highlighter. Must appear in the title. */
 	emphasis: plainText(30).optional(),
 	kicker: plainText(30).optional(),
-	/** A short tag in the corner, e.g. "TYT" or "5 dk". */
+	/** A short tag beside the kicker, e.g. "5 dk". */
 	badge: plainText(14).optional(),
+	/** The lesson the video belongs to, set in the top corner: "Türkçe", "Matematik". */
+	lesson: plainText(24).optional(),
+	/** The exams the video is for, set above the kicker: "KPSS", "YKS". */
+	exams: z.array(plainText(10)).max(4).default([]),
 	/** A big number or symbol on the right when there is no picture, e.g. "5" or "x²". */
 	glyph: plainText(4).optional(),
 	/** A picture for the right side: a teacher, a figure, a screenshot. */
@@ -39,6 +43,8 @@ const VideoCoverImage: React.FC<{content: Content}> = ({content}) => {
 	const {u, wide, tall, width, height} = useImageLayout();
 	const [before, after] = content.emphasis ? content.title.split(content.emphasis) : [content.title, ''];
 	const side = Math.min(width, height) * (wide ? 0.78 : 0.5);
+	// On vertical covers the corner sits below the strip the profile grid crops away.
+	const cornerTop = tall ? u(210) : 0;
 	const size = (content.title.length <= 20 ? 190 : content.title.length <= 34 ? 150 : 124) * (wide ? 1 : 0.86);
 
 	// Right-hand visual: the supplied picture in a tilted frame, or an oversized glyph in a disc.
@@ -72,8 +78,22 @@ const VideoCoverImage: React.FC<{content: Content}> = ({content}) => {
 
 	return (
 		<ImageFrame backdrop="gradient" branding={content.branding} padding={64}>
-			<div style={{flex: 1, minHeight: 0, display: 'flex', flexDirection: wide ? 'row' : 'column', alignItems: 'center', justifyContent: 'space-between', gap: u(48)}}>
+			<div style={{position: 'relative', flex: 1, minHeight: 0, display: 'flex', flexDirection: wide ? 'row' : 'column', alignItems: 'center', justifyContent: 'space-between', gap: u(48)}}>
+				{content.lesson ? (
+					<div style={{position: 'absolute', top: cornerTop, left: 0, padding: `${u(14)}px ${u(30)}px`, borderRadius: u(16), backgroundColor: ink.text, color: colors.primary, fontFamily: typography.display, fontWeight: 900, fontSize: u(50), lineHeight: 1}}>
+						{content.lesson}
+					</div>
+				) : null}
 				<div style={{display: 'flex', flexDirection: 'column', gap: u(26), flex: 1, minWidth: 0, justifyContent: 'center', alignSelf: tall ? 'stretch' : undefined}}>
+					{content.exams.length > 0 ? (
+						<div style={{display: 'flex', flexWrap: 'wrap', gap: u(14)}}>
+							{content.exams.map((exam) => (
+								<div key={exam} style={{padding: `${u(10)}px ${u(24)}px`, borderRadius: u(999), border: `${u(4)}px solid ${ink.text}`, color: ink.text, fontFamily: typography.display, fontWeight: 900, fontSize: u(40), lineHeight: 1}}>
+									{exam}
+								</div>
+							))}
+						</div>
+					) : null}
 					<div style={{display: 'flex', alignItems: 'center', gap: u(20)}}>
 						{content.badge ? (
 							<div style={{padding: `${u(12)}px ${u(26)}px`, borderRadius: u(14), backgroundColor: ink.text, color: colors.primary, fontFamily: typography.display, fontWeight: 900, fontSize: u(44), lineHeight: 1}}>
@@ -113,7 +133,8 @@ export const VideoCover = defineImageTemplate({
 		title: 'Üslü sayılar 5 dakikada',
 		emphasis: '5 dakikada',
 		kicker: 'Hızlı tekrar',
-		badge: 'TYT',
+		lesson: 'Matematik',
+		exams: ['YKS', 'KPSS'],
 		glyph: 'xⁿ',
 	},
 	defaultTheme: 'VibrantDynamic',

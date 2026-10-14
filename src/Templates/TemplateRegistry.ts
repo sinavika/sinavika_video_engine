@@ -1,5 +1,7 @@
 import {AppPromotion} from './Advertisements/AppPromotion/AppPromotion';
 import {ExamJourney} from './Advertisements/ExamJourney/ExamJourney';
+import {CourseLesson} from './Courses/CourseLesson/CourseLesson';
+import {CourseShort} from './Courses/CourseShort/CourseShort';
 import {ConceptExplanation} from './Education/ConceptExplanation/ConceptExplanation';
 import {ExamPreparation} from './Education/ExamPreparation/ExamPreparation';
 import {QuestionSolution} from './Education/QuestionSolution/QuestionSolution';
@@ -19,6 +21,8 @@ export const TEMPLATES: readonly AnyTemplateDefinition[] = [
 	ExamPreparation,
 	AppPromotion,
 	ExamJourney,
+	CourseLesson,
+	CourseShort,
 ];
 
 export const TEMPLATE_IDS: readonly string[] = TEMPLATES.map((template) => template.id);

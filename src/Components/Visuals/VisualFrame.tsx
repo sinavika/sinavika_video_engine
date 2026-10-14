@@ -1,0 +1,48 @@
+import {useCurrentFrame, useVideoConfig} from 'remotion';
+import {animationProgress, type EasingName} from '../../Animations/Motion';
+import {withAlpha} from '../../Themes/Theme';
+import {useInk, useTheme} from '../../Themes/ThemeContext';
+
+/** What every course visual receives: the box it must fit in (actual pixels) and when it starts. */
+export type VisualBoxProps = {width: number; height: number; delaySeconds?: number};
+
+/** 0 to 1 over `durationSeconds`, starting `delaySeconds` into the scene. */
+export const useReveal = (delaySeconds = 0, durationSeconds = 0.6, easing: EasingName = 'standard'): number => {
+	const frame = useCurrentFrame();
+	const {fps} = useVideoConfig();
+	return animationProgress({frame, fps, delaySeconds, durationSeconds, easing});
+};
+
+/** Seconds since the scene started. */
+export const useSceneSeconds = (): number => {
+	const frame = useCurrentFrame();
+	const {fps} = useVideoConfig();
+	return frame / fps;
+};
+
+/**
+ * The colours a visual draws with: the lesson colour for what matters, the
+ * ink for everything else, and quiet tints for grids and fills. Taken from
+ * the theme, so a visual follows the lesson and the light or dark theme.
+ */
+export const useVisualPalette = () => {
+	const {colors, typography} = useTheme();
+	const ink = useInk();
+	const lesson = colors.lesson?.fill ?? colors.accent;
+	return {
+		lesson,
+		onLesson: colors.lesson?.on ?? colors.onAccent,
+		brand: colors.primary,
+		ink: ink.text,
+		muted: ink.muted,
+		grid: withAlpha(ink.text, 0.12),
+		axis: withAlpha(ink.text, 0.55),
+		fill: withAlpha(lesson, 0.16),
+		surface: colors.surface,
+		onSurface: colors.onSurface,
+		border: colors.border,
+		fontDisplay: typography.display,
+		fontBody: typography.body,
+		strongWeight: typography.strongWeight,
+	};
+};

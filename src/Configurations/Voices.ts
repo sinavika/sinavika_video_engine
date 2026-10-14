@@ -54,6 +54,14 @@ export type Voice = {
 
 export const VOICES = {
 	// Native Turkish voices (ElevenLabs voice library).
+	Lisa: {
+		elevenLabsId: 'LYfSi2g3Frvxg50fRl91',
+		name: 'Lisa',
+		gender: 'female',
+		age: 'middleAged',
+		origin: 'native',
+		character: 'İstanbul Türkçesi; dinamik ve enerjik, gündelik konuşma tonu; reklam ve sosyal medya',
+	},
 	Gozde: {
 		elevenLabsId: 'aEJD8mYP0nuof1XHShVY',
 		name: 'Gözde Arıkan',
@@ -69,14 +77,6 @@ export const VOICES = {
 		age: 'young',
 		origin: 'native',
 		character: 'Pürüzsüz, net ve dengeli; kurumsal ve reklam',
-	},
-	Duygu: {
-		elevenLabsId: 'MzfWWOj9g3sIKex1YFMV',
-		name: 'Duygu Eriş',
-		gender: 'female',
-		age: 'young',
-		origin: 'native',
-		character: 'Sıcak, cesaretlendirici ve yumuşak; sosyal medya',
 	},
 	Derya: {
 		elevenLabsId: 'NNn9dv8zq2kUo7d3JSGG',
@@ -102,14 +102,6 @@ export const VOICES = {
 		origin: 'native',
 		character: 'Yüksek enerjili içerik üreticisi; hızlı tempolu kısa videolar',
 	},
-	Ayca: {
-		elevenLabsId: 'eUUtjbi66JcWz3T4Gvvo',
-		name: 'Ayça',
-		gender: 'female',
-		age: 'young',
-		origin: 'native',
-		character: 'Genç, dinamik ve sıcak; motivasyon ve yönlendirme',
-	},
 	Sevim: {
 		elevenLabsId: 'H9xk2HncwpOKhhzbyWsd',
 		name: 'Sevim',
@@ -117,14 +109,6 @@ export const VOICES = {
 		age: 'middleAged',
 		origin: 'native',
 		character: 'Cesaretlendirici, sıcak ve net; sosyal medya',
-	},
-	Nisa: {
-		elevenLabsId: 'bj1uMlYGikistcXNmFoh',
-		name: 'Nisa',
-		gender: 'female',
-		age: 'young',
-		origin: 'native',
-		character: 'Güler yüzlü tanıtım sesi; kampanya ve duyurular',
 	},
 	Irem: {
 		elevenLabsId: 'uvU9jrgGLWNPeNA4NgNT',
@@ -208,11 +192,11 @@ export const VOICE_KEYS = Object.keys(VOICES) as [VoiceKey, ...VoiceKey[]];
 /**
  * The brand voice, best first: the first of these the account can use
  * narrates everything, so all content sounds like one person. All are native
- * Turkish speakers. The order is a recommendation made from the voices'
- * descriptions and usage in the ElevenLabs library; listen to them
- * (`npm run voices`) and put the one that sounds right first.
+ * Turkish speakers. Lisa was chosen by the brand owner (October 2026); the
+ * others are fallbacks, ordered from their descriptions in the ElevenLabs
+ * library. To change the brand voice, put another one first.
  */
-export const BRAND_VOICES = ['Gozde', 'Eda', 'Derya', 'Ayca', 'Duygu', 'Melis', 'Nisa'] as const satisfies readonly VoiceKey[];
+export const BRAND_VOICES = ['Lisa', 'Gozde', 'Eda', 'Derya', 'Melis'] as const satisfies readonly VoiceKey[];
 
 export type VoiceProfile = {
 	description: string;
@@ -291,6 +275,7 @@ export const VOICE_PROFILE_KEYS = Object.keys(VOICE_PROFILES) as [VoiceProfileKe
 /** The profile a template gets when it does not name one. */
 export const CATEGORY_VOICE_PROFILES = {
 	Education: 'Teacher',
+	Courses: 'Lecturer',
 	Advertisements: 'Promoter',
 	SocialMedia: 'Creator',
 } as const satisfies Record<string, VoiceProfileKey>;

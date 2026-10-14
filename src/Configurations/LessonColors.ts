@@ -32,3 +32,55 @@ export const lessonGroupOf = (lesson: string | undefined): LessonGroup | null =>
 	const groups = Object.keys(LESSON_GROUPS) as LessonGroup[];
 	return groups.find((group) => LESSON_GROUPS[group].lessons.some((name) => normalise(name) === wanted)) ?? null;
 };
+
+/**
+ * Lesson colours of the education videos (Courses): one colour per lesson,
+ * keyed by the lesson code of the curriculum (TRK, MAT, TAR1...).
+ *
+ * Long videos stay on one lesson for many minutes, so here every lesson gets
+ * its own colour instead of a family's. Related lessons share a hue and
+ * differ in depth (Matematik and Geometri are both blue), so the families
+ * above still read through. The same limits hold: deep "ink" tones that
+ * carry white text, no status colour and no purple. The colour on dark
+ * themes is derived from this one (see courseLessonColor).
+ */
+export const COURSE_LESSON_COLORS = {
+	// Verbal
+	TRK: '#BE185D',
+	TDE: '#9D174D',
+	// Numeric
+	MAT: '#1E40AF',
+	GEO: '#0369A1',
+	// Science
+	FIZ: '#0F766E',
+	KIM: '#155E75',
+	BIO: '#4D7C0F',
+	// History
+	TAR: '#8A4B16',
+	TAR1: '#8A4B16',
+	TAR2: '#6B3A12',
+	// Geography
+	COG: '#4D6B1A',
+	COG1: '#4D6B1A',
+	COG2: '#3F5714',
+	// Philosophy, psychology, sociology, logic, religion
+	FEL: '#475569',
+	PSI: '#4B5A82',
+	SOS: '#52606D',
+	MAN: '#334155',
+	DIN: '#5E5A3A',
+	// Civics
+	VAT: '#7A2E2E',
+	// Foreign languages
+	ING: '#0E7490',
+	ALM: '#155E75',
+	ARA: '#0F5F5A',
+	FRA: '#1D5E8A',
+	RUS: '#2B5A7A',
+} as const satisfies Record<string, string>;
+
+export type CourseLessonCode = keyof typeof COURSE_LESSON_COLORS;
+
+/** The colour of a lesson in the education videos, or undefined when the lesson has none and keeps the brand accent. */
+export const courseLessonColor = (code: string | undefined): string | undefined =>
+	code && code in COURSE_LESSON_COLORS ? COURSE_LESSON_COLORS[code as CourseLessonCode] : undefined;

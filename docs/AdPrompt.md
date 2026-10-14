@@ -42,11 +42,11 @@ Kaçınılacaklar: [ör. "fiyat yok", "geçen seferki gibi olmasın"]
 
 ### Müzik ve ses tasarımı
 
-- **Özgün müzik, kodla üretilir** (`src/Services/SoundtrackComposer.ts`); örnek ses ya da lisanslı parça kullanılmaz.
-- Müzik sesin çevresinde düzenlenir ve konuşma sırasında sesin en az 15 dB altında kalır.
-- Ses efektleri de kodla üretilir: her cümleye girişte bir hava sesi, her sahne değişiminde yumuşak bir vuruş, kapanışta çınlayan son akor.
-- Ana çıkış **−14 LUFS, −1 dBTP**.
-- İş dosyasında `"soundtrack": true` ya da bir stil adıyla açılır (`Bright`, `Pulse`); art arda iki tanıtım aynı stili kullanmaz. Yeni stil `SOUNDTRACK_STYLES` içine eklenir.
+- **Müzik her video için ayrı yaptırılır** (ElevenLabs Music): iş dosyasında müzik sözle tarif edilir, `"soundtrack": {"music": "…"}`. Tarif videonun havasını, temposunu, çalgılarını ve "No vocals" koşulunu içerir; iki tanıtım aynı tarifi kullanmaz. Parça bir kez üretilir ve `public/Music/` altında saklanır; yeniden render kredi harcamaz. (`src/Services/MusicLibrary.ts`)
+- Motorun kendi bestelediği müzik (`"soundtrack": true` ya da `Bright` / `Pulse`) yedektir; tanıtım videolarında kullanılmaz (Ekim 2026'da beğenilmedi).
+- **Seviyeler tek yerdedir** (`AUDIO_LEVELS`, `src/Services/AudioLeveling.ts`): seslendirme karışıma −20 LUFS / en fazla −4 dBTP ile girer, müzik −36 LUFS ile (sesin 16 dB altında). Konuşma servisleri sesi tam seviyede verir; seviyelenmeden müzikle toplanırsa karışım taşar ve cızırtı duyulur. Karışım mastering öncesi −0,3 dBTP'yi aşarsa render uyarı verir.
+- Ana çıkış **−14 LUFS, −1,5 dBTP**; önce ölçülür, sonra tek sabit kazançla ayarlanır.
+- Üretilen ses, yazıya dökülerek (ElevenLabs Scribe) metinle karşılaştırılır.
 
 ### Kapanış
 

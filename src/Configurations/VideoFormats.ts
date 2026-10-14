@@ -63,6 +63,22 @@ export const RENDER_QUALITIES = {
 	'2160p': 2160,
 } as const;
 
+/**
+ * How the final file is encoded. The platforms re-encode whatever they are
+ * given, so the file should arrive with more detail than they will keep:
+ * a low CRF and a slow preset, at the resolution they actually serve.
+ * 1080p is that resolution: Instagram's API accepts at most 1920 pixels of
+ * width and Buffer converts larger video down to Full HD, so a 2160p upload
+ * is scaled down by someone else's encoder and looks worse, not better.
+ */
+export const VIDEO_ENCODING = {
+	/** x264 constant quality: lower is better; 18 is "visually lossless", 15 leaves headroom for the platforms' re-encode. */
+	crf: 15,
+	x264Preset: 'slow',
+	/** Within the 128-192 kbps AAC that Instagram and Buffer ask for. */
+	audioBitrate: '192k',
+} as const;
+
 export type RenderQuality = keyof typeof RENDER_QUALITIES;
 export const RENDER_QUALITY_IDS = Object.keys(RENDER_QUALITIES) as [RenderQuality, ...RenderQuality[]];
 

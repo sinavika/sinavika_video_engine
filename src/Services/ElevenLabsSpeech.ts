@@ -35,7 +35,8 @@ export class SpeechError extends Error {
 
 const API_KEY_VARIABLE = 'ELEVENLABS_API_KEY';
 const ENV_FILE = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', '.env');
-const OUTPUT_FORMAT = 'mp3_44100_128';
+/** The best MP3 the plan offers (192 kbps needs Creator or above); the mix is re-encoded once, so the source should be as clean as it can be. */
+const OUTPUT_FORMAT = 'mp3_44100_192';
 const FREE_TIER = 'free';
 const DEFAULT_VOICE_CATEGORY = 'premade';
 const RETRYABLE_STATUSES = new Set([408, 409, 425, 429, 500, 502, 503, 504]);
@@ -128,4 +129,18 @@ export const ELEVENLABS_SPEECH: SpeechBackend = {
 			throw toSpeechError(error);
 		}
 	},
+};
+
+const MUSIC_MODEL = 'music_v2_5';
+
+/** An instrumental piece of the given length, made from a description of it. MP3 bytes. */
+export const composeMusic = async (description: string, seconds: number): Promise<Buffer> => {
+	try {
+		const stream = await elevenLabs().music.compose({prompt: description, musicLengthMs: Math.round(seconds * 1000), modelId: MUSIC_MODEL, forceInstrumental: true});
+		const audio = Buffer.from(await new Response(stream).arrayBuffer());
+		if (audio.length === 0) throw new SpeechError('ElevenLabs returned no music.', true);
+		return audio;
+	} catch (error) {
+		throw toSpeechError(error);
+	}
 };

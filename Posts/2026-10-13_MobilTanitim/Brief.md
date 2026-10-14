@@ -2,9 +2,9 @@
 
 - **Yayın:** 13 Ekim 2026, 18:00 (İstanbul) — Instagram Reels, TikTok, YouTube Shorts
 - **Şablon:** `AppPromotion`, `SinavikaDark`, 1080×1920, 60 fps
-- **Süre:** 27 sn (kapanış kartı dahil)
+- **Süre:** 31,6 sn (kapanış kartı dahil)
 - **İş dosyası:** [`Job.json`](Job.json) · **Gönderi dosyası:** [`Post.json`](Post.json)
-- **Çıktı:** `Outputs/Videos/04_Sinavika_Mobil_Uygulama_Tanitimi.mp4` ve `…_Kapak.png`
+- **Çıktı:** `Outputs/Videos/06_Sinavika_Mobil_Uygulama_Tanitimi.mp4` ve `…_Kapak.png`
 
 ## Fikir
 
@@ -23,20 +23,19 @@
 | 19,3–22,5 | Uygulama 5 | **SinoAI** · "Koçuna sor" | Aklına takılanı yapay zekâ sınav koçuna sor. |
 | 22,5–26,9 | Kapanış | Logo · "Ölç, öğren, geliş." · App Store · Google Play | Ölç, öğren, geliş. Sınavika'yı hemen indir. |
 
-Süreler seslendirmenin gerçek uzunluğundan çıkar; görüntü sese göre zamanlandı.
+Süreler seslendirmenin gerçek uzunluğundan çıkar; görüntü sese göre zamanlandı. Tablodaki süreler ilk sürüme (Bella, 27 sn) aittir; Lisa ile yeniden üretilen sürüm 31,6 sn sürer, sahne sırası aynıdır.
 
 ## Ses
 
-- ElevenLabs, `Promoter` profili; seslendiren **Bella** (Eleven v3, tempo 1,05). Profilin ilk tercihi olan Türkçe ses (Nisa) hesapta olmadığı için sıradaki ses kullanıldı.
-- 330 karakter, tek kayıt. Üretim öncesi 5.326, sonrası 4.996 karakter.
-- "SinoAI" seslendirmede "yapay zekâ sınav koçu" olarak tarif edildi; ekranda gerçek adıyla görünüyor.
+- **Seslendiren: Lisa** — ana dili Türkçe (İstanbul), marka sesi. Model: Multilingual v2 (Lisa'nın doğrulandığı en iyi model), tempo 1,0, abartısız ayar, 192 kbps kaynak.
+- Metin tek istekte, bütün olarak üretildi; görüntü sesin gerçek sürelerine göre zamanlandı.
+- Ses, yazıya dökülerek denetlendi (ElevenLabs Scribe): çıkan metin, "Sınavika" dahil, yazılan metinle kelimesi kelimesine aynı.
 
 ## Müzik ve ses tasarımı
 
-- Kodla üretilen özgün müzik: Fa majör, 100 BPM, Fa – Do – Re minör – Si♭; yumuşak pad, sekizlik notalar, hafif vuruş. Ritim telefon sahneye girince başlar, kapanışta durur ve geniş bir akor çınlar.
-- Her cümleye girişte hava sesi, sahne değişimlerinde yumuşak vuruş.
-- Müzik yatağı −30 LUFS, seslendirme −14 LUFS: müzik sesin yaklaşık 16 dB altında.
-- Ana çıkış ölçümü: **−14,7 LUFS, −1,0 dBTP**.
+- Müzik bu video için ElevenLabs Music ile yaptırıldı; tarifi `Job.json` içindeki `soundtrack.music` alanındadır. Önceki sürümlerdeki kodla üretilen müzik ve efektler beğenilmediği için kaldırıldı.
+- Seslendirme karışıma seviyelenmiş olarak girer (−20 LUFS dolayı), müzik 16 dB altındadır. Önceki sürümdeki cızırtının nedeni, tam seviyede gelen sesin müzikle toplanınca taşmasıydı.
+- Ana çıkış −14 LUFS; ses yazıya dökülerek denetlendi, metinle aynı.
 
 ## Kullanılan varlıklar
 

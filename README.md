@@ -86,7 +86,7 @@ Motorun tek girdisi düz bir JSON nesnesidir:
 | `format` | `Vertical` (9:16), `Horizontal` (16:9), `Square` (1:1) | `Vertical` |
 | `theme` | `SinavikaBrand`, `WhiteboardMinimal`, `AcademicLight`, `TechDark`, `VibrantDynamic`, `ExamFocus` | template'in kendi teması |
 | `fps` | 24, 25, 30, 50, 60 | 30 |
-| `quality` | `720p`, `1080p`, `1440p`, `2160p` | `1080p` |
+| `quality` | `720p`, `1080p`, `1440p`, `2160p`. Sosyal medya için `1080p`: Instagram en fazla 1920 px genişlik kabul eder, Buffer daha büyüğünü Full HD'ye indirir | `1080p` |
 | `voiceover` | `true`, `false` ya da `{profile, voice, model, pace, standIn}` | `false` |
 | `content` | Template'e özel içerik | zorunlu |
 
@@ -116,8 +116,8 @@ bir ses Türkçeyi okuyabilir ama kendi aksanını ve ritmini korur, yapay durur
 
 | Katman | Ne | Örnek |
 | --- | --- | --- |
-| Ses | Kim konuşuyor: bir ElevenLabs sesi ve karakteri | Gözde Arıkan: yumuşak, sıcak, gündelik konuşma tonu |
-| Marka sesi | Her şeyi seslendiren tek ses: `BRAND_VOICES` listesinde hesabın kullanabildiği ilk ses | Gözde → Eda → Derya → Ayça → Duygu → Melis → Nisa |
+| Ses | Kim konuşuyor: bir ElevenLabs sesi ve karakteri | Lisa: İstanbul Türkçesi, dinamik, gündelik konuşma tonu |
+| Marka sesi | Her şeyi seslendiren tek ses: `BRAND_VOICES` listesinde hesabın kullanabildiği ilk ses | Lisa → Gözde → Eda → Derya → Melis |
 | Profil | Nasıl konuşuyor: rol ve söyleyiş ayarı (kim konuştuğu değil) | `Teacher`, `Energizer`, `Promoter` |
 
 Üç kural her profilde aynıdır:
@@ -295,6 +295,20 @@ Video, kapağıyla birlikte aynı numara altında kaydedilir: `03_Turkce_Ses_Ola
 açılış karesi olarak da videoya yerleştirilir; `"cover": false` ile kapatılır, `"cover": {"title": "...", "emphasis": "..."}` ile metinleri
 değiştirilir. Ayrıntı: [docs/SocialPlan.md](docs/SocialPlan.md).
 
+## Eğitim videoları (YouTube dersi + kısa özet)
+
+Ders ve konu listesine bağlı üretim: `Curriculum/` (katalog, üretim kontrol listesi, konuya göre gruplanmış kaynaklar), senaryo şeması, `CourseLesson` (YouTube, 16:9) ve `CourseShort` (Reels/TikTok/Shorts) şablonları, derslere özel görseller (grafik, geometri, kuvvet, hareket, molekül, atom, tepkime, zaman çizelgesi, harita, cümle şeması…). Ayrıntı: [docs/Courses.md](docs/Courses.md).
+
+| Komut | Ne yapar |
+| --- | --- |
+| `npm run curriculum -- import --lessons <csv> --corpus <klasör>` | Ders listesini ve kaynakları `Curriculum/` içine alır |
+| `npm run curriculum -- status` / `next` | İlerleme ve sıradaki konular |
+| `npm run curriculum -- brief <konu>` | Senaryo yazmak için konunun alt başlıkları, kaynakları ve görsel seti |
+| `npm run curriculum -- check <senaryo> [--mark]` | Senaryoyu doğrular, hedeflere göre denetler, "Hazırlandı" işaretler |
+| `npm run curriculum -- mark <konu> --stage youtube\|short` | Üretim aşamasını işaretler |
+| `npm run media -- --commons "File:…" --to <yol>` | Wikimedia Commons görselini lisans kaydıyla ekler |
+| `npm run geo -- turkey` | Türkiye il sınırlarını (Natural Earth) indirir |
+
 ## Tanıtım videosu
 
 `AppPromotion` şablonu Sınavika mobil uygulamasını tanıtır: dev hareketli yazıyla giriş, uygulamanın gerçek ekranlarını gezen tek telefon ve
@@ -352,7 +366,7 @@ Gönderi dosyası [`samples/Social/Post.json`](samples/Social/Post.json) biçimi
 | --- | --- | --- |
 | `QuestionSolution` | Soru sabit kalır, çözüm adım adım yanında/altında oynar | giriş → soru → çözüm adımları → doğru cevap → sonuç |
 | `TopicExplanation` | Ders slaytı: bölüm numaralı başlık sütunu, tipli içerik blokları, bölüm çubuğu | kapak + içindekiler → bölümler → özet |
-| `QuickRevision` | Tam ekran renkli kartlar, dev numara, hızlı itme geçişleri, hikâye çubuğu | giriş → kartlar → özet |
+| `QuickRevision` | Tam ekran renkli kartlar, dev numara, hızlı itme geçişleri, hikâye çubuğu. **Eğitim Reels'lerinin standart şablonu**: `subject` (ders) kapakta ve girişte sol üstte, `exams` (ör. `["KPSS", "YKS"]`) "Hızlı Tekrar" satırının üstünde gösterilir | giriş → kartlar → özet |
 | `ConceptExplanation` | Görsel sahnede kalır; açıklama ilerledikçe ilgili düğüm vurgulanır | kavram → görsel anlatım → ilişkili kavramlar → örnek |
 | `ExamPreparation` | Koç brifingi: sayı kutuları, süre çubuğu, yanlış → doğru satırları | sınav → strateji → süre → hatalar → ipuçları → motivasyon |
 

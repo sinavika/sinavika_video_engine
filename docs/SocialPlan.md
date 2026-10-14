@@ -153,3 +153,10 @@ npm run social -- revisions
 ```
 
 Plan dosyasındaki her satır hazırlanacak bir içeriğin brifingidir: tarih, kanal, içerik türü, format, tema, boyut, kaynak türü ve `targets` (platform, gönderi türü, o platformun saati). `targets` gönderi dosyasına olduğu gibi kopyalanır. `npm run render` videoyu kapağıyla birlikte `Outputs/Videos` altına kaydeder; gönderi dosyasında videoyu göstermek yeterlidir, yanındaki kapak kendiliğinden yüklenir.
+
+## Video kalitesi
+
+- **Sosyal medya videoları 1080p üretilir** (dikeyde 1080×1920, 60 fps). 4K (`2160p`) gönderilmez: Instagram'ın API'si en fazla 1920 piksel genişlik kabul eder, Buffer daha büyük videoyu Full HD'ye dönüştürür; Reels, TikTok ve Shorts da 1080p oynatır. 4K dosya başkasının kodlayıcısıyla küçültülür ve daha kötü görünür.
+- Kalite çözünürlükten değil kodlamadan gelir: H.264, CRF 15, `slow` ön ayarı, AAC 192 kbps (`VIDEO_ENCODING`, `src/Configurations/VideoFormats.ts`). Platformlar her videoyu yeniden kodlar; dosya onlara fazladan ayrıntıyla gider.
+- **Sunucu dosyaya dokunmaz.** API videoyu olduğu gibi Blob'a yazar; Buffer'a o dosyanın bağlantısı verilir. Yerel dosya ile sunucudaki dosyanın birebir aynı olduğu 13 Ekim 2026'da özet (SHA-256) karşılaştırmasıyla doğrulandı.
+- Sınırlar: Instagram 300 MB ve 25 Mbps altı, TikTok 1 GB, YouTube Shorts 10 GB; API'nin kabul ettiği en büyük video 300 MB.

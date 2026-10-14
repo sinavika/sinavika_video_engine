@@ -6,6 +6,7 @@ import type {ScenePlan, TemplateScene} from '../Scenes/ScenePlan';
 import {planTemplateScenes} from '../Scenes/SceneSeries';
 import type {SceneTransition} from '../Scenes/SceneTransition';
 import type {VoiceClips} from '../Scenes/Voiceover';
+import type {Theme} from '../Themes/Theme';
 import {THEME_IDS, type ThemeId} from '../Themes/ThemeRegistry';
 
 export type TemplateCategory = keyof typeof CATEGORY_VOICE_PROFILES;
@@ -38,6 +39,8 @@ export type TemplateDefinition<Schema extends z.ZodType> = {
 	voiceProfile: VoiceProfileKey;
 	/** Intended length of the video without its outro. Rendering outside it is reported as a warning. */
 	targetSeconds?: {min: number; max: number};
+	/** The theme for this content, when the template colours by something of its own (e.g. a lesson code). Defaults to the lesson colour of the job. */
+	themeFor?: (themeId: ThemeId, content: z.output<Schema>) => Theme | undefined;
 	/** Persistent chrome above the scenes. Hidden during the outro. */
 	renderOverlay?: (content: z.output<Schema>, plan: ScenePlan) => ReactNode;
 };

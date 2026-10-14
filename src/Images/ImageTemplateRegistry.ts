@@ -10,6 +10,8 @@ import {Process} from './Templates/Infographics/Process';
 import {Stats} from './Templates/Infographics/Stats';
 import {DualPhones} from './Templates/MobilePromotions/DualPhones';
 import {HeroPhone} from './Templates/MobilePromotions/HeroPhone';
+import {AppTrio} from './Templates/ProfileGrids/AppTrio';
+import {GrowthLine} from './Templates/ProfileGrids/GrowthLine';
 import {QuestionCard} from './Templates/QuestionSolutions/QuestionCard';
 import {SolutionSteps} from './Templates/QuestionSolutions/SolutionSteps';
 import {VideoCover} from './Templates/Thumbnails/VideoCover';
@@ -45,6 +47,8 @@ export const IMAGE_TEMPLATES: readonly AnyImageTemplateDefinition[] = [
 	Update,
 	Offer,
 	VideoCover,
+	GrowthLine,
+	AppTrio,
 ];
 
 export const IMAGE_CATEGORIES: readonly string[] = [...new Set(IMAGE_TEMPLATES.map((template) => template.category))];

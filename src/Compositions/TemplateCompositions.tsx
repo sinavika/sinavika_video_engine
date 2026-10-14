@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {Audio, Composition, Folder, Img, Sequence, staticFile, useVideoConfig} from 'remotion';
+import {Audio, Composition, Folder, Img, Sequence, interpolate, staticFile, useVideoConfig} from 'remotion';
 import {VideoFrame} from '../Components/Layouts/VideoFrame';
 import {VIDEO_COVER} from '../Configurations/VideoCover';
 import {DEFAULT_FPS, VIDEO_FORMATS, VIDEO_FORMAT_IDS} from '../Configurations/VideoFormats';
@@ -13,13 +13,16 @@ import {
 } from '../Templates/TemplateDefinition';
 import {lessonTheme} from '../Themes/LessonAccent';
 
+/** Seconds over which a video's music comes in and goes out, so it never starts or stops abruptly. */
+const SOUNDTRACK_FADE = {in: 0.25, out: 1.6};
+
 /** The component Remotion renders for a template: theme and fonts around the template's scenes. */
 const createVideoComponent = (template: AnyTemplateDefinition) => {
 	const TemplateVideo: React.FC<VideoProps<unknown>> = ({theme, content, voiceClips, lesson, coverSrc, soundtrackSrc}) => {
 		const scenes = useMemo(() => template.buildScenes(content, voiceClips), [content, voiceClips]);
-		const {fps} = useVideoConfig();
+		const {fps, durationInFrames} = useVideoConfig();
 		return (
-			<VideoFrame themeId={theme} theme={lessonTheme(theme, lesson)}>
+			<VideoFrame themeId={theme} theme={template.themeFor?.(theme, content) ?? lessonTheme(theme, lesson)}>
 				<SceneSeries
 					scenes={scenes}
 					transition={template.transition}
@@ -27,7 +30,7 @@ const createVideoComponent = (template: AnyTemplateDefinition) => {
 					overlayEndsAt={OUTRO_SCENE_ID}
 					voiceClips={voiceClips}
 				/>
-				{soundtrackSrc ? <Audio src={staticFile(soundtrackSrc)} /> : null}
+				{soundtrackSrc ? <Audio src={staticFile(soundtrackSrc)} volume={(frame) => interpolate(frame, [0, SOUNDTRACK_FADE.in * fps, durationInFrames - SOUNDTRACK_FADE.out * fps, durationInFrames], [0, 1, 1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})} /> : null}
 				{coverSrc ? (
 					<Sequence name="Cover" durationInFrames={Math.max(1, Math.round(VIDEO_COVER.holdSeconds * fps))}>
 						<Img src={staticFile(coverSrc)} style={{width: '100%', height: '100%', objectFit: 'cover'}} />

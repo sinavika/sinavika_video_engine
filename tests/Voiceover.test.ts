@@ -95,13 +95,14 @@ describe.each(TEMPLATES.map((template) => [template.id, template] as const))('%s
 	const scenes = template.buildScenes(job.inputProps.content);
 
 	it('gives every scene something to say, with unique line ids', () => {
-		scenes.forEach((scene) => expect(scene.voice?.length, scene.id).toBeGreaterThan(0));
+		scenes.filter((scene) => !scene.silent).forEach((scene) => expect(scene.voice?.length, scene.id).toBeGreaterThan(0));
+		scenes.filter((scene) => scene.silent).forEach((scene) => expect(scene.voice ?? [], scene.id).toEqual([]));
 		const ids = voiceLines(job).map((line) => line.id);
 		expect(new Set(ids).size).toBe(ids.length);
 	});
 
 	it('keeps a scene exactly as long as the lines spoken in it', () => {
-		for (const scene of scenes) {
+		for (const scene of scenes.filter((item) => !item.silent)) {
 			const spokenSeconds = (scene.voice ?? []).reduce((total, slot) => total + slot.seconds, 0);
 			expect(scene.seconds, scene.id).toBeCloseTo(spokenSeconds, 5);
 		}
@@ -113,7 +114,7 @@ describe.each(TEMPLATES.map((template) => [template.id, template] as const))('%s
 		);
 		const narrated = withVoiceClips(job, clips);
 		expect(narrated.durationInFrames).toBeGreaterThan(job.durationInFrames);
-		template.buildScenes(narrated.inputProps.content, clips).forEach((scene) => {
+		template.buildScenes(narrated.inputProps.content, clips).filter((scene) => !scene.silent).forEach((scene) => {
 			const lines = scene.voice?.length ?? 0;
 			expect(scene.seconds, scene.id).toBeCloseTo(lines * (12.25 + VOICE_LEAD_SECONDS + VOICE_TAIL_SECONDS), 5);
 		});
@@ -268,7 +269,7 @@ describe('generateVoiceover', () => {
 		expect(cast.voice).toBe(BRAND_VOICE);
 		expect(spoken.map((entry) => entry.text)).toEqual(['Merhaba\n\nHoşça kal']);
 		expect(Object.keys(clips)).toEqual(['intro', 'outro']);
-		expect(clips.intro.src).toMatch(/^Voiceovers\/[0-9a-f]{20}\.mp3$/);
+		expect(clips.intro.src).toMatch(/^Voiceovers\/[0-9a-f]{20}\.wav$/);
 		expect(clips.outro.src).toBe(clips.intro.src);
 		expect(clips.intro.startSeconds).toBe(0);
 		expect(clips.intro.durationSeconds).toBeGreaterThan(1);
@@ -284,7 +285,8 @@ describe('generateVoiceover', () => {
 		expect(spoken).toHaveLength(1);
 		await generateVoiceover(lines, {profile: 'Teacher', voice: 'Alice'}, {publicDirectory: directory, speech});
 		expect(spoken).toHaveLength(2);
-		expect(readdirSync(path.join(directory, 'Voiceovers')).filter((file) => file.endsWith('.mp3'))).toHaveLength(2);
+		expect(readdirSync(path.join(directory, 'Voiceovers')).filter((file) => file.endsWith('.wav'))).toHaveLength(2);
+		expect(readdirSync(path.join(directory, 'Voiceovers')).filter((file) => file.endsWith('.mp3'))).toHaveLength(0);
 	});
 
 	it('applies tempo at playback: same audio file, shorter clip', async () => {

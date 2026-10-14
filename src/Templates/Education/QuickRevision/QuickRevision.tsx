@@ -80,7 +80,7 @@ export const QuickRevision = defineTemplate({
 	description: '15-60 saniyelik bilgi kartları: bilgi, formül, kavram ve dikkat kartları, kısa özet.',
 	contentSchema: QuickRevisionSchema,
 	sampleContent: QUICK_REVISION_SAMPLE,
-	defaultTheme: 'VibrantDynamic',
+	defaultTheme: 'SinavikaLight',
 	transition: [
 		{preset: 'slide', direction: 'from-right', durationSeconds: 0.3},
 		{preset: 'slide', direction: 'from-bottom', durationSeconds: 0.3},

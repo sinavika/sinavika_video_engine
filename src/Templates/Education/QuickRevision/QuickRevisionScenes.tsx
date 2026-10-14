@@ -17,7 +17,7 @@ import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
 import type {ScenePlan} from '../../../Scenes/ScenePlan';
 import {SPACING} from '../../../Themes/DesignTokens';
 import {withAlpha, type CategoricalColor} from '../../../Themes/Theme';
-import {InkProvider, useTheme} from '../../../Themes/ThemeContext';
+import {InkProvider, useInk, useTheme} from '../../../Themes/ThemeContext';
 import type {QuickRevisionContent, RevisionCard} from './QuickRevisionSchema';
 
 type Content = QuickRevisionContent;
@@ -30,6 +30,8 @@ const CARD_KINDS: Record<RevisionCard['kind'], {label: string; icon: IconName}> 
 };
 
 const WHITE = '#FFFFFF';
+/** Where the lesson name sits on the opening, in reference pixels from the top: the same place as on the cover, below the story bar. */
+const INTRO_CORNER_TOP = 274;
 
 /** Story bar. Sits on a dark pill so it stays readable over any card colour. */
 export const RevisionChrome: React.FC<{plan: ScenePlan}> = ({plan}) => {
@@ -58,10 +60,29 @@ export const RevisionChrome: React.FC<{plan: ScenePlan}> = ({plan}) => {
 };
 
 export const IntroScene: React.FC<{content: Content; totalSeconds: number}> = ({content, totalSeconds}) => {
-	const {colors} = useTheme();
+	const {colors, typography} = useTheme();
+	const ink = useInk();
 	const {u} = useVideoLayout();
 	return (
 		<SafeArea chrome gap={SPACING.lg} style={{alignItems: 'center', justifyContent: 'center'}}>
+			{content.subject ? (
+				<div style={{position: 'absolute', top: u(INTRO_CORNER_TOP), left: u(64)}}>
+					<Animated animation={{preset: 'slide', direction: 'right', durationSeconds: 0.35}}>
+						<div style={{padding: `${u(14)}px ${u(30)}px`, borderRadius: u(16), backgroundColor: ink.text, color: colors.primary, fontFamily: typography.display, fontWeight: 900, fontSize: u(50), lineHeight: 1}}>{content.subject}</div>
+					</Animated>
+				</div>
+			) : null}
+			{content.exams.length > 0 ? (
+				<Animated animation="fade" delaySeconds={0.05}>
+					<div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: u(14)}}>
+						{content.exams.map((exam) => (
+							<div key={exam} style={{padding: `${u(10)}px ${u(24)}px`, borderRadius: u(999), border: `${u(4)}px solid ${ink.text}`, color: ink.text, fontFamily: typography.display, fontWeight: 900, fontSize: u(40), lineHeight: 1}}>
+								{exam}
+							</div>
+						))}
+					</div>
+				</Animated>
+			) : null}
 			<Animated animation={{preset: 'zoom', durationSeconds: 0.4}}>
 				<Badge tone="accent" icon="bolt" size={34}>
 					Hızlı Tekrar

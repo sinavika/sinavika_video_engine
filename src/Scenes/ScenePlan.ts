@@ -15,6 +15,8 @@ export type TemplateScene = SceneTiming & {
 	label?: string;
 	/** Spoken lines, played one after another from the start of the scene. */
 	voice?: VoiceSlot[];
+	/** Shown, never spoken: e.g. a promotion at the end of a lesson. Its length is its own, not the narration's. */
+	silent?: boolean;
 };
 
 export type PlannedScene = {id: string; from: number; durationInFrames: number};
