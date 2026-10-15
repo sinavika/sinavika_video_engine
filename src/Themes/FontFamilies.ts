@@ -1,19 +1,11 @@
 /**
  * Font family names as registered by the @fontsource-variable packages.
- * All of them ship the latin-ext subset, which covers Turkish (ç ğ ı İ ö ş ü).
- * The font files themselves are loaded in FontFaces.ts.
+ * Which family plays which role is decided in Configurations/BrandTypography.ts;
+ * the files are loaded in FontFaces.ts.
  */
 export const FONT_FAMILIES = {
-	inter: 'Inter Variable',
-	plusJakartaSans: 'Plus Jakarta Sans Variable',
-	sourceSerif: 'Source Serif 4 Variable',
-	spaceGrotesk: 'Space Grotesk Variable',
+	/** The brand face, as in the web and mobile apps. */
+	manrope: 'Manrope Variable',
+	/** Technical identifiers and code only. */
 	jetBrainsMono: 'JetBrains Mono Variable',
-	nunito: 'Nunito Variable',
-	caveat: 'Caveat Variable',
 } as const;
-
-type GenericFamily = 'sans-serif' | 'serif' | 'monospace' | 'cursive';
-
-export const fontStack = (family: string, fallback: GenericFamily = 'sans-serif'): string =>
-	`'${family}', ${fallback}`;

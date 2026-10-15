@@ -33,6 +33,9 @@ export const SOCIAL_CONTENT = {
 	LinkedInHook: {label: 'Hook / Problem–Çözüm', theme: 'SinavikaLight', sourceKind: 'Hook'},
 	LinkedInProduct: {label: 'Ürün tanıtımı', theme: 'SinavikaLight', sourceKind: null},
 	LinkedInBrand: {label: 'Marka / Girişim tanıtımı', theme: 'SinavikaDark', sourceKind: null},
+	PromoReel: {label: 'Tanıtım reels', theme: 'SinavikaDark', sourceKind: null},
+	PromoPost: {label: 'Tanıtım gönderisi', theme: 'SinavikaLight', sourceKind: null},
+	PromoStory: {label: 'Tanıtım hikâyesi', theme: 'SinavikaLight', sourceKind: null},
 } as const satisfies Record<string, {label: string; theme: ThemeId; sourceKind: string | null}>;
 export type SocialContentKind = keyof typeof SOCIAL_CONTENT;
 
@@ -111,6 +114,48 @@ export const WEEKLY_PLAN: Record<Weekday, readonly PlanEntry[]> = {
 		{channel: 'Story', content: 'Story', format: 'StoryImage', platforms: STORY, brief: 'Haftalık tekrar / Motivasyon / Gelecek haftanın duyurusu'},
 	],
 };
+
+/**
+ * The promotion plan (from October 2026, while no lessons are posted): only
+ * the mobile app and the web site are promoted, with user-winning hooks, not
+ * teaching. Four reels (Mon, Wed, Fri, Sun), three posts (Tue, Thu, Sat) and a
+ * story every day. Buffer cannot publish TikTok stories, so stories go to
+ * Instagram only. The day-by-day concepts live in src/Campaigns.
+ */
+export const PROMO_WEEKLY_PLAN: Record<Weekday, readonly PlanEntry[]> = {
+	mon: [
+		{channel: 'Feed', content: 'PromoReel', format: 'Video', platforms: FEED_VIDEO, brief: 'Tanıtım reels: tek modül ya da tek özellik, kullanıcı kazandıran hook'},
+		{channel: 'Story', content: 'PromoStory', format: 'StoryImage', platforms: STORY, brief: 'Günün reels’ine çağrı'},
+	],
+	tue: [
+		{channel: 'Feed', content: 'PromoPost', format: 'Carousel', platforms: FEED, brief: 'Tanıtım gönderisi: özellikleri sırayla gösteren kaydırmalı gönderi'},
+		{channel: 'Story', content: 'PromoStory', format: 'StoryImage', platforms: STORY, brief: 'Günün gönderisine çağrı'},
+	],
+	wed: [
+		{channel: 'Feed', content: 'PromoReel', format: 'Video', platforms: FEED_VIDEO, brief: 'Tanıtım reels'},
+		{channel: 'Story', content: 'PromoStory', format: 'StoryImage', platforms: STORY, brief: 'Günün reels’ine çağrı'},
+	],
+	thu: [
+		{channel: 'Feed', content: 'PromoPost', format: 'Image', platforms: FEED, brief: 'Tanıtım gönderisi: tek görsel, tek mesaj'},
+		{channel: 'Story', content: 'PromoStory', format: 'StoryImage', platforms: STORY, brief: 'Günün gönderisine çağrı'},
+	],
+	fri: [
+		{channel: 'Feed', content: 'PromoReel', format: 'Video', platforms: FEED_VIDEO, brief: 'Tanıtım reels'},
+		{channel: 'Story', content: 'PromoStory', format: 'StoryImage', platforms: STORY, brief: 'Günün reels’ine çağrı'},
+	],
+	sat: [
+		{channel: 'Feed', content: 'PromoPost', format: 'Carousel', platforms: FEED, brief: 'Tanıtım gönderisi: kaydırmalı'},
+		{channel: 'Story', content: 'PromoStory', format: 'StoryImage', platforms: STORY, brief: 'Günün gönderisine çağrı'},
+	],
+	sun: [
+		{channel: 'Feed', content: 'PromoReel', format: 'Video', platforms: FEED_VIDEO, brief: 'Tanıtım reels'},
+		{channel: 'Story', content: 'PromoStory', format: 'StoryImage', platforms: STORY, brief: 'Günün reels’ine çağrı'},
+	],
+};
+
+/** The plans the calendar can be generated from: `npm run social -- plan --plan tanitim`. */
+export const SOCIAL_PLANS = {standart: WEEKLY_PLAN, tanitim: PROMO_WEEKLY_PLAN} as const;
+export type SocialPlanName = keyof typeof SOCIAL_PLANS;
 
 /**
  * Publishing hours come from the posting schedule defined in Buffer for each

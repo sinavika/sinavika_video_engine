@@ -38,9 +38,9 @@ describe('sample jobs', () => {
 describe('resolveVideoJob', () => {
 	const base = readSample('QuestionSolution.json');
 
-	it('applies defaults: vertical, 1080p, 30 fps, the template theme', () => {
+	it('applies defaults: vertical, 4K (the highest quality), 30 fps, the template theme', () => {
 		const job = resolveVideoJob({template: base.template, content: base.content});
-		expect(job).toMatchObject({formatId: 'Vertical', quality: '1080p', fps: 30, width: 1080, height: 1920, scale: 1});
+		expect(job).toMatchObject({formatId: 'Vertical', quality: '2160p', fps: 30, width: 2160, height: 3840, scale: 2});
 		expect(job.inputProps.theme).toBe('SinavikaBrand');
 	});
 

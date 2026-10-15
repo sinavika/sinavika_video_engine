@@ -1,3 +1,4 @@
+import {moduleName} from '../../../Configurations/ProductMessaging';
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {z} from 'zod';
@@ -85,9 +86,9 @@ export const AppTrio = defineImageTemplate({
 	contentSchema: AppTrioSchema,
 	sampleContent: {
 		panels: [
-			{kicker: 'Denemeler', headline: 'Deneme çöz.', screen: 'Exam'},
-			{kicker: 'Analiz', headline: 'Eksiğini gör.', screen: 'Analysis'},
-			{kicker: 'SinoAI', headline: 'Koçuna sor.', screen: 'SinoAi'},
+			{kicker: moduleName('exam'), headline: 'Deneme çöz.', screen: 'Exam'},
+			{kicker: moduleName('studyPlan'), headline: 'Eksiğini gör.', screen: 'Analysis'},
+			{kicker: moduleName('sinoAi'), headline: 'SinoAI’ye sor.', screen: 'SinoAi'},
 		],
 	},
 	defaultTheme: 'SinavikaLight',

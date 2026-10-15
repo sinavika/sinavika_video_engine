@@ -1,5 +1,6 @@
 import {z} from 'zod';
 import {
+	DEFAULT_RENDER_QUALITY,
 	RENDER_QUALITY_IDS,
 	VIDEO_FORMATS,
 	VIDEO_FORMAT_IDS,
@@ -28,7 +29,8 @@ export const VideoJobSchema = z.object({
 	/** Defaults to the template's own default theme. */
 	theme: z.string().min(1).optional(),
 	fps: z.number().optional(),
-	quality: z.enum(RENDER_QUALITY_IDS).default('1080p'),
+	/** Always the highest by default (4K); see DEFAULT_RENDER_QUALITY. */
+	quality: z.enum(RENDER_QUALITY_IDS).default(DEFAULT_RENDER_QUALITY),
 	/** Names the output file when it is saved to Outputs/Videos. Defaults to a name derived from the content. */
 	name: z.string().trim().min(1).max(80).optional(),
 	/**

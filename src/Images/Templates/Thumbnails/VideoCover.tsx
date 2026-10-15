@@ -10,6 +10,7 @@ import {useInk, useTheme} from '../../../Themes/ThemeContext';
 import {ImageFrame, useImageLayout} from '../../Components/ImageFrame';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
 import {BrandingSchema} from '../../Schemas/ImageFields';
+import {BRAND_TYPOGRAPHY} from '../../../Configurations/BrandTypography';
 
 const VideoCoverSchema = z.object({
 	/** Five words or fewer read best at thumbnail size. */
@@ -64,7 +65,7 @@ const VideoCoverImage: React.FC<{content: Content}> = ({content}) => {
 				alignItems: 'center',
 				justifyContent: 'center',
 				fontFamily: typography.display,
-				fontWeight: 900,
+				fontWeight: BRAND_TYPOGRAPHY.weights.kinetic,
 				fontSize: side * (content.glyph.length > 2 ? 0.4 : 0.6),
 				lineHeight: 1,
 				transform: 'rotate(-6deg)',
@@ -80,7 +81,7 @@ const VideoCoverImage: React.FC<{content: Content}> = ({content}) => {
 		<ImageFrame backdrop="gradient" branding={content.branding} padding={64}>
 			<div style={{position: 'relative', flex: 1, minHeight: 0, display: 'flex', flexDirection: wide ? 'row' : 'column', alignItems: 'center', justifyContent: 'space-between', gap: u(48)}}>
 				{content.lesson ? (
-					<div style={{position: 'absolute', top: cornerTop, left: 0, padding: `${u(14)}px ${u(30)}px`, borderRadius: u(16), backgroundColor: ink.text, color: colors.primary, fontFamily: typography.display, fontWeight: 900, fontSize: u(50), lineHeight: 1}}>
+					<div style={{position: 'absolute', top: cornerTop, left: 0, padding: `${u(14)}px ${u(30)}px`, borderRadius: u(16), backgroundColor: ink.text, color: colors.primary, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(50), lineHeight: 1}}>
 						{content.lesson}
 					</div>
 				) : null}
@@ -88,7 +89,7 @@ const VideoCoverImage: React.FC<{content: Content}> = ({content}) => {
 					{content.exams.length > 0 ? (
 						<div style={{display: 'flex', flexWrap: 'wrap', gap: u(14)}}>
 							{content.exams.map((exam) => (
-								<div key={exam} style={{padding: `${u(10)}px ${u(24)}px`, borderRadius: u(999), border: `${u(4)}px solid ${ink.text}`, color: ink.text, fontFamily: typography.display, fontWeight: 900, fontSize: u(40), lineHeight: 1}}>
+								<div key={exam} style={{padding: `${u(10)}px ${u(24)}px`, borderRadius: u(999), border: `${u(4)}px solid ${ink.text}`, color: ink.text, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(40), lineHeight: 1}}>
 									{exam}
 								</div>
 							))}
@@ -96,7 +97,7 @@ const VideoCoverImage: React.FC<{content: Content}> = ({content}) => {
 					) : null}
 					<div style={{display: 'flex', alignItems: 'center', gap: u(20)}}>
 						{content.badge ? (
-							<div style={{padding: `${u(12)}px ${u(26)}px`, borderRadius: u(14), backgroundColor: ink.text, color: colors.primary, fontFamily: typography.display, fontWeight: 900, fontSize: u(44), lineHeight: 1}}>
+							<div style={{padding: `${u(12)}px ${u(26)}px`, borderRadius: u(14), backgroundColor: ink.text, color: colors.primary, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(44), lineHeight: 1}}>
 								{content.badge}
 							</div>
 						) : null}
@@ -106,7 +107,7 @@ const VideoCoverImage: React.FC<{content: Content}> = ({content}) => {
 							</Text>
 						) : null}
 					</div>
-					<Text variant="display" size={size} weight={900} style={{lineHeight: 1, textShadow: `0 ${u(6)}px ${u(24)}px rgba(0, 0, 0, 0.25)`}}>
+					<Text variant="display" size={size} weight={BRAND_TYPOGRAPHY.weights.kinetic} style={{lineHeight: 1, textShadow: `0 ${u(6)}px ${u(24)}px rgba(0, 0, 0, 0.25)`}}>
 						{before}
 						{content.emphasis ? (
 							<span style={{color: colors.onAccent, textShadow: 'none'}}>

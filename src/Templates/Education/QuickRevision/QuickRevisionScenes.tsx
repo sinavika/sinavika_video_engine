@@ -19,6 +19,7 @@ import {SPACING} from '../../../Themes/DesignTokens';
 import {withAlpha, type CategoricalColor} from '../../../Themes/Theme';
 import {InkProvider, useInk, useTheme} from '../../../Themes/ThemeContext';
 import type {QuickRevisionContent, RevisionCard} from './QuickRevisionSchema';
+import {BRAND_TYPOGRAPHY} from '../../../Configurations/BrandTypography';
 
 type Content = QuickRevisionContent;
 
@@ -68,7 +69,7 @@ export const IntroScene: React.FC<{content: Content; totalSeconds: number}> = ({
 			{content.subject ? (
 				<div style={{position: 'absolute', top: u(INTRO_CORNER_TOP), left: u(64)}}>
 					<Animated animation={{preset: 'slide', direction: 'right', durationSeconds: 0.35}}>
-						<div style={{padding: `${u(14)}px ${u(30)}px`, borderRadius: u(16), backgroundColor: ink.text, color: colors.primary, fontFamily: typography.display, fontWeight: 900, fontSize: u(50), lineHeight: 1}}>{content.subject}</div>
+						<div style={{padding: `${u(14)}px ${u(30)}px`, borderRadius: u(16), backgroundColor: ink.text, color: colors.primary, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(50), lineHeight: 1}}>{content.subject}</div>
 					</Animated>
 				</div>
 			) : null}
@@ -76,7 +77,7 @@ export const IntroScene: React.FC<{content: Content; totalSeconds: number}> = ({
 				<Animated animation="fade" delaySeconds={0.05}>
 					<div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: u(14)}}>
 						{content.exams.map((exam) => (
-							<div key={exam} style={{padding: `${u(10)}px ${u(24)}px`, borderRadius: u(999), border: `${u(4)}px solid ${ink.text}`, color: ink.text, fontFamily: typography.display, fontWeight: 900, fontSize: u(40), lineHeight: 1}}>
+							<div key={exam} style={{padding: `${u(10)}px ${u(24)}px`, borderRadius: u(999), border: `${u(4)}px solid ${ink.text}`, color: ink.text, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(40), lineHeight: 1}}>
 								{exam}
 							</div>
 						))}
@@ -195,7 +196,7 @@ export const CardScene: React.FC<CardSceneProps> = ({card, index, total}) => {
 					right: u(-20),
 					bottom: u(isLandscape ? -150 : 40),
 					fontFamily: typography.display,
-					fontWeight: 900,
+					fontWeight: BRAND_TYPOGRAPHY.weights.kinetic,
 					fontSize: u(isLandscape ? 720 : 620),
 					lineHeight: 0.8,
 					color: tone.on,

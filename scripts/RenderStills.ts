@@ -22,7 +22,7 @@ const {values} = parseArgs({
 		out: {type: 'string', default: 'out/Stills'},
 		formats: {type: 'string'},
 		theme: {type: 'string'},
-		quality: {type: 'string', default: '720p'},
+		quality: {type: 'string', default: '2160p'},
 	},
 });
 

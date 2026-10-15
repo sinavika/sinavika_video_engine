@@ -1,6 +1,9 @@
 import React from 'react';
 import {Folder} from 'remotion';
 import {AppScreenComposition} from './Compositions/AppScreenComposition';
+import {GoogleAdsComposition} from './Ads/Google/GoogleAdsComposition';
+import {StoreComposition} from './Compositions/StoreComposition';
+import {UIUXComposition} from './UIUX/UIUXComposition';
 import {ImageCategoryFolder} from './Compositions/ImageCompositions';
 import {TemplateCompositions} from './Compositions/TemplateCompositions';
 import {IMAGE_CATEGORIES, imageVariantsOf} from './Images/ImageTemplateRegistry';
@@ -12,10 +15,14 @@ const CATEGORIES = [...new Set(TEMPLATES.map((template) => template.category))];
  * Videos: every registered video template in every format, grouped by category.
  * Images: every registered image design, grouped by category, under "Images".
  * AppScreens: the drawn mobile app screens, as pictures.
+ * Store: App Store and Google Play screenshots and the Play feature graphic.
  */
 export const Root: React.FC = () => (
 	<>
 		<AppScreenComposition />
+		<StoreComposition />
+		<GoogleAdsComposition />
+		<UIUXComposition />
 		<Folder name="Images">
 			{IMAGE_CATEGORIES.map((category) => (
 				<ImageCategoryFolder key={category} category={category} templates={imageVariantsOf(category)} />

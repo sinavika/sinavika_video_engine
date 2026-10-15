@@ -9,6 +9,7 @@ import {useVideoLayout} from '../Layouts/VideoLayout';
 import {useReveal, useVisualPalette, type VisualBoxProps} from './VisualFrame';
 import {Part, elementLook, useElementState} from './VisualTimeline';
 import type {CourseVisual} from './VisualSchemas';
+import {BRAND_TYPOGRAPHY} from '../../Configurations/BrandTypography';
 
 type Timeline = Extract<CourseVisual, {kind: 'timeline'}>;
 type MapSpec = Extract<CourseVisual, {kind: 'map'}>;
@@ -56,7 +57,7 @@ const TimelineEvent: React.FC<{id: string; x: number; lineY: number; above: bool
 			<circle cx={x} cy={lineY} r={u(16) * show * look.scale} fill={palette.lesson} stroke={palette.surface} strokeWidth={u(5)} />
 			<foreignObject x={x - width / 2} y={boxY} width={width} height={u(150)}>
 				<div style={{height: '100%', display: 'flex', flexDirection: 'column', justifyContent: above ? 'flex-end' : 'flex-start', alignItems: 'center', textAlign: 'center', gap: u(4), fontFamily: palette.fontBody}}>
-					<div style={{fontFamily: palette.fontDisplay, fontWeight: 900, fontSize: u(38), color: palette.lesson, lineHeight: 1}}>{year}</div>
+					<div style={{fontFamily: palette.fontDisplay, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(38), color: palette.lesson, lineHeight: 1}}>{year}</div>
 					<div style={{fontWeight: 700, fontSize: u(28), color: palette.ink, lineHeight: 1.15}}>{label}</div>
 					{detail ? <div style={{fontSize: u(22), color: palette.muted, lineHeight: 1.2}}>{detail}</div> : null}
 				</div>

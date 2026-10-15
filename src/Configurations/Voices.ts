@@ -62,6 +62,14 @@ export const VOICES = {
 		origin: 'native',
 		character: 'İstanbul Türkçesi; dinamik ve enerjik, gündelik konuşma tonu; reklam ve sosyal medya',
 	},
+	Gokce: {
+		elevenLabsId: 'oPC5I9GKjMReiaM29gjY',
+		name: 'Gökçe Deniz',
+		gender: 'female',
+		age: 'young',
+		origin: 'native',
+		character: 'Genç, İstanbul Türkçesi; canlı ve sevimli sohbet tonu; tanıtım reels’i ve sosyal medya',
+	},
 	Gozde: {
 		elevenLabsId: 'aEJD8mYP0nuof1XHShVY',
 		name: 'Gözde Arıkan',
@@ -258,6 +266,14 @@ export const VOICE_PROFILES = {
 		stability: 0.5,
 		similarity: 0.8,
 		style: 0,
+	},
+	Launch: {
+		description: 'Hareketli tanıtım reels’i: canlı, tempolu, gülümseyen ses (Ekim 2026 kampanyası)',
+		standIns: ['Jessica', 'Laura'],
+		pace: 1.06,
+		stability: 0.36,
+		similarity: 0.8,
+		style: 0.22,
 	},
 	Creator: {
 		description: 'Genç ve samimi içerik üreticisi: sosyal medya',

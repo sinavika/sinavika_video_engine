@@ -14,6 +14,8 @@ const DEVICE_MARGIN = 110;
 export const AppScreenPropsSchema = z.object({
 	screen: z.enum(APP_SCREEN_NAMES),
 	mode: z.enum(APP_MODES).default('light'),
+	/** The app catalogue the screen is drawn in. */
+	lang: z.enum(['tr', 'en']).default('tr'),
 	/** Draw the phone around the screen, on the brand background. */
 	device: z.boolean().default(false),
 });

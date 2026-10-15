@@ -1,3 +1,4 @@
+import {moduleName} from '../../../Configurations/ProductMessaging';
 import React from 'react';
 import {z} from 'zod';
 import {RichText} from '../../../Components/Typography/RichText';
@@ -89,11 +90,11 @@ export const DualPhones = defineImageTemplate({
 	description: 'Yan yana iki ya da üç uygulama ekranı; her birinin üstünde kısa etiket.',
 	contentSchema: DualPhonesSchema,
 	sampleContent: {
-		title: 'Çöz, öğren, **takip et**',
+		title: 'Çöz, öğren, **takip et.**',
 		subtitle: 'Sınavika’nın üç ekranı, tek bir çalışma düzeni.',
 		screens: [
-			{label: 'Denemeler', appScreen: 'Exam'},
-			{label: 'Bilgi Kartları', appScreen: 'Flashcards'},
+			{label: moduleName('exam'), appScreen: 'Exam'},
+			{label: moduleName('flashcards'), appScreen: 'Flashcards'},
 			{label: 'İstatistikler', appScreen: 'Analysis'},
 		],
 		cta: {label: 'Uygulamayı indir'},

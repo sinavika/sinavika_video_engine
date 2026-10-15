@@ -3,6 +3,7 @@ import {useVideoLayout} from '../Layouts/VideoLayout';
 import {RichText} from '../Typography/RichText';
 import {useReveal, useVisualPalette, type VisualBoxProps} from './VisualFrame';
 import type {CourseVisual} from './VisualSchemas';
+import {BRAND_TYPOGRAPHY} from '../../Configurations/BrandTypography';
 
 type Sentence = Extract<CourseVisual, {kind: 'sentence'}>;
 type Comparison = Extract<CourseVisual, {kind: 'comparison'}>;
@@ -173,7 +174,7 @@ const VennSet: React.FC<{centre: [number, number]; radius: number; colour: strin
 	return (
 		<g opacity={Math.min(1, show)}>
 			<circle cx={centre[0]} cy={centre[1]} r={radius * show} fill={colour} fillOpacity={0.16} stroke={colour} strokeWidth={u(5)} />
-			<text x={labelAt[0]} y={labelAt[1] + (away[1] > 0 ? u(36) : -u(6))} textAnchor="middle" fill={colour} style={{fontFamily: palette.fontDisplay, fontWeight: 900, fontSize: u(40)}}>{label}</text>
+			<text x={labelAt[0]} y={labelAt[1] + (away[1] > 0 ? u(36) : -u(6))} textAnchor="middle" fill={colour} style={{fontFamily: palette.fontDisplay, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(40)}}>{label}</text>
 			{items.map((item, index) => (
 				<text key={item} x={itemsAt[0]} y={itemsAt[1] + (index - (items.length - 1) / 2) * u(36)} textAnchor="middle" fill={palette.ink} style={{fontFamily: palette.fontBody, fontWeight: 600, fontSize: u(28)}}>{item}</text>
 			))}

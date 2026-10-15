@@ -39,6 +39,8 @@ Seslendirme için ElevenLabs API anahtarı gerekir. `.env.example` dosyasını `
 | `npm run image -- --job <job.json> --out <görsel.png>` | Görseli tam olarak verilen yola yazar |
 | `npm run render -- --job <job.json> --out <kare.png> --frame 120` | Tek kare render eder |
 | `npm run screens [-- --mode both --device]` | Mobil uygulama ekranlarını PNG olarak `Outputs/AppScreens` altına çıkarır |
+| `npm run uiux [-- --only m-deneme --lang en]` | UI/UX çizimlerini (mobil, web paneli, site; açık ve koyu ayrı; ekranlar ve panolar) `Desktop\Sinavika-UIUX3\acik|koyu` altına çıkarır; `--mode light|dark|both`. Ayrıntı: [docs/UIUX/UIUX-Rehberi.md](docs/UIUX/UIUX-Rehberi.md) |
+| `npm run google-ads [-- --lang tr --exam yks --platform mobile]` | Google Ads setini (YKS/KPSS, mobil uygulama/web sitesi, TR/EN; 3 boyut görsel, metinsiz kopyalar, HTML5 zip, metin CSV, logolar) `Desktop\Sinavika-GoogleAds` altına çıkarır. Plan: [docs/GoogleAds/Icerik-Plani.md](docs/GoogleAds/Icerik-Plani.md) |
 | `npm run render -- ... --concurrency 4 --json` | Paralel sekme sayısı; makine tarafından okunabilir çıktı |
 | `npm run validate -- <job.json> [...]` | Render etmeden doğrular, süreyi raporlar |
 | `npm run validate -- <job.json> --narration` | Ayrıca seslendirme metnini satır satır yazdırır |
@@ -62,7 +64,7 @@ Motorun tek girdisi düz bir JSON nesnesidir:
   "format": "Vertical",
   "theme": "AcademicLight",
   "fps": 30,
-  "quality": "1080p",
+  "quality": "2160p",
   "voiceover": true,
   "content": {
     "title": "Birinci Dereceden Denklem",
@@ -86,7 +88,7 @@ Motorun tek girdisi düz bir JSON nesnesidir:
 | `format` | `Vertical` (9:16), `Horizontal` (16:9), `Square` (1:1) | `Vertical` |
 | `theme` | `SinavikaBrand`, `WhiteboardMinimal`, `AcademicLight`, `TechDark`, `VibrantDynamic`, `ExamFocus` | template'in kendi teması |
 | `fps` | 24, 25, 30, 50, 60 | 30 |
-| `quality` | `720p`, `1080p`, `1440p`, `2160p`. Sosyal medya için `1080p`: Instagram en fazla 1920 px genişlik kabul eder, Buffer daha büyüğünü Full HD'ye indirir | `1080p` |
+| `quality` | `720p`, `1080p`, `1440p`, `2160p`. **Kural: her zaman en yüksek kalite, 4K.** YouTube'a 4K dosya yüklenir; sosyal medyaya gönderirken motor kendi 1080p kopyasını çıkarır (Buffer/Instagram en fazla 1080p tutar). Düşük kalite yalnız hızlı önizleme için elle seçilir | `2160p` |
 | `voiceover` | `true`, `false` ya da `{profile, voice, model, pace, standIn}` | `false` |
 | `content` | Template'e özel içerik | zorunlu |
 
@@ -211,7 +213,7 @@ Görsellerin girdisi de düz bir JSON nesnesidir:
 | `theme` | Videolarla aynı 6 tema | tasarımın kendi teması |
 | `palette` | Kayıtlı palet adı ya da satır içi palet nesnesi; temanın renklerinin yerine geçer | yok |
 | `format` | `png`, `jpeg`, `webp` | `png` |
-| `quality` | JPEG kalitesi, 1–100 | 92 |
+| `quality` | JPEG kalitesi, 1–100 (varsayılan en yüksek; PNG zaten kayıpsız) | 100 |
 | `name` | Çıktı dosyasına verilecek ad | içerikten türetilir |
 | `content` | Tasarıma özel içerik | zorunlu |
 

@@ -1,4 +1,4 @@
-import {FONT_FAMILIES, fontStack} from './FontFamilies';
+import {BRAND_THEME_TYPOGRAPHY} from '../Configurations/BrandTypography';
 import type {Theme} from './Theme';
 
 export const ExamFocus: Theme = {
@@ -32,17 +32,7 @@ export const ExamFocus: Theme = {
 			{fill: '#1D4ED8', on: '#FFFFFF'},
 		],
 	},
-	typography: {
-		display: fontStack(FONT_FAMILIES.inter),
-		body: fontStack(FONT_FAMILIES.inter),
-		mono: fontStack(FONT_FAMILIES.jetBrainsMono, 'monospace'),
-		displayWeight: 800,
-		bodyWeight: 450,
-		strongWeight: 700,
-		displayScale: 0.96,
-		displayLetterSpacing: '-0.035em',
-		labelTransform: 'uppercase',
-	},
+	typography: BRAND_THEME_TYPOGRAPHY,
 	shape: {radius: {sm: 4, md: 6, lg: 8}, borderWidth: 2, elevation: 'none'},
 	background: {kind: 'solid'},
 	motion: {speed: 1.2, enter: {preset: 'fade'}},

@@ -1,4 +1,4 @@
-import {FONT_FAMILIES, fontStack} from './FontFamilies';
+import {BRAND_THEME_TYPOGRAPHY} from '../Configurations/BrandTypography';
 import type {Theme} from './Theme';
 
 export const TechDark: Theme = {
@@ -32,17 +32,7 @@ export const TechDark: Theme = {
 			{fill: '#FBBF24', on: '#3A2600'},
 		],
 	},
-	typography: {
-		display: fontStack(FONT_FAMILIES.spaceGrotesk),
-		body: fontStack(FONT_FAMILIES.inter),
-		mono: fontStack(FONT_FAMILIES.jetBrainsMono, 'monospace'),
-		displayWeight: 700,
-		bodyWeight: 400,
-		strongWeight: 700,
-		displayScale: 1,
-		displayLetterSpacing: '-0.02em',
-		labelTransform: 'uppercase',
-	},
+	typography: BRAND_THEME_TYPOGRAPHY,
 	shape: {radius: {sm: 10, md: 16, lg: 22}, borderWidth: 1.5, elevation: 'glow'},
 	background: {kind: 'grid', lineColor: '#182040', size: 72},
 	motion: {speed: 1.1, enter: {preset: 'slide', direction: 'up'}},

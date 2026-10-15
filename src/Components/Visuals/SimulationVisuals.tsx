@@ -6,6 +6,7 @@ import {withAlpha} from '../../Themes/Theme';
 import {useVisualPalette, type VisualBoxProps} from './VisualFrame';
 import {useStageClock} from './VisualTimeline';
 import type {CourseVisual} from './VisualSchemas';
+import {BRAND_TYPOGRAPHY} from '../../Configurations/BrandTypography';
 
 type Dynamics = Extract<CourseVisual, {kind: 'dynamics'}>;
 type Equation = Extract<CourseVisual, {kind: 'equation'}>;
@@ -132,7 +133,7 @@ export const DynamicsVisual: React.FC<VisualBoxProps & {visual: Dynamics}> = ({v
 			{visual.incline > 0 ? <text x={trackStart[0] + 90} y={trackStart[1] - 10} fontSize={24} fontWeight={800} fill={palette.muted}>{`${number(visual.incline, 0)}°`}</text> : null}
 			<g transform={`rotate(${-visual.incline} ${centre[0]} ${centre[1]})`}>
 				<rect x={centre[0] - body / 2} y={centre[1] - body / 2} width={body} height={body} rx={8} fill={withAlpha(palette.lesson, 0.18)} stroke={palette.ink} strokeWidth={4} />
-				<text x={centre[0]} y={centre[1] + 9} textAnchor="middle" fontSize={24} fontWeight={900} fill={palette.ink}>{`${number(visual.mass)} kg`}</text>
+				<text x={centre[0]} y={centre[1] + 9} textAnchor="middle" fontSize={24} fontWeight={BRAND_TYPOGRAPHY.weights.kinetic} fill={palette.ink}>{`${number(visual.mass)} kg`}</text>
 			</g>
 			<g opacity={forcesShow * (stage === 2 ? 0.45 : 1)}>
 				{arrows.map((arrow) => (
@@ -273,7 +274,7 @@ export const EquationVisual: React.FC<VisualBoxProps & {visual: Equation}> = ({v
 				{step.operation && drop > 0 && drop < 1 ? (
 					<g opacity={1 - drop * 0.8}>
 						<rect x={cx - 50} y={cy - 110 + drop * 120} width={100} height={48} rx={24} fill={palette.brand} />
-						<text x={cx} y={cy - 77 + drop * 120} textAnchor="middle" fontSize={28} fontWeight={900} fill="#FFFFFF">{step.operation}</text>
+						<text x={cx} y={cy - 77 + drop * 120} textAnchor="middle" fontSize={28} fontWeight={BRAND_TYPOGRAPHY.weights.kinetic} fill="#FFFFFF">{step.operation}</text>
 					</g>
 				) : null}
 			</g>
@@ -287,7 +288,7 @@ export const EquationVisual: React.FC<VisualBoxProps & {visual: Equation}> = ({v
 			<circle cx={pivotX} cy={pivotY} r={12} fill={palette.lesson} />
 			{panBox(-1, html[stage].left, previous ? html[stage - 1].left : undefined)}
 			{panBox(1, html[stage].right, previous ? html[stage - 1].right : undefined)}
-			<text x={pivotX} y={pivotY - 30} textAnchor="middle" fontSize={56} fontWeight={900} fill={palette.lesson}>=</text>
+			<text x={pivotX} y={pivotY - 30} textAnchor="middle" fontSize={56} fontWeight={BRAND_TYPOGRAPHY.weights.kinetic} fill={palette.lesson}>=</text>
 			<foreignObject x={680} y={40} width={310} height={H - 60}>
 				<div style={{display: 'flex', flexDirection: 'column', gap: 14, fontSize: 30, color: palette.ink}}>
 					{visual.steps.slice(0, stage + 1).map((item, index) => (

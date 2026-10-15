@@ -1,4 +1,4 @@
-import {FONT_FAMILIES, fontStack} from './FontFamilies';
+import {BRAND_THEME_TYPOGRAPHY} from '../Configurations/BrandTypography';
 import type {Theme} from './Theme';
 
 export const AcademicLight: Theme = {
@@ -32,17 +32,7 @@ export const AcademicLight: Theme = {
 			{fill: '#8A6D1F', on: '#FFFFFF'},
 		],
 	},
-	typography: {
-		display: fontStack(FONT_FAMILIES.sourceSerif, 'serif'),
-		body: fontStack(FONT_FAMILIES.inter),
-		mono: fontStack(FONT_FAMILIES.jetBrainsMono, 'monospace'),
-		displayWeight: 700,
-		bodyWeight: 450,
-		strongWeight: 700,
-		displayScale: 1,
-		displayLetterSpacing: '-0.01em',
-		labelTransform: 'uppercase',
-	},
+	typography: BRAND_THEME_TYPOGRAPHY,
 	shape: {radius: {sm: 6, md: 10, lg: 14}, borderWidth: 1.5, elevation: 'soft'},
 	background: {kind: 'gradient', stops: ['#FAF6EE', '#F1E9D8'], angle: 160},
 	motion: {speed: 0.85, enter: {preset: 'fade'}},

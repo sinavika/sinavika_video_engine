@@ -1,3 +1,4 @@
+import {moduleName} from '../../../Configurations/ProductMessaging';
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {z} from 'zod';
@@ -106,9 +107,9 @@ export const GrowthLine = defineImageTemplate({
 	contentSchema: GrowthLineSchema,
 	sampleContent: {
 		panels: [
-			{word: 'Ölç.', text: 'Denemeni çöz, analizini gör.', modules: ['Denemeler', 'Analiz']},
-			{word: 'Öğren.', text: 'Eksiğini ders, test ve kartlarla kapat.', modules: ['Dersler', 'Testler', 'Bilgi Kartları', 'Akıllı Özet']},
-			{word: 'Geliş.', text: 'Planını takip et, koçuna sor.', modules: ['Ders Planı', 'SinoAI']},
+			{word: 'Ölç.', text: 'Denemeni çöz, analizini gör.', modules: [moduleName('exam')]},
+			{word: 'Öğren.', text: 'Eksiğini ders, test ve kartlarla kapat.', modules: [moduleName('lessons'), moduleName('tests'), moduleName('flashcards'), moduleName('smartSummary')]},
+			{word: 'Geliş.', text: 'Planını takip et, SinoAI’ye sor.', modules: [moduleName('studyPlan'), moduleName('sinoAi')]},
 		],
 	},
 	defaultTheme: 'SinavikaLight',

@@ -3,7 +3,7 @@ import type {AppModuleName} from './AppModules';
 import {SinoAiScreen, SmartSummaryHomeScreen, SmartSummaryScreen} from './Screens/AssistantScreens';
 import {ExamHomeScreen, ExamSolveScreen, ExamStatsScreen} from './Screens/ExamScreens';
 import {ModuleHubScreen} from './Screens/HubScreens';
-import {FlashcardScreen, LessonsScreen, StudyPlanScreen, TestsScreen} from './Screens/StudyScreens';
+import {FlashcardScreen, LessonsScreen, StudyPlanScreen, StudyProgressScreen, TestsScreen} from './Screens/StudyScreens';
 
 /**
  * Every app screen this project can show, by name. Videos, images and the
@@ -29,11 +29,12 @@ export const APP_SCREENS = {
 	Analysis: {Component: ExamStatsScreen, module: 'Exam', title: 'İstatistikler', description: 'Net trendi, genel gelişim ve başarı oranı.'},
 	SmartSummaryHome: {Component: SmartSummaryHomeScreen, module: 'SmartSummary', title: 'Akıllı Özet ana sayfa', description: 'Soru analizi, video analizi ve geçmiş analizler.'},
 	SmartSummary: {Component: SmartSummaryScreen, module: 'SmartSummary', title: 'Soru analizi', description: 'Soru görselinden çözüm, kazanım ve hata analizi.'},
-	SinoAi: {Component: SinoAiScreen, module: 'SinoAi', title: 'SinoAI', description: 'Sınav koçuyla sohbet.'},
+	SinoAi: {Component: SinoAiScreen, module: 'SinoAi', title: 'SinoAI', description: 'Yapay zekâ çalışma asistanınla sohbet.'},
 	Flashcards: {Component: FlashcardScreen, module: 'Flashcards', title: 'Kart oturumu', description: 'Bilgi kartını çevir, bilme düzeyini işaretle.'},
 	Lessons: {Component: LessonsScreen, module: 'Lessons', title: 'Dersler', description: 'Mikro dersler, konu ağacı ve öğrenme rotası.'},
 	Tests: {Component: TestsScreen, module: 'Tests', title: 'Testler', description: 'Adım adım konu testleri ve ilerleme.'},
 	StudyPlan: {Component: StudyPlanScreen, module: 'StudyPlan', title: 'Ders Planı', description: 'Günün görevleri ve çalışma serisi.'},
+	StudyProgress: {Component: StudyProgressScreen, module: 'StudyPlan', title: 'İlerleme', description: 'Haftalık çalışma süresi ve konu ilerlemesi.'},
 } as const satisfies Record<string, AppScreenEntry>;
 
 export type AppScreenName = keyof typeof APP_SCREENS;

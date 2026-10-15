@@ -1,6 +1,8 @@
 import type {AnyImageTemplateDefinition} from './ImageTemplateDefinition';
 import {Update} from './Templates/Announcements/Update';
 import {Offer} from './Templates/Campaigns/Offer';
+import {PromoDeck} from './Templates/Campaigns/PromoDeck';
+import {PromoStory} from './Templates/Campaigns/PromoStory';
 import {SlideDeck} from './Templates/Carousels/SlideDeck';
 import {TipList} from './Templates/ExamTips/TipList';
 import {Spotlight} from './Templates/FeatureSpotlights/Spotlight';
@@ -46,6 +48,8 @@ export const IMAGE_TEMPLATES: readonly AnyImageTemplateDefinition[] = [
 	SlideDeck,
 	Update,
 	Offer,
+	PromoDeck,
+	PromoStory,
 	VideoCover,
 	GrowthLine,
 	AppTrio,

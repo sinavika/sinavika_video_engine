@@ -32,8 +32,9 @@ Ekranlar 390×844'lük sabit bir tuvale çizilir (uygulamanın tasarım boyutu) 
 | `Lessons` | Dersler | Dersler | Mikro dersler, konu ağacı, öğrenme rotası |
 | `Tests` | Testler | Testler | Adım adım konu testleri ve ilerleme |
 | `StudyPlan` | Ders Planı | Bugün | Günün görevleri ve çalışma serisi |
+| `StudyProgress` | Ders Planı | İlerleme | Haftalık çalışma süresi ve Compass konu ilerlemesi |
 
-Her ekran uygulamanın **açık** ve **koyu** temasında çizilebilir. Her modül, uygulamadaki gibi beş sekmeli kendi sekme çubuğunu taşır (ortada her zaman "Modüller"); ana ekranda ve SinoAI'de sekme çubuğu yoktur.
+Her ekran uygulamanın **açık** ve **koyu** temasında, **Türkçe** ve **İngilizce** çizilebilir (dil: `PhoneFrame lang`, `AppLanguageProvider`; modül, sekme ve kart adları uygulamanın en-US kataloğundan). Ekranlar telefonda 390 nokta genişliğindedir; `TabletFrame` aynı ekranları daha geniş bir tuvale yayar (`AppCanvasProvider`). `PhoneFrame variant="android"` dinamik ada yerine kamera deliğiyle çizer (Google Play görselleri için). Her modül, uygulamadaki gibi beş sekmeli kendi sekme çubuğunu taşır (ortada her zaman "Modüller"); ana ekranda ve SinoAI'de sekme çubuğu yoktur.
 
 ```bash
 npm run screens -- --list
@@ -96,3 +97,21 @@ Dosyalar `Outputs/AppScreens/<Ekran>_<tema>[_Telefon].png` adıyla yazılır ve 
 4. `npm run screens -- --screen <Ad> --mode both` ile bak; testlerdeki ad listesini güncelle.
 
 Uygulamanın rengi, ölçüsü ya da sekme adı değişirse yalnız `AppScreenTokens.ts` ya da `AppModules.ts` güncellenir; bütün ekranlar birlikte değişir.
+
+## Uygulama ekranları ve UI/UX çizimleri
+
+Bu belgedeki ekranlar uygulamanın **bugünkü** halini çizer (mağaza görselleri, videolar). Yeniden tasarım çizimleri ayrı bir servistedir: `src/UIUX` (`npm run uiux`). Modül renkleri ve adları orada tek dosyada tanımlıdır (`src/UIUX/ModuleIdentity.ts`); uygulama yeni tasarıma geçtikçe bu ekranlar da aynı kimliği kullanmalıdır. Ayrıntı: [UIUX/UIUX-Rehberi.md](UIUX/UIUX-Rehberi.md), [UIUX/Modul-Kimligi.md](UIUX/Modul-Kimligi.md).
+
+## Mağaza görselleri (App Store ve Google Play)
+
+`npm run store` App Store ve Google Play'in istediği bütün görselleri üretir: 8 slayt × her ölçü, Türkçe ve İngilizce. Metinler, slaytların ekranları ve ölçü listesi [`src/Store/StoreListing.ts`](../src/Store/StoreListing.ts) içindedir; çizim [`src/Store/StoreScreenshot.tsx`](../src/Store/StoreScreenshot.tsx).
+
+```bash
+npm run store                                     # açık görünüm, tr + en, bütün ölçüler
+npm run store -- --look koyu --only iphone-6.3     # alternatif görünüm (koyu, turuncu)
+npm run store -- --lang en --slides 0,1
+```
+
+Görseller her zaman en yüksek kalitededir: mağazanın istediği tam piksel ölçüsünde, kayıpsız PNG (en büyük ölçüler: iPad 13" 2064 × 2752, Android 10 inç 2160 × 3840). Dosyalar `out/MobileHeader/<dil>/<ios|android>/<format>/` altına yazılır; alternatif görünümler `out/MobileHeader/_alternatifler/` altına. Arka plandaki dalga slaytlar boyunca kesintisiz devam eder: mağazada yan yana duran görseller tek bir şerit gibi okunur.
+
+App Store kreatif görselleri (iOS / iPadOS 27+): **Header** (`ust-gorsel`, 5244 × 2950 ya da 3840 × 1646) ve **Search Results** (`arama-sonucu`, 5244 × 2950, 3840 × 2560 ya da 1920 × 1280). Her boyut metinli ve metinsiz (`-metinsiz`) iki dosyadır; düzen yatay, üç telefonlu. Metin `STORE_CREATIVE` içindedir. Yalnız bunları üretmek için: `npm run store -- --only ust-gorsel` ya da `--only arama-sonucu`.

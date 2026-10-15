@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill, Composition, Folder} from 'remotion';
-import {AppModeProvider} from '../Components/AppScreens/AppScreenParts';
+import {AppLanguageProvider, AppModeProvider} from '../Components/AppScreens/AppScreenParts';
 import {APP_SCREENS} from '../Components/AppScreens/AppScreenRegistry';
 import {APP_SCREEN} from '../Components/AppScreens/AppScreenTokens';
 import {PhoneFrame} from '../Components/AppScreens/PhoneFrame';
@@ -13,22 +13,24 @@ import {APP_SCREEN_COMPOSITION_ID, APP_SCREEN_DEVICE_WIDTH, APP_SCREENSHOT_SCALE
  * background. One composition serves every screen; which one is drawn comes
  * from the props (see AppScreenProps.ts).
  */
-const AppScreenPicture: React.FC<AppScreenProps> = ({screen, mode, device}) => {
+const AppScreenPicture: React.FC<AppScreenProps> = ({screen, mode, lang, device}) => {
 	const Screen = APP_SCREENS[screen].Component;
 	return (
 		<VideoFrame themeId={mode === 'dark' ? 'SinavikaDark' : 'SinavikaLight'}>
 			{device ? (
 				<AbsoluteFill style={{alignItems: 'center', justifyContent: 'center'}}>
-					<PhoneFrame width={APP_SCREEN_DEVICE_WIDTH} mode={mode}>
+					<PhoneFrame width={APP_SCREEN_DEVICE_WIDTH} mode={mode} lang={lang}>
 						<Screen />
 					</PhoneFrame>
 				</AbsoluteFill>
 			) : (
 				<AbsoluteFill>
 					<AppModeProvider mode={mode}>
-						<div style={{width: APP_SCREEN.width, height: APP_SCREEN.height, transform: `scale(${APP_SCREENSHOT_SCALE})`, transformOrigin: 'top left'}}>
-							<Screen />
-						</div>
+						<AppLanguageProvider lang={lang}>
+							<div style={{width: APP_SCREEN.width, height: APP_SCREEN.height, transform: `scale(${APP_SCREENSHOT_SCALE})`, transformOrigin: 'top left'}}>
+								<Screen />
+							</div>
+						</AppLanguageProvider>
 					</AppModeProvider>
 				</AbsoluteFill>
 			)}
@@ -36,7 +38,7 @@ const AppScreenPicture: React.FC<AppScreenProps> = ({screen, mode, device}) => {
 	);
 };
 
-const DEFAULT_PROPS: AppScreenProps = {screen: 'Home', mode: 'light', device: false};
+const DEFAULT_PROPS: AppScreenProps = {screen: 'Home', mode: 'light', lang: 'tr', device: false};
 
 export const AppScreenComposition: React.FC = () => (
 	<Folder name="AppScreens">

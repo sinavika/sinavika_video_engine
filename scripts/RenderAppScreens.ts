@@ -5,6 +5,7 @@
  *   npm run screens                                  (every screen, light, bare)
  *   npm run screens -- --mode both --device          (light and dark, inside the phone)
  *   npm run screens -- --screen Exam --screen SinoAi --mode dark
+ *   npm run screens -- --lang en                     (the app's English catalogue)
  *   npm run screens -- --list                        (names and what each screen shows)
  *
  * Files go to Outputs/AppScreens/<Screen>_<mode>[_Telefon].png and are
@@ -22,6 +23,7 @@ const {values} = parseArgs({
 		screen: {type: 'string', multiple: true},
 		mode: {type: 'string', default: 'light'},
 		device: {type: 'boolean', default: false},
+		lang: {type: 'string', default: 'tr'},
 		'out-dir': {type: 'string'},
 		list: {type: 'boolean', default: false},
 	},
@@ -43,8 +45,8 @@ if (unknown.length > 0 || modes.some((mode) => !(APP_MODES as readonly string[])
 const directory = values['out-dir'] ?? path.join(outputRoot(), 'AppScreens');
 for (const screen of screens as AppScreenName[]) {
 	for (const mode of modes as AppMode[]) {
-		const file = path.join(directory, `${screen}_${mode}${values.device ? '_Telefon' : ''}.png`);
-		const result = await renderAppScreen({screen, mode, device: values.device}, {outputPath: file});
+		const file = path.join(directory, `${screen}_${mode}${values.lang === 'tr' ? '' : `_${values.lang}`}${values.device ? '_Telefon' : ''}.png`);
+		const result = await renderAppScreen({screen, mode, lang: values.lang, device: values.device}, {outputPath: file});
 		console.log(`✓ ${path.relative(process.cwd(), result.outputPath)}  ${result.width}x${result.height}`);
 	}
 }

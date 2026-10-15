@@ -8,13 +8,15 @@ export const BRAND = {
 	callToAction: 'Sınavika ile çalışmaya devam et',
 	logo: {
 		/**
-		 * The Sınavika lock-up (icon + wordmark) as a white PNG with transparency,
-		 * inside `public/`. Only its alpha channel is used: the logo is drawn in
-		 * the text colour of wherever it sits, so one file works on every theme.
+		 * The Sınavika lock-up ("Rafine" icon + wordmark, October 2026) as a white
+		 * PNG with transparency, inside `public/`. Only its alpha channel is used:
+		 * BrandMark paints it in the brand rule's colour, orange #EA580C on light
+		 * backdrops and white on dark or orange ones. Icon and wordmark always
+		 * share one colour. Source vectors: the logo delivery (`kaynak/*.svg`).
 		 */
 		src: 'Brand/SinavikaLogo.png',
-		/** Width divided by height of the file. */
-		aspectRatio: 977 / 304,
+		/** Width divided by height of the file (2000 x 526, cropped tight). */
+		aspectRatio: 2000 / 526,
 		/** Logo heights in reference pixels: in a template's top bar, and on the closing card. */
 		sizes: {chrome: 56, hero: 210},
 		/** Smallest allowed logo height, in reference pixels. */

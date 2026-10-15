@@ -5,7 +5,8 @@ import {
 	SOCIAL_CONTENT,
 	SOCIAL_FORMATS,
 	WEEKDAYS,
-	WEEKLY_PLAN,
+	SOCIAL_PLANS,
+	type SocialPlanName,
 	type PlanEntry,
 	type SocialPlatform,
 	type Weekday,
@@ -75,7 +76,7 @@ const bufferTime = (entry: PlanEntry, weekday: Weekday, accounts: AccountSchedul
 };
 
 /** Slots for every day from `from` up to but not including `to`, in publishing order. */
-export const planRange = (from: string, to: string, accounts: AccountSchedule[] = []): PlannedSlot[] => {
+export const planRange = (from: string, to: string, accounts: AccountSchedule[] = [], plan: SocialPlanName = 'standart'): PlannedSlot[] => {
 	const [start, end] = [toDay(from), toDay(to)];
 	if (end <= start) throw new Error('"to" must be after "from".');
 
@@ -83,7 +84,7 @@ export const planRange = (from: string, to: string, accounts: AccountSchedule[] 
 	for (let day = start; day < end; day += 86_400_000) {
 		const date = new Date(day).toISOString().slice(0, 10);
 		const weekday = weekdayOf(day);
-		const entries = WEEKLY_PLAN[weekday];
+		const entries = SOCIAL_PLANS[plan][weekday];
 		const feed = entries.find((entry) => entry.channel === 'Feed');
 		const feedTime = feed ? bufferTime(feed, weekday, accounts) : null;
 
@@ -131,9 +132,9 @@ export const planRange = (from: string, to: string, accounts: AccountSchedule[] 
 };
 
 /** The slots of one calendar month, e.g. planMonth('2026-11'). Days 29 to 31 follow the same weekly pattern. */
-export const planMonth = (month: string, accounts: AccountSchedule[] = []): PlannedSlot[] => {
+export const planMonth = (month: string, accounts: AccountSchedule[] = [], plan: SocialPlanName = 'standart'): PlannedSlot[] => {
 	if (!/^\d{4}-\d{2}$/.test(month)) throw new Error(`Months must be YYYY-MM, got "${month}".`);
 	const [year, index] = month.split('-').map(Number);
 	const next = index === 12 ? `${year + 1}-01` : `${year}-${String(index + 1).padStart(2, '0')}`;
-	return planRange(`${month}-01`, `${next}-01`, accounts);
+	return planRange(`${month}-01`, `${next}-01`, accounts, plan);
 };

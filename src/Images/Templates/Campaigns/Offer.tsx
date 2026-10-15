@@ -12,6 +12,7 @@ import {CallToAction} from '../../Components/CallToAction';
 import {ImageFrame, useImageLayout} from '../../Components/ImageFrame';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
 import {BrandingSchema, CallToActionSchema} from '../../Schemas/ImageFields';
+import {BRAND_TYPOGRAPHY} from '../../../Configurations/BrandTypography';
 
 const OfferSchema = z.object({
 	eyebrow: plainText(40).optional(),
@@ -57,7 +58,7 @@ const OfferImage: React.FC<{content: Content}> = ({content}) => {
 				alignSelf: 'center',
 			}}
 		>
-			<div style={{fontFamily: typography.display, fontWeight: 900, fontSize: u(size * (content.discount.length > 4 ? 0.25 : 0.34)), lineHeight: 0.95, letterSpacing: '-0.03em'}}>
+			<div style={{fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(size * (content.discount.length > 4 ? 0.25 : 0.34)), lineHeight: 0.95, letterSpacing: '-0.03em'}}>
 				{content.discount}
 			</div>
 			<div style={{fontFamily: typography.display, fontWeight: typography.displayWeight, fontSize: u(size * 0.11), textTransform: 'uppercase'}}>{content.discountLabel}</div>

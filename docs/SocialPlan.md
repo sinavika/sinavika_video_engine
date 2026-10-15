@@ -26,6 +26,21 @@ Sınavika'nın standart haftalık ve aylık yayın planı ile bu plana göre iç
 
 Haftalık toplam: 7 ana gönderi (Instagram ve TikTok'ta aynı içerik), 7 Story, 3 YouTube Shorts, 3 LinkedIn gönderisi. Aylık takvim aynı düzenin tekrarıdır; ayın 29–31. günleri de haftanın gününe göre dolar.
 
+### Tanıtım planı (Ekim 2026'dan)
+
+Eğitim içeriği paylaşılmayan dönemlerde `PROMO_WEEKLY_PLAN` kullanılır:
+- Haftada 4 reels: Pazartesi, Çarşamba, Cuma, Pazar. Instagram, TikTok ve YouTube Shorts.
+- Haftada 3 gönderi: Salı ve Cumartesi kaydırmalı, Perşembe tek görsel.
+- Her gün 1 Instagram hikâyesi. Buffer TikTok hikâyesi paylaşamaz.
+
+Yalnız mobil uygulama ve web sitesi tanıtılır; hook'lar kullanıcı kazanmaya yöneliktir. Takvim:
+
+```
+npm run social -- plan --plan tanitim --from 2026-10-17 --to 2026-11-01
+```
+
+Gün gün içerik kampanya dosyasındadır (`src/Campaigns/`). Plan belgesi: [Campaigns/2026-10-Tanitim.md](Campaigns/2026-10-Tanitim.md).
+
 ## 2. Gönderi türleri
 
 Her içeriğin iki etiketi vardır: **içerik kategorisi** (soru çözümü, konu anlatımı…) ve paylaşıldığı platformdaki **gerçek gönderi türü**. Tür, formata ve platforma göre belirlenir; bir platformun sahip olmadığı tür planlanamaz ve API tarafından reddedilir.
@@ -156,7 +171,10 @@ Plan dosyasındaki her satır hazırlanacak bir içeriğin brifingidir: tarih, k
 
 ## Video kalitesi
 
-- **Sosyal medya videoları 1080p üretilir** (dikeyde 1080×1920, 60 fps). 4K (`2160p`) gönderilmez: Instagram'ın API'si en fazla 1920 piksel genişlik kabul eder, Buffer daha büyük videoyu Full HD'ye dönüştürür; Reels, TikTok ve Shorts da 1080p oynatır. 4K dosya başkasının kodlayıcısıyla küçültülür ve daha kötü görünür.
-- Kalite çözünürlükten değil kodlamadan gelir: H.264, CRF 15, `slow` ön ayarı, AAC 192 kbps (`VIDEO_ENCODING`, `src/Configurations/VideoFormats.ts`). Platformlar her videoyu yeniden kodlar; dosya onlara fazladan ayrıntıyla gider.
+- **Kural: her render en yüksek kalitede yapılır.** Videolar 4K (`2160p`, dikeyde 2160×3840) üretilir; ana dosya budur. Varsayılan `DEFAULT_RENDER_QUALITY` (`src/Configurations/VideoFormats.ts`); daha düşük kalite yalnız hızlı önizleme için elle seçilir.
+- **YouTube videoları (ders anlatımları ve Shorts) 4K yüklenir**, ana dosyanın kendisiyle.
+- **Instagram, Facebook, TikTok, LinkedIn (Buffer üzerinden):** Instagram'ın API'si en fazla 1920 piksel genişlik kabul eder, Buffer daha büyük videoyu kendi kodlayıcısıyla Full HD'ye indirir ve sonuç daha kötü görünür. Bu yüzden gönderirken motor 4K ana dosyadan kendi 1080p kopyasını çıkarır (`Ad_1080p.mp4`, Lanczos ölçekleme, aynı kodlama, Instagram'ın 25 Mbps sınırının altında kalması için en fazla 24 Mbps; `src/Services/PlatformCopies.ts`) ve onu yükler. Ana dosya 4K kalır, başkasının kodlayıcısı hiçbir zaman ölçeklemez.
+- Kodlama: H.264, CRF 12, `slow` ön ayarı, BT.709, AAC 192 kbps (`VIDEO_ENCODING`). Platformlar her videoyu yeniden kodlar; dosya onlara fazladan ayrıntıyla gider.
+- Görseller PNG (kayıpsız) üretilir; JPEG istenirse kalite 100.
 - **Sunucu dosyaya dokunmaz.** API videoyu olduğu gibi Blob'a yazar; Buffer'a o dosyanın bağlantısı verilir. Yerel dosya ile sunucudaki dosyanın birebir aynı olduğu 13 Ekim 2026'da özet (SHA-256) karşılaştırmasıyla doğrulandı.
 - Sınırlar: Instagram 300 MB ve 25 Mbps altı, TikTok 1 GB, YouTube Shorts 10 GB; API'nin kabul ettiği en büyük video 300 MB.

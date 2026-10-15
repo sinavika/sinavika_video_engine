@@ -12,7 +12,7 @@ import {TEMPLATES} from '../src/Templates/TemplateRegistry';
 
 describe('app screen registry', () => {
 	it('keeps the screen names content files refer to', () => {
-		expect(APP_SCREEN_NAMES).toEqual(['Home', 'ExamHome', 'Exam', 'Analysis', 'SmartSummaryHome', 'SmartSummary', 'SinoAi', 'Flashcards', 'Lessons', 'Tests', 'StudyPlan']);
+		expect(APP_SCREEN_NAMES).toEqual(['Home', 'ExamHome', 'Exam', 'Analysis', 'SmartSummaryHome', 'SmartSummary', 'SinoAi', 'Flashcards', 'Lessons', 'Tests', 'StudyPlan', 'StudyProgress']);
 	});
 
 	it('describes every screen and ties it to a module of the app', () => {
@@ -72,7 +72,7 @@ describe('where screens are used', () => {
 		const withPhone = appScreenSize({device: true});
 		expect(withPhone.width).toBe(1120);
 		expect(withPhone.height).toBe(Math.round(phoneHeight(900)) + 220);
-		expect(AppScreenPropsSchema.parse({screen: 'Exam'})).toEqual({screen: 'Exam', mode: 'light', device: false});
+		expect(AppScreenPropsSchema.parse({screen: 'Exam'})).toEqual({screen: 'Exam', mode: 'light', lang: 'tr', device: false});
 		expect(AppScreenPropsSchema.safeParse({screen: 'Settings'}).success).toBe(false);
 		expect(AppScreenPropsSchema.safeParse({screen: 'Exam', mode: 'sepia'}).success).toBe(false);
 	});

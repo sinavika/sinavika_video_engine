@@ -156,8 +156,9 @@ Tasarım yazarken:
 
 `src/Themes/<TemaAdı>.ts` dosyasında bir `Theme` nesnesi tanımlayın ve `ThemeRegistry.ts` içine ekleyin. Bütün
 template'ler temayı hemen kabul eder. `tests/VideoJob.test.ts` renklerin 6 haneli hex olduğunu ve metin/zemin
-çiftlerinin WCAG kontrastını otomatik denetler. Yeni bir font gerekiyorsa `@fontsource-variable/<font>` paketini
-kurup `FontFamilies.ts` ve `FontFaces.ts` içine ekleyin (Türkçe için `latin-ext` alt kümesi olmalı).
+çiftlerinin WCAG kontrastını otomatik denetler. Tema yazı tipi seçmez: bütün temalar marka tipografisini
+(`BRAND_THEME_TYPOGRAPHY`, Manrope) kullanır, yalnız etiketlerin büyük harfini kapatabilir. Yeni bir yazı tipi
+marka kararıdır; bkz. [`docs/Brand/Tipografi.md`](Brand/Tipografi.md).
 
 ## Diğer genişletmeler
 
@@ -167,7 +168,7 @@ kurup `FontFamilies.ts` ve `FontFaces.ts` içine ekleyin (Türkçe için `latin-
 | Konu anlatımına yeni blok türü | `TopicBlockSchema` içine bir şema, `TopicBlockView` içine bir `case` |
 | Yeni animasyon preset'i | `AnimationSpec.ts` içindeki liste, `AnimationStyle.ts` içine bir `case` |
 | Yeni sahne geçişi | `SceneTransition.ts` (sahneler saydamdır; yalnızca eski sahneyi götüren geçişler uygundur) |
-| Yeni video formatı veya kalite | `Configurations/VideoFormats.ts` |
+| Yeni video formatı veya kalite (kural: varsayılan her zaman en yüksek, 4K; bkz. `DEFAULT_RENDER_QUALITY`) | `Configurations/VideoFormats.ts` |
 | Yeni ses | `Configurations/Voices.ts` içindeki `VOICES`; marka sesi yapmak için `BRAND_VOICES` listesinin başına ekleyin |
 | Yeni ses profili (ör. çocuklara yönelik) | `VOICE_PROFILES`; template tanımında `voiceProfile` ile kullanın |
 | Marka sesini değiştirmek | `BRAND_VOICES` sırası (ilk kullanılabilir ses her şeyi seslendirir) |

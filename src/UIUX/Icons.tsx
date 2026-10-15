@@ -1,0 +1,100 @@
+import React from 'react';
+
+/**
+ * The icon set of the drawings: 24x24 line icons, 1.9 stroke, round ends
+ * (Lucide style, the set the web app already uses). The apps use the same
+ * names so a drawing maps one to one.
+ */
+const C = 'M12 21a9 9 0 1 0 0-18a9 9 0 1 0 0 18z';
+const PATHS = {
+	home: 'M4 11l8-7 8 7M6 10v10h12V10',
+	apps: 'M5 5h5v5H5zM14 5h5v5h-5zM5 14h5v5H5zM14 14h5v5h-5z',
+	grid: 'M6 6h.01M12 6h.01M18 6h.01M6 12h.01M12 12h.01M18 12h.01M6 18h.01M12 18h.01M18 18h.01',
+	exam: 'M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5',
+	list: 'M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01',
+	chart: 'M4 20h16M7 20v-6M12 20V8M17 20v-9',
+	trend: 'M4 17l5-5 4 4 7-8M15 8h5v5',
+	book: 'M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11',
+	tree: 'M6 3v6a4 4 0 0 0 4 4h4M6 9v12M18 17a2 2 0 1 0 0-4a2 2 0 0 0 0 4z',
+	history: 'M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4M12 8v4l3 2',
+	quiz: `${C}M9.5 9.5a2.5 2.5 0 1 1 3.8 2.1c-.8.5-1.3 1-1.3 2M12 17v.1`,
+	checkCircle: `${C}M8 12.5l3 3 5-6`,
+	calendar: 'M4 6h16v14H4zM4 10h16M8 3v4M16 3v4',
+	sun: 'M12 8a4 4 0 1 0 0 8a4 4 0 0 0 0-8zM12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M19 5l-1.4 1.4M6.4 17.6L5 19',
+	scan: 'M4 8V5h3M17 5h3v3M20 16v3h-3M7 19H4v-3M8 12h8',
+	camera: 'M4 8h3l2-3h6l2 3h3v11H4zM12 16.5a3.2 3.2 0 1 0 0-6.4a3.2 3.2 0 0 0 0 6.4z',
+	video: 'M3 6h13v12H3zM16 10l5-3v10l-5-3',
+	cards: 'M4 8h12v12H4zM8 4h12v12',
+	bookmark: 'M7 4h10v17l-5-4-5 4z',
+	sparkles: 'M11 4l1.8 4.7 4.7 1.8-4.7 1.8L11 17l-1.8-4.7-4.7-1.8 4.7-1.8zM18.5 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z',
+	user: 'M12 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0',
+	bell: 'M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20a2 2 0 0 0 4 0',
+	search: 'M11 4a7 7 0 1 0 0 14a7 7 0 0 0 0-14zM16 16l4.5 4.5',
+	clock: `${C}M12 7v5l3.5 2`,
+	check: 'M5 12.5l4.5 4.5L19 7.5',
+	right: 'M9 6l6 6-6 6',
+	left: 'M15 6l-6 6 6 6',
+	down: 'M6 9l6 6 6-6',
+	up: 'M6 15l6-6 6 6',
+	plus: 'M12 5v14M5 12h14',
+	minus: 'M5 12h14',
+	x: 'M6 6l12 12M18 6L6 18',
+	flame: 'M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-6 1-9z',
+	target: `${C}M12 16a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM12 12h.01`,
+	play: 'M8 5l11 7-11 7z',
+	playCircle: `${C}M10 8.5l5.5 3.5-5.5 3.5z`,
+	pause: 'M8 5v14M16 5v14',
+	settings: 'M12 15a3 3 0 1 0 0-6a3 3 0 0 0 0 6zM19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3 1a7 7 0 0 0-2-1.2L14.3 3h-4l-.4 2.6a7 7 0 0 0-2 1.2l-2.3-1-2 3.4 2 1.5A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.3-1a7 7 0 0 0 2 1.2l.4 2.7h4l.4-2.7a7 7 0 0 0 2-1.2l2.3 1 2-3.4-2-1.5c.1-.4.1-.8.1-1.2z',
+	headset: 'M5 13v-1a7 7 0 0 1 14 0v1M5 13h3v6H5zM16 13h3v6h-3z',
+	lock: 'M6 11h12v10H6zM9 11V8a3 3 0 0 1 6 0v3',
+	mail: 'M4 6h16v12H4zM4 7l8 6 8-6',
+	eye: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 15a3 3 0 1 0 0-6a3 3 0 0 0 0 6z',
+	logout: 'M15 4h4v16h-4M10 8l-4 4 4 4M6 12h11',
+	filter: 'M4 6h16M7 12h10M10 18h4',
+	trophy: 'M8 4h8v5a4 4 0 0 1-8 0zM8 6H5v2a3 3 0 0 0 3 3M16 6h3v2a3 3 0 0 1-3 3M12 13v4M8 20h8M10 17h4',
+	refresh: 'M20 11a8 8 0 1 0-2.3 5.6M20 5v6h-6',
+	upload: 'M12 16V4M7 9l5-5 5 5M4 16v4h16v-4',
+	image: 'M4 5h16v14H4zM8 10a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3zM20 15l-5-5-9 9',
+	send: 'M4 12l16-8-6 16-3-7z',
+	globe: `${C}M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18`,
+	moon: 'M20 14A8 8 0 1 1 10 4a6 6 0 0 0 10 10z',
+	bulb: 'M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z',
+	star: 'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z',
+	gift: 'M4 10h16v4H4zM6 14h12v7H6zM12 10v11M12 10c-2 0-4-1-4-3s3-2 4 3c1-5 4-5 4-3s-2 3-4 3',
+	info: `${C}M12 11v6M12 7.5v.1`,
+	alert: 'M12 4l9 16H3zM12 10v4M12 17v.1',
+	card: 'M3 6h18v12H3zM3 10h18M7 15h4',
+	zap: 'M13 3L5 13h6l-1 8 8-10h-6z',
+	award: 'M12 15a6 6 0 1 0 0-12a6 6 0 0 0 0 12zM9 14l-2 7 5-3 5 3-2-7',
+	grad: 'M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5',
+	briefcase: 'M4 8h16v11H4zM9 8V5h6v3M4 13h16',
+	edit: 'M4 20h4L19 9l-4-4L4 16zM14 6l4 4',
+	file: 'M7 3h7l4 4v14H7zM14 3v4h4',
+	wifi: 'M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5v.1',
+	battery: 'M3 8h16v8H3zM21 11v2',
+	signal: 'M4 18v-2M9 18v-5M14 18v-8M19 18V6',
+	more: 'M6 12h.01M12 12h.01M18 12h.01',
+	menu: 'M4 6h16M4 12h16M4 18h16',
+	language: 'M4 5h8M8 3v2M5 11c2-1 4-4 4-6M6 7c1 2 3 4 5 5M13 21l4-9 4 9M14.5 18h5',
+	shield: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z',
+	trash: 'M5 7h14M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3',
+	phone: 'M7 3h10v18H7zM11 18h2',
+	chat: 'M5 5h14v10H9l-4 4z',
+	newChat: 'M5 5h9M5 5v14l4-4h10v-5M18 3v6M15 6h6',
+	note: 'M5 4h14v16H5zM8 9h8M8 13h8M8 17h5',
+	layers: 'M12 3l9 5-9 5-9-5zM3 13l9 5 9-5',
+	focus: 'M12 8a4 4 0 1 0 0 8a4 4 0 0 0 0-8zM12 2v3M12 19v3M2 12h3M19 12h3',
+	pin: 'M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12zM12 11a2 2 0 1 0 0-4a2 2 0 0 0 0 4z',
+	apple: 'M16 13c0-2 1.6-3 1.7-3-1-1.4-2.4-1.6-3-1.6-1.3-.1-2.5.8-3.1.8-.7 0-1.6-.8-2.7-.7-1.4 0-2.7.8-3.4 2.1-1.5 2.5-.4 6.3 1 8.4.7 1 1.5 2.1 2.6 2.1 1 0 1.4-.7 2.7-.7s1.6.7 2.7.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3 0 0-2.1-.8-2.1-3.7zM14 6.5c.6-.7 1-1.7.9-2.6-.8 0-1.8.5-2.4 1.2-.5.6-1 1.6-.9 2.5.9.1 1.8-.4 2.4-1.1z',
+	google: 'M20 12.2c0-.6-.1-1.2-.2-1.7H12v3.3h4.5a3.9 3.9 0 0 1-1.7 2.5v2.1h2.7c1.6-1.5 2.5-3.6 2.5-6.2zM12 20c2.3 0 4.2-.8 5.5-2.1l-2.7-2.1c-.7.5-1.7.8-2.8.8-2.2 0-4-1.5-4.7-3.5H4.5v2.2A8 8 0 0 0 12 20zM7.3 13.1a4.8 4.8 0 0 1 0-3.1V7.8H4.5a8 8 0 0 0 0 7.4zM12 6.4c1.2 0 2.3.4 3.2 1.2l2.4-2.4A8 8 0 0 0 4.5 7.8l2.8 2.2c.7-2 2.5-3.6 4.7-3.6z',
+	googlePlay: 'M5 3l11 9-11 9zM5 3l14 8M5 21l14-8',
+} as const;
+
+export type UIIconName = keyof typeof PATHS;
+export const UI_ICON_NAMES = Object.keys(PATHS) as UIIconName[];
+
+export const Icon: React.FC<{name: UIIconName; size?: number; color?: string; stroke?: number; style?: React.CSSProperties}> = ({name, size = 20, color = 'currentColor', stroke = 1.9, style}) => (
+	<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round" style={{flexShrink: 0, display: 'block', ...style}}>
+		<path d={PATHS[name]} />
+	</svg>
+);

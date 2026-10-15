@@ -54,7 +54,8 @@ const renderPages = async (job: ResolvedImageJob, outputPaths: string[]): Promis
 				output,
 				inputProps,
 				imageFormat: job.format,
-				jpegQuality: job.format === 'jpeg' ? (job.quality ?? 92) : undefined,
+				// Highest quality unless the job asks otherwise (PNG, the default, is lossless).
+				jpegQuality: job.format === 'jpeg' ? (job.quality ?? 100) : undefined,
 				onBrowserLog,
 			});
 		}

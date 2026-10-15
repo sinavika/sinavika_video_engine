@@ -7,6 +7,7 @@ import {parseExpression} from './PlotExpression';
 import {useReveal, useVisualPalette, type VisualBoxProps} from './VisualFrame';
 import {Part, elementLook, useElementState, useParams} from './VisualTimeline';
 import {useVideoLayout} from '../Layouts/VideoLayout';
+import {BRAND_TYPOGRAPHY} from '../../Configurations/BrandTypography';
 
 type Plot = Extract<CourseVisual, {kind: 'plot'}>;
 type Geometry = Extract<CourseVisual, {kind: 'geometry'}>;
@@ -120,7 +121,7 @@ export const PlotVisual: React.FC<VisualBoxProps & {visual: Plot}> = ({visual, w
 				) : null,
 			)}
 			{parameterText ? (
-				<text x={pad.left + u(14)} y={pad.top + u(36)} fill={palette.lesson} fontSize={fontSize * 1.2} fontWeight={900} opacity={axes}>
+				<text x={pad.left + u(14)} y={pad.top + u(36)} fill={palette.lesson} fontSize={fontSize * 1.2} fontWeight={BRAND_TYPOGRAPHY.weights.kinetic} opacity={axes}>
 					{parameterText}
 				</text>
 			) : null}
@@ -171,7 +172,7 @@ const Tangent: React.FC<{tangent: NonNullable<Plot['tangent']>; valueOf: (at: nu
 			<line x1={px - ux} y1={py - uy} x2={px + ux} y2={py + uy} stroke={palette.brand} strokeWidth={u(6) * emphasis} strokeLinecap="round" />
 			<circle cx={px} cy={py} r={u(13) * emphasis} fill={palette.brand} stroke={palette.surface} strokeWidth={u(4)} />
 			{tangent.slope ? (
-				<text x={px + u(20)} y={py + (slope > 0 ? u(46) : -u(26))} fill={palette.brand} fontSize={fontSize * 1.15} fontWeight={900}>
+				<text x={px + u(20)} y={py + (slope > 0 ? u(46) : -u(26))} fill={palette.brand} fontSize={fontSize * 1.15} fontWeight={BRAND_TYPOGRAPHY.weights.kinetic}>
 					{`eğim = ${formatNumber(slope)}`}
 				</text>
 			) : null}

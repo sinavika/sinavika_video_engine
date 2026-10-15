@@ -134,8 +134,14 @@ describe('voice catalogue', () => {
 		}
 	});
 
-	it('speaks every role at the natural pace, without style exaggeration', () => {
-		for (const key of VOICE_PROFILE_KEYS) expect(VOICE_PROFILES[key], key).toMatchObject({pace: 1, style: 0});
+	it('speaks every role at the natural pace, without style exaggeration (except the promo reels’ Launch role)', () => {
+		// The owner asked for livelier promo reels in October 2026; only Launch may speed up or add style, and only a little.
+		for (const key of VOICE_PROFILE_KEYS) {
+			if (key === 'Launch') continue;
+			expect(VOICE_PROFILES[key], key).toMatchObject({pace: 1, style: 0});
+		}
+		expect(VOICE_PROFILES.Launch.pace).toBeLessThanOrEqual(1.1);
+		expect(VOICE_PROFILES.Launch.style).toBeLessThanOrEqual(0.3);
 	});
 
 	it('has no two catalogue entries pointing at the same ElevenLabs voice', () => {

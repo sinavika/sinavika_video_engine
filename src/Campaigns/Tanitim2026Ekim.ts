@@ -1,0 +1,461 @@
+/**
+ * Tanıtım kampanyası, 16–31 Ekim 2026: yalnız mobil uygulama ve web sitesi
+ * tanıtımı, eğitim içeriği yok. Haftalık düzen `PROMO_WEEKLY_PLAN`
+ * (src/Configurations/SocialPlan.ts): 4 reels, 3 gönderi, her gün hikâye.
+ * Saatler Buffer programından gelir (`npm run social -- plan --plan tanitim`).
+ *
+ * Bu dosya kampanyanın tek kaynağıdır: plan belgesi
+ * (docs/Campaigns/2026-10-Tanitim.md) ve gönderi iskeletleri
+ * (`npm run social -- campaign`) buradan okunur.
+ *
+ * Kurallar: kullanıcı kazandıran hook, öğretici değil; "sen" dili; modül adları
+ * ProductMessaging'ten; rakip markası, fiyat, doğrulanmamış iddia yok.
+ * Referans videolardan yalnız kurgu dili alınır (marka, logo, arayüz kopyası yok).
+ */
+import type {ModuleKey} from '../UIUX/ModuleIdentity';
+
+export type CampaignPromotes = 'mobil' | 'web' | 'ikisi';
+
+export type CampaignReel = {
+	kind: 'reel';
+	date: string;
+	id: string;
+	module: ModuleKey | 'app';
+	promotes: CampaignPromotes;
+	/** Admin panelindeki başlık. */
+	title: string;
+	/** İlk 1,5 saniyede ekranda ve seste. */
+	hook: string;
+	altHooks: string[];
+	/** Yeni şablonun adı (her tanıtım reels'i yeni bir üretim). */
+	template: string;
+	/** Hangi örnekten hangi kurgu dili alındı. */
+	reference: string;
+	beats: string[];
+	voiceover: string;
+	music: string;
+	caption: string;
+	hashtags: string[];
+};
+
+export type CampaignPost = {
+	kind: 'carousel' | 'image';
+	date: string;
+	id: string;
+	module: ModuleKey | 'app';
+	promotes: CampaignPromotes;
+	title: string;
+	hook: string;
+	altHooks: string[];
+	template: string;
+	reference: string;
+	/** Kaydırmalı gönderide her sayfa; tek görselde tek madde. */
+	slides: string[];
+	caption: string;
+	hashtags: string[];
+};
+
+export type CampaignStory = {
+	date: string;
+	id: string;
+	/** Günün akış gönderisine bağlanır. */
+	supports: string;
+	hook: string;
+	visual: string;
+};
+
+export type CampaignFeed = CampaignReel | CampaignPost;
+
+const TAGS = {
+	app: ['#sinavika', '#yks', '#kpss', '#sınavhazırlık', '#tyt'],
+	sino: ['#sinavika', '#sinoai', '#yks', '#kpss', '#yapayzeka'],
+	yks: ['#sinavika', '#yks', '#tyt', '#ayt', '#sınavhazırlık'],
+	kpss: ['#sinavika', '#kpss', '#kpss2026', '#memurluk', '#sınavhazırlık'],
+};
+
+export const CAMPAIGN = {
+	id: 'tanitim-2026-10',
+	name: 'Ekim 2026 tanıtım kampanyası',
+	from: '2026-10-16',
+	to: '2026-11-01',
+	plan: 'tanitim',
+} as const;
+
+export const CAMPAIGN_FEED: readonly CampaignFeed[] = [
+	{
+		kind: 'reel',
+		date: '2026-10-16',
+		id: 'once-sonra',
+		module: 'app',
+		promotes: 'mobil',
+		title: 'Sınav hazırlığın böyle mi görünüyor?',
+		hook: 'Sınav hazırlığın böyle mi görünüyor?',
+		altHooks: ['12 sekme, 4 uygulama, 1 kafa karışıklığı.', 'Dağınıklığı bir dokunuşla topla.'],
+		template: 'BeforeAfter',
+		reference: 'Önce/sonra perdesi: kaos dolu ekran bir silmeyle toparlanır (kinetik tipografi + folio kartlarının sadeliği)',
+		beats: [
+			'0–3 sn: Ekran dolup taşar: yapışkan notlar, PDF’ler, açık sekmeler, alarmlar, “hangi konu?” balonları. Yazı: “Sınav hazırlığın böyle mi görünüyor?”',
+			'3–6 sn: Sayaçlar: “12 sekme · 4 uygulama · 0 plan”.',
+			'6–8 sn: Turuncu bir silme perdesi soldan sağa geçer; arkasında her şey toparlanır.',
+			'8–16 sn: Sınavika’nın Modüller ekranı; modül kartları tek tek yerine oturur: Denemeler, Ders Planı, SinoAI…',
+			'16–20 sn: “Böyle olsun.” Logo ve “Ücretsiz indir”.',
+		],
+		voiceover: 'Sınav hazırlığın böyle mi görünüyor? On iki sekme, dört uygulama, sıfır plan. Hepsini topla. Deneme, ders, plan ve SinoAI tek uygulamada. Böyle olsun. Sınavika’yı ücretsiz indir.',
+		music: 'Energetic, glitchy pop-electronic: chaotic stuttering synths and alarm-like blips for the messy opening, then a big whoosh-and-drop into a bright, bouncy four-on-the-floor groove with claps and a catchy synth hook. Around 128 BPM, upbeat and modern. Ends on a punchy final hit. No vocals.',
+		caption: 'Sınav hazırlığın böyle mi görünüyor? 12 sekme, 4 uygulama, sıfır plan. 😵‍💫 Sınavika’da deneme, ders, plan ve SinoAI tek uygulamada. Böyle olsun. Uygulamayı ücretsiz indir; link profilde.',
+		hashtags: ['#sinavika', '#yks', '#kpss', '#sınavhazırlık', '#tyt'],
+	},
+	{
+		kind: 'carousel',
+		date: '2026-10-17',
+		id: 'yedi-modul-tek-uygulama',
+		module: 'app',
+		promotes: 'mobil',
+		title: 'Yedi modül, tek uygulama',
+		hook: 'Sınava hazırlanmak için 7 uygulama mı? Bir tane yeter.',
+		altHooks: ['Telefonundaki ders uygulamalarını say. Şimdi hepsini sil.', 'Deneme, ders, plan, yapay zekâ: hepsi tek yerde.'],
+		template: 'PromoDeck/floating',
+		reference: 'folio_ai: beyaz zeminde eğik, yüzen, yuvarlak özellik kartları',
+		slides: [
+			'Kapak: "Sınava hazırlanmak için 7 uygulama mı? Bir tane yeter." Yedi modül kartı yelpaze gibi açılır.',
+			'Denemeler: Türkiye geneli denemeler ve konu konu sonuç.',
+			'Dersler ve Testler: mikro ders, ardından seviye seviye test.',
+			'Ders Planı: eksiklerinden kurulan günlük görevler.',
+			'Akıllı Özet: fotoğrafını çek, adım adım çözümünü gör.',
+			'Bilgi Kartları: unutmak üzere olduğun kart, tam zamanında.',
+			'SinoAI: hedefini bilen yapay zekâ.',
+			'Kapanış: "Hepsi tek uygulamada. Sınavika’yı ücretsiz indir."',
+		],
+		caption: 'Deneme ayrı, plan ayrı, soru çözümü ayrı uygulamada mı? Sınavika’da hepsi tek yerde: Denemeler, Dersler, Testler, Ders Planı, Akıllı Özet, Bilgi Kartları ve SinoAI. Kaydır, hangisi sana lazım, yorumda yaz. Uygulamayı ücretsiz indir; link profilde.',
+		hashtags: TAGS.app,
+	},
+	{
+		kind: 'reel',
+		date: '2026-10-18',
+		id: 'sinoai-lansman-filmi',
+		module: 'sinoAi',
+		promotes: 'ikisi',
+		title: 'SinoAI: seni tanıyan yapay zekâ',
+		hook: 'Yapay zekâ çok. Seni tanıyan bir tane.',
+		altHooks: ['Sorunu yazma. Hedefini yaz.', 'Bu yapay zekâ son denemeni biliyor.'],
+		template: 'SinoAIFilm',
+		reference: 'OpenAI ürün filmi: beyaz zemin, yazma kutusunda soru, adım adım "düşünme" satırları, kinetik beyaz yazı kartları, üretilen işe yakınlaşma',
+		beats: [
+			'0–2 sn: Beyaz ekran, siyah büyük yazı: "Yapay zekâ çok." → "Seni tanıyan bir tane."',
+			'2–6 sn: Yuvarlak yazma kutusu belirir, harf harf yazılır: "Son denememe göre bu hafta ne çalışmalıyım?" Gönder.',
+			'6–12 sn: SinoAI adımları tek tek yanar: "Hedefine bakıyor · YKS Sayısal", "Son denemeni okuyor · TYT Deneme 4", "Eksiklerini buluyor · Problemler −3,25 net".',
+			'12–17 sn: Cevap akarak yazılır; kısa bir haftalık plan oluşur.',
+			'17–22 sn: Üç kart yandan kayarak gelir: "10 soruluk quiz", "Kart destesi", "Haftalık plan". Kamera quiz kartına yakınlaşır.',
+			'22–26 sn: Beyaz kinetik kartlar: "Sor." "Anla." "Üret."',
+			'26–30 sn: SinoAI adı, ardından Sınavika logosu ve "iOS · Android · sinavika.com".',
+		],
+		voiceover: 'Yapay zekâ çok. Ama seni tanıyan bir tane var. SinoAI hedefini, son denemeni ve eksiklerini bilerek cevap verir. Bu hafta ne çalışacağını sor; sana özel planı çıkarsın, quiz ve kartları da hazırlasın. SinoAI, Sınavika’da.',
+		music: 'Upbeat modern tech launch: crisp plucky synth arpeggios, tight trap-style hi-hats and snappy claps that build as text types, a punchy bass drop when SinoAI answers, bright and optimistic. Around 118 BPM, energetic but clean, room for a voice-over. Ends with a confident stab. No vocals.',
+		caption: 'Yapay zekâ çok, seni tanıyan bir tane var: SinoAI. Hedefini ve son denemeni bilerek cevap verir; planını, quizini ve kartlarını hazırlar. Takıldığın konuyu sor! Sınavika uygulamasında ve sinavika.com’da.',
+		hashtags: TAGS.sino,
+	},
+	{
+		kind: 'reel',
+		date: '2026-10-19',
+		id: 'kim-calisiyor',
+		module: 'app',
+		promotes: 'mobil',
+		title: 'Kim çalışıyor?',
+		hook: 'Bu akşam ne izliyoruz? Yanlış soru.',
+		altHooks: ['Profilini seç. Bu akşam çalışıyoruz.', 'Dizi açmadan önce bunu izle.'],
+		template: 'ProfilePicker',
+		reference: 'Yayın platformu profil ekranı ("Kim izliyor?"): profil seçimi, yakınlaşma, sinematik başlık',
+		beats: [
+			'0–2 sn: Koyu ekran, ortada "Bu akşam ne izliyoruz?" Üstüne çizgi çekilir, altına "Ne çalışıyoruz?" yazılır.',
+			'2–6 sn: "Kim çalışıyor?" başlığı ve dört profil kartı: YKS Sayısal, YKS Eşit Ağırlık, KPSS, Misafir. İmleç YKS Sayısal’ı seçer.',
+			'6–9 sn: Seçilen kart ekranı doldurur, sinematik "SINAVİKA" başlığı turuncu ışıkla açılır.',
+			'9–21 sn: "Bölümler" satırı kayar: Bölüm 1 "Netini ölç" (Denemeler), Bölüm 2 "Bugün ne çalışacağın" (Ders Planı), Bölüm 3 "Takıldığın yer" (SinoAI). Her bölümde 2 sn gerçek ekran.',
+			'21–26 sn: "Sıradaki bölüm: senin denemen." Oynat düğmesi yerine Sınavika logosu.',
+			'26–30 sn: "Sınavika’yı ücretsiz indir."',
+		],
+		voiceover: 'Bu akşam ne izliyoruz? Yanlış soru. Bu akşam ne çalışıyoruz? Profilini seç. Önce netini ölç, sonra bugün ne çalışacağını gör, takıldığın yerde SinoAI’ye sor. Sıradaki bölüm senin denemen. Sınavika’yı ücretsiz indir.',
+		music: 'Cinematic trailer energy turning into a driving beat: a deep boom, fast tense string ostinato, then a punchy hybrid drum groove with pulsing synth bass for the episode montage, big risers between episodes. Around 124 BPM, exciting and premium. Ends on a huge low hit. No vocals.',
+		caption: 'Bu akşam ne izliyoruz? Yanlış soru. 🎬 Profilini seç: YKS mi, KPSS mi? Sınavika’da bölüm bölüm ilerle: netini ölç, planını gör, takıldığın yerde SinoAI’ye sor. Hangi profilsin, yorumda yaz.',
+		hashtags: TAGS.app,
+	},
+	{
+		kind: 'carousel',
+		date: '2026-10-20',
+		id: 'sinoai-ile-6-sey',
+		module: 'sinoAi',
+		promotes: 'ikisi',
+		title: 'SinoAI ile yapabileceğin 6 şey',
+		hook: 'SinoAI’ye sadece soru sorma.',
+		altHooks: ['Yapay zekâya soru sormak işin yarısı.', 'Notlarını yükle, gerisini SinoAI’ye bırak.'],
+		template: 'PromoDeck/tool',
+		reference: 'OpenAI ürün filmi + folio_ai kartları: beyaz, sade, her sayfada tek araç',
+		slides: [
+			'Kapak: "SinoAI’ye sadece soru sorma." Altında "6 şey daha var →" yok (kaydırma işareti kullanılmaz); büyük yazma kutusu görseli.',
+			'1. Sor: takıldığın konuyu yaz, adım adım anlatsın.',
+			'2. Ekle: soru fotoğrafı, PDF, Word ya da sunum; onun üstünden konuşur.',
+			'3. Quiz üret: hedefine göre 10 soru, anında açıklamalı.',
+			'4. Deneme üret: eksiklerine göre kişisel deneme, tam ya da branş.',
+			'5. Kart üret: notlarından Bilgi Kartları destesi.',
+			'6. Plan çıkar: bir haftalık çalışma planı.',
+			'Kapanış: "Hepsi Kitaplığında durur, PDF olarak da indirirsin. SinoAI, Sınavika’da."',
+		],
+		caption: 'SinoAI’ye sadece soru sorma. Notunu, PDF’ini ya da sunumunu ekle; senin için quiz, deneme, kart ve plan hazırlasın. Ürettiği her şey Kitaplığında durur. En çok hangisini kullanırdın? 👇',
+		hashtags: TAGS.sino,
+	},
+	{
+		kind: 'reel',
+		date: '2026-10-21',
+		id: 'netin-yalan-soyluyor',
+		module: 'exam',
+		promotes: 'mobil',
+		title: 'Netin sana yalan söylüyor',
+		hook: 'Netin sana yalan söylüyor.',
+		altHooks: ['78,5 net. İyi mi, kötü mü?', 'Toplam netine bakmayı bırak.'],
+		template: 'OrbReveal',
+		reference: '"Your dashboard is lying to you": koyu sahne, parlayan turuncu küre, büyük sayaç',
+		beats: [
+			'0–2 sn: Siyah sahne, ince yazı: "Netin sana" → büyük "yalan söylüyor."',
+			'2–6 sn: Ortada turuncu, parlayan küre; içinde sayaç 0’dan 78,5’e koşar. "78,5 net. İyi mi?"',
+			'6–12 sn: Küre üç küçük küreye bölünür; her birinde bir kayıp: "Problemler −3,25", "Paragraf −2,5", "Kuvvet ve hareket −1,75".',
+			'12–18 sn: Küreler telefona akar; Denemeler’in eksik konu analizi ekranı belirir, "Bu hafta planıma ekle" düğmesine basılır.',
+			'18–24 sn: Yazı: "Toplam netine değil, nerede kaybettiğine bak."',
+			'24–28 sn: Logo, "Ölç, öğren, geliş." ve "Ücretsiz indir".',
+		],
+		voiceover: 'Netin sana yalan söylüyor. Yetmiş sekiz buçuk net, iyi mi kötü mü? Asıl soru şu: nerede kaybettin? Sınavika her denemeden sonra netini konu konu gösterir. Problemlerden üç net, paragraftan iki buçuk. Eksikler doğrudan planına eklenir. Toplam netine değil, nerede kaybettiğine bak.',
+		music: 'Dark, hard-hitting electronic: heartbeat sub kicks speeding up, a glassy synth hook, a long filtered riser and a heavy bass drop exactly when the orb splits, then a driving four-on-the-floor groove. Around 126 BPM, intense and modern. Ends with a sharp cut. No vocals.',
+		caption: 'Netin sana yalan söylüyor. 78,5 iyi mi kötü mü, bunu toplam net söylemez. Sınavika her denemeden sonra hangi konudan kaç net kaybettiğini gösterir ve planına ekler. Son denemende en çok nereden kaybettin? 👇',
+		hashtags: TAGS.yks,
+	},
+	{
+		kind: 'image',
+		date: '2026-10-22',
+		id: 'peki-nerede-kaybettin',
+		module: 'exam',
+		promotes: 'mobil',
+		title: 'Peki nerede kaybettin?',
+		hook: 'Netin 78,5. Peki nerede kaybettin?',
+		altHooks: ['Son denemende 7,5 neti üç konuya verdin.', 'Toplam net değil, kayıp listesi.'],
+		template: 'PromoDeck/proof',
+		reference: 'Google Ads setimizdeki kanıt kartı: modül renginde zemin, büyük beyaz kanıt kartı',
+		slides: ['Turuncu zemin, büyük kanca "Netin 78,5. Peki nerede kaybettin?", altında büyük beyaz kart: Problemler −3,25 · Paragraf −2,5 · Kuvvet ve hareket −1,75; köşede eğik telefon.'],
+		caption: 'Netin 78,5. Peki nerede kaybettin? Sınavika’da her denemeden sonra konu konu kayıp listen hazır; eksikler tek dokunuşla Ders Planı’na eklenir. Ücretsiz indir, ilk denemeni çöz.',
+		hashtags: TAGS.yks,
+	},
+	{
+		kind: 'reel',
+		date: '2026-10-23',
+		id: 'tanistirayim-sinoai-calisma',
+		module: 'sinoAi',
+		promotes: 'ikisi',
+		title: 'Tanıştırayım: SinoAI Çalışma',
+		hook: 'Notunu at. Quiz olsun.',
+		altHooks: ['PDF’in var mı? Deneme olsun.', 'Tanıştırayım: SinoAI Çalışma.'],
+		template: 'Keynote',
+		reference: 'Ürün lansmanı filmi: yumuşak renk geçişli zemin, ortada tek ürün, ağır dönen nesneler, sade başlık',
+		beats: [
+			'0–2 sn: Yumuşak turuncu-krem renk geçişi, ortada tek satır: "Notunu at." → "Quiz olsun."',
+			'2–5 sn: "Tanıştırayım." → "SinoAI Çalışma." (tek tek beliren harfler, sakin).',
+			'5–20 sn: Beş araç tek tek sahnenin ortasında döner, her biri 3 sn: Çalışma (konu anlatımı ve sorular), Quiz, Kişisel Deneme, Bilgi Kartları, Çalışma Planı. Altında tek satır açıklama.',
+			'20–25 sn: Kaynaklar yörüngede döner: PDF, Word, sunum, fotoğraf, hedefin. Ortada Kitaplık ekranı.',
+			'25–30 sn: "SinoAI Çalışma. Sınavika’da." Logo.',
+		],
+		voiceover: 'Notunu at, quiz olsun. PDF’in mi var, deneme olsun. Tanıştırayım: SinoAI Çalışma. Konu anlatımı, quiz, kişisel deneme, bilgi kartları ve çalışma planı. Kaynağı sen seç; notun, sunumun ya da hedefin. Ürettiği her şey Kitaplığında durur. SinoAI Çalışma, Sınavika’da.',
+		music: 'Bright, bouncy product-launch track: sparkling plucked synth arpeggio, crisp claps and finger snaps, a groovy bass line kicking in for the tools section, uplifting chord lifts on each new tool. Around 120 BPM, polished, happy and energetic. Ends on a bright major hit. No vocals.',
+		caption: 'Notunu at, quiz olsun. 📄➡️📝 SinoAI Çalışma; notundan, PDF’inden ya da hedefinden konu anlatımı, quiz, kişisel deneme, kart ve plan hazırlar. Hepsi Kitaplığında. Sınavika uygulamasında ve web’de.',
+		hashtags: TAGS.sino,
+	},
+	{
+		kind: 'carousel',
+		date: '2026-10-24',
+		id: 'denemeden-sonra',
+		module: 'exam',
+		promotes: 'ikisi',
+		title: 'Denemeden sonra ne yapıyorsun?',
+		hook: 'Denemeden sonra ne yapıyorsun? Çoğu öğrenci hiçbir şey.',
+		altHooks: ['Deneme çözmek işin yarısı.', 'Denemeyi çöz, sonra 3 adım.'],
+		template: 'PromoDeck/rail',
+		reference: 'OpenAI ürün filmi adımları: her sayfada bir adım, ilerleyen tek çizgi',
+		slides: [
+			'Kapak: "Denemeden sonra ne yapıyorsun? Çoğu öğrenci hiçbir şey."',
+			'1. Çöz: Türkiye geneli ya da kendi denemen.',
+			'2. Gör: hangi konudan kaç net kaybettiğin.',
+			'3. Planla: eksikler Ders Planı’na görev olarak eklenir.',
+			'4. Kapat: mikro ders ve 10 soruluk testle eksiği kapat.',
+			'Kapanış: "Bir sonraki denemede farkı gör. Sınavika."',
+		],
+		caption: 'Deneme çözmek işin yarısı. Asıl fark denemeden sonra başlar: kaybettiğin konuyu gör, planına ekle, kısa bir ders ve testle kapat. Sınavika bu döngüyü senin yerine kurar. Kaydır 👉',
+		hashtags: TAGS.app,
+	},
+	{
+		kind: 'reel',
+		date: '2026-10-25',
+		id: 'olc-ogren-gelis-showreel',
+		module: 'app',
+		promotes: 'mobil',
+		title: 'Dene. Gör. Planla. Sor.',
+		hook: 'Sınav hazırlığı altı kelime.',
+		altHooks: ['20 saniyede Sınavika.', 'Dene. Gör. Planla.'],
+		template: 'KineticType',
+		reference: 'Kinetik tipografi vitrini: her vuruşta tek dev kelime, üst üste binen satırlar, 3B nesneler',
+		beats: [
+			'0–2 sn: Siyah, beyaz dev yazı: "Sınav hazırlığı" → "altı kelime."',
+			'2–16 sn: Müziğin vuruşlarında tek kelimeler, her biri kendi modül renginde ve üstünde o modülün ürün parçası: DENE (Denemeler) · GÖR (sonuç) · PLANLA (Ders Planı) · ÖĞREN (Dersler) · SOR (SinoAI) · HATIRLA (Bilgi Kartları).',
+			'16–22 sn: Kelimeler üst üste yığılır, aralarından 3B kartlar ve telefon geçer.',
+			'22–28 sn: Hepsi tek satıra çöker: "Ölç, öğren, geliş." Logo.',
+		],
+		voiceover: 'Sınav hazırlığı altı kelime. Dene. Gör. Planla. Öğren. Sor. Hatırla. Hepsi tek uygulamada. Sınavika. Ölç, öğren, geliş.',
+		music: 'Very punchy, rhythmic motion-design track: hard kick-and-snare hits landing on every word, stabbing synth brass chords, stutter edits and vinyl-style stops, a big build and explosive drop for the final slogan. Around 132 BPM, loud, stylish and fun. Ends with a hard stop hit. No vocals.',
+		caption: 'Sınav hazırlığı altı kelime: Dene. Gör. Planla. Öğren. Sor. Hatırla. Sınavika’da hepsi tek uygulamada. Sen en çok hangisinde zorlanıyorsun? 👇',
+		hashtags: TAGS.app,
+	},
+	{
+		kind: 'reel',
+		date: '2026-10-26',
+		id: 'saat-23-40',
+		module: 'studyPlan',
+		promotes: 'web',
+		title: 'Saat 23.40',
+		hook: 'Saat 23.40. Hâlâ ne çalışacağını düşünüyorsun.',
+		altHooks: ['Masaya oturdun. Peki şimdi ne?', 'Çalışmaya başlamak en zor kısmı.'],
+		template: 'NightDesk',
+		reference: 'Masa sahnesi: akşam ışığında monitör, ekranda kinetik yazı, turuncu bant, logo, ardından ürün arayüzü',
+		beats: [
+			'0–3 sn: Karanlık oda, sıcak masa lambası, masada monitör (çizim, fotoğraf değil). Ekranda: "Saat 23.40."',
+			'3–7 sn: "Hâlâ ne çalışacağını düşünüyorsun." Kelimeler vurgu kutusuyla seçilir.',
+			'7–9 sn: Turuncu bant ekranı keser: "Önce şunu çözelim."',
+			'9–12 sn: Sınavika logosu ekranda açılır.',
+			'12–20 sn: Web panelde Ders Planı "Bugün": 3 görev, 45 dk. İmleç ilk göreve tıklar, odak sayacı başlar.',
+			'20–26 sn: Ekranda: "Masaya otur. Gerisi hazır." Altında sinavika.com.',
+		],
+		voiceover: 'Saat yirmi üçü kırk geçiyor. Hâlâ ne çalışacağını düşünüyorsun. Önce şunu çözelim. Sınavika’da bugün ne çalışacağın hazır: üç görev, kırk beş dakika. Masaya otur, gerisi hazır. Web’de sinavika.com’da.',
+		music: 'Late-night chill-hop that wakes up: warm Rhodes chords and soft drums for the opening, then a tight boom-bap groove with snappy snares, a bouncy bass line and a bright synth lead when the orange band hits. Around 95 BPM with a strong groove, cozy but energetic. Ends on a crisp hit. No vocals.',
+		caption: 'Saat 23.40. Masadasın ama ne çalışacağını bilmiyorsun. 🕯️ Sınavika’da bugünün planı hazır: kısa görevler, net bir süre. Bilgisayardan sinavika.com, telefondan uygulama: aynı hesap.',
+		hashtags: TAGS.app,
+	},
+	{
+		kind: 'carousel',
+		date: '2026-10-27',
+		id: 'webde-de-sinavika',
+		module: 'app',
+		promotes: 'web',
+		title: 'Web’de de Sınavika',
+		hook: 'Büyük ekranda çalışmayı sevenler buraya.',
+		altHooks: ['Telefonda başla, bilgisayarda devam et.', 'Sınavika artık masanda.'],
+		template: 'PromoDeck/browser',
+		reference: 'Masa sahnesi kurgusu + Google Ads web setimiz: tarayıcı içinde gerçek panel',
+		slides: [
+			'Kapak: "Büyük ekranda çalışmayı sevenler buraya." Tarayıcıda Sınavika paneli.',
+			'Aynı hesap: telefonda başladığın yerden bilgisayarda devam et.',
+			'Denemeleri geniş ekranda çöz, sonucu konu konu gör.',
+			'Ders Planı: bugünün görevleri ve odak sayacı.',
+			'SinoAI: sohbet ve Çalışma, büyük ekranda.',
+			'Kapanış: "sinavika.com’da ücretsiz başla."',
+		],
+		caption: 'Büyük ekranda çalışmayı sevenler: Sınavika web’de de seninle. Telefonda başladığın yerden bilgisayarda devam et; deneme, plan ve SinoAI aynı hesapta. sinavika.com 💻',
+		hashtags: TAGS.app,
+	},
+	{
+		kind: 'reel',
+		date: '2026-10-28',
+		id: 'soru-isareti',
+		module: 'smartSummary',
+		promotes: 'mobil',
+		title: 'Soru? Fotoğrafını çek.',
+		hook: 'Çözemediğin soru mu var?',
+		altHooks: ['Bu soruyu kimse çözemedi mi?', 'Soru işaretini fotoğrafa çevir.'],
+		template: 'FlatMorph',
+		reference: 'Düz renk 2B açıklayıcı animasyon: büyük kelime, biçim değiştiren ikonlar, bulanıklıkla geçiş, etrafında etiketler yüzen telefon',
+		beats: [
+			'0–2 sn: Düz mor zemin, ekranı dolduran "Soru?" kelimesi zıplayarak gelir.',
+			'2–5 sn: Soru işareti dönerek kameraya dönüşür; flaş patlar.',
+			'5–8 sn: Flaşın içinden telefon çıkar: Akıllı Özet çözüm ekranı.',
+			'8–16 sn: Telefonun çevresinde etiketler dolaşır: "Adım adım çözüm", "Konusu", "Hatan nerede", "Videolu anlatım", "Benzer sorular".',
+			'16–22 sn: Etiketler telefona yapışır, telefon küçülür, logo büyür.',
+			'22–26 sn: "Çözemediğin soruyu çek. Sınavika."',
+		],
+		voiceover: 'Çözemediğin soru mu var? Fotoğrafını çek. Akıllı Özet çözümü adım adım gösterir, konusunu ve hatanı söyler. İstersen videolu anlatımı izle, benzer sorularla pekiştir. Sınavika’yı ücretsiz indir.',
+		music: 'Super playful, bouncy cartoon pop: fast marimba and pizzicato riffs, boing-friendly percussion, handclaps and a cheerful whistle-like synth hook, a camera-shutter accent on the flash. Around 128 BPM, upbeat, happy and catchy. Ends on a bright two-note button. No vocals.',
+		caption: 'Çözemediğin soru mu var? 📸 Fotoğrafını çek; Akıllı Özet adım adım çözsün, konusunu ve hatanı göstersin. Videolu anlatım ve benzer sorular da hazır. Sınavika’yı ücretsiz indir.',
+		hashtags: TAGS.yks,
+	},
+	{
+		kind: 'image',
+		date: '2026-10-29',
+		id: 'unutmadan-once',
+		module: 'flashcards',
+		promotes: 'mobil',
+		title: 'Unutmadan önce',
+		hook: 'Dün çalıştığını bugün hatırlıyor musun?',
+		altHooks: ['Ezberledin, unuttun, tekrar ezberledin.', 'Unutmak üzere olduğun kartı biz hatırlatırız.'],
+		template: 'PromoDeck/proof',
+		reference: 'Google Ads setimizdeki kanıt kartı (pembe Bilgi Kartları zemini)',
+		slides: ['Pembe zemin, kanca "Dün çalıştığını bugün hatırlıyor musun?", büyük kart: "Lale Devri hangi yıllar arasındadır?" → "1718 – 1730", altında "Bugün 32 kart · 8 dk".'],
+		caption: 'Dün çalıştığını bugün hatırlıyor musun? Bilgi Kartları unutmak üzere olduğun kartı tam zamanında önüne getirir; günde birkaç dakika yeter. Tarih, coğrafya, vatandaşlık: KPSS’ye hazırlananlar buraya. 🗂️',
+		hashtags: TAGS.kpss,
+	},
+	{
+		kind: 'reel',
+		date: '2026-10-30',
+		id: 'kayit-olmadan-sor',
+		module: 'sinoAi',
+		promotes: 'web',
+		title: 'Kayıt olmadan 3 soru',
+		hook: 'Üç soru hakkın var. Kayıt yok.',
+		altHooks: ['Hesap açmadan SinoAI’yi dene.', 'Üç soru. Sence hangisini sorarsın?'],
+		template: 'CountdownChat',
+		reference: 'Oyun geri sayımı + beyaz sohbet: dev 3-2-1 rakamları, her rakamda bir soru-cevap',
+		beats: [
+			'0–2 sn: Beyaz ekran, dev turuncu "3". Yazı: "Üç soru hakkın var. Kayıt yok."',
+			'2–9 sn: "3" küçülür, sohbet balonu: bir TYT matematik sorusu sorulur, SinoAI kısa ve net cevaplar.',
+			'9–16 sn: "2": KPSS vatandaşlık sorusu ve cevabı.',
+			'16–23 sn: "1": "Bu hafta ne çalışayım?" Cevap: "Hesap açarsan hedefine göre plan çıkarırım."',
+			'23–28 sn: "sinavika.com/sinoai" yazısı, tarayıcıda SinoAI misafir sayfası. "Hemen dene."',
+		],
+		voiceover: 'Üç soru hakkın var, kayıt yok. Matematik mi, vatandaşlık mı, ne sorarsan. SinoAI’yi hesap açmadan dene. Beğenirsen hedefine göre plan da çıkarsın. sinavika.com’da hemen dene.',
+		music: 'High-energy game-show countdown: fast ticking hi-hats, three huge rising synth stabs for 3-2-1, a bouncy electro-pop groove under each answer, a celebratory stinger and claps at the end. Around 128 BPM, fun and exciting. No vocals.',
+		caption: 'Üç soru hakkın var, kayıt yok. 3️⃣2️⃣1️⃣ SinoAI’yi sinavika.com’da hesap açmadan dene; beğenirsen hedefine göre planını da çıkarsın. İlk soruyu ne sorardın? 👇',
+		hashtags: TAGS.sino,
+	},
+	{
+		kind: 'carousel',
+		date: '2026-10-31',
+		id: 'hangi-ogrencisin',
+		module: 'app',
+		promotes: 'mobil',
+		title: 'Hangi öğrencisin?',
+		hook: 'Hangi öğrencisin? Arkadaşını etiketle.',
+		altHooks: ['Bu sen misin?', 'Dört öğrenci, tek uygulama.'],
+		template: 'PromoDeck/persona',
+		reference: 'folio_ai kartları + kinetik tipografi: her sayfada bir öğrenci tipi, iddialı başlık',
+		slides: [
+			'Kapak: "Hangi öğrencisin? Arkadaşını etiketle."',
+			'Gece kuşu: "Saat 23.40’ta masaya oturan." → Ders Planı’nın kısa görevleri.',
+			'Deneme bağımlısı: "Haftada üç deneme, sıfır analiz." → Denemeler’in konu konu sonucu.',
+			'Son dakikacı: "Sınava 10 gün kala tekrar." → Bilgi Kartları.',
+			'Takılan: "Bir soruda yarım saat." → Akıllı Özet ve SinoAI.',
+			'Kapanış: "Hangisi olursan ol, Sınavika’da yerin var."',
+		],
+		caption: 'Hangi öğrencisin? 🦉 Gece kuşu, 📊 deneme bağımlısı, ⏰ son dakikacı, 🧩 takılan. Kendini yorumda söyle, arkadaşını etiketle. Hangisi olursan ol, Sınavika’da senin için bir yol var.',
+		hashtags: TAGS.app,
+	},
+];
+
+/** One story a day, a few hours before the feed post; Instagram only (Buffer cannot publish TikTok stories). */
+export const CAMPAIGN_STORIES: readonly CampaignStory[] = [
+	{date: '2026-10-16', id: 'hikaye-16', supports: 'once-sonra', hook: 'Kaç sekme açıksın şu an?', visual: 'Üst üste binmiş sekme ve not çizimleri; seçenek kutuları 1-3 / 4-7 / 8+ / Saymadım; "Bu akşam reels’te".'},
+	{date: '2026-10-17', id: 'hikaye-17', supports: 'yedi-modul-tek-uygulama', hook: 'Telefonunda kaç ders uygulaması var?', visual: 'Büyük soru, altında 1-2-3-4+ seçenek kutuları (etkileşim etiketi Buffer’dan eklenemez; kutular görsel), en altta "Akşam cevabı paylaşıyoruz."'},
+	{date: '2026-10-18', id: 'hikaye-18', supports: 'sinoai-lansman-filmi', hook: 'Bu yapay zekâ son denemeni biliyor.', visual: 'Beyaz zemin, yazma kutusu ve "Yeni reels" etiketi; reels’in ilk karesi.'},
+	{date: '2026-10-19', id: 'hikaye-19', supports: 'kim-calisiyor', hook: 'Kim çalışıyor?', visual: 'Koyu zemin, dört profil kartı (YKS Sayısal, YKS EA, KPSS, Misafir), "Bu akşam reels’te" yazısı.'},
+	{date: '2026-10-20', id: 'hikaye-20', supports: 'sinoai-ile-6-sey', hook: 'SinoAI’ye sadece soru sorma.', visual: 'Altı araç ikonu ızgara halinde, "Yeni gönderi" etiketi.'},
+	{date: '2026-10-21', id: 'hikaye-21', supports: 'netin-yalan-soyluyor', hook: '78,5 net. İyi mi?', visual: 'Siyah zemin, parlayan turuncu küre içinde 78,5; "Cevap bu akşam reels’te".'},
+	{date: '2026-10-22', id: 'hikaye-22', supports: 'peki-nerede-kaybettin', hook: 'Son denemende en çok nereden kaybettin?', visual: 'Matematik / Türkçe / Fen / Sosyal büyük kutular (görsel seçenek), Denemeler turuncusu.'},
+	{date: '2026-10-23', id: 'hikaye-23', supports: 'tanistirayim-sinoai-calisma', hook: 'Notunu at. Quiz olsun.', visual: 'Krem-turuncu geçişli zemin, PDF ikonu quiz kartına dönüşmüş hâli, "Yeni reels".'},
+	{date: '2026-10-24', id: 'hikaye-24', supports: 'denemeden-sonra', hook: 'Denemeden sonra ne yapıyorsun?', visual: 'Dört adım çizgisi (Çöz, Gör, Planla, Kapat), son adım boş bırakılmış: "Gönderide".'},
+	{date: '2026-10-25', id: 'hikaye-25', supports: 'olc-ogren-gelis-showreel', hook: 'Sınav hazırlığı altı kelime.', visual: 'Siyah zemin, üst üste altı renkli kelime, "Reels’te say".'},
+	{date: '2026-10-26', id: 'hikaye-26', supports: 'saat-23-40', hook: 'Saat 23.40. Sen ne yapıyorsun?', visual: 'Gece masa çizimi, monitörde saat, "Bu akşam reels’te".'},
+	{date: '2026-10-27', id: 'hikaye-27', supports: 'webde-de-sinavika', hook: 'Bilgisayardan da çalışabilirsin.', visual: 'Tarayıcıda Sınavika paneli, "sinavika.com" büyük.'},
+	{date: '2026-10-28', id: 'hikaye-28', supports: 'soru-isareti', hook: 'Çözemediğin soruyu at, biz çözelim.', visual: 'Mor düz zemin, soru işaretinden kamera ikonuna dönüşen çizim, "Reels’te nasıl olduğunu gör".'},
+	{date: '2026-10-29', id: 'hikaye-29', supports: 'unutmadan-once', hook: 'Lale Devri hangi yıllar arasındadır?', visual: 'Pembe kart ön yüzü; "Cevap gönderide".'},
+	{date: '2026-10-30', id: 'hikaye-30', supports: 'kayit-olmadan-sor', hook: 'Üç soru hakkın var.', visual: 'Beyaz zemin, dev turuncu 3, "sinavika.com/sinoai".'},
+	{date: '2026-10-31', id: 'hikaye-31', supports: 'hangi-ogrencisin', hook: 'Hangi öğrencisin?', visual: 'Dört öğrenci tipi kartı yan yana, "Gönderide kendini bul".'},
+];

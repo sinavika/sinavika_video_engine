@@ -16,6 +16,34 @@ export const AppModeProvider: React.FC<{mode: AppMode; children: React.ReactNode
 
 export const useAppColors = (): AppColors => APP_PALETTES[useContext(AppModeContext)];
 
+/** The app's languages (its tr-TR and en-US catalogues). */
+export const APP_LANGUAGES = ['tr', 'en'] as const;
+export type AppLanguage = (typeof APP_LANGUAGES)[number];
+const AppLanguageContext = createContext<AppLanguage>('tr');
+
+/** Draws the screens inside it in the app's Turkish or English catalogue. */
+export const AppLanguageProvider: React.FC<{lang: AppLanguage; children: React.ReactNode}> = ({lang, children}) => <AppLanguageContext.Provider value={lang}>{children}</AppLanguageContext.Provider>;
+
+export const useAppLanguage = (): AppLanguage => useContext(AppLanguageContext);
+
+/** Picks the text of the screen's language: `t('Denemeler', 'Practice exams')`. */
+export const useAppText = (): ((tr: string, en: string) => string) => {
+	const lang = useAppLanguage();
+	return (tr, en) => (lang === 'en' ? en : tr);
+};
+
+/**
+ * The canvas a screen is laid out on, in app points. Phones use the app's
+ * design size; a tablet passes its own, and the same screens spread to it.
+ */
+const AppCanvasContext = createContext<{width: number; height: number}>(APP_SCREEN);
+
+export const AppCanvasProvider: React.FC<{width: number; height: number; children: React.ReactNode}> = ({width, height, children}) => (
+	<AppCanvasContext.Provider value={{width, height}}>{children}</AppCanvasContext.Provider>
+);
+
+export const useAppCanvas = (): {width: number; height: number} => useContext(AppCanvasContext);
+
 const STROKE = {fill: 'none', strokeWidth: 1.9, strokeLinecap: 'round', strokeLinejoin: 'round'} as const;
 const CIRCLE = 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z';
 
@@ -202,9 +230,11 @@ type AppScreenFrameProps = {
 /** Status bar, title, content and the module's tab bar: the frame every app screen shares. */
 export const AppScreenFrame: React.FC<AppScreenFrameProps> = ({module, title, activeTab = 0, trailing, children}) => {
 	const colors = useAppColors();
+	const lang = useAppLanguage();
+	const canvas = useAppCanvas();
 	const {tabs} = APP_MODULES[module];
 	return (
-		<div style={{width: APP_SCREEN.width, height: APP_SCREEN.height, display: 'flex', flexDirection: 'column', backgroundColor: colors.background}}>
+		<div style={{width: canvas.width, height: canvas.height, display: 'flex', flexDirection: 'column', backgroundColor: colors.background}}>
 			<div style={{height: APP_LAYOUT.statusBarHeight, flexShrink: 0}} />
 			<div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: `6px ${APP_LAYOUT.screenPadding}px 14px`, flexShrink: 0}}>
 				<AppText size="pageTitle" weight={800}>
@@ -221,7 +251,7 @@ export const AppScreenFrame: React.FC<AppScreenFrameProps> = ({module, title, ac
 							<div key={tab.label} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, width: 72}}>
 								<AppIcon name={tab.icon} size={22} color={active ? colors.primary : colors.muted} />
 								<AppText size={10} weight={active ? 700 : 500} color={active ? colors.primary : colors.muted} style={{whiteSpace: 'nowrap'}}>
-									{tab.label}
+									{lang === 'en' ? tab.en : tab.label}
 								</AppText>
 							</div>
 						);

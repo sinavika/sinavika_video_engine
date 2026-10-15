@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {AbsoluteFill, cancelRender, continueRender, delayRender} from 'remotion';
+import {type BrandLanguage, DEFAULT_BRAND_LANGUAGE} from '../../Configurations/BrandTypography';
 import {loadFontFaces} from '../../Themes/FontFaces';
 import type {Theme} from '../../Themes/Theme';
 import {ThemeProvider} from '../../Themes/ThemeContext';
@@ -34,20 +35,28 @@ type VideoFrameProps = {
 	themeId: ThemeId;
 	/** A ready-made theme, e.g. one built from a colour palette. Takes precedence over `themeId`. */
 	theme?: Theme;
+	/**
+	 * Language of the text on screen. It decides capitals (Turkish "i" → "İ",
+	 * English "i" → "I"), hyphenation and quotation marks, so it must follow
+	 * the content, not stay Turkish for an English or German video.
+	 */
+	lang?: BrandLanguage;
+	/** No background (for layers rendered to PNG with transparency). */
+	transparent?: boolean;
 	children: React.ReactNode;
 };
 
-export const VideoFrame: React.FC<VideoFrameProps> = ({themeId, theme: customTheme, children}) => {
+export const VideoFrame: React.FC<VideoFrameProps> = ({themeId, theme: customTheme, lang = DEFAULT_BRAND_LANGUAGE, transparent, children}) => {
 	const theme = customTheme ?? getTheme(themeId);
 	const fontsReady = useFontFaces();
 
 	return (
 		<ThemeProvider theme={theme}>
 			<AbsoluteFill
-				// Turkish casing rules: uppercase "i" must become "İ", not "I".
-				lang="tr"
+				// Casing follows the language: in Turkish uppercase "i" must become "İ", not "I".
+				lang={lang}
 				style={{
-					backgroundColor: theme.colors.background,
+					backgroundColor: transparent ? 'transparent' : theme.colors.background,
 					color: theme.colors.text,
 					fontFamily: theme.typography.body,
 					fontWeight: theme.typography.bodyWeight,
@@ -56,7 +65,7 @@ export const VideoFrame: React.FC<VideoFrameProps> = ({themeId, theme: customThe
 					willChange: 'transform',
 				}}
 			>
-				<ThemeBackground />
+				{transparent ? null : <ThemeBackground />}
 				{fontsReady ? children : null}
 			</AbsoluteFill>
 		</ThemeProvider>

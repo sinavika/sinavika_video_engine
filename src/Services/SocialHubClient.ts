@@ -3,8 +3,11 @@ import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {z} from 'zod';
+import {assertProductCopy} from '../Configurations/ProductMessaging';
 import {POST_TYPE_NAMES, SOCIAL_PLATFORMS} from '../Configurations/SocialPlan';
 import {VIDEO_COVER} from '../Configurations/VideoCover';
+import {socialCopy} from './PlatformCopies';
+
 
 /**
  * Delivers finished posts to the Sınavika API (SocialHub). The API stores the
@@ -126,8 +129,11 @@ export const createSocialHubClient = (options: {apiUrl?: string; apiKey?: string
 		/** Uploads the media and creates the post, waiting for approval. Media paths resolve against `baseDirectory`. */
 		submit: async (rawPost: unknown, baseDirectory = process.cwd()) => {
 			const {media, cover, ...payload} = SocialPostSchema.parse(rawPost);
+			// Product and module names follow the brand's advertising copy (Configurations/ProductMessaging); a wrong name never leaves.
+			for (const warning of assertProductCopy([payload.title, payload.caption, ...payload.targets.map((target) => target.caption)])) console.warn(`  Metin uyarısı: "${warning.term}" · ${warning.message}`);
 			const attach = async (field: string, file: string) => {
-				const fullPath = path.resolve(baseDirectory, file);
+				// Videos are rendered as 4K masters; the platforms get their own-size copy, made by our encoder (see PlatformCopies).
+				const fullPath = await socialCopy(path.resolve(baseDirectory, file));
 				const type = MEDIA_TYPES[path.extname(fullPath).toLowerCase()];
 				if (!type) throw new Error(`Unsupported media file: ${file}. Use PNG, JPEG, WebP or MP4.`);
 				form.append(field, new Blob([await readFile(fullPath)], {type}), path.basename(fullPath));

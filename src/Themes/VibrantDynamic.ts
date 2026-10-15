@@ -1,4 +1,4 @@
-import {FONT_FAMILIES, fontStack} from './FontFamilies';
+import {BRAND_THEME_TYPOGRAPHY} from '../Configurations/BrandTypography';
 import type {Theme} from './Theme';
 
 export const VibrantDynamic: Theme = {
@@ -32,17 +32,7 @@ export const VibrantDynamic: Theme = {
 			{fill: '#FFFFFF', on: '#1E1B4B'},
 		],
 	},
-	typography: {
-		display: fontStack(FONT_FAMILIES.nunito),
-		body: fontStack(FONT_FAMILIES.nunito),
-		mono: fontStack(FONT_FAMILIES.jetBrainsMono, 'monospace'),
-		displayWeight: 900,
-		bodyWeight: 600,
-		strongWeight: 800,
-		displayScale: 1.02,
-		displayLetterSpacing: '-0.01em',
-		labelTransform: 'uppercase',
-	},
+	typography: BRAND_THEME_TYPOGRAPHY,
 	shape: {radius: {sm: 18, md: 30, lg: 44}, borderWidth: 4, elevation: 'hard'},
 	background: {kind: 'gradient', stops: ['#4C1D95', '#7C3AED', '#DB2777'], angle: 150},
 	motion: {speed: 1.25, enter: {preset: 'scale', easing: 'overshoot'}},

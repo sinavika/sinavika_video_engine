@@ -9,6 +9,7 @@ import {parseExpression} from './PlotExpression';
 import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from './VisualFrame';
 import {elementLook, useElementState} from './VisualTimeline';
 import type {CourseVisual} from './VisualSchemas';
+import {BRAND_TYPOGRAPHY} from '../../Configurations/BrandTypography';
 
 type Reaction = Extract<CourseVisual, {kind: 'reaction'}>;
 type Forces = Extract<CourseVisual, {kind: 'forces'}>;
@@ -247,7 +248,7 @@ export const AtomVisual: React.FC<VisualBoxProps & {visual: Atom}> = ({visual, w
 				<AtomShell key={shell} centre={centre as [number, number]} radius={nucleus + gap * (shell + 1)} count={count} turn={seconds * (0.25 / (shell + 1))} delaySeconds={delaySeconds + 0.4 + shell * 0.35} electron={u(13)} stroke={u(3)} />
 			))}
 			<circle cx={centre[0]} cy={centre[1]} r={nucleus * core} fill={palette.lesson} />
-			<text x={centre[0]} y={centre[1] - nucleus * 0.12} fill={palette.onLesson} fontSize={nucleus * 0.62} fontWeight={900} textAnchor="middle" opacity={core}>
+			<text x={centre[0]} y={centre[1] - nucleus * 0.12} fill={palette.onLesson} fontSize={nucleus * 0.62} fontWeight={BRAND_TYPOGRAPHY.weights.kinetic} textAnchor="middle" opacity={core}>
 				{visual.symbol}
 			</text>
 			<text x={centre[0]} y={centre[1] + nucleus * 0.5} fill={palette.onLesson} fontSize={nucleus * 0.26} fontWeight={700} textAnchor="middle" opacity={core}>

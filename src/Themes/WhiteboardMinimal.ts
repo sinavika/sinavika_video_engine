@@ -1,4 +1,4 @@
-import {FONT_FAMILIES, fontStack} from './FontFamilies';
+import {BRAND_THEME_TYPOGRAPHY} from '../Configurations/BrandTypography';
 import type {Theme} from './Theme';
 
 export const WhiteboardMinimal: Theme = {
@@ -32,17 +32,8 @@ export const WhiteboardMinimal: Theme = {
 			{fill: '#0F766E', on: '#FFFFFF'},
 		],
 	},
-	typography: {
-		display: fontStack(FONT_FAMILIES.caveat, 'cursive'),
-		body: fontStack(FONT_FAMILIES.inter),
-		mono: fontStack(FONT_FAMILIES.jetBrainsMono, 'monospace'),
-		displayWeight: 700,
-		bodyWeight: 450,
-		strongWeight: 700,
-		displayScale: 1.28,
-		displayLetterSpacing: '0em',
-		labelTransform: 'none',
-	},
+	// Labels without capitals; faces and weights are the brand's.
+	typography: {...BRAND_THEME_TYPOGRAPHY, labelTransform: 'none'},
 	shape: {radius: {sm: 8, md: 12, lg: 16}, borderWidth: 3, elevation: 'none'},
 	background: {kind: 'dots', dotColor: '#D3D9E0', size: 44},
 	motion: {speed: 0.9, enter: {preset: 'reveal', direction: 'right'}},

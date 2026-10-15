@@ -14,6 +14,7 @@ import type {LessonScript} from '../../../Courses/LessonScript';
 import {CHROME_HEIGHT, SPACING} from '../../../Themes/DesignTokens';
 import {withAlpha, type CategoricalColor} from '../../../Themes/Theme';
 import {InkProvider, useTheme} from '../../../Themes/ThemeContext';
+import {BRAND_TYPOGRAPHY} from '../../../Configurations/BrandTypography';
 
 const OPTION_LETTERS = 'ABCDE';
 
@@ -29,7 +30,7 @@ export const VisualCardScene: React.FC<{title: string; visual: CourseVisualSpec;
 	const panel = {width: contentWidth - u(SPACING.lg * 2), height: contentHeight * 0.52};
 	return (
 		<AbsoluteFill style={{backgroundColor: tone.fill, color: tone.on}}>
-			<div style={{position: 'absolute', right: u(-20), bottom: u(40), fontFamily: typography.display, fontWeight: 900, fontSize: u(620), lineHeight: 0.8, opacity: 0.1}}>
+			<div style={{position: 'absolute', right: u(-20), bottom: u(40), fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(620), lineHeight: 0.8, opacity: 0.1}}>
 				{String(index + 1).padStart(2, '0')}
 			</div>
 			<InkProvider ink={{text: tone.on, muted: withAlpha(tone.on, 0.78), emphasis: tone.on}}>
@@ -84,7 +85,7 @@ export const ShortQuestionScene: React.FC<{question: ShortQuestion}> = ({questio
 				{question.options.map((option, index) => (
 					<Animated key={index} animation={{preset: 'slide', direction: 'left', distance: 60}} delaySeconds={0.5 + index * 0.25}>
 						<div style={{display: 'flex', alignItems: 'center', gap: u(22), padding: `${u(20)}px ${u(26)}px`, borderRadius: u(24), backgroundColor: colors.surface, border: `${u(3)}px solid ${colors.border}`}}>
-							<div style={{width: u(64), height: u(64), borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: lesson.fill, color: lesson.on, fontFamily: typography.display, fontWeight: 900, fontSize: u(34)}}>{OPTION_LETTERS[index]}</div>
+							<div style={{width: u(64), height: u(64), borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: lesson.fill, color: lesson.on, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(34)}}>{OPTION_LETTERS[index]}</div>
 							<RichText text={option} size={46} />
 						</div>
 					</Animated>
@@ -92,7 +93,7 @@ export const ShortQuestionScene: React.FC<{question: ShortQuestion}> = ({questio
 			</div>
 			{seconds > 1.5 ? (
 				<Animated delaySeconds={1.5} animation={{preset: 'scale', easing: 'overshoot'}} style={{alignSelf: 'flex-start'}}>
-					<div style={{alignSelf: 'flex-start', padding: `${u(14)}px ${u(28)}px`, borderRadius: u(999), backgroundColor: colors.text, color: colors.background, fontFamily: typography.display, fontWeight: 900, fontSize: u(36)}}>
+					<div style={{alignSelf: 'flex-start', padding: `${u(14)}px ${u(28)}px`, borderRadius: u(999), backgroundColor: colors.text, color: colors.background, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(36)}}>
 						Çözümü YouTube'daki konu anlatımında
 					</div>
 				</Animated>

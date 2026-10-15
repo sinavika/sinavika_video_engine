@@ -64,20 +64,37 @@ export const RENDER_QUALITIES = {
 } as const;
 
 /**
+ * Rule: every video is rendered at the highest quality the engine has, 2160p
+ * (4K), unless a job asks otherwise. The rendered file is the master: YouTube
+ * lessons and shorts are uploaded as they are, in 4K.
+ *
+ * Instagram's API accepts at most 1920 pixels of width and Buffer converts
+ * larger video down to Full HD with its own encoder, which looks worse than
+ * ours. So social posts get a copy made here, at the platforms' size, with
+ * the same encoding (SOCIAL_DELIVERY, Services/PlatformCopies): the master
+ * stays 4K and nobody else's encoder ever scales it.
+ */
+export const DEFAULT_RENDER_QUALITY: RenderQuality = '2160p';
+
+/**
  * How the final file is encoded. The platforms re-encode whatever they are
- * given, so the file should arrive with more detail than they will keep:
- * a low CRF and a slow preset, at the resolution they actually serve.
- * 1080p is that resolution: Instagram's API accepts at most 1920 pixels of
- * width and Buffer converts larger video down to Full HD, so a 2160p upload
- * is scaled down by someone else's encoder and looks worse, not better.
+ * given, so the file should arrive with more detail than they will keep: a
+ * very low CRF and a slow preset.
  */
 export const VIDEO_ENCODING = {
-	/** x264 constant quality: lower is better; 18 is "visually lossless", 15 leaves headroom for the platforms' re-encode. */
-	crf: 15,
+	/** x264 constant quality: lower is better; 18 is "visually lossless", 12 leaves ample headroom for the platforms' re-encode. */
+	crf: 12,
 	x264Preset: 'slow',
 	/** Within the 128-192 kbps AAC that Instagram and Buffer ask for. */
 	audioBitrate: '192k',
 } as const;
+
+/**
+ * The largest video the social platforms keep (via Buffer): a 1080 px short
+ * edge, under Instagram's 25 Mbps. Larger masters are scaled down here, with
+ * Lanczos, at the same CRF but capped below that bitrate.
+ */
+export const SOCIAL_DELIVERY = {maxShortEdge: 1080, maxBitrate: '24M', bufferSize: '48M'} as const;
 
 export type RenderQuality = keyof typeof RENDER_QUALITIES;
 export const RENDER_QUALITY_IDS = Object.keys(RENDER_QUALITIES) as [RenderQuality, ...RenderQuality[]];

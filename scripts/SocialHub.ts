@@ -23,16 +23,25 @@
  *
  *   npm run social -- plan --month 2026-11 [--out Plans/2026-11.json]
  *   npm run social -- plan --from 2026-11-02 --to 2026-11-09
+ *   npm run social -- plan --plan tanitim --from 2026-10-17 --to 2026-11-01
+ *
+ *   npm run social -- campaign --campaign tanitim-2026-10 [--force]
+ *       Writes a Posts/<date>_<Name>/ folder (Brief.md, Post.json draft) for
+ *       every post and story of a campaign (src/Campaigns). Days with a post
+ *       an admin rejected get its id as replacesPostId. Nothing is submitted.
  *       The slots to prepare, from the standard weekly plan (Configurations/
  *       SocialPlan.ts), with hours taken from each account's Buffer schedule.
  *
  * Add --json to print the API's answer as JSON.
  */
+import {existsSync} from 'node:fs';
 import {mkdir, readFile, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {parseArgs} from 'node:util';
 import {ZodError} from 'zod';
 import {SocialHubError, createSocialHubClient} from '../src/Services/SocialHubClient';
+import {CAMPAIGNS, scaffoldCampaign, type CampaignId, type ExistingPost} from '../src/Campaigns/CampaignScaffold';
+import {SOCIAL_PLANS, type SocialPlanName} from '../src/Configurations/SocialPlan';
 import {planMonth, planRange, type AccountSchedule} from '../src/Services/SocialPlanner';
 
 const {values, positionals} = parseArgs({
@@ -44,6 +53,9 @@ const {values, positionals} = parseArgs({
 		to: {type: 'string'},
 		kind: {type: 'string'},
 		month: {type: 'string'},
+		plan: {type: 'string'},
+		campaign: {type: 'string'},
+		force: {type: 'boolean', default: false},
 		out: {type: 'string'},
 		unused: {type: 'boolean', default: false},
 		json: {type: 'boolean', default: false},
@@ -81,7 +93,9 @@ try {
 	} else if (command === 'plan') {
 		const accounts = (await client.accounts().catch(() => [])) as AccountSchedule[];
 		if (accounts.length === 0) console.error('Uyarı: API hesap döndürmedi; saatler Buffer yerine plandaki yedek saatlerden alındı.');
-		const slots = values.month ? planMonth(values.month, accounts) : planRange(values.from ?? '', values.to ?? '', accounts);
+		const planName = (values.plan ?? 'standart') as SocialPlanName;
+		if (!(planName in SOCIAL_PLANS)) throw new Error(`Bilinmeyen plan: ${planName}. Planlar: ${Object.keys(SOCIAL_PLANS).join(', ')}.`);
+		const slots = values.month ? planMonth(values.month, accounts, planName) : planRange(values.from ?? '', values.to ?? '', accounts, planName);
 		if (values.out) {
 			await mkdir(path.dirname(path.resolve(values.out)), {recursive: true});
 			await writeFile(values.out, `${JSON.stringify(slots, null, 2)}\n`);
@@ -89,6 +103,26 @@ try {
 		const describeSlot = (slot: (typeof slots)[number]) =>
 			`${slot.date} ${slot.weekday}  ${slot.channel.padEnd(8)} ${slot.label.padEnd(26)} ${slot.targets.map((target) => `${target.platform}:${target.postType} ${target.scheduledAt.slice(11, 16)}${target.timeSource === 'fallback' ? '*' : ''}`).join('  ')}`;
 		print(slots, () => [...slots.map(describeSlot), `${slots.length} içerik${values.out ? ` → ${values.out}` : ''}`].join('\n'));
+	} else if (command === 'campaign') {
+		const id = (values.campaign ?? '') as CampaignId;
+		if (!(id in CAMPAIGNS)) throw new Error(`--campaign gerekli. Kampanyalar: ${Object.keys(CAMPAIGNS).join(', ')}.`);
+		const {campaign} = CAMPAIGNS[id];
+		const accounts = (await client.accounts().catch(() => [])) as AccountSchedule[];
+		const slots = planRange(campaign.from, campaign.to, accounts, campaign.plan);
+		const {items} = (await client.posts({from: campaign.from, to: campaign.to, take: 200})) as {items: ExistingPost[]};
+		const files = scaffoldCampaign(id, slots, items);
+		for (const file of files) {
+			const target = path.resolve(file.path);
+			if (existsSync(target) && !values.force) {
+				console.log(`· ${file.path} zaten var (üzerine yazmak için --force)`);
+				continue;
+			}
+			await mkdir(path.dirname(target), {recursive: true});
+			await writeFile(target, file.content);
+			console.log(`✓ ${file.path}`);
+		}
+		const replaced = files.filter((file) => file.path.endsWith('Post.json') && file.content.includes('replacesPostId')).length;
+		console.log(`${files.length / 2} gönderi taslağı · ${replaced} tanesi reddedilen gönderinin yerine`);
 	} else if (command === 'submit') {
 		if (!values.post?.length) throw new Error('--post <dosya> gerekli.');
 		for (const file of values.post) {
@@ -113,7 +147,7 @@ try {
 		const summary = await client.importSources((await readJson(values.file)) as never);
 		print(summary, () => `Yeni: ${summary.created}, güncellenen: ${summary.updated}`);
 	} else {
-		console.error('Komut: accounts | plan | submit | calendar | revisions | sources | import-sources');
+		console.error('Komut: accounts | plan | campaign | submit | calendar | revisions | sources | import-sources');
 		process.exit(2);
 	}
 } catch (error) {

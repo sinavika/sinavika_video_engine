@@ -1,6 +1,6 @@
 # Eğitim Videoları (Courses)
 
-Ders ve konu listesine bağlı YouTube eğitim videoları ile her birinin kısa özet videosunu üreten altyapı. Sosyal medya Reels akışından (`Posts/`, `npm run social`) ayrıdır; ortak bileşenleri (tema, yazı tipi, seslendirme, render, kapak, Reels kartları) kullanır, onların davranışını değiştirmez.
+Ders ve konu listesine bağlı YouTube eğitim videoları ile her birinin kısa özet videosunu üreten altyapı. **Kalite kuralı:** ders videoları ve kısa özetler her zaman 4K (`2160p`, yatayda 3840×2160) en yüksek kalitede render edilir ve YouTube'a o dosya yüklenir (bkz. [`SocialPlan.md`](SocialPlan.md#video-kalitesi)). Sosyal medya Reels akışından (`Posts/`, `npm run social`) ayrıdır; ortak bileşenleri (tema, yazı tipi, seslendirme, render, kapak, Reels kartları) kullanır, onların davranışını değiştirmez.
 
 ## 1. Akış
 

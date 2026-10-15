@@ -20,6 +20,7 @@ import type {LessonCard, LessonScript, Question} from '../../../Courses/LessonSc
 import {CHROME_HEIGHT, SPACING} from '../../../Themes/DesignTokens';
 import {withAlpha} from '../../../Themes/Theme';
 import {InkProvider, useTheme} from '../../../Themes/ThemeContext';
+import {BRAND_TYPOGRAPHY} from '../../../Configurations/BrandTypography';
 
 const TYPE = COURSE_DESIGN.type;
 const OPTION_LETTERS = 'ABCDE';
@@ -37,7 +38,7 @@ const LessonPill: React.FC<{name: string}> = ({name}) => {
 	const {colors, typography} = useTheme();
 	const {u} = useVideoLayout();
 	const tone = colors.lesson ?? {fill: colors.accent, on: colors.onAccent};
-	return <div style={{padding: `${u(10)}px ${u(22)}px`, borderRadius: u(12), backgroundColor: tone.fill, color: tone.on, fontFamily: typography.display, fontWeight: 900, fontSize: u(TYPE.label + 4), lineHeight: 1}}>{name}</div>;
+	return <div style={{padding: `${u(10)}px ${u(22)}px`, borderRadius: u(12), backgroundColor: tone.fill, color: tone.on, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(TYPE.label + 4), lineHeight: 1}}>{name}</div>;
 };
 
 /** The bar at the top of every scene of the lesson: lesson, topic, and the logo. */
@@ -65,7 +66,7 @@ export const LessonIntroScene: React.FC<{script: LessonScript}> = ({script}) => 
 				<Animated animation="fade">
 					<div style={{display: 'flex', gap: u(12), flexWrap: 'wrap'}}>
 						{script.exams.map((exam) => (
-							<div key={exam} style={{padding: `${u(8)}px ${u(20)}px`, borderRadius: u(999), border: `${u(4)}px solid ${colors.text}`, fontFamily: typography.display, fontWeight: 900, fontSize: u(30), color: colors.text, lineHeight: 1}}>
+							<div key={exam} style={{padding: `${u(8)}px ${u(20)}px`, borderRadius: u(999), border: `${u(4)}px solid ${colors.text}`, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(30), color: colors.text, lineHeight: 1}}>
 								{exam}
 							</div>
 						))}
@@ -110,7 +111,7 @@ export const SectionScene: React.FC<{index: number; title: string; total: number
 	const tone = colors.lesson ?? {fill: colors.accent, on: colors.onAccent};
 	return (
 		<AbsoluteFill style={{backgroundColor: tone.fill, color: tone.on}}>
-			<div style={{position: 'absolute', right: u(-30), bottom: u(isLandscape ? -170 : 60), fontFamily: typography.display, fontWeight: 900, fontSize: u(isLandscape ? 760 : 620), lineHeight: 0.8, opacity: 0.12}}>
+			<div style={{position: 'absolute', right: u(-30), bottom: u(isLandscape ? -170 : 60), fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(isLandscape ? 760 : 620), lineHeight: 0.8, opacity: 0.12}}>
 				{String(index + 1).padStart(2, '0')}
 			</div>
 			<InkProvider ink={{text: tone.on, muted: withAlpha(tone.on, 0.8), emphasis: tone.on}}>
@@ -153,7 +154,7 @@ const CardText: React.FC<{card: TextCard}> = ({card}) => {
 				<Stagger delaySeconds={0.4} stepSeconds={0.5} animation={{preset: 'slide', direction: 'left', distance: 40}}>
 					{card.items.map((item, index) => (
 						<div key={index} style={{display: 'flex', gap: u(18), alignItems: 'baseline', marginBottom: u(SPACING.sm)}}>
-							<div style={{fontFamily: typography.display, fontWeight: 900, fontSize: u(TYPE.cardBody), color: colors.lesson?.fill ?? colors.accent}}>{index + 1}</div>
+							<div style={{fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(TYPE.cardBody), color: colors.lesson?.fill ?? colors.accent}}>{index + 1}</div>
 							<RichText text={item} size={TYPE.cardBody} />
 						</div>
 					))}
@@ -270,7 +271,7 @@ const Countdown: React.FC<{left: number; total: number}> = ({left, total}) => {
 				<circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke={withAlpha(lesson, 0.15)} strokeWidth={u(18)} />
 				<circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke={lesson} strokeWidth={u(18)} strokeLinecap="round" strokeDasharray={2 * Math.PI * radius} strokeDashoffset={2 * Math.PI * radius * (1 - share)} />
 			</svg>
-			<div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: typography.display, fontWeight: 900, fontSize: u(84), color: lesson}}>{Math.ceil(left)}</div>
+			<div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(84), color: lesson}}>{Math.ceil(left)}</div>
 		</div>
 	);
 };
@@ -312,7 +313,7 @@ export const PredictScene: React.FC<{card: PredictCard; timing: PredictTiming; s
 								const right = explained && index === card.answer;
 								return (
 									<div key={index} style={{display: 'flex', alignItems: 'center', gap: u(14), padding: `${u(10)}px ${u(16)}px`, borderRadius: u(16), border: `${u(3)}px solid ${right ? lesson : colors.border}`, backgroundColor: right ? withAlpha(lesson, 0.14) : colors.surface}}>
-										<div style={{width: u(44), height: u(44), borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: right ? lesson : colors.surfaceAlt, color: right ? (colors.lesson?.on ?? colors.onAccent) : colors.onSurface, fontFamily: typography.display, fontWeight: 900, fontSize: u(24)}}>
+										<div style={{width: u(44), height: u(44), borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: right ? lesson : colors.surfaceAlt, color: right ? (colors.lesson?.on ?? colors.onAccent) : colors.onSurface, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(24)}}>
 											{OPTION_LETTERS[index]}
 										</div>
 										<RichText text={choice} size={32} />
@@ -385,7 +386,7 @@ export const QuestionScene: React.FC<{question: Question; stepStarts: number[]; 
 								const correct = revealed && index === question.answer;
 								return (
 									<div key={index} style={{display: 'flex', alignItems: 'center', gap: u(18), padding: `${u(12)}px ${u(18)}px`, borderRadius: u(18), border: `${u(3)}px solid ${correct ? lesson : colors.border}`, backgroundColor: correct ? withAlpha(lesson, 0.12) : colors.surface}}>
-										<div style={{width: u(52), height: u(52), borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: correct ? lesson : colors.surfaceAlt, color: correct ? (colors.lesson?.on ?? colors.onAccent) : colors.onSurface, fontFamily: typography.display, fontWeight: 900, fontSize: u(28)}}>
+										<div style={{width: u(52), height: u(52), borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: correct ? lesson : colors.surfaceAlt, color: correct ? (colors.lesson?.on ?? colors.onAccent) : colors.onSurface, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(28)}}>
 											{OPTION_LETTERS[index]}
 										</div>
 										<RichText text={option} size={34} />
@@ -402,7 +403,7 @@ export const QuestionScene: React.FC<{question: Question; stepStarts: number[]; 
 					{visible.map((step, index) => (
 						<Animated key={index} animation={{preset: 'slide', direction: 'left', distance: 40}} delaySeconds={stepStarts[index]}>
 							<div style={{display: 'flex', gap: u(16), alignItems: 'flex-start'}}>
-								<div style={{width: u(44), height: u(44), borderRadius: '50%', backgroundColor: lesson, color: colors.lesson?.on ?? colors.onAccent, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: typography.display, fontWeight: 900, fontSize: u(24)}}>
+								<div style={{width: u(44), height: u(44), borderRadius: '50%', backgroundColor: lesson, color: colors.lesson?.on ?? colors.onAccent, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(24)}}>
 									{index + 1}
 								</div>
 								<div style={{display: 'flex', flexDirection: 'column', gap: u(8), minWidth: 0}}>
@@ -418,7 +419,7 @@ export const QuestionScene: React.FC<{question: Question; stepStarts: number[]; 
 					))}
 					{revealed ? (
 						<Animated animation={{preset: 'scale', easing: 'overshoot'}} delaySeconds={answerAt}>
-							<div style={{alignSelf: 'flex-start', padding: `${u(12)}px ${u(24)}px`, borderRadius: u(999), backgroundColor: lesson, color: colors.lesson?.on ?? colors.onAccent, fontFamily: typography.display, fontWeight: 900, fontSize: u(34)}}>
+							<div style={{alignSelf: 'flex-start', padding: `${u(12)}px ${u(24)}px`, borderRadius: u(999), backgroundColor: lesson, color: colors.lesson?.on ?? colors.onAccent, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(34)}}>
 								Cevap: {OPTION_LETTERS[question.answer]}
 							</div>
 						</Animated>

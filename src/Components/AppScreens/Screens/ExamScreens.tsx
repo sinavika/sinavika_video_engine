@@ -1,14 +1,21 @@
 import React from 'react';
-import {AppButton, AppCard, AppChip, AppIcon, AppOverline, AppProgressBar, AppPromoCard, AppScreenFrame, AppText, useAppColors} from '../AppScreenParts';
+import {AppButton, AppCard, AppChip, AppIcon, AppOverline, AppProgressBar, AppPromoCard, AppScreenFrame, AppText, useAppCanvas, useAppColors, useAppLanguage, useAppText, type AppLanguage} from '../AppScreenParts';
+import {APP_LAYOUT} from '../AppScreenTokens';
 
 /** Sample data for the exam screens: a product demo, not a claim about results. */
 const NET_TREND = [52, 58, 55, 63, 67, 66, 72, 78];
-const LESSON_NETS: readonly {lesson: string; share: number}[] = [
-	{lesson: 'Türkçe', share: 0.82},
-	{lesson: 'Matematik', share: 0.64},
-	{lesson: 'Fen', share: 0.55},
-	{lesson: 'Sosyal', share: 0.74},
+const LESSON_NETS: readonly {lesson: string; en: string; share: number}[] = [
+	{lesson: 'Türkçe', en: 'Reading', share: 0.82},
+	{lesson: 'Matematik', en: 'Maths', share: 0.64},
+	{lesson: 'Fen', en: 'Science', share: 0.55},
+	{lesson: 'Sosyal', en: 'Social', share: 0.74},
 ];
+
+/** A decimal in the screen's language: 78,5 in Turkish, 78.5 in English. */
+const useDecimal = (): ((value: string) => string) => {
+	const lang = useAppLanguage();
+	return (value) => (lang === 'en' ? value.replace(',', '.') : value);
+};
 
 const NetChart: React.FC<{width: number; height: number}> = ({width, height}) => {
 	const colors = useAppColors();
@@ -24,39 +31,49 @@ const NetChart: React.FC<{width: number; height: number}> = ({width, height}) =>
 	);
 };
 
-const LessonBars: React.FC = () => (
-	<>
-		{LESSON_NETS.map((row) => (
-			<div key={row.lesson} style={{display: 'flex', alignItems: 'center', gap: 10}}>
-				<AppText size="label" weight={600} style={{width: 78}}>
-					{row.lesson}
-				</AppText>
-				<AppProgressBar share={row.share} height={8} />
-			</div>
-		))}
-	</>
-);
+const LessonBars: React.FC = () => {
+	const t = useAppText();
+	return (
+		<>
+			{LESSON_NETS.map((row) => (
+				<div key={row.lesson} style={{display: 'flex', alignItems: 'center', gap: 10}}>
+					<AppText size="label" weight={600} style={{width: 78}}>
+						{t(row.lesson, row.en)}
+					</AppText>
+					<AppProgressBar share={row.share} height={8} />
+				</div>
+			))}
+		</>
+	);
+};
 
 /** Denemeler › Ana sayfa: the exam module's home. */
 export const ExamHomeScreen: React.FC = () => {
 	const colors = useAppColors();
+	const t = useAppText();
+	const decimal = useDecimal();
 	return (
-		<AppScreenFrame module="Exam" title="Denemeler" activeTab={0}>
-			<AppPromoCard label="Denemelerim" title="Deneme listesi" description="Yayındaki denemeleri görüntüle ve çözmeye başla." action="Denemelere git" />
+		<AppScreenFrame module="Exam" title={t('Denemeler', 'Practice exams')} activeTab={0}>
+			<AppPromoCard
+				label={t('Denemelerim', 'My exams')}
+				title={t('Deneme listesi', 'Exam list')}
+				description={t('Yayındaki denemeleri görüntüle ve çözmeye başla.', 'See the published practice exams and start solving.')}
+				action={t('Denemelere git', 'Go to practice exams')}
+			/>
 			<AppCard style={{display: 'flex', flexDirection: 'column', gap: 12}}>
 				<div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-					<AppOverline>Ders ve konu gelişimi</AppOverline>
+					<AppOverline>{t('Ders ve konu gelişimi', 'Subject progress')}</AppOverline>
 					<AppText size="caption" weight={700} color={colors.primary}>
-						Tüm istatistikler
+						{t('Tüm istatistikler', 'All stats')}
 					</AppText>
 				</div>
 				<LessonBars />
 			</AppCard>
 			<div style={{display: 'flex', gap: 10}}>
 				{[
-					{label: 'Net', value: '78,5'},
-					{label: 'Doğru', value: '86'},
-					{label: 'Yanlış', value: '30'},
+					{label: t('Net', 'Score'), value: decimal('78,5')},
+					{label: t('Doğru', 'Correct'), value: '86'},
+					{label: t('Yanlış', 'Wrong'), value: '30'},
 				].map((stat) => (
 					<AppCard key={stat.label} padding={14} style={{flex: 1, display: 'flex', flexDirection: 'column', gap: 4}}>
 						<AppText size="caption" weight={700} color={colors.muted}>
@@ -72,54 +89,70 @@ export const ExamHomeScreen: React.FC = () => {
 	);
 };
 
-export type ExamQuestion = {lesson: string; number: number; total: number; text: string; options: string[]; selected?: number; remaining: string};
+export type ExamQuestion = {lesson: string; number: number; total: number; text: string; options: string[]; selected?: number; remaining: string; title?: string};
 
-const SAMPLE_QUESTION: ExamQuestion = {
-	lesson: 'Temel Matematik',
-	number: 12,
-	total: 40,
-	text: '3(x − 2) + 4 = 2x + 7 denklemini sağlayan x değeri kaçtır?',
-	options: ['7', '8', '9', '10', '11'],
-	selected: 2,
-	remaining: '118:42',
+const SAMPLE_QUESTION: Record<AppLanguage, ExamQuestion> = {
+	tr: {
+		title: 'TYT Denemesi',
+		lesson: 'Temel Matematik',
+		number: 12,
+		total: 40,
+		text: '3(x − 2) + 4 = 2x + 7 denklemini sağlayan x değeri kaçtır?',
+		options: ['7', '8', '9', '10', '11'],
+		selected: 2,
+		remaining: '118:42',
+	},
+	en: {
+		title: 'Maths mock exam',
+		lesson: 'Maths',
+		number: 12,
+		total: 40,
+		text: 'Which value of x satisfies 3(x − 2) + 4 = 2x + 7?',
+		options: ['7', '8', '9', '10', '11'],
+		selected: 2,
+		remaining: '118:42',
+	},
 };
 
 /** Denemeler › a question being solved. Pass `question` to show a real one. */
-export const ExamSolveScreen: React.FC<{question?: ExamQuestion}> = ({question = SAMPLE_QUESTION}) => {
+export const ExamSolveScreen: React.FC<{question?: ExamQuestion}> = ({question}) => {
 	const colors = useAppColors();
+	const t = useAppText();
+	const lang = useAppLanguage();
+	const shown = question ?? SAMPLE_QUESTION[lang];
 	return (
 		<AppScreenFrame
 			module="Exam"
-			title="TYT Denemesi"
+			title={shown.title ?? t('TYT Denemesi', 'Mock exam')}
 			activeTab={1}
 			trailing={
 				<div style={{display: 'flex', alignItems: 'center', gap: 6, padding: '7px 12px', borderRadius: 999, backgroundColor: colors.primarySoft}}>
 					<AppIcon name="clock" size={15} color={colors.onPrimarySoft} />
 					<AppText size="label" weight={700} color={colors.onPrimarySoft}>
-						{question.remaining}
+						{shown.remaining}
 					</AppText>
 				</div>
 			}
 		>
 			<div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
 				<AppText size="label" weight={700}>
-					{question.lesson} · Soru {question.number}
+					{shown.lesson} · {t('Soru', 'Question')} {shown.number}
 				</AppText>
 				<AppText size={12} color={colors.muted}>
-					{question.number} / {question.total}
+					{shown.number} / {shown.total}
 				</AppText>
 			</div>
 			<div style={{display: 'flex'}}>
-				<AppProgressBar share={question.number / question.total} />
+				<AppProgressBar share={shown.number / shown.total} />
 			</div>
 			<AppCard padding={18}>
 				<AppText size="headline" weight={600} style={{lineHeight: 1.45}}>
-					{question.text}
+					{shown.text}
 				</AppText>
 			</AppCard>
 			<div style={{display: 'flex', flexDirection: 'column', gap: 9}}>
-				{question.options.map((option, index) => {
-					const selected = index === question.selected;
+				{shown.options.map((option, index) => {
+					const selected = index === shown.selected;
 					return (
 						<div key={option} style={{display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', borderRadius: 16, backgroundColor: selected ? colors.primarySoft : colors.card, border: `1.5px solid ${selected ? colors.primary : colors.outline}`}}>
 							<div style={{width: 30, height: 30, borderRadius: 15, backgroundColor: selected ? colors.primary : colors.surface, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
@@ -136,9 +169,9 @@ export const ExamSolveScreen: React.FC<{question?: ExamQuestion}> = ({question =
 			</div>
 			<div style={{display: 'flex', gap: 10, marginTop: 'auto', paddingBottom: 14}}>
 				<AppButton tone="neutral" grow>
-					Önceki
+					{t('Önceki', 'Previous')}
 				</AppButton>
-				<AppButton grow>Sonraki</AppButton>
+				<AppButton grow>{t('Sonraki', 'Next')}</AppButton>
 			</div>
 		</AppScreenFrame>
 	);
@@ -147,42 +180,45 @@ export const ExamSolveScreen: React.FC<{question?: ExamQuestion}> = ({question =
 /** Denemeler › İstatistikler: what a finished exam tells you. */
 export const ExamStatsScreen: React.FC = () => {
 	const colors = useAppColors();
+	const t = useAppText();
+	const decimal = useDecimal();
+	const canvas = useAppCanvas();
 	return (
-		<AppScreenFrame module="Exam" title="İstatistikler" activeTab={3}>
+		<AppScreenFrame module="Exam" title={t('İstatistikler', 'Stats')} activeTab={3}>
 			<AppCard style={{display: 'flex', flexDirection: 'column', gap: 10}}>
 				<div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-					<AppOverline>Net trendi</AppOverline>
-					<AppChip tone="success">Net değişimi +6,5</AppChip>
+					<AppOverline>{t('Net trendi', 'Score trend')}</AppOverline>
+					<AppChip tone="success">{t('Net değişimi +6,5', 'Score change +6.5')}</AppChip>
 				</div>
 				<div style={{display: 'flex', alignItems: 'baseline', gap: 8}}>
 					<AppText size={34} weight={800}>
-						78,5
+						{decimal('78,5')}
 					</AppText>
 					<AppText size={15} weight={600} color={colors.muted}>
-						Son net
+						{t('Son net', 'Latest score')}
 					</AppText>
 				</div>
-				<NetChart width={314} height={110} />
+				<NetChart width={canvas.width - APP_LAYOUT.screenPadding * 2 - 36} height={110} />
 			</AppCard>
 			<AppCard style={{display: 'flex', flexDirection: 'column', gap: 12}}>
-				<AppOverline>Genel gelişim</AppOverline>
+				<AppOverline>{t('Genel gelişim', 'Overall progress')}</AppOverline>
 				<LessonBars />
 			</AppCard>
 			<div style={{display: 'flex', gap: 10}}>
 				<AppCard padding={14} style={{flex: 1, display: 'flex', flexDirection: 'column', gap: 6}}>
 					<AppText size={12} weight={700} color={colors.muted}>
-						Başarı oranı
+						{t('Başarı oranı', 'Success rate')}
 					</AppText>
 					<AppText size={20} weight={800}>
-						%72
+						{t('%72', '72%')}
 					</AppText>
 				</AppCard>
 				<AppCard padding={14} style={{flex: 1, display: 'flex', flexDirection: 'column', gap: 6}}>
 					<AppText size={12} weight={700} color={colors.muted}>
-						Sınav neti
+						{t('Sınav neti', 'Exam result')}
 					</AppText>
 					<AppText size={20} weight={800}>
-						86 D · 30 Y
+						{t('86 D · 30 Y', '86 C · 30 W')}
 					</AppText>
 				</AppCard>
 			</div>
