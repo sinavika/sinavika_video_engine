@@ -4,8 +4,80 @@
     {
       "name": "studio",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["remotion", "studio", "src/index.ts", "--no-open", "--port", "3123"],
+      "runtimeArgs": [
+        "remotion",
+        "studio",
+        "src/index.ts",
+        "--no-open",
+        "--port",
+        "3123"
+      ],
       "port": 3123
+    },
+    {
+      "name": "api-local",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": [
+        "run",
+        "--project",
+        "C:/Users/onurc/source/repos/sinavika/API/API.csproj",
+        "--launch-profile",
+        "http"
+      ],
+      "port": 5025,
+      "url": "http://localhost:5025"
+    },
+    {
+      "name": "web-local",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "C:/Users/onurc/source/repos/sinavika_frontend_student",
+        "run",
+        "dev",
+        "--",
+        "-p",
+        "3100"
+      ],
+      "port": 3100
+    },
+    {
+      "name": "admin-local",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": [
+        "/c",
+        "set VITE_API_BASE_URL=http://localhost:5025&& cd /d C:/Users/onurc/source/repos/sinavika_frontend_admin&& npx vite --port 3000 --strictPort"
+      ],
+      "port": 3000
+    },
+    {
+      "name": "metro-mobile",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": [
+        "/c",
+        "set EXPO_PUBLIC_API_BASE_URL=http://localhost:5025&& cd /d C:/Users/onurc/Desktop/sinavika_mobile_reactnative&& npx expo start --dev-client --localhost --port 8081"
+      ],
+      "port": 8081
+    },
+    {
+      "name": "api-compare-gpt5mini",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": [
+        "/c",
+        "C:/Users/onurc/AppData/Local/Temp/claude/C--Users-onurc-source-repos-sinavika-video-engine/238f6a21-26cf-4910-9d26-03e1bd7c19ca/scratchpad/llmcompare/run-api-gpt5mini.cmd"
+      ],
+      "port": 5025,
+      "url": "http://localhost:5025"
+    },
+    {
+      "name": "api-compare-claude",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": [
+        "/c",
+        "C:/Users/onurc/AppData/Local/Temp/claude/C--Users-onurc-source-repos-sinavika-video-engine/238f6a21-26cf-4910-9d26-03e1bd7c19ca/scratchpad/llmcompare/run-api-claude.cmd"
+      ],
+      "port": 5025,
+      "url": "http://localhost:5025"
     }
   ]
 }

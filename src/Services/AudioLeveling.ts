@@ -1,5 +1,6 @@
 import {rm} from 'node:fs/promises';
 import {RenderInternals} from '@remotion/renderer';
+import {toneWav, type ToneFilter} from './AudioTone';
 
 /**
  * Levels for everything that goes into a video's sound, in one place.
@@ -20,6 +21,31 @@ export const AUDIO_LEVELS = {
 	/** A mix that measures above this before mastering has most likely been cut off. */
 	clippingTruePeak: -0.3,
 } as const;
+
+/**
+ * The tone narration is given before it is levelled: the low end is cut, so
+ * the voice sounds clear and close on phone speakers rather than boomy. Its
+ * id is part of a narration's cache key, so changing the tone regenerates.
+ */
+export const NARRATION_TONE: {id: string; filters: readonly ToneFilter[]} = {
+	id: 'tone-lowcut-1',
+	filters: [
+		{type: 'highpass', frequency: 100},
+		{type: 'lowshelf', frequency: 180, gainDb: -4},
+	],
+};
+
+/** Decodes `input` to 48 kHz 16-bit WAV, shapes its tone, and levels it into `output`. */
+export const toneAndLevel = async (input: string, output: string, level: AudioLevel, filters: readonly ToneFilter[]): Promise<void> => {
+	const decoded = `${output}.decoded.wav`;
+	try {
+		await ffmpeg(['-y', '-i', input, '-vn', '-ar', '48000', '-c:a', 'pcm_s16le', '-map_metadata', '-1', '-fflags', '+bitexact', decoded]);
+		if (filters.length) await toneWav(decoded, decoded, filters);
+		await levelAudio(decoded, output, level);
+	} finally {
+		await rm(decoded, {force: true});
+	}
+};
 
 export type AudioLevel = {integrated: number; truePeak: number};
 

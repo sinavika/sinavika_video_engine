@@ -130,7 +130,25 @@ export const SinoChatScreen: React.FC = () => {
 			<SinoTop />
 			<Content tabBar={false} gap={16} padding="10px 20px 10px">
 				<Stack align="flex-end" gap={8}>
-					<div style={{width: 140, height: 80, borderRadius: 14, background: '#F5F1E8', border: `1px solid ${colors.line}`}} />
+					{/* The photographed question: a slightly tilted piece of paper with the printed problem. */}
+					<div style={{width: 176, padding: '10px 12px', borderRadius: 12, background: '#FBF8F1', border: `1px solid ${colors.line}`, boxShadow: '0 6px 14px -8px rgba(15,23,42,0.35)', transform: 'rotate(-2deg)', boxSizing: 'border-box'}}>
+						<Text role="meta" size={10} color={colors.muted}>
+							{t('12. soru', 'Question 12')}
+						</Text>
+						<Text role="body" size={13} color={colors.ink} style={{lineHeight: '18px', marginTop: 3}}>
+							f(x) = (3x² − 2)⁴
+						</Text>
+						<Text role="body" size={13} color={colors.ink} style={{lineHeight: '18px'}}>
+							{t("ise f'(1) kaçtır?", "find f'(1).")}
+						</Text>
+						<div style={{display: 'flex', gap: 6, marginTop: 6}}>
+							{['A) 12', 'B) 24', 'C) 48'].map((choice) => (
+								<Text key={choice} role="meta" size={10} color={colors.muted}>
+									{choice}
+								</Text>
+							))}
+						</div>
+					</div>
 					<div style={{maxWidth: 270, padding: '10px 14px', borderRadius: 20, background: colors.line2}}>
 						<Text role="body" color={colors.ink}>
 							{t('Bu soruda neden 6x ile çarpıyoruz?', 'Why do we multiply by 6x here?')}
@@ -144,7 +162,7 @@ export const SinoChatScreen: React.FC = () => {
 					</Text>
 					<div style={{padding: '12px 14px', borderRadius: 14, background: colors.line2}}>
 						<Text role="headline" size={15}>
-							f′(x) = 4(3x² − 2)³ · 6x
+							f'(x) = 4(3x² − 2)³ · 6x
 						</Text>
 					</div>
 					<Text role="body" size={15.5} color={colors.ink} style={{lineHeight: '24px'}}>

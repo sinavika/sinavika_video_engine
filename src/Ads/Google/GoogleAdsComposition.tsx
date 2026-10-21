@@ -1,8 +1,9 @@
 import React from 'react';
 import {Composition, Folder} from 'remotion';
 import {VideoFrame} from '../../Components/Layouts/VideoFrame';
+import {GoogleAdBanner} from './GoogleAdBanner';
 import {GoogleAdImage, GoogleAdLayer, GoogleAdLogo} from './GoogleAdImage';
-import {formatSize, GOOGLE_AD_IMAGE_ID, GOOGLE_AD_LAYER_ID, GOOGLE_AD_LOGO_ID, GoogleAdImagePropsSchema, GoogleAdLayerPropsSchema, GoogleAdLogoPropsSchema, LAYER_SIZE, type GoogleAdImageProps, type GoogleAdLayerProps, type GoogleAdLogoProps} from './GoogleAdsProps';
+import {formatSize, GOOGLE_AD_BANNER_ID, GoogleAdBannerPropsSchema, type GoogleAdBannerProps, GOOGLE_AD_IMAGE_ID, GOOGLE_AD_LAYER_ID, GOOGLE_AD_LOGO_ID, GoogleAdImagePropsSchema, GoogleAdLayerPropsSchema, GoogleAdLogoPropsSchema, LAYER_SIZE, type GoogleAdImageProps, type GoogleAdLayerProps, type GoogleAdLogoProps} from './GoogleAdsProps';
 
 /** The Google Ads pictures, HTML5 layers and logo assets (docs/GoogleAds/Icerik-Plani.md). */
 const ImagePicture: React.FC<GoogleAdImageProps> = (props) => (
@@ -14,6 +15,12 @@ const ImagePicture: React.FC<GoogleAdImageProps> = (props) => (
 const LayerPicture: React.FC<GoogleAdLayerProps> = (props) => (
 	<VideoFrame themeId="SinavikaLight" lang={props.lang} transparent>
 		<GoogleAdLayer {...props} />
+	</VideoFrame>
+);
+
+const BannerPicture: React.FC<GoogleAdBannerProps> = (props) => (
+	<VideoFrame themeId="SinavikaLight" lang={props.lang}>
+		<GoogleAdBanner {...props} />
 	</VideoFrame>
 );
 
@@ -66,6 +73,21 @@ export const GoogleAdsComposition: React.FC = () => (
 			calculateMetadata={({props}) => {
 				const parsed = GoogleAdLogoPropsSchema.parse(props);
 				return {props: parsed, width: 1200, height: parsed.kind === 'kare' ? 1200 : 300};
+			}}
+		/>
+		<Composition
+			id={GOOGLE_AD_BANNER_ID}
+			component={BannerPicture}
+			schema={GoogleAdBannerPropsSchema}
+			defaultProps={GoogleAdBannerPropsSchema.parse({})}
+			durationInFrames={1}
+			fps={30}
+			width={300}
+			height={250}
+			calculateMetadata={({props}) => {
+				const parsed = GoogleAdBannerPropsSchema.parse(props);
+				const [width, height] = parsed.size.split('x').map(Number);
+				return {props: parsed, width, height};
 			}}
 		/>
 	</Folder>

@@ -308,7 +308,7 @@ export const AdWebScreen: React.FC<{concept: AdConcept}> = ({concept}) => {
 	const colors = useColors();
 	const {proof, module, exam} = concept;
 	const identity = MODULES[module];
-	const countdown = exam === 'kpss' ? t('KPSS hazırlığı', 'KPSS prep') : t('YKS’ye 245 gün', '245 days to YKS');
+	const countdown = {kpss: t('KPSS hazırlığı', 'KPSS prep'), yks: t('YKS’ye 245 gün', '245 days to YKS'), sat: 'Digital SAT prep', act: 'ACT prep'}[exam];
 	if (proof.kind === 'chat') {
 		return (
 			<Panel active="sinoAi" countdown={countdown}>

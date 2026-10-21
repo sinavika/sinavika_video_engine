@@ -15,12 +15,21 @@ import {composeMusic} from './ElevenLabsSpeech';
  */
 export const MUSIC_DIRECTORY = 'Music';
 const LENGTH_STEP_SECONDS = 5;
+/** How many length steps longer an existing piece may be and still be reused. */
+const REUSE_LONGER_STEPS = 3;
 export type MusicBackend = (description: string, seconds: number) => Promise<Buffer>;
 
 const musicFile = async (description: string, videoSeconds: number, publicDirectory: string, compose: MusicBackend): Promise<string> => {
 	const seconds = Math.ceil((videoSeconds + 1) / LENGTH_STEP_SECONDS) * LENGTH_STEP_SECONDS;
-	const name = createHash('sha256').update(`${description}|${seconds}`).digest('hex').slice(0, 20);
-	const file = path.join(publicDirectory, MUSIC_DIRECTORY, `${name}.mp3`);
+	const fileFor = (length: number) => path.join(publicDirectory, MUSIC_DIRECTORY, `${createHash('sha256').update(`${description}|${length}`).digest('hex').slice(0, 20)}.mp3`);
+	// A piece already made from the same description, a little longer, is kept:
+	// re-voicing a video shifts its length, and the music an owner approved
+	// should not change because of that.
+	for (let step = 0; step <= REUSE_LONGER_STEPS; step++) {
+		const longer = fileFor(seconds + step * LENGTH_STEP_SECONDS);
+		if (existsSync(longer)) return longer;
+	}
+	const file = fileFor(seconds);
 	if (!existsSync(file)) {
 		await mkdir(path.dirname(file), {recursive: true});
 		await writeFile(file, await compose(description, seconds));

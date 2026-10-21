@@ -2,7 +2,6 @@ import React from 'react';
 import {z} from 'zod';
 import {AbsoluteFill, interpolate} from 'remotion';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
-import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
 import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
@@ -13,7 +12,8 @@ import {plainText} from '../../../Schemas/RichText';
 import {Icon} from '../../../UIUX/Icons';
 import {MODULES, MODULE_ORDER, type ModuleKey} from '../../../UIUX/ModuleIdentity';
 import {defineTemplate} from '../../TemplateDefinition';
-import {At, CLAMP, ease, PromoStage, PromoSubtitle, Slam, useLand, useSeconds} from '../PromoKit/PromoKit';
+import {At, CLAMP, ease, PromoStage, PromoSubtitle, Slam, useSeconds, wordCues} from '../PromoKit/PromoKit';
+import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 /**
  * A motion-design showreel: one huge word per beat, each on its module's
@@ -82,13 +82,16 @@ const HookScene: React.FC<{content: Content}> = ({content}) => (
 	</Stage>
 );
 
-const WordsScene: React.FC<{content: Content; seconds: number}> = ({content, seconds: total}) => {
+const WordsScene: React.FC<{content: Content; seconds: number; spoken?: string; voiceSeconds?: number}> = ({content, seconds: total, spoken, voiceSeconds}) => {
 	const {u} = useVideoLayout();
 	const seconds = useSeconds();
 	const items = content.words.items;
 	const per = total / items.length;
-	const index = Math.min(items.length - 1, Math.floor(seconds / per));
-	const local = seconds - index * per;
+	// Each word holds the screen from the moment it is said until the next one is.
+	const cues = wordCues(spoken ?? content.words.narration, items.map((entry) => entry.word), voiceSeconds, items.map((_, index) => index * per));
+	cues[0] = 0;
+	const index = Math.max(0, cues.reduce((found, cue, position) => (seconds >= cue ? position : found), 0));
+	const local = seconds - cues[index];
 	const item = items[index];
 	const ground = groundOf(item.module);
 	const hit = Math.exp(-local * 9);
@@ -152,38 +155,6 @@ const StackScene: React.FC<{content: Content}> = ({content}) => {
 	);
 };
 
-const ClosingScene: React.FC<{content: Content}> = ({content}) => {
-	const {u} = useVideoLayout();
-	const logo = useLand(0.05, 220, 16);
-	const rest = useLand(0.4);
-	return (
-		<Stage content={content} narration={content.closing.narration} shown={`${content.closing.slogan} ${content.closing.cta}`} ground={ORANGE}>
-			<At y={420} w={952}>
-				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(50)}}>
-					<div style={{transform: `scale(${interpolate(logo, [0, 1], [1.4, 1])})`, opacity: Math.min(1, logo * 1.5)}}>
-						<BrandMark size="hero" color={WHITE} />
-					</div>
-					<div style={{opacity: rest}}>
-						<Text variant="display" size={TYPE.adScale.closing} weight={TYPE.weights.kinetic} color={WHITE} align="center">
-							{content.closing.slogan}
-						</Text>
-					</div>
-					<div style={{opacity: rest, padding: `${u(24)}px ${u(50)}px`, borderRadius: u(999), background: BLACK}}>
-						<Text size={TYPE.adScale.action * 1.3} weight={TYPE.weights.kinetic} color={WHITE}>
-							{content.closing.cta}
-						</Text>
-					</div>
-					<div style={{opacity: rest}}>
-						<Text size={TYPE.adScale.action} weight={TYPE.weights.strong} color={WHITE} align="center">
-							{content.closing.channels}
-						</Text>
-					</div>
-				</div>
-			</At>
-		</Stage>
-	);
-};
-
 const SAMPLE: z.input<typeof KineticTypeSchema> = {
 	hook: {lines: ['Sınav hazırlığı', 'altı kelime.'], narration: 'Sınav hazırlığı altı kelime.'},
 	words: {
@@ -210,9 +181,9 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 	const closing = say('closing', content.closing.narration, beat(content.closing.narration, 2.8), 2.6);
 	return [
 		{id: 'hook', seconds: hook.seconds, label: 'Hook', voice: [hook], element: <HookScene content={content} />},
-		{id: 'words', seconds: words.seconds, label: 'Kelimeler', voice: [words], element: <WordsScene content={content} seconds={words.seconds} />},
+		{id: 'words', seconds: words.seconds, label: 'Kelimeler', voice: [words], element: <WordsScene content={content} seconds={words.seconds} spoken={words.text} voiceSeconds={voiceClips.words?.durationSeconds} />},
 		{id: 'stack', seconds: stack.seconds, label: 'Yığın', voice: [stack], element: <StackScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <ClosingScene content={content} />}] : []),
+		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard cta={content.closing.cta} />}] : []),
 	];
 };
 

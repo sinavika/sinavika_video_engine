@@ -7,7 +7,7 @@
  * the last frame).
  */
 import type {AdConcept, AdLang, AdPlatform} from './GoogleAdsPlan';
-import {PLATFORM_CTA, PLATFORM_LINE} from './GoogleAdsPlan';
+import {EXAM_TAG, PLATFORM_CTA, PLATFORM_LINE} from './GoogleAdsPlan';
 
 export type BannerSize = {width: number; height: number};
 
@@ -42,6 +42,7 @@ export const buildBannerHtml = ({concept, lang, platform, size, files}: {concept
 	const layout = LAYOUTS[key][platform];
 	const [from, to] = GROUND[concept.module];
 	const headline = escape(concept.headline[lang]);
+	const tag = escape(EXAM_TAG[concept.exam]);
 	const cta = escape(PLATFORM_CTA[platform][lang]);
 	const line = escape(PLATFORM_LINE[platform][lang]);
 	const fontFaces = files.fonts.map((font, index) => `@font-face{font-family:Manrope;src:url(${font}) format('woff2');font-weight:200 800;font-display:block;unicode-range:${index ? 'U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF' : 'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD'};}`).join('');
@@ -60,12 +61,14 @@ html,body{width:${size.width}px;height:${size.height}px;overflow:hidden;backgrou
 #ad{position:relative;width:${size.width}px;height:${size.height}px;overflow:hidden;cursor:pointer;font-family:Manrope,Arial,sans-serif;color:#fff;background:linear-gradient(150deg,${from} 0%,${to} 100%);-webkit-font-smoothing:antialiased}
 #glow{position:absolute;width:${size.width * 0.95}px;height:${size.width * 0.95}px;right:-${size.width * 0.35}px;top:-${size.width * 0.5}px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.24) 0%,rgba(255,255,255,0) 68%)}
 #logo{position:absolute;left:16px;top:16px;height:${layout.logo}px}
-#head{position:absolute;left:16px;top:${layout.headY}px;width:${layout.headW}px;font-size:${layout.head}px;font-weight:800;line-height:1.06;letter-spacing:-.03em}
+#tag{position:absolute;left:16px;top:${layout.headY - 2}px;max-width:${size.width - 32}px;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);font-size:10px;font-weight:700;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#head{position:absolute;left:16px;top:${layout.headY + 24}px;width:${layout.headW}px;font-size:${layout.head}px;font-weight:800;line-height:1.06;letter-spacing:-.03em}
 #device{position:absolute;left:${layout.device.x}px;top:${layout.device.y}px;width:${layout.device.w}px;filter:drop-shadow(0 18px 24px rgba(2,8,23,.35))}
 #proof{position:absolute;left:${layout.proof.x}px;top:${layout.proof.y}px;width:${layout.proof.w}px}
 #cta{position:absolute;left:${layout.cta.x}px;top:${layout.cta.y}px;width:${layout.cta.w}px;height:44px;border-radius:22px;background:#fff;color:#0B1C30;font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 10px 24px -10px rgba(2,8,23,.5)}
 #scrim{position:absolute;left:0;right:0;bottom:0;height:${size.height - layout.cta.y + 46}px;background:linear-gradient(180deg,${to}00 0%,${to}E6 38%,${to} 100%)}
 #line{position:absolute;left:${layout.cta.x}px;top:${layout.cta.y - 22}px;width:${layout.cta.w}px;font-size:11.5px;font-weight:700;color:rgba(255,255,255,.9);text-align:center}
+.play #tag{animation:fade .5s ease .1s both}
 .play #head{animation:rise .7s cubic-bezier(.2,.8,.2,1) .2s both}
 .play #device{animation:up .9s cubic-bezier(.2,.8,.2,1) 1.4s both}
 .play #proof{animation:pop .7s cubic-bezier(.3,1.4,.4,1) 2.6s both}
@@ -85,6 +88,7 @@ html,body{width:${size.width}px;height:${size.height}px;overflow:hidden;backgrou
 <img id="proof" src="${files.proof}" alt="">
 <img id="logo" src="${files.wordmark}" alt="Sınavika">
 ${size.height > size.width ? '<div id="scrim"></div>' : ''}
+<div id="tag">${tag}</div>
 <div id="head">${headline}</div>
 <div id="line">${line}</div>
 <div id="cta">${cta} <span aria-hidden="true">→</span></div>

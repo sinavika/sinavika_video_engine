@@ -1,11 +1,10 @@
 import React from 'react';
 import {AbsoluteFill, interpolate} from 'remotion';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
-import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
 import {Icon, type UIIconName} from '../../../UIUX/Icons';
-import {At, CLAMP, ease, PromoStage, PromoSubtitle, Slam, TypeOn, useLand, useSeconds} from '../PromoKit/PromoKit';
+import {At, CLAMP, ease, PromoStage, PromoSubtitle, Slam, TypeOn, useLand, useSeconds, wordCues} from '../PromoKit/PromoKit';
 import {SINO_FILM_CPS, type SinoAIFilmContent} from './SinoAIFilmSchema';
 
 /**
@@ -210,53 +209,17 @@ export const MakeScene: React.FC<{content: Content}> = ({content}) => {
 	);
 };
 
-export const WordsScene: React.FC<{content: Content}> = ({content}) => {
-	const [first, second, third] = content.words.words;
+export const WordsScene: React.FC<{content: Content; spoken?: string; voiceSeconds?: number}> = ({content, spoken, voiceSeconds}) => {
+	const words = content.words.words;
+	const cues = wordCues(spoken ?? content.words.narration, words, voiceSeconds, [0.05, 0.72, 1.42]);
 	return (
-		<Stage content={content} narration={content.words.narration} shown={content.words.words.join(' ')}>
-			<At y={560} w={952}>
-				<Slam text={first} at={0.05} out={0.62} size={TYPE.adScale.numeral * 0.8} color={INK} />
-			</At>
-			<At y={560} w={952}>
-				<Slam text={second} at={0.72} out={1.32} size={TYPE.adScale.numeral * 0.8} color={INK} />
-			</At>
-			<At y={560} w={952}>
-				<Slam text={third} at={1.42} size={TYPE.adScale.numeral * 0.8} color={INK} />
-			</At>
+		<Stage content={content} narration={content.words.narration} shown={words.join(' ')}>
+			{words.map((word, index) => (
+				<At key={word} y={560} w={952}>
+					<Slam text={word} at={cues[index]} out={index < words.length - 1 ? cues[index + 1] - 0.12 : undefined} size={TYPE.adScale.numeral * 0.8} color={INK} />
+				</At>
+			))}
 		</Stage>
 	);
 };
 
-export const ClosingScene: React.FC<{content: Content}> = ({content}) => {
-	const {u} = useVideoLayout();
-	const name = useLand(0.05, 150);
-	const line = useLand(0.45);
-	const logo = useLand(0.8);
-	return (
-		<Stage content={content} narration={content.closing.narration} shown={`${content.closing.name} ${content.closing.line}`}>
-			<At y={430} w={952}>
-				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(26)}}>
-					<div style={{display: 'flex', alignItems: 'center', gap: u(26), opacity: name, transform: `scale(${interpolate(name, [0, 1], [0.92, 1])})`}}>
-						<Icon name="sparkles" size={u(120)} color={INK} stroke={1.4} />
-						<Text variant="display" size={TYPE.adScale.numeral * 0.72} weight={TYPE.weights.kinetic} color={INK} style={{letterSpacing: '-0.045em'}}>
-							{content.closing.name}
-						</Text>
-					</div>
-					<div style={{opacity: line}}>
-						<Text size={TYPE.adScale.headline * 0.6} weight={TYPE.weights.strong} color={INK2} align="center">
-							{content.closing.line}
-						</Text>
-					</div>
-				</div>
-			</At>
-			<At y={1080} w={952}>
-				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(24), opacity: logo, transform: `translateY(${(1 - logo) * u(30)}px)`}}>
-					<BrandMark size="chrome" color={INK} />
-					<Text size={TYPE.adScale.action} weight={TYPE.weights.strong} color={INK2}>
-						{content.closing.channels}
-					</Text>
-				</div>
-			</At>
-		</Stage>
-	);
-};

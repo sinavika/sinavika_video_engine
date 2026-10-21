@@ -3,8 +3,9 @@ import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, type VoiceClips} from '../../../Scenes/Voiceover';
 import {defineTemplate} from '../../TemplateDefinition';
-import {AnswerScene, AskScene, ClosingScene, HookScene, MakeScene, ThinkScene, WordsScene} from './SinoAIFilmScenes';
+import {AnswerScene, AskScene, HookScene, MakeScene, ThinkScene, WordsScene} from './SinoAIFilmScenes';
 import {SinoAIFilmSchema, sinoAIFilmTimings, type SinoAIFilmContent} from './SinoAIFilmSchema';
+import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 /** The campaign's SinoAI film (18 Ekim 2026). Example data, the same as on the app screens. */
 const SAMPLE: z.input<typeof SinoAIFilmSchema> = {
@@ -55,8 +56,8 @@ const buildScenes = (content: SinoAIFilmContent, voiceClips: VoiceClips = {}): T
 		{id: 'think', seconds: think.seconds, label: 'Adımlar', voice: [think], element: <ThinkScene content={content} />},
 		{id: 'answer', seconds: answer.seconds, label: 'Cevap', voice: [answer], element: <AnswerScene content={content} />},
 		{id: 'make', seconds: make.seconds, label: 'Üretim', voice: [make], element: <MakeScene content={content} />},
-		{id: 'words', seconds: words.seconds, label: 'Kelimeler', voice: [words], element: <WordsScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <ClosingScene content={content} />}] : []),
+		{id: 'words', seconds: words.seconds, label: 'Kelimeler', voice: [words], element: <WordsScene content={content} spoken={words.text} voiceSeconds={voiceClips.words?.durationSeconds} />},
+		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard />}] : []),
 	];
 };
 

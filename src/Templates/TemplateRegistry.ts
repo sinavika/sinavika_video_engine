@@ -3,12 +3,14 @@ import {ExamJourney} from './Advertisements/ExamJourney/ExamJourney';
 import {Keynote} from './Advertisements/Keynote/Keynote';
 import {BeforeAfter} from './Advertisements/BeforeAfter/BeforeAfter';
 import {CountdownChat} from './Advertisements/CountdownChat/CountdownChat';
+import {GoogleVideoAd} from './Advertisements/GoogleVideoAd/GoogleVideoAd';
 import {FlatMorph} from './Advertisements/FlatMorph/FlatMorph';
 import {KineticType} from './Advertisements/KineticType/KineticType';
 import {NightDesk} from './Advertisements/NightDesk/NightDesk';
 import {OrbReveal} from './Advertisements/OrbReveal/OrbReveal';
 import {ProfilePicker} from './Advertisements/ProfilePicker/ProfilePicker';
 import {SinoAIFilm} from './Advertisements/SinoAIFilm/SinoAIFilm';
+import {AppShowcase} from './Advertisements/AppShowcase/AppShowcase';
 import {CourseLesson} from './Courses/CourseLesson/CourseLesson';
 import {CourseShort} from './Courses/CourseShort/CourseShort';
 import {ConceptExplanation} from './Education/ConceptExplanation/ConceptExplanation';
@@ -39,6 +41,8 @@ export const TEMPLATES: readonly AnyTemplateDefinition[] = [
 	FlatMorph,
 	CountdownChat,
 	BeforeAfter,
+	GoogleVideoAd,
+	AppShowcase,
 	CourseLesson,
 	CourseShort,
 ];

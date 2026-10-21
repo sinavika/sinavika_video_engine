@@ -30,6 +30,8 @@ export const VOICEOVER_DIRECTORY = 'Voiceovers';
 export const VOICE_MODELS = {
 	expressive: {id: 'eleven_v3', acceptsLanguageCode: true, maxCharacters: 5000},
 	stable: {id: 'eleven_multilingual_v2', acceptsLanguageCode: false, maxCharacters: 10000},
+	/** Eleven v4: the newest model; the brand owner chose it for the promotion reels (October 2026). */
+	v4: {id: 'eleven_v4', acceptsLanguageCode: true, maxCharacters: 5000},
 } as const;
 
 export type VoiceModelKey = keyof typeof VOICE_MODELS;
@@ -62,30 +64,6 @@ export const VOICES = {
 		origin: 'native',
 		character: 'İstanbul Türkçesi; dinamik ve enerjik, gündelik konuşma tonu; reklam ve sosyal medya',
 	},
-	Gokce: {
-		elevenLabsId: 'oPC5I9GKjMReiaM29gjY',
-		name: 'Gökçe Deniz',
-		gender: 'female',
-		age: 'young',
-		origin: 'native',
-		character: 'Genç, İstanbul Türkçesi; canlı ve sevimli sohbet tonu; tanıtım reels’i ve sosyal medya',
-	},
-	Gozde: {
-		elevenLabsId: 'aEJD8mYP0nuof1XHShVY',
-		name: 'Gözde Arıkan',
-		gender: 'female',
-		age: 'young',
-		origin: 'native',
-		character: 'Yumuşak, sıcak ve net; gündelik konuşma tonu, abartısız',
-	},
-	Eda: {
-		elevenLabsId: 'mBUB5zYuPwfVE6DTcEjf',
-		name: 'Eda Atlas',
-		gender: 'female',
-		age: 'young',
-		origin: 'native',
-		character: 'Pürüzsüz, net ve dengeli; kurumsal ve reklam',
-	},
 	Derya: {
 		elevenLabsId: 'NNn9dv8zq2kUo7d3JSGG',
 		name: 'Derya',
@@ -94,37 +72,30 @@ export const VOICES = {
 		origin: 'native',
 		character: 'Dinamik ve samimi anlatıcı; kütüphanedeki en çok kullanılan Türkçe kadın sesi',
 	},
-	Melis: {
-		elevenLabsId: 'uqq9c1CYgBRmZ0b4JJpV',
-		name: 'Melis Akcan',
+	// Chosen by the brand owner for the promotion reels (October 2026), narrated with Eleven v4.
+	Ahu: {
+		elevenLabsId: 'xyqF3vGMQlPk3e7yA4DI',
+		name: 'Ahu',
 		gender: 'female',
 		age: 'middleAged',
 		origin: 'native',
-		character: 'Çevrim içi ders anlatımı için profesyonel, net eğitmen sesi',
+		character: 'İstanbul Türkçesi; neşeli, cesaret veren ve davetkâr sohbet tonu',
 	},
-	Damla: {
-		elevenLabsId: 'A2XgcJ6lQVEFeIaIUyrc',
-		name: 'Damla',
+	Belma: {
+		elevenLabsId: 'KbaseEXyT9EE0CQLEfbB',
+		name: 'Belma',
 		gender: 'female',
 		age: 'young',
 		origin: 'native',
-		character: 'Yüksek enerjili içerik üreticisi; hızlı tempolu kısa videolar',
+		character: 'Dinamik ve net anlatıcı; sosyal medya, tempolu',
 	},
-	Sevim: {
-		elevenLabsId: 'H9xk2HncwpOKhhzbyWsd',
-		name: 'Sevim',
-		gender: 'female',
+	Doga: {
+		elevenLabsId: 'IuRRIAcbQK5AQk1XevPj',
+		name: 'Doğa',
+		gender: 'male',
 		age: 'middleAged',
 		origin: 'native',
-		character: 'Cesaretlendirici, sıcak ve net; sosyal medya',
-	},
-	Irem: {
-		elevenLabsId: 'uvU9jrgGLWNPeNA4NgNT',
-		name: 'İrem',
-		gender: 'female',
-		age: 'middleAged',
-		origin: 'native',
-		character: 'Otoriter, derin ve kurumsal; güven veren reklam sesi',
+		character: 'İstanbul Türkçesi; canlı ve dolgun erkek sesi, sosyal medya; kütüphanenin en çok kullanılan Türkçe sesi',
 	},
 	// ElevenLabs default voices: multilingual stand-ins. Not native Turkish speakers; used only when a job asks for a stand-in.
 	Sarah: {
@@ -200,11 +171,20 @@ export const VOICE_KEYS = Object.keys(VOICES) as [VoiceKey, ...VoiceKey[]];
 /**
  * The brand voice, best first: the first of these the account can use
  * narrates everything, so all content sounds like one person. All are native
- * Turkish speakers. Lisa was chosen by the brand owner (October 2026); the
- * others are fallbacks, ordered from their descriptions in the ElevenLabs
- * library. To change the brand voice, put another one first.
+ * Turkish speakers. Doğa is the brand voice, chosen by the owner on 20 October
+ * 2026 (before that Lisa, from 13 October); Lisa and Derya are fallbacks. To
+ * change the brand voice, put another one first.
  */
-export const BRAND_VOICES = ['Lisa', 'Gozde', 'Eda', 'Derya', 'Melis'] as const satisfies readonly VoiceKey[];
+export const BRAND_VOICES = ['Doga', 'Lisa', 'Derya'] as const satisfies readonly VoiceKey[];
+
+/**
+ * The voice of the promotion reels and Google Ads videos, and the model they
+ * are narrated with. On 20 October 2026 the brand owner chose Doğa as the
+ * brand voice (it also leads BRAND_VOICES); reels are no longer rendered in
+ * several voices for a pick.
+ */
+export const PROMO_VOICES = ['Doga'] as const satisfies readonly VoiceKey[];
+export const PROMO_VOICE_MODEL: VoiceModelKey = 'v4';
 
 export type VoiceProfile = {
 	description: string;
@@ -268,12 +248,12 @@ export const VOICE_PROFILES = {
 		style: 0,
 	},
 	Launch: {
-		description: 'Hareketli tanıtım reels’i: canlı, tempolu, gülümseyen ses (Ekim 2026 kampanyası)',
+		description: 'Tanıtım reels’i: doğal tempo, abartısız (Ekim 2026 kampanyası; marka sahibinin dinleyip seçtiği ayar)',
 		standIns: ['Jessica', 'Laura'],
-		pace: 1.06,
-		stability: 0.36,
+		pace: 1,
+		stability: 0.5,
 		similarity: 0.8,
-		style: 0.22,
+		style: 0,
 	},
 	Creator: {
 		description: 'Genç ve samimi içerik üreticisi: sosyal medya',

@@ -5,6 +5,7 @@
  *   npm run store                                   (light look, tr + en, every size)
  *   npm run store -- --look koyu --only telefon     (an alternative look, phones only)
  *   npm run store -- --lang en --slides 0,1
+ *   npm run store -- --source real --out <folder>    (emulator captures instead of drawn screens)
  *
  * Files: out/MobileHeader/<lang>/<ios|android>/<format>/<NN>-<name>.png. The App Store
  * creative (ust-gorsel, arama-sonucu) is one picture per size, with and without copy.
@@ -18,10 +19,12 @@ import {openBrowser, renderStill, selectComposition} from '@remotion/renderer';
 import {bundleProject} from '../src/Renderers/VideoRenderer';
 import {STORE_CREATIVE, STORE_FORMATS, STORE_LANGUAGES, STORE_SLIDES, STORE_STYLES, type StoreLanguage, type StoreStyle} from '../src/Store/StoreListing';
 import {STORE_COMPOSITION_ID, type StoreScreenshotProps} from '../src/Store/StoreProps';
+import {STORE_SOURCES, type StoreSource} from '../src/Store/StoreRealScreens';
 
 const {values} = parseArgs({
 	options: {
 		look: {type: 'string', default: 'acik'},
+		source: {type: 'string', default: 'drawn'},
 		lang: {type: 'string'},
 		only: {type: 'string'},
 		slides: {type: 'string'},
@@ -30,6 +33,11 @@ const {values} = parseArgs({
 	},
 });
 
+const source = values.source as StoreSource;
+if (!(STORE_SOURCES as readonly string[]).includes(source)) {
+	console.error(`Bilinmeyen kaynak: ${values.source}. Seçenekler: ${STORE_SOURCES.join(', ')}.`);
+	process.exit(2);
+}
 const looks = (values.look === 'all' ? STORE_STYLES : [values.look]) as StoreStyle[];
 const langs = (values.lang ? values.lang.split(',') : STORE_LANGUAGES) as StoreLanguage[];
 const slides = values.slides ? values.slides.split(',').map(Number) : STORE_SLIDES.map((_, index) => index);
@@ -58,6 +66,7 @@ for (const look of looks) {
 						const props: StoreScreenshotProps = {
 							lang,
 							look,
+							source,
 							platform: format.platform,
 							device: format.device,
 							textless,

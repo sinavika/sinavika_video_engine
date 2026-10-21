@@ -266,6 +266,8 @@ export const renderVideo = async (rawJob: unknown, options: RenderOptions): Prom
 			crf: VIDEO_ENCODING.crf,
 			x264Preset: VIDEO_ENCODING.x264Preset,
 			audioBitrate: VIDEO_ENCODING.audioBitrate,
+			// Frames are captured as PNG, not the default JPEG (quality 80), so text and screen captures stay sharp at 4K.
+			imageFormat: 'png',
 			// Standard-range BT.709 and a (silent) audio track: what players and social platforms expect.
 			colorSpace: 'bt709',
 			enforceAudioTrack: true,

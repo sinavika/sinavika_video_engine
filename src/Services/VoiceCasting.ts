@@ -20,6 +20,8 @@ export type VoiceoverRequest = {
 	pace?: number;
 	/** Accept a multilingual stand-in when no native Turkish voice can be used. Off unless the job says so. */
 	standIn?: boolean;
+	/** Narration language; Turkish unless the job says otherwise. */
+	language?: 'tr' | 'en';
 };
 
 /** A fully decided voice: everything the speech service needs to produce a narration. */
@@ -100,7 +102,7 @@ export const castVoice = (request: VoiceoverRequest, availableVoiceIds: Readonly
 		native: voice.origin === 'native',
 		model: modelKey,
 		modelId: model.id,
-		languageCode: model.acceptsLanguageCode ? VOICE_LANGUAGE : undefined,
+		languageCode: model.acceptsLanguageCode ? (request.language ?? VOICE_LANGUAGE) : undefined,
 		stability: profile.stability,
 		similarity: profile.similarity,
 		style: profile.style,

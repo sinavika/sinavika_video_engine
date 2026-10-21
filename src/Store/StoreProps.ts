@@ -1,5 +1,6 @@
 import {z} from 'zod';
 import {STORE_LANGUAGES, STORE_SLIDES, STORE_STYLES} from './StoreListing';
+import {STORE_SOURCES} from './StoreRealScreens';
 
 /** Props of the store picture composition, shared by the composition and the render script (which must not load browser code). */
 export const STORE_COMPOSITION_ID = 'StoreScreenshot';
@@ -7,6 +8,8 @@ export const STORE_COMPOSITION_ID = 'StoreScreenshot';
 export const StoreScreenshotPropsSchema = z.object({
 	lang: z.enum(STORE_LANGUAGES).default('tr'),
 	look: z.enum(STORE_STYLES).default('acik'),
+	/** Drawn app screens, or emulator captures of the live app (public/Store/Real). */
+	source: z.enum(STORE_SOURCES).default('drawn'),
 	platform: z.enum(['ios', 'android']).default('ios'),
 	device: z.enum(['phone', 'tablet', 'desktop', 'feature', 'header', 'search']).default('phone'),
 	/** App Store creative: leave the copy out. */

@@ -48,6 +48,8 @@ export const VideoJobSchema = z.object({
 				model: z.enum(VOICE_MODEL_KEYS).optional(),
 				pace: z.number().min(PACE_RANGE.min).max(PACE_RANGE.max).optional(),
 				standIn: z.boolean().optional(),
+				/** Narration language. Turkish by default; English uses the voice as is, without Turkish readings of abbreviations. */
+				language: z.enum(['tr', 'en']).optional(),
 			}),
 		])
 		.default(false),

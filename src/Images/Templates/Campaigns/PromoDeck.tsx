@@ -24,7 +24,9 @@ import {defineImageTemplate} from '../../ImageTemplateDefinition';
  * - browser:  warm dark desk light, the web panel in a browser window
  * - persona:  bold colour blocks, one kind of student per slide
  *
- * No page counter, progress bar or swipe arrow (carousel rule).
+ * No page counter or progress bar (carousel rule). A cover may carry a
+ * small "Kaydır" cue when its job asks for one (`swipe`), as the brand owner
+ * asked for the persona carousel (October 2026).
  */
 
 const MODULE_KEYS = MODULE_ORDER as unknown as [ModuleKey, ...ModuleKey[]];
@@ -44,6 +46,8 @@ const SlideSchema = z.object({
 	proof: z.string().regex(/^(yks|kpss)\/[a-z-]+$/).optional(),
 	/** On the cover of the floating look: the module cards fanned out. */
 	fan: z.boolean().optional(),
+	/** On a cover: a small "Kaydır" cue, bottom right. */
+	swipe: z.boolean().optional(),
 });
 type Slide = z.infer<typeof SlideSchema>;
 
@@ -104,6 +108,42 @@ const Browser: React.FC<{screen: Slide['web']; width: number}> = ({screen, width
 		</div>
 	);
 };
+
+/** The persona cover: one tile per student type of the deck, in its module's colour, so the first slide already asks "which one are you?". */
+const PersonaGrid: React.FC<{content: Content; height: number}> = ({content, height}) => {
+	const people = content.slides.filter((slide) => slide.kind === 'persona').slice(0, 4);
+	return (
+		<div style={{position: 'absolute', left: 80, right: 80, top: height * 0.36, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28}}>
+			{people.map((person, index) => (
+				<div key={person.kicker ?? index} style={{height: height * 0.2, borderRadius: 36, background: PROOF_GROUND[person.module ?? content.module] ?? PROOF_GROUND.exam, padding: 30, boxSizing: 'border-box', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxShadow: '0 30px 50px -30px rgba(0,0,0,0.6)', transform: `rotate(${index % 2 === 0 ? -1.5 : 1.5}deg)`}}>
+					<div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+						<div style={{width: 64, height: 64, borderRadius: 20, background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+							{person.icon ? <Icon name={person.icon} size={36} color="#FFFFFF" stroke={2.2} /> : null}
+						</div>
+						<Text size={30} weight={TYPE.weights.display} color="rgba(255,255,255,0.7)">
+							{index + 1}
+						</Text>
+					</div>
+					<Text size={44} weight={TYPE.weights.kinetic} color="#FFFFFF" style={{lineHeight: 1.05}}>
+						{person.kicker}
+					</Text>
+				</div>
+			))}
+		</div>
+	);
+};
+
+/** "Kaydır →": the cover's invitation to swipe. */
+const SwipeCue: React.FC<{height: number; ink: string}> = ({height, ink}) => (
+	<div style={{position: 'absolute', right: 80, top: height - 150, display: 'flex', alignItems: 'center', gap: 14, padding: '16px 26px', borderRadius: 999, background: 'rgba(255,255,255,0.14)', border: '2px solid rgba(255,255,255,0.28)'}}>
+		<Text size={32} weight={TYPE.weights.strong} color={ink}>
+			Kaydır
+		</Text>
+		<svg width={40} height={24} viewBox="0 0 40 24" fill="none" stroke={ink} strokeWidth={3.2} strokeLinecap="round" strokeLinejoin="round">
+			<path d="M2 12 H36 M26 2 L36 12 L26 22" />
+		</svg>
+	</div>
+);
 
 /** The fanned module cards of the floating cover. */
 const Fan: React.FC<{height: number}> = ({height}) => {
@@ -176,6 +216,9 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 		</Abs>
 	);
 
+	/** The widest phone that still fits whole between `top` and the bottom margin (a device is about 2.2 times as tall as wide). */
+	const fit = (top: number, wanted: number) => Math.round(Math.min(wanted, (height - top - 64) / 2.2));
+
 	let body: React.ReactNode = null;
 	if (slide.kind === 'closing') return (
 		<AbsoluteFill style={{background: ground}}>
@@ -183,6 +226,7 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 		</AbsoluteFill>
 	);
 	if (slide.kind === 'cover' && slide.fan) body = <Fan height={height} />;
+	else if (slide.kind === 'cover' && content.look === 'persona') body = <PersonaGrid content={content} height={height} />;
 	else if (slide.proof) {
 		const [exam, id] = slide.proof.split('/') as [AdExam, string];
 		const concept = findConcept(exam, id);
@@ -190,13 +234,15 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 			<>
 				{slide.phone ? (
 					<Abs x={560} y={height * 0.42}>
-						<Phone screen={slide.phone} width={430} rotate={4} />
+						<Phone screen={slide.phone} width={fit(height * 0.42, 430)} rotate={4} />
 					</Abs>
 				) : null}
 				<ProofCard proof={concept.proof} width={440} scale={1.25} style={{left: 70, top: height * 0.5}} />
 			</>
 		);
 	} else if (slide.kind === 'step') {
+		const top = height * 0.3;
+		const width = fit(top, 520);
 		body = (
 			<>
 				<Abs x={80} y={height * 0.4}>
@@ -207,8 +253,8 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 					</div>
 					<div style={{width: 8, height: height * 0.3, background: `${paint.accent}33`, borderRadius: 4, marginLeft: 60, marginTop: 20}} />
 				</Abs>
-				<Abs x={430} y={height * 0.4}>
-					<Phone screen={slide.phone} width={520} />
+				<Abs x={1080 - 110 - width} y={top}>
+					<Phone screen={slide.phone} width={width} />
 				</Abs>
 			</>
 		);
@@ -221,7 +267,7 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 					</div>
 				</Abs>
 				<Abs x={520} y={height * 0.36}>
-					<Phone screen={slide.phone} width={480} rotate={-4} />
+					<Phone screen={slide.phone} width={fit(height * 0.36, 480)} rotate={-4} />
 				</Abs>
 			</>
 		);
@@ -233,9 +279,11 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 		);
 	} else if (slide.phone) {
 		const tilt = content.look === 'floating' ? (page % 2 ? -6 : 6) : 0;
+		const top = height * (tall ? (slide.kind === 'cover' ? 0.33 : 0.3) : 0.31);
+		const width = fit(top, content.look === 'tool' ? 580 : 660);
 		body = (
-			<Abs x={content.look === 'tool' ? 250 : page % 2 ? 90 : 330} y={height * (tall ? 0.33 : 0.31)}>
-				<Phone screen={slide.phone} width={content.look === 'tool' ? 580 : 660} rotate={tilt} />
+			<Abs x={content.look === 'tool' ? (1080 - width) / 2 : page % 2 ? 90 : 1080 - 90 - width} y={top}>
+				<Phone screen={slide.phone} width={width} rotate={tilt} />
 			</Abs>
 		);
 	} else if (slide.icon && content.look === 'tool') {
@@ -259,6 +307,7 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 					<BrandMark size="chrome" color={paint.ink} />
 				</Abs>
 			) : null}
+			{slide.kind === 'cover' && slide.swipe ? <SwipeCue height={height} ink={paint.ink} /> : null}
 		</AbsoluteFill>
 	);
 };

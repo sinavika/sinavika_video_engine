@@ -2,7 +2,6 @@ import React from 'react';
 import {z} from 'zod';
 import {AbsoluteFill, interpolate} from 'remotion';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
-import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
 import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
@@ -14,6 +13,7 @@ import {Icon} from '../../../UIUX/Icons';
 import {defineTemplate} from '../../TemplateDefinition';
 import {At, CLAMP, ease, PhoneShot, PromoStage, PromoSubtitle, useSeconds} from '../PromoKit/PromoKit';
 import {PROMO_PHONE_SCREEN_NAMES, PROMO_PHONE_SCREENS} from '../PromoKit/PromoScreens';
+import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 /**
  * A product launch: a silver spotlight, one object at a time in the middle,
@@ -194,36 +194,6 @@ const SourcesScene: React.FC<{content: Content}> = ({content}) => {
 	);
 };
 
-const ClosingScene: React.FC<{content: Content}> = ({content}) => {
-	const {u} = useVideoLayout();
-	return (
-		<Stage content={content} narration={content.closing.narration} shown={`${content.closing.name} ${content.closing.line}`}>
-			<At y={560} w={952}>
-				<Rise at={0.05}>
-					<Text variant="display" size={TYPE.adScale.hook} weight={TYPE.weights.kinetic} color={INK} align="center" style={{letterSpacing: '-0.035em'}}>
-						{content.closing.name}
-					</Text>
-				</Rise>
-				<Rise at={0.45}>
-					<Text size={50} weight={TYPE.weights.strong} color={GREY} align="center">
-						{content.closing.line}
-					</Text>
-				</Rise>
-			</At>
-			<At y={1100} w={952}>
-				<Rise at={0.9}>
-					<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(22)}}>
-						<BrandMark size="chrome" color={INK} />
-						<Text size={TYPE.adScale.action} weight={TYPE.weights.strong} color={GREY}>
-							{content.closing.channels}
-						</Text>
-					</div>
-				</Rise>
-			</At>
-		</Stage>
-	);
-};
-
 const SAMPLE: z.input<typeof KeynoteSchema> = {
 	hook: {lines: ['Notunu at.', 'Quiz olsun.'], narration: 'Notunu at, quiz olsun. PDF’in mi var, deneme olsun.'},
 	intro: {kicker: 'Tanıştırayım.', name: 'SinoAI Çalışma', narration: 'Tanıştırayım: SinoAI Çalışma.'},
@@ -254,7 +224,7 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 		{id: 'intro', seconds: intro.seconds, label: 'Tanıtım', voice: [intro], element: <IntroScene content={content} />},
 		{id: 'tools', seconds: tools.seconds, label: 'Araçlar', voice: [tools], element: <ToolsScene content={content} seconds={tools.seconds} />},
 		{id: 'sources', seconds: sources.seconds, label: 'Kaynaklar', voice: [sources], element: <SourcesScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <ClosingScene content={content} />}] : []),
+		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard />}] : []),
 	];
 };
 

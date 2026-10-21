@@ -2,7 +2,6 @@ import React from 'react';
 import {z} from 'zod';
 import {AbsoluteFill, interpolate} from 'remotion';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
-import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
 import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
@@ -14,6 +13,7 @@ import {Icon} from '../../../UIUX/Icons';
 import {defineTemplate} from '../../TemplateDefinition';
 import {At, BrowserShot, CLAMP, ease, PromoStage, PromoSubtitle, TypeOn, useLand, useSeconds} from '../PromoKit/PromoKit';
 import {PROMO_WEB_SCREEN_NAMES, PROMO_WEB_SCREENS} from '../PromoKit/PromoScreens';
+import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 /**
  * A game countdown on white: a giant orange 3, 2, 1, and under each number one
@@ -153,33 +153,6 @@ const SiteScene: React.FC<{content: Content}> = ({content}) => {
 	);
 };
 
-const ClosingScene: React.FC<{content: Content}> = ({content}) => {
-	const {u} = useVideoLayout();
-	const logo = useLand(0.05, 160);
-	const rest = useLand(0.4);
-	return (
-		<Stage content={content} narration={content.closing.narration} shown={`${content.closing.line} ${content.closing.cta}`}>
-			<At y={470} w={952}>
-				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(50)}}>
-					<div style={{opacity: logo, transform: `scale(${interpolate(logo, [0, 1], [0.86, 1])})`}}>
-						<BrandMark size="hero" color={INK} />
-					</div>
-					<div style={{opacity: rest}}>
-						<Text variant="display" size={TYPE.adScale.headline * 0.75} weight={TYPE.weights.display} color={INK} align="center">
-							{content.closing.line}
-						</Text>
-					</div>
-					<div style={{opacity: rest, padding: `${u(26)}px ${u(56)}px`, borderRadius: u(999), background: ORANGE}}>
-						<Text size={TYPE.adScale.action * 1.35} weight={TYPE.weights.kinetic} color="#FFFFFF">
-							{content.closing.cta}
-						</Text>
-					</div>
-				</div>
-			</At>
-		</Stage>
-	);
-};
-
 const SAMPLE: z.input<typeof CountdownChatSchema> = {
 	hook: {lines: ['Üç soru hakkın var.', 'Kayıt yok.'], narration: 'Üç soru hakkın var, kayıt yok.'},
 	rounds: [
@@ -205,7 +178,7 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 		{id: 'hook', seconds: hook.seconds, label: 'Hook', voice: [hook], element: <HookScene content={content} />},
 		...rounds.map((slot, index) => ({id: `round-${index + 1}`, seconds: slot.seconds, label: `${3 - index}`, voice: [slot], element: <RoundScene content={content} index={index} />})),
 		{id: 'site', seconds: site.seconds, label: 'Site', voice: [site], element: <SiteScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <ClosingScene content={content} />}] : []),
+		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard />}] : []),
 	];
 };
 

@@ -2,7 +2,6 @@ import React from 'react';
 import {z} from 'zod';
 import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
-import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
 import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
@@ -12,8 +11,9 @@ import {createNarrator, VoiceScriptSchema, type VoiceClips} from '../../../Scene
 import {plainText} from '../../../Schemas/RichText';
 import {Icon} from '../../../UIUX/Icons';
 import {defineTemplate} from '../../TemplateDefinition';
-import {At, CLAMP, ease, PhoneShot, PromoStage, PromoSubtitle, useLand, useSeconds} from '../PromoKit/PromoKit';
+import {At, CLAMP, ease, PhoneShot, PromoStage, PromoSubtitle, useSeconds} from '../PromoKit/PromoKit';
 import {PROMO_PHONE_SCREEN_NAMES, PROMO_PHONE_SCREENS} from '../PromoKit/PromoScreens';
+import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 /**
  * Flat 2D explainer: one solid colour, flat shapes, a big bouncing word, an
@@ -181,38 +181,6 @@ const TagsScene: React.FC<{content: Content; stick?: boolean}> = ({content}) => 
 	);
 };
 
-const ClosingScene: React.FC<{content: Content}> = ({content}) => {
-	const {u} = useVideoLayout();
-	const logo = useBounce(0.05);
-	const line = useLand(0.4);
-	return (
-		<Stage content={content} narration={content.closing.narration} shown={`${content.closing.line} ${content.closing.cta}`}>
-			<At y={430} w={952}>
-				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(50)}}>
-					<div style={{transform: `scale(${logo})`}}>
-						<BrandMark size="hero" color={WHITE} />
-					</div>
-					<div style={{opacity: line}}>
-						<Text variant="display" size={TYPE.adScale.headline * 0.8} weight={TYPE.weights.kinetic} color={WHITE} align="center">
-							{content.closing.line}
-						</Text>
-					</div>
-					<div style={{opacity: line, padding: `${u(24)}px ${u(50)}px`, borderRadius: u(999), background: YELLOW, boxShadow: `0 ${u(10)}px 0 rgba(30,27,75,0.25)`}}>
-						<Text size={TYPE.adScale.action * 1.3} weight={TYPE.weights.kinetic} color={INK}>
-							{content.closing.cta}
-						</Text>
-					</div>
-					<div style={{opacity: line}}>
-						<Text size={TYPE.adScale.action} weight={TYPE.weights.strong} color={WHITE} align="center">
-							{content.closing.channels}
-						</Text>
-					</div>
-				</div>
-			</At>
-		</Stage>
-	);
-};
-
 const SAMPLE: z.input<typeof FlatMorphSchema> = {
 	word: {text: 'Soru?', narration: 'Çözemediğin soru mu var?'},
 	morph: {narration: 'Fotoğrafını çek.'},
@@ -243,7 +211,7 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 		{id: 'morph', seconds: morph.seconds, label: 'Dönüşüm', voice: [morph], element: <MorphScene content={content} />},
 		{id: 'phone', seconds: phone.seconds, label: 'Telefon', voice: [phone], element: <PhoneScene content={content} />},
 		{id: 'tags', seconds: tags.seconds, label: 'Etiketler', voice: [tags], element: <TagsScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <ClosingScene content={content} />}] : []),
+		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard cta={content.closing.cta} />}] : []),
 	];
 };
 

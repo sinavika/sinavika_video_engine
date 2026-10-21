@@ -8,6 +8,7 @@ import {DeviceBrowser, DevicePhone} from '../../UIUX/Parts/Web';
 import {AdMobileScreen, AdWebScreen} from './AdScreens';
 import {findConcept, PLATFORM_LINE, type AdConcept, type AdFormat, type AdPlatform} from './GoogleAdsPlan';
 import type {GoogleAdImageProps, GoogleAdLayerProps, GoogleAdLogoProps} from './GoogleAdsProps';
+import {ExamTag} from './ExamTag';
 import {ProofCard} from './ProofCard';
 
 /**
@@ -104,7 +105,10 @@ const Picture: React.FC<GoogleAdImageProps> = ({exam, concept: conceptId, platfo
 			{textless ? null : (
 				<div style={{position: 'absolute', left: layout.pad, top: layout.pad, width: layout.textW, display: 'flex', flexDirection: 'column'}}>
 					<Logo wordmark height={layout.logo} color="#FFFFFF" />
-					<div style={{marginTop: layout.head * 0.62, fontSize: layout.head, fontWeight: 800, lineHeight: 1.04, letterSpacing: '-0.035em', color: '#FFFFFF', textWrap: 'balance'}}>{t(concept.headline)}</div>
+					<div style={{marginTop: layout.head * 0.42}}>
+						<ExamTag exam={exam} size={layout.sub * 0.78} maxWidth={layout.textW} />
+					</div>
+					<div style={{marginTop: layout.head * 0.3, fontSize: layout.head, fontWeight: 800, lineHeight: 1.04, letterSpacing: '-0.035em', color: '#FFFFFF', textWrap: 'balance'}}>{t(concept.headline)}</div>
 					<div style={{marginTop: layout.sub * 0.7, fontSize: layout.sub, fontWeight: 600, lineHeight: 1.32, color: 'rgba(255,255,255,0.88)', textWrap: 'pretty'}}>{t(concept.subline)}</div>
 					<div style={{display: 'flex', alignItems: 'center', gap: layout.line * 0.45, marginTop: layout.sub * 1.1, fontSize: layout.line, fontWeight: 800, color: '#FFFFFF'}}>
 						<Icon name={platform === 'mobile' ? 'phone' : 'globe'} size={layout.line * 1.15} color="#FFFFFF" stroke={2.2} />

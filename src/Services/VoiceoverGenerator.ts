@@ -4,7 +4,8 @@ import {mkdir, readFile, rm, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {VOICEOVER_DIRECTORY, VOICE_MODELS} from '../Configurations/Voices';
 import type {VoiceClips} from '../Scenes/Voiceover';
-import {AUDIO_LEVELS, levelAudio} from './AudioLeveling';
+import {pronounceAbbreviations} from '../Schemas/SpokenText';
+import {AUDIO_LEVELS, NARRATION_TONE, toneAndLevel} from './AudioLeveling';
 import {ELEVENLABS_SPEECH, SpeechError, type Narration, type SpeechBackend} from './ElevenLabsSpeech';
 import {groupLines, joinScript, segmentLines, type LineSegment} from './NarrationScript';
 import {castVoice, type VoiceCast, type VoiceoverRequest} from './VoiceCasting';
@@ -36,7 +37,7 @@ const wait = (milliseconds: number) => new Promise((resolve) => setTimeout(resol
 
 /** Everything that changes how a script sounds is part of its cache key; tempo is not, it is applied at playback. */
 const narrationName = (script: string, cast: VoiceCast, cacheTag = ''): string => {
-	const key = [cacheTag, cast.elevenLabsVoiceId, cast.modelId, cast.languageCode, cast.stability, cast.similarity, cast.style, cast.seed, script];
+	const key = [cacheTag, NARRATION_TONE.id, cast.elevenLabsVoiceId, cast.modelId, cast.languageCode, cast.stability, cast.similarity, cast.style, cast.seed, script];
 	return createHash('sha256').update(key.join('|')).digest('hex').slice(0, 20);
 };
 
@@ -88,7 +89,9 @@ export const generateVoiceover = async (
 
 	const directory = path.join(publicDirectory, VOICEOVER_DIRECTORY);
 	await mkdir(directory, {recursive: true});
-	const texts = lines.map((line) => line.text);
+	// Turkish readings of abbreviations ("KPSS" → "kapesese") only apply to Turkish narration.
+	const english = cast.languageCode === 'en';
+	const texts = lines.map((line) => (english ? line.text : pronounceAbbreviations(line.text)));
 	const planned = groupLines(texts, limit).map((indexes) => {
 		const groupTexts = indexes.map((index) => texts[index]);
 		const script = joinScript(groupTexts);
@@ -116,10 +119,10 @@ export const generateVoiceover = async (
 			} catch (error) {
 				throw new VoiceoverError(error instanceof Error ? error.message : String(error), error);
 			}
-			// The service delivers speech at full scale; it is stored at the level narration has in a mix (see AudioLeveling).
+			// The service delivers speech at full scale and with a full low end; it is stored with the low end cut and at the level narration has in a mix (see AudioLeveling).
 			const delivered = path.join(directory, `${group.name}.source.mp3`);
 			await writeFile(delivered, audio);
-			await levelAudio(delivered, group.audio, AUDIO_LEVELS.narration);
+			await toneAndLevel(delivered, group.audio, AUDIO_LEVELS.narration, NARRATION_TONE.filters);
 			await rm(delivered, {force: true});
 			await writeFile(group.segments, JSON.stringify(segments));
 		}

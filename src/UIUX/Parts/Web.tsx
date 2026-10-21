@@ -4,6 +4,7 @@ import {Icon, type UIIconName} from '../Icons';
 import {alpha, MODULES, MODULE_ORDER, moduleGradient, type ModuleKey} from '../ModuleIdentity';
 import {UI_CANVAS, UI_RADIUS, UI_SHADOW} from '../Tokens';
 import {Avatar, Button, Card, Chip, Logo, Stack, Steps, Text, Tile} from './Shared';
+import {PHONE_GEOMETRY} from '../../Components/AppScreens/PhoneFrame';
 
 /**
  * Web parts. The panel keeps the student app's own frame (left menu with
@@ -393,13 +394,18 @@ export const ExamStrip: React.FC = () => {
 
 /** A phone showing a mobile drawing, scaled: real screens inside the site's mock-ups. */
 export const DevicePhone: React.FC<{width?: number; rotate?: number; children: React.ReactNode}> = ({width = 220, rotate = 0, children}) => {
-	const scale = (width - 16) / 390;
+	// The same phone as the app-screen PhoneFrame (store pictures): proportional
+	// bezel, screen corners concentric with the body, and the camera island.
+	const g = PHONE_GEOMETRY;
+	const bezel = width * g.bezel;
+	const scale = (width - bezel * 2) / 390;
 	return (
-		<div style={{width, height: 844 * scale + 16, borderRadius: width * 0.16, background: '#0B1C30', padding: 8, boxSizing: 'border-box', transform: `rotate(${rotate}deg)`, boxShadow: '0 30px 60px -30px rgba(11,28,48,0.55)'}}>
-			<div style={{width: width - 16, height: 844 * scale, borderRadius: width * 0.13, overflow: 'hidden', position: 'relative', background: '#FFFFFF'}}>
+		<div style={{width, height: 844 * scale + bezel * 2, borderRadius: width * g.outerRadius, background: g.body, padding: bezel, boxSizing: 'border-box', transform: `rotate(${rotate}deg)`, boxShadow: `0 ${width * 0.08}px ${width * 0.2}px -${width * 0.06}px rgba(11,28,48,0.55), inset 0 0 0 ${Math.max(1, width * 0.006)}px rgba(255,255,255,0.2)`}}>
+			<div style={{width: width - bezel * 2, height: 844 * scale, borderRadius: width * g.screenRadius, overflow: 'hidden', position: 'relative', background: '#FFFFFF'}}>
 				<div style={{width: 390, height: 844, transform: `scale(${scale})`, transformOrigin: 'top left'}}>
 					<UIProvider calm={false}>{children}</UIProvider>
 				</div>
+				<div style={{position: 'absolute', top: width * g.island.top, left: '50%', width: width * g.island.width, height: width * g.island.height, marginLeft: (-width * g.island.width) / 2, borderRadius: width, background: g.body}} />
 			</div>
 		</div>
 	);

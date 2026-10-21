@@ -18,7 +18,7 @@ export const BRAND = {
 		/** Width divided by height of the file (2000 x 526, cropped tight). */
 		aspectRatio: 2000 / 526,
 		/** Logo heights in reference pixels: in a template's top bar, and on the closing card. */
-		sizes: {chrome: 56, hero: 210},
+		sizes: {chrome: 56, card: 110, hero: 210},
 		/** Smallest allowed logo height, in reference pixels. */
 		minHeight: 40,
 		/** Clear space around the logo as a fraction of its height. */

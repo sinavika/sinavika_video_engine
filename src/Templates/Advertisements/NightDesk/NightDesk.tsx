@@ -14,6 +14,7 @@ import {UIProvider} from '../../../UIUX/Context';
 import {defineTemplate} from '../../TemplateDefinition';
 import {At, CLAMP, ease, PromoStage, PromoSubtitle, useSeconds} from '../PromoKit/PromoKit';
 import {PROMO_WEB_SCREEN_NAMES, PROMO_WEB_SCREENS} from '../PromoKit/PromoScreens';
+import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 /**
  * Late night at a desk: a drawn room (no photograph), a warm lamp, a monitor
@@ -37,7 +38,6 @@ export const NightDeskSchema = z.object({
 type Content = z.infer<typeof NightDeskSchema>;
 
 const WALL = '#0B1C30';
-const WARM = '#F59E0B';
 const ORANGE = '#EA580C';
 const SCREEN = {w: 860, h: 484};
 
@@ -217,34 +217,6 @@ const ProductScene: React.FC<{content: Content}> = ({content}) => {
 	);
 };
 
-const ClosingScene: React.FC<{content: Content}> = ({content}) => {
-	const seconds = useSeconds();
-	const one = interpolate(seconds, [0.1, 0.5], [0, 1], CLAMP);
-	const two = interpolate(seconds, [0.7, 1.1], [0, 1], CLAMP);
-	const site = interpolate(seconds, [1.3, 1.7], [0, 1], CLAMP);
-	return (
-		<Scene content={content} narration={content.closing.narration} shown={`${content.closing.lines.join(' ')} ${content.closing.site}`} push={[0.7, 0.8]} glow="rgba(234,88,12,0.6)">
-			<Center>
-				<div style={{opacity: one}}>
-					<Text variant="display" size={74} weight={TYPE.weights.kinetic} color="#FAFAF9" align="center">
-						{content.closing.lines[0]}
-					</Text>
-				</div>
-				<div style={{opacity: two}}>
-					<Text variant="display" size={74} weight={TYPE.weights.kinetic} color={WARM} align="center">
-						{content.closing.lines[1]}
-					</Text>
-				</div>
-				<div style={{opacity: site, marginTop: 10}}>
-					<Text size={40} weight={TYPE.weights.strong} color="#D6D3D1" align="center">
-						{content.closing.site}
-					</Text>
-				</div>
-			</Center>
-		</Scene>
-	);
-};
-
 const SAMPLE: z.input<typeof NightDeskSchema> = {
 	time: {clock: '23.40', line: 'Saat', narration: 'Saat yirmi üçü kırk geçiyor.'},
 	doubt: {text: 'Hâlâ ne çalışacağını düşünüyorsun.', highlight: 'düşünüyorsun', narration: 'Hâlâ ne çalışacağını düşünüyorsun.'},
@@ -269,7 +241,7 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 		{id: 'band', seconds: band.seconds, label: 'Bant', voice: [band], element: <BandScene content={content} />},
 		{id: 'reveal', seconds: reveal.seconds, label: 'Logo', voice: [reveal], element: <RevealScene content={content} />},
 		{id: 'product', seconds: product.seconds, label: 'Panel', voice: [product], element: <ProductScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <ClosingScene content={content} />}] : []),
+		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard />}] : []),
 	];
 };
 

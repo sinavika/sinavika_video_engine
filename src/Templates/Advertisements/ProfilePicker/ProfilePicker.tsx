@@ -15,10 +15,11 @@ import {Icon} from '../../../UIUX/Icons';
 import {defineTemplate} from '../../TemplateDefinition';
 import {At, CLAMP, ease, PromoStage, PromoSubtitle, Slam, useLand, useSeconds} from '../PromoKit/PromoKit';
 import {PROMO_PHONE_SCREEN_NAMES, PROMO_PHONE_SCREENS} from '../PromoKit/PromoScreens';
+import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 /**
  * "Kim çalışıyor?": the language of a streaming service's profile screen.
- * A dark room, four profiles, a cursor picks one, a cinematic title opens and
+ * A dark room, two or four profiles, a cursor picks one, a cinematic title opens and
  * the app plays out as episodes. Near-black ground, orange light; no other
  * brand's name, logo, colours or sound.
  */
@@ -27,7 +28,9 @@ const narration = z.string().trim().min(1).max(160);
 
 export const ProfilePickerSchema = z.object({
 	question: z.object({watch: plainText(36), study: plainText(30), narration}),
-	pick: z.object({title: plainText(24), profiles: z.array(z.object({label: plainText(16), sub: plainText(16)})).length(4), pickIndex: z.number().int().min(0).max(3), narration}),
+	pick: z
+		.object({title: plainText(24), profiles: z.array(z.object({label: plainText(16), sub: plainText(24)})).min(2).max(4), pickIndex: z.number().int().min(0).max(3), narration})
+		.refine((pick) => pick.pickIndex < pick.profiles.length, {message: 'pickIndex must point at a profile', path: ['pickIndex']}),
 	title: z.object({name: plainText(14), tagline: plainText(36), narration}),
 	episodes: z.object({heading: plainText(20), items: z.array(z.object({number: plainText(10), title: plainText(26), screen: z.enum(PROMO_PHONE_SCREEN_NAMES)})).length(3), narration}),
 	next: z.object({text: plainText(34), narration}),
@@ -38,21 +41,21 @@ export const ProfilePickerSchema = z.object({
 });
 type Content = z.infer<typeof ProfilePickerSchema>;
 
-const NIGHT = '#08090B';
+const NIGHT = '#071322';
 const ORANGE = '#EA580C';
 const GLOW = '#FB923C';
 const WHITE = '#F8FAFC';
 const DIM = '#8A94A6';
 /** Profile tile colours: brand orange and module tones, deepened for the dark room. */
 const TILE = [
-	['#F97316', '#9A3412'],
+	['#FB923C', '#EA580C'],
 	['#0EA5E9', '#075985'],
 	['#14B8A6', '#115E59'],
 	['#64748B', '#1E293B'],
 ];
 
 const Ground: React.FC<{light?: number}> = ({light = 0.4}) => (
-	<AbsoluteFill style={{background: `radial-gradient(70% 45% at 50% 38%, rgba(234,88,12,${0.18 * light}) 0%, ${NIGHT} 70%)`}} />
+	<AbsoluteFill style={{background: `radial-gradient(70% 45% at 50% 38%, rgba(37,79,140,${0.42 * light}) 0%, ${NIGHT} 72%)`}} />
 );
 
 const Stage: React.FC<{content: Content; narration: string; shown?: string; light?: number; children: React.ReactNode}> = ({content, narration: text, shown, light, children}) => (
@@ -95,10 +98,14 @@ const Cursor: React.FC<{x: number; y: number; press: number}> = ({x, y, press}) 
 const PickScene: React.FC<{content: Content}> = ({content}) => {
 	const {u} = useVideoLayout();
 	const seconds = useSeconds();
-	const tile = 330;
-	const gap = 70;
+	// Two profiles (e.g. only YKS and KPSS) get big tiles in one row, so the choice reads at a glance; four sit in a 2 × 2 grid.
+	const two = content.pick.profiles.length <= 2;
+	const tile = two ? 420 : 330;
+	const gap = two ? 60 : 70;
 	const left = (952 - tile * 2 - gap) / 2;
-	const top = 500;
+	const top = two ? 560 : 500;
+	const tones = two ? [TILE[0], TILE[2]] : TILE;
+	const icons = two ? (['grad', 'briefcase'] as const) : (['grad', 'target', 'briefcase', 'eye'] as const);
 	const target = {x: left + (content.pick.pickIndex % 2) * (tile + gap) + tile * 0.55, y: top + Math.floor(content.pick.pickIndex / 2) * (tile + 120) + tile * 0.5};
 	const travel = ease(interpolate(seconds, [0.9, 2.0], [0, 1], CLAMP));
 	const press = interpolate(seconds, [2.2, 2.32, 2.5], [0, 1, 0], CLAMP);
@@ -115,20 +122,20 @@ const PickScene: React.FC<{content: Content}> = ({content}) => {
 			{content.pick.profiles.map((profile, index) => {
 				const land = useLand(0.3 + index * 0.12, 180);
 				const hot = index === content.pick.pickIndex;
-				const [from, to] = TILE[index];
+				const [from, to] = tones[index];
 				const x = left + (index % 2) * (tile + gap);
 				const y = top + Math.floor(index / 2) * (tile + 120);
 				return (
 					<At key={profile.label} x={x} y={y} w={tile}>
 						<div style={{opacity: land * (hot ? 1 : 1 - chosen * 0.6), transform: `scale(${interpolate(land, [0, 1], [0.85, 1]) * (hot ? 1 + travel * 0.05 + chosen * 0.04 : 1)})`}}>
 							<div style={{width: u(tile), height: u(tile), borderRadius: u(36), background: `linear-gradient(145deg, ${from}, ${to})`, border: hot && travel > 0.6 ? `${u(8)}px solid ${WHITE}` : `${u(8)}px solid transparent`, boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-								<Icon name={(['grad', 'target', 'briefcase', 'eye'] as const)[index]} size={u(150)} color="rgba(255,255,255,0.95)" stroke={1.6} />
+								<Icon name={icons[index]} size={u(two ? 190 : 150)} color="rgba(255,255,255,0.95)" stroke={1.6} />
 							</div>
 							<div style={{marginTop: u(20), textAlign: 'center'}}>
-								<Text size={40} weight={TYPE.weights.strong} color={hot && travel > 0.6 ? WHITE : DIM} align="center">
+								<Text size={two ? 64 : 40} weight={two ? TYPE.weights.display : TYPE.weights.strong} color={two || (hot && travel > 0.6) ? WHITE : DIM} align="center">
 									{profile.label}
 								</Text>
-								<Text size={28} weight={TYPE.weights.body} color={DIM} align="center">
+								<Text size={two ? 32 : 28} weight={TYPE.weights.body} color={two ? 'rgba(248,250,252,0.75)' : DIM} align="center">
 									{profile.sub}
 								</Text>
 							</div>
@@ -248,33 +255,6 @@ const NextScene: React.FC<{content: Content}> = ({content}) => {
 	);
 };
 
-const ClosingScene: React.FC<{content: Content}> = ({content}) => {
-	const {u} = useVideoLayout();
-	const logo = useLand(0.05, 130);
-	const cta = useLand(0.4);
-	return (
-		<Stage content={content} narration={content.closing.narration} shown={content.closing.cta} light={1.2}>
-			<At y={460} w={952}>
-				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(60)}}>
-					<div style={{opacity: logo, transform: `scale(${interpolate(logo, [0, 1], [0.85, 1])})`}}>
-						<BrandMark size="hero" color={WHITE} />
-					</div>
-					<div style={{opacity: cta, transform: `translateY(${(1 - cta) * u(40)}px)`, padding: `${u(26)}px ${u(54)}px`, borderRadius: u(999), background: ORANGE}}>
-						<Text size={TYPE.adScale.action * 1.4} weight={TYPE.weights.kinetic} color="#FFFFFF">
-							{content.closing.cta}
-						</Text>
-					</div>
-					<div style={{opacity: cta}}>
-						<Text size={TYPE.adScale.action} weight={TYPE.weights.strong} color={DIM} align="center">
-							{content.closing.channels}
-						</Text>
-					</div>
-				</div>
-			</At>
-		</Stage>
-	);
-};
-
 const SAMPLE: z.input<typeof ProfilePickerSchema> = {
 	question: {watch: 'Bu akşam ne izliyoruz?', study: 'Ne çalışıyoruz?', narration: 'Bu akşam ne izliyoruz? Yanlış soru. Bu akşam ne çalışıyoruz?'},
 	pick: {
@@ -317,7 +297,7 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 		{id: 'title', seconds: title.seconds, label: 'Başlık', voice: [title], element: <TitleScene content={content} />},
 		{id: 'episodes', seconds: episodes.seconds, label: 'Bölümler', voice: [episodes], element: <EpisodesScene content={content} seconds={episodes.seconds} />},
 		{id: 'next', seconds: next.seconds, label: 'Sıradaki', voice: [next], element: <NextScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <ClosingScene content={content} />}] : []),
+		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard cta={content.closing.cta} />}] : []),
 	];
 };
 

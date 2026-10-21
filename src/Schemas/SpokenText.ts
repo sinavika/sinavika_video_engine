@@ -58,6 +58,12 @@ const PLAIN_TEXT: [RegExp, string][] = [
 	[/(\d)\s*[–—-]\s*(?=\d)/g, '$1, '],
 ];
 
+/** Exam abbreviations are said as Turkish speakers say them, not spelled letter by letter or read as a word. */
+const ABBREVIATIONS: [RegExp, string][] = [
+	[/\bYKS\b/g, 'yekase'],
+	[/\bKPSS\b/g, 'kapesese'],
+];
+
 const replaceAll = (source: string, rules: [RegExp, string][]): string =>
 	rules.reduce((text, [pattern, replacement]) => text.replace(pattern, replacement), source);
 
@@ -87,6 +93,9 @@ export const toSpokenText = (richText: string | undefined): string => {
 		.replace(/,\s*([,.:;!?])/g, '$1')
 		.trim();
 };
+
+/** The text the speech service reads: on-screen text keeps "YKS", the voice says "yekase". */
+export const pronounceAbbreviations = (text: string): string => replaceAll(text, ABBREVIATIONS);
 
 /** Joins sentences, adding a full stop where one is missing. */
 export const sentences = (...parts: (string | undefined | false)[]): string =>

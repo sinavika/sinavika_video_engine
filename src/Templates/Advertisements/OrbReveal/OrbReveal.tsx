@@ -2,7 +2,6 @@ import React from 'react';
 import {z} from 'zod';
 import {AbsoluteFill, interpolate} from 'remotion';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
-import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
 import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
@@ -13,6 +12,7 @@ import {plainText} from '../../../Schemas/RichText';
 import {defineTemplate} from '../../TemplateDefinition';
 import {At, CLAMP, ease, PhoneShot, PromoStage, PromoSubtitle, Slam, useCount, useLand, useSeconds} from '../PromoKit/PromoKit';
 import {PROMO_PHONE_SCREEN_NAMES, PROMO_PHONE_SCREENS} from '../PromoKit/PromoScreens';
+import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 /**
  * "Netin sana yalan söylüyor": a dark stage and one glowing orange orb. The
@@ -40,7 +40,6 @@ const BLACK = '#050505';
 const WHITE = '#FAFAF9';
 const DIM = '#78716C';
 const CORE = '#FDBA74';
-const ORANGE = '#EA580C';
 
 const Ground: React.FC<{glow?: number}> = ({glow = 0}) => (
 	<AbsoluteFill style={{background: `radial-gradient(60% 40% at 50% 46%, rgba(234,88,12,${0.22 * glow}) 0%, ${BLACK} 72%)`}} />
@@ -195,38 +194,6 @@ const LineScene: React.FC<{content: Content}> = ({content}) => (
 	</Stage>
 );
 
-const ClosingScene: React.FC<{content: Content}> = ({content}) => {
-	const {u} = useVideoLayout();
-	const logo = useLand(0.05, 120);
-	const rest = useLand(0.45);
-	return (
-		<Stage content={content} narration={content.closing.narration} shown={`${content.closing.slogan} ${content.closing.cta}`} glow={1}>
-			<At y={430} w={952}>
-				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(46)}}>
-					<div style={{opacity: logo, transform: `scale(${interpolate(logo, [0, 1], [0.86, 1])})`}}>
-						<BrandMark size="hero" color={WHITE} />
-					</div>
-					<div style={{opacity: rest}}>
-						<Text variant="display" size={TYPE.adScale.closing * 0.8} weight={TYPE.weights.display} color={CORE} align="center">
-							{content.closing.slogan}
-						</Text>
-					</div>
-					<div style={{opacity: rest, padding: `${u(24)}px ${u(50)}px`, borderRadius: u(999), border: `${u(4)}px solid ${ORANGE}`}}>
-						<Text size={TYPE.adScale.action * 1.3} weight={TYPE.weights.kinetic} color={WHITE}>
-							{content.closing.cta}
-						</Text>
-					</div>
-					<div style={{opacity: rest}}>
-						<Text size={TYPE.adScale.action} weight={TYPE.weights.strong} color={DIM} align="center">
-							{content.closing.channels}
-						</Text>
-					</div>
-				</div>
-			</At>
-		</Stage>
-	);
-};
-
 const SAMPLE: z.input<typeof OrbRevealSchema> = {
 	hook: {small: 'Netin sana', big: 'yalan söylüyor.', narration: 'Netin sana yalan söylüyor.'},
 	count: {value: 78.5, unit: 'net', question: 'İyi mi?', narration: 'Yetmiş sekiz buçuk net. İyi mi, kötü mü?'},
@@ -258,7 +225,7 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 		{id: 'split', seconds: split.seconds, label: 'Bölünme', voice: [split], element: <SplitScene content={content} />},
 		{id: 'product', seconds: product.seconds, label: 'Uygulama', voice: [product], element: <ProductScene content={content} />},
 		{id: 'line', seconds: line.seconds, label: 'Fikir', voice: [line], element: <LineScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <ClosingScene content={content} />}] : []),
+		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard cta={content.closing.cta} />}] : []),
 	];
 };
 

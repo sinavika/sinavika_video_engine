@@ -2,7 +2,6 @@ import React from 'react';
 import {z} from 'zod';
 import {AbsoluteFill, interpolate, random} from 'remotion';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
-import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
 import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
@@ -14,6 +13,7 @@ import {Icon, type UIIconName} from '../../../UIUX/Icons';
 import {MODULES, MODULE_ORDER} from '../../../UIUX/ModuleIdentity';
 import {defineTemplate} from '../../TemplateDefinition';
 import {At, CLAMP, ease, PhoneShot, PromoStage, PromoSubtitle, Slam, useLand, useSeconds} from '../PromoKit/PromoKit';
+import {PROMO_END_CARD, PromoEndCard} from '../PromoKit/PromoEndCard';
 import {PROMO_PHONE_SCREEN_NAMES, PROMO_PHONE_SCREENS} from '../PromoKit/PromoScreens';
 
 /**
@@ -30,7 +30,8 @@ export const BeforeAfterSchema = z.object({
 	count: z.object({items: z.array(z.object({value: plainText(4), label: plainText(14)})).length(3), narration}),
 	wipe: z.object({text: plainText(24), narration}),
 	order: z.object({screen: z.enum(PROMO_PHONE_SCREEN_NAMES), caption: plainText(40), narration}),
-	closing: z.object({line: plainText(20), cta: plainText(26), channels: plainText(40).default('App Store · Google Play · sinavika.com'), narration}),
+	/** The shared end card (PromoEndCard) closes the reel; only what is said over it is set here. */
+	closing: z.object({cta: plainText(26).default(PROMO_END_CARD.cta), narration: narration.default(PROMO_END_CARD.narration)}).default({cta: PROMO_END_CARD.cta, narration: PROMO_END_CARD.narration}),
 	subtitles: z.boolean().default(true),
 	script: VoiceScriptSchema,
 	outro: z.object({enabled: z.boolean().default(true)}).default({enabled: true}),
@@ -249,36 +250,6 @@ const OrderScene: React.FC<{content: Content}> = ({content}) => {
 	);
 };
 
-const ClosingScene: React.FC<{content: Content}> = ({content}) => {
-	const {u} = useVideoLayout();
-	const logo = useLand(0.4, 170);
-	const cta = useLand(0.7);
-	return (
-		<Stage content={content} narration={content.closing.narration} shown={`${content.closing.line} ${content.closing.cta}`} ground="#FFFFFF">
-			<At y={380} w={952}>
-				<Slam text={content.closing.line} at={0.05} size={TYPE.adScale.hook * 1.1} color={ORANGE} />
-			</At>
-			<At y={700} w={952}>
-				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(44)}}>
-					<div style={{opacity: logo, transform: `scale(${interpolate(logo, [0, 1], [0.85, 1])})`}}>
-						<BrandMark size="hero" color={INK} />
-					</div>
-					<div style={{opacity: cta, padding: `${u(26)}px ${u(56)}px`, borderRadius: u(999), background: ORANGE}}>
-						<Text size={TYPE.adScale.action * 1.35} weight={TYPE.weights.kinetic} color="#FFFFFF">
-							{content.closing.cta}
-						</Text>
-					</div>
-					<div style={{opacity: cta}}>
-						<Text size={TYPE.adScale.action} weight={TYPE.weights.strong} color="#64748B" align="center">
-							{content.closing.channels}
-						</Text>
-					</div>
-				</div>
-			</At>
-		</Stage>
-	);
-};
-
 const SAMPLE: z.input<typeof BeforeAfterSchema> = {
 	mess: {headline: 'Sınav hazırlığın böyle mi görünüyor?', notes: ['Paragraf?!', 'Türev tekrar', 'Deneme ne zaman?', 'Mol kavramı', 'Tarih ezber', 'Plan yap!!'], narration: 'Sınav hazırlığın böyle mi görünüyor?'},
 	count: {
@@ -291,7 +262,6 @@ const SAMPLE: z.input<typeof BeforeAfterSchema> = {
 	},
 	wipe: {text: 'Hepsini topla.', narration: 'Hepsini topla.'},
 	order: {screen: 'hub', caption: 'Hepsi tek uygulamada.', narration: 'Deneme, ders, plan ve SinoAI tek uygulamada.'},
-	closing: {line: 'Böyle olsun.', cta: 'Ücretsiz indir', narration: 'Böyle olsun. Sınavika’yı ücretsiz indir.'},
 };
 
 const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateScene[] => {
@@ -307,7 +277,7 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 		{id: 'count', seconds: count.seconds, label: 'Sayılar', voice: [count], element: <CountScene content={content} />},
 		{id: 'wipe', seconds: wipe.seconds, label: 'Silme', voice: [wipe], element: <WipeScene content={content} />},
 		{id: 'order', seconds: order.seconds, label: 'Düzen', voice: [order], element: <OrderScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <ClosingScene content={content} />}] : []),
+		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard cta={content.closing.cta} />}] : []),
 	];
 };
 

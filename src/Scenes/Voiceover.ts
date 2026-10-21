@@ -32,9 +32,9 @@ export const VoiceScriptSchema = z.record(z.string(), z.string().trim().min(1).m
 /** One spoken line and the time reserved for it. A scene plays its slots one after another. */
 export type VoiceSlot = {id: string; text: string; seconds: number};
 
-/** Silence before a line starts (covers the scene transition) and after it ends. */
-export const VOICE_LEAD_SECONDS = 0.45;
-export const VOICE_TAIL_SECONDS = 0.3;
+/** Silence before a line starts (covers the scene transition) and after it ends. Kept short: longer gaps between scenes sounded like the narrator hesitating (owner feedback, 20 Oct 2026). */
+export const VOICE_LEAD_SECONDS = 0.3;
+export const VOICE_TAIL_SECONDS = 0.15;
 
 export type Narrator = (
 	id: string,

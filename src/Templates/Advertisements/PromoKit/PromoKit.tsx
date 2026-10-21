@@ -5,6 +5,7 @@ import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
 import {UIProvider} from '../../../UIUX/Context';
 import {DeviceBrowser, DevicePhone} from '../../../UIUX/Parts/Web';
+import {VOICE_LEAD_SECONDS} from '../../../Scenes/Voiceover';
 
 /**
  * Shared pieces of the promotion reels (Ekim 2026 kampanyası). They hold only
@@ -144,4 +145,25 @@ export const BrowserShot: React.FC<{width: number; title?: string; children: Rea
 export const useCount = (to: number, from: number, until: number, decimals = 1): string => {
 	const value = to * ease(interpolate(useSeconds(), [from, until], [0, 1], CLAMP));
 	return value.toFixed(decimals).replace('.', ',');
+};
+
+/**
+ * When each of `words` is heard in a narrated line, in seconds from the start
+ * of its scene, so a word lands on screen as it is said. The line's clip gives
+ * only its total length, so a word's moment is placed by where it sits in the
+ * spoken text. Without a clip (no narration) the `fallback` times are used.
+ */
+export const wordCues = (spoken: string, words: readonly string[], voiceSeconds: number | undefined, fallback: readonly number[]): number[] => {
+	if (!voiceSeconds) return [...fallback];
+	const plain = (value: string) => value.toLocaleLowerCase('tr').replace(/[^\p{L}\p{N} ]+/gu, ' ');
+	const text = plain(spoken);
+	let from = 0;
+	return words.map((word, index) => {
+		const target = plain(word).trim();
+		const at = target ? text.indexOf(target, from) : -1;
+		if (at < 0) return fallback[index] ?? 0;
+		from = at + target.length;
+		// A word lands a moment before it is heard, as an editor cuts on the beat.
+		return Math.max(0, VOICE_LEAD_SECONDS + (voiceSeconds * at) / Math.max(1, text.length) - 0.08);
+	});
 };

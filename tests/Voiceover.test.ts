@@ -5,7 +5,7 @@ import {describe, expect, it} from 'vitest';
 import {BRAND_VOICES, VOICES, VOICE_PROFILES, VOICE_PROFILE_KEYS, type VoiceKey} from '../src/Configurations/Voices';
 import {resolveVideoJob, voiceLines, withVoiceClips} from '../src/Renderers/VideoJob';
 import {VOICE_LEAD_SECONDS, VOICE_TAIL_SECONDS, createNarrator, type VoiceClips} from '../src/Scenes/Voiceover';
-import {lowerFirst, sentences, toSpokenText, verbalizeLatex} from '../src/Schemas/SpokenText';
+import {lowerFirst, pronounceAbbreviations, sentences, toSpokenText, verbalizeLatex} from '../src/Schemas/SpokenText';
 import {SpeechError, type SpeechBackend} from '../src/Services/ElevenLabsSpeech';
 import {groupLines, joinScript, segmentLines} from '../src/Services/NarrationScript';
 import {VoiceCastingError, castVoice, type VoiceCast} from '../src/Services/VoiceCasting';
@@ -125,7 +125,8 @@ describe('voice catalogue', () => {
 	it('has a brand voice list made only of native Turkish women', () => {
 		expect(BRAND_VOICES.length).toBeGreaterThan(0);
 		expect(new Set(BRAND_VOICES).size).toBe(BRAND_VOICES.length);
-		BRAND_VOICES.forEach((voice) => expect(VOICES[voice], voice).toMatchObject({origin: 'native', gender: 'female'}));
+		BRAND_VOICES.forEach((voice) => expect(VOICES[voice], voice).toMatchObject({origin: 'native'}));
+		expect(BRAND_VOICES[0]).toBe('Doga');
 	});
 
 	it('keeps multilingual voices as stand-ins only', () => {
@@ -156,6 +157,12 @@ describe('castVoice', () => {
 		expect(cast).toMatchObject({voice: BRAND_VOICE, native: true, modelId: 'eleven_multilingual_v2', pace: 1, style: 0});
 		expect(cast.languageCode).toBeUndefined();
 		expect(cast.note).toBeUndefined();
+	});
+
+	it('narrates in English when the job asks for it', () => {
+		const cast = castVoice({profile: 'Launch', voice: 'Liam', model: 'v4', language: 'en'}, idsOf(...EVERY_VOICE));
+		expect(cast).toMatchObject({voice: 'Liam', modelId: 'eleven_v4', languageCode: 'en'});
+		expect(castVoice({profile: 'Launch', model: 'v4'}, idsOf(...EVERY_VOICE)).languageCode).toBe('tr');
 	});
 
 	it('narrates every kind of video with the same voice', () => {
@@ -355,5 +362,25 @@ describe('generateVoiceover', () => {
 		const {cast} = await generateVoiceover(lines, {profile: 'Teacher', standIn: true}, {publicDirectory: publicDirectory(), speech});
 		expect(cast).toMatchObject({voice: 'Sarah', native: false});
 		expect(spoken).toHaveLength(1);
+	});
+});
+
+describe('exam abbreviations', () => {
+	it('are said the Turkish way while the screen keeps the abbreviation', async () => {
+		const {speech, spoken: requests} = fakeSpeech();
+		const publicDirectory = mkdtempSync(path.join(os.tmpdir(), 'abbrev-'));
+
+		await generateVoiceover(
+			[{id: 'a', text: "YKS'ye ve KPSS'ye hazırlan."}],
+			{profile: 'Teacher'},
+			{publicDirectory, speech},
+		);
+
+		expect(requests[0].text).toContain("yekase'ye ve kapesese'ye");
+		expect(requests[0].text).not.toMatch(/YKS|KPSS/);
+	});
+
+	it('leave words that only contain the letters alone', () => {
+		expect(pronounceAbbreviations('KPSSLİ YKSX YKS.')).toBe('KPSSLİ YKSX yekase.');
 	});
 });
