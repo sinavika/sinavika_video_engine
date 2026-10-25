@@ -147,7 +147,7 @@ describe('lesson script', () => {
 	it('reviews length, coverage and questions against the targets', () => {
 		const review = reviewScript(script, ['SOZCUKTE_ANLAM_01', 'SOZCUKTE_ANLAM_13']);
 		expect(review.questions).toBe(1);
-		expect(review.issues.join(' ')).toMatch(/at least 8 min/);
+		expect(review.issues.join(' ')).toMatch(/at least 10 min/);
 		expect(review.issues.join(' ')).toMatch(/SOZCUKTE_ANLAM_13/);
 		expect(review.issues.join(' ')).not.toMatch(/SOZCUKTE_ANLAM_01,/);
 	});

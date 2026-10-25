@@ -5,7 +5,7 @@ import type {LessonScriptSchema} from './LessonScript';
  * A short example of a lesson script: the first topic of the production
  * order (YKS · TYT · Türkçe · Sözcükte Anlam), three of its subtopics. It
  * shows the shape of a script; a real one covers every subtopic and runs
- * 8-10 minutes. The question is written for this example, not taken from
+ * at least 10 minutes. The question is written for this example, not taken from
  * an exam.
  */
 export const LESSON_SCRIPT_SAMPLE: z.input<typeof LessonScriptSchema> = {
@@ -13,7 +13,7 @@ export const LESSON_SCRIPT_SAMPLE: z.input<typeof LessonScriptSchema> = {
 	title: 'Sözcükte Anlam',
 	lessonName: 'Türkçe',
 	exams: ['YKS', 'TYT'],
-	sources: ['TopicExplanations/YKS/YKS_TYT/TRK/SOZCUKTE_ANLAM.json'],
+	sources: ['YKS/TYT/KonuAnlatimi/TRK/SOZCUKTE_ANLAM.json'],
 	lesson: {
 		hook: {
 			headline: 'Bir sözcük, cümleye göre bambaşka bir anlam kazanabilir.',
@@ -115,5 +115,25 @@ export const LESSON_SCRIPT_SAMPLE: z.input<typeof LessonScriptSchema> = {
 			narration: 'Peki hangisinde sıcak mecaz anlamda? Cevabı ve fazlası YouTube\'daki konu anlatımında.',
 		},
 		summary: ['Gerçek: ilk anlam', 'Mecaz: yeni anlam', 'Terim: alana özgü anlam'],
+	},
+};
+
+/**
+ * The same example as the first lesson of a camp (Courses/Camp): TYT Türkçe
+ * kampı, lesson 1 of 15. CampLesson and CampShort are previewed with it.
+ */
+export const CAMP_SCRIPT_SAMPLE: z.input<typeof LessonScriptSchema> = {
+	...LESSON_SCRIPT_SAMPLE,
+	camp: {
+		id: 'yks-tyt-turkce-kampi',
+		name: 'TYT Türkçe kampı',
+		number: 1,
+		total: 15,
+		next: 'Söz Yorumu',
+		promise: 'Türkçe konularının hepsi, sırayla ve soru çözerek.',
+		task: {
+			items: ['Bugün okuduğun bir metinde **üç mecaz** sözcük bul.', 'Uygulamada Sözcükte Anlam testinden **10 soru** çöz.', 'Yanlış yaptığın soruları **gerçek–mecaz** ayrımıyla yeniden oku.'],
+			narration: 'Kamp görevin hazır. Bugün okuduğun bir metinde üç mecaz sözcük bul. Uygulamada Sözcükte Anlam testinden on soru çöz. Yanlış yaptığın soruları gerçek ve mecaz ayrımıyla yeniden oku. Bir sonraki derste söz yorumuyla devam ediyoruz.',
+		},
 	},
 };

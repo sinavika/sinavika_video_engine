@@ -1,7 +1,8 @@
 import {z} from 'zod';
-import {CourseVisualSchema, VisualBeatSchema} from '../Components/Visuals/VisualSchemas';
+import {CourseVisualSchema, VisualBeatSchema, numberedPartNames} from '../Components/Visuals/VisualSchemas';
 import {latex, plainText, richText} from '../Schemas/RichText';
 import {RevisionCardSchema} from '../Templates/Education/QuickRevision/QuickRevisionSchema';
+import {CampEpisodeSchema} from './Camp';
 import {COURSE_DESIGN} from './CourseDesign';
 
 /**
@@ -111,6 +112,15 @@ export const LessonSectionSchema = z.object({
 		.superRefine((cards, context) => {
 			cards.forEach((card, index) => {
 				if ('beats' in card && card.beats.length > 0 && !('visual' in card && card.visual)) context.addIssue({code: 'custom', path: [index, 'beats'], message: 'Beats move a visual; this card has none.'});
+				if ('beats' in card && 'visual' in card && card.visual) {
+					const names = numberedPartNames(card.visual);
+					if (!names) return;
+					const known = new Set(names.map((name) => name.toLocaleLowerCase('tr')));
+					card.beats.forEach((beat, beatIndex) => {
+						const unknown = [...beat.show, ...beat.focus].filter((name) => !known.has(name.toLocaleLowerCase('tr')));
+						if (unknown.length > 0) context.addIssue({code: 'custom', path: [index, 'beats', beatIndex], message: `No part ${unknown.join(', ')} on this ${card.visual!.kind}; its parts are ${names.join(', ')}.`});
+					});
+				}
 			});
 		}),
 });
@@ -129,7 +139,7 @@ export const LessonScriptSchema = z
 		lessonName: plainText(40),
 		/** The exams shown on the opening, e.g. ["YKS", "TYT"] or ["KPSS"]. */
 		exams: z.array(plainText(12)).min(1).max(4),
-		/** What the script was written from: corpus files (relative to Curriculum/ReferenceCorpus). */
+		/** What the script was written from: data files (relative to Curriculum/Data), with pages where it helps. */
 		sources: z.array(z.string().max(240)).default([]),
 
 		/** The YouTube lesson. */
@@ -154,6 +164,13 @@ export const LessonScriptSchema = z
 		script: z.record(z.string(), z.string().trim().min(1).max(1400)).default({}),
 		/** The promotion at the end of both videos: shown, never spoken. It is the videos' outro and can be dropped like one. */
 		outro: z.object({enabled: z.boolean().default(true)}).default({enabled: true}),
+		/**
+		 * The camp the topic is a lesson of (Courses/Camp). CampLesson and
+		 * CampShort show it on the opening, in the chapter bar and at the end
+		 * with the camp task and the next lesson; CourseLesson and CourseShort
+		 * ignore it.
+		 */
+		camp: CampEpisodeSchema.optional(),
 	})
 	.refine((script) => script.lesson.sections.some((section) => section.cards.some((card) => card.kind === 'question')), {
 		path: ['lesson', 'sections'],
@@ -178,6 +195,7 @@ export const lessonNarrations = (script: LessonScript): string[] => [
 		}),
 	]),
 	script.lesson.summary.narration,
+	...(script.camp ? [script.camp.task.narration] : []),
 ];
 
 export const shortNarrations = (script: LessonScript): string[] => [

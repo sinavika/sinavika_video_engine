@@ -21,9 +21,11 @@ type DiagramNodeProps = {
 export const DiagramNode: React.FC<DiagramNodeProps> = ({node, index, focus = 0, diagramFocus = 0, style}) => {
 	const {colors, shape, typography} = useTheme();
 	const {u} = useVideoLayout();
-	const chip = colors.categorical[index % colors.categorical.length];
+	// In a lesson's video the diagram speaks in the lesson's colour; elsewhere in the brand's (docs/CourseColors.md).
+	const strong = colors.lesson ?? {fill: colors.primary, on: colors.onPrimary};
+	const chip = colors.lesson ?? colors.categorical[index % colors.categorical.length];
 	const lit = focus > 0.5;
-	const ink = lit ? colors.onPrimary : colors.onSurface;
+	const ink = lit ? strong.on : colors.onSurface;
 
 	return (
 		<div
@@ -37,7 +39,7 @@ export const DiagramNode: React.FC<DiagramNodeProps> = ({node, index, focus = 0,
 				padding: u(SPACING.md),
 				borderRadius: u(shape.radius.md),
 				border: `${u(Math.max(2, shape.borderWidth))}px solid ${colors.border}`,
-				backgroundColor: interpolateColors(focus, [0, 1], [colors.surface, colors.primary]),
+				backgroundColor: interpolateColors(focus, [0, 1], [colors.surface, strong.fill]),
 				opacity: 1 - 0.55 * diagramFocus * (1 - focus),
 				transform: `scale(${(1 + 0.05 * focus).toFixed(4)})`,
 				...style,
@@ -51,8 +53,8 @@ export const DiagramNode: React.FC<DiagramNodeProps> = ({node, index, focus = 0,
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'center',
-					backgroundColor: lit ? colors.onPrimary : chip.fill,
-					color: lit ? colors.primary : chip.on,
+					backgroundColor: lit ? strong.on : chip.fill,
+					color: lit ? strong.fill : chip.on,
 					fontFamily: typography.display,
 					fontWeight: typography.displayWeight,
 					fontSize: u(24),

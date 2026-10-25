@@ -136,7 +136,8 @@ export const SectionScene: React.FC<{index: number; title: string; total: number
 const useVisualBox = (fullWidth: boolean) => {
 	const {u, isLandscape, contentWidth, contentHeight} = useVideoLayout();
 	const height = contentHeight - u(CHROME_HEIGHT) - u(150);
-	if (fullWidth) return {width: contentWidth, height: height * (isLandscape ? 0.86 : 0.62)};
+	// 0.86 let a tall table under a title and caption reach the chapter bar; 0.7 keeps it clear (25 Oct 2026).
+	if (fullWidth) return {width: contentWidth, height: height * (isLandscape ? 0.7 : 0.62)};
 	return isLandscape ? {width: contentWidth * COURSE_DESIGN.visualShare, height} : {width: contentWidth, height: height * 0.5};
 };
 
@@ -441,7 +442,9 @@ export const LessonSummaryScene: React.FC<{script: LessonScript}> = ({script}) =
 					Özet
 				</Text>
 			</Animated>
-			<div style={{flex: 1, minHeight: 0, display: 'flex', flexDirection: isLandscape ? 'row' : 'column', gap: u(SPACING.xl)}}>
+			{/* A long summary is scaled down to fit instead of running under the chapter bar. */}
+			<FitBox align="start">
+			<div style={{display: 'flex', flexDirection: isLandscape ? 'row' : 'column', gap: u(SPACING.xl)}}>
 				<div style={{flex: 1.4, display: 'flex', flexDirection: 'column', gap: u(SPACING.md)}}>
 				<Stagger delaySeconds={0.4} stepSeconds={0.6} animation={{preset: 'slide', direction: 'left', distance: 60}}>
 					{points.map((point, index) => (
@@ -467,6 +470,7 @@ export const LessonSummaryScene: React.FC<{script: LessonScript}> = ({script}) =
 					</div>
 				) : null}
 			</div>
+			</FitBox>
 		</SafeArea>
 	);
 };

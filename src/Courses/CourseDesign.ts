@@ -21,13 +21,35 @@ export const COURSE_DESIGN = {
 		/** The summary for Reels, TikTok and Shorts. */
 		short: 'Vertical' satisfies VideoFormatId,
 	},
-	/** Target length in seconds. Long videos may run over when the topic needs it; they are never padded. */
-	length: {lesson: {min: 8 * 60, target: 10 * 60}, short: {min: 60, max: 120}},
+	/**
+	 * Target length in seconds. A lesson is at least ten minutes (owner's
+	 * rule, 25 Oct 2026; also past YouTube's 8-minute mid-roll line) and runs
+	 * longer when the topic needs it; it is never padded.
+	 */
+	length: {lesson: {min: 10 * 60, target: 12 * 60}, short: {min: 60, max: 120}},
+	/** The camp layer (Templates/Camps) on top of the lesson and the short. */
+	camp: {
+		/** The camp card at the start, under SinoAI's welcome: camp name, lesson number, the camp's progress. Its shortest time without voice. */
+		cardSeconds: 6,
+		/** A section title spoken on its own ("İkinci bölüm: Mecaz anlam.") holds at least this long, so it lands as a heading. */
+		sectionTitleSeconds: 2.4,
+		/** The camp task at the end is held at least this long so its items can be read. */
+		taskSeconds: 8,
+		/** Height of the chapter bar along the bottom of the lesson, in reference pixels. */
+		chapterBarHeight: 10,
+	},
+	/**
+	 * Between slides. A lesson is watched for ten minutes or more, so cuts are
+	 * calm: cards cross-fade over 0.7 s (a 0.35 s push felt abrupt: owner,
+	 * 25 Oct 2026), a new section slides up, and both ease in and out. Inside
+	 * a slide things still move at their own pace. Both last as long, because
+	 * scenes overlap by one transition length.
+	 */
 	transition: {
-		/** Between cards inside a section: the next card pushes in, as in the Reels. */
-		card: {preset: 'slide', direction: 'from-right', durationSeconds: 0.35} satisfies SceneTransition,
-		/** Into a new section. */
-		section: {preset: 'slide', direction: 'from-bottom', durationSeconds: 0.45} satisfies SceneTransition,
+		/** Between cards inside a section. */
+		card: {preset: 'fade', durationSeconds: 0.7} satisfies SceneTransition,
+		/** Into a new section (and into the camp's own scenes). */
+		section: {preset: 'slide', direction: 'from-bottom', durationSeconds: 0.7} satisfies SceneTransition,
 	},
 	/** Type sizes in reference pixels (1080 px short edge). */
 	type: {

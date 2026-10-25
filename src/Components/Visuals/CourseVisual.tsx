@@ -66,6 +66,13 @@ export const CourseVisual: React.FC<VisualBoxProps & {visual: CourseVisualSpec}>
 	);
 };
 
+/**
+ * Sentences, comparisons and tables are drawn at reading size and then grow
+ * to fill their box, up to this much (text reflows; nothing is cut). Without
+ * it a short table sat small at the top of a large empty box.
+ */
+const LANGUAGE_VISUAL_GROWTH = 1.5;
+
 /** Width / height of the visuals drawn in a fixed 1000 x 600 world. */
 const WORLD_RATIO: Partial<Record<CourseVisualSpec['kind'], number>> = {river: 5 / 3, earthquake: 5 / 3, dynamics: 5 / 3, equation: 5 / 3};
 
@@ -109,7 +116,8 @@ const VisualOfKind: React.FC<VisualBoxProps & {visual: CourseVisualSpec}> = ({vi
 			return <AtomVisual visual={visual} {...box} />;
 		case 'flow':
 			return (
-				<FitBox>
+				// Side room for the focused step, which grows a little and would otherwise be cut at the box's edge.
+				<FitBox fill maxScale={LANGUAGE_VISUAL_GROWTH} style={{width, maxHeight: height, boxSizing: 'border-box', padding: `0 ${u(18)}px`}}>
 					<FlowDiagram nodes={visual.nodes} focusLevels={stepFocus} vertical={width / visual.nodes.length < u(250)} delaySeconds={delaySeconds} />
 				</FitBox>
 			);
@@ -120,11 +128,23 @@ const VisualOfKind: React.FC<VisualBoxProps & {visual: CourseVisualSpec}> = ({vi
 		case 'map':
 			return <MapVisual visual={visual} {...box} />;
 		case 'sentence':
-			return <SentenceVisual visual={visual} {...box} />;
+			return (
+				<FitBox fill maxScale={LANGUAGE_VISUAL_GROWTH} style={{width, maxHeight: height}}>
+					<SentenceVisual visual={visual} {...box} />
+				</FitBox>
+			);
 		case 'comparison':
-			return <ComparisonVisual visual={visual} {...box} />;
+			return (
+				<FitBox fill maxScale={LANGUAGE_VISUAL_GROWTH} style={{width, maxHeight: height}}>
+					<ComparisonVisual visual={visual} {...box} />
+				</FitBox>
+			);
 		case 'table':
-			return <TableVisual visual={visual} {...box} />;
+			return (
+				<FitBox fill maxScale={LANGUAGE_VISUAL_GROWTH} style={{width, maxHeight: height}}>
+					<TableVisual visual={visual} {...box} />
+				</FitBox>
+			);
 		case 'venn':
 			return <VennVisual visual={visual} {...box} />;
 		case 'conceptMap':

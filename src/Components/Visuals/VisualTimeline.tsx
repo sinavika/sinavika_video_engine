@@ -180,7 +180,7 @@ export const BeatCamera: React.FC<{width: number; height: number; children: Reac
 
 	return (
 		<div style={{position: 'relative', width, height, overflow: 'hidden'}}>
-			<div style={{position: 'absolute', inset: 0, transformOrigin: '0 0', transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`}}>{children}</div>
+			<div style={{position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', transformOrigin: '0 0', transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`}}>{children}</div>
 		</div>
 	);
 };

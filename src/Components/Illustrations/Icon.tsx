@@ -23,6 +23,8 @@ export const ICON_PATHS = {
 	quote: ['M9 7H5v6h4v-1c0 2-1 3-3 3', 'M19 7h-4v6h4v-1c0 2-1 3-3 3'],
 	question: ['M9 9a3 3 0 1 1 4.5 2.6c-.9.5-1.5 1.2-1.5 2.4', 'M12 17.5v.1'],
 	pencil: ['M4 20l1-4L16 5l3 3L8 19l-4 1z'],
+	/** SinoAI's mark, as in the app. */
+	sparkles: ['M11 4l1.8 4.7L17.5 10.5l-4.7 1.8L11 17l-1.8-4.7L4.5 10.5l4.7-1.8L11 4z', 'M18.5 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z'],
 } as const;
 
 export type IconName = keyof typeof ICON_PATHS;

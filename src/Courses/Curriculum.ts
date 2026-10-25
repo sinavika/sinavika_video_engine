@@ -10,12 +10,15 @@ import {z} from 'zod';
  *         Topic (SOZCUKTE_ANLAM)             LessonSub: one YouTube video and one short each
  *           Subtopic (SOZCUKTE_ANLAM_01)     LessonMikro: a section of that video
  *
- * The codes and ids are the platform's own (the lesson list and the
- * reference corpus use the same ones), so a topic here, a corpus pack and a
- * lesson in the app are always the same thing.
+ * The codes and ids are the platform's own (the lesson list and the data in
+ * Curriculum/Data use the same ones), so a topic here, its lesson
+ * explanation and a lesson in the app are always the same thing.
  */
 
 export const CURRICULUM_DIRECTORY = 'Curriculum';
+
+/** The copy of Desktop/EgitimVerileri (YKS and KPSS lesson explanations and questions), inside CURRICULUM_DIRECTORY. Not in git. */
+export const DATA_DIRECTORY = 'Data';
 
 const Code = z.string().trim().min(1).max(80);
 const Name = z.string().trim().min(1).max(200);
@@ -92,16 +95,17 @@ export const ChecklistEntrySchema = z.object({
 	topic: Code,
 	topicName: Name,
 	subtopics: z.array(SubtopicSchema),
-	/** What the reference corpus holds for this topic. Paths are relative to Curriculum/ReferenceCorpus. */
+	/** What the data holds for this topic. Paths are relative to Curriculum/Data (the copy of Desktop/EgitimVerileri). */
 	sources: z.object({
-		explanations: z.array(z.string()),
+		/** The lesson explanation: subtopics and the explanation text by source. */
+		explanation: z.string().nullable(),
+		/** The questions bound to the topic, one JSON object per line. */
 		questions: z.string().nullable(),
 		questionCount: z.number().int().min(0),
-		/** Questions of the lesson that the corpus could not place in a topic: usable, but checked by hand. */
-		lessonQuestions: z.string().nullable(),
-		lessonQuestionCount: z.number().int().min(0),
-		phenotypes: z.string().nullable(),
-		phenotypeCount: z.number().int().min(0),
+		/** Questions with a known answer. */
+		answeredCount: z.number().int().min(0),
+		/** Past ÖSYM questions: read for approach and structure, never shown as they are. */
+		pastExamCount: z.number().int().min(0),
 	}),
 	status: z
 		.object({

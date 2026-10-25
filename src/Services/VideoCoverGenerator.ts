@@ -18,6 +18,33 @@ const plain = (text: string, limit: number): string => {
 	return `${cut.slice(0, Math.max(cut.lastIndexOf(' '), 1)).trimEnd()}…`;
 };
 
+type CampContent = {camp?: {name: string; number: number; total: number}; topic?: {lesson: string}; title?: string; exams?: string[]};
+
+/**
+ * A camp video's cover is the camp cover (Thumbnails/CampCover): the lesson's
+ * colour, the lesson number and the topic, the same design for every lesson,
+ * so the series is recognised on the channel and a lesson by its colour.
+ */
+export const campCoverJob = (job: ResolvedVideoJob) => {
+	const content = job.inputProps.content as CampContent;
+	if (!content.camp || !content.topic || !content.title) return null;
+	return {
+		category: 'Thumbnails',
+		variant: 'CampCover',
+		theme: job.inputProps.theme,
+		size: {width: job.width, height: job.height},
+		content: {
+			lessonCode: content.topic.lesson,
+			camp: content.camp.name,
+			number: content.camp.number,
+			total: content.camp.total,
+			title: plain(content.title, TITLE_LIMIT),
+			exams: content.exams ?? [],
+			kind: job.template.id === 'CampShort' ? 'Kısa tekrar' : 'Konu anlatımı',
+		},
+	};
+};
+
 /** The image job of a video's cover. */
 export const videoCoverJob = (job: ResolvedVideoJob) => {
 	const {content, theme, lesson} = job.inputProps;
@@ -49,5 +76,5 @@ export const videoCoverJob = (job: ResolvedVideoJob) => {
 };
 
 export const renderVideoCover = async (job: ResolvedVideoJob, outputPath: string): Promise<void> => {
-	await renderImage(videoCoverJob(job), {outputPath});
+	await renderImage(campCoverJob(job) ?? videoCoverJob(job), {outputPath});
 };

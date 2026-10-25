@@ -1,9 +1,11 @@
 /**
  * The curriculum the education videos are made from.
  *
- *   npm run curriculum -- import --lessons <lesson.csv> --corpus <ReferenceCorpus>
- *       Builds Curriculum/: catalogue, production checklist and the regrouped
- *       reference corpus. Running it again keeps the checklist's progress.
+ *   npm run curriculum -- import [--lessons <lesson.csv>] [--data <EgitimVerileri copy>]
+ *       Builds Curriculum/: catalogue and production checklist, every topic
+ *       bound to its lesson explanation and questions in Curriculum/Data.
+ *       Defaults: Curriculum/Sources/LessonList.csv and Curriculum/Data.
+ *       Running it again keeps the checklist's progress.
  *
  *   npm run curriculum -- status [--category YKS_TYT]
  *       Progress per category and lesson.
@@ -21,27 +23,39 @@
  *
  *   npm run curriculum -- check <script.json> [--mark]
  *       Validates a lesson script, reviews it against the targets (length,
- *       subtopics, questions, picture credits) and, with --mark, records it
- *       as prepared.
+ *       subtopics, questions, picture credits, camp fields) and, with --mark,
+ *       records it as prepared.
+ *
+ *   npm run curriculum -- camp create --category YKS_TYT --lesson TRK [--name "TYT Türkçe kampı"] [--promise "..."]
+ *       Writes the camp plan (Curriculum/Camps/<id>.json): every topic of the
+ *       lesson in production order, one camp lesson each.
+ *
+ *   npm run curriculum -- camp show <camp id>
+ *       The camp's lessons and how far each one is.
  */
 import path from 'node:path';
 import {parseArgs} from 'node:util';
 import {existsSync} from 'node:fs';
-import {readFile} from 'node:fs/promises';
+import {mkdir, readFile, writeFile} from 'node:fs/promises';
+import {CAMPS_DIRECTORY, CampSchema, campFromChecklist, campMismatches} from '../src/Courses/Camp';
 import {visualKitOf} from '../src/Courses/CourseDesign';
-import {CHECKLIST_STAGES, CURRICULUM_DIRECTORY, STAGE_LABELS, nextEntry, type ChecklistEntry, type ChecklistStage} from '../src/Courses/Curriculum';
+import {CHECKLIST_STAGES, CURRICULUM_DIRECTORY, DATA_DIRECTORY, STAGE_LABELS, nextEntry, type ChecklistEntry, type ChecklistStage} from '../src/Courses/Curriculum';
 import {LessonScriptSchema, reviewScript} from '../src/Courses/LessonScript';
 import {MEDIA_CREDITS_FILE, MEDIA_DIRECTORY, MediaCreditsSchema} from '../src/Courses/MediaLibrary';
 import {importCurriculum, readChecklist, writeChecklist} from '../src/Courses/CurriculumImport';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const CURRICULUM = path.join(ROOT, CURRICULUM_DIRECTORY);
+const DATA = path.join(CURRICULUM, DATA_DIRECTORY);
 
 const {positionals, values} = parseArgs({
 	allowPositionals: true,
 	options: {
 		lessons: {type: 'string'},
-		corpus: {type: 'string'},
+		data: {type: 'string'},
+		lesson: {type: 'string'},
+		name: {type: 'string'},
+		promise: {type: 'string'},
 		category: {type: 'string'},
 		stage: {type: 'string', default: 'youtube'},
 		count: {type: 'string', default: '5'},
@@ -70,11 +84,14 @@ const stageOf = (value: string | undefined): ChecklistStage => {
 };
 
 if (command === 'import') {
-	if (!values.lessons || !values.corpus) {
-		console.error('Kullanım: npm run curriculum -- import --lessons <lesson.csv> --corpus <ReferenceCorpus klasörü>');
+	const lessonList = path.resolve(values.lessons ?? path.join(CURRICULUM, 'Sources', 'LessonList.csv'));
+	const data = path.resolve(values.data ?? DATA);
+	if (!existsSync(lessonList) || !existsSync(data)) {
+		console.error('Kullanım: npm run curriculum -- import [--lessons <lesson.csv>] [--data <EgitimVerileri kopyası>]');
+		console.error(`  Ders listesi: ${lessonList}${existsSync(lessonList) ? '' : ' (yok)'}\n  Veri: ${data}${existsSync(data) ? '' : ' (yok; Desktop\\EgitimVerileri\'nden YKS ve KPSS kopyalanır)'}`);
 		process.exit(2);
 	}
-	const report = await importCurriculum({lessonList: path.resolve(values.lessons), corpus: path.resolve(values.corpus), curriculum: CURRICULUM});
+	const report = await importCurriculum({lessonList, data, curriculum: CURRICULUM});
 	console.log(JSON.stringify(report, null, 2));
 } else if (command === 'status') {
 	const checklist = await readChecklist(CURRICULUM);
@@ -98,7 +115,7 @@ if (command === 'import') {
 	if (pending.length === 0) console.log(`Bütün konular için "${STAGE_LABELS[stage]}" tamam.`);
 	for (const entry of pending) {
 		console.log(`${String(entry.order).padStart(5)}  ${entry.category}/${entry.lesson}/${entry.topic}  ${entry.lessonName}: ${entry.topicName}`);
-		console.log(`       ${entry.subtopics.length} alt başlık · anlatım ${entry.sources.explanations.length} · konu sorusu ${entry.sources.questionCount} · ders sorusu ${entry.sources.lessonQuestionCount} · id ${entry.id}`);
+		console.log(`       ${entry.subtopics.length} alt başlık · anlatım ${entry.sources.explanation ? 'var' : 'yok'} · soru ${entry.sources.questionCount} (cevaplı ${entry.sources.answeredCount}, ÖSYM ${entry.sources.pastExamCount}) · id ${entry.id}`);
 	}
 } else if (command === 'mark') {
 	if (!target) {
@@ -118,15 +135,23 @@ if (command === 'import') {
 	console.log(`${entry.order}. ${entry.exam} · ${entry.categoryName} · ${entry.lessonName} · ${entry.topicName} (${entry.category}/${entry.lesson}/${entry.topic}, id ${entry.id})\n`);
 	console.log('Alt başlıklar (her biri bir bölüm):');
 	entry.subtopics.forEach((subtopic, index) => console.log(`  ${String(index + 1).padStart(2)}. ${subtopic.name}  ${subtopic.code}`));
-	for (const relative of entry.sources.explanations) {
-		const pack = JSON.parse(await readFile(path.join(CURRICULUM, 'ReferenceCorpus', relative), 'utf8')) as {kazanimStatements?: string[]; misconceptionHints?: string[]; units?: {title: string; kind: string; claims?: unknown[]}[]};
-		console.log(`\nKonu anlatımı: ${relative}`);
-		pack.units?.forEach((unit) => console.log(`  • ${unit.title} (${unit.kind}, ${unit.claims?.length ?? 0} bilgi)`));
-		if (pack.kazanimStatements?.length) console.log(`  Kazanımlar: ${pack.kazanimStatements.slice(0, 4).join(' | ')}`);
-		if (pack.misconceptionHints?.length) console.log(`  Sık hatalar: ${pack.misconceptionHints.slice(0, 4).join(' | ')}`);
+	if (entry.sources.explanation) {
+		type Explanation = {lessonMikros?: {code: string; name: string}[]; explanations?: {source?: {publisher?: string; license?: string; file?: string; pages?: number[]}; sections?: {heading?: string; text?: string}[]}[]};
+		const explanation = JSON.parse(await readFile(path.join(DATA, entry.sources.explanation), 'utf8')) as Explanation;
+		console.log(`\nKonu anlatımı: Curriculum/Data/${entry.sources.explanation}`);
+		for (const part of explanation.explanations ?? []) {
+			const characters = (part.sections ?? []).reduce((sum, section) => sum + (section.text?.length ?? 0), 0);
+			const pages = part.source?.pages ?? [];
+			console.log(`  • ${part.source?.publisher ?? 'kaynak'} · ${part.source?.file ?? ''}${pages.length ? ` · sayfa ${pages[0]}–${pages[pages.length - 1]} (${pages.length})` : ''} · ${part.sections?.length ?? 0} bölüm, ${characters.toLocaleString('tr-TR')} karakter`);
+		}
+		const known = new Set(entry.subtopics.map((subtopic) => subtopic.code));
+		const extra = (explanation.lessonMikros ?? []).filter((mikro) => !known.has(mikro.code));
+		if (extra.length > 0) console.log(`  Anlatımda ders listesinde olmayan alt başlıklar: ${extra.map((mikro) => mikro.code).join(', ')}`);
+		console.log('  Metin PDF\'ten ayrıştırıldı: kapak, künye ve sayfa başlıkları karışmış olabilir; senaryo bilgiyi kendi cümleleriyle yazar.');
+	} else {
+		console.log('\nKonu anlatımı yok: anlatım müfredattan ve soru havuzundan yazılır, ayrıca doğrulanır.');
 	}
-	if (entry.sources.explanations.length === 0) console.log('\nKonu anlatımı paketi yok: anlatım müfredattan ve soru havuzundan yazılır, ayrıca doğrulanır.');
-	console.log(`\nSoru havuzu: konuya bağlı ${entry.sources.questionCount}${entry.sources.questions ? ` (${entry.sources.questions})` : ''} · dersin konusu belirsiz ${entry.sources.lessonQuestionCount}`);
+	console.log(`\nSoru havuzu: ${entry.sources.questionCount} soru (cevaplı ${entry.sources.answeredCount}, ÖSYM ${entry.sources.pastExamCount})${entry.sources.questions ? ` · Curriculum/Data/${entry.sources.questions}` : ''}`);
 	console.log('  Sorular yapı ve yaklaşım için okunur; metinleri olduğu gibi kullanılmaz (telif). Değiştirilen soru yeniden çözülür.');
 	console.log(`\nDersin görselleri (öncelik sırasıyla): ${visualKitOf(entry.lesson).join(', ')}`);
 	console.log(`\nSenaryo dosyası: Curriculum/Scripts/${entry.category}/${entry.lesson}/${entry.topic}.json`);
@@ -149,6 +174,11 @@ if (command === 'import') {
 	const review = reviewScript(script, entry?.subtopics.map((subtopic) => subtopic.code) ?? []);
 	const issues = [...review.issues];
 	if (!entry) issues.push(`Topic id ${script.topic.id} is not in the checklist.`);
+	if (script.camp) {
+		const campFile = path.join(CURRICULUM, CAMPS_DIRECTORY, `${script.camp.id}.json`);
+		if (!existsSync(campFile)) issues.push(`Camp ${script.camp.id} has no plan at Curriculum/${CAMPS_DIRECTORY}/${script.camp.id}.json.`);
+		else issues.push(...campMismatches(CampSchema.parse(JSON.parse(await readFile(campFile, 'utf8'))), script.topic.code, script.camp));
+	}
 	const creditsFile = path.join(ROOT, 'public', MEDIA_DIRECTORY, MEDIA_CREDITS_FILE);
 	const credited = new Set(existsSync(creditsFile) ? MediaCreditsSchema.parse(JSON.parse(await readFile(creditsFile, 'utf8'))).entries.map((item) => item.file) : []);
 	const pictures = JSON.stringify(script).match(/"src":"(Media\/[^"]+)"/g)?.map((match) => match.slice(7, -1)) ?? [];
@@ -167,7 +197,43 @@ if (command === 'import') {
 		await writeChecklist(CURRICULUM, checklist);
 		console.log('  Kontrol listesinde "Hazırlandı" ve "Kullanıldı" işaretlendi.');
 	}
+} else if (command === 'camp') {
+	const directory = path.join(CURRICULUM, CAMPS_DIRECTORY);
+	if (target === 'create') {
+		if (!values.category || !values.lesson) {
+			console.error('Kullanım: npm run curriculum -- camp create --category YKS_TYT --lesson TRK [--name "TYT Türkçe kampı"] [--promise "..."]');
+			process.exit(2);
+		}
+		const camp = campFromChecklist(await readChecklist(CURRICULUM), {category: values.category, lesson: values.lesson, name: values.name, promise: values.promise});
+		const file = path.join(directory, `${camp.id}.json`);
+		if (existsSync(file)) {
+			console.error(`Kamp zaten var: Curriculum/${CAMPS_DIRECTORY}/${camp.id}.json. Sırayı değiştirmek için dosyayı düzenleyin.`);
+			process.exit(1);
+		}
+		await mkdir(directory, {recursive: true});
+		await writeFile(file, `${JSON.stringify(camp, null, 2)}\n`);
+		console.log(`${camp.name}: ${camp.lessons.length} ders → Curriculum/${CAMPS_DIRECTORY}/${camp.id}.json`);
+	} else if (target === 'show') {
+		const id = positionals[2];
+		const file = path.join(directory, `${id}.json`);
+		if (!id || !existsSync(file)) {
+			console.error(`Kullanım: npm run curriculum -- camp show <kamp id>. Kamplar: Curriculum/${CAMPS_DIRECTORY}/`);
+			process.exit(2);
+		}
+		const camp = CampSchema.parse(JSON.parse(await readFile(file, 'utf8')));
+		const entries = (await readChecklist(CURRICULUM)).entries.filter((entry) => entry.category === camp.category && entry.lesson === camp.lesson);
+		console.log(`${camp.name} · ${camp.lessons.length} ders · ${camp.promise}`);
+		camp.lessons.forEach((lesson, index) => {
+			const entry = entries.find((item) => item.topic === lesson.topic);
+			const marks = CHECKLIST_STAGES.map((stage) => (entry?.status[stage] ? '✓' : '·')).join(' ');
+			console.log(`  ${String(index + 1).padStart(2)}. ${marks}  ${lesson.title}  ${lesson.topic}  · soru ${entry?.sources.questionCount ?? 0}${entry?.sources.explanation ? '' : ' · anlatım yok'}`);
+		});
+		console.log(`  (H K YT KV: ${CHECKLIST_STAGES.map((stage) => STAGE_LABELS[stage]).join(', ')})`);
+	} else {
+		console.error('Kullanım: npm run curriculum -- camp create|show ...');
+		process.exit(2);
+	}
 } else {
-	console.error('Komutlar: import, status, next, mark, brief, check. Ayrıntı: scripts/Curriculum.ts');
+	console.error('Komutlar: import, status, next, mark, brief, check, camp. Ayrıntı: scripts/Curriculum.ts');
 	process.exit(2);
 }

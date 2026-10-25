@@ -5,20 +5,25 @@ Ders ve konu listesine bağlı YouTube eğitim videoları ile her birinin kısa 
 ## 1. Akış
 
 ```
-Ders listesi (CSV) + ReferenceCorpus
+Ders listesi (CSV) + Curriculum/Data (EgitimVerileri'nin YKS ve KPSS kopyası)
         │  npm run curriculum -- import
         ▼
-Curriculum/  katalog · üretim kontrol listesi · konuya göre gruplanmış kaynaklar
+Curriculum/  katalog · üretim kontrol listesi (her konu kendi anlatımına ve sorularına bağlı)
+        │  npm run curriculum -- camp create --category YKS_TYT --lesson TRK
+        ▼
+Kamp planı   Curriculum/Camps/<kamp>.json   (dersin konuları yayın sırasıyla)
         │  npm run curriculum -- next / brief <konu>
         ▼
-Senaryo (metin + sahne planı)   Curriculum/Scripts/<Kategori>/<Ders>/<Konu>.json
+Senaryo (metin + sahne planı + kamp alanları)   Curriculum/Scripts/<Kategori>/<Ders>/<Konu>.json
         │  npm run curriculum -- check <senaryo> --mark      → "Hazırlandı"
         ▼
-CourseLesson (YouTube, 16:9)  ve  CourseShort (Reels/TikTok/Shorts, 9:16)
-        │  npm run render  (seslendirme: marka sesi, metin bütün olarak)
+CampLesson (YouTube, 16:9, ≥10 dk)  ve  CampShort (Reels/Shorts/TikTok, 9:16)
+        │  npm run render  (seslendirme: marka sesi, metin bütün olarak; YouTube bölümleri .chapters.txt)
         ▼
 npm run curriculum -- mark <konu> --stage youtube|short --file Outputs/...
 ```
+
+Kampa girmeyen tek konular için `CourseLesson` ve `CourseShort` aynen kullanılabilir; kamp şablonları onların sahnelerini değiştirmeden sarar.
 
 Sıra her zaman aynıdır: **önce metin ve sahne senaryosu**, sonra görseller ve seslendirme. Bir senaryo tek dosyada hem YouTube dersini hem kısa özeti taşır.
 
@@ -30,18 +35,19 @@ Sıra her zaman aynıdır: **önce metin ve sahne senaryosu**, sonra görseller 
 | `Curriculum/Catalog/<Kategori>.json` | Sınav → kategori → ders → konu → alt başlık hiyerarşisi (kodlar ve kimlikler platformla aynı) | ✓ |
 | `Curriculum/Production/Checklist.json` · `.md` | Üretim kontrol listesi (aşağıda) | ✓ |
 | `Curriculum/Production/ImportReport.json` | Son içe aktarmanın sayıları | ✓ |
-| `Curriculum/ReferenceCorpus/TopicExplanations/<Sınav>/<Kategori>/<Ders>/<Konu>.json` | Konu anlatımı paketleri (MEB müfredat bilgi paketleri: birimler, bilgiler, kazanımlar, sık hatalar) | ✗ |
-| `Curriculum/ReferenceCorpus/QuestionPools/<Sınav>/<Kategori>/<Ders>/<Konu>.jsonl` | Konuya bağlanmış çıkmış sorular; her satırda `source.file` ve `source.line` | ✗ |
-| `…/<Ders>/_Lesson.jsonl` | Dersin konusu güvenle belirlenemeyen soruları | ✗ |
-| `…/<Konu>.phenotypes.jsonl`, `_Lesson.phenotypes.jsonl` | Soruların yapısı (kalıp, zorluk, çeldirici türü) | ✗ |
-| `Curriculum/ReferenceCorpus/Taxonomy/` | Kaynağın kendi kod tabloları ve ayrıştırma notları | ✗ |
+| `Curriculum/Data/Index.json` | Kategori → ders → konu, konu başına soru sayıları | ✗ |
+| `Curriculum/Data/<Sınav>/<Kategori>/KonuAnlatimi/<Ders>/<Konu>.json` | Konu anlatımı: alt başlıklar (LessonMikro) ve kaynağa göre anlatım metni (MEB OGM PDF'leri, sayfalarıyla) | ✗ |
+| `Curriculum/Data/<Sınav>/<Kategori>/Sorular/<Ders>/<Konu>.jsonl` | Konuya bağlı sorular: kök, şıklar, cevap, mikro kodu, eşleşme güveni, kaynak (MEB, ÖSYM, Sınavika bankası) | ✗ |
+| `Curriculum/Data/YKS/_Sekiller/` | Soruların şekil görüntüleri | ✗ |
+| `Curriculum/Data/VeriEnvanteri.md` | Veri envanteri: kategori ve ders bazında sayılar | ✗ |
+| `Curriculum/Camps/<kamp>.json` | Kamp planları | ✓ |
 | `Curriculum/Scripts/` | Senaryolar | ✓ |
 | `public/Media/` + `Credits.json` | Lisansı kayıtlı görseller | ✓ |
 | `public/Geo/` | Harita verileri (GeoJSON / TopoJSON) | ✓ |
 
-`Curriculum/ReferenceCorpus/` git'e alınmaz: büyüktür (~140 MB) ve içindeki çıkmış sorular yeniden yayımlanamaz. Masaüstündeki kaynak yine asıl kopyadır; içe aktarma her çalıştırıldığında baştan kurulur.
+`Curriculum/Data/` git'e alınmaz: büyüktür (~424 MB) ve içindeki çıkmış sorular yeniden yayımlanamaz. Asıl kopya `Desktop\EgitimVerileri`'dir; yalnız YKS (TYT, AYT, YDT, şekiller) ve KPSS (Lisans, Önlisans-Ortaöğretim) klasörleri ile `Index.json` ve envanter kopyalanır. `_Claude` (ara kodlama, anahtar içerir), `BackendAktarim`, SAT ve ACT kopyalanmaz. Veri yenilendiğinde aynı klasörler yeniden kopyalanır ve `import` çalıştırılır; içe aktarma veriyi kopyalamaz, yalnız konuları dosyalarına bağlar.
 
-İlk içe aktarmanın sonucu: 53 kategori, 112 ders, **1.128 konu (video)**, 7.907 alt başlık; 560 konu anlatımı paketi konularına bağlandı; 53.641 sorunun 24.387'si bir konuya, kalanı dersin genel havuzuna yerleşti; eşleşmeyen kayıt yok.
+25 Ekim 2026 içe aktarması: 53 kategori, 112 ders, **1.128 konu (video)**, 7.907 alt başlık; 560 konunun anlatımı var; 706 konuya bağlı **120.899 soru** (109.564'ü cevaplı, 6.489'u ÖSYM). YKS ve KPSS'nin bütün konuları veride karşılığını buluyor (TYT 168, AYT 276, YDT 65, KPSS Lisans 94, Önlisans ve Ortaöğretim 78'er).
 
 ## 3. Üretim kontrol listesi
 
@@ -60,7 +66,7 @@ Sıra:
 | YouTube videosu üretildi | — | `mark <konu> --stage youtube --file …` |
 | Kısa video üretildi | — | `mark <konu> --stage short --file …` |
 
-Her satır ayrıca konunun kaynaklarını gösterir: anlatım paketi var mı, konuya bağlı kaç soru, dersin genel havuzunda kaç soru. İçe aktarma yeniden çalıştırılırsa işaretler korunur.
+Her satır ayrıca konunun kaynaklarını gösterir: konu anlatımı var mı, konuya bağlı kaç soru (kaçı cevaplı, kaçı ÖSYM). İçe aktarma yeniden çalıştırılırsa işaretler korunur.
 
 ```bash
 npm run curriculum -- status
@@ -87,11 +93,11 @@ Her kartın `narration` alanı o kartta söylenecek sözdür; ekranda söylenend
 
 **Kısa özet (`short`)**: dikkat çeken giriş → 3-12 kart (Reels kartları: bilgi, kavram, formül, dikkat; ayrıca şekil kartı) → bir deneme sorusu (cevabı verilmez, YouTube dersine yönlendirir) → özet → tanıtım.
 
-Denetim (`check`): hedef süre (ders en az 8 dk; kısa 60-120 sn), her alt başlığın bir bölümü olması, en az üç çözümlü soru, görsellerin lisans kaydı. Süre konu gerektiriyorsa uzayabilir; süre doldurmak için metin uzatılmaz.
+Denetim (`check`): hedef süre (ders **en az 10 dk**, hedef 12 dk; kısa 60-120 sn), her alt başlığın bir bölümü olması, en az üç çözümlü soru, görsellerin lisans kaydı, kamp alanlarının kamp planıyla uyumu (ders numarası, toplam, sıradaki ders). Süre konu gerektiriyorsa uzayabilir; süre doldurmak için metin uzatılmaz.
 
 ### Kaynak kullanımı
 
-- **Konu anlatımı paketleri** anlatımın bel kemiğidir; kazanımlar ve sık hatalar kartlara dönüşür. Paketler otomatik ayrıştırılmıştır, bazı birim başlıkları kesik ya da hatalıdır: bilgiler yazılırken doğrulanır.
+- **Konu anlatımları** (MEB OGM konu özetleri, izinli) anlatımın bel kemiğidir. Metin PDF'ten ayrıştırılmıştır: kapak, künye ve sayfa başlıkları karışmış olabilir, bazı bölüm başlıkları kesiktir. Senaryo bilgiyi kendi cümleleriyle yazar ve yazarken doğrular. Anlatımı olmayan konular (ör. TYT Söz Yorumu) müfredattan ve soru havuzundan yazılır, ayrıca doğrulanır.
 - **Soru havuzları** sorunun yapısını, bilişsel yükünü ve sınavın soru yaklaşımını öğrenmek içindir. Çıkmış sorular **olduğu gibi kullanılmaz** (telif); kişi adları, bağlam ve sayılar değiştirilir. Değişiklikten sonra soru **yeniden çözülür**, doğru şık ve anlatımın tutarlılığı kontrol edilir. Sorunun kökeni ve değişiklik `question.origin` alanına yazılır.
 
 ## 5. Tasarım sistemi
@@ -150,7 +156,7 @@ Bir şekil ilk saniyelerde çizilip bitmez; öğretmen hangi parçayı anlatıyo
 | `stage` | Süreç görsellerinin (akarsu, deprem, dinamik, denklem, cisim) aşaması |
 | `note` | Şeklin altında kısa not |
 
-Parça adları: grafikte `c1…` eğriler, `p1…` noktalar, `tangent`, `area`; geometride nokta adları, kenarlar uçlarıyla (`AB`), çokgenler noktalarıyla (`ABC`), açılar `angle-A`; kuvvetlerde etiket; akış ve döngüde `n1…`; zaman çizelgesinde `e1…`; haritada vurgu ve işaret adları. Beat'i olmayan görsel eskisi gibi kendi kendine çizilir, süreçler aşamalarını sırayla oynatır. Görseli olmayan karta beat yazılırsa şema reddeder (anlatım kaybolmasın).
+Parça adları: grafikte `c1…` eğriler, `p1…` noktalar, `tangent`, `area`; geometride nokta adları, kenarlar uçlarıyla (`AB`), çokgenler noktalarıyla (`ABC`), açılar `angle-A`; kuvvetlerde etiket; akış ve döngüde `n1…`; zaman çizelgesinde `e1…`; haritada vurgu ve işaret adları. Dil görsellerinde: cümlede sözcük kutuları `w1…` (soldan sağa); karşılaştırmada sütunlar `c1…` ve maddeleri `c1-1…`; tabloda satırlar `r1…`, sütunlar `col1…`. Bunlarda `show` parçayı o cümleyle getirir, `focus` parçayı ders rengine boyayıp büyütür, geri kalanı soluklaştırır; tablo başlığı satır vurgulanırken okunur kalır. Bu üç görsel kutularının genişliğini alır ve kutuyu dolduracak kadar (en çok 1,5 kat) büyür; metin büyürken satıra kırılır, kesilmez. Numaralı parçası olan görsellerde (cümle, karşılaştırma, tablo, akış, döngü, zaman çizelgesi) olmayan bir parçaya işaret eden beat şemada reddedilir (ör. iki sözcüklü cümlede `w3`). Beat'i olmayan görsel eskisi gibi kendi kendine çizilir, süreçler aşamalarını sırayla oynatır. Görseli olmayan karta beat yazılırsa şema reddeder (anlatım kaybolmasın).
 
 ### Önce tahmin, sonra gösterim (`predict` kartı)
 
@@ -195,8 +201,10 @@ Merkezi tanım: [`src/Configurations/GeoData.ts`](../src/Configurations/GeoData.
 | --- | --- | --- |
 | `CourseLesson` | 16:9, YouTube | Senaryonun `lesson` bölümü; ses profili `Lecturer` |
 | `CourseShort` | 9:16, Reels · TikTok · Shorts | Senaryonun `short` bölümü; ses profili `Energizer` |
+| `CampLesson` | 16:9, YouTube | `CourseLesson` + kamp kartı, bölüm çubuğu, kamp görevi ve sıradaki ders; YouTube bölüm listesi |
+| `CampShort` | 9:16, Reels · Shorts · TikTok | `CourseShort` + üst çubukta kamp rozeti; sonda "Ders N" ile YouTube dersine yönlendirme |
 
-İkisinin içeriği aynı senaryodur. Seslendirme marka sesiyle (Lisa) ve metin bütün olarak üretilir; sahneler sese göre uzar.
+Dördünün içeriği aynı senaryodur. Seslendirme marka sesiyle (Lisa) ve metin bütün olarak üretilir; sahneler sese göre uzar.
 
 ## 8. Sonraki adımlar
 
@@ -205,3 +213,32 @@ Merkezi tanım: [`src/Configurations/GeoData.ts`](../src/Configurations/GeoData.
 3. Bölge tablosunun (TurkeyRegions.ts) bir coğrafya öğretmenince kontrolü; eksik akarsuların eklenmesi.
 4. Tarih ve biyoloji için kullanılacak görselleri seçip lisanslarıyla kütüphaneye almak.
 5. Konu anlatımı paketi olmayan konular (ör. TYT'de 68 konu) için anlatımın hangi kaynaktan doğrulanacağına karar vermek.
+
+## 8. Kamplar
+
+Bir **kamp**, bir sınav dersinin bütün konularının sırayla yayımlanan serisidir: her konu bir YouTube dersi (`CampLesson`, en az 10 dakika) ve aynı senaryodan bir reels (`CampShort`). İki video aynı ders rengini, aynı kamp rozetini ve aynı dili taşır; reels, kampın YouTube'daki dersine yönlendirir.
+
+**Plan**: `npm run curriculum -- camp create --category YKS_TYT --lesson TRK` dersin konularını üretim sırasıyla `Curriculum/Camps/yks-tyt-turkce-kampi.json` dosyasına yazar (ad, söz, dersler). Sıra ya da ad dosyada düzenlenebilir. `camp show <kamp>` her dersin ilerlemesini gösterir. İlk kamp: **TYT Türkçe kampı, 15 ders** (Sözcükte Anlam → Anlatım Bozukluğu).
+
+**Senaryodaki kamp alanları** (`camp`, şema: [`src/Courses/Camp.ts`](../src/Courses/Camp.ts)): kamp kimliği ve adı, ders numarası ve toplam, sıradaki dersin adı, kampın sözü ve **kamp görevi** (1-3 madde ve okunan metni). `check` bu alanları kamp planıyla karşılaştırır.
+
+**YouTube dersinin akışı** (`CampLesson`):
+
+1. **SinoAI karşılaması**, kamp kartının üzerinde (ders renginde): "Merhaba, ben SinoAI. Sınavika'nın TYT Türkçe kampına hoş geldin! …". Karşılama kamp verisinden üretilir ve her derste aynı kalıptadır.
+2. Dersin kancası ve "bu videoda" (CourseLesson'ın açılışı).
+3. Bölümler. Her bölüm açılışında başlık ayrı bir satır olarak söylenir ("İkinci bölüm: Mecaz anlam."). Ardından kartlar, beat'li şekiller, tahmin kartları ve adım adım çözülen sorular gelir.
+4. Özet.
+5. **Kamp görevi**: 1-3 görev ve "Sıradaki ders" kartı (son derste "Kamp tamamlandı").
+6. Uygulama tanıtımı: yalnız görsel; mağaza düğmelerinde logolar var.
+
+Kartlar arasında 0,7 saniyelik yumuşak geçiş vardır; yeni bölüm, özet ve kamp görevi aşağıdan kayarak gelir. Anlatım dili, ses modeli, okunuş sözlüğü ve kapak kuralları: [CourseNarration.md](CourseNarration.md). Ders renkleri: [CourseColors.md](CourseColors.md).
+
+Ekranın altında **bölüm çubuğu** her bölümün süresi kadar uzun parçalardan oluşur ve izlenen bölüm ders renginde dolar. Render bittiğinde videonun yanına **YouTube bölüm listesi** yazılır (`<video>.chapters.txt`): Giriş, her bölümün başlığı, Özet, Kamp görevi. YouTube'un kuralları uygulanır: 0:00'da başlar, en az 3 bölüm, her bölüm en az 10 saniye; kısa kalan bölüm bir öncekine katılır ([`SceneChapters.ts`](../src/Scenes/SceneChapters.ts)). Liste açıklamaya olduğu gibi yapıştırılır.
+
+**Kapak**: kamp videolarında render kendiliğinden kamp kapağını yapar (`Thumbnails/CampCover`): ders renginde zemin, dev ders numarası, konu, kampın adı ve ilerlemesi.
+
+**Reels** (`CampShort`): CourseShort'un kartları ("Ses Olayları" görünümü), üst çubukta kamp rozeti ("Kamp 3/15") ve hikâye çubuğu; sonda "Konunun tamamı YouTube'da · Ders 3: Sözcükte Anlam" ve uygulama. Müzik yok, yalnız anlatım.
+
+**Render işleri**: `Curriculum/Jobs/<kamp>/<NN>-<konu>-youtube.json` ve `-reels.json`. İçerik senaryonun kopyasıdır; senaryo değişince işler yeniden yazılır.
+
+Tasarım ölçüleri `COURSE_DESIGN.camp` içindedir (kart süresi, görev süresi, bölüm çubuğu kalınlığı). Yol haritası ve araştırma: [`StudioRoadmap.md`](StudioRoadmap.md).

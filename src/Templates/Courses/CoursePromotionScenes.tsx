@@ -2,6 +2,7 @@ import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {Animated} from '../../Components/Animations/Animated';
 import {APP_SCREENS} from '../../Components/AppScreens/AppScreenRegistry';
+import {STORES, StoreLogo} from '../../Components/Illustrations/StoreLogo';
 import {PhoneFrame} from '../../Components/AppScreens/PhoneFrame';
 import {SafeArea} from '../../Components/Layouts/SafeArea';
 import {useVideoLayout} from '../../Components/Layouts/VideoLayout';
@@ -14,16 +15,16 @@ import type {TemplateScene} from '../../Scenes/ScenePlan';
 import {SPACING} from '../../Themes/DesignTokens';
 import {InkProvider, useTheme} from '../../Themes/ThemeContext';
 
-const STORES = ['App Store', 'Google Play'];
-
+/** The two store buttons, each with its store's logo before its name. */
 const StorePills: React.FC<{fill: string; ink: string}> = ({fill, ink}) => {
 	const {u} = useVideoLayout();
 	return (
 		<div style={{display: 'flex', gap: u(16), flexWrap: 'wrap'}}>
 			{STORES.map((store) => (
-				<div key={store} style={{padding: `${u(16)}px ${u(30)}px`, borderRadius: u(999), backgroundColor: fill}}>
+				<div key={store.id} style={{display: 'flex', alignItems: 'center', gap: u(14), padding: `${u(16)}px ${u(30)}px ${u(16)}px ${u(24)}px`, borderRadius: u(999), backgroundColor: fill}}>
+					<StoreLogo store={store.id} size={TYPE.adScale.action * 0.9} color={ink} />
 					<Text size={TYPE.adScale.action} weight={TYPE.weights.display} color={ink}>
-						{store}
+						{store.label}
 					</Text>
 				</div>
 			))}

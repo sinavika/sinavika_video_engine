@@ -1,7 +1,7 @@
 import type {ReactNode} from 'react';
 import type {z} from 'zod';
 import type {VideoFormatId} from '../Configurations/VideoFormats';
-import {CATEGORY_VOICE_PROFILES, type VoiceProfileKey} from '../Configurations/Voices';
+import {CATEGORY_VOICE_PROFILES, type VoiceModelKey, type VoiceProfileKey} from '../Configurations/Voices';
 import type {ScenePlan, TemplateScene} from '../Scenes/ScenePlan';
 import {planTemplateScenes} from '../Scenes/SceneSeries';
 import type {SceneTransition} from '../Scenes/SceneTransition';
@@ -37,6 +37,8 @@ export type TemplateDefinition<Schema extends z.ZodType> = {
 	buildScenes: (content: z.output<Schema>, voiceClips?: VoiceClips) => TemplateScene[];
 	/** Who narrates this template. See Configurations/Voices. Defaults to the category's profile. */
 	voiceProfile: VoiceProfileKey;
+	/** The speech model this template is narrated with, when it is not the voice's default (Configurations/Voices). A job can still name another. */
+	voiceModel?: VoiceModelKey;
 	/** Intended length of the video without its outro. Rendering outside it is reported as a warning. */
 	targetSeconds?: {min: number; max: number};
 	/** The theme for this content, when the template colours by something of its own (e.g. a lesson code). Defaults to the lesson colour of the job. */

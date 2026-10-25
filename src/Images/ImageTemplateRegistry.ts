@@ -16,6 +16,7 @@ import {AppTrio} from './Templates/ProfileGrids/AppTrio';
 import {GrowthLine} from './Templates/ProfileGrids/GrowthLine';
 import {QuestionCard} from './Templates/QuestionSolutions/QuestionCard';
 import {SolutionSteps} from './Templates/QuestionSolutions/SolutionSteps';
+import {CampCover} from './Templates/Thumbnails/CampCover';
 import {VideoCover} from './Templates/Thumbnails/VideoCover';
 import {ConceptCard} from './Templates/TopicExplanations/ConceptCard';
 import {Timeline} from './Templates/TopicExplanations/Timeline';
@@ -51,6 +52,7 @@ export const IMAGE_TEMPLATES: readonly AnyImageTemplateDefinition[] = [
 	PromoDeck,
 	PromoStory,
 	VideoCover,
+	CampCover,
 	GrowthLine,
 	AppTrio,
 ];

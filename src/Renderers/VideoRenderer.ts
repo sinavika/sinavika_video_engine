@@ -8,6 +8,7 @@ import {renderMedia, renderStill, selectComposition} from '@remotion/renderer';
 import {VIDEO_COVER} from '../Configurations/VideoCover';
 import {VIDEO_ENCODING} from '../Configurations/VideoFormats';
 import {planTemplateScenes} from '../Scenes/SceneSeries';
+import {sceneChapters, type Chapter} from '../Scenes/SceneChapters';
 import {VOICE_LEAD_SECONDS} from '../Scenes/Voiceover';
 import {AUDIO_LEVELS, ffmpeg, masterFilter, measureLoudness} from '../Services/AudioLeveling';
 import type {SpeechBackend} from '../Services/ElevenLabsSpeech';
@@ -67,6 +68,8 @@ export type RenderResult = {
 	voiceLineCount: number;
 	/** Who narrated: voice, model and tempo. Null for a silent video. */
 	voiceCast: VoiceCast | null;
+	/** YouTube chapters (Scenes/SceneChapters); empty when the template marks none or the video has fewer than three. */
+	chapters: Chapter[];
 	/** Problems the page reported while rendering, e.g. text that could not be fitted. */
 	warnings: string[];
 };
@@ -243,6 +246,7 @@ const toResult = (
 	elapsedMilliseconds: Date.now() - startedAt,
 	voiceLineCount: Object.keys(job.inputProps.voiceClips).length,
 	voiceCast: job.voiceCast,
+	chapters: sceneChapters(job.template.buildScenes(job.inputProps.content, job.inputProps.voiceClips), job.template.transition, job.fps),
 	warnings: [...new Set([...warnings, ...durationWarnings(job)])],
 });
 

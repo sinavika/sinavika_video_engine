@@ -186,6 +186,14 @@ export const BRAND_VOICES = ['Doga', 'Lisa', 'Derya'] as const satisfies readonl
 export const PROMO_VOICES = ['Doga'] as const satisfies readonly VoiceKey[];
 export const PROMO_VOICE_MODEL: VoiceModelKey = 'v4';
 
+/**
+ * The model the camp lessons and reels are narrated with. Multilingual v2
+ * read the first camp lesson evenly but flatly, "like reading a text"
+ * (owner, 25 Oct 2026); Eleven v4, already chosen for the promotion reels,
+ * carries questions and asides with more life.
+ */
+export const COURSE_VOICE_MODEL: VoiceModelKey = 'v4';
+
 export type VoiceProfile = {
 	description: string;
 	/** Multilingual stand-ins, best first. Cast only when a job asks for a stand-in and no brand voice is usable. */
@@ -216,10 +224,11 @@ export const VOICE_PROFILES = {
 		style: 0,
 	},
 	Lecturer: {
-		description: 'Net ve düzenli eğitmen: uzun konu anlatımı',
+		description: 'Net ve sıcak eğitmen: uzun konu anlatımı, öğrenciyle konuşur gibi',
 		standIns: ['Alice', 'Matilda'],
 		pace: 1,
-		stability: 0.6,
+		// 0.6 sounded read out over fifteen minutes; a little lower lets questions and asides rise and fall (25 Oct 2026).
+		stability: 0.48,
 		similarity: 0.8,
 		style: 0,
 	},

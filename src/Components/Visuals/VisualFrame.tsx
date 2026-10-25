@@ -1,3 +1,4 @@
+import {mixColors} from '../../Themes/ColorPalette';
 import {useCurrentFrame, useVideoConfig} from 'remotion';
 import {animationProgress, type EasingName} from '../../Animations/Motion';
 import {withAlpha} from '../../Themes/Theme';
@@ -32,6 +33,9 @@ export const useVisualPalette = () => {
 	return {
 		lesson,
 		onLesson: colors.lesson?.on ?? colors.onAccent,
+		/** The lesson colour's deep tone: a second category of the same lesson (comparison columns, Venn sets). */
+		lessonDeep: mixColors(lesson, ink.text, 0.45),
+		/** The brand orange: only as a contrasting second series in figures (points, angles, a second curve), never for text or categories. */
 		brand: colors.primary,
 		ink: ink.text,
 		muted: ink.muted,

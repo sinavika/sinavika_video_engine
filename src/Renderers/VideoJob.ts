@@ -198,7 +198,7 @@ export const resolveVideoJob = (raw: unknown): ResolvedVideoJob => {
 		voiceover:
 			job.voiceover === false
 				? null
-				: {profile: template.voiceProfile, ...(job.voiceover === true ? {} : job.voiceover)},
+				: {profile: template.voiceProfile, ...(template.voiceModel ? {model: template.voiceModel} : {}), ...(job.voiceover === true ? {} : job.voiceover)},
 		voiceCast: null,
 	};
 };

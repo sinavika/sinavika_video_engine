@@ -12,7 +12,9 @@
  * which is what a parent process such as the .NET backend should read.
  * Exit codes: 0 success, 2 invalid job, 1 render failure.
  */
-import {readFile} from 'node:fs/promises';
+import {readFile, writeFile} from 'node:fs/promises';
+import path from 'node:path';
+import {formatChapters} from '../src/Scenes/SceneChapters';
 import {parseArgs} from 'node:util';
 import {VideoJobValidationError} from '../src/Renderers/VideoJob';
 import {renderFrame, renderVideo, renderVideoToOutputs, type RenderProgress} from '../src/Renderers/VideoRenderer';
@@ -65,8 +67,12 @@ const main = async (): Promise<number> => {
 				? await renderVideo(job, {...options, outputPath: values.out})
 				: await renderFrame(job, {...options, outputPath: values.out, frame: Number(values.frame)});
 
+		// YouTube chapters go next to the video, ready for the description.
+		const chaptersPath = result.chapters.length > 0 && values.frame === undefined ? `${result.outputPath.slice(0, result.outputPath.length - path.extname(result.outputPath).length)}.chapters.txt` : null;
+		if (chaptersPath) await writeFile(chaptersPath, `${formatChapters(result.chapters)}\n`);
+
 		if (values.json) {
-			emit({type: 'done', ...result});
+			emit({type: 'done', ...result, chaptersPath});
 		} else {
 			console.log(
 				`Tamamlandı: ${result.outputPath}\n  ${result.width}x${result.height}, ${result.fps} fps, ${result.durationSeconds.toFixed(1)} sn, ${(result.elapsedMilliseconds / 1000).toFixed(1)} sn içinde`,
@@ -76,6 +82,7 @@ const main = async (): Promise<number> => {
 				console.log(`  Seslendirme: ${voiceName} (${profile}, ${modelId}, tempo ${pace}), ${result.voiceLineCount} satır`);
 				if (result.voiceCast.note) console.log(`  Not: ${result.voiceCast.note}`);
 			}
+			if (chaptersPath) console.log(`  YouTube bölümleri (${result.chapters.length}): ${chaptersPath}`);
 			result.warnings.forEach((warning) => console.warn(`  Uyarı: ${warning}`));
 		}
 		return 0;

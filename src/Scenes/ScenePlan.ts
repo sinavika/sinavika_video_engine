@@ -1,5 +1,6 @@
 import type {ReactNode} from 'react';
 import {secondsToFrames} from '../Animations/Motion';
+import type {SceneTransition} from './SceneTransition';
 import type {VoiceSlot} from './Voiceover';
 
 /**
@@ -13,6 +14,10 @@ export type SceneTiming = {id: string; seconds: number};
 export type TemplateScene = SceneTiming & {
 	element: ReactNode;
 	label?: string;
+	/** Starts a chapter of the video with this title (YouTube chapters, the chapter bar). See SceneChapters. */
+	chapter?: string;
+	/** How this scene comes in, instead of the template's transition (its length stays the template's). E.g. a section opening slides up while cards cross-fade. */
+	transitionIn?: SceneTransition;
 	/** Spoken lines, played one after another from the start of the scene. */
 	voice?: VoiceSlot[];
 	/** Shown, never spoken: e.g. a promotion at the end of a lesson. Its length is its own, not the narration's. */

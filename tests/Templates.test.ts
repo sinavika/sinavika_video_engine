@@ -23,7 +23,7 @@ import {TEMPLATES, findTemplate} from '../src/Templates/TemplateRegistry';
 describe('template registry', () => {
 	it('contains the education and advertisement templates with unique ids', () => {
 		const ids = TEMPLATES.map((template) => template.id);
-		expect(ids).toEqual(['QuestionSolution', 'TopicExplanation', 'QuickRevision', 'ConceptExplanation', 'ExamPreparation', 'AppPromotion', 'ExamJourney', 'SinoAIFilm', 'ProfilePicker', 'OrbReveal', 'Keynote', 'KineticType', 'NightDesk', 'FlatMorph', 'CountdownChat', 'BeforeAfter', 'GoogleVideoAd', 'AppShowcase', 'CourseLesson', 'CourseShort']);
+		expect(ids).toEqual(['QuestionSolution', 'TopicExplanation', 'QuickRevision', 'ConceptExplanation', 'ExamPreparation', 'AppPromotion', 'ExamJourney', 'SinoAIFilm', 'ProfilePicker', 'OrbReveal', 'Keynote', 'KineticType', 'NightDesk', 'FlatMorph', 'CountdownChat', 'BeforeAfter', 'GoogleVideoAd', 'AppShowcase', 'CourseLesson', 'CourseShort', 'CampLesson', 'CampShort']);
 		expect(new Set(ids).size).toBe(ids.length);
 		expect(findTemplate('Nope')).toBeUndefined();
 	});

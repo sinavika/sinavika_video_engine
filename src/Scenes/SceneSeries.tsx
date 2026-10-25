@@ -1,6 +1,6 @@
 import {TransitionSeries, linearTiming} from '@remotion/transitions';
 import React from 'react';
-import {Audio, Sequence, interpolate, staticFile, useVideoConfig} from 'remotion';
+import {Audio, Easing, Sequence, interpolate, staticFile, useVideoConfig} from 'remotion';
 import {secondsToFrames} from '../Animations/Motion';
 import {planScenes, type ScenePlan, type TemplateScene} from './ScenePlan';
 import {toPresentation, transitionSeconds, type SceneTransition} from './SceneTransition';
@@ -93,12 +93,13 @@ export const SceneSeries: React.FC<SceneSeriesProps> = ({
 						</TransitionSeries.Sequence>
 					);
 					if (index === 0 || plan.transitionFrames === 0) return [sequence];
-					const spec = transitions[(index - 1) % transitions.length];
+					const spec = scene.transitionIn ?? transitions[(index - 1) % transitions.length];
 					return [
 						<TransitionSeries.Transition
 							key={`${scene.id}-transition`}
 							presentation={toPresentation(spec)}
-							timing={linearTiming({durationInFrames: plan.transitionFrames})}
+							// Eased in and out: a cut starts and lands softly instead of moving at one speed.
+							timing={linearTiming({durationInFrames: plan.transitionFrames, easing: Easing.inOut(Easing.cubic)})}
 						/>,
 						sequence,
 					];

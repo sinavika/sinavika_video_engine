@@ -58,10 +58,20 @@ const PLAIN_TEXT: [RegExp, string][] = [
 	[/(\d)\s*[–—-]\s*(?=\d)/g, '$1, '],
 ];
 
-/** Exam abbreviations are said as Turkish speakers say them, not spelled letter by letter or read as a word. */
+/**
+ * Exam abbreviations and brand names are said as Turkish speakers say them,
+ * not spelled letter by letter or read as a word: "TYT" is "teyete" (owner,
+ * 25 Oct 2026: the voice got it wrong). On screen the abbreviation stays.
+ * A suffix after an apostrophe still works: "TYT'de" is read "teyete'de".
+ * Add a new abbreviation here, never in a script.
+ */
 const ABBREVIATIONS: [RegExp, string][] = [
 	[/\bYKS\b/g, 'yekase'],
 	[/\bKPSS\b/g, 'kapesese'],
+	[/\bTYT\b/g, 'teyete'],
+	[/\bAYT\b/g, 'ayete'],
+	[/\bYDT\b/g, 'yedete'],
+	[/\bSinoAI\b/g, 'Sino Ey Ay'],
 ];
 
 const replaceAll = (source: string, rules: [RegExp, string][]): string =>

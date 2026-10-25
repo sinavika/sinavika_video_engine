@@ -1,9 +1,11 @@
 import {createReadStream, existsSync} from 'node:fs';
-import {copyFile, mkdir, readdir, readFile, stat, writeFile} from 'node:fs/promises';
+import {copyFile, mkdir, readFile, stat, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {createInterface} from 'node:readline';
+import {z} from 'zod';
 import {
 	CHECKLIST_STAGES,
+	ChecklistEntrySchema,
 	ChecklistSchema,
 	inProductionOrder,
 	type Category,
@@ -14,43 +16,31 @@ import {
 } from './Curriculum';
 
 /**
- * Brings the lesson list and the reference corpus into the project.
+ * Brings the lesson list into the project and binds every topic to its data.
  *
  * The lesson list (CSV) becomes the catalogue and the production checklist.
- * The corpus is regrouped by what it is for:
+ * The data is the copy of Desktop/EgitimVerileri in Curriculum/Data (not in
+ * git; past exam questions are not republished). Its layout:
  *
- *   ReferenceCorpus/TopicExplanations/<Exam>/<Category>/<Lesson>/<Topic>.json
- *       curriculum knowledge packs (units, claims), one or more per topic
- *   ReferenceCorpus/QuestionPools/<Exam>/<Category>/<Lesson>/<Topic>.jsonl
- *       past exam questions the corpus placed in that topic
- *   ReferenceCorpus/QuestionPools/<Exam>/<Category>/<Lesson>/_Lesson.jsonl
- *       questions of the lesson without a confident topic
- *   ...<Topic>.phenotypes.jsonl / _Lesson.phenotypes.jsonl
- *       the structure of those questions (archetype, difficulty, distractors)
- *   ReferenceCorpus/Taxonomy/   the corpus's own code tables and parse notes
- *   ReferenceCorpus/_Unmatched/ whatever the lesson list has no place for
+ *   Data/Index.json                                            categories, lessons, topics and counts
+ *   Data/<Exam>/<Category>/KonuAnlatimi/<Lesson>/<Topic>.json  lesson explanation: subtopics and the
+ *                                                              explanation text by source (MEB OGM, pages)
+ *   Data/<Exam>/<Category>/Sorular/<Lesson>/<Topic>.jsonl      questions bound to the topic, one per line
  *
- * Every question keeps where it came from (`source.file`, `source.line`).
- * Running the import again rebuilds the corpus copy and the catalogue but
- * keeps the checklist's progress.
+ * Nothing is copied: the checklist points into Data. Running the import again
+ * rebuilds the catalogue and the sources but keeps the checklist's progress.
  */
 
-/** Below this the corpus's own topic match is not trusted; the question stays in the lesson's pool. */
-export const TOPIC_MATCH_CONFIDENCE = 0.5;
-
-const UNMATCHED = '_Unmatched';
-const LESSON_POOL = '_Lesson';
-
-type ImportPaths = {lessonList: string; corpus: string; curriculum: string};
+type ImportPaths = {lessonList: string; data: string; curriculum: string};
 
 export type ImportReport = {
 	categories: number;
 	lessons: number;
 	topics: number;
 	subtopics: number;
-	explanations: {matched: number; unmatched: number};
-	questions: {topic: number; lesson: number; unmatched: number};
-	phenotypes: {topic: number; lesson: number; unmatched: number};
+	/** Topics with a lesson explanation, and without one. */
+	explanations: {found: number; missing: number};
+	questions: {topics: number; total: number; answered: number; pastExam: number};
 };
 
 // ---------------------------------------------------------------- lesson list
@@ -117,175 +107,76 @@ export const parseLessonList = (text: string): Category[] => {
 	return [...categories.values()];
 };
 
-// ---------------------------------------------------------------- corpus
+// ---------------------------------------------------------------- data
 
-const walk = async (directory: string): Promise<string[]> => {
-	if (!existsSync(directory)) return [];
-	const entries = await readdir(directory, {withFileTypes: true});
-	const files = await Promise.all(entries.map((entry) => (entry.isDirectory() ? walk(path.join(directory, entry.name)) : [path.join(directory, entry.name)])));
-	return files.flat();
+/** Folder of a category inside Data, from Data/Index.json. KPSS Ortaöğretim shares the Önlisans folder. */
+export const dataFolders = (index: {categories?: {code: string; folder: string}[]}): Map<string, string> => {
+	const folders = new Map((index.categories ?? []).map((category) => [category.code, category.folder]));
+	const onlisans = folders.get('KPSS_ONLISANS');
+	if (onlisans && !folders.has('KPSS_ORTAOGRETIM')) folders.set('KPSS_ORTAOGRETIM', onlisans);
+	return folders;
 };
 
-const slash = (file: string): string => file.split(path.sep).join('/');
-
-type Place = {exam: string; category: string; lesson: string; topic: string | null};
-
-/** Finds where a corpus item belongs. Returns null when the lesson list has no such category or lesson. */
-const placeFinder = (categories: readonly Category[]) => {
-	const byCategory = new Map(categories.map((category) => [category.code, category]));
-	return (categoryCode: unknown, lessonCode: unknown, topicCode: unknown, topicConfidence: number): Place | null => {
-		const category = typeof categoryCode === 'string' ? byCategory.get(categoryCode) : undefined;
-		const lesson = category?.lessons.find((entry) => entry.code === lessonCode);
-		if (!category || !lesson) return null;
-		const topic = lesson.topics.find((entry) => entry.code === topicCode);
-		return {exam: category.exam, category: category.code, lesson: lesson.code, topic: topic && topicConfidence >= TOPIC_MATCH_CONFIDENCE ? topic.code : null};
-	};
-};
-
-/** Appends lines to many files without keeping them all open: lines are buffered per file and flushed in batches. */
-const createLineSink = () => {
-	const buffers = new Map<string, string[]>();
-	const written = new Set<string>();
-	const counts = new Map<string, number>();
-	const flush = async (file: string) => {
-		const lines = buffers.get(file);
-		if (!lines?.length) return;
-		await mkdir(path.dirname(file), {recursive: true});
-		await writeFile(file, `${lines.join('\n')}\n`, {flag: written.has(file) ? 'a' : 'w'});
-		written.add(file);
-		buffers.set(file, []);
-	};
-	return {
-		add: async (file: string, line: string) => {
-			const lines = buffers.get(file) ?? [];
-			lines.push(line);
-			buffers.set(file, lines);
-			counts.set(file, (counts.get(file) ?? 0) + 1);
-			if (lines.length >= 500) await flush(file);
-		},
-		close: async () => {
-			for (const file of buffers.keys()) await flush(file);
-		},
-		counts,
-	};
-};
-
-const readJsonLines = async function* (file: string): AsyncGenerator<{line: number; record: Record<string, unknown>}> {
+/** Counts the questions of a pool: all, those with an answer, and past exam questions (ÖSYM). */
+export const countQuestions = async (file: string): Promise<{total: number; answered: number; pastExam: number}> => {
+	const counts = {total: 0, answered: 0, pastExam: 0};
 	const lines = createInterface({input: createReadStream(file, {encoding: 'utf8'}), crlfDelay: Infinity});
-	let line = 0;
 	for await (const text of lines) {
-		line += 1;
 		if (!text.trim()) continue;
-		yield {line, record: JSON.parse(text) as Record<string, unknown>};
+		const record = JSON.parse(text) as {answer?: unknown; source?: {publisher?: string; license?: string}};
+		counts.total += 1;
+		if (record.answer !== null && record.answer !== undefined && record.answer !== '') counts.answered += 1;
+		if (record.source?.publisher === 'ÖSYM' || record.source?.license?.startsWith('osym')) counts.pastExam += 1;
 	}
+	return counts;
 };
-
-const confidence = (value: unknown): number => (typeof value === 'number' ? value : Number(value ?? 0) || 0);
-
-const poolDirectory = (root: string, place: Place) => path.join(root, place.exam, place.category, place.lesson);
 
 // ---------------------------------------------------------------- import
 
-export const importCurriculum = async ({lessonList, corpus, curriculum}: ImportPaths): Promise<ImportReport> => {
+export const importCurriculum = async ({lessonList, data, curriculum}: ImportPaths): Promise<ImportReport> => {
 	const categories = inProductionOrder(parseLessonList(await readFile(lessonList, 'utf8')));
-	const place = placeFinder(categories);
-	const corpusOut = path.join(curriculum, 'ReferenceCorpus');
-	const explanationsOut = path.join(corpusOut, 'TopicExplanations');
-	const questionsOut = path.join(corpusOut, 'QuestionPools');
+	const indexFile = path.join(data, 'Index.json');
+	const folders = existsSync(indexFile) ? dataFolders(JSON.parse(await readFile(indexFile, 'utf8'))) : new Map<string, string>();
 	const report: ImportReport = {
 		categories: categories.length,
 		lessons: categories.reduce((sum, category) => sum + category.lessons.length, 0),
 		topics: categories.reduce((sum, category) => sum + category.lessons.reduce((total, lesson) => total + lesson.topics.length, 0), 0),
-		subtopics: 0,
-		explanations: {matched: 0, unmatched: 0},
-		questions: {topic: 0, lesson: 0, unmatched: 0},
-		phenotypes: {topic: 0, lesson: 0, unmatched: 0},
+		subtopics: categories.reduce((sum, category) => sum + category.lessons.reduce((total, lesson) => total + lesson.topics.reduce((count, topic) => count + topic.subtopics.length, 0), 0), 0),
+		explanations: {found: 0, missing: 0},
+		questions: {topics: 0, total: 0, answered: 0, pastExam: 0},
 	};
-	report.subtopics = categories.reduce((sum, category) => sum + category.lessons.reduce((total, lesson) => total + lesson.topics.reduce((count, topic) => count + topic.subtopics.length, 0), 0), 0);
 
 	// The lesson list itself, untouched, and the catalogue built from it.
-	await mkdir(path.join(curriculum, 'Sources'), {recursive: true});
-	await copyFile(lessonList, path.join(curriculum, 'Sources', 'LessonList.csv'));
+	const listCopy = path.join(curriculum, 'Sources', 'LessonList.csv');
+	await mkdir(path.dirname(listCopy), {recursive: true});
+	if (path.resolve(lessonList) !== path.resolve(listCopy)) await copyFile(lessonList, listCopy);
 	await mkdir(path.join(curriculum, 'Catalog'), {recursive: true});
 	for (const category of categories) {
 		await writeFile(path.join(curriculum, 'Catalog', `${category.code}.json`), `${JSON.stringify(category, null, 2)}\n`);
 	}
 
-	// Topic explanations: knowledge packs, bound to a topic by the codes inside them.
-	const explanationsByTopic = new Map<string, string[]>();
-	for (const file of (await walk(path.join(corpus, 'GroundTruth'))).filter((entry) => entry.endsWith('.json'))) {
-		const relative = slash(path.relative(path.join(corpus, 'GroundTruth'), file));
-		const pack = JSON.parse(await readFile(file, 'utf8')) as {binding?: {categorySubCode?: string; lessonMainCode?: string; lessonSubCode?: string}};
-		const binding = pack.binding;
-		const where = binding ? place(binding.categorySubCode, binding.lessonMainCode, binding.lessonSubCode, 1) : null;
-		if (!where?.topic) {
-			// Parse notes and code tables are documentation, not packs.
-			const target = binding ? path.join(corpusOut, UNMATCHED, 'TopicExplanations', relative) : path.join(corpusOut, 'Taxonomy', 'GroundTruth', relative);
-			await mkdir(path.dirname(target), {recursive: true});
-			await copyFile(file, target);
-			if (binding) report.explanations.unmatched += 1;
-			continue;
-		}
-		const key = `${where.category}|${where.lesson}|${where.topic}`;
-		const existing = explanationsByTopic.get(key) ?? [];
-		const name = existing.length === 0 ? `${where.topic}.json` : `${where.topic}__${path.basename(file, '.json')}.json`;
-		const target = path.join(poolDirectory(explanationsOut, where), name);
-		await mkdir(path.dirname(target), {recursive: true});
-		await copyFile(file, target);
-		explanationsByTopic.set(key, [...existing, slash(path.relative(corpusOut, target))]);
-		report.explanations.matched += 1;
-	}
-
-	// Question pools and their phenotypes, split by topic.
-	const sink = createLineSink();
-	const sorted = async (root: string, kind: 'questions' | 'phenotypes', suffix: string) => {
-		for (const file of (await walk(root)).filter((entry) => entry.endsWith('.jsonl'))) {
-			const relative = slash(path.relative(corpus, file));
-			for await (const {line, record} of readJsonLines(file)) {
-				const where = place(record.categorySubCode, record.lessonMainCode, record.lessonSubCode, confidence(record.lessonSubMatchConfidence));
-				const enriched = JSON.stringify({...record, source: {file: relative, line}});
-				if (!where) {
-					await sink.add(path.join(corpusOut, UNMATCHED, kind === 'questions' ? 'QuestionPools' : 'Phenotypes', relative), enriched);
-					report[kind].unmatched += 1;
-				} else {
-					await sink.add(path.join(poolDirectory(questionsOut, where), `${where.topic ?? LESSON_POOL}${suffix}`), enriched);
-					report[kind][where.topic ? 'topic' : 'lesson'] += 1;
-				}
-			}
-		}
-	};
-	await sorted(path.join(corpus, 'Raw'), 'questions', '.jsonl');
-	await sorted(path.join(corpus, 'Phenotypes'), 'phenotypes', '.phenotypes.jsonl');
-	await sink.close();
-
-	// Corpus documentation: its readme, parse notes and code tables.
-	for (const file of await walk(corpus)) {
-		const relative = slash(path.relative(corpus, file));
-		if (/\.(md|csv)$/i.test(file) || /(^|\/)(PARSE_SUMMARY|ABD_PARSE_SUMMARY)\.json$/.test(relative) || relative.startsWith('Taxonomy/')) {
-			const target = path.join(corpusOut, 'Taxonomy', relative.startsWith('Taxonomy/') ? relative.slice('Taxonomy/'.length) : relative);
-			await mkdir(path.dirname(target), {recursive: true});
-			await copyFile(file, target);
-		}
-	}
-
 	// The checklist: new topics are added, progress on existing ones is kept.
 	const checklistFile = path.join(curriculum, 'Production', 'Checklist.json');
-	const previous: Checklist | null = existsSync(checklistFile) ? ChecklistSchema.parse(JSON.parse(await readFile(checklistFile, 'utf8'))) : null;
+	// Only the progress is read back, so a checklist written by an older import still counts.
+	const ProgressSchema = z.object({entries: z.array(ChecklistEntrySchema.pick({id: true, status: true, files: true, notes: true}))});
+	const previous = existsSync(checklistFile) ? ProgressSchema.parse(JSON.parse(await readFile(checklistFile, 'utf8'))) : null;
 	const previousById = new Map(previous?.entries.map((entry) => [entry.id, entry]) ?? []);
-	const relativePool = (where: Place, name: string): string | null => {
-		const file = path.join(poolDirectory(questionsOut, where), name);
-		return sink.counts.has(file) ? slash(path.relative(corpusOut, file)) : null;
-	};
-	const countOf = (relative: string | null) => (relative ? (sink.counts.get(path.join(corpusOut, relative)) ?? 0) : 0);
 
 	const entries: ChecklistEntry[] = [];
 	for (const category of categories) {
+		const folder = folders.get(category.code);
 		for (const lesson of category.lessons) {
 			for (const topic of lesson.topics) {
-				const where: Place = {exam: category.exam, category: category.code, lesson: lesson.code, topic: topic.code};
-				const questions = relativePool(where, `${topic.code}.jsonl`);
-				const lessonQuestions = relativePool(where, `${LESSON_POOL}.jsonl`);
-				const phenotypes = relativePool(where, `${topic.code}.phenotypes.jsonl`);
+				const explanation = folder ? `${folder}/KonuAnlatimi/${lesson.code}/${topic.code}.json` : null;
+				const questions = folder ? `${folder}/Sorular/${lesson.code}/${topic.code}.jsonl` : null;
+				const hasExplanation = explanation !== null && existsSync(path.join(data, explanation));
+				const hasQuestions = questions !== null && existsSync(path.join(data, questions));
+				const counts = hasQuestions && questions ? await countQuestions(path.join(data, questions)) : {total: 0, answered: 0, pastExam: 0};
+				report.explanations[hasExplanation ? 'found' : 'missing'] += 1;
+				if (counts.total > 0) report.questions.topics += 1;
+				report.questions.total += counts.total;
+				report.questions.answered += counts.answered;
+				report.questions.pastExam += counts.pastExam;
 				const kept = previousById.get(topic.id);
 				entries.push({
 					order: entries.length + 1,
@@ -299,13 +190,11 @@ export const importCurriculum = async ({lessonList, corpus, curriculum}: ImportP
 					topicName: topic.name,
 					subtopics: topic.subtopics,
 					sources: {
-						explanations: explanationsByTopic.get(`${category.code}|${lesson.code}|${topic.code}`) ?? [],
-						questions,
-						questionCount: countOf(questions),
-						lessonQuestions,
-						lessonQuestionCount: countOf(lessonQuestions),
-						phenotypes,
-						phenotypeCount: countOf(phenotypes),
+						explanation: hasExplanation ? explanation : null,
+						questions: hasQuestions ? questions : null,
+						questionCount: counts.total,
+						answeredCount: counts.answered,
+						pastExamCount: counts.pastExam,
 					},
 					status: kept?.status ?? {prepared: null, used: null, youtube: null, short: null},
 					files: kept?.files ?? {},
@@ -332,7 +221,7 @@ export const checklistMarkdown = (checklist: Checklist): string => {
 		'Bu dosya `npm run curriculum` ile `Checklist.json` dosyasından üretilir; elle düzenlemeyin.',
 		'Her satır bir konu (LessonSub): bir YouTube eğitim videosu ve bir kısa özet videosu.',
 		'',
-		'Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullanıldı · **YT** YouTube videosu üretildi · **KV** kısa video üretildi · **Anlatım** konu anlatımı paketi · **Soru** konuya bağlı soru sayısı.',
+		'Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullanıldı · **YT** YouTube videosu üretildi · **KV** kısa video üretildi · **Anlatım** konu anlatımı var mı · **Soru** konuya bağlı soru (cevaplı / ÖSYM).',
 		'',
 	];
 	let category = '';
@@ -351,7 +240,7 @@ export const checklistMarkdown = (checklist: Checklist): string => {
 		}
 		const {status, sources} = entry;
 		out.push(
-			`| ${entry.order} | ${entry.topicName} \`${entry.topic}\` | ${entry.subtopics.length} | ${CHECKLIST_STAGES.map((stage) => tick(status[stage])).join(' | ')} | ${sources.explanations.length > 0 ? '✓' : '—'} | ${sources.questionCount} |`,
+			`| ${entry.order} | ${entry.topicName} \`${entry.topic}\` | ${entry.subtopics.length} | ${CHECKLIST_STAGES.map((stage) => tick(status[stage])).join(' | ')} | ${sources.explanation ? '✓' : '—'} | ${sources.questionCount} (${sources.answeredCount} / ${sources.pastExamCount}) |`,
 		);
 	}
 	return `${out.join('\n')}\n`;

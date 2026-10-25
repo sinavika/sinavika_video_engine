@@ -8,6 +8,8 @@ type FitBoxProps = {
 	minScale?: number;
 	/** Let short content grow to use spare room, most of all on vertical video. */
 	fill?: boolean;
+	/** With `fill`: how far content may grow, instead of the orientation's default. */
+	maxScale?: number;
 	style?: React.CSSProperties;
 	children: React.ReactNode;
 };
@@ -20,6 +22,18 @@ const FILL_SCALE: Record<Orientation, number> = {portrait: 1.32, square: 1.1, la
 const FILL_HEIGHT_SHARE = 0.94;
 
 const MEASURING_ATTRIBUTE = 'data-fit-measuring';
+
+/**
+ * Whether any element inside is wider than its own box: a word longer than a
+ * narrow column, cut off by the column's rounded corners. The box's own width
+ * check misses it, because the clipping element hides the overflow.
+ */
+const clipsText = (root: HTMLElement): boolean => {
+	for (const element of Array.from(root.querySelectorAll<HTMLElement>('*'))) {
+		if (element.clientWidth > 0 && element.scrollWidth > element.clientWidth + 1) return true;
+	}
+	return false;
+};
 const MEASURING_STYLE_ID = 'fit-box-measuring';
 
 /**
@@ -47,9 +61,9 @@ const ensureMeasuringStyle = (): void => {
  * (as `Animated` does) instead of mounting and unmounting elements, and do
  * not position elements with transforms (they are ignored while measuring).
  */
-export const FitBox: React.FC<FitBoxProps> = ({align = 'center', minScale = 0.5, fill = false, style, children}) => {
+export const FitBox: React.FC<FitBoxProps> = ({align = 'center', minScale = 0.5, fill = false, maxScale: fillLimit, style, children}) => {
 	const {orientation} = useVideoLayout();
-	const maxScale = fill ? FILL_SCALE[orientation] : 1;
+	const maxScale = fill ? (fillLimit ?? FILL_SCALE[orientation]) : 1;
 	const outerRef = useRef<HTMLDivElement>(null);
 	const innerRef = useRef<HTMLDivElement>(null);
 	const fitted = useRef('');
@@ -68,7 +82,7 @@ export const FitBox: React.FC<FitBoxProps> = ({align = 'center', minScale = 0.5,
 			const available = outer.getBoundingClientRect();
 			const used = inner.getBoundingClientRect();
 			const limit = available.height * (scale > 1 ? FILL_HEIGHT_SHARE : 1);
-			return used.height <= limit + 0.5 && inner.scrollWidth <= inner.clientWidth + 1;
+			return used.height <= limit + 0.5 && inner.scrollWidth <= inner.clientWidth + 1 && !clipsText(inner);
 		};
 
 		const fit = (): void => {

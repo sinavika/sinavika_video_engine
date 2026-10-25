@@ -29,7 +29,8 @@ const Fraction = z.number().min(0).max(1);
  * plot curves c1, c2, c3, points p1…, `tangent`, `area`; geometry point ids,
  * sides by their ends ("AB"), polygons by their points ("ABC"), angles
  * "angle-A"; forces by label; flow and cycle steps n1…; timeline events e1…;
- * map highlights and markers by name.
+ * map highlights and markers by name; sentence word tiles w1…; comparison
+ * columns c1… and their items c1-1…; table rows r1… and columns col1….
  */
 export const VisualBeatSchema = z.object({
 	narration: z.string().trim().min(1).max(700),
@@ -331,3 +332,28 @@ export const CourseVisualSchema = z.discriminatedUnion('kind', [
 export type CourseVisual = z.infer<typeof CourseVisualSchema>;
 export type CourseVisualKind = CourseVisual['kind'];
 export const COURSE_VISUAL_KINDS = CourseVisualSchema.options.map((option) => option.shape.kind.value) as CourseVisualKind[];
+
+/**
+ * The part names a beat may use on a visual whose parts are numbered (see
+ * VisualBeatSchema), or null for visuals whose parts are named by their
+ * content (plots, geometry, forces, maps). Used to reject a beat that points
+ * at a part the visual does not have.
+ */
+export const numberedPartNames = (visual: CourseVisual): string[] | null => {
+	const count = (prefix: string, length: number) => Array.from({length}, (_, index) => `${prefix}${index + 1}`);
+	switch (visual.kind) {
+		case 'sentence':
+			return count('w', visual.parts.length);
+		case 'comparison':
+			return visual.columns.flatMap((column, index) => [`c${index + 1}`, ...count(`c${index + 1}-`, column.items.length)]);
+		case 'table':
+			return [...count('r', visual.rows.length), ...count('col', Math.max(visual.header.length, ...visual.rows.map((row) => row.length)))];
+		case 'flow':
+		case 'cycle':
+			return count('n', visual.nodes.length);
+		case 'timeline':
+			return count('e', visual.events.length);
+		default:
+			return null;
+	}
+};

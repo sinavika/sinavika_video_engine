@@ -383,4 +383,8 @@ describe('exam abbreviations', () => {
 	it('leave words that only contain the letters alone', () => {
 		expect(pronounceAbbreviations('KPSSLİ YKSX YKS.')).toBe('KPSSLİ YKSX yekase.');
 	});
+
+	it('say TYT, AYT, YDT and SinoAI as Turkish speakers do, suffixes included', () => {
+		expect(pronounceAbbreviations("TYT'de ve AYT'de, YDT ile; ben SinoAI.")).toBe("teyete'de ve ayete'de, yedete ile; ben Sino Ey Ay.");
+	});
 });

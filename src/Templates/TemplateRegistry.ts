@@ -11,6 +11,8 @@ import {OrbReveal} from './Advertisements/OrbReveal/OrbReveal';
 import {ProfilePicker} from './Advertisements/ProfilePicker/ProfilePicker';
 import {SinoAIFilm} from './Advertisements/SinoAIFilm/SinoAIFilm';
 import {AppShowcase} from './Advertisements/AppShowcase/AppShowcase';
+import {CampLesson} from './Camps/CampLesson/CampLesson';
+import {CampShort} from './Camps/CampShort/CampShort';
 import {CourseLesson} from './Courses/CourseLesson/CourseLesson';
 import {CourseShort} from './Courses/CourseShort/CourseShort';
 import {ConceptExplanation} from './Education/ConceptExplanation/ConceptExplanation';
@@ -45,6 +47,8 @@ export const TEMPLATES: readonly AnyTemplateDefinition[] = [
 	AppShowcase,
 	CourseLesson,
 	CourseShort,
+	CampLesson,
+	CampShort,
 ];
 
 export const TEMPLATE_IDS: readonly string[] = TEMPLATES.map((template) => template.id);
