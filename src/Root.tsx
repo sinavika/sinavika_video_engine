@@ -4,7 +4,6 @@ import {AppScreenComposition} from './Compositions/AppScreenComposition';
 import {GoogleAdsComposition} from './Ads/Google/GoogleAdsComposition';
 import {StoreComposition} from './Compositions/StoreComposition';
 import {UIUXComposition} from './UIUX/UIUXComposition';
-import {PitchDeckComposition} from './PitchDeck/PitchDeckComposition';
 import {ImageCategoryFolder} from './Compositions/ImageCompositions';
 import {TemplateCompositions} from './Compositions/TemplateCompositions';
 import {IMAGE_CATEGORIES, imageVariantsOf} from './Images/ImageTemplateRegistry';
@@ -17,7 +16,6 @@ const CATEGORIES = [...new Set(TEMPLATES.map((template) => template.category))];
  * Images: every registered image design, grouped by category, under "Images".
  * AppScreens: the drawn mobile app screens, as pictures.
  * Store: App Store and Google Play screenshots and the Play feature graphic.
- * PitchDeck: the investor deck pages (npm run pitch-deck).
  */
 export const Root: React.FC = () => (
 	<>
@@ -25,7 +23,6 @@ export const Root: React.FC = () => (
 		<StoreComposition />
 		<GoogleAdsComposition />
 		<UIUXComposition />
-		<PitchDeckComposition />
 		<Folder name="Images">
 			{IMAGE_CATEGORIES.map((category) => (
 				<ImageCategoryFolder key={category} category={category} templates={imageVariantsOf(category)} />
