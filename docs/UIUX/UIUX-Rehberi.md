@@ -79,6 +79,14 @@ Modül sırası her yerde aynıdır: Denemeler, Dersler, Testler, Ders Planı, A
 - **Yazı:** yalnız Manrope (`Tipografi-Web.md`, `Tipografi-Mobil.md`). Rol ölçeği `src/UIUX/Tokens.ts` → `UI_TYPE`.
 - **Renk jetonları, köşe, gölge:** `src/UIUX/Tokens.ts`. Koyu tema aynı jetonların koyu değerleri; modül renkleri bir ton açılır.
 - **İkonlar:** tek çizgi seti (Lucide uyumlu adlar, `src/UIUX/Icons.tsx`).
+- **Kontrast ve en küçük yazı (25 Ekim 2026):**
+  - Metin her zeminde en az 4,5:1 olmalı.
+  - En küçük yazı 12 pt.
+  - Modül renginde yazı her zaman `ink` ile yazılır (tasarımda `moduleInk`, mobilde `palette.ink`). Bu renk, modülün tonlarında da okunur kalacak kadar koyulaştırılmış modül rengidir.
+  - İkon, dolgu ve sekme hapı modülün kendi rengini kullanır.
+  - Modül renkli kartın içinde soluk metin kullanılmaz; ikincil metin rengi kullanılır.
+  - Başarı, uyarı ve hata rozetlerinin yazısı `successInk`, `warningInk`, `errorInk` jetonlarıyla yazılır.
+- **Web paneli:** Gövde, küçük ve meta yazılar mobilden 1 pt büyüktür. Geniş ekranda tek bir blok ortada bırakılmaz: ana içerik ve yan bilgi iki sütunda durur.
 
 ## 4. Bileşenler
 
@@ -105,7 +113,7 @@ Kaynak: `src/UIUX/Parts`. Web ve mobil aynı adları ve varyantları kullanır.
 - Oturum aç: Apple, Google, e-posta. E-posta varsa 6 haneli kod; yoksa aynı akış hesap oluşturur.
 - Şifre: e-posta → kod ve yeni parola tek ekranda.
 - Misafir hesap gerektiren bir şeye dokununca tam ekran yönlendirme değil alt sayfa açılır.
-- Web: sitenin ortalanmış kart düzeni; kayıttan sonra web onboarding başlar.
+- Web, giriş ve kayıt: onboarding gibi iki yarım. Solda form kartı, sağda tanıtım paneli: başlık, üç madde, panel ve telefon görseli, mağaza düğmeleri. Panel yalnız geniş ekranda görünür. Şifre sayfaları ortalanmış kart olarak kalır. Kayıttan sonra web onboarding başlar.
 
 ### 5.3 Onboarding (mobil 8 adım, web 6 adım)
 
@@ -114,6 +122,13 @@ Sınav ve oturum → mevcut ve hedef net → tempo → zorlanılan dersler → *
 ### 5.4 Analizden eyleme
 
 Her sonuç ve analiz bir eylemle biter: konu satırında "Mikro ders" (Dersler renginde) ve "10 soru" (Testler renginde); altında "Bu hafta planıma ekle".
+
+### 5.4.1 Deneme ve test geri bildirimi
+
+- **Deneme** gerçek sınavın provasıdır. Çözerken doğru ya da yanlış gösterilmez; şık yalnız seçili görünür. Sonuçlar teslimden sonra çözümlerde açılır.
+- **Testler** öğrenme içindir. Doğru ve yanlış anında gösterilir.
+- **Test seviyeleri:** Kolay, Orta, Zor; her biri 20 soru. "Tarama" iç bir kavramdır, öğrenciye gösterilmez.
+- **SinoAI üretim sonucu:** Eylemler kartın içinde gerçek düğmedir: ana düğme dolu ("Testi aç"), ikincil düğme çerçeveli ("Değiştir").
 
 ### 5.5 Durumlar
 

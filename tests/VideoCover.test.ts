@@ -36,6 +36,13 @@ describe('video cover', () => {
 		expect(custom.content).toMatchObject({title: 'Ses olayları 60 saniyede', emphasis: '60 saniyede', glyph: '60', lesson: 'Türkçe', exams: ['KPSS']});
 	});
 
+	it('never lights a promotion’s last word on its own: the job chooses what the cover sells', () => {
+		const promo = JSON.parse(readFileSync(path.resolve(__dirname, '..', 'Posts', '2026-10-21_NetinYalanSoyluyor', 'Job.json'), 'utf8'));
+		const {cover, ...job} = promo;
+		expect(videoCoverJob(resolveVideoJob({...job, cover: {title: cover.title, kicker: cover.kicker}})).content.emphasis).toBeUndefined();
+		expect(videoCoverJob(resolveVideoJob({...job, cover: {title: cover.title, emphasis: 'yalan', kicker: cover.kicker}})).content.emphasis).toBe('yalan');
+	});
+
 	it('shortens long titles at a word and drops formula marks', () => {
 		const job = resolveVideoJob({...sample('QuickRevision'), content: {...sample('QuickRevision').content, title: 'Ses olaylarında ünsüz yumuşaması ve ünsüz benzeşmesi'}});
 		const {title, emphasis} = videoCoverJob(job).content;

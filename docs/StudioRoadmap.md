@@ -184,13 +184,14 @@ Her kamp dersinin akışı:
 5. Sen incelersin.
 6. YouTube'a yükleme manuel yapılır (ilk yükleme her zaman elle).
 
-## 7. Senin kararın gerekenler
+## 7. Kararlar (25 Ekim 2026, sahip)
 
-1. **Remotion lisansı:** şirket 3 kişiyi aşıyorsa ücretli lisans gerekiyor (Creators: kişi başı aylık 25 $). Ekip kaç kişi?
-2. **Yayın temposu:** kamp dersleri günde bir mi, haftada üç mü? Reels sıklığı buna bağlı.
-3. **Yorum anahtar sözcüğü ile otomatik DM** ("yorumlara KAMP yaz"): Meta API ya da ücretli bir araç gerekir. Denensin mi?
-4. **Uzun derste altyazı:** yalnız SRT olarak mı (önerim), yoksa ekranda da mı?
-5. **Kamp adı ve sözü:** "TYT Türkçe kampı · Türkçe konularının hepsi, sırayla ve soru çözerek." Değiştirmek istersen `Curriculum/Camps/yks-tyt-turkce-kampi.json`.
+1. **Remotion lisansı:** ekip tek kişi. 3 kişiye kadar şirketler ücretsiz lisansla kullanabiliyor; ücretli lisans gerekmiyor. Ekip 3 kişiyi aşarsa yeniden bakılacak.
+2. **Yayın temposu:** kamp dersleri neredeyse her gün çekilecek. Her ders sahibin komutuyla başlar; sıradaki ders kendiliğinden üretilmez.
+3. **Yorumda anahtar sözcükle otomatik DM:** yapılmayacak.
+4. **Uzun derste altyazı:** henüz karar yok. Önerim yalnız YouTube altyazı dosyası (SRT).
+5. **SinoAI'nin okunuşu:** "Sino Ey Ay" doğru.
+6. **Kimya ile Almanca'nın aynı renkte olması:** sorun değil, kalıyor.
 
 ## Kaynaklar
 

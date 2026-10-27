@@ -80,7 +80,8 @@ describe('production checklist', () => {
 		const markdown = checklistMarkdown(checklist!);
 		expect(markdown).toContain('## YKS · TYT');
 		expect(markdown).toContain('| 1 | Sözcükte Anlam `SOZCUKTE_ANLAM` |');
-		expect(nextEntry({...checklist!, entries: checklist!.entries.map((entry, index) => (index === 0 ? {...entry, status: {...entry.status, youtube: '2026-10-14T10:00:00+03:00'}} : entry))})?.order).toBe(2);
+		// Independent of the live progress: only the first topic is produced.
+		expect(nextEntry({...checklist!, entries: checklist!.entries.map((entry, index) => ({...entry, status: {...entry.status, youtube: index === 0 ? '2026-10-14T10:00:00+03:00' : null}}))})?.order).toBe(2);
 	});
 });
 
@@ -150,6 +151,11 @@ describe('lesson script', () => {
 		expect(review.issues.join(' ')).toMatch(/at least 10 min/);
 		expect(review.issues.join(' ')).toMatch(/SOZCUKTE_ANLAM_13/);
 		expect(review.issues.join(' ')).not.toMatch(/SOZCUKTE_ANLAM_01,/);
+	});
+
+	it('counts the extra subtopics a section teaches together as covered', () => {
+		const grouped = LessonScriptSchema.parse({...LESSON_SCRIPT_SAMPLE, lesson: {...LESSON_SCRIPT_SAMPLE.lesson, sections: LESSON_SCRIPT_SAMPLE.lesson.sections.map((section, index) => (index === 0 ? {...section, subtopics: ['SOZCUKTE_ANLAM_13']} : section))}});
+		expect(reviewScript(grouped, ['SOZCUKTE_ANLAM_01', 'SOZCUKTE_ANLAM_13']).issues.join(' ')).not.toMatch(/SOZCUKTE_ANLAM_13/);
 	});
 });
 

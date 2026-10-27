@@ -145,7 +145,7 @@ export const AD_CONCEPTS: readonly AdConcept[] = [
 			meta: {tr: '3 görev · 45 dk', en: '3 tasks · 45 min'},
 			tasks: [
 				{text: {tr: 'Paragraf · ana fikir', en: 'Reading · main idea'}, sub: {tr: 'Mikro ders · 8 dk', en: 'Micro-lesson · 8 min'}, module: 'lessons', done: true},
-				{text: {tr: 'Problemler · 10 soru', en: 'Problems · 10 questions'}, sub: {tr: 'Test · seviye 2', en: 'Quiz · level 2'}, module: 'tests'},
+				{text: {tr: 'Problemler · 20 soru', en: 'Problems · 20 questions'}, sub: {tr: 'Test · Orta', en: 'Quiz · Medium'}, module: 'tests'},
 				{text: {tr: 'Kimya · mol kartları', en: 'Chemistry · mole cards'}, sub: {tr: '20 kart · 6 dk', en: '20 cards · 6 min'}, module: 'flashcards'},
 			],
 		},
@@ -217,7 +217,7 @@ export const AD_CONCEPTS: readonly AdConcept[] = [
 			title: {tr: 'Bugünün planı', en: 'Today’s plan'},
 			meta: {tr: '3 görev · 40 dk', en: '3 tasks · 40 min'},
 			tasks: [
-				{text: {tr: 'Paragraf · 10 soru', en: 'Reading · 10 questions'}, sub: {tr: 'Test · seviye 3', en: 'Quiz · level 3'}, module: 'tests', done: true},
+				{text: {tr: 'Paragraf · 20 soru', en: 'Reading · 20 questions'}, sub: {tr: 'Test · Zor', en: 'Quiz · Hard'}, module: 'tests', done: true},
 				{text: {tr: 'Tarih · Lale Devri', en: 'History · Tulip Era'}, sub: {tr: '24 kart · 8 dk', en: '24 cards · 8 min'}, module: 'flashcards'},
 				{text: {tr: 'Coğrafya · iklim tipleri', en: 'Geography · climates'}, sub: {tr: 'Mikro ders · 12 dk', en: 'Micro-lesson · 12 min'}, module: 'lessons'},
 			],
@@ -284,7 +284,7 @@ export const AD_CONCEPTS: readonly AdConcept[] = [
 			title: us('Today’s plan'),
 			meta: us('3 tasks · 40 min'),
 			tasks: [
-				{text: us('Linear equations · 10 questions'), sub: us('Quiz · level 2'), module: 'tests', done: true},
+				{text: us('Linear equations · 20 questions'), sub: us('Quiz · Medium'), module: 'tests', done: true},
 				{text: us('Words in context'), sub: us('Micro-lesson · 8 min'), module: 'lessons'},
 				{text: us('SAT vocabulary'), sub: us('24 cards · 6 min'), module: 'flashcards'},
 			],
@@ -350,7 +350,7 @@ export const AD_CONCEPTS: readonly AdConcept[] = [
 			title: us('Today’s plan'),
 			meta: us('3 tasks · 45 min'),
 			tasks: [
-				{text: us('Algebra · 10 questions'), sub: us('Quiz · level 2'), module: 'tests', done: true},
+				{text: us('Algebra · 20 questions'), sub: us('Quiz · Medium'), module: 'tests', done: true},
 				{text: us('Punctuation rules'), sub: us('Micro-lesson · 8 min'), module: 'lessons'},
 				{text: us('Science vocabulary'), sub: us('20 cards · 6 min'), module: 'flashcards'},
 			],

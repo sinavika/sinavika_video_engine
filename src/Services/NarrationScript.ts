@@ -68,3 +68,26 @@ export const segmentLines = (lines: readonly string[], timing: CharacterTiming):
 		};
 	});
 };
+
+/** A spoken word of a line and when it starts, in seconds of the narration file. */
+export type TimedWord = {text: string; startSeconds: number};
+
+/**
+ * When each word of each line starts in the audio of its script, from the
+ * service's character timings. Kept with the narration so a picture can land
+ * on the word it shows, as it is said, instead of on a guess from where the
+ * word sits in the text (owner, 26 Oct 2026: cards came in while the previous
+ * one was still being talked about).
+ */
+export const lineWords = (lines: readonly string[], timing: CharacterTiming): TimedWord[][] => {
+	let offset = 0;
+	return lines.map((line) => {
+		const words: TimedWord[] = [];
+		for (const match of line.matchAll(/\S+/g)) {
+			const at = offset + (match.index ?? 0);
+			words.push({text: match[0], startSeconds: timing.startSeconds[at]});
+		}
+		offset += line.length + LINE_SEPARATOR.length;
+		return words;
+	});
+};

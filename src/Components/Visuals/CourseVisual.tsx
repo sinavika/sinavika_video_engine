@@ -14,7 +14,8 @@ import {GeometryVisual, PlotVisual} from './MathVisuals';
 import {EarthquakeVisual, RiverVisual} from './ProcessVisuals';
 import {AtomVisual, ForcesVisual, MoleculeVisual, MotionVisual, ReactionVisual} from './ScienceVisuals';
 import {DynamicsVisual, EquationVisual} from './SimulationVisuals';
-import {ComparisonVisual, SentenceVisual, TableVisual, VennVisual} from './StructureVisuals';
+import {ParagraphVisual, SentenceVisual} from './LanguageVisuals';
+import {ComparisonVisual, TableVisual, VennVisual} from './StructureVisuals';
 import {FaultBlock3DVisual, Molecule3DVisual, SolidVisual} from './ThreeVisuals';
 import {useReveal, useVisualPalette, type VisualBoxProps} from './VisualFrame';
 import {BeatCamera, BeatNote, useElementState, useNoteSpace} from './VisualTimeline';
@@ -67,7 +68,7 @@ export const CourseVisual: React.FC<VisualBoxProps & {visual: CourseVisualSpec}>
 };
 
 /**
- * Sentences, comparisons and tables are drawn at reading size and then grow
+ * Sentences, paragraphs, comparisons and tables are drawn at reading size and then grow
  * to fill their box, up to this much (text reflows; nothing is cut). Without
  * it a short table sat small at the top of a large empty box.
  */
@@ -131,6 +132,12 @@ const VisualOfKind: React.FC<VisualBoxProps & {visual: CourseVisualSpec}> = ({vi
 			return (
 				<FitBox fill maxScale={LANGUAGE_VISUAL_GROWTH} style={{width, maxHeight: height}}>
 					<SentenceVisual visual={visual} {...box} />
+				</FitBox>
+			);
+		case 'paragraph':
+			return (
+				<FitBox fill maxScale={LANGUAGE_VISUAL_GROWTH} style={{width, maxHeight: height}}>
+					<ParagraphVisual visual={visual} {...box} />
 				</FitBox>
 			);
 		case 'comparison':

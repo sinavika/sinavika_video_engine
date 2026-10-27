@@ -6,12 +6,13 @@ import {LessonScriptSchema, type LessonScript} from '../../../Courses/LessonScri
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
-import {createNarrator, type VoiceClips} from '../../../Scenes/Voiceover';
+import {createNarrator, VOICE_LEAD_SECONDS, voiceTracksOf, type VoiceClips} from '../../../Scenes/Voiceover';
+import {cuesInLine, spreadCues} from '../../../Courses/LessonCues';
 import {courseLessonTheme} from '../../../Themes/LessonAccent';
 import {CourseLesson} from '../../Courses/CourseLesson/CourseLesson';
 import {LessonChrome} from '../../Courses/CourseLesson/CourseLessonScenes';
 import {defineTemplate} from '../../TemplateDefinition';
-import {CAMP_SCENE_IDS, CampCardScene, CampTaskScene, ChapterBar} from '../CampScenes';
+import {CAMP_SCENE_IDS, CampCardScene, CampTaskScene, ChapterBar, SectionVoiceOrb} from '../CampScenes';
 
 /** A camp lesson is a lesson script with its camp fields. */
 export const CampScriptSchema = LessonScriptSchema.refine((script) => script.camp !== undefined, {path: ['camp'], message: 'A camp lesson needs its camp fields (Courses/Camp).'});
@@ -54,9 +55,14 @@ const buildScenes = (script: LessonScript, voiceClips: VoiceClips = {}): Templat
 
 	const welcomeText = campWelcomeNarration(camp, {title: script.title, lessonName: script.lessonName});
 	const welcomeLine = say(CAMP_SCENE_IDS.card, welcomeText, estimate(welcomeText, COURSE_DESIGN.camp.cardSeconds), COURSE_DESIGN.camp.cardSeconds);
-	const welcome: TemplateScene = {id: CAMP_SCENE_IDS.card, seconds: welcomeLine.seconds, label: 'Hoş geldin', voice: [welcomeLine], element: <CampCardScene script={script} camp={camp} promise={camp.promise} welcome />};
+	const welcome: TemplateScene = {id: CAMP_SCENE_IDS.card, seconds: welcomeLine.seconds, label: 'Hoş geldin', voice: [welcomeLine], element: <CampCardScene script={script} camp={camp} promise={camp.promise} welcome voice={voiceTracksOf([welcomeLine], voiceClips)} />};
 
 	const taskLine = say(CAMP_SCENE_IDS.task, camp.task.narration, estimate(camp.task.narration, COURSE_DESIGN.camp.taskSeconds), COURSE_DESIGN.camp.taskSeconds);
+	// Each task comes as it is said, the next lesson when it is named ("Bir sonraki derste ses bilgisiyle…").
+	const spokenTask = {clip: voiceClips[taskLine.id], text: taskLine.text, startSeconds: 0, seconds: taskLine.seconds};
+	const taskItems = spreadCues(cuesInLine(spokenTask, camp.task.items), VOICE_LEAD_SECONDS, taskLine.seconds * 0.8);
+	const [nextNamed] = cuesInLine(spokenTask, [camp.next ?? 'Kampta görüşmek'], {anywhere: true});
+	const taskCues = {items: taskItems, next: Math.max((taskItems.at(-1) ?? 0) + 0.8, nextNamed ?? (taskItems.at(-1) ?? 0) + 1.2)};
 	const task: TemplateScene = {
 		id: CAMP_SCENE_IDS.task,
 		seconds: taskLine.seconds,
@@ -65,7 +71,7 @@ const buildScenes = (script: LessonScript, voiceClips: VoiceClips = {}): Templat
 		element: (
 			<>
 				<LessonChrome script={script} />
-				<CampTaskScene camp={camp} />
+				<CampTaskScene camp={camp} cues={taskCues} />
 			</>
 		),
 	};
@@ -76,7 +82,15 @@ const buildScenes = (script: LessonScript, voiceClips: VoiceClips = {}): Templat
 		const index = Number(scene.id.slice(1)) - 1;
 		const text = sectionTitleNarration(index, script.lesson.sections[index].title);
 		const title = say(`${scene.id}-title`, text, estimate(text, COURSE_DESIGN.camp.sectionTitleSeconds), COURSE_DESIGN.camp.sectionTitleSeconds);
-		return {...scene, seconds: Math.round((scene.seconds + title.seconds) * 10) / 10, voice: [title, ...(scene.voice ?? [])]};
+		const voice = [title, ...(scene.voice ?? [])];
+		// SinoAI's orb speaks the title and the lead-in beside the section's name.
+		const element = (
+			<>
+				{scene.element}
+				<SectionVoiceOrb tracks={voiceTracksOf(voice, voiceClips)} />
+			</>
+		);
+		return {...scene, seconds: Math.round((scene.seconds + title.seconds) * 10) / 10, voice, element};
 	};
 
 	const outroAt = lesson.findIndex((scene) => scene.id === OUTRO_SCENE_ID);

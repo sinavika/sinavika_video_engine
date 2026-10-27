@@ -29,6 +29,10 @@ export type UIColors = {
 	warningSoft: string;
 	error: string;
 	errorSoft: string;
+	/** Status text on its soft fill (chips, badges): at least 4.5:1. */
+	successInk: string;
+	warningInk: string;
+	errorInk: string;
 	/** Text on brand orange. */
 	onBrand: string;
 };
@@ -41,7 +45,8 @@ export const UI_COLORS: Record<UIMode, UIColors> = {
 		brandWash: '#FFF7ED',
 		ink: '#0B1C30',
 		ink2: '#334155',
-		muted: '#64748B',
+		/** 4.9:1 on every light surface; #64748B was 4.4:1 on the page (UI/UX review, 25 Oct 2026). */
+		muted: '#5F6B7D',
 		subtle: '#94A3B8',
 		line: '#E7EAEE',
 		line2: '#F1F3F6',
@@ -54,6 +59,9 @@ export const UI_COLORS: Record<UIMode, UIColors> = {
 		warningSoft: '#FEF3C7',
 		error: '#DC2626',
 		errorSoft: '#FEE2E2',
+		successInk: '#047857',
+		warningInk: '#B45309',
+		errorInk: '#B91C1C',
 		onBrand: '#FFFFFF',
 	},
 	dark: {
@@ -76,6 +84,9 @@ export const UI_COLORS: Record<UIMode, UIColors> = {
 		warningSoft: '#3A2A08',
 		error: '#F87171',
 		errorSoft: '#3B1414',
+		successInk: '#34D399',
+		warningInk: '#FBBF24',
+		errorInk: '#F87171',
 		onBrand: '#FFFFFF',
 	},
 };
@@ -90,7 +101,8 @@ export const UI_TYPE = {
 	body: [14.5, 21, 500],
 	small: [13, 18, 500],
 	meta: [12, 16, 600],
-	over: [11, 14, 800],
+	/** The smallest text anywhere: 12 pt (UI/UX review, 25 Oct 2026; was 11). */
+	over: [12, 16, 800],
 	num: [28, 32, 800],
 } as const;
 export type UITypeRole = keyof typeof UI_TYPE;

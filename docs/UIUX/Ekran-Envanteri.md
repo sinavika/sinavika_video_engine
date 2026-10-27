@@ -3,7 +3,7 @@
 Bu dosya `npm run uiux -- --inventory docs/UIUX/Ekran-Envanteri.md` ile çizim kaydından (`src/UIUX/Registry.ts`) üretilir; elle düzenlenmez.
 Her satır bir çizimi, gerçek uygulamadaki karşılığını ("Rota") ve değişikliğin nedenini gösterir. "yeni" bugün olmayan ekrandır.
 
-Toplam 162 çizim: mobil uygulama 89, web paneli ve web giriş/onboarding 59, web sitesi (giriş öncesi) 14.
+Toplam 163 çizim: mobil uygulama 90, web paneli ve web giriş/onboarding 59, web sitesi (giriş öncesi) 14.
 
 ## Mobil uygulama
 
@@ -115,6 +115,7 @@ Toplam 162 çizim: mobil uygulama 89, web paneli ve web giriş/onboarding 59, we
 | `m-sino-ana` | SinoAI | `SinoAi` | — |
 | `m-sino-sohbet` | SinoAI · sohbet | `SinoAiChat` | — |
 | `m-sino-calisma` | SinoAI · çalışma | `SinoAiChat (Çalışma)` | Kilit simgesi yok; kota yazılı. |
+| `m-sino-sonuc` | SinoAI · üretim sonucu | `SinoAiChat (Çalışma sonucu)` | Eylemler kartın içinde düğme: Testi aç (ana), Değiştir (ikincil). |
 | `m-sino-kutuphane` | SinoAI · kütüphane | `yeni` | — |
 | `m-sino-menu` | SinoAI · menü | `SinoAiChat (menü)` | Boş Yeni sohbet kayıtları tutulmaz. |
 

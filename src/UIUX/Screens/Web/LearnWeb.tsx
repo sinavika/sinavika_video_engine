@@ -2,7 +2,7 @@ import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
 import {Icon} from '../../Icons';
 import {MODULES} from '../../ModuleIdentity';
-import {Bar, Button, Card, Chip, Levels, List, ListRow, OptionRow, Ring, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
+import {Bar, Button, Card, Chip, Levels, List, TEST_LEVELS, ListRow, OptionRow, Ring, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
 import {Grid, Immersive, ModuleBanner, ModuleHead, Panel, WCard} from '../../Parts/Web';
 
 /** Web Dersler (Works) and Testler (Quizzes). */
@@ -170,10 +170,10 @@ export const WebLessonDetailScreen: React.FC = () => {
 						<Stack row gap={12}>
 							<Tile module="tests" size={44} />
 							<Stack grow gap={1}>
-								<Text role="headline">{t('Rasyonel sayılar · Seviye 2', 'Rationals · Level 2')}</Text>
+								<Text role="headline">{t('Rasyonel sayılar · Orta', 'Rationals · Medium')}</Text>
 								<Text role="small">{t('Derslerden sonra açılır', 'Opens after the lessons')}</Text>
 							</Stack>
-							<Levels done={2} color={MODULES.tests.color.light} />
+							<Levels done={1} color={MODULES.tests.color.light} />
 						</Stack>
 					</WCard>
 					<WCard title={t('Kartlar', 'Cards')}>
@@ -221,7 +221,7 @@ export const WebLessonsPathScreen: React.FC = () => {
 				<WCard title={t('Bugün · 12. gün', 'Today · day 12')}>
 					<List>
 						<ListRow module="lessons" title={t('Rasyonel sayılar · Ders 2', 'Rationals · lesson 2')} subtitle="14 dk" />
-						<ListRow module="tests" title={t('Rasyonel sayılar · Seviye 2', 'Rationals · level 2')} subtitle="10 soru" />
+						<ListRow module="tests" title={t('Rasyonel sayılar · Orta', 'Rationals · Medium')} subtitle={t('20 soru', '20 questions')} />
 						<ListRow module="flashcards" title={t('Dünün kartları', 'Yesterday’s cards')} subtitle="12 kart" />
 					</List>
 				</WCard>
@@ -335,7 +335,7 @@ export const WebTestsHomeScreen: React.FC = () => {
 		<Panel active="tests">
 			<ModuleHead module="tests" tab={0} title={t('Testler', 'Quizzes')} sub={t('Adım adım, 5 seviyeli konu testleri', 'Step-by-step topic quizzes with 5 levels')} actions={<Button tone="ghost" icon="search">{t('Konu ara', 'Find topic')}</Button>} />
 			<Grid columns="1fr 2fr">
-				<ModuleBanner module="tests" over={t('Senin için hazır', 'Ready for you')} title={t('Problemler · Seviye 2', 'Problems · Level 2')} text={t('Denemede en çok net kaybettiğin konu. 10 soru, anında açıklama.', 'Where you lost most. 10 questions, instant feedback.')} action={t('Teste başla', 'Start quiz')} />
+				<ModuleBanner module="tests" over={t('Senin için hazır', 'Ready for you')} title={t('Problemler · Orta', 'Problems · Medium')} text={t('Denemede en çok net kaybettiğin konu. 20 soru, anında açıklama.', 'Where you lost most. 20 questions, instant feedback.')} action={t('Teste başla', 'Start quiz')} />
 				<Grid columns="1fr 1fr" gap={14}>
 					{[['Türkçe', 'Turkish', 12, 30], ['Matematik', 'Maths', 9, 35], ['Geometri', 'Geometry', 3, 20], ['Fizik', 'Physics', 5, 18], ['Kimya', 'Chemistry', 4, 16], ['Biyoloji', 'Biology', 2, 14]].map(([tr, en, done, total]) => (
 						<Card key={tr as string} padding={16}>
@@ -368,24 +368,24 @@ export const WebTestTopicsScreen: React.FC = () => {
 			<ModuleHead module="tests" tab={1} title={t('Matematik', 'Maths')} sub={t('25 konu · 9 tamamlandı', '25 topics · 9 complete')} />
 			<Grid columns="repeat(3, 1fr)" gap={14}>
 				{[
-					['Temel kavramlar', 'Basics', 5],
-					['Sayı basamakları', 'Digits', 4],
-					['Bölünebilme', 'Divisibility', 4],
-					['Rasyonel sayılar', 'Rationals', 2],
+					['Temel kavramlar', 'Basics', 3],
+					['Sayı basamakları', 'Digits', 3],
+					['Bölünebilme', 'Divisibility', 2],
+					['Rasyonel sayılar', 'Rationals', 1],
 					['Problemler', 'Problems', 1],
 					['Oran ve orantı', 'Ratio', 0],
 					['Fonksiyonlar', 'Functions', 0],
 					['Kümeler', 'Sets', 0],
 					['Mantık', 'Logic', 0],
 				].map(([tr, en, level]) => (
-					<Card key={tr as string} padding={16} tone={(level as number) === 2 ? 'moduleLine' : 'card'} module="tests">
+					<Card key={tr as string} padding={16} tone={tr === 'Rasyonel sayılar' ? 'moduleLine' : 'card'} module="tests">
 						<Stack gap={10}>
 							<Stack row justify="space-between">
 								<Text role="headline">{t(tr as string, en as string)}</Text>
 								<Levels done={level as number} color={mod.color} />
 							</Stack>
 							<Text role="small">
-								{level}/5 {t('seviye', 'levels')} · {(level as number) === 5 ? t('Tamamlandı', 'Complete') : t('Sıradaki: Seviye', 'Next: level') + ' ' + ((level as number) + 1)}
+								{level}/{TEST_LEVELS} {t('seviye', 'levels')} · {(level as number) >= TEST_LEVELS ? t('Tamamlandı', 'Complete') : t('Sıradaki', 'Next') + ': ' + [t('Kolay', 'Easy'), t('Orta', 'Medium'), t('Zor', 'Hard')][level as number]}
 							</Text>
 						</Stack>
 					</Card>
@@ -400,7 +400,7 @@ export const WebTestSolveScreen: React.FC = () => {
 	const colors = useColors();
 	const mod = useModuleColors('tests');
 	return (
-		<Immersive module="tests" title={t('Problemler · Seviye 2', 'Problems · Level 2')} sub={t('Soru 4 / 10', 'Question 4 / 10')} progress={0.4} right={<Chip tone="success" icon="check">{t('3 doğru', '3 right')}</Chip>}>
+		<Immersive module="tests" title={t('Problemler · Orta', 'Problems · Medium')} sub={t('Soru 4 / 20', 'Question 4 / 20')} progress={0.4} right={<Chip tone="success" icon="check">{t('3 doğru', '3 right')}</Chip>}>
 			<Stack gap={16} style={{flex: 1, padding: '40px 160px'}}>
 				<Stack row gap={5}>
 					{[1, 1, 1, 2, 0, 0, 0, 0, 0, 0].map((state, index) => (

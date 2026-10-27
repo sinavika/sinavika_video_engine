@@ -6,6 +6,7 @@ import {InkProvider, useTheme} from '../../Themes/ThemeContext';
 import {useVideoLayout} from '../Layouts/VideoLayout';
 import {RichText} from '../Typography/RichText';
 import {Text} from '../Typography/Text';
+import {UNFOCUSED_FADE} from '../Visuals/VisualTimeline';
 
 type DiagramNodeProps = {
 	node: VisualNode;
@@ -40,7 +41,7 @@ export const DiagramNode: React.FC<DiagramNodeProps> = ({node, index, focus = 0,
 				borderRadius: u(shape.radius.md),
 				border: `${u(Math.max(2, shape.borderWidth))}px solid ${colors.border}`,
 				backgroundColor: interpolateColors(focus, [0, 1], [colors.surface, strong.fill]),
-				opacity: 1 - 0.55 * diagramFocus * (1 - focus),
+				opacity: 1 - UNFOCUSED_FADE * diagramFocus * (1 - focus),
 				transform: `scale(${(1 + 0.05 * focus).toFixed(4)})`,
 				...style,
 			}}
@@ -67,7 +68,7 @@ export const DiagramNode: React.FC<DiagramNodeProps> = ({node, index, focus = 0,
 			<InkProvider ink={{text: ink, muted: ink, emphasis: ink}}>
 				<RichText text={node.label} size={30} weight={typography.strongWeight} align="center" />
 				{node.detail ? (
-					<Text size={24} align="center" style={{opacity: 0.78}}>
+					<Text size={24} align="center" style={{opacity: 0.9}}>
 						{node.detail}
 					</Text>
 				) : null}

@@ -7,16 +7,21 @@ import {readableOn} from '../../Themes/ColorPalette';
 import {withAlpha} from '../../Themes/Theme';
 import {InkProvider, useTheme, type Ink} from '../../Themes/ThemeContext';
 import type {Branding} from '../Schemas/ImageFields';
+import {gridInsets} from '../Templates/ProfileGrids/ProfileGridLayout';
 
 /** How the canvas of an image is painted. All of it comes from the active theme or palette. */
 export type ImageBackdrop = 'canvas' | 'spotlight' | 'gradient' | 'primary' | 'surface';
 
-/** Size-aware helpers for image layouts. Images share `u()` with video: 1080px short edge = 1. */
+/**
+ * Size-aware helpers for image layouts. Images share `u()` with video: 1080px
+ * short edge = 1. `insets` keeps content inside what the Instagram profile
+ * grid shows of the image (see gridInsets); `padding` is the plain margin.
+ */
 export const useImageLayout = () => {
 	const {width, height} = useVideoConfig();
-	const {u} = useVideoLayout();
+	const {u, unit} = useVideoLayout();
 	const ratio = width / height;
-	return {width, height, u, wide: ratio > 1.25, tall: ratio < 0.65, padding: u(72)};
+	return {width, height, u, wide: ratio > 1.25, tall: ratio < 0.65, padding: u(72), insets: gridInsets(width, height, unit, 72)};
 };
 
 const solidInk = (color: string): Ink => ({text: color, muted: withAlpha(color, 0.78), emphasis: color});
@@ -37,7 +42,7 @@ type ImageFrameProps = {
 export const ImageFrame: React.FC<ImageFrameProps> = ({backdrop = 'canvas', branding, padding, style, children}) => {
 	const theme = useTheme();
 	const {colors} = theme;
-	const {u, padding: defaultPadding} = useImageLayout();
+	const {u, insets} = useImageLayout();
 	const gradient = theme.gradient ?? [colors.primary, colors.accent];
 	const dot = `radial-gradient(${withAlpha(colors.text, 0.09)} ${u(2.5)}px, transparent ${u(3)}px)`;
 
@@ -76,7 +81,8 @@ export const ImageFrame: React.FC<ImageFrameProps> = ({backdrop = 'canvas', bran
 		},
 	};
 	const {style: backdropStyle, ink} = backdrops[backdrop];
-	const inset = padding === undefined ? defaultPadding : u(padding);
+	// By default the content stays inside what the profile grid shows of the image.
+	const inset = padding === undefined ? `${insets.top}px ${insets.right}px ${insets.bottom}px ${insets.left}px` : u(padding);
 
 	const content = (
 		<AbsoluteFill style={{...backdropStyle, boxSizing: 'border-box', padding: inset, gap: u(36), ...style}}>

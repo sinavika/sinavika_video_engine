@@ -21,14 +21,28 @@ type SceneSeriesProps = {
 const asList = (transition: SceneTransition | SceneTransition[]): SceneTransition[] =>
 	Array.isArray(transition) ? transition : [transition];
 
-/** Plans a template's scenes for a given FPS. Also used to compute the video duration. */
+/**
+ * Plans a template's scenes for a given FPS. Also used to compute the video duration.
+ *
+ * Consecutive scenes overlap by one transition. A scene that speaks is
+ * lengthened by that overlap, so its voice has finished before the next
+ * scene's voice starts: without it, with 0.7 s cross-fades, the next line
+ * began a quarter of a second before the last one ended and the narration
+ * sounded cut and late (owner, 25 Oct 2026). Between two spoken lines there
+ * is always the lead and tail of the voice (VOICE_LEAD_SECONDS + VOICE_TAIL_SECONDS).
+ */
 export const planTemplateScenes = (
 	scenes: readonly TemplateScene[],
 	transition: SceneTransition | SceneTransition[],
 	fps: number,
-): ScenePlan => planScenes(scenes, fps, transitionSeconds(asList(transition)[0]));
+): ScenePlan => {
+	const overlap = scenes.length > 1 ? transitionSeconds(asList(transition)[0]) : 0;
+	const timed = scenes.map((scene, index) => (scene.voice?.length && index < scenes.length - 1 ? {...scene, seconds: scene.seconds + overlap} : scene));
+	return planScenes(timed, fps, overlap);
+};
 
-const CLIP_FADE_FRAMES = 2;
+/** Lines are cut at the quietest moment between words (NarrationCuts); one frame of fade is enough to keep a cut from clicking without eating the first sound. */
+const CLIP_FADE_FRAMES = 1;
 
 /** The audio of one scene: each line starts when the lines before it have had their time. */
 const SceneVoice: React.FC<{scene: TemplateScene; clips: VoiceClips}> = ({scene, clips}) => {

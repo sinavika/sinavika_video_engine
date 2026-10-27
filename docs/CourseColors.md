@@ -81,6 +81,6 @@ Kamp reels'i (`CampShort`) Reels kartlarının "Ses Olayları" görünümünü k
 | Kamp kartı ve "Sıradaki ders" kartı turuncuydu | Ders rengi |
 | Kapak turuncu zemindeydi, ders rengi yalnız bir sözcüğün altında vardı | Yeni kamp kapağı: zemin ders renginde |
 
-**Açık karar:**
-- **Kimya (`KIM`) ile Almanca (`ALM`) aynı renkte** (`#155E75`). İkisi farklı sınavlarda (TYT/AYT ve YDT), bu yüzden aynı kanalda yan yana çok gelmezler. Yine de ayırmak istenirse Almanca'ya YDT dillerinin tonunda ayrı bir renk verilmeli.
+**Karar (sahip, 25 Ekim 2026):**
+- Kimya (`KIM`) ile Almanca (`ALM`) aynı renkte (`#155E75`) kalıyor. İkisi farklı sınavlarda (TYT/AYT ve YDT), bu yüzden aynı kanalda yan yana çok gelmezler.
 - `TAR` ile `TAR1`, `COG` ile `COG1` bilerek aynı renkte: aynı dersin TYT ve AYT hâlleri.

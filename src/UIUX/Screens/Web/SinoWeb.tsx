@@ -149,7 +149,7 @@ export const WebSinoStudyScreen: React.FC = () => {
 	const tools: [UIIconName, string, string, string, string][] = [
 		['exam', 'Deneme oluştur', 'Create an exam', 'Eksiklerine göre kişisel deneme', 'A personal exam on your gaps'],
 		['cards', 'Tekrar kartları', 'Review cards', 'Notlarından Bilgi Kartları destesi', 'A deck from your notes'],
-		['quiz', 'Quiz oluştur', 'Create a quiz', '10 soru, anında açıklamalı', '10 questions, instant feedback'],
+		['quiz', 'Test oluştur', 'Create a quiz', '10 soru, anında açıklamalı', '10 questions, instant feedback'],
 		['calendar', 'Çalışma planı', 'Study plan', 'Bir haftalık konu planı', 'A one-week topic plan'],
 		['book', 'Çalışma oluştur', 'Study set', 'Konu anlatımı ve sorular', 'Explanation and questions'],
 		['note', 'Özet çıkar', 'Summarise', 'PDF ya da metinden tek sayfa', 'One page from a PDF or text'],
@@ -176,7 +176,7 @@ export const WebSinoStudyScreen: React.FC = () => {
 					))}
 				</div>
 				<div style={{flex: 1}} />
-				<Composer placeholder={t('Örnek: Mol kavramı.pdf’ten 10 soruluk quiz', 'e.g. a 10-question quiz from Mole.pdf')} />
+				<Composer placeholder={t('Örnek: Mol kavramı.pdf’ten 10 soruluk test', 'e.g. a 10-question quiz from Mole.pdf')} />
 			</div>
 		</SinoFrame>
 	);
@@ -192,11 +192,11 @@ export const WebSinoLibraryScreen: React.FC = () => {
 						{t('Kütüphanen', 'Your library')}
 					</Text>
 					<div style={{width: 400}}>
-						<Segmented items={[t('Tümü', 'All'), t('Quiz · 4', 'Quizzes · 4'), t('Deste · 2', 'Decks · 2'), t('Özet · 6', 'Notes · 6')]} />
+						<Segmented items={[t('Tümü', 'All'), t('Test · 4', 'Quizzes · 4'), t('Deste · 2', 'Decks · 2'), t('Özet · 6', 'Notes · 6')]} />
 					</div>
 				</Stack>
 				<List>
-					<ListRow module="tests" title={t('Mol kavramı quizi', 'Mole quiz')} subtitle={t('10 soru · bugün · Testler’de çöz', '10 questions · today')} />
+					<ListRow module="tests" title={t('Mol kavramı testi', 'Mole quiz')} subtitle={t('10 soru · bugün · Testler’de çöz', '10 questions · today')} />
 					<ListRow module="flashcards" title={t('Osmanlı kartları', 'Ottoman cards')} subtitle={t('24 kart · Bilgi Kartları’na eklendi', '24 cards · in Flashcards')} />
 					<ListRow module="studyPlan" title={t('Türev haftalık planı', 'Derivatives weekly plan')} subtitle={t('5 gün · Ders Planı’na eklendi', '5 days · added to plan')} />
 					<ListRow icon="note" plainIcon title={t('Hücre bölünmesi özeti', 'Cell division notes')} subtitle={t('PDF · 2 sayfa', 'PDF · 2 pages')} />

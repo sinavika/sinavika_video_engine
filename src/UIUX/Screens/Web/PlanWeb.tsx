@@ -21,7 +21,7 @@ export const WebPlanTodayScreen: React.FC = () => {
 				<WCard title={t('Görevler', 'Tasks')} action={t('+ Görev ekle', '+ Add task')}>
 					<Stack gap={10}>
 						<PlanTask module="lessons" title={t('Paragraf · Ana fikir', 'Reading · Main idea')} meta={t('Mikro ders · 25 dk · tamamlandı 09:40', 'Micro-lesson · 25 min · done 09:40')} done />
-						<PlanTask module="tests" title={t('Problemler · Seviye 2', 'Problems · Level 2')} meta={t('10 soru · 15 dk · denemeden önerildi', '10 questions · 15 min · from your exam')} now />
+						<PlanTask module="tests" title={t('Problemler · Orta', 'Problems · Medium')} meta={t('20 soru · 25 dk · denemeden önerildi', '20 questions · 25 min · from your exam')} now />
 						<PlanTask module="flashcards" title={t('Kimya kartları', 'Chemistry cards')} meta={t('20 kart · 10 dk', '20 cards · 10 min')} />
 						<PlanTask module="studyPlan" title={t('Günlük tekrar', 'Daily review')} meta={t('Dünün yanlışları · 15 dk', 'Yesterday’s mistakes · 15 min')} />
 					</Stack>
@@ -117,7 +117,7 @@ export const WebPlanSuggestionsScreen: React.FC = () => {
 					['studyPlan', t('Tekrar zamanı', 'Due for review'), t('Türev · Zincir kuralı', 'Chain rule'), t('3 gün önce %45 başarı. 15 dk tekrar.', '45% three days ago. 15-minute review.')],
 					['flashcards', t('Unutma eğrisi', 'Forgetting curve'), t('Osmanlı kartları', 'Ottoman cards'), t('10 kart unutulmak üzere.', '10 cards about to slip.')],
 					['lessons', t('Rotadan', 'From your path'), t('Rasyonel sayılar · Ders 3', 'Rationals · lesson 3'), t('Kampın 12. günü.', 'Day 12 of your camp.')],
-					['tests', t('Seviye atla', 'Level up'), t('Paragraf · Seviye 4', 'Reading · level 4'), t('Seviye 3’ü %90 ile geçtin.', 'You passed level 3 with 90%.')],
+					['tests', t('Seviye atla', 'Level up'), t('Paragraf · Zor', 'Reading · Hard'), t('Orta seviyeyi %90 ile geçtin.', 'You passed Medium with 90%.')],
 					['sinoAi', 'SinoAI', t('Kişisel deneme', 'Personal exam'), t('Eksiklerinden 30 soruluk deneme.', 'A 30-question exam on your gaps.')],
 				] as [ModuleKey, string, string, string][]).map(([key, over, title, text]) => (
 					<Card key={title} padding={18} tone="moduleLine" module={key}>
@@ -265,7 +265,7 @@ export const WebPlanFocusScreen: React.FC = () => {
 	const colors = useColors();
 	const mod = useModuleColors('studyPlan');
 	return (
-		<Immersive module="studyPlan" title={t('Odak · Problemler · Seviye 2', 'Focus · Problems · Level 2')} sub={t('Görev 2/3', 'Task 2/3')} right={<Button tone="ghost" icon="check">{t('Görevi bitir', 'Finish task')}</Button>}>
+		<Immersive module="studyPlan" title={t('Odak · Problemler · Orta', 'Focus · Problems · Medium')} sub={t('Görev 2/3', 'Task 2/3')} right={<Button tone="ghost" icon="check">{t('Görevi bitir', 'Finish task')}</Button>}>
 			<Stack align="center" justify="center" gap={22} style={{flex: 1, background: `radial-gradient(60% 60% at 50% 40%, ${mod.wash} 0%, ${colors.card} 70%)`}}>
 				<Ring value={0.62} size={340} stroke={20} color={mod.color} track={mod.track}>
 					<Stack align="center" gap={6}>

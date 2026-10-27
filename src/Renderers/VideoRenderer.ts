@@ -9,7 +9,7 @@ import {VIDEO_COVER} from '../Configurations/VideoCover';
 import {VIDEO_ENCODING} from '../Configurations/VideoFormats';
 import {planTemplateScenes} from '../Scenes/SceneSeries';
 import {sceneChapters, type Chapter} from '../Scenes/SceneChapters';
-import {VOICE_LEAD_SECONDS} from '../Scenes/Voiceover';
+import {VOICE_LEAD_SECONDS, type VoiceClips} from '../Scenes/Voiceover';
 import {AUDIO_LEVELS, ffmpeg, masterFilter, measureLoudness} from '../Services/AudioLeveling';
 import type {SpeechBackend} from '../Services/ElevenLabsSpeech';
 import {writeMusicBed} from '../Services/MusicLibrary';
@@ -49,6 +49,8 @@ export type RenderOptions = {
 	withoutVoiceover?: boolean;
 	/** Replaces ElevenLabs. Used by tests to stay offline. */
 	speech?: SpeechBackend;
+	/** Only these frames, first and last included: a short preview of one part of a long video. */
+	frameRange?: [number, number];
 };
 
 export type RenderResult = {
@@ -280,6 +282,7 @@ export const renderVideo = async (rawJob: unknown, options: RenderOptions): Prom
 			scale: job.scale,
 			chromiumOptions: CHROMIUM_OPTIONS,
 			concurrency: options.concurrency ?? null,
+			frameRange: options.frameRange ?? null,
 			onBrowserLog: collectWarnings(warnings),
 			onProgress: ({progress, renderedFrames, encodedFrames, stitchStage}) =>
 				options.onProgress?.({
@@ -401,10 +404,13 @@ export type SceneFrame = {
 	enteringFrame: number;
 };
 
-/** Representative frames of every scene, for layout checks without encoding a video. */
-export const sceneFrames = (rawJob: unknown): SceneFrame[] => {
+/**
+ * Representative frames of every scene, for layout checks without encoding a video. Give the narration's clips
+ * (narrateVideoJob) for the frames of the video as it will be: without them the scenes are timed by estimate.
+ */
+export const sceneFrames = (rawJob: unknown, voiceClips?: VoiceClips): SceneFrame[] => {
 	const job = resolveVideoJob(rawJob);
-	const scenes = job.template.buildScenes(job.inputProps.content);
+	const scenes = job.template.buildScenes(job.inputProps.content, voiceClips ?? job.inputProps.voiceClips);
 	const plan = planTemplateScenes(scenes, job.template.transition, job.fps);
 	return plan.scenes.map((scene, index) => ({
 		sceneId: scene.id,

@@ -62,15 +62,17 @@ const PLAIN_TEXT: [RegExp, string][] = [
  * Exam abbreviations and brand names are said as Turkish speakers say them,
  * not spelled letter by letter or read as a word: "TYT" is "teyete" (owner,
  * 25 Oct 2026: the voice got it wrong). On screen the abbreviation stays.
- * A suffix after an apostrophe still works: "TYT'de" is read "teyete'de".
- * Add a new abbreviation here, never in a script.
+ * A suffix joins the reading without its apostrophe, so it is said as one
+ * word: "YKS'nin" is read "yekasenin", "TYT'de" "teyetede". With the
+ * apostrophe the voice paused inside the word and "yekase" did not come
+ * through (owner, 26 Oct 2026). Add a new abbreviation here, never in a script.
  */
 const ABBREVIATIONS: [RegExp, string][] = [
-	[/\bYKS\b/g, 'yekase'],
-	[/\bKPSS\b/g, 'kapesese'],
-	[/\bTYT\b/g, 'teyete'],
-	[/\bAYT\b/g, 'ayete'],
-	[/\bYDT\b/g, 'yedete'],
+	[/\bYKS(?:['’](?=\p{L}))?\b/gu, 'yekase'],
+	[/\bKPSS(?:['’](?=\p{L}))?\b/gu, 'kapesese'],
+	[/\bTYT(?:['’](?=\p{L}))?\b/gu, 'teyete'],
+	[/\bAYT(?:['’](?=\p{L}))?\b/gu, 'ayete'],
+	[/\bYDT(?:['’](?=\p{L}))?\b/gu, 'yedete'],
 	[/\bSinoAI\b/g, 'Sino Ey Ay'],
 ];
 

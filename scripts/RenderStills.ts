@@ -12,7 +12,7 @@ import path from 'node:path';
 import {parseArgs} from 'node:util';
 import {VIDEO_FORMAT_IDS} from '../src/Configurations/VideoFormats';
 import {resolveVideoJob} from '../src/Renderers/VideoJob';
-import {renderFrame, sceneFrames} from '../src/Renderers/VideoRenderer';
+import {narrateVideoJob, renderFrame, sceneFrames} from '../src/Renderers/VideoRenderer';
 import {findTemplate} from '../src/Templates/TemplateRegistry';
 
 const {values} = parseArgs({
@@ -40,17 +40,21 @@ let warningCount = 0;
 for (const format of formats) {
 	const job = {...baseJob, format, quality: values.quality, ...(values.theme ? {theme: values.theme} : {})};
 	const resolved = resolveVideoJob(job);
-	for (const [index, scene] of sceneFrames(job).entries()) {
+	// Scenes are timed by the narration, as in the video; without it a frame number points at another scene.
+	const narrated = await narrateVideoJob(resolved);
+	const scenes = sceneFrames(job, narrated.inputProps.voiceClips);
+	for (const [index, scene] of scenes.entries()) {
 		const fileName = `${format}-${resolved.inputProps.theme}-${index + 1}-${scene.sceneId}.png`;
 		const result = await renderFrame(job, {
 			outputPath: path.join(values.out, resolved.template.id, fileName),
 			frame: scene.frame,
-			withoutVoiceover: true,
 		});
 		console.log(`${result.outputPath} (kare ${result.frame})`);
 		result.warnings.forEach((warning) => console.warn(`  Uyarı: ${warning}`));
 		warningCount += result.warnings.length;
 	}
+	const last = scenes.at(-1);
+	if (last) console.log(`${format}: ${((last.frame / 0.8) / resolved.fps / 60).toFixed(1)} dk civarı (seslendirmeye göre)`);
 }
 
 console.log(warningCount === 0 ? 'Uyarı yok.' : `${warningCount} uyarı var.`);

@@ -146,16 +146,12 @@ export const ModuleSlide: React.FC<{module: ModuleKey; height?: number; title?: 
 /** The hub carousel: one slide per module, dots in the module colours. */
 export const ModuleCarousel: React.FC<{active?: ModuleKey; height?: number}> = ({active = 'exam', height}) => {
 	const index = MODULE_ORDER.indexOf(active);
-	const next = MODULE_ORDER[(index + 1) % MODULE_ORDER.length];
+	// One slide at the full content width, the dots below tell there are more. The next slide peeking in at the
+	// edge read as a slide that did not sit right (owner, 26 Oct 2026).
 	return (
 		<Stack gap={12}>
 			<div style={{position: 'relative', height: height ?? 196}}>
-				<div style={{position: 'absolute', left: 0, right: 34, top: 0}}>
-					<ModuleSlide module={active} height={height} />
-				</div>
-				<div style={{position: 'absolute', left: W - 46, width: 300, top: 0, opacity: 0.9}}>
-					<ModuleSlide module={next} height={height} />
-				</div>
+				<ModuleSlide module={active} height={height} />
 			</div>
 			<Dots count={MODULE_ORDER.length} active={index} colors={MODULE_ORDER.map((key) => (MODULES[key].color.light))} />
 		</Stack>

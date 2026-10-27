@@ -19,7 +19,7 @@ Sınırlar: başlık 30, kısa açıklama 80, uzun açıklama 4000 karakter. Ana
 Sınav hazırlığın tek yerde. Sınavika; YKS (TYT, AYT, YDT) ve KPSS (Lisans, Önlisans, Ortaöğretim) için deneme, konu anlatımı, test, çalışma planı ve yapay zekâ desteğini tek uygulamada toplar.
 
 SENİ TANIYAN YAPAY ZEKÂ: SİNOAI
-Takıldığın konuyu sor! SinoAI hedefini, eksiklerini ve geçmiş çalışmalarını bilerek yanıtlar. Kendi notlarını ve kaynaklarını yükle; SinoAI onlardan konu anlatımı, quiz, deneme ve bilgi kartı hazırlar.
+Takıldığın konuyu sor! SinoAI hedefini, eksiklerini ve geçmiş çalışmalarını bilerek yanıtlar. Kendi notlarını ve kaynaklarını yükle; SinoAI onlardan konu anlatımı, test, deneme ve bilgi kartı hazırlar.
 
 FOTOĞRAFINI ÇEK, ÇÖZÜMÜNÜ ÖĞREN
 Çözemediğin sorunun fotoğrafını çek. Akıllı Özet çözümü adım adım gösterir, kazanımı ve hatanı söyler. İstersen çözümü videolu anlatımla izle.

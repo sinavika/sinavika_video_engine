@@ -38,6 +38,23 @@ describe('product messaging', () => {
 		expect(assertProductCopy(['SinoAI’ye sor.'])).toEqual([]);
 	});
 
+	it('says "test", never "quiz", in Turkish, and leaves English alone', () => {
+		const terms = (text: string) => checkProductCopy(text).map((issue) => issue.term);
+		expect(terms('Notunu at. Quiz olsun.')).toEqual(['Quiz']);
+		expect(terms('10 soruluk quiz hazır')).toEqual(['quiz']);
+		expect(terms("Quiz'i tamamlamadan geri bildirim veremezsin.")).toEqual(["Quiz'i"]);
+		expect(terms('Planını, quizini ve kartlarını hazırlar.')).toEqual(['quizini']);
+		expect(terms('Notlarından 10 soruluk test hazır.')).toEqual([]);
+		expect(terms('Make a 10-question quiz from these notes')).toEqual([]);
+		expect(terms('Lessons, quizzes and mock exams')).toEqual([]);
+	});
+
+	it('calls SinoAI’s library by its app name, Kütüphane (Tuğçe, 26 Oct 2026)', () => {
+		const terms = (text: string) => checkProductCopy(text).map((issue) => issue.term);
+		expect(terms('Ürettiği her şey Kitaplığında durur.')).toEqual(['Kitaplığında']);
+		expect(terms('Ürettiği her şey kütüphanende durur.')).toEqual([]);
+	});
+
 	it('keeps the store pictures, ads and image templates within the rules', () => {
 		const texts = [
 			...strings(STORE_SLIDES),

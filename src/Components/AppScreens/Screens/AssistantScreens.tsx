@@ -117,7 +117,7 @@ export const SinoAiScreen: React.FC<{chat?: SinoAiChat}> = ({chat}) => {
 	const t = useAppText();
 	const lang = useAppLanguage();
 	const shown = chat ?? SAMPLE_CHAT[lang];
-	const tools = [t('Çalışma oluştur', 'Create a study set'), t('Quiz oluştur', 'Create a quiz'), t('Tekrar kartları oluştur', 'Create review cards')];
+	const tools = [t('Çalışma oluştur', 'Create a study set'), t('Test oluştur', 'Create a quiz'), t('Tekrar kartları oluştur', 'Create review cards')];
 	return (
 		<AppScreenFrame module="SinoAi" title="SinoAI" trailing={<AppChip tone="neutral">{t('Sohbet', 'Chat')}</AppChip>}>
 			<div style={{alignSelf: 'flex-end', maxWidth: '78%', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 6}}>

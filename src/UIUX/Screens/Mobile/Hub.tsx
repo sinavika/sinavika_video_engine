@@ -71,12 +71,16 @@ export const HubScrolledScreen: React.FC = () => (
 	</Phone>
 );
 
-/** Product tour over the hub: four steps, shown once, can be skipped. */
+/**
+ * Product tour over the hub: four steps, shown once, can be skipped. Each hole frames whole elements (the slide
+ * with its dots, both card rows, the SinoAI card) with an even margin; holes that cut cards in half or took in
+ * a second slide looked unfinished (owner, 26 Oct 2026).
+ */
 const tourSteps = [
-	{hole: {x: 18, y: 168, w: 354, h: 214, r: 26}, title: ['Her gün buradan başla', 'Start here every day'], text: ['Kaydırınca her modülün bugün sana ne hazırladığını görürsün. Noktaların rengi modülün rengi.', 'Swipe to see what each module has for you today. Each dot is a module colour.'], below: true},
-	{hole: {x: 14, y: 400, w: 362, h: 268, r: 22}, title: ['Modüller hep aynı yerde', 'Modules, always in the same place'], text: ['Her modülün kendi rengi var: kartta, sekmede ve sayfanın arka planında aynı renk.', 'Every module has its colour: on its card, its tabs and its pages.'], below: false},
+	{hole: {x: 12, y: 160, w: 366, h: 230, r: 30}, title: ['Her gün buradan başla', 'Start here every day'], text: ['Kaydırınca her modülün bugün sana ne hazırladığını görürsün. Noktaların rengi modülün rengi.', 'Swipe to see what each module has for you today. Each dot is a module colour.'], below: true},
+	{hole: {x: 12, y: 390, w: 366, h: 350, r: 26}, title: ['Modüller hep aynı yerde', 'Modules, always in the same place'], text: ['Her modülün kendi rengi var: kartta, sekmede ve sayfanın arka planında aynı renk.', 'Every module has its colour: on its card, its tabs and its pages.'], below: false},
 	{hole: {x: 8, y: 60, w: 50, h: 50, r: 25}, title: ['Profil ve ayarlar', 'Profile and settings'], text: ['Hedefin, aboneliğin, görünüm ve destek burada. Hakkında da burada.', 'Your goal, plan, appearance and support live here.'], below: true, arrow: 0.06},
-	{hole: {x: 14, y: 538, w: 362, h: 134, r: 22}, title: ['Takıldığın yerde SinoAI', 'SinoAI when you are stuck'], text: ['Soru sor, konu anlattır, notlarından quiz ve kart üret.', 'Ask, get a topic explained, turn notes into quizzes and cards.'], below: false},
+	{hole: {x: 12, y: 545, w: 366, h: 146, r: 26}, title: ['Takıldığın yerde SinoAI', 'SinoAI when you are stuck'], text: ['Soru sor, konu anlattır, notlarından test ve kart üret.', 'Ask, get a topic explained, turn notes into quizzes and cards.'], below: false},
 ] as const;
 
 const TourScreen: React.FC<{step: number}> = ({step}) => {

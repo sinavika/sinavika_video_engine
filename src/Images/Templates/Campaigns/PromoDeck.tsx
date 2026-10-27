@@ -1,6 +1,6 @@
 import React from 'react';
 import {z} from 'zod';
-import {AbsoluteFill, useVideoConfig} from 'remotion';
+import {AbsoluteFill} from 'remotion';
 import {findConcept, type AdExam} from '../../../Ads/Google/GoogleAdsPlan';
 import {ProofCard} from '../../../Ads/Google/ProofCard';
 import {BrandMark} from '../../../Components/Overlays/BrandMark';
@@ -11,7 +11,9 @@ import {PhoneShot, BrowserShot} from '../../../Templates/Advertisements/PromoKit
 import {PROMO_PHONE_SCREEN_NAMES, PROMO_PHONE_SCREENS, PROMO_WEB_SCREEN_NAMES, PROMO_WEB_SCREENS} from '../../../Templates/Advertisements/PromoKit/PromoScreens';
 import {Icon} from '../../../UIUX/Icons';
 import {MODULES, MODULE_ORDER, type ModuleKey} from '../../../UIUX/ModuleIdentity';
+import {useImageLayout} from '../../Components/ImageFrame';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
+import {GRID_ICON_ROOM} from '../ProfileGrids/ProfileGridLayout';
 
 /**
  * The promotion campaign's posts (Ekim 2026): one schema, six looks, so each
@@ -23,6 +25,11 @@ import {defineImageTemplate} from '../../ImageTemplateDefinition';
  * - rail:     paper, big step numbers on a rail
  * - browser:  warm dark desk light, the web panel in a browser window
  * - persona:  bold colour blocks, one kind of student per slide
+ *
+ * Everything stays inside what the profile grid shows of the post and clear
+ * of Instagram's corner icon (gridInsets). A title can mark one word or
+ * phrase (`emphasis`) on the accent, chosen for what the post sells, never
+ * the last word by default (Tuğçe's review, 26 Oct 2026).
  *
  * No page counter or progress bar (carousel rule). A cover may carry a
  * small "Kaydır" cue when its job asks for one (`swipe`), as the brand owner
@@ -36,6 +43,8 @@ const SlideSchema = z.object({
 	kind: z.enum(['cover', 'feature', 'step', 'persona', 'proof', 'closing']),
 	kicker: plainText(30).optional(),
 	title: plainText(70),
+	/** The word or phrase of the title set on the accent, e.g. the verb the post sells ("çöz"). Must appear in the title. */
+	emphasis: plainText(30).optional(),
 	text: plainText(140).optional(),
 	module: z.enum(MODULE_KEYS).optional(),
 	icon: z.enum(ICONS).optional(),
@@ -48,7 +57,7 @@ const SlideSchema = z.object({
 	fan: z.boolean().optional(),
 	/** On a cover: a small "Kaydır" cue, bottom right. */
 	swipe: z.boolean().optional(),
-});
+}).refine((slide) => !slide.emphasis || slide.title.includes(slide.emphasis), {path: ['emphasis'], message: 'emphasis must be a part of the title.'});
 type Slide = z.infer<typeof SlideSchema>;
 
 const PromoDeckSchema = z.object({
@@ -83,6 +92,34 @@ const groundOf = (content: Content, slide: Slide): string => {
 	return LOOK[content.look].ground;
 };
 
+/** The title, with its `emphasis` set white on the accent like the reel covers. */
+const Title: React.FC<{slide: Slide; accent: string}> = ({slide, accent}) => {
+	if (!slide.emphasis) return <>{slide.title}</>;
+	const at = slide.title.indexOf(slide.emphasis);
+	// Punctuation right after the marked words goes on the mark too ("çöz."), as on the reel covers.
+	const end = at + slide.emphasis.length + (slide.title.slice(at + slide.emphasis.length).match(/^[.!?…]+/)?.[0].length ?? 0);
+	return (
+		<>
+			{slide.title.slice(0, at)}
+			<span style={{background: accent, color: '#FFFFFF', padding: '0 0.12em', borderRadius: '0.12em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone'}}>{slide.title.slice(at, end)}</span>
+			{slide.title.slice(end)}
+		</>
+	);
+};
+
+/**
+ * A big step number in a box of fixed width, centred, in tabular figures. A
+ * narrow "1" set left-aligned looked smaller than "2" and "3" (Tuğçe's review,
+ * 26 Oct 2026); narrow figures also get a slight optical boost.
+ */
+const StepNumber: React.FC<{value: string; color: string}> = ({value, color}) => (
+	<div style={{width: 240, display: 'flex', justifyContent: 'center'}}>
+		<Text variant="display" size={300} weight={TYPE.weights.kinetic} color={color} align="center" style={{lineHeight: 0.9, letterSpacing: '-0.04em', fontVariantNumeric: 'tabular-nums lining-nums', transform: /^[17]$/.test(value) ? 'scale(1.08)' : undefined}}>
+			{value}
+		</Text>
+	</div>
+);
+
 const Abs: React.FC<{x: number; y: number; w?: number; style?: React.CSSProperties; children: React.ReactNode}> = ({x, y, w, style, children}) => <div style={{position: 'absolute', left: x, top: y, width: w, ...style}}>{children}</div>;
 
 const Phone: React.FC<{screen: Slide['phone']; width: number; rotate?: number}> = ({screen, width, rotate}) => {
@@ -111,9 +148,10 @@ const Browser: React.FC<{screen: Slide['web']; width: number}> = ({screen, width
 
 /** The persona cover: one tile per student type of the deck, in its module's colour, so the first slide already asks "which one are you?". */
 const PersonaGrid: React.FC<{content: Content; height: number}> = ({content, height}) => {
+	const {insets} = useImageLayout();
 	const people = content.slides.filter((slide) => slide.kind === 'persona').slice(0, 4);
 	return (
-		<div style={{position: 'absolute', left: 80, right: 80, top: height * 0.36, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28}}>
+		<div style={{position: 'absolute', left: insets.left, right: insets.right, top: height * 0.36, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28}}>
 			{people.map((person, index) => (
 				<div key={person.kicker ?? index} style={{height: height * 0.2, borderRadius: 36, background: PROOF_GROUND[person.module ?? content.module] ?? PROOF_GROUND.exam, padding: 30, boxSizing: 'border-box', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxShadow: '0 30px 50px -30px rgba(0,0,0,0.6)', transform: `rotate(${index % 2 === 0 ? -1.5 : 1.5}deg)`}}>
 					<div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
@@ -134,8 +172,10 @@ const PersonaGrid: React.FC<{content: Content; height: number}> = ({content, hei
 };
 
 /** "Kaydır →": the cover's invitation to swipe. */
-const SwipeCue: React.FC<{height: number; ink: string}> = ({height, ink}) => (
-	<div style={{position: 'absolute', right: 80, top: height - 150, display: 'flex', alignItems: 'center', gap: 14, padding: '16px 26px', borderRadius: 999, background: 'rgba(255,255,255,0.14)', border: '2px solid rgba(255,255,255,0.28)'}}>
+const SwipeCue: React.FC<{height: number; ink: string}> = ({height, ink}) => {
+	const {insets} = useImageLayout();
+	return (
+	<div style={{position: 'absolute', right: insets.right, top: height - 150, display: 'flex', alignItems: 'center', gap: 14, padding: '16px 26px', borderRadius: 999, background: 'rgba(255,255,255,0.14)', border: '2px solid rgba(255,255,255,0.28)'}}>
 		<Text size={32} weight={TYPE.weights.strong} color={ink}>
 			Kaydır
 		</Text>
@@ -143,9 +183,14 @@ const SwipeCue: React.FC<{height: number; ink: string}> = ({height, ink}) => (
 			<path d="M2 12 H36 M26 2 L36 12 L26 22" />
 		</svg>
 	</div>
-);
+	);
+};
 
-/** The fanned module cards of the floating cover. */
+/**
+ * The fanned module cards of the floating cover, spaced to stay inside what the profile grid shows (the outer cards
+ * were cut, 26 Oct 2026). The middle card lies on top; cards right of it carry their name on the right, where no
+ * neighbour covers it.
+ */
 const Fan: React.FC<{height: number}> = ({height}) => {
 	const keys = MODULE_ORDER;
 	return (
@@ -153,11 +198,11 @@ const Fan: React.FC<{height: number}> = ({height}) => {
 			{keys.map((key, index) => {
 				const offset = index - (keys.length - 1) / 2;
 				return (
-					<div key={key} style={{position: 'absolute', left: '50%', top: 60 + offset * offset * 16, width: 176, height: 240, marginLeft: -88, transform: `translateX(${offset * 132}px) rotate(${offset * 5}deg)`, transformOrigin: '50% 120%', borderRadius: 36, background: '#FFFFFF', boxShadow: '0 30px 60px -28px rgba(15,23,42,0.35)', border: `2px solid ${LINE}`, padding: 20, boxSizing: 'border-box', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 10 + Math.round(offset)}}>
+					<div key={key} style={{position: 'absolute', left: '50%', top: 60 + offset * offset * 12, width: 146, height: 210, marginLeft: -73, transform: `translateX(${offset * 108}px) rotate(${offset * 4}deg)`, transformOrigin: '50% 120%', borderRadius: 36, background: '#FFFFFF', boxShadow: '0 30px 60px -28px rgba(15,23,42,0.35)', border: `2px solid ${LINE}`, padding: 14, boxSizing: 'border-box', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: offset > 0 ? 'flex-end' : 'flex-start', textAlign: offset > 0 ? 'right' : 'left', zIndex: 10 - Math.abs(Math.round(offset))}}>
 						<div style={{width: 62, height: 62, borderRadius: 20, background: `${moduleColor(key)}1F`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 							<Icon name={MODULES[key].icon} size={34} color={moduleColor(key)} stroke={2} />
 						</div>
-						<Text size={24} weight={TYPE.weights.display} color={INK} style={{lineHeight: 1.1}}>
+						<Text size={20} weight={TYPE.weights.display} color={INK} align={offset > 0 ? 'right' : 'left'} style={{lineHeight: 1.1, wordBreak: 'keep-all', overflowWrap: 'normal'}}>
 							{MODULES[key].name.tr}
 						</Text>
 					</div>
@@ -186,15 +231,25 @@ const Closing: React.FC<{content: Content; slide: Slide; height: number}> = ({co
 };
 
 const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, page}) => {
-	const {height} = useVideoConfig();
+	const {width: canvasWidth, height, insets} = useImageLayout();
+	// Left and right edges of the content: inside what the profile grid shows, with a margin.
+	const L = insets.left;
+	const R = canvasWidth - insets.right;
 	const slide = content.slides[Math.min(page, content.slides.length - 1)];
 	const paint = LOOK[content.look];
 	const ground = groundOf(content, slide);
 	const color = moduleColor(slide.module ?? content.module);
 	const tall = height > 1200;
+	// Big for a cover or a single post, a step smaller when the title is long: the column is narrower now that it
+	// keeps clear of the grid's edges and corner icon, and a long title must not run into the phone below.
+	const lead = slide.kind === 'cover' || content.slides.length === 1;
+	const titleSize = slide.title.length > 40 ? (lead ? 76 : 60) : lead ? 92 : 72;
+	// Where the picture below the title may start: under the title's rows.
+	const titleRows = Math.ceil((slide.title.length * titleSize * 0.58) / (R - L - GRID_ICON_ROOM));
+	const below = (tall ? 96 : 80) + (slide.kicker ? 80 : 0) + titleRows * titleSize * 1.06 + (slide.text ? 120 : 0) + 60;
 
 	const header = (
-		<Abs x={80} y={tall ? 96 : 80} w={920}>
+		<Abs x={L} y={tall ? 96 : 80} w={R - L - GRID_ICON_ROOM}>
 			{slide.kicker ? (
 				<div style={{display: 'inline-flex', alignItems: 'center', gap: 12, padding: '12px 22px', borderRadius: 999, background: content.look === 'proof' || content.look === 'persona' ? 'rgba(255,255,255,0.18)' : content.look === 'browser' ? 'rgba(255,255,255,0.1)' : `${color}14`, marginBottom: 26}}>
 					{slide.icon ? <Icon name={slide.icon} size={30} color={content.look === 'proof' || content.look === 'persona' || content.look === 'browser' ? '#FFFFFF' : color} stroke={2.2} /> : null}
@@ -203,8 +258,8 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 					</Text>
 				</div>
 			) : null}
-			<Text variant="display" size={slide.kind === 'cover' ? 92 : 72} weight={TYPE.weights.kinetic} color={paint.ink} style={{lineHeight: 1.04, letterSpacing: '-0.03em'}}>
-				{slide.title}
+			<Text variant="display" size={titleSize} weight={TYPE.weights.kinetic} color={paint.ink} style={{lineHeight: 1.04, letterSpacing: '-0.03em'}}>
+				<Title slide={slide} accent={content.look === 'proof' || content.look === 'persona' ? INK : ORANGE} />
 			</Text>
 			{slide.text ? (
 				<div style={{marginTop: 22}}>
@@ -232,28 +287,25 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 		const concept = findConcept(exam, id);
 		body = (
 			<>
+				{/* The phone fills the ground: an empty field of colour read as a stain (Tuğçe's review, 26 Oct 2026). */}
 				{slide.phone ? (
-					<Abs x={560} y={height * 0.42}>
-						<Phone screen={slide.phone} width={fit(height * 0.42, 430)} rotate={4} />
+					<Abs x={R - fit(height * 0.3, 600)} y={height * 0.3}>
+						<Phone screen={slide.phone} width={fit(height * 0.3, 600)} rotate={4} />
 					</Abs>
 				) : null}
-				<ProofCard proof={concept.proof} width={440} scale={1.25} style={{left: 70, top: height * 0.5}} />
+				<ProofCard proof={concept.proof} width={440} scale={1.25} style={{left: L, top: height * 0.52}} />
 			</>
 		);
 	} else if (slide.kind === 'step') {
-		const top = height * 0.3;
+		const top = Math.max(height * 0.3, below);
 		const width = fit(top, 520);
 		body = (
 			<>
-				<Abs x={80} y={height * 0.4}>
-					<div style={{display: 'flex', alignItems: 'center', gap: 30}}>
-						<Text variant="display" size={300} weight={TYPE.weights.kinetic} color={paint.accent} style={{lineHeight: 0.9, letterSpacing: '-0.06em'}}>
-							{slide.number ?? ''}
-						</Text>
-					</div>
-					<div style={{width: 8, height: height * 0.3, background: `${paint.accent}33`, borderRadius: 4, marginLeft: 60, marginTop: 20}} />
+				<Abs x={L - 30} y={height * 0.4}>
+					<StepNumber value={slide.number ?? ''} color={paint.accent} />
+					<div style={{width: 8, height: height * 0.3, background: `${paint.accent}33`, borderRadius: 4, marginLeft: 116, marginTop: 20}} />
 				</Abs>
-				<Abs x={1080 - 110 - width} y={top}>
+				<Abs x={R - width} y={top}>
 					<Phone screen={slide.phone} width={width} />
 				</Abs>
 			</>
@@ -261,7 +313,7 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 	} else if (slide.kind === 'persona') {
 		body = (
 			<>
-				<Abs x={80} y={height * 0.42}>
+				<Abs x={L} y={height * 0.42}>
 					<div style={{width: 240, height: 240, borderRadius: 72, background: 'rgba(255,255,255,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 						<Icon name={slide.icon ?? 'grad'} size={140} color="#FFFFFF" stroke={1.6} />
 					</div>
@@ -273,22 +325,22 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 		);
 	} else if (slide.web) {
 		body = (
-			<Abs x={content.look === 'browser' ? 60 : 80} y={height * (tall ? 0.42 : 0.4)}>
+			<Abs x={content.look === 'browser' ? L - 20 : L} y={height * (tall ? 0.42 : 0.4)}>
 				<Browser screen={slide.web} width={content.look === 'browser' ? 1180 : 1000} />
 			</Abs>
 		);
 	} else if (slide.phone) {
 		const tilt = content.look === 'floating' ? (page % 2 ? -6 : 6) : 0;
-		const top = height * (tall ? (slide.kind === 'cover' ? 0.33 : 0.3) : 0.31);
+		const top = Math.max(height * (tall ? (slide.kind === 'cover' ? 0.33 : 0.3) : 0.31), below);
 		const width = fit(top, content.look === 'tool' ? 580 : 660);
 		body = (
-			<Abs x={content.look === 'tool' ? (1080 - width) / 2 : page % 2 ? 90 : 1080 - 90 - width} y={top}>
+			<Abs x={content.look === 'tool' ? (canvasWidth - width) / 2 : page % 2 ? L : R - width} y={top}>
 				<Phone screen={slide.phone} width={width} rotate={tilt} />
 			</Abs>
 		);
 	} else if (slide.icon && content.look === 'tool') {
 		body = (
-			<Abs x={0} y={height * 0.45} w={1080}>
+			<Abs x={0} y={height * 0.45} w={canvasWidth}>
 				<div style={{display: 'flex', justifyContent: 'center'}}>
 					<div style={{width: 380, height: 380, borderRadius: 120, background: '#F1F5F9', border: `2px solid ${LINE}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 						<Icon name={slide.icon} size={190} color={INK} stroke={1.3} />
@@ -303,7 +355,7 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 			{body}
 			{header}
 			{slide.kind === 'cover' && !slide.phone && !slide.web ? (
-				<Abs x={80} y={height - 120}>
+				<Abs x={L} y={height - insets.bottom - 50}>
 					<BrandMark size="chrome" color={paint.ink} />
 				</Abs>
 			) : null}

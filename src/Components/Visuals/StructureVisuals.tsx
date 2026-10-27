@@ -1,14 +1,12 @@
 import React from 'react';
 import {useVideoLayout} from '../Layouts/VideoLayout';
 import {RichText} from '../Typography/RichText';
-import {mixColors} from '../../Themes/ColorPalette';
 import {withAlpha} from '../../Themes/Theme';
 import {useReveal, useVisualPalette, type VisualBoxProps} from './VisualFrame';
-import {useElementState} from './VisualTimeline';
+import {useElementState, UNFOCUSED_FADE} from './VisualTimeline';
 import type {CourseVisual} from './VisualSchemas';
 import {BRAND_TYPOGRAPHY} from '../../Configurations/BrandTypography';
 
-type Sentence = Extract<CourseVisual, {kind: 'sentence'}>;
 type Comparison = Extract<CourseVisual, {kind: 'comparison'}>;
 type Table = Extract<CourseVisual, {kind: 'table'}>;
 type Venn = Extract<CourseVisual, {kind: 'venn'}>;
@@ -18,57 +16,14 @@ type Venn = Extract<CourseVisual, {kind: 'venn'}>;
  * `show`s comes in with that beat; a part a beat `focus`es turns to the
  * lesson colour and grows a little while the rest dims. Part names:
  *
- *   sentence     w1, w2, ... one per word tile, left to right
+ *   sentence     w1, w2, ... one per word tile, left to right (LanguageVisuals)
  *   comparison   c1, c2, c3 the columns; c1-1, c1-2, ... the items of a column
  *   table        r1, r2, ... the rows; col1, col2, ... the columns (with their header)
  *
  * Without beats nothing changes: the parts build themselves in their first seconds.
  * These visuals take the width of their box; CourseVisual lets them grow to fill it.
  */
-const partLook = (state: {appear: number; emphasis: number; dim: number}) => ({opacity: state.appear * (1 - 0.45 * state.dim), emphasis: state.emphasis});
-
-/**
- * A sentence taken apart: each part on its own tile, the parts that matter
- * in the lesson colour, and the role of each part (Özne, Yüklem, Subject...)
- * under it. Parts appear left to right, as they are read.
- */
-export const SentenceVisual: React.FC<VisualBoxProps & {visual: Sentence}> = ({visual, delaySeconds = 0}) => {
-	const palette = useVisualPalette();
-	const {u} = useVideoLayout();
-	const translation = useReveal(delaySeconds + 0.3 + visual.parts.length * 0.22, 0.4);
-	return (
-		<div style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(30)}}>
-			<div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: u(14)}}>
-				{visual.parts.map((part, index) => (
-					<SentencePart key={index} {...part} id={`w${index + 1}`} delaySeconds={delaySeconds + index * 0.22} />
-				))}
-			</div>
-			{visual.translation ? (
-				<div style={{fontFamily: palette.fontBody, fontStyle: 'italic', fontSize: u(32), color: palette.muted, opacity: translation, textAlign: 'center'}}>{visual.translation}</div>
-			) : null}
-		</div>
-	);
-};
-
-const SentencePart: React.FC<Sentence['parts'][number] & {id: string; delaySeconds: number}> = ({id, text, role, highlight, delaySeconds}) => {
-	const palette = useVisualPalette();
-	const {u} = useVideoLayout();
-	const show = useReveal(delaySeconds, 0.35, 'overshoot');
-	const look = partLook(useElementState(id));
-	// A focused tile takes the lesson colour, as a highlighted one does; the role under it follows.
-	const lit = highlight ? 1 : look.emphasis;
-	const fill = mixColors(palette.surface, palette.lesson, lit);
-	const ink = lit > 0.5 ? palette.onLesson : palette.onSurface;
-	const rise = Math.min(1, show);
-	return (
-		<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(10), opacity: rise * look.opacity, transform: `translateY(${(1 - show) * u(24) - look.emphasis * u(10)}px) scale(${1 + 0.1 * look.emphasis})`}}>
-			<div style={{padding: `${u(14)}px ${u(22)}px`, borderRadius: u(16), backgroundColor: fill, color: ink, border: `${u(3)}px solid ${lit > 0.5 ? palette.lesson : palette.border}`, fontFamily: palette.fontDisplay, fontWeight: 800, fontSize: u(46), lineHeight: 1.1, boxShadow: look.emphasis > 0 ? `0 ${u(10)}px ${u(26)}px ${withAlpha(palette.lesson, 0.3 * look.emphasis)}` : 'none'}}>{text}</div>
-			{role ? (
-				<div style={{borderTop: `${u(4)}px solid ${lit > 0.5 ? palette.lesson : palette.axis}`, paddingTop: u(6), fontFamily: palette.fontBody, fontWeight: 700, fontSize: u(24), color: lit > 0.5 ? palette.lesson : palette.muted, textTransform: 'uppercase', letterSpacing: '0.04em'}}>{role}</div>
-			) : null}
-		</div>
-	);
-};
+export const partLook = (state: {appear: number; emphasis: number; dim: number}) => ({opacity: state.appear * (1 - UNFOCUSED_FADE * state.dim), emphasis: state.emphasis});
 
 /** Colours of the columns of a comparison and the sets of a Venn diagram: the lesson, the ink, the lesson's deep tone. No brand orange (docs/CourseColors.md). */
 const COMPARISON_ACCENTS = (palette: ReturnType<typeof useVisualPalette>): [string, string, string] => [palette.lesson, palette.ink, palette.lessonDeep];
@@ -90,24 +45,30 @@ const ComparisonColumn: React.FC<{id: string; column: Comparison['columns'][numb
 	const palette = useVisualPalette();
 	const {u} = useVideoLayout();
 	const show = useReveal(delaySeconds, 0.4);
-	const look = partLook(useElementState(id));
+	const state = useElementState(id);
+	const look = partLook(state);
 	return (
 		<div style={{flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', borderRadius: u(28), overflow: 'hidden', backgroundColor: palette.surface, border: `${u(3)}px solid ${palette.border}`, boxShadow: look.emphasis > 0.02 ? `inset 0 0 0 ${u(5 * look.emphasis)}px ${accent}` : 'none', opacity: show * look.opacity, transform: `translateY(${(1 - show) * u(30)}px)`}}>
 			<div style={{backgroundColor: accent, color: '#FFFFFF', padding: `${u(18)}px ${u(24)}px`, fontFamily: palette.fontDisplay, fontWeight: 800, fontSize: u(36)}}>{column.title}</div>
 			<div style={{display: 'flex', flexDirection: 'column', gap: u(16), padding: u(24)}}>
 				{column.items.map((item, index) => (
-					<ComparisonItem key={index} id={`${id}-${index + 1}`} text={item} accent={accent} delaySeconds={delaySeconds + 0.25 + index * 0.18} />
+					<ComparisonItem key={index} id={`${id}-${index + 1}`} text={item} accent={accent} columnDim={state.dim} columnFocus={state.emphasis} delaySeconds={delaySeconds + 0.25 + index * 0.18} />
 				))}
 			</div>
 		</div>
 	);
 };
 
-const ComparisonItem: React.FC<{id: string; text: string; accent: string; delaySeconds: number}> = ({id, text, accent, delaySeconds}) => {
+/**
+ * An item of a column. It fades only by what its column does not already (two fades multiplied left the text at a
+ * tenth of its strength), and never while its own column is in focus (focusing a column used to fade its items).
+ */
+const ComparisonItem: React.FC<{id: string; text: string; accent: string; columnDim: number; columnFocus: number; delaySeconds: number}> = ({id, text, accent, columnDim, columnFocus, delaySeconds}) => {
 	const palette = useVisualPalette();
 	const {u} = useVideoLayout();
 	const show = useReveal(delaySeconds, 0.3);
-	const look = partLook(useElementState(id));
+	const state = useElementState(id);
+	const look = partLook({...state, dim: Math.max(0, state.dim - columnDim - columnFocus)});
 	return (
 		<div style={{display: 'flex', gap: u(14), alignItems: 'baseline', opacity: show * look.opacity, color: palette.onSurface, margin: `-${u(8)}px -${u(12)}px`, padding: `${u(8)}px ${u(12)}px`, borderRadius: u(14), backgroundColor: withAlpha(accent, 0.14 * look.emphasis)}}>
 			<div style={{width: u(12), height: u(12), borderRadius: '50%', backgroundColor: accent, flexShrink: 0, transform: `translateY(-${u(4)}px) scale(${1 + 0.6 * look.emphasis})`}} />
@@ -121,7 +82,7 @@ const useCellLook = (row: string, column: string) => {
 	const rowState = useElementState(row);
 	const columnState = useElementState(column);
 	return {
-		opacity: Math.min(rowState.appear, columnState.appear) * (1 - 0.45 * Math.min(rowState.dim, columnState.dim)),
+		opacity: Math.min(rowState.appear, columnState.appear) * (1 - UNFOCUSED_FADE * Math.min(rowState.dim, columnState.dim)),
 		emphasis: Math.max(rowState.emphasis, columnState.emphasis),
 	};
 };

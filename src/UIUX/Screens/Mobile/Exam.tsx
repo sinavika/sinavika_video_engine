@@ -408,7 +408,7 @@ export const ExamAnalysisScreen: React.FC = () => {
 										{t('Mikro ders', 'Micro-lesson')}
 									</Chip>
 									<Chip tone="module" module="tests" icon="quiz" size="sm">
-										{t('10 soru', '10 questions')}
+										{t('20 soru', '20 questions')}
 									</Chip>
 								</Stack>
 							</Stack>

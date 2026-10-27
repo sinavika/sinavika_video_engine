@@ -29,8 +29,9 @@ const Fraction = z.number().min(0).max(1);
  * plot curves c1, c2, c3, points p1…, `tangent`, `area`; geometry point ids,
  * sides by their ends ("AB"), polygons by their points ("ABC"), angles
  * "angle-A"; forces by label; flow and cycle steps n1…; timeline events e1…;
- * map highlights and markers by name; sentence word tiles w1…; comparison
- * columns c1… and their items c1-1…; table rows r1… and columns col1….
+ * map highlights and markers by name; sentence word tiles w1… and links l1…;
+ * paragraph sentences s1… and `topic`; comparison columns c1… and their
+ * items c1-1…; table rows r1… and columns col1….
  */
 export const VisualBeatSchema = z.object({
 	narration: z.string().trim().min(1).max(700),
@@ -46,6 +47,8 @@ export const VisualBeatSchema = z.object({
 	stage: z.number().int().min(0).max(12).optional(),
 	/** A short line shown under the figure during the beat. */
 	note: plainText(80).optional(),
+	/** Sentence word tiles (w1…) that turn into their `swap` word while this beat is said. */
+	swap: z.array(z.string().min(1).max(40)).max(6).default([]),
 });
 
 export type VisualBeat = z.infer<typeof VisualBeatSchema>;
@@ -284,12 +287,62 @@ export const CourseVisualSchema = z.discriminatedUnion('kind', [
 		/** Lines such as routes or campaigns, as [longitude, latitude] points. */
 		routes: z.array(z.object({points: z.array(Point2).min(2).max(30), label: plainText(30).optional()})).max(4).default([]),
 	}),
-	/** Turkish and foreign languages: a sentence, word by word, with the role of each part. */
-	z.object({
-		kind: z.literal('sentence'),
-		parts: z.array(z.object({text: z.string().trim().min(1).max(40), role: plainText(20).optional(), highlight: z.boolean().default(false)})).min(1).max(14),
-		translation: plainText(160).optional(),
-	}),
+	/**
+	 * Turkish and foreign languages: a sentence, word by word, with the role of
+	 * each part. `links` draw arrows over the tiles from one part to another
+	 * (the cause to its result over "için", a condition to what follows it),
+	 * by part number (1 is the first part). A part with `swap` turns into
+	 * another word while the lesson is told (its synonym, a word that changes
+	 * the meaning): with the beat that lists it in `swap`, or after the sentence
+	 * is built.
+	 */
+	z
+		.object({
+			kind: z.literal('sentence'),
+			parts: z
+				.array(
+					z.object({
+						text: z.string().trim().min(1).max(40),
+						role: plainText(20).optional(),
+						highlight: z.boolean().default(false),
+						swap: z.object({text: z.string().trim().min(1).max(40), role: plainText(20).optional()}).optional(),
+					}),
+				)
+				.min(1)
+				.max(14),
+			links: z.array(z.object({from: z.number().int().min(1).max(14), to: z.number().int().min(1).max(14), label: plainText(24).optional()})).max(4).default([]),
+			translation: plainText(160).optional(),
+		})
+		.superRefine((visual, context) => {
+			visual.links.forEach((link, index) => {
+				if (link.from === link.to) context.addIssue({code: 'custom', path: ['links', index], message: 'A link joins two different parts.'});
+				if (Math.max(link.from, link.to) > visual.parts.length) context.addIssue({code: 'custom', path: ['links', index], message: `The sentence has ${visual.parts.length} parts.`});
+			});
+		}),
+	/**
+	 * Turkish: a paragraph mapped. Its sentences one under another, numbered
+	 * as in the exam (I, II, …), each with its role (giriş, yardımcı düşünce,
+	 * örnek, sonuç); the `main` sentence (ana düşünce) in the lesson colour,
+	 * with an arrow from each other sentence leading into it. An `off`
+	 * sentence (akışı bozan) is left out of the arrows and struck through when
+	 * a beat points at it, or after the paragraph is built.
+	 */
+	z
+		.object({
+			kind: z.literal('paragraph'),
+			/** What the paragraph is about, over it: "Zeytin ağacı". */
+			topic: plainText(48).optional(),
+			sentences: z
+				.array(z.object({text: richText(200), role: plainText(24).optional(), main: z.boolean().default(false), off: z.boolean().default(false)}))
+				.min(2)
+				.max(6),
+		})
+		.superRefine((visual, context) => {
+			if (visual.sentences.filter((sentence) => sentence.main).length > 1) context.addIssue({code: 'custom', path: ['sentences'], message: 'A paragraph has one main sentence.'});
+			visual.sentences.forEach((sentence, index) => {
+				if (sentence.main && sentence.off) context.addIssue({code: 'custom', path: ['sentences', index], message: 'The main sentence cannot be the one that breaks the flow.'});
+			});
+		}),
 	/** Any lesson: two or three things side by side. */
 	z.object({
 		kind: z.literal('comparison'),
@@ -343,7 +396,9 @@ export const numberedPartNames = (visual: CourseVisual): string[] | null => {
 	const count = (prefix: string, length: number) => Array.from({length}, (_, index) => `${prefix}${index + 1}`);
 	switch (visual.kind) {
 		case 'sentence':
-			return count('w', visual.parts.length);
+			return [...count('w', visual.parts.length), ...count('l', visual.links.length)];
+		case 'paragraph':
+			return ['topic', ...count('s', visual.sentences.length)];
 		case 'comparison':
 			return visual.columns.flatMap((column, index) => [`c${index + 1}`, ...count(`c${index + 1}-`, column.items.length)]);
 		case 'table':

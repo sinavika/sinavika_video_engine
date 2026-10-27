@@ -30,11 +30,11 @@ const SAMPLE: z.input<typeof SinoAIFilmSchema> = {
 	},
 	make: {
 		items: [
-			{icon: 'quiz', title: '10 soruluk quiz', meta: 'Problemler · açıklamalı'},
+			{icon: 'quiz', title: '10 soruluk test', meta: 'Problemler · açıklamalı'},
 			{icon: 'cards', title: 'Kart destesi', meta: '24 kart · Bilgi Kartları’nda'},
 			{icon: 'calendar', title: 'Haftalık plan', meta: '3 gün · Ders Planı’nda'},
 		],
-		narration: 'Quizini ve kartlarını da hazırlar.',
+		narration: 'Testini ve kartlarını da hazırlar.',
 	},
 	words: {words: ['Sor.', 'Anla.', 'Üret.'], narration: 'Sor. Anla. Üret.'},
 	closing: {line: 'Seni tanıyan yapay zekâ, Sınavika’da.', narration: 'SinoAI, Sınavika’da.'},
@@ -71,7 +71,7 @@ export const SinoAIFilm = defineTemplate({
 	id: 'SinoAIFilm',
 	category: 'Advertisements',
 	title: 'SinoAI ürün filmi',
-	description: 'SinoAI tanıtımı: soru yazılır, SinoAI’nin adımları yanar, cevap akar, üretilen quiz, kart ve plan kayarak gelir. Beyaz, sade.',
+	description: 'SinoAI tanıtımı: soru yazılır, SinoAI’nin adımları yanar, cevap akar, üretilen test, kart ve plan kayarak gelir. Beyaz, sade.',
 	contentSchema: SinoAIFilmSchema,
 	sampleContent: SAMPLE,
 	defaultTheme: 'SinavikaLight',

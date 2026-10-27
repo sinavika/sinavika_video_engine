@@ -195,19 +195,19 @@ const SourcesScene: React.FC<{content: Content}> = ({content}) => {
 };
 
 const SAMPLE: z.input<typeof KeynoteSchema> = {
-	hook: {lines: ['Notunu at.', 'Quiz olsun.'], narration: 'Notunu at, quiz olsun. PDF’in mi var, deneme olsun.'},
+	hook: {lines: ['Notunu at.', 'Test olsun.'], narration: 'Notunu at, test olsun. PDF’in mi var, deneme olsun.'},
 	intro: {kicker: 'Tanıştırayım.', name: 'SinoAI Çalışma', narration: 'Tanıştırayım: SinoAI Çalışma.'},
 	tools: {
 		items: [
 			{icon: 'book', name: 'Çalışma', line: 'Konu anlatımı ve sorular'},
-			{icon: 'quiz', name: 'Quiz', line: '10 soru, anında açıklamalı'},
+			{icon: 'quiz', name: 'Test', line: '10 soru, anında açıklamalı'},
 			{icon: 'exam', name: 'Kişisel deneme', line: 'Eksiklerine göre, tam ya da branş'},
 			{icon: 'cards', name: 'Bilgi Kartları', line: 'Notlarından bir deste'},
 			{icon: 'calendar', name: 'Çalışma planı', line: 'Bir haftalık konu planı'},
 		],
-		narration: 'Konu anlatımı, quiz, kişisel deneme, bilgi kartları ve çalışma planı.',
+		narration: 'Konu anlatımı, test, kişisel deneme, bilgi kartları ve çalışma planı.',
 	},
-	sources: {chips: ['PDF', 'Word', 'Sunum', 'Fotoğraf', 'Hedefin'], screen: 'sinoLibrary', caption: 'Kaynağı sen seç.', narration: 'Kaynağı sen seç; notun, sunumun ya da hedefin. Ürettiği her şey Kitaplığında durur.'},
+	sources: {chips: ['PDF', 'Word', 'Sunum', 'Fotoğraf', 'Hedefin'], screen: 'sinoLibrary', caption: 'Kaynağı sen seç.', narration: 'Kaynağı sen seç; notun, sunumun ya da hedefin. Ürettiği her şey kütüphanende durur.'},
 	closing: {name: 'SinoAI Çalışma', line: 'Sınavika’da.', narration: 'SinoAI Çalışma, Sınavika’da.'},
 };
 

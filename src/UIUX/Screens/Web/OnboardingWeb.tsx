@@ -3,7 +3,7 @@ import {useColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {MODULES, MODULE_ORDER, type ModuleKey} from '../../ModuleIdentity';
 import {Button, Card, Chip, Field, Stack, Text, Tile} from '../../Parts/Shared';
-import {AuthLayout, DevicePhone, Grid, WebOnboarding} from '../../Parts/Web';
+import {AuthLayout, DevicePhone, Grid, WebOnboarding, type AuthPromo} from '../../Parts/Web';
 import {UI_RADIUS} from '../../Tokens';
 import {CodeBoxes} from '../Mobile/Auth';
 import {HubScreen} from '../Mobile/Hub';
@@ -54,11 +54,29 @@ const Title: React.FC<{title: string; muted: string; link: string}> = ({title, m
 	);
 };
 
+/** The right half of sign-in and sign-up: the same three points, a pitch per page, the app home on a phone. */
+const useAuthPromo = (page: 'signIn' | 'signUp'): AuthPromo => {
+	const t = useT();
+	const points = [
+		t('Gerçek sınav gibi denemeler, net ve konu analizi', 'Real exam-style practice tests with score and topic analysis'),
+		t('Eksik konularına göre günlük Ders Planı', 'A daily study plan built around your weak topics'),
+		t('Takıldığın soruda SinoAI ile adım adım çözüm', 'Stuck on a question? SinoAI solves it step by step'),
+	];
+	const preview = (
+		<DevicePhone width={280} rotate={-4}>
+			<HubScreen />
+		</DevicePhone>
+	);
+	return page === 'signIn'
+		? {over: t('Tekrar hoş geldin', 'Welcome back'), title: t('Kaldığın yerden devam et', 'Pick up where you left off'), text: t('Planın, denemelerin ve SinoAI geçmişin seni bekliyor. Telefonda da aynı hesap.', 'Your plan, practice tests and SinoAI history are waiting. Same account on your phone.'), points, preview}
+		: {over: t('Sınavika’ya katıl', 'Join Sınavika'), title: t('Ne çalışacağını bil, her gün ilerle', 'Know what to study, move forward every day'), text: t('Sınavını ve hedefini seç; ilk günün planı iki dakikada hazırlansın.', 'Choose your exam and goal; your first day’s plan is ready in two minutes.'), points, preview};
+};
+
 export const WebSignInScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	return (
-		<AuthLayout>
+		<AuthLayout promo={useAuthPromo('signIn')}>
 			<Title title={t('Giriş yap', 'Sign in')} muted={t('Hesabın yok mu?', 'No account?')} link={t('Kayıt ol', 'Sign up')} />
 			<Stack gap={14}>
 				<Social />
@@ -110,7 +128,7 @@ export const WebSignUpScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	return (
-		<AuthLayout>
+		<AuthLayout promo={useAuthPromo('signUp')}>
 			<Title title={t('Kayıt ol', 'Sign up')} muted={t('Zaten hesabın var mı?', 'Have an account?')} link={t('Giriş yap', 'Sign in')} />
 			<Stack gap={12}>
 				<Social />

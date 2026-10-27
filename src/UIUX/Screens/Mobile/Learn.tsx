@@ -3,7 +3,7 @@ import {useColors, useModuleColors, useT} from '../../Context';
 import {Icon} from '../../Icons';
 import {MODULES} from '../../ModuleIdentity';
 import {AppHeader, BottomBar, Content, FocusHeader, ModuleScreen, ModuleSlide, PageTitle, Phone, SectionTitle} from '../../Parts/Mobile';
-import {Bar, Button, Card, Chip, Dots, Levels, List, ListRow, OptionRow, Ring, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
+import {Bar, Button, Card, Chip, Dots, Levels, List, ListRow, OptionRow, Ring, Segmented, Stack, TEST_LEVELS, Text, Tile} from '../../Parts/Shared';
 
 /** Dersler (Works) and Testler (Quizzes). */
 
@@ -186,7 +186,7 @@ export const LessonDoneScreen: React.FC = () => {
 					{t('Ders tamamlandı', 'Lesson complete')}
 				</Text>
 				<Text role="body" align="center">
-					{t('Ana fikir bulma artık senin. Pekiştirmek için 10 soruluk bir test hazırladık.', 'Main idea mastered. We prepared a 10-question quiz to lock it in.')}
+					{t('Ana fikir bulma artık senin. Pekiştirmek için 20 soruluk bir test hazırladık.', 'Main idea mastered. We prepared a 20-question quiz to lock it in.')}
 				</Text>
 				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, width: '100%'}}>
 					{[['6 dk', t('süre', 'time')], ['3/3', t('örnek', 'examples')], ['+1', t('gün serisi', 'streak')]].map(([value, label]) => (
@@ -205,7 +205,7 @@ export const LessonDoneScreen: React.FC = () => {
 						<Tile module="tests" size={40} />
 						<Stack grow gap={1}>
 							<Text role="headline">{t('Paragraf · Ana fikir testi', 'Reading · Main idea quiz')}</Text>
-							<Text role="small">{t('10 soru · ~12 dk', '10 questions · ~12 min')}</Text>
+							<Text role="small">{t('20 soru · ~25 dk', '20 questions · ~25 min')}</Text>
 						</Stack>
 					</Stack>
 				</Card>
@@ -344,14 +344,14 @@ export const TestsTopicsScreen: React.FC = () => {
 				</Card>
 				<List>
 					{[
-						['Temel kavramlar', 'Basics', 5],
-						['Sayı basamakları', 'Digits', 4],
+						['Temel kavramlar', 'Basics', 3],
+						['Sayı basamakları', 'Digits', 3],
 						['Rasyonel sayılar', 'Rationals', 2],
 						['Problemler', 'Problems', 1],
 						['Oran ve orantı', 'Ratio', 0],
 						['Fonksiyonlar', 'Functions', 0],
 					].map(([tr, en, done]) => (
-						<ListRow key={tr as string} title={t(tr as string, en as string)} subtitle={`${done}/5 ${t('seviye', 'levels')}`} trailing={<Levels done={done as number} color={mod.color} />} />
+						<ListRow key={tr as string} title={t(tr as string, en as string)} subtitle={`${done}/${TEST_LEVELS} ${t('seviye', 'levels')}`} trailing={<Levels done={done as number} color={mod.color} />} />
 					))}
 				</List>
 			</Content>
@@ -379,12 +379,11 @@ export const TestOverviewScreen: React.FC = () => {
 				</div>
 				<SectionTitle title={t('Seviyeler', 'Levels')} />
 				<Stack gap={8}>
+					{/* The three levels the product really has, named as in the app (Kolay, Orta, Zor); 20 questions each. */}
 					{[
-						[1, t('Temel', 'Basic'), '%90', 'done'],
+						[1, t('Kolay', 'Easy'), '%90', 'done'],
 						[2, t('Orta', 'Medium'), t('Sıradaki', 'Next'), 'now'],
 						[3, t('Zor', 'Hard'), '', 'lock'],
-						[4, t('Sınav düzeyi', 'Exam level'), '', 'lock'],
-						[5, t('Ustalık', 'Mastery'), '', 'lock'],
 					].map(([level, name, meta, state]) => (
 						<Card key={level as number} padding={12} tone={state === 'now' ? 'moduleLine' : 'card'} module="tests">
 							<Stack row gap={12}>
@@ -395,7 +394,7 @@ export const TestOverviewScreen: React.FC = () => {
 								</Stack>
 								<Stack grow gap={1}>
 									<Text role="headline">{name}</Text>
-									<Text role="small">{t('10 soru · ~12 dk', '10 questions · ~12 min')}</Text>
+									<Text role="small">{t('20 soru · ~25 dk', '20 questions · ~25 min')}</Text>
 								</Stack>
 								{state === 'done' ? <Chip tone="success" size="sm">{meta}</Chip> : state === 'now' ? <Chip tone="module" module="tests" size="sm">{meta}</Chip> : <Icon name="lock" size={18} color={colors.subtle} />}
 							</Stack>
@@ -405,7 +404,7 @@ export const TestOverviewScreen: React.FC = () => {
 			</Content>
 			<BottomBar>
 				<Button size="lg" block icon="play">
-					{t('Seviye 2’yi başlat', 'Start level 2')}
+					{t('Orta seviyeyi başlat', 'Start Medium')}
 				</Button>
 			</BottomBar>
 		</ModuleScreen>
@@ -417,7 +416,7 @@ export const TestSolveScreen: React.FC = () => {
 	const colors = useColors();
 	const mod = useModuleColors('tests');
 	return (
-		<ModuleScreen module="tests" noTabBar header={<FocusHeader title={t('Soru 4 / 10', 'Question 4 / 10')} sub={t('Problemler · Seviye 2', 'Problems · Level 2')} right={<Chip tone="success">{t('3 doğru', '3 right')}</Chip>} />}>
+		<ModuleScreen module="tests" noTabBar header={<FocusHeader title={t('Soru 4 / 20', 'Question 4 / 20')} sub={t('Problemler · Orta', 'Problems · Medium')} right={<Chip tone="success">{t('3 doğru', '3 right')}</Chip>} />}>
 			<Stack row gap={4} style={{padding: '0 16px'}}>
 				{[1, 1, 1, 2, 0, 0, 0, 0, 0, 0].map((state, index) => (
 					<div key={index} style={{flex: 1, height: 6, borderRadius: 3, background: state === 1 ? colors.success : state === 2 ? mod.color : colors.line2}} />
@@ -463,19 +462,19 @@ export const TestDoneScreen: React.FC = () => {
 				<Ring value={0.8} size={160} stroke={12} color={mod.color} track={mod.track}>
 					<Stack align="center">
 						<Text role="num" size={40}>
-							8/10
+							16/20
 						</Text>
 						<Text role="meta">{t('doğru', 'correct')}</Text>
 					</Stack>
 				</Ring>
 				<Text role="hero" align="center">
-					{t('Seviye 2 tamam', 'Level 2 complete')}
+					{t('Orta seviye tamam', 'Medium complete')}
 				</Text>
 				<Text role="body" align="center">
-					{t('Problemlerde ilerledin. Seviye 3 açıldı.', 'You moved up in Problems. Level 3 is unlocked.')}
+					{t('Problemlerde ilerledin. Zor seviye açıldı.', 'You moved up in Problems. Hard is unlocked.')}
 				</Text>
 				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, width: '100%'}}>
-					{[['11 dk', t('süre', 'time')], ['2', t('yanlış', 'wrong')], ['+1', t('seviye', 'level')]].map(([value, label]) => (
+					{[['24 dk', t('süre', 'time')], ['4', t('yanlış', 'wrong')], ['+1', t('seviye', 'level')]].map(([value, label]) => (
 						<Card key={label} padding={12}>
 							<Text role="section" align="center">
 								{value}
@@ -489,7 +488,7 @@ export const TestDoneScreen: React.FC = () => {
 			</Content>
 			<BottomBar>
 				<Button size="lg" block>
-					{t('Seviye 3’e geç', 'Go to level 3')}
+					{t('Zor seviyeye geç', 'Go to Hard')}
 				</Button>
 				<Button tone="moduleSoft" module="tests" size="lg" block>
 					{t('Yanlışlarımı incele', 'Review my mistakes')}
@@ -508,10 +507,10 @@ export const TestsSolutionsScreen: React.FC = () => {
 				<Segmented items={[t('Tümü', 'All'), t('Yanlışlar · 9', 'Wrong · 9'), t('İşaretli', 'Flagged')]} module="tests" />
 				<List>
 					{[
-						['Problemler · Seviye 2', 'Problems · L2', '8/10', 'Bugün', 'Today'],
-						['Paragraf · Seviye 3', 'Reading · L3', '9/10', 'Dün', 'Yesterday'],
-						['Rasyonel sayılar · Seviye 2', 'Rationals · L2', '6/10', 'Pazartesi', 'Monday'],
-						['Kuvvet ve hareket · Seviye 1', 'Force · L1', '7/10', 'Pazar', 'Sunday'],
+						['Problemler · Orta', 'Problems · Medium', '16/20', 'Bugün', 'Today'],
+						['Paragraf · Zor', 'Reading · Hard', '18/20', 'Dün', 'Yesterday'],
+						['Rasyonel sayılar · Orta', 'Rationals · Medium', '12/20', 'Pazartesi', 'Monday'],
+						['Kuvvet ve hareket · Kolay', 'Force · Easy', '14/20', 'Pazar', 'Sunday'],
 					].map(([tr, en, score, dayTr, dayEn]) => (
 						<ListRow key={tr} module="tests" icon="checkCircle" title={t(tr, en)} subtitle={t(dayTr, dayEn)} trailing={<Text role="headline">{score}</Text>} />
 					))}

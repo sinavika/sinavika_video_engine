@@ -5,7 +5,10 @@ import {CampSchema, campEpisode, campFromChecklist, campMismatches, campSlug, ca
 import {ChecklistSchema, type Checklist} from '../src/Courses/Curriculum';
 import {dataFolders} from '../src/Courses/CurriculumImport';
 import {CAMP_SCRIPT_SAMPLE, LESSON_SCRIPT_SAMPLE} from '../src/Courses/LessonScriptSample';
-import {LessonScriptSchema, lessonNarrations} from '../src/Courses/LessonScript';
+import {LessonScriptSchema, lessonNarrations, spokenTextIssues} from '../src/Courses/LessonScript';
+import {isSpoken, spokenOptions, spokenPredictAsk, spokenQuestion, spokenScreenText} from '../src/Courses/LessonSpeech';
+import {planTemplateScenes} from '../src/Scenes/SceneSeries';
+import {placeCuts} from '../src/Services/NarrationCuts';
 import {numberedPartNames} from '../src/Components/Visuals/VisualSchemas';
 import {OUTRO_SCENE_ID} from '../src/Scenes/BrandOutroScene';
 import {chapterTimestamp, formatChapters, sceneChapters} from '../src/Scenes/SceneChapters';
@@ -121,7 +124,7 @@ describe('camp templates', () => {
 
 describe('beats on language visuals', () => {
 	it('names the parts of sentences, comparisons and tables', () => {
-		expect(numberedPartNames({kind: 'sentence', parts: [{text: 'Bu', highlight: false}, {text: 'kırdı.', highlight: true}]})).toEqual(['w1', 'w2']);
+		expect(numberedPartNames({kind: 'sentence', parts: [{text: 'Bu', highlight: false}, {text: 'kırdı.', highlight: true}], links: [{from: 1, to: 2}]})).toEqual(['w1', 'w2', 'l1']);
 		expect(numberedPartNames({kind: 'comparison', columns: [{title: 'A', items: ['x', 'y']}, {title: 'B', items: ['z']}]})).toEqual(['c1', 'c1-1', 'c1-2', 'c2', 'c2-1']);
 		expect(numberedPartNames({kind: 'table', header: ['a', 'b'], rows: [['1', '2']]})).toEqual(['r1', 'col1', 'col2']);
 		expect(numberedPartNames({kind: 'formula', latex: 'x'})).toBeNull();
@@ -135,5 +138,79 @@ describe('beats on language visuals', () => {
 		expect(result.error?.issues.map((issue) => issue.message).join(' ')).toMatch(/No part w3 on this sentence; its parts are w1, w2/);
 		card.beats[0].focus = ['w2'];
 		expect(LessonScriptSchema.safeParse(script).success).toBe(true);
+	});
+});
+
+describe('what the narrator reads', () => {
+	it('reads a question as it stands on screen: paragraph, stem, options; blanks, part marks and answer pairs said aloud', () => {
+		expect(spokenQuestion({stem: 'Hangisinde **ağır** mecazdır?', options: ['Ağır bavul', 'Ağır söz'], context: undefined})).toBe('Hangisinde ağır mecazdır? A şıkkı: Ağır bavul. B şıkkı: Ağır söz.');
+		expect(spokenScreenText('Yazar ---- bir dille anlatıyor.')).toBe('Yazar boşluk bir dille anlatıyor.');
+		expect(spokenScreenText('**el değmemiş (I)** (doğal)')).toBe('el değmemiş, bir numara, (doğal)');
+		expect(spokenOptions(['yalın - dolaşırken', 'sade - kaybolmuş'])).toBe('A şıkkı: yalın, dolaşırken. B şıkkı: sade, kaybolmuş.');
+		expect(spokenOptions(['I', 'II', 'III'])).toBe('');
+	});
+
+	it('flags a fragment beat and an example that is not read as written', () => {
+		const sample = LessonScriptSchema.parse(LESSON_SCRIPT_SAMPLE);
+		const card = sample.lesson.sections[0].cards[0];
+		const broken = {...sample, lesson: {...sample.lesson, sections: [{...sample.lesson.sections[0], cards: [{...card, kind: 'example' as const, title: 'Örnek', example: 'Kapı ardına kadar **açıldı**.', explanation: undefined, beats: [{narration: 'Müzikte nota,', show: [], focus: [], swap: []}]}]}]}} as typeof sample;
+		const issues = spokenTextIssues(broken);
+		expect(issues.some((issue) => /not a whole sentence/.test(issue))).toBe(true);
+		expect(issues.some((issue) => /is not read as it is written/.test(issue))).toBe(true);
+		expect(isSpoken('Kapıyı **açık** bıraktı.', 'Şuna bak: kapıyı açık bıraktı, dedik.')).toBe(true);
+	});
+
+	it('never asks a prediction about a sentence that is not on screen yet (owner, 27 Oct 2026)', () => {
+		const sample = LessonScriptSchema.parse(LESSON_SCRIPT_SAMPLE);
+		const predict = {
+			kind: 'predict' as const, title: 'Önce sen tahmin et', prompt: 'Bu cümlede **yol** sözcüğüne hangi anlam yüklenmiş?', choices: ['Bir yere giden yol', 'Hayat boyu öğrenme'], answer: 1, thinkSeconds: 4,
+			visual: {kind: 'sentence' as const, parts: [{text: 'Babam'}, {text: 'için'}, {text: 'yol,', highlight: true}, {text: 'her'}, {text: 'gün'}, {text: 'yeniden'}, {text: 'öğrenmekti.'}]},
+			beats: [{narration: 'Babam için yol, her gün yeniden öğrenmekti.', show: ['w1'], focus: []}],
+			explanation: 'Hayat boyu öğrenme.', narration: 'Şimdi sıra sende. Bu cümlede yol sözcüğüne hangi anlam yüklenmiş?', explanationNarration: 'Doğru cevap ikinci seçenek.',
+		};
+		const withCard = (card: object) => ({...sample, lesson: {...sample.lesson, sections: [{...sample.lesson.sections[0], cards: [card]}]}}) as typeof sample;
+		expect(spokenTextIssues(withCard(predict)).some((issue) => /nothing on screen shows it/.test(issue))).toBe(true);
+		const fixed = {...predict, context: 'Babam için **yol**, her gün yeniden öğrenmekti.', narration: 'Şimdi sıra sende. Şu cümleyi dikkatle oku.'};
+		expect(spokenTextIssues(withCard(fixed)).some((issue) => /nothing on screen shows it/.test(issue))).toBe(false);
+		// The sentence and the question are read as they stand, after the lead-in and before the choices.
+		expect(spokenPredictAsk(fixed)).toBe('Şimdi sıra sende. Şu cümleyi dikkatle oku. Babam için yol, her gün yeniden öğrenmekti. Bu cümlede yol sözcüğüne hangi anlam yüklenmiş? A şıkkı: Bir yere giden yol. B şıkkı: Hayat boyu öğrenme. Birkaç saniye düşün.');
+	});
+
+	it('keeps a breath between the voices of two scenes, whatever the transition', () => {
+		const voiced = (id: string): TemplateScene => ({id, seconds: 4, element: null, voice: [{id, text: 'x', seconds: 4}]});
+		const plan = planTemplateScenes([voiced('a'), voiced('b')], {preset: 'fade', durationSeconds: 0.7}, 30);
+		// b starts after a's full four seconds: the overlap is added to a.
+		expect(plan.scenes[1].from).toBe(120);
+	});
+});
+
+describe('narration cuts and the challenge reel', () => {
+	it('moves a cut between two lines to the quiet moment between their words', () => {
+		const rate = 8000;
+		const samples = new Float32Array(rate * 3);
+		// Speech from 0.2 to 1.40 s and from 1.55 to 2.8 s; the speech service put the boundary at 1.30 s, inside the first word.
+		for (let index = 0; index < samples.length; index++) {
+			const t = index / rate;
+			if ((t > 0.2 && t < 1.4) || (t > 1.55 && t < 2.8)) samples[index] = 0.5 * Math.sin(2 * Math.PI * 220 * t);
+		}
+		const cuts = placeCuts([{startSeconds: 0.1, endSeconds: 1.3}, {startSeconds: 1.3, endSeconds: 2.9}], samples, rate);
+		expect(cuts[0].endSeconds).toBeGreaterThan(1.4);
+		expect(cuts[0].endSeconds).toBeLessThan(1.55);
+		expect(cuts[1].startSeconds).toBe(cuts[0].endSeconds);
+	});
+
+	it('builds the reel from rounds: hook, each round asked, counted and answered, the score, the promotion', () => {
+		const rounds = [
+			{sentence: 'Bu haber cesaretini **kırdı**.', question: 'Kırdı: gerçek mi, mecaz mı?', choices: ['Gerçek', 'Mecaz'], answer: 1, why: 'Kırmak burada **azaltmak** demek.'},
+			{sentence: 'Bize **tatlı** bir söz söyledi.', question: 'Tatlı: gerçek mi, mecaz mı?', choices: ['Gerçek', 'Mecaz'], answer: 1, why: 'Hoşa giden demek.'},
+			{sentence: 'Sandalyenin **ayağı** kırık.', question: 'Ayağı: yan anlam mı, mecaz mı?', choices: ['Yan anlam', 'Mecaz'], answer: 0, why: 'Bağ korunuyor.'},
+		];
+		const script = LessonScriptSchema.parse({...CAMP_SCRIPT_SAMPLE, short: {...CAMP_SCRIPT_SAMPLE.short, rounds}});
+		const scenes = CampShort.buildScenes(script);
+		expect(scenes.map((scene) => scene.id)).toEqual(['intro', 'round-1', 'round-2', 'round-3', 'score', OUTRO_SCENE_ID]);
+		const round = scenes.find((scene) => scene.id === 'round-1')!;
+		expect(round.voice?.[0].text).toBe('Bu haber cesaretini kırdı. Kırdı: gerçek mi, mecaz mı?');
+		expect(round.voice?.[1].text).toBe('Mecaz! Kırmak burada azaltmak demek.');
+		expect(LessonScriptSchema.safeParse({...CAMP_SCRIPT_SAMPLE, short: {...CAMP_SCRIPT_SAMPLE.short, rounds: [{...rounds[0], answer: 4}, ...rounds.slice(1)]}}).success).toBe(false);
 	});
 });

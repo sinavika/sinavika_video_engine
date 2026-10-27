@@ -164,13 +164,14 @@ Sen dili öğrenciyle aynı hizadan konuşmaktır, laubalilik değildir: argo, "
 | Ders Planı | Study Plan | Lernplan | Studieplan | Günlük ve haftalık plan, odak süresi, takvim, ilerleme |
 | Bilgi Kartları | Flashcards | Lernkarten | Flashcards | Kartla tekrar, kaydedilenler, akış |
 | Akıllı Özet | Smart Summary | Smart Summary | Smart Summary | Soru fotoğrafından adım adım çözüm, konu özeti ve hata analizi |
-| SinoAI | SinoAI | SinoAI | SinoAI | Sohbet; soru çözer, özet çıkarır, quiz, deneme ve kart üretir, kişisel notlardan içerik hazırlar |
+| SinoAI | SinoAI | SinoAI | SinoAI | Sohbet; soru çözer, özet çıkarır, test, deneme ve kart üretir, kişisel notlardan içerik hazırlar |
 
 - Web'deki "Ders Çalış", "Kelime Kartları", "Sınavika AI", "Lens AI Analiz" adları bu tabloya göre değişir (§17).
 - **Lens** ve **Compass/Pusula** yalnız kod adıdır (API `Lenses`, mobil `lens`, eski `Compass*` rotaları). Öğrenciye görünen metinde kullanılmaz: "Lens" yerine "Akıllı Özet", "Compass/Pusula" yerine "Ders Planı › İlerleme". Analiz ayrı modül değildir; deneme sonucunun parçasıdır (Denemeler › Sonuçlar).
 - Görünen adlar ile kod adlarının tam eşlemesi: `docs/UIUX/Adlandirma-Kurallari.md`.
 - Her modülün bir kimlik rengi vardır; kural §15.1'de, tam tablo ve merkezi kod `docs/UIUX/Modul-Kimligi.md`'de.
 - "Ders çalış", "test çöz", "deneme çöz" fiil olarak (buton, slogan) kullanılabilir; modül adı değildir.
+- **Türkçede "quiz" denmez, her zaman "test" denir** (sahip, 25 Ekim 2026). Modülün adı Testler'dir; SinoAI'nin ürettiği soru seti de testtir: "10 soruluk test", "notlarından test üret", "test ve kart üretir". Arayüz, reklam, mağaza metni, sosyal medya ve seslendirme için geçerlidir. İngilizcede "quiz/quizzes" doğrudur. Kod adları (`Quizzes`, `quiz`) değişmez.
 - **"Koç" kelimesi öğrenci metinlerinde kullanılmaz.** Sınavika'da insan koç hizmeti yoktur. SinoAI tarif edilecekse: "seni tanıyan yapay zekâ", "yapay zekâ çalışma asistanın". "Koç planı" yerine "çalışma planı", "Koç ipucu" yerine "İpucu" denir.
 
 ---
@@ -198,6 +199,7 @@ Sen dili öğrenciyle aynı hizadan konuşmaktır, laubalilik değildir: argo, "
 | öğrenci, sen | kullanıcı, müşteri, üye | İnsana konuşuruz, hesaba değil |
 | SinoAI, yapay zekâ çalışma asistanın | koçun, sınav koçun, robot | İnsan koç yok; SinoAI bir yapay zekâdır |
 | çalışma planı | koç planı | Aynı sebep |
+| test, 10 soruluk test, test üret | quiz, quizin, quiz üret | Modül adı Testler; Türkçede tek ad (25 Ekim 2026) |
 | hesabın senin için oluşturuldu | admin tarafından oluşturuldu | İç işleyiş öğrenciyi ilgilendirmez |
 | bu sefer olmadı, bir daha deneyelim | başarısız oldun, yanlış | Suçlamaz, yol gösterir |
 | eksik konuların, gelişmen gereken konular | zayıf yönlerin, kötü olduğun konular | Etiketlemez |

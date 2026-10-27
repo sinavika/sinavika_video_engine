@@ -7,21 +7,21 @@
 
 ## Hook
 
-**Notunu at. Quiz olsun.**
+**Notunu at. Test olsun.**
 
 Alternatifler: "PDF’in var mı? Deneme olsun." · "Tanıştırayım: SinoAI Çalışma."
 
 ## Sahne akışı
 
-- 0–2 sn: Yumuşak turuncu-krem renk geçişi, ortada tek satır: "Notunu at." → "Quiz olsun."
+- 0–2 sn: Yumuşak turuncu-krem renk geçişi, ortada tek satır: "Notunu at." → "Test olsun."
 - 2–5 sn: "Tanıştırayım." → "SinoAI Çalışma." (tek tek beliren harfler, sakin).
 - 5–20 sn: Beş araç tek tek sahnenin ortasında döner, her biri 3 sn: Çalışma (konu anlatımı ve sorular), Quiz, Kişisel Deneme, Bilgi Kartları, Çalışma Planı. Altında tek satır açıklama.
-- 20–25 sn: Kaynaklar yörüngede döner: PDF, Word, sunum, fotoğraf, hedefin. Ortada Kitaplık ekranı.
+- 20–25 sn: Kaynaklar yörüngede döner: PDF, Word, sunum, fotoğraf, hedefin. Ortada Kütüphane ekranı.
 - 25–30 sn: "SinoAI Çalışma. Sınavika’da." Logo.
 
 ## Seslendirme (taslak)
 
-Notunu at, quiz olsun. PDF’in mi var, deneme olsun. Tanıştırayım: SinoAI Çalışma. Konu anlatımı, quiz, kişisel deneme, bilgi kartları ve çalışma planı. Kaynağı sen seç; notun, sunumun ya da hedefin. Ürettiği her şey Kitaplığında durur. SinoAI Çalışma, Sınavika’da.
+Notunu at, test olsun. PDF’in mi var, deneme olsun. Tanıştırayım: SinoAI Çalışma. Konu anlatımı, test, kişisel deneme, bilgi kartları ve çalışma planı. Kaynağı sen seç; notun, sunumun ya da hedefin. Ürettiği her şey kütüphanende durur. SinoAI Çalışma, Sınavika’da.
 
 Karakter: 264
 
@@ -31,6 +31,6 @@ Elegant product-launch feel: soft airy pads, delicate plucked synth arpeggio, ge
 
 ## Açıklama
 
-Notunu at, quiz olsun. 📄➡️📝 SinoAI Çalışma; notundan, PDF’inden ya da hedefinden konu anlatımı, quiz, kişisel deneme, kart ve plan hazırlar. Hepsi Kitaplığında. Sınavika uygulamasında ve web’de.
+Notunu at, test olsun. 📄➡️📝 SinoAI Çalışma; notundan, PDF’inden ya da hedefinden konu anlatımı, test, kişisel deneme, kart ve plan hazırlar. Hepsi kütüphanende. Sınavika uygulamasında ve web’de.
 
 #sinavika #sinoai #yks #kpss #yapayzeka

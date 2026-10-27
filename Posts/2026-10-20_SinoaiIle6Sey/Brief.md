@@ -20,10 +20,10 @@ Alternatifler: "Yapay zekâya soru sormak işin yarısı." · "Notlarını yükl
 5. 4. Deneme üret: eksiklerine göre kişisel deneme, tam ya da branş.
 6. 5. Kart üret: notlarından Bilgi Kartları destesi.
 7. 6. Plan çıkar: bir haftalık çalışma planı.
-8. Kapanış: "Hepsi Kitaplığında durur, PDF olarak da indirirsin. SinoAI, Sınavika’da."
+8. Kapanış: "Hepsi kütüphanende durur, PDF olarak da indirirsin. SinoAI, Sınavika’da."
 
 ## Açıklama
 
-SinoAI’ye sadece soru sorma. Notunu, PDF’ini ya da sunumunu ekle; senin için quiz, deneme, kart ve plan hazırlasın. Ürettiği her şey Kitaplığında durur. En çok hangisini kullanırdın? 👇
+SinoAI’ye sadece soru sorma. Notunu, PDF’ini ya da sunumunu ekle; senin için test, deneme, kart ve plan hazırlasın. Ürettiği her şey kütüphanende durur. En çok hangisini kullanırdın? 👇
 
 #sinavika #sinoai #yks #kpss #yapayzeka

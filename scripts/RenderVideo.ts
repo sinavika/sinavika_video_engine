@@ -6,6 +6,8 @@
  *   npm run render -- --job samples/QuestionSolution.json --out out/video.mp4
  *       Writes exactly there instead.
  *   npm run render -- --job job.json --out out/frame.png --frame 120
+ *   npm run render -- --job job.json --out out/preview.mp4 --frames 9000-9900
+ *       Only those frames: a short preview of one part of a long lesson (chapters are not written).
  *   npm run render -- --job job.json --out out/video.mp4 --json
  *
  * With --json every line on stdout is a JSON event (progress, done, error),
@@ -24,6 +26,7 @@ const {values} = parseArgs({
 		job: {type: 'string'},
 		out: {type: 'string'},
 		frame: {type: 'string'},
+		frames: {type: 'string'},
 		concurrency: {type: 'string'},
 		json: {type: 'boolean', default: false},
 	},
@@ -49,8 +52,9 @@ const reportProgress = () => {
 };
 
 const main = async (): Promise<number> => {
-	if (!values.job || (values.frame !== undefined && !values.out)) {
-		console.error('Kullanım: npm run render -- --job <job.json> [--out <çıktı.mp4>] [--frame N --out <kare.png>] [--concurrency N] [--json]');
+	const frameRange = values.frames?.match(/^(\d+)-(\d+)$/);
+	if (!values.job || ((values.frame !== undefined || values.frames !== undefined) && !values.out) || (values.frames !== undefined && !frameRange)) {
+		console.error('Kullanım: npm run render -- --job <job.json> [--out <çıktı.mp4>] [--frame N --out <kare.png>] [--frames A-B --out <önizleme.mp4>] [--concurrency N] [--json]');
 		return 2;
 	}
 
@@ -59,6 +63,7 @@ const main = async (): Promise<number> => {
 		const options = {
 			onProgress: reportProgress(),
 			concurrency: values.concurrency ? Number(values.concurrency) : undefined,
+			frameRange: frameRange ? ([Number(frameRange[1]), Number(frameRange[2])] as [number, number]) : undefined,
 		};
 		// Without --out the video is saved under the next number in Outputs/Videos.
 		const result = !values.out
@@ -68,7 +73,7 @@ const main = async (): Promise<number> => {
 				: await renderFrame(job, {...options, outputPath: values.out, frame: Number(values.frame)});
 
 		// YouTube chapters go next to the video, ready for the description.
-		const chaptersPath = result.chapters.length > 0 && values.frame === undefined ? `${result.outputPath.slice(0, result.outputPath.length - path.extname(result.outputPath).length)}.chapters.txt` : null;
+		const chaptersPath = result.chapters.length > 0 && values.frame === undefined && !frameRange ? `${result.outputPath.slice(0, result.outputPath.length - path.extname(result.outputPath).length)}.chapters.txt` : null;
 		if (chaptersPath) await writeFile(chaptersPath, `${formatChapters(result.chapters)}\n`);
 
 		if (values.json) {

@@ -38,7 +38,7 @@ const HomeBody: React.FC = () => {
 					<WCard title={t('Bugünün planı', 'Today’s plan')} action={t('Ders Planı’na git', 'Open study plan')}>
 						<Stack gap={8}>
 							<PlanTask module="lessons" title={t('Paragraf · Ana fikir', 'Reading · Main idea')} meta={t('Mikro ders · 25 dk', 'Micro-lesson · 25 min')} done />
-							<PlanTask module="tests" title={t('Problemler · Seviye 2', 'Problems · Level 2')} meta={t('10 soru · 15 dk', '10 questions · 15 min')} now />
+							<PlanTask module="tests" title={t('Problemler · Orta', 'Problems · Medium')} meta={t('20 soru · 25 dk', '20 questions · 25 min')} now />
 							<PlanTask module="flashcards" title={t('Kimya kartları', 'Chemistry cards')} meta={t('20 kart · 10 dk', '20 cards · 10 min')} />
 						</Stack>
 					</WCard>
@@ -580,48 +580,74 @@ export const WebCheckoutScreen: React.FC = () => {
 	);
 };
 
+/**
+ * Payment result. Two columns on wide screens: the result on the left, what to
+ * do next on the right; a lone centred block left most of 1440 px empty (UI/UX
+ * review, 25 Oct 2026).
+ */
 const ResultPage: React.FC<{ok: boolean}> = ({ok}) => {
 	const t = useT();
 	const colors = useColors();
+	const next: [ModuleKey, string, string][] = ok
+		? [
+				['studyPlan', t('Bugünkü planın hazır', 'Today’s plan is ready'), t('3 görev · 70 dk', '3 tasks · 70 min')],
+				['exam', t('İlk Türkiye geneli denemen', 'Your first nationwide exam'), t('Cumartesi 10:00 · TYT', 'Saturday 10:00 · TYT')],
+				['sinoAi', t('SinoAI ile soru çöz', 'Solve a question with SinoAI'), t('Fotoğrafını çek, adım adım anlatsın', 'Snap it, get it step by step')],
+			]
+		: [];
 	return (
 		<Panel active="profile">
-			<Stack align="center" justify="center" gap={16} style={{flex: 1, textAlign: 'center'}}>
-				<div style={{width: 110, height: 110, borderRadius: 36, background: ok ? colors.success : colors.error, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 20px 40px -18px ${ok ? 'rgba(5,150,105,0.6)' : 'rgba(220,38,38,0.6)'}`}}>
-					<Icon name={ok ? 'check' : 'x'} size={54} color="#FFFFFF" stroke={2.6} />
-				</div>
-				<Text role="display" size={34} align="center">
-					{ok ? t('Ödemen alındı, hoş geldin', 'Payment received, welcome aboard') : t('Ödeme tamamlanamadı', 'Payment did not go through')}
-				</Text>
-				<Text role="body" size={16} align="center" style={{maxWidth: 560}}>
-					{ok ? t('YKS Yıllık paketin aktif. Faturan e-postana gönderildi. Tüm modüller açık.', 'YKS Yearly is active. Invoice sent. Every module is open.') : t('Bankan işlemi onaylamadı. Kartından para çekilmedi. Başka bir kartla tekrar deneyebilirsin.', 'Your bank declined it. You were not charged. Try another card.')}
-				</Text>
-				<Stack row gap={10}>
-					{ok ? (
-						<>
-							<Button size="lg">{t('Planıma git', 'Go to my plan')}</Button>
-							<Button tone="ghost" size="lg">
-								{t('Faturayı gör', 'View invoice')}
-							</Button>
-						</>
-					) : (
-						<>
-							<Button size="lg" icon="refresh">
-								{t('Tekrar dene', 'Try again')}
-							</Button>
-							<Button tone="ghost" size="lg" icon="headset">
-								{t('Destek', 'Support')}
-							</Button>
-						</>
-					)}
+			<Grid columns={ok ? '1.15fr 1fr' : '1fr'} gap={28} style={{flex: 1, alignItems: 'center'}}>
+				<Stack align={ok ? 'flex-start' : 'center'} gap={16} style={{textAlign: ok ? 'left' : 'center', padding: ok ? '0 0 0 24px' : undefined}}>
+					<div style={{width: 96, height: 96, borderRadius: 32, background: ok ? colors.success : colors.error, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 20px 40px -18px ${ok ? 'rgba(5,150,105,0.6)' : 'rgba(220,38,38,0.6)'}`}}>
+						<Icon name={ok ? 'check' : 'x'} size={48} color="#FFFFFF" stroke={2.6} />
+					</div>
+					<Text role="display" size={36} align={ok ? 'left' : 'center'}>
+						{ok ? t('Ödemen alındı, hoş geldin', 'Payment received, welcome aboard') : t('Ödeme tamamlanamadı', 'Payment did not go through')}
+					</Text>
+					<Text role="body" size={17} align={ok ? 'left' : 'center'} style={{maxWidth: 560}}>
+						{ok ? t('YKS Yıllık paketin aktif. Faturan e-postana gönderildi. Tüm modüller açık.', 'YKS Yearly is active. Invoice sent. Every module is open.') : t('Bankan işlemi onaylamadı. Kartından para çekilmedi. Başka bir kartla tekrar deneyebilirsin.', 'Your bank declined it. You were not charged. Try another card.')}
+					</Text>
+					<Stack row gap={10}>
+						{ok ? (
+							<>
+								<Button size="lg">{t('Planıma git', 'Go to my plan')}</Button>
+								<Button tone="ghost" size="lg">
+									{t('Faturayı gör', 'View invoice')}
+								</Button>
+							</>
+						) : (
+							<>
+								<Button size="lg" icon="refresh">
+									{t('Tekrar dene', 'Try again')}
+								</Button>
+								<Button tone="ghost" size="lg" icon="headset">
+									{t('Destek', 'Support')}
+								</Button>
+							</>
+						)}
+					</Stack>
 				</Stack>
 				{ok ? (
-					<Stack row gap={10} style={{marginTop: 10}}>
-						{MODULE_ORDER.map((key) => (
-							<Tile key={key} module={key} size={40} />
-						))}
-					</Stack>
+					<WCard title={t('Sırada ne var?', 'What’s next?')}>
+						<Stack gap={12}>
+							{next.map(([key, title, sub]) => (
+								<Stack key={key} row gap={14} style={{padding: '12px 14px', borderRadius: 16, border: `1px solid ${colors.line}`}}>
+									<Tile module={key} size={44} />
+									<Stack grow gap={2}>
+										<Text role="headline">{title}</Text>
+										<Text role="small">{sub}</Text>
+									</Stack>
+									<Icon name="right" size={18} color={colors.subtle} />
+								</Stack>
+							))}
+							<Text role="small" style={{marginTop: 4}}>
+								{t('Telefonda da aynı hesap: App Store ve Google Play’de Sınavika.', 'Same account on your phone: Sınavika on the App Store and Google Play.')}
+							</Text>
+						</Stack>
+					</WCard>
 				) : null}
-			</Stack>
+			</Grid>
 		</Panel>
 	);
 };

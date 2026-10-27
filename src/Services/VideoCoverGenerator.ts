@@ -53,9 +53,11 @@ export const videoCoverJob = (job: ResolvedVideoJob) => {
 	const headline = contentText(content, 'title') ?? contentText(content, 'concept') ?? job.template.title;
 
 	const title = requested.title ?? plain(headline, TITLE_LIMIT);
-	// Without a word chosen by the job, the last word of the title carries the highlighter (and with it the lesson colour).
+	// The highlighter marks what the video sells, so the job chooses it (`cover.emphasis`). Only a lesson video
+	// without a choice falls back to its last word, which carries the lesson colour; a promotion never does: an
+	// automatic last word lit "söylüyor" in "Netin sana yalan söylüyor" (Tuğçe's review, 26 Oct 2026).
 	const words = title.replace(/…$/, '').split(' ');
-	const lastWord = words.length > 1 && words[words.length - 1].length <= 30 ? words[words.length - 1] : undefined;
+	const lastWord = lesson && words.length > 1 && words[words.length - 1].length <= 30 ? words[words.length - 1] : undefined;
 
 	return {
 		category: 'Thumbnails',

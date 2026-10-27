@@ -264,6 +264,15 @@ export const VOICE_PROFILES = {
 		similarity: 0.8,
 		style: 0,
 	},
+	Herald: {
+		// The camp's episode 0 opens a series; the owner asked for more excitement than the lesson voice (26 Oct 2026).
+		description: 'Heyecanlı duyuru: kamp tanıtımı (Bölüm 0), enerjik ama doğal',
+		standIns: ['Jessica', 'Laura'],
+		pace: 1,
+		stability: 0.34,
+		similarity: 0.8,
+		style: 0.3,
+	},
 	Creator: {
 		description: 'Genç ve samimi içerik üreticisi: sosyal medya',
 		standIns: ['Jessica', 'Laura'],

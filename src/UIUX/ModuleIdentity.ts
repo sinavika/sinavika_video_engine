@@ -13,6 +13,7 @@
  * - Tints are the identity colour at fixed opacities (see `moduleTint`), not
  *   new colours: "saydam" layers of the same hue.
  */
+import {contrastRatio, mixColors} from '../Themes/ColorPalette';
 import type {UIIconName} from './Icons';
 
 export const MODULE_KEYS = ['exam', 'lessons', 'tests', 'studyPlan', 'smartSummary', 'flashcards', 'sinoAi'] as const;
@@ -97,8 +98,8 @@ export const MODULES: Record<ModuleKey, ModuleIdentity> = {
 		],
 		slide: {
 			label: {tr: 'Senin için hazır', en: 'Ready for you'},
-			title: {tr: 'Problemler · Seviye 2', en: 'Word problems · Level 2'},
-			text: {tr: 'Denemede en çok net kaybettiğin konu. 10 soru.', en: 'Where you lost most points. 10 questions.'},
+			title: {tr: 'Problemler · Orta', en: 'Word problems · Medium'},
+			text: {tr: 'Denemede en çok net kaybettiğin konu. 20 soru.', en: 'Where you lost most points. 20 questions.'},
 			action: {tr: 'Teste başla', en: 'Start quiz'},
 		},
 	},
@@ -212,6 +213,30 @@ export const TINT = {
 export const moduleTint = (key: ModuleKey, step: keyof typeof TINT, mode: 'light' | 'dark' = 'light'): string => alpha(MODULES[key].color[mode], mode === 'dark' ? TINT[step] * 1.8 : TINT[step]);
 
 export const moduleColor = (key: ModuleKey, mode: 'light' | 'dark' = 'light'): string => MODULES[key].color[mode];
+
+/** Text contrast a module's ink keeps on every tint of its module and on the page (WCAG AA, normal text). */
+export const MODULE_INK_CONTRAST = 4.5;
+const PAGE: Record<'light' | 'dark', string> = {light: '#F7F7F8', dark: '#0F1115'};
+
+/**
+ * The module colour for text and small labels: darkened on light pages,
+ * lightened on dark ones, in 5 % steps until it reads at 4.5:1 on the
+ * strongest tint (`line`) and on the page. Orange, sky, teal and pink text sat
+ * at 3.1–3.8:1 on their own tints (UI/UX review, 25 Oct 2026). Icons, fills
+ * and the tab pill keep the identity colour; the apps use the same rule
+ * (mobile `resolveModuleInk`).
+ */
+export const moduleInk = (key: ModuleKey, mode: 'light' | 'dark' = 'light'): string => {
+	const base = MODULES[key].color[mode];
+	const page = PAGE[mode];
+	const lineTint = mixColors(page, base, mode === 'dark' ? TINT.line * 1.8 : TINT.line);
+	const toward = mode === 'dark' ? '#FFFFFF' : '#000000';
+	for (let step = 0; step <= 20; step++) {
+		const ink = mixColors(base, toward, step * 0.05);
+		if (contrastRatio(ink, lineTint) >= MODULE_INK_CONTRAST && contrastRatio(ink, page) >= MODULE_INK_CONTRAST) return ink;
+	}
+	return toward;
+};
 
 /**
  * SinoAI has no colour of its own (decided 15 October): it is neutral slate,

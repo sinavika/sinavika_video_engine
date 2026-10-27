@@ -50,11 +50,11 @@ export const STORE_SLIDES: readonly StoreSlide[] = [
 		file: {tr: 'hepsi-tek-yerde', en: 'all-in-one'},
 		headline: {tr: 'Sınav hazırlığın *tek yerde*', en: 'Your exam prep, *all in one place*'},
 		subline: {
-			tr: 'Konu anlatımı, quiz, deneme, çalışma planı ve SinoAI tek uygulamada.',
+			tr: 'Konu anlatımı, test, deneme, çalışma planı ve SinoAI tek uygulamada.',
 			en: 'Lessons, quizzes, mock exams, a study plan and SinoAI in one app.',
 		},
 		screens: ['Home'],
-		chips: {tr: ['Mikro ders', 'Quiz', 'Deneme', 'SinoAI'], en: ['Micro-lessons', 'Quizzes', 'Mock exams', 'SinoAI']},
+		chips: {tr: ['Mikro ders', 'Test', 'Deneme', 'SinoAI'], en: ['Micro-lessons', 'Quizzes', 'Mock exams', 'SinoAI']},
 		logo: true,
 	},
 	{
@@ -86,14 +86,14 @@ export const STORE_SLIDES: readonly StoreSlide[] = [
 			tr: 'Notlarını ve kaynaklarını yükle.',
 			en: 'Upload your notes and sources.',
 		},
-		tool: {module: 'sinoAi', text: {tr: 'SinoAI onlardan konu anlatımı, quiz, deneme ve kart hazırlar.', en: 'SinoAI turns them into lessons, quizzes, mock exams and flashcards.'}},
+		tool: {module: 'sinoAi', text: {tr: 'SinoAI onlardan konu anlatımı, test, deneme ve kart hazırlar.', en: 'SinoAI turns them into lessons, quizzes, mock exams and flashcards.'}},
 		screens: [
 			{
 				sinoAi: {
 					tr: {
 						attachment: 'Hucre-Biyolojisi-Notlarim.pdf',
-						question: 'Bu notlardan 10 soruluk bir quiz hazırla',
-						answer: ['Notlarından 10 soruluk quiz hazır: 6 kolay, 4 orta zorlukta soru.', 'Hücre zarı ve organellere ağırlık verdim. İstersen aynı notlardan tekrar kartları da oluşturayım.'],
+						question: 'Bu notlardan 10 soruluk bir test hazırla',
+						answer: ['Notlarından 10 soruluk test hazır: 6 kolay, 4 orta zorlukta soru.', 'Hücre zarı ve organellere ağırlık verdim. İstersen aynı notlardan tekrar kartları da oluşturayım.'],
 					},
 					en: {
 						attachment: 'Cell-Biology-Notes.pdf',
@@ -103,7 +103,7 @@ export const STORE_SLIDES: readonly StoreSlide[] = [
 				},
 			},
 		],
-		badge: {icon: 'checklist', text: {tr: '10 soruluk quiz hazır', en: '10-question quiz ready'}},
+		badge: {icon: 'checklist', text: {tr: '10 soruluk test hazır', en: '10-question quiz ready'}},
 	},
 	{
 		file: {tr: 'ogren-pekistir', en: 'learn-and-practise'},
@@ -154,7 +154,7 @@ export const STORE_SLIDES: readonly StoreSlide[] = [
 /** The Google Play feature graphic. */
 export const FEATURE_GRAPHIC = {
 	headline: {tr: 'Sınav hazırlığın *tek yerde*', en: 'Your exam prep, *all in one place*'},
-	subline: {tr: 'Ders, quiz, deneme, plan ve SinoAI', en: 'Lessons, quizzes, mock exams, planning and SinoAI'},
+	subline: {tr: 'Ders, test, deneme, plan ve SinoAI', en: 'Lessons, quizzes, mock exams, planning and SinoAI'},
 	screens: ['Home', 'SinoAi'] as const,
 } satisfies {headline: StoreText; subline: StoreText; screens: readonly AppScreenName[]};
 

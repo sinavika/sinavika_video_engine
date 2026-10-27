@@ -74,9 +74,31 @@ export const useElementState = (id: string | undefined): {appear: number; emphas
 	return listed(beat.focus) ? {appear, emphasis: ramp, dim: 0} : {appear, emphasis: 0, dim: ramp};
 };
 
+/**
+ * When the first beat that lists a part under `field` starts (seconds into the
+ * scene): `swap` for the word that turns into its swap, `focus` for a part
+ * that is pointed at. Undefined without beats or when no beat lists it.
+ */
+export const useBeatStartFor = (id: string, field: 'swap' | 'focus' | 'show'): number | undefined => {
+	const timeline = useTimeline();
+	if (!timeline) return undefined;
+	const key = id.toLocaleLowerCase('tr');
+	const index = timeline.beats.findIndex((beat) => (beat[field] ?? []).some((name) => name.toLocaleLowerCase('tr') === key));
+	return index < 0 ? undefined : timeline.starts[index];
+};
+
+/** Whether the card's visual is told in beats. */
+export const useHasBeats = (): boolean => useTimeline() !== null;
+
+/**
+ * How far a part out of focus fades. It was 0.68 (32 % opacity) and text in the other column of a comparison could
+ * not be read ("kart içindeki metinler çok silik", owner, 27 Oct 2026); at 0.4 it stays readable and the focus still leads.
+ */
+export const UNFOCUSED_FADE = 0.4;
+
 /** Opacity and stroke scale for a part, from its state. */
 export const elementLook = (state: {appear: number; emphasis: number; dim: number}) => ({
-	opacity: state.appear * (1 - 0.68 * state.dim),
+	opacity: state.appear * (1 - UNFOCUSED_FADE * state.dim),
 	scale: 1 + 0.5 * state.emphasis,
 });
 

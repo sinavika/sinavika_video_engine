@@ -12,7 +12,7 @@ import {plainText} from '../../../Schemas/RichText';
 import {useTheme} from '../../../Themes/ThemeContext';
 import {useImageLayout} from '../../Components/ImageFrame';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
-import {PROFILE_GRID, tileWindow} from './ProfileGridLayout';
+import {GRID_MARGIN, PROFILE_GRID, tileWindow} from './ProfileGridLayout';
 
 const PanelSchema = z.object({
 	/** The module shown, as the app names it. */
@@ -33,13 +33,23 @@ type Content = z.infer<typeof AppTrioSchema>;
 const BAND = {top: 0.47, bottom: 0.83};
 const PHONE_WIDTH = 410;
 
+/**
+ * One headline size for all three tiles, set by the longest headline: the
+ * row reads as one line of type only if the words share size and baseline
+ * (Tuğçe's review, 26 Oct 2026: "Deneme çöz. / Eksiğini gör." looked uneven).
+ */
+const headlineSize = (content: Content): number => {
+	const longest = Math.max(...content.panels.map((panel) => panel.headline.length));
+	return longest <= 12 ? 124 : longest <= 18 ? 104 : 86;
+};
+
 const AppTrioImage: React.FC<{content: Content; page: number}> = ({content, page}) => {
 	const {colors} = useTheme();
 	const {u, width, height} = useImageLayout();
 	const index = Math.min(page, PROFILE_GRID.tiles - 1);
 	const panel = content.panels[index];
 	const tile = tileWindow(width, height);
-	const inset = tile.left + u(56);
+	const inset = tile.left + u(GRID_MARGIN);
 	const Screen = APP_SCREENS[panel.screen].Component;
 	const phoneWidth = u(PHONE_WIDTH);
 	// Every phone leans the same way: a repeated shape reads as one row, and the lean keeps the logo's corner free.
@@ -59,7 +69,7 @@ const AppTrioImage: React.FC<{content: Content; page: number}> = ({content, page
 						{panel.kicker}
 					</Text>
 				</div>
-				<Text variant="display" size={panel.headline.length <= 12 ? 124 : panel.headline.length <= 18 ? 104 : 86} weight={TYPE.weights.kinetic} color={colors.text} style={{lineHeight: 1.02}}>
+				<Text variant="display" size={headlineSize(content)} weight={TYPE.weights.kinetic} color={colors.text} style={{lineHeight: 1.02, whiteSpace: 'nowrap'}}>
 					{panel.headline}
 				</Text>
 			</div>
@@ -70,7 +80,8 @@ const AppTrioImage: React.FC<{content: Content; page: number}> = ({content, page
 				</PhoneFrame>
 			</div>
 
-			<div style={{position: 'absolute', right: inset, bottom: u(56)}}>
+			{/* The logo sits inside the tile with the same margin as the text, not pressed into the corner. */}
+			<div style={{position: 'absolute', right: inset, bottom: u(GRID_MARGIN + 16)}}>
 				<BrandMark color={colors.text} />
 			</div>
 		</AbsoluteFill>

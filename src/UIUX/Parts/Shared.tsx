@@ -2,7 +2,7 @@ import React from 'react';
 import {Img, staticFile} from 'remotion';
 import {BRAND} from '../../Configurations/Brand';
 import {useTheme} from '../../Themes/ThemeContext';
-import {useColors, useModuleColors, useUI} from '../Context';
+import {TintProvider, useColors, useModuleColors, useOnTint, useUI} from '../Context';
 import {Icon, type UIIconName} from '../Icons';
 import {alpha, MODULES, moduleGradient, type ModuleKey} from '../ModuleIdentity';
 import {UI_RADIUS, UI_SHADOW, UI_TYPE, type UITypeRole} from '../Tokens';
@@ -26,14 +26,21 @@ type TextProps = {
 export const Text: React.FC<TextProps> = ({role = 'body', size, weight, color, align, tnum, style, children}) => {
 	const {typography} = useTheme();
 	const colors = useColors();
+	const onTint = useOnTint();
+	const {web} = useUI();
 	const [fontSize, lineHeight, roleWeight] = UI_TYPE[role];
-	const scale = size ? size / fontSize : 1;
-	const defaultColor = role === 'body' ? colors.ink2 : role === 'small' || role === 'meta' || role === 'over' ? colors.muted : colors.ink;
+	// Web panel: reading text one step up, unless the screen set a size itself.
+	const webStep = web && size === undefined && (role === 'body' || role === 'small' || role === 'meta') ? 1 : 0;
+	// Never under the 12 pt floor, whatever size a screen asks for.
+	const floor = Math.max((size ?? fontSize) + webStep, UI_TYPE.over[0]);
+	const scale = floor / fontSize;
+	const quiet = onTint ? colors.ink2 : colors.muted;
+	const defaultColor = role === 'body' ? colors.ink2 : role === 'small' || role === 'meta' || role === 'over' ? quiet : colors.ink;
 	return (
 		<div
 			style={{
 				fontFamily: typography.body,
-				fontSize: size ?? fontSize,
+				fontSize: floor,
 				lineHeight: `${lineHeight * scale}px`,
 				fontWeight: weight ?? roleWeight,
 				color: color ?? defaultColor,
@@ -75,7 +82,7 @@ export const Button: React.FC<ButtonProps> = ({tone = 'primary', size = 'md', bl
 		ghost: {background: colors.card, color: colors.ink, border: `1.5px solid ${colors.line}`},
 		white: {background: '#FFFFFF', color: '#0B1C30'},
 		module: {background: mod.color, color: '#FFFFFF'},
-		moduleSoft: {background: mod.soft, color: mod.color},
+		moduleSoft: {background: mod.soft, color: mod.ink},
 		disabled: {background: colors.line, color: colors.subtle},
 		glass: {background: 'rgba(255, 255, 255, 0.2)', color: '#FFFFFF'},
 	};
@@ -117,11 +124,11 @@ export const Chip: React.FC<{tone?: ChipTone; icon?: UIIconName; module?: Module
 	const tones: Record<ChipTone, React.CSSProperties> = {
 		neutral: {background: colors.line2, color: colors.ink2},
 		brand: {background: colors.brandSoft, color: colors.brandDeep},
-		module: {background: mod.soft, color: mod.color},
+		module: {background: mod.soft, color: mod.ink},
 		moduleSolid: {background: mod.color, color: '#FFFFFF'},
-		success: {background: colors.successSoft, color: colors.success},
-		warning: {background: colors.warningSoft, color: colors.warning},
-		error: {background: colors.errorSoft, color: colors.error},
+		success: {background: colors.successSoft, color: colors.successInk},
+		warning: {background: colors.warningSoft, color: colors.warningInk},
+		error: {background: colors.errorSoft, color: colors.errorInk},
 		dark: {background: colors.ink, color: colors.bg},
 		outline: {background: colors.card, color: colors.ink2, border: `1.5px solid ${colors.line}`},
 		glass: {background: 'rgba(255, 255, 255, 0.2)', color: '#FFFFFF'},
@@ -133,11 +140,11 @@ export const Chip: React.FC<{tone?: ChipTone; icon?: UIIconName; module?: Module
 				display: 'inline-flex',
 				alignItems: 'center',
 				gap: 5,
-				height: size === 'sm' ? 22 : 28,
+				height: size === 'sm' ? 24 : 28,
 				padding: `0 ${size === 'sm' ? 8 : 11}px`,
 				borderRadius: UI_RADIUS.full,
 				fontFamily: typography.body,
-				fontSize: size === 'sm' ? 10.5 : 12,
+				fontSize: size === 'sm' ? 12 : 13,
 				fontWeight: 700,
 				whiteSpace: 'nowrap',
 				flexShrink: 0,
@@ -165,7 +172,8 @@ export const Card: React.FC<{tone?: CardTone; padding?: number; radius?: number;
 		moduleLine: {background: colors.card, border: `1.5px solid ${mod.line}`, boxShadow: UI_SHADOW.card},
 		dark: {background: colors.ink, color: colors.bg},
 	};
-	return <div style={{boxSizing: 'border-box', padding, borderRadius: radius, ...tones[tone], ...style}}>{children}</div>;
+	const card = <div style={{boxSizing: 'border-box', padding, borderRadius: radius, ...tones[tone], ...style}}>{children}</div>;
+	return tone === 'module' ? <TintProvider>{card}</TintProvider> : card;
 };
 
 /** A module's icon on its tinted tile. `solid` paints the module gradient. */
@@ -209,11 +217,14 @@ export const Bar: React.FC<{value: number; color?: string; track?: string; heigh
 };
 
 /** Five-step level bars (Testler). */
+/** The levels of a topic's tests as bars. The product has three: Kolay, Orta, Zor. */
+export const TEST_LEVELS = 3;
+
 export const Levels: React.FC<{done: number; color?: string; height?: number}> = ({done, color, height = 18}) => {
 	const colors = useColors();
 	return (
 		<Stack row gap={3}>
-			{[0, 1, 2, 3, 4].map((step) => (
+			{Array.from({length: TEST_LEVELS}, (_, step) => step).map((step) => (
 				<div key={step} style={{width: 8, height, borderRadius: 3, background: step < done ? (color ?? colors.brand) : colors.line}} />
 			))}
 		</Stack>

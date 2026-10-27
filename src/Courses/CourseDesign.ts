@@ -26,11 +26,40 @@ export const COURSE_DESIGN = {
 	 * rule, 25 Oct 2026; also past YouTube's 8-minute mid-roll line) and runs
 	 * longer when the topic needs it; it is never padded.
 	 */
-	length: {lesson: {min: 10 * 60, target: 12 * 60}, short: {min: 60, max: 120}},
+	length: {
+		lesson: {min: 10 * 60, target: 12 * 60},
+		/** A summary reel (CourseShort cards). */
+		short: {min: 60, max: 120},
+		/**
+		 * A challenge reel (CampShort rounds). The 71–106 s camp reels of 26 Oct were
+		 * judged to lose viewers in the first seconds and before the last question
+		 * (outside review, 27 Oct 2026): at most three questions, under 30 s.
+		 */
+		challenge: {min: 18, max: 30},
+	},
 	/** The camp layer (Templates/Camps) on top of the lesson and the short. */
 	camp: {
 		/** The camp card at the start, under SinoAI's welcome: camp name, lesson number, the camp's progress. Its shortest time without voice. */
 		cardSeconds: 6,
+		/**
+		 * Silent seconds to answer a round of a challenge reel, with a countdown. The choices are already on screen
+		 * while the sentence and question are read (4–5 s), so this is extra time, not the only time: 3 s of silence
+		 * per round was 16 % of a 75 s reel and the slowest moment of each round (owner, 26 Oct 2026). Quiz-reel guides
+		 * give 3–5 s of total guessing time; ours stays above that counting the reading.
+		 */
+		roundThinkSeconds: 2,
+		/**
+		 * The shortest a round's answer stays after the voice. The answer and its
+		 * one-line why are said in about 2 s; the old 3 s floor and longer whys left
+		 * the card standing still for 6–8 s, the reels' deadest moment (27 Oct 2026).
+		 */
+		roundRevealSeconds: 1.6,
+		/**
+		 * Speaking rate of the course voice in a challenge reel, words per second
+		 * with its pauses, measured on the 26 Oct Deyim ve Atasözü reel (1.86).
+		 * Turkish words are long; 2.3 (the lesson estimate) promised 25 % too little.
+		 */
+		challengeWordsPerSecond: 1.9,
 		/** A section title spoken on its own ("İkinci bölüm: Mecaz anlam.") holds at least this long, so it lands as a heading. */
 		sectionTitleSeconds: 2.4,
 		/** The camp task at the end is held at least this long so its items can be read. */
@@ -62,7 +91,21 @@ export const COURSE_DESIGN = {
 		example: 54,
 	},
 	/** How long a card stays without narration, in seconds: a fallback for previews only. */
-	pacing: {cardSeconds: 6, minCardSeconds: 3, sectionSeconds: 3, questionThinkSeconds: 3},
+	pacing: {
+		cardSeconds: 6,
+		minCardSeconds: 3,
+		sectionSeconds: 3,
+		/** Silent time to think after a question is read, with a countdown on screen (it used to be a floor that the voice always exceeded, so there was no pause). */
+		questionThinkSeconds: 5,
+		/**
+		 * Shortest time of a beat's sentence. Short: a beat's line that stopped
+		 * for 2.5 s before the next one was heard as the voice breaking off
+		 * (owner, 25 Oct 2026). Long enough for the part to come in.
+		 */
+		beatSeconds: 1.2,
+		/** Shortest time of a solution step. */
+		stepSeconds: 2.5,
+	},
 	/** A card's text and its visual share the card; the visual gets this part of the width on horizontal video. */
 	visualShare: 0.56,
 	/**
@@ -78,7 +121,7 @@ export const COURSE_DESIGN = {
  * lesson is taught in its own way instead of with the same text cards.
  */
 export const LESSON_VISUAL_KITS: Record<string, readonly CourseVisualKind[]> = {
-	TRK: ['sentence', 'comparison', 'table', 'flow', 'conceptMap'],
+	TRK: ['sentence', 'paragraph', 'comparison', 'table', 'flow', 'conceptMap'],
 	TDE: ['sentence', 'timeline', 'comparison', 'table', 'conceptMap', 'picture'],
 	MAT: ['formula', 'plot', 'equation', 'geometry', 'solid', 'table', 'venn', 'flow'],
 	GEO: ['geometry', 'solid', 'formula', 'plot', 'table'],

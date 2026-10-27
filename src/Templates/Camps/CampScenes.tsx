@@ -1,12 +1,13 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
-import {Animated, Stagger} from '../../Components/Animations/Animated';
+import {Animated} from '../../Components/Animations/Animated';
 import {Icon} from '../../Components/Illustrations/Icon';
 import {Card} from '../../Components/Layouts/Card';
 import {ChromeBar, SafeArea} from '../../Components/Layouts/SafeArea';
 import {useVideoLayout} from '../../Components/Layouts/VideoLayout';
 import {BrandMark} from '../../Components/Overlays/BrandMark';
 import {SegmentedProgress} from '../../Components/Overlays/SegmentedProgress';
+import {VoiceOrb, type VoiceTrack} from '../../Components/Overlays/VoiceOrb';
 import {RichText} from '../../Components/Typography/RichText';
 import {Text} from '../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY} from '../../Configurations/BrandTypography';
@@ -72,22 +73,19 @@ const CampProgress: React.FC<{camp: CampEpisode; ink: string; delaySeconds: numb
 	);
 };
 
-/** SinoAI's mark, breathing slowly while it speaks: the host of the camp lessons. */
-const SinoAIMark: React.FC<{size: number; ink: string}> = ({size, ink}) => {
-	const {u} = useVideoLayout();
-	const frame = useCurrentFrame();
-	const {fps} = useVideoConfig();
-	const appear = interpolate(frame, [0.3 * fps, 0.9 * fps], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-	const breath = 1 + 0.04 * Math.sin((frame / fps) * Math.PI * 0.9);
+/**
+ * SinoAI speaking beside a section's title: the voice orb on the right of a
+ * section opening (whose title keeps to the left three quarters).
+ */
+export const SectionVoiceOrb: React.FC<{tracks: readonly VoiceTrack[]}> = ({tracks}) => {
+	const {colors} = useTheme();
+	const {isLandscape, safeArea} = useVideoLayout();
+	if (!isLandscape) return null;
+	const tone = colors.lesson ?? {fill: colors.primary, on: colors.onPrimary};
 	return (
-		<div style={{position: 'relative', width: u(size), height: u(size), flexShrink: 0, opacity: appear, transform: `scale(${(0.8 + 0.2 * appear) * breath})`}}>
-			{[1, 0.78, 0.56].map((share, index) => (
-				<div key={share} style={{position: 'absolute', inset: u((size * (1 - share)) / 2), borderRadius: '50%', backgroundColor: withAlpha(ink, 0.08 + index * 0.06), border: index === 2 ? `${u(4)}px solid ${withAlpha(ink, 0.5)}` : 'none'}} />
-			))}
-			<div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-				<Icon name="sparkles" size={size * 0.34} color={ink} strokeWidth={1.8} />
-			</div>
-		</div>
+		<AbsoluteFill style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingRight: safeArea.right * 1.6}}>
+			<VoiceOrb size={360} color={tone.fill} tracks={tracks} delaySeconds={0.3} />
+		</AbsoluteFill>
 	);
 };
 
@@ -97,7 +95,7 @@ const SinoAIMark: React.FC<{size: number; ink: string}> = ({size, ink}) => {
  * while the card shows the camp's name, which lesson this is and where the
  * camp stands. Docs: Courses.md §8, colours: CourseColors.md.
  */
-export const CampCardScene: React.FC<{script: LessonScript; camp: CampEpisode; promise?: string; welcome?: boolean}> = ({script, camp, promise, welcome = false}) => {
+export const CampCardScene: React.FC<{script: LessonScript; camp: CampEpisode; promise?: string; welcome?: boolean; voice?: readonly VoiceTrack[]}> = ({script, camp, promise, welcome = false, voice = []}) => {
 	const {colors, typography} = useTheme();
 	const {u, isLandscape} = useVideoLayout();
 	const tone = colors.lesson ?? {fill: colors.primary, on: colors.onPrimary};
@@ -147,7 +145,7 @@ export const CampCardScene: React.FC<{script: LessonScript; camp: CampEpisode; p
 							</Animated>
 						) : null}
 					</div>
-					{welcome && isLandscape ? <SinoAIMark size={420} ink={ink} /> : null}
+					{welcome && isLandscape ? <VoiceOrb size={440} color={tone.fill} tracks={voice} /> : null}
 				</SafeArea>
 			</InkProvider>
 		</AbsoluteFill>
@@ -155,7 +153,7 @@ export const CampCardScene: React.FC<{script: LessonScript; camp: CampEpisode; p
 };
 
 /** The end of a camp lesson: the camp task, and the next lesson (or the end of the camp). */
-export const CampTaskScene: React.FC<{camp: CampEpisode}> = ({camp}) => {
+export const CampTaskScene: React.FC<{camp: CampEpisode; cues?: {items: number[]; next: number}}> = ({camp, cues}) => {
 	const {colors} = useTheme();
 	const {u, isLandscape} = useVideoLayout();
 	const tone = colors.lesson ?? {fill: colors.accent, on: colors.onAccent};
@@ -169,9 +167,10 @@ export const CampTaskScene: React.FC<{camp: CampEpisode}> = ({camp}) => {
 			</Animated>
 			<div style={{flex: 1, minHeight: 0, display: 'flex', flexDirection: isLandscape ? 'row' : 'column', gap: u(SPACING.xl), alignItems: isLandscape ? 'center' : 'stretch'}}>
 				<div style={{flex: 1.4, display: 'flex', flexDirection: 'column', gap: u(SPACING.md)}}>
-					<Stagger delaySeconds={0.4} stepSeconds={0.7} animation={{preset: 'slide', direction: 'left', distance: 60}}>
-						{camp.task.items.map((item, index) => (
-							<Card key={index} padding={SPACING.lg} elevated={false}>
+					{/* Each task arrives as it is said (without cues, one after another at the start). */}
+					{camp.task.items.map((item, index) => (
+						<Animated key={index} animation={{preset: 'slide', direction: 'left', distance: 60}} delaySeconds={cues?.items[index] ?? 0.4 + index * 0.7}>
+							<Card padding={SPACING.lg} elevated={false}>
 								<div style={{display: 'flex', gap: u(20), alignItems: 'center'}}>
 									<div style={{flex: 'none', width: u(64), height: u(64), borderRadius: u(18), backgroundColor: tone.fill, color: tone.on, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 										<Text size={34} weight={BRAND_TYPOGRAPHY.weights.kinetic} color={tone.on}>
@@ -181,10 +180,10 @@ export const CampTaskScene: React.FC<{camp: CampEpisode}> = ({camp}) => {
 									<RichText text={item} size={38} />
 								</div>
 							</Card>
-						))}
-					</Stagger>
+						</Animated>
+					))}
 				</div>
-				<Animated animation={{preset: 'slide', direction: 'up', distance: 80}} delaySeconds={0.6 + camp.task.items.length * 0.7} style={{flex: 1}}>
+				<Animated animation={{preset: 'slide', direction: 'up', distance: 80}} delaySeconds={cues?.next ?? 0.6 + camp.task.items.length * 0.7} style={{flex: 1}}>
 					<div style={{display: 'flex', flexDirection: 'column', gap: u(14), padding: u(SPACING.xl), borderRadius: u(32), backgroundColor: tone.fill}}>
 						<div style={{display: 'flex', alignItems: 'center', gap: u(14)}}>
 							<Icon name={last ? 'star' : 'arrowRight'} size={40} color={tone.on} />

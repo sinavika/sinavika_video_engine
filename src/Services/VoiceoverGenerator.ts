@@ -5,9 +5,10 @@ import path from 'node:path';
 import {VOICEOVER_DIRECTORY, VOICE_MODELS} from '../Configurations/Voices';
 import type {VoiceClips} from '../Scenes/Voiceover';
 import {pronounceAbbreviations} from '../Schemas/SpokenText';
+import {placeCutsInFile} from './NarrationCuts';
 import {AUDIO_LEVELS, NARRATION_TONE, toneAndLevel} from './AudioLeveling';
 import {ELEVENLABS_SPEECH, SpeechError, type Narration, type SpeechBackend} from './ElevenLabsSpeech';
-import {groupLines, joinScript, segmentLines, type LineSegment} from './NarrationScript';
+import {groupLines, joinScript, lineWords, segmentLines, type LineSegment, type TimedWord} from './NarrationScript';
 import {castVoice, type VoiceCast, type VoiceoverRequest} from './VoiceCasting';
 
 export type VoiceLine = {id: string; text: string};
@@ -69,6 +70,21 @@ const narrateWithRetry = async (script: string, cast: VoiceCast, speech: SpeechB
  * credits. Before anything is generated the script is checked against the
  * account's remaining characters, so a video is never left half narrated.
  */
+/** Version of how lines are cut out of a narration (NarrationCuts). A narration cut by an older version is cut again, from the same audio, without asking for new speech. */
+const CUTS_VERSION = 2;
+
+type StoredNarration = {cuts: number; segments: LineSegment[]; words?: TimedWord[][]};
+
+/** The lines of a cached narration, with its cuts placed in the audio, and its word timings when it has them; older files are upgraded in place. */
+const storedSegments = async (file: string, audio: string): Promise<{segments: LineSegment[]; words?: TimedWord[][]}> => {
+	const stored = JSON.parse(await readFile(file, 'utf8')) as LineSegment[] | StoredNarration;
+	if (!Array.isArray(stored) && stored.cuts === CUTS_VERSION) return {segments: stored.segments, words: stored.words};
+	const segments = await placeCutsInFile(Array.isArray(stored) ? stored : stored.segments, audio);
+	const words = Array.isArray(stored) ? undefined : stored.words;
+	await writeFile(file, JSON.stringify({cuts: CUTS_VERSION, segments, words}));
+	return {segments, words};
+};
+
 export const generateVoiceover = async (
 	lines: readonly VoiceLine[],
 	request: VoiceoverRequest,
@@ -124,17 +140,21 @@ export const generateVoiceover = async (
 			await writeFile(delivered, audio);
 			await toneAndLevel(delivered, group.audio, AUDIO_LEVELS.narration, NARRATION_TONE.filters);
 			await rm(delivered, {force: true});
-			await writeFile(group.segments, JSON.stringify(segments));
+			const stored: StoredNarration = {cuts: CUTS_VERSION, segments: await placeCutsInFile(segments, group.audio), words: lineWords(group.texts, timing)};
+			await writeFile(group.segments, JSON.stringify(stored));
 		}
-		const segments = JSON.parse(await readFile(group.segments, 'utf8')) as LineSegment[];
+		const {segments, words} = await storedSegments(group.segments, group.audio);
 		group.indexes.forEach((lineIndex, position) => {
 			const {startSeconds, endSeconds} = segments[position];
+			const lineWordTimes = words?.[position];
 			clips[lines[lineIndex].id] = {
 				src: `${VOICEOVER_DIRECTORY}/${group.name}.wav`,
 				startSeconds,
 				// The line is played at the cast's pace, so that is how long it lasts in the video.
 				durationSeconds: (endSeconds - startSeconds) / cast.pace,
 				playbackRate: cast.pace,
+				// Word starts in seconds of the clip as played (see VoiceClip.words).
+				...(lineWordTimes ? {words: lineWordTimes.map((word) => ({text: word.text, startSeconds: Math.max(0, (word.startSeconds - startSeconds) / cast.pace)}))} : {}),
 			};
 		});
 		done += group.indexes.length;

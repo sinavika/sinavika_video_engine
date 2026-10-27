@@ -1,3 +1,4 @@
+import type React from 'react';
 import {mixColors} from '../../Themes/ColorPalette';
 import {useCurrentFrame, useVideoConfig} from 'remotion';
 import {animationProgress, type EasingName} from '../../Animations/Motion';
@@ -50,3 +51,17 @@ export const useVisualPalette = () => {
 		strongWeight: typography.strongWeight,
 	};
 };
+
+/**
+ * A line through text, drawn left to right as `struck` goes 0 → 1. A
+ * background line, so it follows every line of wrapped text (an absolute bar
+ * ran between the lines of a two-line option).
+ */
+export const strikeStyle = (struck: number, colour: string, thickness: number): React.CSSProperties => ({
+	backgroundImage: `linear-gradient(${colour}, ${colour})`,
+	backgroundRepeat: 'no-repeat',
+	backgroundPosition: '0 58%',
+	backgroundSize: `${(struck * 100).toFixed(2)}% ${thickness}px`,
+	boxDecorationBreak: 'clone',
+	WebkitBoxDecorationBreak: 'clone',
+});

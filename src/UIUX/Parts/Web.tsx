@@ -137,7 +137,7 @@ export const Panel: React.FC<{active: PanelItem; children: React.ReactNode; crum
 	const isModule = (MODULE_ORDER as readonly string[]).includes(active);
 	const mod = useModuleColors(isModule ? (active as ModuleKey) : 'exam');
 	return (
-		<UIProvider module={isModule ? (active as ModuleKey) : undefined}>
+		<UIProvider module={isModule ? (active as ModuleKey) : undefined} web>
 			<div style={{position: 'relative', width: W, height: H, display: 'flex', background: colors.bg, overflow: 'hidden'}}>
 				<Sidebar active={active} />
 				<div style={{flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', background: isModule ? `linear-gradient(180deg, ${mod.wash} 0%, ${colors.bg} 300px)` : colors.bg}}>
@@ -196,7 +196,7 @@ export const Immersive: React.FC<{module: ModuleKey; title: string; sub?: string
 	const t = useT();
 	const mod = useModuleColors(module);
 	return (
-		<UIProvider module={module}>
+		<UIProvider module={module} web>
 			<div style={{width: W, height: H, display: 'flex', flexDirection: 'column', background: colors.card}}>
 				<Stack row gap={16} style={{height: 70, padding: '0 32px', borderBottom: `1px solid ${colors.line}`, flexShrink: 0}}>
 					<Button tone="ghost" size="sm" icon="x">
@@ -403,7 +403,7 @@ export const DevicePhone: React.FC<{width?: number; rotate?: number; children: R
 		<div style={{width, height: 844 * scale + bezel * 2, borderRadius: width * g.outerRadius, background: g.body, padding: bezel, boxSizing: 'border-box', transform: `rotate(${rotate}deg)`, boxShadow: `0 ${width * 0.08}px ${width * 0.2}px -${width * 0.06}px rgba(11,28,48,0.55), inset 0 0 0 ${Math.max(1, width * 0.006)}px rgba(255,255,255,0.2)`}}>
 			<div style={{width: width - bezel * 2, height: 844 * scale, borderRadius: width * g.screenRadius, overflow: 'hidden', position: 'relative', background: '#FFFFFF'}}>
 				<div style={{width: 390, height: 844, transform: `scale(${scale})`, transformOrigin: 'top left'}}>
-					<UIProvider calm={false}>{children}</UIProvider>
+					<UIProvider calm={false} web={false}>{children}</UIProvider>
 				</div>
 				<div style={{position: 'absolute', top: width * g.island.top, left: '50%', width: width * g.island.width, height: width * g.island.height, marginLeft: (-width * g.island.width) / 2, borderRadius: width, background: g.body}} />
 			</div>
@@ -427,7 +427,7 @@ export const DeviceBrowser: React.FC<{width?: number; title?: string; children: 
 			</Stack>
 			<div style={{width, height: H * scale, overflow: 'hidden'}}>
 				<div style={{width: W, height: H, transform: `scale(${scale})`, transformOrigin: 'top left'}}>
-					<UIProvider calm={false}>{children}</UIProvider>
+					<UIProvider calm={false} web={false}>{children}</UIProvider>
 				</div>
 			</div>
 		</div>
@@ -435,29 +435,81 @@ export const DeviceBrowser: React.FC<{width?: number; title?: string; children: 
 };
 
 /** Pre-login auth pages (as the site has them): back link, logo, theme; a centred card; "Sınavika'yı keşfet" chips. */
-export const AuthLayout: React.FC<{children: React.ReactNode}> = ({children}) => {
+/** The promotion beside the sign-in and sign-up forms. */
+export type AuthPromo = {over: string; title: string; text: string; points: string[]; preview: React.ReactNode};
+
+/**
+ * Web sign-in, sign-up and password pages. With `promo` the page splits like
+ * the web onboarding (owner, 25 Oct 2026: "onboarding'in sağ paneli gibi"):
+ * the form on the left half, a soft panel on the right with a short pitch,
+ * three points, the app on a phone and the store buttons. Without it (password
+ * pages) the card stays centred.
+ */
+export const AuthLayout: React.FC<{promo?: AuthPromo; children: React.ReactNode}> = ({promo, children}) => {
 	const colors = useColors();
 	const t = useT();
+	const header = (
+		<Stack row style={{height: 64, padding: '0 28px'}}>
+			<Stack row gap={6} style={{width: 200}}>
+				<Icon name="left" size={16} color={colors.ink2} />
+				<Text role="small" weight={700} color={colors.ink2}>
+					{t('Ana sayfa', 'Home')}
+				</Text>
+			</Stack>
+			<div style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
+				<Logo height={30} />
+			</div>
+			<Stack row justify="flex-end" style={{width: 200}}>
+				<div style={{width: 38, height: 38, borderRadius: 19, border: `1px solid ${colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center', background: colors.card}}>
+					<Icon name="bulb" size={17} color={colors.ink2} />
+				</div>
+			</Stack>
+		</Stack>
+	);
+	const card = <div style={{width: 440, padding: 30, borderRadius: 26, background: colors.card, border: `1px solid ${colors.line}`, boxShadow: UI_SHADOW.float, boxSizing: 'border-box'}}>{children}</div>;
+	if (promo) {
+		return (
+			<div style={{width: W, height: H, display: 'flex', background: colors.bg}}>
+				<div style={{width: W / 2, display: 'flex', flexDirection: 'column'}}>
+					{header}
+					<Stack align="center" justify="center" style={{flex: 1, paddingBottom: 40}}>
+						{card}
+					</Stack>
+				</div>
+				<div style={{flex: 1, margin: 16, borderRadius: 32, background: `radial-gradient(120% 100% at 100% 0%, ${colors.brandSoft} 0%, ${colors.card} 62%)`, border: `1px solid ${colors.line}`, position: 'relative', overflow: 'hidden', padding: '48px 52px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 18}}>
+					<Chip tone="brand">{promo.over}</Chip>
+					<Text role="display" size={32} style={{lineHeight: '38px', maxWidth: 480}}>
+						{promo.title}
+					</Text>
+					<Text role="body" size={16} style={{maxWidth: 460}}>
+						{promo.text}
+					</Text>
+					<Stack gap={10} style={{marginTop: 4}}>
+						{promo.points.map((point) => (
+							<Stack key={point} row gap={10}>
+								<Icon name="check" size={18} color={colors.brand} />
+								<Text role="headline">{point}</Text>
+							</Stack>
+						))}
+					</Stack>
+					<Stack row gap={10} style={{marginTop: 6}}>
+						<Button tone="dark" icon="apple">
+							App Store
+						</Button>
+						<Button tone="dark" icon="googlePlay">
+							Google Play
+						</Button>
+					</Stack>
+					<div style={{position: 'absolute', left: '50%', bottom: -190, transform: 'translateX(-50%)'}}>{promo.preview}</div>
+				</div>
+			</div>
+		);
+	}
 	return (
 		<div style={{width: W, height: H, background: `radial-gradient(60% 50% at 50% 0%, ${colors.brandWash} 0%, ${colors.bg} 70%)`, display: 'flex', flexDirection: 'column'}}>
-			<Stack row style={{height: 64, padding: '0 28px'}}>
-				<Stack row gap={6} style={{width: 200}}>
-					<Icon name="left" size={16} color={colors.ink2} />
-					<Text role="small" weight={700} color={colors.ink2}>
-						{t('Ana sayfa', 'Home')}
-					</Text>
-				</Stack>
-				<div style={{flex: 1, display: 'flex', justifyContent: 'center'}}>
-					<Logo height={30} />
-				</div>
-				<Stack row justify="flex-end" style={{width: 200}}>
-					<div style={{width: 38, height: 38, borderRadius: 19, border: `1px solid ${colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center', background: colors.card}}>
-						<Icon name="bulb" size={17} color={colors.ink2} />
-					</div>
-				</Stack>
-			</Stack>
+			{header}
 			<Stack align="center" style={{flex: 1, paddingTop: 10}}>
-				<div style={{width: 440, padding: 30, borderRadius: 26, background: colors.card, border: `1px solid ${colors.line}`, boxShadow: UI_SHADOW.float, boxSizing: 'border-box'}}>{children}</div>
+				{card}
 			</Stack>
 			<Stack align="center" gap={10} style={{paddingBottom: 24}}>
 				<Text role="over">{t('Sınavika’yı keşfet', 'Explore Sınavika')}</Text>

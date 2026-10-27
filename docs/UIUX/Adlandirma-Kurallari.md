@@ -74,13 +74,14 @@ Ana ekran **Modüller**'dir (hub): üstte modül slaytları, altında modül kar
 |---|---|---|---|
 | Sınavika'da çözülen deneme | **deneme** | sınav | "TYT Deneme 5", "Denemelerim", "Denemeye başla" |
 | Öğrencinin hedeflediği gerçek sınav | **sınav** | deneme | "YKS'ye 214 gün", "Hangi sınava hazırlanıyorsun?" |
-| Bir konu için kısa soru seti | **test** | quiz (TR'de) | "Problemler · Seviye 2 testi" |
-| SinoAI'nin ürettiği soru seti | **quiz** | test | "Notlarından quiz üret" (üretilen içerik olduğu için) |
+| Kısa soru seti: konu testi ya da SinoAI'nin ürettiği | **test** | quiz (Türkçede hiçbir yerde: arayüz, reklam, mağaza, sosyal medya, seslendirme) | "Problemler · Orta testi", "Notlarından test üret", "10 soruluk test hazır" |
 | Deneme sonrası konu dökümü | **analiz** (ortak ad) | rapor, karne | "Eksik konu analizi" |
 | Sorunun fotoğrafından çözüm | **Akıllı Özet** (modül), **analiz** (tek kayıt) | Lens, tarama | "Son analizlerin" |
 | Kişisel çalışma programı | **plan** | program, takvim (takvim ayrı sekme) | "Bugünün planı" |
 | Seri | **seri** | streak | "5 günlük seri" |
 | Kullanıcı | **sen** | siz | Ses kuralları `BrandIdentity.md` §3'te. |
+
+**Test, quiz değil (sahip, 25 Ekim 2026):** Türkçede kısa soru setine her yerde **test** denir; SinoAI'nin ürettiği set için eskiden yapılan "quiz" istisnası kaldırıldı. İngilizcede "quiz/quizzes" doğrudur. Video motoru reklam ve sosyal medya metinlerinde Türkçe "quiz"i hata sayar (`ProductMessaging.ts`).
 
 Rakamlar ve birimler: `78,5 net`, `%40`, `₺299`, `12.480 kişi`, `1 sa 20 dk`, `25 dk`. Tarihler: `15 Ekim`, `Cumartesi 17 Ekim · 10:00`.
 
@@ -93,7 +94,7 @@ Bu maddeler kullanıcıya görünmez. Yine de üç proje arasındaki tutarlılı
 | 1 | API `Services/SinosAI`, `API/Controllers/SinosAI`, `Entity/SinosAI`, `Data/Dtos/SinosAI`, `API/Helpers/SinosAI` | Klasör ve namespace "SinosAI"; içerideki tipler ve tablolar "SinoAI" (kodda ~13.500 "SinoAI", ~2.600 "SinosAI"). | Klasör ve namespace → `SinoAI`. Route `/api/student/sino-ai` aynı kalır. | Düşük: yalnız derleme. Tablo adları zaten `SinoAI*` (ör. `SinoAIConversations`); migration gerekmez. |
 | 2 | API `WorkerSinoAi` | Prefix `SinoAi` (mobil prefix ile aynı, API ile farklı). | API'de `SinoAI`, TypeScript'te `SinoAi` kalıbı yazılı kural olsun (C# kısaltma geleneği `AI`, TS PascalCase `Ai`). | Yok: yalnız kural. |
 | 3 | API `Works` ↔ görünen ad "Dersler", API `Lessons` ↔ konu ağacı | "Lesson" iki anlamda: modül adı ve konu ağacı. | Kod adları kalır. Belgelerde: **Works = Dersler modülü**, **Lessons = konu ağacı verisi** (LessonMain/Sub/Mikro). | Yok. |
-| 4 | API `Quizzes` ↔ SinoAI quiz üretimi | "Quiz" hem Testler modülü hem SinoAI üretim türü. | Kod adları kalır. SinoAI üretim türü belgelerde "SinoAI quiz" olarak ayrılır. | Yok. |
+| 4 | API `Quizzes` ↔ SinoAI test üretimi | Kodda "Quiz" hem Testler modülü hem SinoAI üretim türü. | Kod adları kalır (`Quizzes`, `quiz`). Türkçe metinde ikisi de "test"tir; belgelerde SinoAI üretim türü "SinoAI testi" diye ayrılır. | Yok. |
 | 5 | Mobil eski rotalar (`Pusula*`, `Compass*`, `Feed*`, `Works*`) | Uyumluluk tablosunda. | Tablo kalsın; yeni kodda yalnız canonical adlar. Bir sonraki büyük sürümde kaldırma planı. | Düşük. |
 | 6 | Feed / Akış kodu (API `/api/student/feed`, `AdminFeed`; mobil `Feed*` uyumluluk rotaları; web `flashcard` içindeki feed parçaları) | Ürün akışı kaldırdı; kod kaldı. | Ölü kod silinir; uyumluluk rotaları bir sürüm boyunca `FlashcardToday`'e yönlenir. | Düşük. |
 | 7 | Web `studentHasCompassAccess` oturum anahtarı | Eski modül adı. | Ders Planı erişimine bağlanmışsa `studentHasStudyPlanAccess`; okunurken eski anahtar bir sürüm boyunca desteklenir. | Düşük. |

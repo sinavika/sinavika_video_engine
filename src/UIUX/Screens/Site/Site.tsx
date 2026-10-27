@@ -160,8 +160,8 @@ export const SiteHomeScreen: React.FC = () => {
 						<Chip tone="outline" icon="sparkles">
 							SinoAI
 						</Chip>
-						<SiteTitle title={t('Takıldığın yerde, seni tanıyan bir asistan', 'An assistant that knows you')} lead={t('SinoAI hedefini ve son denemeni bilir. Soruyu adım adım çözer, konuyu sade anlatır, notlarından quiz ve kart üretir.', 'SinoAI knows your goal and last exam. It solves step by step and turns notes into quizzes and cards.')} size={38} />
-						{[t('Fotoğraftan adım adım çözüm', 'Step-by-step from a photo'), t('Konu anlatımı, örnekli ve kısa', 'Short explanations with examples'), t('Kendi PDF’inden quiz ve kart', 'Quizzes and cards from your PDF')].map((line) => (
+						<SiteTitle title={t('Takıldığın yerde, seni tanıyan bir asistan', 'An assistant that knows you')} lead={t('SinoAI hedefini ve son denemeni bilir. Soruyu adım adım çözer, konuyu sade anlatır, notlarından test ve kart üretir.', 'SinoAI knows your goal and last exam. It solves step by step and turns notes into quizzes and cards.')} size={38} />
+						{[t('Fotoğraftan adım adım çözüm', 'Step-by-step from a photo'), t('Konu anlatımı, örnekli ve kısa', 'Short explanations with examples'), t('Kendi PDF’inden test ve kart', 'Quizzes and cards from your PDF')].map((line) => (
 							<Stack key={line} row gap={10}>
 								<Icon name="checkCircle" size={20} color={colors.ink2} />
 								<Text role="body" size={16} color={colors.ink}>

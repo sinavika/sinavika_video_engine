@@ -110,7 +110,9 @@ const WordsScene: React.FC<{content: Content; seconds: number; spoken?: string; 
 				</div>
 			</At>
 			<At y={600 + size * 1.05} w={952}>
-				<div style={{display: 'flex', justifyContent: 'center', opacity: interpolate(local, [0.1, 0.3], [0, 1], CLAMP)}}>
+				{/* The label arrives with its word (a quick pop, no slow fade): a paused or screenshotted frame caught the
+				    "Ders Planı" pill half faded and unreadable on the teal ground (Tuğçe's review, 26 Oct 2026). */}
+				<div style={{display: 'flex', justifyContent: 'center', opacity: interpolate(local, [0, 0.06], [0, 1], CLAMP), transform: `scale(${interpolate(local, [0, 0.12], [0.85, 1], CLAMP)})`}}>
 					<div style={{display: 'flex', alignItems: 'center', gap: u(16), padding: `${u(16)}px ${u(28)}px`, borderRadius: u(999), background: WHITE}}>
 						<Icon name={MODULES[item.module].icon} size={u(40)} color={ground} stroke={2.2} />
 						<Text size={38} weight={TYPE.weights.display} color={BLACK}>

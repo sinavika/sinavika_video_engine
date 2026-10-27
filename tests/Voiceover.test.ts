@@ -1,3 +1,4 @@
+import {COURSE_DESIGN} from '../src/Courses/CourseDesign';
 import {mkdtempSync, readdirSync} from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -116,7 +117,9 @@ describe.each(TEMPLATES.map((template) => [template.id, template] as const))('%s
 		expect(narrated.durationInFrames).toBeGreaterThan(job.durationInFrames);
 		template.buildScenes(narrated.inputProps.content, clips).filter((scene) => !scene.silent).forEach((scene) => {
 			const lines = scene.voice?.length ?? 0;
-			expect(scene.seconds, scene.id).toBeCloseTo(lines * (12.25 + VOICE_LEAD_SECONDS + VOICE_TAIL_SECONDS), 5);
+			// A worked question also keeps its counted pause to think after it is read.
+			const think = scene.voice?.some((slot) => slot.id.endsWith('-read')) ? COURSE_DESIGN.pacing.questionThinkSeconds : 0;
+			expect(scene.seconds, scene.id).toBeCloseTo(lines * (12.25 + VOICE_LEAD_SECONDS + VOICE_TAIL_SECONDS) + think, 5);
 		});
 	});
 });
@@ -135,14 +138,17 @@ describe('voice catalogue', () => {
 		}
 	});
 
-	it('speaks every role at the natural pace, without style exaggeration (except the promo reels’ Launch role)', () => {
-		// The owner asked for livelier promo reels in October 2026; only Launch may speed up or add style, and only a little.
+	it('speaks every role at the natural pace, without style exaggeration (except Launch and Herald)', () => {
+		// The owner asked for livelier promo reels (Launch, October 2026) and a more excited camp episode 0 (Herald, 26 Oct 2026);
+		// only these may add style, and only a little.
 		for (const key of VOICE_PROFILE_KEYS) {
-			if (key === 'Launch') continue;
+			if (key === 'Launch' || key === 'Herald') continue;
 			expect(VOICE_PROFILES[key], key).toMatchObject({pace: 1, style: 0});
 		}
 		expect(VOICE_PROFILES.Launch.pace).toBeLessThanOrEqual(1.1);
 		expect(VOICE_PROFILES.Launch.style).toBeLessThanOrEqual(0.3);
+		expect(VOICE_PROFILES.Herald.pace).toBe(1);
+		expect(VOICE_PROFILES.Herald.style).toBeLessThanOrEqual(0.3);
 	});
 
 	it('has no two catalogue entries pointing at the same ElevenLabs voice', () => {
@@ -376,7 +382,7 @@ describe('exam abbreviations', () => {
 			{publicDirectory, speech},
 		);
 
-		expect(requests[0].text).toContain("yekase'ye ve kapesese'ye");
+		expect(requests[0].text).toContain('yekaseye ve kapeseseye');
 		expect(requests[0].text).not.toMatch(/YKS|KPSS/);
 	});
 
@@ -385,6 +391,6 @@ describe('exam abbreviations', () => {
 	});
 
 	it('say TYT, AYT, YDT and SinoAI as Turkish speakers do, suffixes included', () => {
-		expect(pronounceAbbreviations("TYT'de ve AYT'de, YDT ile; ben SinoAI.")).toBe("teyete'de ve ayete'de, yedete ile; ben Sino Ey Ay.");
+		expect(pronounceAbbreviations("TYT'de ve AYT'de, YDT ile; ben SinoAI.")).toBe('teyetede ve ayetede, yedete ile; ben Sino Ey Ay.');
 	});
 });

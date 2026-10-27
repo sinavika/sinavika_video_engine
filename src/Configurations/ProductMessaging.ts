@@ -93,7 +93,14 @@ export const moduleCopy = (key: ModuleKey, lang: ProductLang = 'tr') => {
 
 export type CopyIssue = {severity: 'error' | 'warning'; term: string; message: string};
 
-type Rule = {pattern: RegExp; severity: CopyIssue['severity']; message: string};
+const TEST_NOT_QUIZ = 'Türkçede "quiz" denmez, "test" denir (modül adı Testler): "10 soruluk test", "test ve kart üretir".';
+
+/** `turkish`: the rule only applies to Turkish text (English says "quiz" correctly). */
+type Rule = {pattern: RegExp; severity: CopyIssue['severity']; message: string; turkish?: boolean};
+
+/** Whether a text is Turkish: Turkish letters, or common Turkish words where a short line has none ("Notunu at. Quiz olsun."). */
+export const looksTurkish = (text: string): boolean =>
+	/[çğıöşüÇĞİÖŞÜ]/.test(text) || /(?<!\p{L})(ve|bir|için|olsun|hazır|soruluk|oluştur|çöz|ile|gibi|notunu|senin|sana)(?!\p{L})/iu.test(text);
 
 /**
  * Words advertising copy must not use. Errors stop a social post from being
@@ -112,11 +119,20 @@ const RULES: Rule[] = [
 	{pattern: /\bLens\b/g, severity: 'warning', message: 'Ürün adıysa Akıllı Özet denir; Lens yalnız kod adıdır.'},
 	{pattern: /\bCompass\b|\bPusula\b/g, severity: 'warning', message: 'Ürün adıysa Ders Planı › İlerleme denir.'},
 	{pattern: /Analiz modülü/gi, severity: 'warning', message: 'Analiz ayrı modül değil; Denemeler › Sonuçlar.'},
+	// SinoAI's library is "Kütüphane" in the app (web and design); a post said "Kitaplığında" while the phone showed "Kütüphanen" (Tuğçe, 26 Oct 2026).
+	{pattern: /(?<!\p{L})kitaplı[kğ]\p{L}*/giu, severity: 'error', message: 'SinoAI’nin üretimleri uygulamada "Kütüphane"de durur; cümle içinde küçük harf: "kütüphanende".'},
+	// Owner, 25 Oct 2026: in Turkish a quiz is always a "test" (the module is Testler), in ads and everywhere else.
+	// A Turkish suffix ("quiz'i", "quizler", "quizini") only occurs in Turkish, so it is an error in any text;
+	// a bare "quiz" only in Turkish text, since English says "quiz" correctly.
+	{pattern: /(?<!\p{L})quiz'?(?:ler|lerin|leri|lerini|lere|lerde|lerden|i|ini|in|ine|inde|e|de|den|le|iniz|imiz)(?!\p{L})/giu, severity: 'error', message: TEST_NOT_QUIZ},
+	{pattern: /(?<!\p{L})quiz(?!\p{L}|')/giu, severity: 'error', message: TEST_NOT_QUIZ, turkish: true},
 ];
 
 /** Checks one text against the advertising copy rules. */
-export const checkProductCopy = (text: string): CopyIssue[] =>
-	RULES.flatMap((rule) => [...text.matchAll(rule.pattern)].map((match) => ({severity: rule.severity, term: match[0], message: rule.message})));
+export const checkProductCopy = (text: string): CopyIssue[] => {
+	const turkish = looksTurkish(text);
+	return RULES.filter((rule) => !rule.turkish || turkish).flatMap((rule) => [...text.matchAll(rule.pattern)].map((match) => ({severity: rule.severity, term: match[0], message: rule.message})));
+};
 
 export class ProductCopyError extends Error {
 	constructor(readonly issues: CopyIssue[]) {

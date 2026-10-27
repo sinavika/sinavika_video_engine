@@ -18,8 +18,10 @@
  *
  *   npm run curriculum -- brief <topic id or CATEGORY/LESSON/TOPIC>
  *       What to write a script from: subtopics, the knowledge pack's units,
- *       learning outcomes and misconceptions, the question pools and the
- *       lesson's visuals. Ends with the path the script goes to.
+ *       learning outcomes and misconceptions, the question pools, the topic's
+ *       ÖSYM past questions (years, subtopics, question patterns; official list
+ *       in Curriculum/Data/<exam>/CikmisSorular) and the lesson's visuals.
+ *       Ends with the path the script goes to.
  *
  *   npm run curriculum -- check <script.json> [--mark]
  *       Validates a lesson script, reviews it against the targets (length,
@@ -42,7 +44,8 @@ import {visualKitOf} from '../src/Courses/CourseDesign';
 import {CHECKLIST_STAGES, CURRICULUM_DIRECTORY, DATA_DIRECTORY, STAGE_LABELS, nextEntry, type ChecklistEntry, type ChecklistStage} from '../src/Courses/Curriculum';
 import {LessonScriptSchema, reviewScript} from '../src/Courses/LessonScript';
 import {MEDIA_CREDITS_FILE, MEDIA_DIRECTORY, MediaCreditsSchema} from '../src/Courses/MediaLibrary';
-import {importCurriculum, readChecklist, writeChecklist} from '../src/Courses/CurriculumImport';
+import {dataFolders, importCurriculum, readChecklist, writeChecklist} from '../src/Courses/CurriculumImport';
+import {pastExamFile, readPastExamQuestions, summarizePastExam} from '../src/Courses/PastExamQuestions';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const CURRICULUM = path.join(ROOT, CURRICULUM_DIRECTORY);
@@ -153,6 +156,20 @@ if (command === 'import') {
 	}
 	console.log(`\nSoru havuzu: ${entry.sources.questionCount} soru (cevaplı ${entry.sources.answeredCount}, ÖSYM ${entry.sources.pastExamCount})${entry.sources.questions ? ` · Curriculum/Data/${entry.sources.questions}` : ''}`);
 	console.log('  Sorular yapı ve yaklaşım için okunur; metinleri olduğu gibi kullanılmaz (telif). Değiştirilen soru yeniden çözülür.');
+	const indexFile = path.join(DATA, 'Index.json');
+	const folder = existsSync(indexFile) ? dataFolders(JSON.parse(await readFile(indexFile, 'utf8'))).get(entry.category) : undefined;
+	const past = folder ? await readPastExamQuestions(DATA, folder, entry.category, entry.lesson, entry.topic) : [];
+	if (folder && past.length > 0) {
+		const summary = summarizePastExam(past);
+		console.log(`\nÖSYM çıkmış soruları (resmî liste): ${summary.total} soru · Curriculum/Data/${path.relative(DATA, pastExamFile(DATA, folder, entry.lesson)).replaceAll('\\', '/')}`);
+		console.log(`  Yıllar: ${summary.byYear.map(([year, n]) => `${year} ${n}`).join(' · ')}${summary.undated ? ` · yılsız ${summary.undated}` : ''}`);
+		console.log(`  Alt başlıklar: ${summary.byMikro.map(([name, n]) => `${name} ${n}`).join(' · ')}`);
+		console.log('  Soru kalıpları (her biri derste en az bir kart ya da çözümlü soruyla temsil edilir):');
+		summary.patterns.forEach(([pattern, n]) => console.log(`    ${n}× ${pattern}`));
+		console.log(`  Şekilli ${summary.withFigure} · eşlemesi inceleme bekleyen ${summary.needsReview}. Sınavdaki yeri bu sayılarla söylenir (docs/Courses.md §0).`);
+	} else {
+		console.log(`\nÖSYM çıkmış soruları: bu konuya bağlı soru yok${folder ? '' : ' (veri klasörü bulunamadı)'}. Liste: python -m sourceparsing cikmis.`);
+	}
 	console.log(`\nDersin görselleri (öncelik sırasıyla): ${visualKitOf(entry.lesson).join(', ')}`);
 	console.log(`\nSenaryo dosyası: Curriculum/Scripts/${entry.category}/${entry.lesson}/${entry.topic}.json`);
 } else if (command === 'check') {

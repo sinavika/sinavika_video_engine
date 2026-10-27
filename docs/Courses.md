@@ -2,6 +2,27 @@
 
 Ders ve konu listesine bağlı YouTube eğitim videoları ile her birinin kısa özet videosunu üreten altyapı. **Kalite kuralı:** ders videoları ve kısa özetler her zaman 4K (`2160p`, yatayda 3840×2160) en yüksek kalitede render edilir ve YouTube'a o dosya yüklenir (bkz. [`SocialPlan.md`](SocialPlan.md#video-kalitesi)). Sosyal medya Reels akışından (`Posts/`, `npm run social`) ayrıdır; ortak bileşenleri (tema, yazı tipi, seslendirme, render, kapak, Reels kartları) kullanır, onların davranışını değiştirmez.
 
+## 0. Amaç
+
+Sahibin kararı (27 Ekim 2026). Bütün ders videoları bu amaca göre yazılır ve denetlenir.
+
+- **Ölçü öğrenmedir; süre ya da popülerlik değildir.** Öğrenci, 1 saat 40 dakikalık bir ders videosundan alacağı her şeyi bizim videomuzdan almalı. Video "tam ders" görünsün diye uzatılmaz; hiçbir kanal örnek alınmaz.
+- **İnsan değil animasyon.** Ekranda bir insan ya da fenomen tarzı sunum dikkati dağıtır. Dikkati animasyonla, anlatımla eşzamanlı görsellerle tutarız.
+- **Belgesel gibi.** Öğrenci dersi bir belgesel izler gibi izler. Konunun bütün ayrıntıları ve o konunun **ÖSYM püf noktaları** (nasıl sorulur, tuzak, ayırt edici ölçüt) mutlaka verilir.
+- **Kapsamı resmî kaynaklar belirler, piyasa değil.** Piyasada her yayının kendi konu listesi var; biz şunları esas alırız:
+  - **MEB:** TTKB'nin YKS'ye esas kazanım belgesi ([`Curriculum/Sources/MEB`](../Curriculum/Sources/MEB/README.md)), MEB/OGM materyalleri ve MEB'in ÖSYM soru derlemeleri;
+  - **ÖSYM:** çıkmış sorular (gerçekte ne soruluyor) ve kılavuzlar (testler, soru sayıları).
+- **Süre kapsamdan çıkar.** Konu daha fazla süre istiyorsa alır ya da iki derse bölünür. Kapsamın bir parçası eksikse ders bitmiş sayılmaz.
+
+Senaryodan önce konunun **kapsam listesi** çıkarılır: MEB kazanımı ve ÖSYM'nin o konuda sorduğu soru tipleri. Listedeki her madde senaryoda bir bölüm, kart ya da çözümlü soru olarak yer alır. Konu konu kapsam denetimi: [`Curriculum/Production/KapsamDenetimi.md`](../Curriculum/Production/KapsamDenetimi.md).
+
+**ÖSYM çıkmış sorular listesi.** Resmî kaynaklardan (MEB'in YKS derlemeleri ve ÖSYM KPSS kitapçıkları) LessonMain → LessonSub → LessonMikro düzeninde tutulur:
+- Veri: `Curriculum/Data/<Sınav>/<Kategori>/CikmisSorular/<Ders>.jsonl`.
+- Tablo: `Curriculum/Data/CikmisSorular.xlsx`; konu ve alt başlık özetleri formüldür.
+- Üretim: `python -m sourceparsing cikmis` (`Desktop\sinavika_parse`). Asıl veri `Desktop\EgitimVerileri`'de; motor kopyası onunla aynı tutulur.
+- Kullanım: `npm run curriculum -- brief <konu>` konunun çıkmış sorularını yıllara, alt başlıklara ve soru kalıplarına göre gösterir. Kod: [`PastExamQuestions.ts`](../src/Courses/PastExamQuestions.ts).
+- Her soru kalıbı derste en az bir kart ya da çözümlü soruyla temsil edilir.
+
 ## 1. Akış
 
 ```
@@ -78,7 +99,7 @@ npm run curriculum -- brief YKS_TYT/TRK/SOZCUKTE_ANLAM
 
 Şema: [`src/Courses/LessonScript.ts`](../src/Courses/LessonScript.ts) · örnek: [`src/Courses/LessonScriptSample.ts`](../src/Courses/LessonScriptSample.ts) (Sözcükte Anlam'ın üç alt başlığıyla kısa bir örnek).
 
-**YouTube dersi (`lesson`)**: açılış (dikkat çeken bir cümle, "bu videoda" hedefleri) → her alt başlık için bir bölüm → bölümde kartlar → özet ve dikkat edilecekler. Kart türleri:
+**YouTube dersi (`lesson`)**: açılış (dikkat çeken bir cümle, "bu videoda" hedefleri) → her alt başlık için bir bölüm (alt başlık çoksa birlikte öğretilen kardeş başlıklar tek bölümde toplanır: `subtopic` + `subtopics`, ör. Cümlede Anlam'da neden, amaç ve koşul; en çok 14 bölüm) → bölümde kartlar → özet ve dikkat edilecekler. Kart türleri:
 
 | Kart | Ne için |
 | --- | --- |
@@ -91,14 +112,35 @@ npm run curriculum -- brief YKS_TYT/TRK/SOZCUKTE_ANLAM
 
 Her kartın `narration` alanı o kartta söylenecek sözdür; ekranda söylenenden azı yazar. Her kart bir görsel taşıyabilir.
 
+**Sesle eş zamanlı canlandırma (27 Ekim 2026).** Kartın parçaları söylendikleri anda gelir. Bunun için seslendirmedeki kelime zamanları kullanılır (`src/Courses/LessonCues.ts`). Yazarın ek bir şey yapması gerekmez:
+- kural maddeleri anlatıcı o maddeye gelince çıkar, konuşulan madde hafifçe vurgulanır;
+- hata kartında anlatıcı doğruya döndüğünde yanlışın üstü çizilir ve doğru gelir;
+- örnek açıklaması, özet maddeleri ve kamp görevleri söylendikleri anda gelir;
+- **kalın** sözlerin altına söylendikleri anda fosforlu kalem çizilir. Anlatımda geçmeyen kalın söz düz kalın kalır.
+
+**Dil görselleri (27 Ekim 2026).** Türkçe derslerinde üç yeni hareket var. Hepsi kartın vuruşlarına (`beats`) bağlanır:
+- **Ok:** `sentence` görselinde `links: [{"from": 1, "to": 2, "label": "neden → sonuç"}]`. Ok, vuruş onu gösterdiğinde (`show: ["l1"]`) birinci parçadan ikinciye çizilir, üstünden bir ışık geçer. `focus: ["l1"]` oku kalınlaştırır.
+- **Sözcük değişimi:** parçaya `"swap": {"text": "Yetişmek için", "role": "amaç"}` eklenir, vuruşta `swap: ["w1"]` yazılır. Eski sözcüğün üstü çizilir, yukarı kayar; yenisi aşağıdan gelir, kutu ders rengine döner. Vuruşsuz kartta değişim cümle kurulduktan sonra kendiliğinden olur.
+- **Paragraf haritası:** `paragraph` görseli. Vuruşlar cümleleri `s1…` ve konuyu `topic` adıyla gösterir. `off` cümle, bir vuruş ona odaklandığında (`focus: ["s3"]`) çizilir.
+
+Bu yüzden kart metnindeki maddeyi anlatımda aynı sözlerle başlatmak en iyi sonucu verir ("Kendi başına **anlaşılır**" → "Bir: kendi başına anlaşılır").
+
+Soru okunurken paragrafta o an okunan cümle vurgulanır, (I)–(V) numaraları rozet olarak görünür, şıklar okundukça çerçevelenir. Cevap açıklanınca diğer şıklar geri çekilir. Çözüm adımları üç isteğe bağlı alanla parçayı ve şıkları gösterir:
+
+| Alan | Ne yapar | Örnek |
+| --- | --- | --- |
+| `eliminate` | Adım bu şıkları eler; harfi söylendiği anda üstü çizilir ve söner. Doğru şık elenemez. | `["A", "D"]` |
+| `mark` | Parçada ya da soru kökünde bu sözlerin altına, söylendikleri anda fosforlu kalem çizilir. Söz yazıldığı gibi geçmelidir (denetim yakalar). | `["Oysa", "bazı türlerin"]` |
+| `sentences` | Parçanın bu numaralı cümlelerini yakar ((III) → 3; numarasız parçada n. cümle). Anlatımdaki "üç numaralı cümle" anında gelir. | `[3]` |
+
 **Kısa özet (`short`)**: dikkat çeken giriş → 3-12 kart (Reels kartları: bilgi, kavram, formül, dikkat; ayrıca şekil kartı) → bir deneme sorusu (cevabı verilmez, YouTube dersine yönlendirir) → özet → tanıtım.
 
-Denetim (`check`): hedef süre (ders **en az 10 dk**, hedef 12 dk; kısa 60-120 sn), her alt başlığın bir bölümü olması, en az üç çözümlü soru, görsellerin lisans kaydı, kamp alanlarının kamp planıyla uyumu (ders numarası, toplam, sıradaki ders). Süre konu gerektiriyorsa uzayabilir; süre doldurmak için metin uzatılmaz.
+Denetim (`check`): hedef süre (ders **en az 10 dk**, hedef 12 dk; kısa 60-120 sn), her alt başlığın bir bölümü olması, en az üç çözümlü soru, görsellerin lisans kaydı, kamp alanlarının kamp planıyla uyumu (ders numarası, toplam, sıradaki ders). Süre konu gerektiriyorsa uzayabilir; süre doldurmak için metin uzatılmaz. Süre hedefi yalnızca bir uyarıdır; asıl ölçü kapsam listesinin tamamlanmasıdır (§0).
 
 ### Kaynak kullanımı
 
 - **Konu anlatımları** (MEB OGM konu özetleri, izinli) anlatımın bel kemiğidir. Metin PDF'ten ayrıştırılmıştır: kapak, künye ve sayfa başlıkları karışmış olabilir, bazı bölüm başlıkları kesiktir. Senaryo bilgiyi kendi cümleleriyle yazar ve yazarken doğrular. Anlatımı olmayan konular (ör. TYT Söz Yorumu) müfredattan ve soru havuzundan yazılır, ayrıca doğrulanır.
-- **Soru havuzları** sorunun yapısını, bilişsel yükünü ve sınavın soru yaklaşımını öğrenmek içindir. Çıkmış sorular **olduğu gibi kullanılmaz** (telif); kişi adları, bağlam ve sayılar değiştirilir. Değişiklikten sonra soru **yeniden çözülür**, doğru şık ve anlatımın tutarlılığı kontrol edilir. Sorunun kökeni ve değişiklik `question.origin` alanına yazılır.
+- **Soru havuzları** sorunun yapısını, bilişsel yükünü ve sınavın soru yaklaşımını öğrenmek içindir. Çıkmış sorular **olduğu gibi kullanılmaz**: MEB ve ÖSYM izni soruları **örnek almayı** kapsar, birebir kopyalamayı değil (sahibin kuralı, 27 Ekim 2026). ÖSYM'den soru kalıbı ve parça yapısı alınır; parça, şıklar ve bağlam yeniden yazılır. Havuzdaki başka bir soru temel alınırsa kişi adları, bağlam ve sayılar değiştirilir. Değişiklikten sonra soru **yeniden çözülür**, doğru şık ve anlatımın tutarlılığı kontrol edilir. Sorunun kökeni ve değişiklik `question.origin` alanına yazılır.
 
 ## 5. Tasarım sistemi
 
@@ -133,7 +175,8 @@ Tek yer: [`src/Courses/CourseDesign.ts`](../src/Courses/CourseDesign.ts) (`COURS
 | `map` | Coğrafya, tarih | Harita: dünya, Türkiye'nin bölge/il/ilçeleri, akarsu ve göller; vurgu, etiket, işaret, rota (sefer, göç) | d3-geo, topojson (veri: Natural Earth, OpenStreetMap) |
 | `river` | Coğrafya | Akarsuyun çalışması aşama aşama: `profile` (kaynaktan denize kesit: eğime göre akış hızı, yukarı çığırda derine aşındırma ve V vadi, taşıma türleri, biriktirme), `meander` (kıvrımlar büyür, dış kıyı aşınır, iç kıyıda birikir, boyun kopar → menderes gölü), `delta` (yük çöker, kollara ayrılır, delta ovası) | SVG (kendi) |
 | `earthquake` | Coğrafya | Deprem aşama aşama: fay, gerilme birikimi (kayaç bükülür, gerilme göstergesi), kırılma (odak, merkez üssü, bloklar kayar), P/S/yüzey dalgaları. Ters, normal, doğrultu atımlı fay; `block3d` ile 3B fay blokları ve fay dikliği | SVG (kendi), three.js |
-| `sentence` | Türkçe, yabancı dil | Cümle ögeleri / dil bilgisi rolü, vurgu, çeviri | — |
+| `sentence` | Türkçe, yabancı dil | Cümle ögeleri / dil bilgisi rolü, vurgu, çeviri; `links` ile parçadan parçaya ok (neden → sonuç), `swap` ile bir parçanın başka sözcüğe dönüşmesi (eş anlamlı, ilişkiyi değiştiren ek) | — |
+| `paragraph` | Türkçe | Paragraf haritası: konu, numaralı cümleler (I, II…) ve görevleri; yardımcı cümlelerden ana düşünceye ok hattı, ok ulaşınca ana düşünce yanar; `off` cümle (akışı bozan) hattın dışında kalır ve gösterildiğinde üstü çizilir | — |
 | `comparison` | Her ders | İki-üç sütunlu karşılaştırma | — |
 | `table` | Her ders, mantık | Tablo, doğruluk tablosu (vurgulu sütun) | — |
 | `venn` | Matematik, mantık | İki-üç küme | SVG (kendi) |
@@ -202,7 +245,7 @@ Merkezi tanım: [`src/Configurations/GeoData.ts`](../src/Configurations/GeoData.
 | `CourseLesson` | 16:9, YouTube | Senaryonun `lesson` bölümü; ses profili `Lecturer` |
 | `CourseShort` | 9:16, Reels · TikTok · Shorts | Senaryonun `short` bölümü; ses profili `Energizer` |
 | `CampLesson` | 16:9, YouTube | `CourseLesson` + kamp kartı, bölüm çubuğu, kamp görevi ve sıradaki ders; YouTube bölüm listesi |
-| `CampShort` | 9:16, Reels · Shorts · TikTok | `CourseShort` + üst çubukta kamp rozeti; sonda "Ders N" ile YouTube dersine yönlendirme |
+| `CampShort` | 9:16, Reels · Shorts · TikTok | `short.rounds` varsa 30 sn altı meydan okuma (ilk karede soru, 2–3 tuzaklı tur, tek skor çağrısı); yoksa `CourseShort` kartları + tanıtım. Üst çubukta kamp rozeti |
 
 Dördünün içeriği aynı senaryodur. Seslendirme marka sesiyle (Lisa) ve metin bütün olarak üretilir; sahneler sese göre uzar.
 
@@ -237,7 +280,7 @@ Ekranın altında **bölüm çubuğu** her bölümün süresi kadar uzun parçal
 
 **Kapak**: kamp videolarında render kendiliğinden kamp kapağını yapar (`Thumbnails/CampCover`): ders renginde zemin, dev ders numarası, konu, kampın adı ve ilerlemesi.
 
-**Reels** (`CampShort`): CourseShort'un kartları ("Ses Olayları" görünümü), üst çubukta kamp rozeti ("Kamp 3/15") ve hikâye çubuğu; sonda "Konunun tamamı YouTube'da · Ders 3: Sözcükte Anlam" ve uygulama. Müzik yok, yalnız anlatım.
+**Reels** (`CampShort`): senaryoda `short.rounds` varsa 30 saniyenin altında bir meydan okumadır. İlk karede soru vardır, 2–3 tuzaklı tur gelir, sonda tek çağrı olarak "Kaçta kaç? Yoruma yaz." söylenir. Kampın dersi altta sessiz bir satırla anılır, uygulama tanıtımı yoktur; ayrıntılar [CourseNarration.md §10](CourseNarration.md#10-reels-meydan-okuma-biçimi)'dadır. Turu olmayan senaryoda CourseShort'un kartları ve tanıtım kullanılır. Üst çubukta kamp rozeti ("Kamp 3/15") ve hikâye çubuğu durur. Müzik yok, yalnız anlatım.
 
 **Render işleri**: `Curriculum/Jobs/<kamp>/<NN>-<konu>-youtube.json` ve `-reels.json`. İçerik senaryonun kopyasıdır; senaryo değişince işler yeniden yazılır.
 

@@ -74,7 +74,7 @@ export const PlanTodayScreen: React.FC = () => {
 				</Card>
 				<Stack gap={8}>
 					<PlanTask module="lessons" title={t('Paragraf · Ana fikir', 'Reading · Main idea')} meta={t('Mikro ders · 25 dk', 'Micro-lesson · 25 min')} done />
-					<PlanTask module="tests" title={t('Problemler · Seviye 2', 'Problems · Level 2')} meta={t('10 soru · 15 dk · denemeden önerildi', '10 questions · 15 min · from your exam')} now />
+					<PlanTask module="tests" title={t('Problemler · Orta', 'Problems · Medium')} meta={t('20 soru · 25 dk · denemeden önerildi', '20 questions · 25 min · from your exam')} now />
 					<PlanTask module="flashcards" title={t('Kimya kartları', 'Chemistry cards')} meta={t('20 kart · 10 dk', '20 cards · 10 min')} />
 				</Stack>
 				<Card tone="module" module="studyPlan" padding={14}>
@@ -94,7 +94,7 @@ export const PlanFocusScreen: React.FC = () => {
 	const t = useT();
 	const mod = useModuleColors('studyPlan');
 	return (
-		<ModuleScreen module="studyPlan" noTabBar header={<FocusHeader title={t('Odak', 'Focus')} sub={t('Problemler · Seviye 2', 'Problems · Level 2')} />}>
+		<ModuleScreen module="studyPlan" noTabBar header={<FocusHeader title={t('Odak', 'Focus')} sub={t('Problemler · Orta', 'Problems · Medium')} />}>
 			<Content tabBar={false} gap={18} style={{alignItems: 'center', textAlign: 'center', paddingTop: 30}}>
 				<Ring value={0.62} size={250} stroke={16} color={mod.color} track={mod.track}>
 					<Stack align="center" gap={4}>
@@ -114,7 +114,7 @@ export const PlanFocusScreen: React.FC = () => {
 					<Stack row gap={12}>
 						<Tile module="tests" size={40} />
 						<Stack grow gap={1}>
-							<Text role="headline">{t('Problemler · Seviye 2', 'Problems · Level 2')}</Text>
+							<Text role="headline">{t('Problemler · Orta', 'Problems · Medium')}</Text>
 							<Text role="small">{t('Odak bitince teste geçersin', 'Quiz opens when focus ends')}</Text>
 						</Stack>
 					</Stack>

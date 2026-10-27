@@ -2,7 +2,7 @@ import React from 'react';
 import {UIProvider, useColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {AppHeader, Content, Phone} from '../../Parts/Mobile';
-import {Chip, List, ListRow, Segmented, Stack, Text} from '../../Parts/Shared';
+import {Button, Card, Chip, List, ListRow, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
 import {UI_SHADOW} from '../../Tokens';
 
 /**
@@ -90,7 +90,7 @@ export const SinoHomeScreen: React.FC = () => {
 	const prompts: [UIIconName, string][] = [
 		['camera', t('Sorunun fotoğrafını çek, adım adım çöz', 'Snap a question, solve it step by step')],
 		['book', t('Türevde zincir kuralını anlat', 'Explain the chain rule')],
-		['quiz', t('Eksiklerimden 10 soruluk quiz hazırla', 'Make a 10-question quiz from my gaps')],
+		['quiz', t('Eksiklerimden 10 soruluk test hazırla', 'Make a 10-question quiz from my gaps')],
 		['note', t('Notlarımı tek sayfada özetle', 'Summarise my notes on one page')],
 	];
 	return (
@@ -193,7 +193,7 @@ export const SinoStudyScreen: React.FC = () => {
 	const tools: [UIIconName, string, string, string, string][] = [
 		['exam', 'Deneme oluştur', 'Create an exam', 'Eksiklerine göre kişisel deneme', 'A personal exam on your gaps'],
 		['cards', 'Tekrar kartları oluştur', 'Create review cards', 'Notlarından Bilgi Kartları destesi', 'A deck from your notes'],
-		['quiz', 'Quiz oluştur', 'Create a quiz', '10 soru, anında açıklamalı', '10 questions, instant feedback'],
+		['quiz', 'Test oluştur', 'Create a quiz', '10 soru, anında açıklamalı', '10 questions, instant feedback'],
 		['calendar', 'Çalışma planı oluştur', 'Create a study plan', 'Bir haftalık konu planı', 'A one-week topic plan'],
 		['book', 'Çalışma oluştur', 'Create a study set', 'Konu anlatımı ve sorular', 'Explanation and questions'],
 	];
@@ -222,15 +222,75 @@ export const SinoStudyScreen: React.FC = () => {
 	);
 };
 
+/**
+ * A finished production in Çalışma: the result card carries its actions as
+ * real buttons, "Testi aç" filled and "Değiştir" outlined. Before, "Değişiklik
+ * iste" and a copy icon sat under the card as loose text and the next options
+ * hung alone at the bottom (UI/UX review, 25 Oct 2026). What to make next
+ * follows right under the card.
+ */
+export const SinoStudyResultScreen: React.FC = () => {
+	const t = useT();
+	const colors = useColors();
+	return (
+		<SinoPhone>
+			<SinoTop active={1} />
+			<Content tabBar={false} gap={14} padding="12px 20px 10px">
+				<Stack align="flex-end">
+					<div style={{maxWidth: 280, padding: '10px 14px', borderRadius: 20, background: colors.line2}}>
+						<Text role="body" color={colors.ink}>
+							{t('Türevde zincir kuralından 20 soruluk test hazırla', 'Make a 20-question test on the chain rule')}
+						</Text>
+					</div>
+				</Stack>
+				<Stack row gap={8}>
+					<Mark size={20} />
+					<Text role="small" color={colors.ink2}>
+						{t('Testin hazır. Kolaydan zora sıraladım.', 'Your test is ready, easy to hard.')}
+					</Text>
+				</Stack>
+				<Card padding={16}>
+					<Stack row gap={12}>
+						<Tile module="tests" size={44} />
+						<Stack grow gap={2}>
+							<Text role="headline">{t('Zincir kuralı testi', 'Chain rule test')}</Text>
+							<Text role="small">{t('20 soru · Orta · Matematik', '20 questions · Medium · Maths')}</Text>
+						</Stack>
+					</Stack>
+					<Stack row gap={10} style={{marginTop: 14}}>
+						<Button size="md" icon="play">
+							{t('Testi aç', 'Open test')}
+						</Button>
+						<Button size="md" tone="ghost" icon="edit">
+							{t('Değiştir', 'Change')}
+						</Button>
+					</Stack>
+				</Card>
+				<Text role="over" style={{marginTop: 6}}>
+					{t('Sırada ne var?', 'What next?')}
+				</Text>
+				<Stack row wrap gap={8}>
+					{[t('Aynı konudan kart üret', 'Make cards on it'), t('Konuyu kısaca anlat', 'Explain it briefly'), t('Kişisel deneme', 'Personal exam')].map((label) => (
+						<Chip key={label} tone="outline">
+							{label}
+						</Chip>
+					))}
+				</Stack>
+			</Content>
+			<Composer placeholder={t('Ya da ne istediğini yaz…', 'Or describe what you need…')} />
+		</SinoPhone>
+	);
+};
+
 export const SinoLibraryScreen: React.FC = () => {
 	const t = useT();
 	return (
 		<SinoPhone>
 			<AppHeader left="back" title={t('Kütüphanen', 'Your library')} right={<div style={{width: 40}} />} />
 			<Content tabBar={false} gap={12}>
-				<Segmented items={[t('Tümü', 'All'), t('Quiz · 4', 'Quizzes · 4'), t('Deste · 2', 'Decks · 2'), t('Özet · 6', 'Notes · 6')]} />
+				<Segmented items={[t('Tümü', 'All'), t('Test · 4', 'Quizzes · 4'), t('Deste · 2', 'Decks · 2'), t('Özet · 6', 'Notes · 6')]} />
 				<List>
-					<ListRow module="tests" title={t('Mol kavramı quizi', 'Mole quiz')} subtitle={t('10 soru · bugün', '10 questions · today')} />
+					<ListRow module="tests" title={t('Mol kavramı testi', 'Mole quiz')} subtitle={t('10 soru · bugün', '10 questions · today')} />
 					<ListRow module="flashcards" title={t('Osmanlı kartları', 'Ottoman cards')} subtitle={t('24 kart · Bilgi Kartları’nda', '24 cards · in Flashcards')} />
 					<ListRow module="studyPlan" title={t('Türev haftalık planı', 'Derivatives weekly plan')} subtitle={t('5 gün · Ders Planı’na eklendi', '5 days · added to plan')} />
 					<ListRow icon="note" plainIcon title={t('Hücre bölünmesi özeti', 'Cell division notes')} subtitle={t('PDF · 2 sayfa', 'PDF · 2 pages')} />

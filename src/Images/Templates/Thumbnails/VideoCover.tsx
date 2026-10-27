@@ -6,6 +6,8 @@ import {Text} from '../../../Components/Typography/Text';
 import {plainText} from '../../../Schemas/RichText';
 import {ImageSchema} from '../../../Schemas/Visual';
 import {withAlpha} from '../../../Themes/Theme';
+import {contrastRatio} from '../../../Themes/ColorPalette';
+import {BRAND_COLORS} from '../../../Configurations/BrandColors';
 import {useInk, useTheme} from '../../../Themes/ThemeContext';
 import {ImageFrame, useImageLayout} from '../../Components/ImageFrame';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
@@ -36,10 +38,14 @@ const VideoCoverSchema = z.object({
 
 type Content = z.infer<typeof VideoCoverSchema>;
 
+/** The brand's navy, for marks on an orange ground. */
+const BRAND_NAVY = BRAND_COLORS.brand.textPrimary;
+
 const resolveSource = (src: string): string => (/^(https?:|data:)/.test(src) ? src : staticFile(src));
 
 const VideoCoverImage: React.FC<{content: Content}> = ({content}) => {
-	const {colors, typography} = useTheme();
+	const theme = useTheme();
+	const {colors, typography} = theme;
 	const ink = useInk();
 	const {u, wide, tall, width, height} = useImageLayout();
 	const [before, after] = content.emphasis ? content.title.split(content.emphasis) : [content.title, ''];
@@ -47,6 +53,12 @@ const VideoCoverImage: React.FC<{content: Content}> = ({content}) => {
 	// On vertical covers the corner sits below the strip the profile grid crops away.
 	const cornerTop = tall ? u(210) : 0;
 	const size = (content.title.length <= 20 ? 190 : content.title.length <= 34 ? 150 : 124) * (wide ? 1 : 0.86);
+	// The highlighter must stand out from the ground: on an orange cover an orange mark vanished ("Quiz olsun",
+	// 23 Oct 2026), so a mark too close to the ground turns brand navy with white type.
+	const ground = (theme.gradient ?? [colors.primary, colors.accent])[0];
+	const markOnAccent = contrastRatio(colors.accent, ground) >= 1.6;
+	const mark = markOnAccent ? colors.accent : BRAND_NAVY;
+	const markInk = markOnAccent ? colors.onAccent : '#FFFFFF';
 
 	// Right-hand visual: the supplied picture in a tilted frame, or an oversized glyph in a disc.
 	const visual = content.image ? (
@@ -110,8 +122,8 @@ const VideoCoverImage: React.FC<{content: Content}> = ({content}) => {
 					<Text variant="display" size={size} weight={BRAND_TYPOGRAPHY.weights.kinetic} style={{lineHeight: 1, textShadow: `0 ${u(6)}px ${u(24)}px rgba(0, 0, 0, 0.25)`}}>
 						{before}
 						{content.emphasis ? (
-							<span style={{color: colors.onAccent, textShadow: 'none'}}>
-								<Highlight color={colors.accent}>{content.emphasis}</Highlight>
+							<span style={{color: markInk, textShadow: 'none'}}>
+								<Highlight color={mark}>{content.emphasis}</Highlight>
 							</span>
 						) : null}
 						{after}

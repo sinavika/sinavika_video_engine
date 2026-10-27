@@ -33,3 +33,35 @@ export const rowPosition = (page: number, x: number, width: number, height: numb
 	const tile = tileWindow(width, height);
 	return page + (x - tile.left) / tile.width;
 };
+
+/**
+ * The margin every feed image keeps inside the grid tile, in reference
+ * pixels. Text and the logo that sat 80 px from the image edge ended up 46 px
+ * from the tile edge and looked cut off on the profile ("SinoAI’ye sadece",
+ * "Sınava hazırlanma…", the logo under the fan: Tuğçe's review, 26 Oct 2026).
+ */
+export const GRID_MARGIN = 64;
+
+/**
+ * Room kept free beside the top-right corner, where Instagram lays the
+ * carousel, reel or pin icon over the tile, in reference pixels: a title in
+ * the first rows ends this far before the right margin.
+ */
+export const GRID_ICON_ROOM = 110;
+
+export type Insets = {top: number; right: number; bottom: number; left: number};
+
+/**
+ * Insets, in actual pixels, that keep content inside the part of a feed image
+ * the profile grid shows, plus `margin`. Portrait and square images are cut
+ * to 3:4 on the grid (4:5 loses its sides, 9:16 its top and bottom); wide
+ * images (YouTube thumbnails, web) are never on the grid and keep `margin`.
+ */
+export const gridInsets = (width: number, height: number, unit: number, margin = GRID_MARGIN): Insets => {
+	const pad = margin * unit;
+	if (width > height) return {top: pad, right: pad, bottom: pad, left: pad};
+	const side = tileWindow(width, height).left;
+	const visibleHeight = Math.min(height, width / PROFILE_GRID.tileRatio);
+	const end = (height - visibleHeight) / 2;
+	return {top: end + pad, right: side + pad, bottom: end + pad, left: side + pad};
+};

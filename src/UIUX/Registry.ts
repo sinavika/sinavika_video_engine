@@ -118,6 +118,7 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	mobile('m-sino-ana', 'Bilgi Kartları ve SinoAI', 'SinoAI', 'SinoAi', Sino.SinoHomeScreen, '', 'sinoAi'),
 	mobile('m-sino-sohbet', 'Bilgi Kartları ve SinoAI', 'SinoAI · sohbet', 'SinoAiChat', Sino.SinoChatScreen, '', 'sinoAi'),
 	mobile('m-sino-calisma', 'Bilgi Kartları ve SinoAI', 'SinoAI · çalışma', 'SinoAiChat (Çalışma)', Sino.SinoStudyScreen, 'Kilit simgesi yok; kota yazılı.', 'sinoAi'),
+	mobile('m-sino-sonuc', 'Bilgi Kartları ve SinoAI', 'SinoAI · üretim sonucu', 'SinoAiChat (Çalışma sonucu)', Sino.SinoStudyResultScreen, 'Eylemler kartın içinde düğme: Testi aç (ana), Değiştir (ikincil).', 'sinoAi'),
 	mobile('m-sino-kutuphane', 'Bilgi Kartları ve SinoAI', 'SinoAI · kütüphane', 'yeni', Sino.SinoLibraryScreen, '', 'sinoAi'),
 	mobile('m-sino-menu', 'Bilgi Kartları ve SinoAI', 'SinoAI · menü', 'SinoAiChat (menü)', Sino.SinoMenuScreen, 'Boş Yeni sohbet kayıtları tutulmaz.', 'sinoAi'),
 	mobile('m-profil', 'Profil ve hesap', 'Profil', 'ProfileMain', Account.ProfileScreen, 'Daha fazla sekmesi kalktı; her şey Profil içinde.'),
