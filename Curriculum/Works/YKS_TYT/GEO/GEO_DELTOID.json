@@ -1,0 +1,1462 @@
+{
+ "topic": {
+  "id": "401A2C7E-BF75-48CE-BF7F-E24846EE4841",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_DELTOID"
+ },
+ "title": "Deltoid",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/GEO/GEO_DELTOID.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Uçurtmanın geometrisi",
+   "narration": "Bir uçurtmaya bak: üstteki iki çıta birbirine, alttaki iki çıta birbirine eşit. Ortadan geçen çıta onu tam ikiye böler ve öbür çıtayı dik keser. Bu şeklin adı deltoid. Bu derste deltoidin özelliklerini, köşegenlerinin oluşturduğu dik üçgenleri ve alanını öğreneceğiz."
+  },
+  "objectives": [
+   "Deltoidin kenar, açı ve simetri özelliklerini kullanmak",
+   "Dik kesişen köşegenlerle oluşan dik üçgenlerde Pisagor ve özel üçgenleri uygulamak",
+   "Deltoidin alanını köşegenlerle bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_DELTOID_01",
+    "subtopics": [],
+    "title": "Deltoidin özellikleri",
+    "narration": "Deltoid, uçurtma biçiminde bir dörtgendir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Bir simetri ekseni",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -3.3,
+        -1.3,
+        3.3,
+        6.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          6
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "B",
+         "at": [
+          -2.6,
+          3.8
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "C",
+         "at": [
+          0,
+          -0.6
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "D",
+         "at": [
+          2.6,
+          3.8
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "O",
+         "at": [
+          0,
+          3.8
+         ],
+         "label": "O",
+         "hidden": false,
+         "dot": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "B",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "fill": true
+        }
+       ],
+       "circles": [],
+       "angles": [
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "label": "β",
+         "right": false
+        },
+        {
+         "at": "D",
+         "from": "A",
+         "to": "C",
+         "label": "β",
+         "right": false
+        },
+        {
+         "at": "O",
+         "from": "D",
+         "to": "A",
+         "right": true
+        }
+       ]
+      },
+      "caption": "$|AB| = |AD|$, $|CB| = |CD|$; $[AC]$ simetri eksenidir: $A$ ve $C$'yi ortalar, $[BD]$'ye **diktir** ve onu **ortalar**.",
+      "beats": [
+       {
+        "narration": "A C köşegeni bir simetri eksenidir. A B C ile A D C üçgenleri eştir, kenar kenar kenar ile. Bu eşlikten üç sonuç çıkar: A C, A ve C açılarını ikiye böler; B ve D açıları eşittir.",
+        "show": [],
+        "focus": [
+         "AC",
+         "angle-B",
+         "angle-D"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Ayrıca A C, B D köşegenine diktir ve onu tam ortasından keser. Öbür köşegen B D ise A C'yi ortalamaz. Eşkenar dörtgen ve kare, dört kenarı eşit özel deltoitlerdir.",
+        "show": [],
+        "focus": [
+         "BD",
+         "angle-O"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Deltoidde komşu kenarlar ikişer ikişer eşittir: A B ile A D, C B ile C D. Uçurtma biçimi buradan gelir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $ABCD$ deltoidinde $|AB| = |AD| = 2x - 1$, $|CB| = |CD| = x + 4$ ve çevre $30$ cm'dir. Bu deltoidin **en uzun** kenarı kaç santimetredir?",
+       "options": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$2(2x - 1) + 2(x + 4) = 30$ → $6x + 6 = 30$ → $x = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çevre: iki kere iki x eksi bir, artı iki kere x artı dört; altı x artı altı. Otuza eşit: altı x yirmi dört, x dört."
+        },
+        {
+         "text": "Kenarlar $7$ ve $8$; en uzun $8$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "A B ile A D yedi, C B ile C D sekiz. En uzun kenar sekiz santimetre. Cevabımız C. Çevre otuz altı olsaydı x beş, kenarlar dokuz ve dokuz olurdu; o zaman şekil bir eşkenar dörtgendir."
+        }
+       ],
+       "narration": "Deltoidde iki çift eş kenar var.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; deltoidin eş kenarları ve çevresi cebirli özgün bir soruyla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $ABCD$ deltoidinde $|AB| = |AD|$ ve $|CB| = |CD|$'dir. $m(\\widehat{A}) = 100°$ ve $m(\\widehat{C}) = 40°$ olduğuna göre $m(\\widehat{B})$ kaç derecedir?",
+       "options": [
+        "100",
+        "110",
+        "115",
+        "120",
+        "130"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$m(\\widehat{B}) = m(\\widehat{D})$ ve $100 + 40 + 2B = 360$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Deltoidde eş kenarların buluşmadığı B ve D köşelerindeki açılar eşittir. Dört açının toplamı üç yüz altmış: yüz artı kırk artı iki B."
+        },
+        {
+         "text": "$2B = 220$ → $B = 110°$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki B, iki yüz yirmi; B yüz on derece. Cevabımız B."
+        }
+       ],
+       "narration": "$B$ ve $D$ açıları eşit.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; deltoidde eşit karşı açılar özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ deltoidinde $|AB| = |AD|$, $|CB| = |CD|$ ve $m(\\widehat{ABD}) = 50°$'dir. Buna göre $m(\\widehat{BAC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -3.7,
+         -6.007,
+         3.7,
+         0.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           -3,
+           -3.575
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           0,
+           -5.307
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           3,
+           -3.575
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "B",
+          "from": "D",
+          "to": "A",
+          "label": "50°",
+          "right": false
+         },
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "x",
+          "right": false
+         }
+        ]
+       },
+       "options": [
+        "30",
+        "40",
+        "50",
+        "60",
+        "80"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$[AC] \\perp [BD]$: $ABO$ dik üçgeninde $m(\\widehat{ABO}) = 50°$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Simetri ekseni A C, B D'ye diktir. Kesişim noktasına O dersek A B O dik üçgeninde B'deki açı elli."
+        },
+        {
+         "text": "$x = 90° - 50° = 40°$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dik üçgende öbür dar açı doksan eksi elli, kırk derece. x kırk; A açısının tamamı seksen. Cevabımız B. Sekseni seçen, A açısının tamamını bulmuştur."
+        }
+       ],
+       "narration": "$[AC]$, $[BD]$'ye dik ve $A$ açısını ikiye böler.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; deltoidde simetri ekseninin dikliği ve açıortaylığı ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DELTOID_02",
+    "subtopics": [],
+    "title": "Köşegenler",
+    "narration": "Deltoid sorularının anahtarı: dik kesişen köşegenler ve oluşan dört dik üçgen.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Köşegenlerden dik üçgenler",
+      "items": [
+       "Köşegenler **diktir**; simetri ekseni öbür köşegeni **ortalar**.",
+       "Deltoid dört dik üçgene ayrılır; ikişer ikişer **eştirler**.",
+       "Kare ve eşkenar dörtgen, dört kenarı eşit **özel deltoitlerdir**."
+      ],
+      "beats": [],
+      "narration": "Köşegenler O noktasında dik kesişir ve simetri ekseni öbür köşegeni ortalar. Deltoid böylece dört dik üçgene ayrılır; üstteki ikisi birbirine, alttaki ikisi birbirine eştir. Bir kenar ve köşegen parçası verildiğinde Pisagor ile ilerlersin. Sınavda bu dik üçgenler çoğu zaman özel üçgenlerdir: üç, dört, beş ailesi ya da otuz, altmış, doksan. Unutma: kare ve eşkenar dörtgen de dört kenarı eşit özel deltoitlerdir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ deltoidinde $|AB| = |AD| = 10$, $|CB| = |CD| = 17$ ve $|BD| = 16$ birimdir. Buna göre $|AC| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -8.7,
+         -21.7,
+         8.7,
+         0.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           -8,
+           -6
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           0,
+           -21
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           8,
+           -6
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "O",
+          "at": [
+           0,
+           -6
+          ],
+          "label": "O",
+          "hidden": false,
+          "dot": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "10",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "B",
+          "label": "17",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "label": "16",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "x",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "O",
+          "from": "D",
+          "to": "A",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "18",
+        "19",
+        "20",
+        "21",
+        "23"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$|BO| = 8$; $ABO$: $|AO| = \\sqrt{100 - 64} = 6$; $CBO$: $|CO| = \\sqrt{289 - 64} = 15$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Simetri ekseni B D'yi ortalar: B O sekiz. A B O dik üçgeninde altı, sekiz, on: A O altı. C B O dik üçgeninde sekiz, on beş, on yedi: C O on beş."
+        },
+        {
+         "text": "$x = 6 + 15 = 21$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x, A O ile O C'nin toplamı: altı artı on beş, yirmi bir. Cevabımız D. İki tanıdık üçgen yan yana: altı sekiz on ve sekiz on beş on yedi."
+        }
+       ],
+       "narration": "$O$, $[BD]$'nin orta noktası: $|BO| = 8$.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; deltoidde iki Pisagor üçlüsüyle köşegen bulma, ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $ABCD$ deltoidinde $|AB| = |AD| = 15$ cm, $|BD| = 18$ cm ve simetri ekseni $|AC| = 52$ cm'dir. Buna göre $|CB|$ kaç santimetredir?",
+       "options": [
+        "39",
+        "40",
+        "41",
+        "42",
+        "45"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$|BO| = 9$ → $|AO| = \\sqrt{225 - 81} = 12$ → $|OC| = 52 - 12 = 40$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "B O, on sekizin yarısı, dokuz. A B O dik üçgeninde dokuz, on iki, on beş: A O on iki. O C, elli iki eksi on iki, kırk."
+        },
+        {
+         "text": "$|CB| = \\sqrt{81 + 1600} = \\sqrt{1681} = 41$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "C B O dik üçgeninde dik kenarlar dokuz ve kırk: C B, bin altı yüz seksen birin karekökü, kırk bir. Dokuz, kırk, kırk bir de bir Pisagor üçlüsüdür. Cevabımız C."
+        }
+       ],
+       "narration": "Önce $|AO|$, sonra $|OC|$.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; deltoidde iki dik üçgen ve 9-40-41 üçlüsü özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $ABCD$ deltoidinde simetri ekseni $|AC| = 20$ cm, öbür köşegen $|BD| = 12$ cm ve köşegenlerin kesişim noktası $O$ için $|AO| = 8$ cm'dir. Bu deltoidin çevresi kaç santimetredir?",
+       "options": [
+        "$20 + 6\\sqrt{5}$",
+        "$20 + 12\\sqrt{5}$",
+        "$32$",
+        "$20 + 12\\sqrt{3}$",
+        "$44$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$|BO| = 6$: $|AB| = \\sqrt{64 + 36} = 10$; $|OC| = 12$: $|CB| = \\sqrt{144 + 36} = 6\\sqrt{5}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "B O, on ikinin yarısı, altı. A B O dik üçgeninde altı, sekiz, on: A B on. O C, yirmi eksi sekiz, on iki; C B, yüz kırk dört artı otuz altının, yüz sekseninin karekökü, altı kök beş."
+        },
+        {
+         "text": "Çevre $= 2 \\cdot 10 + 2 \\cdot 6\\sqrt{5} = 20 + 12\\sqrt{5}$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çevre, iki on ve iki altı kök beş: yirmi artı on iki kök beş santimetre. Cevabımız B. Altı kök beşi bir kez sayan, kenarların çift olduğunu unutmuştur."
+        }
+       ],
+       "narration": "Dört kenar, iki çift: $|AB|$ ve $|CB|$.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; deltoidde köşegen parçalarından kenarlara ve çevreye geçiş özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir rüzgâr türbininin üç özdeş deltoit kanadı, kısa kenarları ikişer ikişer ortak olacak biçimde $O$ noktası etrafına şekildeki gibi yerleştirilmiştir. Her kanadın kısa kenarları $8$, uzun kenarları $13$ birimdir. Bir kanadın uzun köşegeninin uzunluğu $x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -13.79,
+         -8.8,
+         13.79,
+         15.8
+        ],
+        "points": [
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "F0",
+          "at": [
+           0,
+           15
+          ],
+          "label": "F",
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B0",
+          "at": [
+           6.928,
+           4
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "F1",
+          "at": [
+           -12.99,
+           -7.5
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "B1",
+          "at": [
+           -6.928,
+           4
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "F2",
+          "at": [
+           12.99,
+           -7.5
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "B2",
+          "at": [
+           0,
+           -8
+          ],
+          "hidden": true,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "B0",
+          "to": "F0",
+          "label": "13",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "F0",
+          "to": "B1",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "O",
+          "to": "B0",
+          "label": "8",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B1",
+          "to": "F1",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "F1",
+          "to": "B2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "O",
+          "to": "B1",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B2",
+          "to": "F2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "F2",
+          "to": "B0",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "O",
+          "to": "B2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "O",
+          "to": "F0",
+          "label": "x",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "O",
+           "B0",
+           "F0",
+           "B1"
+          ],
+          "fill": true
+         }
+        ],
+        "circles": [],
+        "angles": []
+       },
+       "options": [
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$O$'daki açı $\\frac{360°}{3} = 120°$; kısa kenarlar $8$ → $O$'dan kısa köşegene uzaklık $8 \\cdot \\cos 60° = 4$, kısa köşegenin yarısı $4\\sqrt{3}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç kanat O çevresinde tam tur yapar; her kanadın O'daki açısı yüz yirmi derece. Simetri ekseni bu açıyı altmış, altmış böler. Kısa kenar sekiz, otuz altmış doksan üçgeninden O'nun kısa köşegene uzaklığı dört, kısa köşegenin yarısı dört kök üç."
+        },
+        {
+         "text": "Öbür parça: $\\sqrt{13^2 - 48} = \\sqrt{121} = 11$ → $x = 4 + 11 = 15$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Uzun kenar on üç ve kısa köşegenin yarısı dört kök üç: kalan parça, yüz altmış dokuz eksi kırk sekizin karekökü, on bir. Uzun köşegen dört artı on bir, on beş. Cevabımız D."
+        }
+       ],
+       "narration": "Üç kanat $O$'da tam tur yapar: her kanadın $O$'daki açısı $120°$.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2026 rüzgâr türbini sorusunun fikri (O çevresinde üç deltoit) farklı kenar uzunlukları ve 30-60-90 çözümüyle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ deltoidinde $|AB| = |AD| = 6$ cm, $m(\\widehat{BAD}) = 60°$ ve $m(\\widehat{BCD}) = 90°$'dir. Buna göre $|AC| = x$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -3.7,
+         -8.896,
+         3.7,
+         0.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           -3,
+           -5.196
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           0,
+           -8.196
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           3,
+           -5.196
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "O",
+          "at": [
+           0,
+           -5.196
+          ],
+          "label": "O",
+          "hidden": false,
+          "dot": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "x",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "D",
+          "label": "60°",
+          "right": false
+         },
+         {
+          "at": "C",
+          "from": "D",
+          "to": "B",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "$6$",
+        "$3 + 3\\sqrt{2}$",
+        "$3 + 3\\sqrt{3}$",
+        "$6\\sqrt{3}$",
+        "$9$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$ABD$: $|AB| = |AD|$, $A = 60°$ → eşkenar, $|BD| = 6$; $|AO| = 3\\sqrt{3}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A B D üçgeninde iki kenar eşit ve aradaki açı altmış: eşkenar üçgen. B D altı; A O, eşkenarın yüksekliği, üç kök üç."
+        },
+        {
+         "text": "$BCD$: ikizkenar dik → $|CO| = |BO| = 3$. $x = 3 + 3\\sqrt{3}$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "B C D üçgeninde C B ile C D eşit ve C dik: ikizkenar dik üçgen. Hipotenüse inen C O, hipotenüsün yarısı, üç. x, üç kök üç artı üç. Cevabımız C."
+        }
+       ],
+       "narration": "Üstteki üçgen eşkenar, alttaki ikizkenar dik üçgen.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; deltoidde eşkenar ve ikizkenar dik üçgen özgün bir şekilde birleştirildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DELTOID_03",
+    "subtopics": [],
+    "title": "Deltoidin alanı",
+    "narration": "Son olarak alan: köşegenler dik olduğu için tek formül yeter.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Köşegenlerin çarpımının yarısı",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -4.7,
+        -11.7,
+        4.7,
+        0.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "B",
+         "at": [
+          -4,
+          -3
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "C",
+         "at": [
+          0,
+          -11
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "D",
+         "at": [
+          4,
+          -3
+         ],
+         "hidden": false,
+         "dot": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "e",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "label": "f",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "fill": true
+        }
+       ],
+       "circles": [],
+       "angles": []
+      },
+      "caption": "Deltoidin alanı $\\frac{e \\cdot f}{2}$.",
+      "beats": [
+       {
+        "narration": "Deltoidi bir dikdörtgenin içine yerleştirdiğini düşün: kenarları e ve f. Deltoid, bu dikdörtgenin tam yarısını kaplar.",
+        "show": [],
+        "focus": [
+         "AC",
+         "BD"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Köşegenlerden biri verilmemişse, dik üçgenlerden Pisagor ile bul; sonra çarp ve ikiye böl.",
+        "show": [],
+        "focus": [
+         "ABCD"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Köşegenleri dik her dörtgende olduğu gibi deltoidin alanı da köşegenlerin çarpımının yarısıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Köşegen uzunlukları $10$ cm ve $16$ cm olan bir deltoidin alanı kaç santimetrekaredir?",
+       "options": [
+        "60",
+        "80",
+        "120",
+        "160",
+        "200"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$\\frac{10 \\cdot 16}{2} = 80$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "On çarpı on altı, yüz altmış; yarısı seksen santimetrekare. Cevabımız B."
+        }
+       ],
+       "narration": "$\\frac{e \\cdot f}{2}$.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; deltoid alan formülü özgün değerlerle uygulandı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $ABCD$ bir kenarı $6$ cm olan karedir. $E \\in [BC]$, $F \\in [CD]$ ve $|BE| = |DF| = 2$ cm'dir. Buna göre $AECF$ deltoidinin alanı kaç santimetrekaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         6.9,
+         6.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           6
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           6,
+           6
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "E",
+          "at": [
+           2,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "F",
+          "at": [
+           6,
+           4
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "label": "2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "F",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "F",
+          "to": "D",
+          "label": "2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "F",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "E",
+           "C",
+           "F"
+          ],
+          "fill": true
+         }
+        ],
+        "circles": [],
+        "angles": []
+       },
+       "options": [
+        "18",
+        "24",
+        "27",
+        "30",
+        "36"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$|AE| = |AF|$ ve $|CE| = |CF| = 4$ → $AECF$ deltoid.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A B E ile A D F eş dik üçgenler: A E, A F'ye eşit. C E ile C F de dörder santim. A E C F bir deltoid."
+        },
+        {
+         "text": "$A = 36 - 2 \\cdot \\frac{6 \\cdot 2}{2} = 36 - 12 = 24$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Karenin alanı otuz altı. Köşelerde kalan iki dik üçgenin her biri altı çarpı iki bölü iki, altı; ikisi on iki. Deltoidin alanı yirmi dört santimetrekare. Köşegenlerle kontrol: A C altı kök iki, E F dört kök iki; çarpımın yarısı yirmi dört. Cevabımız B."
+        }
+       ],
+       "narration": "Kareden iki dik üçgeni çıkar.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; kare içinde oluşan deltoidin alanı, iki yoldan doğrulanan özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Deltoit biçimindeki bir kâğıtta simetri ekseni $[AC]$ dikey, $A$ üstte tutuluyor. Köşegenler $|AC| = 12$ cm ve $|BD| = 8$ cm, kesişim noktası $O$ için $|AO| = 4$ cm'dir. Kâğıt $[BD]$ köşegeni boyunca, üstteki üçgen alttakinin üzerine gelecek biçimde katlanıyor. Katlanmış kâğıdın görünen yüzünün alanı kaç santimetrekaredir?",
+       "options": [
+        "16",
+        "24",
+        "32",
+        "40",
+        "48"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Üst üçgen $ABD$: $\\frac{8 \\cdot 4}{2} = 16$; alt üçgen $CBD$: $\\frac{8 \\cdot 8}{2} = 32$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üstteki A B D üçgeninin alanı sekiz çarpı dört bölü iki, on altı. Alttaki C B D üçgeninin alanı sekiz çarpı sekiz bölü iki, otuz iki. Deltoidin tamamı kırk sekiz."
+        },
+        {
+         "text": "$|AO| = 4 < 8 = |OC|$: katlanan üçgen alttakinin içinde kalır → görünen alan $32$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Katlanınca A, O'dan dört santim aşağıya iner; C ise sekiz santim aşağıda. Üstteki üçgen alttakinin tam içine oturur, dışarı taşmaz. Görünen yüz, alttaki üçgenin kendisi: otuz iki santimetrekare. Cevabımız C. Kırk sekiz katlanmamış kâğıdın, on altı katlanan parçanın alanı."
+        }
+       ],
+       "narration": "Üstteki üçgen alttakinin içine düşer mi?",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2021 deltoitten gemi katlama sorusunun fikri, tek katlamalı ve özgün ölçülü bir soruya dönüştürüldü."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $ABCD$ deltoidinde $|AB| = |AD| = 5$ cm, $|BD| = 8$ cm ve simetri ekseni $[AC]$ üzerinde $|OC| = 8$ cm'dir ($O$, köşegenlerin kesişimi). Buna göre $A(ABCD)$ kaç santimetrekaredir?",
+       "options": [
+        "36",
+        "40",
+        "44",
+        "48",
+        "88"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$|BO| = 4$ → $|AO| = \\sqrt{25 - 16} = 3$ → $|AC| = 3 + 8 = 11$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "B O, B D'nin yarısı, dört. A B O dik üçgeninde üç, dört, beş: A O üç. A C, üç artı sekiz, on bir."
+        },
+        {
+         "text": "$A = \\frac{11 \\cdot 8}{2} = 44$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Alan, on bir çarpı sekiz bölü iki, kırk dört santimetrekare. Cevabımız C. Seksen sekizi seçen, ikiye bölmeyi unutmuştur."
+        }
+       ],
+       "narration": "Önce $|AO|$; sonra $|AC|$; sonra alan.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; deltoidde Pisagor ile köşegen bulup alana geçme özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Deltoidde $|AB| = |AD|$, $|CB| = |CD|$; $B$ ve $D$ açıları eşit.",
+    "Simetri ekseni $[AC]$: $A$ ve $C$ açılarını ikiye böler, $[BD]$'ye **dik** ve onu **ortalar**.",
+    "Dört dik üçgen ikişer ikişer eş; Pisagor ve özel üçgenlerle ilerle.",
+    "Alan $\\frac{e \\cdot f}{2}$.",
+    "Eşkenar dörtgen ve kare, özel deltoitlerdir."
+   ],
+   "warnings": [
+    "$[BD]$, $[AC]$'yi **ortalamaz**; yalnız simetri ekseni ortalar.",
+    "Alanda **ikiye bölmeyi** unutma.",
+    "Eşit açılar, eş kenarların **buluştuğu** köşelerde değil, öbür iki köşededir."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Kâğıttan bir deltoit kes, simetri ekseninden katla: iki yarının **üst üste** geldiğini gör.",
+    "Deltoidin özelliklerini ve alan formülünü **bir sayfaya** şekliyle yaz.",
+    "Uygulamada Deltoid testinden **20 soru** çöz; her şekilde önce **köşegenleri** çiz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "İçbükey deltoidi (ok ucu biçimi) ve onun alanını (köşegenlerin çarpımının yarısı, köşegenlerden biri dışarıda) örnekle.",
+   "Deltoidin iç teğet çemberi olduğunu ve eşkenar dörtgen ile karenin özel deltoid sayıldığını yaz; köşegenleri verilen deltoidde kenar ve çevre hesabı."
+  ]
+ }
+}

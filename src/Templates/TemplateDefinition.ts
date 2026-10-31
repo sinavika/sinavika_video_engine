@@ -3,13 +3,14 @@ import type {z} from 'zod';
 import type {VideoFormatId} from '../Configurations/VideoFormats';
 import {CATEGORY_VOICE_PROFILES, type VoiceModelKey, type VoiceProfileKey} from '../Configurations/Voices';
 import type {ScenePlan, TemplateScene} from '../Scenes/ScenePlan';
+import {snapScenesToBeats, type Beats} from '../Scenes/Rhythm';
 import {planTemplateScenes} from '../Scenes/SceneSeries';
 import type {SceneTransition} from '../Scenes/SceneTransition';
 import type {VoiceClips} from '../Scenes/Voiceover';
 import type {Theme} from '../Themes/Theme';
 import {THEME_IDS, type ThemeId} from '../Themes/ThemeRegistry';
 
-export type TemplateCategory = keyof typeof CATEGORY_VOICE_PROFILES;
+type TemplateCategory = keyof typeof CATEGORY_VOICE_PROFILES;
 
 /**
  * Everything the engine needs to know about a template. A template owns its
@@ -17,7 +18,7 @@ export type TemplateCategory = keyof typeof CATEGORY_VOICE_PROFILES;
  * validating, timing and rendering are generic and never mention a template
  * by name.
  */
-export type TemplateDefinition<Schema extends z.ZodType> = {
+type TemplateDefinition<Schema extends z.ZodType> = {
 	/** Also the first part of the composition id. Letters and digits only. */
 	id: string;
 	category: TemplateCategory;
@@ -45,6 +46,8 @@ export type TemplateDefinition<Schema extends z.ZodType> = {
 	themeFor?: (themeId: ThemeId, content: z.output<Schema>) => Theme | undefined;
 	/** Persistent chrome above the scenes. Hidden during the outro. */
 	renderOverlay?: (content: z.output<Schema>, plan: ScenePlan) => ReactNode;
+	/** `false` keeps the scenes' own lengths even with music: no cut is moved onto a beat (a remembrance stays still). Default true. */
+	cutsOnBeat?: boolean;
 };
 
 type Defaulted = 'supportedThemes' | 'voiceProfile';
@@ -67,13 +70,18 @@ export const defineTemplate = <Schema extends z.ZodType>(
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyTemplateDefinition = TemplateDefinition<any>;
 
+/** A template's scenes as they play: built from the content and voice, every cut moved onto the music's beat when there is a grid (Scenes/Rhythm). */
+export const templateScenes = (template: AnyTemplateDefinition, content: unknown, voiceClips: VoiceClips = {}, beats?: Beats): TemplateScene[] =>
+	snapScenesToBeats(template.buildScenes(content, voiceClips), beats);
+
 export const templateDurationInFrames = (
 	template: AnyTemplateDefinition,
 	content: unknown,
 	fps: number,
 	voiceClips: VoiceClips = {},
+	beats?: Beats,
 ): number =>
-	planTemplateScenes(template.buildScenes(content, voiceClips), template.transition, fps).durationInFrames;
+	planTemplateScenes(templateScenes(template, content, voiceClips, beats), template.transition, fps).durationInFrames;
 
 export const compositionId = (templateId: string, formatId: VideoFormatId): string =>
 	`${templateId}-${formatId}`;

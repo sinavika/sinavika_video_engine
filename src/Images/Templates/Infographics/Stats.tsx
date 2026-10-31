@@ -141,7 +141,7 @@ export const Stats = defineImageTemplate({
 		},
 		source: 'ÖSYM sınav kılavuzu',
 	},
-	defaultTheme: 'ExamFocus',
+	defaultTheme: 'SinavikaLight',
 	defaultSize: 'Portrait',
 	outputName: (content) => `Infografik ${content.title}`,
 	Component: StatsImage,

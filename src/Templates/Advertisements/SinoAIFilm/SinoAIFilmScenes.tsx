@@ -4,7 +4,7 @@ import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
 import {Icon, type UIIconName} from '../../../UIUX/Icons';
-import {At, CLAMP, ease, PromoStage, PromoSubtitle, Slam, TypeOn, useLand, useSeconds, wordCues} from '../PromoKit/PromoKit';
+import {At, CLAMP, ease, PromoStage, Slam, TypeOn, useLand, useSeconds, wordCues} from '../PromoKit/PromoKit';
 import {SINO_FILM_CPS, type SinoAIFilmContent} from './SinoAIFilmSchema';
 
 /**
@@ -25,10 +25,9 @@ const Ground: React.FC = () => (
 	<AbsoluteFill style={{background: 'radial-gradient(120% 70% at 50% 0%, #FFFFFF 0%, #FAFBFC 55%, #F3F5F8 100%)'}} />
 );
 
-const Stage: React.FC<{content: Content; narration: string; shown?: string; children: React.ReactNode}> = ({content, narration, shown, children}) => (
+const Stage: React.FC<{children: React.ReactNode}> = ({children}) => (
 	<PromoStage ground={<Ground />}>
 		{children}
-		<PromoSubtitle text={narration} shown={shown} enabled={content.subtitles} ink="#FFFFFF" fill={INK} />
 	</PromoStage>
 );
 
@@ -56,7 +55,7 @@ const Composer: React.FC<{content: Content; typedAt: number; sentAt: number; lif
 };
 
 export const HookScene: React.FC<{content: Content}> = ({content}) => (
-	<Stage content={content} narration={content.hook.narration} shown={content.hook.lines.join(' ')}>
+	<Stage>
 		<At y={520} w={952}>
 			<Slam text={content.hook.lines[0]} at={0.1} size={TYPE.adScale.hook} color={MUTED} />
 		</At>
@@ -70,7 +69,7 @@ export const AskScene: React.FC<{content: Content}> = ({content}) => {
 	const typedAt = 0.55;
 	const sentAt = typedAt + content.ask.question.length / SINO_FILM_CPS + 0.35;
 	return (
-		<Stage content={content} narration={content.ask.narration}>
+		<Stage>
 			<At y={380} w={952}>
 				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: useVideoLayout().u(20)}}>
 					<Icon name="sparkles" size={useVideoLayout().u(84)} color={INK} stroke={1.5} />
@@ -101,7 +100,7 @@ export const ThinkScene: React.FC<{content: Content}> = ({content}) => {
 	const seconds = useSeconds();
 	const step = 0.9;
 	return (
-		<Stage content={content} narration={content.think.narration}>
+		<Stage>
 			<At y={300} x={50} w={852}>
 				<div style={{alignSelf: 'flex-end', marginLeft: 'auto', maxWidth: u(760), padding: `${u(26)}px ${u(34)}px`, borderRadius: u(38), background: SOFT}}>
 					<Text size={42} weight={TYPE.weights.strong} color={INK}>
@@ -142,7 +141,7 @@ export const AnswerScene: React.FC<{content: Content}> = ({content}) => {
 	const seconds = useSeconds();
 	const streamEnd = 0.4 + content.answer.text.length / 60;
 	return (
-		<Stage content={content} narration={content.answer.narration}>
+		<Stage>
 			<At y={260} x={50} w={852}>
 				<div style={{display: 'flex', gap: u(22), alignItems: 'flex-start'}}>
 					<Icon name="sparkles" size={u(56)} color={INK} stroke={1.7} />
@@ -180,7 +179,7 @@ export const MakeScene: React.FC<{content: Content}> = ({content}) => {
 	const zoomAt = 0.4 + content.make.items.length * 0.45 + 0.4;
 	const zoom = ease(interpolate(seconds, [zoomAt, zoomAt + 1.1], [0, 1], CLAMP));
 	return (
-		<Stage content={content} narration={content.make.narration}>
+		<Stage>
 			<At y={380} x={0} w={952}>
 				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(36), transform: `scale(${1 + zoom * 0.22}) translateY(${zoom * u(90)}px)`, transformOrigin: '50% 0%'}}>
 					{content.make.items.map((item, index) => {
@@ -213,7 +212,7 @@ export const WordsScene: React.FC<{content: Content; spoken?: string; voiceSecon
 	const words = content.words.words;
 	const cues = wordCues(spoken ?? content.words.narration, words, voiceSeconds, [0.05, 0.72, 1.42]);
 	return (
-		<Stage content={content} narration={content.words.narration} shown={words.join(' ')}>
+		<Stage>
 			{words.map((word, index) => (
 				<At key={word} y={560} w={952}>
 					<Slam text={word} at={cues[index]} out={index < words.length - 1 ? cues[index + 1] - 0.12 : undefined} size={TYPE.adScale.numeral * 0.8} color={INK} />

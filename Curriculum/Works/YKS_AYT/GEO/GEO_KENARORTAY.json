@@ -1,0 +1,2419 @@
+{
+ "topic": {
+  "id": "24C78074-8827-5607-5374-F9922D9A4F16",
+  "category": "YKS_AYT",
+  "lesson": "GEO",
+  "code": "GEO_KENARORTAY"
+ },
+ "title": "Kenarortay",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/GEO/GEO_KENARORTAY.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Tek parmakta denge",
+   "narration": "Kartondan bir üçgen kes: onu tek parmağının ucunda dengede tutabileceğin tek bir nokta vardır. O nokta, üç kenarortayın kesiştiği ağırlık merkezidir. Bu derste kenarortayın alanı nasıl böldüğünü, ağırlık merkezinin iki bir kuralını, kenarortay uzunluğunu ve Apollonius bağıntısını göreceksin."
+  },
+  "objectives": [
+   "Kenarortayın alanı ikiye böldüğünü kullanmak",
+   "Ağırlık merkezinin 2 : 1 kuralını ve altı eş alanı uygulamak",
+   "Kenarortay uzunluğunu formülle ve Pisagor ile bulmak",
+   "Apollonius bağıntısıyla bilinmeyen kenarı bulmak",
+   "Dik kesişen kenarortaylar kuralını kullanmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_KENARORTAY_01",
+    "subtopics": [],
+    "title": "Kenarortay",
+    "narration": "Bir köşeyi karşı kenarın orta noktasına birleştiren doğru parçasına kenarortay denir. İlk özelliği alanla ilgili.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kenarortay ve alan",
+      "items": [
+       "$D$, $[BC]$'nin orta noktası ise $[AD]$ kenarortaydır.",
+       "Kenarortay üçgeni **eşit alanlı** iki parçaya böler: tabanlar eşit, yükseklik ortak.",
+       "Dik üçgende hipotenüse ait kenarortay hipotenüsün **yarısı**."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.6,
+        -0.6,
+        7.6,
+        5.06
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.27,
+          4.46
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "C",
+         "at": [
+          7,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "D",
+         "at": [
+          3.5,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "D"
+         ],
+         "fill": true
+        }
+       ],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "D, B C'nin orta noktası: B D ile D C eşit.",
+        "show": [
+         "AB",
+         "AC",
+         "BD",
+         "DC"
+        ],
+        "focus": [
+         "BD",
+         "DC"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "A D kenarortay; iki parçanın yüksekliği ortak.",
+        "show": [
+         "AD"
+        ],
+        "focus": [
+         "AD"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Tabanlar eşit, yükseklik ortak: A B D'nin alanı, A D C'ninkine eşit.",
+        "show": [
+         "ABD"
+        ],
+        "focus": [
+         "ABD"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "A köşesini karşı kenarın orta noktası D'ye birleştiren A D, kenarortaydır. Kenarortay üçgeni eşit alanlı iki parçaya böler; çünkü iki parçanın tabanları eşit, A'dan inen yükseklikleri ortaktır. Dik üçgende hipotenüse ait kenarortayın hipotenüsün yarısı olduğunu da ek çizimler dersinde görmüştük."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $D$, $[BC]$'nin; $E$, $[AD]$'nin orta noktasıdır.\n\n$A(ABC) = 48$ birimkare olduğuna göre, $A(BED)$ kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.6,
+         -0.6,
+         8.6,
+         5.94
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2.73,
+           5.34
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           8,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           4,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "E",
+          "at": [
+           3.37,
+           2.67
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "dashed": false,
+          "ticks": 2
+         },
+         {
+          "from": "E",
+          "to": "D",
+          "dashed": false,
+          "ticks": 2
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "B",
+           "E",
+           "D"
+          ],
+          "fill": true
+         }
+        ],
+        "circles": [],
+        "angles": []
+       },
+       "options": [
+        "$6$",
+        "$8$",
+        "$9$",
+        "$12$",
+        "$16$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$[AD]$ kenarortay: $A(ABD) = 24$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A D kenarortay; A B D, bütün üçgenin yarısı, yirmi dört."
+        },
+        {
+         "text": "$ABD$'de $[BE]$ kenarortay: $A(BED) = 12$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A B D üçgeninde E, A D'nin orta noktası; B E de bir kenarortay. B E D, yirmi dördün yarısı, on iki. Cevap D."
+        }
+       ],
+       "narration": "Kenarortay alanı ikiye böler; bunu iki kez kullanalım.",
+       "origin": {
+        "changes": "Kenarortay ve alan kalıbı; alan yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $[AB] \\perp [AC]$ ve $D$, $[BC]$'nin orta noktasıdır.\n\n$|AD| = 6{,}5$ birim ve $|AB| = 5$ birim olduğuna göre, $|AC| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         12.9,
+         5.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           5
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           12,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           6,
+           2.5
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "5",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "label": "6,5",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "$10$",
+        "$12$",
+        "$13$",
+        "$14$",
+        "$15$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$|BC| = 2 \\cdot 6{,}5 = 13$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A D hipotenüse ait kenarortay; hipotenüs onun iki katı, on üç."
+        },
+        {
+         "text": "$x = \\sqrt{13^2 - 5^2} = 12$.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Beş, on iki, on üç üçgeni: x on iki. On üçü işaretleyen hipotenüsü bulmuş olur. Cevap B."
+        }
+       ],
+       "narration": "Hipotenüse ait kenarortay hipotenüsün yarısı.",
+       "origin": {
+        "changes": "Hipotenüs kenarortayı kalıbı; kenarlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $[AB] \\perp [AC]$ ve $D$, $[BC]$'nin orta noktasıdır.\n\n$m(\\widehat{ACB}) = 35°$ olduğuna göre, $m(\\widehat{BAD}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         6.7,
+         4.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           4.2
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           3,
+           2.1
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "right": true
+         },
+         {
+          "at": "C",
+          "from": "A",
+          "to": "D",
+          "label": "35°",
+          "right": false
+         },
+         {
+          "at": "A",
+          "from": "B",
+          "to": "D",
+          "label": "x",
+          "right": false
+         }
+        ]
+       },
+       "options": [
+        "$55$",
+        "$60$",
+        "$65$",
+        "$70$",
+        "$110$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$|AD| = |BD| = |DC|$: $ABD$ ikizkenar.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "D hipotenüsün orta noktası; A D, B D ve D C eşit. A B D ikizkenar üçgen."
+        },
+        {
+         "text": "$m(\\widehat{ABC}) = 90° - 35° = 55°$ → $x = 55°$.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "B açısı doksan eksi otuz beş, elli beş. İkizkenarda taban açıları eşit: x de elli beş. Yetmiş, A D B açısıdır. Cevap A."
+        }
+       ],
+       "narration": "Hipotenüsün orta noktası üç köşeye eşit uzaklıkta: iki ikizkenar üçgen.",
+       "origin": {
+        "changes": "Hipotenüs kenarortayı ve açı kalıbı; açı yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Kenarortay mı, açıortay mı?",
+      "wrong": "Kenarortay köşedeki açıyı da ikiye böler.",
+      "right": "Kenarortay **kenarı** ikiye böler; açıyı ikiye bölen **açıortaydır**.",
+      "why": "İkisi yalnız **ikizkenar** üçgende, tepeden çizildiğinde çakışır.",
+      "narration": "Sık yapılan bir hata: kenarortayı açıortay sanmak. Kenarortay karşı kenarı ikiye böler, açıyı değil. İkisi yalnız ikizkenar bir üçgende, tepeden çizildiğinde aynı doğrudur."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_KENARORTAY_02",
+    "subtopics": [],
+    "title": "Ağırlık merkezi",
+    "narration": "Üç kenarortay tek bir noktada kesişir; bu noktaya ağırlık merkezi denir ve G ile gösterilir. Kartondan bir üçgen bu noktadan tek parmakla dengede durur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Ağırlık merkezi",
+      "items": [
+       "Üç kenarortay $G$'de kesişir.",
+       "$G$ her kenarortayı köşeden **2**, kenardan **1** pay olacak biçimde böler: $|AG| = 2|GD|$.",
+       "Kenarortaylar üçgeni **eşit alanlı altı** üçgene böler."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.6,
+        -0.6,
+        8.6,
+        5.68
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          3.19,
+          5.08
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "C",
+         "at": [
+          8,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "D",
+         "at": [
+          4,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "E",
+         "at": [
+          5.59,
+          2.54
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "F",
+         "at": [
+          1.59,
+          2.54
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "G",
+         "at": [
+          3.73,
+          1.69
+         ],
+         "hidden": false,
+         "dot": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "B",
+         "to": "D",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "C",
+         "to": "E",
+         "dashed": false,
+         "ticks": 2
+        },
+        {
+         "from": "E",
+         "to": "A",
+         "dashed": false,
+         "ticks": 2
+        },
+        {
+         "from": "A",
+         "to": "F",
+         "dashed": false,
+         "ticks": 3
+        },
+        {
+         "from": "F",
+         "to": "B",
+         "dashed": false,
+         "ticks": 3
+        },
+        {
+         "from": "A",
+         "to": "G",
+         "label": "2k",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "G",
+         "to": "D",
+         "label": "k",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "E",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "F",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "Üç kenarın orta noktaları: D, E ve F.",
+        "show": [
+         "BD",
+         "DC",
+         "CE",
+         "EA",
+         "AF",
+         "FB"
+        ],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Üç kenarortay tek noktada buluşur: G.",
+        "show": [
+         "AG",
+         "GD",
+         "BE",
+         "CF",
+         "G"
+        ],
+        "focus": [
+         "G"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "A G iki k, G D k: köşeden iki pay, kenardan bir pay.",
+        "show": [],
+        "focus": [
+         "AG",
+         "GD"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Üç kenarortay tek bir noktada, ağırlık merkezi G'de kesişir. G her kenarortayı iki ve bir oranında böler: köşeye yakın parça iki pay, kenara yakın parça bir pay. Üç kenarortay üçgeni alanları eşit altı küçük üçgene ayırır."
+     },
+     {
+      "kind": "predict",
+      "title": "G nerede?",
+      "prompt": "G, A D kenarortayının neresinde? Tam ortasında mı?",
+      "choices": [
+       "Köşeden 2, kenardan 1 pay",
+       "Tam ortada"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.6,
+        -0.6,
+        8.6,
+        5.68
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          3.19,
+          5.08
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "C",
+         "at": [
+          8,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "D",
+         "at": [
+          4,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "E",
+         "at": [
+          5.59,
+          2.54
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "F",
+         "at": [
+          1.59,
+          2.54
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "G",
+         "at": [
+          3.73,
+          1.69
+         ],
+         "hidden": false,
+         "dot": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "B",
+         "to": "D",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "C",
+         "to": "E",
+         "dashed": false,
+         "ticks": 2
+        },
+        {
+         "from": "E",
+         "to": "A",
+         "dashed": false,
+         "ticks": 2
+        },
+        {
+         "from": "A",
+         "to": "F",
+         "dashed": false,
+         "ticks": 3
+        },
+        {
+         "from": "F",
+         "to": "B",
+         "dashed": false,
+         "ticks": 3
+        },
+        {
+         "from": "A",
+         "to": "G",
+         "label": "2k",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "G",
+         "to": "D",
+         "label": "k",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "E",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "F",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "Üç kenarortay ve kesişim noktası G.",
+        "show": [],
+        "focus": [
+         "G"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "A D kenarortayı G'de iki parçaya ayrılıyor.",
+        "show": [],
+        "focus": [
+         "AG",
+         "GD"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "$|AG| : |GD| = 2 : 1$; $G$ kenarortayın kenara yakın **üçte birlik** noktasında.",
+      "narration": "G, kenarortayı tam ortadan mı böler? Tahmin et.",
+      "explanationNarration": "Ortadan bölmez. G, kenarortayı köşeden iki, kenardan bir pay olacak biçimde böler. Yani G'nin kenara uzaklığı, köşenin kenara uzaklığının üçte biridir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $[AB] \\perp [AC]$, $G$ ağırlık merkezi ve $|BC| = 18$ birimdir.\n\nBuna göre $|AG| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1,
+         -1,
+         15.4,
+         11.8
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           10.8
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           14.4,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           7.2,
+           5.4
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "G",
+          "at": [
+           4.8,
+           3.6
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "A",
+          "to": "G",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "G",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$|AD| = \\frac{18}{2} = 9$ (hipotenüs kenarortayı).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A D hipotenüse ait kenarortay; on sekizin yarısı, dokuz."
+        },
+        {
+         "text": "$|AG| = \\frac{2}{3} \\cdot 9 = 6$.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "G kenarortayı iki ve bir böler; A G, dokuzun üçte ikisi, altı. Üçte biri alan üç bulur, o G D'dir. Cevap E."
+        }
+       ],
+       "narration": "A'dan çıkan kenarortay hipotenüse gider.",
+       "origin": {
+        "changes": "Ağırlık merkezi ve dik üçgen kalıbı; hipotenüs yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $G$, $ABC$ üçgeninin ağırlık merkezidir; $D$, $E$, $F$ kenarların orta noktalarıdır.\n\n$A(ABC) = 54$ birimkare olduğuna göre, $A(BGD)$ kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.6,
+         -0.6,
+         9.6,
+         6.56
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           3.67,
+           5.96
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           9,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           4.5,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "E",
+          "at": [
+           6.33,
+           2.98
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "F",
+          "at": [
+           1.83,
+           2.98
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "G",
+          "at": [
+           4.22,
+           1.99
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "C",
+          "to": "E",
+          "dashed": false,
+          "ticks": 2
+         },
+         {
+          "from": "E",
+          "to": "A",
+          "dashed": false,
+          "ticks": 2
+         },
+         {
+          "from": "A",
+          "to": "F",
+          "dashed": false,
+          "ticks": 3
+         },
+         {
+          "from": "F",
+          "to": "B",
+          "dashed": false,
+          "ticks": 3
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "F",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "B",
+           "G",
+           "D"
+          ],
+          "fill": true
+         }
+        ],
+        "circles": [],
+        "angles": []
+       },
+       "options": [
+        "$9$",
+        "$12$",
+        "$18$",
+        "$24$",
+        "$27$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Altı küçük üçgenin alanları eşit: $\\frac{54}{6} = 9$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç kenarortay üçgeni alanları eşit altı parçaya ayırır; her biri elli dört bölü altı, dokuz."
+        },
+        {
+         "text": "$A(BGD) = 9$; $A(GBC) = 18$ ise iki parçanın toplamı.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "B G D bu altı parçadan biri, dokuz. On sekiz, G B C'nin alanıdır; iki parça eder. Cevap A."
+        }
+       ],
+       "narration": "Üç kenarortay altı eşit parça yapar.",
+       "origin": {
+        "changes": "Ağırlık merkezi alan kalıbı; alan yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $G$, $ABC$ üçgeninin ağırlık merkezidir; $G$'nin $[BC]$'ye uzaklığı $4$ birim ve $|BC| = 9$ birimdir.\n\nBuna göre $A(ABC)$ kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1,
+         -1,
+         10,
+         13
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           3,
+           12
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           9,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "G",
+          "at": [
+           4,
+           4
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "H",
+          "at": [
+           4,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "H",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "H",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "G",
+          "to": "H",
+          "label": "4",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "H",
+          "from": "G",
+          "to": "C",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "$18$",
+        "$27$",
+        "$54$",
+        "$72$",
+        "$108$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$G$, $[AD]$'yi $2 : 1$ böler: $A$'nın $[BC]$'ye uzaklığı $3 \\cdot 4 = 12$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "G, A D kenarortayını iki ve bir böler; G kenara üçte bir yakın. A'nın B C'ye uzaklığı, dördün üç katı, on iki."
+        },
+        {
+         "text": "$A(ABC) = \\frac{9 \\cdot 12}{2} = 54$.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Alan dokuz çarpı on iki bölü iki, elli dört. G'nin uzaklığını yükseklik sanan on sekiz bulur. Cevap C."
+        }
+       ],
+       "narration": "G'nin kenara uzaklığı, A'nınkinin üçte biri.",
+       "origin": {
+        "changes": "Ağırlık merkezi ve yükseklik kalıbı; uzunluklar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "G ortada mı?",
+      "wrong": "$G$, kenarortayın **orta noktasıdır**.",
+      "right": "$G$ kenarortayı köşeden **2**, kenardan **1** pay olacak biçimde böler.",
+      "why": "$|AG| = \\frac{2}{3}|AD|$ ve $|GD| = \\frac{1}{3}|AD|$.",
+      "narration": "Sık yapılan bir hata: G'yi kenarortayın ortası sanmak. G, köşeden iki, kenardan bir pay olacak biçimde böler. A G kenarortayın üçte ikisi, G D üçte biridir."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_KENARORTAY_03",
+    "subtopics": [],
+    "title": "Kenarortay uzunluğu",
+    "narration": "Üç kenar biliniyorsa her kenarortayın uzunluğu tek bir formülle bulunur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Formül",
+      "items": [
+       "$V_a^2 = \\frac{2b^2 + 2c^2 - a^2}{4}$: $a$, kenarortayın gittiği kenar.",
+       "Dik üçgende dik kenara giden kenarortay için Pisagor da yeter.",
+       "En uzun kenarortay, **en kısa** kenara gider."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.6,
+        -0.6,
+        6.6,
+        5.5
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          1,
+          4.9
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "C",
+         "at": [
+          6,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "D",
+         "at": [
+          3,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "c",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "label": "a/2",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "label": "a/2",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "label": "Va",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "A D kenarortay; B C'nin iki yarısı a bölü iki.",
+        "show": [
+         "AB",
+         "AC",
+         "BD",
+         "DC",
+         "AD"
+        ],
+        "focus": [
+         "AD"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Komşu kenarlar b ve c iki kez sayılır; karşı kenar a bir kez çıkarılır.",
+        "show": [],
+        "focus": [
+         "AB",
+         "AC"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "A'dan çizilen kenarortayın karesi; iki b kare artı iki c kare eksi a kare, bölü dört. Burada a, kenarortayın gittiği kenardır. Dik üçgende bir dik kenara giden kenarortay için Pisagor da yeter. Bir de sezgi: en uzun kenarortay en kısa kenara gider."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $D$, $[BC]$'nin orta noktasıdır; $|AB| = 5$, $|AC| = 7$ ve $|BC| = 6$ birimdir.\n\nBuna göre $|AD| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.6,
+         -0.6,
+         6.6,
+         5.5
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           1,
+           4.9
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           3,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "5",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "7",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": []
+       },
+       "options": [
+        "$\\sqrt{26}$",
+        "$2\\sqrt{7}$",
+        "$\\sqrt{30}$",
+        "$4\\sqrt{2}$",
+        "$6$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$x^2 = \\frac{2 \\cdot 49 + 2 \\cdot 25 - 36}{4} = \\frac{112}{4} = 28$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x kare: iki çarpı kırk dokuz, artı iki çarpı yirmi beş, eksi otuz altı; bölü dört. Yüz on iki bölü dört, yirmi sekiz."
+        },
+        {
+         "text": "$x = \\sqrt{28} = 2\\sqrt{7}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x, kök yirmi sekiz, yani iki kök yedi. Cevap B."
+        }
+       ],
+       "narration": "Formülde a, B C: altı.",
+       "origin": {
+        "changes": "Kenarortay uzunluğu kalıbı; kenarlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $[AB] \\perp [AC]$, $|AB| = 6$, $|AC| = 8$ birimdir ve $E$, $[AC]$'nin orta noktasıdır.\n\nBuna göre $|BE| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         8.9,
+         6.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           6
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           8,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "E",
+          "at": [
+           4,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "E",
+          "to": "C",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "$5$",
+        "$\\sqrt{34}$",
+        "$6$",
+        "$2\\sqrt{10}$",
+        "$2\\sqrt{13}$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$|AE| = 4$; $ABE$ dik üçgen.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "E, A C'nin orta noktası: A E dört. A B E, A'da dik."
+        },
+        {
+         "text": "$x^2 = 6^2 + 4^2 = 52$ → $x = 2\\sqrt{13}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x kare, otuz altı artı on altı, elli iki. x, iki kök on üç. Formülle de aynı sonuç çıkar. Cevap E."
+        }
+       ],
+       "narration": "Dik kenara giden kenarortay: Pisagor yeter.",
+       "origin": {
+        "changes": "Dik üçgende kenarortay kalıbı; kenarlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kenarları $6$, $8$ ve $10$ birim olan üçgenin **en uzun** kenarortayı kaç birimdir?",
+       "options": [
+        "$\\sqrt{73}$",
+        "$2\\sqrt{19}$",
+        "$9$",
+        "$2\\sqrt{21}$",
+        "$10$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "En uzun kenarortay $6$'lık kenara gider: $V^2 = \\frac{2 \\cdot 64 + 2 \\cdot 100 - 36}{4}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "En uzun kenarortay en kısa kenara, altıya gider. V kare: iki çarpı altmış dört, artı iki çarpı yüz, eksi otuz altı; bölü dört."
+        },
+        {
+         "text": "$V^2 = \\frac{292}{4} = 73$ → $V = \\sqrt{73}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki yüz doksan iki bölü dört, yetmiş üç. V, kök yetmiş üç. Üçgen dik olduğu için Pisagor da aynı sonucu verir: sekiz kare artı üç kare. Cevap A."
+        }
+       ],
+       "narration": "En uzun kenarortay en kısa kenara gider.",
+       "origin": {
+        "changes": "En uzun kenarortay kalıbı; kenarlar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_KENARORTAY_04",
+    "subtopics": [],
+    "title": "Apollonius bağıntısı",
+    "narration": "Kenarortay formülünü kenarlar yönünden yazınca Apollonius bağıntısı çıkar; bilinmeyen bir kenarı bulmak için kullanılır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Apollonius",
+      "items": [
+       "$b^2 + c^2 = 2V_a^2 + \\frac{a^2}{2}$.",
+       "Kenarortay ve iki kenar biliniyorsa **üçüncü kenar** bulunur.",
+       "Kenarortaylar $[BE] \\perp [CF]$ ise $b^2 + c^2 = 5a^2$."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.6,
+        -0.6,
+        8.1,
+        5.5
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.5,
+          4.9
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "C",
+         "at": [
+          7.5,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "D",
+         "at": [
+          3.75,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "c",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "label": "a/2",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "label": "a/2",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "label": "Va",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "Sol tarafta iki kenar: b ve c.",
+        "show": [
+         "AB",
+         "AC",
+         "BD",
+         "DC",
+         "AD"
+        ],
+        "focus": [
+         "AB",
+         "AC"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Sağ tarafta kenarortay iki kez, karşı kenarın yarısı bir kez.",
+        "show": [],
+        "focus": [
+         "AD",
+         "BD",
+         "DC"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Apollonius bağıntısı: iki kenarın karelerinin toplamı, kenarortayın karesinin iki katı artı üçüncü kenarın karesinin yarısıdır. Kenarortay ve iki kenar biliniyorsa üçüncü kenarı bu bağıntıyla bulursun. B ve C'den çıkan kenarortaylar dikse, b kare artı c kare, beş a kareye eşittir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $D$, $[BC]$'nin orta noktasıdır; $|AB| = 8$, $|AC| = 6$ ve $|AD| = 5$ birimdir.\n\nBuna göre $|BC|$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         10.9,
+         5.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           6.4,
+           4.8
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           10,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           5,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "8",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "label": "5",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": []
+       },
+       "options": [
+        "$6$",
+        "$7$",
+        "$8$",
+        "$10$",
+        "$12$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$64 + 36 = 2 \\cdot 25 + \\frac{|BC|^2}{2}$ → $\\frac{|BC|^2}{2} = 50$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Altmış dört artı otuz altı, iki çarpı yirmi beş artı B C karenin yarısı. B C karenin yarısı elli."
+        },
+        {
+         "text": "$|BC| = 10$. Kenarortay $5 = \\frac{10}{2}$: $A$'da açı **dik**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "B C kare yüz, B C on. Bir şey daha: kenarortay, hipotenüsün yarısı kadar; demek ki A'daki açı dik, altı sekiz on üçgeni. Cevap D."
+        }
+       ],
+       "narration": "Apollonius: iki kenar ve kenarortay verilmiş.",
+       "origin": {
+        "changes": "Apollonius kalıbı; kenarlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $D$, $[BC]$'nin orta noktasıdır; $|AB| = 7$, $|AC| = 9$ ve $|AD| = 7$ birimdir.\n\nBuna göre $|BC|$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         8.9,
+         7.61
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2,
+           6.71
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           8,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           4,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "7",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "9",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "label": "7",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": []
+       },
+       "options": [
+        "$8$",
+        "$9$",
+        "$10$",
+        "$11$",
+        "$12$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$49 + 81 = 2 \\cdot 49 + \\frac{|BC|^2}{2}$ → $\\frac{|BC|^2}{2} = 32$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kırk dokuz artı seksen bir, yüz otuz; iki çarpı kırk dokuz, doksan sekiz. B C karenin yarısı otuz iki."
+        },
+        {
+         "text": "$|BC|^2 = 64$ → $|BC| = 8$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "B C kare altmış dört, B C sekiz. Cevap A."
+        }
+       ],
+       "narration": "Yine Apollonius; bu kez kenarortay bir kenara eşit.",
+       "origin": {
+        "changes": "Apollonius kalıbı; kenarlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $[BE]$ ve $[CF]$ kenarortaylardır ve $G$'de dik kesişirler. $|AB| = 8$ ve $|AC| = 6$ birimdir.\n\nBuna göre $|BC| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         6.27,
+         6.83
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           5.37,
+           5.93
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           4.47,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "E",
+          "at": [
+           4.92,
+           2.97
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "F",
+          "at": [
+           2.68,
+           2.97
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "G",
+          "at": [
+           3.28,
+           1.98
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "F",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "F",
+          "to": "B",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "label": "3",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "C",
+          "label": "3",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "F",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "G",
+          "from": "B",
+          "to": "C",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "$2$",
+        "$\\sqrt{10}$",
+        "$2\\sqrt{5}$",
+        "$5$",
+        "$2\\sqrt{10}$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$BGC$ dik: $D$, $[BC]$'nin ortası ise $|GD| = \\frac{x}{2}$, $|AD| = 3|GD| = \\frac{3x}{2}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "B G C, G'de dik. B C'nin orta noktası D ise G D hipotenüsün yarısı, x bölü iki. A D ise onun üç katı, üç x bölü iki."
+        },
+        {
+         "text": "Apollonius: $64 + 36 = 2 \\cdot \\frac{9x^2}{4} + \\frac{x^2}{2} = 5x^2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Apollonius: altmış dört artı otuz altı, iki çarpı dokuz x kare bölü dört, artı x kare bölü iki. Sağ taraf beş x kare."
+        },
+        {
+         "text": "$x^2 = 20$ → $x = 2\\sqrt{5}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Beş x kare yüz, x kare yirmi; x, iki kök beş. Kural da bu: b kare artı c kare, beş a kare. Cevap C."
+        }
+       ],
+       "narration": "G'de dik açı var: B G C dik üçgen. A'dan da bir kenarortay düşünelim.",
+       "origin": {
+        "changes": "Dik kesişen kenarortaylar kalıbı; kenarlar yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Kenarortay alanı **ikiye** böler.",
+    "Hipotenüs kenarortayı hipotenüsün yarısı.",
+    "$G$: köşeden 2, kenardan 1 pay; altı eş alan.",
+    "$G$'nin kenara uzaklığı, köşeninkinin üçte biri.",
+    "$V_a^2 = \\frac{2b^2 + 2c^2 - a^2}{4}$.",
+    "Apollonius: $b^2 + c^2 = 2V_a^2 + \\frac{a^2}{2}$."
+   ],
+   "warnings": [
+    "Kenarortay açıyı **ikiye bölmez**.",
+    "$G$ kenarortayın **ortası değil**.",
+    "Formülde $a$, kenarortayın **gittiği** kenar."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Kartondan bir üçgen kes, kenarortaylarını çiz ve **G noktasında** dengele.",
+    "Kenarortay formülünü bir üçgende **Apollonius** ile karşılaştır.",
+    "Uygulamada AYT Kenarortay testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Kenarortay uzunluğuna örnek ekle: kenarları 7, 8, 9 olan üçgende 8'e ait kenarortay V² = (2 × 49 + 2 × 81 − 64) / 4 = 49, V = 7. Formülün Apollonius bağıntısından geldiğini göster.",
+   "Ağırlık merkezinin oranlarını örnekle: G kenarortayı köşeden 2, kenardan 1 pay olarak böler; altı küçük üçgen eş alanlıdır; A(GBC) tüm alanın üçte biridir. Dik üçgende hipotenüse ait kenarortay a/2 olduğundan |AG| = a/3.",
+   "Kenarortay kareleri toplamını ve diklik koşulunu ekle: V(a)² + V(b)² + V(c)² = 3(a² + b² + c²) / 4. B ve C'den çizilen kenarortaylar dik kesişiyorsa b² + c² = 5a².",
+   "Orta taban ilişkisini ekle: iki kenarın orta noktalarını birleştiren parça üçüncü kenara paralel ve onun yarısıdır; orta noktaların oluşturduğu üçgenin alanı ana üçgenin dörtte biridir.",
+   "Kenarortay, açıortay ve yüksekliğin yalnız ikizkenar üçgende tepeden çizilince çakıştığını, eşkenar üçgende üç köşeden de çakıştığını vurgula. Kenarortayı iki katına uzatıp paralelkenar tamamlama yöntemini bir örnekle göster."
+  ]
+ }
+}

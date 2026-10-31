@@ -1,5 +1,6 @@
 import {z} from 'zod';
 import {plainText, richText} from '../Schemas/RichText';
+import {turkishCardinal, turkishOrdinal} from '../Schemas/SpokenText';
 import type {Checklist, ChecklistEntry} from './Curriculum';
 
 /**
@@ -137,20 +138,8 @@ export const campMismatches = (camp: Camp, topic: string, episode: CampEpisode):
 
 // ---------------------------------------------------------------- spoken lines
 
-const ONES = ['', 'bir', 'iki', 'üç', 'dört', 'beş', 'altı', 'yedi', 'sekiz', 'dokuz'];
-const TENS = ['', 'on', 'yirmi', 'otuz', 'kırk', 'elli', 'altmış', 'yetmiş', 'seksen', 'doksan'];
-const ORDINAL_OF: Record<string, string> = {
-	bir: 'birinci', iki: 'ikinci', üç: 'üçüncü', dört: 'dördüncü', beş: 'beşinci', altı: 'altıncı', yedi: 'yedinci', sekiz: 'sekizinci', dokuz: 'dokuzuncu',
-	on: 'onuncu', yirmi: 'yirminci', otuz: 'otuzuncu', kırk: 'kırkıncı', elli: 'ellinci', altmış: 'altmışıncı', yetmiş: 'yetmişinci', seksen: 'sekseninci', doksan: 'doksanıncı',
-};
-
-/** 1 → "birinci", 15 → "on beşinci", 40 → "kırkıncı" (1 to 99), as the narrator says it. */
-export const turkishOrdinal = (value: number): string => {
-	if (!Number.isInteger(value) || value < 1 || value > 99) throw new Error(`No Turkish ordinal for ${value}.`);
-	const tens = TENS[Math.floor(value / 10)];
-	const ones = ONES[value % 10];
-	return ones ? [tens, ORDINAL_OF[ones]].filter(Boolean).join(' ') : ORDINAL_OF[tens];
-};
+// Number words live with the other speech rules; re-exported for the camp's callers.
+export {turkishCardinal, turkishOrdinal};
 
 const capitalise = (text: string): string => text.charAt(0).toLocaleUpperCase('tr') + text.slice(1);
 

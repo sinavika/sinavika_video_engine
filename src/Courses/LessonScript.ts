@@ -1,5 +1,5 @@
 import {z} from 'zod';
-import {CourseVisualSchema, VisualBeatSchema, numberedPartNames} from '../Components/Visuals/VisualSchemas';
+import {CourseVisualSchema, VisualBeatSchema, numberedPartNames, type CourseVisual} from '../Components/Visuals/VisualSchema';
 import {latex, plainText, richText} from '../Schemas/RichText';
 import {RevisionCardSchema} from '../Templates/Education/QuickRevision/QuickRevisionSchema';
 import {CampEpisodeSchema} from './Camp';
@@ -28,6 +28,11 @@ export const QuestionSchema = z
 		stem: richText(600),
 		/** Text that belongs to the stem but is shown apart: a paragraph, a list of numbered sentences. */
 		context: richText(900).optional(),
+		/**
+		 * The figure the question is about (a climate graph, a map, a contour map), shown with the stem from the
+		 * start, at the top of the solution panel, so the viewer reads it before the options are weighed.
+		 */
+		figure: CourseVisualSchema.optional(),
 		options: z.array(richText(160)).min(2).max(5),
 		/** Index of the correct option (0 is A). */
 		answer: z.number().int().min(0).max(4),
@@ -134,6 +139,17 @@ export const LessonSectionSchema = z.object({
 	subtopic: z.string().max(80).optional(),
 	/** More subtopics taught in the same section, when sibling subtopics are best taught together (Cümlede Anlam: neden, amaç, koşul). */
 	subtopics: z.array(z.string().max(80)).max(8).default([]),
+	/**
+	 * Subtopics of other categories this section also teaches, as CATEGORY:CODE (KPSS_ONLISANS:SES_BILGISI_03). One
+	 * KPSS video set serves Lisans, Önlisans and Ortaöğretim (owner, 31 Oct 2026), and a subtopic code means a
+	 * different subtopic in each level's list (SES_BILGISI_01 is "Sesler" in Lisans, "Büyük Ünlü Uyumu" in Önlisans),
+	 * so other levels' subtopics are named with their category. `subtopic` and `subtopics` belong to the script's
+	 * own category.
+	 */
+	alsoTeaches: z
+		.array(z.string().regex(/^[A-Z][A-Z_]*:[A-Z0-9_]+$/u, 'CATEGORY:CODE, e.g. KPSS_ONLISANS:SES_BILGISI_03'))
+		.max(30)
+		.default([]),
 	title: plainText(60),
 	narration,
 	cards: z
@@ -183,7 +199,8 @@ export type ChallengeRound = z.infer<typeof ChallengeRoundSchema>;
 /** A card of the short: the Reels cards (QuickRevision) plus a visual card. */
 export const ShortCardSchema = z.union([RevisionCardSchema, z.object({kind: z.literal('visual'), title: plainText(50), visual: CourseVisualSchema, narration})]);
 
-export type ShortCard = z.infer<typeof ShortCardSchema>;
+/** The letters of a question's options, in order (ÖSYM questions have five). */
+export const OPTION_LETTERS = 'ABCDE';
 
 export const LessonScriptSchema = z
 	.object({
@@ -194,8 +211,21 @@ export const LessonScriptSchema = z
 		lessonName: plainText(40),
 		/** The exams shown on the opening, e.g. ["YKS", "TYT"] or ["KPSS"]. */
 		exams: z.array(plainText(12)).min(1).max(4),
-		/** What the script was written from: data files (relative to Curriculum/Data), with pages where it helps. */
+		/** What the script was written from: data files (relative to Desktop/EgitimVerileri), with pages where it helps. */
 		sources: z.array(z.string().max(240)).default([]),
+		/**
+		 * Subtopics the checklist lists under this topic that the lesson deliberately does not teach, each group with
+		 * its reason: usually a data error logged in Curriculum/Production/VeriDuzeltmeleri.md (a subtopic copied from
+		 * another topic). The review counts them as covered, so the gap is written down instead of silently accepted.
+		 */
+		outOfScope: z.array(z.object({codes: z.array(z.string().min(1).max(80)).min(1).max(12), reason: z.string().min(10).max(240)})).max(4).default([]),
+		/**
+		 * Notes for Sınavika's Works module (the written lessons), which is built from the same script: what a written
+		 * lesson should add beyond the video (full tables and lists, more examples, exceptions, the traps ÖSYM has used),
+		 * each a short instruction in Turkish. The video ignores it. Optional in the schema so drafts load, but the review
+	 * (`worksIssues`) asks for at least two before a lesson is "Hazırlandı".
+		 */
+		works: z.object({additions: z.array(z.string().trim().min(10).max(400)).min(1).max(12)}).optional(),
 
 		/** The YouTube lesson. */
 		lesson: z.object({
@@ -312,7 +342,7 @@ export const reviewScript = (script: LessonScript, subtopicCodes: readonly strin
 	const rounds = script.short.rounds ?? [];
 	const shortSeconds = rounds.length > 0 ? estimatedChallengeSeconds(rounds) : estimatedSeconds(shortNarrations(script));
 	const shortTarget = rounds.length > 0 ? COURSE_DESIGN.length.challenge : COURSE_DESIGN.length.short;
-	const covered = new Set(script.lesson.sections.flatMap((section) => [section.subtopic, ...section.subtopics]).filter(Boolean));
+	const covered = new Set([...script.lesson.sections.flatMap((section) => [section.subtopic, ...section.subtopics]), ...script.outOfScope.flatMap((group) => group.codes)].filter(Boolean));
 	const issues: string[] = [];
 	if (lessonSeconds < COURSE_DESIGN.length.lesson.min) issues.push(`The lesson reads in about ${Math.round(lessonSeconds / 60)} min; the target is at least ${COURSE_DESIGN.length.lesson.min / 60} min.`);
 	if (shortSeconds < shortTarget.min || shortSeconds > shortTarget.max) issues.push(`The short reads in about ${Math.round(shortSeconds)} s; the target is ${shortTarget.min}-${shortTarget.max} s.`);
@@ -321,9 +351,111 @@ export const reviewScript = (script: LessonScript, subtopicCodes: readonly strin
 	if (missing.length > 0) issues.push(`Subtopics without a section: ${missing.join(', ')}.`);
 	const questions = script.lesson.sections.flatMap((section) => section.cards).filter((card) => card.kind === 'question').length;
 	if (questions < 3) issues.push(`Only ${questions} worked question(s); three or more cover the exam's approaches better.`);
-	issues.push(...spokenTextIssues(script));
-	return {lessonSeconds, shortSeconds, questions, issues};
+	issues.push(...answerPatternIssues(script), ...mistakeIssues(script), ...worksIssues(script), ...spokenTextIssues(script));
+	return {lessonSeconds, shortSeconds, questions, issues, suggestions: [...processVisualSuggestions(script), ...longSentenceSuggestions(script)]};
 };
+
+/** A spoken sentence longer than this many words leaves the voice no room to breathe (41 of 24,606 in Oct 2026). */
+const MAX_SPOKEN_WORDS = 30;
+
+/** Narration sentences too long to say in one breath, with where they are. */
+export const longSentenceSuggestions = (script: LessonScript): string[] =>
+	script.lesson.sections.flatMap((section, sectionIndex) =>
+		section.cards.flatMap((card, cardIndex) =>
+			(card.kind === 'question' ? card.question.steps.map((step) => step.narration ?? '') : [card.narration, ...('beats' in card ? card.beats.map((beat) => beat.narration) : [])])
+				.flatMap((text) => text.split(/(?<=[.!?…])\s+/u))
+				.filter((sentence) => sentence.split(/\s+/).length > MAX_SPOKEN_WORDS)
+				.map((sentence) => `s${sectionIndex + 1}-c${cardIndex + 1}: a spoken sentence of ${sentence.split(/\s+/).length} words ("${sentence.slice(0, 50)}…"); split it so the voice can breathe.`),
+		),
+	);
+
+/**
+ * A process the narration names should move on screen (owner, 29 Oct 2026: "if a landslide is mentioned, the soil
+ * must slide in the picture"). Each entry: the words that name the process, and the figures that show it. A card
+ * passes when it, or a card next to it in the same section, shows one of them. `ignore` names uses of the words that
+ * are not the process (30 Oct 2026, AYT Tarih: "Adnan Menderes" is a person, not a meander; "II. Dünya Savaşı",
+ * "savaş ilan etti" and "savaş yılları" name a war or an era, not a battle a figure could show; "Kızılırmak Deltası" names a place, not a delta being built; AYT Psikoloji: "savaş ya da kaç tepkisi" is the stress response, and a war in a list of stress sources is not a battle told; AYT Felsefe: Hobbes's "herkesin herkese savaşı" is the state of nature, not a battle). These are
+ * suggestions, not issues: they do not block "Hazırlandı".
+ */
+const isProcess = (visual: CourseVisual, process: string) => visual.kind === 'process' && visual.process === process;
+const PROCESS_VISUALS: {name: string; words: RegExp; ignore?: RegExp; shows: (visual: CourseVisual) => boolean}[] = [
+	{name: 'heyelan', words: /(?<!\p{L})(heyelan|toprak kayma)/iu, shows: (visual) => (visual.kind === 'landform' && visual.scene === 'landslide') || isProcess(visual, 'landslide')},
+	// The desert scene shows wind erosion (sand carried, rocks scoured, dunes moving): Karapınar, AYT Coğrafya 24.
+	{name: 'erozyon', words: /(?<!\p{L})erozyon/iu, shows: (visual) => isProcess(visual, 'erosion') || isProcess(visual, 'desert')},
+	{name: 'deprem', words: /(?<!\p{L})deprem/iu, shows: (visual) => visual.kind === 'earthquake' || visual.kind === 'plates'},
+	{name: 'volkan', words: /(?<!\p{L})(volkan|yanardağ)/iu, shows: (visual) => (visual.kind === 'landform' && visual.scene === 'volcano') || visual.kind === 'plates' || isProcess(visual, 'volcano')},
+	{name: 'buzul', words: /(?<!\p{L})buzul/iu, ignore: /(?<!\p{L})buzul\s+dönem\p{L}*|(?<!\p{L})buzullaşma\p{L}*|(?<!\p{L})buzul\p{L}*\s+(?:hızla\s+)?eri\p{L}*/giu, shows: (visual) => visual.kind === 'landform' && visual.scene === 'glacier'},
+	{name: 'karst', words: /(?<!\p{L})(karst|obruk|dolin|polye(?!ster))/iu, shows: (visual) => (visual.kind === 'landform' && visual.scene === 'karst') || isProcess(visual, 'karst')},
+	{name: 'kaynak', words: /(?<!\p{L})(artezyen|yamaç kaynağı|karstik kaynak|fay kaynağı)/iu, shows: (visual) => isProcess(visual, 'spring')},
+	{name: 'kayaç döngüsü', words: /(?<!\p{L})kayaç döngüsü/iu, shows: (visual) => isProcess(visual, 'rockcycle') || visual.kind === 'cycle'},
+	{name: 'su döngüsü', words: /(?<!\p{L})(su döngüsü|hidrolojik döngü)/iu, shows: (visual) => isProcess(visual, 'watercycle') || visual.kind === 'cycle'},
+	{name: 'karbon döngüsü', words: /(?<!\p{L})karbon döngüsü/iu, shows: (visual) => isProcess(visual, 'carboncycle') || visual.kind === 'cycle'},
+	{name: 'azot döngüsü', words: /(?<!\p{L})(azot döngüsü|nitrifikasyon|denitrifikasyon)/iu, shows: (visual) => isProcess(visual, 'nitrogencycle') || visual.kind === 'cycle'},
+	{name: 'akarsu aşındırması', words: /(?<!\p{L})(menderes|delta|akarsu aşındır|akarsu biriktir)/iu, ignore: /Adnan Menderes|\p{Lu}\p{L}*\s+(?:ve\s+\p{Lu}\p{L}*\s+)?[Dd]elta\p{L}*|[Dd]elta\s+\p{L}(?!\p{L})/gu, shows: (visual) => visual.kind === 'river'},
+	{name: 'kıvrılma', words: /(?<!\p{L})(kıvrılma|antiklinal|senklinal)/iu, shows: (visual) => visual.kind === 'landform' && visual.scene === 'fold'},
+	{
+		name: 'savaş',
+		words: /(?<!\p{L})(savaş[ıi]?(?!\p{L})|savaşında|muharebe|meydan savaş)/iu,
+		ignore: /(?<!\p{L})(dünya|soğuk|uzun|kırk yıllık)\s+savaş\p{L}*|(?<!\p{L})savaş(a|ı|tan)?\s+(ilan|dışı|yılları|sonrası|sonunda|ekonomisi|sanayisi)\p{L}*|(?<!\p{L})savaş\s+(ya da|veya)\s+kaç\p{L}*|(?<!\p{L})herkes(?:in|e)\s+(?:karşı\s+)?(?:herkese\s+(?:karşı\s+)?)?savaş\p{L}*|,\s*savaş\p{L}*\s*,/giu,
+		shows: (visual) => visual.kind === 'battle' || visual.kind === 'picture' || visual.kind === 'map',
+	},
+];
+
+export const processVisualSuggestions = (script: LessonScript): string[] =>
+	script.lesson.sections.flatMap((section, sectionIndex) =>
+		section.cards.flatMap((card, cardIndex) => {
+			if (card.kind === 'question') return [];
+			const said = [card.narration, ...('beats' in card ? card.beats.map((beat) => beat.narration) : [])].join(' ');
+			const near = section.cards.slice(Math.max(0, cardIndex - 1), cardIndex + 2).flatMap((other) => ('visual' in other && other.visual ? [other.visual] : []));
+			return PROCESS_VISUALS.filter((process) => process.words.test(process.ignore ? said.replace(process.ignore, '') : said) && !near.some(process.shows)).map(
+				(process) => `s${sectionIndex + 1}-c${cardIndex + 1}: the narration names "${process.name}" but no figure here shows it happening.`,
+			);
+		}),
+	);
+
+/**
+ * The correct options of a lesson's questions, in order, should look like an exam's: no letter taking half of
+ * them, never the same letter three times in a row, no repeating pattern (ABAB, ABCABC). 88 of 184 camp
+ * lessons broke this before the rule (29 Oct 2026: "İç ve Dış Kuvvetler" was A A A A A A E D).
+ */
+export const answerPatternIssues = (script: LessonScript): string[] => {
+	const answers = script.lesson.sections
+		.flatMap((section) => section.cards)
+		.flatMap((card) => (card.kind === 'question' ? ['ABCDE'[card.question.answer]] : []))
+		.join('');
+	const issues: string[] = [];
+	const counts = [...answers].reduce<Record<string, number>>((total, letter) => ({...total, [letter]: (total[letter] ?? 0) + 1}), {});
+	const [letter, count] = Object.entries(counts).sort((a, b) => b[1] - a[1])[0] ?? ['', 0];
+	if (answers.length >= 4 && count >= Math.max(3, Math.ceil(answers.length / 2))) issues.push(`The answer is ${letter} in ${count} of ${answers.length} questions (${answers}); spread the correct options.`);
+	const run = /(.)\1\1/.exec(answers);
+	if (run) issues.push(`The answer is ${run[1]} three times in a row (${answers}).`);
+	const period = [2, 3, 4].find((size) => answers.length >= 2 * size && [...answers].every((answer, index) => index < size || answer === answers[index - size]));
+	if (period && !run) issues.push(`The answers repeat every ${period} questions (${answers}).`);
+	return issues;
+};
+
+/** The fewest Works notes a lesson carries (the 168 TYT lessons have 2-9). */
+const MIN_WORKS_NOTES = 2;
+
+/**
+ * Every lesson feeds the written lesson in Works too, and the video always leaves something out (full tables, more
+ * examples, exceptions, ÖSYM traps). 202 of 219 AYT lessons went without notes on 31 Oct 2026 because nothing asked
+ * for them; now a lesson without them is not "Hazırlandı".
+ */
+export const worksIssues = (script: LessonScript): string[] => {
+	const notes = script.works?.additions.length ?? 0;
+	return notes >= MIN_WORKS_NOTES ? [] : [`Works notes: ${notes} of at least ${MIN_WORKS_NOTES}; add what the written lesson needs beyond the video (works.additions).`];
+};
+
+/** A mistake card's wrong idea is said as a statement the student might believe ("Her roman natüralisttir."): Works asks it as true or false. */
+export const mistakeIssues = (script: LessonScript): string[] =>
+	script.lesson.sections.flatMap((section, sectionIndex) =>
+		section.cards.flatMap((card, cardIndex) =>
+			card.kind === 'mistake' && /(?:mak|mek)$/u.test(card.wrong.replace(/\*\*/g, '').replace(/[\s.!…]+$/u, ''))
+				? [`s${sectionIndex + 1}-c${cardIndex + 1}: the mistake "${card.wrong}" is an action, not a statement; write the wrong idea itself (Works asks it as true or false).`]
+				: [],
+		),
+	);
 
 /**
  * Where the voice and the screen disagree (docs/CourseNarration.md §4): an

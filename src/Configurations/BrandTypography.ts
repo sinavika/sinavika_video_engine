@@ -98,7 +98,7 @@ export const BRAND_THEME_TYPOGRAPHY: ThemeTypography = {
  * (Turkish i → İ, German ß), hyphenation and quotation marks, so it must be
  * the language of the text, never a fixed one.
  */
-export const BRAND_LANGUAGES = ['tr', 'en', 'de', 'nl', 'fr', 'es', 'it', 'pl'] as const;
+const BRAND_LANGUAGES = ['tr', 'en', 'de', 'nl', 'fr', 'es', 'it', 'pl'] as const;
 export type BrandLanguage = (typeof BRAND_LANGUAGES)[number];
 export const DEFAULT_BRAND_LANGUAGE: BrandLanguage = 'tr';
 

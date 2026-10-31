@@ -2,7 +2,7 @@ import {useMemo} from 'react';
 import {useVideoConfig} from 'remotion';
 import {resolveVideoLayout, type VideoLayout} from '../../Configurations/VideoFormats';
 
-export type ScaledVideoLayout = VideoLayout & {
+type ScaledVideoLayout = VideoLayout & {
 	/** Converts reference pixels (1080px short edge) to actual pixels. */
 	u: (referencePixels: number) => number;
 	isPortrait: boolean;

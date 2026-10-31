@@ -40,14 +40,6 @@ export const EXAM_TAG: Record<AdExam, string> = {
 	act: 'ACT · English · Math · Reading · Science',
 };
 
-/** Where a market's web ads land. */
-export const EXAM_LANDING: Record<AdExam, string> = {
-	kpss: 'https://sinavika.com/tr/kpss-deneme-sinavi',
-	yks: 'https://sinavika.com/tr/yks-deneme-sinavi',
-	sat: 'https://sinavika.com/en/sat-hazirlik',
-	act: 'https://sinavika.com/en/act-hazirlik',
-};
-
 /** US copy is English only; the Turkish slot repeats it because the shared UI parts read copy as {tr, en}. */
 const us = (text: string): Copy => ({tr: text, en: text});
 export const AD_PLATFORMS: readonly AdPlatform[] = ['mobile', 'web'];
@@ -392,7 +384,7 @@ export const AD_CONCEPTS: readonly AdConcept[] = [
  * headlines 30 characters, long headlines and descriptions 90, the first
  * description 60 (it is the short one some placements need).
  */
-export type AdTextSet = {headlines: string[]; longHeadlines: string[]; descriptions: string[]};
+type AdTextSet = {headlines: string[]; longHeadlines: string[]; descriptions: string[]};
 
 /** One language per exam: the exam's market (EXAM_LANG). Built from searched terms; see the keyword report. */
 export const AD_TEXT: Record<AdExam, Record<AdPlatform, AdTextSet>> = {

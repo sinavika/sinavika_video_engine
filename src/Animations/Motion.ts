@@ -21,7 +21,7 @@ export const STAGGER_STEPS = {
 	relaxed: 0.22,
 } as const;
 
-export const EASINGS = {
+const EASINGS = {
 	linear: Easing.linear,
 	standard: Easing.bezier(0.4, 0, 0.2, 1),
 	enter: Easing.bezier(0.16, 1, 0.3, 1),
@@ -36,7 +36,28 @@ export const secondsToFrames = (seconds: number, fps: number): number => Math.ro
 
 export const clamp01 = (value: number): number => Math.min(1, Math.max(0, value));
 
-export type ProgressInput = {
+export const lerp = (a: number, b: number, t: number): number => a + (b - a) * t;
+
+/** The course visuals' easing: a quick start that settles softly. */
+const SETTLE = Easing.bezier(0.33, 0, 0.2, 1);
+
+/** 0 → 1 from `from` over `duration` seconds, eased (0 before, 1 after). */
+export const easeFrom = (seconds: number, from: number, duration: number): number =>
+	interpolate(seconds, [from, from + duration], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: SETTLE});
+
+/** A 0–1 share eased the same way (clamped first). */
+export const smooth = (value: number): number => SETTLE(clamp01(value));
+
+/** A repeatable pseudo-random number in [0, 1) for a seed: the same scatter (rain, grains, soldiers) on every frame. */
+export const noise = (seed: number): number => {
+	const value = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
+	return value - Math.floor(value);
+};
+
+/** Hermite smoothstep: eases a 0–1 share in and out symmetrically. */
+export const smoothStep = (t: number): number => t * t * (3 - 2 * t);
+
+type ProgressInput = {
 	frame: number;
 	fps: number;
 	delaySeconds?: number;

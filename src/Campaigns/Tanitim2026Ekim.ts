@@ -12,59 +12,9 @@
  * ProductMessaging'ten; rakip markası, fiyat, doğrulanmamış iddia yok.
  * Referans videolardan yalnız kurgu dili alınır (marka, logo, arayüz kopyası yok).
  */
-import type {ModuleKey} from '../UIUX/ModuleIdentity';
+import type {CampaignFeed, CampaignStory} from './CampaignTypes';
 
-export type CampaignPromotes = 'mobil' | 'web' | 'ikisi';
-
-export type CampaignReel = {
-	kind: 'reel';
-	date: string;
-	id: string;
-	module: ModuleKey | 'app';
-	promotes: CampaignPromotes;
-	/** Admin panelindeki başlık. */
-	title: string;
-	/** İlk 1,5 saniyede ekranda ve seste. */
-	hook: string;
-	altHooks: string[];
-	/** Yeni şablonun adı (her tanıtım reels'i yeni bir üretim). */
-	template: string;
-	/** Hangi örnekten hangi kurgu dili alındı. */
-	reference: string;
-	beats: string[];
-	voiceover: string;
-	music: string;
-	caption: string;
-	hashtags: string[];
-};
-
-export type CampaignPost = {
-	kind: 'carousel' | 'image';
-	date: string;
-	id: string;
-	module: ModuleKey | 'app';
-	promotes: CampaignPromotes;
-	title: string;
-	hook: string;
-	altHooks: string[];
-	template: string;
-	reference: string;
-	/** Kaydırmalı gönderide her sayfa; tek görselde tek madde. */
-	slides: string[];
-	caption: string;
-	hashtags: string[];
-};
-
-export type CampaignStory = {
-	date: string;
-	id: string;
-	/** Günün akış gönderisine bağlanır. */
-	supports: string;
-	hook: string;
-	visual: string;
-};
-
-export type CampaignFeed = CampaignReel | CampaignPost;
+export type {CampaignFeed, CampaignPost, CampaignPromotes, CampaignReel, CampaignStory} from './CampaignTypes';
 
 const TAGS = {
 	app: ['#sinavika', '#yks', '#kpss', '#sınavhazırlık', '#tyt'],

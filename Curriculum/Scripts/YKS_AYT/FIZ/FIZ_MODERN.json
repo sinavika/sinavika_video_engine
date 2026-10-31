@@ -1,0 +1,797 @@
+{
+ "topic": {
+  "id": "0DE0AB8C-88FA-34AD-9F28-BF0C67DF90A2",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_MODERN"
+ },
+ "title": "Modern Fizik",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "MEB OGM AYT Fizik konu anlatımı, sayfa 244-279 (başvuru; metin yeniden yazıldı)",
+  "ÖSYM 2018, 2019, 2021, 2022, 2024 (iki soru) ve 2026 modern fizik soruları: model olarak kullanıldı, yeniden yazıldı",
+  "YKS/AYT/Sorular/FIZ/FIZ_MODERN.jsonl (yapı ve düzey için okundu, sorular yeni yazıldı)"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Işık dalga mı, parçacık mı?",
+   "narration": "Yüz yıl önce fizikçiler ışığın dalga olduğundan emindi; sonra bir metal levha onları yanılttı. Bu derste siyah cisim ışımasını, fotoelektrik olayı, Compton olayını, madde dalgalarını, özel göreliliği, kütle-enerji eşdeğerliğini ve belirsizlik ilkesini, yedi ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Siyah cisim ışımasını ve Wien yasasını yorumlamak",
+   "Fotoelektrik olayda eşik, şiddet ve frekansın rolünü ayırt etmek",
+   "Compton olayını ve de Broglie dalga boyunu uygulamak",
+   "Özel göreliliğin varsayımlarını ve zaman genişlemesini bilmek",
+   "Kütle-enerji eşdeğerliğini ve belirsizlik ilkesini açıklamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_MODERN_01",
+    "title": "Siyah cisim ışıması",
+    "narration": "Isıtılan demir önce kızarır, sonra beyazlaşır. Bu basit gözlemi klasik fizik açıklayamadı; açıklama kuantumu doğurdu.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Siyah cisim ışıması",
+      "items": [
+       "Her sıcak cisim ışıma yapar; sıcaklık artınca toplam ışıma **artar**, tepe dalga boyu **kısalır**: $\\lambda_{maks} \\cdot T$ sabit (Wien).",
+       "Klasik fizik kısa dalga boylarında sonsuz enerji öngördü; Planck enerjinin **paketler** hâlinde yayıldığını önerdi: $E = hf$.",
+       "Bu yüzden kızgın demir önce kırmızı, ısındıkça beyaz görünür; mavi yıldızlar kırmızılardan **sıcaktır**."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        2.5
+       ],
+       "y": [
+        0,
+        0.12
+       ],
+       "xLabel": "λ (μm)",
+       "yLabel": "şiddet",
+       "curves": [
+        {
+         "expression": "1/(x^5*(exp(2.88/x)-1))",
+         "label": "5000 K",
+         "domain": [
+          0.15,
+          2.5
+         ]
+        },
+        {
+         "expression": "1/(x^5*(exp(3.6/x)-1))",
+         "label": "4000 K",
+         "domain": [
+          0.15,
+          2.5
+         ]
+        },
+        {
+         "expression": "1/(x^5*(exp(4.8/x)-1))",
+         "label": "3000 K",
+         "domain": [
+          0.15,
+          2.5
+         ]
+        }
+       ],
+       "points": [
+        {
+         "x": 0.58,
+         "y": 0.1077,
+         "label": "tepe"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Üç sıcaklıkta aynı cismin ışıma eğrisi.",
+        "focus": [
+         "c3"
+        ]
+       },
+       {
+        "narration": "Sıcaklık arttıkça eğri yükseliyor ve tepesi kısa dalga boyuna kayıyor.",
+        "focus": [
+         "c1",
+         "p1"
+        ]
+       }
+      ],
+      "narration": "Her sıcak cisim ışıma yapar. Sıcaklık arttıkça yayılan toplam ışıma artar ve en çok ışımanın yapıldığı tepe dalga boyu kısalır; tepe dalga boyuyla sıcaklığın çarpımı sabittir. Klasik fizik, kısa dalga boylarında sonsuz enerji öngörüyordu. Planck bunu, enerjinin h f büyüklüğünde paketler hâlinde yayıldığını varsayarak çözdü; kuantum fiziği böyle başladı. Kızgın demirin önce kırmızı, sonra beyaz görünmesi ve mavi yıldızların kırmızılardan sıcak olması bu yüzdendir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sıcaklığı $3000$ K olan bir siyah cismin ışımasının en şiddetli olduğu dalga boyu $1$ μm'dir.\n\nCismin sıcaklığı $6000$ K yapılırsa bu dalga boyu kaç μm olur?",
+       "options": [
+        "$0{,}25$",
+        "$0{,}5$",
+        "$1$",
+        "$2$",
+        "$4$"
+       ],
+       "answer": 1,
+       "narration": "$\\lambda_{maks} \\cdot T$ sabit.",
+       "steps": [
+        {
+         "text": "$\\lambda_{maks} \\cdot T$ sabit: $T$ iki katına çıkınca $\\lambda_{maks}$ **yarıya** iner.",
+         "narration": "Tepe dalga boyuyla sıcaklığın çarpımı sabit; sıcaklık iki katına çıkınca tepe dalga boyu yarıya iner."
+        },
+        {
+         "text": "$\\frac{1}{2} = 0{,}5$ μm.",
+         "narration": "Bir mikrometrenin yarısı, sıfır virgül beş mikrometre. Doğru orantı kuran ikiyi seçer. Cevap B.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Wien yasası kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_MODERN_02",
+    "title": "Fotoelektrik olay",
+    "narration": "Işık bir metale çarpınca elektron sökebilir. Ama kuralı, ışığı dalga sananları şaşırttı: önemli olan parlaklık değil, renk.",
+    "cards": [
+     {
+      "kind": "predict",
+      "title": "Daha parlak ışık",
+      "prompt": "Elektron sökebilen bir ışığın şiddetini artırırsak sökülen elektronlar daha mı hızlı çıkar?",
+      "choices": [
+       "Hayır, sadece sayıları artar",
+       "Evet, daha hızlı çıkar"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "photoelectric",
+       "frequency": 1.8,
+       "intensity": 3,
+       "metals": [
+        {
+         "threshold": 1
+        }
+       ],
+       "graph": false
+      },
+      "beats": [
+       {
+        "narration": "Her foton tek bir elektron söküyor.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "light",
+         "electrons"
+        ]
+       },
+       {
+        "narration": "Şiddet artınca foton sayısı artıyor; elektronlar çoğalıyor ama hızları aynı.",
+        "focus": [
+         "electrons"
+        ]
+       }
+      ],
+      "explanation": "Şiddet foton **sayısını** artırır: elektron sayısı artar, en büyük kinetik enerji **değişmez**.",
+      "narration": "Daha parlak ışık elektronları hızlandırır mı? Tahmin et.",
+      "explanationNarration": "Hayır. Işık fotonlardan oluşur ve her foton enerjisini tek bir elektrona verir. Şiddeti artırmak fotonların sayısını artırır, her birinin enerjisini değil. Bu yüzden sökülen elektronlar çoğalır, ama en hızlılarının hızı aynı kalır. Hızı artırmak için frekansı artırmak gerekir."
+     },
+     {
+      "kind": "rule",
+      "title": "Fotoelektrik olay",
+      "items": [
+       "Foton enerjisi $hf$, metalin eşik enerjisi $W$'yi geçerse elektron sökülür: $E_{k,maks} = hf - W$.",
+       "Eşik frekansın altında, ışık ne kadar **şiddetli** olursa olsun elektron sökülmez.",
+       "Şiddet sökülen elektron **sayısını** (akımı), frekans en büyük kinetik enerjiyi belirler; $E_k$–$f$ grafiğinin eğimi $h$, her metal için **aynıdır**."
+      ],
+      "visual": {
+       "kind": "photoelectric",
+       "frequency": 1.8,
+       "intensity": 2,
+       "metals": [
+        {
+         "threshold": 1,
+         "label": "X"
+        },
+        {
+         "threshold": 1.5,
+         "label": "Y"
+        }
+       ],
+       "intercept": true
+      },
+      "beats": [
+       {
+        "narration": "Mor ışık metale düşüyor; elektronlar sökülüp karşıya uçuyor.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "light",
+         "electrons"
+        ]
+       },
+       {
+        "narration": "Sağda kinetik enerji ile frekansın grafiği: X metali eşik frekansında başlıyor.",
+        "focus": [
+         "graph"
+        ]
+       },
+       {
+        "narration": "Eşiği büyük Y metalinin doğrusu aynı eğimle sağda; uzantılar Ek eksenini eksi W'de kesiyor.",
+        "show": [
+         "slope"
+        ],
+        "focus": [
+         "slope"
+        ]
+       }
+      ],
+      "narration": "Bir foton enerjisini tek bir elektrona verir. Foton enerjisi h f, metalin eşik enerjisi W'yi geçerse elektron sökülür; elektronun en büyük kinetik enerjisi h f eksi W'dir. Eşik frekansın altında ışık ne kadar şiddetli olursa olsun elektron sökülmez. Işığın şiddeti sökülen elektron sayısını, yani akımı belirler; frekansı ise en büyük kinetik enerjiyi. Kinetik enerji frekans grafiği bir doğrudur: eğimi Planck sabiti h'dir ve bütün metaller için aynıdır; metal değişince doğru sağa ya da sola kayar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dalga boyu $3100$ Å ile $6200$ Å arasında değişen ışığın kullanıldığı bir fotoelektrik düzenekte fotoelektron oluşabilmesi için metalin eşik enerjisi **en fazla** kaç eV olabilir? ($hc = 12400$ eV·Å)",
+       "context": "ÖSYM 2018'de sorulan dalga boyu aralığından en büyük eşik enerjisi yapısının yeni aralıkla kurulmuş hâli.",
+       "options": [
+        "$4{,}0$",
+        "$3{,}1$",
+        "$2{,}5$",
+        "$2{,}0$",
+        "$1{,}6$"
+       ],
+       "answer": 0,
+       "narration": "En enerjili foton hangisi?",
+       "steps": [
+        {
+         "text": "Foton enerjisi $E = \\frac{hc}{\\lambda}$: en **kısa** dalga boyu en enerjili.",
+         "narration": "Foton enerjisi h c bölü lamda; dalga boyu kısaldıkça enerji artar. En enerjili foton en kısa dalga boylu olandır."
+        },
+        {
+         "text": "$\\frac{12400}{3100} = 4{,}0$ eV; eşik bunu geçmemeli.",
+         "narration": "On iki bin dört yüz bölü üç bin yüz, dört elektronvolt. Eşik enerjisi en çok dört olabilir. En uzun dalga boyunu kullanan ikiyi bulur. Cevap A.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018 modeli: dalga boyu aralığı değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Havasız, yalıtılmış bir ortamda özdeş üç elektroskoptan K negatif yüklü, L yüksüz, M pozitif yüklüdür. Üçünün topuzuna da, fotonlarının enerjisi metalin eşik enerjisinden biraz büyük olan morötesi ışık tutuluyor.\n\nHangi elektroskopların yaprakları arasındaki açı **değişir**?",
+       "context": "ÖSYM 2019'da sorulan morötesi ışık tutulan elektroskoplar yapısının üç elektroskopla kurulmuş hâli.",
+       "options": [
+        "Yalnız K",
+        "Yalnız L",
+        "Yalnız M",
+        "K ve L",
+        "L ve M"
+       ],
+       "answer": 3,
+       "narration": "Kim elektron kaybedebilir?",
+       "steps": [
+        {
+         "text": "K negatif: elektron kaybeder, yükü azalır, yaprakları **kapanır**. L yüksüz: elektron kaybedip **pozitifleşir**, yaprakları biraz açılır.",
+         "narration": "K'den elektron sökülür; fazla elektronu azaldıkça yaprakları kapanır. L yüksüzdü; elektron kaybedince pozitif yüklenir ve yaprakları biraz açılır."
+        },
+        {
+         "text": "M pozitif: sökülen elektron geri **çekilir**; açı değişmez.",
+         "narration": "M pozitif yüklü; foton enerjisi eşiği az geçtiği için sökülen yavaş elektronlar pozitif topuza geri çekilir. Açısı değişmez. Cevap D.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 modeli: üçüncü bir yüksüz elektroskop eklendi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir öğrenci bir metal için sökülen elektronların en büyük kinetik enerjisi ile fotonların frekansı arasındaki $E_k$–$f$ grafiğini çiziyor ve doğruyu uzatıyor.\n\nÖğrencinin metalin eşik enerjisini **hiçbir fiziksel sabit kullanmadan** bulabilmesi için;\nI. doğrunun frekans eksenini kestiği değer,\nII. doğrunun uzantısının $E_k$ eksenini kestiği değer,\nIII. doğrunun eğimi\n\nniceliklerinden hangisini **tek başına** bilmesi yeterlidir?",
+       "context": "ÖSYM 2021'de sorulan grafikten eşik enerjisini bulma yapısının sözle kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 1,
+       "narration": "$E_k = hf - W$: $f = 0$ olsa?",
+       "steps": [
+        {
+         "text": "$f = 0$'da $E_k = -W$: uzantının $E_k$ eksenini kestiği değer doğrudan **eşik enerjisidir** (II).",
+         "narration": "Denklemde f sıfır olursa kinetik enerji eksi W olur. Uzantının kinetik enerji eksenini kestiği değer, doğrudan eşik enerjisini verir."
+        },
+        {
+         "text": "Eşik frekansı tek başına $W = hf_0$ için **h** ister; eğim tek başına eşiği vermez.",
+         "narration": "Eşik frekansından enerjiyi bulmak için h gerekir; eğim de tek başına eşiğin yerini söylemez. Tek başına yeten yalnız ikinci. Cevap B.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021 modeli: grafik noktaları sözle verildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir fotoelektrik deneyinde metale düşen ışığın frekansı ile sökülen elektronların en büyük kinetik enerjisi arasındaki grafik bir doğrudur.\n\nBu grafikle ilgili;\nI. Doğrunun eğimi Planck sabitine eşittir.\nII. Işığın şiddeti artırılırsa doğru yukarı kayar.\nIII. Eşik enerjisi daha büyük bir metal kullanılırsa doğru, eğimi değişmeden sağa kayar.\n\nyargılarından hangileri doğrudur?",
+       "context": "ÖSYM 2022'de sorulan kinetik enerji frekans grafiği yargıları yapısının yargıları değiştirilmiş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "I ve III"
+       ],
+       "answer": 4,
+       "narration": "Eğim $h$, kayma $W$.",
+       "steps": [
+        {
+         "text": "$E_k = hf - W$: eğim **$h$** (I doğru); şiddet $E_k$'yı **değiştirmez** (II yanlış).",
+         "narration": "Denklem bir doğru: eğimi h. Birinci doğru. Şiddet yalnız elektron sayısını değiştirir, kinetik enerjiyi değil; doğru kaymaz, ikinci yanlış."
+        },
+        {
+         "text": "$W$ büyürse eşik frekansı büyür: doğru **sağa** kayar, eğim aynı (III doğru).",
+         "narration": "Eşik enerjisi büyük metalde eşik frekansı da büyüktür; doğru aynı eğimle sağa kayar. Cevap E.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 modeli: yargılar değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Eşik enerjisi $2$ eV olan bir metalin bulunduğu fotoelektrik düzeneğe $5000$ Å dalga boylu ışık gönderiliyor. Devreden **akım geçmiyor**. ($hc = 12400$ eV·Å)\n\nBuna göre;\nI. Işığın enerjisi metalden elektron sökmeye yetmemiştir.\nII. Devrede elektronları durduran ters bağlı bir üreteç vardır.\nIII. Işığın şiddeti artırılırsa devreden akım geçer.\n\nyargılarından hangileri **doğru olabilir**?",
+       "context": "ÖSYM 2024'te sorulan akım geçmeyen fotoelektrik düzenek yapısının yeni değerlerle kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "II ve III"
+       ],
+       "answer": 1,
+       "narration": "Önce foton enerjisini bul.",
+       "steps": [
+        {
+         "text": "$\\frac{12400}{5000} = 2{,}48$ eV $> 2$ eV: elektron **sökülür** (I olamaz).",
+         "narration": "Foton enerjisi on iki bin dört yüz bölü beş bin, iki virgül kırk sekiz elektronvolt; eşik enerjisinden büyük, elektron sökülür. Birinci olamaz."
+        },
+        {
+         "text": "Sökülen elektron devreye ulaşmıyorsa **ters gerilim** durduruyor (II). Şiddet hızı **artırmaz** (III olamaz).",
+         "narration": "Elektron sökülüyor ama akım yoksa, onları ters bağlı bir üreteç durduruyor olabilir. Şiddeti artırmak elektron sayısını artırır, hızlarını değil; yine durdurulurlar. Cevap B.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2024 modeli: değerler ve III. yargı değiştirildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_MODERN_03",
+    "title": "Compton olayı",
+    "narration": "X ışını bir elektrona çarpınca bilardo topları gibi saçılır: ışık burada açıkça parçacık gibi davranır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Compton olayı",
+      "items": [
+       "X ışını fotonu serbest bir elektrona çarpar; enerjinin ve momentumun bir kısmını **elektrona** verir.",
+       "Saçılan fotonun enerjisi ve momentumu **azalır**, dalga boyu **artar**; hızı yine $c$'dir.",
+       "Çarpışmada enerji ve momentum **korunur**: ışığın tanecik doğasının kanıtı."
+      ],
+      "narration": "Compton olayında bir X ışını fotonu serbest sayılan bir elektrona çarpar ve enerjisinin, momentumunun bir kısmını elektrona verir. Saçılan fotonun enerjisi ve momentumu azalır, dalga boyu artar; ama hızı yine ışık hızıdır. Bu çarpışmada enerji ve momentum, bilardo toplarındaki gibi korunur. Bu, ışığın tanecik gibi davrandığının en açık kanıtlarından biridir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Compton olayında bir X ışını fotonu serbest bir elektrondan saçılıyor.\n\nSaçılan fotonun gelen fotona göre;\nI. dalga boyu,\nII. frekansı,\nIII. enerjisi\n\nniceliklerinden hangileri **artar**?",
+       "context": "ÖSYM 2026'da sorulan Compton olayında azalan nicelikler yapısının artan niceliklerle kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "II ve III"
+       ],
+       "answer": 0,
+       "narration": "Foton elektrona enerji verdi.",
+       "steps": [
+        {
+         "text": "Enerji verdi: $E = hf$ **azalır**, frekans azalır (II, III artmaz).",
+         "narration": "Foton enerjisinin bir kısmını elektrona verdi; enerjisi azaldı. Enerji h f olduğu için frekansı da azaldı."
+        },
+        {
+         "text": "$\\lambda = \\frac{c}{f}$: dalga boyu **artar** (I).",
+         "narration": "Hız hâlâ ışık hızı; frekans azalınca dalga boyu artar. Artan yalnız dalga boyu. Cevap A.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026 modeli: azalan yerine artan nicelikler soruldu"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_MODERN_04",
+    "title": "De Broglie dalga boyu",
+    "narration": "Işık parçacık gibi davranabiliyorsa, parçacıklar da dalga gibi davranabilir mi? De Broglie evet dedi.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Madde dalgaları",
+      "items": [
+       "Hareket eden her parçacığın bir dalga boyu vardır: $\\lambda = \\frac{h}{p} = \\frac{h}{mv}$.",
+       "Momentum büyüdükçe dalga boyu **küçülür**; günlük cisimlerde ölçülemeyecek kadar küçüktür.",
+       "Elektronların kristalden **kırınımı** madde dalgalarını kanıtladı; elektron mikroskobu buna dayanır."
+      ],
+      "narration": "De Broglie'ye göre hareket eden her parçacığın bir dalga boyu vardır: Planck sabiti bölü momentum, yani h bölü m v. Momentum büyüdükçe dalga boyu küçülür; bir futbol topununki ölçülemeyecek kadar küçüktür. Elektronların bir kristalden geçerken ışık gibi kırınım deseni oluşturması bu fikri kanıtladı. Elektron mikroskobu bu dalga özelliğini kullanır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Hızı $v$ olan bir elektronun de Broglie dalga boyu $\\lambda$'dır.\n\nElektronun hızı $\\frac{v}{2}$ olursa dalga boyu ne olur?",
+       "options": [
+        "$\\frac{\\lambda}{4}$",
+        "$\\frac{\\lambda}{2}$",
+        "$\\lambda$",
+        "$2\\lambda$",
+        "$4\\lambda$"
+       ],
+       "answer": 3,
+       "narration": "$\\lambda = \\frac{h}{mv}$.",
+       "steps": [
+        {
+         "text": "Dalga boyu hızla **ters** orantılı.",
+         "narration": "De Broglie dalga boyu h bölü m v; hızla ters orantılı."
+        },
+        {
+         "text": "Hız yarıya inince dalga boyu **iki katına** çıkar: $2\\lambda$.",
+         "narration": "Hız yarıya inerse dalga boyu iki katına çıkar. Kinetik enerjiyle karıştırıp kare alan dört lamdaya gider. Cevap D.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "De Broglie kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_MODERN_05",
+    "title": "Özel görelilik",
+    "narration": "Işık hızına yakın hızlarda zaman ve uzunluk herkes için aynı değildir. Einstein bunu iki varsayımdan çıkardı.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Özel görelilik",
+      "items": [
+       "Varsayım 1: fizik yasaları bütün eylemsiz gözlemciler için **aynıdır**.",
+       "Varsayım 2: boşlukta ışık hızı kaynağın ve gözlemcinin hareketinden **bağımsızdır**.",
+       "Sonuçlar: hareket eden saat **yavaş** işler, $\\Delta t = \\gamma \\Delta t_0$; hareket yönündeki uzunluk **kısalır**; $\\gamma = \\frac{1}{\\sqrt{1 - v^2/c^2}}$."
+      ],
+      "narration": "Özel görelilik iki varsayıma dayanır. Birincisi: fizik yasaları bütün eylemsiz gözlemciler için aynıdır. İkincisi: boşlukta ışık hızı, kaynağın da gözlemcinin de hareketinden bağımsızdır, herkes için aynıdır. Bunların sonucu şaşırtıcıdır: hareket eden bir saat, ona göre duran gözlemciye yavaş işliyor görünür; zaman gama katı kadar uzar. Hareket yönündeki uzunluk ise kısalır. Gama, bir bölü kök bir eksi v kare bölü c karedir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Einstein'ın özel görelilik kuramıyla ilgili;\nI. Fizik yasaları bütün eylemsiz gözlemciler için aynıdır.\nII. Boşlukta ışık hızı bütün eylemsiz gözlemciler için aynıdır.\nIII. Hareket eden bir saat, ona göre duran gözlemciye daha hızlı işliyor görünür.\n\nyargılarından hangileri kuramın **varsayımlarıdır**?",
+       "context": "ÖSYM 2024'te sorulan özel görelilik varsayımları yapısının yargıları değiştirilmiş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "I ve III"
+       ],
+       "answer": 3,
+       "narration": "İki varsayım, gerisi sonuç.",
+       "steps": [
+        {
+         "text": "I ve II kuramın **iki varsayımı**.",
+         "narration": "Fizik yasalarının herkes için aynı olması ve ışık hızının herkes için aynı olması, kuramın iki varsayımıdır."
+        },
+        {
+         "text": "III hem varsayım değil hem **yanlış**: hareketli saat **yavaş** işler.",
+         "narration": "Üçüncü bir varsayım değil, bir sonuçtur; üstelik yanlış yazılmış: hareketli saat yavaş işliyor görünür. Cevap D.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2024 modeli: yargılar değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dünya'ya göre $0{,}6c$ hızla giden bir uzay gemisinde, gemideki saatle $4$ saat süren bir olay ölçülüyor.\n\nBu olay Dünya'daki gözlemciye göre kaç saat sürer?",
+       "options": [
+        "$2{,}4$",
+        "$3{,}2$",
+        "$5$",
+        "$6{,}25$",
+        "$8$"
+       ],
+       "answer": 2,
+       "narration": "Hareketli saat yavaş işler.",
+       "steps": [
+        {
+         "text": "$\\gamma = \\frac{1}{\\sqrt{1 - 0{,}36}} = \\frac{1}{0{,}8} = 1{,}25$.",
+         "narration": "Gama, bir bölü kök bir eksi sıfır virgül otuz altı; kök sıfır virgül altmış dört, sıfır virgül sekiz. Gama bir virgül yirmi beş."
+        },
+        {
+         "text": "$\\Delta t = 1{,}25 \\cdot 4 = 5$ saat.",
+         "narration": "Dünya'daki gözlemciye süre gama katı uzar: dört çarpı bir virgül yirmi beş, beş saat. Çarpmak yerine sıfır virgül sekizle çarpan üç virgül ikiyi bulur. Cevap C.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Zaman genişlemesi hesabı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_MODERN_06",
+    "title": "Kütle-enerji eşdeğerliği",
+    "narration": "Görelilikten çıkan en ünlü sonuç: kütle de bir enerji biçimidir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kütle-enerji eşdeğerliği",
+      "items": [
+       "Duran bir cismin bile **durgun enerjisi** vardır: $E = mc^2$.",
+       "$c^2$ çok büyük olduğu için çok küçük bir kütle, çok **büyük** bir enerjiye karşılık gelir.",
+       "Nükleer tepkimelerde açığa çıkan enerji **kütle kaybından** gelir."
+      ],
+      "narration": "Einstein'a göre duran bir cismin bile durgun enerjisi vardır: E eşittir m c kare. Işık hızının karesi çok büyük olduğu için bir gramlık kütle bile, büyük bir barajın günlerce üreteceği kadar enerjiye karşılık gelir. Güneş'te ve nükleer santrallerde açığa çıkan enerji, ürünlerin kütlesinin biraz azalmasından, yani kütle kaybından gelir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kütle-enerji eşdeğerliğiyle ilgili;\nI. Duran bir cismin de enerjisi vardır.\nII. Nükleer tepkimelerde açığa çıkan enerji kütle kaybından gelir.\nIII. Çok küçük bir kütle, çok büyük bir enerjiye karşılık gelir.\n\nyargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 4,
+       "narration": "$E = mc^2$.",
+       "steps": [
+        {
+         "text": "$E = mc^2$: hareketsiz cismin de **durgun enerjisi** var (I). Nükleer enerji kütle **kaybından** (II).",
+         "narration": "E eşittir m c kare; hareket etmeyen bir cismin de durgun enerjisi var. Nükleer tepkimelerde ürünlerin kütlesi biraz azalır, bu fark enerji olarak açığa çıkar."
+        },
+        {
+         "text": "$c^2 = 9 \\cdot 10^{16}$: bir gram bile yaklaşık $9 \\cdot 10^{13}$ J (III).",
+         "narration": "Işık hızının karesi dokuz çarpı on üzeri on altı; bir gram kütle bile yaklaşık dokuz çarpı on üzeri on üç joule eder. Üçü de doğru. Cevap E.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Kütle-enerji kavram kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_MODERN_07",
+    "title": "Belirsizlik ilkesi",
+    "narration": "Bir elektronun hem yerini hem hızını aynı anda tam bilebilir miyiz? Heisenberg'e göre hayır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Belirsizlik ilkesi",
+      "items": [
+       "Bir parçacığın konumu ve momentumu aynı anda **tam** bilinemez: $\\Delta x \\cdot \\Delta p \\geq \\frac{h}{4\\pi}$.",
+       "Konum ne kadar kesin ölçülürse momentum o kadar **belirsiz** olur.",
+       "Bu, ölçüm aletinin kusuru değil, doğanın **kendi** özelliğidir; bu yüzden elektron yörünge değil, olasılık bulutudur."
+      ],
+      "narration": "Heisenberg'in belirsizlik ilkesine göre bir parçacığın konumu ve momentumu aynı anda tam olarak bilinemez; konumdaki belirsizlik ile momentumdaki belirsizliğin çarpımı h bölü dört pi'den küçük olamaz. Konumu ne kadar kesin ölçersen momentum o kadar belirsizleşir. Bu, aletlerimizin kusuru değil, doğanın kendi özelliğidir. Bu yüzden modern atom modelinde elektron belirli bir yörüngede değil, bir olasılık bulutunda bulunur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir elektronun konumu daha **kesin** ölçülürse, aynı andaki momentumunun belirsizliği için ne söylenebilir?",
+       "options": [
+        "Artar",
+        "Azalır",
+        "Değişmez",
+        "Sıfır olur",
+        "Konumla ilgisi yoktur"
+       ],
+       "answer": 0,
+       "narration": "$\\Delta x \\cdot \\Delta p$ alt sınırı var.",
+       "steps": [
+        {
+         "text": "Çarpım $\\Delta x \\cdot \\Delta p$ bir alt sınırın **altına inemez**.",
+         "narration": "Konum belirsizliği ile momentum belirsizliğinin çarpımı belli bir değerin altına inemez."
+        },
+        {
+         "text": "$\\Delta x$ küçülürse $\\Delta p$ **büyür**.",
+         "narration": "Konum belirsizliği küçülürse momentum belirsizliği büyümek zorunda. Cevap A.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Belirsizlik ilkesi kalıbı; yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Belirsizlik ölçüm hatası mı?",
+      "wrong": "Belirsizlik, ölçüm aletlerimiz yeterince iyi olmadığı için vardır.",
+      "right": "Belirsizlik doğanın **kendi** özelliğidir; en mükemmel aletle de **ortadan kalkmaz**.",
+      "why": "Elektronun yeri bu yüzden kesin bir yörünge değil, bir **olasılık** bulutudur.",
+      "narration": "Sık yapılan bir hata: belirsizliği aletlerin kusuru sanmak. Daha iyi bir alet yapsak da konum ve momentum aynı anda tam bilinemez; bu doğanın kendi özelliğidir. Elektronu bir yörüngede değil, bir olasılık bulutunda düşünmemizin nedeni budur."
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Sıcaklık artınca tepe dalga boyu kısalır: $\\lambda_{maks} T$ sabit.",
+    "Fotoelektrik: $E_{k} = hf - W$; şiddet sayıyı, frekans hızı belirler.",
+    "Compton: saçılan fotonun dalga boyu artar.",
+    "De Broglie: $\\lambda = \\frac{h}{mv}$.",
+    "Görelilik: hareketli saat yavaş, $\\Delta t = \\gamma \\Delta t_0$.",
+    "$E = mc^2$; $\\Delta x \\Delta p \\geq \\frac{h}{4\\pi}$."
+   ],
+   "warnings": [
+    "Eşiğin altında **hiç** elektron yok.",
+    "Grafiğin eğimi **h**, metalden bağımsız.",
+    "Belirsizlik **alet** kusuru değil."
+   ],
+   "narration": "Özetleyelim. Sıcaklık arttıkça siyah cismin tepe dalga boyu kısalır. Fotoelektrik olayda en büyük kinetik enerji h f eksi W'dir; şiddet elektron sayısını, frekans hızını belirler ve eşiğin altında hiç elektron sökülmez. Compton olayında saçılan fotonun dalga boyu artar. Hareket eden parçacığın dalga boyu h bölü m v'dir. Özel görelilikte hareketli saat yavaş işler. Kütle bir enerji biçimidir, E eşittir m c kare. Konum ve momentum ise aynı anda tam bilinemez."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "Işık daha şiddetli",
+    "question": "Elektron hızı?",
+    "choices": [
+     "Değişmez",
+     "Artar"
+    ],
+    "answer": 0,
+    "why": "Şiddet **sayıyı** artırır."
+   },
+   {
+    "sentence": "Compton saçılması",
+    "question": "Fotonun λ'sı?",
+    "choices": [
+     "Artar",
+     "Azalır"
+    ],
+    "answer": 0,
+    "why": "Foton **enerji** kaybeder."
+   },
+   {
+    "sentence": "Hızlı uzay gemisindeki saat",
+    "question": "Dünya'ya göre?",
+    "choices": [
+     "Yavaş işler",
+     "Hızlı işler"
+    ],
+    "answer": 0,
+    "why": "Δt = **γ** Δt₀."
+   }
+  ],
+  "hook": "Üç modern fizik tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Eₖ = **hf − W**."
+   },
+   {
+    "kind": "warning",
+    "text": "Eşik altında **hiç** elektron yok."
+   },
+   {
+    "kind": "term",
+    "term": "De Broglie",
+    "definition": "λ = **h/mv**."
+   }
+  ],
+  "summary": [
+   "Siyah cisim ve fotoelektrik",
+   "Compton ve madde dalgası",
+   "Görelilik ve belirsizlik"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-fizik-kampi",
+  "name": "AYT Fizik kampı",
+  "number": 20,
+  "total": 21,
+  "previous": "Atom Fiziğine Giriş ve Radyoaktivite",
+  "next": "Modern Fiziğin Teknolojideki Uygulamaları",
+  "promise": "Vektörden modern fiziğe AYT Fizik: her konu animasyonlu anlatım ve çözümlü sorularla.",
+  "task": {
+   "items": [
+    "Ocaktaki ya da tost makinesindeki teli ısınırken izle; **kırmızıdan** turuncuya geçişi not et.",
+    "Gece gökyüzünde **mavimsi** ve **kırmızımsı** bir yıldız bul; hangisinin daha sıcak olduğunu söyle.",
+    "Uygulamada AYT Modern Fizik testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bir ısıtıcı teli ısınırken izle; renginin koyu kırmızıdan turuncuya dönüşünü not et. Gece gökyüzünde mavimsi ve kırmızımsı birer yıldız bul ve hangisinin daha sıcak olduğunu söyle. Ardından uygulamada yirmi soru çöz. Bir sonraki derste fiziğin teknolojideki uygulamalarında görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Wien yasasına örnek ekle: λ(en çok) × T = 2,9 · 10⁻³ m·K; yaklaşık 5800 K'lik Güneş'te tepe dalga boyu yaklaşık 500 nm, 310 K'lik insan vücudunda yaklaşık 9,4 μm (kızılötesi; termal kamera). Planck sabitini (h = 6,63 · 10⁻³⁴ J·s) ve E = hf'yi ekle.",
+   "Fotoelektrik hesabını ikinci örnekle göster: hc ≈ 12 400 eV·Å; 2480 Å'lük foton 5 eV taşır. Bağlanma enerjisi 3 eV olan metalde elektronların en büyük kinetik enerjisi 2 eV, durdurma gerilimi 2 V, eşik dalga boyu yaklaşık 4133 Å olur.",
+   "Fotoelektrik grafiklerini yorumla: Eₖ-f grafiğinin eğimi h'dir (her metalde aynı), f eksenini kestiği yer eşik frekansıdır. Akım-gerilim grafiğinde ışık şiddeti doyma akımını artırır ama durdurma gerilimini değiştirmez. Fotosel, güneş paneli ve otomatik kapı uygulamalarını ekle.",
+   "Compton ve madde dalgalarını ayrıntılandır: Δλ = (h/mc)(1 − cosθ), en büyük değişim 180°'de; fotonun momentumu p = h/λ. 100 V ile hızlandırılan elektronun de Broglie dalga boyu yaklaşık 1,23 Å'dür; Davisson-Germer deneyini (1927) ve elektron mikroskobunu ekle.",
+   "Göreliliği sayılarla ver: γ = 1/√(1 − v²/c²); v = 0,8c'de γ = 5/3. Yerdeki gözlemciye göre 10 yıl süren yolculuk gemidekine 6 yıl sürer; uzunluk L = L₀/γ kısalır. GPS uydularındaki görelilik düzeltmesini ve atmosferde oluşan müonların yeryüzüne ulaşmasını örnek ver.",
+   "Kütle-enerji eşdeğerliğine örnek ver: 1 g kütle 9 · 10¹³ J enerjiye karşılık gelir; 1 akb yaklaşık 931,5 MeV'dir. Çekirdeğin kütlesinin proton ve nötronların toplam kütlesinden küçük olmasını (kütle eksikliği) bağlanma enerjisiyle açıkla."
+  ]
+ }
+}

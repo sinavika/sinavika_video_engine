@@ -5,16 +5,15 @@ import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
 import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
-import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
+import {appEndScenes} from '../../../Scenes/AppEndScene';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, VoiceScriptSchema, type VoiceClips} from '../../../Scenes/Voiceover';
 import {plainText} from '../../../Schemas/RichText';
 import {UIProvider} from '../../../UIUX/Context';
 import {defineTemplate} from '../../TemplateDefinition';
-import {At, CLAMP, ease, PromoStage, PromoSubtitle, useSeconds} from '../PromoKit/PromoKit';
+import {At, CLAMP, ease, PromoStage, useSeconds} from '../PromoKit/PromoKit';
 import {PROMO_WEB_SCREEN_NAMES, PROMO_WEB_SCREENS} from '../PromoKit/PromoScreens';
-import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 /**
  * Late night at a desk: a drawn room (no photograph), a warm lamp, a monitor
@@ -24,14 +23,12 @@ import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 const narration = z.string().trim().min(1).max(170);
 
-export const NightDeskSchema = z.object({
+const NightDeskSchema = z.object({
 	time: z.object({clock: plainText(8), line: plainText(20), narration}),
 	doubt: z.object({text: plainText(48), highlight: plainText(20), narration}),
 	band: z.object({text: plainText(26), narration}),
 	reveal: z.object({word: plainText(20), narration}),
 	product: z.object({screen: z.enum(PROMO_WEB_SCREEN_NAMES), caption: plainText(30), narration}),
-	closing: z.object({lines: z.tuple([plainText(22), plainText(22)]), site: plainText(30).default('sinavika.com'), narration}),
-	subtitles: z.boolean().default(true),
 	script: VoiceScriptSchema,
 	outro: z.object({enabled: z.boolean().default(true)}).default({enabled: true}),
 });
@@ -100,7 +97,7 @@ const Monitor: React.FC<{children: React.ReactNode; background?: string}> = ({ch
 	);
 };
 
-const Scene: React.FC<{content: Content; narration: string; shown?: string; push: [number, number]; glow?: string; screenBg?: string; children: React.ReactNode}> = ({content, narration: text, shown, push, glow = 'rgba(234,88,12,0.5)', screenBg, children}) => {
+const Scene: React.FC<{push: [number, number]; glow?: string; screenBg?: string; children: React.ReactNode}> = ({push, glow = 'rgba(234,88,12,0.5)', screenBg, children}) => {
 	const seconds = useSeconds();
 	const p = interpolate(seconds, [0, 6], push, CLAMP);
 	return (
@@ -108,7 +105,6 @@ const Scene: React.FC<{content: Content; narration: string; shown?: string; push
 			<Room push={p}>
 				<Monitor background={screenBg}>{children}</Monitor>
 			</Room>
-			<PromoSubtitle text={text} shown={shown} enabled={content.subtitles} ink="#0B1C30" fill="#FFFFFF" />
 		</PromoStage>
 	);
 };
@@ -120,7 +116,7 @@ const TimeScene: React.FC<{content: Content}> = ({content}) => {
 	const show = interpolate(seconds, [0.2, 0.6], [0, 1], CLAMP);
 	const blink = Math.floor(seconds * 2) % 2 === 0;
 	return (
-		<Scene content={content} narration={content.time.narration} shown={`${content.time.line} ${content.time.clock}`} push={[0, 0.15]} glow="rgba(255,255,255,0.18)">
+		<Scene push={[0, 0.15]} glow="rgba(255,255,255,0.18)">
 			<Center>
 				<div style={{opacity: show}}>
 					<Text size={34} weight={TYPE.weights.strong} color="#A8A29E" align="center">
@@ -141,7 +137,7 @@ const DoubtScene: React.FC<{content: Content}> = ({content}) => {
 	const [before, after] = content.doubt.text.split(content.doubt.highlight);
 	const mark = ease(interpolate(seconds, [0.9, 1.4], [0, 1], CLAMP));
 	return (
-		<Scene content={content} narration={content.doubt.narration} shown={content.doubt.text} push={[0.15, 0.3]} glow="rgba(255,255,255,0.2)">
+		<Scene push={[0.15, 0.3]} glow="rgba(255,255,255,0.2)">
 			<Center>
 				<div style={{padding: `0 ${u(60)}px`, textAlign: 'center', opacity: interpolate(seconds, [0.1, 0.5], [0, 1], CLAMP)}}>
 					<Text variant="display" size={58} weight={TYPE.weights.display} color="#FAFAF9" align="center" style={{lineHeight: 1.25}}>
@@ -163,7 +159,7 @@ const BandScene: React.FC<{content: Content}> = ({content}) => {
 	const seconds = useSeconds();
 	const sweep = ease(interpolate(seconds, [0.05, 0.45], [0, 1], CLAMP));
 	return (
-		<Scene content={content} narration={content.band.narration} shown={content.band.text} push={[0.3, 0.42]} glow="rgba(234,88,12,0.75)">
+		<Scene push={[0.3, 0.42]} glow="rgba(234,88,12,0.75)">
 			<div style={{position: 'absolute', left: 0, right: 0, top: '36%', height: '28%', background: ORANGE, transform: `scaleX(${sweep})`, transformOrigin: 'left', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 				<div style={{opacity: interpolate(seconds, [0.35, 0.6], [0, 1], CLAMP), padding: `0 ${u(30)}px`}}>
 					<Text variant="display" size={70} weight={TYPE.weights.kinetic} color="#FFFFFF" align="center">
@@ -180,7 +176,7 @@ const RevealScene: React.FC<{content: Content}> = ({content}) => {
 	const open = ease(interpolate(seconds, [0.1, 0.9], [0, 1], CLAMP));
 	const word = interpolate(seconds, [1.0, 1.4], [0, 1], CLAMP);
 	return (
-		<Scene content={content} narration={content.reveal.narration} shown={content.reveal.word} push={[0.42, 0.55]} glow="rgba(251,146,60,0.7)" screenBg="linear-gradient(120deg, #FDE7D6 0%, #FFFFFF 45%, #DDF3F8 100%)">
+		<Scene push={[0.42, 0.55]} glow="rgba(251,146,60,0.7)" screenBg="linear-gradient(120deg, #FDE7D6 0%, #FFFFFF 45%, #DDF3F8 100%)">
 			<Center>
 				<div style={{opacity: open, transform: `scale(${interpolate(open, [0, 1], [0.85, 1])})`}}>
 					<BrandMark size="chrome" color="#0B1C30" />
@@ -202,7 +198,7 @@ const ProductScene: React.FC<{content: Content}> = ({content}) => {
 	const scale = u(SCREEN.w) / 1440;
 	const pan = ease(interpolate(seconds, [0.6, 3.2], [0, 1], CLAMP));
 	return (
-		<Scene content={content} narration={content.product.narration} shown={content.product.caption} push={[0.55, 0.7]} glow="rgba(255,255,255,0.35)">
+		<Scene push={[0.55, 0.7]} glow="rgba(255,255,255,0.35)">
 			<div style={{width: 1440, height: 900, transform: `scale(${scale * (1 + pan * 0.35)}) translate(${-pan * 260}px, ${-pan * 120}px)`, transformOrigin: 'top left'}}>
 				<UIProvider lang="tr" mode="light">
 					<Screen />
@@ -223,7 +219,6 @@ const SAMPLE: z.input<typeof NightDeskSchema> = {
 	band: {text: 'Önce şunu çözelim.', narration: 'Önce şunu çözelim.'},
 	reveal: {word: 'Tek plan.', narration: 'Sınavika’da bugün ne çalışacağın hazır.'},
 	product: {screen: 'webPlanToday', caption: 'Bugün · 3 görev · 45 dk', narration: 'Üç görev, kırk beş dakika. İlkine tıkla, odak sayacın başlasın.'},
-	closing: {lines: ['Masaya otur.', 'Gerisi hazır.'], narration: 'Masaya otur, gerisi hazır. Web’de sinavika.com’da.'},
 };
 
 const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateScene[] => {
@@ -234,14 +229,13 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 	const band = say('band', content.band.narration, beat(content.band.narration, 1.8), 1.6);
 	const reveal = say('reveal', content.reveal.narration, beat(content.reveal.narration, 2.6), 2.4);
 	const product = say('product', content.product.narration, beat(content.product.narration, 4), 3.6);
-	const closing = say('closing', content.closing.narration, beat(content.closing.narration, 3), 2.8);
 	return [
 		{id: 'time', seconds: time.seconds, label: 'Saat', voice: [time], element: <TimeScene content={content} />},
 		{id: 'doubt', seconds: doubt.seconds, label: 'Kararsızlık', voice: [doubt], element: <DoubtScene content={content} />},
 		{id: 'band', seconds: band.seconds, label: 'Bant', voice: [band], element: <BandScene content={content} />},
 		{id: 'reveal', seconds: reveal.seconds, label: 'Logo', voice: [reveal], element: <RevealScene content={content} />},
 		{id: 'product', seconds: product.seconds, label: 'Panel', voice: [product], element: <ProductScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard />}] : []),
+		...appEndScenes(content.outro.enabled, say),
 	];
 };
 

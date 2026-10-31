@@ -1,8 +1,10 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
+import {SoundEffect} from '../../../Components/Sounds/SoundEffect';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
+import type {SoundEffectId} from '../../../Configurations/SoundEffects';
 import {UIProvider} from '../../../UIUX/Context';
 import {DeviceBrowser, DevicePhone} from '../../../UIUX/Parts/Web';
 import {VOICE_LEAD_SECONDS} from '../../../Scenes/Voiceover';
@@ -17,7 +19,7 @@ import {VOICE_LEAD_SECONDS} from '../../../Scenes/Voiceover';
 export const CLAMP = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 
 /** The canvas every promo scene is designed on (reference pixels): the safe area of vertical video. */
-export const PROMO_CANVAS = {width: 952, height: 1530} as const;
+const PROMO_CANVAS = {width: 952, height: 1530} as const;
 
 export const useSeconds = (): number => useCurrentFrame() / useVideoConfig().fps;
 
@@ -27,9 +29,6 @@ export const useLand = (delay = 0, stiffness = 160, damping = 20): number => {
 	const {fps} = useVideoConfig();
 	return spring({frame: frame - delay * fps, fps, config: {damping, mass: 0.7, stiffness}});
 };
-
-/** 0 → 1, linear between two moments of the scene (seconds). */
-export const useBetween = (from: number, to: number): number => interpolate(useSeconds(), [from, to], [0, 1], CLAMP);
 
 /** Eased 0 → 1 (cubic in-out) between two moments. */
 export const ease = (value: number): number => (value < 0.5 ? 4 * value ** 3 : 1 - (-2 * value + 2) ** 3 / 2);
@@ -63,11 +62,21 @@ export const At: React.FC<{x?: number; y?: number; w?: number; h?: number; cente
 	);
 };
 
+type SlamProps = {text: string; at: number; out?: number; size?: number; color: string; weight?: number; align?: 'left' | 'center' | 'right'; from?: number; style?: React.CSSProperties};
+
 /**
  * A word or line that lands: it comes in large and blurred, settles sharp,
- * and leaves (optionally) the same way. Kinetic type for hooks.
+ * and leaves (optionally) the same way, with a low hit as it lands (`sound`,
+ * `null` for none). Kinetic type for hooks.
  */
-export const Slam: React.FC<{text: string; at: number; out?: number; size?: number; color: string; weight?: number; align?: 'left' | 'center' | 'right'; from?: number; style?: React.CSSProperties}> = ({text, at, out, size = TYPE.adScale.hook, color, weight = TYPE.weights.kinetic, align = 'center', from = 1.35, style}) => {
+export const Slam: React.FC<SlamProps & {sound?: SoundEffectId | null}> = ({sound = 'impact', ...props}) => (
+	<>
+		<SlamWord {...props} />
+		{sound ? <SoundEffect id={sound} atSeconds={props.at} /> : null}
+	</>
+);
+
+const SlamWord: React.FC<SlamProps> = ({text, at, out, size = TYPE.adScale.hook, color, weight = TYPE.weights.kinetic, align = 'center', from = 1.35, style}) => {
 	const seconds = useSeconds();
 	const land = useLand(at, 260, 22);
 	const leave = out === undefined ? 0 : interpolate(seconds, [out, out + 0.18], [0, 1], CLAMP);
@@ -83,8 +92,8 @@ export const Slam: React.FC<{text: string; at: number; out?: number; size?: numb
 	);
 };
 
-/** Text typed in character by character from `at`, with a blinking caret while it types. */
-export const TypeOn: React.FC<{text: string; at: number; charsPerSecond?: number; size?: number; color: string; weight?: number; caret?: string; style?: React.CSSProperties}> = ({text, at, charsPerSecond = 26, size = 40, color, weight = TYPE.weights.strong, caret, style}) => {
+/** Text typed in character by character from `at`, with a blinking caret and keyboard taps while it types (`sound`, `null` for none). */
+export const TypeOn: React.FC<{text: string; at: number; charsPerSecond?: number; size?: number; color: string; weight?: number; caret?: string; sound?: SoundEffectId | null; style?: React.CSSProperties}> = ({text, at, charsPerSecond = 26, size = 40, color, weight = TYPE.weights.strong, caret, sound = 'typing', style}) => {
 	const seconds = useSeconds();
 	const shown = Math.max(0, Math.min(text.length, Math.floor((seconds - at) * charsPerSecond)));
 	const typing = shown < text.length && seconds >= at;
@@ -93,29 +102,11 @@ export const TypeOn: React.FC<{text: string; at: number; charsPerSecond?: number
 		<Text size={size} weight={weight} color={color} style={{lineHeight: 1.35, ...style}}>
 			{text.slice(0, shown)}
 			<span style={{opacity: typing || blink ? 1 : 0, color: caret ?? color}}>{seconds >= at ? '▍' : ''}</span>
+			{sound && text.length > 0 ? <SoundEffect id={sound} atSeconds={at} seconds={text.length / charsPerSecond} /> : null}
 		</Text>
 	);
 };
 
-/** How long `text` takes to type at `charsPerSecond`. */
-export const typingSeconds = (text: string, charsPerSecond = 26): number => text.length / charsPerSecond;
-
-/** The narration as a subtitle, for viewers without sound; skipped when the screen already says the same words. */
-export const PromoSubtitle: React.FC<{text: string; shown?: string; enabled: boolean; ink: string; fill: string; bottom?: number}> = ({text, shown = '', enabled, ink, fill, bottom = 0}) => {
-	const {u} = useVideoLayout();
-	const land = useLand(0.25);
-	const plain = (value: string) => value.toLocaleLowerCase('tr').replace(/[^\p{L}\p{N}]+/gu, '');
-	if (!enabled || !text || plain(text) === plain(shown)) return null;
-	return (
-		<div style={{position: 'absolute', left: 0, right: 0, bottom: u(bottom), display: 'flex', justifyContent: 'center', opacity: land}}>
-			<div style={{maxWidth: u(860), padding: `${u(14)}px ${u(28)}px`, borderRadius: u(18), backgroundColor: fill}}>
-				<Text size={TYPE.adScale.subtitle} weight={TYPE.weights.strong} align="center" color={ink}>
-					{text}
-				</Text>
-			</div>
-		</div>
-	);
-};
 
 /** A UI/UX drawing (390 × 844 phone screen) inside a phone, in reference pixels. */
 export const PhoneShot: React.FC<{width: number; rotate?: number; children: React.ReactNode}> = ({width, rotate, children}) => {

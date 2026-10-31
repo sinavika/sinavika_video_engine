@@ -6,7 +6,7 @@ import {pronounceAbbreviations} from '../Schemas/SpokenText';
  * generated audio file for a line is a `VoiceClip`. Everything here is pure:
  * producing the audio is the job of src/Services.
  */
-export const VoiceClipSchema = z.object({
+const VoiceClipSchema = z.object({
 	/** Path inside `public/`. A narration is one file; its lines are parts of it. */
 	src: z.string().min(1),
 	/** Where this line begins inside the file, at the voice's natural pace. */

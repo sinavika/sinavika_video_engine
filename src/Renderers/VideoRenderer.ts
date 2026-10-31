@@ -1,24 +1,28 @@
 import {randomUUID} from 'node:crypto';
-import {existsSync} from 'node:fs';
+import {existsSync, rmSync} from 'node:fs';
 import {copyFile, mkdir, rename} from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {bundle} from '@remotion/bundler';
-import {renderMedia, renderStill, selectComposition} from '@remotion/renderer';
+import {openBrowser, renderMedia, renderStill, selectComposition, type HeadlessBrowser} from '@remotion/renderer';
 import {VIDEO_COVER} from '../Configurations/VideoCover';
 import {VIDEO_ENCODING} from '../Configurations/VideoFormats';
 import {planTemplateScenes} from '../Scenes/SceneSeries';
-import {sceneChapters, type Chapter} from '../Scenes/SceneChapters';
+import {narrationPacingWarnings} from '../Services/NarrationPacing';
+import {sceneChapters, type Chapter} from '../Scenes/SceneChapter';
 import {VOICE_LEAD_SECONDS, type VoiceClips} from '../Scenes/Voiceover';
 import {AUDIO_LEVELS, ffmpeg, masterFilter, measureLoudness} from '../Services/AudioLeveling';
 import type {SpeechBackend} from '../Services/ElevenLabsSpeech';
-import {writeMusicBed} from '../Services/MusicLibrary';
-import {saveNumberedOutput} from '../Services/OutputFiles';
+import {musicPieceFor, writeMusicBed} from '../Services/MusicLibrary';
+import {analyzeBeats, tempoHint} from '../Services/BeatGrid';
+import {templateScenes} from '../Templates/TemplateDefinition';
+import {saveNumberedOutput} from '../Services/OutputFile';
 import type {VoiceCast} from '../Services/VoiceCasting';
 import {writeSoundtrack, type SoundtrackCues} from '../Services/SoundtrackComposer';
 import {renderVideoCover} from '../Services/VideoCoverGenerator';
 import {generateVoiceover} from '../Services/VoiceoverGenerator';
-import {durationWarnings, resolveVideoJob, voiceLines, withVoiceClips, type ResolvedVideoJob} from './VideoJob';
+import {durationWarnings, resolveVideoJob, voiceLines, withBeats, withVoiceClips, type ResolvedVideoJob} from './VideoJob';
 
 const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const PUBLIC_DIRECTORY = path.join(PROJECT_ROOT, 'public');
@@ -47,10 +51,14 @@ export type RenderOptions = {
 	concurrency?: number;
 	/** Skip narration even if the job asks for it, e.g. for quick layout checks. */
 	withoutVoiceover?: boolean;
+	/** Stills: report unreadable text (overflow, overlaps) among the warnings (Components/Layouts/LayoutGuard). */
+	layoutGuard?: boolean;
 	/** Replaces ElevenLabs. Used by tests to stay offline. */
 	speech?: SpeechBackend;
 	/** Only these frames, first and last included: a short preview of one part of a long video. */
 	frameRange?: [number, number];
+	/** An open browser to render in (openRenderBrowser); a sweep of many stills then opens one instead of one per frame. */
+	browser?: HeadlessBrowser;
 };
 
 export type RenderResult = {
@@ -90,12 +98,33 @@ export class VideoRenderError extends Error {
 
 let bundleLocation: Promise<string> | null = null;
 
-/** Bundles the Remotion project once per process; later renders reuse the bundle. */
+/**
+ * Whether a folder is a bundle Remotion made in the temp folder (remotion-webpack-bundle-…), the only kind
+ * `removeBundleOnExit` deletes.
+ */
+export const isTempBundle = (directory: string) =>
+	path.dirname(path.resolve(directory)).toLowerCase() === path.resolve(os.tmpdir()).toLowerCase() && path.basename(directory).startsWith('remotion-webpack-bundle-');
+
+/**
+ * Removes this process's bundle when the process ends. On Windows Remotion copies the whole public folder (the
+ * voice-overs, ~800 MB) into every bundle and never deletes it: 565 lesson previews filled the disk (29 Oct 2026).
+ */
+const removeBundleOnExit = (directory: string) => {
+	if (!isTempBundle(directory)) return;
+	process.once('exit', () => rmSync(directory, {recursive: true, force: true}));
+	// Ctrl+C and kill end the process without 'exit'; ending it this way runs the clean-up first.
+	for (const signal of ['SIGINT', 'SIGTERM'] as const) process.once(signal, () => process.exit(130));
+};
+
+/** Bundles the Remotion project once per process; later renders reuse the bundle, which is removed at exit. */
 export const bundleProject = (onProgress?: (progress: number) => void): Promise<string> => {
 	bundleLocation ??= bundle({
 		entryPoint: path.join(PROJECT_ROOT, 'src', 'index.ts'),
 		publicDir: PUBLIC_DIRECTORY,
 		onProgress: (percent) => onProgress?.(percent / 100),
+	}).then((location) => {
+		removeBundleOnExit(location);
+		return location;
 	}).catch((error) => {
 		bundleLocation = null;
 		throw new VideoRenderError('bundling', error);
@@ -168,7 +197,7 @@ const attachCover = async (job: ResolvedVideoJob, serveUrl: string, coverPath: s
 
 /** When the scenes and the spoken lines of a job begin, for the music to be arranged around. */
 const soundtrackCues = (job: ResolvedVideoJob): SoundtrackCues => {
-	const scenes = job.template.buildScenes(job.inputProps.content, job.inputProps.voiceClips);
+	const scenes = templateScenes(job.template, job.inputProps.content, job.inputProps.voiceClips, job.inputProps.beats);
 	const plan = planTemplateScenes(scenes, job.template.transition, job.fps);
 	const startOf = (index: number) => plan.scenes[index].from / job.fps;
 	const lineStarts = scenes.flatMap((scene, index) => {
@@ -194,9 +223,29 @@ const attachSoundtrack = async (job: ResolvedVideoJob, serveUrl: string): Promis
 		const cues = soundtrackCues(job);
 		const outputPath = path.join(serveUrl, 'public', soundtrackSrc);
 		await mkdir(path.dirname(outputPath), {recursive: true});
-		if (job.soundtrackMusic) await writeMusicBed({description: job.soundtrackMusic, videoSeconds: cues.durationSeconds, publicDirectory: PUBLIC_DIRECTORY, outputPath});
+		if (job.soundtrackMusic) await writeMusicBed({description: job.soundtrackMusic, videoSeconds: cues.durationSeconds, publicDirectory: PUBLIC_DIRECTORY, outputPath, piece: job.musicPiece});
 		else await writeSoundtrack(cues, outputPath, job.soundtrackStyle);
 		return {...job, inputProps: {...job.inputProps, soundtrackSrc}};
+	} catch (error) {
+		throw new VideoRenderError('rendering', error);
+	}
+};
+
+/**
+ * Times the cuts to the music: picks the piece (made now if needed) for the
+ * video's length plus the room the cuts may add, measures its beats and holds
+ * every scene until the next beat (Scenes/Rhythm). Jobs without described
+ * music are returned unchanged.
+ */
+const attachBeats = async (job: ResolvedVideoJob): Promise<ResolvedVideoJob> => {
+	if (!job.soundtrack || !job.soundtrackMusic || job.template.cutsOnBeat === false) return job;
+	try {
+		const scenes = job.template.buildScenes(job.inputProps.content, job.inputProps.voiceClips);
+		// Each cut may move by up to a beat (0.5 s at 120 BPM); the piece is picked long enough for all of them.
+		const seconds = job.durationInFrames / job.fps + scenes.length * 0.6;
+		const piece = await musicPieceFor(job.soundtrackMusic, seconds, PUBLIC_DIRECTORY);
+		const {beats} = await analyzeBeats(piece, tempoHint(job.soundtrackMusic));
+		return withBeats(job, beats, piece);
 	} catch (error) {
 		throw new VideoRenderError('rendering', error);
 	}
@@ -205,7 +254,8 @@ const attachSoundtrack = async (job: ResolvedVideoJob, serveUrl: string): Promis
 const prepare = async (rawJob: unknown, options: RenderOptions) => {
 	// Throws VideoJobValidationError before any expensive work begins.
 	const resolved = resolveVideoJob(rawJob);
-	const narrated = options.withoutVoiceover ? resolved : await narrateVideoJob(resolved, options.onProgress, options.speech);
+	const voiced = options.withoutVoiceover ? resolved : await narrateVideoJob(resolved, options.onProgress, options.speech);
+	const narrated = await attachBeats(voiced);
 	options.onProgress?.({stage: 'bundling', progress: 0});
 	const serveUrl = await bundleProject((progress) => options.onProgress?.({stage: 'bundling', progress}));
 	await publishVoiceClips(narrated, serveUrl);
@@ -213,7 +263,9 @@ const prepare = async (rawJob: unknown, options: RenderOptions) => {
 	await mkdir(path.dirname(outputPath), {recursive: true});
 	const coverPath = narrated.cover === false ? null : options.coverPath ? path.resolve(options.coverPath) : narrated.cover ? coverPathBeside(outputPath) : null;
 	const covered = coverPath ? await attachCover(narrated, serveUrl, coverPath) : narrated;
-	const job = covered.soundtrack ? await attachSoundtrack(covered, serveUrl) : covered;
+	const withSound = covered.soundtrack ? await attachSoundtrack(covered, serveUrl) : covered;
+	// The composition's props are fixed when it is selected, so the guard flag goes in here, not at render time.
+	const job = options.layoutGuard ? {...withSound, inputProps: {...withSound.inputProps, layoutGuard: true}} : withSound;
 	const warnings: string[] = [];
 	try {
 		const composition = await selectComposition({
@@ -221,6 +273,7 @@ const prepare = async (rawJob: unknown, options: RenderOptions) => {
 			id: job.compositionId,
 			inputProps: job.inputProps,
 			chromiumOptions: CHROMIUM_OPTIONS,
+			puppeteerInstance: options.browser,
 			onBrowserLog: collectWarnings(warnings),
 		});
 		return {job, serveUrl, outputPath, coverPath, composition, warnings};
@@ -248,12 +301,15 @@ const toResult = (
 	elapsedMilliseconds: Date.now() - startedAt,
 	voiceLineCount: Object.keys(job.inputProps.voiceClips).length,
 	voiceCast: job.voiceCast,
-	chapters: sceneChapters(job.template.buildScenes(job.inputProps.content, job.inputProps.voiceClips), job.template.transition, job.fps),
-	warnings: [...new Set([...warnings, ...durationWarnings(job)])],
+	chapters: sceneChapters(templateScenes(job.template, job.inputProps.content, job.inputProps.voiceClips, job.inputProps.beats), job.template.transition, job.fps),
+	warnings: [...new Set([...warnings, ...durationWarnings(job), ...narrationPacingWarnings(job.inputProps.voiceClips)])],
 });
 
 /** WebGL through ANGLE, so the 3D visuals (three.js) render in the headless browser as they do in the Studio. */
 const CHROMIUM_OPTIONS = {gl: 'angle'} as const;
+
+/** A browser for many stills in a row (renderFrame's `browser`). Close it with `browser.close({silent: true})`. */
+export const openRenderBrowser = (): Promise<HeadlessBrowser> => openBrowser('chrome', {chromiumOptions: CHROMIUM_OPTIONS});
 
 /**
  * Renders a job to an MP4 (H.264 + AAC). Each call is self-contained: it
@@ -385,6 +441,7 @@ export const renderFrame = async (
 			inputProps: job.inputProps,
 			scale: job.scale,
 			chromiumOptions: CHROMIUM_OPTIONS,
+			puppeteerInstance: options.browser,
 			imageFormat: 'png',
 			onBrowserLog: collectWarnings(warnings),
 		});
@@ -393,6 +450,33 @@ export const renderFrame = async (
 	}
 
 	return {...toResult(job, outputPath, warnings, startedAt, coverPath), frame};
+};
+
+/**
+ * Several frames of one job as PNGs, the job prepared once (a sweep renders a lesson's figure scenes this way).
+ * Each frame comes back with its own browser warnings (the layout guard's among them, with `layoutGuard`).
+ */
+export const renderFrames = async (
+	rawJob: unknown,
+	frames: readonly {frame: number; outputPath: string}[],
+	options: Omit<RenderOptions, 'outputPath' | 'coverPath'>,
+): Promise<{frame: number; outputPath: string; warnings: string[]}[]> => {
+	if (frames.length === 0) return [];
+	const {job, serveUrl, composition} = await prepare(rawJob, {...options, outputPath: frames[0].outputPath});
+	const results: {frame: number; outputPath: string; warnings: string[]}[] = [];
+	for (const item of frames) {
+		const frame = Math.min(Math.max(0, item.frame), composition.durationInFrames - 1);
+		const outputPath = path.resolve(item.outputPath);
+		await mkdir(path.dirname(outputPath), {recursive: true});
+		const warnings: string[] = [];
+		try {
+			await renderStill({composition, serveUrl, output: outputPath, frame, inputProps: job.inputProps, scale: job.scale, chromiumOptions: CHROMIUM_OPTIONS, puppeteerInstance: options.browser, imageFormat: 'png', onBrowserLog: collectWarnings(warnings)});
+		} catch (error) {
+			throw new VideoRenderError('rendering', error);
+		}
+		results.push({frame, outputPath, warnings: [...new Set(warnings)]});
+	}
+	return results;
 };
 
 export type SceneFrame = {

@@ -32,7 +32,7 @@ export type PhoneScreenShape = {
 	statusBar: number;
 };
 
-export const APP_CANVAS_SCREEN: PhoneScreenShape = {aspect: APP_SCREEN.height / APP_SCREEN.width, statusBar: 0.115};
+const APP_CANVAS_SCREEN: PhoneScreenShape = {aspect: APP_SCREEN.height / APP_SCREEN.width, statusBar: 0.115};
 
 type PhoneFrameProps = {
 	/** Outer width of the phone, in actual pixels. Its height follows from the app's screen shape. */

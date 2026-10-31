@@ -10,7 +10,8 @@ import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
 import {plainText} from '../../../Schemas/RichText';
 import {useTheme} from '../../../Themes/ThemeContext';
-import {useImageLayout} from '../../Components/ImageFrame';
+import {imageFrameOf, useImageLayout} from '../../Components/ImageFrame';
+import {lineCount, seriesSize} from '../../Components/TextMeasure';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
 import {GRID_MARGIN, PROFILE_GRID, tileWindow} from './ProfileGridLayout';
 
@@ -38,9 +39,20 @@ const PHONE_WIDTH = 410;
  * row reads as one line of type only if the words share size and baseline
  * (Tuğçe's review, 26 Oct 2026: "Deneme çöz. / Eksiğini gör." looked uneven).
  */
-const headlineSize = (content: Content): number => {
-	const longest = Math.max(...content.panels.map((panel) => panel.headline.length));
-	return longest <= 12 ? 124 : longest <= 18 ? 104 : 86;
+const HEADLINE_STEPS = [124, 104, 86];
+const HEADLINE_SET = {weight: 800, letterSpacingEm: -0.02};
+/** A tile's text column, in reference pixels. */
+const columnOf = (width: number, height: number) => {
+	const {unit} = imageFrameOf(width, height);
+	return (width - 2 * (tileWindow(width, height).left + GRID_MARGIN * unit)) / unit;
+};
+/** The largest step at which every headline fits one line, measured (Components/TextMeasure). */
+const headlineSize = (content: Content, width: number, height: number): number => seriesSize(content.panels.map((panel) => panel.headline), HEADLINE_STEPS, columnOf(width, height), () => 1, HEADLINE_SET).size;
+
+/** A headline wider than its tile even at the smallest step would be cut: refused before rendering. */
+const trioIssues = (content: Content, frame: {width: number; height: number}): string[] => {
+	const size = headlineSize(content, frame.width, frame.height);
+	return content.panels.filter((panel) => lineCount(panel.headline, columnOf(frame.width, frame.height), {...HEADLINE_SET, size}) > 1).map((panel) => `"${panel.headline}" ${size} puntoda karoya tek satır sığmıyor. Kısalt.`);
 };
 
 const AppTrioImage: React.FC<{content: Content; page: number}> = ({content, page}) => {
@@ -69,7 +81,7 @@ const AppTrioImage: React.FC<{content: Content; page: number}> = ({content, page
 						{panel.kicker}
 					</Text>
 				</div>
-				<Text variant="display" size={headlineSize(content)} weight={TYPE.weights.kinetic} color={colors.text} style={{lineHeight: 1.02, whiteSpace: 'nowrap'}}>
+				<Text variant="display" size={headlineSize(content, width, height)} weight={TYPE.weights.kinetic} color={colors.text} style={{lineHeight: 1.02, whiteSpace: 'nowrap'}}>
 					{panel.headline}
 				</Text>
 			</div>
@@ -106,5 +118,6 @@ export const AppTrio = defineImageTemplate({
 	defaultSize: 'Portrait',
 	pageCount: () => PROFILE_GRID.tiles,
 	outputName: (content) => `Profil Uclusu ${content.panels.map((panel) => panel.kicker).join(' ')}`,
+	checkLayout: trioIssues,
 	Component: AppTrioImage,
 });

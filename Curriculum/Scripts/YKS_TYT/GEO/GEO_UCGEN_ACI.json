@@ -1,0 +1,1221 @@
+{
+ "topic": {
+  "id": "D4622DBF-E3E3-D649-50AC-B27C9ECE2010",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_UCGEN_ACI"
+ },
+ "title": "Üçgende Açı",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "YKS/TYT/KonuAnlatimi/GEO/GEO_UCGEN_ACI.json (MEB Temel Matematik s. 115-116, 127, 131-132: iç ve dış açılar, dış açı kuralı, açıortay bağıntıları, içbükey şekil)",
+  "YKS/TYT/CikmisSorular/GEO.jsonl (ÖSYM 2018-2025: 7 iç açı, 1 dış açı sorusu; yalnız yapı örneği); YKS/TYT/Sorular/GEO/GEO_UCGEN_ACI.jsonl",
+  "Bütün şekiller verilen ölçülerle koordinatta çizildi; sorular özgündür"
+ ],
+ "works": {
+  "additions": [
+   "İç içe üçgen kurallarını ekle: ok ucu (içbükey dörtgen) x = a + b + c, kelebek (ters açılı iki üçgen) a + b = c + d; her biri için çözümlü örnek.",
+   "Açıortaylar arası açı kurallarını ver: iki iç açıortay 90° + A/2, iki dış açıortay 90° − A/2, bir iç bir dış açıortay A/2 açı yapar.",
+   "Ardışık ikizkenar üçgen zinciri soru tipini (eşit uzunluklar boyunca açıların katlanarak büyümesi) adım adım çöz; açılar oranlı verildiğinde k ile çözüm.",
+   "Dik üçgende hipotenüse ait kenarortayın üçgeni iki ikizkenar üçgene ayırdığını ve bunun açı sorularında kullanımını örnekle."
+  ]
+ },
+ "short": {
+  "hook": "Üçgende açıyı bul!",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "İç açılar: **180°**."
+   },
+   {
+    "kind": "fact",
+    "text": "Dış açılar: **360°**."
+   },
+   {
+    "kind": "warning",
+    "text": "Dış açı = iki **uzak** iç açı."
+   }
+  ],
+  "summary": [
+   "İç 180°, dış 360°",
+   "Dış açı = iki uzak iç açı"
+  ],
+  "rounds": [
+   {
+    "sentence": "İç açılar 50° ve 60°",
+    "question": "Üçüncüsü?",
+    "choices": [
+     "70°",
+     "80°"
+    ],
+    "answer": 0,
+    "why": "Toplam **180°**."
+   },
+   {
+    "sentence": "Uzak iç açılar 40°, 75°",
+    "question": "Dış açı?",
+    "choices": [
+     "115°",
+     "65°"
+    ],
+    "answer": 0,
+    "why": "Toplanır."
+   },
+   {
+    "sentence": "İkizkenar, tepe 80°",
+    "question": "Taban?",
+    "choices": [
+     "50°",
+     "40°"
+    ],
+    "answer": 0,
+    "why": "100° ikiye."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-geometri-kampi",
+  "name": "TYT Geometri kampı",
+  "number": 2,
+  "total": 23,
+  "previous": "Doğruda Açı",
+  "next": "Açılar ve Üçgenler",
+  "promise": "Geometri konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Bir kâğıttan üçgen kes, üç köşesini yırtıp yan yana koy: **180°**'yi gör.",
+    "Dış açı kuralını, ok ucu kuralını ve açıortay bağıntılarını **bir sayfada** şekilleriyle yaz.",
+    "Uygulamada Üçgende Açı testinden **20 soru** çöz; her şekilde önce **bilinen açıları** yaz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bir kâğıttan üçgen kes, üç köşesini yırtıp yan yana koy; yüz seksen dereceyi kendi gözünle gör. Sonra dış açı kuralını, ok ucu kuralını ve açıortay bağıntılarını bir sayfada şekilleriyle yaz. En son uygulamada üçgende açı testinden yirmi soru çöz; her şekilde önce bildiğin açıları yaz. Bir sonraki derste açılar ve üçgenlerle devam ediyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Üç köşe, bir doğru",
+   "narration": "Bir kâğıttan herhangi bir üçgen kes. Üç köşesini yırt ve uçlarını yan yana getir. Ne kadar büyük ya da küçük, ne kadar sivri ya da basık olursa olsun, üç köşe her zaman bir doğru açı oluşturur: yüz seksen derece. Bu derste üçgenin iç ve dış açılarını, açılarına ve kenarlarına göre üçgenleri, sınavda zaman kazandıran ok ucu ve açıortay kurallarını öğreneceğiz."
+  },
+  "objectives": [
+   "Üçgenin iç açıları toplamını kullanarak açı hesaplamak",
+   "Dış açı kuralını ve dış açılar toplamını uygulamak",
+   "Üçgenleri açılarına ve kenarlarına göre sınıflandırmak",
+   "Ok ucu ve açıortay bağıntılarıyla hızlı çözüm yapmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_UCGEN_ACI_01",
+    "title": "İç açılar toplamı",
+    "narration": "Önce üçgeni ve iç açılarını tanıyalım.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "İç açıların toplamı 180°",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.4,
+        -0.5,
+        5.4,
+        4.6
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          3.487,
+          4.156
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          5,
+          0
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "A"
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "label": "a"
+        },
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "label": "b"
+        },
+        {
+         "at": "C",
+         "from": "A",
+         "to": "B",
+         "label": "c"
+        }
+       ]
+      },
+      "narration": "Doğrusal olmayan üç noktayı birleştiren doğru parçalarının oluşturduğu şekle üçgen denir.",
+      "beats": [
+       {
+        "narration": "A, B ve C köşeler; A B, B C ve C A kenarlardır. Köşelerdeki a, b ve c açılarına iç açılar denir.",
+        "focus": [
+         "A",
+         "B",
+         "C"
+        ]
+       },
+       {
+        "narration": "A'dan B C'ye paralel bir doğru çizdiğini düşün. Bu doğruyla yapılan açılar, b ve c ile iç ters açılardır. A'da a, b ve c yan yana durur ve bir doğru açı oluşturur. Bu yüzden a artı b artı c her zaman yüz seksen derecedir.",
+        "focus": [
+         "angle-A",
+         "angle-B",
+         "angle-C"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir üçgenin iç açılarının ölçüleri $2$, $3$ ve $4$ sayılarıyla orantılıdır. Bu üçgenin **en büyük** iç açısı kaç derecedir?",
+       "options": [
+        "60",
+        "72",
+        "80",
+        "90",
+        "100"
+       ],
+       "answer": 2,
+       "narration": "Orantı sabitiyle açıları tek bilinmeyene bağlayalım.",
+       "steps": [
+        {
+         "text": "Açılar $2k$, $3k$, $4k$ → $9k = 180$ → $k = 20$.",
+         "narration": "Açılara iki k, üç k ve dört k diyelim. Toplamları dokuz k, yüz sekseni verir; k yirmi."
+        },
+        {
+         "text": "En büyük $= 4k = 80°$ (açılar $40°, 60°, 80°$). Cevap **C**.",
+         "narration": "En büyük açı dört k, yani seksen derece. Açılar kırk, altmış ve seksen; toplam yüz seksen. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki iç açı oranı sorularının kalıbı özgün sayılarla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir üçgenin iç açılarından biri, diğer iki iç açısının **ortalamasına** eşittir. Bu üçgenin en küçük iç açısı $35°$ ise en büyük iç açısı kaç derecedir?",
+       "options": [
+        "70",
+        "75",
+        "80",
+        "85",
+        "90"
+       ],
+       "answer": 3,
+       "narration": "Ortalama olan açıyı bulmak için bir kısa yol var.",
+       "steps": [
+        {
+         "text": "$b = \\frac{a + c}{2}$ → $a + c = 2b$ → $a + b + c = 3b = 180$ → $b = 60°$.",
+         "narration": "Bir açı, öbür ikisinin ortalamasıysa öbür ikisinin toplamı onun iki katıdır. Üç açının toplamı o açının üç katı olur: üç b yüz seksen, b altmış. Yani bu açı her zaman altmış derecedir."
+        },
+        {
+         "text": "En büyük $= 180 - 60 - 35 = 85°$. Cevap **D**.",
+         "narration": "Açılardan biri altmış, en küçüğü otuz beş. En büyüğü yüz seksen eksi altmış eksi otuz beş, seksen beş derece. Gerçekten de altmış, otuz beş ile seksen beşin ortalamasıdır. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2023'teki \"bir açı diğer ikisinin ortalaması\" fikri farklı bir soru köküyle (en büyük açı) yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Eş üçgen biçimindeki kartonların $A$ köşeleri bir noktada çakıştırılıp aralarında boşluk kalmayacak ve üst üste gelmeyecek biçimde yan yana dizildiğinde, tam bir tur için **12** karton gerekiyor. Aynı işlem $B$ köşeleriyle **6** kartonla yapılabiliyor. Bu işlem $C$ köşeleriyle kaç kartonla yapılabilir?",
+       "options": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "8"
+       ],
+       "answer": 1,
+       "narration": "Bir noktanın çevresi tam bir tur, yani 360 derecedir.",
+       "steps": [
+        {
+         "text": "$A$: $\\frac{360°}{12} = 30°$; $B$: $\\frac{360°}{6} = 60°$.",
+         "narration": "On iki karton bir köşede tam tur yapıyorsa A açısı üç yüz altmış bölü on iki, otuz derece. Altı karton yetiyorsa B açısı üç yüz altmış bölü altı, altmış derece."
+        },
+        {
+         "text": "$C = 180° - 30° - 60° = 90°$ → $\\frac{360°}{90°} = 4$ karton. Cevap **B**.",
+         "narration": "Üçgenin iç açıları toplamı yüz seksen olduğundan C, yüz seksen eksi otuz eksi altmış, doksan derece. Doksan derecelik köşelerle tam tur için üç yüz altmış bölü doksan, dört karton gerekir. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2020 karton sorusunun fikri (köşeleri çakıştırıp tam tur) farklı sayılar ve soru köküyle yeniden kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ACI_02",
+    "title": "Dış açılar",
+    "narration": "Bir kenarı uzatınca üçgenin dışında bir açı oluşur.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Dış açı kuralı",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.4,
+        -0.5,
+        6.6,
+        4.6
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.893,
+          4.132
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          4,
+          0
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          6.2,
+          0
+         ],
+         "hidden": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "A"
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "label": "a"
+        },
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "label": "b"
+        },
+        {
+         "at": "C",
+         "from": "D",
+         "to": "A",
+         "label": "a + b"
+        }
+       ]
+      },
+      "narration": "B C kenarını C'nin ötesine uzattık; C'de bir dış açı oluştu.",
+      "beats": [
+       {
+        "narration": "Dış açı, C'deki iç açıyla komşu bütünlerdir: ikisinin toplamı yüz seksen. İç açıların toplamı da yüz seksen olduğuna göre, dış açı geriye kalan iki iç açının, yani a ile b'nin toplamına eşittir.",
+        "focus": [
+         "angle-C",
+         "CD"
+        ]
+       },
+       {
+        "narration": "Kural: bir dış açı, kendisine komşu olmayan iki iç açının toplamıdır. Her köşede bir dış açı alırsak üç dış açının toplamı üç yüz altmış derece eder.",
+        "focus": [
+         "angle-A",
+         "angle-B"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $[BC]$ kenarı $C$'nin ötesine uzatılmıştır. $m(\\widehat{BAC}) = 2x$, $m(\\widehat{ABC}) = x + 20$ ve $C$'deki dış açı $110°$ olduğuna göre $x$ kaçtır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.4,
+         -0.5,
+         6.8,
+         4.6
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           3.487,
+           4.156
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           5,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           6.6,
+           0
+          ],
+          "hidden": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": true
+         }
+        ],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "2x"
+         },
+         {
+          "at": "B",
+          "from": "C",
+          "to": "A",
+          "label": "x+20"
+         },
+         {
+          "at": "C",
+          "from": "D",
+          "to": "A",
+          "label": "110°"
+         }
+        ]
+       },
+       "options": [
+        "20",
+        "25",
+        "30",
+        "35",
+        "40"
+       ],
+       "answer": 2,
+       "narration": "C'deki dış açı, A ve B'deki iç açıların toplamıdır.",
+       "steps": [
+        {
+         "text": "Dış açı kuralı: $2x + (x + 20) = 110$.",
+         "narration": "C'deki dış açı yüz on derece; komşu olmayan iki iç açının, iki x ile x artı yirminin toplamına eşit."
+        },
+        {
+         "text": "$3x = 90$ → $x = 30$. Açılar: $A = 60°$, $B = 50°$, $C = 70°$. Cevap **C**.",
+         "narration": "Üç x artı yirmi yüz on; üç x doksan, x otuz. Açılar altmış, elli ve yetmiş; toplam yüz seksen, tutuyor. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dış açı kuralı cebirli, ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir üçgenin dış açılarının ölçüleri $3$, $4$ ve $5$ sayılarıyla orantılıdır. Buna göre bu üçgen için aşağıdakilerden hangisi **doğrudur**?",
+       "options": [
+        "Dar açılı bir üçgendir.",
+        "Dik açılı bir üçgendir.",
+        "Geniş açılı bir üçgendir.",
+        "Eşkenar bir üçgendir.",
+        "İkizkenar bir üçgendir."
+       ],
+       "answer": 1,
+       "narration": "Dış açılar toplamı 360 derecedir.",
+       "steps": [
+        {
+         "text": "Dış açılar $3k + 4k + 5k = 360$ → $k = 30$: $90°, 120°, 150°$.",
+         "narration": "Dış açılara üç k, dört k, beş k diyelim. Toplamları on iki k, üç yüz altmış; k otuz. Dış açılar doksan, yüz yirmi ve yüz elli."
+        },
+        {
+         "text": "İç açılar (bütünleri): $90°, 60°, 30°$ → bir açı **dik**. Cevap **B**.",
+         "narration": "Her iç açı, kendi dış açısının bütünleridir: doksan, altmış ve otuz. Bir iç açı doksan derece olduğu için üçgen dik açılıdır. Açıları farklı olduğu için ikizkenar ya da eşkenar değildir. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dış açılar toplamı kuralı üçgen çeşidini bulma sorusuyla birleştirildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $ABC$ üçgeninin $B$ ve $C$ köşelerindeki dış açıların ölçüleri sırasıyla $120°$ ve $130°$'dir. Buna göre $m(\\widehat{A})$ kaç derecedir?",
+       "options": [
+        "50",
+        "60",
+        "70",
+        "80",
+        "110"
+       ],
+       "answer": 2,
+       "narration": "Dış açılar toplamı 360; ya da her dış açının bütünlerini bul.",
+       "steps": [
+        {
+         "text": "$A$'daki dış açı $= 360° - 120° - 130° = 110°$.",
+         "narration": "Üç dış açının toplamı üç yüz altmış. A'daki dış açı üç yüz altmış eksi yüz yirmi eksi yüz otuz, yüz on derece."
+        },
+        {
+         "text": "İç açı = dış açının bütünleri: $180° - 110° = 70°$. Cevap **C**.",
+         "narration": "A'daki iç açı, dış açının bütünleridir: yüz seksen eksi yüz on, yetmiş derece. Kontrol: B'deki iç açı altmış, C'deki elli; yetmiş artı altmış artı elli, yüz seksen. Cevabımız C. Yüz onu seçen, dış açıyı iç açı sanmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dış açılar toplamı 360° kuralı iç açıya geçişle özgün sayılarla soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ACI_03",
+    "subtopics": [
+     "GEO_UCGEN_ACI_04"
+    ],
+    "title": "Üçgen çeşitleri",
+    "narration": "Üçgenleri iki ölçüye göre adlandırırız: açılarına ve kenarlarına göre.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Açılarına ve kenarlarına göre",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Ölçüt",
+        "Üçgen",
+        "Özelliği"
+       ],
+       "rows": [
+        [
+         "Açılarına göre",
+         "**Dar** açılı",
+         "Üç açı da $< 90°$"
+        ],
+        [
+         "Açılarına göre",
+         "**Dik** açılı",
+         "Bir açı $= 90°$"
+        ],
+        [
+         "Açılarına göre",
+         "**Geniş** açılı",
+         "Bir açı $> 90°$"
+        ],
+        [
+         "Kenarlarına göre",
+         "**Çeşitkenar**",
+         "Üç kenar farklı"
+        ],
+        [
+         "Kenarlarına göre",
+         "**İkizkenar**",
+         "İki kenar eşit; **taban açıları eşit**"
+        ],
+        [
+         "Kenarlarına göre",
+         "**Eşkenar**",
+         "Üç kenar eşit; açılar **60°**"
+        ]
+       ]
+      },
+      "narration": "Altı türü bir tabloda görelim.",
+      "beats": [
+       {
+        "narration": "Açılarına göre: üç açısı da doksandan küçükse dar açılı, bir açısı doksansa dik açılı, bir açısı doksandan büyükse geniş açılı üçgendir. Bir üçgende en fazla bir dik ya da bir geniş açı olabilir; çünkü iki tanesi yüz seksen dereceyi aşar.",
+        "focus": [
+         "r1",
+         "r2",
+         "r3"
+        ]
+       },
+       {
+        "narration": "Kenarlarına göre: üç kenarı farklıysa çeşitkenar, iki kenarı eşitse ikizkenar üçgendir. İkizkenar üçgende eşit kenarların karşısındaki taban açıları da eşittir. Üç kenarı eşit olan eşkenar üçgenin her açısı altmış derecedir.",
+        "focus": [
+         "r4",
+         "r5",
+         "r6"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $|AB| = |AC|$ ve $m(\\widehat{BAC}) = 80°$'dir. $[BC]$ kenarı $C$'nin ötesine uzatıldığına göre $x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.4,
+         -0.5,
+         6.4,
+         2.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2,
+           2.384
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           4,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           6,
+           0
+          ],
+          "hidden": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": true
+         }
+        ],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "80°"
+         },
+         {
+          "at": "C",
+          "from": "D",
+          "to": "A",
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "100",
+        "110",
+        "120",
+        "130",
+        "140"
+       ],
+       "answer": 3,
+       "narration": "Eşit kenarların karşısındaki taban açıları eşittir.",
+       "steps": [
+        {
+         "text": "$|AB| = |AC|$ → $m(\\widehat{B}) = m(\\widehat{C})$; $80 + 2y = 180$ → $y = 50°$.",
+         "narration": "A B ile A C eşit olduğu için B ve C'deki taban açıları eşit; ikisine de y diyelim. Seksen artı iki y yüz seksen; y elli."
+        },
+        {
+         "text": "$x = 180° - 50° = 130°$ (ya da $x = 80° + 50°$). Cevap **D**.",
+         "narration": "x, C'deki iç açının bütünleri: yüz seksen eksi elli, yüz otuz. Dış açı kuralıyla da aynı sonuç: seksen artı elli, yüz otuz. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ikizkenar üçgende taban açıları ve dış açı kuralı özgün bir şekilde birleştirildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir ikizkenar üçgenin iç açılarından birinin ölçüsü $100°$'dir. Bu üçgenin **en küçük** iç açısı kaç derecedir?",
+       "options": [
+        "30",
+        "35",
+        "40",
+        "50",
+        "80"
+       ],
+       "answer": 2,
+       "narration": "100 derecelik açı taban açısı olabilir mi?",
+       "steps": [
+        {
+         "text": "$100°$ taban açısı olsaydı iki taban açısı $200° > 180°$ → **olamaz**; $100°$ **tepe** açısıdır.",
+         "narration": "Yüz derecelik açı taban açısı olsaydı öbür taban açısı da yüz olurdu; toplam iki yüz, yüz seksenden büyük. Bu imkânsız. Demek ki yüz derecelik açı tepe açısıdır."
+        },
+        {
+         "text": "Taban açıları: $\\frac{180° - 100°}{2} = 40°$. Cevap **C**.",
+         "narration": "Taban açıları eşittir: yüz seksen eksi yüz, seksen; ikiye bölünce kırk. En küçük açı kırk derece. Cevabımız C. Seksen derece, iki taban açısının toplamıdır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ikizkenar üçgende geniş açının yalnız tepe açısı olabileceği özgün bir soruyla gösterildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ACI_02",
+    "title": "Zaman kazandıran iki kural",
+    "narration": "Sınavda çok sık çıkan iki şekil için kısa yolları öğrenelim.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Ok ucu ve açıortay kuralları",
+      "items": [
+       "**Ok ucu** (içbükey dörtgen): $m(\\widehat{BDC}) = a + b + c$, yani üç uç açının toplamı.",
+       "**İki iç açıortay** $D$'de kesişirse: $m(\\widehat{BDC}) = 90° + \\frac{m(\\widehat{A})}{2}$.",
+       "**İki dış açıortay** kesişirse: $90° - \\frac{m(\\widehat{A})}{2}$; **bir iç bir dış** açıortay: $\\frac{m(\\widehat{A})}{2}$."
+      ],
+      "narration": "Şekildeki ok ucuna bak: üçgenin içinde bir D noktası B ve C'ye bağlanır. D'deki içbükey açı, A'daki açı ile D'ye giden iki koldaki açıların toplamına eşittir. Bunu iki dış açı kuralıyla kanıtlayabilirsin. İkinci kural açıortaylarla ilgili: B ve C'nin iç açıortayları D'de kesişirse B D C açısı doksan artı A'nın yarısıdır. İki dış açıortay kesişirse doksan eksi A'nın yarısı, bir iç bir dış açıortay kesişirse A'nın yarısıdır.",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.4,
+        -0.5,
+        5.4,
+        4.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.5,
+          4.33
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          5,
+          0
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          2.5,
+          1.5
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "A",
+         "to": "C"
+        },
+        {
+         "from": "B",
+         "to": "D"
+        },
+        {
+         "from": "D",
+         "to": "C"
+        }
+       ],
+       "polygons": [],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "label": "a"
+        },
+        {
+         "at": "B",
+         "from": "D",
+         "to": "A",
+         "label": "b"
+        },
+        {
+         "at": "C",
+         "from": "A",
+         "to": "D",
+         "label": "c"
+        },
+        {
+         "at": "D",
+         "from": "B",
+         "to": "C",
+         "label": "a + b + c"
+        }
+       ]
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $D$ noktası $ABC$ üçgeninin içindedir. $m(\\widehat{BAC}) = 60°$, $m(\\widehat{ABD}) = 25°$ ve $m(\\widehat{ACD}) = 30°$ olduğuna göre $m(\\widehat{BDC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.4,
+         -0.5,
+         5.4,
+         4.8
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2.5,
+           4.33
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           5,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           2.26,
+           1.582
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "B",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "C"
+         }
+        ],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "60°"
+         },
+         {
+          "at": "B",
+          "from": "D",
+          "to": "A",
+          "label": "25°"
+         },
+         {
+          "at": "C",
+          "from": "A",
+          "to": "D",
+          "label": "30°"
+         },
+         {
+          "at": "D",
+          "from": "B",
+          "to": "C",
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "105",
+        "110",
+        "115",
+        "120",
+        "125"
+       ],
+       "answer": 2,
+       "narration": "Ok ucu şekli: D'deki açı üç uç açının toplamı.",
+       "steps": [
+        {
+         "text": "Ok ucu kuralı: $x = 60° + 25° + 30°$.",
+         "narration": "A, B ve C'den D'ye uzanan bu şekil bir ok ucudur. D'deki açı, A'daki açı ile B ve C'deki iki kol açısının toplamına eşittir."
+        },
+        {
+         "text": "$x = 115°$. Cevap **C**.",
+         "narration": "Altmış artı yirmi beş artı otuz, yüz on beş derece. Cevabımız C. İstersen A D'yi birleştirip iki dış açı kuralıyla da aynı sonuca ulaşırsın.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB'deki \"m(BDC) = a + b + c\" bağıntısı ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $[BD]$ ve $[CD]$ iç açıortaylardır. $m(\\widehat{BAC}) = 70°$ olduğuna göre $m(\\widehat{BDC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.4,
+         -0.5,
+         5.4,
+         4.0
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2.038,
+           3.53
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           5,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           2.234,
+           1.29
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "B",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "C"
+         }
+        ],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "70°"
+         },
+         {
+          "at": "D",
+          "from": "B",
+          "to": "C",
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "110",
+        "115",
+        "120",
+        "125",
+        "145"
+       ],
+       "answer": 3,
+       "narration": "İki iç açıortay kesişiyor; kural doksan artı A'nın yarısı.",
+       "steps": [
+        {
+         "text": "$B + C = 180° - 70° = 110°$; açıortaylar yarıya böler: $\\frac{B}{2} + \\frac{C}{2} = 55°$.",
+         "narration": "B ile C'nin toplamı yüz seksen eksi yetmiş, yüz on. Açıortaylar bu açıları ikiye böler; B D C üçgeninde B ve C'deki yarım açıların toplamı elli beş."
+        },
+        {
+         "text": "$x = 180° - 55° = 125°$ $= 90° + \\frac{70°}{2}$ ✓. Cevap **D**.",
+         "narration": "B D C üçgeninde x, yüz seksen eksi elli beş, yüz yirmi beş derece. Kısa yol da aynı sonucu verir: doksan artı yetmişin yarısı, yüz yirmi beş. Cevabımız D. Yüz kırk beşi seçen yetmişin yarısı yerine kendisini eklemiştir.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB'deki iç açıortay bağıntısı ölçülere uygun çizilmiş (iç teğet çember merkezi) özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $B$ ve $C$ köşelerindeki **dış** açıortaylar $D$ noktasında kesişmektedir. $m(\\widehat{BAC}) = 50°$ olduğuna göre $m(\\widehat{BDC})$ kaç derecedir?",
+       "options": [
+        "50",
+        "65",
+        "70",
+        "115",
+        "130"
+       ],
+       "answer": 1,
+       "narration": "İki dış açıortay: kural doksan eksi A'nın yarısı.",
+       "steps": [
+        {
+         "text": "$B$ ve $C$'deki dış açılar $180° - B$ ve $180° - C$; açıortaylar bunları **yarıya** böler.",
+         "narration": "B'deki dış açı yüz seksen eksi B, C'deki dış açı yüz seksen eksi C. Dış açıortaylar bu açıları ikiye böler."
+        },
+        {
+         "text": "$B D C$ üçgeninde: $x = 180° - \\frac{(180° - B) + (180° - C)}{2} = \\frac{B + C}{2} = \\frac{130°}{2} = 65°$.",
+         "narration": "B D C üçgeninde B ve C'deki açılar dış açıların yarısıdır. x, yüz seksenden bu iki yarımın çıkarılmasıyla bulunur ve B artı C'nin yarısına eşit çıkar. B artı C, yüz seksen eksi elli, yüz otuz; yarısı altmış beş."
+        },
+        {
+         "text": "Kısa yol: $90° - \\frac{50°}{2} = 65°$. Cevap **B**.",
+         "narration": "Kısa yol da aynı sonucu verir: doksan eksi ellinin yarısı, altmış beş derece. Cevabımız B. Yüz on beşi seçen, iç açıortay kuralını, yani doksan artı A'nın yarısını kullanmıştır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB'deki dış açıortay bağıntısı, iç açıortay sorusunun karşılığı olarak özgün sayılarla soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Üçgenin **iç açıları** toplamı **180°**.",
+    "**Dış açı** = komşu olmayan iki iç açının toplamı; dış açılar toplamı **360°**.",
+    "Bir açı diğer ikisinin **ortalamasıysa** o açı **60°**'dir.",
+    "Dar, dik, geniş; çeşitkenar, **ikizkenar** (taban açıları eşit), **eşkenar** (60°).",
+    "**Ok ucu**: $m(\\widehat{BDC}) = a + b + c$.",
+    "İç açıortaylar: $90° + \\frac{A}{2}$; dış: $90° - \\frac{A}{2}$; iç-dış: $\\frac{A}{2}$."
+   ],
+   "warnings": [
+    "Bir üçgende en fazla **bir** dik ya da geniş açı olur.",
+    "Dış açı, **bitişik** iç açının bütünleridir; kendisine komşu olmayan iki iç açının toplamıdır.",
+    "Dış açılar orantılıysa önce **360°** ile k'yi bul, sonra iç açıya geç."
+   ],
+   "narration": "Hadi toparlayalım. Üçgenin iç açılarının toplamı yüz seksen, dış açılarının toplamı üç yüz altmış derecedir. Bir dış açı, kendisine komşu olmayan iki iç açının toplamıdır. Üçgenleri açılarına göre dar, dik ve geniş; kenarlarına göre çeşitkenar, ikizkenar ve eşkenar diye ayırırız; ikizkenarda taban açıları eşittir. Ok ucu şeklinde içteki açı üç uç açının toplamıdır. İki iç açıortay kesişirse açı doksan artı A'nın yarısıdır."
+  }
+ }
+}

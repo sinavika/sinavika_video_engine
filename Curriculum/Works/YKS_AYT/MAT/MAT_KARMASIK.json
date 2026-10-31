@@ -1,0 +1,642 @@
+{
+ "topic": {
+  "id": "B8FC1550-8632-1E44-CDDB-C2A3735CD8DD",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_KARMASIK"
+ },
+ "title": "Karmaşık Sayılar",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/MAT/MAT_KARMASIK.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Karesi eksi bir olan sayı: i.",
+   "narration": "Hiçbir gerçel sayının karesi negatif değildir. Ama x kare artı bir sıfır denklemini çözmek isteyen matematikçiler, karesi eksi bir olan bir sayı tanımladılar ve adını i koydular. Bu derste i ile işlemleri, eşleniği, modülü ve ikinci dereceden denklemlerin karmaşık köklerini AYT düzeyinde sorularla çalışacağız."
+  },
+  "objectives": [
+   "i'nin kuvvetlerini ve negatif sayıların karekökünü kullanmak",
+   "Karmaşık sayılarla dört işlem yapmak",
+   "Eşlenikle bölmek ve eşlenikli denklemi çözmek",
+   "Modülü uzaklık olarak kullanmak",
+   "Gerçel katsayılı denklemin eşlenik köklerini bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_KARMASIK_01",
+    "subtopics": [
+     "MAT_KARMASIK_02"
+    ],
+    "title": "Sanal birim ve karmaşık sayı",
+    "narration": "Karesi eksi bir olan bir sayı yok, değil mi? Matematik onu tanımlar ve adını i koyar. Bu derste i ile yapılan bütün işlemleri göreceğiz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kısa tekrar: i",
+      "items": [
+       "$i^2 = -1$; $i^3 = -i$, $i^4 = 1$: kuvvetler **4'te bir** tekrar eder.",
+       "$z = a + bi$: $\\text{Re}(z) = a$, $\\text{Im}(z) = b$.",
+       "$a > 0$ için $\\sqrt{-a} = i\\sqrt{a}$.",
+       "Ardışık dört kuvvetin toplamı: $i^n + i^{n+1} + i^{n+2} + i^{n+3} = 0$."
+      ],
+      "beats": [],
+      "narration": "i, karesi eksi bir olan sayıdır. Küpü eksi i, dördüncü kuvveti bir; kuvvetler dörtte bir tekrar eder. a artı b i biçimindeki bir karmaşık sayıda a reel kısım, b sanal kısımdır. Pozitif bir a için eksi a'nın karekökü, i çarpı kök a'dır. Ve ardışık dört kuvvetin toplamı sıfırdır: i, eksi bir, eksi i, bir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$i^2 = -1$ olmak üzere\n\n$i + i^2 + i^3 + \\dots + i^{30}$\n\ntoplamının sonucu kaçtır?",
+       "options": [
+        "$-1$",
+        "$i$",
+        "$i - 1$",
+        "$1 - i$",
+        "$0$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$30 = 4 \\cdot 7 + 2$: ilk 28 terim 7 dörtlü grup, toplamları $0$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Otuz terim var. Dördün katı olan yirmi sekiz terim, yedi dörtlü grup oluşturur; her grup sıfır."
+        },
+        {
+         "text": "Kalan: $i^{29} + i^{30} = i + i^2 = i - 1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Geriye i üzeri yirmi dokuz ve otuz kalır. Yirmi dokuz, dördün katından bir fazla: i. Otuz iki fazla: eksi bir. Toplam i eksi bir. Cevap C."
+        }
+       ],
+       "narration": "Dörtlü gruplar sıfır eder; kalanlara bakalım.",
+       "origin": {
+        "changes": "i'nin kuvvetleri toplamı kalıbı; terim sayısı yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Negatiflerin karekökü",
+      "wrong": "$\\sqrt{-4} \\cdot \\sqrt{-9} = \\sqrt{36} = 6$",
+      "right": "$\\sqrt{-4} \\cdot \\sqrt{-9} = 2i \\cdot 3i = 6i^2 = -6$",
+      "why": "$\\sqrt{a}\\sqrt{b} = \\sqrt{ab}$ kuralı yalnız $a, b \\geq 0$ için geçerlidir. Önce her kökü $i$ ile yaz.",
+      "narration": "Sık yapılan bir hata: iki negatif sayının kareköklerini tek kökte çarpmak. Kök a çarpı kök b, kök a b kuralı yalnız negatif olmayan sayılar için geçerli. Önce her kökü i ile yaz: iki i ve üç i. Çarpımları altı i kare, yani eksi altı."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\sqrt{-4} \\cdot \\sqrt{-9} + \\sqrt{-16}$\n\nişleminin sonucu aşağıdakilerden hangisidir?",
+       "options": [
+        "$6 + 4i$",
+        "$-6 + 4i$",
+        "$6 - 4i$",
+        "$-6 - 4i$",
+        "$4i$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$\\sqrt{-4} = 2i$, $\\sqrt{-9} = 3i$, $\\sqrt{-16} = 4i$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kök eksi dört, iki i; kök eksi dokuz, üç i; kök eksi on altı, dört i."
+        },
+        {
+         "text": "$2i \\cdot 3i + 4i = 6i^2 + 4i = -6 + 4i$",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki i çarpı üç i, altı i kare, eksi altı. Artı dört i: eksi altı artı dört i. Cevap B."
+        }
+       ],
+       "narration": "Hata kartının kuralı: önce i ile yaz.",
+       "origin": {
+        "changes": "Negatif sayıların karekökü kalıbı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$m$ bir gerçel sayı olmak üzere\n\n$z = (m - 2) + (m^2 - 4)i$\n\nsayısı sıfırdan farklı bir **gerçel** sayı olduğuna göre, $m$ kaçtır?",
+       "options": [
+        "$-2$",
+        "$-1$",
+        "$0$",
+        "$1$",
+        "$2$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$\\text{Im}(z) = m^2 - 4 = 0$: $m = 2$ ya da $m = -2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sanal kısım sıfır olmalı: m kare eksi dört sıfır; m iki ya da eksi iki."
+        },
+        {
+         "text": "$m = 2$: $z = 0$ ✗. $m = -2$: $z = -4$ ✓.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "m iki olursa reel kısım da sıfır, z sıfır olur; ama z sıfırdan farklı. m eksi iki: z eksi dört. Cevap A."
+        }
+       ],
+       "narration": "Gerçel sayı: sanal kısım sıfır.",
+       "origin": {
+        "changes": "Koşullu gerçel sayı kalıbı; ifade yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_KARMASIK_03",
+    "subtopics": [
+     "MAT_KARMASIK_04"
+    ],
+    "title": "İşlemler ve eşlenik",
+    "narration": "Karmaşık sayılarla işlem, i'yi bir harf gibi kullanıp her i kareyi eksi birle değiştirmektir. Bölmede eşlenik paydayı gerçel yapar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İşlemler",
+      "items": [
+       "Çarpma: dağıt, $i^2 = -1$ koy: $(a + bi)(c + di) = (ac - bd) + (ad + bc)i$.",
+       "Eşlenik: $\\bar{z} = a - bi$; $z \\cdot \\bar{z} = a^2 + b^2$ (**gerçel**).",
+       "Bölme: payı ve paydayı paydanın **eşleniğiyle** çarp.",
+       "Eşitlik: gerçel kısımlar eşit, sanal kısımlar eşit."
+      ],
+      "beats": [],
+      "narration": "Çarpmada dağıtırsın ve her i kareyi eksi bir yaparsın. a artı b i'nin eşleniği a eksi b i'dir; bir sayıyla eşleniğinin çarpımı a kare artı b kare, yani her zaman gerçeldir. Bölmede bu yüzden payı ve paydayı paydanın eşleniğiyle çarparsın. İki karmaşık sayı eşitse gerçel kısımları da sanal kısımları da eşittir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$(2 + 3i)(1 - 2i)$\n\nçarpımının sonucu aşağıdakilerden hangisidir?",
+       "options": [
+        "$8 - i$",
+        "$8 + i$",
+        "$-4 - i$",
+        "$-4 + 7i$",
+        "$2 - 6i$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$2 - 4i + 3i - 6i^2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki çarpı bir iki, iki çarpı eksi iki i eksi dört i, üç i çarpı bir üç i, üç i çarpı eksi iki i eksi altı i kare."
+        },
+        {
+         "text": "$i^2 = -1$: $2 - i + 6 = 8 - i$",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "i kare eksi bir: eksi altı i kare artı altı olur. İki artı altı sekiz, eksi dört i artı üç i eksi i. Sonuç sekiz eksi i. i kareyi değiştirmeyi unutan eksi dört eksi i bulur. Cevap A."
+        }
+       ],
+       "narration": "Dağıtalım.",
+       "origin": {
+        "changes": "Karmaşık çarpma kalıbı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Hep gerçel mi?",
+      "prompt": "$z = a + bi$ ise $z \\cdot \\bar{z}$ her zaman gerçel midir?",
+      "choices": [
+       "Evet",
+       "Hayır"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "formula",
+       "latex": "(a + bi)(a - bi) = a^2 - (bi)^2 = a^2 + b^2",
+       "caption": "İki kare farkı: sanal kısım kaybolur."
+      },
+      "beats": [
+       {
+        "narration": "a artı b i ile a eksi b i: iki kare farkı. a kare eksi b i'nin karesi; b i'nin karesi eksi b kare. Sonuç a kare artı b kare.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "explanation": "$z \\cdot \\bar{z} = a^2 + b^2$: **sanal kısım yok**, sonuç gerçel ve $|z|^2$'ye eşit.",
+      "narration": "Şimdi sıra sende. Bir karmaşık sayıyla eşleniğinin çarpımı her zaman gerçel midir? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: evet. Çarpım iki kare farkı; sanal terimler birbirini götürür ve a kare artı b kare kalır. Bölmede paydayı eşlenikle çarpmamızın sebebi bu: payda gerçel olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\dfrac{3 + i}{1 - i}$\n\nbölümünün sonucu aşağıdakilerden hangisidir?",
+       "options": [
+        "$2 + i$",
+        "$1 - 2i$",
+        "$2 + 2i$",
+        "$1 + 2i$",
+        "$3 + i$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$\\frac{(3 + i)(1 + i)}{(1 - i)(1 + i)}$; payda $1^2 + 1^2 = 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Payı ve paydayı bir artı i ile çarpalım. Payda, bir kare artı bir kare, iki."
+        },
+        {
+         "text": "Pay: $3 + 3i + i + i^2 = 2 + 4i$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Pay: üç artı üç i artı i artı i kare; i kare eksi bir: iki artı dört i."
+        },
+        {
+         "text": "$\\frac{2 + 4i}{2} = 1 + 2i$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İkiye bölünce bir artı iki i. Cevap D."
+        }
+       ],
+       "narration": "Paydanın eşleniğiyle genişletelim.",
+       "origin": {
+        "changes": "Karmaşık bölme kalıbı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$z$ bir karmaşık sayı ve $\\bar{z}$, $z$'nin eşleniği olmak üzere\n\n$z + 2\\bar{z} = 9 - 2i$\n\nolduğuna göre, $z$ aşağıdakilerden hangisidir?",
+       "options": [
+        "$9 - 2i$",
+        "$3 - 2i$",
+        "$2 + 3i$",
+        "$-3 + 2i$",
+        "$3 + 2i$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$z = a + bi$: $(a + bi) + 2(a - bi) = 3a - bi$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "z, a artı b i; eşleniği a eksi b i. z artı iki eşlenik: üç a eksi b i."
+        },
+        {
+         "text": "$3a - bi = 9 - 2i$: $3a = 9$, $-b = -2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Gerçel kısımlar: üç a dokuz. Sanal kısımlar: eksi b, eksi iki."
+        },
+        {
+         "text": "$a = 3$, $b = 2$: $z = 3 + 2i$.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "a üç, b iki: z üç artı iki i. Eşlenikteki işareti kaçıran üç eksi iki i der. Cevap E."
+        }
+       ],
+       "narration": "z'yi a artı b i diye yazıp kısımları eşitleyelim.",
+       "origin": {
+        "changes": "Eşlenikli denklem kalıbı; katsayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_KARMASIK_05",
+    "subtopics": [],
+    "title": "Modül ve uzaklık",
+    "narration": "Bir karmaşık sayı, düzlemde bir noktadır. Modülü, o noktanın başlangıca uzaklığıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Modül",
+      "items": [
+       "$|a + bi| = \\sqrt{a^2 + b^2}$: $(a, b)$ noktasının **başlangıca** uzaklığı.",
+       "$|z_1 \\cdot z_2| = |z_1| \\cdot |z_2|$, $\\left|\\frac{z_1}{z_2}\\right| = \\frac{|z_1|}{|z_2|}$, $|\\bar{z}| = |z|$.",
+       "$|z - w|$: iki noktanın **uzaklığı**."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -1,
+        5
+       ],
+       "y": [
+        -1,
+        5
+       ],
+       "xLabel": "Re",
+       "yLabel": "Im",
+       "curves": [],
+       "parameters": {},
+       "points": [
+        {
+         "x": 3,
+         "y": 4,
+         "label": "z = 3 + 4i"
+        }
+       ],
+       "segments": [
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          3,
+          4
+         ],
+         "label": "|z| = 5",
+         "dashed": false
+        },
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          3,
+          0
+         ],
+         "label": "3",
+         "dashed": true
+        },
+        {
+         "from": [
+          3,
+          0
+         ],
+         "to": [
+          3,
+          4
+         ],
+         "label": "4",
+         "dashed": true
+        }
+       ],
+       "equalScale": true,
+       "axes": "origin"
+      },
+      "beats": [
+       {
+        "narration": "Üç artı dört i, düzlemde üç, dört noktası: yatayda üç, dikeyde dört birim.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Başlangıca uzaklığı bir dik üçgenin hipotenüsü: kök içinde dokuz artı on altı, beş. Modül beş.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "narration": "a artı b i'nin modülü, kök içinde a kare artı b kare: düzlemde a, b noktasının başlangıca uzaklığı. Çarpımın modülü modüllerin çarpımı, bölümün modülü modüllerin bölümüdür; eşleniğin modülü de aynıdır. z eksi w'nin modülü ise iki noktanın arasındaki uzaklıktır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\dfrac{|(3 + 4i)(1 - i)|}{|2i|}$\n\nişleminin sonucu kaçtır?",
+       "options": [
+        "$\\sqrt{2}$",
+        "$\\frac{5}{2}$",
+        "$\\frac{5\\sqrt{2}}{2}$",
+        "$5\\sqrt{2}$",
+        "$10$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$|3 + 4i| = 5$, $|1 - i| = \\sqrt{2}$, $|2i| = 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç artı dört i'nin modülü beş; bir eksi i'ninki kök iki; iki i'ninki iki."
+        },
+        {
+         "text": "$\\frac{5\\sqrt{2}}{2}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çarpımın modülü beş kök iki; ikiye bölünce beş kök iki bölü iki. Cevap C."
+        }
+       ],
+       "narration": "Çarpmayı yapmadan modülleri ayrı ayrı alalım.",
+       "origin": {
+        "changes": "Modül kuralları kalıbı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$z$ bir karmaşık sayı olmak üzere\n\n$|z - 2| = |z + 4i|$\n\n$\\text{Re}(z) = 1$\n\nolduğuna göre, $\\text{Im}(z)$ kaçtır?",
+       "options": [
+        "$-3$",
+        "$-2$",
+        "$-1$",
+        "$1$",
+        "$2$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$z = 1 + yi$: $|-1 + yi| = |1 + (y + 4)i|$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "z eksi iki, eksi bir artı y i; z artı dört i, bir artı y artı dört i."
+        },
+        {
+         "text": "$1 + y^2 = 1 + (y + 4)^2$: $0 = 8y + 16$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Modüllerin kareleri eşit: bir artı y kare, bir artı y artı dördün karesi. Sadeleşince sekiz y artı on altı sıfır."
+        },
+        {
+         "text": "$y = -2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "y eksi iki. z, bir eksi iki i: iki noktanın, yani iki ile eksi dört i'nin tam ortasından geçen doğru üzerinde. Cevap B."
+        }
+       ],
+       "narration": "İki modül eşit: z, iki noktaya eşit uzaklıkta. z'yi bir artı y i diye yazalım.",
+       "origin": {
+        "changes": "Modülle eşit uzaklık kalıbı; noktalar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_KARMASIK_06",
+    "subtopics": [],
+    "title": "Karmaşık kökler",
+    "narration": "Diskriminant negatif olunca ikinci dereceden denklemin gerçel kökü yoktur; ama iki karmaşık kökü vardır ve bunlar birbirinin eşleniğidir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Karmaşık kökler",
+      "items": [
+       "$\\Delta < 0$: $x = \\frac{-b \\pm i\\sqrt{-\\Delta}}{2a}$.",
+       "Gerçel katsayılı denklemde $a + bi$ kökse $a - bi$ de **köktür**.",
+       "Kökler toplamı $-\\frac{b}{a}$, çarpımı $\\frac{c}{a}$ kuralları burada da geçerli."
+      ],
+      "beats": [],
+      "narration": "Diskriminant negatifse kökler, eksi b artı eksi i çarpı kök eksi diskriminant, bölü iki a'dır. Katsayıları gerçel olan bir denklemde a artı b i kökse, eşleniği a eksi b i de köktür. Kökler toplamı ve çarpımı kuralları burada da geçerlidir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Gerçel katsayılı $x^2 + px + q = 0$ denkleminin köklerinden biri $3 - 2i$'dir.\n\nBuna göre, $p + q$ toplamı kaçtır?",
+       "options": [
+        "$-7$",
+        "$1$",
+        "$5$",
+        "$7$",
+        "$13$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Öteki kök $3 + 2i$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Katsayılar gerçel: öteki kök eşlenik, üç artı iki i."
+        },
+        {
+         "text": "Toplam $6 = -p$: $p = -6$. Çarpım $9 + 4 = 13 = q$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kökler toplamı altı; eksi p'ye eşit, p eksi altı. Çarpım üç kare artı iki kare, on üç; q on üç."
+        },
+        {
+         "text": "$p + q = -6 + 13 = 7$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "p artı q, yedi. Cevap D."
+        }
+       ],
+       "narration": "Öteki kök eşlenik. Toplam ve çarpımla katsayıları bulalım.",
+       "origin": {
+        "changes": "Eşlenik kök kalıbı; kök yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x^2 + 2x + 5 = 0$ denkleminin kökleri $z_1$ ve $z_2$ olduğuna göre, $|z_1| + |z_2|$ toplamı kaçtır?",
+       "options": [
+        "$\\sqrt{5}$",
+        "$2\\sqrt{5}$",
+        "$5$",
+        "$2\\sqrt{10}$",
+        "$10$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$\\Delta = 4 - 20 = -16$: $x = \\frac{-2 \\pm 4i}{2} = -1 \\pm 2i$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Diskriminant dört eksi yirmi, eksi on altı. Kökler eksi iki artı eksi dört i bölü iki: eksi bir artı eksi iki i."
+        },
+        {
+         "text": "$|-1 \\pm 2i| = \\sqrt{1 + 4} = \\sqrt{5}$; toplam $2\\sqrt{5}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Her kökün modülü kök beş: toplam iki kök beş. Kısa yol: eşlenik köklerin modülleri eşit ve çarpımları beş, yani her biri kök beş. Cevap B."
+        }
+       ],
+       "narration": "Kökleri bulup modüllerini alalım; ya da çarpımdan gidelim.",
+       "origin": {
+        "changes": "Karmaşık köklerin modülü kalıbı; denklem yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$i^2 = -1$; kuvvetler **4'te bir** tekrar.",
+    "$\\sqrt{-a} = i\\sqrt{a}$; önce $i$ ile yaz.",
+    "$z \\cdot \\bar{z} = a^2 + b^2$: **gerçel**.",
+    "Bölmede **eşlenikle** genişlet.",
+    "$|z|$: başlangıca **uzaklık**.",
+    "Gerçel katsayılı denklemde kökler **eşlenik** gelir."
+   ],
+   "warnings": [
+    "$\\sqrt{-4}\\sqrt{-9} \\neq 6$; doğrusu $-6$.",
+    "Gerçel sayı koşulunda $z \\neq 0$ ise **reel kısmı** da denetle."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "$i^{2026} + i^{2027}$ toplamını **kendin** hesapla.",
+    "$\\frac{5 + 5i}{2 - i}$ bölümünü eşlenikle bul ve sonucun modülünü hesapla.",
+    "Uygulamada AYT Karmaşık Sayılar testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "i'nin kuvvetlerini örnekle: iⁿ'de üs 4'e bölünür; i²⁰²⁶ = i² = −1. Ardışık dört kuvvetin toplamının sıfır olduğunu (i + i² + i³ + i⁴ = 0) kullanan bir toplam sorusu ekle.",
+   "Bölmeye örnek ver: (3 + 4i)/(1 − 2i) paydanın eşleniğiyle genişletilir: (3 + 4i)(1 + 2i)/5 = (−5 + 10i)/5 = −1 + 2i.",
+   "Modül özelliklerini ekle: |z₁z₂| = |z₁||z₂|, |z₁/z₂| = |z₁|/|z₂|, |z̄| = |z|, |zⁿ| = |z|ⁿ. |(3 + 4i)² × (1 − i)| = 25√2.",
+   "Geometrik yer örnekleri ekle: |z − (1 + 2i)| = 3 merkezi (1, 2), yarıçapı 3 olan çemberdir. |z − 1| = |z + i| koşulunu sağlayan noktalar (1, 0) ve (0, −1)'e eşit uzaklıktadır: y = −x doğrusu.",
+   "Gerçel katsayılı denklemde eşlenik kök kuralını örnekle: bir kökü 2 + i olan ikinci dereceden denklem x² − 4x + 5 = 0. İki karmaşık sayının eşitliğinin gerçel ve sanal kısımların ayrı ayrı eşitliği olduğunu ekle."
+  ]
+ }
+}

@@ -1,0 +1,847 @@
+{
+ "topic": {
+  "id": "B3DA3661-EC9A-896B-B5D5-74F54B916693",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_ITME"
+ },
+ "title": "İtme ve Momentum",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/FIZ/FIZ_ITME.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Minder neden korur?",
+   "narration": "Bir telefonu sert zemine düşürürsen ekranı çatlayabilir; aynı yükseklikten bir mindere düşürürsen hiçbir şey olmaz. İkisinde de momentum aynı miktarda değişir; değişen tek şey süredir. Bu derste momentumu, itmeyi, momentumun korunumunu, esnek ve esnek olmayan çarpışmaları ve patlamaları, altı ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Momentumu vektör olarak yorumlamak",
+   "İtme ile momentum değişimini ilişkilendirmek",
+   "Momentumun korunumunu çarpışmalarda uygulamak",
+   "Esnek ve esnek olmayan çarpışmayı enerjiyle ayırt etmek",
+   "Patlamalarda parçaların hızlarını bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_ITME_01",
+    "subtopics": [],
+    "title": "Çizgisel momentum",
+    "narration": "Momentum, hareketin ne kadar güçlü olduğunun ölçüsüdür: hem kütleyi hem hızı içerir ve bir yönü vardır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Momentum",
+      "items": [
+       "$\\vec{p} = m \\cdot \\vec{v}$: hızla **aynı yönde** bir vektör; birimi kg·m/s.",
+       "Net kuvvet, momentumun değişim hızıdır: $\\vec{F}_{net} = \\frac{\\Delta \\vec{p}}{\\Delta t}$.",
+       "Hızın yalnız **yönü** değişse de momentum değişir."
+      ],
+      "visual": {
+       "kind": "vectors",
+       "view": [
+        -4,
+        -2,
+        4,
+        2
+       ],
+       "vectors": [
+        {
+         "from": [
+          -1.5,
+          1
+         ],
+         "to": [
+          1.5,
+          1
+         ],
+         "label": "p önce",
+         "colour": "lesson",
+         "dashed": false
+        },
+        {
+         "from": [
+          1.5,
+          0
+         ],
+         "to": [
+          -1.5,
+          0
+         ],
+         "label": "p sonra",
+         "colour": "ink",
+         "dashed": false
+        },
+        {
+         "from": [
+          3,
+          -1
+         ],
+         "to": [
+          -3,
+          -1
+         ],
+         "label": "Δp",
+         "colour": "brand",
+         "dashed": false
+        }
+       ],
+       "grid": true
+      },
+      "beats": [
+       {
+        "narration": "Top duvara sağa doğru p momentumuyla gelir.",
+        "show": [],
+        "focus": [
+         "v1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Aynı süratle sola döner.",
+        "show": [],
+        "focus": [
+         "v2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Değişim, sonradan önceyi çıkarınca iki p: yalnız yön değişti ama momentum değişti.",
+        "show": [],
+        "focus": [
+         "v3"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Çizgisel momentum kütle çarpı hızdır; hızla aynı yönde bir vektördür ve birimi kilogram metre bölü saniyedir. Net kuvvet, momentumun ne kadar hızlı değiştiğidir. Momentum vektör olduğu için hızın yalnız yönü değişse de momentum değişir: duvara çarpıp aynı hızla geri dönen bir topun momentum değişimi, momentumunun iki katıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kütlesi ve kinetik enerjisi sabit kalan, ama çizgisel momentumu zamanla değişen hareketli bir cisim için;\nI. Üzerine etki eden net kuvvet sıfırdır.\nII. Net kuvvetin yaptığı iş sıfırdır.\nIII. Cisim düzgün çembersel hareket yapıyor olabilir.\n\nyargılarından hangileri doğrudur?",
+       "context": "ÖSYM 2020'de sorulan kinetik enerjisi sabit, momentumu değişen cisim yapısının yargıları değiştirilmiş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve III",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Momentum değişiyor: net kuvvet **sıfır değil** (I yanlış).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Momentum değişiyorsa net kuvvet sıfır olamaz; birinci yanlış."
+        },
+        {
+         "text": "Kinetik enerji sabit: net kuvvetin işi **sıfır** (II); sürat sabit, yön değişiyor: çembersel hareket **olabilir** (III).",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kinetik enerji sabit, yani sürat sabit: iş-enerji teoreminden net kuvvetin işi sıfır. Sürat sabitken momentumun değişmesi için yön değişmeli; düzgün çembersel hareket tam olarak böyledir. Cevap D."
+        }
+       ],
+       "narration": "Sabit kalan sürat, değişen yön.",
+       "origin": {
+        "changes": "ÖSYM 2020 modeli: yargılar değiştirildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ITME_02",
+    "subtopics": [],
+    "title": "İtme",
+    "narration": "Bir kuvvetin bir süre boyunca etkisi itmedir. İtme, momentumu değiştirir; kuvvet ile süre birbirinin yerine geçebilir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İtme",
+      "items": [
+       "İtme $= \\vec{F} \\cdot \\Delta t = \\Delta \\vec{p}$: kuvvet-zaman grafiğinin **alanı**.",
+       "Aynı momentum değişimi **uzun sürede** olursa ortalama kuvvet küçülür.",
+       "Hava yastığı, kask ve köpük çarpışma süresini **uzatarak** korur."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        0.12
+       ],
+       "y": [
+        0,
+        450
+       ],
+       "xLabel": "t (s)",
+       "yLabel": "F (N)",
+       "curves": [
+        {
+         "expression": "400 - 8000abs(x - 0.05)",
+         "domain": [
+          0,
+          0.1
+         ],
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin",
+       "area": {
+        "curve": 0,
+        "from": 0,
+        "to": 0.1,
+        "label": "itme = 20 N·s"
+       }
+      },
+      "beats": [],
+      "narration": "İtme, kuvvet çarpı etki süresidir ve momentumdaki değişime eşittir. Kuvvet değişiyorsa itme, kuvvet-zaman grafiğinin altındaki alandır; burada tepe dört yüz newton, süre sıfır virgül bir saniye: yirmi newton saniye. Aynı momentum değişimi daha uzun sürede olursa ortalama kuvvet küçülür. Hava yastığı, kask ve ambalaj köpüğü bu yüzden korur: süreyi uzatır, kuvveti küçültür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir çarpışma testinde $15$ m/s hızla giden bir otomobil duvara çarpıp $0{,}12$ s'de duruyor.\n\nOtomobildeki $60$ kg'lık mankenin otomobille birlikte durması için ona etki etmesi gereken ortalama kuvvet en az kaç N'dir?",
+       "context": "ÖSYM 2018'de sorulan çarpışma testindeki manken yapısının yeni sayılarla kurulmuş hâli.",
+       "options": [
+        "$75$",
+        "$750$",
+        "$900$",
+        "$7500$",
+        "$9000$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$\\Delta p = 60 \\cdot 15 = 900$ kg·m/s.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Mankenin momentumu altmış çarpı on beş, dokuz yüz kilogram metre bölü saniye; bu sıfıra inmeli."
+        },
+        {
+         "text": "$F = \\frac{\\Delta p}{\\Delta t} = \\frac{900}{0{,}12} = 7500$ N.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Ortalama kuvvet, momentum değişimi bölü süre: dokuz yüz bölü sıfır virgül on iki, yedi bin beş yüz newton. Süreyi unutan dokuz yüzü işaretler. Cevap D."
+        }
+       ],
+       "narration": "Mankenin momentumu aynı sürede sıfırlanmalı.",
+       "origin": {
+        "changes": "ÖSYM 2018 modeli: hız, süre ve kütle değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aynı yükseklikten bırakılan özdeş iki telefondan biri sert zemine, öbürü kalın bir minderin üzerine düşüp duruyor; ikisi de zıplamıyor.\n\nMindere düşen telefon için;\nI. zeminle etkileşme süresi,\nII. momentumundaki değişim,\nIII. ona etki eden ortalama kuvvet\n\nniceliklerinden hangileri diğerine göre büyüktür?",
+       "context": "ÖSYM 2020'de sorulan köpüğe sarılı yumurta yapısının yeni bir durumla kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "I ve III"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "İkisi de aynı hızla gelip duruyor: $\\Delta p$ **aynı** (II değil).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki telefon aynı yükseklikten aynı hızla gelir ve durur; momentum değişimleri aynıdır."
+        },
+        {
+         "text": "Minder süreyi **uzatır** (I); $F = \\frac{\\Delta p}{\\Delta t}$ **küçülür** (III değil).",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Minder çarpışmayı uzatır; aynı momentum değişimi daha uzun sürede olduğu için ortalama kuvvet küçülür. Yalnız süre büyüktür. Cevap A."
+        }
+       ],
+       "narration": "Momentum değişimi ne kadar?",
+       "origin": {
+        "changes": "ÖSYM 2020 modeli: durum değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Minder neyi azaltır?",
+      "wrong": "Minder, telefonun momentum değişimini azaltır.",
+      "right": "Momentum değişimi **aynıdır**; minder yalnız süreyi uzatıp **kuvveti** küçültür.",
+      "why": "İtme $= F \\cdot \\Delta t = \\Delta p$.",
+      "narration": "Sık yapılan bir hata: minderin momentum değişimini azalttığını sanmak. Telefon iki durumda da aynı hızla gelir ve durur; momentum değişimi aynıdır. Minder yalnız çarpışma süresini uzatır; aynı itme daha küçük bir kuvvetle gerçekleşir."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ITME_03",
+    "subtopics": [],
+    "title": "Momentumun korunumu",
+    "narration": "Bir sisteme dışarıdan net kuvvet etki etmiyorsa toplam momentumu değişmez; cisimler birbirine ne yaparsa yapsın.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Korunum",
+      "items": [
+       "Dış kuvvet yoksa sistemin toplam momentumu **korunur**.",
+       "Çarpışmada iç kuvvetler eşit ve zıt: cisimlerin **itmeleri eşit, zıt**.",
+       "Korunum vektöreldir: **yönlere** göre işaret koy."
+      ],
+      "visual": {
+       "kind": "collision",
+       "bodies": [
+        {
+         "label": "K",
+         "mass": 1,
+         "v": 6
+        },
+        {
+         "label": "L",
+         "mass": 2,
+         "v": 0
+        }
+       ],
+       "type": "elastic",
+       "energy": false,
+       "motion": true,
+       "duration": 6,
+       "unit": "p (kg·m/s)"
+      },
+      "beats": [
+       {
+        "narration": "Bir kilogramlık K, saniyede altı metreyle duran iki kilogramlık L'ye çarpıyor.",
+        "show": [],
+        "focus": [
+         "b1",
+         "b2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Önce: toplam momentum altı.",
+        "show": [
+         "before"
+        ],
+        "focus": [
+         "before"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Çarpışmadan sonra K geri döner, L ileri gider; toplam yine altı.",
+        "show": [
+         "run",
+         "after"
+        ],
+        "focus": [
+         "after"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bir sisteme dışarıdan net kuvvet etki etmiyorsa toplam momentumu korunur. Çarpışan iki cisim birbirine eşit ve zıt kuvvetler uygular, aynı süre boyunca; aldıkları itmeler eşit ve zıttır, biri ne kazanırsa öbürü onu kaybeder. Korunum vektöreldir: sağa gidene artı, sola gidene eksi işaret koyarak toplarsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sürtünmesiz yatay bir rayda $3$ kg'lık bir araba $4$ m/s hızla giderken, aynı yönde $1$ m/s hızla giden $2$ kg'lık arabaya çarpıyor. Çarpışmadan sonra $3$ kg'lık arabanın hızı aynı yönde $2$ m/s oluyor.\n\n$2$ kg'lık arabanın çarpışmadan sonraki hızı kaç m/s'dir?",
+       "options": [
+        "$0{,}5$",
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Önce: $3 \\cdot 4 + 2 \\cdot 1 = 14$ kg·m/s.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çarpışmadan önce toplam momentum: üç çarpı dört artı iki çarpı bir, on dört."
+        },
+        {
+         "text": "Sonra: $3 \\cdot 2 + 2 v = 14$ → $v = 4$ m/s.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sonra: üç çarpı iki artı iki v, on dörde eşit. İki v sekiz, v dört metre bölü saniye. Cevap E."
+        }
+       ],
+       "narration": "Toplam momentum korunur.",
+       "origin": {
+        "changes": "Momentum korunumu kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ITME_04",
+    "subtopics": [],
+    "title": "Esnek çarpışmalar",
+    "narration": "Esnek çarpışmada cisimler sekip ayrılır; ne momentum ne de kinetik enerji kaybolur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Esnek çarpışma",
+      "items": [
+       "Hem momentum hem **kinetik enerji** korunur.",
+       "Eşit kütleler merkezî esnek çarpışmada **hızlarını takas eder**.",
+       "Duran ağır cisme çarpan hafif cisim **geri döner**."
+      ],
+      "visual": {
+       "kind": "collision",
+       "bodies": [
+        {
+         "label": "K",
+         "mass": 2,
+         "v": 4
+        },
+        {
+         "label": "L",
+         "mass": 2,
+         "v": 0
+        }
+       ],
+       "type": "elastic",
+       "energy": true,
+       "motion": true,
+       "duration": 6,
+       "unit": "p (kg·m/s)"
+      },
+      "beats": [
+       {
+        "narration": "Eşit kütleli iki araba: K saniyede dört metreyle, L duruyor.",
+        "show": [],
+        "focus": [
+         "b1",
+         "b2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Çarpışınca K durur, L dört metre bölü saniyeyle gider.",
+        "show": [
+         "run",
+         "before",
+         "after"
+        ],
+        "focus": [
+         "after"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Kinetik enerji de aynı kaldı: on altı joule.",
+        "show": [
+         "energy"
+        ],
+        "focus": [
+         "energy"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Esnek çarpışmada hem momentum hem kinetik enerji korunur; bilardo topları buna yakındır. Eşit kütleli iki cisim merkezî esnek çarpışmada hızlarını takas eder: duran cisme çarpan cisim durur, öbürü onun hızıyla gider. Duran ağır bir cisme çarpan hafif cisim ise geri döner."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Eşit kütleli $K$ ve $L$ arabaları sürtünmesiz yatay bir rayda birbirine doğru giderken merkezî ve esnek çarpışıyor; $K$ sağa $3$ m/s, $L$ sola $1$ m/s hızla gidiyor.\n\nÇarpışmadan sonra;\nI. K'nin hızının yönü değişmez.\nII. L'nin hızının büyüklüğü $3$ m/s olur.\nIII. Sistemin toplam kinetik enerjisi değişmez.\n\nyargılarından hangileri doğrudur?",
+       "context": "ÖSYM 2019'da sorulan eşit kütleli K ve L arabaları yapısının sayılarla kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve III",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Hızlar takas edilir: K sola $1$ m/s, L sağa $3$ m/s. K'nin yönü **değişir** (I yanlış), L $3$ m/s (II).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eşit kütleli esnek çarpışmada hızlar takas edilir: K sola bir, L sağa üç metre bölü saniyeyle gider. K'nin yönü değişti; birinci yanlış, ikinci doğru."
+        },
+        {
+         "text": "Esnek çarpışma: kinetik enerji **korunur** (III).",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çarpışma esnek olduğu için toplam kinetik enerji değişmez; üçüncü doğru. Cevap D."
+        }
+       ],
+       "narration": "Eşit kütleler, esnek: hızlar takas edilir.",
+       "origin": {
+        "changes": "ÖSYM 2019 modeli: hızlar sayıyla verildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ITME_05",
+    "subtopics": [],
+    "title": "Esnek olmayan çarpışmalar",
+    "narration": "Esnek olmayan çarpışmada momentum yine korunur ama kinetik enerjinin bir kısmı kaybolur; cisimler yapışırsa kayıp en büyüktür.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Esnek olmayan çarpışma",
+      "items": [
+       "Momentum korunur ama kinetik enerjinin bir kısmı **ısıya, sese, şekil değişimine** gider.",
+       "Cisimler yapışırsa: $m_1 v_1 + m_2 v_2 = (m_1 + m_2) V$.",
+       "Yapışarak çarpışmada kinetik enerji kaybı **en büyüktür**."
+      ],
+      "visual": {
+       "kind": "collision",
+       "bodies": [
+        {
+         "label": "K",
+         "mass": 3,
+         "v": 4
+        },
+        {
+         "label": "L",
+         "mass": 1,
+         "v": 0
+        }
+       ],
+       "type": "inelastic",
+       "energy": true,
+       "motion": true,
+       "duration": 6,
+       "unit": "p (kg·m/s)"
+      },
+      "beats": [
+       {
+        "narration": "Üç kilogramlık K, saniyede dört metreyle duran bir kilogramlık L'ye çarpıp yapışıyor.",
+        "show": [],
+        "focus": [
+         "b1",
+         "b2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Birlikte saniyede üç metreyle gidiyorlar: momentum on iki, korundu.",
+        "show": [
+         "run",
+         "before",
+         "after"
+        ],
+        "focus": [
+         "after"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Ama kinetik enerji yirmi dörtten on sekize indi: altı joule ısıya ve sese gitti.",
+        "show": [
+         "energy"
+        ],
+        "focus": [
+         "energy"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Esnek olmayan çarpışmada momentum yine korunur ama kinetik enerjinin bir kısmı ısıya, sese ve şekil değişimine gider. Cisimler yapışıp birlikte hareket ederse ortak hız, toplam momentum bölü toplam kütledir. Yapışarak yapılan çarpışmada kinetik enerji kaybı en büyüktür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sürtünmesiz yatay zeminde duran $2$ kg'lık bir oyun hamuru bloğuna doğru, $5$ m/s hızla atılan özdeş $0{,}2$ kg'lık bilyeler aynı anda saplanıyor ve blok, içindeki bilyelerle birlikte $3$ m/s hızla harekete geçiyor.\n\nBloğa kaç bilye saplanmıştır?",
+       "context": "ÖSYM 2022'de sorulan oyun hamuruna saplanan bilyeler yapısının yeni sayılarla kurulmuş hâli.",
+       "options": [
+        "$5$",
+        "$10$",
+        "$15$",
+        "$20$",
+        "$25$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$n \\cdot 0{,}2 \\cdot 5 = (2 + 0{,}2n) \\cdot 3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "n bilyenin momentumu n çarpı sıfır virgül iki çarpı beş; sonra blok ve bilyeler birlikte, iki artı sıfır virgül iki n kilogram, üç metre bölü saniyeyle."
+        },
+        {
+         "text": "$n = 6 + 0{,}6n$ → $0{,}4n = 6$ → $n = 15$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "n eşittir altı artı sıfır virgül altı n; sıfır virgül dört n altı, n on beş. Cevap C."
+        }
+       ],
+       "narration": "Yapışarak çarpışma: momentum korunur.",
+       "origin": {
+        "changes": "ÖSYM 2022 modeli: kütleler ve hızlar değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$2$ kg'lık bir araba $6$ m/s hızla, duran $4$ kg'lık bir arabaya çarpıp yapışıyor.\n\nÇarpışmada kaybolan kinetik enerji kaç J'dür?",
+       "options": [
+        "$12$",
+        "$18$",
+        "$24$",
+        "$30$",
+        "$36$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$V = \\frac{2 \\cdot 6}{6} = 2$ m/s.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Ortak hız: on iki bölü altı, iki metre bölü saniye."
+        },
+        {
+         "text": "Önce $\\frac{1}{2} \\cdot 2 \\cdot 36 = 36$ J, sonra $\\frac{1}{2} \\cdot 6 \\cdot 4 = 12$ J: kayıp $24$ J.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Önce otuz altı joule, sonra on iki joule: yirmi dört joule ısıya ve sese gitti. Kalan enerjiyi kayıp sanan on ikiyi işaretler. Cevap C."
+        }
+       ],
+       "narration": "Önce ortak hız, sonra enerjiler.",
+       "origin": {
+        "changes": "Enerji kaybı kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ITME_06",
+    "subtopics": [],
+    "title": "Patlamalar",
+    "narration": "Duran bir sistem parçalanınca parçalar zıt yönlere savrulur. Toplam momentum sıfır kalır ama kinetik enerji artar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Patlama",
+      "items": [
+       "Duran bir sistem parçalanırsa toplam momentum **sıfır** kalır: parçalar zıt yönde gider.",
+       "Parçaların momentumları **eşit büyüklükte**; hafif parça daha hızlıdır.",
+       "Kinetik enerji **artar**: iç enerji (patlayıcı, yay, kaslar) harekete dönüşür."
+      ],
+      "visual": {
+       "kind": "collision",
+       "bodies": [
+        {
+         "label": "K",
+         "mass": 1,
+         "v": 0
+        },
+        {
+         "label": "L",
+         "mass": 2,
+         "v": 0
+        }
+       ],
+       "type": "explosion",
+       "after": [
+        -4,
+        2
+       ],
+       "energy": true,
+       "motion": true,
+       "duration": 6,
+       "unit": "p (kg·m/s)"
+      },
+      "beats": [
+       {
+        "narration": "Bir ve iki kilogramlık iki araba arada sıkışmış bir yayla duruyor: momentum sıfır.",
+        "show": [
+         "before"
+        ],
+        "focus": [
+         "b1",
+         "b2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Yay açılınca hafif olan saniyede dört, ağır olan iki metreyle zıt yönlere gidiyor; momentumlar eşit ve zıt, toplam yine sıfır.",
+        "show": [
+         "run",
+         "after"
+        ],
+        "focus": [
+         "after"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Kinetik enerji sıfırdan on iki joule'e çıktı: yayın enerjisi.",
+        "show": [
+         "energy"
+        ],
+        "focus": [
+         "energy"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Duran bir sistem iç kuvvetlerle parçalanırsa toplam momentum sıfır kalır; parçalar zıt yönlere gider ve momentumlarının büyüklükleri eşittir. Bu yüzden hafif parça daha hızlıdır. Kinetik enerji ise artar; patlayıcının, sıkışmış bir yayın ya da kasların iç enerjisi harekete dönüşür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sürtünmesiz bir buz pistinde yan yana duran $80$ kg'lık bir antrenör ile $50$ kg'lık öğrencisi birbirini itip zıt yönlerde ayrılıyor.\n\nÖğrencinin;\nI. ayrıldıktan sonraki hızının büyüklüğü,\nII. ayrıldıktan sonraki momentumunun büyüklüğü,\nIII. kendisine uygulanan itmenin büyüklüğü\n\nniceliklerinden hangileri antrenörünkinden büyüktür?",
+       "context": "ÖSYM 2026'da sorulan buz pistinde birbirini iten eğitmen ve öğrenci yapısının sayılarla kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "II ve III"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Momentum sıfır kalmalı: momentumların büyüklükleri **eşit** (II değil); itmeler de etki-tepkiden **eşit** (III değil).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Başlangıçta ikisi de duruyor; toplam momentum sıfır kalmalı. Momentumları eşit büyüklükte, zıt yönlüdür. Birbirlerine uyguladıkları itmeler de etki-tepkiden eşittir."
+        },
+        {
+         "text": "$80 \\cdot v_A = 50 \\cdot v_Ö$: hafif olan öğrenci **daha hızlı** (I).",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Momentumlar eşit olduğuna göre kütlesi küçük olan öğrencinin hızı büyüktür. Yalnız birinci. Cevap A."
+        }
+       ],
+       "narration": "Başlangıçta toplam momentum sıfır.",
+       "origin": {
+        "changes": "ÖSYM 2026 modeli: kütleler sayıyla verildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sürtünmesiz zeminde duran $3$ kg'lık bir cisim iç patlamayla iki parçaya ayrılıyor. $1$ kg'lık parça $6$ m/s hızla doğuya gidiyor.\n\nÖbür parçanın hızı kaç m/s ve hangi yöndedir?",
+       "options": [
+        "$2$ ; batı",
+        "$3$ ; batı",
+        "$3$ ; doğu",
+        "$6$ ; batı",
+        "$12$ ; batı"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$1 \\cdot 6 + 2 \\cdot v = 0$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Önce momentum sıfır; sonra da sıfır olmalı: bir çarpı altı artı iki v, sıfır."
+        },
+        {
+         "text": "$v = -3$: $3$ m/s **batıya**.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "v eksi üç: ikinci parça saniyede üç metreyle batıya gider. Kütleyi üç kilogram alan ikiyi bulur. Cevap B."
+        }
+       ],
+       "narration": "Toplam momentum sıfır kalır.",
+       "origin": {
+        "changes": "Patlama kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$\\vec{p} = m\\vec{v}$; yön değişimi de momentumu değiştirir.",
+    "İtme $= F\\Delta t = \\Delta p$; alan.",
+    "Dış kuvvet yoksa toplam momentum korunur.",
+    "Esnek: momentum ve kinetik enerji korunur.",
+    "Yapışma: $V = \\frac{m_1v_1 + m_2v_2}{m_1 + m_2}$, enerji kaybı en büyük.",
+    "Patlama: toplam momentum sıfır, kinetik enerji artar."
+   ],
+   "warnings": [
+    "Minder momentum değişimini **değil**, kuvveti azaltır.",
+    "Momentum **vektördür**: işaret koy.",
+    "Patlamada kinetik enerji **artar**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "İki özdeş bozuk parayı masada çarpıştır; birinin durup öbürünün gittiğini, **hız takasını** gözle.",
+    "Bir topu önce duvara, sonra bir yastığa at; **çarpışma süresinin** kuvvete etkisini hisset.",
+    "Uygulamada AYT İtme ve Momentum testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Momentumun vektörel olduğunu örnekle: 0,2 kg top duvara 10 m/s hızla çarpıp aynı süratle geri dönerse momentum değişimi 4 kg·m/s'dir, sıfır değildir. Duvarın uyguladığı itmenin yönünü sor.",
+   "Kuvvet-zaman grafiğinden itme hesabı ekle: 0,1 s'de tepe değeri 200 N olan üçgen grafiğin alanı 10 N·s'dir; ortalama kuvvet 100 N. Aynı momentum değişiminde sürenin uzamasının (hava yastığı, kask, kum havuzu) ortalama kuvveti azalttığını belirt.",
+   "Geri tepme örneği ekle: 4 kg tüfek 0,02 kg mermiyi 400 m/s hızla atarsa 2 m/s hızla geri teper. Roket itmesini aynı ilkeyle (gaz geriye, roket ileri) açıkla.",
+   "Esnek çarpışmanın genel sonuçlarını ver: v₁' = (m₁ − m₂)v₁ / (m₁ + m₂), v₂' = 2m₁v₁ / (m₁ + m₂). Eşit kütlede hızlar değiş tokuş edilir (bilardo); hafif cisim duran ağır cisme çarpınca neredeyse aynı süratle geri döner; ağır cisim duran hafif cisme çarpınca hafif cisim yaklaşık 2v ile gider.",
+   "Yapışarak çarpışmaya ikinci örnek ver: 8 m/s hızlı 3 kg araba duran 1 kg arabaya yapışırsa ortak hız 6 m/s; kinetik enerji 96 J'den 72 J'ye düşer (%25 kayıp). İki boyutlu örnek: kuzeye 3 ve doğuya 4 kg·m/s momentumlu cisimler yapışırsa toplam momentum 5 kg·m/s olur."
+  ]
+ }
+}

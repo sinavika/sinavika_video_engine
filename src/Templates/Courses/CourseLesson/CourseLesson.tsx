@@ -6,11 +6,17 @@ import {LessonScriptSchema, type LessonScript} from '../../../Courses/LessonScri
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, VOICE_LEAD_SECONDS, type VoiceClips} from '../../../Scenes/Voiceover';
-import {cardCues, cuesInLine, markCues, marksAfter, readingCues, spreadCues, stepCues} from '../../../Courses/LessonCues';
+import {cardCues, cuesInLine, markCues, marksAfter, readingCues, spreadCues, stepCues} from '../../../Courses/LessonCue';
 import {courseLessonTheme} from '../../../Themes/LessonAccent';
 import {defineTemplate} from '../../TemplateDefinition';
-import {promotionScene} from '../CoursePromotionScenes';
-import {LessonCardScene, LessonChrome, LessonIntroScene, LessonSummaryScene, PredictScene, QuestionScene, SectionScene} from './CourseLessonScenes';
+import {promotionScene} from '../CoursePromotionScene';
+import {LessonCardScene} from './Scenes/LessonCardScene';
+import {LessonChrome} from './Scenes/LessonChrome';
+import {LessonIntroScene} from './Scenes/LessonIntroScene';
+import {LessonSummaryScene} from './Scenes/LessonSummaryScene';
+import {PredictScene} from './Scenes/PredictScene';
+import {QuestionScene} from './Scenes/QuestionScene';
+import {SectionScene} from './Scenes/SectionScene';
 
 const {pacing} = COURSE_DESIGN;
 const estimate = (text: string, minSeconds: number = pacing.minCardSeconds) => estimateReadingSeconds([text], {baseSeconds: 0.8, minSeconds, maxSeconds: 90});
@@ -33,7 +39,7 @@ const buildScenes = (script: LessonScript, voiceClips: VoiceClips = {}): Templat
 	sections.forEach((section, sectionIndex) => {
 		const prefix = `s${sectionIndex + 1}`;
 		const opening = say(prefix, section.narration, estimate(section.narration, pacing.sectionSeconds), pacing.sectionSeconds);
-		scenes.push({id: prefix, seconds: opening.seconds, label: section.title, voice: [opening], element: <SectionScene index={sectionIndex} title={section.title} total={sections.length} />});
+		scenes.push({id: prefix, seconds: opening.seconds, label: section.title, voice: [opening], element: <SectionScene index={sectionIndex} title={section.title} total={sections.length} titles={sections.map((entry) => entry.title)} />});
 
 		section.cards.forEach((card, cardIndex) => {
 			const id = `${prefix}-c${cardIndex + 1}`;

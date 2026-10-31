@@ -1,6 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, useVideoConfig} from 'remotion';
 import {useVideoLayout} from '../../Components/Layouts/VideoLayout';
+import {resolveVideoLayout} from '../../Configurations/VideoFormats';
 import {BrandMark} from '../../Components/Overlays/BrandMark';
 import {Text} from '../../Components/Typography/Text';
 import {readableOn} from '../../Themes/ColorPalette';
@@ -10,7 +11,7 @@ import type {Branding} from '../Schemas/ImageFields';
 import {gridInsets} from '../Templates/ProfileGrids/ProfileGridLayout';
 
 /** How the canvas of an image is painted. All of it comes from the active theme or palette. */
-export type ImageBackdrop = 'canvas' | 'spotlight' | 'gradient' | 'primary' | 'surface';
+type ImageBackdrop = 'canvas' | 'spotlight' | 'gradient' | 'primary' | 'surface';
 
 /**
  * Size-aware helpers for image layouts. Images share `u()` with video: 1080px
@@ -19,9 +20,18 @@ export type ImageBackdrop = 'canvas' | 'spotlight' | 'gradient' | 'primary' | 's
  */
 export const useImageLayout = () => {
 	const {width, height} = useVideoConfig();
-	const {u, unit} = useVideoLayout();
+	const {u} = useVideoLayout();
 	const ratio = width / height;
-	return {width, height, u, wide: ratio > 1.25, tall: ratio < 0.65, padding: u(72), insets: gridInsets(width, height, unit, 72)};
+	return {width, height, u, wide: ratio > 1.25, tall: ratio < 0.65, padding: u(IMAGE_MARGIN), insets: imageFrameOf(width, height).insets};
+};
+
+/** The plain margin of an image, in reference pixels. */
+const IMAGE_MARGIN = 72;
+
+/** An image's unit (actual pixels per reference pixel) and insets without React: for measuring a layout before it is rendered (checkLayout). */
+export const imageFrameOf = (width: number, height: number) => {
+	const {unit} = resolveVideoLayout(width, height);
+	return {unit, insets: gridInsets(width, height, unit, IMAGE_MARGIN)};
 };
 
 const solidInk = (color: string): Ink => ({text: color, muted: withAlpha(color, 0.78), emphasis: color});

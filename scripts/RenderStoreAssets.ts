@@ -7,9 +7,9 @@
  *   npm run store -- --lang en --slides 0,1
  *   npm run store -- --source real --out <folder>    (emulator captures instead of drawn screens)
  *
- * Files: out/MobileHeader/<lang>/<ios|android>/<format>/<NN>-<name>.png. The App Store
+ * Files: Outputs/MobileHeader/<lang>/<ios|android>/<format>/<NN>-<name>.png. The App Store
  * creative (ust-gorsel, arama-sonucu) is one picture per size, with and without copy.
- * Alternative looks go to out/MobileHeader/_alternatifler/<look>/… so the
+ * Alternative looks go to Outputs/MobileHeader/_alternatifler/<look>/… so the
  * upload folders only ever hold the chosen look.
  */
 import {copyFile, mkdir, stat} from 'node:fs/promises';
@@ -28,7 +28,7 @@ const {values} = parseArgs({
 		lang: {type: 'string'},
 		only: {type: 'string'},
 		slides: {type: 'string'},
-		out: {type: 'string', default: path.join('out', 'MobileHeader')},
+		out: {type: 'string', default: path.join('Outputs', 'MobileHeader')},
 		icon: {type: 'string', default: path.join(process.env.USERPROFILE ?? '', 'Desktop', 'Sinavika-Logo', 'web', 'public', 'logos', 'icon-512.png')},
 	},
 });

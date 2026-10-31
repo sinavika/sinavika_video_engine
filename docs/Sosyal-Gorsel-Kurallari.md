@@ -1,6 +1,10 @@
 # Sosyal medya görsel kuralları
 
-Instagram, TikTok ve YouTube için **bundan sonra üretilecek** gönderi, karusel, reels, reels kapağı ve profil üçlüleri bu kurallara uyar. Yayımlanmış gönderiler değiştirilmez; kurallar şablonlara ve altyapıya uygulanır. Kaynak: Tuğçe'nin profil incelemesi (26 Ekim 2026). Adlar ve metin kuralları için [`ProductMessaging.md`](ProductMessaging.md) ve [`BrandIdentity.md`](BrandIdentity.md) geçerlidir.
+Instagram, TikTok ve YouTube için **bundan sonra üretilecek** gönderi, karusel, reels, reels kapağı ve profil üçlüleri bu kurallara uyar. Yayımlanmış gönderiler değiştirilmez; kurallar şablonlara ve altyapıya uygulanır. Kaynak: Tuğçe'nin profil incelemesi (26 Ekim 2026). Adlar ve metin kuralları için [`ProductMessaging.md`](ProductMessaging.md) ve [`BrandIdentity.md`](BrandIdentity.md) geçerlidir. Hook, kurgu, kaydırmalı yapı ve yayın öncesi kontrol listesi [`SocialCreativePlaybook.md`](SocialCreativePlaybook.md) içindedir.
+
+## 0. Kapak, bitiş kartı ve mağaza rozetleri
+
+Kapak (reels'in ilk karesi, gönderinin ilk görseli), reels'in bitiş kartı ve App Store / Google Play rozetleri her gönderide aynıdır. Kapakta ve gönderinin bütün sayfalarında punto ve yazı yeri sabittir, satırlar ölçülür, sığmayan yazı render'dan önce reddedilir; hepsi tek yerden yönetilir: [`Sosyal-Kimlik-Standardi.md`](Sosyal-Kimlik-Standardi.md) §1 ve §4. Videoların ve iç sayfaların renkleri serbesttir.
 
 ## 1. Profil ızgarası
 
@@ -45,3 +49,9 @@ Tek renkli büyük bir alan, ürün göstermeden bırakılmaz; leke gibi okunur.
 
 - **Hızlı belirme:** Ekrandaki yazı ve etiketler yavaşça belirmez. Kelimeyle birlikte en geç 0,1 saniyede tam görünür olurlar; istenirse kısa bir büyüme hareketi kullanılır. Durdurulan ya da ekran görüntüsü alınan her kare okunur olmalı. "PLANLA." karesindeki "Ders Planı" etiketi yarı saydam yakalanmıştı (`KineticType`).
 - **Kontrol:** Video kontrol edilirken yalnız hareket değil, rastgele birkaç durdurulmuş kare de incelenir.
+- **İlk kare:** Videonun ilk karesi kapaktır ve hook'u taşır. Kapak, profil ızgarasında da tek başına okunur ve durdurur. Durağan bir başlık kartı 2 saniyeden uzun kalmaz.
+
+## 7. Kaydırmalı gönderi
+
+- **Kapak:** 1. sayfa boş kalmaz; hook ve ürün ya da konu görseli alanı doldurur (31 Ekim admin notu). İkinci derecede çağrılar ("arkadaşını etiketle") daha küçük yazılır. Kısa bir "Kaydır" çağrısı kullanılabilir. Sayfa sayacı ve ilerleme çubuğu kullanılmaz.
+- **2. sayfa:** İkinci hook'tur ve tek başına durdurur.

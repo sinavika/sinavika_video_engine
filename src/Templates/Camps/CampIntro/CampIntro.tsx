@@ -3,13 +3,22 @@ import {APP_SCREEN_NAMES} from '../../../Components/AppScreens/AppScreenRegistry
 import {COURSE_VOICE_MODEL} from '../../../Configurations/Voices';
 import {COURSE_DESIGN} from '../../../Courses/CourseDesign';
 import {plainText} from '../../../Schemas/RichText';
-import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
+import {OUTRO_SCENE_ID} from '../../../Scenes/AppEndScene';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, phraseCues, voiceTracksOf, type VoiceClips, type VoiceSlot} from '../../../Scenes/Voiceover';
 import {UI_ICON_NAMES, type UIIconName} from '../../../UIUX/Icons';
 import {defineTemplate} from '../../TemplateDefinition';
-import {AnatomyScene, AppScene, CampMapScene, ClosingScene, EpisodeScene, HookScene, MethodScene, NetScene, ScoreScene, WelcomeScene} from './CampIntroScenes';
+import {AnatomyScene} from './Scenes/AnatomyScene';
+import {AppScene} from './Scenes/AppScene';
+import {CampMapScene} from './Scenes/CampMapScene';
+import {ClosingScene} from './Scenes/ClosingScene';
+import {EpisodeScene} from './Scenes/EpisodeScene';
+import {HookScene} from './Scenes/HookScene';
+import {MethodScene} from './Scenes/MethodScene';
+import {NetScene} from './Scenes/NetScene';
+import {ScoreScene} from './Scenes/ScoreScene';
+import {WelcomeScene} from './Scenes/WelcomeScene';
 
 /**
  * Episode 0 of a camp: published before the camp's first lesson. It is an
@@ -65,10 +74,10 @@ export const CampIntroSchema = z
 	.refine((content) => content.anatomy.tests.reduce((sum, test) => sum + test.questions, 0) === content.anatomy.questions, {path: ['anatomy', 'tests'], message: 'The tests must add up to the exam’s questions.'})
 	.refine((content) => content.camp.lessons.some((lesson) => lesson.code === content.camp.first), {path: ['camp', 'first'], message: 'The first camp must be one of the lessons.'});
 
-export type CampIntroContent = z.infer<typeof CampIntroSchema>;
+type CampIntroContent = z.infer<typeof CampIntroSchema>;
 
 /** Each scene's YouTube chapter. */
-export const CAMP_INTRO_CHAPTERS = {
+const CAMP_INTRO_CHAPTERS = {
 	hook: 'Giriş',
 	anatomy: 'Sınav nasıl?',
 	net: 'Net nasıl hesaplanır?',
@@ -131,7 +140,7 @@ const SAMPLE: z.input<typeof CampIntroSchema> = {
 	series: 'YKS kampı · TYT',
 	episode: {title: 'Başlamadan önce', label: 'Bölüm 0 · Sınavı ve kampı tanıyoruz'},
 	hook: {beats: ['120 soru.', '165 dakika.', 'Tek bir sabah.'], narration: 'Yüz yirmi soru. Yüz altmış beş dakika. Ve tek bir sabah. Teyete tam olarak bu. Hazırsan başlıyoruz.'},
-	welcome: {narration: 'Merhaba, ben Sino Ey Ay. Kampın sıfırıncı bölümüne hoş geldin. Bugün konu anlatmıyoruz, önce haritayı çiziyoruz.'},
+	welcome: {narration: 'Merhaba, ben SinoAI. Kampın sıfırıncı bölümüne hoş geldin. Bugün konu anlatmıyoruz, önce haritayı çiziyoruz.'},
 	anatomy: {questions: 120, minutes: 165, tests: [{name: 'Türkçe', questions: 40, lesson: 'TRK'}, {name: 'Sosyal Bilimler', questions: 20, lesson: 'TAR'}, {name: 'Temel Matematik', questions: 40, lesson: 'MAT'}, {name: 'Fen Bilimleri', questions: 20, lesson: 'FIZ'}], narration: 'Teyete dört testten oluşur: Türkçe kırk, Sosyal Bilimler yirmi, Temel Matematik kırk ve Fen Bilimleri yirmi soru. Toplam yüz yirmi soru için yüz altmış beş dakikan var.'},
 	net: {example: {right: 40, wrong: 8}, narration: 'Puanını netin belirler. Dört yanlış bir doğruyu götürür, boş bıraktığın soru ise hiçbir şey kaybettirmez.'},
 	score: {focus: 'TYT', cards: [{title: 'Ön lisans', text: 'TYT puanı tek başına kullanılır.'}, {title: 'Lisans', text: 'YKS puanının yüzde kırkı TYT’den gelir.'}], narration: 'Teyete puanı ön lisans tercihlerinde tek başına kullanılır; lisans tercihlerinde ise yekase puanının yüzde kırkını oluşturur.'},

@@ -9,6 +9,17 @@
 - ölçüm ve dönüşüm düzeni;
 - arama kampanyaları, bannerlar ve videolar.
 
+30 Ekim 2026 yenilemesi (sahibin isteğiyle bütün görseller ve videolar yeniden üretildi, adlar aynı):
+- **Renk:** zemin yalnız marka paletinden; turuncu ve lacivert, konsepte göre sırayla. Modül renkleri (yeşil Ders Planı, mor Akıllı Özet, pembe Bilgi Kartları) zemin olmaktan çıktı; yalnız uygulama ekranlarının içinde kaldı.
+- **Logo:** her yerde yeni logo (simge ve yazı birlikte). Eskiden yalnız yazı vardı.
+- **Çözünürlük:** görseller iki kat boyutta (ör. kare 2400×2400); Google aynı oranda büyük dosyayı kabul eder ve daha net gösterir. Videolar 4K.
+- **Üst üste binme yok:**
+  - Kanıt kartı ile telefon ya da tarayıcı yan yana durur. Cihazlar karenin içinde kalır, kenardan taşıp menüsü kesilmez.
+  - Bannerlarda ve web HTML5'lerinde tarayıcı çıkarıldı; yalnız kanıt kartı var. Orta boy bannerlarda (300×250, 336×280, 250×250) kart kancaya ve alt satıra değiyordu; orada kart yerine destek cümlesi var.
+  - Videoda altyazı ayrı bir bantta durur. Ekrandaki kancayı tekrarlayan altyazı gösterilmez.
+- **Dil:** İngilizce reklamda Türkçe ekran yok; web ekranındaki kullanıcı adı da İngilizce. Bunu bir test her seferinde denetler.
+- **Ses:** bütün 15 sn videolar ElevenLabs ile yeniden seslendirildi: Türkçe Doğa, İngilizce Liam (ABD'li, ana dili İngilizce).
+
 Set yalnız öğrencilere yöneliktir. Pazar klasörle ayrılır:
 - `tr/` Türkiye'dir: YKS ve KPSS, Türkçe.
 - `en/` ABD'dir: SAT ve ACT, İngilizce.
@@ -82,8 +93,9 @@ ABD'de tıklama Türkiye'nin 10–30 katı pahalı (₺30–130). ABD bütçesi 
 ## Videolar
 
 - **15 sn:** kanca, kanıt kartı, ürün, kapanış.
-  - Türkçe videolar marka sesi Doğa ile (Eleven v4) seslendirildi; altyazı da var.
-  - İngilizce videolarda ses yok; müzik ve altyazı var. Türk sesi İngilizce okuyunca yapay duruyor.
+  - Türkçe videolar marka sesi Doğa ile (ElevenLabs, Eleven v4) seslendirildi.
+  - İngilizce videolar ElevenLabs'in ana dili İngilizce olan sesi Liam ile seslendirildi. Türk sesi İngilizce okuyunca yapay duruyor.
+  - Altyazı, ekrandaki kancadan farklı bir şey söylendiğinde görünür.
   - Hepsi 15 saniye veya altında, yani atlanamaz yayın içi reklamda da kullanılabilir.
 - **6 sn bumper:** yalnız müzik; kanca, kanıt ve kapanış.
 - **Müzik:** her sınav ve tanıtım için ayrı üretildi (ElevenLabs Music).
@@ -124,4 +136,4 @@ npm run google-ads           görseller, bannerlar, HTML5, metinler, arama dosya
 npm run google-ads-video     videolar
 ```
 
-Yeni bir kanca yazmadan önce `Anahtar-Kelime-ve-Kanca-Kurallari.md` içindeki kontrol listesine bak. `npx vitest run tests/GoogleAds.test.ts` kuralları denetler.
+Yeni bir kanca yazmadan önce `Anahtar-Kelime-ve-Kanca-Kurallari.md` içindeki kontrol listesine bak. `npx vitest run tests/Ads/Google/GoogleAds.test.ts` kuralları denetler.

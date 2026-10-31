@@ -1,0 +1,1402 @@
+{
+ "topic": {
+  "id": "03050F1E-D723-3D4E-64A4-60D5D35EC674",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_UCGEN_ALAN"
+ },
+ "title": "Üçgende Alan",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "YKS/TYT/KonuAnlatimi/GEO/GEO_UCGEN_ALAN.json (MEB Temel Matematik s. 130-133: yükseklik, dışa düşen yükseklik, diklik merkezi, eşkenar üçgende yükseklik)",
+  "YKS/TYT/CikmisSorular/GEO.jsonl (ÖSYM 2024 kenar-sinüs \"şanslı üçgen\", 2022 benzer üçgenlerde alan; yalnız yapı örneği); YKS/TYT/Sorular/GEO/GEO_UCGEN_ALAN.jsonl",
+  "Bütün şekiller verilen ölçülerle koordinatta çizildi; sorular özgündür"
+ ],
+ "works": {
+  "additions": [
+   "Üçgen alan formüllerini tek tabloda ver: taban-yükseklik, kenar-sinüs, Heron (√(u(u − a)(u − b)(u − c))), iç teğet çember (r · u), dik üçgen, eşkenar üçgen.",
+   "Eşkenar üçgenin içindeki bir noktadan kenarlara uzaklıklar toplamının yüksekliğe eşit olduğunu (Viviani) örnekle.",
+   "Koordinat düzleminde köşeleri verilen üçgenin alanını dikdörtgenle çevreleyip çıkarma yöntemiyle bulmayı örnekle.",
+   "Alan oranı sorularına karma örnekler ekle: ortak yükseklikli üçgenler, kenarortay ve ağırlık merkezi, paralel doğrular arasındaki üçgenler."
+  ]
+ },
+ "short": {
+  "hook": "Alanı üç yoldan bul",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "$\\frac{a \\cdot h}{2}$"
+   },
+   {
+    "kind": "fact",
+    "text": "$\\frac{1}{2} b c \\sin \\alpha$"
+   },
+   {
+    "kind": "warning",
+    "text": "$\\sin 150° = \\sin 30°$"
+   }
+  ],
+  "summary": [
+   "Taban × yükseklik ÷ 2",
+   "Aynı yükseklik: taban oranı"
+  ],
+  "rounds": [
+   {
+    "sentence": "Taban 6, yükseklik 4",
+    "question": "Alan?",
+    "choices": [
+     "12",
+     "24"
+    ],
+    "answer": 0,
+    "why": "**İkiye** böl."
+   },
+   {
+    "sentence": "8 ve 6, arada 30°",
+    "question": "Alan?",
+    "choices": [
+     "12",
+     "24"
+    ],
+    "answer": 0,
+    "why": "Sinüs **yarım**."
+   },
+   {
+    "sentence": "Taban 3 : 5, aynı tepe",
+    "question": "Alan oranı?",
+    "choices": [
+     "3 : 5",
+     "9 : 25"
+    ],
+    "answer": 0,
+    "why": "**Aynı** yükseklik."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-geometri-kampi",
+  "name": "TYT Geometri kampı",
+  "number": 10,
+  "total": 23,
+  "previous": "Açı – Kenar Bağıntıları",
+  "next": "Üçgende Merkezler",
+  "promise": "Geometri konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Bir üçgen çiz; üç kenarı da sırayla taban seçip alanı **üç kez** hesapla, aynı çıktığını gör.",
+    "Taban-yükseklik, kenar-sinüs, eşkenar alan ve alan oranı kurallarını **bir sayfaya** yaz.",
+    "Uygulamada Üçgende Alan testinden **20 soru** çöz; her soruda önce **ortak yüksekliği** ara."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bir üçgen çiz; üç kenarı da sırayla taban seçip alanı üç kez hesapla ve aynı çıktığını gör. Sonra taban yükseklik, kenar sinüs, eşkenar alan ve alan oranı kurallarını bir sayfaya yaz. En son uygulamada üçgende alan testinden yirmi soru çöz; her soruda önce ortak yüksekliği ara. Bir sonraki derste üçgende merkezlerle devam ediyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Bir alan, üç yol",
+   "narration": "Aynı üçgenin alanını üç farklı tabanla hesaplayabilirsin; üçü de aynı sonucu verir. Yükseklik bilinmiyorsa iki kenar ve aradaki açı yeter. Çoğu zaman alanı hiç hesaplamazsın bile: iki üçgenin alanları arasındaki oranı görmek soruyu çözer. Bu derste üçgende alanı bütün bu yollarla öğreneceğiz."
+  },
+  "objectives": [
+   "Taban ve yükseklikle alan hesaplamak; dışa düşen yüksekliği kullanmak",
+   "Dik ve eşkenar üçgende alan formüllerini uygulamak",
+   "İki kenar ve aradaki açıyla alanı kenar-sinüs bağıntısıyla bulmak",
+   "Ortak yükseklik ve ortak açıyla alan oranı kurmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_UCGEN_ALAN_01",
+    "title": "Taban çarpı yükseklik",
+    "narration": "Üçgenin alanı için en temel kural: taban çarpı yükseklik bölü iki.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Yükseklik dışarı düşebilir",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -2.3,
+        -0.7,
+        6.7,
+        4.3
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          -1.6,
+          3.6
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          6,
+          0
+         ]
+        },
+        {
+         "id": "H",
+         "at": [
+          -1.6,
+          0
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "a"
+        },
+        {
+         "from": "C",
+         "to": "A"
+        },
+        {
+         "from": "H",
+         "to": "B",
+         "dashed": true
+        },
+        {
+         "from": "A",
+         "to": "H",
+         "label": "h",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "fill": true
+        }
+       ],
+       "angles": [
+        {
+         "at": "H",
+         "from": "B",
+         "to": "A",
+         "right": true
+        }
+       ]
+      },
+      "caption": "$A = \\frac{a \\cdot h_a}{2}$; geniş açılı üçgende yükseklik, kenarın **uzantısına** iner.",
+      "narration": "Bir kenarı taban seçip karşı köşeden o kenara bir dikme indiririz; dikmenin uzunluğu yüksekliktir. Alan, taban çarpı yükseklik bölü ikidir.",
+      "beats": [
+       {
+        "narration": "Bu üçgende B açısı geniş. A'dan B C'ye indirilen dikme, B C'nin üzerine değil, uzantısına düşüyor: ayağı H, B'nin ötesinde.",
+        "focus": [
+         "AH",
+         "HB",
+         "angle-H"
+        ]
+       },
+       {
+        "narration": "Yine de taban a, yükseklik h: alan a çarpı h bölü iki. Yükseklik, köşenin taban doğrusuna uzaklığıdır; dikmenin üçgenin içinde kalması gerekmez. Her kenarın kendi yüksekliği vardır ve üç yükseklik diklik merkezi denen bir noktada kesişir.",
+        "focus": [
+         "BC",
+         "ABC"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $|BC| = 12$ cm, $[BC]$'ye ait yükseklik $5$ cm ve $|AC| = 10$ cm'dir. Buna göre $[AC]$'ye ait yükseklik kaç santimetredir?",
+       "options": [
+        "4",
+        "5",
+        "6",
+        "$7{,}5$",
+        "8"
+       ],
+       "answer": 2,
+       "narration": "Alan tek: hangi tabanı seçersen seç aynı çıkar.",
+       "steps": [
+        {
+         "text": "$A = \\frac{12 \\cdot 5}{2} = 30$.",
+         "narration": "B C tabanıyla alan: on iki çarpı beş bölü iki, otuz."
+        },
+        {
+         "text": "$\\frac{10 \\cdot h_b}{2} = 30$ → $h_b = 6$. Cevap **C**.",
+         "narration": "Aynı alan A C tabanıyla da otuz: on çarpı h bölü iki otuz, h altı santimetre. Kural: taban büyüdükçe ona ait yükseklik küçülür; çarpımları sabit. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; iki farklı taban ve yükseklikle aynı alanın yazılması özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $|BC| = 4$ cm ve $|AC| = 6$ cm'dir. $[BC]$'ye ait yükseklik $h_a$, $[AC]$'ye ait yükseklik $h_b$ olduğuna göre $\\frac{h_a}{h_b}$ oranı kaçtır?",
+       "options": [
+        "$\\frac{2}{3}$",
+        "$\\frac{3}{2}$",
+        "$\\frac{4}{9}$",
+        "$\\frac{9}{4}$",
+        "$1$"
+       ],
+       "answer": 1,
+       "narration": "Taban çarpı yükseklik sabit: kısa tabanın yüksekliği uzun.",
+       "steps": [
+        {
+         "text": "$4 \\cdot h_a = 6 \\cdot h_b$ (ikisi de alanın iki katı).",
+         "narration": "İki tabanla yazılan alanlar eşit: dört çarpı h a, altı çarpı h b."
+        },
+        {
+         "text": "$\\frac{h_a}{h_b} = \\frac{6}{4} = \\frac{3}{2}$. Cevap **B**.",
+         "narration": "h a bölü h b, altı bölü dört, üç bölü iki. Yükseklikler tabanlarla ters orantılıdır. Cevabımız B. İki bölü üçü seçen, oranı düz kurmuştur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yüksekliklerin tabanlarla ters orantılı olması özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $B$ açısı geniştir. $|BC| = 6$ birim ve $A$ noktasının $BC$ doğrusuna uzaklığı $4$ birim olduğuna göre $A(ABC)$ kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -2.7,
+         -0.7,
+         6.7,
+         4.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           -2,
+           4
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           0
+          ]
+         },
+         {
+          "id": "H",
+          "at": [
+           -2,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "6"
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "H",
+          "to": "B",
+          "dashed": true
+         },
+         {
+          "from": "A",
+          "to": "H",
+          "label": "4",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "H",
+          "from": "B",
+          "to": "A",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "10",
+        "12",
+        "15",
+        "20",
+        "24"
+       ],
+       "answer": 1,
+       "narration": "Yükseklik, uzantıya inen dikmedir.",
+       "steps": [
+        {
+         "text": "Taban $|BC| = 6$, yükseklik $|AH| = 4$ (uzantıda).",
+         "narration": "Taban B C altı. Yükseklik, A'nın B C doğrusuna uzaklığı, dört; dikme uzantıya düşse de yükseklik budur."
+        },
+        {
+         "text": "$A = \\frac{6 \\cdot 4}{2} = 12$. Cevap **B**.",
+         "narration": "Alan altı çarpı dört bölü iki, on iki birimkare. Cevabımız B. Yirmi dördü seçen, ikiye bölmeyi unutmuştur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; geniş açılı üçgende dışa düşen yükseklik özgün ölçülerle, çizilmiş bir şekilde soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ALAN_03",
+    "subtopics": [
+     "GEO_UCGEN_ALAN_02"
+    ],
+    "title": "Dik ve eşkenar üçgende alan",
+    "narration": "İki özel üçgenin alanını formülle hızlıca bulalım.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Eşkenarın alanı",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        6.7,
+        5.896
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          3,
+          5.196
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          6,
+          0
+         ]
+        },
+        {
+         "id": "H",
+         "at": [
+          3,
+          0
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "a"
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "a"
+        },
+        {
+         "from": "C",
+         "to": "A",
+         "label": "a"
+        },
+        {
+         "from": "A",
+         "to": "H",
+         "label": "h",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "fill": true
+        }
+       ],
+       "angles": [
+        {
+         "at": "H",
+         "from": "C",
+         "to": "A",
+         "right": true
+        }
+       ]
+      },
+      "caption": "Dik üçgende $A = \\frac{\\text{dik kenarların çarpımı}}{2}$; eşkenarda $A = \\frac{a^2\\sqrt{3}}{4}$.",
+      "narration": "Dik üçgende dik kenarlardan biri taban, öbürü yükseklik olur; alan, dik kenarların çarpımının yarısıdır.",
+      "beats": [
+       {
+        "narration": "Eşkenar üçgende yükseklik a kök üç bölü iki. Alan, a çarpı a kök üç bölü iki, bölü iki.",
+        "focus": [
+         "AH",
+         "BC"
+        ]
+       },
+       {
+        "narration": "Sonuç: a kare kök üç bölü dört. Kenarı iki katına çıkarsa alan dört katına çıkar, çünkü kenar kare olarak giriyor.",
+        "focus": [
+         "ABC"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Dik kenar uzunlukları $6$ cm ve $8$ cm olan bir dik üçgende hipotenüse ait yükseklik $h$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         8.7,
+         6.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           6
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           8,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "H",
+          "at": [
+           2.88,
+           3.84
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "C",
+          "to": "A",
+          "label": "6"
+         },
+         {
+          "from": "C",
+          "to": "B",
+          "label": "8"
+         },
+         {
+          "from": "A",
+          "to": "H"
+         },
+         {
+          "from": "H",
+          "to": "B"
+         },
+         {
+          "from": "C",
+          "to": "H",
+          "label": "h",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "C",
+          "from": "B",
+          "to": "A",
+          "right": true
+         },
+         {
+          "at": "H",
+          "from": "A",
+          "to": "C",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "4",
+        "$4{,}5$",
+        "$4{,}8$",
+        "5",
+        "6"
+       ],
+       "answer": 2,
+       "narration": "Alanı iki yoldan yaz: dik kenarlarla ve hipotenüsle.",
+       "steps": [
+        {
+         "text": "$A = \\frac{6 \\cdot 8}{2} = 24$; hipotenüs $10$.",
+         "narration": "Dik kenarlarla alan: altı çarpı sekiz bölü iki, yirmi dört. Hipotenüs on."
+        },
+        {
+         "text": "$\\frac{10 \\cdot h}{2} = 24$ → $h = 4{,}8$. Cevap **C**.",
+         "narration": "Aynı alan hipotenüsle: on çarpı h bölü iki, yirmi dört; h dört virgül sekiz. Kısa yol: hipotenüse ait yükseklik, dik kenarların çarpımı bölü hipotenüs. Cevabımız C. Beşi seçen, yüksekliği hipotenüse ait kenarortayla karıştırmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dik üçgende alanı iki yoldan yazarak hipotenüse ait yükseklik bulma özgün bir değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kenarı $6$ cm olan eşkenar üçgenin alanı kaç santimetrekaredir?",
+       "options": [
+        "$6\\sqrt{3}$",
+        "$9\\sqrt{3}$",
+        "$12\\sqrt{3}$",
+        "$18\\sqrt{3}$",
+        "$36$"
+       ],
+       "answer": 1,
+       "narration": "$A = \\frac{a^2\\sqrt{3}}{4}$.",
+       "steps": [
+        {
+         "text": "$A = \\frac{36\\sqrt{3}}{4} = 9\\sqrt{3}$. Cevap **B**.",
+         "narration": "Formülde a yerine altı: otuz altı kök üç bölü dört, dokuz kök üç santimetrekare. Cevabımız B. On sekiz kök üç, dörde değil ikiye bölenin cevabı.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; eşkenar üçgen alan formülü özgün bir değerle uygulandı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Yüksekliği $6$ cm olan eşkenar üçgenin alanı kaç santimetrekaredir?",
+       "options": [
+        "$9\\sqrt{3}$",
+        "$12\\sqrt{3}$",
+        "$18\\sqrt{3}$",
+        "$24\\sqrt{3}$",
+        "$36$"
+       ],
+       "answer": 1,
+       "narration": "Önce yükseklikten kenara geç.",
+       "steps": [
+        {
+         "text": "$\\frac{a\\sqrt{3}}{2} = 6$ → $a = \\frac{12}{\\sqrt{3}} = 4\\sqrt{3}$.",
+         "narration": "a kök üç bölü iki, altı; a, on iki bölü kök üç, yani dört kök üç."
+        },
+        {
+         "text": "$A = \\frac{a \\cdot h}{2} = \\frac{4\\sqrt{3} \\cdot 6}{2} = 12\\sqrt{3}$. Cevap **B**.",
+         "narration": "Alan, taban çarpı yükseklik bölü iki: dört kök üç çarpı altı bölü iki, on iki kök üç santimetrekare. Cevabımız B. Otuz altıyı seçen, kenarı da altı sanmıştır; eşkenarda yükseklik kenardan kısadır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; eşkenar üçgende yükseklikten kenara ve alana geçiş özgün bir değerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ALAN_04",
+    "title": "İki kenar ve aradaki açı",
+    "narration": "Yükseklik verilmediğinde iki kenar ve aradaki açı yeter.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kenar-sinüs alan bağıntısı",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        7.7,
+        3.2
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          7.0,
+          0.0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          4.33,
+          2.5
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "c"
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "b"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "fill": true
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "label": "α"
+        }
+       ]
+      },
+      "items": [
+       "$A = \\frac{1}{2} \\cdot b \\cdot c \\cdot \\sin \\alpha$ ($\\alpha$, $b$ ile $c$'nin **arasındaki** açı).",
+       "$\\sin 30° = \\frac{1}{2}$, $\\sin 45° = \\frac{\\sqrt{2}}{2}$, $\\sin 60° = \\frac{\\sqrt{3}}{2}$, $\\sin 90° = 1$.",
+       "Geniş açıda: $\\sin 150° = \\sin 30°$, $\\sin 120° = \\sin 60°$, $\\sin 135° = \\sin 45°$."
+      ],
+      "narration": "İki kenarı ve aralarındaki açıyı biliyorsan alan, iki kenarın çarpımının yarısı çarpı aradaki açının sinüsüdür. Neden? c kenarını taban alırsan, yükseklik b çarpı sinüs alfa olur. Sık kullanılan değerler: sinüs otuz bir bölü iki, sinüs kırk beş kök iki bölü iki, sinüs altmış kök üç bölü iki. Geniş açıda bütünlerine bak: sinüs yüz elli, sinüs otuza eşit."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $|AB| = 8$ cm, $|AC| = 6$ cm ve $m(\\widehat{BAC}) = 30°$'dir. Buna göre $A(ABC)$ kaç santimetrekaredir?",
+       "options": [
+        "12",
+        "$12\\sqrt{3}$",
+        "16",
+        "24",
+        "$24\\sqrt{3}$"
+       ],
+       "answer": 0,
+       "narration": "Açı, verilen iki kenarın arasında.",
+       "steps": [
+        {
+         "text": "$A = \\frac{1}{2} \\cdot 8 \\cdot 6 \\cdot \\sin 30° = 24 \\cdot \\frac{1}{2} = 12$. Cevap **A**.",
+         "narration": "Otuz derece, sekiz ile altının arasında. Alan, yarım çarpı sekiz çarpı altı çarpı sinüs otuz: yirmi dört çarpı bir bölü iki, on iki santimetrekare. Cevabımız A. On iki kök üç, sinüs otuzu kök üç bölü iki sananın cevabı.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; kenar-sinüs alan bağıntısı özgün değerlerle uygulandı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "İki kenarının uzunluğu $6$ cm ve $10$ cm, bu kenarlar arasındaki açının ölçüsü $150°$ olan üçgenin alanı kaç santimetrekaredir?",
+       "options": [
+        "15",
+        "$15\\sqrt{3}$",
+        "30",
+        "$30\\sqrt{3}$",
+        "60"
+       ],
+       "answer": 0,
+       "narration": "$\\sin 150° = \\sin(180° - 150°) = \\sin 30°$.",
+       "steps": [
+        {
+         "text": "$\\sin 150° = \\sin 30° = \\frac{1}{2}$.",
+         "narration": "Yüz elli derecenin sinüsü, bütünleri olan otuz derecenin sinüsüne eşit: bir bölü iki."
+        },
+        {
+         "text": "$A = \\frac{1}{2} \\cdot 6 \\cdot 10 \\cdot \\frac{1}{2} = 15$. Cevap **A**.",
+         "narration": "Alan, yarım çarpı altı çarpı on çarpı bir bölü iki, on beş santimetrekare. Cevabımız A. Geniş açı alanı büyütmez: aynı kenarlarla otuz derecelik açı da aynı alanı verir. ÖSYM bu fikri şanslı üçgen sorusunda kullandı.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2024 \"şanslı üçgen\" sorusundaki 30° ve 150° fikri farklı sayılarla tek bir hesap sorusuna dönüştürüldü."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ALAN_05",
+    "title": "Alan oranları",
+    "narration": "Alan sorularının çoğu aslında oran sorusudur.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Aynı yükseklik, oranlı alan",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        8.7,
+        5.1
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.4,
+          4.4
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          8,
+          0
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          3,
+          0
+         ]
+        },
+        {
+         "id": "H",
+         "at": [
+          2.4,
+          0
+         ],
+         "hidden": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "A",
+         "to": "C"
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "label": "m"
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "label": "n"
+        },
+        {
+         "from": "A",
+         "to": "D"
+        },
+        {
+         "from": "A",
+         "to": "H",
+         "label": "h",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "D"
+         ],
+         "fill": true
+        },
+        {
+         "points": [
+          "A",
+          "D",
+          "C"
+         ]
+        }
+       ],
+       "angles": []
+      },
+      "caption": "Yükseklikleri aynı üçgenlerin alanları **tabanlarıyla** orantılıdır: $\\frac{A(ABD)}{A(ADC)} = \\frac{m}{n}$.",
+      "narration": "A köşesinden B C üzerindeki bir D noktasına bir doğru çizelim. A B D ve A D C üçgenleri aynı yüksekliğe sahip: A'nın B C'ye uzaklığı.",
+      "beats": [
+       {
+        "narration": "Yükseklik ortak olduğu için alanlar tabanlar oranında: m bölü n. Kenarortayda m ile n eşit, alanlar da eşitti.",
+        "focus": [
+         "ABD",
+         "BD",
+         "DC",
+         "AH"
+        ]
+       },
+       {
+        "narration": "Tersi de geçerli: tabanları ortak olan üçgenlerin alanları yükseklikleriyle orantılıdır. Tepe noktası tabana paralel bir doğru üzerinde kayarsa yükseklik değişmez, alan da değişmez.",
+        "focus": [
+         "ADC"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $D \\in [BC]$, $|BD| = 3$ cm ve $|DC| = 5$ cm'dir. $A(ABC) = 40$ cm² olduğuna göre $A(ABD)$ kaç santimetrekaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         8.7,
+         5.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2.5,
+           5
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           8,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           3,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "A",
+          "to": "C"
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "label": "3"
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "label": "5"
+         },
+         {
+          "from": "A",
+          "to": "D"
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "B",
+           "D"
+          ],
+          "fill": true
+         }
+        ],
+        "angles": []
+       },
+       "options": [
+        "12",
+        "15",
+        "16",
+        "20",
+        "25"
+       ],
+       "answer": 1,
+       "narration": "Aynı yükseklik: alanlar $3 : 5$.",
+       "steps": [
+        {
+         "text": "$\\frac{A(ABD)}{A(ABC)} = \\frac{3}{8}$.",
+         "narration": "A B D ile A B C aynı yüksekliğe sahip; alanları tabanları oranında: üç bölü sekiz."
+        },
+        {
+         "text": "$A(ABD) = 40 \\cdot \\frac{3}{8} = 15$. Cevap **B**.",
+         "narration": "Kırkın sekizde üçü, on beş santimetrekare. Cevabımız B. Yirmi dördü seçen, oranı üç bölü beş alıp bütüne uygulamıştır; üç, beşe değil sekize oranlanır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; aynı yükseklikteki üçgenlerde alan oranı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $D \\in [AB]$, $E \\in [AC]$, $|AD| : |DB| = 1 : 2$ ve $|AE| : |EC| = 3 : 1$'dir. Buna göre $\\frac{A(ADE)}{A(ABC)}$ oranı kaçtır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         8.7,
+         6.3
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2,
+           5.6
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           8,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           1.333,
+           3.733
+          ]
+         },
+         {
+          "id": "E",
+          "at": [
+           6.5,
+           1.4
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "D",
+          "label": "k"
+         },
+         {
+          "from": "D",
+          "to": "B",
+          "label": "2k"
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "label": "3t"
+         },
+         {
+          "from": "E",
+          "to": "C",
+          "label": "t"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "D",
+          "to": "E"
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "D",
+           "E"
+          ],
+          "fill": true
+         }
+        ],
+        "angles": []
+       },
+       "options": [
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{3}$",
+        "$\\frac{3}{8}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{3}{4}$"
+       ],
+       "answer": 0,
+       "narration": "İki üçgen aynı $A$ açısını paylaşıyor: kenar-sinüs.",
+       "steps": [
+        {
+         "text": "$\\frac{A(ADE)}{A(ABC)} = \\frac{\\frac{1}{2}|AD||AE|\\sin A}{\\frac{1}{2}|AB||AC|\\sin A} = \\frac{|AD|}{|AB|} \\cdot \\frac{|AE|}{|AC|}$.",
+         "narration": "İki üçgen aynı A açısını paylaşıyor. Alanları kenar sinüs bağıntısıyla yazınca sinüsler ve yarımlar sadeleşir: oran, A D bölü A B çarpı A E bölü A C."
+        },
+        {
+         "text": "$\\frac{1}{3} \\cdot \\frac{3}{4} = \\frac{1}{4}$. Cevap **A**.",
+         "narration": "A D, A B'nin üçte biri; A E, A C'nin dörtte üçü. Çarpım dörtte bir. Cevabımız A. Bu kural, ortak açılı iki üçgen için her zaman işe yarar.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ortak açılı üçgenlerde alan oranı kenar-sinüs bağıntısından özgün bir soruyla türetildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $d \\parallel [BC]$ ve $A, D \\in d$'dir. $A(ABC) = 24$ cm² olduğuna göre $A(DBC)$ kaç santimetrekaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.0,
+         -0.8,
+         9.6,
+         4.8
+        ],
+        "points": [
+         {
+          "id": "L",
+          "at": [
+           -0.6,
+           4
+          ],
+          "hidden": true
+         },
+         {
+          "id": "R",
+          "at": [
+           9.0,
+           4
+          ],
+          "hidden": true
+         },
+         {
+          "id": "d",
+          "at": [
+           9.0,
+           4
+          ],
+          "dot": false
+         },
+         {
+          "id": "A",
+          "at": [
+           1.2,
+           4
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           7.5,
+           4
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "L",
+          "to": "R",
+          "dashed": true
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "A",
+          "to": "C"
+         },
+         {
+          "from": "D",
+          "to": "B"
+         },
+         {
+          "from": "D",
+          "to": "C"
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "B",
+           "C"
+          ],
+          "fill": true
+         }
+        ],
+        "angles": []
+       },
+       "options": [
+        "12",
+        "18",
+        "24",
+        "30",
+        "48"
+       ],
+       "answer": 2,
+       "narration": "Taban ortak, yükseklik paraleller arası uzaklık.",
+       "steps": [
+        {
+         "text": "İki üçgenin tabanı $[BC]$ ortak; $A$ ve $D$, $BC$'ye paralel $d$ üzerinde → yükseklikler eşit.",
+         "narration": "İki üçgenin tabanı da B C. A ve D, B C'ye paralel d doğrusunun üzerinde; ikisinin de B C'ye uzaklığı, paraleller arasındaki uzaklık. Yükseklikler eşit."
+        },
+        {
+         "text": "$A(DBC) = A(ABC) = 24$. Cevap **C**.",
+         "narration": "Taban ve yükseklik aynı, alan da aynı: yirmi dört santimetrekare. Şekil ne kadar farklı görünse de alan değişmez. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; tepe noktası tabana paralel doğruda kayan üçgenlerin alan eşitliği özgün bir şekille soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ALAN_06",
+    "title": "Benzerlikte alan",
+    "narration": "Son olarak benzer üçgenlerde alanı bir kez daha hatırlayalım.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Oranın karesi",
+      "items": [
+       "Benzerlik oranı $k$ ise alanların oranı $k^2$.",
+       "Kenarlar $\\%50$ büyürse oran $\\frac{3}{2}$, alan $\\frac{9}{4}$ katına çıkar."
+      ],
+      "narration": "Bir önceki derste gördüğümüz kural alan sorularında hep karşına çıkar: benzerlik oranı k ise alanların oranı k kare. Kenarlar yüzde elli büyürse oran üç bölü iki olur, alan ise dokuz bölü dört katına çıkar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Üçgen biçimindeki bir bayrağın alanı $20$ dm²'dir. Bayrağın bütün kenarları $\\%50$ büyütülerek aynı biçimde yeni bir bayrak yapılıyor. Yeni bayrağın alanı kaç desimetrekaredir?",
+       "options": [
+        "30",
+        "40",
+        "45",
+        "60",
+        "80"
+       ],
+       "answer": 2,
+       "narration": "Kenarlar $\\frac{3}{2}$ katı: alan $\\frac{9}{4}$ katı.",
+       "steps": [
+        {
+         "text": "$k = \\frac{3}{2}$ → alan oranı $\\frac{9}{4}$.",
+         "narration": "Kenarlar yüzde elli büyüyünce benzerlik oranı üç bölü iki. Alanlar bunun karesi oranında: dokuz bölü dört."
+        },
+        {
+         "text": "$20 \\cdot \\frac{9}{4} = 45$. Cevap **C**.",
+         "narration": "Yirmi çarpı dokuz bölü dört, kırk beş desimetrekare. Cevabımız C. Otuzu seçen, alanı da yüzde elli büyütmüştür; alan kenarın karesiyle büyür.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; benzerlikte alanın k² ile değişmesi gerçek hayattan özgün bir bayrak durumuyla soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$A = \\frac{a \\cdot h_a}{2}$; yükseklik kenarın **uzantısına** da inebilir.",
+    "Dik üçgende alan dik kenarların çarpımının yarısı; eşkenarda $\\frac{a^2\\sqrt{3}}{4}$.",
+    "Kenar-sinüs: $A = \\frac{1}{2} b c \\sin \\alpha$; $\\sin 150° = \\sin 30°$.",
+    "Ortak yükseklik → alanlar tabanlar oranında; ortak açı → kenar çarpımları oranında.",
+    "Benzerlikte alan oranı $k^2$."
+   ],
+   "warnings": [
+    "Alan formülünde **ikiye bölmeyi** unutma.",
+    "Kenar-sinüste açı, iki kenarın **arasındaki** açı olmalı.",
+    "Oran sorusunda parçayı **bütüne** oranla."
+   ],
+   "narration": "Hadi toparlayalım. Üçgenin alanı taban çarpı yükseklik bölü iki; yükseklik kenarın uzantısına da inebilir. Dik üçgende alan dik kenarların çarpımının yarısı, eşkenarda a kare kök üç bölü dört. İki kenar ve aradaki açı biliniyorsa alan yarım çarpı iki kenar çarpı sinüs. Yükseklikleri ortak üçgenlerin alanları tabanlarıyla, ortak açılı üçgenlerinkiler kenar çarpımlarıyla orantılıdır; benzer üçgenlerde alanlar k kare oranında."
+  }
+ }
+}

@@ -1,0 +1,743 @@
+{
+ "topic": {
+  "id": "75D86A48-0027-DDAC-8310-FEB8BE98C8EF",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_NEWTON"
+ },
+ "title": "Newton'un Hareket Yasaları",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/FIZ/FIZ_NEWTON.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Seni kim itti?",
+   "narration": "Otobüs aniden fren yapınca öne doğru savrulursun; oysa kimse seni itmedi. Vücudun yalnızca hızını korumaya çalıştı. Bu derste Newton'un üç yasasını, sürtünmeyi, eğik düzlemi ve bağlı cisimleri, yedi ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Eylemsizlik yasasını günlük olaylarda yorumlamak",
+   "F = m·a ile ivmeyi ve kuvveti bulmak",
+   "Etki-tepki çiftini denge çiftinden ayırmak",
+   "Statik ve kinetik sürtünmeyi doğru kullanmak",
+   "Eğik düzlemde ve bağlı cisimlerde ivme ile iç kuvvetleri bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_NEWTON_01",
+    "subtopics": [],
+    "title": "Eylemsizlik yasası",
+    "narration": "Cisimler hareket durumlarını korumak ister. Duran durur, giden aynı hızla gitmeye devam eder; bunu değiştirmek için net bir kuvvet gerekir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Eylemsizlik",
+      "items": [
+       "Net kuvvet sıfırsa duran cisim durur, hareket eden **sabit hızla** gider.",
+       "Sabit hız için kuvvet **gerekmez**; kuvvet hızı değiştirmek için gerekir.",
+       "Kütle eylemsizliğin ölçüsüdür: kütle büyükse hızı değiştirmek **zordur**."
+      ],
+      "beats": [],
+      "narration": "Newton'un birinci yasası, eylemsizlik yasasıdır: bir cisme etki eden net kuvvet sıfırsa duran cisim durmaya, hareket eden cisim aynı hızla doğrusal gitmeye devam eder. Yani sabit hızla gitmek için kuvvet gerekmez; kuvvet hızı değiştirmek için gerekir. Kütle eylemsizliğin ölçüsüdür; kütlesi büyük bir cismin hızını değiştirmek daha zordur."
+     },
+     {
+      "kind": "predict",
+      "title": "Buzdaki disk",
+      "prompt": "Sürtünmesiz bir buz yüzeyinde kayan bir diske hiçbir yatay kuvvet etki etmiyor. Disk nasıl hareket eder?",
+      "choices": [
+       "Yavaşlayıp durur",
+       "Sabit hızla gider",
+       "Hızlanır"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "dynamics",
+       "mass": 1,
+       "incline": 0,
+       "friction": 0,
+       "forces": [],
+       "initialVelocity": 4,
+       "time": 4,
+       "g": 10,
+       "graphs": [
+        "v",
+        "x"
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Diske yalnız ağırlık ve zeminin tepkisi etki ediyor; ikisi birbirini dengeler.",
+        "show": [],
+        "focus": [],
+        "stage": 0,
+        "swap": []
+       },
+       {
+        "narration": "Net kuvvet sıfır, ivme sıfır.",
+        "show": [],
+        "focus": [],
+        "stage": 1,
+        "swap": []
+       },
+       {
+        "narration": "Hız grafiği yatay, konum düzgün artıyor: disk sabit hızla gidiyor.",
+        "show": [],
+        "focus": [],
+        "stage": 2,
+        "swap": []
+       }
+      ],
+      "explanation": "Net kuvvet sıfırsa hız **değişmez**: disk sabit hızla gider.",
+      "narration": "Sürtünmesiz buzda kayan bir diske hiç kuvvet etki etmiyor. Yavaşlar mı, sabit hızla mı gider, hızlanır mı? Tahmin et.",
+      "explanationNarration": "Sabit hızla gider. Günlük hayatta kayan şeylerin durması sürtünme yüzündendir. Sürtünme yoksa net kuvvet sıfırdır ve disk aynı hızla gitmeye devam eder."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Hava direncinin önemsenmediği bir ortamda bir kamyonet yatay ve doğrusal bir yolda sabit hızla gidiyor. Kasasındaki bir koli kamyonete göre durgundur.\n\nYere göre durgun bir gözlemciye göre;\nI. Kolinin üzerine etki eden net kuvvet sıfırdır.\nII. Kasa koliye hareket yönünde sürtünme kuvveti uygular.\nIII. Koli kasaya düşey aşağı yönde kuvvet uygular.\n\nyargılarından hangileri doğrudur?",
+       "context": "ÖSYM 2022'de sorulan kamyon ve sandık yapısının yargıları değiştirilmiş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Koli de sabit hızla gidiyor: net kuvvet **sıfır** (I).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Koli kamyonetle birlikte sabit hızla gidiyor; ivmesi sıfır, net kuvvet de sıfır. Birinci doğru."
+        },
+        {
+         "text": "Yatayda başka kuvvet yok: sürtünme de **sıfır** (II yanlış).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yatayda koliyi hızlandıran ya da yavaşlatan hiçbir şey yok; sürtünme olsaydı net kuvvet sıfır olmazdı. İkinci yanlış."
+        },
+        {
+         "text": "Koli kasaya ağırlığı kadar **aşağı** bastırır; kasa da onu yukarı iter (III).",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Koli kasaya düşey aşağı doğru bastırır; kasanın tepkisi de yukarı doğrudur. Üçüncü doğru. Sabit hızın kuvvet gerektirdiğini sanan ikinciyi de seçer. Cevap D."
+        }
+       ],
+       "narration": "Koli sabit hızla gidiyor: net kuvvet ne olmalı?",
+       "origin": {
+        "changes": "ÖSYM 2022 modeli: yargılar değiştirildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_NEWTON_02",
+    "subtopics": [],
+    "title": "Dinamiğin temel yasası",
+    "narration": "Net kuvvet cismi hızlandırır: ivme net kuvvetle doğru, kütleyle ters orantılıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "F = m · a",
+      "items": [
+       "$\\vec{F}_{net} = m \\cdot \\vec{a}$: ivme net kuvvetle **aynı yönde**.",
+       "Aynı kuvvet, kütle iki katına çıkınca **yarı** ivme verir.",
+       "Birim: $1$ N $= 1$ kg·m/s²."
+      ],
+      "visual": {
+       "kind": "dynamics",
+       "mass": 2,
+       "incline": 0,
+       "friction": 0,
+       "forces": [
+        {
+         "label": "F = 10 N",
+         "magnitude": 10,
+         "direction": "right"
+        }
+       ],
+       "initialVelocity": 0,
+       "time": 3,
+       "g": 10,
+       "graphs": [
+        "a",
+        "v"
+       ]
+      },
+      "beats": [],
+      "narration": "Newton'un ikinci yasası: net kuvvet, kütle çarpı ivmedir ve ivme net kuvvetle aynı yöndedir. Aynı kuvvet iki kat kütleli bir cisme yarı ivme verir. Bir newton, bir kilogramlık cisme saniyede bir metre bölü saniye hız kazandıran kuvvettir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sürtünmesiz yatay bir masada $0{,}6$ kg'lık bir kutu ile ona bitişik $0{,}3$ kg'lık bir kalemlik duruyor. Kutuya yatay ve sabit bir kuvvet uygulanınca ikisi birlikte $4$ m/s² ivmeyle hareket ediyor.\n\nUygulanan kuvvet kaç N, kutunun kalemliğe uyguladığı kuvvet kaç N'dir?",
+       "context": "ÖSYM 2022'de sorulan tepsi ve meyve suyu kutusu yapısının yeni sayılarla kurulmuş hâli.",
+       "options": [
+        "$3{,}6$ ; $1{,}2$",
+        "$3{,}6$ ; $2{,}4$",
+        "$2{,}4$ ; $1{,}2$",
+        "$1{,}2$ ; $1{,}2$",
+        "$1{,}2$ ; $3{,}6$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Sistem: $F = (0{,}6 + 0{,}3) \\cdot 4 = 3{,}6$ N.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İkisi birlikte hareket ediyor; sistemi tek cisim say: F, sıfır virgül dokuz çarpı dört, üç virgül altı newton."
+        },
+        {
+         "text": "Kalemliği hızlandıran tek kuvvet temas kuvveti: $0{,}3 \\cdot 4 = 1{,}2$ N.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kalemliği yalnız kutunun itişi hızlandırır: sıfır virgül üç çarpı dört, bir virgül iki newton. Uygulanan kuvvetin tamamının kalemliğe aktarıldığını sanan yanılır. Cevap A."
+        }
+       ],
+       "narration": "Önce sistem, sonra kalemlik.",
+       "origin": {
+        "changes": "ÖSYM 2022 modeli: kütleler ve ivme değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sürtünmesiz yatay bir zeminde duran $10$ kg'lık bir koliyi Ayşe doğuya doğru $30$ N, Can kuzeye doğru $40$ N kuvvetle aynı anda çekiyor.\n\nKolinin ivmesi kaç m/s² ve hangi yöndedir?",
+       "context": "ÖSYM 2020'de sorulan itilen ve çekilen koli yapısının sayılarla kurulmuş hâli.",
+       "figure": {
+        "kind": "vectors",
+        "view": [
+         -1,
+         -1,
+         5,
+         5
+        ],
+        "vectors": [
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           3,
+           0
+          ],
+          "label": "30 N",
+          "colour": "lesson",
+          "dashed": false
+         },
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           0,
+           4
+          ],
+          "label": "40 N",
+          "colour": "ink",
+          "dashed": false
+         }
+        ],
+        "grid": true
+       },
+       "options": [
+        "$1$ ; kuzey",
+        "$3$ ; doğu",
+        "$5$ ; doğu ile kuzey arasında",
+        "$5$ ; kuzey",
+        "$7$ ; doğu ile kuzey arasında"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Kuvvetler dik: $F_{net} = \\sqrt{30^2 + 40^2} = 50$ N.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki kuvvet birbirine dik; net kuvvet Pisagordan elli newton."
+        },
+        {
+         "text": "$a = \\frac{50}{10} = 5$ m/s², net kuvvet yönünde: **doğu ile kuzey arasında**.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "İvme elli bölü on, beş metre bölü saniye kare; yönü net kuvvetin yönü, doğu ile kuzey arası. Kuvvetleri doğrudan toplayan yediyi bulur. Cevap C."
+        }
+       ],
+       "narration": "İvme net kuvvetin yönündedir.",
+       "origin": {
+        "changes": "ÖSYM 2020 modeli: kuvvetler sayılarla verildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_NEWTON_03",
+    "subtopics": [],
+    "title": "Etki-tepki yasası",
+    "narration": "Kuvvetler her zaman çift olarak doğar: sen duvarı itersen duvar da seni iter.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Etki-tepki",
+      "items": [
+       "A, B'ye kuvvet uygularsa B de A'ya **eşit büyüklükte, zıt yönde** kuvvet uygular.",
+       "Etki ve tepki **farklı cisimlere** etki eder; birbirini dengelemez.",
+       "Masadaki kitapta ağırlık ile normal kuvvet etki-tepki **değildir**."
+      ],
+      "visual": {
+       "kind": "forces",
+       "body": "box",
+       "surface": 0,
+       "forces": [
+        {
+         "label": "G",
+         "direction": "weight",
+         "magnitude": 50
+        },
+        {
+         "label": "N",
+         "direction": "normal",
+         "magnitude": 50
+        }
+       ]
+      },
+      "beats": [],
+      "narration": "Newton'un üçüncü yasası: bir cisim başka bir cisme kuvvet uygularsa o da ona eşit büyüklükte ve zıt yönde bir kuvvet uygular. Bu iki kuvvet farklı cisimlere etki eder, bu yüzden birbirini dengelemez. Masadaki bir kitapta ağırlık ile masanın tepkisi eşit ve zıttır ama ikisi de kitaba etki eder; bunlar etki-tepki çifti değil, denge çiftidir. Ağırlığın tepkisi, kitabın Dünya'yı çekmesidir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sürtünmesiz yatay zeminde duran bir oyuncak arabanın üstüne, ağzı arkaya bakan şişirilmiş bir balon bağlanıyor. Balonun ağzı açılınca hava arkaya doğru çıkıyor; bir süre sonra hava bitiyor.\n\nHava çıkarken ve hava bittikten sonra araba nasıl hareket eder?",
+       "context": "ÖSYM 2023'te sorulan balonlu araba yapısının yeniden kurulmuş hâli.",
+       "options": [
+        "İleri hızlanır ; durur",
+        "İleri hızlanır ; ileri sabit hızla gider",
+        "İleri hızlanır ; ileri yavaşlar",
+        "Geri hızlanır ; geri sabit hızla gider",
+        "İleri sabit hızla gider ; durur"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Balon havayı arkaya iter; hava da balonu **ileri** iter: araba ileri hızlanır.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Balon havayı arkaya doğru iter; etki-tepkiden hava da balonu ve arabayı ileri iter. Net kuvvet ileri: araba ileri doğru hızlanır."
+        },
+        {
+         "text": "Hava bitince net kuvvet **sıfır**: araba ulaştığı hızla **sabit** gider.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hava bitince arabaya yatayda kuvvet kalmaz; sürtünme de yok. Eylemsizlikle ulaştığı hızı korur, sabit hızla gider. Kuvvet bitince durduğunu sanan ilk seçeneğe düşer. Cevap B."
+        }
+       ],
+       "narration": "Hava çıkarken arabaya ne olur, sonra?",
+       "origin": {
+        "changes": "ÖSYM 2023 modeli: düzenek ve seçenekler yeniden yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Birbirini dengeler mi?",
+      "wrong": "Etki ve tepki eşit ve zıt olduğu için birbirini dengeler; bu yüzden at arabayı çekemez.",
+      "right": "Etki ve tepki **ayrı cisimlere** etki eder; her cismin hareketine kendi üzerindeki kuvvetler karar verir.",
+      "why": "At, yeri geriye iter; **yerin tepkisi** atı ve arabayı ileri götürür.",
+      "narration": "Sık yapılan bir hata: etki ile tepkinin birbirini dengelediğini sanmak. At arabayı ne kadar çekiyorsa araba da atı o kadar çeker ama bu kuvvetler farklı cisimlerdedir. Atı ileri götüren, ayaklarıyla geriye ittiği yerin tepkisidir; bu tepki arabayı çeken kuvvetten büyükse sistem hızlanır."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_NEWTON_04",
+    "subtopics": [],
+    "title": "Sürtünme kuvveti",
+    "narration": "Sürtünme, temas eden yüzeylerin kaymaya karşı koymasıdır. Duran ve kayan cisimde farklı davranır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sürtünme",
+      "items": [
+       "Kinetik sürtünme $f_k = \\mu_k N$; kayma yönüne **zıt**.",
+       "Statik sürtünme, kaydırmaya çalışan kuvvete **eşit**; en çok $\\mu_s N$.",
+       "Sürtünme, temas yüzeyinin **alanına** bağlı değildir."
+      ],
+      "visual": {
+       "kind": "dynamics",
+       "mass": 5,
+       "incline": 0,
+       "friction": 0.2,
+       "staticFriction": 0.3,
+       "forces": [
+        {
+         "label": "F = 20 N",
+         "magnitude": 20,
+         "direction": "right"
+        }
+       ],
+       "initialVelocity": 0,
+       "time": 3,
+       "g": 10,
+       "graphs": [
+        "v",
+        "a"
+       ]
+      },
+      "beats": [],
+      "narration": "Kayan bir cisme etki eden kinetik sürtünme, mü k çarpı normal kuvvettir ve kayma yönüne zıttır. Duran bir cisimde ise statik sürtünme, cismi kaydırmaya çalışan kuvvete eşittir; en çok mü s çarpı normal kuvvet olabilir. Kuvvet bu sınırı aşınca cisim kaymaya başlar. Sürtünme temas yüzeyinin alanına bağlı değildir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yatay bir zeminde duran $4$ kg'lık bir kutu ile zemin arasındaki statik sürtünme katsayısı $0{,}5$, kinetik sürtünme katsayısı $0{,}3$'tür. Kutuya yatay $15$ N'lik bir kuvvet uygulanıyor.\n\nKutuya etki eden sürtünme kuvveti kaç N'dir? ($g = 10$ m/s²)",
+       "options": [
+        "$0$",
+        "$3$",
+        "$12$",
+        "$15$",
+        "$20$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "En büyük statik sürtünme: $\\mu_s N = 0{,}5 \\cdot 40 = 20$ N; $15 < 20$: kutu **kaymaz**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Normal kuvvet kırk newton. En büyük statik sürtünme sıfır virgül beş çarpı kırk, yirmi newton. On beş newton bunu aşmıyor; kutu kaymaz."
+        },
+        {
+         "text": "Duran kutuda sürtünme kuvvete **eşit**: $15$ N.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kutu duruyorsa net kuvvet sıfır; sürtünme uygulanan kuvvete eşit, on beş newton. Kinetik formülü kullanan on ikiyi, sınır değeri yazan yirmiyi bulur. Cevap D."
+        }
+       ],
+       "narration": "Önce kutunun kayıp kaymadığına bakalım.",
+       "origin": {
+        "changes": "Statik sürtünme kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yatay zeminde $5$ m/s hızla kaydırılan $2$ kg'lık bir buz kalıbı ile zemin arasındaki kinetik sürtünme katsayısı $0{,}1$'dir.\n\nBuz kalıbı kaç m sonra durur? ($g = 10$ m/s²)",
+       "options": [
+        "$5$",
+        "$10$",
+        "$12{,}5$",
+        "$25$",
+        "$50$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$a = \\frac{\\mu m g}{m} = \\mu g = 1$ m/s².",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sürtünme sıfır virgül bir çarpı m g; ivme, kütle sadeleşince mü g: bir metre bölü saniye kare."
+        },
+        {
+         "text": "$0 = 5^2 - 2 \\cdot 1 \\cdot \\Delta x$ → $\\Delta x = 12{,}5$ m.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Durana kadar: yirmi beş, iki çarpı bir çarpı delta x: on iki buçuk metre. İkiyi unutan yirmi beşi bulur. Cevap C."
+        }
+       ],
+       "narration": "Yavaşlatan tek kuvvet sürtünme.",
+       "origin": {
+        "changes": "Sürtünmeyle durma kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Sürtünme hep μN mi?",
+      "wrong": "Sürtünme kuvveti her zaman $\\mu N$'dir.",
+      "right": "Duran cisimde sürtünme, uygulanan kuvvete **eşittir**; $\\mu_s N$ yalnız **en büyük** değeridir.",
+      "why": "Kayan cisimde ise $\\mu_k N$.",
+      "narration": "Sık yapılan bir hata: sürtünmeyi her zaman mü çarpı N almak. Cisim duruyorsa sürtünme, onu kaydırmaya çalışan kuvvet kadardır; mü s çarpı N yalnızca ulaşabileceği en büyük değerdir. Cisim kayıyorsa sürtünme mü k çarpı N olur."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_NEWTON_05",
+    "subtopics": [],
+    "title": "Eğik düzlemde dinamik",
+    "narration": "Eğik düzlemde ağırlık ikiye ayrılır: biri cismi eğim boyunca aşağı çeker, öbürü yüzeye bastırır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Eğik düzlem",
+      "items": [
+       "Ağırlığın eğim boyunca bileşeni $mg\\sin\\theta$, yüzeye dik bileşeni $mg\\cos\\theta$.",
+       "Sürtünmesizde ivme $a = g \\sin\\theta$: **kütleye bağlı değil**.",
+       "Sürtünmeli: $N = mg\\cos\\theta$, $f = \\mu N$."
+      ],
+      "visual": {
+       "kind": "dynamics",
+       "mass": 2,
+       "incline": 30,
+       "friction": 0,
+       "forces": [],
+       "initialVelocity": 0,
+       "time": 3,
+       "g": 10,
+       "graphs": [
+        "v"
+       ]
+      },
+      "beats": [],
+      "narration": "Eğik düzlemde ağırlığı ikiye ayırırsın: eğim boyunca m g sinüs teta cismi aşağı çeker, yüzeye dik m g kosinüs teta ise yüzeye bastırır ve normal kuvvete eşittir. Sürtünme yoksa ivme g sinüs teta olur; kütleye bağlı değildir. Sürtünme varsa normal kuvvet m g kosinüs teta, sürtünme mü çarpı bu normal kuvvettir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Eğimi $37°$ olan bir eğik düzlemde $2$ kg'lık bir cisim serbest bırakılıyor ve kayarak iniyor. Cisim ile yüzey arasındaki kinetik sürtünme katsayısı $0{,}5$'tir.\n\nCismin ivmesi kaç m/s²'dir? ($g = 10$ m/s², $\\sin 37° = 0{,}6$, $\\cos 37° = 0{,}8$)",
+       "figure": {
+        "kind": "forces",
+        "body": "box",
+        "surface": 37,
+        "forces": [
+         {
+          "label": "G",
+          "direction": "weight",
+          "magnitude": 20
+         },
+         {
+          "label": "N",
+          "direction": "normal",
+          "magnitude": 16
+         },
+         {
+          "label": "f",
+          "direction": "upSlope",
+          "magnitude": 8
+         }
+        ]
+       },
+       "options": [
+        "$1$",
+        "$2$",
+        "$4$",
+        "$6$",
+        "$10$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Aşağı çeken: $mg\\sin 37° = 12$ N; normal $16$ N, sürtünme $0{,}5 \\cdot 16 = 8$ N.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eğim boyunca aşağı: yirmi çarpı sıfır virgül altı, on iki newton. Normal kuvvet yirmi çarpı sıfır virgül sekiz, on altı; sürtünme bunun yarısı, sekiz newton."
+        },
+        {
+         "text": "$a = \\frac{12 - 8}{2} = 2$ m/s².",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Net kuvvet dört newton; ivme dört bölü iki, iki metre bölü saniye kare. Sürtünmeyi unutan altıyı bulur. Cevap B."
+        }
+       ],
+       "narration": "Eğim boyunca kuvvetleri yazalım.",
+       "origin": {
+        "changes": "Sürtünmeli eğik düzlem kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_NEWTON_06",
+    "subtopics": [],
+    "title": "Bağlı cisimler",
+    "narration": "İple bağlı ya da birbirine dayanan cisimler birlikte hareket eder. Önce sistemi, sonra tek cismi incelersin.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bağlı cisimler",
+      "items": [
+       "Sistemi **tek cisim** gibi düşün: $a = \\frac{F_{net}}{m_{toplam}}$.",
+       "Gerilmeyi bulmak için **tek bir cismi** ayır: $T$, o cismin net kuvvetinin parçası.",
+       "İç kuvvetler (gerilme, temas) sistemin ivmesini **değiştirmez**."
+      ],
+      "visual": {
+       "kind": "dynamics",
+       "mass": 6,
+       "incline": 0,
+       "friction": 0,
+       "forces": [
+        {
+         "label": "F = 12 N",
+         "magnitude": 12,
+         "direction": "right"
+        }
+       ],
+       "initialVelocity": 0,
+       "time": 3,
+       "g": 10,
+       "graphs": [
+        "v"
+       ]
+      },
+      "beats": [],
+      "narration": "Birlikte hareket eden cisimlerde önce sistemi tek cisim gibi düşün: ivme, dış kuvvetlerin net değeri bölü toplam kütledir. İpteki gerilmeyi ya da temas kuvvetini bulmak için sonra tek bir cismi ayırıp ona Newton'un ikinci yasasını uygularsın. İp gerilmesi ve temas kuvvetleri iç kuvvetlerdir; sistemin ivmesini değiştirmez. Burada iple bağlı iki ve dört kilogramlık kutular, altı kilogramlık tek bir cisim gibi hareket ediyor."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kütleleri $2m$, $m$ ve $4m$ olan $K$, $L$ ve $M$ blokları sürtünmesiz yatay zeminde yan yana, $M$ duvara dayalı duruyor. $K$'ye duvara doğru yatay bir kuvvet uygulanıyor ve bloklar hareketsiz kalıyor.\n\n$L$'nin $M$'ye uyguladığı kuvvet $F$ ise duvarın $M$'ye uyguladığı kuvvet kaç $F$'dir?",
+       "context": "ÖSYM 2020'de sorulan duvara dayalı K, L, M blokları yapısının yeni kütlelerle kurulmuş hâli.",
+       "options": [
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$\\frac{4}{3}$",
+        "$2$",
+        "$\\frac{7}{4}$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Bloklar hareketsiz: her birinde **net kuvvet sıfır**; kütleler ivme olmadığı için işe karışmaz.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bloklar hareket etmiyor; her blokta net kuvvet sıfır. İvme olmadığı için kütleler hiçbir şeyi değiştirmez."
+        },
+        {
+         "text": "$M$: $L$'nin itişi $F$, duvarın tepkisi de $F$.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "M'ye bir yandan L, öbür yandan duvar dokunuyor; M dengede olduğuna göre duvarın kuvveti de F. Kütle oranlarıyla hesap yapan yanılır. Cevap B."
+        }
+       ],
+       "narration": "Hareketsiz her blokta net kuvvet sıfır.",
+       "origin": {
+        "changes": "ÖSYM 2020 modeli: kütleler değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sürtünmesiz yatay bir masadaki $3$ kg'lık bir sandık, masanın kenarındaki sabit makaradan geçen iple $2$ kg'lık asılı bir kovaya bağlıdır. Sistem serbest bırakılıyor.\n\nSistemin ivmesi kaç m/s², ipteki gerilme kaç N'dir? (Makara ve ip ağırlıksız, $g = 10$ m/s²)",
+       "context": "ÖSYM 2024'te sorulan makaralı sandık yapısının yeni bir düzenekle kurulmuş hâli.",
+       "options": [
+        "$2$ ; $6$",
+        "$2$ ; $20$",
+        "$4$ ; $8$",
+        "$4$ ; $10$",
+        "$4$ ; $12$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Sistemi çeken tek dış kuvvet kovanın ağırlığı: $a = \\frac{20}{3 + 2} = 4$ m/s².",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sistemi hızlandıran dış kuvvet yalnız kovanın ağırlığı, yirmi newton. Toplam kütle beş kilogram: ivme dört."
+        },
+        {
+         "text": "Sandığı yalnız ip çeker: $T = 3 \\cdot 4 = 12$ N; kova için kontrol: $20 - 12 = 2 \\cdot 4$.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sandığı hızlandıran yalnız ip: T, üç çarpı dört, on iki newton. Kovada kontrol: yirmi eksi on iki, sekiz; iki çarpı dört. Gerilmeyi kovanın ağırlığı sanan yirmiyi bulur. Cevap E."
+        }
+       ],
+       "narration": "Önce sistem, sonra sandık.",
+       "origin": {
+        "changes": "ÖSYM 2024 modeli: yeni bir düzenekle kuruldu"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Net kuvvet sıfır: duran durur, giden sabit hızla gider.",
+    "$F_{net} = m a$; ivme net kuvvet yönünde.",
+    "Etki-tepki ayrı cisimlerde, eşit ve zıt.",
+    "Statik sürtünme kuvvete eşit, en çok $\\mu_s N$; kayarken $\\mu_k N$.",
+    "Eğik düzlem: $mg\\sin\\theta$ ve $mg\\cos\\theta$.",
+    "Sistem tek cisim; iç kuvvet için tek cismi ayır."
+   ],
+   "warnings": [
+    "Sabit hız için **kuvvet gerekmez**.",
+    "Ağırlık ile normal kuvvet **etki-tepki değildir**.",
+    "İp gerilmesi asılı yükün **ağırlığı değildir**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bir kâğıdın üstüne bardak koy, kâğıdı **hızla** çek; bardağın neden yerinde kaldığını düşün.",
+    "Bir lastiği bir kutuya bağlayıp çek; kutu **kıpırdamadan önce** lastiğin ne kadar uzadığını gözle.",
+    "Uygulamada AYT Newton'un Hareket Yasaları testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Normal kuvvetin her zaman mg olmadığını örnekle: yatayda açılı çekmede N = mg − F sinθ, eğik düzlemde N = mg cosθ, ivmeli asansörde N = m(g ± a). 60 kg öğrenci yukarı 2 m/s² ile hızlanan asansörde 720 N, aşağı 2 m/s² ile hızlananda 480 N, serbest düşmede 0 okur.",
+   "Statik ve kinetik sürtünmeyi örnekle: 5 kg kutu, μs = 0,4, μk = 0,3, g = 10 m/s². 15 N itilirse kaymaz ve sürtünme 15 N olur (en çok 20 N); 30 N itilirse kayar, sürtünme 15 N, ivme 3 m/s².",
+   "Eğik düzlem örnekleri ekle: 37°'lik sürtünmesiz düzlemde a = g sin 37° = 6 m/s²; μ = 0,5 ise aşağı kayan cismin ivmesi g(sin 37° − μ cos 37°) = 2 m/s². Cismin kendiliğinden kaymaya başlaması için tanθ > μs olması gerektiğini göster.",
+   "Makara üzerinden bağlı iki cisim örneği ekle: 3 kg ve 2 kg kütleler sürtünmesiz makaradan sarkıyor: a = (3 − 2) × 10 / 5 = 2 m/s², ip gerilmesi 2 × (10 + 2) = 24 N. Sistemi tek cisim, ipi iç kuvvet olarak gören çözüm sırasını vurgula.",
+   "Etki-tepki çiftlerine örnek ver: Dünya ile elma, roketin gazı itmesi, yüzücünün suyu itmesi. Masadaki kitapta ağırlık ile normal kuvvetin etki-tepki çifti olmadığını (ikisi aynı cisimde, farklı türde) bir tabloyla göster."
+  ]
+ }
+}

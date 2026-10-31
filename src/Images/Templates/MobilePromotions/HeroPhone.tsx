@@ -8,7 +8,8 @@ import {plainText, richText} from '../../../Schemas/RichText';
 import {withAlpha} from '../../../Themes/Theme';
 import {useTheme} from '../../../Themes/ThemeContext';
 import {z} from 'zod';
-import {CallToAction, StoreBadges} from '../../Components/CallToAction';
+import {StoreBadges} from '../../../Components/Brand/StoreBadge';
+import {CallToAction} from '../../Components/CallToAction';
 import {PhoneMockup} from '../../Components/DeviceMockups';
 import {ImageFrame, useImageLayout} from '../../Components/ImageFrame';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
@@ -57,7 +58,7 @@ const HeroPhoneImage: React.FC<{content: Content}> = ({content}) => {
 				</div>
 			) : null}
 			{content.cta ? <CallToAction action={content.cta} /> : null}
-			{content.stores ? <StoreBadges /> : null}
+			{content.stores ? <StoreBadges height={84} align="flex-start" /> : null}
 		</div>
 	);
 

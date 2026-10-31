@@ -1,0 +1,1547 @@
+{
+ "topic": {
+  "id": "DB79A9BA-C517-6467-1DD8-7338DCE4EE87",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_YAMUK"
+ },
+ "title": "Yamuk",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "YKS/TYT/KonuAnlatimi/GEO/GEO_YAMUK.json (MEB Temel Matematik s. 143-146: yamuk, orta taban, alan, köşegen alanları, ikizkenar ve dik yamuk)",
+  "YKS/TYT/CikmisSorular/GEO.jsonl (ÖSYM 2020-2025: 2 ikizkenar, 1 dik yamuk, 2 alan sorusu; yalnız yapı örneği); YKS/TYT/Sorular/GEO/GEO_YAMUK.jsonl",
+  "Bütün şekiller verilen ölçülerle koordinatta çizildi; sorular özgündür"
+ ],
+ "works": {
+  "additions": [
+   "Yamukta köşegenlerin oluşturduğu dört üçgenin alan ilişkilerini ver: yan üçgenler eşit alanlı, tabanlara bitişik üçgenlerin alanları çarpımı yan üçgenlerin alanları çarpımına eşit.",
+   "Tabanlara paralel çizilen doğrularla oluşan benzer üçgenleri ve köşegenlerin kesim noktasından geçen paralel parçanın 2ac/(a + c) olduğunu örnekle.",
+   "İkizkenar yamuğun çembere çizilebildiğini ve dik yamukta köşegen-kenar ilişkilerini çözümlü örneklerle ekle."
+  ]
+ },
+ "short": {
+  "hook": "Yamuğun orta tabanı",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Orta taban $\\frac{a + c}{2}$"
+   },
+   {
+    "kind": "fact",
+    "text": "Alan $\\frac{a + c}{2} \\cdot h$"
+   },
+   {
+    "kind": "warning",
+    "text": "Yan üçgenler **eşit**."
+   }
+  ],
+  "summary": [
+   "Orta taban (a + c)/2",
+   "S2 = S4"
+  ],
+  "rounds": [
+   {
+    "sentence": "Tabanlar 18 ve 10",
+    "question": "Orta taban?",
+    "choices": [
+     "14",
+     "28"
+    ],
+    "answer": 0,
+    "why": "**Ortalama**."
+   },
+   {
+    "sentence": "Ortada 4 ve 9",
+    "question": "Yanlar?",
+    "choices": [
+     "6 ve 6",
+     "4 ve 9"
+    ],
+    "answer": 0,
+    "why": "√36 = **6**."
+   },
+   {
+    "sentence": "A = 65°, AB ∥ DC",
+    "question": "D?",
+    "choices": [
+     "115°",
+     "65°"
+    ],
+    "answer": 0,
+    "why": "**Bütünler**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-geometri-kampi",
+  "name": "TYT Geometri kampı",
+  "number": 19,
+  "total": 23,
+  "previous": "Kare",
+  "next": "Grafik Okuma",
+  "promise": "Geometri konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Bir yamuk çiz, üst tabanın uçlarından **dikmeler** indir; dikdörtgen ve üçgenleri işaretle.",
+    "Orta taban, alan ve köşegen alanları kurallarını **bir sayfaya** yaz.",
+    "Uygulamada Yamuk testinden **20 soru** çöz; her şekilde önce **dikme** indirmeyi dene."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bir yamuk çiz ve üst tabanın uçlarından alt tabana dikmeler indir; oluşan dikdörtgen ve üçgenleri işaretle. Sonra orta taban, alan ve köşegen alanları kurallarını bir sayfaya yaz. En son uygulamada yamuk testinden yirmi soru çöz; her şekilde önce dikme indirmeyi dene. Bir sonraki derste grafik okumayla devam ediyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "İki dikme, bir çözüm",
+   "narration": "Bir yamuk ilk bakışta düzensiz görünür. Ama üst tabanın uçlarından iki dikme indirdiğinde ortada bir dikdörtgen, iki yanda dik üçgenler belirir ve soru tanıdık parçalara ayrılır. Bu derste yamuğun açılarını, ikizkenar ve dik yamuğu, orta tabanı ve alanını öğreneceğiz."
+  },
+  "objectives": [
+   "Yamukta yan kenara bitişik açıları ve açıortayları kullanmak",
+   "İkizkenar ve dik yamukta dikme indirerek uzunluk bulmak",
+   "Orta tabanı ve köşegenler arasındaki parçasını bulmak",
+   "Yamuğun alanını ve köşegenlerin ayırdığı alanları hesaplamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_YAMUK_01",
+    "title": "Yamuğun özellikleri",
+    "narration": "En az bir çift kenarı paralel dörtgen: yamuk.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Bir çift paralel",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        9.7,
+        4.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          9,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          6.8,
+          4
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          1.8,
+          4
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "a"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "label": "c"
+        },
+        {
+         "from": "D",
+         "to": "A"
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "fill": true
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "D",
+         "label": "x"
+        },
+        {
+         "at": "D",
+         "from": "A",
+         "to": "C",
+         "label": "y"
+        }
+       ]
+      },
+      "caption": "$[AB] \\parallel [DC]$ ise yan kenara bitişik iki açı **bütünlerdir**: $x + y = 180°$.",
+      "narration": "Yamukta paralel kenarlara taban denir: alt taban a, üst taban c. Öbür iki kenar yan kenarlardır.",
+      "beats": [
+       {
+        "narration": "A D yan kenarı iki paralel tabanı keser. Aynı yandaki iç açılar bütünlerdir: A'daki x ile D'deki y'nin toplamı yüz seksen. B ile C için de aynısı geçerli.",
+        "focus": [
+         "angle-A",
+         "angle-D",
+         "AD"
+        ]
+       },
+       {
+        "narration": "Yamuk soruları çoğu zaman tek bir ek çizimle çözülür: üst tabanın uçlarından alt tabana dikme indirmek ya da bir yan kenara paralel çizmek. Böylece yamuk, bir dikdörtgen ile üçgenlere ayrılır.",
+        "focus": [
+         "ABCD"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$[AB] \\parallel [DC]$ olan bir $ABCD$ yamuğunda $m(\\widehat{A}) = 2x + 5°$ ve $m(\\widehat{D}) = 3x$'tir. Buna göre $m(\\widehat{D})$ kaç derecedir?",
+       "options": [
+        "75",
+        "105",
+        "115",
+        "125",
+        "135"
+       ],
+       "answer": 1,
+       "narration": "Aynı yan kenara bitişik açılar bütünler.",
+       "steps": [
+        {
+         "text": "$(2x + 5) + 3x = 180$ → $x = 35$.",
+         "narration": "A ile D, A D yan kenarına bitişik; toplamları yüz seksen: beş x artı beş, yüz seksen; x otuz beş."
+        },
+        {
+         "text": "$m(\\widehat{D}) = 105°$. Cevap **B**.",
+         "narration": "D, üç çarpı otuz beş, yüz beş derece; A yetmiş beş. Cevabımız B. Yetmiş beşi seçen, A'yı bulmuştur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yamukta yan kenara bitişik açılar cebirli özgün bir soruyla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ yamuğunda $[AB] \\parallel [DC]$'dir. $A$ ve $D$ açılarının açıortayları $E$ noktasında kesişiyor; $|AE| = 8$ cm, $|DE| = 6$ cm'dir. Buna göre $|AD| = x$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         14.7,
+         10.3
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           14,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           8.8,
+           9.6
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           2.8,
+           9.6
+          ]
+         },
+         {
+          "id": "E",
+          "at": [
+           6.4,
+           4.8
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "label": "x"
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "label": "8",
+          "dashed": true
+         },
+         {
+          "from": "D",
+          "to": "E",
+          "label": "6",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "E",
+          "from": "A",
+          "to": "D",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "9",
+        "10",
+        "12",
+        "14",
+        "16"
+       ],
+       "answer": 1,
+       "narration": "$\\frac{A}{2} + \\frac{D}{2} = 90°$.",
+       "steps": [
+        {
+         "text": "$A + D = 180°$ → $m(\\widehat{AED}) = 90°$.",
+         "narration": "A ile D bütünler; yarılarının toplamı doksan. A E D üçgeninde E açısı doksan."
+        },
+        {
+         "text": "$x = \\sqrt{64 + 36} = 10$. Cevap **B**.",
+         "narration": "A E D dik üçgeninde altı, sekiz, on: x on santimetre. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yamukta yan kenara bitişik açıortayların dikliği 6-8-10 üçgeniyle özgün bir şekilde soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_YAMUK_02",
+    "title": "İkizkenar yamuk",
+    "narration": "Yan kenarları eşit yamuk: ikizkenar yamuk.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Dikmeler simetrik",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        10.7,
+        4.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          10,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          7,
+          4
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          3,
+          4
+         ]
+        },
+        {
+         "id": "H",
+         "at": [
+          3,
+          0
+         ]
+        },
+        {
+         "id": "K",
+         "at": [
+          7,
+          0
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "H",
+         "label": "(a−c)/2"
+        },
+        {
+         "from": "H",
+         "to": "K",
+         "label": "c"
+        },
+        {
+         "from": "K",
+         "to": "B",
+         "label": "(a−c)/2"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "label": "c"
+        },
+        {
+         "from": "D",
+         "to": "A"
+        },
+        {
+         "from": "D",
+         "to": "H",
+         "label": "h",
+         "dashed": true
+        },
+        {
+         "from": "C",
+         "to": "K",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "fill": true
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "D",
+         "label": "α"
+        },
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "label": "α"
+        }
+       ]
+      },
+      "caption": "Taban açıları **eşit**, köşegenler **eşit**; üst tabandan inen dikmeler alt tabanda iki yanda $\\frac{a - c}{2}$ bırakır.",
+      "narration": "İkizkenar yamukta yan kenarlar eşittir. Şekil, tabanların orta noktalarından geçen dikey eksene göre simetriktir.",
+      "beats": [
+       {
+        "narration": "Alt taban açıları eşit: ikisi de alfa. Üst taban açıları da eşit. Köşegenler de birbirine eşittir.",
+        "focus": [
+         "angle-A",
+         "angle-B"
+        ]
+       },
+       {
+        "narration": "D ve C'den alt tabana dikmeler indir. Ortada üst tabana eşit c kalır; iki yanda eşit parçalar: a eksi c bölü iki. Yükseklik, bu parçayla yan kenarın oluşturduğu dik üçgenden bulunur.",
+        "focus": [
+         "DH",
+         "CK",
+         "AH",
+         "KB"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki ikizkenar yamukta $|AB| = 16$ cm, $|DC| = 6$ cm ve yan kenarlar $13$ cm'dir. Yamuğun yüksekliği $h$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         16.7,
+         12.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           16,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           11,
+           12
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           5,
+           12
+          ]
+         },
+         {
+          "id": "H",
+          "at": [
+           5,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "H"
+         },
+         {
+          "from": "H",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "13"
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "label": "6"
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "label": "13"
+         },
+         {
+          "from": "D",
+          "to": "H",
+          "label": "h",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "H",
+          "from": "B",
+          "to": "D",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+       ],
+       "answer": 3,
+       "narration": "Dikmenin ayırdığı parça $\\frac{16 - 6}{2}$.",
+       "steps": [
+        {
+         "text": "$|AH| = \\frac{16 - 6}{2} = 5$.",
+         "narration": "D'den indirilen dikme alt tabanda A H'yi ayırır: on altı eksi altı, on; yarısı beş."
+        },
+        {
+         "text": "$h = \\sqrt{169 - 25} = 12$. Cevap **D**.",
+         "narration": "A D H dik üçgeninde hipotenüs on üç, bir dik kenar beş: h on iki santimetre. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ikizkenar yamukta yükseklik 5-12-13 üçgeniyle özgün bir şekilde soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki ikizkenar yamukta yan kenarlar $8$ cm, üst taban $6$ cm ve alt taban açıları $60°$'dir. Alt taban $|AB| = x$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         14.7,
+         7.628
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           14,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           10,
+           6.928
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           4,
+           6.928
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "x"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "8"
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "label": "6"
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "label": "8"
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "D",
+          "label": "60°"
+         }
+        ]
+       },
+       "options": [
+        "10",
+        "14",
+        "16",
+        "18",
+        "22"
+       ],
+       "answer": 1,
+       "narration": "Dikmeler $30$-$60$-$90$ üçgenleri kurar.",
+       "steps": [
+        {
+         "text": "Yan kenar $8$, $A = 60°$ → yanda kalan parça $8 \\cdot \\frac{1}{2} = 4$.",
+         "narration": "D'den dikme indir: A'daki açı altmış, hipotenüs sekiz. Otuzun karşısındaki parça, hipotenüsün yarısı, dört."
+        },
+        {
+         "text": "$x = 6 + 4 + 4 = 14$. Cevap **B**.",
+         "narration": "Alt taban, ortadaki altı ile iki yandaki dörtler: on dört santimetre. Cevabımız B. Onu seçen, yalnız bir yandaki parçayı eklemiştir.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ikizkenar yamukta 30-60-90 üçgenleri özgün bir şekilde soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir ikizkenar yamukta alt taban $14$ cm, üst taban $4$ cm ve yükseklik $12$ cm'dir. Bu yamuğun bir köşegeni kaç santimetredir?",
+       "options": [
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+       ],
+       "answer": 2,
+       "narration": "Köşegen, yükseklik ve alt tabandaki bir parçayla dik üçgen kurar.",
+       "steps": [
+        {
+         "text": "$C$'den dikme: ayak $K$, $|AK| = \\frac{14 - 4}{2} + 4 = 9$.",
+         "narration": "C'den alt tabana dikme indirelim, ayağı K. A K, yandaki beş ile üst taban dördün toplamı: dokuz."
+        },
+        {
+         "text": "$|AC| = \\sqrt{81 + 144} = 15$. Cevap **C**.",
+         "narration": "A K C dik üçgeninde dik kenarlar dokuz ve on iki: köşegen on beş santimetre. Öbür köşegen de on beş; ikizkenar yamukta köşegenler eşittir. Cevabımız C. On üçü seçen, yan kenarı bulmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ikizkenar yamukta köşegen uzunluğu özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_YAMUK_03",
+    "title": "Dik yamuk",
+    "narration": "Bir yan kenarı tabanlara dik yamuk: dik yamuk.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Dik yamukta iki kural",
+      "items": [
+       "Eğik kenarın ucundan dikme indir: bir **dikdörtgen** ve bir **dik üçgen** oluşur.",
+       "Köşegenler dikse: $|AD|^2 = |AB| \\cdot |DC|$ (dik kenar, tabanların geometrik ortası)."
+      ],
+      "narration": "Dik yamukta bir yan kenar iki tabana da diktir; aynı zamanda yükseklik olur. Eğik kenarın üst ucundan alt tabana dikme indirince şekil bir dikdörtgen ile bir dik üçgene ayrılır; eğik kenar Pisagor ile bulunur. Bir de özel durum var: dik yamukta köşegenler birbirine dikse, dik yan kenarın karesi iki tabanın çarpımına eşittir. Bu, köşegenlerin kurduğu benzer dik üçgenlerden gelir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ dik yamuğunda $m(\\widehat{A}) = m(\\widehat{D}) = 90°$, $|AD| = 8$, $|DC| = 7$ ve $|AB| = 13$ birimdir. Buna göre $|BC| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         13.7,
+         8.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           13,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           7,
+           8
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           8
+          ]
+         },
+         {
+          "id": "H",
+          "at": [
+           7,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "H"
+         },
+         {
+          "from": "H",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "x"
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "label": "7"
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "label": "8"
+         },
+         {
+          "from": "C",
+          "to": "H",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "D",
+          "right": true
+         },
+         {
+          "at": "D",
+          "from": "A",
+          "to": "C",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+       ],
+       "answer": 3,
+       "narration": "$C$'den $[AB]$'ye dikme indir.",
+       "steps": [
+        {
+         "text": "$C$'den dikme: $|CH| = 8$, $|HB| = 13 - 7 = 6$.",
+         "narration": "C'den A B'ye dikme indirelim; ayağı H. A H C D dikdörtgen: C H sekiz, A H yedi. H B, on üç eksi yedi, altı."
+        },
+        {
+         "text": "$x = \\sqrt{64 + 36} = 10$. Cevap **D**.",
+         "narration": "C H B dik üçgeninde altı, sekiz, on: x on birim. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dik yamukta dikme indirerek eğik kenar bulma özgün ölçülerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ dik yamuğunda $m(\\widehat{A}) = m(\\widehat{D}) = 90°$ ve köşegenler birbirine diktir. $|AB| = 9$ cm ve $|DC| = 4$ cm olduğuna göre $|AD| = x$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         9.7,
+         6.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           9,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           4,
+           6
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           6
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "9"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "label": "4"
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "label": "x"
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": true
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "D",
+          "right": true
+         },
+         {
+          "at": "D",
+          "from": "A",
+          "to": "C",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "4",
+        "5",
+        "6",
+        "$6{,}5$",
+        "13"
+       ],
+       "answer": 2,
+       "narration": "$x^2 = |AB| \\cdot |DC|$.",
+       "steps": [
+        {
+         "text": "$DAB$ ve $ADC$ üçgenleri benzer (köşegenler dik): $\\frac{|AD|}{|AB|} = \\frac{|DC|}{|AD|}$.",
+         "narration": "Köşegenler dik olduğunda A D C ile D A B dik üçgenleri benzerdir: A'daki ve D'deki açılar karşılıklı eşleşir. Oran: A D bölü A B, D C bölü A D."
+        },
+        {
+         "text": "$x^2 = 9 \\cdot 4 = 36$ → $x = 6$. Cevap **C**.",
+         "narration": "x kare, dokuz çarpı dört, otuz altı; x altı santimetre. Cevabımız C. Altı buçuk, tabanların ortalamasıdır; burada geometrik ortalama gerekiyor.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dik yamukta dik köşegen bağıntısı benzerlikle, ölçülere uygun çizilmiş özgün bir şekilde soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_YAMUK_04",
+    "title": "Orta taban",
+    "narration": "Yan kenarların orta noktalarını birleştiren doğru parçası: orta taban.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Tabanların ortalaması",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        10.7,
+        4.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          10,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          6.5,
+          4
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          2.5,
+          4
+         ]
+        },
+        {
+         "id": "E",
+         "at": [
+          1.25,
+          2.0
+         ]
+        },
+        {
+         "id": "F",
+         "at": [
+          8.25,
+          2.0
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "a"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "label": "c"
+        },
+        {
+         "from": "D",
+         "to": "A"
+        },
+        {
+         "from": "E",
+         "to": "F",
+         "label": "(a+c)/2",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "fill": true
+        }
+       ],
+       "angles": []
+      },
+      "caption": "Orta taban tabanlara paraleldir ve $|EF| = \\frac{a + c}{2}$; köşegenler arasında kalan parçası $\\frac{a - c}{2}$.",
+      "narration": "E ve F, yan kenarların orta noktaları olsun. E F tabanlara paraleldir.",
+      "beats": [
+       {
+        "narration": "A C köşegenini çizersek E F iki parçaya ayrılır: biri A D C üçgeninin orta tabanı, c bölü iki; öbürü A B C üçgeninin orta tabanı, a bölü iki. Toplam, tabanların ortalaması: a artı c bölü iki.",
+        "focus": [
+         "EF"
+        ]
+       },
+       {
+        "narration": "İki köşegen birden çizilirse E F üzerinde köşegenlerin arasında kalan parça, a bölü iki eksi c bölü iki, yani tabanlar farkının yarısıdır.",
+        "focus": [
+         "AB",
+         "CD"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$[AB] \\parallel [DC]$ olan bir yamukta $|AB| = 18$ cm ve $|DC| = 10$ cm'dir. Orta tabanın uzunluğu kaç santimetredir?",
+       "options": [
+        "4",
+        "8",
+        "12",
+        "14",
+        "28"
+       ],
+       "answer": 3,
+       "narration": "Tabanların ortalaması.",
+       "steps": [
+        {
+         "text": "$\\frac{18 + 10}{2} = 14$. Cevap **D**.",
+         "narration": "On sekiz artı on, yirmi sekiz; yarısı on dört santimetre. Cevabımız D. Yirmi sekiz, ikiye bölmeyi unutanın cevabı; dört ise orta tabanın köşegenler arasında kalan parçası, tamamı değil.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yamukta orta taban özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aynı yamukta ($|AB| = 18$, $|DC| = 10$) orta tabanın iki köşegen arasında kalan parçası kaç santimetredir?",
+       "options": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "14"
+       ],
+       "answer": 2,
+       "narration": "Tabanlar farkının yarısı.",
+       "steps": [
+        {
+         "text": "Parçalar: $\\frac{c}{2} = 5$, sonra köşegenler arası, sonra $\\frac{c}{2} = 5$; toplam $14$.",
+         "narration": "Orta taban üç parçaya ayrılır: iki uçta üst tabanın yarısı, beşer santim; ortada köşegenler arasındaki parça. Toplam on dört."
+        },
+        {
+         "text": "Ortadaki $14 - 10 = 4 = \\frac{18 - 10}{2}$. Cevap **C**.",
+         "narration": "Ortadaki parça on dört eksi on, dört santimetre: tabanlar farkının yarısı. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; orta tabanın köşegenler arasındaki parçası özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_YAMUK_05",
+    "title": "Yamuğun alanı",
+    "narration": "Son olarak yamuğun alanı ve köşegenlerin böldüğü alanlar.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Dört üçgenin alanları",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        9.7,
+        5.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          9,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          7.2,
+          5
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          1.2,
+          5
+         ]
+        },
+        {
+         "id": "O",
+         "at": [
+          4.32,
+          3.0
+         ],
+         "dot": false,
+         "label": "O"
+        },
+        {
+         "id": "s1",
+         "at": [
+          4.24,
+          3.833
+         ],
+         "label": "S1",
+         "dot": false
+        },
+        {
+         "id": "s2",
+         "at": [
+          6.84,
+          2.667
+         ],
+         "label": "S2",
+         "dot": false
+        },
+        {
+         "id": "s3",
+         "at": [
+          4.44,
+          1.0
+         ],
+         "label": "S3",
+         "dot": false
+        },
+        {
+         "id": "s4",
+         "at": [
+          1.84,
+          2.667
+         ],
+         "label": "S4",
+         "dot": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "D"
+        },
+        {
+         "from": "D",
+         "to": "A"
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": true
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "C",
+          "O",
+          "B"
+         ],
+         "fill": true
+        },
+        {
+         "points": [
+          "A",
+          "O",
+          "D"
+         ],
+         "fill": true
+        }
+       ],
+       "angles": []
+      },
+      "caption": "$A = \\frac{a + c}{2} \\cdot h$; köşegenlerle $S_2 = S_4$ ve $S_1 \\cdot S_3 = S_2 \\cdot S_4$.",
+      "narration": "Yamuğun alanı, orta taban çarpı yükseklik: a artı c bölü iki, çarpı h.",
+      "beats": [
+       {
+        "narration": "Köşegenler yamuğu dört üçgene ayırır. Yan kenarlara bitişik iki üçgenin, S iki ile S dördün alanları eşittir: A B C ile A B D aynı tabanlı, aynı yükseklikli; ortak parça çıkınca S iki ile S dört kalır.",
+        "focus": [
+         "COB",
+         "AOD"
+        ]
+       },
+       {
+        "narration": "Bir de çarpım kuralı var: tabanlara bitişik üçgenlerin alanları çarpımı, yanlardakilerin çarpımına eşittir. S bir çarpı S üç, S iki çarpı S dört. Ayrıca bir yan kenarın orta noktası E ise yamuğun alanı, E B C üçgeninin iki katıdır.",
+        "focus": [
+         "ABCD"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$[AB] \\parallel [DC]$ olan bir yamukta $|AB| = 15$ cm, $|DC| = 9$ cm ve yükseklik $8$ cm'dir. Yamuğun alanı kaç santimetrekaredir?",
+       "options": [
+        "48",
+        "72",
+        "96",
+        "120",
+        "192"
+       ],
+       "answer": 2,
+       "narration": "Orta taban çarpı yükseklik.",
+       "steps": [
+        {
+         "text": "$A = \\frac{15 + 9}{2} \\cdot 8 = 12 \\cdot 8 = 96$. Cevap **C**.",
+         "narration": "Orta taban on iki; çarpı sekiz, doksan altı santimetrekare. Cevabımız C. Yüz doksan ikiyi seçen, tabanların toplamını ikiye bölmemiştir.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yamuk alan formülü özgün değerlerle uygulandı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$[AB] \\parallel [DC]$ olan bir $ABCD$ yamuğunda $E$, $[AD]$'nin orta noktasıdır. $A(EBC) = 30$ cm² olduğuna göre $A(ABCD)$ kaç santimetrekaredir?",
+       "options": [
+        "45",
+        "60",
+        "75",
+        "90",
+        "120"
+       ],
+       "answer": 1,
+       "narration": "MEB kuralı: yan kenarın orta noktası, alanın yarısını verir.",
+       "steps": [
+        {
+         "text": "$A(ABCD) = 2 \\cdot A(EBC)$.",
+         "narration": "E bir yan kenarın orta noktası olduğunda E B C üçgeninin alanı yamuğun alanının tam yarısıdır. Neden: E'nin alt ve üst tabana uzaklıkları yüksekliğin yarısı; kalan iki üçgenin alanları toplamı da yarı."
+        },
+        {
+         "text": "$A(ABCD) = 60$. Cevap **B**.",
+         "narration": "Yamuğun alanı otuzun iki katı, altmış santimetrekare. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB'deki \"E orta noktaysa A(ABCD) = 2·A(EBC)\" bilgisi özgün bir değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$[AB] \\parallel [DC]$ olan bir yamuğun köşegenleri $O$ noktasında kesişiyor. $A(DOC) = 4$ cm² ve $A(AOB) = 9$ cm² olduğuna göre yamuğun alanı kaç santimetrekaredir?",
+       "options": [
+        "19",
+        "24",
+        "25",
+        "26",
+        "36"
+       ],
+       "answer": 2,
+       "narration": "$S_2 = S_4$ ve $S_2^2 = S_1 \\cdot S_3$.",
+       "steps": [
+        {
+         "text": "$S_2 \\cdot S_4 = S_1 \\cdot S_3 = 36$ ve $S_2 = S_4$ → $S_2 = S_4 = 6$.",
+         "narration": "Yan üçgenler eşit ve çarpımları tabana bitişiklerin çarpımına eşit: S iki kare, dört çarpı dokuz, otuz altı; S iki altı, S dört de altı."
+        },
+        {
+         "text": "Toplam $4 + 9 + 6 + 6 = 25$. Cevap **C**.",
+         "narration": "Yamuğun alanı dört artı dokuz artı altı artı altı, yirmi beş santimetrekare. İlginç bir bilgi: sonuç, kök dört artı kök dokuzun karesine eşit. Cevabımız C. On dokuzu seçen, yan üçgenleri tek saymıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB'deki yamukta köşegen alanları bağıntısı (S2 = S4, S1·S3 = S2·S4) özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$[AB] \\parallel [DC]$ olan bir $ABCD$ yamuğunda $|AB| = 12$ cm ve $|DC| = 4$ cm'dir. $[AC]$ köşegeni çiziliyor ve $A(ACD) = 10$ cm² oluyor. Buna göre yamuğun alanı kaç santimetrekaredir?",
+       "options": [
+        "30",
+        "36",
+        "40",
+        "45",
+        "48"
+       ],
+       "answer": 2,
+       "narration": "İki üçgenin yükseklikleri aynı: yamuğun yüksekliği.",
+       "steps": [
+        {
+         "text": "$ACD$ ve $ABC$'nin yükseklikleri aynı → alanlar tabanlar oranında: $\\frac{A(ABC)}{A(ACD)} = \\frac{12}{4} = 3$.",
+         "narration": "A C D'nin tabanı D C, A B C'nin tabanı A B; ikisinin yüksekliği de yamuğun yüksekliği. Alanlar tabanlar oranında: on iki bölü dört, üç."
+        },
+        {
+         "text": "$A(ABC) = 30$ → yamuk $10 + 30 = 40$. Cevap **C**.",
+         "narration": "A B C'nin alanı otuz; yamuğun alanı on artı otuz, kırk santimetrekare. Cevabımız C. Otuzu seçen, yalnız büyük üçgeni bulmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yamukta köşegenin ayırdığı iki üçgenin alan oranı özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Yan kenara bitişik açılar **bütünler**; açıortayları **diktir**.",
+    "İkizkenar yamukta taban açıları ve köşegenler **eşit**; dikmeler $\\frac{a - c}{2}$ bırakır.",
+    "Dik yamukta köşegenler dikse $|AD|^2 = |AB| \\cdot |DC|$.",
+    "Orta taban $\\frac{a + c}{2}$; köşegenler arası parça $\\frac{a - c}{2}$.",
+    "Alan $\\frac{a + c}{2} \\cdot h$; $S_2 = S_4$, $S_1 S_3 = S_2 S_4$."
+   ],
+   "warnings": [
+    "İkizkenar yamukta fark **iki yana** bölünür.",
+    "Orta taban **toplamın** yarısı, köşegenler arası parça **farkın** yarısı.",
+    "Köşegen alanlarında yan üçgenleri **iki kez** say."
+   ],
+   "narration": "Hadi toparlayalım. Yamukta yan kenara bitişik açılar bütünlerdir ve açıortayları diktir. İkizkenar yamukta üst tabandan inen dikmeler iki yanda tabanlar farkının yarısını bırakır; dik yamukta eğik kenarın ucundan dikme indirirsin. Orta taban tabanların ortalaması, köşegenler arasındaki parçası farkın yarısıdır. Alan orta taban çarpı yükseklik; köşegenlerin ayırdığı yan üçgenler eşittir ve çarpımları tabana bitişik üçgenlerin çarpımına eşittir."
+  }
+ }
+}

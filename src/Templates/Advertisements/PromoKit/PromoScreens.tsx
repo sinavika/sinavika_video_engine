@@ -8,7 +8,7 @@ import {LessonFlowScreen, LessonsHomeScreen, TestSolveScreen, TestsHomeScreen} f
 import {PlanTodayScreen} from '../../../UIUX/Screens/Mobile/Plan';
 import {SinoChatScreen, SinoHomeScreen, SinoLibraryScreen, SinoStudyScreen} from '../../../UIUX/Screens/Mobile/SinoAI';
 import {SiteSinoGuestScreen} from '../../../UIUX/Screens/Site/Site';
-import {WebResultScreen} from '../../../UIUX/Screens/Web/ExamWeb';
+import {WebExamSolveScreen, WebResultScreen} from '../../../UIUX/Screens/Web/ExamWeb';
 import {WebHomeScreen} from '../../../UIUX/Screens/Web/Panel';
 import {WebPlanTodayScreen} from '../../../UIUX/Screens/Web/PlanWeb';
 import {WebSinoChatScreen, WebSinoLibraryScreen, WebSinoStudyScreen} from '../../../UIUX/Screens/Web/SinoWeb';
@@ -52,6 +52,7 @@ export const PROMO_PHONE_SCREENS = {
 export const PROMO_WEB_SCREENS = {
 	webHome: WebHomeScreen,
 	webResult: WebResultScreen,
+	webExamSolve: WebExamSolveScreen,
 	webPlanToday: WebPlanTodayScreen,
 	webSinoChat: WebSinoChatScreen,
 	webSinoStudy: WebSinoStudyScreen,
@@ -59,7 +60,7 @@ export const PROMO_WEB_SCREENS = {
 	siteSinoGuest: SiteSinoGuestScreen,
 } as const satisfies Record<string, React.FC>;
 
-export type PromoPhoneScreen = keyof typeof PROMO_PHONE_SCREENS;
-export type PromoWebScreen = keyof typeof PROMO_WEB_SCREENS;
+type PromoPhoneScreen = keyof typeof PROMO_PHONE_SCREENS;
+type PromoWebScreen = keyof typeof PROMO_WEB_SCREENS;
 export const PROMO_PHONE_SCREEN_NAMES = Object.keys(PROMO_PHONE_SCREENS) as [PromoPhoneScreen, ...PromoPhoneScreen[]];
 export const PROMO_WEB_SCREEN_NAMES = Object.keys(PROMO_WEB_SCREENS) as [PromoWebScreen, ...PromoWebScreen[]];

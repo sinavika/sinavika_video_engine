@@ -195,7 +195,6 @@ export const SinoStudyScreen: React.FC = () => {
 		['cards', 'Tekrar kartları oluştur', 'Create review cards', 'Notlarından Bilgi Kartları destesi', 'A deck from your notes'],
 		['quiz', 'Test oluştur', 'Create a quiz', '10 soru, anında açıklamalı', '10 questions, instant feedback'],
 		['calendar', 'Çalışma planı oluştur', 'Create a study plan', 'Bir haftalık konu planı', 'A one-week topic plan'],
-		['book', 'Çalışma oluştur', 'Create a study set', 'Konu anlatımı ve sorular', 'Explanation and questions'],
 	];
 	return (
 		<SinoPhone>
@@ -258,7 +257,7 @@ export const SinoStudyResultScreen: React.FC = () => {
 						</Stack>
 					</Stack>
 					<Stack row gap={10} style={{marginTop: 14}}>
-						<Button size="md" icon="play">
+						<Button size="md" module="tests" icon="play">
 							{t('Testi aç', 'Open test')}
 						</Button>
 						<Button size="md" tone="ghost" icon="edit">

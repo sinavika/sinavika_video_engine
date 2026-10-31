@@ -1,0 +1,613 @@
+{
+ "topic": {
+  "id": "0F855530-588D-39B2-1C21-D0CB65481A02",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_CARPAN"
+ },
+ "title": "Çarpanlara Ayırma",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "YKS/AYT/CikmisSorular/MAT.jsonl (bu konuya eşlenen tek soru 2024 analitik geometri sorusu, VeriDuzeltmeleri #65; çarpanlara ayırma AYT'de polinom, denklem ve limit sorularının içinde geçer)",
+  "YKS/AYT/Sorular/MAT/MAT_CARPAN.jsonl (yapı ve zorluk için)",
+  "AYT'de bu konunun konu anlatımı yok: kurallar TYT Çarpanlara Ayırma dersinden kısaltıldı, her cevap tam hesapla denetlendi"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Çarpanlara ayırmak, uzun hesabı kısaltmaktır.",
+   "narration": "Yüz yirmi üç çarpı yüz yirmi dört eksi yüz yirmi iki çarpı yüz yirmi beş kaçtır? Çarpmadan, beş saniyede: iki. Çarpanlara ayırma AYT'de tek başına az sorulur, ama polinom, denklem, limit ve türev sorularının hepsinde bu hamle gerekir. Bu derste özdeşlikleri hatırlayıp her kalıbı AYT düzeyinde bir soruyla çözeceğiz."
+  },
+  "objectives": [
+   "Gruplandırarak verilen ifadeyi aranan ifadenin içinde bulmak",
+   "Rasyonel ifadeyi çarpanlarına ayırıp sadeleştirmek",
+   "İki kare farkını art arda kullanmak",
+   "x + 1/x ve kareler toplamı kalıplarını çözmek",
+   "Küp özdeşlikleri ve kare farkıyla tam sayı çözümleri bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_CARPAN_01",
+    "subtopics": [
+     "MAT_CARPAN_02"
+    ],
+    "title": "Ortak çarpan ve gruplandırma",
+    "narration": "Çarpanlara ayırma bir ifadeyi çarpım olarak yazmaktır. AYT'de bu çoğu zaman bilinmeyeni bulmanın kısa yoludur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kısa tekrar: ilk iki yol",
+      "items": [
+       "**Ortak çarpan**: $ab + ac = a(b + c)$.",
+       "**Gruplandırma**: $ax + ay + bx + by = a(x + y) + b(x + y) = (a + b)(x + y)$.",
+       "Verilen bir ifade ($x - y = 4$ gibi) aranan ifadenin **içinde** saklıysa önce çarpanlara ayır.",
+       "Sadeleştirmeden önce payı ve paydayı **ayrı ayrı** çarpanlarına ayır."
+      ],
+      "narration": "Çarpanlara ayırmanın ilk iki yolu: ortak çarpan parantezine almak ve gruplandırmak. Gruplandırmada terimleri ikişer ikişer ortak çarpana alırsın; ortaya aynı parantez çıkarsa onu da dışarı alırsın. AYT'de verilen bir ifade çoğu zaman aranan ifadenin içinde saklıdır; önce çarpanlarına ayırırsan ortaya çıkar. Kesirli bir ifadeyi sadeleştirmeden önce de pay ve paydayı ayrı ayrı çarpanlarına ayırırsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x - y = 4$ ve $x^2 - xy - 3x + 3y = 20$\n\nolduğuna göre, $x$ kaçtır?",
+       "options": [
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$",
+        "$9$"
+       ],
+       "answer": 3,
+       "narration": "İkinci ifadenin içinde x eksi y saklı. Gruplandıralım.",
+       "steps": [
+        {
+         "text": "$x^2 - xy - 3x + 3y = x(x - y) - 3(x - y) = (x - 3)(x - y)$",
+         "narration": "İlk iki terimden x'i, son iki terimden eksi üçü dışarı alalım: x çarpı x eksi y, eksi üç çarpı x eksi y. Ortak parantez: x eksi üç çarpı x eksi y."
+        },
+        {
+         "text": "$(x - 3) \\cdot 4 = 20$: $x - 3 = 5$, $x = 8$.",
+         "narration": "x eksi y dört: x eksi üç çarpı dört, yirmi. x eksi üç beş, x sekiz. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Gruplandırma kalıbı; ifade ve değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$123 \\cdot 124 - 122 \\cdot 125$\n\nişleminin sonucu kaçtır?",
+       "options": [
+        "$0$",
+        "$1$",
+        "$2$",
+        "$3$",
+        "$248$"
+       ],
+       "answer": 2,
+       "narration": "Çarpmayı yapmadan, sayıları n ile yazalım.",
+       "steps": [
+        {
+         "text": "$n = 123$: $n(n + 1) - (n - 1)(n + 2)$",
+         "narration": "Yüz yirmi üçe n diyelim: n çarpı n artı bir, eksi n eksi bir çarpı n artı iki."
+        },
+        {
+         "text": "$= (n^2 + n) - (n^2 + n - 2) = 2$",
+         "narration": "İlk çarpım n kare artı n; ikincisi n kare artı n eksi iki. Fark iki; n ne olursa olsun. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Sayıyı harfle yazıp çarpanlara ayırma kalıbı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a^2 \\neq b^2$ olmak üzere\n\n$\\dfrac{a^2 - ab + 2a - 2b}{a^2 - b^2}$\n\nifadesinin sadeleşmiş biçimi aşağıdakilerden hangisidir?",
+       "options": [
+        "$\\frac{a - 2}{a + b}$",
+        "$\\frac{a + 2}{a - b}$",
+        "$\\frac{a - 2}{a - b}$",
+        "$a + 2$",
+        "$\\frac{a + 2}{a + b}$"
+       ],
+       "answer": 4,
+       "narration": "Payı gruplandırarak, paydayı iki kare farkıyla ayıralım.",
+       "steps": [
+        {
+         "text": "Pay: $a(a - b) + 2(a - b) = (a - b)(a + 2)$",
+         "narration": "Payda ilk iki terimden a, son ikiden iki dışarı: a eksi b çarpı a artı iki."
+        },
+        {
+         "text": "Payda: $a^2 - b^2 = (a - b)(a + b)$",
+         "narration": "Payda iki kare farkı: a eksi b çarpı a artı b."
+        },
+        {
+         "text": "$\\frac{(a - b)(a + 2)}{(a - b)(a + b)} = \\frac{a + 2}{a + b}$",
+         "narration": "a eksi b sadeleşir: a artı iki bölü a artı b. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "Rasyonel ifade sadeleştirme kalıbı; ifade yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_CARPAN_03",
+    "subtopics": [
+     "MAT_CARPAN_04"
+    ],
+    "title": "İki kare farkı ve tam kare",
+    "narration": "İki kare farkı uzun çarpımları bir anda kısaltır; tam kare özdeşlikleri ise toplamdan kareler toplamına geçirir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Özdeşlikler",
+      "items": [
+       "$a^2 - b^2 = (a - b)(a + b)$",
+       "$(a \\pm b)^2 = a^2 \\pm 2ab + b^2$; $a^2 + b^2 = (a + b)^2 - 2ab$.",
+       "$x^2 + \\frac{1}{x^2} = \\left(x + \\frac{1}{x}\\right)^2 - 2$; $\\left(x - \\frac{1}{x}\\right)^2 = \\left(x + \\frac{1}{x}\\right)^2 - 4$.",
+       "Kareler toplamı **sıfırsa** her kare sıfırdır."
+      ],
+      "narration": "İki kare farkı, farkla toplamın çarpımıdır. Tam kare özdeşliği a artı b'nin karesini açar; buradan a kare artı b kare, toplamın karesi eksi iki a b olur. x artı bir bölü x verilince de aynı yolla kareler toplamına geçersin; x eksi bir bölü x'in karesi ise toplamın karesinden dört eksiktir. Ve gerçel sayıların kareleri toplamı sıfırsa her kare ayrı ayrı sıfırdır."
+     },
+     {
+      "kind": "visual",
+      "title": "Özdeşliklerin alanı",
+      "visual": {
+       "kind": "process",
+       "process": "areamodel",
+       "stages": [
+        "tamkare",
+        "karefarki"
+       ]
+      },
+      "narration": "İki özdeşliği alanlarla görelim; ezberlemek yerine nereden geldiğini bileceğiz.",
+      "beats": [
+       {
+        "narration": "Kenarı a artı b olan bir kare. İçinde dört parça var: a kare, iki tane a b dikdörtgeni ve b kare. Bu yüzden a artı b'nin karesi, a kare artı iki a b artı b kare.",
+        "focus": [
+         "a2",
+         "ab",
+         "b2"
+        ],
+        "stage": 0
+       },
+       {
+        "narration": "Ortadaki iki a b'yi unutup yalnız a kare artı b kare yazan, şekildeki iki dikdörtgeni atmış olur.",
+        "focus": [
+         "ab"
+        ],
+        "stage": 0
+       },
+       {
+        "narration": "Şimdi a kare karesinden köşedeki b kareyi kesip çıkaralım. Kalan şekli kesip yan yana dizince kenarları a eksi b ve a artı b olan bir dikdörtgen olur: iki kare farkı.",
+        "stage": 1
+       },
+       {
+        "narration": "Alan değişmedi, yalnız biçim değişti: a kare eksi b kare, a eksi b çarpı a artı b.",
+        "stage": 1
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Karenin açılımı",
+      "wrong": "$(a - b)^2 = a^2 - b^2$",
+      "right": "$(a - b)^2 = a^2 - 2ab + b^2$",
+      "why": "Kare, ifadenin kendisiyle çarpımıdır; ortadaki $-2ab$ terimi çarpımdan gelir.",
+      "narration": "Sık yapılan bir hata: a eksi b'nin karesini a kare eksi b kare yazmak. Bu iki kare farkıdır, başka bir şey. a eksi b'yi kendisiyle çarpınca ortada eksi iki a b terimi çıkar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\dfrac{2^{16} - 1}{(2 + 1)(2^2 + 1)(2^4 + 1)}$\n\nişleminin sonucu kaçtır?",
+       "options": [
+        "$129$",
+        "$255$",
+        "$256$",
+        "$257$",
+        "$511$"
+       ],
+       "answer": 3,
+       "narration": "İki üzeri on altı eksi bir, bir iki kare farkı; ayırmaya devam edelim.",
+       "steps": [
+        {
+         "text": "$2^{16} - 1 = (2^8 - 1)(2^8 + 1)$",
+         "narration": "İki üzeri on altı, iki üzeri sekizin karesi: iki kare farkı. İki üzeri sekiz eksi bir çarpı iki üzeri sekiz artı bir."
+        },
+        {
+         "text": "$2^8 - 1 = (2^4 - 1)(2^4 + 1) = (2^2 - 1)(2^2 + 1)(2^4 + 1) = (2 - 1)(2 + 1)(2^2 + 1)(2^4 + 1)$",
+         "narration": "İki üzeri sekiz eksi biri de ayıralım; sonra iki üzeri dört eksi biri, sonra iki kare eksi biri. Sonunda iki eksi bir çarpı iki artı bir çarpı iki kare artı bir çarpı iki üzeri dört artı bir kalır."
+        },
+        {
+         "text": "Paydadaki üç çarpan sadeleşir: $(2 - 1)(2^8 + 1) = 257$",
+         "narration": "Paydadaki üç çarpan payda da var; sadeleşir. Geriye iki eksi bir, yani bir, çarpı iki üzeri sekiz artı bir: iki yüz elli yedi. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Art arda iki kare farkı kalıbı; üsler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "İşareti ne?",
+      "prompt": "$x + \\frac{1}{x} = 3$ ise $x - \\frac{1}{x}$ kaçtır?",
+      "choices": [
+       "$\\sqrt{5}$",
+       "$\\pm\\sqrt{5}$"
+      ],
+      "answer": 1,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "$x$",
+        "$x + \\frac{1}{x}$",
+        "$x - \\frac{1}{x}$"
+       ],
+       "rows": [
+        [
+         "$\\frac{3 + \\sqrt{5}}{2} \\approx 2{,}62$",
+         "$3$",
+         "$+\\sqrt{5}$"
+        ],
+        [
+         "$\\frac{3 - \\sqrt{5}}{2} \\approx 0{,}38$",
+         "$3$",
+         "$-\\sqrt{5}$"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "x artı bir bölü x üç olan iki sayı var: yaklaşık iki virgül altmış iki ve sıfır virgül otuz sekiz. Biri ötekinin tersi.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r1",
+         "r2"
+        ]
+       },
+       {
+        "narration": "Büyük olanda x eksi bir bölü x pozitif, küçük olanda negatif.",
+        "focus": [
+         "col3"
+        ]
+       }
+      ],
+      "explanation": "$\\left(x - \\frac{1}{x}\\right)^2 = 9 - 4 = 5$: kare biliniyor, işaret **bilinmiyor**; $\\pm\\sqrt{5}$.",
+      "narration": "Şimdi sıra sende. x artı bir bölü x üç ise x eksi bir bölü x kaçtır? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: artı ya da eksi kök beş. Farkın karesi, toplamın karesinden dört eksik: dokuz eksi dört, beş. Karesini biliyoruz ama işaretini bilmiyoruz; x birden büyükse pozitif, küçükse negatif. Soru x hakkında bilgi vermezse iki işaret de olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x + \\dfrac{1}{x} = 3$\n\nolduğuna göre, $x^4 + \\dfrac{1}{x^4}$ toplamı kaçtır?",
+       "options": [
+        "$45$",
+        "$47$",
+        "$49$",
+        "$51$",
+        "$79$"
+       ],
+       "answer": 1,
+       "narration": "Karesini iki kez alacağız.",
+       "steps": [
+        {
+         "text": "$x^2 + \\frac{1}{x^2} = 3^2 - 2 = 7$",
+         "narration": "Toplamın karesi dokuz; ortadaki iki çarpı x çarpı bir bölü x, iki. Kareler toplamı yedi."
+        },
+        {
+         "text": "$x^4 + \\frac{1}{x^4} = 7^2 - 2 = 47$",
+         "narration": "Bir kez daha kare: yedinin karesi kırk dokuz, eksi iki, kırk yedi. İkiyi çıkarmayı unutan kırk dokuz bulur. Cevap B.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "x + 1/x kalıbı; değer ve kuvvet yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x + \\dfrac{1}{x} = 3$\n\nolduğuna göre, $x^3 + \\dfrac{1}{x^3}$ toplamı kaçtır?",
+       "options": [
+        "$18$",
+        "$21$",
+        "$24$",
+        "$27$",
+        "$36$"
+       ],
+       "answer": 0,
+       "narration": "Bu kez küp. Toplamın küpünü açalım.",
+       "steps": [
+        {
+         "text": "$\\left(x + \\frac{1}{x}\\right)^3 = x^3 + \\frac{1}{x^3} + 3\\left(x + \\frac{1}{x}\\right)$",
+         "narration": "x artı bir bölü x'in küpü: x küp artı bir bölü x küp, artı üç çarpı x çarpı bir bölü x çarpı x artı bir bölü x. Ortadaki x çarpı bir bölü x, bir."
+        },
+        {
+         "text": "$27 = x^3 + \\frac{1}{x^3} + 9$: $x^3 + \\frac{1}{x^3} = 18$.",
+         "narration": "Üçün küpü yirmi yedi; yirmi yedi, aranan toplam artı dokuz. Aranan toplam on sekiz. Yalnız küp alıp yirmi yedi diyen ortadaki terimi unutmuştur. Cevap A.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "x + 1/x küp kalıbı; değer yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x$ ve $y$ gerçel sayılar olmak üzere\n\n$x^2 - 4x + y^2 + 6y + 13 = 0$\n\nolduğuna göre, $x + y$ toplamı kaçtır?",
+       "options": [
+        "$-5$",
+        "$-1$",
+        "$1$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 1,
+       "narration": "Bir denklem, iki bilinmeyen. Tam kareler bu sorunu çözer.",
+       "steps": [
+        {
+         "text": "$13 = 4 + 9$: $(x^2 - 4x + 4) + (y^2 + 6y + 9) = 0$",
+         "narration": "On üçü dört artı dokuz diye bölelim: x kare eksi dört x artı dört ile y kare artı altı y artı dokuz."
+        },
+        {
+         "text": "$(x - 2)^2 + (y + 3)^2 = 0$: iki kare de sıfır.",
+         "narration": "İkisi de tam kare: x eksi iki'nin karesi artı y artı üçün karesi, sıfır. Karelerin toplamı sıfırsa her biri sıfır."
+        },
+        {
+         "text": "$x = 2$, $y = -3$, $x + y = -1$.",
+         "narration": "x iki, y eksi üç; toplam eksi bir. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "Kareler toplamı sıfır kalıbı; katsayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_CARPAN_05",
+    "title": "Küp özdeşlikleri ve tam sayı çözümler",
+    "narration": "Son bölümde küp özdeşlikleri ve AYT'nin sevdiği bir uygulama: çarpanlara ayırarak tam sayı çözümleri saymak. Bu yöntem, bilinmeyen sayısı denklem sayısından fazla olduğunda bile çözümü bulmanı sağlar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Küp özdeşlikleri",
+      "items": [
+       "$a^3 - b^3 = (a - b)(a^2 + ab + b^2)$; $a^3 + b^3 = (a + b)(a^2 - ab + b^2)$.",
+       "$(a + b)^3 = a^3 + b^3 + 3ab(a + b)$.",
+       "$x^2 - y^2 = n$ tam sayı çözümleri: $n$'yi $(x - y)(x + y)$ diye **aynı tek-çiftli** iki çarpana ayır."
+      ],
+      "narration": "İki küp farkı, fark çarpı kareler toplamı artı çarpım; iki küp toplamı, toplam çarpı kareler toplamı eksi çarpım. a artı b'nin küpü de a küp artı b küp artı üç a b çarpı a artı b'dir. x kare eksi y kare bir sayıya eşitse, o sayıyı x eksi y ile x artı y'nin çarpımı olarak yazarsın. İki çarpan aynı tek-çiftli olmalı, çünkü toplamları iki x'tir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Toplamın küpü",
+      "wrong": "$(a + b)^3 = a^3 + b^3$",
+      "right": "$(a + b)^3 = a^3 + b^3 + 3ab(a + b)$",
+      "why": "Küp, ifadenin kendisiyle üç kez çarpımıdır; aradaki çapraz çarpımlar $3a^2b + 3ab^2$ terimlerini verir.",
+      "narration": "Sık yapılan bir hata: toplamın küpünü küplerin toplamı sanmak. Bir artı birin küpü sekiz; birin küpü artı birin küpü ise iki. Aradaki fark, çapraz çarpımlardan gelen üç a kare b artı üç a b kare terimleridir; bunları üç a b çarpı a artı b diye toplarız."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a - b = 3$ ve $a \\cdot b = 10$\n\nolduğuna göre, $a^3 - b^3$ farkı kaçtır?",
+       "options": [
+        "$87$",
+        "$99$",
+        "$117$",
+        "$126$",
+        "$133$"
+       ],
+       "answer": 2,
+       "narration": "İki küp farkı özdeşliği; içinde kareler toplamı da var.",
+       "steps": [
+        {
+         "text": "$a^2 + b^2 = (a - b)^2 + 2ab = 9 + 20 = 29$",
+         "narration": "Önce kareler toplamı: farkın karesi artı iki a b, dokuz artı yirmi, yirmi dokuz."
+        },
+        {
+         "text": "$a^3 - b^3 = (a - b)(a^2 + ab + b^2) = 3(29 + 10) = 117$",
+         "narration": "İki küp farkı: üç çarpı yirmi dokuz artı on, üç çarpı otuz dokuz, yüz on yedi. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "İki küp farkı kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a + b = 4$ ve $a^3 + b^3 = 28$\n\nolduğuna göre, $a \\cdot b$ çarpımı kaçtır?",
+       "options": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 1,
+       "narration": "Toplamın küpünü açalım.",
+       "steps": [
+        {
+         "text": "$(a + b)^3 = a^3 + b^3 + 3ab(a + b)$",
+         "narration": "a artı b'nin küpü, a küp artı b küp artı üç a b çarpı a artı b."
+        },
+        {
+         "text": "$64 = 28 + 3ab \\cdot 4$: $12ab = 36$, $ab = 3$.",
+         "narration": "Dördün küpü altmış dört; yirmi sekiz artı on iki a b. On iki a b otuz altı, a b üç. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "Toplamın küpü kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x$ ve $y$ pozitif tam sayılar olmak üzere\n\n$x^2 - y^2 = 45$\n\neşitliğini sağlayan $x$ değerlerinin toplamı kaçtır?",
+       "options": [
+        "$23$",
+        "$30$",
+        "$32$",
+        "$39$",
+        "$45$"
+       ],
+       "answer": 3,
+       "narration": "Kırk beşi iki çarpana ayıralım: x eksi y ve x artı y.",
+       "steps": [
+        {
+         "text": "$(x - y)(x + y) = 45$, $x - y < x + y$, ikisi de tek.",
+         "narration": "x eksi y çarpı x artı y, kırk beş. x eksi y küçük çarpan. Kırk beş tek olduğu için iki çarpan da tek; aynı tek-çiftli, iyi."
+        },
+        {
+         "text": "$1 \\cdot 45$: $x = 23$; $3 \\cdot 15$: $x = 9$; $5 \\cdot 9$: $x = 7$.",
+         "narration": "Bir ve kırk beş: x, ortalamaları, yirmi üç; y yirmi iki. Üç ve on beş: x dokuz, y altı. Beş ve dokuz: x yedi, y iki."
+        },
+        {
+         "text": "Toplam: $23 + 9 + 7 = 39$.",
+         "narration": "x değerlerinin toplamı otuz dokuz. Yalnız ilk çarpan çiftini bulan yirmi üç der. Cevap D.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Kare farkıyla tam sayı çözüm sayma kalıbı; sayı yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Önce **ortak çarpan**, sonra gruplandırma.",
+    "$a^2 - b^2 = (a - b)(a + b)$; art arda kullanılabilir.",
+    "$a^2 + b^2 = (a + b)^2 - 2ab$.",
+    "$x - \\frac{1}{x}$'in karesi: toplamın karesi **eksi 4**.",
+    "Kareler toplamı sıfırsa **her kare sıfır**.",
+    "$x^2 - y^2 = n$: çarpanlar **aynı tek-çiftli**."
+   ],
+   "warnings": [
+    "$(a - b)^2 \\neq a^2 - b^2$.",
+    "Karesi bilinen ifadenin **işareti** bilinmeyebilir."
+   ],
+   "narration": "Özetleyelim. Önce ortak çarpanı, sonra gruplandırmayı dene. İki kare farkı, farkla toplamın çarpımıdır ve art arda kullanılabilir. Kareler toplamı, toplamın karesi eksi iki a b'dir. x eksi bir bölü x'in karesi, toplamın karesinden dört eksiktir; ama işareti bilinmeyebilir. Kareler toplamı sıfırsa her kare sıfırdır. Ve x kare eksi y kare bir sayıya eşitse, o sayıyı aynı tek-çiftli iki çarpana ayırırsın."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "Farkın karesi",
+    "question": "Kareler farkı mı?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "**Ortadaki terim** var."
+   },
+   {
+    "sentence": "$123 \\cdot 124 - 122 \\cdot 125$",
+    "question": "Kaç?",
+    "choices": [
+     "2",
+     "0"
+    ],
+    "answer": 0,
+    "why": "**n** ile yaz."
+   },
+   {
+    "sentence": "$x + \\frac{1}{x} = 3$",
+    "question": "Kareler toplamı?",
+    "choices": [
+     "7",
+     "9"
+    ],
+    "answer": 0,
+    "why": "**İki** eksik."
+   }
+  ],
+  "hook": "Üç özdeşlik tuzağı.",
+  "cards": [
+   {
+    "kind": "warning",
+    "text": "$(a - b)^2 \\neq a^2 - b^2$"
+   },
+   {
+    "kind": "fact",
+    "text": "Kareler toplamı sıfırsa **her kare sıfır**."
+   },
+   {
+    "kind": "term",
+    "term": "İki kare farkı",
+    "definition": "Farkla **toplamın** çarpımı."
+   }
+  ],
+  "summary": [
+   "Ortada −2ab",
+   "n ile yaz",
+   "Kare eksi 2"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-matematik-kampi",
+  "name": "AYT Matematik kampı",
+  "number": 10,
+  "total": 33,
+  "previous": "Köklü Sayılar",
+  "next": "Oran Orantı",
+  "promise": "Her konu kısa bir tekrar ve AYT düzeyinde çözümlü sorularla.",
+  "task": {
+   "items": [
+    "$x^2 - y^2 = 60$ eşitliğini sağlayan pozitif tam sayı ikililerini **kendin** bul.",
+    "$x - \\frac{1}{x} = 2$ ise $x^2 + \\frac{1}{x^2}$ ve $x^3 - \\frac{1}{x^3}$ değerlerini hesapla.",
+    "Uygulamada AYT Çarpanlara Ayırma testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. x kare eksi y kare eşittir altmış eşitliğini sağlayan pozitif tam sayı ikililerini kendin bul; çarpanların aynı tek-çiftli olmasını unutma. x eksi bir bölü x iki ise x kare artı bir bölü x kare ile x küp eksi bir bölü x küpü hesapla. Sonra uygulamada AYT Çarpanlara Ayırma testinden yirmi soru çöz. Bir sonraki derste oran ve orantıda görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Özdeşlikleri tek tabloda topla: (a ± b)², a² − b², a³ ± b³ = (a ± b)(a² ∓ ab + b²), (a ± b)³ = a³ ± 3a²b + 3ab² ± b³, (a + b + c)² = a² + b² + c² + 2(ab + bc + ca).",
+   "Özdeşliklerle hızlı hesap örnekleri ekle: 101² − 99² = 400; 998 × 1002 = 1 000 000 − 4 = 999 996; 2025² − 2024² = 4049.",
+   "x + 1/x verildiğinde kuvvetleri buldur: x + 1/x = 3 ise x² + 1/x² = 7, x³ + 1/x³ = 27 − 9 = 18, (x − 1/x)² = 5.",
+   "Rasyonel ifade sadeleştirme örneği ekle: (x² − 9)/(x² + x − 6) = (x − 3)/(x − 2); sadeleşen çarpanın sıfır yaptığı x = −3'ün ve paydayı sıfır yapan x = 2'nin tanım dışı kaldığını vurgula.",
+   "Çarpım-toplam yöntemini ve tam sayı çözümleri örnekle: 6x² + x − 2 = 6x² + 4x − 3x − 2 = (2x − 1)(3x + 2). x² − y² = 24'ün pozitif tam sayı çözümleri: çarpanlar aynı tek-çiftlikte olmalı; (7, 5) ve (5, 1)."
+  ]
+ }
+}

@@ -1,6 +1,6 @@
 """ÖSYM past-question distribution per exam / lesson / topic / year.
 
-Reads the ÖSYM questions in Curriculum/Data (MEB's ÖSYM collections for YKS 2018-2026, ÖSYM KPSS booklets
+Reads the ÖSYM questions in Desktop/EgitimVerileri (EGITIM_VERILERI overrides; MEB's ÖSYM collections for YKS 2018-2026, ÖSYM KPSS booklets
 2009-2022) and the catalog, and writes osym-soru-dagilimi-<exam>.md + osym-soru-dagilimi.json next to this file.
 
     python -I Curriculum/Production/SoruDagilimi/build-osym-distribution.py
@@ -15,6 +15,8 @@ import sys
 sys.stdout.reconfigure(encoding='utf-8')
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, '..', '..', '..'))
+# The education data is not copied into the engine: it is read where the parsing pipeline writes it (31 Oct 2026).
+DATA = os.environ.get('EGITIM_VERILERI') or os.path.join(os.path.expanduser('~'), 'Desktop', 'EgitimVerileri')
 EXAMS = {
     'YKS/TYT': ('YKS_TYT', 'yks-tyt'),
     'YKS/AYT': ('YKS_AYT', 'yks-ayt'),
@@ -26,7 +28,7 @@ EXAMS = {
 
 def osym_rows(folder):
     rows = []
-    for f in glob.glob(os.path.join(ROOT, 'Curriculum', 'Data', *folder.split('/'), 'Sorular', '*', '*.jsonl')):
+    for f in glob.glob(os.path.join(DATA, *folder.split('/'), 'Sorular', '*', '*.jsonl')):
         for line in open(f, encoding='utf-8'):
             r = json.loads(line)
             s = r.get('source') or {}

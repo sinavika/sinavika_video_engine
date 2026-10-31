@@ -7,7 +7,7 @@ import {MathExpression} from './MathExpression';
 import {Text, type TextProps} from './Text';
 
 /** A phrase of the text to be marked, and when (seconds into the scene) its stroke is drawn. */
-export type TextMark = {phrase: string; at: number};
+type TextMark = {phrase: string; at: number};
 
 type RichTextProps = Omit<TextProps, 'children'> & {
 	text: string;

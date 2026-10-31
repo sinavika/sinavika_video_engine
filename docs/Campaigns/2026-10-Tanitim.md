@@ -1,5 +1,15 @@
 # Ekim 2026 tanıtım kampanyası · 16–31 Ekim
 
+> **Sonuç (29 Ekim 2026):** Kampanya tamamlandı. 31 Ekim'e kadarki bütün gönderiler onaylandı; yayınlandı ya da planlandı. Bekleyen revizyon yok.
+>
+> **Bu belgede eskiyen bilgiler:**
+> - Ses artık Doğa'dır (Eleven v4); Gökçe ve Lisa bırakıldı.
+> - Türkçede "quiz" yerine "test" denir.
+> - SinoAI'nin ürettikleri "Kitaplık"ta değil, **kütüphane**de durur.
+> - Tanıtımlar ortak `PromoEndCard` ile biter (29 Ekim'den beri adı `AppEndCard`, [`Sosyal-Kimlik-Standardi.md`](../Sosyal-Kimlik-Standardi.md)).
+>
+> **Admin notlarından çıkan dersler:** [`SocialCreativePlaybook.md`](../SocialCreativePlaybook.md) §2–3. Sonraki dönemin stratejisi: [`SocialStrategy.md`](../SocialStrategy.md).
+
 **Durum (15 Ekim 2026):** Üretildi ve gönderildi. 32 içerik API'de, admin onayı bekliyor; reddedilen 6 eski gönderinin yerine yenileri `replacesPostId` ile geçti.
 
 - **Ses:** Kullanıcı Lisa'yı tanıtım için uygun bulmadı. Hesaptaki yeni ana dili Türkçe ses Gökçe Deniz, `Launch` söyleyiş profiliyle kullanıldı (tempo 1,06, daha az monoton).
@@ -124,7 +134,7 @@ SinoAI her yerde renksiz (beyaz ve gri), UI/UX v3'teki gibi.
 | Parça | Nerede |
 |---|---|
 | Tanıtım haftalık planı | `PROMO_WEEKLY_PLAN`, `npm run social -- plan --plan tanitim` |
-| Kampanya dosyası ve testi | `src/Campaigns/Tanitim2026Ekim.ts`, `tests/Campaign.test.ts` |
+| Kampanya dosyası ve testi | `src/Campaigns/Tanitim2026Ekim.ts`, `tests/Campaigns/Campaign.test.ts` |
 | Gönderi iskeleti | `npm run social -- campaign --campaign tanitim-2026-10`. Her gün için `Posts/<tarih>_<Ad>/` klasörüne Brief.md ve Post.json taslağı yazar; reddedilen gönderisi olan 6 güne `replacesPostId` koyar. Taslaklar yazıldı, hiçbiri gönderilmedi. |
 | Ortak tanıtım kiti | `src/Templates/Advertisements/PromoKit`: zamanlama, tuval, kinetik kelime, daktilo yazı, altyazı, cihaz içinde gerçek UI/UX v3 ekranları (`PromoScreens`: kampanya verili kayıp, plan, çözüm ve kart ekranları dahil) |
 | 8 reels şablonu (her biri ayrı dil ve müzik) | `SinoAIFilm` (18.10), `ProfilePicker` (19.10), `OrbReveal` (21.10), `Keynote` (23.10), `KineticType` (25.10), `NightDesk` (26.10), `FlatMorph` (28.10), `CountdownChat` (30.10) |

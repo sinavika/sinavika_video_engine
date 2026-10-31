@@ -14,7 +14,7 @@ import type {StoreLanguage, StoreScreen} from './StoreListing';
 export const STORE_SOURCES = ['drawn', 'real'] as const;
 export type StoreSource = (typeof STORE_SOURCES)[number];
 
-export const STORE_REAL_KEYS = [
+const STORE_REAL_KEYS = [
 	'home',
 	'sinoAi',
 	'sinoAiStudy',
@@ -27,10 +27,10 @@ export const STORE_REAL_KEYS = [
 	'studyPlan',
 	'flashcards',
 ] as const;
-export type StoreRealKey = (typeof STORE_REAL_KEYS)[number];
+type StoreRealKey = (typeof STORE_REAL_KEYS)[number];
 
 /** Which captures exist per language (a missing key falls back to the drawn screen). */
-export const STORE_REAL_SCREENS: Record<StoreLanguage, readonly StoreRealKey[]> = {
+const STORE_REAL_SCREENS: Record<StoreLanguage, readonly StoreRealKey[]> = {
 	tr: STORE_REAL_KEYS,
 	en: STORE_REAL_KEYS.filter((key) => key !== 'sinoAi'),
 };
@@ -50,7 +50,7 @@ const BY_APP_SCREEN: Partial<Record<AppScreenName, StoreRealKey>> = {
 };
 
 /** The capture standing in for a slide screen; a scripted SinoAI conversation becomes the real SinoAI production card. */
-export const realKeyFor = (screen: StoreScreen): StoreRealKey | undefined =>
+const realKeyFor = (screen: StoreScreen): StoreRealKey | undefined =>
 	typeof screen === 'string' ? BY_APP_SCREEN[screen] : 'sinoAiStudy';
 
 /** Path under public/ of a capture, or undefined when that language has none. */

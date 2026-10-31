@@ -1,4 +1,4 @@
-import {outroScenes} from '../../../Scenes/BrandOutroScene';
+import {outroScenes} from '../../../Scenes/AppEndScene';
 import {estimateReadingSeconds, resolveSceneSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, type VoiceClips} from '../../../Scenes/Voiceover';
@@ -109,7 +109,7 @@ export const TopicExplanation = defineTemplate({
 	description: 'Kapak ve içindekiler, bölüm bölüm anlatım blokları, özet ekranı.',
 	contentSchema: TopicExplanationSchema,
 	sampleContent: TOPIC_EXPLANATION_SAMPLE,
-	defaultTheme: 'AcademicLight',
+	defaultTheme: 'SinavikaLight',
 	transition: {preset: 'slide', direction: 'from-right', durationSeconds: 0.5},
 	voiceProfile: 'Lecturer',
 	buildScenes,

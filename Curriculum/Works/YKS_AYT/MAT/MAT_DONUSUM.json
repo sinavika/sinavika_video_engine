@@ -1,0 +1,993 @@
+{
+ "topic": {
+  "id": "49692030-9F9A-492B-A1DF-9CBBCC769C4C",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_DONUSUM"
+ },
+ "title": "Dönüşümler",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/MAT/MAT_DONUSUM.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Kaydır, yansıt, döndür: şekil aynı, yeri değişir.",
+   "narration": "Bir aynaya baktığında, bir kapıyı açtığında, bir şeyi masada kaydırdığında dönüşüm yapıyorsun. Matematikte bunların her biri, noktaları yeni noktalara götüren basit bir kuraldır. ÖSYM 2026'da bir kareye üç dönüşüm uygulayıp hangi köşelerin yerinde kaldığını sordu. Bu derste öteleme, yansıma ve dönmeyi hareket hâlinde izleyip AYT düzeyinde yeni sorular çözeceğiz."
+  },
+  "objectives": [
+   "Noktaları ve grafikleri ötelemek",
+   "Noktaya, eksenlere ve doğrulara göre simetriyi bulmak",
+   "Eğik bir doğruya göre simetride diklik ve orta nokta koşullarını kullanmak",
+   "Bir doğrunun simetriğini denklemle bulmak",
+   "Orijin ve bir nokta etrafında dönmeyi uygulamak",
+   "Dönüşümlerin bileşkesini tek bir dönüşüme indirgemek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_DONUSUM_01",
+    "subtopics": [],
+    "title": "Öteleme",
+    "narration": "Dönüşüm, düzlemdeki her noktayı bir başka noktaya taşıyan kuraldır. En basiti öteleme: her nokta aynı yöne, aynı miktarda kayar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Öteleme",
+      "items": [
+       "$(x, y)$ noktası $(a, b)$ kadar ötelenir: $(x + a, y + b)$.",
+       "Şeklin **biçimi ve boyu** değişmez; yalnız yeri değişir.",
+       "Grafik: $y = f(x - a) + b$, $y = f(x)$'in $a$ birim sağa, $b$ birim yukarı ötelenmişidir."
+      ],
+      "visual": {
+       "kind": "transform",
+       "view": [
+        -3,
+        -3,
+        7,
+        4
+       ],
+       "shape": [
+        {
+         "name": "A",
+         "at": [
+          -1,
+          1
+         ]
+        },
+        {
+         "name": "B",
+         "at": [
+          1,
+          1
+         ]
+        },
+        {
+         "name": "C",
+         "at": [
+          -1,
+          3
+         ]
+        }
+       ],
+       "steps": [
+        {
+         "kind": "translate",
+         "by": [
+          4,
+          -3
+         ]
+        }
+       ],
+       "coordinates": true
+      },
+      "beats": [
+       {
+        "narration": "Bir üçgen: A eksi bir virgül bir, B bir virgül bir, C eksi bir virgül üç.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Dört birim sağa, üç birim aşağı öteleyelim. Her köşe aynı ok boyunca kayıyor: x'lere dört eklenir, y'lerden üç çıkar.",
+        "show": [
+         "s1"
+        ],
+        "focus": [
+         "s1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Yeni üçgen aynı üçgen; yalnız yeri değişti. A üssü üç virgül eksi iki.",
+        "show": [],
+        "focus": [
+         "s1"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Öteleme her noktayı aynı vektörle kaydırır: x virgül y noktası, a virgül b kadar ötelenince x artı a virgül y artı b olur. Şeklin biçimi ve boyu değişmez, yalnız yeri değişir. Bir fonksiyonun grafiğini ötelemek için x yerine x eksi a yazarsın; grafik a birim sağa kayar. Sonuca b eklersen b birim yukarı çıkar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde bir öteleme $A(2, -3)$ noktasını $A'(-1, 1)$ noktasına taşıyor.\n\nAynı öteleme $B(4, 5)$ noktasını $B'(m, n)$ noktasına taşıdığına göre, $m + n$ toplamı kaçtır?",
+       "options": [
+        "$4$",
+        "$6$",
+        "$8$",
+        "$10$",
+        "$12$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Vektör: $(-1 - 2, 1 - (-3)) = (-3, 4)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A'dan A üssüye: x üç azalmış, y dört artmış. Öteleme vektörü eksi üç virgül dört."
+        },
+        {
+         "text": "$B' = (4 - 3, 5 + 4) = (1, 9)$: $m + n = 10$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "B'ye aynı vektör: dört eksi üç bir, beş artı dört dokuz. Toplam on. Cevap D."
+        }
+       ],
+       "narration": "Önce öteleme vektörünü bulalım.",
+       "origin": {
+        "changes": "Öteleme vektörü kalıbı; noktalar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$y = x^2 - 4x + 1$\n\nparabolü $3$ birim **sola** ve $2$ birim **yukarı** öteleniyor.\n\nElde edilen parabolün tepe noktasının koordinatları toplamı kaçtır?",
+       "options": [
+        "$-2$",
+        "$-1$",
+        "$0$",
+        "$1$",
+        "$2$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Eski tepe: $r = 2$, $f(2) = -3$: $T(2, -3)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eski parabolün tepesi: apsis eksi b bölü iki a, iki; ordinat f iki, eksi üç."
+        },
+        {
+         "text": "$3$ sola, $2$ yukarı: $T'(2 - 3, -3 + 2) = (-1, -1)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç birim sola: x'ten üç çıkar. İki birim yukarı: y'ye iki eklenir. Yeni tepe eksi bir virgül eksi bir."
+        },
+        {
+         "text": "Toplam $-2$. Denetim: $y = (x + 3)^2 - 4(x + 3) + 3 = x^2 + 2x$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam eksi iki. Denetleyelim: x yerine x artı üç yazıp iki ekleyince x kare artı iki x çıkar; tepesi eksi bir virgül eksi bir. Sola ötelemede x yerine x eksi üç yazan yanılır. Cevap A."
+        }
+       ],
+       "narration": "Tepe noktası da şeklin bir noktası; o da aynı öteleme ile kayar.",
+       "origin": {
+        "changes": "Grafik ötelemesi kalıbı; parabol ve öteleme yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DONUSUM_02",
+    "subtopics": [],
+    "title": "Noktaya ve eksenlere göre simetri",
+    "narration": "Yansıma, bir aynanın yaptığını yapar: nokta aynaya dik olarak, aynanın öbür yanına aynı uzaklıkta geçer. Ayna bir eksen, bir doğru ya da bir nokta olabilir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Temel simetriler",
+      "items": [
+       "$x$ eksenine göre: $(x, -y)$; $y$ eksenine göre: $(-x, y)$; orijine göre: $(-x, -y)$.",
+       "$M(a, b)$ noktasına göre: $(2a - x, 2b - y)$; $M$ orta nokta.",
+       "$x = a$ doğrusuna göre: $(2a - x, y)$; $y = b$ doğrusuna göre: $(x, 2b - y)$.",
+       "$y = x$'e göre: $(y, x)$; $y = -x$'e göre: $(-y, -x)$."
+      ],
+      "visual": {
+       "kind": "transform",
+       "view": [
+        -5,
+        -4,
+        5,
+        4
+       ],
+       "shape": [
+        {
+         "name": "A",
+         "at": [
+          1,
+          1
+         ]
+        },
+        {
+         "name": "B",
+         "at": [
+          4,
+          1
+         ]
+        },
+        {
+         "name": "C",
+         "at": [
+          1,
+          3
+         ]
+        }
+       ],
+       "steps": [
+        {
+         "kind": "reflect",
+         "over": "y"
+        },
+        {
+         "kind": "reflect",
+         "over": "x"
+        }
+       ],
+       "coordinates": true
+      },
+      "beats": [
+       {
+        "narration": "Birinci bölgede bir üçgen.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "y eksenine göre yansıtalım: her köşe y eksenine dik olarak öbür yana geçiyor, x'ler işaret değiştiriyor.",
+        "show": [
+         "s1"
+        ],
+        "focus": [
+         "s1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Şimdi x eksenine göre: bu kez y'ler işaret değiştiriyor. Sonuç, ilk üçgenin orijine göre yansıması: iki eksene göre arka arkaya yansıma, orijine göre yansımaya eşit.",
+        "show": [
+         "s2"
+        ],
+        "focus": [
+         "s2"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "x eksenine göre yansımada y'nin işareti, y eksenine göre yansımada x'in işareti değişir; orijine göre ikisi birden. Bir M noktasına göre yansımada M, nokta ile görüntüsünün orta noktasıdır: iki a eksi x virgül iki b eksi y. x eşittir a doğrusuna göre yansımada yalnız x değişir, iki a eksi x olur. y eşittir x doğrusuna göre koordinatlar yer değiştirir; y eşittir eksi x'e göre yer değiştirip işaret de değiştirir."
+     },
+     {
+      "kind": "predict",
+      "title": "y = x aynasında",
+      "prompt": "$A(2, 5)$ noktasının $y = x$ doğrusuna göre simetriği hangisidir?",
+      "choices": [
+       "$(5, 2)$",
+       "$(-2, -5)$"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -1,
+        -1,
+        6,
+        6
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2,
+          5
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "P",
+         "at": [
+          -0.5,
+          -0.5
+         ],
+         "hidden": true,
+         "dot": true
+        },
+        {
+         "id": "Q",
+         "at": [
+          5.8,
+          5.8
+         ],
+         "label": "y = x",
+         "hidden": false,
+         "dot": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "P",
+         "to": "Q",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "A iki virgül beş, ve y eşittir x doğrusu: ayna bu kez eğik.",
+        "show": [],
+        "focus": [
+         "A",
+         "PQ"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "$y = x$'e göre simetride koordinatlar **yer değiştirir**: $(5, 2)$. $(-2, -5)$ orijine göre simetridir.",
+      "narration": "Şimdi sıra sende. A iki virgül beşin y eşittir x doğrusuna göre simetriği hangisi? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: beş virgül iki. y eşittir x aynasında x ile y yer değiştirir. Eksi iki virgül eksi beş, orijine göre simetri olurdu."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde $A(3, -2)$ noktasının $M(1, 4)$ noktasına göre simetriği $A'(a, b)$ olduğuna göre, $a + b$ toplamı kaçtır?",
+       "options": [
+        "$5$",
+        "$7$",
+        "$9$",
+        "$11$",
+        "$13$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$a = 2 \\cdot 1 - 3 = -1$, $b = 2 \\cdot 4 - (-2) = 10$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Orta nokta kuralı: a, iki çarpı bir eksi üç, eksi bir. b, iki çarpı dört eksi eksi iki, on."
+        },
+        {
+         "text": "$a + b = 9$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam dokuz. Cevap C."
+        }
+       ],
+       "narration": "M, A ile A üssünün orta noktası.",
+       "origin": {
+        "changes": "Noktaya göre simetri kalıbı; noktalar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde $A(a, 3)$ noktasının $x = 2$ doğrusuna göre simetriği $B(-4, b)$ noktasıdır.\n\nBuna göre, $a + b$ toplamı kaçtır?",
+       "options": [
+        "$5$",
+        "$7$",
+        "$9$",
+        "$11$",
+        "$13$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$x = 2$'ye göre: $(4 - a, 3)$; $4 - a = -4$: $a = 8$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x eşittir iki aynasında görüntü dört eksi a virgül üç. Dört eksi a, eksi dört: a sekiz."
+        },
+        {
+         "text": "$y$ değişmez: $b = 3$. $a + b = 11$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dikey aynada y aynı kalır: b üç. Toplam on bir. Cevap D."
+        }
+       ],
+       "narration": "Dikey bir aynada yalnız x değişir.",
+       "origin": {
+        "changes": "Doğruya göre simetri kalıbı; noktalar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DONUSUM_03",
+    "subtopics": [],
+    "title": "Noktanın doğruya göre simetrisi",
+    "narration": "Ayna eğik bir doğru olunca iki koşul her şeyi çözer: nokta ile görüntüsünün orta noktası doğrunun üstündedir, ve onları birleştiren doğru aynaya diktir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Eğik aynada",
+      "items": [
+       "$AA'$ doğrusu aynaya **dik**; $[AA']$'nün orta noktası **aynanın üstünde**.",
+       "$x + y = c$'ye göre: $(c - y, c - x)$; $x - y = c$'ye göre: $(y + c, x - c)$.",
+       "Genel: $ax + by + c = 0$ için $A' = A - \\frac{2(ax_0 + by_0 + c)}{a^2 + b^2}(a, b)$."
+      ],
+      "beats": [],
+      "narration": "Eğik bir aynada iki koşul vardır: nokta ile görüntüsünü birleştiren doğru aynaya diktir, ve aralarındaki doğru parçasının orta noktası aynanın üstündedir. Eğimi bir ya da eksi bir olan aynalarda kısa yollar var: x artı y eşittir c'ye göre görüntü c eksi y virgül c eksi x. Genel bir doğruda noktayı, doğrunun normal vektörü boyunca, doğruya uzaklığının iki katı kaydırırsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde $A(4, 4)$ noktasının $2x - y + 1 = 0$ doğrusuna göre simetriği $A'(m, n)$ olduğuna göre, $m + n$ toplamı kaçtır?",
+       "options": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Ayna eğimi $2$; $AA'$ eğimi $-\\frac{1}{2}$: $A' = (4 - 2t, 4 + t)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Aynanın eğimi iki; A A üssü ona dik, eğimi eksi yarım. A üssü, A'dan bu yönde gidilerek bulunur: dört eksi iki t virgül dört artı t."
+        },
+        {
+         "text": "Orta nokta $(4 - t, 4 + \\frac{t}{2})$ aynada: $2(4 - t) - (4 + \\frac{t}{2}) + 1 = 0$, $t = 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Orta nokta dört eksi t virgül dört artı t bölü iki; aynanın denklemine yazınca beş eksi beş bölü iki t, sıfır: t iki."
+        },
+        {
+         "text": "$A'(0, 6)$: $m + n = 6$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A üssü sıfır virgül altı; toplam altı. Cevap E."
+        }
+       ],
+       "narration": "Diklik ve orta nokta koşullarını yazalım.",
+       "origin": {
+        "changes": "Eğik doğruya göre simetri kalıbı; nokta ve doğru yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde $A(1, -2)$ noktasının $x + y = 5$ doğrusuna göre simetriği $A'$ olduğuna göre, $|AA'|$ kaç birimdir?",
+       "options": [
+        "$4\\sqrt{2}$",
+        "$6\\sqrt{2}$",
+        "$8\\sqrt{2}$",
+        "$10\\sqrt{2}$",
+        "$12\\sqrt{2}$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$x + y = 5$'e göre: $(5 - y, 5 - x) = (7, 4)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x artı y eşittir beşe göre görüntü beş eksi y virgül beş eksi x: yedi virgül dört."
+        },
+        {
+         "text": "$|AA'| = \\sqrt{6^2 + 6^2} = 6\\sqrt{2}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Aradaki uzaklık: altının karesi artı altının karesinin karekökü, altı kök iki. Bu, A'nın aynaya uzaklığının iki katı. Cevap B."
+        }
+       ],
+       "narration": "Eğimi eksi bir olan ayna: kısa yol var.",
+       "origin": {
+        "changes": "Eğimi eksi bir olan aynaya göre simetri kalıbı; nokta ve doğru yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DONUSUM_04",
+    "subtopics": [],
+    "title": "Doğrunun simetrisi",
+    "narration": "Bir doğrunun simetriğini almak için her noktasını tek tek taşımayız: denklemde x ve y yerine görüntü kuralını yazarız.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Doğrunun görüntüsü",
+      "items": [
+       "Kuraldaki dönüşümü denklemde uygula: $M(a, b)$'ye göre $x \\to 2a - x$, $y \\to 2b - y$.",
+       "Noktaya göre simetride doğru kendine **paralel** kalır.",
+       "$y = x$'e göre: $x$ ile $y$ yer değiştirir; eğim $m$ ise yeni eğim $\\frac{1}{m}$."
+      ],
+      "beats": [],
+      "narration": "Bir doğrunun görüntüsünü bulmak için dönüşüm kuralını denklemin içine yazarız. M noktasına göre simetride x yerine iki a eksi x, y yerine iki b eksi y koyarız. Noktaya göre simetride doğru kendine paralel kalır, yalnız yeri değişir. y eşittir x'e göre simetride x ile y yer değiştirir; eğim m ise yeni eğim bir bölü m olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde $d: 2x - y + 3 = 0$ doğrusunun $M(1, 2)$ noktasına göre simetriği $d'$ doğrusudur.\n\n$d'$ doğrusunun $y$ eksenini kestiği noktanın ordinatı kaçtır?",
+       "options": [
+        "$-5$",
+        "$-3$",
+        "$-1$",
+        "$1$",
+        "$3$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$x \\to 2 - x$, $y \\to 4 - y$: $2(2 - x) - (4 - y) + 3 = 0$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x yerine iki eksi x, y yerine dört eksi y: iki çarpı iki eksi x, eksi dört eksi y, artı üç, sıfır."
+        },
+        {
+         "text": "$-2x + y + 3 = 0$, yani $d': 2x - y - 3 = 0$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Açınca eksi iki x artı y artı üç sıfır; yani iki x eksi y eksi üç sıfır. Eğim aynı: doğru kendine paralel."
+        },
+        {
+         "text": "$x = 0$: $y = -3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x sıfır iken y eksi üç. Cevap B."
+        }
+       ],
+       "narration": "Denklemde x ve y yerine iki a eksi x, iki b eksi y yazalım.",
+       "origin": {
+        "changes": "Doğrunun noktaya göre simetrisi kalıbı; doğru ve nokta yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde $y = 3x - 2$ doğrusunun $y = x$ doğrusuna göre simetriği olan doğrunun eğimi kaçtır?",
+       "options": [
+        "$-3$",
+        "$-\\frac{1}{3}$",
+        "$\\frac{1}{3}$",
+        "$1$",
+        "$3$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$x = 3y - 2$: $y = \\frac{x + 2}{3}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x ile y yer değiştirince x eşittir üç y eksi iki. y'yi yalnız bırakalım: x artı iki bölü üç."
+        },
+        {
+         "text": "Eğim $\\frac{1}{3}$.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eğim üçte bir. Eğimi eksi üçte bir sanan, dik doğruyla karıştırır. Cevap C."
+        }
+       ],
+       "narration": "y eşittir x aynasında x ile y yer değiştirir.",
+       "origin": {
+        "changes": "Doğrunun y = x'e göre simetrisi kalıbı; doğru yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DONUSUM_05",
+    "subtopics": [],
+    "title": "Dönme",
+    "narration": "Dönmede şekil bir merkez etrafında, belli bir açıyla döner. AYT'de açılar çoğunlukla doksanın katıdır ve kurallar birkaç satırdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Dönme kuralları",
+      "items": [
+       "O etrafında saatin tersine $90°$: $(x, y) \\to (-y, x)$.",
+       "$180°$: $(-x, -y)$, orijine göre simetriyle aynı.",
+       "Saatin tersine $270°$, yani saat yönünde $90°$: $(y, -x)$.",
+       "$M$ etrafında: önce $M$'yi orijine taşı, döndür, geri taşı."
+      ],
+      "visual": {
+       "kind": "transform",
+       "view": [
+        -4,
+        -1,
+        5,
+        5
+       ],
+       "shape": [
+        {
+         "name": "A",
+         "at": [
+          2,
+          1
+         ]
+        },
+        {
+         "name": "B",
+         "at": [
+          4,
+          1
+         ]
+        },
+        {
+         "name": "C",
+         "at": [
+          2,
+          2
+         ]
+        }
+       ],
+       "steps": [
+        {
+         "kind": "rotate",
+         "degrees": 90,
+         "center": [
+          0,
+          0
+         ]
+        }
+       ],
+       "coordinates": true
+      },
+      "beats": [
+       {
+        "narration": "A iki virgül bir, B dört virgül bir, C iki virgül iki.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Orijin etrafında saatin tersine doksan derece döndürelim. Kesik yay, A'nın izlediği yol: orijine uzaklığı hiç değişmiyor.",
+        "show": [
+         "s1"
+        ],
+        "focus": [
+         "s1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "A iki virgül bir, eksi bir virgül iki oldu: eksi y virgül x. Yatay kenar dikey oldu.",
+        "show": [],
+        "focus": [
+         "s1"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Orijin etrafında saatin tersine doksan derece döndürmede x virgül y, eksi y virgül x olur. Yüz seksen derece dönme, orijine göre simetrinin aynısıdır. Saatin tersine iki yüz yetmiş derece, saat yönünde doksan dereceye eşittir: y virgül eksi x. Başka bir M noktası etrafında döndürmek için önce M'yi orijine taşırsın, döndürürsün, sonra geri taşırsın."
+     },
+     {
+      "kind": "mistake",
+      "title": "Dönme yönü",
+      "wrong": "Saatin tersine $90°$: $(3, 1) \\to (1, -3)$",
+      "right": "$(3, 1) \\to (-1, 3)$",
+      "why": "Saatin tersine $90°$ kuralı $(-y, x)$; $(y, -x)$ saat yönünde $90°$ dönmedir. Birinci bölgedeki nokta saatin tersine dönünce **ikinci** bölgeye geçer.",
+      "narration": "Sık yapılan bir hata: saatin tersine doksan derecede kuralı ters çevirmek. Üç virgül bir saatin tersine dönünce ikinci bölgeye geçer: eksi bir virgül üç. Bir virgül eksi üç, saat yönünde dönüşün sonucu."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde $A(3, 2)$ noktası orijin etrafında saatin tersi yönünde $270°$ döndürülünce $A'(a, b)$ noktası elde ediliyor.\n\nBuna göre, $a - b$ farkı kaçtır?",
+       "options": [
+        "$-5$",
+        "$-1$",
+        "$1$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$270°$ saatin tersine $= 90°$ saat yönünde: $(x, y) \\to (y, -x)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Saatin tersine iki yüz yetmiş derece, saat yönünde doksan derece demek: x virgül y, y virgül eksi x olur."
+        },
+        {
+         "text": "$A'(2, -3)$: $a - b = 2 - (-3) = 5$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A üssü iki virgül eksi üç. a eksi b, iki eksi eksi üç: beş. Cevap D."
+        }
+       ],
+       "narration": "Saatin tersine iki yüz yetmiş, saat yönünde doksan dereceye eşit.",
+       "origin": {
+        "changes": "Orijin etrafında dönme kalıbı; nokta ve açı yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde $A(4, 2)$ noktası $M(1, 1)$ noktası etrafında saatin tersi yönünde $90°$ döndürülünce $A'(m, n)$ noktası elde ediliyor.\n\nBuna göre, $m + n$ toplamı kaçtır?",
+       "options": [
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$A - M = (3, 1)$; $90°$: $(-1, 3)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A'dan M'yi çıkaralım: üç virgül bir. Doksan derece döndürünce eksi bir virgül üç."
+        },
+        {
+         "text": "Geri taşı: $(-1 + 1, 3 + 1) = (0, 4)$; $m + n = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "M'yi geri ekleyelim: sıfır virgül dört. Toplam dört. Orijin etrafında döndürüp eksi iki virgül dört bulan iki der; merkez M. Cevap A."
+        }
+       ],
+       "narration": "M'yi orijine taşıyalım.",
+       "origin": {
+        "changes": "Bir nokta etrafında dönme kalıbı; nokta ve merkez yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DONUSUM_06",
+    "subtopics": [],
+    "title": "Dönüşümlerin bileşkesi",
+    "narration": "Dönüşümleri arka arkaya uygulamak bileşkedir. Sıra önemlidir; ama bazı bileşkeler tek bir dönüşüme eşittir. ÖSYM 2026'da bir kareyle bunu sordu.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bileşke",
+      "items": [
+       "Dönüşümleri **sırayla** uygula; sıra değişirse sonuç değişebilir.",
+       "İki eksene göre yansıma = orijine göre yansıma.",
+       "$x = a$ ve $x = b$ aynalarında art arda yansıma: $2(b - a)$ kadar **öteleme**.",
+       "Değişmeyen nokta: bileşkenin kendisine götürdüğü nokta."
+      ],
+      "visual": {
+       "kind": "transform",
+       "view": [
+        -4,
+        -1,
+        7,
+        4
+       ],
+       "shape": [
+        {
+         "name": "A",
+         "at": [
+          -3,
+          1
+         ]
+        },
+        {
+         "name": "B",
+         "at": [
+          -2,
+          1
+         ]
+        },
+        {
+         "name": "C",
+         "at": [
+          -3,
+          3
+         ]
+        }
+       ],
+       "steps": [
+        {
+         "kind": "reflectLine",
+         "axis": "x",
+         "at": 1
+        },
+        {
+         "kind": "reflectLine",
+         "axis": "x",
+         "at": 4
+        }
+       ],
+       "coordinates": false
+      },
+      "beats": [
+       {
+        "narration": "Bir üçgen ve iki paralel ayna: x eşittir bir ve x eşittir dört.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Önce x eşittir bire göre: üçgen aynanın öbür yanına ters dönmüş olarak geçiyor.",
+        "show": [
+         "s1"
+        ],
+        "focus": [
+         "s1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Sonra x eşittir dörde göre: yine ters dönüyor ve ilk hâline geliyor. Sonuç, altı birim sağa öteleme: aynalar arası üç birimin iki katı.",
+        "show": [
+         "s2"
+        ],
+        "focus": [
+         "s2"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bileşkede dönüşümleri yazıldığı sırayla uygularsın; sıra değişirse sonuç çoğu zaman değişir. Bazı bileşkeler tanıdıktır: iki eksene göre yansıma, orijine göre yansımadır. Birbirine paralel iki aynada art arda yansıma, aynalar arası uzaklığın iki katı kadar bir ötelemedir. Bir noktanın değişmemesi, bileşkenin onu kendisine götürmesi demektir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde köşeleri $A(-1, -1)$, $B(1, -1)$, $C(1, 1)$ ve $D(-1, 1)$ olan $ABCD$ karesine sırasıyla\n\n• orijin etrafında saatin tersi yönünde $90°$ dönme,\n\n• $x$ eksenine göre yansıma\n\ndönüşümleri uygulanıyor.\n\nSon durumda koordinatları **değişmeyen** köşeler hangileridir?",
+       "options": [
+        "A ve B",
+        "A ve C",
+        "A ve D",
+        "B ve C",
+        "B ve D"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$(x, y) \\to (-y, x) \\to (-y, -x)$: bileşke $y = -x$'e göre yansıma.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Önce doksan derece: eksi y virgül x. Sonra x eksenine göre yansıma, ikinci koordinatın işaretini değiştirir: eksi y virgül eksi x. Bu, y eşittir eksi x doğrusuna göre yansıma."
+        },
+        {
+         "text": "$y = -x$ üzerindeki köşeler değişmez: $B(1, -1)$ ve $D(-1, 1)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Aynanın üstündeki noktalar yerinde kalır. Y eşittir eksi x üzerindeki köşeler B bir virgül eksi bir ve D eksi bir virgül bir."
+        },
+        {
+         "text": "Denetim: $A(-1, -1) \\to (1, 1)$, $C \\to A$'nın yeri.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Denetleyelim: A, bir virgül bire gidiyor; C de A'nın yerine. A ile C yer değiştiriyor, B ile D kalıyor. Cevap E."
+        }
+       ],
+       "narration": "ÖSYM 2026'da bu kalıbı sordu. Bileşkenin kuralını tek seferde bulalım.",
+       "origin": {
+        "changes": "ÖSYM 2026 kare ve bileşke dönüşüm kalıbı örnek alındı; dönüşümler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde $P(-2, 3)$ noktası önce $x = 1$ doğrusuna göre, sonra elde edilen nokta $x = 4$ doğrusuna göre yansıtılıyor.\n\nSon nokta $P''$ olduğuna göre, $|PP''|$ kaç birimdir?",
+       "options": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$8$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$x = 1$'e göre: $P'(4, 3)$; $x = 4$'e göre: $P''(4, 3)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x eşittir bire göre: iki eksi eksi iki, dört; P üssü dört virgül üç. x eşittir dörde göre: sekiz eksi dört, dört. P iki üssü yine dört virgül üç: P üssü aynanın üstündeymiş."
+        },
+        {
+         "text": "$|PP''| = 4 - (-2) = 6$; kural: $2(4 - 1) = 6$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "P'den P iki üssüye uzaklık: dört eksi eksi iki, altı. Kural da aynısını söylüyor: aynalar arası üç, iki katı altı. Cevap D."
+        }
+       ],
+       "narration": "İki paralel ayna: bileşke bir öteleme.",
+       "origin": {
+        "changes": "Paralel iki aynada bileşke kalıbı; noktalar ve aynalar yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Öteleme: $(x + a, y + b)$.",
+    "Eksenler: $(x, -y)$, $(-x, y)$; orijin: $(-x, -y)$.",
+    "$M$'ye göre: $(2a - x, 2b - y)$.",
+    "$y = x$: $(y, x)$; $y = -x$: $(-y, -x)$.",
+    "Saatin tersine $90°$: $(-y, x)$.",
+    "İki paralel ayna: $2d$ öteleme."
+   ],
+   "warnings": [
+    "Sola ötelemede $x \\to x + a$.",
+    "Dönme **yönüne** dikkat."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "ÖSYM 2026 kalıbını **kendin** çöz: kareye önce $x$ eksenine göre yansıma, sonra O etrafında $90°$ dönme uygula; hangi köşeler değişmez?",
+    "$A(5, 1)$ noktasını $M(2, 3)$ etrafında saatin tersine $90°$ **çizerek** döndür.",
+    "Uygulamada AYT Dönüşümler testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Noktaya göre simetriye örnek ver: A(3, −1)'in M(2, 4)'e göre simetriği (2 × 2 − 3, 2 × 4 + 1) = (1, 9).",
+   "Eğik doğruya göre simetriyi örnekle: y = x + c doğrusuna göre (x, y) → (y − c, x + c). A(4, 0)'ın y = x + 2'ye göre simetriği (−2, 6); orta nokta (1, 3) doğru üzerinde ve AA′ doğruya dik.",
+   "Doğrunun simetriğini örnekle: y = 2x + 1 doğrusunun x eksenine göre simetriği y = −2x − 1, y = x doğrusuna göre simetriği y = (x − 1)/2 (ters fonksiyonla aynı).",
+   "Başka bir nokta etrafında dönmeyi üç adımda göster: A(5, 3)'ü M(2, 1) etrafında saat yönünün tersine 90° döndürmek için A − M = (3, 2), dönünce (−2, 3), M eklenince (0, 4). Saat yönünde 90° dönmenin (y, −x) olduğunu ekle.",
+   "Bileşke dönüşümleri ve grafik dönüşümlerini ekle: iki eksene göre art arda yansıma orijine göre yansımadır (180° dönme). y = f(x − a) + b sağa a, yukarı b öteleme; y = −f(x) x eksenine, y = f(−x) y eksenine göre yansımadır."
+  ]
+ }
+}

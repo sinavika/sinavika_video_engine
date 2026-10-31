@@ -49,7 +49,7 @@ export const GRID_MARGIN = 64;
  */
 export const GRID_ICON_ROOM = 110;
 
-export type Insets = {top: number; right: number; bottom: number; left: number};
+type Insets = {top: number; right: number; bottom: number; left: number};
 
 /**
  * Insets, in actual pixels, that keep content inside the part of a feed image

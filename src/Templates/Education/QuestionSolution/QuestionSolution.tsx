@@ -1,7 +1,8 @@
 import {ChromeBar} from '../../../Components/Layouts/SafeArea';
 import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {Badge} from '../../../Components/Typography/Badge';
-import {outroScenes} from '../../../Scenes/BrandOutroScene';
+import {OPTION_LETTERS} from '../../../Courses/LessonScript';
+import {outroScenes} from '../../../Scenes/AppEndScene';
 import {estimateReadingSeconds, resolveSceneSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, totalSeconds, type VoiceClips} from '../../../Scenes/Voiceover';
@@ -11,7 +12,6 @@ import {QUESTION_SOLUTION_SAMPLE} from './QuestionSolutionSample';
 import {
 	AnswerScene,
 	IntroScene,
-	OPTION_LETTERS,
 	QuestionScene,
 	ResultScene,
 	SolutionScene,

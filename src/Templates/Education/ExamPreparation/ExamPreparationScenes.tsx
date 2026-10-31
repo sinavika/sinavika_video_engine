@@ -13,7 +13,7 @@ import {SegmentedProgress} from '../../../Components/Overlays/SegmentedProgress'
 import {Badge} from '../../../Components/Typography/Badge';
 import {RichText} from '../../../Components/Typography/RichText';
 import {Text} from '../../../Components/Typography/Text';
-import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
+import {OUTRO_SCENE_ID} from '../../../Scenes/AppEndScene';
 import type {ScenePlan} from '../../../Scenes/ScenePlan';
 import {SPACING} from '../../../Themes/DesignTokens';
 import {withAlpha} from '../../../Themes/Theme';

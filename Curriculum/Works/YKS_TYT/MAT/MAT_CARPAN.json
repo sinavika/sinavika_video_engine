@@ -1,0 +1,691 @@
+{
+ "topic": {
+  "id": "FD82AC0A-2966-A9F0-9C8E-F72BA232696D",
+  "category": "YKS_TYT",
+  "lesson": "MAT",
+  "code": "MAT_CARPAN"
+ },
+ "title": "Çarpanlara Ayırma",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/MAT/MAT_CARPAN.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "51² − 49² kaç? Hesap makinesine gerek yok.",
+   "narration": "51'in karesinden 49'un karesini çıkar. Hesap makinesi olmadan, iki saniyede: 200. Çarpanlara ayırma, karmaşık görünen ifadeleri basit çarpımlara çevirmenin yoludur ve matematiğin geri kalanında, kesir sadeleştirmeden ikinci dereceden denklemlere kadar, hep karşına çıkar. Bu derste ortak çarpanı, gruplandırmayı, iki kare farkını, tam kare ve küp özdeşliklerini ve üç terimli ifadeleri ayırmayı adım adım göreceğiz."
+  },
+  "objectives": [
+   "Ortak çarpan ve gruplandırma ile ifadeleri ayırmak",
+   "İki kare farkı ve tam kare özdeşliklerini kullanmak",
+   "x² + bx + c biçimindeki ifadeleri çarpanlarına ayırmak",
+   "Özdeşliklerle değer bulmak ve kesir sadeleştirmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_CARPAN_01",
+    "subtopics": [],
+    "title": "Ortak çarpan",
+    "narration": "Çarpanlara ayırmanın ilk adımı her zaman aynıdır: bütün terimlerde ortak olan bir çarpan var mı?",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Ortak çarpan parantezi",
+      "items": [
+       "Her terimde ortak olanı dışarı al: $6x^3 + 9x^2 = 3x^2(2x + 3)$.",
+       "Ortak çarpan bir **ifade** de olabilir: $a(x - 5) + b(x - 5) = (a + b)(x - 5)$.",
+       "$(2 - a)$ ile $(a - 2)$ birbirinin **eksilisidir**: $2 - a = -(a - 2)$.",
+       "Çift kuvvette eksi kaybolur: $(2 - a)^2 = (a - 2)^2$; tek kuvvette kalır: $(2 - a)^3 = -(a - 2)^3$."
+      ],
+      "beats": [],
+      "narration": "Her terimde ortak olan çarpanı paranteze alırsın: 6 x küp artı 9 x kare, 3 x kare çarpı 2 x artı 3. Ortak çarpan bir ifade de olabilir: a çarpı x eksi 5, artı b çarpı x eksi 5; x eksi 5 ortak, a artı b çarpı x eksi 5. Dikkat edilecek bir nokta var: 2 eksi a ile a eksi 2 birbirinin eksilisidir. Çift kuvvette bu eksi kaybolur, tek kuvvette kalır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$x^2 y - x y^2 = 24$ ve $x \\cdot y = 6$ olduğuna göre $x - y$ kaçtır?",
+       "options": [
+        "2",
+        "3",
+        "4",
+        "6",
+        "18"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$x^2 y - x y^2 = xy(x - y)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki terimde de x ve y var. x çarpı y'yi ortak çarpan olarak paranteze alırız: x y çarpı x eksi y."
+        },
+        {
+         "text": "$6 \\cdot (x - y) = 24$ → $x - y = 4$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x çarpı y altı olduğu için, altı çarpı x eksi y yirmi dört. x eksi y dört. Cevabımız C. On sekizi seçen, ortak çarpana almak yerine yirmi dörtten altıyı çıkarmıştır."
+        }
+       ],
+       "narration": "Ortak çarpanı paranteze alalım.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki ortak çarpan parantezi özgün bir değer bulma sorusuna dönüştürüldü."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_CARPAN_03",
+    "subtopics": [],
+    "title": "İki kare farkı",
+    "narration": "En çok kullanılan özdeşlik: iki karenin farkı, toplamları ile farklarının çarpımıdır.",
+    "cards": [
+     {
+      "kind": "predict",
+      "title": "Hesapsız kare farkı",
+      "context": "$51^2 - 49^2$",
+      "prompt": "Bu işlemin sonucu kaçtır?",
+      "choices": [
+       "4",
+       "200",
+       "400"
+      ],
+      "answer": 1,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "formula",
+       "latex": "a^2 - b^2 = (a + b)(a - b)",
+       "caption": "51² − 49² = (51 + 49)(51 − 49) = 100 · 2 = 200"
+      },
+      "beats": [
+       {
+        "narration": "a kare eksi b kare, a artı b çarpı a eksi b'dir.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "51 artı 49, 100. 51 eksi 49, 2. Çarpım 200. Kareleri hiç hesaplamadık.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "explanation": "İki kare farkı: $(51 + 49)(51 - 49)$ $= 100 \\cdot 2 = 200$.",
+      "narration": "Şimdi sıra sende. Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 200. İki kare farkını toplam çarpı fark olarak yazınca işlem bir anda kolaylaştı. 4'ü seçen, 51 eksi 49'u, yani 2'yi karesini almış olabilir; 400'ü seçen ise 100 ile 4'ü çarpmıştır."
+     },
+     {
+      "kind": "visual",
+      "title": "a² − b² alan olarak",
+      "visual": {
+       "kind": "process",
+       "process": "areamodel",
+       "stages": [
+        "karefarki"
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Kenarı a olan kareden kenarı b olan küçük kareyi kesip çıkaralım. Geriye a kare eksi b kare kadar alan kalır.",
+        "show": [],
+        "focus": [
+         "b2"
+        ],
+        "stage": 0,
+        "swap": []
+       },
+       {
+        "narration": "Kalan parçayı ikiye ayırıp küçüğünü çevirerek ötekinin yanına koyalım. Kenarları a artı b ve a eksi b olan bir dikdörtgen oluşur: a kare eksi b kare, a artı b çarpı a eksi b'dir.",
+        "show": [],
+        "focus": [
+         "karefarki"
+        ],
+        "stage": 0,
+        "swap": []
+       }
+      ],
+      "narration": "Kare farkını da alanla görelim."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$x \\neq 3$ ve $x \\neq -3$ olmak üzere, $\\frac{x^2 - 3x}{x^2 - 9}$ ifadesinin en sade hâli aşağıdakilerden hangisidir?",
+       "options": [
+        "$\\frac{x}{x + 3}$",
+        "$\\frac{x}{x - 3}$",
+        "$\\frac{1}{x + 3}$",
+        "$x$",
+        "$\\frac{-x}{x + 3}$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Pay: ortak çarpan $x$ → $x^2 - 3x = x(x - 3)$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Payda iki terim var, ikisinde de x ortak: x çarpı x eksi 3."
+        },
+        {
+         "text": "Payda: iki kare farkı → $x^2 - 9 = (x - 3)(x + 3)$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Payda x kare eksi 9, yani x kare eksi 3 kare. İki kare farkı: x eksi 3 çarpı x artı 3."
+        },
+        {
+         "text": "$\\frac{x(x - 3)}{(x - 3)(x + 3)} = \\frac{x}{x + 3}$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x eksi 3 hem payda hem paydada var, sadeleşir. Geriye x bölü x artı 3 kalır. Cevabımız A. Sadeleştirme yalnızca çarpanlar arasında yapılır; x kare ile x kareyi doğrudan sadeleştiremezsin."
+        }
+       ],
+       "narration": "Payı ve paydayı ayrı ayrı çarpanlarına ayıralım.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki rasyonel ifade sadeleştirme kalıbı örnek alındı, ifade özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$1003^2 - 997^2$ işleminin sonucu kaçtır?",
+       "options": [
+        "6000",
+        "12000",
+        "1200",
+        "120000",
+        "6"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$a^2 - b^2 = (a - b)(a + b)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki kare farkı özdeşliği: a kare eksi b kare, a eksi b çarpı a artı b."
+        },
+        {
+         "text": "$(1003 - 997)(1003 + 997) = 6 \\cdot 2000$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bin üç eksi dokuz yüz doksan yedi altı; bin üç artı dokuz yüz doksan yedi iki bin."
+        },
+        {
+         "text": "$6 \\cdot 2000 = 12000$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Altı çarpı iki bin, on iki bin. Cevabımız B. Kareleri tek tek hesaplamaya çalışan hem zaman kaybeder hem de hata yapabilir."
+        }
+       ],
+       "narration": "Kareleri tek tek hesaplamaya gerek yok: iki kare farkı.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki \"hesapsız kare farkı\" tahmin kartı özgün sayılarla soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_CARPAN_04",
+    "subtopics": [],
+    "title": "Tam kare",
+    "narration": "İki terimin toplamının ya da farkının karesi, ÖSYM'nin alan modeliyle sorduğu bir özdeşliktir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "(a + b)² alan olarak",
+      "visual": {
+       "kind": "process",
+       "process": "areamodel",
+       "stages": [
+        "tamkare"
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Bir köşede kenarı a olan büyük bir kare var, alanı a kare. Karşı köşede kenarı b olan küçük bir kare var, alanı b kare.",
+        "show": [
+         "tamkare",
+         "b2"
+        ],
+        "focus": [
+         "tamkare",
+         "b2"
+        ],
+        "stage": 0,
+        "swap": []
+       },
+       {
+        "narration": "Aradaki iki dikdörtgenin her biri a çarpı b. İkisi birlikte 2 a b.",
+        "show": [
+         "ab"
+        ],
+        "focus": [
+         "ab"
+        ],
+        "stage": 0,
+        "swap": []
+       },
+       {
+        "narration": "Toplam alan: a artı b'nin karesi, a kare artı 2 a b artı b kare. Farkın karesinde ortadaki terim eksi olur: a kare eksi 2 a b artı b kare.",
+        "show": [
+         "tamkare"
+        ],
+        "focus": [
+         "tamkare"
+        ],
+        "stage": 0,
+        "swap": []
+       }
+      ],
+      "narration": "Kenarı a artı b olan bir kareyi dört parçaya ayıralım."
+     },
+     {
+      "kind": "mistake",
+      "title": "Ortadaki terimi unutma",
+      "wrong": "$(a + b)^2 = a^2 + b^2$",
+      "right": "$(a + b)^2 = a^2 + 2ab + b^2$. Örnek: $(3 + 2)^2 = 25$, ama $3^2 + 2^2 = 13$.",
+      "why": "İki dikdörtgen, yani $2ab$ unutulmuş. Bir sayıyla dene: fark hemen görünür.",
+      "narration": "En klasik hata: a artı b'nin karesini a kare artı b kare yazmak. Sayıyla dene: 3 artı 2'nin karesi 25, ama 3 kare artı 2 kare 13. Aradaki 12, unutulan iki dikdörtgen: 2 çarpı 3 çarpı 2."
+     },
+     {
+      "kind": "rule",
+      "title": "Toplam ve çarpımdan değer bul",
+      "items": [
+       "$a^2 + b^2 = (a + b)^2 - 2ab$",
+       "$(a - b)^2 = (a + b)^2 - 4ab$",
+       "$x + \\frac{1}{x} = k$ ise $x^2 + \\frac{1}{x^2} = k^2 - 2$",
+       "Önce verileni **karesini alarak** istenene yaklaştır."
+      ],
+      "beats": [],
+      "narration": "Tam kare özdeşliği, a ile b'yi bulmadan değer hesaplamana yarar. a kare artı b kare, a artı b'nin karesinden 2 a b çıkarılarak bulunur. a eksi b'nin karesi, a artı b'nin karesinden 4 a b çıkarılarak bulunur. x artı 1 bölü x eşittir k ise x kare artı 1 bölü x kare, k kare eksi 2'dir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$a + b = 7$ ve $a \\cdot b = 10$ olduğuna göre, $a^2 + b^2$ kaçtır?",
+       "options": [
+        "29",
+        "39",
+        "49",
+        "59",
+        "69"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$(a + b)^2 = a^2 + 2ab + b^2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a artı b'nin karesi, a kare artı 2 a b artı b kare."
+        },
+        {
+         "text": "$49 = a^2 + b^2 + 2 \\cdot 10 \\Rightarrow a^2 + b^2 = 49 - 20 = 29$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a artı b 7, karesi 49. a b 10, 2 a b 20. 49 eşittir a kare artı b kare artı 20. a kare artı b kare, 29."
+        },
+        {
+         "text": "Cevap **A**. 49'u seçen $2ab$'yi unutur.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Cevabımız A. Kontrol edebilirsin: a ile b, 5 ve 2'dir; 25 artı 4, 29. 49'u seçen 2 a b'yi unutmuştur."
+        }
+       ],
+       "narration": "a ile b'yi bulmadan özdeşlikle gidelim.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki tam kare özdeşliğiyle değer bulma kalıbı örnek alındı, sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$x + \\frac{1}{x} = 4$ olduğuna göre $x^2 + \\frac{1}{x^2}$ kaçtır?",
+       "options": [
+        "12",
+        "14",
+        "16",
+        "18",
+        "8"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$\\left(x + \\frac{1}{x}\\right)^2 = x^2 + 2 \\cdot x \\cdot \\frac{1}{x} + \\frac{1}{x^2} = x^2 + 2 + \\frac{1}{x^2}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplamın karesi: birincinin karesi, artı iki çarpı birinci çarpı ikinci, artı ikincinin karesi. x çarpı bir bölü x bir olduğu için ortadaki terim iki."
+        },
+        {
+         "text": "$4^2 = 16 = x^2 + \\frac{1}{x^2} + 2$ → $x^2 + \\frac{1}{x^2} = 14$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sol taraf dördün karesi, on altı. On altı eşittir x kare artı bir bölü x kare artı iki. İkiyi karşıya atarsak on dört."
+        },
+        {
+         "text": "Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Cevabımız B. On altıyı seçen ortadaki iki çarpı terimi unutmuştur; on sekizi seçen ise ikiyi çıkarmak yerine eklemiştir."
+        }
+       ],
+       "narration": "Verilen eşitliğin iki tarafının karesini alalım; ortadaki terimi unutmayalım.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki \"ortadaki terimi unutma\" uyarısı klasik x + 1/x kalıbında özgün sayılarla soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_CARPAN_02",
+    "subtopics": [],
+    "title": "Gruplandırma ve üç terimli ifadeler",
+    "narration": "Bütün terimlerde ortak çarpan yoksa terimleri ikişer ikişer gruplarsın. Üç terimli ifadelerde ise iki sayı ararsın.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Gruplandırma ve x² + bx + c",
+      "items": [
+       "**Gruplandırma**: $ax + bx + ay + by = x(a + b) + y(a + b) = (x + y)(a + b)$.",
+       "$x^2 + bx + c$: **çarpımı c, toplamı b** olan iki sayı bul.",
+       "$x^2 + 5x + 6$: çarpımı 6, toplamı 5 → 2 ve 3 → $(x + 2)(x + 3)$.",
+       "$ax^2 + bx + c$: baş ve son terimin çarpanlarını **çapraz çarpıp** ortadaki terimi bul."
+      ],
+      "beats": [],
+      "narration": "Bütün terimlerde ortak bir çarpan yoksa terimleri ikişer ikişer gruplarsın: a x artı b x artı a y artı b y; ilk ikisinden x, son ikisinden y dışarı çıkar, a artı b ortak kalır. Üç terimli x kare artı b x artı c ifadesinde çarpımı c, toplamı b olan iki sayı ararsın. x kare artı 5 x artı 6: çarpımı 6, toplamı 5 olan sayılar 2 ve 3. Sonuç x artı 2 çarpı x artı 3. Baş katsayı 1 değilse baş ve son terimin çarpanlarını çapraz çarpıp ortadaki terimi tutturursun."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$x^2 - x - 12$ ifadesinin çarpanlarından biri aşağıdakilerden hangisidir?",
+       "options": [
+        "$x - 3$",
+        "$x + 4$",
+        "$x - 4$",
+        "$x - 6$",
+        "$x + 2$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Çarpımı $-12$, toplamı $-1$ olan iki sayı: $-4$ ve $3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çarpımları eksi 12, toplamları eksi 1 olan iki sayı arıyoruz. Çarpım negatif olduğu için biri pozitif biri negatif. Eksi 4 ile 3: çarpımları eksi 12, toplamları eksi 1."
+        },
+        {
+         "text": "$x^2 - x - 12 = (x - 4)(x + 3)$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İfade x eksi 4 çarpı x artı 3 olarak ayrılır. Kontrol: x kare artı 3 x eksi 4 x eksi 12, yani x kare eksi x eksi 12."
+        },
+        {
+         "text": "Şıklarda $x - 4$ var. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Şıklarda x eksi 4 var. Cevabımız C. Sayıların işaretini ters alan x artı 4 ile x eksi 3'ü seçer."
+        }
+       ],
+       "narration": "Çarpımı ve toplamı tutan iki sayı arayalım.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2021'in \"ax² + bx + c ifadesini çarpanlarına ayırma yöntemi\" konusu ve havuzdaki kalıp örnek alındı, ifade özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$x^3 + 2x^2 - 4x - 8$ ifadesinin çarpanlarından biri **değildir**?",
+       "options": [
+        "$x - 2$",
+        "$x + 2$",
+        "$x^2 - 4$",
+        "$(x + 2)^2$",
+        "$x + 4$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$x^2(x + 2) - 4(x + 2) = (x^2 - 4)(x + 2)$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İlk iki terimden x kare, son iki terimden eksi 4 çıkar: x kare çarpı x artı 2, eksi 4 çarpı x artı 2. x artı 2 ortak: x kare eksi 4, çarpı x artı 2."
+        },
+        {
+         "text": "$x^2 - 4 = (x - 2)(x + 2)$ → ifade $= (x - 2)(x + 2)^2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x kare eksi 4 de iki kare farkı: x eksi 2 çarpı x artı 2. Sonuç x eksi 2 çarpı x artı 2'nin karesi."
+        },
+        {
+         "text": "$x - 2$, $x + 2$, $x^2 - 4$, $(x + 2)^2$ çarpan; $x + 4$ değil. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x eksi 2, x artı 2, x kare eksi 4 ve x artı 2'nin karesi bu ifadenin çarpanları. x artı 4 ise değil. Cevabımız E."
+        }
+       ],
+       "narration": "Dört terim var; gruplandırmayı deneyelim.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki gruplandırma örneklerinin yöntemi ve havuzdaki kalıp örnek alındı, ifade özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_CARPAN_05",
+    "subtopics": [],
+    "title": "Küp özdeşlikleri",
+    "narration": "Son olarak küplerle ilgili özdeşlikler. Bunlar daha az sorulur ama değer bulma sorularında hız kazandırır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Küp özdeşlikleri",
+      "items": [
+       "$a^3 - b^3 = (a - b)(a^2 + ab + b^2)$",
+       "$a^3 + b^3 = (a + b)(a^2 - ab + b^2)$",
+       "$(a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3$",
+       "Kısa yol: $a^3 - b^3 = (a - b)^3 + 3ab(a - b)$"
+      ],
+      "beats": [],
+      "narration": "İki küp farkı: a küp eksi b küp, a eksi b çarpı a kare artı a b artı b kare. İki küp toplamında işaretler değişir: a artı b çarpı a kare eksi a b artı b kare. a artı b'nin küpü dört terimlidir: a küp artı 3 a kare b artı 3 a b kare artı b küp. Değer bulma sorularında işe yarayan kısa yol: a küp eksi b küp, a eksi b'nin küpü artı 3 a b çarpı a eksi b'dir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$x^3 - 8$ ifadesinin çarpanlarından biri aşağıdakilerden hangisidir?",
+       "options": [
+        "$x + 2$",
+        "$x^2 - 2x + 4$",
+        "$x^2 + 2x + 4$",
+        "$x^2 + 4$",
+        "$x - 4$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$x^3 - 8 = x^3 - 2^3$ → $a^3 - b^3 = (a - b)(a^2 + ab + b^2)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sekiz, iki küptür. İki küp farkı: a eksi b çarpı a kare artı a b artı b kare."
+        },
+        {
+         "text": "$x^3 - 2^3 = (x - 2)(x^2 + 2x + 4)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a yerine x, b yerine iki: x eksi iki çarpı x kare artı iki x artı dört."
+        },
+        {
+         "text": "Çarpan: $x^2 + 2x + 4$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çarpanlardan biri x kare artı iki x artı dört. Cevabımız C. Dikkat: farkın ikinci çarpanında ortadaki işaret artıdır; eksi iki x yazan B'yi seçer, o iki küp toplamının çarpanıdır."
+        }
+       ],
+       "narration": "8, ikinin küpüdür; iki küp farkı özdeşliğini kullanalım.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki küp özdeşlikleri işaret tuzaklı özgün bir çarpanlara ayırma sorusuna dönüştürüldü."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$a - b = 2$ ve $a \\cdot b = 3$ olduğuna göre, $a^3 - b^3$ kaçtır?",
+       "options": [
+        "14",
+        "20",
+        "26",
+        "32",
+        "38"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$a^3 - b^3 = (a - b)^3 + 3ab(a - b)$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a küp eksi b küp, a eksi b'nin küpü artı 3 a b çarpı a eksi b."
+        },
+        {
+         "text": "$= 2^3 + 3 \\cdot 3 \\cdot 2 = 8 + 18 = 26$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a eksi b 2, küpü 8. 3 çarpı a b, yani 3 çarpı 3, çarpı 2: 18. Toplam 26."
+        },
+        {
+         "text": "Cevap **C**. Kontrol: $a = 3$, $b = 1$ → $27 - 1 = 26$ ✓",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Cevabımız C. Kontrol edelim: a 3, b 1 olabilir; farkları 2, çarpımları 3. 27 eksi 1, 26."
+        }
+       ],
+       "narration": "Kısa yolu kullanalım.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki küp özdeşliğiyle değer bulma kalıbı örnek alındı, sayılar özgün."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Önce **ortak çarpan** ara; $(2 - a)^3 = -(a - 2)^3$.",
+    "$a^2 - b^2 = (a + b)(a - b)$: sayısal hesapta da kullan.",
+    "$(a \\pm b)^2 = a^2 \\pm 2ab + b^2$: **2ab'yi unutma**.",
+    "$a^2 + b^2 = (a + b)^2 - 2ab$",
+    "$x^2 + bx + c$: çarpımı $c$, toplamı $b$ olan iki sayı.",
+    "Sadeleştirme yalnız **çarpanlar** arasında yapılır."
+   ],
+   "warnings": [
+    "$(a + b)^2 \\neq a^2 + b^2$",
+    "$51^2 - 49^2 = 100 \\cdot 2$",
+    "$\\frac{x^2 - 3x}{x^2 - 9}$: önce ayır, sonra sadeleştir.",
+    "Tek kuvvette eksi işareti dışarı çıkar."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "$99^2 - 1$ ve $102^2 - 98^2$ işlemlerini **iki kare farkıyla** hesapla.",
+    "$x^2 - 7x + 10$ ve $x^2 + x - 20$ ifadelerini **çarpanlarına** ayır.",
+    "Uygulamada Çarpanlara Ayırma testinden **20 soru** çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Özdeşlikleri tam tabloyla ver: (a ± b)², (a ± b)³, a² − b², a³ ± b³, a² + b² = (a + b)² − 2ab, (a − b)² = (a + b)² − 4ab, x² + 1/x² = (x + 1/x)² − 2.",
+   "a ≠ 1 iken ax² + bx + c ifadesini çarpanlara ayırma yöntemini (çarpımı ac, toplamı b olan sayılar) örnekle.",
+   "Rasyonel ifadeleri çarpanlara ayırıp sadeleştirme ve tanımsız yapan değerleri bulma örnekleri ekle; sayısal kısa yollar (99 · 101, 1001², 37² − 13²)."
+  ]
+ }
+}

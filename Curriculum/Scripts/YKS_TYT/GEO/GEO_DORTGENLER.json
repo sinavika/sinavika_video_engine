@@ -1,0 +1,1261 @@
+{
+ "topic": {
+  "id": "1EECCC84-D700-8518-5545-5D5D8C8E6056",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_DORTGENLER"
+ },
+ "title": "Dörtgenler",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "YKS/TYT/KonuAnlatimi/GEO/GEO_DORTGENLER.json (MEB Temel Matematik s. 141-143, 147: dörtgen, dışbükey-içbükey, dörtgenlerin hiyerarşisi, köşegenleri dik dörtgen bağıntısı)",
+  "YKS/TYT/CikmisSorular/GEO.jsonl (ÖSYM 2020 dolap, dörtgende alan; yalnız yapı örneği); YKS/TYT/Sorular/GEO/GEO_DORTGENLER.jsonl",
+  "Bütün şekiller verilen ölçülerle koordinatta çizildi; sorular özgündür"
+ ],
+ "works": {
+  "additions": [
+   "Dörtgen ailesinin özellik tablosunu ver: köşegenler eşit mi, dik mi, birbirini ortalar mı, açıları ikiye böler mi, simetri ekseni sayısı (yamuk, ikizkenar yamuk, paralelkenar, dikdörtgen, eşkenar dörtgen, kare, deltoid).",
+   "Kenar orta noktalarını birleştiren dörtgenin her zaman paralelkenar olduğunu ve alanının yarısı olduğunu (Varignon) örnekle.",
+   "Genel dörtgende alanı ½ · e · f · sin α formülüyle ve köşegenleri dik dörtgende ½ · e · f ile hesaplayan örnekler ekle."
+  ]
+ },
+ "short": {
+  "hook": "Kare bir eşkenar dörtgen mi?",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "İç açılar: **360°**."
+   },
+   {
+    "kind": "fact",
+    "text": "Dik köşegen: $a^2 + c^2 = b^2 + d^2$"
+   },
+   {
+    "kind": "warning",
+    "text": "Kare **her şeydir**."
+   }
+  ],
+  "summary": [
+   "Toplam 360°",
+   "Alan ½·e·f·sin θ"
+  ],
+  "rounds": [
+   {
+    "sentence": "Kare",
+    "question": "Eşkenar dörtgen mi?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 0,
+    "why": "Dört kenar **eşit**."
+   },
+   {
+    "sentence": "Köşegenler 10 ve 12, dik",
+    "question": "Alan?",
+    "choices": [
+     "60",
+     "120"
+    ],
+    "answer": 0,
+    "why": "Çarpımın **yarısı**."
+   },
+   {
+    "sentence": "C + D = 180°",
+    "question": "A, B açıortayları?",
+    "choices": [
+     "90°",
+     "180°"
+    ],
+    "answer": 0,
+    "why": "Toplamın **yarısı**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-geometri-kampi",
+  "name": "TYT Geometri kampı",
+  "number": 13,
+  "total": 23,
+  "previous": "Çokgenler",
+  "next": "Deltoid",
+  "promise": "Geometri konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Dörtgen aile ağacını **kendi elinle** çiz; her dala bir örnek şekil ekle.",
+    "Köşegenleri dik bir dörtgen çiz, kenarlarını ölç: **a² + c² = b² + d²** tutuyor mu?",
+    "Uygulamada Dörtgenler testinden **20 soru** çöz; her şekilde önce **köşegen** çizmeyi dene."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Dörtgen aile ağacını kendi elinle çiz ve her dala bir örnek şekil ekle. Sonra köşegenleri dik kesişen bir dörtgen çiz, kenarlarını ölç; karşılıklı kenarların kareleri toplamı eşit mi, kontrol et. En son uygulamada dörtgenler testinden yirmi soru çöz; her şekilde önce bir köşegen çizmeyi dene. Bir sonraki derste deltoitle devam ediyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Kare bir eşkenar dörtgen mi?",
+   "narration": "Kare bir dikdörtgen midir? Eşkenar dörtgen midir? İkisinin de cevabı evet. Dörtgenler bir aile ağacı kurar ve alttaki her şekil, üsttekilerin bütün özelliklerini taşır. Bu derste dörtgenlerin açılarını, köşegenlerin sırlarını ve her dörtgende işe yarayan alan formülünü öğreneceğiz."
+  },
+  "objectives": [
+   "Dörtgenleri genelden özele sınıflandırmak",
+   "Dörtgende iç açılar toplamını ve komşu açıortayların kesişim açısını kullanmak",
+   "Köşegenleri dik dörtgende kenar bağıntısını ve alanı uygulamak",
+   "Dörtgenin alanını köşegenler ve aradaki açıyla bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_DORTGENLER_01",
+    "title": "Dörtgen ailesi ve açılar",
+    "narration": "Önce dörtgenleri bir aile ağacına yerleştirelim.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Genelden özele",
+      "visual": {
+       "kind": "tree",
+       "root": "Dörtgenler",
+       "branches": [
+        {
+         "label": "Yamuk (bir çift paralel)",
+         "nodes": [
+          {
+           "label": "Paralelkenar",
+           "items": [
+            "Dikdörtgen",
+            "Eşkenar dörtgen",
+            "Kare"
+           ]
+          }
+         ]
+        },
+        {
+         "label": "Deltoid (iki çift komşu eş)",
+         "nodes": [
+          {
+           "label": "Eşkenar dörtgen",
+           "items": [
+            "Kare"
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      "caption": "Kare hem **eşkenar dörtgen** hem **dikdörtgendir**; her paralelkenar bir **yamuktur**.",
+      "narration": "Dörtgenler genelden özele bir aile ağacı kurar. Bir çift karşılıklı kenarı paralel olan dörtgen yamuktur; iki çifti paralel olan yamuk, paralelkenardır. Açıları dik paralelkenar dikdörtgen, kenarları eşit paralelkenar eşkenar dörtgendir; ikisi birden kare. Öbür dalda deltoid var: komşu kenarları ikişer ikişer eşit. Eşkenar dörtgen aynı zamanda bir deltoittir. Alt sıradaki bir şeklin, üst sıradakilerin bütün özellikleri vardır. Her dörtgende iç açılar toplamı üç yüz altmış derecedir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $ABCD$ dörtgeninde $m(\\widehat{A}) = 2x$, $m(\\widehat{B}) = 3x$, $m(\\widehat{C}) = 4x$ ve $m(\\widehat{D}) = x + 60°$'dir. Buna göre en büyük iç açı kaç derecedir?",
+       "options": [
+        "90",
+        "100",
+        "110",
+        "120",
+        "150"
+       ],
+       "answer": 3,
+       "narration": "Dörtgende iç açılar toplamı $360°$.",
+       "steps": [
+        {
+         "text": "$2x + 3x + 4x + x + 60 = 360$ → $10x = 300$ → $x = 30$.",
+         "narration": "Açıları topla: iki x, üç x, dört x ve x artı altmış; on x artı altmış, üç yüz altmış. On x üç yüz, x otuz."
+        },
+        {
+         "text": "Açılar $60°, 90°, 120°, 90°$; en büyük $120°$. Cevap **D**.",
+         "narration": "Açılar altmış, doksan, yüz yirmi ve doksan. En büyüğü yüz yirmi derece. Cevabımız D. Otuzu seçmemek için soruyu sonuna kadar oku: x değil, en büyük açı soruluyor.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dörtgende iç açılar toplamı cebirli özgün bir soruyla uygulandı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "İçbükey bir $ABCD$ dörtgeninde $D$ köşesindeki iç açı $220°$, $m(\\widehat{A}) = 30°$ ve $m(\\widehat{B}) = 60°$'dir. Buna göre $m(\\widehat{C})$ kaç derecedir?",
+       "options": [
+        "30",
+        "40",
+        "50",
+        "60",
+        "70"
+       ],
+       "answer": 2,
+       "narration": "İçbükey dörtgende de iç açılar toplamı $360°$; bir açı $180°$'den büyük.",
+       "steps": [
+        {
+         "text": "$30 + 60 + C + 220 = 360$ → $C = 50°$. Cevap **C**.",
+         "narration": "İçbükey dörtgende bir iç açı yüz sekseni geçer ama toplam yine üç yüz altmış. Otuz artı altmış artı iki yüz yirmi, üç yüz on; C elli derece. Cevabımız C. Bu şekil ikinci dersteki ok ucudur: içteki açı yüz kırk, yani otuz, altmış ve ellinin toplamı.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; içbükey dörtgende 180° üzeri iç açı ve ok ucu bağlantısı özgün bir soruyla gösterildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aşağıdaki ifadelerden hangisi **her zaman** doğrudur?",
+       "options": [
+        "Her paralelkenar bir dikdörtgendir.",
+        "Her kare bir eşkenar dörtgendir.",
+        "Her yamuk bir paralelkenardır.",
+        "Her deltoid bir eşkenar dörtgendir.",
+        "Her dikdörtgen bir karedir."
+       ],
+       "answer": 1,
+       "narration": "Aile ağacında aşağıdan yukarı doğru okunur: alttaki, üsttekidir.",
+       "steps": [
+        {
+         "text": "Kare: dört kenarı eşit paralelkenar → eşkenar dörtgen ✓.",
+         "narration": "Karenin dört kenarı eşit ve karşılıklı kenarları paralel; eşkenar dörtgenin bütün koşullarını sağlar. Kare her zaman bir eşkenar dörtgendir."
+        },
+        {
+         "text": "Öbürleri **yukarıdan aşağı** okunmuş: genel şekil, özelin her özelliğini taşımaz. Cevap **B**.",
+         "narration": "Öbür şıklar ağacı yukarıdan aşağı okuyor. Her paralelkenarın açıları dik değildir; her yamukta iki çift paralel yoktur; her deltoidin dört kenarı eşit değildir; her dikdörtgenin kenarları eşit değildir. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB'deki dörtgen hiyerarşisi özgün bir \"her zaman doğru\" sorusuna dönüştürüldü."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ dörtgeninde $A$ ve $B$ köşelerinin iç açıortayları $E$ noktasında kesişiyor. $m(\\widehat{C}) = 70°$ ve $m(\\widehat{D}) = 110°$ olduğuna göre $m(\\widehat{AEB}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.395,
+         -0.7,
+         7.7,
+         8.307
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           7,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           5.659,
+           7.607
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           -0.695,
+           3.939
+          ]
+         },
+         {
+          "id": "E",
+          "at": [
+           2.892,
+           3.447
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "A"
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "dashed": true
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "C",
+          "from": "D",
+          "to": "B",
+          "label": "70°"
+         },
+         {
+          "at": "D",
+          "from": "A",
+          "to": "C",
+          "label": "110°"
+         },
+         {
+          "at": "E",
+          "from": "A",
+          "to": "B",
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "70",
+        "80",
+        "90",
+        "100",
+        "110"
+       ],
+       "answer": 2,
+       "narration": "$A + B = 360° - (C + D)$; yarıları $AEB$ üçgeninde.",
+       "steps": [
+        {
+         "text": "$A + B = 360° - 180° = 180°$ → $\\frac{A}{2} + \\frac{B}{2} = 90°$.",
+         "narration": "A ile B'nin toplamı, üç yüz altmış eksi C ile D'nin toplamı: üç yüz altmış eksi yüz seksen, yüz seksen. Açıortaylar yarılarını alır: toplamları doksan."
+        },
+        {
+         "text": "$x = 180° - 90° = 90°$; kural: $x = \\frac{C + D}{2}$. Cevap **C**.",
+         "narration": "A E B üçgeninde x, yüz seksen eksi doksan, doksan derece. Kısa yol: iki komşu köşenin iç açıortayları arasındaki açı, öbür iki açının toplamının yarısıdır: yüz seksenin yarısı, doksan. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dörtgende komşu iki açıortayın kesişim açısı ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DORTGENLER_02",
+    "title": "Köşegenler",
+    "narration": "Köşegenler dörtgeni üçgenlere ayırır; dik kesişirlerse güzel bir kural verir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Köşegenler dik ise",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -4.0,
+        -3.2,
+        3.0,
+        3.4
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          -3.2,
+          0
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          -2.4
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          2.2,
+          0
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          0,
+          2.6
+         ]
+        },
+        {
+         "id": "O",
+         "at": [
+          0,
+          0
+         ],
+         "dot": false,
+         "label": "O"
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "a"
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "b"
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "label": "c"
+        },
+        {
+         "from": "D",
+         "to": "A",
+         "label": "d"
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": true
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "fill": true
+        }
+       ],
+       "angles": [
+        {
+         "at": "O",
+         "from": "C",
+         "to": "D",
+         "right": true
+        }
+       ]
+      },
+      "caption": "$[AC] \\perp [BD]$ ise $a^2 + c^2 = b^2 + d^2$ ve alan $\\frac{|AC| \\cdot |BD|}{2}$.",
+      "narration": "A B C D dörtgeninin köşegenleri O noktasında dik kesişsin. Dört kenar, O'da dik açılı dört üçgenin hipotenüsü olur.",
+      "beats": [
+       {
+        "narration": "O'dan köşelere uzaklıklara p, q, r, s diyelim. a kare, p kare artı q kare; c kare, r kare artı s kare. b kare, q kare artı r kare; d kare, s kare artı p kare. İki toplam aynı dört kareden oluşur: a kare artı c kare, b kare artı d kareye eşittir. Karşılıklı kenarların kareleri toplamı eşit.",
+        "focus": [
+         "AB",
+         "CD",
+         "BC",
+         "DA"
+        ]
+       },
+       {
+        "narration": "Alan da kolaylaşır: dört dik üçgenin alanları toplamı, köşegenlerin çarpımının yarısıdır.",
+        "focus": [
+         "AC",
+         "BD",
+         "ABCD"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ dörtgeninin köşegenleri diktir. $|AB| = 9$, $|BC| = 6$ ve $|CD| = 2$ birim olduğuna göre $|DA| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -7.582,
+         -6.716,
+         1.8,
+         2.532
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           -6.782,
+           0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           -5.916
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           1.0,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           1.732
+          ]
+         },
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ],
+          "dot": false,
+          "label": "O"
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "9"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "6"
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "label": "2"
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "label": "x"
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": true
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "O",
+          "from": "C",
+          "to": "D",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+       ],
+       "answer": 2,
+       "narration": "Karşılıklı kenarların kareleri toplamı eşit.",
+       "steps": [
+        {
+         "text": "$|AB|^2 + |CD|^2 = |BC|^2 + |DA|^2$ → $81 + 4 = 36 + x^2$.",
+         "narration": "Köşegenler dik: A B kare artı C D kare, B C kare artı D A kareye eşit. Seksen bir artı dört, otuz altı artı x kare."
+        },
+        {
+         "text": "$x^2 = 49$ → $x = 7$. Cevap **C**.",
+         "narration": "x kare kırk dokuz, x yedi. Cevabımız C. Karşılıklı kenarları doğru eşle: A B'nin karşısı C D, B C'nin karşısı D A.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; köşegenleri dik dörtgende kenar bağıntısı, ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Köşegenleri birbirine dik olan bir dörtgenin köşegen uzunlukları $10$ cm ve $12$ cm'dir. Bu dörtgenin alanı kaç santimetrekaredir?",
+       "options": [
+        "30",
+        "60",
+        "90",
+        "120",
+        "240"
+       ],
+       "answer": 1,
+       "narration": "Dik köşegenlerde alan $\\frac{e \\cdot f}{2}$.",
+       "steps": [
+        {
+         "text": "$A = \\frac{10 \\cdot 12}{2} = 60$. Cevap **B**.",
+         "narration": "Alan, köşegenlerin çarpımının yarısı: on çarpı on iki, yüz yirmi; yarısı altmış santimetrekare. Cevabımız B. Yüz yirmi, ikiye bölmeyi unutanın cevabı.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; köşegenleri dik dörtgende alan özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABCD$ dörtgeninin köşegenleri $O$ noktasında dik kesişiyor. $|OA| = 8$, $|AB| = 10$, $|OC| = 4$ ve $|OD| = 3$ birim olduğuna göre $A(ABCD)$ kaç birimkaredir?",
+       "options": [
+        "36",
+        "48",
+        "54",
+        "60",
+        "72"
+       ],
+       "answer": 2,
+       "narration": "Önce $|OB|$'yi $AOB$ dik üçgeninden bul.",
+       "steps": [
+        {
+         "text": "$AOB$: $|OB| = \\sqrt{100 - 64} = 6$ → $|BD| = 6 + 3 = 9$, $|AC| = 8 + 4 = 12$.",
+         "narration": "A O B dik üçgeninde hipotenüs on, bir dik kenar sekiz; O B altı. Köşegenler: B D altı artı üç, dokuz; A C sekiz artı dört, on iki."
+        },
+        {
+         "text": "$A = \\frac{12 \\cdot 9}{2} = 54$. Cevap **C**.",
+         "narration": "Alan, köşegenlerin çarpımının yarısı: on iki çarpı dokuz, yüz sekiz; yarısı elli dört. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dik köşegenlerde Pisagor ve alan özgün değerlerle birleştirildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Köşegenleri birbirine dik olan bir dörtgende köşegen uzunlukları toplamı $14$ cm'dir. Bu dörtgenin alanı **en çok** kaç santimetrekare olabilir?",
+       "options": [
+        "24",
+        "$24{,}5$",
+        "28",
+        "49",
+        "98"
+       ],
+       "answer": 1,
+       "narration": "Toplamı sabit iki sayının çarpımı, sayılar eşitken en büyüktür.",
+       "steps": [
+        {
+         "text": "$e + f = 14$, alan $\\frac{e \\cdot f}{2}$; çarpım en çok $e = f = 7$ iken.",
+         "narration": "Alan, köşegenlerin çarpımının yarısı. Toplamı on dört olan iki sayının çarpımı, sayılar eşit olduğunda en büyük olur: yedi ve yedi."
+        },
+        {
+         "text": "$\\frac{7 \\cdot 7}{2} = 24{,}5$. Cevap **B**.",
+         "narration": "Yedi çarpı yedi, kırk dokuz; yarısı yirmi dört virgül beş. Cevabımız B. Kırk dokuzu seçen, ikiye bölmeyi unutmuştur; yirmi dört, altı ve sekiz gibi eşit olmayan bir seçimin sonucudur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dik köşegenli dörtgende alan formülü özgün bir en büyük değer sorusuyla birleştirildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DORTGENLER_03",
+    "title": "Dörtgende alan",
+    "narration": "Köşegenler dik olmasa da alanı köşegenlerle bulabiliriz.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "İki köşegen ve aradaki açı",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -1.3,
+        8.1,
+        4.5
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          6.2,
+          -0.6
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          7.4,
+          3.0
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          1.6,
+          3.8
+         ]
+        },
+        {
+         "id": "O",
+         "at": [
+          3.914,
+          1.587
+         ],
+         "dot": false,
+         "label": "O"
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "D"
+        },
+        {
+         "from": "D",
+         "to": "A"
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "e",
+         "dashed": true
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "label": "f",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "fill": true
+        }
+       ],
+       "angles": [
+        {
+         "at": "O",
+         "from": "C",
+         "to": "D",
+         "label": "θ"
+        }
+       ]
+      },
+      "caption": "Her dışbükey dörtgende $A = \\frac{1}{2} \\cdot e \\cdot f \\cdot \\sin \\theta$.",
+      "narration": "Köşegenleri e ve f, aralarındaki açı teta olan bir dörtgen alalım. Köşegenler dörtgeni dört üçgene ayırır.",
+      "beats": [
+       {
+        "narration": "Her üçgenin alanını kenar sinüs bağıntısıyla yazıp toplarsan, teta ile yüz seksen eksi tetanın sinüsleri eşit olduğu için toplam, yarım çarpı e çarpı f çarpı sinüs teta çıkar.",
+        "focus": [
+         "AC",
+         "BD",
+         "angle-O"
+        ]
+       },
+       {
+        "narration": "Teta doksan ise sinüs bir olur ve dik köşegenlerdeki e çarpı f bölü iki kuralına döneriz. Alanı bilinmeyen bir dörtgende ilk iş, onu köşegenle üçgenlere bölmektir.",
+        "focus": [
+         "ABCD"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Köşegen uzunlukları $8$ cm ve $10$ cm olan bir dörtgende köşegenler arasındaki açı $30°$'dir. Bu dörtgenin alanı kaç santimetrekaredir?",
+       "options": [
+        "20",
+        "$20\\sqrt{3}$",
+        "40",
+        "$40\\sqrt{3}$",
+        "80"
+       ],
+       "answer": 0,
+       "narration": "$\\frac{1}{2} e f \\sin \\theta$.",
+       "steps": [
+        {
+         "text": "$A = \\frac{1}{2} \\cdot 8 \\cdot 10 \\cdot \\sin 30° = 40 \\cdot \\frac{1}{2} = 20$. Cevap **A**.",
+         "narration": "Yarım çarpı sekiz çarpı on, kırk; sinüs otuz bir bölü iki. Alan yirmi santimetrekare. Cevabımız A. Kırkı seçen, sinüsü unutup dik köşegen kuralını uygulamıştır.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dörtgende köşegen-sinüs alan bağıntısı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ dörtgeninde $m(\\widehat{A}) = m(\\widehat{C}) = 90°$, $|AB| = 6$, $|AD| = 8$ ve $|BC| = 8$ birimdir. Buna göre $A(ABCD)$ kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         6.7,
+         8.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           6,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           6.0,
+           8.0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           8
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "6"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "8"
+         },
+         {
+          "from": "C",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "label": "8"
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "D",
+          "right": true
+         },
+         {
+          "at": "C",
+          "from": "D",
+          "to": "B",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "36",
+        "42",
+        "48",
+        "54",
+        "60"
+       ],
+       "answer": 2,
+       "narration": "$[BD]$ köşegeni dörtgeni iki dik üçgene böler.",
+       "steps": [
+        {
+         "text": "$ABD$: $|BD| = \\sqrt{36 + 64} = 10$; $BCD$: $|CD| = \\sqrt{100 - 64} = 6$.",
+         "narration": "B D köşegenini çizelim. A B D dik üçgeninde B D on. B C D dik üçgeninde hipotenüs B D on, B C sekiz; C D altı."
+        },
+        {
+         "text": "$A = \\frac{6 \\cdot 8}{2} + \\frac{8 \\cdot 6}{2} = 24 + 24 = 48$. Cevap **C**.",
+         "narration": "İki dik üçgenin alanları: altı çarpı sekiz bölü iki, yirmi dört; sekiz çarpı altı bölü iki, yirmi dört. Toplam kırk sekiz. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dörtgeni köşegenle dik üçgenlere bölerek alan bulma, ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kare biçimindeki bir pano, şekildeki gibi **alanları eşit** üç dikdörtgene bölünmüştür: biri üstte panonun tam genişliğinde, ikisi altta yan yana. Alttaki dikdörtgenlerden birinin uzun kenarı, kısa kenarının kaç katıdır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.8,
+         -0.8,
+         6.8,
+         6.8
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "B",
+          "at": [
+           6,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           6
+          ],
+          "hidden": true
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           6
+          ],
+          "hidden": true
+         },
+         {
+          "id": "L",
+          "at": [
+           0,
+           4
+          ],
+          "hidden": true
+         },
+         {
+          "id": "R",
+          "at": [
+           6,
+           4
+          ],
+          "hidden": true
+         },
+         {
+          "id": "M",
+          "at": [
+           3,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "N",
+          "at": [
+           3,
+           4
+          ],
+          "hidden": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "A"
+         },
+         {
+          "from": "L",
+          "to": "R"
+         },
+         {
+          "from": "M",
+          "to": "N"
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "M",
+           "N",
+           "L"
+          ],
+          "fill": true
+         }
+        ],
+        "angles": []
+       },
+       "options": [
+        "$\\frac{3}{2}$",
+        "$\\frac{4}{3}$",
+        "$2$",
+        "$\\frac{5}{3}$",
+        "$3$"
+       ],
+       "answer": 1,
+       "narration": "Karenin kenarına $6$ de; her parçanın alanı $12$.",
+       "steps": [
+        {
+         "text": "Kenar $6$ → alan $36$, her parça $12$. Üstteki: $6 \\times 2$.",
+         "narration": "Panonun kenarına altı diyelim; alan otuz altı, her dikdörtgen on iki. Üstteki tam genişlikte, altı uzunluğunda; yüksekliği on iki bölü altı, iki."
+        },
+        {
+         "text": "Alttakiler: yükseklik $6 - 2 = 4$, genişlik $3$ → $\\frac{4}{3}$. Cevap **B**.",
+         "narration": "Altta kalan yükseklik altı eksi iki, dört. İki dikdörtgen yan yana, her biri üç genişliğinde: üç çarpı dört, on iki, tutuyor. Uzun kenar dört, kısa kenar üç; oran dört bölü üç. Cevabımız B. Kenara hangi sayıyı verirsen ver oran değişmez.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2020 dolap sorusunun fikri (kare içinde eşit alanlı dikdörtgenler) daha az bölmeli özgün bir panoyla yeniden kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DORTGENLER_04",
+    "title": "Köşegenlerin sınırları",
+    "narration": "Son olarak dörtgende üçgen eşitsizliğini kullanalım.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Köşegenler toplamı",
+      "items": [
+       "Dışbükey dörtgende köşegenler toplamı **yarı çevreden büyük**, **çevreden küçük**: $u < e + f < 2u$.",
+       "Her köşegen, iki yanındaki üçgenin ortak kenarıdır: iki üçgen eşitsizliğinin **kesişimi** alınır."
+      ],
+      "narration": "Köşegenler dörtgeni dört üçgene böler; köşegenlerin kesiştiği nokta bir iç nokta gibi davranır. Üçgen eşitsizliğini dört üçgende yazıp toplarsan, köşegenler toplamı yarı çevreden büyük, çevreden küçük çıkar. Bir köşegeni tek başına bulmak için ise iki yanındaki üçgenlerin aralıklarının kesişimini alırsın; bunu üçüncü derste görmüştük."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Çevresi $20$ cm olan dışbükey bir dörtgenin köşegen uzunlukları toplamı santimetre cinsinden bir tam sayıdır. Bu toplam kaç farklı değer alabilir?",
+       "options": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "19"
+       ],
+       "answer": 1,
+       "narration": "$10 < e + f < 20$.",
+       "steps": [
+        {
+         "text": "$u = 10$: $10 < e + f < 20$.",
+         "narration": "Yarı çevre on. Köşegenler toplamı ondan büyük, yirmiden küçük."
+        },
+        {
+         "text": "$11, 12, \\ldots, 19$: **9** değer. Cevap **B**.",
+         "narration": "On birden on dokuza kadar dokuz değer. Cevabımız B. On biri seçen, uçları da saymıştır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dörtgende köşegenler toplamının sınırları özgün bir değerle sayma sorusuna dönüştürüldü."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $ABCD$ dörtgeninde $|AB| = 4$, $|BC| = 6$, $|CD| = 7$ ve $|DA| = 3$ birimdir. $[AC]$ köşegeninin uzunluğu bir tam sayı olduğuna göre kaç farklı değer alabilir?",
+       "options": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+       ],
+       "answer": 2,
+       "narration": "İki üçgen, iki aralık, kesişim.",
+       "steps": [
+        {
+         "text": "$ABC$: $2 < |AC| < 10$; $ACD$: $4 < |AC| < 10$.",
+         "narration": "A B C üçgeninde A C, altı ile dördün farkından büyük, toplamından küçük: ikiden büyük, ondan küçük. A C D üçgeninde yedi ile üçün farkından büyük, toplamından küçük: dörtten büyük, ondan küçük."
+        },
+        {
+         "text": "Kesişim $4 < |AC| < 10$: $5, 6, 7, 8, 9$ → **5** değer. Cevap **C**.",
+         "narration": "İkisi birlikte: dörtten büyük, ondan küçük. Beşten dokuza beş değer. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dörtgende köşegenin ortak kenar olduğu aralık kesişimi özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Yamuk → paralelkenar → dikdörtgen ve eşkenar dörtgen → **kare**; deltoid → eşkenar dörtgen.",
+    "Dörtgende iç açılar toplamı **360°**; komşu iki açıortay arasındaki açı $\\frac{C + D}{2}$.",
+    "Köşegenler dikse $a^2 + c^2 = b^2 + d^2$ ve alan $\\frac{e \\cdot f}{2}$.",
+    "Her dörtgende alan $\\frac{1}{2} e f \\sin \\theta$.",
+    "Köşegenler toplamı: $u < e + f < 2u$."
+   ],
+   "warnings": [
+    "Dik köşegen bağıntısında **karşılıklı** kenarları eşle.",
+    "Alan formüllerinde **ikiye bölmeyi** unutma.",
+    "Bir şekil alt sıradaysa üsttekilerin **bütün** özelliklerini taşır."
+   ],
+   "narration": "Hadi toparlayalım. Dörtgenler yamuktan kareye uzanan bir aile ağacı kurar; kare hem dikdörtgen hem eşkenar dörtgendir. Her dörtgende iç açılar toplamı üç yüz altmış; iki komşu köşenin açıortayları arasındaki açı, öbür iki açının toplamının yarısıdır. Köşegenler dikse karşılıklı kenarların kareleri toplamı eşit ve alan köşegenlerin çarpımının yarısıdır. Her dörtgende alan, yarım çarpı köşegenler çarpı aradaki açının sinüsü."
+  }
+ }
+}

@@ -35,20 +35,11 @@ export const ExamJourneySchema = z
 		}),
 		/** The app itself, on a phone. */
 		product: z.object({screen: z.enum(APP_SCREEN_NAMES), headline, narration}),
-		closing: z.object({
-			callToAction: plainText(26),
-			website: plainText(30).default('sinavika.com'),
-			/** Where to get the app, as plain names. Store logos are trademarks and are not drawn. */
-			stores: z.array(plainText(20)).max(2).default(['App Store', 'Google Play']),
-			narration,
-		}),
 		/** The app theme shown on the phone. */
 		appMode: z.enum(APP_MODES).default('light'),
-		/** Narration shown as subtitles, for viewers watching without sound. */
-		subtitles: z.boolean().default(true),
-		/** Voice-over text per line id (`start`, `solve`, `result`, `gaps`, `product`, `closing`), replacing the content's own. */
+		/** Voice-over text per line id (`start`, `solve`, `result`, `gaps`, `product`, `app-end-card`), replacing the content's own. */
 		script: VoiceScriptSchema,
-		/** The closing card is this template's outro; it can be dropped like any other. */
+		/** The shared app card (Scenes/AppEndScene) closes the video; it can be dropped like any other outro. */
 		outro: z.object({enabled: z.boolean().default(true)}).default({enabled: true}),
 	})
 	.refine((content) => content.solve.pick < content.solve.options.length, {path: ['solve', 'pick'], message: 'pick must be the index of one of the options.'});
@@ -64,6 +55,5 @@ export const examJourneyTimings = (content: ExamJourneyContent) => {
 		result: beat(content.result.narration, 3.2),
 		gaps: beat(content.gaps.narration, 3.6),
 		product: beat(content.product.narration, 3),
-		closing: beat(content.closing.narration, 2.8),
 	};
 };

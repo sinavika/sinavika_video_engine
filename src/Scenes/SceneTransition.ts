@@ -3,15 +3,15 @@ import {fade} from '@remotion/transitions/fade';
 import {slide} from '@remotion/transitions/slide';
 import {z} from 'zod';
 
-export const SCENE_TRANSITION_PRESETS = ['none', 'fade', 'slide'] as const;
-export const SCENE_TRANSITION_DIRECTIONS = [
+const SCENE_TRANSITION_PRESETS = ['none', 'fade', 'slide'] as const;
+const SCENE_TRANSITION_DIRECTIONS = [
 	'from-left',
 	'from-right',
 	'from-top',
 	'from-bottom',
 ] as const;
 
-export const SceneTransitionSchema = z.object({
+const SceneTransitionSchema = z.object({
 	preset: z.enum(SCENE_TRANSITION_PRESETS),
 	direction: z.enum(SCENE_TRANSITION_DIRECTIONS).optional(),
 	durationSeconds: z.number().min(0).max(3).optional(),

@@ -5,7 +5,7 @@ import {latex, plainText, richText} from '../../../Schemas/RichText';
 import {OutroSchema} from '../../../Schemas/VideoProps';
 import {ImageSchema} from '../../../Schemas/Visual';
 
-export const MAX_OPTIONS = 5;
+const MAX_OPTIONS = 5;
 
 const QuestionSchema = SceneTimingSchema.extend({
 	text: richText(700),

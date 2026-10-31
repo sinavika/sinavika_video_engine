@@ -110,7 +110,7 @@ export const Timeline = defineImageTemplate({
 			{date: '1876', title: 'Kanun-i Esasi', detail: 'İlk Osmanlı anayasası ilan edildi'},
 		],
 	},
-	defaultTheme: 'AcademicLight',
+	defaultTheme: 'SinavikaLight',
 	defaultSize: 'Portrait',
 	outputName: (content) => `${content.subject ?? ''} ${content.title}`,
 	Component: TimelineImage,

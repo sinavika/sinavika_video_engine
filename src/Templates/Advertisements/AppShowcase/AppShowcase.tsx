@@ -1,5 +1,5 @@
 import type {z} from 'zod';
-import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
+import {OUTRO_SCENE_ID} from '../../../Scenes/AppEndScene';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, type VoiceClips} from '../../../Scenes/Voiceover';
 import {defineTemplate} from '../../TemplateDefinition';
@@ -11,14 +11,14 @@ const R = 'Store/Real/tr';
 /** The Turkish Google Play film of 20 October 2026: emulator recordings and captures of the live app. */
 const SAMPLE: z.input<typeof AppShowcaseSchema> = {
 	realLabel: 'Uygulamadan gerçek kayıt',
-	hook: {lines: ['Sınav hazırlığın', 'tek uygulamada.'], clip: {kind: 'video', src: 'Media/StoreDemo/tr/hub.mp4', from: 0.8, until: 8.6, rate: 1.2}, narration: 'Sınav hazırlığın tek uygulamada.'},
+	hook: {lines: ['Sınav hazırlığın', 'tek uygulamada.'], clip: {kind: 'video', src: 'Media/StoreDemo/tr/hub.webm', from: 0.8, until: 8.6, rate: 1.2}, narration: 'Sınav hazırlığın tek uygulamada.'},
 	fan: {headline: 'Yedi modül, tek uygulama.', chips: ['Denemeler', 'Dersler', 'Testler', 'Ders Planı', 'Akıllı Özet', 'Bilgi Kartları', 'SinoAI'], screens: [`${R}/home.png`, `${R}/exam.png`, `${R}/studyPlan.png`], narration: 'Yedi modül, tek uygulamada.'},
 	beats: [
-		{module: 'exam', kicker: 'Denemeler', headline: ['Denemeni çöz,', 'anında gör.'], clip: {kind: 'video', src: 'Media/StoreDemo/tr/exam.mp4', from: 1.5, until: 12, rate: 1.3}, pop: {x: 0.03, y: 0.45, w: 0.94, h: 0.1}, narration: 'Denemeni çöz; doğrunu, yanlışını anında gör.'},
+		{module: 'exam', kicker: 'Denemeler', headline: ['Denemeni çöz,', 'anında gör.'], clip: {kind: 'video', src: 'Media/StoreDemo/tr/exam.webm', from: 1.5, until: 12, rate: 1.3}, pop: {x: 0.03, y: 0.45, w: 0.94, h: 0.1}, narration: 'Denemeni çöz; doğrunu, yanlışını anında gör.'},
 		{module: 'studyPlan', kicker: 'Ders Planı', headline: ['Planın', 'her gün hazır.'], clip: {kind: 'image', src: `${R}/studyPlan.png`}, narration: 'Ders planın her gün hazır.'},
 	],
 	wall: {lines: ['Hepsi gerçek ekran,', 'hepsi tek uygulamada.'], screens: [`${R}/home.png`, `${R}/exam.png`, `${R}/studyPlan.png`, `${R}/lessons.png`, `${R}/tests.png`, `${R}/flashcards.png`], narration: 'Gördüğün her ekran uygulamanın kendisi.'},
-	closing: {line: 'Hedefine her gün bir adım yaklaş.', cta: 'Ücretsiz indir', stores: ['App Store', 'Google Play'], screens: [`${R}/studyPlan.png`, `${R}/home.png`, `${R}/exam.png`], narration: 'Sınavika’yı ücretsiz indir.'},
+	closing: {line: 'Hedefine her gün bir adım yaklaş.', cta: 'Ücretsiz indir', screens: [`${R}/studyPlan.png`, `${R}/home.png`, `${R}/exam.png`], narration: 'Sınavika’yı ücretsiz indir.'},
 };
 
 const buildScenes = (content: AppShowcaseContent, voiceClips: VoiceClips = {}): TemplateScene[] => {

@@ -5,21 +5,26 @@
  * concepts are the exam's first two Google Ads concepts, so videos and
  * pictures tell the same story, and the hook names the exam.
  *
- * Language follows the market (EXAM_LANG): Turkish spots (YKS, KPSS) are
- * voiced by the brand voice Doğa (Eleven v4, profile Launch; chosen by the
- * owner on 20 Oct 2026); English spots (SAT, ACT) carry music and subtitles,
- * because a Turkish voice reading English sounds unnatural. Music: one prompt
- * per exam and promotion, lively and wordless; the bumper reuses it.
+ * Language follows the market (EXAM_LANG), and every 15 s spot is voiced with
+ * ElevenLabs (owner, 30 Oct 2026: "elevenlabs kullan"): Turkish spots (YKS,
+ * KPSS) by the brand voice Doğa (Eleven v4, profile Launch; chosen by the owner
+ * on 20 Oct 2026); English spots (SAT, ACT) by Liam, a native American voice
+ * of ElevenLabs, because a Turkish voice reading English sounds unnatural.
+ * Before 30 Oct the English spots had music and subtitles only. Music: one
+ * prompt per exam and promotion, lively and wordless; the bumper reuses it.
  */
 import {AD_EXAMS, conceptsFor, EXAM_LANG, type AdExam, type AdLang, type AdPlatform} from './GoogleAdsPlan';
 
-export const VIDEO_AD_VOICE = {voice: 'Doga', model: 'v4', profile: 'Launch'} as const;
+const VIDEO_AD_VOICE: Record<AdLang, Record<string, unknown>> = {
+	tr: {voice: 'Doga', model: 'v4', profile: 'Launch'},
+	en: {voice: 'Liam', model: 'v4', profile: 'Launch', language: 'en', standIn: true},
+};
 
 export const VIDEO_AD_LENGTHS = {
 	short: {formats: ['Horizontal', 'Square', 'Vertical'], label: '15sn'},
 	bumper: {formats: ['Horizontal', 'Vertical'], label: '6sn-bumper'},
 } as const;
-export type VideoAdLength = keyof typeof VIDEO_AD_LENGTHS;
+type VideoAdLength = keyof typeof VIDEO_AD_LENGTHS;
 export const FORMAT_FILE: Record<'Horizontal' | 'Square' | 'Vertical', string> = {Horizontal: 'yatay-16x9', Square: 'kare-1x1', Vertical: 'dikey-9x16'};
 
 type Lines = {hook: string; proof: string; product: string};
@@ -31,12 +36,13 @@ export const VIDEO_AD_LINES: Record<AdExam, Lines> = {
 	act: {hook: 'Where did your ACT score drop?', proof: 'Sınavika shows your weak skills one by one.', product: 'Study Plan turns them into daily tasks.'},
 };
 
-export const VIDEO_AD_CLOSING: Record<AdPlatform, Record<AdLang, {text: string; spoken?: string}>> = {
+/** The site's reading ("Sınavika nokta kom") comes from the central pronunciation (SpokenText.ts), not from the ad. */
+const VIDEO_AD_CLOSING: Record<AdPlatform, Record<AdLang, {text: string}>> = {
 	mobile: {tr: {text: 'Sınavika’yı ücretsiz indir.'}, en: {text: 'Get Sınavika for free.'}},
-	web: {tr: {text: 'sinavika.com’da ücretsiz başla.', spoken: 'Sınavika nokta kom’da ücretsiz başla.'}, en: {text: 'Start free at sinavika.com.'}},
+	web: {tr: {text: 'sinavika.com’da ücretsiz başla.'}, en: {text: 'Start free at sinavika.com.'}},
 };
 
-export const VIDEO_AD_MUSIC: Record<AdExam, Record<AdPlatform, string>> = {
+const VIDEO_AD_MUSIC: Record<AdExam, Record<AdPlatform, string>> = {
 	kpss: {
 		mobile: 'Upbeat modern pop for a study app ad: punchy kick, bright plucked synth arpeggio, claps on two and four, a confident lift when the plan appears, tight button ending. Around 122 BPM, optimistic and focused. No vocals.',
 		web: 'Driving indie-electronic groove: crisp hi-hats, warm bass line, shimmering guitar stabs, a rising build into a clean, satisfying final hit. Around 126 BPM, energetic but calm enough to read along. No vocals.',
@@ -55,7 +61,7 @@ export const VIDEO_AD_MUSIC: Record<AdExam, Record<AdPlatform, string>> = {
 	},
 };
 
-export type VideoAdSpec = {exam: AdExam; platform: AdPlatform; lang: AdLang; length: VideoAdLength; format: 'Horizontal' | 'Square' | 'Vertical'};
+type VideoAdSpec = {exam: AdExam; platform: AdPlatform; lang: AdLang; length: VideoAdLength; format: 'Horizontal' | 'Square' | 'Vertical'};
 
 /** Every video of the set: each exam in its market's language. */
 export const videoAdSpecs = (): VideoAdSpec[] => {
@@ -71,7 +77,7 @@ export const buildVideoAdJob = (spec: VideoAdSpec): Record<string, unknown> => {
 	const [first, second] = conceptsFor(spec.exam);
 	const lines = VIDEO_AD_LINES[spec.exam];
 	const closing = VIDEO_AD_CLOSING[spec.platform][spec.lang];
-	const voiced = spec.length === 'short' && spec.lang === 'tr';
+	const voiced = spec.length === 'short';
 	return {
 		template: 'GoogleVideoAd',
 		format: spec.format,
@@ -79,7 +85,7 @@ export const buildVideoAdJob = (spec: VideoAdSpec): Record<string, unknown> => {
 		fps: 30,
 		name: `Google ${spec.exam.toUpperCase()} ${spec.platform} ${VIDEO_AD_LENGTHS[spec.length].label}`,
 		cover: false,
-		...(voiced ? {voiceover: {...VIDEO_AD_VOICE}} : {}),
+		...(voiced ? {voiceover: {...VIDEO_AD_VOICE[spec.lang]}} : {}),
 		soundtrack: {music: VIDEO_AD_MUSIC[spec.exam][spec.platform]},
 		content: {
 			exam: spec.exam,
@@ -90,7 +96,6 @@ export const buildVideoAdJob = (spec: VideoAdSpec): Record<string, unknown> => {
 			proof: {narration: lines.proof},
 			product: {concept: second.id, narration: lines.product},
 			closing: {narration: closing.text},
-			script: closing.spoken ? {closing: closing.spoken} : {},
 		},
 	};
 };

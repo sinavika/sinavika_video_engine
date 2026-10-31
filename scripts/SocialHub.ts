@@ -21,7 +21,7 @@
  *       The source data (questions, topics, hooks) and whether each was used.
  *       The file is a JSON array of {kind, key, content}.
  *
- *   npm run social -- plan --month 2026-11 [--out Plans/2026-11.json]
+ *   npm run social -- plan --month 2026-11 [--out Posts/Plans/2026-11.json]
  *   npm run social -- plan --from 2026-11-02 --to 2026-11-09
  *   npm run social -- plan --plan tanitim --from 2026-10-17 --to 2026-11-01
  *

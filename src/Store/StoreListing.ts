@@ -22,7 +22,7 @@ import type {ModuleKey} from '../UIUX/ModuleIdentity';
 export const STORE_LANGUAGES = ['tr', 'en'] as const;
 export type StoreLanguage = (typeof STORE_LANGUAGES)[number];
 
-export type StoreText = Record<StoreLanguage, string>;
+type StoreText = Record<StoreLanguage, string>;
 
 /** A screen in a slide: one from the registry, or SinoAI with a given conversation. */
 export type StoreScreen = AppScreenName | {sinoAi: Record<StoreLanguage, SinoAiChat>};
@@ -188,9 +188,9 @@ export const STORE_STYLES = ['acik', 'koyu', 'turuncu'] as const;
 export type StoreStyle = (typeof STORE_STYLES)[number];
 
 /** What a picture shows: a phone, a tablet, a landscape (Chromebook) shot, or the Play feature graphic. */
-export type StoreDevice = 'phone' | 'tablet' | 'desktop' | 'feature' | StoreCreativeKind;
+type StoreDevice = 'phone' | 'tablet' | 'desktop' | 'feature' | StoreCreativeKind;
 
-export type StoreFormat = {
+type StoreFormat = {
 	platform: 'ios' | 'android';
 	/** Folder name. */
 	folder: string;

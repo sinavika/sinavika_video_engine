@@ -1,7 +1,7 @@
 import React from 'react';
-import {UIProvider, useColors, useModuleColors, useT} from '../Context';
+import {UIProvider, useAccent, useColors, useModuleColors, useT} from '../Context';
 import {Icon, type UIIconName} from '../Icons';
-import {alpha, MODULES, MODULE_ORDER, moduleGradient, type ModuleKey} from '../ModuleIdentity';
+import {alpha, MODULES, MODULE_ORDER, moduleGradient, moduleInk, type ModuleKey} from '../ModuleIdentity';
 import {UI_CANVAS, UI_RADIUS, UI_SHADOW} from '../Tokens';
 import {Avatar, Button, Card, Chip, Logo, Stack, Steps, Text, Tile} from './Shared';
 import {PHONE_GEOMETRY} from '../../Components/AppScreens/PhoneFrame';
@@ -14,14 +14,14 @@ import {PHONE_GEOMETRY} from '../../Components/AppScreens/PhoneFrame';
 
 const {width: W, height: H} = UI_CANVAS.web;
 
-export type PanelItem = 'home' | 'modules' | ModuleKey | 'notifications' | 'profile' | 'support';
+type PanelItem = 'home' | 'modules' | ModuleKey | 'notifications' | 'profile' | 'support';
 
 /** A menu row: neutral icon and text; only the active row shows its module colour (a thin bar and the icon), on a light grey pill. */
 const NavRow: React.FC<{item: PanelItem; active: boolean; label: string; icon: UIIconName; badge?: string}> = ({item, active, label, icon, badge}) => {
 	const colors = useColors();
 	const isModule = (MODULE_ORDER as readonly string[]).includes(item);
 	const mod = useModuleColors(isModule ? (item as ModuleKey) : 'exam');
-	const tint = isModule ? mod.color : colors.brand;
+	const tint = isModule ? mod.color : colors.ink;
 	return (
 		<Stack row gap={12} style={{height: 40, padding: '0 12px', borderRadius: 12, background: active ? colors.line2 : 'transparent', position: 'relative'}}>
 			{active ? <div style={{position: 'absolute', left: -14, top: 10, bottom: 10, width: 3, borderRadius: 2, background: tint}} /> : null}
@@ -35,7 +35,7 @@ const NavRow: React.FC<{item: PanelItem; active: boolean; label: string; icon: U
 };
 
 /** The panel's left menu: Ana sayfa, Modüller, the seven modules, account, then the streak and sign out. */
-export const Sidebar: React.FC<{active: PanelItem}> = ({active}) => {
+const Sidebar: React.FC<{active: PanelItem}> = ({active}) => {
 	const colors = useColors();
 	const t = useT();
 	return (
@@ -60,7 +60,7 @@ export const Sidebar: React.FC<{active: PanelItem}> = ({active}) => {
 			<div style={{flex: 1}} />
 			<div style={{padding: 12, borderRadius: 14, border: `1px solid ${colors.line}`, marginBottom: 8}}>
 				<Stack row gap={8}>
-					<Icon name="flame" size={18} color={colors.brand} />
+					<Icon name="flame" size={18} color={colors.warning} />
 					<Text role="headline" size={13.5}>
 						{t('5 günlük seri', '5-day streak')}
 					</Text>
@@ -84,13 +84,13 @@ const TopIcon: React.FC<{icon: UIIconName; dot?: boolean}> = ({icon, dot}) => {
 	return (
 		<div style={{position: 'relative', width: 38, height: 38, borderRadius: 19, border: `1px solid ${colors.line}`, background: colors.card, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 			<Icon name={icon} size={18} color={colors.ink2} />
-			{dot ? <div style={{position: 'absolute', top: 7, right: 8, width: 8, height: 8, borderRadius: 4, background: colors.brand, border: `2px solid ${colors.card}`}} /> : null}
+			{dot ? <div style={{position: 'absolute', top: 7, right: 8, width: 8, height: 8, borderRadius: 4, background: colors.error, border: `2px solid ${colors.card}`}} /> : null}
 		</div>
 	);
 };
 
 /** Top bar: search, exam countdown, theme, support, notifications and the user (as the panel has them). */
-export const Topbar: React.FC<{crumb?: string; countdown?: string}> = ({crumb, countdown}) => {
+const Topbar: React.FC<{crumb?: string; countdown?: string}> = ({crumb, countdown}) => {
 	const colors = useColors();
 	const t = useT();
 	return (
@@ -118,10 +118,10 @@ export const Topbar: React.FC<{crumb?: string; countdown?: string}> = ({crumb, c
 			<Stack row gap={10} style={{paddingLeft: 6}}>
 				<Stack gap={0} align="flex-end">
 					<Text role="headline" size={13.5}>
-						Ayşe Yılmaz
+						{t('Ayşe Yılmaz', 'Emma Carter')}
 					</Text>
 					<Text role="meta" size={11}>
-						ayse@ornek.com
+						{t('ayse@ornek.com', 'emma@example.com')}
 					</Text>
 				</Stack>
 				<Avatar size={36} />
@@ -162,7 +162,7 @@ export const ModuleHead: React.FC<{module: ModuleKey; tab?: number; tabs?: strin
 			{names.length ? (
 				<Stack row gap={8}>
 					{names.map((name, index) => (
-						<div key={name} style={{height: 36, padding: '0 16px', borderRadius: 18, display: 'flex', alignItems: 'center', background: index === tab ? (mod.color) : colors.card, border: index === tab ? undefined : `1px solid ${colors.line}`}}>
+						<div key={name} style={{height: 36, padding: '0 16px', borderRadius: 18, display: 'flex', alignItems: 'center', background: index === tab ? mod.action : colors.card, border: index === tab ? undefined : `1px solid ${colors.line}`}}>
 							<Text role="headline" size={13.5} color={index === tab ? '#FFFFFF' : colors.ink2}>
 								{name}
 							</Text>
@@ -288,7 +288,7 @@ export const SiteHeader: React.FC<{active?: string; open?: 'products'}> = ({acti
 	);
 };
 
-export const SiteFooter: React.FC = () => {
+const SiteFooter: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const columns: [string, string[]][] = [
@@ -579,7 +579,7 @@ export const ModuleBanner: React.FC<{module: ModuleKey; over: string; title: str
 				{text}
 			</Text>
 			{action ? (
-				<Button tone="white" style={{alignSelf: 'flex-start', marginTop: 6, color: MODULES[module].color.light}}>
+				<Button tone="white" style={{alignSelf: 'flex-start', marginTop: 6, color: moduleInk(module, 'light')}}>
 					{action}
 				</Button>
 			) : null}
@@ -589,15 +589,14 @@ export const ModuleBanner: React.FC<{module: ModuleKey; over: string; title: str
 );
 
 export const WCard: React.FC<{title?: string; action?: string; children: React.ReactNode; style?: React.CSSProperties; padding?: number}> = ({title, action, children, style, padding = 20}) => {
-	const colors = useColors();
-	const mod = useModuleColors();
+	const accent = useAccent();
 	return (
 		<Card padding={padding} style={style}>
 			{title ? (
 				<Stack row justify="space-between" style={{marginBottom: 14}}>
 					<Text role="section">{title}</Text>
 					{action ? (
-						<Text role="small" weight={700} color={mod.key ? mod.color : colors.brand}>
+						<Text role="small" weight={700} color={accent.ink}>
 							{action}
 						</Text>
 					) : null}

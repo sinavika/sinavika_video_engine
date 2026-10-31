@@ -2,7 +2,7 @@ import React from 'react';
 import {Img, staticFile} from 'remotion';
 import {BRAND} from '../../Configurations/Brand';
 import {useTheme} from '../../Themes/ThemeContext';
-import {TintProvider, useColors, useModuleColors, useOnTint, useUI} from '../Context';
+import {TintProvider, useAccent, useColors, useModuleColors, useOnTint, useUI} from '../Context';
 import {Icon, type UIIconName} from '../Icons';
 import {alpha, MODULES, moduleGradient, type ModuleKey} from '../ModuleIdentity';
 import {UI_RADIUS, UI_SHADOW, UI_TYPE, type UITypeRole} from '../Tokens';
@@ -64,8 +64,6 @@ export const Stack: React.FC<StackProps> = ({gap = 0, row, align, justify, wrap,
 	</div>
 );
 
-export const Spacer: React.FC = () => <div style={{flex: 1}} />;
-
 type ButtonTone = 'primary' | 'dark' | 'soft' | 'ghost' | 'white' | 'module' | 'moduleSoft' | 'disabled' | 'glass';
 
 type ButtonProps = {tone?: ButtonTone; size?: 'sm' | 'md' | 'lg'; block?: boolean; icon?: UIIconName; iconRight?: UIIconName; module?: ModuleKey; style?: React.CSSProperties; children?: React.ReactNode};
@@ -73,15 +71,16 @@ type ButtonProps = {tone?: ButtonTone; size?: 'sm' | 'md' | 'lg'; block?: boolea
 export const Button: React.FC<ButtonProps> = ({tone = 'primary', size = 'md', block, icon, iconRight, module, style, children}) => {
 	const colors = useColors();
 	const mod = useModuleColors(module);
+	const accent = useAccent(module);
 	const height = {sm: 36, md: 46, lg: 54}[size];
 	const font = {sm: 13, md: 15, lg: 16}[size];
 	const tones: Record<ButtonTone, React.CSSProperties> = {
-		primary: {background: colors.brand, color: colors.onBrand, boxShadow: UI_SHADOW.brand},
+		primary: {background: accent.action, color: '#FFFFFF', boxShadow: `0 14px 28px -14px ${alpha(accent.action, 0.6)}`},
 		dark: {background: colors.ink, color: colors.bg},
-		soft: {background: colors.brandSoft, color: colors.brandDeep},
+		soft: {background: accent.soft, color: accent.ink},
 		ghost: {background: colors.card, color: colors.ink, border: `1.5px solid ${colors.line}`},
 		white: {background: '#FFFFFF', color: '#0B1C30'},
-		module: {background: mod.color, color: '#FFFFFF'},
+		module: {background: mod.action, color: '#FFFFFF'},
 		moduleSoft: {background: mod.soft, color: mod.ink},
 		disabled: {background: colors.line, color: colors.subtle},
 		glass: {background: 'rgba(255, 255, 255, 0.2)', color: '#FFFFFF'},
@@ -120,12 +119,13 @@ type ChipTone = 'neutral' | 'brand' | 'module' | 'success' | 'warning' | 'error'
 export const Chip: React.FC<{tone?: ChipTone; icon?: UIIconName; module?: ModuleKey; size?: 'sm' | 'md'; style?: React.CSSProperties; children: React.ReactNode}> = ({tone = 'neutral', icon, module, size = 'md', style, children}) => {
 	const colors = useColors();
 	const mod = useModuleColors(module);
+	const accent = useAccent(module);
 	const {typography} = useTheme();
 	const tones: Record<ChipTone, React.CSSProperties> = {
 		neutral: {background: colors.line2, color: colors.ink2},
-		brand: {background: colors.brandSoft, color: colors.brandDeep},
+		brand: {background: accent.soft, color: accent.ink},
 		module: {background: mod.soft, color: mod.ink},
-		moduleSolid: {background: mod.color, color: '#FFFFFF'},
+		moduleSolid: {background: mod.action, color: '#FFFFFF'},
 		success: {background: colors.successSoft, color: colors.successInk},
 		warning: {background: colors.warningSoft, color: colors.warningInk},
 		error: {background: colors.errorSoft, color: colors.errorInk},
@@ -181,9 +181,10 @@ export const Tile: React.FC<{module?: ModuleKey; icon?: UIIconName; size?: numbe
 	const colors = useColors();
 	const {mode} = useUI();
 	const moduleColors = useModuleColors(module);
+	const accent = useAccent();
 	const mod = module ? moduleColors : null;
 	const name = icon ?? (module ? MODULES[module].icon : 'info');
-	const fill = solid ? (module ? moduleGradient(module, mode) : colors.brand) : (mod?.soft ?? colors.line2);
+	const fill = solid ? (module ? moduleGradient(module, mode) : accent.action) : (mod?.soft ?? colors.line2);
 	const ink = solid ? '#FFFFFF' : (color ?? mod?.color ?? colors.ink2);
 	return (
 		<div style={{width: size, height: size, borderRadius: size * 0.32, background: fill, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, ...style}}>
@@ -194,13 +195,14 @@ export const Tile: React.FC<{module?: ModuleKey; icon?: UIIconName; size?: numbe
 
 export const Ring: React.FC<{value: number; size?: number; stroke?: number; color?: string; track?: string; children?: React.ReactNode}> = ({value, size = 56, stroke = 6, color, track, children}) => {
 	const colors = useColors();
+	const accent = useAccent();
 	const radius = (size - stroke) / 2;
 	const circumference = 2 * Math.PI * radius;
 	return (
 		<div style={{position: 'relative', width: size, height: size, flexShrink: 0}}>
 			<svg width={size} height={size} style={{transform: 'rotate(-90deg)'}}>
 				<circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke={track ?? colors.line2} strokeWidth={stroke} />
-				<circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke={color ?? colors.brand} strokeWidth={stroke} strokeLinecap="round" strokeDasharray={`${(circumference * Math.min(value, 1)).toFixed(1)} ${circumference.toFixed(1)}`} />
+				<circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke={color ?? accent.color} strokeWidth={stroke} strokeLinecap="round" strokeDasharray={`${(circumference * Math.min(value, 1)).toFixed(1)} ${circumference.toFixed(1)}`} />
 			</svg>
 			<div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{children}</div>
 		</div>
@@ -209,23 +211,24 @@ export const Ring: React.FC<{value: number; size?: number; stroke?: number; colo
 
 export const Bar: React.FC<{value: number; color?: string; track?: string; height?: number; style?: React.CSSProperties}> = ({value, color, track, height = 8, style}) => {
 	const colors = useColors();
+	const accent = useAccent();
 	return (
 		<div style={{height, minHeight: height, maxHeight: height, borderRadius: height, background: track ?? colors.line2, overflow: 'hidden', flex: '1 1 auto', minWidth: 20, ...style}}>
-			<div style={{width: `${Math.round(Math.min(value, 1) * 100)}%`, height: '100%', borderRadius: height, background: color ?? colors.brand}} />
+			<div style={{width: `${Math.round(Math.min(value, 1) * 100)}%`, height: '100%', borderRadius: height, background: color ?? accent.color}} />
 		</div>
 	);
 };
 
-/** Five-step level bars (Testler). */
 /** The levels of a topic's tests as bars. The product has three: Kolay, Orta, Zor. */
 export const TEST_LEVELS = 3;
 
 export const Levels: React.FC<{done: number; color?: string; height?: number}> = ({done, color, height = 18}) => {
 	const colors = useColors();
+	const accent = useAccent();
 	return (
 		<Stack row gap={3}>
 			{Array.from({length: TEST_LEVELS}, (_, step) => step).map((step) => (
-				<div key={step} style={{width: 8, height, borderRadius: 3, background: step < done ? (color ?? colors.brand) : colors.line}} />
+				<div key={step} style={{width: 8, height, borderRadius: 3, background: step < done ? (color ?? accent.color) : colors.line}} />
 			))}
 		</Stack>
 	);
@@ -233,9 +236,9 @@ export const Levels: React.FC<{done: number; color?: string; height?: number}> =
 
 export const Toggle: React.FC<{on?: boolean; module?: ModuleKey}> = ({on, module}) => {
 	const colors = useColors();
-	const mod = useModuleColors(module);
+	const accent = useAccent(module);
 	return (
-		<div style={{width: 46, height: 28, borderRadius: 14, background: on ? (module ? mod.color : colors.brand) : colors.line, position: 'relative', flexShrink: 0}}>
+		<div style={{width: 46, height: 28, borderRadius: 14, background: on ? accent.color : colors.line, position: 'relative', flexShrink: 0}}>
 			<div style={{position: 'absolute', top: 3, left: on ? 21 : 3, width: 22, height: 22, borderRadius: 11, background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,0,0,0.25)'}} />
 		</div>
 	);
@@ -244,7 +247,7 @@ export const Toggle: React.FC<{on?: boolean; module?: ModuleKey}> = ({on, module
 export const Avatar: React.FC<{initials?: string; size?: number; module?: ModuleKey}> = ({initials = 'AY', size = 40}) => {
 	const {typography} = useTheme();
 	return (
-		<div style={{width: size, height: size, borderRadius: size / 2, background: 'linear-gradient(135deg, #FB923C, #EA580C)', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: typography.body, fontWeight: 800, fontSize: size * 0.36, flexShrink: 0}}>
+		<div style={{width: size, height: size, borderRadius: size / 2, background: 'linear-gradient(135deg, #64748B, #334155)', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: typography.body, fontWeight: 800, fontSize: size * 0.36, flexShrink: 0}}>
 			{initials}
 		</div>
 	);
@@ -270,6 +273,7 @@ type FieldProps = {label?: string; value?: string; placeholder?: string; icon?: 
 
 export const Field: React.FC<FieldProps> = ({label, value, placeholder, icon, trailing, focus, error, hint, height = 50}) => {
 	const colors = useColors();
+	const accent = useAccent();
 	const {typography} = useTheme();
 	return (
 		<Stack gap={7}>
@@ -284,8 +288,8 @@ export const Field: React.FC<FieldProps> = ({label, value, placeholder, icon, tr
 					height,
 					borderRadius: UI_RADIUS.md,
 					background: colors.card,
-					border: `1.5px solid ${error ? colors.error : focus ? colors.brand : colors.line}`,
-					boxShadow: focus ? `0 0 0 4px ${alpha('#EA580C', 0.1)}` : undefined,
+					border: `1.5px solid ${error ? colors.error : focus ? accent.color : colors.line}`,
+					boxShadow: focus ? `0 0 0 4px ${alpha(accent.color, 0.1)}` : undefined,
 					display: 'flex',
 					alignItems: 'center',
 					gap: 10,
@@ -333,7 +337,7 @@ export const Segmented: React.FC<{items: string[]; active?: number; module?: Mod
 							whiteSpace: 'nowrap',
 							padding: '0 10px',
 							background: on ? (dark ? colors.ink : colors.card) : 'transparent',
-							color: on ? (dark ? colors.bg : module ? mod.color : colors.ink) : colors.muted,
+							color: on ? (dark ? colors.bg : module ? mod.ink : colors.ink) : colors.muted,
 							boxShadow: on && !dark ? '0 1px 3px rgba(15, 23, 42, 0.12)' : undefined,
 						}}
 					>
@@ -377,7 +381,7 @@ export const List: React.FC<{children: React.ReactNode; style?: React.CSSPropert
 	);
 };
 
-export type OptionState = 'idle' | 'selected' | 'correct' | 'wrong';
+type OptionState = 'idle' | 'selected' | 'correct' | 'wrong';
 
 export const OptionRow: React.FC<{letter: string; text: string; state?: OptionState; module?: ModuleKey}> = ({letter, text, state = 'idle', module}) => {
 	const colors = useColors();
@@ -402,14 +406,14 @@ export const OptionRow: React.FC<{letter: string; text: string; state?: OptionSt
 
 /** A small line chart: points 0..1, drawn left to right. */
 export const Sparkline: React.FC<{points: number[]; color?: string; width?: number; height?: number; fill?: boolean; dot?: boolean}> = ({points, color, width = 160, height = 60, fill = true, dot = true}) => {
-	const colors = useColors();
-	const stroke = color ?? colors.brand;
+	const accent = useAccent();
+	const stroke = color ?? accent.color;
 	const coords = points.map((value, index) => [(index / (points.length - 1)) * (width - 8) + 4, height - 6 - value * (height - 12)] as const);
 	const line = coords.map(([x, y], index) => `${index ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join(' ');
 	const last = coords[coords.length - 1];
 	return (
 		<svg width={width} height={height} style={{display: 'block', flexShrink: 0}}>
-			{fill ? <path d={`${line} L${last[0]} ${height} L${coords[0][0]} ${height} Z`} fill={alpha(stroke.startsWith('#') ? stroke : '#EA580C', 0.12)} /> : null}
+			{fill ? <path d={`${line} L${last[0]} ${height} L${coords[0][0]} ${height} Z`} fill={alpha(stroke.startsWith('#') ? stroke : accent.color, 0.12)} /> : null}
 			<path d={line} fill="none" stroke={stroke} strokeWidth={2.6} strokeLinecap="round" strokeLinejoin="round" />
 			{dot ? <circle cx={last[0]} cy={last[1]} r={4.5} fill="#FFFFFF" stroke={stroke} strokeWidth={2.6} /> : null}
 		</svg>
@@ -419,8 +423,8 @@ export const Sparkline: React.FC<{points: number[]; color?: string; width?: numb
 /** Vertical bars (weekly hours). Values 0..1. */
 export const Bars: React.FC<{values: number[]; labels?: string[]; color?: string; highlight?: number; height?: number; barWidth?: number}> = ({values, labels, color, highlight, height = 96, barWidth = 22}) => {
 	const colors = useColors();
-	const mod = useModuleColors();
-	const strong = color ?? mod.color;
+	const accent = useAccent();
+	const strong = color ?? accent.color;
 	return (
 		<Stack row justify="space-between" align="flex-end" style={{height: height + (labels ? 22 : 0)}}>
 			{values.map((value, index) => (
@@ -435,10 +439,11 @@ export const Bars: React.FC<{values: number[]; labels?: string[]; color?: string
 
 export const Dots: React.FC<{count: number; active: number; colors?: string[]}> = ({count, active, colors: tints}) => {
 	const colors = useColors();
+	const accent = useAccent();
 	return (
 		<Stack row gap={5} justify="center">
 			{Array.from({length: count}, (_, index) => (
-				<div key={index} style={{width: index === active ? 18 : 6, height: 6, borderRadius: 3, background: index === active ? (tints?.[index] ?? colors.brand) : colors.line}} />
+				<div key={index} style={{width: index === active ? 18 : 6, height: 6, borderRadius: 3, background: index === active ? (tints?.[index] ?? accent.color) : colors.line}} />
 			))}
 		</Stack>
 	);
@@ -452,10 +457,11 @@ export const Skeleton: React.FC<{width?: number | string; height?: number; radiu
 /** A step progress line of n segments. */
 export const Steps: React.FC<{count: number; done: number; color?: string}> = ({count, done, color}) => {
 	const colors = useColors();
+	const accent = useAccent();
 	return (
 		<Stack row gap={5} grow>
 			{Array.from({length: count}, (_, index) => (
-				<div key={index} style={{flex: 1, height: 5, borderRadius: 3, background: index < done ? (color ?? colors.brand) : colors.line}} />
+				<div key={index} style={{flex: 1, height: 5, borderRadius: 3, background: index < done ? (color ?? accent.color) : colors.line}} />
 			))}
 		</Stack>
 	);

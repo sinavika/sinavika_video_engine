@@ -1,0 +1,594 @@
+{
+ "topic": {
+  "id": "EEAEF34D-857C-95BB-14A1-567675BE0D7E",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_IKINCI_DER"
+ },
+ "title": "2.Dereceden Denklemler",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "YKS/AYT/CikmisSorular/MAT.jsonl (ÖSYM 2021–2026: diskriminant-kök, iki denklem, homojen sistem, köklerden denklem, parametreli kök kalıpları örnek alındı; eşlenen geometri soruları VeriDuzeltmeleri #68)",
+  "YKS/AYT/Sorular/MAT/MAT_IKINCI_DER.jsonl (yapı ve zorluk için)",
+  "AYT'de bu konunun konu anlatımı yok: kurallar TYT dersinden kısaltıldı, her cevap tam hesapla denetlendi"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Kökleri bulmadan toplamlarını ve çarpımlarını bil.",
+   "narration": "İkinci dereceden denklemde kökleri bulmak çoğu zaman gerekmez. ÖSYM 2021'den bu yana AYT'de her yıl bu konudan bir soru sordu ve neredeyse hepsi iki araçla çözüldü: diskriminant ve kökler-katsayılar bağıntısı. Bu derste bu iki aracı ve köklerden denklem kurmayı AYT düzeyinde yeni sorularla çalışacağız."
+  },
+  "objectives": [
+   "Diskriminantla kök sayısını ve koşulları kullanmak",
+   "Verilen kökü yerine koyup çarpanlara ayırmak",
+   "Kökler-katsayılar bağıntılarıyla hesap yapmak",
+   "Koşullardan ve dönüştürülmüş köklerden denklem kurmak",
+   "İkinci dereceden sistemi tam kareyle çözmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_IKINCI_DER_01",
+    "subtopics": [
+     "MAT_IKINCI_DER_02",
+     "MAT_IKINCI_DER_03"
+    ],
+    "title": "Denklem, diskriminant ve kökler",
+    "narration": "İkinci dereceden denklemin her sorusu iki araçla başlar: diskriminant ve kökü yerine koymak.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kısa tekrar: diskriminant",
+      "items": [
+       "$ax^2 + bx + c = 0$ ($a \\neq 0$); $\\Delta = b^2 - 4ac$.",
+       "$\\Delta > 0$: iki farklı gerçel kök; $\\Delta = 0$: **çakışık** kök; $\\Delta < 0$: gerçel kök yok.",
+       "Kökler: $x = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}$.",
+       "Bir sayı kökse denklemi **sağlar**: yerine koy."
+      ],
+      "narration": "İkinci dereceden bir denklemde a sıfırdan farklıdır. Diskriminant, b kare eksi dört a c. Diskriminant pozitifse iki farklı gerçel kök, sıfırsa çakışık bir kök vardır, negatifse gerçel kök yoktur. Kökler, eksi b artı eksi kök diskriminant bölü iki a. Ve bir sayı kök ise denklemi sağlar: yerine koyarsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x^2 - 4x + c = 0$\n\ndenkleminin diskriminantı aynı zamanda bu denklemin bir köküdür.\n\nBuna göre, $c$ gerçel sayısının alabileceği değerlerin çarpımı kaçtır?",
+       "options": [
+        "$8$",
+        "$10$",
+        "$12$",
+        "$14$",
+        "$16$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2021'de bu kalıbı sordu. Kökü r diyelim; iki bilgi iki denklem.",
+       "steps": [
+        {
+         "text": "$\\Delta = 16 - 4c = r$ ve $r^2 - 4r + c = 0$.",
+         "narration": "Diskriminant on altı eksi dört c, ve bu bir kök: r diyelim. r denklemi sağlar: r kare eksi dört r artı c sıfır."
+        },
+        {
+         "text": "$c = \\frac{16 - r}{4}$: $4r^2 - 17r + 16 = 0$.",
+         "narration": "Birinciden c, on altı eksi r bölü dört. Yerine koyup dörtle çarpınca: dört r kare eksi on yedi r artı on altı, sıfır."
+        },
+        {
+         "text": "$c_1 c_2 = \\frac{(16 - r_1)(16 - r_2)}{16} = \\frac{256 - 16 \\cdot \\frac{17}{4} + 4}{16} = 12$",
+         "narration": "İki r değeri iki c verir. c'lerin çarpımı: on altı eksi r bir çarpı on altı eksi r iki, bölü on altı. r'lerin toplamı on yedi bölü dört, çarpımı dört: iki yüz elli altı eksi altmış sekiz artı dört, bölü on altı, on iki. İki r de pozitif, diskriminant negatif olmuyor. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021 diskriminant-kök kalıbı örnek alındı; katsayı yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$m$ ve $n$ sıfırdan farklı ve $m + n \\neq 0$ olan gerçel sayılar olmak üzere\n\n$x^2 + (m + 2n - 1)x + m + n = 0$\n\ndenkleminin köklerinden biri $m + n$ sayısıdır.\n\nBuna göre, $\\dfrac{m}{n}$ oranı kaçtır?",
+       "options": [
+        "$-3$",
+        "$-\\frac{3}{2}$",
+        "$-\\frac{2}{3}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{3}{2}$"
+       ],
+       "answer": 1,
+       "narration": "ÖSYM 2025'te benzer bir kalıp sordu. Kökü yerine koyup çarpanlara ayıralım.",
+       "steps": [
+        {
+         "text": "$(m + n)^2 + (m + 2n - 1)(m + n) + (m + n) = 0$",
+         "narration": "m artı n'yi x yerine koyalım: m artı n'nin karesi, artı m artı iki n eksi bir çarpı m artı n, artı m artı n."
+        },
+        {
+         "text": "Ortak çarpan: $(m + n)\\big[(m + n) + (m + 2n - 1) + 1\\big] = (m + n)(2m + 3n) = 0$",
+         "narration": "Hepsinde m artı n var: dışarı alalım. Köşeli parantezde m artı n, artı m artı iki n eksi bir, artı bir: iki m artı üç n."
+        },
+        {
+         "text": "$m + n \\neq 0$: $2m + 3n = 0$, $\\frac{m}{n} = -\\frac{3}{2}$.",
+         "narration": "m artı n sıfır değil, öyleyse iki m artı üç n sıfır: m bölü n, eksi üç bölü iki. Denetim: m eksi üç, n iki; denklem x kare eksi bir, kök eksi bir. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2025 parametreli kök kalıbı örnek alındı; denklem ve kök yeni kuruldu"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_IKINCI_DER_04",
+    "title": "Kökler ve katsayılar",
+    "narration": "Kökleri bulmadan toplamlarını ve çarpımlarını bilmek, AYT'nin bu konudaki en çok kullandığı araç.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kökler-katsayılar",
+      "items": [
+       "$x_1 + x_2 = -\\frac{b}{a}$, $x_1 \\cdot x_2 = \\frac{c}{a}$.",
+       "$x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1x_2$; $(x_1 - x_2)^2 = (x_1 + x_2)^2 - 4x_1x_2$.",
+       "$\\frac{1}{x_1} + \\frac{1}{x_2} = \\frac{x_1 + x_2}{x_1 x_2}$."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        5
+       ],
+       "y": [
+        -1,
+        6
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^2 - 5x + 6",
+         "label": "y = x² − 5x + 6"
+        }
+       ],
+       "points": [
+        {
+         "x": 2,
+         "y": 0,
+         "label": "2"
+        },
+        {
+         "x": 3,
+         "y": 0,
+         "label": "3"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "x kare eksi beş x artı altının kökleri iki ve üç: grafiğin x eksenini kestiği yerler."
+       },
+       {
+        "narration": "Toplamları beş, yani eksi b bölü a: eksi eksi beş, beş. Çarpımları altı, c bölü a."
+       }
+      ],
+      "narration": "Köklerin toplamı eksi b bölü a, çarpımı c bölü a. Karelerinin toplamı, toplamın karesi eksi iki çarpım; farkın karesi, toplamın karesi eksi dört çarpım. Terslerinin toplamı da toplam bölü çarpımdır. Bu dört bağıntıyla kökleri bulmadan çok şey hesaplarsın."
+     },
+     {
+      "kind": "mistake",
+      "title": "Toplamın işareti",
+      "wrong": "$x^2 - 5x + 6 = 0$ için kökler toplamı $-5$.",
+      "right": "$x_1 + x_2 = -\\frac{b}{a} = -\\frac{-5}{1} = 5$",
+      "why": "Toplam formülünde **eksi** işaret var; $b$ negatifse toplam pozitif çıkar.",
+      "narration": "Sık yapılan bir hata: kökler toplamını b'nin kendisi sanmak. Formül eksi b bölü a: b eksi beşse toplam artı beş. Kökler iki ve üç; toplamları gerçekten beş."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ pozitif gerçel sayılar olmak üzere\n\n$ax^2 - 3bx + 4b = 0$\n\ndenkleminin kökleri $a$ ve $b$'dir.\n\nBuna göre, $a + b$ toplamı kaçtır?",
+       "options": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$8$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM'nin bir kalıbı: kökler, katsayıların kendisi. Çarpımdan başlayalım.",
+       "steps": [
+        {
+         "text": "Çarpım: $ab = \\frac{4b}{a}$; $b > 0$: $a^2 = 4$, $a = 2$.",
+         "narration": "Kökler çarpımı a çarpı b, dört b bölü a. b pozitif, sadeleşir: a kare dört, a pozitif, iki."
+        },
+        {
+         "text": "Toplam: $a + b = \\frac{3b}{a} = \\frac{3b}{2}$: $2 + b = \\frac{3b}{2}$, $b = 4$.",
+         "narration": "Kökler toplamı a artı b, üç b bölü a, yani üç b bölü iki. İki artı b, bir buçuk b: b dört."
+        },
+        {
+         "text": "$a + b = 6$",
+         "narration": "a artı b altı. Denetim: iki x kare eksi on iki x artı on altı; kökleri iki ve dört. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Kökleri katsayı olan denklem kalıbı (AYT listesindeki örnek alındı); katsayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ gerçel sayılar olmak üzere\n\n$x^2 - x + a = 0$\n\n$x^2 - 3x + b = 0$\n\ndenklemleri veriliyor. Birinci denklemin kökler toplamı ikinci denklemin bir kökü, ikinci denklemin kökler çarpımı ise birinci denklemin bir köküdür.\n\nBuna göre, $a + b$ toplamı kaçtır?",
+       "options": [
+        "$-4$",
+        "$-2$",
+        "$0$",
+        "$2$",
+        "$4$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2022'de bu kalıbı sordu. Toplam ve çarpımı yazıp yerine koyalım.",
+       "steps": [
+        {
+         "text": "Birincinin kökler toplamı $1$; ikinciyi sağlar: $1 - 3 + b = 0$, $b = 2$.",
+         "narration": "Birinci denklemin kökler toplamı bir. Bir, ikinci denklemin kökü: bir eksi üç artı b sıfır, b iki."
+        },
+        {
+         "text": "İkincinin kökler çarpımı $b = 2$; birinciyi sağlar: $4 - 2 + a = 0$, $a = -2$.",
+         "narration": "İkinci denklemin kökler çarpımı b, yani iki. İki, birinci denklemin kökü: dört eksi iki artı a sıfır, a eksi iki."
+        },
+        {
+         "text": "$a + b = 0$",
+         "narration": "a artı b sıfır. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 iki denklemli kökler-katsayılar kalıbı örnek alındı; katsayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Hangisi daha hızlı?",
+      "prompt": "$x^2 - 6x + 4 = 0$ için $(x_1 - x_2)^2$ bulunurken kökleri hesaplamak gerekir mi?",
+      "choices": [
+       "Gerekir",
+       "Gerekmez"
+      ],
+      "answer": 1,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "İstenen",
+        "Bağıntı",
+        "Değer"
+       ],
+       "rows": [
+        [
+         "$x_1 + x_2$",
+         "$-\\frac{b}{a}$",
+         "$6$"
+        ],
+        [
+         "$x_1 \\cdot x_2$",
+         "$\\frac{c}{a}$",
+         "$4$"
+        ],
+        [
+         "$(x_1 - x_2)^2$",
+         "$6^2 - 4 \\cdot 4$",
+         "$20$"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "Toplam altı, çarpım dört: katsayılardan okunur.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r1",
+         "r2"
+        ]
+       },
+       {
+        "narration": "Farkın karesi, toplamın karesi eksi dört çarpım: otuz altı eksi on altı, yirmi.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ],
+      "explanation": "$(x_1 - x_2)^2 = (x_1 + x_2)^2 - 4x_1x_2 = 20$: kökler **gerekmez**.",
+      "narration": "Şimdi sıra sende. x kare eksi altı x artı dört denkleminde köklerin farkının karesini bulmak için kökleri hesaplamak gerekir mi? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: gerekmez. Kökler üç artı kök beş ve üç eksi kök beş; ama bunları hiç bulmadan, toplam ve çarpımla yirmi buluruz. AYT bu kısa yolu ödüllendirir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ pozitif gerçel sayılar olmak üzere\n\n$ax^2 - 3x + b = 0$\n\n$bx^2 - 4bx + a = 0$\n\ndenklemlerinin her birinin kökler toplamı, kökler çarpımından 1 fazladır.\n\nBuna göre, kökleri $a$ ve $b$ olan ikinci dereceden denklem aşağıdakilerden hangisi olabilir?",
+       "options": [
+        "$16x^2 - 27x + 48 = 0$",
+        "$16x^2 + 48x + 27 = 0$",
+        "$4x^2 - 12x + 9 = 0$",
+        "$16x^2 - 48x + 27 = 0$",
+        "$16x^2 - 48x + 9 = 0$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2024'te bu kalıbı sordu. Her denklemden bir bağıntı çıkar.",
+       "steps": [
+        {
+         "text": "Birinci: $\\frac{3}{a} = \\frac{b}{a} + 1$: $a + b = 3$.",
+         "narration": "Birinci denklemde toplam üç bölü a, çarpım b bölü a. Toplam çarpımdan bir fazla: üç bölü a, b bölü a artı bir; a ile çarpınca a artı b üç."
+        },
+        {
+         "text": "İkinci: $4 = \\frac{a}{b} + 1$: $a = 3b$. O hâlde $b = \\frac{3}{4}$, $a = \\frac{9}{4}$.",
+         "narration": "İkinci denklemde toplam dört b bölü b, dört; çarpım a bölü b. Dört, a bölü b artı bir: a üç b. a artı b üç ise b dörtte üç, a dörtte dokuz."
+        },
+        {
+         "text": "Toplam $3$, çarpım $\\frac{27}{16}$: $x^2 - 3x + \\frac{27}{16} = 0$, yani $16x^2 - 48x + 27 = 0$.",
+         "narration": "Kökleri a ve b olan denklem: x kare eksi toplam x artı çarpım. Toplam üç, çarpım on altıda yirmi yedi. On altıyla çarpınca on altı x kare eksi kırk sekiz x artı yirmi yedi. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2024 köklerden denklem kurma kalıbı örnek alındı; katsayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ negatif bir gerçel sayı olmak üzere\n\n$ax^2 - ax - 2 = 0$\n\ndenkleminin diskriminantı, kökler toplamının 9 katına eşittir.\n\nBuna göre, bu denklemin kökler çarpımı kaçtır?",
+       "options": [
+        "$\\frac{1}{9}$",
+        "$\\frac{2}{9}$",
+        "$\\frac{1}{3}$",
+        "$\\frac{2}{3}$",
+        "$1$"
+       ],
+       "answer": 1,
+       "narration": "ÖSYM 2026'da bu kalıbı sordu. Diskriminantı ve toplamı a ile yazalım.",
+       "steps": [
+        {
+         "text": "$\\Delta = a^2 + 8a$; kökler toplamı $\\frac{a}{a} = 1$.",
+         "narration": "Diskriminant: a kare artı sekiz a. Kökler toplamı, eksi eksi a bölü a, bir."
+        },
+        {
+         "text": "$a^2 + 8a = 9$: $(a + 9)(a - 1) = 0$; $a < 0$: $a = -9$.",
+         "narration": "a kare artı sekiz a, dokuz: a artı dokuz çarpı a eksi bir sıfır. a negatif: eksi dokuz."
+        },
+        {
+         "text": "Kökler çarpımı $\\frac{-2}{a} = \\frac{-2}{-9} = \\frac{2}{9}$",
+         "narration": "Kökler çarpımı eksi iki bölü a: eksi iki bölü eksi dokuz, dokuzda iki. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026 diskriminant ve toplam kalıbı örnek alındı; denklem ve kat yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_IKINCI_DER_05",
+    "title": "Köklerden denklem ve sistemler",
+    "narration": "Son bölümde iki beceri: kökleri değiştirilmiş yeni bir denklem kurmak ve iki bilinmeyenli ikinci dereceden bir sistemi tek bir tam kareyle çözmek.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Denklem kurma",
+      "items": [
+       "Kökleri $x_1$, $x_2$: $x^2 - (x_1 + x_2)x + x_1x_2 = 0$.",
+       "Kökler 1 artırılmış: yeni toplam $S + 2$, yeni çarpım $P + S + 1$.",
+       "İki denklemi bir sayıyla çarpıp toplayınca **tam kare** çıkıyorsa: $(x - ty)^2 = 0$, $x = ty$."
+      ],
+      "narration": "Kökleri bilinen denklem: x kare eksi toplam x artı çarpım. Kökler birer artırılırsa yeni toplam iki fazla, yeni çarpım eski çarpım artı toplam artı bir olur. İki bilinmeyenli ikinci dereceden bir sistemde denklemlerden birini uygun bir sayıyla çarpıp ötekine ekle. Bir tam kare çıkıyorsa bu tam kare sıfırdır ve x ile y arasında doğrusal bir bağ verir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x$ ve $y$ gerçel sayılar olmak üzere\n\n$x^2 + 4xy = 24$\n\n$y^2 - 2xy = -6$\n\nolduğuna göre, $x \\cdot y$ çarpımı kaçtır?",
+       "options": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$6$",
+        "$8$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2023'te bu kalıbı sordu. Sağ tarafları sıfırlayacak bir kat arayalım.",
+       "steps": [
+        {
+         "text": "İkinciyi 4 ile çarp, birinciye ekle: $x^2 - 4xy + 4y^2 = 0$.",
+         "narration": "Yirmi dört ile eksi altıyı sıfırlamak için ikinci denklemi dörtle çarpıp birinciye ekleyelim. Sol taraf x kare eksi dört x y artı dört y kare olur, sağ taraf sıfır."
+        },
+        {
+         "text": "$(x - 2y)^2 = 0$: $x = 2y$.",
+         "narration": "Bu bir tam kare: x eksi iki y'nin karesi sıfır. x, iki y."
+        },
+        {
+         "text": "$y^2 - 4y^2 = -6$: $y^2 = 2$; $x \\cdot y = 2y^2 = 4$.",
+         "narration": "İkinci denklemde x yerine iki y: y kare eksi dört y kare, eksi üç y kare, eksi altı; y kare iki. x çarpı y, iki y kare, dört. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2023 homojen sistem kalıbı örnek alındı; katsayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x^2 - 5x + 3 = 0$ denkleminin kökleri $x_1$ ve $x_2$'dir.\n\nKökleri $x_1 + 1$ ve $x_2 + 1$ olan ikinci dereceden denklem aşağıdakilerden hangisidir?",
+       "options": [
+        "$x^2 - 7x + 9 = 0$",
+        "$x^2 - 6x + 4 = 0$",
+        "$x^2 - 7x + 4 = 0$",
+        "$x^2 - 6x + 9 = 0$",
+        "$x^2 - 5x + 9 = 0$"
+       ],
+       "answer": 0,
+       "narration": "Yeni toplamı ve yeni çarpımı bulalım.",
+       "steps": [
+        {
+         "text": "$S = 5$, $P = 3$.",
+         "narration": "Eski kökler toplamı beş, çarpımı üç."
+        },
+        {
+         "text": "Yeni toplam $S + 2 = 7$; yeni çarpım $(x_1 + 1)(x_2 + 1) = P + S + 1 = 9$.",
+         "narration": "Yeni toplam beş artı iki, yedi. Yeni çarpım: x bir artı bir çarpı x iki artı bir, çarpım artı toplam artı bir: dokuz."
+        },
+        {
+         "text": "$x^2 - 7x + 9 = 0$",
+         "narration": "Yeni denklem: x kare eksi yedi x artı dokuz. Çarpıma toplamı eklemeyi unutan dört bulur. Cevap A.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Köklerden denklem kurma kalıbı; denklem ve dönüşüm yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x^2 - 6x + 4 = 0$ denkleminin kökleri $x_1$ ve $x_2$ olduğuna göre, $(x_1 - x_2)^2$ kaçtır?",
+       "options": [
+        "$16$",
+        "$20$",
+        "$24$",
+        "$28$",
+        "$36$"
+       ],
+       "answer": 1,
+       "narration": "Tahmin kartında gördük; şimdi şıklarla.",
+       "steps": [
+        {
+         "text": "$x_1 + x_2 = 6$, $x_1 x_2 = 4$.",
+         "narration": "Toplam altı, çarpım dört."
+        },
+        {
+         "text": "$(x_1 - x_2)^2 = 36 - 16 = 20$",
+         "narration": "Farkın karesi, otuz altı eksi on altı, yirmi. Dört yerine iki çarpımı çıkaran yirmi sekiz bulur. Cevap B.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Köklerin farkı kalıbı; denklem yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$\\Delta = b^2 - 4ac$: işareti kök sayısını verir.",
+    "Kök **denklemi sağlar**: yerine koy.",
+    "$x_1 + x_2 = -\\frac{b}{a}$, $x_1x_2 = \\frac{c}{a}$.",
+    "$(x_1 - x_2)^2 = S^2 - 4P$.",
+    "Kökler 1 artınca: $S + 2$, $P + S + 1$.",
+    "Sistemde **tam kare** ara."
+   ],
+   "warnings": [
+    "Toplamda **eksi** işaret var.",
+    "Bulduğun parametrenin **koşula** uyduğunu denetle."
+   ],
+   "narration": "Özetleyelim. Diskriminantın işareti kök sayısını verir. Bir sayı kök ise denklemi sağlar; yerine koyup çarpanlara ayır. Kökler toplamı eksi b bölü a, çarpımı c bölü a; toplam formülündeki eksiyi unutma. Farkın karesi, toplamın karesi eksi dört çarpım. Kökler birer artınca toplam iki, çarpım toplam artı bir kadar artar. Ve ikinci dereceden bir sistemde denklemleri birleştirip tam kare ara."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "b eksi 5, a 1",
+    "question": "Kökler toplamı?",
+    "choices": [
+     "−5",
+     "5"
+    ],
+    "answer": 1,
+    "why": "**Eksi** b bölü a."
+   },
+   {
+    "sentence": "Diskriminant sıfır",
+    "question": "Kaç farklı kök?",
+    "choices": [
+     "1",
+     "2"
+    ],
+    "answer": 0,
+    "why": "**Çakışık** kök."
+   },
+   {
+    "sentence": "Kökler 1 artırıldı",
+    "question": "Toplam kaç artar?",
+    "choices": [
+     "1",
+     "2"
+    ],
+    "answer": 1,
+    "why": "Her kök **birer**."
+   }
+  ],
+  "hook": "Üç ikinci derece tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Toplam $-\\frac{b}{a}$, çarpım $\\frac{c}{a}$."
+   },
+   {
+    "kind": "warning",
+    "text": "Toplamdaki **eksiyi** unutma."
+   },
+   {
+    "kind": "term",
+    "term": "Diskriminant",
+    "definition": "$b^2 - 4ac$: kök sayısını **söyler**."
+   }
+  ],
+  "summary": [
+   "Eksi b bölü a",
+   "Δ = 0: çakışık",
+   "Tam kare ara"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-matematik-kampi",
+  "name": "AYT Matematik kampı",
+  "number": 18,
+  "total": 33,
+  "previous": "Polinomlar",
+  "next": "Binom",
+  "promise": "Her konu kısa bir tekrar ve AYT düzeyinde çözümlü sorularla.",
+  "task": {
+   "items": [
+    "ÖSYM 2023 sorusunu **kendin** çöz: $x^2 + 8xy = 60$, $y^2 - 3xy = -15$ ise $x \\cdot y$ kaç?",
+    "$x^2 - 2x + c = 0$ denkleminin diskriminantı bir köküyse $c$'nin alabileceği değerlerin çarpımını bul.",
+    "Uygulamada AYT 2. Dereceden Denklemler testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. ÖSYM'nin 2023 sorusunu kendin çöz: x kare artı sekiz x y altmış, y kare eksi üç x y eksi on beş ise x çarpı y kaç? ÖSYM'nin 2021 sorusunu da çöz: x kare eksi iki x artı c sıfır denkleminin diskriminantı bir köküyse c'nin alabileceği değerlerin çarpımı kaç? Sonra uygulamada yirmi soru çöz. Bir sonraki derste binomda görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Diskriminantla parametre sorusu ekle: x² − 6x + m = 0'ın eşit iki kökü varsa 36 − 4m = 0, m = 9; m > 9 ise gerçel kök yoktur.",
+   "Kök-katsayı bağıntılarını genişlet: x₁² + x₂² = S² − 2P, 1/x₁ + 1/x₂ = S/P, x₁³ + x₂³ = S³ − 3PS. x² − 5x + 3 = 0 için sırasıyla 19, 5/3 ve 80.",
+   "Kökleri verilen denklemi kurdur: kökleri 2 − √3 ve 2 + √3 olan denklem x² − 4x + 1 = 0. x² − 5x + 3 = 0'ın köklerinin 2 katını kök kabul eden denklem için x yerine x/2 yazılır: x² − 10x + 12 = 0.",
+   "Köklerin işaretini katsayılardan okumayı ekle: P < 0 ise kökler zıt işaretli; Δ ≥ 0, P > 0 ve S > 0 ise iki kök pozitif; Δ ≥ 0, P > 0 ve S < 0 ise iki kök negatiftir.",
+   "Değişken değiştirerek çözülen denklemler ekle: x⁴ − 5x² + 4 = 0 için t = x², çözümler ±1, ±2. (x² + x)² − 8(x² + x) + 12 = 0 için t = x² + x ∈ {2, 6}, çözümler 1, −2, 2, −3."
+  ]
+ }
+}

@@ -1,14 +1,15 @@
 import React from 'react';
 import {useColors, useT} from '../../Context';
 import {Icon} from '../../Icons';
-import {MODULES, MODULE_ORDER, type ModuleKey} from '../../ModuleIdentity';
+import {MODULE_ORDER, type ModuleKey} from '../../ModuleIdentity';
 import {AppHeader, BottomBar, Content, HubCard, ModuleSlide, Phone, Sheet} from '../../Parts/Mobile';
 import {Button, Card, Chip, Field, Logo, Stack, Text, Tile} from '../../Parts/Shared';
 
 /**
- * Welcome, sign in, sign up and password screens. The flow is the app's:
- * e-mail first, then a 6-digit code (sign in) or a password (sign up);
- * Apple and Google on every entry screen.
+ * Welcome, sign in, sign up and password screens. Apple and Google come first
+ * on every entry screen; with e-mail, a 6-digit code signs the student in, and
+ * a new account asks only the first name (a password can be set later in
+ * Hesap güvenliği). One word everywhere: şifre.
  */
 
 const Divider: React.FC<{label: string}> = ({label}) => {
@@ -41,7 +42,7 @@ const Footer: React.FC<{muted: string; strong: string}> = ({muted, strong}) => {
 	return (
 		<Stack row justify="center" gap={6}>
 			<Text role="small">{muted}</Text>
-			<Text role="small" weight={800} color={colors.brand}>
+			<Text role="small" weight={800} color={colors.brandDeep}>
 				{strong}
 			</Text>
 		</Stack>
@@ -145,7 +146,7 @@ export const SignInCodeScreen: React.FC = () => {
 				<CodeBoxes digits="4829" />
 				<Stack row justify="space-between">
 					<Text role="small">{t('Kod gelmedi mi?', 'No code?')}</Text>
-					<Text role="small" weight={700} color={colors.brand}>
+					<Text role="small" weight={700} color={colors.brandDeep}>
 						{t('Tekrar gönder · 0:42', 'Resend · 0:42')}
 					</Text>
 				</Stack>
@@ -156,7 +157,7 @@ export const SignInCodeScreen: React.FC = () => {
 					</Stack>
 				</Card>
 				<Text role="small" weight={700} color={colors.ink2}>
-					{t('Parolanla giriş yap', 'Sign in with your password')}
+					{t('Şifrenle giriş yap', 'Sign in with your password')}
 				</Text>
 			</Content>
 			<BottomBar>
@@ -197,23 +198,11 @@ export const SignUpDetailsScreen: React.FC = () => {
 		<Phone>
 			<AppHeader left="back" right={<div style={{width: 40}} />} />
 			<Content tabBar={false} gap={14}>
-				<AuthTitle title={t('Seni tanıyalım', 'Tell us about you')} text={t('Adın, SinoAI ve e-postalarda sana hitap etmemiz için.', 'Your name is how SinoAI and our e-mails address you.')} />
-				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10}}>
-					<Field label={t('Ad', 'First name')} value="Ayşe" />
-					<Field label={t('Soyad', 'Last name')} value="Yılmaz" />
-				</div>
-				<Field label={t('Parola', 'Password')} value="••••••••••" icon="lock" focus trailing={<Icon name="eye" size={18} color={colors.muted} />} />
-				<Stack row gap={6}>
-					{[1, 1, 1, 0].map((on, index) => (
-						<div key={index} style={{flex: 1, height: 5, borderRadius: 3, background: on ? colors.success : colors.line}} />
-					))}
-				</Stack>
-				<Text role="meta" color={colors.success}>
-					{t('Güçlü parola · en az 8 karakter, bir rakam', 'Strong · 8+ characters with a number')}
-				</Text>
+				<AuthTitle title={t('Seni tanıyalım', 'Tell us about you')} text={t('Adın, SinoAI ve e-postalarda sana hitap etmemiz için. Şifre gerekmez: her girişte e-postana kod gelir.', 'Your name is how SinoAI and our e-mails address you. No password needed: each sign-in sends a code.')} />
+				<Field label={t('Adın', 'First name')} value="Ayşe" focus />
 				<Stack row gap={10} align="flex-start">
-					<div style={{width: 22, height: 22, borderRadius: 7, background: colors.brand, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-						<Icon name="check" size={14} color="#FFFFFF" />
+					<div style={{width: 22, height: 22, borderRadius: 7, background: colors.ink, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+						<Icon name="check" size={14} color={colors.bg} />
 					</div>
 					<Text role="small">{t('Kullanım Koşulları’nı ve KVKK aydınlatma metnini okudum.', 'I have read the Terms and the Privacy Notice.')}</Text>
 				</Stack>
@@ -253,17 +242,17 @@ export const NewPasswordScreen: React.FC = () => {
 		<Phone>
 			<AppHeader left="back" right={<div style={{width: 40}} />} />
 			<Content tabBar={false} gap={14}>
-				<AuthTitle title={t('Gelen kutunu kontrol et', 'Check your inbox')} text={t('a•••@ornek.com adresine gelen kodu gir, ardından yeni parolanı belirle.', 'Enter the code sent to a•••@ornek.com, then set a new password.')} />
+				<AuthTitle title={t('Gelen kutunu kontrol et', 'Check your inbox')} text={t('a•••@ornek.com adresine gelen kodu gir, ardından yeni şifreni belirle.', 'Enter the code sent to a•••@ornek.com, then set a new password.')} />
 				<CodeBoxes digits="482913" />
 				<Text role="meta" color={colors.muted}>
 					{t('Kodun süresi: 8:12', 'Code expires in 8:12')}
 				</Text>
-				<Field label={t('Yeni parola', 'New password')} value="••••••••••" icon="lock" focus />
-				<Field label={t('Yeni parola (tekrar)', 'Repeat password')} placeholder={t('Parolanı tekrar yaz', 'Type it again')} icon="lock" />
+				<Field label={t('Yeni şifre', 'New password')} value="••••••••••" icon="lock" focus />
+				<Field label={t('Yeni şifre (tekrar)', 'Repeat password')} placeholder={t('Şifreni tekrar yaz', 'Type it again')} icon="lock" />
 			</Content>
 			<BottomBar>
 				<Button size="lg" block>
-					{t('Parolamı güncelle', 'Update password')}
+					{t('Şifremi güncelle', 'Update password')}
 				</Button>
 			</BottomBar>
 		</Phone>
@@ -300,43 +289,6 @@ export const AuthSheetScreen: React.FC = () => {
 					))}
 				</div>
 			</Content>
-		</Phone>
-	);
-};
-
-export const AccountReadyScreen: React.FC = () => {
-	const t = useT();
-	const colors = useColors();
-	return (
-		<Phone bg="linear-gradient(180deg, var(--ui-successSoft) 0%, var(--ui-bg) 45%)">
-			<Content tabBar={false} gap={18} style={{alignItems: 'center', textAlign: 'center', paddingTop: 70}}>
-				<Stack align="center" gap={14}>
-					<div style={{width: 96, height: 96, borderRadius: 32, background: colors.success, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 18px 30px -14px rgba(5,150,105,0.6)'}}>
-						<Icon name="check" size={48} color="#FFFFFF" stroke={2.6} />
-					</div>
-					<Text role="hero" align="center">
-						{t('Hoş geldin Ayşe', 'Welcome, Ayşe')}
-					</Text>
-					<Text role="body" align="center">
-						{t('Hesabın hazır. Planın kaydedildi; web’de de aynı hesapla devam edebilirsin.', 'Your account is ready and your plan is saved. Continue on the web with the same account.')}
-					</Text>
-				</Stack>
-				<Card tone="card" padding={14} style={{width: '100%', textAlign: 'left'}}>
-					<Stack gap={10}>
-						{(['studyPlan', 'exam', 'sinoAi'] as ModuleKey[]).map((key) => (
-							<Stack key={key} row gap={12}>
-								<Tile module={key} size={34} />
-								<Text role="headline">{t(MODULES[key].slide.title)}</Text>
-							</Stack>
-						))}
-					</Stack>
-				</Card>
-			</Content>
-			<BottomBar>
-				<Button size="lg" block>
-					{t('Planıma git', 'Go to my plan')}
-				</Button>
-			</BottomBar>
 		</Phone>
 	);
 };

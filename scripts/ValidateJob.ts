@@ -8,9 +8,9 @@
  *
  * Exit codes: 0 all valid, 2 at least one invalid.
  */
-import {readFile} from 'node:fs/promises';
 import {resolveImageJob} from '../src/Images/Renderers/ImageJob';
 import {VideoJobValidationError, resolveVideoJob, voiceLines} from '../src/Renderers/VideoJob';
+import {readVideoJob} from '../src/Renderers/VideoJobFile';
 
 const showNarration = process.argv.includes('--narration');
 const files = process.argv.slice(2).filter((argument) => !argument.startsWith('--'));
@@ -22,7 +22,7 @@ if (files.length === 0) {
 let invalid = 0;
 for (const file of files) {
 	try {
-		const raw = JSON.parse(await readFile(file, 'utf8'));
+		const raw = readVideoJob(file);
 		if (raw && typeof raw === 'object' && 'category' in raw) {
 			const image = resolveImageJob(raw);
 			const pages = image.pageCount > 1 ? `, ${image.pageCount} görsel` : '';

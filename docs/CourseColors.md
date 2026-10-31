@@ -1,6 +1,6 @@
 # Ders renkleri
 
-Eğitim videolarında (kamp dersleri, reels, kapaklar) her dersin kendi rengi vardır. Öğrenci bir dersi rengiyle tanır: YouTube kanal sayfasında Türkçe dersleri pembe kapaklarla, Matematik dersleri mavi kapaklarla sıralanır.
+Eğitim videolarında (kamp dersleri, reels, kapaklar) her dersin kendi rengi vardır. Öğrenci bir dersi rengiyle tanır: YouTube kanal sayfasında Türkçe dersleri pembe, Matematik dersleri mavi kapaklarla sıralanır. Kapağın düzeni ise marka kapak standardıdır: logo, etiket ve yazı tipi her kapakta aynı ([`Sosyal-Kimlik-Standardi.md`](Sosyal-Kimlik-Standardi.md) §1).
 
 Bu dosya kuralları ve 25 Ekim 2026 denetiminin sonucunu anlatır. Renklerin tek kaynağı koddur: [`COURSE_LESSON_COLORS`](../src/Configurations/LessonColors.ts). Burada bir rengi değiştirmek hiçbir şeyi değiştirmez.
 
@@ -41,13 +41,13 @@ Bir ders videosunda **vurgu rengi dersin rengidir**. Marka turuncusu yalnız mar
 
 | Öğe | Renk | Kodda nerede |
 |---|---|---|
-| Kapak zemini | Ders rengi | `Thumbnails/CampCover` |
+| Kapak zemini | Ders rengi; kamp tanıtımında marka laciverti. Düzen kapak standardında (29 Ekim 2026) | `Thumbnails/CampCover`, [`Sosyal-Kimlik-Standardi.md`](Sosyal-Kimlik-Standardi.md) |
 | Kamp kartı (SinoAI karşılaması), bölüm açılışları | Ders rengi, tam ekran | `CampCardScene`, `SectionScene` |
 | Kalın yazı (`**…**`): kartlar, soru şıkları, özet | Ders rengi | `courseLessonTheme`: `canvasAccent` ve `primaryText` |
 | Ders etiketi, kart rozetleri, doğru şık, "Cevap" | Ders rengi | tema `lesson` |
-| Karşılaştırma sütunları, Venn kümeleri | Ders rengi → koyu lacivert → dersin koyu tonu | `COMPARISON_ACCENTS` (StructureVisuals) |
+| Karşılaştırma sütunları, Venn kümeleri | Ders rengi → koyu lacivert → dersin koyu tonu | `COMPARISON_ACCENTS` (`Visuals/Structure/StructureLook.ts`) |
 | Akış ve döngü şeması: vurgulanan adım ve numaralar | Ders rengi | `DiagramNode` |
-| Bölüm çubuğu (alttaki ilerleme) | Ders rengi | `ChapterBar` |
+| Alt bant: ders etiketi ve bölüm çubuğu (alttaki ilerleme) | Ders rengi | `StudioBand` |
 | "Sıradaki ders" kartı, kamp görevi numaraları | Ders rengi | `CampTaskScene` |
 | Logo | Marka turuncusu | `BrandMark` |
 | Kapanış (uygulama tanıtımı, mağaza düğmeleri) | Marka turuncusu | `CoursePromotionScenes` |

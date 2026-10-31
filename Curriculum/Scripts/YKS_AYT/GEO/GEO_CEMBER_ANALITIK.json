@@ -1,0 +1,2195 @@
+{
+ "topic": {
+  "id": "06999F5F-F2D4-C628-2C64-55E353F30983",
+  "category": "YKS_AYT",
+  "lesson": "GEO",
+  "code": "GEO_CEMBER_ANALITIK"
+ },
+ "title": "Çemberin Analitiği",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "ÖSYM 2026 AYT (yalnız bir noktada kesişen iki çember; model olarak kullanıldı, merkezler ve ortak nokta değiştirildi)",
+  "YKS/AYT/Sorular/GEO/GEO_CEMBER_ANALITIK.jsonl (78 soru; yapı ve düzey için okundu, sorular yeni sayılarla yazıldı; seçeneği eksik bir soru VeriDuzeltmeleri #112)",
+  "MEB konu anlatımı yok; anlatım müfredattan, şekiller gerçek yarıçaplarla çizildi"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Bir denklem, bir çember",
+   "narration": "Pergelin yaptığını bir denklem de yapar: merkeze eşit uzaklıktaki bütün noktalar tek bir denklemi sağlar. Bu derste çember denklemini, merkez ve yarıçapı bulmayı, bir noktanın, bir doğrunun ve bir başka çemberin çembere göre durumunu ve teğet denklemini, bir ÖSYM modeliyle birlikte göreceksin."
+  },
+  "objectives": [
+   "Çember denklemini standart ve genel biçimde yazmak",
+   "Merkezi ve yarıçapı bulmak",
+   "Noktanın ve doğrunun çembere göre durumunu belirlemek",
+   "Teğet denklemini ve teğet uzunluğunu bulmak",
+   "İki çemberin durumunu merkezler arası uzaklıkla belirlemek"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_CEMBER_ANALITIK_01",
+    "title": "Çember denklemi",
+    "narration": "Çember, bir merkeze eşit uzaklıktaki noktaların kümesidir. Bu tanımı uzaklık formülüyle yazınca çember denklemi çıkar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Denklem",
+      "items": [
+       "Merkez $M(a, b)$, yarıçap $r$: $(x - a)^2 + (y - b)^2 = r^2$.",
+       "Genel biçim: $x^2 + y^2 + Dx + Ey + F = 0$.",
+       "Çember olması için $x^2$ ve $y^2$'nin katsayıları **eşit**, $xy$ terimi **yok**."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -1.5,
+        -4.0,
+        9.5,
+        8.5
+       ],
+       "points": [
+        {
+         "id": "X1",
+         "at": [
+          -1.2,
+          0.0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "X2",
+         "at": [
+          8.9,
+          0.0
+         ],
+         "label": "x",
+         "dot": false
+        },
+        {
+         "id": "Y1",
+         "at": [
+          0.0,
+          -3.7
+         ],
+         "hidden": true
+        },
+        {
+         "id": "Y2",
+         "at": [
+          0.0,
+          7.9
+         ],
+         "label": "y",
+         "dot": false
+        },
+        {
+         "id": "M",
+         "at": [
+          3.0,
+          2.0
+         ],
+         "label": "M(a, b)"
+        },
+        {
+         "id": "P",
+         "at": [
+          6.0,
+          6.0
+         ],
+         "label": "P(x, y)"
+        },
+        {
+         "id": "K",
+         "at": [
+          6.0,
+          2.0
+         ],
+         "hidden": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "X1",
+         "to": "X2",
+         "dashed": true
+        },
+        {
+         "from": "Y1",
+         "to": "Y2",
+         "dashed": true
+        },
+        {
+         "from": "M",
+         "to": "P",
+         "label": "r"
+        },
+        {
+         "from": "M",
+         "to": "K",
+         "label": "x − a",
+         "dashed": true
+        },
+        {
+         "from": "K",
+         "to": "P",
+         "label": "y − b",
+         "dashed": true
+        }
+       ],
+       "angles": [
+        {
+         "at": "K",
+         "from": "M",
+         "to": "P",
+         "right": true
+        }
+       ],
+       "circles": [
+        {
+         "center": "M",
+         "radius": 5.0
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Merkez M ve çember üzerinde bir P noktası.",
+        "show": [
+         "circle-M",
+         "MP",
+         "M",
+         "P"
+        ],
+        "focus": [
+         "MP"
+        ]
+       },
+       {
+        "narration": "Yatay fark x eksi a, düşey fark y eksi b; Pisagor ile r kare.",
+        "show": [
+         "MK",
+         "KP",
+         "angle-K"
+        ],
+        "focus": [
+         "MK",
+         "KP"
+        ]
+       }
+      ],
+      "narration": "Merkezi a, b, yarıçapı r olan çember, merkeze uzaklığı r olan noktalardır. Uzaklık formülünü yazıp kare alınca x eksi a karesi artı y eksi b karesi, r kareye eşit olur. Açınca x kare artı y kare artı D x artı E y artı F eşittir sıfır biçimi çıkar. Bir denklemin çember olması için x kare ile y kare katsayıları eşit olmalı ve x y terimi bulunmamalı."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x^2 + y^2 + (k - 2)xy - 4x + 6y - 3 = 0$ denklemi bir çember belirttiğine göre, bu çemberin yarıçapı kaç birimdir?",
+       "options": [
+        "$2$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$8$"
+       ],
+       "answer": 1,
+       "narration": "Çemberde x y terimi olmaz.",
+       "steps": [
+        {
+         "text": "$xy$ terimi yok: $k - 2 = 0$ → $k = 2$.",
+         "narration": "Çember denkleminde x y terimi bulunmaz; katsayısı sıfır: k iki."
+        },
+        {
+         "text": "$x^2 - 4x + y^2 + 6y = 3$ → $(x - 2)^2 + (y + 3)^2 = 3 + 4 + 9 = 16$.",
+         "narration": "Tam kareye tamamlayalım: x eksi iki karesi artı y artı üç karesi, üç artı dört artı dokuz, on altı."
+        },
+        {
+         "text": "$r = 4$; merkez $(2, -3)$.",
+         "narration": "Yarıçap dört, merkez iki, eksi üç. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "Çember olma koşulu kalıbı; denklem yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_CEMBER_ANALITIK_02",
+    "title": "Merkezi ve yarıçapı bulma",
+    "narration": "Genel denklemden merkezi ve yarıçapı tam kareye tamamlayarak buluruz. Eksenlere teğet çemberlerde yarıçap merkezin koordinatlarından okunur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Merkez ve yarıçap",
+      "items": [
+       "Genel biçimde merkez $\\left(-\\frac{D}{2}, -\\frac{E}{2}\\right)$, $r^2 = \\frac{D^2}{4} + \\frac{E^2}{4} - F$.",
+       "$x$ eksenine teğet: $r = |b|$; $y$ eksenine teğet: $r = |a|$.",
+       "İki eksene teğet: $|a| = |b| = r$; bölge işaretleri belirler."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -13.5,
+        -2.0,
+        9.5,
+        13.5
+       ],
+       "points": [
+        {
+         "id": "X1",
+         "at": [
+          -13.2,
+          0.0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "X2",
+         "at": [
+          8.9,
+          0.0
+         ],
+         "label": "x",
+         "dot": false
+        },
+        {
+         "id": "Y1",
+         "at": [
+          0.0,
+          -1.7
+         ],
+         "hidden": true
+        },
+        {
+         "id": "Y2",
+         "at": [
+          0.0,
+          12.9
+         ],
+         "label": "y",
+         "dot": false
+        },
+        {
+         "id": "M",
+         "at": [
+          -6.0,
+          6.0
+         ],
+         "label": "M"
+        },
+        {
+         "id": "L1",
+         "at": [
+          -11.0,
+          8.5
+         ],
+         "hidden": true
+        },
+        {
+         "id": "L2",
+         "at": [
+          8.0,
+          -1.0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "T1",
+         "at": [
+          -6.0,
+          0.0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "T2",
+         "at": [
+          0.0,
+          6.0
+         ],
+         "hidden": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "X1",
+         "to": "X2",
+         "dashed": true
+        },
+        {
+         "from": "Y1",
+         "to": "Y2",
+         "dashed": true
+        },
+        {
+         "from": "L1",
+         "to": "L2"
+        },
+        {
+         "from": "M",
+         "to": "T1",
+         "label": "r",
+         "dashed": true
+        },
+        {
+         "from": "M",
+         "to": "T2",
+         "label": "r",
+         "dashed": true
+        }
+       ],
+       "circles": [
+        {
+         "center": "M",
+         "radius": 6.0
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "İkinci bölgede iki eksene teğet çember.",
+        "show": [
+         "circle-M",
+         "M"
+        ],
+        "focus": [
+         "circle-M"
+        ]
+       },
+       {
+        "narration": "Merkezden iki eksene uzaklık eşit: yarıçap.",
+        "show": [
+         "MT1",
+         "MT2"
+        ],
+        "focus": [
+         "MT1",
+         "MT2"
+        ]
+       }
+      ],
+      "narration": "Genel denklemde merkez, eksi D bölü iki ile eksi E bölü ikidir; yarıçapın karesi D kare bölü dört artı E kare bölü dört eksi F. Bir çember x eksenine teğetse yarıçap merkezin ordinatının mutlak değeri, y eksenine teğetse apsisinin mutlak değeridir. İki eksene de teğetse ikisi eşittir; işaretleri hangi bölgede olduğu belirler."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "İkinci bölgede her iki eksene de teğet olan bir çemberin merkezi $x + 2y - 6 = 0$ doğrusu üzerindedir.\n\nBu çemberin yarıçapı kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -13.5,
+         -2.0,
+         9.5,
+         13.5
+        ],
+        "points": [
+         {
+          "id": "X1",
+          "at": [
+           -13.2,
+           0.0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "X2",
+          "at": [
+           8.9,
+           0.0
+          ],
+          "label": "x",
+          "dot": false
+         },
+         {
+          "id": "Y1",
+          "at": [
+           0.0,
+           -1.7
+          ],
+          "hidden": true
+         },
+         {
+          "id": "Y2",
+          "at": [
+           0.0,
+           12.9
+          ],
+          "label": "y",
+          "dot": false
+         },
+         {
+          "id": "M",
+          "at": [
+           -6.0,
+           6.0
+          ],
+          "label": "M"
+         },
+         {
+          "id": "L1",
+          "at": [
+           -11.0,
+           8.5
+          ],
+          "hidden": true
+         },
+         {
+          "id": "L2",
+          "at": [
+           8.0,
+           -1.0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "T1",
+          "at": [
+           -6.0,
+           0.0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "T2",
+          "at": [
+           0.0,
+           6.0
+          ],
+          "hidden": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "X1",
+          "to": "X2",
+          "dashed": true
+         },
+         {
+          "from": "Y1",
+          "to": "Y2",
+          "dashed": true
+         },
+         {
+          "from": "L1",
+          "to": "L2"
+         },
+         {
+          "from": "M",
+          "to": "T1",
+          "label": "r",
+          "dashed": true
+         },
+         {
+          "from": "M",
+          "to": "T2",
+          "label": "r",
+          "dashed": true
+         }
+        ],
+        "circles": [
+         {
+          "center": "M",
+          "radius": 6.0
+         }
+        ]
+       },
+       "options": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$6$",
+        "$8$"
+       ],
+       "answer": 3,
+       "narration": "İkinci bölgede merkez eksi a, a.",
+       "steps": [
+        {
+         "text": "Merkez $(-r, r)$: ikinci bölgede apsis eksi, ordinat artı.",
+         "narration": "İki eksene teğet ve ikinci bölgede: merkez eksi r, r."
+        },
+        {
+         "text": "$-r + 2r - 6 = 0$ → $r = 6$.",
+         "narration": "Doğruya koyalım: eksi r artı iki r eksi altı, sıfır. r altı. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Eksenlere teğet çember kalıbı; doğru yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x^2 + y^2 - 6x + 8y - 11 = 0$ çemberinin merkezi $M(a, b)$, yarıçapı $r$'dir.\n\nBuna göre $a + b + r$ kaçtır?",
+       "options": [
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$",
+        "$9$"
+       ],
+       "answer": 0,
+       "narration": "Tam kareye tamamlayalım.",
+       "steps": [
+        {
+         "text": "$(x - 3)^2 + (y + 4)^2 = 11 + 9 + 16 = 36$.",
+         "narration": "x eksi üç karesi artı y artı dört karesi; sağ taraf on bir artı dokuz artı on altı, otuz altı."
+        },
+        {
+         "text": "$M(3, -4)$, $r = 6$: $3 - 4 + 6 = 5$.",
+         "narration": "Merkez üç, eksi dört; yarıçap altı. Toplam beş. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "Merkez ve yarıçap kalıbı; denklem yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "F'nin işareti",
+      "wrong": "$x^2 + y^2 - 6x + 8y - 11 = 0$ için $r^2 = 9 + 16 - 11$.",
+      "right": "$F$ karşıya geçince işaret değiştirir: $r^2 = 9 + 16 + 11 = 36$.",
+      "why": "Formül: $r^2 = \\frac{D^2}{4} + \\frac{E^2}{4} - F$; $F = -11$ ise $+11$.",
+      "narration": "Sık yapılan bir hata: sabiti işaretiyle eklemek. Tam kareye tamamlarken F karşı tarafa geçer ve işaret değiştirir. Eksi on bir, artı on bir olur; yarıçapın karesi otuz altı."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_CEMBER_ANALITIK_03",
+    "title": "Nokta-çember ilişkisi",
+    "narration": "Bir noktanın çembere göre yeri, merkeze uzaklığının yarıçapla karşılaştırılmasıyla bulunur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Noktanın yeri",
+      "items": [
+       "$(x_0 - a)^2 + (y_0 - b)^2 < r^2$: **içte**; $= r^2$: **üzerinde**; $> r^2$: **dışta**.",
+       "Yalnız işarete bakmak yeter: noktayı denkleme koy.",
+       "Hem bir çemberin içinde hem öbürünün dışında: iki eşitsizlik birlikte."
+      ],
+      "narration": "Bir noktanın merkeze uzaklığının karesi yarıçapın karesinden küçükse nokta içte, eşitse üzerinde, büyükse dıştadır. Pratikte noktayı denkleme koyup işarete bakarsın. Bir nokta hem bir çemberin içinde hem öbürünün dışında isteniyorsa iki eşitsizliği birlikte çözersin."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$A(1, c)$ noktası $x^2 + y^2 = 50$ çemberinin **içinde**, $(x - 5)^2 + y^2 = 25$ çemberinin **dışındadır**.\n\nBuna göre $c$ kaç farklı tam sayı değeri alabilir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -6.5,
+         -8.0,
+         11.5,
+         8.5
+        ],
+        "points": [
+         {
+          "id": "X1",
+          "at": [
+           -6.2,
+           0.0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "X2",
+          "at": [
+           10.9,
+           0.0
+          ],
+          "label": "x",
+          "dot": false
+         },
+         {
+          "id": "Y1",
+          "at": [
+           0.0,
+           -7.7
+          ],
+          "hidden": true
+         },
+         {
+          "id": "Y2",
+          "at": [
+           0.0,
+           7.9
+          ],
+          "label": "y",
+          "dot": false
+         },
+         {
+          "id": "O",
+          "at": [
+           0.0,
+           0.0
+          ],
+          "label": "O"
+         },
+         {
+          "id": "N",
+          "at": [
+           5.0,
+           0.0
+          ],
+          "label": "N"
+         },
+         {
+          "id": "A",
+          "at": [
+           1.0,
+           6.0
+          ],
+          "label": "A(1, c)"
+         },
+         {
+          "id": "B",
+          "at": [
+           1.0,
+           -6.0
+          ],
+          "hidden": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "X1",
+          "to": "X2",
+          "dashed": true
+         },
+         {
+          "from": "Y1",
+          "to": "Y2",
+          "dashed": true
+         },
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": true
+         }
+        ],
+        "circles": [
+         {
+          "center": "O",
+          "radius": 7.0710678118654755
+         },
+         {
+          "center": "N",
+          "radius": 5.0
+         }
+        ]
+       },
+       "options": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 4,
+       "narration": "İki eşitsizlik kuralım.",
+       "steps": [
+        {
+         "text": "İçte: $1 + c^2 < 50$ → $c^2 < 49$ → $|c| \\leq 6$.",
+         "narration": "Birinci çemberin içinde: bir artı c kare, elliden küçük. c kare kırk dokuzdan küçük: c'nin mutlak değeri en çok altı."
+        },
+        {
+         "text": "Dışta: $16 + c^2 > 25$ → $c^2 > 9$ → $|c| \\geq 4$.",
+         "narration": "İkinci çemberin dışında: bir eksi beşin karesi on altı, artı c kare, yirmi beşten büyük. c kare dokuzdan büyük: mutlak değeri en az dört."
+        },
+        {
+         "text": "$c \\in \\{\\pm 4, \\pm 5, \\pm 6\\}$: $6$ değer.",
+         "narration": "Artı eksi dört, beş, altı: altı değer. Yalnız artıları sayan üç bulur; eksi üç çemberin üzerinde, dışında değil. Cevap E.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "İki çember arasında nokta kalıbı; çemberler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir gölde bulunan bir kişinin yeri orijin kabul ediliyor. Bu kişi $A(6, 8)$ noktasına bir taş atıyor; taşın oluşturduğu dalga çemberinin yarıçapı saniyede $3$ birim büyüyor.\n\nDalga kişinin bulunduğu yere hangi saniyeler arasında ulaşır?",
+       "options": [
+        "$1$ ile $2$",
+        "$2$ ile $3$",
+        "$3$ ile $4$",
+        "$4$ ile $5$",
+        "$5$ ile $6$"
+       ],
+       "answer": 2,
+       "narration": "Dalga, yarıçapı uzaklığa eşit olunca ulaşır.",
+       "steps": [
+        {
+         "text": "Uzaklık $|OA| = \\sqrt{36 + 64} = 10$.",
+         "narration": "Kişi ile taş arasındaki uzaklık: kök otuz altı artı altmış dört, on."
+        },
+        {
+         "text": "$3t = 10$ → $t = \\frac{10}{3} \\approx 3{,}3$ s: $3$ ile $4$ arası.",
+         "narration": "Yarıçap üç t; on olunca ulaşır: t, on bölü üç, yaklaşık üç virgül üç saniye. Üç ile dördüncü saniyeler arası. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Büyüyen çember kalıbı; sayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_CEMBER_ANALITIK_04",
+    "title": "Doğru-çember ilişkisi",
+    "narration": "Bir doğru çemberi iki noktada keser, bir noktada teğet geçer ya da hiç kesmez. Hangisi olduğunu merkezin doğruya uzaklığı söyler.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Doğru ve çember",
+      "items": [
+       "Merkezin doğruya uzaklığı $d$: $d < r$ **iki** nokta, $d = r$ **teğet**, $d > r$ kesmez.",
+       "Kesişim kirişi: $2\\sqrt{r^2 - d^2}$.",
+       "İki çemberin ortak noktaları: denklemleri **çıkar**, ortak kirişin doğrusunu bul."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -6.0,
+        -6.0,
+        8.0,
+        8.5
+       ],
+       "points": [
+        {
+         "id": "X1",
+         "at": [
+          -5.7,
+          0.0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "X2",
+         "at": [
+          7.4,
+          0.0
+         ],
+         "label": "x",
+         "dot": false
+        },
+        {
+         "id": "Y1",
+         "at": [
+          0.0,
+          -5.7
+         ],
+         "hidden": true
+        },
+        {
+         "id": "Y2",
+         "at": [
+          0.0,
+          7.9
+         ],
+         "label": "y",
+         "dot": false
+        },
+        {
+         "id": "M",
+         "at": [
+          1.0,
+          2.0
+         ],
+         "label": "M(1, 2)"
+        },
+        {
+         "id": "K",
+         "at": [
+          -4.0,
+          2.0
+         ],
+         "label": "K"
+        },
+        {
+         "id": "L",
+         "at": [
+          2.4,
+          -2.8
+         ],
+         "label": "L"
+        },
+        {
+         "id": "H",
+         "at": [
+          -0.8,
+          -0.4
+         ],
+         "hidden": true
+        },
+        {
+         "id": "E",
+         "at": [
+          -6.4,
+          3.8
+         ],
+         "hidden": true
+        },
+        {
+         "id": "F",
+         "at": [
+          4.8,
+          -4.6
+         ],
+         "hidden": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "X1",
+         "to": "X2",
+         "dashed": true
+        },
+        {
+         "from": "Y1",
+         "to": "Y2",
+         "dashed": true
+        },
+        {
+         "from": "E",
+         "to": "F"
+        },
+        {
+         "from": "M",
+         "to": "H",
+         "label": "3",
+         "dashed": true
+        },
+        {
+         "from": "M",
+         "to": "K",
+         "label": "5",
+         "dashed": true
+        }
+       ],
+       "angles": [
+        {
+         "at": "H",
+         "from": "M",
+         "to": "L",
+         "right": true
+        }
+       ],
+       "circles": [
+        {
+         "center": "M",
+         "radius": 5.0
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Merkezden doğruya dikme: uzaklık d.",
+        "show": [
+         "circle-M",
+         "EF",
+         "MH",
+         "M"
+        ],
+        "focus": [
+         "MH"
+        ]
+       },
+       {
+        "narration": "Dikme kirişi ortalar; yarım kiriş, d ve r dik üçgen.",
+        "show": [
+         "MK",
+         "K",
+         "L",
+         "angle-H"
+        ],
+        "focus": [
+         "MK"
+        ]
+       }
+      ],
+      "narration": "Merkezin doğruya uzaklığı yarıçaptan küçükse doğru çemberi iki noktada keser, eşitse teğettir, büyükse kesmez. Kesiştiği kirişin uzunluğu, iki kök r kare eksi d karedir. İki çemberin ortak noktalarını bulmak için denklemleri birbirinden çıkarırsın; kareler gider, ortak kirişin doğrusu kalır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$3x + 4y + 4 = 0$ doğrusu, merkezi $M(1, 2)$ ve yarıçapı $5$ birim olan çemberi $K$ ve $L$ noktalarında kesiyor.\n\nBuna göre $|KL|$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -6.0,
+         -6.0,
+         8.0,
+         8.5
+        ],
+        "points": [
+         {
+          "id": "X1",
+          "at": [
+           -5.7,
+           0.0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "X2",
+          "at": [
+           7.4,
+           0.0
+          ],
+          "label": "x",
+          "dot": false
+         },
+         {
+          "id": "Y1",
+          "at": [
+           0.0,
+           -5.7
+          ],
+          "hidden": true
+         },
+         {
+          "id": "Y2",
+          "at": [
+           0.0,
+           7.9
+          ],
+          "label": "y",
+          "dot": false
+         },
+         {
+          "id": "M",
+          "at": [
+           1.0,
+           2.0
+          ],
+          "label": "M(1, 2)"
+         },
+         {
+          "id": "K",
+          "at": [
+           -4.0,
+           2.0
+          ],
+          "label": "K"
+         },
+         {
+          "id": "L",
+          "at": [
+           2.4,
+           -2.8
+          ],
+          "label": "L"
+         },
+         {
+          "id": "H",
+          "at": [
+           -0.8,
+           -0.4
+          ],
+          "hidden": true
+         },
+         {
+          "id": "E",
+          "at": [
+           -6.4,
+           3.8
+          ],
+          "hidden": true
+         },
+         {
+          "id": "F",
+          "at": [
+           4.8,
+           -4.6
+          ],
+          "hidden": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "X1",
+          "to": "X2",
+          "dashed": true
+         },
+         {
+          "from": "Y1",
+          "to": "Y2",
+          "dashed": true
+         },
+         {
+          "from": "E",
+          "to": "F"
+         },
+         {
+          "from": "M",
+          "to": "H",
+          "label": "3",
+          "dashed": true
+         },
+         {
+          "from": "M",
+          "to": "K",
+          "label": "5",
+          "dashed": true
+         }
+        ],
+        "angles": [
+         {
+          "at": "H",
+          "from": "M",
+          "to": "L",
+          "right": true
+         }
+        ],
+        "circles": [
+         {
+          "center": "M",
+          "radius": 5.0
+         }
+        ]
+       },
+       "options": [
+        "$8$",
+        "$4\\sqrt{5}$",
+        "$9$",
+        "$10$",
+        "$4\\sqrt{7}$"
+       ],
+       "answer": 0,
+       "narration": "Önce merkezin doğruya uzaklığı.",
+       "steps": [
+        {
+         "text": "$d = \\frac{|3 + 8 + 4|}{5} = 3$.",
+         "narration": "Merkezin doğruya uzaklığı: üç artı sekiz artı dört, on beş; bölü beş, üç."
+        },
+        {
+         "text": "$|KL| = 2\\sqrt{25 - 9} = 8$.",
+         "narration": "Yarım kiriş, kök yirmi beş eksi dokuz, dört. Kiriş sekiz. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "Kiriş uzunluğu kalıbı; doğru yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x^2 + y^2 = 13$ ve $x^2 + y^2 - 4x = 5$ çemberleri $A$ ve $B$ noktalarında kesişiyor.\n\nBuna göre $|AB|$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -5.0,
+         -4.5,
+         6.5,
+         4.5
+        ],
+        "points": [
+         {
+          "id": "X1",
+          "at": [
+           -4.7,
+           0.0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "X2",
+          "at": [
+           5.9,
+           0.0
+          ],
+          "label": "x",
+          "dot": false
+         },
+         {
+          "id": "Y1",
+          "at": [
+           0.0,
+           -4.2
+          ],
+          "hidden": true
+         },
+         {
+          "id": "Y2",
+          "at": [
+           0.0,
+           3.9
+          ],
+          "label": "y",
+          "dot": false
+         },
+         {
+          "id": "O",
+          "at": [
+           0.0,
+           0.0
+          ],
+          "label": "O"
+         },
+         {
+          "id": "N",
+          "at": [
+           2.0,
+           0.0
+          ],
+          "label": "N"
+         },
+         {
+          "id": "A",
+          "at": [
+           2.0,
+           3.0
+          ],
+          "label": "A"
+         },
+         {
+          "id": "B",
+          "at": [
+           2.0,
+           -3.0
+          ],
+          "label": "B"
+         }
+        ],
+        "segments": [
+         {
+          "from": "X1",
+          "to": "X2",
+          "dashed": true
+         },
+         {
+          "from": "Y1",
+          "to": "Y2",
+          "dashed": true
+         },
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": true
+         }
+        ],
+        "circles": [
+         {
+          "center": "O",
+          "radius": 3.605551275463989
+         },
+         {
+          "center": "N",
+          "radius": 3.0
+         }
+        ]
+       },
+       "options": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$8$"
+       ],
+       "answer": 3,
+       "narration": "Denklemleri birbirinden çıkaralım.",
+       "steps": [
+        {
+         "text": "Çıkar: $13 - 4x = 5$ → $x = 2$ (ortak kiriş).",
+         "narration": "İkinci denklemde x kare artı y kare yerine on üç: on üç eksi dört x, beş. x iki: ortak kirişin doğrusu."
+        },
+        {
+         "text": "$4 + y^2 = 13$ → $y = \\pm 3$: $A(2, 3)$, $B(2, -3)$, $|AB| = 6$.",
+         "narration": "x iki iken y kare dokuz: y artı eksi üç. A iki, üç; B iki, eksi üç. Uzaklık altı. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "İki çemberin ortak noktaları kalıbı; denklemler yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_CEMBER_ANALITIK_05",
+    "title": "Teğet denklemi",
+    "narration": "Teğet, değme noktasındaki yarıçapa diktir. Bu tek bilgi teğetin eğimini ve denklemini verir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Teğet",
+      "items": [
+       "$x^2 + y^2 = r^2$ çemberine $(x_1, y_1)$ noktasındaki teğet: $x_1 x + y_1 y = r^2$.",
+       "Genel: teğet, yarıçapa **dik**: eğimler çarpımı $-1$.",
+       "Dıştaki $P$'den teğet uzunluğu: $\\sqrt{|PM|^2 - r^2}$."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -6.5,
+        -6.5,
+        9.5,
+        8.5
+       ],
+       "points": [
+        {
+         "id": "X1",
+         "at": [
+          -6.2,
+          0.0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "X2",
+         "at": [
+          8.9,
+          0.0
+         ],
+         "label": "x",
+         "dot": false
+        },
+        {
+         "id": "Y1",
+         "at": [
+          0.0,
+          -6.2
+         ],
+         "hidden": true
+        },
+        {
+         "id": "Y2",
+         "at": [
+          0.0,
+          7.9
+         ],
+         "label": "y",
+         "dot": false
+        },
+        {
+         "id": "O",
+         "at": [
+          0.0,
+          0.0
+         ],
+         "label": "O"
+        },
+        {
+         "id": "T",
+         "at": [
+          3.0,
+          4.0
+         ],
+         "label": "T(3, 4)"
+        },
+        {
+         "id": "G",
+         "at": [
+          -1.0,
+          7.0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "H",
+         "at": [
+          7.0,
+          1.0
+         ],
+         "hidden": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "X1",
+         "to": "X2",
+         "dashed": true
+        },
+        {
+         "from": "Y1",
+         "to": "Y2",
+         "dashed": true
+        },
+        {
+         "from": "G",
+         "to": "H"
+        },
+        {
+         "from": "O",
+         "to": "T",
+         "label": "5",
+         "dashed": true
+        }
+       ],
+       "angles": [
+        {
+         "at": "T",
+         "from": "O",
+         "to": "H",
+         "right": true
+        }
+       ],
+       "circles": [
+        {
+         "center": "O",
+         "radius": 5.0
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "T noktasında teğet.",
+        "show": [
+         "circle-O",
+         "GH",
+         "T"
+        ],
+        "focus": [
+         "GH"
+        ]
+       },
+       {
+        "narration": "Yarıçap O T, teğete dik.",
+        "show": [
+         "OT",
+         "angle-T"
+        ],
+        "focus": [
+         "OT"
+        ]
+       }
+      ],
+      "narration": "Merkezi orijinde, yarıçapı r olan çembere x bir, y bir noktasında çizilen teğetin denklemi x bir x artı y bir y eşittir r karedir. Genel kural: teğet, değme noktasındaki yarıçapa diktir, eğimleri çarpımı eksi birdir. Dıştaki bir P noktasından çizilen teğetin uzunluğu, P'nin merkeze uzaklığının karesinden r kare çıkarılıp karekök alınarak bulunur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x^2 + y^2 = 25$ çemberine $T(3, 4)$ noktasında çizilen teğetin eğimi kaçtır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -6.5,
+         -6.5,
+         9.5,
+         8.5
+        ],
+        "points": [
+         {
+          "id": "X1",
+          "at": [
+           -6.2,
+           0.0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "X2",
+          "at": [
+           8.9,
+           0.0
+          ],
+          "label": "x",
+          "dot": false
+         },
+         {
+          "id": "Y1",
+          "at": [
+           0.0,
+           -6.2
+          ],
+          "hidden": true
+         },
+         {
+          "id": "Y2",
+          "at": [
+           0.0,
+           7.9
+          ],
+          "label": "y",
+          "dot": false
+         },
+         {
+          "id": "O",
+          "at": [
+           0.0,
+           0.0
+          ],
+          "label": "O"
+         },
+         {
+          "id": "T",
+          "at": [
+           3.0,
+           4.0
+          ],
+          "label": "T(3, 4)"
+         },
+         {
+          "id": "G",
+          "at": [
+           -1.0,
+           7.0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "H",
+          "at": [
+           7.0,
+           1.0
+          ],
+          "hidden": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "X1",
+          "to": "X2",
+          "dashed": true
+         },
+         {
+          "from": "Y1",
+          "to": "Y2",
+          "dashed": true
+         },
+         {
+          "from": "G",
+          "to": "H"
+         },
+         {
+          "from": "O",
+          "to": "T",
+          "label": "5",
+          "dashed": true
+         }
+        ],
+        "angles": [
+         {
+          "at": "T",
+          "from": "O",
+          "to": "H",
+          "right": true
+         }
+        ],
+        "circles": [
+         {
+          "center": "O",
+          "radius": 5.0
+         }
+        ]
+       },
+       "options": [
+        "$-\\frac{4}{3}$",
+        "$-\\frac{3}{4}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{4}{3}$",
+        "$1$"
+       ],
+       "answer": 1,
+       "narration": "Teğet yarıçapa dik.",
+       "steps": [
+        {
+         "text": "$OT$'nin eğimi $\\frac{4}{3}$.",
+         "narration": "Yarıçap O T'nin eğimi, dört bölü üç."
+        },
+        {
+         "text": "Teğetin eğimi $-\\frac{3}{4}$; denklem $3x + 4y = 25$.",
+         "narration": "Dik doğrunun eğimi eksi üç bölü dört. Denklem de üç x artı dört y eşittir yirmi beş. Dört bölü üç, yarıçapın eğimidir. Cevap B.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Teğet eğimi kalıbı; nokta yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$P(7, 1)$ noktasından $x^2 + y^2 = 25$ çemberine çizilen teğet parçasının uzunluğu kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -6.5,
+         -6.5,
+         9.5,
+         6.5
+        ],
+        "points": [
+         {
+          "id": "X1",
+          "at": [
+           -6.2,
+           0.0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "X2",
+          "at": [
+           8.9,
+           0.0
+          ],
+          "label": "x",
+          "dot": false
+         },
+         {
+          "id": "Y1",
+          "at": [
+           0.0,
+           -6.2
+          ],
+          "hidden": true
+         },
+         {
+          "id": "Y2",
+          "at": [
+           0.0,
+           5.9
+          ],
+          "label": "y",
+          "dot": false
+         },
+         {
+          "id": "O",
+          "at": [
+           0.0,
+           0.0
+          ],
+          "label": "O"
+         },
+         {
+          "id": "P",
+          "at": [
+           7.0,
+           1.0
+          ],
+          "label": "P(7, 1)"
+         },
+         {
+          "id": "T",
+          "at": [
+           3.0,
+           4.0
+          ],
+          "label": "T"
+         }
+        ],
+        "segments": [
+         {
+          "from": "X1",
+          "to": "X2",
+          "dashed": true
+         },
+         {
+          "from": "Y1",
+          "to": "Y2",
+          "dashed": true
+         },
+         {
+          "from": "P",
+          "to": "T",
+          "label": "x"
+         },
+         {
+          "from": "O",
+          "to": "T",
+          "label": "5",
+          "dashed": true
+         },
+         {
+          "from": "O",
+          "to": "P",
+          "dashed": true
+         }
+        ],
+        "angles": [
+         {
+          "at": "T",
+          "from": "O",
+          "to": "P",
+          "right": true
+         }
+        ],
+        "circles": [
+         {
+          "center": "O",
+          "radius": 5.0
+         }
+        ]
+       },
+       "options": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$"
+       ],
+       "answer": 4,
+       "narration": "Yarıçap teğete dik: dik üçgen.",
+       "steps": [
+        {
+         "text": "$|OP|^2 = 49 + 1 = 50$.",
+         "narration": "P'nin merkeze uzaklığının karesi: kırk dokuz artı bir, elli."
+        },
+        {
+         "text": "$|PT| = \\sqrt{50 - 25} = 5$.",
+         "narration": "O T P dik üçgeninde P T, kök elli eksi yirmi beş, beş. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "Teğet uzunluğu kalıbı; nokta yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_CEMBER_ANALITIK_06",
+    "title": "İki çemberin birbirine göre durumu",
+    "narration": "İki çemberin durumu, merkezleri arasındaki uzaklığın yarıçaplarla karşılaştırılmasından okunur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İki çember",
+      "items": [
+       "$d > r_1 + r_2$: ayrık; $d = r_1 + r_2$: **dıştan teğet**.",
+       "$|r_1 - r_2| < d < r_1 + r_2$: iki noktada kesişir.",
+       "$d = |r_1 - r_2|$: **içten teğet**; daha küçükse biri öbürünün içinde."
+      ],
+      "narration": "Merkezler arası uzaklık yarıçaplar toplamından büyükse çemberler ayrıktır, eşitse dıştan teğettir. Yarıçaplar farkı ile toplamı arasındaysa iki noktada kesişir. Yarıçaplar farkına eşitse içten teğettir; daha küçükse biri öbürünün içinde kalır."
+     },
+     {
+      "kind": "predict",
+      "title": "Tek ortak nokta",
+      "prompt": "Merkezler arası uzaklık 10, yarıçaplar 2 ve 8. Çemberlerin kaç ortak noktası var?",
+      "choices": [
+       "Bir",
+       "İki"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -3.0,
+        -3.0,
+        15.5,
+        17.5
+       ],
+       "points": [
+        {
+         "id": "X1",
+         "at": [
+          -2.7,
+          0.0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "X2",
+         "at": [
+          14.9,
+          0.0
+         ],
+         "label": "x",
+         "dot": false
+        },
+        {
+         "id": "Y1",
+         "at": [
+          0.0,
+          -2.7
+         ],
+         "hidden": true
+        },
+        {
+         "id": "Y2",
+         "at": [
+          0.0,
+          16.9
+         ],
+         "label": "y",
+         "dot": false
+        },
+        {
+         "id": "O",
+         "at": [
+          0.0,
+          0.0
+         ],
+         "label": "O"
+        },
+        {
+         "id": "M",
+         "at": [
+          6.0,
+          8.0
+         ],
+         "label": "M(6, 8)"
+        },
+        {
+         "id": "T",
+         "at": [
+          1.2,
+          1.6
+         ],
+         "hidden": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "X1",
+         "to": "X2",
+         "dashed": true
+        },
+        {
+         "from": "Y1",
+         "to": "Y2",
+         "dashed": true
+        },
+        {
+         "from": "O",
+         "to": "M",
+         "dashed": true
+        }
+       ],
+       "circles": [
+        {
+         "center": "O",
+         "radius": 2.0
+        },
+        {
+         "center": "M",
+         "radius": 8.0
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Merkezler O ve M; aralarında on birim.",
+        "show": [
+         "circle-O",
+         "circle-M",
+         "OM"
+        ],
+        "focus": [
+         "OM"
+        ]
+       },
+       {
+        "narration": "İki artı sekiz, on: merkezler arası uzaklığa eşit.",
+        "focus": [
+         "circle-O",
+         "circle-M"
+        ]
+       }
+      ],
+      "explanation": "$d = r_1 + r_2$: çemberler **dıştan teğet**, tek ortak nokta.",
+      "narration": "İki çemberin kaç ortak noktası olduğunu tahmin et.",
+      "explanationNarration": "Bir ortak noktaları var. Yarıçaplar toplamı merkezler arası uzaklığa eşit olduğunda çemberler tek bir noktada dıştan dokunur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x^2 + y^2 = 4$ çemberi ile merkezi $M(6, 8)$ olan bir çember **dıştan** teğettir.\n\nBu çemberin yarıçapı kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -3.0,
+         -3.0,
+         15.5,
+         17.5
+        ],
+        "points": [
+         {
+          "id": "X1",
+          "at": [
+           -2.7,
+           0.0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "X2",
+          "at": [
+           14.9,
+           0.0
+          ],
+          "label": "x",
+          "dot": false
+         },
+         {
+          "id": "Y1",
+          "at": [
+           0.0,
+           -2.7
+          ],
+          "hidden": true
+         },
+         {
+          "id": "Y2",
+          "at": [
+           0.0,
+           16.9
+          ],
+          "label": "y",
+          "dot": false
+         },
+         {
+          "id": "O",
+          "at": [
+           0.0,
+           0.0
+          ],
+          "label": "O"
+         },
+         {
+          "id": "M",
+          "at": [
+           6.0,
+           8.0
+          ],
+          "label": "M(6, 8)"
+         },
+         {
+          "id": "T",
+          "at": [
+           1.2,
+           1.6
+          ],
+          "hidden": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "X1",
+          "to": "X2",
+          "dashed": true
+         },
+         {
+          "from": "Y1",
+          "to": "Y2",
+          "dashed": true
+         },
+         {
+          "from": "O",
+          "to": "M",
+          "dashed": true
+         }
+        ],
+        "circles": [
+         {
+          "center": "O",
+          "radius": 2.0
+         },
+         {
+          "center": "M",
+          "radius": 8.0
+         }
+        ]
+       },
+       "options": [
+        "$8$",
+        "$10$",
+        "$12$",
+        "$13$",
+        "$14$"
+       ],
+       "answer": 0,
+       "narration": "Merkezler arası uzaklık, yarıçaplar toplamı.",
+       "steps": [
+        {
+         "text": "$d = \\sqrt{36 + 64} = 10$.",
+         "narration": "Merkezler arası uzaklık: kök otuz altı artı altmış dört, on."
+        },
+        {
+         "text": "Dıştan teğet: $2 + r = 10$ → $r = 8$.",
+         "narration": "Dıştan teğet: iki artı r, on. r sekiz. İçten teğeti düşünen on iki bulur. Cevap A.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Dıştan teğet çember kalıbı; merkez yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde merkezleri $(16, 0)$ ve $(0, 12)$ olan iki çember yalnızca $(4, 9)$ noktasında kesişiyor.\n\nBu çemberlerin orijine **en yakın** noktaları arasındaki uzaklık kaç birimdir?",
+       "context": "ÖSYM 2026'da sorulan teğet çemberler yapısının yeni sayılarla kurulmuş hâli.",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -7.0,
+         -16.0,
+         33.0,
+         18.5
+        ],
+        "points": [
+         {
+          "id": "X1",
+          "at": [
+           -6.7,
+           0.0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "X2",
+          "at": [
+           32.4,
+           0.0
+          ],
+          "label": "x",
+          "dot": false
+         },
+         {
+          "id": "Y1",
+          "at": [
+           0.0,
+           -15.7
+          ],
+          "hidden": true
+         },
+         {
+          "id": "Y2",
+          "at": [
+           0.0,
+           17.9
+          ],
+          "label": "y",
+          "dot": false
+         },
+         {
+          "id": "M",
+          "at": [
+           16.0,
+           0.0
+          ],
+          "label": "M"
+         },
+         {
+          "id": "N",
+          "at": [
+           0.0,
+           12.0
+          ],
+          "label": "N"
+         },
+         {
+          "id": "T",
+          "at": [
+           4.0,
+           9.0
+          ],
+          "label": "T"
+         },
+         {
+          "id": "A",
+          "at": [
+           1.0,
+           0.0
+          ],
+          "label": "A"
+         },
+         {
+          "id": "B",
+          "at": [
+           0.0,
+           7.0
+          ],
+          "label": "B"
+         }
+        ],
+        "segments": [
+         {
+          "from": "X1",
+          "to": "X2",
+          "dashed": true
+         },
+         {
+          "from": "Y1",
+          "to": "Y2",
+          "dashed": true
+         },
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": true
+         },
+         {
+          "from": "M",
+          "to": "N",
+          "dashed": true
+         }
+        ],
+        "circles": [
+         {
+          "center": "M",
+          "radius": 15.0
+         },
+         {
+          "center": "N",
+          "radius": 5.0
+         }
+        ]
+       },
+       "options": [
+        "$\\sqrt{26}$",
+        "$2\\sqrt{10}$",
+        "$5\\sqrt{2}$",
+        "$2\\sqrt{15}$",
+        "$8$"
+       ],
+       "answer": 2,
+       "narration": "Tek ortak nokta: teğet. Yarıçapları ortak noktadan bulalım.",
+       "steps": [
+        {
+         "text": "$r_1 = \\sqrt{12^2 + 9^2} = 15$, $r_2 = \\sqrt{4^2 + 3^2} = 5$; $d = 20 = r_1 + r_2$ ✓.",
+         "narration": "Birinci yarıçap, on altı, sıfırdan dört, dokuza: on iki ve dokuz, on beş. İkinci: dört ve üç, beş. Merkezler arası yirmi: dıştan teğet."
+        },
+        {
+         "text": "Orijine en yakın noktalar merkezden orijine doğru: $A(16 - 15, 0) = (1, 0)$, $B(0, 12 - 5) = (0, 7)$.",
+         "narration": "Orijine en yakın nokta, merkezden orijine giden doğru üzerindedir. Birinci çemberde bir, sıfır; ikincide sıfır, yedi."
+        },
+        {
+         "text": "$|AB| = \\sqrt{1 + 49} = 5\\sqrt{2}$.",
+         "narration": "Aradaki uzaklık: kök bir artı kırk dokuz, beş kök iki. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026 modeli: merkezler ve ortak nokta değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Toplam mı, fark mı?",
+      "wrong": "İçten teğet çemberlerde $d = r_1 + r_2$.",
+      "right": "Dıştan teğet: $d = r_1 + r_2$; içten teğet: $d = |r_1 - r_2|$.",
+      "why": "İçten teğette küçük çember büyüğün **içinde** dokunur.",
+      "narration": "Sık yapılan bir hata: içten ve dıştan teğeti karıştırmak. Dıştan teğette merkezler arası uzaklık yarıçapların toplamı, içten teğette farkıdır; küçük çember büyüğün içinden dokunur."
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$(x - a)^2 + (y - b)^2 = r^2$.",
+    "Genel biçimde merkez $\\left(-\\frac{D}{2}, -\\frac{E}{2}\\right)$.",
+    "Nokta: denkleme koy, işarete bak.",
+    "Doğru: $d$ ile $r$; kiriş $2\\sqrt{r^2 - d^2}$.",
+    "Teğet: $x_1 x + y_1 y = r^2$; yarıçapa dik.",
+    "İki çember: $d$ ile $r_1 + r_2$ ve $|r_1 - r_2|$."
+   ],
+   "warnings": [
+    "$F$ karşıya geçince **işaret değiştirir**.",
+    "Çemberde **xy terimi yok**.",
+    "İçten teğette **fark**."
+   ],
+   "narration": "Özetleyelim. Çember denklemi x eksi a karesi artı y eksi b karesi, r karedir; genel biçimden merkezi ve yarıçapı tam kareye tamamlayarak bulursun. Bir noktanın yeri denkleme koyunca çıkan işaretten, bir doğrunun durumu merkezin doğruya uzaklığından okunur. Teğet, değme noktasındaki yarıçapa diktir. İki çemberin durumu, merkezler arası uzaklığı yarıçapların toplamı ve farkıyla karşılaştırarak bulunur."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "d = r₁ + r₂",
+    "question": "Durum?",
+    "choices": [
+     "Dıştan teğet",
+     "İçten teğet"
+    ],
+    "answer": 0,
+    "why": "İçten teğette **fark**."
+   },
+   {
+    "sentence": "d < r",
+    "question": "Doğru çemberi?",
+    "choices": [
+     "Kesmez",
+     "Keser"
+    ],
+    "answer": 1,
+    "why": "Merkeze **yakın**."
+   },
+   {
+    "sentence": "x² + y² + 3xy = 9",
+    "question": "Çember mi?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "**xy terimi** var."
+   }
+  ],
+  "hook": "Üç çember kuralı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Teğet **yarıçapa dik**."
+   },
+   {
+    "kind": "warning",
+    "text": "F karşıya geçince **işaret değiştirir**."
+   },
+   {
+    "kind": "term",
+    "term": "Ortak kiriş",
+    "definition": "Denklemler **çıkarılınca** kalan doğru."
+   }
+  ],
+  "summary": [
+   "Denklem ve merkez",
+   "Nokta ve doğru",
+   "Teğet ve iki çember"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-geometri-kampi",
+  "name": "AYT Geometri kampı",
+  "number": 16,
+  "total": 16,
+  "previous": "Katı Cisimler (Uzay Geometri)",
+  "promise": "Geometri konularının hepsi AYT düzeyinde, sırayla, şekilli ve ÖSYM kalıplarıyla.",
+  "task": {
+   "items": [
+    "Kareli kâğıtta bir çember çiz; denklemini **merkez ve yarıçaptan** yaz.",
+    "Bir doğru seç, merkeze uzaklığını hesapla ve çemberi **kaç noktada** kestiğini kontrol et.",
+    "Uygulamada AYT Çemberin Analitiği testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Kareli kâğıtta bir çember çiz ve denklemini merkezinden ve yarıçapından yaz. Sonra bir doğru seç; merkeze uzaklığını hesaplayıp çemberi kaç noktada kestiğini çizerek kontrol et. Ardından uygulamada yirmi soru çöz. Geometri kampını bitirdin; tebrikler!"
+  }
+ },
+ "works": {
+  "additions": [
+   "Genel denklemi çözümlü örnekle: x² + y² − 4x + 2y − 4 = 0 çemberinde merkez (2, −1), yarıçap ½√(16 + 4 + 16) = 3. Denklemin çember belirtmesi için x² ve y² katsayılarının eşit, xy teriminin olmaması ve D² + E² − 4F > 0 gerektiğini vurgula.",
+   "Eksenlere teğet çemberleri tablo yap: merkezi (a, b) olan çember x eksenine teğetse r = |b|, y eksenine teğetse r = |a|, ikisine birden teğetse |a| = |b| = r. Dördüncü bölgede her iki eksene teğet, yarıçapı 3 olan çemberin denklemini yazdır.",
+   "Doğru-çember kesişimini cebirsel olarak göster: x² + y² = 25 ile y = x + 1 ortak çözülünce x² + x − 12 = 0, kesişim noktaları (3, 4) ve (−4, −3). Diskriminantın işaretinin iki nokta, teğetlik ya da kesişmeme anlamına geldiğini ekle.",
+   "Dış noktadan teğet uzunluğunu örnekle: P(6, 8) noktasından x² + y² = 25 çemberine çizilen teğetin uzunluğu √(36 + 64 − 25) = 5√3. Teğet uzunluğunun karesinin noktayı denkleme koyunca bulunan değer olduğunu vurgula.",
+   "Ortak kiriş doğrusunu örnekle: x² + y² = 10 ile x² + y² − 2x − 4y = 0 denklemleri çıkarılınca x + 2y = 5 elde edilir; çemberler (3, 1) ve (−1, 3) noktalarında kesişir."
+  ]
+ }
+}

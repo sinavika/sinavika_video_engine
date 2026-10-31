@@ -1,12 +1,12 @@
 # YouTube metni: TYT Türkçe kampı · Ders 1 · Sözcükte Anlam
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/01_Sozcukte_Anlam/Sozcukte_Anlam_YouTube.mp4` (4K, 20:13; 27 Ekim yeniden render) · Kapak: `Sozcukte_Anlam_YouTube_Kapak.jpg` (kamp kapağı, seri tasarımı).
+Video: `Outputs/Videos/YKS/TYT/Turkce/01_Sozcukte_Anlam/Sozcukte_Anlam_YouTube.mp4` (4K, 21:38; 27 Ekim akşamı yeni senaryoyla yeniden render) · Kapak: `Sozcukte_Anlam_YouTube_Kapak.jpg` (kamp kapağı, seri tasarımı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 
-- A: Sözcükte Anlam Konu Anlatımı | TYT Türkçe Kampı Ders 1
-- B: Sözcükte Anlam: Gerçek, Mecaz, Yan Anlam ve Soru Çözümü | TYT Türkçe Ders 1
-- C: "Kırmak" Kaç Anlama Gelir? Sözcükte Anlam | TYT Türkçe Kampı Ders 1
+- A: YKS TYT Türkçe | Sözcükte Anlam Konu Anlatımı | Kamp Ders 1
+- B: YKS TYT Türkçe | Sözcükte Anlam: Gerçek, Mecaz ve Yan Anlam | Ders 1
+- C: YKS TYT Türkçe | "Kırmak" Kaç Anlama Gelir? Sözcükte Anlam | Ders 1
 
 ## Açıklama
 
@@ -46,9 +46,9 @@ Bölümler:
 12:29 Eş sesli sözcükler
 13:53 Yansıma sözcükler
 14:30 Sözcüğün bağlamdaki anlamı
-18:17 Anlam değişmesi
-19:11 Özet
-19:42 Kamp görevi
+19:37 Anlam değişmesi
+20:33 Özet
+21:05 Kamp görevi
 
 #TYT #YKS #TYTTürkçe #SözcükteAnlam #Sınavika
 
@@ -62,10 +62,20 @@ TYT Türkçe Kampı | Sınavika · YKS Kampı | Sınavika
 
 ## Ayarlar
 
-Kategori Eğitim · dil Türkçe · çocuklara özel değil · ücretli tanıtım yok · yapay zekâ beyanı Hayır (TYT 0 ile aynı) · planlı yayın 27 Ekim 2026 19:00 (GMT+3).
+Kategori Eğitim · dil Türkçe · çocuklara özel değil · ücretli tanıtım yok · yapay zekâ beyanı Hayır (TYT 0 ile aynı) · 27 Ekim 2026 akşamı hemen yayınlandı.
 
 ## Yayın (26 Ekim 2026'da yüklendi)
 
 - Video: https://youtu.be/m2VY8Az6T2g · planlı yayın **27 Ekim 2026 19:00 (GMT+3)**.
 - Başlık A/B testi (A, B, C yukarıda) video herkese açık olunca başlar; kapak kamp kapağı.
 - İki oynatma listesine eklendi; etiketler, açıklama, ayarlar yukarıdaki gibi girildi.
+
+## Yeniden yükleme (27 Ekim 2026 akşamı)
+
+- Yeni video: https://youtu.be/HpLwEZENciY · **27 Ekim 2026 ~20:20'de herkese açık yayınlandı** (21:38, yeni senaryo: 5 çözümlü soru).
+- A/B başlık testi (A, B, C), kamp kapağı, iki oynatma listesi, etiketler, dil Türkçe, kategori Eğitim, yapay zekâ beyanı Hayır, bitiş ekranı (abone ol + en son yükleme) girildi.
+- Eski yükleme m2VY8Az6T2g sahip tarafından gizlendi, 27 Ekim gecesi sahibin onayıyla silindi. Bölüm 0'ın "İlk ders" linki ve bitiş ekranı yeni videoya bağlandı.
+
+## Başlık güncellemesi (27 Ekim 2026 gecesi)
+
+Sahibin kararıyla başlıklar "YKS TYT Türkçe |" önekine geçti; Studio'da A/B testi bu üç başlıkla yeniden kuruldu.

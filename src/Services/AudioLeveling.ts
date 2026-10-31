@@ -47,7 +47,7 @@ export const toneAndLevel = async (input: string, output: string, level: AudioLe
 	}
 };
 
-export type AudioLevel = {integrated: number; truePeak: number};
+type AudioLevel = {integrated: number; truePeak: number};
 
 export const ffmpeg = (args: string[]) => RenderInternals.callFf({bin: 'ffmpeg', args, indent: false, logLevel: 'error', binariesDirectory: null, cancelSignal: undefined});
 

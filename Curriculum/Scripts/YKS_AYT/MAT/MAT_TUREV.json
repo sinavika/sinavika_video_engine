@@ -1,0 +1,919 @@
+{
+ "topic": {
+  "id": "2733E003-37A8-B44B-9EC8-DBC14F8136E0",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_TUREV"
+ },
+ "title": "Türev",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "YKS/AYT/CikmisSorular/MAT.jsonl (ÖSYM 2018, 2019, 2021, 2022, 2024, 2025, 2026 kalıpları örnek alındı, sorular yeniden kuruldu)",
+  "MEB AYT Matematik konu anlatımı (anlık değişim, kurallar, teğet, artan-azalan, ekstremum, optimizasyon; yapı için) ve YKS/AYT/Sorular/MAT/MAT_TUREV.jsonl",
+  "Her cevap kesirlerle ya da sayısal türevle tek tek denetlendi"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Türev, bir eğrinin her noktadaki eğimidir.",
+   "narration": "Bir arabanın hız göstergesi, o anki hızı gösterir; ortalamayı değil. Türev tam olarak budur: anlık değişim hızı. Grafikte ise eğrinin her noktadaki eğimi. ÖSYM türevden her yıl birkaç soru soruyor: kurallar, zincir kuralı, teğet, ekstremum ve en büyük, en küçük problemleri. Bu derste eğri üzerinde kayan teğetle başlayıp AYT düzeyinde yeni sorular çözeceğiz."
+  },
+  "objectives": [
+   "Türevi anlık değişim hızı ve teğet eğimi olarak yorumlamak",
+   "Türev kurallarını ve zincir kuralını uygulamak",
+   "Teğet doğrusu ve teğetlik koşullarını kullanmak",
+   "Türevin işaretiyle artan-azalan aralıkları bulmak",
+   "Yerel ekstremumları belirlemek",
+   "Optimizasyon problemlerini modellemek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_TUREV_01",
+    "title": "Türevin tanımı",
+    "narration": "Türev, bir fonksiyonun bir noktadaki anlık değişim hızıdır; grafikte, o noktadaki teğetin eğimi. Önce teğetin eğri boyunca nasıl değiştiğini izleyelim.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Türev",
+      "items": [
+       "$f'(a) = \\lim_{h \\to 0} \\frac{f(a + h) - f(a)}{h}$: **anlık** değişim hızı.",
+       "Grafikte: $(a, f(a))$ noktasındaki **teğetin eğimi**.",
+       "Kesen doğru, iki nokta birbirine yaklaştıkça teğete döner."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -2.5,
+        3
+       ],
+       "y": [
+        -2,
+        9
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^2",
+         "label": "y = x²"
+        }
+       ],
+       "parameters": {
+        "a": {
+         "from": 0.5
+        }
+       },
+       "tangent": {
+        "curve": 0,
+        "at": "a",
+        "slope": true
+       }
+      },
+      "beats": [
+       {
+        "narration": "y eşittir x kare ve x eşittir yarımda teğet: eğimi bir. Türev iki x, yarımda bir."
+       },
+       {
+        "narration": "Teğeti sağa kaydıralım, x bir buçuk: eğri dikleşiyor, eğim üç.",
+        "params": {
+         "a": 1.5
+        }
+       },
+       {
+        "narration": "Sola, x eksi bir: eğri iniyor, eğim eksi iki. Türev her noktada teğetin eğimini verir.",
+        "params": {
+         "a": -1
+        }
+       }
+      ],
+      "narration": "f türev a, h sıfıra giderken f a artı h eksi f a, bölü h'nin limitidir: fonksiyonun a noktasındaki anlık değişim hızı. Grafikte bu, a virgül f a noktasındaki teğetin eğimidir. İki noktadan geçen kesen doğruyu düşün: noktalar birbirine yaklaştıkça kesen teğete döner."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(x) = x^3 - x$\n\nolduğuna göre,\n\n$\\lim_{h \\to 0} \\dfrac{f(2 + h) - f(2)}{h}$\n\nlimitinin değeri kaçtır?",
+       "options": [
+        "$8$",
+        "$10$",
+        "$11$",
+        "$12$",
+        "$13$"
+       ],
+       "answer": 2,
+       "narration": "Bu limit, türevin tanımı: f türev iki.",
+       "steps": [
+        {
+         "text": "Limit $= f'(2)$; $f'(x) = 3x^2 - 1$.",
+         "narration": "Bu limit tam olarak f türev iki. f türev x, üç x kare eksi bir."
+        },
+        {
+         "text": "$f'(2) = 12 - 1 = 11$.",
+         "narration": "f türev iki: on iki eksi bir, on bir. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Türevin limit tanımı kalıbı; fonksiyon yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_TUREV_02",
+    "subtopics": [
+     "MAT_TUREV_04",
+     "MAT_TUREV_05"
+    ],
+    "title": "Türev alma kuralları",
+    "narration": "Türevi her seferinde limitle hesaplamayız: birkaç kural her fonksiyona yeter. ÖSYM bu kuralları bilinmeyen katsayılarla birleştiriyor.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kurallar",
+      "items": [
+       "$(x^n)' = nx^{n - 1}$; $(c \\cdot f)' = c \\cdot f'$; $(f \\pm g)' = f' \\pm g'$.",
+       "Çarpım: $(fg)' = f'g + fg'$; bölüm: $\\left(\\frac{f}{g}\\right)' = \\frac{f'g - fg'}{g^2}$.",
+       "$(\\sin x)' = \\cos x$, $(\\cos x)' = -\\sin x$, $(\\tan x)' = 1 + \\tan^2 x$.",
+       "$(e^x)' = e^x$, $(\\ln x)' = \\frac{1}{x}$, $(a^x)' = a^x \\ln a$."
+      ],
+      "narration": "x üssü n'in türevi n çarpı x üssü n eksi birdir; sabit çarpan dışarı çıkar, toplamın türevi türevlerin toplamıdır. Çarpımın türevi: birincinin türevi çarpı ikinci, artı birinci çarpı ikincinin türevi. Bölümde payda kareye çıkar. Sinüsün türevi kosinüs, kosinüsün türevi eksi sinüs. e üssü x'in türevi kendisi, ln x'in türevi bir bölü x."
+     },
+     {
+      "kind": "mistake",
+      "title": "Çarpımın türevi",
+      "wrong": "$(x^2 \\cdot x^3)' = 2x \\cdot 3x^2 = 6x^3$",
+      "right": "$(x^5)' = 5x^4$",
+      "why": "Çarpımın türevi türevlerin çarpımı **değildir**: $(fg)' = f'g + fg'$ $= 2x \\cdot x^3 + x^2 \\cdot 3x^2 = 5x^4$.",
+      "narration": "Sık yapılan bir hata: çarpımın türevini türevlerin çarpımı sanmak. x kare çarpı x küp, x üssü beştir; türevi beş x üssü dört. Kuralla da aynısı çıkar: iki x çarpı x küp artı x kare çarpı üç x kare, beş x üssü dört."
+     },
+     {
+      "kind": "predict",
+      "title": "Kosinüsün türevi",
+      "prompt": "$(\\sin x)' = \\cos x$. Peki $(\\cos x)'$ nedir?",
+      "choices": [
+       "$-\\sin x$",
+       "$\\sin x$"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -0.5,
+        6.5
+       ],
+       "y": [
+        -1.6,
+        1.6
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "cos(x)",
+         "label": "y = cos x"
+        }
+       ],
+       "parameters": {
+        "a": {
+         "from": 1
+        }
+       },
+       "tangent": {
+        "curve": 0,
+        "at": "a",
+        "slope": true
+       }
+      },
+      "beats": [
+       {
+        "narration": "Kosinüs eğrisine x bir de teğet çizelim. Eğri burada iniyor; teğetin eğimi negatif. Sinüs bir ise pozitif."
+       }
+      ],
+      "explanation": "Sıfır ile pi arasında kosinüs **azalır**, türevi negatif; o aralıkta sinüs pozitif: $(\\cos x)' = -\\sin x$.",
+      "narration": "Şimdi sıra sende. Sinüs x'in türevi kosinüs x. Kosinüs x'in türevi nedir? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: eksi sinüs x. Kosinüs sıfır ile pi arasında azalıyor, türevi negatif olmalı; sinüs orada pozitif. Bu yüzden başına eksi gelir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ gerçel sayılar olmak üzere, pozitif gerçel sayılarda\n\n$f(x) = ax^a + bx^b$\n\nfonksiyonu tanımlanıyor.\n\n$f(1) = 5$ ve $f'(1) = 13$ olduğuna göre, $f''(1)$ kaçtır?",
+       "options": [
+        "$22$",
+        "$24$",
+        "$26$",
+        "$28$",
+        "$30$"
+       ],
+       "answer": 0,
+       "narration": "ÖSYM 2019'da bu kalıbı sordu. Bire bağlı her şey sadeleşir.",
+       "steps": [
+        {
+         "text": "$f(1) = a + b = 5$; $f'(x) = a^2x^{a - 1} + b^2x^{b - 1}$, $f'(1) = a^2 + b^2 = 13$.",
+         "narration": "f bir: a artı b, beş. Türev: a kare x üssü a eksi bir artı b kare x üssü b eksi bir; birde a kare artı b kare, on üç."
+        },
+        {
+         "text": "$a + b = 5$, $a^2 + b^2 = 13$: $\\{a, b\\} = \\{2, 3\\}$.",
+         "narration": "Toplamı beş, kareleri toplamı on üç: iki ve üç."
+        },
+        {
+         "text": "$f''(1) = a^2(a - 1) + b^2(b - 1) = 4 \\cdot 1 + 9 \\cdot 2 = 22$.",
+         "narration": "İkinci türev birde: a kare çarpı a eksi bir artı b kare çarpı b eksi bir. Dört çarpı bir artı dokuz çarpı iki: yirmi iki. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 a x üssü a kalıbı örnek alındı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ gerçel sayılar olmak üzere\n\n$f(x) = x^2(ax + b)$\n\nfonksiyonu için $f(1) = 2$ ve $f'(1) = 7$ olduğuna göre, $f''(2)$ kaçtır?",
+       "options": [
+        "$28$",
+        "$30$",
+        "$32$",
+        "$34$",
+        "$36$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2025'te bu kalıbı sordu. Önce açalım: a x küp artı b x kare.",
+       "steps": [
+        {
+         "text": "$f = ax^3 + bx^2$: $f(1) = a + b = 2$; $f' = 3ax^2 + 2bx$, $3a + 2b = 7$.",
+         "narration": "f, a x küp artı b x kare. f bir: a artı b, iki. Türev üç a x kare artı iki b x; birde üç a artı iki b, yedi."
+        },
+        {
+         "text": "$a = 3$, $b = -1$.",
+         "narration": "Çözünce a üç, b eksi bir."
+        },
+        {
+         "text": "$f'' = 6ax + 2b$: $f''(2) = 36 - 2 = 34$.",
+         "narration": "İkinci türev altı a x artı iki b; ikide otuz altı eksi iki, otuz dört. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2025 katsayılı türev kalıbı örnek alındı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ pozitif bir tam sayı olmak üzere, pozitif gerçel sayılarda\n\n$f(x) = x^a + 3$, $g(x) = 2\\sqrt{x} + ax$\n\nfonksiyonları tanımlanıyor.\n\n$(f + g)'(1) = 9$ olduğuna göre, $(f \\cdot g)'(1)$ kaçtır?",
+       "options": [
+        "$36$",
+        "$40$",
+        "$44$",
+        "$48$",
+        "$52$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2026'da bu kalıbı sordu. Önce a'yı bulalım.",
+       "steps": [
+        {
+         "text": "$f'(1) = a$, $g'(x) = \\frac{1}{\\sqrt{x}} + a$, $g'(1) = 1 + a$: $2a + 1 = 9$, $a = 4$.",
+         "narration": "f türev bir, a. g türev x, bir bölü kök x artı a; birde bir artı a. Toplam iki a artı bir, dokuz: a dört."
+        },
+        {
+         "text": "$f(1) = 4$, $f'(1) = 4$, $g(1) = 6$, $g'(1) = 5$.",
+         "narration": "f bir dört, f türev bir dört; g bir, iki artı dört, altı; g türev bir beş."
+        },
+        {
+         "text": "$(fg)'(1) = 4 \\cdot 6 + 4 \\cdot 5 = 44$.",
+         "narration": "Çarpımın türevi: dört çarpı altı artı dört çarpı beş, kırk dört. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026 toplam ve çarpım türevi kalıbı örnek alındı; fonksiyonlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(x) = \\sin^2 x + \\cos 2x$\n\nolduğuna göre, $f'\\left(\\dfrac{\\pi}{4}\\right)$ kaçtır?",
+       "options": [
+        "$-2$",
+        "$-1$",
+        "$0$",
+        "$1$",
+        "$2$"
+       ],
+       "answer": 1,
+       "narration": "Her terimin türevini alalım; iki kat açı sadeleştirir.",
+       "steps": [
+        {
+         "text": "$(\\sin^2 x)' = 2\\sin x \\cos x = \\sin 2x$; $(\\cos 2x)' = -2\\sin 2x$.",
+         "narration": "Sinüs kare x'in türevi iki sinüs x kosinüs x, yani sinüs iki x. Kosinüs iki x'in türevi eksi iki sinüs iki x."
+        },
+        {
+         "text": "$f'(x) = -\\sin 2x$; $f'\\left(\\frac{\\pi}{4}\\right) = -\\sin \\frac{\\pi}{2} = -1$.",
+         "narration": "Toplam eksi sinüs iki x. Pi bölü dörtte eksi sinüs pi bölü iki: eksi bir. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "Trigonometrik türev kalıbı; fonksiyon yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_TUREV_03",
+    "title": "Bileşke ve zincir kuralı",
+    "narration": "İç içe fonksiyonun türevini dıştan içe alırız: dış fonksiyonun türevi, içi bozmadan, çarpı içinin türevi. ÖSYM bu kuralı her yıl bir biçimde soruyor.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Zincir kuralı",
+      "items": [
+       "$(f \\circ g)'(x) = f'(g(x)) \\cdot g'(x)$.",
+       "$\\left(g(x^3)\\right)' = g'(x^3) \\cdot 3x^2$.",
+       "$(f \\circ g)'(x) = 0$: ya $g'(x) = 0$ ya da $f'(g(x)) = 0$."
+      ],
+      "narration": "Bileşke fonksiyonun türevi: dıştaki fonksiyonun türevi, içine aynı ifade yazılarak, çarpı içteki fonksiyonun türevi. Örneğin g x küpün türevi g türev x küp çarpı üç x karedir. Bileşkenin türevi sıfırsa iki ihtimal var: içteki fonksiyonun türevi sıfırdır, ya da dıştakinin türevi içteki fonksiyonun değerinde sıfırdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$k$ bir gerçel sayı olmak üzere, türevlenebilir $f$ ve $g$ fonksiyonları için\n\n$f(x) = g(x^3) + kx^2$\n\neşitliği sağlanıyor.\n\n$f'(1) = 7$ ve $g'(1) = 3$ olduğuna göre, $k$ kaçtır?",
+       "options": [
+        "$-3$",
+        "$-2$",
+        "$-1$",
+        "$1$",
+        "$2$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2018'de bu kalıbı sordu. Zincir kuralıyla türev alalım.",
+       "steps": [
+        {
+         "text": "$f'(x) = 3x^2 \\cdot g'(x^3) + 2kx$.",
+         "narration": "f türev x: üç x kare çarpı g türev x küp, artı iki k x."
+        },
+        {
+         "text": "$f'(1) = 3 \\cdot g'(1) + 2k = 9 + 2k = 7$: $k = -1$.",
+         "narration": "Birde: üç çarpı g türev bir, dokuz; artı iki k, yedi. k eksi bir. İçin türevini unutan, yani üç x kareyi yazmayan k iki bulur. Cevap C.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018 g(x kare) zincir kuralı kalıbı örnek alındı; kuvvet ve değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(x) = x^2 - 3x + 1$\n\nfonksiyonu veriliyor. Türevlenebilir bir $g$ fonksiyonunun türevi $g'(x) = 0$ eşitliğini **yalnız** $x = -1$ için sağlıyor.\n\nBuna göre, $(g \\circ f)'(x) = 0$ eşitliğini sağlayan $x$ değerlerinin çarpımı kaçtır?",
+       "options": [
+        "$1$",
+        "$\\frac{3}{2}$",
+        "$2$",
+        "$3$",
+        "$6$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2019'da bu kalıbı sordu. Bileşkenin türevini iki çarpana ayıralım.",
+       "steps": [
+        {
+         "text": "$(g \\circ f)'(x) = g'(f(x)) \\cdot f'(x) = 0$.",
+         "narration": "Bileşkenin türevi g türev f x çarpı f türev x. Sıfırsa çarpanlardan biri sıfır."
+        },
+        {
+         "text": "$f'(x) = 2x - 3 = 0$: $x = \\frac{3}{2}$. $f(x) = -1$: $x^2 - 3x + 2 = 0$, $x = 1, 2$.",
+         "narration": "f türev x sıfır: iki x eksi üç, x üç bölü iki. g türev f x sıfır: f x eksi bir olmalı; x kare eksi üç x artı iki sıfır, x bir ya da iki."
+        },
+        {
+         "text": "Çarpım $\\frac{3}{2} \\cdot 1 \\cdot 2 = 3$.",
+         "narration": "Çarpım: üç bölü iki çarpı bir çarpı iki, üç. İkinci çarpanı unutan üç bölü iki der. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 bileşke türevinin sıfırları kalıbı örnek alındı; fonksiyon ve nokta yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_TUREV_06",
+    "title": "Teğet ve eğim",
+    "narration": "Teğet sorularında iki bilgi her şeyi çözer: değme noktası hem eğride hem doğrudadır, ve teğetin eğimi o noktadaki türevdir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Teğet doğrusu",
+      "items": [
+       "Eğim $m = f'(a)$; teğet: $y - f(a) = f'(a)(x - a)$.",
+       "Doğru eğriye teğetse: **değme noktası ortak** ve **eğimler eşit**.",
+       "Teğet yataysa $f'(a) = 0$; normalin eğimi $-\\frac{1}{f'(a)}$."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -3,
+        3
+       ],
+       "y": [
+        -5,
+        5
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^3 - 3x",
+         "label": "y = x³ − 3x"
+        }
+       ],
+       "parameters": {
+        "a": {
+         "from": 2
+        }
+       },
+       "tangent": {
+        "curve": 0,
+        "at": "a",
+        "slope": true
+       }
+      },
+      "beats": [
+       {
+        "narration": "x küp eksi üç x eğrisine x ikide teğet: türev üç x kare eksi üç, ikide dokuz. Teğet dik."
+       },
+       {
+        "narration": "Teğeti x sıfıra kaydıralım: eğim eksi üç, eğri iniyor.",
+        "params": {
+         "a": 0
+        }
+       },
+       {
+        "narration": "x eksi birde teğet yatay: türev sıfır. Eğri burada tepe yapıyor; ekstremum konusunda bunu kullanacağız.",
+        "params": {
+         "a": -1
+        }
+       }
+      ],
+      "narration": "Bir noktadaki teğetin eğimi o noktadaki türevdir; teğet doğrusu y eksi f a eşittir f türev a çarpı x eksi a. Bir doğru bir eğriye teğetse iki koşul yazarsın: değme noktası ikisinde de vardır, ve eğimler eşittir. Teğet yataysa türev sıfırdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ gerçel sayılar olmak üzere, $y = 5x + a$ doğrusu\n\n$f(x) = x^3 + x^2 + bx - 2$\n\nfonksiyonunun grafiğine $(1, f(1))$ noktasında teğettir.\n\nBuna göre, $a + b$ toplamı kaçtır?",
+       "options": [
+        "$-7$",
+        "$-5$",
+        "$-3$",
+        "$3$",
+        "$5$"
+       ],
+       "answer": 1,
+       "narration": "ÖSYM 2022'de bu kalıbı sordu. Eğim ve ortak nokta.",
+       "steps": [
+        {
+         "text": "Eğim: $f'(1) = 3 + 2 + b = 5$: $b = 0$.",
+         "narration": "Teğetin eğimi beş; f türev bir, üç artı iki artı b. b sıfır."
+        },
+        {
+         "text": "Ortak nokta: $f(1) = 1 + 1 + 0 - 2 = 0$; $5 \\cdot 1 + a = 0$: $a = -5$.",
+         "narration": "f bir: bir artı bir artı sıfır eksi iki, sıfır. Doğru da bu noktadan geçer: beş artı a, sıfır. a eksi beş."
+        },
+        {
+         "text": "$a + b = -5$.",
+         "narration": "Toplam eksi beş. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 doğrunun eğriye teğet olması kalıbı örnek alındı; fonksiyon ve doğru yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ gerçel sayılar olmak üzere, $f(x) = x^2 + ax$ fonksiyonunun grafiğine $x = 2$ noktasında çizilen teğet, $g(x) = bx^3$ fonksiyonunun grafiğine $x = -1$ noktasında teğettir.\n\nBuna göre, $a \\cdot b$ çarpımı kaçtır?",
+       "options": [
+        "$10$",
+        "$12$",
+        "$16$",
+        "$20$",
+        "$24$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2019'da bu kalıbı sordu. Aynı doğru, iki eğriye teğet: eğimler eşit ve doğru iki noktadan da geçiyor.",
+       "steps": [
+        {
+         "text": "Eğimler: $f'(2) = 4 + a$, $g'(-1) = 3b$: $4 + a = 3b$.",
+         "narration": "f türev iki, dört artı a. g türev eksi bir, üç b. Aynı doğru: eşit."
+        },
+        {
+         "text": "Noktalar $(2, 4 + 2a)$ ve $(-1, -b)$ aynı doğruda: $4 + 2a + b = 3(4 + a)$, $b - a = 8$.",
+         "narration": "Doğru iki virgül dört artı iki a ve eksi bir virgül eksi b noktalarından geçer. İkisinin farkı eğim çarpı üç: dört artı iki a artı b, üç çarpı dört artı a. Buradan b eksi a, sekiz."
+        },
+        {
+         "text": "$4 + (b - 8) = 3b$: $b = -2$, $a = -10$; $a \\cdot b = 20$.",
+         "narration": "Yerine yazınca b eksi iki, a eksi on. Çarpım yirmi. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 iki eğriye ortak teğet kalıbı örnek alındı; noktalar ve sonuç yeni hesaplandı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_TUREV_07",
+    "title": "Artan ve azalan fonksiyonlar",
+    "narration": "Türevin işareti, fonksiyonun yönünü söyler: pozitifse artar, negatifse azalır. ÖSYM bu bilgiyi verip katsayıları buldurmayı seviyor.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Türevin işareti",
+      "items": [
+       "$f' > 0$ olan aralıkta $f$ **artan**; $f' < 0$ olan aralıkta **azalan**.",
+       "Yönün değiştiği yerde $f' = 0$: dönüm noktalarının apsisleri $f'$'nün kökleri.",
+       "Her yerde artan kübik: $a > 0$ ve $f'$'nün diskriminantı $\\leq 0$."
+      ],
+      "narration": "Türev pozitifse fonksiyon artar, negatifse azalır. Fonksiyonun artandan azalana döndüğü yerlerde türev sıfırdır; yani yön değiştiren noktalar türevin kökleridir. Bir kübik fonksiyonun her yerde artan olması için baş katsayı pozitif ve türevin diskriminantı sıfır ya da negatif olmalıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ gerçel sayılar olmak üzere\n\n$f(x) = x^3 + ax^2 + bx + 2$\n\nfonksiyonu $(-\\infty, -1)$ aralığında artan, $(-1, 3)$ aralığında azalan, $(3, \\infty)$ aralığında artandır.\n\nBuna göre, $f(1)$ kaçtır?",
+       "options": [
+        "$-9$",
+        "$-7$",
+        "$-5$",
+        "$-3$",
+        "$0$"
+       ],
+       "answer": 0,
+       "narration": "ÖSYM 2021'de bu kalıbı sordu. Yön değişen yerler türevin kökleri.",
+       "steps": [
+        {
+         "text": "$f'(x) = 3x^2 + 2ax + b = 3(x + 1)(x - 3) = 3x^2 - 6x - 9$.",
+         "narration": "Türev üç x kare artı iki a x artı b; kökleri eksi bir ve üç. O hâlde türev üç çarpı x artı bir çarpı x eksi üç, yani üç x kare eksi altı x eksi dokuz."
+        },
+        {
+         "text": "$2a = -6$, $b = -9$: $a = -3$.",
+         "narration": "Katsayılar: iki a eksi altı, a eksi üç; b eksi dokuz."
+        },
+        {
+         "text": "$f(1) = 1 - 3 - 9 + 2 = -9$.",
+         "narration": "f bir: bir eksi üç eksi dokuz artı iki, eksi dokuz. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021 artan-azalan aralıklardan katsayı kalıbı örnek alındı; aralıklar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ gerçel sayılar olmak üzere\n\n$f(x) = ax^3 + bx^2 + 3x + 1$\n\nfonksiyonu **daima artandır**.\n\n$f(1) = 2$ olduğuna göre, $b$'nin alabileceği tam sayı değerlerinin toplamı kaçtır?",
+       "options": [
+        "$-24$",
+        "$-21$",
+        "$-18$",
+        "$-15$",
+        "$-12$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2022'de bu kalıbı sordu. Önce a'yı b cinsinden yazalım.",
+       "steps": [
+        {
+         "text": "$f(1) = a + b + 4 = 2$: $a = -2 - b$.",
+         "narration": "f bir: a artı b artı üç artı bir, iki. a eksi iki eksi b."
+        },
+        {
+         "text": "$f' = 3ax^2 + 2bx + 3 \\geq 0$: $a > 0$ ve $4b^2 - 36a \\leq 0$, yani $b^2 \\leq 9a$.",
+         "narration": "Daima artan: türev hep sıfır ya da pozitif. Baş katsayı pozitif ve diskriminant dört b kare eksi otuz altı a, sıfırdan küçük eşit: b kare en çok dokuz a."
+        },
+        {
+         "text": "$b^2 \\leq -18 - 9b$: $(b + 3)(b + 6) \\leq 0$, $-6 \\leq b \\leq -3$; toplam $-18$.",
+         "narration": "a yerine eksi iki eksi b: b kare artı dokuz b artı on sekiz, sıfırdan küçük eşit. b eksi altı ile eksi üç arası. Bu b'lerde a pozitif. Toplam eksi on sekiz. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 daima artan kübik kalıbı örnek alındı; katsayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_TUREV_08",
+    "title": "Ekstremum",
+    "narration": "Fonksiyonun yerel en büyük ve en küçük değerleri, türevin işaret değiştirdiği yerlerdedir. f ile f türevi yan yana görmek bunu açıkça gösterir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Yerel ekstremum",
+      "items": [
+       "$f'(a) = 0$ ve $f'$ **işaret değiştiriyor**: $a$'da yerel ekstremum.",
+       "$+$ dan $-$ ye: yerel **maksimum**; $-$ den $+$ ya: yerel **minimum**.",
+       "$f''(a) < 0$: maksimum; $f''(a) > 0$: minimum.",
+       "$f'(a) = 0$ ama işaret değişmiyorsa ekstremum **yok**."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -2.5,
+        2.5
+       ],
+       "y": [
+        -4,
+        6
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^3 - 3x",
+         "label": "f(x) = x³ − 3x"
+        },
+        {
+         "expression": "3x^2 - 3",
+         "label": "f'(x) = 3x² − 3"
+        }
+       ],
+       "points": [
+        {
+         "x": -1,
+         "y": 2,
+         "label": "yerel maks."
+        },
+        {
+         "x": 1,
+         "y": -2,
+         "label": "yerel min."
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Mavi f, turuncu f türev. Türevin kökleri eksi bir ve bir.",
+        "focus": [
+         "c2"
+        ]
+       },
+       {
+        "narration": "Eksi birde türev artıdan eksiye geçiyor: f yükselip inmeye başlıyor, yerel maksimum iki.",
+        "focus": [
+         "c1",
+         "p1"
+        ]
+       },
+       {
+        "narration": "Birde türev eksiden artıya geçiyor: f inip yükselmeye başlıyor, yerel minimum eksi iki.",
+        "focus": [
+         "c1",
+         "p2"
+        ]
+       }
+      ],
+      "narration": "Türev sıfır ve işaret değiştiriyorsa orada yerel ekstremum vardır. Türev artıdan eksiye geçiyorsa yerel maksimum, eksiden artıya geçiyorsa yerel minimum. İkinci türev negatifse maksimum, pozitifse minimum. Türev sıfır olup işaret değiştirmiyorsa ekstremum yoktur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$k$ ve $m$ gerçel sayılar olmak üzere\n\n$f(x) = x^3 + 3x^2 - mx + k$\n\n$g(x) = x^2 \\cdot f(x)$\n\nfonksiyonlarının ikisinin de $x = 1$ noktasında yerel ekstremumu vardır.\n\nBuna göre, $k + m$ toplamı kaçtır?",
+       "options": [
+        "$8$",
+        "$10$",
+        "$12$",
+        "$14$",
+        "$16$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2024'te bu kalıbı sordu. İki fonksiyonun türevi de birde sıfır.",
+       "steps": [
+        {
+         "text": "$f'(1) = 3 + 6 - m = 0$: $m = 9$.",
+         "narration": "f türev x, üç x kare artı altı x eksi m; birde dokuz eksi m, sıfır. m dokuz."
+        },
+        {
+         "text": "$g' = 2xf + x^2f'$: $g'(1) = 2f(1) + f'(1) = 2f(1) = 0$, $f(1) = 0$.",
+         "narration": "g türev: iki x çarpı f artı x kare çarpı f türev. Birde: iki f bir artı f türev bir; f türev bir zaten sıfır, o hâlde f bir sıfır."
+        },
+        {
+         "text": "$1 + 3 - 9 + k = 0$: $k = 5$; $k + m = 14$.",
+         "narration": "f bir: bir artı üç eksi dokuz artı k, sıfır; k beş. Toplam on dört. Denetim: f, x eksi birin karesi çarpı x artı beş; ikisinin de birde ekstremumu var. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2024 iki fonksiyonun ortak ekstremumu kalıbı örnek alındı; fonksiyonlar ve nokta yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_TUREV_09",
+    "subtopics": [
+     "MAT_TUREV_10"
+    ],
+    "title": "Maksimum-minimum problemleri",
+    "narration": "Gerçek hayattaki en büyük kâr, en büyük hacim, en az malzeme soruları aynı yolla çözülür: niceliği tek değişkenli bir fonksiyon olarak yaz, türevini sıfıra eşitle.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Optimizasyon",
+      "items": [
+       "Niceliği **tek değişkenle** yaz; değişkenin aralığını belirle.",
+       "Türevi sıfır yapan noktaları ve aralığın **uçlarını** karşılaştır.",
+       "Fiyat-talep sorularında: gelir = fiyat × satış."
+      ],
+      "narration": "Bir niceliği en büyük ya da en küçük yapmak için önce onu tek bir değişkenle yaz ve değişkenin hangi aralıkta olabileceğini belirle. Sonra türevi sıfır yapan noktaları ve aralığın uçlarını karşılaştır. Fiyat ve talep sorularında gelir, fiyat çarpı satılan miktardır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$400$ koltuklu bir salonda bilet $50$ TL iken bütün koltuklar doluyor. Bilet fiyatındaki her $5$ TL'lik artışta seyirci sayısı $20$ azalıyor.\n\nBilet gelirinin en fazla olması için bilet fiyatı kaç TL olmalıdır?",
+       "options": [
+        "$65$",
+        "$70$",
+        "$75$",
+        "$80$",
+        "$85$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2018'de bu kalıbı sordu. n tane artış yapılsın.",
+       "steps": [
+        {
+         "text": "Fiyat $50 + 5n$, seyirci $400 - 20n$: $G(n) = (50 + 5n)(400 - 20n) = 100(10 + n)(20 - n)$.",
+         "narration": "n artışta fiyat elli artı beş n, seyirci dört yüz eksi yirmi n. Gelir bunların çarpımı: yüz çarpı on artı n çarpı yirmi eksi n."
+        },
+        {
+         "text": "$G'(n) = 100(10 - 2n) = 0$: $n = 5$.",
+         "narration": "Türev yüz çarpı on eksi iki n; sıfır olduğu yer n beş."
+        },
+        {
+         "text": "Fiyat $50 + 25 = 75$ TL.",
+         "narration": "Fiyat elli artı yirmi beş: yetmiş beş lira. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018 fiyat artışı ve gelir kalıbı örnek alındı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kenarı $12$ cm olan kare biçimli bir kartonun dört köşesinden kenarı $x$ cm olan eş kareler kesilip kenarlar kaldırılarak üstü açık bir kutu yapılıyor.\n\nKutunun hacmi **en fazla** kaç santimetreküptür?",
+       "options": [
+        "$100$",
+        "$108$",
+        "$112$",
+        "$120$",
+        "$128$"
+       ],
+       "answer": 4,
+       "narration": "Hacmi x ile yazalım.",
+       "steps": [
+        {
+         "text": "Taban $(12 - 2x) \\times (12 - 2x)$, yükseklik $x$: $V(x) = x(12 - 2x)^2$, $0 < x < 6$.",
+         "narration": "Köşelerden x kesilince taban on iki eksi iki x'lik bir kare, yükseklik x. Hacim x çarpı on iki eksi iki x'in karesi; x sıfır ile altı arasında."
+        },
+        {
+         "text": "$V'(x) = (12 - 2x)(12 - 6x) = 0$: $x = 2$ (x = 6 kutu yok).",
+         "narration": "Türev: on iki eksi iki x çarpı on iki eksi altı x. Sıfır yerleri altı ve iki; altıda kutu kalmıyor, x iki."
+        },
+        {
+         "text": "$V(2) = 2 \\cdot 8^2 = 128$.",
+         "narration": "Hacim: iki çarpı sekizin karesi, yüz yirmi sekiz santimetreküp. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "Üstü açık kutu en büyük hacim problemi; ölçü yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$f'(a)$: teğetin **eğimi**.",
+    "$(fg)' = f'g + fg'$.",
+    "$(f \\circ g)' = f'(g) \\cdot g'$.",
+    "Teğet: nokta ortak, eğim eşit.",
+    "$f' > 0$ artan, $f' < 0$ azalan.",
+    "İşaret değişimi: ekstremum."
+   ],
+   "warnings": [
+    "Çarpımın türevi türevlerin **çarpımı değil**.",
+    "Zincirde **içinin türevini** unutma."
+   ],
+   "narration": "Özetleyelim. Türev, teğetin eğimi ve anlık değişim hızıdır. Çarpımın türevi f türev g artı f g türev; bileşkede dışın türevi çarpı içinin türevi. Teğet sorularında nokta ortak, eğimler eşit. Türev pozitifse artar, negatifse azalır; işaret değiştirdiği yerde ekstremum vardır. Optimizasyonda niceliği tek değişkenle yaz, türevi sıfırla, uçları da unutma."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "(cos x)'",
+    "question": "Nedir?",
+    "choices": [
+     "−sin x",
+     "sin x"
+    ],
+    "answer": 0,
+    "why": "Kosinüs **azalır**."
+   },
+   {
+    "sentence": "(x²·x³)'",
+    "question": "6x³ mü?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "**5x⁴**."
+   },
+   {
+    "sentence": "f' artıdan eksiye",
+    "question": "Ne var?",
+    "choices": [
+     "Yerel maks.",
+     "Yerel min."
+    ],
+    "answer": 0,
+    "why": "Çıkış bitip **iniş** başlar."
+   }
+  ],
+  "hook": "Üç türev tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Türev = teğetin **eğimi**."
+   },
+   {
+    "kind": "warning",
+    "text": "Zincirde **içinin türevi**."
+   },
+   {
+    "kind": "term",
+    "term": "Ekstremum",
+    "definition": "Türevin **işaret değiştirdiği** nokta."
+   }
+  ],
+  "summary": [
+   "f' = eğim",
+   "Zincir: dış × iç",
+   "İşaret değişimi: ekstremum"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-matematik-kampi",
+  "name": "AYT Matematik kampı",
+  "number": 32,
+  "total": 33,
+  "previous": "Limit",
+  "next": "İntegral",
+  "promise": "Her konu kısa bir tekrar ve AYT düzeyinde çözümlü sorularla.",
+  "task": {
+   "items": [
+    "ÖSYM 2021 kalıbını **kendin** çöz: $x^3 + ax^2 + bx$ yalnız $(0, 4)$ aralığında azalansa $a + b$ kaç?",
+    "$f(x) = x^3 - 3x$ ve $f'(x)$ grafiklerini **alt alta** çiz; ekstremumları işaretle.",
+    "Uygulamada AYT Türev testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. ÖSYM'nin 2021 kalıbını kendin çöz: x küp artı a x kare artı b x fonksiyonu eksi sonsuz ile sıfır arasında artan, sıfır ile dört arasında azalan, dörtten sonra artansa a artı b kaç? Sonra x küp eksi üç x ile türevinin grafiklerini alt alta çiz ve ekstremumları işaretle. Ardından uygulamada yirmi soru çöz. Bir sonraki derste integralde görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Türev kurallarını tablo yap: (xⁿ)′ = nxⁿ⁻¹, (sin x)′ = cos x, (cos x)′ = −sin x, (tan x)′ = 1 + tan²x, (eˣ)′ = eˣ, (ln x)′ = 1/x, (aˣ)′ = aˣ ln a; bölüm kuralı (f/g)′ = (f′g − fg′)/g².",
+   "Zincir kuralına örnekler ekle: ((3x² + 1)⁵)′ = 5(3x² + 1)⁴ × 6x; (sin x²)′ = 2x cos x²; (√(x² + 9))′ = x / √(x² + 9), x = 4'te 4/5.",
+   "Teğet ve normal denklemi örneği ekle: y = x³ − 2x eğrisine x = 1'de teğetin eğimi 1, teğet y = x − 2, normal y = −x. Normalin eğiminin teğetin eğiminin ters işaretlisinin tersi olduğunu vurgula.",
+   "Türevlenebilirliği tartıştır: türevlenebilen fonksiyon süreklidir ama tersi doğru değildir; |x| fonksiyonu x = 0'da süreklidir ama sağdan türev 1, soldan −1 olduğu için türevsizdir (köşe noktası).",
+   "İkinci türevin anlamını ekle: f″ > 0 olan aralıkta grafik yukarı doğru açılır (çukur), f″ < 0 olan aralıkta aşağı doğru açılır; f″'nün işaret değiştirdiği nokta büküm noktasıdır.",
+   "Optimizasyon örneği ekle: kenarı 12 cm olan kare kartonun köşelerinden x cm'lik kareler kesilip üstü açık kutu yapılıyor; V = x(12 − 2x)², V′ = (12 − 2x)(12 − 6x) = 0'dan x = 2, en büyük hacim 128 cm³.",
+   "Hareket problemine bağla: s(t) = t³ − 6t² + 9t ise hız v = 3t² − 12t + 9; cisim t = 1 ve t = 3'te yön değiştirir; ivme a = 6t − 12, t = 2'de sıfırdır."
+  ]
+ }
+}

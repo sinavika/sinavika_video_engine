@@ -1,0 +1,1807 @@
+{
+ "topic": {
+  "id": "230AF207-E726-FFC3-0637-6B20B640AF76",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_KUTLE_MERKEZ"
+ },
+ "title": "Kütle Merkezi",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/FIZ/FIZ_KUTLE_MERKEZ.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Kalem nerede dengede durur?",
+   "narration": "Bir kalemi parmağının üstünde dengelemeyi dene: yalnız bir noktada durur. Ucuna bir silgi takınca o nokta silgiye doğru kayar. İşte bu nokta kütle merkezidir. Bu derste kütle merkezini ve ağırlık merkezini, noktasal kütlelerde ve levhalarda nasıl bulunduğunu, kesilen bir parçanın onu nasıl kaydırdığını ve cisimlerin neden devrildiğini göreceksin."
+  },
+  "objectives": [
+   "Kütle merkezini iki kütlenin denge noktası olarak bulmak",
+   "Kütle merkezi ile ağırlık merkezini ayırt etmek",
+   "Noktasal kütlelerin ortak merkezini koordinatlarla hesaplamak",
+   "Türdeş çubuk, levha ve kesilmiş levhaların merkezini bulmak",
+   "Kararlı, kararsız ve farksız dengeyi ve devrilmeyi yorumlamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_KUTLE_MERKEZ_01",
+    "subtopics": [],
+    "title": "Kütle merkezi",
+    "narration": "Her cismin, bütün kütlesi oraya toplanmış gibi davrandığı tek bir noktası vardır. Cismi o noktanın altından desteklersen dengede kalır.",
+    "cards": [
+     {
+      "kind": "predict",
+      "title": "Parmağını nereye koymalı?",
+      "prompt": "Ağırlığı önemsiz bir çubuğun bir ucunda $m$, öbür ucunda $3m$ kütle var. Çubuğu parmağının üstünde dengelemek için parmağını nereye koymalısın?",
+      "choices": [
+       "Tam ortaya",
+       "$m$'ye yakın",
+       "$3m$'ye yakın"
+      ],
+      "answer": 2,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "lever",
+       "length": 8,
+       "pivot": 6,
+       "forces": [
+        {
+         "at": 0,
+         "value": 10,
+         "direction": "down",
+         "load": true,
+         "label": "m"
+        },
+        {
+         "at": 8,
+         "value": 30,
+         "direction": "down",
+         "load": true,
+         "label": "3m"
+        }
+       ],
+       "torques": false,
+       "verdict": true,
+       "unit": ""
+      },
+      "beats": [
+       {
+        "narration": "Çubuğun iki ucunda m ve üç m.",
+        "show": [
+         "f1",
+         "f2"
+        ],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Destek üç m tarafında: kollar altı ve iki birim.",
+        "show": [
+         "pivot",
+         "a1",
+         "a2",
+         "sum"
+        ],
+        "focus": [
+         "a1",
+         "a2"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "Destek **ağır kütleye** yakın olmalı: $m \\cdot 6 = 3m \\cdot 2$.",
+      "narration": "Ucunda m ve üç m kütleler olan bir çubuğu parmağının üstünde dengeleyeceksin. Parmağını ortaya mı, hafif tarafa mı, ağır tarafa mı koyarsın? Tahmin et.",
+      "explanationNarration": "Ağır tarafa yakın koymalısın. Destek, iki yükün torklarını eşitleyen yerde olmalı: m çarpı altı, üç m çarpı ikiye eşit. Kütlesi üç kat olanın kolu üçte bir. Bu denge noktası, iki kütlenin kütle merkezidir."
+     },
+     {
+      "kind": "rule",
+      "title": "Kütle merkezi",
+      "items": [
+       "Kütle merkezi, cismin bütün kütlesi **orada toplanmış gibi** davrandığı noktadır.",
+       "İki kütlede merkez aradaki doğru üzerinde, **büyük kütleye** yakındır: $m_1 d_1 = m_2 d_2$.",
+       "Uzaklıklar kütlelerle **ters orantılıdır**: $\\frac{d_1}{d_2} = \\frac{m_2}{m_1}$."
+      ],
+      "visual": {
+       "kind": "centreOfMass",
+       "view": [
+        0,
+        0,
+        8,
+        2
+       ],
+       "axes": false,
+       "bodies": [
+        {
+         "kind": "point",
+         "at": [
+          1,
+          1
+         ],
+         "mass": 1,
+         "label": "m"
+        },
+        {
+         "kind": "point",
+         "at": [
+          7,
+          1
+         ],
+         "mass": 3,
+         "label": "3m"
+        }
+       ],
+       "centre": true,
+       "coordinates": false
+      },
+      "beats": [
+       {
+        "narration": "Solda m, sağda üç m.",
+        "show": [
+         "b1",
+         "b2"
+        ],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Merkez m üzerinden başlar; üç m sayılınca ona doğru kayar ve yolun dörtte üçünde durur.",
+        "show": [
+         "centre"
+        ],
+        "focus": [
+         "centre"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Kütle merkezi, cismin bütün kütlesi oraya toplanmış gibi davrandığı noktadır. İki kütlenin kütle merkezi, onları birleştiren doğru üzerinde ve büyük kütleye daha yakındır: m bir çarpı d bir, m iki çarpı d ikiye eşittir. Yani uzaklıklar kütlelerle ters orantılıdır; kütlesi üç kat olana uzaklık üçte birdir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ağırlığı önemsiz $80$ cm uzunluğundaki bir çubuğun uçlarına $2$ kg ve $6$ kg kütleli küçük cisimler takılmıştır.\n\nSistemin kütle merkezi $2$ kg'lık cisimden kaç cm uzaktadır?",
+       "options": [
+        "$20$",
+        "$40$",
+        "$50$",
+        "$60$",
+        "$70$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$2 \\cdot d = 6 \\cdot (80 - d)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kütle merkezi iki kilogramdan d uzakta olsun. İki çarpı d, altı çarpı seksen eksi d."
+        },
+        {
+         "text": "$8d = 480$ → $d = 60$ cm; ağır cisme $20$ cm.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sekiz d, dört yüz seksen: d altmış santimetre. Altı kilograma ise yirmi santimetre; merkez ağır cisme yakın. Yirmiyi işaretleyen ağır cisimden ölçmüştür. Cevap D."
+        }
+       ],
+       "narration": "Uzaklıklar kütlelerle ters orantılı.",
+       "origin": {
+        "changes": "İki kütleli çubuk kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ağırlığı önemsiz bir çubuğa kütleleri farklı iki küçük cisim takılmıştır.\n\nSistemin kütle merkezi ile ilgili;\nI. iki cismi birleştiren doğru üzerindedir,\nII. büyük kütleli cisme daha yakındır,\nIII. cisimler arasındaki uzaklık iki katına çıkarılırsa her bir cisme olan uzaklığı da iki katına çıkar\n\nyargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "I ve II",
+        "I ve III",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Merkez iki cismi birleştiren doğru üzerinde ve **büyüğe** yakın (I, II).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kütle merkezi iki cismi birleştiren doğrunun üzerindedir ve büyük kütleye daha yakındır. Birinci ve ikinci doğru."
+        },
+        {
+         "text": "$d_1 = \\frac{m_2}{m_1 + m_2} L$: $L$ iki katına çıkınca $d_1$ ve $d_2$ de **iki katı** (III).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birinci cisme uzaklık, m iki bölü toplam kütle çarpı L. Oran sabit, L iki katına çıkınca iki uzaklık da iki katına çıkar. Üçüncü de doğru. Cevap E."
+        }
+       ],
+       "narration": "Uzaklıkları formülle yazalım.",
+       "origin": {
+        "changes": "Kütle merkezi yargıları; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_KUTLE_MERKEZ_02",
+    "subtopics": [],
+    "title": "Ağırlık merkezi",
+    "narration": "Ağırlık, cismin her parçasına etki eden yer çekimi kuvvetlerinin toplamıdır. Bu paralel kuvvetlerin bileşkesinin uygulandığı nokta ağırlık merkezidir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Ağırlık merkezi",
+      "items": [
+       "Ağırlık merkezi, parçalara etki eden **paralel ağırlık kuvvetlerinin** bileşkesinin uygulama noktasıdır.",
+       "$g$ her yerde aynıysa ağırlık merkezi ile kütle merkezi **çakışır**.",
+       "Çok yüksek yapılarda alt kısımda $g$ biraz büyük: ağırlık merkezi kütle merkezinin biraz **altında**."
+      ],
+      "beats": [],
+      "narration": "Bir cismin her parçasına yer çekimi kuvveti etki eder; bu kuvvetler birbirine paraleldir ve yerin merkezine yönelir. Bileşkelerinin uygulandığı nokta ağırlık merkezidir. Yer çekimi ivmesi cismin her yerinde aynıysa ağırlık merkezi kütle merkezi ile aynı yerdedir. Ama bir gökdelen gibi çok yüksek bir yapıda alt katlarda g biraz daha büyüktür; bu yüzden ağırlık merkezi kütle merkezinin biraz altında kalır."
+     },
+     {
+      "kind": "concept",
+      "title": "Asarak bulma",
+      "text": "Bir levhayı bir noktasından asınca ipin uzantısı **ağırlık merkezinden** geçer. İki farklı noktadan asıp çizdiğin iki düşey doğru, merkezde kesişir.",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -3.6,
+        -6.4,
+        3.6,
+        1.8
+       ],
+       "points": [
+        {
+         "id": "T1",
+         "at": [
+          -2.2,
+          1.2
+         ],
+         "hidden": true,
+         "dot": true
+        },
+        {
+         "id": "T2",
+         "at": [
+          2.2,
+          1.2
+         ],
+         "hidden": true,
+         "dot": true
+        },
+        {
+         "id": "T",
+         "at": [
+          0,
+          1.2
+         ],
+         "hidden": true,
+         "dot": true
+        },
+        {
+         "id": "H",
+         "at": [
+          0,
+          0
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "K",
+         "at": [
+          -2.68,
+          -3.13
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "L",
+         "at": [
+          2.68,
+          -5.81
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "G",
+         "at": [
+          0,
+          -2.98
+         ],
+         "label": "G",
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "Z",
+         "at": [
+          0,
+          -6.2
+         ],
+         "hidden": true,
+         "dot": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "T1",
+         "to": "T2",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "T",
+         "to": "H",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "H",
+         "to": "Z",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "H",
+          "K",
+          "L"
+         ],
+         "fill": true
+        }
+       ],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "Levha A köşesinden asılmış.",
+        "show": [
+         "H",
+         "K",
+         "L"
+        ],
+        "focus": [
+         "H"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Durduğunda ipin uzantısı G'den geçer.",
+        "show": [
+         "G"
+        ],
+        "focus": [
+         "G"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Düzensiz bir levhanın ağırlık merkezini asarak bulabilirsin. Levhayı bir noktasından asınca, ağırlık merkezi asma noktasının tam altına gelene kadar döner ve durur; ipin uzantısı ağırlık merkezinden geçer. Levhayı başka bir noktasından asıp yeni düşeyi çizersen iki doğru ağırlık merkezinde kesişir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Düzgün yapılı, çok yüksek bir gökdelenin kütle merkezi ile ağırlık merkezi arasında küçük bir fark vardır.\n\nBu farkla ilgili;\nI. Ağırlık merkezi, kütle merkezinin biraz altındadır.\nII. Farkın nedeni, yerden yükseldikçe yer çekimi ivmesinin azalmasıdır.\nIII. Aynı bina Ay'da olsaydı iki nokta tam olarak çakışırdı.\n\nyargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Alt katlarda $g$ biraz büyük: alt kısmın ağırlığı **daha çok** sayılır → ağırlık merkezi aşağıda (I, II).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yer çekimi ivmesi yerden yükseldikçe azalır. Alt katların her kilogramı biraz daha ağır çeker; ağırlık merkezi aşağı kayar. Birinci ve ikinci doğru."
+        },
+        {
+         "text": "Ay'da da $g$ yükseklikle azalır: fark küçülür ama **sıfır olmaz** (III yanlış).",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Ay'da da çekim ivmesi yükseklikle azalır. Fark daha küçük olur ama tam sıfır olmaz; üçüncü yanlış. Cevap C."
+        }
+       ],
+       "narration": "Farkın nedenini düşünelim.",
+       "origin": {
+        "changes": "Gökdelen yargıları; yeniden yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Merkez cismin içinde mi?",
+      "wrong": "Ağırlık merkezi her zaman cismin üzerindedir.",
+      "right": "Halka, bumerang ya da L biçimli levhada merkez cismin **dışında**, boşlukta olabilir.",
+      "why": "Merkez bir **noktadır**; orada malzeme olması gerekmez.",
+      "narration": "Sık yapılan bir hata: ağırlık merkezinin her zaman cismin üzerinde olduğunu sanmak. Bir halkanın ağırlık merkezi ortadaki boşluktadır; bumerangınki iki kolunun arasında, havadadır. Merkez bir noktadır, orada malzeme bulunması gerekmez."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_KUTLE_MERKEZ_03",
+    "subtopics": [],
+    "title": "Noktasal cisimlerde kütle merkezi",
+    "narration": "Birden çok küçük cismin ortak kütle merkezini koordinatlarla bulursun: her koordinat, kütlelerle ağırlıklandırılmış bir ortalamadır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Koordinatlarla",
+      "items": [
+       "$x_{KM} = \\frac{m_1 x_1 + m_2 x_2 + m_3 x_3}{m_1 + m_2 + m_3}$",
+       "$y_{KM}$ aynı biçimde, $y$ koordinatlarıyla bulunur.",
+       "Kütleler $m$, $2m$ gibi verilmişse $m$ **sadeleşir**."
+      ],
+      "visual": {
+       "kind": "centreOfMass",
+       "view": [
+        -1,
+        -1,
+        5,
+        6
+       ],
+       "axes": true,
+       "bodies": [
+        {
+         "kind": "point",
+         "at": [
+          0,
+          0
+         ],
+         "mass": 1,
+         "label": "m"
+        },
+        {
+         "kind": "point",
+         "at": [
+          4,
+          0
+         ],
+         "mass": 3,
+         "label": "3m"
+        },
+        {
+         "kind": "point",
+         "at": [
+          2,
+          5
+         ],
+         "mass": 4,
+         "label": "4m"
+        }
+       ],
+       "centre": true,
+       "coordinates": true
+      },
+      "beats": [
+       {
+        "narration": "x ekseninde m ve üç m.",
+        "show": [
+         "b1",
+         "b2"
+        ],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Yukarıda dört m.",
+        "show": [
+         "b3"
+        ],
+        "focus": [
+         "b3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Merkez her yeni kütleyle ona doğru kayar.",
+        "show": [
+         "centre"
+        ],
+        "focus": [
+         "centre"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "x, yirmi bölü sekiz: iki buçuk; y de iki buçuk.",
+        "show": [
+         "coordinates"
+        ],
+        "focus": [
+         "coordinates"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Noktasal cisimlerin ortak kütle merkezinin x koordinatı, her kütle çarpı kendi x koordinatının toplamı bölü toplam kütledir. y koordinatı da aynı biçimde y değerleriyle bulunur. Kütleler m, iki m gibi verilmişse m pay ve paydada sadeleşir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Düz ortalama mı?",
+      "wrong": "Kütle merkezi, cisimlerin koordinatlarının ortalamasıdır.",
+      "right": "Ortalama **kütlelerle ağırlıklı** alınır; yalnız eşit kütlelerde düz ortalamaya döner.",
+      "why": "Ağır cisim merkezi **kendine çeker**.",
+      "narration": "Sık yapılan bir hata: koordinatların düz ortalamasını almak. Her koordinat kendi kütlesiyle çarpılır, sonra toplam kütleye bölünür. Ağır cisim merkezi kendine çeker; düz ortalama yalnız kütleler eşitse doğru sonuç verir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Noktasal sayılabilecek $2m$, $m$ ve $3m$ kütleli cisimler $xy$ düzleminde sırasıyla $(0, 0)$, $(3, 0)$ ve $(1, 4)$ noktalarındadır.\n\nSistemin kütle merkezinin koordinatları nedir?",
+       "figure": {
+        "kind": "centreOfMass",
+        "view": [
+         -1,
+         -1,
+         4,
+         5
+        ],
+        "axes": true,
+        "bodies": [
+         {
+          "kind": "point",
+          "at": [
+           0,
+           0
+          ],
+          "mass": 2,
+          "label": "2m"
+         },
+         {
+          "kind": "point",
+          "at": [
+           3,
+           0
+          ],
+          "mass": 1,
+          "label": "m"
+         },
+         {
+          "kind": "point",
+          "at": [
+           1,
+           4
+          ],
+          "mass": 3,
+          "label": "3m"
+         }
+        ],
+        "centre": false,
+        "coordinates": true
+       },
+       "options": [
+        "$(1, 2)$",
+        "$(\\frac{4}{3}, \\frac{4}{3})$",
+        "$(2, 1)$",
+        "$(2, 2)$",
+        "$(3, 2)$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$x = \\frac{2m \\cdot 0 + m \\cdot 3 + 3m \\cdot 1}{6m} = 1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x için: iki m çarpı sıfır, m çarpı üç, üç m çarpı bir; toplam altı m. Bölü altı m: bir."
+        },
+        {
+         "text": "$y = \\frac{2m \\cdot 0 + m \\cdot 0 + 3m \\cdot 4}{6m} = 2$ → $(1, 2)$.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "y için: yalnız üç m'nin y'si sıfırdan farklı; on iki m bölü altı m, iki. Kütle merkezi bir, iki. Kütleleri hesaba katmadan ortalama alan dört bölü üçü bulur. Cevap A."
+        }
+       ],
+       "narration": "Toplam kütle altı m.",
+       "origin": {
+        "changes": "Koordinat kalıbı; kütleler ve konumlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x$ ekseni üzerinde $x = 0$ noktasında $4m$, $x = 6$ noktasında $2m$ kütleli cisimler vardır. Sisteme $x = 10$ noktasında bir $m_3$ kütlesi eklenince ortak kütle merkezi $x = 4$ noktasına geliyor.\n\n$m_3$ kaç $m$'dir?",
+       "options": [
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$\\frac{3}{2}$",
+        "$2$",
+        "$3$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$\\frac{4m \\cdot 0 + 2m \\cdot 6 + m_3 \\cdot 10}{6m + m_3} = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç kütlenin ortak merkezi: dört m çarpı sıfır, iki m çarpı altı, m üç çarpı on; bölü toplam kütle, dörde eşit."
+        },
+        {
+         "text": "$12m + 10m_3 = 24m + 4m_3$ → $6m_3 = 12m$ → $m_3 = 2m$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İçler dışlar: on iki m artı on m üç, yirmi dört m artı dört m üç. Altı m üç, on iki m: m üç, iki m. Önce merkez iki noktasındaydı; on noktasına iki m eklenince dörde kaydı. Cevap D."
+        }
+       ],
+       "narration": "Yeni merkezin formülünü yazıp çözelim.",
+       "origin": {
+        "changes": "Kütle ekleme kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_KUTLE_MERKEZ_04",
+    "subtopics": [],
+    "title": "Düzgün geometrik cisimlerde kütle merkezi",
+    "narration": "Türdeş bir cisimde kütle her yere eşit dağılır; merkez cismin simetrisinden bulunur. Birleşik cisimleri parçalarına ayırır, her parçayı kendi merkezinde bir kütle gibi sayarsın.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Düzgün cisimler",
+      "items": [
+       "Türdeş çubuk: **ortası**; dikdörtgen ve kare levha: köşegenlerin kesiştiği yer.",
+       "Türdeş üçgen levha: kenarortayların kesiştiği nokta; her kenarortayı köşeden **2 : 1** böler.",
+       "Birleşik levha: her parçayı kendi merkezinde, **alanıyla orantılı** kütle olarak say."
+      ],
+      "visual": {
+       "kind": "centreOfMass",
+       "view": [
+        -1,
+        -1,
+        7,
+        7
+       ],
+       "axes": true,
+       "bodies": [
+        {
+         "kind": "plate",
+         "corners": [
+          [
+           0,
+           0
+          ],
+          [
+           6,
+           0
+          ],
+          [
+           6,
+           2
+          ],
+          [
+           0,
+           2
+          ]
+         ],
+         "label": "12 br²",
+         "removed": false
+        },
+        {
+         "kind": "plate",
+         "corners": [
+          [
+           0,
+           2
+          ],
+          [
+           2,
+           2
+          ],
+          [
+           2,
+           6
+          ],
+          [
+           0,
+           6
+          ]
+         ],
+         "label": "8 br²",
+         "removed": false
+        }
+       ],
+       "centre": true,
+       "coordinates": true
+      },
+      "beats": [
+       {
+        "narration": "Alttaki dikdörtgen: alanı on iki, merkezi köşegenlerin kesiştiği yer.",
+        "show": [
+         "b1"
+        ],
+        "focus": [
+         "b1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Dik parça: alanı sekiz.",
+        "show": [
+         "b2"
+        ],
+        "focus": [
+         "b2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Ortak merkez büyük parçadan küçüğe doğru kayar ve L'nin köşesindeki boşlukta durur.",
+        "show": [
+         "centre",
+         "coordinates"
+        ],
+        "focus": [
+         "centre"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Türdeş bir çubuğun kütle merkezi ortasıdır; dikdörtgen ve kare levhanınki köşegenlerin kesiştiği yerdir. Türdeş üçgen levhanın merkezi kenarortayların kesiştiği noktadır ve her kenarortayı köşeden itibaren ikiye bir oranında böler. Birleşik bir levhayı parçalara ayırırsın; aynı malzemeden olduklarına göre her parçayı, kendi merkezinde alanıyla orantılı bir kütle gibi sayarsın."
+     },
+     {
+      "kind": "visual",
+      "title": "Üçgenin ağırlık merkezi",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.8,
+        -0.9,
+        6.8,
+        5.6
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "B",
+         "at": [
+          6,
+          0
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "C",
+         "at": [
+          2,
+          5
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "D",
+         "at": [
+          4,
+          2.5
+         ],
+         "label": "D",
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "E",
+         "at": [
+          1,
+          2.5
+         ],
+         "label": "E",
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "F",
+         "at": [
+          3,
+          0
+         ],
+         "label": "F",
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "G",
+         "at": [
+          2.67,
+          1.67
+         ],
+         "label": "G",
+         "hidden": false,
+         "dot": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "B",
+         "to": "D",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "A",
+         "to": "E",
+         "dashed": false,
+         "ticks": 2
+        },
+        {
+         "from": "E",
+         "to": "C",
+         "dashed": false,
+         "ticks": 2
+        },
+        {
+         "from": "A",
+         "to": "F",
+         "dashed": false,
+         "ticks": 3
+        },
+        {
+         "from": "F",
+         "to": "B",
+         "dashed": false,
+         "ticks": 3
+        },
+        {
+         "from": "A",
+         "to": "G",
+         "label": "2k",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "G",
+         "to": "D",
+         "label": "k",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "G",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "G",
+         "to": "E",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "G",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "G",
+         "to": "F",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "fill": true
+        }
+       ],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "Kenarların orta noktaları D, E ve F. Kenarortay, bir köşeyi karşı kenarın ortasına bağlar.",
+        "show": [
+         "D",
+         "E",
+         "F"
+        ],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Üç kenarortay G noktasında kesişir. G her birini köşeden ikiye bir oranında böler: A'dan G'ye iki k, G'den D'ye k.",
+        "show": [
+         "G"
+        ],
+        "focus": [
+         "G"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Üçgen levhanın ağırlık merkezini kenarortaylar verir."
+     },
+     {
+      "kind": "visual",
+      "title": "Kesilen parça",
+      "visual": {
+       "kind": "centreOfMass",
+       "view": [
+        -1,
+        -1,
+        7,
+        5
+       ],
+       "axes": true,
+       "bodies": [
+        {
+         "kind": "plate",
+         "corners": [
+          [
+           0,
+           0
+          ],
+          [
+           6,
+           0
+          ],
+          [
+           6,
+           4
+          ],
+          [
+           0,
+           4
+          ]
+         ],
+         "label": "24 br²",
+         "removed": false
+        },
+        {
+         "kind": "plate",
+         "corners": [
+          [
+           4,
+           1
+          ],
+          [
+           6,
+           1
+          ],
+          [
+           6,
+           3
+          ],
+          [
+           4,
+           3
+          ]
+         ],
+         "label": "−4 br²",
+         "removed": true
+        }
+       ],
+       "centre": true,
+       "coordinates": true
+      },
+      "beats": [
+       {
+        "narration": "Yirmi dört birim karelik levhanın merkezi tam ortasında.",
+        "show": [
+         "b1"
+        ],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Sağdan dört birim karelik bir parça kesiliyor; onu eksi kütle gibi sayarız.",
+        "show": [
+         "b2"
+        ],
+        "focus": [
+         "b2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Merkez, kesilen parçanın tersine, sola kayar: x, iki virgül altı.",
+        "show": [
+         "centre",
+         "coordinates"
+        ],
+        "focus": [
+         "centre"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bir levhadan parça kesilince merkez nereye gider?"
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Türdeş, kenarı $4$ birim olan kare bir levhanın bir köşesinden kenarı $2$ birim olan kare bir parça kesilip atılıyor. Levhanın köşeleri $(0, 0)$, $(4, 0)$, $(4, 4)$, $(0, 4)$; kesilen parçanınki $(2, 2)$, $(4, 2)$, $(4, 4)$, $(2, 4)$'tür.\n\nKalan levhanın kütle merkezinin koordinatları nedir?",
+       "figure": {
+        "kind": "centreOfMass",
+        "view": [
+         -1,
+         -1,
+         5,
+         5
+        ],
+        "axes": true,
+        "bodies": [
+         {
+          "kind": "plate",
+          "corners": [
+           [
+            0,
+            0
+           ],
+           [
+            4,
+            0
+           ],
+           [
+            4,
+            4
+           ],
+           [
+            0,
+            4
+           ]
+          ],
+          "removed": false
+         },
+         {
+          "kind": "plate",
+          "corners": [
+           [
+            2,
+            2
+           ],
+           [
+            4,
+            2
+           ],
+           [
+            4,
+            4
+           ],
+           [
+            2,
+            4
+           ]
+          ],
+          "removed": true
+         }
+        ],
+        "centre": false,
+        "coordinates": true
+       },
+       "options": [
+        "$(\\frac{3}{2}, \\frac{3}{2})$",
+        "$(\\frac{5}{3}, \\frac{5}{3})$",
+        "$(2, 2)$",
+        "$(\\frac{7}{3}, \\frac{7}{3})$",
+        "$(\\frac{5}{2}, \\frac{5}{2})$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Tam kare: alan $16$, merkez $(2, 2)$; kesilen: alan $4$, merkez $(3, 3)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Tam karenin alanı on altı, merkezi iki, iki. Kesilen karenin alanı dört, merkezi üç, üç."
+        },
+        {
+         "text": "$x = \\frac{16 \\cdot 2 - 4 \\cdot 3}{16 - 4} = \\frac{20}{12} = \\frac{5}{3}$; $y$ de aynı.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x: on altı çarpı iki eksi dört çarpı üç, bölü on iki: yirmi bölü on iki, beş bölü üç. Simetriden y de aynı."
+        },
+        {
+         "text": "Merkez kesilen parçadan **uzaklaşır**: $(2, 2)$'den sol alta.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Merkez iki, ikiden sol alta, kesilen parçanın tersine kaydı. Yedi bölü üçü bulan merkezi parçaya doğru kaydırmıştır. Cevap B."
+        }
+       ],
+       "narration": "Kesilen parçayı eksi kütle sayalım.",
+       "origin": {
+        "changes": "Kesilen levha kalıbı; ölçüler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kendi içinde türdeş $X$ ve $Y$ çubukları uç uca eklenmiştir. $X$'in boyu $40$ cm ve kütlesi $3$ kg, $Y$'nin boyu $60$ cm ve kütlesi $1$ kg'dır.\n\nOrtak kütle merkezi, $Y$'nin serbest ucundan kaç cm uzaktadır?",
+       "figure": {
+        "kind": "centreOfMass",
+        "view": [
+         0,
+         0,
+         10,
+         2
+        ],
+        "axes": false,
+        "bodies": [
+         {
+          "kind": "rod",
+          "from": [
+           0,
+           1
+          ],
+          "to": [
+           6,
+           1
+          ],
+          "mass": 1,
+          "label": "Y"
+         },
+         {
+          "kind": "rod",
+          "from": [
+           6,
+           1
+          ],
+          "to": [
+           10,
+           1
+          ],
+          "mass": 3,
+          "label": "X"
+         }
+        ],
+        "centre": false,
+        "coordinates": true
+       },
+       "options": [
+        "$35$",
+        "$50$",
+        "$55$",
+        "$60$",
+        "$67{,}5$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$Y$'nin merkezi $30$ cm'de, $X$'inki $60 + 20 = 80$ cm'de.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Y'nin serbest ucundan ölçelim. Y'nin merkezi otuz santimetrede; X'in merkezi altmış artı yirmi, seksen santimetrede."
+        },
+        {
+         "text": "$x = \\frac{1 \\cdot 30 + 3 \\cdot 80}{4} = \\frac{270}{4} = 67{,}5$ cm.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir çarpı otuz artı üç çarpı seksen, iki yüz yetmiş; bölü dört: altmış yedi buçuk. Merkez ağır X'e yakın. Kütleleri eşit sayan elli beşi, çubuğun ortasını alan elliyi bulur. Cevap E."
+        }
+       ],
+       "narration": "Her çubuğu kendi ortasında bir kütle sayalım.",
+       "origin": {
+        "changes": "Birleşik çubuk kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_KUTLE_MERKEZ_05",
+    "subtopics": [],
+    "title": "Denge ve kararlılık",
+    "narration": "Dengede duran bir cismi biraz ittiğinde ne olacağını ağırlık merkezinin yüksekliği söyler: geri mi döner, devrilir mi, yoksa yeni yerinde mi kalır?",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Denge çeşitleri",
+      "items": [
+       "**Kararlı:** biraz itince ağırlık merkezi **yükselir**, cisim eski yerine döner.",
+       "**Kararsız:** ağırlık merkezi **alçalır**, cisim devrilir.",
+       "**Farksız:** ağırlık merkezinin yüksekliği değişmez; yatan silindir yeni yerinde kalır."
+      ],
+      "beats": [],
+      "narration": "Dengedeki bir cismi biraz ittiğinde ağırlık merkezi yükseliyorsa cisim eski yerine döner; bu kararlı dengedir. Ağırlık merkezi alçalıyorsa cisim devrilir; bu kararsız dengedir, ucu üstünde duran bir kalem gibi. Ağırlık merkezinin yüksekliği hiç değişmiyorsa cisim yeni yerinde kalır; yatan bir silindir gibi. Buna farksız denge denir."
+     },
+     {
+      "kind": "rule",
+      "title": "Devrilme",
+      "items": [
+       "Ağırlık merkezinden inen düşey **destek yüzeyinin içinden** geçtikçe cisim devrilmez.",
+       "Taban genişledikçe ve ağırlık merkezi alçaldıkça **kararlılık artar**.",
+       "Üst üste konan cisimlerde üsttekilerin ortak merkezi, alttakinin **kenarını** geçemez."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -3.4,
+        -0.8,
+        3,
+        4.9
+       ],
+       "points": [
+        {
+         "id": "Y1",
+         "at": [
+          -3.2,
+          0
+         ],
+         "hidden": true,
+         "dot": true
+        },
+        {
+         "id": "Y2",
+         "at": [
+          2.8,
+          0
+         ],
+         "hidden": true,
+         "dot": true
+        },
+        {
+         "id": "P",
+         "at": [
+          0,
+          0
+         ],
+         "label": "P",
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "Q",
+         "at": [
+          -1.88,
+          0.68
+         ],
+         "hidden": true,
+         "dot": true
+        },
+        {
+         "id": "R",
+         "at": [
+          1.37,
+          3.76
+         ],
+         "hidden": true,
+         "dot": true
+        },
+        {
+         "id": "S",
+         "at": [
+          -0.51,
+          4.44
+         ],
+         "hidden": true,
+         "dot": true
+        },
+        {
+         "id": "G",
+         "at": [
+          -0.26,
+          2.22
+         ],
+         "label": "G",
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "N",
+         "at": [
+          -0.26,
+          0
+         ],
+         "hidden": true,
+         "dot": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "Y1",
+         "to": "Y2",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "G",
+         "to": "N",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "P",
+          "R",
+          "S",
+          "Q"
+         ],
+         "fill": true
+        }
+       ],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "Kutu P köşesi üzerinde yirmi derece eğilmiş.",
+        "show": [
+         "P",
+         "Q",
+         "R",
+         "S"
+        ],
+        "focus": [
+         "P"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "G'den inen düşey hâlâ P'nin içinde: kutu geri döner.",
+        "show": [
+         "G",
+         "N"
+        ],
+        "focus": [
+         "G"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Eğilen bir cisim, ağırlık merkezinden inen düşey destek yüzeyinin içinden geçtiği sürece geri döner; düşey yüzeyin dışına çıkınca devrilir. Bu yüzden tabanı geniş ve ağırlık merkezi alçak cisimler daha kararlıdır. Üst üste konan cisimlerde de aynı kural geçerlidir: üstteki cisimlerin ortak merkezi, altındakinin kenarını geçemez."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Türdeş ve özdeş, her biri $60$ cm uzunluğundaki iki tahta, bir masanın kenarından taşacak biçimde üst üste konuyor: alttaki masanın kenarından $a$ kadar, üstteki alttakinin ucundan $b$ kadar dışarı taşıyor.\n\nTahtalar devrilmeden üstteki tahtanın ucu masanın kenarından en çok kaç cm dışarıda olabilir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -3.5,
+         -1,
+         2.9,
+         1.9
+        ],
+        "points": [
+         {
+          "id": "T1",
+          "at": [
+           -3.4,
+           -0.8
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "T2",
+          "at": [
+           0,
+           -0.8
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "T3",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "T4",
+          "at": [
+           -3.4,
+           0
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "L1",
+          "at": [
+           -3.2,
+           0
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "L2",
+          "at": [
+           0.8,
+           0
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "L3",
+          "at": [
+           0.8,
+           0.5
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "L4",
+          "at": [
+           -3.2,
+           0.5
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "U1",
+          "at": [
+           -1.6,
+           0.5
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "U2",
+          "at": [
+           2.4,
+           0.5
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "U3",
+          "at": [
+           2.4,
+           1
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "U4",
+          "at": [
+           -1.6,
+           1
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "E0",
+          "at": [
+           0,
+           1.5
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "Ea",
+          "at": [
+           0.8,
+           1.5
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "Eb",
+          "at": [
+           2.4,
+           1.5
+          ],
+          "hidden": true,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "E0",
+          "to": "Ea",
+          "label": "a",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "Ea",
+          "to": "Eb",
+          "label": "b",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "T3",
+          "to": "E0",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "L3",
+          "to": "Ea",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "U3",
+          "to": "Eb",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "T4",
+          "to": "T3",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "T3",
+          "to": "T2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "L1",
+          "to": "L2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "L2",
+          "to": "L3",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "L3",
+          "to": "L4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "L4",
+          "to": "L1",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "U1",
+          "to": "U2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "U2",
+          "to": "U3",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "U3",
+          "to": "U4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "U4",
+          "to": "U1",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "T1",
+           "T2",
+           "T3",
+           "T4"
+          ],
+          "fill": false
+         },
+         {
+          "points": [
+           "L1",
+           "L2",
+           "L3",
+           "L4"
+          ],
+          "fill": true
+         },
+         {
+          "points": [
+           "U1",
+           "U2",
+           "U3",
+           "U4"
+          ],
+          "fill": true
+         }
+        ],
+        "circles": [],
+        "angles": []
+       },
+       "options": [
+        "$30$",
+        "$40$",
+        "$45$",
+        "$50$",
+        "$60$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Üstteki tahtanın merkezi alttakinin ucunu geçemez: $b \\le 30$ cm.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Önce üstteki tahta: merkezi alttakinin ucunu geçerse devrilir. Merkezi kendi ortasında, ucundan otuz santimetre içeride: b en çok otuz."
+        },
+        {
+         "text": "İki tahtanın ortak merkezi masanın kenarını geçemez: $b = 30$ iken $a \\le 15$ cm.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Şimdi ikisi birlikte: ortak merkezleri masanın kenarını geçemez. Alttakinin merkezi kenardan a eksi otuz, üsttekininki a artı b eksi otuz uzakta; ortalamaları sıfırı geçmemeli. b otuzken a en çok on beş."
+        },
+        {
+         "text": "En çok $a + b = 15 + 30 = 45$ cm.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam taşma on beş artı otuz, kırk beş santimetre. İki tahtayı da yarısına kadar taşıran altmışı bulur ama o zaman tahtalar devrilir. Cevap C."
+        }
+       ],
+       "narration": "Önce üstteki tahtanın, sonra iki tahtanın birlikte devrilmemesini isteyelim.",
+       "origin": {
+        "changes": "Üst üste tahtalar kalıbı; uzunluk yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dikdörtgenler prizması biçimindeki türdeş bir kutu yatay bir zeminde önce geniş yüzü, sonra dar yüzü üzerinde duruyor.\n\nBuna göre;\nI. Geniş yüzü üzerindeyken ağırlık merkezi daha alçaktadır.\nII. Dar yüzü üzerindeyken daha kararlıdır.\nIII. Kutunun kütlesi iki katına çıkarılırsa devrilmesi için gereken eğim açısı büyür.\n\nyargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Geniş yüzde yükseklik az: $G$ **alçak**, taban geniş → daha kararlı (I doğru, II yanlış).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kutu geniş yüzü üzerinde yatarken boyu kısalır, ağırlık merkezi alçalır, tabanı da geniştir; daha kararlıdır. Birinci doğru, ikinci yanlış."
+        },
+        {
+         "text": "Devrilme açısı $\\tan\\theta = \\frac{\\text{taban} / 2}{h_G}$: yalnız **biçime** bağlı (III yanlış).",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kutu, ağırlık merkezinden inen düşey tabanın kenarına geldiğinde devrilir. Bu açı tabanın yarısı ile ağırlık merkezinin yüksekliğinden bulunur; kütleye bağlı değildir. Üçüncü yanlış. Cevap A."
+        }
+       ],
+       "narration": "Devrilme sınırını düşünelim.",
+       "origin": {
+        "changes": "Kararlılık yargıları; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "İki kütlede merkez büyüğe yakın: $m_1 d_1 = m_2 d_2$.",
+    "$x_{KM} = \\frac{\\sum m x}{\\sum m}$; $y$ de aynı.",
+    "Yüksek yapıda ağırlık merkezi biraz aşağıda.",
+    "Türdeş çubuk ortası, üçgen kenarortayların kesişimi (2 : 1).",
+    "Kesilen parça eksi kütle; merkez parçanın tersine kayar.",
+    "Düşey tabanın içindeyse cisim devrilmez."
+   ],
+   "warnings": [
+    "Merkez cismin **dışında** olabilir.",
+    "Koordinatları **kütlelerle** ağırlıklandır.",
+    "Devrilme açısı **kütleye** bağlı değil."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bir cetvelin ucuna silgi bantla; parmağının üstünde **dengeleyip** merkezin silgiye kaydığını gör.",
+    "Kartondan bir L kes; iki köşesinden asıp çizdiğin **iki düşeyin** kesiştiği yeri bul.",
+    "Uygulamada AYT Kütle Merkezi testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Koordinatla kütle merkezi örneği ekle: (0, 0), (4, 0) ve (0, 6) noktalarında 2'şer kg kütle varsa kütle merkezi (4/3, 2) noktasıdır. Üçgen levhada kütle merkezinin köşelerin koordinat ortalaması olduğunu (0, 0), (6, 0), (0, 3) → (2, 1) ile göster.",
+   "Kesilen parça yöntemine ikinci örnek ver: kenarı 6 birim olan kare levhanın köşesinden kenarı 3 birim olan kare kesilirse kalan parçanın kütle merkezi (3,5; 3,5) olur: (36 × 3 − 9 × 1,5) / 27. Kesilen parçayı negatif kütle gibi düşündür.",
+   "Devrilme koşulunu sayıyla göster: tabanı 0,4 m, yüksekliği 1,2 m olan türdeş blok kaymadan eğik düzlemde duruyorsa tanθ > 0,4 / 1,2 = 1/3 olduğunda devrilir. Ağırlık merkezinden inen düşeyin tabanın dışına çıkmasını şekille anlat.",
+   "Denge ve ağırlık merkezinin günlük örneklerini ekle: Pisa Kulesi, cambazın uzun sırığı, yarış arabalarının alçak gövdesi, yüklü kamyonun virajda devrilme riski. Kararlı, kararsız ve nötr dengeye birer örnek ver.",
+   "Kütle merkezinin cismin dışında olabileceğini örnekle: halka, bumerang, L biçimli levha, at nalı. Yüksek atlamada sporcunun vücudu çıtanın üstünden geçerken kütle merkezinin çıtanın altından geçebildiğini ekle."
+  ]
+ }
+}

@@ -4,7 +4,9 @@ Video: `Outputs/Videos/YKS/TYT/Main/TYT_Kampi_00_Tanitim_YouTube.mp4` (4K, 3:10)
 
 ## Başlık
 
-TYT Kampı Başlıyor! TYT Nedir, Net Nasıl Hesaplanır? | YKS Kampı Bölüm 0
+YKS TYT | Kamp Başlıyor: TYT Nedir, Net Nasıl Hesaplanır? | Bölüm 0
+
+A/B testi: B `YKS TYT | 120 Soru, 165 Dakika: Sınavı Baştan Sona Tanı | Bölüm 0` · C `YKS TYT | Net Nasıl Hesaplanır? 4 Yanlış 1 Doğruyu Götürür | Bölüm 0`
 
 ## Açıklama
 
@@ -18,7 +20,7 @@ Sınavika YKS kampının sıfırıncı bölümünde konu anlatmıyoruz; önce ha
 ✅ Her kamp dersi nasıl ilerler, kampı en verimli nasıl takip edersin?
 
 Kampın ilk dersi: Sözcükte Anlam. Kanala abone ol, hiçbir dersi kaçırma! 🔔
-▶️ İlk ders: https://youtu.be/m2VY8Az6T2g
+▶️ İlk ders: https://youtu.be/HpLwEZENciY
 
 📲 Kampın testleri ve Ders Planı Sınavika'da:
 App Store: https://apps.apple.com/tr/app/id6762061768?l=tr
@@ -57,7 +59,9 @@ TYT Türkçe'nin 15 konusu sırayla: her konuya ÖSYM tarzı sorularla bir YouTu
 
 - Video: https://youtu.be/-YSeFFxDOhM · planlı yayın **26 Ekim 2026 19:00 (GMT+3)**.
 - A/B testi (başlık + küçük resim, YouTube "Test ve karşılaştır"; video herkese açık olunca başlar):
-  - A: "TYT Kampı Başlıyor! TYT Nedir, Net Nasıl Hesaplanır? | YKS Kampı Bölüm 0" + `…_Kapak_A.jpg`
+  - A: "YKS TYT | Kamp Başlıyor: TYT Nedir, Net Nasıl Hesaplanır? | Bölüm 0
+
+A/B testi: B `YKS TYT | 120 Soru, 165 Dakika: Sınavı Baştan Sona Tanı | Bölüm 0` · C `YKS TYT | Net Nasıl Hesaplanır? 4 Yanlış 1 Doğruyu Götürür | Bölüm 0`" + `…_Kapak_A.jpg`
   - B: "TYT Nedir? 120 Soru, 165 Dakika: Sınavı Baştan Sona Tanı | YKS Kampı Bölüm 0" + `…_Kapak_B.jpg`
   - C: "TYT Neti Nasıl Hesaplanır? 4 Yanlış 1 Doğruyu Götürür | YKS Kampı Bölüm 0" + `…_Kapak_C.jpg`
 - Oynatma listeleri (herkese açık, en eski önce, Türkçe):
@@ -65,3 +69,4 @@ TYT Türkçe'nin 15 konusu sırayla: her konuya ÖSYM tarzı sorularla bir YouTu
   - **YKS Kampı | Sınavika**: "Sınavika YKS kampının bütün dersleri sırayla: TYT ve AYT'nin her konusuna ÖSYM tarzı sorularla bir YouTube dersi, bir kısa tekrar videosu ve bir kamp görevi. Her kamp Bölüm 0 tanıtımıyla başlar. Testler ve Ders Planı Sınavika uygulamasında."
 - Ayarlar: çocuklara özel değil, ücretli tanıtım yok, yapay zekâ beyanı "Hayır", kategori Eğitim, dil Türkçe, etiketler yukarıdaki gibi.
 - Bitiş ekranı (26 Ekim): 2:56–3:10 arası; video öğesi "Sözcükte Anlam" dersine bağlı ve son sahnedeki pembe ders kartının üstünde, abone ol öğesi sağ altta. Açıklamaya "▶️ İlk ders" linki eklendi.
+- 27 Ekim 2026 gecesi: başlık "YKS TYT |" önekine geçti (A/B testi üç yeni başlıkla yeniden kuruldu); "İlk ders" linki ve bitiş ekranındaki video öğesi yeni 1. derse (HpLwEZENciY) bağlandı. Eski 1. ders (m2VY8Az6T2g) sahibin onayıyla silindi.

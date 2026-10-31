@@ -20,10 +20,10 @@ export const WebPlanTodayScreen: React.FC = () => {
 			<Grid columns="1.5fr 1fr">
 				<WCard title={t('Görevler', 'Tasks')} action={t('+ Görev ekle', '+ Add task')}>
 					<Stack gap={10}>
-						<PlanTask module="lessons" title={t('Paragraf · Ana fikir', 'Reading · Main idea')} meta={t('Mikro ders · 25 dk · tamamlandı 09:40', 'Micro-lesson · 25 min · done 09:40')} done />
+						<PlanTask module="lessons" title={t('Sözcükte Anlam', 'Word meaning')} meta={t('Dersler · 3 mikro ders · 8 dk · tamamlandı 09:40', 'Lessons · 3 micro-lessons · 8 min · done 09:40')} done />
 						<PlanTask module="tests" title={t('Problemler · Orta', 'Problems · Medium')} meta={t('20 soru · 25 dk · denemeden önerildi', '20 questions · 25 min · from your exam')} now />
 						<PlanTask module="flashcards" title={t('Kimya kartları', 'Chemistry cards')} meta={t('20 kart · 10 dk', '20 cards · 10 min')} />
-						<PlanTask module="studyPlan" title={t('Günlük tekrar', 'Daily review')} meta={t('Dünün yanlışları · 15 dk', 'Yesterday’s mistakes · 15 min')} />
+						<PlanTask module="lessons" title={t('Bugün tekrar · 5 adım', 'Review today · 5 steps')} meta={t('Dersler · yanlış yaptığın adımlar · 4 dk', 'Lessons · steps you missed · 4 min')} />
 					</Stack>
 				</WCard>
 				<Stack gap={18}>
@@ -116,7 +116,7 @@ export const WebPlanSuggestionsScreen: React.FC = () => {
 					['exam', t('Denemeden', 'From your exam'), t('Problemler', 'Problems'), t('Son denemede −3,25 net. 2 mikro ders + 1 test.', '−3.25 last exam. 2 lessons + 1 quiz.')],
 					['studyPlan', t('Tekrar zamanı', 'Due for review'), t('Türev · Zincir kuralı', 'Chain rule'), t('3 gün önce %45 başarı. 15 dk tekrar.', '45% three days ago. 15-minute review.')],
 					['flashcards', t('Unutma eğrisi', 'Forgetting curve'), t('Osmanlı kartları', 'Ottoman cards'), t('10 kart unutulmak üzere.', '10 cards about to slip.')],
-					['lessons', t('Rotadan', 'From your path'), t('Rasyonel sayılar · Ders 3', 'Rationals · lesson 3'), t('Kampın 12. günü.', 'Day 12 of your camp.')],
+					['lessons', t('Dersler’den', 'From Lessons'), t('Sözcükte Anlam · Terim anlam', 'Word meaning · Terms'), t('Sıradaki mikro ders, 2 dakika.', 'Your next micro-lesson, 2 minutes.')],
 					['tests', t('Seviye atla', 'Level up'), t('Paragraf · Zor', 'Reading · Hard'), t('Orta seviyeyi %90 ile geçtin.', 'You passed Medium with 90%.')],
 					['sinoAi', 'SinoAI', t('Kişisel deneme', 'Personal exam'), t('Eksiklerinden 30 soruluk deneme.', 'A 30-question exam on your gaps.')],
 				] as [ModuleKey, string, string, string][]).map(([key, over, title, text]) => (
@@ -199,14 +199,14 @@ export const WebPlanProgressScreen: React.FC = () => {
 				<WCard title={t('Hedefe giden yol', 'Road to your goal')}>
 					<Stack row justify="space-between">
 						<Text role="num" size={32}>
-							48 → <span style={{color: colors.brand}}>78</span>
+							48 → <span>78</span>
 						</Text>
 						<Chip tone="success" icon="trend">
 							{t('3 hafta erken', '3 weeks early')}
 						</Chip>
 					</Stack>
 					<div style={{marginTop: 12}}>
-						<Sparkline points={[0.1, 0.18, 0.24, 0.38, 0.46, 0.55]} width={560} height={150} color={colors.brand} />
+						<Sparkline points={[0.1, 0.18, 0.24, 0.38, 0.46, 0.55]} width={560} height={150} />
 					</div>
 					<Text role="small">{t('Bu hızla hedefine sınavdan 3 hafta önce ulaşıyorsun.', 'At this pace you reach it 3 weeks before the exam.')}</Text>
 				</WCard>

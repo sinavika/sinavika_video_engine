@@ -13,10 +13,10 @@
  */
 import type {AdExam} from '../Google/GoogleAdsPlan';
 
-export type AppleMarket = 'tr' | 'en';
-export type AppleMatch = 'EXACT' | 'BROAD';
+type AppleMarket = 'tr' | 'en';
+type AppleMatch = 'EXACT' | 'BROAD';
 
-export type AppleAdGroup = {
+type AppleAdGroup = {
 	name: string;
 	/** Exam the group sells; brand and discovery groups have none. */
 	exam?: AdExam;
@@ -160,7 +160,7 @@ export const APPLE_CAMPAIGNS: readonly AppleCampaign[] = [
  * the store set in a different order, so the page opens with what that exam's searchers want.
  * Promotional text is App Store's 170-character field.
  */
-export type CustomProductPage = {
+type CustomProductPage = {
 	exam: AdExam;
 	market: AppleMarket;
 	name: string;

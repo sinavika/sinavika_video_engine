@@ -34,7 +34,7 @@
 1. **Tek görsel, tek fikir:** Her görselde tek bir kısa kanca var, altında tek bir destek cümlesi.
 2. **Kanıt kartı:** Ürünün gerçek bir anı (net kaybı, bugünün planı, adım adım çözüm, sıralama, kart, SinoAI cevabı) büyük ve beyaz bir kart olarak çizilir. Küçük reklam alanında bile okunur; vaadi göstererek kanıtlar.
 3. **Gerçek ve güncel ürün:** Telefon ve tarayıcıdaki ekranlar UI/UX v3 parçalarıyla çizilir. Veri sınava özeldir: KPSS reklamında TYT ekranı görünmez.
-4. **Modül renginde zemin:** Her konsept kendi modülünün rengindedir: Denemeler turuncu, Ders Planı yeşil-mavi, Akıllı Özet mor, Bilgi Kartları pembe, SinoAI nötr mürekkep. Beyaz yayıncı sayfalarında öne çıkar, Google döndürürken her konsept ayrı tanınır.
+4. **Marka renginde zemin:** Zemin yalnız marka paletinden gelir: 1. ve 3. konsept turuncu, 2. ve 4. konsept lacivert (`src/Ads/Google/AdGround.ts`). Google döndürürken reklamlar yine değişir, ama hepsi aynı markaya ait görünür. Modül renkleri yalnız uygulama ekranlarının içinde kalır. 30 Ekim 2026'ya kadar her konsept kendi modülünün rengindeydi (yeşil, mor, pembe); sahip bunu marka dışı buldu.
 5. **Görselde olmayanlar:** düğme, fiyat, telefon, adres, QR, stok fotoğraf. Yönlendirme yalnız tek bir satırdır: "iOS ve Android'de ücretsiz indir" ya da "sinavika.com'da ücretsiz başla". Asıl çağrıyı Google'ın kendi düğmesi yapar.
 6. **Metinli ve metinsiz kopya:** Her görselin bir de metinsiz kopyası var (yalnız ürün ve kanıt kartı). Google başlığı ve logoyu kendisi ekler; iki yaklaşım karşılaştırılır (§8).
 7. **Doğru boyutlar:**

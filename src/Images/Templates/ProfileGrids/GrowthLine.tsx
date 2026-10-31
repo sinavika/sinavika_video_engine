@@ -8,7 +8,9 @@ import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography'
 import {plainText} from '../../../Schemas/RichText';
 import {withAlpha} from '../../../Themes/Theme';
 import {useTheme} from '../../../Themes/ThemeContext';
-import {useImageLayout} from '../../Components/ImageFrame';
+import {POST_TYPE} from '../../../Configurations/SocialIdentity';
+import {imageFrameOf, useImageLayout} from '../../Components/ImageFrame';
+import {lineCount, overflowNote, seriesSize} from '../../Components/TextMeasure';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
 import {PROFILE_GRID, rowPosition, tileWindow} from './ProfileGridLayout';
 
@@ -28,6 +30,29 @@ const GrowthLineSchema = z.object({
 });
 
 type Content = z.infer<typeof GrowthLineSchema>;
+
+const G = POST_TYPE.growthLine;
+const WORD_SET = {weight: G.wordWeight, letterSpacingEm: G.wordLetterSpacingEm};
+/** A tile's text column, in reference pixels: the tile the grid shows, less its margin on both sides. */
+const columnOf = (width: number, height: number) => {
+	const {unit} = imageFrameOf(width, height);
+	return (width - 2 * (tileWindow(width, height).left + 56 * unit)) / unit;
+};
+/** One word size for the three tiles: tiles side by side never differ (equal series type). */
+const wordSizeOf = (content: Content, width: number, height: number) => seriesSize(content.panels.map((panel) => panel.word), G.wordSteps, columnOf(width, height), () => 1, WORD_SET).size;
+
+const growthIssues = (content: Content, frame: {width: number; height: number}): string[] => {
+	const box = columnOf(frame.width, frame.height);
+	const size = wordSizeOf(content, frame.width, frame.height);
+	return content.panels.flatMap((panel, index) => {
+		const word = lineCount(panel.word, box, {...WORD_SET, size});
+		const text = lineCount(panel.text, box, {size: G.text, weight: G.textWeight});
+		return [
+			...(word > 1 ? [`${index + 1}. karo: "${panel.word}" ${size} puntoda tek satıra sığmıyor. Kısa bir kelime seç.`] : []),
+			...(text > G.textLines ? [`${index + 1}. karo: "${panel.text}" ${G.text} puntoda ${overflowNote(text, G.textLines)}. Kısalt.`] : []),
+		];
+	});
+};
 
 /** Height of the line above the bottom of the image, as a share of the image height, along the row of tiles. */
 const lineHeight = (position: number): number => {
@@ -71,10 +96,10 @@ const GrowthLineImage: React.FC<{content: Content; page: number}> = ({content, p
 						{content.label}
 					</Text>
 				</div>
-				<Text variant="display" size={panel.word.length <= 5 ? 270 : panel.word.length <= 7 ? 215 : 170} weight={TYPE.weights.kinetic} color={ink} style={{lineHeight: 1.3, marginTop: u(-10), marginBottom: u(-6)}}>
+				<Text variant="display" size={wordSizeOf(content, width, height)} weight={G.wordWeight} color={ink} style={{lineHeight: 1.3, letterSpacing: `${G.wordLetterSpacingEm}em`, marginTop: u(-10), marginBottom: u(-6), whiteSpace: 'nowrap'}}>
 					{panel.word}
 				</Text>
-				<Text variant="display" size={62} weight={TYPE.weights.display} color={colors.text} style={{lineHeight: 1.12}}>
+				<Text variant="display" size={G.text} weight={G.textWeight} color={colors.text} style={{lineHeight: 1.12}}>
 					{panel.text}
 				</Text>
 				<div style={{display: 'flex', flexWrap: 'wrap', gap: u(14), marginTop: u(12)}}>
@@ -116,5 +141,6 @@ export const GrowthLine = defineImageTemplate({
 	defaultSize: 'Portrait',
 	pageCount: () => PROFILE_GRID.tiles,
 	outputName: (content) => `Profil Uclusu ${content.panels.map((panel) => panel.word).join(' ')}`,
+	checkLayout: growthIssues,
 	Component: GrowthLineImage,
 });

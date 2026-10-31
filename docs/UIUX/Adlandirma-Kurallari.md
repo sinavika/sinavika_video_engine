@@ -40,7 +40,7 @@ Her modülün alt çubuğu (mobil) ve üst sekmeleri (web) aynı yuvaları kulla
 | Modül | 1 · Modülün kendisi | 2 · Ana işi | 4 · Geçmiş ve kayıtlar |
 |---|---|---|---|
 | Denemeler | Denemeler | Denemelerim | Sonuçlar |
-| Dersler | Dersler | Konu ağacı | Geçmiş |
+| Dersler | Dersler | Konular | Tekrar |
 | Testler | Testler | Konular | Çözümler |
 | Ders Planı | Bugün | İlerleme | Program |
 | Akıllı Özet | Akıllı Özet | Soru yükle | Video |
@@ -56,7 +56,9 @@ Ana ekran **Modüller**'dir (hub): üstte modül slaytları, altında modül kar
 |---|---|---|---|
 | Lens, Lens AI Analiz | Web menüsü, site metinleri, mobil sekme | **Akıllı Özet** | 15 Ekim kararı (1-B). `Lens` yalnız kodda kalır. |
 | Compass, Pusula | Eski mobil modül, site metinleri | **Ders Planı › İlerleme** | Mobilde eski rotalar `StudyPlanProgress`'e yönleniyor. |
-| Ders Çalış | Web menüsü ve SEO metinleri | **Dersler** | Fiil olarak ("ders çalış") buton ve sloganda kullanılabilir. |
+| Ders Çalış | Web menüsü, SEO metinleri, API ve yönetim paneli belgeleri | **Dersler** | Fiil olarak ("ders çalış") buton ve sloganda kullanılabilir. Kod adı `Works`, web rotası `ders-cal` kalır. |
+| Parola | Giriş, kayıt ve hesap güvenliği | **Şifre** | Tek kelime: şifre, şifremi unuttum, yeni şifre. |
+| Öğrenme rotası, Konu ağacı, Geçmiş (Dersler) | Eski Dersler ekranları | **Konular**, **Tekrar** | Dersler'in yapısı: ders → konu → mikro ders → adım. |
 | Kelime Kartları, Knowledge cards | Web, mobil EN | **Bilgi Kartları** / Flashcards | |
 | Sınavika AI | Web | **SinoAI** | |
 | Sınavlarım | Web menüsü, mobil deneme sekmesi | **Denemelerim** | §4'teki "deneme / sınav" ayrımı. |

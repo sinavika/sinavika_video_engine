@@ -1,6 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Freeze, Img, interpolate, OffthreadVideo, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import {CAPTURE, captureImage, type CaptureMedia, DeviceCapture} from '../../../Components/AppScreens/DeviceCapture';
+import {StoreBadges} from '../../../Components/Brand/StoreBadge';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
 import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {Icon} from '../../../UIUX/Icons';
@@ -262,21 +263,11 @@ export const WallScene: React.FC<{content: Content}> = ({content}) => {
 	);
 };
 
-const StorePill: React.FC<{text: string; icon: 'apple' | 'googlePlay'; at: number}> = ({text, icon, at}) => {
-	const {u} = useVideoLayout();
-	const land = useLand(at, 220, 18);
-	return (
-		<div style={{display: 'flex', alignItems: 'center', gap: u(14), padding: `${u(16)}px ${u(28)}px`, borderRadius: u(18), background: NAVY, color: WHITE, opacity: land, transform: `translateY(${(1 - land) * u(30)}px)`}}>
-			<Icon name={icon} size={u(30)} color={WHITE} stroke={2.2} />
-			<div style={{fontSize: u(28), fontWeight: 800}}>{text}</div>
-		</div>
-	);
-};
-
 export const ClosingScene: React.FC<{content: Content}> = ({content}) => {
 	const {u} = useVideoLayout();
 	const logo = useLand(0.05, 200);
 	const button = useLand(0.45, 220, 16);
+	const stores = useLand(0.7, 220, 18);
 	const [left, centre, right] = content.closing.screens;
 	return (
 		<AbsoluteFill>
@@ -289,9 +280,8 @@ export const ClosingScene: React.FC<{content: Content}> = ({content}) => {
 				<div style={{alignSelf: 'flex-start', padding: `${u(24)}px ${u(64)}px`, borderRadius: u(999), background: WHITE, color: ORANGE, fontSize: u(46), fontWeight: 800, opacity: button, transform: `scale(${0.8 + button * 0.2})`, transformOrigin: 'left center', boxShadow: `0 ${u(20)}px ${u(40)}px -${u(16)}px rgba(60,20,0,0.5)`}}>
 					{content.closing.cta}
 				</div>
-				<div style={{display: 'flex', gap: u(16)}}>
-					<StorePill text={content.closing.stores[0]} icon="apple" at={0.7} />
-					<StorePill text={content.closing.stores[1]} icon="googlePlay" at={0.8} />
+				<div style={{opacity: stores, transform: `translateY(${(1 - stores) * u(30)}px)`}}>
+					<StoreBadges height={92} lang={content.lang} align="flex-start" />
 				</div>
 			</div>
 			<div style={{position: 'absolute', right: u(120), top: u(150), display: 'flex', alignItems: 'flex-start'}}>

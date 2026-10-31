@@ -13,7 +13,7 @@ import {IMAGE_FORMATS, ImageSizeSchema, resolveImageSize, type ImageFormat} from
  * video job: which design, how it should look, and the content. Plain JSON,
  * so it can be written by hand, produced by an LLM or sent by the backend.
  */
-export const ImageJobSchema = z.object({
+const ImageJobSchema = z.object({
 	category: z.string().min(1),
 	/** A design of the category. Defaults to the category's first design. */
 	variant: z.string().min(1).optional(),
@@ -33,8 +33,6 @@ export const ImageJobSchema = z.object({
 	/** Validated against the chosen design's content schema. */
 	content: z.unknown(),
 });
-
-export type ImageJob = z.input<typeof ImageJobSchema>;
 
 export type ResolvedImageJob = {
 	template: AnyImageTemplateDefinition;
@@ -88,6 +86,9 @@ export const resolveImageJob = (raw: unknown): ResolvedImageJob => {
 	});
 	if (!props.success) throw new VideoJobValidationError(describeIssues(props.error));
 	const inputProps = props.data as ImageProps<unknown>;
+	// Fixed type and places: text that does not fit is refused here, before anything is rendered.
+	const layout = template.checkLayout?.(inputProps.content, size) ?? [];
+	if (layout.length > 0) throw new VideoJobValidationError(layout.map((issue) => `yerleşim: ${issue}`));
 
 	return {
 		template,

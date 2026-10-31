@@ -1,0 +1,796 @@
+{
+ "topic": {
+  "id": "E54925D5-859C-6DCF-BE22-9AC56BAFF5EF",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_INDUKSYON"
+ },
+ "title": "İndüksiyon, Alternatif Akım ve Transformatörler",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/FIZ/FIZ_INDUKSYON.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Dinamo lambayı nasıl yakar?",
+   "narration": "Bisiklet dinamosu tekerlek döndükçe lambayı yakar; içinde pil yoktur. Bir mıknatısın yanında dönen bobin akım üretir. Bu derste manyetik akıyı, Faraday ve Lenz yasalarını, öz indüksiyonu, alternatif akımı ve devrelerini, transformatörleri, beş ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Manyetik akıyı açıyla hesaplamak",
+   "Faraday yasasıyla indüksiyon emk'sını bulmak",
+   "Lenz yasasıyla akımın yönünü belirlemek",
+   "Alternatif akımın etkin değerini ve reaktansları yorumlamak",
+   "Transformatörde gerilim ve akımı bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_INDUKSYON_01",
+    "subtopics": [],
+    "title": "Manyetik akı",
+    "narration": "Bir yüzeyden geçen alan çizgilerinin miktarı manyetik akıdır; indüksiyonun her şeyi bu niceliğin değişmesine bağlıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Akı",
+      "items": [
+       "Manyetik akı $\\Phi = B \\cdot A \\cdot \\cos\\theta$: yüzeyden geçen alan çizgisi miktarı.",
+       "$\\theta$, alan ile yüzeyin **normali** arasındaki açı; yüzey alana dikse akı en büyük.",
+       "Birimi weber: $1$ Wb $= 1$ T·m²."
+      ],
+      "beats": [],
+      "narration": "Manyetik akı, bir yüzeyden geçen alan çizgilerinin miktarıdır: alan çarpı yüzey alanı çarpı kosinüs teta. Teta, alan ile yüzeyin normali, yani yüzeye dik doğru arasındaki açıdır. Yüzey alana dikken normal alana paraleldir ve akı en büyüktür; yüzey alana paralelse akı sıfırdır. Birimi weber'dir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Düzgün bir manyetik alana dik yerleştirilen bir çerçeveden geçen akı $\\Phi$'dir.\n\nÇerçeve, normali alanla $60°$ açı yapacak şekilde döndürülürse akı kaç $\\Phi$ olur?",
+       "context": "ÖSYM 2025'te sorulan farklı açılardaki yüzeylerden geçen akı yapısının yeniden kurulmuş hâli.",
+       "options": [
+        "$0$",
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{\\sqrt{3}}{2}$",
+        "$1$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Önce normal alana paralel: $\\cos 0° = 1$, akı $\\Phi = BA$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çerçeve alana dikken normali alana paralel; kosinüs sıfır bir, akı B A."
+        },
+        {
+         "text": "$\\cos 60° = \\frac{1}{2}$: akı $\\frac{\\Phi}{2}$.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Normal alanla altmış derece yapınca akı B A kosinüs altmış, yarısı. Açıyı yüzeyle alıp sinüs kullanan kök üç bölü ikiyi bulur. Cevap C."
+        }
+       ],
+       "narration": "Açı normal ile alan arasında.",
+       "origin": {
+        "changes": "ÖSYM 2025 modeli: tek yüzeyle yeniden kuruldu"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_INDUKSYON_02",
+    "subtopics": [],
+    "title": "Faraday yasası",
+    "narration": "Bir devreden geçen akı değişirse devrede gerilim, yani emk oluşur. Ne kadar hızlı değişirse o kadar büyük.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Faraday yasası",
+      "items": [
+       "Akı **değişirse** devrede emk oluşur: $\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}$.",
+       "Akı ne kadar **hızlı** değişirse emk o kadar büyüktür: akı-zaman grafiğinin **eğimi**.",
+       "Alanda dik hareket eden çubukta $\\varepsilon = B \\ell v$."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        4
+       ],
+       "y": [
+        0,
+        4.5
+       ],
+       "xLabel": "t",
+       "yLabel": "Φ",
+       "curves": [
+        {
+         "expression": "x^2/4",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {
+        "k": {
+         "from": 0.5
+        }
+       },
+       "points": [],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin",
+       "tangent": {
+        "curve": 0,
+        "at": "k",
+        "slope": true
+       }
+      },
+      "beats": [
+       {
+        "narration": "Akı zamanla giderek daha hızlı artıyor; başta teğet neredeyse yatay, emk küçük.",
+        "show": [],
+        "focus": [],
+        "params": {
+         "k": 0.8
+        },
+        "swap": []
+       },
+       {
+        "narration": "Zaman ilerledikçe teğet dikleşiyor: eğim, dolayısıyla emk büyüyor.",
+        "show": [],
+        "focus": [],
+        "params": {
+         "k": 2.8
+        },
+        "swap": []
+       }
+      ],
+      "narration": "Faraday yasasına göre bir devreden geçen manyetik akı değiştiğinde devrede bir emk oluşur; bu emk, sarım sayısı çarpı akının değişim hızıdır. Akı-zaman grafiğinde emk eğime karşılık gelir: akı hızlı değişirken büyük, sabitken sıfırdır. Alana dik hareket eden bir çubuğun uçları arasında da B l v kadar emk oluşur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sarım sayısı $100$ olan bir bobinden geçen akı $0{,}2$ s'de $0{,}05$ Wb'den $0{,}01$ Wb'e düşüyor.\n\nBobinde indüklenen emk'nın büyüklüğü kaç V'tur?",
+       "options": [
+        "$2$",
+        "$4$",
+        "$10$",
+        "$20$",
+        "$40$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$\\Delta\\Phi = 0{,}05 - 0{,}01 = 0{,}04$ Wb.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Akı değişimi sıfır virgül sıfır dört weber."
+        },
+        {
+         "text": "$\\varepsilon = 100 \\cdot \\frac{0{,}04}{0{,}2} = 20$ V.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yüz çarpı sıfır virgül sıfır dört bölü sıfır virgül iki: yirmi volt. Sarım sayısını unutan sıfır virgül ikiyi bulur. Cevap D."
+        }
+       ],
+       "narration": "Faraday: sarım sayısı çarpı akının değişim hızı.",
+       "origin": {
+        "changes": "Faraday kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Büyüklüğü $0{,}4$ T olan düzgün bir manyetik alanda, alana dik duran $50$ cm uzunluğundaki iletken bir çubuk, alana ve kendisine dik doğrultuda $10$ m/s hızla hareket ediyor.\n\nÇubuğun uçları arasındaki emk kaç V'tur?",
+       "options": [
+        "$0{,}2$",
+        "$2$",
+        "$4$",
+        "$20$",
+        "$200$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$\\ell = 50$ cm $= 0{,}5$ m.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Elli santimetre sıfır virgül beş metredir."
+        },
+        {
+         "text": "$\\varepsilon = 0{,}4 \\cdot 0{,}5 \\cdot 10 = 2$ V.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sıfır virgül dört çarpı sıfır virgül beş çarpı on: iki volt. Santimetreyi çevirmeyen iki yüzü bulur. Cevap B."
+        }
+       ],
+       "narration": "$\\varepsilon = B \\ell v$.",
+       "origin": {
+        "changes": "Hareketli çubuk kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_INDUKSYON_03",
+    "subtopics": [],
+    "title": "Lenz yasası",
+    "narration": "İndüklenen akımın yönü hep aynı ilkeyle bulunur: kendisini oluşturan değişime karşı koyar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Lenz yasası",
+      "items": [
+       "İndüklenen akım, kendisini oluşturan **değişime karşı koyar**.",
+       "Yaklaşan mıknatısı **iter**, uzaklaşanı **çeker**.",
+       "Enerjinin korunumunun sonucudur: hareketi **zorlaştırır**."
+      ],
+      "visual": {
+       "kind": "induction",
+       "pole": "N"
+      },
+      "beats": [
+       {
+        "narration": "N kutbu halkaya yaklaşıyor: akı artıyor. Halkanın yakın yüzü N olur ve mıknatısı iter; galvanometre bir yana sapıyor.",
+        "show": [],
+        "focus": [
+         "ring"
+        ],
+        "stage": 0,
+        "swap": []
+       },
+       {
+        "narration": "Mıknatıs duruyor: akı değişmiyor, akım yok.",
+        "show": [],
+        "focus": [
+         "meter"
+        ],
+        "stage": 1,
+        "swap": []
+       },
+       {
+        "narration": "Mıknatıs uzaklaşıyor: akı azalıyor; halka bu kez S olur ve onu çeker; ibre öbür yana.",
+        "show": [],
+        "focus": [
+         "ring"
+        ],
+        "stage": 2,
+        "swap": []
+       }
+      ],
+      "narration": "Lenz yasasına göre indüklenen akım, kendisini oluşturan akı değişimine karşı koyacak yönde akar. Bir mıknatıs halkaya yaklaşırken halka onu iter, uzaklaşırken çeker. Bu, enerjinin korunumunun sonucudur: akım bedavaya oluşmaz, mıknatısı hareket ettiren iş elektrik enerjisine dönüşür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aynı boyutta bir mıknatıs ile bir tahta blok, aynı yükseklikten aynı anda serbest bırakılıyor; ikisi de yere sabitlenmiş birer bakır halkanın içinden düşerek geçiyor.\n\nHalkalardan geçtikten hemen sonra hangisi daha aşağıdadır? (Hava direnci önemsiz)",
+       "context": "ÖSYM 2018'de sorulan bilezikten düşen mıknatıs ve silgi yapısının yeniden kurulmuş hâli.",
+       "options": [
+        "Tahta blok daha aşağıda",
+        "Mıknatıs daha aşağıda",
+        "İkisi aynı yükseklikte",
+        "Mıknatısın kutbuna göre değişir",
+        "Kütlelerine göre değişir"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Mıknatıs halkadan geçerken akı değişir: halkada **akım** oluşur.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Mıknatıs halkaya yaklaşıp geçerken halkadan geçen akı değişir; halkada akım indüklenir. Tahta blok hiçbir akım oluşturmaz."
+        },
+        {
+         "text": "Lenz: akım mıknatısın hareketine **karşı koyar**; mıknatıs yavaşlar, tahta blok **önde**.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Lenz yasasına göre bu akım mıknatısı önce iter, sonra çeker; her iki durumda da düşüşünü yavaşlatır. Kutup hangisi olursa olsun sonuç aynıdır. Tahta blok daha aşağıdadır. Cevap A."
+        }
+       ],
+       "narration": "Halkada akım oluşturan hangisi?",
+       "origin": {
+        "changes": "ÖSYM 2018 modeli: düzenek değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Akım alanı güçlendirir mi?",
+      "wrong": "İndüklenen akım her zaman mıknatısın alanıyla aynı yönde alan oluşturur.",
+      "right": "Akım **değişime karşı** alan oluşturur: akı artarken **zıt**, azalırken **aynı** yönde.",
+      "why": "Lenz: değişime **karşı koyma**.",
+      "narration": "Sık yapılan bir hata: indüklenen akımın hep mıknatısın alanını desteklediğini sanmak. Akım değişime karşı koyar: akı artıyorsa onu azaltacak, yani zıt yönde; akı azalıyorsa onu koruyacak, yani aynı yönde bir alan oluşturur."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_INDUKSYON_04",
+    "subtopics": [],
+    "title": "Öz indüksiyon",
+    "narration": "Bir bobinden geçen akım değişirse bobin, kendi akımının değişimine karşı koyar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Öz indüksiyon",
+      "items": [
+       "Bobindeki akım değişince bobin **kendi** akımının değişimine karşı emk üretir.",
+       "$\\varepsilon = -L\\frac{\\Delta i}{\\Delta t}$; $L$ öz indüktans, birimi henry.",
+       "Devre açılınca anahtarda kıvılcım çıkması öz indüksiyondandır."
+      ],
+      "beats": [],
+      "narration": "Bir bobinden geçen akım değiştiğinde bobinin kendi akısı da değişir ve bobin bu değişime karşı koyan bir emk üretir: L çarpı akımın değişim hızı. L öz indüktanstır, birimi henry'dir. Bobinli bir devre aniden açılınca akım çok hızlı sıfıra iner; büyük emk anahtarda kıvılcım çıkarır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Öz indüktansı $0{,}2$ H olan bir bobinden geçen akım $0{,}05$ s'de $3$ A'den sıfıra iniyor.\n\nBobinde oluşan öz indüksiyon emk'sının büyüklüğü kaç V'tur?",
+       "options": [
+        "$0{,}6$",
+        "$1{,}2$",
+        "$6$",
+        "$12$",
+        "$30$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$\\frac{\\Delta i}{\\Delta t} = \\frac{3}{0{,}05} = 60$ A/s.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Akımın değişim hızı üç bölü sıfır virgül sıfır beş: altmış amper bölü saniye."
+        },
+        {
+         "text": "$\\varepsilon = 0{,}2 \\cdot 60 = 12$ V.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Emk sıfır virgül iki çarpı altmış: on iki volt. Süreye bölmeyi unutan sıfır virgül altıyı bulur. Cevap D."
+        }
+       ],
+       "narration": "$\\varepsilon = L\\frac{\\Delta i}{\\Delta t}$.",
+       "origin": {
+        "changes": "Öz indüksiyon kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_INDUKSYON_05",
+    "subtopics": [],
+    "title": "Alternatif akım",
+    "narration": "Prizdeki akımın yönü saniyede elli kez değişir: bu alternatif akımdır ve dönen bir bobinde üretilir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Alternatif akım",
+      "items": [
+       "Alternatif gerilim $V = V_m \\sin(\\omega t)$: yönü ve büyüklüğü **periyodik** değişir.",
+       "Etkin değer $V_e = \\frac{V_m}{\\sqrt{2}}$; prizdeki 220 V **etkin** değerdir.",
+       "Üreteçte bobin alanda döndükçe akı değişir: **sinüs** biçimli emk."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        12.6
+       ],
+       "y": [
+        -350,
+        350
+       ],
+       "xLabel": "t",
+       "yLabel": "V (V)",
+       "curves": [
+        {
+         "expression": "311sin(x)",
+         "label": "V",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [
+        {
+         "x": 7.85,
+         "y": 311,
+         "label": "Vₘ = 311 V"
+        }
+       ],
+       "segments": [
+        {
+         "from": [
+          0,
+          220
+         ],
+         "to": [
+          12.6,
+          220
+         ],
+         "label": "Vₑ = 220 V",
+         "dashed": true
+        }
+       ],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "beats": [],
+      "narration": "Alternatif gerilim zamanla sinüs biçiminde değişir; yönü ve büyüklüğü periyodik olarak tekrar eder. Bir alternatif akımın etkin değeri, aynı ısıyı üreten doğru akımın değeridir: tepe değeri bölü kök iki. Prizdeki iki yüz yirmi volt etkin değerdir; tepe değeri yaklaşık üç yüz on bir volttur. Bu gerilim, manyetik alanda dönen bir bobinde akının sürekli değişmesiyle üretilir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir hoparlöre giden ses sinyalinde bas (düşük frekanslı) seslerin zayıflatılması, tiz (yüksek frekanslı) seslerin ise kolayca geçmesi isteniyor. Sinyal yoluna seri olarak yalnız bir eleman eklenecek.\n\nBuna göre;\nI. bobin,\nII. reosta,\nIII. kondansatör\n\nelemanlarından hangileri bu işi yapar?",
+       "context": "ÖSYM'de sorulan müzik çaların bas seslerini zayıflatan devre yapısının yeniden kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Kondansatörün reaktansı $X_C = \\frac{1}{\\omega C}$: **düşük** frekansta büyük.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kondansatörün alternatif akıma gösterdiği direnç, frekans azaldıkça büyür; basları zayıflatır, tizleri geçirir."
+        },
+        {
+         "text": "Bobin tersini yapar ($X_L = \\omega L$); reosta frekans **ayırmaz**.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bobinin direnci yüksek frekansta büyüktür; tizleri zayıflatır. Reosta her frekansa aynı direnci gösterir. Yalnız kondansatör. Cevap C."
+        }
+       ],
+       "narration": "Hangi elemanın direnci düşük frekansta büyük?",
+       "origin": {
+        "changes": "ÖSYM modeli: durum sözle yeniden kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Tepe değeri $20\\sqrt{2}$ V olan alternatif bir gerilim $10\\,\\Omega$'luk bir dirence uygulanıyor.\n\nDirençten geçen akımın etkin değeri kaç A'dir?",
+       "options": [
+        "$\\sqrt{2}$",
+        "$2$",
+        "$2\\sqrt{2}$",
+        "$4$",
+        "$20$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$V_e = \\frac{20\\sqrt{2}}{\\sqrt{2}} = 20$ V.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Etkin gerilim, tepe değeri bölü kök iki: yirmi volt."
+        },
+        {
+         "text": "$i_e = \\frac{20}{10} = 2$ A.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Etkin akım yirmi bölü on, iki amper. Tepe gerilimiyle hesaplayan iki kök ikiyi, yani tepe akımını bulur. Cevap B."
+        }
+       ],
+       "narration": "Önce etkin gerilim.",
+       "origin": {
+        "changes": "Etkin değer kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_INDUKSYON_06",
+    "subtopics": [],
+    "title": "Alternatif akım devreleri",
+    "narration": "Alternatif akımda bobin ve sığaç da direnç gösterir; ama bu direnç frekansa bağlıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Reaktans",
+      "items": [
+       "Direncin direnci frekansa **bağlı değildir**.",
+       "Bobinin reaktansı $X_L = \\omega L$: frekans arttıkça **artar**.",
+       "Sığacın reaktansı $X_C = \\frac{1}{\\omega C}$: frekans arttıkça **azalır**; $X_L = X_C$ olunca **rezonans**."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0.2,
+        3
+       ],
+       "y": [
+        0,
+        3.2
+       ],
+       "xLabel": "frekans",
+       "yLabel": "X",
+       "curves": [
+        {
+         "expression": "x",
+         "label": "XL",
+         "ends": [
+          "none",
+          "none"
+         ]
+        },
+        {
+         "expression": "1/x",
+         "label": "XC",
+         "domain": [
+          0.32,
+          3
+         ],
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [
+        {
+         "x": 1,
+         "y": 1,
+         "label": "rezonans"
+        }
+       ],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "beats": [],
+      "narration": "Alternatif akım devresinde direncin gösterdiği direnç frekansa bağlı değildir. Bobinin reaktansı omega L'dir ve frekans arttıkça artar; sığacın reaktansı bir bölü omega C'dir ve frekans arttıkça azalır. Seri bir devrede iki reaktans eşit olunca devre rezonanstadır: empedans en küçük, akım en büyüktür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Üç devre elemanına sabit genlikli alternatif gerilim uygulanıp frekans artırılıyor: X'in direnci azalıyor, Y'ninki değişmiyor, Z'ninki artıyor.\n\nX, Y ve Z sırasıyla aşağıdakilerden hangisidir?",
+       "context": "ÖSYM 2020'de sorulan bilinmeyen K, L, M devre elemanları yapısının yeniden kurulmuş hâli.",
+       "options": [
+        "Sığaç, direnç, bobin",
+        "Bobin, direnç, sığaç",
+        "Direnç, sığaç, bobin",
+        "Sığaç, bobin, direnç",
+        "Bobin, sığaç, direnç"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Frekansla **azalan**: sığaç; **değişmeyen**: direnç.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Frekans artınca direnci azalan sığaçtır; hiç değişmeyen dirençtir."
+        },
+        {
+         "text": "Frekansla **artan**: bobin.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Frekansla direnci artan bobindir. Cevap A."
+        }
+       ],
+       "narration": "Hangi reaktans frekansla nasıl değişiyor?",
+       "origin": {
+        "changes": "ÖSYM 2020 modeli: harfler değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Seri bağlı bir direnç, bobin ve sığaçtan oluşan devre rezonans frekansında çalışırken uygulanan gerilimin frekansı artırılıyor.\n\nBuna göre;\nI. bobinin reaktansı,\nII. devrenin empedansı,\nIII. devreden geçen etkin akım\n\nniceliklerinden hangileri artar?",
+       "context": "ÖSYM 2023'te sorulan rezonanstaki seri devre yapısının yargıları değiştirilmiş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$X_L = \\omega L$ frekansla **artar** (I).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bobinin reaktansı frekansla artar."
+        },
+        {
+         "text": "Rezonanstan uzaklaşınca empedans **artar** (II), etkin akım **azalır** (III değil).",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Rezonansta empedans en küçüktü; frekans değişince reaktanslar eşitliğini kaybeder ve empedans büyür, akım küçülür. Cevap C."
+        }
+       ],
+       "narration": "Rezonansta empedans en küçüktür.",
+       "origin": {
+        "changes": "ÖSYM 2023 modeli: yargılar değiştirildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_INDUKSYON_07",
+    "subtopics": [],
+    "title": "Transformatörler",
+    "narration": "Transformatör, alternatif gerilimi yükseltir ya da düşürür; elektrik santralden evinize böyle gelir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Transformatör",
+      "items": [
+       "$\\frac{V_1}{V_2} = \\frac{N_1}{N_2}$: sarım sayıları oranı gerilimi değiştirir.",
+       "İdeal transformatörde güç korunur: $V_1 i_1 = V_2 i_2$; gerilim artarsa akım **azalır**.",
+       "Yalnız **alternatif akımla** çalışır; doğru akımda akı değişmez."
+      ],
+      "beats": [],
+      "narration": "Transformatörde iki sargı aynı demir çekirdeğe sarılıdır. Birincil sargıdaki alternatif akım çekirdekte değişen bir akı oluşturur; bu akı ikincil sargıda gerilim indükler. Gerilimlerin oranı sarım sayılarının oranına eşittir. İdeal bir transformatörde güç korunur: gerilim yükselirse akım aynı oranda azalır. Doğru akımda akı değişmediği için transformatör çalışmaz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Birincil sargısı $500$, ikincil sargısı $25$ sarımlı ideal bir transformatörün birincil sargısına $220$ V uygulanıyor; ikincil devreden $2$ A akım çekiliyor.\n\nİkincil gerilim kaç V ve birincil akım kaç A'dir?",
+       "options": [
+        "$11$ ; $2$",
+        "$11$ ; $0{,}1$",
+        "$11$ ; $40$",
+        "$4400$ ; $0{,}1$",
+        "$4400$ ; $40$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$V_2 = 220 \\cdot \\frac{25}{500} = 11$ V.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İkincil gerilim iki yüz yirmi çarpı yirmi beş bölü beş yüz: on bir volt."
+        },
+        {
+         "text": "$220 \\cdot i_1 = 11 \\cdot 2$ → $i_1 = 0{,}1$ A.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Güç korunur: iki yüz yirmi çarpı i bir, on bir çarpı iki; i bir sıfır virgül bir amper. Akımı da sarım oranıyla aynı yönde değiştiren kırkı bulur. Cevap B."
+        }
+       ],
+       "narration": "Önce gerilim oranı, sonra güç.",
+       "origin": {
+        "changes": "Transformatör kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir transformatörün birincil sargısına bir anahtar üzerinden doğru akım veren bir pil bağlanıyor.\n\nİkincil sargıda gerilim oluşması ile ilgili hangisi doğrudur?",
+       "options": [
+        "Sürekli oluşur",
+        "Hiç oluşmaz",
+        "Yalnız anahtar kapanırken ve açılırken kısa süre oluşur",
+        "Pilin gerilimine eşit, sürekli oluşur",
+        "Sarım oranı kadar büyütülmüş, sürekli oluşur"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Doğru akım sabitken çekirdekteki akı **değişmez**: ikincil gerilim **yok**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Akım sabit olduğu sürece çekirdekteki akı da sabittir; ikincil sargıda gerilim indüklenmez."
+        },
+        {
+         "text": "Anahtar kapanırken ve açılırken akım, dolayısıyla akı **kısa süre değişir**: anlık gerilim.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Ama anahtar kapanırken akım sıfırdan büyür, açılırken sıfıra iner; bu kısa anlarda akı değişir ve ikincilde anlık bir gerilim oluşur. Hiç oluşmaz diyen bu anları kaçırır. Cevap C."
+        }
+       ],
+       "narration": "İkincil gerilim için akı değişmeli.",
+       "origin": {
+        "changes": "Transformatör ve doğru akım kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$\\Phi = BA\\cos\\theta$.",
+    "$\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}$; çubukta $B\\ell v$.",
+    "Lenz: değişime karşı koyar.",
+    "Öz indüksiyon $\\varepsilon = -L\\frac{\\Delta i}{\\Delta t}$.",
+    "$V_e = \\frac{V_m}{\\sqrt{2}}$; $X_L = \\omega L$, $X_C = \\frac{1}{\\omega C}$.",
+    "$\\frac{V_1}{V_2} = \\frac{N_1}{N_2}$, güç korunur."
+   ],
+   "warnings": [
+    "Akı **değişmezse** akım yok.",
+    "Prizdeki 220 V **etkin** değer.",
+    "Transformatör **doğru akımla** çalışmaz."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bir bisiklet dinamosunu ya da el fenerini çevir; lambanın **ne zaman** yandığını, hızla nasıl değiştiğini gözle.",
+    "Telefon şarj adaptörünün üzerindeki **giriş ve çıkış gerilimlerini** oku; dönüştürme oranını hesapla.",
+    "Uygulamada AYT İndüksiyon, Alternatif Akım ve Transformatörler testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Faraday hesabı ekle: 200 sarımlı, alanı 0,05 m² olan bobindeki alan 0,1 s'de 0,4 T'den sıfıra inerse ε = 200 × 0,4 × 0,05 / 0,1 = 40 V. Hareketli çubukta ε = BLv: 0,5 T, 0,4 m, 5 m/s için 1 V.",
+   "Lenz yasasının uygulamalarını ekle: mıknatısın bakır borudan yavaş düşmesi (girdap akımları), indüksiyonlu ocak, metal dedektörü, trenlerde manyetik fren, jeneratöre yük bağlandıkça döndürmenin zorlaşması.",
+   "Alternatif akımı sayılarla ver: ε = NBAω sin ωt; Türkiye şebekesi etkin 230 V, 50 Hz, tepe değeri yaklaşık 325 V. Prizdeki voltmetrenin etkin değeri gösterdiğini vurgula.",
+   "Alternatif akım devre elemanlarını tablo yap: dirençte akım ve gerilim aynı fazda; bobinde gerilim akımdan 90° önde, X(L) frekansla artar; sığaçta akım 90° önde, X(C) frekansla azalır. Empedans Z = √(R² + (X(L) − X(C))²); R = 30, X(L) = 80, X(C) = 40 Ω için Z = 50 Ω. Rezonansın radyo istasyonu seçmede kullanıldığını ekle.",
+   "Transformatör örneği ve güç iletimini ekle: birincili 1000, ikincili 50 sarımlı ideal transformatörde 220 V, 11 V'a düşer. Uzak mesafeye yüksek gerilimle iletimin akımı ve I²R ısı kaybını azalttığını; transformatörün doğru akımla çalışmadığını belirt."
+  ]
+ }
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import {AppButton, AppCard, AppChip, AppIcon, AppListRow, AppOverline, AppProgressBar, AppPromoCard, AppScreenFrame, AppText, useAppColors, useAppLanguage, useAppText, type AppLanguage} from '../AppScreenParts';
 
-export type Flashcard = {kind: string; lesson: string; front: string; position: number; total: number};
+type Flashcard = {kind: string; lesson: string; front: string; position: number; total: number};
 
 const SAMPLE_FLASHCARD: Record<AppLanguage, Flashcard> = {
 	tr: {kind: 'Tanım', lesson: 'Türkçe · Ses Bilgisi', front: 'Ünsüz yumuşaması nedir?', position: 4, total: 12},

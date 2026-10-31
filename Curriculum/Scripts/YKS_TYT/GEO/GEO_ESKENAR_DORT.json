@@ -1,0 +1,1388 @@
+{
+ "topic": {
+  "id": "ADBC1A4C-CC1B-E2CB-8410-F2CC40936F10",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_ESKENAR_DORT"
+ },
+ "title": "Eşkenar Dörtgen",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "YKS/TYT/KonuAnlatimi/GEO/GEO_ESKENAR_DORT.json (MEB Temel Matematik s. 148-149: eşkenar dörtgenin tanımı, paralelkenar özelliklerini taşıması)",
+  "YKS/TYT/CikmisSorular/GEO.jsonl (ÖSYM 2022 eşkenar dörtgen aynalar; yalnız yapı örneği); YKS/TYT/Sorular/GEO/GEO_ESKENAR_DORT.jsonl",
+  "Bütün şekiller verilen ölçülerle koordinatta çizildi; sorular özgündür"
+ ],
+ "works": {
+  "additions": [
+   "Eşkenar dörtgenin iç teğet çemberini ve yüksekliğin iç teğet çember çapına eşit olduğunu örnekle.",
+   "60° ve 120° açılı eşkenar dörtgenin iki eşkenar üçgenden oluştuğunu ve kısa köşegenin kenara eşit olduğunu gösteren sorular ekle.",
+   "Üç alan formülünü (e · f/2, a · h, a² · sin α) aynı şekil üzerinde karşılaştıran bir tablo ver."
+  ]
+ },
+ "short": {
+  "hook": "Dört kenar eşit, sonra?",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Köşegenler **dik** ve **ortalar**."
+   },
+   {
+    "kind": "fact",
+    "text": "Köşegen açıyı **ikiye** böler."
+   },
+   {
+    "kind": "warning",
+    "text": "Alan $\\frac{e \\cdot f}{2}$"
+   }
+  ],
+  "summary": [
+   "Dik köşegenler",
+   "a² = (e/2)² + (f/2)²"
+  ],
+  "rounds": [
+   {
+    "sentence": "Köşegenler 12 ve 16",
+    "question": "Kenar?",
+    "choices": [
+     "10",
+     "14"
+    ],
+    "answer": 0,
+    "why": "6-8-**10**."
+   },
+   {
+    "sentence": "Kenar 8, açı 60°",
+    "question": "Kısa köşegen?",
+    "choices": [
+     "8",
+     "4"
+    ],
+    "answer": 0,
+    "why": "**Eşkenar** üçgen."
+   },
+   {
+    "sentence": "Köşegenler eşit",
+    "question": "Şekil?",
+    "choices": [
+     "Kare",
+     "Deltoid"
+    ],
+    "answer": 0,
+    "why": "**Dik** açılar."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-geometri-kampi",
+  "name": "TYT Geometri kampı",
+  "number": 16,
+  "total": 23,
+  "previous": "Paralelkenar",
+  "next": "Dikdörtgen",
+  "promise": "Geometri konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Dört eşit çubukla bir eşkenar dörtgen kur; açısını değiştirince **köşegenlerin** nasıl değiştiğine bak.",
+    "Üç alan formülünü ve yarım köşegen bağıntısını **bir sayfaya** yaz.",
+    "Uygulamada Eşkenar Dörtgen testinden **20 soru** çöz; her şekilde önce **köşegenleri** çiz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Dört eşit çubukla bir eşkenar dörtgen kur; açısını değiştirince köşegenlerin nasıl değiştiğine bak. Sonra üç alan formülünü ve yarım köşegen bağıntısını bir sayfaya yaz. En son uygulamada eşkenar dörtgen testinden yirmi soru çöz; her şekilde önce köşegenleri çiz. Bir sonraki derste dikdörtgenle devam ediyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Dört eşit çubuk",
+   "narration": "Dört eşit çubuğu uçlarından birleştir. Şekli ittirdikçe açılar değişir ama kenarlar hep eşit kalır: bu bir eşkenar dörtgen. Çubuklar dik açı yaptığında kare olur. Bu derste eşkenar dörtgenin köşegenlerini, açılarını ve alanını hesaplamanın üç yolunu öğreneceğiz."
+  },
+  "objectives": [
+   "Eşkenar dörtgende köşegenlerin dikliğini, ortalamasını ve açıortaylığını kullanmak",
+   "Yarım köşegenlerle kenar, çevre ve yükseklik bulmak",
+   "Eşkenar dörtgenin alanını üç farklı yoldan hesaplamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_ESKENAR_DORT_01",
+    "title": "Özellikler",
+    "narration": "Dört kenarı eşit paralelkenar: eşkenar dörtgen.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Hem paralelkenar hem deltoid",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -4.7,
+        -3.3,
+        4.7,
+        3.3
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          -4,
+          0
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          -2.6
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          4,
+          0
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          0,
+          2.6
+         ]
+        },
+        {
+         "id": "O",
+         "at": [
+          0,
+          0
+         ],
+         "dot": false,
+         "label": "O"
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "a"
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "a"
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "label": "a"
+        },
+        {
+         "from": "D",
+         "to": "A",
+         "label": "a"
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": true
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "fill": true
+        }
+       ],
+       "angles": [
+        {
+         "at": "O",
+         "from": "C",
+         "to": "D",
+         "right": true
+        },
+        {
+         "at": "A",
+         "from": "B",
+         "to": "O",
+         "label": "α"
+        },
+        {
+         "at": "A",
+         "from": "O",
+         "to": "D",
+         "label": "α"
+        }
+       ]
+      },
+      "caption": "Köşegenler **dik**, birbirini **ortalar** ve köşe açılarını **ikiye böler**.",
+      "narration": "Eşkenar dörtgenin dört kenarı da a. Karşılıklı kenarları paralel olduğu için bir paralelkenardır; komşu kenarları eşit olduğu için bir deltoittir.",
+      "beats": [
+       {
+        "narration": "Paralelkenardan gelen: köşegenler birbirini ortalar, karşılıklı açılar eşittir, komşu açılar bütünlerdir.",
+        "focus": [
+         "AC",
+         "BD"
+        ]
+       },
+       {
+        "narration": "Deltoitten gelen: köşegenler diktir ve köşe açılarını ikiye böler. A'daki açı köşegenle iki alfaya ayrılır. Böylece eşkenar dörtgen, köşegenleriyle dört eş dik üçgene bölünür.",
+        "focus": [
+         "angle-O",
+         "angle-A"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ eşkenar dörtgeninde $m(\\widehat{DAB}) = 70°$'dir. Buna göre $m(\\widehat{ABD}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -4.796,
+         -3.568,
+         4.796,
+         3.568
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           -4.096,
+           0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           -2.868
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           4.096,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           2.868
+          ]
+         },
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ],
+          "dot": false,
+          "label": "O"
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "A"
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": true
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "D",
+          "label": "70°"
+         },
+         {
+          "at": "B",
+          "from": "D",
+          "to": "A",
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "45",
+        "55",
+        "65",
+        "70",
+        "75"
+       ],
+       "answer": 1,
+       "narration": "Köşegen $B$ açısını ikiye böler.",
+       "steps": [
+        {
+         "text": "$m(\\widehat{B}) = 180° - 70° = 110°$.",
+         "narration": "A ile B komşu açılar, bütünlerdir: B yüz on derece."
+        },
+        {
+         "text": "$[BD]$, $B$ açısını ikiye böler → $x = 55°$. Cevap **B**.",
+         "narration": "B D köşegeni B açısını ikiye böler: x elli beş derece. Başka yol: A B D üçgeni ikizkenar, A B ile A D eşit; taban açıları yüz seksen eksi yetmiş, yüz on; yarısı elli beş. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; eşkenar dörtgende köşegenin açıyı ikiye bölmesi, ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir eşkenar dörtgende bir köşegen ile bir kenar arasındaki açı $35°$'dir. Bu eşkenar dörtgenin **geniş** açısı kaç derecedir?",
+       "options": [
+        "40",
+        "70",
+        "100",
+        "110",
+        "145"
+       ],
+       "answer": 3,
+       "narration": "Köşegen, köşe açısını ikiye böler.",
+       "steps": [
+        {
+         "text": "Köşegenin ayırdığı açı $35°$ → o köşenin açısı $70°$.",
+         "narration": "Köşegen bir köşe açısını iki eş parçaya böler; parçalardan biri otuz beş ise köşe açısı yetmiş."
+        },
+        {
+         "text": "Komşu açı $180° - 70° = 110°$. Cevap **D**.",
+         "narration": "Yetmiş dar açı; komşusu yüz seksen eksi yetmiş, yüz on, geniş açı. Cevabımız D. Yüz kırk beşi seçen, otuz beşin bütünlerini almıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; köşegenin açıortay olması ve komşu açılar özgün bir soruda birleştirildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ eşkenar dörtgeninin bir kenarı $8$ cm ve $m(\\widehat{DAB}) = 60°$'dir. Buna göre uzun köşegen $|AC| = x$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -7.628,
+         -4.7,
+         7.628,
+         4.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           -6.928,
+           0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           -4.0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           6.928,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           4.0
+          ]
+         },
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ],
+          "dot": false,
+          "label": "O"
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "8"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "A"
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": true,
+          "label": "x"
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "D",
+          "label": "60°"
+         }
+        ]
+       },
+       "options": [
+        "$8$",
+        "$8\\sqrt{2}$",
+        "$8\\sqrt{3}$",
+        "$12$",
+        "$16$"
+       ],
+       "answer": 2,
+       "narration": "$60°$'lik eşkenar dörtgen iki eşkenar üçgendir.",
+       "steps": [
+        {
+         "text": "$ABD$: $|AB| = |AD|$, $A = 60°$ → eşkenar, $|BD| = 8$, $|BO| = 4$.",
+         "narration": "A B D üçgeninde iki kenar eşit ve aradaki açı altmış: eşkenar üçgen. Kısa köşegen B D, kenara eşit, sekiz; yarısı dört."
+        },
+        {
+         "text": "$|AO| = \\sqrt{64 - 16} = 4\\sqrt{3}$ → $x = 8\\sqrt{3}$. Cevap **C**.",
+         "narration": "A O, eşkenar üçgenin yüksekliği: dört kök üç. Uzun köşegen bunun iki katı, sekiz kök üç santimetre. Cevabımız C. Sekizi seçen, kısa köşegeni bulmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; 60°'lik eşkenar dörtgenin iki eşkenar üçgene ayrılması özgün bir şekilde soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ eşkenar dörtgeninde $E$ noktası $[BC]$ üzerindedir ve $|AE| = |AB|$'dir. $m(\\widehat{ABC}) = 70°$ olduğuna göre $m(\\widehat{EAD}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         7.41,
+         5.398
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           1.71,
+           4.698
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           5,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           6.71,
+           4.698
+          ]
+         },
+         {
+          "id": "E",
+          "at": [
+           3.42,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "E"
+         },
+         {
+          "from": "E",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "A"
+         },
+         {
+          "from": "A",
+          "to": "E"
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "B",
+          "from": "E",
+          "to": "A",
+          "label": "70°"
+         },
+         {
+          "at": "A",
+          "from": "E",
+          "to": "D",
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "40",
+        "55",
+        "60",
+        "70",
+        "80"
+       ],
+       "answer": 3,
+       "narration": "$ABE$ ikizkenar; $A$ açısını parçala.",
+       "steps": [
+        {
+         "text": "$|AE| = |AB|$ → $m(\\widehat{AEB}) = 70°$ → $m(\\widehat{BAE}) = 40°$.",
+         "narration": "A E ile A B eşit: A B E ikizkenar üçgen, E'deki açı da yetmiş. A'daki B A E açısı yüz seksen eksi yüz kırk, kırk."
+        },
+        {
+         "text": "$m(\\widehat{BAD}) = 180° - 70° = 110°$ → $x = 110° - 40° = 70°$. Cevap **D**.",
+         "narration": "Eşkenar dörtgende A açısı, B'nin bütünleri: yüz on. x, yüz on eksi kırk, yetmiş derece. Kontrol: A D ile B C paralel, E A D açısı A E B açısına iç ters açı olarak eşit, yetmiş. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; eşkenar dörtgende ikizkenar üçgen ve paralellik özgün bir şekilde birleştirildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ESKENAR_DORT_02",
+    "title": "Köşegenler",
+    "narration": "Köşegenler dört eş dik üçgen kurar: kenar hipotenüs, yarım köşegenler dik kenar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Yarım köşegenler ve kenar",
+      "items": [
+       "Köşegenler $e$ ve $f$ ise kenar: $a^2 = \\left(\\frac{e}{2}\\right)^2 + \\left(\\frac{f}{2}\\right)^2$.",
+       "Çevre $4a$; köşegenler eşitse eşkenar dörtgen **karedir**.",
+       "Yükseklik: $h = \\frac{\\text{alan}}{a} = \\frac{e \\cdot f}{2a}$."
+      ],
+      "narration": "Köşegenler O'da dik kesişip birbirini ortaladığı için eşkenar dörtgen dört eş dik üçgene bölünür. Her birinde hipotenüs kenar a, dik kenarlar köşegenlerin yarıları. Kenar a ise çevre dört a. Köşegenler eşitse bu dört üçgen ikizkenar dik üçgen olur ve şekil bir karedir. Yüksekliği ise alanı kenara bölerek bulursun."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Köşegen uzunlukları $12$ cm ve $16$ cm olan bir eşkenar dörtgenin çevresi kaç santimetredir?",
+       "options": [
+        "20",
+        "28",
+        "40",
+        "48",
+        "56"
+       ],
+       "answer": 2,
+       "narration": "Yarım köşegenler $6$ ve $8$.",
+       "steps": [
+        {
+         "text": "$a = \\sqrt{6^2 + 8^2} = 10$.",
+         "narration": "Yarım köşegenler altı ve sekiz; kenar, altı, sekiz, on üçgeninin hipotenüsü, on."
+        },
+        {
+         "text": "Çevre $= 4 \\cdot 10 = 40$. Cevap **C**.",
+         "narration": "Çevre dört çarpı on, kırk santimetre. Cevabımız C. Yirmiyi seçen, köşegenleri yarıya bölmeden hipotenüs bulmaya çalışıp yanlış bir yere varmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; eşkenar dörtgende köşegenlerden kenar ve çevre özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ eşkenar dörtgeninin bir kenarı $13$ cm ve bir köşegeni $|AC| = 24$ cm'dir. Diğer köşegen $|BD| = x$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -12.7,
+         -5.7,
+         12.7,
+         5.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           -12,
+           0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           -5
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           12,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           5
+          ]
+         },
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ],
+          "dot": false,
+          "label": "O"
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "13"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "A"
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": true,
+          "label": "24"
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": true,
+          "label": "x"
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "O",
+          "from": "C",
+          "to": "D",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "5",
+        "10",
+        "12",
+        "13",
+        "26"
+       ],
+       "answer": 1,
+       "narration": "$|AO| = 12$; $AOB$ dik üçgeni.",
+       "steps": [
+        {
+         "text": "$|AO| = 12$ → $|BO| = \\sqrt{169 - 144} = 5$.",
+         "narration": "A O, yirmi dördün yarısı, on iki. A O B dik üçgeninde hipotenüs on üç: beş, on iki, on üç; B O beş."
+        },
+        {
+         "text": "$x = 2 \\cdot 5 = 10$. Cevap **B**.",
+         "narration": "B D, B O'nun iki katı, on santimetre. Cevabımız B. Beşi seçen, yarım köşegende durmuştur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; eşkenar dörtgende köşegen bulma, ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ eşkenar dörtgeninin köşegenleri $16$ cm ve $12$ cm'dir. $D$'den $[AB]$'ye indirilen yükseklik $h$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -8.7,
+         -6.7,
+         8.7,
+         6.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           -8,
+           0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           -6
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           8,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           6
+          ]
+         },
+         {
+          "id": "H",
+          "at": [
+           -5.76,
+           -1.68
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "A"
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": true,
+          "label": "16"
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": true,
+          "label": "12"
+         },
+         {
+          "from": "D",
+          "to": "H",
+          "label": "h",
+          "dashed": true
+         },
+         {
+          "from": "A",
+          "to": "H",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "H",
+          "from": "D",
+          "to": "B",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "8",
+        "9",
+        "$9{,}6$",
+        "10",
+        "12"
+       ],
+       "answer": 2,
+       "narration": "Alanı iki yoldan yaz.",
+       "steps": [
+        {
+         "text": "Alan $\\frac{16 \\cdot 12}{2} = 96$; kenar $\\sqrt{64 + 36} = 10$.",
+         "narration": "Alan, köşegenlerin çarpımının yarısı: doksan altı. Kenar, sekiz, altı, on üçgeninden on."
+        },
+        {
+         "text": "$10 \\cdot h = 96$ → $h = 9{,}6$. Cevap **C**.",
+         "narration": "Eşkenar dörtgen bir paralelkenar; alan kenar çarpı yükseklik: on çarpı h, doksan altı; h dokuz virgül altı santimetre. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; eşkenar dörtgende alanı iki yoldan yazarak yükseklik bulma özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Alanı $120$ cm² olan bir eşkenar dörtgenin bir köşegeni $10$ cm'dir. Bu eşkenar dörtgenin bir kenarı kaç santimetredir?",
+       "options": [
+        "12",
+        "13",
+        "15",
+        "17",
+        "26"
+       ],
+       "answer": 1,
+       "narration": "Önce öbür köşegen, sonra yarım köşegenler.",
+       "steps": [
+        {
+         "text": "$\\frac{10 \\cdot f}{2} = 120$ → $f = 24$.",
+         "narration": "Alan, köşegenlerin çarpımının yarısı: on çarpı f bölü iki, yüz yirmi; f yirmi dört."
+        },
+        {
+         "text": "Yarım köşegenler $5$ ve $12$ → $a = 13$. Cevap **B**.",
+         "narration": "Yarım köşegenler beş ve on iki; kenar, beş, on iki, on üç üçgeninden on üç santimetre. Cevabımız B. Yirmi altıyı seçen, köşegenleri yarıya bölmemiştir.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; alan ve köşegenden kenara geçiş özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ESKENAR_DORT_03",
+    "title": "Eşkenar dörtgenin alanı",
+    "narration": "Alan için üç yol var; hangisi verilmişse onu kullan.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Üç alan formülü",
+      "items": [
+       "Köşegenlerle: $A = \\frac{e \\cdot f}{2}$.",
+       "Kenar ve yükseklikle: $A = a \\cdot h$.",
+       "Kenar ve açıyla: $A = a^2 \\cdot \\sin \\alpha$."
+      ],
+      "narration": "Eşkenar dörtgenin alanı için üç yol var. Köşegenler dik olduğu için köşegenlerin çarpımının yarısı. Paralelkenar olduğu için kenar çarpı yükseklik. Ve paralelkenar formülünde iki kenar da a olduğu için a kare çarpı açının sinüsü. Soruda hangi bilgi verilmişse o yolu seç."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kenar uzunluğu $6$ cm ve bir açısı $150°$ olan eşkenar dörtgenin alanı kaç santimetrekaredir?",
+       "options": [
+        "9",
+        "18",
+        "$18\\sqrt{3}$",
+        "36",
+        "$36\\sqrt{3}$"
+       ],
+       "answer": 1,
+       "narration": "$a^2 \\sin \\alpha$; $\\sin 150° = \\sin 30°$.",
+       "steps": [
+        {
+         "text": "$A = 36 \\cdot \\sin 150° = 36 \\cdot \\frac{1}{2} = 18$. Cevap **B**.",
+         "narration": "a kare otuz altı; sinüs yüz elli, sinüs otuza eşit, bir bölü iki. Alan on sekiz santimetrekare. Cevabımız B. Dokuzu seçen, üçgen formülündeki yarımı da eklemiştir.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; eşkenar dörtgende kenar-sinüs alanı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Köşegen uzunlukları $3 : 4$ oranında olan bir eşkenar dörtgenin çevresi $40$ cm'dir. Bu eşkenar dörtgenin alanı kaç santimetrekaredir?",
+       "options": [
+        "48",
+        "72",
+        "96",
+        "120",
+        "192"
+       ],
+       "answer": 2,
+       "narration": "Yarım köşegenler $3k$ ve $4k$; kenar $5k$.",
+       "steps": [
+        {
+         "text": "Kenar $10$; yarım köşegenler $3k$, $4k$ → $5k = 10$ → $k = 2$.",
+         "narration": "Çevre kırk, kenar on. Yarım köşegenler üç k ve dört k; kenar, üç, dört, beş ailesinden beş k: beş k on, k iki."
+        },
+        {
+         "text": "Köşegenler $12$ ve $16$ → $A = \\frac{12 \\cdot 16}{2} = 96$. Cevap **C**.",
+         "narration": "Yarım köşegenler altı ve sekiz, köşegenler on iki ve on altı. Alan, çarpımın yarısı, doksan altı santimetrekare. Cevabımız C. Yüz doksan ikiyi seçen, ikiye bölmeyi unutmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; köşegen oranı ve çevreden alana geçiş özgün bir soruyla kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kenar uzunlukları eşit iki eşkenar dörtgen biçimindeki aynadan birincisinin bir köşegeni $48$ cm ve alanı $336$ cm²'dir. İkinci aynanın bir köşegeni $40$ cm olduğuna göre alanı kaç santimetrekaredir?",
+       "options": [
+        "420",
+        "480",
+        "540",
+        "600",
+        "640"
+       ],
+       "answer": 3,
+       "narration": "Önce ortak kenarı bul.",
+       "steps": [
+        {
+         "text": "Birinci: diğer köşegen $\\frac{2 \\cdot 336}{48} = 14$ → kenar $\\sqrt{24^2 + 7^2} = 25$.",
+         "narration": "Birinci aynada alan, köşegenlerin çarpımının yarısı: iki çarpı üç yüz otuz altı bölü kırk sekiz, on dört; öbür köşegen on dört. Yarım köşegenler yirmi dört ve yedi; kenar, yedi, yirmi dört, yirmi beş üçgeninden yirmi beş."
+        },
+        {
+         "text": "İkinci: yarım köşegen $20$ → öbür yarım $\\sqrt{625 - 400} = 15$ → köşegenler $40$, $30$ → $A = 600$. Cevap **D**.",
+         "narration": "İkinci aynada kenar yine yirmi beş, yarım köşegen yirmi. Öbür yarım, on beş, yirmi, yirmi beş üçgeninden on beş; köşegen otuz. Alan, kırk çarpı otuz bölü iki, altı yüz santimetrekare. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2022 aynı kenarlı iki eşkenar dörtgen ayna sorusunun fikri farklı sayılarla ve iki Pisagor üçlüsüyle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir açısı $30°$ olan eşkenar dörtgenin alanı $50$ cm²'dir. Bu eşkenar dörtgenin bir kenarı kaç santimetredir?",
+       "options": [
+        "5",
+        "$5\\sqrt{2}$",
+        "10",
+        "$10\\sqrt{2}$",
+        "20"
+       ],
+       "answer": 2,
+       "narration": "$a^2 \\cdot \\sin 30° = 50$.",
+       "steps": [
+        {
+         "text": "$a^2 \\cdot \\frac{1}{2} = 50$ → $a^2 = 100$ → $a = 10$. Cevap **C**.",
+         "narration": "a kare çarpı sinüs otuz, yani a karenin yarısı, elli. a kare yüz, a on santimetre. Cevabımız C. Beş kök ikiyi seçen, sinüsü unutup a kareyi elli almıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; kenar-sinüs alanından kenar bulma özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "title": "Orta noktalar",
+    "narration": "Son olarak kenarların orta noktalarını birleştirelim.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "İçteki dikdörtgen",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -5.1,
+        -3.5,
+        5.1,
+        3.5
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          -4.4,
+          0
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          -2.8
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          4.4,
+          0
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          0,
+          2.8
+         ]
+        },
+        {
+         "id": "E",
+         "at": [
+          -2.2,
+          -1.4
+         ]
+        },
+        {
+         "id": "F",
+         "at": [
+          2.2,
+          -1.4
+         ]
+        },
+        {
+         "id": "G",
+         "at": [
+          2.2,
+          1.4
+         ]
+        },
+        {
+         "id": "H",
+         "at": [
+          -2.2,
+          1.4
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "D"
+        },
+        {
+         "from": "D",
+         "to": "A"
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": true
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "dashed": true
+        },
+        {
+         "from": "E",
+         "to": "F"
+        },
+        {
+         "from": "F",
+         "to": "G"
+        },
+        {
+         "from": "G",
+         "to": "H"
+        },
+        {
+         "from": "H",
+         "to": "E"
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "E",
+          "F",
+          "G",
+          "H"
+         ],
+         "fill": true
+        }
+       ],
+       "angles": [
+        {
+         "at": "E",
+         "from": "F",
+         "to": "H",
+         "right": true
+        }
+       ]
+      },
+      "caption": "Eşkenar dörtgenin kenar orta noktaları bir **dikdörtgen** oluşturur; kenarları $\\frac{e}{2}$ ve $\\frac{f}{2}$, alanı **yarısı**.",
+      "narration": "Eşkenar dörtgenin dört kenarının orta noktalarını sırayla birleştirelim.",
+      "beats": [
+       {
+        "narration": "Her kenar, bir üçgenin orta tabanıdır: E F, A B C üçgeninde A C'ye paralel ve onun yarısı. G H de A C'ye paralel ve yarısı. F G ile H E ise B D'ye paralel ve onun yarısı.",
+        "focus": [
+         "EF",
+         "GH",
+         "FG",
+         "HE"
+        ]
+       },
+       {
+        "narration": "Köşegenler dik olduğu için içteki dörtgenin açıları dik: bir dikdörtgen. Kenarları e bölü iki ve f bölü iki; alanı e çarpı f bölü dört, yani eşkenar dörtgenin alanının yarısı.",
+        "focus": [
+         "EFGH"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Köşegen uzunlukları $10$ cm ve $24$ cm olan bir eşkenar dörtgenin kenar orta noktaları birleştiriliyor. Oluşan dörtgenin çevresi kaç santimetredir?",
+       "options": [
+        "17",
+        "26",
+        "34",
+        "52",
+        "60"
+       ],
+       "answer": 2,
+       "narration": "İçteki dikdörtgenin kenarları köşegenlerin yarıları.",
+       "steps": [
+        {
+         "text": "Dikdörtgenin kenarları $\\frac{10}{2} = 5$ ve $\\frac{24}{2} = 12$.",
+         "narration": "Orta noktaların oluşturduğu dikdörtgenin kenarları köşegenlerin yarıları: beş ve on iki."
+        },
+        {
+         "text": "Çevre $= 2(5 + 12) = 34$. Cevap **C**.",
+         "narration": "Çevre iki çarpı on yedi, otuz dört santimetre. Cevabımız C. Elli ikiyi seçen, eşkenar dörtgenin kendi çevresini bulmuştur: kenar on üç, çevre elli iki.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; eşkenar dörtgende orta noktalar dikdörtgeni özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir eşkenar dörtgenin kenar orta noktalarının oluşturduğu dörtgenin alanı $30$ cm² ve bu eşkenar dörtgenin bir köşegeni $12$ cm'dir. Eşkenar dörtgenin bir kenarı kaç santimetredir?",
+       "options": [
+        "$\\sqrt{61}$",
+        "$8$",
+        "$\\sqrt{73}$",
+        "$10$",
+        "$2\\sqrt{61}$"
+       ],
+       "answer": 0,
+       "narration": "Önce eşkenar dörtgenin alanı: iki katı.",
+       "steps": [
+        {
+         "text": "Alan $60$ → $\\frac{12 \\cdot f}{2} = 60$ → $f = 10$.",
+         "narration": "İçteki dikdörtgen alanın yarısı; eşkenar dörtgenin alanı altmış. On iki çarpı f bölü iki, altmış: f on."
+        },
+        {
+         "text": "Yarım köşegenler $6$ ve $5$ → $a = \\sqrt{36 + 25} = \\sqrt{61}$. Cevap **A**.",
+         "narration": "Yarım köşegenler altı ve beş; kenar, otuz altı artı yirmi beşin karekökü, kök altmış bir. Cevabımız A. İki kök altmış biri seçen, köşegenleri yarıya bölmeden Pisagor uygulamıştır.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; orta noktalar dikdörtgeninin alanından eşkenar dörtgenin kenarına geçiş özgün bir soruyla kuruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Eşkenar dörtgen hem **paralelkenar** hem **deltoittir**.",
+    "Köşegenler **dik**, birbirini **ortalar**, köşe açılarını **ikiye böler**.",
+    "$a^2 = \\left(\\frac{e}{2}\\right)^2 + \\left(\\frac{f}{2}\\right)^2$; $60°$'li eşkenar dörtgen iki eşkenar üçgendir.",
+    "Alan: $\\frac{e \\cdot f}{2} = a \\cdot h = a^2 \\sin \\alpha$.",
+    "Köşegenleri eşit eşkenar dörtgen **karedir**."
+   ],
+   "warnings": [
+    "Pisagor'da köşegenlerin **yarılarını** kullan.",
+    "Köşegen alanında ikiye böl; $a \\cdot h$ ve $a^2 \\sin \\alpha$'da bölme.",
+    "Kısa köşegen **dar** açının, uzun köşegen **geniş** açının karşısındadır."
+   ],
+   "narration": "Hadi toparlayalım. Eşkenar dörtgen hem paralelkenar hem deltoittir: köşegenleri dik, birbirini ortalar ve köşe açılarını ikiye böler. Kenar, yarım köşegenlerin oluşturduğu dik üçgenin hipotenüsüdür. Alanı köşegenlerin çarpımının yarısı, kenar çarpı yükseklik ya da a kare çarpı açının sinüsü olarak bulursun. Köşegenleri eşitse eşkenar dörtgen bir karedir."
+  }
+ }
+}

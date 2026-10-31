@@ -1,0 +1,751 @@
+{
+ "topic": {
+  "id": "BD1EC8C9-2D35-9580-8223-178C8DA3B187",
+  "category": "YKS_TYT",
+  "lesson": "MAT",
+  "code": "MAT_BASAMAK"
+ },
+ "title": "Sayı Basamakları",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "YKS/TYT/KonuAnlatimi/MAT/MAT_BASAMAK.json (MEB Temel Matematik konu anlatımı: basamak, sayı değeri, basamak değeri, çözümleme, AB + BA ve AB − BA bağıntıları)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2025: 14 soru; 5'i yeni tanımlı sayı (rakamsal genişlik, dosdoğru, sıralı, bitişik), 4'ü çözümleme, 4'ü rakam-sayı ilişkisi, 2'si basamak değiştirme)",
+  "YKS/TYT/Sorular/MAT/MAT_BASAMAK.jsonl (204 soru; basamak değeri, çözümleme ve basamak değiştirme kalıpları)"
+ ],
+ "works": {
+  "additions": [
+   "Rakamları farklı ve rakamları serbest en büyük ve en küçük iki, üç, dört basamaklı sayıların tablosunu ver; n basamaklı doğal sayı sayısının 9 · 10ⁿ⁻¹ olduğunu yaz.",
+   "Sayfa numaralandırma problemini ekle: 1–9 için 9, 10–99 için 180, 100–999 için 2700 rakam; 'kitabın numaralandırılmasında 1002 rakam kullanıldı' tipinde çözümlü örnek.",
+   "Basamak bağıntılarına ek örnekler çöz: AB + BA = 11(A + B), AB − BA = 9(A − B), ABC − CBA = 99(A − C); rakamların koşullu seçildiği problemler."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "ÖSYM her yıl yeni bir sayı türü tanımlıyor.",
+   "narration": "Rakamsal genişlik, dosdoğru sayı, sıralı sayı, bitişik sayı. Bunlar ders kitabında yok; ÖSYM her yıl soruda yeni bir sayı türü tanımlıyor ve senden onu çözmeni istiyor. Bu soruların hepsinin arkasında tek bir araç var: bir sayıyı basamaklarına ayırmak, yani çözümleme. Bu derste basamak değerini, çözümlemeyi, rakamların yer değiştirmesini ve yeni tanımlı sayı sorularını adım adım çözeceğiz."
+  },
+  "objectives": [
+   "Sayı değeri ile basamak değerini ayırmak",
+   "Bir sayıyı çözümleyip denklem kurmak",
+   "Rakamlar yer değiştirince sayının nasıl değiştiğini bulmak",
+   "Yeni tanımlı sayı sorularını sistemli denemeyle çözmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_BASAMAK_01",
+    "title": "Basamak ve basamak değeri",
+    "narration": "Bir sayıdaki her rakamın bir yeri vardır. Bu yere basamak denir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Sayı değeri, basamak değeri",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Basamak",
+        "Rakam",
+        "Sayı değeri",
+        "Basamak değeri"
+       ],
+       "rows": [
+        [
+         "Binler",
+         "4",
+         "4",
+         "4000"
+        ],
+        [
+         "Yüzler",
+         "7",
+         "7",
+         "700"
+        ],
+        [
+         "Onlar",
+         "0",
+         "0",
+         "0"
+        ],
+        [
+         "Birler",
+         "5",
+         "5",
+         "5"
+        ]
+       ],
+       "highlightColumn": 3
+      },
+      "caption": "4705 sayısında **7**nin sayı değeri 7, basamak değeri **700**dür.",
+      "narration": "4705 sayısına bakalım.",
+      "beats": [
+       {
+        "narration": "Bir rakamın sayı değeri, rakamın kendisidir. 7'nin sayı değeri 7'dir.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Basamak değeri ise rakam ile bulunduğu basamağın çarpımıdır. 7 yüzler basamağında olduğu için basamak değeri 700'dür.",
+        "show": [
+         "r1",
+         "r3",
+         "r4"
+        ],
+        "focus": [
+         "r2"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Bilmen gerekenler",
+      "items": [
+       "On rakam vardır: **0, 1, 2, … , 9**. Rakam en fazla 9 olur.",
+       "Basamak sayısı belli olan bir sayının **ilk rakamı 0 olamaz**.",
+       "En küçük iki basamaklı sayı **10**, en büyüğü **99**dur.",
+       "Rakamları farklı en küçük üç basamaklı sayı **102**, en büyüğü **987**dir."
+      ],
+      "narration": "Dört bilgi. On rakam vardır, sıfırdan dokuza kadar; bir rakam en fazla 9 olabilir. Basamak sayısı belli bir sayının ilk rakamı sıfır olamaz. En küçük iki basamaklı sayı 10, en büyüğü 99'dur. Rakamları farklı en küçük üç basamaklı sayı 102'dir, 012 değil, çünkü ilk rakam sıfır olamaz. En büyüğü ise 987'dir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Rakamları birbirinden farklı üç basamaklı **en büyük çift** sayı ile **en küçük tek** sayının farkı kaçtır?",
+       "options": [
+        "883",
+        "885",
+        "887",
+        "896",
+        "905"
+       ],
+       "answer": 0,
+       "narration": "En büyük ve en küçük sayı sorularında koşulları tek tek uygula.",
+       "steps": [
+        {
+         "text": "En büyük çift: büyük rakamları başa koy, birler çift olsun: **986**.",
+         "narration": "En büyük sayı için büyük rakamları başa yazarız: 9 ve 8. Birler basamağı çift olmalı ve 9 ile 8'den farklı: en büyük seçenek 6. Sayı 986."
+        },
+        {
+         "text": "En küçük tek: ilk rakam 0 olamaz, 1; sonra 0; birler tek ve farklı: **103**.",
+         "narration": "En küçük sayı için ilk rakam sıfır olamaz, 1 yazarız. Onlar basamağına sıfır gelir. Birler tek olmalı ve 1'den farklı: 3. Sayı 103."
+        },
+        {
+         "text": "$986 - 103 = 883$. Cevap **A**.",
+         "narration": "986 eksi 103, 883 eder. Cevabımız A. Birler basamağını 1 alan, rakamların farklı olması koşulunu unutur ve 101 ile 885'i bulur.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki en büyük, en küçük sayı sorularının kalıbı örnek alındı, koşullar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BASAMAK_02",
+    "title": "Çözümleme",
+    "narration": "Çözümleme, bir sayıyı basamak değerlerinin toplamı olarak yazmaktır. Basamak sorularının asıl aracı budur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Çözümleme bağıntıları",
+      "items": [
+       "$\\overline{AB} = 10A + B$",
+       "$\\overline{ABC} = 100A + 10B + C$",
+       "$\\overline{AB} + \\overline{BA} = 11(A + B)$",
+       "$\\overline{AB} - \\overline{BA} = 9(A - B)$",
+       "$\\overline{ABC} - \\overline{CBA} = 99(A - C)$"
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "\\overline{ABC} = 100A + 10B + C",
+       "caption": "Harflerin üstündeki çizgi: bu harfler bir sayının rakamlarıdır."
+      },
+      "narration": "Üstü çizili harfler bir sayının rakamlarını gösterir. A B sayısı, 10 A artı B'dir. A B C sayısı, 100 A artı 10 B artı C'dir. Bu çözümlemeden çok kullanılan üç bağıntı çıkar. A B artı B A, 11 çarpı A artı B eder. A B eksi B A, 9 çarpı A eksi B eder. A B C eksi C B A ise 99 çarpı A eksi C eder; ortadaki rakam sadeleşip gider."
+     },
+     {
+      "kind": "predict",
+      "title": "Hep aynı bölen",
+      "context": "$\\overline{AB} + \\overline{BA}$ toplamını birkaç sayı için hesapla.",
+      "prompt": "Bu toplam **her zaman** hangi sayıya bölünür?",
+      "choices": [
+       "9",
+       "11"
+      ],
+      "answer": 1,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "$\\overline{AB}$",
+        "$\\overline{BA}$",
+        "Toplam"
+       ],
+       "rows": [
+        [
+         "23",
+         "32",
+         "55 = 11 · 5"
+        ],
+        [
+         "47",
+         "74",
+         "121 = 11 · 11"
+        ],
+        [
+         "18",
+         "81",
+         "99 = 11 · 9"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "23 artı 32, 55 eder: 11 çarpı 5. 47 artı 74, 121 eder: 11 çarpı 11.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r1",
+         "r2"
+        ]
+       },
+       {
+        "narration": "18 artı 81, 99 eder: 11 çarpı 9. Her seferinde 11'in katı ve çarpan da rakamlar toplamı.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ],
+      "explanation": "$10A + B + 10B + A$ $= 11(A + B)$: toplam her zaman **11'e** bölünür.",
+      "narration": "Şimdi sıra sende. Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 11. Çözümleyelim: 10 A artı B, artı 10 B artı A. Toplam 11 A artı 11 B, yani 11 çarpı A artı B. Bu yüzden toplam her zaman 11'e bölünür. Farkı alsaydık 9 çarpı A eksi B çıkardı."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\overline{AB}$ ve $\\overline{BA}$ iki basamaklı doğal sayılardır. $\\overline{AB} - \\overline{BA} = 36$ ve $A + B = 10$ olduğuna göre, $\\overline{AB}$ sayısı kaçtır?",
+       "options": [
+        "64",
+        "73",
+        "82",
+        "91",
+        "37"
+       ],
+       "answer": 1,
+       "narration": "Bağıntıyı hemen kullanalım.",
+       "steps": [
+        {
+         "text": "$\\overline{AB} - \\overline{BA} = 9(A - B) = 36 \\Rightarrow A - B = 4$",
+         "narration": "A B eksi B A, 9 çarpı A eksi B'dir. Bu 36'ya eşit, öyleyse A eksi B, 4 eder."
+        },
+        {
+         "text": "$A + B = 10$ ve $A - B = 4$: taraf tarafa topla, $2A = 14$, $A = 7$, $B = 3$.",
+         "narration": "Elimizde iki denklem var: A artı B, 10 ve A eksi B, 4. Taraf tarafa toplarsak 2 A, 14 olur. A 7, B 3."
+        },
+        {
+         "text": "$\\overline{AB} = 73$. Kontrol: $73 - 37 = 36$. Cevap **B**.",
+         "narration": "A B sayısı 73. Kontrol edelim: 73 eksi 37, 36. Cevabımız B. E şıkkındaki 37, B A sayısıdır; sırayı karıştıran onu seçer.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki AB − BA çözümleme sorularının kalıbı örnek alındı, sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\overline{AB}$ ve $\\overline{BA}$ iki basamaklı doğal sayılardır. $\\overline{AB} + \\overline{BA} = 132$ ve $A - B = 4$ olduğuna göre $\\overline{AB}$ sayısı kaçtır?",
+       "options": [
+        "48",
+        "75",
+        "84",
+        "93",
+        "66"
+       ],
+       "answer": 2,
+       "narration": "İki sayıyı çözümleyip toplayalım.",
+       "steps": [
+        {
+         "text": "$\\overline{AB} + \\overline{BA} = (10A + B) + (10B + A) = 11(A + B) = 132$ → $A + B = 12$.",
+         "narration": "AB, on A artı B; BA, on B artı A. Toplarsak on bir A artı on bir B, yani on bir çarpı A artı B. Bu 132'ye eşit; A artı B on iki.",
+         "mark": [
+          "$\\overline{AB} + \\overline{BA} = 132$"
+         ]
+        },
+        {
+         "text": "$A + B = 12$ ve $A - B = 4$ → $2A = 16$, $A = 8$, $B = 4$.",
+         "narration": "A artı B on iki, A eksi B dört. Taraf tarafa toplarsak iki A on altı; A sekiz, B dört."
+        },
+        {
+         "text": "$\\overline{AB} = 84$. Kontrol: $84 + 48 = 132$. Cevap **C**.",
+         "narration": "AB sayısı 84. Kontrol edelim: 84 artı 48, 132. Doğru. Cevabımız C. 48'i seçen A ile B'yi karıştırmış olur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki çözümleme bağıntısı (AB + BA = 11(A + B)) özgün sayılarla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\overline{ABC}$ ve $\\overline{CBA}$ üç basamaklı doğal sayılar ve $A > C$ olmak üzere, $\\overline{ABC} - \\overline{CBA}$ farkı aşağıdakilerden hangisi **olamaz**?",
+       "options": [
+        "198",
+        "396",
+        "495",
+        "693",
+        "500"
+       ],
+       "answer": 4,
+       "narration": "Farkı çözümleyelim; hep aynı bölen çıkacak.",
+       "steps": [
+        {
+         "text": "$(100A + 10B + C) - (100C + 10B + A) = 99A - 99C = 99(A - C)$.",
+         "narration": "ABC, yüz A artı on B artı C; CBA, yüz C artı on B artı A. Çıkarınca on B'ler gider; doksan dokuz A eksi doksan dokuz C kalır, yani doksan dokuz çarpı A eksi C."
+        },
+        {
+         "text": "Fark **99'un katı** olmalı: $198 = 99 \\cdot 2$, $396 = 99 \\cdot 4$, $495 = 99 \\cdot 5$, $693 = 99 \\cdot 7$.",
+         "narration": "Demek ki fark her zaman doksan dokuzun katıdır. 198, doksan dokuz çarpı iki; 396, çarpı dört; 495, çarpı beş; 693, çarpı yedi. Bunlar olabilir.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        },
+        {
+         "text": "$500$, 99'a **tam bölünmez** → olamaz. Cevap **E**.",
+         "narration": "500 ise doksan dokuza tam bölünmez; bu yüzden fark 500 olamaz. Cevabımız E. Ortadaki rakam B, farkta hiç rol oynamaz."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki \"hep aynı bölen\" tahmin kartının genellemesi (ABC − CBA = 99(A − C)) soruya dönüştürüldü."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BASAMAK_03",
+    "title": "Rakam ve sayı ilişkisi",
+    "narration": "Bazı sorular sayının kendisini değil, onu yazmak için kullanılan rakamları sorar.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Kaç rakam kullanılır?",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sayılar",
+        "Kaç sayı",
+        "Rakam"
+       ],
+       "rows": [
+        [
+         "1 – 9",
+         "9",
+         "9 · 1 = 9"
+        ],
+        [
+         "10 – 99",
+         "90",
+         "90 · 2 = 180"
+        ],
+        [
+         "100 – 999",
+         "900",
+         "900 · 3 = 2700"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "narration": "1'den başlayarak sayıları art arda yazdığını düşün.",
+      "beats": [
+       {
+        "narration": "1'den 9'a kadar 9 sayı var, her biri tek rakam: 9 rakam.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "10'dan 99'a kadar 90 sayı var, her biri iki rakam: 180 rakam. 99'a kadar toplam 189 rakam kullanılır.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "100'den 999'a kadar 900 sayı var, her biri üç rakam: 2700 rakam.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kitabın sayfaları 1'den başlanarak numaralandırılmıştır. Bu iş için toplam 192 rakam kullanıldığına göre, kitap kaç sayfadır?",
+       "options": [
+        "99",
+        "100",
+        "101",
+        "102",
+        "192"
+       ],
+       "answer": 1,
+       "narration": "Tabloyu bir soruda kullanalım.",
+       "steps": [
+        {
+         "text": "1 – 99 arası: $9 + 180 = 189$ rakam.",
+         "narration": "1'den 99'a kadar 9 artı 180, yani 189 rakam kullanılır."
+        },
+        {
+         "text": "Kalan: $192 - 189 = 3$ rakam = **bir** tane üç basamaklı sayfa.",
+         "narration": "192'den 189'u çıkarınca 3 rakam kalıyor. Üç basamaklı bir sayfa numarası 3 rakam harcar, demek ki 99'dan sonra yalnız bir sayfa daha var."
+        },
+        {
+         "text": "Son sayfa **100**. Cevap **B**.",
+         "narration": "O sayfa 100. Kitap 100 sayfadır. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki sayfa numaralandırma (rakam sayma) sorularının kalıbı örnek alındı, sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BASAMAK_04",
+    "title": "Yeni tanımlı sayılar",
+    "narration": "Şimdi ÖSYM'nin en sevdiği kalıba geldik: soruda tanımlanan yeni bir sayı türü.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Yeni tanımı çözme yolu",
+      "items": [
+       "Tanımı **kendi örneğinle** dene; sorudaki örneği kontrol et.",
+       "Tanımı **çözümleme** ya da rakamlarla bir denklem olarak yaz.",
+       "Bir rakamı diğerinin cinsinden yaz, **0'dan 9'a** kadar sistemli dene.",
+       "İlk rakamın **0 olamayacağını**, rakamların farklı mı olduğunu unutma."
+      ],
+      "narration": "Yeni tanımlı sayı sorularını dört adımda çözersin. Önce tanımı kendi seçtiğin bir sayıyla dene, sorudaki örneği de kontrol et. Sonra tanımı rakamlarla bir denklem olarak yaz. Bir rakamı diğerinin cinsinden yazıp sıfırdan dokuza kadar sistemli dene. Son olarak koşulları kontrol et: ilk rakam sıfır olamaz, rakamların farklı olması isteniyor mu?"
+     },
+     {
+      "kind": "example",
+      "title": "Tanımı önce dene",
+      "example": "Rakamları küçükten büyüğe sıralandığında ardışık üç sayı elde edilen sayıya sıralı sayı diyelim.",
+      "explanation": "132 sıralı sayıdır (1, 2, 3). 135 değildir. 7 rakamını içeren iki sıralı sayı: 576, 789 gibi. Önce tanımı birkaç örnekle **dene**.",
+      "narration": "Bir tanımı nasıl deneyeceğini görelim. Rakamları küçükten büyüğe sıralandığında ardışık üç sayı elde edilen sayıya sıralı sayı diyelim. 132 sıralı sayıdır, çünkü rakamları sıralayınca 1, 2, 3 çıkıyor. 135 sıralı değildir, 4 eksik. İçinde 7 olan sıralı sayılar ise 5, 6, 7 ya da 6, 7, 8 ya da 7, 8, 9 rakamlarından kurulur: 576 ya da 789 gibi. Soruyu çözmeye başlamadan önce tanımı birkaç örnekle denemek, tuzağı baştan görmeni sağlar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "İki basamaklı bir doğal sayının rakamları çarpımı, rakamları toplamının 2 katına eşitse bu sayıya **dengeli sayı** denir. Örneğin 36 bir dengeli sayıdır, çünkü $3 \\cdot 6 = 2 \\cdot (3 + 6)$. Buna göre kaç tane dengeli sayı vardır?",
+       "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM'nin 2019'dan beri sorduğu yeni tanım kalıbı. Dört adımı uygulayalım.",
+       "steps": [
+        {
+         "text": "Sayı $\\overline{ab}$: $a \\cdot b = 2(a + b)$. Örnek: $18 = 18$ ✓",
+         "narration": "Sayı A B olsun. Tanım a çarpı b, 2 çarpı a artı b demek. Örneği kontrol edelim: 3 çarpı 6, 18; 2 çarpı 9, 18. Tanımı doğru anladık."
+        },
+        {
+         "text": "$ab - 2b = 2a \\Rightarrow b = \\frac{2a}{a - 2}$; $a = 3 \\to 6$, $a = 4 \\to 4$, $a = 6 \\to 3$.",
+         "narration": "b'yi a cinsinden yazalım: b eşittir 2 a bölü a eksi 2. a 1 ya da 2 olamaz. a 3 ise b 6, a 4 ise b 4, a 6 ise b 3 çıkıyor. a 5, 7, 8 ya da 9 için b tam sayı olmuyor."
+        },
+        {
+         "text": "Dengeli sayılar: **36, 44, 63**. Cevap **C**.",
+         "narration": "Dengeli sayılar 36, 44 ve 63. 44'ü de kontrol edelim: 4 çarpı 4, 16; 2 çarpı 8, 16. Üç tane. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2019–2025'in \"yeni tanımlı sayı\" kalıbı (rakamsal genişlik, sıralı sayı, bitişik sayı) örnek alındı, tanım ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BASAMAK_05",
+    "subtopics": [
+     "MAT_BASAMAK_06"
+    ],
+    "title": "Basamak değiştirme",
+    "narration": "Son bölüm: bir sayının rakamları değişirse ya da yer değiştirirse sayı ne kadar değişir?",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Değişim = basamak farkı",
+      "items": [
+       "Bir rakam $k$ artarsa sayı **$k$ × basamak değeri** kadar artar: yüzler 2 artarsa sayı 200 artar.",
+       "Onlar ve birler yer değişirse fark $9(A - B)$.",
+       "Yüzler ve birler yer değişirse fark $99(A - C)$.",
+       "Yüzler ve onlar yer değişirse fark $90(A - B)$."
+      ],
+      "narration": "Bir rakam k kadar artarsa sayı, k çarpı o basamağın değeri kadar artar. Yüzler basamağı 2 artarsa sayı 200 artar. Rakamlar yer değiştirince de fark basamaklardan gelir. Onlar ile birler yer değişirse fark 9 çarpı rakamların farkıdır. Yüzler ile birler yer değişirse 99 çarpı rakamların farkı. Yüzler ile onlar yer değişirse 90 çarpı rakamların farkı."
+     },
+     {
+      "kind": "example",
+      "title": "Rakamlar değişirse",
+      "example": "Üç basamaklı bir sayının yüzler basamağı 2 artırılıyor, onlar basamağı 3 azaltılıyor, birler basamağı 4 artırılıyor.",
+      "explanation": "Değişim $= 2 \\cdot 100 - 3 \\cdot 10 + 4 = 200 - 30 + 4 = 174$. Sayı **174 artar**.",
+      "narration": "Bir örnek. Üç basamaklı bir sayının yüzler basamağı 2 artırılıyor, onlar basamağı 3 azaltılıyor, birler basamağı 4 artırılıyor. Sayı ne kadar değişir? Her değişimi kendi basamağıyla çarp: yüzlerdeki 2, 200 eder. Onlardaki 3 azalma, 30 eksiltir. Birlerdeki 4, 4 ekler. 200 eksi 30 artı 4, 174. Sayı 174 artar. Sayının kendisini bilmemize gerek bile yok."
+     },
+     {
+      "kind": "mistake",
+      "title": "Değişimi basamağıyla çarp",
+      "wrong": "Yüzler basamağı 3 artan, birler basamağı 3 azalan sayı **değişmez**.",
+      "right": "Sayı $300 - 3 = 297$ **artar**.",
+      "why": "Her değişim kendi basamak değeriyle çarpılır: yüzlerdeki 3, 300 eder; birlerdeki 3, yalnız 3.",
+      "narration": "Bir tuzak. Yüzler basamağı 3 artıp birler basamağı 3 azalırsa sayı değişmez mi? Değişir. Yüzlerdeki 3, 300 eder; birlerdeki 3 ise 3. Sayı 297 artar. Her değişimi kendi basamak değeriyle çarp."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Üç basamaklı $\\overline{ABC}$ sayısının yüzler ve birler basamağındaki rakamlar yer değiştirdiğinde sayı 297 azalıyor. $A + C = 11$ olduğuna göre, $A$ kaçtır?",
+       "options": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+       ],
+       "answer": 3,
+       "narration": "Son soru basamak değiştirmeden.",
+       "steps": [
+        {
+         "text": "$\\overline{ABC} - \\overline{CBA} = 99(A - C) = 297 \\Rightarrow A - C = 3$",
+         "narration": "Yüzler ile birler yer değişince fark 99 çarpı A eksi C olur. Sayı 297 azaldığına göre 99 çarpı A eksi C, 297. A eksi C, 3."
+        },
+        {
+         "text": "$A + C = 11$, $A - C = 3$: $2A = 14$, $A = 7$, $C = 4$.",
+         "narration": "A artı C 11, A eksi C 3. Taraf tarafa toplarsak 2 A, 14. A 7, C 4."
+        },
+        {
+         "text": "Kontrol: $\\overline{7B4} - \\overline{4B7} = 297$ ✓. Cevap **D**.",
+         "narration": "Kontrol: B ne olursa olsun 7 B 4 eksi 4 B 7, 297 eder. Cevabımız D. C değeri olan 4'ü seçmemeye dikkat.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki basamak değiştirme sorularının kalıbı örnek alındı, sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Üç basamaklı $\\overline{ABC}$ sayısının **onlar** basamağındaki rakam 3 artırılır, **birler** basamağındaki rakam 2 azaltılırsa sayı kaç artar?",
+       "options": [
+        "26",
+        "28",
+        "30",
+        "32",
+        "34"
+       ],
+       "answer": 1,
+       "narration": "Her değişimi kendi basamak değeriyle çarpalım.",
+       "steps": [
+        {
+         "text": "Onlar basamağı $+3$ → sayıya $3 \\cdot 10 = 30$ eklenir.",
+         "narration": "Onlar basamağındaki rakam 3 artarsa sayı 3 çarpı 10, yani 30 artar.",
+         "mark": [
+          "onlar"
+         ]
+        },
+        {
+         "text": "Birler basamağı $-2$ → sayıdan $2 \\cdot 1 = 2$ çıkar.",
+         "narration": "Birler basamağındaki rakam 2 azalırsa sayı 2 çarpı 1, yani 2 azalır.",
+         "mark": [
+          "birler"
+         ]
+        },
+        {
+         "text": "Toplam değişim $= 30 - 2 = 28$. Cevap **B**.",
+         "narration": "Toplam değişim 30 eksi 2, yani 28. Sayı 28 artar. Cevabımız B. 30'u seçen birler basamağını unutmuş, 32'yi seçen 2'yi çıkarmak yerine eklemiştir.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki \"değişimi basamağıyla çarp\" kuralı özgün bir artırma-azaltma sorusuna dönüştürüldü."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Basamak değeri = rakam × basamak; ilk rakam **0 olamaz**.",
+    "$\\overline{ABC} = 100A + 10B + C$: her soruda önce **çözümle**.",
+    "$\\overline{AB} + \\overline{BA} = 11(A + B)$, $\\overline{AB} - \\overline{BA} = 9(A - B)$.",
+    "1–99 arası **189** rakam kullanılır.",
+    "Yeni tanım: denklem kur, bir rakamı diğerinin cinsinden yaz, **sistemli dene**.",
+    "Yer değiştirmede fark: onlar-birler 9, yüzler-birler 99, yüzler-onlar 90 katı."
+   ],
+   "warnings": [
+    "Rakamları farklı en küçük üç basamaklı sayı **102**.",
+    "$\\overline{AB}$ bulunurken $\\overline{BA}$'yı seçme.",
+    "Yüzler 3 artar, birler 3 azalırsa sayı **297 artar**.",
+    "Rakam en fazla **9** olur."
+   ],
+   "narration": "Hadi toparlayalım. Basamak değeri, rakam çarpı basamaktır ve ilk rakam sıfır olamaz. Her basamak sorusunda önce sayıyı çözümle. A B artı B A, 11 çarpı rakamlar toplamı; A B eksi B A, 9 çarpı rakamlar farkıdır. 1'den 99'a kadar 189 rakam kullanılır. Yeni tanımlı sayı sorularında denklemi kur, bir rakamı diğerinin cinsinden yaz ve sistemli dene. Rakamlar yer değiştirince fark 9, 99 ya da 90'ın katıdır."
+  }
+ },
+ "short": {
+  "hook": "Üç soruda basamaklar.",
+  "cards": [
+   {
+    "kind": "term",
+    "term": "Basamak değeri",
+    "definition": "Rakam × bulunduğu basamak: 4705'te 7, **700** eder."
+   },
+   {
+    "kind": "warning",
+    "text": "İlk rakam **0 olamaz**: en küçük farklı rakamlı üç basamaklı sayı 102."
+   },
+   {
+    "kind": "fact",
+    "text": "$\\overline{AB} + \\overline{BA}$ her zaman **11'e** bölünür."
+   },
+   {
+    "kind": "fact",
+    "text": "1–99 arası **189** rakam."
+   }
+  ],
+  "summary": [
+   "İlk rakam 0 olamaz",
+   "AB + BA, 11'in katı",
+   "Değişimi basamakla çarp"
+  ],
+  "rounds": [
+   {
+    "sentence": "Farklı rakamlı en küçük **üç basamaklı** sayı",
+    "question": "012 mi?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "**102** olur."
+   },
+   {
+    "sentence": "$\\overline{AB} + \\overline{BA}$",
+    "question": "Hep 9'a mı bölünür?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "**11'e** bölünür."
+   },
+   {
+    "sentence": "Yüzler 3 artar, birler 3 azalır.",
+    "question": "Aynı mı?",
+    "choices": [
+     "Aynı",
+     "Değişir"
+    ],
+    "answer": 1,
+    "why": "**297 artar**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-matematik-kampi",
+  "name": "TYT Matematik kampı",
+  "number": 2,
+  "total": 23,
+  "previous": "Temel Kavramlar",
+  "next": "Bölme ve Bölünebilme",
+  "promise": "Matematik konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "$\\overline{ABC} - \\overline{CBA} = 99(A - C)$ bağıntısını **çözümleyerek** kendin ispatla.",
+    "Kendi yeni sayı türünü tanımla ve **kaç tane** olduğunu bul.",
+    "Uygulamada Sayı Basamakları testinden **20 soru** çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. A B C eksi C B A'nın 99 çarpı A eksi C olduğunu çözümleyerek kendin göster. Sonra kendi yeni sayı türünü tanımla ve kaç tane olduğunu bul. En son uygulamada sayı basamakları testinden yirmi soru çöz; yanlışlarını bu dersteki adımlarla yeniden çöz. Bir sonraki derste bölme ve bölünebilmeyle devam ediyoruz. Kampta görüşmek üzere!"
+  }
+ }
+}

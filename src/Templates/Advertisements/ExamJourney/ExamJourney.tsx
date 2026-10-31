@@ -1,9 +1,9 @@
-import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
+import {appEndScenes} from '../../../Scenes/AppEndScene';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, type VoiceClips} from '../../../Scenes/Voiceover';
 import {defineTemplate} from '../../TemplateDefinition';
 import {EXAM_JOURNEY_SAMPLE} from './ExamJourneySample';
-import {ClosingScene, GapsScene, ProductScene, ResultScene, SolveScene, StartScene} from './ExamJourneyScenes';
+import {GapsScene, ProductScene, ResultScene, SolveScene, StartScene} from './ExamJourneyScenes';
 import {EXAM_JOURNEY_MAX_SECONDS, EXAM_JOURNEY_MIN_SECONDS, ExamJourneySchema, examJourneyTimings, type ExamJourneyContent} from './ExamJourneySchema';
 
 const buildScenes = (content: ExamJourneyContent, voiceClips: VoiceClips = {}): TemplateScene[] => {
@@ -15,7 +15,6 @@ const buildScenes = (content: ExamJourneyContent, voiceClips: VoiceClips = {}): 
 	const result = say('result', content.result.narration, timings.result, 3.2);
 	const gaps = say('gaps', content.gaps.narration, timings.gaps, 3.2);
 	const product = say('product', content.product.narration, timings.product, 2.8);
-	const closing = say('closing', content.closing.narration, timings.closing, 2.6);
 
 	return [
 		{id: 'start', seconds: start.seconds, label: 'Süre', voice: [start], element: <StartScene content={content} />},
@@ -23,7 +22,7 @@ const buildScenes = (content: ExamJourneyContent, voiceClips: VoiceClips = {}): 
 		{id: 'result', seconds: result.seconds, label: 'Sonuç', voice: [result], element: <ResultScene content={content} />},
 		{id: 'gaps', seconds: gaps.seconds, label: 'Eksikler', voice: [gaps], element: <GapsScene content={content} />},
 		{id: 'product', seconds: product.seconds, label: 'Uygulama', voice: [product], element: <ProductScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <ClosingScene content={content} />}] : []),
+		...appEndScenes(content.outro.enabled, say),
 	];
 };
 

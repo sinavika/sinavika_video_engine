@@ -4,7 +4,7 @@ Sınavika'nın ve modüllerinin reklamlarda nasıl anıldığını tanımlar ve 
 
 **Tarih:** 15 Ekim 2026
 **Kod:** [`src/Configurations/ProductMessaging.ts`](../src/Configurations/ProductMessaging.ts) (adlar [`src/UIUX/ModuleIdentity.ts`](../src/UIUX/ModuleIdentity.ts) tablosundan gelir)
-**Test:** [`tests/ProductMessaging.test.ts`](../tests/ProductMessaging.test.ts)
+**Test:** [`tests/Configurations/ProductMessaging.test.ts`](../tests/Configurations/ProductMessaging.test.ts)
 **İlgili:** [`BrandIdentity.md`](BrandIdentity.md) §5 (adlar), §13 (noktalama), §15.1 (modül renkleri), §18 (içerik motoru); [`UIUX/Modul-Kimligi.md`](UIUX/Modul-Kimligi.md); [`AdPrompt.md`](AdPrompt.md)
 
 ## 1. Rapor: motordaki mevcut kullanım
@@ -29,7 +29,7 @@ Uygulama kataloğundaki aynı hatalar (mobil "koç planı", EN "Knowledge cards"
 - **Yapay zekâ asistanı:** SinoAI. Bitişik yazılır, AI büyük harfle.
   - İlk geçişte bir kez tanıtılır: "Seni tanıyan yapay zekâ: SinoAI".
   - Sonra hep adıyla ve **cümlenin öznesi** olarak geçer: "SinoAI hedefini bilerek yanıtlar." Bir kez tanıtıldıktan sonra "yapay zekâ" diye genel anılmaz.
-  - Seslendirmede "Sino Ey Ay" diye okunur (`spoken`).
+  - Seslendirmede "Sino Ey Ay" diye okunur. Okunuş merkezdedir ([`SpokenText.ts`](../src/Schemas/SpokenText.ts)), mesaj dosyasında değil.
 - **Modüller:** Denemeler, Dersler, Testler, Ders Planı, Akıllı Özet, Bilgi Kartları, SinoAI.
   - EN karşılıkları: Practice exams, Lessons, Quizzes, Study Plan, Smart Summary, Flashcards.
   - Adlar her zaman `moduleName(key, lang)` ile alınır.

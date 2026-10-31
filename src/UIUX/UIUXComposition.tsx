@@ -29,7 +29,7 @@ const boardCell = (screen: UIScreen) => {
 	return {size, width, scale: width / size.width, height: (size.height * width) / size.width};
 };
 
-export const boardSize = ({ids, columns}: Pick<UIUXBoardProps, 'ids' | 'columns'>): {width: number; height: number} => {
+const boardSize = ({ids, columns}: Pick<UIUXBoardProps, 'ids' | 'columns'>): {width: number; height: number} => {
 	const cells = ids.map((id) => boardCell(findScreen(id)));
 	const cellWidth = Math.max(...cells.map((cell) => cell.width));
 	const rows: number[] = [];

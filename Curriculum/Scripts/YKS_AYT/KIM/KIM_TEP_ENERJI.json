@@ -1,0 +1,693 @@
+{
+ "topic": {
+  "id": "E13CE1F9-E5E1-B7AD-5D17-FC814CEA98C2",
+  "category": "YKS_AYT",
+  "lesson": "KIM",
+  "code": "KIM_TEP_ENERJI"
+ },
+ "title": "Kimyasal Tepkimelerde Enerji",
+ "lessonName": "Kimya",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "MEB OGM AYT Kimya konu anlatımı, sayfa 56-62 (başvuru; metin yeniden yazıldı)",
+  "ÖSYM 2019, 2020, 2021 (iki soru), 2022, 2023, 2025, 2026 ve yılı kayıtsız bir enerji grafiği sorusu: model olarak kullanıldı, yeni tepkime ve değerlerle yeniden yazıldı",
+  "Oluşum entalpileri ve bağ enerjileri: standart termokimya tabloları"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Isıtan ve soğutan paketler",
+   "narration": "Kamp için satılan ısıtıcı paketler bir tepkimeyle ısınır, spor sakatlıklarında kullanılan buz paketleri başka bir tepkimeyle soğur. Bu derste sistem ve çevreyi, endotermik ve ekzotermik tepkimeleri, entalpiyi, oluşum entalpisini, bağ enerjilerini ve Hess yasasını, dokuz ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Sistem türlerini ve ısı alışverişini ayırt etmek",
+   "Endotermik ve ekzotermik tepkimeleri enerji grafiğiyle yorumlamak",
+   "Oluşum entalpilerinden tepkime entalpisi hesaplamak",
+   "Bağ enerjilerinden ΔH bulmak",
+   "Hess yasasıyla bilinmeyen entalpiyi bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "KIM_TEP_ENERJI_01",
+    "title": "Sistem ve çevre",
+    "narration": "Bir tepkimenin enerjisini konuşmadan önce sınırı çizeriz: incelediğimiz kısım sistem, gerisi çevre.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sistem ve çevre",
+      "items": [
+       "İncelenen madde ve olay **sistem**, onun dışındaki her şey **çevre**dir.",
+       "Açık sistem madde ve enerji, kapalı sistem yalnız **enerji** alışverişi yapar; yalıtılmış sistem hiçbirini yapmaz.",
+       "Isı sistemden çevreye geçerse çevre **ısınır**, çevreden sisteme geçerse çevre soğur."
+      ],
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sistem",
+        "Madde alışverişi",
+        "Enerji alışverişi",
+        "Örnek"
+       ],
+       "rows": [
+        [
+         "Açık",
+         "var",
+         "var",
+         "Ağzı açık kapta kaynayan su"
+        ],
+        [
+         "Kapalı",
+         "yok",
+         "var",
+         "Kapağı kapalı tencere"
+        ],
+        [
+         "Yalıtılmış",
+         "yok",
+         "yok",
+         "İdeal bir termos"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Ağzı açık kapta su buharı da ısı da çıkıyor: açık sistem.",
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Kapağı kapalı tencerede yalnız ısı geçiyor; ideal termosta hiçbir şey.",
+        "focus": [
+         "r2",
+         "r3"
+        ]
+       }
+      ],
+      "narration": "Bir olayı incelerken ilgilendiğimiz madde ve olaya sistem, onun dışındaki her şeye çevre deriz. Açık sistem çevreyle hem madde hem enerji alışverişi yapar; kapalı sistem yalnız enerji alışverişi yapar; yalıtılmış sistem ikisini de yapmaz. Isı sistemden çevreye geçerse çevre ısınır; çevreden sisteme geçerse çevre soğur."
+     }
+    ]
+   },
+   {
+    "subtopic": "KIM_TEP_ENERJI_02",
+    "title": "Endotermik ve ekzotermik tepkimeler",
+    "narration": "Yakılan odun ısı verir, buz paketi ısı alır: tepkimeler enerjiyi iki yönde değiştirir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Endotermik ve ekzotermik",
+      "items": [
+       "**Ekzotermik**: ısı verir, ürünlerin enerjisi **düşük**, $\\Delta H < 0$ (yanma, nötrleşme).",
+       "**Endotermik**: ısı alır, ürünlerin enerjisi **yüksek**, $\\Delta H > 0$ (erime, buharlaşma, elektroliz).",
+       "Her tepkime önce **aktivasyon enerjisi** (Ea) kadar enerji ister: tepeyi aşmalıdır."
+      ],
+      "visual": {
+       "kind": "energyProfile",
+       "reactants": 40,
+       "products": 15,
+       "peak": 75,
+       "reactantLabel": "X₂ + Y₂",
+       "productLabel": "2XY",
+       "reverse": true
+      },
+      "beats": [
+       {
+        "narration": "X iki ve Y iki önce kırk kilojoule'lük bir düzeyde.",
+        "focus": [
+         "curve"
+        ]
+       },
+       {
+        "narration": "Tepeyi aşmak için otuz beş kilojoule gerekiyor: ileri aktivasyon enerjisi.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "ea",
+         "ball"
+        ]
+       },
+       {
+        "narration": "Ürünler on beşte: eksi yirmi beş kilojoule, ekzotermik. Geri tepkimenin tepesi ise altmış.",
+        "focus": [
+         "dh",
+         "reverse"
+        ]
+       }
+      ],
+      "narration": "Ekzotermik tepkimeler çevreye ısı verir; ürünlerin potansiyel enerjisi girenlerinkinden düşüktür ve entalpi değişimi eksidir. Yanma ve nötrleşme böyledir. Endotermik tepkimeler çevreden ısı alır; ürünlerin enerjisi yüksektir, entalpi değişimi artıdır. Erime, buharlaşma ve elektroliz böyledir. Hangisi olursa olsun, her tepkimenin önce aktivasyon enerjisi kadar bir tepeyi aşması gerekir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$X_2 + Y_2 \\rightarrow 2XY$ tepkimesinin potansiyel enerji – tepkime ilerleyişi grafiği şekilde verilmiştir.\n\nBu tepkimeyle ilgili;\nI. Ekzotermiktir.\nII. Entalpi değişimi ($\\Delta H$) $-25$ kJ'dir.\nIII. Geri tepkimenin aktivasyon enerjisi $35$ kJ'dir.\n\nifadelerinden hangileri doğrudur?",
+       "context": "ÖSYM'de yılı kayıtsız potansiyel enerji grafiği sorusu yapısının yeni düzeylerle kurulmuş hâli.",
+       "figure": {
+        "kind": "energyProfile",
+        "reactants": 40,
+        "products": 15,
+        "peak": 75,
+        "reactantLabel": "X₂ + Y₂",
+        "productLabel": "2XY",
+        "ea": false,
+        "dh": false,
+        "motion": false
+       },
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "narration": "Seviyeleri oku: $40$, $15$, $75$.",
+       "steps": [
+        {
+         "text": "Ürünler ($15$) girenlerden ($40$) **düşük**: ekzotermik, $\\Delta H = 15 - 40 = -25$ kJ (I, II).",
+         "narration": "Ürünlerin düzeyi on beş, girenlerinki kırk; ürünler daha düşük, tepkime ekzotermik. Entalpi değişimi on beş eksi kırk, eksi yirmi beş kilojoule."
+        },
+        {
+         "text": "Geri Ea: $75 - 15 = 60$ kJ; $35$ ileri Ea'dır (III yanlış).",
+         "narration": "Geri tepkimenin aktivasyon enerjisi tepe eksi ürünler: yetmiş beş eksi on beş, altmış. Otuz beş ileri tepkimenin aktivasyon enerjisidir. Cevap C.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM modeli (yılı kayıtsız): düzeyler ve yargılar değiştirildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KIM_TEP_ENERJI_03",
+    "title": "Entalpi",
+    "narration": "Entalpi değişimini doğrudan ölçemeyiz, ama tablolardaki değerlerle her tepkime için hesaplayabiliriz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Tepkime entalpisi",
+      "items": [
+       "$\\Delta H = \\sum \\Delta H_{ürünler} - \\sum \\Delta H_{girenler}$ (oluşum entalpileriyle).",
+       "Elementlerin en kararlı hâllerinin oluşum entalpisi **sıfırdır** (O$_2$, N$_2$, Br$_2$(s)…).",
+       "$\\Delta H$ **miktarla** orantılıdır: katsayılar iki katına çıkarsa $\\Delta H$ de iki katına; tepkime ters çevrilirse işaret değişir."
+      ],
+      "narration": "Bir tepkimenin entalpi değişimi, ürünlerin oluşum entalpileri toplamından girenlerinkinin çıkarılmasıyla bulunur; her değer kendi katsayısıyla çarpılır. Elementlerin en kararlı hâllerinin oluşum entalpisi sıfırdır: oksijen gazı, azot gazı, sıvı brom gibi. Entalpi değişimi madde miktarıyla orantılıdır: katsayılar iki katına çıkarsa entalpi değişimi de iki katına çıkar; tepkime ters çevrilirse işareti değişir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "NH$_3$(g)'ün standart oluşum entalpisi $-46$ kJ/mol, H$_2$O(s)'nun $-286$ kJ/mol'dür.\n\nBuna göre\n$4\\text{NH}_3(g) + 3\\text{O}_2(g) \\rightarrow 2\\text{N}_2(g) + 6\\text{H}_2\\text{O}(s)$\ntepkimesinin standart entalpi değişimi kaç kJ'dir?",
+       "context": "ÖSYM 2021'de sorulan oluşum entalpilerinden tepkime entalpisi yapısının başka bir tepkimeyle kurulmuş hâli.",
+       "options": [
+        "$-1900$",
+        "$-1532$",
+        "$-240$",
+        "$+1532$",
+        "$+1900$"
+       ],
+       "answer": 1,
+       "narration": "Ürünler eksi girenler; elementler sıfır.",
+       "steps": [
+        {
+         "text": "Ürünler: $6 \\cdot (-286) = -1716$; N$_2$ sıfır. Girenler: $4 \\cdot (-46) = -184$; O$_2$ sıfır.",
+         "narration": "Ürünlerde altı mol suyun oluşum entalpisi eksi bin yedi yüz on altı; azot element, sıfır. Girenlerde dört mol amonyak eksi yüz seksen dört; oksijen sıfır."
+        },
+        {
+         "text": "$\\Delta H = -1716 - (-184) = -1532$ kJ.",
+         "narration": "Eksi bin yedi yüz on altı eksi eksi yüz seksen dört: eksi bin beş yüz otuz iki kilojoule. Girenleri eklemeye kalkan eksi bin dokuz yüze gider. Cevap B.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021 modeli: tepkime ve değerler değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Belirli koşullarda\nH$_2$(g) + O$_2$(g) → H$_2$O$_2$(s) $\\quad \\Delta H° = -188$ kJ/mol\nH$_2$(g) + ½O$_2$(g) → H$_2$O(s) $\\quad \\Delta H° = -286$ kJ/mol\n\nolduğuna göre, aynı koşullarda $2$ mol H$_2$O$_2$(s)'nin H$_2$O(s) ve O$_2$(g)'ye ayrışmasının entalpi değişimi kaç kJ'dir?",
+       "context": "ÖSYM 2022'de sorulan hidrojen peroksitten su oluşumu yapısının başka bir miktarla kurulmuş hâli.",
+       "options": [
+        "$-392$",
+        "$-196$",
+        "$-98$",
+        "$+98$",
+        "$+196$"
+       ],
+       "answer": 1,
+       "narration": "$2$H$_2$O$_2$ → $2$H$_2$O + O$_2$.",
+       "steps": [
+        {
+         "text": "$1$ mol için: $-286 - (-188) = -98$ kJ.",
+         "narration": "Bir mol hidrojen peroksit için ürün su eksi iki yüz seksen altı, giren hidrojen peroksit eksi yüz seksen sekiz; fark eksi doksan sekiz kilojoule."
+        },
+        {
+         "text": "$2$ mol: $2 \\cdot (-98) = -196$ kJ.",
+         "narration": "İki mol için iki katı: eksi yüz doksan altı. Bir molde kalan eksi doksan sekizi seçer. Cevap B.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 modeli: madde miktarı değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$25$ °C'de amonyağın elementlerinden oluşma tepkimesi:\n½N$_2$(g) + $\\frac{3}{2}$H$_2$(g) → NH$_3$(g) $\\quad \\Delta H° = -46$ kJ/mol\n\nBu tepkimeyle ilgili;\nI. $2$ mol NH$_3$(g) oluştuğunda $92$ kJ ısı açığa çıkar.\nII. Girenlerin standart oluşum entalpileri toplamı ürününkinden büyüktür.\nIII. Oluşan bağların enerjileri toplamı, kırılan bağlarınkinden küçüktür.\n\nifadelerinden hangileri doğrudur?",
+       "context": "ÖSYM 2025'te sorulan oluşum tepkimesi yargıları yapısının amonyakla kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "II ve III"
+       ],
+       "answer": 3,
+       "narration": "Ekzotermik ne demek?",
+       "steps": [
+        {
+         "text": "$2$ mol: $2 \\cdot 46 = 92$ kJ ısı (I). Girenler elementler: **0** $> -46$ (II).",
+         "narration": "İki mol amonyakta iki çarpı kırk altı, doksan iki kilojoule ısı açığa çıkar. Girenler element, oluşum entalpileri sıfır; sıfır, eksi kırk altıdan büyük."
+        },
+        {
+         "text": "Ekzotermik: oluşan bağlar **daha güçlü**, enerjileri **büyük** (III yanlış).",
+         "narration": "Tepkime ısı veriyorsa oluşan bağların enerjisi kırılanlarınkinden büyüktür; fazlası ısı olarak çıkar. Üçüncü yanlış. Cevap D.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2025 modeli: su yerine amonyak"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KIM_TEP_ENERJI_04",
+    "title": "Oluşum entalpisi",
+    "narration": "Her bileşiğin bir \"doğum belgesi\" gibi oluşum entalpisi vardır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Standart oluşum entalpisi",
+      "items": [
+       "Bir mol bileşiğin **elementlerinin en kararlı hâllerinden** oluşmasının entalpisidir.",
+       "Girenlerde bileşik olursa ya da ürün $1$ molden farklıysa **oluşum tepkimesi değildir**.",
+       "Bilinmeyen oluşum entalpisi, tepkime denklemleri **toplanarak** bulunur."
+      ],
+      "narration": "Standart oluşum entalpisi, bir mol bileşiğin elementlerinin en kararlı hâllerinden oluşmasındaki entalpi değişimidir. Girenler arasında bir bileşik varsa ya da ürün bir molden farklıysa, o tepkime oluşum tepkimesi değildir. Bilinmeyen bir oluşum entalpisi, verilen tepkime denklemleri uygun biçimde toplanarak bulunur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "I. ½N$_2$(g) + $\\frac{3}{2}$H$_2$(g) → NH$_3$(g)\nII. CO(g) + ½O$_2$(g) → CO$_2$(g)\nIII. C(grafit) + $2$H$_2$(g) → CH$_4$(g)\n\nTepkimelerinden hangilerinin standart entalpisi, oluşan bileşiğin standart oluşum entalpisine eşittir?",
+       "context": "ÖSYM 2019'da sorulan hangi tepkimelerin oluşum tepkimesi olduğu yapısının başka tepkimelerle kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız III",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 3,
+       "narration": "Girenler yalnız element mi, ürün $1$ mol mü?",
+       "steps": [
+        {
+         "text": "I ve III: girenler **element**, ürün **1 mol**: oluşum tepkimesi.",
+         "narration": "Birinci ve üçüncüde girenler yalnız elementlerin en kararlı hâlleri ve ürün bir mol; ikisi de oluşum tepkimesi."
+        },
+        {
+         "text": "II: giren CO bir **bileşik**: oluşum tepkimesi değil.",
+         "narration": "İkincide girenlerden karbon monoksit bir bileşik; bu karbon dioksidin oluşum tepkimesi değildir. Cevap D.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 modeli: tepkimeler değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "NO(g) ve NO$_2$(g)'nin standart oluşum entalpileri sırasıyla $+90{,}3$ kJ/mol ve $+33{,}2$ kJ/mol'dür.\n\nBuna göre\n$2\\text{NO}(g) + \\text{O}_2(g) \\rightarrow 2\\text{NO}_2(g)$\ntepkimesinin standart entalpi değişimi kaç kJ'dir?",
+       "context": "ÖSYM 2020'de sorulan iki azot oksidinin oluşum entalpilerinden tepkime entalpisi yapısının başka bir tepkimeyle kurulmuş hâli.",
+       "options": [
+        "$-114{,}2$",
+        "$-57{,}1$",
+        "$+57{,}1$",
+        "$+114{,}2$",
+        "$+246{,}9$"
+       ],
+       "answer": 0,
+       "narration": "Katsayıları unutma.",
+       "steps": [
+        {
+         "text": "Ürünler: $2 \\cdot 33{,}2 = 66{,}4$; girenler: $2 \\cdot 90{,}3 = 180{,}6$ (O$_2$ sıfır).",
+         "narration": "Ürünlerde iki mol azot dioksit, altmış altı virgül dört; girenlerde iki mol azot monoksit, yüz seksen virgül altı; oksijen sıfır."
+        },
+        {
+         "text": "$\\Delta H = 66{,}4 - 180{,}6 = -114{,}2$ kJ.",
+         "narration": "Altmış altı virgül dört eksi yüz seksen virgül altı, eksi yüz on dört virgül iki. Katsayıları atlayan eksi elli yedi virgül bire gider. Cevap A.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 modeli: azot oksitleri ve tepkime değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "S(k) + O$_2$(g) → SO$_2$(g) $\\quad \\Delta H° = -297$ kJ/mol\nSO$_3$(g) → SO$_2$(g) + ½O$_2$(g) $\\quad \\Delta H° = +99$ kJ/mol\n\nolduğuna göre SO$_3$(g)'ün standart oluşum entalpisi kaç kJ/mol'dür?",
+       "context": "ÖSYM 2023'te sorulan iki denklemden oluşum entalpisi yapısının kükürt oksitleriyle kurulmuş hâli.",
+       "options": [
+        "$+396$",
+        "$+198$",
+        "$+99$",
+        "$-198$",
+        "$-396$"
+       ],
+       "answer": 4,
+       "narration": "İkinci tepkimeyi ters çevir.",
+       "steps": [
+        {
+         "text": "Ters: SO$_2$ + ½O$_2$ → SO$_3$, $\\Delta H = -99$ kJ.",
+         "narration": "İkinci tepkimeyi ters çevir: kükürt dioksit ve yarım mol oksijenden kükürt trioksit; işaret değişir, eksi doksan dokuz."
+        },
+        {
+         "text": "Topla: S + $\\frac{3}{2}$O$_2$ → SO$_3$, $-297 - 99 = -396$ kJ/mol.",
+         "narration": "Birinciyle topla: kükürt ve bir buçuk mol oksijenden kükürt trioksit; eksi iki yüz doksan yedi eksi doksan dokuz, eksi üç yüz doksan altı. İşareti çevirmeyen eksi yüz doksan sekize gider. Cevap E.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2023 modeli: karbon yerine kükürt"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KIM_TEP_ENERJI_05",
+    "title": "Bağ enerjileri",
+    "narration": "Bağ kırmak enerji ister, bağ kurmak enerji verir; tepkime ısısı bu ikisinin farkıdır.",
+    "cards": [
+     {
+      "kind": "predict",
+      "title": "Bağ kırmak",
+      "prompt": "Bir H–H bağını kırmak enerji ister mi, verir mi?",
+      "choices": [
+       "Enerji ister",
+       "Enerji verir"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "energyProfile",
+       "reactants": 20,
+       "products": 60,
+       "peak": 90,
+       "reactantLabel": "Girenler",
+       "productLabel": "Ürünler"
+      },
+      "beats": [
+       {
+        "narration": "Bağları kırmak için önce tepeye çıkmak gerekir.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "ea",
+         "ball"
+        ]
+       }
+      ],
+      "explanation": "Bağ kırmak **her zaman** enerji ister; bağ kurmak enerji verir.",
+      "narration": "Bağ kırılırken enerji alınır mı, verilir mi? Tahmin et.",
+      "explanationNarration": "Enerji ister. Bağ, atomları bir arada tutan bir çekimdir; onu koparmak için enerji vermek gerekir. Bağ kurulurken ise aynı miktar enerji açığa çıkar. Tepkimenin ısısı, kırılan ve kurulan bağların enerji farkıdır."
+     },
+     {
+      "kind": "rule",
+      "title": "Bağ enerjileri",
+      "items": [
+       "Bağ kırılması **endotermik**, bağ oluşması **ekzotermiktir**.",
+       "$\\Delta H = \\sum E_{kırılan} - \\sum E_{oluşan}$.",
+       "Oluşan bağlar daha güçlüyse tepkime **ekzotermik** olur."
+      ],
+      "narration": "Bir bağı kırmak her zaman enerji ister, yani endotermiktir; bağ oluşurken aynı miktar enerji açığa çıkar. Tepkime entalpisi, kırılan bağların enerjileri toplamından oluşan bağlarınkinin çıkarılmasıyla bulunur. Oluşan bağlar kırılanlardan güçlüyse fazla enerji ısı olarak çıkar ve tepkime ekzotermik olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "H–H bağ enerjisi $436$ kJ/mol, Cl–Cl $243$ kJ/mol, H–Cl $432$ kJ/mol'dür.\n\nBuna göre\nH$_2$(g) + Cl$_2$(g) → $2$HCl(g)\ntepkimesinin entalpi değişimi kaç kJ'dir?",
+       "options": [
+        "$-864$",
+        "$-185$",
+        "$-11$",
+        "$+185$",
+        "$+679$"
+       ],
+       "answer": 1,
+       "narration": "Kırılan eksi oluşan.",
+       "steps": [
+        {
+         "text": "Kırılan: $436 + 243 = 679$ kJ. Oluşan: $2 \\cdot 432 = 864$ kJ.",
+         "narration": "Kırılan bağlar bir H–H ve bir Cl–Cl: altı yüz yetmiş dokuz kilojoule. Oluşan bağlar iki H–Cl: sekiz yüz altmış dört."
+        },
+        {
+         "text": "$\\Delta H = 679 - 864 = -185$ kJ.",
+         "narration": "Altı yüz yetmiş dokuz eksi sekiz yüz altmış dört: eksi yüz seksen beş. Sırayı ters kuran artı yüz seksen beşe gider. Cevap B.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bağ enerjisi kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KIM_TEP_ENERJI_06",
+    "title": "Hess yasası",
+    "narration": "Bir dağın tepesine hangi yoldan çıkarsan çık, yükseldiğin metre aynıdır; tepkime ısısı da yoldan bağımsızdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Hess yasası",
+      "items": [
+       "Bir tepkimenin $\\Delta H$'si **yoldan bağımsızdır**: ara basamakların $\\Delta H$'leri toplanır.",
+       "Basamak **ters çevrilirse** işaret değişir; **katsayıyla çarpılırsa** $\\Delta H$ de çarpılır.",
+       "Hedef tepkimedeki maddeleri doğru tarafta ve doğru katsayıyla verecek biçimde düzenle."
+      ],
+      "narration": "Hess yasasına göre bir tepkimenin entalpi değişimi yoldan bağımsızdır: tepkime tek basamakta da olsa birkaç basamakta da olsa toplam aynıdır. Bu yüzden ara basamakların entalpi değişimleri toplanabilir. Bir basamak ters çevrilirse işareti değişir; bir katsayıyla çarpılırsa entalpi değişimi de o katsayıyla çarpılır. Yapacağın iş, verilen denklemleri hedef tepkimedeki maddeleri doğru tarafta ve doğru katsayıyla verecek biçimde düzenlemektir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "C(k) + O$_2$(g) → CO$_2$(g) $\\quad \\Delta H° = -393{,}5$ kJ\nH$_2$(g) + ½O$_2$(g) → H$_2$O(s) $\\quad \\Delta H° = -285{,}8$ kJ\n$2$C(k) + $3$H$_2$(g) → C$_2$H$_6$(g) $\\quad \\Delta H° = -84{,}7$ kJ\n\nolduğuna göre\nC$_2$H$_6$(g) + $\\frac{7}{2}$O$_2$(g) → $2$CO$_2$(g) + $3$H$_2$O(s)\ntepkimesinin standart entalpi değişimi kaç kJ'dir?",
+       "context": "ÖSYM 2021'de sorulan oluşum denklemlerinden yanma entalpisi yapısının etanla kurulmuş hâli.",
+       "options": [
+        "$-1729{,}1$",
+        "$-1559{,}7$",
+        "$-764{,}0$",
+        "$+1559{,}7$",
+        "$+1729{,}1$"
+       ],
+       "answer": 1,
+       "narration": "Birinciyi 2, ikinciyi 3 ile çarp, üçüncüyü ters çevir.",
+       "steps": [
+        {
+         "text": "$2 \\cdot (-393{,}5) + 3 \\cdot (-285{,}8) = -787 - 857{,}4 = -1644{,}4$.",
+         "narration": "İki mol karbon dioksit için birinciyi iki ile, üç mol su için ikinciyi üç ile çarp. Eksi yedi yüz seksen yedi ve eksi sekiz yüz elli yedi virgül dört çıkar; toplamı eksi bin altı yüz kırk dört virgül dört."
+        },
+        {
+         "text": "Etanı girenlere almak için üçüncüyü ters çevir: $+84{,}7$; toplam $-1559{,}7$ kJ.",
+         "narration": "Etan girenlerde olmalı; üçüncüyü ters çevir, artı seksen dört virgül yedi. Toplam eksi bin beş yüz elli dokuz virgül yedi. Ters çevirmeyi unutan eksi bin yedi yüz yirmi dokuz virgül bire gider. Cevap B.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021 modeli: metan yerine etan"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "C$_2$H$_4$(g) + $3$O$_2$(g) → $2$CO$_2$(g) + $2$H$_2$O(s) $\\quad \\Delta H° = -1411$ kJ\nC(k) + O$_2$(g) → CO$_2$(g) $\\quad \\Delta H° = -394$ kJ\nH$_2$(g) + ½O$_2$(g) → H$_2$O(s) $\\quad \\Delta H° = -286$ kJ\n\nolduğuna göre\n$2$C(k) + $2$H$_2$(g) → C$_2$H$_4$(g)\ntepkimesinin standart entalpi değişimi kaç kJ'dir?",
+       "context": "ÖSYM 2026'da sorulan yanma entalpilerinden oluşum entalpisi yapısının etenle kurulmuş hâli.",
+       "options": [
+        "$-2771$",
+        "$-51$",
+        "$+51$",
+        "$+623$",
+        "$+1411$"
+       ],
+       "answer": 2,
+       "narration": "Yanmayı ters çevir.",
+       "steps": [
+        {
+         "text": "$2 \\cdot (-394) + 2 \\cdot (-286) = -1360$ kJ.",
+         "narration": "İki mol karbon ve iki mol hidrojenin yanması: eksi yedi yüz seksen sekiz ve eksi beş yüz yetmiş iki; toplam eksi bin üç yüz altmış."
+        },
+        {
+         "text": "Eten ürün olmalı: yanmayı ters çevir, $+1411$; toplam $+51$ kJ.",
+         "narration": "Eten üründe olmalı; yanma tepkimesini ters çevir, artı bin dört yüz on bir. Toplam artı elli bir kilojoule: eten oluşumu endotermiktir. İşaret hatası yapan eksi elli bire gider. Cevap C.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026 modeli: asetilen yerine eten"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Ters çevirince ne olur?",
+      "wrong": "Tepkime ters çevrilince ΔH'nin değeri değişir ama işareti aynı kalır.",
+      "right": "Ters çevirince **işaret** değişir, büyüklük aynı kalır: $-394$ → $+394$.",
+      "why": "Katsayıyla çarpınca ise **büyüklük** çarpılır.",
+      "narration": "Sık yapılan bir hata: tepkimeyi ters çevirince işareti unutmak. Ters tepkimenin entalpi değişimi aynı büyüklükte, ters işaretlidir: eksi üç yüz doksan dört, artı üç yüz doksan dört olur. Katsayıyla çarpınca ise büyüklük o katsayıyla çarpılır."
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Ekzotermik $\\Delta H < 0$, endotermik $\\Delta H > 0$.",
+    "$\\Delta H = \\sum H_{ürün} - \\sum H_{giren}$; elementler sıfır.",
+    "Oluşum tepkimesi: elementlerden 1 mol bileşik.",
+    "$\\Delta H = \\sum E_{kırılan} - \\sum E_{oluşan}$.",
+    "Hess: ters çevir → işaret değişir; çarp → ΔH çarpılır.",
+    "Geri Ea = tepe − ürünler."
+   ],
+   "warnings": [
+    "Elementlerin oluşum entalpisi **sıfır**.",
+    "Bağ enerjisinde sıra **kırılan − oluşan**.",
+    "Katsayıları **unutma**."
+   ],
+   "narration": "Özetleyelim. Ekzotermik tepkimelerde entalpi değişimi eksi, endotermiklerde artıdır. Tepkime entalpisi, ürünlerin oluşum entalpilerinden girenlerinkinin çıkarılmasıyla bulunur; elementlerin oluşum entalpisi sıfırdır. Oluşum tepkimesi elementlerden bir mol bileşik verir. Bağ enerjileriyle entalpi, kırılanlardan oluşanların çıkarılmasıdır. Hess yasasında ters çevrilen tepkimenin işareti değişir, katsayıyla çarpılanın entalpisi de çarpılır. Geri tepkimenin aktivasyon enerjisi tepe eksi ürünlerdir."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "Bir bağ kırılıyor",
+    "question": "Enerji?",
+    "choices": [
+     "Alınır",
+     "Verilir"
+    ],
+    "answer": 0,
+    "why": "Bağ kırmak **endotermik**."
+   },
+   {
+    "sentence": "Tepkime ters çevrildi",
+    "question": "ΔH?",
+    "choices": [
+     "İşaret değişir",
+     "Aynı kalır"
+    ],
+    "answer": 0,
+    "why": "−394 → **+394**."
+   },
+   {
+    "sentence": "O₂(g)'nin oluşum entalpisi",
+    "question": "Kaç?",
+    "choices": [
+     "Sıfır",
+     "Eksi"
+    ],
+    "answer": 0,
+    "why": "Element **sıfır**."
+   }
+  ],
+  "hook": "Üç entalpi tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "ΔH = **ürünler − girenler**."
+   },
+   {
+    "kind": "warning",
+    "text": "Ters çevir: **işaret** değişir."
+   },
+   {
+    "kind": "term",
+    "term": "Hess",
+    "definition": "ΔH **yoldan** bağımsız."
+   }
+  ],
+  "summary": [
+   "Ekzo ve endotermik",
+   "Oluşum entalpisi",
+   "Bağ enerjisi ve Hess"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-kimya-kampi",
+  "name": "AYT Kimya kampı",
+  "number": 14,
+  "total": 22,
+  "previous": "Sıvı Çözeltiler ve Çözünürlük",
+  "next": "Kimyasal Tepkimelerde Hız",
+  "promise": "Kimya biliminden organik kimyaya AYT Kimya: animasyonlu anlatım, çözümlü sorular.",
+  "task": {
+   "items": [
+    "Bir bardak suda **tuzu**, öbüründe **çamaşır sodasını** çöz; sıcaklık değişimini termometreyle ölç.",
+    "Evdeki üç olayı **endotermik** ya da **ekzotermik** olarak sınıflandır (buz erimesi, mum yanması…).",
+    "Uygulamada AYT Kimyasal Tepkimelerde Enerji testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bir bardak suda tuzu, ayrı bir bardakta çamaşır sodasını çöz ve termometreyle sıcaklık değişimini ölç; hangisi ısı aldı, hangisi verdi? Sonra evdeki üç olayı endotermik ya da ekzotermik diye sınıflandır. Ardından uygulamada yirmi soru çöz. Bir sonraki derste tepkime hızında görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Standart oluşum entalpilerini tablo yap ve kullan: H₂O(s) −286, H₂O(g) −242, CO₂(g) −394, CH₄(g) −75, NH₃(g) −46 kJ/mol; elementlerin kararlı hâli 0. CH₄ + 2O₂ → CO₂ + 2H₂O(s) için ΔH = (−394 − 572) − (−75) = −891 kJ.",
+   "Hâl ve allotropun entalpiye etkisini göster: H₂O(g) → H₂O(s) dönüşümü yaklaşık −44 kJ/mol olduğu için sıvı su oluşan yanmada daha çok ısı açığa çıkar. Standart hâlin grafit olduğunu, elmasın oluşum entalpisinin +1,9 kJ/mol olduğunu ekle.",
+   "Bağ enerjisine ikinci örnek ver: C–H 413, Cl–Cl 243, C–Cl 339, H–Cl 432 kJ/mol verilirse CH₄ + Cl₂ → CH₃Cl + HCl için ΔH = (413 + 243) − (339 + 432) = −115 kJ. Bağ kırmanın her zaman enerji aldığını vurgula.",
+   "Yanma ısılarından Hess uygulaması ekle: ΔH(yanma) C = −394, H₂ = −286, C₂H₂ = −1300 kJ/mol ise 2C + H₂ → C₂H₂ için ΔH = 2(−394) + (−286) − (−1300) = +226 kJ. Denklem ters çevrilince işaretin, katsayıyla çarpılınca ΔH'nin değiştiğini göster.",
+   "Kalorimetre hesabı ekle: 1 g etanol yakılınca 1 kg suyun sıcaklığı 7 °C artıyorsa q = 1000 × 4,18 × 7 ≈ 29,3 kJ; mol başına (46 g) yaklaşık 1346 kJ. Entalpinin hâl fonksiyonu olduğunu, açık, kapalı ve yalıtılmış sisteme günlük birer örnek vererek bağla."
+  ]
+ }
+}

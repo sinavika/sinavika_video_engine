@@ -1,14 +1,17 @@
 import React, {useMemo} from 'react';
 import {Audio, Composition, Folder, Img, Sequence, interpolate, staticFile, useVideoConfig} from 'remotion';
+import {LayoutGuard} from '../Components/Layouts/LayoutGuard';
 import {VideoFrame} from '../Components/Layouts/VideoFrame';
 import {VIDEO_COVER} from '../Configurations/VideoCover';
 import {DEFAULT_FPS, VIDEO_FORMATS, VIDEO_FORMAT_IDS} from '../Configurations/VideoFormats';
-import {OUTRO_SCENE_ID} from '../Scenes/BrandOutroScene';
+import {OUTRO_SCENE_ID} from '../Scenes/AppEndScene';
+import {RhythmProvider} from '../Scenes/Rhythm';
 import {SceneSeries} from '../Scenes/SceneSeries';
 import {createVideoPropsSchema, type VideoProps} from '../Schemas/VideoProps';
 import {
 	compositionId,
 	templateDurationInFrames,
+	templateScenes,
 	type AnyTemplateDefinition,
 } from '../Templates/TemplateDefinition';
 import {lessonTheme} from '../Themes/LessonAccent';
@@ -18,24 +21,27 @@ const SOUNDTRACK_FADE = {in: 0.25, out: 1.6};
 
 /** The component Remotion renders for a template: theme and fonts around the template's scenes. */
 const createVideoComponent = (template: AnyTemplateDefinition) => {
-	const TemplateVideo: React.FC<VideoProps<unknown>> = ({theme, content, voiceClips, lesson, coverSrc, soundtrackSrc}) => {
-		const scenes = useMemo(() => template.buildScenes(content, voiceClips), [content, voiceClips]);
+	const TemplateVideo: React.FC<VideoProps<unknown>> = ({theme, content, voiceClips, lesson, coverSrc, soundtrackSrc, layoutGuard, beats}) => {
+		const scenes = useMemo(() => templateScenes(template, content, voiceClips, beats), [content, voiceClips, beats]);
 		const {fps, durationInFrames} = useVideoConfig();
 		return (
 			<VideoFrame themeId={theme} theme={template.themeFor?.(theme, content) ?? lessonTheme(theme, lesson)}>
-				<SceneSeries
-					scenes={scenes}
-					transition={template.transition}
-					overlay={template.renderOverlay ? (plan) => template.renderOverlay?.(content, plan) : undefined}
-					overlayEndsAt={OUTRO_SCENE_ID}
-					voiceClips={voiceClips}
-				/>
+				<RhythmProvider beats={beats}>
+					<SceneSeries
+						scenes={scenes}
+						transition={template.transition}
+						overlay={template.renderOverlay ? (plan) => template.renderOverlay?.(content, plan) : undefined}
+						overlayEndsAt={OUTRO_SCENE_ID}
+						voiceClips={voiceClips}
+					/>
+				</RhythmProvider>
 				{soundtrackSrc ? <Audio src={staticFile(soundtrackSrc)} volume={(frame) => interpolate(frame, [0, SOUNDTRACK_FADE.in * fps, durationInFrames - SOUNDTRACK_FADE.out * fps, durationInFrames], [0, 1, 1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})} /> : null}
 				{coverSrc ? (
 					<Sequence name="Cover" durationInFrames={Math.max(1, Math.round(VIDEO_COVER.holdSeconds * fps))}>
 						<Img src={staticFile(coverSrc)} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
 					</Sequence>
 				) : null}
+				{layoutGuard ? <LayoutGuard /> : null}
 			</VideoFrame>
 		);
 	};
@@ -71,7 +77,10 @@ export const TemplateCompositions: React.FC<{template: AnyTemplateDefinition}> =
 						key={formatId}
 						id={compositionId(template.id, formatId)}
 						component={component}
-						schema={schema}
+						// No `schema` prop: Remotion serializes every composition, schema objects included, into one
+						// JSON string capped near 230 MB. The course templates' schemas carry the whole visual catalogue
+						// once per card, beat and question; with ~40 visual kinds the list passed the cap and no
+						// video could render (29 Oct 2026). Props are still validated in calculateMetadata below.
 						defaultProps={defaultProps}
 						width={format.width}
 						height={format.height}
@@ -82,7 +91,7 @@ export const TemplateCompositions: React.FC<{template: AnyTemplateDefinition}> =
 							return {
 								props: parsed,
 								fps: parsed.fps,
-								durationInFrames: templateDurationInFrames(template, parsed.content, parsed.fps, parsed.voiceClips),
+								durationInFrames: templateDurationInFrames(template, parsed.content, parsed.fps, parsed.voiceClips, parsed.beats),
 							};
 						}}
 					/>

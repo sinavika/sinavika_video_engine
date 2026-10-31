@@ -1,0 +1,765 @@
+{
+ "topic": {
+  "id": "2BC32341-AB98-3FD0-81F6-DA5322F94CDB",
+  "category": "YKS_TYT",
+  "lesson": "MAT",
+  "code": "MAT_DENKLEM"
+ },
+ "title": "Denklem Çözme",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/MAT/MAT_DENKLEM.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "2 çay 1 simit 35 lira, 1 çay 2 simit 40 lira. 1 çay 1 simit kaç?",
+   "narration": "2 çay ile 1 simit 35 lira, 1 çay ile 2 simit 40 lira. 1 çay ile 1 simit kaç lira? Çayın ve simidin fiyatını ayrı ayrı bulmadan, tek adımda söyleyebilirsin. Denklem çözme, TYT matematiğinin neredeyse her sorusunda kullandığın araç; problemlerin yarısı da aslında bir denklem kurma sorusu. Bu derste bir bilinmeyenli denklemleri, kesirli denklemleri, iki bilinmeyenli sistemleri ve sözel ifadeyi denkleme çevirmeyi adım adım göreceğiz."
+  },
+  "objectives": [
+   "Birinci dereceden denklemi çözüp sağlamasını yapmak",
+   "Çözümün tek, sonsuz ya da hiç olmadığı durumları tanımak",
+   "İki bilinmeyenli sistemi yok etme ve yerine koymayla çözmek",
+   "Sözel bir ifadeyi denkleme çevirmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_DENKLEM_01",
+    "subtopics": [],
+    "title": "Bir bilinmeyenli denklem",
+    "narration": "Denklem bir terazidir: iki tarafa aynı işlemi yaparsan denge bozulmaz.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Terazide denklem",
+      "visual": {
+       "kind": "equation",
+       "steps": [
+        {
+         "left": "3(x - 2) + 5",
+         "right": "2x + 7"
+        },
+        {
+         "left": "3x - 1",
+         "right": "2x + 7",
+         "operation": "parantezi aç"
+        },
+        {
+         "left": "x - 1",
+         "right": "7",
+         "operation": "−2x"
+        },
+        {
+         "left": "x",
+         "right": "8",
+         "operation": "+1"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Önce parantezi açarız: 3 x eksi 6 artı 5, yani 3 x eksi 1.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "İki taraftan 2 x çıkarırız: x eksi 1 eşittir 7. Terazi dengede kalır.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "İki tarafa 1 ekleriz: x eşittir 8. Sağlama: 3 çarpı 6 artı 5, 23; 2 çarpı 8 artı 7, 23.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "narration": "3 çarpı x eksi 2, artı 5 eşittir 2 x artı 7 denklemini terazide çözelim."
+     },
+     {
+      "kind": "predict",
+      "title": "Çözüm var mı?",
+      "context": "$2x + 3 = 2x + 5$",
+      "prompt": "Bu denklemin kaç çözümü vardır?",
+      "choices": [
+       "Bir",
+       "Sonsuz",
+       "Hiç"
+      ],
+      "answer": 2,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "$ax = b$ biçimi",
+        "Çözüm"
+       ],
+       "rows": [
+        [
+         "$a \\neq 0$",
+         "Tek çözüm: $x = \\frac{b}{a}$"
+        ],
+        [
+         "$a = 0$, $b = 0$",
+         "Her sayı: $\\mathbb{R}$"
+        ],
+        [
+         "$a = 0$, $b \\neq 0$",
+         "Çözüm yok: $\\varnothing$"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "beats": [
+       {
+        "narration": "İki taraftan 2 x çıkarınca 3 eşittir 5 kalır. x tamamen kayboldu.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "3 hiçbir zaman 5'e eşit olmaz. x'e ne verirsen ver eşitlik bozuk: çözüm kümesi boş küme.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r3"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "$2x$'ler gidince $3 = 5$ kalır: **yanlış** bir eşitlik. Çözüm kümesi **boştur**. $3 = 3$ kalsaydı her sayı çözüm olurdu.",
+      "narration": "Şimdi sıra sende. Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap hiç. x'ler sadeleşince 3 eşittir 5 gibi yanlış bir eşitlik kalıyor; çözüm yoktur. Eğer 3 eşittir 3 gibi doğru bir eşitlik kalsaydı her gerçel sayı çözüm olurdu. Soru bazen bir katsayıyı sorar: denklemin çözümü olmaması için a kaç olmalı?"
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$(a - 2)x = a + 3$ denkleminin **çözüm kümesi boş küme** olduğuna göre, $a$ kaçtır?",
+       "options": [
+        "$-3$",
+        "$0$",
+        "$2$",
+        "$3$",
+        "$5$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Çözüm yoksa $x$'in katsayısı **0**, sağ taraf **0'dan farklı** olmalı.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çözüm kümesinin boş olması için x'in katsayısı sıfır, sağ taraf ise sıfırdan farklı olmalı."
+        },
+        {
+         "text": "$a - 2 = 0 \\Rightarrow a = 2$; sağ taraf $2 + 3 = 5 \\neq 0$ ✓",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a eksi 2 eşittir 0, yani a 2. Bu durumda sağ taraf 2 artı 3, yani 5; sıfırdan farklı. Denklem 0 çarpı x eşittir 5 olur ve hiçbir x bunu sağlamaz."
+        },
+        {
+         "text": "Cevap **C**. $a = -3$ olsaydı tek çözüm $x = 0$ olurdu.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Cevabımız C. Eksi 3'ü seçen sağ tarafı sıfıra eşitlemiştir; o zaman denklem eksi 5 x eşittir 0 olur ve tek çözümü vardır: x eşittir 0."
+        }
+       ],
+       "narration": "Az önceki tabloyu bir soruda kullanalım.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki çözüm kümesinin üç durumu ve havuzdaki parametreli denklem kalıbı örnek alındı, denklem özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$(a - 3)x = b + 2$ denkleminin çözüm kümesi **gerçel sayılar kümesi** olduğuna göre $a + b$ toplamı kaçtır?",
+       "options": [
+        "$-5$",
+        "$-1$",
+        "$0$",
+        "$1$",
+        "$5$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Sonsuz çözüm: $0 \\cdot x = 0$ olmalı → $a - 3 = 0$ ve $b + 2 = 0$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Denklemin her gerçel sayı için doğru olması ancak sıfır çarpı x eşittir sıfır biçimine dönmesiyle olur. Yani x'in katsayısı a eksi üç sıfır, sağ taraf b artı iki de sıfır olmalı."
+        },
+        {
+         "text": "$a = 3$, $b = -2$ → $a + b = 1$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "a üç, b eksi iki. Toplamları bir. Cevabımız D. Karşılaştır: katsayı sıfır ama sağ taraf sıfır değilse, mesela sıfır çarpı x eşittir beş, hiçbir x sağlamaz; çözüm kümesi boş olur."
+        }
+       ],
+       "narration": "Her x için sağlanması, x'in katsayısının ve sabitin sıfır olmasıyla mümkündür.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki \"Çözüm var mı?\" tablosunun sonsuz çözüm durumu, mevcut boş küme sorusunun karşılığı olarak soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DENKLEM_02",
+    "subtopics": [],
+    "title": "Kesirli denklemler",
+    "narration": "Kesirli bir denklemde ilk iş paydalardan kurtulmaktır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Paydalardan kurtul",
+      "items": [
+       "İki tarafı paydaların **EKOK**'u ile çarp.",
+       "Payda bir ifadeyse önce kesirleri **çarpanlarına ayır**.",
+       "Paydayı **sıfır yapan** değer çözüm olamaz.",
+       "Kesirden önce gelen **eksi işareti** payın tamamına dağılır: $-\\frac{x - 2}{4} = \\frac{-x + 2}{4}$."
+      ],
+      "beats": [],
+      "narration": "Kesirli bir denklemde iki tarafı paydaların EKOK'u ile çarparsın; kesirler kaybolur. Paydada x varsa paydayı sıfır yapan değer asla çözüm olamaz; bulursan atarsın. En sık hata ise kesrin önündeki eksiyi yalnız ilk terime dağıtmak. Eksi, payın tamamına dağılır: eksi x eksi 2 bölü 4, eksi x artı 2 bölü 4'tür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\frac{x + 1}{3} - \\frac{x - 2}{4} = 1$ denklemini sağlayan $x$ kaçtır?",
+       "options": [
+        "$-2$",
+        "$1$",
+        "$2$",
+        "$4$",
+        "$10$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$12 \\cdot$: $4(x + 1) - 3(x - 2) = 12$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "12 ile çarpınca birinci kesir 4 çarpı x artı 1, ikinci kesir 3 çarpı x eksi 2 olur; sağ taraf 12."
+        },
+        {
+         "text": "$4x + 4 - 3x + 6 = 12 \\Rightarrow x + 10 = 12$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Parantezleri açalım. Eksiyi dikkatle dağıtırız: eksi 3 çarpı eksi 2, artı 6. 4 x artı 4 eksi 3 x artı 6; x artı 10 eşittir 12."
+        },
+        {
+         "text": "$x = 2$. Sağlama: $1 - 0 = 1$ ✓. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x eşittir 2. Sağlama: 3 bölü 3, 1; 0 bölü 4, 0; 1 eksi 0, 1. Cevabımız C. Eksiyi yalnız ilk terime dağıtan eksi 6 yazar ve x'i eksi 2 bulur."
+        }
+       ],
+       "narration": "Paydaların EKOK'u 12. İki tarafı 12 ile çarpalım.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki kesirli denklem kalıbı örnek alındı, denklem özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\frac{3}{x - 1} = \\frac{2}{x + 1}$ denklemini sağlayan $x$ değeri kaçtır?",
+       "options": [
+        "$-5$",
+        "$-1$",
+        "$1$",
+        "$5$",
+        "$3$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "İçler dışlar: $3(x + 1) = 2(x - 1)$ → $3x + 3 = 2x - 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İçler dışlar çarpımı: üç çarpı x artı bir, iki çarpı x eksi bire eşit. Üç x artı üç, iki x eksi iki."
+        },
+        {
+         "text": "$x = -5$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x'leri bir tarafa toplarsak x eşittir eksi iki eksi üç, yani eksi beş."
+        },
+        {
+         "text": "Kontrol: $x \\ne 1$, $x \\ne -1$ ✓; $\\frac{3}{-6} = \\frac{2}{-4} = -\\frac{1}{2}$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eksi beş paydaları sıfır yapmaz. Yerine koyalım: üç bölü eksi altı, eksi yarım; iki bölü eksi dört, o da eksi yarım. Eşit. Cevabımız A. Bir ve eksi bir zaten paydayı sıfır yaptığı için çözüm olamaz."
+        }
+       ],
+       "narration": "İçler dışlar çarpımı yapalım; paydayı sıfır yapan değerleri sonra kontrol edelim.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki \"paydalardan kurtul\" kuralı payda kontrolüyle birlikte özgün bir denklemle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DENKLEM_03",
+    "subtopics": [],
+    "title": "İki bilinmeyenli sistemler",
+    "narration": "İki bilinmeyen için iki denklem gerekir. Tek bir denklemle iki bilinmeyeni bulamazsın; sonsuz sayıda ikili onu sağlar. Sistemi çözmenin iki temel yolu var: yok etme ve yerine koyma.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Yok etme ve yerine koyma",
+      "items": [
+       "**Yok etme**: bir bilinmeyenin katsayılarını zıt yap, taraf tarafa topla.",
+       "**Yerine koyma**: bir denklemde bir bilinmeyeni yalnız bırak, diğerine yaz.",
+       "İstenen **bir ifade** ise ($x + y$ gibi) bilinmeyenleri bulmadan **toplayıp çıkararak** ona ulaşmayı dene.",
+       "$\\frac{a}{d} = \\frac{b}{e} \\neq \\frac{c}{f}$ ise doğrular **paralel**, çözüm yok; hepsi eşitse **sonsuz** çözüm."
+      ],
+      "beats": [],
+      "narration": "Yok etme yönteminde bir bilinmeyenin katsayılarını zıt yapar, denklemleri taraf tarafa toplarsın; o bilinmeyen kaybolur. Yerine koymada bir denklemden bir bilinmeyeni yalnız bırakır, öbür denkleme yazarsın. Soru x artı y gibi bir ifade istiyorsa bilinmeyenleri tek tek bulmadan, denklemleri toplayıp çıkararak doğrudan ona ulaşmayı dene. Bir de grafik yorumu: her denklem bir doğrudur. Katsayılar orantılı ama sabitler değilse doğrular paraleldir ve çözüm yoktur; hepsi orantılıysa doğrular çakışır ve sonsuz çözüm vardır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kafede 2 çay ile 1 simit 35 TL, 1 çay ile 2 simit 40 TL'dir. Buna göre 1 çay ile 1 simit toplam kaç TL'dir?",
+       "options": [
+        "20",
+        "25",
+        "30",
+        "35",
+        "40"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$2c + s = 35$ ve $c + 2s = 40$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çayın fiyatına c, simidin fiyatına s diyelim. 2 c artı s, 35; c artı 2 s, 40."
+        },
+        {
+         "text": "Taraf tarafa topla: $3c + 3s = 75$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki denklemi taraf tarafa toplayalım: 3 c artı 3 s, 75."
+        },
+        {
+         "text": "$c + s = 25$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "3'e bölünce c artı s, 25. Çayın ve simidin fiyatını ayrı ayrı bulmamıza gerek kalmadı. Merak edersen: çay 10, simit 15 lira. Cevabımız B."
+        }
+       ],
+       "narration": "ÖSYM 2021'de kahve bileşenleriyle sordu. Bilinmeyenleri tek tek bulmadan gidelim.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2021'in \"bileşen fiyatlarından içecek fiyatı\" sistem kalıbı örnek alındı, bağlam ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$x = 2y - 1$ ve $3x + y = 11$ olduğuna göre, $x \\cdot y$ çarpımı kaçtır?",
+       "options": [
+        "2",
+        "3",
+        "5",
+        "6",
+        "8"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$3(2y - 1) + y = 11 \\Rightarrow 6y - 3 + y = 11 \\Rightarrow 7y = 14$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birinci denklemde x yalnız. İkinci denklemde x yerine 2 y eksi 1 yazalım: 3 çarpı 2 y eksi 1, artı y eşittir 11. 6 y eksi 3 artı y; 7 y eşittir 14."
+        },
+        {
+         "text": "$y = 2$, $x = 2 \\cdot 2 - 1 = 3$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "y eşittir 2. x de 2 çarpı 2 eksi 1, yani 3."
+        },
+        {
+         "text": "$x \\cdot y = 6$. Sağlama: $9 + 2 = 11$ ✓. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x çarpı y, 6. Sağlama: 3 çarpı 3 artı 2, 11. Cevabımız D."
+        }
+       ],
+       "narration": "Bir bilinmeyen zaten yalnız; yerine koyma yöntemi en kısa yol.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki yerine koyma yöntemi kalıbı örnek alındı, denklemler özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$2x + 3y = 5$ ve $4x + ay = 7$ denklem sisteminin **çözüm kümesi boş küme** olduğuna göre, $a$ kaçtır?",
+       "options": [
+        "3",
+        "4",
+        "6",
+        "8",
+        "12"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Paralel: $\\frac{2}{4} = \\frac{3}{a} \\neq \\frac{5}{7}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çözüm yoksa iki doğru paraleldir: x'lerin katsayılarının oranı, y'lerin katsayılarının oranına eşit olmalı, ama sabitlerin oranına eşit olmamalı."
+        },
+        {
+         "text": "$\\frac{1}{2} = \\frac{3}{a} \\Rightarrow a = 6$. Kontrol: $\\frac{5}{7} \\neq \\frac{1}{2}$ ✓",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "2 bölü 4, ikide bir. İkide bir eşittir 3 bölü a; a, 6. Sabitlerin oranı 5 bölü 7, ikide bire eşit değil; doğrular gerçekten paralel."
+        },
+        {
+         "text": "Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Cevabımız C. Sabitlerin oranı da ikide bir olsaydı doğrular çakışır, sonsuz çözüm olurdu."
+        }
+       ],
+       "narration": "Grafik yorumunu kullanalım: çözüm yoksa doğrular paraleldir.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki doğruların paralel, çakışık ve kesişen olma koşulları ve havuzdaki kalıp örnek alındı, denklemler özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DENKLEM_04",
+    "subtopics": [
+     "MAT_DENKLEM_05"
+    ],
+    "title": "Sözel ifadeden denkleme",
+    "narration": "Problemlerin yarısı, bir cümleyi doğru bir denkleme çevirmekle çözülür. Bir sonraki ders olan problemlerde bunu sürekli yapacağız. Bu yüzden önce sözlüğü öğrenelim: hangi kelime hangi işleme karşılık gelir?",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Cümleden cebire",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sözel ifade",
+        "Cebirsel karşılığı"
+       ],
+       "rows": [
+        [
+         "Bir sayının 5 fazlası",
+         "$x + 5$"
+        ],
+        [
+         "Bir sayının 3 katının 4 eksiği",
+         "$3x - 4$"
+        ],
+        [
+         "Bir sayının yarısının 7 fazlası",
+         "$\\frac{x}{2} + 7$"
+        ],
+        [
+         "Farkı 8 olan iki sayı",
+         "$x$ ve $x - 8$"
+        ],
+        [
+         "Ardışık iki çift sayı",
+         "$2n$ ve $2n + 2$"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "beats": [
+       {
+        "narration": "Bir sayının 5 fazlası, x artı 5. Bir sayının 3 katının 4 eksiği, 3 x eksi 4. Sıraya dikkat: önce 3 katı, sonra 4 eksiği.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r1",
+         "r2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Bir sayının yarısının 7 fazlası, x bölü 2 artı 7. Bu, 7 fazlasının yarısı ile aynı şey değildir.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Farkı 8 olan iki sayıya x ve x eksi 8 dersin; ardışık iki çift sayıya 2 n ve 2 n artı 2.",
+        "show": [
+         "r4",
+         "r5"
+        ],
+        "focus": [
+         "r4",
+         "r5"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Cümleyi parça parça çevir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir sayının $\\frac{2}{3}$'ü ile $\\frac{1}{4}$'ünün toplamı 33'tür. Bu sayı kaçtır?",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36",
+        "40"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$\\frac{2}{3}x + \\frac{1}{4}x = 33$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sayının üçte ikisi, iki bölü üç x; dörtte biri, bir bölü dört x. Toplamları otuz üç."
+        },
+        {
+         "text": "Payda 12: $\\frac{8x + 3x}{12} = \\frac{11x}{12} = 33$ → $x = 36$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Paydaları on ikide eşitleyelim: sekiz x artı üç x, on bir x, bölü on iki. On bir x bölü on iki, otuz üç; x, otuz üç çarpı on iki bölü on bir, otuz altı."
+        },
+        {
+         "text": "Kontrol: $24 + 9 = 33$ ✓. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kontrol: otuz altının üçte ikisi yirmi dört, dörtte biri dokuz; toplam otuz üç. Cevabımız D. Kesirli problemlerde sayıyı paydaların EKOK'unun katı seçmek de hızlı bir yoldur."
+        }
+       ],
+       "narration": "Sayıya x diyelim ve cümleyi denkleme çevirelim.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki \"cümleden cebire\" tablosu kesirli özgün bir problemle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Eşit kollu bir terazinin sol kefesinde 3 özdeş kutu ve 50 gramlık bir ağırlık, sağ kefesinde 1 özdeş kutu ve 210 gramlık bir ağırlık vardır. Terazi dengede olduğuna göre bir kutu kaç gramdır?",
+       "options": [
+        "60",
+        "65",
+        "70",
+        "75",
+        "80"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Bir kutu $k$ gram: $3k + 50 = k + 210$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir kutunun kütlesine k diyelim. Denge, iki kefedeki toplam kütlenin eşit olması demek: 3 k artı 50 eşittir k artı 210."
+        },
+        {
+         "text": "$2k = 160 \\Rightarrow k = 80$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki taraftan k ve 50 çıkarırız: 2 k eşittir 160. k, 80 gram."
+        },
+        {
+         "text": "Sağlama: $240 + 50 = 290 = 80 + 210$ ✓. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sağlama: sol kefe 240 artı 50, 290; sağ kefe 80 artı 210, 290. Cevabımız E."
+        }
+       ],
+       "narration": "ÖSYM 2018'de terazi ile sordu. Dengeyi denkleme çevirelim.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2018'in \"terazi dengesi\" denklem kurma kalıbı örnek alındı, bağlam ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir sayının 3 katının 5 eksiği, aynı sayının 2 katının 7 fazlasına eşittir. Bu sayının yarısının 4 fazlası kaçtır?",
+       "options": [
+        "6",
+        "8",
+        "10",
+        "12",
+        "16"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$3x - 5 = 2x + 7$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sayıya x diyelim. 3 katının 5 eksiği, 3 x eksi 5. 2 katının 7 fazlası, 2 x artı 7. İkisi eşit."
+        },
+        {
+         "text": "$x = 12$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki taraftan 2 x çıkarıp 5 ekleriz: x eşittir 12."
+        },
+        {
+         "text": "İstenen: $\\frac{12}{2} + 4 = 10$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Ama soru x'i değil, yarısının 4 fazlasını istiyor: 6 artı 4, 10. Cevabımız C. 12'yi işaretleyen soruyu sonuna kadar okumamıştır."
+        }
+       ],
+       "narration": "Son soru: cümleyi denkleme çevirelim.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki sözel ifadeyi denkleme dönüştürme kalıbı örnek alındı, ifade özgün."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "İki tarafa **aynı işlemi** yap; sonunda **sağlama** yap.",
+    "$x$'ler gidince yanlış eşitlik kalırsa **çözüm yok**, doğru eşitlik kalırsa **her sayı** çözüm.",
+    "Kesirli denklemde **EKOK** ile çarp; eksiyi payın tamamına dağıt.",
+    "İstenen $x + y$ ise denklemleri **topla, çıkar**.",
+    "Katsayılar orantılı, sabitler değilse **paralel**: çözüm yok.",
+    "Soruyu sonuna kadar oku: istenen $x$ mi, başka bir ifade mi?"
+   ],
+   "warnings": [
+    "$-\\frac{x - 2}{4} = \\frac{-x + 2}{4}$",
+    "Paydayı sıfır yapan değer **çözüm olamaz**.",
+    "3 katının 4 eksiği: $3x - 4$, $3(x - 4)$ değil.",
+    "$2x + 3 = 2x + 5$: çözüm yok."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bir market fişinden **iki bilinmeyenli** bir denklem sistemi kur ve çöz.",
+    "$ax + 3 = 5x + b$ denkleminin **sonsuz çözümü** olması için $a$ ve $b$'yi bul.",
+    "Uygulamada Denklem Çözme testinden **20 soru** çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "İki bilinmeyenli sistemlerde çözüm sayısını katsayılarla belirle: tek çözüm, sonsuz çözüm, çözümsüz; parametreli denklemlerde 'çözümü yoksa a kaçtır' tipi.",
+   "Sözel ifadeleri denkleme çevirme sözlüğü ekle: 'fazlası', 'eksiği', 'katı', 'yarısının üç fazlası', 'ardışık', 'toplamları'; her birine örnek cümle ve denklem.",
+   "Üç bilinmeyenli basit sistemleri taraf tarafa toplama yöntemiyle (x + y = 5, y + z = 7, x + z = 6) çöz."
+  ]
+ }
+}

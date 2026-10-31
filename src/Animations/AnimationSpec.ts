@@ -2,9 +2,9 @@ import {z} from 'zod';
 import {EASING_NAMES} from './Motion';
 
 export const ANIMATION_PRESETS = ['none', 'fade', 'slide', 'scale', 'zoom', 'reveal'] as const;
-export type AnimationPreset = (typeof ANIMATION_PRESETS)[number];
+type AnimationPreset = (typeof ANIMATION_PRESETS)[number];
 
-export const ANIMATION_DIRECTIONS = ['up', 'down', 'left', 'right'] as const;
+const ANIMATION_DIRECTIONS = ['up', 'down', 'left', 'right'] as const;
 export type AnimationDirection = (typeof ANIMATION_DIRECTIONS)[number];
 
 /**

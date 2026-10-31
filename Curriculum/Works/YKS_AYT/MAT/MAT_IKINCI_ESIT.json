@@ -1,0 +1,718 @@
+{
+ "topic": {
+  "id": "6B03F7B2-B125-EF79-6D06-304083CFEC9F",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_IKINCI_ESIT"
+ },
+ "title": "2.Dereceden Eşitsizlikler",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/MAT/MAT_IKINCI_ESIT.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "İşareti parabol söyler: eksenin üstü pozitif, altı negatif.",
+   "narration": "İkinci dereceden bir eşitsizliği çözmek, parabolün ekseni nerede kestiğini ve nerede eksenin üstünde kaldığını bilmektir. ÖSYM bu konudan son yıllarda sistem soruları sordu; birinde çözüm kümesini verip katsayıları buldurdu. Bu derste işaret tablosunu, rasyonel eşitsizlikleri ve sistemleri AYT düzeyinde yeni sorularla çalışacağız."
+  },
+  "objectives": [
+   "İkinci dereceden ifadenin işaretini köklere ve diskriminanta göre belirlemek",
+   "Her x için sağlanma koşulunu kullanmak",
+   "Çift katlı kök ve rasyonel ifadeyle işaret tablosu kurmak",
+   "Parametreli sistemlerde tam sayı çözümleri saymak",
+   "Çözüm kümesinden katsayıları bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_IKINCI_ESIT_01",
+    "subtopics": [
+     "MAT_IKINCI_ESIT_02"
+    ],
+    "title": "İşaret ve parabol",
+    "narration": "İkinci dereceden bir ifadenin işaretini parabol söyler: eksenin üstü pozitif, altı negatif. Kökler, işaretin değiştiği yerlerdir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İşaret kuralı",
+      "items": [
+       "$ax^2 + bx + c$: köklerin **dışında** $a$ ile aynı, **arasında** ters işaretli.",
+       "$\\Delta < 0$: her $x$ için $a$ ile **aynı** işaret.",
+       "**Çift katlı** kökte işaret değişmez.",
+       "\"Her $x$ için $> 0$\": $a > 0$ ve $\\Delta < 0$."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -3,
+        5
+       ],
+       "y": [
+        -5,
+        8
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^2 - 2x - 3",
+         "label": "y = x² − 2x − 3",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [
+        {
+         "x": -1,
+         "y": 0,
+         "label": "−1"
+        },
+        {
+         "x": 3,
+         "y": 0,
+         "label": "3"
+        }
+       ],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "beats": [
+       {
+        "narration": "x kare eksi iki x eksi üçün kökleri eksi bir ve üç: parabol x eksenini bu iki noktada keser.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Köklerin arasında parabol eksenin altında: ifade negatif. Dışarıda eksenin üstünde: pozitif, baş katsayı gibi.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Baş katsayı negatif olsaydı parabol aşağı açılırdı ve işaretler yer değiştirirdi: arada pozitif, dışarıda negatif. Kural aynı: dışarıda baş katsayının işareti.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "narration": "İkinci dereceden bir ifade, köklerin dışında baş katsayıyla aynı işareti, köklerin arasında ters işareti alır. Diskriminant negatifse kök yoktur ve ifade her yerde baş katsayının işaretindedir. Çift katlı bir kökte işaret değişmez. Bir ifadenin her x için pozitif olması, baş katsayının pozitif ve diskriminantın negatif olması demektir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Karekök alırken",
+      "wrong": "$x^2 < 9$ ise $x < 3$.",
+      "right": "$x^2 < 9 \\iff -3 < x < 3$",
+      "why": "Karekök alınca iki taraf da hesaba katılır: $x^2 < 9$, $|x| < 3$ demektir. $x = -5$ için $x < 3$ doğru ama $x^2 = 25$.",
+      "narration": "Sık yapılan bir hata: x kare dokuzdan küçükse x üçten küçük demek. x eksi beş olsun: üçten küçük, ama karesi yirmi beş. Doğrusu: x'in mutlak değeri üçten küçük, yani eksi üç ile üç arası. İkinci dereceden eşitsizliği hep köklerle ve işaretle çöz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x^2 - 2x - 8 \\leq 0$\n\neşitsizliğini sağlayan **kaç tane** $x$ tam sayısı vardır?",
+       "options": [
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$",
+        "$9$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$(x - 4)(x + 2) \\leq 0$: kökler $-2$ ve $4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çarpanlara ayıralım: x eksi dört çarpı x artı iki. Kökler eksi iki ve dört."
+        },
+        {
+         "text": "$a > 0$, $\\leq 0$ istendi: kökler **arası**, uçlar dahil: $-2 \\leq x \\leq 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Baş katsayı pozitif; negatif ya da sıfır olduğu yer köklerin arası, uçlar dahil."
+        },
+        {
+         "text": "$-2, -1, 0, 1, 2, 3, 4$: **7** tane.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eksi ikiden dörde yedi tam sayı. Cevap C."
+        }
+       ],
+       "narration": "Kökleri bulup arasını alalım.",
+       "origin": {
+        "changes": "Kökler arası tam sayı kalıbı; ifade yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Her zaman mı?",
+      "prompt": "$x^2 + 4 > 0$ eşitsizliğinin çözüm kümesi nedir?",
+      "choices": [
+       "$\\mathbb{R}$",
+       "$\\varnothing$"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -3,
+        3
+       ],
+       "y": [
+        -1,
+        10
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^2 + 4",
+         "label": "y = x² + 4",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [
+        {
+         "x": 0,
+         "y": 4,
+         "label": "(0, 4)"
+        }
+       ],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "beats": [
+       {
+        "narration": "x kare artı dört: diskriminant eksi on altı, kök yok. Parabol x eksenine hiç değmiyor; en alt noktası dört.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "explanation": "$\\Delta = -16 < 0$, $a = 1 > 0$: parabol hep eksenin **üstünde**; çözüm kümesi bütün gerçel sayılar.",
+      "narration": "Şimdi sıra sende. x kare artı dört sıfırdan büyük eşitsizliğinin çözüm kümesi nedir? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: bütün gerçel sayılar. Kök yok, baş katsayı pozitif: parabol hep eksenin üstünde. Kök bulamayınca boş küme diyen yanılır; boş küme, x kare artı dört sıfırdan küçük olsaydı doğru olurdu."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$m$ bir tam sayı olmak üzere\n\n$x^2 - 2mx + 9 > 0$\n\neşitsizliği **her** $x$ gerçel sayısı için sağlandığına göre, $m$'nin alabileceği kaç farklı değer vardır?",
+       "options": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$a = 1 > 0$ ✓; $\\Delta = 4m^2 - 36 < 0$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Baş katsayı bir, pozitif. Diskriminant dört m kare eksi otuz altı, negatif olmalı."
+        },
+        {
+         "text": "$m^2 < 9$: $-3 < m < 3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "m kare dokuzdan küçük: m eksi üç ile üç arasında, uçlar hariç."
+        },
+        {
+         "text": "$m \\in \\{-2, -1, 0, 1, 2\\}$: **5** değer.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Tam sayılar eksi ikiden ikiye: beş değer. Diskriminantın sıfır olmasına da izin veren yedi bulur; ama o zaman bir noktada ifade sıfır olur. Cevap D."
+        }
+       ],
+       "narration": "Her x için pozitif: baş katsayı pozitif, diskriminant negatif.",
+       "origin": {
+        "changes": "Her x için pozitiflik kalıbı; ifade yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$(x - 1)^2 (x + 2)(3 - x) \\geq 0$\n\neşitsizliğini sağlayan $x$ tam sayılarının toplamı kaçtır?",
+       "options": [
+        "$-2$",
+        "$0$",
+        "$3$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$(x - 1)^2 \\geq 0$: işareti belirlemez; $x = 1$ zaten çözüm.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x eksi birin karesi negatif olamaz; işareti değiştirmez. x bir iken ifade sıfır, eşitsizliği sağlar."
+        },
+        {
+         "text": "$(x + 2)(3 - x) \\geq 0$: $-2 \\leq x \\leq 3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Geriye x artı iki çarpı üç eksi x kalır: kökler eksi iki ve üç; baş katsayı eksi, kökler arası pozitif: eksi iki ile üç arası."
+        },
+        {
+         "text": "Tam sayılar $-2, \\dots, 3$: toplam $3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eksi ikiden üçe tam sayılar; eksi iki ile iki birbirini götürür: toplam üç. Cevap C."
+        }
+       ],
+       "narration": "Çift katlı kökte işaret değişmez; öteki çarpanlara bakalım.",
+       "origin": {
+        "changes": "Çift katlı kökle işaret kalıbı; ifade yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_IKINCI_ESIT_03",
+    "subtopics": [
+     "MAT_IKINCI_ESIT_04"
+    ],
+    "title": "Çarpanlı ve rasyonel eşitsizlikler",
+    "narration": "Birden çok çarpan ya da bir kesir varsa işaret tablosu kurulur. Kesirde paydanın kökleri asla çözüme girmez.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İşaret tablosu",
+      "items": [
+       "Bütün kökleri **sırala**; en sağ aralığın işareti: baş katsayıların çarpımının işareti.",
+       "**Tek** katlı kökte işaret değişir, **çift** katlıda değişmez.",
+       "Kesirde **payda** kökleri her zaman **hariç** (boş nokta).",
+       "Kesri çarpıma çevirme: payda sıfırdan farklı kalmak koşuluyla $\\frac{P}{Q} \\leq 0 \\iff P \\cdot Q \\leq 0$."
+      ],
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        -5,
+        4
+       ],
+       "intervals": [
+        {
+         "from": -3,
+         "to": 2,
+         "closedFrom": false,
+         "closedTo": true,
+         "label": "kesir ≤ 0",
+         "row": 0
+        }
+       ],
+       "points": [
+        {
+         "x": -3,
+         "label": "payda: hariç",
+         "open": true
+        },
+        {
+         "x": 2,
+         "label": "pay: dahil",
+         "open": false
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "x eksi iki bölü x artı üç: kökler eksi üç ve iki.",
+        "show": [
+         "p1",
+         "p2"
+        ],
+        "focus": [
+         "p1",
+         "p2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Arada kesir negatif. İki, payın kökü: kesir sıfır, dahil. Eksi üç, paydanın kökü: kesir tanımsız, hariç.",
+        "show": [
+         "i1"
+        ],
+        "focus": [
+         "i1"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "İşaret tablosu için bütün kökleri sırala. En sağ aralığın işareti, baş katsayıların çarpımının işaretidir; tek katlı bir köke gelince işaret değişir, çift katlıda değişmez. Kesirli bir eşitsizlikte paydanın kökleri hiçbir zaman çözüme girmez. Kesri çarpım gibi düşünebilirsin; yeter ki paydayı sıfır yapan değerleri dışarıda tut."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\dfrac{x - 2}{x + 3} \\leq 0$\n\neşitsizliğini sağlayan **kaç tane** $x$ tam sayısı vardır?",
+       "options": [
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$",
+        "$9$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Kökler: pay $2$, payda $-3$. Arada kesir negatif.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Payın kökü iki, paydanınki eksi üç. İkisinin arasında kesir negatif."
+        },
+        {
+         "text": "$-3 < x \\leq 2$: payda kökü hariç, pay kökü dahil.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eksi üç hariç, iki dahil."
+        },
+        {
+         "text": "$-2, -1, 0, 1, 2$: **5** tane.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eksi ikiden ikiye beş tam sayı. Eksi üçü de katan altı bulur. Cevap A."
+        }
+       ],
+       "narration": "Kural kartında gördük; tam sayıları sayalım.",
+       "origin": {
+        "changes": "Rasyonel eşitsizlik kalıbı; ifade yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\dfrac{x^2 - 9}{x^2 - 4x + 4} \\geq 0$\n\neşitsizliğinin çözüm kümesinde **bulunmayan** kaç tane tam sayı vardır?",
+       "options": [
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Payda $(x - 2)^2 > 0$ ($x \\neq 2$): işareti belirleyen **pay**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Payda x eksi ikinin karesi: iki dışında hep pozitif. İşareti pay belirler; ama iki çözüme giremez."
+        },
+        {
+         "text": "$x^2 - 9 \\geq 0$: $x \\leq -3$ ya da $x \\geq 3$; $x = 2$ zaten dışarıda.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x kare eksi dokuz sıfırdan büyük eşit: x eksi üçten küçük eşit ya da üçten büyük eşit. İki zaten bu kümede değil."
+        },
+        {
+         "text": "Bulunmayan tam sayılar: $-2, -1, 0, 1, 2$: **5** tane.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çözümde olmayan tam sayılar eksi ikiden ikiye: beş tane. Cevap B."
+        }
+       ],
+       "narration": "Payda bir tam kare: işaretini değiştirmez, ama kökü yasak.",
+       "origin": {
+        "changes": "Tam kare paydalı rasyonel eşitsizlik kalıbı; ifade yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ pozitif tam sayılar olmak üzere\n\n$(x - a)(x + 2a) < 0$\n\n$(x - b)(x + 2b) > 0$\n\neşitsizlik sistemi veriliyor. $a + b = 10$ olmak üzere bu sistemin çözüm kümesinde **10** tane tam sayı olduğuna göre, $a \\cdot b$ çarpımı kaçtır?",
+       "options": [
+        "$9$",
+        "$16$",
+        "$21$",
+        "$24$",
+        "$25$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Birinci: $-2a < x < a$. İkinci: $x < -2b$ ya da $x > b$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birincide kökler a ve eksi iki a; arası negatif: eksi iki a ile a arası. İkincide dışarısı pozitif: eksi iki b'den küçük ya da b'den büyük."
+        },
+        {
+         "text": "Kesişim ($a > b$): $(-2a, -2b) \\cup (b, a)$. Tam sayı sayısı $(2a - 2b - 1) + (a - b - 1) = 3(a - b) - 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a, b'den büyükse kesişim iki parça: eksi iki a ile eksi iki b arası ve b ile a arası. Tam sayılar: iki a eksi iki b eksi bir, artı a eksi b eksi bir; toplam üç çarpı a eksi b, eksi iki."
+        },
+        {
+         "text": "$3(a - b) - 2 = 10$: $a - b = 4$; $a + b = 10$: $a = 7$, $b = 3$. $a \\cdot b = 21$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç çarpı a eksi b eksi iki, on: a eksi b dört. a artı b on ile birlikte a yedi, b üç. Çarpım yirmi bir. Cevap C."
+        }
+       ],
+       "narration": "ÖSYM 2023'te bu kalıbı sordu. Her eşitsizliği çözüp kesiştirelim.",
+       "origin": {
+        "changes": "ÖSYM 2023 parametreli sistem kalıbı örnek alındı; toplam ve tam sayı adedi yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$m > 1$ olmak üzere\n\n$x^2 - (m + 1)x + m < 0$\n\neşitsizliğinin çözüm kümesinde **tam 3** tane tam sayı bulunduğuna göre, $m$ kaçtır?",
+       "options": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$x^2 - (m + 1)x + m = (x - 1)(x - m)$: kökler $1$ ve $m$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x kare eksi m artı bir x artı m: x eksi bir çarpı x eksi m. Kökler bir ve m."
+        },
+        {
+         "text": "$< 0$: kökler arası, $1 < x < m$; tam sayılar $2, \\dots, m - 1$: $m - 2$ tane.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Negatif olduğu yer kökler arası: bir ile m arası, uçlar hariç. Aradaki tam sayılar ikiden m eksi bire: m eksi iki tane."
+        },
+        {
+         "text": "$m - 2 = 3$: $m = 5$.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "m eksi iki, üç: m beş. Denetim: iki, üç, dört. Uçları da sayan dört bulur. Cevap C."
+        }
+       ],
+       "narration": "İfade çarpanlarına ayrılıyor; kökler 1 ve m.",
+       "origin": {
+        "changes": "Parametreli tam sayı çözüm kalıbı; ifade yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_IKINCI_ESIT_05",
+    "subtopics": [],
+    "title": "Eşitsizlik sistemleri",
+    "narration": "Sistemde her eşitsizliği ayrı çözer, kesişimi alırsın. ÖSYM 2021'de tersini sordu: çözüm kümesinden katsayıları buldurdu. İki yönü de sayı doğrusunu çizerek düşünmek, hatayı en aza indirir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sistem",
+      "items": [
+       "Her eşitsizliği **ayrı** çöz, sayı doğrusunda **kesiştir**.",
+       "$ax^2 + bx + c \\geq 0$ çözümü $[p, q]$ ise $a < 0$ ve kökler $p$, $q$.",
+       "Kökler ve sabit terim biliniyorsa: $a(x - p)(x - q)$, $a \\cdot pq = c$."
+      ],
+      "beats": [],
+      "narration": "Bir sistemde her eşitsizliği ayrı çözer, sonra sayı doğrusunda kesiştirirsin. Tersten gidersen: ikinci dereceden bir ifadenin büyük eşit sıfır olduğu yer kapalı bir aralıksa baş katsayı negatiftir ve kökler aralığın uçlarıdır. Kökleri ve sabit terimi bildiğinde baş katsayıyı da bulursun."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$, $b$, $c$ ve $d$ gerçel sayılar olmak üzere\n\n$ax^2 + bx + 15 \\geq 0$\n\n$cx^2 + dx + 8 \\leq 0$\n\neşitsizlik sisteminin çözüm kümesi $[-3, -1] \\cup [2, 5]$'tir.\n\nBuna göre, $a + b + c + d$ toplamı kaçtır?",
+       "options": [
+        "$-2$",
+        "$-1$",
+        "$0$",
+        "$1$",
+        "$2$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Birincinin çözümü $[-3, 5]$, ikincininki $x \\leq -1$ ya da $x \\geq 2$: kesişim $[-3, -1] \\cup [2, 5]$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kesişim iki parça: dıştaki uçlar eksi üç ve beş birinciden, içteki uçlar eksi bir ve iki ikinciden gelir. Birinci eksi üç ile beş arasında sağlanıyor; ikinci eksi birin solunda ve ikinin sağında."
+        },
+        {
+         "text": "Birinci: $a(x + 3)(x - 5)$, $a \\cdot (-15) = 15$: $a = -1$; $-(x^2 - 2x - 15)$: $b = 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birinci ifade a çarpı x artı üç çarpı x eksi beş; sabit terim a çarpı eksi on beş, on beş: a eksi bir. Açınca eksi x kare artı iki x artı on beş: b iki."
+        },
+        {
+         "text": "İkinci: $c(x + 1)(x - 2)$, $c \\cdot (-2) = 8$: $c = -4$; $-4(x^2 - x - 2)$: $d = 4$. Toplam $-1 + 2 - 4 + 4 = 1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İkinci ifade c çarpı x artı bir çarpı x eksi iki; sabit terim eksi iki c, sekiz: c eksi dört. Açınca d dört. Toplam bir. Cevap D."
+        }
+       ],
+       "narration": "ÖSYM 2021'de bu kalıbı sordu. Kesişimden her eşitsizliğin kendi çözümünü geri kuralım.",
+       "origin": {
+        "changes": "ÖSYM 2021 çözüm kümesinden katsayı kalıbı örnek alındı; kökler ve sabitler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x^2 - 5x + 4 < 0$\n\n$x^2 - 9 \\geq 0$\n\neşitsizlik sistemini sağlayan **kaç tane** $x$ tam sayısı vardır?",
+       "options": [
+        "$0$",
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Birinci: $(x - 1)(x - 4) < 0$: $1 < x < 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birinci: x eksi bir çarpı x eksi dört negatif: bir ile dört arası, uçlar hariç."
+        },
+        {
+         "text": "İkinci: $x \\leq -3$ ya da $x \\geq 3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İkinci: eksi üçten küçük eşit ya da üçten büyük eşit."
+        },
+        {
+         "text": "Kesişim $[3, 4)$: yalnız $x = 3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kesişim üç ile dört arası, üç dahil dört hariç: yalnız üç. Bir tam sayı. Cevap B."
+        }
+       ],
+       "narration": "İki çözümü kesiştirelim.",
+       "origin": {
+        "changes": "İki eşitsizlikli sistem kalıbı; ifadeler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x^2 - 6x + k \\leq 0$\n\neşitsizliğinin çözüm kümesi **tek elemanlı** olduğuna göre, $k$ kaçtır?",
+       "options": [
+        "$-9$",
+        "$0$",
+        "$6$",
+        "$9$",
+        "$36$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$a > 0$; $\\leq 0$ yalnız kökler arasında. Tek eleman: kökler **çakışık**, $\\Delta = 0$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Baş katsayı pozitif; ifade yalnız kökler arasında negatif. Tek bir x sağlıyorsa iki kök çakışık olmalı: diskriminant sıfır."
+        },
+        {
+         "text": "$36 - 4k = 0$: $k = 9$; çözüm kümesi $\\{3\\}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Otuz altı eksi dört k sıfır: k dokuz. İfade x eksi üçün karesi; yalnız üçte sıfır. Cevap D."
+        }
+       ],
+       "narration": "Tek bir x sağlıyorsa parabol eksene tek noktada değmeli.",
+       "origin": {
+        "changes": "Tek elemanlı çözüm kümesi kalıbı; ifade yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Kökler arası **ters**, dışı $a$ ile **aynı** işaret.",
+    "Her $x$ için $> 0$: $a > 0$, $\\Delta < 0$.",
+    "Çift katlı kökte işaret **değişmez**.",
+    "Payda kökü **her zaman hariç**.",
+    "Sistemde **kesişim**.",
+    "Kapalı aralıkta $\\geq 0$ ise $a < 0$."
+   ],
+   "warnings": [
+    "Kök yoksa çözüm **boş değil**, ya hepsi ya hiçbiri.",
+    "Kesri sadeleştirip paydayı **unutma**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "ÖSYM 2023 sorusunu **kendin** çöz: $a + b = 8$ ve çözüm kümesinde 16 tam sayı varsa $a \\cdot b$ kaç?",
+    "$\\frac{(x + 1)^2 (x - 3)}{x - 5} \\leq 0$ eşitsizliğinin çözüm kümesini **işaret tablosuyla** bul.",
+    "Uygulamada AYT 2. Dereceden Eşitsizlikler testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Katlı köklü işaret tablosunu örnekle: (x − 1)²(x + 2)(3 − x) ≥ 0 için kökler −2, 1 (çift katlı) ve 3; en sağ aralık negatif. Çözüm [−2, 3]; x = 1'de işaret değişmez.",
+   "Rasyonel eşitsizliğe örnek ver: (x − 2)/(x + 1) ≤ 0 çözümü (−1, 2]; payın kökü dahil, paydanın kökü her zaman hariçtir.",
+   "Her x için pozitiflik koşulunu örnekle: x² − 2mx + m + 6 > 0 her x için doğruysa Δ < 0: m² − m − 6 < 0, −2 < m < 3.",
+   "Köklerin bir sayıya göre konumunu ekle: f(x) = x² − 2x + m'nin köklerinden biri 1'den büyük, öteki küçükse a × f(1) < 0 olmalı: m − 1 < 0, m < 1.",
+   "Eşitsizlik sistemine örnek ver: x² − 4 < 0 ve x² − x − 2 ≥ 0 birlikte çözülürse (−2, 2) ile (−∞, −1] ∪ [2, ∞) kesişir: (−2, −1]."
+  ]
+ }
+}

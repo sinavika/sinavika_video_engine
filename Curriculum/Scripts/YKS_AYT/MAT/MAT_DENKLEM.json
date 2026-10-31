@@ -1,0 +1,626 @@
+{
+ "topic": {
+  "id": "FD99D6D1-50EE-E17B-9DDF-9E922D497921",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_DENKLEM"
+ },
+ "title": "Denklem Çözme",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "YKS/AYT/CikmisSorular/MAT.jsonl (ÖSYM 2020 kareli sistem, 2021 pozitif tam sayılı sistem, 2023 oranlı sistem kalıpları örnek alındı, sorular yeniden kuruldu; eşlenen üç analitik geometri sorusu VeriDuzeltmeleri #66)",
+  "YKS/AYT/Sorular/MAT/MAT_DENKLEM.jsonl (yapı ve zorluk için)",
+  "AYT'de bu konunun konu anlatımı yok: kurallar TYT Denklem Çözme dersinden kısaltıldı, her cevap tam hesapla denetlendi"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Bulduğun kök, çözüm olmayabilir.",
+   "narration": "Bir denklemi çözdün, iki kök buldun. Peki ikisi de çözüm mü? Kesirli bir denklemde ikisi de paydayı sıfır yapıyorsa, çözüm kümesi boştur. ÖSYM 2020'den bu yana AYT'de bu konudan her yıl bir denklem sistemi sordu. Bu derste denklemlerin üç durumunu ve sistemlerin kalıplarını AYT düzeyinde yeni sorularla çözeceğiz."
+  },
+  "objectives": [
+   "Denklemin tek, sonsuz ya da hiç çözümü olduğu durumları ayırmak",
+   "Kesirli denklemde yasak kökleri elemek",
+   "Kareli ve oranlı denklem sistemlerini çözmek",
+   "Pozitif tam sayılı sistemlerde tek-çift ve sınırla daraltmak",
+   "Sözel ifadeden denklem kurmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_DENKLEM_01",
+    "subtopics": [
+     "MAT_DENKLEM_02"
+    ],
+    "title": "Bir bilinmeyenli ve kesirli denklemler",
+    "narration": "Bir denklem bir çözüm, hiç çözüm ya da sonsuz çözüm verebilir. AYT'nin ilk iki tuzağı bu üç durumda ve kesirli denklemin paydasında.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kısa tekrar: üç durum",
+      "items": [
+       "$ax = b$: $a \\neq 0$ ise **tek** çözüm $x = \\frac{b}{a}$.",
+       "$a = 0$, $b = 0$: her $x$ çözüm (**sonsuz**); $a = 0$, $b \\neq 0$: çözüm **yok**.",
+       "Kesirli denklemde paydayı sıfır yapan değer **çözüm olamaz**; sonunda denetle.",
+       "İki tarafı $x$ ile **bölme**: $x = 0$ kökü kaybolur."
+      ],
+      "narration": "Bir bilinmeyenli bir denklemi a x eşittir b biçimine getir. a sıfırdan farklıysa tek çözüm var. a da b de sıfırsa her x çözümdür; a sıfır, b sıfırdan farklıysa hiç çözüm yoktur. Kesirli denklemde paydayı sıfır yapan değer çözüm olamaz; paydaları kaldırdıktan sonra bulduğun kökleri mutlaka denetle. Ve iki tarafı x'e bölme: x sıfır kökünü kaybedersin."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$(a - 2)x + 6 = 3x + b$\n\ndenklemi **her** $x$ gerçel sayısı için sağlandığına göre, $a + b$ toplamı kaçtır?",
+       "options": [
+        "$5$",
+        "$8$",
+        "$11$",
+        "$13$",
+        "$14$"
+       ],
+       "answer": 2,
+       "narration": "Her x için sağlanıyorsa iki taraf aynı ifade olmalı.",
+       "steps": [
+        {
+         "text": "$x$'in katsayıları eşit: $a - 2 = 3$, $a = 5$.",
+         "narration": "İki tarafta x'in katsayıları eşit olmalı: a eksi iki üç, a beş."
+        },
+        {
+         "text": "Sabitler eşit: $b = 6$. $a + b = 11$.",
+         "narration": "Sabit terimler de eşit: b altı. Toplam on bir. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Özdeşlik olan denklem kalıbı; katsayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$m$ bir gerçel sayı olmak üzere\n\n$(m^2 - 4)\\,x = m + 2$\n\ndenkleminin çözüm kümesi **boş küme** olduğuna göre, $m$ kaçtır?",
+       "options": [
+        "$-2$",
+        "$0$",
+        "$1$",
+        "$2$",
+        "$4$"
+       ],
+       "answer": 3,
+       "narration": "Çözüm yoksa x'in katsayısı sıfır, sağ taraf sıfırdan farklı olmalı.",
+       "steps": [
+        {
+         "text": "$m^2 - 4 = 0$: $m = 2$ ya da $m = -2$.",
+         "narration": "Katsayı sıfır: m kare eksi dört sıfır, m iki ya da eksi iki."
+        },
+        {
+         "text": "$m = -2$: sağ taraf $0$, denklem $0 = 0$, **her** $x$ çözüm.",
+         "narration": "m eksi iki olursa sağ taraf da sıfır: sıfır eşittir sıfır, her x çözüm. Bu boş küme değil, sonsuz çözüm.",
+         "eliminate": [
+          "A"
+         ]
+        },
+        {
+         "text": "$m = 2$: $0 \\cdot x = 4$, çözüm **yok**.",
+         "narration": "m iki olursa sıfır çarpı x eşittir dört: hiçbir x sağlamaz. Çözüm kümesi boş. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Çözümü olmayan denklem kalıbı; ifade yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "x'e bölmek",
+      "wrong": "$x(x - 2) = 3x$ → iki tarafı $x$'e böl: $x = 5$.",
+      "right": "$x(x - 2) - 3x = 0$ → $x(x - 5) = 0$: $x = 0$ ya da $x = 5$.",
+      "why": "Bölerken $x \\neq 0$ varsayılmış olur; $x = 0$ kökü kaybolur. Bölmek yerine bir tarafa toplayıp çarpanlara ayır.",
+      "narration": "Sık yapılan bir hata: iki tarafta x var diye x'e bölmek. Böyle yapınca x sıfır kökü sessizce kaybolur. Bunun yerine her şeyi bir tarafa topla ve ortak çarpana al: x çarpı x eksi beş, sıfır. İki kök var: sıfır ve beş."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\dfrac{x + 1}{x - 2} - \\dfrac{3}{x} = \\dfrac{6}{x^2 - 2x}$\n\ndenkleminin çözüm kümesi aşağıdakilerden hangisidir?",
+       "options": [
+        "$\\{0\\}$",
+        "$\\{2\\}$",
+        "$\\{0, 2\\}$",
+        "$\\{-2\\}$",
+        "$\\varnothing$"
+       ],
+       "answer": 4,
+       "narration": "Paydalar: x eksi iki, x ve x kare eksi iki x. Önce yasak değerleri yazalım.",
+       "steps": [
+        {
+         "text": "Yasak: $x \\neq 0$, $x \\neq 2$ ($x^2 - 2x = x(x - 2)$).",
+         "narration": "x kare eksi iki x, x çarpı x eksi iki. x sıfır da iki de olamaz."
+        },
+        {
+         "text": "$x(x - 2)$ ile çarp: $x(x + 1) - 3(x - 2) = 6$ → $x^2 - 2x = 0$.",
+         "narration": "İki tarafı x çarpı x eksi ikiyle çarpalım: x çarpı x artı bir, eksi üç çarpı x eksi iki, eşittir altı. Düzenleyince x kare eksi iki x, sıfır."
+        },
+        {
+         "text": "Kökler $0$ ve $2$: ikisi de **yasak**. Çözüm kümesi boş.",
+         "narration": "Kökler sıfır ve iki; ama ikisi de paydayı sıfır yapıyor. Hiçbiri çözüm değil: çözüm kümesi boş küme. Denetlemeyen sıfır ve iki der. Cevap E.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Kesirli denklemde yasak kök kalıbı; denklem yeni kuruldu"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DENKLEM_03",
+    "title": "Denklem sistemleri",
+    "narration": "ÖSYM 2020, 2021 ve 2023'te bu konudan hep denklem sistemi sordu: kareli bilinmeyenler, pozitif tam sayılar ve oran.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sistem çözme",
+      "items": [
+       "**Yok etme**: bir bilinmeyenin katsayılarını eşitleyip çıkar; **yerine koyma**: birini yalnız bırak.",
+       "$x^2$, $y^2$ geçiyorsa onları **yeni bilinmeyen** gibi düşün.",
+       "Pozitif tam sayılarda **tek-çift** ve **sınır** ile değerleri daralt.",
+       "$\\frac{a_1}{a_2} = \\frac{b_1}{b_2} \\neq \\frac{c_1}{c_2}$: çözüm yok; hepsi eşitse sonsuz çözüm."
+      ],
+      "narration": "İki bilinmeyenli bir sistemi yok etme ya da yerine koyma yoluyla çözersin. Bilinmeyenlerin kareleri geçiyorsa kareleri yeni bilinmeyen gibi düşün. Pozitif tam sayı istendiğinde tek-çift ve sınırlarla değerleri daraltırsın. İki doğrusal denklemde katsayıların oranı eşit, sabitlerin oranı farklıysa çözüm yoktur; hepsi eşitse aynı denklemi iki kez yazmışsındır ve sonsuz çözüm vardır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x$ ve $y$ pozitif gerçel sayılar olmak üzere\n\n$x^2 + 2y^2 = 9$\n\n$3x^2 - y^2 = 13$\n\nolduğuna göre, $x \\cdot y$ çarpımı kaçtır?",
+       "options": [
+        "$\\sqrt{5}$",
+        "$\\sqrt{6}$",
+        "$\\sqrt{10}$",
+        "$2\\sqrt{3}$",
+        "$2\\sqrt{5}$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2020'de bu kalıbı sordu. x kare ve y kareyi bilinmeyen gibi çözelim.",
+       "steps": [
+        {
+         "text": "İkinci denklemi 2 ile çarp: $6x^2 - 2y^2 = 26$.",
+         "narration": "İkinci denklemi ikiyle çarpalım: altı x kare eksi iki y kare, yirmi altı."
+        },
+        {
+         "text": "Topla: $7x^2 = 35$, $x^2 = 5$; $y^2 = 3 \\cdot 5 - 13 = 2$.",
+         "narration": "Birinciyle toplayınca y kareler gider: yedi x kare otuz beş, x kare beş. İkinci denklemden y kare iki."
+        },
+        {
+         "text": "$x \\cdot y = \\sqrt{5} \\cdot \\sqrt{2} = \\sqrt{10}$",
+         "narration": "x ve y pozitif: x kök beş, y kök iki; çarpımları kök on. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 kareli denklem sistemi kalıbı örnek alındı; katsayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$, $x$ ve $y$ pozitif gerçel sayıları için\n\n$x^2 + y^2 = 5a$\n\n$2x^2 - y^2 = a$\n\nolduğuna göre, $\\dfrac{y}{x}$ oranı kaçtır?",
+       "options": [
+        "$1$",
+        "$\\frac{\\sqrt{6}}{2}$",
+        "$\\sqrt{2}$",
+        "$\\sqrt{3}$",
+        "$\\frac{3}{2}$"
+       ],
+       "answer": 1,
+       "narration": "ÖSYM 2023'te oran sordu. a bilinmiyor ama oran a'dan bağımsız çıkacak.",
+       "steps": [
+        {
+         "text": "Topla: $3x^2 = 6a$, $x^2 = 2a$.",
+         "narration": "İki denklemi toplayalım: y kareler gider, üç x kare altı a; x kare iki a."
+        },
+        {
+         "text": "$y^2 = 5a - 2a = 3a$.",
+         "narration": "Birinci denklemden y kare, beş a eksi iki a, üç a."
+        },
+        {
+         "text": "$\\frac{y}{x} = \\sqrt{\\frac{3a}{2a}} = \\sqrt{\\frac{3}{2}} = \\frac{\\sqrt{6}}{2}$",
+         "narration": "Oran: kök içinde üç a bölü iki a; a sadeleşir, kök üç bölü iki. Paydayı kökten kurtarınca kök altı bölü iki. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2023 oranlı denklem sistemi kalıbı örnek alındı; katsayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Kaç çözüm?",
+      "prompt": "$2x + 3y = 12$ denkleminin **pozitif tam sayı** çözümü kaç tanedir?",
+      "choices": [
+       "1",
+       "Sonsuz"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -0.5,
+        7
+       ],
+       "y": [
+        -0.5,
+        5
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "(12 - 2x)/3",
+         "label": "2x + 3y = 12"
+        }
+       ],
+       "points": [
+        {
+         "x": 3,
+         "y": 2,
+         "label": "(3, 2)"
+        },
+        {
+         "x": 0,
+         "y": 4,
+         "label": "(0, 4)"
+        },
+        {
+         "x": 6,
+         "y": 0,
+         "label": "(6, 0)"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Doğrunun üstünde sonsuz nokta var; ama koordinatları tam sayı olanlar az: sıfır dört, üç iki ve altı sıfır."
+       },
+       {
+        "narration": "Pozitif tam sayı isteniyorsa sıfırlı olanlar gider; yalnız üç, iki kalır."
+       }
+      ],
+      "explanation": "Gerçel sayılarda sonsuz çözüm var; **pozitif tam sayılarda** yalnız $(3, 2)$: $y$ çift olmalı ve $3y < 12$.",
+      "narration": "Şimdi sıra sende. İki x artı üç y eşittir on iki denkleminin pozitif tam sayı çözümü kaç tane? Biraz düşün.",
+      "explanationNarration": "Doğru cevap bir. Gerçel sayılarda bu denklemin sonsuz çözümü var; doğrunun her noktası. Ama pozitif tam sayılar istenince y çift olmalı, çünkü iki x çift; ve üç y on ikiden küçük olmalı. Geriye y iki, x üç kalır. Pozitif tam sayı koşulu sonsuz çözümü bire indirdi; ÖSYM 2021'de bu fikri üslü bir sistemle sordu."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$, $b$ ve $c$ pozitif tam sayıları için\n\n$2^a + 5^b = 33$\n\n$2^b + 5^c = 129$\n\neşitlikleri veriliyor.\n\nBuna göre, $a + b + c$ toplamı kaçtır?",
+       "options": [
+        "$6$",
+        "$7$",
+        "$8$",
+        "$9$",
+        "$10$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2021'de üslü terimlerle pozitif tam sayılı bir sistem sordu. Sınırla daraltalım: kuvvetler hızlı büyür.",
+       "steps": [
+        {
+         "text": "$5^b < 33$: $b \\in \\{1, 2\\}$. $b = 1$: $2^a = 28$ olmaz; $b = 2$: $2^a = 8$, $a = 3$.",
+         "narration": "Beş üzeri b otuz üçten küçük: b bir ya da iki. b bir olursa iki üzeri a yirmi sekiz, ikinin kuvveti değil. b iki olursa iki üzeri a sekiz, a üç."
+        },
+        {
+         "text": "$2^2 + 5^c = 129$: $5^c = 125$, $c = 3$.",
+         "narration": "İkinci denklemde b iki: dört artı beş üzeri c, yüz yirmi dokuz. Beş üzeri c yüz yirmi beş, c üç."
+        },
+        {
+         "text": "$a + b + c = 3 + 2 + 3 = 8$",
+         "narration": "Toplam sekiz. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021 üslü pozitif tam sayılı sistem kalıbı örnek alındı; tabanlar ve sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$m$ bir gerçel sayı olmak üzere\n\n$mx + 2y = 3$\n\n$8x + my = 6$\n\ndenklem sisteminin **çözümü olmadığına** göre, $m$ kaçtır?",
+       "options": [
+        "$-4$",
+        "$-2$",
+        "$2$",
+        "$4$",
+        "$8$"
+       ],
+       "answer": 0,
+       "narration": "Çözüm yoksa iki doğru paralel: katsayılar orantılı, sabitler değil.",
+       "steps": [
+        {
+         "text": "$\\frac{m}{8} = \\frac{2}{m}$: $m^2 = 16$, $m = \\pm 4$.",
+         "narration": "x'lerin oranı y'lerin oranına eşit: m bölü sekiz, iki bölü m. m kare on altı; m dört ya da eksi dört."
+        },
+        {
+         "text": "$m = 4$: $\\frac{4}{8} = \\frac{2}{4} = \\frac{3}{6}$, aynı doğru, **sonsuz** çözüm.",
+         "narration": "m dört olursa sabitlerin oranı da yarım: iki denklem aynı doğru, sonsuz çözüm var. Bu çözümsüzlük değil.",
+         "eliminate": [
+          "D"
+         ]
+        },
+        {
+         "text": "$m = -4$: $\\frac{-4}{8} = -\\frac{1}{2} \\neq \\frac{3}{6}$: çözüm yok.",
+         "narration": "m eksi dört olursa katsayı oranı eksi yarım, sabitlerin oranı yarım: paralel iki doğru, çözüm yok. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "Çözümsüz sistem kalıbı; katsayılar yeni seçildi, sonsuz çözüm tuzağı eklendi"
+       }
+      }
+     },
+     {
+      "kind": "visual",
+      "title": "Çözümsüz sistem: paralel doğrular",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -3,
+        3
+       ],
+       "y": [
+        -5,
+        6
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "2x + 1.5",
+         "label": "−4x + 2y = 3"
+        },
+        {
+         "expression": "2x - 1.5",
+         "label": "8x − 4y = 6"
+        }
+       ]
+      },
+      "caption": "Kesişim yok: çözüm yok; çakışık: sonsuz çözüm; kesişen: tek çözüm.",
+      "narration": "Son sorunun cevabını grafikte görelim. Her doğrusal denklem bir doğrudur; sistemin çözümü iki doğrunun kesişimidir.",
+      "beats": [
+       {
+        "narration": "m eksi dört iken iki denklem: eğimleri ikisinde de iki, ama y eksenini farklı yerlerde kesiyorlar. İki paralel doğru hiç kesişmez: çözüm yok."
+       },
+       {
+        "narration": "m dört olsaydı iki denklem aynı doğruyu verirdi: doğrular üst üste biner, her noktası çözümdür. Eğimler farklı olsaydı tek bir noktada kesişirlerdi: tek çözüm."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DENKLEM_04",
+    "subtopics": [
+     "MAT_DENKLEM_05"
+    ],
+    "title": "Denklem kurma",
+    "narration": "Sözel bir cümleyi denkleme çevirmek, problemlerin ilk adımı. Hangi sözcüğün hangi işlem olduğuna dikkat.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sözden denkleme",
+      "items": [
+       "\"$x$'in 3 fazlasının yarısı\" $= \\frac{x + 3}{2}$; \"$x$'in yarısının 3 fazlası\" $= \\frac{x}{2} + 3$.",
+       "\"$x$'in $\\frac{2}{3}$'ü\" $= \\frac{2x}{3}$; \"$x$'ten 4 eksik\" $= x - 4$.",
+       "İki basamaklı sayı: $\\overline{ab} = 10a + b$; yer değiştirince fark $9(b - a)$.",
+       "Bilinmeyeni **sorulan** çokluk olarak seç; sonra cevabın soruya uyduğunu denetle."
+      ],
+      "narration": "Sözel bir cümleyi denkleme çevirirken sözcüklerin sırasına dikkat: x'in üç fazlasının yarısı ile x'in yarısının üç fazlası farklı şeylerdir. Kesirli ifadeler çarpma, eksik ve fazla çıkarma ve toplamadır. İki basamaklı sayıda çözümlemeyi kullanırsın. Bilinmeyeni sorulan çokluk olarak seç ve bulduğun sayının soruya uyduğunu denetle."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir sayının $\\frac{2}{3}$'ünün 4 eksiği, aynı sayının yarısının 2 fazlasına eşittir.\n\nBuna göre, bu sayı kaçtır?",
+       "options": [
+        "$24$",
+        "$30$",
+        "$36$",
+        "$42$",
+        "$48$"
+       ],
+       "answer": 2,
+       "narration": "Cümleyi parça parça denkleme çevirelim.",
+       "steps": [
+        {
+         "text": "$\\frac{2x}{3} - 4 = \\frac{x}{2} + 2$",
+         "narration": "Sayının üçte ikisinin dört eksiği: iki x bölü üç eksi dört. Yarısının iki fazlası: x bölü iki artı iki."
+        },
+        {
+         "text": "$\\frac{2x}{3} - \\frac{x}{2} = 6$: $\\frac{x}{6} = 6$, $x = 36$.",
+         "narration": "x'li terimleri bir yana alalım: üçte iki x eksi yarım x, altıda bir x; altıya eşit. x otuz altı. Denetim: yirmi dört eksi dört yirmi, on sekiz artı iki yirmi. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Sözel ifadeyi denkleme çevirme kalıbı; kesirler ve sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "50 soruluk bir sınavda her doğru cevap 4 puan kazandırıyor, her yanlış cevap 1 puan götürüyor, boş bırakılan soru puan değiştirmiyor.\n\n10 soruyu boş bırakan ve 140 puan alan bir öğrencinin doğru cevap sayısı kaçtır?",
+       "options": [
+        "$30$",
+        "$32$",
+        "$34$",
+        "$36$",
+        "$38$"
+       ],
+       "answer": 3,
+       "narration": "İki bilinmeyen: doğru ve yanlış sayısı. İki denklem kuralım.",
+       "steps": [
+        {
+         "text": "$d + y = 40$ (boşlar dışında).",
+         "narration": "Elli sorudan on boş: doğru artı yanlış kırk."
+        },
+        {
+         "text": "$4d - y = 140$",
+         "narration": "Puan: dört çarpı doğru eksi yanlış, yüz kırk."
+        },
+        {
+         "text": "Topla: $5d = 180$, $d = 36$.",
+         "narration": "İki denklemi toplayınca yanlışlar gider: beş d yüz seksen, d otuz altı. Yanlış dört; denetim: yüz kırk dört eksi dört, yüz kırk. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "İki bilinmeyenli problem kalıbı; puanlama ve sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "İki basamaklı bir sayının rakamları toplamı 11'dir. Bu sayının rakamlarının yerleri değiştirildiğinde elde edilen sayı, ilk sayıdan 27 fazladır.\n\nBuna göre, ilk sayı kaçtır?",
+       "options": [
+        "$38$",
+        "$47$",
+        "$56$",
+        "$74$",
+        "$83$"
+       ],
+       "answer": 1,
+       "narration": "Sayı basamakları dersindeki çözümleme burada denklem kuruyor.",
+       "steps": [
+        {
+         "text": "$\\overline{ba} - \\overline{ab} = 9(b - a) = 27$: $b - a = 3$.",
+         "narration": "Yeni sayı eksi eski sayı, dokuz çarpı b eksi a: yirmi yedi. b eksi a üç."
+        },
+        {
+         "text": "$a + b = 11$: $a = 4$, $b = 7$. Sayı $47$.",
+         "narration": "a artı b on bir: a dört, b yedi. İlk sayı kırk yedi; yer değiştirince yetmiş dört, fark yirmi yedi. Ters sırayla yazan yetmiş dört der. Cevap B.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Rakamlarla denklem kurma kalıbı; toplam ve fark yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$0 \\cdot x = 0$: **sonsuz**; $0 \\cdot x = b \\neq 0$: **çözüm yok**.",
+    "Kesirli denklemde kökü **denetle**.",
+    "$x$'e bölme: **kök kaybolur**.",
+    "Kareleri **yeni bilinmeyen** gibi çöz.",
+    "Pozitif tam sayılarda **tek-çift ve sınır**.",
+    "Paralel doğrular: **çözüm yok**; çakışık: sonsuz."
+   ],
+   "warnings": [
+    "\"Fazlasının yarısı\" ile \"yarısının fazlası\" **farklı**.",
+    "Katsayılar orantılıysa sabitleri de **karşılaştır**."
+   ],
+   "narration": "Özetleyelim. Sıfır çarpı x sıfıra eşitse sonsuz çözüm, sıfırdan farklı bir sayıya eşitse hiç çözüm yoktur. Kesirli denklemde bulduğun kökleri paydaya koyup denetle. İki tarafı x'e bölme; kök kaybolur. Kareli sistemlerde kareleri yeni bilinmeyen gibi çöz. Pozitif tam sayı istenince tek-çift ve sınırlarla daralt. Ve iki doğrusal denklemde katsayılar orantılıysa sabitlere de bak: farklıysa çözüm yok, aynıysa sonsuz çözüm."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "$0 \\cdot x = 4$",
+    "question": "Kaç çözüm?",
+    "choices": [
+     "Yok",
+     "Sonsuz"
+    ],
+    "answer": 0,
+    "why": "Hiçbir x **sağlamaz**."
+   },
+   {
+    "sentence": "Kökler paydayı sıfırlıyor",
+    "question": "Çözüm mü?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "**Yasak** değer."
+   },
+   {
+    "sentence": "İki tarafı x'e böldün",
+    "question": "Kök kaybolur mu?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 0,
+    "why": "Sıfır kökü **gider**."
+   }
+  ],
+  "hook": "Üç denklem tuzağı.",
+  "cards": [
+   {
+    "kind": "warning",
+    "text": "Kesirli denklemde kökü **denetle**."
+   },
+   {
+    "kind": "fact",
+    "text": "Paralel doğrular: **çözüm yok**."
+   },
+   {
+    "kind": "term",
+    "term": "Özdeşlik",
+    "definition": "**Her** x için doğru olan denklem."
+   }
+  ],
+  "summary": [
+   "Kökü denetle",
+   "x'e bölme",
+   "Paralel: çözüm yok"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-matematik-kampi",
+  "name": "AYT Matematik kampı",
+  "number": 12,
+  "total": 33,
+  "previous": "Oran Orantı",
+  "next": "Problemler",
+  "promise": "Her konu kısa bir tekrar ve AYT düzeyinde çözümlü sorularla.",
+  "task": {
+   "items": [
+    "ÖSYM 2021 sorusunu **kendin** çöz: $2^a + 3^b = 17$ ve $2^b + 3^c = 85$ ise $a + b + c$ kaç?",
+    "$x^2 + 3y^2 = 8$ ve $2x^2 + y^2 = 6$ sisteminde ($x, y > 0$) $x \\cdot y$ çarpımını bul.",
+    "Uygulamada AYT Denklem Çözme testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. ÖSYM'nin 2021 sorusunu kendin çöz: iki üzeri a artı üç üzeri b on yedi, iki üzeri b artı üç üzeri c seksen beş ise a artı b artı c kaç? ÖSYM'nin 2020 sorusunu da çöz: x kare artı üç y kare sekiz, iki x kare artı y kare altı ise x çarpı y kaç? Sonra uygulamada AYT Denklem Çözme testinden yirmi soru çöz. Bir sonraki derste problemlerde görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Kesirli denklemde kök denetimini örnekle: (x² − 4)/(x − 2) = 4 sadeleştirilince x + 2 = 4, x = 2 bulunur; ama x = 2 paydayı sıfır yaptığı için denklemin çözümü yoktur.",
+   "Parametreli denklemi tartıştır: (a − 2)x = a² − 4 denklemi a = 2'de sonsuz çözümlü, a ≠ 2'de tek çözümlüdür (x = a + 2).",
+   "İki bilinmeyenli sistemin çözüm sayısını katsayı oranlarıyla ver: oranlar farklıysa tek çözüm, x ve y katsayılarının oranı eşit ama sabitlerinki farklıysa çözüm yok, hepsi eşitse sonsuz çözüm. 2x + ky = 4 ve 4x + 6y = 5 sistemi k = 3'te çözümsüzdür.",
+   "Yaş problemine örnek ekle: 5 yıl önce baba oğlunun 4 katı, 5 yıl sonra 2 katı yaşında olacaksa B − 5 = 4(O − 5), B + 5 = 2(O + 5); oğul 10, baba 25 yaşındadır.",
+   "Simetrik sistemi kısa yoldan çöz: x + y = 7, y + z = 9, x + z = 10 taraf tarafa toplanınca x + y + z = 13; x = 4, y = 3, z = 6."
+  ]
+ }
+}

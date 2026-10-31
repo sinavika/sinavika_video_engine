@@ -5,7 +5,7 @@ import {APP_SCREEN_COMPOSITION_ID, AppScreenPropsSchema, appScreenSize, type App
 import {VideoJobValidationError} from './VideoJob';
 import {VideoRenderError, bundleProject} from './VideoRenderer';
 
-export type AppScreenRenderResult = {outputPath: string; screen: string; mode: string; device: boolean; width: number; height: number};
+type AppScreenRenderResult = {outputPath: string; screen: string; mode: string; device: boolean; width: number; height: number};
 
 /**
  * Renders one app screen to a PNG: the bare screen at phone screenshot

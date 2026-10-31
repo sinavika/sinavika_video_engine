@@ -1,0 +1,788 @@
+{
+ "topic": {
+  "id": "72FDFCC5-82CB-8A3E-DA5F-DD10B4F3D79F",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_PROBLEM"
+ },
+ "title": "Problemler",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/MAT/MAT_PROBLEM.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "AYT problemi bir şekille gelir; iş, şekli denkleme çevirmektir.",
+   "narration": "AYT'de problemler artık uzun metinlerle değil, şekillerle gelir: dilimlenmiş bir pizza, ekili bir tarla, çemberde dolaşan bir top, kutulara yerleştirilen sayılar. ÖSYM 2018'den bu yana bu konudan on bir soru sordu. Hepsinde aynı beceri istendi: şekildeki bilgiyi bir denkleme ya da bir kurala çevirmek. Bu derste bu kalıpları AYT düzeyinde yeni sorularla çözeceğiz."
+  },
+  "objectives": [
+   "Şekildeki bilgiyi denkleme çevirmek",
+   "Faiz, hız ve havuz problemlerini aşamalarıyla çözmek",
+   "Grafikten doğrusal değişimi ve kesişimi okumak",
+   "Döngü ve örüntülerde kuralı bulup büyük sayıya uygulamak",
+   "Çoklu koşulda en kısıtlı koşuldan başlamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_PROBLEM_01",
+    "subtopics": [],
+    "title": "Şekilden denkleme",
+    "narration": "AYT problemleri çoğu zaman bir şekille gelir: pizza dilimleri, bir tarla, bir kare. İş, şekildeki bilgiyi bir denkleme çevirmektir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Modelleme adımları",
+      "items": [
+       "Bilinmeyenleri **adlandır**: büyük dilim $b$, küçük dilim $k$; kenar $x$.",
+       "Şekildeki her bilgi bir **denklem**: tam daire $360°$, yarım daire $180°$.",
+       "Alan farkı: **büyük alan − çıkarılan alan**.",
+       "Bulduğun değeri **şekle geri koy**: kenar pozitif, nokta doğru bölgede mi?"
+      ],
+      "beats": [],
+      "narration": "AYT problemlerinde dört adım işe yarar. Önce bilinmeyenlere ad ver. Sonra şekildeki her bilgiyi bir denkleme çevir: tam daire üç yüz altmış derece, yarım daire yüz seksen. Alan sorularında büyük alandan çıkarılan alanı çıkar. Ve bulduğun değeri şekle geri koy: kenar pozitif mi, nokta doğru bölgede mi?"
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir pasta, 3 özdeş büyük ve 6 özdeş küçük daire dilimine ayrılmıştır.\n\nBu dilimlerden 2 büyük ve 1 küçük dilim birleştirildiğinde yarım daire biçiminde bir parça elde ediliyor.\n\nBuna göre, büyük dilimlerden birinin merkez açısının ölçüsü kaç derecedir?",
+       "options": [
+        "$60$",
+        "$70$",
+        "$75$",
+        "$80$",
+        "$90$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Bütün pasta: $3b + 6k = 360$, yani $b + 2k = 120$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bütün dilimler bir tam daire: üç b artı altı k, üç yüz altmış. Üçe bölünce b artı iki k, yüz yirmi."
+        },
+        {
+         "text": "Yarım daire: $2b + k = 180$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki büyük bir küçük dilim yarım daire: iki b artı k, yüz seksen."
+        },
+        {
+         "text": "İkinciyi 2 ile çarpıp çıkar: $3b = 240$, $b = 80$; $k = 20$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İkinci denklemi ikiyle çarpıp birinciden çıkaralım: üç b iki yüz kırk, b seksen. Küçük dilim yirmi derece. Denetim: iki yüz kırk artı yüz yirmi, üç yüz altmış. Cevap D."
+        }
+       ],
+       "narration": "ÖSYM 2020'de pizza dilimleriyle sordu. İki bilgi, iki denklem.",
+       "origin": {
+        "changes": "ÖSYM 2020 daire dilimi kalıbı örnek alındı; dilim sayıları ve birleşim yeni kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kenar uzunlukları $x + 10$ ve $2x + 5$ metre olan dikdörtgen biçimindeki bir tarlanın, bir kenarı $x$ metre olan kare biçimindeki kısmına domates ekilmiştir.\n\nTarlanın geriye kalan kısmının alanı 950 metrekare olduğuna göre, tarlanın çevresi kaç metredir?",
+       "options": [
+        "$140$",
+        "$150$",
+        "$160$",
+        "$170$",
+        "$180$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$(x + 10)(2x + 5) - x^2 = 950$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Tarlanın alanı x artı on çarpı iki x artı beş; bundan kare kısmın alanı x kareyi çıkarınca dokuz yüz elli."
+        },
+        {
+         "text": "$x^2 + 25x - 900 = 0$: $(x + 45)(x - 20) = 0$, $x = 20$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Açınca x kare artı yirmi beş x artı elli, eksi dokuz yüz elli: x kare artı yirmi beş x eksi dokuz yüz, sıfır. Çarpanlar x artı kırk beş ve x eksi yirmi; uzunluk pozitif, x yirmi."
+        },
+        {
+         "text": "Kenarlar $30$ ve $45$; çevre $2(30 + 45) = 150$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kenarlar otuz ve kırk beş metre; çevre yüz elli metre. Cevap B."
+        }
+       ],
+       "narration": "ÖSYM 2023'te ayçiçeği tarlasıyla sordu. Alan farkını yazalım.",
+       "origin": {
+        "changes": "ÖSYM 2023 tarla alanı kalıbı örnek alındı; ölçüler ve kalan alan yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminin birinci bölgesinde bulunan ve kenarları eksenlere paralel olan bir karenin köşegenleri $(4, 5)$ noktasında kesişmektedir.\n\nBu karenin **orijine en yakın** köşesinin koordinatları toplamı 3 olduğuna göre, karenin alanı kaç birimkaredir?",
+       "options": [
+        "$9$",
+        "$16$",
+        "$25$",
+        "$36$",
+        "$49$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Köşegenler merkezde kesişir; kenarın yarısı $h$: en yakın köşe $(4 - h, 5 - h)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kare kenarları eksenlere paralel; köşegenler merkezde kesişir. Kenarın yarısına h dersek orijine en yakın köşe, dört eksi h, beş eksi h."
+        },
+        {
+         "text": "$(4 - h) + (5 - h) = 3$: $h = 3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Koordinatlar toplamı üç: dokuz eksi iki h, üç; h üç."
+        },
+        {
+         "text": "Köşe $(1, 2)$ birinci bölgede ✓. Kenar $6$, alan $36$.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Köşe bir, iki: birinci bölgede, uygun. Kenar altı, alan otuz altı. Kenarın yarısını kenar sanan dokuz bulur. Cevap D."
+        }
+       ],
+       "narration": "ÖSYM 2022'de en uzak köşeyle sordu; biz en yakın köşeyle kuralım.",
+       "origin": {
+        "changes": "ÖSYM 2022 merkezden kare kalıbı örnek alındı; merkez ve koşul yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_PROBLEM_02",
+    "subtopics": [
+     "MAT_PROBLEM_03",
+     "MAT_PROBLEM_04"
+    ],
+    "title": "Faiz, hız ve havuz",
+    "narration": "Üç klasik problem türü, üç kısa kural. AYT bunlara bir ikinci aşama ekler: sonradan açılan bir musluk, karşılaştıktan sonra kalan yol.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Üç kural",
+      "items": [
+       "**Basit faiz**: $F = \\frac{A \\cdot n \\cdot t}{100}$ ($n$ yüzde, $t$ yıl).",
+       "**Hız**: yol $=$ hız $\\times$ zaman; karşılaşmada **hızlar toplanır**, yetişmede **farkı** alınır.",
+       "**Havuz**: bir saatte yapılan iş $\\frac{1}{t}$; birlikte toplanır, tahliye **çıkarılır**.",
+       "Aşamalı problemde her aşamayı **ayrı** hesapla, sonra kalan işi sonraki hızla böl."
+      ],
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        0,
+        360
+       ],
+       "ticks": [
+        0,
+        120,
+        240,
+        360
+       ],
+       "intervals": [
+        {
+         "from": 0,
+         "to": 240,
+         "closedFrom": true,
+         "closedTo": true,
+         "label": "hızlı: 80 km/sa · 3 sa",
+         "row": 1
+        },
+        {
+         "from": 240,
+         "to": 360,
+         "closedFrom": true,
+         "closedTo": true,
+         "label": "yavaş: 40 · 3",
+         "row": 2
+        }
+       ],
+       "points": [
+        {
+         "x": 0,
+         "label": "A",
+         "open": false
+        },
+        {
+         "x": 360,
+         "label": "B",
+         "open": false
+        },
+        {
+         "x": 240,
+         "label": "karşılaşma",
+         "open": false
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "A ile B arası üç yüz altmış kilometre. İki araç aynı anda birbirine doğru yola çıkıyor.",
+        "show": [
+         "p1",
+         "p2"
+        ],
+        "focus": [
+         "p1",
+         "p2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Hızları toplamı yüz yirmi: her saatte aralarındaki yol yüz yirmi kilometre kısalır. Üç saatte karşılaşırlar.",
+        "show": [
+         "p3"
+        ],
+        "focus": [
+         "p3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Hızlı araç üç saatte iki yüz kırk, yavaş araç yüz yirmi kilometre gitmiş olur.",
+        "show": [
+         "i1",
+         "i2"
+        ],
+        "focus": [
+         "i1",
+         "i2"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Basit faiz, ana para çarpı yüzde çarpı yıl bölü yüzdür. Hız problemlerinde yol, hız çarpı zamandır; iki araç birbirine doğru gidiyorsa hızlar toplanır, biri ötekine yetişiyorsa hız farkı alınır. Havuz problemlerinde bir musluğun bir saatte yaptığı iş, bir bölü süresidir; birlikte açılan musluklar toplanır, boşaltan musluk çıkarılır. Aşamalı bir problemde her aşamayı ayrı hesaplarsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir yatırımcı, parasının $\\frac{1}{3}$'ünü yıllık %30, kalanını yıllık %15 basit faizle 2 yıllığına bankaya yatırıyor.\n\n2 yılın sonunda toplam 4800 TL faiz aldığına göre, yatırımcının parası kaç TL'dir?",
+       "options": [
+        "$8000$",
+        "$9600$",
+        "$10\\,000$",
+        "$12\\,000$",
+        "$16\\,000$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Birinci kısım: $\\frac{A}{3} \\cdot \\frac{30}{100} \\cdot 2 = \\frac{A}{5}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Paranın üçte biri, yüzde otuzla iki yıl: A bölü üç çarpı otuz bölü yüz çarpı iki, A bölü beş."
+        },
+        {
+         "text": "İkinci kısım: $\\frac{2A}{3} \\cdot \\frac{15}{100} \\cdot 2 = \\frac{A}{5}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kalan üçte iki, yüzde on beşle iki yıl: o da A bölü beş."
+        },
+        {
+         "text": "$\\frac{2A}{5} = 4800$: $A = 12\\,000$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam faiz beşte iki A, dört bin sekiz yüz: A on iki bin. Cevap D."
+        }
+       ],
+       "narration": "İki ayrı faiz hesabı; ana parayı A diyelim.",
+       "origin": {
+        "changes": "Bölünmüş ana para faiz kalıbı; oranlar ve faiz yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aralarında 360 km olan A ve B kentlerinden iki araç, aynı anda birbirine doğru saatte 80 km ve 40 km sabit hızlarla yola çıkıyor.\n\nHızlı araç A'dan çıktığına göre, araçlar karşılaştıktan kaç saat sonra hızlı araç B kentine varır?",
+       "options": [
+        "$1$",
+        "$1{,}5$",
+        "$2$",
+        "$2{,}5$",
+        "$3$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Karşılaşma: $\\frac{360}{80 + 40} = 3$ saat.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hızlar toplanır: yüz yirmi. Üç yüz altmışı yüz yirmiye bölünce üç saat sonra karşılaşırlar."
+        },
+        {
+         "text": "Hızlı araç $240$ km gitti; B'ye $120$ km kaldı.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hızlı araç üç saatte iki yüz kırk kilometre gitti; B'ye yüz yirmi kilometre kaldı."
+        },
+        {
+         "text": "$\\frac{120}{80} = 1{,}5$ saat.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yüz yirmiyi saatte seksenle gider: bir buçuk saat. Kalan yolu yavaş aracın hızıyla bölen üç bulur. Cevap B."
+        }
+       ],
+       "narration": "Kural kartındaki şemada gördük; iki aşamada çözelim.",
+       "origin": {
+        "changes": "Karşılaşma ve kalan yol kalıbı; hızlar ve uzaklık yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Boş bir havuzu A musluğu tek başına 4 saatte, B musluğu tek başına 6 saatte dolduruyor; havuzun dibindeki C musluğu ise dolu havuzu 12 saatte boşaltıyor.\n\nA ve B muslukları birlikte açılıyor, 1 saat sonra C musluğu da açılıyor.\n\nBuna göre, havuz musluklar ilk açıldıktan kaç saat sonra dolar?",
+       "options": [
+        "$2$ saat",
+        "$2$ saat $15$ dakika",
+        "$2$ saat $20$ dakika",
+        "$2$ saat $30$ dakika",
+        "$2$ saat $45$ dakika"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "İlk saat: $\\frac{1}{4} + \\frac{1}{6} = \\frac{5}{12}$ doldu.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İlk saatte A dörtte bir, B altıda bir doldurur: toplam on ikide beş."
+        },
+        {
+         "text": "Üçü birlikte: $\\frac{1}{4} + \\frac{1}{6} - \\frac{1}{12} = \\frac{1}{3}$ saatte.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sonra üçü birlikte: dörtte bir artı altıda bir eksi on ikide bir; saatte üçte bir."
+        },
+        {
+         "text": "Kalan $\\frac{7}{12}$: $\\frac{7}{12} \\div \\frac{1}{3} = \\frac{7}{4}$ saat. Toplam $1 + \\frac{7}{4} = 2{,}75$ saat.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kalan iş on ikide yedi; üçte bir hızla dörtte yedi saat sürer. İlk saati de ekleyince iki virgül yetmiş beş saat: iki saat kırk beş dakika. Cevap E."
+        }
+       ],
+       "narration": "İki aşama: önce A ve B, sonra üçü birlikte.",
+       "origin": {
+        "changes": "Aşamalı havuz kalıbı; süreler ve aşama yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_PROBLEM_05",
+    "subtopics": [],
+    "title": "Grafik okuma",
+    "narration": "Bir grafikteki doğru, sabit hızla değişen bir çokluktur. Kesişim noktası, iki çokluğun eşit olduğu andır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Grafikten okuma",
+      "items": [
+       "Doğrunun **eğimi** birim zamandaki değişimdir: litre/saat, km/saat.",
+       "Başlangıç değeri, doğrunun **dikey ekseni kestiği** yerdir.",
+       "İki doğrunun **kesişimi**: iki çokluk o anda eşit."
+      ],
+      "beats": [],
+      "narration": "Bir grafikte doğru, sabit hızla değişen bir çokluktur. Doğrunun eğimi birim zamandaki değişimdir; başlangıç değeri, doğrunun dikey ekseni kestiği yerdir. İki doğrunun kesiştiği an, iki çokluğun eşit olduğu andır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "A ve B depolarındaki su miktarlarının zamana göre değişimi grafikte verilmiştir: A deposu 80 litreyle başlayıp saatte 10 litre boşalıyor, B deposu 20 litreyle başlayıp saatte 5 litre doluyor.\n\nİki depodaki su miktarı eşit olduğu anda depolardaki toplam su kaç litredir?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         0,
+         8.5
+        ],
+        "y": [
+         0,
+         90
+        ],
+        "xLabel": "saat",
+        "yLabel": "litre",
+        "curves": [
+         {
+          "expression": "80 - 10x",
+          "label": "A deposu",
+          "ends": [
+           "none",
+           "none"
+          ]
+         },
+         {
+          "expression": "20 + 5x",
+          "label": "B deposu",
+          "ends": [
+           "none",
+           "none"
+          ]
+         }
+        ],
+        "parameters": {},
+        "points": [],
+        "segments": [],
+        "equalScale": false,
+        "axes": "edge"
+       },
+       "options": [
+        "$60$",
+        "$70$",
+        "$80$",
+        "$90$",
+        "$100$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$A(t) = 80 - 10t$, $B(t) = 20 + 5t$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A, seksenden başlayıp saatte on azalır: seksen eksi on t. B, yirmiden başlayıp saatte beş artar: yirmi artı beş t."
+        },
+        {
+         "text": "$80 - 10t = 20 + 5t$: $t = 4$ saat.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eşit oldukları an: on beş t altmış, t dört saat."
+        },
+        {
+         "text": "Her depoda $40$ L; toplam $80$ L.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dördüncü saatte ikisinde de kırk litre: toplam seksen litre. Grafikte kesişim noktası dört, kırk. Cevap C."
+        }
+       ],
+       "narration": "İki doğrunun denklemini yazıp kesişimi bulalım.",
+       "origin": {
+        "changes": "Grafikten doğrusal değişim kalıbı; depolar ve hızlar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_PROBLEM_06",
+    "subtopics": [
+     "MAT_PROBLEM_07"
+    ],
+    "title": "Döngüler ve örüntüler",
+    "narration": "Tekrar eden bir hareket ya da büyüyen bir şekil: ikisinde de kuralı bulup büyük sayıya uygularız.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Döngü ve örüntü",
+      "items": [
+       "Daire çevresinde $n$ kişi, her seferde $k$ ilerleme: konum $\\equiv$ başlangıç $+ k \\cdot$ sefer (mod $n$).",
+       "Büyük sefer sayısını **döngü uzunluğuna** böl, kalana bak.",
+       "Şekil örüntüsünde ilk adımları say, **artışı** bul: $3n + 1$ gibi."
+      ],
+      "beats": [],
+      "narration": "Daire çevresindeki n kişiden birine top her seferde k kişi ilerliyorsa, konum başlangıç artı k çarpı sefer sayısıdır; n'e bölümünden kalana bakarsın. Büyük bir sefer sayısını döngü uzunluğuna böl ve kalana bak. Şekil örüntülerinde ilk birkaç adımı sayıp her adımdaki artışı bulursun."
+     },
+     {
+      "kind": "predict",
+      "title": "Başa döner mi?",
+      "prompt": "7 kişilik bir çemberde top her seferde 3 kişi ilerliyor. 7. seferde top ilk kişiye döner mi?",
+      "choices": [
+       "Evet",
+       "Hayır"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sefer",
+        "İlerleme",
+        "Konum"
+       ],
+       "rows": [
+        [
+         "1",
+         "3",
+         "Deniz"
+        ],
+        [
+         "2",
+         "6",
+         "Gül"
+        ],
+        [
+         "3",
+         "9 → 2",
+         "Can"
+        ],
+        [
+         "7",
+         "21 → 0",
+         "Ali"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "Ali'den başlayıp her seferde üç ilerleyelim: Deniz, Gül, sonra çemberi dönüp Can.",
+        "show": [
+         "r1",
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r1",
+         "r2",
+         "r3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Yedi seferde toplam yirmi bir adım ilerler; yirmi bir, yedinin katı.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "$7 \\cdot 3 = 21$, 7'nin katı: top **7 seferde** başa döner.",
+      "narration": "Şimdi sıra sende. Yedi kişilik çemberde top her seferde üç kişi ilerliyor. Yedinci seferde top ilk kişiye döner mi? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: evet. Yedi seferde toplam yirmi bir adım ilerler; yirmi bir yedinin katı, top tam üç tur atıp Ali'ye döner. Bu yüzden her yedi seferde bir başa dönülür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir çemberde saat yönünde sırasıyla Ali, Burak, Can, Deniz, Ece, Fatma ve Gül oturuyor. Topu elinde tutan kişi, saat yönünde kendisinden sonraki **3.** kişiye topu atıyor.\n\nBaşlangıçta top Ali'dedir; 1. seferde topu Deniz alıyor.\n\nBuna göre, 100. seferde topu kim alır?",
+       "options": [
+        "Ali",
+        "Gül",
+        "Can",
+        "Ece",
+        "Fatma"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Döngü: 7 seferde başa dönülür. $100 = 7 \\cdot 14 + 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Her yedi seferde top Ali'ye döner. Yüzü yediye bölelim: on dört tur, kalan iki."
+        },
+        {
+         "text": "98. seferde top Ali'de; 2 sefer daha: Deniz, Gül.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Doksan sekizinci seferde top yine Ali'de. İki sefer daha: önce Deniz, sonra Gül."
+        },
+        {
+         "text": "100. seferde topu **Gül** alır.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yüzüncü seferde topu Gül alır. Cevap B."
+        }
+       ],
+       "narration": "ÖSYM 2018'de beş oyuncuyla sordu; biz yedi oyuncuyla, tahmin kartındaki döngüyle çözelim.",
+       "origin": {
+        "changes": "ÖSYM 2018 çemberde top kalıbı örnek alındı; oyuncu sayısı, adım ve sefer yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kibrit çöpleriyle yan yana kareler yapılıyor: 1 kare için 4, yan yana 2 kare için 7, 3 kare için 10 kibrit kullanılıyor.\n\nBu şekilde devam edilirse, 100 kibrit çöpüyle yan yana **en çok** kaç kare yapılabilir?",
+       "options": [
+        "$31$",
+        "$32$",
+        "$33$",
+        "$34$",
+        "$35$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Her yeni kare **3** kibrit ekler: $n$ kare için $3n + 1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dört, yedi, on: her adımda üç artıyor. Çünkü yeni kare, öncekiyle bir kenarını paylaşır. n kare için üç n artı bir kibrit."
+        },
+        {
+         "text": "$3n + 1 \\leq 100$: $n \\leq 33$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç n artı bir, yüzden küçük eşit: üç n en çok doksan dokuz, n en çok otuz üç."
+        },
+        {
+         "text": "En çok **33** kare; 100 kibritin biri artar.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "En çok otuz üç kare; bir kibrit artar. Cevap C."
+        }
+       ],
+       "narration": "Her yeni kare kaç kibrit ekliyor? Kuralı bulalım.",
+       "origin": {
+        "changes": "Şekil örüntüsü kalıbı; şekil ve sınır yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_PROBLEM_08",
+    "subtopics": [],
+    "title": "Çoklu koşul",
+    "narration": "Birden çok koşul aynı anda verildiğinde en kısıtlı koşuldan başlarız; o, seçenekleri en çok daraltır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Çoklu koşulda sıra",
+      "items": [
+       "En **kısıtlı** koşuldan başla: çarpım, toplamdan daha az olasılık bırakır.",
+       "\"Her sayı bir kez\" koşulu kullanılan sayıları **listeden düşer**.",
+       "Kalan sayılarla öteki koşulu dene; tek çözüm kalınca **denetle**."
+      ],
+      "beats": [],
+      "narration": "Birden çok koşul aynı anda verildiğinde en kısıtlı koşuldan başla. Çarpım koşulu genellikle toplamdan daha az olasılık bırakır. Her sayı bir kez kullanılacaksa bulduğun sayıları listeden düşersin; kalanlarla öteki koşulu denersin. Tek çözüm kalınca bütün koşulları yeniden denetle."
+     },
+     {
+      "kind": "mistake",
+      "title": "Tek koşula bakmak",
+      "wrong": "$A + B = C$ koşulundan $1 + 2 = 3$ seçilir, sonra öteki koşula geçilir.",
+      "right": "Önce **çarpım** koşulu: 1–6 arasında farklı sayılarla $D \\times E = F$ yalnız $2 \\times 3 = 6$.",
+      "why": "Toplam koşulunun çok olasılığı var; ilk bulunan olasılık öteki koşulu bozabilir. Kısıtlı koşul seçenekleri tek bırakır.",
+      "narration": "Sık yapılan bir hata: ilk koşuldan aklına gelen ilk sayıları seçip ilerlemek. Bir artı iki üç seçersen, geriye kalan dört, beş, altıyla bir çarpım eşitliği kuramazsın. Önce en kısıtlı koşula bak: bir ile altı arasında farklı sayılarla tek bir çarpım eşitliği var, iki çarpı üç, altı."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "1, 2, 3, 4, 5 ve 6 sayılarının her biri $A$, $B$, $C$, $D$, $E$ ve $F$ harflerinden birine, her harfe farklı bir sayı gelecek biçimde yerleştiriliyor.\n\n$A + B = C$\n\n$D \\times E = F$\n\n$A < B$ ve $D < E$\n\nBuna göre, $C + F$ toplamı kaçtır?",
+       "options": [
+        "$11$",
+        "$12$",
+        "$13$",
+        "$14$",
+        "$15$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$D \\times E = F$, farklı sayılar: $D = 1$ olursa $E = F$, olmaz. Tek seçenek $2 \\times 3 = 6$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çarpım koşulu: D bir olursa E ile F eşit olur; sayılar farklı olmalı. Bir ile altı arasında farklı sayılarla tek çarpım: iki çarpı üç, altı."
+        },
+        {
+         "text": "Kalan $1, 4, 5$: $1 + 4 = 5$, $C = 5$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Geriye bir, dört ve beş kaldı: bir artı dört, beş. C beş."
+        },
+        {
+         "text": "$C + F = 5 + 6 = 11$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "C artı F, on bir. Cevap A."
+        }
+       ],
+       "narration": "ÖSYM 2024'te kutulara sayı yerleştirme sordu. En kısıtlı koşul çarpım.",
+       "origin": {
+        "changes": "ÖSYM 2024 kutulara sayı yerleştirme kalıbı örnek alındı; işlemler ve sayılar yeni kuruldu"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Bilinmeyenlere **ad ver**, her bilgiyi **denkleme** çevir.",
+    "Bulduğun değeri **şekle geri koy**.",
+    "Karşılaşmada hızlar **toplanır**, yetişmede **farkı**.",
+    "Havuzda işler toplanır, tahliye **çıkarılır**.",
+    "Döngüde sefer sayısını **döngüye böl**.",
+    "Çoklu koşulda **en kısıtlı** koşuldan başla."
+   ],
+   "warnings": [
+    "Aşamalı problemde **ilk aşamayı** toplama katmayı unutma.",
+    "Kenarın yarısı ile kenarı **karıştırma**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "ÖSYM 2018 sorusunu **kendin** çöz: sırasıyla Ali, Büşra, Cem, Deniz, Ekin; top her seferde 3 kişi ilerliyor. 99. seferde top kimde?",
+    "Havuz sorusunu C musluğu **2 saat sonra** açılacak biçimde yeniden çöz.",
+    "Uygulamada AYT Problemler testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Yaş problemlerinin iki ilkesini ekle: yaş farkı hiç değişmez; toplam yaş her yıl kişi sayısı kadar artar. Anne ile kızın yaşları toplamı 48, 6 yıl sonra anne kızının 3 katı olacaksa kız 9, anne 39 yaşındadır.",
+   "Yüzde ve kâr-zarar örnekleri ekle: önce %20 zam sonra %20 indirim net %4 azalmadır. Etiket fiyatı %20 indirimle satıldığında maliyete göre %20 kâr ediliyorsa etiket fiyatı maliyetin 1,5 katıdır.",
+   "Karışım problemine örnek ver: %30'luk 40 kg tuzlu su ile %10'luk 60 kg tuzlu su karıştırılırsa tuz 12 + 6 = 18 kg, karışım %18'liktir. Su buharlaşınca tuz miktarının sabit kaldığını vurgula.",
+   "Hareket ve işçi-havuz problemleri ekle: 200 m'lik tren 20 m/s hızla 600 m'lik tünelden (200 + 600) / 20 = 40 s'de geçer. A bir işi 6, B 12 günde bitiriyorsa birlikte 1/6 + 1/12 = 1/4 ile 4 günde; 4 saatte dolduran musluk ve 6 saatte boşaltan delik birlikte havuzu 12 saatte doldurur.",
+   "Faiz hesabını ekle: basit faiz F = A × n × t / 100; bileşik faizde A(1 + r)ⁿ. 10 000 TL yıllık %20 bileşik faizle 2 yılda 14 400 TL olur, basit faizle 14 000 TL."
+  ]
+ }
+}

@@ -10,7 +10,7 @@
  *   npm run image -- --job a.json --out out/Post.png
  *       Writes exactly there instead (a carousel writes Post_1.png, Post_2.png...).
  *
- *   npm run image -- --job a.json --size Story --format webp --palette MidnightGoldV1 --theme TechDark
+ *   npm run image -- --job a.json --size Story --format webp --palette MidnightGoldV1 --theme SinavikaDark
  *       Overrides what the job file says.
  *
  *   npm run image -- --job a.json --json

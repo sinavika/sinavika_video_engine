@@ -1,0 +1,878 @@
+{
+ "topic": {
+  "id": "EF73B36E-D83F-57EF-382C-543DFC137EF1",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_ELEK_ALAN"
+ },
+ "title": "Elektrik Alan ve Potansiyel",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "MEB OGM AYT Fizik konu anlatımı, sayfa 103-114 (başvuru; metin yeniden yazıldı)",
+  "ÖSYM 2021 (beş nokta), 2024 (eş potansiyel yüzeyler) ve yılı kayıtlı olmayan demir bilyeler sorusu: model olarak kullanıldı, yükler ve sayılar değiştirildi; 2018 sorusunun seçenekleri çizim, 2019 sorusu şekle bağlı olduğu için kullanılmadı",
+  "YKS/AYT/Sorular/FIZ/FIZ_ELEK_ALAN.jsonl (379 soru; yapı ve düzey için okundu, sorular yeni yazıldı)"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Balon duvara neden yapışır?",
+   "narration": "Bir balonu saçına sürtüp duvara yapıştırabilirsin; aralarında hiçbir şey yokken birbirlerini çekerler. Bu etkileşimi taşıyan şey elektrik alandır. Bu derste Coulomb yasasını, elektrik alanı ve alan çizgilerini, potansiyeli, potansiyel farkı ve enerjiyi, eş potansiyel yüzeyleri, üç ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Coulomb kuvvetini yük ve uzaklıkla ilişkilendirmek",
+   "Noktasal yüklerin alanını vektörel toplamak",
+   "Alan çizgilerini yorumlamak",
+   "Potansiyeli ve potansiyel farkını hesaplamak",
+   "İş, potansiyel enerji ve eş potansiyel yüzeyleri ilişkilendirmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_ELEK_ALAN_01",
+    "title": "Coulomb yasası",
+    "narration": "Yüklü iki cisim birbirine dokunmadan kuvvet uygular. Bu kuvvet yüklerle büyür, uzaklığın karesiyle küçülür.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Coulomb yasası",
+      "items": [
+       "$F = k \\frac{q_1 q_2}{d^2}$: uzaklık iki katına çıkınca kuvvet **dörtte biri**.",
+       "Aynı işaretli yükler iter, zıt işaretliler **çeker**; kuvvetler eşit büyüklükte, zıt yönde.",
+       "Birden çok yükte kuvvetler **vektörel** toplanır."
+      ],
+      "visual": {
+       "kind": "charges",
+       "objects": [
+        {
+         "label": "+q",
+         "charge": "positive"
+        },
+        {
+         "label": "−q",
+         "charge": "negative"
+        }
+       ],
+       "forces": [
+        {
+         "from": 0,
+         "to": 1,
+         "kind": "attract"
+        }
+       ]
+      },
+      "narration": "Coulomb yasasına göre iki noktasal yük arasındaki kuvvet, yüklerin çarpımıyla doğru, aralarındaki uzaklığın karesiyle ters orantılıdır: k q bir q iki bölü d kare. Uzaklık iki katına çıkınca kuvvet dörtte birine iner. Aynı işaretli yükler birbirini iter, zıt işaretliler çeker; etki-tepkiden iki yüke etki eden kuvvetler eşit büyüklükte ve zıt yöndedir. Birden çok yük varsa kuvvetler vektörel toplanır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aralarında $d$ uzaklık bulunan $q$ ve $4q$ yüklü iki noktasal cisim birbirine $F$ büyüklüğünde kuvvet uyguluyor. Yükler $2q$ ve $2q$ yapılıp uzaklık $2d$ olursa aralarındaki kuvvet kaç $F$ olur?",
+       "options": [
+        "$4$",
+        "$2$",
+        "$1$",
+        "$\\frac{1}{2}$",
+        "$\\frac{1}{4}$"
+       ],
+       "answer": 4,
+       "narration": "Yük çarpımına ve uzaklığa ayrı ayrı bakalım.",
+       "steps": [
+        {
+         "text": "Yük çarpımı: $q \\cdot 4q = 4q^2$ idi, $2q \\cdot 2q = 4q^2$: **değişmedi**.",
+         "narration": "Yüklerin çarpımı önce dört q kare, sonra da iki q çarpı iki q, yine dört q kare: değişmedi."
+        },
+        {
+         "text": "Uzaklık iki kat: $F' = \\frac{F}{4}$.",
+         "narration": "Uzaklık iki katına çıktı; kuvvet uzaklığın karesiyle ters orantılı, dörtte birine iner. Uzaklıkla doğrudan ters orantı kuran yarıyı bulur. Cevap E.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Coulomb oranı kalıbı; yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$+q$ ve $+4q$ yüklü iki noktasal cisim aralarında $3d$ uzaklık olacak şekilde sabitlenmiştir.\n\nÜçüncü bir yüklü cisim bu iki yükü birleştiren doğru üzerinde nereye konursa dengede kalır?",
+       "options": [
+        "$+q$'nun dışında, ondan $d$ uzakta",
+        "$+4q$'dan $d$ uzakta, aralarında",
+        "$+q$'dan $d$ uzakta, aralarında",
+        "$+q$'dan $2d$ uzakta, aralarında",
+        "$+4q$'nun dışında, ondan $3d$ uzakta"
+       ],
+       "answer": 2,
+       "narration": "Aynı işaretli iki yükün itmeleri yalnız aralarında birbirini dengeleyebilir.",
+       "steps": [
+        {
+         "text": "Aynı işaretli yüklerin kuvvetleri yalnız **aralarında** zıt yönlü olur.",
+         "narration": "İki yük de pozitif; üçüncü yük aralarında olursa iki kuvvet zıt yönlü olur, dışarıda olursa aynı yönlüdür. Denge noktası aralarındadır."
+        },
+        {
+         "text": "$\\frac{kq}{x^2} = \\frac{4kq}{(3d - x)^2}$ → $3d - x = 2x$ → $x = d$: küçük yüke **yakın**.",
+         "narration": "q bölü x kare, dört q bölü üç d eksi x kareye eşit; karekök alınca üç d eksi x, iki x: x, d. Denge noktası küçük yüke yakındır. Cevap C.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Üçüncü yükün dengesi kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ELEK_ALAN_02",
+    "title": "Elektrik alan",
+    "narration": "Yük, çevresindeki boşluğu değiştirir: oraya konan her yük bir kuvvet hisseder. Bu değişmiş uzay elektrik alandır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Elektrik alan",
+      "items": [
+       "Bir noktadaki alan, oraya konan **birim pozitif yüke** etki eden kuvvettir: $\\vec{E} = \\frac{\\vec{F}}{q}$.",
+       "Noktasal yükün alanı $E = k\\frac{q}{d^2}$; pozitiften **dışa**, negatife **içe** doğru.",
+       "Birden çok yükün alanları **vektörel** toplanır."
+      ],
+      "visual": {
+       "kind": "electricField",
+       "view": [
+        -2,
+        -3,
+        6,
+        3
+       ],
+       "lines": true,
+       "equipotentials": [],
+       "charges": [
+        {
+         "at": [
+          0,
+          0
+         ],
+         "q": 1,
+         "label": "K"
+        },
+        {
+         "at": [
+          4,
+          0
+         ],
+         "q": -1,
+         "label": "L"
+        }
+       ],
+       "points": [
+        {
+         "at": [
+          2,
+          0
+         ],
+         "label": "O",
+         "field": true,
+         "potential": false
+        },
+        {
+         "at": [
+          2,
+          2.2
+         ],
+         "label": "A",
+         "field": true,
+         "potential": false
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Pozitif K ile negatif L yükü.",
+        "focus": [
+         "c1",
+         "c2"
+        ]
+       },
+       {
+        "narration": "Ortadaki O noktasında iki alan da L'ye doğru: toplanır.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "A noktasında alanlar açılı; bileşke yataya yakın, L tarafına doğru.",
+        "show": [
+         "p2"
+        ],
+        "focus": [
+         "p2"
+        ]
+       }
+      ],
+      "narration": "Bir noktadaki elektrik alan, o noktaya konan bir birim pozitif yüke etki eden kuvvettir: kuvvet bölü yük. Noktasal bir yükün alanı k q bölü d karedir; pozitif yükten dışarı, negatif yüke doğru içeri yönelir. Birden çok yük varsa her birinin alanı vektörel olarak toplanır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aralarında $4$ cm bulunan $+q$ ve $-q$ yüklerinin tam ortasındaki elektrik alanın büyüklüğü $E$'dir.\n\n$-q$ yükü $+q$ yapılırsa ortadaki elektrik alan kaç $E$ olur?",
+       "options": [
+        "$0$",
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$2$",
+        "$4$"
+       ],
+       "answer": 0,
+       "narration": "Ortadaki iki alanın yönlerine bakalım.",
+       "steps": [
+        {
+         "text": "Önce iki alan da $-q$'ya doğru: **toplanır**, $E = 2 \\cdot \\frac{kq}{(2\\,\\text{cm})^2}$.",
+         "narration": "İlk durumda pozitif yükün alanı dışarı, negatif yükün alanı içeri; ortada ikisi de negatif yüke doğru, toplanırlar."
+        },
+        {
+         "text": "İki yük de $+q$: ortada alanlar **zıt** ve eşit, bileşke sıfır.",
+         "narration": "İki yük de pozitif olunca ortada alanlar zıt yönlü ve eşit büyüklükte olur; birbirini yok eder. Cevap A.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Alanların toplanması kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ELEK_ALAN_03",
+    "title": "Elektrik alan çizgileri",
+    "narration": "Alan görünmez ama çizgilerle çizilebilir: çizgilerin yönü alanın yönünü, sıklığı şiddetini gösterir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Alan çizgileri",
+      "items": [
+       "Çizgiler pozitif yükten **çıkar**, negatif yükte **biter**; hiç kesişmez.",
+       "Çizgilerin **sık** olduğu yerde alan şiddetlidir; çizgi sayısı yükle orantılıdır.",
+       "Bir noktadaki alan, çizgiye o noktada **teğettir**."
+      ],
+      "visual": {
+       "kind": "electricField",
+       "view": [
+        -3,
+        -3.5,
+        7,
+        3.5
+       ],
+       "lines": true,
+       "equipotentials": [],
+       "charges": [
+        {
+         "at": [
+          0,
+          0
+         ],
+         "q": 2,
+         "label": "+2q"
+        },
+        {
+         "at": [
+          4,
+          0
+         ],
+         "q": -1,
+         "label": "−q"
+        }
+       ],
+       "points": []
+      },
+      "beats": [
+       {
+        "narration": "Artı iki q ile eksi q yükü.",
+        "focus": [
+         "c1",
+         "c2"
+        ]
+       },
+       {
+        "narration": "Çizgiler artı iki q'dan çıkıyor; yarısı eksi q'da bitiyor, yarısı uzaklara gidiyor: yük iki kat, çizgi iki kat.",
+        "show": [
+         "lines"
+        ],
+        "focus": [
+         "lines"
+        ]
+       }
+      ],
+      "narration": "Elektrik alan çizgileri pozitif yükten çıkar ve negatif yükte biter; iki çizgi hiç kesişmez. Çizgilerin sık olduğu yerde alan şiddetlidir ve bir yükten çıkan çizgi sayısı yükün büyüklüğüyle orantılıdır. Bir noktadaki alan, oradan geçen çizgiye teğettir. Burada artı iki q'dan çıkan çizgilerin yarısı eksi q'da bitiyor, öbür yarısı sonsuza gidiyor."
+     },
+     {
+      "kind": "mistake",
+      "title": "Çizgi, yükün yolu mu?",
+      "wrong": "Serbest bırakılan bir yük her zaman alan çizgisi boyunca hareket eder.",
+      "right": "Alan çizgisi **kuvvetin** yönünü gösterir; yük hızlandıkça çizgiden **ayrılabilir**.",
+      "why": "Yalnız düz çizgilerde ve ilk hızsız yükte yol ile çizgi çakışır.",
+      "narration": "Sık yapılan bir hata: alan çizgisini yükün yolu sanmak. Çizgi her noktada kuvvetin yönünü gösterir; eğri bir çizgide hızlanan yük, eylemsizliği yüzünden çizgiden ayrılır. Yol ile çizgi yalnız düz çizgilerde ve ilk hızı olmayan yük için çakışır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "İki noktasal yükten K'den çıkan elektrik alan çizgilerinin yarısı L'de bitiyor, öbür yarısı uzaklara gidiyor; L'den hiç çizgi çıkmıyor.\n\nBuna göre;\nI. K pozitif, L negatif yüklüdür.\nII. K'nin yük miktarı L'ninkinin iki katıdır.\nIII. K ile L birbirini iter.\n\nyargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "narration": "Çizgiler nereden çıkıp nerede biter, kaç tane?",
+       "steps": [
+        {
+         "text": "Çizgiler K'den **çıkıp** L'de **bitiyor**: K pozitif, L negatif (I).",
+         "narration": "Alan çizgileri pozitif yükten çıkar, negatif yükte biter. K'den çıkıp L'de bittiğine göre K pozitif, L negatif."
+        },
+        {
+         "text": "Çizgi sayısı yükle orantılı: L, K'nin çizgilerinin **yarısını** alıyor → $q_K = 2q_L$ (II). Zıt yükler **çeker** (III yanlış).",
+         "narration": "Bir yükte biten çizgi sayısı yüküyle orantılıdır; L, K'den çıkanların yarısını aldığına göre K'nin yükü L'ninkinin iki katı. Zıt işaretli oldukları için birbirlerini çekerler. Cevap C.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Alan çizgisi yorumu; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ELEK_ALAN_04",
+    "title": "Elektriksel potansiyel",
+    "narration": "Potansiyel, bir noktanın elektriksel \"yüksekliği\" gibidir: birim yükün orada sahip olduğu enerjidir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Potansiyel",
+      "items": [
+       "Noktasal yükün potansiyeli $V = k\\frac{q}{d}$: **skalerdir**, işaretiyle toplanır.",
+       "Pozitif yüke yaklaştıkça potansiyel **artar**, negatife yaklaştıkça azalır.",
+       "Dokunan iletkenler **aynı potansiyele** gelene kadar yük alışverişi yapar."
+      ],
+      "visual": {
+       "kind": "electricField",
+       "view": [
+        -5,
+        -4.5,
+        5,
+        4.5
+       ],
+       "lines": true,
+       "equipotentials": [
+        1,
+        0.5,
+        0.25
+       ],
+       "charges": [
+        {
+         "at": [
+          0,
+          0
+         ],
+         "q": 1,
+         "label": "+q"
+        }
+       ],
+       "points": [
+        {
+         "at": [
+          0.87,
+          0.5
+         ],
+         "label": "K",
+         "field": false,
+         "potential": true
+        },
+        {
+         "at": [
+          1.73,
+          -1
+         ],
+         "label": "L",
+         "field": false,
+         "potential": true
+        },
+        {
+         "at": [
+          0,
+          4
+         ],
+         "label": "M",
+         "field": false,
+         "potential": true
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Artı q yükünün çevresinde eş potansiyel çemberler.",
+        "show": [
+         "equipotentials"
+        ],
+        "focus": [
+         "equipotentials"
+        ]
+       },
+       {
+        "narration": "K'de bir, L'de yarım, M'de dörtte bir kq bölü d: uzaklık iki katı, potansiyel yarısı.",
+        "show": [
+         "p1",
+         "p2",
+         "p3"
+        ],
+        "focus": [
+         "p1",
+         "p2",
+         "p3"
+        ]
+       }
+      ],
+      "narration": "Noktasal bir yükün bir noktada oluşturduğu potansiyel k q bölü d'dir. Potansiyel skaler bir büyüklüktür; birden çok yükün potansiyelleri işaretleriyle toplanır. Pozitif yüke yaklaştıkça potansiyel artar, negatif yüke yaklaştıkça azalır. Birbirine dokunan iletkenler aynı potansiyele gelene kadar yük alışverişi yapar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aynı doğru üzerindeki eşit aralıklı K, L, M, N ve P noktalarından K'ye $+2q$, M'ye $+q$, P'ye $-q$ yüklü noktasal cisimler sabitlenmiştir.\n\nL noktasındaki potansiyelin N noktasındaki potansiyele oranı $\\frac{V_L}{V_N}$ kaçtır?",
+       "context": "ÖSYM 2021'de sorulan eşit aralıklı K, L, M, N, P noktaları yapısının yeni yüklerle kurulmuş hâli.",
+       "figure": {
+        "kind": "electricField",
+        "view": [
+         -0.8,
+         -1.2,
+         4.8,
+         1.2
+        ],
+        "lines": false,
+        "equipotentials": [],
+        "charges": [
+         {
+          "at": [
+           0,
+           0
+          ],
+          "q": 2,
+          "label": "K"
+         },
+         {
+          "at": [
+           2,
+           0
+          ],
+          "q": 1,
+          "label": "M"
+         },
+         {
+          "at": [
+           4,
+           0
+          ],
+          "q": -1,
+          "label": "P"
+         }
+        ],
+        "points": [
+         {
+          "at": [
+           1,
+           0
+          ],
+          "label": "L",
+          "field": false,
+          "potential": false
+         },
+         {
+          "at": [
+           3,
+           0
+          ],
+          "label": "N",
+          "field": false,
+          "potential": false
+         }
+        ]
+       },
+       "options": [
+        "$5$",
+        "$4$",
+        "$3$",
+        "$2$",
+        "$1$"
+       ],
+       "answer": 1,
+       "narration": "Aralık $d$ olsun; potansiyeller işaretiyle toplanır.",
+       "steps": [
+        {
+         "text": "$V_L = k\\left(\\frac{2q}{d} + \\frac{q}{d} - \\frac{q}{3d}\\right) = \\frac{8}{3}\\frac{kq}{d}$.",
+         "narration": "L, K'ye ve M'ye d, P'ye üç d uzakta: iki artı bir eksi üçte bir, sekiz bölü üç kq bölü d."
+        },
+        {
+         "text": "$V_N = k\\left(\\frac{2q}{3d} + \\frac{q}{d} - \\frac{q}{d}\\right) = \\frac{2}{3}\\frac{kq}{d}$; oran $4$.",
+         "narration": "N, K'ye üç d, M'ye ve P'ye d uzakta: üçte iki artı bir eksi bir, üçte iki. Oran sekiz bölü üç bölü üçte iki: dört. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021 modeli: yükler değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yarıçapları farklı iki iletken küreden büyük olanı yüklü, küçüğü nötrdür. Yalıtkan eldivenle tutulan küreler birbirine dokundurulup ayrılıyor.\n\nAyrıldıktan sonra küreler için;\nI. Yük miktarları eşittir.\nII. Yüzeylerindeki potansiyeller eşittir.\nIII. Aynı işaretli yükle yüklüdür.\n\nyargılarından hangileri doğrudur?",
+       "context": "ÖSYM'de sorulan birbirine dokundurulan iki demir bilye yapısının yeniden kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 3,
+       "narration": "Dokunan iletkenlerde neyin eşitlendiğine bakalım.",
+       "steps": [
+        {
+         "text": "Yük akışı **potansiyeller eşitlenince** durur (II); nötr küre aynı işaretli yük alır (III).",
+         "narration": "Yük, iki kürenin potansiyelleri eşit olana kadar akar; potansiyeller eşittir. Nötr küre, yüklü kürenin işaretinde yük alır; ikisi aynı işaretli."
+        },
+        {
+         "text": "$V = k\\frac{q}{r}$ eşitse $q \\propto r$: büyük kürede **daha çok** yük (I yanlış).",
+         "narration": "Potansiyel k q bölü r; potansiyeller eşitse yük yarıçapla orantılı olur. Büyük küre daha çok yük taşır; yükler eşit değil. Cevap D.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM modeli: durum değiştirildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ELEK_ALAN_05",
+    "title": "Potansiyel fark",
+    "narration": "Bir yükü iki nokta arasında taşımak için yapılan iş, yalnız bu iki noktanın potansiyel farkına bağlıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Potansiyel fark",
+      "items": [
+       "İki nokta arasındaki potansiyel fark $\\Delta V = V_B - V_A$.",
+       "$q$ yükünü A'dan B'ye taşımak için yapılan iş $W = q(V_B - V_A)$: **yoldan bağımsız**.",
+       "Pozitif yük kendiliğinden **yüksek potansiyelden düşüğe** gider."
+      ],
+      "narration": "İki nokta arasındaki potansiyel fark, son noktanın potansiyeli eksi ilk noktanınkidir. Bir q yükünü A'dan B'ye yavaşça taşımak için dışarıdan yapılan iş, q çarpı bu potansiyel farktır ve izlenen yoldan bağımsızdır; yer çekimindeki m g h gibi. Pozitif yük kendiliğinden yüksek potansiyelden düşük potansiyele gider."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Eş potansiyel yüzeyler $V$, $2V$, $3V$, $4V$ ve $5V$ potansiyelindedir. $+2q$ yüklü bir cisim, $V$ yüzeyindeki K noktasından $4V$ yüzeyindeki L noktasına taşınırken üzerinde $W$ iş yapılıyor.\n\n$+q$ yüklü bir cisim $5V$ yüzeyindeki M noktasından $2V$ yüzeyindeki N noktasına taşınırsa üzerinde yapılan iş kaç $W$ olur?",
+       "context": "ÖSYM 2024'te sorulan eş potansiyel yüzeylerde taşınan yük yapısının yeni sayılarla kurulmuş hâli.",
+       "options": [
+        "$-1{,}5$",
+        "$-1$",
+        "$-0{,}5$",
+        "$0{,}5$",
+        "$1$"
+       ],
+       "answer": 2,
+       "narration": "İş yalnız yük ve potansiyel farkına bağlı.",
+       "steps": [
+        {
+         "text": "$W = 2q \\cdot (4V - V) = 6qV$.",
+         "narration": "İlk taşımada iş, iki q çarpı dört V eksi V: altı q V. Bu W'dir."
+        },
+        {
+         "text": "$W' = q \\cdot (2V - 5V) = -3qV = -\\frac{W}{2}$.",
+         "narration": "İkinci taşımada q çarpı iki V eksi beş V: eksi üç q V, yani eksi yarım W. Yük alçak potansiyele iniyor, iş eksi. Cevap C.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2024 modeli: yüzeyler ve yükler sayıyla verildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ELEK_ALAN_06",
+    "title": "Elektriksel potansiyel enerji",
+    "narration": "Yükler arasında depolanan enerji, yükler serbest kalınca harekete dönüşür.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Potansiyel enerji",
+      "items": [
+       "İki yükün potansiyel enerjisi $E_p = k\\frac{q_1 q_2}{d}$; işaretiyle.",
+       "Zıt yükler yaklaşırken enerji **azalır**; aynı yükleri yaklaştırmak için **iş** gerekir.",
+       "Serbest bırakılan yükün kazandığı kinetik enerji, kaybettiği potansiyel enerjiye eşittir: $qV$."
+      ],
+      "narration": "İki noktasal yükün elektriksel potansiyel enerjisi k q bir q iki bölü d'dir ve işaretleriyle hesaplanır. Zıt yükler yaklaşırken bu enerji azalır, aynı işaretli yükleri yaklaştırmak içinse dışarıdan iş yapmak gerekir. Bir potansiyel farkta serbest bırakılan yük, kaybettiği potansiyel enerji kadar kinetik enerji kazanır: q çarpı V."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yükü $2 \\cdot 10^{-6}$ C, kütlesi $10^{-6}$ kg olan bir parçacık, aralarındaki potansiyel farkı $400$ V olan iki nokta arasında durgun hâlden hızlanıyor.\n\nParçacığın son hızı kaç m/s'dir? (Yer çekimi önemsiz)",
+       "options": [
+        "$20$",
+        "$40$",
+        "$80$",
+        "$400$",
+        "$800$"
+       ],
+       "answer": 1,
+       "narration": "Potansiyel enerji kinetiğe dönüşür.",
+       "steps": [
+        {
+         "text": "$qV = 2 \\cdot 10^{-6} \\cdot 400 = 8 \\cdot 10^{-4}$ J.",
+         "narration": "Kazanılan enerji q çarpı V: iki çarpı on üzeri eksi altı çarpı dört yüz, sekiz çarpı on üzeri eksi dört joule."
+        },
+        {
+         "text": "$\\frac{1}{2} \\cdot 10^{-6} \\cdot v^2 = 8 \\cdot 10^{-4}$ → $v^2 = 1600$, $v = 40$ m/s.",
+         "narration": "Bu enerji yarım m v kareye eşit: v kare bin altı yüz, v kırk metre bölü saniye. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "Potansiyel fark ve hız kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ELEK_ALAN_07",
+    "title": "Eş potansiyel yüzeyler",
+    "narration": "Potansiyeli aynı olan noktaları birleştiren yüzeyler, haritadaki eş yükselti eğrileri gibidir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Eş potansiyel yüzeyler",
+      "items": [
+       "Eş potansiyel yüzey üzerindeki her noktada **potansiyel aynıdır**.",
+       "Alan çizgileri eş potansiyel yüzeylere her yerde **diktir**.",
+       "Aynı yüzey üzerinde yük taşımak için **iş yapılmaz**."
+      ],
+      "visual": {
+       "kind": "electricField",
+       "view": [
+        -3,
+        -3,
+        7,
+        3
+       ],
+       "lines": true,
+       "equipotentials": [
+        -0.6,
+        -0.3,
+        0,
+        0.3,
+        0.6
+       ],
+       "charges": [
+        {
+         "at": [
+          0,
+          0
+         ],
+         "q": 1,
+         "label": "+q"
+        },
+        {
+         "at": [
+          4,
+          0
+         ],
+         "q": -1,
+         "label": "−q"
+        }
+       ],
+       "points": []
+      },
+      "beats": [
+       {
+        "narration": "Artı ve eksi yükün alan çizgileri.",
+        "show": [
+         "lines"
+        ],
+        "focus": [
+         "lines"
+        ]
+       },
+       {
+        "narration": "Kesik eğriler eş potansiyel yüzeyler: çizgileri her yerde dik kesiyorlar; ortadaki düz yüzeyin potansiyeli sıfır.",
+        "show": [
+         "equipotentials"
+        ],
+        "focus": [
+         "equipotentials"
+        ]
+       }
+      ],
+      "narration": "Eş potansiyel yüzey, potansiyeli aynı olan noktaların oluşturduğu yüzeydir; haritadaki eş yükselti eğrileri gibi. Alan çizgileri bu yüzeyleri her yerde dik keser. Aynı yüzey üzerinde bir yükü taşımak için iş yapılmaz, çünkü potansiyel fark sıfırdır. Burada artı ve eksi yükün tam ortasındaki düz yüzeyin potansiyeli sıfırdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir eş potansiyel yüzey üzerindeki K noktasından L noktasına $+q$ yüklü bir cisim taşınıyor.\n\nBu taşıma için;\nI. Elektriksel kuvvetin yaptığı iş sıfırdır.\nII. Cismin elektriksel potansiyel enerjisi değişmez.\nIII. K ve L noktalarındaki elektrik alan şiddetleri kesinlikle eşittir.\n\nyargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "I ve II",
+        "I ve III",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 1,
+       "narration": "Eş potansiyel yüzey neyi eşitler?",
+       "steps": [
+        {
+         "text": "$\\Delta V = 0$: iş **sıfır** (I), potansiyel enerji **değişmez** (II).",
+         "narration": "K ile L arasında potansiyel fark sıfır; elektriksel kuvvetin işi sıfır ve potansiyel enerji değişmez."
+        },
+        {
+         "text": "Potansiyel aynı olsa da alan şiddeti **farklı olabilir** (III yanlış).",
+         "narration": "Aynı yüzeyde potansiyel aynıdır ama alan şiddeti farklı olabilir; artı ve eksi yükün ortasındaki düz yüzeyde, yüklere yakın noktada alan daha şiddetlidir. Cevap B.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Eş potansiyel yüzey yargıları; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$F = k\\frac{q_1q_2}{d^2}$; vektörel toplanır.",
+    "$E = k\\frac{q}{d^2}$, pozitiften dışa.",
+    "Çizgiler + yükten çıkar, − yükte biter.",
+    "$V = k\\frac{q}{d}$, skaler; dokunan iletkenler eş potansiyelde.",
+    "$W = q\\Delta V$, yoldan bağımsız.",
+    "Eş potansiyel yüzeyde iş yok; çizgiler dik."
+   ],
+   "warnings": [
+    "Potansiyel **skalerdir**: işaretle topla.",
+    "Alan çizgisi yükün **yolu değildir**.",
+    "Dokunan iletkenlerde **potansiyel** eşitlenir, yük değil."
+   ],
+   "narration": "Özetleyelim. Coulomb kuvveti yüklerin çarpımıyla doğru, uzaklığın karesiyle ters orantılıdır. Elektrik alan birim pozitif yüke etki eden kuvvettir ve vektörel toplanır; çizgileri pozitiften çıkar, negatifte biter. Potansiyel skalerdir, k q bölü d ile işaretiyle toplanır. Bir yükü taşımak için yapılan iş q çarpı potansiyel farktır ve yoldan bağımsızdır. Eş potansiyel yüzeyde iş yapılmaz ve alan çizgileri bu yüzeyleri dik keser."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "Uzaklık iki katı",
+    "question": "Coulomb kuvveti?",
+    "choices": [
+     "Yarısı",
+     "Dörtte biri"
+    ],
+    "answer": 1,
+    "why": "F ∝ **1/d²**."
+   },
+   {
+    "sentence": "Dokunan iki küre",
+    "question": "Ne eşitlenir?",
+    "choices": [
+     "Yük",
+     "Potansiyel"
+    ],
+    "answer": 1,
+    "why": "**Potansiyel** eşitlenir."
+   },
+   {
+    "sentence": "Eş potansiyel yüzeyde",
+    "question": "Yapılan iş?",
+    "choices": [
+     "Sıfır",
+     "qV"
+    ],
+    "answer": 0,
+    "why": "ΔV = 0: **iş yok**."
+   }
+  ],
+  "hook": "Üç elektrik tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "W = q · **ΔV**, yoldan bağımsız."
+   },
+   {
+    "kind": "warning",
+    "text": "Potansiyel **skalerdir**."
+   },
+   {
+    "kind": "term",
+    "term": "Alan çizgisi",
+    "definition": "+ yükten **çıkar**, − yükte biter."
+   }
+  ],
+  "summary": [
+   "Coulomb ve alan",
+   "Potansiyel",
+   "Eş potansiyel"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-fizik-kampi",
+  "name": "AYT Fizik kampı",
+  "number": 10,
+  "total": 21,
+  "previous": "İtme ve Momentum",
+  "next": "Paralel Levhalar ve Sığa",
+  "promise": "Vektörden modern fiziğe AYT Fizik: her konu animasyonlu anlatım ve çözümlü sorularla.",
+  "task": {
+   "items": [
+    "Bir balonu saçına sürtüp küçük kâğıt parçalarını çek; **yaklaştıkça** etkinin nasıl arttığını gözle.",
+    "Bir kâğıda + ve − iki yük çiz; **alan çizgilerini** elle çizip eş potansiyelleri onlara dik çiz.",
+    "Uygulamada AYT Elektrik Alan ve Potansiyel testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bir balonu saçına sürt ve küçük kâğıt parçalarını uzaktan çek; balonu yaklaştırdıkça etkinin nasıl arttığını gözle. Sonra bir kâğıda bir artı ve bir eksi yük çiz, alan çizgilerini elle çiz ve eş potansiyel eğrileri onlara dik olacak şekilde ekle. Ardından uygulamada yirmi soru çöz. Bir sonraki derste paralel levhalar ve sığada görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Coulomb hesabı ekle: 2 μC ve 8 μC yükler 0,3 m aralıklıysa F = 9 · 10⁹ × 16 · 10⁻¹² / 0,09 = 1,6 N. Aynı işaretli q ve 9q yüklerin arasında üçüncü bir yükün dengede kaldığı noktanın q'ya d/4 uzaklıkta olduğunu göster.",
+   "Zıt işaretli yüklerde alanın sıfır olduğu noktayı örnekle: +4q ile −q arası d ise nokta iki yükün arasında değil, küçük yükün (−q) dış tarafında, −q'dan d uzaklıktadır. Aynı işaretli yüklerde bu noktanın arada olduğunu karşılaştır.",
+   "İletkenlerde yük dağılımını açıkla: yük dış yüzeyde toplanır, iletkenin içinde alan sıfır, potansiyel her yerde eşittir; sivri uçlarda yük yoğunlaşır (paratoner); Faraday kafesi (otomobilin içi yıldırımdan korur).",
+   "Dokunan kürelere örnek ekle: yarıçapı 2r olan +9q yüklü küre ile r yarıçaplı yüksüz küre dokundurulursa yükler yarıçapla orantılı paylaşılır: 6q ve 3q. Dokunan iletkenlerin eş potansiyele geldiğini vurgula.",
+   "Elektronvoltu ve enerjiyi örnekle: 1 eV = 1,6 · 10⁻¹⁹ J; 1000 V ile hızlandırılan elektron 1000 eV kinetik enerji kazanır. Pozitif yükün kendiliğinden alan yönünde ilerleyip potansiyeli düşük bölgeye gittiğini, negatif yükün tersini yaptığını ekle."
+  ]
+ }
+}

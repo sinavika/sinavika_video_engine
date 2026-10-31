@@ -1,0 +1,1246 @@
+{
+ "topic": {
+  "id": "B2EBCBC2-FC88-3BE6-E060-07FDBCB26A06",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_HAREKET"
+ },
+ "title": "Hareket",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/FIZ/FIZ_HAREKET.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Hangi tren gidiyor?",
+   "narration": "Duran bir trende otururken yandaki tren hareket edince bir an kendi treninin gittiğini sanırsın. Hareket, kime göre baktığına bağlıdır. Bu derste sabit hızlı ve sabit ivmeli hareketi, serbest düşmeyi, konum, hız ve ivme grafiklerini ve bağıl hareketi, altı ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Sabit hızlı ve sabit ivmeli hareketin denklemlerini kullanmak",
+   "Serbest düşmede kütleden bağımsızlığı ve limit hızı yorumlamak",
+   "Hız-zaman grafiğinde eğim ve alanı okumak",
+   "Konum-zaman ve ivme-zaman grafiklerini yorumlamak",
+   "Bağıl hızı vektörel olarak bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_HAREKET_01",
+    "subtopics": [],
+    "title": "Bir boyutta sabit hızlı hareket",
+    "narration": "Hızı sabit olan bir cisim eşit sürelerde eşit yol alır. Bu en basit hareket, bütün grafik okumalarının da temelidir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sabit hız",
+      "items": [
+       "Hız sabitse eşit sürelerde **eşit yer değiştirme**: $\\Delta x = v \\cdot t$.",
+       "Konum-zaman grafiği **doğrusal**; eğimi hızı verir.",
+       "Yer değiştirme vektörel, alınan yol skalerdir; yön değişirse **ayrışırlar**."
+      ],
+      "visual": {
+       "kind": "kinematics",
+       "bodies": [
+        {
+         "label": "A",
+         "x0": 0,
+         "v0": 4,
+         "phases": [
+          {
+           "duration": 6,
+           "a": 0
+          }
+         ]
+        }
+       ],
+       "graphs": [
+        "x",
+        "v"
+       ],
+       "area": true,
+       "track": true,
+       "motion": true,
+       "duration": 6
+      },
+      "beats": [
+       {
+        "narration": "Araç saniyede dört metre gidiyor.",
+        "show": [],
+        "focus": [
+         "b1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Konum doğrusal artar, hız grafiği yatay bir çizgidir.",
+        "show": [
+         "run"
+        ],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Hız çizgisinin altındaki alan: dört çarpı altı, yirmi dört metre.",
+        "show": [
+         "area"
+        ],
+        "focus": [
+         "area"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Hızı sabit bir cisim eşit sürelerde eşit yer değiştirir: yer değiştirme, hız çarpı süredir. Konum-zaman grafiği bir doğrudur ve eğimi hızı verir. Yer değiştirme yönü olan bir büyüklüktür, alınan yol ise yalnız uzunluktur; cisim geri dönerse ikisi farklı çıkar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aralarında $300$ m bulunan $K$ ve $L$ araçları, doğrusal bir yolda birbirine doğru $20$ m/s ve $10$ m/s sabit hızlarla aynı anda harekete geçiyor.\n\nAraçlar kaç saniye sonra karşılaşır?",
+       "options": [
+        "$6$",
+        "$10$",
+        "$15$",
+        "$20$",
+        "$30$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Zıt yönde gidiyorlar: aradaki uzaklık saniyede $20 + 10 = 30$ m kapanır.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Araçlar birbirine doğru gidiyor; aradaki uzaklık her saniye yirmi artı on, otuz metre kısalır."
+        },
+        {
+         "text": "$t = \\frac{300}{30} = 10$ s.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç yüz bölü otuz: on saniye. Hızların farkını alan otuz saniyeyi bulur. Cevap B."
+        }
+       ],
+       "narration": "Birbirlerine yaklaşma hızlarını bulalım.",
+       "origin": {
+        "changes": "Karşılaşma kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_HAREKET_02",
+    "subtopics": [],
+    "title": "Sabit ivmeli hareket",
+    "narration": "İvme sabitse hız her saniye aynı miktarda değişir. Konum ise zamanın karesiyle değişir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sabit ivme",
+      "items": [
+       "$v = v_0 + a t$",
+       "$\\Delta x = v_0 t + \\frac{1}{2} a t^2$",
+       "$v^2 = v_0^2 + 2a\\Delta x$; ortalama hız $\\frac{v_0 + v}{2}$."
+      ],
+      "visual": {
+       "kind": "kinematics",
+       "bodies": [
+        {
+         "label": "A",
+         "x0": 0,
+         "v0": 0,
+         "phases": [
+          {
+           "duration": 5,
+           "a": 2
+          }
+         ]
+        }
+       ],
+       "graphs": [
+        "v",
+        "x"
+       ],
+       "area": true,
+       "track": true,
+       "motion": true,
+       "duration": 6
+      },
+      "beats": [
+       {
+        "narration": "Durgun bir araç saniyede iki metre bölü saniye hızlanıyor.",
+        "show": [],
+        "focus": [
+         "b1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Hız eşit sürelerde eşit artar; konum grafiği bir paraboldür.",
+        "show": [
+         "run"
+        ],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Hız-zaman alanı bir üçgen: beş çarpı on bölü iki, yirmi beş metre.",
+        "show": [
+         "area"
+        ],
+        "focus": [
+         "area"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Sabit ivmeli harekette hız, ilk hız artı ivme çarpı zamandır. Yer değiştirme, ilk hız çarpı zaman artı yarım ivme çarpı zamanın karesidir. Zamanı bilmiyorsan hızın karesi, ilk hızın karesi artı iki ivme çarpı yer değiştirmedir. Ortalama hız da ilk ve son hızın ortalamasıdır; bu yalnız ivme sabitken doğrudur."
+     },
+     {
+      "kind": "predict",
+      "title": "İkinci saniyede ne kadar?",
+      "prompt": "Durmakta olan bir araç sabit ivmeyle hızlanıyor. İlk saniyede $1$ m yol alıyorsa ikinci saniyede kaç m yol alır?",
+      "choices": [
+       "$1$ m",
+       "$2$ m",
+       "$3$ m",
+       "$4$ m"
+      ],
+      "answer": 2,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "kinematics",
+       "bodies": [
+        {
+         "label": "A",
+         "x0": 0,
+         "v0": 0,
+         "phases": [
+          {
+           "duration": 3,
+           "a": 2
+          }
+         ]
+        }
+       ],
+       "graphs": [
+        "v"
+       ],
+       "area": true,
+       "track": true,
+       "motion": true,
+       "duration": 6
+      },
+      "beats": [
+       {
+        "narration": "Araç sabit ivmeyle hızlanıyor; altındaki alan her saniye büyüyor.",
+        "show": [
+         "run",
+         "area"
+        ],
+        "focus": [
+         "area"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "Durgun hâlden sabit ivmede ardışık saniyelerde yollar **1 : 3 : 5** oranındadır.",
+      "narration": "Duran bir araç sabit ivmeyle hızlanıyor ve ilk saniyede bir metre gidiyor. İkinci saniyede kaç metre gider? Tahmin et.",
+      "explanationNarration": "Üç metre. Toplam yol zamanın karesiyle büyür: bir saniyede bir, iki saniyede dört, üç saniyede dokuz metre. Ardışık saniyelerde alınan yollar bir, üç, beş diye tek sayılarla artar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Doğrusal bir yolda giden bir otomobilin yalnızca $t_1$ ve $t_2$ anlarındaki anlık hızları ile bu anlar biliniyor.\n\nOtomobilin bu aralıktaki ortalama hızının büyüklüğünü bulmak için;\nI. ivmesinin sabit olduğu,\nII. kütlesi,\nIII. bu aralıkta durmadığı\n\nbilgilerinden hangilerinin verilmesi yeterlidir?",
+       "context": "ÖSYM 2024'te sorulan ortalama hız yapısının yargıları değiştirilmiş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız III",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "İvme sabitse ortalama hız $\\frac{v_1 + v_2}{2}$: iki hız **yeter** (I).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İvme sabitse ortalama hız, iki anlık hızın ortalamasıdır; verilen hızlarla hemen bulunur. Birinci tek başına yeter."
+        },
+        {
+         "text": "Durmaması hızın **nasıl** değiştiğini söylemez (III yetmez); kütle hareketi anlatmaz (II).",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Aracın durmaması, iki an arasında hızın nasıl değiştiğini söylemez; ortalama hız yine bulunamaz. Kütle ise hareketin biçimini hiç etkilemez. Cevap A."
+        }
+       ],
+       "narration": "Ortalama hız hangi durumda iki uç hızdan bulunur?",
+       "origin": {
+        "changes": "ÖSYM 2024 modeli: yargılar değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Doğrusal bir yolda $20$ m/s hızla giden bir araç fren yaparak sabit ivmeyle yavaşlıyor ve $40$ m sonra duruyor.\n\nAracın ivmesinin büyüklüğü kaç m/s² ve durma süresi kaç s'dir?",
+       "options": [
+        "$2{,}5$ ; $8$",
+        "$4$ ; $4$",
+        "$4$ ; $5$",
+        "$5$ ; $2$",
+        "$5$ ; $4$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$0 = 20^2 - 2a \\cdot 40$ → $a = 5$ m/s².",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Son hız sıfır: sıfır eşittir yirminin karesi eksi iki a çarpı kırk. Dört yüz bölü seksen: a beş metre bölü saniye kare."
+        },
+        {
+         "text": "$t = \\frac{20}{5} = 4$ s; kontrol: ortalama hız $10$ m/s, $10 \\cdot 4 = 40$ m.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Süre, hız değişimi bölü ivme: yirmi bölü beş, dört saniye. Kontrol edelim: ortalama hız on, on çarpı dört kırk metre. Kırkı yirmiye bölen iki saniyeyi bulur. Cevap E."
+        }
+       ],
+       "narration": "Süreyi bilmeden ivmeyi bulan denklem.",
+       "origin": {
+        "changes": "Frenleme kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Düşey düzlemde çembersel yörüngede döndürülen bir taşın ipi, taş çemberin en üst, en alt, en sol ya da en sağ noktasındayken kopuyor. İpin koptuğu andan taş yere düşene kadar taşın hız ve ivme vektörleri hep birbirine paraleldir.\n\nİp hangi noktalarda kopmuş olabilir?",
+       "context": "ÖSYM 2025'te sorulan ipi kopan taş yapısının şekilsiz, yeniden kurulmuş hâli.",
+       "options": [
+        "Yalnız en üst",
+        "Yalnız en alt",
+        "En sol ve en sağ",
+        "En üst ve en alt",
+        "Dördünde de"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Koptuktan sonra ivme hep $g$, **düşey aşağı**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İp koptuktan sonra taşa yalnız ağırlığı etki eder; ivme hep g, düşey aşağı."
+        },
+        {
+         "text": "Hız ivmeye paralel kalsın diye koptuğu anda hız **düşey** olmalı: çemberin en sol ve en sağ noktası.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hız ile ivmenin hep paralel kalması için taşın koptuğu andaki hızı da düşey olmalı. Çembersel harekette hız çembere teğettir; teğet en sol ve en sağ noktalarda düşeydir."
+        },
+        {
+         "text": "En üst ve en altta hız yatay: taş eğik atış yapar, hız ile ivme **paralel olmaz**.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "En üstte ve en altta hız yataydır; taş bir parabol çizer ve hız yönü sürekli değişir. Cevap C."
+        }
+       ],
+       "narration": "Koptuktan sonra ivme neyin yönündedir?",
+       "origin": {
+        "changes": "ÖSYM 2025 modeli: şekilsiz yeniden kuruldu"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_HAREKET_03",
+    "subtopics": [],
+    "title": "Serbest düşme",
+    "narration": "Hava direnci yoksa bırakılan her cisim aynı ivmeyle düşer. Hava direnci işin içine girince limit hız ortaya çıkar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Serbest düşme",
+      "items": [
+       "Hava direnci yoksa bütün cisimler **aynı ivmeyle** düşer: $g$.",
+       "$v = g t$, $h = \\frac{1}{2} g t^2$, $v^2 = 2 g h$.",
+       "Hava direnci hızla artar; ağırlığa eşitlenince cisim **limit hızla** düşer."
+      ],
+      "visual": {
+       "kind": "motion",
+       "x": "0",
+       "y": "45 - 5t^2",
+       "t": [
+        0,
+        3
+       ],
+       "view": [
+        -20,
+        0,
+        20,
+        50
+       ],
+       "duration": 4,
+       "velocity": true
+      },
+      "beats": [],
+      "narration": "Hava direnci yoksa bırakılan her cisim, kütlesi ne olursa olsun, g ivmesiyle düşer. Hızı g çarpı t, düştüğü yükseklik yarım g çarpı t karedir. Havada ise direnç hızla artar; direnç ağırlığa eşit olunca net kuvvet sıfırlanır ve cisim sabit bir hızla, limit hızla düşer."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Hava direncinin olmadığı bir ortamda $2$ kg'lık bir çekiç ile $10$ g'lık bir tüy, aynı yükseklikten aynı anda serbest bırakılıyor.\n\nBu cisimlerin;\nI. düşme süreleri,\nII. ivmeleri,\nIII. yere çarpma anındaki kinetik enerjileri\n\nniceliklerinden hangileri eşittir?",
+       "context": "ÖSYM 2023'te sorulan top ve kuş tüyü yapısının yargıları değiştirilmiş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "İkisinin de ivmesi $g$: aynı yükseklikten **aynı sürede** düşerler (I, II).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hava direnci yokken ikisi de g ivmesiyle düşer; aynı yükseklikten aynı sürede yere iner. Birinci ve ikinci eşit."
+        },
+        {
+         "text": "Hızları eşit ama kütleleri farklı: $\\frac{1}{2} m v^2$ **farklı** (III).",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yere aynı hızla çarparlar ama kinetik enerji kütleye de bağlıdır; çekicinki çok daha büyüktür. Cevap C."
+        }
+       ],
+       "narration": "Ağırlık farklı ama ivme?",
+       "origin": {
+        "changes": "ÖSYM 2023 modeli: yargılar değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Doğuya doğru $2$ m/s hızla uçan bir martı, ağzındaki midyeyi bırakıyor. Midye, batıya doğru $15$ m/s sabit hızla giden bir kamyonetin kasasına düşüyor. Midye bırakıldığında kasa ile arasındaki düşey uzaklık $45$ m'dir.\n\nMidye bırakıldığı anda kamyonet ile midye arasındaki yatay uzaklık kaç m'dir? (Hava direnci önemsiz, $g = 10$ m/s²)",
+       "context": "ÖSYM 2021'de sorulan karga, ceviz ve araba yapısının yeni sayılarla kurulmuş hâli.",
+       "options": [
+        "$39$",
+        "$45$",
+        "$48$",
+        "$51$",
+        "$54$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$45 = \\frac{1}{2} \\cdot 10 \\cdot t^2$ → $t = 3$ s.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Düşey: kırk beş, yarım çarpı on çarpı t kare; t üç saniye."
+        },
+        {
+         "text": "Midye martının hızını korur: doğuya $2 \\cdot 3 = 6$ m; kamyonet batıya $15 \\cdot 3 = 45$ m.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Midye bırakılınca martının yatay hızını korur ve üç saniyede doğuya altı metre gider. Kamyonet aynı sürede batıya kırk beş metre gider."
+        },
+        {
+         "text": "Birbirlerine doğru gittiler: $L = 45 + 6 = 51$ m.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birbirlerine doğru yaklaştılar; aradaki ilk uzaklık kırk beş artı altı, elli bir metre. Midyenin yatay hızını unutan kırk beşi bulur. Cevap D."
+        }
+       ],
+       "narration": "Önce düşme süresi, sonra iki yatay hareket.",
+       "origin": {
+        "changes": "ÖSYM 2021 modeli: yönler ve sayılar değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Ağır olan önce mi düşer?",
+      "wrong": "Ağır cisim hafif cisimden daha hızlı düşer.",
+      "right": "Hava direnci yoksa düşme **kütleden bağımsızdır**: hepsi $g$ ivmesiyle düşer.",
+      "why": "Havada farkı yaratan **hava direncidir**; limit hız kütleye ve biçime bağlıdır.",
+      "narration": "Sık yapılan bir hata: ağır cismin daha hızlı düştüğünü sanmak. Havasız bir ortamda çekiç ile tüy aynı anda yere iner; ikisi de g ivmesiyle düşer. Havada tüyü yavaşlatan şey hava direncidir; limit hız cismin kütlesine ve biçimine bağlıdır."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_HAREKET_04",
+    "subtopics": [],
+    "title": "Hız-zaman grafikleri",
+    "narration": "Hız-zaman grafiği hareketin hikâyesini anlatır: eğimi ivmeyi, altındaki alan yer değiştirmeyi verir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Hız-zaman grafiği",
+      "items": [
+       "**Eğim** ivmeyi verir.",
+       "Grafik ile zaman ekseni arasındaki **alan** yer değiştirmedir; eksenin altı negatiftir.",
+       "Hız işaret değiştirirse cisim **yön değiştirir**."
+      ],
+      "visual": {
+       "kind": "kinematics",
+       "bodies": [
+        {
+         "label": "A",
+         "x0": 0,
+         "v0": 0,
+         "phases": [
+          {
+           "duration": 5,
+           "a": 2
+          },
+          {
+           "duration": 5,
+           "a": 0
+          },
+          {
+           "duration": 5,
+           "a": -2
+          }
+         ]
+        }
+       ],
+       "graphs": [
+        "v"
+       ],
+       "area": true,
+       "track": true,
+       "motion": true,
+       "duration": 8
+      },
+      "beats": [
+       {
+        "narration": "Araç beş saniye hızlanıyor, beş saniye sabit gidiyor, beş saniyede yavaşlayıp duruyor.",
+        "show": [
+         "run"
+        ],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Alan bir yamuk: on beş artı beş, bölü iki, çarpı on: yüz metre.",
+        "show": [
+         "area"
+        ],
+        "focus": [
+         "area"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Hız-zaman grafiğinde eğim ivmeyi verir. Grafik ile zaman ekseni arasındaki alan yer değiştirmedir; eksenin altında kalan alan ters yöndeki yer değiştirmedir ve eksi sayılır. Hız sıfırdan geçip işaret değiştirirse cisim yön değiştirmiştir; yalnız sıfıra inip durmak yön değiştirmek değildir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Başlangıçta yan yana duran $K$ ve $L$ otomobilleri, doğrusal bir yolda aynı anda aynı yönde harekete başlıyor. Hız-zaman grafikleri şekildedir: $K$ $10$ s'de $20$ m/s'ye çıkıp sonraki $10$ s'de duruyor; $L$ $30$ s boyunca düzgün hızlanarak $12$ m/s'ye ulaşıyor.\n\nI. K önce hızlanmış, sonra yavaşlayıp durmuştur.\nII. K, $20$. saniyede yön değiştirmiştir.\nIII. $30$. saniyede L, K'nin önündedir.\n\nyargılarından hangileri doğrudur?",
+       "context": "ÖSYM 2018'de sorulan K ve L otomobilleri yapısının yeni grafikle kurulmuş hâli.",
+       "figure": {
+        "kind": "kinematics",
+        "bodies": [
+         {
+          "label": "K",
+          "x0": 0,
+          "v0": 0,
+          "phases": [
+           {
+            "duration": 10,
+            "a": 2
+           },
+           {
+            "duration": 10,
+            "a": -2
+           },
+           {
+            "duration": 10,
+            "a": 0
+           }
+          ]
+         },
+         {
+          "label": "L",
+          "x0": 0,
+          "v0": 0,
+          "phases": [
+           {
+            "duration": 30,
+            "a": 0.4
+           }
+          ]
+         }
+        ],
+        "graphs": [
+         "v"
+        ],
+        "area": false,
+        "track": false,
+        "motion": false,
+        "duration": 6
+       },
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "I ve III"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "K'nin hızı $20$ m/s'ye çıkıp $0$'a iniyor: hızlanmış, yavaşlamış ve **durmuş** (I).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "K'nin hızı yirmiye çıkıyor, sonra sıfıra iniyor ve sıfır kalıyor: önce hızlanmış, sonra yavaşlayıp durmuş. Birinci doğru."
+        },
+        {
+         "text": "Hız hiç **negatif** olmadı: K yön değiştirmedi (II yanlış).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hız sıfıra indi ama eksiye geçmedi; K yalnız durdu, yön değiştirmedi. İkinci yanlış."
+        },
+        {
+         "text": "$x_K = \\frac{20 \\cdot 20}{2} = 200$ m, $x_L = \\frac{30 \\cdot 12}{2} = 180$ m: K önde (III yanlış).",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Otuzuncu saniyedeki konumlar alanlardır: K için yirmi çarpı yirmi bölü iki, iki yüz metre; L için otuz çarpı on iki bölü iki, yüz seksen. K önde, üçüncü de yanlış. Cevap A."
+        }
+       ],
+       "narration": "Eğimlere, işarete ve alanlara bakalım.",
+       "origin": {
+        "changes": "ÖSYM 2018 modeli: grafik yeniden kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "visual",
+      "title": "İki otomobil yolda",
+      "visual": {
+       "kind": "kinematics",
+       "bodies": [
+        {
+         "label": "K",
+         "x0": 0,
+         "v0": 0,
+         "phases": [
+          {
+           "duration": 10,
+           "a": 2
+          },
+          {
+           "duration": 10,
+           "a": -2
+          },
+          {
+           "duration": 10,
+           "a": 0
+          }
+         ]
+        },
+        {
+         "label": "L",
+         "x0": 0,
+         "v0": 0,
+         "phases": [
+          {
+           "duration": 30,
+           "a": 0.4
+          }
+         ]
+        }
+       ],
+       "graphs": [
+        "v",
+        "x"
+       ],
+       "area": false,
+       "track": true,
+       "motion": true,
+       "duration": 9
+      },
+      "beats": [
+       {
+        "narration": "K hızla öne geçiyor, L yavaş yavaş hızlanıyor.",
+        "show": [
+         "run"
+        ],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "K durduğunda L hâlâ hızlanıyor ama otuzuncu saniyede yetişemiyor: konum grafiğinde K'nin çizgisi hâlâ üstte.",
+        "show": [],
+        "focus": [
+         "b1",
+         "b2"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Şimdi aynı iki otomobili yolda izleyelim."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_HAREKET_05",
+    "subtopics": [],
+    "title": "Konum-zaman grafikleri",
+    "narration": "Konum-zaman grafiği cismin nerede olduğunu gösterir; eğimi hızını söyler.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Konum-zaman grafiği",
+      "items": [
+       "Eğim **hızı** verir; yatay çizgi: cisim duruyor.",
+       "Doğru: sabit hız; eğri: hız değişiyor.",
+       "İki grafiğin **kesiştiği** an cisimler aynı konumdadır."
+      ],
+      "visual": {
+       "kind": "kinematics",
+       "bodies": [
+        {
+         "label": "K",
+         "x0": 0,
+         "v0": 15,
+         "phases": [
+          {
+           "duration": 15,
+           "a": 0
+          }
+         ]
+        },
+        {
+         "label": "L",
+         "x0": 240,
+         "v0": -9,
+         "phases": [
+          {
+           "duration": 15,
+           "a": 0
+          }
+         ]
+        }
+       ],
+       "graphs": [
+        "x"
+       ],
+       "area": false,
+       "track": true,
+       "motion": true,
+       "duration": 7
+      },
+      "beats": [
+       {
+        "narration": "K ve L birbirine doğru gidiyor.",
+        "show": [
+         "run"
+        ],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Çizgiler onuncu saniyede yüz elli metrede kesişiyor: araçlar karşılaştı.",
+        "show": [],
+        "focus": [
+         "b1",
+         "b2"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Konum-zaman grafiğinde eğim hızı verir; yatay bir çizgi cismin durduğunu gösterir. Grafik doğruysa hız sabittir, eğriyse hız değişiyordur. İki cismin grafikleri kesişiyorsa o anda aynı konumdadırlar: karşılaşmışlardır ya da biri öbürünü geçmiştir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Doğrusal bir yolda yürüyen bir öğrencinin konum-zaman grafiği şekildedir: $0$–$4$ s arasında konumu $0$'dan $20$ m'ye doğrusal artıyor, $4$–$6$ s arasında değişmiyor, $6$–$10$ s arasında $20$ m'den $0$'a doğrusal azalıyor.\n\nÖğrencinin $0$–$10$ s arasındaki ortalama sürati kaç m/s'dir?",
+       "figure": {
+        "kind": "kinematics",
+        "bodies": [
+         {
+          "label": "A",
+          "x0": 0,
+          "v0": 5,
+          "phases": [
+           {
+            "duration": 4,
+            "a": 0
+           },
+           {
+            "duration": 2,
+            "a": 0,
+            "v": 0
+           },
+           {
+            "duration": 4,
+            "a": 0,
+            "v": -5
+           }
+          ]
+         }
+        ],
+        "graphs": [
+         "x"
+        ],
+        "area": false,
+        "track": false,
+        "motion": false,
+        "duration": 6
+       },
+       "options": [
+        "$0$",
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Alınan yol: $20$ m gidip $20$ m dönüyor: $40$ m.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Öğrenci yirmi metre gidiyor, bekliyor, yirmi metre geri dönüyor: aldığı yol kırk metre."
+        },
+        {
+         "text": "Ortalama sürat $\\frac{40}{10} = 4$ m/s; yer değiştirme $0$, ortalama hız **sıfır**.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Ortalama sürat kırk bölü on, dört metre bölü saniye. Başladığı yere döndüğü için yer değiştirmesi ve ortalama hızı sıfır; sıfırı seçen hız ile sürati karıştırmıştır. Cevap E."
+        }
+       ],
+       "narration": "Sürat yolu, hız yer değiştirmeyi kullanır.",
+       "origin": {
+        "changes": "Konum-zaman kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_HAREKET_06",
+    "subtopics": [],
+    "title": "İvme-zaman grafikleri",
+    "narration": "İvme-zaman grafiği hızın nasıl değiştiğini gösterir; altındaki alan hız değişimidir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İvme-zaman grafiği",
+      "items": [
+       "Grafik ile zaman ekseni arasındaki **alan** hız değişimidir: $\\Delta v$.",
+       "İvme ile hız **aynı işaretliyse** cisim hızlanır, zıt işaretliyse yavaşlar.",
+       "Sabit ivme yatay bir çizgidir."
+      ],
+      "visual": {
+       "kind": "kinematics",
+       "bodies": [
+        {
+         "label": "A",
+         "x0": 0,
+         "v0": 10,
+         "phases": [
+          {
+           "duration": 4,
+           "a": -5
+          }
+         ]
+        }
+       ],
+       "graphs": [
+        "a",
+        "v"
+       ],
+       "area": false,
+       "track": true,
+       "motion": true,
+       "duration": 7
+      },
+      "beats": [
+       {
+        "narration": "İvme hep eksi beş.",
+        "show": [],
+        "focus": [
+         "b1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Hız önce azalır, ikinci saniyede sıfır olur, sonra ters yönde büyür: aynı ivme önce yavaşlatır, sonra hızlandırır.",
+        "show": [
+         "run"
+        ],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "narration": "İvme-zaman grafiğinde grafik ile zaman ekseni arasındaki alan hız değişimidir. İvme ile hız aynı işaretliyse cisim hızlanır, zıt işaretliyse yavaşlar. Sabit ivme yatay bir çizgi olarak görünür."
+     },
+     {
+      "kind": "mistake",
+      "title": "Eksi ivme, yavaşlama mı?",
+      "wrong": "Negatif ivme her zaman yavaşlama demektir.",
+      "right": "Yavaşlama, ivme ile hızın **zıt** işaretli olmasıdır; ikisi de negatifse cisim **hızlanır**.",
+      "why": "İşaret yalnız **yönü** gösterir.",
+      "narration": "Sık yapılan bir hata: eksi ivmeyi yavaşlama sanmak. İşaret yalnız yönü gösterir. Hız artıyken eksi ivme yavaşlatır; hız da eksiyse aynı ivme cismi hızlandırır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Durgun hâlden harekete başlayan bir cismin ivmesi $0$–$4$ s arasında $3$ m/s², $4$–$8$ s arasında $-2$ m/s²'dir.\n\nCismin $8$. saniyedeki hızı kaç m/s'dir?",
+       "figure": {
+        "kind": "kinematics",
+        "bodies": [
+         {
+          "label": "A",
+          "x0": 0,
+          "v0": 0,
+          "phases": [
+           {
+            "duration": 4,
+            "a": 3
+           },
+           {
+            "duration": 4,
+            "a": -2
+           }
+          ]
+         }
+        ],
+        "graphs": [
+         "a"
+        ],
+        "area": false,
+        "track": false,
+        "motion": false,
+        "duration": 6
+       },
+       "options": [
+        "$0$",
+        "$4$",
+        "$8$",
+        "$12$",
+        "$20$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$0$–$4$ s: $\\Delta v = 3 \\cdot 4 = 12$ → $v = 12$ m/s.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İlk dört saniyede alan üç çarpı dört, on iki: hız on iki metre bölü saniye."
+        },
+        {
+         "text": "$4$–$8$ s: $\\Delta v = -2 \\cdot 4 = -8$ → $v = 4$ m/s.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sonraki dört saniyede alan eksi iki çarpı dört, eksi sekiz: hız dörde iner. Alanları işaretsiz toplayan yirmiyi bulur. Cevap B."
+        }
+       ],
+       "narration": "Alanlar hız değişimini verir.",
+       "origin": {
+        "changes": "İvme-zaman kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_HAREKET_07",
+    "subtopics": [],
+    "title": "Bağıl hareket",
+    "narration": "Hareket, kime göre bakıldığına bağlıdır. Bir gözlemciye göre hız, cismin hızından gözlemcinin hızı çıkarılarak bulunur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bağıl hız",
+      "items": [
+       "B'ye göre A'nın hızı: $\\vec{v}_{AB} = \\vec{v}_A - \\vec{v}_B$.",
+       "Aynı yönde gidenler birbirini **farkla**, zıt yönde gidenler **toplamla** görür.",
+       "Dik hızlarda bağıl hız **Pisagor** ile bulunur."
+      ],
+      "visual": {
+       "kind": "vectors",
+       "view": [
+        -1,
+        -5,
+        5,
+        1
+       ],
+       "vectors": [
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          3,
+          0
+         ],
+         "label": "vA",
+         "colour": "lesson",
+         "dashed": false
+        },
+        {
+         "from": [
+          3,
+          0
+         ],
+         "to": [
+          3,
+          -4
+         ],
+         "label": "−vB",
+         "colour": "ink",
+         "dashed": false
+        },
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          3,
+          -4
+         ],
+         "label": "vA − vB",
+         "colour": "brand",
+         "dashed": false
+        }
+       ],
+       "grid": true
+      },
+      "beats": [
+       {
+        "narration": "A doğuya üç birim hızla gidiyor.",
+        "show": [],
+        "focus": [
+         "v1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "B'nin hızı kuzeye dört; ters çevirip ekliyoruz.",
+        "show": [],
+        "focus": [
+         "v2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Bileşke, B'ye göre A'nın hızı: beş birim, güneydoğuya.",
+        "show": [],
+        "focus": [
+         "v3"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "B'ye göre A'nın hızı, A'nın hızından B'nin hızının vektörel olarak çıkarılmasıyla bulunur. Aynı yönde giden iki araç birbirini hızları farkıyla, zıt yönde gidenler hızları toplamıyla görür. Hızlar dikse bağıl hız Pisagor bağıntısıyla bulunur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aynı yatay düzlemde bir tren yere göre doğu yönünde $20$ m/s, bir motosiklet ise yere göre güney yönünde $15$ m/s sabit hızla gidiyor.\n\nMotosiklet sürücüsüne göre trenin hızının büyüklüğü ve yönü nedir?",
+       "context": "ÖSYM 2023'te sorulan tren ve motosiklet yapısının yeni sayılarla kurulmuş hâli.",
+       "figure": {
+        "kind": "vectors",
+        "view": [
+         -1,
+         -4,
+         5,
+         1
+        ],
+        "vectors": [
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           4,
+           0
+          ],
+          "label": "tren 20",
+          "colour": "lesson",
+          "dashed": false
+         },
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           0,
+           -3
+          ],
+          "label": "motor 15",
+          "colour": "ink",
+          "dashed": false
+         }
+        ],
+        "grid": true
+       },
+       "options": [
+        "$5$ m/s ; kuzeydoğu",
+        "$25$ m/s ; güneybatı",
+        "$25$ m/s ; güneydoğu",
+        "$25$ m/s ; kuzeydoğu",
+        "$35$ m/s ; kuzeydoğu"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$\\vec{v}_{TM} = \\vec{v}_T - \\vec{v}_M$: doğuya $20$, ve $-\\,$güney $=$ kuzeye $15$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Motosiklete göre trenin hızı, trenin hızı eksi motosikletin hızı. Doğuya yirmi kalır; güneye on beşi çıkarmak kuzeye on beş eklemektir."
+        },
+        {
+         "text": "$\\sqrt{20^2 + 15^2} = 25$ m/s, **kuzeydoğu**.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yirmi ile on beş dik: Pisagordan yirmi beş metre bölü saniye, yönü kuzeydoğu. Hızları çıkarmayıp toplayan güneydoğuyu bulur. Cevap D."
+        }
+       ],
+       "narration": "Gözlemcinin hızını çıkaralım.",
+       "origin": {
+        "changes": "ÖSYM 2023 modeli: yönler ve hızlar değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir koşu antrenmanında Ali, Berk ve antrenör Can aynı doğrusal pistte aynı yönde, yere göre sırasıyla $4v$, $2v$ ve $v$ sabit hızlarıyla koşuyor.\n\nBuna göre aşağıdakilerden hangisi doğrudur?",
+       "context": "ÖSYM 2020'de sorulan yüzücüler ve antrenör yapısının yeni bir durumla kurulmuş hâli.",
+       "options": [
+        "Ali'nin Can'a göre hızının büyüklüğü, Berk'in Ali'ye göre hızının büyüklüğünden büyüktür.",
+        "Can'ın Ali'ye göre hızı ile Can'ın Berk'e göre hızı eşittir.",
+        "Berk'in Ali'ye göre ve Can'a göre hızlarının büyüklükleri eşittir.",
+        "Ali'nin Berk'e göre hızı ile Berk'in Ali'ye göre hızı eşittir.",
+        "Ali, Can'ı kendi koşu yönünde ilerliyor görür."
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Ali'nin Can'a göre: $4v - v = 3v$; Berk'in Ali'ye göre: $2v - 4v = -2v$: $3v > 2v$ (A doğru).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Ali'nin Can'a göre hızı dört v eksi v, üç v. Berk'in Ali'ye göre hızı iki v eksi dört v, eksi iki v; büyüklüğü iki v. Üç v büyük: birinci seçenek doğru."
+        },
+        {
+         "text": "Can'ın Ali'ye göre $-3v$, Berk'e göre $-v$; Ali-Berk ikilisi $+2v$ ve $-2v$: eşit değil.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Can, Ali'ye göre eksi üç v, Berk'e göre eksi v ile geri gidiyor görünür; Ali'ye göre geri gittiği için son seçenek de yanlış. Ali'nin Berk'e göre hızı artı iki v, Berk'in Ali'ye göre eksi iki v: büyüklükleri eşit, yönleri zıt. Cevap A."
+        }
+       ],
+       "narration": "Her bağıl hızı gözlemcinin hızını çıkararak bulalım.",
+       "origin": {
+        "changes": "ÖSYM 2020 modeli: durum ve seçenekler değiştirildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Sabit hız: $\\Delta x = v t$.",
+    "Sabit ivme: $v = v_0 + at$, $\\Delta x = v_0 t + \\frac{1}{2}at^2$.",
+    "Serbest düşme kütleden bağımsız: $h = \\frac{1}{2}gt^2$.",
+    "v-t: eğim ivme, alan yer değiştirme.",
+    "x-t: eğim hız; a-t: alan hız değişimi.",
+    "Bağıl hız: $\\vec{v}_A - \\vec{v}_B$."
+   ],
+   "warnings": [
+    "Durmak **yön değiştirmek** değildir.",
+    "Eksi ivme her zaman **yavaşlama** değildir.",
+    "Ortalama sürat ≠ **ortalama hız**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bir topu iki farklı yükseklikten bırak; düşme sürelerini ölç ve **h = ½gt²** ile karşılaştır.",
+    "Bir yürüyüşünü dakika dakika not al ve **konum-zaman grafiğini** çiz; durduğun anları bul.",
+    "Uygulamada AYT Hareket testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Zamansız hız denklemini ekle: v² = v₀² + 2aΔx. Örnek: 20 m/s hızla giden araç 5 m/s² ivmeyle yavaşlarsa 4 s'de, 40 m'de durur. Denklemlerden hangisinin hangi bilinmeyende kullanılacağını tablo yap.",
+   "Ardışık eşit sürelerde alınan yolları göster: durgun hâlden düzgün hızlanan cisim 1., 2. ve 3. saniyelerde 1 : 3 : 5 oranında yol alır; g = 10 m/s² ile serbest düşmede 5 m, 15 m, 25 m. Bu oranla hızlı çözülen soru tiplerini ekle.",
+   "Grafik dönüşümlerini tablo yap: x-t'nin eğimi hız; v-t'nin eğimi ivme, alanı yer değiştirme; a-t'nin alanı hız değişimi. Bir grafikten ötekini çizdiren alıştırma ekle; yön değiştirme anının v-t'de eksenin kesildiği, x-t'de tepe ya da dip noktası olduğunu göster.",
+   "Ortalama hız ile ortalama sürati ayır: 60 km/h ile gidip 40 km/h ile aynı yoldan dönen aracın ortalama sürati 48 km/h, ortalama hızı sıfırdır. Sürelerin değil yolların eşit olduğu durumda aritmetik ortalamanın yanlış olduğunu vurgula.",
+   "Karşılaşma ve yakalama formüllerini örnekle: aralarında 400 m bulunan 25 m/s ve 15 m/s hızlı araçlar aynı yönde giderse 40 s'de yan yana gelir, birbirine doğru giderse 10 s'de karşılaşır. Boşlukta tüy ile çekicin aynı anda düştüğü Apollo 15 deneyini (1971) ekle."
+  ]
+ }
+}

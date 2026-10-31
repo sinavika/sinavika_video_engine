@@ -1,20 +1,23 @@
 import React from 'react';
-import {useColors, useT} from '../../Context';
+import {UIProvider, useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
-import {alpha, MODULES, MODULE_ORDER, moduleGradient, type ModuleKey} from '../../ModuleIdentity';
+import {alpha, MODULES, moduleGradient, moduleInk, type ModuleKey} from '../../ModuleIdentity';
 import {BottomBar, Content, Phone} from '../../Parts/Mobile';
 import {Button, Card, Chip, Stack, Steps, Text, Tile} from '../../Parts/Shared';
 import {UI_RADIUS, UI_SHADOW} from '../../Tokens';
 
 /**
- * Onboarding: 8 steps instead of the app's 11. Exam and session on one page,
- * current and target score on one slider, hours and questions as tempo cards;
- * the plan is shown before the account and the trial, so the student sees
- * value first.
+ * Onboarding. Five steps build the plan (exam and sessions, current and target
+ * score, pace and days, subjects that need support, the plan itself); the
+ * progress bar counts only these. Then the account saves the plan and the
+ * store trial starts, and the student lands in the first micro-lesson of
+ * today's plan. Notifications are asked after that first micro-lesson, tips
+ * appear where a feature is first met: no tutorial up front.
+ * Selections are a dark frame with a tick; orange is only the main button.
  */
-const TOTAL = 8;
+const TOTAL = 5;
 
-const OnbFrame: React.FC<{step: number; over: string; title: string; text: string; cta?: string; disabled?: boolean; extra?: React.ReactNode; children: React.ReactNode}> = ({step, over, title, text, cta, disabled, extra, children}) => {
+const OnbFrame: React.FC<{step?: number; over: string; title: string; text: string; cta?: string; disabled?: boolean; extra?: React.ReactNode; foot?: React.ReactNode; children: React.ReactNode}> = ({step, over, title, text, cta, disabled, extra, foot, children}) => {
 	const colors = useColors();
 	const t = useT();
 	return (
@@ -23,10 +26,14 @@ const OnbFrame: React.FC<{step: number; over: string; title: string; text: strin
 				<div style={{width: 40, height: 40, borderRadius: 20, background: colors.card, border: `1px solid ${colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 					<Icon name="left" size={20} color={colors.ink} />
 				</div>
-				<Steps count={TOTAL} done={step} />
-				<Text role="meta" style={{width: 34, textAlign: 'right'}}>
-					{step}/{TOTAL}
-				</Text>
+				{step ? (
+					<>
+						<Steps count={TOTAL} done={step} />
+						<Text role="meta" style={{width: 34, textAlign: 'right'}}>
+							{step}/{TOTAL}
+						</Text>
+					</>
+				) : null}
 			</Stack>
 			<Content tabBar={false} gap={14} padding="18px 18px 10px">
 				<Stack gap={8}>
@@ -37,10 +44,14 @@ const OnbFrame: React.FC<{step: number; over: string; title: string; text: strin
 				{children}
 			</Content>
 			<BottomBar>
-				{extra}
-				<Button size="lg" block tone={disabled ? 'disabled' : 'primary'}>
-					{cta ?? t('Devam et', 'Continue')}
-				</Button>
+				{foot ?? (
+					<>
+						{extra}
+						<Button size="lg" block tone={disabled ? 'disabled' : 'primary'}>
+							{cta ?? t('Devam et', 'Continue')}
+						</Button>
+					</>
+				)}
 			</BottomBar>
 		</Phone>
 	);
@@ -49,8 +60,8 @@ const OnbFrame: React.FC<{step: number; over: string; title: string; text: strin
 const Pick: React.FC<{on?: boolean; icon?: UIIconName; title: string; sub?: string; tag?: string; radio?: boolean; module?: ModuleKey}> = ({on, icon, title, sub, tag, radio, module}) => {
 	const colors = useColors();
 	return (
-		<Stack row gap={12} style={{padding: 14, borderRadius: UI_RADIUS.lg, background: on ? colors.brandWash : colors.card, border: `1.5px solid ${on ? colors.brand : colors.line}`, boxShadow: on ? '0 0 0 4px rgba(234,88,12,0.08)' : undefined}}>
-			{icon ? <Tile icon={icon} module={module} size={42} color={on ? colors.brand : colors.ink2} /> : null}
+		<Stack row gap={12} style={{padding: 14, borderRadius: UI_RADIUS.lg, background: colors.card, border: `${on ? 2 : 1.5}px solid ${on ? colors.ink : colors.line}`}}>
+			{icon ? <Tile icon={icon} module={module} size={42} color={on ? colors.ink : colors.ink2} /> : null}
 			<Stack grow gap={2}>
 				<Stack row gap={8}>
 					<Text role="headline">{title}</Text>
@@ -62,8 +73,8 @@ const Pick: React.FC<{on?: boolean; icon?: UIIconName; title: string; sub?: stri
 				</Stack>
 				{sub ? <Text role="small">{sub}</Text> : null}
 			</Stack>
-			<div style={{width: 22, height: 22, borderRadius: radio ? 11 : 7, border: on ? undefined : `2px solid ${colors.line}`, background: on ? colors.brand : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-				{on ? radio ? <div style={{width: 8, height: 8, borderRadius: 4, background: '#FFFFFF'}} /> : <Icon name="check" size={14} color="#FFFFFF" /> : null}
+			<div style={{width: 22, height: 22, borderRadius: radio ? 11 : 7, border: on ? undefined : `2px solid ${colors.line}`, background: on ? colors.ink : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+				{on ? radio ? <div style={{width: 8, height: 8, borderRadius: 4, background: colors.bg}} /> : <Icon name="check" size={14} color={colors.bg} /> : null}
 			</div>
 		</Stack>
 	);
@@ -71,12 +82,16 @@ const Pick: React.FC<{on?: boolean; icon?: UIIconName; title: string; sub?: stri
 
 export const OnbExamScreen: React.FC = () => {
 	const t = useT();
+	const colors = useColors();
 	return (
 		<OnbFrame step={1} over={t('Hedef sınav', 'Target exam')} title={t('Hangi sınava hazırlanıyorsun?', 'Which exam are you preparing for?')} text={t('Planını, denemelerini ve içeriklerini buna göre kuracağız.', 'We build your plan, exams and content around it.')}>
 			<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10}}>
-				<Card tone="card" padding={16} style={{border: '1.5px solid #EA580C', background: 'var(--ui-brandWash)'}}>
+				<Card tone="card" padding={16} style={{border: `2px solid ${colors.ink}`, position: 'relative'}}>
+					<div style={{position: 'absolute', top: 12, right: 12, width: 22, height: 22, borderRadius: 7, background: colors.ink, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+						<Icon name="check" size={14} color={colors.bg} />
+					</div>
 					<Stack gap={10}>
-						<Tile icon="grad" size={42} color="#EA580C" />
+						<Tile icon="grad" size={42} color={colors.ink} />
 						<Text role="section">YKS</Text>
 						<Text role="small">TYT · AYT · YDT</Text>
 					</Stack>
@@ -116,16 +131,16 @@ export const OnbScoreScreen: React.FC = () => {
 						<Icon name="right" size={22} color={colors.subtle} />
 						<Stack gap={2} align="flex-end">
 							<Text role="meta">{t('Hedef netin', 'Target score')}</Text>
-							<Text role="num" size={34} color={colors.brand}>
+							<Text role="num" size={34}>
 								78
 							</Text>
 						</Stack>
 					</Stack>
 					<div style={{position: 'relative', height: 30}}>
 						<div style={{position: 'absolute', left: 0, right: 0, top: 12, height: 6, borderRadius: 3, background: colors.line2}} />
-						<div style={{position: 'absolute', left: '40%', right: '35%', top: 12, height: 6, borderRadius: 3, background: 'linear-gradient(90deg, #FDBA74, #EA580C)'}} />
-						{[40, 65].map((left, index) => (
-							<div key={left} style={{position: 'absolute', left: `calc(${left}% - 13px)`, top: 2, width: 26, height: 26, borderRadius: 13, background: '#FFFFFF', border: `3px solid ${index ? '#EA580C' : '#FDBA74'}`, boxShadow: UI_SHADOW.card}} />
+						<div style={{position: 'absolute', left: '40%', right: '35%', top: 12, height: 6, borderRadius: 3, background: colors.ink}} />
+						{[40, 65].map((left) => (
+							<div key={left} style={{position: 'absolute', left: `calc(${left}% - 13px)`, top: 2, width: 26, height: 26, borderRadius: 13, background: '#FFFFFF', border: `3px solid ${colors.ink}`, boxShadow: UI_SHADOW.card}} />
 						))}
 					</div>
 					<Stack row justify="space-between">
@@ -137,9 +152,10 @@ export const OnbScoreScreen: React.FC = () => {
 					</Stack>
 				</Stack>
 			</Card>
-			<Card tone="soft" padding={14} style={{background: colors.brandWash}}>
+			<Pick title={t('Netimi bilmiyorum', 'I don’t know my score')} sub={t('İlk denemenden sonra biz ölçeriz', 'We measure it after your first exam')} />
+			<Card tone="soft" padding={14}>
 				<Stack row gap={12}>
-					<Icon name="trend" size={22} color={colors.brand} />
+					<Icon name="trend" size={22} color={colors.successInk} />
 					<Text role="small" color={colors.ink2}>
 						<b style={{color: colors.ink}}>{t('+30 net', '+30 points')}</b> {t('sınava kalan 245 günde gerçekçi bir hedef: haftada ortalama 1 net.', 'is realistic in 245 days: about 1 a week.')}
 					</Text>
@@ -149,8 +165,19 @@ export const OnbScoreScreen: React.FC = () => {
 	);
 };
 
+const DAYS: [string, string][] = [
+	['Pzt', 'Mon'],
+	['Sal', 'Tue'],
+	['Çar', 'Wed'],
+	['Per', 'Thu'],
+	['Cum', 'Fri'],
+	['Cmt', 'Sat'],
+	['Paz', 'Sun'],
+];
+
 export const OnbTempoScreen: React.FC = () => {
 	const t = useT();
+	const colors = useColors();
 	return (
 		<OnbFrame step={3} over={t('Tempo', 'Pace')} title={t('Günde ne kadar çalışabilirsin?', 'How much can you study a day?')} text={t('Sürdürebileceğin bir tempo seç; istediğin zaman değiştirirsin.', 'Pick a pace you can keep; change it any time.')}>
 			<Stack gap={10}>
@@ -159,13 +186,16 @@ export const OnbTempoScreen: React.FC = () => {
 				<Pick radio icon="zap" title={t('Yoğun', 'Intense')} sub={t('5+ saat · 180 soru · son aylar ve kamp', '5+ hours · 180 questions · final months')} />
 			</Stack>
 			<Card tone="flat" padding={14}>
-				<Stack row justify="space-between">
-					<Text role="headline">{t('Hangi günler?', 'Which days?')}</Text>
-					<Stack row gap={5}>
-						{['P', 'S', 'Ç', 'P', 'C', 'C', 'P'].map((day, index) => (
-							<div key={index} style={{width: 30, height: 30, borderRadius: 15, background: index < 6 ? '#EA580C' : 'var(--ui-line2)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-								<Text role="meta" weight={800} color={index < 6 ? '#FFFFFF' : 'var(--ui-muted)'}>
-									{day}
+				<Stack gap={10}>
+					<Stack row justify="space-between">
+						<Text role="headline">{t('Hangi günler?', 'Which days?')}</Text>
+						<Text role="meta">{t('6 gün', '6 days')}</Text>
+					</Stack>
+					<Stack row justify="space-between">
+						{DAYS.map(([tr, en], index) => (
+							<div key={tr} style={{width: 42, height: 38, borderRadius: 12, boxSizing: 'border-box', background: index < 6 ? colors.ink : colors.card, border: index < 6 ? undefined : `1.5px solid ${colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+								<Text role="meta" weight={800} color={index < 6 ? colors.bg : colors.muted}>
+									{t(tr, en)}
 								</Text>
 							</div>
 						))}
@@ -184,7 +214,7 @@ export const OnbWeakScreen: React.FC = () => {
 		<OnbFrame step={4} over={t('Dersler', 'Subjects')} title={t('Hangi derslerde daha çok desteğe ihtiyacın var?', 'Where do you need more support?')} text={t('Planında bu derslere daha çok yer ayırırız. Seçmesen de olur.', 'We give these more room in your plan. Optional.')} cta={t('Planımı hazırla', 'Build my plan')} extra={<Text role="small" align="center"><b style={{color: colors.ink}}>3</b> {t('ders seçildi', 'selected')}</Text>}>
 			<Stack row wrap gap={8}>
 				{lessons.map(([tr, en, on]) => (
-					<Chip key={tr} tone={on ? 'brand' : 'outline'} icon={on ? 'check' : undefined} style={{height: 44, padding: '0 16px', fontSize: 14, border: on ? '1.5px solid #EA580C' : undefined}}>
+					<Chip key={tr} tone="outline" icon={on ? 'check' : undefined} style={{height: 44, padding: '0 16px', fontSize: 14, color: on ? colors.ink : colors.ink2, border: `${on ? 2 : 1.5}px solid ${on ? colors.ink : colors.line}`}}>
 						{t(tr, en)}
 					</Chip>
 				))}
@@ -223,11 +253,11 @@ export const WeekPlan: React.FC<{compact?: boolean}> = ({compact}) => {
 			<Stack row justify="space-between" align="flex-start">
 				{days.map(([day, date, items], index) => (
 					<Stack key={day} align="center" gap={5} style={{width: 44}}>
-						<Text role="meta" color={index === 3 ? colors.brand : colors.muted}>
+						<Text role="meta" color={index === 3 ? colors.ink : colors.muted}>
 							{day}
 						</Text>
-						<div style={{width: 30, height: 30, borderRadius: 15, background: index === 3 ? colors.brand : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-							<Text role="headline" size={13} color={index === 3 ? '#FFFFFF' : colors.ink}>
+						<div style={{width: 30, height: 30, borderRadius: 15, background: index === 3 ? colors.ink : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+							<Text role="headline" size={13} color={index === 3 ? colors.bg : colors.ink}>
 								{date}
 							</Text>
 						</div>
@@ -259,66 +289,15 @@ export const OnbPlanScreen: React.FC = () => {
 				<Stack row gap={12}>
 					<Tile module="lessons" size={42} />
 					<Stack grow gap={1}>
-						<Text role="over" color={MODULES.lessons.color.light}>
+						<Text role="over" color={moduleInk('lessons')}>
 							{t('Bugünkü ilk görevin', 'Your first task today')}
 						</Text>
-						<Text role="headline">{t('Paragraf · Ana fikir', 'Reading · Main idea')}</Text>
-						<Text role="small">{t('Mikro ders · 25 dk', 'Micro-lesson · 25 min')}</Text>
+						<Text role="headline">{t('Türkçe · Sözcükte Anlam', 'Turkish · Word meaning')}</Text>
+						<Text role="small">{t('Dersler · ilk 3 mikro ders · 8 dk', 'Lessons · first 3 micro-lessons · 8 min')}</Text>
 					</Stack>
 					<Icon name="right" size={18} color={colors.subtle} />
 				</Stack>
 			</Card>
-		</OnbFrame>
-	);
-};
-
-/** What SinoAI changes: before and after, as the app's value step. */
-export const OnbValueScreen: React.FC = () => {
-	const t = useT();
-	const colors = useColors();
-	return (
-		<OnbFrame step={6} over={t('Neden Sınavika', 'Why Sınavika')} title={t('Tahmin değil, kendi verinle çalış', 'Study from your data, not guesses')} text={t('Her denemeden sonra planın kendini günceller.', 'Your plan updates itself after every exam.')}>
-			<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10}}>
-				<Card tone="soft" padding={14}>
-					<Stack gap={8}>
-						<Text role="over">{t('Önce', 'Before')}</Text>
-						{[t('Ne çalışacağını düşünmek', 'Wondering what to study'), t('Rastgele soru çözmek', 'Random questions'), t('Netin neden düştüğünü bilmemek', 'Not knowing why')].map((line) => (
-							<Stack key={line} row gap={6} align="flex-start">
-								<Icon name="x" size={14} color={colors.error} />
-								<Text role="small">{line}</Text>
-							</Stack>
-						))}
-					</Stack>
-				</Card>
-				<Card padding={14} style={{border: '1.5px solid #EA580C', background: 'var(--ui-brandWash)'}}>
-					<Stack gap={8}>
-						<Text role="over" color={colors.brand}>
-							{t('Sınavika ile', 'With Sınavika')}
-						</Text>
-						{[t('Her gün tek net adım', 'One clear step a day'), t('Eksiğine göre test', 'Quizzes on your gaps'), t('Konu konu kayıp analizi', 'Loss by topic')].map((line) => (
-							<Stack key={line} row gap={6} align="flex-start">
-								<Icon name="check" size={14} color={colors.success} />
-								<Text role="small" color={colors.ink}>
-									{line}
-								</Text>
-							</Stack>
-						))}
-					</Stack>
-				</Card>
-			</div>
-			<Text role="section" size={15}>
-				{t('Hepsi tek uygulamada', 'All in one app')}
-			</Text>
-			<Stack row wrap gap={8}>
-				{MODULE_ORDER.map((key) => (
-					<Stack key={key} row gap={8} style={{padding: '6px 12px 6px 6px', borderRadius: 999, background: alpha(MODULES[key].color.light, 0.09)}}>
-						<Tile module={key} size={28} />
-						<Text role="headline" size={13.5}>
-							{t(MODULES[key].name)}
-						</Text>
-					</Stack>
-				))}
-			</Stack>
 		</OnbFrame>
 	);
 };
@@ -332,7 +311,7 @@ export const OnbTrialScreen: React.FC = () => {
 		['card', t('3. gün', 'Day 3'), t('YKS Aylık ₺299 ile devam eder. Öncesinde iptal edersen ücret yok.', 'Continues as YKS Monthly ₺299. Cancel before and pay nothing.')],
 	];
 	return (
-		<OnbFrame step={8} over={t('3 gün ücretsiz', '3 days free')} title={t('Tüm özellikleri 3 gün ücretsiz dene', 'Try everything free for 3 days')} text={t('Bugün ödeme yok. İstediğin an iptal edebilirsin.', 'No payment today. Cancel any time.')} cta={t('3 gün ücretsiz başla', 'Start 3 free days')} extra={<Text role="small" align="center" weight={700} color={colors.ink}>{t('Paketleri karşılaştır', 'Compare plans')}</Text>}>
+		<OnbFrame over={t('3 gün ücretsiz', '3 days free')} title={t('Tüm özellikleri 3 gün ücretsiz dene', 'Try everything free for 3 days')} text={t('Bugün ödeme yok. İstediğin an iptal edebilirsin.', 'No payment today. Cancel any time.')} cta={t('3 gün ücretsiz başla', 'Start 3 free days')} extra={<Text role="small" align="center" weight={700} color={colors.ink}>{t('Paketleri karşılaştır', 'Compare plans')}</Text>}>
 			<Card padding={6}>
 				{steps.map(([icon, title, text], index) => (
 					<Stack key={title} row gap={12} align="flex-start" style={{padding: '12px 10px', borderTop: index ? `1px solid ${colors.line2}` : undefined}}>
@@ -344,7 +323,7 @@ export const OnbTrialScreen: React.FC = () => {
 					</Stack>
 				))}
 			</Card>
-			<Stack row justify="space-between" style={{padding: '14px 16px', borderRadius: UI_RADIUS.lg, border: '1.5px solid #EA580C', background: colors.card}}>
+			<Stack row justify="space-between" style={{padding: '14px 16px', borderRadius: UI_RADIUS.lg, border: `2px solid ${colors.ink}`, background: colors.card}}>
 				<Stack gap={1}>
 					<Text role="headline">{t('YKS Aylık Paket', 'YKS Monthly')}</Text>
 					<Text role="small">{t('3 gün ücretsiz, sonra aylık', '3 days free, then monthly')}</Text>
@@ -355,11 +334,29 @@ export const OnbTrialScreen: React.FC = () => {
 	);
 };
 
-/** Account step: hands over to sign up with the plan already made. */
+/** Account step: hands over to sign up with the plan already made. Apple and Google first; e-mail asks only the code and the name. */
 export const OnbAccountScreen: React.FC = () => {
 	const t = useT();
+	const colors = useColors();
 	return (
-		<OnbFrame step={7} over={t('Hesap', 'Account')} title={t('Planını kaydedelim', 'Let’s save your plan')} text={t('Hesabınla planın, netlerin ve ilerlemen web ve mobilde senkron kalır.', 'Your plan, scores and progress stay in sync on web and mobile.')} cta={t('E-posta ile devam et', 'Continue with e-mail')} extra={<><Button tone="dark" size="lg" block icon="apple">{t('Apple ile devam et', 'Continue with Apple')}</Button><Button tone="ghost" size="lg" block icon="google">{t('Google ile devam et', 'Continue with Google')}</Button></>}>
+		<OnbFrame
+			over={t('Hesap', 'Account')}
+			title={t('Planını kaydedelim', 'Let’s save your plan')}
+			text={t('Hesabınla planın, netlerin ve ilerlemen web ve mobilde aynı kalır.', 'Your plan, scores and progress stay the same on web and mobile.')}
+			foot={
+				<>
+					<Button tone="dark" size="lg" block icon="apple">
+						{t('Apple ile devam et', 'Continue with Apple')}
+					</Button>
+					<Button tone="ghost" size="lg" block icon="google">
+						{t('Google ile devam et', 'Continue with Google')}
+					</Button>
+					<Text role="small" weight={700} align="center" color={colors.ink} style={{padding: '6px 0'}}>
+						{t('E-posta ile devam et', 'Continue with e-mail')}
+					</Text>
+				</>
+			}
+		>
 			<div style={{position: 'relative', height: 260, borderRadius: 26, background: moduleGradient('studyPlan'), overflow: 'hidden', padding: 18, boxSizing: 'border-box'}}>
 				<Text role="over" color="rgba(255,255,255,0.85)">
 					{t('Kaydedilecek', 'Will be saved')}
@@ -379,18 +376,31 @@ export const OnbAccountScreen: React.FC = () => {
 	);
 };
 
-/** Notification permission, asked at the moment it helps (reminder for the first exam), with our own pre-prompt. */
-export const OnbNotificationsScreen: React.FC = () => {
+/**
+ * Notification permission, asked right after the first micro-lesson, when a
+ * reminder is worth something; our own pre-prompt comes before the system's.
+ */
+export const OnbNotificationsScreen: React.FC = () => (
+	<UIProvider module="lessons">
+		<NotificationsAsk />
+	</UIProvider>
+);
+
+const NotificationsAsk: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
+	const mod = useModuleColors('lessons');
 	return (
-		<Phone bg={`linear-gradient(180deg, ${alpha('#EA580C', 0.1)} 0%, ${colors.bg} 50%)`}>
+		<Phone bg={`linear-gradient(180deg, ${mod.wash} 0%, ${colors.bg} 50%)`}>
 			<Content tabBar={false} gap={16} style={{alignItems: 'center', textAlign: 'center', paddingTop: 60}}>
 				<div style={{width: 96, height: 96, borderRadius: 32, background: colors.card, boxShadow: UI_SHADOW.float, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-					<Icon name="bell" size={44} color={colors.brand} />
+					<Icon name="bell" size={44} color={mod.color} />
 				</div>
+				<Chip tone="success" icon="checkCircle">
+					{t('İlk mikro dersin bitti', 'First micro-lesson done')}
+				</Chip>
 				<Text role="hero" align="center">
-					{t('Planını unutturmayalım', 'We will keep you on track')}
+					{t('Yarın 08:00’de hatırlatalım mı?', 'Shall we remind you at 08:00 tomorrow?')}
 				</Text>
 				<Text role="body" align="center">
 					{t('Günün planını sabah, deneme sonucunu açıklanınca haber veririz. Gece 23:00–07:00 sessiz.', 'Your plan in the morning, exam results when ready. Quiet 23:00–07:00.')}

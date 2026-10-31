@@ -1,0 +1,1844 @@
+{
+ "topic": {
+  "id": "1FA98B19-C5C5-F2C4-92CE-BA324CB17C75",
+  "category": "YKS_AYT",
+  "lesson": "MAN",
+  "code": "MAN_SEMBOLIK"
+ },
+ "title": "Sembolik Mantık",
+ "lessonName": "Mantık",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "YKS/AYT/CikmisSorular/MAN.jsonl (ÖSYM 2019, 2021 ve yılsız kalıplar örnek alındı; durumlar ve ifadeler yeni yazıldı)",
+  "MEB AYT Mantık konu anlatımı (önerme eklemleri, doğruluk çizelgeleri, tutarlılık, geçerlilik, eşdeğerlik, çözümleyici çizelge, niceleme ve çok değerli mantık) ve YKS/AYT/Sorular/MAN/MAN_SEMBOLIK.jsonl"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Bir bilgisayar nasıl karar verir?",
+   "narration": "Telefonundaki her uygulama, her arama motoru aslında \"ve\", \"veya\", \"değil\" ile çalışır. Bu bağlaçları sembollerle yazan mantıkçılar, bugünkü bilgisayar devrelerinin de dilini kurdu. Bu derste önermeleri sembollerle yazacak, doğruluk çizelgeleri kuracak ve bir çıkarımın geçerli olup olmadığını satır satır denetleyeceksin."
+  },
+  "objectives": [
+   "Önerme eklemlerini sembolleştirmek ve ana eklemi bulmak",
+   "Değilleme, tümel ve tikel evetleme, koşul ve karşılıklı koşulun çizelgelerini kurmak",
+   "Tutarlılık, totoloji, birlikte tutarlılık ve eşdeğerliği çizelgeden okumak",
+   "Bir çıkarımın geçerliliğini çizelge ve çözümleyici çizelgeyle denetlemek",
+   "Niceleyicileri ve niceleyici değilleme kurallarını kullanmak",
+   "Çok değerli mantığın özelliklerini açıklamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAN_SEMBOLIK_01",
+    "title": "Önerme sembolleri",
+    "narration": "Klasik mantık günlük dille çalışır; bu yüzden çok anlamlılık ve belirsizlikten kurtulamaz. Sembolik ya da modern mantık önermeleri harflerle, bağlaçları işaretlerle yazar ve yalnız biçimle ilgilenir. Basit önermeler p, q, r gibi harflerle gösterilir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Beş önerme eklemi",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Eklem",
+        "Sembol",
+        "Günlük dilde",
+        "Örnek"
+       ],
+       "rows": [
+        [
+         "Değilleme",
+         "~",
+         "değil",
+         "~p"
+        ],
+        [
+         "Tümel evetleme",
+         "∧",
+         "ve, hem... hem",
+         "p ∧ q"
+        ],
+        [
+         "Tikel evetleme",
+         "∨",
+         "veya, ya da",
+         "p ∨ q"
+        ],
+        [
+         "Koşul",
+         "⇒",
+         "ise, -se, -sa",
+         "p ⇒ q"
+        ],
+        [
+         "Karşılıklı koşul",
+         "⇔",
+         "ancak ve ancak",
+         "p ⇔ q"
+        ]
+       ]
+      },
+      "narration": "Önermeleri birbirine bağlayan beş eklem var; her birinin bir sembolü var.",
+      "beats": [
+       {
+        "narration": "Değilleme, \"değil\" sözcüğünün sembolüdür: p değil diye okunur.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Tümel evetleme \"ve\" demektir: p ve q.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Tikel evetleme \"veya\" demektir: p veya q.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "Koşul \"ise\" demektir: p ise q. Ondan önceki önermeye ön bileşen, sonrakine art bileşen denir.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ]
+       },
+       {
+        "narration": "Karşılıklı koşul \"ancak ve ancak\" demektir: p ancak ve ancak q.",
+        "show": [
+         "r5"
+        ],
+        "focus": [
+         "r5"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Ana eklemi bulmak",
+      "visual": {
+       "kind": "sentence",
+       "parts": [
+        {
+         "text": "(p ∧ q)",
+         "role": "ön bileşen"
+        },
+        {
+         "text": "⇒",
+         "role": "ana eklem",
+         "highlight": true
+        },
+        {
+         "text": "r",
+         "role": "art bileşen"
+        }
+       ]
+      },
+      "narration": "\"Ders çalışır ve erken uyursa sınavda başarılı olur.\" Bu önermeyi sembollerle yazalım.",
+      "beats": [
+       {
+        "narration": "Önce basit önermeler harf alır: ders çalışır p, erken uyur q, başarılı olur r. Önerme şöyle yazılır: p ve q, ise r.",
+        "show": [
+         "w1",
+         "w2",
+         "w3"
+        ],
+        "focus": [
+         "w1"
+        ]
+       },
+       {
+        "narration": "Bir bileşik önermede tek bir ana eklem vardır; bütün önermeyi o bağlar. Burada ana eklem \"ise\"dir.",
+        "focus": [
+         "w2"
+        ]
+       },
+       {
+        "narration": "Ana eklemden önceki p ve q ön bileşen, sonraki r art bileşendir. Parantez, p ile q'nun birlikte koşul olduğunu gösterir ve çok anlamlılığı önler.",
+        "focus": [
+         "w1",
+         "w3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "\"Değil\" de bir eklem",
+      "wrong": "\"Deniz bugün dalgalı değildir.\" tek yargı bildirdiği için sembolik mantıkta da basit önermedir.",
+      "right": "Sembolik mantıkta \"değil\" de bir eklemdir: bu önerme **~p**, yani **bileşik** bir önermedir.",
+      "why": "Klasik mantık \"değil\"i eklem saymaz; sembolik mantık sayar.",
+      "narration": "Sık yapılan bir hata: \"Deniz bugün dalgalı değildir\" önermesini sembolik mantıkta da basit saymak. Klasik mantıkta tek yargı bildirdiği için basittir; ama sembolik mantıkta \"değil\" de bir önerme eklemidir. Bu önerme p değil biçimindedir, yani bileşiktir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "p: \"Hava güzeldir.\", q: \"İşim erken biter.\", r: \"Yürüyüşe çıkarım.\" olmak üzere\n\n\"Hava güzel olursa ve işim erken biterse yürüyüşe çıkarım.\"\n\nönermesinin sembolik gösterimi aşağıdakilerden hangisidir?",
+       "options": [
+        "p ∧ (q ⇒ r)",
+        "(p ∨ q) ⇒ r",
+        "r ⇒ (p ∧ q)",
+        "(p ∧ q) ⇒ r",
+        "(p ⇒ q) ∧ r"
+       ],
+       "answer": 3,
+       "narration": "Ana eklem hangisi: \"ve\" mi, \"ise\" mi?",
+       "steps": [
+        {
+         "text": "İki koşul **ve** ile bağlı: ∨ değil, ∧.",
+         "narration": "Havanın güzel olması ile işin erken bitmesi \"ve\" ile bağlanmış; bu tümel evetlemedir, tikel evetleme değil.",
+         "eliminate": [
+          "B"
+         ]
+        },
+        {
+         "text": "Ana eklem **ise**: önce iki koşul, sonra sonuç.",
+         "narration": "Cümlenin ana eklemi \"ise\"dir: iki koşul birlikte ön bileşeni, yürüyüşe çıkmak art bileşeni oluşturur. Ana eklemi yanlış yere koyan ya da sırayı ters çeviren seçenekler elenir.",
+         "eliminate": [
+          "A",
+          "C",
+          "E"
+         ]
+        },
+        {
+         "text": "Cevap D: **(p ∧ q) ⇒ r**.",
+         "narration": "Doğru gösterim: p ve q, ise r. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Sembolleştirme kalıbı; önerme yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aşağıdakilerden hangisi sembolik mantıkta basit önermedir?",
+       "options": [
+        "Ankara Türkiye'nin başkentidir.",
+        "Ece hem resim yapar hem şarkı söyler.",
+        "Deniz bugün dalgalı değildir.",
+        "Otobüs gelirse okula gideriz.",
+        "Kahvaltıda çay veya meyve suyu içerim."
+       ],
+       "answer": 0,
+       "narration": "Hangisinde hiçbir eklem yok?",
+       "steps": [
+        {
+         "text": "\"Hem... hem\", \"-se\", \"veya\": **eklem** var, bileşik.",
+         "narration": "\"Hem... hem\", \"-se\" ve \"veya\" birer önerme eklemidir; bu önermeler bileşiktir.",
+         "eliminate": [
+          "B",
+          "D",
+          "E"
+         ]
+        },
+        {
+         "text": "\"Değil\" de sembolik mantıkta **eklemdir**.",
+         "narration": "Klasik mantıkta tek yargı bildiren \"Deniz bugün dalgalı değildir\" basit sayılır; ama sembolik mantıkta \"değil\" de bir eklemdir, bu önerme bileşiktir.",
+         "eliminate": [
+          "C"
+         ]
+        },
+        {
+         "text": "Eklemsiz tek yargı: basit. Cevap A.",
+         "narration": "Ankara'nın başkent olduğunu bildiren önerme hiçbir eklem almaz: basit önermedir. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "Basit ve bileşik önerme kalıbı; seçenekler yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAN_SEMBOLIK_02",
+    "title": "Değilleme",
+    "narration": "Değilleme eklemi önüne geldiği önermenin doğruluk değerini tersine çevirir: doğruyu yanlış, yanlışı doğru yapar. Tek bir önermenin iki yorumu vardır: doğru ya da yanlış.",
+    "cards": [
+     {
+      "kind": "predict",
+      "title": "Değilin değili",
+      "prompt": "\"Bu kapı kilitli değil değildir.\" önermesi aşağıdakilerden hangisiyle aynı anlamdadır?",
+      "choices": [
+       "Bu kapı kilitlidir.",
+       "Bu kapı kilitli değildir."
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p"
+       ],
+       "columns": [
+        {
+         "formula": "~p"
+        },
+        {
+         "formula": "~~p"
+        }
+       ],
+       "check": "none"
+      },
+      "beats": [
+       {
+        "narration": "p doğruysa p değil yanlıştır; p yanlışsa p değil doğrudur.",
+        "show": [
+         "v",
+         "c1"
+        ],
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "Değilin değili yeniden p'nin değerini verir: iki sütun aynı.",
+        "show": [
+         "c2"
+        ],
+        "focus": [
+         "c2"
+        ]
+       }
+      ],
+      "explanation": "Çifte değilleme: **değilin değili kendisidir**.",
+      "narration": "İki \"değil\" art arda gelirse ne olur? Tahmin et.",
+      "explanationNarration": "Bu kapı kilitlidir. İki kez değillemek önermeyi kendine döndürür; çifte değilleme kuralına göre değilin değili kendisidir. Çizelgede p değil değil sütunu, p sütunuyla aynıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "\"Bu soru kolay değildir.\" önermesi yanlış ise aşağıdakilerden hangisi kesinlikle doğrudur?",
+       "options": [
+        "Bu soru zordur.",
+        "Bu soru kolay değildir.",
+        "Bu sorunun kolay olup olmadığı bilinemez.",
+        "Bu soru hem kolay hem zordur.",
+        "Bu soru kolaydır."
+       ],
+       "answer": 4,
+       "narration": "p değil yanlışsa p ne olur?",
+       "steps": [
+        {
+         "text": "~p yanlışsa p **doğrudur**.",
+         "narration": "\"Bu soru kolay değildir\" önermesi p değil biçimindedir. p değil yanlışsa p doğrudur.",
+         "eliminate": [
+          "B",
+          "C",
+          "D"
+         ]
+        },
+        {
+         "text": "\"Zor\", \"kolay\"ın değili değil, **karşıtı**.",
+         "narration": "\"Zor\" sözcüğü kolayın değili değil, karşıtıdır; kolay olmayan bir soru orta zorlukta da olabilir. Değilleme yalnız \"kolay değil\"i \"kolay\"a çevirir.",
+         "eliminate": [
+          "A"
+         ]
+        },
+        {
+         "text": "Cevap E: bu soru kolaydır.",
+         "narration": "Değilin yanlış olması önermenin kendisinin doğru olması demektir: bu soru kolaydır. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "Değilleme kalıbı; önerme yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAN_SEMBOLIK_03",
+    "title": "Tümel evetleme ve tikel evetleme",
+    "narration": "\"Ve\" ile kurulan bileşik önermeye tümel evetleme, \"veya\" ile kurulana tikel evetleme denir. İki önermenin dört yorumu vardır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Ve ile veya",
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p",
+        "q"
+       ],
+       "columns": [
+        {
+         "formula": "p ∧ q"
+        },
+        {
+         "formula": "p ∨ q"
+        }
+       ],
+       "check": "none"
+      },
+      "narration": "İki önermenin dört olası yorumunu yazalım ve iki eklemi deneyelim.",
+      "beats": [
+       {
+        "narration": "İki önerme, dört satır: ikisi doğru, yalnız p doğru, yalnız q doğru, ikisi yanlış.",
+        "show": [
+         "v"
+        ],
+        "focus": [
+         "v"
+        ]
+       },
+       {
+        "narration": "Tümel evetleme yalnız iki bileşen de doğruyken doğrudur: yalnız ilk satır.",
+        "show": [
+         "c1"
+        ],
+        "focus": [
+         "c1",
+         "r1"
+        ]
+       },
+       {
+        "narration": "Tikel evetleme en az bir bileşen doğruysa doğrudur; yalnız ikisi de yanlışken yanlıştır: son satır.",
+        "show": [
+         "c2"
+        ],
+        "focus": [
+         "c2",
+         "r4"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "predict",
+      "title": "İkisi birden olursa?",
+      "prompt": "\"Kahvaltıda çay veya meyve suyu içerim.\" Bir sabah hem çay hem meyve suyu içtin. Önerme doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p",
+        "q"
+       ],
+       "columns": [
+        {
+         "formula": "p ∨ q"
+        }
+       ],
+       "check": "none"
+      },
+      "beats": [
+       {
+        "narration": "Çay içtin: p doğru. Meyve suyu da içtin: q doğru.",
+        "show": [
+         "v",
+         "c1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "İlk satırda tikel evetleme doğrudur.",
+        "focus": [
+         "r1",
+         "c1"
+        ]
+       }
+      ],
+      "explanation": "Tikel evetlemede **ikisi birden** doğru olabilir.",
+      "narration": "\"Veya\" ikisinden yalnız birini mi ister? Tahmin et.",
+      "explanationNarration": "Önerme doğrudur. Mantıktaki \"veya\" en az birini ister, ikisini birden yasaklamaz. Çizelgenin ilk satırında iki bileşen de doğruyken tikel evetleme doğrudur; yalnız ikisi de yanlışken yanlış olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "p: \"Bir hafta yedi gündür.\" önermesi doğru, q: \"Ay bir gezegendir.\" önermesi yanlıştır.\n\nBuna göre aşağıdaki bileşik önermelerden hangisi doğrudur?",
+       "options": [
+        "p ∧ q",
+        "~p ∨ q",
+        "p ∧ ~q",
+        "~p ∧ ~q",
+        "~(p ∨ q)"
+       ],
+       "answer": 2,
+       "narration": "Önce p değil ile q değilin değerini yaz.",
+       "steps": [
+        {
+         "text": "p ∧ q: q yanlış. ~p ∨ q: iki bileşen de **yanlış**.",
+         "narration": "p ve q önermesinde q yanlış olduğu için önerme yanlıştır. p değil veya q önermesinde iki bileşen de yanlıştır; tikel evetleme de yanlıştır.",
+         "eliminate": [
+          "A",
+          "B"
+         ]
+        },
+        {
+         "text": "~p ∧ ~q: ~p yanlış. ~(p ∨ q): p ∨ q doğru, değili **yanlış**.",
+         "narration": "p değil ve q değil önermesinde p değil yanlıştır. p veya q doğru olduğundan onun değili yanlıştır.",
+         "eliminate": [
+          "D",
+          "E"
+         ]
+        },
+        {
+         "text": "p ∧ ~q: **doğru ve doğru**. Cevap C.",
+         "narration": "p doğru, q değil de doğru: p ve q değil önermesi doğrudur. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Bileşik önermenin doğruluk değeri kalıbı; önermeler yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAN_SEMBOLIK_04",
+    "title": "Koşul ve karşılıklı koşul",
+    "narration": "Koşul önermesi \"ise\" ile, karşılıklı koşul \"ancak ve ancak\" ile kurulur. Koşulun doğruluk çizelgesi ilk bakışta şaşırtır; bir söz vermeyi düşününce kolaylaşır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Koşul ve karşılıklı koşul",
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p",
+        "q"
+       ],
+       "columns": [
+        {
+         "formula": "p ⇒ q"
+        },
+        {
+         "formula": "p ⇔ q"
+        }
+       ],
+       "check": "none"
+      },
+      "narration": "İki eklemin çizelgesini kuralım.",
+      "beats": [
+       {
+        "narration": "Dört yorumu yazalım.",
+        "show": [
+         "v"
+        ],
+        "focus": [
+         "v"
+        ]
+       },
+       {
+        "narration": "Koşul önermesi yalnız ön bileşen doğru, art bileşen yanlışken yanlıştır: ikinci satır. Öteki bütün satırlarda doğrudur.",
+        "show": [
+         "c1"
+        ],
+        "focus": [
+         "c1",
+         "r2"
+        ]
+       },
+       {
+        "narration": "Karşılıklı koşul, iki bileşen aynı değeri aldığında doğrudur: ikisi de doğru ya da ikisi de yanlış. Değerler ayrıldığında yanlıştır.",
+        "show": [
+         "c2"
+        ],
+        "focus": [
+         "c2"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "predict",
+      "title": "Söz bozuldu mu?",
+      "prompt": "Baban \"Sınavı kazanırsan sana bisiklet alacağım.\" dedi. Sınavı kazanamadın ama baban yine de bisiklet aldı. Baban sözünü bozdu mu?",
+      "choices": [
+       "Bozdu",
+       "Bozmadı"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p",
+        "q"
+       ],
+       "columns": [
+        {
+         "formula": "p ⇒ q"
+        }
+       ],
+       "check": "none"
+      },
+      "beats": [
+       {
+        "narration": "Kazanamadın: ön bileşen yanlış. Bisiklet alındı: art bileşen doğru.",
+        "show": [
+         "v",
+         "c1"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "Bu satırda koşul önermesi doğrudur.",
+        "focus": [
+         "r3",
+         "c1"
+        ]
+       }
+      ],
+      "explanation": "Ön bileşen yanlışken koşul önermesi **her zaman doğrudur**.",
+      "narration": "Söz hangi durumda bozulurdu? Tahmin et.",
+      "explanationNarration": "Baban sözünü bozmadı. Söz yalnız bir durumda bozulur: sınavı kazanırsın ama bisiklet alınmaz; çizelgenin ikinci satırı. Sınavı kazanamadığında baban ne yaparsa yapsın sözünü bozmuş olmaz; ön bileşen yanlışken koşul önermesi doğrudur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "p: \"Elif antrenmana gider.\", q: \"Elif maça çıkar.\" olsun.\n\n\"Elif antrenmana giderse maça çıkar.\" ve \"Elif ancak ve ancak antrenmana giderse maça çıkar.\" önermelerinden yalnız birinin doğru olduğu durum aşağıdakilerden hangisidir?",
+       "options": [
+        "Antrenmana gitti, maça çıktı.",
+        "Antrenmana gitmedi, maça çıktı.",
+        "Antrenmana gitti, maça çıkmadı.",
+        "Antrenmana gitmedi, maça çıkmadı.",
+        "Böyle bir durum yoktur."
+       ],
+       "answer": 1,
+       "narration": "Dört yorumu tek tek dene.",
+       "steps": [
+        {
+         "text": "İki bileşen **aynı** değerdeyse ikisi de doğru.",
+         "narration": "Gitti ve çıktı ya da gitmedi ve çıkmadı: iki bileşen aynı değeri aldığı için hem koşul hem karşılıklı koşul doğrudur.",
+         "eliminate": [
+          "A",
+          "D"
+         ]
+        },
+        {
+         "text": "Gitti ama çıkmadı: ikisi de **yanlış**.",
+         "narration": "Antrenmana gidip maça çıkmadığında ön bileşen doğru, art bileşen yanlıştır; iki önerme de yanlıştır.",
+         "eliminate": [
+          "C"
+         ]
+        },
+        {
+         "text": "Gitmedi ama çıktı: koşul **doğru**, karşılıklı koşul **yanlış**. Cevap B.",
+         "narration": "Antrenmana gitmediği hâlde maça çıktıysa ön bileşen yanlış, art bileşen doğrudur: koşul önermesi doğru, karşılıklı koşul yanlıştır. Demek ki böyle bir durum var. Cevap B.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Koşul ve karşılıklı koşul kalıbı; durum yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAN_SEMBOLIK_05",
+    "title": "Doğruluk çizelgeleri",
+    "narration": "n tane önermenin iki üzeri n tane yorumu vardır: bir önerme iki, iki önerme dört, üç önerme sekiz satır. Doğruluk çizelgesi bir önermenin bütün yorumlarını gösterir; tutarlılığı, geçerliliği ve eşdeğerliği buradan okuruz.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Tutarlı mı?",
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p",
+        "q"
+       ],
+       "columns": [
+        {
+         "formula": "~p"
+        },
+        {
+         "formula": "p ∨ q"
+        },
+        {
+         "formula": "(p ∨ q) ∧ ~p"
+        }
+       ],
+       "check": "consistency"
+      },
+      "narration": "Bir önermenin tutarlılığını çizelgeyle denetleyelim: önce bileşenler, sonra bütün önerme.",
+      "beats": [
+       {
+        "narration": "Önce p değil sütunu.",
+        "show": [
+         "v",
+         "c1"
+        ],
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "Sonra p veya q.",
+        "show": [
+         "c2"
+        ],
+        "focus": [
+         "c2"
+        ]
+       },
+       {
+        "narration": "Son olarak ikisini \"ve\" ile bağlarız: yalnız üçüncü satırda doğru.",
+        "show": [
+         "c3"
+        ],
+        "focus": [
+         "c3"
+        ]
+       },
+       {
+        "narration": "En az bir satırda doğru olduğu için önerme tutarlıdır. Hiçbir satırda doğru olmasaydı tutarsız, her satırda doğru olsaydı totoloji olurdu.",
+        "show": [
+         "isaret",
+         "sonuc"
+        ],
+        "focus": [
+         "sonuc"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Birlikte tutarlı mı?",
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p",
+        "q"
+       ],
+       "columns": [
+        {
+         "formula": "p ∨ q"
+        },
+        {
+         "formula": "~p"
+        },
+        {
+         "formula": "p ⇒ q"
+        }
+       ],
+       "check": "joint"
+      },
+      "narration": "Birden çok önermenin birlikte tutarlı olması için hepsini aynı anda doğru kılan en az bir satır gerekir. Buna ortak doğrulayıcı yorum denir.",
+      "beats": [
+       {
+        "narration": "Üç önermenin sütunlarını yan yana yazalım.",
+        "show": [
+         "v",
+         "c1",
+         "c2",
+         "c3"
+        ]
+       },
+       {
+        "narration": "Üçüncü satırda üçü birden doğru: p yanlış, q doğru. Bu, ortak doğrulayıcı yorumdur; önermeler birlikte tutarlıdır.",
+        "show": [
+         "isaret",
+         "sonuc"
+        ],
+        "focus": [
+         "r3",
+         "sonuc"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Birden çok önermenin birbiriyle tutarlı olması, hepsini aynı anda doğru kılan en az bir yorumun bulunmasıyla mümkündür.\n\nBir arada tutarsız olan\nI. Selin kütüphanede veya kafededir.\nII. Selin kütüphanede değildir.\nIII. Selin kafede değildir.\n\nönermelerinde aşağıdaki değişikliklerden hangisi yapılırsa önermeler birbiriyle tutarlı hâle gelir?",
+       "options": [
+        "I. önerme \"Selin hem kütüphanede hem kafededir.\" olursa",
+        "II. ve III. önermelerin yeri değiştirilirse",
+        "I. önerme \"Selin kütüphanede değildir ama kafededir.\" olursa",
+        "III. önerme \"Selin kütüphanede değilse kafede değildir.\" olursa",
+        "III. önerme \"Selin kafededir.\" olursa"
+       ],
+       "answer": 4,
+       "narration": "Her değişiklikten sonra üç önermeyi birden doğru yapan bir yorum ara.",
+       "steps": [
+        {
+         "text": "Önerilen önerme yine **~p ya da ~q** ile çelişir.",
+         "narration": "Hem kütüphanede hem kafede olması, kütüphanede değil ama kafede olması, ya da kütüphanede değilse kafede olmaması: üçünde de önermeler yine aynı anda doğru olamaz.",
+         "eliminate": [
+          "A",
+          "C",
+          "D"
+         ]
+        },
+        {
+         "text": "Yer değiştirmek **içeriği** değiştirmez.",
+         "narration": "Önermelerin yerini değiştirmek hiçbir şeyi değiştirmez; önermeler aynı kalır.",
+         "eliminate": [
+          "B"
+         ]
+        },
+        {
+         "text": "p ∨ q, ~p, q: **p yanlış, q doğru** satırı ortak doğrulayıcı. Cevap E.",
+         "narration": "Üçüncü önerme \"Selin kafededir\" olursa, Selin kütüphanede değil ama kafede olduğunda üç önerme birden doğru olur: ortak doğrulayıcı yorum vardır. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 birlikte tutarlılık kalıbı; durum yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Koşulun tersi",
+      "prompt": "\"Bir sayı dörde bölünürse çifttir.\" ile \"Bir sayı çiftse dörde bölünür.\" önermeleri eşdeğer midir?",
+      "choices": [
+       "Eşdeğer",
+       "Eşdeğer değil"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p",
+        "q"
+       ],
+       "columns": [
+        {
+         "formula": "p ⇒ q"
+        },
+        {
+         "formula": "q ⇒ p"
+        }
+       ],
+       "check": "equivalence"
+      },
+      "beats": [
+       {
+        "narration": "p dörde bölünmek, q çift olmak. İki sütunu yan yana koyalım.",
+        "show": [
+         "v",
+         "c1",
+         "c2"
+        ]
+       },
+       {
+        "narration": "İkinci ve üçüncü satırda değerler ayrılıyor: önermeler eşdeğer değil.",
+        "show": [
+         "isaret",
+         "sonuc"
+        ],
+        "focus": [
+         "r2",
+         "r3",
+         "sonuc"
+        ]
+       }
+      ],
+      "explanation": "Koşulun **tersi** ona eşdeğer değildir: altı çifttir ama dörde bölünmez.",
+      "narration": "İki önerme her satırda aynı değeri alıyor mu? Tahmin et.",
+      "explanationNarration": "Eşdeğer değiller. İki önerme ancak her satırda aynı değeri alırsa eşdeğerdir; burada iki satırda ayrılıyorlar. Altı sayısı bunu gösterir: çifttir ama dörde bölünmez. Koşulun tersi ona eşdeğer değildir."
+     },
+     {
+      "kind": "visual",
+      "title": "Önemli eşdeğerlikler",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Önerme",
+        "Eşdeğeri"
+       ],
+       "rows": [
+        [
+         "~~p",
+         "p"
+        ],
+        [
+         "~(p ∧ q)",
+         "~p ∨ ~q"
+        ],
+        [
+         "~(p ∨ q)",
+         "~p ∧ ~q"
+        ],
+        [
+         "p ⇒ q",
+         "~p ∨ q"
+        ],
+        [
+         "~(p ⇒ q)",
+         "p ∧ ~q"
+        ]
+       ]
+      },
+      "narration": "Her satırda aynı değeri alan önermeler eşdeğerdir ve birbirinin yerine kullanılabilir. En çok kullanılanlar De Morgan kurallarıyla elde edilir.",
+      "beats": [
+       {
+        "narration": "Değilin değili kendisidir.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "\"p ve q\"nun değili, \"p değil veya q değil\"dir: değil içeri girerken \"ve\", \"veya\" olur.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "\"p veya q\"nun değili de \"p değil ve q değil\"dir.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "p ise q, p değil veya q ile eşdeğerdir; bu yüzden ön bileşen yanlışken koşul her zaman doğrudur.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ]
+       },
+       {
+        "narration": "Koşulun değili ise \"p ve q değil\"dir: koşulun yanlış olduğu tek satır.",
+        "show": [
+         "r5"
+        ],
+        "focus": [
+         "r5"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aşağıdaki önermelerden hangisi totolojidir?",
+       "options": [
+        "p ∨ ~p",
+        "p ∧ ~p",
+        "p ⇒ q",
+        "p ⇔ ~p",
+        "~(p ∨ q)"
+       ],
+       "answer": 0,
+       "narration": "Hangisi her yorumda doğru?",
+       "steps": [
+        {
+         "text": "p ∧ ~p ve p ⇔ ~p **hiçbir** yorumda doğru değil: tutarsız.",
+         "narration": "p ve p değil ile p ancak ve ancak p değil hiçbir satırda doğru olmaz; bunlar tutarsızdır.",
+         "eliminate": [
+          "B",
+          "D"
+         ]
+        },
+        {
+         "text": "p ⇒ q ve ~(p ∨ q) bazı satırlarda **yanlış**.",
+         "narration": "p ise q ikinci satırda yanlıştır; p veya q'nun değili de ilk üç satırda yanlıştır. Totoloji değillerdir.",
+         "eliminate": [
+          "C",
+          "E"
+         ]
+        },
+        {
+         "text": "p ∨ ~p: biri her zaman doğru, **her yorumda D**. Cevap A.",
+         "narration": "p veya p değil önermesinde bileşenlerden biri her zaman doğrudur; her yorumda doğru olduğu için totolojidir. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "Totoloji kalıbı; seçenekler yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAN_SEMBOLIK_06",
+    "title": "Çıkarım kuralları",
+    "narration": "Bir çıkarım, öncüllerin hepsi doğruyken sonucun yanlış olduğu hiçbir yorum yoksa geçerlidir. Denetlemek için öncüller \"ve\" ile birleştirilir, sonuca \"ise\" ile bağlanır; ortaya çıkan önerme totolojiyse çıkarım geçerlidir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Ön bileşeni evetleme",
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p",
+        "q"
+       ],
+       "columns": [
+        {
+         "formula": "p ⇒ q"
+        },
+        {
+         "formula": "(p ⇒ q) ∧ p"
+        },
+        {
+         "formula": "[(p ⇒ q) ∧ p] ⇒ q"
+        }
+       ],
+       "check": "validity"
+      },
+      "narration": "Klasik bir çıkarım: p ise q; p; o hâlde q. Geçerli mi, çizelgeyle bakalım.",
+      "beats": [
+       {
+        "narration": "İlk öncül p ise q.",
+        "show": [
+         "v",
+         "c1"
+        ],
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "İki öncülü \"ve\" ile birleştiririz.",
+        "show": [
+         "c2"
+        ],
+        "focus": [
+         "c2"
+        ]
+       },
+       {
+        "narration": "Birleşik öncülü sonuca \"ise\" ile bağlarız.",
+        "show": [
+         "c3"
+        ],
+        "focus": [
+         "c3"
+        ]
+       },
+       {
+        "narration": "Her satırda doğru: yanlışlayıcı yorum yok, çıkarım geçerlidir. Bu kurala ön bileşeni evetleme denir.",
+        "show": [
+         "isaret",
+         "sonuc"
+        ],
+        "focus": [
+         "sonuc"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "predict",
+      "title": "Art bileşeni evetleme",
+      "prompt": "\"Yağmur yağarsa yol ıslanır. Yol ıslak. O hâlde yağmur yağmıştır.\" Bu çıkarım geçerli mi?",
+      "choices": [
+       "Geçerli",
+       "Geçersiz"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p",
+        "q"
+       ],
+       "columns": [
+        {
+         "formula": "p ⇒ q"
+        },
+        {
+         "formula": "(p ⇒ q) ∧ q"
+        },
+        {
+         "formula": "[(p ⇒ q) ∧ q] ⇒ p"
+        }
+       ],
+       "check": "validity"
+      },
+      "beats": [
+       {
+        "narration": "Öncülleri \"ve\" ile birleştirip sonuca bağlayalım.",
+        "show": [
+         "v",
+         "c1",
+         "c2",
+         "c3"
+        ]
+       },
+       {
+        "narration": "Üçüncü satırda yağmur yağmamış, yol yine ıslak: öncüller doğru, sonuç yanlış.",
+        "show": [
+         "isaret",
+         "sonuc"
+        ],
+        "focus": [
+         "r3",
+         "sonuc"
+        ]
+       }
+      ],
+      "explanation": "Yol başka nedenle de ıslanabilir: **yanlışlayıcı yorum** var.",
+      "narration": "Yol yağmur yağmadan da ıslanabilir mi? Tahmin et.",
+      "explanationNarration": "Çıkarım geçersizdir. Yol bir arazözle ya da patlayan bir boruyla da ıslanabilir. Çizelgenin üçüncü satırında öncüller doğru, sonuç yanlıştır; tek bir yanlışlayıcı yorum çıkarımı geçersiz yapar. Bu hataya art bileşeni evetleme denir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "\"Fırın açıksa ekmek pişer. Ekmek pişmedi.\"\n\nBu öncüllerden geçerli olarak çıkan sonuç aşağıdakilerden hangisidir?",
+       "options": [
+        "Fırın açıktır.",
+        "Fırın açık değildir.",
+        "Ekmek pişmiştir.",
+        "Fırın açık olabilir.",
+        "Ekmek yarın pişer."
+       ],
+       "answer": 1,
+       "narration": "Fırın açık olsaydı ne olurdu?",
+       "steps": [
+        {
+         "text": "Fırın açık olsaydı ekmek **pişerdi**.",
+         "narration": "Fırın açık olsaydı ekmek pişerdi; ama ekmek pişmedi. Fırının açık olduğunu ya da olabileceğini söyleyen seçenekler elenir.",
+         "eliminate": [
+          "A",
+          "D"
+         ]
+        },
+        {
+         "text": "Öncülle **çelişen** ve öncülden çıkmayan sonuçlar elenir.",
+         "narration": "Ekmeğin piştiğini söylemek öncülle çelişir; yarın pişeceği de öncüllerden çıkmaz.",
+         "eliminate": [
+          "C",
+          "E"
+         ]
+        },
+        {
+         "text": "p ⇒ q, ~q ∴ ~p: **art bileşeni değilleme**. Cevap B.",
+         "narration": "Koşul doğruyken art bileşen yanlışsa ön bileşen de yanlış olmak zorundadır: fırın açık değildir. Bu geçerli çıkarıma art bileşeni değilleme denir. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "Çıkarım kuralları kalıbı; öncüller yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "visual",
+      "title": "Çözümleyici çizelge kuralları",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Önerme",
+        "Yöntem",
+        "Yazılış"
+       ],
+       "rows": [
+        [
+         "p ∧ q",
+         "çengel: alt alta",
+         "p ; q"
+        ],
+        [
+         "p ∨ q",
+         "çatal: iki yol",
+         "p | q"
+        ],
+        [
+         "p ⇒ q",
+         "çatal",
+         "~p | q"
+        ],
+        [
+         "p ⇔ q",
+         "çatal",
+         "p, q | ~p, ~q"
+        ],
+        [
+         "~(p ∧ q)",
+         "çatal",
+         "~p | ~q"
+        ],
+        [
+         "~(p ∨ q)",
+         "çengel",
+         "~p ; ~q"
+        ],
+        [
+         "~(p ⇒ q)",
+         "çengel",
+         "p ; ~q"
+        ],
+        [
+         "~(p ⇔ q)",
+         "çatal",
+         "p, ~q | ~p, q"
+        ]
+       ]
+      },
+      "narration": "Önerme sayısı arttıkça çizelge uzar: üç önerme sekiz, dört önerme on altı satır. Daha kısa yol çözümleyici çizelge, yani ağaç yöntemidir. Sekiz kuralı var.",
+      "beats": [
+       {
+        "narration": "\"Ve\" ile kurulan önerme çengel açar: bileşenler aynı yolda alt alta yazılır.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "\"Veya\", \"ise\" ve \"ancak ve ancak\" çatal açar: yol ikiye ayrılır. \"p ise q\" için sol yola p değil, sağ yola q yazılır.",
+        "show": [
+         "r2",
+         "r3",
+         "r4"
+        ],
+        "focus": [
+         "r2",
+         "r3",
+         "r4"
+        ]
+       },
+       {
+        "narration": "Değillenmiş önermeler De Morgan eşdeğerlikleriyle çözülür: \"ve\"nin değili çatal, \"veya\"nın ve \"ise\"nin değili çengel açar.",
+        "show": [
+         "r5",
+         "r6",
+         "r7",
+         "r8"
+        ],
+        "focus": [
+         "r5",
+         "r6",
+         "r7",
+         "r8"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Bir çözümleyici çizelge",
+      "visual": {
+       "kind": "tree",
+       "root": "(p ∨ q) ∧ ~p → p ∨ q ; ~p",
+       "branches": [
+        {
+         "label": "p",
+         "nodes": [
+          {
+           "label": "p ile ~p çelişir: ✗",
+           "items": []
+          }
+         ]
+        },
+        {
+         "label": "q",
+         "nodes": [
+          {
+           "label": "çelişki yok: yol açık ✓",
+           "items": []
+          }
+         ]
+        }
+       ]
+      },
+      "narration": "Tutarlılığını çizelgeyle denetlediğimiz önermeyi şimdi ağaçla çözelim.",
+      "beats": [
+       {
+        "narration": "Önerme bir tümel evetleme: çengelle bileşenlerini alt alta yazarız, p veya q ile p değil.",
+        "show": [
+         "root"
+        ],
+        "focus": [
+         "root"
+        ]
+       },
+       {
+        "narration": "p veya q çatal açar: sol yolda p, sağ yolda q.",
+        "show": [
+         "b1",
+         "b2"
+        ],
+        "focus": [
+         "b1",
+         "b2"
+        ]
+       },
+       {
+        "narration": "Sol yolda hem p hem p değil var; bu bir çelişkidir, yol kapanır.",
+        "show": [
+         "b1-1"
+        ],
+        "focus": [
+         "b1-1"
+        ]
+       },
+       {
+        "narration": "Sağ yolda çelişki yok, yol açık. En az bir açık yol olduğu için önerme tutarlıdır. Bütün yollar kapansaydı tutarsız olurdu. Bir önermenin geçerliliği için de değili çözümlenir; bütün yollar kapanırsa önerme geçerlidir.",
+        "show": [
+         "b2-1"
+        ],
+        "focus": [
+         "b2-1"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Önermeler mantığının tanımlarına göre aşağıdaki ifadelerden hangisi **yanlıştır**?",
+       "options": [
+        "Her totoloji tutarlı bir önermedir.",
+        "Tutarsız bir önermenin değili totolojidir.",
+        "Ön bileşeni doğru, art bileşeni yanlış olan koşul önermesi yanlıştır.",
+        "Her tutarlı önerme geçerlidir.",
+        "Çözümleyici çizelgede bütün yolları kapanan önerme tutarsızdır."
+       ],
+       "answer": 3,
+       "narration": "Tutarlı ile geçerli aynı şey mi?",
+       "steps": [
+        {
+         "text": "A, B, C, E **doğru** tanımlar.",
+         "narration": "Her totoloji en az bir satırda doğru olduğu için tutarlıdır. Hiçbir satırda doğru olmayan önermenin değili her satırda doğrudur. Koşul önermesi yalnız doğrudan yanlışa giderken yanlıştır. Bütün yolları kapanan önermenin doğru yorumu yoktur.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        },
+        {
+         "text": "Tutarlı önerme bir satırda yanlış olabilir: **geçerli değil**. Cevap D.",
+         "narration": "Tutarlı bir önerme bazı satırlarda yanlış olabilir; geçerli olması için her satırda doğru olmalıdır. Her geçerli önerme tutarlıdır, ama her tutarlı önerme geçerli değildir. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM önermeler mantığı tanımları kalıbı; ifadeler yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAN_SEMBOLIK_07",
+    "title": "Niceleme mantığı",
+    "narration": "Önermeler mantığı \"Bütün insanlar canlıdır.\" ile \"Bazı varlıklar canlıdır.\" önermelerini aynı p harfiyle yazar; niceliği göremez. Niceleme mantığı bu eksikliği giderir: özne ile yüklemi ayırır, \"her\" ve \"bazı\" için niceleyiciler kullanır. Bu yüzden ona yüklemler mantığı da denir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Niceleme mantığının sembolleri",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sembol",
+        "Ne gösterir",
+        "Örnek"
+       ],
+       "rows": [
+        [
+         "a, b, c",
+         "Ad değişmezi: belli bir birey",
+         "Zeynep: a"
+        ],
+        [
+         "F, G, H",
+         "Yüklem değişmezi",
+         "öğretmendir: F"
+        ],
+        [
+         "Fa",
+         "Tekil önerme",
+         "Zeynep öğretmendir."
+        ],
+        [
+         "∀x",
+         "Tümel niceleyici: her",
+         "∀xFx: Herkes öğretmendir."
+        ],
+        [
+         "∃x",
+         "Tikel niceleyici: bazı",
+         "∃xFx: Bazıları öğretmendir."
+        ]
+       ]
+      },
+      "narration": "Niceleme mantığının sembollerini tanıyalım.",
+      "beats": [
+       {
+        "narration": "Belli bir bireyi küçük harfle gösteririz: Zeynep a olur. Buna ad değişmezi denir.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Yüklemi büyük harfle gösteririz: öğretmen olmak F.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Zeynep öğretmendir önermesi F a diye yazılır: önce yüklem, sonra ad.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "Ters A, tümel niceleyicidir: her x için. Her x için F x, herkesin öğretmen olduğunu söyler.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ]
+       },
+       {
+        "narration": "Ters E, tikel niceleyicidir: en az bir x için. En az bir x için F x, bazılarının öğretmen olduğunu söyler.",
+        "show": [
+         "r5"
+        ],
+        "focus": [
+         "r5"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Açık önermeden önermeye",
+      "visual": {
+       "kind": "flipcards",
+       "cards": [
+        {
+         "front": "Açık önerme",
+         "back": "\"x yüzer\": değişken içerir, **doğruluk değeri yoktur**."
+        },
+        {
+         "front": "Evren",
+         "back": "Değişkenin yerine geçebilecek varlıklar: E = {balık, taş, ördek}."
+        },
+        {
+         "front": "Özelleme",
+         "back": "Değişkenin yerine evrenden bir ad koymak: \"Taş yüzer.\""
+        },
+        {
+         "front": "Gerçekleme",
+         "back": "Özellemeyi **doğru** yapan değer: balık, ördek."
+        },
+        {
+         "front": "Açılım",
+         "back": "Bütün özellemeler: balık yüzer, taş yüzer, ördek yüzer."
+        }
+       ]
+      },
+      "narration": "\"x yüzer\" bir önerme midir? Değişkenli önermelerin kavramlarını görelim.",
+      "beats": [
+       {
+        "narration": "\"x yüzer\" bir açık önermedir: x belli bir şeyi göstermediği için doğru da yanlış da değildir.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "x'in yerine geçebilecek varlıkların kümesine evren denir: balık, taş ve ördek.",
+        "show": [
+         "p2"
+        ],
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "x'in yerine evrenden bir ad koymaya özelleme denir: taş yüzer. Artık önermenin bir doğruluk değeri var; yanlış.",
+        "show": [
+         "p3"
+        ],
+        "focus": [
+         "p3"
+        ]
+       },
+       {
+        "narration": "Özellemeyi doğru yapan değerler gerçeklemedir: balık ve ördek.",
+        "show": [
+         "p4"
+        ],
+        "focus": [
+         "p4"
+        ]
+       },
+       {
+        "narration": "Bütün özellemelerin listesine açılım denir.",
+        "show": [
+         "p5"
+        ],
+        "focus": [
+         "p5"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Niceleyicinin değili",
+      "visual": {
+       "kind": "opposition",
+       "a": "Her kuş uçar: ∀xFx",
+       "e": "Hiçbir kuş uçmaz: ∀x~Fx",
+       "i": "Bazı kuşlar uçar: ∃xFx",
+       "o": "Bazı kuşlar uçmaz: ∃x~Fx"
+      },
+      "narration": "Niceleyiciler değillenince ne olur? Karşıtlık karesini hatırla.",
+      "beats": [
+       {
+        "narration": "Dört önermeyi niceleyicilerle yazalım.",
+        "show": [
+         "a",
+         "e",
+         "i",
+         "o"
+        ]
+       },
+       {
+        "narration": "\"Her kuş uçar\" önermesinin değili, çelişiği olan \"bazı kuşlar uçmaz\"dır: tümel niceleyicinin değili, değillenmiş tikel niceleyicidir.",
+        "show": [
+         "celisiklik"
+        ],
+        "focus": [
+         "a",
+         "o"
+        ]
+       },
+       {
+        "narration": "\"Bazı kuşlar uçar\" önermesinin değili de \"hiçbir kuş uçmaz\"dır. Niceleyici değilleme kuralları karenin köşegenleridir.",
+        "focus": [
+         "e",
+         "i"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "\"Bu sınıftaki her öğrenci gözlüklüdür.\" önermesinin değili aşağıdakilerden hangisidir?",
+       "options": [
+        "Bu sınıfta hiçbir öğrenci gözlüklü değildir.",
+        "Bu sınıftaki bazı öğrenciler gözlüklüdür.",
+        "Bu sınıftaki bazı öğrenciler gözlüklü değildir.",
+        "Gözlüklü olanların hepsi bu sınıftadır.",
+        "Bu sınıfta en az bir gözlüklü öğrenci vardır."
+       ],
+       "answer": 2,
+       "narration": "Değil, çelişik olanı mı arar, karşıt olanı mı?",
+       "steps": [
+        {
+         "text": "\"Hiçbir... değil\" **karşıt**: ikisi birden yanlış olabilir.",
+         "narration": "\"Hiçbir öğrenci gözlüklü değildir\" tümel olumsuzdur; tümel olumlunun karşıtıdır, değili değildir. İkisi birden yanlış olabilir.",
+         "eliminate": [
+          "A"
+         ]
+        },
+        {
+         "text": "B ve E **tikel olumlu**: A ile birlikte doğru olabilir.",
+         "narration": "\"Bazı öğrenciler gözlüklüdür\" ve \"en az bir gözlüklü öğrenci vardır\" tikel olumludur; tümel olumluyla birlikte doğru olabilir.",
+         "eliminate": [
+          "B",
+          "E"
+         ]
+        },
+        {
+         "text": "D özne ile yüklemi **ters** çevirir.",
+         "narration": "Gözlüklülerin hepsinin bu sınıfta olması bambaşka bir önermedir.",
+         "eliminate": [
+          "D"
+         ]
+        },
+        {
+         "text": "Her x için değilse: **bazı x için değil**. Cevap C.",
+         "narration": "Tümel niceleyicinin değili, değillenmiş tikel niceleyicidir: her öğrencinin gözlüklü olduğu doğru değilse, bazı öğrenciler gözlüklü değildir. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Niceleyici değilleme kalıbı; önerme yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aşağıdakilerden hangisi açık önermedir?",
+       "options": [
+        "x bir başkenttir.",
+        "Ankara bir başkenttir.",
+        "Bütün başkentler kalabalıktır.",
+        "Bazı başkentler kıyıdadır.",
+        "Ankara, İzmir'den büyüktür."
+       ],
+       "answer": 0,
+       "narration": "Hangisinin doğruluk değeri yok?",
+       "steps": [
+        {
+         "text": "Belli bir özne ya da **niceleyici** var: doğruluk değeri alır.",
+         "narration": "Ankara belli bir şehri gösterir; \"bütün\" ve \"bazı\" ise niceleyicidir. Bu önermelerin doğruluk değeri vardır.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        },
+        {
+         "text": "x **değişken**: doğruluk değeri yok. Cevap A.",
+         "narration": "x belli bir şeyi göstermeyen bir değişkendir; \"x bir başkenttir\" doğru ya da yanlış olamaz, açık önermedir. Yerine Ankara konursa özelleme yapılmış olur. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "Açık önerme kalıbı; seçenekler yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "title": "Çok değerli mantık",
+    "narration": "İki değerli mantıkta bir önerme ya doğrudur ya yanlıştır. Çok değerli mantıklar bu sınırı genişletir ve gerçek dünyanın belirsizliğini modellemeye çalışır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "İki değerli ve çok değerli",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "İki değerli mantık",
+         "items": [
+          "Önerme ya **doğru** ya **yanlış**",
+          "Önermeler ve niceleme mantığı",
+          "Değer: 1 ya da 0"
+         ]
+        },
+        {
+         "title": "Çok değerli mantık",
+         "items": [
+          "Üçüncü bir değer: **belirsiz**",
+          "Bulanık mantıkta 0 ile 1 arası **sonsuz** değer",
+          "Doğruluk bir derece ya da olasılık olabilir"
+         ]
+        }
+       ]
+      },
+      "narration": "İki yaklaşımı karşılaştıralım.",
+      "beats": [
+       {
+        "narration": "Bu derste gördüğün önermeler mantığı ve niceleme mantığı iki değerlidir: bir ya da sıfır, doğru ya da yanlış.",
+        "show": [
+         "c1"
+        ],
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "Çok değerli mantıkta önerme üçüncü bir değer alabilir: belirsiz. Bulanık mantıkta ise doğruluk sıfırla bir arasında sonsuz derece alır; \"az doğru\", \"çok doğru\" gibi. Akıllı cihazlar, yapay zekâ ve kontrol sistemleri bu mantıkla karar verir.",
+        "show": [
+         "c2"
+        ],
+        "focus": [
+         "c2"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "I. Bir önerme doğru ve yanlıştan başka değerler de alabilir.\nII. Her önerme ya kesin doğru ya kesin yanlıştır.\nIII. Doğruluk değeri 0 ile 1 arasında bir derece olarak gösterilebilir.\nIV. Belirsizlik içeren önermeler mantığın konusu dışındadır.\n\nYukarıdaki ifadelerden hangileri çok değerli mantığın özelliklerindendir?",
+       "options": [
+        "I ve II",
+        "II ve III",
+        "II ve IV",
+        "I ve III",
+        "III ve IV"
+       ],
+       "answer": 3,
+       "narration": "Hangileri \"doğru ya da yanlış\" sınırını aşıyor?",
+       "steps": [
+        {
+         "text": "II **iki değerli** mantığın ilkesidir.",
+         "narration": "Her önermenin ya kesin doğru ya kesin yanlış olması iki değerli mantığın ilkesidir.",
+         "eliminate": [
+          "A",
+          "B",
+          "C"
+         ]
+        },
+        {
+         "text": "IV yanlış: çok değerli mantık belirsizliği **modeller**.",
+         "narration": "Çok değerli mantık belirsizliği dışarıda bırakmaz; tam tersine onu modellemek için kurulmuştur.",
+         "eliminate": [
+          "E"
+         ]
+        },
+        {
+         "text": "I ve III: üçüncü değer ve **derece**. Cevap D.",
+         "narration": "Doğru ve yanlış dışında değer alması ve doğruluğun sıfırla bir arasında bir derece olması çok değerli mantığın özellikleridir. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021 çok değerli mantık kalıbı; ifadeler yeni yazıldı"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Beş eklem: değil, ve, veya, ise, ancak ve ancak.",
+    "Koşul yalnız doğrudan yanlışa giderken yanlıştır.",
+    "n önerme, iki üzeri n satır.",
+    "Tutarlı: en az bir D; totoloji: her satır D.",
+    "Geçerli çıkarımda yanlışlayıcı yorum yoktur.",
+    "\"Her\" önermesinin değili \"bazı ... değil\"dir."
+   ],
+   "warnings": [
+    "Sembolik mantıkta \"değil\" de bir **eklemdir**.",
+    "Her tutarlı önerme **geçerli değildir**.",
+    "Koşulun tersi ona **eşdeğer değildir**."
+   ],
+   "narration": "Özetleyelim. Sembolik mantık beş eklem kullanır: değil, ve, veya, ise, ancak ve ancak. Tümel evetleme ancak iki bileşen doğruyken, tikel evetleme en az biri doğruyken doğrudur. Koşul yalnız ön bileşen doğru, art bileşen yanlışken yanlıştır; karşılıklı koşul bileşenler aynı değeri alınca doğrudur. n önermenin iki üzeri n yorumu vardır. En az bir satırda doğru olan önerme tutarlı, her satırda doğru olan totolojidir; her tutarlı önerme geçerli değildir. Bir çıkarım, yanlışlayıcı yorumu yoksa geçerlidir. Niceleme mantığında \"her\" önermesinin değili \"bazı ... değil\" önermesidir. Çok değerli mantıkta doğruluk, doğru ve yanlış dışında değerler alabilir."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "p ⇒ q, p yanlış",
+    "question": "Önerme?",
+    "choices": [
+     "Doğru",
+     "Yanlış"
+    ],
+    "answer": 0,
+    "why": "Ön bileşen yanlışsa **doğru**."
+   },
+   {
+    "sentence": "p ∨ q, ikisi de doğru",
+    "question": "Önerme?",
+    "choices": [
+     "Yanlış",
+     "Doğru"
+    ],
+    "answer": 1,
+    "why": "Biri yeter: **doğru**."
+   },
+   {
+    "sentence": "\"Her kuş uçar\" değil",
+    "question": "Hangisi?",
+    "choices": [
+     "Bazı kuşlar uçmaz",
+     "Hiçbir kuş uçmaz"
+    ],
+    "answer": 0,
+    "why": "Değil **çelişiktir**."
+   }
+  ],
+  "hook": "Üç mantık tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Üç önerme: **sekiz** satırlık çizelge."
+   },
+   {
+    "kind": "warning",
+    "text": "Her tutarlı önerme **geçerli değildir**."
+   },
+   {
+    "kind": "term",
+    "term": "Totoloji",
+    "definition": "Her yorumda **doğru** olan önerme."
+   }
+  ],
+  "summary": [
+   "Beş eklem ve çizelgeleri",
+   "Tutarlılık ve geçerlilik",
+   "Niceleme mantığı"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-mantik-kampi",
+  "name": "AYT Mantık kampı",
+  "number": 4,
+  "total": 4,
+  "previous": "Mantık ve Dil",
+  "promise": "Mantık konularının hepsi AYT düzeyinde, sırayla ve ÖSYM kalıplarıyla soru çözerek.",
+  "task": {
+   "items": [
+    "Kendi seçtiğin iki önermeyle **koşul ve karşılıklı koşul** çizelgelerini kur.",
+    "Bir çıkarım yaz ve geçerliliğini **doğruluk çizelgesiyle** denetle.",
+    "Uygulamada AYT Sembolik Mantık testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Kendi seçtiğin iki önermeyle koşul ve karşılıklı koşul çizelgelerini kur. Sonra bir çıkarım yaz ve geçerliliğini doğruluk çizelgesiyle denetle. Ardından uygulamada yirmi soru çöz. Bu ders AYT Mantık kampının son dersiydi; kampı bitirdin, tebrikler."
+  }
+ },
+ "works": {
+  "additions": [
+   "Beş eklemin doğruluk değerlerini tek tabloda ver: değil-p, p'nin tersidir; p ve q yalnız ikisi de D iken D; p veya q yalnız ikisi de Y iken Y; p ise q yalnız D'den Y'ye giderken Y; p ancak ve ancak q, iki bileşen aynı değeri aldığında D. 3 önermeli bir çizelgenin 8 satırını örnek olarak çöz.",
+   "Önemli eşdeğerlikleri ekle: De Morgan (değil-(p ve q) = değil-p veya değil-q; değil-(p veya q) = değil-p ve değil-q), p ise q = değil-p veya q = değil-q ise değil-p. Koşulun tersinin (q ise p) ve karşıtının (değil-p ise değil-q) eşdeğer olmadığını bir günlük hayat örneğiyle göster.",
+   "Geçerli çıkarım kurallarını sembolle ver: ön bileşeni evetleme (p ise q; p; o hâlde q), art bileşeni değilleme (p ise q; değil-q; o hâlde değil-p), ayırıcı kıyas (p veya q; değil-p; o hâlde q), zincir kuralı. Geçersiz iki kalıbı ekle: art bileşeni evetleme ve ön bileşeni değilleme.",
+   "Totoloji, çelişme ve olumsal önermeye birer örnek ver: p veya değil-p her satırda D (totoloji), p ve değil-p her satırda Y (çelişme), p ise q bazı satırlarda D (olumsal). Tutarlılığın en az bir satırda D olmak, geçerliliğin hiçbir yorumda yanlışlanamamak olduğunu tekrarla.",
+   "Klasik önermelerin niceleme mantığındaki yazımını ver: A: her x için (Sx ise Px); E: her x için (Sx ise değil-Px); I: en az bir x için (Sx ve Px); O: en az bir x için (Sx ve değil-Px). Niceleyicinin değilinin kuralını ekle: \"her\"in değili \"bazı ... değil\", \"bazı\"nın değili \"hiçbir\" olur.",
+   "Çok değerli mantığı genişlet: Aristoteles'in gelecek zaman önermeleri sorunu (\"Yarın deniz savaşı olacak.\"), Łukasiewicz'in üç değerli mantığı (doğru, yanlış, belirsiz), Zadeh'in bulanık mantığı (0 ile 1 arasında derece; çamaşır makinesi ve klima örnekleri)."
+  ]
+ }
+}

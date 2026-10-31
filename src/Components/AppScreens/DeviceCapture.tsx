@@ -1,7 +1,7 @@
 import React from 'react';
 import {Img, staticFile} from 'remotion';
 import {APP_SCREEN} from './AppScreenTokens';
-import {PhoneFrame, phoneHeight, type PhoneScreenShape, type PhoneVariant} from './PhoneFrame';
+import {PhoneFrame, type PhoneScreenShape, type PhoneVariant} from './PhoneFrame';
 
 /**
  * A real capture of the app inside the project's one phone. Captures come from
@@ -27,13 +27,10 @@ const IOS_STATUS_BAR = 0.138;
 /** The row just under Android's status bar: its colour fills the iOS bar. */
 const SAMPLE_ROW = CAPTURE.statusBar + 6;
 
-export const captureScreenShape = (variant: PhoneVariant): PhoneScreenShape =>
+const captureScreenShape = (variant: PhoneVariant): PhoneScreenShape =>
 	variant === 'android'
 		? {aspect: CAPTURE.height / CAPTURE.width, statusBar: CAPTURE.statusBar / CAPTURE.width}
 		: {aspect: (CAPTURE.height - CAPTURE.statusBar) / CAPTURE.width + IOS_STATUS_BAR, statusBar: IOS_STATUS_BAR};
-
-/** Outer height of a phone of this width showing a capture. */
-export const captureHeight = (width: number, variant: PhoneVariant): number => phoneHeight(width, captureScreenShape(variant), variant);
 
 const resolve = (src: string): string => (/^(https?:|data:)/.test(src) ? src : staticFile(src));
 
@@ -68,7 +65,7 @@ export type CaptureMedia = (style: React.CSSProperties) => React.ReactNode;
 export const captureImage = (src: string): CaptureMedia => (style) => <Img src={resolve(src)} style={style} />;
 
 /** The capture laid out on the phone's screen canvas (390 app points wide). */
-export const CaptureCanvas: React.FC<{media: CaptureMedia; variant: PhoneVariant; statusInk?: string}> = ({media, variant, statusInk = '#0B1C30'}) => {
+const CaptureCanvas: React.FC<{media: CaptureMedia; variant: PhoneVariant; statusInk?: string}> = ({media, variant, statusInk = '#0B1C30'}) => {
 	const k = APP_SCREEN.width / CAPTURE.width;
 	const imageHeight = CAPTURE.height * k;
 	if (variant === 'android') {

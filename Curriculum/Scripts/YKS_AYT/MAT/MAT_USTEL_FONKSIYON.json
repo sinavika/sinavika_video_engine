@@ -1,0 +1,766 @@
+{
+ "topic": {
+  "id": "2974893D-E939-4A5D-8079-65019A3E13EA",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_USTEL_FONKSIYON"
+ },
+ "title": "Üstel Fonksiyon",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "YKS/AYT/CikmisSorular/MAT.jsonl (ÖSYM 2022 ortak çarpan ve asal taban kalıbı örnek alındı, soru yeniden kuruldu)",
+  "MEB AYT Matematik konu anlatımı (üstel fonksiyon, grafik, denklem, eşitsizlik, büyüme; yapı için) ve YKS/AYT/Sorular/MAT/MAT_USTEL_FONKSIYON.jsonl",
+  "Her cevap tam sayılar ve kesirlerle ya da sayısal olarak tek tek denetlendi"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Değişken üste çıkınca her şey hızlanır.",
+   "narration": "Bir kâğıdı her katlayışında kalınlığı iki katına çıkar; kırk iki katlamada Ay'a ulaşır. Üstel fonksiyonun gücü bu: değişken üste çıkınca büyüme çok hızlanır. ÖSYM bu konuda ortak çarpan ve taban eşleme kalıplarını soruyor; büyüme problemleri de logaritmayla birleşiyor. Bu derste grafikten başlayıp AYT düzeyinde yeni sorular çözeceğiz."
+  },
+  "objectives": [
+   "Üstel fonksiyonun tanımını, grafiğini ve asimptotunu yorumlamak",
+   "Kuvvetleri ortak üs ya da tabanla karşılaştırmak",
+   "Üstel denklemleri taban eşitleme, ortak çarpan ve değişken değiştirmeyle çözmek",
+   "Tabana göre üstel eşitsizlik çözmek",
+   "Büyüme, yarılanma ve bileşik faiz problemlerini modellemek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_USTEL_FONKSIYON_01",
+    "subtopics": [
+     "MAT_USTEL_FONKSIYON_02"
+    ],
+    "title": "Üstel fonksiyon ve grafiği",
+    "narration": "Değişken üste çıkınca fonksiyon bambaşka davranır: bir anda çok hızlı büyür ya da sıfıra yaklaşır ama hiç değmez. Önce tabanın grafiği nasıl belirlediğini görelim.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Üstel fonksiyon",
+      "items": [
+       "$f(x) = a^x$, $a > 0$ ve $a \\neq 1$: tanım kümesi $\\mathbb{R}$, görüntü kümesi $(0, \\infty)$.",
+       "Her tabanda $(0, 1)$ noktasından geçer.",
+       "$a > 1$: **artan**; $0 < a < 1$: **azalan**.",
+       "$x$ ekseni ($y = 0$) yatay **asimptot**: grafik yaklaşır, değmez."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -3,
+        3
+       ],
+       "y": [
+        -0.5,
+        10
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "a^x",
+         "label": "y = aˣ"
+        }
+       ],
+       "parameters": {
+        "a": {
+         "from": 2
+        }
+       },
+       "points": [
+        {
+         "x": 0,
+         "y": 1,
+         "label": "(0, 1)"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "a iki: iki üssü x. Sağa gittikçe hızla büyüyor, sola gittikçe sıfıra yaklaşıyor."
+       },
+       {
+        "narration": "a'yı üç yapalım: daha da dik. Ama yine sıfır virgül birden geçiyor.",
+        "params": {
+         "a": 3
+        }
+       },
+       {
+        "narration": "a'yı yarıya indirelim. Yolda a bir olurken grafik bir an düz bir çizgi oldu: bu yüzden taban bir olamaz. Şimdi fonksiyon azalan.",
+        "params": {
+         "a": 0.5
+        }
+       }
+      ],
+      "narration": "a üssü x fonksiyonunda taban pozitif ve birden farklıdır. Her gerçel sayıda tanımlıdır ama değerleri hep pozitiftir. Her tabanda sıfır virgül birden geçer, çünkü her sayının sıfırıncı kuvveti birdir. Taban birden büyükse artan, sıfır ile bir arasındaysa azalandır. Ve grafik x eksenine yaklaşır ama hiç değmez: x ekseni yatay asimptottur."
+     },
+     {
+      "kind": "visual",
+      "title": "Öteleme ve asimptot",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -3,
+        5
+       ],
+       "y": [
+        -1,
+        9
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "2^(x - m) + k",
+         "label": "y = 2ˣ⁻ᵐ + k"
+        },
+        {
+         "expression": "k",
+         "label": "asimptot"
+        }
+       ],
+       "parameters": {
+        "m": {
+         "from": 0
+        },
+        "k": {
+         "from": 0
+        }
+       }
+      },
+      "caption": "Yatay asimptot: $y = k$.",
+      "narration": "Üstel grafiği kaydırınca asimptot da onunla birlikte kayar.",
+      "beats": [
+       {
+        "narration": "İki üssü x: asimptotu x ekseni, y eşittir sıfır."
+       },
+       {
+        "narration": "k'yı üç yapalım: grafik üç birim yukarı çıkıyor, asimptot da y eşittir üç oluyor. Görüntü kümesi artık üçten büyük sayılar.",
+        "params": {
+         "k": 3
+        }
+       },
+       {
+        "narration": "m'yi bir yapalım: x yerine x eksi bir, grafik bir birim sağa kayıyor. Yatay asimptot yerinde kalıyor.",
+        "params": {
+         "m": 1
+        }
+       }
+      ]
+     },
+     {
+      "kind": "predict",
+      "title": "Artan mı, azalan mı?",
+      "prompt": "$\\left(\\frac{1}{2}\\right)^x$ fonksiyonu artan mı, azalan mı?",
+      "choices": [
+       "Azalan",
+       "Artan"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -3,
+        3
+       ],
+       "y": [
+        -0.5,
+        8
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "2^x",
+         "label": "y = 2ˣ"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "İki üssü x artan: x büyüdükçe değer ikiye katlanıyor."
+       }
+      ],
+      "explanation": "$\\left(\\frac{1}{2}\\right)^x = 2^{-x}$: $2^x$'in $y$ eksenine göre simetriği; taban $1$'den küçük, fonksiyon **azalan**.",
+      "narration": "Şimdi sıra sende. Yarım üssü x artan mı, azalan mı? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: azalan. Yarım üssü x, iki üssü eksi x'e eşit; iki üssü x'in y eksenine göre aynası. x büyüdükçe her adımda değer yarıya iner."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(x) = 2^{x - 1} + k$\n\nfonksiyonunun grafiği $(3, 7)$ noktasından geçtiğine göre, grafiğin yatay asimptotu aşağıdakilerden hangisidir?",
+       "options": [
+        "$y = 2$",
+        "$y = 3$",
+        "$y = 4$",
+        "$y = 5$",
+        "$y = 7$"
+       ],
+       "answer": 1,
+       "narration": "Önce k'yı bulalım; asimptot y eşittir k.",
+       "steps": [
+        {
+         "text": "$f(3) = 2^2 + k = 7$: $k = 3$.",
+         "narration": "f üç: iki üssü iki artı k, yedi. k üç."
+        },
+        {
+         "text": "$2^{x - 1} > 0$, sıfıra yaklaşır: $f(x) > 3$; asimptot $y = 3$.",
+         "narration": "İki üssü x eksi bir hep pozitif ve sıfıra yaklaşıyor ama değmiyor: f hep üçten büyük. Yatay asimptot y eşittir üç. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "Ötelenmiş üstel fonksiyonun asimptotu kalıbı; ifade yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a = 2^{30}$\n\n$b = 3^{20}$\n\n$c = 5^{10}$\n\nolduğuna göre, aşağıdaki sıralamalardan hangisi doğrudur?",
+       "options": [
+        "$a < b < c$",
+        "$a < c < b$",
+        "$b < a < c$",
+        "$c < b < a$",
+        "$c < a < b$"
+       ],
+       "answer": 4,
+       "narration": "Üsleri aynı yapalım: üçünün de onuncu kuvveti.",
+       "steps": [
+        {
+         "text": "$a = (2^3)^{10} = 8^{10}$, $b = (3^2)^{10} = 9^{10}$, $c = 5^{10}$.",
+         "narration": "İki üssü otuz, sekiz üssü on. Üç üssü yirmi, dokuz üssü on. Beş üssü on zaten onuncu kuvvet."
+        },
+        {
+         "text": "Üs aynı, taban büyükse sayı büyük: $5 < 8 < 9$.",
+         "narration": "Üsler eşit; tabanı büyük olan büyük. Beş, sekiz, dokuz."
+        },
+        {
+         "text": "$c < a < b$.",
+         "narration": "Sıralama: c, a, b. En büyük üssü görüp a en büyük diyen yanılır. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "Üsleri eşitleyerek karşılaştırma kalıbı; sayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_USTEL_FONKSIYON_03",
+    "title": "Üstel denklemler",
+    "narration": "Üstel denklemde üç yol vardır: tabanları eşitlemek, ortak çarpan almak ya da yeni bir değişken koymak. Tabanlar eşitlenemiyorsa logaritma imdada yetişir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Üstel denklem çözme",
+      "items": [
+       "Tabanlar eşitse **üsler** eşit: $a^{f(x)} = a^{g(x)} \\Rightarrow f(x) = g(x)$.",
+       "Ortak çarpan: $a^{x + 2} - a^x = a^x(a^2 - 1)$.",
+       "Değişken değiştir: $t = a^x$; ama $t > 0$.",
+       "Tabanlar eşitlenmiyorsa **logaritma** al."
+      ],
+      "narration": "Tabanlar aynıysa üsleri eşitlersin. Terimlerde aynı kuvvet farklı üslerle geçiyorsa ortak çarpan parantezine al. a üssü x ve a üssü iki x birlikte geçiyorsa a üssü x'e t de; ama t her zaman pozitiftir, negatif kökü at. Tabanlar ortak bir sayının kuvveti değilse iki tarafın logaritmasını al."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x$ ve $y$ tam sayılar olmak üzere\n\n$5^{2x + 1} - 25^x = 2^y \\cdot 125^{x - 2}$\n\neşitliği sağlanıyor.\n\nBuna göre, $x \\cdot y$ çarpımı kaçtır?",
+       "options": [
+        "$-12$",
+        "$-6$",
+        "$6$",
+        "$12$",
+        "$18$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2022'de bu kalıbı sordu. Sol tarafı ortak çarpana alalım.",
+       "steps": [
+        {
+         "text": "$5^{2x + 1} - 25^x = 5 \\cdot 5^{2x} - 5^{2x} = 4 \\cdot 5^{2x} = 2^2 \\cdot 5^{2x}$.",
+         "narration": "Beş üssü iki x artı bir, beş çarpı beş üssü iki x. Yirmi beş üssü x, beş üssü iki x. Fark: dört çarpı beş üssü iki x; dört de iki kare."
+        },
+        {
+         "text": "Sağ: $2^y \\cdot 5^{3x - 6}$. Asal tabanlar eşleşir: $y = 2$, $2x = 3x - 6$.",
+         "narration": "Sağ taraf iki üssü y çarpı beş üssü üç x eksi altı. İki ve beş asal; kuvvetleri ayrı ayrı eşit olmalı: y iki, iki x eşittir üç x eksi altı."
+        },
+        {
+         "text": "$x = 6$, $y = 2$: $x \\cdot y = 12$.",
+         "narration": "x altı, y iki: çarpım on iki. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 ortak çarpan ve asal taban eşleme kalıbı örnek alındı; tabanlar ve üsler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$9^x - 12 \\cdot 3^x + 27 = 0$\n\ndenklemini sağlayan $x$ değerlerinin toplamı kaçtır?",
+       "options": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$8$"
+       ],
+       "answer": 0,
+       "narration": "Üç üssü x'e t diyelim; dokuz üssü x, t kare olur.",
+       "steps": [
+        {
+         "text": "$t = 3^x$: $t^2 - 12t + 27 = (t - 3)(t - 9) = 0$.",
+         "narration": "t kare eksi on iki t artı yirmi yedi: t eksi üç çarpı t eksi dokuz."
+        },
+        {
+         "text": "$3^x = 3$: $x = 1$; $3^x = 9$: $x = 2$.",
+         "narration": "Üç üssü x üç ise x bir; dokuz ise x iki."
+        },
+        {
+         "text": "Toplam $1 + 2 = 3$.",
+         "narration": "Toplam üç. t değerlerini toplayıp on iki diyen yanılır: soru x'leri soruyor. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "Değişken değiştirerek üstel denklem kalıbı; katsayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Negatif t",
+      "wrong": "$t = 3^x$: $t = 9$ ya da $t = -3$, iki çözüm.",
+      "right": "Yalnız $t = 9$.",
+      "why": "$3^x$ her zaman **pozitif**; $3^x = -3$ olamaz. Değişken değiştirince $t > 0$ koşulunu yaz.",
+      "narration": "Sık yapılan bir hata: üç üssü x'e t deyip iki kökü de almak. Üç üssü x hiçbir zaman negatif olamaz; eksi üç atılır. Değişken değiştirdiğin anda t sıfırdan büyük diye yaz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$9^x - 2 \\cdot 3^{x + 1} - 27 = 0$\n\ndenklemini sağlayan $x$ kaçtır?",
+       "options": [
+        "$-1$",
+        "$1$",
+        "$2$",
+        "$3$",
+        "$9$"
+       ],
+       "answer": 2,
+       "narration": "Üç üssü x artı bir, üç çarpı üç üssü x.",
+       "steps": [
+        {
+         "text": "$t = 3^x > 0$: $t^2 - 6t - 27 = (t - 9)(t + 3) = 0$.",
+         "narration": "t eşittir üç üssü x, pozitif. İki çarpı üç üssü x artı bir, altı t. t kare eksi altı t eksi yirmi yedi: t eksi dokuz çarpı t artı üç."
+        },
+        {
+         "text": "$t = -3$ olamaz; $t = 9$: $3^x = 9$, $x = 2$.",
+         "narration": "t eksi üç olamaz. t dokuz: x iki. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Negatif kökü elenen üstel denklem kalıbı; katsayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$2^a = 3$ ve $3^b = 8$\n\nolduğuna göre, $a \\cdot b$ çarpımı kaçtır?",
+       "options": [
+        "$1$",
+        "$\\frac{3}{2}$",
+        "$2$",
+        "$\\frac{5}{2}$",
+        "$3$"
+       ],
+       "answer": 4,
+       "narration": "Tabanlar eşitlenmiyor; birini ötekinin içine yerleştirelim.",
+       "steps": [
+        {
+         "text": "$3 = 2^a$: $3^b = (2^a)^b = 2^{ab}$.",
+         "narration": "Üç yerine iki üssü a yazalım: üç üssü b, iki üssü a b olur."
+        },
+        {
+         "text": "$2^{ab} = 8 = 2^3$: $ab = 3$.",
+         "narration": "İki üssü a b sekiz, yani iki üssü üç: a çarpı b üç. Logaritmayla da aynı: log iki tabanında üç çarpı log üç tabanında sekiz, log iki tabanında sekiz. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "Üsleri birbirine yerleştirme kalıbı; sayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_USTEL_FONKSIYON_04",
+    "title": "Üstel eşitsizlikler",
+    "narration": "Üstel eşitsizlik, tabanları eşitleyip üsleri karşılaştırmaktır. Tek tuzak yine aynı: taban birden küçükse yön döner.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Üstel eşitsizlik",
+      "items": [
+       "$a > 1$: $a^{f(x)} > a^{g(x)} \\iff f(x) > g(x)$.",
+       "$0 < a < 1$: yön **döner**: $f(x) < g(x)$.",
+       "$t = a^x$ koyunca çıkan aralığı $t > 0$ ile kesiştir."
+      ],
+      "narration": "Taban birden büyükse üstel fonksiyon artandır; eşitsizlik üslere aynı yönde geçer. Taban sıfır ile bir arasındaysa azalandır; yön döner. Değişken değiştirdiysen t için bulduğun aralığı t sıfırdan büyük koşuluyla kesiştir, sonra x'e dön."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\left(\\frac{1}{2}\\right)^{x^2 - 3x} \\geq \\frac{1}{16}$\n\neşitsizliğini sağlayan **kaç tane** $x$ tam sayısı vardır?",
+       "options": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$"
+       ],
+       "answer": 3,
+       "narration": "Sağ tarafı da yarımın kuvveti yapalım.",
+       "steps": [
+        {
+         "text": "$\\frac{1}{16} = \\left(\\frac{1}{2}\\right)^4$: $\\left(\\frac{1}{2}\\right)^{x^2 - 3x} \\geq \\left(\\frac{1}{2}\\right)^4$.",
+         "narration": "On altıda bir, yarımın dördüncü kuvveti."
+        },
+        {
+         "text": "Taban $< 1$, yön döner: $x^2 - 3x \\leq 4$, $(x - 4)(x + 1) \\leq 0$.",
+         "narration": "Taban birden küçük, yön döner: x kare eksi üç x, dörtten küçük eşit. x eksi dört çarpı x artı bir, sıfırdan küçük eşit."
+        },
+        {
+         "text": "$-1 \\leq x \\leq 4$: **6** tam sayı.",
+         "narration": "Eksi bir ile dört arası, uçlar dahil: altı tam sayı. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Tabanı birden küçük üstel eşitsizlik kalıbı; ifade yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$4^x - 3 \\cdot 2^{x + 1} + 8 < 0$\n\neşitsizliğinin çözüm kümesi aşağıdakilerden hangisidir?",
+       "options": [
+        "$(0, 1)$",
+        "$(1, 2)$",
+        "$(1, 4)$",
+        "$(2, 4)$",
+        "$(2, 3)$"
+       ],
+       "answer": 1,
+       "narration": "İki üssü x'e t diyelim; ama bulduğumuz t aralığını x'e çevirmeyi unutmayalım.",
+       "steps": [
+        {
+         "text": "$t = 2^x > 0$: $t^2 - 6t + 8 = (t - 2)(t - 4) < 0$, $2 < t < 4$.",
+         "narration": "t eşittir iki üssü x. Dört üssü x, t kare; üç çarpı iki üssü x artı bir, altı t. t eksi iki çarpı t eksi dört negatif: t iki ile dört arası."
+        },
+        {
+         "text": "$2 < 2^x < 4$: $1 < x < 2$.",
+         "narration": "İki üssü x iki ile dört arasında: x bir ile iki arasında."
+        },
+        {
+         "text": "Çözüm kümesi $(1, 2)$.",
+         "narration": "Çözüm kümesi bir ile iki açık aralığı. t aralığını cevap sanan iki ile dört der. Cevap B.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Değişken değiştirerek üstel eşitsizlik kalıbı; katsayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_USTEL_FONKSIYON_05",
+    "title": "Üstel büyüme ve azalma",
+    "narration": "Bakteri çoğalması, ilacın vücuttan atılması, bileşik faiz: hepsi aynı kalıba uyar. Her eşit sürede aynı oranda değişen bir nicelik üsteldir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Büyüme ve azalma",
+      "items": [
+       "Her $T$ sürede $k$ katı: $N(t) = N_0 \\cdot k^{t/T}$.",
+       "Yarılanma süresi $h$: $N(t) = N_0 \\cdot \\left(\\frac{1}{2}\\right)^{t/h}$.",
+       "Bileşik faiz: $A = P(1 + r)^n$.",
+       "Süre bilinmiyorsa iki tarafın **logaritmasını** al."
+      ],
+      "narration": "Bir nicelik her T sürede k katına çıkıyorsa başlangıç değeri çarpı k üssü t bölü T olur. Yarılanmada k yarımdır. Bileşik faizde para her yıl bir artı faiz oranıyla çarpılır. Süreyi bulmak için ya iki tarafı aynı tabanın kuvveti yaparsın ya da logaritma alırsın."
+     },
+     {
+      "kind": "visual",
+      "title": "Yarılanma",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        21
+       ],
+       "y": [
+        0,
+        110
+       ],
+       "xLabel": "saat",
+       "yLabel": "mg",
+       "axes": "edge",
+       "curves": [
+        {
+         "expression": "100 * (1/2)^(x/5)",
+         "label": "kalan ilaç"
+        }
+       ],
+       "points": [
+        {
+         "x": 0,
+         "y": 100,
+         "label": "100"
+        },
+        {
+         "x": 5,
+         "y": 50,
+         "label": "50"
+        },
+        {
+         "x": 10,
+         "y": 25,
+         "label": "25"
+        },
+        {
+         "x": 15,
+         "y": 12.5,
+         "label": "12,5"
+        }
+       ]
+      },
+      "narration": "Yarılanma süresi beş saat olan bir ilacı izleyelim.",
+      "beats": [
+       {
+        "narration": "Başta yüz miligram. Beş saat sonra yarısı kalıyor: elli.",
+        "focus": [
+         "p1",
+         "p2"
+        ]
+       },
+       {
+        "narration": "Bir beş saat daha: elli değil, yirmi beş miligram gidiyor. Her seferinde kalanın yarısı.",
+        "focus": [
+         "p3"
+        ]
+       },
+       {
+        "narration": "On beşinci saatte on iki buçuk. Eğri sıfıra yaklaşıyor ama hiç değmiyor: azalan bir üstel fonksiyon.",
+        "focus": [
+         "p4",
+         "c1"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir ilacın vücuttaki miktarı her $6$ saatte yarıya iniyor.\n\n$800$ mg alınan bu ilaçtan kaç saat sonra vücutta $50$ mg kalır?",
+       "options": [
+        "$24$",
+        "$30$",
+        "$36$",
+        "$42$",
+        "$48$"
+       ],
+       "answer": 0,
+       "narration": "Kaç kez yarıya indiğini sayalım.",
+       "steps": [
+        {
+         "text": "$800 \\cdot \\left(\\frac{1}{2}\\right)^n = 50$: $2^n = 16$, $n = 4$.",
+         "narration": "Sekiz yüz çarpı yarım üssü n, elli: iki üssü n on altı, n dört. Dört kez yarılanma."
+        },
+        {
+         "text": "$4 \\cdot 6 = 24$ saat.",
+         "narration": "Her yarılanma altı saat: yirmi dört saat. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "Yarılanma süresi kalıbı; miktarlar ve süre yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir bakteri kültüründeki bakteri sayısı $t$ saat sonra\n\n$N(t) = 500 \\cdot 3^{t/4}$\n\nolarak modelleniyor.\n\nBakteri sayısı kaç saat sonra $40\\,500$ olur?",
+       "options": [
+        "$8$",
+        "$12$",
+        "$16$",
+        "$20$",
+        "$24$"
+       ],
+       "answer": 2,
+       "narration": "Bilinmeyen üste; sağ tarafı üçün kuvveti yapalım.",
+       "steps": [
+        {
+         "text": "$3^{t/4} = \\frac{40\\,500}{500} = 81 = 3^4$.",
+         "narration": "Kırk bin beş yüz bölü beş yüz, seksen bir: üç üssü dört."
+        },
+        {
+         "text": "$\\frac{t}{4} = 4$: $t = 16$ saat.",
+         "narration": "t bölü dört, dört: t on altı saat. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Üstel büyüme modelinde süre kalıbı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yıllık $\\%10$ bileşik faizle bankaya yatırılan bir para **en az** kaç yıl sonra iki katını geçer?\n\n($\\log 2 \\approx 0{,}30$, $\\log 1{,}1 \\approx 0{,}04$)",
+       "options": [
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$"
+       ],
+       "answer": 4,
+       "narration": "Her yıl bir virgül birle çarpılıyor; üs bilinmeyen.",
+       "steps": [
+        {
+         "text": "$P \\cdot 1{,}1^n > 2P$: $1{,}1^n > 2$.",
+         "narration": "Para her yıl bir virgül birle çarpılır: bir virgül bir üssü n, ikiden büyük olmalı."
+        },
+        {
+         "text": "Logaritma: $n \\cdot \\log 1{,}1 > \\log 2$, $n > \\frac{0{,}30}{0{,}04} = 7{,}5$.",
+         "narration": "İki tarafın logaritmasını alalım: n çarpı log bir virgül bir, log ikiden büyük. n, yedi buçuktan büyük."
+        },
+        {
+         "text": "En az $8$ yıl.",
+         "narration": "Yıl tam sayı: en az sekiz yıl. Denetim: bir virgül bir üssü yedi yaklaşık bir virgül doksan beş, üssü sekiz yaklaşık iki virgül on dört. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "Bileşik faizde logaritmayla süre kalıbı; oran yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$a^x$: $a > 0$, $a \\neq 1$; değerler hep **pozitif**.",
+    "Her tabanda $(0, 1)$'den geçer.",
+    "$a > 1$ artan, $0 < a < 1$ azalan.",
+    "Asimptot $y = k$.",
+    "$t = a^x$ ise $t > 0$.",
+    "Yarılanma: $\\left(\\frac{1}{2}\\right)^{t/h}$."
+   ],
+   "warnings": [
+    "Negatif $t$ kökünü **at**.",
+    "Taban $< 1$: eşitsizlikte yön **döner**."
+   ],
+   "narration": "Özetleyelim. Üstel fonksiyonda taban pozitif ve birden farklıdır, değerler hep pozitiftir. Her tabanda sıfır virgül birden geçer. Taban birden büyükse artan, küçükse azalandır. Yukarı kaydırınca asimptot da kayar. Değişken değiştirince t pozitif olmalı, negatif kök atılır. Taban birden küçükse eşitsizlikte yön döner. Ve büyüme ile yarılanma, aynı kalıbın iki yüzüdür."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "3ˣ = −3",
+    "question": "Çözümü var mı?",
+    "choices": [
+     "Var",
+     "Yok"
+    ],
+    "answer": 1,
+    "why": "3ˣ hep **pozitif**."
+   },
+   {
+    "sentence": "(1/2)ˣ",
+    "question": "Artan mı?",
+    "choices": [
+     "Artan",
+     "Azalan"
+    ],
+    "answer": 1,
+    "why": "Taban **birden küçük**."
+   },
+   {
+    "sentence": "2ˣ + 3",
+    "question": "Asimptot?",
+    "choices": [
+     "y = 0",
+     "y = 3"
+    ],
+    "answer": 1,
+    "why": "Grafik **3 yukarıda**."
+   }
+  ],
+  "hook": "Üç üstel tuzak.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Her tabanda **(0, 1)**."
+   },
+   {
+    "kind": "warning",
+    "text": "t = aˣ ise **t > 0**."
+   },
+   {
+    "kind": "term",
+    "term": "Yarılanma",
+    "definition": "Miktarın **yarıya** indiği süre."
+   }
+  ],
+  "summary": [
+   "aˣ hep pozitif",
+   "Taban < 1: azalan",
+   "Asimptot y = k"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-matematik-kampi",
+  "name": "AYT Matematik kampı",
+  "number": 28,
+  "total": 33,
+  "previous": "Logaritma",
+  "next": "Diziler",
+  "promise": "Her konu kısa bir tekrar ve AYT düzeyinde çözümlü sorularla.",
+  "task": {
+   "items": [
+    "ÖSYM 2022 kalıbını **kendin** çöz: $3^{2x + 1} - 9^x = 2^y \\cdot 27^{x - 1}$ ise $x \\cdot y$ kaç?",
+    "$y = 2^x$ ile $y = 2^{x - 1} + 3$ grafiklerini çiz; **asimptotları** işaretle.",
+    "Uygulamada AYT Üstel Fonksiyon testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. ÖSYM'nin 2022 kalıbını kendin çöz: üç üssü iki x artı bir eksi dokuz üssü x, iki üssü y çarpı yirmi yedi üssü x eksi bir ise x çarpı y kaç? Sonra iki üssü x ile iki üssü x eksi bir artı üç grafiklerini çiz ve asimptotları işaretle. Ardından uygulamada yirmi soru çöz. Bir sonraki derste dizilerde görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Grafik özelliklerini tablo yap: y = aˣ'in tanım kümesi ℝ, görüntü kümesi (0, ∞); her tabanda (0, 1)'den geçer; a > 1 artan, 0 < a < 1 azalan; y = aˣ + k'nin yatay asimptotu y = k; y = (1/a)ˣ, y = aˣ'in y eksenine göre simetriğidir.",
+   "Üstel denklem örneklerini ekle: 4ˣ − 3 × 2ˣ − 4 = 0 için t = 2ˣ > 0, t = 4, x = 2 (t = −1 atılır). 9ˣ = 27 için 3²ˣ = 3³, x = 3/2.",
+   "Tabanı 1'den küçük eşitsizliği örnekle: (1/2)^(x − 1) > 8 ise 2^(1 − x) > 2³, 1 − x > 3, x < −2.",
+   "Büyüme ve azalma modellerine örnek ver: 20 dakikada bir ikiye bölünen 100 bakteri 2 saatte 100 × 2⁶ = 6400 olur. Yarılanma N₀(1/2)^(t/h), bileşik faiz A(1 + r)ⁿ; e ≈ 2,718 ve sürekli büyümede N₀eᵏᵗ modelini tanıt."
+  ]
+ }
+}

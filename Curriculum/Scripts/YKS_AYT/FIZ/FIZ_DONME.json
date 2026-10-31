@@ -1,0 +1,661 @@
+{
+ "topic": {
+  "id": "92AEAE77-2199-8F0E-B8D5-B81353EF08DB",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_DONME"
+ },
+ "title": "Dönme, Yuvarlanma ve Açısal Momentum",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "MEB OGM AYT Fizik konu anlatımı, sayfa 156-168 (başvuru; metin yeniden yazıldı)",
+  "ÖSYM 2019 (ipe bağlı top), 2020 (cambaz), 2023 (patenci) ve 2026 (eylemsizlik momenti): model olarak kullanıldı, yargılar ve durumlar değiştirildi",
+  "YKS/AYT/Sorular/FIZ/FIZ_DONME.jsonl (76 soru; yapı ve düzey için okundu, sorular yeni yazıldı)"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Patenci neden hızlanır?",
+   "narration": "Bir buz patencisi kollarını göğsüne çekince birden hızlanır; kimse onu itmez. Bu derste açısal hızı, eylemsizlik momentini, dönme enerjisini, yuvarlanmayı, açısal momentumu ve korunumunu, dört ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Açısal konum, hız ve ivmeyi kullanmak",
+   "Eylemsizlik momentinin neye bağlı olduğunu yorumlamak",
+   "Dönme ve yuvarlanma enerjisini hesaplamak",
+   "Açısal momentumu bulmak",
+   "Açısal momentumun korunumunu uygulamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_DONME_01",
+    "title": "Açısal konum ve hız",
+    "narration": "Dönen bir katı cismi anlatmak için açılarla konuşuruz: ne kadar döndü, ne kadar hızlı dönüyor, ne kadar hızlanıyor.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Açısal büyüklükler",
+      "items": [
+       "Açısal konum $\\theta$ radyanla ölçülür; bir tam tur $2\\pi$ radyandır.",
+       "Açısal hız $\\omega = \\frac{\\Delta\\theta}{\\Delta t}$; açısal ivme $\\alpha = \\frac{\\Delta\\omega}{\\Delta t}$.",
+       "Katı cismin bütün noktaları **aynı** $\\omega$ ve $\\alpha$ ile döner."
+      ],
+      "visual": {
+       "kind": "circular",
+       "mode": "disk",
+       "bodies": [
+        {
+         "label": "K",
+         "radius": 0.5
+        },
+        {
+         "label": "L",
+         "radius": 1
+        }
+       ],
+       "velocity": true,
+       "acceleration": false,
+       "motion": true
+      },
+      "beats": [
+       {
+        "narration": "Katı bir diskte iki nokta.",
+        "focus": [
+         "b1",
+         "b2"
+        ]
+       },
+       {
+        "narration": "İkisi de aynı açıyı tarıyor: açısal hızları aynı, çizgisel hızları farklı.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "velocity"
+        ]
+       }
+      ],
+      "narration": "Dönme hareketinde konumu açıyla, radyan cinsinden anlatırız; bir tam tur iki pi radyandır. Açısal hız birim zamanda taranan açı, açısal ivme birim zamandaki açısal hız değişimidir. Doğrusal hareketteki denklemler buraya aynen taşınır: x yerine teta, v yerine omega, a yerine alfa. Katı bir cismin bütün noktaları aynı açısal hızla ve aynı açısal ivmeyle döner."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Durgun hâlden düzgün hızlanan bir tekerlek $4$ s'de $20$ rad/s açısal hıza ulaşıyor.\n\nTekerleğin açısal ivmesi kaç rad/s² ve bu sürede taradığı açı kaç radyandır?",
+       "options": [
+        "$5$ ; $40$",
+        "$5$ ; $80$",
+        "$20$ ; $40$",
+        "$80$ ; $20$",
+        "$2{,}5$ ; $20$"
+       ],
+       "answer": 0,
+       "narration": "Doğrusal hareketin açısal karşılıkları.",
+       "steps": [
+        {
+         "text": "$\\alpha = \\frac{20}{4} = 5$ rad/s².",
+         "narration": "Açısal ivme, açısal hız değişimi bölü süre: yirmi bölü dört, beş."
+        },
+        {
+         "text": "$\\theta = \\frac{1}{2} \\alpha t^2 = \\frac{1}{2} \\cdot 5 \\cdot 16 = 40$ rad.",
+         "narration": "Taranan açı yarım alfa t kare: yarım çarpı beş çarpı on altı, kırk radyan. Yarımı unutan sekseni bulur. Cevap A.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Açısal kinematik kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DONME_02",
+    "title": "Eylemsizlik momenti",
+    "narration": "Bir cismi döndürmenin ne kadar zor olduğu yalnız kütlesine değil, kütlenin eksene göre nasıl dağıldığına da bağlıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Eylemsizlik momenti",
+      "items": [
+       "Eylemsizlik momenti $I = \\sum m r^2$: dönmeye karşı direncin ölçüsüdür.",
+       "Kütle eksenden **uzaklaştıkça** $I$ büyür; aynı kütle uçta daha etkilidir.",
+       "$I$ dönme **eksenine** bağlıdır; dönme yönüne ve hızına bağlı değildir."
+      ],
+      "narration": "Eylemsizlik momenti, dönmeye karşı direncin ölçüsüdür: her kütle parçası çarpı eksene uzaklığının karesinin toplamı. Kütle eksenden uzaklaştıkça eylemsizlik momenti hızla büyür; aynı kütle uçta, ortadakinden çok daha etkilidir. Eylemsizlik momenti seçilen eksene bağlıdır ama dönme yönüne ya da hızına bağlı değildir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Belli bir eksen etrafında dönen bir cismin, o eksene göre eylemsizlik momenti ile ilgili;\nI. Dönme hareketine karşı gösterilen direncin ölçüsüdür.\nII. Kütlenin eksene göre nasıl dağıldığına bağlıdır.\nIII. Cismin dönme hızına bağlıdır.\n\nyargılarından hangileri doğrudur?",
+       "context": "ÖSYM 2026'da sorulan eylemsizlik momenti yargılarının değiştirilmiş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "narration": "Tanımı hatırlayalım.",
+       "steps": [
+        {
+         "text": "$I = \\sum m r^2$: dönmeye **direnç** (I), kütle dağılımına bağlı (II).",
+         "narration": "Eylemsizlik momenti dönmeye karşı direncin ölçüsüdür ve kütlelerin eksene uzaklıklarına, yani kütle dağılımına bağlıdır."
+        },
+        {
+         "text": "Formülde hız **yok** (III yanlış).",
+         "narration": "Formülde dönme hızı yoktur; cisim hızlı da dönse yavaş da dönse eylemsizlik momenti aynıdır. Cevap C.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026 modeli: yargılar değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "İp üzerinde yürüyen bir cambazın elindeki sırık sayesinde dengesini daha kolay koruması için;\nI. aynı kütleli ama daha uzun bir sırık kullanmak,\nII. sırığın iki ucuna özdeş ağırlıklar bağlamak,\nIII. aynı sırığı ortasından kısaltarak kullanmak\n\ndeğişikliklerinden hangileri yapılabilir?",
+       "context": "ÖSYM 2020'de sorulan sırıkla yürüyen cambaz yapısının yeniden kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız III",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "narration": "Denge, devrilmeye karşı direnç: eylemsizlik momenti.",
+       "steps": [
+        {
+         "text": "Eylemsizlik momenti büyürse cambaz **yavaş** devrilir, düzeltmeye zaman bulur.",
+         "narration": "Cambazın devrilmesi bir dönmedir. Sırığın eylemsizlik momenti büyükse bu dönme yavaş olur ve cambaz dengesini düzeltmeye zaman bulur."
+        },
+        {
+         "text": "Uzun sırık ve uçlara ağırlık: kütle eksenden **uzak**, $I$ büyür (I, II); kısaltmak $I$'yı **küçültür** (III).",
+         "narration": "Daha uzun sırık ve uçlara bağlanan ağırlıklar kütleyi eksenden uzaklaştırır, eylemsizlik momentini büyütür. Sırığı kısaltmak onu küçültür. Cevap C.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 modeli: bir değişiklik değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ağırlığı önemsiz $1$ m uzunluğundaki bir çubuğun iki ucunda $2$ kg'lık küçük birer kütle vardır.\n\nSistemin, çubuğun ortasından geçen ve çubuğa dik olan eksene göre eylemsizlik momenti kaç kg·m²'dir?",
+       "options": [
+        "$0{,}5$",
+        "$1$",
+        "$2$",
+        "$4$",
+        "$8$"
+       ],
+       "answer": 1,
+       "narration": "$I = \\sum m r^2$; uzaklık eksene göre.",
+       "steps": [
+        {
+         "text": "Her kütle eksene $0{,}5$ m uzakta: $I = 2 \\cdot 0{,}5^2 + 2 \\cdot 0{,}5^2$.",
+         "narration": "Eksen ortada; her kütle yarım metre uzakta. Her biri iki çarpı sıfır virgül iki beş."
+        },
+        {
+         "text": "$I = 0{,}5 + 0{,}5 = 1$ kg·m².",
+         "narration": "Toplam bir kilogram metre kare. Uzaklığı bir metre alan dördü bulur. Cevap B.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Eylemsizlik momenti kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DONME_03",
+    "title": "Dönme kinetik enerjisi",
+    "narration": "Dönen bir cisim yerinden kımıldamasa da enerji taşır; bu enerji eylemsizlik momentine ve açısal hıza bağlıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Dönme enerjisi",
+      "items": [
+       "Dönme kinetik enerjisi $E = \\frac{1}{2} I \\omega^2$.",
+       "Yuvarlanan cismin enerjisi öteleme ve dönme enerjilerinin **toplamıdır**.",
+       "Aynı $\\omega$'da $I$ büyük olanın enerjisi **büyüktür**."
+      ],
+      "narration": "Dönen bir cismin kinetik enerjisi yarım I omega karedir; m yerine eylemsizlik momenti, v yerine açısal hız gelir. Yuvarlanan bir cisim hem ilerler hem döner; toplam kinetik enerjisi bu ikisinin toplamıdır. Aynı açısal hızda eylemsizlik momenti büyük olan cisim daha çok enerji taşır; volanlar bu yüzden ağır ve geniştir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Eylemsizlik momenti $0{,}4$ kg·m² olan bir volan $10$ rad/s açısal hızla dönüyor.\n\nVolanın dönme kinetik enerjisi kaç J'dür?",
+       "options": [
+        "$2$",
+        "$4$",
+        "$20$",
+        "$40$",
+        "$200$"
+       ],
+       "answer": 2,
+       "narration": "$E = \\frac{1}{2} I \\omega^2$.",
+       "steps": [
+        {
+         "text": "$E = \\frac{1}{2} \\cdot 0{,}4 \\cdot 10^2$.",
+         "narration": "Yarım çarpı sıfır virgül dört çarpı yüz."
+        },
+        {
+         "text": "$E = 20$ J.",
+         "narration": "Yirmi joule. Yarımı unutan kırkı, açısal hızın karesini almayan ikiyi bulur. Cevap C.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Dönme enerjisi kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir volanın açısal hızı iki katına çıkarılıyor.\n\nVolanın dönme kinetik enerjisi kaç katına çıkar?",
+       "options": [
+        "$4$",
+        "$2$",
+        "$\\sqrt{2}$",
+        "$1$",
+        "$\\frac{1}{2}$"
+       ],
+       "answer": 0,
+       "narration": "$E = \\frac{1}{2} I \\omega^2$; $I$ değişmez.",
+       "steps": [
+        {
+         "text": "Eylemsizlik momenti aynı; enerji $\\omega^2$ ile orantılı.",
+         "narration": "Volanın kütlesi ve biçimi değişmedi; eylemsizlik momenti aynı. Enerji açısal hızın karesiyle orantılı."
+        },
+        {
+         "text": "İki katın karesi: **dört kat**.",
+         "narration": "Açısal hız iki kat olunca enerji dört katına çıkar. Doğru orantı kuran iki katı seçer. Cevap A.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Enerji oranı kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DONME_04",
+    "title": "Yuvarlanma hareketi",
+    "narration": "Kaymadan yuvarlanan bir tekerlek aynı anda hem ilerler hem döner; iki hareket birbirine bağlıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Yuvarlanma",
+      "items": [
+       "Kaymadan yuvarlanmada $v = \\omega r$: yere değen nokta **anlık olarak durur**.",
+       "Toplam kinetik enerji $\\frac{1}{2} m v^2 + \\frac{1}{2} I \\omega^2$.",
+       "Aynı rampadan yuvarlanan cisimlerden $\\frac{I}{mr^2}$'si küçük olan **önce** iner."
+      ],
+      "narration": "Kaymadan yuvarlanan bir tekerlekte ilerleme hızı açısal hız çarpı yarıçapa eşittir; yere değen nokta o an durgundur. Toplam kinetik enerji öteleme ve dönme enerjilerinin toplamıdır. Aynı rampadan yuvarlanan cisimlerde potansiyel enerjinin bir kısmı dönmeye gider. Kütlesi eksene yakın toplanmış cisim, yani I bölü m r karesi küçük olan, ilerlemeye daha çok enerji ayırır ve önce iner."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aynı eğik düzlemin tepesinden aynı anda kaymadan yuvarlanmaya bırakılan, kütleleri ve yarıçapları eşit, içi dolu bir silindir ile ince bir halkadan hangisi düzlemin sonuna önce ulaşır?",
+       "options": [
+        "İçi dolu silindir",
+        "İnce halka",
+        "İkisi aynı anda",
+        "Kütlesi büyük olan",
+        "Yarıçapı büyük olan"
+       ],
+       "answer": 0,
+       "narration": "Enerji dönmeye ve ilerlemeye paylaşılır.",
+       "steps": [
+        {
+         "text": "Halkada kütlenin tamamı eksenden uzakta: $I = mr^2$; silindirde $I = \\frac{1}{2}mr^2$.",
+         "narration": "Halkanın bütün kütlesi kenarda: eylemsizlik momenti m r kare. Dolu silindirde kütle içeriye de dağılmış: yarım m r kare."
+        },
+        {
+         "text": "Silindir enerjisinin daha azını dönmeye verir: ilerleme hızı **büyük**, önce iner.",
+         "narration": "Silindir potansiyel enerjisinin daha azını dönmeye verir, daha çoğunu ilerlemeye ayırır; daha hızlı ilerler ve önce iner. Kütle ve yarıçap sonucu değiştirmez. Cevap A.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Yuvarlanma yarışı kalıbı; yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kütlesi $2$ kg olan içi dolu bir silindir ($I = \\frac{1}{2} m r^2$) yatay zeminde $4$ m/s hızla kaymadan yuvarlanıyor.\n\nSilindirin toplam kinetik enerjisi kaç J'dür?",
+       "options": [
+        "$16$",
+        "$24$",
+        "$32$",
+        "$40$",
+        "$48$"
+       ],
+       "answer": 1,
+       "narration": "Öteleme ve dönme enerjilerini toplayalım.",
+       "steps": [
+        {
+         "text": "Öteleme: $\\frac{1}{2} \\cdot 2 \\cdot 4^2 = 16$ J.",
+         "narration": "Öteleme enerjisi yarım m v kare: yarım çarpı iki çarpı on altı, on altı joule."
+        },
+        {
+         "text": "Dönme: $\\frac{1}{2} \\cdot \\frac{1}{2} m r^2 \\cdot \\frac{v^2}{r^2} = \\frac{1}{4} m v^2 = 8$ J; toplam $24$ J.",
+         "narration": "Dönme enerjisi yarım I omega kare; omega v bölü r olduğundan r'ler sadeleşir: dörtte bir m v kare, sekiz joule. Toplam yirmi dört. Dönmeyi unutan on altıyı bulur. Cevap B.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Yuvarlanma enerjisi kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DONME_05",
+    "title": "Açısal momentum",
+    "narration": "Dönen bir cismin dönme miktarı açısal momentumdur; bir vektördür ve net tork onu değiştirir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Açısal momentum",
+      "items": [
+       "Açısal momentum $L = I \\omega$; noktasal cisim için $L = m v r$.",
+       "Vektördür; yönü sağ el kuralıyla **dönme eksenine** paraleldir.",
+       "Net tork açısal momentumu değiştirir: $\\tau = \\frac{\\Delta L}{\\Delta t}$."
+      ],
+      "narration": "Açısal momentum, eylemsizlik momenti çarpı açısal hızdır; çembersel yörüngedeki noktasal bir cisim için m v r'dir. Vektördür; yönü, parmaklarını dönme yönünde kıvırdığında başparmağının gösterdiği yöndür ve dönme eksenine paraleldir. Doğrusal momentumu kuvvet değiştirdiği gibi açısal momentumu da tork değiştirir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "İpe bağlı bir top, düşey bir eksen etrafında yatay bir çemberde sabit süratle döndürülüyor.\n\nTopun çizgisel momentumu ve açısal momentumu için;\nI. Vektörel niceliklerdir.\nII. Yönleri hareket boyunca sabittir.\nIII. Aynı birimle ölçülürler.\n\nyargılarından hangileri her ikisi için de doğrudur?",
+       "context": "ÖSYM 2019'da sorulan ipe bağlı topun çizgisel ve açısal momentumu yapısının yargıları değiştirilmiş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "II ve III"
+       ],
+       "answer": 0,
+       "narration": "Yönlere ve birimlere bakalım.",
+       "steps": [
+        {
+         "text": "İkisi de **vektör** (I).",
+         "narration": "Çizgisel momentum da açısal momentum da vektörel niceliklerdir."
+        },
+        {
+         "text": "Çizgisel momentum teğet: yönü **değişir**; açısal momentum eksende: sabit (II ortak değil). Birimler kg·m/s ve kg·m²/s (III değil).",
+         "narration": "Çizgisel momentum her an teğettir, yönü sürekli değişir; açısal momentum ise düşey eksen doğrultusunda sabittir. Birimleri de farklıdır. Yalnız birinci ortak. Cevap A.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 modeli: yargılar değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kütlesi $0{,}5$ kg olan bir cisim, $2$ m yarıçaplı bir çemberde $4$ m/s sabit süratle dönüyor.\n\nCismin çemberin merkezine göre açısal momentumunun büyüklüğü kaç kg·m²/s'dir?",
+       "options": [
+        "$1$",
+        "$2$",
+        "$4$",
+        "$8$",
+        "$16$"
+       ],
+       "answer": 2,
+       "narration": "$L = m v r$.",
+       "steps": [
+        {
+         "text": "$L = 0{,}5 \\cdot 4 \\cdot 2$.",
+         "narration": "Açısal momentum m v r: sıfır virgül beş çarpı dört çarpı iki."
+        },
+        {
+         "text": "$L = 4$ kg·m²/s.",
+         "narration": "Dört kilogram metre kare bölü saniye. Yarıçapı unutan iki kalır. Cevap C.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Açısal momentum kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DONME_06",
+    "title": "Açısal momentumun korunumu",
+    "narration": "Dış tork yoksa dönen bir sistemin açısal momentumu değişmez: kütle içeri toplanırsa dönüş hızlanır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Korunum",
+      "items": [
+       "Net dış tork sıfırsa açısal momentum **korunur**: $I_1 \\omega_1 = I_2 \\omega_2$.",
+       "Kollarını toplayan patenci $I$'yı küçültür, **hızlanır**.",
+       "Bu sırada dönme kinetik enerjisi **artar**: kasların yaptığı iş."
+      ],
+      "narration": "Bir sisteme dışarıdan net tork etki etmiyorsa açısal momentumu korunur: I bir omega bir, I iki omega ikiye eşittir. Kollarını göğsüne çeken bir patenci eylemsizlik momentini küçültür; açısal momentum sabit kalacağı için hızlanır. Bu sırada dönme kinetik enerjisi artar; bu enerjiyi kollarını içeri çeken kasların yaptığı iş sağlar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Havada dönen bir dalgıç, kollarını ve bacaklarını vücuduna doğru çekiyor. (Hava direnci önemsiz)\n\nDalgıcın ağırlık merkezinden geçen eksene göre açısal momentumu ve açısal hızı nasıl değişir?",
+       "context": "ÖSYM 2023'te sorulan kollarını toplayan patenci yapısının yeni bir durumla kurulmuş hâli.",
+       "options": [
+        "Değişmez ; Artar",
+        "Artar ; Artar",
+        "Değişmez ; Değişmez",
+        "Azalır ; Artar",
+        "Artar ; Değişmez"
+       ],
+       "answer": 0,
+       "narration": "Ağırlık merkezine göre dış tork var mı?",
+       "steps": [
+        {
+         "text": "Ağırlık, ağırlık merkezinden etki eder: o eksene göre **tork yok**; $L$ değişmez.",
+         "narration": "Havada dalgıca yalnız ağırlığı etki eder ve ağırlık merkezinden geçer; bu eksene göre torku sıfırdır. Açısal momentum değişmez."
+        },
+        {
+         "text": "Kütle eksene yaklaşır: $I$ küçülür, $\\omega$ **artar**.",
+         "narration": "Kollarını ve bacaklarını çekince eylemsizlik momenti küçülür; I omega sabit kaldığı için açısal hız artar. Cevap A.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2023 modeli: durum değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Eylemsizlik momenti $6$ kg·m² olan döner bir taburede kollarını açmış oturan biri $2$ rad/s ile dönüyor. Kollarını toplayınca eylemsizlik momenti $3$ kg·m²'ye iniyor.\n\nYeni açısal hızı kaç rad/s olur? (Sürtünme önemsiz)",
+       "options": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$6$"
+       ],
+       "answer": 3,
+       "narration": "Açısal momentum korunur.",
+       "steps": [
+        {
+         "text": "$I_1 \\omega_1 = 6 \\cdot 2 = 12$.",
+         "narration": "Önce açısal momentum altı çarpı iki, on iki."
+        },
+        {
+         "text": "$3 \\cdot \\omega_2 = 12$ → $\\omega_2 = 4$ rad/s.",
+         "narration": "Üç çarpı omega iki, on iki: omega iki dört radyan bölü saniye. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Açısal momentum korunumu kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Açısal momentum mu artar?",
+      "wrong": "Kollarını toplayan patencinin açısal momentumu artar.",
+      "right": "Açısal momentum **sabit** kalır; $I$ küçülür, $\\omega$ büyür.",
+      "why": "Artan, dönme **kinetik enerjisidir**.",
+      "narration": "Sık yapılan bir hata: patenci hızlanınca açısal momentumunun da arttığını sanmak. Dış tork olmadığı için açısal momentum sabittir; eylemsizlik momenti küçülür, açısal hız büyür. Artan şey dönme kinetik enerjisidir; onu da kollarını içeri çeken kaslar sağlar."
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$\\omega = \\frac{\\Delta\\theta}{\\Delta t}$, $\\alpha = \\frac{\\Delta\\omega}{\\Delta t}$.",
+    "$I = \\sum mr^2$; kütle uzaklaşınca büyür.",
+    "$E = \\frac{1}{2}I\\omega^2$.",
+    "Yuvarlanma: $v = \\omega r$; I/mr² küçük olan önce iner.",
+    "$L = I\\omega = mvr$; tork onu değiştirir.",
+    "Dış tork yoksa $I_1\\omega_1 = I_2\\omega_2$."
+   ],
+   "warnings": [
+    "$I$ dönme **hızına** bağlı değil.",
+    "Patencinin **L**'si değil, enerjisi artar.",
+    "Çizgisel ve açısal momentumun **birimleri farklı**."
+   ],
+   "narration": "Özetleyelim. Dönmede açılarla konuşuruz: açısal hız, açısal ivme. Eylemsizlik momenti dönmeye karşı dirençtir ve kütlenin eksenden uzaklığıyla büyür. Dönme enerjisi yarım I omega karedir; yuvarlanan cisim hem ilerler hem döner. Açısal momentum I omega'dır ve tork onu değiştirir. Dış tork yoksa açısal momentum korunur: eylemsizlik momenti küçülünce açısal hız büyür."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "Patenci kollarını topluyor",
+    "question": "Açısal hız?",
+    "choices": [
+     "Artar",
+     "Azalır"
+    ],
+    "answer": 0,
+    "why": "L = **Iω** sabit."
+   },
+   {
+    "sentence": "Kütle eksenden uzaklaşıyor",
+    "question": "I?",
+    "choices": [
+     "Artar",
+     "Azalır"
+    ],
+    "answer": 0,
+    "why": "I = **Σmr²**."
+   },
+   {
+    "sentence": "Silindir ve halka",
+    "question": "Önce hangisi?",
+    "choices": [
+     "Silindir",
+     "Halka"
+    ],
+    "answer": 0,
+    "why": "I küçük olan **önce** iner."
+   }
+  ],
+  "hook": "Üç dönme tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "L = **Iω**, tork yoksa sabit."
+   },
+   {
+    "kind": "warning",
+    "text": "I dönme **hızına** bağlı değil."
+   },
+   {
+    "kind": "term",
+    "term": "Eylemsizlik momenti",
+    "definition": "I = **Σmr²**."
+   }
+  ],
+  "summary": [
+   "Eylemsizlik momenti",
+   "Yuvarlanma",
+   "Açısal momentum"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-fizik-kampi",
+  "name": "AYT Fizik kampı",
+  "number": 15,
+  "total": 21,
+  "previous": "Düzgün Çembersel Hareket",
+  "next": "Kütle Çekim ve Kepler Yasaları",
+  "promise": "Vektörden modern fiziğe AYT Fizik: her konu animasyonlu anlatım ve çözümlü sorularla.",
+  "task": {
+   "items": [
+    "Döner bir sandalyede kollarını açıp kapatarak dön; **hızının** nasıl değiştiğini hisset (dikkatli ol).",
+    "Bir konserve kutusu ile bir bileziği aynı rampadan yuvarla; **hangisinin önce** indiğini gözle.",
+    "Uygulamada AYT Dönme, Yuvarlanma ve Açısal Momentum testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Döner bir sandalyede, dikkatli olarak, kollarını açık tutup dön; sonra kollarını göğsüne çek ve hızının nasıl değiştiğini hisset. Sonra dolu bir konserve kutusu ile bir bileziği aynı rampadan aynı anda yuvarla ve hangisinin önce indiğini gözle. Ardından uygulamada yirmi soru çöz. Bir sonraki derste kütle çekim ve Kepler yasalarında görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Eylemsizlik momentleri tablosunu ver: halka MR², dolu silindir ½MR², dolu küre 2/5 MR², içi boş küre 2/3 MR², merkezinden dönen çubuk 1/12 ML², ucundan dönen çubuk 1/3 ML². Kütle eksenden uzaklaştıkça I'nın büyüdüğünü vurgula.",
+   "Yuvarlanmada son hızı formülle ver: v = √(2gh / (1 + I/MR²)); dolu silindir için v = √(4gh/3). Yarış sırası: önce dolu küre, sonra dolu silindir, içi boş küre, en son halka; sürtünmesiz kayan blok hepsinden önce iner.",
+   "Açısal kinematik denklemlerini örnekle: ω = ω₀ + αt, θ = ω₀t + ½αt², ω² = ω₀² + 2αθ. Durgun hâlden 4 rad/s² ile hızlanan tekerlek 5 s sonunda 20 rad/s'ye ulaşır ve 50 rad (yaklaşık 8 tur) döner.",
+   "Tork ile açısal ivme ilişkisini ekle: τ = Iα; I = 2 kg·m² olan volana 10 N·m tork uygulanırsa α = 5 rad/s². Bu bağıntının F = ma'nın dönme hareketindeki karşılığı olduğunu göster.",
+   "Açısal momentum korunumuna sayısal örnek ver: I₁ = 4 kg·m², ω₁ = 3 rad/s olan patenci kollarını çekip I₂ = 1,5 kg·m² yaparsa ω₂ = 8 rad/s; dönme enerjisi 18 J'den 48 J'ye çıkar (kaslar iş yapar). Kedinin düşerken dönmesini, nötron yıldızlarını ve helikopterin kuyruk pervanesini ekle."
+  ]
+ }
+}

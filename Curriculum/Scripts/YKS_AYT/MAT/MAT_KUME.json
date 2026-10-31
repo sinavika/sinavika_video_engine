@@ -1,0 +1,627 @@
+{
+ "topic": {
+  "id": "5C0A8639-33AD-D6D0-AACC-5719C8BE4841",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_KUME"
+ },
+ "title": "Kümeler",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "YKS/AYT/CikmisSorular/MAT.jsonl (ÖSYM 2019 tanımlı küme ve kartezyen, 2020 geniş küme ve kartezyen sayısı, 2022 ve 2023 kartezyen eleman sayısı kalıpları örnek alındı, sorular yeniden kuruldu)",
+  "YKS/AYT/Sorular/MAT/MAT_KUME.jsonl (yapı ve zorluk için)",
+  "AYT'de bu konunun konu anlatımı yok: kurallar TYT Kümeler dersinden kısaltıldı, her cevap kaba kuvvetle denetlendi"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "AYT kümelerde yeni bir kavram tanımlar; sen onu sayarsın.",
+   "narration": "ÖSYM 2019'dan bu yana AYT'de kümelerden on bir soru sordu. Çoğu bir tanımla başlar: geniş küme, ortakesişim kümesi; ya da kartezyen çarpımın eleman sayısını verir ve kümeleri buldurur. Bu derste kuralları kısaca hatırlayıp her kalıbı AYT düzeyinde yeni sorularla çözeceğiz."
+  },
+  "objectives": [
+   "Tanımlı bir kümenin koşulunu her eleman için okuyup saymak",
+   "Alt küme sayısını tümleyenle bulmak",
+   "İki ve üç kümede içerme-dışlama ile saymak",
+   "Küme cebirinde De Morgan kuralını kullanmak",
+   "Kartezyen çarpımın eleman sayısından kümeleri bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_KUME_01",
+    "subtopics": [
+     "MAT_KUME_02",
+     "MAT_KUME_03",
+     "MAT_KUME_04"
+    ],
+    "title": "Küme, alt küme ve tanımlı kümeler",
+    "narration": "AYT kümelerde yeni bir kavram tanımlayıp onu saydırır. Anahtar, tanımı her eleman için ayrı ayrı okumaktır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kısa tekrar: alt küme",
+      "items": [
+       "$n$ elemanlı kümenin **$2^n$** alt kümesi vardır; $2^n - 1$ tanesi öz alt kümedir.",
+       "Belirli $k$ eleman **kesin** varsa ya da kesin yoksa: $2^{n - k}$.",
+       "\"En az bir\" sorusunda tümleyeni say: **hepsi − hiç olmayan**.",
+       "Tanımlı bir kümede koşulu **her eleman** için tek tek dene."
+      ],
+      "narration": "n elemanlı bir kümenin iki üzeri n alt kümesi vardır; kendisi dışındakiler, yani iki üzeri n eksi bir tanesi öz alt kümedir. Belirli k elemanın kesin bulunduğu ya da kesin bulunmadığı alt kümeler iki üzeri n eksi k tanedir. En az bir koşulu varsa tümleyeni say: bütün alt kümelerden hiç içermeyenleri çıkar. Ve soru yeni bir küme tanımlıyorsa, koşulu her eleman için tek tek dene."
+     },
+     {
+      "kind": "mistake",
+      "title": "Alt küme mi, öz alt küme mi?",
+      "wrong": "6 elemanlı bir kümenin $2^6 - 1 = 63$ alt kümesi vardır.",
+      "right": "Alt küme sayısı $2^6 = 64$; **öz** alt küme sayısı $63$.",
+      "why": "Her küme kendisinin alt kümesidir; \"öz\" denince yalnız kendisi çıkarılır. Boş küme ise her ikisinde de sayılır.",
+      "narration": "Sık yapılan bir hata: alt küme sayısından biri çıkarmak. Her küme kendisinin alt kümesidir; altı elemanlı kümenin altmış dört alt kümesi vardır. Yalnız öz alt küme sorulursa kümenin kendisi çıkar, altmış üç kalır. Boş küme ikisinde de sayılır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Rakamlardan oluşan boş olmayan bir $A$ kümesi için\n\n$A \\cap B = A \\cap \\{0, 3, 6, 9\\}$\n\neşitliği sağlanıyorsa $A$'ya $B$ kümesinin **üçlü kümesi** denir.\n\n$B = \\{1, 2, 3, 4, 5, 6\\}$ olduğuna göre, $B$'nin kaç farklı üçlü kümesi vardır?",
+       "options": [
+        "$7$",
+        "$15$",
+        "$16$",
+        "$31$",
+        "$63$"
+       ],
+       "answer": 1,
+       "narration": "ÖSYM 2019'da çift rakamlarla benzer bir tanım sordu. Koşulu her rakam için tek tek deneyelim.",
+       "steps": [
+        {
+         "text": "$x \\in A$ için koşul: $x \\in B \\iff x \\in \\{0, 3, 6, 9\\}$.",
+         "narration": "Eşitlik ne diyor? A'daki bir rakam B'de ise üçün katı da olmalı; B'de değilse üçün katı da olmamalı."
+        },
+        {
+         "text": "$3, 6$: ikisinde de var ✓. $7, 8$: ikisinde de yok ✓. $1, 2, 4, 5$ ve $0, 9$ yalnız birinde ✗.",
+         "narration": "Üç ve altı hem B'de hem üçün katı: uygun. Yedi ve sekiz ikisinde de yok: uygun. Bir, iki, dört, beş B'de ama üçün katı değil; sıfır ve dokuz üçün katı ama B'de değil: bunlar A'ya giremez."
+        },
+        {
+         "text": "$A \\subseteq \\{3, 6, 7, 8\\}$, boş değil: $2^4 - 1 = 15$.",
+         "narration": "A, üç, altı, yedi, sekiz kümesinin boş olmayan bir alt kümesi: iki üzeri dört eksi bir, on beş. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 tanımlı küme sayma kalıbı örnek alındı; tanım ve kümeler yeni kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\{1, 2, 3, 4, 5, 6\\}$ kümesinin alt kümelerinden kaç tanesinde **en az bir** çift sayı vardır?",
+       "options": [
+        "$32$",
+        "$48$",
+        "$56$",
+        "$60$",
+        "$63$"
+       ],
+       "answer": 2,
+       "narration": "En az bir: tümleyenle sayalım.",
+       "steps": [
+        {
+         "text": "Bütün alt kümeler: $2^6 = 64$.",
+         "narration": "Altı elemanlı kümenin altmış dört alt kümesi var."
+        },
+        {
+         "text": "Hiç çift olmayanlar: $\\{1, 3, 5\\}$'in alt kümeleri, $2^3 = 8$.",
+         "narration": "Hiç çift sayı içermeyenler, yalnız tek sayılardan oluşanlar: bir, üç, beşin alt kümeleri, sekiz tane; boş küme de dahil."
+        },
+        {
+         "text": "$64 - 8 = 56$",
+         "narration": "En az bir çift içerenler: altmış dört eksi sekiz, elli altı. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "En az bir koşullu alt küme kalıbı; küme ve koşul yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_KUME_05",
+    "subtopics": [
+     "MAT_KUME_06",
+     "MAT_KUME_07",
+     "MAT_KUME_08",
+     "MAT_KUME_10",
+     "MAT_KUME_11"
+    ],
+    "title": "Kümelerde işlemler",
+    "narration": "Birleşim, kesişim, fark ve tümleyen. AYT bunları ya bir tanımla ya da bir sayma problemiyle sorar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İşlem kuralları",
+      "items": [
+       "$s(A \\cup B) = s(A) + s(B) - s(A \\cap B)$",
+       "$A - B = A \\cap B'$; De Morgan: $(A \\cup B)' = A' \\cap B'$, $(A \\cap B)' = A' \\cup B'$.",
+       "Venn şemasında önce **ortak bölgeyi** doldur, sonra yalnız bölgeleri."
+      ],
+      "visual": {
+       "kind": "venn",
+       "sets": [
+        {
+         "label": "Basketbol: 24",
+         "items": [
+          "yalnız 15"
+         ]
+        },
+        {
+         "label": "Voleybol: 18",
+         "items": [
+          "yalnız 9"
+         ]
+        }
+       ],
+       "shared": [
+        "ikisi 9"
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Kırk kişilik bir sınıfta yirmi dört kişi basketbol, on sekiz kişi voleybol oynuyor; yedi kişi ikisini de oynamıyor."
+       },
+       {
+        "narration": "En az birini oynayan otuz üç kişi. Yirmi dört artı on sekiz kırk iki eder; fazla olan dokuz kişi iki kez sayılmış: ikisini de oynayanlar."
+       },
+       {
+        "narration": "Ortak bölge dokuz. Yalnız basketbol yirmi dört eksi dokuz, on beş; yalnız voleybol on sekiz eksi dokuz, dokuz."
+       }
+      ],
+      "narration": "İki kümenin birleşiminin eleman sayısı, eleman sayılarının toplamından ortak elemanların çıkarılmasıyla bulunur; ortaklar iki kez sayılmıştır. A fark B, A ile B'nin tümleyeninin kesişimidir. De Morgan kuralına göre birleşimin tümleyeni tümleyenlerin kesişimi, kesişimin tümleyeni tümleyenlerin birleşimidir. Venn şemasında önce ortak bölgeyi, sonra yalnız bölgeleri doldurursun."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Pozitif tam sayılardan oluşan bir kümenin eleman sayısı, kümenin en küçük elemanından **bir fazla** ise bu kümeye **geniş küme** denir.\n\n$A$, $B$ ve $C$ geniş kümeler olmak üzere\n\n$A \\cup B \\cup C = \\{1, 2, 3, 4, 5, 6, 7\\}$\n\n$A \\cap B = \\{1\\}$, $2 \\in A$, $6 \\in B$\n\nolduğuna göre, $C$ kümesi aşağıdakilerden hangisidir?",
+       "options": [
+        "$\\{3, 4, 5, 7\\}$",
+        "$\\{3, 5, 7\\}$",
+        "$\\{4, 5, 6, 7\\}$",
+        "$\\{2, 3, 4, 5\\}$",
+        "$\\{3, 4, 5, 6, 7\\}$"
+       ],
+       "answer": 0,
+       "narration": "ÖSYM 2020'de bu tanımla bir soru sordu; biz başka koşullarla kuralım. En küçük eleman, kümenin boyunu belirliyor.",
+       "steps": [
+        {
+         "text": "$1 \\in A$ ve $1 \\in B$: en küçük eleman 1, eleman sayısı **2**.",
+         "narration": "Bir, A ile B'nin ortak elemanı. İkisinin de en küçük elemanı bir; geniş küme oldukları için ikişer elemanlılar."
+        },
+        {
+         "text": "$A = \\{1, 2\\}$, $B = \\{1, 6\\}$.",
+         "narration": "İki A'da: A, bir ve iki. Altı B'de: B, bir ve altı."
+        },
+        {
+         "text": "$C$, kalan $3, 4, 5, 7$'yi içermeli; en küçüğü 3 ise 4 elemanlı: $C = \\{3, 4, 5, 7\\}$.",
+         "narration": "Birleşimde kalan üç, dört, beş ve yedi C'de olmalı. C'nin en küçük elemanı üç ise dört elemanlıdır: tam bu dört sayı. Daha küçük bir eleman alırsa eleman sayısı yetmez. Cevap A.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 geniş küme kalıbı örnek alındı; evren ve koşullar yeni kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "40 kişilik bir sınıfta 24 öğrenci basketbol, 18 öğrenci voleybol oynamaktadır; 7 öğrenci bu iki sporu da oynamamaktadır.\n\nBuna göre, bu iki spordan **yalnız birini** oynayan kaç öğrenci vardır?",
+       "options": [
+        "$15$",
+        "$18$",
+        "$20$",
+        "$24$",
+        "$33$"
+       ],
+       "answer": 3,
+       "narration": "Kural kartındaki şemayı sayılarla tamamlayalım.",
+       "steps": [
+        {
+         "text": "En az birini oynayan: $40 - 7 = 33$.",
+         "narration": "İkisini de oynamayan yedi kişi; en az birini oynayan otuz üç."
+        },
+        {
+         "text": "$33 = 24 + 18 - s(B \\cap V)$: ikisini oynayan $9$.",
+         "narration": "Otuz üç, yirmi dört artı on sekiz eksi ortaklar: ortaklar dokuz."
+        },
+        {
+         "text": "Yalnız biri: $33 - 9 = 24$.",
+         "narration": "Yalnız birini oynayanlar: otuz üçten ikisini oynayan dokuzu çıkar, yirmi dört. Şemada on beş artı dokuz. Cevap D.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "İki kümeli sayma kalıbı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$A$ ve $B$ evrensel kümenin iki alt kümesi olmak üzere\n\n$(A - B)' \\cap A$\n\nkümesi aşağıdakilerden hangisine eşittir?",
+       "options": [
+        "$A - B$",
+        "$B$",
+        "$A \\cap B$",
+        "$A$",
+        "$\\varnothing$"
+       ],
+       "answer": 2,
+       "narration": "Farkı kesişimle yaz, sonra De Morgan.",
+       "steps": [
+        {
+         "text": "$A - B = A \\cap B'$",
+         "narration": "A fark B, A ile B'nin tümleyeninin kesişimi."
+        },
+        {
+         "text": "$(A \\cap B')' = A' \\cup B$",
+         "narration": "De Morgan: kesişimin tümleyeni, tümleyenlerin birleşimi. A tümleyen birleşim B."
+        },
+        {
+         "text": "$(A' \\cup B) \\cap A = (A' \\cap A) \\cup (B \\cap A) = A \\cap B$",
+         "narration": "A ile kesiştirelim: A tümleyen ile A'nın kesişimi boş, B ile A'nın kesişimi A kesişim B. Sonuç A kesişim B. Şemada: A'dan, B'de olmayan kısmı atınca B'deki kısmı kalır. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Küme cebiri kalıbı; ifade yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "1'den 60'a kadar olan doğal sayılardan kaç tanesi 2, 3 ve 5 sayılarının **hiçbirine** tam bölünmez?",
+       "options": [
+        "$14$",
+        "$16$",
+        "$18$",
+        "$20$",
+        "$22$"
+       ],
+       "answer": 1,
+       "narration": "Üç küme: ikinin, üçün ve beşin katları. Birleşimi bulup çıkaralım.",
+       "steps": [
+        {
+         "text": "$s(2) = 30$, $s(3) = 20$, $s(5) = 12$",
+         "narration": "Altmışa kadar ikinin katları otuz, üçün katları yirmi, beşin katları on iki."
+        },
+        {
+         "text": "İkili kesişimler: $s(6) = 10$, $s(10) = 6$, $s(15) = 4$; üçlü: $s(30) = 2$.",
+         "narration": "İkili kesişimler: altının katları on, onun katları altı, on beşin katları dört. Üçünün kesişimi otuzun katları: iki."
+        },
+        {
+         "text": "Birleşim: $30 + 20 + 12 - 10 - 6 - 4 + 2 = 44$; hiçbiri: $60 - 44 = 16$.",
+         "narration": "Birleşim: tekleri topla, ikilileri çıkar, üçlüyü ekle: kırk dört. Hiçbirine bölünmeyenler altmış eksi kırk dört, on altı. Üçlüyü geri eklemeyi unutan on sekiz bulur. Cevap B.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Üç kümeli içerme-dışlama kalıbı; sayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_KUME_09",
+    "title": "Kartezyen çarpım",
+    "narration": "ÖSYM 2019'dan bu yana kartezyen çarpımdan dört soru sordu. Hepsi tek bir formüle dayanır: eleman sayıları çarpılır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kartezyen çarpım",
+      "items": [
+       "$s(A \\times B) = s(A) \\cdot s(B)$; $(a, b) \\in A \\times B$ ise $a \\in A$, $b \\in B$.",
+       "$A \\times (B \\cup C) = (A \\times B) \\cup (A \\times C)$",
+       "$(A \\times B) \\cap (B \\times A) = (A \\cap B) \\times (A \\cap B)$",
+       "$s\\big((A \\times B) \\cup (B \\times A)\\big) = 2 \\cdot s(A) \\cdot s(B) - s(A \\cap B)^2$"
+      ],
+      "narration": "Kartezyen çarpımın eleman sayısı, kümelerin eleman sayılarının çarpımıdır. Bir ikili A çarpı B'deyse ilk bileşen A'da, ikinci bileşen B'dedir. Kartezyen çarpım birleşime dağılır. A çarpı B ile B çarpı A'nın ortak elemanları, kesişimin kendisiyle kartezyen çarpımıdır; bu yüzden birleşimlerinin eleman sayısı, iki kez a çarpı b eksi kesişimin karesidir."
+     },
+     {
+      "kind": "predict",
+      "title": "Ortak ikililer",
+      "prompt": "$A = \\{1, 2\\}$, $B = \\{2, 3\\}$ ise $A \\times B$ ile $B \\times A$'nın kaç ortak elemanı vardır?",
+      "choices": [
+       "$1$",
+       "$2$"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "$A \\times B$",
+        "$B \\times A$"
+       ],
+       "rows": [
+        [
+         "$(1, 2)$, $(1, 3)$",
+         "$(2, 1)$, $(2, 2)$"
+        ],
+        [
+         "$(2, 2)$, $(2, 3)$",
+         "$(3, 1)$, $(3, 2)$"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "beats": [
+       {
+        "narration": "A çarpı B: bir iki, bir üç, iki iki, iki üç.",
+        "focus": [
+         "col1"
+        ]
+       },
+       {
+        "narration": "B çarpı A: iki bir, iki iki, üç bir, üç iki. İki listede ortak olan yalnız iki, iki.",
+        "focus": [
+         "col2"
+        ]
+       }
+      ],
+      "explanation": "Ortak ikililerin iki bileşeni de $A \\cap B = \\{2\\}$'den gelir: $1^2 = 1$ ortak eleman.",
+      "narration": "Şimdi sıra sende. A bir, iki; B iki, üç. A çarpı B ile B çarpı A'nın kaç ortak elemanı var? Biraz düşün.",
+      "explanationNarration": "Doğru cevap bir. İki bileşeni de iki kümede bulunan ikililer ortak olabilir; yani iki bileşeni de kesişimden gelenler. Kesişim yalnız iki; ortak eleman yalnız iki, iki. Kesişim k elemanlıysa ortak ikili sayısı k kare olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$A$ ve $B$ kümeleri ile ilgili\n\n$s(A \\cap B) = 4$\n\n$s\\big((A \\times B) \\cup (B \\times A)\\big) = 138$\n\neşitlikleri verilmiştir.\n\nBuna göre, $A \\cup B$ kümesinin eleman sayısı kaçtır?",
+       "options": [
+        "$13$",
+        "$14$",
+        "$15$",
+        "$16$",
+        "$18$"
+       ],
+       "answer": 1,
+       "narration": "ÖSYM 2023'te bu kalıbı sordu. Formülü yazıp çarpanlara bakalım.",
+       "steps": [
+        {
+         "text": "$2ab - 4^2 = 138$: $ab = 77$.",
+         "narration": "İki kez a çarpı b eksi on altı, yüz otuz sekiz: a çarpı b yetmiş yedi."
+        },
+        {
+         "text": "$77 = 7 \\cdot 11$ (ya da $1 \\cdot 77$); iki küme de en az 4 elemanlı: $a = 7$, $b = 11$.",
+         "narration": "Yetmiş yedi, yedi çarpı on bir ya da bir çarpı yetmiş yedi. Kesişim dört elemanlı olduğu için iki küme de en az dört elemanlı: yedi ve on bir."
+        },
+        {
+         "text": "$s(A \\cup B) = 7 + 11 - 4 = 14$",
+         "narration": "Birleşim: yedi artı on bir eksi dört, on dört. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2023 kartezyen birleşim kalıbı örnek alındı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$A$, $B$ ve $C$ kümeleri ile ilgili\n\n$\\{(1, 3), (2, 4), (3, 5)\\} \\subseteq A \\times B$\n\n$\\{(1, 4), (3, 4), (5, 1)\\} \\subseteq B \\times C$\n\nolduğu biliniyor. Buna göre,\n\nI. $A \\cap B$ en az 2 elemanlıdır.\n\nII. $B \\cap C$ en az 2 elemanlıdır.\n\nIII. $A \\cap C$ en az 2 elemanlıdır.\n\nifadelerinden hangileri **her zaman** doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2019'da bu kalıbı sordu. İkililerden kümelerin kesin elemanlarını çıkaralım.",
+       "steps": [
+        {
+         "text": "$A \\supseteq \\{1, 2, 3\\}$; $B \\supseteq \\{3, 4, 5\\}$ (ikinci bileşenler).",
+         "narration": "Birinci listeden: ilk bileşenler A'da, bir, iki, üç; ikinci bileşenler B'de, üç, dört, beş."
+        },
+        {
+         "text": "$B \\supseteq \\{1, 3, 5\\}$, $C \\supseteq \\{1, 4\\}$. Demek ki $B \\supseteq \\{1, 3, 4, 5\\}$.",
+         "narration": "İkinci listeden: ilk bileşenler B'de, bir, üç, beş; ikinciler C'de, dört ve bir. B en az bir, üç, dört, beş."
+        },
+        {
+         "text": "I: $A \\cap B \\supseteq \\{1, 3\\}$ ✓. II: $B \\cap C \\supseteq \\{1, 4\\}$ ✓. III: kesin ortak yalnız $1$ ✗.",
+         "narration": "A kesişim B en az bir ve üç: doğru. B kesişim C en az bir ve dört: doğru. A ile C'nin kesin ortak elemanı yalnız bir; ikinci bir ortak eleman olmak zorunda değil. Cevap C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 kartezyen çarpımdan eleman okuma kalıbı örnek alındı; ikililer ve öncüller yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$A$, $B$ ve $C$ kümeleri ile ilgili\n\n$s(A) = s(C) = 6$\n\n$s\\big(A \\times (B \\cup C)\\big) = 42$\n\n$s\\big(B \\times (A \\cup C)\\big) = 27$\n\neşitlikleri veriliyor.\n\nBuna göre, $B \\cap C$ kümesinin eleman sayısı kaçtır?",
+       "options": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 0,
+       "narration": "ÖSYM 2022'de bu kalıbı sordu. Her çarpımdan bir eleman sayısı çıkar.",
+       "steps": [
+        {
+         "text": "$6 \\cdot s(B \\cup C) = 42$: $s(B \\cup C) = 7$.",
+         "narration": "A altı elemanlı: altı çarpı B birleşim C, kırk iki. B birleşim C yedi elemanlı."
+        },
+        {
+         "text": "$6 \\leq s(A \\cup C) \\leq 12$ ve $s(B) \\cdot s(A \\cup C) = 27$: $s(A \\cup C) = 9$, $s(B) = 3$.",
+         "narration": "A birleşim C en az altı, en çok on iki elemanlı. B çarpı A birleşim C yirmi yedi: bu aralıkta yirmi yediyi bölen tek sayı dokuz. B üç elemanlı."
+        },
+        {
+         "text": "$s(B \\cap C) = 3 + 6 - 7 = 2$",
+         "narration": "B kesişim C: üç artı altı eksi yedi, iki. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 kartezyen ve birleşim kalıbı örnek alındı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ birbirinden farklı rakamlar olmak üzere\n\n$A = \\{0, 2, 4, 6, 8\\}$, $B = \\{1, 4, 5, 7\\}$, $C = \\{a, b\\}$\n\nkümeleri veriliyor.\n\n$(A \\cup C) \\times (B \\cup C)$ kartezyen çarpımının eleman sayısı 42 olduğuna göre, $a + b$ toplamı kaçtır?",
+       "options": [
+        "$9$",
+        "$10$",
+        "$11$",
+        "$12$",
+        "$13$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2020'de bu kalıbı sordu. 42'yi iki birleşimin eleman sayılarına bölelim.",
+       "steps": [
+        {
+         "text": "$s(A \\cup C) \\in \\{5, 6, 7\\}$, $s(B \\cup C) \\in \\{4, 5, 6\\}$; çarpım 42: $7 \\cdot 6$.",
+         "narration": "A birleşim C beş ile yedi, B birleşim C dört ile altı elemanlı olabilir. Çarpımı kırk iki yapan tek ikili: yedi ve altı."
+        },
+        {
+         "text": "$a$ ve $b$ ne $A$'da ne $B$'de: $\\{a, b\\} \\subseteq \\{3, 9\\}$.",
+         "narration": "Yedi için a ile b A'da olmamalı; altı için B'de de olmamalı. A ile B dışında kalan rakamlar üç ve dokuz."
+        },
+        {
+         "text": "$a + b = 3 + 9 = 12$",
+         "narration": "a artı b, on iki. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 kartezyen eleman sayısı kalıbı örnek alındı; kümeler ve sayı yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Alt küme $2^n$, öz alt küme $2^n - 1$.",
+    "\"En az bir\": **hepsi − hiç olmayan**.",
+    "Tanımlı kümede koşulu **her eleman** için dene.",
+    "$s(A \\cup B) = s(A) + s(B) - s(A \\cap B)$; üç kümede üçlüyü **geri ekle**.",
+    "$s(A \\times B) = s(A) \\cdot s(B)$.",
+    "Ortak ikililer: $(A \\cap B) \\times (A \\cap B)$."
+   ],
+   "warnings": [
+    "Boş küme her kümenin **alt kümesidir**.",
+    "Eleman sayılarını bulurken **sınırları** kullan."
+   ],
+   "narration": "Özetleyelim. n elemanlı kümenin iki üzeri n alt kümesi vardır; öz alt kümede yalnız kendisi çıkar. En az bir sorusunda tümleyeni say. Tanımlı bir kümede koşulu her eleman için tek tek dene. Birleşimin eleman sayısında ortaklar bir kez çıkarılır; üç kümede üçlü kesişim geri eklenir. Kartezyen çarpımın eleman sayısı çarpımdır ve iki çarpımın ortak ikilileri kesişimden gelir. Bilinmeyen eleman sayılarını bulurken sınırları kullan."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "6 elemanlı küme",
+    "question": "Kaç alt kümesi var?",
+    "choices": [
+     "63",
+     "64"
+    ],
+    "answer": 1,
+    "why": "**Kendisi** de sayılır."
+   },
+   {
+    "sentence": "A 3, B 4 elemanlı",
+    "question": "Kartezyen çarpım?",
+    "choices": [
+     "7",
+     "12"
+    ],
+    "answer": 1,
+    "why": "**Çarpılır**."
+   },
+   {
+    "sentence": "Üç kümede birleşim",
+    "question": "Üçlü kesişim ne olur?",
+    "choices": [
+     "Çıkarılır",
+     "Eklenir"
+    ],
+    "answer": 1,
+    "why": "**Geri** eklenir."
+   }
+  ],
+  "hook": "Üç küme tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Alt küme sayısı $2^n$."
+   },
+   {
+    "kind": "warning",
+    "text": "Üç kümede üçlüyü **geri ekle**."
+   },
+   {
+    "kind": "term",
+    "term": "Kartezyen çarpım",
+    "definition": "Eleman sayıları **çarpılır**."
+   }
+  ],
+  "summary": [
+   "2 üzeri n",
+   "Üçlüyü ekle",
+   "Çarpılır"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-matematik-kampi",
+  "name": "AYT Matematik kampı",
+  "number": 14,
+  "total": 33,
+  "previous": "Problemler",
+  "next": "Mantık",
+  "promise": "Her konu kısa bir tekrar ve AYT düzeyinde çözümlü sorularla.",
+  "task": {
+   "items": [
+    "ÖSYM 2019 sorusunu **kendin** çöz: $A \\cap B = A \\cap \\{0, 2, 4, 6, 8\\}$, $B = \\{0, 1, 2, 3, 4\\}$; kaç $A$ var?",
+    "1'den 90'a kadar sayılardan 2, 3 ve 5'in hiçbirine bölünmeyenleri say.",
+    "Uygulamada AYT Kümeler testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. ÖSYM'nin 2019 sorusunu kendin çöz: A kesişim B, A kesişim çift rakamlar kümesine eşit ve B sıfırdan dörde kadar rakamlar; kaç farklı A kümesi var? Birden doksana kadar sayılardan iki, üç ve beşin hiçbirine bölünmeyenleri say. Sonra uygulamada AYT Kümeler testinden yirmi soru çöz. Bir sonraki derste mantıkta görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Koşullu alt küme saymayı örnekle: n elemanlı kümenin k elemanlı alt küme sayısı C(n, k); belirli bir elemanı içeren alt küme sayısı 2ⁿ⁻¹. 5 elemanlı kümede a'yı içeren ama b'yi içermeyen 2³ = 8 alt küme vardır.",
+   "İşlem özelliklerini ekle: De Morgan kuralları ((A ∪ B)′ = A′ ∩ B′, (A ∩ B)′ = A′ ∪ B′), A \\ B = A ∩ B′, birleşim ve kesişimin dağılma özellikleri. Her birini Venn şemasıyla doğrulat.",
+   "Üç küme problemine örnek ekle: 40 kişilik sınıfta futbol 20, basketbol 15, voleybol 12; futbol-basketbol 6, futbol-voleybol 5, basketbol-voleybol 4, üçü birden 2 kişi. En az birini oynayan 34, hiçbirini oynamayan 6, yalnız futbol oynayan 11 kişidir.",
+   "Kartezyen çarpımı ve bağıntıyı ekle: A × B ≠ B × A; s(A × B) = s(A) × s(B); A × B'nin alt küme sayısı, yani A'dan B'ye tanımlanabilen bağıntı sayısı 2^(m × n)."
+  ]
+ }
+}

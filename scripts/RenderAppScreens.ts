@@ -16,7 +16,7 @@ import {parseArgs} from 'node:util';
 import {APP_SCREENS, APP_SCREEN_NAMES, type AppScreenName} from '../src/Components/AppScreens/AppScreenRegistry';
 import {APP_MODES, type AppMode} from '../src/Components/AppScreens/AppScreenTokens';
 import {renderAppScreen} from '../src/Renderers/AppScreenRenderer';
-import {outputRoot} from '../src/Services/OutputFiles';
+import {outputRoot} from '../src/Services/OutputFile';
 
 const {values} = parseArgs({
 	options: {

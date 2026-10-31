@@ -121,5 +121,5 @@ Yazı tipi bütün hedef dilleri karşılıyor (§3). Dil değişince bozulan ş
 | --- | --- |
 | Web | Manrope tek aile, rol sistemi var. Eksikler ve öneriler: [Tipografi-Web.md](Tipografi-Web.md) |
 | Mobil | Manrope tek aile, rol sistemi ve mimari test var. Eksikler ve öneriler: [Tipografi-Mobil.md](Tipografi-Mobil.md) |
-| Video, reklam, sosyal medya | **Uygulandı (15 Ekim 2026):** bütün temalar Manrope'a geçti, 6 yazı tipi paketi kaldırıldı, matematik işaretleri için KaTeX yedeği, 900 kalınlık kaldırıldı, video dili `VideoFrame lang` ile seçiliyor. Test: `tests/BrandTypography.test.ts`. |
+| Video, reklam, sosyal medya | **Uygulandı (15 Ekim 2026):** bütün temalar Manrope'a geçti, 6 yazı tipi paketi kaldırıldı, matematik işaretleri için KaTeX yedeği, 900 kalınlık kaldırıldı, video dili `VideoFrame lang` ile seçiliyor. Test: `tests/Configurations/BrandTypography.test.ts`. |
 | Logo | Rafine ikon ve renk sistemi seçildi; son dosyalar hazırlanınca değiştirilecek. |

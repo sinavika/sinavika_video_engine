@@ -13,6 +13,13 @@ type ConceptMapProps = {
 	width: number;
 	height: number;
 	delaySeconds?: number;
+	/**
+	 * Course lessons: the lesson colour for the hub and the lines (instead of the brand colour and a different
+	 * colour per line), and each related concept's state from the card's beats (n1, n2, …): it appears when a
+	 * beat shows it and stands out when a beat points at it, the others dimming.
+	 */
+	accent?: {fill: string; on: string};
+	states?: {appear: number; emphasis: number; dim: number}[];
 };
 
 const NODE_INTERVAL_SECONDS = 0.3;
@@ -28,7 +35,7 @@ const ANCHOR: React.CSSProperties = {
 };
 
 /** A hub concept with its related concepts around it, each joined by a drawn line. */
-export const ConceptMap: React.FC<ConceptMapProps> = ({center, related, width, height, delaySeconds = 0}) => {
+export const ConceptMap: React.FC<ConceptMapProps> = ({center, related, width, height, delaySeconds = 0, accent, states = []}) => {
 	const {colors} = useTheme();
 	const {u} = useVideoLayout();
 	const count = related.length;
@@ -36,7 +43,8 @@ export const ConceptMap: React.FC<ConceptMapProps> = ({center, related, width, h
 	// Even counts are rotated half a step so nodes sit left/right or in the corners, not above the hub.
 	const start = count % 2 === 0 ? -90 + step / 2 : -90;
 	const nodeWidth = Math.min(width * 0.34, u(340));
-	const radiusX = (width - nodeWidth) / 2;
+	// Room for a focused node to grow without reaching the edge of the box.
+	const radiusX = (width - nodeWidth * (states.length > 0 ? 1.14 : 1)) / 2;
 	const radiusY = height * 0.37;
 	const positions = related.map((_, index) => {
 		const angle = ((start + index * step) * Math.PI) / 180;
@@ -46,34 +54,50 @@ export const ConceptMap: React.FC<ConceptMapProps> = ({center, related, width, h
 	return (
 		<div style={{position: 'relative', width, height, flexShrink: 0}}>
 			<svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} style={{position: 'absolute', inset: 0}}>
-				{positions.map(([x, y], index) => (
-					<DrawPath
-						key={index}
-						d={`M${width / 2} ${height / 2}L${x.toFixed(2)} ${y.toFixed(2)}`}
-						stroke={colors.categorical[index % colors.categorical.length].fill}
-						strokeWidth={u(5)}
-						delaySeconds={delaySeconds + 0.3 + index * NODE_INTERVAL_SECONDS}
-						durationSeconds={0.4}
-					/>
-				))}
+				{positions.map(([x, y], index) => {
+					const state = states[index];
+					return (
+						<g key={index} opacity={state ? state.appear * (1 - 0.65 * state.dim) : 1}>
+							<DrawPath
+								d={`M${width / 2} ${height / 2}L${x.toFixed(2)} ${y.toFixed(2)}`}
+								stroke={accent ? accent.fill : colors.categorical[index % colors.categorical.length].fill}
+								strokeWidth={u(5) * (state ? 1 + state.emphasis * 0.6 : 1)}
+								delaySeconds={delaySeconds + 0.3 + index * NODE_INTERVAL_SECONDS}
+								durationSeconds={0.4}
+							/>
+						</g>
+					);
+				})}
 			</svg>
 			<div style={{...ANCHOR, left: width / 2, top: height / 2}}>
 				<Animated animation={{preset: 'scale', easing: 'overshoot'}} delaySeconds={delaySeconds} style={{flexShrink: 0}}>
-					<Card tone="primary" padding={36} radius="lg" style={{maxWidth: width * 0.4}}>
-						<Text variant="subtitle" align="center" size={42}>
-							{center}
-						</Text>
-					</Card>
+					{accent ? (
+						<div style={{maxWidth: width * 0.4, padding: u(32), borderRadius: u(32), backgroundColor: accent.fill, color: accent.on, textAlign: 'center'}}>
+							<Text variant="subtitle" align="center" size={42} style={{color: accent.on}}>
+								{center}
+							</Text>
+						</div>
+					) : (
+						<Card tone="primary" padding={36} radius="lg" style={{maxWidth: width * 0.4}}>
+							<Text variant="subtitle" align="center" size={42}>
+								{center}
+							</Text>
+						</Card>
+					)}
 				</Animated>
 			</div>
-			{related.map((item, index) => (
-				<div key={index} style={{...ANCHOR, left: positions[index][0], top: positions[index][1]}}>
+			{related.map((item, index) => {
+				const state = states[index];
+				return (
+				<div key={index} style={{...ANCHOR, left: positions[index][0], top: positions[index][1], opacity: state ? state.appear : 1}}>
 					<Animated
 						animation={{preset: 'scale', easing: 'overshoot'}}
 						delaySeconds={delaySeconds + 0.55 + index * NODE_INTERVAL_SECONDS}
-						style={{width: nodeWidth, flexShrink: 0}}
+						style={{width: nodeWidth, flexShrink: 0, transform: state ? `scale(${1 + 0.1 * state.emphasis})` : undefined}}
 					>
-						<Card padding={24} radius="md">
+						{/* A dimmed node fades its words, not its card: an opaque card keeps the line behind it hidden. */}
+						<Card padding={24} radius="md" style={{...(accent && state && state.emphasis > 0 ? {outline: `${u(4) * state.emphasis}px solid ${accent.fill}`} : {}), ...(state ? {opacity: 1} : {})}}>
+							<div style={{opacity: state ? 1 - 0.65 * state.dim : 1}}>
 							<Text variant="subtitle" align="center" size={32}>
 								{item.name}
 							</Text>
@@ -82,10 +106,12 @@ export const ConceptMap: React.FC<ConceptMapProps> = ({center, related, width, h
 									{item.relation}
 								</Text>
 							) : null}
+							</div>
 						</Card>
 					</Animated>
 				</div>
-			))}
+				);
+			})}
 		</div>
 	);
 };

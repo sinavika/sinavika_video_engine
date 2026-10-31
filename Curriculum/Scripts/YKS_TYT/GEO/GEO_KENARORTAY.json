@@ -1,0 +1,1648 @@
+{
+ "topic": {
+  "id": "6CFA5DF7-4212-A191-E41A-6274D2833AA1",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_KENARORTAY"
+ },
+ "title": "Kenarortay",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "YKS/TYT/KonuAnlatimi/GEO/GEO_KENARORTAY.json (MEB Temel Matematik s. 129-130: kenarortay, ağırlık merkezi, 2 : 1 ve 3-1-2 oranları)",
+  "YKS/TYT/CikmisSorular/GEO.jsonl (ÖSYM 2021 kenarortay, dört ifade; yalnız yapı örneği); YKS/TYT/Sorular/GEO/GEO_KENARORTAY.jsonl",
+  "Bütün şekiller verilen ölçülerle koordinatta çizildi; sorular özgündür"
+ ],
+ "works": {
+  "additions": [
+   "Kenarortay uzunluğu formülünü ver (4V_a² = 2(b² + c²) − a²) ve iki kenarortayın dik olduğu özel durumu (b² + c² = 5a²) örnekle.",
+   "Ağırlık merkezinin üçgeni altı eş alanlı parçaya ayırmasına dayanan alan sorularını çözümlü ekle; ağırlık merkezinden çizilen paralelin kenarları 2 : 1 böldüğünü yaz.",
+   "Orta taban teoremini ver: iki kenarın orta noktalarını birleştiren doğru parçası üçüncü kenara paralel ve onun yarısıdır; üç orta tabanla oluşan dört eş üçgen."
+  ]
+ },
+ "short": {
+  "hook": "Kenarortay neyi ikiye böler?",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Alanı **ikiye** böler."
+   },
+   {
+    "kind": "fact",
+    "text": "Ağırlık merkezi: **2 : 1**."
+   },
+   {
+    "kind": "warning",
+    "text": "Hipotenüse ait: **yarısı**."
+   }
+  ],
+  "summary": [
+   "Alan yarıya",
+   "G: 2 : 1"
+  ],
+  "rounds": [
+   {
+    "sentence": "Hipotenüs 10",
+    "question": "Kenarortayı?",
+    "choices": [
+     "5",
+     "10"
+    ],
+    "answer": 0,
+    "why": "Hipotenüsün **yarısı**."
+   },
+   {
+    "sentence": "Kenarortay 12",
+    "question": "Köşeye uzaklık?",
+    "choices": [
+     "8",
+     "6"
+    ],
+    "answer": 0,
+    "why": "**Üçte iki**."
+   },
+   {
+    "sentence": "Alan 48",
+    "question": "Altıda biri?",
+    "choices": [
+     "8",
+     "12"
+    ],
+    "answer": 0,
+    "why": "Altı **eş** parça."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-geometri-kampi",
+  "name": "TYT Geometri kampı",
+  "number": 7,
+  "total": 23,
+  "previous": "Açıortay",
+  "next": "Üçgende Eşlik – Benzerlik",
+  "promise": "Geometri konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Kartondan bir üçgen kes, üç kenarortayını çiz; **G** noktasından kalem ucunda dengele.",
+    "Kenarortayın alan kuralını, **2 : 1** oranını ve Apollonius bağıntısını bir sayfaya yaz.",
+    "Uygulamada Kenarortay testinden **20 soru** çöz; her şekilde önce **orta noktaları** işaretle."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Kartondan bir üçgen kes ve üç kenarortayını çiz; G noktasını bir kalemin ucuna koyup dengede tutmayı dene. Sonra kenarortayın alan kuralını, iki bir oranını ve Apollonius bağıntısını bir sayfaya yaz. En son uygulamada kenarortay testinden yirmi soru çöz; her şekilde önce orta noktaları işaretle. Bir sonraki derste üçgende eşlik ve benzerlikle devam ediyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Kalem ucunda bir üçgen",
+   "narration": "Kartondan bir üçgen kes ve bir kalemin ucunda dengede tutmaya çalış. Neredeyse her noktada devrilir; ama bir nokta var ki üçgen orada kıpırdamadan durur. Bu nokta, kenarortayların kesiştiği yerdir. Bu derste kenarortayın alanı nasıl böldüğünü, ağırlık merkezinin iki bir kuralını ve kenarortayın uzunluğunu öğreneceğiz."
+  },
+  "objectives": [
+   "Kenarortayın alanı ikiye böldüğünü kullanmak",
+   "Dik üçgende hipotenüse ait kenarortayı bulmak",
+   "Ağırlık merkezinin 2 : 1 oranını ve altı eş alanı uygulamak",
+   "Apollonius bağıntısıyla kenarortay ve kenar uzunluğu bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_KENARORTAY_01",
+    "title": "Kenarortay ve alan",
+    "narration": "Kenarortay, bir köşeyi karşı kenarın orta noktasına bağlar. İlk işi alanı ikiye bölmek.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Alanı ikiye böler",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        7.7,
+        4.9
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.4,
+          4.2
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          7,
+          0
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          3.5,
+          0.0
+         ]
+        },
+        {
+         "id": "H",
+         "at": [
+          2.4,
+          0
+         ],
+         "hidden": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "A",
+         "to": "C"
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "label": "a"
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "label": "a"
+        },
+        {
+         "from": "A",
+         "to": "D"
+        },
+        {
+         "from": "A",
+         "to": "H",
+         "label": "h",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "D"
+         ],
+         "fill": true
+        },
+        {
+         "points": [
+          "A",
+          "D",
+          "C"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "H",
+         "from": "D",
+         "to": "A",
+         "right": true
+        }
+       ]
+      },
+      "caption": "Kenarortay üçgeni **eşit alanlı** iki üçgene ayırır: tabanlar eşit, yükseklik ortak.",
+      "narration": "A köşesinden B C'nin orta noktası D'ye bir doğru parçası çizelim. Bu, A köşesine ait kenarortaydır.",
+      "beats": [
+       {
+        "narration": "A B D ve A D C üçgenlerinin tabanları eşit, ikisi de a. A'dan B C'ye inen yükseklik h, iki üçgen için de aynı.",
+        "focus": [
+         "BD",
+         "DC",
+         "AH"
+        ]
+       },
+       {
+        "narration": "Alan, taban çarpı yükseklik bölü iki. Tabanlar ve yükseklik aynıysa alanlar da eşit: kenarortay üçgeni iki eş alanlı parçaya ayırır. Dik üçgende ise bir özel durum var: hipotenüse ait kenarortay, hipotenüsün tam yarısıdır.",
+        "focus": [
+         "ABD",
+         "ADC"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Dik kenar uzunlukları $6$ cm ve $8$ cm olan $ABC$ dik üçgeninde hipotenüse ait kenarortayın uzunluğu $x$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         8.7,
+         6.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           6
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           8,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "M",
+          "at": [
+           4.0,
+           3.0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "C",
+          "to": "A",
+          "label": "6"
+         },
+         {
+          "from": "C",
+          "to": "B",
+          "label": "8"
+         },
+         {
+          "from": "A",
+          "to": "M"
+         },
+         {
+          "from": "M",
+          "to": "B"
+         },
+         {
+          "from": "C",
+          "to": "M",
+          "label": "x",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "C",
+          "from": "B",
+          "to": "A",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+       ],
+       "answer": 1,
+       "narration": "Dik üçgende hipotenüse ait kenarortay, hipotenüsün yarısıdır.",
+       "steps": [
+        {
+         "text": "Hipotenüs $\\sqrt{36 + 64} = 10$.",
+         "narration": "Dik kenarlar altı ve sekiz; altı, sekiz, on üçgeninden hipotenüs on."
+        },
+        {
+         "text": "$x = \\frac{10}{2} = 5$. Cevap **B**.",
+         "narration": "Hipotenüsün orta noktası, dik açılı köşeye de diğer iki köşe kadar uzaktır: x, onun yarısı, beş santimetre. Bu nokta, üç köşeden geçen çemberin merkezidir. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dik üçgende hipotenüse ait kenarortay özgün bir değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $m(\\widehat{BAC}) = 90°$, $D$ noktası $[BC]$'nin orta noktası ve $m(\\widehat{ABC}) = 35°$'dir. Buna göre $m(\\widehat{ADC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         9.7,
+         4.929
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           6.039,
+           4.229
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           9,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           4.5,
+           0.0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "A",
+          "to": "C"
+         },
+         {
+          "from": "B",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "C"
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "right": true
+         },
+         {
+          "at": "B",
+          "from": "D",
+          "to": "A",
+          "label": "35°"
+         },
+         {
+          "at": "D",
+          "from": "C",
+          "to": "A",
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "15",
+        "35",
+        "55",
+        "70",
+        "90"
+       ],
+       "answer": 3,
+       "narration": "Hipotenüsün orta noktası üç köşeye eşit uzaklıkta.",
+       "steps": [
+        {
+         "text": "$|AD| = |BD| = |DC|$ → $ABD$ ikizkenar: $m(\\widehat{BAD}) = 35°$.",
+         "narration": "Hipotenüse ait kenarortay hipotenüsün yarısıdır: A D, B D'ye eşit. A B D ikizkenar üçgen; A'daki B A D açısı da otuz beş derece."
+        },
+        {
+         "text": "Dış açı: $x = 35° + 35° = 70°$. Cevap **D**.",
+         "narration": "A D C açısı, A B D üçgeninin D'deki dış açısı: otuz beş artı otuz beş, yetmiş derece. Cevabımız D. Elli beşi seçen, C açısını bulmuştur; soru D'deki açıyı soruyor.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; hipotenüse ait kenarortay ikizkenar üçgen ve dış açı kuralıyla özgün bir soruda birleştirildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $ABC$ üçgeninde $D \\in [BC]$ ve aşağıdaki dört ifadeden **tam ikisi** doğrudur.\n\nI. $|BD| = |DC|$\n\nII. $[AD] \\perp [BC]$\n\nIII. $A(ABD) = A(ADC)$\n\nIV. $m(\\widehat{BAD}) = m(\\widehat{DAC})$\n\nBuna göre doğru olan ifadeler hangileridir?",
+       "options": [
+        "I ve II",
+        "I ve III",
+        "II ve IV",
+        "III ve IV",
+        "I ve IV"
+       ],
+       "answer": 1,
+       "narration": "Hangi iki ifade birbirini zorunlu kılar, hangi ikisi birlikte doğruysa hepsi doğru olur?",
+       "steps": [
+        {
+         "text": "I ile III denk: kenarortay alanı ikiye böler; alanlar eşitse tabanlar eşittir.",
+         "narration": "Birinci ve üçüncü ifade aynı şeyi söyler: D orta noktaysa alanlar eşit; alanlar eşitse, yükseklik ortak olduğu için tabanlar eşit."
+        },
+        {
+         "text": "II ya da IV, I ile birlikte doğruysa üçgen ikizkenar olur ve **dördü de** doğru çıkar.",
+         "narration": "İkinci ya da dördüncü ifade, birinci veya üçüncüyle birlikte doğruysa üçgen ikizkenardır; ikizkenarda tepeden inen doğru hem kenarortay, hem yükseklik, hem açıortaydır. O zaman dördü de doğru olurdu."
+        },
+        {
+         "text": "Tam iki doğru yalnız **I ve III** ile sağlanır: $[AD]$ yalnız kenarortay. Cevap **B**.",
+         "narration": "Tam iki ifadenin doğru olması için D yalnız orta nokta olmalı, üçgen ikizkenar olmamalı. Doğrular birinci ve üçüncü. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2021 \"dört ifadeden ikisi doğru\" kalıbı, D noktası [BC] üzerinde olacak biçimde farklı ifadelerle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $D$, $[BC]$'nin; $E$, $[AD]$'nin orta noktasıdır. $A(ABC) = 40$ cm² olduğuna göre $A(EBD)$ kaç santimetrekaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         8.7,
+         5.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2.8,
+           5
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           8,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           4.0,
+           0.0
+          ]
+         },
+         {
+          "id": "E",
+          "at": [
+           3.4,
+           2.5
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "A",
+          "to": "C"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "A",
+          "to": "D"
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "dashed": true
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "E",
+           "B",
+           "D"
+          ],
+          "fill": true
+         }
+        ],
+        "angles": []
+       },
+       "options": [
+        "5",
+        "8",
+        "10",
+        "12",
+        "20"
+       ],
+       "answer": 2,
+       "narration": "Her kenarortay alanı yarıya indirir.",
+       "steps": [
+        {
+         "text": "$[AD]$ kenarortay: $A(ABD) = 20$.",
+         "narration": "A D, A B C'nin kenarortayı: A B D'nin alanı kırkın yarısı, yirmi."
+        },
+        {
+         "text": "$[BE]$, $ABD$'nin kenarortayı: $A(EBD) = 10$. Cevap **C**.",
+         "narration": "E, A D'nin orta noktası; B E de A B D üçgeninin kenarortayı. E B D'nin alanı yirminin yarısı, on santimetrekare. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; art arda iki kenarortayla alanın dörtte birine inme özgün bir şekilde soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_KENARORTAY_02",
+    "title": "Ağırlık merkezi",
+    "narration": "Üç kenarortay tek bir noktada buluşur: ağırlık merkezi.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "İkiye bir",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        8.1,
+        5.9
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.6,
+          5.2
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          7.4,
+          0
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          3.7,
+          0.0
+         ]
+        },
+        {
+         "id": "E",
+         "at": [
+          5.0,
+          2.6
+         ]
+        },
+        {
+         "id": "F",
+         "at": [
+          1.3,
+          2.6
+         ]
+        },
+        {
+         "id": "G",
+         "at": [
+          3.333,
+          1.733
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "A"
+        },
+        {
+         "from": "A",
+         "to": "G",
+         "label": "2x"
+        },
+        {
+         "from": "G",
+         "to": "D",
+         "label": "x"
+        },
+        {
+         "from": "B",
+         "to": "E",
+         "dashed": true
+        },
+        {
+         "from": "C",
+         "to": "F",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ]
+        }
+       ],
+       "angles": []
+      },
+      "caption": "Ağırlık merkezi $G$, her kenarortayı köşeden itibaren **2 : 1** oranında böler.",
+      "narration": "Üçgenin üç kenarortayını çizelim. Üçü de aynı noktadan geçer; bu noktaya ağırlık merkezi diyoruz ve G ile gösteriyoruz.",
+      "beats": [
+       {
+        "narration": "G, her kenarortayı köşeden itibaren iki bire böler. A G iki x ise G D x; kenarortayın tamamı üç x.",
+        "focus": [
+         "AG",
+         "GD"
+        ]
+       },
+       {
+        "narration": "Adı da buradan gelir: kartondan kestiğin bir üçgeni tam G noktasından bir kalemin ucuna koyarsan dengede durur. G'den kenara paralel çizilen doğru, o kenarın üçte ikisi uzunluğundadır.",
+        "focus": [
+         "G",
+         "BE",
+         "CF"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Dik kenarları $12$ m ve $16$ m olan dik üçgen biçimindeki bir bahçenin ağırlık merkezine bir aydınlatma direği dikilecektir. Direğin bahçenin dik açılı köşesine uzaklığı kaç metredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         16.7,
+         12.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           12
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           16,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "M",
+          "at": [
+           8.0,
+           6.0
+          ]
+         },
+         {
+          "id": "G",
+          "at": [
+           5.333,
+           4.0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "C",
+          "to": "A",
+          "label": "12"
+         },
+         {
+          "from": "C",
+          "to": "B",
+          "label": "16"
+         },
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "C",
+          "to": "M",
+          "dashed": true
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "B",
+           "C"
+          ]
+         }
+        ],
+        "angles": [
+         {
+          "at": "C",
+          "from": "B",
+          "to": "A",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "$5$",
+        "$6$",
+        "$\\frac{20}{3}$",
+        "$8$",
+        "$10$"
+       ],
+       "answer": 2,
+       "narration": "Dik köşeden çıkan kenarortay hipotenüsün yarısı; $G$ onun üçte ikisinde.",
+       "steps": [
+        {
+         "text": "Hipotenüs $20$ → dik köşeden çıkan kenarortay $10$.",
+         "narration": "Hipotenüs on iki, on altı, yirmi üçgeninden yirmi. Dik köşeden hipotenüse çizilen kenarortay hipotenüsün yarısı, on."
+        },
+        {
+         "text": "Uzaklık $= \\frac{2}{3} \\cdot 10 = \\frac{20}{3}$. Cevap **C**.",
+         "narration": "Ağırlık merkezi kenarortayı köşeden itibaren iki bire böler: köşeye uzaklık kenarortayın üçte ikisi, yirmi bölü üç metre. Cevabımız C. Onu seçen, kenarortayın tamamını almıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dik üçgen bahçede ağırlık merkezi fikri, havuzdaki örnekten farklı ölçülerle kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $G$ ağırlık merkezi, $[AD]$ kenarortaydır. $|AG| = 10$ birim olduğuna göre $|GD| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         9.7,
+         6.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           3.2,
+           6
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           9,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           4.5,
+           0.0
+          ]
+         },
+         {
+          "id": "G",
+          "at": [
+           4.067,
+           2.0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "A",
+          "to": "G",
+          "label": "10"
+         },
+         {
+          "from": "G",
+          "to": "D",
+          "label": "x"
+         }
+        ],
+        "polygons": [],
+        "angles": []
+       },
+       "options": [
+        "4",
+        "5",
+        "6",
+        "$7{,}5$",
+        "10"
+       ],
+       "answer": 1,
+       "narration": "$|AG| : |GD| = 2 : 1$.",
+       "steps": [
+        {
+         "text": "$|AG| = 2x = 10$ → $x = 5$; $|AD| = 15$. Cevap **B**.",
+         "narration": "A G iki x, on; x beş. Kenarortayın tamamı on beş. Cevabımız B. Yirmiyi bulan, oranı ters çevirmiştir; köşeye yakın parça uzun olandır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ağırlık merkezinin 2 : 1 oranı özgün bir değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $G$ ağırlık merkezidir. $G$'den $[BC]$'ye paralel çizilen doğru $[AB]$'yi $E$'de, $[AC]$'yi $F$'de kesiyor. $|BC| = 18$ birim olduğuna göre $|EF| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         9.7,
+         7.0
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           3.5,
+           6.3
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           9,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           4.5,
+           0.0
+          ]
+         },
+         {
+          "id": "G",
+          "at": [
+           4.167,
+           2.1
+          ]
+         },
+         {
+          "id": "E",
+          "at": [
+           1.167,
+           2.1
+          ]
+         },
+         {
+          "id": "F",
+          "at": [
+           7.167,
+           2.1
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "18"
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": true
+         },
+         {
+          "from": "E",
+          "to": "F",
+          "label": "x"
+         }
+        ],
+        "polygons": [],
+        "angles": []
+       },
+       "options": [
+        "6",
+        "9",
+        "10",
+        "12",
+        "15"
+       ],
+       "answer": 3,
+       "narration": "$A$'dan bakınca $G$, kenarortayın $\\frac{2}{3}$'ünde.",
+       "steps": [
+        {
+         "text": "$|AG| = \\frac{2}{3}|AD|$; $AEF$ ile $ABC$ benzer, oran $\\frac{2}{3}$.",
+         "narration": "A'dan bakınca G, A D'nin üçte ikisinde. E F, B C'ye paralel olduğu için A E F üçgeni A B C'nin küçültülmüş kopyası; oran üçte iki."
+        },
+        {
+         "text": "$x = \\frac{2}{3} \\cdot 18 = 12$. Cevap **D**.",
+         "narration": "x, on sekizin üçte ikisi, on iki. Cevabımız D. Altıyı seçen, üçte biri almıştır; o, G D'nin payı.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ağırlık merkezinden geçen paralel ve 2/3 oranı özgün bir değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $D$ ve $E$ sırasıyla $[AB]$ ve $[AC]$'nin orta noktaları, $G$ ağırlık merkezi ve $[AF]$ kenarortaydır. $[DE]$, $[AF]$'yi $P$'de kesiyor. $|AF| = 18$ birim olduğuna göre $|PG|$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         10.7,
+         7.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           3.0,
+           7.2
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           10,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           1.5,
+           3.6
+          ]
+         },
+         {
+          "id": "E",
+          "at": [
+           6.5,
+           3.6
+          ]
+         },
+         {
+          "id": "F",
+          "at": [
+           5.0,
+           0.0
+          ]
+         },
+         {
+          "id": "G",
+          "at": [
+           4.333,
+           2.4
+          ]
+         },
+         {
+          "id": "P",
+          "at": [
+           4.0,
+           3.6
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "D",
+          "to": "E",
+          "dashed": true
+         },
+         {
+          "from": "A",
+          "to": "F"
+         }
+        ],
+        "polygons": [],
+        "angles": []
+       },
+       "options": [
+        "2",
+        "3",
+        "4",
+        "$4{,}5$",
+        "6"
+       ],
+       "answer": 1,
+       "narration": "Orta taban kenarortayı ortalar; $G$ ise $\\frac{2}{3}$'te: $3 : 1 : 2$.",
+       "steps": [
+        {
+         "text": "$[DE]$ orta taban → $P$, $[AF]$'nin orta noktası: $|AP| = 9$. $|AG| = \\frac{2}{3} \\cdot 18 = 12$.",
+         "narration": "D E orta taban; A F'yi tam ortasından keser: A P dokuz. Ağırlık merkezi A F'nin üçte ikisinde: A G on iki."
+        },
+        {
+         "text": "$|PG| = 12 - 9 = 3$; oran $|AP| : |PG| : |GF| = 9 : 3 : 6 = 3 : 1 : 2$. Cevap **B**.",
+         "narration": "P G, on iki eksi dokuz, üç. G F altı. Üç parça dokuz, üç, altı; yani üç, bir, iki oranı. Bu oranı akılda tut: orta taban ve ağırlık merkezi birlikte verilince köşeden tabana üç, bir, iki. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB'deki \"orta taban ve ağırlık merkezi verilince 3-1-2 oranı\" bilgisi özgün bir değerle soruya dönüştürüldü."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $G$ ağırlık merkezi ve $D$, $[BC]$'nin orta noktasıdır. $A(ABC) = 48$ cm² olduğuna göre $A(GBD)$ kaç santimetrekaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         9.1,
+         6.3
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2.6,
+           5.6
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           8.4,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           4.2,
+           0.0
+          ]
+         },
+         {
+          "id": "E",
+          "at": [
+           5.5,
+           2.8
+          ]
+         },
+         {
+          "id": "F",
+          "at": [
+           1.3,
+           2.8
+          ]
+         },
+         {
+          "id": "G",
+          "at": [
+           3.667,
+           1.867
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": true
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "dashed": true
+         },
+         {
+          "from": "C",
+          "to": "F",
+          "dashed": true
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "G",
+           "B",
+           "D"
+          ],
+          "fill": true
+         }
+        ],
+        "angles": []
+       },
+       "options": [
+        "4",
+        "6",
+        "8",
+        "12",
+        "16"
+       ],
+       "answer": 2,
+       "narration": "Üç kenarortay üçgeni altı eş alanlı parçaya ayırır.",
+       "steps": [
+        {
+         "text": "$A(GBC) = \\frac{1}{3} \\cdot 48 = 16$ (yükseklik $\\frac{1}{3}$).",
+         "narration": "G'nin B C'ye uzaklığı, A'nın uzaklığının üçte biri; G B C'nin alanı kırk sekizin üçte biri, on altı."
+        },
+        {
+         "text": "$[GD]$, $GBC$'nin kenarortayı: $A(GBD) = 8$. Cevap **C**.",
+         "narration": "G D, G B C üçgeninin kenarortayı; alanı yarıya böler: sekiz. Genel kural: üç kenarortay üçgeni altı eş parçaya ayırır; kırk sekiz bölü altı, sekiz. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ağırlık merkezinin oluşturduğu altı eş alan özgün bir değerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_KENARORTAY_03",
+    "subtopics": [
+     "GEO_KENARORTAY_04"
+    ],
+    "title": "Kenarortay uzunluğu",
+    "narration": "Son bölümde kenarortayın uzunluğunu kenarlardan buluyoruz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Apollonius bağıntısı",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        8.7,
+        5.03
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.5,
+          4.33
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          8,
+          0
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          4.0,
+          0.0
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "c"
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "b"
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "label": "a/2"
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "label": "a/2"
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "label": "Va",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ]
+        }
+       ],
+       "angles": []
+      },
+      "items": [
+       "$b^2 + c^2 = 2V_a^2 + \\frac{a^2}{2}$",
+       "Kenarortay bilinirse kenarların karelerinin **toplamı** bulunur.",
+       "Dik üçgende hipotenüse ait kenarortay $\\frac{a}{2}$; bağıntı Pisagor'a döner."
+      ],
+      "narration": "Apollonius bağıntısı kenarortayı kenarlara bağlar. A köşesinden çizilen kenarortaya V a diyelim. b kare artı c kare, iki V a kare artı a kare bölü ikiye eşittir. Kenarortay ve karşı kenar biliniyorsa, öbür iki kenarın karelerinin toplamı bulunur. Dik üçgende hipotenüse ait kenarortay hipotenüsün yarısı olduğu için bağıntı Pisagor teoremine döner."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kenar uzunlukları $|AB| = 5$, $|AC| = 7$ ve $|BC| = 8$ birim olan $ABC$ üçgeninde $A$ köşesine ait kenarortayın uzunluğu kaç birimdir?",
+       "options": [
+        "$\\sqrt{19}$",
+        "$\\sqrt{21}$",
+        "$\\sqrt{23}$",
+        "$5$",
+        "$2\\sqrt{6}$"
+       ],
+       "answer": 1,
+       "narration": "Apollonius: $5^2 + 7^2 = 2V_a^2 + \\frac{8^2}{2}$.",
+       "steps": [
+        {
+         "text": "$25 + 49 = 2V_a^2 + 32$ → $2V_a^2 = 42$.",
+         "narration": "Yirmi beş artı kırk dokuz, yetmiş dört; sekiz karenin yarısı otuz iki. İki V a kare, yetmiş dört eksi otuz iki, kırk iki."
+        },
+        {
+         "text": "$V_a^2 = 21$ → $V_a = \\sqrt{21}$. Cevap **B**.",
+         "narration": "V a kare yirmi bir, V a kök yirmi bir. Cevabımız B. Kök yirmi üçü bulan, sekiz karenin yarısını değil dörtte birini çıkarmıştır; bağıntıda a kare bölü iki var.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; Apollonius bağıntısı özgün kenar uzunluklarıyla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $ABC$ üçgeninde $|AB| = 6$, $|AC| = 8$ birim ve $A$ köşesine ait kenarortayın uzunluğu $5$ birimdir. Buna göre $|BC|$ kaç birimdir?",
+       "options": [
+        "8",
+        "9",
+        "10",
+        "12",
+        "14"
+       ],
+       "answer": 2,
+       "narration": "Apollonius'ta bu kez bilinmeyen $a$.",
+       "steps": [
+        {
+         "text": "$36 + 64 = 2 \\cdot 25 + \\frac{a^2}{2}$ → $\\frac{a^2}{2} = 50$ → $a^2 = 100$.",
+         "narration": "Altı kare artı sekiz kare, yüz; iki çarpı beş kare, elli. a kare bölü iki, elli; a kare yüz."
+        },
+        {
+         "text": "$a = 10$. Kenarortay $5 = \\frac{10}{2}$: üçgen $A$'da dik! Cevap **C**.",
+         "narration": "a on birim. Dikkat: kenarortay beş, karşı kenarın tam yarısı. Bu, A açısının dik olduğunu söyler; altı, sekiz, on üçgeni. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; Apollonius bağıntısından kenar bulma ve hipotenüs kenarortayı özelliği özgün bir soruda buluşturuldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $[AD]$ kenarortay, $|AD| = 6$ cm ve $|BD| = |DC| = 4$ cm'dir. $|AB| < |AC|$ olduğuna göre $|AB| = x$'in alabileceği kaç farklı tam sayı değeri vardır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         8.7,
+         5.661
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0.625,
+           4.961
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           8,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           4.0,
+           0.0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "x"
+         },
+         {
+          "from": "A",
+          "to": "C"
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "label": "4"
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "label": "4"
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "label": "6",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": []
+       },
+       "options": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+       ],
+       "answer": 2,
+       "narration": "Apollonius toplamı verir; $|AB| < |AC|$ ve üçgen eşitsizliği aralığı daraltır.",
+       "steps": [
+        {
+         "text": "$x^2 + |AC|^2 = 2 \\cdot 36 + \\frac{64}{2} = 104$; $x < |AC|$ → $x^2 < 52$ → $x \\le 7$.",
+         "narration": "Apollonius: x kare artı A C kare, iki çarpı otuz altı artı altmış dört bölü iki, yüz dört. x, A C'den küçük olduğuna göre x kare, yüz dördün yarısından, elli ikiden küçük: x en fazla yedi."
+        },
+        {
+         "text": "$ABD$'de: $6 - 4 < x$ → $x > 2$. Değerler $3, 4, 5, 6, 7$: **5** tane. Cevap **C**.",
+         "narration": "A B D üçgeninde x, altı ile dördün farkından büyük: ikiden büyük. Geriye üç, dört, beş, altı, yedi kalır; her biri için A C de üçgeni kurar. Beş farklı değer. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki Apollonius ve tam sayı yapısı farklı ölçülerle ve aralık gerekçesiyle yeniden kuruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Kenarortay üçgeni **eşit alanlı** iki parçaya ayırır.",
+    "Dik üçgende hipotenüse ait kenarortay hipotenüsün **yarısıdır**.",
+    "Ağırlık merkezi kenarortayı köşeden itibaren **2 : 1** böler.",
+    "Üç kenarortay üçgeni **altı eş alanlı** parçaya ayırır.",
+    "Apollonius: $b^2 + c^2 = 2V_a^2 + \\frac{a^2}{2}$."
+   ],
+   "warnings": [
+    "Köşeye yakın parça **uzun** olandır: $|AG| = 2|GD|$.",
+    "Kenarortay, açıortay ve yükseklik yalnız **ikizkenarda** çakışır.",
+    "Apollonius'ta $a^2$'nin **yarısı** eklenir, dörtte biri değil."
+   ],
+   "narration": "Hadi toparlayalım. Kenarortay üçgeni eşit alanlı iki parçaya ayırır; dik üçgende hipotenüse ait kenarortay hipotenüsün yarısıdır. Üç kenarortay ağırlık merkezinde kesişir; G her kenarortayı köşeden itibaren iki bire böler ve üçgeni altı eş alanlı parçaya ayırır. Apollonius bağıntısında b kare artı c kare, iki V a kare artı a kare bölü iki. Dikkat: ağırlık merkezinde köşeye yakın parça uzun olandır. Kenarortay, açıortay ve yükseklik ise yalnız ikizkenar üçgende tabana inen doğruda çakışır."
+  }
+ }
+}

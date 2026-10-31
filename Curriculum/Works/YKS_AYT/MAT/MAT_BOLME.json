@@ -1,0 +1,762 @@
+{
+ "topic": {
+  "id": "66DE6424-67F4-7984-6B74-F9C04590D0A9",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_BOLME"
+ },
+ "title": "Bölme ve Bölünebilme",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/MAT/MAT_BOLME.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Bölünebilme kuralları sayıyı bölmeden kalanı söyler.",
+   "narration": "ÖSYM 2018'den bu yana AYT'de bu konudan beş soru sordu ve beşi de aynı beceriyi istedi: sayıyı bilmeden, kurallarla kalanı ya da rakamı bulmak. Bu derste bölme eşitliğini ve bölünebilme kurallarını hatırlayıp ÖSYM'nin beş kalıbını AYT düzeyinde yeni sorularla çözeceğiz."
+  },
+  "objectives": [
+   "Bölme eşitliğini kalan koşuluyla birlikte kullanmak",
+   "Bileşik bir böleni aralarında asal çarpanlarına ayırmak",
+   "8, 9, 10 ve 11 kurallarıyla rakam bulmak",
+   "Birden çok bölünebilme koşulunu sırayla daraltmak",
+   "Sayıyı bilmeden kalanlarla işlem yapmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_BOLME_01",
+    "subtopics": [
+     "MAT_BOLME_02"
+    ],
+    "title": "Bölme ve kalan",
+    "narration": "Bölme işleminin tek bir eşitliği var, ama AYT bu eşitliğe bir koşul ekler: kalan her zaman bölenden küçüktür.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kısa tekrar: bölme eşitliği",
+      "items": [
+       "$A = B \\cdot C + K$: bölünen = bölen × bölüm + kalan.",
+       "$0 \\leq K < B$: kalan **bölenden küçüktür**.",
+       "$K = 0$ ise $A$, $B$'ye **tam bölünür**.",
+       "Harfli bölmede önce **eşitliği yaz**, sonra kalan koşuluyla ele."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "A = B \\cdot C + K, \\quad 0 \\le K < B",
+       "caption": "Kalan, bölenden küçük olmak zorunda."
+      },
+      "beats": [],
+      "narration": "Bölme işleminin eşitliği: bölünen, bölen çarpı bölüm artı kalandır. Kalan sıfırdan küçük olamaz ve her zaman bölenden küçüktür. Kalan sıfırsa sayı tam bölünür. Harflerle verilen bir bölmede önce bu eşitliği yaz, sonra kalan koşuluyla olmayan değerleri ele."
+     },
+     {
+      "kind": "mistake",
+      "title": "Kalanı unutulan koşul",
+      "wrong": "$A = 13 \\cdot C + 15$ yazılabilir.",
+      "right": "$13$'e bölmede kalan en çok $12$ olur.",
+      "why": "Kalan bölenden küçük olmalı; değilse bölüm bir eksik yazılmıştır: $13 \\cdot C + 15 = 13 \\cdot (C + 1) + 2$.",
+      "narration": "Sık yapılan bir hata: on üçe bölmede kalanı on beş yazmak. Kalan bölenden küçük olmalı, en çok on iki olabilir. On beşin içinde bir on üç daha var: bölüm bir artar, kalan iki olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Üç basamaklı $\\overline{A0B}$ doğal sayısının iki basamaklı $\\overline{BA}$ doğal sayısına bölümünden elde edilen bölüm 12, kalan 21'dir.\n\nBuna göre, $A + B$ toplamı kaçtır?",
+       "options": [
+        "$10$",
+        "$11$",
+        "$12$",
+        "$13$",
+        "$14$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$100A + B = 12(10B + A) + 21$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bölme eşitliği: bölünen, yüz A artı B; bölen, on B artı A. Yüz A artı B, eşittir on iki çarpı on B artı A, artı yirmi bir."
+        },
+        {
+         "text": "$88A - 119B = 21$ → $88A = 7(17B + 3)$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A'ları bir yana, B'leri öbür yana toplayalım: seksen sekiz A eksi yüz on dokuz B, yirmi bir. Yüz on dokuz da yirmi bir de yedinin katı: seksen sekiz A, yedi çarpı on yedi B artı üç."
+        },
+        {
+         "text": "$88$, 7'ye bölünmez: $A$ 7'nin katı, $A = 7$. Sonra $119B = 595$, $B = 5$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Seksen sekiz yediye bölünmediği için A yedinin katı olmalı. Rakam olarak A yedi. Yerine koyunca yüz on dokuz B, beş yüz doksan beş; B beş."
+        },
+        {
+         "text": "Denetim: $705 = 57 \\cdot 12 + 21$, $21 < 57$. $A + B = 12$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Denetleyelim: elli yedi çarpı on iki, altı yüz seksen dört; artı yirmi bir, yedi yüz beş. Kalan yirmi bir, bölen elli yediden küçük. A artı B, on iki. Cevap C."
+        }
+       ],
+       "narration": "ÖSYM 2020'de harflerle bir bölme sordu. Bölme eşitliğini çözümlemeyle birleştirelim.",
+       "origin": {
+        "changes": "ÖSYM 2020 harfli bölme kalıbı örnek alındı; sayılar, bölüm ve kalan yeni seçildi, çözüm yediye bölünebilmeye dayandırıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir bölme işleminde bölen 3 artırıldığında bölüm değişmiyor, kalan ise 12 azalıyor.\n\nBuna göre, bölünen sayı **en az** kaçtır?",
+       "options": [
+        "$48$",
+        "$52$",
+        "$56$",
+        "$60$",
+        "$64$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$A = B \\cdot C + K = (B + 3) \\cdot C + (K - 12)$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birinci bölme: A eşittir B çarpı C artı K. İkinci bölme: bölen B artı üç, bölüm yine C, kalan K eksi on iki."
+        },
+        {
+         "text": "Sadeleştir: $3C = 12$, $C = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki eşitliği karşılaştıralım: B çarpı C ve K iki tarafta da var, sadeleşir. Geriye üç C eşittir on iki kalır: bölüm dört."
+        },
+        {
+         "text": "$K - 12 \\geq 0$: $K \\geq 12$; $K < B$: $B \\geq 13$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Şimdi kalan koşulları: yeni kalan eksi olamaz, K en az on iki. K, B'den küçük olmalı, B en az on üç."
+        },
+        {
+         "text": "En küçük: $A = 13 \\cdot 4 + 12 = 64$. Denetim: $64 = 16 \\cdot 4 + 0$.",
+         "eliminate": [
+          "B",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bölüneni en küçük yapmak için B on üç, K on iki: on üç çarpı dört artı on iki, altmış dört. Denetim: altmış dört bölü on altı, bölüm dört, kalan sıfır. Kalan gerçekten on iki azaldı. Cevap E."
+        }
+       ],
+       "narration": "İki bölmeyi de eşitlik olarak yazalım; bölünen aynı sayı.",
+       "origin": {
+        "changes": "Bölen değişince bölüm ve kalan kalıbı; artış, azalış ve \"en az\" sorusu yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BOLME_03",
+    "subtopics": [],
+    "title": "2, 3, 4, 5 ve 6 ile bölünebilme",
+    "narration": "Bölünebilme kuralları sayıyı bölmeden kalanı söyler. AYT bunları asal çarpanlarla birleştirir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İlk beş kural",
+      "items": [
+       "**2** ile: son rakam çift. **5** ile: son rakam 0 ya da 5.",
+       "**3** ile: rakamlar toplamı 3'ün katı.",
+       "**4** ile: son iki basamak 4'ün katı.",
+       "**6** ile: hem 2 hem 3 ile bölünmeli; aralarında asal çarpanlara ayır."
+      ],
+      "visual": {
+       "kind": "matching",
+       "titles": [
+        "Bölen",
+        "Kural"
+       ],
+       "pairs": [
+        {
+         "left": "2 ile",
+         "right": "Son rakam **çift**"
+        },
+        {
+         "left": "3 ile",
+         "right": "Rakamlar toplamı **3'ün katı**"
+        },
+        {
+         "left": "4 ile",
+         "right": "Son **iki** basamak 4'ün katı"
+        },
+        {
+         "left": "5 ile",
+         "right": "Son rakam **0 ya da 5**"
+        },
+        {
+         "left": "6 ile",
+         "right": "**Hem 2 hem 3** ile"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "İki ile bölünebilme için son rakam çift olmalı; beş ile, son rakam sıfır ya da beş.",
+        "show": [],
+        "focus": [
+         "p1",
+         "p4"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Üç ile bölünebilmede son basamağa değil, rakamlar toplamına bakılır; toplam üçün katı olmalı.",
+        "show": [],
+        "focus": [
+         "p2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Dört ile bölünebilmede son iki basamak dördün katı olmalı.",
+        "show": [],
+        "focus": [
+         "p3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Altı, iki çarpı üç. İkisi aralarında asal olduğu için sayı hem ikiye hem üçe bölünmeli. AYT'de bileşik bir bölen gelince hep böyle aralarında asal çarpanlara ayır.",
+        "show": [],
+        "focus": [
+         "p5"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Beş kuralı eşleştirerek hatırlayalım. Her kural sayının bir parçasına bakar: ya son basamaklara ya da rakamlar toplamına."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$p$ ve $r$ birbirinden farklı asal sayılar olmak üzere\n\n$126 \\cdot r$\n\nsayısı $p$ sayısının bir tam sayı katıdır.\n\nBuna göre, $p$ asal sayısı aşağıdakilerden hangisini **kesinlikle** tam böler?",
+       "options": [
+        "$14 \\cdot r$",
+        "$18 \\cdot r$",
+        "$21 \\cdot r$",
+        "$42 \\cdot r$",
+        "$63 \\cdot r$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$126 = 2 \\cdot 3^2 \\cdot 7$. $p$, $126 \\cdot r$'yi böler ve $p \\neq r$: $p$, 126'yı böler.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yüz yirmi altıyı asal çarpanlarına ayıralım: iki çarpı üç kare çarpı yedi. p asal ve r'den farklı; demek ki p, yüz yirmi altının bir asal çarpanı."
+        },
+        {
+         "text": "$p \\in \\{2, 3, 7\\}$: üç değer de olabilir.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "p iki, üç ya da yedi olabilir. Kesinlikle sorusunda üçünü de hesaba katmalıyız."
+        },
+        {
+         "text": "$14$'te 3 yok, $18$'de 7 yok, $21$ ve $63$'te 2 yok.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "On dört üçe, on sekiz yediye bölünmez. Yirmi bir ve altmış üç tek sayı, ikiye bölünmez. Bu şıklar p'nin bir değerinde bozulur."
+        },
+        {
+         "text": "$42 = 2 \\cdot 3 \\cdot 7$: üç değerin de katı.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kırk iki, iki çarpı üç çarpı yedi: p hangisi olursa olsun kırk iki çarpı r'yi böler. Cevap D."
+        }
+       ],
+       "narration": "ÖSYM 2021'de bu kalıbı 180 ile sordu; biz 126 ile kuralım. Önce p'nin olabileceği değerleri bulalım.",
+       "origin": {
+        "changes": "ÖSYM 2021 asal bölen kalıbı örnek alındı; 180 yerine 126 ve yeni şıklarla yeniden kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dört basamaklı $\\overline{3a7b}$ sayısı 6 ile tam bölünüyor, 5 ile bölümünden kalan ise 4'tür.\n\nBuna göre, $a$ rakamının alabileceği değerlerin toplamı kaçtır?",
+       "options": [
+        "$9$",
+        "$12$",
+        "$15$",
+        "$18$",
+        "$21$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "5 ile kalan 4: $b \\in \\{4, 9\\}$. 6 ile bölünüyor, çift: $b = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Beşe bölümünden kalan dört: son rakam dört ya da dokuz. Sayı altıya bölündüğü için çift: b dört."
+        },
+        {
+         "text": "3 ile: $3 + a + 7 + 4 = 14 + a$, 3'ün katı.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Altıya bölünmek için üçe de bölünmeli. Rakamlar toplamı on dört artı a, üçün katı olmalı."
+        },
+        {
+         "text": "$a \\in \\{1, 4, 7\\}$, toplam $12$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a bir, dört ya da yedi olabilir: on beş, on sekiz, yirmi bir. Toplam on iki. Cevap B."
+        }
+       ],
+       "narration": "Son rakamdan başlayalım; iki koşul da son rakama bir şey söylüyor.",
+       "origin": {
+        "changes": "Kalanlı bölünebilme kalıbı; sayı ve koşullar yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BOLME_04",
+    "subtopics": [],
+    "title": "8, 9, 10 ve 11 ile bölünebilme",
+    "narration": "Dört kural daha; AYT'nin en çok sevdiği 11 kuralı. Kartları çevirerek hatırlayalım.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Dört kural daha",
+      "items": [
+       "**8** ile: son **üç** basamak 8'in katı.",
+       "**9** ile: rakamlar toplamı 9'un katı.",
+       "**10** ile: son rakam **0**.",
+       "**11** ile: sağdan $+, -, +, -, \\dots$ işaretle toplam 11'in katı."
+      ],
+      "visual": {
+       "kind": "flipcards",
+       "cards": [
+        {
+         "front": "8 ile",
+         "back": "Son **üç** basamak 8'in katı: 5**096**"
+        },
+        {
+         "front": "9 ile",
+         "back": "Rakamlar toplamı **9'un katı**: 4527 → 18"
+        },
+        {
+         "front": "10 ile",
+         "back": "Son rakam **0**"
+        },
+        {
+         "front": "11 ile",
+         "back": "Sağdan **+ − + −**: 8349 → 9 − 4 + 3 − 8 = 0"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Sekiz ile bölünebilmede son üç basamağa bakılır. 5096'da son üç basamak doksan altı, sekiz çarpı on iki.",
+        "show": [],
+        "focus": [
+         "p1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Dokuz ile bölünebilmede rakamlar toplamı dokuzun katı olmalı. 4527'nin rakamları toplamı on sekiz.",
+        "show": [],
+        "focus": [
+         "p2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "On ile bölünebilme için son rakam sıfır olmalı.",
+        "show": [],
+        "focus": [
+         "p3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "On bir ile: rakamlara sağdan başlayarak artı, eksi, artı, eksi işaret ver. 8349'da dokuz eksi dört artı üç eksi sekiz, sıfır. Sıfır on birin katı: 8349, on bire bölünür.",
+        "show": [],
+        "focus": [
+         "p4"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Dört kural daha. Her kartı çevirelim."
+     },
+     {
+      "kind": "predict",
+      "title": "Fark hep 9'un katı mı?",
+      "prompt": "Bir sayının rakamlarının yeri değiştirilip yeni bir sayı yazılıyor. Büyükten küçük çıkarılınca fark 9'a bölünür mü?",
+      "choices": [
+       "Her zaman",
+       "Yalnız bazen"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sayı",
+        "Yeni sayı",
+        "Fark"
+       ],
+       "rows": [
+        [
+         "$7351$",
+         "$1537$",
+         "$5814 = 9 \\cdot 646$"
+        ],
+        [
+         "$842$",
+         "$248$",
+         "$594 = 9 \\cdot 66$"
+        ],
+        [
+         "$5207$",
+         "$2075$",
+         "$3132 = 9 \\cdot 348$"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "7351 ile 1537: fark 5814, dokuz çarpı 646.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "842 ile 248: fark 594. 5207 ile 2075: fark 3132. Hepsi dokuzun katı.",
+        "show": [
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r2",
+         "r3"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "İki sayının rakamları toplamı aynı: 9 ile bölümünden kalanları **aynıdır**, farkları 9'un katıdır.",
+      "narration": "Şimdi sıra sende. Bir sayının rakamlarının yerini değiştirip büyükten küçüğü çıkarıyoruz. Fark dokuza bölünür mü? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: her zaman. İki sayının rakamları aynı, rakamları toplamı da aynı. Bu yüzden dokuza bölümünden kalanları aynıdır ve farkları dokuzun katıdır. Kalanlı soruların anahtarı da bu: aynı kalanı veren iki sayının farkı tam bölünür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Üç basamaklı bir doğal sayı 11'e, rakamları çarpımı 14'e, rakamları toplamı ise 15'e tam bölünmektedir.\n\nBuna göre, bu sayının rakamları çarpımı kaçtır?",
+       "options": [
+        "$48$",
+        "$72$",
+        "$84$",
+        "$96$",
+        "$126$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Rakamlar toplamı en çok 27: $a + b + c = 15$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç rakamın toplamı en çok yirmi yedi. On beşin katı ve sıfır değil: toplam on beş."
+        },
+        {
+         "text": "11 ile: $a - b + c \\in \\{0, 11\\}$. $a + c = b$ ise $2b = 15$, olmaz. O hâlde $a + c - b = 11$: $b = 2$, $a + c = 13$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "On bir kuralı: a eksi b artı c, sıfır ya da on bir. Sıfır olsaydı a artı c, b'ye eşit olurdu ve iki b on beş çıkardı; olmaz. Demek ki a artı c eksi b on bir. Toplamla birlikte: b iki, a artı c on üç."
+        },
+        {
+         "text": "Çarpım $2ac$, 14'e bölünür: $ac$ 7'nin katı, $\\{a, c\\} = \\{6, 7\\}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Rakamlar çarpımı iki çarpı a çarpı c, on dörde bölünmeli: a çarpı c yedinin katı. a artı c on üç ise rakamlardan biri yedi, öteki altı."
+        },
+        {
+         "text": "Sayı $627$ ya da $726$; çarpım $6 \\cdot 2 \\cdot 7 = 84$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sayı 627 ya da 726. İkisinde de rakamlar çarpımı altı çarpı iki çarpı yedi, seksen dört. Cevap C."
+        }
+       ],
+       "narration": "ÖSYM 2026'da bu kalıbı sordu; biz başka bölenlerle kuralım. Üç koşulu sırayla daraltalım.",
+       "origin": {
+        "changes": "ÖSYM 2026 çoklu bölünebilme kalıbı örnek alındı; 12 ve 13 yerine 14 ve 15 ile yeniden kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$A$, $B$ ve $C$ birer rakam olmak üzere\n\nüç basamaklı $\\overline{ABC}$ sayısı 24 ile,\n\nüç basamaklı $\\overline{BCA}$ sayısı 45 ile\n\ntam bölünmektedir.\n\nBuna göre, $\\overline{ABC}$ sayısı kaçtır?",
+       "options": [
+        "$504$",
+        "$528$",
+        "$552$",
+        "$576$",
+        "$648$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$45 = 5 \\cdot 9$. $\\overline{BCA}$ 5 ile: $A \\in \\{0, 5\\}$; $A$ başta, $A = 5$.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kırk beş, beş çarpı dokuz; ikisi aralarında asal. B C A beşe bölünüyor: son rakamı A, sıfır ya da beş. A, A B C'nin başında, sıfır olamaz: A beş."
+        },
+        {
+         "text": "9 ile: $5 + B + C \\in \\{9, 18\\}$, $B + C \\in \\{4, 13\\}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dokuza bölünme: beş artı B artı C, dokuz ya da on sekiz. B artı C dört ya da on üç."
+        },
+        {
+         "text": "$\\overline{5BC}$ 8 ile (24 = 8 · 3): $504$, $528$, $552$, $576$ içinde $B + C$ yalnız $576$'da 13.",
+         "eliminate": [
+          "A",
+          "B",
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "24, sekiz çarpı üç. Beşle başlayan şıklar: 504, 528, 552 ve 576. B artı C sırasıyla dört, on, yedi, on üç. 504'te dört ama o zaman B C A, 045 olur; üç basamaklı değil."
+        },
+        {
+         "text": "Denetim: $576 = 24 \\cdot 24$, $765 = 45 \\cdot 17$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Denetleyelim: 576, yirmi dört çarpı yirmi dört. 765, kırk beş çarpı on yedi. Cevap D."
+        }
+       ],
+       "narration": "ÖSYM 2023'te dört koşullu bir rakam sorusu sordu. Bizimkinde iki koşul var. Bütün şıklar yirmi dörde bölünüyor; asıl eleme ikinci koşulda.",
+       "origin": {
+        "changes": "ÖSYM 2023 rakamlı çoklu bölünebilme kalıbı örnek alındı; bölenler, sayılar ve şıklar yeni kuruldu"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BOLME_05",
+    "subtopics": [],
+    "title": "Kalanlı bölünebilme",
+    "narration": "Kalan sorularında sayının kendisini bilmek gerekmez; kalanlarla işlem yapılır. Son bölümde üç kalıp.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kalanlarla işlem",
+      "items": [
+       "Toplamın, farkın, çarpımın kalanı = kalanların toplamı, farkı, çarpımının kalanı.",
+       "9 ile bölümden kalan = **rakamlar toplamının** 9 ile bölümünden kalan.",
+       "$n$, $a$'ya bölününce $a - 1$, $b$'ye bölününce $b - 1$ kalanını veriyorsa $n + 1$ **ikisine de** bölünür."
+      ],
+      "beats": [],
+      "narration": "Kalan sorularının üç anahtarı. Bir toplamın ya da çarpımın kalanı, kalanların toplamının ya da çarpımının kalanıdır; sayının kendisine gerek yok. Dokuza bölümden kalan, rakamlar toplamının dokuza bölümünden kalandır. Ve bir sayı her bölene bölündüğünde bölenden bir eksik kalan veriyorsa, sayının bir fazlası hepsine tam bölünür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Beş basamaklı $\\overline{4a73b}$ sayısının 9 ile bölümünden kalan 2, 10 ile bölümünden kalan 6'dır.\n\nBuna göre, $a$ rakamının alabileceği değerlerin toplamı kaçtır?",
+       "options": [
+        "$0$",
+        "$7$",
+        "$9$",
+        "$12$",
+        "$18$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "10 ile kalan 6: $b = 6$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "On ile bölümden kalan, son rakamdır: b altı."
+        },
+        {
+         "text": "Rakamlar toplamı $4 + a + 7 + 3 + 6 = 20 + a$; 9 ile kalanı 2: $a + 20 \\in \\{20, 29\\}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Rakamlar toplamı yirmi artı a. Dokuza bölümünden kalan iki olmalı: yirmi ya da yirmi dokuz. Yirmi, dokuz çarpı iki artı iki; yirmi dokuz, dokuz çarpı üç artı iki."
+        },
+        {
+         "text": "$a \\in \\{0, 9\\}$: iki değer. Toplam $9$.",
+         "eliminate": [
+          "A",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "a sıfır ya da dokuz. a sayının başında değil, sıfır olabilir. Toplam dokuz. Sıfırı unutan da dokuzu unutan da yanılır. Cevap C."
+        }
+       ],
+       "narration": "On ile kalan son rakamı, dokuz ile kalan rakamlar toplamını söyler.",
+       "origin": {
+        "changes": "Kalanlı bölünebilme kalıbı; sayı, kalanlar ve iki değerli cevap yeni kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$n$ pozitif bir tam sayı olmak üzere\n\n$f(n)$: $n$'nin 4 ile bölümünden kalan\n\n$g(n)$: $n$'nin 6 ile bölümünden kalan\n\nolarak tanımlanıyor.\n\n$f(n) + g(n) = 8$ eşitliğini sağlayan 50'den küçük $n$ sayılarının toplamı kaçtır?",
+       "options": [
+        "$116$",
+        "$128$",
+        "$140$",
+        "$152$",
+        "$164$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$f(n) \\leq 3$, $g(n) \\leq 5$: toplam 8 ancak $f(n) = 3$, $g(n) = 5$ ile olur.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dörde bölmede kalan en çok üç, altıya bölmede en çok beş. Toplam sekiz olması için ikisi de en büyük değerinde olmalı: üç ve beş."
+        },
+        {
+         "text": "Kalanlar bölenden bir eksik: $n + 1$ hem 4'e hem 6'ya bölünür, $\\text{EKOK} = 12$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki kalan da bölenden bir eksik. Demek ki n artı bir, dörde de altıya da tam bölünür; yani on ikinin katıdır."
+        },
+        {
+         "text": "$n = 12k - 1$: $11, 23, 35, 47$. Toplam $116$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "n, on ikinin katından bir eksik: on bir, yirmi üç, otuz beş, kırk yedi. Toplam yüz on altı. Cevap A."
+        }
+       ],
+       "narration": "ÖSYM 2018'de bölünebilmeyle tanımlanan bir sembol sordu. Bizimki kalanla tanımlı. Önce kalanların en büyük değerlerine bakalım.",
+       "origin": {
+        "changes": "ÖSYM 2018 tanımlı sembol kalıbı örnek alındı; tanım kalanla, sayılar ve sınır yeni kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x$ sayısının 7 ile bölümünden kalan 4, $y$ sayısının 7 ile bölümünden kalan 5'tir.\n\nBuna göre, $x^2 \\cdot y + 3x$ ifadesinin 7 ile bölümünden kalan kaçtır?",
+       "options": [
+        "$0$",
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$x$ yerine 4, $y$ yerine 5: $4^2 \\cdot 5 + 3 \\cdot 4 = 80 + 12 = 92$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kalanları yerine koyalım: dört kare çarpı beş, seksen; üç çarpı dört, on iki. Toplam doksan iki."
+        },
+        {
+         "text": "$92 = 7 \\cdot 13 + 1$: kalan $1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Doksan iki, yedi çarpı on üç artı bir. Kalan bir. Cevap B."
+        }
+       ],
+       "narration": "x ve y'yi bilmiyoruz; kalanlarla çalışacağız.",
+       "origin": {
+        "changes": "Kalanlarla işlem kalıbı; ifade ve kalanlar yeni yazıldı"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$A = B \\cdot C + K$ ve **$K < B$**.",
+    "Bileşik bölen: **aralarında asal** çarpanlara ayır ($24 = 8 \\cdot 3$, $45 = 5 \\cdot 9$).",
+    "11 kuralı: sağdan **+ − + −**.",
+    "Rakamları yer değiştiren iki sayının farkı **9'un katıdır**.",
+    "Kalanlar **toplanır ve çarpılır**; sayının kendisi gerekmez.",
+    "Her bölenden **bir eksik** kalan: $n + 1$ hepsine bölünür."
+   ],
+   "warnings": [
+    "Kalan **bölenden küçük** olmalı.",
+    "Ortadaki rakam **sıfır olabilir**, baştaki olamaz."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki $\\overline{ABC}$ sorusunu **36 ile 45** bölenleriyle yeniden kur: kaç sayı çıkıyor?",
+    "$f(n) + g(n) = 8$ sorusunu **100'den küçük** $n$ sayıları için çöz.",
+    "Uygulamada AYT Bölme ve Bölünebilme testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Bileşik bölen sorusunu adım adım çöz: 4A3B sayısı 45'e bölünüyorsa 5 ve 9 kuralı birlikte uygulanır. B = 0 için A = 2 (4230), B = 5 için A = 6 (4635).",
+   "Kalan aritmetiğine kuvvet örneği ekle: 7¹⁰⁰'ün 5 ile bölümünden kalan için 7 yerine 2 yazılır; 2⁴ ≡ 1 olduğundan 2¹⁰⁰ ≡ 1, kalan 1.",
+   "11 kuralına örnek ver: 7a25 sayısı 11'e bölünüyorsa sağdan + − + − ile 5 − 2 + a − 7 = a − 4 = 0, a = 4.",
+   "Bölme işleminde sınırları ve kalan aktarımını göster: A = 7B + 5 ise B en az 6, A en az 47. 12'ye bölümünden kalan 8 olan sayının 4'e bölümünden kalan 0, 3'e bölümünden kalan 2'dir (12'nin bölenlerine kalan aktarılır).",
+   "Ardışık sayı çarpımlarını ekle: ardışık 3 tam sayının çarpımı 6'ya, ardışık 4 tam sayının çarpımı 24'e bölünür; n³ − n = (n − 1)n(n + 1) her zaman 6'nın katıdır."
+  ]
+ }
+}

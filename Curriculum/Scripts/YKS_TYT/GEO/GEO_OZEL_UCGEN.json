@@ -1,0 +1,1890 @@
+{
+ "topic": {
+  "id": "905C3A40-9990-F9A0-1021-CB4516014995",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_OZEL_UCGEN"
+ },
+ "title": "Özel Üçgenler",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "YKS/TYT/KonuAnlatimi/GEO/GEO_OZEL_UCGEN.json (MEB Temel Matematik s. 116-118, 133-134, 136: ikizkenar ve eşkenar üçgen, Pisagor teoremi)",
+  "YKS/TYT/CikmisSorular/GEO.jsonl (ÖSYM 2018-2026: 3 ikizkenar, 1 30-60-90, 1 45-45-90, 5 Pisagor sorusu; yalnız yapı örneği); YKS/TYT/Sorular/GEO/GEO_OZEL_UCGEN.jsonl",
+  "Bütün şekiller verilen ölçülerle koordinatta çizildi; sorular özgündür"
+ ],
+ "works": {
+  "additions": [
+   "Pisagor üçlülerini listele (3-4-5, 5-12-13, 8-15-17, 7-24-25, 20-21-29) ve katlarıyla tanıma alıştırması ekle.",
+   "15-75-90 ve 30-30-120 (kenar oranı 1 : 1 : √3) üçgenlerini ekle; 15-75-90 üçgeninde hipotenüse ait yüksekliğin hipotenüsün dörtte biri olduğunu yaz.",
+   "30°, 45° ve 60° için sin, cos, tan, cot değerleri tablosunu ve sin²x + cos²x = 1, sin x = cos(90° − x) bağıntılarını ver.",
+   "Öklid bağıntılarının üçünü ve alan bağıntısını birlikte ver: h² = p · k, kenar² = bitişik parça · hipotenüs, dik kenarların çarpımı = hipotenüs · yükseklik; her biri için örnek.",
+   "Dik üçgende hipotenüse ait kenarortayın hipotenüsün yarısı olduğunu ve dik üçgenin çevrel çember merkezinin hipotenüsün ortası olduğunu ekle."
+  ]
+ },
+ "short": {
+  "hook": "Bu üçgenleri tanı",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "30-60-90: $x$, $x\\sqrt{3}$, $2x$"
+   },
+   {
+    "kind": "fact",
+    "text": "45-45-90: $x$, $x$, $x\\sqrt{2}$"
+   },
+   {
+    "kind": "warning",
+    "text": "**3-4-5** ailesini tanı."
+   }
+  ],
+  "summary": [
+   "x, x√3, 2x",
+   "x, x, x√2"
+  ],
+  "rounds": [
+   {
+    "sentence": "Dik kenarlar 6 ve 8",
+    "question": "Hipotenüs?",
+    "choices": [
+     "10",
+     "14"
+    ],
+    "answer": 0,
+    "why": "3-4-5 **ailesi**."
+   },
+   {
+    "sentence": "30° karşısı 5",
+    "question": "Hipotenüs?",
+    "choices": [
+     "10",
+     "5√3"
+    ],
+    "answer": 0,
+    "why": "**İki** katı."
+   },
+   {
+    "sentence": "Kare kenarı 4",
+    "question": "Köşegen?",
+    "choices": [
+     "4√2",
+     "8"
+    ],
+    "answer": 0,
+    "why": "Kenar çarpı **√2**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-geometri-kampi",
+  "name": "TYT Geometri kampı",
+  "number": 5,
+  "total": 23,
+  "previous": "Ek Çizimler",
+  "next": "Açıortay",
+  "promise": "Geometri konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Pisagor ailelerini (**3-4-5, 5-12-13, 8-15-17**) ve katlarını bir kartta topla.",
+    "Bir eşkenar üçgeni ve bir kareyi ikiye kes: **30-60-90** ve **45-45-90** kenarlarını kendin çıkar.",
+    "Uygulamada Özel Üçgenler testinden **20 soru** çöz; her şekilde önce **dik açıyı** bul."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Pisagor ailelerini, üç, dört, beş; beş, on iki, on üç ve sekiz, on beş, on yediyi katlarıyla birlikte bir kartta topla. Sonra bir eşkenar üçgeni ve bir kareyi ikiye kes; otuz, altmış, doksan ve kırk beş, kırk beş, doksan üçgenlerinin kenarlarını kendin çıkar. En son uygulamada özel üçgenler testinden yirmi soru çöz; her şekilde önce dik açıyı bul. Bir sonraki derste açıortayla devam ediyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Ezberlenecek beş üçgen",
+   "narration": "Geometri sorularının büyük kısmı, sonunda birkaç tanıdık üçgene varır. Üç, dört, beş; yarısı kesilmiş bir eşkenar; köşegeniyle bölünmüş bir kare. Bu üçgenleri bir bakışta tanırsan uzun hesaplar tek satıra iner. Bu derste Pisagor teoremini, ikizkenar ve eşkenar üçgeni, otuz, altmış, doksan ve kırk beş, kırk beş, doksan üçgenlerini ve Öklid bağıntılarını öğreneceğiz."
+  },
+  "objectives": [
+   "Pisagor teoremini ve Pisagor üçlülerini kullanarak kenar bulmak",
+   "İkizkenar ve eşkenar üçgende yüksekliği kullanmak",
+   "30-60-90 ve 45-45-90 üçgenlerinin kenar oranlarını uygulamak",
+   "Dik üçgende Öklid bağıntılarıyla uzunluk bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_OZEL_UCGEN_09",
+    "subtopics": [
+     "GEO_OZEL_UCGEN_01",
+     "GEO_OZEL_UCGEN_06",
+     "GEO_OZEL_UCGEN_07"
+    ],
+    "title": "Pisagor ve dik üçgen",
+    "narration": "Bütün özel üçgenlerin anahtarı tek bir teorem: Pisagor.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Kenarlara kare çiz",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -3.6,
+        -4.6,
+        7.6,
+        7.6
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          3
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          4,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "K1",
+         "at": [
+          -3,
+          0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "K2",
+         "at": [
+          -3,
+          3
+         ],
+         "hidden": true
+        },
+        {
+         "id": "L1",
+         "at": [
+          0,
+          -4
+         ],
+         "hidden": true
+        },
+        {
+         "id": "L2",
+         "at": [
+          4,
+          -4
+         ],
+         "hidden": true
+        },
+        {
+         "id": "M1",
+         "at": [
+          7,
+          4
+         ],
+         "hidden": true
+        },
+        {
+         "id": "M2",
+         "at": [
+          3,
+          7
+         ],
+         "hidden": true
+        },
+        {
+         "id": "s9",
+         "at": [
+          -1.5,
+          1.5
+         ],
+         "label": "9",
+         "dot": false
+        },
+        {
+         "id": "s16",
+         "at": [
+          2,
+          -2
+         ],
+         "label": "16",
+         "dot": false
+        },
+        {
+         "id": "s25",
+         "at": [
+          3.5,
+          3.5
+         ],
+         "label": "25",
+         "dot": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "C",
+         "to": "A",
+         "label": "3"
+        },
+        {
+         "from": "C",
+         "to": "B",
+         "label": "4"
+        },
+        {
+         "from": "A",
+         "to": "B",
+         "label": "5"
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "C",
+          "A",
+          "K2",
+          "K1"
+         ],
+         "fill": true
+        },
+        {
+         "points": [
+          "C",
+          "L1",
+          "L2",
+          "B"
+         ],
+         "fill": true
+        },
+        {
+         "points": [
+          "A",
+          "B",
+          "M1",
+          "M2"
+         ],
+         "fill": true
+        }
+       ],
+       "angles": [
+        {
+         "at": "C",
+         "from": "B",
+         "to": "A",
+         "right": true
+        }
+       ]
+      },
+      "caption": "Dik üçgende dik kenarların kareleri toplamı hipotenüsün karesidir: $a^2 + b^2 = c^2$.",
+      "narration": "Dik kenarları üç ve dört olan bir dik üçgenin her kenarına bir kare çizelim.",
+      "beats": [
+       {
+        "narration": "Kısa dik kenardaki karenin alanı dokuz, uzun dik kenardakinin alanı on altı.",
+        "focus": [
+         "CAK2K1",
+         "CL1L2B"
+        ]
+       },
+       {
+        "narration": "Hipotenüsün, yani dik açının karşısındaki en uzun kenarın karesi yirmi beş: dokuz artı on altı. Pisagor teoremi budur. Üç, dört, beş ailesini ve beş, on iki, on üçü, sekiz, on beş, on yediyi tanırsan hesap yapmadan cevaba gidersin; katları da aynı aileden.",
+        "focus": [
+         "ABM1M2",
+         "AB"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir dik üçgenin hipotenüsü $26$ cm, dik kenarlarından biri $10$ cm'dir. Diğer dik kenar kaç santimetredir?",
+       "options": [
+        "16",
+        "20",
+        "22",
+        "24",
+        "25"
+       ],
+       "answer": 3,
+       "narration": "Önce aileyi tanı: $10$ ve $26$, $5$ ile $13$'ün iki katı.",
+       "steps": [
+        {
+         "text": "$10 = 2 \\cdot 5$, $26 = 2 \\cdot 13$ → $5$-$12$-$13$ ailesi, $2$ katı.",
+         "narration": "On, beşin iki katı; yirmi altı, on üçün iki katı. Bu üçgen beş, on iki, on üç ailesinden, iki katı büyütülmüş."
+        },
+        {
+         "text": "Diğer dik kenar $2 \\cdot 12 = 24$; kontrol: $24^2 + 10^2 = 576 + 100 = 676 = 26^2$. Cevap **D**.",
+         "narration": "Diğer dik kenar iki çarpı on iki, yirmi dört. Kontrol: yirmi dört kare beş yüz yetmiş altı, on kare yüz; toplam altı yüz yetmiş altı, yirmi altının karesi. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; Pisagor üçlüsünün katı tanınarak çözülen özgün bir hesap sorusu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Uzunluğu $16$ m olan bir direk, fırtınada yerden $x$ metre yükseklikten kırılıyor. Kopmayan üst parçanın ucu, şekildeki gibi direğin dibinden $8$ m uzakta yere değiyor. Buna göre $x$ kaçtır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.4,
+         -1.2,
+         9.6,
+         7.4
+        ],
+        "points": [
+         {
+          "id": "G1",
+          "at": [
+           -1,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "G2",
+          "at": [
+           9.2,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "K",
+          "at": [
+           0,
+           6
+          ]
+         },
+         {
+          "id": "T",
+          "at": [
+           8,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "G1",
+          "to": "G2"
+         },
+         {
+          "from": "O",
+          "to": "K",
+          "label": "x"
+         },
+         {
+          "from": "K",
+          "to": "T",
+          "label": "16 − x"
+         },
+         {
+          "from": "O",
+          "to": "T",
+          "label": "8"
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "O",
+          "from": "T",
+          "to": "K",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+       ],
+       "answer": 2,
+       "narration": "Kırılan parça hipotenüs olur: $16 - x$.",
+       "steps": [
+        {
+         "text": "Dik üçgen: dik kenarlar $x$ ve $8$, hipotenüs $16 - x$.",
+         "narration": "Direğin ayakta kalan kısmı x, yerdeki uzaklık sekiz; kırılan parça ise on altı eksi x ve dik üçgenin hipotenüsü."
+        },
+        {
+         "text": "$x^2 + 64 = (16 - x)^2 = 256 - 32x + x^2$ → $32x = 192$ → $x = 6$. Cevap **C**.",
+         "narration": "Pisagor: x kare artı altmış dört, on altı eksi x'in karesine eşit. x kareler sadeleşir; otuz iki x, yüz doksan iki; x altı. Kontrol: altı, sekiz, on üçgeni; altı artı on, on altı. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2018 kırık direk sorusunun fikri, duvarsız ve farklı sayılarla yeniden kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_OZEL_UCGEN_03",
+    "subtopics": [
+     "GEO_OZEL_UCGEN_02"
+    ],
+    "title": "İkizkenar ve eşkenar",
+    "narration": "İkizkenar ve eşkenar üçgende yükseklik her şeyi çözer.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Eşkenarın yüksekliği",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.8,
+        6.7,
+        6.0
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          3,
+          5.196
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          6,
+          0
+         ]
+        },
+        {
+         "id": "H",
+         "at": [
+          3,
+          0
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "a"
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "a"
+        },
+        {
+         "from": "B",
+         "to": "H",
+         "label": "a/2"
+        },
+        {
+         "from": "H",
+         "to": "C",
+         "label": "a/2"
+        },
+        {
+         "from": "A",
+         "to": "H",
+         "label": "h",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "H",
+         "from": "C",
+         "to": "A",
+         "right": true
+        },
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "label": "60°"
+        }
+       ]
+      },
+      "caption": "Kenarı $a$ olan eşkenar üçgende yükseklik $h = \\frac{a\\sqrt{3}}{2}$.",
+      "narration": "Eşkenar üçgenin üç kenarı ve üç açısı eşittir; her açı altmış derece. Tepeden inen yükseklik, ikizkenarda olduğu gibi tabanı ortalar.",
+      "beats": [
+       {
+        "narration": "Yükseklik tabanı a bölü iki, a bölü iki diye ikiye ayırır ve iki dik üçgen oluşur. İkizkenar üçgende de tepeden inen yükseklik hem açıortay hem kenarortaydır.",
+        "focus": [
+         "AH",
+         "BH",
+         "HC",
+         "angle-H"
+        ]
+       },
+       {
+        "narration": "Pisagor: h kare, a kare eksi a bölü ikinin karesi; bu da üç a kare bölü dört. h, a kök üç bölü iki. Bu formülü ezberle; eşkenar üçgen sorularının çoğu buradan çözülür.",
+        "focus": [
+         "AB",
+         "AH",
+         "BH"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kenarının uzunluğu $6$ cm olan eşkenar üçgenin yüksekliği kaç santimetredir?",
+       "options": [
+        "$2\\sqrt{3}$",
+        "$3$",
+        "$3\\sqrt{3}$",
+        "$6$",
+        "$6\\sqrt{3}$"
+       ],
+       "answer": 2,
+       "narration": "Eşkenarda $h = \\frac{a\\sqrt{3}}{2}$.",
+       "steps": [
+        {
+         "text": "$h = \\frac{6\\sqrt{3}}{2} = 3\\sqrt{3}$. Cevap **C**.",
+         "narration": "Formülde a yerine altı: altı kök üç bölü iki, üç kök üç santimetre. Pisagorla da aynı sonuç: altı kare eksi üç kare, yirmi yedi; yirmi yedinin karekökü üç kök üç. Cevabımız C. Altı kök üçü seçen, ikiye bölmeyi unutmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; eşkenar üçgende yükseklik formülü özgün bir değerle uygulandı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki ikizkenar üçgenin taban uzunluğu $16$ cm, tabana ait yüksekliği $6$ cm'dir. Bu üçgenin çevresi kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1,
+         -1.4,
+         17,
+         7.4
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           8,
+           6
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           16,
+           0
+          ]
+         },
+         {
+          "id": "H",
+          "at": [
+           8,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "A",
+          "to": "C"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "16"
+         },
+         {
+          "from": "A",
+          "to": "H",
+          "label": "6",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "H",
+          "from": "C",
+          "to": "A",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "30",
+        "32",
+        "34",
+        "36",
+        "38"
+       ],
+       "answer": 3,
+       "narration": "Yükseklik tabanı ortalar; yarım taban ile yükseklik bir dik üçgen kurar.",
+       "steps": [
+        {
+         "text": "$|BH| = 8$, $|AH| = 6$ → yan kenar $\\sqrt{64 + 36} = 10$.",
+         "narration": "Yükseklik tabanı ortalar: B H sekiz. A B H dik üçgeninde dik kenarlar altı ve sekiz; yan kenar on."
+        },
+        {
+         "text": "Çevre $= 10 + 10 + 16 = 36$. Cevap **D**.",
+         "narration": "Çevre on artı on artı on altı, otuz altı santimetre. Cevabımız D. Otuz iki, yan kenarı sekiz alıp yarım tabanı yan kenar sananın cevabı.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ikizkenar üçgende yükseklik ve 6-8-10 dik üçgeni özgün ölçülerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_OZEL_UCGEN_04",
+    "title": "30-60-90 üçgeni",
+    "narration": "Eşkenar üçgenin yarısı, sınavın en sevdiği üçgendir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Eşkenarın yarısı",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.8,
+        -0.8,
+        4.8,
+        4.2
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2,
+          3.464
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "H",
+         "at": [
+          2,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          4,
+          0
+         ],
+         "hidden": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "2x"
+        },
+        {
+         "from": "B",
+         "to": "H",
+         "label": "x"
+        },
+        {
+         "from": "A",
+         "to": "H",
+         "label": "x√3"
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": true
+        },
+        {
+         "from": "H",
+         "to": "C",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "H"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "H",
+         "from": "A",
+         "to": "B",
+         "right": true
+        },
+        {
+         "at": "B",
+         "from": "H",
+         "to": "A",
+         "label": "60°"
+        },
+        {
+         "at": "A",
+         "from": "B",
+         "to": "H",
+         "label": "30°"
+        }
+       ]
+      },
+      "caption": "$30°$ karşısı $x$, $60°$ karşısı $x\\sqrt{3}$, hipotenüs $2x$.",
+      "narration": "Kenarı iki x olan eşkenar üçgeni yüksekliğinden ikiye kesiyoruz. Elimizde açıları otuz, altmış ve doksan olan bir üçgen kalıyor.",
+      "beats": [
+       {
+        "narration": "Hipotenüs, eşkenarın kenarı: iki x. Kısa kenar, kenarın yarısı: x. Otuz derecenin karşısındaki kenar her zaman hipotenüsün yarısıdır.",
+        "focus": [
+         "AB",
+         "BH",
+         "angle-A"
+        ]
+       },
+       {
+        "narration": "Uzun dik kenar eşkenarın yüksekliği: x kök üç. Altmış derecenin karşısında x kök üç durur. Kısaca: x, x kök üç, iki x.",
+        "focus": [
+         "AH",
+         "angle-B"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Uzunluğu $6$ m olan bir merdiven, zeminle $60°$'lik açı yapacak biçimde dik bir duvara dayanmıştır. Merdivenin duvara değen ucunun yerden yüksekliği $h$ kaç metredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -4.2,
+         -1.0,
+         1.4,
+         6.2
+        ],
+        "points": [
+         {
+          "id": "W1",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "W2",
+          "at": [
+           0,
+           6
+          ],
+          "hidden": true
+         },
+         {
+          "id": "G",
+          "at": [
+           -4,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "A",
+          "at": [
+           0,
+           5.196
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           -3,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "W1",
+          "to": "W2"
+         },
+         {
+          "from": "G",
+          "to": "B"
+         },
+         {
+          "from": "C",
+          "to": "A",
+          "label": "6"
+         },
+         {
+          "from": "A",
+          "to": "B",
+          "label": "h"
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "C",
+          "from": "B",
+          "to": "A",
+          "label": "60°"
+         },
+         {
+          "at": "B",
+          "from": "A",
+          "to": "C",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "$3$",
+        "$3\\sqrt{2}$",
+        "$3\\sqrt{3}$",
+        "$4\\sqrt{3}$",
+        "$6$"
+       ],
+       "answer": 2,
+       "narration": "Merdiven hipotenüs; yükseklik $60°$'nin karşısında.",
+       "steps": [
+        {
+         "text": "Hipotenüs $2x = 6$ → $x = 3$ (merdivenin ayağı duvardan $3$ m uzakta).",
+         "narration": "Merdiven, duvar ve zemin otuz, altmış, doksan üçgeni kurar. Hipotenüs altı, yani iki x altı, x üç. Merdivenin ayağı duvardan üç metre uzakta: bu kenar otuzun karşısında."
+        },
+        {
+         "text": "$h$, $60°$'nin karşısı: $h = 3\\sqrt{3}$. Cevap **C**.",
+         "narration": "Yükseklik, zemindeki altmış derecenin karşısında: x kök üç, üç kök üç metre. Cevabımız C. Üçü seçen, kısa kenarı yükseklik sanmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; 30-60-90 üçgeni gerçek hayattan özgün bir merdiven durumuyla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki ikizkenar üçgende yan kenarlar $8$ cm ve tepe açısı $120°$'dir. Bu üçgenin taban uzunluğu kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.8,
+         -1.3,
+         14.7,
+         5.2
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           6.928,
+           4
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           13.856,
+           0
+          ]
+         },
+         {
+          "id": "H",
+          "at": [
+           6.928,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "8"
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "8"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "A",
+          "to": "H",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "120°"
+         },
+         {
+          "at": "H",
+          "from": "C",
+          "to": "A",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "$8$",
+        "$12$",
+        "$8\\sqrt{2}$",
+        "$8\\sqrt{3}$",
+        "$16$"
+       ],
+       "answer": 3,
+       "narration": "Tepeden yükseklik indir: $120°$ ikiye bölünür.",
+       "steps": [
+        {
+         "text": "Yükseklik tepe açısını $60° + 60°$'ye böler; taban açıları $30°$.",
+         "narration": "Tepeden tabana yükseklik indirelim. İkizkenarda yükseklik açıortaydır: yüz yirmi, altmış ve altmışa bölünür. Taban açıları otuzar derece."
+        },
+        {
+         "text": "$30$-$60$-$90$: hipotenüs $8 = 2x$ → $x = 4$, yarım taban $4\\sqrt{3}$.",
+         "narration": "Her yarıda hipotenüs sekiz, yani iki x sekiz, x dört. Yükseklik otuzun karşısında, dört. Yarım taban altmışın karşısında, dört kök üç."
+        },
+        {
+         "text": "Taban $= 2 \\cdot 4\\sqrt{3} = 8\\sqrt{3}$. Cevap **D**.",
+         "narration": "Taban, yarım tabanın iki katı: sekiz kök üç santimetre. Cevabımız D. Bu üçgeni tanı: tepe açısı yüz yirmi olan ikizkenarda taban, yan kenarın kök üç katıdır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; tepe açısı 120° olan ikizkenar üçgen, 30-60-90 üçgenine bölünerek özgün bir soruda çözüldü."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_OZEL_UCGEN_05",
+    "title": "45-45-90 üçgeni",
+    "narration": "Karenin yarısı da ikinci özel üçgeni verir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Karenin köşegeni",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.8,
+        -0.8,
+        4.8,
+        4.8
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          4
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          4,
+          0
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          4,
+          4
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "x"
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "x"
+        },
+        {
+         "from": "C",
+         "to": "D"
+        },
+        {
+         "from": "D",
+         "to": "A"
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "x√2"
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "right": true
+        },
+        {
+         "at": "C",
+         "from": "A",
+         "to": "B",
+         "label": "45°"
+        },
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "label": "45°"
+        }
+       ]
+      },
+      "caption": "İkizkenar dik üçgende dik kenarlar $x$, hipotenüs $x\\sqrt{2}$.",
+      "narration": "Kenarı x olan bir karenin köşegenini çizelim. Kare, iki eş ikizkenar dik üçgene ayrılır.",
+      "beats": [
+       {
+        "narration": "Her üçgende açılar kırk beş, kırk beş, doksan. Dik kenarlar eşit, ikisi de x.",
+        "focus": [
+         "AB",
+         "BC",
+         "angle-A",
+         "angle-C"
+        ]
+       },
+       {
+        "narration": "Pisagor: hipotenüs kare, x kare artı x kare, iki x kare. Hipotenüs x kök iki. Karenin köşegeni, kenarın kök iki katıdır.",
+        "focus": [
+         "AC"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Köşegen uzunluğu $10$ cm olan bir karenin bir kenarı kaç santimetredir?",
+       "options": [
+        "$5$",
+        "$5\\sqrt{2}$",
+        "$5\\sqrt{3}$",
+        "$10$",
+        "$10\\sqrt{2}$"
+       ],
+       "answer": 1,
+       "narration": "Köşegen $= $ kenar $\\cdot \\sqrt{2}$.",
+       "steps": [
+        {
+         "text": "$x\\sqrt{2} = 10$ → $x = \\frac{10}{\\sqrt{2}} = \\frac{10\\sqrt{2}}{2} = 5\\sqrt{2}$. Cevap **B**.",
+         "narration": "Kenar x ise köşegen x kök iki, on. x, on bölü kök iki; paydayı kökten kurtarınca beş kök iki santimetre. Cevabımız B. On kök ikiyi seçen, ters yönde çarpmıştır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; 45-45-90 üçgeninde hipotenüsten dik kenara geçiş özgün bir değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $[AH] \\perp [BC]$, $m(\\widehat{ABC}) = 45°$, $m(\\widehat{ACB}) = 30°$ ve $|AH| = 4$ cm'dir. Buna göre $|BC|$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -5,
+         -1.3,
+         7.9,
+         5.0
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           4
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           -4,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           6.928,
+           0
+          ]
+         },
+         {
+          "id": "H",
+          "at": [
+           0,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "A",
+          "to": "C"
+         },
+         {
+          "from": "B",
+          "to": "H"
+         },
+         {
+          "from": "H",
+          "to": "C"
+         },
+         {
+          "from": "A",
+          "to": "H",
+          "label": "4",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "B",
+          "from": "H",
+          "to": "A",
+          "label": "45°"
+         },
+         {
+          "at": "C",
+          "from": "A",
+          "to": "H",
+          "label": "30°"
+         },
+         {
+          "at": "H",
+          "from": "C",
+          "to": "A",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "$8$",
+        "$4 + 4\\sqrt{2}$",
+        "$4 + 4\\sqrt{3}$",
+        "$8\\sqrt{3}$",
+        "$12$"
+       ],
+       "answer": 2,
+       "narration": "Yükseklik üçgeni bir $45$-$45$-$90$ ve bir $30$-$60$-$90$ üçgenine ayırıyor.",
+       "steps": [
+        {
+         "text": "$ABH$: $45$-$45$-$90$ → $|BH| = |AH| = 4$.",
+         "narration": "Soldaki A B H üçgeninde B kırk beş, H doksan: ikizkenar dik üçgen. B H, A H'ye eşit, dört."
+        },
+        {
+         "text": "$AHC$: $30°$ karşısı $|AH| = 4 = x$ → $|HC| = 4\\sqrt{3}$.",
+         "narration": "Sağdaki A H C üçgeninde C otuz derece. Otuzun karşısındaki A H dört, yani x dört. Altmışın karşısındaki H C, dört kök üç."
+        },
+        {
+         "text": "$|BC| = 4 + 4\\sqrt{3}$. Cevap **C**.",
+         "narration": "B C, iki parçanın toplamı: dört artı dört kök üç santimetre. Cevabımız C. İki farklı özel üçgen yan yana: sınavda çok sevilen bir kalıp.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yükseklikle ayrılan 45-45-90 ve 30-60-90 üçgenleri özgün bir şekilde birleştirildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_OZEL_UCGEN_08",
+    "title": "Öklid bağıntıları",
+    "narration": "Son olarak dik üçgende hipotenüse inen yüksekliğin kuralları.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Hipotenüse inen yükseklik",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.8,
+        -1.3,
+        13.8,
+        7.0
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          4,
+          6
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          13,
+          0
+         ]
+        },
+        {
+         "id": "H",
+         "at": [
+          4,
+          0
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "c"
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "b"
+        },
+        {
+         "from": "B",
+         "to": "H",
+         "label": "p"
+        },
+        {
+         "from": "H",
+         "to": "C",
+         "label": "k"
+        },
+        {
+         "from": "A",
+         "to": "H",
+         "label": "h",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "right": true
+        },
+        {
+         "at": "H",
+         "from": "C",
+         "to": "A",
+         "right": true
+        }
+       ]
+      },
+      "caption": "$h^2 = p \\cdot k$, $\\quad c^2 = p \\cdot a$, $\\quad b^2 = k \\cdot a$ ($a = p + k$).",
+      "narration": "A köşesi dik olan bir üçgende A'dan hipotenüse bir yükseklik indiriyoruz. Yükseklik hipotenüsü p ve k diye iki parçaya ayırıyor.",
+      "beats": [
+       {
+        "narration": "Birinci kural: yüksekliğin karesi, ayırdığı iki parçanın çarpımıdır. h kare, p çarpı k. Burada p dört, k dokuz: h kare otuz altı, h altı.",
+        "focus": [
+         "AH",
+         "BH",
+         "HC"
+        ]
+       },
+       {
+        "narration": "İkinci kural: bir dik kenarın karesi, kendi tarafındaki parça ile hipotenüsün tamamının çarpımıdır. c kare, p çarpı a; b kare, k çarpı a. Hangi parçanın hangi kenara ait olduğuna dikkat et: kenara bitişik olan parça.",
+        "focus": [
+         "AB",
+         "BH",
+         "AC",
+         "HC"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$A$ açısı dik olan $ABC$ üçgeninde $[AH] \\perp [BC]$, $|BH| = 4$ cm ve $|HC| = 9$ cm'dir. Buna göre $|AH|$ kaç santimetredir?",
+       "options": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+       ],
+       "answer": 1,
+       "narration": "Yüksekliğin karesi, iki parçanın çarpımı.",
+       "steps": [
+        {
+         "text": "$|AH|^2 = |BH| \\cdot |HC| = 4 \\cdot 9 = 36$ → $|AH| = 6$. Cevap **B**.",
+         "narration": "Öklid: A H kare, B H çarpı H C; dört çarpı dokuz, otuz altı. A H altı santimetre. Cevabımız B. Kontrol: A B kare, dört çarpı on üç; A C kare, dokuz çarpı on üç. Toplamları on üç kare, Pisagor da tutuyor.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; Öklid yükseklik bağıntısı özgün değerlerle uygulandı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ dik üçgeninde $m(\\widehat{BAC}) = 90°$, $[AH] \\perp [BC]$, $|BH| = 2$ cm ve $|BC| = 8$ cm'dir. Buna göre $|AB| = x$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.8,
+         -1.3,
+         8.8,
+         4.4
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2,
+           3.464
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           8,
+           0
+          ]
+         },
+         {
+          "id": "H",
+          "at": [
+           2,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "x"
+         },
+         {
+          "from": "A",
+          "to": "C"
+         },
+         {
+          "from": "B",
+          "to": "H",
+          "label": "2"
+         },
+         {
+          "from": "H",
+          "to": "C"
+         },
+         {
+          "from": "A",
+          "to": "H",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "right": true
+         },
+         {
+          "at": "H",
+          "from": "C",
+          "to": "A",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "$2\\sqrt{2}$",
+        "$3$",
+        "$4$",
+        "$2\\sqrt{5}$",
+        "$6$"
+       ],
+       "answer": 2,
+       "narration": "$[AB]$'ye bitişik parça $[BH]$; hipotenüsün tamamı $[BC]$.",
+       "steps": [
+        {
+         "text": "$|AB|^2 = |BH| \\cdot |BC| = 2 \\cdot 8 = 16$ → $x = 4$.",
+         "narration": "A B kenarına bitişik parça B H, iki; hipotenüsün tamamı sekiz. A B kare, iki çarpı sekiz, on altı; x dört."
+        },
+        {
+         "text": "Kontrol: $|HC| = 6$, $|AH|^2 = 2 \\cdot 6 = 12$; $|AB|^2 = 12 + 4 = 16$ ✓. Cevap **C**.",
+         "narration": "Kontrol edelim: H C altı, A H kare iki çarpı altı, on iki. A B H dik üçgeninde A B kare, on iki artı dört, on altı. Tutuyor. Cevabımız C. İki kök beşi seçen, iki ile altıyı yanlış eşleştirmiştir.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; Öklid kenar bağıntısı ve Pisagor ile kontrol özgün ölçülerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_OZEL_UCGEN_10",
+    "title": "Dik üçgende trigonometri",
+    "narration": "Son bölümde dik üçgenin kenar oranlarına isim veriyoruz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sinüs, kosinüs, tanjant",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        4.9,
+        3.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          3
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          4,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          0,
+          0
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "C",
+         "to": "A",
+         "label": "karşı"
+        },
+        {
+         "from": "C",
+         "to": "B",
+         "label": "komşu"
+        },
+        {
+         "from": "A",
+         "to": "B",
+         "label": "hipotenüs"
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "C",
+         "from": "B",
+         "to": "A",
+         "right": true
+        },
+        {
+         "at": "B",
+         "from": "A",
+         "to": "C",
+         "label": "α"
+        }
+       ]
+      },
+      "items": [
+       "$\\sin \\alpha = \\frac{\\text{karşı}}{\\text{hipotenüs}}$, $\\quad \\cos \\alpha = \\frac{\\text{komşu}}{\\text{hipotenüs}}$",
+       "$\\tan \\alpha = \\frac{\\text{karşı}}{\\text{komşu}}$, $\\quad \\cot \\alpha = \\frac{\\text{komşu}}{\\text{karşı}}$",
+       "Tümler açılarda: $\\sin \\alpha = \\cos(90° - \\alpha)$, $\\tan \\alpha = \\cot(90° - \\alpha)$."
+      ],
+      "narration": "Dik üçgende bir dar açıya alfa diyelim. Alfanın karşısındaki kenarı hipotenüse bölersen sinüs alfa, komşu kenarı hipotenüse bölersen kosinüs alfa olur. Karşının komşuya oranı tanjant, komşunun karşıya oranı kotanjanttır. Şekilde alfanın karşısı üç, komşusu dört, hipotenüs beş: sinüs üç bölü beş, kosinüs dört bölü beş, tanjant üç bölü dört. Son olarak, dik üçgenin iki dar açısı tümlerdir; birinin sinüsü öbürünün kosinüsüne eşittir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$C$ açısı dik olan $ABC$ üçgeninde $|AC| = 5$ cm ve $|BC| = 12$ cm'dir. Buna göre $\\sin(\\widehat{A})$ kaçtır?",
+       "options": [
+        "$\\frac{5}{13}$",
+        "$\\frac{12}{13}$",
+        "$\\frac{5}{12}$",
+        "$\\frac{12}{5}$",
+        "$\\frac{13}{12}$"
+       ],
+       "answer": 1,
+       "narration": "Önce hipotenüs, sonra $A$'nın karşısı.",
+       "steps": [
+        {
+         "text": "Hipotenüs $|AB| = \\sqrt{25 + 144} = 13$.",
+         "narration": "Dik açı C'de, öyleyse hipotenüs A B. Beş, on iki, on üç ailesinden A B on üç."
+        },
+        {
+         "text": "$A$'nın karşısı $[BC] = 12$ → $\\sin A = \\frac{12}{13}$. Cevap **B**.",
+         "narration": "A açısının karşısındaki kenar, A'ya değmeyen B C, on iki. Sinüs A, on iki bölü on üç. Cevabımız B. Beş bölü on üçü seçen, komşu kenarı almış, yani kosinüsü bulmuştur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; sinüs oranı 5-12-13 üçgeninde özgün bir soruyla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $|AB| = |AC| = 10$ cm, $|BC| = 12$ cm ve $D \\in [BC]$, $|BD| = 2$ cm'dir. Buna göre $\\tan(\\widehat{ADC})$ kaçtır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1,
+         -1.4,
+         13,
+         9.2
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           6,
+           8
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           12,
+           0
+          ]
+         },
+         {
+          "id": "H",
+          "at": [
+           6,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           2,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "10"
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "10"
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "label": "2"
+         },
+         {
+          "from": "D",
+          "to": "C"
+         },
+         {
+          "from": "A",
+          "to": "D"
+         },
+         {
+          "from": "A",
+          "to": "H",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "D",
+          "from": "C",
+          "to": "A",
+          "label": "α"
+         },
+         {
+          "at": "H",
+          "from": "C",
+          "to": "A",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "$\\frac{1}{2}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{4}{3}$",
+        "$2$",
+        "$\\frac{8}{3}$"
+       ],
+       "answer": 3,
+       "narration": "Tanjant için bir dik üçgen gerek: tepeden yükseklik indir.",
+       "steps": [
+        {
+         "text": "$A$'dan dikme: $|BH| = 6$, $|AH| = \\sqrt{100 - 36} = 8$, $|DH| = 6 - 2 = 4$.",
+         "narration": "Tepeden tabana A H yüksekliğini indirelim; ikizkenarda tabanı ortalar, B H altı. A H, on kare eksi altı karenin karekökü, sekiz. D H, altı eksi iki, dört."
+        },
+        {
+         "text": "$ADH$ dik üçgeninde $\\tan(\\widehat{ADC}) = \\frac{|AH|}{|DH|} = \\frac{8}{4} = 2$. Cevap **D**.",
+         "narration": "A D C açısı, A D H dik üçgeninin D'deki açısı. Karşısı A H sekiz, komşusu D H dört; tanjant iki. Cevabımız D. Bir bölü iki, oranı ters kuranın, yani kotanjantı bulanın cevabı.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ikizkenar üçgende yükseklik indirip tanjant bulma, MEB örneğinin yapısıyla ama farklı ölçülerle kuruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Pisagor: $a^2 + b^2 = c^2$; aileler **3-4-5, 5-12-13, 8-15-17** ve katları.",
+    "Eşkenar üçgende yükseklik $\\frac{a\\sqrt{3}}{2}$; ikizkenarda tepeden inen yükseklik tabanı ortalar.",
+    "**30-60-90**: $x$, $x\\sqrt{3}$, $2x$; $30°$ karşısı hipotenüsün yarısı.",
+    "**45-45-90**: $x$, $x$, $x\\sqrt{2}$; karenin köşegeni kenarın $\\sqrt{2}$ katı.",
+    "Öklid: $h^2 = p \\cdot k$, $c^2 = p \\cdot a$, $b^2 = k \\cdot a$."
+   ],
+   "warnings": [
+    "Hipotenüs her zaman **dik açının karşısındaki** kenardır.",
+    "$30°$'nin karşısı **kısa** kenar, $60°$'nin karşısı **kök üçlü** kenar.",
+    "Öklid kenar bağıntısında kenara **bitişik** parça kullanılır."
+   ],
+   "narration": "Hadi toparlayalım. Dik üçgende dik kenarların kareleri toplamı hipotenüsün karesidir; üç, dört, beş, beş, on iki, on üç ve sekiz, on beş, on yedi ailelerini tanı. Eşkenar üçgende yükseklik a kök üç bölü iki; ikizkenarda tepeden inen yükseklik tabanı ortalar. Otuz, altmış, doksan üçgeninde kenarlar x, x kök üç, iki x; kırk beş, kırk beş, doksanda x, x, x kök iki. Dik üçgende hipotenüse inen yükseklik için h kare, p çarpı k."
+  }
+ }
+}

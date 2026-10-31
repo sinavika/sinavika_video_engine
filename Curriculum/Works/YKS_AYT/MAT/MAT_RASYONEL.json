@@ -1,0 +1,656 @@
+{
+ "topic": {
+  "id": "FF474683-D890-0304-6DD7-79DED3C41860",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_RASYONEL"
+ },
+ "title": "Rasyonel Sayılar",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/MAT/MAT_RASYONEL.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Sıfır virgül dokuz devirli, birden küçük değil. Bire eşit.",
+   "narration": "Sıfır virgül dokuz devirli birden küçük müdür? Hayır, bire eşittir; bu derste nedenini göreceğiz. AYT rasyonel sayıları tek başına az sorar, ama kesirle kurulan her soruda bu bilgiler gerekir: iç içe kesirler, birbirini götüren toplamlar, sıralama ve devirli sayılar. Kuralları kısaca hatırlayıp her kalıbı AYT düzeyinde bir soruyla çözeceğiz."
+  },
+  "objectives": [
+   "İç içe kesirlerde bütün tanımsızlık koşullarını bulmak",
+   "Merdiven kesirleri ve birbirini götüren toplamları çözmek",
+   "Kesirleri bire uzaklıkla ve sayı vererek sıralamak",
+   "Devirli ondalık sayıyı kesre çevirmek",
+   "Devreden dizide uzak bir basamağı bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_RASYONEL_01",
+    "subtopics": [
+     "MAT_RASYONEL_02"
+    ],
+    "title": "Kesir ve tanımsızlık",
+    "narration": "Rasyonel sayı, paydası sıfır olmayan bir kesirdir. AYT'nin ilk tuzağı da bu koşulun iç içe kesirlerde kaç kez yazıldığıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kısa tekrar: rasyonel sayı",
+      "items": [
+       "$\\frac{a}{b}$, $a$ ve $b$ tam sayı, $b \\neq 0$: **rasyonel** sayı.",
+       "Sadeleştirme ve genişletme kesrin **değerini** değiştirmez.",
+       "İç içe kesirde **her payda** ayrı ayrı sıfırdan farklı olmalı.",
+       "Sadeleştirmeden **önce** tanımsızlık koşulunu yaz; sadeleşen çarpan da koşul bırakır."
+      ],
+      "beats": [],
+      "narration": "Bir rasyonel sayı, payı ve paydası tam sayı olan ve paydası sıfır olmayan bir kesirdir. Sadeleştirmek ya da genişletmek kesrin değerini değiştirmez. İç içe kesirlerde her payda ayrı ayrı sıfırdan farklı olmalı. Ve tanımsızlık koşulunu sadeleştirmeden önce yaz: sadeleşip giden bir çarpan da arkasında bir koşul bırakır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\dfrac{1}{1 - \\dfrac{2}{x + 1}}$\n\nifadesini **tanımsız** yapan $x$ değerlerinin toplamı kaçtır?",
+       "options": [
+        "$-2$",
+        "$-1$",
+        "$0$",
+        "$1$",
+        "$2$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "İç payda: $x + 1 = 0$, $x = -1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İçteki payda x artı bir. x eksi bir olursa sıfır olur; ifade tanımsız."
+        },
+        {
+         "text": "Dış payda: $1 - \\frac{2}{x + 1} = 0$ → $x + 1 = 2$, $x = 1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dıştaki payda bir eksi iki bölü x artı bir. Bu sıfır olursa iki bölü x artı bir, bire eşit: x artı bir iki, x bir."
+        },
+        {
+         "text": "Toplam: $-1 + 1 = 0$.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Tanımsız yapan değerler eksi bir ve bir; toplamları sıfır. Yalnız içteki paydaya bakan eksi bir bulur. Cevap C."
+        }
+       ],
+       "narration": "İki payda var: içteki ve dıştaki. İkisini de sıfır yapan değerleri bulalım.",
+       "origin": {
+        "changes": "İç içe kesirde tanımsızlık kalıbı; ifade yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_RASYONEL_03",
+    "subtopics": [],
+    "title": "Dört işlem ve iç içe kesirler",
+    "narration": "Kesirlerde dört işlemi biliyoruz. AYT iki kalıp sever: merdiven gibi iç içe kesirler ve terimleri birbirini götüren toplamlar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İki işlem kalıbı",
+      "items": [
+       "İç içe kesir **en alttan** başlanarak çözülür; denklemse **en üstten** açılır.",
+       "$\\frac{1}{n(n + 1)} = \\frac{1}{n} - \\frac{1}{n + 1}$: ardışık terimler **birbirini götürür**.",
+       "$\\frac{1}{n(n + k)} = \\frac{1}{k}\\left(\\frac{1}{n} - \\frac{1}{n + k}\\right)$"
+      ],
+      "beats": [],
+      "narration": "İki işlem kalıbı. İç içe bir kesrin değerini bulurken en alttan başlarsın; ama x'i bulman isteniyorsa en üstten açarsın, her adımda bir katı soyarak. İkinci kalıp: bir bölü n çarpı n artı bir, bir bölü n eksi bir bölü n artı birdir. Böyle yazılan bir toplamda ardışık terimler birbirini götürür; geriye yalnız ilk ve son terim kalır. Aradaki fark k ise önüne bir bölü k gelir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$1 + \\dfrac{1}{2 + \\dfrac{1}{3 + \\dfrac{1}{x}}} = \\dfrac{43}{30}$\n\nolduğuna göre, $x$ kaçtır?",
+       "options": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$6$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "İki taraftan 1 çıkar: büyük kesir $= \\frac{43}{30} - 1 = \\frac{13}{30}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki taraftan bir çıkaralım: kalan kesir on üç bölü otuz."
+        },
+        {
+         "text": "Ters çevir, 2 çıkar: $\\frac{30}{13} - 2 = \\frac{4}{13}$; bu, $\\frac{1}{3 + 1/x}$ kesri.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir bölü bir şey on üç bölü otuz ise o şey otuz bölü on üç. İkiyi çıkarınca kalan kesir dört bölü on üç."
+        },
+        {
+         "text": "Yine ters çevir, 3 çıkar: $\\frac{13}{4} - 3 = \\frac{1}{4} = \\frac{1}{x}$, $x = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yine ters çevirelim: üç artı bir bölü x, on üç bölü dört. Üçü çıkarınca bir bölü x, bir bölü dört. x dört. Cevap D."
+        }
+       ],
+       "narration": "Değil x'i arıyoruz; en üstten başlayıp her adımda bir kat soyalım.",
+       "origin": {
+        "changes": "Merdiven kesir kalıbı; kat sayısı ve sonuç yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Fark mı, çarpım mı?",
+      "prompt": "$\\frac{1}{3 \\cdot 4}$ kesri $\\frac{1}{3} - \\frac{1}{4}$ farkına eşit mi?",
+      "choices": [
+       "Eşit",
+       "Eşit değil"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "$n$",
+        "Terslerin farkı",
+        "$\\frac{1}{n(n + 1)}$"
+       ],
+       "rows": [
+        [
+         "$2$",
+         "$\\frac{1}{2} - \\frac{1}{3}$",
+         "$\\frac{1}{6}$"
+        ],
+        [
+         "$4$",
+         "$\\frac{1}{4} - \\frac{1}{5}$",
+         "$\\frac{1}{20}$"
+        ],
+        [
+         "$9$",
+         "$\\frac{1}{9} - \\frac{1}{10}$",
+         "$\\frac{1}{90}$"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "Bir bölü iki eksi bir bölü üç, bir bölü altı. İki çarpı üç de altı.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Bir bölü dört eksi bir bölü beş, bir bölü yirmi; bir bölü dokuz eksi bir bölü on, bir bölü doksan. Hep aynı kalıp.",
+        "show": [
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r2",
+         "r3"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "Payda eşitle: $\\frac{1}{n} - \\frac{1}{n + 1} = \\frac{(n + 1) - n}{n(n + 1)} = \\frac{1}{n(n + 1)}$.",
+      "narration": "Şimdi sıra sende. Bir bölü üç çarpı dört, bir bölü üç eksi bir bölü dörde eşit mi? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: eşit. Paydaları eşitleyince farkın payı n artı bir eksi n, yani bir; paydası n çarpı n artı bir. Bu yüzden ardışık iki sayının çarpımının tersi, terslerinin farkıdır. Şimdi bunu uzun bir toplamda kullanacağız."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\dfrac{1}{2 \\cdot 3} + \\dfrac{1}{3 \\cdot 4} + \\dfrac{1}{4 \\cdot 5} + \\dots + \\dfrac{1}{n(n + 1)} = \\dfrac{9}{22}$\n\nolduğuna göre, $n$ kaçtır?",
+       "options": [
+        "$9$",
+        "$10$",
+        "$11$",
+        "$20$",
+        "$21$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$\\left(\\frac{1}{2} - \\frac{1}{3}\\right) + \\left(\\frac{1}{3} - \\frac{1}{4}\\right) + \\dots + \\left(\\frac{1}{n} - \\frac{1}{n + 1}\\right)$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Her terim bir fark: bir bölü iki eksi bir bölü üç, artı bir bölü üç eksi bir bölü dört, böyle devam eder."
+        },
+        {
+         "text": "Ortadakiler götürür: $\\frac{1}{2} - \\frac{1}{n + 1} = \\frac{9}{22}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eksi bir bölü üç ile artı bir bölü üç birbirini götürür; ortadaki bütün terimler gider. Geriye bir bölü iki eksi bir bölü n artı bir kalır."
+        },
+        {
+         "text": "$\\frac{1}{n + 1} = \\frac{11}{22} - \\frac{9}{22} = \\frac{1}{11}$, $n = 10$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir bölü n artı bir, on bir bölü yirmi iki eksi dokuz bölü yirmi iki: iki bölü yirmi iki, yani bir bölü on bir. n artı bir on bir, n on. Cevap B."
+        }
+       ],
+       "narration": "Her terimi iki kesrin farkı olarak yazalım.",
+       "origin": {
+        "changes": "Terimleri götüren toplam kalıbı; başlangıç terimi ve sonuç yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ sıfırdan ve $-1$'den farklı bir gerçel sayı olmak üzere\n\n$\\dfrac{1}{1 + \\dfrac{1}{a}} + \\dfrac{1}{1 + a}$\n\nifadesinin değeri kaçtır?",
+       "options": [
+        "$a$",
+        "$1$",
+        "$\\frac{1}{a}$",
+        "$a + 1$",
+        "$2$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$\\frac{1}{1 + \\frac{1}{a}} = \\frac{1}{\\frac{a + 1}{a}} = \\frac{a}{a + 1}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İçteki toplamı tek kesir yapalım: bir artı bir bölü a, a artı bir bölü a. Bir bölü bu kesir, ters çevrilmiş hâli: a bölü a artı bir."
+        },
+        {
+         "text": "$\\frac{a}{a + 1} + \\frac{1}{a + 1} = \\frac{a + 1}{a + 1} = 1$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki kesrin paydası da a artı bir: paylar toplanır, a artı bir bölü a artı bir. Sonuç bir; a ne olursa olsun. Cevap B."
+        }
+       ],
+       "narration": "İlk kesri sadeleştirince iki kesrin paydası aynı çıkacak.",
+       "origin": {
+        "changes": "İç içe kesirde sadeleştirme kalıbı; ifade yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_RASYONEL_04",
+    "subtopics": [],
+    "title": "Rasyonel sayılarda sıralama",
+    "narration": "Kesirleri sıralarken payda eşitlemek uzun sürer. AYT'de iki kısa yol işe yarar: bire uzaklık ve sayıyı denemek.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sıralamada kısa yollar",
+      "items": [
+       "Kesirler 1'e yakınsa **1'e uzaklıklarını** karşılaştır: uzaklığı küçük olan büyüktür.",
+       "$\\frac{a}{a + 1}$ biçimindeki kesirlerde pay büyüdükçe kesir **büyür**.",
+       "$-1 < x < 0$ ise $\\frac{1}{x} < x < x^3 < x^2$; **bir sayı vererek** denetle.",
+       "$0 < x < 1$ ise $x^3 < x^2 < x < \\frac{1}{x}$."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -1.2,
+        0.3
+       ],
+       "y": [
+        -1.2,
+        1.2
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x",
+         "label": "y = x",
+         "ends": [
+          "none",
+          "none"
+         ]
+        },
+        {
+         "expression": "x^2",
+         "label": "y = x²",
+         "ends": [
+          "none",
+          "none"
+         ]
+        },
+        {
+         "expression": "x^3",
+         "label": "y = x³",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [
+        {
+         "x": -0.5,
+         "y": -0.5,
+         "label": "x = −0,5"
+        },
+        {
+         "x": -0.5,
+         "y": -0.125,
+         "label": "x³ = −0,125"
+        },
+        {
+         "x": -0.5,
+         "y": 0.25,
+         "label": "x² = 0,25"
+        }
+       ],
+       "segments": [
+        {
+         "from": [
+          -0.5,
+          -1.2
+         ],
+         "to": [
+          -0.5,
+          1.2
+         ],
+         "dashed": true
+        }
+       ],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "beats": [
+       {
+        "narration": "Eksi bir ile sıfır arasında üç eğri: y eşittir x, x kare ve x küp.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "x eksi yarım iken dikey çizgiye bakalım. En altta x, eksi yarım. Onun üstünde x küp, eksi sekizde bir. En üstte x kare, dörtte bir.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Bir bölü x ise eksi iki: grafiğin dışında, hepsinden küçük. Sıra: bir bölü x, x, x küp, x kare.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "narration": "Sıralamada kısa yollar. Bire yakın kesirlerde bire uzaklıklarına bak: uzaklığı küçük olan büyüktür. a bölü a artı bir gibi kesirlerde pay büyüdükçe kesir de büyür. Eksi bir ile sıfır arasındaki bir sayının kuvvetlerini sıralarken bir sayı vererek dene; grafikte görelim."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x = \\dfrac{121}{122}$, $y = \\dfrac{131}{132}$, $z = \\dfrac{141}{143}$\n\nolduğuna göre, aşağıdaki sıralamalardan hangisi doğrudur?",
+       "options": [
+        "$x < y < z$",
+        "$y < x < z$",
+        "$x < z < y$",
+        "$z < y < x$",
+        "$z < x < y$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$1 - x = \\frac{1}{122}$, $1 - y = \\frac{1}{132}$, $1 - z = \\frac{2}{143} = \\frac{1}{71{,}5}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir eksi x, bir bölü yüz yirmi iki. Bir eksi y, bir bölü yüz otuz iki. Bir eksi z, iki bölü yüz kırk üç; bu, bir bölü yetmiş bir buçuğa eşit."
+        },
+        {
+         "text": "Uzaklıklar: $\\frac{1}{132} < \\frac{1}{122} < \\frac{1}{71{,}5}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Paydası büyük olan uzaklık küçüktür: y'nin uzaklığı en küçük, sonra x, en büyük uzaklık z'nin."
+        },
+        {
+         "text": "Uzaklığı küçük olan büyük: $z < x < y$.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bire en yakın olan en büyüktür: y en büyük, z en küçük. Sıra z, x, y. Cevap E."
+        }
+       ],
+       "narration": "Üç kesir de bire çok yakın. Bire uzaklıklarına bakalım.",
+       "origin": {
+        "changes": "Bire yakın kesirleri sıralama kalıbı; kesirler yeni seçildi, üçüncü kesirde pay-payda farkı 2 yapıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$-1 < x < 0$ olduğuna göre, aşağıdaki sıralamalardan hangisi doğrudur?",
+       "options": [
+        "$\\frac{1}{x} < x < x^3 < x^2$",
+        "$x < \\frac{1}{x} < x^3 < x^2$",
+        "$\\frac{1}{x} < x^3 < x < x^2$",
+        "$x^3 < x < \\frac{1}{x} < x^2$",
+        "$x < x^3 < x^2 < \\frac{1}{x}$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$x = -\\frac{1}{2}$: $\\frac{1}{x} = -2$, $x = -0{,}5$, $x^3 = -0{,}125$, $x^2 = 0{,}25$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x eksi yarım olsun. Bir bölü x eksi iki, x eksi sıfır virgül beş, x küp eksi sıfır virgül yüz yirmi beş, x kare sıfır virgül yirmi beş."
+        },
+        {
+         "text": "$-2 < -0{,}5 < -0{,}125 < 0{,}25$",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Küçükten büyüğe: eksi iki, eksi sıfır virgül beş, eksi sıfır virgül yüz yirmi beş, sıfır virgül yirmi beş."
+        },
+        {
+         "text": "$\\frac{1}{x} < x < x^3 < x^2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sıra: bir bölü x, x, x küp, x kare. Negatif sayının küpü, sayının kendisinden sıfıra daha yakındır; bu yüzden büyüktür. Cevap A."
+        }
+       ],
+       "narration": "Grafikte gördük; bir sayı vererek şıkları eleyelim.",
+       "origin": {
+        "changes": "Kuvvetlerle sıralama kalıbı; aralık ve şıklar yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_RASYONEL_05",
+    "subtopics": [
+     "MAT_RASYONEL_06"
+    ],
+    "title": "Ondalık ve devirli sayılar",
+    "narration": "Son bölüm: devirli ondalık sayıyı kesre çevirmek ve devreden bir dizide uzak bir basamağı bulmak.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Devirli sayıyı kesre çevir",
+      "items": [
+       "Kesir = $\\dfrac{\\text{tamamı} - \\text{devretmeyen kısım}}{\\text{devreden kadar } 9, \\text{devretmeyen kadar } 0}$",
+       "$0{,}2\\overline{7} = \\frac{27 - 2}{90} = \\frac{25}{90}$; $0{,}\\overline{ab} = \\frac{\\overline{ab}}{99}$.",
+       "Devreden dizide $k$. basamak: $k$'yi **dönem uzunluğuna** böl, kalana bak."
+      ],
+      "beats": [],
+      "narration": "Devirli bir sayıyı kesre çevirirken payda, virgülden sonraki sayının tamamından devretmeyen kısım çıkarılır. Paydaya devreden her basamak için bir dokuz, devretmeyen her basamak için bir sıfır yazılır. Sıfır virgül iki yedi devirli, yirmi yedi eksi iki bölü doksan. Sıfır virgül a b devirli ise a b bölü doksan dokuzdur. Devreden bir dizide uzak bir basamağı ararken sıra numarasını dönem uzunluğuna bölüp kalana bakarsın."
+     },
+     {
+      "kind": "mistake",
+      "title": "Sıfır virgül dokuz devirli",
+      "wrong": "$0{,}\\overline{9} < 1$, çünkü hep bir eksik kalır.",
+      "right": "$0{,}\\overline{9} = \\frac{9}{9} = 1$",
+      "why": "Devirli sayı bir **limit** değil bir sayıdır; kural onu kesre çevirir ve sonuç tam olarak 1'dir.",
+      "narration": "Sık yapılan bir hata: sıfır virgül dokuz devirlinin birden küçük olduğunu sanmak. Kuralı uygulayalım: dokuz bölü dokuz, bir. Sıfır virgül dokuz devirli ile bir aynı sayının iki yazılışıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ birbirinden farklı rakamlar olmak üzere\n\n$0{,}\\overline{ab} + 0{,}\\overline{ba} = 0{,}\\overline{9}$\n\n$a > b$ ve $a \\cdot b = 18$\n\nolduğuna göre, $0{,}\\overline{ab}$ sayısı aşağıdakilerden hangisidir?",
+       "options": [
+        "$\\frac{3}{11}$",
+        "$\\frac{6}{11}$",
+        "$\\frac{7}{11}$",
+        "$\\frac{8}{11}$",
+        "$\\frac{9}{11}$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$\\frac{\\overline{ab} + \\overline{ba}}{99} = \\frac{11(a + b)}{99} = \\frac{a + b}{9}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki devirli sayıyı kesre çevirelim: a b bölü doksan dokuz ve b a bölü doksan dokuz. Toplamın payı a b artı b a, yani on bir çarpı a artı b. Sadeleşince a artı b bölü dokuz."
+        },
+        {
+         "text": "$0{,}\\overline{9} = 1$: $\\frac{a + b}{9} = 1$, $a + b = 9$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sıfır virgül dokuz devirli, bir. Demek ki a artı b bölü dokuz bir; a artı b dokuz. Sıfır virgül dokuz devirliyi birden küçük sanan bu soruda takılır."
+        },
+        {
+         "text": "$a + b = 9$, $a \\cdot b = 18$, $a > b$: $a = 6$, $b = 3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplamı dokuz, çarpımı on sekiz olan iki rakam: altı ve üç. a büyük olduğu için a altı, b üç."
+        },
+        {
+         "text": "$0{,}\\overline{63} = \\frac{63}{99} = \\frac{7}{11}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sıfır virgül altmış üç devirli, altmış üç bölü doksan dokuz; dokuzla sadeleşince yedi bölü on bir. Cevap C."
+        }
+       ],
+       "narration": "Bu soru iki dersi birleştiriyor: devirli sayı ve sayı çözümleme. Sağ taraftaki sayıyı az önce gördük.",
+       "origin": {
+        "changes": "Devirli sayı ve çözümleme kalıbı; koşullar ve şıklar yeni yazıldı, 0,9 devirli = 1 bilgisi soruya kondu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\dfrac{1}{7} = 0{,}\\overline{142857}$\n\nolduğuna göre, $\\dfrac{1}{7}$ sayısının ondalık gösteriminde virgülden sonraki **100.** basamakta hangi rakam vardır?",
+       "options": [
+        "$1$",
+        "$2$",
+        "$4$",
+        "$5$",
+        "$8$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Dönem uzunluğu 6: $100 = 6 \\cdot 16 + 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Devreden kısım altı basamak: bir, dört, iki, sekiz, beş, yedi. Yüzü altıya bölelim: on altı tam tur, kalan dört."
+        },
+        {
+         "text": "16 tur sonra 96. basamak bir turun sonu; 100. basamak, dönemin **4.** basamağı.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "On altı tam turla doksan altıncı basamağa geliriz; bir tur orada biter. Yüzüncü basamak yeni turun dördüncü basamağı."
+        },
+        {
+         "text": "$1, 4, 2, \\mathbf{8}$: cevap $8$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dönemin dördüncü basamağı: bir, dört, iki, sekiz. Cevap E."
+        }
+       ],
+       "narration": "Devreden kısım altı basamaklı; dönemle çalışalım.",
+       "origin": {
+        "changes": "Devirli sayıda uzak basamak kalıbı; kesir ve sıra numarası yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "İç içe kesirde **her payda** sıfırdan farklı.",
+    "Denklem gibi iç içe kesir **en üstten** açılır.",
+    "$\\frac{1}{n(n + 1)} = \\frac{1}{n} - \\frac{1}{n + 1}$: terimler **götürür**.",
+    "Bire yakın kesirde **uzaklığı küçük** olan büyük.",
+    "$-1 < x < 0$: $\\frac{1}{x} < x < x^3 < x^2$.",
+    "Devirli: (tamamı − devretmeyen) bölü **9'lar ve 0'lar**."
+   ],
+   "warnings": [
+    "$0{,}\\overline{9} = 1$.",
+    "Sadeleşen çarpan da **tanımsızlık** koşulu bırakır."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "$\\frac{1}{1 \\cdot 3} + \\frac{1}{3 \\cdot 5} + \\dots + \\frac{1}{19 \\cdot 21}$ toplamını **kendin** bul.",
+    "$\\frac{1}{13}$ sayısının ondalık gösteriminde virgülden sonraki **50.** basamağı bul.",
+    "Uygulamada AYT Rasyonel Sayılar testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Devirli ondalık sayıları kesre çevirt: 0,1(6) = (16 − 1)/90 = 1/6; 2,(45) = (245 − 2)/99 = 27/11.",
+   "Ardışık sadeleşen toplamlara örnek ver: 1/(1·2) + 1/(2·3) + … + 1/(9·10) = 1 − 1/10 = 9/10; 1/(1·3) + 1/(3·5) + … + 1/(19·21) = ½(1 − 1/21) = 10/21.",
+   "Sıralama kurallarını tamamla: 0 < x < 1 için x³ < x² < x < √x < 1/x; x > 1 için sıra tersine döner. Payları eşit kesirlerde paydası küçük olanın büyük olduğunu, 99/100 > 98/99 gibi 1'e yakın kesirleri ekle.",
+   "Bilimsel gösterimi ekle: a × 10ⁿ (1 ≤ a < 10); 0,000042 = 4,2 × 10⁻⁵, 360 000 = 3,6 × 10⁵. Ondalık sayılarla çarpma ve bölmede virgül kaydırma kuralını örnekle."
+  ]
+ }
+}

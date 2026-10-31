@@ -7,7 +7,9 @@ import {Text} from '../../../Components/Typography/Text';
 import {plainText} from '../../../Schemas/RichText';
 import {withAlpha} from '../../../Themes/Theme';
 import {useInk, useTheme} from '../../../Themes/ThemeContext';
-import {ImageFrame, useImageLayout} from '../../Components/ImageFrame';
+import {POST_TYPE} from '../../../Configurations/SocialIdentity';
+import {ImageFrame, imageFrameOf, useImageLayout} from '../../Components/ImageFrame';
+import {lineCount, overflowNote} from '../../Components/TextMeasure';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
 import {BrandingSchema} from '../../Schemas/ImageFields';
 
@@ -28,13 +30,33 @@ const BoldQuestionSchema = z.object({
 
 type Content = z.infer<typeof BoldQuestionSchema>;
 
+const H = POST_TYPE.hookPost;
+const isWide = (width: number, height: number) => width / height > 1.25;
+/** The hook's column, in reference pixels: inside the grid insets, three quarters of a wide image. */
+const hookBox = (width: number, height: number) => {
+	const {unit, insets} = imageFrameOf(width, height);
+	return ((width - insets.left - insets.right) * (isWide(width, height) ? 0.74 : 1)) / unit;
+};
+
+/** A hook too long for the one hook size, or a teaser too long, is refused before rendering. */
+const hookIssues = (content: Content, frame: {width: number; height: number}): string[] => {
+	const box = hookBox(frame.width, frame.height);
+	const size = isWide(frame.width, frame.height) ? H.hookWide : H.hook;
+	const hook = lineCount(content.hook, box, {size, weight: H.hookWeight, letterSpacingEm: H.hookLetterSpacingEm});
+	const teaser = content.teaser ? lineCount(content.teaser, box, {size: H.teaser, weight: H.teaserWeight}) : 0;
+	return [
+		...(hook > H.hookLines ? [`Hook "${content.hook}" ${size} puntoda ${overflowNote(hook, H.hookLines)}. Kısalt.`] : []),
+		...(teaser > H.teaserLines ? [`Alt satır "${content.teaser}" ${H.teaser} puntoda ${overflowNote(teaser, H.teaserLines)}. Kısalt.`] : []),
+	];
+};
+
 const BoldQuestionImage: React.FC<{content: Content}> = ({content}) => {
 	const {colors} = useTheme();
 	const ink = useInk();
 	const {u, wide} = useImageLayout();
 	const [before, after] = content.emphasis ? content.hook.split(content.emphasis) : [content.hook, ''];
-	const length = content.hook.length;
-	const size = (length <= 34 ? 150 : length <= 60 ? 122 : 100) * (wide ? 0.92 : 1);
+	// One size per shape, whatever the hook's length (punto sabitliği); a hook that does not fit is refused (hookIssues).
+	const size = wide ? H.hookWide : H.hook;
 
 	return (
 		<ImageFrame backdrop="gradient" branding={content.branding}>
@@ -44,7 +66,7 @@ const BoldQuestionImage: React.FC<{content: Content}> = ({content}) => {
 			</div>
 			<div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: u(36), flex: 1, minHeight: 0, maxWidth: wide ? '74%' : undefined}}>
 				{content.eyebrow ? <Badge tone={{fill: colors.accent, on: colors.onAccent}} size={30}>{content.eyebrow}</Badge> : null}
-				<Text variant="display" size={size}>
+				<Text variant="display" size={size} weight={H.hookWeight} style={{letterSpacing: `${H.hookLetterSpacingEm}em`}}>
 					{before}
 					{content.emphasis ? (
 						<span style={{color: colors.onAccent}}>
@@ -54,7 +76,7 @@ const BoldQuestionImage: React.FC<{content: Content}> = ({content}) => {
 					{after}
 				</Text>
 				{content.teaser ? (
-					<Text size={40} tone="muted" weight={500}>
+					<Text size={H.teaser} tone="muted" weight={H.teaserWeight}>
 						{content.teaser}
 					</Text>
 				) : null}
@@ -85,5 +107,6 @@ export const BoldQuestion = defineImageTemplate({
 	defaultTheme: 'SinavikaBrand',
 	defaultSize: 'Square',
 	outputName: (content) => `${content.eyebrow ?? ''} Hook`,
+	checkLayout: hookIssues,
 	Component: BoldQuestionImage,
 });

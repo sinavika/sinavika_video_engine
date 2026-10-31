@@ -17,9 +17,7 @@ export const SEARCH_LIMITS = {headline: 30, description: 90, path: 15, sitelinkT
 
 export const SITE = 'https://sinavika.com/tr';
 
-export type MatchType = 'exact' | 'phrase';
-
-export type SearchAdGroup = {
+type SearchAdGroup = {
 	name: string;
 	landing: string;
 	/** Display path after sinavika.com (two parts, 15 characters each). */

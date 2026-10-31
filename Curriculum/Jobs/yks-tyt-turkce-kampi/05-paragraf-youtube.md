@@ -4,9 +4,9 @@ Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Output
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 
-- A: Paragraf Konu Anlatımı | TYT Türkçe Kampı Ders 5
-- B: Kırk Sorunun Yarısı: Paragraf Tek Derste | TYT Türkçe Kampı Ders 5
-- C: Ana Düşünce, Çıkarım, Akışı Bozan Cümle | TYT Paragraf Ders 5
+- A: YKS TYT Türkçe | Paragraf Konu Anlatımı | Kamp Ders 5
+- B: YKS TYT Türkçe | Kırk Sorunun Yarısı: Paragraf Tek Derste | Ders 5
+- C: YKS TYT Türkçe | Ana Düşünce, Çıkarım, Akışı Bozan Cümle | Ders 5
 
 ## Açıklama
 
@@ -23,14 +23,14 @@ Bu derste:
 ✅ Anlatımın özellikleri
 ✅ Akışı bozan cümle, paragrafı ikiye bölme
 ✅ Boşluk tamamlama, cümle yerleştirme ve sıralama
-✅ 7 TYT tarzı soru, adım adım çözümle
+✅ 10 TYT tarzı soru, adım adım çözümle
 
 🎯 Kamp görevi:
 1. Bir gazete köşe yazısı oku; konusunu ve ana düşüncesini birer cümleyle yaz.
 2. Aynı yazıda bir düşünceyi geliştirme yolu bul ve adını koy.
 3. Sınavika'da Paragraf testinden 20 soru çöz; yanlışlarını bu dersin adımlarıyla yeniden çöz.
 
-⏮️ Önceki ders, Cümlede Anlam: (yayın linki)
+⏮️ Önceki ders, Cümlede Anlam: https://youtu.be/1IGsR_SUisM
 ⏭️ Sıradaki ders: Ses Bilgisi. Kanala abone ol, hiçbir dersi kaçırma! 🔔
 🗺️ Kampı baştan izle, Bölüm 0: https://youtu.be/-YSeFFxDOhM
 

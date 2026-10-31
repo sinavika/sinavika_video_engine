@@ -22,6 +22,7 @@ import {parseArgs} from 'node:util';
 import {openBrowser, renderStill, selectComposition} from '@remotion/renderer';
 import {zipSync} from 'fflate';
 import {bundleProject} from '../src/Renderers/VideoRenderer';
+import {BRAND} from '../src/Configurations/Brand';
 import {buildBannerHtml} from '../src/Ads/Google/Html5Banner';
 import {buildCalloutsCsv, buildEditorCsv, buildNegativeList, buildSearchMarkdown, buildSitelinksCsv, buildSnippetCsv} from '../src/Ads/Google/SearchExport';
 import {AD_EXAMS, AD_FORMATS, EXAM_LANG, AD_LANGS, AD_PLATFORMS, AD_TEXT, conceptsFor, DISPLAY_MAX_BYTES, DISPLAY_SIZES, displayConceptsFor, HTML5_SIZES, PLATFORM_FOLDER, type AdExam, type AdFormat, type AdLang, type AdPlatform} from '../src/Ads/Google/GoogleAdsPlan';
@@ -50,6 +51,8 @@ const exams = pick<AdExam>(AD_EXAMS, values.exam);
 const platforms = pick<AdPlatform>(AD_PLATFORMS, values.platform);
 const formats = pick<AdFormat>(Object.keys(AD_FORMATS) as AdFormat[], values.format);
 const MAX_BYTES = 5 * 1024 * 1024;
+/** Pictures: twice the slot's size, or 1.5 times when that passes 5 MB. */
+const PICTURE_SCALES = [2, 1.5, 1] as const;
 const root = path.resolve(values.out);
 const groupDir = (lang: AdLang, exam: AdExam, platform: AdPlatform) => path.join(root, lang, exam, PLATFORM_FOLDER[platform]);
 const csvCell = (text: string) => `"${text.replace(/"/g, '""')}"`;
@@ -90,11 +93,22 @@ const browser = await openBrowser('chrome', {chromiumOptions: {gl: 'angle'}});
 const oversize: string[] = [];
 let count = 0;
 
-const still = async (id: string, inputProps: Record<string, unknown>, output: string, scale = 1) => {
+/**
+ * Renders one PNG. Pictures go out at twice their nominal size (2400 px for a
+ * 1200 px slot): Google takes larger files of the same ratio and shows them
+ * sharper (owner, 30 Oct 2026: "çözünürlük kötü"). A file over Google's 5 MB
+ * is rendered again a step smaller.
+ */
+const still = async (id: string, inputProps: Record<string, unknown>, output: string, scales: readonly number[] = [1]) => {
 	await mkdir(path.dirname(output), {recursive: true});
 	const composition = await selectComposition({serveUrl, id, inputProps, puppeteerInstance: browser});
-	await renderStill({composition, serveUrl, output, inputProps, imageFormat: 'png', scale, puppeteerInstance: browser, chromiumOptions: {gl: 'angle'}});
-	const {size} = await stat(output);
+	let scale = scales[0];
+	let size = Infinity;
+	for (scale of scales) {
+		await renderStill({composition, serveUrl, output, inputProps, imageFormat: 'png', scale, puppeteerInstance: browser, chromiumOptions: {gl: 'angle'}});
+		size = (await stat(output)).size;
+		if (size <= MAX_BYTES) break;
+	}
 	if (size > MAX_BYTES) oversize.push(output);
 	count += 1;
 	console.log(`✓ ${path.relative(root, output)}  ${Math.round(composition.width * scale)}x${Math.round(composition.height * scale)}  ${(size / 1024 / 1024).toFixed(2)} MB`);
@@ -152,7 +166,7 @@ if (!values['no-images']) {
 						for (const textless of values['no-textless'] ? [false] : [false, true]) {
 							const props: GoogleAdImageProps = {lang, exam, concept: concept.id, platform, format, textless};
 							const folder = textless ? 'gorseller-metinsiz' : 'gorseller';
-							await still(GOOGLE_AD_IMAGE_ID, props, path.join(groupDir(lang, exam, platform), folder, AD_FORMATS[format].folder, `${String(index + 1).padStart(2, '0')}-${concept.id}.png`));
+							await still(GOOGLE_AD_IMAGE_ID, props, path.join(groupDir(lang, exam, platform), folder, AD_FORMATS[format].folder, `${String(index + 1).padStart(2, '0')}-${concept.id}.png`), PICTURE_SCALES);
 						}
 				}
 			}
@@ -162,7 +176,8 @@ if (!values['no-images']) {
 if (!values['no-html5']) {
 	const fontDir = path.resolve('node_modules', '@fontsource-variable', 'manrope', 'files');
 	const fonts = await Promise.all(['manrope-latin-wght-normal.woff2', 'manrope-latin-ext-wght-normal.woff2'].map((file) => readFile(path.join(fontDir, file))));
-	const wordmark = await readFile(path.resolve('public', 'Brand', 'SinavikaWordmark.svg'));
+	// The full white lock-up (icon and wordmark), as everywhere else; the wordmark alone was the old logo.
+	const logo = await readFile(path.resolve('public', BRAND.logo.src));
 	const temp = path.join(root, '.katmanlar');
 	for (const lang of langs)
 		for (const exam of exams.filter((entry) => EXAM_LANG[entry] === lang))
@@ -171,12 +186,12 @@ if (!values['no-html5']) {
 				if (!concept) continue;
 				const layer = async (kind: GoogleAdLayerProps['layer']) => {
 					const props: GoogleAdLayerProps = {lang, exam, concept: concept.id, platform, layer: kind};
-					return readFile(await still(GOOGLE_AD_LAYER_ID, props, path.join(temp, `${lang}-${exam}-${platform}-${kind}.png`), 2));
+					return readFile(await still(GOOGLE_AD_LAYER_ID, props, path.join(temp, `${lang}-${exam}-${platform}-${kind}.png`), [2]));
 				};
 				const [device, proof] = [await layer('device'), await layer('proof')];
 				for (const size of HTML5_SIZES) {
-					const html = buildBannerHtml({concept, lang, platform, size, files: {device: 'cihaz.png', proof: 'kanit.png', wordmark: 'logo.svg', fonts: ['manrope-latin.woff2', 'manrope-latin-ext.woff2']}});
-					const zip = zipSync({'index.html': new TextEncoder().encode(html), 'cihaz.png': device, 'kanit.png': proof, 'logo.svg': wordmark, 'manrope-latin.woff2': fonts[0], 'manrope-latin-ext.woff2': fonts[1]}, {level: 9});
+					const html = buildBannerHtml({concept, lang, platform, size, files: {device: 'cihaz.png', proof: 'kanit.png', logo: 'logo.png', fonts: ['manrope-latin.woff2', 'manrope-latin-ext.woff2']}});
+					const zip = zipSync({'index.html': new TextEncoder().encode(html), 'cihaz.png': device, 'kanit.png': proof, 'logo.png': logo, 'manrope-latin.woff2': fonts[0], 'manrope-latin-ext.woff2': fonts[1]}, {level: 9});
 					const output = path.join(groupDir(lang, exam, platform), 'html5', `${exam}-${PLATFORM_FOLDER[platform]}-${lang}-${size.name}.zip`);
 					await mkdir(path.dirname(output), {recursive: true});
 					await writeFile(output, zip);

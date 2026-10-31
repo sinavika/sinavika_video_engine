@@ -8,7 +8,7 @@ import type {VoiceSlot} from './Voiceover';
  * A scene only says how long it stays on screen. What moves inside it, and
  * when, is decided by the animation components relative to the scene start.
  */
-export type SceneTiming = {id: string; seconds: number};
+type SceneTiming = {id: string; seconds: number};
 
 /** A scene as a template describes it: an id, a duration, what to draw and what to say. */
 export type TemplateScene = SceneTiming & {
@@ -24,7 +24,7 @@ export type TemplateScene = SceneTiming & {
 	silent?: boolean;
 };
 
-export type PlannedScene = {id: string; from: number; durationInFrames: number};
+type PlannedScene = {id: string; from: number; durationInFrames: number};
 
 export type ScenePlan = {
 	scenes: PlannedScene[];

@@ -1,7 +1,7 @@
 import type {VideoFormatId} from '../Configurations/VideoFormats';
 import type {SceneTransition} from '../Scenes/SceneTransition';
 import type {ThemeId} from '../Themes/ThemeRegistry';
-import type {CourseVisualKind} from '../Components/Visuals/VisualSchemas';
+import type {CourseVisualKind} from '../Components/Visuals/VisualSchema';
 
 /**
  * The design of the education videos, in one place: the counterpart of
@@ -109,6 +109,12 @@ export const COURSE_DESIGN = {
 	/** A card's text and its visual share the card; the visual gets this part of the width on horizontal video. */
 	visualShare: 0.56,
 	/**
+	 * A figure whose shape is fixed (geometry, equal-scale plot) and narrower than this (width over height)
+	 * stands beside the title and caption of a visual card on horizontal video instead of under them: under
+	 * them it shrank into a band about 400 px high (29 Oct 2026).
+	 */
+	besideAspect: 1.7,
+	/**
 	 * The promotion at the end: shown, never spoken. Long videos close with
 	 * the app; shorts point to the full lesson and the app.
 	 */
@@ -122,23 +128,23 @@ export const COURSE_DESIGN = {
  */
 export const LESSON_VISUAL_KITS: Record<string, readonly CourseVisualKind[]> = {
 	TRK: ['sentence', 'paragraph', 'comparison', 'table', 'flow', 'conceptMap'],
-	TDE: ['sentence', 'timeline', 'comparison', 'table', 'conceptMap', 'picture'],
+	TDE: ['poem', 'sentence', 'verses', 'timeline', 'comparison', 'table', 'conceptMap', 'picture'],
 	MAT: ['formula', 'plot', 'equation', 'geometry', 'solid', 'table', 'venn', 'flow'],
 	GEO: ['geometry', 'solid', 'formula', 'plot', 'table'],
-	FIZ: ['dynamics', 'forces', 'motion', 'plot', 'formula', 'flow'],
-	KIM: ['atom', 'molecule', 'molecule3d', 'reaction', 'table', 'flow', 'cycle'],
-	BIO: ['cycle', 'flow', 'picture', 'conceptMap', 'table', 'comparison'],
-	TAR: ['timeline', 'map', 'picture', 'flow', 'comparison', 'conceptMap'],
-	TAR1: ['timeline', 'map', 'picture', 'flow', 'comparison', 'conceptMap'],
-	TAR2: ['timeline', 'map', 'picture', 'flow', 'comparison', 'conceptMap'],
-	COG: ['map', 'river', 'earthquake', 'cycle', 'flow', 'plot', 'table', 'picture'],
+	FIZ: ['dynamics', 'forces', 'vectors', 'lever', 'centreOfMass', 'pulley', 'gears', 'kinematics', 'energyTrack', 'projectile', 'collision', 'electricField', 'parallelPlates', 'magneticField', 'induction', 'circular', 'kepler', 'retrograde', 'oscillator', 'interference', 'doppler', 'bohr', 'rutherford', 'halfLife', 'nuclear', 'photoelectric', 'motion', 'plot', 'capillary', 'tank', 'charges', 'circuit', 'wave', 'optics', 'formula', 'table', 'conceptMap', 'tree', 'flow'],
+	KIM: ['micelle', 'greenhouse', 'tyndall', 'phaseDiagram', 'titration', 'stoichiometry', 'intermolecular', 'rutherford', 'orbitals', 'gas', 'solution', 'energyProfile', 'equilibrium', 'electrochemicalCell', 'distillation', 'nuclear', 'atom', 'periodic', 'lewis', 'molecule', 'molecule3d', 'reaction', 'plot', 'table', 'flow', 'cycle', 'stack', 'comparison', 'tree'],
+	BIO: ['neuron', 'intermolecular', 'feedback', 'eye', 'sarcomere', 'digestion', 'circulation', 'nephron', 'geneExpression', 'cell', 'membrane', 'tonicity', 'taxonomy', 'division', 'punnett', 'pedigree', 'foodweb', 'trophic', 'cycle', 'flow', 'plot', 'table', 'tree', 'comparison', 'conceptMap', 'stack', 'picture'],
+	TAR: ['timeline', 'map', 'battle', 'picture', 'flow', 'comparison', 'conceptMap'],
+	TAR1: ['timeline', 'map', 'battle', 'picture', 'flow', 'comparison', 'conceptMap'],
+	TAR2: ['timeline', 'map', 'battle', 'picture', 'flow', 'comparison', 'conceptMap'],
+	COG: ['greenhouse', 'map', 'earth', 'contour', 'climate', 'interior', 'plates', 'geotime', 'landform', 'pyramid', 'stack', 'tree', 'quadrant', 'spheres', 'river', 'earthquake', 'cycle', 'flow', 'plot', 'table', 'comparison', 'conceptMap', 'picture'],
 	COG1: ['map', 'river', 'earthquake', 'cycle', 'flow', 'plot', 'table', 'picture'],
 	COG2: ['map', 'flow', 'table', 'plot', 'picture'],
-	FEL: ['conceptMap', 'comparison', 'flow', 'timeline'],
-	PSI: ['conceptMap', 'flow', 'cycle', 'comparison'],
-	SOS: ['conceptMap', 'comparison', 'flow', 'table'],
-	MAN: ['table', 'venn', 'flow', 'formula'],
-	DIN: ['conceptMap', 'comparison', 'timeline', 'flow'],
+	FEL: ['cave', 'emanation', 'theseus', 'trolley', 'retrograde', 'hierarchy', 'matching', 'flipcards', 'conceptMap', 'comparison', 'tree', 'table', 'paragraph', 'quadrant', 'flow', 'cycle', 'timeline', 'verses', 'picture'],
+	PSI: ['conceptMap', 'flow', 'cycle', 'tree', 'comparison', 'hierarchy', 'matching', 'flipcards'],
+	SOS: ['conceptMap', 'comparison', 'tree', 'stack', 'flow', 'table', 'hierarchy', 'matching', 'flipcards'],
+	MAN: ['truthTable', 'table', 'opposition', 'euler', 'venn', 'flow', 'formula', 'tree', 'comparison', 'matching', 'flipcards'],
+	DIN: ['verses', 'conceptMap', 'comparison', 'tree', 'table', 'paragraph', 'timeline', 'flow', 'map'],
 	VAT: ['flow', 'conceptMap', 'timeline', 'table', 'comparison'],
 	ING: ['sentence', 'comparison', 'table'],
 	ALM: ['sentence', 'comparison', 'table'],
@@ -148,6 +154,6 @@ export const LESSON_VISUAL_KITS: Record<string, readonly CourseVisualKind[]> = {
 };
 
 /** For lessons without a kit: the general-purpose visuals. */
-export const DEFAULT_VISUAL_KIT: readonly CourseVisualKind[] = ['flow', 'comparison', 'table', 'conceptMap', 'formula'];
+const DEFAULT_VISUAL_KIT: readonly CourseVisualKind[] = ['flow', 'comparison', 'table', 'conceptMap', 'formula'];
 
 export const visualKitOf = (lessonCode: string): readonly CourseVisualKind[] => LESSON_VISUAL_KITS[lessonCode] ?? DEFAULT_VISUAL_KIT;

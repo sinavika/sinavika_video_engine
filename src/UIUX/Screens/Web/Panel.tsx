@@ -33,11 +33,11 @@ const HomeBody: React.FC = () => {
 			<Grid columns="1.6fr 1fr">
 				<Stack gap={18}>
 					<div id="w-hero">
-						<ModuleBanner module="lessons" over={t('Bugünün adımı · 1/3', 'Today’s step · 1/3')} title={t('Paragraf: ana fikir', 'Reading: the main idea')} text={t('Geçen denemede bu konuda 3 net kaybettin. 25 dakikalık mikro dersle başla.', 'You lost 3 points here last exam. Start with a 25-minute micro-lesson.')} action={t('Başla', 'Start')} height={190} />
+						<ModuleBanner module="lessons" over={t('Bugünün adımı · 1/3', 'Today’s step · 1/3')} title={t('Paragraf: ana fikir', 'Reading: the main idea')} text={t('Geçen denemede bu konuda 3 net kaybettin. 4 mikro ders, yaklaşık 12 dakika.', 'You lost 3 points here last exam. 4 micro-lessons, about 12 minutes.')} action={t('Başla', 'Start')} height={190} />
 					</div>
 					<WCard title={t('Bugünün planı', 'Today’s plan')} action={t('Ders Planı’na git', 'Open study plan')}>
 						<Stack gap={8}>
-							<PlanTask module="lessons" title={t('Paragraf · Ana fikir', 'Reading · Main idea')} meta={t('Mikro ders · 25 dk', 'Micro-lesson · 25 min')} done />
+							<PlanTask module="lessons" title={t('Sözcükte Anlam', 'Word meaning')} meta={t('Dersler · 3 mikro ders · 8 dk', 'Lessons · 3 micro-lessons · 8 min')} done />
 							<PlanTask module="tests" title={t('Problemler · Orta', 'Problems · Medium')} meta={t('20 soru · 25 dk', '20 questions · 25 min')} now />
 							<PlanTask module="flashcards" title={t('Kimya kartları', 'Chemistry cards')} meta={t('20 kart · 10 dk', '20 cards · 10 min')} />
 						</Stack>
@@ -105,7 +105,7 @@ export const WebHomeScreen: React.FC = () => (
 	</Panel>
 );
 
-/** First visit: four-step tour over the panel. */
+/** First visit: one tip on the day's step; the modules explain themselves where they are first opened. */
 export const WebTourScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
@@ -117,20 +117,17 @@ export const WebTourScreen: React.FC = () => {
 					<div style={{position: 'absolute', left: 280, top: 162, width: 690, height: 206, borderRadius: 28, boxShadow: '0 0 0 4px rgba(255,255,255,0.95), 0 0 0 3000px rgba(11,28,48,0.6)'}} />
 					<div style={{position: 'absolute', left: 300, top: 392, width: 440, borderRadius: 22, background: colors.card, padding: 20}}>
 						<div style={{position: 'absolute', left: 60, top: -8, width: 16, height: 16, background: colors.card, transform: 'rotate(45deg)'}} />
-						<Stack row justify="space-between">
-							<Text role="over" color={colors.brand}>
-								{t('Tur · 1/4', 'Tour · 1/4')}
-							</Text>
-							<Text role="meta">{t('Geç', 'Skip')}</Text>
-						</Stack>
+						<Text role="over" color={colors.brandDeep}>
+							{t('İpucu', 'Tip')}
+						</Text>
 						<Text role="section" style={{marginTop: 6}}>
 							{t('Her gün buradan başla', 'Start here every day')}
 						</Text>
 						<Text role="body" style={{marginTop: 4}}>
-							{t('Planına ve son denemene göre bugün yapman gereken tek şey. Sonra soldaki modülleri göstereceğiz.', 'The one thing to do today. Next, the modules on the left.')}
+							{t('Planına ve son denemene göre bugün yapman gereken tek şey burada. Modüller solda, hep aynı yerde.', 'The one thing to do today, from your plan and last exam. Modules are on the left, always in the same place.')}
 						</Text>
 						<Stack row justify="flex-end" style={{marginTop: 14}}>
-							<Button size="sm">{t('Sonraki', 'Next')}</Button>
+							<Button size="sm">{t('Anladım', 'Got it')}</Button>
 						</Stack>
 					</div>
 				</div>
@@ -398,7 +395,7 @@ export const WebSettingsScreen: React.FC = () => {
 					<Grid columns="1fr 1fr 1fr" gap={12}>
 						{[[t('Açık', 'Light'), '#F7F7F8', false], [t('Koyu', 'Dark'), '#0F1115', false], [t('Sistem', 'System'), 'linear-gradient(90deg, #F7F7F8 50%, #0F1115 50%)', true]].map(([label, bg, on]) => (
 							<Stack key={label as string} gap={8} align="center">
-								<div style={{width: '100%', height: 110, borderRadius: 16, background: bg as string, border: `2px solid ${on ? '#EA580C' : 'var(--ui-line)'}`}} />
+								<div style={{width: '100%', height: 110, borderRadius: 16, background: bg as string, border: `2px solid ${on ? 'var(--ui-ink)' : 'var(--ui-line)'}`}} />
 								<Text role="headline" size={14}>
 									{label as string}
 								</Text>
@@ -493,7 +490,7 @@ export const WebSupportTicketScreen: React.FC = () => {
 			<Card padding={24} style={{flex: 1}}>
 				<Stack gap={18}>
 					<Stack align="flex-end" gap={4}>
-						<div style={{maxWidth: 560, padding: '14px 18px', borderRadius: '20px 20px 6px 20px', background: colors.brand}}>
+						<div style={{maxWidth: 560, padding: '14px 18px', borderRadius: '20px 20px 6px 20px', background: colors.action}}>
 							<Text role="body" color="#FFFFFF">
 								{t('12 Ekim’de kartımdan iki kez ₺299 çekildi. Ekran görüntüsü ekte.', 'I was charged ₺299 twice on 12 Oct. Screenshot attached.')}
 							</Text>
@@ -561,7 +558,7 @@ export const WebCheckoutScreen: React.FC = () => {
 							<Field label="CVC" value="•••" />
 						</Grid>
 						<Stack row gap={10}>
-							<div style={{width: 22, height: 22, borderRadius: 7, background: colors.brand, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+							<div style={{width: 22, height: 22, borderRadius: 7, background: colors.ink, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 								<Icon name="check" size={14} color="#FFFFFF" />
 							</div>
 							<Text role="small">{t('Mesafeli satış sözleşmesini okudum ve onaylıyorum.', 'I accept the distance sales agreement.')}</Text>

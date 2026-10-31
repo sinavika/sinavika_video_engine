@@ -1,0 +1,911 @@
+{
+ "topic": {
+  "id": "9365F1B0-172A-63B7-4FF8-73E99391EB97",
+  "category": "YKS_AYT",
+  "lesson": "KIM",
+  "code": "KIM_HESAP"
+ },
+ "title": "Kimyasal Hesaplamalar",
+ "lessonName": "Kimya",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/KIM/KIM_HESAP.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Bir kaşık suyu saymak",
+   "narration": "On sekiz gram su, bir yemek kaşığından biraz fazlası. İçinde altı yüz milyar kere bir trilyon su molekülü var. Saniyede bir molekül sayarsan bitirmen, evrenin yaşının bir milyon katından uzun sürer. Kimyacılar bu yüzden tanecikleri tek tek değil, mol ile sayar. Bu derste molü, formülleri, denkleştirmeyi, sınırlayıcı bileşeni ve verimi AYT sorularıyla çalışacağız."
+  },
+  "objectives": [
+   "Mol ile tanecik sayısı, kütle ve gaz hacmi arasında geçiş yapmak",
+   "Yanma verisinden basit formülü, mol kütlesinden molekül formülünü bulmak",
+   "Tepkime denklemlerini en küçük tam sayılarla denkleştirmek",
+   "Sınırlayıcı bileşeni ve artan maddeyi hesaplamak",
+   "Verim ve karışım yüzdesini hesaplamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "KIM_HESAP_01",
+    "subtopics": [
+     "KIM_HESAP_02",
+     "KIM_HESAP_04"
+    ],
+    "title": "Mol kavramı",
+    "narration": "Atomlar o kadar küçük ki onları tek tek sayamayız. Kimyacılar bu yüzden düzineye benzeyen bir sayma birimi kullanır: mol.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Mol köprüsü",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "n mol madde için",
+        "Nasıl bulunur?"
+       ],
+       "rows": [
+        [
+         "Tanecik sayısı",
+         "$n \\cdot 6{,}02 \\cdot 10^{23}$"
+        ],
+        [
+         "Kütle",
+         "$n \\cdot$ mol kütlesi (g/mol)"
+        ],
+        [
+         "Gaz hacmi (normal koşullar)",
+         "$n \\cdot 22{,}4$ L"
+        ],
+        [
+         "Bir tane atomun kütlesi",
+         "akb cinsinden: O atomu 16 akb"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Bir mol, altı virgül sıfır iki çarpı on üzeri yirmi üç tane taneciktir. Bu sayıya Avogadro sayısı denir.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Bir mol maddenin gram cinsinden kütlesi mol kütlesidir: bir mol su on sekiz gram, bir mol oksijen gazı otuz iki gram. Normal koşullarda, yani sıfır derece ve bir atmosferde, her gazın bir molü yirmi iki virgül dört litre hacim kaplar.",
+        "show": [
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r2",
+         "r3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Dikkat: tek bir atomun kütlesi gram değil, atomik kütle birimiyle söylenir. Bir oksijen atomu on altı akb'dir; on altı gram ise bir mol oksijen atomunun kütlesidir.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bütün hesaplar molden geçer."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$3{,}01 \\cdot 10^{23}$ tane $\\mathrm{SO_3}$ molekülü kaç gramdır?\n(O = 16 g/mol, S = 32 g/mol; Avogadro sayısı = $6{,}02 \\cdot 10^{23}$)",
+       "options": [
+        "16",
+        "20",
+        "32",
+        "40",
+        "80"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$3{,}01 \\cdot 10^{23}$ tanecik = **0,5 mol**. Mol kütlesi: 32 + 3·16 = **80** g/mol.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç virgül sıfır bir çarpı on üzeri yirmi üç, Avogadro sayısının yarısıdır: sıfır virgül beş mol. Kükürt trioksidin mol kütlesi otuz iki artı kırk sekiz, seksen gramdır."
+        },
+        {
+         "text": "0,5 · 80 = **40 g**. 32, $\\mathrm{SO_2}$ ile karıştırınca çıkar. Cevap D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sıfır virgül beş çarpı seksen, kırk gram. Otuz iki seçeneği, formülü kükürt dioksit sanan öğrenciyi yakalar. Cevap D."
+        }
+       ],
+       "narration": "Önce tanecik sayısını mole çevir.",
+       "origin": {
+        "changes": "Havuzdaki kimyasal hesaplamalar soru yapısı; sayılar ve seçenekler yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Normal koşullarda 11,2 L hacim kaplayan $\\mathrm{CO_2}$ gazı toplam kaç mol atom içerir?",
+       "options": [
+        "0,25",
+        "0,5",
+        "0,75",
+        "1",
+        "1,5"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "11,2 / 22,4 = **0,5 mol** $\\mathrm{CO_2}$ molekülü.",
+         "eliminate": [
+          "A",
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "On bir virgül iki bölü yirmi iki virgül dört, sıfır virgül beş mol karbon dioksit molekülü eder."
+        },
+        {
+         "text": "Her molekülde **3 atom**: 0,5 · 3 = **1,5 mol** atom. Cevap E.",
+         "eliminate": [
+          "B",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Her karbon dioksit molekülünde bir karbon ve iki oksijen, yani üç atom vardır. Sıfır virgül beş çarpı üç, bir virgül beş mol atom. Sıfır virgül beş molekül sayısıdır, bir ise yalnız oksijen atomlarıdır. Cevap E."
+        }
+       ],
+       "narration": "Molekül mü, atom mu soruluyor?",
+       "origin": {
+        "changes": "Havuzdaki kimyasal hesaplamalar soru yapısı; sayılar ve seçenekler yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "I. 1 mol $\\mathrm{O_2}$ gazı 32 gramdır.\nII. 1 tane oksijen atomunun kütlesi 16 gramdır.\nIII. Normal koşullarda 1 mol He gazı ile 1 mol $\\mathrm{CH_4}$ gazı aynı hacmi kaplar.\n\nyargılarından hangileri doğrudur? (O = 16 g/mol)",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "I: 2 · 16 = **32 g**: doğru. III: NK'da her gazın 1 molü **22,4 L**: doğru.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Oksijen molekülü iki atomludur; bir molü otuz iki gramdır, birinci yargı doğru. Normal koşullarda her gazın bir molü yirmi iki virgül dört litredir; helyum da metan da aynı hacmi kaplar, üçüncü yargı doğru."
+        },
+        {
+         "text": "II: tek atom **16 akb**; 16 g, bir **mol** O atomudur: yanlış. Cevap D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Tek bir oksijen atomunun kütlesi on altı akb'dir; on altı gram, bir mol oksijen atomunun kütlesidir. İkinci yargı yanlış. Cevap D."
+        }
+       ],
+       "narration": "Gram mı, akb mi?",
+       "origin": {
+        "changes": "Havuzdaki kimyasal hesaplamalar soru yapısı; sayılar ve seçenekler yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KIM_HESAP_03",
+    "subtopics": [],
+    "title": "Basit formül ve molekül formülü",
+    "narration": "Bir bileşiğin hangi atomlardan hangi oranda oluştuğunu bulmak, kimyasal analizin ilk işidir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "İki formül",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Bileşik",
+        "Basit formül",
+        "Molekül formülü"
+       ],
+       "rows": [
+        [
+         "Glikoz",
+         "$\\mathrm{CH_2O}$",
+         "$\\mathrm{C_6H_{12}O_6}$"
+        ],
+        [
+         "Asetik asit",
+         "$\\mathrm{CH_2O}$",
+         "$\\mathrm{C_2H_4O_2}$"
+        ],
+        [
+         "Benzen",
+         "CH",
+         "$\\mathrm{C_6H_6}$"
+        ],
+        [
+         "Su",
+         "$\\mathrm{H_2O}$",
+         "$\\mathrm{H_2O}$"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Basit formül, atomların en küçük tam sayılı oranıdır. Molekül formülü ise bir moleküldeki gerçek atom sayılarını verir.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Glikoz ile asetik asidin basit formülü aynıdır, karbon, iki hidrojen, oksijen; ama molekül formülleri farklıdır. Basit formül tek başına maddeyi tanıtmaz; mol kütlesi de gerekir.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r1",
+         "r2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Molekül formülü basit formülün tam sayı katıdır: mol kütlesini basit formülün kütlesine bölersin. Benzende bu kat altıdır; suda birdir.",
+        "show": [
+         "r3",
+         "r4"
+        ],
+        "focus": [
+         "r3",
+         "r4"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Oran ve gerçek sayı."
+     },
+     {
+      "kind": "visual",
+      "title": "Yanma analizi",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "**CO₂**'den karbon",
+         "detail": "1 mol CO₂ = 1 mol C"
+        },
+        {
+         "label": "**H₂O**'dan hidrojen",
+         "detail": "1 mol H₂O = 2 mol H"
+        },
+        {
+         "label": "Kalan kütle **oksijen**",
+         "detail": "Toplam − C − H"
+        },
+        {
+         "label": "**Mol oranı**",
+         "detail": "En küçüğe böl"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Bileşik yakılınca bütün karbonu karbon dioksite, bütün hidrojeni suya geçer. Karbon dioksitin molü kadar karbon vardır.",
+        "show": [
+         "n1"
+        ],
+        "focus": [
+         "n1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Her su molekülünde iki hidrojen var; suyun molünün iki katı kadar hidrojen.",
+        "show": [
+         "n2"
+        ],
+        "focus": [
+         "n2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Bileşikte oksijen de varsa kütlesini doğrudan ölçemeyiz, çünkü yakmak için dışarıdan oksijen eklenir. Toplam kütleden karbon ve hidrojen kütlesini çıkarırsın.",
+        "show": [
+         "n3"
+        ],
+        "focus": [
+         "n3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Son olarak her elementin mol sayısını en küçüğüne bölüp oranı bulursun.",
+        "show": [
+         "n4"
+        ],
+        "focus": [
+         "n4"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Dört adım."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yalnız C, H ve O içeren 30 gram bir bileşik tamamen yakıldığında normal koşullarda 22,4 L $\\mathrm{CO_2}$ gazı ve 18 gram $\\mathrm{H_2O}$ oluşuyor.\n\nBuna göre bileşiğin basit formülü aşağıdakilerden hangisidir?\n(H = 1 g/mol, C = 12 g/mol, O = 16 g/mol)",
+       "context": "ÖSYM 2019'da yanma ürünlerinden bir bileşiğin basit formülü soruldu; burada başka kütlelerle soruluyor.",
+       "options": [
+        "$\\mathrm{CH_4O}$",
+        "$\\mathrm{CH_2O}$",
+        "$\\mathrm{C_2H_4O}$",
+        "$\\mathrm{C_2H_6O}$",
+        "$\\mathrm{CHO_2}$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "22,4 L $\\mathrm{CO_2}$ = **1 mol C** (12 g). 18 g $\\mathrm{H_2O}$ = 1 mol su = **2 mol H** (2 g).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yirmi iki virgül dört litre karbon dioksit bir moldür; bileşikte bir mol, yani on iki gram karbon var. On sekiz gram su bir moldür; iki mol, yani iki gram hidrojen var."
+        },
+        {
+         "text": "O: 30 − 12 − 2 = **16 g** = 1 mol. Oran C : H : O = 1 : 2 : 1, $\\mathrm{CH_2O}$. Cevap B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Oksijen otuzdan on dört çıkınca on altı gram, yani bir mol. Oran bir, iki, bir: basit formül karbon, iki hidrojen, oksijen. Cevap B."
+        }
+       ],
+       "narration": "Karbon ve hidrojenden başla.",
+       "origin": {
+        "changes": "ÖSYM 2019 yanma verisinden basit formül kalıbı; kütleler ve bileşik değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Basit formülü $\\mathrm{CH_2}$ olan bir hidrokarbonun 0,2 molü 11,2 gramdır.\n\nBuna göre bu hidrokarbonun molekül formülü aşağıdakilerden hangisidir? (H = 1 g/mol, C = 12 g/mol)",
+       "options": [
+        "$\\mathrm{C_4H_8}$",
+        "$\\mathrm{C_2H_4}$",
+        "$\\mathrm{C_3H_6}$",
+        "$\\mathrm{C_5H_{10}}$",
+        "$\\mathrm{C_6H_{12}}$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Mol kütlesi: 11,2 / 0,2 = **56** g/mol. $\\mathrm{CH_2}$ = **14** g/mol.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Mol kütlesi, kütle bölü mol: on bir virgül iki bölü sıfır virgül iki, elli altı gram. Basit formülün kütlesi on iki artı iki, on dört."
+        },
+        {
+         "text": "56 / 14 = **4**: $\\mathrm{(CH_2)_4}$ = $\\mathrm{C_4H_8}$. Cevap A.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Elli altı bölü on dört, dört. Basit formül dört kez tekrarlanır: dört karbon, sekiz hidrojen. Cevap A."
+        }
+       ],
+       "narration": "Önce mol kütlesini bul.",
+       "origin": {
+        "changes": "Havuzdaki kimyasal hesaplamalar soru yapısı; sayılar ve seçenekler yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KIM_HESAP_05",
+    "subtopics": [
+     "KIM_HESAP_06"
+    ],
+    "title": "Tepkime denklemleri ve denkleştirme",
+    "narration": "Bir kimyasal tepkimede atomlar ne yok olur ne de yoktan var olur; yalnız yeniden düzenlenir. Denkleştirme bu gerçeği kâğıda yazmaktır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Atomlar korunur",
+      "visual": {
+       "kind": "stoichiometry",
+       "reactants": [
+        {
+         "formula": "N₂",
+         "atoms": [
+          "N",
+          "N"
+         ],
+         "coefficient": 1,
+         "count": 2
+        },
+        {
+         "formula": "H₂",
+         "atoms": [
+          "H",
+          "H"
+         ],
+         "coefficient": 3,
+         "count": 6
+        }
+       ],
+       "products": [
+        {
+         "formula": "NH₃",
+         "atoms": [
+          "H",
+          "N",
+          "H",
+          "H"
+         ],
+         "coefficient": 2
+        }
+       ],
+       "step": 1.6,
+       "beforeLabel": "Girenler",
+       "afterLabel": "Ürünler",
+       "limitingLabel": "Sınırlayıcı",
+       "excessLabel": "Artan",
+       "completeLabel": "Artan madde yok",
+       "motion": true
+      },
+      "beats": [
+       {
+        "narration": "Solda iki azot ve altı hidrojen molekülü var: toplam dört azot, on iki hidrojen atomu. Denklem diyor ki bir azot molekülü üç hidrojen molekülüyle tepkimeye girer ve iki amonyak oluşur.",
+        "show": [
+         "reactants"
+        ],
+        "focus": [
+         "reactants"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Tepkime iki kez dönüyor; her seferinde bir azot ve üç hidrojen giriyor, iki amonyak çıkıyor.",
+        "show": [
+         "react",
+         "products"
+        ],
+        "focus": [
+         "products"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Sonunda dört amonyak var: dört azot, on iki hidrojen atomu. Başlangıçtakiyle aynı. Katsayılar kütleyi değil, tanecik ve mol oranını söyler: bir azota üç hidrojen, iki amonyak.",
+        "show": [
+         "result"
+        ],
+        "focus": [
+         "result"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Amonyak oluşumu tanecik düzeyinde."
+     },
+     {
+      "kind": "visual",
+      "title": "Propanı denkleştir",
+      "visual": {
+       "kind": "reaction",
+       "equation": "C3H8 + 5O2 -> 3CO2 + 4H2O",
+       "caption": "Sıra: önce C, sonra H, en son O"
+      },
+      "beats": [],
+      "narration": "Propan oksijenle yanınca karbon dioksit ve su oluşur. Önce karbonu denkleştir: üç karbon var, karbon dioksitin önüne üç yaz. Sonra hidrojeni: sekiz hidrojen var, suyun önüne dört yaz. Oksijeni en sona bırak, çünkü yalnız oksijen molekülünde tek başına durur: sağda üç çarpı iki artı dört, on oksijen atomu var; oksijen molekülünün önüne beş yaz. Katsayılar bir, beş, üç ve dört; toplamı on üç."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\mathrm{C_2H_6 + O_2 \\to CO_2 + H_2O}$\n\nTepkimesi en küçük tam sayılarla denkleştirildiğinde katsayılar toplamı kaç olur?",
+       "options": [
+        "9",
+        "13",
+        "15",
+        "17",
+        "19"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "C: **2** $\\mathrm{CO_2}$. H: 6 → **3** $\\mathrm{H_2O}$. O: 4 + 3 = 7 atom → **7/2** $\\mathrm{O_2}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki karbon için iki karbon dioksit; altı hidrojen için üç su. Sağda dört artı üç, yedi oksijen atomu var; oksijen molekülünün katsayısı yedi bölü iki çıkıyor."
+        },
+        {
+         "text": "Hepsini 2 ile çarp: $\\mathrm{2C_2H_6 + 7O_2 \\to 4CO_2 + 6H_2O}$; toplam **19**. Cevap E.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kesirden kurtulmak için hepsini ikiyle çarparız: iki, yedi, dört ve altı. Toplam on dokuz. On üç, propanın toplamıdır. Cevap E."
+        }
+       ],
+       "narration": "C, H, sonra O; kesir çıkarsa ikiyle çarp.",
+       "origin": {
+        "changes": "Havuzdaki kimyasal hesaplamalar soru yapısı; sayılar ve seçenekler yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KIM_HESAP_07",
+    "subtopics": [
+     "KIM_HESAP_08"
+    ],
+    "title": "Hesaplamalar, sınırlayıcı bileşen ve verim",
+    "narration": "Denklem bir tarif gibidir: katsayılar hangi maddeden kaç mol gerektiğini söyler. Malzemelerden biri biterse tepkime durur.",
+    "cards": [
+     {
+      "kind": "mistake",
+      "title": "Katsayılar neyi söyler?",
+      "wrong": "Katsayılar kütle oranıdır: 1 g N₂ ile 3 g H₂ tepkimeye girer.",
+      "right": "Katsayılar **mol** oranıdır: 1 mol N₂ ile 3 mol H₂ tepkimeye girer.",
+      "why": "Kütleye geçmek için her molü **mol kütlesiyle** çarparsın.",
+      "narration": "Sık yapılan hata: katsayıları gram sanmak. Katsayılar mol, yani tanecik oranıdır. Bir mol azot üç mol hidrojenle tepkimeye girer; bu yirmi sekiz gram azota altı gram hidrojen demektir. Kütleye ancak her molü kendi mol kütlesiyle çarparak geçersin."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\mathrm{N_2 + 3H_2 \\to 2NH_3}$\n\nTepkimesine göre 6 gram $\\mathrm{H_2}$ gazı tamamen harcandığında kaç gram $\\mathrm{NH_3}$ oluşur? (H = 1 g/mol, N = 14 g/mol)",
+       "options": [
+        "12",
+        "17",
+        "34",
+        "51",
+        "68"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "6 g $\\mathrm{H_2}$ = **3 mol**. Oran 3 : 2: **2 mol** $\\mathrm{NH_3}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Altı gram hidrojen, mol kütlesi ikiye bölününce üç mol eder. Denkleme göre üç mol hidrojenden iki mol amonyak oluşur."
+        },
+        {
+         "text": "2 · 17 = **34 g**. Cevap C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Amonyağın mol kütlesi on dört artı üç, on yedi gram. İki mol, otuz dört gram. Cevap C."
+        }
+       ],
+       "narration": "Kütle → mol → mol oranı → kütle.",
+       "origin": {
+        "changes": "Havuzdaki kimyasal hesaplamalar soru yapısı; sayılar ve seçenekler yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Biri biterse",
+      "prompt": "Sekiz hidrojen molekülü ile üç oksijen molekülü, iki hidrojen artı bir oksijenden iki su oluşur denklemine göre tepkimeye giriyor. Sence ne olur?",
+      "choices": [
+       "6 H₂O oluşur, 2 H₂ artar",
+       "8 H₂O oluşur, artan olmaz",
+       "3 H₂O oluşur, 5 H₂ artar",
+       "6 H₂O oluşur, 1 O₂ artar"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "stoichiometry",
+       "reactants": [
+        {
+         "formula": "H₂",
+         "atoms": [
+          "H",
+          "H"
+         ],
+         "coefficient": 2,
+         "count": 8
+        },
+        {
+         "formula": "O₂",
+         "atoms": [
+          "O",
+          "O"
+         ],
+         "coefficient": 1,
+         "count": 3
+        }
+       ],
+       "products": [
+        {
+         "formula": "H₂O",
+         "atoms": [
+          "H",
+          "O",
+          "H"
+         ],
+         "coefficient": 2
+        }
+       ],
+       "step": 1.4,
+       "beforeLabel": "Girenler",
+       "afterLabel": "Ürünler",
+       "limitingLabel": "Sınırlayıcı",
+       "excessLabel": "Artan",
+       "completeLabel": "Artan madde yok",
+       "motion": true
+      },
+      "beats": [
+       {
+        "narration": "Solda sekiz hidrojen ve üç oksijen molekülü var.",
+        "show": [
+         "reactants"
+        ],
+        "focus": [
+         "reactants"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Her turda iki hidrojen ve bir oksijen giriyor, iki su çıkıyor. Üç turda oksijen bitiyor.",
+        "show": [
+         "react",
+         "products"
+        ],
+        "focus": [
+         "products"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Oksijen bittiği için tepkime duruyor: altı su oluştu, iki hidrojen arttı. Önce biten maddeye sınırlayıcı bileşen denir; bütün hesabı o belirler.",
+        "show": [
+         "result"
+        ],
+        "focus": [
+         "result"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "**Oksijen** önce biter: sınırlayıcı bileşen. 6 su oluşur, **2 hidrojen** artar.",
+      "narration": "Ne olur? Tahmin et.",
+      "explanationNarration": "Altı su oluşur, iki hidrojen artar. Üç oksijen ancak altı hidrojenle tepkimeye girebilir. Sekiz hidrojen varken oksijen önce biter; ona sınırlayıcı bileşen denir. Ürünün miktarını her zaman sınırlayıcı bileşen belirler, artan madde ise hesaba katılmaz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\mathrm{2H_2 + O_2 \\to 2H_2O}$\n\nTepkimesine göre 8 gram $\\mathrm{H_2}$ ile 32 gram $\\mathrm{O_2}$ tam verimle tepkimeye giriyor.\n\nTepkime sonunda hangi maddeden kaç gram artar? (H = 1 g/mol, O = 16 g/mol)",
+       "options": [
+        "2 g $\\mathrm{H_2}$",
+        "4 g $\\mathrm{H_2}$",
+        "8 g $\\mathrm{O_2}$",
+        "16 g $\\mathrm{O_2}$",
+        "Artan madde yoktur"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$\\mathrm{H_2}$: 8 / 2 = **4 mol**. $\\mathrm{O_2}$: 32 / 32 = **1 mol**. 1 mol $\\mathrm{O_2}$ yalnız **2 mol** $\\mathrm{H_2}$ harcar.",
+         "eliminate": [
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hidrojen sekiz bölü iki, dört mol; oksijen otuz iki bölü otuz iki, bir mol. Bir mol oksijen iki mol hidrojenle tepkimeye girer; oksijen sınırlayıcıdır."
+        },
+        {
+         "text": "Artan: 4 − 2 = **2 mol** $\\mathrm{H_2}$ = **4 g**. Cevap B.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dört molden iki mol harcanır, iki mol hidrojen artar; bu dört gramdır. İki gram seçeneği, molü gramla karıştıranı yakalar. Cevap B."
+        }
+       ],
+       "narration": "Önce ikisini de mole çevir.",
+       "origin": {
+        "changes": "Havuzdaki kimyasal hesaplamalar soru yapısı; sayılar ve seçenekler yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "visual",
+      "title": "Verim",
+      "visual": {
+       "kind": "formula",
+       "latex": "\\text{Verim} = \\dfrac{\\text{gerçek ürün}}{\\text{teorik ürün}} \\times 100",
+       "caption": "Teorik ürün, sınırlayıcı bileşene göre hesaplanır."
+      },
+      "beats": [],
+      "narration": "Gerçek bir tepkimede beklenen ürünün hepsi her zaman elde edilmez. Denkleme göre hesapladığın miktar teorik üründür; elde edilen gerçek miktarı buna bölüp yüzle çarparsan verimi bulursun. Teorik ürünü her zaman sınırlayıcı bileşene göre hesapla."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\mathrm{CaCO_3 \\to CaO + CO_2}$\n\n50 gram $\\mathrm{CaCO_3}$ ısıtıldığında 21 gram CaO elde ediliyor.\n\nBuna göre tepkimenin verimi yüzde kaçtır? (C = 12 g/mol, O = 16 g/mol, Ca = 40 g/mol)",
+       "options": [
+        "42",
+        "75",
+        "80",
+        "90",
+        "100"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$\\mathrm{CaCO_3}$ = 100 g/mol: 50 g = **0,5 mol**. Teorik CaO: 0,5 · 56 = **28 g**.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kalsiyum karbonatın mol kütlesi yüz gram; elli gram, sıfır virgül beş mol. Denkleme göre sıfır virgül beş mol kalsiyum oksit oluşmalıydı: sıfır virgül beş çarpı elli altı, yirmi sekiz gram."
+        },
+        {
+         "text": "Verim: 21 / 28 · 100 = **%75**. Cevap B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Elde edilen yirmi bir gramı teorik yirmi sekiz grama bölüp yüzle çarparız: yüzde yetmiş beş. Yüzde kırk iki, yirmi biri elliye bölünce çıkan yanlış sonuçtur. Cevap B."
+        }
+       ],
+       "narration": "Teorik olarak kaç gram CaO çıkmalıydı?",
+       "origin": {
+        "changes": "Havuzdaki kimyasal hesaplamalar soru yapısı; sayılar ve seçenekler yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Mg ve Cu metallerinden oluşan 10 gramlık bir karışım yeterince HCl çözeltisine atılıyor. Yalnız Mg,\n$\\mathrm{Mg + 2HCl \\to MgCl_2 + H_2}$\ntepkimesine göre tepkimeye giriyor ve normal koşullarda 4,48 L $\\mathrm{H_2}$ gazı oluşuyor.\n\nBuna göre karışımın kütlece yüzde kaçı Mg'dir? (Mg = 24 g/mol)",
+       "options": [
+        "48",
+        "52",
+        "60",
+        "76",
+        "96"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "4,48 / 22,4 = **0,2 mol** $\\mathrm{H_2}$. Oran 1 : 1: **0,2 mol Mg** = 0,2 · 24 = **4,8 g**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dört virgül kırk sekiz bölü yirmi iki virgül dört, sıfır virgül iki mol hidrojen. Denklemde magnezyum ile hidrojen bire birdir: sıfır virgül iki mol magnezyum, dört virgül sekiz gram."
+        },
+        {
+         "text": "4,8 / 10 · 100 = **%48**. 52 bakırın payıdır. Cevap A.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dört virgül sekizi ona bölüp yüzle çarparız: yüzde kırk sekiz. Elli iki, bakırın payıdır; doksan altı ise hidrojen klorürün katsayısını magnezyuma uygulayan hatadır. Cevap A."
+        }
+       ],
+       "narration": "Hangi metal gaz çıkarıyor?",
+       "origin": {
+        "changes": "Havuzdaki kimyasal hesaplamalar soru yapısı; sayılar ve seçenekler yeni yazıldı"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "1 mol = 6,02·10²³ tanecik = mol kütlesi kadar gram.",
+    "NK'da 1 mol gaz 22,4 L.",
+    "Basit formül oran, molekül formülü gerçek sayı.",
+    "Denkleştirme: C, H, sonra O.",
+    "Katsayılar mol oranıdır.",
+    "Ürünü sınırlayıcı bileşen belirler."
+   ],
+   "warnings": [
+    "Tek atomun kütlesi **akb**, 1 molünki **gram**.",
+    "Oksijen kütlesi **farktan** bulunur.",
+    "Verimde teorik ürün **sınırlayıcıya** göre."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Mol köprüsünü (tanecik, kütle, hacim) bir sayfaya **kendin** çiz.",
+    "Beş yanma denklemini **C, H, O** sırasıyla denkleştir.",
+    "Uygulamada AYT kimyasal hesaplamalar testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Mol köprüsünü tek örnekle dolaştır: 4,4 g CO₂ = 0,1 mol = 6,02·10²² molekül = 1,806·10²³ atom = normal koşullarda 2,24 L. Oda koşullarında (25 °C, 1 atm) 1 mol gazın 24,5 L olduğunu ve akb tanımını (C-12 atomunun 1/12'si) ekle.",
+   "Yanma analizine ikinci örnek ekle: bir hidrokarbon yakılınca 8,8 g CO₂ ve 3,6 g H₂O oluşuyor: 0,2 mol C, 0,4 mol H, basit formül CH₂; mol kütlesi 56 ise molekül formülü C₄H₈. Oksijen içeren bileşikte O kütlesinin toplam kütleden C ve H çıkarılarak bulunduğunu göster.",
+   "Sınırlayıcı bileşene ikinci örnek ver: 4 g H₂ ile 16 g O₂ (2H₂ + O₂ → 2H₂O): 2 mol H₂, 0,5 mol O₂; O₂ biter, 1 mol (18 g) su oluşur, 1 mol (2 g) H₂ artar. Toplam kütlenin korunduğunu (20 g) sağlama olarak göster.",
+   "Saflık ve verimi birlikte kullan: %80 saf 50 g CaCO₃ ısıtılırsa 40 g (0,4 mol) CaCO₃'ten kuramsal 17,6 g CO₂ çıkar; verim %75 ise 13,2 g CO₂ elde edilir.",
+   "Karışım sorusu ekle: 20 g Zn-Cu karışımı yeterince HCl ile 0,2 mol H₂ veriyor; yalnız Zn tepkimeye girer (Cu, H'den az aktiftir), Zn 13 g, Cu 7 g. Kesirli katsayılı denkleştirmeyi örnekle: C₂H₆ + 7/2 O₂ → 2CO₂ + 3H₂O; tam sayı için 2 ile çarp."
+  ]
+ }
+}

@@ -1,0 +1,784 @@
+{
+ "topic": {
+  "id": "588A48FC-734E-E412-7796-1949BF0C14B4",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_ATIS"
+ },
+ "title": "Atışlar",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "MEB OGM AYT Fizik konu anlatımı, sayfa 50-58 (başvuru; metin yeniden yazıldı)",
+  "ÖSYM 2019 (eğik atış tablosu), 2020 (sporcu), 2025 (vapur ve simit), 2026 (iki yükseklikten yatay atış): model olarak kullanıldı, sayılar değiştirildi",
+  "YKS/AYT/Sorular/FIZ/FIZ_ATIS.jsonl (293 soru; yapı ve düzey için okundu, sorular yeni yazıldı)"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Top havada ne yapar?",
+   "narration": "Bir basketbolcu topu potaya atarken hızını ve açısını ayarlar. Top havada iki hareketi birden yapar: yatayda sabit hızla gider, düşeyde serbest düşer. Bu derste düşey, yatay ve eğik atışı, grafiklerini, en büyük yüksekliği ve menzili, dört ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Düşey atışta süre ve yüksekliği bulmak",
+   "Yatay atışı iki bağımsız hareket olarak çözmek",
+   "Eğik atışta hızı bileşenlerine ayırmak",
+   "Atış grafiklerini okumak",
+   "En büyük yükseklik ve menzili açıyla ilişkilendirmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_ATIS_01",
+    "title": "Düşey atış",
+    "narration": "Yukarı atılan bir cisim yer çekimiyle yavaşlar, tepede bir an durur ve geri düşer. Hareket boyunca ivmesi hep aynıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Düşey atış",
+      "items": [
+       "Yukarı atılan cisim $g$ ile yavaşlar; tepede hız **sıfır**, ivme yine $g$.",
+       "Çıkış süresi $t = \\frac{v_0}{g}$, en büyük yükseklik $h = \\frac{v_0^2}{2g}$.",
+       "Aynı noktadan geçerken çıkışta ve inişte **süratler eşit**."
+      ],
+      "visual": {
+       "kind": "projectile",
+       "v0": 20,
+       "angle": 90,
+       "height": 0,
+       "g": 10,
+       "ground": true,
+       "strobe": 8,
+       "components": true,
+       "marks": true,
+       "motion": true,
+       "duration": 6
+      },
+      "beats": [
+       {
+        "narration": "Saniyede yirmi metre hızla yukarı atılan top.",
+        "focus": [
+         "body"
+        ]
+       },
+       {
+        "narration": "Eşit zaman aralıklarındaki konumlar yukarıda sıklaşıyor: top yavaşlıyor.",
+        "show": [
+         "run",
+         "strobe"
+        ],
+        "focus": [
+         "strobe"
+        ]
+       },
+       {
+        "narration": "Tepe yirmi metre: v sıfır kare bölü iki g.",
+        "show": [
+         "apex"
+        ],
+        "focus": [
+         "apex"
+        ]
+       }
+      ],
+      "narration": "Yukarı atılan bir cisim her saniye g kadar yavaşlar; tepede hızı bir an sıfır olur ama ivmesi yine g'dir, aşağı yönlüdür. Çıkış süresi v sıfır bölü g, çıkabileceği en büyük yükseklik v sıfır kare bölü iki g'dir. Hava direnci yoksa aynı noktadan çıkarken ve inerken süratleri eşittir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Rüzgârsız bir günde yere göre $4$ m/s hızla doğrusal giden bir teknenin güvertesindeki bir çocuk, elindeki topu tekneye göre $12$ m/s hızla düşey yukarı atıyor. Top, atıldıktan $0{,}9$ s sonra bir martı tarafından yakalanıyor.\n\nYakalanmadan hemen önce topun yere göre hızının büyüklüğü kaç m/s'dir? (Hava direnci önemsiz, $g = 10$ m/s²)",
+       "context": "ÖSYM 2025'te sorulan vapurdan atılan simit yapısının yeni sayılarla kurulmuş hâli.",
+       "options": [
+        "$3$",
+        "$5$",
+        "$7$",
+        "$\\sqrt{97}$",
+        "$12$"
+       ],
+       "answer": 1,
+       "narration": "Yere göre iki bileşen var.",
+       "steps": [
+        {
+         "text": "Düşey: $v_y = 12 - 10 \\cdot 0{,}9 = 3$ m/s.",
+         "narration": "Düşeyde top saniyede on metre bölü saniye yavaşlar: on iki eksi dokuz, üç metre bölü saniye."
+        },
+        {
+         "text": "Yatay: top teknenin hızını korur, $v_x = 4$ m/s; $v = \\sqrt{3^2 + 4^2} = 5$ m/s.",
+         "narration": "Yere göre top teknenin yatay hızını da taşır: dört metre bölü saniye. İki bileşen dik: üç ile dörtten beş. Yalnız düşeye bakan üçü işaretler. Cevap B.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2025 modeli: hızlar ve süre değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yerden $30$ m/s hızla düşey yukarı atılan bir taş kaç saniye sonra atıldığı yere döner ve en çok kaç m yükselir? (Hava direnci önemsiz, $g = 10$ m/s²)",
+       "options": [
+        "$3$ ; $45$",
+        "$3$ ; $90$",
+        "$6$ ; $30$",
+        "$6$ ; $45$",
+        "$6$ ; $90$"
+       ],
+       "answer": 3,
+       "narration": "Çıkış ve iniş simetrik.",
+       "steps": [
+        {
+         "text": "Çıkış: $t = \\frac{30}{10} = 3$ s; dönüş de $3$ s: toplam $6$ s.",
+         "narration": "Taş üç saniyede tepeye çıkar; iniş de aynı sürer. Toplam altı saniye."
+        },
+        {
+         "text": "$h = \\frac{30^2}{2 \\cdot 10} = 45$ m.",
+         "narration": "En büyük yükseklik dokuz yüz bölü yirmi, kırk beş metre. Yalnız çıkış süresini yazan üçü seçer. Cevap D.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Düşey atış kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ATIS_02",
+    "title": "Yatay atış",
+    "narration": "Yatay atılan bir cisim aynı anda iki hareket yapar: yatayda sabit hızla gider, düşeyde serbest düşer.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Yatay atış",
+      "items": [
+       "Yatayda **sabit hız**: $x = v_0 t$; düşeyde **serbest düşme**: $h = \\frac{1}{2} g t^2$.",
+       "Uçuş süresi yalnız **yüksekliğe** bağlı: $t = \\sqrt{\\frac{2h}{g}}$.",
+       "Aynı yükseklikten atılan ve bırakılan cisimler yere **aynı anda** iner."
+      ],
+      "visual": {
+       "kind": "projectile",
+       "v0": 8,
+       "angle": 0,
+       "height": 20,
+       "g": 10,
+       "ground": true,
+       "strobe": 4,
+       "components": true,
+       "marks": true,
+       "motion": true,
+       "duration": 5
+      },
+      "beats": [
+       {
+        "narration": "Yirmi metre yükseklikten saniyede sekiz metreyle yatay atılan cisim.",
+        "focus": [
+         "body"
+        ]
+       },
+       {
+        "narration": "Hayalet konumlar yatayda eşit aralıklı, düşeyde giderek açılıyor; yatay hız oku hiç değişmiyor.",
+        "show": [
+         "run",
+         "strobe"
+        ],
+        "focus": [
+         "components"
+        ]
+       },
+       {
+        "narration": "İki saniyede yere iner, on altı metre ileriye.",
+        "show": [
+         "range"
+        ],
+        "focus": [
+         "range"
+        ]
+       }
+      ],
+      "narration": "Yatay atılan bir cisim iki bağımsız hareket yapar. Yatayda hiçbir kuvvet olmadığından hızı sabittir: x eşittir v sıfır t. Düşeyde ise serbest düşer: h eşittir yarım g t kare. Bu yüzden uçuş süresi yalnız yüksekliğe bağlıdır; aynı yükseklikten yatay atılan ile serbest bırakılan cisim yere aynı anda iner."
+     },
+     {
+      "kind": "predict",
+      "title": "Hangisi önce düşer?",
+      "prompt": "Aynı masadan biri kenardan serbestçe düşen, öbürü hızla yatay fırlatılan iki bilye hangi sırayla yere değer?",
+      "choices": [
+       "Düşen önce",
+       "Aynı anda",
+       "Fırlatılan önce"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "projectile",
+       "v0": 10,
+       "angle": 0,
+       "height": 20,
+       "g": 10,
+       "ground": true,
+       "strobe": 4,
+       "components": true,
+       "marks": true,
+       "motion": true,
+       "duration": 5
+      },
+      "beats": [
+       {
+        "narration": "Fırlatılan bilyenin düşeydeki hareketi, serbest düşenle aynıdır.",
+        "show": [
+         "run",
+         "strobe"
+        ],
+        "focus": [
+         "strobe"
+        ]
+       }
+      ],
+      "explanation": "Düşey hareket yatay hızdan **bağımsız**: ikisi de $\\sqrt{\\frac{2h}{g}}$ sürede düşer.",
+      "narration": "Masadan biri serbestçe düşüyor, öbürü hızla yatay fırlatılıyor. Hangisi önce yere değer? Tahmin et.",
+      "explanationNarration": "Aynı anda. Yatay hız bilyeyi yalnız ileri taşır; düşeyde iki bilye de aynı ivmeyle, aynı yükseklikten düşer. Fırlatılan daha uzağa düşer ama aynı anda yere değer."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Hava direncinin önemsenmediği bir ortamda K cismi yerden $4h$, L cismi $h$ yüksekliğinden yatay olarak atılıyor ve ikisi de yerde aynı P noktasına düşüyor; atıldıkları noktalar aynı düşey doğru üzerindedir.\n\n$\\frac{v_K}{v_L}$ oranı kaçtır?",
+       "context": "ÖSYM 2026'da sorulan iki yükseklikten aynı noktaya yatay atış yapısının yeni yüksekliklerle kurulmuş hâli.",
+       "options": [
+        "$\\frac{1}{8}$",
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{2}$",
+        "$2$",
+        "$4$"
+       ],
+       "answer": 2,
+       "narration": "Yatay yollar eşit; süreleri karşılaştıralım.",
+       "steps": [
+        {
+         "text": "$t = \\sqrt{\\frac{2h}{g}}$: yükseklik dört kat → süre **iki kat**, $t_K = 2t_L$.",
+         "narration": "Uçuş süresi yüksekliğin kareköküyle orantılı: K dört kat yüksekten atıldı, süresi iki kat."
+        },
+        {
+         "text": "Aynı yatay yol: $v_K \\cdot 2t_L = v_L \\cdot t_L$ → $\\frac{v_K}{v_L} = \\frac{1}{2}$.",
+         "narration": "İkisi aynı yatay uzaklığa gidiyor; K iki kat sürede gittiğine göre hızı yarı. Yükseklik oranını doğrudan kullanan dörtte biri bulur. Cevap C.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026 modeli: yükseklikler değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yüksekliği $45$ m olan bir uçurumun kenarından yatay $12$ m/s hızla atılan bir taş, uçurumun dibinden kaç m uzağa düşer? (Hava direnci önemsiz, $g = 10$ m/s²)",
+       "options": [
+        "$36$",
+        "$45$",
+        "$54$",
+        "$72$",
+        "$108$"
+       ],
+       "answer": 0,
+       "narration": "Süreyi yükseklikten bulalım.",
+       "steps": [
+        {
+         "text": "$45 = \\frac{1}{2} \\cdot 10 \\cdot t^2$ → $t = 3$ s.",
+         "narration": "Kırk beş eşittir beş t kare: t üç saniye."
+        },
+        {
+         "text": "$x = 12 \\cdot 3 = 36$ m.",
+         "narration": "Yatayda üç saniye boyunca on iki metre bölü saniye: otuz altı metre. t kareyle çarpan yüz sekizi bulur. Cevap A.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Yatay atış kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ATIS_03",
+    "title": "Eğik atış",
+    "narration": "Eğik atılan bir cismin hızını iki bileşene ayırırsın: yatay bileşen hiç değişmez, düşey bileşen bir düşey atış gibi davranır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Eğik atış",
+      "items": [
+       "Hız ikiye ayrılır: $v_x = v_0\\cos\\alpha$ **sabit**, $v_y = v_0\\sin\\alpha$ $g$ ile değişir.",
+       "Tepede $v_y = 0$; hız yalnız $v_x$, ivme yine $g$.",
+       "Uçuş süresi $t = \\frac{2 v_0 \\sin\\alpha}{g}$, menzil $x = v_x \\cdot t$."
+      ],
+      "visual": {
+       "kind": "projectile",
+       "v0": 10,
+       "angle": 53.13010235415598,
+       "height": 0,
+       "g": 10,
+       "ground": true,
+       "strobe": 8,
+       "components": true,
+       "marks": true,
+       "motion": true,
+       "duration": 6
+      },
+      "beats": [
+       {
+        "narration": "On metre bölü saniyeyle, elli üç derecede atış: yatay bileşen altı, düşey sekiz.",
+        "focus": [
+         "components"
+        ]
+       },
+       {
+        "narration": "Uçarken yatay ok aynı kalıyor, düşey ok kısalıp tepede kayboluyor, sonra aşağı büyüyor.",
+        "show": [
+         "run",
+         "strobe"
+        ],
+        "focus": [
+         "components"
+        ]
+       },
+       {
+        "narration": "Tepe üç virgül iki metre, menzil dokuz virgül altı metre.",
+        "show": [
+         "apex",
+         "range"
+        ],
+        "focus": [
+         "apex",
+         "range"
+        ]
+       }
+      ],
+      "narration": "Eğik atılan bir cismin hızı iki bileşene ayrılır. Yatay bileşen v sıfır kosinüs alfa, hareket boyunca sabittir. Düşey bileşen v sıfır sinüs alfa, düşey atıştaki gibi g ile azalır ve artar. Tepede düşey bileşen sıfırdır ama yatay bileşen sürer; hız sıfır değildir, ivme yine g'dir. Uçuş süresi iki v sıfır sinüs alfa bölü g, menzil yatay hız çarpı uçuş süresidir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Hava direncinin önemsenmediği bir ortamda yerden eğik atılan bir cisim için;\nI. Yükselirken de alçalırken de ivmesi aşağı yöndedir.\nII. Hızının yatay bileşeni değişmez.\nIII. Tepe noktasında hızı sıfırdır.\nIV. Mekanik enerjisi korunur.\n\nyargılarından hangileri doğrudur?",
+       "context": "ÖSYM 2019'da sorulan eğik atış tablosunun yargılara çevrilmiş hâli.",
+       "options": [
+        "I ve II",
+        "II ve III",
+        "I, II ve III",
+        "II, III ve IV",
+        "I, II ve IV"
+       ],
+       "answer": 4,
+       "narration": "Her yargıyı bileşenlere bakarak tartalım.",
+       "steps": [
+        {
+         "text": "İvme hep $g$, **aşağı** (I); yatayda kuvvet yok, $v_x$ **sabit** (II).",
+         "narration": "Cisme yalnız ağırlığı etki eder: ivme hep g, aşağı. Yatayda kuvvet olmadığından yatay bileşen değişmez. Birinci ve ikinci doğru."
+        },
+        {
+         "text": "Tepede yalnız $v_y = 0$; hız $v_x$ kadar (III yanlış). Sürtünme yok: enerji **korunur** (IV).",
+         "narration": "Tepede düşey bileşen sıfırdır ama yatay bileşen sürer; hız sıfır değildir, üçüncü yanlış. Hava direnci olmadığından mekanik enerji korunur, dördüncü doğru. Cevap E.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 modeli: tablo yargılara çevrildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir oyuncu topu yere göre $20$ m/s hızla, yatayla $37°$ açı yapacak biçimde atıyor; top, atıldığı yükseklikte yakalanıyor.\n\nTopun atılma ve yakalanma anları arasındaki ortalama hızının büyüklüğü kaç m/s'dir? (Hava direnci önemsiz, $g = 10$ m/s², $\\sin 37° = 0{,}6$, $\\cos 37° = 0{,}8$)",
+       "context": "ÖSYM 2020'de sorulan sporcunun attığı ve yakaladığı top yapısının yeni sayılarla kurulmuş hâli.",
+       "figure": {
+        "kind": "projectile",
+        "v0": 20,
+        "angle": 36.86989764584402,
+        "height": 0,
+        "g": 10,
+        "ground": true,
+        "strobe": 0,
+        "components": false,
+        "marks": false,
+        "motion": false,
+        "duration": 5
+       },
+       "options": [
+        "$6$",
+        "$12$",
+        "$16$",
+        "$20$",
+        "$32$"
+       ],
+       "answer": 2,
+       "narration": "Ortalama hız: yer değiştirme bölü süre.",
+       "steps": [
+        {
+         "text": "Aynı yükseklikte yakalandı: düşey yer değiştirme **sıfır**.",
+         "narration": "Top atıldığı yükseklikte yakalanıyor; düşey yer değiştirme sıfır, yer değiştirme yalnız yatay."
+        },
+        {
+         "text": "Yatayda sabit hız: ortalama hız $= v_x = 20 \\cdot 0{,}8 = 16$ m/s.",
+         "narration": "Yatayda hız sabit olduğundan ortalama hız, yatay bileşene eşit: yirmi çarpı sıfır virgül sekiz, on altı. İlk sürati cevap sanan yirmiyi seçer. Cevap C.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 modeli: hız ve açı değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Tepede hız sıfır mı?",
+      "wrong": "Eğik atılan cismin tepede hızı sıfırdır.",
+      "right": "Tepede yalnız **düşey bileşen** sıfırdır; hız, yatay bileşen $v_x$ kadardır.",
+      "why": "Yalnız **düşey atışta** tepede hız sıfırdır.",
+      "narration": "Sık yapılan bir hata: eğik atışta tepede hızın sıfır olduğunu sanmak. Tepede yalnız düşey bileşen sıfırdır; cisim yatayda hâlâ v sıfır kosinüs alfa ile gider. Hızın tamamen sıfır olduğu tek durum, düz yukarı atılan cismin tepesidir."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ATIS_04",
+    "title": "Atış hareketi grafikleri",
+    "narration": "Bir atışı iki ayrı grafikle okursun: biri yatay, biri düşey bileşen için.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Atış grafikleri",
+      "items": [
+       "$v_x$-$t$ grafiği **yatay** bir çizgi; $v_y$-$t$ grafiği eğimi $-g$ olan bir doğru.",
+       "$v_y$ sıfırı kestiği an **tepe** anıdır; alan yüksekliği verir.",
+       "İvme-zaman grafiği $-g$'de **yatay** bir çizgidir."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        1.8
+       ],
+       "y": [
+        -10,
+        10
+       ],
+       "xLabel": "t (s)",
+       "yLabel": "v (m/s)",
+       "curves": [
+        {
+         "expression": "6",
+         "label": "vx",
+         "domain": [
+          0,
+          1.6
+         ]
+        },
+        {
+         "expression": "8 - 10x",
+         "label": "vy",
+         "domain": [
+          0,
+          1.6
+         ]
+        }
+       ]
+      },
+      "narration": "Eğik atışta hızın yatay bileşeninin zamanla grafiği yatay bir çizgidir. Düşey bileşenin grafiği ise eğimi eksi g olan bir doğrudur: artıdan başlar, tepe anında sıfırı keser, sonra eksiye iner. Bu grafiğin altındaki alan düşey yer değiştirmeyi, yatay grafiğin altındaki alan menzili verir. İvme-zaman grafiği eksi g'de yatay bir çizgidir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Eğik atılan bir cismin hızının düşey bileşeni zamanla $16$ m/s'den doğrusal azalarak $3{,}2$ s'de $-16$ m/s oluyor; yatay bileşeni bu sürede $12$ m/s'de sabit kalıyor.\n\nCismin menzili ve en büyük yüksekliği kaç m'dir?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         0,
+         3.6
+        ],
+        "y": [
+         -20,
+         20
+        ],
+        "xLabel": "t (s)",
+        "yLabel": "v (m/s)",
+        "curves": [
+         {
+          "expression": "12",
+          "label": "vx",
+          "domain": [
+           0,
+           3.2
+          ]
+         },
+         {
+          "expression": "16 - 10x",
+          "label": "vy",
+          "domain": [
+           0,
+           3.2
+          ]
+         }
+        ]
+       },
+       "options": [
+        "$19{,}2$ ; $12{,}8$",
+        "$38{,}4$ ; $12{,}8$",
+        "$38{,}4$ ; $25{,}6$",
+        "$51{,}2$ ; $12{,}8$",
+        "$51{,}2$ ; $25{,}6$"
+       ],
+       "answer": 1,
+       "narration": "Alanları okuyalım.",
+       "steps": [
+        {
+         "text": "Menzil: $v_x$ çizgisinin alanı, $12 \\cdot 3{,}2 = 38{,}4$ m.",
+         "narration": "Menzil, yatay hız grafiğinin altındaki alan: on iki çarpı üç virgül iki, otuz sekiz virgül dört metre."
+        },
+        {
+         "text": "Tepe $1{,}6$ s'de: $v_y$ üçgeninin alanı $\\frac{1{,}6 \\cdot 16}{2} = 12{,}8$ m.",
+         "narration": "Düşey hız bir virgül altıncı saniyede sıfırı kesiyor; o ana kadarki üçgenin alanı on iki virgül sekiz metre. Bütün üçgeni alan yirmi beş virgül altıyı bulur. Cevap B.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Atış grafiği kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ATIS_05",
+    "title": "Maksimum yükseklik ve menzil",
+    "narration": "Aynı hızla atılan bir cismin ne kadar yükseğe ve ne kadar uzağa gideceği atış açısına bağlıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Menzil",
+      "items": [
+       "$h_{max} = \\frac{v_0^2 \\sin^2\\alpha}{2g}$, $x_{max} = \\frac{v_0^2 \\sin 2\\alpha}{g}$.",
+       "Aynı hızla en uzağa **45°** ile atılır.",
+       "Toplamı $90°$ olan açılar **aynı menzili** verir; büyük açı daha yükseğe çıkar."
+      ],
+      "visual": {
+       "kind": "projectile",
+       "v0": 10,
+       "angle": 45,
+       "height": 0,
+       "g": 10,
+       "ground": true,
+       "strobe": 0,
+       "components": true,
+       "marks": true,
+       "motion": true,
+       "duration": 5
+      },
+      "beats": [
+       {
+        "narration": "On metre bölü saniye, kırk beş derece.",
+        "focus": [
+         "body"
+        ]
+       },
+       {
+        "narration": "Menzil on metre: bu hızla gidilebilecek en uzak yer.",
+        "show": [
+         "run",
+         "range"
+        ],
+        "focus": [
+         "range"
+        ]
+       }
+      ],
+      "narration": "En büyük yükseklik v sıfır kare sinüs kare alfa bölü iki g, menzil v sıfır kare sinüs iki alfa bölü g'dir. Sinüs iki alfa en büyük değerini kırk beş derecede alır; aynı hızla en uzağa kırk beş derecede atılır. Toplamları doksan olan iki açı, otuz ve altmış gibi, aynı menzili verir; büyük açılı atış daha yükseğe çıkar ama daha uzun sürer."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aynı noktadan aynı hızla biri yatayla $30°$, öbürü $60°$ açıyla atılan iki topun menzilleri $x_1$, $x_2$; en büyük yükseklikleri $h_1$, $h_2$'dir.\n\nBuna göre aşağıdakilerden hangisi doğrudur? (Hava direnci önemsiz)",
+       "options": [
+        "$x_1 = 2x_2$ ; $h_1 = h_2$",
+        "$x_1 = x_2$ ; $h_1 = h_2$",
+        "$x_1 = x_2$ ; $h_2 = 2h_1$",
+        "$x_1 = x_2$ ; $h_2 = 3h_1$",
+        "$x_2 = 2x_1$ ; $h_2 = 3h_1$"
+       ],
+       "answer": 3,
+       "narration": "Menzilde sinüs iki alfa, yükseklikte sinüs kare.",
+       "steps": [
+        {
+         "text": "$\\sin 60° = \\sin 120°$: menziller **eşit**.",
+         "narration": "Menzil sinüs iki alfa ile orantılı: sinüs altmış ile sinüs yüz yirmi eşit; menziller eşit."
+        },
+        {
+         "text": "$\\frac{h_2}{h_1} = \\frac{\\sin^2 60°}{\\sin^2 30°} = \\frac{3/4}{1/4} = 3$.",
+         "narration": "Yükseklik sinüs kareyle orantılı: dörtte üç bölü dörtte bir, üç. Altmış derecelik top üç kat yükseğe çıkar. Açıyla doğru orantı kuran iki katı bulur. Cevap D.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Tümler açılar kalıbı; yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yerden $20$ m/s hızla, yatayla $30°$ açıyla atılan bir topun çıkabileceği en büyük yükseklik kaç m'dir? (Hava direnci önemsiz, $g = 10$ m/s²)",
+       "options": [
+        "$5$",
+        "$10$",
+        "$15$",
+        "$20$",
+        "$40$"
+       ],
+       "answer": 0,
+       "narration": "Yalnız düşey bileşen yükseltir.",
+       "steps": [
+        {
+         "text": "$v_y = 20 \\cdot \\sin 30° = 10$ m/s.",
+         "narration": "Düşey bileşen yirmi çarpı sinüs otuz, on metre bölü saniye."
+        },
+        {
+         "text": "$h = \\frac{10^2}{2 \\cdot 10} = 5$ m.",
+         "narration": "Yükseklik yüz bölü yirmi, beş metre. Hızın tamamını kullanan yirmiyi, sinüs altmış alan on beşi bulur. Cevap A.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "En büyük yükseklik kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Düşey atış: $t = \\frac{v_0}{g}$, $h = \\frac{v_0^2}{2g}$.",
+    "Yatay atış: $x = v_0 t$, $h = \\frac{1}{2}gt^2$.",
+    "Eğik atış: $v_x$ sabit, $v_y$ g ile değişir.",
+    "Uçuş süresi düşey bileşene bağlı.",
+    "Menzil en çok 45°; tümler açılar aynı menzil.",
+    "İvme hep $g$, aşağı."
+   ],
+   "warnings": [
+    "Tepede yalnız **düşey hız** sıfır.",
+    "Uçuş süresi **yatay hıza** bağlı değil.",
+    "Yükseklik $\\sin^2$, menzil $\\sin 2\\alpha$ ile."
+   ],
+   "narration": "Özetleyelim. Atışlarda ivme hep g'dir ve aşağı yöndedir. Yatay bileşen hiç değişmez, düşey bileşen bir düşey atış gibi davranır. Uçuş süresini düşey hareket belirler; yatay hız yalnız cismi ileri taşır. Eğik atışta tepede yalnız düşey hız sıfırdır. Menzil kırk beş derecede en büyüktür ve toplamı doksan olan açılar aynı menzili verir."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "Atılan ve bırakılan bilye",
+    "question": "Önce hangisi?",
+    "choices": [
+     "Bırakılan",
+     "Aynı anda"
+    ],
+    "answer": 1,
+    "why": "İkisi de **serbest düşer**."
+   },
+   {
+    "sentence": "Eğik atış, tepe",
+    "question": "Hız sıfır mı?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "Yalnız **düşey hız** sıfır."
+   },
+   {
+    "sentence": "30° ve 60° atış",
+    "question": "Menziller?",
+    "choices": [
+     "Eşit",
+     "60° uzak"
+    ],
+    "answer": 0,
+    "why": "Tümler açılar **aynı menzil**."
+   }
+  ],
+  "hook": "Üç atış tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Yatay hız **hiç değişmez**."
+   },
+   {
+    "kind": "warning",
+    "text": "Tepede hız **sıfır değil**."
+   },
+   {
+    "kind": "term",
+    "term": "Menzil",
+    "definition": "En çok **45°** ile."
+   }
+  ],
+  "summary": [
+   "Düşey ve yatay atış",
+   "Eğik atış",
+   "Menzil"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-fizik-kampi",
+  "name": "AYT Fizik kampı",
+  "number": 8,
+  "total": 21,
+  "previous": "İş, Güç ve Enerji",
+  "next": "İtme ve Momentum",
+  "promise": "Vektörden modern fiziğe AYT Fizik: her konu animasyonlu anlatım ve çözümlü sorularla.",
+  "task": {
+   "items": [
+    "Masadan bir bilyeyi yuvarla, düştüğü yeri işaretle; masanın yüksekliğinden **uçuş süresini** hesapla.",
+    "Bir kâğıt topu farklı açılarla at; en uzağa **45°** civarında gittiğini gözle.",
+    "Uygulamada AYT Atışlar testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Masadan bir bilyeyi yuvarla ve düştüğü yeri işaretle; masanın yüksekliğinden uçuş süresini, düştüğü uzaklıktan da bilyenin hızını hesapla. Sonra bir kâğıt topu farklı açılarla at ve en uzağa hangi açıda gittiğini gözle. Ardından uygulamada yirmi soru çöz. Bir sonraki derste itme ve momentumda görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Düşey atışın simetrisini örnekle: 40 m/s ile yukarı atılan taş 4 s'de 80 m'ye çıkar, 6. saniyede 20 m/s hızla aşağı iner, 8. saniyede atıldığı noktaya 40 m/s ile döner. Aynı yükseklikten çıkarken ve inerken süratlerin eşit olduğunu vurgula.",
+   "Aşağı doğru atışa örnek ekle: 75 m yükseklikten 10 m/s ile aşağı atılan cisim v² = 100 + 2 × 10 × 75 = 1600 ile yere 40 m/s hızla çarpar; düşüş 3 s sürer.",
+   "Yatay atışta çarpma hızını örnekle: 80 m yükseklikten 30 m/s ile yatay atılan cisim 4 s'de düşer, menzili 120 m, düşey hızı 40 m/s, yere çarpma hızı 50 m/s olur; çarpma açısı için tanα = 40/30.",
+   "Eğik atışa ikinci örnek ver: 50 m/s ile yatayla 37° açıyla atılan cisimde vx = 40, vy = 30 m/s; tepeye 3 s'de çıkar, en büyük yükseklik 45 m, uçuş süresi 6 s, menzil 240 m. Tepe noktasında hızın sıfır değil vx olduğunu tekrarla.",
+   "Avcı ve maymun problemini ekle: avcı dala asılı maymuna doğrudan nişan alıp ateş ettiği anda maymun kendini bırakırsa mermi her zaman isabet eder, çünkü ikisi de aynı g ivmesiyle düşer. Hava direnci olsaydı en büyük menzilin 45°'den küçük açıda elde edileceğini belirt."
+  ]
+ }
+}

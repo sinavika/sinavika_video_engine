@@ -15,9 +15,9 @@
  */
 import {MODULES, type Bilingual, type ModuleKey} from '../UIUX/ModuleIdentity';
 
-export type ProductLang = 'tr' | 'en';
+type ProductLang = 'tr' | 'en';
 
-export type ModuleMessaging = {
+type ModuleMessaging = {
 	/** The module's display name (from the module table). */
 	name: Bilingual;
 	/** Three to five words for a headline or a video caption. */
@@ -26,8 +26,6 @@ export type ModuleMessaging = {
 	tool: Bilingual;
 	/** One sentence to the student, with closing punctuation. */
 	invite: Bilingual;
-	/** How narration says the name, when the written form is not read naturally. */
-	spoken?: Bilingual;
 };
 
 export const MODULE_MESSAGING: Record<ModuleKey, ModuleMessaging> = {
@@ -72,26 +70,16 @@ export const MODULE_MESSAGING: Record<ModuleKey, ModuleMessaging> = {
 		claim: {tr: 'Seni tanıyan yapay zekâ: SinoAI', en: 'SinoAI, the AI that knows you'},
 		tool: {tr: 'SinoAI hedefini, eksiklerini ve geçmiş çalışmalarını bilerek yanıtlar.', en: 'SinoAI answers with your goal, your gaps and your past work in mind.'},
 		invite: {tr: 'Takıldığın konuyu sor!', en: 'Ask about anything you’re stuck on!'},
-		spoken: {tr: 'Sino Ey Ay', en: 'Sino A I'},
 	},
-};
-
-/** The product as a whole. */
-export const PRODUCT_MESSAGING = {
-	tagline: {tr: 'Ölç, öğren, geliş.', en: 'Measure, learn, grow.'},
-	descriptor: {tr: 'Yapay zekâ destekli sınav hazırlığı', en: 'AI-powered exam prep'},
-	allInOne: {tr: 'Sınav hazırlığın tek yerde', en: 'Your exam prep, all in one place'},
-	/** The module names in the product's order, for "what's inside" lists. */
-	moduleOrder: ['exam', 'lessons', 'tests', 'studyPlan', 'smartSummary', 'flashcards', 'sinoAi'] as const satisfies readonly ModuleKey[],
 };
 
 export const moduleName = (key: ModuleKey, lang: ProductLang = 'tr'): string => MODULE_MESSAGING[key].name[lang];
 export const moduleCopy = (key: ModuleKey, lang: ProductLang = 'tr') => {
 	const copy = MODULE_MESSAGING[key];
-	return {name: copy.name[lang], claim: copy.claim[lang], tool: copy.tool[lang], invite: copy.invite[lang], spoken: copy.spoken?.[lang] ?? copy.name[lang]};
+	return {name: copy.name[lang], claim: copy.claim[lang], tool: copy.tool[lang], invite: copy.invite[lang]};
 };
 
-export type CopyIssue = {severity: 'error' | 'warning'; term: string; message: string};
+type CopyIssue = {severity: 'error' | 'warning'; term: string; message: string};
 
 const TEST_NOT_QUIZ = 'Türkçede "quiz" denmez, "test" denir (modül adı Testler): "10 soruluk test", "test ve kart üretir".';
 
@@ -99,7 +87,7 @@ const TEST_NOT_QUIZ = 'Türkçede "quiz" denmez, "test" denir (modül adı Testl
 type Rule = {pattern: RegExp; severity: CopyIssue['severity']; message: string; turkish?: boolean};
 
 /** Whether a text is Turkish: Turkish letters, or common Turkish words where a short line has none ("Notunu at. Quiz olsun."). */
-export const looksTurkish = (text: string): boolean =>
+const looksTurkish = (text: string): boolean =>
 	/[çğıöşüÇĞİÖŞÜ]/.test(text) || /(?<!\p{L})(ve|bir|için|olsun|hazır|soruluk|oluştur|çöz|ile|gibi|notunu|senin|sana)(?!\p{L})/iu.test(text);
 
 /**

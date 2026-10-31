@@ -5,7 +5,7 @@ import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
 import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
-import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
+import {appEndScenes} from '../../../Scenes/AppEndScene';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, VoiceScriptSchema, type VoiceClips} from '../../../Scenes/Voiceover';
@@ -13,9 +13,8 @@ import {plainText} from '../../../Schemas/RichText';
 import {UIProvider} from '../../../UIUX/Context';
 import {Icon} from '../../../UIUX/Icons';
 import {defineTemplate} from '../../TemplateDefinition';
-import {At, CLAMP, ease, PromoStage, PromoSubtitle, Slam, useLand, useSeconds} from '../PromoKit/PromoKit';
+import {At, CLAMP, ease, PromoStage, Slam, useLand, useSeconds} from '../PromoKit/PromoKit';
 import {PROMO_PHONE_SCREEN_NAMES, PROMO_PHONE_SCREENS} from '../PromoKit/PromoScreens';
-import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 /**
  * "Kim çalışıyor?": the language of a streaming service's profile screen.
@@ -26,7 +25,7 @@ import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 const narration = z.string().trim().min(1).max(160);
 
-export const ProfilePickerSchema = z.object({
+const ProfilePickerSchema = z.object({
 	question: z.object({watch: plainText(36), study: plainText(30), narration}),
 	pick: z
 		.object({title: plainText(24), profiles: z.array(z.object({label: plainText(16), sub: plainText(24)})).min(2).max(4), pickIndex: z.number().int().min(0).max(3), narration})
@@ -34,8 +33,6 @@ export const ProfilePickerSchema = z.object({
 	title: z.object({name: plainText(14), tagline: plainText(36), narration}),
 	episodes: z.object({heading: plainText(20), items: z.array(z.object({number: plainText(10), title: plainText(26), screen: z.enum(PROMO_PHONE_SCREEN_NAMES)})).length(3), narration}),
 	next: z.object({text: plainText(34), narration}),
-	closing: z.object({cta: plainText(30), channels: plainText(40).default('App Store · Google Play · sinavika.com'), narration}),
-	subtitles: z.boolean().default(true),
 	script: VoiceScriptSchema,
 	outro: z.object({enabled: z.boolean().default(true)}).default({enabled: true}),
 });
@@ -58,10 +55,9 @@ const Ground: React.FC<{light?: number}> = ({light = 0.4}) => (
 	<AbsoluteFill style={{background: `radial-gradient(70% 45% at 50% 38%, rgba(37,79,140,${0.42 * light}) 0%, ${NIGHT} 72%)`}} />
 );
 
-const Stage: React.FC<{content: Content; narration: string; shown?: string; light?: number; children: React.ReactNode}> = ({content, narration: text, shown, light, children}) => (
+const Stage: React.FC<{light?: number; children: React.ReactNode}> = ({light, children}) => (
 	<PromoStage ground={<Ground light={light} />}>
 		{children}
-		<PromoSubtitle text={text} shown={shown} enabled={content.subtitles} ink={NIGHT} fill={WHITE} />
 	</PromoStage>
 );
 
@@ -70,7 +66,7 @@ const QuestionScene: React.FC<{content: Content}> = ({content}) => {
 	const seconds = useSeconds();
 	const strike = ease(interpolate(seconds, [0.9, 1.3], [0, 1], CLAMP));
 	return (
-		<Stage content={content} narration={content.question.narration} shown={`${content.question.watch} ${content.question.study}`} light={0.2}>
+		<Stage light={0.2}>
 			<At y={520} w={952}>
 				<div style={{position: 'relative', display: 'flex', justifyContent: 'center', opacity: useLand(0.05)}}>
 					<Text variant="display" size={TYPE.adScale.headline} weight={TYPE.weights.kinetic} color={interpolate(strike, [0, 1], [1, 0.45]) > 0.7 ? WHITE : DIM} align="center" style={{lineHeight: 1.05}}>
@@ -111,7 +107,7 @@ const PickScene: React.FC<{content: Content}> = ({content}) => {
 	const press = interpolate(seconds, [2.2, 2.32, 2.5], [0, 1, 0], CLAMP);
 	const chosen = interpolate(seconds, [2.3, 2.6], [0, 1], CLAMP);
 	return (
-		<Stage content={content} narration={content.pick.narration} shown={content.pick.title}>
+		<Stage>
 			<At y={300} w={952}>
 				<div style={{opacity: useLand(0.05)}}>
 					<Text variant="display" size={TYPE.adScale.headline} weight={TYPE.weights.display} color={WHITE} align="center">
@@ -154,7 +150,7 @@ const TitleScene: React.FC<{content: Content}> = ({content}) => {
 	const open = ease(interpolate(seconds, [0, 0.9], [0, 1], CLAMP));
 	const sweep = interpolate(seconds, [0.4, 1.8], [-40, 140], CLAMP);
 	return (
-		<Stage content={content} narration={content.title.narration} shown={`${content.title.name} ${content.title.tagline}`} light={1.4}>
+		<Stage light={1.4}>
 			<At y={560} w={952}>
 				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(30), transform: `scale(${interpolate(open, [0, 1], [1.25, 1])})`, opacity: open}}>
 					<div style={{fontFamily: 'inherit', fontWeight: 800, fontSize: u(150), letterSpacing: '-0.02em', lineHeight: 1, background: `linear-gradient(100deg, ${ORANGE} 0%, ${ORANGE} ${sweep - 20}%, #FFE4D2 ${sweep}%, ${ORANGE} ${sweep + 20}%, ${ORANGE} 100%)`, WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent'}}>
@@ -208,7 +204,7 @@ const EpisodesScene: React.FC<{content: Content; seconds: number}> = ({content, 
 	// One episode fills the window; the next one slides up as its turn comes.
 	const scroll = current > 0 ? current - 1 + shift : 0;
 	return (
-		<Stage content={content} narration={content.episodes.narration} light={0.6}>
+		<Stage light={0.6}>
 			<At y={150} x={66}>
 				<Text size={52} weight={TYPE.weights.display} color={WHITE}>
 					{content.episodes.heading}
@@ -234,7 +230,7 @@ const NextScene: React.FC<{content: Content}> = ({content}) => {
 	const r = 120;
 	const c = 2 * Math.PI * r;
 	return (
-		<Stage content={content} narration={content.next.narration} shown={content.next.text} light={0.8}>
+		<Stage light={0.8}>
 			<At y={420} w={952}>
 				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(60), opacity: useLand(0.05)}}>
 					<Text variant="display" size={TYPE.adScale.headline * 0.82} weight={TYPE.weights.display} color={WHITE} align="center">
@@ -279,7 +275,6 @@ const SAMPLE: z.input<typeof ProfilePickerSchema> = {
 		narration: 'Önce netini ölç, sonra bugün ne çalışacağını gör, takıldığın yerde SinoAI’ye sor.',
 	},
 	next: {text: 'Sıradaki bölüm: senin denemen.', narration: 'Sıradaki bölüm senin denemen.'},
-	closing: {cta: 'Sınavika’yı ücretsiz indir', narration: 'Sınavika’yı ücretsiz indir.'},
 };
 
 const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateScene[] => {
@@ -290,14 +285,13 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 	const title = say('title', content.title.narration, beat(content.title.narration, 2.4), 2.2);
 	const episodes = say('episodes', content.episodes.narration, beat(content.episodes.narration, 6), 5.4);
 	const next = say('next', content.next.narration, beat(content.next.narration, 2.6), 2.6);
-	const closing = say('closing', content.closing.narration, beat(content.closing.narration, 2.6), 2.4);
 	return [
 		{id: 'question', seconds: question.seconds, label: 'Soru', voice: [question], element: <QuestionScene content={content} />},
 		{id: 'pick', seconds: pick.seconds, label: 'Profil', voice: [pick], element: <PickScene content={content} />},
 		{id: 'title', seconds: title.seconds, label: 'Başlık', voice: [title], element: <TitleScene content={content} />},
 		{id: 'episodes', seconds: episodes.seconds, label: 'Bölümler', voice: [episodes], element: <EpisodesScene content={content} seconds={episodes.seconds} />},
 		{id: 'next', seconds: next.seconds, label: 'Sıradaki', voice: [next], element: <NextScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard cta={content.closing.cta} />}] : []),
+		...appEndScenes(content.outro.enabled, say),
 	];
 };
 

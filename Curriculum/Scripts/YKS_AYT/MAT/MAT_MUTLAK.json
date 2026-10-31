@@ -1,0 +1,666 @@
+{
+ "topic": {
+  "id": "97F68029-80AE-DDDB-CFEF-F98949EC80AC",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_MUTLAK"
+ },
+ "title": "Mutlak Değer",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "YKS/AYT/CikmisSorular/MAT.jsonl (ÖSYM 2019 sıralama ve 2020 toplamı 1 olan mutlak değerler kalıpları örnek alındı, sorular yeniden kuruldu; bu konuya eşlenen 2025 sorusu analitik geometri, VeriDuzeltmeleri #64)",
+  "YKS/AYT/Sorular/MAT/MAT_MUTLAK.jsonl (yapı ve zorluk için)",
+  "AYT'de bu konunun konu anlatımı yok: kurallar TYT Mutlak Değer dersinden kısaltıldı, her cevap tam hesapla ya da örneklemeyle denetlendi"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Mutlak değer, sayıyı pozitif yapmak değil, uzaklıktır.",
+   "narration": "Mutlak değer için öğrencilerin çoğu \"sayıyı pozitif yapar\" der. AYT ise mutlak değeri uzaklık olarak düşünenleri ödüllendirir: en küçük değer soruları, iki parçalı eşitsizlikler ve toplamı küçük olan mutlak değerler uzaklıkla birkaç adımda çözülür. Bu derste tanımı sayı doğrusunda hatırlayıp ÖSYM'nin kalıplarını AYT düzeyinde yeni sorularla çözeceğiz."
+  },
+  "objectives": [
+   "Mutlak değerli eşitliklerden işaret ve sıralama okumak",
+   "İfadeyi içinin işaretine göre açmak",
+   "Uzaklıklar toplamının en küçük değerini bulmak",
+   "|f| = g denkleminde sahte kökü elemek",
+   "Mutlak değerli eşitsizliğin parçalarını ve parametresini bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_MUTLAK_01",
+    "subtopics": [
+     "MAT_MUTLAK_02"
+    ],
+    "title": "Tanım ve uzaklık",
+    "narration": "Mutlak değer bir sayıyı pozitif yapma kuralı değil, bir uzaklıktır. AYT soruları da bu tanımla açılır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kısa tekrar: mutlak değer",
+      "items": [
+       "$|x| = x$ ($x \\geq 0$), $|x| = -x$ ($x < 0$): sonuç **hiçbir zaman negatif değil**.",
+       "$|x - a|$, $x$ ile $a$ arasındaki **uzaklıktır**.",
+       "$|a| = a$ ise $a \\geq 0$; $|a| = -a$ ise $a \\leq 0$.",
+       "$|a| = |b|$ ise $a = b$ ya da $a = -b$."
+      ],
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        -3,
+        7
+       ],
+       "intervals": [
+        {
+         "from": -1,
+         "to": 2,
+         "closedFrom": true,
+         "closedTo": true,
+         "label": "3 birim"
+        },
+        {
+         "from": 2,
+         "to": 5,
+         "closedFrom": true,
+         "closedTo": true,
+         "label": "3 birim"
+        }
+       ],
+       "points": [
+        {
+         "x": 2,
+         "label": "merkez 2"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "x eksi iki'nin mutlak değeri üç: x, ikiye üç birim uzakta.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "İkiden sola üç birim yürüyünce eksi bire varırız.",
+        "show": [
+         "i1"
+        ],
+        "focus": [
+         "i1"
+        ]
+       },
+       {
+        "narration": "Sağa üç birim yürüyünce beşe. Denklemin iki kökü var: eksi bir ve beş.",
+        "show": [
+         "i2"
+        ],
+        "focus": [
+         "i2"
+        ]
+       }
+      ],
+      "narration": "Mutlak değer, sayının sıfıra uzaklığıdır. Pozitif bir sayı olduğu gibi çıkar; negatif bir sayı eksiyle çarpılarak çıkar. Sonuç hiçbir zaman negatif değildir. x eksi a'nın mutlak değeri, x ile a arasındaki uzaklıktır. Bir sayının mutlak değeri kendisine eşitse sayı negatif değildir; ters işaretlisine eşitse pozitif değildir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Birbirinden farklı $a$, $b$ ve $c$ gerçel sayıları için\n\n$a + |b| = 0$\n\n$|a| + c = a$\n\neşitlikleri veriliyor.\n\nBuna göre, $a$, $b$ ve $c$ sayılarının doğru sıralanışı aşağıdakilerden hangisidir?",
+       "options": [
+        "$a < b < c$",
+        "$a < c < b$",
+        "$b < a < c$",
+        "$b < c < a$",
+        "$c < a < b$"
+       ],
+       "answer": 4,
+       "narration": "ÖSYM 2019'da mutlak değerli iki eşitlikten sıralama sordu. Biz başka iki eşitlikle kuralım; \"farklı\" sözcüğü iki kez işe yarayacak.",
+       "steps": [
+        {
+         "text": "$a = -|b| \\leq 0$. $a = 0$ olsaydı $c = 0$ olurdu; sayılar farklı: $a < 0$.",
+         "narration": "Birinci eşitlik: a, eksi b'nin mutlak değeri; sıfırdan büyük olamaz. a sıfır olsaydı ikinci eşitlikten c de sıfır olurdu; ama sayılar farklı. Demek ki a negatif."
+        },
+        {
+         "text": "$|a| = -a$: $-a + c = a$, $c = 2a < a$.",
+         "narration": "a negatif, mutlak değeri eksi a. İkinci eşitlik: eksi a artı c eşittir a, yani c iki a. a negatif olduğu için iki a, a'dan küçük: c, a'dan küçük."
+        },
+        {
+         "text": "$|b| = -a > 0$: $b = -a$ ya da $b = a$; farklı olduğu için $b = -a > 0$.",
+         "narration": "b'nin mutlak değeri eksi a, pozitif bir sayı. b ya eksi a'dır ya da a; a olamaz, çünkü sayılar farklı. b eksi a, yani pozitif."
+        },
+        {
+         "text": "$c < a < 0 < b$",
+         "narration": "Sıra: c, a, b. Örnek: a eksi bir, b bir, c eksi iki. Cevap E.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 mutlak değerden sıralama kalıbı örnek alındı; eşitlikler yeni yazıldı, \"farklı\" koşulu iki adımda kullanıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_MUTLAK_03",
+    "title": "Mutlak değerli ifadeler",
+    "narration": "Mutlak değerden kurtulmanın tek yolu içinin işaretini bilmek. İşaret biliniyorsa açarız; bilinmiyorsa sayı doğrusunda uzaklıkla düşünürüz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İfadeyi açmak",
+      "items": [
+       "İçi **pozitifse** olduğu gibi, **negatifse** ters işaretle çıkar.",
+       "$|x - a| + |x - b|$ en küçük değerini $a$ ile $b$ **arasında** alır: $|a - b|$.",
+       "Üç terimde en küçük değer **ortadaki** noktada."
+      ],
+      "narration": "Mutlak değerden çıkarken içinin işaretine bakarsın: pozitifse olduğu gibi, negatifse ters işaretle çıkar. İşaret bilinmiyorsa uzaklığı düşün: x eksi a ile x eksi b'nin mutlak değerlerinin toplamı, x'in a'ya ve b'ye uzaklıklarının toplamıdır. Bu toplam en küçük değerini x, a ile b arasındayken alır ve bu değer a ile b arasındaki uzaklıktır. Üç terim olursa en küçük değer ortadaki noktada."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x < -2 < y < 0$ olduğuna göre,\n\n$|x + 2| - |y - x| + |y|$\n\nifadesinin eşiti aşağıdakilerden hangisidir?",
+       "options": [
+        "$-2 - 2y$",
+        "$2y - 2$",
+        "$-2x - 2$",
+        "$2x + 2y$",
+        "$-2$"
+       ],
+       "answer": 0,
+       "narration": "Üç mutlak değerin içinin işaretini sırayla bulalım.",
+       "steps": [
+        {
+         "text": "$x < -2$: $x + 2 < 0$, $|x + 2| = -x - 2$.",
+         "narration": "x eksi ikiden küçük: x artı iki negatif, ters işaretle çıkar: eksi x eksi iki."
+        },
+        {
+         "text": "$y > x$: $y - x > 0$, $|y - x| = y - x$.",
+         "narration": "y, x'ten büyük: y eksi x pozitif, olduğu gibi çıkar."
+        },
+        {
+         "text": "$y < 0$: $|y| = -y$.",
+         "narration": "y negatif: mutlak değeri eksi y."
+        },
+        {
+         "text": "$(-x - 2) - (y - x) + (-y) = -2 - 2y$",
+         "narration": "Hepsini yerine yazalım: eksi x eksi iki, eksi y artı x, eksi y. x'ler gider, sonuç eksi iki eksi iki y. Ortadaki eksiyi parantezin tamamına dağıtmayı unutan yanılır. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "İşaretten açma kalıbı; aralıklar ve ifade yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "En az kaç olur?",
+      "prompt": "$|x - 1| + |x - 5|$ ifadesinin alabileceği en küçük değer kaçtır?",
+      "choices": [
+       "$0$",
+       "$4$"
+      ],
+      "answer": 1,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        -1,
+        7
+       ],
+       "intervals": [
+        {
+         "from": 1,
+         "to": 5,
+         "closedFrom": true,
+         "closedTo": true,
+         "label": "iki uzaklığın toplamı 4"
+        }
+       ],
+       "points": [
+        {
+         "x": 3,
+         "label": "x"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "x, bir ile beş arasında bir yerde olsun. Bire uzaklığı ile beşe uzaklığı toplanınca her zaman dört eder.",
+        "show": [
+         "i1",
+         "p1"
+        ],
+        "focus": [
+         "i1"
+        ]
+       },
+       {
+        "narration": "x dışarı çıkarsa iki uzaklıktan biri büyür ve toplam dördü geçer.",
+        "focus": [
+         "p1"
+        ]
+       }
+      ],
+      "explanation": "İki uzaklığın toplamı, $x$ iki noktanın arasındayken en küçüktür: $|1 - 5| = 4$. Sıfır olamaz; $x$ aynı anda 1'de ve 5'te olamaz.",
+      "narration": "Şimdi sıra sende. x eksi birin mutlak değeri artı x eksi beşin mutlak değeri, en az kaç olur? Biraz düşün.",
+      "explanationNarration": "Doğru cevap dört. Toplam, x'in bire ve beşe uzaklıklarının toplamı. x bu iki noktanın arasındayken toplam tam olarak aradaki uzaklık, yani dört. Sıfır diyen, iki terimin aynı anda sıfır olabileceğini sanmıştır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(x) = |x + 3| + |x - 2| + |x - 6|$\n\nfonksiyonunun alabileceği **en küçük** değer kaçtır?",
+       "options": [
+        "$5$",
+        "$8$",
+        "$9$",
+        "$11$",
+        "$13$"
+       ],
+       "answer": 2,
+       "narration": "Üç uzaklığın toplamı; üç nokta var: eksi üç, iki ve altı.",
+       "steps": [
+        {
+         "text": "$f(x)$: $x$'in $-3$, $2$ ve $6$'ya uzaklıklarının toplamı.",
+         "narration": "f x, x'in eksi üçe, ikiye ve altıya uzaklıklarının toplamı."
+        },
+        {
+         "text": "Uç noktalar: $x$, $-3$ ile $6$ arasındaysa ilk ve son terimin toplamı $9$.",
+         "narration": "x eksi üç ile altı arasındayken birinci ve üçüncü uzaklığın toplamı, bu iki nokta arasındaki uzaklık: dokuz."
+        },
+        {
+         "text": "Ortadaki terim $|x - 2|$ en küçük $x = 2$'de: $0$. En küçük değer $9 + 0 = 9$.",
+         "narration": "Ortadaki terim x ikiyken sıfır olur. Bu yüzden en küçük değer, x ikide: dokuz artı sıfır, dokuz. Denetim: f iki, beş artı sıfır artı dört. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Uzaklıklar toplamının en küçük değeri kalıbı; noktalar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_MUTLAK_04",
+    "title": "Mutlak değerli denklemler",
+    "narration": "Mutlak değerli bir denklemde iki durum açılır. AYT'nin iki tuzağı var: sağ tarafın işareti ve toplamı küçük olan mutlak değerler.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Denklem kuralları",
+      "items": [
+       "$|f| = a$ ($a \\geq 0$): $f = a$ ya da $f = -a$.",
+       "$|f| = g$: önce $g \\geq 0$ koşulu; bulunan kökü **denetle**.",
+       "$|t| + |t - 1| \\geq 1$; eşitlik yalnız $0 \\leq t \\leq 1$ iken.",
+       "Mutlak değerlerin toplamı **küçük** bir sayıysa terimleri tek tek sınırla."
+      ],
+      "narration": "Mutlak değeri a olan bir ifade a'ya ya da eksi a'ya eşittir. Sağ tarafta bir ifade varsa, önce o ifadenin negatif olamayacağını yaz ve bulduğun kökleri denetle. t'nin ve t eksi birin mutlak değerlerinin toplamı en az birdir; t, sıfır ile bir arasındayken tam bir olur. Mutlak değerlerin toplamı küçük bir sayıya eşitse terimleri tek tek sınırlarsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x$ ve $y$ tam sayılar olmak üzere\n\n$|x + 1| + |2x - y| + |2x - y + 1| = 1$\n\neşitliği sağlanmaktadır.\n\nBuna göre, $x + y$ toplamının alabileceği değerlerin toplamı kaçtır?",
+       "options": [
+        "$-8$",
+        "$-7$",
+        "$-6$",
+        "$-5$",
+        "$-3$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2020'de bu kalıbı sordu. Son iki terime t ve t artı bir gözüyle bakalım.",
+       "steps": [
+        {
+         "text": "$t = 2x - y$: $|t| + |t + 1| \\geq 1$.",
+         "narration": "İki x eksi y'ye t diyelim. t'nin ve t artı birin mutlak değerlerinin toplamı en az bir; iki uzaklığın toplamı gibi düşün: sıfır ile eksi bir arasındaki uzaklık."
+        },
+        {
+         "text": "Toplam 1: $|x + 1| = 0$ ve $-1 \\leq t \\leq 0$. $x = -1$.",
+         "narration": "Bütün toplam bir. Son iki terim zaten en az bir tutuyor; demek ki x artı birin mutlak değeri sıfır ve t, eksi bir ile sıfır arasında. x eksi bir."
+        },
+        {
+         "text": "$t$ tam sayı: $-2 - y \\in \\{-1, 0\\}$, $y \\in \\{-1, -2\\}$.",
+         "narration": "t tam sayı: eksi bir ya da sıfır. t, eksi iki eksi y; buradan y eksi bir ya da eksi iki."
+        },
+        {
+         "text": "$x + y \\in \\{-2, -3\\}$, toplam $-5$.",
+         "narration": "x artı y, eksi iki ya da eksi üç. Toplamları eksi beş. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 toplamı 1 olan mutlak değerler kalıbı örnek alındı; terimler ve soru yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Denetlenmeyen kök",
+      "wrong": "$|x - 4| = 2x - 2$ için $x = -2$ ve $x = 2$ köktür.",
+      "right": "Yalnız $x = 2$: $x = -2$ için sağ taraf $-6$, mutlak değer negatif olamaz.",
+      "why": "$|f| = g$ denkleminde $g \\geq 0$ koşulu yazılmazsa sahte kök kalır.",
+      "narration": "Sık yapılan bir hata: iki durumu açıp çıkan iki sayıyı da kök saymak. x eksi dördün mutlak değeri, iki x eksi ikiye eşit. Birinci durumdan eksi iki çıkar; ama x eksi ikiyken sağ taraf eksi altı, mutlak değer negatif olamaz. Tek kök iki."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$|x - 4| = 2x - 2$\n\ndenkleminin çözüm kümesinin elemanları toplamı kaçtır?",
+       "options": [
+        "$0$",
+        "$2$",
+        "$4$",
+        "$6$",
+        "$8$"
+       ],
+       "answer": 1,
+       "narration": "Sağ tarafta bir ifade var; önce koşulu yazalım.",
+       "steps": [
+        {
+         "text": "Koşul: $2x - 2 \\geq 0$, $x \\geq 1$.",
+         "narration": "Sağ taraf mutlak değere eşit, negatif olamaz: iki x eksi iki sıfırdan büyük eşit, x en az bir."
+        },
+        {
+         "text": "$x - 4 = 2x - 2$: $x = -2$, koşula **uymaz**.",
+         "narration": "Birinci durum: x eksi dört eşittir iki x eksi iki, x eksi iki. Koşul x en az bir diyor; eksi iki elenir."
+        },
+        {
+         "text": "$x - 4 = -(2x - 2)$: $3x = 6$, $x = 2$ ✓. Toplam $2$.",
+         "narration": "İkinci durum: x eksi dört eşittir eksi iki x artı iki, üç x altı, x iki. Koşula uyar: denetim, ikinin dörde uzaklığı iki, sağ taraf da iki. Toplam iki; sahte kökü katan sıfır bulur. Cevap B.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "|f| = g kalıbı; denklem ve sahte kök yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_MUTLAK_05",
+    "title": "Mutlak değerli eşitsizlikler",
+    "narration": "Son bölüm: uzaklık bir sınırdan küçük ya da büyük olunca. Sayı doğrusunda iki parça çıkabilir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Eşitsizlik kuralları",
+      "items": [
+       "$|f| < a$: $-a < f < a$ (tek parça).",
+       "$|f| > a$: $f < -a$ ya da $f > a$ (iki parça).",
+       "$a \\leq |f| < b$: iki parçanın **ikisi** de alınır.",
+       "$|x - p| + |x - q| \\leq k$: uçlar $p$ ile $q$'nun dışında, eşit uzaklıkta."
+      ],
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        -3,
+        9
+       ],
+       "intervals": [
+        {
+         "from": -2,
+         "to": 8,
+         "label": "|x − 3| < 5",
+         "row": 1
+        },
+        {
+         "from": -2,
+         "to": 1,
+         "closedTo": true
+        },
+        {
+         "from": 5,
+         "to": 8,
+         "closedFrom": true
+        }
+       ],
+       "points": [
+        {
+         "x": 3,
+         "label": "3"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Merkez üç. Üçe uzaklığı beşten az olanlar: eksi iki ile sekiz arası, uçlar hariç.",
+        "show": [
+         "p1",
+         "i1"
+        ],
+        "focus": [
+         "i1"
+        ]
+       },
+       {
+        "narration": "Ama uzaklık en az iki olmalı: üçün iki birim yakınındakiler, bir ile beş arası, çıkar. Geriye iki parça kalır: eksi ikiden bire ve beşten sekize; bir ve beş dahil.",
+        "show": [
+         "i2",
+         "i3"
+        ],
+        "focus": [
+         "i2",
+         "i3"
+        ]
+       }
+      ],
+      "narration": "Bir ifadenin mutlak değeri a'dan küçükse ifade eksi a ile a arasındadır: tek parça. a'dan büyükse ifade eksi a'dan küçük ya da a'dan büyüktür: iki parça. İki sınır birlikte verilirse iki parçanın ikisi de alınır. Sayı doğrusunda görelim: iki küçük eşit x eksi üçün mutlak değeri küçüktür beş."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$2 \\leq |x - 3| < 5$\n\neşitsizliğini sağlayan **kaç tane** $x$ tam sayısı vardır?",
+       "options": [
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$"
+       ],
+       "answer": 2,
+       "narration": "Sayı doğrusunda gördük; şimdi tam sayıları sayalım.",
+       "steps": [
+        {
+         "text": "$|x - 3| < 5$: $-2 < x < 8$.",
+         "narration": "Uzaklık beşten az: x, eksi iki ile sekiz arasında, uçlar hariç."
+        },
+        {
+         "text": "$|x - 3| \\geq 2$: $x \\leq 1$ ya da $x \\geq 5$.",
+         "narration": "Uzaklık en az iki: x, birden küçük eşit ya da beşten büyük eşit."
+        },
+        {
+         "text": "$(-2, 1] \\cup [5, 8)$: $-1, 0, 1, 5, 6, 7$, **6** tane.",
+         "narration": "İki parça: eksi iki ile bir arası, bir dahil; beş ile sekiz arası, beş dahil. Tam sayılar eksi bir, sıfır, bir, beş, altı, yedi: altı tane. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "İki sınırlı mutlak değer eşitsizliği kalıbı; merkez ve sınırlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$|x + 1| + |x - 3| \\leq 6$\n\neşitsizliğini sağlayan **kaç tane** $x$ tam sayısı vardır?",
+       "options": [
+        "$6$",
+        "$7$",
+        "$8$",
+        "$9$",
+        "$10$"
+       ],
+       "answer": 1,
+       "narration": "İki uzaklığın toplamı; noktalar eksi bir ve üç.",
+       "steps": [
+        {
+         "text": "$-1$ ile $3$ arasında toplam $4 \\leq 6$: hepsi sağlar.",
+         "narration": "x, eksi bir ile üç arasındayken iki uzaklığın toplamı dört; altıdan küçük, hepsi sağlar."
+        },
+        {
+         "text": "Dışarıda fazlalık $6 - 4 = 2$, iki yana eşit bölünür: $1$'er birim.",
+         "narration": "Dışarı çıktıkça toplam iki kat hızla büyür. Altıya kadar iki birimlik pay var; iki yana birer birim düşer."
+        },
+        {
+         "text": "$-2 \\leq x \\leq 4$: $-2, -1, \\dots, 4$, **7** tane.",
+         "narration": "Çözüm eksi ikiden dörde, uçlar dahil. Denetim: eksi ikide bir artı beş, altı. Tam sayılar eksi ikiden dörde yedi tane. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "Uzaklıklar toplamıyla eşitsizlik kalıbı; noktalar ve sınır yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ bir tam sayı olmak üzere\n\n$|2x - a| \\leq 7$\n\neşitsizliğini sağlayan **en büyük** $x$ tam sayısı 6'dır.\n\nBuna göre, $a$'nın alabileceği değerlerin toplamı kaçtır?",
+       "options": [
+        "$5$",
+        "$6$",
+        "$9$",
+        "$11$",
+        "$13$"
+       ],
+       "answer": 3,
+       "narration": "Önce eşitsizliği x için çözelim; en büyük tam sayı bir aralık verir.",
+       "steps": [
+        {
+         "text": "$-7 \\leq 2x - a \\leq 7$: $\\frac{a - 7}{2} \\leq x \\leq \\frac{a + 7}{2}$.",
+         "narration": "Eksi yedi ile yedi arasında: a eksi yedi bölü iki ile a artı yedi bölü iki arasında x."
+        },
+        {
+         "text": "En büyük tam sayı 6: $6 \\leq \\frac{a + 7}{2} < 7$.",
+         "narration": "En büyük tam sayı altı ise üst sınır altıdan küçük olamaz, yediye de ulaşamaz."
+        },
+        {
+         "text": "$12 \\leq a + 7 < 14$: $a \\in \\{5, 6\\}$, toplam $11$.",
+         "narration": "İkiyle çarpınca on iki ile on dört arası; a, beş ya da altı. Toplam on bir. Yalnız a eşittir beşi bulan altıyı kaçırır. Cevap D.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Parametreli mutlak değer eşitsizliği kalıbı; ifade ve koşul yeni yazıldı"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$|x - a|$: $x$ ile $a$ arasındaki **uzaklık**.",
+    "$|a| = -a$ ise $a \\leq 0$.",
+    "İçi negatifse **ters işaretle** çıkar.",
+    "Uzaklıklar toplamı **ortada** en küçük.",
+    "$|f| = g$: önce **$g \\geq 0$**, sonra denetle.",
+    "$a \\leq |f| < b$: **iki parça**."
+   ],
+   "warnings": [
+    "Ortadaki eksiyi **bütün parantezle** dağıt.",
+    "Bulunan kökü **denetlemeden** yazma."
+   ],
+   "narration": "Özetleyelim. x eksi a'nın mutlak değeri, x ile a arasındaki uzaklıktır. Bir sayının mutlak değeri ters işaretlisine eşitse sayı pozitif değildir. Mutlak değerin içi negatifse ters işaretle çıkar. Uzaklıklar toplamı en küçük değerini noktaların ortasında alır. Mutlak değer bir ifadeye eşitse önce o ifadenin negatif olmadığını yaz, sonra kökleri denetle. Ve iki sınırlı bir eşitsizlikte çözüm iki parça olabilir."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "1'e ve 5'e uzaklıklar toplamı",
+    "question": "En az kaç?",
+    "choices": [
+     "0",
+     "4"
+    ],
+    "answer": 1,
+    "why": "**Aradaki** uzaklık."
+   },
+   {
+    "sentence": "$|a| = -a$",
+    "question": "a pozitif mi?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "**Pozitif** değil."
+   },
+   {
+    "sentence": "Sağ tarafı negatif yapan kök",
+    "question": "Kabul edilir mi?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "**Sahte** kök."
+   }
+  ],
+  "hook": "Üç mutlak değer tuzağı.",
+  "cards": [
+   {
+    "kind": "term",
+    "term": "Mutlak değer",
+    "definition": "Sıfıra, ya da $a$'ya **uzaklık**."
+   },
+   {
+    "kind": "warning",
+    "text": "Kökü **denetle**: sağ taraf negatif olamaz."
+   },
+   {
+    "kind": "fact",
+    "text": "Uzaklıklar toplamı **ortada** en küçük."
+   }
+  ],
+  "summary": [
+   "Uzaklık",
+   "Kökü denetle",
+   "Ortada en küçük"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-matematik-kampi",
+  "name": "AYT Matematik kampı",
+  "number": 7,
+  "total": 33,
+  "previous": "Basit Eşitsizlikler",
+  "next": "Üslü Sayılar",
+  "promise": "Her konu kısa bir tekrar ve AYT düzeyinde çözümlü sorularla.",
+  "task": {
+   "items": [
+    "ÖSYM 2019 sorusunu **kendin** çöz: $a + b = |a|$ ve $b + c = |b|$ ise $a$, $b$, $c$ nasıl sıralanır?",
+    "$|x - 1| + |x + 2| + |x - 4| + |x - 7|$ ifadesinin en küçük değerini bul; dört noktada **orta** nerede?",
+    "Uygulamada AYT Mutlak Değer testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. ÖSYM'nin 2019 sorusunu kendin çöz: a artı b, a'nın mutlak değerine; b artı c, b'nin mutlak değerine eşitse a, b ve c nasıl sıralanır? Dört terimli bir uzaklıklar toplamının en küçük değerini bul; dört noktada orta neresi, düşün. Sonra uygulamada AYT Mutlak Değer testinden yirmi soru çöz. Bir sonraki derste üslü sayılarda görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Özellikleri tablo yap: |ab| = |a||b|, |a/b| = |a|/|b|, |a − b| = |b − a|, |x|² = x², |a + b| ≤ |a| + |b| (üçgen eşitsizliği).",
+   "Uzaklıklar toplamının en küçük değerini örnekle: |x − 1| + |x − 5|'in en küçük değeri 4'tür ve 1 ≤ x ≤ 5 aralığında alınır; üç terimde ortadaki noktada: |x − 1| + |x − 3| + |x − 8|'in en küçüğü x = 3'te 7.",
+   "Denklemde koşulu önce yazdır: |2x − 3| = x + 3 için x + 3 ≥ 0 şartıyla iki durum çözülür; x = 6 ve x = 0.",
+   "Eşitsizlik örnekleri ekle: |x − 2| < 5 → −3 < x < 7; |x + 1| ≥ 3 → x ≤ −4 ya da x ≥ 2; 2 ≤ |x − 1| < 4 → (−3, −1] ∪ [3, 5).",
+   "İç içe mutlak değeri örnekle: ||x − 2| − 3| = 1 ise |x − 2| = 4 ya da 2; çözüm kümesi {−2, 0, 4, 6}. y = |x − 2| grafiğinin tepesi (2, 0) olan V biçiminde olduğunu çizdir."
+  ]
+ }
+}

@@ -4,11 +4,11 @@
 
 ## 1. Kısaca
 
-- **Kamp altyapısı kuruldu.** Ortak şablon: YouTube'da en az 10 dakikalık kamp dersi (`CampLesson`) ve aynı senaryodan reels (`CampShort`). İlk kamp planı: **TYT Türkçe kampı, 15 ders**. Ayrıntı: [Courses.md §8](Courses.md#8-kamplar).
+- **Kamp altyapısı kuruldu.** Ortak şablon: YouTube'da en az 10 dakikalık kamp dersi (`CampLesson`) ve aynı senaryodan reels (`CampShort`). İlk kamp planı: **TYT Türkçe kampı, 15 ders**. Ayrıntı: [Courses.md §9](Courses.md#9-kamplar).
 - **Veri motora alındı.** `Desktop\EgitimVerileri`'nin YKS ve KPSS kısmı `Curriculum/Data`'da (424 MB, git dışında). 1.128 konunun 560'ının anlatımı var; 706 konuya **120.899 soru** bağlı, 109.564'ü cevaplı, 6.489'u ÖSYM.
 - **Görseldeki önerilerin çoğu bizde zaten var**, birçoğu daha ileri seviyede: Remotion, ffmpeg ve kalite kontrolü motorda. Whisper'a gerek yok, çünkü ElevenLabs sesi zaten zaman damgasıyla üretiyor. Alınabilecek iki fikir: "yorumlara anahtar sözcük yaz" ile etkileşim, ve kalite kontrolünü otomatik bir rapora çevirmek.
 - **En çok değer katacak beş yenilik**, sırayla:
-  1. reels'te kelime kelime altyazı ve YouTube için SRT;
+  1. ~~reels'te kelime kelime altyazı ve YouTube için SRT~~ (30 Ekim 2026: sahip altyazıyı istemedi);
   2. her dersten 3 reels türetmek;
   3. soru çözümünde kalem animasyonu (altını çizme, daire içine alma, şık eleme);
   4. "Bu konudan sınavda kaç soru çıktı" veri kartı;
@@ -79,7 +79,9 @@ Görsel, singreybuilds'in bir reels'i: "Tek prompt'la reels stüdyosu kur: Whisp
 
 Her öneri için: ne, neden, nasıl, emek (S küçük, M orta, L büyük).
 
-### 4.1 Kelime kelime altyazı ve SRT (S–M) · öncelik 1
+### 4.1 Kelime kelime altyazı ve SRT (S–M) · iptal
+
+> **30 Ekim 2026, sahip:** videolara altyazı eklenmez; altyazı alanı daraltıyor ve üretimi yoruyor. Tanıtım şablonlarındaki altyazı (`PromoSubtitle`) kaldırıldı. Aşağıdaki plan uygulanmayacak; YouTube için ayrı bir SRT dosyası ancak sahip isterse yapılır.
 
 - **Ne:** Reels'te konuşulan kelimeyle birlikte yanan, 2–4 kelimelik altyazı; anahtar terim ders renginde. YouTube için `.srt` altyazı dosyası.
 - **Neden:** Reels sessiz izleniyor. YouTube'da altyazı erişilebilirlik ve arama için önemli. Uzun derste ekrana altyazı basmıyoruz (fazlalık ilkesi); SRT ile isteyen açar.
@@ -159,7 +161,7 @@ Her öneri için: ne, neden, nasıl, emek (S küçük, M orta, L büyük).
 | Kamp planı ve senaryodaki kamp alanları | [`src/Courses/Camp.ts`](../src/Courses/Camp.ts), `Curriculum/Camps/` |
 | YouTube kamp dersi (≥10 dk): kamp kartı, bölüm çubuğu, kamp görevi, sıradaki ders | [`src/Templates/Camps/CampLesson`](../src/Templates/Camps/CampLesson/CampLesson.tsx) |
 | Kamp reels'i: kamp rozeti, "Ders N" yönlendirmesi | [`src/Templates/Camps/CampShort`](../src/Templates/Camps/CampShort/CampShort.tsx) |
-| YouTube bölüm listesi (kurallarıyla), render yanında `.chapters.txt` | [`src/Scenes/SceneChapters.ts`](../src/Scenes/SceneChapters.ts) |
+| YouTube bölüm listesi (kurallarıyla), render yanında `.chapters.txt` | [`src/Scenes/SceneChapter.ts`](../src/Scenes/SceneChapter.ts) |
 | Veri bağlama: içe aktarma `Curriculum/Data`'yı okuyor; `brief` anlatımın kaynağını, sayfalarını ve soru sayılarını gösteriyor | [`src/Courses/CurriculumImport.ts`](../src/Courses/CurriculumImport.ts) |
 | Ders süresi kuralı: en az 10 dk, hedef 12 dk | `COURSE_DESIGN.length` |
 
@@ -170,7 +172,7 @@ Her öneri için: ne, neden, nasıl, emek (S küçük, M orta, L büyük).
 | Faz | İş | Çıktı |
 |---|---|---|
 | **1 · bu hafta** | TYT Türkçe kampı 1. ders: Sözcükte Anlam'ın tam senaryosu (13 alt başlık, ≥10 dk, ≥3 çözümlü soru, kamp görevi). Ardından seslendirme, 4K render ve senin incelemen. | İlk kamp dersi + reels |
-| | §4.1 kelime kelime altyazı (reels) + SRT (YouTube) | Sessiz izlenebilir reels |
+| | ~~§4.1 kelime kelime altyazı (reels) + SRT (YouTube)~~ iptal (30 Ekim) | — |
 | **2** | §4.2 bir dersten üç reels · §4.3 soru çözümünde kalem · §4.6 kinetik vurgu | Kamp başına ~45 reels |
 | | Kampın kalan 14 dersi, haftalık yayın sırasıyla | TYT Türkçe kampı tamam |
 | **3** | §4.4 veri kartı · §4.7 kapak seti · TYT Matematik kampı ve §4.5 denklem dönüşümü | İkinci kamp |
@@ -189,8 +191,8 @@ Her kamp dersinin akışı:
 1. **Remotion lisansı:** ekip tek kişi. 3 kişiye kadar şirketler ücretsiz lisansla kullanabiliyor; ücretli lisans gerekmiyor. Ekip 3 kişiyi aşarsa yeniden bakılacak.
 2. **Yayın temposu:** kamp dersleri neredeyse her gün çekilecek. Her ders sahibin komutuyla başlar; sıradaki ders kendiliğinden üretilmez.
 3. **Yorumda anahtar sözcükle otomatik DM:** yapılmayacak.
-4. **Uzun derste altyazı:** henüz karar yok. Önerim yalnız YouTube altyazı dosyası (SRT).
-5. **SinoAI'nin okunuşu:** "Sino Ey Ay" doğru.
+4. **Altyazı:** 30 Ekim 2026'da karar verildi: videolara altyazı eklenmez.
+5. **SinoAI'nin okunuşu:** "Sino Ey Ay" doğru. 31 Ekim 2026'da bitişik "Sinoeyay" ve "Sino Eyay" ile dinlenerek karşılaştırıldı; sahip yine "Sino Ey Ay"ı seçti.
 6. **Kimya ile Almanca'nın aynı renkte olması:** sorun değil, kalıyor.
 
 ## Kaynaklar

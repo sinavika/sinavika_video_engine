@@ -3,15 +3,15 @@
  * Every size in the design system is expressed for a 1080px short edge and
  * scaled by `VideoLayout.unit`, so layouts stay identical at any resolution.
  */
-export const REFERENCE_SHORT_EDGE = 1080;
+const REFERENCE_SHORT_EDGE = 1080;
 export const DEFAULT_FPS = 30;
 export const SUPPORTED_FPS = [24, 25, 30, 50, 60] as const;
 
 export type Orientation = 'portrait' | 'landscape' | 'square';
 
-export type EdgeInsets = {top: number; right: number; bottom: number; left: number};
+type EdgeInsets = {top: number; right: number; bottom: number; left: number};
 
-export type VideoFormat = {
+type VideoFormat = {
 	label: string;
 	aspectRatio: string;
 	width: number;
@@ -56,7 +56,7 @@ export type VideoFormatId = keyof typeof VIDEO_FORMATS;
 export const VIDEO_FORMAT_IDS = Object.keys(VIDEO_FORMATS) as [VideoFormatId, ...VideoFormatId[]];
 
 /** Output short edge in pixels. Applied as a render-time scale, so layout never changes. */
-export const RENDER_QUALITIES = {
+const RENDER_QUALITIES = {
 	'720p': 720,
 	'1080p': 1080,
 	'1440p': 1440,

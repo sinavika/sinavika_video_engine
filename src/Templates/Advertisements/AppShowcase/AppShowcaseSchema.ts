@@ -11,7 +11,7 @@ const narration = z.string().trim().min(1).max(160);
  * here, never re-encoded) or a still capture. 1080 × 2400 emulator captures;
  * paths are under public/.
  */
-export const ShowcaseClipSchema = z.discriminatedUnion('kind', [
+const ShowcaseClipSchema = z.discriminatedUnion('kind', [
 	z.object({
 		kind: z.literal('video'),
 		src: z.string().min(1),
@@ -49,7 +49,6 @@ export const AppShowcaseSchema = z.object({
 	closing: z.object({
 		line: plainText(48),
 		cta: plainText(24),
-		stores: z.tuple([plainText(24), plainText(24)]),
 		screens: z.tuple([z.string(), z.string(), z.string()]),
 		narration,
 	}),

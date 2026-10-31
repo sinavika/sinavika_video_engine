@@ -1,0 +1,1024 @@
+{
+ "topic": {
+  "id": "857B4F2B-6860-619D-1DBA-B31AAE1E501D",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_DIZI"
+ },
+ "title": "Diziler",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/MAT/MAT_DIZI.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "ÖSYM dizilerden neredeyse her yıl soru soruyor.",
+   "narration": "Diziler, AYT'nin en düzenli soru kaynaklarından biri: ÖSYM son yıllarda neredeyse her yıl aritmetik ya da geometrik diziden bir soru sordu. İyi haber şu: hepsi birkaç basit fikre dayanıyor. Terimler arası adım sayısı, oran ve toplam. Bu derste bu fikirleri ÖSYM kalıplarıyla, yeni sorular üzerinde çalışacağız."
+  },
+  "objectives": [
+   "Diziyi fonksiyon olarak yorumlamak ve genel terimle çalışmak",
+   "İndirgemeli dizilerde terim bulmak",
+   "Aritmetik dizide adım sayısı ve ortalama özelliğini kullanmak",
+   "Geometrik dizide oran ve kare özelliğini kullanmak",
+   "Aritmetik ve geometrik dizilerde toplam bulmak",
+   "Periyodik dizileri tanımak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_DIZI_01",
+    "subtopics": [
+     "MAT_DIZI_02"
+    ],
+    "title": "Dizi ve genel terim",
+    "narration": "Dizi, sayma sayılarına bir değer karşılık getiren fonksiyondur: birinci terim, ikinci terim, üçüncü terim… Kimi zaman bir formülle, kimi zaman bir önceki terimden verilir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Dizi",
+      "items": [
+       "Dizi: $\\mathbb{N}^+ \\to \\mathbb{R}$ fonksiyon; $a_n$: **genel terim**.",
+       "Genel terimden istenen terim: $n$ yerine yaz.",
+       "**İndirgemeli** dizi: terim bir öncekinden verilir, $a_{n + 1} = \\dots$",
+       "Çarpımla verilen indirgemede terimleri **alt alta çarp**, sadeleşenleri sil."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        6
+       ],
+       "y": [
+        0,
+        11
+       ],
+       "xLabel": "n",
+       "yLabel": "aₙ",
+       "curves": [],
+       "parameters": {},
+       "points": [
+        {
+         "x": 1,
+         "y": 1,
+         "label": "a₁"
+        },
+        {
+         "x": 2,
+         "y": 3,
+         "label": "a₂"
+        },
+        {
+         "x": 3,
+         "y": 5,
+         "label": "a₃"
+        },
+        {
+         "x": 4,
+         "y": 7,
+         "label": "a₄"
+        },
+        {
+         "x": 5,
+         "y": 9,
+         "label": "a₅"
+        }
+       ],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "beats": [
+       {
+        "narration": "Genel terimi iki n eksi bir olan dizi: n bir iken bir, n iki iken üç.",
+        "show": [],
+        "focus": [
+         "p1",
+         "p2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Grafiği bir doğru değil, ayrık noktalar: dizi yalnız sayma sayılarında tanımlı. Arada bir buçuncu terim yok.",
+        "show": [],
+        "focus": [
+         "p3",
+         "p4",
+         "p5"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Dizi, bir, iki, üç gibi sayma sayılarının her birine bir gerçel sayı karşılık getiren fonksiyondur; n'inci terime genel terim deriz. Genel terim verilmişse istenen terimi n yerine yazarak buluruz. Bazen terim bir öncekinden verilir; buna indirgemeli dizi denir. İndirgeme çarpım biçimindeyse terimleri alt alta yazıp çarparsın: aradakiler sadeleşir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$(a_n)$ dizisi her $n$ pozitif tam sayısı için\n\n$n \\cdot a_{n + 1} = (n + 2) \\cdot a_n$\n\neşitliğini sağlıyor.\n\n$a_1 = 2$ olduğuna göre, $a_9$ kaçtır?",
+       "options": [
+        "$45$",
+        "$72$",
+        "$81$",
+        "$90$",
+        "$110$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$\\frac{a_{n + 1}}{a_n} = \\frac{n + 2}{n}$: $\\frac{a_2}{a_1} = \\frac{3}{1}$, $\\frac{a_3}{a_2} = \\frac{4}{2}$, …, $\\frac{a_9}{a_8} = \\frac{10}{8}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a n artı bir bölü a n, n artı iki bölü n. Sekiz oran yazalım: üç bölü bir, dört bölü iki, beş bölü üç, ve böyle on bölü sekize kadar."
+        },
+        {
+         "text": "Çarpım: $\\frac{a_9}{a_1} = \\frac{9 \\cdot 10}{1 \\cdot 2} = 45$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hepsini çarpınca soldakiler sadeleşir, a dokuz bölü a bir kalır. Sağda paylarda üçten ona, paydalarda birden sekize: geriye dokuz çarpı on bölü bir çarpı iki, kırk beş kalır."
+        },
+        {
+         "text": "$a_9 = 2 \\cdot 45 = 90$.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "a dokuz, iki çarpı kırk beş: doksan. Oranı cevap sanan kırk beşe düşer. Cevap D."
+        }
+       ],
+       "narration": "ÖSYM 2019'da indirgemeli bir diziyle bu kalıbı sordu. Oranları alt alta yazıp çarpalım.",
+       "origin": {
+        "changes": "ÖSYM 2019 indirgemeli dizi kalıbı örnek alındı; çarpımlı indirgeme ve değerler yeni kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Genel terimi\n\n$a_n = \\dfrac{3n + 15}{n}$\n\nolan dizinin **kaç terimi** tam sayıdır?",
+       "options": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$8$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$a_n = 3 + \\frac{15}{n}$: tam sayı $\\iff n \\mid 15$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a n, üç artı on beş bölü n. Tam sayı olması için n on beşi bölmeli."
+        },
+        {
+         "text": "$n \\in \\{1, 3, 5, 15\\}$: **4** terim.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "On beşin pozitif bölenleri: bir, üç, beş, on beş. Dört terim. Cevap B."
+        }
+       ],
+       "narration": "Kesri parçalayalım.",
+       "origin": {
+        "changes": "Genel terimde tam sayı terim kalıbı; ifade yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DIZI_03",
+    "subtopics": [],
+    "title": "Aritmetik dizi",
+    "narration": "Ardışık terimleri arasındaki fark sabit olan dizi aritmetik dizidir. ÖSYM bu konuda son yıllarda her yıl soru sordu: iki dizi, çarpımlar, eşitsizlikler.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Aritmetik dizi",
+      "items": [
+       "Ortak fark $r$: $a_n = a_1 + (n - 1)r$.",
+       "İki terim arası: $a_n - a_m = (n - m)\\,r$.",
+       "Ortadaki terim, eşit uzaklıktakilerin **ortalaması**: $a_k = \\frac{a_{k - p} + a_{k + p}}{2}$."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0.4,
+        6.6
+       ],
+       "y": [
+        0,
+        15
+       ],
+       "xLabel": "n",
+       "yLabel": "aₙ",
+       "curves": [],
+       "parameters": {},
+       "series": {
+        "kind": "bars",
+        "values": [
+         {
+          "x": 1,
+          "y": 3
+         },
+         {
+          "x": 2,
+          "y": 5
+         },
+         {
+          "x": 3,
+          "y": 7
+         },
+         {
+          "x": 4,
+          "y": 9
+         },
+         {
+          "x": 5,
+          "y": 11
+         },
+         {
+          "x": 6,
+          "y": 13
+         }
+        ],
+        "showValues": true
+       },
+       "points": [],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "beats": [
+       {
+        "narration": "Üç, beş, yedi, dokuz: her sütun bir öncekinden iki uzun. Ortak fark iki.",
+        "show": [],
+        "focus": [
+         "b1",
+         "b2",
+         "b3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Altıncı terim için birinciden beş adım: üç artı beş çarpı iki, on üç. Adım sayısı n eksi bir.",
+        "show": [],
+        "focus": [
+         "b1",
+         "b6"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Dördüncü terim dokuz; ikinci ile altıncının ortalaması: beş artı on üç, bölü iki.",
+        "show": [],
+        "focus": [
+         "b2",
+         "b4",
+         "b6"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Ardışık terimlerin farkı sabit r ise dizi aritmetiktir: n'inci terim, birinci terim artı n eksi bir tane r'dir. İki terimin farkı, aralarındaki adım sayısı çarpı r'dir. Ve bir terim, kendisine eşit uzaklıktaki iki terimin ortalamasıdır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Adım sayısı",
+      "wrong": "$3, 5, 7, \\dots$: $a_{10} = 3 + 10 \\cdot 2 = 23$",
+      "right": "$a_{10} = 3 + 9 \\cdot 2 = 21$",
+      "why": "Birinciden onuncuya **dokuz** adım var: $a_n = a_1 + (n - 1)r$.",
+      "narration": "Sık yapılan bir hata: üç, beş, yedi dizisinin onuncu terimine üç artı on çarpı iki demek. Birinci terimden onuncuya dokuz adım atılır: üç artı dokuz çarpı iki, yirmi bir."
+     },
+     {
+      "kind": "predict",
+      "title": "Geçer mi?",
+      "prompt": "$3, 7, 11, \\dots$ dizisinin $50$. terimi $200$'ü geçer mi?",
+      "choices": [
+       "Geçmez",
+       "Geçer"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0.4,
+        5.6
+       ],
+       "y": [
+        0,
+        22
+       ],
+       "xLabel": "n",
+       "yLabel": "aₙ",
+       "curves": [],
+       "parameters": {},
+       "series": {
+        "kind": "bars",
+        "values": [
+         {
+          "x": 1,
+          "y": 3
+         },
+         {
+          "x": 2,
+          "y": 7
+         },
+         {
+          "x": 3,
+          "y": 11
+         },
+         {
+          "x": 4,
+          "y": 15
+         },
+         {
+          "x": 5,
+          "y": 19
+         }
+        ],
+        "showValues": true
+       },
+       "points": [],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "beats": [
+       {
+        "narration": "Üç, yedi, on bir, on beş: her adımda dört artıyor.",
+        "show": [],
+        "focus": [
+         "b1",
+         "b2",
+         "b3",
+         "b4",
+         "b5"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "$a_{50} = 3 + 49 \\cdot 4 = 199$: $200$'ü **geçmez**. $50 \\cdot 4 = 200$ diye düşünen bir adımı fazla sayar.",
+      "narration": "Şimdi sıra sende. Üç, yedi, on bir diye giden dizinin ellinci terimi iki yüzü geçer mi? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: geçmez. Ellinci terim üç artı kırk dokuz çarpı dört: yüz doksan dokuz. Elli çarpı dört iki yüz diye düşünen, bir adımı fazla sayar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$(a_n)$ ve $(b_n)$ aritmetik dizileri için\n\n$a_1 = b_1$, $a_5 = b_8$, $a_9 = b_k$\n\neşitlikleri veriliyor.\n\nBuna göre, $k$ kaçtır?",
+       "options": [
+        "$11$",
+        "$12$",
+        "$13$",
+        "$14$",
+        "$15$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$a_5 - a_1 = b_8 - b_1$: $4r_a = 7r_b$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Beşinci terim ile birinci arası: a dizisinde dört adım, b dizisinde yedi adım. Dört r a eşittir yedi r b."
+        },
+        {
+         "text": "$a_9 - a_1 = 8r_a = 14r_b$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dokuzuncu terime a dizisinde sekiz adım: sekiz r a, yani on dört r b."
+        },
+        {
+         "text": "$b_k - b_1 = (k - 1)r_b = 14r_b$: $k = 15$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "b dizisinde on dört adım: k eksi bir on dört, k on beş. Cevap E."
+        }
+       ],
+       "narration": "ÖSYM 2021'de bu kalıbı sordu. İlk terimler eşit; farkları ortak farklarla yazalım.",
+       "origin": {
+        "changes": "ÖSYM 2021 iki aritmetik dizi kalıbı örnek alındı; terim sıraları yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir $(a_n)$ aritmetik dizisi için\n\n$a_1 \\cdot a_2 \\cdot a_3 = 3$\n\n$a_2 \\cdot a_3 \\cdot a_4 = 12$\n\neşitlikleri veriliyor.\n\nBuna göre, $a_3 \\cdot a_4 \\cdot a_5$ çarpımı kaçtır?",
+       "options": [
+        "$18$",
+        "$24$",
+        "$30$",
+        "$36$",
+        "$48$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$\\frac{a_2 a_3 a_4}{a_1 a_2 a_3} = \\frac{a_4}{a_1} = 4$: $a_1 + 3r = 4a_1$, $r = a_1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bölünce ortak çarpanlar gider: a dört bölü a bir, dört. a bir artı üç r, dört a bir: r, a bire eşit."
+        },
+        {
+         "text": "Terimler $a_1, 2a_1, 3a_1, 4a_1, 5a_1$: $6a_1^3 = 3$, $a_1^3 = \\frac{1}{2}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Terimler a bir, iki a bir, üç a bir, böyle gider. İlk çarpım altı a bir küp, üç: a bir küp yarım."
+        },
+        {
+         "text": "$a_3 a_4 a_5 = 60 a_1^3 = 30$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç çarpı dört çarpı beş, altmış a bir küp: otuz. Cevap C."
+        }
+       ],
+       "narration": "ÖSYM 2024'te bu kalıbı sordu. İki çarpımı birbirine bölelim.",
+       "origin": {
+        "changes": "ÖSYM 2024 ardışık terim çarpımları kalıbı örnek alındı; çarpımlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Terimleri birbirinden farklı ve ortak farkı $r$ olan bir $(a_n)$ aritmetik dizisi için\n\n$a_1 = 2r$, $a_{11} = a_2 \\cdot a_3$\n\neşitlikleri veriliyor.\n\nBuna göre, $a_{10}$ kaçtır?",
+       "options": [
+        "$8$",
+        "$9$",
+        "$10$",
+        "$11$",
+        "$12$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$a_n = 2r + (n - 1)r = (n + 1)r$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "n'inci terim: iki r artı n eksi bir r, yani n artı bir çarpı r."
+        },
+        {
+         "text": "$a_{11} = 12r$, $a_2 a_3 = 3r \\cdot 4r = 12r^2$: $12r = 12r^2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "On birinci terim on iki r. İkinci ile üçüncünün çarpımı üç r çarpı dört r, on iki r kare."
+        },
+        {
+         "text": "Terimler farklı, $r \\neq 0$: $r = 1$, $a_{10} = 11$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Terimler farklıysa r sıfır olamaz; sadeleşince r bir. Onuncu terim on bir çarpı bir: on bir. Cevap D."
+        }
+       ],
+       "narration": "ÖSYM 2026'da bu kalıbı sordu. Bütün terimleri r cinsinden yazalım.",
+       "origin": {
+        "changes": "ÖSYM 2026 terimleri r cinsinden yazma kalıbı örnek alındı; koşullar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ortak farkı $r$ olan bir $(a_n)$ aritmetik dizisi için\n\n$a_{40} - a_{33} < 100$\n\n$a_{33} - a_{20} > 100$\n\neşitsizlikleri veriliyor.\n\nBuna göre, $r$'nin alabileceği tam sayı değerlerinin toplamı kaçtır?",
+       "options": [
+        "$77$",
+        "$84$",
+        "$91$",
+        "$98$",
+        "$105$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$a_{40} - a_{33} = 7r < 100$: $r \\leq 14$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Otuz üçüncüden kırkıncıya yedi adım: yedi r, yüzden küçük. r tam sayı: en çok on dört."
+        },
+        {
+         "text": "$a_{33} - a_{20} = 13r > 100$: $r \\geq 8$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yirminciden otuz üçüncüye on üç adım: on üç r, yüzden büyük. r en az sekiz."
+        },
+        {
+         "text": "$r \\in \\{8, \\dots, 14\\}$: toplam $77$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sekizden on dörde yedi sayı; ortalaması on bir: toplam yetmiş yedi. Cevap A."
+        }
+       ],
+       "narration": "ÖSYM bu kalıbı sordu. Farkları adım sayısıyla yazalım.",
+       "origin": {
+        "changes": "ÖSYM eşitsizlikle ortak fark kalıbı örnek alındı; terim sıraları ve sınır yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DIZI_04",
+    "subtopics": [],
+    "title": "Geometrik dizi",
+    "narration": "Ardışık terimlerinin oranı sabit olan dizi geometrik dizidir. Aritmetik dizide toplama ne ise geometrikte çarpma odur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Geometrik dizi",
+      "items": [
+       "Ortak çarpan $r$: $a_n = a_1 \\cdot r^{n - 1}$.",
+       "İki terim arası: $\\frac{a_n}{a_m} = r^{n - m}$.",
+       "Ortadaki terimin karesi: $a_k^2 = a_{k - p} \\cdot a_{k + p}$."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0.4,
+        6.6
+       ],
+       "y": [
+        0,
+        36
+       ],
+       "xLabel": "n",
+       "yLabel": "aₙ",
+       "curves": [],
+       "parameters": {},
+       "series": {
+        "kind": "bars",
+        "values": [
+         {
+          "x": 1,
+          "y": 1
+         },
+         {
+          "x": 2,
+          "y": 2
+         },
+         {
+          "x": 3,
+          "y": 4
+         },
+         {
+          "x": 4,
+          "y": 8
+         },
+         {
+          "x": 5,
+          "y": 16
+         },
+         {
+          "x": 6,
+          "y": 32
+         }
+        ],
+        "showValues": true
+       },
+       "points": [],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "beats": [
+       {
+        "narration": "Bir, iki, dört, sekiz: her sütun bir öncekinin iki katı. Ortak çarpan iki.",
+        "show": [],
+        "focus": [
+         "b1",
+         "b2",
+         "b3",
+         "b4"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Fark sabit değil, giderek büyüyor: geometrik dizi aritmetikten çok daha hızlı büyür.",
+        "show": [],
+        "focus": [
+         "b5",
+         "b6"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Sekizin karesi altmış dört; ikinci ile altıncının çarpımı da iki çarpı otuz iki, altmış dört.",
+        "show": [],
+        "focus": [
+         "b2",
+         "b4",
+         "b6"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Ardışık terimlerin oranı sabit r ise dizi geometriktir: n'inci terim, birinci terim çarpı r üssü n eksi birdir. İki terimin oranı, r üssü aradaki adım sayısıdır. Ve bir terimin karesi, ona eşit uzaklıktaki iki terimin çarpımıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bütün terimleri pozitif olan bir $(a_n)$ geometrik dizisi için\n\n$a_1 = 3$, $a_6 = a_4 + 6 \\cdot a_2$\n\neşitlikleri veriliyor.\n\nBuna göre, $a_5$ kaçtır?",
+       "options": [
+        "$9$",
+        "$18$",
+        "$27$",
+        "$36$",
+        "$81$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$a_2 r^4 = a_2 r^2 + 6a_2$: $r^4 - r^2 - 6 = 0$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a altı, a iki çarpı r üssü dört; a dört, a iki çarpı r kare. a ikiye bölünce: r üssü dört eksi r kare eksi altı, sıfır."
+        },
+        {
+         "text": "$(r^2 - 3)(r^2 + 2) = 0$: $r^2 = 3$ (terimler pozitif).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "r kare eksi üç çarpı r kare artı iki. r kare negatif olamaz: r kare üç."
+        },
+        {
+         "text": "$a_5 = a_1 r^4 = 3 \\cdot 9 = 27$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a beş: a bir çarpı r üssü dört, üç çarpı dokuz: yirmi yedi. Cevap C."
+        }
+       ],
+       "narration": "ÖSYM 2020'de bu kalıbı sordu. Her terimi a iki cinsinden yazalım.",
+       "origin": {
+        "changes": "ÖSYM 2020 terimler arası bağıntıdan ortak çarpan kalıbı örnek alındı; katsayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir $(a_n)$ aritmetik dizisinin ortak farkı ile bir $(g_n)$ geometrik dizisinin ortak çarpanı aynı pozitif sayıdır.\n\n$a_1 = g_1$, $a_9 = g_2$, $a_{25} = g_3$, $a_k = g_4$\n\nolduğuna göre, $k$ kaçtır?",
+       "options": [
+        "$53$",
+        "$57$",
+        "$59$",
+        "$61$",
+        "$63$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$g + 8q = gq$, $g + 24q = gq^2$: $g(q - 1) = 8q$, $g(q^2 - 1) = 24q$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dokuzuncu terim: g artı sekiz q, g q'ya eşit. Yirmi beşinci: g artı yirmi dört q, g q kareye eşit. Düzenleyince g çarpı q eksi bir sekiz q, g çarpı q kare eksi bir yirmi dört q."
+        },
+        {
+         "text": "Bölünce $q + 1 = 3$: $q = 2$, $g = 16$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İkinciyi birinciye bölünce q artı bir, üç: q iki. Yerine yazınca g on altı."
+        },
+        {
+         "text": "$g_4 = 16 \\cdot 8 = 128 = 16 + (k - 1) \\cdot 2$: $k = 57$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Geometrik dizinin dördüncü terimi on altı çarpı sekiz, yüz yirmi sekiz. Aritmetik dizide on altıdan yüz yirmi sekize iki'şer adımla elli altı adım: k elli yedi. Cevap B."
+        }
+       ],
+       "narration": "ÖSYM 2025'te bu kalıbı sordu. Ortak sayıya q, ilk terime g diyelim.",
+       "origin": {
+        "changes": "ÖSYM 2025 aritmetik ve geometrik dizi kalıbı örnek alındı; terim sıraları yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DIZI_05",
+    "subtopics": [
+     "MAT_DIZI_06"
+    ],
+    "title": "Dizilerde toplam",
+    "narration": "Bir dizinin ilk n teriminin toplamı için iki formül yeter. Aritmetik dizinin toplam formülü, küçük Gauss'un bulduğu söylenen bir eşleştirmeden gelir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Gauss'un eşleştirmesi",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sıra",
+        "1.",
+        "2.",
+        "3.",
+        "…",
+        "100."
+       ],
+       "rows": [
+        [
+         "Toplam",
+         "$1$",
+         "$2$",
+         "$3$",
+         "…",
+         "$100$"
+        ],
+        [
+         "Ters",
+         "$100$",
+         "$99$",
+         "$98$",
+         "…",
+         "$1$"
+        ],
+        [
+         "Alt alta",
+         "$101$",
+         "$101$",
+         "$101$",
+         "…",
+         "$101$"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Birden yüze sayıları yazalım.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Altına aynı toplamı tersten yazalım: yüzden bire.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Alt alta topla: her sütun yüz bir. Yüz tane yüz bir, toplamın iki katı. Toplam: yüz çarpı yüz bir bölü iki, beş bin elli. Formül: terim sayısı çarpı ilk ve son terimin toplamı, bölü iki.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Birden yüze kadar sayıları toplamanın kısa yolu."
+     },
+     {
+      "kind": "rule",
+      "title": "Toplam formülleri",
+      "items": [
+       "Aritmetik: $S_n = \\frac{n(a_1 + a_n)}{2}$.",
+       "Geometrik ($r \\neq 1$): $S_n = a_1 \\cdot \\frac{r^n - 1}{r - 1}$.",
+       "$S_n$ verilmişse: $a_n = S_n - S_{n - 1}$."
+      ],
+      "beats": [],
+      "narration": "Aritmetik dizide ilk n terimin toplamı, n çarpı ilk ve son terimin toplamı, bölü ikidir. Geometrik dizide, ortak çarpan bir değilse, ilk terim çarpı r üssü n eksi bir, bölü r eksi birdir. Toplam formülü verilmişse n'inci terim, ilk n terimin toplamından ilk n eksi bir terimin toplamını çıkarınca bulunur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir salonun ilk sırasında $12$ koltuk vardır ve her sırada bir öncekinden $2$ koltuk fazladır.\n\nSalonda $15$ sıra olduğuna göre, toplam kaç koltuk vardır?",
+       "options": [
+        "$300$",
+        "$330$",
+        "$360$",
+        "$375$",
+        "$390$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$a_{15} = 12 + 14 \\cdot 2 = 40$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "On beşinci sıra: on iki artı on dört çarpı iki, kırk."
+        },
+        {
+         "text": "$S_{15} = \\frac{15(12 + 40)}{2} = 15 \\cdot 26 = 390$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam: on beş çarpı on iki artı kırk, bölü iki. On beş çarpı yirmi altı: üç yüz doksan. Cevap E."
+        }
+       ],
+       "narration": "Koltuk sayıları aritmetik dizi.",
+       "origin": {
+        "changes": "Aritmetik dizi toplamı problemi; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir haberi ilk gün yalnız $1$ kişi biliyor. Haberi yeni öğrenen her kişi, ertesi gün haberi bilmeyen $3$ kişiye anlatıyor.\n\n$6$. günün sonunda haberi bilen toplam kaç kişi olur?",
+       "options": [
+        "$121$",
+        "$243$",
+        "$280$",
+        "$364$",
+        "$729$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Yeni öğrenenler: $1, 3, 9, 27, 81, 243$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birinci gün bir, ikinci gün üç, üçüncü gün dokuz kişi; altıncı gün iki yüz kırk üç kişi yeni öğreniyor."
+        },
+        {
+         "text": "$S_6 = 1 \\cdot \\frac{3^6 - 1}{3 - 1} = \\frac{728}{2} = 364$.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam: üç üssü altı eksi bir, bölü iki. Yedi yüz yirmi sekiz bölü iki: üç yüz altmış dört. Yalnız altıncı gün öğrenenleri sayan iki yüz kırk üç bulur. Cevap D."
+        }
+       ],
+       "narration": "Her gün yeni öğrenenler üç katına çıkıyor: geometrik dizi.",
+       "origin": {
+        "changes": "Geometrik dizi toplamı problemi; bağlam yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir $(a_n)$ dizisinin ilk $n$ teriminin toplamı\n\n$S_n = n^2 + 4n$\n\nolduğuna göre, $a_{10}$ kaçtır?",
+       "options": [
+        "$21$",
+        "$23$",
+        "$25$",
+        "$27$",
+        "$29$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$S_{10} = 100 + 40 = 140$, $S_9 = 81 + 36 = 117$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "S on: yüz artı kırk, yüz kırk. S dokuz: seksen bir artı otuz altı, yüz on yedi."
+        },
+        {
+         "text": "$a_{10} = 140 - 117 = 23$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Fark: yirmi üç. Genel olarak a n, iki n artı üç: aritmetik bir dizi. Cevap B."
+        }
+       ],
+       "narration": "Onuncu terim, ilk on terimin toplamından ilk dokuzunkini çıkarınca kalır.",
+       "origin": {
+        "changes": "Toplamdan terim bulma kalıbı; ifade yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DIZI_07",
+    "subtopics": [],
+    "title": "Özel diziler",
+    "narration": "Bazı diziler bir formülle değil bir kuralla tanınır: belli aralıklarla kendini tekrar eden diziler, bir önceki iki terimin toplamıyla ilerleyen diziler. ÖSYM tekrar eden diziyi sevdi.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Özel diziler",
+      "items": [
+       "**Periyodik** dizi: $a_{n + p} = a_n$; terimler $p$ adımda bir tekrar eder.",
+       "Ardışık her $p$ terimin toplamı sabitse dizi $p$ periyotludur.",
+       "**Fibonacci** türü: $a_{n + 2} = a_{n + 1} + a_n$: $1, 1, 2, 3, 5, 8, \\dots$"
+      ],
+      "beats": [],
+      "narration": "Bir dizinin terimleri her p adımda bir tekrar ediyorsa dizi periyodiktir. Ardışık her p terimin toplamı aynıysa, kaydırılmış iki toplamı birbirinden çıkarınca a n artı p'nin a n'ye eşit olduğu çıkar: dizi p periyotludur. Her terimin önceki ikisinin toplamı olduğu dizilere Fibonacci türü denir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ardışık herhangi $4$ teriminin toplamı birbirine eşit olan bir $(a_n)$ dizisi için\n\n$a_1 + a_2 = 1$, $a_3 = 4$, $a_4 = 1$\n\neşitlikleri veriliyor.\n\nBuna göre, $a_1 + a_2 + \\dots + a_{30}$ toplamı kaçtır?",
+       "options": [
+        "$43$",
+        "$44$",
+        "$45$",
+        "$46$",
+        "$48$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$a_1 + a_2 + a_3 + a_4 = a_2 + a_3 + a_4 + a_5$: $a_5 = a_1$; dizi $4$ periyotlu.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İlk dört terimin toplamı ile ikinciden beşinciye toplam eşit: çıkarınca a beş, a bire eşit. Dizi dört adımda bir tekrar ediyor."
+        },
+        {
+         "text": "Bir blok: $1 + 4 + 1 = 6$; $30 = 7 \\cdot 4 + 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir bloğun toplamı: bir artı dört artı bir, altı. Otuz terim: yedi tam blok ve iki terim artar."
+        },
+        {
+         "text": "$7 \\cdot 6 + (a_1 + a_2) = 42 + 1 = 43$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yedi blok kırk iki; artan iki terim a bir ile a iki, toplamları bir. Sonuç kırk üç. Cevap A."
+        }
+       ],
+       "narration": "ÖSYM 2018'de bu kalıbı sordu. Önce dizinin tekrar ettiğini gösterelim.",
+       "origin": {
+        "changes": "ÖSYM 2018 ardışık terim toplamı eşit dizi kalıbı örnek alındı; periyot ve değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$a_n = a_1 + (n - 1)r$; $a_n - a_m = (n - m)r$.",
+    "$a_n = a_1 r^{n - 1}$; $\\frac{a_n}{a_m} = r^{n - m}$.",
+    "$S_n = \\frac{n(a_1 + a_n)}{2}$.",
+    "$S_n = a_1 \\frac{r^n - 1}{r - 1}$.",
+    "$a_n = S_n - S_{n - 1}$.",
+    "Ardışık $p$ terim toplamı sabit: $p$ periyot."
+   ],
+   "warnings": [
+    "Birinciden $n$'inciye **$n - 1$** adım.",
+    "Çarpım indirgemesinde oran, terim **değildir**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "ÖSYM 2025 kalıbını **kendin** çöz: $a_1 = g_1$, $a_5 = g_2$, $a_{13} = g_3$ ve $a_k = g_4$ ise $k$ kaç?",
+    "$1 + 3 + 5 + \\dots + 99$ toplamını **Gauss'un eşleştirmesiyle** bul.",
+    "Uygulamada AYT Diziler testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Aritmetik diziye ikinci örnek ver: a₃ = 7, a₈ = 22 ise r = 3, a₁ = 1, a₂₀ = 58, S₂₀ = 20 × (1 + 58) / 2 = 590.",
+   "Geometrik diziye ikinci örnek ver: a₂ = 6, a₅ = 162 ise r³ = 27, r = 3, a₁ = 2, S₅ = 2(3⁵ − 1)/(3 − 1) = 242.",
+   "Ortalama özelliklerini ekle: aritmetik dizide aₙ = (aₙ₋ₖ + aₙ₊ₖ)/2, geometrik dizide aₙ² = aₙ₋ₖ × aₙ₊ₖ. Üç sayı aritmetik dizi oluşturuyorsa ortadakinin ortalama olduğunu soru kurmada kullandır.",
+   "Toplam sembolüne örnekler ekle: 1'den n'ye k'nin toplamı n(n + 1)/2, k²'nin toplamı n(n + 1)(2n + 1)/6, k³'ün toplamı [n(n + 1)/2]². k = 1'den 10'a (2k + 1)'in toplamı 2 × 55 + 10 = 120.",
+   "Dizinin artan ya da azalan olduğunu farkla göster: aₙ = (2n + 1)/(n + 3) için aₙ₊₁ − aₙ = 5/((n + 3)(n + 4)) > 0, dizi artandır. Basit faizin aritmetik, bileşik faizin geometrik dizi olduğunu ekle."
+  ]
+ }
+}

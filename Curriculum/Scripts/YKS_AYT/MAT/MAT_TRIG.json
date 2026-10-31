@@ -1,0 +1,1155 @@
+{
+ "topic": {
+  "id": "8D45DB54-5107-FFAB-2DD8-D079E838477C",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_TRIG"
+ },
+ "title": "Trigonometri",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "YKS/AYT/CikmisSorular/MAT.jsonl (ÖSYM 2018, 2019, 2022, 2023, 2025 ve yılsız kalıplar örnek alındı, sorular yeniden kuruldu)",
+  "MEB AYT Matematik konu anlatımı (birim çember, indirgeme, özdeşlikler, teoremler; yapı için) ve YKS/AYT/Sorular/MAT/MAT_TRIG.jsonl",
+  "Her cevap sayısal olarak tek tek denetlendi"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Bütün trigonometri bir çemberde döner.",
+   "narration": "Trigonometriyi ezberle değil, bir çemberle öğrenmek mümkün. Birim çemberde dönen bir nokta düşün: yatay izi kosinüs, yüksekliği sinüs. İşaretler, indirgeme, grafikler, hepsi bu dönüşten çıkar. ÖSYM bu konudan her yıl birkaç soru soruyor; bu derste hepsini bu çemberden kurup AYT düzeyinde yeni sorularla çözeceğiz."
+  },
+  "objectives": [
+   "Esas ölçüyü bulmak ve birim çemberde değerleri ve işaretleri okumak",
+   "Dar açıya indirgemek ve değerleri sıralamak",
+   "Periyot, görüntü kümesi ve özdeşliklerle çalışmak",
+   "Toplam ve iki kat açı formülleriyle sadeleştirmek",
+   "Trigonometrik denklemleri aralıkta çözmek",
+   "Sinüs ve kosinüs teoremlerini uygulamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_TRIG_01",
+    "subtopics": [
+     "MAT_TRIG_02"
+    ],
+    "title": "Açı ölçüleri ve birim çember",
+    "narration": "Trigonometri, bir açıyı birim çember üzerinde bir noktaya çevirmekle başlar. Önce açıları ölçmeyi ve aynı yere gelen açıları tanımayı öğrenelim.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Derece, radyan, esas ölçü",
+      "items": [
+       "$\\pi$ radyan $= 180°$: $\\frac{D}{180} = \\frac{R}{\\pi}$.",
+       "Pozitif yön saatin **tersi**, negatif yön saat yönü.",
+       "**Esas ölçü**: $360°$'nin katlarını at, $[0°, 360°)$ aralığına getir.",
+       "$390°$ ve $-330°$ aynı yerde biter: esas ölçüleri $30°$."
+      ],
+      "visual": {
+       "kind": "unitCircle",
+       "angles": [
+        {
+         "degrees": 390,
+         "label": "390°"
+        },
+        {
+         "degrees": -330,
+         "label": "−330°"
+        }
+       ],
+       "lines": []
+      },
+      "beats": [
+       {
+        "narration": "Üç yüz doksan derece: saatin tersi yönünde bir tam tur, sonra otuz derece daha.",
+        "show": [
+         "a1"
+        ],
+        "focus": [
+         "a1"
+        ]
+       },
+       {
+        "narration": "Eksi üç yüz otuz derece: saat yönünde dönüyor ve yine aynı yerde duruyor.",
+        "show": [
+         "a2"
+        ],
+        "focus": [
+         "a2"
+        ]
+       },
+       {
+        "narration": "İkisinin de esas ölçüsü otuz derece: birim çemberde aynı nokta, bütün trigonometrik değerleri aynı.",
+        "focus": [
+         "a1",
+         "a2"
+        ]
+       }
+      ],
+      "narration": "Pi radyan yüz seksen dereceye eşittir; dönüşümü bu orantıyla yaparız. Açılar saatin tersi yönünde pozitif, saat yönünde negatif ölçülür. Bir açıdan üç yüz altmış derecenin katlarını atarak onu sıfır ile üç yüz altmış derece arasına getirirsek esas ölçüsünü buluruz. Üç yüz doksan derece ile eksi üç yüz otuz derece, bu yüzden aynı yerde biter."
+     },
+     {
+      "kind": "rule",
+      "title": "Birim çember",
+      "items": [
+       "Açının çemberdeki noktası: $P(\\cos\\alpha, \\sin\\alpha)$.",
+       "$-1 \\leq \\sin\\alpha \\leq 1$, $-1 \\leq \\cos\\alpha \\leq 1$; $\\sin^2\\alpha + \\cos^2\\alpha = 1$.",
+       "$\\tan\\alpha = \\frac{\\sin\\alpha}{\\cos\\alpha}$: ışının $x = 1$ doğrusunu kestiği yükseklik.",
+       "$\\cot\\alpha = \\frac{1}{\\tan\\alpha}$, $\\sec\\alpha = \\frac{1}{\\cos\\alpha}$, $\\csc\\alpha = \\frac{1}{\\sin\\alpha}$."
+      ],
+      "visual": {
+       "kind": "unitCircle",
+       "angles": [
+        {
+         "degrees": 30,
+         "label": "α",
+         "point": "P(cos α, sin α)"
+        }
+       ],
+       "lines": [
+        "sin",
+        "cos",
+        "tan"
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Alfa açısı dönüyor; ucu birim çemberde P noktasına geliyor.",
+        "show": [
+         "a1"
+        ],
+        "focus": [
+         "a1"
+        ]
+       },
+       {
+        "narration": "P'nin x eksenindeki izdüşümü kosinüs: otuz derecede yaklaşık sıfır virgül seksen yedi.",
+        "focus": [
+         "cos"
+        ]
+       },
+       {
+        "narration": "P'nin yüksekliği sinüs: otuz derecede tam yarım.",
+        "focus": [
+         "sin"
+        ]
+       },
+       {
+        "narration": "Işını x eşittir bir doğrusuna kadar uzatırsak kestiği yükseklik tanjant: sinüs bölü kosinüs.",
+        "focus": [
+         "tan"
+        ]
+       }
+      ],
+      "narration": "Merkezi orijinde, yarıçapı bir olan çember birim çemberdir. Bir açının ucu bu çemberde bir P noktasına gelir; P'nin apsisi kosinüs, ordinatı sinüstür. Bu yüzden ikisi de eksi bir ile bir arasındadır ve kareleri toplamı birdir. Tanjant, sinüsün kosinüse oranıdır; ışının x eşittir bir doğrusunu kestiği yüksekliktir. Kotanjant, sekant ve kosekant da bunların çarpmaya göre tersleridir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\dfrac{47\\pi}{6}$ radyanlık açının esas ölçüsü kaç derecedir?",
+       "options": [
+        "$30$",
+        "$150$",
+        "$210$",
+        "$300$",
+        "$330$"
+       ],
+       "answer": 4,
+       "narration": "Önce dereceye çevirelim, sonra tam turları atalım.",
+       "steps": [
+        {
+         "text": "$\\frac{47\\pi}{6} = 47 \\cdot 30° = 1410°$.",
+         "narration": "Pi bölü altı otuz derece; kırk yedi tanesi bin dört yüz on derece."
+        },
+        {
+         "text": "$1410° - 3 \\cdot 360° = 330°$.",
+         "narration": "Üç tam tur, bin seksen derece atılır: üç yüz otuz derece. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "Radyandan esas ölçü kalıbı; açı yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Hangi işaret?",
+      "prompt": "$\\sin 210°$ pozitif mi, negatif mi?",
+      "choices": [
+       "Negatif",
+       "Pozitif"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "unitCircle",
+       "angles": [
+        {
+         "degrees": 210,
+         "label": "210°"
+        }
+       ],
+       "lines": []
+      },
+      "beats": [
+       {
+        "narration": "İki yüz on derece: yüz sekseni geçip otuz derece daha dönüyor.",
+        "show": [
+         "a1"
+        ],
+        "focus": [
+         "a1"
+        ]
+       }
+      ],
+      "explanation": "$210°$ üçüncü bölgede: nokta $x$ ekseninin **altında**, ordinatı yani sinüsü negatif: $\\sin 210° = -\\frac{1}{2}$.",
+      "narration": "Şimdi sıra sende. Sinüs iki yüz on derece pozitif mi, negatif mi? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: negatif. İki yüz on derece üçüncü bölgede; nokta x ekseninin altında, yüksekliği yani sinüsü eksi yarım. Otuz derecenin sinüsünü ezberden yazıp pozitif diyen, bölgeyi unutmuş olur."
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_TRIG_03",
+    "title": "İşaretler ve dar açıya indirgeme",
+    "narration": "Büyük bir açının değerini dar bir açıya indirerek buluruz. Sıra hep aynıdır: önce işaret, sonra fonksiyon. ÖSYM bu konuda sıralama sorularını çok seviyor.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İşaret ve indirgeme",
+      "items": [
+       "I. bölge: hepsi $+$; II.: $\\sin$, $\\csc$ $+$; III.: $\\tan$, $\\cot$ $+$; IV.: $\\cos$, $\\sec$ $+$.",
+       "$180° \\pm x$, $360° - x$: fonksiyon **aynı** kalır.",
+       "$90° \\pm x$, $270° \\pm x$: fonksiyon **değişir** ($\\sin \\leftrightarrow \\cos$, $\\tan \\leftrightarrow \\cot$).",
+       "İşaret, **büyük açının** bulunduğu bölgeden gelir."
+      ],
+      "visual": {
+       "kind": "unitCircle",
+       "angles": [
+        {
+         "degrees": 30,
+         "label": "30°"
+        },
+        {
+         "degrees": 150,
+         "label": "150°"
+        }
+       ],
+       "lines": [
+        "sin",
+        "cos"
+       ],
+       "signs": true
+      },
+      "beats": [
+       {
+        "narration": "Dört bölgede pozitif olan fonksiyonlar: birinci bölgede hepsi, ikincide sinüs, üçüncüde tanjant ve kotanjant, dördüncüde kosinüs.",
+        "show": [
+         "q1",
+         "q2",
+         "q3",
+         "q4"
+        ],
+        "focus": [
+         "q1",
+         "q2",
+         "q3",
+         "q4"
+        ]
+       },
+       {
+        "narration": "Otuz derece: sinüs yarım, kosinüs pozitif.",
+        "show": [
+         "a1"
+        ],
+        "focus": [
+         "a1"
+        ]
+       },
+       {
+        "narration": "Yüz elli derece, yani yüz seksen eksi otuz: nokta aynı yükseklikte, sinüs yine yarım; ama kosinüs eksi. Sinüs yüz seksen eksi x, sinüs x'e eşit.",
+        "show": [
+         "a2"
+        ],
+        "focus": [
+         "a2",
+         "sin"
+        ]
+       }
+      ],
+      "narration": "Birinci bölgede bütün fonksiyonlar pozitiftir; ikincide yalnız sinüs ve kosekant, üçüncüde tanjant ve kotanjant, dördüncüde kosinüs ve sekant. Yüz seksen artı eksi x ya da üç yüz altmış eksi x biçimindeki açılarda fonksiyon aynı kalır. Doksan ya da iki yüz yetmiş artı eksi x biçimindekilerde ise sinüs kosinüse, tanjant kotanjanta döner. İşareti ise büyük açının bölgesi belirler."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x = \\sin 50°$\n\n$y = \\tan 50°$\n\n$z = \\cos 50°$\n\nolduğuna göre, aşağıdaki sıralamalardan hangisi doğrudur?",
+       "options": [
+        "$x < y < z$",
+        "$z < x < y$",
+        "$x < z < y$",
+        "$y < z < x$",
+        "$z < y < x$"
+       ],
+       "answer": 1,
+       "narration": "ÖSYM 2023'te bu kalıbı sordu. Elli derece kırk beşi geçiyor; bunu kullanalım.",
+       "steps": [
+        {
+         "text": "$45° < 50° < 90°$: $\\sin 50° > \\cos 50°$.",
+         "narration": "Kırk beş derecede sinüs ile kosinüs eşit. Açı büyüdükçe sinüs artar, kosinüs azalır: elli derecede sinüs daha büyük."
+        },
+        {
+         "text": "$\\tan 50° = \\frac{\\sin 50°}{\\cos 50°} > 1$; sinüs ve kosinüs $1$'den küçük.",
+         "narration": "Tanjant, büyük sayının küçüğe oranı: birden büyük. Sinüs ve kosinüs ise birden küçük."
+        },
+        {
+         "text": "$z < x < y$.",
+         "narration": "Sıralama: kosinüs, sinüs, tanjant. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2023 sıralama kalıbı örnek alındı; açı ve fonksiyonlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\dfrac{\\pi}{2} < a < \\dfrac{3\\pi}{4}$ olmak üzere\n\n$x = \\sin a$\n\n$y = \\cos a$\n\n$z = \\tan a$\n\nolduğuna göre, aşağıdaki sıralamalardan hangisi doğrudur?",
+       "options": [
+        "$x < y < z$",
+        "$y < x < z$",
+        "$y < z < x$",
+        "$z < y < x$",
+        "$z < x < y$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2018'de bu kalıbı sordu. Önce bölge, sonra büyüklük.",
+       "steps": [
+        {
+         "text": "$a$ ikinci bölgede, $90°$ ile $135°$ arasında: $x = \\sin a > 0$, $y = \\cos a < 0$.",
+         "narration": "a doksan ile yüz otuz beş derece arasında, ikinci bölgede: sinüs pozitif, kosinüs negatif."
+        },
+        {
+         "text": "$-\\frac{\\sqrt{2}}{2} < \\cos a < 0$, ama $\\tan a < -1$.",
+         "narration": "Kosinüs eksi kök iki bölü iki ile sıfır arasında. Tanjant ise yüz otuz beşte eksi bir; doksana yaklaştıkça eksi sonsuza gider: eksi birden küçük."
+        },
+        {
+         "text": "$z < y < x$.",
+         "narration": "En küçük tanjant, sonra kosinüs, en büyük sinüs. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018 aralıkta sıralama kalıbı örnek alındı; aralık yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\sin 120° \\cdot \\cos 210° - \\tan 315°$\n\nişleminin sonucu kaçtır?",
+       "options": [
+        "$-\\frac{7}{4}$",
+        "$-\\frac{1}{4}$",
+        "$\\frac{1}{4}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{7}{4}$"
+       ],
+       "answer": 2,
+       "narration": "Her açıyı dar açıya indirelim: önce işaret.",
+       "steps": [
+        {
+         "text": "$\\sin 120° = \\sin 60° = \\frac{\\sqrt{3}}{2}$ (II. bölge, $+$).",
+         "narration": "Sinüs yüz yirmi: ikinci bölge, sinüs pozitif; yüz seksen eksi altmış: kök üç bölü iki."
+        },
+        {
+         "text": "$\\cos 210° = -\\cos 30° = -\\frac{\\sqrt{3}}{2}$; $\\tan 315° = -\\tan 45° = -1$.",
+         "narration": "Kosinüs iki yüz on: üçüncü bölge, kosinüs negatif: eksi kök üç bölü iki. Tanjant üç yüz on beş: dördüncü bölge, tanjant negatif: eksi bir."
+        },
+        {
+         "text": "$-\\frac{3}{4} - (-1) = \\frac{1}{4}$.",
+         "narration": "Çarpım eksi üç bölü dört; eksi bir çıkarılınca bir bölü dört. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Dar açıya indirgeme kalıbı; açılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_TRIG_04",
+    "title": "Grafikler: periyot ve görüntü",
+    "narration": "Sinüs eğrisi aslında birim çemberde dönen bir noktanın yüksekliğidir. Bunu görünce periyot da görüntü kümesi de kendiliğinden anlaşılır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Çemberden eğriye",
+      "visual": {
+       "kind": "unitCircle",
+       "angles": [
+        {
+         "degrees": 360,
+         "label": "x"
+        }
+       ],
+       "lines": [
+        "sin"
+       ],
+       "wave": "sin"
+      },
+      "caption": "Sinüs eğrisi, dönen noktanın **yüksekliği**.",
+      "narration": "Birim çemberde açı dönerken noktanın yüksekliğini sağa taşıyalım.",
+      "beats": [
+       {
+        "narration": "Açı sıfırdan üç yüz altmış dereceye dönüyor. Noktanın yüksekliği, yani sinüs, her an sağdaki grafiğe aktarılıyor.",
+        "show": [
+         "a1",
+         "wave"
+        ],
+        "focus": [
+         "a1",
+         "wave"
+        ]
+       },
+       {
+        "narration": "Doksan derecede bir, yüz seksende sıfır, iki yüz yetmişte eksi bir. Bir tam turda eğri bir kez iner çıkar: sinüsün periyodu iki pi.",
+        "focus": [
+         "wave"
+        ]
+       },
+       {
+        "narration": "Nokta çemberden dışarı çıkamaz; bu yüzden sinüs hep eksi bir ile bir arasında kalır.",
+        "focus": [
+         "sin"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Periyot ve görüntü kümesi",
+      "items": [
+       "$y = a\\sin(bx + c) + d$, $y = a\\cos(bx + c) + d$: periyot $\\frac{2\\pi}{|b|}$.",
+       "$\\tan$, $\\cot$: periyot $\\frac{\\pi}{|b|}$.",
+       "Görüntü kümesi: $[d - |a|, d + |a|]$.",
+       "$\\sin^2 x$, $\\cos^2 x$ gibi çift kuvvetlerde periyot **yarıya** iner: $\\pi$."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        6.3
+       ],
+       "y": [
+        -3.5,
+        3.5
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "a*sin(b*x)",
+         "label": "y = a·sin(bx)"
+        }
+       ],
+       "parameters": {
+        "a": {
+         "from": 1
+        },
+        "b": {
+         "from": 1
+        }
+       }
+      },
+      "beats": [
+       {
+        "narration": "a bir, b bir: sinüs x. Sıfırdan iki pi'ye bir tam dalga, yükseklik eksi bir ile bir arası."
+       },
+       {
+        "narration": "a'yı üç yapalım: dalga dikey uzuyor, görüntü kümesi eksi üç ile üç arası. Periyot değişmiyor.",
+        "params": {
+         "a": 3
+        }
+       },
+       {
+        "narration": "b'yi iki yapalım: aynı aralığa iki dalga sığıyor. Periyot iki pi bölü iki, yani pi.",
+        "params": {
+         "b": 2
+        }
+       }
+      ],
+      "narration": "a çarpı sinüs b x artı c, artı d biçimindeki bir fonksiyonun periyodu iki pi bölü b'nin mutlak değeridir; tanjant ve kotanjantta pi bölü b'nin mutlak değeri. a eğriyi dikey uzatır, d yukarı taşır: görüntü kümesi d eksi a'nın mutlak değeri ile d artı a'nın mutlak değeri arasıdır. Sinüs kare x gibi çift kuvvetlerde negatif kısım pozitife döndüğü için periyot yarıya iner."
+     },
+     {
+      "kind": "predict",
+      "title": "Periyot ne olur?",
+      "prompt": "$\\sin x$'in periyodu $2\\pi$. $\\sin 2x$'in periyodu nedir?",
+      "choices": [
+       "$\\pi$",
+       "$4\\pi$"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        6.3
+       ],
+       "y": [
+        -1.5,
+        1.5
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "sin(x)",
+         "label": "y = sin x"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Sinüs x: sıfırdan iki pi'ye bir tam dalga."
+       }
+      ],
+      "explanation": "$\\sin 2x$'te $x$ yarı yolda iken açı tam turu tamamlar: dalga **iki kat hızlı**, periyot $\\frac{2\\pi}{2} = \\pi$.",
+      "narration": "Şimdi sıra sende. Sinüs x'in periyodu iki pi. Sinüs iki x'in periyodu nedir? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: pi. İki x, x'in iki katı hızla döner; açı iki pi'yi x pi iken tamamlar. Periyodu dört pi diyen, katsayıyla bölmek yerine çarpmış olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(x) = 3\\sin(4x - 1) + 2$\n\nfonksiyonunun esas periyodu $P$, en büyük değeri $M$ olduğuna göre, $P \\cdot M$ çarpımı kaçtır?",
+       "options": [
+        "$\\frac{5\\pi}{2}$",
+        "$3\\pi$",
+        "$5\\pi$",
+        "$6\\pi$",
+        "$10\\pi$"
+       ],
+       "answer": 0,
+       "narration": "Periyodu b, en büyük değeri a ile d verir.",
+       "steps": [
+        {
+         "text": "$P = \\frac{2\\pi}{4} = \\frac{\\pi}{2}$.",
+         "narration": "Periyot iki pi bölü dört: pi bölü iki. Eksi bir, yalnız grafiği kaydırır; periyodu değiştirmez."
+        },
+        {
+         "text": "$\\sin$ en çok $1$: $M = 3 \\cdot 1 + 2 = 5$.",
+         "narration": "Sinüs en çok bir: en büyük değer üç artı iki, beş."
+        },
+        {
+         "text": "$P \\cdot M = \\frac{\\pi}{2} \\cdot 5 = \\frac{5\\pi}{2}$.",
+         "narration": "Çarpım beş pi bölü iki. Periyodu iki pi alan on pi bulur. Cevap A.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Periyot ve en büyük değer kalıbı; fonksiyon yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_TRIG_05",
+    "title": "Temel özdeşlikler",
+    "narration": "Özdeşlikler, karmaşık görünen ifadeleri sadeleştirmenin aracıdır. ÖSYM her yıl en az bir sadeleştirme sorusu soruyor; çoğu zaman her şeyi sinüs ve kosinüse çevirmek yeter.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Özdeşlikler",
+      "items": [
+       "$\\sin^2 x + \\cos^2 x = 1$.",
+       "$1 + \\tan^2 x = \\sec^2 x$, $1 + \\cot^2 x = \\csc^2 x$.",
+       "$\\tan x \\cdot \\cot x = 1$.",
+       "Strateji: hepsini $\\sin$ ve $\\cos$ cinsinden yaz, payda eşitle."
+      ],
+      "narration": "Temel özdeşlik, sinüs kare artı kosinüs kare birdir. Bunu kosinüs kareye bölersek bir artı tanjant kare, sekant kare olur; sinüs kareye bölersek bir artı kotanjant kare, kosekant kare. Tanjant ile kotanjantın çarpımı birdir. Sadeleştirme sorularında en güvenli yol, her şeyi sinüs ve kosinüs cinsinden yazıp paydaları eşitlemektir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$0 < x < \\dfrac{\\pi}{2}$ olmak üzere\n\n$\\dfrac{\\cos x}{1 - \\sin x} - \\tan x = 2$\n\nolduğuna göre, $\\sin x$ kaçtır?",
+       "options": [
+        "$\\frac{1}{3}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{\\sqrt{2}}{2}$",
+        "$\\frac{\\sqrt{3}}{2}$"
+       ],
+       "answer": 4,
+       "narration": "ÖSYM 2019'da bu kalıbı sordu. Sinüs ve kosinüse çevirip payda eşitleyelim.",
+       "steps": [
+        {
+         "text": "$\\frac{\\cos x}{1 - \\sin x} - \\frac{\\sin x}{\\cos x} = \\frac{\\cos^2 x - \\sin x + \\sin^2 x}{(1 - \\sin x)\\cos x}$.",
+         "narration": "Tanjantı sinüs bölü kosinüs yazıp paydaları eşitleyelim. Pay: kosinüs kare eksi sinüs artı sinüs kare."
+        },
+        {
+         "text": "Pay $1 - \\sin x$: ifade $\\frac{1}{\\cos x} = \\sec x$.",
+         "narration": "Kosinüs kare artı sinüs kare bir; pay bir eksi sinüs x. Paydadaki bir eksi sinüs x ile sadeleşir: geriye bir bölü kosinüs x, yani sekant x kalır."
+        },
+        {
+         "text": "$\\sec x = 2$: $\\cos x = \\frac{1}{2}$, $x = 60°$, $\\sin x = \\frac{\\sqrt{3}}{2}$.",
+         "narration": "Sekant iki: kosinüs yarım. x altmış derece; sinüsü kök üç bölü iki. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 özdeşlikle sadeleştirme kalıbı örnek alındı; ifade yeni kuruldu"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_TRIG_06",
+    "subtopics": [
+     "MAT_TRIG_07",
+     "MAT_TRIG_08"
+    ],
+    "title": "Toplam-fark ve iki kat açı",
+    "narration": "İki açının toplamının değerini ayrı ayrı değerlerden buluruz. Aynı formülde iki açıyı eşit alırsak iki kat açı formülleri çıkar; ÖSYM bunları alan sorularıyla birleştiriyor.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Toplam-fark, iki kat, yarım açı",
+      "items": [
+       "$\\sin(a \\pm b) = \\sin a \\cos b \\pm \\cos a \\sin b$; $\\cos(a \\pm b) = \\cos a \\cos b \\mp \\sin a \\sin b$.",
+       "$\\tan(a + b) = \\frac{\\tan a + \\tan b}{1 - \\tan a \\tan b}$.",
+       "$\\sin 2x = 2\\sin x \\cos x$; $\\cos 2x = \\cos^2 x - \\sin^2 x = 1 - 2\\sin^2 x = 2\\cos^2 x - 1$.",
+       "Yarım açı: $\\cos x = 1 - 2\\sin^2 \\frac{x}{2} = 2\\cos^2 \\frac{x}{2} - 1$."
+      ],
+      "narration": "Sinüs a artı eksi b, sinüs a kosinüs b artı eksi kosinüs a sinüs b'dir. Kosinüste işaret tersine döner. Tanjant a artı b, tanjantların toplamı bölü bir eksi tanjantların çarpımıdır. İki açıyı eşit alırsak sinüs iki x, iki sinüs x kosinüs x olur; kosinüs iki x'in üç biçimi vardır. Aynı formülleri yarım açıya uygularsak yarım açı formüllerini buluruz."
+     },
+     {
+      "kind": "mistake",
+      "title": "Toplamın sinüsü",
+      "wrong": "$\\sin(a + b) = \\sin a + \\sin b$",
+      "right": "$\\sin(a + b) = \\sin a \\cos b + \\cos a \\sin b$",
+      "why": "Sinüs toplama dağılmaz. $a = b = 90°$ deneyin: $\\sin 180° = 0$, ama $\\sin 90° + \\sin 90° = 2$.",
+      "narration": "Sık yapılan bir hata: sinüs a artı b'yi sinüs a artı sinüs b diye açmak. Doksan dereceyle dene: sinüs yüz seksen sıfır, ama sinüs doksan artı sinüs doksan iki. Doğrusu: sinüs a kosinüs b artı kosinüs a sinüs b."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ dar açılar olmak üzere\n\n$\\tan a = \\dfrac{1}{2}$, $\\tan b = \\dfrac{1}{3}$\n\nolduğuna göre, $a + b$ kaç derecedir?",
+       "options": [
+        "$30$",
+        "$45$",
+        "$60$",
+        "$75$",
+        "$90$"
+       ],
+       "answer": 1,
+       "narration": "Toplamın tanjantını hesaplayalım.",
+       "steps": [
+        {
+         "text": "$\\tan(a + b) = \\frac{\\frac{1}{2} + \\frac{1}{3}}{1 - \\frac{1}{6}} = \\frac{5/6}{5/6} = 1$.",
+         "narration": "Tanjant a artı b: yarım artı üçte bir, beş bölü altı; bölü bir eksi altıda bir, yine beş bölü altı. Sonuç bir."
+        },
+        {
+         "text": "$a, b$ dar ve tanjantları $1$'den küçük: $a + b < 90°$; $\\tan(a + b) = 1$ ise $a + b = 45°$.",
+         "narration": "İkisinin de tanjantı birden küçük, ikisi de kırk beşten küçük; toplam doksandan küçük. Tanjantı bir olan açı kırk beş derece. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "Toplamın tanjantı kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kenar uzunlukları $5$ ve $6$ birim, bu kenarlar arasındaki **dar** açısı $x$ olan bir paralelkenarın alanı $18$ birimkaredir.\n\nKenar uzunlukları $5$ ve $10$ birim, bu kenarlar arasındaki açısı $2x$ olan bir paralelkenarın alanı kaç birimkaredir?",
+       "options": [
+        "$24$",
+        "$32$",
+        "$40$",
+        "$48$",
+        "$60$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2023'te bu kalıbı sordu. Paralelkenarın alanı iki kenar çarpı aradaki açının sinüsü.",
+       "steps": [
+        {
+         "text": "$5 \\cdot 6 \\cdot \\sin x = 18$: $\\sin x = \\frac{3}{5}$; $x$ dar, $\\cos x = \\frac{4}{5}$.",
+         "narration": "Beş çarpı altı çarpı sinüs x, on sekiz: sinüs x üç bölü beş. x dar açı; üç, dört, beş üçgeninden kosinüs dört bölü beş."
+        },
+        {
+         "text": "$\\sin 2x = 2 \\cdot \\frac{3}{5} \\cdot \\frac{4}{5} = \\frac{24}{25}$.",
+         "narration": "Sinüs iki x: iki sinüs x kosinüs x, yirmi dört bölü yirmi beş."
+        },
+        {
+         "text": "Alan $= 5 \\cdot 10 \\cdot \\frac{24}{25} = 48$.",
+         "narration": "Alan beş çarpı on çarpı yirmi dört bölü yirmi beş: kırk sekiz. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2023 iki paralelkenar ve iki kat açı kalıbı örnek alındı; kenarlar ve alan yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\dfrac{\\sin 2x}{1 + \\cos 2x}$\n\nifadesinin sadeleştirilmiş biçimi aşağıdakilerden hangisidir?",
+       "options": [
+        "$\\sin x$",
+        "$\\cos x$",
+        "$\\tan x$",
+        "$\\cot x$",
+        "$\\sec x$"
+       ],
+       "answer": 2,
+       "narration": "Paydaki bir artı kosinüs iki x, iki kosinüs kare x'e dönüşür.",
+       "steps": [
+        {
+         "text": "$\\sin 2x = 2\\sin x \\cos x$; $1 + \\cos 2x = 1 + 2\\cos^2 x - 1 = 2\\cos^2 x$.",
+         "narration": "Pay iki sinüs x kosinüs x. Paydada kosinüs iki x yerine iki kosinüs kare eksi bir yazınca birler gider: iki kosinüs kare x."
+        },
+        {
+         "text": "$\\frac{2\\sin x \\cos x}{2\\cos^2 x} = \\frac{\\sin x}{\\cos x} = \\tan x$.",
+         "narration": "Sadeleşince sinüs x bölü kosinüs x: tanjant x. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "İki kat açıyla sadeleştirme kalıbı; ifade yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_TRIG_09",
+    "title": "Trigonometrik denklemler",
+    "narration": "Bir trigonometrik denklemin genellikle birden çok çözümü vardır; birim çember hepsini gösterir. Aralık verilmişse çözümleri tek tek sayar, toplarsın.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Aynı sinüs, iki açı",
+      "visual": {
+       "kind": "unitCircle",
+       "angles": [
+        {
+         "degrees": 30,
+         "label": "30°"
+        },
+        {
+         "degrees": 150,
+         "label": "150°"
+        }
+       ],
+       "lines": [
+        "sin"
+       ]
+      },
+      "narration": "Sinüs x eşittir yarım denkleminin neden iki çözümü olduğuna birim çemberde bakalım.",
+      "beats": [
+       {
+        "narration": "Otuz derece: yükseklik yarım.",
+        "show": [
+         "a1"
+        ],
+        "focus": [
+         "a1"
+        ]
+       },
+       {
+        "narration": "Yüz elli derece: aynı yükseklik, çemberin öbür yanında. Sinüs eşittir yarımın bir turda iki çözümü var.",
+        "show": [
+         "a2"
+        ],
+        "focus": [
+         "a2",
+         "sin"
+        ]
+       },
+       {
+        "narration": "Genel çözüm: x eşittir a artı iki k pi ya da pi eksi a artı iki k pi.",
+        "focus": [
+         "a1",
+         "a2"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Temel denklemler",
+      "items": [
+       "$\\sin x = \\sin a$: $x = a + 2k\\pi$ ya da $x = \\pi - a + 2k\\pi$.",
+       "$\\cos x = \\cos a$: $x = \\pm a + 2k\\pi$.",
+       "$\\tan x = \\tan a$: $x = a + k\\pi$.",
+       "İkinci derece görünümlüyse: **değişken değiştir**, $t = \\sin x$ gibi."
+      ],
+      "narration": "Sinüs x eşittir sinüs a ise x, a artı iki k pi ya da pi eksi a artı iki k pi olur. Kosinüste artı eksi a artı iki k pi; tanjantta a artı k pi. Denklem ikinci dereceden görünüyorsa sinüs x'e t deyip önce t'yi bul, sonra her t için açıları ara."
+     },
+     {
+      "kind": "mistake",
+      "title": "Sinüse bölmek",
+      "wrong": "$\\sin x \\cos x = \\sin x$ ise $\\cos x = 1$.",
+      "right": "$\\sin x(\\cos x - 1) = 0$: $\\sin x = 0$ ya da $\\cos x = 1$.",
+      "why": "$\\sin x$'e bölmek, $\\sin x = 0$ köklerini atar. $[0°, 360°)$'da $180°$ da çözümdür.",
+      "narration": "Sık yapılan bir hata: sinüs x kosinüs x eşittir sinüs x denkleminde iki yanı sinüs x'e bölmek. Sinüs x sıfır olabilir; bölünce bu kökler kaybolur. Doğrusu: sinüs x'i ortak paranteze al. Sıfır ile üç yüz altmış derece arasında yüz seksen derece de bir çözümdür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$0 \\leq x < 2\\pi$ olmak üzere\n\n$2\\sin^2 x - \\sin x - 1 = 0$\n\ndenklemini sağlayan $x$ değerlerinin toplamı kaçtır?",
+       "options": [
+        "$2\\pi$",
+        "$\\frac{5\\pi}{2}$",
+        "$3\\pi$",
+        "$\\frac{7\\pi}{2}$",
+        "$4\\pi$"
+       ],
+       "answer": 3,
+       "narration": "Sinüs x'e t diyelim.",
+       "steps": [
+        {
+         "text": "$2t^2 - t - 1 = (2t + 1)(t - 1) = 0$: $\\sin x = 1$ ya da $\\sin x = -\\frac{1}{2}$.",
+         "narration": "İki t kare eksi t eksi bir: iki t artı bir çarpı t eksi bir. Sinüs x bir ya da eksi yarım."
+        },
+        {
+         "text": "$\\sin x = 1$: $x = \\frac{\\pi}{2}$. $\\sin x = -\\frac{1}{2}$: $x = \\frac{7\\pi}{6}$, $\\frac{11\\pi}{6}$.",
+         "narration": "Sinüs bir: pi bölü iki. Sinüs eksi yarım: üçüncü ve dördüncü bölgede, yedi pi bölü altı ve on bir pi bölü altı."
+        },
+        {
+         "text": "Toplam $\\frac{\\pi}{2} + \\frac{18\\pi}{6} = \\frac{7\\pi}{2}$.",
+         "narration": "Toplam: pi bölü iki artı üç pi, yedi pi bölü iki. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Sinüste ikinci derece denklem kalıbı; katsayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$0 \\leq x \\leq \\dfrac{3\\pi}{2}$ olmak üzere\n\n$|\\sin x| = \\cos 70°$\n\neşitliğini sağlayan $x$ değerlerinin toplamı kaçtır?",
+       "options": [
+        "$2\\pi$",
+        "$\\frac{19\\pi}{9}$",
+        "$\\frac{7\\pi}{3}$",
+        "$\\frac{5\\pi}{2}$",
+        "$3\\pi$"
+       ],
+       "answer": 1,
+       "narration": "ÖSYM bu kalıbı sordu. Kosinüs yetmişi sinüse çevirelim.",
+       "steps": [
+        {
+         "text": "$\\cos 70° = \\sin 20°$: $|\\sin x| = \\sin 20°$, yani $\\sin x = \\pm \\sin 20°$.",
+         "narration": "Kosinüs yetmiş, sinüs yirmiye eşit. Mutlak değer: sinüs x artı ya da eksi sinüs yirmi."
+        },
+        {
+         "text": "$[0°, 270°]$: $20°$, $160°$ (sinüs $+$), $200°$ (sinüs $-$); $340°$ aralık dışında.",
+         "narration": "Sıfır ile iki yüz yetmiş derece arasında: yirmi ve yüz altmış derecede sinüs artı, iki yüz derecede eksi sinüs yirmi. Üç yüz kırk derece aralığın dışında."
+        },
+        {
+         "text": "$20° + 160° + 200° = 380° = \\frac{19\\pi}{9}$.",
+         "narration": "Toplam üç yüz seksen derece: on dokuz pi bölü dokuz. Aralığı unutup dört çözüm alan dört pi bulur. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM mutlak değerli sinüs denklemi kalıbı örnek alındı; açı yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_TRIG_10",
+    "title": "Sinüs ve kosinüs teoremleri",
+    "narration": "Dik olmayan üçgenlerde kenar ve açıları bu iki teorem bağlar. ÖSYM son yıllarda bunları pergel ve iki üçgen gibi gündelik bağlamlarla soruyor.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İki teorem",
+      "items": [
+       "Kosinüs teoremi: $a^2 = b^2 + c^2 - 2bc\\cos A$.",
+       "Sinüs teoremi: $\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R$.",
+       "Alan: $S = \\frac{1}{2}bc\\sin A$.",
+       "İki kenar ve aradaki açı: **kosinüs**; karşılıklı kenar-açı çifti: **sinüs**."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.8,
+        -0.9,
+        7.2,
+        4.4
+       ],
+       "points": [
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "label": "B"
+        },
+        {
+         "id": "C",
+         "at": [
+          6.2,
+          0
+         ],
+         "label": "C"
+        },
+        {
+         "id": "A",
+         "at": [
+          2,
+          3.6
+         ],
+         "label": "A"
+        }
+       ],
+       "segments": [
+        {
+         "from": "B",
+         "to": "C",
+         "label": "a"
+        },
+        {
+         "from": "C",
+         "to": "A",
+         "label": "b"
+        },
+        {
+         "from": "A",
+         "to": "B",
+         "label": "c"
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "label": "A"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Bir üçgen: A açısının karşısındaki kenar a, öbür iki kenar b ve c.",
+        "focus": [
+         "BC",
+         "angle-A"
+        ]
+       },
+       {
+        "narration": "b ve c ile aradaki A açısı biliniyorsa a'yı kosinüs teoremi verir. A doksan derece olsaydı kosinüs sıfır olur, Pisagor'a dönerdi.",
+        "focus": [
+         "CA",
+         "AB",
+         "angle-A"
+        ]
+       },
+       {
+        "narration": "a kenarı ile karşısındaki A açısı biliniyorsa, sinüs teoremiyle öbür kenar-açı çiftlerine geçeriz.",
+        "focus": [
+         "BC",
+         "angle-A"
+        ]
+       }
+      ],
+      "narration": "Kosinüs teoremi: bir kenarın karesi, öbür iki kenarın kareleri toplamı eksi iki kenarın çarpımının iki katı çarpı aradaki açının kosinüsü. Sinüs teoremi: her kenarın karşı açısının sinüsüne oranı aynıdır ve çevrel çemberin çapına eşittir. Alan, iki kenarla aradaki açının sinüsünün çarpımının yarısıdır. İki kenar ve aradaki açı varsa kosinüs, karşılıklı kenar ve açı çiftleri varsa sinüs teoremi işini görür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ayşe, kollarının uzunlukları $8$ cm ve $5$ cm olan bir pergelin açıklığını bozmadan çapı $14$ cm olan bir çember çiziyor.\n\nBuna göre, pergelin kolları arasındaki açı kaç derecedir?",
+       "options": [
+        "$30$",
+        "$45$",
+        "$60$",
+        "$90$",
+        "$120$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2025'te bu kalıbı sordu. Pergelin iki ucu arası, çemberin yarıçapı.",
+       "steps": [
+        {
+         "text": "Uçlar arası uzaklık yarıçap: $7$ cm. Kollar ve bu uzaklık bir üçgen kurar.",
+         "narration": "Pergelin sivri ucu merkezde, kalem ucu çemberde: iki uç arası yarıçap, yedi santimetre. Kollarla birlikte bir üçgen."
+        },
+        {
+         "text": "$7^2 = 8^2 + 5^2 - 2 \\cdot 8 \\cdot 5 \\cos\\theta$: $49 = 89 - 80\\cos\\theta$.",
+         "narration": "Kosinüs teoremi: yedinin karesi, sekizin karesi artı beşin karesi eksi seksen kosinüs teta. Kırk dokuz eşittir seksen dokuz eksi seksen kosinüs teta."
+        },
+        {
+         "text": "$\\cos\\theta = \\frac{1}{2}$: $\\theta = 60°$.",
+         "narration": "Kosinüs teta yarım: altmış derece. Çapı yarıçap sanıp on dört alan, böyle bir üçgen kuramaz. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2025 pergel ve kosinüs teoremi kalıbı örnek alındı; uzunluklar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Mavi bir üçgenin uzunlukları $10$ ve $20$ birim olan kenarları arasındaki açının ölçüsü, kırmızı bir üçgenin uzunlukları $5$ ve $8$ birim olan kenarları arasındaki açının ölçüsünün $2$ katıdır.\n\nBu üçgenlerin alanları eşit olduğuna göre, kırmızı üçgenin çevresi kaç birimdir?",
+       "options": [
+        "$22$",
+        "$23$",
+        "$24$",
+        "$25$",
+        "$26$"
+       ],
+       "answer": 0,
+       "narration": "ÖSYM 2022'de bu kalıbı sordu. Alanları eşitleyip kosinüsü bulalım.",
+       "steps": [
+        {
+         "text": "$\\frac{1}{2} \\cdot 10 \\cdot 20 \\sin 2\\theta = \\frac{1}{2} \\cdot 5 \\cdot 8 \\sin\\theta$: $200 \\cdot 2\\sin\\theta\\cos\\theta = 40\\sin\\theta$.",
+         "narration": "Mavinin alanı yarım çarpı on çarpı yirmi çarpı sinüs iki teta; kırmızınınki yarım çarpı beş çarpı sekiz çarpı sinüs teta. Sinüs iki teta yerine iki sinüs teta kosinüs teta yazalım."
+        },
+        {
+         "text": "$\\sin\\theta \\neq 0$: $\\cos\\theta = \\frac{40}{400} = \\frac{1}{10}$.",
+         "narration": "Sinüs teta sıfır değil; sadeleşince kosinüs teta, kırk bölü dört yüz: onda bir."
+        },
+        {
+         "text": "Üçüncü kenar: $25 + 64 - 2 \\cdot 5 \\cdot 8 \\cdot \\frac{1}{10} = 81$, yani $9$. Çevre $5 + 8 + 9 = 22$.",
+         "narration": "Kırmızının üçüncü kenarı kosinüs teoreminden: yirmi beş artı altmış dört eksi sekiz, seksen bir; kenar dokuz. Çevre yirmi iki. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 eşit alanlı iki üçgen kalıbı örnek alındı; kenarlar yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Nokta $P(\\cos\\alpha, \\sin\\alpha)$.",
+    "İşaret: hepsi, sin, tan, cos.",
+    "$90°$, $270°$'de fonksiyon **değişir**.",
+    "Periyot $\\frac{2\\pi}{|b|}$; görüntü $[d - |a|, d + |a|]$.",
+    "$\\sin 2x = 2\\sin x\\cos x$.",
+    "$a^2 = b^2 + c^2 - 2bc\\cos A$."
+   ],
+   "warnings": [
+    "$\\sin(a + b) \\neq \\sin a + \\sin b$.",
+    "Denklemde $\\sin x$'e **bölme**."
+   ],
+   "narration": "Özetleyelim. Birim çemberde bir açının noktası kosinüs virgül sinüstür. Pozitif olanlar bölge bölge: hepsi, sinüs, tanjant, kosinüs. Doksan ve iki yüz yetmiş derecede fonksiyon değişir, yüz seksen ve üç yüz altmışta değişmez. Periyot iki pi bölü b, görüntü kümesi d artı eksi a. Sinüs iki x, iki sinüs x kosinüs x. Kosinüs teoremi iki kenar ve aradaki açıyı bağlar. Ve unutma: sinüs toplama dağılmaz, denklemde sinüs x'e bölmek kök kaybettirir."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "sin 210°",
+    "question": "İşareti ne?",
+    "choices": [
+     "Pozitif",
+     "Negatif"
+    ],
+    "answer": 1,
+    "why": "Üçüncü bölge: **eksi**."
+   },
+   {
+    "sentence": "sin 2x",
+    "question": "Periyodu ne?",
+    "choices": [
+     "π",
+     "4π"
+    ],
+    "answer": 0,
+    "why": "**2π / 2**."
+   },
+   {
+    "sentence": "sin(a + b)",
+    "question": "sin a + sin b mi?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "Toplama **dağılmaz**."
+   }
+  ],
+  "hook": "Üç trigonometri tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Sinüs, noktanın **yüksekliği**."
+   },
+   {
+    "kind": "warning",
+    "text": "Önce **işaret**, sonra fonksiyon."
+   },
+   {
+    "kind": "term",
+    "term": "Esas ölçü",
+    "definition": "Açının **0° ile 360°** arasındaki karşılığı."
+   }
+  ],
+  "summary": [
+   "sin: yükseklik",
+   "Periyot: 2π / |b|",
+   "Toplama dağılmaz"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-matematik-kampi",
+  "name": "AYT Matematik kampı",
+  "number": 26,
+  "total": 33,
+  "previous": "Parabol",
+  "next": "Logaritma",
+  "promise": "Her konu kısa bir tekrar ve AYT düzeyinde çözümlü sorularla.",
+  "task": {
+   "items": [
+    "ÖSYM 2022 kalıbını **kendin** çöz: kenarlar $4$, $16$ ve açı $2\\theta$; $3$, $8$ ve açı $\\theta$. Alanlar eşitse küçüğün çevresi?",
+    "$[0°, 720°)$ aralığında $\\sin x = \\frac{1}{2}$ eşitliğini sağlayan açıları **birim çember çizerek** bul.",
+    "Uygulamada AYT Trigonometri testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. ÖSYM'nin 2022 kalıbını kendin çöz: mavi üçgende kenarlar dört ve on altı, aradaki açı iki teta; kırmızıda üç ve sekiz, aradaki açı teta. Alanlar eşitse kırmızının çevresi kaç? Sonra sıfır ile yedi yüz yirmi derece arasında sinüs x eşittir yarım olan açıları birim çember çizerek bul. Ardından uygulamada yirmi soru çöz. Bir sonraki derste logaritmada görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Özel açılar tablosunu ver: 0°, 30°, 45°, 60°, 90° (0, π/6, π/4, π/3, π/2) için sinüs, kosinüs ve tanjant değerleri. Tablonun ezberlenmeden birim çember ve özel üçgenlerden çıkarılmasını göster.",
+   "İndirgeme örnekleri ekle: sin 150° = 1/2, cos 240° = −1/2, tan 315° = −1, sin(−30°) = −1/2; cos(π − x) = −cos x, sin(π/2 + x) = cos x.",
+   "Periyot ve görüntüye örnek ver: f(x) = 3 sin(2x − π) + 1'in periyodu π, görüntü kümesi [−2, 4]; tan(ax)'in periyodu π/|a|.",
+   "Özdeşlikleri tamamla: 1 + tan²x = 1/cos²x; cos 2x = cos²x − sin²x = 1 − 2sin²x = 2cos²x − 1; tan 2x = 2tan x / (1 − tan²x). Toplam formülüyle sin 75° = (√6 + √2)/4 hesabını göster.",
+   "Trigonometrik denkleme örnek ver: [0, 2π) aralığında cos 2x = cos x için 2cos²x − cos x − 1 = 0, cos x = 1 ya da −1/2; çözümler 0, 2π/3, 4π/3.",
+   "Teoremlere sayısal örnek ekle: sinüs teoremi a / sin A = 2R; A = 30°, a = 5 ise R = 5. Kosinüs teoremi: b = 5, c = 8, A = 60° ise a² = 25 + 64 − 40 = 49, a = 7.",
+   "Ters trigonometrik fonksiyonları ekle: arcsin [−1, 1] → [−π/2, π/2], arccos [−1, 1] → [0, π], arctan ℝ → (−π/2, π/2). arcsin(1/2) + arccos(1/2) = π/2 örneğini ver."
+  ]
+ }
+}

@@ -1,10 +1,9 @@
 import {z} from 'zod';
-import {BRAND} from '../Configurations/Brand';
 import {DEFAULT_FPS, SUPPORTED_FPS} from '../Configurations/VideoFormats';
 import {VoiceClipsSchema, type VoiceClips} from '../Scenes/Voiceover';
 import type {ThemeId} from '../Themes/ThemeRegistry';
 
-export const FpsSchema = z
+const FpsSchema = z
 	.number()
 	.int()
 	.refine((value) => (SUPPORTED_FPS as readonly number[]).includes(value), {
@@ -12,13 +11,12 @@ export const FpsSchema = z
 	})
 	.default(DEFAULT_FPS);
 
-/** Closing brand card. Shared by every template. */
+/** The closing app card (Scenes/AppEndScene), the same in every video; content can only turn it off. */
 export const OutroSchema = z
 	.object({
 		enabled: z.boolean().default(true),
-		callToAction: z.string().trim().min(1).max(80).default(BRAND.callToAction),
 	})
-	.default({enabled: true, callToAction: BRAND.callToAction});
+	.default({enabled: true});
 
 export type Outro = z.infer<typeof OutroSchema>;
 
@@ -42,6 +40,10 @@ export const createVideoPropsSchema = <Content extends z.ZodType>(
 		coverSrc: z.string().optional(),
 		/** Path of the music and sound-design track inside `public/`. Set by the renderer. */
 		soundtrackSrc: z.string().optional(),
+		/** Report unreadable text (overflow, overlaps) as render warnings. Set by stills and sweeps (Components/Layouts/LayoutGuard). */
+		layoutGuard: z.boolean().optional(),
+		/** The music's beat grid, in seconds from the start; cuts land on these (Scenes/Rhythm). Set by the renderer. */
+		beats: z.array(z.number().nonnegative()).max(2000).optional(),
 	});
 
-export type VideoProps<Content> = {theme: ThemeId; fps: number; content: Content; voiceClips: VoiceClips; lesson?: string; coverSrc?: string; soundtrackSrc?: string};
+export type VideoProps<Content> = {theme: ThemeId; fps: number; content: Content; voiceClips: VoiceClips; lesson?: string; coverSrc?: string; soundtrackSrc?: string; layoutGuard?: boolean; beats?: number[]};

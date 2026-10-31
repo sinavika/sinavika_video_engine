@@ -1,0 +1,1100 @@
+{
+ "topic": {
+  "id": "EE952E35-5B06-4976-89B7-CE79510DC625",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_PARABOL"
+ },
+ "title": "Parabol",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "YKS/AYT/CikmisSorular/MAT.jsonl (ÖSYM 2019 eksen uzaklıkları ve en küçük değer, yılsız kaydırma ve kökler kalıpları örnek alındı, sorular yeniden kuruldu)",
+  "MEB AYT Matematik konu anlatımı (tepe, simetri, doğru-parabol, denklem yazma; yapı için) ve YKS/AYT/Sorular/MAT/MAT_PARABOL.jsonl",
+  "Her cevap tam sayılar ve kesirlerle tek tek denenerek denetlendi"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Bir sayı kolları çevirir, bir nokta her şeyi söyler: tepe.",
+   "narration": "Parabolü tanımak, iki şeyi bilmektir: kolları nereye bakıyor ve tepe nerede. ÖSYM bu konuda tepe noktasını, kaydırınca köklerin nasıl açıldığını ve en küçük değeri birlikte soruyor. Bu derste katsayıların grafiği nasıl değiştirdiğini canlı izleyecek, sonra AYT düzeyinde yeni sorular çözeceğiz."
+  },
+  "objectives": [
+   "Katsayıların parabolün biçimine etkisini yorumlamak",
+   "Tepe noktasını ve simetri eksenini bulup kullanmak",
+   "Eksenlerle kesişimi ve kaydırmanın köklere etkisini hesaplamak",
+   "Kapalı aralıkta en büyük ve en küçük değeri bulmak",
+   "Doğru-parabol ilişkisini diskriminantla belirlemek",
+   "Verilen bilgilerden parabol denklemini kurmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_PARABOL_01",
+    "subtopics": [
+     "MAT_PARABOL_02",
+     "MAT_PARABOL_03"
+    ],
+    "title": "Parabolün biçimi ve tepe noktası",
+    "narration": "İkinci dereceden bir fonksiyonun grafiği paraboldür. Biçimini baş katsayı, yerini tepe noktası belirler. Önce a'nın ne yaptığını görelim.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Katsayılar ne yapar?",
+      "items": [
+       "$a > 0$: kollar **yukarı**, tepe en alçak nokta.",
+       "$a < 0$: kollar **aşağı**, tepe en yüksek nokta.",
+       "$|a|$ büyüdükçe kollar **daralır**.",
+       "$c$: parabolün $y$ eksenini kestiği nokta $(0, c)$."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -3,
+        3
+       ],
+       "y": [
+        -5,
+        8
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "a*x^2",
+         "label": "y = ax²"
+        }
+       ],
+       "parameters": {
+        "a": {
+         "from": 1
+        }
+       }
+      },
+      "beats": [
+       {
+        "narration": "a bir iken y eşittir x kare: tepe orijinde, kollar yukarı."
+       },
+       {
+        "narration": "a'yı üçe çıkaralım: aynı x için y üç kat büyüyor, kollar daralıyor.",
+        "params": {
+         "a": 3
+        }
+       },
+       {
+        "narration": "a'yı yarıya indirelim: kollar açılıyor, parabol yayvanlaşıyor.",
+        "params": {
+         "a": 0.5
+        }
+       },
+       {
+        "narration": "a eksi bir olunca parabol ters dönüyor: kollar aşağı, tepe artık en yüksek nokta.",
+        "params": {
+         "a": -1
+        }
+       }
+      ],
+      "narration": "f x eşittir a x kare artı b x artı c fonksiyonunun grafiği paraboldür. Baş katsayı pozitifse kollar yukarı bakar ve tepe en alçak noktadır; negatifse kollar aşağı bakar ve tepe en yüksek noktadır. a'nın mutlak değeri büyüdükçe kollar daralır. Sabit terim c ise parabolün y eksenini kestiği noktayı verir."
+     },
+     {
+      "kind": "rule",
+      "title": "Tepe noktası ve simetri ekseni",
+      "items": [
+       "Tepe $T(r, k)$: $r = -\\frac{b}{2a}$, $k = f(r)$.",
+       "Simetri ekseni: $x = r$ doğrusu.",
+       "Tepe biçimi: $f(x) = a(x - r)^2 + k$.",
+       "Eksene eşit uzaklıkta $f$ aynı: $f(r - t) = f(r + t)$."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -1.5,
+        5.5
+       ],
+       "y": [
+        -2,
+        6
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^2 - 4x + 3",
+         "label": "y = x² − 4x + 3"
+        }
+       ],
+       "points": [
+        {
+         "x": 2,
+         "y": -1,
+         "label": "T(2, −1)"
+        },
+        {
+         "x": 0,
+         "y": 3,
+         "label": "(0, 3)"
+        },
+        {
+         "x": 4,
+         "y": 3,
+         "label": "(4, 3)"
+        }
+       ],
+       "segments": [
+        {
+         "from": [
+          2,
+          -2
+         ],
+         "to": [
+          2,
+          6
+         ],
+         "label": "x = 2"
+        },
+        {
+         "from": [
+          0,
+          3
+         ],
+         "to": [
+          4,
+          3
+         ]
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "x kare eksi dört x artı üçte a bir, b eksi dört: tepenin apsisi eksi b bölü iki a, yani iki. Ordinatı f ikiden eksi bir.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "Tepeden geçen x eşittir iki doğrusu simetri ekseni: parabolün iki yanı bu doğruya göre ayna görüntüsü.",
+        "show": [
+         "s1"
+        ],
+        "focus": [
+         "s1"
+        ]
+       },
+       {
+        "narration": "Sıfır ve dört, ikiye eşit uzaklıkta: ikisinde de fonksiyon üç. Simetri, hesabı yarıya indirir.",
+        "show": [
+         "p2",
+         "p3",
+         "s2"
+        ],
+        "focus": [
+         "p2",
+         "p3",
+         "s2"
+        ]
+       }
+      ],
+      "narration": "Tepe noktasının apsisi eksi b bölü iki a, ordinatı da fonksiyonun orada aldığı değerdir. Tepeden geçen dikey doğru simetri eksenidir. Tepe noktası belliyse fonksiyonu a çarpı x eksi r'nin karesi artı k biçiminde yazarız. Simetri eksenine eşit uzaklıktaki iki noktada fonksiyon aynı değeri alır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Tepe biçiminde işaret",
+      "wrong": "$f(x) = 2(x + 3)^2 - 1$ ise $T(3, -1)$.",
+      "right": "$T(-3, -1)$",
+      "why": "Tepe biçimi $a(x - r)^2 + k$: parantezin içi **$x - r$**. $x + 3 = x - (-3)$, yani $r = -3$. Denetim: $f(-3) = -1$.",
+      "narration": "Sık yapılan bir hata: iki çarpı x artı üçün karesi eksi bir parabolünün tepesini üç virgül eksi bir sanmak. Tepe biçiminde parantezin içi x eksi r'dir. x artı üç, x eksi eksi üç demek; tepe eksi üç virgül eksi bir. Denetle: f eksi üçte parantez sıfır olur, değer eksi bir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(x) = 2x^2 - 8x + m$\n\nparabolünün tepe noktası $y = x + 1$ doğrusu üzerinde olduğuna göre, $m$ kaçtır?",
+       "options": [
+        "$5$",
+        "$7$",
+        "$9$",
+        "$11$",
+        "$13$"
+       ],
+       "answer": 3,
+       "narration": "Önce tepe noktasını bulalım, sonra doğruda yerine yazalım.",
+       "steps": [
+        {
+         "text": "$r = -\\frac{-8}{2 \\cdot 2} = 2$.",
+         "narration": "Tepenin apsisi eksi b bölü iki a: sekiz bölü dört, iki."
+        },
+        {
+         "text": "$k = f(2) = 8 - 16 + m = m - 8$.",
+         "narration": "Ordinat f iki: sekiz eksi on altı artı m, yani m eksi sekiz."
+        },
+        {
+         "text": "$T(2, m - 8)$ doğruda: $m - 8 = 2 + 1$, $m = 11$.",
+         "narration": "Tepe doğrunun üzerinde: m eksi sekiz, iki artı bire eşit. m on bir. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Tepe noktası bir doğru üzerinde kalıbı; katsayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ gerçel sayılar olmak üzere\n\n$f(x) = ax^2 + bx + 3$\n\nparabolünün simetri ekseni $x = 2$ doğrusudur.\n\n$f(-1) = 13$ olduğuna göre, $f(3)$ kaçtır?",
+       "options": [
+        "$-5$",
+        "$-3$",
+        "$0$",
+        "$3$",
+        "$13$"
+       ],
+       "answer": 1,
+       "narration": "Simetri ekseni b ile a arasında bir bağ verir.",
+       "steps": [
+        {
+         "text": "$-\\frac{b}{2a} = 2$: $b = -4a$.",
+         "narration": "Simetri ekseni iki: eksi b bölü iki a, iki. Buradan b eksi dört a."
+        },
+        {
+         "text": "$f(-1) = a - b + 3 = a + 4a + 3 = 13$: $a = 2$, $b = -8$.",
+         "narration": "f eksi bir: a eksi b artı üç, yani beş a artı üç. On üçe eşit: a iki, b eksi sekiz."
+        },
+        {
+         "text": "$f(3) = 18 - 24 + 3 = -3$.",
+         "narration": "f üç: on sekiz eksi yirmi dört artı üç, eksi üç. Dikkat: on üç, eksi birin simetriği olan beşteki değer; üçteki değil. Cevap B.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Simetri ekseninden katsayı kalıbı; ifade ve değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "İşaret değişirse",
+      "prompt": "Başındaki $2$ yerine $-2$ yazarsak $3$ ne olur?",
+      "choices": [
+       "En büyük değer",
+       "Yine en küçük değer"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -2,
+        4
+       ],
+       "y": [
+        -1,
+        10
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "2(x - 1)^2 + 3",
+         "label": "y = 2(x − 1)² + 3"
+        }
+       ],
+       "points": [
+        {
+         "x": 1,
+         "y": 3,
+         "label": "T(1, 3)"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "İki çarpı x eksi birin karesi artı üç: tepe bir virgül üç, kollar yukarı. Üç bu parabolün en küçük değeri."
+       }
+      ],
+      "explanation": "$-2(x - 1)^2 + 3$: tepe yine $(1, 3)$, ama kollar **aşağı**; $3$ artık **en büyük** değer, en küçük değer yok.",
+      "narration": "Şimdi sıra sende. Başındaki iki yerine eksi iki yazarsak üç ne olur? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: en büyük değer. Tepe yerinden oynamaz, bir virgül üç kalır; ama kollar aşağı döner. Kare negatif olamadığı için eksi iki çarpı kare hep sıfır ya da negatif: değer hiçbir zaman üçü geçmez. En küçük değer ise yoktur."
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_PARABOL_04",
+    "title": "Eksenleri kestiği noktalar",
+    "narration": "Parabolün x eksenini kestiği yerler denklemin kökleridir; kaç tane olduklarını diskriminant söyler. Parabolü yukarı aşağı kaydırmak da kökleri değiştirir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Eksenlerle kesişim",
+      "items": [
+       "$x$ eksenini: $f(x) = 0$ **kökleri**; $y$ eksenini: $(0, c)$.",
+       "$\\Delta > 0$: iki nokta; $\\Delta = 0$: eksene **teğet**; $\\Delta < 0$: kesmez.",
+       "Kökler belliyse: $f(x) = a(x - x_1)(x - x_2)$.",
+       "Tepenin apsisi köklerin **orta noktası**: $r = \\frac{x_1 + x_2}{2}$."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -1.5,
+        3.5
+       ],
+       "y": [
+        -5,
+        10
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^2 - 2x + c",
+         "label": "y = x² − 2x + c"
+        }
+       ],
+       "parameters": {
+        "c": {
+         "from": -3
+        }
+       }
+      },
+      "beats": [
+       {
+        "narration": "c eksi üç iken diskriminant on altı, pozitif: parabol x eksenini eksi bir ve üçte, iki noktada kesiyor."
+       },
+       {
+        "narration": "c'yi bire çıkaralım: parabol yukarı kayıyor, diskriminant sıfır. Eksene yalnız birde değiyor: teğet.",
+        "params": {
+         "c": 1
+        }
+       },
+       {
+        "narration": "c üç olunca diskriminant eksi sekiz: parabol eksenin tamamen üstünde, hiç kesmiyor.",
+        "params": {
+         "c": 3
+        }
+       }
+      ],
+      "narration": "Parabol x eksenini fonksiyonun sıfır olduğu yerlerde, yani köklerde keser; y eksenini sıfır virgül c noktasında. Diskriminant pozitifse iki noktada keser, sıfırsa eksene teğettir, negatifse hiç kesmez. Kökleri biliyorsan fonksiyonu a çarpı x eksi x bir, çarpı x eksi x iki diye yazarsın. Ve tepe, iki kökün tam ortasındadır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$0 < x_1 < x_2$ olmak üzere\n\n$f(x) = (x - x_1)(x - x_2)$\n\nparabolü $x$ eksenini orijine yakın olan $A(x_1, 0)$ noktasında, $y$ eksenini $B$ noktasında kesiyor.\n\n$|OB| = 2 \\cdot |OA|$ ve parabol en küçük değerini $x = \\frac{5}{4}$ iken aldığına göre, $\\frac{x_2}{x_1}$ oranı kaçtır?",
+       "options": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2019'da bu kalıbı sordu. Her bilgiyi bir denkleme çevirelim.",
+       "steps": [
+        {
+         "text": "$B = (0, f(0)) = (0, x_1 x_2)$; $|OB| = 2|OA|$: $x_1 x_2 = 2x_1$, $x_2 = 2$.",
+         "narration": "B, y eksenini kestiği nokta: f sıfır, yani x bir çarpı x iki. O B, O A'nın iki katı: x bir x iki eşittir iki x bir. x bir sıfır değil; x iki, iki."
+        },
+        {
+         "text": "En küçük değer tepede; tepe köklerin ortası: $\\frac{x_1 + 2}{2} = \\frac{5}{4}$, $x_1 = \\frac{1}{2}$.",
+         "narration": "En küçük değer tepede, tepe de köklerin tam ortasında: x bir artı iki, bölü iki, beş bölü dört. x bir yarım."
+        },
+        {
+         "text": "$\\frac{x_2}{x_1} = \\frac{2}{1/2} = 4$.",
+         "narration": "Oran iki bölü yarım: dört. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 eksen uzaklıkları ve en küçük değer kalıbı örnek alındı; uzaklık oranı ve tepe yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Yukarı kaydırınca",
+      "prompt": "Bu parabolü **yukarı** kaydırırsak kökler arasındaki uzaklık ne olur?",
+      "choices": [
+       "Artar",
+       "Azalır"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -4,
+        4
+       ],
+       "y": [
+        -3,
+        6
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "1/2 - x^2/2",
+         "label": "y = ½ − x²/2"
+        }
+       ],
+       "points": [
+        {
+         "x": -1,
+         "y": 0,
+         "label": "−1"
+        },
+        {
+         "x": 1,
+         "y": 0,
+         "label": "1"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Aşağı açılan, simetri ekseni y ekseni olan bir parabol: kökler eksi bir ve bir, aralarındaki uzaklık iki."
+       }
+      ],
+      "explanation": "Kollar **aşağı** açıldığı için yukarı kaydırınca eksen, parabolün **daha geniş** bir yerinden geçer: kökler açılır.",
+      "narration": "Şimdi sıra sende. Bu parabolü yukarı kaydırırsak kökler arasındaki uzaklık ne olur? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: artar. Kollar aşağı açılıyor; parabolü yukarı kaydırmak, x eksenini parabolün aşağıdaki, daha geniş kısmına denk getirir. Kollar yukarı açılan bir parabolde ise tam tersi olurdu."
+     },
+     {
+      "kind": "visual",
+      "title": "Kaydırma kökleri nasıl açar?",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -4,
+        4
+       ],
+       "y": [
+        -3,
+        6
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "k - x^2/2",
+         "label": "y = k − x²/2"
+        }
+       ],
+       "parameters": {
+        "k": {
+         "from": 0.5
+        }
+       }
+      },
+      "caption": "Uzaklığın **karesi** kaydırmayla doğru orantılı.",
+      "narration": "Şimdi kaydırmayı izleyelim ve uzaklığın nasıl büyüdüğüne bakalım.",
+      "beats": [
+       {
+        "narration": "k yarım iken kökler eksi bir ve bir. Kök, x kare eşittir iki k'dan gelir."
+       },
+       {
+        "narration": "k'yı ikiye çıkaralım: x kare dört, kökler eksi iki ve iki. Uzaklık dört oldu.",
+        "params": {
+         "k": 2
+        }
+       },
+       {
+        "narration": "k dört buçuk: x kare dokuz, kökler eksi üç ve üç. Dikkat: uzaklık kaydırmayla düz orantılı artmıyor; kaydırmayla düz orantılı artan, uzaklığın karesi.",
+        "params": {
+         "k": 4.5
+        }
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde simetri ekseni $y$ ekseni olan bir parabolün $x$ eksenini kestiği noktalar arasındaki uzaklık $2$ birimdir. Parabol $y$ eksenine paralel olarak $1$ birim yukarı kaydırıldığında bu uzaklık $6$ birim oluyor.\n\nParabol aynı yönde $2$ birim daha kaydırılırsa uzaklık kaç birim olur?",
+       "options": [
+        "$6$",
+        "$7$",
+        "$8$",
+        "$9$",
+        "$10$"
+       ],
+       "answer": 4,
+       "narration": "ÖSYM bu kalıbı sordu. Simetri ekseni y ekseni: f x eşittir a x kare artı c.",
+       "steps": [
+        {
+         "text": "$f(x) = ax^2 + c$; kökler $\\pm\\sqrt{-\\frac{c}{a}}$. Uzaklık $2$: $-\\frac{c}{a} = 1$.",
+         "narration": "Simetri ekseni y ekseni ise b sıfır: a x kare artı c. Kökler artı eksi karekök eksi c bölü a. Uzaklık iki ise eksi c bölü a, bir."
+        },
+        {
+         "text": "$1$ birim yukarı: $-\\frac{c + 1}{a} = 9$; çıkarınca $-\\frac{1}{a} = 8$.",
+         "narration": "Bir birim yukarı: c yerine c artı bir. Uzaklık altı, yarısı üç: eksi c artı bir bölü a, dokuz. Ötekinden çıkarınca eksi bir bölü a, sekiz. Her birim kaydırma, kökün karesine sekiz ekliyor."
+        },
+        {
+         "text": "Toplam $3$ birim: $1 + 3 \\cdot 8 = 25$, kökler $\\pm 5$; uzaklık $10$.",
+         "narration": "Toplam üç birim yukarı: bir artı üç çarpı sekiz, yirmi beş. Kökler artı eksi beş, uzaklık on. Düz orantı kurup on dört diyen yanılır. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM kaydırma ve kökler arası uzaklık kalıbı örnek alındı; uzaklıklar ve kaydırma yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_PARABOL_05",
+    "title": "En büyük ve en küçük değer",
+    "narration": "Parabolün en büyük ya da en küçük değeri tepe noktasının ordinatıdır. Ama x bir aralıkla sınırlıysa uçlara da bakmak gerekir; ÖSYM tuzağı burada kurar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "En büyük, en küçük",
+      "items": [
+       "$a > 0$: en küçük değer $k$; en büyük değer **yok**.",
+       "$a < 0$: en büyük değer $k$; en küçük değer **yok**.",
+       "**Kapalı aralıkta**: tepe aralıktaysa tepeyi ve **iki ucu** karşılaştır.",
+       "Tepe aralığın dışındaysa yalnız uçlar yeter."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -2.5,
+        4.5
+       ],
+       "y": [
+        -4,
+        8
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^2 - 4x + 1",
+         "label": "y = x² − 4x + 1"
+        }
+       ],
+       "points": [
+        {
+         "x": -1,
+         "y": 6,
+         "label": "f(−1) = 6"
+        },
+        {
+         "x": 2,
+         "y": -3,
+         "label": "T(2, −3)"
+        },
+        {
+         "x": 3,
+         "y": -2,
+         "label": "f(3) = −2"
+        }
+       ],
+       "segments": [
+        {
+         "from": [
+          -1,
+          -4
+         ],
+         "to": [
+          -1,
+          7
+         ],
+         "label": "x = −1"
+        },
+        {
+         "from": [
+          3,
+          -4
+         ],
+         "to": [
+          3,
+          7
+         ],
+         "label": "x = 3"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "x kare eksi dört x artı bir, eksi bir ile üç arasında. Önce aralığın sınırlarını çizelim.",
+        "show": [
+         "s1",
+         "s2"
+        ],
+        "focus": [
+         "s1",
+         "s2"
+        ]
+       },
+       {
+        "narration": "Tepe iki virgül eksi üç, aralığın içinde: en küçük değer eksi üç.",
+        "show": [
+         "p2"
+        ],
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "En büyük değer için iki uca bakalım: f eksi bir altı, f üç eksi iki. Tepeden uzak olan uç kazanır: en büyük değer altı.",
+        "show": [
+         "p1",
+         "p3"
+        ],
+        "focus": [
+         "p1"
+        ]
+       }
+      ],
+      "narration": "Baş katsayı pozitifse parabolün en küçük değeri tepenin ordinatıdır, en büyük değeri yoktur. Baş katsayı negatifse tersi. x kapalı bir aralıkla sınırlıysa tepe aralığın içindeyse tepeyi ve iki ucu karşılaştırırsın; tepe dışarıdaysa yalnız uçlara bakarsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir atölyenin günde ürettiği $x$ ürün için günlük kârı\n\n$K(x) = -2x^2 + 120x - 1000$\n\nTL olarak modelleniyor.\n\nBuna göre, atölyenin günlük kârı **en fazla** kaç TL olur?",
+       "options": [
+        "$600$",
+        "$800$",
+        "$1000$",
+        "$1200$",
+        "$1800$"
+       ],
+       "answer": 1,
+       "narration": "Baş katsayı negatif: en büyük değer tepede.",
+       "steps": [
+        {
+         "text": "$r = -\\frac{120}{2 \\cdot (-2)} = 30$.",
+         "narration": "Tepenin apsisi eksi yüz yirmi bölü eksi dört: otuz ürün."
+        },
+        {
+         "text": "$K(30) = -1800 + 3600 - 1000 = 800$.",
+         "narration": "K otuz: eksi bin sekiz yüz artı üç bin altı yüz eksi bin: sekiz yüz lira. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "Kâr modelinde en büyük değer kalıbı; katsayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(x) = x^2 - 4x + 1$\n\nfonksiyonunun $[-1, 3]$ aralığındaki **en büyük** ve **en küçük** değerlerinin toplamı kaçtır?",
+       "options": [
+        "$-6$",
+        "$-3$",
+        "$0$",
+        "$3$",
+        "$6$"
+       ],
+       "answer": 3,
+       "narration": "Kural kartında çizdiğimiz parabol; şimdi sayılarla bitirelim.",
+       "steps": [
+        {
+         "text": "Tepe $x = 2 \\in [-1, 3]$: en küçük $f(2) = -3$.",
+         "narration": "Tepe ikide ve aralığın içinde: en küçük değer f iki, eksi üç."
+        },
+        {
+         "text": "Uçlar: $f(-1) = 6$, $f(3) = -2$; en büyük $6$.",
+         "narration": "Uçlar: f eksi bir altı, f üç eksi iki. En büyük altı."
+        },
+        {
+         "text": "$6 + (-3) = 3$.",
+         "narration": "Toplam üç. Uçlardan yalnız sağdakine bakıp eksi ikiyi en büyük sanan eksi beş bulur. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Kapalı aralıkta en büyük ve en küçük değer kalıbı; ifade yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir kenarı uzun bir duvar olan dikdörtgen biçimli bir bahçenin öteki **üç** kenarı $60$ metre telle çevrilecektir.\n\nBuna göre, bahçenin alanı **en fazla** kaç metrekare olur?",
+       "options": [
+        "$450$",
+        "$500$",
+        "$600$",
+        "$900$",
+        "$1800$"
+       ],
+       "answer": 0,
+       "narration": "Alanı tek değişkenle yazalım; parabol çıkacak.",
+       "steps": [
+        {
+         "text": "Duvara dik kenar $x$: duvara paralel kenar $60 - 2x$; alan $A(x) = x(60 - 2x) = -2x^2 + 60x$.",
+         "narration": "Duvara dik iki kenar x olsun; teli tüketen üçüncü kenar altmış eksi iki x. Alan x çarpı altmış eksi iki x: eksi iki x kare artı altmış x."
+        },
+        {
+         "text": "Tepe: $x = -\\frac{60}{2 \\cdot (-2)} = 15$; kenarlar $15$ ve $30$.",
+         "narration": "Baş katsayı negatif, en büyük değer tepede: x on beş. Kenarlar on beş ve otuz."
+        },
+        {
+         "text": "$A = 15 \\cdot 30 = 450$.",
+         "narration": "Alan dört yüz elli metrekare. Teli dört kenara bölüp kare yapan dokuz yüz bulur; ama duvar tarafına tel çekilmiyor. Cevap A.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Duvar kenarlı en büyük alan problemi; uzunluk yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_PARABOL_06",
+    "title": "Doğru ile parabol",
+    "narration": "Bir doğru ile bir parabolün ortak noktaları iki denklemin eşitlenmesinden çıkar. Eşitleyince yine ikinci dereceden bir denklem kalır ve her şeyi onun diskriminantı söyler.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Doğru ve parabol",
+      "items": [
+       "Eşitle: $ax^2 + bx + c = mx + n$, yani $ax^2 + (b - m)x + c - n = 0$.",
+       "$\\Delta > 0$: **iki** nokta; $\\Delta = 0$: **teğet**; $\\Delta < 0$: kesişmez.",
+       "Kesişim apsislerinin toplamı: $-\\frac{b - m}{a}$; orta noktanın apsisi bunun yarısı."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -2.5,
+        4
+       ],
+       "y": [
+        -4,
+        10
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^2",
+         "label": "y = x²"
+        },
+        {
+         "expression": "2x + m",
+         "label": "y = 2x + m"
+        }
+       ],
+       "parameters": {
+        "m": {
+         "from": 3
+        }
+       }
+      },
+      "beats": [
+       {
+        "narration": "y eşittir x kare ile y eşittir iki x artı m. m üç iken eşitleyince x kare eksi iki x eksi üç sıfır: diskriminant pozitif, doğru parabolü iki noktada kesiyor."
+       },
+       {
+        "narration": "m eksi bir olsun: x kare eksi iki x artı bir sıfır, diskriminant sıfır. Doğru parabole bir virgül birde teğet.",
+        "params": {
+         "m": -1
+        }
+       },
+       {
+        "narration": "m eksi üç: diskriminant negatif. Doğru parabolün altında kalıyor, ortak nokta yok.",
+        "params": {
+         "m": -3
+        }
+       }
+      ],
+      "narration": "Doğru ile parabolün ortak noktaları için iki denklemi eşitleriz; ikinci dereceden yeni bir denklem çıkar. Diskriminantı pozitifse iki ortak nokta vardır, sıfırsa doğru parabole teğettir, negatifse kesişmezler. Kesişim noktalarının apsisleri bu denklemin kökleridir; toplamlarını kökler toplamından buluruz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$y = x^2 - 4x + 7$ parabolü ile $y = 2x + k$ doğrusu birbirine **teğet** olduğuna göre, $k$ kaçtır?",
+       "options": [
+        "$-4$",
+        "$-2$",
+        "$0$",
+        "$2$",
+        "$4$"
+       ],
+       "answer": 1,
+       "narration": "Teğet: eşitleyince çıkan denklemin diskriminantı sıfır.",
+       "steps": [
+        {
+         "text": "$x^2 - 4x + 7 = 2x + k$: $x^2 - 6x + 7 - k = 0$.",
+         "narration": "Eşitleyelim: x kare eksi altı x artı yedi eksi k, sıfır."
+        },
+        {
+         "text": "$\\Delta = 36 - 4(7 - k) = 8 + 4k = 0$: $k = -2$.",
+         "narration": "Diskriminant otuz altı eksi dört çarpı yedi eksi k: sekiz artı dört k. Sıfır olmalı: k eksi iki."
+        },
+        {
+         "text": "Denetim: $x^2 - 6x + 9 = (x - 3)^2$; değme noktası $(3, 4)$.",
+         "narration": "Denetleyelim: x eksi üçün karesi; doğru parabole üç virgül dörtte değiyor. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "Doğru-parabol teğetlik kalıbı; ifadeler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$y = x^2 - 3x + 1$ parabolü ile $y = x + m$ doğrusu $A$ ve $B$ noktalarında kesişiyor.\n\n$[AB]$'nin orta noktasının **ordinatı** $5$ olduğuna göre, $m$ kaçtır?",
+       "options": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$"
+       ],
+       "answer": 2,
+       "narration": "Kesişim noktalarını tek tek bulmadan, kökler toplamıyla gidelim.",
+       "steps": [
+        {
+         "text": "$x^2 - 4x + 1 - m = 0$: $x_A + x_B = 4$, orta nokta apsisi $2$.",
+         "narration": "Eşitleyince x kare eksi dört x artı bir eksi m sıfır. Kökler toplamı dört; orta noktanın apsisi iki."
+        },
+        {
+         "text": "Orta nokta doğru üzerinde: ordinat $2 + m = 5$, $m = 3$.",
+         "narration": "A ve B doğrunun üzerinde, orta noktaları da: ordinat iki artı m. Beşe eşit: m üç."
+        },
+        {
+         "text": "Denetim: $\\Delta = 16 - 4(1 - 3) = 24 > 0$ ✓.",
+         "narration": "Gerçekten iki nokta var mı? Diskriminant yirmi dört, pozitif. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Kesişim noktalarının orta noktası kalıbı; ifade yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$y = x^2 + 2x + 5$ parabolü ile $y = mx + 1$ doğrusu **kesişmediğine** göre, $m$'nin alabileceği kaç farklı tam sayı değeri vardır?",
+       "options": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$"
+       ],
+       "answer": 4,
+       "narration": "Kesişmiyorlarsa eşitleyince çıkan denklemin gerçel kökü yok.",
+       "steps": [
+        {
+         "text": "$x^2 + (2 - m)x + 4 = 0$; $\\Delta = (2 - m)^2 - 16 < 0$.",
+         "narration": "Eşitleyelim: x kare artı iki eksi m x artı dört, sıfır. Diskriminant iki eksi m'nin karesi eksi on altı, negatif olmalı."
+        },
+        {
+         "text": "$|m - 2| < 4$: $-2 < m < 6$.",
+         "narration": "İki eksi m'nin karesi on altıdan küçük: m eksi ikinin mutlak değeri dörtten küçük. m eksi iki ile altı arasında."
+        },
+        {
+         "text": "$m \\in \\{-1, 0, 1, 2, 3, 4, 5\\}$: **7** değer.",
+         "narration": "Tam sayılar eksi birden beşe: yedi değer. Uçları da sayan dokuz bulur; uçlarda doğru teğet olur. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "Kesişmeme koşulu kalıbı; ifadeler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_PARABOL_07",
+    "title": "Denklemi yazmak ve problemler",
+    "narration": "Parabol problemlerinde iş çoğu zaman denklemi kurmaktır. Hangi bilgi verildiyse ona uygun biçimi seçersin; sonra soru tek satırlık hesaba iner.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Denklemi yazmanın üç yolu",
+      "items": [
+       "Tepe $T(r, k)$ ve bir nokta: $f(x) = a(x - r)^2 + k$.",
+       "Kökler $x_1$, $x_2$ ve bir nokta: $f(x) = a(x - x_1)(x - x_2)$.",
+       "Üç nokta: $ax^2 + bx + c$'de yerine yaz, **üç denklem** çöz.",
+       "Öteleme: $f(x - h)$ sağa $h$, $f(x) + v$ yukarı $v$; $f(-x)$: $y$ eksenine göre simetri."
+      ],
+      "narration": "Tepe noktası ve bir nokta verildiyse tepe biçimini, kökler ve bir nokta verildiyse çarpan biçimini kullan; geriye bir tek a kalır, verilen noktadan bulunur. Üç nokta verildiyse genel biçimde yerine yazıp üç denklemi çözersin. Ötelemede x yerine x eksi h yazmak grafiği h birim sağa, sonuca v eklemek v birim yukarı taşır; x yerine eksi x yazmak y eksenine göre simetrisini alır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yerden atılan bir topun izlediği yol bir paraboldür. Top $(0, 0)$ noktasından atılıyor ve en yüksek noktası $(4, 8)$ oluyor (birimler metre).\n\nTopun yerden yüksekliğinin **en az** $6$ metre olduğu yatay yol kaç metredir?",
+       "options": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$6$"
+       ],
+       "answer": 3,
+       "narration": "Tepe ve bir nokta verildi: tepe biçimi.",
+       "steps": [
+        {
+         "text": "$f(x) = a(x - 4)^2 + 8$; $f(0) = 16a + 8 = 0$: $a = -\\frac{1}{2}$.",
+         "narration": "Tepe biçimi: a çarpı x eksi dördün karesi artı sekiz. Top orijinden atılıyor: f sıfır, on altı a artı sekiz, sıfır. a eksi yarım."
+        },
+        {
+         "text": "$-\\frac{1}{2}(x - 4)^2 + 8 \\geq 6$: $(x - 4)^2 \\leq 4$, $2 \\leq x \\leq 6$.",
+         "narration": "Yükseklik en az altı: eksi yarım çarpı x eksi dördün karesi artı sekiz, altıdan büyük eşit. x eksi dördün karesi en çok dört: x iki ile altı arasında."
+        },
+        {
+         "text": "Yatay yol: $6 - 2 = 4$ metre.",
+         "narration": "Yatay yol altı eksi iki: dört metre. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Tepe ve bir noktadan denklem kurma kalıbı; atış problemi yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(x) = (x + 1)^2 - 2$\n\nparabolünün önce $y$ eksenine göre simetriği alınıyor; sonra elde edilen parabol $7$ birim **aşağı** ve $2$ birim **sağa** öteleniyor.\n\nSon parabolün $x$ eksenini kestiği noktalar arasındaki uzaklık kaç birimdir?",
+       "options": [
+        "$2$",
+        "$4$",
+        "$6$",
+        "$8$",
+        "$9$"
+       ],
+       "answer": 2,
+       "narration": "Adımları sırayla uygulayalım.",
+       "steps": [
+        {
+         "text": "$y$ eksenine göre simetri: $f(-x) = (-x + 1)^2 - 2 = (x - 1)^2 - 2$.",
+         "narration": "y eksenine göre simetri: x yerine eksi x. Eksi x artı birin karesi, x eksi birin karesine eşit: x eksi birin karesi eksi iki."
+        },
+        {
+         "text": "$7$ aşağı, $2$ sağa: $(x - 3)^2 - 9$.",
+         "narration": "Yedi birim aşağı: eksi dokuz. İki birim sağa: x yerine x eksi iki, parantez x eksi üç. Sonuç x eksi üçün karesi eksi dokuz."
+        },
+        {
+         "text": "$(x - 3)^2 = 9$: $x = 0$ ya da $x = 6$; uzaklık $6$.",
+         "narration": "Kökler: x eksi üçün karesi dokuz, x sıfır ya da altı. Uzaklık altı. Sağa ötelemenin uzaklığı değiştirmediğine dikkat: yalnız aşağı kaydırma kökleri açtı. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Simetri ve öteleme sonrası kökler kalıbı; ifade ve öteleme miktarları yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$a > 0$ kollar **yukarı**, $a < 0$ **aşağı**.",
+    "Tepe: $r = -\\frac{b}{2a}$, $k = f(r)$.",
+    "Tepe köklerin **orta noktası**.",
+    "Kaydırmada uzaklığın **karesi** doğrusal değişir.",
+    "Kapalı aralıkta tepe ve **iki uç**.",
+    "Doğru-parabol: eşitle, $\\Delta$'ya bak."
+   ],
+   "warnings": [
+    "$a(x + 3)^2$: tepe $x = -3$'te.",
+    "Aralıkta en büyük değer **uçta** olabilir."
+   ],
+   "narration": "Özetleyelim. Baş katsayı pozitifse kollar yukarı, negatifse aşağı bakar. Tepenin apsisi eksi b bölü iki a, ordinatı fonksiyonun oradaki değeridir; tepe köklerin tam ortasındadır. Parabol kaydırılınca kökler arası uzaklığın karesi düzgün değişir. Kapalı aralıkta tepeyi ve iki ucu karşılaştır. Doğru ile parabolü eşitle ve diskriminanta bak. Ve tepe biçiminde parantezin içindeki işarete dikkat et."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "2(x + 3)² − 1",
+    "question": "Tepe neresi?",
+    "choices": [
+     "(3, −1)",
+     "(−3, −1)"
+    ],
+    "answer": 1,
+    "why": "İçi **x − r**."
+   },
+   {
+    "sentence": "a negatif",
+    "question": "Tepe ne verir?",
+    "choices": [
+     "En büyük",
+     "En küçük"
+    ],
+    "answer": 0,
+    "why": "Kollar **aşağı**."
+   },
+   {
+    "sentence": "Doğruyla Δ = 0",
+    "question": "Kaç ortak nokta?",
+    "choices": [
+     "Bir",
+     "İki"
+    ],
+    "answer": 0,
+    "why": "Doğru **teğet**."
+   }
+  ],
+  "hook": "Üç parabol tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Tepe köklerin **ortasında**."
+   },
+   {
+    "kind": "warning",
+    "text": "Aralıkta **uçlara** da bak."
+   },
+   {
+    "kind": "term",
+    "term": "Simetri ekseni",
+    "definition": "Tepeden geçen **dikey** doğru."
+   }
+  ],
+  "summary": [
+   "Tepe: −b/2a",
+   "Aralıkta uçlar",
+   "Δ = 0: teğet"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-matematik-kampi",
+  "name": "AYT Matematik kampı",
+  "number": 25,
+  "total": 33,
+  "previous": "2.Dereceden Eşitsizlikler",
+  "next": "Trigonometri",
+  "promise": "Her konu kısa bir tekrar ve AYT düzeyinde çözümlü sorularla.",
+  "task": {
+   "items": [
+    "ÖSYM 2019 kalıbını **kendin** çöz: $|OA| = |OB|$ ve en küçük değer $x = \\frac{2}{3}$'te ise $\\frac{x_2}{x_1}$ kaç?",
+    "$y = x^2 - 6x + 5$ parabolünü **elle çiz**: tepe, kökler, $y$ eksenini kestiği nokta.",
+    "Uygulamada AYT Parabol testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. ÖSYM'nin 2019 kalıbını kendin çöz: O A, O B'ye eşit ve en küçük değer x eşittir üçte ikide ise x iki bölü x bir kaç? Sonra x kare eksi altı x artı beş parabolünü elle çiz: önce tepe, sonra kökler, sonra y eksenini kestiği nokta. Ardından uygulamada yirmi soru çöz. Bir sonraki derste trigonometride görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Tepe noktasını örnekle: y = 2x² − 8x + 3 için r = 2, k = −5; parabolün en küçük değeri −5, simetri ekseni x = 2.",
+   "Denklem yazmanın iki yolunu ver: tepe biçimi y = a(x − r)² + k ve kök biçimi y = a(x − x₁)(x − x₂). Tepesi (1, 4) olup (3, 0)'dan geçen parabol: y = −(x − 1)² + 4.",
+   "Kapalı aralıkta en büyük-en küçük değeri örnekle: y = x² − 4x + 1 için [0, 5] aralığında tepe x = 2'de −3 (en küçük), uçlardan f(5) = 6 en büyük değerdir.",
+   "Doğru-parabol teğetliğini örnekle: y = x² + 1 ile y = mx'in teğet olması için x² − mx + 1 = 0'ın diskriminantı sıfır: m = ±2.",
+   "Parabolle problem ekle: çevresi 40 m olan dikdörtgenin alanı x(20 − x) en çok x = 10'da, 100 m²'dir. Yukarı atılan topun yüksekliği h(t) = −5t² + 20t ise top t = 2 s'de en çok 20 m yükselir. a, b, c'nin işaretini grafikten okuma alıştırması ekle."
+  ]
+ }
+}

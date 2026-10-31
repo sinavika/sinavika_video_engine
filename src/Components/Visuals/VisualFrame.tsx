@@ -44,6 +44,8 @@ export const useVisualPalette = () => {
 		axis: withAlpha(ink.text, 0.55),
 		fill: withAlpha(lesson, 0.16),
 		surface: colors.surface,
+		/** The scene's own background, for a backdrop that should disappear into it. */
+		background: colors.background,
 		onSurface: colors.onSurface,
 		border: colors.border,
 		fontDisplay: typography.display,

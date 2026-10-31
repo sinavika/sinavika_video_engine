@@ -1,0 +1,872 @@
+{
+ "topic": {
+  "id": "ECB9F47E-06CC-955B-38D6-858CBEBCEA97",
+  "category": "YKS_TYT",
+  "lesson": "FIZ",
+  "code": "FIZ_ISI"
+ },
+ "title": "Isı, Sıcaklık ve Genleşme",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "MEB TYT Fizik konu anlatımı s. 60–84 (ısı-sıcaklık, termometreler, öz ısı ve ısı sığası, ısıl denge, hâl değişimi, ısı iletim yolları, genleşme ve suyun özel durumu; yalnız yapı örneği)",
+  "YKS/TYT/CikmisSorular/FIZ.jsonl (ÖSYM 2019–2025 termometre, öz ısı, ısıl denge, ışıma, ısı iletim katsayısı, genleşme; yalnız yapı örneği); YKS/TYT/Sorular/FIZ/FIZ_ISI.jsonl",
+  "Sorular özgündür; ısınma eğrisi verilen öz ısı ve hâl değişim ısılarıyla hesaplanıp çizildi"
+ ],
+ "works": {
+  "additions": [
+   "Termometre çeşitlerini (sıvılı, metal, gazlı, dijital) ve termometre sıvısı seçimini (cıva ve alkol; donma ve kaynama noktaları) yaz; keyfi bir X ölçeğinin Celsius'a dönüştürülmesini orantıyla çözümlü örnekle.",
+   "Isıl denge hesaplarını ekle: alınan ısı = verilen ısı; eşit ve farklı kütleli suların karışım sıcaklığı; öz ısısı büyük maddenin geç ısınıp geç soğuması (deniz-kara iklimi).",
+   "Hâl değişimi ısılarını ver: buzun erime ısısı yaklaşık 80 cal/g (334 J/g), suyun buharlaşma ısısı yaklaşık 540 cal/g; buz-su karışımlarında son durum sorularının adım adım çözümü.",
+   "Isı yalıtımına örnekler ekle: termos (iletim, konveksiyon ve ışımanın üçü engellenir), çift cam, kat kat giyinme, yalıtımlı duvar; iletim hızını etkileyen etkenler (madde cinsi, kesit, kalınlık, sıcaklık farkı).",
+   "Genleşmeyi ayrıntılandır: katılar için genleşme katsayısı örnekleri, bimetal şerit ve termostat, sıvılarda kabın da genleşmesi; suyun 0–4 °C arasındaki düzensiz genleşmesi.",
+   "Isı, sıcaklık ve iç enerji farkını tabloyla ver; 'sıcak cisim ısı içerir' yanılgısını düzelt."
+  ]
+ },
+ "short": {
+  "hook": "Metal neden daha soğuk gelir?",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "$Q = m \\cdot c \\cdot \\Delta T$"
+   },
+   {
+    "kind": "fact",
+    "text": "Hâl değişirken **T sabit**"
+   },
+   {
+    "kind": "warning",
+    "text": "Metal ısıyı **hızlı iletir**"
+   }
+  ],
+  "summary": [
+   "Isı sıcaktan soğuğa",
+   "Su 4 °C'de en yoğun"
+  ],
+  "rounds": [
+   {
+    "sentence": "Buz eriyor",
+    "question": "Sıcaklık?",
+    "choices": [
+     "sabit",
+     "artar"
+    ],
+    "answer": 0,
+    "why": "Hâl **değişiyor**."
+   },
+   {
+    "sentence": "Güneşten Dünya'ya",
+    "question": "Hangi yol?",
+    "choices": [
+     "ışıma",
+     "iletim"
+    ],
+    "answer": 0,
+    "why": "**Boşlukta** da olur."
+   },
+   {
+    "sentence": "25 °C",
+    "question": "Kelvin?",
+    "choices": [
+     "298 K",
+     "248 K"
+    ],
+    "answer": 0,
+    "why": "+ **273**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-fizik-kampi",
+  "name": "TYT Fizik kampı",
+  "number": 5,
+  "total": 11,
+  "previous": "İş, Güç ve Enerji",
+  "next": "Basınç",
+  "promise": "Fizik konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Aynı odadaki metal ve tahta bir eşyaya dokun; hangisinin neden **daha soğuk** geldiğini yaz.",
+    "Isınma eğrisini çiz; **erime** ve **kaynama** parçalarında neden düz olduğunu açıkla.",
+    "Uygulamada Isı, Sıcaklık ve Genleşme testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Aynı odadaki metal ve tahta bir eşyaya dokun; hangisinin neden daha soğuk geldiğini yaz. Sonra buzun ısınma eğrisini çiz ve erime ile kaynama parçalarının neden düz olduğunu açıkla. En son uygulamada ısı, sıcaklık ve genleşme testinden yirmi soru çöz. Bir sonraki derste basınca geçiyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Isı mı, sıcaklık mı?",
+   "narration": "Aynı odadaki metal ve tahta, sıcaklıkları eşit olduğu hâlde neden farklı hissedilir? Buz erirken neden termometre kıpırdamaz? Göller neden dipten donmaz? Bu derste ısı ile sıcaklığı, termometreleri, öz ısıyı, hâl değişimini, ısının üç yolunu ve genleşmeyi öğreneceğiz."
+  },
+  "objectives": [
+   "Isı ile sıcaklığı ayırt etmek; ölçekler arası dönüşüm yapmak",
+   "$Q = mc\\Delta T$ ve $Q = mL$ ile ısı hesaplamak; ısınma eğrisini yorumlamak",
+   "İletim, konveksiyon ve ışımayı örneklerle ayırt etmek",
+   "Genleşmeyi ve suyun özel durumunu açıklamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_ISI_01",
+    "title": "Isı ve sıcaklık",
+    "narration": "Günlük dilde ısı ile sıcaklık aynı şey gibi kullanılır. Fizikte ikisi bambaşka kavramlardır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Isı akar, sıcaklık ölçülür",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Sıcaklık",
+         "items": [
+          "Taneciklerin **ortalama** kinetik enerjisi",
+          "Termometreyle **ölçülür**",
+          "°C, K (SI), °F",
+          "Temel büyüklük"
+         ]
+        },
+        {
+         "title": "Isı",
+         "items": [
+          "Sıcaklık farkıyla **aktarılan** enerji",
+          "Doğrudan ölçülmez, **hesaplanır**",
+          "joule, kalori",
+          "**Sıcaktan soğuğa** akar"
+         ]
+        }
+       ]
+      },
+      "caption": "Sıcaklıkları farklı cisimler temas edince ısı sıcaktan soğuğa akar; sıcaklıklar eşitlenince **ısıl denge** kurulur.",
+      "narration": "Sıcaklık, bir maddenin taneciklerinin ortalama hareket enerjisinin ölçüsüdür. Isı ise sıcaklık farkı yüzünden bir maddeden ötekine geçen enerjidir.",
+      "beats": [
+       {
+        "narration": "Sıcaklık termometreyle ölçülür; SI birimi kelvindir. Bir maddenin sıcaklığı vardır, ısısı yoktur.",
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "Isı ise aktarılan enerjidir: her zaman sıcaktan soğuğa akar ve sıcaklıklar eşitlenince durur. Buna ısıl denge denir. Yalıtılmış bir ortamda sıcak cismin verdiği ısı, soğuk cismin aldığı ısıya eşittir.",
+        "focus": [
+         "c2"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Isıl dengeye doğru",
+      "visual": {
+       "kind": "process",
+       "process": "heattransfer",
+       "stages": [
+        "denge"
+       ]
+      },
+      "narration": "Sıcak bir metal blok ile soğuk bir bloğu birbirine değdirelim.",
+      "beats": [
+       {
+        "narration": "Isı sıcak bloktan soğuk bloğa akar: sıcak blok soğur, soğuk blok ısınır. Kütleleri ve maddeleri aynıysa ikisi elli derecede buluşur; sıcaklıklar eşitlenince ısı akışı durur.",
+        "stage": 0,
+        "focus": [
+         "denge"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Sıcaklığı $70$ °C olan bir metal bilye, ısıca yalıtılmış bir kaptaki $20$ °C'lik suya atılıyor ve ısıl denge kuruluncaya kadar bekleniyor.\n\nI. Bilyenin ve suyun son sıcaklıkları eşittir.\nII. Bilyenin verdiği ısı, suyun aldığı ısıya eşittir.\nIII. Bilyenin sıcaklık değişimi, suyun sıcaklık değişimine eşittir.\n\nYargılarından hangileri kesinlikle doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "I ve III"
+       ],
+       "answer": 3,
+       "narration": "Isı eşit, sıcaklık değişimi değil.",
+       "steps": [
+        {
+         "text": "Dengede sıcaklıklar eşit → I doğru; yalıtılmış kapta verilen ısı = alınan ısı → II doğru.",
+         "narration": "Isıl dengede iki cismin sıcaklığı eşittir: birinci doğru. Kap yalıtılmış, ısı dışarı kaçmıyor: bilyenin verdiği ısı suyun aldığına eşit. İkinci doğru."
+        },
+        {
+         "text": "$Q = m c \\Delta T$: kütle ve öz ısı farklı → $\\Delta T$ eşit olmak zorunda değil. Cevap **D**.",
+         "narration": "Ama sıcaklık değişimleri eşit olmak zorunda değil: aynı ısı, kütlesi ve öz ısısı farklı maddelerde farklı sıcaklık değişimi yaratır. Üçüncü kesin değil. Cevabımız D. E'yi seçen, eşit ısının eşit sıcaklık değişimi demek olduğunu sanmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2024-2025 ısıl denge sorularının fikri bilye-su örneğiyle ve öncüllerle yeniden kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ISI_02",
+    "title": "Termometreler",
+    "narration": "Sıcaklık, bir maddenin sıcaklıkla düzenli değişen özelliğinden yararlanarak ölçülür: cıvanın ya da alkolün genleşmesi gibi.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Üç ölçek",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Ölçek",
+        "Su donar",
+        "Su kaynar",
+        "Aralık"
+       ],
+       "rows": [
+        [
+         "Celsius (°C)",
+         "0",
+         "100",
+         "100"
+        ],
+        [
+         "Fahrenheit (°F)",
+         "32",
+         "212",
+         "180"
+        ],
+        [
+         "Kelvin (K)",
+         "273",
+         "373",
+         "100"
+        ]
+       ]
+      },
+      "caption": "$\\frac{C}{100} = \\frac{F - 32}{180} = \\frac{K - 273}{100}$; kısaca $K = C + 273$, $F = 1{,}8 C + 32$.",
+      "narration": "Termometreler suyun donma ve kaynama noktalarına göre derecelenir.",
+      "beats": [
+       {
+        "narration": "Celsius ölçeğinde su sıfırda donar, yüzde kaynar; arada yüz bölme var. Kelvin'de aynı aralık iki yüz yetmiş üçten üç yüz yetmiş üçe; bölmeler Celsius'unkiyle aynı büyüklükte, yalnız iki yüz yetmiş üç kaymış.",
+        "focus": [
+         "r1",
+         "r3"
+        ]
+       },
+       {
+        "narration": "Fahrenheit'ta su otuz ikide donar, iki yüz on ikide kaynar: aralık yüz seksen bölme. Herhangi bir ölçeğe çevirmek için orantı kurarsın: okunan değer eksi donma noktası, bölü aralık, bütün ölçeklerde aynıdır.",
+        "focus": [
+         "r2"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$25$ °C sıcaklık, Kelvin ve Fahrenheit ölçeklerinde sırasıyla kaçtır?",
+       "options": [
+        "$298$ K ve $77$ °F",
+        "$298$ K ve $45$ °F",
+        "$248$ K ve $77$ °F",
+        "$25$ K ve $57$ °F",
+        "$273$ K ve $77$ °F"
+       ],
+       "answer": 0,
+       "narration": "$K = C + 273$, $F = 1{,}8C + 32$.",
+       "steps": [
+        {
+         "text": "$K = 25 + 273 = 298$; $F = 1{,}8 \\cdot 25 + 32 = 77$. Cevap **A**.",
+         "narration": "Kelvin'e geçmek için iki yüz yetmiş üç ekle: iki yüz doksan sekiz. Fahrenheit için bir virgül sekiz ile çarp, otuz iki ekle: kırk beş artı otuz iki, yetmiş yedi. Cevabımız A. Kırk beşi seçen, otuz ikiyi eklemeyi unutmuştur.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; sıcaklık ölçekleri arası dönüşüm özgün değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Eşit bölmeli bir $X$ termometresi, deniz seviyesinde suyun donma noktasını $20$ °X, kaynama noktasını $220$ °X olarak gösteriyor. $15$ °C sıcaklık bu termometrede kaç °X'tir?",
+       "options": [
+        "$30$",
+        "$35$",
+        "$45$",
+        "$50$",
+        "$65$"
+       ],
+       "answer": 3,
+       "narration": "Orantı: (X − donma) / aralık.",
+       "steps": [
+        {
+         "text": "$\\frac{X - 20}{220 - 20} = \\frac{15}{100}$.",
+         "narration": "X ölçeğinde aralık iki yüz bölme, Celsius'ta yüz. Orantı: X eksi yirmi bölü iki yüz, on beş bölü yüze eşit."
+        },
+        {
+         "text": "$X - 20 = 30$ → $X = 50$ °X. Cevap **D**.",
+         "narration": "X eksi yirmi otuz, X elli. Her Celsius derecesi X'te iki bölme. Cevabımız D. Otuzu seçen, donma noktası olan yirmiyi eklemeyi unutmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2024 eşit bölmeli termometre sorusunun fikri özgün bir ölçekle yeniden kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ISI_03",
+    "subtopics": [
+     "FIZ_ISI_04"
+    ],
+    "title": "Öz ısı ve ısı sığası",
+    "narration": "Yaz günü kumsalda kum ayağını yakar, deniz serin kalır. İkisi de aynı güneşi alıyor.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Aynı ısı, farklı ısınma",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        10
+       ],
+       "y": [
+        0,
+        50
+       ],
+       "xLabel": "Q (kJ)",
+       "yLabel": "ΔT (°C)",
+       "curves": [
+        {
+         "expression": "5x",
+         "label": "kum (öz ısı küçük)"
+        },
+        {
+         "expression": "1.2x",
+         "label": "su (öz ısı büyük)"
+        }
+       ]
+      },
+      "caption": "$Q = m \\cdot c \\cdot \\Delta T$. Öz ısı $c$ maddeye özgüdür; ısı sığası $m \\cdot c$ kütleye de bağlıdır.",
+      "narration": "Bir maddenin bir gramının sıcaklığını bir derece artırmak için gereken ısıya öz ısı denir. Öz ısı ayırt edici bir özelliktir.",
+      "beats": [
+       {
+        "narration": "Eşit kütlede kum ve suya aynı ısıyı verelim. Kumun öz ısısı küçük: sıcaklığı hızla yükselir. Suyun öz ısısı büyük: yavaş ısınır, yavaş soğur. Kıyılarda iklimin ılıman olmasının nedeni bu.",
+        "focus": [
+         "c1",
+         "c2"
+        ]
+       },
+       {
+        "narration": "Isı sığası ise bir cismin tamamının sıcaklığını bir derece artırmak için gereken ısıdır: kütle çarpı öz ısı. Bir kova su ile denizin suyu aynı öz ısıya sahiptir ama denizin ısı sığası çok büyüktür."
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Sıcaklığı $20$ °C olan $200$ g su ısıtılarak $50$ °C'ye çıkarılıyor. Suya kaç kalori ısı verilmiştir? ($c_{su} = 1$ cal/g·°C)",
+       "options": [
+        "$3000$",
+        "$6000$",
+        "$9000$",
+        "$10\\,000$",
+        "$14\\,000$"
+       ],
+       "answer": 1,
+       "narration": "$Q = m c \\Delta T$.",
+       "steps": [
+        {
+         "text": "$Q = 200 \\cdot 1 \\cdot (50 - 20) = 6000$ cal. Cevap **B**.",
+         "narration": "Isı, kütle çarpı öz ısı çarpı sıcaklık değişimi: iki yüz çarpı bir çarpı otuz, altı bin kalori. Cevabımız B. On bini seçen, son sıcaklığı sıcaklık değişimi sanmıştır; on dört bini seçen, iki sıcaklığı toplamıştır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; Q = m·c·ΔT özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aynı sürahiden, oda sıcaklığında $200$ g ve $500$ g su iki ayrı bardağa konuyor.\n\nI. İki bardaktaki suyun öz ısısı eşittir.\nII. $500$ g suyun ısı sığası daha büyüktür.\nIII. İkisine eşit miktarda ısı verilirse $200$ g suyun sıcaklığı daha çok artar.\n\nYargılarından hangileri doğrudur? (Bardakların ısı sığası ihmal ediliyor.)",
+       "options": [
+        "Yalnız I",
+        "I ve II",
+        "I ve III",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 4,
+       "narration": "Öz ısı maddeye, ısı sığası kütleye bağlı.",
+       "steps": [
+        {
+         "text": "Aynı madde → öz ısı eşit (I). Isı sığası $m c$: büyük kütle → büyük (II).",
+         "narration": "İkisi de aynı su: öz ısı maddeye özgü olduğu için eşit, birinci doğru. Isı sığası kütle çarpı öz ısı: beş yüz gram suyunki büyük, ikinci doğru."
+        },
+        {
+         "text": "$\\Delta T = \\frac{Q}{m c}$: küçük kütlede büyük artış (III). Cevap **E**.",
+         "narration": "Eşit ısı verilince sıcaklık değişimi, ısı bölü ısı sığası: ısı sığası küçük olan iki yüz gram su daha çok ısınır. Üçü de doğru, cevabımız E. Birinciyi yanlış sayan, öz ısıyı kütleye bağlamıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin meyve suyu ve deniz suyu sorularındaki öz ısı-ısı sığası ayrımı farklı bir durumla yeniden kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ISI_05",
+    "title": "Hâl değişimi",
+    "narration": "Buz eriyip su, su kaynayıp buhar olurken maddeye ısı verilmeye devam eder ama termometre bir süre kıpırdamaz.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Isınma eğrisi",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        80
+       ],
+       "y": [
+        -30,
+        130
+       ],
+       "xLabel": "Q (kcal)",
+       "yLabel": "T (°C)",
+       "series": {
+        "kind": "line",
+        "values": [
+         {
+          "x": 0,
+          "y": -20
+         },
+         {
+          "x": 1.0,
+          "y": 0
+         },
+         {
+          "x": 9.0,
+          "y": 0
+         },
+         {
+          "x": 19.0,
+          "y": 100
+         },
+         {
+          "x": 73.0,
+          "y": 100
+         },
+         {
+          "x": 74.0,
+          "y": 120
+         }
+        ]
+       },
+       "points": [
+        {
+         "x": 5,
+         "y": 0,
+         "label": "erime (T sabit)"
+        },
+        {
+         "x": 46,
+         "y": 100,
+         "label": "kaynama (T sabit)"
+        }
+       ]
+      },
+      "caption": "Hâl değişimi sırasında **sıcaklık sabittir**; verilen ısı $Q = m \\cdot L$ (L: erime ya da buharlaşma ısısı) tanecikleri birbirinden ayırmaya harcanır.",
+      "narration": "Eksi yirmi derecedeki yüz gram buza sürekli ısı verelim.",
+      "beats": [
+       {
+        "narration": "Önce buzun sıcaklığı sıfıra çıkar. Sonra eğri yataylaşır: buz erirken sıcaklık sıfırda sabit kalır. Verilen sekiz kilokalori, buzu suya çevirmeye gider: kütle çarpı erime ısısı.",
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "Su yüz dereceye ısınır ve kaynarken sıcaklık yine sabit kalır. Buharlaşma ısısı büyük olduğu için bu yatay parça en uzunudur. Saf maddelerin erime ve kaynama sıcaklıkları ayırt edicidir; kaynama sıcaklığı dış basınçla değişir.",
+        "focus": [
+         "p2"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Tanecikler ne yapıyor?",
+      "visual": {
+       "kind": "process",
+       "process": "phasechange"
+      },
+      "narration": "Aynı ısınmayı bir de taneciklerin gözünden izleyelim.",
+      "beats": [
+       {
+        "narration": "Buz ısınırken tanecikler yerlerinden ayrılmaz, yalnızca daha hızlı titreşir; sıcaklık yükselir.",
+        "stage": 0,
+        "focus": [
+         "kati"
+        ]
+       },
+       {
+        "narration": "Sıfır derecede tanecikler düzenli dizilişinden kopmaya başlar. Verilen ısı tanecikleri ayırmaya gider, bu yüzden sıcaklık değişmez.",
+        "stage": 1,
+        "focus": [
+         "sicaklik"
+        ]
+       },
+       {
+        "narration": "Su ısınırken tanecikler birbirinin üzerinden kayarak daha hızlı hareket eder; sıcaklık yeniden yükselir.",
+        "stage": 2,
+        "focus": [
+         "sivi"
+        ]
+       },
+       {
+        "narration": "Yüz derecede tanecikler sıvıdan kopup gaza geçer. Bu çok ısı ister; eğrinin en uzun yatay parçası budur.",
+        "stage": 3,
+        "focus": [
+         "sicaklik"
+        ]
+       },
+       {
+        "narration": "Buhar ısınırken tanecikler serbestçe ve çok hızlı hareket eder. Hâl değişirken sıcaklık sabit kalır, hâl değişmezken sıcaklık artar.",
+        "stage": 4,
+        "focus": [
+         "gaz"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Sıcaklığı $0$ °C olan $100$ g buzun tamamını $0$ °C'de suya dönüştürmek için kaç kalori ısı gerekir? ($L_{erime} = 80 \\text{ cal/g}$)",
+       "options": [
+        "$80$",
+        "$800$",
+        "$4000$",
+        "$8000$",
+        "$18\\,000$"
+       ],
+       "answer": 3,
+       "narration": "Sıcaklık değişmiyor: $Q = m L$.",
+       "steps": [
+        {
+         "text": "Hâl değişimi: $Q = m L = 100 \\cdot 80 = 8000$ cal. Cevap **D**.",
+         "narration": "Buz sıfır derecede eriyor, sıcaklık değişmiyor; bu yüzden m c delta T değil, m çarpı L kullanılır: yüz çarpı seksen, sekiz bin kalori. Cevabımız D. On sekiz bini seçen, suyu yüz dereceye kadar ısıtmayı da eklemiştir; soru yalnız erimeyi soruyor.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; erime ısısı özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ISI_06",
+    "title": "Isı iletim yolları",
+    "narration": "Isı bir yerden bir yere üç yolla gider.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "İletim, konveksiyon, ışıma",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "İletim",
+         "items": [
+          "Tanecikten taneciğe, **temasla**",
+          "En çok katılarda",
+          "metal kaşığın ısınması"
+         ]
+        },
+        {
+         "title": "Konveksiyon",
+         "items": [
+          "Akışkan **taşınarak**",
+          "Sıvı ve gazlarda",
+          "kalorifer, deniz meltemi"
+         ]
+        },
+        {
+         "title": "Işıma",
+         "items": [
+          "Elektromanyetik dalga",
+          "**Boşlukta da** yayılır",
+          "Güneş'in ısısı, soba karşısı"
+         ]
+        }
+       ]
+      },
+      "caption": "Metaller ısıyı iyi iletir; tahta, plastik, hava **yalıtkandır**. Aynı sıcaklıktaki metal, eli daha çabuk soğuttuğu için daha soğuk hissedilir.",
+      "narration": "İletim, ısının tanecikten taneciğe temasla geçmesidir: çaydaki metal kaşığın sapı ısınır.",
+      "beats": [
+       {
+        "narration": "Konveksiyonda ısınan akışkan yer değiştirir: kaloriferin ısıttığı hava yükselir, soğuk hava aşağı iner ve oda dolaşarak ısınır. Deniz meltemi de böyle oluşur.",
+        "focus": [
+         "c2"
+        ]
+       },
+       {
+        "narration": "Işıma madde gerektirmez: Güneş'in ısısı uzayın boşluğunu aşarak bize ulaşır. Isıyı iyi ileten maddeler iletken, kötü iletenler yalıtkandır; çift camlı pencerelerin arasındaki hava ısı kaybını azaltır.",
+        "focus": [
+         "c3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Isının üç yolu",
+      "visual": {
+       "kind": "process",
+       "process": "heattransfer",
+       "stages": [
+        "iletim",
+        "konveksiyon",
+        "isima"
+       ]
+      },
+      "narration": "Isının üç yolunu deneylerle izleyelim.",
+      "beats": [
+       {
+        "narration": "Metal çubuğun bir ucunu ısıtalım. Isı tanecikten taneciğe geçtikçe çubuğa yapıştırdığımız mumlar, aleve en yakın olandan başlayarak sırayla düşer.",
+        "stage": 0,
+        "focus": [
+         "iletim"
+        ]
+       },
+       {
+        "narration": "Tenceredeki su alttan ısınınca genleşir, hafifler ve yükselir; üstte soğuyan su yanlardan iner. Su dönerek ısıyı taşır.",
+        "stage": 1,
+        "focus": [
+         "konveksiyon"
+        ]
+       },
+       {
+        "narration": "Güneş ile Dünya arasındaki boşlukta ısıyı taşıyacak tanecik yoktur; ısı bize ışıma ile ulaşır.",
+        "stage": 2,
+        "focus": [
+         "isima"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "I. Ocaktaki çaydanlığın metal sapının ısınması\nII. Kalorifer peteğinin odadaki havayı ısıtması\nIII. Güneş ışınlarının yüzümüzü ısıtması\n\nOlaylarındaki ısı aktarım yolları sırasıyla hangileridir?",
+       "options": [
+        "konveksiyon – iletim – ışıma",
+        "iletim – konveksiyon – ışıma",
+        "iletim – ışıma – konveksiyon",
+        "ışıma – konveksiyon – iletim",
+        "iletim – iletim – ışıma"
+       ],
+       "answer": 1,
+       "narration": "Temas, taşınma, boşluk.",
+       "steps": [
+        {
+         "text": "I: metalde tanecikten taneciğe → **iletim**. II: ısınan hava yükselip dolaşır → **konveksiyon**. III: boşlukta → **ışıma**. Cevap **B**.",
+         "narration": "Çaydanlığın sapı, metalin tanecikleri arasında temasla ısınır: iletim. Petek havayı ısıtır, ısınan hava yükselip odayı dolaşır: konveksiyon. Güneş'ten gelen ısı boşluktan geçer: ışıma. Cevabımız B. E'yi seçen, peteğin havaya değdiğini düşünüp iletim demiştir; odayı ısıtan, havanın dolaşmasıdır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2022 ışıma sorusunun fikri üç olayın eşleştirilmesiyle özgün olarak kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kış günü dışarıda uzun süre kalmış metal ve tahta iki bankın sıcaklıkları eşittir. Ancak metal banka oturan kişi onu daha soğuk hisseder. Bunun nedeni aşağıdakilerden hangisidir?",
+       "options": [
+        "Metal bankın sıcaklığı tahtanınkinden düşüktür.",
+        "Tahtanın ısı iletim katsayısı metalinkinden büyüktür.",
+        "Metalin öz ısısı tahtanınkinden büyüktür.",
+        "Tahta, oturan kişiye ısı verir.",
+        "Metal, vücuttan ısıyı daha hızlı iletir."
+       ],
+       "answer": 4,
+       "narration": "Sıcaklık değil, iletim hızı.",
+       "steps": [
+        {
+         "text": "Sıcaklıklar eşit; metalin ısı iletim katsayısı büyük → vücudun ısısını hızla çeker. Cevap **E**.",
+         "narration": "İki bankın sıcaklığı aynı. Ama metal ısıyı çok iyi iletir: vücuttan ısıyı hızla alıp uzaklaştırır, deri hızla soğur ve biz bunu soğukluk olarak hissederiz. Tahta yalıtkandır, ısıyı yavaş çeker. Cevabımız E. A'yı seçen, hissettiğimizin sıcaklık olduğunu sanmıştır; hissettiğimiz, ısı kaybının hızıdır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2021 metal plaka sorusundaki ısı iletim katsayısı fikri banklarla özgün olarak kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ISI_07",
+    "title": "Genleşme",
+    "narration": "Isınan madde genleşir, soğuyan büzülür: tanecikler ısınınca daha çok titreşir ve birbirinden uzaklaşır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Isınan uzar",
+      "items": [
+       "Boyca uzama: $\\Delta L = L_0 \\cdot \\lambda \\cdot \\Delta T$ ($\\lambda$: genleşme katsayısı, ayırt edici).",
+       "Gazlar sıvılardan, sıvılar katılardan **daha çok** genleşir.",
+       "Köprü ve raylarda **genleşme aralığı**; yazın teller **sarkar**.",
+       "Bimetal şerit: farklı genleşen iki metal ısınınca **bükülür** (termostat).",
+       "Su $4$ °C'de **en küçük hacimde**: göller dipten değil **yüzeyden** donar."
+      ],
+      "narration": "Bir çubuğun uzama miktarı ilk boyuna, genleşme katsayısına ve sıcaklık değişimine bağlıdır. Genleşme katsayısı maddeye özgüdür. Gazlar sıvılardan, sıvılar katılardan daha çok genleşir. Köprülerde ve raylarda genleşme aralığı bırakılır, elektrik telleri yazın sarkar. Farklı genleşen iki metal şerit yapıştırılırsa ısınınca bükülür; termostatlar bu bimetal şeritle çalışır. Su ise ilginçtir: sıfırla dört derece arasında ısınınca hacmi küçülür, en küçük hacmine dört derecede ulaşır. Bu yüzden göller yüzeyden donar, dipteki su dört derecede kalır ve canlılar yaşar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "I. Yaz aylarında elektrik direkleri arasındaki tellerin sarkması\nII. Bir termostattaki bimetal şeridin ısınınca bükülmesi\nIII. Güneşe asılan ıslak çamaşırın kuruması\n\nOlaylarından hangileri maddelerin genleşmesiyle açıklanır?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "narration": "Biri buharlaşma.",
+       "steps": [
+        {
+         "text": "I: tel ısınıp uzar. II: iki metal farklı genleşip bükülür. III: su **buharlaşır**, genleşme değil. Cevap **C**.",
+         "narration": "Yazın tel ısınıp uzar ve sarkar: genleşme. Bimetal şeritte iki metal farklı uzar ve şerit bükülür: genleşme. Çamaşırın kuruması ise suyun buharlaşmasıdır, bir hâl değişimi. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2023 genleşme sorusunun fikri bir hâl değişimi çeldiricisiyle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$K$ çubuğunun boyu $L$, genleşme katsayısı $\\lambda$; $L$ çubuğunun boyu $2L$, katsayısı $\\frac{\\lambda}{2}$; $M$ çubuğunun boyu $2L$, katsayısı $2\\lambda$'dır. Üçünün sıcaklığı eşit miktarda artırılırsa boylarındaki uzamalar $\\Delta L_K$, $\\Delta L_L$ ve $\\Delta L_M$ arasındaki ilişki nedir?",
+       "options": [
+        "$\\Delta L_K = \\Delta L_L = \\Delta L_M$",
+        "$\\Delta L_M > \\Delta L_K = \\Delta L_L$",
+        "$\\Delta L_L > \\Delta L_K > \\Delta L_M$",
+        "$\\Delta L_K > \\Delta L_L = \\Delta L_M$",
+        "$\\Delta L_M > \\Delta L_L > \\Delta L_K$"
+       ],
+       "answer": 1,
+       "narration": "$\\Delta L = L_0 \\lambda \\Delta T$.",
+       "steps": [
+        {
+         "text": "$\\Delta L_K = L \\lambda \\Delta T$; $\\Delta L_L = 2L \\cdot \\frac{\\lambda}{2} \\Delta T = L \\lambda \\Delta T$.",
+         "narration": "K'nin uzaması L lamda delta T. L'ninki iki L çarpı lamda bölü iki: yine L lamda delta T. İkisi eşit."
+        },
+        {
+         "text": "$\\Delta L_M = 2L \\cdot 2\\lambda \\Delta T = 4 L \\lambda \\Delta T$. Cevap **B**.",
+         "narration": "M'ninki iki L çarpı iki lamda: dört katı. M en çok uzar, K ile L eşit. Cevabımız B. E'yi seçen, yalnız boylara bakıp L'yi K'den büyük saymıştır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; boyca uzama bağıntısı üç çubukla özgün olarak soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Sıcaklık ortalama kinetik enerji; ısı sıcaktan soğuğa **aktarılan** enerji.",
+    "$K = C + 273$, $F = 1{,}8C + 32$; eşit bölmeli ölçeklerde orantı kur.",
+    "$Q = m c \\Delta T$; öz ısı maddeye, ısı sığası ($mc$) kütleye de bağlı.",
+    "Hâl değişiminde sıcaklık sabit, $Q = m L$.",
+    "İletim (temas), konveksiyon (akışkan taşınması), ışıma (boşlukta da); $\\Delta L = L_0 \\lambda \\Delta T$."
+   ],
+   "warnings": [
+    "Eşit ısı, eşit **sıcaklık değişimi** demek değildir.",
+    "Metal daha soğuk değildir; ısıyı **daha hızlı** iletir.",
+    "Su $4$ °C'de en küçük hacimde: göller **yüzeyden** donar."
+   ],
+   "narration": "Hadi toparlayalım. Sıcaklık ölçülür, ısı aktarılır ve her zaman sıcaktan soğuğa akar; sıcaklıklar eşitlenince ısıl denge kurulur. Kelvin, Celsius artı iki yüz yetmiş üçtür. Isı, kütle çarpı öz ısı çarpı sıcaklık değişimidir; hâl değişirken sıcaklık sabit kalır ve ısı m çarpı L'dir. Isı iletim, konveksiyon ve ışımayla yayılır; ışıma boşlukta da olur. Isınan madde genleşir; su ise dört derecede en küçük hacmindedir."
+  }
+ }
+}

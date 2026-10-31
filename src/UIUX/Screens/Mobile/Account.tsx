@@ -87,7 +87,7 @@ export const ProfileMoreScreen: React.FC = () => {
 			<Content gap={12}>
 				<Text role="over">{t('Güvenlik', 'Security')}</Text>
 				<List>
-					<MenuRow icon="shield" title={t('Hesap güvenliği', 'Account security')} sub={t('Parola, oturumlar', 'Password, sessions')} />
+					<MenuRow icon="shield" title={t('Hesap güvenliği', 'Account security')} sub={t('Şifre, oturumlar', 'Password, sessions')} />
 					<MenuRow icon="mail" title={t('İletişim tercihleri', 'Communication')} sub={t('E-posta ve SMS izinleri', 'E-mail and SMS consent')} />
 				</List>
 				<Text role="over">{t('Yardım', 'Help')}</Text>
@@ -108,12 +108,13 @@ export const ProfileMoreScreen: React.FC = () => {
 
 export const ProfileDetailsScreen: React.FC = () => {
 	const t = useT();
+	const colors = useColors();
 	return (
 		<ProfileFrame back title={t('Kişisel bilgiler', 'Personal details')} noTabBar bottom={<BottomBar><Button size="lg" block>{t('Kaydet', 'Save')}</Button></BottomBar>}>
 			<Content tabBar={false} gap={12}>
 				<Stack align="center" gap={8} style={{padding: '6px 0'}}>
 					<Avatar size={84} />
-					<Text role="small" weight={700} color="#EA580C">
+					<Text role="small" weight={700} color={colors.brandDeep}>
 						{t('Fotoğrafı değiştir', 'Change photo')}
 					</Text>
 				</Stack>
@@ -225,8 +226,8 @@ export const PackagesScreen: React.FC = () => {
 				</Stack>
 				<Segmented items={[t('Aylık', 'Monthly'), t('Yıllık · 2 ay hediye', 'Yearly · 2 months free')]} active={1} />
 				{plans.map(([name, price, sub, tag, on]) => (
-					<Stack key={name} row gap={12} style={{padding: 16, borderRadius: 20, background: on ? colors.brandWash : colors.card, border: `1.5px solid ${on ? colors.brand : colors.line}`}}>
-						<div style={{width: 22, height: 22, borderRadius: 11, border: on ? `7px solid ${colors.brand}` : `2px solid ${colors.line}`, boxSizing: 'border-box'}} />
+					<Stack key={name} row gap={12} style={{padding: 16, borderRadius: 20, background: colors.card, border: `${on ? 2 : 1.5}px solid ${on ? colors.ink : colors.line}`}}>
+						<div style={{width: 22, height: 22, borderRadius: 11, border: on ? `7px solid ${colors.ink}` : `2px solid ${colors.line}`, boxSizing: 'border-box'}} />
 						<Stack grow gap={2}>
 							<Stack row gap={8}>
 								<Text role="headline">{name}</Text>
@@ -271,12 +272,12 @@ export const AppearanceScreen: React.FC = () => {
 				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10}}>
 					{[[t('Açık', 'Light'), '#F7F7F8', '#FFFFFF', false], [t('Koyu', 'Dark'), '#0F1115', '#17191E', false], [t('Sistem', 'System'), 'linear-gradient(90deg, #F7F7F8 50%, #0F1115 50%)', '#FFFFFF', true]].map(([label, bg, card, on]) => (
 						<Stack key={label as string} gap={8} align="center">
-							<div style={{width: '100%', height: 150, borderRadius: 18, background: bg as string, border: `2px solid ${on ? colors.brand : colors.line}`, padding: 10, boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 6}}>
+							<div style={{width: '100%', height: 150, borderRadius: 18, background: bg as string, border: `2px solid ${on ? colors.ink : colors.line}`, padding: 10, boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 6}}>
 								<div style={{height: 34, borderRadius: 8, background: 'linear-gradient(135deg, #EA580C, #F59E0B)'}} />
 								<div style={{height: 18, borderRadius: 6, background: card as string, opacity: 0.9}} />
 								<div style={{height: 18, borderRadius: 6, background: card as string, opacity: 0.9}} />
 							</div>
-							<Text role="headline" size={14} color={on ? colors.brand : colors.ink}>
+							<Text role="headline" size={14} color={colors.ink}>
 								{label as string}
 							</Text>
 						</Stack>
@@ -301,7 +302,7 @@ export const LanguageScreen: React.FC = () => {
 			<Content tabBar={false} gap={12}>
 				<List>
 					{langs.map(([name, code, on]) => (
-						<ListRow key={name} title={name} subtitle={code} chevron={false} trailing={<div style={{width: 22, height: 22, borderRadius: 11, border: on ? `7px solid ${colors.brand}` : `2px solid ${colors.line}`, boxSizing: 'border-box'}} />} />
+						<ListRow key={name} title={name} subtitle={code} chevron={false} trailing={<div style={{width: 22, height: 22, borderRadius: 11, border: on ? `7px solid ${colors.ink}` : `2px solid ${colors.line}`, boxSizing: 'border-box'}} />} />
 					))}
 				</List>
 				<Card tone="soft" padding={14}>
@@ -346,7 +347,7 @@ export const SecurityScreen: React.FC = () => {
 		<ProfileFrame back title={t('Hesap güvenliği', 'Account security')} noTabBar>
 			<Content tabBar={false} gap={12}>
 				<List>
-					<ListRow icon="lock" plainIcon title={t('Parolayı değiştir', 'Change password')} subtitle={t('Son değişiklik 3 ay önce', 'Changed 3 months ago')} />
+					<ListRow icon="lock" plainIcon title={t('Şifreni belirle ya da değiştir', 'Set or change password')} subtitle={t('Son değişiklik 3 ay önce', 'Changed 3 months ago')} />
 					<ListRow icon="mail" plainIcon title={t('E-posta ile kodla giriş', 'Sign in with e-mail code')} trailing={<Toggle on />} chevron={false} />
 					<ListRow icon="apple" plainIcon title={t('Apple hesabı', 'Apple account')} subtitle={t('Bağlı', 'Connected')} />
 					<ListRow icon="google" plainIcon title={t('Google hesabı', 'Google account')} subtitle={t('Bağla', 'Connect')} />
@@ -401,7 +402,7 @@ export const NotificationsScreen: React.FC = () => {
 	];
 	return (
 		<Phone>
-			<AppHeader left="back" title={t('Bildirimler', 'Notifications')} right={<Text role="small" weight={700} color={colors.brand}>{t('Okundu', 'Read')}</Text>} />
+			<AppHeader left="back" title={t('Bildirimler', 'Notifications')} right={<Text role="small" weight={700} color={colors.brandDeep}>{t('Okundu', 'Read')}</Text>} />
 			<Content tabBar={false} gap={10}>
 				<Segmented items={[t('Tümü', 'All'), t('Okunmamış · 3', 'Unread · 3')]} />
 				<List>
@@ -508,7 +509,7 @@ export const SupportTicketScreen: React.FC = () => {
 					<Chip>{t('Ödeme · #4821', 'Payment · #4821')}</Chip>
 				</Stack>
 				<Stack align="flex-end">
-					<div style={{maxWidth: 280, padding: '12px 14px', borderRadius: '20px 20px 6px 20px', background: colors.brand}}>
+					<div style={{maxWidth: 280, padding: '12px 14px', borderRadius: '20px 20px 6px 20px', background: colors.action}}>
 						<Text role="body" color="#FFFFFF">
 							{t('12 Ekim’de kartımdan iki kez ₺299 çekildi.', 'I was charged ₺299 twice on 12 Oct.')}
 						</Text>

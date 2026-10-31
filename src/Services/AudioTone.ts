@@ -12,7 +12,7 @@ export type ToneFilter = {type: 'highpass'; frequency: number; q?: number} | {ty
 
 type Coefficients = {b0: number; b1: number; b2: number; a1: number; a2: number};
 
-export const biquad = (filter: ToneFilter, sampleRate: number): Coefficients => {
+const biquad = (filter: ToneFilter, sampleRate: number): Coefficients => {
 	const w0 = (2 * Math.PI * filter.frequency) / sampleRate;
 	const cos = Math.cos(w0);
 	const sin = Math.sin(w0);

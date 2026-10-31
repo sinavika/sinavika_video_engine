@@ -30,7 +30,7 @@ export const SmartSummaryHomeScreen: React.FC = () => {
 	);
 };
 
-export type SmartSummaryAnalysis = {question: string; steps: string[]; outcome: string; mistake: string};
+type SmartSummaryAnalysis = {question: string; steps: string[]; outcome: string; mistake: string};
 
 const SAMPLE_ANALYSIS: Record<AppLanguage, SmartSummaryAnalysis> = {
 	tr: {

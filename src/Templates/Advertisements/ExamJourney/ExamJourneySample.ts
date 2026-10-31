@@ -28,5 +28,4 @@ export const EXAM_JOURNEY_SAMPLE: z.input<typeof ExamJourneySchema> = {
 		narration: 'Hangi derste eksiğin var, hemen fark et.',
 	},
 	product: {screen: 'ExamHome', headline: 'Hepsi tek uygulamada.', narration: 'Hepsi tek uygulamada.'},
-	closing: {callToAction: 'Sınavika’yı keşfet', narration: 'Sınavika’yı keşfet.'},
 };

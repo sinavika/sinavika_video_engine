@@ -17,7 +17,7 @@ export const AppModeProvider: React.FC<{mode: AppMode; children: React.ReactNode
 export const useAppColors = (): AppColors => APP_PALETTES[useContext(AppModeContext)];
 
 /** The app's languages (its tr-TR and en-US catalogues). */
-export const APP_LANGUAGES = ['tr', 'en'] as const;
+const APP_LANGUAGES = ['tr', 'en'] as const;
 export type AppLanguage = (typeof APP_LANGUAGES)[number];
 const AppLanguageContext = createContext<AppLanguage>('tr');
 

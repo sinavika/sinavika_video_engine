@@ -1,0 +1,2227 @@
+{
+ "topic": {
+  "id": "E8471A18-79A8-574F-B397-67CEF176E543",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_EK_CIZIM"
+ },
+ "title": "Ek Çizimler",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "YKS/TYT/Sorular/GEO/GEO_EK_CIZIM.jsonl (havuz: paralel çizme 111, dikme 1, simetri 1 soru; yalnız yapı örneği)",
+  "Bu konu için MEB konu anlatımı ve ÖSYM çıkmış sorusu eşlenmemiş; paralel doğrularda açılar ve iç açılar toplamı MEB Temel Matematik (GEO_DOGRU_ACI, GEO_UCGEN_ACI eşlemesi) temel alındı",
+  "Bütün şekiller verilen ölçülerle koordinatta çizildi; sorular özgündür"
+ ],
+ "works": {
+  "additions": [
+   "Hangi soruda hangi ek çizimin yapılacağını tabloyla ver: paraleller arası kırık çizgi → paralel; 30°, 45°, 60°, 120°, 135° açılı uzunluk sorusu → dikme; kenarortay → iki katına uzatma; ikizkenar → tabana dikme; açıortay → kollara dikme.",
+   "15°, 75° ve 105° açılı üçgenlerde özel üçgen oluşturma örnekleri ekle (75° köşeden 30° ayırma, 15–75–90 üçgeninde hipotenüse inen yükseklik).",
+   "Kenarortay uzatarak paralelkenara tamamlama ve orta noktaları birleştirip orta taban çizme tekniklerini örnekle."
+  ]
+ },
+ "short": {
+  "hook": "Tek çizgi soruyu çözer",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Köşeden **paralel** çiz."
+   },
+   {
+    "kind": "fact",
+    "text": "Uzunlukta **dikme** indir."
+   },
+   {
+    "kind": "warning",
+    "text": "En kısa yol: **simetri**."
+   }
+  ],
+  "summary": [
+   "Paralel, dikme, uzatma",
+   "Simetriyle en kısa yol"
+  ],
+  "rounds": [
+   {
+    "sentence": "Paraleller arası köşe",
+    "question": "Ne çizilir?",
+    "choices": [
+     "Paralel",
+     "Dikme"
+    ],
+    "answer": 0,
+    "why": "Açılar **taşınır**."
+   },
+   {
+    "sentence": "İkizkenarda yükseklik",
+    "question": "Tabanı?",
+    "choices": [
+     "Ortalar",
+     "Böler 1:2"
+    ],
+    "answer": 0,
+    "why": "**Eş** dik üçgenler."
+   },
+   {
+    "sentence": "Doğruya değip B'ye",
+    "question": "En kısa yol?",
+    "choices": [
+     "B' ile düz",
+     "Dik iner"
+    ],
+    "answer": 0,
+    "why": "**Simetri** al."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-geometri-kampi",
+  "name": "TYT Geometri kampı",
+  "number": 4,
+  "total": 23,
+  "previous": "Açılar ve Üçgenler",
+  "next": "Özel Üçgenler",
+  "promise": "Geometri konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Beş ek çizimi (**paralel, dikme, uzatma, açı taşıma, simetri**) birer küçük şekille bir sayfaya çiz.",
+    "Bir kâğıda iki paralel ve kırık bir çizgi çiz; köşeden paralel geçirip **a + b** kuralını kendin göster.",
+    "Uygulamada Ek Çizimler testinden **20 soru** çöz; her soruda önce **hangi çizgiyi** çizeceğini yaz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Beş ek çizimi, paralel, dikme, uzatma, açı taşıma ve simetriyi, birer küçük şekille bir sayfaya çiz. Sonra bir kâğıda iki paralel ve kırık bir çizgi çiz; köşeden paralel geçirip a artı b kuralını kendin göster. En son uygulamada ek çizimler testinden yirmi soru çöz; her soruda önce hangi çizgiyi çizeceğini yaz. Bir sonraki derste özel üçgenlerle devam ediyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Tek çizgi, çözülen soru",
+   "narration": "Bazı geometri soruları ilk bakışta eksik görünür: bilgi yetmiyormuş gibi. Oysa çoğu zaman eksik olan tek bir çizgidir. Bir köşeden paralel, bir noktadan dikme, iki kenarın uzantısı ya da bir noktanın aynadaki görüntüsü. Bu derste beş ek çizimi, ne zaman hangisini çizeceğinle birlikte öğreneceğiz."
+  },
+  "objectives": [
+   "Paralel doğrular arasındaki kırık çizgide köşeden paralel çizerek açı bulmak",
+   "Dikme indirerek dik üçgen kurmak ve Pisagor ile uzunluk bulmak",
+   "Kenarları uzatarak yardımcı üçgen kurmak",
+   "Paralel çizerek açıları taşımak; simetriyle en kısa yolu bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_EK_CIZIM_01",
+    "title": "Paralel çizmek",
+    "narration": "İlk ek çizim en çok kullanılanı: kırık çizginin köşesinden bir paralel.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Köşeden bir paralel",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.7,
+        5.6,
+        4.7
+       ],
+       "points": [
+        {
+         "id": "L1",
+         "at": [
+          -0.6,
+          4
+         ],
+         "hidden": true
+        },
+        {
+         "id": "R1",
+         "at": [
+          5.2,
+          4
+         ],
+         "hidden": true
+        },
+        {
+         "id": "L2",
+         "at": [
+          -0.6,
+          0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "R2",
+         "at": [
+          5.2,
+          0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "L",
+         "at": [
+          -0.4,
+          2
+         ],
+         "hidden": true
+        },
+        {
+         "id": "R",
+         "at": [
+          5.0,
+          2
+         ],
+         "hidden": true
+        },
+        {
+         "id": "d1",
+         "at": [
+          5.2,
+          4
+         ],
+         "dot": false
+        },
+        {
+         "id": "d2",
+         "at": [
+          5.2,
+          0
+         ],
+         "dot": false
+        },
+        {
+         "id": "P",
+         "at": [
+          0,
+          4
+         ]
+        },
+        {
+         "id": "E",
+         "at": [
+          2.856,
+          2.0
+         ]
+        },
+        {
+         "id": "Q",
+         "at": [
+          1.178,
+          0.0
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "L1",
+         "to": "R1"
+        },
+        {
+         "from": "L2",
+         "to": "R2"
+        },
+        {
+         "from": "L",
+         "to": "R",
+         "dashed": true
+        },
+        {
+         "from": "P",
+         "to": "E"
+        },
+        {
+         "from": "E",
+         "to": "Q"
+        }
+       ],
+       "polygons": [],
+       "angles": [
+        {
+         "at": "P",
+         "from": "R1",
+         "to": "E",
+         "label": "a"
+        },
+        {
+         "at": "Q",
+         "from": "E",
+         "to": "R2",
+         "label": "b"
+        },
+        {
+         "at": "E",
+         "from": "L",
+         "to": "P",
+         "label": "a"
+        },
+        {
+         "at": "E",
+         "from": "Q",
+         "to": "L",
+         "label": "b"
+        }
+       ]
+      },
+      "caption": "$d_1 \\parallel d_2$ ise kırık çizginin köşesindeki açı $a + b$.",
+      "narration": "D bir ile d iki paralel. Aralarında P'den Q'ya, E köşesinde kırılan bir çizgi var. E'deki açıyı bulmak için E'den iki doğruya paralel bir yardımcı doğru çiziyoruz.",
+      "beats": [
+       {
+        "narration": "Yardımcı doğru ile d bir paralel; P E de onları kesen bir doğru. İç ters açılar eşit olduğu için P'deki a açısı, E'nin üst parçasına taşınır.",
+        "focus": [
+         "angle-P",
+         "LR",
+         "PE"
+        ]
+       },
+       {
+        "narration": "Aynı şekilde Q'daki b açısı da E'nin alt parçasına taşınır. E'deki açı a artı b. Kural: köşe hangi yöne bakıyorsa, o yöne bakan açıların toplamı karşı yöne bakanların toplamına eşittir.",
+        "focus": [
+         "angle-Q",
+         "LR",
+         "EQ"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $d_1 \\parallel d_2$'dir. Verilen açı ölçülerine göre $x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.8,
+         -0.6,
+         5.2,
+         5.6
+        ],
+        "points": [
+         {
+          "id": "L1",
+          "at": [
+           -1.2,
+           5
+          ],
+          "hidden": true
+         },
+         {
+          "id": "R1",
+          "at": [
+           4.4,
+           5
+          ],
+          "hidden": true
+         },
+         {
+          "id": "L2",
+          "at": [
+           -1.2,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "R2",
+          "at": [
+           4.4,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "d1",
+          "at": [
+           4.4,
+           5
+          ],
+          "dot": false
+         },
+         {
+          "id": "d2",
+          "at": [
+           4.4,
+           0
+          ],
+          "dot": false
+         },
+         {
+          "id": "P",
+          "at": [
+           0.6,
+           5
+          ]
+         },
+         {
+          "id": "E",
+          "at": [
+           2.507,
+           3.4
+          ]
+         },
+         {
+          "id": "F",
+          "at": [
+           -0.264,
+           1.8
+          ]
+         },
+         {
+          "id": "Q",
+          "at": [
+           1.246,
+           -0.0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "L1",
+          "to": "R1"
+         },
+         {
+          "from": "L2",
+          "to": "R2"
+         },
+         {
+          "from": "P",
+          "to": "E"
+         },
+         {
+          "from": "E",
+          "to": "F"
+         },
+         {
+          "from": "F",
+          "to": "Q"
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "P",
+          "from": "R1",
+          "to": "E",
+          "label": "40°"
+         },
+         {
+          "at": "E",
+          "from": "F",
+          "to": "P",
+          "label": "70°"
+         },
+         {
+          "at": "F",
+          "from": "E",
+          "to": "Q",
+          "label": "80°"
+         },
+         {
+          "at": "Q",
+          "from": "F",
+          "to": "L2",
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "40",
+        "50",
+        "60",
+        "70",
+        "110"
+       ],
+       "answer": 1,
+       "narration": "Kırık çizgide sağa bakan açılar toplamı, sola bakan açılar toplamına eşittir.",
+       "steps": [
+        {
+         "text": "Sağa bakanlar: $P$'de $40°$, $F$'de $80°$. Sola bakanlar: $E$'de $70°$, $Q$'da $x$.",
+         "narration": "Her köşeden bir paralel çizebilirdik, ama kural işi kısaltır. Sağa doğru açılan açılar P'deki kırk ve F'deki seksen; sola doğru açılanlar E'deki yetmiş ve Q'daki x."
+        },
+        {
+         "text": "$40 + 80 = 70 + x$ → $x = 50$. Cevap **B**.",
+         "narration": "Sağa bakanların toplamı sola bakanların toplamına eşit: kırk artı seksen, yetmiş artı x. Yüz yirmi eşittir yetmiş artı x; x elli. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; paralel doğrular arasında iki köşeli kırık çizgi, ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $d_1 \\parallel d_2$'dir. Verilen açı ölçülerine göre $x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -2.9,
+         -0.7,
+         3.4,
+         4.7
+        ],
+        "points": [
+         {
+          "id": "L1",
+          "at": [
+           -2.6,
+           4
+          ],
+          "hidden": true
+         },
+         {
+          "id": "R1",
+          "at": [
+           2.8,
+           4
+          ],
+          "hidden": true
+         },
+         {
+          "id": "L2",
+          "at": [
+           -2.6,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "R2",
+          "at": [
+           2.8,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "d1",
+          "at": [
+           2.8,
+           4
+          ],
+          "dot": false
+         },
+         {
+          "id": "d2",
+          "at": [
+           2.8,
+           0
+          ],
+          "dot": false
+         },
+         {
+          "id": "P",
+          "at": [
+           0,
+           4
+          ]
+         },
+         {
+          "id": "E",
+          "at": [
+           1.678,
+           2.0
+          ]
+         },
+         {
+          "id": "Q",
+          "at": [
+           0.523,
+           0.0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "L1",
+          "to": "R1"
+         },
+         {
+          "from": "L2",
+          "to": "R2"
+         },
+         {
+          "from": "P",
+          "to": "E"
+         },
+         {
+          "from": "E",
+          "to": "Q"
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "P",
+          "from": "E",
+          "to": "L1",
+          "label": "130°"
+         },
+         {
+          "at": "Q",
+          "from": "L2",
+          "to": "E",
+          "label": "120°"
+         },
+         {
+          "at": "E",
+          "from": "P",
+          "to": "Q",
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "50",
+        "70",
+        "100",
+        "110",
+        "130"
+       ],
+       "answer": 3,
+       "narration": "Açılar bu kez köşenin dışından ölçülmüş: üçü birlikte tam bir tur yapar.",
+       "steps": [
+        {
+         "text": "$E$'den paralel çiz: üst parça $180° - 130° = 50°$, alt parça $180° - 120° = 60°$.",
+         "narration": "E'den yine bir paralel çizelim. P'deki yüz otuzun bütünleri, elli derece, iç ters açı olarak E'nin üst parçasına gelir. Q'daki yüz yirminin bütünleri altmış, alt parçaya gelir."
+        },
+        {
+         "text": "$x = 50° + 60° = 110°$; kısa yol: $130 + 120 + x = 360$. Cevap **D**.",
+         "narration": "x elli artı altmış, yüz on derece. Kısa yol: köşe paralellerin dışına değil içine bakıyorsa üç açının toplamı üç yüz altmıştır; yüz otuz artı yüz yirmi artı x, üç yüz altmış. Cevabımız D. Yetmiş, verilen açıları doğrudan toplayıp yüz seksenden çıkaranın cevabı.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; paralel doğrularda açıların dışarıdan ölçüldüğü 360° durumu özgün sayılarla soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_EK_CIZIM_02",
+    "title": "Dikme indirmek",
+    "narration": "İkinci ek çizim dikme: uzunluk sorularında dik üçgen kurar.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Dikme, dik üçgen kurar",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.6,
+        -0.7,
+        6.6,
+        4.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          3,
+          4
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          6,
+          0
+         ]
+        },
+        {
+         "id": "H",
+         "at": [
+          3,
+          0
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "k"
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "k"
+        },
+        {
+         "from": "B",
+         "to": "H",
+         "label": "m"
+        },
+        {
+         "from": "H",
+         "to": "C",
+         "label": "m"
+        },
+        {
+         "from": "A",
+         "to": "H",
+         "label": "h",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "H",
+         "from": "C",
+         "to": "A",
+         "right": true
+        }
+       ]
+      },
+      "caption": "İkizkenarda tepeden inen dikme tabanı **ortalar**; iki dik üçgende **Pisagor** kullanılır.",
+      "narration": "Uzunluk sorulduğunda ilk düşüncen bir dik üçgen kurmak olsun. İkizkenar üçgende tepeden tabana bir dikme indirelim.",
+      "beats": [
+       {
+        "narration": "A H dikmesi tabanı iki eşit parçaya ayırır: B H ile H C eşittir. Üçgen, iki eş dik üçgene bölünür.",
+        "focus": [
+         "AH",
+         "BH",
+         "HC",
+         "angle-H"
+        ]
+       },
+       {
+        "narration": "Her dik üçgende Pisagor geçerli: hipotenüsün karesi, dik kenarların kareleri toplamına eşit. k kare, h kare artı m kare. Dik açı yoksa dikme indirerek kendin oluşturursun.",
+        "focus": [
+         "AB",
+         "AH",
+         "BH"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $|AB| = |AC| = 13$ cm ve $|BC| = 10$ cm'dir. $A$ köşesinden $[BC]$'ye indirilen dikmenin uzunluğu $h$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1,
+         -1.4,
+         11,
+         13.2
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           5,
+           12
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           10,
+           0
+          ]
+         },
+         {
+          "id": "H",
+          "at": [
+           5,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "13"
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "13"
+         },
+         {
+          "from": "B",
+          "to": "H",
+          "label": "5"
+         },
+         {
+          "from": "H",
+          "to": "C",
+          "label": "5"
+         },
+         {
+          "from": "A",
+          "to": "H",
+          "label": "h",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "H",
+          "from": "C",
+          "to": "A",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+       ],
+       "answer": 3,
+       "narration": "Dikme tabanı ortalar; bir dik üçgen yeter.",
+       "steps": [
+        {
+         "text": "$|BH| = |HC| = 5$ (ikizkenarda dikme tabanı ortalar).",
+         "narration": "Üçgen ikizkenar olduğu için A'dan inen dikme tabanı ortalar: B H ve H C beşer santimetre."
+        },
+        {
+         "text": "$ABH$ dik üçgeni: $h^2 = 13^2 - 5^2 = 169 - 25 = 144$ → $h = 12$. Cevap **D**.",
+         "narration": "A B H dik üçgeninde hipotenüs on üç: h kare, yüz altmış dokuz eksi yirmi beş, yüz kırk dört; h on iki. Beş, on iki, on üç üçgenini tanırsan hesap bile gerekmez. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ikizkenar üçgende dikme indirme ve 5-12-13 dik üçgeni özgün bir soruyla gösterildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ dörtgeninde $A$ ve $B$ açıları diktir; $|AD| = 4$, $|AB| = 8$ ve $|BC| = 10$ birimdir. Buna göre $|CD| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1,
+         -1.3,
+         11,
+         9.3
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           8
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           10,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           4,
+           8
+          ]
+         },
+         {
+          "id": "H",
+          "at": [
+           4,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "8"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "10"
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "label": "x"
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "label": "4"
+         },
+         {
+          "from": "D",
+          "to": "H",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "D",
+          "to": "B",
+          "right": true
+         },
+         {
+          "at": "B",
+          "from": "A",
+          "to": "C",
+          "right": true
+         },
+         {
+          "at": "H",
+          "from": "C",
+          "to": "D",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+       ],
+       "answer": 4,
+       "narration": "$D$'den $[BC]$'ye bir dikme indir.",
+       "steps": [
+        {
+         "text": "$D$'den dikme: $|DH| = |AB| = 8$, $|BH| = |AD| = 4$ → $|HC| = 10 - 4 = 6$.",
+         "narration": "D'den B C'ye bir dikme indirelim, ayağı H olsun. A B H D bir dikdörtgen: D H, A B'ye eşit, sekiz; B H, A D'ye eşit, dört. Öyleyse H C, on eksi dört, altı."
+        },
+        {
+         "text": "$DHC$ dik üçgeni: $x^2 = 8^2 + 6^2 = 100$ → $x = 10$. Cevap **E**.",
+         "narration": "D H C dik üçgeninde x kare, sekiz kare artı altı kare, yüz; x on. Altı, sekiz, on üçgeni, üç, dört, beşin iki katı. Cevabımız E.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dik yamukta dikme indirerek dik üçgen kurma özgün ölçülerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $A$'dan $BC$ doğrusuna indirilen dikmenin ayağı $H$, $[CB$ ışınının uzantısı üzerindedir. $|AH| = 8$, $|AC| = 17$ ve $|BC| = 9$ birim olduğuna göre $|AB|$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.2,
+         -1.4,
+         16.2,
+         9.2
+        ],
+        "points": [
+         {
+          "id": "H",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "A",
+          "at": [
+           0,
+           8
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           6,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           15,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "9"
+         },
+         {
+          "from": "C",
+          "to": "A",
+          "label": "17"
+         },
+         {
+          "from": "A",
+          "to": "H",
+          "label": "8",
+          "dashed": true
+         },
+         {
+          "from": "H",
+          "to": "B",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "H",
+          "from": "B",
+          "to": "A",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "8",
+        "9",
+        "10",
+        "12",
+        "13"
+       ],
+       "answer": 2,
+       "narration": "Geniş açılı üçgende dikme dışarı düşer: iki dik üçgen iç içe.",
+       "steps": [
+        {
+         "text": "$AHC$: $|HC|^2 = 17^2 - 8^2 = 289 - 64 = 225$ → $|HC| = 15$.",
+         "narration": "Büyük dik üçgen A H C: hipotenüs on yedi, bir dik kenar sekiz. H C kare, iki yüz seksen dokuz eksi altmış dört, iki yüz yirmi beş; H C on beş."
+        },
+        {
+         "text": "$|HB| = 15 - 9 = 6$; $AHB$: $|AB|^2 = 8^2 + 6^2 = 100$ → $|AB| = 10$. Cevap **C**.",
+         "narration": "H C on beş, B C dokuz; öyleyse H B altı. Küçük dik üçgen A H B'de A B kare, sekiz kare artı altı kare, yüz; A B on. Cevabımız C. Geniş açılı üçgende dikmenin ayağı üçgenin dışına düşer; H noktası B'nin ötesinde kalır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; geniş açılı üçgende uzantıya düşen dikme ve 8-15-17, 6-8-10 dik üçgenleri özgün ölçülerle birleştirildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_EK_CIZIM_03",
+    "title": "Uzatıp üçgen kurmak",
+    "narration": "Üçüncü ek çizim: kenarları uzatıp bir üçgen yakalamak.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "İki kenarı uzat",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        7.7,
+        10.233
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          1.405,
+          5.243
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          4.555,
+          5.243
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          7,
+          0
+         ]
+        },
+        {
+         "id": "E",
+         "at": [
+          2.554,
+          9.533
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "D"
+        },
+        {
+         "from": "D",
+         "to": "A"
+        },
+        {
+         "from": "B",
+         "to": "E",
+         "dashed": true
+        },
+        {
+         "from": "C",
+         "to": "E",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "D",
+         "to": "B",
+         "label": "75°"
+        },
+        {
+         "at": "D",
+         "from": "C",
+         "to": "A",
+         "label": "65°"
+        },
+        {
+         "at": "E",
+         "from": "A",
+         "to": "D",
+         "label": "40°"
+        }
+       ]
+      },
+      "caption": "Dörtgenin iki kenarı uzatılınca bir **üçgen** oluşur; bildiğin üçgen kuralları işe yarar.",
+      "narration": "Elinde bir dörtgen var ve bildiğin kurallar üçgen kuralları. Çözüm: A B ve D C kenarlarını uzat, E'de kesişsinler.",
+      "beats": [
+       {
+        "narration": "Artık bir A E D üçgeni var. A yetmiş beş, D altmış beş ise E, yüz seksen eksi yüz kırk, kırk derece.",
+        "focus": [
+         "angle-A",
+         "angle-D",
+         "angle-E",
+         "BE",
+         "CE"
+        ]
+       },
+       {
+        "narration": "Üstte kalan E B C de bir üçgen. B ve C'deki dış açılar, dörtgenin iç açılarıyla bütünlerdir. Bir açıyı bilirsen öbürü hemen bulunur.",
+        "focus": [
+         "BC",
+         "BE",
+         "CE"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ dörtgeninde $m(\\widehat{DAB}) = 80°$, $m(\\widehat{ADC}) = 60°$ ve $m(\\widehat{ABC}) = 110°$'dir. Buna göre $m(\\widehat{BCD}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         7.7,
+         9.988
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0.819,
+           4.644
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           3.995,
+           5.204
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           7,
+           0
+          ]
+         },
+         {
+          "id": "E",
+          "at": [
+           1.638,
+           9.288
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "A"
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "dashed": true
+         },
+         {
+          "from": "C",
+          "to": "E",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "D",
+          "to": "B",
+          "label": "80°"
+         },
+         {
+          "at": "D",
+          "from": "C",
+          "to": "A",
+          "label": "60°"
+         },
+         {
+          "at": "B",
+          "from": "A",
+          "to": "C",
+          "label": "110°"
+         },
+         {
+          "at": "C",
+          "from": "B",
+          "to": "D",
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "95",
+        "100",
+        "105",
+        "110",
+        "115"
+       ],
+       "answer": 3,
+       "narration": "$[AB]$ ile $[DC]$'yi uzat: iki üçgen çıkar.",
+       "steps": [
+        {
+         "text": "Uzat, $E$'de kesişsin: $AED$ üçgeninde $m(\\widehat{E}) = 180° - 80° - 60° = 40°$.",
+         "narration": "A B ve D C kenarlarını uzatalım, E'de kesişsinler. A E D üçgeninde E açısı yüz seksen eksi seksen eksi altmış, kırk derece."
+        },
+        {
+         "text": "$EBC$: $m(\\widehat{EBC}) = 180° - 110° = 70°$ → $m(\\widehat{ECB}) = 180° - 40° - 70° = 70°$.",
+         "narration": "B'deki iç açı yüz on, öyleyse E B C açısı yetmiş. E B C üçgeninde C'deki açı yüz seksen eksi kırk eksi yetmiş, yetmiş derece."
+        },
+        {
+         "text": "$x = 180° - 70° = 110°$. Cevap **D**.",
+         "narration": "x, bu yetmişin bütünleri: yüz on derece. Bir sonraki konularda göreceğin dörtgen kuralıyla da doğrularız: seksen, altmış, yüz on ve yüz onun toplamı üç yüz altmış. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dörtgende iki kenarı uzatarak üçgen kurma özgün açı ölçüleriyle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $[BA]$ kenarı $A$'nın ötesine $|AD| = |AC|$ olacak biçimde uzatılmıştır. $m(\\widehat{ABC}) = 40°$ ve $m(\\widehat{ACB}) = 60°$ olduğuna göre $m(\\widehat{BCD})$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         7.742,
+         6.609
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           4.042,
+           3.392
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           0
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           7.042,
+           5.909
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "B",
+          "to": "A"
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": true
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "B",
+          "from": "C",
+          "to": "A",
+          "label": "40°"
+         },
+         {
+          "at": "C",
+          "from": "A",
+          "to": "B",
+          "label": "60°"
+         }
+        ]
+       },
+       "options": [
+        "80",
+        "90",
+        "100",
+        "110",
+        "120"
+       ],
+       "answer": 2,
+       "narration": "Eşit uzunlukta uzatmak bir ikizkenar üçgen kurar.",
+       "steps": [
+        {
+         "text": "$m(\\widehat{BAC}) = 180° - 40° - 60° = 80°$ → dış açı $m(\\widehat{DAC}) = 100°$.",
+         "narration": "A'daki iç açı yüz seksen eksi kırk eksi altmış, seksen derece. Uzantıda kalan D A C açısı bunun bütünleri, yüz derece."
+        },
+        {
+         "text": "$|AD| = |AC|$ → $ADC$ ikizkenar: $m(\\widehat{ADC}) = m(\\widehat{ACD}) = \\frac{180° - 100°}{2} = 40°$.",
+         "narration": "A D ile A C eşit; A D C ikizkenar üçgen. Taban açıları eşit: yüz seksen eksi yüz, seksen; ikiye bölünce kırk. D'deki ve C'deki açılar kırkar derece."
+        },
+        {
+         "text": "$m(\\widehat{BCD}) = 60° + 40° = 100°$. Cevap **C**.",
+         "narration": "B C D açısı, C'deki altmış ile kırkın toplamı: yüz derece. Bonus: B C D üçgeninde B ve D açıları kırkar derece, yani B C ile C D de eşit. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; kenarı eşit uzunlukta uzatarak ikizkenar yardımcı üçgen kurma özgün açılarla soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_EK_CIZIM_04",
+    "title": "Açı taşımak",
+    "narration": "Dördüncü fikir: paralel bir doğru, açıları bir köşeden ötekine taşır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Açıları tepeye taşı",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -1.1,
+        -0.7,
+        6.9,
+        4.4
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.2,
+          3.6
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          6,
+          0
+         ]
+        },
+        {
+         "id": "L",
+         "at": [
+          -0.8,
+          3.6
+         ],
+         "hidden": true
+        },
+        {
+         "id": "R",
+         "at": [
+          6.6,
+          3.6
+         ],
+         "hidden": true
+        },
+        {
+         "id": "d",
+         "at": [
+          6.6,
+          3.6
+         ],
+         "dot": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "A"
+        },
+        {
+         "from": "L",
+         "to": "R",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "label": "b"
+        },
+        {
+         "at": "C",
+         "from": "A",
+         "to": "B",
+         "label": "c"
+        },
+        {
+         "at": "A",
+         "from": "L",
+         "to": "B",
+         "label": "b"
+        },
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "label": "a"
+        },
+        {
+         "at": "A",
+         "from": "C",
+         "to": "R",
+         "label": "c"
+        }
+       ]
+      },
+      "caption": "$A$'dan $[BC]$'ye paralel çizilince $B$ ve $C$ açıları $A$'ya taşınır: $a + b + c = 180°$.",
+      "narration": "Üçgenin iç açıları toplamının neden yüz seksen olduğunu bir ek çizimle görelim. A'dan B C'ye paralel bir d doğrusu çiziyoruz.",
+      "beats": [
+       {
+        "narration": "d ile B C paralel, A B onları kesiyor. İç ters açılar eşit: B'deki b açısı A'nın soluna taşınır.",
+        "focus": [
+         "angle-B",
+         "AB",
+         "LR"
+        ]
+       },
+       {
+        "narration": "Aynı şekilde C'deki c açısı A'nın sağına taşınır. A'da b, a ve c yan yana bir doğru açı oluşturur: toplamları yüz seksen. Açıyı taşımak, onu tanıdık bir köşede toplamak demek.",
+        "focus": [
+         "angle-C",
+         "AC",
+         "LR",
+         "angle-A"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $d_1 \\parallel d_2$, $A \\in d_1$ ve $B, C \\in d_2$'dir. Verilen açı ölçülerine göre $m(\\widehat{BAC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.5,
+         -0.7,
+         7.3,
+         4.7
+        ],
+        "points": [
+         {
+          "id": "L1",
+          "at": [
+           -1.2,
+           4
+          ],
+          "hidden": true
+         },
+         {
+          "id": "R1",
+          "at": [
+           6.8,
+           4
+          ],
+          "hidden": true
+         },
+         {
+          "id": "L2",
+          "at": [
+           -1.2,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "R2",
+          "at": [
+           6.8,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "d1",
+          "at": [
+           6.8,
+           4
+          ],
+          "dot": false
+         },
+         {
+          "id": "d2",
+          "at": [
+           6.8,
+           0
+          ],
+          "dot": false
+         },
+         {
+          "id": "A",
+          "at": [
+           3,
+           4
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           -0.356,
+           0.0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           5.309,
+           0.0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "L1",
+          "to": "R1"
+         },
+         {
+          "from": "L2",
+          "to": "R2"
+         },
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "A",
+          "to": "C"
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "L1",
+          "to": "B",
+          "label": "50°"
+         },
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "x"
+         },
+         {
+          "at": "A",
+          "from": "C",
+          "to": "R1",
+          "label": "60°"
+         }
+        ]
+       },
+       "options": [
+        "60",
+        "65",
+        "70",
+        "75",
+        "80"
+       ],
+       "answer": 2,
+       "narration": "$A$'daki üç açı $d_1$ üzerinde yan yana duruyor.",
+       "steps": [
+        {
+         "text": "$A$'da $50° + x + 60° = 180°$ (doğru açı).",
+         "narration": "A noktasında d bir üzerinde üç açı yan yana: elli, x ve altmış. Toplamları bir doğru açı, yüz seksen."
+        },
+        {
+         "text": "$x = 70°$. Kontrol: iç ters açılarla $B = 50°$, $C = 60°$; $ABC$'de $50 + 60 + 70 = 180$. Cevap **C**.",
+         "narration": "x yetmiş derece. Kontrol edelim: paralellikten B açısı elli, C açısı altmış; üçgende elli, altmış, yetmiş, toplam yüz seksen. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; paralel doğrularla açı taşıma, ölçülere uygun çizilmiş özgün bir şekilde soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_EK_CIZIM_05",
+    "title": "Simetri ve en kısa yol",
+    "narration": "Son ek çizim simetri: bir noktanın aynadaki görüntüsü.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Aynadaki görüntü",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.6,
+        -2.6,
+        8.6,
+        3.6
+       ],
+       "points": [
+        {
+         "id": "L",
+         "at": [
+          -0.3,
+          0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "R",
+         "at": [
+          8.3,
+          0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "d",
+         "at": [
+          8.3,
+          0
+         ],
+         "dot": false
+        },
+        {
+         "id": "A",
+         "at": [
+          1,
+          3
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          7,
+          2
+         ]
+        },
+        {
+         "id": "B'",
+         "at": [
+          7.0,
+          -2.0
+         ]
+        },
+        {
+         "id": "P",
+         "at": [
+          4.6,
+          0
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "L",
+         "to": "R"
+        },
+        {
+         "from": "A",
+         "to": "P"
+        },
+        {
+         "from": "P",
+         "to": "B"
+        },
+        {
+         "from": "P",
+         "to": "B'",
+         "dashed": true
+        },
+        {
+         "from": "B",
+         "to": "B'",
+         "dashed": true
+        }
+       ],
+       "polygons": [],
+       "angles": [
+        {
+         "at": "P",
+         "from": "L",
+         "to": "A"
+        },
+        {
+         "at": "P",
+         "from": "B",
+         "to": "R"
+        }
+       ]
+      },
+      "caption": "$A$'dan doğruya, oradan $B$'ye en kısa yol: $B$'nin simetriği $B'$ ile $A$'yı **düz** birleştir.",
+      "narration": "A'dan çıkıp d doğrusuna dokunan ve B'ye giden en kısa yolu arıyoruz. Hile şu: B'nin d'ye göre simetriğini, B üssünü işaretle.",
+      "beats": [
+       {
+        "narration": "d üzerindeki her P için P B, P B üssüne eşittir. Yani A P artı P B, A P artı P B üssü ile aynı uzunlukta.",
+        "focus": [
+         "PB",
+         "PB'",
+         "BB'"
+        ]
+       },
+       {
+        "narration": "İki nokta arasındaki en kısa yol düz çizgidir. A ile B üssünü düz birleştirince d'yi kestiği P, aradığımız nokta. Bu noktada gelen ve giden yollar d ile eşit açı yapar; ışığın aynada yansıması da tam böyledir.",
+        "focus": [
+         "AP",
+         "PB'",
+         "angle-P"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde iki düz ayna $O$ noktasında $70°$'lik açı yapmaktadır. Birinci aynaya çarpan ışın aynayla $30°$'lik açı yapacak biçimde yansıyor ve ikinci aynaya çarpıyor. Işın ikinci aynaya çarptığında aynayla yaptığı açı $x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.6,
+         -0.6,
+         8.878,
+         6.426
+        ],
+        "points": [
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "M",
+          "at": [
+           8.2,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "N",
+          "at": [
+           2.121,
+           5.826
+          ],
+          "hidden": true
+         },
+         {
+          "id": "S",
+          "at": [
+           8.278,
+           1.2
+          ],
+          "hidden": true
+         },
+         {
+          "id": "Q",
+          "at": [
+           6.2,
+           0
+          ]
+         },
+         {
+          "id": "R",
+          "at": [
+           1.077,
+           2.958
+          ]
+         },
+         {
+          "id": "T",
+          "at": [
+           3.243,
+           2.576
+          ],
+          "hidden": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "O",
+          "to": "M"
+         },
+         {
+          "from": "O",
+          "to": "N"
+         },
+         {
+          "from": "S",
+          "to": "Q",
+          "dashed": true
+         },
+         {
+          "from": "Q",
+          "to": "R",
+          "dashed": true
+         },
+         {
+          "from": "R",
+          "to": "T",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "O",
+          "from": "M",
+          "to": "N",
+          "label": "70°"
+         },
+         {
+          "at": "Q",
+          "from": "M",
+          "to": "S",
+          "label": "30°"
+         },
+         {
+          "at": "R",
+          "from": "Q",
+          "to": "O",
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "40",
+        "60",
+        "70",
+        "80",
+        "100"
+       ],
+       "answer": 3,
+       "narration": "Yansımada ayna ile gelen ışının açısı, ayna ile giden ışının açısına eşittir.",
+       "steps": [
+        {
+         "text": "Birinci aynadan yansıyan ışın da aynayla $30°$ yapar.",
+         "narration": "Işın birinci aynaya otuz derecelik açıyla gelir ve yine otuz derecelik açıyla yansır: Q'dan çıkan ışın ile ayna arasındaki açı da otuz."
+        },
+        {
+         "text": "$OQR$ üçgeninde: $x = 180° - 70° - 30° = 80°$. Cevap **D**.",
+         "narration": "O, Q ve R bir üçgen oluşturur: O'da yetmiş, Q'da otuz. R'deki açı yüz seksen eksi yüz, seksen derece. Işın ikinci aynadan da seksen derecelik açıyla yansır. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; iki aynada yansıma, ölçülere uygun çizilmiş özgün bir şekille açı-üçgen ilişkisine bağlandı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$A$ ve $B$ noktaları $d$ doğrusunun aynı tarafındadır. $A$'nın $d$'ye uzaklığı $3$, $B$'nin $d$'ye uzaklığı $5$ birim ve dikme ayakları arası $6$ birimdir. $d$ üzerindeki bir $P$ noktası için $|AP| + |PB|$ toplamı **en az** kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.4,
+         -5.8,
+         7.4,
+         5.8
+        ],
+        "points": [
+         {
+          "id": "L",
+          "at": [
+           -1,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "R",
+          "at": [
+           7,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "d",
+          "at": [
+           7,
+           0
+          ],
+          "dot": false
+         },
+         {
+          "id": "A",
+          "at": [
+           0,
+           3
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           6,
+           5
+          ]
+         },
+         {
+          "id": "B'",
+          "at": [
+           6,
+           -5
+          ]
+         },
+         {
+          "id": "P",
+          "at": [
+           2.25,
+           0
+          ]
+         },
+         {
+          "id": "K",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "H",
+          "at": [
+           6,
+           0
+          ],
+          "hidden": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "L",
+          "to": "K"
+         },
+         {
+          "from": "K",
+          "to": "H",
+          "label": "6"
+         },
+         {
+          "from": "H",
+          "to": "R"
+         },
+         {
+          "from": "A",
+          "to": "K",
+          "label": "3",
+          "dashed": true
+         },
+         {
+          "from": "B",
+          "to": "H",
+          "label": "5",
+          "dashed": true
+         },
+         {
+          "from": "H",
+          "to": "B'",
+          "label": "5",
+          "dashed": true
+         },
+         {
+          "from": "A",
+          "to": "P"
+         },
+         {
+          "from": "P",
+          "to": "B"
+         },
+         {
+          "from": "P",
+          "to": "B'",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": []
+       },
+       "options": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+       ],
+       "answer": 2,
+       "narration": "$B$'nin $d$'ye göre simetriğini al, $A$ ile düz birleştir.",
+       "steps": [
+        {
+         "text": "$B'$, $d$'nin altında $5$ birimde: $|AP| + |PB| = |AP| + |PB'| \\ge |AB'|$.",
+         "narration": "B'nin d'ye göre simetriği B üssü, d'nin beş birim altında. P B, P B üssüne eşit; toplam en az A B üssü kadardır."
+        },
+        {
+         "text": "Yatay $6$, dikey $3 + 5 = 8$ → $|AB'| = \\sqrt{36 + 64} = 10$. Cevap **C**.",
+         "narration": "A ile B üssü arasında yatay fark altı, dikey fark üç artı beş, sekiz. Altı, sekiz, on üçgeninden uzaklık on. En kısa toplam on birim. Cevabımız C. Sekizi seçen, dikey farkı beş eksi üç alıp B'yi yansıtmayı unutmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; simetriyle en kısa yol, Pisagor ile özgün ölçülerde birleştirildi."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Paraleller arasında kırık çizgi: köşeden **paralel** çiz; sağa bakanlar = sola bakanlar.",
+    "Açılar dışarıdan ölçülmüşse üçünün toplamı **360°**.",
+    "Uzunluk sorusunda **dikme** indir; ikizkenarda dikme tabanı ortalar.",
+    "Dörtgende iki kenarı **uzat**, üçgen kur.",
+    "En kısa yol: noktanın **simetriğini** al, düz birleştir."
+   ],
+   "warnings": [
+    "Ek çizim **paralel** ya da **dik** olmalı; rastgele çizgi yeni bilgi vermez.",
+    "Yansımada gelen ve giden ışın aynayla **eşit** açı yapar.",
+    "Simetride dikey uzaklıklar **toplanır**, çıkarılmaz."
+   ],
+   "narration": "Hadi toparlayalım. Paralel doğrular arasında kırık bir çizgi varsa köşeden paralel çiz; sağa bakan açıların toplamı sola bakanlarınkine eşittir, açılar dışarıdan ölçülmüşse üç açının toplamı üç yüz altmıştır. Uzunluk sorusunda dikme indirip dik üçgen kur. Dörtgende iki kenarı uzatıp üçgen yakala. En kısa yol için noktanın simetriğini al ve düz birleştir; aynada da ışın aynı açıyla yansır."
+  }
+ }
+}

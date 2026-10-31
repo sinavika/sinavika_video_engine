@@ -423,14 +423,14 @@ export const SitePlansScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const plans: [string, string, string, string[], boolean][] = [
-		[t('Ücretsiz', 'Free'), '₺0', t('başlamak için', 'to get started'), [t('Ayda 1 Türkiye geneli deneme', '1 nationwide exam a month'), t('Sonuç ve sıralama', 'Result and rank'), t('Temel Ders Planı', 'Basic study plan'), t('SinoAI · günde 5 soru', 'SinoAI · 5 a day')], false],
+		[t('YKS Aylık', 'YKS Monthly'), '₺299', t('/ay · istediğin an iptal', '/mo · cancel any time'), [t('Tüm denemeler ve analiz', 'All exams and analysis'), t('Dersler, Testler, Bilgi Kartları', 'Lessons, quizzes, flashcards'), t('Ders Planı ve ilerleme', 'Study plan and progress'), t('Akıllı Özet · ayda 30', 'Smart Summary · 30 a month'), t('SinoAI · sınırsız', 'SinoAI · unlimited')], false],
 		[t('YKS Yıllık', 'YKS Yearly'), '₺249', t('/ay · yıllık ₺2.990', '/mo · ₺2,990 a year'), [t('Tüm denemeler ve analiz', 'All exams and analysis'), t('Dersler, Testler, Bilgi Kartları', 'Lessons, quizzes, flashcards'), t('Ders Planı ve ilerleme', 'Study plan and progress'), t('Akıllı Özet · ayda 30', 'Smart Summary · 30 a month'), t('SinoAI · sınırsız', 'SinoAI · unlimited')], true],
 		[t('KPSS Yıllık', 'KPSS Yearly'), '₺229', t('/ay · yıllık ₺2.750', '/mo · ₺2,750 a year'), [t('KPSS GY-GK denemeleri', 'KPSS exams'), t('Dersler, Testler, Bilgi Kartları', 'Lessons, quizzes, flashcards'), t('Ders Planı ve ilerleme', 'Study plan and progress'), t('Akıllı Özet · ayda 30', 'Smart Summary · 30 a month'), t('SinoAI · sınırsız', 'SinoAI · unlimited')], false],
 	];
 	return (
 		<Site active={t('Paketler', 'Plans')}>
 			<Section padding="56px 112px 24px">
-				<SiteTitle center title={t('Hedefine uygun paketi seç', 'Pick the plan for your goal')} lead={t('Tüm ücretli paketlerde 3 gün ücretsiz. Gizli ücret yok, istediğin an iptal.', '3 days free on every paid plan. No hidden fees.')} />
+				<SiteTitle center title={t('Hedefine uygun paketi seç', 'Pick the plan for your goal')} lead={t('Mobil uygulamada 3 gün ücretsiz dene; web’de paketi seçip kartla ödersin. Gizli ücret yok, istediğin an iptal.', 'Try 3 days free in the mobile app; on the web, pick a plan and pay by card. No hidden fees.')} />
 			</Section>
 			<Section padding="24px 112px 72px">
 				<Grid columns="repeat(3, 1fr)" gap={24}>
@@ -448,7 +448,7 @@ export const SitePlansScreen: React.FC = () => {
 									<Text role="small">{sub}</Text>
 								</Stack>
 								<Button tone={popular ? 'primary' : 'ghost'} size="lg" block>
-									{price === '₺0' ? t('Ücretsiz başla', 'Start free') : t('3 gün ücretsiz dene', 'Try 3 days free')}
+									{t('Paketi seç', 'Choose plan')}
 								</Button>
 								{features.map((feature) => (
 									<Stack key={feature} row gap={10}>

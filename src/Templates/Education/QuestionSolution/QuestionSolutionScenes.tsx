@@ -15,6 +15,7 @@ import {Badge} from '../../../Components/Typography/Badge';
 import {MathExpression} from '../../../Components/Typography/MathExpression';
 import {RichText} from '../../../Components/Typography/RichText';
 import {Text} from '../../../Components/Typography/Text';
+import {OPTION_LETTERS} from '../../../Courses/LessonScript';
 import {activeSceneIndex, planScenes} from '../../../Scenes/ScenePlan';
 import {CHROME_HEIGHT, SPACING} from '../../../Themes/DesignTokens';
 import {InkProvider, useTheme} from '../../../Themes/ThemeContext';
@@ -22,7 +23,6 @@ import type {QuestionSolutionContent} from './QuestionSolutionSchema';
 
 type Content = QuestionSolutionContent;
 
-export const OPTION_LETTERS = ['A', 'B', 'C', 'D', 'E'];
 const SHORT_OPTION_LENGTH = 16;
 
 /** Longer questions get smaller type before FitBox has to step in. */

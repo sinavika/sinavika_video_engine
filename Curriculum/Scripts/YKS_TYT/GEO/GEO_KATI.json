@@ -1,0 +1,770 @@
+{
+ "topic": {
+  "id": "5BEEBFF4-5377-52CF-ABC3-5D389CB2CA64",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_KATI"
+ },
+ "title": "Katı Cisimler",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "MEB TYT Temel Matematik konu anlatımı s. 153–158 (dik prizma ögeleri, küp formülleri, piramidin hacminin prizmanın üçte biri oluşu; yalnız yapı örneği)",
+  "YKS/TYT/CikmisSorular/GEO.jsonl (ÖSYM 2018–2026 katı cisim soruları: boyalı yüzler, kesilen küp, su yüksekliği, bloklardan küp; yalnız yapı örneği); YKS/TYT/Sorular/GEO/GEO_KATI.jsonl",
+  "Bütün cisimler verilen oranlarla çizildi; sorular özgündür"
+ ],
+ "works": {
+  "additions": [
+   "Su yükselmesi ve sığma problemlerini ekle: silindire küre ya da küp atılınca yükselen su, bir kaptan diğerine boşaltılan sıvının yüksekliği.",
+   "Benzer cisimlerde yüzey alanı oranının k², hacim oranının k³ olduğunu örnekle; küpün kenarı iki katına çıkınca hacmin sekiz katına çıkması.",
+   "Küre bölümünü genişlet: yarım kürenin yüzey alanı ve hacmi, küpe ve silindire içten teğet küre, küreden alınan kesitin dairesi (r² = R² − d²).",
+   "Düzgün dörtyüzlü (hacim a³√2/12) ve kare dik piramitte yan yüz yüksekliği ile cisim yüksekliği arasındaki Pisagor ilişkisini örnekle.",
+   "Küpün on bir farklı açınımını ve açınımdan karşılıklı yüzleri bulma yöntemini ver; zar soruları."
+  ]
+ },
+ "short": {
+  "hook": "Piramit: prizmanın üçte biri",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Prizma: taban $\\cdot$ $h$"
+   },
+   {
+    "kind": "fact",
+    "text": "Koni: $\\frac{1}{3}\\pi r^2 h$"
+   },
+   {
+    "kind": "warning",
+    "text": "Küre: $\\frac{4}{3}\\pi r^3$"
+   }
+  ],
+  "summary": [
+   "Prizma V = taban · h",
+   "Piramit: 1/3"
+  ],
+  "rounds": [
+   {
+    "sentence": "Küp, ayrıt a",
+    "question": "Cisim köşegeni?",
+    "choices": [
+     "a√3",
+     "a√2"
+    ],
+    "answer": 0,
+    "why": "**a√3**."
+   },
+   {
+    "sentence": "Koni r = 3, h = 4",
+    "question": "Hacim?",
+    "choices": [
+     "12π",
+     "36π"
+    ],
+    "answer": 0,
+    "why": "Üçte **bir**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-geometri-kampi",
+  "name": "TYT Geometri kampı",
+  "number": 23,
+  "total": 23,
+  "previous": "Analitik Geometri",
+  "promise": "Geometri konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Evdeki bir kutunun ayrıtlarını ölç; **yüzey alanını ve hacmini** hesapla.",
+    "Prizma, silindir, piramit, koni ve kürenin alan ve hacim formüllerini **tek sayfada** topla.",
+    "Uygulamada Katı Cisimler testinden **20 soru** çöz; sonra kampın bütün konularından **karma 40 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Evdeki bir kutunun ayrıtlarını ölç; yüzey alanını ve hacmini hesapla. Sonra prizma, silindir, piramit, koni ve kürenin alan ve hacim formüllerini tek bir sayfada topla. En son uygulamada katı cisimler testinden yirmi soru, ardından kampın bütün konularından karma kırk soru çöz. Yirmi üç derste geometrinin bütün konularını birlikte bitirdik. Tebrikler, kamp tamamlandı!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Dışını kapla, içini doldur",
+   "narration": "Bir kutuyu kaplamak için ne kadar kâğıt gerekir, içine ne kadar su sığar? Biri yüzey alanı, öbürü hacim. Bu derste prizma ve küpü, silindiri, piramit ve koniyi ve küreyi göreceğiz; hepsini tek bir fikre bağlayacağız: taban alanı çarpı yükseklik, sivrilen cisimlerde bunun üçte biri."
+  },
+  "objectives": [
+   "Prizma ve küpün yüzey alanını, hacmini ve köşegenlerini bulmak",
+   "Silindirin açınımından yanal alanını, hacmini hesaplamak",
+   "Piramit ve koninin hacmini prizmanın, silindirin üçte biri olarak kurmak",
+   "Kürenin yüzey alanını ve hacmini bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_KATI_01",
+    "subtopics": [
+     "GEO_KATI_02",
+     "GEO_KATI_07",
+     "GEO_KATI_08",
+     "GEO_KATI_09"
+    ],
+    "title": "Prizma ve küp",
+    "narration": "Düzlemde alan vardı; uzayda iki soru var: cismin dışını kaç birimkare kaplar, içine kaç birimküp sığar?",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Üç ayrıt, altı yüz",
+      "visual": {
+       "kind": "solid",
+       "shape": "cuboid",
+       "dimensions": [
+        "a",
+        "b",
+        "c"
+       ],
+       "size": [
+        5,
+        3,
+        2
+       ],
+       "unfold": true
+      },
+      "caption": "Dikdörtgenler prizması: yüzey alanı $2(ab + ac + bc)$, hacim $a \\cdot b \\cdot c$. Dik prizmada hacim = taban alanı $\\cdot$ yükseklik.",
+      "narration": "Bu bir dikdörtgenler prizması: altı dikdörtgen yüzü var ve karşılıklı yüzler eş.",
+      "beats": [
+       {
+        "narration": "Bütün ölçüsü üç ayrıtta: a, b ve c. Hacim, taban alanı a çarpı b ile yükseklik c'nin çarpımı. Her dik prizmada kural aynı: taban alanı çarpı yükseklik.",
+        "stage": 1
+       },
+       {
+        "narration": "Prizmayı açınca altı dikdörtgen görürsün: yüzey alanı bu açınımın alanıdır. a b, a c ve b c yüzlerinin her biri iki kez var; yüzey alanı iki çarpı a b artı a c artı b c.",
+        "stage": 2
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Küp ve köşegenleri",
+      "visual": {
+       "kind": "solid",
+       "shape": "cube",
+       "dimensions": [
+        "a"
+       ],
+       "diagonal": "a√3"
+      },
+      "caption": "Küp: yüzey alanı $6a^2$, hacim $a^3$; yüz köşegeni $a\\sqrt{2}$, cisim köşegeni $a\\sqrt{3}$.",
+      "narration": "Küp, bütün ayrıtları eşit olan dikdörtgenler prizmasıdır.",
+      "beats": [
+       {
+        "narration": "Altı eş kare: yüzey alanı altı a kare, hacmi a küp. Bir yüzün köşegeni a kök iki. Küpün içinden karşı köşeye giden cisim köşegeni ise a kök üç: yüz köşegeni ile bir ayrıtın oluşturduğu dik üçgenin hipotenüsü.",
+        "stage": 1
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir dikdörtgenler prizmasının birbirine komşu üç yüzü $K$, $L$ ve $M$ ile gösterilmiştir. $K$ dışındaki beş yüzün alanları toplamı $56$, $L$ dışındakilerin $52$, $M$ dışındakilerin $47$ birimkaredir. Buna göre prizmanın yüzey alanı kaç birimkaredir?",
+       "options": [
+        "31",
+        "52",
+        "56",
+        "62",
+        "66"
+       ],
+       "answer": 3,
+       "narration": "Üç toplamı birlikte düşün.",
+       "steps": [
+        {
+         "text": "Yüzey alanı $S$ ise $(S - K) + (S - L) + (S - M) = 155$.",
+         "narration": "Yüzey alanına S diyelim. Üç toplam: S eksi K, S eksi L, S eksi M. Hepsini toplayınca yüz elli beş."
+        },
+        {
+         "text": "$K + L + M = \\frac{S}{2}$ → $3S - \\frac{S}{2} = 155$ → $S = 62$. Cevap **D**.",
+         "narration": "Üç komşu yüz, prizmanın yarısını kaplar: K artı L artı M, S'nin yarısı. Üç S eksi yarım S, iki buçuk S; yüz elli beş bölü iki buçuk, altmış iki. Cevabımız D. Otuz biri seçen, komşu üç yüzün toplamını bulup iki ile çarpmayı unutmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2018 boyalı yüzler sorusunun fikri, komşu üç yüz ve farklı toplamlarla yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Yüzey alanı $54$ birimkare olan küpün cisim köşegeninin uzunluğu kaç birimdir?",
+       "options": [
+        "$3\\sqrt{3}$",
+        "$6$",
+        "$3\\sqrt{6}$",
+        "$9$",
+        "$27$"
+       ],
+       "answer": 0,
+       "narration": "Önce ayrıt.",
+       "steps": [
+        {
+         "text": "$6a^2 = 54$ → $a = 3$.",
+         "narration": "Altı a kare elli dört: a kare dokuz, ayrıt üç."
+        },
+        {
+         "text": "Cisim köşegeni $a\\sqrt{3} = 3\\sqrt{3}$. Cevap **A**.",
+         "narration": "Cisim köşegeni a kök üç: üç kök üç. Cevabımız A. Yirmi yediyi seçen, hacmi bulmuştur; soru köşegeni soruyor.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yüzey alanından küpün cisim köşegeni özgün değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Küp biçimindeki bir tahta, bir yüzüne paralel olarak kesilip iki dikdörtgenler prizmasına ayrılıyor. Büyük parçanın hacmi, küçük parçanın hacminin $3$ katıdır. Buna göre büyük parçanın yüzey alanı, küçük parçanınkinin kaç katıdır?",
+       "options": [
+        "$\\frac{3}{2}$",
+        "$\\frac{5}{3}$",
+        "$2$",
+        "$3$",
+        "$9$"
+       ],
+       "answer": 1,
+       "narration": "Ayrıta $4$ de; kesim yüksekliği $1$ ve $3$.",
+       "steps": [
+        {
+         "text": "Ayrıt $4$ olsun: parçalar $4 \\times 4 \\times 1$ ve $4 \\times 4 \\times 3$.",
+         "narration": "Taban ikisinde de aynı kare; hacimler yüksekliklerle orantılı. Ayrıta dört dersek yükseklikler bir ve üç."
+        },
+        {
+         "text": "Küçük: $2 \\cdot 16 + 4 \\cdot 4 = 48$; büyük: $2 \\cdot 16 + 4 \\cdot 12 = 80$.",
+         "narration": "Küçük parçanın yüzey alanı: iki kare taban otuz iki, dört yan yüz on altı; kırk sekiz. Büyük parça: otuz iki artı dört kere on iki; seksen."
+        },
+        {
+         "text": "$\\frac{80}{48} = \\frac{5}{3}$. Cevap **B**.",
+         "narration": "Seksen bölü kırk sekiz, beş bölü üç. Cevabımız B. Üçü seçen, alanların da hacimler gibi üç katına çıktığını sanmıştır; oysa iki parçanın tabanları ortak büyüklükte.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2023 kesilen küp sorusu ters yönde kuruldu: hacim oranından yüzey alanı oranı soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Dikdörtgenler prizması biçimindeki kapalı bir kapta $240$ birimküp su vardır. Kap üç farklı yüzü üzerine konduğunda suyun yüksekliği sırasıyla $3$, $4$ ve $5$ birim oluyor. Buna göre kabın hacmi kaç birimküptür?",
+       "options": [
+        "240",
+        "360",
+        "480",
+        "600",
+        "720"
+       ],
+       "answer": 2,
+       "narration": "Her konumda taban alanı = su hacmi bölü yükseklik.",
+       "steps": [
+        {
+         "text": "Taban alanları $\\frac{240}{3} = 80$, $\\frac{240}{4} = 60$, $\\frac{240}{5} = 48$: yani $bc$, $ac$, $ab$.",
+         "narration": "Su hacmi değişmez; her konumda taban alanı, iki yüz kırk bölü suyun yüksekliği: seksen, altmış ve kırk sekiz. Bunlar kabın üç farklı yüzü."
+        },
+        {
+         "text": "$(abc)^2 = 80 \\cdot 60 \\cdot 48 = 230400$ → $abc = 480$. Cevap **C**.",
+         "narration": "Üç yüzün çarpımı a b c'nin karesidir: seksen çarpı altmış çarpı kırk sekiz, iki yüz otuz bin dört yüz; karekökü dört yüz seksen. Kenarlar altı, sekiz, on. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2020 su yüksekliği sorusunun fikri farklı hacim ve yüksekliklerle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Ayrıtları $2$ cm, $3$ cm ve $6$ cm olan özdeş tuğlalar aynı yönde dizilerek içi dolu bir küp yapılacaktır. Bunun için en az kaç tuğla gerekir?",
+       "options": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+       ],
+       "answer": 4,
+       "narration": "Küpün ayrıtı, üç ayrıtın da katı olmalı.",
+       "steps": [
+        {
+         "text": "En küçük küp ayrıtı $\\text{EKOK}(2, 3, 6) = 6$ cm.",
+         "narration": "Küpün her ayrıtı tuğlaların tam katı olmalı: iki, üç ve altının en küçük ortak katı, altı."
+        },
+        {
+         "text": "$\\frac{6}{2} \\cdot \\frac{6}{3} \\cdot \\frac{6}{6} = 3 \\cdot 2 \\cdot 1 = 6$ tuğla. Cevap **E**.",
+         "narration": "Bir ayrıt boyunca üç, öbürü boyunca iki, yükseklikte bir tuğla: altı tuğla. Hacimle kontrol: iki yüz on altı bölü otuz altı, altı. Cevabımız E.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2024 özdeş bloklardan küp sorusunun fikri EKOK ile özgün değerlerle kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_KATI_03",
+    "subtopics": [
+     "GEO_KATI_10"
+    ],
+    "title": "Silindir",
+    "narration": "Prizmanın tabanı daire olursa silindir olur; kural yine aynı: taban alanı çarpı yükseklik.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Dikdörtgene açılan yüz",
+      "visual": {
+       "kind": "solid",
+       "shape": "cylinder",
+       "dimensions": [
+        "r",
+        "h"
+       ],
+       "size": [
+        3,
+        5
+       ],
+       "unfold": true
+      },
+      "caption": "Yanal alan $2\\pi r h$; yüzey alanı $2\\pi r^2 + 2\\pi r h$; hacim $\\pi r^2 h$.",
+      "narration": "Silindir: iki eş daire taban ve onları saran eğri bir yüz.",
+      "beats": [
+       {
+        "narration": "Ölçüleri iki: taban yarıçapı r ve yükseklik h. Hacim, taban alanı pi r kare ile yüksekliğin çarpımı: pi r kare h.",
+        "stage": 1
+       },
+       {
+        "narration": "Açınca eğri yüz bir dikdörtgen olur: bir kenarı tabanın çevresi, iki pi r; öbür kenarı h. Yanal alan iki pi r h. İki taban daire de eklenince yüzey alanı bulunur.",
+        "stage": 2
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Yüksekliği $4$ cm olan dik silindirin yanal alanı $24\\pi$ cm²'dir. Buna göre silindirin hacmi kaç santimetreküptür?",
+       "options": [
+        "$18\\pi$",
+        "$36\\pi$",
+        "$48\\pi$",
+        "$72\\pi$",
+        "$144\\pi$"
+       ],
+       "answer": 1,
+       "narration": "Yanal alandan yarıçap.",
+       "steps": [
+        {
+         "text": "$2\\pi r \\cdot 4 = 24\\pi$ → $r = 3$.",
+         "narration": "Yanal alan iki pi r h: iki pi r çarpı dört, yirmi dört pi. r üç."
+        },
+        {
+         "text": "$V = \\pi \\cdot 9 \\cdot 4 = 36\\pi$. Cevap **B**.",
+         "narration": "Hacim pi r kare h: pi çarpı dokuz çarpı dört, otuz altı pi. Cevabımız B. Yüz kırk dört pi'yi seçen, üçü çap sanıp yarıçapı altı almıştır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yanal alandan silindirin hacmi özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Taban yarıçapı $2$ cm, yüksekliği $9$ cm olan silindir biçimindeki dolu bir bardaktaki su, taban yarıçapı $3$ cm olan silindir biçimindeki boş bir kaba boşaltılıyor. Kaptaki suyun yüksekliği kaç santimetre olur?",
+       "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "6"
+       ],
+       "answer": 3,
+       "narration": "Su hacmi aynı kalır.",
+       "steps": [
+        {
+         "text": "$V = \\pi \\cdot 2^2 \\cdot 9 = 36\\pi$.",
+         "narration": "Bardaktaki suyun hacmi pi çarpı dört çarpı dokuz, otuz altı pi."
+        },
+        {
+         "text": "$\\pi \\cdot 3^2 \\cdot h = 36\\pi$ → $h = 4$. Cevap **D**.",
+         "narration": "Kapta taban alanı dokuz pi; otuz altı pi bölü dokuz pi, dört santim. Cevabımız D. Altıyı seçen, yüksekliği yarıçaplar oranıyla küçültmüştür; oysa taban alanı yarıçapın karesiyle büyür: dört kat değil, dokuz bölü dört kat.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; iki silindir arasında su aktarımı özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_KATI_04",
+    "subtopics": [
+     "GEO_KATI_05",
+     "GEO_KATI_11",
+     "GEO_KATI_12"
+    ],
+    "title": "Piramit ve koni",
+    "narration": "Prizma tepede bir noktada toplanırsa piramit, silindir toplanırsa koni olur. Hacimde yeni bir çarpan gelir: üçte bir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Üçte bir",
+      "visual": {
+       "kind": "solid",
+       "shape": "squarePyramid",
+       "dimensions": [
+        "a",
+        "h",
+        "h′"
+       ],
+       "size": [
+        6,
+        4
+       ],
+       "unfold": true
+      },
+      "caption": "Piramidin hacmi $\\frac{1}{3} \\cdot$ taban alanı $\\cdot h$. Yan yüz yüksekliği $h'$: $h$ ile taban kenarının yarısının oluşturduğu dik üçgenin hipotenüsü.",
+      "narration": "Kare dik piramit: kare bir taban ve tepede birleşen dört eş ikizkenar üçgen.",
+      "beats": [
+       {
+        "narration": "Yükseklik h, tepeden tabanın merkezine iner. Yan yüzün yüksekliği ise başka bir uzunluk: h ile taban kenarının yarısının oluşturduğu dik üçgenin hipotenüsü. Hacim, aynı tabanlı ve aynı yükseklikteki prizmanın üçte biri: taban alanı çarpı h bölü üç.",
+        "stage": 1
+       },
+       {
+        "narration": "Açınca bir kare ve dört eş üçgen görürsün. Yüzey alanı, taban alanı artı dört üçgenin alanı; üçgenlerin yüksekliği yan yüz yüksekliğidir, h değil.",
+        "stage": 2
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Koninin dik üçgeni",
+      "visual": {
+       "kind": "solid",
+       "shape": "cone",
+       "dimensions": [
+        "r",
+        "h",
+        "ℓ"
+       ],
+       "size": [
+        3,
+        4
+       ]
+      },
+      "caption": "Koni: $\\ell^2 = r^2 + h^2$; hacim $\\frac{1}{3}\\pi r^2 h$; yanal alan $\\pi r \\ell$.",
+      "narration": "Koni, tabanı daire olan bir piramit gibidir.",
+      "beats": [
+       {
+        "narration": "Yükseklik h, yarıçap r ve tepeden tabanın çevresine inen ana doğru, bir dik üçgen kurar: ana doğrunun karesi, r kare artı h kare. Hacim, aynı tabanlı silindirin üçte biri: pi r kare h bölü üç. Yanal alan pi çarpı r çarpı ana doğru.",
+        "stage": 1
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Taban ayrıtı $6$ cm, yüksekliği $4$ cm olan kare dik piramidin yüzey alanı kaç santimetrekaredir?",
+       "options": [
+        "60",
+        "84",
+        "96",
+        "108",
+        "144"
+       ],
+       "answer": 2,
+       "narration": "Önce yan yüz yüksekliği.",
+       "steps": [
+        {
+         "text": "Yan yüz yüksekliği $\\sqrt{4^2 + 3^2} = 5$.",
+         "narration": "Yükseklik dört, taban kenarının yarısı üç: üç dört beş üçgeninden yan yüz yüksekliği beş."
+        },
+        {
+         "text": "$36 + 4 \\cdot \\frac{6 \\cdot 5}{2} = 36 + 60 = 96$. Cevap **C**.",
+         "narration": "Taban otuz altı; dört yan yüzün her biri altı çarpı beş bölü iki, on beş; toplam altmış. Yüzey alanı doksan altı. Cevabımız C. Seksen dördü seçen, yan yüzlerde dördü yükseklik almıştır; altmışı seçen, tabanı unutmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; piramidin yüzey alanı yan yüz yüksekliğiyle özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Taban yarıçapı $3$ cm, yüksekliği $4$ cm olan dik koninin hacmi kaç santimetreküptür?",
+       "options": [
+        "$12\\pi$",
+        "$15\\pi$",
+        "$24\\pi$",
+        "$36\\pi$",
+        "$48\\pi$"
+       ],
+       "answer": 0,
+       "narration": "$\\frac{1}{3}\\pi r^2 h$.",
+       "steps": [
+        {
+         "text": "$V = \\frac{1}{3} \\cdot \\pi \\cdot 9 \\cdot 4 = 12\\pi$. Cevap **A**.",
+         "narration": "Üçte bir çarpı pi çarpı dokuz çarpı dört, on iki pi. Cevabımız A. Otuz altı pi'yi seçen üçte biri unutmuş, silindirin hacmini bulmuştur. On beş pi ise yanal alandır: ana doğru beş, pi çarpı üç çarpı beş.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; koninin hacmi özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Taban yarıçapı $4$ cm, ana doğrusu $12$ cm olan dik koninin yanal yüzü açıldığında bir daire dilimi elde ediliyor. Bu daire diliminin merkez açısı kaç derecedir?",
+       "options": [
+        "$45°$",
+        "$60°$",
+        "$90°$",
+        "$100°$",
+        "$120°$"
+       ],
+       "answer": 4,
+       "narration": "Yayın uzunluğu, tabanın çevresine eşit.",
+       "steps": [
+        {
+         "text": "Dilimin yarıçapı ana doğru: $12$. Yay uzunluğu taban çevresi: $2\\pi \\cdot 4 = 8\\pi$.",
+         "narration": "Açınımda dilimin yarıçapı ana doğrudur, on iki. Dilimin yayı tabanı sarar: uzunluğu taban çevresi, sekiz pi."
+        },
+        {
+         "text": "$\\frac{\\alpha}{360°} \\cdot 2\\pi \\cdot 12 = 8\\pi$ → $\\alpha = 360° \\cdot \\frac{4}{12} = 120°$. Cevap **E**.",
+         "narration": "Merkez açı, tam çemberin üç yüz altmış derecesinin r bölü ana doğru kadarı: dört bölü on iki, üçte bir; yüz yirmi derece. Cevabımız E. Altmışı seçen, üç yüz altmış yerine yüz sekseni kullanmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; koni açınımının merkez açısı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aynı tabanlı ve aynı yükseklikteki bir dik prizma ile bir piramidin hacimleri toplamı $96$ cm³'tür. Buna göre prizmanın hacmi kaç santimetreküptür?",
+       "options": [
+        "24",
+        "48",
+        "64",
+        "72",
+        "96"
+       ],
+       "answer": 3,
+       "narration": "Piramit, prizmanın üçte biri.",
+       "steps": [
+        {
+         "text": "Prizma $V$, piramit $\\frac{V}{3}$ → $\\frac{4V}{3} = 96$.",
+         "narration": "Aynı taban ve aynı yükseklikte piramit, prizmanın üçte biridir. Prizmaya V dersek toplam dört V bölü üç."
+        },
+        {
+         "text": "$V = 72$. Cevap **D**.",
+         "narration": "Dört V bölü üç doksan altı: V yetmiş iki. Piramit yirmi dört. Cevabımız D. Yirmi dördü seçen, piramidi bulup durmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; prizma ile piramit hacmi arasındaki üçte bir bağıntısı özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_KATI_06",
+    "subtopics": [
+     "GEO_KATI_13"
+    ],
+    "title": "Küre",
+    "narration": "Son cisim, tek ölçüsü olan küre.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Tek ölçü: r",
+      "visual": {
+       "kind": "solid",
+       "shape": "sphere",
+       "dimensions": [
+        "r"
+       ]
+      },
+      "caption": "Küre: yüzey alanı $4\\pi r^2$, hacim $\\frac{4}{3}\\pi r^3$.",
+      "narration": "Küre, bir merkezden eşit uzaklıktaki noktaların oluşturduğu cisimdir.",
+      "beats": [
+       {
+        "narration": "Tek ölçüsü yarıçap r. Yüzey alanı dört pi r kare, hacmi dört bölü üç pi r küp. Bir küre, onu tam saran silindirin, yani yarıçapı r ve yüksekliği iki r olan silindirin hacminin üçte ikisi kadardır.",
+        "stage": 1
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Yüzey alanı $36\\pi$ cm² olan kürenin hacmi kaç santimetreküptür?",
+       "options": [
+        "$12\\pi$",
+        "$36\\pi$",
+        "$72\\pi$",
+        "$108\\pi$",
+        "$144\\pi$"
+       ],
+       "answer": 1,
+       "narration": "Önce yarıçap.",
+       "steps": [
+        {
+         "text": "$4\\pi r^2 = 36\\pi$ → $r = 3$.",
+         "narration": "Dört pi r kare otuz altı pi: r kare dokuz, r üç."
+        },
+        {
+         "text": "$V = \\frac{4}{3}\\pi \\cdot 27 = 36\\pi$. Cevap **B**.",
+         "narration": "Dört bölü üç pi çarpı yirmi yedi, otuz altı pi. Yarıçap üçken alan ve hacim aynı sayıya çıkar, şaşırma. Cevabımız B. Yüz sekiz pi'yi seçen, üçe bölmeyi unutmuştur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yüzey alanından kürenin hacmi özgün değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Yarıçapı $3$ cm olan bir top, taban yarıçapı $3$ cm ve yüksekliği $6$ cm olan silindir biçimindeki bir kutuya tam olarak yerleştiriliyor. Kutuda boş kalan hacim kaç santimetreküptür?",
+       "options": [
+        "$9\\pi$",
+        "$12\\pi$",
+        "$18\\pi$",
+        "$27\\pi$",
+        "$36\\pi$"
+       ],
+       "answer": 2,
+       "narration": "Silindir eksi küre.",
+       "steps": [
+        {
+         "text": "Silindir $\\pi \\cdot 9 \\cdot 6 = 54\\pi$; küre $\\frac{4}{3}\\pi \\cdot 27 = 36\\pi$.",
+         "narration": "Kutunun hacmi pi çarpı dokuz çarpı altı, elli dört pi. Topun hacmi otuz altı pi."
+        },
+        {
+         "text": "Boş kalan $54\\pi - 36\\pi = 18\\pi$. Cevap **C**.",
+         "narration": "Boş kalan on sekiz pi: kutunun tam üçte biri. Küre, onu saran silindirin üçte ikisidir. Cevabımız C. Otuz altı pi'yi seçen, topun hacmini cevap sanmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; silindire yerleşen kürenin bıraktığı boşluk özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Dik prizma ve silindir: hacim = **taban alanı · yükseklik**.",
+    "Dikdörtgenler prizması $2(ab + ac + bc)$, $abc$; küp $6a^2$, $a^3$, köşegen $a\\sqrt{3}$.",
+    "Silindirin yanal yüzü $2\\pi r \\times h$ dikdörtgenidir.",
+    "Piramit ve koni: hacim **üçte bir** taban · yükseklik; koni $\\ell^2 = r^2 + h^2$.",
+    "Küre: $4\\pi r^2$ ve $\\frac{4}{3}\\pi r^3$."
+   ],
+   "warnings": [
+    "Piramidin yan yüzünde **yan yüz yüksekliği** kullanılır, $h$ değil.",
+    "Hacimde **üçte bir** çarpanını unutma.",
+    "Verilen uzunluğun **yarıçap mı çap mı** olduğuna bak."
+   ],
+   "narration": "Hadi toparlayalım. Dik prizmada ve silindirde hacim, taban alanı çarpı yüksekliktir; piramit ve konide bunun üçte biri. Dikdörtgenler prizmasının yüzey alanı iki çarpı a b artı a c artı b c; küpün cisim köşegeni a kök üç. Silindirin yan yüzü açılınca kenarları iki pi r ve h olan bir dikdörtgen olur. Koninin yüksekliği, yarıçapı ve ana doğrusu bir dik üçgen kurar. Küre için dört pi r kare ve dört bölü üç pi r küp. Piramidin yan yüzünde yan yüz yüksekliğini, hacimde üçte biri unutma."
+  }
+ }
+}

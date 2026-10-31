@@ -1,0 +1,834 @@
+{
+ "topic": {
+  "id": "E2F2CC4A-79E6-3240-B867-8D30BCD51215",
+  "category": "YKS_TYT",
+  "lesson": "FIZ",
+  "code": "FIZ_BASINC"
+ },
+ "title": "Basınç",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/FIZ/FIZ_BASINC.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Sivri uç, geniş taban",
+   "narration": "İğne neden sivri, kar ayakkabısı neden geniştir? Biçimleri farklı kaplarda dipteki basınç neden aynı olur? Dağın tepesinde su neden yüz derecede kaynamaz? Bu derste katı, sıvı, açık hava ve gaz basıncını, Pascal ilkesini ve akan sıvılarda hız ile basıncı öğreneceğiz."
+  },
+  "objectives": [
+   "Katı basıncını hesaplamak; basıncı artıran ve azaltan uygulamaları açıklamak",
+   "Sıvı basıncının derinliğe ve özkütleye bağlı olduğunu uygulamak",
+   "Açık hava basıncının yükseklikle değişimini ve kaynamaya etkisini açıklamak",
+   "Gaz basıncını, Pascal ilkesini ve akışkanlarda hız-basınç ilişkisini yorumlamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_BASINC_01",
+    "subtopics": [],
+    "title": "Katı basıncı",
+    "narration": "Kar ayakkabısı neden geniştir, iğnenin ucu neden sivridir? Cevap basınçta.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kuvvet bölü alan",
+      "items": [
+       "Basınç $P = \\frac{F}{A}$: birim yüzeye dik etki eden kuvvet; birimi **pascal** ($1 \\text{ Pa} = 1 \\text{ N/m}^2$).",
+       "Katıların yüzeye uyguladığı kuvvet **ağırlıklarıdır**.",
+       "Aynı ağırlık **dar** yüzeyde **büyük**, geniş yüzeyde küçük basınç yapar.",
+       "Kar ayakkabısı, palet, geniş lastik basıncı **azaltır**; bıçak, iğne, çivi **artırır**."
+      ],
+      "beats": [],
+      "narration": "Basınç, birim yüzeye dik olarak etki eden kuvvettir: kuvvet bölü alan, birimi pascal. Bir katı, ağırlığı kadar kuvvetle yüzeye bastırır. Aynı tuğlayı en geniş yüzeyi üstüne koyarsan basınç küçük, en dar yüzeyi üstüne koyarsan büyük olur. Karda batmamak için geniş kar ayakkabısı, iş makinelerinde palet kullanılır; kesmek ve delmek için ise bıçağın ağzı ince, iğnenin ucu sivri yapılır."
+     },
+     {
+      "kind": "visual",
+      "title": "Aynı tuğla, iki iz",
+      "visual": {
+       "kind": "process",
+       "process": "pressure",
+       "stages": [
+        "kati"
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Ağırlık aynı, ama dar yüzey süngerde daha derin bir iz açar. Kuvvet aynıyken yüzey küçülürse basınç büyür.",
+        "show": [],
+        "focus": [
+         "yuzey"
+        ],
+        "stage": 0,
+        "swap": []
+       }
+      ],
+      "narration": "Aynı tuğlayı süngere önce geniş yüzü, sonra dar yüzü üstüne koyalım."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Yüklü bir römorkun çamurlu zemine saplanmaması için tekerlekleri ile zemin arasındaki basıncın azaltılması isteniyor.\n\nI. Römorktaki yükü azaltmak\nII. Römorka aynı genişlikte ek tekerlekler takmak\nIII. Tekerlekleri daha dar lastiklerle değiştirmek\n\nİşlemlerinden hangileri bu amaca uygundur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "I: ağırlık azalır → $P$ azalır. II: temas alanı büyür → $P$ azalır.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yük azalınca zemine bastıran kuvvet azalır, basınç düşer. Ek tekerlek takınca temas alanı büyür, basınç yine düşer."
+        },
+        {
+         "text": "III: dar lastik → alan küçülür → $P$ **artar**. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dar lastik ise temas alanını küçültür ve basıncı artırır: römork daha çok saplanır. Cevabımız C."
+        }
+       ],
+       "narration": "$P = \\frac{F}{A}$: kuvvet azalsın ya da alan büyüsün.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin römork ve çamurlu zemin sorusunun fikri farklı işlemlerle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Boyutları $20$ cm, $10$ cm ve $5$ cm olan $30$ N ağırlığındaki bir tuğla yatay zemine farklı yüzleri üzerine konuyor. Tuğlanın zemine uygulayabileceği en büyük basınç kaç pascaldır?",
+       "options": [
+        "$600$",
+        "$1500$",
+        "$3000$",
+        "$6000$",
+        "$15\\,000$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "En küçük yüzey $10 \\text{ cm} \\cdot 5 \\text{ cm} = 50 \\text{ cm}^2 = 0{,}005 \\text{ m}^2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "En büyük basınç, tuğla en küçük yüzeyi üstünde dururken olur: on çarpı beş, elli santimetrekare. Metrekareye çevirince sıfır virgül sıfır sıfır beş."
+        },
+        {
+         "text": "$P = \\frac{30}{0{,}005} = 6000$ Pa. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Otuz bölü sıfır virgül sıfır sıfır beş, altı bin pascal. Cevabımız D. Bin beş yüzü seçen, en geniş yüzeyi almıştır; o en küçük basınçtır."
+        }
+       ],
+       "narration": "En dar yüzey.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; tuğlanın farklı yüzlerinde katı basıncı özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_BASINC_02",
+    "subtopics": [],
+    "title": "Sıvı basıncı",
+    "narration": "Denizde derine daldıkça kulakların zorlanır: sıvının ağırlığı üstüne biner.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Şekil değil, derinlik",
+      "visual": {
+       "kind": "tank",
+       "vessels": [
+        {
+         "shape": "straight"
+        },
+        {
+         "shape": "flared"
+        },
+        {
+         "shape": "tapered"
+        }
+       ],
+       "level": 0.8,
+       "layers": [
+        {
+         "liquid": "water"
+        }
+       ],
+       "points": [
+        {
+         "vessel": 0,
+         "depth": 1,
+         "label": "K"
+        },
+        {
+         "vessel": 1,
+         "depth": 1,
+         "label": "L"
+        },
+        {
+         "vessel": 2,
+         "depth": 1,
+         "label": "M"
+        }
+       ],
+       "connected": false,
+       "bodies": []
+      },
+      "caption": "Sıvı basıncı $P = h \\cdot d \\cdot g$: yalnız **derinliğe** ve sıvının **özkütlesine** bağlıdır; kabın biçimine ve sıvının miktarına bağlı değildir.",
+      "beats": [
+       {
+        "narration": "Ortadaki kap çok daha fazla su alıyor, sağdaki çok daha az. Ama sıvı basıncı derinlik çarpı özkütle çarpı yer çekimi ivmesidir; kabın biçimi bu formülde yok.",
+        "show": [],
+        "focus": [
+         "k1",
+         "k2",
+         "k3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Bu yüzden üç kabın dibindeki K, L ve M noktalarında basınç eşittir. Aynı sıvıda aynı derinlikteki bütün noktaların basıncı eşittir; sıvı bu basıncı her yöne uygular. Bileşik kaplarda sıvının her kolda aynı seviyede durmasının nedeni de budur.",
+        "show": [],
+        "focus": [
+         "p1",
+         "p2",
+         "p3"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Biçimleri farklı üç kaba aynı sıvıyı aynı yüksekliğe kadar dolduralım."
+     },
+     {
+      "kind": "visual",
+      "title": "Derin delik, uzak fışkırma",
+      "visual": {
+       "kind": "process",
+       "process": "pressure",
+       "stages": [
+        "derinlik"
+       ]
+      },
+      "beats": [
+       {
+        "narration": "En derindeki delikte basınç en büyüktür; su oradan en hızlı çıkar ve en uzağa düşer. Sıvı basıncı derinlikle artar.",
+        "show": [],
+        "focus": [
+         "derinlik"
+        ],
+        "stage": 0,
+        "swap": []
+       }
+      ],
+      "narration": "Yüksek bir sehpadaki su dolu kutunun yan yüzüne, farklı derinliklerde üç delik açalım."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir havuzda yüzeyden $3$ m derinlikteki bir noktada suyun yaptığı basınç kaç pascaldır? ($d_{su} = 1000 \\text{ kg/m}^3$, $g = 10 \\text{ m/s}^2$)",
+       "options": [
+        "$30\\,000$",
+        "$40\\,000$",
+        "$60\\,000$",
+        "$300\\,000$",
+        "$3\\,000\\,000$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$P = 3 \\cdot 1000 \\cdot 10 = 30\\,000$ Pa. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Derinlik üç, özkütle bin, yer çekimi on: otuz bin pascal. Her on metre derinlik yaklaşık bir atmosferlik basınç ekler. Cevabımız A."
+        }
+       ],
+       "narration": "$P = h d g$.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; sıvı basıncı formülü özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Biçimleri farklı üç kap aynı sıvıyla aynı yüksekliğe kadar doldurulmuştur. $K$ ve $L$ noktaları sıvı yüksekliğinin yarısında, $M$ noktası kabın dibindedir. Bu noktalardaki sıvı basınçları $P_K$, $P_L$ ve $P_M$ arasındaki ilişki nedir?",
+       "figure": {
+        "kind": "tank",
+        "vessels": [
+         {
+          "shape": "straight"
+         },
+         {
+          "shape": "flared"
+         },
+         {
+          "shape": "tapered"
+         }
+        ],
+        "level": 0.8,
+        "layers": [
+         {
+          "liquid": "water"
+         }
+        ],
+        "points": [
+         {
+          "vessel": 0,
+          "depth": 0.5,
+          "label": "K"
+         },
+         {
+          "vessel": 1,
+          "depth": 0.5,
+          "label": "L"
+         },
+         {
+          "vessel": 2,
+          "depth": 1,
+          "label": "M"
+         }
+        ],
+        "connected": false,
+        "bodies": []
+       },
+       "options": [
+        "$P_K = P_L = P_M$",
+        "$P_M > P_K = P_L$",
+        "$P_L > P_K > P_M$",
+        "$P_K > P_L > P_M$",
+        "$P_M > P_L > P_K$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$K$ ve $L$ aynı derinlikte → $P_K = P_L$ (kabın biçimi önemsiz).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "K ve L aynı derinlikte: kapların biçimi farklı olsa da basınçları eşit."
+        },
+        {
+         "text": "$M$ en derinde → en büyük. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "M, sıvının dibinde, en derin nokta: basıncı en büyük. Cevabımız B. C'yi seçen, geniş kaptaki sıvı daha çok olduğu için basıncı büyük sanmıştır; basınç sıvının miktarına değil, derinliğe bağlıdır."
+        }
+       ],
+       "narration": "Yalnız derinlik.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; kap biçiminden bağımsızlık ve derinlik özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kapta $30$ cm su ve üzerinde, suyla karışmayan $20$ cm zeytinyağı vardır. Sıvıların kabın tabanına yaptığı toplam basınç kaç pascaldır? ($d_{su} = 1000$, $d_{yağ} = 800 \\text{ kg/m}^3$, $g = 10 \\text{ m/s}^2$)",
+       "figure": {
+        "kind": "tank",
+        "vessels": [
+         {
+          "shape": "straight"
+         }
+        ],
+        "level": 0.8,
+        "layers": [
+         {
+          "liquid": "water",
+          "height": 0.48,
+          "label": "su: 30 cm"
+         },
+         {
+          "liquid": "oil",
+          "label": "yağ: 20 cm"
+         }
+        ],
+        "points": [],
+        "connected": false,
+        "bodies": []
+       },
+       "options": [
+        "$2300$",
+        "$4000$",
+        "$4600$",
+        "$5000$",
+        "$9200$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Yağ: $0{,}2 \\cdot 800 \\cdot 10 = 1600$ Pa; su: $0{,}3 \\cdot 1000 \\cdot 10 = 3000$ Pa.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yağ katmanı: sıfır virgül iki metre çarpı sekiz yüz çarpı on, bin altı yüz pascal. Su katmanı: sıfır virgül üç çarpı bin çarpı on, üç bin pascal."
+        },
+        {
+         "text": "Toplam $4600$ Pa. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Taban, üstündeki iki katmanın ağırlığını birlikte taşır: dört bin altı yüz pascal. Cevabımız C. Beş bini seçen, bütün elli santimi su saymıştır."
+        }
+       ],
+       "narration": "Katmanların basınçları toplanır.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; karışmayan iki sıvının taban basıncı özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_BASINC_03",
+    "subtopics": [],
+    "title": "Açık hava basıncı",
+    "narration": "Üstümüzde kilometrelerce hava var ve o havanın da ağırlığı var.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Yükseldikçe azalır",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Yer",
+        "Yükseklik",
+        "Açık hava basıncı",
+        "Su kaynar"
+       ],
+       "rows": [
+        [
+         "Deniz kıyısı",
+         "0 m",
+         "76 cmHg",
+         "100 °C"
+        ],
+        [
+         "Ankara",
+         "≈ 900 m",
+         "≈ 68 cmHg",
+         "≈ 97 °C"
+        ],
+        [
+         "Erzurum",
+         "≈ 1900 m",
+         "≈ 61 cmHg",
+         "≈ 94 °C"
+        ],
+        [
+         "Everest",
+         "≈ 8850 m",
+         "≈ 25 cmHg",
+         "≈ 70 °C"
+        ]
+       ]
+      },
+      "caption": "Torricelli deniz seviyesinde cıvayı **76 cm** yükseltti: $P_0 = 76 \\text{ cmHg} \\approx 10^5 \\text{ Pa}$. Açık hava basıncı **barometreyle** ölçülür.",
+      "beats": [
+       {
+        "narration": "Yükseğe çıktıkça üstümüzdeki hava azalır, basınç düşer: Ankara'da yaklaşık altmış sekiz, Everest'te yaklaşık yirmi beş santimetre cıva.",
+        "show": [],
+        "focus": [
+         "r1",
+         "r2",
+         "r4"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Basınç düşünce su daha düşük sıcaklıkta kaynar: Erzurum'da yaklaşık doksan dörtte, Everest'te yetmiş civarında. Bu yüzden yüksek yerlerde yemek geç pişer; düdüklü tencere içindeki basıncı artırarak kaynama sıcaklığını yükseltir.",
+        "show": [],
+        "focus": [
+         "r3",
+         "r4"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Havanın ağırlığının yaptığı basınca açık hava basıncı denir. Torricelli, cıva dolu bir boruyu cıva kabına ters çevirince cıvanın yetmiş altı santimetrede durduğunu gördü: deniz seviyesinde açık hava basıncı yetmiş altı santimetre cıva."
+     },
+     {
+      "kind": "visual",
+      "title": "Torricelli deneyi",
+      "visual": {
+       "kind": "process",
+       "process": "pressure",
+       "stages": [
+        "acikhava"
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Cıva dolu boruyu kaba ters çevirince cıva bir miktar iner ve deniz seviyesinde yetmiş altı santimetrede durur; borunun üstünde boşluk kalır. Bu sütunu tutan, kaptaki cıvaya bastıran havanın basıncıdır. Dağda üstümüzde daha az hava olduğu için sütun daha kısadır.",
+        "show": [],
+        "focus": [
+         "civa"
+        ],
+        "stage": 0,
+        "swap": []
+       }
+      ],
+      "narration": "Torricelli'nin deneyini adım adım yapalım."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Deniz kıyısından yüksek bir dağın zirvesine çıkıldığında\n\nI. açık hava basıncı azalır,\nII. suyun kaynama sıcaklığı azalır,\nIII. pipetle meyve suyu içmek kolaylaşır\n\nyargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "I, II ve III"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Yükseldikçe hava azalır → basınç azalır (I); basınç azalınca kaynama sıcaklığı düşer (II).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Zirvede üstteki hava daha az: açık hava basıncı azalır, birinci doğru. Basınç azalınca su daha düşük sıcaklıkta kaynar, ikinci doğru."
+        },
+        {
+         "text": "Pipette sıvıyı yukarı **açık hava basıncı** iter; basınç azalınca **zorlaşır** (III yanlış). Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Pipetle içerken ağzımızdaki basıncı düşürürüz; sıvıyı yukarı iten, bardaktaki sıvının üstündeki açık hava basıncıdır. Zirvede bu basınç az olduğu için içmek zorlaşır, üçüncü yanlış. Cevabımız D."
+        }
+       ],
+       "narration": "Pipette sıvıyı ne iter?",
+       "origin": {
+        "changes": "Bu ders için yazıldı; yükseklikle açık hava basıncı, kaynama ve pipet örnekleriyle özgün olarak soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Deniz kıyısında yapılan Torricelli deneyinde cıva, boruda $76$ cm yükseliyor. Deney aynı yerde, kesit alanı iki kat büyük bir boruyla tekrarlanırsa borudaki cıva yüksekliği ne olur?",
+       "options": [
+        "Yarıya iner.",
+        "Değişmez.",
+        "İki katına çıkar.",
+        "Cıva boruyu tamamen doldurur.",
+        "Cıva boruda hiç yükselmez."
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Cıva sütununu açık hava basıncı dengeler: $P_0 = h \\cdot d_{cıva} \\cdot g$; kesit alanı formülde yok.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Borudaki cıvayı yukarıda tutan, kaptaki cıvanın yüzeyine bastıran açık hava basıncıdır. Bu basıncı dengeleyen, cıva sütununun yaptığı basınç: yükseklik çarpı özkütle çarpı g. Formülde borunun kesiti yok."
+        },
+        {
+         "text": "Açık hava basıncı aynı → $h = 76$ cm. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Aynı yerde açık hava basıncı aynı olduğu için cıva yine yetmiş altı santimetrede durur; geniş boruda yalnız daha çok cıva vardır. Cevabımız B. Yarıya ineceğini düşünen, basıncı kuvvet sanıp ağırlığın iki katına çıktığını hesaba katmıştır; ama alan da iki katına çıktı."
+        }
+       ],
+       "narration": "Sıvı basıncı kesite bağlı mı?",
+       "origin": {
+        "changes": "Bu ders için yazıldı; Torricelli deneyinde sıvı basıncının kesitten bağımsızlığı özgün olarak soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_BASINC_04",
+    "subtopics": [],
+    "title": "Kapalı kapta gaz",
+    "narration": "Kapalı bir kaptaki gaz molekülleri durmadan kabın duvarlarına çarpar; gaz basıncı bu çarpmalardan doğar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sıkıştır ya da ısıt",
+      "items": [
+       "Sabit hacimde gaz **ısınırsa** moleküller hızlanır: basınç **artar**; soğursa azalır.",
+       "Sabit sıcaklıkta hacim **küçülürse** basınç **artar**: $P_1 V_1 = P_2 V_2$.",
+       "Gazın basıncı **manometreyle** ölçülür.",
+       "Soğuyan kapalı kap: içerideki basınç düşer, dışarıdaki hava kabı **içeri iter**."
+      ],
+      "beats": [],
+      "narration": "Kapalı bir kaptaki gaz ısıtılırsa molekülleri hızlanır, duvarlara daha sık ve daha sert çarpar: basınç artar. Soğutulursa basınç azalır. Sıcaklık sabitken gazı sıkıştırıp hacmini yarıya indirirsen basıncı iki katına çıkar: basınç çarpı hacim sabit kalır. Kapağı kapalı boş bir şişeyi buzdolabına koyarsan içerideki hava soğur, basıncı düşer ve dışarıdaki açık hava basıncı şişeyi içeri doğru ezer."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kapağı sıkıca kapatılmış, içi hava dolu boş bir plastik şişe sıcak bir odadan buzdolabına konuyor. Bir süre sonra şişenin içeri doğru büzüldüğü görülüyor. Bunun nedeni aşağıdakilerden hangisidir?",
+       "options": [
+        "Şişedeki havanın kütlesi azalmıştır.",
+        "Dış ortamdaki açık hava basıncı artmıştır.",
+        "Plastik soğuyunca genleşmiştir.",
+        "Şişeye dışarıdan hava girmiştir.",
+        "İçerideki havanın basıncı, soğuma nedeniyle azalmıştır."
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Hacim kapalı, hava soğudu → moleküller yavaşladı → iç basınç **azaldı**; dıştaki basınç büyük kaldı. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kapak kapalı, içerideki havanın miktarı değişmedi. Ama hava soğuyunca molekülleri yavaşladı, duvarlara daha az çarptı: iç basınç azaldı. Dışarıdaki basınç artık daha büyük ve şişeyi içeri doğru itiyor. Cevabımız E."
+        }
+       ],
+       "narration": "İçeri ile dışarı arasındaki fark.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2019 şişe-balon sorusundaki soğuyan gazın basıncı fikri plastik şişe örneğiyle özgün olarak kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Sabit sıcaklıkta, $1$ atm basınçta $2$ L hacim kaplayan bir gaz, pistonla sıkıştırılarak hacmi $0{,}5$ L'ye indiriliyor. Gazın yeni basıncı kaç atm olur?",
+       "options": [
+        "$0{,}25$",
+        "$1$",
+        "$2$",
+        "$4$",
+        "$8$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$1 \\cdot 2 = P_2 \\cdot 0{,}5$ → $P_2 = 4$ atm. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir çarpı iki, P iki çarpı sıfır virgül beşe eşit: P iki dört atmosfer. Hacim dörtte birine inince basınç dört katına çıktı. Cevabımız D. Sıfır virgül yirmi beşi seçen, basıncın hacimle birlikte azaldığını sanmıştır."
+        }
+       ],
+       "narration": "$P_1 V_1 = P_2 V_2$.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; sabit sıcaklıkta basınç-hacim ilişkisi özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_BASINC_05",
+    "subtopics": [],
+    "title": "Pascal ilkesi ve akışkanlar",
+    "narration": "Bir sıvıya bir yerden basınç uygularsan, o basınç sıvının her yerine aynen iletilir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Küçük kuvvet, büyük yük",
+      "items": [
+       "**Pascal**: kapalı kaptaki sıvıya uygulanan basınç, her noktaya **aynen** iletilir.",
+       "Hidrolik sistem: $\\frac{F_1}{A_1} = \\frac{F_2}{A_2}$; geniş pistonda kuvvet **büyür**.",
+       "Örnekler: hidrolik fren, kriko, berber koltuğu, iş makineleri.",
+       "Akan sıvıda boru **daraldıkça** hız **artar**, basınç **azalır**."
+      ],
+      "beats": [],
+      "narration": "Pascal ilkesine göre kapalı bir kaptaki sıvıya uygulanan basınç, sıvının her noktasına ve kabın her yüzeyine aynen iletilir. Hidrolik kaldıraçta küçük pistona uygulanan basınç büyük pistona aynen geçer; büyük pistonun alanı kaç kat büyükse kuvvet de o kadar büyür. Hidrolik fren, kriko ve berber koltuğu böyle çalışır. Akan sıvılarda ise başka bir kural var: boru daraldıkça sıvı hızlanır ve hızlandığı yerde basıncı azalır."
+     },
+     {
+      "kind": "visual",
+      "title": "Hidrolik kaldıraç",
+      "visual": {
+       "kind": "process",
+       "process": "pressure",
+       "stages": [
+        "pascal"
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Küçük pistona küçük bir kuvvet uygularız. Bu basınç sıvının her yerine aynen iletilir ve geniş pistona daha büyük bir kuvvet olarak ulaşır; araba kalkar. Küçük piston uzun bir yol alır, büyük piston kısa.",
+        "show": [],
+        "focus": [
+         "pascal"
+        ],
+        "stage": 0,
+        "swap": []
+       }
+      ],
+      "narration": "Bir hidrolik kaldıracın içine bakalım."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir hidrolik kaldıracın küçük pistonunun alanı $10 \\text{ cm}^2$, büyük pistonunun alanı $500 \\text{ cm}^2$'dir. Küçük pistona $200$ N'lik kuvvet uygulanırsa büyük piston en çok kaç newtonluk yükü dengeleyebilir?",
+       "options": [
+        "$400$",
+        "$10\\,000$",
+        "$20\\,000$",
+        "$40\\,000$",
+        "$100\\,000$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$\\frac{200}{10} = \\frac{F_2}{500}$ → $F_2 = 10\\,000$ N. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Küçük pistondaki basınç iki yüz bölü on; büyük pistonda da aynı basınç olmalı: F iki bölü beş yüz. F iki on bin newton. Alan elli kat, kuvvet de elli kat. Cevabımız B."
+        }
+       ],
+       "narration": "Basınç her iki pistonda aynı.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; hidrolik kaldıraçta Pascal ilkesi özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Yatay bir borudan sürekli akan su, borunun geniş $K$ kısmından dar $L$ kısmına geçiyor. $L$ kısmında suyun akış sürati ve basıncı $K$ kısmına göre nasıldır?",
+       "options": [
+        "Sürat küçük – basınç büyük",
+        "Sürat küçük – basınç küçük",
+        "Sürat büyük – basınç büyük",
+        "Sürat ve basınç aynı",
+        "Sürat büyük – basınç küçük"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Her saniye aynı hacim geçer: kesit küçülünce sürat **artar**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Borudan her saniye aynı miktarda su geçer. Dar kısımdan aynı suyun geçmesi için su hızlanmak zorunda."
+        },
+        {
+         "text": "Akışkan hızlandığı yerde basıncı **azalır**. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Akan bir sıvı hızlandığı yerde basıncı azalır: dar L kısmında sürat büyük, basınç küçük. Hortumun ucunu sıkınca suyun hızlandığını görürsün. Cevabımız E. C'yi seçen, hızlı akan suyun daha çok bastırdığını sanmıştır."
+        }
+       ],
+       "narration": "Dar yerden aynı miktarda su geçmeli.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2021 su borusu sorusundaki kesit-sürat-basınç ilişkisi özgün bir durumla soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Katı: $P = \\frac{F}{A}$; alan küçülürse basınç artar.",
+    "Sıvı: $P = h d g$; kabın biçimine ve sıvı miktarına bağlı **değil**.",
+    "Açık hava basıncı deniz seviyesinde $76$ cmHg; yükseldikçe azalır, kaynama sıcaklığı düşer.",
+    "Gaz: ısınınca ya da sıkışınca basınç artar; $P_1 V_1 = P_2 V_2$.",
+    "Pascal: $\\frac{F_1}{A_1} = \\frac{F_2}{A_2}$; akan sıvı daralan yerde hızlanır, basıncı azalır."
+   ],
+   "warnings": [
+    "Geniş kapta sıvı çok diye basınç **büyük olmaz**.",
+    "Pipetle içmeyi sağlayan **açık hava basıncıdır**.",
+    "Akan sıvının hızlandığı yerde basınç **azalır**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bir pet şişeyi farklı yüksekliklerden üç kez del, suyla doldur: hangi delikten su **daha uzağa** fışkırıyor?",
+    "Katı, sıvı ve gaz basıncının **neye bağlı** olduğunu bir tabloya yaz.",
+    "Uygulamada Basınç testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Katı basıncına günlük örnekler ekle (bıçağın keskin tarafı, kar ayakkabısı, çivinin ucu, kamyonların çok tekerleği) ve tuğlanın farklı yüzleri üstünde durunca basıncın değişmesi sorusunu çöz.",
+   "Sıvı basıncında kabın tabanına etki eden kuvveti (F = P · A) farklı biçimli kaplarla karşılaştır; bileşik kaplar, su kuleleri ve barajın tabanının kalın yapılmasını örnekle.",
+   "Açık hava basıncının ölçülmesini ekle: Torricelli deneyi (76 cmHg), barometre; vantuz, enjektör, damlalık ve pipetin çalışması; yükseldikçe suyun daha düşük sıcaklıkta kaynaması.",
+   "Gaz basıncında açık uçlu manometre okumayı ve sabit sıcaklıkta P₁V₁ = P₂V₂ hesaplarını örnekle; araba lastiğinin sıcakta şişmesi.",
+   "Akışkanlarda hız ve basınç ilişkisini (Bernoulli) örnekle: uçak kanadı, fırtınada çatının uçması, yan yana giden iki geminin birbirine çekilmesi, perdenin rüzgârla dışarı çekilmesi."
+  ]
+ }
+}

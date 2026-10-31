@@ -1,0 +1,758 @@
+{
+ "topic": {
+  "id": "1E36E631-26DE-A561-B36C-2B30DFC8A40C",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_BASAMAK"
+ },
+ "title": "Sayı Basamakları",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/MAT/MAT_BASAMAK.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Bir harf sayının başına geçince sıfır olamaz. AYT bunu yazmaz, sen okursun.",
+   "narration": "Basamak sorularında ÖSYM'nin en sevdiği tuzak yazılmayan koşuldur: bir harf, bir sayının en solunda duruyorsa sıfır olamaz ve soru bunu söylemez. AYT bu konuyu son yıllarda harflerle yazılmış bir toplamayla ve adım adım yer değiştiren rakamlarla sordu. Bu derste çözümlemeyi hatırlayıp her kalıbı AYT düzeyinde bir soruyla çözeceğiz."
+  },
+  "objectives": [
+   "Sayıyı çözümleyip rakamlar arasındaki ilişkiyi denkleme çevirmek",
+   "Yazılmayan sıfır yasağını sayının adından okumak",
+   "Rakamlardan kurulan bütün sayıların toplamını basamak basamak bulmak",
+   "Rakam değişince sayının değişimini basamak değeriyle hesaplamak",
+   "Harfli toplamada ve adım sorularında akıl yürütmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_BASAMAK_01",
+    "subtopics": [
+     "MAT_BASAMAK_03"
+    ],
+    "title": "Rakam, sayı ve basamak",
+    "narration": "TYT'de rakamla sayının farkını gördük. AYT'de bu fark bir koşulun içine saklanır: bir harf, bir sayının başına geldiği anda sıfır olamaz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kısa tekrar: rakam ve basamak",
+      "items": [
+       "Rakamlar: $0, 1, 2, \\dots, 9$. **Sayı**, rakamların yan yana yazılmasıyla oluşur.",
+       "Basamak değeri = rakam × basamağın değeri: $7052$'de 5'in basamak değeri **50**.",
+       "En soldaki rakam **sıfır olamaz**: $\\overline{ab}$ iki basamaklıysa $a \\neq 0$.",
+       "**Farklı** harfler farklı rakam demek değildir; \"rakamları farklı\" ayrıca söylenir."
+      ],
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Binler",
+        "Yüzler",
+        "Onlar",
+        "Birler"
+       ],
+       "rows": [
+        [
+         "7",
+         "0",
+         "5",
+         "2"
+        ],
+        [
+         "7000",
+         "0",
+         "50",
+         "2"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "7052 sayısını basamaklarına yazalım: binlerde 7, yüzlerde 0, onlarda 5, birlerde 2.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Basamak değerleri: 7000, 0, 50 ve 2. Beşin basamak değeri elli, çünkü onlar basamağında.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2",
+         "col3"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Dört bilgiyi hatırlayalım. Rakamlar sıfırdan dokuza on tanedir; sayı, rakamların yan yana yazılmasıyla oluşur. Bir rakamın basamak değeri, rakamla basamağın değerinin çarpımıdır: 7052'de beşin basamak değeri ellidir. En soldaki rakam sıfır olamaz. Ve dikkat: iki farklı harf, kendiliğinden farklı rakam demek değildir; soru bunu ayrıca söyler."
+     },
+     {
+      "kind": "mistake",
+      "title": "Gizli sıfır yasağı",
+      "wrong": "$\\overline{ca}$ için $c = 0$ alınabilir.",
+      "right": "$\\overline{ca}$ iki basamaklı bir sayıysa $c \\neq 0$.",
+      "why": "Bir harf **herhangi bir** sayının en solunda duruyorsa sıfır olamaz; bu koşul soru metninde yazmaz, sayının adından okunur.",
+      "narration": "Sık yapılan bir hata: c A sayısında c'yi sıfır almak. C A iki basamaklı bir sayıysa c en soldadır ve sıfır olamaz. Soru bunu ayrıca yazmaz; koşulu sayının kendisinden okursun. AYT bu yasağı özellikle sondaki harfe saklar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$, $b$ ve $c$ birbirinden farklı rakamlar olmak üzere\n\n$\\overline{ab} + \\overline{bc} + \\overline{ca} = 143$\n\nolduğuna göre, $\\overline{abc}$ üç basamaklı sayısının alabileceği **en büyük** değer ile **en küçük** değerin farkı kaçtır?",
+       "options": [
+        "$792$",
+        "$801$",
+        "$810$",
+        "$819$",
+        "$828$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$\\overline{ab} + \\overline{bc} + \\overline{ca} = 11(a + b + c) = 143$, $a + b + c = 13$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç sayıyı çözümleyelim: on a artı b, on b artı c, on c artı a. Toplam on bir çarpı a artı b artı c. Bu 143 ise rakamlar toplamı on üç."
+        },
+        {
+         "text": "Üç sayı da iki basamaklı: $a$, $b$, $c$ **sıfır olamaz**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a b, b c ve c a üçü de iki basamaklı. Demek ki a, b ve c'nin hiçbiri sıfır olamaz. Tuzak burada."
+        },
+        {
+         "text": "En büyük: $a = 9$, $b + c = 4$, $b = 3$, $c = 1$ → $931$. ($940$ olmaz: $c = 0$.)",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "En büyük sayı için a dokuz. b artı c dört kalır; b'yi büyük seçelim ama c sıfır olamaz: b üç, c bir. Sayı 931. 940 yazan, c'yi sıfır almıştır."
+        },
+        {
+         "text": "En küçük: $a = 1$, $b + c = 12$, $b = 3$, $c = 9$ → $139$. Fark: $931 - 139 = 792$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "En küçük sayı için a bir. b artı c on iki; c en çok dokuz olduğu için b en az üç. Sayı 139. Fark: 931 eksi 139, yedi yüz doksan iki. Cevap A."
+        }
+       ],
+       "narration": "Üç sayı da iki basamaklı. Bu, üç harfin de bir sayının en solunda durduğu anlamına gelir.",
+       "origin": {
+        "changes": "Çözümleme ve gizli sıfır yasağı kalıbı; toplam ve soru (en büyük ile en küçüğün farkı) yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BASAMAK_02",
+    "subtopics": [],
+    "title": "Çözümleme",
+    "narration": "Basamak sorularının neredeyse hepsi tek bir hamleyle açılır: sayıyı çözümlemek. Bağıntıları hatırlayıp AYT'nin ek koşullarına bakalım.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Çözümleme bağıntıları",
+      "items": [
+       "$\\overline{abc} = 100a + 10b + c$",
+       "$\\overline{ab} + \\overline{ba} = 11(a + b)$, $\\overline{ab} - \\overline{ba} = 9(a - b)$",
+       "$\\overline{abc} - \\overline{cba} = 99(a - c)$: ortadaki rakam **sadeleşir**.",
+       "Sayı, rakamlarıyla ilişkilendirilmişse önce **çözümle**, sonra harfleri bir tarafa topla."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "\\overline{abc} - \\overline{cba} = 99\\,(a - c)",
+       "caption": "Ortadaki b iki sayıda da aynı yerde: farkta kaybolur."
+      },
+      "beats": [],
+      "narration": "Bağıntıları hatırlayalım. a b c sayısı, yüz a artı on b artı c'dir. a b artı b a, on bir çarpı a artı b; a b eksi b a, dokuz çarpı a eksi b. a b c eksi c b a ise doksan dokuz çarpı a eksi c; ortadaki rakam sadeleşip gider. Bir soru sayıyı rakamlarına bağlıyorsa önce çözümle, sonra harfleri bir tarafa topla."
+     },
+     {
+      "kind": "predict",
+      "title": "B rakamı bulunur mu?",
+      "prompt": "$\\overline{ABC} - \\overline{CBA} = 594$ ise $B$ rakamı için ne söylenebilir?",
+      "choices": [
+       "Bu bilgiyle bulunamaz",
+       "$B = 5$"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "$\\overline{ABC}$",
+        "$\\overline{CBA}$",
+        "Fark"
+       ],
+       "rows": [
+        [
+         "$802$",
+         "$208$",
+         "$594$"
+        ],
+        [
+         "$852$",
+         "$258$",
+         "$594$"
+        ],
+        [
+         "$892$",
+         "$298$",
+         "$594$"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "802 eksi 208, 594. Ortadaki rakam sıfır.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "852 eksi 258 de 594; 892 eksi 298 de. Ortadaki rakam değişti, fark değişmedi.",
+        "show": [
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r2",
+         "r3"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "Fark $99(A - C)$: $B$ sadeleşir. Bu bilgi yalnız $A - C = 6$ verir; $B$ için **ek koşul** gerekir.",
+      "narration": "Şimdi sıra sende. A B C eksi C B A, 594. Ortadaki B rakamı için ne söylenebilir? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: bu bilgiyle bulunamaz. Fark doksan dokuz çarpı A eksi C; B sadeleşip gidiyor. Bu bilgi bize yalnız A eksi C'nin altı olduğunu söyler. B'yi bulmak için soru bir koşul daha vermek zorunda. Şimdi tam da böyle bir soru çözeceğiz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\overline{abc}$ ve $\\overline{cba}$ üç basamaklı doğal sayılardır.\n\n$\\overline{abc} - \\overline{cba} = 594$\n\n$b$ rakamı, $a$ ile $c$ rakamlarının aritmetik ortalamasıdır.\n\nBuna göre, $\\overline{abc}$ sayısının alabileceği değerlerin toplamı kaçtır?",
+       "options": [
+        "$1593$",
+        "$2556$",
+        "$2730$",
+        "$3186$",
+        "$3297$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$99(a - c) = 594$: $a - c = 6$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Fark doksan dokuz çarpı a eksi c ve 594: a eksi c altı."
+        },
+        {
+         "text": "$\\overline{cba}$ üç basamaklı: $c \\neq 0$. Çiftler: $(7, 1)$, $(8, 2)$, $(9, 3)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "c b a da üç basamaklı, c sıfır olamaz. a eksi c altı olan çiftler: yedi ile bir, sekiz ile iki, dokuz ile üç. Altı ile sıfır olmaz."
+        },
+        {
+         "text": "$b = \\frac{a + c}{2}$: $741$, $852$, $963$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "b, a ile c'nin ortalaması: yedi ile birin ortalaması dört, sekiz ile ikinin beş, dokuz ile üçün altı. Sayılar 741, 852 ve 963."
+        },
+        {
+         "text": "Toplam: $741 + 852 + 963 = 2556$. ($630$ eklenirse $3186$: $c = 0$ tuzağı.)",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam iki bin beş yüz elli altı. 630'u da ekleyen, c sıfırı kabul etmiş ve 3186 bulmuştur. Cevap B."
+        }
+       ],
+       "narration": "Tahmin kartındaki eksik koşul geldi: b, a ile c'nin ortalaması.",
+       "origin": {
+        "changes": "Çözümleme farkı kalıbı; fark, ortalama koşulu ve şıklar yeni yazıldı, sıfır tuzağı şıklara kondu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\overline{ab}$ rakamları farklı iki basamaklı bir doğal sayıdır.\n\n$\\overline{ab}$ sayısı, rakamları toplamının 4 katından 3 fazladır.\n\nBuna göre, $\\overline{ab}$ sayısının alabileceği değerlerin toplamı kaçtır?",
+       "options": [
+        "$141$",
+        "$152$",
+        "$164$",
+        "$175$",
+        "$188$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$10a + b = 4(a + b) + 3$ → $6a = 3b + 3$ → $b = 2a - 1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sayı, on a artı b. Rakamlar toplamının dört katından üç fazla: dört çarpı a artı b, artı üç. Düzenleyince altı a eşittir üç b artı üç, yani b eşittir iki a eksi bir."
+        },
+        {
+         "text": "$a = 1, 2, 3, 4, 5$: $11, 23, 35, 47, 59$ ($a = 6$ için $b = 11$ rakam değil).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a'ya birden beşe kadar değer verelim: 11, 23, 35, 47 ve 59. a altı olursa b on bir olur, rakam değil."
+        },
+        {
+         "text": "Rakamları farklı: $11$ **elenir**. Toplam: $23 + 35 + 47 + 59 = 164$.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Rakamları farklı olmalı: 11 elenir. Kalanların toplamı yüz altmış dört. 11'i de katan 175 bulur. Cevap C."
+        }
+       ],
+       "narration": "Sözel bir koşul; önce denkleme çevirelim.",
+       "origin": {
+        "changes": "Sayı-rakam ilişkisi kalıbı; katsayılar ve \"rakamları farklı\" koşulu yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BASAMAK_04",
+    "subtopics": [],
+    "title": "Rakamlardan sayı kurmak",
+    "narration": "Verilen rakamlarla yazılan bütün sayıları tek tek toplamak yerine, her rakamın her basamakta kaç kez göründüğünü sayalım.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bütün sayıların toplamı",
+      "items": [
+       "$n$ farklı rakam birer kez kullanılırsa her rakam her basamakta $(n - 1)!$ kez görünür.",
+       "Dört rakamda: toplam $= 3! \\cdot (\\text{rakamlar toplamı}) \\cdot 1111$.",
+       "Sıfır da varsa sıfırın **başta** olduğu sayılar ayrıca çıkarılır.",
+       "Tanımlı sayı: $[abc] = 25a + 5b + c$ gibi bir kural, **çözümlemenin** başka katsayılı hâlidir."
+      ],
+      "beats": [],
+      "narration": "Rakamlardan sayı kurarken iki fikir işe yarar. Birincisi: n farklı rakamı birer kez kullanırsan, her rakam her basamakta n eksi bir faktöriyel kez görünür. Dört rakamla bütün sayıların toplamı, üç faktöriyel çarpı rakamlar toplamı çarpı bin yüz on birdir. Sıfır varsa, sıfırla başlayan sayılar ayrıca çıkarılır. İkincisi: soru yeni bir sayı tanımlıyorsa, bu çoğu zaman çözümlemenin on yerine başka bir sayıyla yapılmış hâlidir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "2, 4, 5 ve 7 rakamlarının her biri **birer kez** kullanılarak yazılabilen dört basamaklı doğal sayıların toplamı kaçtır?",
+       "options": [
+        "$99990$",
+        "$106656$",
+        "$113322$",
+        "$119988$",
+        "$126654$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Sayı adedi: $4! = 24$. Her rakam her basamakta $\\frac{24}{4} = 6$ kez.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dört rakamla dört faktöriyel, yirmi dört sayı yazılır. Her rakam her basamakta eşit sayıda, altı kez görünür."
+        },
+        {
+         "text": "Bir basamaktaki rakamların toplamı: $6 \\cdot (2 + 4 + 5 + 7) = 6 \\cdot 18 = 108$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birler basamağındaki rakamların toplamı: altı çarpı on sekiz, yüz sekiz. Diğer basamaklarda da aynı."
+        },
+        {
+         "text": "Toplam: $108 \\cdot (1000 + 100 + 10 + 1) = 108 \\cdot 1111 = 119988$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bu yüz sekizi her basamağın değeriyle çarpıp toplarız: yüz sekiz çarpı bin yüz on bir, yüz on dokuz bin dokuz yüz seksen sekiz. Cevap D."
+        }
+       ],
+       "narration": "Yirmi dört sayıyı tek tek toplamayacağız; her basamağı ayrı sayacağız.",
+       "origin": {
+        "changes": "Rakamlardan sayı kurma kalıbı; rakamlar ve basamak sayısı yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Her biri 5'ten küçük $a$, $b$ ve $c$ rakamları için\n\n$[abc] = 25a + 5b + c$\n\nbiçiminde tanımlanıyor.\n\n$[abc] = 87$ olduğuna göre, $[cba]$ kaçtır?",
+       "options": [
+        "$43$",
+        "$48$",
+        "$53$",
+        "$58$",
+        "$63$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$87 = 3 \\cdot 25 + 12$, $12 = 2 \\cdot 5 + 2$: $a = 3$, $b = 2$, $c = 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "87'nin içinde üç tane yirmi beş var, on iki kalır. On ikide iki tane beş var, iki kalır. Rakamlar beşten küçük olduğu için başka yol yok: a üç, b iki, c iki."
+        },
+        {
+         "text": "$[cba] = [223] = 25 \\cdot 2 + 5 \\cdot 2 + 3 = 63$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Şimdi c b a: iki, iki, üç. Yirmi beş çarpı iki, elli; beş çarpı iki, on; artı üç. Altmış üç. Cevap E."
+        }
+       ],
+       "narration": "Bu tanım, beşlik çözümleme. 87'yi yirmi beşlere ve beşlere ayıralım.",
+       "origin": {
+        "changes": "Yeni tanımlı sayı kalıbı (havuzdaki [abcd] tanımı örnek alındı); taban, sayı ve soru yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BASAMAK_05",
+    "subtopics": [],
+    "title": "Basamak değiştirme",
+    "narration": "Bir rakam değişince sayı ne kadar değişir? Cevap rakamın değişimi değil, basamak değeriyle çarpımıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Değişim kuralı",
+      "items": [
+       "Bir rakam $k$ artarsa sayı $k \\times (\\text{basamak değeri})$ artar.",
+       "Yanlış okunan çarpan: doğru sonuç için önce **asıl** sayıyı bul, sonra doğru çarpanla çarp.",
+       "İki rakamın yeri değişirse fark $9 \\times$ (basamak farkı) gibi bir katsayıyla çıkar."
+      ],
+      "beats": [],
+      "narration": "Bir rakam k artarsa sayı, k çarpı o basamağın değeri kadar artar. Onlar basamağı üç artarsa sayı otuz artar. Bir çarpanı yanlış okuyan öğrenci sorusunda önce yanlış sonuçtan asıl sayıyı bul, sonra doğru çarpanla çarp. İki rakamın yeri değişirse fark da dokuzun katı olarak çıkar."
+     },
+     {
+      "kind": "example",
+      "title": "Üç değişiklik, tek fark",
+      "example": "$\\overline{abcd}$ sayısında $b$ rakamı 3 artırılıyor, $d$ rakamı 2 azaltılıyor. Sayı nasıl değişir?",
+      "explanation": "$+3 \\cdot 100 - 2 \\cdot 1 = +298$: sayı **298 artar**.",
+      "beats": [],
+      "narration": "Bir örnek. a b c d sayısında b rakamı 3 artırılıyor, d rakamı 2 azaltılıyor. Sayı nasıl değişir? b yüzler basamağında: üç çarpı yüz, üç yüz artış. d birler basamağında: iki azalış. Sayı toplamda iki yüz doksan sekiz artar. Rakamların kendi değişimini toplayıp bir bulan yanılır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir öğrenci, $\\overline{ab}$ iki basamaklı sayısını 36 ile çarparken 36'nın onlar basamağındaki 3'ü 5, birler basamağındaki 6'yı 2 olarak okumuş ve çarpımı $1404$ bulmuştur.\n\nBuna göre, doğru çarpım kaçtır?",
+       "options": [
+        "$864$",
+        "$918$",
+        "$945$",
+        "$972$",
+        "$1026$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Öğrenci 36 yerine $52$ ile çarptı: $\\overline{ab} \\cdot 52 = 1404$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Onlar basamağındaki üç, beş; birler basamağındaki altı, iki olunca 36, elli iki olur. Öğrenci elli ikiyle çarpmış."
+        },
+        {
+         "text": "$\\overline{ab} = \\frac{1404}{52} = 27$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "1404 bölü elli iki, yirmi yedi. Asıl sayı yirmi yedi."
+        },
+        {
+         "text": "Doğru çarpım: $27 \\cdot 36 = 972$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Doğru çarpım: yirmi yedi çarpı otuz altı, dokuz yüz yetmiş iki. Cevap D."
+        }
+       ],
+       "narration": "Önce öğrencinin aslında hangi sayıyla çarptığını bulalım.",
+       "origin": {
+        "changes": "Yanlış okunan çarpan kalıbı (havuzdaki örnek yapı için okundu); sayılar ve yanlış okuma yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BASAMAK_06",
+    "subtopics": [],
+    "title": "Harfli işlemler ve adım problemleri",
+    "narration": "ÖSYM bu konuyu son yıllarda iki kalıpla sordu: harflerle yazılmış bir toplama ve adım adım yer değiştiren rakamlar. İkisi de akıl yürütme ister.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Harfli toplama ve adım soruları",
+      "items": [
+       "İki basamaklı iki sayının toplamı en çok $99 + 98 = 197$: üç basamaklı sonucun başı **1**'dir.",
+       "Elde, bir sonraki basamağa en çok **1** taşır.",
+       "Adım sorusunda birkaç adımı yaz, sayının **ne zaman başa döndüğünü** (dönemi) bul.",
+       "$1$'den başlayan dizide: $1$–$9$ **9**, $10$–$99$ **180**, $100$–$999$ **2700** rakam."
+      ],
+      "beats": [],
+      "narration": "Bu bölümün dört ipucu. İki basamaklı iki sayının toplamı en çok yüz doksan yedi olabilir; sonuç üç basamaklıysa başı birdir. Elde bir sonraki basamağa en çok bir taşır. Adım adım değişen sayılarda birkaç adımı yaz ve sayının ne zaman başa döndüğünü bul. Sayıları yan yana yazınca da: birden dokuza dokuz, ondan doksan dokuza yüz seksen, yüzden dokuz yüz doksan dokuza iki bin yedi yüz rakam kullanılır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$A$, $B$ ve $C$ birbirinden farklı ve sıfırdan farklı rakamlar olmak üzere\n\n$\\overline{AB} + \\overline{BA} = \\overline{CAC}$\n\nolduğuna göre, $\\overline{AB}$ sayısı kaçtır?",
+       "options": [
+        "$29$",
+        "$38$",
+        "$47$",
+        "$56$",
+        "$92$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Toplam en çok $197$: $C = 1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki basamaklı iki sayının toplamı en çok yüz doksan yedi. Sonuç üç basamaklı, demek ki C bir."
+        },
+        {
+         "text": "$11(A + B) = \\overline{1A1} = 101 + 10A$: sol taraf 11'in katı.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sol taraf on bir çarpı A artı B, yani on birin katı. Sağ taraf 1 A 1: yüz bir artı on A."
+        },
+        {
+         "text": "$A = 2$: $121 = 11 \\cdot 11$, $A + B = 11$, $B = 9$. Öteki $A$ değerleri 11'in katı vermez.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hangi A için yüz bir artı on A, on birin katı olur? A iki olunca 121, on bir çarpı on bir. A artı B on bir, B dokuz. Başka A değeri on birin katı vermez."
+        },
+        {
+         "text": "Sağlama: $29 + 92 = 121$. $\\overline{AB} = 29$.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sağlayalım: 29 artı 92, yüz yirmi bir. A B sayısı yirmi dokuz. 92 yazan, iki sayıyı karıştırmıştır. Cevap A."
+        }
+       ],
+       "narration": "ÖSYM 2023'te harflerle bir toplama sordu. Biz daha kısa bir toplamayla aynı akıl yürütmeyi kuralım.",
+       "origin": {
+        "changes": "ÖSYM 2023 harfli toplama kalıbı örnek alındı; işlem ve harfler yeni kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "visual",
+      "title": "Üç adımda bir kayma",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "$1234$",
+         "detail": "başlangıç"
+        },
+        {
+         "label": "$2134$",
+         "detail": "1. adım: binler ↔ yüzler"
+        },
+        {
+         "label": "$2314$",
+         "detail": "2. adım: yüzler ↔ onlar"
+        },
+        {
+         "label": "$2341$",
+         "detail": "3. adım: onlar ↔ birler"
+        }
+       ]
+      },
+      "caption": "Üç adım = bir basamak sola dönme; 12 adımda başa dönüş.",
+      "beats": [
+       {
+        "narration": "Başlangıç 1234. Birinci adımda binler ile yüzler basamağı yer değiştirir: 2134.",
+        "show": [
+         "n1",
+         "n2"
+        ],
+        "focus": [
+         "n1",
+         "n2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "İkinci adımda yüzler ile onlar: 2314. Bir, her adımda bir basamak sağa kayıyor.",
+        "show": [
+         "n3"
+        ],
+        "focus": [
+         "n3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Üçüncü adımda onlar ile birler: 2341. Üç adımın sonunda rakamlar bir basamak sola dönmüş oldu. Dört kez dönünce, yani on iki adımda, sayı başa döner.",
+        "show": [
+         "n4"
+        ],
+        "focus": [
+         "n4"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Aşağıdaki sorunun kuralını önce şemada görelim. Her üç adımda bir tur tamamlanıyor."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$1234$ sayısına aşağıdaki adımlar sırayla uygulanıyor:\n\n1. adımda binler ile yüzler,\n\n2. adımda yüzler ile onlar,\n\n3. adımda onlar ile birler basamağındaki rakamlar yer değiştiriyor.\n\nSonraki adımlarda aynı üç adım bu sırayla tekrarlanıyor.\n\nBuna göre, **100. adım** sonunda elde edilen sayı kaçtır?",
+       "options": [
+        "$2134$",
+        "$2314$",
+        "$2341$",
+        "$3214$",
+        "$3241$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Her 3 adımda rakamlar bir basamak **sola döner**; 4 dönmede, yani **12 adımda** sayı başa döner.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Şemada gördük: üç adımda sayı bir basamak sola dönüyor. Dört basamaklı sayı dört dönmede başa gelir: on iki adımda bir."
+        },
+        {
+         "text": "$100 = 12 \\cdot 8 + 4$: 96. adımda sayı yine $1234$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yüzü on ikiye bölelim: sekiz tur, kalan dört. Doksan altıncı adımda sayı yeniden 1234."
+        },
+        {
+         "text": "4 adım daha: $1234 \\to 2134 \\to 2314 \\to 2341 \\to 3241$.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dört adım daha: önce üç adımla 2341. Dördüncü adım yine binler ile yüzler: 2341, 3241 olur. Cevap E."
+        }
+       ],
+       "narration": "ÖSYM 2019'da üç basamaklı bir sayıyla sordu; biz dört basamakla, şemadaki kuralla çözelim.",
+       "origin": {
+        "changes": "ÖSYM 2019 adım adım yer değiştirme kalıbı örnek alındı; dört basamaklı sayı ve üç adımlı döngü yeni kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "1'den başlayarak ardışık doğal sayılar yan yana yazılarak\n\n$123456789101112\\dots$\n\nsayısı oluşturuluyor.\n\nBuna göre, bu sayının soldan **200.** rakamı kaçtır?",
+       "options": [
+        "$0$",
+        "$1$",
+        "$2$",
+        "$3$",
+        "$9$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$1$–$9$: 9 rakam; $10$–$99$: $90 \\cdot 2 = 180$ rakam. Toplam $189$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birden dokuza dokuz rakam. Ondan doksan dokuza doksan sayı, her biri iki rakam: yüz seksen. Toplam yüz seksen dokuz."
+        },
+        {
+         "text": "$200 - 189 = 11$: üç basamaklı sayıların **11.** rakamı.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki yüzüncü rakam, üç basamaklı sayılardan sonra gelen on birinci rakam."
+        },
+        {
+         "text": "$100, 101, 102$: 9 rakam. 10. ve 11. rakam $103$'ün ilk ikisi: $1$, $0$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "100, 101 ve 102 dokuz rakam tutar. Onuncu ve on birinci rakamlar 103'ün ilk iki rakamı: bir ve sıfır. İki yüzüncü rakam sıfır. Cevap A."
+        }
+       ],
+       "narration": "Rakamları bloklar hâlinde sayalım.",
+       "origin": {
+        "changes": "Ardışık sayıları yan yana yazma kalıbı; sıra (200.) ve soru yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Önce **çözümle**: $\\overline{abc} = 100a + 10b + c$.",
+    "$\\overline{abc} - \\overline{cba} = 99(a - c)$: **ortadaki** rakam sadeleşir.",
+    "Bir harf **herhangi bir** sayının başındaysa **sıfır olamaz**.",
+    "Dört farklı rakamla bütün sayılar: $3! \\cdot (\\text{toplam}) \\cdot 1111$.",
+    "Rakam $k$ artarsa sayı $k \\cdot$ **basamak değeri** artar.",
+    "Adım sorusunda **dönemi** bul, adımı döneme böl."
+   ],
+   "warnings": [
+    "$c = 0$ alınca $\\overline{ca}$ iki basamaklı olmaz.",
+    "\"Farklı harf\" kendiliğinden **farklı rakam** değildir."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki $\\overline{ab} + \\overline{bc} + \\overline{ca} = 143$ sorusunu **154** ile yeniden çöz: en büyük ve en küçük sayı kaç?",
+    "ÖSYM 2019 sorusundaki gibi üç basamaklı $123$ ile kendi adım kuralını yaz, **dönemini** bul.",
+    "Uygulamada AYT Sayı Basamakları testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Rakamları farklı üç basamaklı sayıları saydır: toplam 9 × 9 × 8 = 648; çift olanlar 72 (sonu 0) + 256 (sonu 2, 4, 6, 8) = 328. Sıfırın başa gelemeyeceği için durumların ayrılması gerektiğini vurgula.",
+   "İki basamaklı sayılarda kısa yolları ekle: AB + BA = 11(A + B), AB − BA = 9(A − B). AB + BA = 132 ise A + B = 12 ve bu koşulu sağlayan 7 sayı vardır (39, 48, 57, 66, 75, 84, 93).",
+   "Rakamları toplamı verilen sayılara örnek ver: rakamları farklı ve toplamı 20 olan en büyük üç basamaklı sayı 983, en küçüğü 389. En küçüğü ararken ilk basamağın neden 1 ya da 2 olamayacağını göster.",
+   "Sayının yanına rakam yazma sorusu ekle: iki basamaklı bir sayının sağına 5 yazılınca sayı 437 artıyorsa 10x + 5 − x = 437, x = 48. Sola rakam yazmanın basamak değeri kadar ekleme olduğunu karşılaştır."
+  ]
+ }
+}

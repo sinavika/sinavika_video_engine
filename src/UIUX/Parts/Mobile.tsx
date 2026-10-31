@@ -1,7 +1,7 @@
 import React from 'react';
-import {useColors, useModuleColors, useT, useUI, UIProvider} from '../Context';
+import {useAccent, useColors, useModuleColors, useT, useUI, UIProvider} from '../Context';
 import {Icon, type UIIconName} from '../Icons';
-import {alpha, MODULES, moduleGradient, MODULE_ORDER, type ModuleKey} from '../ModuleIdentity';
+import {alpha, MODULES, moduleGradient, moduleInk, MODULE_ORDER, type ModuleKey} from '../ModuleIdentity';
 import {UI_CANVAS, UI_RADIUS, UI_SHADOW} from '../Tokens';
 import {Button, Chip, Dots, Glow, Logo, Stack, Steps, Text, Tile, Watermark} from './Shared';
 
@@ -13,7 +13,7 @@ import {Button, Chip, Dots, Glow, Logo, Stack, Steps, Text, Tile, Watermark} fro
 
 const {width: W, height: H} = UI_CANVAS.mobile;
 
-export const StatusBar: React.FC<{light?: boolean}> = ({light}) => {
+const StatusBar: React.FC<{light?: boolean}> = ({light}) => {
 	const colors = useColors();
 	const ink = light ? '#FFFFFF' : colors.ink;
 	return (
@@ -50,7 +50,7 @@ const RoundIcon: React.FC<{icon: UIIconName; badge?: string; tone?: 'plain' | 'c
 		<div style={{position: 'relative', width: 40, height: 40, borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', background: tone === 'card' ? colors.card : 'transparent', border: tone === 'card' ? `1px solid ${colors.line}` : undefined}}>
 			<Icon name={icon} size={22} color={colors.ink} />
 			{badge ? (
-				<div style={{position: 'absolute', top: 2, right: 0, minWidth: 18, height: 18, padding: '0 4px', boxSizing: 'border-box', borderRadius: 9, background: colors.brand, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+				<div style={{position: 'absolute', top: 2, right: 0, minWidth: 18, height: 18, padding: '0 4px', boxSizing: 'border-box', borderRadius: 9, background: colors.error, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 					<Text role="meta" size={9.5} weight={800} color="#FFFFFF">
 						{badge}
 					</Text>
@@ -60,13 +60,19 @@ const RoundIcon: React.FC<{icon: UIIconName; badge?: string; tone?: 'plain' | 'c
 	);
 };
 
-/** The app header: profile on the left, logo in the middle, notifications on the right (as the app has it). */
-export const AppHeader: React.FC<{left?: 'profile' | 'back' | 'close' | 'menu' | 'none'; title?: string; right?: React.ReactNode; logo?: boolean}> = ({left = 'profile', title, right, logo = !title}) => {
+/**
+ * The app header: profile on the left, notifications on the right. The logo
+ * sits in the middle only on brand screens (Modüller, profile, sign-in); a
+ * module page names itself in its page title instead.
+ */
+export const AppHeader: React.FC<{left?: 'profile' | 'back' | 'close' | 'menu' | 'none'; title?: string; right?: React.ReactNode; logo?: boolean}> = ({left = 'profile', title, right, logo}) => {
+	const {module} = useUI();
 	const icon: Record<string, UIIconName> = {profile: 'user', back: 'left', close: 'x', menu: 'menu'};
+	const showLogo = logo ?? (!title && !module);
 	return (
 		<Stack row justify="space-between" style={{height: 52, padding: '0 14px', flexShrink: 0}}>
 			{left === 'none' ? <div style={{width: 40}} /> : <RoundIcon icon={icon[left]} tone={left === 'profile' ? 'plain' : 'card'} />}
-			{logo ? <Logo height={24} /> : <Text role="section">{title}</Text>}
+			{showLogo ? <Logo height={24} /> : title ? <Text role="section">{title}</Text> : <div />}
 			{right ?? <RoundIcon icon="bell" badge="3" />}
 		</Stack>
 	);
@@ -88,11 +94,11 @@ export const TabBar: React.FC<{module: ModuleKey; active?: number}> = ({module, 
 	];
 	const slot = [0, 1, 3, 4][active] ?? 0;
 	return (
-		<div style={{position: 'absolute', left: 14, right: 14, bottom: 22, height: 72, borderRadius: 28, background: alpha(colors.card.length === 7 ? colors.card : '#FFFFFF', 0.96), border: `1px solid ${colors.line}`, boxShadow: UI_SHADOW.float, display: 'flex', alignItems: 'center', justifyContent: 'space-around', padding: '0 6px', zIndex: 5}}>
+		<div style={{position: 'absolute', left: 14, right: 14, bottom: 22, height: 72, borderRadius: 28, background: alpha(colors.card.length === 7 ? colors.card : '#FFFFFF', 0.96), border: `1px solid ${colors.line}`, boxShadow: UI_SHADOW.float, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2, padding: '0 6px', zIndex: 5}}>
 			{items.map((item, index) => {
 				if (item === 'hub') {
 					return (
-						<Stack key="hub" align="center" gap={3} style={{width: 66}}>
+						<Stack key="hub" align="center" gap={3} style={{flex: '1 1 auto', minWidth: 52}}>
 							<div style={{width: 42, height: 42, borderRadius: 21, background: colors.line2, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 								<Icon name="grid" size={22} color={colors.ink2} stroke={3} />
 							</div>
@@ -104,9 +110,9 @@ export const TabBar: React.FC<{module: ModuleKey; active?: number}> = ({module, 
 				}
 				const on = index === slot;
 				return (
-					<Stack key={item.label} align="center" justify="center" gap={3} style={{width: 66, height: 58, borderRadius: 20, background: on ? mod.soft : 'transparent'}}>
+					<Stack key={item.label} align="center" justify="center" gap={3} style={{flex: '1 1 auto', minWidth: 52, height: 58, padding: '0 5px', borderRadius: 20, background: on ? mod.soft : 'transparent'}}>
 						<Icon name={item.icon} size={22} color={on ? mod.color : colors.muted} stroke={on ? 2.2 : 1.9} />
-						<Text role="meta" size={10} weight={on ? 800 : 600} color={on ? mod.color : colors.muted} style={{whiteSpace: 'nowrap'}}>
+						<Text role="meta" size={10} weight={on ? 800 : 600} color={on ? mod.ink : colors.muted} style={{whiteSpace: 'nowrap', letterSpacing: '-0.02em'}}>
 							{item.label}
 						</Text>
 					</Stack>
@@ -136,7 +142,7 @@ export const ModuleSlide: React.FC<{module: ModuleKey; height?: number; title?: 
 				{text ?? t(identity.slide.text)}
 			</Text>
 			<div style={{flex: 1}} />
-			<Button tone="white" size="sm" style={{alignSelf: 'flex-start', position: 'relative', color: identity.color.light}}>
+			<Button tone="white" size="sm" style={{alignSelf: 'flex-start', position: 'relative', color: moduleInk(module, 'light')}}>
 				{action ?? t(identity.slide.action)}
 			</Button>
 		</div>
@@ -236,8 +242,7 @@ export const ModuleScreen: React.FC<{module: ModuleKey; tab?: number; header?: R
 );
 
 export const SectionTitle: React.FC<{title: string; action?: string; sub?: string}> = ({title, action, sub}) => {
-	const colors = useColors();
-	const mod = useModuleColors();
+	const accent = useAccent();
 	return (
 		<Stack row justify="space-between" align="flex-end">
 			<Stack gap={2}>
@@ -245,7 +250,7 @@ export const SectionTitle: React.FC<{title: string; action?: string; sub?: strin
 				{sub ? <Text role="small">{sub}</Text> : null}
 			</Stack>
 			{action ? (
-				<Text role="small" weight={700} color={useUI().module ? mod.color : colors.brand}>
+				<Text role="small" weight={700} color={accent.ink}>
 					{action}
 				</Text>
 			) : null}
@@ -298,10 +303,16 @@ export const Sheet: React.FC<{children: React.ReactNode; height?: number}> = ({c
 	);
 };
 
-/** Product tour bubble with a highlighted hole at the given box (canvas points). */
-export const TourOverlay: React.FC<{hole: {x: number; y: number; w: number; h: number; r?: number}; step: number; total?: number; title: string; text: string; below?: boolean; arrow?: number}> = ({hole, step, total = 4, title, text, below = true, arrow = 0.5}) => {
+/**
+ * A first-use tip with a highlighted hole at the given box (canvas points).
+ * One tip at a time, shown when the student first meets the thing; `total`
+ * above 1 numbers a short series.
+ */
+export const TourOverlay: React.FC<{hole: {x: number; y: number; w: number; h: number; r?: number}; step?: number; total?: number; title: string; text: string; below?: boolean; arrow?: number}> = ({hole, step = 1, total = 1, title, text, below = true, arrow = 0.5}) => {
 	const colors = useColors();
+	const accent = useAccent();
 	const t = useT();
+	const single = total === 1;
 	const top = below ? hole.y + hole.h + 18 : undefined;
 	const bottom = below ? undefined : H - hole.y + 18;
 	return (
@@ -310,10 +321,10 @@ export const TourOverlay: React.FC<{hole: {x: number; y: number; w: number; h: n
 			<div style={{position: 'absolute', left: 16, right: 16, top, bottom, borderRadius: 22, background: colors.card, padding: 18, boxShadow: UI_SHADOW.float}}>
 				<div style={{position: 'absolute', left: `calc(${arrow * 100}% - 8px)`, [below ? 'top' : 'bottom']: -7, width: 16, height: 16, background: colors.card, transform: 'rotate(45deg)'}} />
 				<Stack row justify="space-between">
-					<Text role="over" color={colors.brand}>
-						{t('Tur', 'Tour')} · {step}/{total}
+					<Text role="over" color={accent.ink}>
+						{single ? t('İpucu', 'Tip') : `${t('İpucu', 'Tip')} · ${step}/${total}`}
 					</Text>
-					<Text role="meta">{t('Geç', 'Skip')}</Text>
+					{single ? null : <Text role="meta">{t('Geç', 'Skip')}</Text>}
 				</Stack>
 				<Text role="section" style={{marginTop: 6}}>
 					{title}
@@ -322,10 +333,8 @@ export const TourOverlay: React.FC<{hole: {x: number; y: number; w: number; h: n
 					{text}
 				</Text>
 				<Stack row justify="space-between" style={{marginTop: 14}}>
-					<div style={{width: 80}}>
-						<Steps count={total} done={step} />
-					</div>
-					<Button size="sm">{step === total ? t('Başlayalım', 'Let’s go') : t('Sonraki', 'Next')}</Button>
+					<div style={{width: 80}}>{single ? null : <Steps count={total} done={step} />}</div>
+					<Button size="sm">{step === total ? t('Anladım', 'Got it') : t('Sonraki', 'Next')}</Button>
 				</Stack>
 			</div>
 		</div>

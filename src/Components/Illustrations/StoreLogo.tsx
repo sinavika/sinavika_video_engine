@@ -4,7 +4,7 @@ import {useVideoLayout} from '../Layouts/VideoLayout';
 /**
  * The marks of the two app stores, drawn as single-colour glyphs (Simple
  * Icons, CC0) so they take the colour of the button they sit on. Used next to
- * the store names wherever a video or image asks people to get the app.
+ * the store names on the store badges (Components/Brand/StoreBadge).
  */
 const STORE_PATHS = {
 	appStore:
@@ -13,12 +13,7 @@ const STORE_PATHS = {
 		'M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z',
 } as const;
 
-export type StoreName = keyof typeof STORE_PATHS;
-
-export const STORES: readonly {id: StoreName; label: string}[] = [
-	{id: 'appStore', label: 'App Store'},
-	{id: 'googlePlay', label: 'Google Play'},
-];
+type StoreName = keyof typeof STORE_PATHS;
 
 export const StoreLogo: React.FC<{store: StoreName; size: number; color: string}> = ({store, size, color}) => {
 	const {u} = useVideoLayout();

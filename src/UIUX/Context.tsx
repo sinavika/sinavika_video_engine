@@ -1,5 +1,5 @@
 import React, {createContext, useContext} from 'react';
-import {MODULES, moduleColor, moduleGradient, moduleInk, moduleTint, type Bilingual, type ModuleKey} from './ModuleIdentity';
+import {MODULES, moduleAction, moduleColor, moduleGradient, moduleInk, moduleTint, type Bilingual, type ModuleKey} from './ModuleIdentity';
 import {UI_COLORS, type UIColors, type UILang, type UIMode} from './Tokens';
 
 /** The theme as CSS variables (--ui-bg, --ui-card…), for the few places that set colours in strings. */
@@ -47,12 +47,14 @@ export const useModuleColors = (key?: ModuleKey) => {
 	const active = key ?? module ?? 'exam';
 	if (calm) {
 		const colors = UI_COLORS[mode];
-		return {key: active, identity: MODULES[active], color: colors.ink2, ink: colors.ink2, gradient: colors.ink, wash: 'transparent', soft: colors.line2, line: colors.line, track: colors.line2};
+		return {key: active, identity: MODULES[active], color: colors.ink2, action: colors.ink, ink: colors.ink2, gradient: colors.ink, wash: 'transparent', soft: colors.line2, line: colors.line, track: colors.line2};
 	}
 	return {
 		key: active,
 		identity: MODULES[active],
 		color: moduleColor(active, mode),
+		/** Button fill (white text at 4.5:1 in both themes). */
+		action: moduleAction(active),
 		/** For text and small labels in the module colour (readable on its tints). */
 		ink: moduleInk(active, mode),
 		gradient: moduleGradient(active, mode),
@@ -61,4 +63,19 @@ export const useModuleColors = (key?: ModuleKey) => {
 		line: moduleTint(active, 'line', mode),
 		track: moduleTint(active, 'track', mode),
 	};
+};
+
+/**
+ * The accent of the screen a part sits on: the module's colours on module
+ * screens, brand orange on brand surfaces (sign-in, onboarding, payment,
+ * profile, the site). Buttons, rings, bars, toggles and focus rings take their
+ * default colour from here, so nothing turns orange inside a module by
+ * accident.
+ */
+export const useAccent = (key?: ModuleKey) => {
+	const {mode, module, calm} = useUI();
+	const colors = UI_COLORS[mode];
+	const active = key ?? module;
+	if (!active || calm) return {brand: true, color: colors.brand, action: colors.action, ink: colors.brandDeep, soft: colors.brandSoft, wash: colors.brandWash};
+	return {brand: false, color: moduleColor(active, mode), action: moduleAction(active), ink: moduleInk(active, mode), soft: moduleTint(active, 'soft', mode), wash: moduleTint(active, 'wash', mode)};
 };

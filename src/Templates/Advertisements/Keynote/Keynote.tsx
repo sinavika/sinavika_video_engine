@@ -4,16 +4,15 @@ import {AbsoluteFill, interpolate} from 'remotion';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
-import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
+import {appEndScenes} from '../../../Scenes/AppEndScene';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, VoiceScriptSchema, type VoiceClips} from '../../../Scenes/Voiceover';
 import {plainText} from '../../../Schemas/RichText';
 import {Icon} from '../../../UIUX/Icons';
 import {defineTemplate} from '../../TemplateDefinition';
-import {At, CLAMP, ease, PhoneShot, PromoStage, PromoSubtitle, useSeconds} from '../PromoKit/PromoKit';
+import {At, CLAMP, ease, PhoneShot, PromoStage, useSeconds} from '../PromoKit/PromoKit';
 import {PROMO_PHONE_SCREEN_NAMES, PROMO_PHONE_SCREENS} from '../PromoKit/PromoScreens';
-import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 /**
  * A product launch: a silver spotlight, one object at a time in the middle,
@@ -24,13 +23,11 @@ import {PromoEndCard} from '../PromoKit/PromoEndCard';
 const narration = z.string().trim().min(1).max(170);
 const TOOL_ICONS = ['book', 'quiz', 'exam', 'cards', 'calendar', 'note', 'layers', 'sparkles'] as const;
 
-export const KeynoteSchema = z.object({
+const KeynoteSchema = z.object({
 	hook: z.object({lines: z.tuple([plainText(26), plainText(26)]), narration}),
 	intro: z.object({kicker: plainText(20), name: plainText(24), narration}),
 	tools: z.object({items: z.array(z.object({icon: z.enum(TOOL_ICONS), name: plainText(20), line: plainText(40)})).min(3).max(6), narration}),
 	sources: z.object({chips: z.array(plainText(14)).min(3).max(6), screen: z.enum(PROMO_PHONE_SCREEN_NAMES), caption: plainText(40), narration}),
-	closing: z.object({name: plainText(24), line: plainText(30), channels: plainText(40).default('iOS · Android · sinavika.com'), narration}),
-	subtitles: z.boolean().default(true),
 	script: VoiceScriptSchema,
 	outro: z.object({enabled: z.boolean().default(true)}).default({enabled: true}),
 });
@@ -50,10 +47,9 @@ const Ground: React.FC = () => {
 	);
 };
 
-const Stage: React.FC<{content: Content; narration: string; shown?: string; children: React.ReactNode}> = ({content, narration: text, shown, children}) => (
+const Stage: React.FC<{children: React.ReactNode}> = ({children}) => (
 	<PromoStage ground={<Ground />}>
 		{children}
-		<PromoSubtitle text={text} shown={shown} enabled={content.subtitles} ink="#FFFFFF" fill={INK} />
 	</PromoStage>
 );
 
@@ -66,7 +62,7 @@ const Rise: React.FC<{at: number; children: React.ReactNode}> = ({at, children})
 };
 
 const HookScene: React.FC<{content: Content}> = ({content}) => (
-	<Stage content={content} narration={content.hook.narration} shown={content.hook.lines.join(' ')}>
+	<Stage>
 		<At y={600} w={952}>
 			<Rise at={0.1}>
 				<Text variant="display" size={TYPE.adScale.hook} weight={TYPE.weights.display} color={GREY} align="center">
@@ -85,7 +81,7 @@ const HookScene: React.FC<{content: Content}> = ({content}) => (
 const IntroScene: React.FC<{content: Content}> = ({content}) => {
 	const seconds = useSeconds();
 	return (
-		<Stage content={content} narration={content.intro.narration} shown={`${content.intro.kicker} ${content.intro.name}`}>
+		<Stage>
 			<At y={620} w={952}>
 				<Rise at={0.05}>
 					<Text size={52} weight={TYPE.weights.strong} color={GREY} align="center">
@@ -121,7 +117,7 @@ const ToolsScene: React.FC<{content: Content; seconds: number}> = ({content, sec
 	const item = items[index];
 	const angle = interpolate(enter, [0, 1], [-70, 0]) + leave * 70 + Math.sin(local * 1.4) * 6;
 	return (
-		<Stage content={content} narration={content.tools.narration}>
+		<Stage>
 			<At y={150} w={952}>
 				<div style={{display: 'flex', justifyContent: 'center', gap: u(14)}}>
 					{items.map((entry, dot) => (
@@ -157,7 +153,7 @@ const SourcesScene: React.FC<{content: Content}> = ({content}) => {
 	const rise = ease(interpolate(seconds, [0, 0.8], [0, 1], CLAMP));
 	const chips = content.sources.chips;
 	return (
-		<Stage content={content} narration={content.sources.narration} shown={content.sources.caption}>
+		<Stage>
 			<At y={110} w={952}>
 				<Rise at={0.2}>
 					<Text variant="display" size={54} weight={TYPE.weights.display} color={INK} align="center">
@@ -208,7 +204,6 @@ const SAMPLE: z.input<typeof KeynoteSchema> = {
 		narration: 'Konu anlatımı, test, kişisel deneme, bilgi kartları ve çalışma planı.',
 	},
 	sources: {chips: ['PDF', 'Word', 'Sunum', 'Fotoğraf', 'Hedefin'], screen: 'sinoLibrary', caption: 'Kaynağı sen seç.', narration: 'Kaynağı sen seç; notun, sunumun ya da hedefin. Ürettiği her şey kütüphanende durur.'},
-	closing: {name: 'SinoAI Çalışma', line: 'Sınavika’da.', narration: 'SinoAI Çalışma, Sınavika’da.'},
 };
 
 const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateScene[] => {
@@ -218,13 +213,12 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 	const intro = say('intro', content.intro.narration, beat(content.intro.narration, 2.6), 2.4);
 	const tools = say('tools', content.tools.narration, Math.max(beat(content.tools.narration, 5), content.tools.items.length * 1.3), content.tools.items.length * 1.1);
 	const sources = say('sources', content.sources.narration, beat(content.sources.narration, 4.2), 3.8);
-	const closing = say('closing', content.closing.narration, beat(content.closing.narration, 2.8), 2.6);
 	return [
 		{id: 'hook', seconds: hook.seconds, label: 'Hook', voice: [hook], element: <HookScene content={content} />},
 		{id: 'intro', seconds: intro.seconds, label: 'Tanıtım', voice: [intro], element: <IntroScene content={content} />},
 		{id: 'tools', seconds: tools.seconds, label: 'Araçlar', voice: [tools], element: <ToolsScene content={content} seconds={tools.seconds} />},
 		{id: 'sources', seconds: sources.seconds, label: 'Kaynaklar', voice: [sources], element: <SourcesScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard />}] : []),
+		...appEndScenes(content.outro.enabled, say),
 	];
 };
 

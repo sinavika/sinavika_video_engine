@@ -2,16 +2,16 @@
  * Renders one PNG per scene of a job, for checking layout without encoding video.
  *
  *   npm run stills -- --job samples/QuestionSolution.json
- *   npm run stills -- --job samples/QuestionSolution.json --formats all --theme TechDark
+ *   npm run stills -- --job samples/QuestionSolution.json --formats all --theme SinavikaDark
  *   npm run stills -- --template QuickRevision --formats Vertical,Square     (the template's built-in sample)
  *
- * Files are written to out/Stills/<Template>/<Format>-<Theme>-<n>-<scene>.png
+ * Files are written to Outputs/Stills/<Template>/<Format>-<Theme>-<n>-<scene>.png
  */
-import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {parseArgs} from 'node:util';
 import {VIDEO_FORMAT_IDS} from '../src/Configurations/VideoFormats';
 import {resolveVideoJob} from '../src/Renderers/VideoJob';
+import {readVideoJob} from '../src/Renderers/VideoJobFile';
 import {narrateVideoJob, renderFrame, sceneFrames} from '../src/Renderers/VideoRenderer';
 import {findTemplate} from '../src/Templates/TemplateRegistry';
 
@@ -19,7 +19,7 @@ const {values} = parseArgs({
 	options: {
 		job: {type: 'string'},
 		template: {type: 'string'},
-		out: {type: 'string', default: 'out/Stills'},
+		out: {type: 'string', default: 'Outputs/Stills'},
 		formats: {type: 'string'},
 		theme: {type: 'string'},
 		quality: {type: 'string', default: '2160p'},
@@ -32,7 +32,7 @@ if (!values.job && !values.template) {
 }
 
 const baseJob: Record<string, unknown> = values.job
-	? JSON.parse(await readFile(values.job, 'utf8'))
+	? (readVideoJob(values.job) as Record<string, unknown>)
 	: {template: values.template, content: findTemplate(values.template ?? '')?.sampleContent};
 const formats = values.formats === 'all' ? VIDEO_FORMAT_IDS : (values.formats?.split(',') ?? [baseJob.format ?? 'Vertical']);
 let warningCount = 0;

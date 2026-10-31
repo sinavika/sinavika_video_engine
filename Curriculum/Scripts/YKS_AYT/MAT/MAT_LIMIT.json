@@ -1,0 +1,821 @@
+{
+ "topic": {
+  "id": "877F6B4C-A06D-3F20-08F3-FABD0FA541C3",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_LIMIT"
+ },
+ "title": "Limit",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "YKS/AYT/CikmisSorular/MAT.jsonl (ÖSYM 2019, 2021, 2025, 2026 ve yılsız süreklilik kalıpları örnek alındı, sorular yeniden kuruldu)",
+  "MEB AYT Matematik konu anlatımı (yaklaşım, sağdan-soldan limit, kurallar, belirsizlik, süreklilik; yapı için) ve YKS/AYT/Sorular/MAT/MAT_LIMIT.jsonl",
+  "Her cevap sayısal olarak ve kesirlerle tek tek denetlendi"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Limit, varmadan neye yaklaştığını sorar.",
+   "narration": "Bir fonksiyon bir noktada tanımsız olabilir, ama oraya yaklaşırken bir değere doğru gidebilir. Limit tam olarak bunu sorar: varmadan, neye yaklaşıyorsun? Türev de integral de bu fikrin üstüne kurulur. ÖSYM limitte belirsizlik, süreklilik ve önerme sorularını seviyor. Bu derste iki yandan yaklaşan noktaları izleyip AYT düzeyinde yeni sorular çözeceğiz."
+  },
+  "objectives": [
+   "Bir noktada limiti ve sağdan-soldan limiti yorumlamak",
+   "Limit kurallarını uygulamak",
+   "Sıfır bölü sıfır belirsizliğini çarpanlara ayırma ve eşlenikle kaldırmak",
+   "Sonsuzda limiti derecelerle bulmak",
+   "Parçalı fonksiyonlarda sürekliliği kullanmak",
+   "Limitten bilinmeyen katsayıları bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_LIMIT_01",
+    "subtopics": [
+     "MAT_LIMIT_02"
+    ],
+    "title": "Bir noktada limit",
+    "narration": "Limit, fonksiyonun bir noktaya yaklaşırken neye yaklaştığını sorar; o noktada ne olduğunu değil. Bu fark, bütün konunun anahtarı.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Limitin anlamı",
+      "items": [
+       "$\\lim_{x \\to a} f(x) = L$: $x$, $a$'ya **yaklaşırken** $f(x)$, $L$'ye yaklaşır.",
+       "$f(a)$ tanımsız olabilir ya da $L$'den farklı olabilir; limit yine var olabilir.",
+       "Limit var $\\iff$ soldan limit $=$ sağdan limit."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -1,
+        5
+       ],
+       "y": [
+        -1,
+        7
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "(x^2 - 4)/(x - 2)",
+         "label": "y = (x² − 4)/(x − 2)"
+        }
+       ],
+       "approach": {
+        "at": 2,
+        "left": 0,
+        "right": 0,
+        "hole": true,
+        "label": "L = 4"
+       }
+      },
+      "beats": [
+       {
+        "narration": "x kare eksi dört bölü x eksi iki: x iki iken pay da payda da sıfır, fonksiyon tanımsız. Grafikte orada bir boşluk var."
+       },
+       {
+        "narration": "Şimdi iki yandan yaklaşalım: soldan bir nokta, sağdan bir nokta, x ikiye yaklaştıkça yükseklikleri dörde yaklaşıyor.",
+        "show": [
+         "approach"
+        ],
+        "focus": [
+         "approach"
+        ]
+       },
+       {
+        "narration": "İki taraf da dörde gidiyor: limit dört. Fonksiyon ikide tanımsız olsa bile limit var. x kare eksi dört, x eksi iki çarpı x artı iki; sadeleşince x artı iki kalıyor.",
+        "focus": [
+         "approach"
+        ]
+       }
+      ],
+      "narration": "x, a'ya yaklaşırken f x, L'ye yaklaşıyorsa x a'ya giderken limitin L olduğunu söyleriz. Limit, a'nın kendisine değil, çevresine bakar: f a tanımsız olabilir, ya da L'den farklı olabilir; limit yine var olabilir. Limitin var olması için soldan ve sağdan yaklaşırken aynı değere gidilmelidir."
+     },
+     {
+      "kind": "visual",
+      "title": "Sağdan ve soldan",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -1,
+        5
+       ],
+       "y": [
+        -1,
+        7
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x + 1",
+         "domain": [
+          -1,
+          2
+         ],
+         "ends": [
+          "none",
+          "open"
+         ],
+         "label": "x < 2: x + 1"
+        },
+        {
+         "expression": "6 - x",
+         "domain": [
+          2,
+          5
+         ],
+         "ends": [
+          "closed",
+          "none"
+         ],
+         "label": "x ≥ 2: 6 − x"
+        }
+       ],
+       "approach": {
+        "at": 2,
+        "left": 0,
+        "right": 1
+       }
+      },
+      "caption": "Soldan $3$, sağdan $4$: limit **yok**.",
+      "narration": "Parçalı bir fonksiyonda iki taraf farklı yere gidebilir.",
+      "beats": [
+       {
+        "narration": "x ikiden küçükken x artı bir, iki ve büyükken altı eksi x. İkide sağdaki parça başlıyor: f iki, dört."
+       },
+       {
+        "narration": "Soldan yaklaşan nokta üçe, sağdan yaklaşan dörde gidiyor.",
+        "show": [
+         "approach"
+        ],
+        "focus": [
+         "approach"
+        ]
+       },
+       {
+        "narration": "Soldan limit üç, sağdan limit dört: farklı. Bu yüzden x ikiye giderken limit yok; f iki tanımlı olsa bile.",
+        "focus": [
+         "approach"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(x) = \\begin{cases} x^2 + a, & x < 1 \\\\ 3x + 2, & x \\geq 1 \\end{cases}$\n\nfonksiyonunun $x = 1$ noktasında limiti vardır.\n\nBuna göre, $a \\cdot \\lim_{x \\to 1} f(x)$ çarpımı kaçtır?",
+       "options": [
+        "$10$",
+        "$12$",
+        "$16$",
+        "$20$",
+        "$25$"
+       ],
+       "answer": 3,
+       "narration": "Limit varsa iki taraf eşit.",
+       "steps": [
+        {
+         "text": "Soldan: $1 + a$; sağdan: $3 + 2 = 5$.",
+         "narration": "Soldan limit: bir kare artı a, bir artı a. Sağdan limit: üç artı iki, beş."
+        },
+        {
+         "text": "$1 + a = 5$: $a = 4$; limit $5$.",
+         "narration": "Eşit olmalı: a dört, limit beş."
+        },
+        {
+         "text": "$a \\cdot 5 = 20$.",
+         "narration": "Çarpım yirmi. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Parçalı fonksiyonda limit var olma koşulu kalıbı; parçalar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$L$ bir gerçel sayı olmak üzere, gerçel sayılarda tanımlı $f$ ve $g$ fonksiyonları için\n\n$\\lim_{x \\to 3} f(x) = \\lim_{x \\to 3} g(x) = L$\n\nveriliyor.\n\nBuna göre,\n\nI. $\\lim_{x \\to 3} (f(x) - g(x)) = 0$\n\nII. $f(3) = g(3)$\n\nIII. $\\lim_{x \\to 3} \\frac{f(x)}{g(x)} = 1$\n\nifadelerinden hangileri **her zaman** doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 0,
+       "narration": "ÖSYM 2026'da bu kalıbı sordu. Her biri için bir karşı örnek arayalım.",
+       "steps": [
+        {
+         "text": "I: farkın limiti limitlerin farkı: $L - L = 0$. Her zaman doğru.",
+         "narration": "Birinci: farkın limiti, limitlerin farkıdır: L eksi L, sıfır. Her zaman doğru."
+        },
+        {
+         "text": "II: limit $f(3)$'e bakmaz. $f(3) = 7$, $g(3) = 0$ olabilir. Değil.",
+         "narration": "İkinci: limit, üçteki değere bakmaz. f üçte yedi, g üçte sıfır olabilir. Her zaman doğru değil."
+        },
+        {
+         "text": "III: $L = 0$ ise bölüm $\\frac{0}{0}$; örneğin $f = x - 3$, $g = 2(x - 3)$: limit $\\frac{1}{2}$. Değil.",
+         "narration": "Üçüncü: L sıfırsa bölüm sıfır bölü sıfır olur; f x eksi üç, g iki çarpı x eksi üç alırsak bölüm hep yarım. Her zaman doğru değil. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026 limit önermeleri kalıbı örnek alındı; nokta ve öncül sırası yeni düzenlendi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_LIMIT_04",
+    "title": "Limit kuralları",
+    "narration": "Limitler toplanır, çarpılır, bölünür; yeter ki paydadaki limit sıfır olmasın. Polinomlarda ve sürekli fonksiyonlarda limit, değeri yerine yazmaktır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kurallar",
+      "items": [
+       "Toplam, fark, çarpım: limitlerin toplamı, farkı, çarpımı.",
+       "Bölüm: $\\frac{\\lim f}{\\lim g}$, paydanın limiti $\\neq 0$ ise.",
+       "Polinom ve sürekli fonksiyon: $\\lim_{x \\to a} f(x) = f(a)$.",
+       "$\\ln$ ve $e^x$ sürekli: önce ifadeyi **sadeleştir**, sonra yerine yaz."
+      ],
+      "narration": "Limitler toplanır, çıkarılır ve çarpılır. Bölümün limiti, paydanın limiti sıfır değilse limitlerin bölümüdür. Polinomlarda ve sürekli fonksiyonlarda limit, değeri yerine yazmaktır. Logaritmalı ya da üstel bir ifadede önce kuralları kullanıp ifadeyi sadeleştir; çoğu zaman sorun kendiliğinden ortadan kalkar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\lim_{x \\to 1} f(x) = 3$ ve $\\lim_{x \\to 1} g(x) = -2$\n\nolduğuna göre,\n\n$\\lim_{x \\to 1} \\dfrac{2f(x) - g^2(x)}{f(x) + g(x)}$\n\nlimitinin değeri kaçtır?",
+       "options": [
+        "$-2$",
+        "$1$",
+        "$2$",
+        "$4$",
+        "$10$"
+       ],
+       "answer": 2,
+       "narration": "Paydanın limiti sıfır değil; kuralları doğrudan uygulayabiliriz.",
+       "steps": [
+        {
+         "text": "Pay: $2 \\cdot 3 - (-2)^2 = 2$; payda: $3 + (-2) = 1$.",
+         "narration": "Pay: iki çarpı üç eksi eksi ikinin karesi, iki. Payda: üç artı eksi iki, bir."
+        },
+        {
+         "text": "Limit $\\frac{2}{1} = 2$.",
+         "narration": "Limit iki. Eksi ikinin karesini eksi dört alan on bulur. Cevap C.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Limit kuralları kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$2$'den büyük gerçel sayılarda tanımlı\n\n$f(x) = 2\\ln(x^2 - 4) + \\ln(x^3 - 8) - 3\\ln(x - 2)$\n\nfonksiyonu için $\\lim_{x \\to 2^+} e^{f(x)}$ limitinin değeri kaçtır?",
+       "options": [
+        "$64$",
+        "$96$",
+        "$128$",
+        "$160$",
+        "$192$"
+       ],
+       "answer": 4,
+       "narration": "ÖSYM 2019'da bu kalıbı sordu. Doğrudan yerine yazınca logaritmalar patlıyor; önce birleştirelim.",
+       "steps": [
+        {
+         "text": "$e^{f(x)} = \\frac{(x^2 - 4)^2 (x^3 - 8)}{(x - 2)^3}$.",
+         "narration": "e üssü f x: logaritmaları birleştirelim. x kare eksi dördün karesi çarpı x küp eksi sekiz, bölü x eksi ikinin küpü."
+        },
+        {
+         "text": "$= \\frac{(x - 2)^2(x + 2)^2 \\cdot (x - 2)(x^2 + 2x + 4)}{(x - 2)^3} = (x + 2)^2(x^2 + 2x + 4)$.",
+         "narration": "Pay çarpanlarına ayrılınca x eksi iki üç kez çıkıyor; paydada da üç kez var. Sadeleşince x artı ikinin karesi çarpı x kare artı iki x artı dört kalıyor."
+        },
+        {
+         "text": "$x \\to 2^+$: $16 \\cdot 12 = 192$.",
+         "narration": "x ikiye sağdan giderken: on altı çarpı on iki, yüz doksan iki. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 logaritma ve üstel limit kalıbı örnek alındı; fonksiyon ve nokta yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_LIMIT_05",
+    "title": "Belirsizlikler",
+    "narration": "Yerine yazınca sıfır bölü sıfır çıkıyorsa limit yok demek değildir: belirsizdir. Belirsizliği kaldırmak için ifadeyi çarpanlarına ayırır ya da eşleniğiyle genişletirsin.",
+    "cards": [
+     {
+      "kind": "predict",
+      "title": "Sıfır bölü sıfır",
+      "prompt": "Yerine yazınca $\\frac{0}{0}$ çıkıyor. Bu, limitin olmadığı anlamına mı gelir?",
+      "choices": [
+       "Hayır, belirsiz",
+       "Evet, limit yok"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "formula",
+       "latex": "\\lim_{x \\to 3} \\frac{x^2 - 9}{x - 3} \\;\\to\\; \\frac{0}{0}"
+      },
+      "beats": [
+       {
+        "narration": "x üçe giderken x kare eksi dokuz bölü x eksi üç: yerine yazınca sıfır bölü sıfır."
+       }
+      ],
+      "explanation": "$\\frac{0}{0}$ bir sonuç değil, **belirsizliktir**: $\\frac{(x - 3)(x + 3)}{x - 3} = x + 3$, limit $6$.",
+      "narration": "Şimdi sıra sende. Yerine yazınca sıfır bölü sıfır çıkıyor. Bu, limitin olmadığı anlamına mı gelir? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: hayır, belirsiz. Sıfır bölü sıfır bir cevap değil; ifadeyi sadeleştir demektir. x kare eksi dokuz, x eksi üç çarpı x artı üç; sadeleşince x artı üç kalır, limit altı."
+     },
+     {
+      "kind": "rule",
+      "title": "Belirsizliği kaldırmak",
+      "items": [
+       "$\\frac{0}{0}$, polinomlarda: ortak çarpanı **sadeleştir**.",
+       "$\\frac{0}{0}$, köklüde: **eşlenikle** genişlet.",
+       "Pay ve payda $a$'da sıfırsa ikisi de $(x - a)$ çarpanı taşır.",
+       "Parametreli soruda: limit sonluysa ve payda sıfırsa pay da sıfır olmalı."
+      ],
+      "narration": "Sıfır bölü sıfır belirsizliğinde polinomları çarpanlarına ayırıp ortak çarpanı sadeleştirirsin. Kök varsa ifadeyi eşleniğiyle genişletirsin. Pay ve payda a'da sıfırsa ikisi de x eksi a çarpanını taşır. Ve parametreli sorularda ana fikir şu: payda sıfıra giderken limit sonluysa, pay da sıfıra gitmek zorundadır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\lim_{x \\to 3} \\dfrac{x^2 - 9}{x^2 - 5x + 6}$\n\nlimitinin değeri kaçtır?",
+       "options": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$9$"
+       ],
+       "answer": 3,
+       "narration": "Yerine yazınca sıfır bölü sıfır: çarpanlara ayıralım.",
+       "steps": [
+        {
+         "text": "$\\frac{(x - 3)(x + 3)}{(x - 3)(x - 2)} = \\frac{x + 3}{x - 2}$.",
+         "narration": "Pay x eksi üç çarpı x artı üç, payda x eksi üç çarpı x eksi iki. x eksi üçler sadeleşir."
+        },
+        {
+         "text": "$x \\to 3$: $\\frac{6}{1} = 6$.",
+         "narration": "Şimdi yerine yazalım: altı bölü bir, altı. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Çarpanlara ayırarak sıfır bölü sıfır kalıbı; ifade yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\lim_{x \\to 4} \\dfrac{\\sqrt{x} - 2}{x - 4}$\n\nlimitinin değeri kaçtır?",
+       "options": [
+        "$\\frac{1}{8}$",
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$2$"
+       ],
+       "answer": 1,
+       "narration": "Kök var: eşlenikle genişletelim.",
+       "steps": [
+        {
+         "text": "$\\frac{\\sqrt{x} - 2}{x - 4} \\cdot \\frac{\\sqrt{x} + 2}{\\sqrt{x} + 2} = \\frac{x - 4}{(x - 4)(\\sqrt{x} + 2)}$.",
+         "narration": "Pay ve paydayı kök x artı iki ile çarpalım. Pay x eksi dört olur."
+        },
+        {
+         "text": "$= \\frac{1}{\\sqrt{x} + 2} \\to \\frac{1}{4}$.",
+         "narration": "x eksi dörtler sadeleşir: bir bölü kök x artı iki. x dörde giderken bir bölü dört. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "Eşlenikle genişletme kalıbı; ifade yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ gerçel sayılar olmak üzere\n\n$\\lim_{x \\to 2} \\dfrac{x^2 + ax + b}{x - 2} = 5$\n\nolduğuna göre, $a \\cdot b$ çarpımı kaçtır?",
+       "options": [
+        "$-8$",
+        "$-6$",
+        "$-3$",
+        "$3$",
+        "$6$"
+       ],
+       "answer": 1,
+       "narration": "Payda sıfıra gidiyor ama limit sonlu: pay da sıfıra gitmeli.",
+       "steps": [
+        {
+         "text": "$4 + 2a + b = 0$; pay $(x - 2)(x + c)$ biçiminde.",
+         "narration": "x iki iken pay sıfır olmalı: dört artı iki a artı b, sıfır. O hâlde pay x eksi iki çarpı x artı c diye yazılır."
+        },
+        {
+         "text": "Sadeleşince $x + c \\to 2 + c = 5$: $c = 3$; pay $x^2 + x - 6$.",
+         "narration": "Sadeleşince x artı c kalır; ikide iki artı c, beş: c üç. Pay x eksi iki çarpı x artı üç, yani x kare artı x eksi altı."
+        },
+        {
+         "text": "$a = 1$, $b = -6$: $a \\cdot b = -6$.",
+         "narration": "a bir, b eksi altı: çarpım eksi altı. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "Parametreli belirsizlik kalıbı (ÖSYM 2025 limitten katsayı yaklaşımı örnek alındı); ifade yeni kuruldu"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_LIMIT_03",
+    "title": "Sonsuzda limit",
+    "narration": "x çok büyüdükçe bir rasyonel ifadede yalnız en büyük dereceli terimler önemlidir. Sonsuz bölü sonsuz da bir belirsizliktir; cevabı dereceler söyler.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sonsuzda rasyonel ifade",
+      "items": [
+       "Pay derecesi $<$ payda derecesi: limit $0$.",
+       "Dereceler eşit: baş katsayıların **oranı**.",
+       "Pay derecesi $>$ payda derecesi: $\\pm\\infty$.",
+       "$\\sqrt{x^2 + bx} - x$ gibi $\\infty - \\infty$: eşlenikle genişlet, $\\frac{b}{2}$."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        12
+       ],
+       "y": [
+        0,
+        4
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "(3x^2 + 1)/(x^2 + 1)",
+         "label": "y = (3x² + 1)/(x² + 1)"
+        },
+        {
+         "expression": "3",
+         "label": "y = 3"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Üç x kare artı bir, bölü x kare artı bir. Dereceler eşit: ikişer.",
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "x büyüdükçe birler önemsizleşiyor; eğri y eşittir üç doğrusuna yaklaşıyor. Üç, baş katsayıların oranı: üç bölü bir.",
+        "focus": [
+         "c1",
+         "c2"
+        ]
+       }
+      ],
+      "narration": "x sonsuza giderken bir rasyonel ifadede yalnız en büyük dereceli terimler belirleyicidir. Payın derecesi küçükse limit sıfır, dereceler eşitse baş katsayıların oranı, payın derecesi büyükse artı ya da eksi sonsuzdur. Kök x kare artı b x eksi x gibi sonsuz eksi sonsuz durumlarında eşlenikle genişletirsin; sonuç b bölü iki çıkar."
+     },
+     {
+      "kind": "mistake",
+      "title": "Sonsuz bölü sonsuz",
+      "wrong": "$\\lim_{x \\to \\infty} \\frac{2x}{x} = \\frac{\\infty}{\\infty} = 1$",
+      "right": "$\\frac{2x}{x} = 2$",
+      "why": "$\\frac{\\infty}{\\infty}$ bir sayı değil, **belirsizliktir**; sadeleşince $2$.",
+      "narration": "Sık yapılan bir hata: sonsuz bölü sonsuzu bir sanmak. İki x bölü x her yerde iki; limiti de iki. Sonsuz bölü sonsuz bir sonuç değil, belirsizliktir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ gerçel sayılar olmak üzere\n\n$\\lim_{x \\to \\infty} \\dfrac{(a - 2)x^3 + 4x^2 - 1}{3x^2 + x} = b$\n\nolduğuna göre, $a + b$ toplamı kaçtır?",
+       "options": [
+        "$2$",
+        "$\\frac{7}{3}$",
+        "$\\frac{8}{3}$",
+        "$3$",
+        "$\\frac{10}{3}$"
+       ],
+       "answer": 4,
+       "narration": "Limit bir gerçel sayı: payın derecesi paydanınkini geçemez.",
+       "steps": [
+        {
+         "text": "Sonlu limit: $x^3$ terimi olmamalı, $a - 2 = 0$, $a = 2$.",
+         "narration": "Limit sonlu bir sayıysa payın derecesi üç olamaz: a eksi iki sıfır, a iki."
+        },
+        {
+         "text": "$\\frac{4x^2 - 1}{3x^2 + x} \\to \\frac{4}{3}$: $b = \\frac{4}{3}$.",
+         "narration": "Geriye dört x kare eksi bir bölü üç x kare artı x kalır: dereceler eşit, limit dört bölü üç."
+        },
+        {
+         "text": "$a + b = 2 + \\frac{4}{3} = \\frac{10}{3}$.",
+         "narration": "Toplam on bölü üç. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "Sonsuzda limitten katsayı kalıbı; ifade yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\lim_{x \\to \\infty} \\left(\\sqrt{x^2 + 6x} - x\\right)$\n\nlimitinin değeri kaçtır?",
+       "options": [
+        "$0$",
+        "$1$",
+        "$3$",
+        "$6$",
+        "$9$"
+       ],
+       "answer": 2,
+       "narration": "Sonsuz eksi sonsuz: eşlenikle genişletelim.",
+       "steps": [
+        {
+         "text": "$\\frac{(x^2 + 6x) - x^2}{\\sqrt{x^2 + 6x} + x} = \\frac{6x}{\\sqrt{x^2 + 6x} + x}$.",
+         "narration": "Kök x kare artı altı x artı x ile çarpıp bölelim. Pay: x kare artı altı x eksi x kare, altı x."
+        },
+        {
+         "text": "Payda $\\approx x + x = 2x$: limit $\\frac{6}{2} = 3$.",
+         "narration": "x çok büyükken kök x kare artı altı x yaklaşık x; payda iki x. Limit altı bölü iki, üç. Sonsuz eksi sonsuzu sıfır sanan yanılır. Cevap C.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Sonsuz eksi sonsuz belirsizliği kalıbı; ifade yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_LIMIT_06",
+    "title": "Süreklilik",
+    "narration": "Bir fonksiyon bir noktada, grafiği orada kopmuyorsa süreklidir. Bunu üç koşulla söyleriz; ÖSYM parçalı fonksiyonlarla soruyor.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Süreklilik",
+      "items": [
+       "$f$, $a$'da sürekli: $f(a)$ tanımlı, limit var ve $\\lim_{x \\to a} f(x) = f(a)$.",
+       "Polinomlar her yerde sürekli; rasyonel fonksiyon, paydayı sıfır yapan yerler dışında.",
+       "Parçalı fonksiyon: her **birleşme noktasında** soldan, sağdan değerler ve $f(a)$ eşit."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -2,
+        4
+       ],
+       "y": [
+        -1,
+        7
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^2",
+         "domain": [
+          -2,
+          1
+         ],
+         "label": "x < 1: x²"
+        },
+        {
+         "expression": "2x - 1",
+         "domain": [
+          1,
+          4
+         ],
+         "ends": [
+          "closed",
+          "none"
+         ],
+         "label": "x ≥ 1: 2x − 1"
+        }
+       ],
+       "approach": {
+        "at": 1,
+        "left": 0,
+        "right": 1,
+        "label": "L = 1"
+       }
+      },
+      "beats": [
+       {
+        "narration": "x birden küçükken x kare, bir ve büyükken iki x eksi bir. Bir noktasında f bir, bir."
+       },
+       {
+        "narration": "İki yandan yaklaşalım: soldan x kare bire, sağdan iki x eksi bir de bire gidiyor.",
+        "show": [
+         "approach"
+        ],
+        "focus": [
+         "approach"
+        ]
+       },
+       {
+        "narration": "Limit bir ve f bir de bir: grafik birde kopmuyor, fonksiyon orada sürekli.",
+        "focus": [
+         "approach"
+        ]
+       }
+      ],
+      "narration": "Bir f fonksiyonu a noktasında sürekliyse üç şey birden doğrudur: f a tanımlıdır, limit vardır ve limit f a'ya eşittir. Polinomlar her yerde süreklidir; rasyonel fonksiyonlar paydayı sıfır yapan yerler dışında süreklidir. Parçalı bir fonksiyonda her birleşme noktasında iki parçanın ucu ve fonksiyonun değeri aynı olmalıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ gerçel sayılar olmak üzere\n\n$f(x) = \\begin{cases} x + 4, & x < -1 \\\\ ax + b, & -1 \\leq x \\leq 2 \\\\ x^2 + 5, & x > 2 \\end{cases}$\n\nfonksiyonu gerçel sayılarda süreklidir.\n\nBuna göre, $a + b$ toplamı kaçtır?",
+       "options": [
+        "$7$",
+        "$8$",
+        "$9$",
+        "$10$",
+        "$11$"
+       ],
+       "answer": 0,
+       "narration": "ÖSYM bu kalıbı sordu. İki birleşme noktası, iki denklem.",
+       "steps": [
+        {
+         "text": "$x = -1$: $-1 + 4 = -a + b$, yani $-a + b = 3$.",
+         "narration": "Eksi birde: soldaki parça eksi bir artı dört, üç. Ortadaki parça eksi a artı b. Eşit olmalı."
+        },
+        {
+         "text": "$x = 2$: $2a + b = 4 + 5 = 9$.",
+         "narration": "İkide: ortadaki parça iki a artı b, sağdaki parça dört artı beş, dokuz."
+        },
+        {
+         "text": "Çıkarınca $3a = 6$: $a = 2$, $b = 5$; $a + b = 7$.",
+         "narration": "İki denklemi çıkarınca üç a altı: a iki, b beş. Toplam yedi. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM parçalı fonksiyonda süreklilik kalıbı örnek alındı; parçalar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ gerçel sayılar olmak üzere\n\n$f(x) = \\begin{cases} \\dfrac{x^2 + ax - 6}{x - 2}, & x \\neq 2 \\\\ b, & x = 2 \\end{cases}$\n\nfonksiyonu gerçel sayılarda süreklidir.\n\nBuna göre, $a + b$ toplamı kaçtır?",
+       "options": [
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2021'de süreklilikten katsayı buldurdu. Önce limitin var olması gerek.",
+       "steps": [
+        {
+         "text": "Limit sonlu, payda $\\to 0$: pay da $0$: $4 + 2a - 6 = 0$, $a = 1$.",
+         "narration": "Payda sıfıra gidiyor; limitin var olması için pay da ikide sıfır olmalı: dört artı iki a eksi altı, sıfır. a bir."
+        },
+        {
+         "text": "$\\frac{x^2 + x - 6}{x - 2} = x + 3 \\to 5$: $b = f(2) = 5$.",
+         "narration": "Pay x eksi iki çarpı x artı üç; sadeleşince x artı üç, limit beş. Süreklilik için f iki, beş: b beş."
+        },
+        {
+         "text": "$a + b = 6$.",
+         "narration": "Toplam altı. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021 süreklilikten katsayı kalıbı örnek alındı; ifade yeni kuruldu"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Limit, $a$'nın **çevresine** bakar.",
+    "Var $\\iff$ soldan $=$ sağdan.",
+    "$\\frac{0}{0}$: sadeleştir ya da eşlenikle genişlet.",
+    "Sonsuzda: **dereceleri** karşılaştır.",
+    "Sürekli: $\\lim f = f(a)$.",
+    "Payda $\\to 0$, limit sonlu: pay $\\to 0$."
+   ],
+   "warnings": [
+    "$\\frac{0}{0}$ ve $\\frac{\\infty}{\\infty}$ **sonuç değil**.",
+    "Limit $f(a)$'yı söylemez."
+   ],
+   "narration": "Özetleyelim. Limit, noktanın kendisine değil çevresine bakar. Var olması için soldan ve sağdan limit eşit olmalı. Sıfır bölü sıfır çıkarsa sadeleştir ya da eşlenikle genişlet. Sonsuzda rasyonel ifadelerde dereceleri karşılaştır. Süreklilik, limitin fonksiyonun değerine eşit olmasıdır. Ve payda sıfıra giderken limit sonluysa, pay da sıfıra gitmek zorundadır."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "0/0 çıktı",
+    "question": "Limit yok mu?",
+    "choices": [
+     "Yok",
+     "Belirsiz"
+    ],
+    "answer": 1,
+    "why": "**Sadeleştir**, sonra bak."
+   },
+   {
+    "sentence": "Soldan 3, sağdan 4",
+    "question": "Limit var mı?",
+    "choices": [
+     "Var",
+     "Yok"
+    ],
+    "answer": 1,
+    "why": "İki taraf **farklı**."
+   },
+   {
+    "sentence": "f(2) tanımsız",
+    "question": "Limit olabilir mi?",
+    "choices": [
+     "Olabilir",
+     "Olamaz"
+    ],
+    "answer": 0,
+    "why": "Limit **çevreye** bakar."
+   }
+  ],
+  "hook": "Üç limit tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Limit, noktanın **çevresine** bakar."
+   },
+   {
+    "kind": "warning",
+    "text": "0/0 **sonuç değil**."
+   },
+   {
+    "kind": "term",
+    "term": "Süreklilik",
+    "definition": "Limit, fonksiyonun **değerine** eşit."
+   }
+  ],
+  "summary": [
+   "Soldan = sağdan",
+   "0/0: sadeleştir",
+   "Sürekli: lim = f(a)"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-matematik-kampi",
+  "name": "AYT Matematik kampı",
+  "number": 31,
+  "total": 33,
+  "previous": "Dönüşümler",
+  "next": "Türev",
+  "promise": "Her konu kısa bir tekrar ve AYT düzeyinde çözümlü sorularla.",
+  "task": {
+   "items": [
+    "ÖSYM 2019 kalıbını **kendin** çöz: $f(x) = \\ln(x^2 - 1) + 2\\ln(x^2 + x - 2) - 3\\ln(x - 1)$ ise $\\lim_{x \\to 1^+} e^{f(x)}$ kaç?",
+    "$\\frac{x^2 - 1}{x - 1}$ fonksiyonunun grafiğini $x = 1$'deki **boşlukla** çiz; limiti grafikten oku.",
+    "Uygulamada AYT Limit testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. ÖSYM'nin 2019 kalıbını kendin çöz: verilen logaritmalı fonksiyonda x bire sağdan giderken e üssü f x'in limiti kaç? Önce logaritmaları birleştir. Sonra x kare eksi bir bölü x eksi bir fonksiyonunun grafiğini, x eşittir birdeki boşlukla çiz ve limiti grafikten oku. Ardından uygulamada yirmi soru çöz. Bir sonraki derste türevde görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Sağdan ve soldan limit örneği ekle: f(x) = |x − 2|/(x − 2) için x 2'ye sağdan yaklaşırken limit 1, soldan yaklaşırken −1; limit yoktur.",
+   "0/0 belirsizliğini iki yolla göster: lim(x→3) (x² − 9)/(x − 3) = 6 (sadeleştirme); lim(x→4) (√x − 2)/(x − 4) = 1/4 (eşlenikle genişletme).",
+   "Sonsuzda limite örnekler ekle: (3x² + 1)/(2x² − x) → 3/2; pay derecesi büyükse ±∞, payda derecesi büyükse 0. lim(x→∞) (√(x² + 4x) − x) = 2 (eşlenikle).",
+   "Süreklilik için parametre bulmayı örnekle: f(x) = x² + a (x < 1) ve 3x − 1 (x ≥ 1) sürekliyse 1 + a = 2, a = 1. lim(x→0) sin x / x = 1 ve lim(x→0) sin 3x / x = 3 sonuçlarını ekle.",
+   "Payda sıfıra giderken limitin sonlu olması koşulunu örnekle: lim(x→2) (x² + ax − 6)/(x − 2) sonluysa pay da sıfır olmalı: a = 1; limit (x + 3)'ün 2'deki değeri, 5."
+  ]
+ }
+}

@@ -9,6 +9,7 @@ import {Text} from '../../../Components/Typography/Text';
 import {plainText, richText} from '../../../Schemas/RichText';
 import {ImageSchema} from '../../../Schemas/Visual';
 import {useTheme} from '../../../Themes/ThemeContext';
+import {POST_TYPE} from '../../../Configurations/SocialIdentity';
 import {ImageFrame, useImageLayout} from '../../Components/ImageFrame';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
 import {BrandingSchema} from '../../Schemas/ImageFields';
@@ -51,7 +52,7 @@ const QuestionCardImage: React.FC<{content: Content}> = ({content}) => {
 				<FitBox>
 					<div style={{display: 'flex', flexDirection: wide ? 'row' : 'column', gap: u(36), alignItems: wide ? 'center' : 'stretch'}}>
 						<div style={{display: 'flex', flexDirection: 'column', gap: u(30), flex: 1, minWidth: 0}}>
-							<RichText text={content.question} size={content.question.length > 220 ? 38 : 46} weight={500} />
+							<RichText text={content.question} size={POST_TYPE.questionCard.question} weight={500} />
 							{content.image ? <Picture image={content.image} height={300} /> : null}
 						</div>
 						{options.length > 0 ? (

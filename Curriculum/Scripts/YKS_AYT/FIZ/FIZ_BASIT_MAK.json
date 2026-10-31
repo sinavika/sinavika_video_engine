@@ -1,0 +1,1241 @@
+{
+ "topic": {
+  "id": "72569574-F215-6F67-A1E0-B1A95E949FDB",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_BASIT_MAK"
+ },
+ "title": "Basit Makineler",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "MEB OGM AYT Fizik konu anlatımı, sayfa 97-102 (başvuru; metin yeniden yazıldı)",
+  "ÖSYM eğik düzlemde taş bloğu sorusu (resmî listede yılı ve alt konusu yok, VeriDuzeltmeleri #117): model olarak kullanıldı, durum ve yargılar değiştirildi",
+  "YKS/AYT/Sorular/FIZ/FIZ_BASIT_MAK.jsonl (232 soru; yapı ve düzey için okundu, sorular yeni yazıldı)"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Kriko arabayı nasıl kaldırır?",
+   "narration": "Bir arabayı kaldırmak için kriko, kuyudan kova çekmek için çıkrık, vidayı sıkmak için tornavida kullanırsın. Hiçbiri senin yerine iş yapmaz; hepsi aynı işi daha küçük bir kuvvetle ama daha uzun bir yolda yaptırır. Bu derste kaldıraçları, makaraları, eğik düzlemi, çıkrığı, dişlileri, kasnakları ve vidayı, sonunda da verimi göreceksin."
+  },
+  "objectives": [
+   "Kaldıraçta denge şartını uygulamak ve kaldıraç tiplerini ayırt etmek",
+   "Sabit ve hareketli makara ile palangada kuvveti ve yolu bulmak",
+   "Eğik düzlem ve çıkrıkta kuvvet ile yolu ilişkilendirmek",
+   "Dişli ve kasnaklarda dönme sayısını ve yönünü bulmak",
+   "Kuvvet kazancı ile verimi ayırt etmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_BASIT_MAK_01",
+    "title": "Kaldıraçlar",
+    "narration": "Kaldıraç, bir destek etrafında dönebilen sert bir çubuktur. Kuvvet ile yükün torkları eşitlenince denge kurulur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kaldıraç",
+      "items": [
+       "Denge: $F \\cdot (\\text{kuvvet kolu}) = G \\cdot (\\text{yük kolu})$.",
+       "Kuvvet kazancı $\\frac{G}{F}$; kuvvetten kazandıran makine **yoldan kaybettirir**.",
+       "Hiçbir basit makine **işten** kazandırmaz."
+      ],
+      "visual": {
+       "kind": "lever",
+       "length": 6,
+       "pivot": 2,
+       "torques": true,
+       "verdict": true,
+       "unit": "m",
+       "forces": [
+        {
+         "at": 0,
+         "value": 120,
+         "direction": "down",
+         "load": true,
+         "label": "G = 120 N"
+        },
+        {
+         "at": 6,
+         "value": 60,
+         "direction": "down",
+         "load": false,
+         "label": "F = 60 N"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Destek arada: solda yüz yirmi newtonluk yük, sağda F.",
+        "show": [
+         "pivot",
+         "f1",
+         "f2"
+        ]
+       },
+       {
+        "narration": "Yük kolu iki, kuvvet kolu dört metre: altmış newton yeter.",
+        "show": [
+         "a1",
+         "a2",
+         "sum"
+        ],
+        "focus": [
+         "a1",
+         "a2"
+        ]
+       }
+      ],
+      "narration": "Kaldıraçta denge, kuvvetin torku ile yükün torku eşit olunca kurulur: kuvvet çarpı kuvvet kolu, yük çarpı yük koluna eşittir. Yükün kuvvete oranı kuvvet kazancıdır. Kuvvetten kazandıran bir makine yoldan kaybettirir; hiçbir basit makine işten kazandırmaz."
+     },
+     {
+      "kind": "predict",
+      "title": "Cımbız kazandırır mı?",
+      "prompt": "Cımbızı kullanırken parmakların, menteşe ile uç arasına basar. Bu kaldıraç kuvvetten kazandırır mı?",
+      "choices": [
+       "Evet",
+       "Hayır"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "lever",
+       "length": 6,
+       "pivot": 0,
+       "torques": true,
+       "verdict": true,
+       "unit": "m",
+       "forces": [
+        {
+         "at": 2,
+         "value": 90,
+         "direction": "up",
+         "load": false,
+         "label": "F = 90 N"
+        },
+        {
+         "at": 6,
+         "value": 30,
+         "direction": "down",
+         "load": true,
+         "label": "G = 30 N"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Destek solda; kuvvet arada, yük uçta.",
+        "show": [
+         "pivot",
+         "f1",
+         "f2"
+        ]
+       },
+       {
+        "narration": "Kuvvet kolu iki, yük kolu altı: kuvvet yükün üç katı.",
+        "show": [
+         "a1",
+         "a2",
+         "sum"
+        ],
+        "focus": [
+         "f1"
+        ]
+       }
+      ],
+      "explanation": "Kuvvet arada: kuvvet kolu yük kolundan **kısa**, $F > G$; kazanç **yoldan**.",
+      "narration": "Cımbızda parmakların menteşe ile uç arasına basar. Bu kaldıraç kuvvetten kazandırır mı? Tahmin et.",
+      "explanationNarration": "Kazandırmaz. Kuvvet, destek ile yük arasında: kuvvet kolu yük kolundan kısadır, uyguladığın kuvvet yükten büyük olur. Cımbız kuvvetten kaybettirir ama ucunu hızlı ve uzun bir yolda hareket ettirir."
+     },
+     {
+      "kind": "rule",
+      "title": "Kaldıraç tipleri",
+      "items": [
+       "**Destek arada:** makas, tahterevalli, kerpeten; kollara göre kazanç olur ya da olmaz.",
+       "**Yük arada:** el arabası, fındık kıracağı, gazoz açacağı; her zaman $F < G$.",
+       "**Kuvvet arada:** cımbız, maşa, kürek; her zaman $F > G$, kazanç yoldan."
+      ],
+      "visual": {
+       "kind": "lever",
+       "length": 6,
+       "pivot": 0,
+       "torques": true,
+       "verdict": true,
+       "unit": "m",
+       "forces": [
+        {
+         "at": 2,
+         "value": 150,
+         "direction": "down",
+         "load": true,
+         "label": "G = 150 N"
+        },
+        {
+         "at": 6,
+         "value": 50,
+         "direction": "up",
+         "load": false,
+         "label": "F = 50 N"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "El arabası: tekerlek destek, yük ortada.",
+        "show": [
+         "pivot",
+         "f1"
+        ],
+        "focus": [
+         "f1"
+        ]
+       },
+       {
+        "narration": "Kollar ucundan yukarı kaldırılıyor: kol üç kat uzun, kuvvet üçte bir.",
+        "show": [
+         "f2",
+         "a1",
+         "a2",
+         "sum"
+        ],
+        "focus": [
+         "a2"
+        ]
+       }
+      ],
+      "narration": "Kaldıraçlar desteğin, yükün ve kuvvetin sırasına göre üç tiptir. Destek arada olanlarda, makas ve tahterevalli gibi, kazanç kolların uzunluğuna bağlıdır. Yük arada olanlarda, el arabası gibi, kuvvet kolu her zaman uzundur; kuvvet yükten küçüktür. Kuvvet arada olanlarda, cımbız ve maşa gibi, kuvvet her zaman yükten büyüktür; kazanç yoldandır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ağırlığı $30$ N olan $4$ m uzunluğundaki türdeş bir çubuk, bir ucundan $1$ m uzaktaki bir destek üzerindedir. Desteğe yakın uca $150$ N'lik bir yük asılmıştır.\n\nÇubuğun yatay dengede kalması için öbür uca düşey olarak aşağı yönde kaç N'lik kuvvet uygulanmalıdır?",
+       "figure": {
+        "kind": "lever",
+        "length": 4,
+        "pivot": 1,
+        "torques": false,
+        "verdict": true,
+        "unit": "m",
+        "forces": [
+         {
+          "at": 0,
+          "value": 150,
+          "direction": "down",
+          "load": true,
+          "label": "150 N"
+         },
+         {
+          "at": 4,
+          "value": 40,
+          "direction": "down",
+          "load": false,
+          "label": "F = ?"
+         }
+        ],
+        "weight": 30
+       },
+       "options": [
+        "$20$",
+        "$30$",
+        "$40$",
+        "$50$",
+        "$60$"
+       ],
+       "answer": 2,
+       "narration": "Desteğe göre tork alalım; çubuğun ağırlığı ortasında.",
+       "steps": [
+        {
+         "text": "Yük: $150 \\cdot 1$; çubuğun ağırlığı ortasında, desteğin öbür yanında: $30 \\cdot 1$.",
+         "narration": "Desteğe göre torklar: yük yüz elli çarpı bir. Çubuğun ağırlığı ortasından, yani desteğin bir metre öbür yanından etki eder: otuz çarpı bir."
+        },
+        {
+         "text": "$150 \\cdot 1 = 30 \\cdot 1 + F \\cdot 3$ → $F = 40$ N.",
+         "narration": "Yüz elli, otuz artı F çarpı üç: F kırk newton. Çubuğun ağırlığı yükün karşısında yardım ediyor; onu unutan elliyi bulur. Cevap C.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Ağırlıklı kaldıraç kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_BASIT_MAK_02",
+    "title": "Makaralar",
+    "narration": "Makara, çevresinden ip geçen ve ekseni etrafında dönen bir tekerdir. Sabit makara yön değiştirir; hareketli makara yükle birlikte yükselir ve kuvvetten kazandırır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Makaralar",
+      "items": [
+       "**Sabit makara** yalnız yönü değiştirir: $F = G$.",
+       "**Hareketli makara** yükle birlikte yükselir: $F = \\frac{G + G_m}{2}$, ip $2h$ çekilir.",
+       "**Palanga:** yükü $n$ ip taşıyorsa $F = \\frac{G + G_m}{n}$, ip $n \\cdot h$ çekilir."
+      ],
+      "visual": {
+       "kind": "pulley",
+       "ropes": 2,
+       "load": 120,
+       "motion": true,
+       "pulleyWeight": 20
+      },
+      "beats": [
+       {
+        "narration": "Yüz yirmi newtonluk yük ve yirmi newtonluk hareketli makara.",
+        "show": [
+         "load"
+        ]
+       },
+       {
+        "narration": "Onları iki ip taşıyor.",
+        "show": [
+         "ropes"
+        ],
+        "focus": [
+         "ropes"
+        ]
+       },
+       {
+        "narration": "Kuvvet yetmiş newton: yüz kırkın yarısı.",
+        "show": [
+         "f"
+        ],
+        "focus": [
+         "f"
+        ]
+       },
+       {
+        "narration": "İpi çekelim: yük h kalkarken ip iki h çekilir.",
+        "show": [
+         "pull",
+         "h"
+        ],
+        "focus": [
+         "h"
+        ]
+       }
+      ],
+      "narration": "Sabit makara tavana bağlıdır ve yalnız kuvvetin yönünü değiştirir; kuvvet yüke eşittir. Hareketli makara yükle birlikte yükselir; yükü ve kendi ağırlığını iki ip taşır, kuvvet bunun yarısıdır ama ipi iki katı çekersin. Palangada yükü taşıyan ip sayısı n ise kuvvet yük ile hareketli makaraların ağırlığının n'de biridir; ip n çarpı h çekilir."
+     },
+     {
+      "kind": "visual",
+      "title": "Palanga",
+      "visual": {
+       "kind": "pulley",
+       "ropes": 4,
+       "load": 200,
+       "motion": true
+      },
+      "narration": "Şimdi dört ipli bir palangaya bakalım.",
+      "beats": [
+       {
+        "narration": "İki yüz newtonluk yükü ve alttaki makaraları taşıyan ipleri sayalım: bir, iki, üç, dört.",
+        "show": [
+         "load",
+         "ropes"
+        ],
+        "focus": [
+         "ropes"
+        ]
+       },
+       {
+        "narration": "Yükü dört ip paylaşır; her biri elli newton taşır. Kuvvet de elli newton: yükün dörtte biri.",
+        "show": [
+         "f"
+        ],
+        "focus": [
+         "f"
+        ]
+       },
+       {
+        "narration": "Şimdi ipi çekelim. Yük h kadar kalkarken her ip h kadar kısalır; ipin ucu dört h çekilir. Kuvvet dörtte bir, yol dört kat; iş değişmez.",
+        "show": [
+         "pull",
+         "h"
+        ],
+        "focus": [
+         "h"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ağırlıkları önemsiz makaralarla kurulmuş bir palangada yükü $5$ ip taşımaktadır.\n\n$400$ N'lik yükü sabit hızla $2$ m yükseltmek için ip kaç m çekilmeli ve kaç N kuvvet uygulanmalıdır?",
+       "figure": {
+        "kind": "pulley",
+        "ropes": 5,
+        "load": 400,
+        "motion": false,
+        "forceLabel": "F = ?"
+       },
+       "options": [
+        "$2$ m, $80$ N",
+        "$2$ m, $400$ N",
+        "$5$ m, $80$ N",
+        "$10$ m, $80$ N",
+        "$10$ m, $400$ N"
+       ],
+       "answer": 3,
+       "narration": "Taşıyıcı ip sayısı hem kuvveti hem yolu belirler.",
+       "steps": [
+        {
+         "text": "$F = \\frac{400}{5} = 80$ N.",
+         "narration": "Yükü beş ip paylaşır: dört yüz bölü beş, seksen newton."
+        },
+        {
+         "text": "Her ip $2$ m kısalır: $x = 5 \\cdot 2 = 10$ m.",
+         "narration": "Yük iki metre kalkarken beş ipin her biri iki metre kısalır; ip on metre çekilir. Kuvvet beşte bir, yol beş kat; iş değişmez. Cevap D.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Palanga kalıbı; ip sayısı ve yük yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ağırlığı $20$ N olan hareketli bir makara ile bir sabit makaradan oluşan düzenekte $160$ N'lik bir yük dengede tutuluyor. İpin serbest ucu sabit makaradan geçip aşağı doğru çekiliyor.\n\nUygulanan kuvvet kaç N'dir?",
+       "figure": {
+        "kind": "pulley",
+        "ropes": 2,
+        "load": 160,
+        "motion": false,
+        "pulleyWeight": 20,
+        "forceLabel": "F = ?"
+       },
+       "options": [
+        "$80$",
+        "$90$",
+        "$100$",
+        "$160$",
+        "$180$"
+       ],
+       "answer": 1,
+       "narration": "Hareketli makara yükle birlikte kalkar.",
+       "steps": [
+        {
+         "text": "Hareketli makarayı ve yükü **iki ip** taşır: $2F = 160 + 20$.",
+         "narration": "Yükü ve hareketli makarayı iki ip taşır. İki F, yüz altmış artı yirmi."
+        },
+        {
+         "text": "$F = 90$ N. Sabit makaranın ağırlığı kuvvete **eklenmez**.",
+         "narration": "F doksan newton. Hareketli makaranın ağırlığını unutan sekseni bulur. Sabit makara yükselmediği için ağırlığı kuvveti değiştirmez. Cevap B.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Ağırlıklı hareketli makara kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Hangi makaranın ağırlığı?",
+      "wrong": "Sabit makaranın ağırlığı da kuvveti artırır.",
+      "right": "Sabit makara yükselmez; ağırlığı **tavana** biner, kuvveti değiştirmez.",
+      "why": "Yalnız **hareketli** makaraların ağırlığı yüke eklenir.",
+      "narration": "Sık yapılan bir hata: bütün makaraların ağırlığını yüke eklemek. Sabit makara yerinden kalkmaz; ağırlığını tavan taşır. Yalnız yükle birlikte yükselen hareketli makaraların ağırlığı yüke eklenir ve taşıyıcı iplere paylaşılır."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_BASIT_MAK_03",
+    "title": "Eğik düzlem",
+    "narration": "Ağır bir cismi dik kaldırmak yerine bir rampada iterek yükseltirsin: daha uzun yol, daha küçük kuvvet.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Eğik düzlem",
+      "items": [
+       "Sürtünmesiz: $F \\cdot s = G \\cdot h$, yani $F = G \\cdot \\frac{h}{s} = G \\sin\\alpha$.",
+       "Eğim azaldıkça ($s$ uzadıkça) kuvvet **küçülür**, yol uzar.",
+       "İş değişmez: $W = G \\cdot h$."
+      ],
+      "visual": {
+       "kind": "forces",
+       "surface": 30,
+       "forces": [
+        {
+         "label": "G",
+         "direction": "weight",
+         "magnitude": 100
+        },
+        {
+         "label": "N",
+         "direction": "normal",
+         "magnitude": 86.6
+        },
+        {
+         "label": "F",
+         "direction": "upSlope",
+         "magnitude": 50
+        }
+       ]
+      },
+      "narration": "Sürtünmesiz bir eğik düzlemde cismi sabit hızla çıkarmak için gereken kuvvet, ağırlığın eğim boyunca bileşenidir: G sinüs alfa, yani G çarpı h bölü s. Eğim azaldıkça rampa uzar, kuvvet küçülür. Yaptığın iş ise yine G çarpı h'dir; eğik düzlem kuvvetten kazandırır, yoldan kaybettirir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sürtünmelerin önemsenmediği bir ortamda bir usta, ağır bir sandığı $1{,}5$ m yükseklikteki bir kamyon kasasına yerden kaldırmak yerine bir rampada sabit hızla iterek çıkarıyor.\n\nBu yöntem;\nI. daha küçük kuvvet uygulamayı,\nII. daha az iş yapmayı,\nIII. daha kısa yol almayı\n\nsağlamaktan hangilerine hizmet eder?",
+       "context": "ÖSYM'de sorulan eğik düzlemde taş bloğu yapısının yeniden kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 0,
+       "narration": "Eğik düzlem neyi kazandırır, neyi değiştirmez?",
+       "steps": [
+        {
+         "text": "Rampada kuvvet $G \\sin\\alpha$: **daha küçük** (I).",
+         "narration": "Rampada itmek için ağırlığın yalnız eğim boyunca bileşenini yenersin: kuvvet küçülür. Birinci doğru."
+        },
+        {
+         "text": "İş yine $G \\cdot h$; yol ise **daha uzun** (II, III yanlış).",
+         "narration": "Sürtünme yokken iş, G çarpı h; rampada da değişmez. Yol ise rampanın boyu kadar, dik kaldırmaktan uzun. Cevap A.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM modeli: durum ve yargılar değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sürtünmesiz bir eğik düzlemin uzunluğu $5$ m, yüksekliği $1{,}5$ m'dir.\n\n$200$ N ağırlığındaki bir cismi eğik düzlem boyunca sabit hızla yukarı çıkarmak için eğime paralel kaç N kuvvet uygulanmalıdır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.6,
+         -0.7,
+         5.67,
+         2.3
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           4.77,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "C",
+          "at": [
+           4.77,
+           1.5
+          ],
+          "hidden": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "C",
+          "label": "5 m"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "1,5 m"
+         },
+         {
+          "from": "A",
+          "to": "B"
+         }
+        ],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "α"
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "B",
+           "C"
+          ]
+         }
+        ]
+       },
+       "options": [
+        "$40$",
+        "$50$",
+        "$60$",
+        "$75$",
+        "$200$"
+       ],
+       "answer": 2,
+       "narration": "İşler eşit.",
+       "steps": [
+        {
+         "text": "$F \\cdot 5 = 200 \\cdot 1{,}5$.",
+         "narration": "Rampada yapılan iş, cismi dik kaldırmanın işine eşit: F çarpı beş, iki yüz çarpı bir buçuk."
+        },
+        {
+         "text": "$F = \\frac{300}{5} = 60$ N.",
+         "narration": "F, üç yüz bölü beş, altmış newton. Kuvvet ağırlığın onda üçü; yol da yüksekliğin on bölü üçü katı. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Eğik düzlem kalıbı; ölçüler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_BASIT_MAK_04",
+    "title": "Çıkrık",
+    "narration": "Kuyudan kova çeken çıkrık, bir silindire takılmış uzun bir koldur. Kol ile silindir birlikte döner.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Çıkrık",
+      "items": [
+       "$F \\cdot R = G \\cdot r$: $R$ kolun uzunluğu, $r$ silindirin yarıçapı.",
+       "Kolun bir turunda yük $2\\pi r$ yükselir, el $2\\pi R$ yol alır.",
+       "Kol uzadıkça ya da silindir inceldikçe kuvvet **küçülür**."
+      ],
+      "visual": {
+       "kind": "gears",
+       "turns": 0.5,
+       "motion": true,
+       "counters": true,
+       "wheels": [
+        {
+         "label": "R",
+         "radius": 3,
+         "teeth": false
+        },
+        {
+         "label": "r",
+         "radius": 1,
+         "teeth": false,
+         "link": "axle",
+         "hang": {
+          "label": "G",
+          "side": "left"
+         }
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Büyük çark kol, küçük çark silindir: aynı milde.",
+        "show": [
+         "w1",
+         "w2"
+        ]
+       },
+       {
+        "narration": "Kol yarım tur dönüyor; ip silindire sarılır, yük kalkar.",
+        "show": [
+         "turn"
+        ],
+        "focus": [
+         "w2"
+        ]
+       },
+       {
+        "narration": "İkisi de aynı turu atar.",
+        "show": [
+         "counts"
+        ],
+        "focus": [
+         "counts"
+        ]
+       }
+      ],
+      "narration": "Çıkrıkta kol ile silindir aynı mile bağlıdır ve birlikte döner. Torklar eşitlenince denge kurulur: kuvvet çarpı kol uzunluğu R, yük çarpı silindirin yarıçapı r. Kolun bir turunda ip silindire bir çevre kadar sarılır, yük iki pi r yükselir; elin yolu ise iki pi R'dir. Kol uzadıkça ya da silindir inceldikçe kuvvet küçülür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir çıkrıkta kolun uzunluğu $60$ cm, silindirin yarıçapı $10$ cm'dir. $300$ N'lik bir kova sabit hızla çekiliyor.\n\nKola dik olarak uygulanan kuvvet kaç N'dir ve kol $3$ tur döndüğünde kova kaç cm yükselir? ($\\pi = 3$)",
+       "figure": {
+        "kind": "gears",
+        "turns": 1,
+        "motion": false,
+        "counters": false,
+        "wheels": [
+         {
+          "label": "Kol",
+          "radius": 6,
+          "teeth": false,
+          "radiusLabel": "60 cm"
+         },
+         {
+          "label": "r",
+          "radius": 1,
+          "teeth": false,
+          "link": "axle",
+          "hang": {
+           "label": "Kova",
+           "side": "left"
+          }
+         }
+        ]
+       },
+       "options": [
+        "$50$ N, $60$ cm",
+        "$50$ N, $180$ cm",
+        "$50$ N, $1080$ cm",
+        "$300$ N, $180$ cm",
+        "$1800$ N, $180$ cm"
+       ],
+       "answer": 1,
+       "narration": "Torklar eşit; ip silindirin çevresi kadar sarılır.",
+       "steps": [
+        {
+         "text": "$F \\cdot 60 = 300 \\cdot 10$ → $F = 50$ N.",
+         "narration": "F çarpı altmış, üç yüz çarpı on: F elli newton."
+        },
+        {
+         "text": "Bir turda $2\\pi r = 60$ cm; üç turda $180$ cm.",
+         "narration": "Bir turda ip silindirin çevresi kadar sarılır: iki çarpı üç çarpı on, altmış santimetre. Üç turda yüz seksen. Kolun çevresini kullanan bin sekseni bulur. Cevap B.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Çıkrık kalıbı; ölçüler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_BASIT_MAK_05",
+    "title": "Dişliler",
+    "narration": "Dişliler birbirine geçerek dönmeyi aktarır: dönme yönünü değiştirir, hızı büyütür ya da küçültür.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Dişliler",
+      "items": [
+       "Birbirine geçen dişliler **zıt yönde** döner.",
+       "Devir sayısı yarıçapla (diş sayısıyla) **ters orantılı**: $n_1 r_1 = n_2 r_2$.",
+       "Aynı mile perçinli dişliler **aynı yönde, aynı devirle** döner."
+      ],
+      "visual": {
+       "kind": "gears",
+       "turns": 1,
+       "motion": true,
+       "counters": true,
+       "wheels": [
+        {
+         "label": "K",
+         "radius": 2,
+         "radiusLabel": "2r"
+        },
+        {
+         "label": "L",
+         "radius": 1,
+         "link": "mesh",
+         "radiusLabel": "r"
+        },
+        {
+         "label": "M",
+         "radius": 3,
+         "link": "mesh",
+         "radiusLabel": "3r"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Yarıçapı iki r olan K, r olan L ile geçmiş; L de üç r olan M ile.",
+        "show": [
+         "w1",
+         "w2",
+         "w3"
+        ]
+       },
+       {
+        "narration": "K bir tur dönüyor.",
+        "show": [
+         "turn"
+        ],
+        "focus": [
+         "w1"
+        ]
+       },
+       {
+        "narration": "L zıt yönde iki tur; M, K ile aynı yönde üçte iki tur.",
+        "show": [
+         "counts"
+        ],
+        "focus": [
+         "counts"
+        ]
+       }
+      ],
+      "narration": "Birbirine geçen iki dişli zıt yönde döner. Temas noktasında dişler birlikte ilerlediği için devir sayısı yarıçapla ters orantılıdır: n bir çarpı r bir, n iki çarpı r ikiye eşittir; küçük dişli daha çok döner. Aynı mile perçinlenmiş dişliler ise aynı yönde ve aynı devirle döner."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yarıçapları $K$: $2r$, $L$: $3r$, $M$: $r$, $N$: $3r$ olan dişlilerden $K$ ile $L$ birbirine geçmiş, $M$ ise $L$'ye aynı merkezli perçinlenmiş ve $N$ ile geçmiştir.\n\n$K$ $9$ tur döndüğünde $N$ kaç tur döner ve dönme yönü $K$'ninkiyle nasıldır?",
+       "figure": {
+        "kind": "gears",
+        "turns": 1,
+        "motion": false,
+        "counters": false,
+        "wheels": [
+         {
+          "label": "K",
+          "radius": 2,
+          "radiusLabel": "2r"
+         },
+         {
+          "label": "L",
+          "radius": 3,
+          "link": "mesh",
+          "radiusLabel": "3r"
+         },
+         {
+          "label": "M",
+          "radius": 1,
+          "link": "axle",
+          "radiusLabel": "r"
+         },
+         {
+          "label": "N",
+          "radius": 3,
+          "link": "mesh",
+          "radiusLabel": "3r"
+         }
+        ]
+       },
+       "options": [
+        "$18$ tur, zıt yönde",
+        "$6$ tur, aynı yönde",
+        "$6$ tur, zıt yönde",
+        "$2$ tur, zıt yönde",
+        "$2$ tur, aynı yönde"
+       ],
+       "answer": 4,
+       "narration": "Zinciri adım adım izleyelim.",
+       "steps": [
+        {
+         "text": "$K$–$L$: $9 \\cdot 2r = n_L \\cdot 3r$ → $n_L = 6$, **zıt** yön.",
+         "narration": "K ile L geçmiş: dokuz çarpı iki r, n L çarpı üç r. L altı tur, K'ye zıt yönde döner."
+        },
+        {
+         "text": "$M$, $L$ ile birlikte: $6$ tur, $L$ ile aynı yönde.",
+         "narration": "M, L'ye perçinli: o da altı tur, L ile aynı yönde."
+        },
+        {
+         "text": "$M$–$N$: $6 \\cdot r = n_N \\cdot 3r$ → $n_N = 2$; iki kez yön değişti: $K$ ile **aynı**.",
+         "narration": "M ile N geçmiş: altı çarpı r, n N çarpı üç r; N iki tur. Yön iki kez değişti, N, K ile aynı yönde döner. Cevap E.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Perçinli dişli kalıbı; yarıçaplar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_BASIT_MAK_06",
+    "title": "Vida ve kasnaklar",
+    "narration": "Kasnaklar kayışla dönmeyi uzağa taşır; vida ise dönmeyi küçük bir ilerlemeye çevirerek büyük kuvvet sağlar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kasnaklar",
+      "items": [
+       "Düz kayışla bağlı kasnaklar **aynı yönde**, çapraz kayışla bağlılar **zıt yönde** döner.",
+       "Kayış kaymazsa çevresel hızlar eşit: $n_1 r_1 = n_2 r_2$.",
+       "Aynı mile bağlı kasnaklar **birlikte** döner."
+      ],
+      "visual": {
+       "kind": "gears",
+       "turns": 1,
+       "motion": true,
+       "counters": true,
+       "wheels": [
+        {
+         "label": "K",
+         "radius": 1,
+         "teeth": false,
+         "radiusLabel": "r"
+        },
+        {
+         "label": "L",
+         "radius": 2,
+         "teeth": false,
+         "link": "belt",
+         "radiusLabel": "2r"
+        },
+        {
+         "label": "M",
+         "radius": 1,
+         "teeth": false,
+         "link": "crossed",
+         "radiusLabel": "r"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "K ile L düz kayışla, L ile M çapraz kayışla bağlı.",
+        "show": [
+         "w1",
+         "w2",
+         "w3"
+        ]
+       },
+       {
+        "narration": "K bir tur dönüyor.",
+        "show": [
+         "turn"
+        ],
+        "focus": [
+         "w1"
+        ]
+       },
+       {
+        "narration": "L aynı yönde yarım tur; M zıt yönde bir tur.",
+        "show": [
+         "counts"
+        ],
+        "focus": [
+         "counts"
+        ]
+       }
+      ],
+      "narration": "Kayışla bağlı kasnaklarda kayış kaymıyorsa iki kasnağın çevresi aynı hızla ilerler; bu yüzden yine n bir r bir, n iki r ikiye eşittir. Düz kayışla bağlı kasnaklar aynı yönde döner; kayış çaprazlanırsa zıt yönde. Aynı mile bağlı kasnaklar birlikte döner."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yarıçapları $3$ cm ve $9$ cm olan $K$ ve $L$ kasnakları düz bir kayışla bağlıdır. $L$'ye perçinli $3$ cm yarıçaplı $M$ silindirine sarılı ipin ucunda bir $X$ yükü asılıdır.\n\n$K$ $6$ tur döndüğünde $X$ kaç cm yer değiştirir? ($\\pi = 3$)",
+       "figure": {
+        "kind": "gears",
+        "turns": 1,
+        "motion": false,
+        "counters": false,
+        "wheels": [
+         {
+          "label": "K",
+          "radius": 1,
+          "teeth": false,
+          "radiusLabel": "3 cm"
+         },
+         {
+          "label": "L",
+          "radius": 3,
+          "teeth": false,
+          "link": "belt",
+          "radiusLabel": "9 cm"
+         },
+         {
+          "label": "M",
+          "radius": 1,
+          "teeth": false,
+          "link": "axle",
+          "hang": {
+           "label": "X",
+           "side": "right"
+          },
+          "radiusLabel": "3 cm"
+         }
+        ]
+       },
+       "options": [
+        "$12$",
+        "$18$",
+        "$24$",
+        "$36$",
+        "$108$"
+       ],
+       "answer": 3,
+       "narration": "Önce L'nin, dolayısıyla M'nin tur sayısını bulalım.",
+       "steps": [
+        {
+         "text": "$6 \\cdot 3 = n_L \\cdot 9$ → $n_L = 2$ tur; $M$ de $2$ tur.",
+         "narration": "Kayışla: altı çarpı üç, n L çarpı dokuz. L iki tur döner; M ona perçinli, o da iki tur."
+        },
+        {
+         "text": "$x = 2 \\cdot 2\\pi \\cdot 3 = 36$ cm.",
+         "narration": "Her turda ip M'nin çevresi kadar sarılır: iki çarpı üç çarpı üç, on sekiz. İki turda otuz altı santimetre. K'nin tur sayısıyla hesaplayan yüz sekizi bulur. Cevap D.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Kasnak ve yük kalıbı; yarıçaplar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "rule",
+      "title": "Vida",
+      "items": [
+       "Kola bir tur attırınca vida bir **adım** ($a$) ilerler.",
+       "$F \\cdot 2\\pi L = P \\cdot a$: $L$ kol uzunluğu, $P$ direnç kuvveti.",
+       "Kol uzadıkça ya da adım küçüldükçe kuvvet **azalır**."
+      ],
+      "narration": "Vida, bir silindirin çevresine sarılmış eğik düzlemdir. Kolu bir tur döndürünce vida bir adım ilerler. Elin bir turda aldığı yol iki pi L, vidanınki bir adım: F çarpı iki pi L, direnç kuvveti çarpı adıma eşittir. Kol uzadıkça ya da adım küçüldükçe gereken kuvvet azalır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Vida adımı $2$ mm olan bir vidanın kolu $10$ cm'dir.\n\nVidayı $1500$ N'lik bir dirence karşı ilerletmek için kola dik olarak en az kaç N kuvvet uygulanmalıdır? ($\\pi = 3$)",
+       "options": [
+        "$5$",
+        "$10$",
+        "$15$",
+        "$30$",
+        "$50$"
+       ],
+       "answer": 0,
+       "narration": "Bir turdaki işler eşit; birimleri eşitleyelim.",
+       "steps": [
+        {
+         "text": "$F \\cdot 2\\pi L = P \\cdot a$: $F \\cdot 2 \\cdot 3 \\cdot 10 = 1500 \\cdot 0{,}2$ (cm).",
+         "narration": "Bir turda elin işi F çarpı iki pi L, vidanınki direnç çarpı adım. Adımı santimetreye çevir: sıfır virgül iki. F çarpı altmış, bin beş yüz çarpı sıfır virgül iki."
+        },
+        {
+         "text": "$60F = 300$ → $F = 5$ N.",
+         "narration": "Altmış F, üç yüz: F beş newton. İki pi yerine pi alan onu bulur. Cevap A.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Vida kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_BASIT_MAK_07",
+    "title": "Kuvvet kazancı ve verim",
+    "narration": "Bir makinenin ne kadar kuvvet kazandırdığı ile ne kadar verimli olduğu ayrı sorulardır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kazanç ve verim",
+      "items": [
+       "Kuvvet kazancı $\\frac{G}{F}$; ideal makinede yol kaybı aynı oranda.",
+       "Verim $= \\frac{\\text{alınan iş}}{\\text{verilen iş}}$; sürtünme ve makara ağırlığı varsa **%100'den küçük**.",
+       "Hiçbir makine **işten** kazandırmaz."
+      ],
+      "narration": "Kuvvet kazancı yükün kuvvete oranıdır; ideal bir makinede yoldan kayıp da aynı orandadır. Verim, makineden alınan işin makineye verilen işe oranıdır. Sürtünme ve yükle birlikte kaldırılan makara ağırlığı işin bir kısmını harcar; gerçek makinelerde verim yüzde yüzden küçüktür. Hiçbir makine işten kazandırmaz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir palangayla $600$ N'lik bir yük $2$ m yükseltiliyor. Bunun için ip $8$ m çekiliyor ve ortalama $200$ N kuvvet uygulanıyor.\n\nDüzeneğin verimi yüzde kaçtır?",
+       "options": [
+        "%25",
+        "%50",
+        "%60",
+        "%75",
+        "%80"
+       ],
+       "answer": 3,
+       "narration": "Alınan ve verilen işleri karşılaştıralım.",
+       "steps": [
+        {
+         "text": "Alınan iş $600 \\cdot 2 = 1200$ J; verilen iş $200 \\cdot 8 = 1600$ J.",
+         "narration": "Yüke yapılan iş: altı yüz çarpı iki, bin iki yüz joule. Verilen iş: iki yüz çarpı sekiz, bin altı yüz joule."
+        },
+        {
+         "text": "Verim $= \\frac{1200}{1600} = \\%75$.",
+         "narration": "Verim bin iki yüz bölü bin altı yüz: yüzde yetmiş beş. İdeal palangada kuvvet yüz elli olurdu; fazlası sürtünmeye ve makaralara gitti. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Verim kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Basit makinelerle ilgili;\nI. Kuvvetten kazanç sağlayan bir makine yoldan kaybettirir.\nII. Sürtünmesiz ve ağırlıksız parçalı bir makinede alınan iş verilen işe eşittir.\nIII. Hareketli makaranın ağırlığı arttıkça palanganın verimi artar.\n\nyargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "narration": "Her yargıyı iş ilkesine göre tartalım.",
+       "steps": [
+        {
+         "text": "İş korunur: kuvvet küçülürse yol **büyür** (I); kayıp yoksa alınan iş = verilen iş (II).",
+         "narration": "Makine işten kazandırmaz: kuvveti küçültürse yolu büyütür; birinci doğru. Sürtünme ve ağırlık yoksa hiç kayıp olmaz, alınan iş verilen işe eşittir; ikinci de doğru."
+        },
+        {
+         "text": "Ağır hareketli makara da kaldırılır: boşa giden iş artar, verim **düşer** (III yanlış).",
+         "narration": "Hareketli makara yükle birlikte kaldırılır; ağırlaştıkça onu kaldırmak için harcanan iş artar, verim düşer. Üçüncü yanlış. Cevap C.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Verim yargıları; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Kaldıraç: $F \\cdot$ kuvvet kolu $= G \\cdot$ yük kolu.",
+    "Palanga: $F = \\frac{G + G_m}{n}$, ip $n h$ çekilir.",
+    "Eğik düzlem: $F = G \\frac{h}{s}$.",
+    "Çıkrık: $F R = G r$; yük turda $2\\pi r$.",
+    "Dişli ve kasnak: $n_1 r_1 = n_2 r_2$; geçen dişli ve çapraz kayış zıt yönde.",
+    "Verim: alınan iş / verilen iş."
+   ],
+   "warnings": [
+    "Basit makine **işten** kazandırmaz.",
+    "Yalnız **hareketli** makaranın ağırlığı eklenir.",
+    "Perçinli tekerlekler **aynı** turu atar."
+   ],
+   "narration": "Özetleyelim. Kaldıraçta kuvvet çarpı kuvvet kolu, yük çarpı yük koluna eşittir. Palangada yükü ve hareketli makaraları n ip paylaşır; ip n kat çekilir. Eğik düzlemde kuvvet G çarpı h bölü s, çıkrıkta F R eşittir G r. Dişli ve kasnaklarda devir sayısı yarıçapla ters orantılıdır; geçen dişliler ve çapraz kayış yönü çevirir, perçinli tekerlekler birlikte döner. Verim, alınan işin verilen işe oranıdır; hiçbir makine işten kazandırmaz."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "Sabit makara",
+    "question": "Kuvvetten kazanç?",
+    "choices": [
+     "Yok",
+     "Var"
+    ],
+    "answer": 0,
+    "why": "Yalnız **yön** değiştirir."
+   },
+   {
+    "sentence": "Dört ipli palanga",
+    "question": "Yük h kalkınca ip?",
+    "choices": [
+     "h",
+     "4h"
+    ],
+    "answer": 1,
+    "why": "Kuvvet dörtte bir, **yol dört kat**."
+   },
+   {
+    "sentence": "Geçen iki dişli",
+    "question": "Yönleri?",
+    "choices": [
+     "Aynı",
+     "Zıt"
+    ],
+    "answer": 1,
+    "why": "Geçen dişliler **zıt** döner."
+   }
+  ],
+  "hook": "Üç basit makine tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "F · kuvvet kolu = **G · yük kolu**."
+   },
+   {
+    "kind": "warning",
+    "text": "Basit makine **işten** kazandırmaz."
+   },
+   {
+    "kind": "term",
+    "term": "Verim",
+    "definition": "Alınan iş / **verilen iş**."
+   }
+  ],
+  "summary": [
+   "Kaldıraç ve makara",
+   "Dişli ve kasnak",
+   "Verim"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-fizik-kampi",
+  "name": "AYT Fizik kampı",
+  "number": 4,
+  "total": 21,
+  "previous": "Kütle Merkezi",
+  "next": "Hareket",
+  "promise": "Vektörden modern fiziğe AYT Fizik: her konu animasyonlu anlatım ve çözümlü sorularla.",
+  "task": {
+   "items": [
+    "Bir cetveli kalemin üstünde kaldıraç gibi kullan; **destek yerini** değiştirip kuvveti hisset.",
+    "Bir bisikletin dişlilerine bak; pedal bir tur dönünce **arka teker** kaç tur dönüyor, say.",
+    "Uygulamada AYT Basit Makineler testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bir cetveli kalemin üstünde kaldıraç gibi kullan; desteğin yerini değiştirdikçe kuvvetin nasıl değiştiğini hisset. Sonra bir bisikletin dişlilerine bak: pedal bir tur dönünce arka teker kaç tur dönüyor, say ve dişli sayılarıyla karşılaştır. Ardından uygulamada yirmi soru çöz. Bir sonraki derste hareketle görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Ağırlığı hesaba katılan kaldıraç örneği ekle: 2 m uzunluğunda, 20 N ağırlığında türdeş çubuk sol uçtan 0,5 m'de destekleniyor, sol uçta 80 N yük var. Sağ uca uygulanması gereken kuvvet: 80 × 0,5 = 20 × 0,5 + F × 1,5, F = 20 N.",
+   "Palanga örneği ekle: iki hareketli makaralı palangada yük dört iple taşınır; 360 N yük ve toplam 40 N makara ağırlığı için F = 100 N. Yük 1 m yükselirken ipin 4 m çekildiğini ve sabit makaranın yalnız yön değiştirdiğini vurgula.",
+   "Altın kuralı ve verimi örnekle: hiçbir basit makine işten kazanç sağlamaz; kuvvetten kazanılan yoldan kaybedilir. 5 m uzunluğunda, 1 m yüksekliğinde eğik düzlemde 500 N yük sürtünmeyle 125 N kuvvetle çıkarılıyorsa verim 500 × 1 / (125 × 5) = %80.",
+   "Dişli ve kasnak kurallarını tablo yap: aynı mile bağlı dişlilerin açısal hızı eşit; birbirine geçen dişliler zıt yönde döner ve temas noktalarındaki çizgisel hız eşittir; düz kayış aynı, çapraz kayış zıt yönde döndürür. Bisiklet: önde 48, arkada 16 dişli varsa bir pedal turunda tekerlek 3 tur döner.",
+   "Vida hesabına ikinci örnek ver: kolu 20 cm, adımı 4 mm olan vidada kuvvet kazancı 2πR / a = 2 × 3 × 200 / 4 = 300 (π = 3). Bir tam turda vidanın bir adım ilerlediğini vurgula."
+  ]
+ }
+}

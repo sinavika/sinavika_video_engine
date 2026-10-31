@@ -436,10 +436,11 @@ Kurallar:
 
 ## 18. İçerik motoru kuralları (video ve sosyal medya)
 
-Bu bölüm içerik motoru reposuna (`sinavika_video_engine`) özgüdür.
+Bu bölüm içerik motoru reposuna (`sinavika_video_engine`) özgüdür. Sosyal medyanın vizyonu, 1 milyon takipçi hedefi, içerik sütunları ve ölçümü [`SocialStrategy.md`](SocialStrategy.md); hook, kurgu ve yayın öncesi kontrol [`SocialCreativePlaybook.md`](SocialCreativePlaybook.md); dayanılan kaynaklar [`SocialResources.md`](SocialResources.md) içindedir. Kapak, reels bitiş kartı ve mağaza rozetleri her gönderide aynıdır: [`Sosyal-Kimlik-Standardi.md`](Sosyal-Kimlik-Standardi.md).
 
 ### Hedef sınavlar ve kitle
-- **YKS (TYT, AYT, YDT)** ve **KPSS (Lisans, Ön Lisans, Ortaöğretim)**. Sitede ÖABT, AGS, SAT, GRE kategori ve blog sayfaları da var. **LGS için içerik üretilmez.**
+- Türkiye: **YKS (TYT, AYT, YDT)** ve **KPSS (Lisans, Ön Lisans, Ortaöğretim)**. ABD: **SAT** ve **ACT** (İngilizce, ayrı hesaplarda).
+- **LGS, ÖABT, AGS, ALES ve DHBT için içerik üretilmez.**
 - LinkedIn'de hedef kitle: eğitim sektörü, veliler, yatırımcılar, iş ortakları. Dil "siz" ya da kişisiz anlatım.
 
 ### Hesaplar
@@ -465,7 +466,8 @@ Marka hashtag'i: `#sinavika` (her gönderide).
 - **Render kalitesi:** Her zaman en yüksek. Videolar 4K, YouTube'a 4K; sosyal medyaya motorun kendi 1080p kopyası gider: [`docs/SocialPlan.md`](SocialPlan.md#video-kalitesi).
 
 ### Seslendirme
-- ElevenLabs. **Tek marka sesi:** ana dili Türkçe olan bir kadın seslendirmen; bütün içerikler aynı sesle konuşur.
+- ElevenLabs. **Tek marka sesi:** 20 Ekim 2026'dan beri **Doğa**dır (ana dili Türkçe olan erkek ses; `BRAND_VOICES` başında, tanıtımlarda `PROMO_VOICES`, Eleven v4). Bütün içerikler aynı sesle konuşur. Bundan önce kadın sesler (Lisa, Gökçe) kullanılmıştı; admin onlarda seslendirmeyi reddetti.
+- Okunuşlar merkezi olarak `src/Schemas/SpokenText.ts` dosyasındadır: SinoAI "Sino Ey Ay", YKS "yekase", KPSS "kapesese", TYT "teyete", PDF "Pidiyef", sinavika.com "Sınavika nokta kom". Ekrandaki yazı değişmez. Bir işin `script` alanına okunuş yazılmaz.
 - Ton günlük konuşma gibidir; hız doğaldır (tempo 1,0).
 - Metin bütün olarak üretilir; görüntü sese göre zamanlanır.
 - Ana dili Türkçe olmayan ses yalnız açıkça istenirse kullanılır. Liste: [`src/Configurations/Voices.ts`](../src/Configurations/Voices.ts).
@@ -473,10 +475,15 @@ Marka hashtag'i: `#sinavika` (her gönderide).
 
 ### Yayın düzeni (özet; ayrıntı [`docs/SocialPlan.md`](SocialPlan.md))
 - **Instagram ve TikTok:** Her gün bir ana içerik; Instagram'da her gün bir Story.
-- **YouTube:** Ders anlatımları; Salı, Cuma ve Pazar Shorts.
+- **YouTube:**
+  - Uzun ders anlatımları (kamp dersleri). Bunları sahip YouTube Studio'dan yükler; SocialHub'a gönderilmez.
+  - Kısa videolar Shorts olarak SocialHub'dan gider.
 - **LinkedIn:** Pazartesi, Çarşamba, Cuma; yalnız tanıtım, marka ve hook. Ders ve soru paylaşılmaz.
 - **Onay:** Her içerik admin onayından geçer; onaysız hiçbir şey yayınlanmaz.
 - **Etiket bırakılmaz:** Platformlara "yapay zekâ ile üretildi" işareti gönderilmez; dosyalarda üretim aracına dair etiket bırakılmaz.
+  - Kuralın dayanağı, içeriğin platformların etiket istediği sınırın içinde kalmasıdır: gerçekçi yapay insan ya da sahne yok, gerçek kişinin sesi taklit edilmiyor.
+  - Bu sınır aşılacaksa önce sahibe sorulur ([`SocialStrategy.md`](SocialStrategy.md) §8).
+- **Yorumlar:** Her yoruma 24 saat içinde "sen" diliyle yanıt verilir; yanıtı sahip ya da admin yazar. Şablonlar [`SocialStrategy.md`](SocialStrategy.md) §8'dedir.
 
 ### Ürün ve modül anlatımı
 - Reklam, mağaza ve sosyal medya metinlerinde modül adları ve cümleleri tek kaynaktan gelir: [`docs/ProductMessaging.md`](ProductMessaging.md), kod `src/Configurations/ProductMessaging.ts`.
@@ -486,7 +493,8 @@ Marka hashtag'i: `#sinavika` (her gönderide).
 
 ### Tasarım kuralları
 - Aynı içerik türü her zaman aynı şablonla üretilir. Tanıtım videoları her seferinde yeni bir konseptle hazırlanır: [`docs/AdPrompt.md`](AdPrompt.md).
-- Kaydırmalı gönderide sayfa sayacı, ilerleme çubuğu ve kaydırma oku olmaz; tekli görselde kaydırma çağrısı olmaz.
+- Kaydırmalı gönderide sayfa sayacı ve ilerleme çubuğu olmaz. Kapakta kısa bir "Kaydır" çağrısı olabilir (sahip, 31 Ekim 2026). Tekli görselde kaydırma çağrısı olmaz.
+- Videoda hook ilk saniyededir ve ilk kare (kapak) onu taşır ([`SocialCreativePlaybook.md`](SocialCreativePlaybook.md) §3).
 - Her videonun bir kapağı vardır ve bu kapak videonun açılış karesidir.
 - Eğitim içeriği yalnız verilen soru, konu ve hook kaynaklarından üretilir. Soru ve cevabın doğruluğu teslimden önce kontrol edilir.
 - Görselde "cevap açıklamada" deniyorsa cevap açıklamada vardır.

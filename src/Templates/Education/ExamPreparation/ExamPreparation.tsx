@@ -1,4 +1,4 @@
-import {outroScenes} from '../../../Scenes/BrandOutroScene';
+import {outroScenes} from '../../../Scenes/AppEndScene';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, type VoiceClips} from '../../../Scenes/Voiceover';
@@ -141,7 +141,7 @@ export const ExamPreparation = defineTemplate({
 	description: 'Sınav bilgileri, stratejiler, süre yönetimi, sık yapılan hatalar, ipuçları ve motivasyon.',
 	contentSchema: ExamPreparationSchema,
 	sampleContent: EXAM_PREPARATION_SAMPLE,
-	defaultTheme: 'ExamFocus',
+	defaultTheme: 'SinavikaLight',
 	transition: {preset: 'slide', direction: 'from-bottom', durationSeconds: 0.45},
 	voiceProfile: 'Coach',
 	buildScenes,

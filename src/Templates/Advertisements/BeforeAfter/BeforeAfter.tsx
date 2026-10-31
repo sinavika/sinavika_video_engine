@@ -4,7 +4,7 @@ import {AbsoluteFill, interpolate, random} from 'remotion';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
-import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
+import {appEndScenes} from '../../../Scenes/AppEndScene';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, VoiceScriptSchema, type VoiceClips} from '../../../Scenes/Voiceover';
@@ -12,8 +12,7 @@ import {plainText} from '../../../Schemas/RichText';
 import {Icon, type UIIconName} from '../../../UIUX/Icons';
 import {MODULES, MODULE_ORDER} from '../../../UIUX/ModuleIdentity';
 import {defineTemplate} from '../../TemplateDefinition';
-import {At, CLAMP, ease, PhoneShot, PromoStage, PromoSubtitle, Slam, useLand, useSeconds} from '../PromoKit/PromoKit';
-import {PROMO_END_CARD, PromoEndCard} from '../PromoKit/PromoEndCard';
+import {At, CLAMP, ease, PhoneShot, PromoStage, Slam, useLand, useSeconds} from '../PromoKit/PromoKit';
 import {PROMO_PHONE_SCREEN_NAMES, PROMO_PHONE_SCREENS} from '../PromoKit/PromoScreens';
 
 /**
@@ -25,14 +24,11 @@ import {PROMO_PHONE_SCREEN_NAMES, PROMO_PHONE_SCREENS} from '../PromoKit/PromoSc
 
 const narration = z.string().trim().min(1).max(170);
 
-export const BeforeAfterSchema = z.object({
+const BeforeAfterSchema = z.object({
 	mess: z.object({headline: plainText(44), notes: z.array(plainText(18)).min(4).max(8), narration}),
 	count: z.object({items: z.array(z.object({value: plainText(4), label: plainText(14)})).length(3), narration}),
 	wipe: z.object({text: plainText(24), narration}),
 	order: z.object({screen: z.enum(PROMO_PHONE_SCREEN_NAMES), caption: plainText(40), narration}),
-	/** The shared end card (PromoEndCard) closes the reel; only what is said over it is set here. */
-	closing: z.object({cta: plainText(26).default(PROMO_END_CARD.cta), narration: narration.default(PROMO_END_CARD.narration)}).default({cta: PROMO_END_CARD.cta, narration: PROMO_END_CARD.narration}),
-	subtitles: z.boolean().default(true),
 	script: VoiceScriptSchema,
 	outro: z.object({enabled: z.boolean().default(true)}).default({enabled: true}),
 });
@@ -110,10 +106,9 @@ const MessPiece: React.FC<{item: Mess; shake: number; fade?: number}> = ({item, 
 	);
 };
 
-const Stage: React.FC<{content: Content; narration: string; shown?: string; ground?: string; children: React.ReactNode}> = ({content, narration: text, shown, ground = PAPER, children}) => (
+const Stage: React.FC<{ground?: string; children: React.ReactNode}> = ({ground = PAPER, children}) => (
 	<PromoStage ground={<AbsoluteFill style={{background: ground}} />}>
 		{children}
-		<PromoSubtitle text={text} shown={shown} enabled={content.subtitles} ink="#FFFFFF" fill={INK} />
 	</PromoStage>
 );
 
@@ -134,7 +129,7 @@ const Label: React.FC<{text: string; at?: number}> = ({text, at = 0.2}) => {
 const MessScene: React.FC<{content: Content}> = ({content}) => {
 	const mess = messOf(content.mess.notes);
 	return (
-		<Stage content={content} narration={content.mess.narration} shown={content.mess.headline}>
+		<Stage>
 			{mess.map((item, index) => (
 				<MessPiece key={index} item={item} shake={1} />
 			))}
@@ -149,7 +144,7 @@ const CountScene: React.FC<{content: Content}> = ({content}) => {
 	const {u} = useVideoLayout();
 	const mess = messOf(content.mess.notes);
 	return (
-		<Stage content={content} narration={content.count.narration} shown={content.count.items.map((item) => `${item.value} ${item.label}`).join(' ')}>
+		<Stage>
 			{mess.map((item, index) => (
 				<MessPiece key={index} item={{...item, delay: -1}} shake={1.6} fade={0.45} />
 			))}
@@ -191,7 +186,6 @@ const WipeScene: React.FC<{content: Content}> = ({content}) => {
 					</Text>
 				</div>
 			</At>
-			<PromoSubtitle text={content.wipe.narration} shown={content.wipe.text} enabled={content.subtitles} ink="#FFFFFF" fill={INK} />
 		</PromoStage>
 	);
 };
@@ -213,7 +207,7 @@ const OrderScene: React.FC<{content: Content}> = ({content}) => {
 		{x: 400, y: 1160},
 	];
 	return (
-		<Stage content={content} narration={content.order.narration} shown={content.order.caption} ground="#FFFFFF">
+		<Stage ground="#FFFFFF">
 			<At y={120} w={952}>
 				<div style={{opacity: rise}}>
 					<Text variant="display" size={52} weight={TYPE.weights.display} color={INK} align="center">
@@ -271,13 +265,12 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 	const count = say('count', content.count.narration, beat(content.count.narration, 2.8), 2.4);
 	const wipe = say('wipe', content.wipe.narration, beat(content.wipe.narration, 1.6), 1.5);
 	const order = say('order', content.order.narration, beat(content.order.narration, 3.6), 3.2);
-	const closing = say('closing', content.closing.narration, beat(content.closing.narration, 2.8), 2.6);
 	return [
 		{id: 'mess', seconds: mess.seconds, label: 'Dağınıklık', voice: [mess], element: <MessScene content={content} />},
 		{id: 'count', seconds: count.seconds, label: 'Sayılar', voice: [count], element: <CountScene content={content} />},
 		{id: 'wipe', seconds: wipe.seconds, label: 'Silme', voice: [wipe], element: <WipeScene content={content} />},
 		{id: 'order', seconds: order.seconds, label: 'Düzen', voice: [order], element: <OrderScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard cta={content.closing.cta} />}] : []),
+		...appEndScenes(content.outro.enabled, say),
 	];
 };
 

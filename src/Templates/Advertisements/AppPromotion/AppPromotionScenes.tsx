@@ -4,7 +4,6 @@ import {APP_SCREENS} from '../../../Components/AppScreens/AppScreenRegistry';
 import {PhoneFrame} from '../../../Components/AppScreens/PhoneFrame';
 import {SafeArea} from '../../../Components/Layouts/SafeArea';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
-import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
 import {SPACING} from '../../../Themes/DesignTokens';
@@ -27,7 +26,7 @@ const useRise = (delaySeconds: number, damping = 16): number => {
  * The dark stage every scene plays on: two soft glows in the brand colour
  * drifting slowly, so the picture is never still even when the type is.
  */
-export const StageGlow: React.FC = () => {
+const StageGlow: React.FC = () => {
 	const frame = useCurrentFrame();
 	const {fps, width, height} = useVideoConfig();
 	const {colors} = useTheme();
@@ -166,29 +165,3 @@ export const ShowcaseScene: React.FC<ShowcaseProps> = ({content, featureSeconds}
 	);
 };
 
-export const ClosingScene: React.FC<{content: Content}> = ({content}) => {
-	const {colors} = useTheme();
-	const {u} = useVideoLayout();
-	const logo = useRise(0.05, 13);
-	const stores = useRise(0.75);
-	return (
-		<AbsoluteFill>
-			<StageGlow />
-			<SafeArea gap={SPACING.xl} style={{alignItems: 'center', justifyContent: 'center'}}>
-				<div style={{transform: `scale(${0.6 + 0.4 * logo})`, opacity: logo}}>
-					<BrandMark size="hero" />
-				</div>
-				<KineticLine text={content.closing.title} delaySeconds={0.35} size={TYPE.adScale.closing} />
-				<div style={{display: 'flex', gap: u(20), opacity: stores, transform: `translateY(${(1 - stores) * u(40)}px)`}}>
-					{content.closing.stores.map((store) => (
-						<div key={store} style={{padding: `${u(20)}px ${u(34)}px`, borderRadius: u(999), backgroundColor: colors.primary}}>
-							<Text size={TYPE.adScale.action} weight={TYPE.weights.display} color={colors.onPrimary}>
-								{store}
-							</Text>
-						</div>
-					))}
-				</div>
-			</SafeArea>
-		</AbsoluteFill>
-	);
-};

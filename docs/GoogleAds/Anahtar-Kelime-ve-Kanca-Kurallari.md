@@ -4,7 +4,7 @@ Kaynak: Google Ads Anahtar Kelime Planlayıcı, hesap 704-426-1654, dönem Ekim 
 - Türkiye için Türkçe sorgu: 49 kelime.
 - ABD için İngilizce sorgu: 40 kelime.
 
-Ham veri `data/` (masaüstü setinde `veri/`) klasöründeki `keyword-volumes-tr-2026-10.tsv` ve `keyword-volumes-us-2026-10.tsv` dosyalarında. Bu kurallar `src/Ads/Google/GoogleAdsPlan.ts` içinde uygulanıyor ve `tests/GoogleAds.test.ts` ile denetleniyor.
+Ham veri `data/` (masaüstü setinde `veri/`) klasöründeki `keyword-volumes-tr-2026-10.tsv` ve `keyword-volumes-us-2026-10.tsv` dosyalarında. Bu kurallar `src/Ads/Google/GoogleAdsPlan.ts` içinde uygulanıyor ve `tests/Ads/Google/GoogleAds.test.ts` ile denetleniyor.
 
 ## 1. Ne gördük
 
@@ -80,4 +80,4 @@ Eski görsellerde kanca "Puanını nerede kaybettin?" ve "Netini nerede kaybetti
 - [ ] Alt satır ikinci bir aranan ifadeyi taşıyor.
 - [ ] Görselde sınav etiketi var; kanıt kartı ve ekran yalnız bu sınavın verisini gösteriyor.
 - [ ] Başka sınav, rakip, sunulmayan sınav, "PDF/indir" ve doğrulanamayan iddia yok.
-- [ ] `npm run google-ads` ve `npx vitest run tests/GoogleAds.test.ts` geçiyor.
+- [ ] `npm run google-ads` ve `npx vitest run tests/Ads/Google/GoogleAds.test.ts` geçiyor.

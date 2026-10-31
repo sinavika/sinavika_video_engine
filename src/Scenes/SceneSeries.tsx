@@ -102,7 +102,10 @@ export const SceneSeries: React.FC<SceneSeriesProps> = ({
 							key={scene.id}
 							durationInFrames={plan.scenes[index].durationInFrames}
 						>
-							{scene.element}
+							{/* No box of its own (display: contents): it only tells the layout guard which scene a text is in. */}
+							<div data-layout-scene={scene.id} style={{display: 'contents'}}>
+								{scene.element}
+							</div>
 							<SceneVoice scene={scene} clips={voiceClips} />
 						</TransitionSeries.Sequence>
 					);

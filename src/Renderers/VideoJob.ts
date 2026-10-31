@@ -9,7 +9,7 @@ import {
 	type VideoFormatId,
 } from '../Configurations/VideoFormats';
 import {PACE_RANGE, VOICE_KEYS, VOICE_MODEL_KEYS, VOICE_PROFILE_KEYS} from '../Configurations/Voices';
-import {OUTRO_SCENE_ID} from '../Scenes/BrandOutroScene';
+import {OUTRO_SCENE_ID} from '../Scenes/AppEndScene';
 import type {VoiceClips} from '../Scenes/Voiceover';
 import {createVideoPropsSchema, type VideoProps} from '../Schemas/VideoProps';
 import {DEFAULT_SOUNDTRACK_STYLE, SOUNDTRACK_STYLE_KEYS, type SoundtrackStyleKey} from '../Services/SoundtrackComposer';
@@ -23,7 +23,7 @@ import {TEMPLATE_IDS, findTemplate} from '../Templates/TemplateRegistry';
  * should look, and the content. It is plain JSON, so it can be written by
  * hand, produced by an LLM or sent by the .NET backend.
  */
-export const VideoJobSchema = z.object({
+const VideoJobSchema = z.object({
 	template: z.string().min(1),
 	format: z.enum(VIDEO_FORMAT_IDS).default('Vertical'),
 	/** Defaults to the template's own default theme. */
@@ -84,9 +84,7 @@ export const VideoJobSchema = z.object({
 	content: z.unknown(),
 });
 
-export type VideoCoverRequest = Exclude<z.infer<typeof VideoJobSchema>['cover'], boolean | undefined>;
-
-export type VideoJob = z.input<typeof VideoJobSchema>;
+type VideoCoverRequest = Exclude<z.infer<typeof VideoJobSchema>['cover'], boolean | undefined>;
 
 export type ResolvedVideoJob = {
 	template: AnyTemplateDefinition;
@@ -113,6 +111,8 @@ export type ResolvedVideoJob = {
 	voiceover: VoiceoverRequest | null;
 	/** Who ended up narrating. Set once the voice-over has been generated. */
 	voiceCast: VoiceCast | null;
+	/** The music file the cuts were timed to (Scenes/Rhythm). Set by the renderer, with `inputProps.beats`. */
+	musicPiece?: string;
 };
 
 /** Thrown when a job is rejected. `issues` lists every problem with its JSON path. */
@@ -156,6 +156,7 @@ const contentName = (content: unknown, fallback: string): string => {
  * template id, the theme and the content (including every formula in it).
  */
 export const resolveVideoJob = (raw: unknown): ResolvedVideoJob => {
+	if (raw && typeof raw === 'object' && 'script' in raw) throw new VideoJobValidationError(['script: read the job file with readVideoJob (Renderers/VideoJobFile), which loads the script.']);
 	const envelope = VideoJobSchema.safeParse(raw);
 	if (!envelope.success) throw new VideoJobValidationError(describeIssues(envelope.error));
 	const job = envelope.data;
@@ -232,5 +233,13 @@ export const withVoiceClips = (
 	...job,
 	voiceCast,
 	inputProps: {...job.inputProps, voiceClips},
-	durationInFrames: templateDurationInFrames(job.template, job.inputProps.content, job.fps, voiceClips),
+	durationInFrames: templateDurationInFrames(job.template, job.inputProps.content, job.fps, voiceClips, job.inputProps.beats),
+});
+
+/** The same job timed to its music: every cut on a beat (Scenes/Rhythm), and the piece the beats came from. */
+export const withBeats = (job: ResolvedVideoJob, beats: number[], musicPiece: string): ResolvedVideoJob => ({
+	...job,
+	musicPiece,
+	inputProps: {...job.inputProps, beats},
+	durationInFrames: templateDurationInFrames(job.template, job.inputProps.content, job.fps, job.inputProps.voiceClips, beats),
 });

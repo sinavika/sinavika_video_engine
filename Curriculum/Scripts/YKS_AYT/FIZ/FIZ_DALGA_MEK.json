@@ -1,0 +1,922 @@
+{
+ "topic": {
+  "id": "669EABC8-3619-359A-3B21-4EA815E6502D",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_DALGA_MEK"
+ },
+ "title": "Dalga Mekaniği",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "MEB OGM AYT Fizik konu anlatımı, sayfa 187-202 (başvuru; metin yeniden yazıldı)",
+  "ÖSYM 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 ve 2026 (iki soru) dalga mekaniği soruları: model olarak kullanıldı, yeniden yazıldı",
+  "YKS/AYT/Sorular/FIZ/FIZ_DALGA_MEK.jsonl (yapı ve düzey için okundu, sorular yeni yazıldı)"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Siren neden kalınlaşır?",
+   "narration": "Bir ambulans yanından geçerken sirenin sesi birden kalınlaşır; oysa siren hep aynı sesi çıkarıyor. Bu derste dalgaların girişimini, kırınımı, su dalgalarında katar ve düğüm çizgilerini, ışıkta çift ve tek yarığı, Doppler olayını ve elektromanyetik dalgaları, on ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Yapıcı ve yıkıcı girişimi yol farkıyla açıklamak",
+   "Kırınımın şartlarını bilmek",
+   "Su dalgalarında katar ve düğüm çizgilerini bulmak",
+   "Çift ve tek yarıkta saçak genişliğini yorumlamak",
+   "Doppler olayını ve elektromanyetik spektrumu uygulamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_DALGA_MEK_01",
+    "title": "Girişim",
+    "narration": "İki dalga aynı noktaya gelince üst üste biner: bazen birbirini büyütür, bazen yok eder. Buna girişim deriz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Girişim",
+      "items": [
+       "Tepe tepeyle buluşursa genlik **büyür**: yapıcı girişim.",
+       "Tepe çukurla buluşursa dalgalar birbirini **söndürür**: yıkıcı girişim.",
+       "Kalıcı bir desen için kaynaklar **eş fazlı** ve aynı frekanslı olmalı; yol farkı tam dalga boyu katıysa yapıcı, yarım tek katıysa yıkıcı."
+      ],
+      "narration": "İki dalga bir noktada buluşunca üst üste biner. Tepe tepeyle buluşursa genlik büyür; buna yapıcı girişim deriz. Tepe çukurla buluşursa dalgalar birbirini söndürür; bu yıkıcı girişimdir. Kalıcı bir desen için kaynaklar aynı frekansta ve eş fazlı olmalı. O zaman her şeyi yol farkı belirler: yol farkı dalga boyunun tam katıysa yapıcı, yarım dalga boyunun tek katıysa yıkıcı girişim olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Derinliği her yerde aynı olan durgun bir havuzda eş fazlı iki kaynak periyodik dairesel dalgalar üretiyor. Şekilde çemberler dalga tepelerini gösteriyor.\n\nSu yüzeyindeki I, II ve III noktalarındaki titreşim genlikleri $A_I$, $A_{II}$ ve $A_{III}$ arasındaki ilişki nedir?",
+       "context": "ÖSYM 2022'de sorulan göl yüzeyinde girişim deseni yapısının yeni noktalarla kurulmuş hâli.",
+       "figure": {
+        "kind": "interference",
+        "mode": "ripple",
+        "separation": 3,
+        "lines": false,
+        "motion": false,
+        "points": [
+         {
+          "label": "I",
+          "x": 0,
+          "y": -1.323
+         },
+         {
+          "label": "II",
+          "x": -0.458,
+          "y": 2.273
+         },
+         {
+          "label": "III",
+          "x": 1.5,
+          "y": 4.0
+         }
+        ]
+       },
+       "options": [
+        "$A_I = A_{II} = A_{III}$",
+        "$A_{II} > A_I > A_{III}$",
+        "$A_{III} > A_I > A_{II}$",
+        "$A_I = A_{III} > A_{II}$",
+        "$A_{II} > A_I = A_{III}$"
+       ],
+       "answer": 3,
+       "narration": "Tepe tepeyle mi, tepe çukurla mı?",
+       "steps": [
+        {
+         "text": "I ve III'te iki kaynağın tepeleri buluşuyor: **yapıcı**, genlik en büyük.",
+         "narration": "I ve III noktalarında iki kaynağın tepeleri üst üste geliyor; yapıcı girişim, genlik en büyük ve eşit."
+        },
+        {
+         "text": "II bir kaynağın tepesinde, öbürünün iki tepesinin **ortasında**, yani çukurunda: yıkıcı.",
+         "narration": "II noktası bir kaynağın tepesinde ama öbür kaynağın iki tepesinin tam ortasında, yani çukurunda. Tepe çukurla buluşuyor; genlik en küçük. Cevap D.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 modeli: noktalar yeniden yerleştirildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DALGA_MEK_02",
+    "title": "Kırınım",
+    "narration": "Dalgalar bir engelin kenarından ya da dar bir aralıktan geçerken bükülüp arkaya yayılır. Duvarın arkasından sesi duymamızın nedeni budur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kırınım",
+      "items": [
+       "Dalga dar bir aralıktan ya da engel kenarından geçerken **bükülür**: kırınım.",
+       "Aralık dalga boyuna göre ne kadar **dar**, dalga boyu ne kadar **büyükse** kırınım o kadar belirgin.",
+       "Kırınımda dalganın **frekansı, dalga boyu ve hızı** değişmez."
+      ],
+      "narration": "Bir dalga dar bir aralıktan ya da bir engelin kenarından geçerken bükülerek arkaya yayılır; buna kırınım deriz. Aralık dalga boyuna göre ne kadar dar, dalga boyu ne kadar büyükse kırınım o kadar belirgin olur. Kırınımda dalganın frekansı, dalga boyu ve hızı değişmez; yalnız yayılma yönü genişler."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Su dalgaları bir engeldeki aralıktan geçiyor.\n\nKırınımın daha belirgin olması için;\nI. aralığı genişletmek,\nII. dalgaların dalga boyunu artırmak,\nIII. kaynağın frekansını artırmak\n\nişlemlerinden hangileri yapılabilir?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "I ve III"
+       ],
+       "answer": 1,
+       "narration": "Aralık dalga boyuna göre dar olmalı.",
+       "steps": [
+        {
+         "text": "Aralığı genişletmek kırınımı **azaltır** (I yanlış).",
+         "narration": "Kırınım, aralık dalga boyuna göre dar olunca belirgindir. Aralığı genişletmek kırınımı azaltır; birinci yanlış."
+        },
+        {
+         "text": "Dalga boyu büyürse **artar** (II); frekans artarsa $\\lambda = \\frac{v}{f}$ küçülür, kırınım **azalır** (III yanlış).",
+         "narration": "Dalga boyunu artırmak kırınımı belirginleştirir. Frekansı artırmak ise dalga boyunu küçültür, kırınımı azaltır. Yalnız ikinci. Cevap B.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Kırınım şartı kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DALGA_MEK_03",
+    "title": "Su dalgalarında girişim",
+    "narration": "İki kaynağın dalgaları bir leğende buluşunca su yüzeyinde sabit çizgiler belirir: bazı çizgiler çalkalanır, bazıları kıpırdamaz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Katar ve düğüm çizgileri",
+      "items": [
+       "Yol farkı $|PK_1 - PK_2| = n\\lambda$ ise P, $n$. **katar** çizgisinde: su en çok çalkalanır.",
+       "Yol farkı $(n - \\frac{1}{2})\\lambda$ ise P, $n$. **düğüm** çizgisinde: su kıpırdamaz.",
+       "Eş fazlı kaynakların ortasından geçen **merkez doğrusu** sıfırıncı katardır."
+      ],
+      "visual": {
+       "kind": "interference",
+       "mode": "ripple",
+       "separation": 3,
+       "lines": true
+      },
+      "beats": [
+       {
+        "narration": "İki kaynak aynı anda tepe gönderiyor; çemberler dalga tepeleri.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "sources",
+         "crests"
+        ]
+       },
+       {
+        "narration": "Tepelerin buluştuğu yerler çizgiler boyunca diziliyor: bunlar katar çizgileri, ortadaki merkez doğrusu.",
+        "show": [
+         "antinodes"
+        ],
+        "focus": [
+         "antinodes"
+        ]
+       },
+       {
+        "narration": "Aralarındaki kesikli çizgilerde tepe hep çukurla buluşuyor: düğüm çizgileri, su kıpırdamıyor.",
+        "show": [
+         "nodes"
+        ],
+        "focus": [
+         "nodes"
+        ]
+       }
+      ],
+      "narration": "Bir P noktasının iki kaynağa uzaklıkları farkına yol farkı deriz. Yol farkı dalga boyunun n katıysa P, n'inci katar çizgisindedir; orada su en çok çalkalanır. Yol farkı n eksi yarım dalga boyuysa P, n'inci düğüm çizgisindedir; orada su hiç kıpırdamaz. Eş fazlı kaynakların tam ortasından geçen merkez doğrusu sıfırıncı katar çizgisidir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir havuzda eş fazlı iki balık, suya göre hareketsiz durup ağızlarını periyodik açıp kapatarak eşit genlikli dairesel dalgalar oluşturuyor. Şekilde çemberler dalga tepelerini gösteriyor.\n\nA, B ve C noktalarında yüzen hafif yem taneciklerinden hangileri dalgalardan etkilenmeden hareketsiz kalabilir?",
+       "context": "ÖSYM 2026'da sorulan iki balığın oluşturduğu girişim yapısının yeni noktalarla kurulmuş hâli.",
+       "figure": {
+        "kind": "interference",
+        "mode": "ripple",
+        "separation": 3,
+        "lines": false,
+        "motion": false,
+        "points": [
+         {
+          "label": "A",
+          "x": -1.375,
+          "y": 1.996
+         },
+         {
+          "label": "B",
+          "x": 0,
+          "y": 3.708
+         },
+         {
+          "label": "C",
+          "x": 1.375,
+          "y": -1.996
+         }
+        ]
+       },
+       "options": [
+        "Yalnız A",
+        "Yalnız B",
+        "Yalnız C",
+        "A ve B",
+        "A ve C"
+       ],
+       "answer": 4,
+       "narration": "Hareketsiz kalan yer düğümdür.",
+       "steps": [
+        {
+         "text": "B iki tepenin buluştuğu yerde, merkez doğrusunda: **katar**, çalkalanır.",
+         "narration": "B noktasında iki balığın tepeleri buluşuyor; merkez doğrusunda, katar. Tanecik en çok orada sallanır."
+        },
+        {
+         "text": "A ve C'de bir tepe öbür kaynağın **çukuruyla** buluşuyor: yol farkı $1{,}5\\lambda$, düğüm.",
+         "narration": "A ve C noktalarında bir balığın tepesi öbürünün çukuruna denk geliyor; yol farkı bir buçuk dalga boyu, ikinci düğüm çizgisi. Bu iki tanecik kıpırdamaz. Cevap E.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026 modeli: noktalar yeniden yerleştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir dalga leğeninde aralarındaki uzaklık $5$ cm olan eş fazlı iki kaynak, dalga boyu $2$ cm olan dalgalar üretiyor.\n\nKaynaklar arasında kaç **düğüm** çizgisi oluşur?",
+       "options": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 2,
+       "narration": "Yol farkı kaynaklar arası uzaklığı geçemez.",
+       "steps": [
+        {
+         "text": "Düğüm: $(n - \\frac{1}{2}) \\cdot 2 < 5$ → $n = 1, 2$.",
+         "narration": "Düğüm çizgisinde yol farkı n eksi yarım çarpı iki santimetre; bu, kaynaklar arası beş santimetreden küçük olmalı. n bir ve iki olabilir."
+        },
+        {
+         "text": "Her düğüm merkezin iki yanında **birer** çizgi: $2 \\cdot 2 = 4$.",
+         "narration": "Her düğüm sırası merkez doğrusunun iki yanında birer çizgi verir: dört düğüm çizgisi. Katar çizgilerini sayan beşi bulur. Cevap C.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Çizgi sayma kalıbı; yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Eş fazlı iki kaynağın oluşturduğu dalgaların dalga boyu $2$ cm'dir. P noktası kaynaklardan birine $7$ cm, öbürüne $6$ cm uzaklıktadır.\n\nP noktası hangi çizgi üzerindedir?",
+       "options": [
+        "1. düğüm",
+        "1. katar",
+        "2. düğüm",
+        "2. katar",
+        "3. düğüm"
+       ],
+       "answer": 0,
+       "narration": "Yol farkını dalga boyuyla karşılaştır.",
+       "steps": [
+        {
+         "text": "Yol farkı $7 - 6 = 1$ cm $= \\frac{\\lambda}{2}$.",
+         "narration": "Yol farkı yedi eksi altı, bir santimetre; dalga boyunun yarısı."
+        },
+        {
+         "text": "$(1 - \\frac{1}{2})\\lambda$: **1. düğüm**.",
+         "narration": "Yarım dalga boyu, n eşittir bir için düğüm şartı: birinci düğüm çizgisi. Yol farkını dalga boyuna bölmeyi unutan, bir santimetreyi birinci katar sanır. Cevap A.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Yol farkı kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DALGA_MEK_04",
+    "title": "Işıkta çift yarık",
+    "narration": "Thomas Young ışığı iki dar yarıktan geçirip perdede aydınlık ve karanlık şeritler gördü; bu, ışığın dalga olduğunun en güçlü kanıtlarından biridir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Çift yarık",
+      "items": [
+       "Perdede eşit aralıklı aydınlık ve karanlık saçaklar; ortada **merkezî aydınlık** saçak.",
+       "Saçak genişliği $\\Delta x = \\frac{\\lambda L}{d}$: dalga boyu ve perde uzaklığı artınca **büyür**, yarıklar arası açılınca **küçülür**.",
+       "Kırmızı ışığın saçakları maviden **geniş**; düzenek suya konursa $\\lambda$ küçülür, saçaklar daralır."
+      ],
+      "visual": {
+       "kind": "interference",
+       "mode": "double",
+       "colours": [
+        "green",
+        "red"
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Işık iki dar yarıktan geçiyor.",
+        "focus": [
+         "slits"
+        ]
+       },
+       {
+        "narration": "Perdede aydınlık ve karanlık saçaklar; ortadaki merkezî aydınlık.",
+        "focus": [
+         "screen"
+        ]
+       },
+       {
+        "narration": "Sağdaki eğri her noktadaki parlaklığı gösteriyor: kırmızının tepeleri yeşilden daha aralıklı.",
+        "focus": [
+         "graph"
+        ]
+       },
+       {
+        "narration": "İki aydınlık saçak arası Δx: dalga boyu büyüdükçe genişliyor.",
+        "show": [
+         "width"
+        ],
+        "focus": [
+         "width"
+        ]
+       }
+      ],
+      "narration": "Işık iki dar yarıktan geçince perdede eşit aralıklı aydınlık ve karanlık saçaklar oluşur; tam ortada merkezî aydınlık saçak vardır. Saçak genişliği, delta x, lamda çarpı L bölü d'dir: L perdenin uzaklığı, d yarıklar arası uzaklık. Dalga boyu ya da perde uzaklığı artarsa saçaklar genişler, yarıklar birbirinden uzaklaşırsa daralır. Kırmızı ışığın dalga boyu büyük olduğu için saçakları maviden geniştir; düzenek suya konursa dalga boyu küçülür ve saçaklar daralır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kırmızı ışıkla çift yarık deneyi yapılıyor ve perdede girişim deseni elde ediliyor. Düzenekte yalnız ışığın rengi mavi yapılıyor.\n\nBuna göre;\nI. Saçak genişliği azalır.\nII. Merkezî aydınlık saçağın yeri değişir.\nIII. Perdenin aynı bölümüne düşen aydınlık saçak sayısı artar.\n\nyargılarından hangileri doğrudur?",
+       "context": "ÖSYM 2020'de sorulan çift yarıkta renk değişimi yapısının ters yönde, yargıları değiştirilerek kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "I ve III"
+       ],
+       "answer": 4,
+       "narration": "Değişen yalnız $\\lambda$.",
+       "steps": [
+        {
+         "text": "Mavinin dalga boyu küçük: $\\Delta x$ **azalır** (I); aynı bölüme daha çok saçak sığar (III).",
+         "narration": "Mavi ışığın dalga boyu kırmızınınkinden küçük; saçak genişliği azalır. Saçaklar daralınca perdenin aynı bölümüne daha çok saçak sığar. Birinci ve üçüncü doğru."
+        },
+        {
+         "text": "Merkezî aydınlıkta yol farkı **sıfır**; renkten bağımsız, yeri değişmez (II yanlış).",
+         "narration": "Merkezî aydınlık saçak, iki yarığa eşit uzaklıktaki noktadır; yol farkı sıfır olduğu için renk değişince yeri değişmez. İkinci yanlış. Cevap E.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 modeli: renk değişimi ters çevrildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Çift yarık deneyinde dalga boyu $600$ nm olan ışık kullanılıyor. Yarıklar arası uzaklık $0{,}3$ mm, yarıkların perdeye uzaklığı $2$ m'dir.\n\nSaçak genişliği kaç mm'dir?",
+       "options": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$6$"
+       ],
+       "answer": 3,
+       "narration": "$\\Delta x = \\frac{\\lambda L}{d}$.",
+       "steps": [
+        {
+         "text": "$\\Delta x = \\frac{600 \\cdot 10^{-9} \\cdot 2}{0{,}3 \\cdot 10^{-3}}$ m.",
+         "narration": "Delta x eşittir lamda çarpı L bölü d: altı yüz nanometre çarpı iki metre, bölü sıfır virgül üç milimetre. Hepsini metreye çevir."
+        },
+        {
+         "text": "$= 4 \\cdot 10^{-3}$ m $= 4$ mm.",
+         "narration": "Sonuç dört çarpı on üzeri eksi üç metre, yani dört milimetre. Birimleri çevirmeyen yanlış bir sonuca gider. Cevap D.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Saçak genişliği hesabı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DALGA_MEK_05",
+    "title": "Tek yarıkta kırınım",
+    "narration": "Tek bir yarık da perdede saçaklar oluşturur; ama desen çift yarıktakinden farklıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Tek yarık",
+      "items": [
+       "Yarıktaki her nokta yeni bir dalga kaynağı gibi davranır; bu dalgaların **girişimi** desen oluşturur.",
+       "Merkezî aydınlık saçak diğerlerinin **iki katı** genişlikte ve çok daha parlaktır.",
+       "Yarık **daraldıkça** ve dalga boyu büyüdükçe desen genişler."
+      ],
+      "visual": {
+       "kind": "interference",
+       "mode": "single",
+       "colours": [
+        "green"
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Bu kez tek bir yarık.",
+        "focus": [
+         "slits"
+        ]
+       },
+       {
+        "narration": "Ortadaki aydınlık geniş ve parlak; yandakiler hem dar hem sönük.",
+        "focus": [
+         "screen",
+         "graph"
+        ]
+       }
+      ],
+      "narration": "Tek yarıkta da saçaklar oluşur, çünkü yarığın içindeki her nokta yeni bir dalga kaynağı gibi davranır ve bu dalgalar perdede girişim yapar. Desenin ortasındaki merkezî aydınlık saçak, öteki saçakların iki katı genişliktedir ve çok daha parlaktır. Yarık daraldıkça ya da dalga boyu büyüdükçe desen genişler."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Tek yarıkta kırınım deneyinde perdede, girişim desenine benzeyen aydınlık ve karanlık saçaklar görülüyor; oysa ikinci bir kaynak ya da yarık yoktur.\n\nBu desenin oluşmasının nedeni aşağıdakilerden hangisidir?",
+       "context": "ÖSYM 2024'te sorulan tek yarıkta desenin nedeni yapısının yeniden yazılmış hâli.",
+       "options": [
+        "Işığın frekansının yarıktan geçerken değişmesi",
+        "Yarığın içindeki her noktanın yeni bir dalga kaynağı gibi davranıp bu dalgaların girişim yapması",
+        "Yarık genişledikçe daha çok ışığın geçmesi",
+        "Işığın dalga boyunun yarıktan geçerken değişmesi",
+        "Işığın yarıktan hiç sapmadan geçmesi"
+       ],
+       "answer": 1,
+       "narration": "Tek yarıkta kaç kaynak var?",
+       "steps": [
+        {
+         "text": "Kırınımda frekans ve dalga boyu **değişmez** (A ve D yanlış).",
+         "narration": "Kırınımda ışığın frekansı ve dalga boyu değişmez; bu yüzden A ve D olamaz."
+        },
+        {
+         "text": "Yarıktaki her nokta **kaynak** gibi; bu dalgalar girişim yapar.",
+         "narration": "Tek yarığın içindeki her nokta yeni bir dalga kaynağı gibi davranır; bu sayısız küçük kaynağın dalgaları perdede girişim yapar ve saçaklar oluşur. Cevap B.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2024 modeli: seçenekler yeniden yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DALGA_MEK_06",
+    "title": "Doppler olayı",
+    "narration": "Ambulans yanından geçerken sirenin sesi birden kalınlaşır. Siren değişmedi; değişen, sana ulaşan dalgalardır.",
+    "cards": [
+     {
+      "kind": "predict",
+      "title": "Ambulans yaklaşırken",
+      "prompt": "Sabit frekansla çalan bir ambulans sirenine yaklaşırken sesi nasıl duyarsın?",
+      "choices": [
+       "Daha tiz",
+       "Daha kalın"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "doppler",
+       "speed": 0.5
+      },
+      "beats": [
+       {
+        "narration": "Kaynak sağa gidiyor; her dalga cephesi çıktığı yerin çevresinde genişliyor.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "source",
+         "fronts"
+        ]
+       },
+       {
+        "narration": "Önde cepheler sıkışıyor: dalga boyu kısa, frekans büyük.",
+        "show": [
+         "ahead"
+        ],
+        "focus": [
+         "ahead"
+        ]
+       }
+      ],
+      "explanation": "Yaklaşan kaynağın önünde dalga boyu kısalır, frekans **büyür**: ses tizleşir.",
+      "narration": "Siren sana yaklaşırken sesi tizleşir mi, kalınlaşır mı? Tahmin et.",
+      "explanationNarration": "Daha tiz duyarsın. Kaynak ilerlerken her yeni dalga cephesini bir öncekine daha yakın bir yerden yayar; önde cepheler sıkışır. Dalga boyu kısalır, kulağına saniyede daha çok dalga gelir; frekans büyür, ses tizleşir."
+     },
+     {
+      "kind": "rule",
+      "title": "Doppler olayı",
+      "items": [
+       "Kaynak ile gözlemci **yaklaşıyorsa** algılanan frekans büyür, **uzaklaşıyorsa** küçülür.",
+       "Kaynağın kendi frekansı **değişmez**; kaynakla birlikte giden gözlemci aynı frekansı duyar.",
+       "Ses, su ve ışık dahil **bütün** dalgalarda görülür: radar, ultrason ve uzak galaksilerin ışığının kırmızıya kayması."
+      ],
+      "visual": {
+       "kind": "doppler",
+       "speed": 0.5
+      },
+      "beats": [
+       {
+        "narration": "Hareket eden kaynak dalgaları önünde sıkıştırıyor.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "fronts"
+        ]
+       },
+       {
+        "narration": "Arkada ise cepheler açılıyor: dalga boyu uzun, frekans küçük.",
+        "show": [
+         "behind"
+        ],
+        "focus": [
+         "behind"
+        ]
+       }
+      ],
+      "narration": "Kaynak ile gözlemci birbirine yaklaşıyorsa algılanan frekans büyür, uzaklaşıyorsa küçülür; buna Doppler olayı deriz. Kaynağın kendi frekansı değişmez; kaynakla aynı hızla giden biri de değişmemiş frekansı duyar. Doppler olayı ses, su ve ışık dahil bütün dalgalarda görülür. Trafik radarları ve ultrason cihazları bunu kullanır; uzak galaksilerden gelen ışığın kırmızıya kayması da evrenin genişlediğini gösterir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Üç şeritli bir yolda ambulans saatte $80$ km sabit hızla gidiyor ve sireni sabit frekansta çalıyor. Ambulansın önünde K ($100$ km/sa) ve L ($60$ km/sa), arkasında M ($100$ km/sa) ve N ($70$ km/sa) otomobilleri, hepsi ambulansla aynı yönde gidiyor.\n\nHangi araçların sürücüleri siren sesini sirenin frekansından **yüksek** frekansta duyar?",
+       "context": "ÖSYM 2025'te sorulan ambulans ve dört otomobil yapısının yeni hızlarla kurulmuş hâli.",
+       "options": [
+        "K ve L",
+        "K ve N",
+        "L ve M",
+        "L ve N",
+        "M ve N"
+       ],
+       "answer": 2,
+       "narration": "Aradaki uzaklık azalıyor mu?",
+       "steps": [
+        {
+         "text": "Öndeki K hızlı: **uzaklaşıyor**; öndeki L yavaş: ambulans ona **yaklaşıyor**.",
+         "narration": "Öndeki K ambulanstan hızlı gidiyor, aradaki uzaklık artıyor; K daha düşük frekans duyar. Öndeki L yavaş; ambulans ona yaklaşıyor, L yüksek frekans duyar."
+        },
+        {
+         "text": "Arkadaki M hızlı: ambulansa **yaklaşıyor**; arkadaki N yavaş: geride kalıyor.",
+         "narration": "Arkadaki M ambulanstan hızlı, ona yaklaşıyor; yüksek frekans duyar. Arkadaki N yavaş, geride kalıyor. Yüksek duyanlar L ve M. Cevap C.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2025 modeli: hızlar ve konumlar değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Duran bir ambulansın sireni $1200$ Hz frekansında ses yayıyor. Ambulans aynı frekansta çalarken sabit hızla hareket ediyor: Deniz'e yaklaşıyor, Kerem'den uzaklaşıyor. Ece ise ambulansın içinde oturuyor.\n\nAmbulans hareket hâlindeyken aşağıdakilerden hangisi **doğru olabilir**?",
+       "context": "ÖSYM 2023'te sorulan hareket eden ambulansın sireni yapısının yeni frekansla kurulmuş hâli.",
+       "options": [
+        "Deniz'in duyduğu frekans $1300$ Hz'dir.",
+        "Kerem'in duyduğu frekans $1250$ Hz'dir.",
+        "Ece'nin duyduğu frekans $1100$ Hz'dir.",
+        "Deniz'in duyduğu frekans $1150$ Hz'dir.",
+        "Kerem'in duyduğu frekans $1200$ Hz'dir."
+       ],
+       "answer": 0,
+       "narration": "Kim yaklaşıyor, kim uzaklaşıyor?",
+       "steps": [
+        {
+         "text": "Ece kaynakla birlikte: **$1200$ Hz** (C yanlış). Kerem uzaklaşılan: $1200$'den **küçük** (B, E yanlış).",
+         "narration": "Ece ambulansla birlikte gidiyor; aralarında yaklaşma yok, bin iki yüz hertz duyar. Kerem'den uzaklaşılıyor; o bin iki yüzden küçük duyar."
+        },
+        {
+         "text": "Deniz'e yaklaşılıyor: $1200$'den **büyük**, $1300$ Hz olabilir.",
+         "narration": "Deniz'e yaklaşılıyor; bin iki yüzden büyük duyar. Bin üç yüz olabilir. Cevap A.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2023 modeli: frekans ve kişiler değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aşağıdakilerden hangileri Doppler olayının bir sonucudur?\n\nI. Yaklaşan bir trenin düdüğünün tiz duyulması\nII. Uzak galaksilerden gelen ışığın kırmızıya kayması\nIII. Trafik radarının aracın hızını ölçebilmesi",
+       "context": "ÖSYM 2021'de sorulan Doppler etkisinin görüldüğü dalgalar yapısının uygulamalarla kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 4,
+       "narration": "Doppler bütün dalgalarda görülür.",
+       "steps": [
+        {
+         "text": "Ses (I) ve ışık (II): yaklaşma ve uzaklaşma frekansı **değiştirir**.",
+         "narration": "Trenin düdüğü ses dalgası: yaklaşırken tiz. Uzaklaşan galaksilerin ışığı elektromanyetik dalga: frekansı küçülür, kırmızıya kayar."
+        },
+        {
+         "text": "Radar yansıyan dalganın frekans **kaymasından** hızı bulur (III).",
+         "narration": "Trafik radarı araca dalga gönderir; yansıyan dalganın frekansındaki kaymadan aracın hızını hesaplar. Üçü de Doppler. Cevap E.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021 modeli: dalga türleri yerine uygulamalar soruldu"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Siren mi değişiyor?",
+      "wrong": "Ambulans yaklaşırken sirenin kendi frekansı artar.",
+      "right": "Sirenin frekansı **hiç değişmez**; değişen, gözlemcinin **algıladığı** frekanstır.",
+      "why": "Ambulansın içindeki kişi hep **aynı** sesi duyar.",
+      "narration": "Sık yapılan bir hata: Doppler olayında kaynağın frekansının değiştiğini sanmak. Siren hep aynı frekansta çalar; değişen, sana ulaşan dalgaların sıklığıdır. Bu yüzden ambulansın içindeki kişi sesi hiç değişmeden duyar."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DALGA_MEK_07",
+    "title": "Elektromanyetik dalgalar",
+    "narration": "Radyo, mikrodalga, ışık ve X ışını aslında aynı dalganın farklı dalga boylarıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Elektromanyetik dalgalar",
+      "items": [
+       "İvmeli hareket eden yükler oluşturur; **enine** dalgadır, yayılmak için maddesel ortam **gerekmez**.",
+       "Boşlukta hepsi **aynı hızla**, ışık hızıyla ($3 \\cdot 10^8$ m/s) yayılır.",
+       "Radyo → mikrodalga → kızılötesi → görünür → morötesi → X → gama: frekans ve enerji **artar**, dalga boyu azalır."
+      ],
+      "narration": "Elektromanyetik dalgaları ivmeli hareket eden yükler oluşturur. Enine dalgalardır ve yayılmak için maddesel ortama ihtiyaç duymazlar; uzayda da ilerlerler. Boşlukta hepsi aynı hızla, ışık hızıyla, saniyede üç yüz bin kilometreyle yayılır. Spektrumda radyo dalgalarından mikrodalgaya, kızılötesine, görünür ışığa, morötesine, X ışınlarına ve gama ışınlarına doğru frekans ve enerji artar, dalga boyu azalır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Elektromanyetik spektrumdaki dalgalarla ilgili;\nI. Boşlukta gama ışınları radyo dalgalarından daha hızlı yayılır.\nII. Mikrodalganın frekansı X ışınınınkinden büyüktür.\nIII. Morötesi ışığın dalga boyu kızılötesi ışığınkinden küçüktür.\n\nyargılarından hangileri doğrudur?",
+       "context": "ÖSYM 2018'de sorulan elektromanyetik spektrum yargıları yapısının yargıları değiştirilmiş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "II ve III"
+       ],
+       "answer": 2,
+       "narration": "Boşlukta hız aynı; sıralamayı hatırla.",
+       "steps": [
+        {
+         "text": "Boşlukta hepsi **aynı** hızda (I yanlış). X ışınının frekansı mikrodalgadan **büyük** (II yanlış).",
+         "narration": "Boşlukta bütün elektromanyetik dalgalar aynı hızla gider; birinci yanlış. Spektrumda X ışınları mikrodalgadan çok daha yüksek frekanslıdır; ikinci de yanlış."
+        },
+        {
+         "text": "Morötesi, kızılötesinden **kısa** dalga boylu (III doğru).",
+         "narration": "Morötesi görünür ışığın mor ucunun ötesinde, kızılötesi kırmızı ucunun ötesindedir; morötesinin dalga boyu daha kısadır. Yalnız üçüncü. Cevap C.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018 modeli: yargılar değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir uydudan yapılan televizyon yayını, vericiden dalgalar hâlinde yayılarak evlerdeki çanak antenlere ulaşıyor.\n\nBu dalgalarla ilgili;\nI. Ses dalgasıdır.\nII. Boşlukta ışık hızıyla yayılır.\nIII. Yayılması için hava gerekir.\n\nyargılarından hangileri doğrudur?",
+       "context": "ÖSYM 2026'da sorulan radyo yayını dalgaları yapısının uydu yayınıyla kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "II ve III"
+       ],
+       "answer": 1,
+       "narration": "Uydu ile yeryüzü arasında hava yok.",
+       "steps": [
+        {
+         "text": "Yayın **elektromanyetik** dalgayla taşınır; ses dalgası değildir (I yanlış).",
+         "narration": "Uydu yayını elektromanyetik dalgalarla, mikrodalgalarla taşınır; ses dalgası değildir. Birinci yanlış."
+        },
+        {
+         "text": "Boşlukta ışık hızıyla gider; **maddesel ortam gerekmez** (II doğru, III yanlış).",
+         "narration": "Bu dalgalar uzayın boşluğunu geçip gelir: ışık hızıyla yayılır ve havaya ihtiyaç duymaz. Yalnız ikinci doğru. Cevap B.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026 modeli: radyo yerine uydu yayını"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir gökbilimci, yıldızlar arasındaki soğuk gaz bulutlarından gelen ve elektromanyetik spektrumun **en uzun dalga boylu**, en düşük enerjili bölgesindeki dalgaları dev çanak antenlerle inceliyor.\n\nİncelenen dalgalar aşağıdakilerden hangisidir?",
+       "context": "ÖSYM 2019'da sorulan en yüksek enerjili elektromanyetik dalga yapısının spektrumun öbür ucuyla kurulmuş hâli.",
+       "options": [
+        "Gama ışınları",
+        "X ışınları",
+        "Morötesi ışınlar",
+        "Kızılötesi ışınlar",
+        "Radyo dalgaları"
+       ],
+       "answer": 4,
+       "narration": "Spektrumun en uzun dalga boylu ucu.",
+       "steps": [
+        {
+         "text": "Enerji frekansla artar; en düşük enerji **en düşük frekans**, en uzun dalga boyu.",
+         "narration": "Elektromanyetik dalganın enerjisi frekansıyla artar. En düşük enerji, en düşük frekans ve en uzun dalga boyu demektir."
+        },
+        {
+         "text": "Spektrumun o ucu **radyo** dalgalarıdır.",
+         "narration": "Spektrumun bu ucunda radyo dalgaları vardır; radyo teleskoplar da bu yüzden dev çanaklardır. Kızılötesi ise görünür ışığa daha yakındır. Cevap E.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 modeli: en yüksek yerine en düşük enerjili uç"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Yol farkı $n\\lambda$: katar; $(n - \\frac{1}{2})\\lambda$: düğüm.",
+    "Kırınım: aralık dar, $\\lambda$ büyük olunca belirgin.",
+    "Çift yarık: $\\Delta x = \\frac{\\lambda L}{d}$.",
+    "Tek yarık: merkezî aydınlık iki kat geniş.",
+    "Doppler: yaklaşınca $f$ büyür, uzaklaşınca küçülür.",
+    "EM dalgalar boşlukta $c$ hızında; gamaya doğru enerji artar."
+   ],
+   "warnings": [
+    "Merkez doğrusu **katardır**.",
+    "Kaynağın frekansı **değişmez**.",
+    "Boşlukta bütün EM dalgalar **aynı hızda**."
+   ],
+   "narration": "Özetleyelim. Yol farkı dalga boyunun tam katıysa katar, yarım tek katıysa düğüm çizgisi oluşur; merkez doğrusu sıfırıncı katardır. Kırınım, aralık dar ve dalga boyu büyük olunca belirgindir. Çift yarıkta saçak genişliği lamda L bölü d'dir; tek yarıkta merkezî aydınlık saçak iki kat geniştir. Doppler olayında kaynak ile gözlemci yaklaşırsa algılanan frekans büyür, uzaklaşırsa küçülür; kaynağın kendi frekansı değişmez. Elektromanyetik dalgalar boşlukta ışık hızıyla gider; radyodan gamaya enerji artar."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "Ambulans yaklaşıyor",
+    "question": "Duyulan frekans?",
+    "choices": [
+     "Büyür",
+     "Küçülür"
+    ],
+    "answer": 0,
+    "why": "Önde **λ kısa**: f büyük."
+   },
+   {
+    "sentence": "Kırmızı yerine mavi ışık",
+    "question": "Saçaklar?",
+    "choices": [
+     "Daralır",
+     "Genişler"
+    ],
+    "answer": 0,
+    "why": "Δx = **λL/d**."
+   },
+   {
+    "sentence": "Merkez doğrusu",
+    "question": "Katar mı, düğüm mü?",
+    "choices": [
+     "Katar",
+     "Düğüm"
+    ],
+    "answer": 0,
+    "why": "Yol farkı **sıfır**."
+   }
+  ],
+  "hook": "Üç dalga tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Δx = **λL/d**."
+   },
+   {
+    "kind": "warning",
+    "text": "Sirenin frekansı **değişmez**."
+   },
+   {
+    "kind": "term",
+    "term": "Düğüm",
+    "definition": "Yol farkı **(n − ½)λ**."
+   }
+  ],
+  "summary": [
+   "Girişim ve kırınım",
+   "Çift ve tek yarık",
+   "Doppler ve EM dalgalar"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-fizik-kampi",
+  "name": "AYT Fizik kampı",
+  "number": 18,
+  "total": 21,
+  "previous": "Basit Harmonik Hareket",
+  "next": "Atom Fiziğine Giriş ve Radyoaktivite",
+  "promise": "Vektörden modern fiziğe AYT Fizik: her konu animasyonlu anlatım ve çözümlü sorularla.",
+  "task": {
+   "items": [
+    "Yoldan geçen bir aracın sesini **yaklaşırken ve uzaklaşırken** dinle; farkı not et.",
+    "Bir CD ya da DVD'nin parlak yüzüne ışık düşür; **renk şeritlerini** gör.",
+    "Uygulamada AYT Dalga Mekaniği testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Yoldan geçen bir aracın sesini yaklaşırken ve uzaklaşırken dinle; sesin nasıl değiştiğini not et. Sonra bir CD ya da DVD'nin parlak yüzüne ışık düşür; gördüğün renk şeritleri, binlerce ince çizgide kırınım ve girişimin sonucu. Ardından uygulamada yirmi soru çöz. Bir sonraki derste atom fiziğinde görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Girişim koşullarını kaynak fazına göre tablo yap: eş fazlı kaynaklarda yol farkı nλ ise katar, (n − ½)λ ise düğüm; zıt fazlı kaynaklarda tersi. Merkez çizgisinin eş fazlıda katar, zıt fazlıda düğüm çizgisi olduğunu vurgula.",
+   "Çift yarık hesabı ekle: λ = 500 nm, d = 0,5 mm, L = 2 m için saçak aralığı Δx = λL/d = 2 mm. Saçakları genişletmek için λ'yı ve L'yi büyütmeyi, d'yi küçültmeyi; düzenek suya (n = 4/3) daldırılınca Δx'in 3/4 katına düştüğünü göster.",
+   "Tek yarıkta merkezî aydınlık saçağın genişliğinin 2λL/a olduğunu, yarık daraldıkça saçağın genişlediğini ekle. Beyaz ışıkta merkezin beyaz, yanların renkli olduğunu; kırınım ağının (CD yüzeyi) ve ince zar girişiminin (sabun köpüğü) renk oluşturmasını açıkla.",
+   "Doppler hesabı ekle: ses hızı 340 m/s, 680 Hz'lik kaynak 20 m/s hızla duran gözlemciye yaklaşırken f' = 680 × 340 / 320 = 722,5 Hz duyulur. Uygulamaları say: radar hız denetimi, Doppler ultrasonla kan akışı ölçümü, yıldızlarda kırmızıya kayma ve evrenin genişlemesi.",
+   "Elektromanyetik spektrumu kullanım alanlarıyla tablo yap: radyo (yayın), mikrodalga (fırın, radar), kızılötesi (kumanda, termal kamera), görünür ışık, morötesi (sterilizasyon, D vitamini), X ışını (röntgen), gama (kanser tedavisi). Dalga boyu kısaldıkça frekansın ve foton enerjisinin arttığını vurgula."
+  ]
+ }
+}

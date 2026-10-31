@@ -3,9 +3,9 @@ import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from
 import {APP_SCREENS} from '../../../Components/AppScreens/AppScreenRegistry';
 import {PhoneFrame} from '../../../Components/AppScreens/PhoneFrame';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
-import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
+import {OPTION_LETTERS} from '../../../Courses/LessonScript';
 import {withAlpha} from '../../../Themes/Theme';
 import {useTheme} from '../../../Themes/ThemeContext';
 import type {ExamJourneyContent} from './ExamJourneySchema';
@@ -15,7 +15,6 @@ type Content = ExamJourneyContent;
 const CLAMP = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 /** The canvas every scene is designed on, in reference pixels: the safe area of vertical video. Other formats scale it to fit. */
 const CANVAS = {width: 952, height: 1530};
-const OPTION_LETTERS = 'ABCDE';
 
 const useSeconds = (): number => useCurrentFrame() / useVideoConfig().fps;
 
@@ -38,7 +37,7 @@ const usePaint = () => {
 type Paint = ReturnType<typeof usePaint>[keyof ReturnType<typeof usePaint>];
 
 /** A full-bleed colour with the design canvas centred in the safe area. */
-const Canvas: React.FC<{paint: Paint; subtitle?: React.ReactNode; children: React.ReactNode}> = ({paint, subtitle, children}) => {
+const Canvas: React.FC<{paint: Paint; children: React.ReactNode}> = ({paint, children}) => {
 	const {u, contentWidth, contentHeight, safeArea} = useVideoLayout();
 	const scale = Math.min(contentWidth / u(CANVAS.width), contentHeight / u(CANVAS.height));
 	return (
@@ -46,29 +45,12 @@ const Canvas: React.FC<{paint: Paint; subtitle?: React.ReactNode; children: Reac
 			<div style={{position: 'absolute', left: safeArea.left, top: safeArea.top, width: contentWidth, height: contentHeight, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 				<div style={{position: 'relative', width: u(CANVAS.width), height: u(CANVAS.height), flexShrink: 0, transform: `scale(${scale})`, display: 'flex', flexDirection: 'column'}}>
 					{children}
-					{subtitle}
 				</div>
 			</div>
 		</AbsoluteFill>
 	);
 };
 
-/** The narration as a subtitle. Not drawn when the screen already says the same words. */
-const Subtitle: React.FC<{content: Content; text: string; shown: string; paint: Paint}> = ({content, text, shown, paint}) => {
-	const {u} = useVideoLayout();
-	const land = useLand(0.3);
-	const plain = (value: string) => value.toLocaleLowerCase('tr').replace(/[^\p{L}\p{N}]+/gu, '');
-	if (!content.subtitles || plain(text) === plain(shown)) return null;
-	return (
-		<div style={{position: 'absolute', left: 0, right: 0, bottom: 0, display: 'flex', justifyContent: 'center', opacity: land}}>
-			<div style={{padding: `${u(14)}px ${u(28)}px`, borderRadius: u(18), backgroundColor: paint.ink}}>
-				<Text size={TYPE.adScale.subtitle} weight={TYPE.weights.strong} align="center" color={paint.fill}>
-					{text}
-				</Text>
-			</div>
-		</div>
-	);
-};
 
 /** A headline that is uncovered from left to right by a block of colour: print, not kinetic type. */
 const Headline: React.FC<{text: string; paint: Paint; delaySeconds?: number; size?: number}> = ({text, paint, delaySeconds = 0.15, size = TYPE.adScale.headline}) => {
@@ -104,7 +86,7 @@ export const StartScene: React.FC<{content: Content}> = ({content}) => {
 	const circumference = Math.PI * (ring - u(16));
 
 	return (
-		<Canvas paint={paint} subtitle={<Subtitle content={content} text={content.start.narration} shown={content.start.headline} paint={paint} />}>
+		<Canvas paint={paint}>
 			<div style={{alignSelf: 'flex-start', padding: `${u(16)}px ${u(30)}px`, borderRadius: u(999), border: `${u(4)}px solid ${paint.ink}`, opacity: land}}>
 				<Text size={TYPE.adScale.action} weight={TYPE.weights.strong} color={paint.ink}>
 					{content.start.exam}
@@ -141,7 +123,7 @@ export const SolveScene: React.FC<{content: Content}> = ({content}) => {
 	const picked = seconds >= PICK_SECONDS;
 
 	return (
-		<Canvas paint={paint} subtitle={<Subtitle content={content} text={content.solve.narration} shown={content.solve.headline} paint={paint} />}>
+		<Canvas paint={paint}>
 			<Headline text={content.solve.headline} paint={paint} />
 			<div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: u(70), opacity: card}}>
 				<Text size={TYPE.adScale.action} weight={TYPE.weights.strong} color={paint.ink}>
@@ -218,7 +200,7 @@ export const ResultScene: React.FC<{content: Content}> = ({content}) => {
 	const caption = useLand(0.4);
 
 	return (
-		<Canvas paint={paint} subtitle={<Subtitle content={content} text={content.result.narration} shown={content.result.headline} paint={paint} />}>
+		<Canvas paint={paint}>
 			<Headline text={content.result.headline} paint={paint} />
 			<div style={{marginTop: u(50), opacity: caption}}>
 				<Text variant="label" size={TYPE.adScale.action} weight={TYPE.weights.strong} color={withAlpha(paint.ink, 0.7)}>
@@ -253,7 +235,7 @@ export const GapsScene: React.FC<{content: Content}> = ({content}) => {
 	const point = spring({frame: frame - 1.7 * fps, fps, config: {damping: 13, mass: 0.6, stiffness: 190}});
 
 	return (
-		<Canvas paint={paint} subtitle={<Subtitle content={content} text={content.gaps.narration} shown={content.gaps.headline} paint={paint} />}>
+		<Canvas paint={paint}>
 			<Headline text={content.gaps.headline} paint={paint} />
 			<div style={{display: 'flex', flexDirection: 'column', gap: u(84), marginTop: u(120)}}>
 				{lessons.map((lesson, index) => {
@@ -295,7 +277,7 @@ export const ProductScene: React.FC<{content: Content}> = ({content}) => {
 	const Screen = APP_SCREENS[content.product.screen].Component;
 
 	return (
-		<Canvas paint={paint} subtitle={<Subtitle content={content} text={content.product.narration} shown={content.product.headline} paint={paint} />}>
+		<Canvas paint={paint}>
 			<Headline text={content.product.headline} paint={paint} />
 			<div style={{position: 'relative', flex: 1, display: 'flex', justifyContent: 'center', marginTop: u(60)}}>
 				{/* A flat disc of the brand colour rises behind the phone: the product on its own ground. */}
@@ -310,33 +292,3 @@ export const ProductScene: React.FC<{content: Content}> = ({content}) => {
 	);
 };
 
-export const ClosingScene: React.FC<{content: Content}> = ({content}) => {
-	const {u} = useVideoLayout();
-	const paint = usePaint().brand;
-	const logo = useLand(0.05, 130);
-	const action = useLand(0.4, 200);
-	const rest = useLand(0.7);
-
-	return (
-		<Canvas paint={paint}>
-			<div style={{flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: u(56)}}>
-				<div style={{opacity: logo, transform: `scale(${interpolate(logo, [0, 1], [0.8, 1])})`}}>
-					<BrandMark size="hero" color={paint.ink} />
-				</div>
-				<div style={{padding: `${u(30)}px ${u(60)}px`, borderRadius: u(999), backgroundColor: paint.ink, opacity: action, transform: `translateY(${(1 - action) * u(60)}px)`}}>
-					<Text variant="display" size={TYPE.adScale.action} weight={TYPE.weights.kinetic} color={paint.fill} style={{fontSize: u(TYPE.adScale.action * 1.5)}}>
-						{content.closing.callToAction}
-					</Text>
-				</div>
-				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(14), opacity: rest}}>
-					<Text variant="display" size={TYPE.adScale.closing} weight={TYPE.weights.display} color={paint.ink}>
-						{content.closing.website}
-					</Text>
-					<Text size={TYPE.adScale.action} weight={TYPE.weights.strong} color={paint.ink}>
-						{content.closing.stores.join('  ·  ')}
-					</Text>
-				</div>
-			</div>
-		</Canvas>
-	);
-};

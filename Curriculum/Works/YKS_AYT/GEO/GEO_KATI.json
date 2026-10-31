@@ -1,0 +1,1285 @@
+{
+ "topic": {
+  "id": "ACF37253-6291-CA0C-1BAE-A86BA9CE4233",
+  "category": "YKS_AYT",
+  "lesson": "GEO",
+  "code": "GEO_KATI"
+ },
+ "title": "Katı Cisimler (Uzay Geometri)",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/GEO/GEO_KATI.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Arşimet'in mezar taşı",
+   "narration": "Arşimet en çok bir buluşuyla gurur duyardı: silindirin içine tam oturan kürenin hacmi, silindirin hacminin üçte ikisidir. Çiçero, yüzyıllar sonra mezarını bulduğunda taşta bu şekli gördüğünü anlatır. Bu derste prizma, küp, silindir, piramit, koni ve kürenin alan ve hacimlerini göreceksin."
+  },
+  "objectives": [
+   "Prizma ve küpte alan, hacim ve köşegen hesaplamak",
+   "Silindir ve koninin açınımını kullanmak",
+   "Piramit ve düzgün dörtyüzlüde hacim ve alan bulmak",
+   "Benzer cisimlerde hacim oranını k³ ile bulmak",
+   "Kürenin alan ve hacmini, Arşimet oranını kullanmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_KATI_01",
+    "subtopics": [],
+    "title": "Prizmalar",
+    "narration": "Alt ve üst tabanı eş ve paralel, yan yüzleri dikdörtgen olan cisme dik prizma denir. Bütün prizmalarda hacim aynı kuralla bulunur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Prizma",
+      "items": [
+       "Hacim $=$ taban alanı $\\times$ yükseklik.",
+       "Yanal alan $=$ taban çevresi $\\times$ yükseklik.",
+       "Dikdörtgenler prizmasının cisim köşegeni $e = \\sqrt{a^2 + b^2 + c^2}$."
+      ],
+      "visual": {
+       "kind": "solid",
+       "shape": "cuboid",
+       "dimensions": [
+        "a",
+        "b",
+        "c"
+       ],
+       "size": [
+        3,
+        2,
+        4
+       ],
+       "diagonal": "e",
+       "unfold": false
+      },
+      "beats": [
+       {
+        "narration": "Ayrıtları a, b ve c olan dikdörtgenler prizması.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Cisim köşegeni: üç ayrıtın kareleri toplamının karekökü.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "narration": "Her dik prizmanın hacmi, taban alanı çarpı yüksekliktir. Yan yüzler açılınca bir dikdörtgen olur; bu yüzden yanal alan, taban çevresi çarpı yüksekliktir. Dikdörtgenler prizmasında karşı köşeleri birleştiren cisim köşegeni, a kare artı b kare artı c karenin kareköküdür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Tabanı dik üçgen olan bir dik prizmada tabanın hipotenüsü $13$ cm, bir dik kenarı $5$ cm'dir. Prizmanın yanal alanı $150$ cm$^2$'dir.\n\nBuna göre prizmanın hacmi kaç cm$^3$'tür?",
+       "figure": {
+        "kind": "solid",
+        "shape": "triangularPrism",
+        "dimensions": [],
+        "size": [
+         5,
+         3,
+         4
+        ],
+        "unfold": false
+       },
+       "options": [
+        "$120$",
+        "$130$",
+        "$140$",
+        "$150$",
+        "$180$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Öbür dik kenar $\\sqrt{169 - 25} = 12$; taban çevresi $30$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Taban beş, on iki, on üç üçgeni: öbür dik kenar on iki. Çevre otuz."
+        },
+        {
+         "text": "Yanal alan $30 \\cdot h = 150$ → $h = 5$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yanal alan, çevre çarpı yükseklik: otuz h, yüz elli. h beş."
+        },
+        {
+         "text": "Hacim $= \\frac{5 \\cdot 12}{2} \\cdot 5 = 150$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Taban alanı otuz, yükseklik beş: hacim yüz elli. Cevap D."
+        }
+       ],
+       "narration": "Önce tabanı tamamla, yanal alandan yüksekliği bul.",
+       "origin": {
+        "changes": "Üçgen prizma kalıbı; ölçüler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ayrıtları $2$, $3$ ve $6$ cm olan dikdörtgenler prizmasının cisim köşegeni kaç cm'dir?",
+       "figure": {
+        "kind": "solid",
+        "shape": "cuboid",
+        "dimensions": [
+         "a",
+         "b",
+         "c"
+        ],
+        "size": [
+         3,
+         2,
+         4
+        ],
+        "diagonal": "e",
+        "unfold": false
+       },
+       "options": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$e = \\sqrt{2^2 + 3^2 + 6^2} = \\sqrt{4 + 9 + 36} = \\sqrt{49}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Cisim köşegeni: dört artı dokuz artı otuz altı, kırk dokuzun karekökü."
+        },
+        {
+         "text": "$e = 7$. (Önce taban köşegeni $\\sqrt{13}$, sonra $\\sqrt{13 + 36}$.)",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "e yedi. Aynı sonucu iki adımda da bulursun: taban köşegeni kök on üç, sonra kök on üç artı otuz altı. Cevap E."
+        }
+       ],
+       "narration": "Pisagor'u iki kez uygulamak yerine formül.",
+       "origin": {
+        "changes": "Cisim köşegeni kalıbı; ayrıtlar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_KATI_02",
+    "subtopics": [],
+    "title": "Küp",
+    "narration": "Bütün ayrıtları eşit dikdörtgenler prizmasına küp denir. Hacim değişmeden biçim değiştiren küp soruları AYT'de sık çıkar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Küp",
+      "items": [
+       "Hacim $a^3$, yüzey alanı $6a^2$.",
+       "Yüz köşegeni $a\\sqrt{2}$, cisim köşegeni $a\\sqrt{3}$.",
+       "Kesip yeniden dizince **hacim korunur**; yüzey alanı değişir."
+      ],
+      "visual": {
+       "kind": "solid",
+       "shape": "cube",
+       "dimensions": [
+        "a"
+       ],
+       "diagonal": "a√3",
+       "unfold": false
+      },
+      "beats": [
+       {
+        "narration": "Ayrıtı a olan küp.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Cisim köşegeni a kök üç.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "narration": "Ayrıtı a olan küpün hacmi a küp, yüzey alanı altı a karedir. Bir yüzün köşegeni a kök iki, cismin köşegeni a kök üçtür. Bir küp küçük parçalara kesilip başka bir biçimde dizilirse hacim korunur ama yüzey alanı değişir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Cisim köşegeni $4\\sqrt{3}$ cm olan küpün yüzey alanı kaç cm$^2$'dir?",
+       "figure": {
+        "kind": "solid",
+        "shape": "cube",
+        "dimensions": [
+         "a"
+        ],
+        "diagonal": "a√3",
+        "unfold": false
+       },
+       "options": [
+        "$64$",
+        "$96$",
+        "$112$",
+        "$128$",
+        "$192$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$a\\sqrt{3} = 4\\sqrt{3}$ → $a = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Cisim köşegeni a kök üç: a dört."
+        },
+        {
+         "text": "Yüzey alanı $6 \\cdot 16 = 96$.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yüzey alanı altı çarpı on altı, doksan altı. Altmış dört hacimdir. Cevap B."
+        }
+       ],
+       "narration": "Köşegenden ayrıta.",
+       "origin": {
+        "changes": "Küp köşegeni kalıbı; ölçü yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ayrıtı $8$ cm olan küp biçimindeki bir tahta, ayrıtı $2$ cm olan küçük küplere ayrılıyor. Küçük küplerin hepsi kullanılarak, boşluksuz ve yüksekliği $2$ cm olan bir **kare dik prizma** yapılıyor.\n\nBu prizmanın yüzey alanı kaç cm$^2$'dir?",
+       "options": [
+        "$384$",
+        "$448$",
+        "$512$",
+        "$576$",
+        "$640$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Hacim $8^3 = 512$; yükseklik $2$ → taban alanı $256$, taban kenarı $16$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hacim beş yüz on iki, korunur. Yükseklik iki ise taban alanı iki yüz elli altı; kare tabanın kenarı on altı."
+        },
+        {
+         "text": "Yüzey $= 2 \\cdot 256 + 4 \\cdot 16 \\cdot 2 = 512 + 128 = 640$.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki taban beş yüz on iki, dört yan yüz yüz yirmi sekiz: toplam altı yüz kırk. Küpün yüzey alanı üç yüz seksen dörttü; incelince yüzey arttı. Cevap E."
+        }
+       ],
+       "narration": "Hacim korunur; tabanı bulalım.",
+       "origin": {
+        "changes": "Hacmi koruyan dönüşüm kalıbı; ölçüler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Ne korunur?",
+      "wrong": "Bir küp kesilip yeniden dizilince yüzey alanı da korunur.",
+      "right": "Yalnız **hacim** korunur; yüzey alanı biçime göre değişir.",
+      "why": "İnce ve yayvan biçim **daha çok** yüzey demektir.",
+      "narration": "Sık yapılan bir hata: kesip yeniden dizince yüzey alanının da korunduğunu sanmak. Korunan yalnız hacimdir. Aynı hacim ince ve yayvan bir biçime girince daha çok yüzey açığa çıkar; küpün üç yüz seksen dördü altı yüz kırka çıktı."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_KATI_03",
+    "subtopics": [],
+    "title": "Silindir",
+    "narration": "Silindir, tabanı daire olan prizma gibidir. Yan yüzü açılınca bir dikdörtgen olur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Silindir",
+      "items": [
+       "Hacim $\\pi r^2 h$.",
+       "Yanal alan $2\\pi r h$: açılımda $2\\pi r$ ile $h$ kenarlı dikdörtgen.",
+       "Toplam alan $2\\pi r(r + h)$."
+      ],
+      "visual": {
+       "kind": "solid",
+       "shape": "cylinder",
+       "dimensions": [
+        "r",
+        "h"
+       ],
+       "size": [
+        2,
+        4
+       ],
+       "unfold": true
+      },
+      "beats": [
+       {
+        "narration": "Taban yarıçapı r, yükseklik h.",
+        "show": [],
+        "focus": [],
+        "stage": 1,
+        "swap": []
+       },
+       {
+        "narration": "Silindiri açalım: iki daire ve bir dikdörtgen. Dikdörtgenin bir kenarı tabanın çevresi, iki pi r; öbürü yükseklik h.",
+        "show": [],
+        "focus": [],
+        "stage": 2,
+        "swap": []
+       }
+      ],
+      "narration": "Silindirin hacmi, taban alanı pi r kare çarpı yüksekliktir. Yan yüzü açıldığında kenarları iki pi r ile h olan bir dikdörtgen çıkar; yanal alan iki pi r h. İki tabanı da eklersen toplam alan iki pi r çarpı r artı h."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik silindir biçimindeki bir kalem kutusunun yanal alanı $48\\pi$ cm$^2$'dir. $10$ cm uzunluğundaki bir kalemin bir ucu taban merkezinde, öbür ucu kutunun üst kenarındadır.\n\nKutunun hacmi kaç $\\pi$ cm$^3$ **olabilir**?",
+       "figure": {
+        "kind": "solid",
+        "shape": "cylinder",
+        "dimensions": [
+         "r",
+         "h"
+        ],
+        "size": [
+         2,
+         4
+        ],
+        "unfold": false
+       },
+       "options": [
+        "$288$",
+        "$300$",
+        "$320$",
+        "$336$",
+        "$360$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$2\\pi r h = 48\\pi$ → $rh = 24$; kalem: $r^2 + h^2 = 100$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yanal alandan r çarpı h, yirmi dört. Kalem taban merkezinden üst kenara: r kare artı h kare, yüz."
+        },
+        {
+         "text": "$(r, h) = (6, 8)$ ya da $(8, 6)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çarpımı yirmi dört, kareleri toplamı yüz: altı ve sekiz. Hangisinin yarıçap olduğu belli değil."
+        },
+        {
+         "text": "Hacim $36 \\cdot 8 = 288$ ya da $64 \\cdot 6 = 384$; seçeneklerde $288$ var.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hacim ya iki yüz seksen sekiz pi ya da üç yüz seksen dört pi. \"Olabilir\" diye soruluyor; seçeneklerde iki yüz seksen sekiz var. Cevap A."
+        }
+       ],
+       "narration": "İki bilinmeyen, iki denklem: yanal alan ve kalem.",
+       "origin": {
+        "changes": "Silindir iki durum kalıbı; ölçüler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_KATI_04",
+    "subtopics": [],
+    "title": "Piramit",
+    "narration": "Piramidin hacmi, aynı tabanlı ve aynı yükseklikli prizmanın üçte biridir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Piramit",
+      "items": [
+       "Hacim $= \\frac{1}{3}$ taban alanı $\\times$ yükseklik.",
+       "Kare piramitte yükseklik, yan yüz yüksekliği ve taban yarı kenarı **dik üçgen** kurar.",
+       "Düzgün dörtyüzlü (ayrıt $a$): yükseklik $a\\sqrt{\\frac{2}{3}}$, yüzey $\\sqrt{3}a^2$."
+      ],
+      "visual": {
+       "kind": "solid",
+       "shape": "squarePyramid",
+       "dimensions": [
+        "a",
+        "h",
+        "h′"
+       ],
+       "size": [
+        4,
+        3
+       ],
+       "unfold": false
+      },
+      "beats": [
+       {
+        "narration": "Taban kenarı a, yükseklik h.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Yan yüz yüksekliği h üssü; h, h üssü ve a bölü iki bir dik üçgen.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "narration": "Piramidin hacmi, taban alanı çarpı yüksekliğin üçte biridir. Kare piramitte yükseklik, yan yüzün yüksekliği ve taban kenarının yarısı bir dik üçgen oluşturur. Bütün ayrıtları a olan düzgün dörtyüzlünün yüksekliği a kök üçte iki, yüzey alanı kök üç a karedir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Taban kenarı $6$ cm olan kare dik piramidin yan yüz yüksekliği $5$ cm'dir.\n\nBu piramidin hacmi kaç cm$^3$'tür?",
+       "figure": {
+        "kind": "solid",
+        "shape": "squarePyramid",
+        "dimensions": [
+         "6",
+         "h",
+         "5"
+        ],
+        "size": [
+         6,
+         4
+        ],
+        "unfold": false
+       },
+       "options": [
+        "$36$",
+        "$42$",
+        "$48$",
+        "$60$",
+        "$144$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$h^2 + 3^2 = 5^2$ → $h = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yükseklik, taban yarı kenarı üç ve yan yüz yüksekliği beş: üç dört beş. h dört."
+        },
+        {
+         "text": "Hacim $= \\frac{36 \\cdot 4}{3} = 48$.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Taban otuz altı, yükseklik dört; çarpımın üçte biri kırk sekiz. Üçe bölmeyi unutan yüz kırk dört bulur. Cevap C."
+        }
+       ],
+       "narration": "Yüksekliği dik üçgenden bulalım.",
+       "origin": {
+        "changes": "Kare piramit kalıbı; ölçüler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yüksekliği $2\\sqrt{6}$ cm olan düzgün dörtyüzlünün yüzey alanı kaç cm$^2$'dir?",
+       "options": [
+        "$18\\sqrt{3}$",
+        "$36\\sqrt{3}$",
+        "$48\\sqrt{3}$",
+        "$54\\sqrt{3}$",
+        "$72\\sqrt{3}$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$a\\sqrt{\\frac{2}{3}} = 2\\sqrt{6}$ → $a = 2\\sqrt{6} \\cdot \\sqrt{\\frac{3}{2}} = 6$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yükseklik a kök üçte iki; iki kök altı. a, iki kök altı çarpı kök üç bölü iki: altı."
+        },
+        {
+         "text": "Yüzey $= \\sqrt{3} \\cdot 36 = 36\\sqrt{3}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dört eşkenar üçgen: kök üç çarpı a kare, otuz altı kök üç. Cevap B."
+        }
+       ],
+       "narration": "Yükseklikten ayrıta.",
+       "origin": {
+        "changes": "Düzgün dörtyüzlü kalıbı; ölçü yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Üçte bir",
+      "wrong": "Piramidin ve koninin hacmi taban alanı $\\times$ yükseklik.",
+      "right": "Sivri cisimlerde hacim $\\frac{1}{3} \\cdot$ taban $\\cdot$ yükseklik.",
+      "why": "Aynı tabanlı ve yükseklikli prizmanın **üçte biri**.",
+      "narration": "Sık yapılan bir hata: piramit ve koninin hacminde üçe bölmeyi unutmak. Sivri cisimlerin hacmi, aynı tabanlı ve aynı yükseklikli prizmanın ya da silindirin üçte biridir."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_KATI_05",
+    "subtopics": [],
+    "title": "Koni",
+    "narration": "Koni, tabanı daire olan piramit gibidir. Yan yüzü açılınca bir daire dilimi olur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Koni",
+      "items": [
+       "Hacim $\\frac{1}{3}\\pi r^2 h$; ana doğru $\\ell = \\sqrt{r^2 + h^2}$.",
+       "Yanal alan $\\pi r \\ell$; açılımda yarıçapı $\\ell$ olan daire dilimi.",
+       "Dilimin açısı $\\alpha = 360° \\cdot \\frac{r}{\\ell}$."
+      ],
+      "visual": {
+       "kind": "solid",
+       "shape": "cone",
+       "dimensions": [
+        "r",
+        "h",
+        "ℓ"
+       ],
+       "size": [
+        3,
+        4
+       ],
+       "unfold": true
+      },
+      "beats": [
+       {
+        "narration": "Taban yarıçapı r, yükseklik h, ana doğru ell.",
+        "show": [],
+        "focus": [],
+        "stage": 1,
+        "swap": []
+       },
+       {
+        "narration": "Koniyi açalım: taban dairesi ve bir daire dilimi. Dilimin yarıçapı ana doğru; yayı, tabanın çevresi kadar.",
+        "show": [],
+        "focus": [],
+        "stage": 2,
+        "swap": []
+       }
+      ],
+      "narration": "Koninin hacmi pi r kare h'nin üçte biridir; ana doğrusu, yükseklik ve yarıçaptan Pisagor ile bulunur. Yan yüzü açılınca yarıçapı ana doğru olan bir daire dilimi çıkar; yanal alan pi r ell. Dilimin açısı, üç yüz altmış çarpı r bölü ell."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Taban yarıçapı $4$ cm, yüksekliği $3$ cm olan dik koninin açınımındaki daire diliminin merkez açısı kaç derecedir?",
+       "figure": {
+        "kind": "solid",
+        "shape": "cone",
+        "dimensions": [
+         "r",
+         "h",
+         "ℓ"
+        ],
+        "size": [
+         3,
+         4
+        ],
+        "unfold": false
+       },
+       "options": [
+        "$216$",
+        "$240$",
+        "$252$",
+        "$270$",
+        "$288$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$\\ell = \\sqrt{16 + 9} = 5$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Ana doğru: kök on altı artı dokuz, beş."
+        },
+        {
+         "text": "$\\alpha = 360° \\cdot \\frac{4}{5} = 288°$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dilimin yayı tabanın çevresine eşit: açı, üç yüz altmış çarpı dört bölü beş, iki yüz seksen sekiz. Cevap E."
+        }
+       ],
+       "narration": "Ana doğru, sonra oran.",
+       "origin": {
+        "changes": "Koni açınımı kalıbı; ölçüler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Yarı yükseklik",
+      "prompt": "Ucu aşağıda duran bir koni, yüksekliğinin yarısına kadar suyla dolu. Su, koninin hacminin yarısı mı?",
+      "choices": [
+       "Yarısı",
+       "Sekizde biri"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -4,
+        -0.8,
+        4,
+        6.8
+       ],
+       "points": [
+        {
+         "id": "V",
+         "at": [
+          0,
+          0
+         ],
+         "label": "T",
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "A",
+         "at": [
+          -3,
+          6
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "B",
+         "at": [
+          3,
+          6
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "C",
+         "at": [
+          -1.5,
+          3
+         ],
+         "hidden": true,
+         "dot": true
+        },
+        {
+         "id": "D",
+         "at": [
+          1.5,
+          3
+         ],
+         "hidden": true,
+         "dot": true
+        },
+        {
+         "id": "M",
+         "at": [
+          0,
+          3
+         ],
+         "hidden": true,
+         "dot": true
+        },
+        {
+         "id": "N",
+         "at": [
+          0,
+          6
+         ],
+         "hidden": true,
+         "dot": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "V",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "V",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "V",
+         "to": "M",
+         "label": "h/2",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "M",
+         "to": "N",
+         "label": "h/2",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "V",
+          "C",
+          "D"
+         ],
+         "fill": true
+        }
+       ],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "Ucu aşağıdaki koni; su yarı yüksekliğe kadar.",
+        "show": [
+         "VA",
+         "VB",
+         "AB",
+         "CD",
+         "VCD"
+        ],
+        "focus": [
+         "VCD"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Su da bir koni: bütün koniye benzer, oran yarım.",
+        "show": [
+         "VM",
+         "MN"
+        ],
+        "focus": [
+         "VM",
+         "MN"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "Benzer cisimlerde hacim $k^3$: $\\left(\\frac{1}{2}\\right)^3 = \\frac{1}{8}$.",
+      "narration": "Yarı yükseklikteki su, hacmin yarısı mıdır? Tahmin et.",
+      "explanationNarration": "Sekizde biridir. Su da bir koni oluşturur ve bütün koniye benzer; benzerlik oranı yarım. Uzunluklar yarım, alanlar dörtte bir, hacimler sekizde bir oranında küçülür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ucu aşağıda duran dik koni biçimindeki bir kap, yüksekliğinin yarısına kadar suyla doludur.\n\nKabın **boş** kısmının hacminin **dolu** kısmının hacmine oranı kaçtır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -4,
+         -0.8,
+         4,
+         6.8
+        ],
+        "points": [
+         {
+          "id": "V",
+          "at": [
+           0,
+           0
+          ],
+          "label": "T",
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "A",
+          "at": [
+           -3,
+           6
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           3,
+           6
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           -1.5,
+           3
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           1.5,
+           3
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "M",
+          "at": [
+           0,
+           3
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "N",
+          "at": [
+           0,
+           6
+          ],
+          "hidden": true,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "V",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "V",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "V",
+          "to": "M",
+          "label": "h/2",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "M",
+          "to": "N",
+          "label": "h/2",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "V",
+           "C",
+           "D"
+          ],
+          "fill": true
+         }
+        ],
+        "circles": [],
+        "angles": []
+       },
+       "options": [
+        "$1$",
+        "$3$",
+        "$4$",
+        "$7$",
+        "$8$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Dolu kısım $\\frac{1}{8}V$ (benzerlik oranı $\\frac{1}{2}$, hacim $k^3$).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Su, bütün koniye benzer küçük bir koni; oran yarım, hacim sekizde bir."
+        },
+        {
+         "text": "Boş kısım $\\frac{7}{8}V$: oran $\\frac{7/8}{1/8} = 7$.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Boş kısım sekizde yedi. Boş bölü dolu, yedi. Yarı yükseklik yarı hacim sanan bir bulur. Cevap D."
+        }
+       ],
+       "narration": "Su koni, bütün koninin sekizde biri.",
+       "origin": {
+        "changes": "Konide sıvı kalıbı; yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Yarı yükseklik, yarı hacim mi?",
+      "wrong": "Koni yarı yüksekliğe kadar doluysa yarı dolu.",
+      "right": "Su da benzer bir koni: hacim oranı $k^3 = \\frac{1}{8}$.",
+      "why": "Uzunluk $k$, alan $k^2$, hacim $k^3$.",
+      "narration": "Sık yapılan bir hata: yarı yüksekliği yarı hacim sanmak. Ucu aşağıdaki konide su, bütün koniye benzer küçük bir koni oluşturur. Benzerlik oranı yarım ise hacim oranı onun küpü, sekizde birdir."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_KATI_06",
+    "subtopics": [],
+    "title": "Küre",
+    "narration": "Küre, bir merkeze eşit uzaklıktaki noktaların oluşturduğu yüzeydir. Hacmini ve alanını Arşimet bulmuştu.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Küre",
+      "items": [
+       "Hacim $\\frac{4}{3}\\pi r^3$, yüzey alanı $4\\pi r^2$.",
+       "Hacim bölü alan $= \\frac{r}{3}$.",
+       "Silindirin içine tam oturan küre: hacmi silindirinkinin $\\frac{2}{3}$'ü."
+      ],
+      "visual": {
+       "kind": "solid",
+       "shape": "sphere",
+       "dimensions": [
+        "r"
+       ],
+       "unfold": false
+      },
+      "beats": [
+       {
+        "narration": "Yarıçapı r olan küre.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Hacim dört bölü üç pi r küp, alan dört pi r kare.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "narration": "Yarıçapı r olan kürenin hacmi dört bölü üç pi r küp, yüzey alanı dört pi r karedir. Hacmin alana oranı r bölü üçtür. Arşimet'in sevdiği sonuç: silindirin içine tam oturan kürenin hacmi, silindirin hacminin üçte ikisidir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Hacminin sayısal değeri yüzey alanının sayısal değerine eşit olan kürenin yarıçapı kaç birimdir?",
+       "options": [
+        "$3$",
+        "$4$",
+        "$6$",
+        "$9$",
+        "$12$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$\\frac{\\frac{4}{3}\\pi r^3}{4\\pi r^2} = \\frac{r}{3} = 1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hacim bölü alan, r bölü üç; bu bir olmalı."
+        },
+        {
+         "text": "$r = 3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "r üç. Cevap A."
+        }
+       ],
+       "narration": "Hacim bölü alan, r bölü üç.",
+       "origin": {
+        "changes": "Küre hacim-alan kalıbı; yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yarıçapı $3$ cm olan metal bir küre eritiliyor; bu metalin tamamıyla yarıçapı $1$ cm olan eş küreler yapılıyor.\n\nKaç küre elde edilir?",
+       "options": [
+        "$9$",
+        "$18$",
+        "$24$",
+        "$27$",
+        "$36$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Benzerlik oranı $\\frac{3}{1} = 3$; hacim oranı $3^3 = 27$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki küre benzer; yarıçaplar oranı üç. Hacimler oranı üçün küpü, yirmi yedi."
+        },
+        {
+         "text": "$\\frac{\\frac{4}{3}\\pi \\cdot 27}{\\frac{4}{3}\\pi \\cdot 1} = 27$ küre.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Büyük kürenin hacmi küçüğün yirmi yedi katı: yirmi yedi küre. Alanları karşılaştıran dokuz bulur. Cevap D."
+        }
+       ],
+       "narration": "Hacim korunur; küreler benzer.",
+       "origin": {
+        "changes": "Eritilen cisim kalıbı; yarıçaplar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir küre, bir dik silindirin içine tam oturuyor: silindirin tabanlarına ve yan yüzüne teğet.\n\nKürenin hacminin silindirin hacmine oranı kaçtır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -3.6,
+         -3.6,
+         3.6,
+         3.6
+        ],
+        "points": [
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "P",
+          "at": [
+           -3,
+           -3
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "Q",
+          "at": [
+           3,
+           -3
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "R",
+          "at": [
+           3,
+           3
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "S",
+          "at": [
+           -3,
+           3
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "T",
+          "at": [
+           3,
+           0
+          ],
+          "hidden": true,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "P",
+          "to": "Q",
+          "label": "2r",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "Q",
+          "to": "R",
+          "label": "2r",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "R",
+          "to": "S",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "S",
+          "to": "P",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "O",
+          "to": "T",
+          "label": "r",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [
+         {
+          "center": "O",
+          "radius": 3
+         }
+        ],
+        "angles": []
+       },
+       "options": [
+        "$\\frac{1}{3}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{4}{5}$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Silindir: $\\pi r^2 \\cdot 2r = 2\\pi r^3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Silindirin yarıçapı r, yüksekliği çap kadar, iki r. Hacmi iki pi r küp."
+        },
+        {
+         "text": "$\\frac{\\frac{4}{3}\\pi r^3}{2\\pi r^3} = \\frac{2}{3}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Küre dört bölü üç pi r küp; oran üçte iki. Arşimet'in mezar taşındaki şekil buydu. Cevap C."
+        }
+       ],
+       "narration": "Silindirin yarıçapı r, yüksekliği 2r.",
+       "origin": {
+        "changes": "Arşimet oranı kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Prizma ve silindir: taban $\\times$ yükseklik.",
+    "Piramit ve koni: $\\frac{1}{3}$ taban $\\times$ yükseklik.",
+    "Küp köşegeni $a\\sqrt{3}$; prizma köşegeni $\\sqrt{a^2 + b^2 + c^2}$.",
+    "Koni açınımı: $\\alpha = 360° \\cdot \\frac{r}{\\ell}$.",
+    "Küre: $\\frac{4}{3}\\pi r^3$ ve $4\\pi r^2$.",
+    "Benzer cisimler: hacim $k^3$."
+   ],
+   "warnings": [
+    "Sivri cisimlerde **üçe böl**.",
+    "Yarı yükseklik **yarı hacim değil**.",
+    "Kesip dizince hacim korunur, **alan değişir**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Kâğıttan bir koni yap: **daire diliminin açısını** önce hesapla.",
+    "Bir bardağı yarı yüksekliğine kadar doldur; dolu kısmın **hacim oranını** tahmin et ve hesapla.",
+    "Uygulamada AYT Katı Cisimler testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Euler formülünü örnekle: köşe − ayrıt + yüz = 2. Küp 8 − 12 + 6, kare piramit 5 − 8 + 5, altıgen prizma 12 − 18 + 8.",
+   "Yüzey alanı formüllerini tablo yap: prizma 2 × taban + taban çevresi × h; silindir 2πr² + 2πrh; koni πr² + πrℓ; piramit taban + yan yüzler; küre 4πr². Her biri için açınım çizdir.",
+   "Düzgün dörtyüzlünün formüllerini ekle: ayrıt a için yükseklik a√6/3, hacim a³√2/12, yüzey alanı a²√3.",
+   "Kesik koni ve kesik piramidi ekle: hacim büyük cisimden küçük cisim çıkarılarak ya da (h/3)(A₁ + A₂ + √(A₁A₂)) ile bulunur. Koni yarı yüksekliğinden kesilirse üst parça hacmin 1/8'i, kesik kısım 7/8'idir.",
+   "Dönel cisimleri örnekle: dikdörtgen bir kenarı etrafında dönünce silindir, dik üçgen dik kenarı etrafında dönünce koni, yarım daire çapı etrafında dönünce küre oluşur. 3-4-5 dik üçgen hipotenüsü etrafında dönünce yarıçapı 12/5 olan iki koni oluşur, toplam hacim 48π/5.",
+   "Kesitleri ekle: küpün bir düzlemle kesiti üçgen, dörtgen, beşgen ya da altıgen olabilir; küre merkezden d uzaklıktaki düzlemle kesilince yarıçapı √(R² − d²) olan daire oluşur."
+  ]
+ }
+}

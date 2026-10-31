@@ -16,10 +16,18 @@ type DiagramNodeProps = {
 	/** 0 to 1: how strongly some node in the diagram is highlighted; the rest step back. */
 	diagramFocus?: number;
 	style?: React.CSSProperties;
+	/**
+	 * `start` lines the number, title and text up from the top, so the boxes of a row read across alike; a lone box
+	 * centres them. `row` puts the number beside a left-aligned title and text: a step of a column (a vertical flow)
+	 * then takes one line of height instead of three, so the column keeps a readable size in a short box.
+	 */
+	align?: 'center' | 'start' | 'row';
+	/** Title size in design units (30); a crowded row passes less so a long word fits (FlowDiagram). */
+	labelSize?: number;
 };
 
 /** A numbered box shared by the flow and cycle diagrams. */
-export const DiagramNode: React.FC<DiagramNodeProps> = ({node, index, focus = 0, diagramFocus = 0, style}) => {
+export const DiagramNode: React.FC<DiagramNodeProps> = ({node, index, focus = 0, diagramFocus = 0, style, align = 'center', labelSize = 30}) => {
 	const {colors, shape, typography} = useTheme();
 	const {u} = useVideoLayout();
 	// In a lesson's video the diagram speaks in the lesson's colour; elsewhere in the brand's (docs/CourseColors.md).
@@ -27,16 +35,18 @@ export const DiagramNode: React.FC<DiagramNodeProps> = ({node, index, focus = 0,
 	const chip = colors.lesson ?? colors.categorical[index % colors.categorical.length];
 	const lit = focus > 0.5;
 	const ink = lit ? strong.on : colors.onSurface;
+	const row = align === 'row';
+	const textAlign = row ? 'left' : 'center';
 
 	return (
 		<div
 			style={{
 				boxSizing: 'border-box',
 				display: 'flex',
-				flexDirection: 'column',
+				flexDirection: row ? 'row' : 'column',
 				alignItems: 'center',
-				justifyContent: 'center',
-				gap: u(SPACING.xs),
+				justifyContent: align === 'start' || row ? 'flex-start' : 'center',
+				gap: u(row ? SPACING.sm : SPACING.xs),
 				padding: u(SPACING.md),
 				borderRadius: u(shape.radius.md),
 				border: `${u(Math.max(2, shape.borderWidth))}px solid ${colors.border}`,
@@ -66,12 +76,16 @@ export const DiagramNode: React.FC<DiagramNodeProps> = ({node, index, focus = 0,
 				{index + 1}
 			</div>
 			<InkProvider ink={{text: ink, muted: ink, emphasis: ink}}>
-				<RichText text={node.label} size={30} weight={typography.strongWeight} align="center" />
-				{node.detail ? (
-					<Text size={24} align="center" style={{opacity: 0.9}}>
-						{node.detail}
-					</Text>
-				) : null}
+				{/* As wide as the box's content, so a word longer than the box shows as overflow and FitBox shrinks the diagram
+				    (sized to its text, "cehennem" ran into the box's padding unseen, AYT Din 1). */}
+				<div style={{display: 'flex', flexDirection: 'column', alignItems: row ? 'flex-start' : 'center', gap: u(SPACING.xs), minWidth: 0, alignSelf: row ? undefined : 'stretch'}}>
+					<RichText text={node.label} size={labelSize} weight={typography.strongWeight} align={textAlign} />
+					{node.detail ? (
+						<Text size={Math.min(24, labelSize * 0.8)} align={textAlign} style={{opacity: 0.9}}>
+							{node.detail}
+						</Text>
+					) : null}
+				</div>
 			</InkProvider>
 		</div>
 	);

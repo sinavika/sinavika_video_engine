@@ -4,15 +4,14 @@ import {AbsoluteFill, interpolate} from 'remotion';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
-import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
+import {appEndScenes} from '../../../Scenes/AppEndScene';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, VoiceScriptSchema, type VoiceClips} from '../../../Scenes/Voiceover';
 import {plainText} from '../../../Schemas/RichText';
 import {defineTemplate} from '../../TemplateDefinition';
-import {At, CLAMP, ease, PhoneShot, PromoStage, PromoSubtitle, Slam, useCount, useLand, useSeconds} from '../PromoKit/PromoKit';
+import {At, CLAMP, ease, PhoneShot, PromoStage, Slam, useCount, useLand, useSeconds} from '../PromoKit/PromoKit';
 import {PROMO_PHONE_SCREEN_NAMES, PROMO_PHONE_SCREENS} from '../PromoKit/PromoScreens';
-import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 /**
  * "Netin sana yalan söylüyor": a dark stage and one glowing orange orb. The
@@ -23,14 +22,12 @@ import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 const narration = z.string().trim().min(1).max(170);
 
-export const OrbRevealSchema = z.object({
+const OrbRevealSchema = z.object({
 	hook: z.object({small: plainText(24), big: plainText(28), narration}),
 	count: z.object({value: z.number().min(0).max(999), decimals: z.number().int().min(0).max(2).default(1), unit: plainText(8), question: plainText(24), narration}),
 	split: z.object({items: z.array(z.object({topic: plainText(22), loss: plainText(10)})).length(3), narration}),
 	product: z.object({screen: z.enum(PROMO_PHONE_SCREEN_NAMES), caption: plainText(40), narration}),
 	line: z.object({lines: z.tuple([plainText(28), plainText(28)]), narration}),
-	closing: z.object({slogan: plainText(28).default('Ölç, öğren, geliş.'), cta: plainText(28), channels: plainText(40).default('App Store · Google Play · sinavika.com'), narration}),
-	subtitles: z.boolean().default(true),
 	script: VoiceScriptSchema,
 	outro: z.object({enabled: z.boolean().default(true)}).default({enabled: true}),
 });
@@ -45,10 +42,9 @@ const Ground: React.FC<{glow?: number}> = ({glow = 0}) => (
 	<AbsoluteFill style={{background: `radial-gradient(60% 40% at 50% 46%, rgba(234,88,12,${0.22 * glow}) 0%, ${BLACK} 72%)`}} />
 );
 
-const Stage: React.FC<{content: Content; narration: string; shown?: string; glow?: number; children: React.ReactNode}> = ({content, narration: text, shown, glow, children}) => (
+const Stage: React.FC<{glow?: number; children: React.ReactNode}> = ({glow, children}) => (
 	<PromoStage ground={<Ground glow={glow} />}>
 		{children}
-		<PromoSubtitle text={text} shown={shown} enabled={content.subtitles} ink={BLACK} fill={WHITE} />
 	</PromoStage>
 );
 
@@ -67,7 +63,7 @@ const Orb: React.FC<{size: number; children?: React.ReactNode; intensity?: numbe
 };
 
 const HookScene: React.FC<{content: Content}> = ({content}) => (
-	<Stage content={content} narration={content.hook.narration} shown={`${content.hook.small} ${content.hook.big}`}>
+	<Stage>
 		<At y={560} w={952}>
 			<Slam text={content.hook.small} at={0.05} size={60} color={DIM} weight={TYPE.weights.strong} from={1.1} />
 		</At>
@@ -83,7 +79,7 @@ const CountScene: React.FC<{content: Content}> = ({content}) => {
 	const grow = useLand(0, 90, 18);
 	const ask = useLand(2.0);
 	return (
-		<Stage content={content} narration={content.count.narration} shown={`${value} ${content.count.unit} ${content.count.question}`} glow={1}>
+		<Stage glow={1}>
 			<At y={330} w={952}>
 				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(70)}}>
 					<div style={{transform: `scale(${grow})`}}>
@@ -120,7 +116,7 @@ const SplitScene: React.FC<{content: Content}> = ({content}) => {
 	const seconds = useSeconds();
 	const apart = ease(interpolate(seconds, [0.15, 1.1], [0, 1], CLAMP));
 	return (
-		<Stage content={content} narration={content.split.narration} glow={0.8}>
+		<Stage glow={0.8}>
 			{content.split.items.map((item, index) => {
 				const target = SPLIT_TARGETS[index];
 				const x = interpolate(apart, [0, 1], [476, target.x]);
@@ -155,7 +151,7 @@ const ProductScene: React.FC<{content: Content}> = ({content}) => {
 	const rise = ease(interpolate(seconds, [0.1, 0.9], [0, 1], CLAMP));
 	const fall = ease(interpolate(seconds, [0, 0.7], [0, 1], CLAMP));
 	return (
-		<Stage content={content} narration={content.product.narration} shown={content.product.caption} glow={0.6}>
+		<Stage glow={0.6}>
 			{[0, 1, 2].map((index) => (
 				<At key={index} x={interpolate(fall, [0, 1], [SPLIT_TARGETS[index].x - 60, 450])} y={interpolate(fall, [0, 1], [SPLIT_TARGETS[index].y - 60, 760])}>
 					<div style={{opacity: 1 - fall, transform: `scale(${1 - fall * 0.8})`}}>
@@ -184,7 +180,7 @@ const ProductScene: React.FC<{content: Content}> = ({content}) => {
 };
 
 const LineScene: React.FC<{content: Content}> = ({content}) => (
-	<Stage content={content} narration={content.line.narration} shown={content.line.lines.join(' ')} glow={0.3}>
+	<Stage glow={0.3}>
 		<At y={560} w={952}>
 			<Slam text={content.line.lines[0]} at={0.05} size={TYPE.adScale.headline} color={DIM} from={1.1} />
 		</At>
@@ -207,7 +203,6 @@ const SAMPLE: z.input<typeof OrbRevealSchema> = {
 	},
 	product: {screen: 'yksLoss', caption: 'Her denemeden sonra, konu konu.', narration: 'Sınavika her denemeden sonra netini konu konu gösterir; eksikler doğrudan planına eklenir.'},
 	line: {lines: ['Toplam netine değil,', 'nerede kaybettiğine bak.'], narration: 'Toplam netine değil, nerede kaybettiğine bak.'},
-	closing: {cta: 'Ücretsiz indir', narration: 'Sınavika. Ölç, öğren, geliş.'},
 };
 
 const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateScene[] => {
@@ -218,14 +213,13 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 	const split = say('split', content.split.narration, beat(content.split.narration, 4), 3.6);
 	const product = say('product', content.product.narration, beat(content.product.narration, 4), 3.6);
 	const line = say('line', content.line.narration, beat(content.line.narration, 2.6), 2.4);
-	const closing = say('closing', content.closing.narration, beat(content.closing.narration, 2.6), 2.4);
 	return [
 		{id: 'hook', seconds: hook.seconds, label: 'Hook', voice: [hook], element: <HookScene content={content} />},
 		{id: 'count', seconds: count.seconds, label: 'Sayaç', voice: [count], element: <CountScene content={content} />},
 		{id: 'split', seconds: split.seconds, label: 'Bölünme', voice: [split], element: <SplitScene content={content} />},
 		{id: 'product', seconds: product.seconds, label: 'Uygulama', voice: [product], element: <ProductScene content={content} />},
 		{id: 'line', seconds: line.seconds, label: 'Fikir', voice: [line], element: <LineScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard cta={content.closing.cta} />}] : []),
+		...appEndScenes(content.outro.enabled, say),
 	];
 };
 

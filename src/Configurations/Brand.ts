@@ -4,8 +4,6 @@
  */
 export const BRAND = {
 	name: 'Sınavika',
-	tagline: 'Yapay zekâ destekli sınav hazırlığı',
-	callToAction: 'Sınavika ile çalışmaya devam et',
 	logo: {
 		/**
 		 * The Sınavika lock-up ("Rafine" icon + wordmark, October 2026) as a white
@@ -17,8 +15,8 @@ export const BRAND = {
 		src: 'Brand/SinavikaLogo.png',
 		/** Width divided by height of the file (2000 x 526, cropped tight). */
 		aspectRatio: 2000 / 526,
-		/** Logo heights in reference pixels: in a template's top bar, and on the closing card. */
-		sizes: {chrome: 56, card: 110, hero: 210},
+		/** Logo heights in reference pixels: in a template's top bar, on every cover (Configurations/SocialIdentity) and on the closing card. */
+		sizes: {chrome: 56, cover: 64, card: 110, hero: 210},
 		/** Smallest allowed logo height, in reference pixels. */
 		minHeight: 40,
 		/** Clear space around the logo as a fraction of its height. */

@@ -1,39 +1,24 @@
-# Sınavika UI/UX rehberi (v3)
+# Sınavika UI/UX rehberi
 
 Web (Next.js + Tailwind), mobil (React Native) ve içerik motoru için ortak arayüz kuralları.
 
-**Tarih:** 15 Ekim 2026 · v3 (v2'nin üzerine)
+**Tarih:** 29 Ekim 2026
 **Çizimler:** `Desktop\Sinavika-UIUX3` · `acik/` ve `koyu/` ayrı klasörler (her biri mobil, web-panel, web-site, panolar) · kaynak: `sinavika_video_engine/src/UIUX`
 **Belgeler:** `Modul-Kimligi.md` (renk ve merkezi kod), `Ekran-Envanteri.md` (her çizim ve gerçek rotası), `Adlandirma-Kurallari.md`, `UIUX-Denetim.md`, `BrandIdentity.md`
 
-## 0. v3 ile değişenler
+## 0. Temel kurallar
 
-| Konu | v2 | v3 (geçerli) |
-|---|---|---|
-| Giriş öncesi site | Modül renkleri, turuncu CTA, koyu SinoAI bölümü | **Sakin:** beyaz ve paletteki griler, **ikonsuz logo** (yazı), turuncu yalnız ana düğmede; modül renkleri yalnız maketlerin içinde |
-| "Öğrenciler ne diyor" | Yıldızlı, renkli zemin | **Sitenin mevcut tasarımı:** "Öğrencilerin deneyimi", beyaz kartlar, gri alıntı, ince çizgi, ad ve kısa alt satır |
-| Web panel sol menü | Renkli ikon kutuları | **Sade:** gri ikonlar, kutu yok; aktif satırda gri hap, ince modül çizgisi ve ikon rengi |
-| SinoAI | Mürekkep + kıvılcım gradyanı | **Renksiz:** beyaz ve gri; web ChatGPT/Gemini düzeni (geçmiş sütunu, ortada sohbet, yuvarlak yazma kutusu) |
-| Testler, Bilgi Kartları ilk ekran | Konular / desteler | **Önce ders (lesson main):** ilk ekranlar yalnız dersleri listeler; konu (lesson sub) ve desteler dersin içinde |
-| Koyu tema | Açık setin içinde 2 koyu ekran | **Ayrı set:** her ekran açık ve koyu çizilir, `acik/` ve `koyu/` klasörlerine ayrı yazılır; çizimler temayı kendisi seçmez |
+- **Renk:** modülün içinde vurgu modülün rengindedir (ana düğme dahil); turuncu yalnız marka yüzeylerinde (logo, giriş ve kayıt, onboarding, ödeme ve abonelik, profil, site). Ayrıntı `Modul-Kimligi.md`.
+- **Seçili durum:** onboarding ve ayarlarda seçili kart, çip ve gün koyu çerçeve ve tikle gösterilir; dolgu rengi ana düğmeye kalır.
+- **Site sakin:** beyaz ve paletteki griler, ikonsuz logo (yazı), turuncu yalnız ana düğmede; modül renkleri yalnız uygulama maketlerinin içinde.
+- **SinoAI renksiz:** beyaz ve gri; web'de solda geçmiş, ortada tek sohbet sütunu, yuvarlak yazma kutusu.
+- **Web panel sol menü sade:** gri ikonlar; aktif satırda gri hap, ince modül çizgisi ve ikon rengi.
+- **Açık ve koyu tema ayrı set:** her ekran iki temada çizilir, `acik/` ve `koyu/` klasörlerine ayrı yazılır; çizimler temayı kendisi seçmez.
+- **Ön tanıtım yok:** özellikler ilk karşılaşıldıkları yerde tek satırlık ipucuyla anlatılır.
 
 ## Hiyerarşi kuralı (Dersler, Testler, Bilgi Kartları)
 
-İçeriğe erişim her zaman **ders (lesson main) → konu (lesson sub) → içerik** sırasıyla olur. Bu üç modülün ilk ekranı yalnız dersleri listeler (Türkçe, Matematik…); konu ağacı, test listesi ve desteler dersin seçilmesinden sonra açılır. Bugün/plan kartları doğrudan bir konuya götürebilir, ama ana liste her zaman derstir.
-
-## 0.1 v1'den farkı
-
-| Konu | v1 | v2 (geçerli) |
-|---|---|---|
-| Mobil ana ekran | Yeni "Bugün" ekranı | **Uygulamanın mevcut Modüller (hub) tasarımı:** üstte modül slaytları, altında modül kartları, en altta Destek. Günün adımı slaytların ilkidir |
-| Tab bar | Koyu orta düğmeli yeni çubuk | **Uygulamanın mevcut yüzen çubuğu:** yuvarlak köşe, ortada Modüller dairesi; aktif sekme modül renginde hap |
-| Bilgi Kartları | Akış (feed) sekmesi vardı | **Akış yok** (ürün kaldırdı). Sekmeler Kartlar · Bugün · Kaydedilenler |
-| Ders Planı yuva 4 | Takvim | **Program** (uygulamadaki ad) |
-| Web site header | Yeni header | **Sitenin mevcut header'ı:** Ürünler▾ · Sınavlar · Paketler · Kaynaklar▾, tema, SinoAI, Giriş, Kayıt Ol |
-| Web giriş/kayıt | Bölünmüş ekran | **Sitenin mevcut ortalanmış kart düzeni** + "Sınavika'yı keşfet" çipleri |
-| Web onboarding | Yoktu | **Eklendi:** 6 adım, sağda canlı önizleme (plan ve mobil hali) |
-| Mobil giriş | Tasarlanmamıştı | **Eklendi:** Oturum aç veya kaydol, kod, hesap oluştur, şifre akışı, misafir alt sayfası |
-| Çizim yöntemi | Ayrı HTML prototip | **İçerik motorunda servis** (`src/UIUX`): ortak bileşenler, merkezi modül kimliği, kayıt, `npm run uiux` |
+İçeriğe erişim her zaman **ders (lesson main) → konu (lesson sub) → içerik** sırasıyla olur. Bu üç modülün ilk ekranı yalnız dersleri listeler (Türkçe, Matematik…); konular, testler ve desteler dersin seçilmesinden sonra açılır. Dersler'de konu, mikro derslere (2–6 dk) bölünür; mikro ders adımlardan oluşur. Bugün ve plan kartları doğrudan bir konuya götürebilir, ama ana liste her zaman derstir.
 
 ## 1. Bilgi mimarisi
 
@@ -52,8 +37,8 @@ Modül sırası her yerde aynıdır: Denemeler, Dersler, Testler, Ders Planı, A
 
 ### Mobil
 
-- **Üst çubuk** (uygulamadaki gibi): solda profil, ortada logo, sağda bildirim zili ve sayaç. Alt sayfalarda solda geri, ortada başlık.
-- **Tab bar:** beş yuva. Yuva 1 modülün kendisi, yuva 2 ana işi, yuva 3 Modüller, yuva 4 geçmiş ya da ikinci işi, yuva 5 Profil. Tam tablo `Modul-Kimligi.md` §6'da.
+- **Üst çubuk:** solda profil, sağda bildirim zili ve sayaç (kırmızı rozet). Logo ortada yalnız Modüller ana ekranında ve marka ekranlarında; modül sayfası kendini sayfa başlığıyla adlandırır. Alt sayfalarda solda geri, ortada başlık.
+- **Tab bar:** beş yuva. Yuva 1 modülün kendisi, yuva 2 ana işi, yuva 3 Modüller, yuva 4 kayıtlar ya da ikinci işi, yuva 5 Profil. Etiketler sığdığı kadar yer alır. Tam tablo `Modul-Kimligi.md` §6'da.
 - **Sayfa başlığı:** modül çipi (renkli ikon ve ad) ve büyük başlık. Öğrenci hangi modülde olduğunu her ekranda görür.
 - **Odak ekranları** (deneme/test çözme, mikro ders, kart oturumu, odak sayacı, kamera): tab bar yok; üstte çıkış, başlık, süre ve ilerleme.
 - **"Daha fazla" yok.** Hakkında, Destek, güvenlik ve diğer ayarlar Profil'de.
@@ -79,8 +64,9 @@ Modül sırası her yerde aynıdır: Denemeler, Dersler, Testler, Ders Planı, A
 - **Yazı:** yalnız Manrope (`Tipografi-Web.md`, `Tipografi-Mobil.md`). Rol ölçeği `src/UIUX/Tokens.ts` → `UI_TYPE`.
 - **Renk jetonları, köşe, gölge:** `src/UIUX/Tokens.ts`. Koyu tema aynı jetonların koyu değerleri; modül renkleri bir ton açılır.
 - **İkonlar:** tek çizgi seti (Lucide uyumlu adlar, `src/UIUX/Icons.tsx`).
-- **Kontrast ve en küçük yazı (25 Ekim 2026):**
-  - Metin her zeminde en az 4,5:1 olmalı.
+- **Kontrast ve en küçük yazı:**
+  - Metin her zeminde en az 4,5:1 olmalı; düğme yazısı da (düğme dolgusu `moduleAction`, modül dışında `action` #C2410C).
+  - Küçük turuncu bağlantı `brandDeep` ile yazılır; #EA580C yalnız logo, simge ve büyük başlıkta.
   - En küçük yazı 12 pt.
   - Modül renginde yazı her zaman `ink` ile yazılır (tasarımda `moduleInk`, mobilde `palette.ink`). Bu renk, modülün tonlarında da okunur kalacak kadar koyulaştırılmış modül rengidir.
   - İkon, dolgu ve sekme hapı modülün kendi rengini kullanır.
@@ -90,11 +76,13 @@ Modül sırası her yerde aynıdır: Denemeler, Dersler, Testler, Ders Planı, A
 
 ## 4. Bileşenler
 
-Kaynak: `src/UIUX/Parts`. Web ve mobil aynı adları ve varyantları kullanır.
+Kaynak: `src/UIUX/Parts`. Web ve mobil aynı adları ve varyantları kullanır. Halka, çubuk, adım noktaları, anahtar ve odak çizgisi de rengini ekranın bağlamından (`useAccent`) alır.
+
+- **Dokunma alanı:** görünür boy küçük olabilir (`sm` düğme 36 pt), ama uygulamada dokunma alanı en az 44 pt (iOS) ve 48 dp (Android) olur.
 
 | Grup | Bileşenler |
 |---|---|
-| Temel | `Text`, `Stack`, `Button` (primary · dark · soft · ghost · white · module · moduleSoft · glass · disabled), `Chip`, `Card` (card · flat · soft · module · moduleLine · dark), `Tile`, `Field`, `Segmented`, `Toggle`, `Avatar`, `Logo` |
+| Temel | `Text`, `Stack`, `Button` (primary ve soft rengi bağlamdan alır: modülde modül, dışında marka · dark · ghost · white · module · moduleSoft · glass · disabled), `Chip`, `Card` (card · flat · soft · module · moduleLine · dark), `Tile`, `Field`, `Segmented`, `Toggle`, `Avatar`, `Logo` |
 | Veri | `Ring`, `Bar`, `Bars`, `Sparkline`, `Levels`, `Steps`, `Dots`, `OptionRow`, `List` / `ListRow`, `Skeleton` |
 | Mobil | `Phone`, `AppHeader`, `TabBar`, `ModuleSlide`, `ModuleCarousel`, `HubCard`, `ModuleScreen`, `PageTitle`, `SectionTitle`, `FocusHeader`, `BottomBar`, `Sheet`, `TourOverlay` |
 | Web | `Panel`, `Sidebar`, `Topbar`, `ModuleHead`, `ModuleBanner`, `Immersive`, `WCard`, `Grid`, `AuthLayout`, `WebOnboarding`, `SiteHeader`, `SiteFooter`, `Site`, `Section`, `SiteTitle`, `ExamStrip`, `DevicePhone`, `DeviceBrowser` |
@@ -103,7 +91,8 @@ Kaynak: `src/UIUX/Parts`. Web ve mobil aynı adları ve varyantları kullanır.
 
 ### 5.1 Hub ve slaytlar
 
-- İlk slayt günün en önemli şeyidir: canlı deneme, yarım kalan ders ya da günün planı. Diğer slaytlar modül sırasıyla.
+- İlk slayt günün en önemli şeyidir: canlı deneme, yarım kalan mikro ders ya da günün planı. Diğer slaytlar modül sırasıyla.
+- Destek kartı nötrdür (beyaz kart, gri simge); ana eylem değildir.
 - Hub kartı: modül adı ve tek satır; altında modül renkli panelde ikon ve **durum etiketi** ("Cumartesi canlı", "32 kart bugün", "Bu ay 7 / 30").
 - Reklam bandı ücretli kullanıcıda yok; ücretsiz kullanıcıda kartların arasında değil, en altta.
 
@@ -111,22 +100,29 @@ Kaynak: `src/UIUX/Parts`. Web ve mobil aynı adları ve varyantları kullanır.
 
 - Mobil: Karşılama → "Başlayalım" (onboarding) ya da "Zaten hesabım var" (oturum aç).
 - Oturum aç: Apple, Google, e-posta. E-posta varsa 6 haneli kod; yoksa aynı akış hesap oluşturur.
-- Şifre: e-posta → kod ve yeni parola tek ekranda.
+- Hesap oluştur: Apple ve Google önde; e-postayla kod ve yalnız ad istenir. Şifre gerekmez, sonra Hesap güvenliği'nden eklenir.
+- Şifremi unuttum: e-posta → kod ve yeni şifre tek ekranda. Her yerde tek kelime: şifre.
 - Misafir hesap gerektiren bir şeye dokununca tam ekran yönlendirme değil alt sayfa açılır.
 - Web, giriş ve kayıt: onboarding gibi iki yarım. Solda form kartı, sağda tanıtım paneli: başlık, üç madde, panel ve telefon görseli, mağaza düğmeleri. Panel yalnız geniş ekranda görünür. Şifre sayfaları ortalanmış kart olarak kalır. Kayıttan sonra web onboarding başlar.
 
-### 5.3 Onboarding (mobil 8 adım, web 6 adım)
+### 5.3 Onboarding
 
-Sınav ve oturum → mevcut ve hedef net → tempo → zorlanılan dersler → **planın hazır** → (mobil) neden Sınavika → hesap → 3 gün ücretsiz. Plan, hesap ve ödemeden önce gösterilir. Bildirim izni kendi açıklama ekranımızla istenir.
+- **Mobil:** Karşılama → sınav ve oturum → mevcut ve hedef net ("Netimi bilmiyorum" seçeneğiyle) → tempo ve günler → zorlanılan dersler → **planın hazır** (6. ekran) → planını kaydet (Apple ve Google önde) → 3 gün ücretsiz → bugünkü ilk mikro ders.
+- İlerleme çubuğu yalnız planı kuran beş adımı sayar.
+- Plan, hesap ve ödemeden önce gösterilir. "Hesabın hazır" ara ekranı ve ön tanıtım turu yoktur.
+- Bildirim izni ilk mikro ders bitince, kendi açıklama ekranımızla istenir.
+- **Web:** aynı beş adım ve paket seçimi. Web'de deneme süresi yoktur; "Şimdilik paket seçme" seçeneği vardır.
 
 ### 5.4 Analizden eyleme
 
-Her sonuç ve analiz bir eylemle biter: konu satırında "Mikro ders" (Dersler renginde) ve "10 soru" (Testler renginde); altında "Bu hafta planıma ekle".
+Her sonuç ve analiz bir eylemle biter: konu satırında "Mikro ders" (Dersler renginde) ve "10 soru" (Testler renginde); altında "Bu hafta planıma ekle". Testte yanlış cevaptan sonra da aynı yol vardır: doğru şık ve nedeni, konunun mikro dersi, SinoAI'ye sor.
 
 ### 5.4.1 Deneme ve test geri bildirimi
 
 - **Deneme** gerçek sınavın provasıdır. Çözerken doğru ya da yanlış gösterilmez; şık yalnız seçili görünür. Sonuçlar teslimden sonra çözümlerde açılır.
 - **Testler** öğrenme içindir. Doğru ve yanlış anında gösterilir.
+- **Dersler'in adımları:** seçme, doğru/yanlış, sıralama ve boşluk doldurma tek denemedir; yanlışta doğrusu ve nedeni gösterilir. TYT tarzı soruda her yanlış bir çözüm adımı açar ve öğrenci yeniden seçer. İlk denemede yanlış yapılan adım Tekrar'a girer (1, 3, 7 gün); bu bir ceza değil, nötr bir notla söylenir.
+- **Bugün tekrar:** Ders Planı'nda Dersler tekrarı ve Bilgi Kartları tek kartta.
 - **Test seviyeleri:** Kolay, Orta, Zor; her biri 20 soru. "Tarama" iç bir kavramdır, öğrenciye gösterilmez.
 - **SinoAI üretim sonucu:** Eylemler kartın içinde gerçek düğmedir: ana düğme dolu ("Testi aç"), ikincil düğme çerçeveli ("Değiştir").
 
@@ -163,7 +159,7 @@ Yeni ekran eklemek:
 3. `npm run uiux -- --only <kimlik>` ile çiz.
 4. `npm run uiux -- --inventory docs/UIUX/Ekran-Envanteri.md` ile envanteri güncelle.
 
-Testler (`tests/UIUX.test.ts`) şunları denetler:
+Testler (`tests/UIUX/UIUX.test.ts`) şunları denetler:
 
 - Modül tablosunun eksiksiz olması.
 - Renklerin ayrı ve beyaz yazıya uygun olması.

@@ -16,8 +16,4 @@ export const APP_PROMOTION_SAMPLE: z.input<typeof AppPromotionSchema> = {
 		{screen: 'SmartSummary', headline: 'Fotoğrafını çek', narration: `Takıldığın sorunun fotoğrafını çek. ${moduleCopy('smartSummary').tool}`},
 		{screen: 'SinoAi', headline: 'SinoAI’ye sor', narration: `${moduleCopy('sinoAi').invite} ${moduleCopy('sinoAi').tool}`},
 	],
-	closing: {
-		title: 'Ölç, öğren, geliş.',
-		narration: 'Ölç, öğren, geliş. Sınavika’yı hemen indir.',
-	},
 };

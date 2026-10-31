@@ -1,5 +1,5 @@
 import React from 'react';
-import {useT} from '../../Context';
+import {useColors, useT} from '../../Context';
 import {Icon} from '../../Icons';
 import {MODULE_ORDER, type ModuleKey} from '../../ModuleIdentity';
 import {AppHeader, Content, HubCard, ModuleCarousel, Phone, SectionTitle, TourOverlay} from '../../Parts/Mobile';
@@ -8,7 +8,7 @@ import {Chip, Stack, Text} from '../../Parts/Shared';
 /** The status line under each hub card's name: what waits in the module today. */
 const STATUS: Record<ModuleKey, [string, string]> = {
 	exam: ['Cumartesi canlı', 'Live on Saturday'],
-	lessons: ['3 ders sürüyor', '3 in progress'],
+	lessons: ['1 konu sürüyor', '1 topic in progress'],
 	tests: ['35 / 100', '35 / 100'],
 	studyPlan: ['Bugün 1/3', 'Today 1/3'],
 	smartSummary: ['Bu ay 7 / 30', '7 / 30 this month'],
@@ -19,6 +19,7 @@ const STATUS: Record<ModuleKey, [string, string]> = {
 /** Modüller (the app's home, the user's design): carousel of module slides, module cards under it, support at the end. */
 const HubBody: React.FC<{slide?: ModuleKey; scrolled?: boolean}> = ({slide = 'exam', scrolled}) => {
 	const t = useT();
+	const colors = useColors();
 	const cards = MODULE_ORDER.filter((key) => key !== 'sinoAi');
 	return (
 		<>
@@ -30,7 +31,7 @@ const HubBody: React.FC<{slide?: ModuleKey; scrolled?: boolean}> = ({slide = 'ex
 						<Text role="small">{t('Günaydın Ayşe', 'Good morning, Ayşe')}</Text>
 						<Text role="title">{t('Bugün ne çalışalım?', 'What shall we study today?')}</Text>
 					</Stack>
-					<Chip tone="brand" icon="flame">
+					<Chip tone="warning" icon="flame">
 						{t('5 gün', '5 days')}
 					</Chip>
 				</Stack>
@@ -41,17 +42,15 @@ const HubBody: React.FC<{slide?: ModuleKey; scrolled?: boolean}> = ({slide = 'ex
 					))}
 					<HubCard module="sinoAi" wide status={t('Hedefini bilerek anlatır', 'Knows your goal')} />
 				</div>
-				<div style={{position: 'relative', overflow: 'hidden', borderRadius: 20, padding: 16, background: 'linear-gradient(135deg, #EA580C, #F97316)', display: 'flex', alignItems: 'center', gap: 12}}>
-					<Icon name="headset" size={22} color="#FFFFFF" />
+				<div style={{borderRadius: 20, padding: 16, background: colors.card, border: `1px solid ${colors.line}`, display: 'flex', alignItems: 'center', gap: 12}}>
+					<div style={{width: 40, height: 40, borderRadius: 13, background: colors.line2, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+						<Icon name="headset" size={20} color={colors.ink2} />
+					</div>
 					<Stack grow gap={2}>
-						<Text role="headline" color="#FFFFFF">
-							{t('Destek', 'Support')}
-						</Text>
-						<Text role="small" color="rgba(255,255,255,0.9)">
-							{t('Soruların ve taleplerin için yardım merkezi', 'Help centre for your questions and requests')}
-						</Text>
+						<Text role="headline">{t('Destek', 'Support')}</Text>
+						<Text role="small">{t('Soruların ve taleplerin için yardım merkezi', 'Help centre for your questions and requests')}</Text>
 					</Stack>
-					<Icon name="right" size={20} color="#FFFFFF" />
+					<Icon name="right" size={20} color={colors.subtle} />
 				</div>
 				</Stack>
 			</Content>
@@ -72,31 +71,18 @@ export const HubScrolledScreen: React.FC = () => (
 );
 
 /**
- * Product tour over the hub: four steps, shown once, can be skipped. Each hole frames whole elements (the slide
- * with its dots, both card rows, the SinoAI card) with an even margin; holes that cut cards in half or took in
- * a second slide looked unfinished (owner, 26 Oct 2026).
+ * First-use tip on Modüller: one tip, the first time the hub opens, framing
+ * the slide with its dots. Other features explain themselves with their own
+ * one-line tip where they are first met; there is no tour up front.
  */
-const tourSteps = [
-	{hole: {x: 12, y: 160, w: 366, h: 230, r: 30}, title: ['Her gün buradan başla', 'Start here every day'], text: ['Kaydırınca her modülün bugün sana ne hazırladığını görürsün. Noktaların rengi modülün rengi.', 'Swipe to see what each module has for you today. Each dot is a module colour.'], below: true},
-	{hole: {x: 12, y: 390, w: 366, h: 350, r: 26}, title: ['Modüller hep aynı yerde', 'Modules, always in the same place'], text: ['Her modülün kendi rengi var: kartta, sekmede ve sayfanın arka planında aynı renk.', 'Every module has its colour: on its card, its tabs and its pages.'], below: false},
-	{hole: {x: 8, y: 60, w: 50, h: 50, r: 25}, title: ['Profil ve ayarlar', 'Profile and settings'], text: ['Hedefin, aboneliğin, görünüm ve destek burada. Hakkında da burada.', 'Your goal, plan, appearance and support live here.'], below: true, arrow: 0.06},
-	{hole: {x: 12, y: 545, w: 366, h: 146, r: 26}, title: ['Takıldığın yerde SinoAI', 'SinoAI when you are stuck'], text: ['Soru sor, konu anlattır, notlarından test ve kart üret.', 'Ask, get a topic explained, turn notes into quizzes and cards.'], below: false},
-] as const;
-
-const TourScreen: React.FC<{step: number}> = ({step}) => {
+export const HubTipScreen: React.FC = () => {
 	const t = useT();
-	const data = tourSteps[step - 1];
 	return (
-		<Phone overlay={<TourOverlay hole={data.hole} step={step} title={t(data.title[0], data.title[1])} text={t(data.text[0], data.text[1])} below={data.below} arrow={'arrow' in data ? data.arrow : 0.5} />}>
-			<HubBody scrolled={step === 4} />
+		<Phone overlay={<TourOverlay hole={{x: 12, y: 160, w: 366, h: 230, r: 30}} title={t('Her gün buradan başla', 'Start here every day')} text={t('Kaydırınca her modülün bugün sana ne hazırladığını görürsün. Noktaların rengi modülün rengi.', 'Swipe to see what each module has for you today. Each dot is a module colour.')} />}>
+			<HubBody />
 		</Phone>
 	);
 };
-
-export const Tour1Screen: React.FC = () => <TourScreen step={1} />;
-export const Tour2Screen: React.FC = () => <TourScreen step={2} />;
-export const Tour3Screen: React.FC = () => <TourScreen step={3} />;
-export const Tour4Screen: React.FC = () => <TourScreen step={4} />;
 
 /** The section title is used by other hub variants. */
 export {SectionTitle};

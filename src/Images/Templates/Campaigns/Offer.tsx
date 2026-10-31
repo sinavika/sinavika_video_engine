@@ -10,6 +10,7 @@ import {withAlpha} from '../../../Themes/Theme';
 import {useInk, useTheme} from '../../../Themes/ThemeContext';
 import {CallToAction} from '../../Components/CallToAction';
 import {ImageFrame, useImageLayout} from '../../Components/ImageFrame';
+import {textWidth} from '../../Components/TextMeasure';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
 import {BrandingSchema, CallToActionSchema} from '../../Schemas/ImageFields';
 import {BRAND_TYPOGRAPHY} from '../../../Configurations/BrandTypography';
@@ -40,6 +41,8 @@ const OfferImage: React.FC<{content: Content}> = ({content}) => {
 
 	// The discount is set as large as the canvas allows and sits in a burst, so the offer is read before anything else.
 	const size = wide ? 430 : 330;
+	// The largest of two sizes at which the discount's measured width stays inside the burst.
+	const discountSize = [0.34, 0.25].map((share) => size * share).find((candidate) => textWidth(content.discount, {size: candidate, weight: 800, letterSpacingEm: -0.03}) <= size * 0.78) ?? size * 0.25;
 	const burst = (
 		<div
 			style={{
@@ -58,7 +61,7 @@ const OfferImage: React.FC<{content: Content}> = ({content}) => {
 				alignSelf: 'center',
 			}}
 		>
-			<div style={{fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(size * (content.discount.length > 4 ? 0.25 : 0.34)), lineHeight: 0.95, letterSpacing: '-0.03em'}}>
+			<div style={{fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(discountSize), lineHeight: 0.95, letterSpacing: '-0.03em'}}>
 				{content.discount}
 			</div>
 			<div style={{fontFamily: typography.display, fontWeight: typography.displayWeight, fontSize: u(size * 0.11), textTransform: 'uppercase'}}>{content.discountLabel}</div>
@@ -143,7 +146,7 @@ export const Offer = defineImageTemplate({
 		code: 'SINAV40',
 		cta: {label: 'Fırsatı yakala'},
 	},
-	defaultTheme: 'VibrantDynamic',
+	defaultTheme: 'SinavikaDark',
 	defaultSize: 'Square',
 	outputName: (content) => `Kampanya ${content.title}`,
 	Component: OfferImage,

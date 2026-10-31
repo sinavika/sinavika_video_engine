@@ -89,7 +89,7 @@ export const ExamHomeScreen: React.FC = () => {
 	);
 };
 
-export type ExamQuestion = {lesson: string; number: number; total: number; text: string; options: string[]; selected?: number; remaining: string; title?: string};
+type ExamQuestion = {lesson: string; number: number; total: number; text: string; options: string[]; selected?: number; remaining: string; title?: string};
 
 const SAMPLE_QUESTION: Record<AppLanguage, ExamQuestion> = {
 	tr: {

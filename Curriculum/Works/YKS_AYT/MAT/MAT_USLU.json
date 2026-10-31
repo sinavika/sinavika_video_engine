@@ -1,0 +1,681 @@
+{
+ "topic": {
+  "id": "1CFA1F15-A0FC-8B5C-828C-78A1632931F6",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_USLU"
+ },
+ "title": "Üslü Sayılar",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/MAT/MAT_USLU.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "İki üzeri üç kare, iki küpün karesi değildir.",
+   "narration": "İki üzeri üç kare ile iki küpün karesi aynı sayı mı? Hayır: biri beş yüz on iki, öteki altmış dört. Üslü sayılarda AYT'nin tuzakları böyle küçük yazım farklarında saklıdır. Bu konu AYT'de logaritmanın ve üstel fonksiyonun temelidir. Kuralları kısaca hatırlayıp her kalıbı AYT düzeyinde bir soruyla çözeceğiz."
+  },
+  "objectives": [
+   "Negatif taban ve negatif üsle işaret hatası yapmadan hesaplamak",
+   "Ortak çarpanla üslü ifadeleri sadeleştirmek",
+   "f(x + y) = f(x)·f(y) kuralını kullanmak",
+   "Kuleyi üssün üssünden ayırıp üslü sayıları sıralamak",
+   "Basamak sayısını ve üslü denklemleri çözmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_USLU_01",
+    "subtopics": [
+     "MAT_USLU_04"
+    ],
+    "title": "Tanım, negatif ve sıfırıncı kuvvet",
+    "narration": "Üslü sayılarda AYT'nin ilk tuzakları işarette: negatif taban, negatif üs ve parantez.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kısa tekrar: tanım",
+      "items": [
+       "$a^0 = 1$ ($a \\neq 0$); $a^{-n} = \\frac{1}{a^n}$; $\\left(\\frac{a}{b}\\right)^{-n} = \\left(\\frac{b}{a}\\right)^n$.",
+       "Negatif tabanın **çift** kuvveti pozitif, **tek** kuvveti negatif: $(-1)^{2025} = -1$.",
+       "$-2^4 = -16$, $(-2)^4 = 16$: üs yalnız **hemen önündekine** etki eder.",
+       "Negatif üs işareti değiştirmez, **ters** çevirir: $(-2)^{-3} = -\\frac{1}{8}$."
+      ],
+      "beats": [],
+      "narration": "Dört kuralı hatırlayalım. Sıfırdan farklı her sayının sıfırıncı kuvveti birdir. Negatif üs sayıyı ters çevirir; kesrin negatif kuvveti, ters kesrin pozitif kuvvetidir. Negatif bir tabanın çift kuvveti pozitif, tek kuvveti negatiftir. Üs yalnız hemen önündeki sayıya etki eder: eksi iki üzeri dört eksi on altı, parantezle eksi iki üzeri dört on altı. Ve dikkat: negatif üs işareti değiştirmez, yalnız ters çevirir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\dfrac{(-2)^{-3} + 2^{-2}}{(-1)^{2025} + 3^{-1}}$\n\nişleminin sonucu kaçtır?",
+       "options": [
+        "$-\\frac{3}{16}$",
+        "$\\frac{3}{16}$",
+        "$-\\frac{3}{8}$",
+        "$\\frac{3}{8}$",
+        "$-\\frac{1}{16}$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Pay: $(-2)^{-3} = -\\frac{1}{8}$, $2^{-2} = \\frac{1}{4}$; toplam $\\frac{1}{8}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Payda eksi ikinin eksi üçüncü kuvveti: ters çevir, küpünü al; eksi sekizde bir. İkinin eksi ikinci kuvveti dörtte bir. Toplam sekizde bir."
+        },
+        {
+         "text": "Payda: $(-1)^{2025} = -1$ (tek kuvvet), $3^{-1} = \\frac{1}{3}$; toplam $-\\frac{2}{3}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Paydada eksi birin iki bin yirmi beşinci kuvveti: tek kuvvet, eksi bir. Üçün eksi birinci kuvveti üçte bir. Toplam eksi üçte iki."
+        },
+        {
+         "text": "$\\frac{1}{8} \\div \\left(-\\frac{2}{3}\\right) = \\frac{1}{8} \\cdot \\left(-\\frac{3}{2}\\right) = -\\frac{3}{16}$",
+         "eliminate": [
+          "B",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sekizde biri eksi üçte ikiye bölelim: ters çevirip çarp, eksi on altıda üç. Negatif üssün işareti değiştirdiğini sanan pozitif bulur. Cevap A."
+        }
+       ],
+       "narration": "Payı ve paydayı ayrı hesaplayalım; her terimde işarete dikkat.",
+       "origin": {
+        "changes": "Negatif üs ve negatif taban kalıbı; ifade yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_USLU_02",
+    "subtopics": [
+     "MAT_USLU_03"
+    ],
+    "title": "Çarpma, bölme ve üssün üssü",
+    "narration": "Üslü ifadelerde en sık hamle: aynı tabanı ortak çarpan parantezine almak. AYT bunu fonksiyonla da sorar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İşlem kuralları",
+      "items": [
+       "$a^m \\cdot a^n = a^{m + n}$, $\\frac{a^m}{a^n} = a^{m - n}$, $(a^m)^n = a^{mn}$.",
+       "$a^{m^n}$ **üssün üssü değildir**: $2^{3^2} = 2^9$, $(2^3)^2 = 2^6$.",
+       "Toplamda **ortak çarpan**: $3^{x+2} - 3^x = 3^x(9 - 1)$.",
+       "$f(x + y) = f(x) \\cdot f(y)$ ise $f(x) = a^x$ gibi davranır: $f(0) = 1$."
+      ],
+      "beats": [],
+      "narration": "Aynı tabanlı üslü sayılar çarpılınca üsler toplanır, bölününce çıkarılır; üssün üssünde üsler çarpılır. Ama dikkat: üssün üstünde bir üs daha varsa, yani kule biçimindeyse, önce yukarıdaki hesaplanır. İki üzeri üç kare, iki üzeri dokuzdur; iki küpün karesi iki üzeri altıdır. Toplamada üsleri toplayamazsın; ortak çarpan parantezine alırsın. Ve f x artı y, f x çarpı f y ise f, bir üslü fonksiyon gibi davranır: f sıfır birdir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\dfrac{3^{x+2} - 3^{x}}{3^{x+1} + 3^{x-1}}$\n\nifadesinin değeri kaçtır?",
+       "options": [
+        "$2$",
+        "$\\frac{12}{5}$",
+        "$\\frac{8}{3}$",
+        "$3$",
+        "$\\frac{24}{5}$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Pay: $3^x(3^2 - 1) = 8 \\cdot 3^x$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Payda üç üzeri x'i dışarı alalım: üç üzeri x çarpı dokuz eksi bir, sekiz çarpı üç üzeri x."
+        },
+        {
+         "text": "Payda: $3^x\\left(3 + \\frac{1}{3}\\right) = \\frac{10}{3} \\cdot 3^x$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Paydada da: üç üzeri x çarpı üç artı üçte bir, on bölü üç çarpı üç üzeri x."
+        },
+        {
+         "text": "$\\frac{8}{10/3} = \\frac{24}{10} = \\frac{12}{5}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç üzeri x'ler sadeleşir: sekiz bölü on bölü üç, yirmi dört bölü on, on iki bölü beş. Cevap B."
+        }
+       ],
+       "narration": "x bilinmiyor ama sonuç bir sayı. Demek ki x sadeleşecek: üç üzeri x'i ortak çarpan alalım.",
+       "origin": {
+        "changes": "Ortak çarpan kalıbı; ifade yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f: \\mathbb{R} \\to \\mathbb{R}^{+}$ olmak üzere her $x$ ve $y$ gerçel sayısı için\n\n$f(x + y) = f(x) \\cdot f(y)$\n\neşitliği sağlanmaktadır.\n\n$f(3) = 8$ olduğuna göre, $\\dfrac{f(5) \\cdot f(-1)}{f(2)}$ değeri kaçtır?",
+       "options": [
+        "$1$",
+        "$2$",
+        "$4$",
+        "$8$",
+        "$16$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$f(0) = f(0)^2$ ve $f(0) > 0$: $f(0) = 1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x ve y sıfır olsun: f sıfır, f sıfırın karesi. f pozitif değerli, sıfır olamaz: f sıfır bir."
+        },
+        {
+         "text": "$f(3) = f(1)^3 = 8$: $f(1) = 2$; $f(1) \\cdot f(-1) = f(0) = 1$: $f(-1) = \\frac{1}{2}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "f üç, f birin küpü: sekiz, f bir iki. f bir çarpı f eksi bir, f sıfır, bir: f eksi bir yarım."
+        },
+        {
+         "text": "$f(5) = 2^5 = 32$, $f(2) = 4$: $\\frac{32 \\cdot \\frac{1}{2}}{4} = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "f beş, ikinin beşinci kuvveti, otuz iki; f iki, dört. Otuz iki çarpı yarım, on altı; bölü dört, dört. Kısa yol: üsleri topla, beş eksi bir eksi iki, iki; f iki, dört. Cevap C."
+        }
+       ],
+       "narration": "Bu kalıp AYT havuzunun sevdiği bir kalıp. Kuralı adım adım kullanalım.",
+       "origin": {
+        "changes": "Üslü fonksiyon denklemi kalıbı (AYT havuzundaki f(x + y) yapısı örnek alındı); değerler ve istenen ifade yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_USLU_05",
+    "subtopics": [],
+    "title": "Karşılaştırma ve basamak sayısı",
+    "narration": "Büyük üslü sayıları hesaplamadan sıralamak için ya tabanları ya da üsleri eşitleriz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Karşılaştırma yolları",
+      "items": [
+       "**Tabanlar** eşitse (taban $> 1$): üssü büyük olan büyük.",
+       "**Üsler** eşitse (pozitif tabanlar): tabanı büyük olan büyük.",
+       "Ortak üs için üslerin **EBOB**'unu kullan: $2^{60} = (2^{15})^4$.",
+       "$k \\cdot 10^n$ ($1 \\leq k < 10$) sayısı $n + 1$ basamaklıdır."
+      ],
+      "beats": [],
+      "narration": "Büyük üslü sayıları sıralarken ya tabanları ya da üsleri eşitlersin. Tabanlar eşit ve birden büyükse üssü büyük olan büyüktür. Üsler eşitse tabanı büyük olan büyüktür. Ortak üs ararken üslerin EBOB'unu kullan. Basamak sayısını bulmak için de sayıyı k çarpı on üzeri n biçimine getir; k bir ile on arasındaysa sayı n artı bir basamaklıdır."
+     },
+     {
+      "kind": "visual",
+      "title": "Taban birden küçükse",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -3,
+        3
+       ],
+       "y": [
+        -0.5,
+        8.5
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "2^x",
+         "label": "y = 2ˣ",
+         "ends": [
+          "none",
+          "none"
+         ]
+        },
+        {
+         "expression": "0.5^x",
+         "label": "y = (1/2)ˣ",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [
+        {
+         "x": 0,
+         "y": 1,
+         "label": "(0, 1)"
+        }
+       ],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "caption": "Taban 1'den küçükse üssü büyük olan küçük.",
+      "beats": [
+       {
+        "narration": "İki üzeri x: x büyüdükçe hızla büyür. Bu yüzden tabanı iki olan sayılarda üssü büyük olan büyüktür.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Yarım üzeri x ise x büyüdükçe küçülür: yarımın küpü, yarımın karesinden küçük. Taban birden küçükse üssü büyük olan küçüktür.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "İki eğri de sıfır, bir noktasından geçer: her pozitif tabanın sıfırıncı kuvveti bir.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "narration": "Tabanın birden büyük ya da küçük olması sıralamayı tersine çevirir; iki eğride görelim."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a = 2^{3^2}$, $b = (2^3)^2$, $c = 4^{2^2}$\n\nolduğuna göre, aşağıdaki sıralamalardan hangisi doğrudur?",
+       "options": [
+        "$a < b < c$",
+        "$a < c < b$",
+        "$b < a < c$",
+        "$b < c < a$",
+        "$c < b < a$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$a = 2^{3^2} = 2^9$ (önce $3^2 = 9$).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a bir kule: önce yukarıdaki üç kare, dokuz. a, iki üzeri dokuz."
+        },
+        {
+         "text": "$b = (2^3)^2 = 2^6$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "b üssün üssü: üsler çarpılır, iki üzeri altı."
+        },
+        {
+         "text": "$c = 4^{2^2} = 4^4 = 2^8$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "c yine bir kule: iki kare dört, dört üzeri dört; dört, iki kare olduğu için iki üzeri sekiz."
+        },
+        {
+         "text": "$2^6 < 2^8 < 2^9$: $b < c < a$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üsler altı, sekiz, dokuz: b, c, a. Kuleyi üssün üssü gibi hesaplayan a ile b'yi eşit bulur. Cevap D."
+        }
+       ],
+       "narration": "Üçünü de iki tabanında yazalım; kule ile üssün üssünü ayırmak şart.",
+       "origin": {
+        "changes": "Kule ve üssün üssü karşılaştırma kalıbı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a = 2^{60}$, $b = 3^{40}$, $c = 5^{24}$\n\nolduğuna göre, aşağıdaki sıralamalardan hangisi doğrudur?",
+       "options": [
+        "$a < b < c$",
+        "$a < c < b$",
+        "$b < c < a$",
+        "$c < b < a$",
+        "$c < a < b$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$\\text{EBOB}(60, 40, 24) = 4$: $a = (2^{15})^4$, $b = (3^{10})^4$, $c = (5^6)^4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Altmış, kırk ve yirmi dördün EBOB'u dört. Üçünü de dördüncü kuvvet olarak yazalım: iki üzeri on beş, üç üzeri on, beş üzeri altı."
+        },
+        {
+         "text": "$2^{15} = 32768$, $3^{10} = 59049$, $5^6 = 15625$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Tabanları hesaplayalım: otuz iki bin yedi yüz altmış sekiz, elli dokuz bin kırk dokuz, on beş bin altı yüz yirmi beş."
+        },
+        {
+         "text": "$15625 < 32768 < 59049$: $c < a < b$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üsler eşit; tabanı büyük olan büyük: c, a, b. Cevap E."
+        }
+       ],
+       "narration": "Tabanlar farklı; üsleri eşitleyelim.",
+       "origin": {
+        "changes": "Ortak üsle karşılaştırma kalıbı; üsler ve tabanlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Kaç basamaklı?",
+      "prompt": "$2^{30}$ sayısı kaç basamaklıdır?",
+      "choices": [
+       "$9$",
+       "$10$"
+      ],
+      "answer": 1,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sayı",
+        "Değer",
+        "Basamak"
+       ],
+       "rows": [
+        [
+         "$2^{10}$",
+         "$1024$",
+         "$4$"
+        ],
+        [
+         "$2^{20}$",
+         "$1\\,048\\,576$",
+         "$7$"
+        ],
+        [
+         "$2^{30}$",
+         "$1\\,073\\,741\\,824$",
+         "$10$"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "İki üzeri on, bin yirmi dört: bine çok yakın, dört basamaklı.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Her on üs bin kat demek. İki üzeri yirmi bir milyonun biraz üstü, iki üzeri otuz bir milyarın biraz üstü.",
+        "show": [
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r2",
+         "r3"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "$2^{10} \\approx 10^3$: $2^{30} \\approx 10^9$, biraz **fazlası**; 10 basamaklı.",
+      "narration": "Şimdi sıra sende. İki üzeri otuz kaç basamaklıdır? Biraz düşün.",
+      "explanationNarration": "Doğru cevap on. İki üzeri on, bine yakın ama biraz fazla. İki üzeri otuz, bin üzeri üç, yani on üzeri dokuzun biraz üstü: on basamaklı. On üzeri dokuzun kendisi de on basamaklıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$8^{12} \\cdot 5^{38}$\n\nsayısı kaç basamaklıdır?",
+       "options": [
+        "$35$",
+        "$36$",
+        "$37$",
+        "$38$",
+        "$39$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$8^{12} = 2^{36}$: $2^{36} \\cdot 5^{38} = (2 \\cdot 5)^{36} \\cdot 5^2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sekiz, iki küp: sekiz üzeri on iki, iki üzeri otuz altı. Otuz altı iki ile otuz altı beşi eşleştirelim; iki beş artar."
+        },
+        {
+         "text": "$= 25 \\cdot 10^{36}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sonuç yirmi beş çarpı on üzeri otuz altı."
+        },
+        {
+         "text": "25'in ardına 36 sıfır: $2 + 36 = 38$ basamak.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yirmi beşin arkasına otuz altı sıfır gelir: iki artı otuz altı, otuz sekiz basamak. Artan beşleri unutan otuz yedi bulur. Cevap D."
+        }
+       ],
+       "narration": "İkiler ile beşleri eşleştirip onlu kuvvet çıkaralım.",
+       "origin": {
+        "changes": "Basamak sayısı kalıbı; üsler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_USLU_06",
+    "subtopics": [],
+    "title": "Üslü denklemler",
+    "narration": "Üslü denklemde amaç, iki tarafı aynı tabana ya da aynı üsse getirmek. İki özel durum da AYT'nin sevdiği tuzaklardır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Denklem kuralları",
+      "items": [
+       "$a^x = a^y$ ($a > 0$, $a \\neq 1$) ise $x = y$.",
+       "$4^x$, $2^x$ birlikte varsa $t = 2^x$ de: $4^x = t^2$, $t > 0$.",
+       "$a^b = 1$: $b = 0$ ($a \\neq 0$), $a = 1$, ya da $a = -1$ ve $b$ **çift**."
+      ],
+      "beats": [],
+      "narration": "Üslü denklemde iki tarafı aynı tabana getirirsin; taban pozitif ve birden farklıysa üsler eşittir. Dört üzeri x ile iki üzeri x birlikte geçiyorsa iki üzeri x'e t de: dört üzeri x, t kare olur; t pozitiftir. Bir üslü ifade bire eşitse üç durum var: üs sıfır ve taban sıfırdan farklı, taban bir, ya da taban eksi bir ve üs çift."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$4^x - 6 \\cdot 2^x + 8 = 0$\n\ndenkleminin köklerinin toplamı kaçtır?",
+       "options": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$t = 2^x$: $t^2 - 6t + 8 = 0$, $(t - 2)(t - 4) = 0$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki üzeri x'e t diyelim. Denklem t kare eksi altı t artı sekiz: t eksi iki çarpı t eksi dört."
+        },
+        {
+         "text": "$2^x = 2$: $x = 1$; $2^x = 4$: $x = 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "t iki ise x bir; t dört ise x iki."
+        },
+        {
+         "text": "Kökler toplamı $1 + 2 = 3$.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Köklerin toplamı üç. t'lerin toplamını, altıyı, kökler toplamı sanan yanılır. Cevap B."
+        }
+       ],
+       "narration": "Dört üzeri x, iki üzeri x'in karesi. Değişken değiştirelim.",
+       "origin": {
+        "changes": "Değişken değiştirme kalıbı; katsayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$3^a = 5$ ve $5^b = 9$\n\nolduğuna göre, $a \\cdot b$ çarpımı kaçtır?",
+       "options": [
+        "$1$",
+        "$\\frac{3}{2}$",
+        "$2$",
+        "$\\frac{5}{2}$",
+        "$3$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$3^{ab} = (3^a)^b = 5^b$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç üzeri a çarpı b, üç üzeri a'nın b'inci kuvveti: beş üzeri b."
+        },
+        {
+         "text": "$5^b = 9 = 3^2$: $3^{ab} = 3^2$, $ab = 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Beş üzeri b dokuz, yani üç kare. Üç üzeri a b, üç kareye eşit: a çarpı b iki. Bu fikir logaritmada çok işimize yarayacak. Cevap C."
+        }
+       ],
+       "narration": "a ve b'yi ayrı ayrı bulamayız; ama çarpımları bir kuvvetin içinde saklı.",
+       "origin": {
+        "changes": "Üssün üssüyle zincirleme kalıbı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Bire eşit kuvvet",
+      "wrong": "$(x - 2)^{x + 3} = 1$ ise yalnız $x + 3 = 0$.",
+      "right": "Üç durum: $x + 3 = 0$, $x - 2 = 1$, $x - 2 = -1$ (üs çiftse).",
+      "why": "Bir sayının kuvveti bire üç farklı yoldan eşit olur; yalnız üssü sıfırlamak iki kökü kaçırır.",
+      "narration": "Sık yapılan bir hata: bir kuvvet bire eşitse yalnız üssü sıfır yapmak. Oysa taban bir olduğunda da sonuç birdir; taban eksi bir ve üs çift olduğunda da. Üç durumu da denemek gerekir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$(x - 2)^{x + 3} = 1$\n\neşitliğini sağlayan $x$ tam sayılarının toplamı kaçtır?",
+       "options": [
+        "$-3$",
+        "$-1$",
+        "$0$",
+        "$1$",
+        "$3$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Üs sıfır: $x = -3$, taban $-5 \\neq 0$ ✓.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üs sıfır olsun: x eksi üç. Taban eksi beş, sıfır değil: eksi beş üzeri sıfır, bir. Geçerli."
+        },
+        {
+         "text": "Taban bir: $x - 2 = 1$, $x = 3$ ✓.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Taban bir olsun: x üç. Bir üzeri altı, bir. Geçerli."
+        },
+        {
+         "text": "Taban eksi bir: $x = 1$, üs $4$ çift ✓.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Taban eksi bir olsun: x bir. Üs dört, çift: eksi bir üzeri dört, bir. Geçerli."
+        },
+        {
+         "text": "Toplam: $-3 + 3 + 1 = 1$.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam: eksi üç artı üç artı bir, bir. Yalnız üssü sıfırlayan eksi üç bulur. Cevap D."
+        }
+       ],
+       "narration": "Hata kartındaki üç durumu sırayla deneyelim.",
+       "origin": {
+        "changes": "Bire eşit kuvvet kalıbı; ifade yeni yazıldı"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Negatif üs **ters çevirir**, işareti değiştirmez.",
+    "Tek kuvvet negatif tabanın **işaretini korur**.",
+    "$a^{m^n}$: önce **yukarıdaki** üs.",
+    "Toplamda **ortak çarpan**; üsler toplanmaz.",
+    "Sıralamada **ortak üs** ya da ortak taban.",
+    "$a^b = 1$: **üç durum**."
+   ],
+   "warnings": [
+    "$-2^4 = -16$, $(-2)^4 = 16$.",
+    "$2^x = t$ ise $t > 0$."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "$a = 3^{2^3}$, $b = (3^2)^3$, $c = 9^{2^2}$ sayılarını **kendin** sırala.",
+    "$4^{15} \\cdot 5^{32}$ sayısının kaç basamaklı olduğunu bul.",
+    "Uygulamada AYT Üslü Sayılar testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Kuralları tablo yap: aᵐ × aⁿ = aᵐ⁺ⁿ, (aᵐ)ⁿ = aᵐⁿ, aᵐ × bᵐ = (ab)ᵐ, a⁰ = 1 (a ≠ 0), a⁻ⁿ = 1/aⁿ; 0⁰ tanımsızdır.",
+   "Ortak çarpan örneklerini ekle: 3ⁿ⁺² + 3ⁿ⁺¹ − 3ⁿ = 3ⁿ(9 + 3 − 1) = 11 × 3ⁿ; 2²⁰ + 2²⁰ = 2²¹ (üsler toplanmaz).",
+   "Basamak sayısını örnekle: 4⁸ × 5¹⁵ = 2¹⁶ × 5¹⁵ = 2 × 10¹⁵; sayı 16 basamaklı ve rakamları toplamı 2'dir.",
+   "Sıralamaya örnek ver: 2⁶⁰, 3⁴⁰ ve 5²⁰ ortak üs 20'ye getirilir: 8²⁰, 9²⁰, 5²⁰; sıralama 5²⁰ < 2⁶⁰ < 3⁴⁰.",
+   "aᵇ = 1 denkleminin üç durumunu örnekle: (x − 2)^(x + 3) = 1 için taban 1 (x = 3), üs 0 ve taban sıfırdan farklı (x = −3), taban −1 ve üs çift (x = 1); çözüm kümesi {−3, 1, 3}."
+  ]
+ }
+}

@@ -1,0 +1,766 @@
+{
+ "topic": {
+  "id": "3CA5E8CA-F538-7C95-DCE6-3D2EA0180DD4",
+  "category": "YKS_TYT",
+  "lesson": "FIZ",
+  "code": "FIZ_DALGA"
+ },
+ "title": "Dalgalar",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "MEB TYT Fizik konu anlatımı (dalga hareketi, dalga boyu, periyot, frekans, genlik, enine-boyuna dalgalar, atma ve yansıması, yay dalgaları, su dalgaları, ses dalgaları, deprem dalgaları; yalnız yapı örneği)",
+  "YKS/TYT/CikmisSorular/FIZ.jsonl (ÖSYM 2020–2026 gitar teli, damlalık, ip dalgası, su dalgaları, yay noktalarının titreşim yönü; yalnız yapı örneği); YKS/TYT/Sorular/FIZ/FIZ_DALGA.jsonl",
+  "Sorular özgündür; dalgalar verilen dalga boyu ve genliklerle çizildi"
+ ],
+ "works": {
+  "additions": [
+   "Dalga hızının ortama bağlılığına örnekler ekle: yayda gerginlik ve kalınlık, suda derinlik, seste ortam (katıda en hızlı, gazda en yavaş, boşlukta yayılmaz); v = λf ile sayısal örnekler.",
+   "İki farklı yayın birleşme noktasında atmanın bir kısmının yansıyıp bir kısmının iletilmesini ver: hafif yaydan ağıra geçerken yansıyan atma ters döner, ağırdan hafife geçerken düz yansır; iletilen atma hiçbir zaman ters dönmez.",
+   "Su dalgalarında dalga leğenini, düz ve dairesel dalgaları, engelden yansımayı ve derinlik farkındaki kırılmayı şemalarla ver; derin bölgeden sığa geçince dalga boyunun kısaldığını, frekansın değişmediğini vurgula.",
+   "Ses için işitme aralığını (20–20 000 Hz), ultrason ve infrasonu örneklerle (yarasa, yunus, sonar, ultrason görüntüleme, fil) ver; yankı ve sesin yalıtımı; ses şiddetinin desibelle ölçülmesi ve gürültünün sağlığa etkisi.",
+   "Deprem dalgalarına deprem büyüklüğü (magnitüd) ile şiddet farkını, depremin merkez üssü ve odak noktasını, depreme hazırlıkta yapılacakları ekle."
+  ]
+ },
+ "short": {
+  "hook": "Kıyıda dalgalar neden sıklaşır?",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "$v = \\lambda \\cdot f$"
+   },
+   {
+    "kind": "fact",
+    "text": "Frekans **kaynağa**, hız **ortama** bağlı"
+   },
+   {
+    "kind": "warning",
+    "text": "Ses boşlukta **yayılmaz**"
+   }
+  ],
+  "summary": [
+   "v = λ · f",
+   "Sığ suda yavaş, kısa dalga"
+  ],
+  "rounds": [
+   {
+    "sentence": "λ = 2 m, f = 5 Hz",
+    "question": "Hız?",
+    "choices": [
+     "10 m/s",
+     "7 m/s"
+    ],
+    "answer": 0,
+    "why": "2 çarpı **5**."
+   },
+   {
+    "sentence": "Ses daha güçlü",
+    "question": "Değişen?",
+    "choices": [
+     "genlik",
+     "frekans"
+    ],
+    "answer": 0,
+    "why": "Şiddet = **genlik**."
+   },
+   {
+    "sentence": "S dalgası",
+    "question": "Sıvıdan geçer mi?",
+    "choices": [
+     "hayır",
+     "evet"
+    ],
+    "answer": 0,
+    "why": "Yalnız **katı**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-fizik-kampi",
+  "name": "TYT Fizik kampı",
+  "number": 10,
+  "total": 11,
+  "previous": "Elektrik ve Manyetizma",
+  "next": "Optik",
+  "promise": "Fizik konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Bir ipi önce yavaş, sonra hızlı salla; **dalga boyunun** nasıl değiştiğini gözle ve yaz.",
+    "Ses yüksekliği, şiddeti ve tınıyı **birer örnekle** açıkla.",
+    "Uygulamada Dalgalar testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bir ipi önce yavaş, sonra hızlı salla; dalga boyunun nasıl değiştiğini gözle ve yaz. Sonra ses yüksekliğini, şiddetini ve tınıyı birer örnekle açıkla. En son uygulamada dalgalar testinden yirmi soru çöz. Bir sonraki derste, kampın son dersinde optiğe geçiyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Enerji taşır, madde taşımaz",
+   "narration": "Suya atılan taşın halkaları yayılır ama su bir yere gitmez. Kıyıya yaklaşan dalgalar sıklaşır, Ay'da ses duyulmaz. Bu derste dalga boyunu, frekansı ve hızı, enine ve boyuna dalgaları, yay ve su dalgalarını, sesi ve deprem dalgalarını öğreneceğiz."
+  },
+  "objectives": [
+   "Dalga boyu, genlik, periyot ve frekansı tanımlamak; $v = \\lambda f$ kullanmak",
+   "Enine ve boyuna dalgaları ayırt etmek; atmanın yansımasını açıklamak",
+   "Su dalgalarının derinlikle değişimini yorumlamak",
+   "Sesin ve deprem dalgalarının özelliklerini açıklamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_DALGA_01",
+    "subtopics": [
+     "FIZ_DALGA_02",
+     "FIZ_DALGA_03",
+     "FIZ_DALGA_04"
+    ],
+    "title": "Dalganın dili",
+    "narration": "Durgun suya taş atınca halkalar yayılır, ama su taşın yanından bir yere gitmez. Dalga, maddeyi değil enerjiyi taşır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Dalga boyu, genlik, hız",
+      "visual": {
+       "kind": "wave",
+       "length": 10,
+       "rows": [
+        {
+         "wavelength": 4,
+         "amplitude": 1.2
+        }
+       ]
+      },
+      "caption": "$v = \\lambda \\cdot f$; $f = \\frac{1}{T}$. **Frekans kaynağa**, **hız ortama** bağlıdır.",
+      "narration": "Bir ipin ucunu aşağı yukarı sallayınca ip üzerinde bir dalga ilerler; ipin her noktası yalnız yerinde aşağı yukarı titreşir.",
+      "beats": [
+       {
+        "narration": "İki tepe arasındaki uzaklık dalga boyudur, lamda. Denge çizgisinden tepeye uzaklık genliktir: genlik ne kadar büyükse dalga o kadar çok enerji taşır.",
+        "focus": [
+         "w1"
+        ]
+       },
+       {
+        "narration": "Bir tam titreşimin süresi periyot, bir saniyedeki titreşim sayısı frekanstır; frekans periyodun tersidir, birimi hertz. Dalga bir periyotta bir dalga boyu ilerler: hız, dalga boyu çarpı frekans. Frekansı kaynak belirler, hızı ise dalganın içinde ilerlediği ortam."
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir ip üzerinde dalga boyu $2$ m olan dalgalar $5$ Hz frekansla oluşturuluyor. Dalgaların ilerleme hızı kaç m/s'dir?",
+       "options": [
+        "$2{,}5$",
+        "$7$",
+        "$10$",
+        "$20$",
+        "$50$"
+       ],
+       "answer": 2,
+       "narration": "$v = \\lambda f$.",
+       "steps": [
+        {
+         "text": "$v = \\lambda f = 2 \\cdot 5 = 10$ m/s. Cevap **C**.",
+         "narration": "Hız, dalga boyu çarpı frekans: iki çarpı beş, on metre bölü saniye. Dalga her saniye beş dalga boyu, yani on metre ilerliyor. Cevabımız C. Yediyi seçen, iki değeri toplamıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; v = λf özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aynı gerginlikteki bir ipte, ipin ucunu sallayan el önce Şekil 1'deki, sonra daha hızlı sallayarak Şekil 2'deki dalgaları oluşturuyor. Bölmeler eşit olduğuna göre dalgaların hızları $v_1$, $v_2$ ve frekansları $f_1$, $f_2$ arasındaki ilişki nedir?",
+       "figure": {
+        "kind": "wave",
+        "length": 8,
+        "travel": false,
+        "rows": [
+         {
+          "wavelength": 4,
+          "amplitude": 1,
+          "label": "Şekil 1",
+          "marks": false
+         },
+         {
+          "wavelength": 2,
+          "amplitude": 1,
+          "label": "Şekil 2",
+          "marks": false
+         }
+        ]
+       },
+       "options": [
+        "$v_1 = v_2$; $f_2 = 2f_1$",
+        "$v_2 = 2v_1$; $f_1 = f_2$",
+        "$v_1 = 2v_2$; $f_2 = 2f_1$",
+        "$v_1 = v_2$; $f_1 = 2f_2$",
+        "$v_2 = 2v_1$; $f_2 = 2f_1$"
+       ],
+       "answer": 0,
+       "narration": "Hız ortama, frekans kaynağa bağlı.",
+       "steps": [
+        {
+         "text": "Aynı ip, aynı gerginlik → aynı ortam → $v_1 = v_2$.",
+         "narration": "İp ve gerginliği değişmedi: ortam aynı, dolayısıyla dalgaların hızı da aynı."
+        },
+        {
+         "text": "Şekil 2'de dalga boyu yarı: $f = \\frac{v}{\\lambda}$ → $f_2 = 2f_1$. Cevap **A**.",
+         "narration": "Şekil iki'de dalga boyu yarıya inmiş. Hız aynıyken dalga boyu yarıya inerse frekans iki katına çıkar: el daha hızlı sallandı. Cevabımız A. E'yi seçen, eli hızlı sallamanın dalgayı da hızlandırdığını sanmıştır.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2020 ip dalgası sorusunun fikri özgün bir şekil ve seçeneklerle yeniden kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DALGA_05",
+    "title": "Enine, boyuna, yay",
+    "narration": "Dalgalar, ortamın taneciklerinin hangi doğrultuda titreştiğine göre ikiye ayrılır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Titreşim ve yayılma",
+      "visual": {
+       "kind": "wave",
+       "length": 10,
+       "rows": [
+        {
+         "wavelength": 4,
+         "amplitude": 1,
+         "label": "enine dalga",
+         "marks": false
+        },
+        {
+         "wavelength": 4,
+         "amplitude": 1,
+         "type": "longitudinal",
+         "label": "boyuna dalga"
+        }
+       ],
+       "points": [
+        {
+         "row": 0,
+         "x": 3,
+         "label": "P"
+        }
+       ]
+      },
+      "caption": "**Enine**: titreşim yayılmaya **dik**. **Boyuna**: titreşim yayılmayla **aynı doğrultuda**, sıkışma ve seyrelmelerle ilerler.",
+      "narration": "Üstteki ipte noktalar yukarı aşağı titreşir, dalga sağa ilerler: titreşim yayılma doğrultusuna diktir. Buna enine dalga denir.",
+      "beats": [
+       {
+        "narration": "İp üzerindeki P noktasına bak: dalga sağa giderken P yalnız yerinde inip çıkar, dalgayla birlikte sağa gitmez.",
+        "focus": [
+         "w1",
+         "p1"
+        ]
+       },
+       {
+        "narration": "Alttaki yayda ise halkalar ileri geri titreşir; sıkışmalar ve seyrelmeler ilerler. Titreşim yayılmayla aynı doğrultuda: bu boyuna dalgadır. Ses de boyuna bir dalgadır.",
+        "focus": [
+         "w2"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Yayda atma",
+      "items": [
+       "Tek bir sarsıntıya **atma** denir; hızı yalnız **yaya** (gerginlik, kalınlık) bağlıdır.",
+       "Gergin ve **ince** yayda atma **daha hızlı** ilerler.",
+       "**Sabit uçtan** yansıyan atma **ters döner**; **serbest uçtan** yansıyan aynı yönde döner.",
+       "İnceden kalına geçen atmanın yansıyanı ters, kalından inceye geçeninki düzdür."
+      ],
+      "narration": "Yayı bir kez sarsarsan tek bir dalga parçası, yani atma ilerler. Atmanın hızı elin ne kadar hızlı sarstığına değil, yayın kendisine bağlıdır: gergin ve ince yayda atma daha hızlı gider. Duvara bağlı sabit uçtan yansıyan atma ters döner; serbest uçtan yansıyan atma aynı yönde döner. Atma inceden kalın yaya geçerken yansıyan kısım ters döner, kalından inceye geçerken düz yansır; geçen kısım hep aynı yönde kalır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Sağa doğru ilerleyen bir dalganın belli bir andaki görüntüsü şekildeki gibidir. Bu anda $K$, $L$ ve $M$ noktalarının hareket yönleri sırasıyla nedir?",
+       "figure": {
+        "kind": "wave",
+        "length": 8,
+        "travel": false,
+        "motion": false,
+        "rows": [
+         {
+          "wavelength": 4,
+          "amplitude": 1.2,
+          "marks": false
+         }
+        ],
+        "points": [
+         {
+          "x": 0.5,
+          "label": "K"
+         },
+         {
+          "x": 2,
+          "label": "L"
+         },
+         {
+          "x": 3.5,
+          "label": "M"
+         }
+        ]
+       },
+       "options": [
+        "yukarı, aşağı, yukarı",
+        "aşağı, yukarı, aşağı",
+        "aşağı, aşağı, yukarı",
+        "yukarı, yukarı, aşağı",
+        "aşağı, yukarı, yukarı"
+       ],
+       "answer": 1,
+       "narration": "Az sonra her noktaya, solundaki nokta gelecek.",
+       "steps": [
+        {
+         "text": "Dalga sağa gidiyor: her nokta, az önce **solundaki** noktanın yüksekliğini alır.",
+         "narration": "Dalga sağa ilerlerken bir noktanın biraz sonraki yüksekliği, şu anda hemen solundaki noktanın yüksekliğidir."
+        },
+        {
+         "text": "$K$ yükselen eğimde → solu daha alçak → **aşağı**; $L$ inen eğimde → **yukarı**; $M$ yükselen eğimde → **aşağı**. Cevap **B**.",
+         "narration": "K yükselen bir eğimde: solundaki nokta daha alçak, K aşağı inecek. L inen bir eğimde: solundaki nokta daha yüksek, L yukarı çıkacak. M yine yükselen eğimde, aşağı inecek. Cevabımız B. A'yı seçen, dalganın sola gittiğini düşünmüş gibi yönleri ters bulmuştur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2025 yay dalgası noktalarının titreşim yönü fikri özgün bir dalga ve noktalarla kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir ucu duvara sıkıca bağlı gergin bir yayın serbest ucundan yukarı doğru tümsek biçimli bir atma gönderiliyor. Atma duvardan yansıdıktan sonra\n\nI. çukur biçiminde, ters dönmüş olarak geri gelir,\nII. hızı, gelirken sahip olduğu hıza eşittir,\nIII. dalga boyu yarıya iner\n\nyargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve III",
+        "I ve II"
+       ],
+       "answer": 4,
+       "narration": "Sabit uç, aynı yay.",
+       "steps": [
+        {
+         "text": "Sabit uçtan yansıyan atma **ters döner** (I).",
+         "narration": "Duvara bağlı uç sabittir; sabit uçtan yansıyan atma ters döner, tümsek çukur olarak geri gelir. Birinci doğru."
+        },
+        {
+         "text": "Aynı yayda ilerliyor → hız **aynı** (II); hız ve kaynak değişmedi → dalga boyu aynı (III yanlış). Cevap **E**.",
+         "narration": "Atma yine aynı yayda ilerliyor: hızı ortama bağlı olduğu için değişmez, ikinci doğru. Ne ortam ne kaynak değiştiği için dalga boyu da aynı kalır; üçüncü yanlış. Cevabımız E.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB metnindeki sabit uçtan yansıma kuralı öncüllerle özgün olarak soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DALGA_06",
+    "title": "Su dalgaları",
+    "narration": "Kıyıya yaklaşan dalgaların sıklaştığını görmüşsündür.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Derinden sığa",
+      "visual": {
+       "kind": "wave",
+       "length": 10,
+       "rows": [
+        {
+         "wavelength": 4,
+         "amplitude": 0.8,
+         "label": "derin su"
+        },
+        {
+         "wavelength": 2,
+         "amplitude": 0.8,
+         "label": "sığ su"
+        }
+       ]
+      },
+      "caption": "Su dalgaları **derin** suda **hızlı**, sığ suda yavaştır. Frekans kaynağa bağlı, **değişmez**; hız azalınca dalga boyu **kısalır**.",
+      "narration": "Su dalgalarının hızı suyun derinliğine bağlıdır.",
+      "beats": [
+       {
+        "narration": "Derin suda dalga hızlıdır ve dalga boyu uzundur. Dalga sığ bölgeye geçince yavaşlar.",
+        "focus": [
+         "w1"
+        ]
+       },
+       {
+        "narration": "Frekansı kaynak belirlediği için değişmez; hız azalınca dalga boyu da kısalır ve dalga tepeleri sıklaşır. Kıyıya yaklaşan dalgaların sıklaşması bundandır.",
+        "focus": [
+         "w2"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir dalga leğeninde sığ bölgeden derin bölgeye geçen su dalgaları için\n\nI. frekansı değişmez,\nII. dalga boyu azalır,\nIII. ilerleme hızı artar\n\nyargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "II ve III",
+        "I ve III"
+       ],
+       "answer": 4,
+       "narration": "Derin su: hızlı.",
+       "steps": [
+        {
+         "text": "Frekansı kaynak belirler → değişmez (I). Derin suda hız artar (III).",
+         "narration": "Frekans dalgayı üreten kaynağa bağlıdır, ortam değişince değişmez: birinci doğru. Derin suda dalga hızlanır: üçüncü doğru."
+        },
+        {
+         "text": "$\\lambda = \\frac{v}{f}$: hız artınca dalga boyu **artar** (II yanlış). Cevap **E**.",
+         "narration": "Frekans aynıyken hız artarsa dalga boyu da artar; ikinci yanlış. Cevabımız E. D'yi seçen, sığdan derine geçişte hızın arttığını bilip dalga boyunun da azaldığını sanmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2022 ve 2024 su dalgası sorularının fikri sığdan derine geçiş ve öncüllerle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir dalga leğeninde eşit zaman aralıklarıyla damlatılan su damlaları dalga oluşturuyor. Diğer her şey aynı kalmak şartıyla damlalık daha yüksekten damlatılırsa oluşan dalgaların genliği ve periyodu nasıl değişir?",
+       "options": [
+        "Artar – değişmez",
+        "Artar – artar",
+        "Değişmez – azalır",
+        "Azalır – değişmez",
+        "Değişmez – değişmez"
+       ],
+       "answer": 0,
+       "narration": "Genlik enerjiye, periyot kaynağın sıklığına bağlı.",
+       "steps": [
+        {
+         "text": "Daha yüksekten düşen damla daha çok enerji aktarır → **genlik artar**.",
+         "narration": "Damla daha yüksekten düşünce suya çarparken daha çok enerji aktarır: dalganın genliği artar."
+        },
+        {
+         "text": "Damlalar aynı aralıkla düşüyor → frekans ve **periyot değişmez**. Cevap **A**.",
+         "narration": "Damlalar yine eşit aralıklarla düştüğü için kaynağın frekansı, dolayısıyla dalganın periyodu değişmez. Cevabımız A. B'yi seçen, büyük dalganın daha yavaş titreştiğini sanmıştır.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin damlalık yüksekliği sorusundaki genlik-periyot fikri özgün seçeneklerle yeniden kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DALGA_07",
+    "subtopics": [
+     "FIZ_DALGA_08",
+     "FIZ_DALGA_09"
+    ],
+    "title": "Ses ve deprem dalgaları",
+    "narration": "Duyduğumuz her ses, havada ilerleyen bir boyuna dalgadır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Sesin özellikleri",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Özellik",
+        "Neye bağlı?",
+        "Günlük dil"
+       ],
+       "rows": [
+        [
+         "Ses yüksekliği",
+         "frekans",
+         "ince – kalın ses"
+        ],
+        [
+         "Ses şiddeti",
+         "genlik (enerji)",
+         "yüksek – alçak ses"
+        ],
+        [
+         "Tını",
+         "kaynağın yapısı",
+         "keman mı, piyano mu?"
+        ],
+        [
+         "Ses hızı",
+         "ortam",
+         "katı > sıvı > gaz"
+        ]
+       ]
+      },
+      "caption": "Ses **mekanik ve boyuna** bir dalgadır; madde ister, **boşlukta yayılmaz**. Engelden yansıyan ses **yankıdır**.",
+      "narration": "Ses, titreşen bir kaynağın havayı sıkıştırıp seyrelterek oluşturduğu boyuna bir dalgadır. Yayılmak için madde gerekir: boşlukta ses yayılmaz.",
+      "beats": [
+       {
+        "narration": "Frekans sesin inceliğini belirler: frekansı büyük ses ince, küçük ses kalındır. Genlik ise sesin şiddetini, yani yüksek ya da alçak olmasını belirler. Günlük dilde sesi açmak dediğimiz, aslında şiddeti artırmaktır.",
+        "focus": [
+         "r1",
+         "r2"
+        ]
+       },
+       {
+        "narration": "Aynı notayı çalan keman ile piyanoyu tınıdan ayırırız. Ses katılarda en hızlı, gazlarda en yavaş ilerler.",
+        "focus": [
+         "r3",
+         "r4"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Deprem dalgaları",
+      "items": [
+       "**P dalgaları**: boyuna, **en hızlı**, ilk ulaşan; katı, sıvı ve gazdan geçer.",
+       "**S dalgaları**: enine, P'den yavaş; **yalnız katılardan** geçer.",
+       "**Yüzey dalgaları**: en yavaş ama en **yıkıcı**.",
+       "S dalgalarının dış çekirdekten geçememesi, dış çekirdeğin **sıvı** olduğunu gösterir."
+      ],
+      "narration": "Depremde açığa çıkan enerji yer içinde dalgalarla yayılır. P dalgaları boyunadır, en hızlıdır ve istasyona ilk onlar ulaşır; katı, sıvı ve gazdan geçebilirler. S dalgaları enine ve daha yavaştır; yalnız katılardan geçer. Yer yüzeyinde ilerleyen yüzey dalgaları en yavaşıdır ama binalara en çok zararı onlar verir. S dalgalarının dış çekirdeği geçememesi, bilim insanlarına dış çekirdeğin sıvı olduğunu gösterdi."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Ay yüzeyinde birbirine birkaç metre uzaklıkta duran iki astronot, kasklarının içinden bağırsalar bile birbirlerini duyamaz; telsizle konuşurlar. Bunun nedeni aşağıdakilerden hangisidir?",
+       "options": [
+        "Ay'da yer çekimi zayıftır.",
+        "Ses, yayılmak için madde gerektiren mekanik bir dalgadır.",
+        "Ay yüzeyi sesi yutar.",
+        "Ses dalgalarının frekansı Ay'da azalır.",
+        "Kask sesin şiddetini artırır."
+       ],
+       "answer": 1,
+       "narration": "Ay'da hava yok.",
+       "steps": [
+        {
+         "text": "Ay'da atmosfer yok; ses **mekanik** dalgadır, boşlukta yayılmaz. Telsiz ise **elektromanyetik** dalgayla çalışır. Cevap **B**.",
+         "narration": "Ay'ın atmosferi yok, iki astronotun arası boşluk. Ses, yayılmak için madde isteyen mekanik bir dalgadır; boşlukta ilerleyemez. Telsiz ise boşlukta da yayılan elektromanyetik dalgalar kullanır. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; sesin mekanik dalga olması Ay örneğiyle özgün olarak soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir gitarın aynı teline önce hafifçe, sonra güçlü bir şekilde vurularak aynı nota çalınıyor.\n\nI. İkinci seste ses şiddeti artar.\nII. İkinci seste frekans artar.\nIII. İki sesin yüksekliği, yani inceliği aynıdır.\n\nYargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 3,
+       "narration": "Güçlü vuruş genliği değiştirir.",
+       "steps": [
+        {
+         "text": "Güçlü vuruş → genlik büyür → **şiddet artar** (I).",
+         "narration": "Tele güçlü vurmak titreşimin genliğini artırır; ses şiddeti artar. Birinci doğru."
+        },
+        {
+         "text": "Aynı nota → aynı frekans → aynı **yükseklik** (II yanlış, III doğru). Cevap **D**.",
+         "narration": "Aynı nota çalındığı için frekans değişmez; sesin inceliği aynı kalır. İkinci yanlış, üçüncü doğru. Cevabımız D. İkinciyi seçen, sesin yüksek olmasını hem şiddet hem incelik anlamında karıştırmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ses şiddeti ile ses yüksekliği ayrımı özgün bir durumla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "I. P dalgaları boyunadır ve S dalgalarından hızlıdır.\nII. S dalgaları sıvıların içinden geçebilir.\nIII. Binalara en çok zararı yüzey dalgaları verir.\n\nDeprem dalgalarıyla ilgili yargılardan hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "I ve II",
+        "I ve III",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "narration": "S dalgası enine.",
+       "steps": [
+        {
+         "text": "I doğru: P boyuna ve en hızlı. III doğru: yüzey dalgaları en yıkıcı.",
+         "narration": "P dalgaları boyunadır ve en hızlı ilerler: birinci doğru. Yüzey dalgaları en yavaş ama en yıkıcıdır: üçüncü doğru."
+        },
+        {
+         "text": "S dalgaları enine; **yalnız katılardan** geçer (II yanlış). Cevap **C**.",
+         "narration": "S dalgaları enine dalgalardır ve sıvılardan geçemez; ikinci yanlış. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; deprem dalgalarının özellikleri öncüllerle özgün olarak soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir vadide bağıran bir kişi, sesinin karşıdaki kayalıktan yansıyan yankısını $2$ saniye sonra duyuyor. Sesin havadaki hızı $340$ m/s olduğuna göre kişi kayalıktan kaç metre uzaktadır?",
+       "options": [
+        "$85$",
+        "$170$",
+        "$255$",
+        "$340$",
+        "$680$"
+       ],
+       "answer": 3,
+       "narration": "Ses gidip geliyor.",
+       "steps": [
+        {
+         "text": "Ses $2$ s'de $340 \\cdot 2 = 680$ m yol alır: kayalığa gidip geri döner.",
+         "narration": "Ses iki saniyede üç yüz kırk çarpı iki, altı yüz seksen metre yol alır. Ama bu yol, kayalığa gidiş ve dönüşün toplamı."
+        },
+        {
+         "text": "Uzaklık $\\frac{680}{2} = 340$ m. Cevap **D**.",
+         "narration": "Kayalığa uzaklık bunun yarısı: üç yüz kırk metre. Cevabımız D. Altı yüz sekseni seçen, sesin yalnız gittiğini sanıp dönüş yolunu unutmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yankı ile uzaklık özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir dalga kaynağı $10$ saniyede $40$ tam dalga oluşturuyor. Dalgaların frekansı ve periyodu nedir?",
+       "options": [
+        "$0{,}25$ Hz ve $4$ s",
+        "$40$ Hz ve $10$ s",
+        "$4$ Hz ve $4$ s",
+        "$4$ Hz ve $0{,}25$ s",
+        "$400$ Hz ve $0{,}1$ s"
+       ],
+       "answer": 3,
+       "narration": "Frekans: saniyedeki dalga sayısı.",
+       "steps": [
+        {
+         "text": "$f = \\frac{40}{10} = 4$ Hz; $T = \\frac{1}{f} = 0{,}25$ s. Cevap **D**.",
+         "narration": "Frekans, bir saniyedeki dalga sayısı: kırk bölü on, dört hertz. Periyot frekansın tersi: dörtte bir, sıfır virgül yirmi beş saniye. Cevabımız D. A'yı seçen, frekans ile periyodu yer değiştirmiştir.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; frekans ve periyot tanımı özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Dalga **enerji** taşır; $v = \\lambda f$, $f = \\frac{1}{T}$.",
+    "Frekans **kaynağa**, hız **ortama** bağlı.",
+    "Enine: titreşim yayılmaya dik; boyuna: aynı doğrultuda.",
+    "Su dalgası sığ suda yavaşlar, dalga boyu kısalır; frekans değişmez.",
+    "Ses mekanik ve boyuna; frekans incelik, genlik şiddet. P en hızlı, S yalnız katıda."
+   ],
+   "warnings": [
+    "Eli hızlı sallamak dalgayı **hızlandırmaz**, frekansı artırır.",
+    "Sesin \"yüksek\" olması iki anlamlıdır: **incelik** frekans, **şiddet** genlik.",
+    "Dalga ilerlerken ortamın tanecikleri **yerinde** titreşir."
+   ],
+   "narration": "Hadi toparlayalım. Dalga enerji taşır, maddeyi taşımaz; hızı dalga boyu çarpı frekanstır. Frekansı kaynak, hızı ortam belirler. Enine dalgada titreşim yayılmaya dik, boyuna dalgada aynı doğrultudadır. Su dalgaları sığ suda yavaşlar ve dalga boyu kısalır. Ses mekanik ve boyuna bir dalgadır, boşlukta yayılmaz; frekansı inceliğini, genliği şiddetini belirler. Depremde P dalgaları ilk ulaşır, S dalgaları yalnız katılarda ilerler."
+  }
+ }
+}

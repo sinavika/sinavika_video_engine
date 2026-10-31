@@ -14,7 +14,7 @@ export type SpeechBackend = {
 	availableVoiceIds: () => Promise<ReadonlySet<string>>;
 	/** Characters left in the current billing period, or null when unknown. */
 	remainingCharacters: () => Promise<number | null>;
-	/** MP3 bytes for a whole script, spoken in one go, and when each of its characters is spoken. */
+	/** The audio of a whole script, spoken in one go (SPEECH_AUDIO, WAV), and when each of its characters is spoken. */
 	narrate: (script: string, cast: VoiceCast) => Promise<Narration>;
 	/** Set by stand-ins so their audio is never mistaken for real clips in the cache. */
 	cacheTag?: string;
@@ -35,8 +35,22 @@ export class SpeechError extends Error {
 
 const API_KEY_VARIABLE = 'ELEVENLABS_API_KEY';
 const ENV_FILE = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', '.env');
-/** The best MP3 the plan offers (192 kbps needs Creator or above); the mix is re-encoded once, so the source should be as clean as it can be. */
-const OUTPUT_FORMAT = 'mp3_44100_192';
+/**
+ * How speech and sound effects are delivered: lossless 44.1 kHz WAV, the
+ * model's own rate. ElevenLabs gives PCM and WAV at 44.1 kHz only from the
+ * Pro plan on, which the account has had since 30 Oct 2026; before, Creator's
+ * best was MP3 at 192 kbps, so every mix was an encode of an encode. A clip
+ * already cached from an MP3 stays as it is; only new clips come lossless.
+ */
+export const SPEECH_AUDIO = {outputFormat: 'wav_44100', extension: 'wav'} as const;
+/** Music: the richest MP3 Eleven Music makes (48 kHz, 320 kbps); `auto` gave 192 kbps. Pieces already made keep their file. */
+const MUSIC_OUTPUT_FORMAT = 'mp3_48000_320';
+/**
+ * Requests ElevenLabs runs at once for this plan (Pro: 10 for the multilingual,
+ * v3 and v4 models; Creator had 5). A request over the limit is refused with
+ * 429 and tried again (RETRYABLE_STATUSES).
+ */
+export const SPEECH_CONCURRENCY = 10;
 const FREE_TIER = 'free';
 const DEFAULT_VOICE_CATEGORY = 'premade';
 const RETRYABLE_STATUSES = new Set([408, 409, 425, 429, 500, 502, 503, 504]);
@@ -111,7 +125,7 @@ export const ELEVENLABS_SPEECH: SpeechBackend = {
 				text: script,
 				modelId: cast.modelId,
 				languageCode: cast.languageCode,
-				outputFormat: OUTPUT_FORMAT,
+				outputFormat: SPEECH_AUDIO.outputFormat,
 				seed: cast.seed,
 				voiceSettings: {stability: cast.stability, similarityBoost: cast.similarity, style: cast.style, useSpeakerBoost: true},
 			});
@@ -131,12 +145,34 @@ export const ELEVENLABS_SPEECH: SpeechBackend = {
 	},
 };
 
+const SOUND_EFFECT_MODEL = 'eleven_text_to_sound_v2';
+/** Above the 0.3 default: an effect that sits under a voice has to be the sound described, not a variation of it. */
+const SOUND_EFFECT_PROMPT_INFLUENCE = 0.6;
+
+/** A sound effect of the given length, made from a description of it (ElevenLabs Sound Effects), as SPEECH_AUDIO (WAV). */
+export const composeSoundEffect = async (description: string, seconds: number): Promise<Buffer> => {
+	try {
+		const stream = await elevenLabs().textToSoundEffects.convert({
+			text: description,
+			durationSeconds: seconds,
+			promptInfluence: SOUND_EFFECT_PROMPT_INFLUENCE,
+			modelId: SOUND_EFFECT_MODEL,
+			outputFormat: SPEECH_AUDIO.outputFormat,
+		});
+		const audio = Buffer.from(await new Response(stream).arrayBuffer());
+		if (audio.length === 0) throw new SpeechError('ElevenLabs returned no sound effect.', true);
+		return audio;
+	} catch (error) {
+		throw toSpeechError(error);
+	}
+};
+
 const MUSIC_MODEL = 'music_v2_5';
 
-/** An instrumental piece of the given length, made from a description of it. MP3 bytes. */
+/** An instrumental piece of the given length, made from a description of it. MP3 bytes (48 kHz, 320 kbps). */
 export const composeMusic = async (description: string, seconds: number): Promise<Buffer> => {
 	try {
-		const stream = await elevenLabs().music.compose({prompt: description, musicLengthMs: Math.round(seconds * 1000), modelId: MUSIC_MODEL, forceInstrumental: true});
+		const stream = await elevenLabs().music.compose({prompt: description, musicLengthMs: Math.round(seconds * 1000), modelId: MUSIC_MODEL, forceInstrumental: true, outputFormat: MUSIC_OUTPUT_FORMAT});
 		const audio = Buffer.from(await new Response(stream).arrayBuffer());
 		if (audio.length === 0) throw new SpeechError('ElevenLabs returned no music.', true);
 		return audio;

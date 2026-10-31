@@ -88,7 +88,7 @@ export const TipList = defineImageTemplate({
 		],
 		closing: 'Deneme sınavlarında prova et.',
 	},
-	defaultTheme: 'ExamFocus',
+	defaultTheme: 'SinavikaLight',
 	defaultSize: 'Portrait',
 	outputName: (content) => `${content.exam ?? ''} ${content.title}`,
 	Component: TipListImage,

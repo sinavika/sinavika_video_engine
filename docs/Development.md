@@ -12,7 +12,7 @@
 | Komut | `npm run render` | `npm run image` |
 
 Ortak olanlar: `Themes/` (temalar, token'lar, paletler, fontlar), `Components/` (tipografi, yerleşim, ikon, logo),
-`Configurations/` (marka, ses, formatlar), `Schemas/` (zengin metin, görsel), `Services/OutputFiles.ts`.
+`Configurations/` (marka, ses, formatlar), `Schemas/` (zengin metin, görsel), `Services/OutputFile.ts`.
 
 Video kodu bulunduğu yerde bırakıldı (`src/Templates`, `src/Renderers`, `src/Scenes`); bir `src/Videos/` klasörüne
 taşınmadı. Taşıma, çalışan video akışında onlarca import'u değiştirip hiçbir davranış kazandırmayacaktı. Ayrım
@@ -22,6 +22,33 @@ import etmez; video tarafı da `src/Images` altındaki hiçbir şeyi. İkisi yal
 Görsel tarafının videodan aldığı iki şey vardır ve ikisi de altyapıdır: derlenmiş paket (`bundleProject`) ve
 doğrulama hatası sınıfı (`VideoJobValidationError`).
 
+
+## Klasör haritası ve adlandırma (29 Ekim 2026, 31 Ekim'de güncellendi)
+
+| Klasör | İçinde |
+| --- | --- |
+| `src/Animations/` | Hareket matematiği ve şemaları: `Motion.ts` (`easeFrom`, `smooth`, `smoothStep`, `lerp`, `clamp01`, süre ve eğri token'ları), `AnimationSpec.ts`, `AnimationStyle.ts`. React bileşeni yoktur |
+| `src/Components/Animations/` | Hareketli React bileşenleri (`Animated`, `DrawPath`, `Highlight` …) |
+| `src/Components/Visuals/` | Ders videolarının görselleri. `CourseVisual.tsx` tek dağıtıcıdır; her ders klasörünün `<Ders>Schema.ts` dosyası o dersin türlerinin şemasıdır, `VisualSchema.ts` onları tek birleşimde toplar (birden çok dersin kullandığı şema parçaları `VisualSchemaPart.ts`); `VisualWorld.tsx` 1000 × 600 çizim dünyası (`World`, `pathOf`, `usePartLook`, `Tag`, `Chip`); `VisualTimeline.tsx` vuruşların parçaları göstermesi ve odaklaması; `VisualFrame.tsx` kutu, palet ve sahne saati |
+| `src/Components/Visuals/<Ders>/` | Her görsel kendi dosyasında, dersin şeması `<Ders>Schema.ts`: `Biology`, `Chemistry`, `Geography`, `Humanities` (harita, zaman çizelgesi, savaş, ayet, resim), `Language` (cümle, paragraf), `Literature` (şiir, hece), `Logic`, `Mathematics` (grafik, geometri, terazi, sayı doğrusu), `Philosophy`, `Physics`, `Processes` (süreç sahneleri), `Structure` (karşılaştırma, tablo, Venn, ağaç, yığın, dörtlü, akış, döngü), `Three` (3B katı cisim, molekül, fay) |
+| `src/Templates/Courses/CourseLesson/Scenes/`, `Camps/Scenes/`, `Camps/CampIntro/Scenes/`, `Camps/CampShort/Scenes/` | Ders ve kamp şablonlarının sahneleri, sahne başına bir dosya; ortak parçalar `LessonChrome`, `CampChrome`, `IntroKit`, `ChallengeKit` |
+| `src/Courses/` | Ders senaryosu şeması (`LessonScript.ts`, `OPTION_LETTERS` burada), kamplar ve kamp işleri (`Camp.ts`, `CampJob.ts`), Works görünümü (`WorksView.ts`), söyleniş, kelime zamanları (`LessonCue.ts`), çıkmış sorular |
+| `src/Renderers/` | İşi doğrulama ve render: `VideoJob.ts` (saf, dosya okumaz), `VideoJobFile.ts` (iş dosyasını okur; kamp işinin `script` yolundaki senaryoyu yükler) |
+| `scripts/` | Komutlar (`npm run …`), dosya başına bir komut. `DeadCode.ts`: kimsenin içe aktarmadığı dışa aktarımları listeler |
+| `tests/` | `src` düzenini izler: bir test, sınadığı modülün klasöründedir (`tests/Components/Visuals/Physics/Kepler.test.ts`). Bütün motoru kesen kurallar kökte `Architecture.test.ts`; ortak yollar `tests/Support/Paths.ts` (`ROOT`, `FIXTURES`), ortak veriler `tests/Fixtures/` |
+| `Outputs/` | Bütün çıktılar (video, görsel, kare, örnek, ses denemesi, mağaza görselleri); git dışında |
+| `Posts/` | Sosyal medya gönderileri (yalnız json ve md); ay planları `Posts/Plans/` |
+
+Kurallar (`tests/Architecture.test.ts` denetler):
+
+- **Yalnız klasör adı çoğul olur.** Dosya, içindeki tek şeyin adını tekil taşır (`Sentence.tsx`, `LessonCue.ts`). Birden çok şey taşıyan bir dosya klasöre bölünür. İstisnalar testteki listede gerekçesiyle durur: sabit koleksiyonlar (`BrandColors`, `DesignTokens`, `Voices`), görsel türüyle aynı adı taşıyanlar (`Forces`, `Plates`), kütle isimleri (`Dynamics`, `Optics`). Reklam ve eğitim şablon arşivi, UI/UX, reklam, mağaza, görsel ve kampanya kodu bu kuralın dışında bırakıldı.
+- **Bir yardımcı tek yerde tanımlanır.** Hareket eğrileri `Animations/Motion.ts`, çizim dünyası `Visuals/VisualWorld.tsx`, şık harfleri `Courses/LessonScript.ts`. Kopya yazılmaz, içe aktarılır.
+- **Yalnız başka bir modülün kullandığı şey dışa aktarılır.** Hiç kullanılmayan tanım silinir. `npx tsx scripts/DeadCode.ts` raporu boş kalır; `--fix` gereksiz `export` sözcüklerini kaldırır.
+- **Testler `tests/` altındadır**, `src` içinde test olmaz; `tests/` içinde `src` düzenini izler.
+- **Proje kökünde ve `scripts/` içinde başıboş dosya olmaz.** Kökteki girdiler testteki listededir; karalama dosyaları projenin dışında tutulur.
+- **Belgelerdeki dosya bağlantıları çalışır.** `README.md`, `docs/`, `Curriculum/`, `Posts/` ve `samples/` içindeki md dosyalarında var olmayan dosyaya bağlantı olmaz.
+- **Kamp işleri senaryonun kopyasını değil yolunu taşır** (`script`); `npm run curriculum -- jobs check` hepsini doğrular.
+- **Yalnız Sınavika görünümü:** temalar `SinavikaLight`, `SinavikaDark` ve ikisinin tabanı `SinavikaBrand` (eski 5 tema 31 Ekim'de kaldırıldı).
 
 ## Akış
 
@@ -108,11 +135,11 @@ bunların hepsi bu sınırın dışına eklenebilir.
 | --- | --- |
 | `<Ad>Schema.ts` | İçerik Zod şeması. Sahne niteliğindeki öğeler `SceneTimingSchema.extend(...)` kullanır |
 | `<Ad>Sample.ts` | Şemayı geçen örnek içerik (Studio varsayılanı, testlerde kullanılır) |
-| `<Ad>Scenes.tsx` | Sahne bileşenleri |
+| `<Ad>Scenes.tsx` ya da `Scenes/<SahneAdı>.tsx` | Sahne bileşenleri. Birden çok sahnesi olan yeni şablonda `Scenes/` klasörü, sahne başına bir dosya |
 | `<Ad>.tsx` | `defineTemplate({...})`: `buildScenes`, geçiş, üst katman |
 
 Sonra `TemplateRegistry.ts` içine tek satır eklenir. Studio'da üç formatta görünür, `npm run render`/`validate`/`schema`
-ile çalışır ve `tests/Templates.test.ts` ile `tests/VideoRenderer.render.ts` içindeki genel testlere otomatik girer.
+ile çalışır ve `tests/Templates/Template.test.ts` ile `tests/Renderers/VideoRenderer.render.ts` içindeki genel testlere otomatik girer.
 Mevcut hiçbir dosya değişmez.
 
 Sahne yazarken:
@@ -155,7 +182,7 @@ Tasarım yazarken:
 ## Yeni tema eklemek
 
 `src/Themes/<TemaAdı>.ts` dosyasında bir `Theme` nesnesi tanımlayın ve `ThemeRegistry.ts` içine ekleyin. Bütün
-template'ler temayı hemen kabul eder. `tests/VideoJob.test.ts` renklerin 6 haneli hex olduğunu ve metin/zemin
+template'ler temayı hemen kabul eder. `tests/Renderers/VideoJob.test.ts` renklerin 6 haneli hex olduğunu ve metin/zemin
 çiftlerinin WCAG kontrastını otomatik denetler. Tema yazı tipi seçmez: bütün temalar marka tipografisini
 (`BRAND_THEME_TYPOGRAPHY`, Manrope) kullanır, yalnız etiketlerin büyük harfini kapatabilir. Yeni bir yazı tipi
 marka kararıdır; bkz. [`docs/Brand/Tipografi.md`](Brand/Tipografi.md).
@@ -164,7 +191,8 @@ marka kararıdır; bkz. [`docs/Brand/Tipografi.md`](Brand/Tipografi.md).
 
 | Ne | Nerede |
 | --- | --- |
-| Yeni görsel türü (ör. sayı doğrusu, grafik) | `Schemas/Visual.ts` içine bir şema, `Illustration.tsx` içine bir `case` |
+| Ders videosuna yeni görsel türü | `Components/Visuals/<Ders>/<Ders>Schema.ts` listesine şema (yeni ders klasörüyse listesini `VisualSchema.ts` birleşimine ekle), `Components/Visuals/<Ders>/<Ad>.tsx` bileşen, `CourseVisual.tsx` içine bir `case`. Ortak çizim parçaları `VisualWorld.tsx`, hareket `Animations/Motion.ts` |
+| Eğitim şablonlarına yeni görsel (ör. sayı doğrusu) | `Schemas/Visual.ts` içine bir şema, `Illustration.tsx` içine bir `case` |
 | Konu anlatımına yeni blok türü | `TopicBlockSchema` içine bir şema, `TopicBlockView` içine bir `case` |
 | Yeni animasyon preset'i | `AnimationSpec.ts` içindeki liste, `AnimationStyle.ts` içine bir `case` |
 | Yeni sahne geçişi | `SceneTransition.ts` (sahneler saydamdır; yalnızca eski sahneyi götüren geçişler uygundur) |
@@ -182,7 +210,7 @@ marka kararıdır; bkz. [`docs/Brand/Tipografi.md`](Brand/Tipografi.md).
 
 `Themes/Palettes.ts` içine sürümlü bir adla (`SinavikaV1`) ekleyin. `applyPalette(tema, palet)` paleti bir temanın
 tipografi ve biçimiyle birleştirip yeni bir tema üretir; renk üstü yazı renklerini kontrasta göre kendisi seçer.
-Mevcut temalar değişmez (`tests/Images.test.ts` bunu denetler). Görsel işleri paleti adıyla seçer; videolar
+Mevcut temalar değişmez (`tests/Images/Image.test.ts` bunu denetler). Görsel işleri paleti adıyla seçer; videolar
 yalnızca `ThemeRegistry` içindeki temaları kullanır, bu yüzden bir palet videoları ancak siz onu orada bir tema
 olarak kaydederseniz etkiler.
 
@@ -238,9 +266,11 @@ sandbox'ta derlenip render edilmeli ve insan onayından geçmelidir.
   gereken içerikte işte `"model": "stable"` kullanın.
 - **Seslendirme ağ gerektirir** (önbellekte olmayan metinler için) ve anlatım metni ElevenLabs'e gönderilir.
 - **Formül okuma en iyi çabadır.** Okul düzeyi ifadeler okunur; karmaşık ifadelerde `narration` verin.
-- **Altyazı ve arka plan müziği yok.** Satır metinleri ve süreleri elde olduğu için altyazı eklenebilir.
-- **Ses ile ekran eşlemesi sahne düzeyindedir:** sahne, sesi kadar sürer ve öğeler süreye yayılır; kelime
-  kelime eşleme yapılmaz.
+- **Altyazı yok.** Satır metinleri ve süreleri elde olduğu için eklenebilir. Reklam müziği ElevenLabs Music ile
+  her reklam için ayrı üretilir; ders videolarında müzik yoktur.
+- **Ses ile ekran eşlemesi kelime düzeyindedir (ders videoları):** kartın parçaları seslendirmedeki kelime
+  zamanlarıyla söylendikleri anda gelir (`Courses/LessonCue.ts`). Eski eğitim şablonlarında eşleme sahne
+  düzeyindedir.
 - **Marka renkleri varsayımdır.** Logo gerçek Sınavika logosudur (`public/Brand/SinavikaLogo.png`), ama
   `SinavikaBrand` temasındaki renkler henüz resmî marka renkleri değildir.
 - **Görseller yalnızca `public/` içinden ya da URL'den okunur.** URL'li görsel render sırasında ağ gerektirir.
@@ -248,7 +278,7 @@ sandbox'ta derlenip render edilmeli ve insan onayından geçmelidir.
 - **Studio'da "Can't save default props" uyarısı** beklenen bir durumdur: varsayılan props dosyadaki sabit bir
   nesne değil, şemadan geçirilmiş örnek içeriktir. Props panelinde düzenleme ve önizleme çalışır.
 - **Sahne geçişleri fade ve slide ile sınırlıdır** (sahneler ortak, sabit bir arka plan üzerinde saydamdır).
-- **Diyagramlar basittir:** akış (2–5 düğüm), döngü (3–6 düğüm), kavram haritası, formül, görsel. Koordinat
-  düzlemi, grafik, geometri çizimi yoktur.
+- **Eğitim şablonlarının diyagramları basittir** (akış, döngü, kavram haritası, formül, görsel). Ders videolarında
+  ise grafik, geometri, 3B katı cisim, harita, süreç ve fizik/kimya simülasyonları vardır (`Components/Visuals/`).
 - **Süre tahmini sezgiseldir** (kelime sayısı). Seslendirme gelene kadar `durationSeconds` ile elle ayarlanabilir.
 - **Render tek makinede, tek süreçte çalışır.** Eşzamanlı iş sayısını çağıran taraf sınırlamalıdır.

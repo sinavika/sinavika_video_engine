@@ -63,8 +63,24 @@ Ses ile ekran hiçbir yerde ayrışmaz (sahip, 25 Ekim 2026: "yazılan soru ile 
 - **Sorular şablon tarafından okunur.** Sorunun paragrafı, kökü ve şıkları ekranda yazdığı gibi okunur ([LessonSpeech.ts](../src/Courses/LessonSpeech.ts)). Okunuş kuralları:
   - "----" boşlukları "boşluk" diye okunur.
   - "(II)" işaretleri "iki numara" diye okunur.
+  - Roma rakamları harf gibi okunmaz (28 Ekim 2026):
+    - Öncül listesi "I. …, II. …" "bir numara, …, iki numara, …" diye okunur.
+    - Sıra sayısı "II. cümle", "XI. yüzyıl", "II. Murat" "ikinci cümle", "on birinci yüzyıl", "ikinci Murat" diye okunur.
+    - Yalnız rakamdan oluşan şık "Yalnız I", "I ve II", "II - IV - I" "yalnız bir", "bir ve iki", "iki, dört, bir" diye okunur.
+    - Metin içindeki tek başına "I" İngilizce sözcük olabileceği için dokunulmaz.
+    - Ders ve bölüm başlıkları karşılamada ve bölüm girişinde ham okunur; bu yüzden sıra sayısı kuralı her Türkçe seslendirmede de uygulanır (`pronounceAbbreviations`): "XX. Yüzyıl" "yirminci Yüzyıl" olur.
   - "yalın - dolaşırken" gibi çiftler araya kısa bir duraklamayla okunur.
   - Yalnız I, II, III gibi etiket olan şıklar okunmaz.
+  - " - " ayracı yalnız formül dışında duraklamadır; formülün içinde (`$a - b$`) "eksi" okunur (28 Ekim 2026).
+- **Matematik okunuşu** ([SpokenText.ts](../src/Schemas/SpokenText.ts), TYT Matematik kampı, 28 Ekim 2026). Formüller öğretmenin söylediği gibi okunur:
+  - $\overline{AB}$ "A B"; $0{,}\overline{3}$ "0,3 devirli"; $0{,}25$ "0,25" (duraklamasız).
+  - $5!$ "5 faktöriyel"; $|x - 3|$ "mutlak değer x eksi 3"; %20 "yüzde 20"; $\sqrt[3]{8}$ "küpkök 8".
+  - $\cup$, $\cap$, $\setminus$, $\varnothing$: "birleşim", "kesişim", "fark", "boş küme"; $A'$ "A tümleyen".
+  - $\wedge$, $\vee$, $\Rightarrow$, $\Leftrightarrow$, $\equiv$: "ve", "veya", "ise", "ancak ve ancak", "denktir"; $p'$ "p değil".
+  - $f(2)$ "f 2", $f^{-1}(7)$ "f tersi 7", $f \circ g$ "f bileşke g", $P(x + 1)$ "P x artı 1"; $\binom{8}{3}$ "C 8 3"; $\Delta$ "delta"; $\pmod{5}$ "mod 5".
+  - Tanımlı işlemler: $\triangle$ "üçgen", $\ast$ "yıldız".
+  - Reels'te şık da okunur: "3/7" "3 bölü 7", "6√2" "6 karekök 2", "50 km/sa" "saatte 50 kilometre".
+  - Birimden sonra Türkçe ek gelirse birim açılmaz: "3 mü" "3 metreü" olmaz.
 - **Senaryodaki `question.narration` yalnız giriştir:** "Hadi bunu bir soruda deneyelim." Soru kendi sözlerinle tekrar anlatılmaz.
 - **Tahmin kartında da aynısı geçerli:** önce soru (`narration`), sonra şıklar (şablon okur), sonra "Birkaç saniye düşün." Senaryoya "düşün" yazılmaz.
 - **Tahmin kartı, ekranda olmayan bir şey hakkında soru sormaz** (sahip, 27 Ekim 2026: "soru sorulmadan cevap bekleniyor").
@@ -87,7 +103,7 @@ Soru okunduktan sonra 5 saniye sessiz düşünme süresi vardır (`COURSE_DESIGN
 
 Bir konunun senaryosu yazılmadan önce:
 1. **Kapsam listesi (amaç: [Courses.md §0](Courses.md#0-amaç)):** konunun MEB kazanımları ve ÖSYM'nin bu konuda sorduğu soru tipleri tek bir listeye yazılır. Listedeki her madde senaryoda yer alır; eksik madde varsa senaryo bitmiş sayılmaz. Kapsamı başka kanalların ya da yayınların konu listesi belirlemez; hiçbir kanal örnek alınmaz.
-2. **Sınavdaki yeri:** `Curriculum/Data` içindeki ÖSYM sorularının yılları ve soru tipleri, ayrıca [`KapsamDenetimi.md`](../Curriculum/Production/KapsamDenetimi.md) içindeki soru dağılımları. Kaynaklar çelişiyorsa kesin sayı söylenmez: "her yıl birkaç soru" denir.
+2. **Sınavdaki yeri:** `Desktop\EgitimVerileri` içindeki ÖSYM sorularının yılları ve soru tipleri, ayrıca [`KapsamDenetimi.md`](../Curriculum/Production/KapsamDenetimi.md) içindeki soru dağılımları. Kaynaklar çelişiyorsa kesin sayı söylenmez: "her yıl birkaç soru" denir.
 3. **Öğrencinin dili:** sınav kaygısı, "bunu ezberle", "tuzak" gibi öğrencinin kendi kullandığı ifadeler ve sınıfta konuşulan hafif espriler (memler) kullanılır. Marka diline uygun ve kimseyi küçümsemeden.
 4. **Yapı:** kanca (soru ya da şaşırtan bir bilgi), sık yapılan hata, tuzak, "sınavda nasıl çıkar" ve en az üç çözümlü soru.
 
@@ -95,14 +111,14 @@ Bir konunun senaryosu yazılmadan önce:
 
 Ders tek parça seslendirilir, sonra satırlara kesilir. Bu kesimde iki kural vardır:
 
-- **Kesim, sesin en sessiz anına düşer.** Eleven v4 satırlar arasında çoğu zaman hiç duraklamaz. Ses servisinin karakter zamanlarına göre yapılan kesim bir sözcüğün içine düşüyordu ve sözcüğün başı ya da sonu kırpılıyordu ("seste hafif kesilmeler"). Artık her kesim, bulunduğu yerin ±0,35 saniye çevresindeki en sessiz ana, yani iki sözcük arasındaki boşluğa ya da nefese kaydırılır. Bu ölçüm doğrudan ses dalgası üzerinde yapılır ([NarrationCuts.ts](../src/Services/NarrationCuts.ts)). Önbellekteki eski seslendirmeler ilk kullanımda bir kez yeniden kesilir; yeni ses üretilmez. 25 Ekim ölçümü: 159 kesimin hiçbiri konuşmanın içinde değil (öncesinde yaklaşık üçte biri içindeydi).
+- **Kesim, sesin en sessiz anına düşer.** Eleven v4 satırlar arasında çoğu zaman hiç duraklamaz. Ses servisinin karakter zamanlarına göre yapılan kesim bir sözcüğün içine düşüyordu ve sözcüğün başı ya da sonu kırpılıyordu ("seste hafif kesilmeler"). Artık her kesim, bulunduğu yerin ±0,35 saniye çevresindeki en sessiz ana, yani iki sözcük arasındaki boşluğa ya da nefese kaydırılır. Bu ölçüm doğrudan ses dalgası üzerinde yapılır ([NarrationCut.ts](../src/Services/NarrationCut.ts)). Önbellekteki eski seslendirmeler ilk kullanımda bir kez yeniden kesilir; yeni ses üretilmez. 25 Ekim ölçümü: 159 kesimin hiçbiri konuşmanın içinde değil (öncesinde yaklaşık üçte biri içindeydi).
 - **Sahneler arasında nefes payı:** Sahneler geçiş süresi kadar üst üste biner. Konuşan her sahnenin süresine bu geçiş payı eklenir (`planTemplateScenes`). Böylece iki satır arasında hep yaklaşık 0,45 saniye kalır; bir satır, öncekinin üstüne binmez. Beat satırlarının en kısa süresi 1,2 saniyedir.
 
 ## 5. Ses
 
 - **Model:** kamp dersleri ve reels Eleven v4 ile seslendirilir (`COURSE_VOICE_MODEL`). Önceki model (Multilingual v2) 15 dakika boyunca düz okuyordu. Şablon modelini kendisi söyler (`voiceModel`), iş dosyasına yazılmaz.
 - **Ses:** marka sesi Doğa, eğitmen profili (`Lecturer`). Kararlılık 0,6'dan 0,48'e indi; sorular ve vurgular daha çok inip çıkıyor.
-- **Okunuş sözlüğü:** ekranda kısaltma, seste Türkçe okunuşu. Yeni bir kısaltma yalnız buraya eklenir: [`ABBREVIATIONS`](../src/Schemas/SpokenText.ts).
+- **Okunuş sözlüğü:** ekranda kısaltma, seste Türkçe okunuşu. Bütün seslendirmeler (dersler, reels, tanıtımlar, Google Ads videoları) bu sözlükten geçer. Yeni bir kısaltma yalnız buraya eklenir: [`ABBREVIATIONS`](../src/Schemas/SpokenText.ts). Bir işin ya da şablonun `script` alanına okunuş yazılmaz; test bunu engeller (31 Ekim 2026).
 
   | Yazılan | Okunan |
   |---|---|
@@ -111,7 +127,25 @@ Ders tek parça seslendirilir, sonra satırlara kesilir. Bu kesimde iki kural va
   | TYT | teyete |
   | AYT | ayete |
   | YDT | yedete |
-  | SinoAI | Sino Ey Ay |
+  | SinoAI, SinoAI'ye | Sino Ey Ay, Sino Ey Ay'ye (sahip 31 Ekim 2026'da "Sino Eyay" ve bitişik "Sinoeyay" ile karşılaştırıp bunu seçti) |
+  | PDF, PDF'in | Pidiyef, Pidiyefin |
+  | sinavika.com'da | Sınavika nokta kom'da |
+  | MÖ 680, MS 375 | milattan önce altı yüz seksen, milattan sonra üç yüz yetmiş beş |
+  | Hz. Ali, Hz. Peygamber | Hazreti Ali, Hazreti Peygamber ("50 Hz." hertz kalır) |
+
+- **Sayılar sözle okunur (29 Ekim 2026):** anlatımda ve ekrandan okunan sorularda rakamlar seslendirmeden önce merkezde söze çevrilir ([`spokenNumbers`](../src/Schemas/SpokenText.ts)). Senaryoda rakam yazılabilir; ses onu öğretmenin söylediği gibi okur. Eskiden 475 anlatım satırında rakam vardı ve ses bunları kendisi tahmin ediyordu.
+
+  | Yazılan | Okunan |
+  |---|---|
+  | 1912'de, 23'ü 5'e, 4'ün | bin dokuz yüz on ikide, yirmi üçü beşe, dördün |
+  | 19. yüzyıl, 2'nci | on dokuzuncu yüzyıl, ikinci |
+  | 52 718, 40.075 km, 3 000'den | elli iki bin yedi yüz on sekiz, kırk bin yetmiş beş kilometre, üç binden |
+  | 2,05; %30'u; 1/4 | iki virgül sıfır beş; yüzde otuzu; bir bölü dört |
+  | 0-14 yaş; -5 | sıfır ile on dört yaş; eksi beş |
+  | 14.20'de; 37 °C'de | on dört yirmide; otuz yedi derecede |
+  | G1, 5N1K, 2n = 8, x² | G bir, beş N bir K, iki n eşittir sekiz, x kare |
+
+  Cümle sonundaki "1453." sıra sayısı sayılmaz (büyük harfle başlayan cümle gelir); "16. yüzyıl" gibi küçük harfli bir sözden önceki nokta sıra sayısıdır. Formülden ve boşluktan sonraki ek kopmaz: "$50°$'dir" "elli derecedir", "----'dir" "boşluk" diye okunur.
 
 - **Müzik yok:** ders videolarında ve kamp reels'lerinde arka plan müziği kullanılmaz; yalnız anlatım vardır. Reklam ve tanıtım videoları bu kuralın dışındadır.
 
@@ -119,18 +153,18 @@ Ders tek parça seslendirilir, sonra satırlara kesilir. Bu kesimde iki kural va
 
 Kapanış iki parçadır:
 1. **Kamp görevi** ve "Sıradaki ders" kartı.
-2. **Uygulama tanıtımı:** yalnız görseldir, seslendirilmez. App Store ve Google Play düğmelerinde mağazaların logoları vardır ([StoreLogo.tsx](../src/Components/Illustrations/StoreLogo.tsx)).
+2. **Uygulama tanıtımı:** yalnız görseldir, seslendirilmez. App Store ve Google Play ortak mağaza rozetleriyle gösterilir ([StoreBadge.tsx](../src/Components/Brand/StoreBadge.tsx)).
 
 ## 7. Kapak
 
 Kapak, kamp kapağıdır ([CampCover](../src/Images/Templates/Thumbnails/CampCover.tsx)):
-- zemin ders renginde;
-- dev ders numarası ("DERS 01");
-- konu adı ve videonun türü ("Konu anlatımı" ya da "Kısa tekrar");
-- kampın adı ve sınav etiketleri;
-- kampın ilerleme noktaları ve logo.
+- zemin dersin renginde, kamp tanıtımında lacivert; düzen kapak standardında ([`Sosyal-Kimlik-Standardi.md`](Sosyal-Kimlik-Standardi.md)), logo sol üstte;
+- etiket olarak kampın adı ve sınav etiketleri;
+- konu adı;
+- videonun türü ("Konu anlatımı" ya da "Kısa tekrar") ve dev ders numarası ("03 / 16");
+- kampın ilerleme noktaları.
 
-Kamp videolarında render kendiliğinden bu kapağı yapar. Bütün dersler aynı tasarımı taşır; seri kanal sayfasında tanınır, ders de renginden bulunur.
+Kamp videolarında render kendiliğinden bu kapağı yapar; yalnız kapak için `npm run cover -- --job <video işi>`. Bütün dersler aynı tasarımı taşır; seri kanal sayfasında tanınır, ders de renginden bulunur.
 
 ## 8. Yerleşim güvenliği
 
@@ -158,7 +192,7 @@ Kamp reels'i bir tanım listesi değil, kısa bir yarışmadır. 25 Ekim'deki il
 
 Kurgu buna göre yeniden kuruldu.
 
-Akış (`short.rounds`, [CampChallengeScenes.tsx](../src/Templates/Camps/CampShort/CampChallengeScenes.tsx)):
+Akış (`short.rounds`, [CampShort/Scenes](../src/Templates/Camps/CampShort/Scenes)):
 
 1. **İlk karede soru.** Ayrı başlık kartı yoktur. İlk tur animasyonsuz, ilk kareden ekrandadır.
    - Kanca (`short.hook`, en çok 40 karakter: "Üçünde de tuzak var.") sorunun üstünde ders renginde bir şerit olarak görünür ama **okunmaz**. Duyulan ilk şey sorunun kendisidir.
@@ -179,7 +213,15 @@ Turları yazarken:
 - Kanca ve seslendirme süre vaat etmez ("Her soruda üç saniyen var" gibi). Doğrulanamayan oran da vermez ("%90'ı yanlış yapıyor" gibi).
 - "Neden" kuralı söyler; açıklamanın uzunu YouTube dersindedir.
 - Turlar YouTube dersindeki örneklerle aynı dili kullanır.
-- Müzik yoktur.
+- Müzik yoktur. **Ses efektleri** vardır (sahibin isteği, 27 Ekim 2026):
+  - geri sayımın her saniyesinde bir tik;
+  - cevap yanarken kısa bir zil;
+  - 2. ve 3. soruya ve skor kartına girişte bir hışırtı. İlk soruda hışırtı yoktur, çünkü soru ilk karede zaten ekrandadır.
+- Efektler ElevenLabs Sound Effects ile bir kez üretildi ve `public/SoundEffects/` altında tutuluyor. Tarifleri ve tepe seviyeleri [SoundEffects.ts](../src/Configurations/SoundEffects.ts) içinde. Seviyeler anlatımın altında kalacak biçimde ayarlı; anlatımın tepesi −4 dBFS, efektler −9 ile −14 dBFS arasında.
+  - `npm run sound-effects` yalnız eksik efektleri üretir; kredi yalnız onlar için harcanır.
+  - `npm run sound-effects -- --relevel` ElevenLabs'in sakladığı dosyaları (`Source/`) yeniden seviyeler; kredi harcamaz.
+  - Bir efekti yeniden üretmek için iki dosyasını da sil.
+  - Neredeyse sessiz gelen bir üretim reddedilir. İlk tik denemesi −46 dBFS tepeyle böyle geldi.
 
 ## 11. Kart görünümü (27 Ekim 2026)
 

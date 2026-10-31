@@ -1,0 +1,879 @@
+{
+ "topic": {
+  "id": "3AF2394F-C7AF-5872-1259-6CDD25F006D1",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_VERI_IST"
+ },
+ "title": "Veri – İstatistik",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/MAT/MAT_VERI_IST.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Ortalama aynı olabilir; dağılım aynı olmayabilir.",
+   "narration": "İki sınıfın not ortalaması aynı olabilir; ama birinde herkes birbirine yakındır, ötekinde notlar uçlara dağılmıştır. İstatistik bu farkı ölçer. Bu derste grafik okumayı, ortalama, ortanca ve tepe değeri, açıklık ve standart sapmayı AYT düzeyinde yeni sorularla çalışacağız."
+  },
+  "objectives": [
+   "Daire ve sütun grafiğinden orantı ve ortalama okumak",
+   "Yüzde değişimi hesaplamak",
+   "Ortalama, ortanca ve tepe değer koşullarından veri kurmak",
+   "Yayılım ölçülerini karşılaştırmak",
+   "Bilinmeyenli veride ortancanın yerini durumlarla incelemek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_VERI_IST_01",
+    "subtopics": [
+     "MAT_VERI_IST_02",
+     "MAT_VERI_IST_03",
+     "MAT_VERI_IST_04"
+    ],
+    "title": "Veri ve grafikler",
+    "narration": "Bir grafik, bir tablonun resmidir. Daire grafiğinde açı payı, sütun grafiğinde boy değeri gösterir. Grafiği okumadan önce eksenlere ve birimlere bak; bin lira ile lira aynı değildir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Grafik okuma",
+      "items": [
+       "**Daire grafiği**: dilimin açısı $= \\frac{\\text{değer}}{\\text{toplam}} \\cdot 360°$.",
+       "Açı farkı ile değer farkı **orantılıdır**: $40°$ ↔ $32$ kişi ise $360°$ ↔ $288$ kişi.",
+       "**Sütun grafiği**: sütunun boyu değerdir; ortalama çizgisinin üstü ortalamadan büyük.",
+       "Yüzde değişim: $\\frac{\\text{yeni} - \\text{eski}}{\\text{eski}} \\cdot 100$."
+      ],
+      "visual": {
+       "kind": "pie",
+       "slices": [
+        {
+         "label": "Spor",
+         "value": 130
+        },
+        {
+         "label": "Müzik",
+         "value": 90
+        },
+        {
+         "label": "Satranç",
+         "value": 80
+        },
+        {
+         "label": "Resim",
+         "value": 60
+        }
+       ],
+       "show": "angle"
+      },
+      "beats": [
+       {
+        "narration": "Bir okulun kulüplerini daire grafiğinde görelim. Spor dilimi yüz otuz derece.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Müzik doksan derece: çeyrek daire. Spor ile müzik arasında kırk derece fark var.",
+        "show": [
+         "p2"
+        ],
+        "focus": [
+         "p2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Satranç seksen, resim altmış derece. Dilimlerin toplamı üç yüz altmış.",
+        "show": [
+         "p3",
+         "p4"
+        ],
+        "focus": [
+         "p3",
+         "p4"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Daire grafiğinde bir dilimin açısı, o değerin toplama oranının üç yüz altmışla çarpımıdır. Bu yüzden açı farkı ile değer farkı orantılıdır: kırk derece otuz iki kişiyse, üç yüz altmış derece iki yüz seksen sekiz kişidir. Sütun grafiğinde sütunun boyu değerdir. Yüzde değişimi hesaplarken farkı eski değere bölersin."
+     },
+     {
+      "kind": "visual",
+      "title": "Hangi grafik?",
+      "visual": {
+       "kind": "matching",
+       "titles": [
+        "Veri",
+        "Grafik"
+       ],
+       "pairs": [
+        {
+         "left": "Bütünün parçaları",
+         "right": "**Daire** grafiği: açılar paylar"
+        },
+        {
+         "left": "Aylara göre satış",
+         "right": "**Sütun** grafiği: boylar değerler"
+        },
+        {
+         "left": "Zamanla sıcaklık",
+         "right": "**Çizgi** grafiği: değişim eğilimi"
+        },
+        {
+         "left": "Notların dağılımı",
+         "right": "**Sıklık** tablosu: değer ve sıklık"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Bir bütünün parçaları, örneğin bütçenin dağılımı: daire grafiği. Açılar payları gösterir.",
+        "show": [],
+        "focus": [
+         "p1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Aylara göre satış gibi ayrı ayrı değerler: sütun grafiği.",
+        "show": [],
+        "focus": [
+         "p2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Zamanla değişen bir çokluk, örneğin gün boyu sıcaklık: çizgi grafiği; artış ve azalış eğilimi görülür.",
+        "show": [],
+        "focus": [
+         "p3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Bir sınıfın notları gibi çok sayıda tekrar eden değer: sıklık tablosu.",
+        "show": [],
+        "focus": [
+         "p4"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Her veri kendi grafiğiyle okunur. Dört durumu eşleştirelim."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir okuldaki öğrencilerin kulüplere dağılımı daire grafiğinde gösterilmiştir. Grafikte spor kulübünün dilim açısı, müzik kulübününkinden $40°$ fazladır.\n\nSpor kulübünde müzik kulübünden 32 öğrenci fazla olduğuna göre, bu okulda kulüplere katılan toplam öğrenci sayısı kaçtır?",
+       "options": [
+        "$288$",
+        "$300$",
+        "$320$",
+        "$336$",
+        "$360$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$40°$ ↔ $32$ öğrenci: $1°$ ↔ $0{,}8$ öğrenci.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kırk derecelik fark otuz iki öğrenciye karşılık geliyor: bir derece sıfır virgül sekiz öğrenci."
+        },
+        {
+         "text": "$360°$ ↔ $360 \\cdot 0{,}8 = 288$ öğrenci.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bütün daire üç yüz altmış derece: üç yüz altmış çarpı sıfır virgül sekiz, iki yüz seksen sekiz. Cevap A."
+        }
+       ],
+       "narration": "Açılar değerlerle orantılı: farklar da orantılı.",
+       "origin": {
+        "changes": "Daire grafiğinde orantı kalıbı; açı ve sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir kırtasiyenin beş aylık satışları (bin TL) sütun grafiğinde verilmiştir.\n\nBuna göre, satışın beş aylık ortalamadan **fazla** olduğu kaç ay vardır?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         0.4,
+         5.6
+        ],
+        "y": [
+         0,
+         28
+        ],
+        "xLabel": "ay",
+        "yLabel": "bin TL",
+        "curves": [],
+        "parameters": {},
+        "series": {
+         "kind": "bars",
+         "values": [
+          {
+           "x": 1,
+           "y": 12,
+           "label": "Oca"
+          },
+          {
+           "x": 2,
+           "y": 18,
+           "label": "Şub"
+          },
+          {
+           "x": 3,
+           "y": 15,
+           "label": "Mar"
+          },
+          {
+           "x": 4,
+           "y": 21,
+           "label": "Nis"
+          },
+          {
+           "x": 5,
+           "y": 24,
+           "label": "May"
+          }
+         ],
+         "showValues": true
+        },
+        "points": [],
+        "segments": [],
+        "equalScale": false,
+        "axes": "edge"
+       },
+       "options": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Ortalama: $\\frac{12 + 18 + 15 + 21 + 24}{5} = \\frac{90}{5} = 18$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Beş ayın toplamı doksan: ortalama on sekiz."
+        },
+        {
+         "text": "Ortalamadan fazla: $21$ ve $24$; $18$ eşit, fazla değil.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "On sekizden büyük sütunlar yirmi bir ve yirmi dört. On sekiz eşit, fazla değil. İki ay. Cevap B."
+        }
+       ],
+       "narration": "Önce ortalamayı bulalım, sonra sütunları ortalamayla karşılaştıralım.",
+       "origin": {
+        "changes": "Sütun grafiğinden ortalama kalıbı; veriler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir dükkânın satışı Mart ayında 30 bin TL, Nisan ayında 24 bin TL'dir.\n\nNisan ayındaki satış, Mart ayına göre yüzde kaç **azalmıştır**?",
+       "options": [
+        "$4$",
+        "$6$",
+        "$10$",
+        "$15$",
+        "$20$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Fark: $30 - 24 = 6$ bin TL.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Satış altı bin lira azalmış."
+        },
+        {
+         "text": "$\\frac{6}{30} \\cdot 100 = 20$: %20 azalış.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Altıyı eski değere, otuza bölelim: beşte bir, yüzde yirmi. Yeni değere bölen yüzde yirmi beş bulur. Cevap E."
+        }
+       ],
+       "narration": "Yüzde değişimde fark, eski değere bölünür.",
+       "origin": {
+        "changes": "Yüzde değişim kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_VERI_IST_05",
+    "subtopics": [
+     "MAT_VERI_IST_06",
+     "MAT_VERI_IST_07",
+     "MAT_VERI_IST_08"
+    ],
+    "title": "Merkezi eğilim ve yayılım",
+    "narration": "Ortalama, ortanca ve tepe değer verinin merkezini; açıklık ve standart sapma ise ne kadar dağıldığını söyler.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Ölçüler",
+      "items": [
+       "**Ortalama** = toplam ÷ veri sayısı. **Ortanca**: sıralı dizinin ortası; çift sayıda veride ortadaki ikisinin ortalaması.",
+       "**Tepe değer**: en çok tekrar eden; **açıklık**: en büyük − en küçük.",
+       "**Standart sapma**: verilerin ortalamadan ortalama uzaklığı; dağınık veri, büyük sapma.",
+       "Yeni veri eklenince **toplamı** güncelle, yeni sayıya böl."
+      ],
+      "beats": [],
+      "narration": "Ortalama, toplamın veri sayısına bölümüdür. Ortanca, veriler sıralandığında ortadaki değerdir; veri sayısı çiftse ortadaki iki değerin ortalamasıdır. Tepe değer en çok tekrar edendir; açıklık en büyükle en küçüğün farkıdır. Standart sapma, verilerin ortalamadan ne kadar uzaklaştığını ölçer. Yeni bir veri eklendiğinde toplamı güncelleyip yeni sayıya bölersin."
+     },
+     {
+      "kind": "visual",
+      "title": "Dört ölçü, bir veri",
+      "visual": {
+       "kind": "flipcards",
+       "cards": [
+        {
+         "front": "Ortalama",
+         "back": "$3, 5, 5, 7, 10$: $\\frac{30}{5} = 6$"
+        },
+        {
+         "front": "Ortanca",
+         "back": "Sıralı dizinin ortası: **5**"
+        },
+        {
+         "front": "Tepe değer",
+         "back": "En çok tekrar eden: **5**"
+        },
+        {
+         "front": "Açıklık",
+         "back": "$10 - 3 = 7$"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Ortalama: toplam otuz, beş veri: altı.",
+        "show": [],
+        "focus": [
+         "p1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Ortanca: veri zaten sıralı, ortadaki beş.",
+        "show": [],
+        "focus": [
+         "p2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Tepe değer: iki kez geçen beş.",
+        "show": [],
+        "focus": [
+         "p3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Açıklık: en büyük on, en küçük üç: yedi. Ortalamanın ortancadan büyük olması, on gibi büyük bir değerin ortalamayı yukarı çektiğini gösterir.",
+        "show": [],
+        "focus": [
+         "p4"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Aynı veri, dört ölçü: üç, beş, beş, yedi, on. Her kartı çevirmeden önce kendin hesapla."
+     },
+     {
+      "kind": "mistake",
+      "title": "Ortanca için sıralamak",
+      "wrong": "$4, 7, 9, 11, 13, 6$ verisinde ortanca $9$ ve $11$'in ortalaması: $10$.",
+      "right": "Önce **sırala**: $4, 6, 7, 9, 11, 13$; ortanca $\\frac{7 + 9}{2} = 8$.",
+      "why": "Ortanca, sıralı dizinin ortasıdır; verinin yazıldığı sıradaki ortası değil.",
+      "narration": "Sık yapılan bir hata: ortancayı verinin yazıldığı sırada aramak. Ortanca sıralı dizinin ortasıdır. Önce küçükten büyüğe diz: dört, altı, yedi, dokuz, on bir, on üç. Altı veri var; ortadaki iki değer yedi ve dokuz, ortanca sekiz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Beş pozitif tam sayıdan oluşan bir veri grubunun ortalaması 10, ortancası 9'dur. Bu verinin **tek** tepe değeri 8'dir.\n\nBuna göre, bu veri grubundaki en büyük sayı **en çok** kaçtır?",
+       "options": [
+        "$12$",
+        "$13$",
+        "$14$",
+        "$15$",
+        "$16$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Toplam $50$; sıralı dizide ortadaki $9$: $a \\leq b \\leq 9 \\leq d \\leq e$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Ortalama on: toplam elli. Ortanca dokuz: sıralı dizide ortadaki sayı dokuz."
+        },
+        {
+         "text": "Tepe değer 8, tek: en az iki tane 8; ortancadan küçük yerler $a$ ve $b$: $a = b = 8$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Tepe değer sekiz ise en az iki sekiz var; sekizler dokuzdan küçük, yani ilk iki yer: sekiz, sekiz."
+        },
+        {
+         "text": "$d + e = 50 - 25 = 25$; $9$ ve $d = e$ ikinci bir tepe değer yapar: $d \\geq 10$, $d < e$. En büyük $e$: $d = 10$, $e = 15$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kalan iki sayının toplamı yirmi beş. d dokuz olamaz, yoksa dokuz da iki kez geçer ve tepe değer tek olmaz; d ile e de eşit olamaz. e'yi büyütmek için d'yi küçült: d on, e on beş. Cevap D."
+        }
+       ],
+       "narration": "Üç bilgiyi sırayla sayılara çevirelim.",
+       "origin": {
+        "changes": "Merkezi eğilim koşullarından veri kurma kalıbı; ölçüler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir sınıftaki 18 öğrencinin not ortalaması 70'tir. Sınıfa notları 85 ve 95 olan iki öğrenci katılıyor.\n\nBuna göre, sınıfın yeni not ortalaması kaçtır?",
+       "options": [
+        "$70$",
+        "$71$",
+        "$72$",
+        "$73$",
+        "$75$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Eski toplam: $18 \\cdot 70 = 1260$; yeni toplam: $1260 + 85 + 95 = 1440$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eski toplam on sekiz çarpı yetmiş, bin iki yüz altmış. İki yeni not eklenince bin dört yüz kırk."
+        },
+        {
+         "text": "Yeni ortalama: $\\frac{1440}{20} = 72$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yirmi öğrenciye bölünce yetmiş iki. Cevap C."
+        }
+       ],
+       "narration": "Ortalamalar toplanmaz; toplamları güncelleyelim.",
+       "origin": {
+        "changes": "Yeni veriyle ortalama kalıbı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$4, 7, x, 11, 13, 6$\n\nveri grubunun ortancası 8 olduğuna göre, $x$ kaçtır?",
+       "options": [
+        "$8$",
+        "$9$",
+        "$10$",
+        "$11$",
+        "$12$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$x$ olmadan sıralı: $4, 6, 7, 11, 13$. Altı veride ortanca, 3. ve 4. değerin ortalaması.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x olmadan sıralı dizi: dört, altı, yedi, on bir, on üç. Altı veri olunca ortanca, üçüncü ve dördüncü değerlerin ortalaması."
+        },
+        {
+         "text": "$7 \\leq x \\leq 11$ ise 3. ve 4. değer $7$ ve $x$: $\\frac{7 + x}{2} = 8$, $x = 9$ ✓.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x yedi ile on bir arasındaysa üçüncü değer yedi, dördüncü x: yedi artı x bölü iki, sekiz; x dokuz. Aralığa uyuyor."
+        },
+        {
+         "text": "$x < 7$ ise ortanca $\\leq 6{,}5$; $x > 11$ ise ortanca $9$. Tek çözüm $x = 9$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x yediden küçükse ortanca altı buçuktan büyük olamaz; on birden büyükse ortanca dokuz olur. Tek çözüm dokuz. Cevap B."
+        }
+       ],
+       "narration": "Hata kartındaki gibi sıralayalım; x'in yeri bilinmiyor.",
+       "origin": {
+        "changes": "Bilinmeyenli ortanca kalıbı; veriler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "example",
+      "title": "Standart sapmayı hesapla",
+      "example": "2, 4, 6 verisinin standart sapması kaçtır?",
+      "explanation": "Ortalama $4$; farklar $-2, 0, 2$; kareler toplamı $8$; $s = \\sqrt{\\frac{8}{3 - 1}} = 2$.",
+      "beats": [],
+      "narration": "Bir örnek: 2, 4, 6 verisinin standart sapması kaçtır? Önce ortalama: dört. Her verinin ortalamadan farkı: eksi iki, sıfır, iki. Farkların kareleri dört, sıfır, dört; toplam sekiz. Ders kitabındaki gibi veri sayısının bir eksiğine bölelim: sekiz bölü iki, dört. Karekökü iki: standart sapma iki. Farkların karesini almadan toplasaydık sıfır bulurduk; kare bu yüzden alınır."
+     },
+     {
+      "kind": "predict",
+      "title": "Hangisi daha dağınık?",
+      "prompt": "A: $4, 6, 8, 10, 12$ ve B: $7, 8, 8, 8, 9$ veri gruplarının ortalamaları eşittir. Hangisinin standart sapması daha büyüktür?",
+      "choices": [
+       "A",
+       "B"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        3,
+        13
+       ],
+       "intervals": [
+        {
+         "from": 4,
+         "to": 12,
+         "closedFrom": true,
+         "closedTo": true,
+         "label": "A: açıklık 8",
+         "row": 1
+        },
+        {
+         "from": 7,
+         "to": 9,
+         "closedFrom": true,
+         "closedTo": true,
+         "label": "B: açıklık 2",
+         "row": 0
+        }
+       ],
+       "points": [
+        {
+         "x": 8,
+         "label": "ortalama 8",
+         "open": false
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "İki grubun ortalaması da sekiz.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "A dörtten on ikiye yayılmış, B yedi ile dokuz arasında toplanmış.",
+        "show": [
+         "i1",
+         "i2"
+        ],
+        "focus": [
+         "i1",
+         "i2"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "A'nın verileri ortalamadan **daha uzak**: standart sapması büyük. Ortalama eşit olsa da dağılım farklı.",
+      "narration": "Şimdi sıra sende. Ortalamaları eşit iki gruptan hangisinin standart sapması daha büyük? Biraz düşün.",
+      "explanationNarration": "Doğru cevap A. Standart sapma, verilerin ortalamadan ne kadar uzak olduğunu ölçer. A'nın verileri sekizden dörde kadar uzaklaşıyor; B'ninkiler en çok bir. Ortalama aynı, ama A çok daha dağınık."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "A: $4, 6, 8, 10, 12$\n\nB: $7, 8, 8, 8, 9$\n\nveri grupları için\n\nI. Ortalamaları eşittir.\n\nII. A'nın açıklığı B'ninkinden büyüktür.\n\nIII. B'nin standart sapması A'nınkinden büyüktür.\n\nifadelerinden hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "I: ortalamalar $\\frac{40}{5} = 8$ ve $\\frac{40}{5} = 8$ ✓.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki grubun toplamı da kırk: ortalamalar sekiz. Doğru."
+        },
+        {
+         "text": "II: açıklık A'da $12 - 4 = 8$, B'de $9 - 7 = 2$ ✓.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Açıklık A'da sekiz, B'de iki. Doğru."
+        },
+        {
+         "text": "III: B'nin verileri ortalamaya **daha yakın**; sapması küçük ✗.",
+         "eliminate": [
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "B'nin verileri ortalamaya çok yakın; standart sapması küçük. Üçüncü yanlış. Cevap C."
+        }
+       ],
+       "narration": "Tahmin kartında gördük; öncülleri tek tek sınayalım.",
+       "origin": {
+        "changes": "Merkezi eğilim ve yayılım karşılaştırma kalıbı; veriler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ortalaması 10, standart sapması 2 olan bir veri grubundaki her sayı **3 ile çarpılıp 2 eklenerek** yeni bir veri grubu oluşturuluyor.\n\nYeni veri grubunun ortalaması ile standart sapmasının toplamı kaçtır?",
+       "options": [
+        "$32$",
+        "$34$",
+        "$36$",
+        "$38$",
+        "$40$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Ortalama aynı dönüşümü görür: $3 \\cdot 10 + 2 = 32$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Her sayı üçle çarpılıp iki eklenirse ortalama da öyle değişir: otuz artı iki, otuz iki."
+        },
+        {
+         "text": "Sapma yalnız **çarpımdan** etkilenir: $3 \\cdot 2 = 6$; eklenen 2 uzaklıkları değiştirmez.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Standart sapma uzaklıkları ölçer. Hepsine iki eklemek uzaklıkları değiştirmez; üçle çarpmak üç katına çıkarır: altı."
+        },
+        {
+         "text": "Toplam: $32 + 6 = 38$.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Otuz iki artı altı, otuz sekiz. Sapmaya da iki ekleyen kırk bulur. Cevap D."
+        }
+       ],
+       "narration": "Her veriye aynı dönüşüm: ortalama ve sapma nasıl değişir?",
+       "origin": {
+        "changes": "Veri dönüşümünün etkisi kalıbı; sayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_VERI_IST_09",
+    "subtopics": [],
+    "title": "Tablo ve koşullarla yorumlama",
+    "narration": "Son bölümde ölçüleri birbirine bağlayan sorular: ortalamanın ortancaya eşit olması, bir sıklık tablosundan ortalama ve hedeflenen bir ortalama için gereken not. Bu sorular, AYT'de istatistiğin problem sorularının içine nasıl girdiğini de gösterir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Yorumlama",
+      "items": [
+       "Bilinmeyen bir veri **ortancanın yerini** değiştirebilir: her durumu ayrı incele.",
+       "Sıklık tablosunda ortalama $= \\frac{\\sum (\\text{değer} \\times \\text{sıklık})}{\\sum \\text{sıklık}}$."
+      ],
+      "beats": [],
+      "narration": "Bilinmeyen bir veri, sıralı dizide farklı yerlere düşebilir ve ortanca her durumda değişir; bu yüzden durumları ayrı incelersin. Sıklık tablosunda ortalama, her değerin sıklığıyla çarpımlarının toplamının toplam sıklığa bölümüdür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir öğrencinin beş sınavdan aldığı puanlar\n\n$70, 75, x, 85, 90$\n\nbiçimindedir. Bu puanların aritmetik ortalaması ortancasına eşittir.\n\nBuna göre, $x$'in alabileceği değerlerin toplamı kaçtır?",
+       "options": [
+        "$160$",
+        "$185$",
+        "$215$",
+        "$240$",
+        "$265$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Ortalama: $\\frac{320 + x}{5}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bilinen dört puanın toplamı üç yüz yirmi: ortalama üç yüz yirmi artı x bölü beş."
+        },
+        {
+         "text": "$x < 75$: ortanca $75$: $320 + x = 375$, $x = 55$ ✓. $75 \\leq x \\leq 85$: ortanca $x$: $320 + x = 5x$, $x = 80$ ✓.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x yetmiş beşten küçükse ortanca yetmiş beş: x elli beş, uygun. x yetmiş beş ile seksen beş arasındaysa ortanca x'in kendisi: üç yüz yirmi artı x, beş x; x seksen, uygun."
+        },
+        {
+         "text": "$x > 85$: ortanca $85$: $x = 105$ ✓. Toplam: $55 + 80 + 105 = 240$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x seksen beşten büyükse ortanca seksen beş: x yüz beş, uygun. Üç değerin toplamı iki yüz kırk. Yalnız ortadaki durumu düşünen seksen der. Cevap D."
+        }
+       ],
+       "narration": "x, sıralı dizinin neresine düşerse ortanca değişir. Üç durum.",
+       "origin": {
+        "changes": "Ortalama-ortanca eşitliği kalıbı; puanlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir sınavda alınan puanların sıklık tablosu aşağıda verilmiştir.\n\nPuan: 1, 2, 3, 4, 5\n\nKişi sayısı: 1, 4, $x$, 6, 3\n\nPuanların aritmetik ortalaması $\\frac{10}{3}$ olduğuna göre, $x$ kaçtır?",
+       "options": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$\\sum$ değer × sıklık $= 1 + 8 + 3x + 24 + 15 = 48 + 3x$; toplam sıklık $14 + x$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Değer çarpı sıklık: bir, sekiz, üç x, yirmi dört, on beş; toplam kırk sekiz artı üç x. Toplam kişi on dört artı x."
+        },
+        {
+         "text": "$\\frac{48 + 3x}{14 + x} = \\frac{10}{3}$: $144 + 9x = 140 + 10x$, $x = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Oranı üçte ona eşitleyelim: yüz kırk dört artı dokuz x, yüz kırk artı on x; x dört. Cevap C."
+        }
+       ],
+       "narration": "Değer çarpı sıklık toplamı bölü toplam sıklık.",
+       "origin": {
+        "changes": "Sıklık tablosundan ortalama kalıbı; tablo yeni kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir öğrencinin ilk dört sınavdaki not ortalaması 72'dir.\n\nBeş sınavın ortalamasının 75 olması için bu öğrencinin beşinci sınavdan kaç alması gerekir?",
+       "options": [
+        "$78$",
+        "$81$",
+        "$84$",
+        "$87$",
+        "$90$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "İlk dört sınavın toplamı: $4 \\cdot 72 = 288$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dört sınavın toplamı dört çarpı yetmiş iki, iki yüz seksen sekiz."
+        },
+        {
+         "text": "Beş sınavın toplamı olmalı: $5 \\cdot 75 = 375$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Beş sınavın ortalaması yetmiş beş olacaksa toplam üç yüz yetmiş beş olmalı."
+        },
+        {
+         "text": "Beşinci not: $375 - 288 = 87$.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Beşinci not, üç yüz yetmiş beş eksi iki yüz seksen sekiz, seksen yedi. Ortalamalar arasındaki farkı ekleyip yetmiş beş artı üç, yetmiş sekiz diyen yanılır. Cevap D."
+        }
+       ],
+       "narration": "Ortalamadan toplama geçelim.",
+       "origin": {
+        "changes": "Hedef ortalama kalıbı; sayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Daire grafiğinde açı **değerle orantılı**.",
+    "Yüzde değişim: fark ÷ **eski** değer.",
+    "Ortanca için önce **sırala**.",
+    "Yeni veride **toplamı** güncelle.",
+    "Standart sapma: ortalamadan **uzaklık**.",
+    "Bilinmeyen veri: ortancanın yerini **durumlarla** incele."
+   ],
+   "warnings": [
+    "Ortalamalar **toplanmaz**.",
+    "\"Fazla\" ile \"eşit\" **farklı**: ortalamaya eşit değer sayılmaz."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "$60, 65, x, 80, 85$ puanlarında ortalama ortancaya eşitse $x$'in alabileceği değerleri **kendin** bul.",
+    "Sınıfına uygun bir veri topla (ör. 10 arkadaşının uyku saatleri): ortalama, ortanca, tepe değer ve açıklığı hesapla.",
+    "Uygulamada AYT Veri – İstatistik testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Merkezi eğilim ölçülerini tek veride hesaplat: 3, 5, 5, 7, 8, 10 için aritmetik ortalama yaklaşık 6,33, ortanca (5 + 7)/2 = 6, tepe değer 5, açıklık 7.",
+   "Standart sapma hesabını adım adım göster: 2, 4, 6, 8 verisinde ortalama 5, farkların kareleri 9, 1, 1, 9, toplam 20; standart sapma √(20/3) ≈ 2,58 (ders kitabındaki gibi n − 1'e bölünür).",
+   "Verilere işlem uygulanınca ölçülerin değişimini tablo yap: her veriye k eklenirse ortalama, ortanca ve tepe değer k artar, açıklık ve standart sapma değişmez; her veri k ile çarpılırsa hepsi k katına (standart sapma |k| katına) çıkar.",
+   "Grafik türlerini veri türüyle eşleştir: sütun grafiği (kategorileri karşılaştırma), çizgi grafiği (zamana göre değişim), daire grafiği (bütünün parçaları), histogram (gruplanmış sürekli veri), kutu grafiği (çeyrekler, aykırı değer).",
+   "Ortalama güncelleme sorusu ekle: 20 kişilik sınıfın ortalaması 70; 5 kişi katılınca ortalama 72 oluyorsa yeni gelenlerin ortalaması (25 × 72 − 20 × 70) / 5 = 80."
+  ]
+ }
+}

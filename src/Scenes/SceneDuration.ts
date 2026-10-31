@@ -11,12 +11,12 @@ export const SceneTimingSchema = z.object({
 	narration: z.string().trim().max(2000).optional(),
 });
 
-export type SceneTimingInput = z.infer<typeof SceneTimingSchema>;
+type SceneTimingInput = z.infer<typeof SceneTimingSchema>;
 
 const READING_WORDS_PER_SECOND = 3.3;
 const NARRATION_WORDS_PER_SECOND = 2.3;
 
-export type DurationBounds = {baseSeconds?: number; minSeconds?: number; maxSeconds?: number};
+type DurationBounds = {baseSeconds?: number; minSeconds?: number; maxSeconds?: number};
 
 /** Counts words; a LaTeX command or formula token counts like a word. */
 export const countWords = (text: string): number =>

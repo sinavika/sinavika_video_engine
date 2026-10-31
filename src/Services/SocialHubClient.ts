@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {z} from 'zod';
 import {assertProductCopy} from '../Configurations/ProductMessaging';
 import {POST_TYPE_NAMES, SOCIAL_PLATFORMS} from '../Configurations/SocialPlan';
+import {assertSpecialDayCopy} from '../Configurations/SpecialDay';
 import {VIDEO_COVER} from '../Configurations/VideoCover';
 import {socialCopy} from './PlatformCopies';
 
@@ -60,10 +61,9 @@ export const SocialPostSchema = z.object({
 	sources: z.array(SourceKeySchema).default([]),
 	replacesPostId: z.uuid().optional(),
 });
-export type SocialPost = z.infer<typeof SocialPostSchema>;
 
-export const SocialSourceSchema = SourceKeySchema.extend({content: z.json().refine((value) => value !== null, 'content is required')});
-export type SocialSource = z.infer<typeof SocialSourceSchema>;
+const SocialSourceSchema = SourceKeySchema.extend({content: z.json().refine((value) => value !== null, 'content is required')});
+type SocialSource = z.infer<typeof SocialSourceSchema>;
 
 /** The cover saved with a video (`03_Name.mp4` → `03_Name_Kapak.png`), if the post is a single video that has one. */
 const linkedCover = (media: string[], baseDirectory: string): string | undefined => {
@@ -81,8 +81,6 @@ export class SocialHubError extends Error {
 		super(message);
 	}
 }
-
-export type SocialHubClient = ReturnType<typeof createSocialHubClient>;
 
 export const createSocialHubClient = (options: {apiUrl?: string; apiKey?: string; fetch?: typeof fetch} = {}) => {
 	if (!options.apiKey && !process.env[API_KEY_VARIABLE] && existsSync(ENV_FILE)) process.loadEnvFile(ENV_FILE);
@@ -131,6 +129,9 @@ export const createSocialHubClient = (options: {apiUrl?: string; apiKey?: string
 			const {media, cover, ...payload} = SocialPostSchema.parse(rawPost);
 			// Product and module names follow the brand's advertising copy (Configurations/ProductMessaging); a wrong name never leaves.
 			for (const warning of assertProductCopy([payload.title, payload.caption, ...payload.targets.map((target) => target.caption)])) console.warn(`  Metin uyarısı: "${warning.term}" · ${warning.message}`);
+			// On a national or religious holiday nothing advertises: no brand name, product or call, only the logo (Configurations/SpecialDay).
+			const texts = [payload.title, payload.caption, payload.hashtags, ...payload.targets.map((target) => target.caption)];
+			for (const date of new Set([payload.scheduledAt, ...payload.targets.map((target) => target.scheduledAt ?? payload.scheduledAt)])) assertSpecialDayCopy(date, texts);
 			const attach = async (field: string, file: string) => {
 				// Videos are rendered as 4K masters; the platforms get their own-size copy, made by our encoder (see PlatformCopies).
 				const fullPath = await socialCopy(path.resolve(baseDirectory, file));

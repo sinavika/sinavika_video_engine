@@ -1,5 +1,6 @@
 import {createReadStream, existsSync} from 'node:fs';
-import {copyFile, mkdir, readFile, stat, writeFile} from 'node:fs/promises';
+import {copyFile, mkdir, readFile, writeFile} from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
 import {createInterface} from 'node:readline';
 import {z} from 'zod';
@@ -19,21 +20,31 @@ import {
  * Brings the lesson list into the project and binds every topic to its data.
  *
  * The lesson list (CSV) becomes the catalogue and the production checklist.
- * The data is the copy of Desktop/EgitimVerileri in Curriculum/Data (not in
- * git; past exam questions are not republished). Its layout:
+ * The data is read where it lives, in Desktop/EgitimVerileri (owner, 31 Oct
+ * 2026: the engine keeps no copy; past exam questions are not republished).
+ * Its layout:
  *
  *   Data/Index.json                                            categories, lessons, topics and counts
  *   Data/<Exam>/<Category>/KonuAnlatimi/<Lesson>/<Topic>.json  lesson explanation: subtopics and the
  *                                                              explanation text by source (MEB OGM, pages)
  *   Data/<Exam>/<Category>/Sorular/<Lesson>/<Topic>.jsonl      questions bound to the topic, one per line
  *
- * Nothing is copied: the checklist points into Data. Running the import again
+ * Nothing is copied: the checklist points into the data folder. Running the import again
  * rebuilds the catalogue and the sources but keeps the checklist's progress.
  */
 
+/** Where the education data lives: Desktop/EgitimVerileri. EGITIM_VERILERI overrides it (another machine, a test copy). */
+export const educationDataDirectory = (): string => process.env.EGITIM_VERILERI ?? path.join(os.homedir(), 'Desktop', 'EgitimVerileri');
+
+/**
+ * The master lesson list: Desktop/lesson.csv. The parsing pipeline (Desktop/sinavika_parse) writes every new row to it
+ * and to its copies; the import reads it and keeps a copy in Curriculum/Sources/LessonList.csv. LESSON_LIST overrides it.
+ */
+export const masterLessonList = (): string => process.env.LESSON_LIST ?? path.join(os.homedir(), 'Desktop', 'lesson.csv');
+
 type ImportPaths = {lessonList: string; data: string; curriculum: string};
 
-export type ImportReport = {
+type ImportReport = {
 	categories: number;
 	lessons: number;
 	topics: number;
@@ -118,7 +129,7 @@ export const dataFolders = (index: {categories?: {code: string; folder: string}[
 };
 
 /** Counts the questions of a pool: all, those with an answer, and past exam questions (ÖSYM). */
-export const countQuestions = async (file: string): Promise<{total: number; answered: number; pastExam: number}> => {
+const countQuestions = async (file: string): Promise<{total: number; answered: number; pastExam: number}> => {
 	const counts = {total: 0, answered: 0, pastExam: 0};
 	const lines = createInterface({input: createReadStream(file, {encoding: 'utf8'}), crlfDelay: Infinity});
 	for await (const text of lines) {
@@ -131,12 +142,30 @@ export const countQuestions = async (file: string): Promise<{total: number; answ
 	return counts;
 };
 
+/**
+ * What the data holds for one topic, read now. The data in Desktop/EgitimVerileri keeps changing (owner, 31 Oct
+ * 2026: "dosya sürekli güncelleniyor"), so `brief` reads it live; the checklist's `sources` are the import's snapshot.
+ */
+export const topicSources = async (data: string, folder: string | undefined, lesson: string, topic: string): Promise<ChecklistEntry['sources']> => {
+	const explanation = folder ? `${folder}/KonuAnlatimi/${lesson}/${topic}.json` : null;
+	const questions = folder ? `${folder}/Sorular/${lesson}/${topic}.jsonl` : null;
+	const hasExplanation = explanation !== null && existsSync(path.join(data, explanation));
+	const hasQuestions = questions !== null && existsSync(path.join(data, questions));
+	const counts = hasQuestions && questions ? await countQuestions(path.join(data, questions)) : {total: 0, answered: 0, pastExam: 0};
+	return {explanation: hasExplanation ? explanation : null, questions: hasQuestions ? questions : null, questionCount: counts.total, answeredCount: counts.answered, pastExamCount: counts.pastExam};
+};
+
+/** The data folder of every category, from the data's Index.json, read now. */
+export const dataFoldersIn = async (data: string): Promise<Map<string, string>> => {
+	const indexFile = path.join(data, 'Index.json');
+	return existsSync(indexFile) ? dataFolders(JSON.parse(await readFile(indexFile, 'utf8'))) : new Map<string, string>();
+};
+
 // ---------------------------------------------------------------- import
 
 export const importCurriculum = async ({lessonList, data, curriculum}: ImportPaths): Promise<ImportReport> => {
 	const categories = inProductionOrder(parseLessonList(await readFile(lessonList, 'utf8')));
-	const indexFile = path.join(data, 'Index.json');
-	const folders = existsSync(indexFile) ? dataFolders(JSON.parse(await readFile(indexFile, 'utf8'))) : new Map<string, string>();
+	const folders = await dataFoldersIn(data);
 	const report: ImportReport = {
 		categories: categories.length,
 		lessons: categories.reduce((sum, category) => sum + category.lessons.length, 0),
@@ -167,16 +196,12 @@ export const importCurriculum = async ({lessonList, data, curriculum}: ImportPat
 		const folder = folders.get(category.code);
 		for (const lesson of category.lessons) {
 			for (const topic of lesson.topics) {
-				const explanation = folder ? `${folder}/KonuAnlatimi/${lesson.code}/${topic.code}.json` : null;
-				const questions = folder ? `${folder}/Sorular/${lesson.code}/${topic.code}.jsonl` : null;
-				const hasExplanation = explanation !== null && existsSync(path.join(data, explanation));
-				const hasQuestions = questions !== null && existsSync(path.join(data, questions));
-				const counts = hasQuestions && questions ? await countQuestions(path.join(data, questions)) : {total: 0, answered: 0, pastExam: 0};
-				report.explanations[hasExplanation ? 'found' : 'missing'] += 1;
-				if (counts.total > 0) report.questions.topics += 1;
-				report.questions.total += counts.total;
-				report.questions.answered += counts.answered;
-				report.questions.pastExam += counts.pastExam;
+				const sources = await topicSources(data, folder, lesson.code, topic.code);
+				report.explanations[sources.explanation ? 'found' : 'missing'] += 1;
+				if (sources.questionCount > 0) report.questions.topics += 1;
+				report.questions.total += sources.questionCount;
+				report.questions.answered += sources.answeredCount;
+				report.questions.pastExam += sources.pastExamCount;
 				const kept = previousById.get(topic.id);
 				entries.push({
 					order: entries.length + 1,
@@ -189,13 +214,7 @@ export const importCurriculum = async ({lessonList, data, curriculum}: ImportPat
 					topic: topic.code,
 					topicName: topic.name,
 					subtopics: topic.subtopics,
-					sources: {
-						explanation: hasExplanation ? explanation : null,
-						questions: hasQuestions ? questions : null,
-						questionCount: counts.total,
-						answeredCount: counts.answered,
-						pastExamCount: counts.pastExam,
-					},
+					sources,
 					status: kept?.status ?? {prepared: null, used: null, youtube: null, short: null},
 					files: kept?.files ?? {},
 					...(kept?.notes ? {notes: kept.notes} : {}),
@@ -255,5 +274,3 @@ export const writeChecklist = async (curriculum: string, checklist: Checklist): 
 
 export const readChecklist = async (curriculum: string): Promise<Checklist> =>
 	ChecklistSchema.parse(JSON.parse(await readFile(path.join(curriculum, 'Production', 'Checklist.json'), 'utf8')));
-
-export const fileExists = async (file: string): Promise<boolean> => stat(file).then(() => true, () => false);

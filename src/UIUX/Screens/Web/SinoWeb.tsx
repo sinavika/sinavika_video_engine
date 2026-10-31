@@ -151,7 +151,6 @@ export const WebSinoStudyScreen: React.FC = () => {
 		['cards', 'Tekrar kartları', 'Review cards', 'Notlarından Bilgi Kartları destesi', 'A deck from your notes'],
 		['quiz', 'Test oluştur', 'Create a quiz', '10 soru, anında açıklamalı', '10 questions, instant feedback'],
 		['calendar', 'Çalışma planı', 'Study plan', 'Bir haftalık konu planı', 'A one-week topic plan'],
-		['book', 'Çalışma oluştur', 'Study set', 'Konu anlatımı ve sorular', 'Explanation and questions'],
 		['note', 'Özet çıkar', 'Summarise', 'PDF ya da metinden tek sayfa', 'One page from a PDF or text'],
 	];
 	return (

@@ -8,7 +8,7 @@
  * when each character is spoken; from that, each line's place in the audio
  * is worked out here, so the picture can still be timed line by line.
  */
-export const LINE_SEPARATOR = '\n\n';
+const LINE_SEPARATOR = '\n\n';
 
 /** When each character of a spoken text starts and ends, in seconds. */
 export type CharacterTiming = {characters: string[]; startSeconds: number[]; endSeconds: number[]};

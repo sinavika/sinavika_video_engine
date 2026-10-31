@@ -1,0 +1,676 @@
+{
+ "topic": {
+  "id": "E37ECF34-7319-6A61-CC16-974A90ED0BCD",
+  "category": "YKS_TYT",
+  "lesson": "FIZ",
+  "code": "FIZ_ELEKTROSTATIK"
+ },
+ "title": "Elektrostatik",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "MEB TYT Fizik konu anlatımı s. 89–103 (elektrik yükleri, sürtünme, dokunma ve etki ile elektriklenme, topraklama, iletken ve yalıtkanlar, elektroskop, Coulomb kuvveti; yalnız yapı örneği)",
+  "YKS/TYT/CikmisSorular/FIZ.jsonl (ÖSYM 2018–2022 tarak-kâğıt, yüklenme, elektroskop, itme-çekme; yalnız yapı örneği); YKS/TYT/Sorular/FIZ/FIZ_ELEKTROSTATIK.jsonl",
+  "Sorular özgündür; yük dağılımları ve elektroskop verilen durumlarla çizildi"
+ ],
+ "works": {
+  "additions": [
+   "Yükün birimini (coulomb) ve elektronun yükünü (1,6 · 10⁻¹⁹ C) ver; yükün tam katlar hâlinde olduğunu ve yük sayısı hesabına bir örnek ekle.",
+   "Sürtünmeyle elektriklenmede cam-ipek ve ebonit-yün çiftlerinde hangisinin pozitif yüklendiğini yaz; kuru havada kazağın çıtırdaması ve saçların tarağa yapışması örnekleri.",
+   "Elektroskobun yaprak hareketlerini tabloyla ver: yüklü cisim yaklaştırınca, dokundurunca, topuza dokunup elini çekince; elektroskopun yükünün işaretini anlama yöntemi.",
+   "Dokunmayla elektriklenmede farklı yarıçaplı kürelerin yükü yarıçaplarıyla orantılı paylaştığını örnekle; topraklamanın günlük örnekleri: paratoner, akaryakıt tankerinin zinciri, topraklı priz.",
+   "Coulomb kuvvetinde bileşke kuvvet sorularını (aynı doğrultuda üç yük) ve bir yükün dengede kalacağı noktayı bulma soru tipini çözümlü ekle."
+  ]
+ },
+ "short": {
+  "hook": "Nötr kâğıt neden tarağa yapışır?",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Aynı yükler **iter**, zıtlar **çeker**"
+   },
+   {
+    "kind": "fact",
+    "text": "Etki: yakın yüz **zıt** yüklenir"
+   },
+   {
+    "kind": "warning",
+    "text": "$F \\propto \\frac{q_1 q_2}{d^2}$"
+   }
+  ],
+  "summary": [
+   "Yalnız elektronlar yer değiştirir",
+   "Toplam yük korunur"
+  ],
+  "rounds": [
+   {
+    "sentence": "+8q ile −2q dokundu",
+    "question": "Her biri?",
+    "choices": [
+     "+3q",
+     "+5q"
+    ],
+    "answer": 0,
+    "why": "Toplam **+6q**."
+   },
+   {
+    "sentence": "Uzaklık 2 katı",
+    "question": "Kuvvet?",
+    "choices": [
+     "F/4",
+     "F/2"
+    ],
+    "answer": 0,
+    "why": "**d kare**."
+   },
+   {
+    "sentence": "Ebonit yüne sürtüldü",
+    "question": "Ebonit?",
+    "choices": [
+     "negatif",
+     "pozitif"
+    ],
+    "answer": 0,
+    "why": "Elektron **aldı**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-fizik-kampi",
+  "name": "TYT Fizik kampı",
+  "number": 8,
+  "total": 11,
+  "previous": "Kaldırma Kuvveti",
+  "next": "Elektrik ve Manyetizma",
+  "promise": "Fizik konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Plastik bir tarağı saçına sürt; küçük kâğıt parçalarına yaklaştırıp ne olduğunu **etki** ile açıkla.",
+    "Sürtünme, dokunma ve etki ile elektriklenmeyi **yük işaretleriyle** birer çizimle göster.",
+    "Uygulamada Elektrostatik testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Plastik bir tarağı saçına sürt, küçük kâğıt parçalarına yaklaştır ve ne olduğunu etki ile elektriklenmeyle açıkla. Sonra sürtünme, dokunma ve etki ile elektriklenmeyi yük işaretleriyle birer çizimle göster. En son uygulamada elektrostatik testinden yirmi soru çöz. Bir sonraki derste elektrik ve manyetizmaya geçiyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Çıtırtının sırrı",
+   "narration": "Kazağını çıkarırken çıtırtı duyarsın, saçların havalanır; saçına sürttüğün tarak kâğıt parçalarını çeker. Bu derste elektrik yükünü, sürtünme, dokunma ve etki ile elektriklenmeyi, topraklamayı, iletken ve yalıtkanları, elektroskobu ve Coulomb kuvvetini öğreneceğiz."
+  },
+  "objectives": [
+   "Yüklenmenin elektron alışverişiyle olduğunu açıklamak",
+   "Sürtünme, dokunma ve etki ile elektriklenmeyi ve topraklamayı ayırt etmek",
+   "İletken ve yalıtkanlarda yük dağılımını, elektroskobu yorumlamak",
+   "Coulomb kuvvetini oran ve değerle hesaplamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_ELEKTROSTATIK_01",
+    "title": "Elektrik yükü",
+    "narration": "Kazağını çıkarırken duyduğun çıtırtı ve saçlarının havalanması: hepsi elektrik yükünün işi.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Aynılar iter, zıtlar çeker",
+      "visual": {
+       "kind": "charges",
+       "objects": [
+        {
+         "shape": "sphere",
+         "label": "A",
+         "charge": "positive"
+        },
+        {
+         "shape": "sphere",
+         "label": "B",
+         "charge": "positive"
+        },
+        {
+         "shape": "sphere",
+         "label": "C",
+         "charge": "negative"
+        }
+       ],
+       "forces": [
+        {
+         "from": 0,
+         "to": 1,
+         "kind": "repel"
+        },
+        {
+         "from": 1,
+         "to": 2,
+         "kind": "attract"
+        }
+       ]
+      },
+      "caption": "Proton $+$, elektron $-$; yük birimi **coulomb** (C). Cisimler yalnız **elektron** alıp vererek yüklenir; toplam yük korunur.",
+      "narration": "Atomun çekirdeğinde pozitif yüklü protonlar, çevresinde negatif yüklü elektronlar vardır. Proton ve elektron sayısı eşit olan cisim nötrdür.",
+      "beats": [
+       {
+        "narration": "Elektron kaybeden cisim pozitif, elektron kazanan cisim negatif yüklenir. Protonlar çekirdekte sabittir; yer değiştiren her zaman elektronlardır.",
+        "focus": [
+         "o1",
+         "o3"
+        ]
+       },
+       {
+        "narration": "Aynı işaretli yükler birbirini iter: A ile B ikisi de pozitif, birbirini itiyor. Zıt işaretli yükler çeker: pozitif B ile negatif C birbirini çekiyor.",
+        "focus": [
+         "f1",
+         "f2"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Yüklü $K$, $L$ ve $M$ kürelerinden $K$, $L$'yi çekiyor; $L$, $M$'yi itiyor. $M$ küresi pozitif yüklü olduğuna göre $K$ ve $L$'nin yük işaretleri nedir?",
+       "options": [
+        "K pozitif, L pozitif",
+        "K negatif, L pozitif",
+        "K negatif, L negatif",
+        "K pozitif, L negatif",
+        "K nötr, L pozitif"
+       ],
+       "answer": 1,
+       "narration": "M'den geriye doğru git.",
+       "steps": [
+        {
+         "text": "$L$, $M$'yi itiyor → aynı işaret → $L$ **pozitif**.",
+         "narration": "L ile M birbirini itiyor: aynı işaretliler. M pozitif olduğuna göre L de pozitif."
+        },
+        {
+         "text": "$K$, $L$'yi çekiyor → zıt işaret → $K$ **negatif**. Cevap **B**.",
+         "narration": "K ile L birbirini çekiyor: zıt işaretliler, K negatif. Cevabımız B. E'yi seçen, nötr cismin de çekilebileceğini düşünmüştür; ama soruda bütün küreler yüklü.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2020 itme-çekme sorusunun fikri farklı bir sıra ve verilen bir yükle yeniden kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ELEKTROSTATIK_02",
+    "subtopics": [
+     "FIZ_ELEKTROSTATIK_06"
+    ],
+    "title": "Elektriklenme çeşitleri",
+    "narration": "Bir cismi yüklemenin üç yolu var: sürtünme, dokunma ve etki.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sürtünme, dokunma, topraklama",
+      "items": [
+       "**Sürtünme**: iki cisim **zıt** işaretli ve **eşit** miktarda yüklenir (ebonit-yün: ebonit −).",
+       "**Dokunma**: iletkenler **aynı** işaretle yüklenir; özdeş kürelerde toplam yük **eşit paylaşılır**.",
+       "**Topraklama**: yüklü iletken toprakla bağlanınca yükünü toprağa verir, **nötrleşir**.",
+       "Her durumda **toplam yük korunur**."
+      ],
+      "narration": "Sürtünmede bir cisim elektron verir, öbürü alır: ikisi zıt işaretli ve eşit miktarda yüklenir. Ebonit çubuk yünlü kumaşa sürtülünce yünden elektron alır ve negatif olur; cam çubuk ipeğe sürtülünce elektron verir ve pozitif olur. Dokunmada yüklü bir iletken nötr bir iletkene değince yükü paylaşırlar ve aynı işaretli olurlar; özdeş iki kürede toplam yük eşit bölünür. Yüklü bir iletkeni toprağa bağlarsan yükü toprağa akar ve nötrleşir. Her durumda toplam yük korunur."
+     },
+     {
+      "kind": "visual",
+      "title": "Etki ile elektriklenme",
+      "visual": {
+       "kind": "charges",
+       "objects": [
+        {
+         "shape": "rod",
+         "label": "yüklü çubuk",
+         "charge": "positive"
+        },
+        {
+         "shape": "sphere",
+         "label": "nötr küre",
+         "charge": "neutral",
+         "induced": {
+          "side": "left",
+          "sign": "negative"
+         }
+        }
+       ],
+       "forces": [
+        {
+         "from": 0,
+         "to": 1,
+         "kind": "attract"
+        }
+       ]
+      },
+      "caption": "Yüklü cisim, nötr iletkene **dokunmadan** yaklaşınca yükler ayrışır: yakın yüz **zıt**, uzak yüz aynı işaretle yüklenir; cisim çekilir.",
+      "narration": "Pozitif yüklü bir çubuğu nötr bir metal küreye dokundurmadan yaklaştıralım.",
+      "beats": [
+       {
+        "narration": "Kürenin serbest elektronları çubuğa doğru çekilir: yakın yüz negatif, uzak yüz pozitif olur. Kürenin toplam yükü hâlâ sıfır, ama yükler ayrıştı. Buna etki ile elektriklenme denir.",
+        "focus": [
+         "o2"
+        ]
+       },
+       {
+        "narration": "Yakın yüzdeki negatif yükler çubuğa daha yakın olduğu için çekim itmeden büyük çıkar: nötr küre çubuğa çekilir. Bu sırada küreyi topraklayıp bağlantıyı kesersen, çubuğu uzaklaştırınca küre kalıcı olarak negatif yüklü kalır.",
+        "focus": [
+         "f1"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "I. Ebonit çubuğun yünlü kumaşa sürtülmesi\nII. Cam çubuğun ipek kumaşa sürtülmesi\nIII. Nötr metal bir kürenin, negatif yüklü özdeş bir küreye dokundurulup ayrılması\n\nOlaylarının hangilerinde **ebonit çubuk**, **cam çubuk** ya da **nötr küre** negatif yüklenir?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 3,
+       "narration": "Kim elektron alıyor?",
+       "steps": [
+        {
+         "text": "I: ebonit yünden elektron alır → **negatif**. II: cam ipeğe elektron verir → **pozitif**.",
+         "narration": "Ebonit yünden elektron alır, negatif olur. Cam ise ipeğe elektron verir, pozitif olur."
+        },
+        {
+         "text": "III: dokunmada **aynı** işaret → küre negatif. Cevap **D**.",
+         "narration": "Dokunmada iki küre aynı işaretle yüklenir: nötr küre negatif yükün bir kısmını alır ve negatif olur. Negatif yüklenenler birinci ve üçüncüde. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2018 yüklenme sorusunun fikri sürtünme ve dokunma örnekleriyle özgün olarak kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Özdeş iki iletken küreden $K$'nin yükü $+8q$, $L$'nin yükü $-2q$'dur. Küreler birbirine dokundurulup ayrılıyor. Son durumda kürelerin yükleri nedir?",
+       "options": [
+        "$+3q$ ve $+3q$",
+        "$+5q$ ve $+5q$",
+        "$+6q$ ve $0$",
+        "$+8q$ ve $-2q$",
+        "$+4q$ ve $-q$"
+       ],
+       "answer": 0,
+       "narration": "Toplam yük korunur, eşit paylaşılır.",
+       "steps": [
+        {
+         "text": "Toplam $+8q + (-2q) = +6q$.",
+         "narration": "Toplam yük korunur: artı sekiz q ile eksi iki q, artı altı q."
+        },
+        {
+         "text": "Özdeş küreler eşit paylaşır: her biri $+3q$. Cevap **A**.",
+         "narration": "Küreler özdeş olduğu için yükü eşit paylaşırlar: her biri artı üç q. Cevabımız A. Artı beş q'yü seçen, yüklerin işaretlerini toplarken eksiyi artı almıştır.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dokunmada yük paylaşımı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Pozitif yüklü bir çubuk, yalıtkan ayak üzerindeki nötr metal bir küreye dokundurulmadan yaklaştırılıyor. Çubuk yerinde dururken küre kısa bir süre topraklanıyor ve toprak bağlantısı kesiliyor; ardından çubuk uzaklaştırılıyor. Kürenin son yükü nedir?",
+       "options": [
+        "Pozitif",
+        "Nötr",
+        "Negatif",
+        "Önce pozitif, sonra nötr",
+        "Belirlenemez"
+       ],
+       "answer": 2,
+       "narration": "Topraklayınca hangi yük gelir?",
+       "steps": [
+        {
+         "text": "Çubuk pozitif → kürenin yakın yüzü negatif, uzak yüzü pozitif; topraklayınca topraktan **elektron** gelir.",
+         "narration": "Pozitif çubuk elektronları yakın yüze çeker. Küre topraklanınca uzak yüzdeki pozitif yükü nötrlemek için topraktan elektron gelir."
+        },
+        {
+         "text": "Bağlantı kesilince fazla elektronlar kürede kalır → **negatif**. Cevap **C**.",
+         "narration": "Bağlantı kesilince gelen elektronlar kürede kalır; çubuk uzaklaşınca bu fazla elektronlar küreye yayılır. Küre negatif yüklüdür: etkiyle yüklenen cisim, etki eden cisme zıt işaretle yüklenir. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; etki ve topraklama ile kalıcı yüklenme özgün olarak soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Pozitif yüklü bir tarak, masadaki nötr küçük kâğıt parçalarına yaklaştırıldığında kâğıtlar tarağa çekiliyor.\n\nI. Kâğıt parçalarında yük ayrışması olur.\nII. Kâğıdın tarağa yakın yüzü negatif yüklü hâle gelir.\nIII. Kâğıt parçaları pozitif yüklenmiştir.\n\nYargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "narration": "Etki ile elektriklenme.",
+       "steps": [
+        {
+         "text": "Tarak dokunmadan etki eder: kâğıtta yükler ayrışır, yakın yüz **negatif** (I, II).",
+         "narration": "Tarak kâğıda dokunmadan etki eder: kâğıttaki yükler ayrışır, tarağa yakın yüz negatif olur. Birinci ve ikinci doğru."
+        },
+        {
+         "text": "Kâğıdın toplam yükü hâlâ **sıfır** (III yanlış). Cevap **C**.",
+         "narration": "Yükler yalnız yer değiştirdi; kâğıdın toplam yükü sıfır, nötr kalıyor. Yakın yüzdeki zıt yük daha yakın olduğu için çekim kazanır. Üçüncü yanlış. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin tarak-kâğıt sorusundaki etki fikri öncüllerle özgün olarak kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ELEKTROSTATIK_03",
+    "subtopics": [
+     "FIZ_ELEKTROSTATIK_04"
+    ],
+    "title": "İletken, yalıtkan, elektroskop",
+    "narration": "Bazı maddelerde elektronlar serbestçe dolaşır, bazılarında yerinden kıpırdamaz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Yük nerede durur?",
+      "items": [
+       "**İletken** (metaller, insan vücudu, toprak): yük **dış yüzeye** yayılır, **sivri uçlarda** toplanır.",
+       "**Yalıtkan** (plastik, cam, kauçuk, kuru tahta): yük **yüklendiği yerde** kalır.",
+       "Elde tutulan metal sürtünmeyle yüklenmez: yük vücuttan **toprağa** akar.",
+       "**Paratoner** sivri ucuyla yıldırımı toprağa iletir."
+      ],
+      "narration": "İletkenlerde elektronlar serbestçe hareket eder: metallere, insan vücuduna ve toprağa verilen yük dış yüzeye yayılır ve sivri uçlarda toplanır. Yalıtkanlarda ise yük, yüklendiği noktada kalır. Plastik bir tarağı saçına sürtünce yüklenir; elinde tuttuğun metal bir kaşığı sürtersen yüklenmez, çünkü oluşan yük senin vücudun üzerinden toprağa akar. Paratonerler sivri uçlarıyla yıldırımın yükünü güvenle toprağa iletir."
+     },
+     {
+      "kind": "visual",
+      "title": "Elektroskop",
+      "visual": {
+       "kind": "charges",
+       "objects": [
+        {
+         "shape": "rod",
+         "label": "çubuk (+)",
+         "charge": "positive"
+        },
+        {
+         "shape": "electroscope",
+         "label": "elektroskop",
+         "induced": {
+          "side": "top",
+          "sign": "negative"
+         },
+         "leaves": 0.7
+        }
+       ]
+      },
+      "caption": "Nötr elektroskoba yüklü cisim yaklaşınca yapraklar **açılır** (etki). Yüklü elektroskopta aynı işaretli cisim yaprakları **daha çok açar**, zıt işaretli kapatır.",
+      "narration": "Elektroskop, bir cismin yüklü olup olmadığını anlamaya yarar: metal bir topuz, bir çubuk ve ucundaki iki ince yaprak.",
+      "beats": [
+       {
+        "narration": "Pozitif bir çubuğu topuza yaklaştırınca elektronlar topuza çekilir; yapraklarda pozitif yük kalır ve aynı işaretli yapraklar birbirini iterek açılır.",
+        "focus": [
+         "o2"
+        ]
+       },
+       {
+        "narration": "Negatif bir çubuk yaklaştırsaydın da yapraklar açılırdı. Bu yüzden nötr elektroskop, yaklaşan cismin yüklü olduğunu söyler ama yükün işaretini söyleyemez. İşareti anlamak için önceden yüklenmiş bir elektroskop gerekir.",
+        "focus": [
+         "o1",
+         "o2"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Pozitif yüklü bir elektroskobun topuzuna $X$ cismi dokundurulmadan yaklaştırılıyor ve yaprakların **biraz daha açıldığı** görülüyor. Buna göre $X$ cismi için ne söylenebilir?",
+       "options": [
+        "Pozitif yüklüdür.",
+        "Negatif yüklüdür.",
+        "Nötrdür.",
+        "Negatif ya da nötrdür.",
+        "Yükü hakkında bir şey söylenemez."
+       ],
+       "answer": 0,
+       "narration": "Yapraklara daha çok pozitif yük itilmiş.",
+       "steps": [
+        {
+         "text": "Yapraklar daha çok açıldı → yapraklardaki pozitif yük **arttı**: elektronlar yapraklardan topuza çekildi.",
+         "narration": "Yapraklar daha çok açıldıysa yapraklardaki pozitif yük arttı. Bu, yaklaşan cismin elektronları yapraklardan topuza çektiği anlamına gelir."
+        },
+        {
+         "text": "Bunu ancak **aynı işaretli** (pozitif) cisim yapar. Cevap **A**.",
+         "narration": "Pozitif bir cisim yaklaşınca elektronlar topuza çekilir, yapraklar daha pozitif olur ve daha çok açılır. Negatif ya da nötr bir cisim yaprakları kapatırdı ya da değiştirmezdi. Cevabımız A.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2022 elektroskop sorusunun fikri yüklü elektroskopla, yükün işaretini bulmaya çevrilerek kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Elde tutulan metal bir çubuk yünlü kumaşa sürtüldüğünde yüklenmiş hâlde kalmaz. Bunun nedeni aşağıdakilerden hangisidir?",
+       "options": [
+        "Metaller sürtünmeyle hiç elektron alıp vermez.",
+        "Metal çubuğun protonları ele geçer.",
+        "Metal, yükü yüzeyinde tutar.",
+        "Yün, sürtünmede yüklenmez.",
+        "Metalde oluşan yük, iletken olan vücut üzerinden toprağa akar."
+       ],
+       "answer": 4,
+       "narration": "İletken zincir: metal, el, toprak.",
+       "steps": [
+        {
+         "text": "Metal ve vücut **iletken**: oluşan yük vücut üzerinden toprağa akar. Cevap **E**.",
+         "narration": "Metal çubuk sürtünmede yüklenir, ama metal de vücudumuz da iletkendir. Oluşan yük bizim üzerimizden toprağa akar ve çubuk nötr kalır. Yalıtkan bir sapla tutsaydık çubuk yüklü kalırdı. Cevabımız E. B'yi seçen, protonların yer değiştirdiğini sanmıştır; yer değiştiren hep elektronlardır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; iletkenlerde yük akışı ve topraklama günlük bir örnekle özgün olarak soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ELEKTROSTATIK_05",
+    "title": "Coulomb kuvveti",
+    "narration": "İki yük arasındaki kuvvetin ne kadar büyük olduğunu Coulomb yasası söyler.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Yükle doğru, uzaklığın karesiyle ters",
+      "items": [
+       "$F = k \\cdot \\frac{q_1 \\cdot q_2}{d^2}$; $k = 9 \\cdot 10^9 \\text{ N} \\cdot \\text{m}^2/\\text{C}^2$.",
+       "Yüklerden biri **2 katı** olursa kuvvet **2 katı** olur.",
+       "Uzaklık **2 katı** olursa kuvvet **dörtte birine** iner.",
+       "Kuvvetler etki-tepki çiftidir: iki yüke **eşit büyüklükte**, zıt yönde etki eder."
+      ],
+      "narration": "Coulomb yasasına göre iki noktasal yük arasındaki kuvvet, yüklerin çarpımıyla doğru, aralarındaki uzaklığın karesiyle ters orantılıdır. Yüklerden biri iki katına çıkarsa kuvvet iki katına çıkar. Uzaklık iki katına çıkarsa kuvvet dörtte birine iner; uzaklık yarıya inerse kuvvet dört katına çıkar. Bu kuvvetler etki-tepki çiftidir: yükler farklı büyüklükte olsa da ikisine etki eden kuvvetler eşittir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aralarında $d$ uzaklığı bulunan iki noktasal yük birbirine $F$ büyüklüğünde kuvvet uyguluyor. Yüklerden biri $2$ katına çıkarılıp aralarındaki uzaklık $\\frac{d}{2}$ yapılırsa kuvvet ne olur?",
+       "options": [
+        "$\\frac{F}{2}$",
+        "$2F$",
+        "$4F$",
+        "$8F$",
+        "$16F$"
+       ],
+       "answer": 3,
+       "narration": "Yükle doğru, uzaklığın karesiyle ters.",
+       "steps": [
+        {
+         "text": "Yük $2$ katı → kuvvet $\\times 2$; uzaklık yarıya → kuvvet $\\times 4$.",
+         "narration": "Yüklerden birinin iki katına çıkması kuvveti iki katına çıkarır. Uzaklığın yarıya inmesi kuvveti uzaklığın karesiyle, yani dört katına çıkarır."
+        },
+        {
+         "text": "$F' = 2 \\cdot 4 \\cdot F = 8F$. Cevap **D**.",
+         "narration": "Toplam iki çarpı dört, sekiz kat: sekiz F. Cevabımız D. Dört F'yi seçen, uzaklığın karesini almayı unutup iki ile iki çarpmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; Coulomb yasasında oran özgün değişikliklerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$K$ küresinin yükü $+q$, $L$ küresinin yükü $+4q$'dur. $K$'nin $L$'ye uyguladığı elektriksel kuvvetin büyüklüğü $F$ olduğuna göre, $L$'nin $K$'ye uyguladığı kuvvetin büyüklüğü kaçtır?",
+       "options": [
+        "$\\frac{F}{4}$",
+        "$F$",
+        "$2F$",
+        "$4F$",
+        "$16F$"
+       ],
+       "answer": 1,
+       "narration": "Etki-tepki.",
+       "steps": [
+        {
+         "text": "İki yük arasındaki kuvvetler etki-tepki çiftidir: **eşit büyüklükte, zıt yönde**. Cevap **B**.",
+         "narration": "Coulomb formülünde iki yük çarpım olarak yer alır; kuvvet hangi yükün üzerinden bakılırsa bakılsın aynıdır. Newton'un üçüncü yasası da bunu söyler: L'nin K'ye uyguladığı kuvvet de F, yönü ters. Cevabımız B. Dört F'yi seçen, büyük yükün daha büyük kuvvet uyguladığını sanmıştır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; Coulomb kuvvetinde etki-tepki eşitliği özgün olarak soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$+2 \\cdot 10^{-6}$ C ve $-3 \\cdot 10^{-6}$ C'luk iki noktasal yük arasındaki uzaklık $0{,}3$ m'dir. Yükler arasındaki elektriksel kuvvetin büyüklüğü kaç newtondur? ($k = 9 \\cdot 10^9 \\text{ N} \\cdot \\text{m}^2/\\text{C}^2$)",
+       "options": [
+        "$0{,}2$",
+        "$0{,}6$",
+        "$1{,}8$",
+        "$6$",
+        "$60$"
+       ],
+       "answer": 1,
+       "narration": "Önce paydaki çarpım.",
+       "steps": [
+        {
+         "text": "$q_1 q_2 = 6 \\cdot 10^{-12}$; $d^2 = 0{,}09$.",
+         "narration": "Yüklerin çarpımının büyüklüğü altı çarpı on üzeri eksi on iki. Uzaklığın karesi sıfır virgül sıfır dokuz."
+        },
+        {
+         "text": "$F = 9 \\cdot 10^9 \\cdot \\frac{6 \\cdot 10^{-12}}{0{,}09} = 0{,}6$ N; zıt yükler, **çekme**. Cevap **B**.",
+         "narration": "Dokuz çarpı on üzeri dokuz çarpı altı çarpı on üzeri eksi on iki: elli dört çarpı on üzeri eksi üç. Bunu sıfır virgül sıfır dokuza bölünce sıfır virgül altı newton. Yükler zıt işaretli olduğu için kuvvet çekme kuvveti. Cevabımız B. Bir virgül sekizi seçen, uzaklığın karesini almamıştır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; Coulomb kuvveti özgün değerlerle hesaplatıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Yüklenme **elektron** alışverişiyle olur; toplam yük korunur.",
+    "Sürtünme: zıt ve eşit; dokunma: aynı işaret, özdeşte eşit paylaşım; etki: yakın yüz zıt.",
+    "Topraklanan iletken nötrleşir; etki sırasında topraklanırsa **zıt** işaretle yüklü kalır.",
+    "İletkende yük dış yüzeyde ve sivri uçlarda; nötr elektroskop yükün **işaretini söylemez**.",
+    "$F = k \\frac{q_1 q_2}{d^2}$: uzaklık 2 katı → kuvvet $\\frac{1}{4}$."
+   ],
+   "warnings": [
+    "Protonlar **yer değiştirmez**; yüklenmede yalnız elektronlar hareket eder.",
+    "Çekilen cisim yüklü olmayabilir: nötr cisim de **etkiyle** çekilir.",
+    "Coulomb kuvvetinde uzaklığın **karesi** var."
+   ],
+   "narration": "Hadi toparlayalım. Cisimler elektron alıp vererek yüklenir; protonlar yerinden oynamaz ve toplam yük korunur. Sürtünmede cisimler zıt ve eşit, dokunmada aynı işaretle yüklenir; özdeş küreler yükü eşit paylaşır. Etkide yakın yüz zıt işaretle yüklenir; bu sırada topraklanan cisim kalıcı olarak zıt yükle kalır. İletkende yük dış yüzeye yayılır, yalıtkanda yerinde kalır. Nötr elektroskop yükün varlığını gösterir ama işaretini söylemez. Coulomb kuvveti yüklerin çarpımıyla doğru, uzaklığın karesiyle ters orantılıdır."
+  }
+ }
+}

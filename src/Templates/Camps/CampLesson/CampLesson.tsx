@@ -1,18 +1,20 @@
 import {campWelcomeNarration, sectionTitleNarration, type CampEpisode} from '../../../Courses/Camp';
 import {COURSE_VOICE_MODEL} from '../../../Configurations/Voices';
 import {COURSE_DESIGN} from '../../../Courses/CourseDesign';
-import {CAMP_SCRIPT_SAMPLE} from '../../../Courses/LessonScriptSample';
 import {LessonScriptSchema, type LessonScript} from '../../../Courses/LessonScript';
+import {CAMP_SCRIPT_SAMPLE} from '../../../Courses/LessonScriptSample';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
-import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
+import {OUTRO_SCENE_ID} from '../../../Scenes/AppEndScene';
 import {createNarrator, VOICE_LEAD_SECONDS, voiceTracksOf, type VoiceClips} from '../../../Scenes/Voiceover';
-import {cuesInLine, spreadCues} from '../../../Courses/LessonCues';
+import {cuesInLine, spreadCues} from '../../../Courses/LessonCue';
 import {courseLessonTheme} from '../../../Themes/LessonAccent';
 import {CourseLesson} from '../../Courses/CourseLesson/CourseLesson';
-import {LessonChrome} from '../../Courses/CourseLesson/CourseLessonScenes';
+import {LessonChrome, LessonLayoutProvider} from '../../Courses/CourseLesson/Scenes/LessonChrome';
 import {defineTemplate} from '../../TemplateDefinition';
-import {CAMP_SCENE_IDS, CampCardScene, CampTaskScene, ChapterBar, SectionVoiceOrb} from '../CampScenes';
+import {CAMP_SCENE_IDS, SectionVoiceOrb, StudioBand} from '../Scenes/CampChrome';
+import {CampCardScene} from '../Scenes/CampCardScene';
+import {CampTaskScene} from '../Scenes/CampTaskScene';
 
 /** A camp lesson is a lesson script with its camp fields. */
 export const CampScriptSchema = LessonScriptSchema.refine((script) => script.camp !== undefined, {path: ['camp'], message: 'A camp lesson needs its camp fields (Courses/Camp).'});
@@ -20,7 +22,7 @@ export const CampScriptSchema = LessonScriptSchema.refine((script) => script.cam
 const SECTION_OPENING = /^s\d+$/;
 
 /** The scenes that open a chapter, and the chapter's title. Ids are CourseLesson's own and the camp's. */
-export const campChapterTitle = (script: LessonScript, sceneId: string): string | undefined => {
+const campChapterTitle = (script: LessonScript, sceneId: string): string | undefined => {
 	if (sceneId === CAMP_SCENE_IDS.card) return 'Giriş';
 	if (SECTION_OPENING.test(sceneId)) return script.lesson.sections[Number(sceneId.slice(1)) - 1]?.title;
 	if (sceneId === 'summary') return 'Özet';
@@ -98,22 +100,31 @@ const buildScenes = (script: LessonScript, voiceClips: VoiceClips = {}): Templat
 	const outro = outroAt === -1 ? [] : lesson.slice(outroAt);
 	return [welcome, ...body.map(withSpokenTitle), task, ...outro].map((scene) => {
 		const chapter = campChapterTitle(script, scene.id);
-		return {...scene, ...(chapter ? {chapter} : {}), ...(opensAPart(scene.id) ? {transitionIn: COURSE_DESIGN.transition.section} : {})};
+		// Camp lessons are drawn in the studio layout (owner's choice, 31 Oct 2026; LessonChrome's LessonLayout).
+		const element = <LessonLayoutProvider layout="studio">{scene.element}</LessonLayoutProvider>;
+		return {...scene, element, ...(chapter ? {chapter} : {}), ...(opensAPart(scene.id) ? {transitionIn: COURSE_DESIGN.transition.section} : {})};
 	});
 };
 
 /**
  * One lesson of a camp on YouTube: the CourseLesson of the topic (at least
  * ten minutes: sections, figures, worked questions, summary) inside the camp's
- * frame: SinoAI's welcome on the camp card, a chapter bar along the bottom, and the
- * camp task with the next lesson at the end. The same script makes the reel
- * (CampShort). Rendering also gives the YouTube chapter list.
+ * frame: SinoAI's welcome on the camp card, and the camp task with the next
+ * lesson at the end. The same script makes the reel (CampShort). Rendering also
+ * gives the YouTube chapter list.
+ *
+ * It is drawn in the studio layout (owner's choice over the classic one, 31 Oct
+ * 2026): each card's kind and title in the top row beside the logo, figures and
+ * text in the room two header rows used to take, a question read alone before
+ * its solution comes in, section openings with the lesson's contents, the camp
+ * card set like the camp cover, and the lesson, camp number and chapter in one
+ * band at the bottom (StudioBand).
  */
 export const CampLesson = defineTemplate({
 	id: 'CampLesson',
 	category: 'Courses',
 	title: 'Kamp Dersi (YouTube)',
-	description: 'Kamp serisinin bir dersi: en az 10 dakikalık konu anlatımı, kamp kartı, bölüm çubuğu, kamp görevi ve sıradaki ders.',
+	description: 'Kamp serisinin bir dersi, stüdyo düzeninde: en az 10 dakikalık konu anlatımı, kamp kartı, altta ders ve bölüm bandı, kamp görevi ve sıradaki ders.',
 	contentSchema: CampScriptSchema,
 	sampleContent: CAMP_SCRIPT_SAMPLE,
 	defaultTheme: COURSE_DESIGN.theme,
@@ -123,5 +134,16 @@ export const CampLesson = defineTemplate({
 	targetSeconds: {min: COURSE_DESIGN.length.lesson.min, max: 40 * 60},
 	buildScenes,
 	themeFor: (themeId, script) => courseLessonTheme(themeId, script.topic.lesson),
-	renderOverlay: (script, plan) => <ChapterBar plan={plan} chapterIds={plan.scenes.map((scene) => scene.id).filter((id) => campChapterTitle(script, id) !== undefined)} />,
+	renderOverlay: (script, plan) => (
+		<StudioBand
+			plan={plan}
+			chapters={plan.scenes.flatMap((scene) => {
+				const title = campChapterTitle(script, scene.id);
+				return title ? [{id: scene.id, title}] : [];
+			})}
+			lessonName={script.lessonName}
+			camp={campOf(script)}
+		/>
+	),
 });
+

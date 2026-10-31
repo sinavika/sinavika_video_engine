@@ -3,7 +3,7 @@ import {FONT_SIZES, LINE_HEIGHTS, type FontSizeName} from '../../Themes/DesignTo
 import {useInk, useTheme} from '../../Themes/ThemeContext';
 import {useVideoLayout} from '../Layouts/VideoLayout';
 
-export type TextTone = 'default' | 'muted' | 'emphasis';
+type TextTone = 'default' | 'muted' | 'emphasis';
 
 export type TextProps = {
 	variant?: FontSizeName;

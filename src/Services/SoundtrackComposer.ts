@@ -42,7 +42,7 @@ type SoundtrackStyle = {
  * The music an ad can have. Each ad should sound like itself: pick a style
  * another recent ad has not used, or add one here.
  */
-export const SOUNDTRACK_STYLES = {
+const SOUNDTRACK_STYLES = {
 	/** F – C – Dm – B♭ at 100 BPM: bright and forward without sounding like a jingle. */
 	Bright: {
 		beatSeconds: 0.6,

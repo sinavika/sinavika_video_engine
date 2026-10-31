@@ -4,16 +4,17 @@ import {CAMP_SCRIPT_SAMPLE} from '../../../Courses/LessonScriptSample';
 import type {ChallengeRound, LessonScript} from '../../../Courses/LessonScript';
 import {CHALLENGE_SCORE_LINE, spokenRoundAsk, spokenRoundReveal} from '../../../Courses/LessonSpeech';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
-import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
+import {OUTRO_SCENE_ID} from '../../../Scenes/AppEndScene';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, type VoiceClips} from '../../../Scenes/Voiceover';
 import {courseLessonTheme} from '../../../Themes/LessonAccent';
-import {promotionScene} from '../../Courses/CoursePromotionScenes';
+import {promotionScene} from '../../Courses/CoursePromotionScene';
 import {CourseShort} from '../../Courses/CourseShort/CourseShort';
 import {defineTemplate} from '../../TemplateDefinition';
 import {CampScriptSchema} from '../CampLesson/CampLesson';
-import {CampShortChrome} from '../CampScenes';
-import {ChallengeRoundScene, ChallengeScoreScene} from './CampChallengeScenes';
+import {CampShortChrome} from '../Scenes/CampChrome';
+import {ChallengeRoundScene} from './Scenes/ChallengeRoundScene';
+import {ChallengeScoreScene} from './Scenes/ChallengeScoreScene';
 
 /**
  * The challenge reel (docs/CourseNarration.md §10): the first question from

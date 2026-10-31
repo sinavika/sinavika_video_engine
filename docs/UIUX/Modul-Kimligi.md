@@ -2,7 +2,7 @@
 
 Sınavika'nın yedi modülünün her birinin bir **kimlik rengi** vardır. Bu belge rengin nasıl kullanılacağını ve her serviste bu bilginin hangi tek dosyada duracağını tanımlar. Dört projede aynı içerikle durur: API, web, mobil ve içerik motoru.
 
-**Tarih:** 15 Ekim 2026
+**Tarih:** 29 Ekim 2026
 **Kaynak kod (tek doğru):** `sinavika_video_engine/src/UIUX/ModuleIdentity.ts`
 **İlgili:** `BrandIdentity.md` §5 (adlar ve renk kuralı), `Adlandirma-Kurallari.md` (görünen ad ↔ kod adı), `UIUX-Rehberi.md` (tasarım sistemi)
 
@@ -10,7 +10,8 @@ Sınavika'nın yedi modülünün her birinin bir **kimlik rengi** vardır. Bu be
 
 - Öğrenci hangi modülde olduğunu yazıyı okumadan, renkten anlar.
 - Aynı modül her yerde aynı renktedir: hub kartı, slayt, sekme, sayfa zemini, bildirim, plan görevi, e-posta ikonu, mağaza görseli, sosyal medya.
-- Turuncu marka rengi ve birincil eylem olarak kalır. Modül rengi **yön bulma** içindir, eylem için değildir.
+- Modülün içinde "bu ekranı" gösteren her şey modülün rengindedir: ikon kutuları, sekme hapı, slayt, ilerleme, seçili durumlar ve **ana düğme**.
+- Turuncu yalnız marka yüzeylerindedir: logo, giriş ve kayıt, onboarding, ödeme ve abonelik, profil, site. Denemeler'in kendi rengi turuncu olduğu için turuncu modül yalnız Denemeler'dir.
 
 ## 2. Renkler
 
@@ -24,7 +25,21 @@ Sınavika'nın yedi modülünün her birinin bir **kimlik rengi** vardır. Bu be
 | Bilgi Kartları | `flashcards` | `#DB2777` | `#F472B6` | `#F43F5E` |
 | SinoAI | `sinoAi` | nötr `#475569` | `#CBD5E1` | `#94A3B8` |
 
-- Hepsi beyaz yazıyla en az **3:1** kontrast verir; bunu test kontrol eder (`tests/UIUX.test.ts`).
+- Kimlik renkleri beyaz yazıyla en az **3:1** verir (simge ve büyük yazı için yeter).
+- **Düğme rengi (`moduleAction`):** düğme dolgusu, kimlik renginin beyaz yazıyla **4,5:1** tutana kadar %5 adımlarla koyulaştırılmış hâlidir; iki temada aynıdır. Koyu temadaki açık renkler beyaz yazıyla 1,5–3,0:1 kalıyordu.
+
+| Modül | Düğme rengi | Beyaz yazıyla |
+|---|---|---|
+| Denemeler | `#C54C0A` | 4,8:1 |
+| Dersler | `#0277B3` | 4,9:1 |
+| Testler | `#4F46E5` | 6,3:1 |
+| Ders Planı | `#0C857A` | 4,5:1 |
+| Akıllı Özet | `#7C3AED` | 5,7:1 |
+| Bilgi Kartları | `#DB2777` | 4,6:1 |
+| SinoAI | `#475569` | 7,6:1 |
+| Marka (modül dışı) | `#C2410C` | 5,2:1 |
+
+- Logo ve simgeler marka turuncusunu (`#EA580C`) korur; yalnız düğme dolgusu `#C2410C`'dir. İkisini de test kontrol eder (`tests/UIUX/UIUX.test.ts`).
 - SinoAI'nin rengi yoktur: web ve mobilde **beyaz zemin, gri tonlar**; sohbet ekranı ChatGPT/Gemini gibi sade (geçmiş sütunu, ortada tek sohbet sütunu, yuvarlak yazma kutusu, mürekkep gönder düğmesi). Kıvılcım gradyanı kaldırıldı.
 - **Sakin yüzeyler (`calm`):** giriş öncesi site `UIProvider calm` içinde çizilir; modül renkleri griye düşer. Uygulama maketleri (`DevicePhone`, `DeviceBrowser`) `calm={false}` ile kendi renklerine döner.
 - Durum renkleri (yeşil başarı, sarı uyarı, kırmızı hata) modül renginden ayrıdır ve yalnız durum bildirir.
@@ -56,7 +71,8 @@ Koyu temada opaklık 1,8 ile çarpılır; aynı görünür yoğunluk korunur.
 
 **Kullanılmaz**
 
-- Birincil düğme: her zaman marka turuncusu. Modül içi ikincil düğme `moduleSoft` olabilir.
+- Turuncu: modül ekranında turuncu düğme, çip, halka ya da bağlantı olmaz (Denemeler hariç). Test, Denemeler dışındaki modül ekranlarında marka turuncusunu arar.
+- Başka modülü açan düğme **o modülün** rengindedir: konu sonundaki "Kolay seviye testi" ve SinoAI'deki "Testi aç" Testler renginde, yanlış cevaptan sonraki "Mikro ders" Dersler renginde.
 - Uzun gövde metni: modül renginde paragraf yazılmaz.
 - Durum: "doğru" yeşil, "yanlış" kırmızıdır; modül renginde gösterilmez.
 - Bir ekranda başka bir modülün rengi yalnız o modüle bağlantı verirken görünür. Örnek: deneme analizindeki "Mikro ders" çipi Dersler renginde, "10 soru" çipi Testler renginde.
@@ -118,7 +134,7 @@ JSON'a `"exam"`, `"lessons"` gibi camelCase metin olarak yazılır. Bildirim gel
 | Modül | Yuva 1 | Yuva 2 | Yuva 3 | Yuva 4 | Yuva 5 |
 |---|---|---|---|---|---|
 | Denemeler | Denemeler | Denemelerim | Modüller | Sonuçlar | Profil |
-| Dersler | Dersler | Konu ağacı | Modüller | Geçmiş | Profil |
+| Dersler | Dersler | Konular | Modüller | Tekrar | Profil |
 | Testler | Testler | Konular | Modüller | Çözümler | Profil |
 | Ders Planı | Bugün | İlerleme | Modüller | Program | Profil |
 | Akıllı Özet | Akıllı Özet | Soru yükle | Modüller | Video | Profil |
@@ -131,7 +147,7 @@ Web'de modül sayfasının üstündeki hap sekmeler yuva 1, 2 ve 4'tür. Web'e �
 
 1. Yeni ekran bir modüle aitse `module` bilgisi var mı?
 2. Renk, ad ve ikon merkezi dosyadan mı geliyor?
-3. Birincil düğme turuncu mu?
+3. Ana düğme modülün düğme renginde mi (modül dışında marka düğme renginde mi)?
 4. Modül rengi yalnız §4'teki yerlerde mi?
 5. Koyu temada `dark` değeri ve 1,8 kat opaklık mı kullanılıyor?
 6. Durum renkleri ve modül rengi karışmıyor mu?

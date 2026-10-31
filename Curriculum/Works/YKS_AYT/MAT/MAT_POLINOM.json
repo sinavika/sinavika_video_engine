@@ -1,0 +1,683 @@
+{
+ "topic": {
+  "id": "184E9C0A-58E5-1954-402D-860426EB61F5",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_POLINOM"
+ },
+ "title": "Polinomlar",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/MAT/MAT_POLINOM.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Baş katsayı ve kökler, polinomun kimliğidir.",
+   "narration": "Bir polinomun baş katsayısını ve köklerini biliyorsan polinomu biliyorsun. ÖSYM 2018'den bu yana AYT'de polinomlardan on bir soru sordu ve neredeyse hepsi bu fikre dayandı: çift polinom, ortak kökler, çift katlı kök, grafikteki kökler. Bu derste kuralları hatırlayıp ÖSYM'nin kalıplarını AYT düzeyinde yeni sorularla çözeceğiz."
+  },
+  "objectives": [
+   "Baş katsayı ve köklerden polinomu kurmak",
+   "Çift polinom ve tam kare koşullarını kullanmak",
+   "P(1), P(0) ve kalan teoremiyle değer bulmak",
+   "İkinci dereceden bölende kalanı bulmak",
+   "Çift katlı kökü grafikte ve koşullarda tanımak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_POLINOM_01",
+    "subtopics": [
+     "MAT_POLINOM_02"
+    ],
+    "title": "Polinom ve derece",
+    "narration": "ÖSYM 2018'den bu yana polinomlardan on bir soru sordu. Çoğu köklerden polinomu kurdurur: baş katsayı ve kökler biliniyorsa polinom bellidir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kısa tekrar: polinom",
+      "items": [
+       "Polinomda üsler **doğal sayıdır**; derece en büyük üs.",
+       "$P(1)$ = katsayılar toplamı, $P(0)$ = sabit terim.",
+       "Kökleri $r_1, \\dots, r_n$, baş katsayısı $k$: $P(x) = k(x - r_1)\\cdots(x - r_n)$.",
+       "$P(x) = P(-x)$ (**çift** polinom): yalnız çift kuvvetler; kökler $\\pm$ çiftler hâlinde."
+      ],
+      "beats": [],
+      "narration": "Polinomda değişkenin üsleri doğal sayıdır; derece en büyük üstür. P bir, katsayılar toplamıdır; P sıfır, sabit terimdir. Baş katsayısı ve kökleri bilinen bir polinom tek türlü yazılır: baş katsayı çarpı x eksi köklerin çarpımı. P x, P eksi x'e eşitse polinom çifttir: yalnız çift kuvvetleri vardır ve kökleri artı-eksi çiftler hâlinde gelir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Gerçel katsayılı ve baş katsayısı 1 olan 4. dereceden bir $P(x)$ polinomu her $x$ gerçel sayısı için\n\n$P(x) = P(-x)$\n\neşitliğini sağlamaktadır.\n\n$P(1) = P(2) = 0$ olduğuna göre, $P(3)$ kaçtır?",
+       "options": [
+        "$24$",
+        "$32$",
+        "$40$",
+        "$48$",
+        "$56$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$P(x) = P(-x)$: $1$ kök ise $-1$ de kök; $2$ kök ise $-2$ de kök.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "P x, P eksi x'e eşit: bir kökse eksi bir de kök, iki kökse eksi iki de kök."
+        },
+        {
+         "text": "Dört kök, baş katsayı 1: $P(x) = (x^2 - 1)(x^2 - 4)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dört kök bulduk ve polinom dördüncü dereceden: P x, x kare eksi bir çarpı x kare eksi dört."
+        },
+        {
+         "text": "$P(3) = 8 \\cdot 5 = 40$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "P üç: dokuz eksi bir sekiz, dokuz eksi dört beş; çarpım kırk. Cevap C."
+        }
+       ],
+       "narration": "ÖSYM 2026'da bu kalıbı sordu. Çift polinomun kökleri ikişer ikişer gelir.",
+       "origin": {
+        "changes": "ÖSYM 2026 çift polinom kalıbı örnek alındı; kökler ve istenen değer yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Gerçel katsayılı ve baş katsayısı 1 olan ikinci dereceden bir $P(x)$ polinomu veriliyor. $a$ ve $b$ pozitif gerçel sayılar olmak üzere\n\n$P(x) - a$ polinomunun yalnızca bir kökü vardır,\n\n$P(x) - a - 9$ polinomunun kökleri $-b$ ve $b$'dir.\n\n$P(b) = 16$ olduğuna göre, $a + b$ toplamı kaçtır?",
+       "options": [
+        "$7$",
+        "$8$",
+        "$9$",
+        "$10$",
+        "$12$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Tek kök: $P(x) - a = (x - h)^2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "P x eksi a'nın tek kökü var: bir tam kare, x eksi h'nin karesi."
+        },
+        {
+         "text": "$(x - h)^2 = 9$: kökler $h \\pm 3$; bunlar $-b$ ve $b$ ise $h = 0$, $b = 3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "P x eksi a eksi dokuz sıfır: x eksi h'nin karesi dokuz, kökler h artı üç ve h eksi üç. Bunlar eksi b ve b ise toplamları sıfır: h sıfır, b üç."
+        },
+        {
+         "text": "$P(x) = x^2 + a$, $P(3) = 9 + a = 16$: $a = 7$. $a + b = 10$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "P x, x kare artı a. P üç, dokuz artı a, on altı: a yedi. a artı b on. Cevap D."
+        }
+       ],
+       "narration": "ÖSYM 2021'de bu kalıbı sordu. Tek kök, tam kare demek.",
+       "origin": {
+        "changes": "ÖSYM 2021 kökleri ötelenen parabol kalıbı örnek alındı; sayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_POLINOM_03",
+    "subtopics": [],
+    "title": "Polinomlarda işlemler",
+    "narration": "İki polinomun çarpımında dereceler toplanır, kökler birleşir. AYT bunu \"her zaman doğru mu\" diye sorar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İşlem kuralları",
+      "items": [
+       "$\\text{der}(P \\cdot Q) = \\text{der}\\,P + \\text{der}\\,Q$; $\\text{der}(P \\pm Q) \\leq$ büyük derece.",
+       "$P = Q \\cdot R$ ise $Q$'nun ve $R$'nin **her kökü** $P$'nin köküdür.",
+       "$P(x + 1)$ verilmişse $P(1)$ için $x = 0$, $P(0)$ için $x = -1$ koy."
+      ],
+      "beats": [],
+      "narration": "İki polinomun çarpımının derecesi, derecelerin toplamıdır; toplamın derecesi en çok büyük olanın derecesidir, baş terimler sadeleşirse daha da düşer. P, Q çarpı R ise Q'nun ve R'nin her kökü P'nin de köküdür. P x artı bir verilmişse P biri bulmak için x'e sıfır, P sıfırı bulmak için eksi bir koyarsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$P(x)$ ve $Q(x)$ sabit olmayan polinomlar, $R(x)$ ise ikinci dereceden bir polinom olmak üzere\n\n$P(x) = Q(x) \\cdot R(x)$\n\neşitliği sağlanmaktadır. Buna göre,\n\nI. $P(x)$ en az üçüncü derecedendir.\n\nII. $R(x)$'in her kökü $P(x)$'in de köküdür.\n\nIII. $P(x)$ ile $Q(x)$'in sabit terimleri aynıdır.\n\nifadelerinden hangileri **her zaman** doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "I: $\\text{der}\\,Q \\geq 1$, $\\text{der}\\,R = 2$: $\\text{der}\\,P \\geq 3$ ✓.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Q sabit değil, derecesi en az bir; R ikinci dereceden. P'nin derecesi en az üç. Doğru."
+        },
+        {
+         "text": "II: $R(r) = 0$ ise $P(r) = Q(r) \\cdot 0 = 0$ ✓.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "R'nin bir kökünde P, Q çarpı sıfır, sıfır. Doğru."
+        },
+        {
+         "text": "III: $Q = x + 5$, $R = x^2 + 2$: $P(0) = 10 \\neq 5$ ✗.",
+         "eliminate": [
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üçüncü için bir karşı örnek: Q, x artı beş; R, x kare artı iki. P'nin sabit terimi on, Q'nunki beş. Her zaman doğru değil. Cevap C."
+        }
+       ],
+       "narration": "ÖSYM 2019'da bu kalıbı sordu. Her öncülü bir kuralla ya da bir karşı örnekle sınayalım.",
+       "origin": {
+        "changes": "ÖSYM 2019 çarpım ve kök kalıbı örnek alındı; dereceler ve öncüller yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$P(x + 1) = x^3 - 2x^2 + 3x + 4$\n\nolduğuna göre, $P(x)$ polinomunun katsayılar toplamı ile sabit teriminin çarpımı kaçtır?",
+       "options": [
+        "$-8$",
+        "$-4$",
+        "$2$",
+        "$4$",
+        "$8$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Katsayılar toplamı $P(1)$: $x + 1 = 1$, $x = 0$: $P(1) = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Katsayılar toplamı P bir. x artı bir, bir olmalı: x sıfır. P bir, dört."
+        },
+        {
+         "text": "Sabit terim $P(0)$: $x = -1$: $-1 - 2 - 3 + 4 = -2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sabit terim P sıfır: x eksi bir. Eksi bir eksi iki eksi üç artı dört, eksi iki."
+        },
+        {
+         "text": "Çarpım: $4 \\cdot (-2) = -8$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çarpım eksi sekiz. Cevap A."
+        }
+       ],
+       "narration": "P'yi açmaya gerek yok; P bir ve P sıfır yeter.",
+       "origin": {
+        "changes": "Öteleme ile P(1) ve P(0) kalıbı; polinom yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_POLINOM_04",
+    "subtopics": [
+     "MAT_POLINOM_05"
+    ],
+    "title": "Bölme ve kalan",
+    "narration": "Kalan teoremi tek satır: P(x)'in x − a ile bölümünden kalan P(a). AYT bunu ikinci dereceden bir bölenle ve iki polinomun farkıyla birleştirir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kalan teoremi",
+      "items": [
+       "$P(x) = B(x) \\cdot Q(x) + K(x)$, $\\text{der}\\,K < \\text{der}\\,B$.",
+       "$P(x)$'in $x - a$ ile bölümünden kalan $P(a)$; $ax - b$ ile bölümünden kalan $P\\left(\\frac{b}{a}\\right)$.",
+       "İkinci dereceden bölende kalan $mx + n$: bölenin iki kökünde **iki denklem**."
+      ],
+      "beats": [],
+      "narration": "Bölme eşitliği: bölünen, bölen çarpı bölüm artı kalandır; kalanın derecesi bölenin derecesinden küçüktür. P x'in x eksi a ile bölümünden kalan P a'dır; a x eksi b ile bölümünden kalan, P b bölü a. İkinci dereceden bir bölende kalan m x artı n biçimindedir; bölenin iki kökünü yerine koyarak iki denklem kurarsın."
+     },
+     {
+      "kind": "predict",
+      "title": "Kalan nedir?",
+      "prompt": "$P(x) = x^2 + x + 1$ polinomunun $x - 3$ ile bölümünden kalan nedir?",
+      "choices": [
+       "$P(3) = 13$",
+       "$P(-3) = 7$"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Bölünen",
+        "Bölen · Bölüm",
+        "Kalan"
+       ],
+       "rows": [
+        [
+         "$x^2 + x + 1$",
+         "$(x - 3)(x + 4)$",
+         "$13$"
+        ],
+        [
+         "$x = 3$ koy",
+         "$0 \\cdot 7$",
+         "$P(3) = 13$"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "x kare artı x artı bir, x eksi üç çarpı x artı dört, artı on üç: bölüm x artı dört, kalan on üç.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "x'e üç koyunca bölen sıfır olur, geriye yalnız kalan kalır: P üç, on üç.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "$x = 3$'te bölen $0$ olur: $P(3) = 0 \\cdot Q(3) + K = K$. Kalan $P(3) = 13$.",
+      "narration": "Şimdi sıra sende. x kare artı x artı birin x eksi üç ile bölümünden kalan nedir? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: P üç, on üç. Bölme eşitliğinde x'e üç koyunca bölen sıfır olur ve bölümle birlikte kaybolur; geriye kalan kalır. Bölen x eksi üç olduğu için üç koyarız, eksi üç değil. Kalan teoreminin bütün sırrı bu."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Her birinin baş katsayısı 1 olan üçüncü dereceden gerçel katsayılı $P(x)$ ve $R(x)$ polinomlarının 1 ve 4 ortak kökleridir.\n\n$P(x) - R(x)$ polinomunun $x - 2$ ile bölümünden kalan 6 olduğuna göre, $P(0) - R(0)$ kaçtır?",
+       "options": [
+        "$-12$",
+        "$-6$",
+        "$6$",
+        "$12$",
+        "$18$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$P = (x - 1)(x - 4)(x - c)$, $R = (x - 1)(x - 4)(x - d)$: $P - R = (x - 1)(x - 4)(d - c)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki polinom da x eksi bir çarpı x eksi dört çarpı bir çarpan. Farkta x küpler gider; geriye x eksi bir çarpı x eksi dört çarpı bir sabit kalır. Sabite k diyelim."
+        },
+        {
+         "text": "Kalan $= (P - R)(2) = (1)(-2)k = 6$: $k = -3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x eksi iki ile bölümden kalan, farkın ikideki değeri: bir çarpı eksi iki çarpı k, altı. k eksi üç."
+        },
+        {
+         "text": "$(P - R)(0) = (-1)(-4)(-3) = -12$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sıfırda: eksi bir çarpı eksi dört çarpı eksi üç, eksi on iki. Cevap A."
+        }
+       ],
+       "narration": "ÖSYM 2020'de bu kalıbı sordu. Farkta baş terimler gider.",
+       "origin": {
+        "changes": "ÖSYM 2020 ortak köklü polinomların farkı kalıbı örnek alındı; kökler ve kalan yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir $P(x)$ polinomunun $x - 1$ ile bölümünden kalan 3, $x + 2$ ile bölümünden kalan $-3$'tür.\n\nBuna göre, $P(x)$'in $(x - 1)(x + 2)$ ile bölümünden kalan aşağıdakilerden hangisidir?",
+       "options": [
+        "$x + 2$",
+        "$2x + 1$",
+        "$2x - 1$",
+        "$3x$",
+        "$x + 3$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$P(x) = (x - 1)(x + 2)Q(x) + mx + n$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "P x, x eksi bir çarpı x artı iki çarpı bölüm, artı m x artı n."
+        },
+        {
+         "text": "$P(1) = m + n = 3$; $P(-2) = -2m + n = -3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x bir: m artı n, üç. x eksi iki: eksi iki m artı n, eksi üç."
+        },
+        {
+         "text": "$3m = 6$: $m = 2$, $n = 1$. Kalan $2x + 1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çıkarınca üç m altı, m iki; n bir. Kalan iki x artı bir. Cevap B."
+        }
+       ],
+       "narration": "İkinci dereceden bölen: kalan m x artı n.",
+       "origin": {
+        "changes": "İkinci dereceden bölende kalan kalıbı; kalanlar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_POLINOM_06",
+    "subtopics": [],
+    "title": "Kökler ve çarpanlar",
+    "narration": "Kök, polinomu sıfır yapan sayıdır; her kök bir çarpan demektir. Grafikte kök, eğrinin x eksenine değdiği yerdir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Çarpan teoremi",
+      "items": [
+       "$P(a) = 0 \\iff (x - a)$, $P(x)$'in **çarpanıdır**.",
+       "**Tek** katlı kökte grafik ekseni **keser**, **çift** katlı kökte **teğet** geçer.",
+       "\"Yalnız iki farklı kök\" üçüncü derecede: köklerden biri **çift katlı**.",
+       "$x^3 + \\dots$: işaret $x$'in işaretiyle aynıysa $x = 0$ kök, kalan çarpan **hep pozitif**."
+      ],
+      "beats": [],
+      "narration": "Bir sayı polinomu sıfır yapıyorsa x eksi o sayı bir çarpandır. Tek katlı bir kökte grafik x eksenini keser; çift katlı kökte eksene teğet geçer, yön değiştirmez. Üçüncü dereceden bir polinomun yalnız iki farklı kökü varsa, köklerden biri çift katlıdır. Ve bir fonksiyonun işareti x'in işaretiyle hep aynıysa x sıfırda kök vardır ve geri kalan çarpan hep pozitiftir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Çift katlı kök",
+      "wrong": "$P(x) = (x - 2)^2(x + 1)$ grafiği $x = 2$'de ekseni keser.",
+      "right": "$x = 2$ çift katlı kök: grafik eksene **teğet** olur, işaret değiştirmez.",
+      "why": "Çift kuvvet işaret değiştirmez; $(x - 2)^2$, $x = 2$'nin iki yanında pozitiftir.",
+      "narration": "Sık yapılan bir hata: her kökte grafiğin ekseni kestiğini sanmak. x eksi iki'nin karesi iki tarafta da pozitiftir; grafik iki noktasında eksene değer ve geri döner. Grafikte teğet geçilen her kök, çift katlı bir köktür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Baş katsayısı 2 olan üçüncü dereceden gerçel katsayılı bir $P(x)$ polinomunun yalnızca 2 farklı gerçel kökü vardır.\n\n$P(1) = P(3) = 0$ olduğuna göre, $P(2)$ değeri\n\nI. $-2$\n\nII. $2$\n\nIII. $4$\n\nsayılarından hangilerine eşit olabilir?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "II ve III"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Üç kök, iki farklı değer: $1$ ya da $3$ çift katlı.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üçüncü dereceden polinomun üç kökü var ama yalnız iki farklı değer: bir ya da üç, iki kez sayılır."
+        },
+        {
+         "text": "$P = 2(x - 1)^2(x - 3)$: $P(2) = 2 \\cdot 1 \\cdot (-1) = -2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir çift katlıysa: iki çarpı bir çarpı eksi bir, eksi iki."
+        },
+        {
+         "text": "$P = 2(x - 1)(x - 3)^2$: $P(2) = 2 \\cdot 1 \\cdot 1 = 2$. I ve II.",
+         "eliminate": [
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç çift katlıysa: iki çarpı bir çarpı bir, iki. P iki, eksi iki ya da iki olabilir; dört olamaz. Cevap D."
+        }
+       ],
+       "narration": "ÖSYM 2022'de bu kalıbı sordu. Hangi kök çift katlı olabilir? İki durum var.",
+       "origin": {
+        "changes": "ÖSYM 2022 çift katlı kök kalıbı örnek alındı; baş katsayı ve kökler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Baş katsayısı 1 olan 4. dereceden bir polinomun kökleri tam sayıdır. Polinomun grafiği şekildeki gibi $x$ eksenini $-1$ ve $4$'te kesmekte, $2$'de eksene teğet olmaktadır.\n\nBuna göre, bu polinomun katsayılar toplamı kaçtır?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         -2,
+         5
+        ],
+        "y": [
+         -40,
+         25
+        ],
+        "xLabel": "x",
+        "yLabel": "y",
+        "curves": [
+         {
+          "expression": "(x + 1)*(x - 2)^2*(x - 4)",
+          "label": "y = P(x)",
+          "ends": [
+           "none",
+           "none"
+          ]
+         }
+        ],
+        "parameters": {},
+        "points": [
+         {
+          "x": -1,
+          "y": 0,
+          "label": "−1"
+         },
+         {
+          "x": 2,
+          "y": 0,
+          "label": "2"
+         },
+         {
+          "x": 4,
+          "y": 0,
+          "label": "4"
+         }
+        ],
+        "segments": [],
+        "equalScale": false,
+        "axes": "origin"
+       },
+       "options": [
+        "$-12$",
+        "$-6$",
+        "$0$",
+        "$6$",
+        "$12$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Kesilen yerler tek katlı: $-1$, $4$; teğet yer çift katlı: $2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eksen eksi birde ve dörtte kesiliyor: tek katlı kökler. İkide teğet: çift katlı kök."
+        },
+        {
+         "text": "$P(x) = (x + 1)(x - 2)^2(x - 4)$ (derece $1 + 2 + 1 = 4$ ✓).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "P x, x artı bir çarpı x eksi ikinin karesi çarpı x eksi dört. Derece dört, uygun."
+        },
+        {
+         "text": "Katsayılar toplamı $P(1) = 2 \\cdot 1 \\cdot (-3) = -6$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Katsayılar toplamı P bir: iki çarpı bir çarpı eksi üç, eksi altı. Cevap B."
+        }
+       ],
+       "narration": "ÖSYM 2018'de bu kalıbı sordu. Grafikten kökleri ve katlarını okuyalım.",
+       "origin": {
+        "changes": "ÖSYM 2018 grafikten polinom kalıbı örnek alındı; kökler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ tam sayılar olmak üzere\n\n$P(x) = x^3 + ax^2 + bx - 4$\n\npolinomunun yalnızca bir tane gerçel kökü vardır.\n\n$P(2) = 0$ olduğuna göre, $a$'nın alabileceği **en küçük** değer kaçtır?",
+       "options": [
+        "$-6$",
+        "$-5$",
+        "$-4$",
+        "$-3$",
+        "$0$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$P(x) = (x - 2)(x^2 + cx + 2)$: $a = c - 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki kök: x eksi iki bir çarpan. Sabit terim eksi dört olduğu için öteki çarpan x kare artı c x artı iki. Açınca a, c eksi iki."
+        },
+        {
+         "text": "Tek gerçel kök: $x^2 + cx + 2$'nin gerçel kökü yok: $c^2 - 8 < 0$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Tek gerçel kök için ikinci çarpanın gerçel kökü olmamalı: diskriminant, c kare eksi sekiz, negatif. (İki kökü ikiye eşit olamaz; c tam sayı.)"
+        },
+        {
+         "text": "$c \\in \\{-2, \\dots, 2\\}$: en küçük $a = -2 - 2 = -4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "c kare sekizden küçük: c eksi ikiden ikiye. En küçük a, eksi iki eksi iki, eksi dört. Cevap C."
+        }
+       ],
+       "narration": "ÖSYM 2023'te bu kalıbı sordu. Bilinen kökü çarpan olarak ayıralım.",
+       "origin": {
+        "changes": "ÖSYM 2023 tek gerçel kök kalıbı örnek alındı; polinom ve kök yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ gerçel sayılar olmak üzere\n\n$f(x) = x^3 + 6x^2 + ax + b$\n\nfonksiyonu pozitif gerçel sayılarda pozitif, negatif gerçel sayılarda negatif değerler almaktadır.\n\nBuna göre, $a$'nın alabileceği **en küçük tam sayı** değeri kaçtır?",
+       "options": [
+        "$9$",
+        "$10$",
+        "$11$",
+        "$12$",
+        "$13$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "İşaret sıfırda değişiyor: $f(0) = 0$, $b = 0$; $f(x) = x(x^2 + 6x + a)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Fonksiyon sıfırın iki yanında işaret değiştiriyor: f sıfır sıfır, b sıfır. f x, x çarpı x kare artı altı x artı a."
+        },
+        {
+         "text": "$f$'nin işareti $x$'inkiyle aynı: $x^2 + 6x + a > 0$ her $x \\neq 0$ için.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "f'nin işareti hep x'in işaretiyle aynıysa ikinci çarpan sıfırdan farklı her x için pozitif olmalı."
+        },
+        {
+         "text": "$\\Delta = 36 - 4a < 0$: $a > 9$. ($a = 9$: $x = -3$'te $f = 0$ ✗.) En küçük tam sayı $10$.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Diskriminant otuz altı eksi dört a negatif: a dokuzdan büyük. a dokuz olsaydı x eksi üçte f sıfır olurdu; negatif değil. En küçük tam sayı on. Cevap B."
+        }
+       ],
+       "narration": "ÖSYM 2024'te bu kalıbı 9x² ile sordu; biz 6x² ile kuralım.",
+       "origin": {
+        "changes": "ÖSYM 2024 işaret koruyan polinom kalıbı örnek alındı; katsayı yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$P(x) = k(x - r_1)\\cdots(x - r_n)$.",
+    "$P(1)$ katsayılar toplamı, $P(0)$ sabit terim.",
+    "Çift polinom: kökler **±** çiftler.",
+    "Kalan: $x - a$ ile bölümde **$P(a)$**.",
+    "İkinci dereceden bölende kalan $mx + n$: **iki kök, iki denklem**.",
+    "Teğet geçilen kök **çift katlı**."
+   ],
+   "warnings": [
+    "Çift katlı kökte grafik **kesmez**.",
+    "\"Yalnız iki farklı kök\": biri **iki kez**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "ÖSYM 2024 sorusunu **kendin** çöz: $f(x) = x^3 + 9x^2 + ax + b$ işaretini koruyorsa $a$ en az kaç?",
+    "$P(x)$'in $x - 2$ ile bölümünden kalan 5, $x + 1$ ile bölümünden kalan $-1$ ise $(x - 2)(x + 1)$ ile bölümünden kalanı bul.",
+    "Uygulamada AYT Polinomlar testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Polinom olma koşulunu örnekle: P(x) = xⁿ⁻² + 3x^(6/n) ifadesinin polinom olması için üsler doğal sayı olmalı; n ∈ {2, 3, 6}, 3 değer.",
+   "İç içe bölme sorusu ekle: P(x) = (x − 2)Q(x) + 5 ve Q(x)'in x − 3 ile bölümünden kalan 4 ise P(x)'in (x − 2)(x − 3) ile bölümünden kalan 4(x − 2) + 5 = 4x − 3.",
+   "Çift ve tek dereceli terim katsayıları toplamını örnekle: P(x) = (x² − x + 2)³ için P(1) = 8, P(−1) = 64; çift dereceli terimlerin katsayıları toplamı (64 + 8)/2 = 36, tek dereceliler (8 − 64)/2 = −28.",
+   "Üçüncü dereceden polinomda kök-katsayı ilişkisini ekle: x³ + ax² + bx + c = 0 için kökler toplamı −a, ikişerli çarpımlar toplamı b, kökler çarpımı −c. x³ − 6x² + 11x − 6 = (x − 1)(x − 2)(x − 3) ile doğrula.",
+   "Kaydırılmış polinomu buldur: P(x + 1) = x² + 3x + 1 ise x yerine x − 1 yazılır: P(x) = x² + x − 1. P(0) ve P(1) değerlerinin sabit terim ve katsayılar toplamı olduğunu tekrarla."
+  ]
+ }
+}

@@ -2,6 +2,8 @@
 
 Sınavika'nın standart haftalık ve aylık yayın planı ile bu plana göre içerik hazırlamanın kuralları. Planın kendisi koddadır; bu belge onu açıklar. Bir kural değişecekse aşağıdaki dosyada değiştirilir, takvimler ve üretim oradan beslenir.
 
+Plan bir stratejiye hizmet eder. Vizyon, 1 milyon takipçi hedefi, içerik sütunları ve ölçüm [`SocialStrategy.md`](SocialStrategy.md) belgesindedir. Hook, kurgu, açıklama ve yayın öncesi kontrol listesi [`SocialCreativePlaybook.md`](SocialCreativePlaybook.md) belgesindedir. Dayanılan kaynaklar [`SocialResources.md`](SocialResources.md) belgesindedir. Planlanan her içerik bir sütuna bağlanır ve sütun gönderinin `Brief.md` dosyasına yazılır.
+
 | Ne | Nerede |
 | --- | --- |
 | Haftalık plan, içerik türleri, formatlar, gönderi türleri, saat kuralları | [`src/Configurations/SocialPlan.ts`](../src/Configurations/SocialPlan.ts) |
@@ -75,6 +77,10 @@ Saatler Buffer'da her hesap için tanımlı yayın saatlerinden alınır (`npm r
 - Hiçbir hesabın saati yoksa plandaki yedek saat kullanılır: ana gönderi 20:00, LinkedIn 09:30. Takvimde bunlar `*` ile işaretlenir.
 - Story, günün ana gönderisinden 3 saat önce yayınlanır (en erken 07:00).
 - Tüm saatler İstanbul saatidir ve teslimde `+03:00` ile yazılır.
+- **Saat kuralı:** Bütün gönderiler Buffer saatlerini kullanır (sahip, 29 Ekim 2026).
+  - Tek istisna, anı belli olan özel günlerdir. Bu günler kampanya dosyasındaki `time` alanıyla kendi saatinde çıkar, ör. 10 Kasım 09.05.
+  - Özel gün saatini sahip onaylar ya da daha iyisini önerir.
+- Saatler test edilerek iyileştirilir. Öğrencinin aktif olduğu akşam saatleri (18:00–23:00) 4–6 hafta denenir; Buffer'daki programı sahip değiştirir. Sonuç haftalık raporda okunur ([`SocialStrategy.md`](SocialStrategy.md) §9).
 
 ## 4. Tasarım ve renk
 
@@ -109,14 +115,14 @@ Kaydırmalı gönderi, tekli görsel, Story ve video kapağı ayrı türlerdir; 
 
 | Tür | Boyut | Kural |
 | --- | --- | --- |
-| Kaydırmalı gönderi | 1080×1350 | İlk görsel güçlü bir kapak, son görsel sonuç ve etkileşim çağrısıdır. Sayfa sayacı (`1/5`), ilerleme çubuğu ve kaydırma oku **yoktur**; bunları Instagram ve TikTok kendi arayüzünde gösterir. İçeriğin parçası olan `01`, `02`, `03` kural numaraları kalır. |
+| Kaydırmalı gönderi | 1080×1350 | İlk görsel hook'u taşıyan güçlü bir kapaktır ve boş kalmaz. İkinci görsel ikinci hook'tur, çünkü Instagram gönderiyi yeniden gösterirken 2. görselden açabilir. Son görsel sonuç ve tek çağrıdır. Sayfa sayacı (`1/5`) ve ilerleme çubuğu **yoktur**; bunları Instagram ve TikTok kendi arayüzünde gösterir. Kapakta kısa bir "Kaydır" çağrısı olabilir (sahip, 31 Ekim 2026); iç sayfalarda kaydırma oku yoktur. İçeriğin parçası olan `01`, `02`, `03` kural numaraları kalır. Ayrıntı: [`SocialCreativePlaybook.md`](SocialCreativePlaybook.md) §5. |
 | Tekli görsel | 1080×1350 | Kaydırmaya işaret eden hiçbir öğe (ok, sayaç, "kaydır" çağrısı) bulunmaz. |
 | Story | 1080×1920 | Tek görsel veya tek video. Günün ana gönderisinin kopyası olmaz. |
 | Video kapağı | videonun boyutu | Yalnız videonun kapağıdır; kaydırmalı gönderinin görseli olarak kullanılmaz ve medya listesine girmez. |
 
 ## 6. Video kapağı
 
-- **Her kısa video için kapak görseli otomatik üretilir.** Kapak, `VideoCover` tasarımıyla, videonun boyutu, teması ve ders rengiyle hazırlanır; başlığı, dersi ve içerik türü videonun içeriğinden alınır. İş dosyasındaki `cover` alanı metinleri değiştirebilir; `"cover": false` kapağı kapatır.
+- **Her kısa video için kapak görseli otomatik üretilir.** Kapak tek kapak standardındadır ([`Sosyal-Kimlik-Standardi.md`](Sosyal-Kimlik-Standardi.md) §1): lacivert zemin, sol üstte beyaz logo, etiket ve tek vurgulu başlık. Videonun teması kapağı değiştirmez; ders yalnız etiketteki noktanın rengini verir. Başlık, ders ve içerik türü videonun içeriğinden alınır. İş dosyasındaki `cover` alanı metinleri değiştirebilir; `"cover": false` kapağı kapatır.
 - Kapak, videoyla aynı numara altında kaydedilir: `03_Turkce_Ses_Olaylari.mp4` ve `03_Turkce_Ses_Olaylari_Kapak.png`.
 - Teslimde kapak videoyla birlikte, medya listesinden ayrı olarak API'ye yüklenir.
 - **Platformlar ayrı yüklenen kapak görselini kabul etmez.** Buffer üzerinden yapılabilen tek şey, videonun bir karesini kapak olarak seçmektir (Instagram Reels ve TikTok). Bu yüzden kapak, videonun ilk 0,2 saniyesinde ekranda tutulur ve platforma kapak karesi olarak bu an (100. milisaniye) bildirilir.
@@ -144,10 +150,22 @@ Kaydırmalı gönderi, tekli görsel, Story ve video kapağı ayrı türlerdir; 
 ## 8. Metin ve teslim
 
 - Her gönderi açıklama, hashtag, medya, platformlar, gönderi türleri ve yayın zamanıyla eksiksiz teslim edilir.
-- `#sinavika` her gönderide bulunur; diğer hashtag'ler ders ve konuya göre eklenir.
+- Açıklamanın ilk satırı hook ile aranacak ifadeyi birlikte taşır (sosyal SEO). Her gönderide tek bir çağrı bulunur ([`SocialCreativePlaybook.md`](SocialCreativePlaybook.md) §6).
+- Hashtag 3–5 tanedir: `#sinavika` her gönderide; ardından sınav ve ders ya da konu. TikTok'ta en fazla 5.
+- **Bütün milli ve dini bayramlar ile anma ve kutlama günleri reklam taşımaz** (sahip, 29 Ekim 2026). Liste: [`src/Configurations/SpecialDay.ts`](../src/Configurations/SpecialDay.ts).
+  - Günler: 23 Nisan, 19 Mayıs, 30 Ağustos, 29 Ekim; Ramazan ve Kurban Bayramı'nın her günü (arefe hariç); 10 Kasım; 24 Kasım.
+  - Marka yalnız görselin köşesindeki küçük logoyla görünür.
+  - Ürün, çağrı ("indir", "profilde", bağlantı, "ücretsiz"), marka adı (Sınavika, SinoAI) ve `#sinavika` kullanılmaz. Yalnız güne ait hashtag'ler kullanılır.
+  - Kural o günün bütün gönderileri için geçerlidir, hikâye dahil. Bayramın diğer günlerinde de reklamlı gönderi çıkmaz.
+  - Kampanya testleri ve `npm run social -- submit` bunu her seferinde denetler. Bayram gününe tarihli reklamlı bir gönderi gönderilemez.
+  - Dini bayramlar her yıl değişir. Yeni yıl planlanmadan önce Diyanet takviminden `SpecialDay.ts` dosyasına eklenir; test, planlanan yılın girilip girilmediğini denetler.
+- sinavika.com'a giden her bağlantı UTM taşır ([`SocialStrategy.md`](SocialStrategy.md) §6). Instagram ve TikTok açıklamasında bağlantı tıklanmadığı için "profildeki bağlantı" denir.
 - Görselde "cevap açıklamada" deniyorsa cevap açıklamada gerçekten yer alır.
 - Fiyat, kampanya, kullanıcı sayısı gibi iddialar yalnız doğrulanmış bilgiyle yazılır.
 - Video dosyalarında üretim aracına dair etiket bulunmaz; görseller üst veri taşımaz. Buffer'a "yapay zekâ ile üretildi" işareti gönderilmez.
+  - Bu kural, içeriğin platformların etiket istediği sınırın içinde kalmasına dayanır: gerçekçi yapay insan ya da yaşanmamış gerçekçi sahne yok, gerçek kişinin sesi taklit edilmiyor, müzik videonun ana konusu değil.
+  - YouTube ve TikTok bu sınırın içindeki animasyon, grafik ve seslendirme için etiket istemez ([`SocialStrategy.md`](SocialStrategy.md) §8).
+  - Sınır aşılacaksa önce sahibe sorulur ve içerik etiketle yayınlanır.
 
 ## 9. Onay ve revizyon
 
@@ -155,10 +173,58 @@ Kaydırmalı gönderi, tekli görsel, Story ve video kapağı ayrı türlerdir; 
 2. Reddedilen gönderi notuyla birlikte `npm run social -- revisions` listesinde görünür.
 3. Yenisi aynı tarih ve saatlerle hazırlanır ve `replacesPostId` ile teslim edilir; eski gönderi geçmiş olarak kalır, kaynakları yenisine devredilir.
 
+### Onay bekleyen gönderiyi değiştirme (30 Ekim 2026)
+
+> **Durum:** Uçlar API kodunda hazır ama canlıda değil. API yayını ve mig127, mig128, mig129 migration'ları sahibin onayıyla canlıya alınana kadar bu uçlara istek atılmaz. Motor tarafında (`SocialHubClient`, `npm run social`) henüz karşılığı yok; sahip söyleyince eklenir. Tam belge: API deposunda `docs/frontend/claude-social-hub-api.md`.
+
+**Sahibin kuralı:**
+- Claude yalnız onay bekleyen gönderiye dokunur. Onaylı, reddedilmiş, geri çekilmiş ya da Buffer'a gitmiş gönderiye dokunamaz.
+- Değiştireceği gönderiyi önce "Claude değiştiriyor" durumuna alır. Sahip o sürede onaylayamaz, reddedemez, düzenleyemez.
+- Onay, red, yayın, Buffer ve silme yalnız sahiptedir. Claude için silme ucu yoktur.
+
+**Durumlar (`status`):** 0 `Pending` (onay bekliyor) · 1 `Approved` · 2 `Rejected` · 3 `ClaudeRevising` (Claude değiştiriyor) · 4 `Withdrawn` (geri çekildi, silinmez).
+
+**Her değiştiren istekte:**
+- **Gerekçe:** `reason` alanı zorunludur, en çok 2000 karakter. Geçmişe yazılır; panelde "Claude güncelledi: …" rozeti olarak görünür.
+- **Sürüm:** gönderinin `version` alanı vardır; Claude'un ve adminin her işleminde bir artar. `GET posts/{id}` sürümü `ETag: "3"` olarak verir. Değiştiren istek `If-Match: "3"` gönderir.
+  - Başlık yoksa 428 döner.
+  - Sürüm değiştiyse 409 `{error, currentVersion}` döner. Bu durumda iş durur ve sahibe sorulur.
+
+**Yeni uçlar** (`/api/claude/social-hub`, `X-SocialHub-Key`):
+
+| Uç | Ne yapar | İzin verilen durum → sonuç |
+|---|---|---|
+| `POST posts/{id}/hold` `{reason}` | Değiştirmeden önce bekletir; video yeniden üretilmeden önce çağrılır | `Pending` → `ClaudeRevising` |
+| `POST posts/{id}/release` `{reason}` | Değiştirmeden onaya bırakır | `ClaudeRevising` → `Pending` |
+| `PUT posts/{id}` (multipart: `payload`, `files`, `cover`) | Medyayı, kapağı ve metni yeniler. Kimlik, takvim ve hesaplar aynı kalır | `Pending` ya da `ClaudeRevising` → `Pending`, sürüm +1 |
+| `PATCH posts/{id}` (JSON) | Yalnız metni düzeltir; gönderilmeyen alan değişmez | Durum değişmez |
+| `POST posts/{id}/withdraw` `{reason}` | Silmeden geri çeker | `Pending` ya da `ClaudeRevising` → `Withdrawn` |
+| `GET posts/{id}/revisions` | Sürüm geçmişi, eskiden yeniye | — |
+| `POST posts/validate` | `POST posts` ile aynı gövdeyi kaydetmeden denetler | — |
+
+**`PUT` ayrıntıları:**
+- **Payload:** `{reason, title, caption, hashtags, coverOffsetMs, targets: [{platform, postType?, caption?}]}`.
+- **`files`:** 1–10 dosyadır ve eskilerin hepsinin yerine geçer.
+- **`targets`:** yalnız gönderide olan platformları değiştirir. Gönderide olmayan bir platform 400 döner.
+- **Tam yenileme:** `hashtags` gönderilmezse temizlenir; `cover` gönderilmezse kapak kalkar.
+
+**`PATCH`:** `hashtags: ""` hashtag'leri temizler. Hiçbir şey değişmiyorsa 400 "Değişen metin yok." döner.
+
+**Geçmiş (`revisions`):**
+- **`actor`:** 0 Claude, 1 Admin.
+- **`action`:** 0 Created, 1 Held, 2 Released, 3 Updated, 4 TextEdited, 5 Withdrawn, 6 Edited, 7 CoverChanged, 8 Approved, 9 Rejected, 10 ApprovalCancelled.
+- **Son Claude işlemi:** gönderi yanıtındaki `lastClaudeRevision` alanıdır.
+
+**Sunucunun denetlemediği:** özel gün metni ve ürün adları sunucuda kural değildir. Bu denetim motorda kalır (`assertSpecialDayCopy`, `assertProductCopy`).
+
+**Değişmeyen:** `replacesPostId` eskisi gibi yalnız reddedilmiş gönderi için kullanılır.
+
+**Akış (canlıya alınınca):** `hold` → video yeniden üretilir → `PUT`. Vazgeçilirse `release`.
+
 ## 10. Komutlar
 
 ```bash
-npm run social -- plan --month 2026-11 --out Plans/2026-11.json
+npm run social -- plan --month 2026-11 --out Posts/Plans/2026-11.json
 npm run social -- sources --kind Question --unused
 npm run image -- --job Jobs/soru.json --theme SinavikaLight --size Portrait
 npm run render -- --job Jobs/konu.json

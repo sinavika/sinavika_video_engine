@@ -34,7 +34,8 @@ export const SegmentedProgress: React.FC<SegmentedProgressProps> = ({plan, scene
 	const fill = color ?? ink.emphasis;
 
 	return (
-		<div style={{display: 'flex', gap: u(SPACING.xs), flex: 1, minWidth: 0}}>
+		// A fixed part of the frame: the layout guard reports text drawn over it.
+		<div data-layout-zone="chrome" style={{display: 'flex', gap: u(SPACING.xs), flex: 1, minWidth: 0}}>
 			{segments.map((segment, index) => (
 				<div key={segment.id} style={{flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: u(SPACING.xs)}}>
 					<div

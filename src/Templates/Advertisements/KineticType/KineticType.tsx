@@ -4,7 +4,7 @@ import {AbsoluteFill, interpolate} from 'remotion';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
-import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
+import {appEndScenes} from '../../../Scenes/AppEndScene';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, VoiceScriptSchema, type VoiceClips} from '../../../Scenes/Voiceover';
@@ -12,8 +12,7 @@ import {plainText} from '../../../Schemas/RichText';
 import {Icon} from '../../../UIUX/Icons';
 import {MODULES, MODULE_ORDER, type ModuleKey} from '../../../UIUX/ModuleIdentity';
 import {defineTemplate} from '../../TemplateDefinition';
-import {At, CLAMP, ease, PromoStage, PromoSubtitle, Slam, useSeconds, wordCues} from '../PromoKit/PromoKit';
-import {PromoEndCard} from '../PromoKit/PromoEndCard';
+import {At, CLAMP, ease, PromoStage, Slam, useSeconds, wordCues} from '../PromoKit/PromoKit';
 
 /**
  * A motion-design showreel: one huge word per beat, each on its module's
@@ -23,12 +22,10 @@ import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 const narration = z.string().trim().min(1).max(170);
 
-export const KineticTypeSchema = z.object({
+const KineticTypeSchema = z.object({
 	hook: z.object({lines: z.tuple([plainText(20), plainText(20)]), narration}),
 	words: z.object({items: z.array(z.object({word: plainText(10), module: z.enum(MODULE_ORDER as unknown as [ModuleKey, ...ModuleKey[]]), caption: plainText(26)})).min(4).max(7), narration}),
 	stack: z.object({line: plainText(30), narration}),
-	closing: z.object({slogan: plainText(28).default('Ölç, öğren, geliş.'), cta: plainText(28), channels: plainText(40).default('App Store · Google Play · sinavika.com'), narration}),
-	subtitles: z.boolean().default(true),
 	script: VoiceScriptSchema,
 	outro: z.object({enabled: z.boolean().default(true)}).default({enabled: true}),
 });
@@ -40,10 +37,9 @@ const ORANGE = '#EA580C';
 /** Grounds per module: the identity colour, SinoAI as near-black ink. */
 const groundOf = (module: ModuleKey) => (module === 'sinoAi' ? '#111827' : MODULES[module].color.light);
 
-const Stage: React.FC<{content: Content; narration: string; shown?: string; ground: string; children: React.ReactNode}> = ({content, narration: text, shown, ground, children}) => (
+const Stage: React.FC<{ground: string; children: React.ReactNode}> = ({ground, children}) => (
 	<PromoStage ground={<AbsoluteFill style={{background: ground}} />}>
 		{children}
-		<PromoSubtitle text={text} shown={shown} enabled={content.subtitles} ink={BLACK} fill={WHITE} />
 	</PromoStage>
 );
 
@@ -72,7 +68,7 @@ const Ring: React.FC<{size: number; x: number; y: number; spin: number; color: s
 };
 
 const HookScene: React.FC<{content: Content}> = ({content}) => (
-	<Stage content={content} narration={content.hook.narration} shown={content.hook.lines.join(' ')} ground={BLACK}>
+	<Stage ground={BLACK}>
 		<At y={560} w={952}>
 			<Slam text={content.hook.lines[0]} at={0.05} size={TYPE.adScale.hook} color={WHITE} />
 		</At>
@@ -98,7 +94,7 @@ const WordsScene: React.FC<{content: Content; seconds: number; spoken?: string; 
 	const size = Math.min(300, (952 * 1.55) / Math.max(item.word.length, 3));
 	const spin = seconds * 140;
 	return (
-		<Stage content={content} narration={content.words.narration} shown={items.map((entry) => entry.word).join(' ')} ground={ground}>
+		<Stage ground={ground}>
 			<Cube size={150} x={60 + Math.sin(seconds) * 20} y={260 - local * 40} spin={spin} color="rgba(255,255,255,0.92)" />
 			<Ring size={220} x={690} y={1040 + local * 30} spin={spin * 0.7} color="rgba(255,255,255,0.85)" />
 			<Cube size={90} x={780} y={300 + local * 20} spin={-spin * 1.2} color={BLACK} />
@@ -131,7 +127,7 @@ const StackScene: React.FC<{content: Content}> = ({content}) => {
 	const items = content.words.items;
 	const collapse = ease(interpolate(seconds, [0.9, 1.6], [0, 1], CLAMP));
 	return (
-		<Stage content={content} narration={content.stack.narration} shown={content.stack.line} ground={BLACK}>
+		<Stage ground={BLACK}>
 			<At y={180} w={952}>
 				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(interpolate(collapse, [0, 1], [6, -150]))}}>
 					{items.map((item, index) => {
@@ -171,7 +167,6 @@ const SAMPLE: z.input<typeof KineticTypeSchema> = {
 		narration: 'Dene. Gör. Planla. Öğren. Sor. Hatırla.',
 	},
 	stack: {line: 'Hepsi tek uygulamada.', narration: 'Hepsi tek uygulamada.'},
-	closing: {cta: 'Ücretsiz indir', narration: 'Sınavika. Ölç, öğren, geliş.'},
 };
 
 const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateScene[] => {
@@ -180,12 +175,11 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 	const hook = say('hook', content.hook.narration, beat(content.hook.narration, 2.2), 2);
 	const words = say('words', content.words.narration, Math.max(beat(content.words.narration, 4), content.words.items.length * 0.8), content.words.items.length * 0.7);
 	const stack = say('stack', content.stack.narration, beat(content.stack.narration, 2.4), 2.2);
-	const closing = say('closing', content.closing.narration, beat(content.closing.narration, 2.8), 2.6);
 	return [
 		{id: 'hook', seconds: hook.seconds, label: 'Hook', voice: [hook], element: <HookScene content={content} />},
 		{id: 'words', seconds: words.seconds, label: 'Kelimeler', voice: [words], element: <WordsScene content={content} seconds={words.seconds} spoken={words.text} voiceSeconds={voiceClips.words?.durationSeconds} />},
 		{id: 'stack', seconds: stack.seconds, label: 'Yığın', voice: [stack], element: <StackScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard cta={content.closing.cta} />}] : []),
+		...appEndScenes(content.outro.enabled, say),
 	];
 };
 

@@ -1,8 +1,8 @@
 import React, {createContext, useContext} from 'react';
-import {Easing, interpolate} from 'remotion';
+import {easeFrom} from '../../Animations/Motion';
 import {useVideoLayout} from '../Layouts/VideoLayout';
 import {useSceneSeconds, useVisualPalette} from './VisualFrame';
-import type {VisualBeat} from './VisualSchemas';
+import type {VisualBeat} from './VisualSchema';
 
 /**
  * Keeps a visual in step with what is being said.
@@ -18,24 +18,26 @@ import type {VisualBeat} from './VisualSchemas';
  * seconds, and a process plays its stages one after another.
  */
 
-type Timeline = {beats: readonly VisualBeat[]; starts: readonly number[]; ends: readonly number[]};
+/**
+ * `openFirst`: what the first beat shows is in place from the card's start (a rule or concept card reads its own
+ * narration before the beats, and a figure hidden until then left the card's figure empty while it was read). Only
+ * its look is early: motions a visual starts at that beat (useBeatStartFor) still wait for it.
+ */
+type Timeline = {beats: readonly VisualBeat[]; starts: readonly number[]; ends: readonly number[]; openFirst: boolean};
 
 const TimelineContext = createContext<Timeline | null>(null);
 /** How long the scene lasts, so a visual without beats can spread its stages over the narration. */
 const SceneLengthContext = createContext<number | null>(null);
 
-export const VisualTimelineProvider: React.FC<{beats?: readonly VisualBeat[]; starts?: readonly number[]; ends?: readonly number[]; sceneSeconds?: number; children: React.ReactNode}> = ({beats, starts, ends, sceneSeconds, children}) => {
-	const inner = !beats?.length || !starts?.length ? <>{children}</> : <TimelineContext.Provider value={{beats, starts, ends: ends ?? starts.map((start, index) => starts[index + 1] ?? start + 6)}}>{children}</TimelineContext.Provider>;
+export const VisualTimelineProvider: React.FC<{beats?: readonly VisualBeat[]; starts?: readonly number[]; ends?: readonly number[]; sceneSeconds?: number; openFirst?: boolean; children: React.ReactNode}> = ({beats, starts, ends, sceneSeconds, openFirst = false, children}) => {
+	const inner = !beats?.length || !starts?.length ? <>{children}</> : <TimelineContext.Provider value={{beats, starts, ends: ends ?? starts.map((start, index) => starts[index + 1] ?? start + 6), openFirst}}>{children}</TimelineContext.Provider>;
 	return <SceneLengthContext.Provider value={sceneSeconds ?? null}>{inner}</SceneLengthContext.Provider>;
 };
 
 export const useTimeline = (): Timeline | null => useContext(TimelineContext);
 
-const ease = (from: number, seconds: number, duration: number) =>
-	interpolate(seconds, [from, from + duration], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(0.33, 0, 0.2, 1)});
-
 /** The beat being said now: -1 before the first one starts. */
-export const useBeatIndex = (): number => {
+const useBeatIndex = (): number => {
 	const timeline = useTimeline();
 	const seconds = useSceneSeconds();
 	if (!timeline) return -1;
@@ -60,11 +62,11 @@ export const useElementState = (id: string | undefined): {appear: number; emphas
 	const key = id.toLocaleLowerCase('tr');
 	const listed = (list: readonly string[] | undefined) => (list ?? []).some((item) => item.toLocaleLowerCase('tr') === key);
 	const introducedAt = timeline.beats.findIndex((beat) => listed(beat.show));
-	const appear = introducedAt < 0 ? 1 : ease(timeline.starts[introducedAt], seconds, 0.6);
+	const appear = introducedAt < 0 || (introducedAt === 0 && timeline.openFirst) ? 1 : easeFrom(seconds, timeline.starts[introducedAt], 0.6);
 	if (current < 0) return {appear, emphasis: 0, dim: 0};
 	const beat = timeline.beats[current];
 	const focused = (beat.focus ?? []).length > 0;
-	const ramp = ease(timeline.starts[current], seconds, 0.45);
+	const ramp = easeFrom(seconds, timeline.starts[current], 0.45);
 	if (!focused) {
 		// Coming out of a focused beat, the dimming fades back.
 		const previous = current > 0 ? timeline.beats[current - 1] : undefined;
@@ -87,6 +89,19 @@ export const useBeatStartFor = (id: string, field: 'swap' | 'focus' | 'show'): n
 	return index < 0 ? undefined : timeline.starts[index];
 };
 
+/**
+ * When a part comes into sight (seconds into the scene), for a visual that draws its own entrance: the start of the
+ * first beat that shows it, or undefined when no beat does or the first beat's parts are there from the start
+ * (`openFirst`); the visual then brings it in on its own schedule.
+ */
+export const useShownAt = (id: string): number | undefined => {
+	const timeline = useTimeline();
+	if (!timeline) return undefined;
+	const key = id.toLocaleLowerCase('tr');
+	const index = timeline.beats.findIndex((beat) => (beat.show ?? []).some((name) => name.toLocaleLowerCase('tr') === key));
+	return index < 0 || (index === 0 && timeline.openFirst) ? undefined : timeline.starts[index];
+};
+
 /** Whether the card's visual is told in beats. */
 export const useHasBeats = (): boolean => useTimeline() !== null;
 
@@ -98,6 +113,8 @@ export const UNFOCUSED_FADE = 0.4;
 
 /** Opacity and stroke scale for a part, from its state. */
 export const elementLook = (state: {appear: number; emphasis: number; dim: number}) => ({
+	/** How far the part has come in, without the focus fade: what a drawn line's length follows. */
+	appear: state.appear,
 	opacity: state.appear * (1 - UNFOCUSED_FADE * state.dim),
 	scale: 1 + 0.5 * state.emphasis,
 });
@@ -118,14 +135,14 @@ export const useParams = (defaults: Partial<Record<string, {from: number; to?: n
 		if (!range) continue;
 		const {from, to} = range;
 		if (!timeline) {
-			values[name] = to === undefined ? from : from + (to - from) * ease(sweep.delaySeconds, seconds, sweep.seconds);
+			values[name] = to === undefined ? from : from + (to - from) * easeFrom(seconds, sweep.delaySeconds, sweep.seconds);
 			continue;
 		}
 		let value = from;
 		timeline.beats.forEach((beat, index) => {
 			const target = (beat.params as Record<string, number> | undefined)?.[name];
 			if (target === undefined || seconds < timeline.starts[index]) return;
-			value = value + (target - value) * ease(timeline.starts[index], seconds, 1.4);
+			value = value + (target - value) * easeFrom(seconds, timeline.starts[index], 1.4);
 		});
 		values[name] = value;
 	}
@@ -190,7 +207,7 @@ export const BeatCamera: React.FC<{width: number; height: number; children: Reac
 	timeline.beats.forEach((beat, index) => {
 		if (beat.zoom === undefined || seconds < timeline.starts[index]) return;
 		const target = beat.zoom ?? whole;
-		const t = ease(timeline.starts[index], seconds, 1.1);
+		const t = easeFrom(seconds, timeline.starts[index], 1.1);
 		view = view.map((value, side) => value + (target[side] - value) * t) as typeof whole;
 	});
 	const [left, top, right, bottom] = view;
@@ -224,7 +241,7 @@ export const BeatNote: React.FC = () => {
 	const space = useNoteSpace();
 	if (!timeline || !space) return null;
 	const note = current >= 0 ? timeline.beats[current].note : undefined;
-	const show = current >= 0 ? ease(timeline.starts[current] + 0.2, seconds, 0.4) : 0;
+	const show = current >= 0 ? easeFrom(seconds, timeline.starts[current] + 0.2, 0.4) : 0;
 	return (
 		<div style={{height: space, display: 'flex', alignItems: 'flex-end', justifyContent: 'center', flexShrink: 0}}>
 			{note ? (

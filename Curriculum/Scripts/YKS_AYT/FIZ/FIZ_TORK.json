@@ -1,0 +1,951 @@
+{
+ "topic": {
+  "id": "2F7D6686-8EAE-6AC6-8CE6-E1876312741B",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_TORK"
+ },
+ "title": "Kuvvet, Tork ve Denge",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "MEB OGM AYT Fizik konu anlatımı, sayfa 81-97 (başvuru; metin yeniden yazıldı)",
+  "ÖSYM 2018 (döner kapı, tuğlalar), 2021 (ip-makara), 2023 (kapı), 2024 (çubuk; veride bozuk, VeriDuzeltmeleri #114), 2026 (sandık): model olarak kullanıldı, sayılar ve yargılar değiştirildi; 2019 el arabası sorusunun fikri denge kuralında",
+  "YKS/AYT/Sorular/FIZ/FIZ_TORK.jsonl (260 soru; yapı ve düzey için okundu, sorular yeni yazıldı)"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Kapı kolu neden uçta?",
+   "narration": "Bir kapıyı menteşesinin yanından itmeyi dene: neredeyse kıpırdamaz. Aynı kuvvetle kolundan itince kolayca açılır. Fark kuvvette değil, kuvvetin kolundadır. Bu derste bileşke kuvveti, torku ve yönünü, denge şartlarını, paralel kuvvetleri ve denge problemlerini, altı ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Bileşke kuvveti ve ötelenme dengesini yorumlamak",
+   "Torku kuvvet ve dik kolla hesaplamak",
+   "Torkun yönünü ve net torku bulmak",
+   "İki denge şartını birlikte uygulamak",
+   "Paralel kuvvetlerin bileşkesini ve destek tepkilerini bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_TORK_01",
+    "title": "Kuvvetlerin bileşkesi",
+    "narration": "Bir cisme birden çok kuvvet etki ettiğinde hepsinin yerine geçen tek kuvvete bileşke denir. Bileşke sıfırsa cisim ötelenme bakımından dengededir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bileşke ve ötelenme dengesi",
+      "items": [
+       "Bileşke, kuvvetlerin **vektörel** toplamıdır: $\\vec{R} = \\sum \\vec{F}$.",
+       "$\\vec{R} = 0$ ise kütle merkezinin ivmesi sıfır: cisim durur ya da sabit hızla gider.",
+       "Duran cisimde **statik sürtünme**, onu kaydırmaya çalışan kuvveti tam karşılar."
+      ],
+      "narration": "Bir cisme etki eden kuvvetlerin vektörel toplamı bileşke kuvvettir. Bileşke sıfırsa kütle merkezinin ivmesi de sıfırdır; cisim ya durur ya da sabit hızla gider. Duran bir cisimde statik sürtünme, cismi kaydırmaya çalışan kuvvetin büyüklüğü kadardır; bastırma kuvvetine değil, kaydırmaya çalışan kuvvete bakar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Birkaç kişinin birlikte taşıdığı bir sandığa belli bir süre boyunca etki eden kuvvetlerin bileşkesi sıfırdır.\n\nBu süre içinde;\nI. sandığın kütle merkezinin hızı sabittir,\nII. sandık kendi etrafında dönmez,\nIII. sandığın çizgisel momentumu değişmez\n\nyargılarından hangileri **kesinlikle** doğrudur?",
+       "context": "ÖSYM 2026'da sorulan bileşkesi sıfır sandık yapısının yeniden kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve III",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "narration": "Bileşke kuvvet neyi garanti eder, neyi etmez?",
+       "steps": [
+        {
+         "text": "$\\vec{R} = 0$ → ivme sıfır: kütle merkezinin hızı ve momentum **sabit** (I, III).",
+         "narration": "Bileşke sıfırsa ivme sıfırdır: kütle merkezinin hızı ve çizgisel momentum değişmez. Birinci ve üçüncü kesin."
+        },
+        {
+         "text": "Bileşke sıfırken tork sıfır olmayabilir: zıt yönlü iki kuvvet cismi **döndürebilir** (II kesin değil).",
+         "narration": "Ama bileşke sıfırken tork sıfır olmayabilir. Farklı noktalardan zıt yönde itilen bir sandık, yerinden kaymadan döner. İkinci yargı kesin değil. Cevap C.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026 modeli: yargılar yeniden yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kütleleri $2m$, $m$ ve $m$ olan $K$, $L$ ve $N$ tuğlaları düşey bir duvara sırasıyla $F$, $3F$ ve $2F$ büyüklüğünde yatay kuvvetlerle bastırılarak hareketsiz tutuluyor.\n\nDuvarın tuğlalara uyguladığı statik sürtünme kuvvetleri $f_K$, $f_L$, $f_N$ arasındaki ilişki nedir?",
+       "context": "ÖSYM 2018'de sorulan duvara bastırılan tuğlalar yapısının yeni sayılarla kurulmuş hâli.",
+       "options": [
+        "$f_K > f_L = f_N$",
+        "$f_L > f_K = f_N$",
+        "$f_N > f_K = f_L$",
+        "$f_K = f_L = f_N$",
+        "$f_L > f_N > f_K$"
+       ],
+       "answer": 0,
+       "narration": "Tuğla aşağı kaymıyorsa sürtünme neyi dengeliyor?",
+       "steps": [
+        {
+         "text": "Düşeyde denge: sürtünme ağırlığı dengeler, $f = mg$.",
+         "narration": "Tuğlalar düşeyde hareketsiz: yukarı doğru statik sürtünme ağırlığı dengeler."
+        },
+        {
+         "text": "$f_K = 2mg$, $f_L = f_N = mg$: $f_K > f_L = f_N$.",
+         "narration": "K'nin ağırlığı iki m g, L ve N'ninki m g. Bastırma kuvvetleri yalnız normal kuvveti belirler; statik sürtünme ağırlık kadardır. Kuvvetlere bakan L'yi en büyük sanır. Cevap A.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018 modeli: kütleler ve kuvvetler değiştirildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_TORK_02",
+    "title": "Tork",
+    "narration": "Kuvvet bir cismi itebilir ya da döndürebilir. Döndürme etkisine tork denir ve yalnız kuvvetin büyüklüğüne değil, nereden uygulandığına da bağlıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Tork",
+      "items": [
+       "$\\tau = F \\cdot d$: $d$, dönme ekseninin kuvvetin doğrultusuna **dik** uzaklığı.",
+       "Kuvvet kola açılıysa yalnız dik bileşen döndürür: $\\tau = F \\cdot d \\cdot \\sin\\theta$.",
+       "Birimi N·m; eksenden geçen kuvvetin torku sıfır."
+      ],
+      "visual": {
+       "kind": "lever",
+       "length": 8,
+       "pivot": 4,
+       "torques": true,
+       "verdict": true,
+       "unit": "m",
+       "forces": [
+        {
+         "at": 2,
+         "value": 40,
+         "direction": "down",
+         "load": true,
+         "label": "40 N"
+        },
+        {
+         "at": 8,
+         "value": 20,
+         "direction": "down",
+         "load": false,
+         "label": "20 N"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Destek noktasının iki yanında iki kuvvet.",
+        "show": [
+         "pivot",
+         "f1",
+         "f2"
+        ],
+        "focus": [
+         "pivot"
+        ]
+       },
+       {
+        "narration": "Soldaki kırk newton, iki metre kolla seksen; sağdaki yirmi newton, dört metre kolla yine seksen.",
+        "show": [
+         "a1",
+         "a2"
+        ],
+        "focus": [
+         "a1",
+         "a2"
+        ]
+       },
+       {
+        "narration": "Torklar eşit ve zıt yönde: çubuk dengede.",
+        "show": [
+         "sum"
+        ],
+        "focus": [
+         "sum"
+        ]
+       }
+      ],
+      "narration": "Tork, bir kuvvetin döndürme etkisidir: kuvvet çarpı dönme ekseninin kuvvetin doğrultusuna dik uzaklığı. Kuvvet kolla açı yapıyorsa yalnız dik bileşeni döndürür; tork F d sinüs teta olur. Birimi newton metredir. Doğrultusu eksenden geçen bir kuvvet hiç döndürmez."
+     },
+     {
+      "kind": "predict",
+      "title": "Kapıyı nereden itmeli?",
+      "prompt": "Aynı kuvvetle bir kapıyı menteşeye yakın bir yerden mi, uzak bir yerden mi itmek kapıyı daha kolay döndürür?",
+      "choices": [
+       "Uzaktan",
+       "Yakından"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "lever",
+       "length": 4,
+       "pivot": 0,
+       "torques": true,
+       "verdict": false,
+       "unit": "m",
+       "forces": [
+        {
+         "at": 1,
+         "value": 20,
+         "direction": "up",
+         "load": false,
+         "label": "20 N"
+        },
+        {
+         "at": 4,
+         "value": 20,
+         "direction": "up",
+         "load": false,
+         "label": "20 N"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Menteşe solda; aynı yirmi newton iki farklı yerden.",
+        "show": [
+         "pivot",
+         "f1",
+         "f2"
+        ]
+       },
+       {
+        "narration": "Uzaktaki kuvvetin kolu dört kat: torku da dört kat.",
+        "show": [
+         "a1",
+         "a2"
+        ],
+        "focus": [
+         "a2"
+        ]
+       }
+      ],
+      "explanation": "Kol uzadıkça tork büyür: aynı kuvvet uzaktan **daha çok** döndürür.",
+      "narration": "Kapının kolu neden menteşenin karşı ucundadır? Tahmin et.",
+      "explanationNarration": "Uzaktan itmek kolaydır. Tork, kuvvet çarpı koldur; kuvvet aynıysa kolu uzun olan daha çok döndürür. Kapı kolunun menteşeden en uzak uçta olmasının nedeni budur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$O$ ekseni etrafında dönebilen bir kapıyı bir öğrenci eksenden $150$ cm uzaktaki noktadan $6$ N'lik kuvvetle açmaya, öbürü $50$ cm uzaktaki noktadan kapatmaya çalışıyor. İkisi de kapıya dik kuvvet uyguluyor.\n\nKapının dönmemesi için ikinci öğrencinin kuvveti kaç N olmalıdır?",
+       "context": "ÖSYM 2023'te sorulan kapıyı iten iki kişi yapısının yeni sayılarla kurulmuş hâli.",
+       "figure": {
+        "kind": "lever",
+        "length": 150,
+        "pivot": 0,
+        "torques": false,
+        "verdict": true,
+        "unit": "cm",
+        "forces": [
+         {
+          "at": 150,
+          "value": 6,
+          "direction": "up",
+          "load": false,
+          "label": "6 N"
+         },
+         {
+          "at": 50,
+          "value": 18,
+          "direction": "down",
+          "load": false,
+          "label": "F = ?"
+         }
+        ]
+       },
+       "options": [
+        "$6$",
+        "$9$",
+        "$12$",
+        "$15$",
+        "$18$"
+       ],
+       "answer": 4,
+       "narration": "Torklar eşit olmalı.",
+       "steps": [
+        {
+         "text": "Açan tork: $6 \\cdot 150 = 900$ N·cm.",
+         "narration": "Açmaya çalışanın torku: altı çarpı yüz elli, dokuz yüz newton santimetre."
+        },
+        {
+         "text": "$F \\cdot 50 = 900$ → $F = 18$ N.",
+         "narration": "Kapatanın torku da dokuz yüz olmalı: F çarpı elli; F on sekiz newton. Kolu üçte bir olduğu için kuvveti üç kat. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2023 modeli: uzaklıklar ve kuvvet değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir anahtarın ucuna, eksenden $4$ cm uzakta, anahtar koluyla $30°$ açı yapan $25$ N'lik bir kuvvet uygulanıyor.\n\nKuvvetin eksene göre torku kaç N·cm'dir?",
+       "options": [
+        "$25$",
+        "$50$",
+        "$75$",
+        "$100$",
+        "$125$"
+       ],
+       "answer": 1,
+       "narration": "Yalnız dik bileşen döndürür.",
+       "steps": [
+        {
+         "text": "$\\tau = F \\cdot d \\cdot \\sin 30° = 25 \\cdot 4 \\cdot \\frac{1}{2}$.",
+         "narration": "Tork, kuvvet çarpı kol çarpı sinüs otuz: yirmi beş çarpı dört çarpı yarım."
+        },
+        {
+         "text": "$\\tau = 50$ N·cm.",
+         "narration": "Elli newton santimetre. Açıyı unutan yüz bulur. Cevap B.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Açılı kuvvetin torku kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Büyük kuvvet, büyük tork mu?",
+      "wrong": "Büyük kuvvetin torku her zaman büyüktür.",
+      "right": "Tork **kuvvet ve dik kol** ile belirlenir; küçük kuvvet uzun kolla daha çok döndürebilir.",
+      "why": "Eksenden geçen ya da kola paralel kuvvetin torku **sıfırdır**.",
+      "narration": "Sık yapılan bir hata: torku yalnız kuvvetin büyüklüğüne bağlamak. Tork kuvvet çarpı dik koldur. Küçük bir kuvvet uzun bir kolla, büyük bir kuvvetten daha çok döndürebilir. Doğrultusu eksenden geçen kuvvet ise hiç döndürmez."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_TORK_03",
+    "title": "Torkun yönü",
+    "narration": "Tork bir vektördür: büyüklüğünün yanında cismi saat yönünde mi, tersine mi döndürdüğü de önemlidir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Yön",
+      "items": [
+       "Saat yönünde ve tersine torklar **zıt işaretlidir**.",
+       "Sağ el kuralı: parmaklar dönme yönünde kıvrılırsa başparmak torkun yönünü gösterir.",
+       "Net tork, iki yöndeki torkların **farkıdır**; büyük olan yönde döndürür."
+      ],
+      "visual": {
+       "kind": "lever",
+       "length": 8,
+       "pivot": 3,
+       "torques": true,
+       "verdict": true,
+       "unit": "m",
+       "forces": [
+        {
+         "at": 0,
+         "value": 30,
+         "direction": "down",
+         "load": false,
+         "label": "30 N"
+        },
+        {
+         "at": 6,
+         "value": 20,
+         "direction": "down",
+         "load": false,
+         "label": "20 N"
+        },
+        {
+         "at": 8,
+         "value": 10,
+         "direction": "up",
+         "load": false,
+         "label": "10 N"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Üç kuvvet: her birinin torku kendi yönünde.",
+        "show": [
+         "pivot",
+         "f1",
+         "f2",
+         "f3",
+         "a1",
+         "a2",
+         "a3"
+        ]
+       },
+       {
+        "narration": "Saat yönü ile tersi toplanır, fark net torku verir.",
+        "show": [
+         "sum"
+        ],
+        "focus": [
+         "sum"
+        ]
+       }
+      ],
+      "narration": "Bir torkun yönü, cismi saat yönünde mi yoksa tersine mi döndürdüğüdür; iki yön zıt işaretlidir. Sağ el kuralında parmaklarını dönme yönünde kıvırırsan başparmağın torkun yönünü gösterir. Net tork iki yöndeki torkların farkıdır ve büyük olanın yönünde döndürür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde bir döner kapının iki karşılıklı kanadı üstten görülüyor; $O$ dönme eksenidir. İki kişi kanatlara dik kuvvetler uyguluyor. Bir kanadı **itmek** ile karşı kanadı **çekmek** kapıyı aynı yönde döndürür.\n\nI. L'den $15$ N iterek, M'den $15$ N çekerek\nII. L'den $30$ N çekerek, P'den $15$ N çekerek\nIII. K'den $30$ N iterek, P'den $15$ N iterek\n\ndurumlarının hangilerinde kapı döner?",
+       "context": "ÖSYM 2018'de sorulan döner kapı yapısının yeni sayılarla kurulmuş hâli.",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.0,
+         -1.2,
+         9.0,
+         1.4
+        ],
+        "points": [
+         {
+          "id": "K",
+          "at": [
+           0.0,
+           0.0
+          ]
+         },
+         {
+          "id": "L",
+          "at": [
+           2.0,
+           0.0
+          ]
+         },
+         {
+          "id": "O",
+          "at": [
+           4.0,
+           0.0
+          ]
+         },
+         {
+          "id": "M",
+          "at": [
+           6.0,
+           0.0
+          ]
+         },
+         {
+          "id": "P",
+          "at": [
+           8.0,
+           0.0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "K",
+          "to": "L",
+          "label": "40 cm"
+         },
+         {
+          "from": "L",
+          "to": "O",
+          "label": "40 cm"
+         },
+         {
+          "from": "O",
+          "to": "M",
+          "label": "40 cm"
+         },
+         {
+          "from": "M",
+          "to": "P",
+          "label": "40 cm"
+         }
+        ]
+       },
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 3,
+       "narration": "Her durumda iki torkun yönünü ve büyüklüğünü karşılaştıralım.",
+       "steps": [
+        {
+         "text": "I: aynı yönde $15 \\cdot 40 + 15 \\cdot 40 = 1200$ → **döner**.",
+         "narration": "Birincide itmek ile karşı kanadı çekmek aynı yönde: torklar toplanır, bin iki yüz. Kapı döner."
+        },
+        {
+         "text": "II: iki kanadı çekmek zıt yönde; $30 \\cdot 40 = 15 \\cdot 80$ → torklar eşit, **dönmez**.",
+         "narration": "İkincide iki kanat da çekiliyor: torklar zıt yönde. Otuz çarpı kırk, on beş çarpı seksen: ikisi de bin iki yüz. Net tork sıfır, dönmez."
+        },
+        {
+         "text": "III: iki kanadı itmek zıt yönde; $30 \\cdot 80 = 2400 > 15 \\cdot 80$ → **döner**.",
+         "narration": "Üçüncüde iki kanat da itiliyor, torklar zıt: iki bin dört yüz ile bin iki yüz. Fark var, kapı döner. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018 modeli: uzaklıklar ve kuvvetler değiştirildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_TORK_04",
+    "title": "Denge şartları",
+    "narration": "Bir cismin tamamen dengede olması için iki şart birlikte gerekir: ne ötelenmeli ne de dönmelidir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İki şart",
+      "items": [
+       "**Ötelenme dengesi:** $\\sum \\vec{F} = 0$.",
+       "**Dönme dengesi:** herhangi bir noktaya göre $\\sum \\tau = 0$.",
+       "Dengedeki cisme göre tork almak için **bilinmeyenin üstündeki** noktayı seç."
+      ],
+      "narration": "Bir cismin dengede olması için iki şart birlikte gerekir. Kuvvetlerin bileşkesi sıfır olmalı; bu ötelenme dengesidir. Herhangi bir noktaya göre torkların toplamı da sıfır olmalı; bu dönme dengesidir. Tork alacağın noktayı, bilinmeyen bir kuvvetin üzerinden seçersen o kuvvet denklemden düşer."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ağırlığı önemsiz, $P$ mili etrafında dönebilen çubuk, kendisine dik $F_K$ ve $F_L$ kuvvetleriyle dengededir. $F_L$'nin $P$'ye göre torkunun büyüklüğü $\\tau$'dur.\n\n$F_K$'nin $P$'ye göre torkunun büyüklüğü kaç $\\tau$'dur?",
+       "context": "ÖSYM 2024'te sorulan dengedeki çubuk yapısının yeniden kurulmuş hâli.",
+       "figure": {
+        "kind": "lever",
+        "length": 6,
+        "pivot": 2,
+        "torques": false,
+        "verdict": true,
+        "unit": "",
+        "forces": [
+         {
+          "at": 0,
+          "value": 30,
+          "direction": "up",
+          "load": false,
+          "label": "FL"
+         },
+         {
+          "at": 5,
+          "value": 20,
+          "direction": "up",
+          "load": false,
+          "label": "FK"
+         }
+        ]
+       },
+       "options": [
+        "$1$",
+        "$\\frac{3}{2}$",
+        "$2$",
+        "$3$",
+        "$4$"
+       ],
+       "answer": 0,
+       "narration": "Dönme dengesinde net tork sıfır.",
+       "steps": [
+        {
+         "text": "Dengede $\\sum \\tau = 0$: iki tork **eşit büyüklükte, zıt yönde**.",
+         "narration": "Çubuk dönmüyor: net tork sıfır. Yalnız iki kuvvet olduğu için torkları eşit büyüklükte ve zıt yöndedir."
+        },
+        {
+         "text": "$\\tau_K = \\tau_L = \\tau$ → $1\\,\\tau$. Kuvvetler eşit değildir: kolu kısa olan büyüktür.",
+         "narration": "F K'nin torku da tau. Kuvvetlerin kendisi eşit değildir: şekilde F L otuz, F K yirmi; kolu kısa olanın kuvveti büyüktür. Kol oranını cevap sanan üç bölü ikiyi işaretler. Cevap A.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2024 modeli: çubuk yeniden kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Toplam ağırlığı $G = 120$ N olan tuğla dolu bir kova, sabit bir makaradan geçen ipe uygulanan $F = 80$ N'lik kuvvetle kaldırılmaya çalışılıyor ama kova yerden kalkmıyor.\n\nYerin kovaya uyguladığı normal kuvvet $N$ kaç N'dir?",
+       "context": "ÖSYM 2021'de sorulan ip-makara ve kova yapısının sayılarla kurulmuş hâli.",
+       "options": [
+        "$20$",
+        "$25$",
+        "$30$",
+        "$35$",
+        "$40$"
+       ],
+       "answer": 4,
+       "narration": "Kova dengede: yukarı kuvvetler aşağı kuvvete eşit.",
+       "steps": [
+        {
+         "text": "Kovaya yukarı: ip $F$ ve yer $N$; aşağı: $G$. Denge: $F + N = G$.",
+         "narration": "Kovaya yukarı doğru ipin gerilmesi F ve yerin tepkisi N, aşağı doğru ağırlığı G etki eder. Denge: F artı N, G."
+        },
+        {
+         "text": "$N = 120 - 80 = 40$ N.",
+         "narration": "N, yüz yirmi eksi seksen, kırk newton. Sabit makara kuvveti yalnız yönlendirir; ipin her yerinde gerilme F. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021 modeli: sayılarla yeniden kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Bir şart yeter mi?",
+      "wrong": "Bileşke kuvvet sıfırsa cisim tamamen dengededir.",
+      "right": "Bileşke sıfırken **net tork** sıfır olmayabilir: zıt yönlü iki kuvvet cismi döndürür.",
+      "why": "Tam denge: $\\sum \\vec{F} = 0$ **ve** $\\sum \\tau = 0$.",
+      "narration": "Sık yapılan bir hata: bileşke sıfırsa cismin dengede olduğunu sanmak. Bir direksiyona iki elinle zıt yönde kuvvet uygularsın; bileşke sıfırdır ama direksiyon döner. Tam denge için hem bileşke hem net tork sıfır olmalıdır."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_TORK_05",
+    "title": "Paralel kuvvetler",
+    "narration": "Aynı yöndeki paralel kuvvetlerin bileşkesi, büyüklüklerinin toplamıdır; uygulama noktası ise büyük kuvvete daha yakındır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Paralel kuvvetlerin bileşkesi",
+      "items": [
+       "Aynı yönde: $R = F_1 + F_2$; zıt yönde: $R = |F_1 - F_2|$.",
+       "Aynı yönde bileşke, kuvvetlerin **arasında**: $F_1 \\cdot d_1 = F_2 \\cdot d_2$.",
+       "Bileşke **büyük kuvvete** daha yakındır."
+      ],
+      "visual": {
+       "kind": "lever",
+       "length": 8,
+       "pivot": 2,
+       "torques": true,
+       "verdict": true,
+       "unit": "m",
+       "forces": [
+        {
+         "at": 0,
+         "value": 30,
+         "direction": "down",
+         "load": true,
+         "label": "30 N"
+        },
+        {
+         "at": 8,
+         "value": 10,
+         "direction": "down",
+         "load": true,
+         "label": "10 N"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Otuz ve on newtonluk iki yük, sekiz metre arayla.",
+        "show": [
+         "f1",
+         "f2"
+        ],
+        "focus": [
+         "f1",
+         "f2"
+        ]
+       },
+       {
+        "narration": "Bileşke kırk newton; desteği koyunca dengede kalan nokta: otuzdan iki, ondan altı metre.",
+        "show": [
+         "pivot",
+         "a1",
+         "a2",
+         "sum"
+        ],
+        "focus": [
+         "pivot"
+        ]
+       }
+      ],
+      "narration": "Aynı yöndeki iki paralel kuvvetin bileşkesi büyüklüklerinin toplamıdır; zıt yöndekilerin ise farkıdır. Aynı yöndeki kuvvetlerin bileşkesi ikisinin arasında, F bir çarpı d bir, F iki çarpı d iki olacak noktadadır. Bu yüzden bileşke büyük kuvvete daha yakındır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aynı yönlü, büyüklükleri $20$ N ve $60$ N olan iki paralel kuvvet arasındaki uzaklık $12$ m'dir.\n\nBileşkenin uygulama noktası $60$ N'lik kuvvetten kaç m uzaktadır?",
+       "options": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$9$"
+       ],
+       "answer": 2,
+       "narration": "Bileşke büyük kuvvete yakın; ters oran.",
+       "steps": [
+        {
+         "text": "$60 \\cdot x = 20 \\cdot (12 - x)$.",
+         "narration": "Altmış çarpı x, yirmi çarpı on iki eksi x."
+        },
+        {
+         "text": "$80x = 240$ → $x = 3$ m; bileşke $80$ N.",
+         "narration": "Seksen x, iki yüz kırk: x üç metre. Bileşke seksen newton, altmışa üç, yirmiye dokuz metre uzakta. Dokuzu işaretleyen yirmi newtondan ölçmüştür. Cevap C.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Paralel kuvvetler kalıbı; kuvvetler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_TORK_06",
+    "title": "Denge problemleri",
+    "narration": "Destekli çubuklar, tahterevalliler ve kirişler: hepsi iki denge şartıyla çözülür. Püf nokta, tork alınacak noktayı iyi seçmektir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Çözüm sırası",
+      "items": [
+       "Bütün kuvvetleri çiz: yükler, çubuğun **ağırlığı** (ortasında), destek tepkileri.",
+       "Bilinmeyen bir tepkinin üstünden tork al: o tepki denklemden düşer.",
+       "Kalan tepkiyi $\\sum F = 0$ ile bul."
+      ],
+      "narration": "Önce bütün kuvvetleri çiz: yükler, düzgün çubuğun ortasından etki eden ağırlığı ve desteklerin tepkileri. Sonra bilinmeyen tepkilerden birinin üzerinden tork al; o tepkinin kolu sıfır olduğu için denklemden düşer. Kalan tepkiyi kuvvetlerin dengesinden bulursun."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$6$ m uzunluğunda, $60$ N ağırlığındaki düzgün bir kiriş iki ucundan desteklenmiştir. Sol uçtan $2$ m uzağa $120$ N'lik bir yük asılıdır.\n\nSağ desteğin tepki kuvveti $N_2$ kaç N'dir?",
+       "figure": {
+        "kind": "lever",
+        "length": 6,
+        "pivot": 0,
+        "torques": false,
+        "verdict": true,
+        "unit": "m",
+        "forces": [
+         {
+          "at": 2,
+          "value": 120,
+          "direction": "down",
+          "load": true,
+          "label": "120 N"
+         },
+         {
+          "at": 6,
+          "value": 70,
+          "direction": "up",
+          "load": false,
+          "label": "N₂ = ?"
+         }
+        ],
+        "weight": 60
+       },
+       "options": [
+        "$50$",
+        "$70$",
+        "$90$",
+        "$110$",
+        "$180$"
+       ],
+       "answer": 1,
+       "narration": "Sol desteğe göre tork alalım.",
+       "steps": [
+        {
+         "text": "Sol uca göre: $N_2 \\cdot 6 = 120 \\cdot 2 + 60 \\cdot 3$.",
+         "narration": "Sol desteğe göre tork alalım: sağ tepki çarpı altı, yükün torku yüz yirmi çarpı iki artı kirişin ağırlığı altmış çarpı üç."
+        },
+        {
+         "text": "$6N_2 = 420$ → $N_2 = 70$ N; $N_1 = 180 - 70 = 110$ N.",
+         "narration": "Altı N iki, dört yüz yirmi: N iki yetmiş newton. Sol tepki, yüz seksen eksi yetmiş, yüz on; yük sola yakın olduğu için sol tepki büyük. Cevap B.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Kiriş tepkisi kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ortasından desteklenen bir tahterevallinin bir ucunda, destekten $2$ m uzakta $30$ kg'lık bir çocuk oturuyor.\n\n$40$ kg'lık bir çocuk tahterevallinin dengede kalması için destekten kaç m uzağa oturmalıdır?",
+       "figure": {
+        "kind": "lever",
+        "length": 4,
+        "pivot": 2,
+        "torques": false,
+        "verdict": true,
+        "unit": "m",
+        "forces": [
+         {
+          "at": 0,
+          "value": 300,
+          "direction": "down",
+          "load": true,
+          "label": "30 kg"
+         },
+         {
+          "at": 3.5,
+          "value": 400,
+          "direction": "down",
+          "load": true,
+          "label": "40 kg",
+          "arm": "x"
+         }
+        ]
+       },
+       "options": [
+        "$0{,}5$",
+        "$1$",
+        "$1{,}25$",
+        "$1{,}5$",
+        "$2$"
+       ],
+       "answer": 3,
+       "narration": "Ağırlıkların torkları eşit; g sadeleşir.",
+       "steps": [
+        {
+         "text": "$30 \\cdot g \\cdot 2 = 40 \\cdot g \\cdot x$.",
+         "narration": "Otuz çarpı g çarpı iki, kırk çarpı g çarpı x. g iki tarafta da var, sadeleşir."
+        },
+        {
+         "text": "$x = \\frac{60}{40} = 1{,}5$ m.",
+         "narration": "x, altmış bölü kırk, bir buçuk metre. Ağır çocuk desteğe daha yakın oturur. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Tahterevalli kalıbı; kütleler yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$\\sum \\vec{F} = 0$: kütle merkezinin ivmesi sıfır.",
+    "$\\tau = F \\cdot d$; açılıysa $F d \\sin\\theta$.",
+    "Torklar saat yönü ve tersine; net tork farkları.",
+    "Tam denge: $\\sum F = 0$ ve $\\sum \\tau = 0$.",
+    "Paralel kuvvetler: $F_1 d_1 = F_2 d_2$; bileşke büyüğe yakın.",
+    "Bilinmeyen tepkinin üstünden tork al."
+   ],
+   "warnings": [
+    "Bileşke sıfır **dönmeme** demek değil.",
+    "Statik sürtünme **kaydırmaya çalışan** kuvvete eşit.",
+    "Çubuğun **ağırlığını** unutma."
+   ],
+   "narration": "Özetleyelim. Bileşke kuvvet sıfırsa kütle merkezinin ivmesi sıfırdır ama cisim yine dönebilir. Tork kuvvet çarpı dik koldur; saat yönünde ve tersindeki torkların farkı net torktur. Tam denge için hem bileşke hem net tork sıfır olmalı. Paralel kuvvetlerin bileşkesi büyük kuvvete yakındır. Denge problemlerinde çubuğun ağırlığını ortasına koy ve bilinmeyen tepkinin üstünden tork al."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "Bileşke sıfır",
+    "question": "Cisim döner mi?",
+    "choices": [
+     "Dönebilir",
+     "Asla"
+    ],
+    "answer": 0,
+    "why": "Net **tork** ayrı şart."
+   },
+   {
+    "sentence": "Aynı kuvvet, iki kat kol",
+    "question": "Tork?",
+    "choices": [
+     "Aynı",
+     "İki katı"
+    ],
+    "answer": 1,
+    "why": "τ = **F · d**."
+   },
+   {
+    "sentence": "Duvara bastırılan tuğla",
+    "question": "Sürtünme?",
+    "choices": [
+     "Ağırlık kadar",
+     "Bastırma kadar"
+    ],
+    "answer": 0,
+    "why": "Statik sürtünme **ağırlığı** dengeler."
+   }
+  ],
+  "hook": "Üç tork tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "τ = **F · d** (dik kol)."
+   },
+   {
+    "kind": "warning",
+    "text": "Bileşke sıfır, **dönmeme** demek değil."
+   },
+   {
+    "kind": "term",
+    "term": "Denge",
+    "definition": "ΣF = 0 **ve** Στ = 0."
+   }
+  ],
+  "summary": [
+   "Bileşke ve tork",
+   "Denge şartları",
+   "Destek ve tahterevalli"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-fizik-kampi",
+  "name": "AYT Fizik kampı",
+  "number": 2,
+  "total": 21,
+  "previous": "Vektörler",
+  "next": "Kütle Merkezi",
+  "promise": "Vektörden modern fiziğe AYT Fizik: her konu animasyonlu anlatım ve çözümlü sorularla.",
+  "task": {
+   "items": [
+    "Bir cetveli kalemin üstünde **dengele**; iki farklı bozuk parayla torkları eşitle.",
+    "Bir kapıyı menteşeye yakın ve uzak noktalardan itip **farkı** gözle.",
+    "Uygulamada AYT Kuvvet, Tork ve Denge testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bir cetveli kalemin üstünde dengele; iki farklı bozuk parayı uçlara koyup torkları eşitleyecek yerleri bul. Sonra bir kapıyı menteşeye yakın ve uzak noktalardan itip farkı gözle. Ardından uygulamada yirmi soru çöz. Bir sonraki derste kütle merkezinde görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Açılı kuvvette torku örnekle: 2 m'lik çubuğun ucuna çubukla 30° açı yapan 50 N kuvvet τ = 50 × 2 × sin 30° = 50 N·m tork uygular. Torkun biriminin iş birimine benzediğini ama torkun enerji olmadığını belirt.",
+   "Denge problemine adım adım örnek ekle: 4 m uzunluğunda, 40 N ağırlığında türdeş çubuk iki ucundan destekleniyor, sol uçtan 1 m uzağa 80 N yük asılı. Sol desteğe göre tork: N(sağ) × 4 = 40 × 2 + 80 × 1, N(sağ) = 40 N; N(sol) = 120 − 40 = 80 N.",
+   "Üç kuvvetin dengesini (Lami) örnekle: her kuvvet karşısındaki açının sinüsüyle orantılıdır. 100 N'luk lamba düşeyle 60°'şer açı yapan iki iple asılıysa her ipte 100 N gerilme olur.",
+   "Zıt yönlü paralel kuvvetleri ve kuvvet çiftini ekle: zıt yönlü iki paralel kuvvetin bileşkesi farklarına eşittir ve büyük kuvvetin dış tarafındadır; eşit büyüklükte zıt yönlü paralel kuvvetlerin (direksiyon, musluk) bileşkesi sıfır, torku sıfırdan farklıdır.",
+   "Günlük tork örnekleri ver: kapı kolunun menteşeden uzak konması, bijon anahtarına boru takılması, tahterevallide ağır olanın merkeze yaklaşması, dirsek ekleminde ön kol kaslarının kaldıraç gibi çalışması."
+  ]
+ }
+}

@@ -1,0 +1,741 @@
+{
+ "topic": {
+  "id": "A8E24D7D-E54F-2688-1CA5-437F0AE38319",
+  "category": "YKS_TYT",
+  "lesson": "MAT",
+  "code": "MAT_FONK"
+ },
+ "title": "Fonksiyonlar",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/MAT/MAT_FONK.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "f(2x − 1) = 4x + 3 ise f(5) kaç? x'e 5 yazma.",
+   "narration": "f, 2 x eksi 1 için 4 x artı 3 ise f 5 kaçtır? İlk akla gelen x yerine 5 yazmak, ama bu yanlış. Önce parantezin içini 5 yapan x'i bulman gerekir. Fonksiyonlar TYT'de iki biçimde sorulur: formülle verilen fonksiyonlarda işlem ve grafikten okuma. ÖSYM'nin son yıllardaki fonksiyon sorularının çoğu grafik sorusu. Bu derste fonksiyonun tanımını, fonksiyon değerini, grafiği, bire bir ve örten fonksiyonu, bileşkeyi ve ters fonksiyonu adım adım göreceğiz."
+  },
+  "objectives": [
+   "Bir bağıntının fonksiyon olup olmadığını anlamak",
+   "Fonksiyon değerini ve fonksiyonlarda işlemi hesaplamak",
+   "Grafikten değer okumak ve doğrusal fonksiyonu yorumlamak",
+   "Bileşke ve ters fonksiyonu bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_FONK_01",
+    "subtopics": [
+     "MAT_FONK_02"
+    ],
+    "title": "Fonksiyon nedir?",
+    "narration": "Fonksiyon, bir kümenin her elemanını başka bir kümenin yalnız bir elemanıyla eşleyen kuraldır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İki şart",
+      "items": [
+       "Tanım kümesinin **her** elemanı eşlenmeli; açıkta eleman kalmamalı.",
+       "Her eleman **yalnız bir** elemanla eşlenmeli.",
+       "Değer kümesinde açıkta eleman kalabilir; eşlenenler **görüntü kümesidir**.",
+       "**Düşey doğru testi**: grafiği her düşey doğru en fazla bir noktada kesiyorsa fonksiyondur."
+      ],
+      "beats": [],
+      "narration": "Bir bağıntının fonksiyon olması için iki şart var. Tanım kümesinin her elemanı eşlenmeli, açıkta eleman kalmamalı. Ve her eleman yalnızca bir elemanla eşlenmeli. Değer kümesinde açıkta eleman kalabilir; görüntülerin oluşturduğu kümeye görüntü kümesi denir. Grafikte ise düşey doğru testi yapılır: her düşey doğru grafiği en fazla bir noktada kesiyorsa grafik bir fonksiyona aittir."
+     },
+     {
+      "kind": "predict",
+      "title": "Fonksiyon mu?",
+      "context": "A: bir sınıftaki öğrenciler, B: haftanın günleri. Her öğrenci doğduğu gün ile eşleniyor.",
+      "prompt": "Bu eşleme A'dan B'ye bir fonksiyon mudur?",
+      "choices": [
+       "Evet",
+       "Hayır"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Şart",
+        "Bu eşlemede"
+       ],
+       "rows": [
+        [
+         "Her öğrenci eşleniyor mu?",
+         "Evet, herkes bir günde doğdu"
+        ],
+        [
+         "Bir öğrenci iki güne gidiyor mu?",
+         "Hayır, tek doğum günü var"
+        ],
+        [
+         "İki öğrenci aynı güne gidebilir mi?",
+         "Evet, sorun değil"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "beats": [
+       {
+        "narration": "Her öğrencinin bir doğum günü var; açıkta öğrenci kalmıyor. Bir öğrenci iki farklı güne gidemiyor. İki şart da sağlanıyor.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r1",
+         "r2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "İki öğrencinin aynı gün doğması fonksiyonu bozmaz. Bu yalnızca fonksiyonun bire bir olmadığını gösterir.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "İki şart sağlanıyor: **fonksiyondur**. Aynı güne iki öğrencinin gitmesi fonksiyonu bozmaz; yalnızca **bire bir** olmadığını gösterir.",
+      "narration": "Şimdi sıra sende. Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap evet. Her öğrenci tek bir günle eşleniyor. Tersini düşünürsen, yani günlerden öğrencilere eşlersen fonksiyon olmaz, çünkü bir gün birden fazla öğrenciye gider ve bazı günlerde hiç öğrenci doğmamış olabilir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$A = \\{1, 2, 3\\}$ ve $B = \\{a, b\\}$ olmak üzere aşağıdaki bağıntılardan hangisi $A$'dan $B$'ye bir **fonksiyondur**?",
+       "options": [
+        "$\\{(1, a), (2, b)\\}$",
+        "$\\{(1, a), (1, b), (2, a), (3, b)\\}$",
+        "$\\{(1, a), (2, a), (3, a), (3, b)\\}$",
+        "$\\{(1, b), (2, b), (3, b)\\}$",
+        "$\\{(2, a), (3, b)\\}$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "A: **3 boşta**; E: **1 boşta** → her eleman eşlenmemiş.",
+         "eliminate": [
+          "A",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "A şıkkında üç hiçbir elemanla eşlenmemiş; E'de bir boşta kalmış. Tanım kümesinde boşta eleman kalamaz."
+        },
+        {
+         "text": "B: **1** iki elemana gidiyor; C: **3** iki elemana gidiyor → fonksiyon değil.",
+         "eliminate": [
+          "B",
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "B'de bir hem a'ya hem b'ye gidiyor; C'de üç hem a'ya hem b'ye gidiyor. Bir eleman iki farklı görüntüye sahip olamaz."
+        },
+        {
+         "text": "D: her eleman **tek** görüntüye (hepsi $b$'ye) gidiyor → fonksiyon. Cevap **D**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "D'de bir, iki ve üçün her biri tek bir elemana, b'ye gidiyor. Farklı elemanların aynı görüntüye gitmesi serbesttir; bu bir sabit fonksiyondur. Cevabımız D."
+        }
+       ],
+       "narration": "İki şart: A'daki her eleman eşlenmeli ve her eleman yalnız bir elemanla eşlenmeli.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki fonksiyonun iki şartı ve \"Fonksiyon mu?\" tahmin tablosu özgün bağıntılarla soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_FONK_03",
+    "subtopics": [],
+    "title": "Fonksiyon değeri ve işlemler",
+    "narration": "f x, x'in görüntüsüdür. Fonksiyon değerini bulmak bir yerine koyma işidir; ama neyin yerine neyi koyduğuna dikkat etmelisin.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Yerine koy",
+      "items": [
+       "$f(x) = 3x - 2$ ise $f(4) = 10$: $x$ yerine 4.",
+       "$f(2x - 1)$ verilmişse önce **parantezin içini** istenen sayıya eşitle.",
+       "$(f + g)(x) = f(x) + g(x)$, $(f \\cdot g)(x) = f(x) \\cdot g(x)$.",
+       "**Doğrusal** fonksiyon: $f(x) = ax + b$; grafiği bir doğrudur."
+      ],
+      "beats": [],
+      "narration": "f x eşittir 3 x eksi 2 ise f 4, 3 çarpı 4 eksi 2, yani 10'dur. Ama fonksiyon f 2 x eksi 1 biçiminde verilmişse önce parantezin içini istediğin sayıya eşitlersin. Fonksiyonlarla işlem yaparken her birinin değerini ayrı bulup işlemi sonra yaparsın: f artı g'nin x'teki değeri, f x artı g x'tir. a x artı b biçimindeki fonksiyonlara doğrusal fonksiyon denir; grafikleri bir doğrudur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$f(2x - 1) = 4x + 3$ olduğuna göre, $f(5)$ kaçtır?",
+       "options": [
+        "11",
+        "13",
+        "15",
+        "17",
+        "23"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$2x - 1 = 5 \\Rightarrow x = 3$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "f 5'i istiyoruz, yani parantezin içi 5 olmalı. 2 x eksi 1 eşittir 5; x eşittir 3."
+        },
+        {
+         "text": "$f(5) = 4 \\cdot 3 + 3 = 15$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x 3 iken sağ taraf 4 çarpı 3 artı 3, yani 15. f 5, 15."
+        },
+        {
+         "text": "Cevap **C**. $x$ yerine 5 yazan 23 bulur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Cevabımız C. Doğrudan x yerine 5 yazan 4 çarpı 5 artı 3, 23 bulur ve yanılır."
+        }
+       ],
+       "narration": "Parantezin içini 5 yapalım.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"f(ax + b) verilen fonksiyon değeri\" kalıbı örnek alındı, ifade özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$a$ pozitif bir gerçel sayı olmak üzere $f(x) = x + a$ ve $g(x) = ax + 1$ fonksiyonları tanımlanıyor. $(f \\cdot g)(1) = (f + g)(3)$ olduğuna göre, $g(5)$ kaçtır?",
+       "options": [
+        "10",
+        "13",
+        "16",
+        "19",
+        "22"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$(f \\cdot g)(1) = (1 + a)(a + 1) = (a + 1)^2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "f 1, 1 artı a; g 1, a artı 1. Çarpımları a artı 1'in karesi."
+        },
+        {
+         "text": "$(f + g)(3) = (3 + a) + (3a + 1) = 4a + 4$. $(a + 1)^2 = 4(a + 1) \\Rightarrow a + 1 = 4$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "f 3, 3 artı a; g 3, 3 a artı 1. Toplamları 4 a artı 4, yani 4 çarpı a artı 1. a artı 1'in karesi, 4 çarpı a artı 1'e eşit; a pozitif olduğu için iki tarafı a artı 1'e bölebiliriz: a artı 1 eşittir 4, a eşittir 3."
+        },
+        {
+         "text": "$g(x) = 3x + 1$, $g(5) = 16$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "g x, 3 x artı 1. g 5, 16. Cevabımız C."
+        }
+       ],
+       "narration": "ÖSYM 2023'te benzer bir eşitlik kurdu. Her fonksiyonun değerini ayrı bulalım.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2023'ün \"(f · g) ile (f + g) eşitliğinden parametre\" kalıbı örnek alındı; eşitlik, nokta ve istenen değer özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_FONK_04",
+    "subtopics": [],
+    "title": "Grafik",
+    "narration": "ÖSYM'nin fonksiyon sorularının çoğu grafik sorusu. Grafikte bir noktanın x'i girdi, y'si çıktıdır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Grafikten oku",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -1,
+        5
+       ],
+       "y": [
+        -5,
+        7
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "2x - 4",
+         "label": "f(x) = 2x − 4",
+         "ends": [
+          "none",
+          "none"
+         ]
+        },
+        {
+         "expression": "6 - x",
+         "label": "g(x) = 6 − x",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [
+        {
+         "x": 2,
+         "y": 0,
+         "label": "(2, 0)"
+        },
+        {
+         "x": 0,
+         "y": -4,
+         "label": "(0, −4)"
+        },
+        {
+         "x": 3.33,
+         "y": 2.67,
+         "label": "f = g"
+        }
+       ],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "beats": [
+       {
+        "narration": "f x, 2 x eksi 4. Grafik x eksenini x 2 iken keser, çünkü f 2 sıfırdır. y eksenini ise eksi 4'te keser, çünkü f 0, eksi 4'tür.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "İki grafik bir noktada kesişir. Bu noktada f x ile g x eşittir. Kesişimin solunda g'nin grafiği üstte, yani g x daha büyük; sağında f'nin grafiği üstte.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "ÖSYM tam olarak bunu sorar: hangi aralıkta hangi fonksiyonun değeri büyük? Grafikte üstte olan, değeri büyük olandır.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "narration": "Grafikten değer okumayı iki doğru üzerinde görelim."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$f(x) = 2x - 4$ fonksiyonunun grafiği ile koordinat eksenleri arasında kalan üçgensel bölgenin alanı kaç birimkaredir?",
+       "options": [
+        "2",
+        "4",
+        "6",
+        "8",
+        "16"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "x eksenini kestiği yer: $f(x) = 0 \\Rightarrow x = 2$. y eksenini kestiği yer: $f(0) = -4$.",
+         "visual": {
+          "kind": "plot",
+          "x": [
+           -1,
+           4
+          ],
+          "y": [
+           -5,
+           2
+          ],
+          "curves": [
+           {
+            "expression": "2x - 4",
+            "ends": [
+             "none",
+             "none"
+            ]
+           }
+          ],
+          "parameters": {},
+          "points": [
+           {
+            "x": 2,
+            "y": 0,
+            "label": "(2, 0)"
+           },
+           {
+            "x": 0,
+            "y": -4,
+            "label": "(0, −4)"
+           }
+          ],
+          "segments": [],
+          "equalScale": false,
+          "axes": "origin"
+         },
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x eksenini keserken y sıfırdır: 2 x eksi 4 eşittir 0, x 2. y eksenini keserken x sıfırdır: f 0, eksi 4."
+        },
+        {
+         "text": "Dik kenarlar 2 ve 4: alan $\\frac{2 \\cdot 4}{2} = 4$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üçgenin dik kenarları 2 ve 4 birim; uzunluk negatif olmaz. Alan 2 çarpı 4 bölü 2, 4."
+        },
+        {
+         "text": "Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Cevabımız B. İkiye bölmeyi unutan 8 bulur."
+        }
+       ],
+       "narration": "Eksenleri kestiği noktaları bulalım.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki doğrusal fonksiyon grafikleri ve havuzdaki kalıp örnek alındı, fonksiyon özgün."
+       }
+      }
+     },
+     {
+      "kind": "rule",
+      "title": "Doğrusal fonksiyon hikâyeleri",
+      "items": [
+       "Günlük durumlar doğrusal fonksiyonla yazılır: **sabit ücret + birim ücret × miktar**.",
+       "Taksi: açılış 30 TL, kilometresi 12 TL → $f(x) = 12x + 30$.",
+       "**Eğim** birim başına değişimdir; **sabit terim** başlangıç değeridir.",
+       "İki durumu karşılaştırmak için fonksiyonları **eşitle**: kesişim noktası."
+      ],
+      "beats": [],
+      "narration": "Günlük hayattaki birçok durum doğrusal bir fonksiyondur: sabit bir ücret artı birim ücret çarpı miktar. Bir taksinin açılışı 30 lira, kilometresi 12 lira ise yolculuk ücreti f x eşittir 12 x artı 30'dur; 20 kilometre 270 lira tutar. 12, birim başına değişim yani eğimdir; 30 ise başlangıç değeridir. İki tarifeyi karşılaştırmak istediğinde iki fonksiyonu eşitlersin; kesişim noktası, ikisinin aynı tuttuğu yerdir."
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_FONK_05",
+    "subtopics": [
+     "MAT_FONK_06"
+    ],
+    "title": "Bire bir ve örten",
+    "narration": "Fonksiyonların iki önemli türü var: farklı elemanları farklı yerlere götüren bire bir fonksiyon ve değer kümesinde açıkta eleman bırakmayan örten fonksiyon.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bire bir, örten, sayma",
+      "items": [
+       "**Bire bir**: farklı elemanların görüntüleri farklı. **Yatay doğru testi**: her yatay doğru grafiği en fazla bir kez keser.",
+       "**Örten**: değer kümesinde açıkta eleman yok; görüntü kümesi = değer kümesi.",
+       "$s(A) = m$, $s(B) = n$ ise A'dan B'ye **fonksiyon sayısı** $n^m$.",
+       "**Bire bir** fonksiyon sayısı: $n \\cdot (n - 1) \\cdots$ ($m$ çarpan), $m \\leq n$."
+      ],
+      "beats": [],
+      "narration": "Bire bir fonksiyonda farklı elemanların görüntüleri de farklıdır; grafikte her yatay doğru grafiği en fazla bir kez keser. Örten fonksiyonda değer kümesinde açıkta eleman kalmaz. Fonksiyon saymak da sık sorulur: A m elemanlı, B n elemanlıysa A'nın her elemanı n yere gidebilir; fonksiyon sayısı n üssü m'dir. Bire bir fonksiyonda ise her eleman farklı bir yere gitmeli: n çarpı n eksi 1 çarpı ve böyle, m tane çarpan."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$A = \\{1, 2, 3\\}$ ve $B = \\{a, b, c, d\\}$ olduğuna göre, A'dan B'ye tanımlı **bire bir** fonksiyonların sayısı kaçtır?",
+       "options": [
+        "12",
+        "24",
+        "64",
+        "81",
+        "7"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "1: **4** seçenek; 2: kalan **3**; 3: kalan **2**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "1 dört elemandan herhangi birine gidebilir. Bire bir olduğu için 2, 1'in gittiği yere gidemez; üç seçeneği kalır. 3'ün ise iki seçeneği kalır."
+        },
+        {
+         "text": "$4 \\cdot 3 \\cdot 2 = 24$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "4 çarpı 3 çarpı 2, 24."
+        },
+        {
+         "text": "Cevap **B**. Bütün fonksiyonlar $4^3 = 64$.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Cevabımız B. Bire bir şartı olmasaydı her eleman 4 yere gidebilirdi: 4 üssü 3, 64 fonksiyon. C şıkkı bu tuzak."
+        }
+       ],
+       "narration": "Her elemanın gidebileceği yerleri sayalım.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki bire bir fonksiyon sayısı kalıbı örnek alındı, kümeler özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_FONK_07",
+    "subtopics": [],
+    "title": "Bileşke",
+    "narration": "Bileşke, iki fonksiyonu art arda uygulamaktır. Sıra önemlidir: içteki önce çalışır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İçten dışa",
+      "items": [
+       "$(f \\circ g)(x) = f(g(x))$: önce $g$, sonra $f$.",
+       "Genellikle $f \\circ g \\neq g \\circ f$.",
+       "Sayısal değerde **içten dışa** hesapla: önce $g(2)$, sonra $f$ o sonuçta.",
+       "Kural isteniyorsa $g(x)$'i $f$'nin $x$'lerinin yerine koy."
+      ],
+      "beats": [],
+      "narration": "f bileşke g'nin x'teki değeri, f g x'tir: önce g uygulanır, sonra çıkan sonuca f uygulanır. Sıra önemlidir; f bileşke g ile g bileşke f genellikle farklıdır. Sayısal bir değer soruluyorsa içten dışa hesaplarsın: önce g 2'yi bul, sonra f'yi o sonuçta hesapla."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$f(x) = 2x + 1$ ve $g(x) = x^2 - 3$ olduğuna göre, $(f \\circ g)(2) + (g \\circ f)(1)$ kaçtır?",
+       "options": [
+        "5",
+        "7",
+        "9",
+        "11",
+        "13"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$(f \\circ g)(2) = f(g(2)) = f(1) = 3$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "f bileşke g'nin 2'deki değeri: önce g 2, 4 eksi 3, yani 1. Sonra f 1, 2 artı 1, yani 3."
+        },
+        {
+         "text": "$(g \\circ f)(1) = g(f(1)) = g(3) = 6$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "g bileşke f'nin 1'deki değeri: önce f 1, 3. Sonra g 3, 9 eksi 3, yani 6."
+        },
+        {
+         "text": "$3 + 6 = 9$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam 3 artı 6, 9. Cevabımız C. Sırayı karıştıran g bileşke f'yi f bileşke g gibi hesaplar."
+        }
+       ],
+       "narration": "İki bileşkeyi ayrı ayrı, içten dışa hesaplayalım.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki bileşke fonksiyon değeri kalıbı örnek alındı, fonksiyonlar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_FONK_08",
+    "subtopics": [],
+    "title": "Ters fonksiyon",
+    "narration": "Ters fonksiyon, fonksiyonun yaptığını geri alır: çıktıdan girdiye götürür.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Geri al",
+      "items": [
+       "$f(a) = b \\iff f^{-1}(b) = a$.",
+       "Tersi olması için fonksiyon **bire bir ve örten** olmalı.",
+       "Doğrusal: $y = 3x - 5$ → $x$'i yalnız bırak: $f^{-1}(x) = \\frac{x + 5}{3}$.",
+       "$f^{-1}(x)$, $\\frac{1}{f(x)}$ **değildir**."
+      ],
+      "beats": [],
+      "narration": "f a eşittir b ise f tersi b eşittir a'dır: ters fonksiyon çıktıdan girdiye götürür. Bir fonksiyonun tersinin olması için bire bir ve örten olması gerekir. Doğrusal bir fonksiyonun tersini bulmak için y eşittir 3 x eksi 5 yazar, x'i yalnız bırakırsın: x eşittir y artı 5 bölü 3. En sık hata: f tersi x'i 1 bölü f x sanmak. Ters fonksiyon çarpmaya göre ters değildir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$f(x) = 3x - 5$ olduğuna göre, $f^{-1}(7)$ kaçtır?",
+       "options": [
+        "2",
+        "4",
+        "6",
+        "16",
+        "26"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$f^{-1}(7) = a$ ise $f(a) = 7$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "f tersi 7, a olsun. Tanıma göre f a, 7'dir: hangi sayının görüntüsü 7?"
+        },
+        {
+         "text": "$3a - 5 = 7 \\Rightarrow a = 4$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "3 a eksi 5 eşittir 7; 3 a eşittir 12; a eşittir 4."
+        },
+        {
+         "text": "Kontrol: $f(4) = 7$ ✓. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kontrol: f 4, 12 eksi 5, 7. Cevabımız B. f 7'yi hesaplayan 16'yı bulur; o tersi değil, fonksiyonun kendisi."
+        }
+       ],
+       "narration": "Tersin tanımını kullanalım; ters fonksiyonu bulmaya bile gerek yok.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki ters fonksiyon değeri kalıbı örnek alındı, fonksiyon özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$f(x) = \\frac{2x + 1}{x - 3}$ olduğuna göre $f^{-1}(5)$ kaçtır?",
+       "options": [
+        "$\\frac{16}{3}$",
+        "$3$",
+        "$4$",
+        "$\\frac{13}{2}$",
+        "$\\frac{11}{3}$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$f^{-1}(5) = a$ ⟺ $f(a) = 5$ → $\\frac{2a + 1}{a - 3} = 5$.",
+         "eliminate": [],
+         "mark": [
+          "$f^{-1}(5)$"
+         ],
+         "sentences": [],
+         "narration": "f tersi beş, a olsun. Bu, f a'nın beş olması demektir: iki a artı bir bölü a eksi üç, beş."
+        },
+        {
+         "text": "$2a + 1 = 5a - 15$ → $3a = 16$ → $a = \\frac{16}{3}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İçler dışlar: iki a artı bir, beş a eksi on beş. a'ları bir tarafa toplarsak üç a on altı; a on altı bölü üç."
+        },
+        {
+         "text": "Kontrol: $f\\left(\\frac{16}{3}\\right) = \\frac{35/3}{7/3} = 5$ ✓. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kontrol: on altı bölü üçü yerine koyalım. Pay otuz beş bölü üç, payda yedi bölü üç; bölüm beş. Doğru. Cevabımız A. Ters fonksiyonu baştan bulmaya gerek kalmadı."
+        }
+       ],
+       "narration": "f'nin tersinde 5'in karşılığı, f'de 5'e giden sayıdır.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki \"geri al\" kuralı ters fonksiyonu bulmadan değer hesaplamaya uygulandı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Fonksiyon: **her** eleman eşlenir, **yalnız bir** elemanla.",
+    "$f(2x - 1)$ verilince önce **parantezin içini** eşitle.",
+    "Grafikte **üstte olan** fonksiyonun değeri büyüktür.",
+    "Fonksiyon sayısı $n^m$; bire bir $n(n - 1)\\cdots$",
+    "Bileşkede **içten dışa**: $(f \\circ g)(x) = f(g(x))$.",
+    "$f(a) = b \\iff f^{-1}(b) = a$; ters, $\\frac{1}{f}$ değildir."
+   ],
+   "warnings": [
+    "İki öğrenci aynı güne gidebilir: fonksiyon bozulmaz.",
+    "$f \\circ g \\neq g \\circ f$",
+    "Alan için uzunluklar **pozitif** alınır.",
+    "$f^{-1}(7) \\neq f(7)$"
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Telefon ya da internet tarifeni bir **doğrusal fonksiyon** olarak yaz.",
+    "$f(x) = 2x + 3$ için $f^{-1}$'i bul ve $(f \\circ f^{-1})(5)$'i hesapla.",
+    "Uygulamada Fonksiyonlar testinden **20 soru** çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Fonksiyon türlerini örnekle: birim, sabit, doğrusal, parçalı tanımlı, tek ve çift fonksiyon (grafikte simetri).",
+   "Ters fonksiyon bulma kalıplarını ver: doğrusal f(x) = ax + b için f⁻¹(x) = (x − b)/a; kesirli (ax + b)/(cx + d) için (−dx + b)/(cx − a).",
+   "Bileşkenin özelliklerini ekle: f ∘ g genelde g ∘ f'ye eşit değildir, (f ∘ g)⁻¹ = g⁻¹ ∘ f⁻¹; grafikten f(g(2)) gibi değerler okuma soruları.",
+   "Fonksiyon sayısı formüllerini örnekle: A'dan B'ye fonksiyon sayısı s(B)^s(A), bire bir fonksiyon sayısı permütasyonla; dikey doğru testi."
+  ]
+ }
+}

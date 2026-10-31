@@ -1,4 +1,4 @@
-import {outroScenes} from '../../../Scenes/BrandOutroScene';
+import {outroScenes} from '../../../Scenes/AppEndScene';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, totalSeconds, type VoiceClips} from '../../../Scenes/Voiceover';
 import {sentences, toSpokenText} from '../../../Schemas/SpokenText';

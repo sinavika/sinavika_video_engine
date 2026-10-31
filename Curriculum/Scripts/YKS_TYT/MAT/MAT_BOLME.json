@@ -1,0 +1,733 @@
+{
+ "topic": {
+  "id": "2B11986D-FC0F-C5AE-4AFD-36BB32F36C37",
+  "category": "YKS_TYT",
+  "lesson": "MAT",
+  "code": "MAT_BOLME"
+ },
+ "title": "Bölme ve Bölünebilme",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "YKS/TYT/KonuAnlatimi/MAT/MAT_BOLME.json (MEB Temel Matematik konu anlatımı: bölme işlemi, kalan, 2-11 ile bölünebilme, aralarında asal sayıların çarpımına bölünebilme)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: 9 soru; 5'i kalanlı bölünebilme ve yeni tanım (ortakatlı, n-değişmeli), 4'ü bölünebilme kuralları)",
+  "YKS/TYT/Sorular/MAT/MAT_BOLME.jsonl (226 soru; bölme işlemi, kalan ve bölünebilme kalıpları)"
+ ],
+ "works": {
+  "additions": [
+   "Bölünebilme kurallarının tam tablosunu ver: 2, 3, 4, 5, 6, 8, 9, 10, 11 ve aralarında asal çarpanlarla 12, 15, 18, 36, 45; her kurala bir örnek.",
+   "Kalan problemlerini genişlet: bir sayının bölümünden kalan biliniyorken 2x, x + 5, x² sayılarının kalanı; ardışık bölme (bölüm yeniden bölünür) soru tipi.",
+   "11 ile bölünebilmede basamakları sağdan +, −, + diye toplama yöntemini ve kalan bulma örneklerini ekle."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Bir sayıyı bölmeden kalanını bulabilir misin?",
+   "narration": "Dört basamaklı bir sayının 9'a bölümünden kalanı bulmak için bölme yapmana gerek yok; rakamlarını toplaman yeter. 11 için işaretleri değiştirerek toplarsın, 4 için yalnız son iki basamağa bakarsın. ÖSYM bu kuralları tek başına sormaz: rakamların yerine harf koyar, iki kuralı birlikte ister. Bu derste bölme işleminin denklemini, kalanlarla işlem yapmayı, bölünebilme kurallarını ve kalanla çözülen döngü problemlerini adım adım göreceğiz."
+  },
+  "objectives": [
+   "Bölme işlemini A = B · C + K denklemiyle yazmak",
+   "Kalanlarla toplama ve çarpma yapmak",
+   "2'den 11'e kadar bölünebilme kurallarını uygulamak",
+   "Tekrar eden döngüleri kalanla çözmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_BOLME_01",
+    "title": "Bölme işlemi",
+    "narration": "Her bölme işlemi tek bir denkleme dönüşür. Bu denklem, konunun bütün sorularının anahtarıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bölme denklemi",
+      "items": [
+       "$A = B \\cdot C + K$: bölünen = bölen × bölüm + kalan.",
+       "Kalan **bölenden küçüktür**: $0 \\leq K < B$.",
+       "Kalan 0 ise A, B'ye **tam bölünür**.",
+       "Kalan bölümden de küçükse bölen ile bölüm **yer değiştirebilir**, kalan değişmez."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "A = B \\cdot C + K, \\quad 0 \\leq K < B",
+       "caption": "A bölünen, B bölen, C bölüm, K kalan"
+      },
+      "narration": "A sayısını B'ye böldüğünde bölüm C, kalan K ise A eşittir B çarpı C artı K yazılır. Kalan her zaman bölenden küçüktür ve sıfır olabilir. Kalan sıfırsa A, B'ye tam bölünür. Bir de şu özellik: kalan bölümden de küçükse bölen ile bölüm yer değiştirebilir, kalan değişmez. 23'ü 5'e bölersen bölüm 4, kalan 3. 4'e bölersen bölüm 5, kalan yine 3."
+     },
+     {
+      "kind": "mistake",
+      "title": "Kalan bölenden büyük olamaz",
+      "wrong": "Bir sayı 6'ya bölündüğünde kalan **7** olabilir.",
+      "right": "6'ya bölmede kalan en fazla **5**tir. Kalan 7 çıkıyorsa bölüm 1 artar, kalan 1 olur.",
+      "why": "Bir soruda kalan K ve bölen B ise her zaman $K < B$ şartını yaz; bu çoğu zaman en büyük, en küçük sorusunun cevabını verir.",
+      "narration": "Kalan bölenden büyük ya da bölene eşit olamaz. 6'ya bölmede kalan en fazla 5'tir. Bu şart sorularda gizli bir bilgidir: kalan K, bölen B ise K küçüktür B yaz. Bölenin en küçük değeri sorulduğunda cevap çoğu zaman bu şarttan çıkar."
+     },
+     {
+      "kind": "example",
+      "title": "Kalandan bölen bulmak",
+      "example": "Bir bölme işleminde kalan 8 ise bölen en az 9'dur.",
+      "explanation": "Kalan bölenden küçük olmalı: $8 < B$, yani $B \\geq 9$. Bölen ile bölümün toplamı en az soruluyorsa önce bu şartı yaz.",
+      "narration": "Bu şartın bir soruda nasıl işe yaradığını görelim. Bir bölme işleminde kalan 8 ise bölen en az 9'dur. Çünkü kalan 8, bölenden küçük olmak zorunda. Soru bölenin ya da bölünenin en küçük değerini soruyorsa ilk iş bu şartı yazmaktır. Örneğin kalan 8, bölüm 3 ise bölünen en az 9 çarpı 3 artı 8, yani 35 olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $A$ doğal sayısı 7 ile bölündüğünde bölüm $B$, kalan 5'tir. $B$ sayısı 4 ile bölündüğünde bölüm $C$, kalan 3'tür. Buna göre, $A$ sayısının 28 ile bölümünden kalan kaçtır?",
+       "options": [
+        "5",
+        "12",
+        "19",
+        "21",
+        "26"
+       ],
+       "answer": 4,
+       "narration": "İki bölme işlemini denkleme çevirelim.",
+       "steps": [
+        {
+         "text": "$A = 7B + 5$ ve $B = 4C + 3$",
+         "narration": "Birinci bölme: A eşittir 7 B artı 5. İkinci bölme: B eşittir 4 C artı 3."
+        },
+        {
+         "text": "$A = 7(4C + 3) + 5 = 28C + 21 + 5 = 28C + 26$",
+         "narration": "B'nin yerine 4 C artı 3 yazalım. A eşittir 7 çarpı 4 C artı 3, artı 5. Dağıtınca 28 C artı 21 artı 5, yani 28 C artı 26."
+        },
+        {
+         "text": "$26 < 28$ olduğu için kalan **26**. Cevap **E**.",
+         "narration": "A, 28 C artı 26 biçiminde. 26, 28'den küçük olduğu için kalan doğrudan 26'dır. Cevabımız E.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki ardışık bölme (yerine koyma) yöntemi ve havuzdaki kalıp örnek alındı, sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir bölme işleminde bölen 9, kalan 6'dır. Bölünen sayı **5 artırılırsa** yeni bölme işleminde **kalan** kaç olur?",
+       "options": [
+        "0",
+        "1",
+        "2",
+        "5",
+        "11"
+       ],
+       "answer": 2,
+       "narration": "Bölüneni artırınca önce kalan artar; ama kalan bölenden küçük kalmalı.",
+       "steps": [
+        {
+         "text": "$A = 9B + 6$ → $A + 5 = 9B + 11$.",
+         "narration": "Bölünen A, dokuz B artı altı. Beş eklersek dokuz B artı on bir olur.",
+         "mark": [
+          "5 artırılırsa"
+         ]
+        },
+        {
+         "text": "11 bölenden (9) **büyük** olamaz: $9B + 11 = 9(B + 1) + 2$.",
+         "narration": "Ama kalan bölenden büyük olamaz. On birin içinde bir tane daha dokuz var: dokuz B artı on bir, dokuz çarpı B artı bir, artı iki olur. Bölüm bir artar, kalan iki olur."
+        },
+        {
+         "text": "Yeni kalan **2**, bölüm 1 artar. Cevap **C**.",
+         "narration": "Yeni kalan iki. Cevabımız C. On biri seçen kalanın bölenden büyük olamayacağını unutmuş olur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki \"kalan bölenden büyük olamaz\" uyarısı özgün sayılarla soruya dönüştürüldü."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BOLME_02",
+    "title": "Kalanlarla işlem",
+    "narration": "Bir toplamın ya da çarpımın kalanını bulmak için sayıların kendisine gerek yoktur; kalanları yeter.",
+    "cards": [
+     {
+      "kind": "predict",
+      "title": "Kalanları topla",
+      "context": "$A$ sayısının 9 ile bölümünden kalan 7, $B$ sayısının 9 ile bölümünden kalan 5'tir.",
+      "prompt": "$A + B$ toplamının 9 ile bölümünden kalan kaçtır?",
+      "choices": [
+       "12",
+       "3"
+      ],
+      "answer": 1,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sayı",
+        "Kalan"
+       ],
+       "rows": [
+        [
+         "$A$",
+         "7"
+        ],
+        [
+         "$B$",
+         "5"
+        ],
+        [
+         "$A + B$",
+         "7 + 5 = 12 → 12 − 9 = 3"
+        ],
+        [
+         "$A \\cdot B$",
+         "7 · 5 = 35 → 35 − 27 = 8"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "beats": [
+       {
+        "narration": "Kalanları toplarız: 7 artı 5, 12. Ama 12, 9'dan büyük; kalan olamaz. 12'yi yeniden 9'a böleriz, kalan 3.",
+        "show": [
+         "r1",
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "Çarpımda da aynısı: 7 çarpı 5, 35. 35'in 9 ile bölümünden kalan 8.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ]
+       }
+      ],
+      "explanation": "Kalanlar toplanır ya da çarpılır, sonuç **yeniden bölene bölünür**. 12 kalan olamaz: $12 - 9 = 3$.",
+      "narration": "Şimdi sıra sende. Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 3. Kalanları toplamak doğru bir yol, ama sonuç bölenden büyük ya da ona eşitse yeniden bölmek gerekir. 12, 9'dan büyük olduğu için kalan 3 olur. Çarpımda da kalanları çarpar, sonucu yeniden 9'a bölersin."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$A$ sayısının 13 ile bölümünden kalan 5, $B$ sayısının 13 ile bölümünden kalan 9'dur. Buna göre $A \\cdot B + A$ ifadesinin 13 ile bölümünden kalan kaçtır?",
+       "options": [
+        "1",
+        "6",
+        "9",
+        "11",
+        "12"
+       ],
+       "answer": 3,
+       "narration": "Kalanlarla işlemi bir soruda deneyelim.",
+       "steps": [
+        {
+         "text": "$A$ yerine 5, $B$ yerine 9 koy: $5 \\cdot 9 + 5 = 50$",
+         "narration": "Sayıların kendisini bilmemize gerek yok. A yerine kalanı olan 5'i, B yerine 9'u koyarız. 5 çarpı 9 artı 5, 50 eder."
+        },
+        {
+         "text": "$50 = 13 \\cdot 3 + 11$: kalan **11**.",
+         "narration": "50'yi 13'e bölelim. 13 çarpı 3, 39; 50 eksi 39, 11. Kalan 11."
+        },
+        {
+         "text": "Cevap **D**.",
+         "narration": "Cevabımız D. 45'i 13'e bölüp 6 bulan, artı A'yı unutmuş olur.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki \"kalanlarla ifade\" örneğinin yöntemi örnek alındı, sayılar ve ifade özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BOLME_03",
+    "subtopics": [
+     "MAT_BOLME_04"
+    ],
+    "title": "Bölünebilme kuralları",
+    "narration": "Şimdi bölme yapmadan kalan bulmanın kurallarına geçiyoruz. Kuralları üç gruba ayırırsan ezberlemen kolaylaşır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Hangi basamaklara bakılır?",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Bölen",
+        "Neye bakılır?",
+        "Örnek: 52 718"
+       ],
+       "rows": [
+        [
+         "2, 5, 10",
+         "Son basamak",
+         "8: 2'ye tam, 5'e kalan 3"
+        ],
+        [
+         "4",
+         "Son iki basamak",
+         "18: kalan 2"
+        ],
+        [
+         "8",
+         "Son üç basamak",
+         "718: kalan 6"
+        ],
+        [
+         "3, 9",
+         "Rakamlar toplamı",
+         "23: 3'e kalan 2, 9'a kalan 5"
+        ],
+        [
+         "11",
+         "Sağdan +, −, +, −",
+         "8 − 1 + 7 − 2 + 5 = 17: kalan 6"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "narration": "Kuralları 52 718 sayısı üzerinde görelim.",
+      "beats": [
+       {
+        "narration": "Birinci grup son basamağa bakar. 2, 5 ve 10 için yalnız birler basamağı yeter. Son rakam 8: sayı 2'ye tam bölünür, 5'e bölümünden kalan 3'tür.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "İkinci grup son birkaç basamağa bakar. 4 için son iki basamak: 18'in 4'e bölümünden kalan 2. 8 için son üç basamak: 718'in 8'e bölümünden kalan 6.",
+        "show": [
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r2",
+         "r3"
+        ]
+       },
+       {
+        "narration": "Üçüncü grup bütün rakamlara bakar. 3 ve 9 için rakamlar toplamı: 5 artı 2 artı 7 artı 1 artı 8, 23. 23'ün 3'e bölümünden kalan 2, 9'a bölümünden kalan 5.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ]
+       },
+       {
+        "narration": "11 için rakamları sağdan başlayarak artı, eksi, artı diye işaretlersin. 8 eksi 1 artı 7 eksi 2 artı 5, 17. 17'nin 11'e bölümünden kalan 6.",
+        "show": [
+         "r5"
+        ],
+        "focus": [
+         "r5"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Dört basamaklı $\\overline{7A2B}$ sayısı hem 5 hem de 9 ile tam bölünebilmektedir. Buna göre $A$ rakamının alabileceği **farklı değerlerin toplamı** kaçtır?",
+       "options": [
+        "9",
+        "11",
+        "13",
+        "14",
+        "18"
+       ],
+       "answer": 2,
+       "narration": "İki kural birlikte. Önce son basamakla ilgili kurala bakarız.",
+       "steps": [
+        {
+         "text": "5 ile bölünebilme: $B = 0$ ya da $B = 5$.",
+         "narration": "5'e tam bölünmesi için son rakam 0 ya da 5 olmalı. B ya 0 ya 5."
+        },
+        {
+         "text": "9 ile: $7 + A + 2 + B = 9 + A + B$ → $A + B$ 9'un katı. $B = 0$: $A = 0$ ya da $9$. $B = 5$: $A = 4$.",
+         "narration": "9'a bölünmesi için rakamlar toplamı 9'un katı olmalı: 7 artı A artı 2 artı B, yani 9 artı A artı B. Demek ki A artı B, 9'un katı. B sıfırsa A, 0 ya da 9 olabilir. B 5 ise A, 4 olmalı."
+        },
+        {
+         "text": "Farklı değerler 0, 4, 9: toplam **13**. Cevap **C**.",
+         "narration": "A'nın alabileceği farklı değerler 0, 4 ve 9. A ikinci basamakta olduğu için sıfır olabilir. Toplam 13. Cevabımız C. Sıfırı ya da 9'u unutan, 4 ya da 9 bulur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2025'in \"5 ve 9 ile bölünebilme, harfin alabileceği değerler\" kalıbı örnek alındı, sayı ve koşul özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Dört basamaklı $\\overline{5A27}$ sayısının 11 ile bölümünden kalan 3 olduğuna göre, $A$ kaçtır?",
+       "options": [
+        "1",
+        "3",
+        "5",
+        "7",
+        "9"
+       ],
+       "answer": 1,
+       "narration": "11 kuralını bir soruda deneyelim.",
+       "steps": [
+        {
+         "text": "Sağdan işaretle: $+7 - 2 + A - 5 = A$",
+         "narration": "Rakamları sağdan başlayarak işaretleyelim: artı 7, eksi 2, artı A, eksi 5. Toplam 7 eksi 2 artı A eksi 5, yani yalnız A kalıyor."
+        },
+        {
+         "text": "$A$'nın 11 ile bölümünden kalan 3 → $A = 3$ (rakam).",
+         "narration": "Bu toplamın 11'e bölümünden kalan 3 olmalı. A bir rakam, 11'den küçük, öyleyse A 3'tür."
+        },
+        {
+         "text": "Kontrol: $5327 = 11 \\cdot 484 + 3$ ✓. Cevap **B**.",
+         "narration": "Kontrol edelim: 5327, 11 çarpı 484 artı 3'tür. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2022'nin 11 ile bölünebilme kalıbı örnek alındı, sayı özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BOLME_04",
+    "title": "Çarpana bölünebilme",
+    "narration": "12, 15, 18 gibi sayılara bölünebilmenin ayrı bir kuralı yoktur. Sayıyı aralarında asal çarpanlara ayırırsın.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Aralarında asal çarpanlar",
+      "items": [
+       "$6 = 2 \\cdot 3$, $12 = 3 \\cdot 4$, $15 = 3 \\cdot 5$, $18 = 2 \\cdot 9$",
+       "$24 = 3 \\cdot 8$, $36 = 4 \\cdot 9$, $45 = 5 \\cdot 9$",
+       "Sayı **iki çarpanın her birine** bölünüyorsa çarpıma da bölünür.",
+       "Çarpanlar **aralarında asal** olmalı: 12 için 2 ve 6 olmaz."
+      ],
+      "narration": "Bir sayı aralarında asal iki sayının her birine bölünüyorsa onların çarpımına da bölünür. 6 için 2 ve 3'e, 12 için 3 ve 4'e, 15 için 3 ve 5'e, 18 için 2 ve 9'a bakarsın. 24 için 3 ve 8, 36 için 4 ve 9, 45 için 5 ve 9. Önemli olan çarpanların aralarında asal olması."
+     },
+     {
+      "kind": "mistake",
+      "title": "Çarpanlar aralarında asal olmalı",
+      "wrong": "2'ye ve 6'ya bölünen her sayı **12**ye de bölünür.",
+      "right": "Yanlış: **18**, 2'ye ve 6'ya bölünür ama 12'ye bölünmez. 12 için **3 ve 4**'e bakılır.",
+      "why": "2 ile 6'nın ortak böleni 2'dir; aralarında asal değillerdir.",
+      "narration": "Sık yapılan hata: 12 için 2 ve 6'ya bakmak. 18 sayısı 2'ye de 6'ya da bölünür ama 12'ye bölünmez. Çünkü 2 ile 6 aralarında asal değil. 12 için doğru çarpanlar 3 ve 4'tür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Üç basamaklı $\\overline{4A6}$ sayısı **6 ile tam bölünebildiğine** göre $A$ rakamının alabileceği değerlerin toplamı kaçtır?",
+       "options": [
+        "12",
+        "13",
+        "15",
+        "18",
+        "21"
+       ],
+       "answer": 2,
+       "narration": "6, aralarında asal 2 ve 3'ün çarpımıdır; sayı ikisine de bölünmeli.",
+       "steps": [
+        {
+         "text": "$6 = 2 \\cdot 3$ (aralarında asal). **2'ye**: birler basamağı 6, çift → her $A$ için tamam.",
+         "narration": "Altı, aralarında asal iki ve üçün çarpımıdır. Sayı ikiye bölünmeli: birler basamağı altı, çift; bu koşul A ne olursa olsun sağlanıyor."
+        },
+        {
+         "text": "**3'e**: $4 + A + 6 = 10 + A$ üçün katı → $A \\in \\{2, 5, 8\\}$.",
+         "narration": "Sayı üçe de bölünmeli: rakamları toplamı dört artı A artı altı, yani on artı A, üçün katı olmalı. On iki, on beş, on sekiz olur; A iki, beş ya da sekiz."
+        },
+        {
+         "text": "Toplam $= 2 + 5 + 8 = 15$. Cevap **C**.",
+         "narration": "A'nın alabileceği değerlerin toplamı iki artı beş artı sekiz, yani on beş. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki \"çarpana bölünebilme: aralarında asal çarpanlar\" kuralı özgün bir sayıyla soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BOLME_05",
+    "title": "Kalanla çözülen problemler",
+    "narration": "Son bölümde kalanın günlük problemlerde nasıl kullanıldığını görelim: tekrar eden döngüler.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Döngü problemleri",
+      "items": [
+       "Bir olay **n adımda bir** baştan başlıyorsa döngünün uzunluğu n'dir.",
+       "k. adımı bulmak için **k'yi n'ye böl**, kalana bak.",
+       "Kalan r ise cevap döngünün **r. elemanıdır**.",
+       "Kalan **0** ise cevap döngünün **son** elemanıdır."
+      ],
+      "narration": "Haftanın günleri, ışıkların sırası, tekrar eden etiketler. Bir olay n adımda bir baştan başlıyorsa k'ıncı adımı bulmak için k'yi n'ye bölersin. Kalan r ise cevap döngünün r'inci elemanıdır. Kalan sıfırsa döngünün son elemanıdır. Kalan sıfır durumunu unutma; tuzak çoğu zaman oradadır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bugün günlerden **salı** olduğuna göre bugünden **100 gün sonra** günlerden hangisi olur?",
+       "options": [
+        "Perşembe",
+        "Çarşamba",
+        "Pazartesi",
+        "Cuma",
+        "Pazar"
+       ],
+       "answer": 0,
+       "narration": "Haftanın günleri 7 günde bir tekrar eder; döngü 7.",
+       "steps": [
+        {
+         "text": "Döngü uzunluğu **7**. $100 = 7 \\cdot 14 + 2$ → kalan **2**.",
+         "narration": "Günler yedi günde bir başa döner. 100'ü yediye bölelim: yedi çarpı on dört doksan sekiz, kalan iki.",
+         "mark": [
+          "100 gün sonra"
+         ]
+        },
+        {
+         "text": "14 tam hafta sonra yine **salı**; 2 gün ileri: çarşamba, **perşembe**.",
+         "narration": "On dört tam hafta sonra yine salıya geliriz. Kalan iki gün kadar ilerleriz: salıdan bir gün sonra çarşamba, iki gün sonra perşembe."
+        },
+        {
+         "text": "Cevap **A**.",
+         "narration": "Yüz gün sonra perşembedir. Cevabımız A. Kalanı saymaya bugünden başlayan, yanlışlıkla çarşambayı seçer.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki döngü problemleri kuralı klasik gün hesabıyla özgün sayılarla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir süs lambası sırasıyla kırmızı, sarı, yeşil, mavi ve beyaz renkte yanıp sönmekte, beyazdan sonra yeniden kırmızıdan başlamaktadır. İlk yanışı kırmızı olan bu lamba 2028. kez yandığında hangi renktedir?",
+       "options": [
+        "Yeşil",
+        "Sarı",
+        "Kırmızı",
+        "Mavi",
+        "Beyaz"
+       ],
+       "answer": 0,
+       "narration": "Döngü yöntemini uygulayalım.",
+       "steps": [
+        {
+         "text": "Döngü uzunluğu **5**: kırmızı, sarı, yeşil, mavi, beyaz.",
+         "narration": "Lamba beş renkte bir döngü yapıyor. Döngünün uzunluğu 5."
+        },
+        {
+         "text": "$2028 = 5 \\cdot 405 + 3$: kalan **3**.",
+         "narration": "2028'i 5'e bölelim. 5 çarpı 405, 2025 eder; kalan 3. Bölmeye gerek bile yok: 5'e bölmede kalan son rakama bağlıdır, 8'in 5'e bölümünden kalan 3."
+        },
+        {
+         "text": "Döngünün 3. elemanı **yeşil**. Cevap **A**.",
+         "narration": "Kalan 3 olduğu için döngünün üçüncü rengi: kırmızı, sarı, yeşil. Cevabımız A.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin tekrar eden etiket (175. karton) döngü kalıbı örnek alındı, bağlam ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Birbirinden farklı iki doğal sayıdan birinin 7 ile bölümündeki bölüm ve kalan, sırasıyla diğerinin 7 ile bölümündeki kalan ve bölüme eşitse bu sayılara **7-takas** sayılar denir. 30 ve $m$ sayıları 7-takas sayılar olduğuna göre, $m$ kaçtır?",
+       "options": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2026'da bölme denklemini yeni bir tanımla sordu. Biz de benzer bir tanımla deneyelim.",
+       "steps": [
+        {
+         "text": "$30 = 7 \\cdot 4 + 2$: bölüm **4**, kalan **2**.",
+         "narration": "Önce 30'u 7'ye bölelim. 7 çarpı 4, 28; kalan 2. Bölüm 4, kalan 2."
+        },
+        {
+         "text": "$m$ için bölüm ve kalan yer değiştirir: bölüm **2**, kalan **4**. $m = 7 \\cdot 2 + 4 = 18$",
+         "narration": "Tanıma göre m'nin bölümü 30'un kalanına, kalanı da 30'un bölümüne eşit. m'nin bölümü 2, kalanı 4. m eşittir 7 çarpı 2 artı 4, yani 18."
+        },
+        {
+         "text": "Kontrol: kalan $4 < 7$ ✓, $18 \\neq 30$ ✓. Cevap **C**.",
+         "narration": "Kalan 4, bölen 7'den küçük; şart sağlanıyor. 18 ile 30 da farklı. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2026'nın \"n-değişmeli sayılar\" yeni tanım kalıbı örnek alındı, ad, bölen ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$A = B \\cdot C + K$ ve **kalan bölenden küçüktür**.",
+    "Kalanlar toplanır, çarpılır; sonuç **yeniden** bölene bölünür.",
+    "2, 5, 10 son basamak; 4 son iki; 8 son üç basamak.",
+    "3 ve 9 **rakamlar toplamı**; 11 sağdan **+, −, +, −**.",
+    "12, 18, 24 gibi sayılarda **aralarında asal** çarpanlara bak.",
+    "Döngüde k'yi döngü uzunluğuna böl; **kalan 0** ise son eleman."
+   ],
+   "warnings": [
+    "6'ya bölmede kalan en fazla **5**.",
+    "Kalanlar toplamı 12 ise 9'a göre kalan **3**.",
+    "12 için 2 ve 6 değil, **3 ve 4**.",
+    "Harf ikinci basamaktaysa **0** olabilir."
+   ],
+   "narration": "Hadi toparlayalım. Her bölme A eşittir B çarpı C artı K denklemidir ve kalan bölenden küçüktür. Kalanları toplayıp çarpabilirsin ama sonucu yeniden bölene bölmelisin. 2, 5 ve 10 için son basamağa, 4 için son iki, 8 için son üç basamağa bakarsın. 3 ve 9 için rakamlar toplamına, 11 için sağdan artı eksi işaretli toplama bakarsın. 12, 18 gibi sayılarda aralarında asal çarpanlara ayır. Döngü problemlerinde adım sayısını döngü uzunluğuna böl ve kalana bak."
+  }
+ },
+ "short": {
+  "hook": "Bölmeden kalanı bul.",
+  "cards": [
+   {
+    "kind": "term",
+    "term": "Kalan",
+    "definition": "Her zaman **bölenden küçüktür**: $0 \\leq K < B$."
+   },
+   {
+    "kind": "fact",
+    "text": "9 için **rakamlar toplamı**, 4 için **son iki basamak**."
+   },
+   {
+    "kind": "warning",
+    "text": "12 için 2 ve 6 değil, **3 ve 4**."
+   },
+   {
+    "kind": "fact",
+    "text": "Döngüde **kalan 0** ise son eleman."
+   }
+  ],
+  "summary": [
+   "Kalan bölenden küçük",
+   "Kalanı yeniden böl",
+   "Çarpanlar aralarında asal"
+  ],
+  "rounds": [
+   {
+    "sentence": "6'ya bölmede kalan **7**",
+    "question": "Olur mu?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "En fazla **5**."
+   },
+   {
+    "sentence": "Kalanlar 7 ve 5, bölen **9**",
+    "question": "Toplamın kalanı?",
+    "choices": [
+     "12",
+     "3"
+    ],
+    "answer": 1,
+    "why": "Kalan **3** olur."
+   },
+   {
+    "sentence": "**18**, 2'ye ve 6'ya bölünür.",
+    "question": "12'ye bölünür mü?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "**3 ve 4**'e bak."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-matematik-kampi",
+  "name": "TYT Matematik kampı",
+  "number": 3,
+  "total": 23,
+  "previous": "Sayı Basamakları",
+  "next": "EBOB – EKOK",
+  "promise": "Matematik konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Doğum yılının 3, 4, 9 ve 11 ile bölümünden kalanları **bölme yapmadan** bul.",
+    "Bugünden 100 gün sonra haftanın hangi günü olduğunu **kalanla** hesapla.",
+    "Uygulamada Bölme ve Bölünebilme testinden **20 soru** çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Doğum yılının 3, 4, 9 ve 11 ile bölümünden kalanları bölme yapmadan bul. Sonra bugünden 100 gün sonra haftanın hangi günü olacağını kalanla hesapla. En son uygulamada bölme ve bölünebilme testinden yirmi soru çöz; yanlışlarını bu dersteki adımlarla yeniden çöz. Bir sonraki derste EBOB ve EKOK ile devam ediyoruz. Kampta görüşmek üzere!"
+  }
+ }
+}

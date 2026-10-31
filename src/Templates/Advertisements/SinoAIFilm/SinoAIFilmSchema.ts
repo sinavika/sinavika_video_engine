@@ -18,8 +18,6 @@ export const SinoAIFilmSchema = z.object({
 	make: z.object({items: z.array(z.object({icon: z.enum(['quiz', 'cards', 'calendar', 'exam', 'book']), title: plainText(26), meta: plainText(32)})).min(2).max(4), narration}),
 	/** Three words, one per beat. */
 	words: z.object({words: z.tuple([plainText(10), plainText(10), plainText(10)]), narration}),
-	closing: z.object({name: plainText(12).default('SinoAI'), line: plainText(44), channels: plainText(40).default('iOS · Android · sinavika.com'), narration}),
-	subtitles: z.boolean().default(true),
 	script: VoiceScriptSchema,
 	outro: z.object({enabled: z.boolean().default(true)}).default({enabled: true}),
 });
@@ -37,6 +35,5 @@ export const sinoAIFilmTimings = (content: SinoAIFilmContent) => {
 		answer: Math.max(beat(content.answer.narration, 3), 0.4 + content.answer.text.length / 60 + 1.6),
 		make: Math.max(beat(content.make.narration, 3), 0.4 + content.make.items.length * 0.45 + 1.6),
 		words: Math.max(beat(content.words.narration, 2.2), 2.2),
-		closing: beat(content.closing.narration, 2.6),
 	};
 };

@@ -13,7 +13,7 @@ import {FlashcardScreen, LessonsScreen, StudyPlanScreen, StudyProgressScreen, Te
  * Adding a screen: draw it in Screens/ from the parts in AppScreenParts and
  * add one line here. Names are stable: content files refer to them.
  */
-export type AppScreenEntry = {
+type AppScreenEntry = {
 	Component: React.FC;
 	module: AppModuleName;
 	/** What the screen is, for catalogues and file names. */

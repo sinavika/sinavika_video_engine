@@ -1,0 +1,838 @@
+{
+ "topic": {
+  "id": "170A3780-CFF0-A9F5-CA77-DFC221BE8CB0",
+  "category": "YKS_TYT",
+  "lesson": "FIZ",
+  "code": "FIZ_MADDE"
+ },
+ "title": "Madde ve Özellikleri",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "MEB TYT Fizik konu anlatımı s. 16–28 (madde, hacim ölçme, özkütle ve grafikleri, karışımlar, dayanıklılık ve kare-küp yasası, adezyon-kohezyon, yüzey gerilimi, kılcallık; yalnız yapı örneği)",
+  "YKS/TYT/CikmisSorular/FIZ.jsonl (ÖSYM 2019–2026 özkütle, kütle-hacim grafiği, eşya tasarımında özkütle, yüzey gerilimi; yalnız yapı örneği); YKS/TYT/Sorular/FIZ/FIZ_MADDE.jsonl",
+  "Sorular özgündür; grafikler ve kılcal borular verilen değerlerle çizildi"
+ ],
+ "works": {
+  "additions": [
+   "Yaygın maddelerin özkütle tablosunu ver: su 1, buz 0,92, zeytinyağı 0,9, alüminyum 2,7, demir 7,8, kurşun 11,3, cıva 13,6 g/cm³, hava yaklaşık 0,0013 g/cm³.",
+   "Karışım özkütlesi için özel durum formüllerini ver: eşit hacimlerde (d₁ + d₂)/2, eşit kütlelerde 2d₁d₂/(d₁ + d₂); karışımın özkütlesinin her zaman iki özkütle arasında kaldığını örneklerle göster.",
+   "Sıcaklığın özkütleye etkisini ekle: ısınan maddenin genleşip özkütlesinin azalması; suyun 4 °C'de en büyük özkütleye sahip olması ve bunun göllerdeki yaşama etkisi.",
+   "Dayanıklılığa doğadan ve mühendislikten örnekler ekle: karıncanın kendinden ağır yük taşıması, filin kalın bacakları, köprü ve bina tasarımı; boyutlar k katına çıkınca dayanıklılığın 1/k katına indiğini sayısal örnekle.",
+   "Yüzey gerilimine etki eden etkenleri (sıcaklık, deterjan, tuz) ve kılcallıkta boru çapının etkisini (ince boruda daha çok yükselme; cıvada alçalma) örnekle; bitkilerde suyun yükselmesi ve kâğıt havlu."
+  ]
+ },
+ "short": {
+  "hook": "Bakır batar, tahta yüzer. Neden?",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Özkütle: $d = \\frac{m}{V}$"
+   },
+   {
+    "kind": "fact",
+    "text": "Büyük $d$ **altta**"
+   },
+   {
+    "kind": "warning",
+    "text": "İnce boru: su **daha çok** yükselir"
+   }
+  ],
+  "summary": [
+   "d = m / V",
+   "Kılcallık: çapla ters"
+  ],
+  "rounds": [
+   {
+    "sentence": "12 g, 6 cm³",
+    "question": "Özkütle?",
+    "choices": [
+     "2 g/cm³",
+     "6 g/cm³"
+    ],
+    "answer": 0,
+    "why": "12 bölü **6**."
+   },
+   {
+    "sentence": "Sıcaklık artarsa",
+    "question": "Yüzey gerilimi?",
+    "choices": [
+     "azalır",
+     "artar"
+    ],
+    "answer": 0,
+    "why": "Çekim **zayıflar**."
+   },
+   {
+    "sentence": "Boyutlar 2 katı",
+    "question": "Dayanıklılık?",
+    "choices": [
+     "yarıya iner",
+     "2 katı"
+    ],
+    "answer": 0,
+    "why": "**1/k** ile."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-fizik-kampi",
+  "name": "TYT Fizik kampı",
+  "number": 2,
+  "total": 11,
+  "previous": "Fizik Bilimine Giriş",
+  "next": "Hareket ve Kuvvet",
+  "promise": "Fizik konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Bir taşın hacmini **taşırma** yöntemiyle ölç; tartıp özkütlesini hesapla.",
+    "Bir bardak suya yavaşça bir ataş bırak, sonra bir damla **deterjan** ekle; ne olduğunu yaz.",
+    "Uygulamada Madde ve Özellikleri testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bir taşın hacmini taşırma yöntemiyle ölç, sonra tartıp özkütlesini hesapla. Bir bardak suya yavaşça bir ataş bırak, ardından bir damla deterjan ekle ve ne olduğunu yaz. En son uygulamada madde ve özellikleri testinden yirmi soru çöz. Bir sonraki derste hareket ve kuvvete geçiyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Batar mı, yüzer mi?",
+   "narration": "Aynı büyüklükte bir bakır blok suda batar, tahta blok yüzer. Karınca kendinden kat kat ağır yük taşır, dev bir insan kendi ağırlığını zor taşır. İnce bir boruda su kendiliğinden yükselir. Bu derste özkütleyi, dayanıklılığı, yapışma ve birbirini tutmayı, yüzey gerilimini ve kılcallığı öğreneceğiz."
+  },
+  "objectives": [
+   "Ortak ve ayırt edici özellikleri ayırmak; taşırma ile hacim bulmak",
+   "Özkütleyi hesaplamak, kütle-hacim grafiğini ve karışımları yorumlamak",
+   "Kare-küp yasasıyla dayanıklılığı karşılaştırmak",
+   "Adezyon, kohezyon, yüzey gerilimi ve kılcallığı açıklamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_MADDE_01",
+    "title": "Madde, kütle, hacim",
+    "narration": "Kütlesi, hacmi ve eylemsizliği olan her şey maddedir: cam, demir, su, hava.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Ortak mı, ayırt edici mi?",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Ortak özellikler",
+         "items": [
+          "Her maddede var",
+          "kütle, hacim",
+          "eylemsizlik, tanecikli yapı",
+          "Maddeyi **tanıtmaz**"
+         ]
+        },
+        {
+         "title": "Ayırt edici özellikler",
+         "items": [
+          "Maddeye özgü",
+          "**özkütle**, öz ısı",
+          "erime, kaynama sıcaklığı",
+          "ısı ve elektrik iletkenliği"
+         ]
+        }
+       ]
+      },
+      "caption": "Hacim: maddenin kapladığı yer, SI'da $\\text{m}^3$; $1 \\text{ L} = 1 \\text{ dm}^3$, $1 \\text{ mL} = 1 \\text{ cm}^3$.",
+      "narration": "İki bardak suyun da, bir demir çubuğun da kütlesi ve hacmi var; bu ortak özellikler maddeyi tanıtmaz.",
+      "beats": [
+       {
+        "narration": "Ayırt edici özellik ise maddeye özgüdür: aynı sıcaklık ve basınçta suyun özkütlesi, erime ve kaynama sıcaklığı hep aynıdır. Bir maddeyi tanımak için bunlara bakarız.",
+        "focus": [
+         "c2"
+        ]
+       },
+       {
+        "narration": "Şekli düzgün olmayan bir katının hacmini taşırma ile buluruz: cismi dereceli kaptaki suya bırak; su seviyesindeki artış, cismin hacmidir.",
+        "focus": [
+         "c1"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Dereceli bir kapta $40$ mL su vardır. Kaba özdeş $5$ bilye bırakıldığında su seviyesi $65$ mL'ye çıkıyor. Bilyeler suda batıp çözünmediğine göre bir bilyenin hacmi kaç santimetreküptür?",
+       "options": [
+        "5",
+        "8",
+        "13",
+        "25",
+        "65"
+       ],
+       "answer": 0,
+       "narration": "Artış, bilyelerin toplam hacmi.",
+       "steps": [
+        {
+         "text": "Artış $65 - 40 = 25$ mL $= 25 \\text{ cm}^3$: beş bilyenin toplamı.",
+         "narration": "Su seviyesi kırk mililitreden altmış beşe çıktı: yirmi beş mililitre. Bir mililitre bir santimetreküp; bu, beş bilyenin toplam hacmi."
+        },
+        {
+         "text": "Bir bilye $\\frac{25}{5} = 5 \\text{ cm}^3$. Cevap **A**.",
+         "narration": "Yirmi beş bölü beş, beş santimetreküp. Cevabımız A. Yirmi beşi seçen, beşe bölmeyi unutmuştur; on üçü seçen, altmış beşi beşe bölmüştür, oysa içinde su da var.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; taşırma yöntemiyle hacim ölçme özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aşağıdakilerden hangisi saf maddeler için **ayırt edici** bir özelliktir?",
+       "options": [
+        "Kütle",
+        "Hacim",
+        "Sıcaklık",
+        "Eylemsizlik",
+        "Özkütle"
+       ],
+       "answer": 4,
+       "narration": "Maddeye özgü olan.",
+       "steps": [
+        {
+         "text": "Kütle, hacim, sıcaklık ve eylemsizlik her maddede vardır; özkütle maddeye özgüdür. Cevap **E**.",
+         "narration": "Kütle, hacim ve eylemsizlik her maddenin ortak özelliği; sıcaklık da her maddede ölçülür, maddeyi tanıtmaz. Özkütle ise aynı koşulda her maddenin kendine özgüdür. Cevabımız E.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ortak ve ayırt edici özellikler özgün seçeneklerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_MADDE_02",
+    "title": "Özkütle",
+    "narration": "Aynı büyüklükte bakır ve tahta bloktan bakır batar, tahta yüzer. Fark, birim hacimdeki kütlede.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Eğim özkütledir",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        8
+       ],
+       "y": [
+        0,
+        16
+       ],
+       "xLabel": "V (cm³)",
+       "yLabel": "m (g)",
+       "curves": [
+        {
+         "expression": "2x",
+         "label": "K: d = 2 g/cm³"
+        },
+        {
+         "expression": "x",
+         "label": "L: d = 1 g/cm³"
+        },
+        {
+         "expression": "0.5x",
+         "label": "M: d = 0,5 g/cm³"
+        }
+       ],
+       "points": [
+        {
+         "x": 4,
+         "y": 8,
+         "label": "(4, 8)"
+        }
+       ]
+      },
+      "caption": "Özkütle $d = \\frac{m}{V}$; birimi $\\text{g/cm}^3$ ya da $\\text{kg/m}^3$ ($1 \\text{ g/cm}^3 = 1000 \\text{ kg/m}^3$).",
+      "narration": "Özkütle, birim hacimdeki kütledir: kütle bölü hacim. Skalerdir ve aynı sıcaklık ve basınçta maddeye özgüdür.",
+      "beats": [
+       {
+        "narration": "Aynı maddeden daha büyük bir parça alırsan kütle de aynı oranda artar: kütle-hacim grafiği orijinden geçen bir doğrudur. Doğrunun eğimi kütle bölü hacim, yani özkütle. L'nin dört santimetreküpü dört gram.",
+        "focus": [
+         "c2"
+        ]
+       },
+       {
+        "narration": "Eğim büyüdükçe özkütle büyür: K'nin dört santimetreküpü sekiz gram, özkütlesi iki; M'nin özkütlesi yarım. Aynı maddeden yapılmış iki cismin kütleleri farklı olsa da özkütleleri aynıdır.",
+        "focus": [
+         "c1",
+         "c3",
+         "p1"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Katmanlar ve karışımlar",
+      "items": [
+       "Birbirine karışmayan sıvılarda özkütlesi **büyük** olan **altta** kalır: su altta, zeytinyağı üstte.",
+       "Karışımın özkütlesi: $d = \\frac{m_1 + m_2}{V_1 + V_2}$; her zaman iki özkütlenin **arasındadır**.",
+       "Eşit hacim karışırsa: $d = \\frac{d_1 + d_2}{2}$.",
+       "Karışım, hacmi **çok** olan sıvının özkütlesine daha yakındır."
+      ],
+      "narration": "Birbirine karışmayan sıvılar katman katman dizilir: özkütlesi büyük olan altta, küçük olan üstte. Su ile zeytinyağında su altta kalır. Karışan sıvılarda karışımın özkütlesi, toplam kütle bölü toplam hacimdir ve her zaman iki özkütlenin arasında bir değerdir. Eşit hacimler karışırsa özkütle iki değerin ortalamasıdır. Hacimler eşit değilse karışım, hacmi çok olan sıvıya daha yakındır; o zaman ortalama almak yanlış olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$K$, $L$ ve $M$ maddelerinin kütle-hacim değerleri grafikte gösterilmiştir. Buna göre maddelerin özkütleleri $d_K$, $d_L$ ve $d_M$ arasındaki ilişki nedir?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         0,
+         8
+        ],
+        "y": [
+         0,
+         14
+        ],
+        "xLabel": "V (cm³)",
+        "yLabel": "m (g)",
+        "curves": [
+         {
+          "expression": "2x"
+         },
+         {
+          "expression": "3x"
+         },
+         {
+          "expression": "x"
+         }
+        ],
+        "points": [
+         {
+          "x": 6,
+          "y": 12,
+          "label": "K"
+         },
+         {
+          "x": 2,
+          "y": 6,
+          "label": "L"
+         },
+         {
+          "x": 4,
+          "y": 4,
+          "label": "M"
+         }
+        ]
+       },
+       "options": [
+        "$d_K > d_L > d_M$",
+        "$d_L > d_K > d_M$",
+        "$d_M > d_K > d_L$",
+        "$d_K = d_L > d_M$",
+        "$d_L > d_M > d_K$"
+       ],
+       "answer": 1,
+       "narration": "Her nokta için kütle bölü hacim.",
+       "steps": [
+        {
+         "text": "$d_K = \\frac{12}{6} = 2$, $d_L = \\frac{6}{2} = 3$, $d_M = \\frac{4}{4} = 1$ g/cm³.",
+         "narration": "K'nin on iki gramı altı santimetreküpte: özkütle iki. L'nin altı gramı iki santimetreküpte: üç. M'nin dört gramı dört santimetreküpte: bir."
+        },
+        {
+         "text": "$d_L > d_K > d_M$. Cevap **B**.",
+         "narration": "En dik doğru L'ninki. Cevabımız B. A'yı seçen, kütleleri sıralamıştır: K'nin kütlesi en büyük ama hacmi de en büyük.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; kütle-hacim grafiğinden özkütle sıralaması, kütle sırası özkütle sırasından farklı olacak biçimde özgün değerlerle kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Özkütlesi $0{,}8$ g/cm³ olan sıvıdan $30$ cm³ ile özkütlesi $1{,}6$ g/cm³ olan sıvıdan $10$ cm³ karıştırılıyor. Karışımın özkütlesi kaç g/cm³ olur? (Karışımda hacim kaybı yoktur.)",
+       "options": [
+        "$0{,}8$",
+        "$0{,}9$",
+        "$1$",
+        "$1{,}2$",
+        "$1{,}6$"
+       ],
+       "answer": 2,
+       "narration": "Toplam kütle bölü toplam hacim.",
+       "steps": [
+        {
+         "text": "$m_1 = 0{,}8 \\cdot 30 = 24$ g, $m_2 = 1{,}6 \\cdot 10 = 16$ g.",
+         "narration": "Birinci sıvının kütlesi sıfır virgül sekiz çarpı otuz, yirmi dört gram. İkincinin kütlesi bir virgül altı çarpı on, on altı gram."
+        },
+        {
+         "text": "$d = \\frac{24 + 16}{30 + 10} = \\frac{40}{40} = 1$ g/cm³. Cevap **C**.",
+         "narration": "Toplam kırk gram, toplam kırk santimetreküp: özkütle bir. Cevabımız C. Bir virgül ikiyi seçen, iki özkütlenin ortalamasını almıştır; oysa hacimler eşit değil, karışım hacmi çok olan hafif sıvıya daha yakın.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; eşit olmayan hacimlerle karışım özkütlesi özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Birbirine karışmayan $K$, $L$ ve $M$ sıvılarının özkütleleri sırasıyla $1{,}2$; $0{,}8$ ve $1{,}0$ g/cm³'tür. Sıvılar aynı kaba konup dengeye geldiğinde **yukarıdan aşağıya** sıralanışları nasıl olur?",
+       "options": [
+        "L, M, K",
+        "K, M, L",
+        "M, L, K",
+        "K, L, M",
+        "L, K, M"
+       ],
+       "answer": 0,
+       "narration": "Hafif olan üstte.",
+       "steps": [
+        {
+         "text": "En hafif $L$ ($0{,}8$) üstte, $M$ ($1{,}0$) ortada, en yoğun $K$ ($1{,}2$) altta. Cevap **A**.",
+         "narration": "Özkütlesi en küçük olan L en üste çıkar, sonra M, en altta özkütlesi en büyük K. Cevabımız A. B'yi seçen, sıralamayı aşağıdan yukarıya yapmıştır.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; karışmayan sıvıların katmanlanması özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "I. Aynı boyut ve biçimde ama daha ağır bir halter plakası yapmak\nII. Dört kişilik masa yerine daha büyük, altı kişilik bir masa yapmak\nIII. Aynı kütlede ama daha küçük hacimli bir bilye yapmak\n\nYukarıdakilerden hangileri **kesinlikle** özkütlesi daha büyük bir malzeme kullanmayı gerektirir?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 3,
+       "narration": "Hacim ve kütle nasıl değişiyor?",
+       "steps": [
+        {
+         "text": "I: hacim aynı, kütle büyük → $d$ büyük. III: kütle aynı, hacim küçük → $d$ büyük.",
+         "narration": "Birincide hacim aynı kalırken kütle artıyor: özkütle artmalı. Üçüncüde kütle aynı kalırken hacim küçülüyor: özkütle yine artmalı."
+        },
+        {
+         "text": "II: daha büyük masa aynı malzemeyle yapılabilir. Cevap **D**.",
+         "narration": "İkincide masa yalnız büyüyor; aynı tahtadan daha büyük bir masa yapılır, malzemenin değişmesi gerekmez. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin eşya tasarımında özkütle sorusunun fikri farklı eşyalarla yeniden kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_MADDE_03",
+    "title": "Dayanıklılık",
+    "narration": "Karınca kendi ağırlığının kat kat fazlasını taşır; dünyanın en uzun boylu insanı ise yürürken baston kullanır. Sebep boyutlarda.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Kare-küp yasası",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Cisim",
+        "Kesit alanı",
+        "Hacim",
+        "Kesit / hacim"
+       ],
+       "rows": [
+        [
+         "Küp",
+         "$a^2$",
+         "$a^3$",
+         "$\\frac{1}{a}$"
+        ],
+        [
+         "Silindir",
+         "$\\pi r^2$",
+         "$\\pi r^2 h$",
+         "$\\frac{1}{h}$"
+        ],
+        [
+         "Dikdörtgenler prizması",
+         "$a \\cdot b$",
+         "$a \\cdot b \\cdot c$",
+         "$\\frac{1}{c}$"
+        ]
+       ]
+      },
+      "caption": "Dayanıklılık $\\propto \\frac{\\text{kesit alanı}}{\\text{hacim}}$. Boyutlar $k$ katına çıkınca alan $k^2$, hacim $k^3$ katı olur: dayanıklılık $\\frac{1}{k}$'ya iner.",
+      "narration": "Katı bir cismin kendi ağırlığına karşı direncine dayanıklılık denir. Kesit alanı yükü taşır, hacim ise ağırlığı belirler; bu yüzden dayanıklılık, kesit alanının hacme oranıyla orantılıdır.",
+      "beats": [
+       {
+        "narration": "Bir küpün kesit alanı a kare, hacmi a küp: oran bir bölü a. Kenarı iki katına çıkan küpün dayanıklılığı yarıya iner.",
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Silindirde ve prizmada oran bir bölü yükseklik: aynı maddeden yapılmış, düzgün yükselen cisimlerde uzun olan daha az dayanıklıdır.",
+        "focus": [
+         "r2",
+         "r3"
+        ]
+       },
+       {
+        "narration": "Galileo buna kare-küp yasası dedi: boyutlar büyüdükçe alan karesiyle, ağırlık küpüyle artar; sonunda cisim kendi ağırlığını taşıyamaz. Karıncanın güçlü, devin zayıf olmasının nedeni bu."
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aynı maddeden yapılmış, içi dolu iki küpün ayrıtları $2$ cm ve $6$ cm'dir. Küçük küpün kendi ağırlığına karşı dayanıklılığı, büyük küpünkünün kaç katıdır?",
+       "options": [
+        "$\\frac{1}{27}$",
+        "$\\frac{1}{9}$",
+        "$\\frac{1}{3}$",
+        "$1$",
+        "$3$"
+       ],
+       "answer": 4,
+       "narration": "Küpte dayanıklılık $\\propto \\frac{1}{a}$.",
+       "steps": [
+        {
+         "text": "$\\frac{D_{küçük}}{D_{büyük}} = \\frac{1/2}{1/6} = 3$. Cevap **E**.",
+         "narration": "Küpte dayanıklılık bir bölü kenar ile orantılı: küçük küp için bir bölü iki, büyük için bir bölü altı. Oran üç: küçük küp üç kat dayanıklı. Cevabımız E. Bir bölü üçü seçen, oranı ters kurmuştur; büyük olan daha zayıftır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; küplerde dayanıklılık oranı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir heykeltıraş, bir heykelin aynı malzemeden, bütün boyutları $3$ katına çıkarılmış bir kopyasını yapıyor. Kopyanın kendi ağırlığına karşı dayanıklılığı, ilk heykele göre nasıl değişir?",
+       "options": [
+        "$9$ katına çıkar.",
+        "$3$ katına çıkar.",
+        "Değişmez.",
+        "$\\frac{1}{3}$'üne iner.",
+        "$\\frac{1}{9}$'una iner."
+       ],
+       "answer": 3,
+       "narration": "Alan $k^2$, hacim $k^3$.",
+       "steps": [
+        {
+         "text": "Kesit alanı $9$ katı, hacim (ağırlık) $27$ katı olur.",
+         "narration": "Boyutlar üç katına çıkınca kesit alanı dokuz katına, hacim ve dolayısıyla ağırlık yirmi yedi katına çıkar."
+        },
+        {
+         "text": "Dayanıklılık $\\frac{9}{27} = \\frac{1}{3}$'üne iner. Cevap **D**.",
+         "narration": "Dayanıklılık dokuz bölü yirmi yedi, yani üçte birine iner. Cevabımız D. Dokuz katını seçen, yalnız kesit alanına bakıp ağırlığın daha hızlı arttığını unutmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB metnindeki kare-küp yasası bir heykel örneğiyle özgün olarak soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_MADDE_04",
+    "subtopics": [
+     "FIZ_MADDE_05",
+     "FIZ_MADDE_06"
+    ],
+    "title": "Yapışma, birbirini tutma",
+    "narration": "Cama damlatılan su yayılır, cıva ise top gibi toplanır. İki ayrı çekim kuvvetinin yarışı bu.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Adezyon ve kohezyon",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Adezyon (yapışma)",
+         "items": [
+          "**Farklı** tür moleküller arası çekim",
+          "su ile cam, damla ile yaprak",
+          "Adezyon > kohezyon: yüzeyi **ıslatır**",
+          "Boruda yüzey **içbükey**"
+         ]
+        },
+        {
+         "title": "Kohezyon (birbirini tutma)",
+         "items": [
+          "**Aynı** tür moleküller arası çekim",
+          "cıva damlası top gibi toplanır",
+          "Kohezyon > adezyon: yüzeyi **ıslatmaz**",
+          "Boruda yüzey **dışbükey**"
+         ]
+        }
+       ]
+      },
+      "caption": "Su camı ıslatır (adezyon büyük); cıva ıslatmaz (kohezyon büyük).",
+      "narration": "Farklı tür moleküller arasındaki çekim adezyon, aynı tür moleküller arasındaki çekim kohezyondur.",
+      "beats": [
+       {
+        "narration": "Su molekülleri camı, birbirlerini çektiklerinden daha çok çeker: adezyon büyük. Su yayılır ve camı ıslatır.",
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "Cıva molekülleri ise birbirlerini camdan daha çok çeker: kohezyon büyük. Cıva toplanır, camı ıslatmaz.",
+        "focus": [
+         "c2"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "İnce boruda yükselen su",
+      "visual": {
+       "kind": "capillary",
+       "liquid": "water",
+       "tubes": [
+        {
+         "diameter": 1,
+         "label": "K"
+        },
+        {
+         "diameter": 2,
+         "label": "L"
+        },
+        {
+         "diameter": 4,
+         "label": "M"
+        }
+       ]
+      },
+      "caption": "Kılcallık: sıvının ince boruda yükselmesi ya da alçalması; değişim boru çapıyla **ters orantılı**.",
+      "narration": "Su dolu bir kaba farklı kalınlıkta üç cam boru daldıralım.",
+      "beats": [
+       {
+        "narration": "Su, adezyonla boruların duvarına tutunup yükselir; yüzeyi içbükey olur. En ince K borusunda en çok yükselir: kılcallık boru çapıyla ters orantılıdır.",
+        "focus": [
+         "t1"
+        ]
+       },
+       {
+        "narration": "Kalın M borusunda yükselme az. Bitkilerin topraktaki suyu yapraklara taşıması, kâğıt havlunun suyu çekmesi, gaz lambasında fitilin yakıtı yukarı çekmesi kılcallıktır.",
+        "focus": [
+         "t3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Yüzey gerilimi",
+      "items": [
+       "Yüzeydeki moleküller içe doğru çekilir: yüzey **gergin bir zar** gibi davranır.",
+       "Ataş ve su böceği suda kalır; damla **küre** biçimini almaya çalışır.",
+       "**Sıcaklık artarsa** yüzey gerilimi **azalır**.",
+       "**Deterjan, sabun** azaltır; **tuz** artırır."
+      ],
+      "narration": "Sıvının içindeki bir molekülü her yandan komşuları çeker; yüzeydeki molekülü ise yalnız yanlardan ve aşağıdan. Bu yüzden yüzey, gergin bir zar gibi davranır: buna yüzey gerilimi denir. Su yüzeyine yavaşça bırakılan ataş batmaz, su böceği suyun üstünde yürür, damla küreye yakın bir biçim alır. Sıcaklık artınca moleküller arası çekim zayıflar ve yüzey gerilimi azalır. Deterjan ve sabun yüzey gerilimini azaltır, böylece su kumaşın arasına girip daha iyi temizler. Suya tuz eklemek ise yüzey gerilimini artırır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "I. Su yüzeyine yavaşça bırakılan çelik iğnenin batmaması\nII. Kâğıt havlunun ucu suya değdiğinde suyun havlu boyunca yükselmesi\nIII. Musluktan damlayan suyun küreye yakın damlalar oluşturması\n\nYukarıdaki olaylardan hangileri yüzey geriliminin sonucudur?",
+       "options": [
+        "Yalnız I",
+        "I ve II",
+        "I ve III",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "narration": "Biri kılcallık.",
+       "steps": [
+        {
+         "text": "I ve III yüzey gerilimi; II, ince liflerde suyun yükselmesi: **kılcallık**. Cevap **C**.",
+         "narration": "İğnenin batmaması ve damlanın küreleşmesi, yüzeyin gergin bir zar gibi davranmasındandır: yüzey gerilimi. Kâğıt havluda su, ince lifler arasında adezyonla yükseliyor: bu kılcallık. Cevabımız C. Hepsini seçen, kılcallığı yüzey gerilimiyle karıştırmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2026 yüzey gerilimi sorusunun fikri farklı olaylarla ve bir kılcallık çeldiricisiyle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "I. Suyun sıcaklığını artırmak\nII. Suya bulaşık deterjanı eklemek\nIII. Suya tuz eklemek\n\nİşlemlerinden hangileri suyun yüzey gerilimini **azaltır**?",
+       "options": [
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 1,
+       "narration": "Tuz ne yapar?",
+       "steps": [
+        {
+         "text": "Sıcaklık ve deterjan azaltır; tuz **artırır**. Cevap **B**.",
+         "narration": "Sıcaklık artınca moleküller arası çekim zayıflar, yüzey gerilimi azalır. Deterjan da azaltır. Tuz ise yüzey gerilimini artırır. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB metnindeki yüzey gerilimini etkileyen etkenler öncüllü özgün bir soruya dönüştürüldü."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde cıva dolu bir kaba daldırılan $K$, $L$ ve $M$ cam borularındaki cıva seviyeleri görülmektedir.\n\nI. Cıva molekülleri arasındaki kohezyon, cıva ile cam arasındaki adezyondan büyüktür.\nII. Boru ne kadar inceyse cıva o kadar alçalır.\nIII. Borulardaki cıva yüzeyi içbükeydir.\n\nYargılarından hangileri doğrudur?",
+       "figure": {
+        "kind": "capillary",
+        "liquid": "mercury",
+        "tubes": [
+         {
+          "diameter": 1,
+          "label": "K"
+         },
+         {
+          "diameter": 2,
+          "label": "L"
+         },
+         {
+          "diameter": 3,
+          "label": "M"
+         }
+        ]
+       },
+       "options": [
+        "Yalnız I",
+        "Yalnız III",
+        "I ve II",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "narration": "Cıva camı ıslatmaz.",
+       "steps": [
+        {
+         "text": "Cıva borularda alçalmış: kohezyon > adezyon; I doğru.",
+         "narration": "Cıva borularda kaptaki seviyenin altında kalmış: cıva camı ıslatmıyor. Demek ki cıva molekülleri birbirini, camın onları çektiğinden daha çok çekiyor. Birinci yargı doğru."
+        },
+        {
+         "text": "En ince $K$'de en çok alçalmış: II doğru. Yüzey **dışbükey**: III yanlış. Cevap **C**.",
+         "narration": "En ince K borusunda cıva en çok alçalmış: kılcallık çapla ters orantılı, ikinci yargı doğru. Cıvanın yüzeyi yukarı doğru kabarık, yani dışbükey; içbükey olan suyun yüzeyidir. Üçüncü yanlış. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; cıvada kılcallık özgün bir şekil ve öncüllerle soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Özkütle $d = \\frac{m}{V}$, ayırt edici; m-V grafiğinin **eğimi**.",
+    "Karışmayan sıvılarda yoğun olan **altta**; karışım özkütlesi toplam kütle / toplam hacim.",
+    "Dayanıklılık $\\propto \\frac{\\text{kesit alanı}}{\\text{hacim}}$: boyut $k$ katı → $\\frac{1}{k}$.",
+    "Adezyon > kohezyon: ıslatır, yükselir (su); kohezyon > adezyon: ıslatmaz, alçalır (cıva).",
+    "Yüzey gerilimi: sıcaklık ve deterjan **azaltır**, tuz artırır; kılcallık çapla **ters** orantılı."
+   ],
+   "warnings": [
+    "Eşit olmayan hacimlerde karışım özkütlesi **ortalama değildir**.",
+    "Kütle büyük diye özkütle büyük olmaz; **hacme de** bak.",
+    "Kâğıt havluda suyun yükselmesi **kılcallıktır**, yüzey gerilimi değil."
+   ],
+   "narration": "Hadi toparlayalım. Özkütle, kütle bölü hacimdir ve maddeye özgüdür; kütle-hacim grafiğinde doğrunun eğimidir. Karışmayan sıvılarda yoğun olan altta kalır; karışımın özkütlesi toplam kütle bölü toplam hacimdir, hacimler eşit değilse ortalama alınmaz. Boyutları büyüyen cismin dayanıklılığı azalır: boyut k katına çıkınca dayanıklılık k'da birine iner. Su camı ıslatır ve ince boruda yükselir; cıva ıslatmaz ve alçalır. Yüzey gerilimini sıcaklık ve deterjan azaltır, tuz artırır."
+  }
+ }
+}

@@ -1,0 +1,1315 @@
+{
+ "topic": {
+  "id": "FC8E04FC-ABDE-E0AD-2ECC-3950E71370E3",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_MERKEZLER"
+ },
+ "title": "Üçgende Merkezler",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "YKS/TYT/Sorular/GEO/GEO_MERKEZLER.jsonl (havuz: ağırlık 10, diklik 6, çevrel 5 soru; yalnız yapı örneği)",
+  "Bu konu için MEB konu anlatımı ve ÖSYM çıkmış sorusu eşlenmemiş; kenar orta dikme, diklik merkezi ve iç açıortayların kesişimi MEB Temel Matematik s. 126-133 (GEO_ACIORTAY, GEO_UCGEN_ALAN, GEO_OZEL_UCGEN eşlemesi) temel alındı",
+  "Ağırlık merkezi Geometri 7 Kenarortay dersinde işlendi; bütün şekiller verilen ölçülerle koordinatta çizildi; sorular özgündür"
+ ],
+ "works": {
+  "additions": [
+   "Eşkenar üçgende dört merkezin çakıştığını ve R = 2h/3, r = h/3 olduğunu ekle; dik üçgende iç teğet çember yarıçapının r = (a + b − c)/2 olduğunu örnekle.",
+   "İç teğet çemberde köşelerden teğet uzunluklarının u − a, u − b, u − c olduğunu sayısal bir örnekle göster.",
+   "Hangi merkezin üçgenin içinde, üzerinde ya da dışında kaldığını üçgen türüne göre (dar, dik, geniş) tabloyla ver."
+  ]
+ },
+ "short": {
+  "hook": "Hangi merkez neye eşit uzak?",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Köşelere eşit: **çevrel**."
+   },
+   {
+    "kind": "fact",
+    "text": "Kenarlara eşit: **iç teğet**."
+   },
+   {
+    "kind": "warning",
+    "text": "Alan $= r \\cdot u$"
+   }
+  ],
+  "summary": [
+   "O: köşeler, I: kenarlar",
+   "H: yükseklikler"
+  ],
+  "rounds": [
+   {
+    "sentence": "Üç yola eşit uzak",
+    "question": "Hangi merkez?",
+    "choices": [
+     "İç teğet",
+     "Çevrel"
+    ],
+    "answer": 0,
+    "why": "**Kenarlara** eşit."
+   },
+   {
+    "sentence": "Dik üçgen, hipotenüs 10",
+    "question": "R?",
+    "choices": [
+     "5",
+     "10"
+    ],
+    "answer": 0,
+    "why": "Hipotenüsün **yarısı**."
+   },
+   {
+    "sentence": "A = 70°",
+    "question": "BHC?",
+    "choices": [
+     "110°",
+     "140°"
+    ],
+    "answer": 0,
+    "why": "**180° − A**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-geometri-kampi",
+  "name": "TYT Geometri kampı",
+  "number": 11,
+  "total": 23,
+  "previous": "Üçgende Alan",
+  "next": "Çokgenler",
+  "promise": "Geometri konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Bir üçgen çiz; pergel ve cetvelle **kenar orta dikmelerini** çizip çevrel çemberi geçir.",
+    "Dört merkezi tablodaki gibi **ne ile kesişir, neye eşit uzak** diye bir sayfaya yaz.",
+    "Uygulamada Üçgende Merkezler testinden **20 soru** çöz; her soruda önce **hangi merkez** olduğunu yaz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bir üçgen çiz; pergel ve cetvelle kenar orta dikmelerini çizip üç köşeden geçen çemberi çiz. Sonra dört merkezi, tablodaki gibi neyle kesiştiğini ve neye eşit uzaklıkta olduğunu yazarak bir sayfaya topla. En son uygulamada üçgende merkezler testinden yirmi soru çöz; her soruda önce hangi merkezden söz edildiğini yaz. Bir sonraki derste çokgenlerle devam ediyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Üç köy, bir su deposu",
+   "narration": "Üç köy tek bir su deposunu paylaşacak ve depo üç köye de eşit uzaklıkta olmalı. Peki üç yola eşit uzaklıkta bir çeşme isteseydik, aynı noktayı mı seçerdik? Hayır. Bu derste üçgenin özel noktalarını, hangi doğruların kesişiminden doğduklarını ve neye eşit uzaklıkta olduklarını öğreneceğiz."
+  },
+  "objectives": [
+   "Üçgenin merkezlerini kesişen doğrulara ve eşit uzaklık özelliğine göre ayırt etmek",
+   "Çevrel çember merkezinde ikizkenar üçgenleri ve yarıçapı kullanmak",
+   "İç teğet çemberde alan = r · u ve teğet uzunluklarını uygulamak",
+   "Diklik ve dış teğet merkezinde açı bağıntılarını kullanmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_MERKEZLER_01",
+    "title": "Dört merkez, bir tablo",
+    "narration": "Bir üçgenin özel noktaları, üç doğrunun tek bir noktada kesişmesinden doğar.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Hangi doğrular, hangi merkez",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Merkez",
+        "Kesişen doğrular",
+        "Özelliği"
+       ],
+       "rows": [
+        [
+         "**Çevrel** çember (O)",
+         "Kenar orta dikmeleri",
+         "Köşelere eşit uzaklık: R"
+        ],
+        [
+         "**İç teğet** çember (I)",
+         "İç açıortaylar",
+         "Kenarlara eşit uzaklık: r"
+        ],
+        [
+         "**Diklik** merkezi (H)",
+         "Yükseklikler",
+         "Geniş açılıda dışarıda"
+        ],
+        [
+         "**Dış teğet** çember (J)",
+         "Bir iç, iki dış açıortay",
+         "Kenar doğrularına eşit"
+        ],
+        [
+         "**Ağırlık** merkezi (G)",
+         "Kenarortaylar",
+         "Kenarortayı 2 : 1 böler"
+        ]
+       ]
+      },
+      "caption": "Her merkezin **ne ile** kesiştiğini ve **neye eşit uzaklıkta** olduğunu bil.",
+      "narration": "Üçgenin her köşesinden üç özel doğru çizebiliriz: kenarortay, yükseklik ve açıortay. Bir de her kenarın orta noktasından dik çıkan kenar orta dikmesi var. Bu dört ailenin her biri tek bir noktada buluşur. Ağırlık merkezini önceki derste gördük; bu derste öbür merkezlere bakıyoruz. Bir soruyu çözmenin anahtarı, sorunun hangi merkezden söz ettiğini doğru okumaktır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Üç düz yolun çevrelediği üçgen biçimindeki bir parkın içine, **üç yola da eşit uzaklıkta** olacak biçimde bir çeşme yapılacaktır. Çeşme hangi noktaya yapılmalıdır?",
+       "options": [
+        "Kenarortayların kesişim noktasına",
+        "Yüksekliklerin kesişim noktasına",
+        "İç açıortayların kesişim noktasına",
+        "Kenar orta dikmelerinin kesişim noktasına",
+        "En uzun kenarın orta noktasına"
+       ],
+       "answer": 2,
+       "narration": "Yollar parkın kenarları: kenarlara eşit uzaklık.",
+       "steps": [
+        {
+         "text": "Kenarlara eşit uzaklıktaki nokta → iç açıortayların kesişimi (iç teğet çemberin merkezi).",
+         "narration": "Yollar üçgenin kenarları. Bir açıortay üzerindeki nokta, o açının iki koluna eşit uzaklıktadır; üç iç açıortayın kesiştiği nokta üç kenara da eşit uzaklıktadır."
+        },
+        {
+         "text": "Cevap **C**. Köşelere eşit uzaklık isteseydi: kenar orta dikmeleri.",
+         "narration": "Cevabımız C. Dikkat: üç köşeye, yani parkın üç köşesindeki kapılara eşit uzaklık istenseydi cevap kenar orta dikmelerinin kesişimi, yani çevrel çemberin merkezi olurdu.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; iç teğet ve çevrel çember merkezinin ayrımı gerçek hayattan özgün bir park durumuyla soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_MERKEZLER_05",
+    "title": "Çevrel çember",
+    "narration": "Önce üç köşeye eşit uzaklıktaki nokta: çevrel çemberin merkezi.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Üç köşeden geçen çember",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -1.104,
+        -2.875,
+        8.104,
+        6.332
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          3.0,
+          5.6
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          7,
+          0
+         ]
+        },
+        {
+         "id": "O",
+         "at": [
+          3.5,
+          1.729
+         ]
+        },
+        {
+         "id": "K",
+         "at": [
+          3.5,
+          0.0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "L",
+         "at": [
+          5.0,
+          2.8
+         ],
+         "hidden": true
+        },
+        {
+         "id": "M",
+         "at": [
+          1.5,
+          2.8
+         ],
+         "hidden": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "A"
+        },
+        {
+         "from": "K",
+         "to": "O",
+         "dashed": true
+        },
+        {
+         "from": "L",
+         "to": "O",
+         "dashed": true
+        },
+        {
+         "from": "M",
+         "to": "O",
+         "dashed": true
+        },
+        {
+         "from": "O",
+         "to": "A",
+         "label": "R"
+        },
+        {
+         "from": "O",
+         "to": "B",
+         "label": "R"
+        },
+        {
+         "from": "O",
+         "to": "C",
+         "label": "R"
+        }
+       ],
+       "circles": [
+        {
+         "center": "O",
+         "radius": 3.904
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "K",
+         "from": "C",
+         "to": "O",
+         "right": true
+        }
+       ]
+      },
+      "caption": "Kenar orta dikmeleri $O$'da kesişir: $|OA| = |OB| = |OC| = R$.",
+      "narration": "Bir kenarın orta dikmesi üzerindeki her nokta, o kenarın iki ucuna eşit uzaklıktadır.",
+      "beats": [
+       {
+        "narration": "B C'nin orta dikmesi üzerindeki noktalar B ve C'ye, C A'nınki C ve A'ya eşit uzaklıkta. İkisinin kesiştiği O, üç köşeye de eşit uzaklıkta; üçüncü orta dikme de O'dan geçer.",
+        "focus": [
+         "KO",
+         "LO",
+         "MO"
+        ]
+       },
+       {
+        "narration": "O merkezli, R yarıçaplı çember üç köşeden geçer: çevrel çember. Dar açılı üçgende O içeride, dik üçgende hipotenüsün tam ortasında, geniş açılıda dışarıdadır. O A, O B, O C eşit olduğu için O'yu köşelere birleştirince üç ikizkenar üçgen oluşur.",
+        "focus": [
+         "OA",
+         "OB",
+         "OC",
+         "circle-O"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Dik kenar uzunlukları $6$ cm ve $8$ cm olan bir dik üçgenin çevrel çemberinin yarıçapı kaç santimetredir?",
+       "options": [
+        "4",
+        "5",
+        "6",
+        "8",
+        "10"
+       ],
+       "answer": 1,
+       "narration": "Dik üçgende çevrel çemberin merkezi hipotenüsün orta noktası.",
+       "steps": [
+        {
+         "text": "Hipotenüs $10$; dik üçgende $O$, hipotenüsün orta noktası.",
+         "narration": "Hipotenüs on. Dik üçgende hipotenüsün orta noktası üç köşeye eşit uzaklıktadır: hipotenüse ait kenarortay hipotenüsün yarısıydı. Çevrel çemberin merkezi orası."
+        },
+        {
+         "text": "$R = \\frac{10}{2} = 5$. Cevap **B**.",
+         "narration": "Yarıçap, hipotenüsün yarısı, beş santimetre. Cevabımız B. Onu seçen, çapı yarıçap sanmıştır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dik üçgende çevrel çember yarıçapı özgün bir değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kenarı $6\\sqrt{3}$ cm olan eşkenar üçgenin çevrel çemberinin yarıçapı kaç santimetredir?",
+       "options": [
+        "$3$",
+        "$3\\sqrt{3}$",
+        "$6$",
+        "$9$",
+        "$6\\sqrt{3}$"
+       ],
+       "answer": 2,
+       "narration": "Eşkenar üçgende bütün merkezler aynı noktada.",
+       "steps": [
+        {
+         "text": "Yükseklik $h = \\frac{6\\sqrt{3} \\cdot \\sqrt{3}}{2} = 9$.",
+         "narration": "Eşkenar üçgende yükseklik a kök üç bölü iki: altı kök üç çarpı kök üç, on sekiz; yarısı dokuz."
+        },
+        {
+         "text": "Eşkenarda $O = G$ → $R = \\frac{2}{3} h = 6$. Cevap **C**.",
+         "narration": "Eşkenar üçgende yükseklikler aynı zamanda kenarortay, açıortay ve kenar orta dikmedir; dört merkez tek noktada çakışır. O, ağırlık merkeziyle aynı: köşeye uzaklığı yüksekliğin üçte ikisi, altı. İç teğet yarıçapı ise üçte biri, üç. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; eşkenar üçgende merkezlerin çakışması ve 2 : 1 oranı özgün bir değerle birleştirildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $O$ noktası $ABC$ üçgeninin çevrel çemberinin merkezidir. $m(\\widehat{OBC}) = 20°$ olduğuna göre $m(\\widehat{BAC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -4.7,
+         -4.7,
+         4.7,
+         4.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           -0.695,
+           3.939
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           -3.759,
+           -1.368
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           3.759,
+           -1.368
+          ]
+         },
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "O",
+          "to": "B",
+          "dashed": true
+         },
+         {
+          "from": "O",
+          "to": "C",
+          "dashed": true
+         }
+        ],
+        "circles": [
+         {
+          "center": "O",
+          "radius": 4
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "B",
+          "from": "C",
+          "to": "O",
+          "label": "20°"
+         },
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "40",
+        "50",
+        "60",
+        "70",
+        "80"
+       ],
+       "answer": 3,
+       "narration": "$|OB| = |OC|$: $OBC$ ikizkenar.",
+       "steps": [
+        {
+         "text": "$|OB| = |OC| = R$ → $m(\\widehat{OCB}) = 20°$, $m(\\widehat{BOC}) = 140°$.",
+         "narration": "O B ile O C yarıçap, eşit. O B C ikizkenar üçgeninde C'deki açı da yirmi; O'daki açı yüz seksen eksi kırk, yüz kırk."
+        },
+        {
+         "text": "$x = \\frac{140°}{2} = 70°$. Cevap **D**.",
+         "narration": "Merkezdeki açı, aynı yayı gören çevre açının iki katıdır; bunu çember dersinde ayrıntılı göreceğiz. Öyleyse x, yüz kırkın yarısı, yetmiş derece. Cevabımız D. Kırkı seçen, B ve C'deki yirmileri toplamıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; çevrel çember merkezinde ikizkenar üçgen ve merkez açı ilişkisi ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_MERKEZLER_03",
+    "title": "İç teğet çember",
+    "narration": "Şimdi üç kenara eşit uzaklıktaki nokta: iç teğet çemberin merkezi.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Kenarlara değen çember",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        8.1,
+        5.3
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.2,
+          4.6
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          7.4,
+          0
+         ]
+        },
+        {
+         "id": "I",
+         "at": [
+          2.778,
+          1.751
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          2.778,
+          0.0
+         ]
+        },
+        {
+         "id": "E",
+         "at": [
+          3.938,
+          3.062
+         ]
+        },
+        {
+         "id": "F",
+         "at": [
+          1.199,
+          2.506
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "F",
+         "label": "x"
+        },
+        {
+         "from": "F",
+         "to": "B",
+         "label": "y"
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "label": "y"
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "label": "z"
+        },
+        {
+         "from": "C",
+         "to": "E",
+         "label": "z"
+        },
+        {
+         "from": "E",
+         "to": "A",
+         "label": "x"
+        },
+        {
+         "from": "I",
+         "to": "D",
+         "label": "r",
+         "dashed": true
+        }
+       ],
+       "circles": [
+        {
+         "center": "I",
+         "radius": 1.751
+        }
+       ],
+       "polygons": [],
+       "angles": [
+        {
+         "at": "D",
+         "from": "C",
+         "to": "I",
+         "right": true
+        }
+       ]
+      },
+      "caption": "$A = r \\cdot u$ ($u$ yarı çevre); bir köşeden çıkan iki teğet **eşit**: $x = u - a$.",
+      "narration": "İç açıortaylar I noktasında kesişir. I, üç kenara eşit uzaklıkta; bu uzaklık r, iç teğet çemberin yarıçapı.",
+      "beats": [
+       {
+        "narration": "Bir noktadan çembere çizilen iki teğet parçası eşittir. A'dan çıkanlar x, B'den çıkanlar y, C'den çıkanlar z. Çevre iki x artı iki y artı iki z; yarı çevre u, x artı y artı z. Öyleyse x, u eksi a.",
+        "focus": [
+         "AF",
+         "EA",
+         "FB",
+         "BD",
+         "DC",
+         "CE"
+        ]
+       },
+       {
+        "narration": "I'yı köşelere birleştir: üçgen, yükseklikleri r olan üç üçgene ayrılır. Alanların toplamı yarım çarpı r çarpı çevre, yani r çarpı u. Alan, iç teğet yarıçapı ile yarı çevrenin çarpımıdır.",
+        "focus": [
+         "ID",
+         "circle-I"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kenar uzunlukları $6$, $8$ ve $10$ cm olan bir üçgenin iç teğet çemberinin yarıçapı kaç santimetredir?",
+       "options": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+       ],
+       "answer": 0,
+       "narration": "Alan $= r \\cdot u$.",
+       "steps": [
+        {
+         "text": "$6$-$8$-$10$ dik üçgen: $A = \\frac{6 \\cdot 8}{2} = 24$; $u = 12$.",
+         "narration": "Altı, sekiz, on bir dik üçgen; alan dik kenarların çarpımının yarısı, yirmi dört. Yarı çevre on iki."
+        },
+        {
+         "text": "$24 = r \\cdot 12$ → $r = 2$. Cevap **A**.",
+         "narration": "Alan r çarpı u: yirmi dört, r çarpı on iki; r iki santimetre. Cevabımız A. Beşi seçen, çevrel çemberin yarıçapını bulmuştur; iç teğet çember her zaman daha küçüktür.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; iç teğet yarıçapı alan ve yarı çevre bağıntısıyla özgün bir üçgende soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Dik kenar uzunlukları $8$ cm ve $15$ cm olan bir dik üçgenin iç teğet çemberinin yarıçapı kaç santimetredir?",
+       "options": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "$8{,}5$"
+       ],
+       "answer": 1,
+       "narration": "Dik üçgende kısa yol: $r = \\frac{a + b - c}{2}$.",
+       "steps": [
+        {
+         "text": "Hipotenüs $\\sqrt{64 + 225} = 17$.",
+         "narration": "Sekiz, on beş, on yedi üçgeni: hipotenüs on yedi."
+        },
+        {
+         "text": "$r = \\frac{8 + 15 - 17}{2} = 3$; kontrol: $A = 60$, $u = 20$, $\\frac{60}{20} = 3$. Cevap **B**.",
+         "narration": "Dik üçgende iç teğet çember dik açılı köşeden r uzaklıkta değer; teğet uzunluklarından r, dik kenarlar toplamı eksi hipotenüs, bölü iki: sekiz artı on beş eksi on yedi, altı; yarısı üç. Alan yöntemiyle kontrol: alan altmış, yarı çevre yirmi, oran üç. Cevabımız B. Sekiz buçuk çevrel çemberin yarıçapıdır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dik üçgende iç teğet yarıçapının kısa yolu ve alan yöntemiyle kontrolü özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninin iç teğet çemberi $[AB]$'ye $D$ noktasında teğettir. $|AB| = 7$, $|BC| = 8$ ve $|AC| = 9$ birim olduğuna göre $|AD| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         8.7,
+         7.408
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2.0,
+           6.708
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           8,
+           0
+          ]
+         },
+         {
+          "id": "I",
+          "at": [
+           3.0,
+           2.236
+          ],
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           0.857,
+           2.875
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "D",
+          "label": "x"
+         },
+         {
+          "from": "D",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "8"
+         },
+         {
+          "from": "C",
+          "to": "A",
+          "label": "9"
+         }
+        ],
+        "circles": [
+         {
+          "center": "I",
+          "radius": 2.236
+         }
+        ],
+        "polygons": [],
+        "angles": []
+       },
+       "options": [
+        "3",
+        "4",
+        "5",
+        "$4{,}5$",
+        "6"
+       ],
+       "answer": 1,
+       "narration": "Bir köşeden çıkan teğet uzunluğu: $u -$ karşı kenar.",
+       "steps": [
+        {
+         "text": "$u = \\frac{7 + 8 + 9}{2} = 12$.",
+         "narration": "Yarı çevre: yedi artı sekiz artı dokuz, yirmi dört; yarısı on iki."
+        },
+        {
+         "text": "$x = u - |BC| = 12 - 8 = 4$. Cevap **B**.",
+         "narration": "A'dan çıkan teğet uzunluğu, yarı çevreden A'nın karşısındaki kenarın çıkarılmasıyla bulunur: on iki eksi sekiz, dört. Kontrol: B'den çıkan teğet on iki eksi dokuz, üç; dört artı üç, yedi; A B tutuyor. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; iç teğet çemberde teğet uzunlukları özgün kenar uzunluklarıyla, çizilmiş bir şekilde soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_MERKEZLER_02",
+    "title": "Diklik merkezi",
+    "narration": "Üç yüksekliğin kesiştiği nokta: diklik merkezi.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Üç yükseklik",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        7.9,
+        5.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.6,
+          5
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          7.2,
+          0
+         ]
+        },
+        {
+         "id": "H",
+         "at": [
+          2.6,
+          2.392
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          2.6,
+          0.0
+         ]
+        },
+        {
+         "id": "E",
+         "at": [
+          3.899,
+          3.588
+         ]
+        },
+        {
+         "id": "F",
+         "at": [
+          1.532,
+          2.947
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "A"
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "dashed": true
+        },
+        {
+         "from": "B",
+         "to": "E",
+         "dashed": true
+        },
+        {
+         "from": "C",
+         "to": "F",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "D",
+         "from": "C",
+         "to": "A",
+         "right": true
+        },
+        {
+         "at": "E",
+         "from": "A",
+         "to": "B",
+         "right": true
+        },
+        {
+         "at": "F",
+         "from": "B",
+         "to": "C",
+         "right": true
+        }
+       ]
+      },
+      "caption": "$H$, yüksekliklerin kesişimi; $m(\\widehat{BHC}) = 180° - m(\\widehat{A})$.",
+      "narration": "Her köşeden karşı kenara bir yükseklik indirelim. Üç yükseklik H noktasında kesişir.",
+      "beats": [
+       {
+        "narration": "Dar açılı üçgende H içeride. Dik üçgende iki dik kenar zaten yükseklik olduğu için H, dik açılı köşenin ta kendisi. Geniş açılı üçgende ise yükseklikler dışarıda kesişir.",
+        "focus": [
+         "AD",
+         "BE",
+         "CF",
+         "H"
+        ]
+       },
+       {
+        "narration": "B H C açısı için A E H F dörtgenine bak: E ve F'de iki dik açı var. Dörtgenin açıları toplamı üç yüz altmış; E H F açısı yüz seksen eksi A. B H C, bunun ters açısı: yüz seksen eksi A.",
+        "focus": [
+         "BE",
+         "CF",
+         "angle-E",
+         "angle-F"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $H$ diklik merkezidir ve üçgenin içindedir. $m(\\widehat{BAC}) = 70°$ olduğuna göre $m(\\widehat{BHC})$ kaç derecedir?",
+       "options": [
+        "70",
+        "90",
+        "110",
+        "120",
+        "140"
+       ],
+       "answer": 2,
+       "narration": "$m(\\widehat{BHC}) = 180° - m(\\widehat{A})$.",
+       "steps": [
+        {
+         "text": "Yüksekliklerin ayakları $E$ ve $F$: $AEHF$'de $m(\\widehat{EHF}) = 360° - 90° - 90° - 70° = 110°$.",
+         "narration": "B ve C'den inen yüksekliklerin ayakları E ve F olsun. A E H F dörtgeninde E ve F dik; H'deki açı üç yüz altmış eksi doksan eksi doksan eksi yetmiş, yüz on."
+        },
+        {
+         "text": "$m(\\widehat{BHC}) = m(\\widehat{EHF}) = 110°$ (ters açı). Cevap **C**.",
+         "narration": "B H C açısı, E H F açısının ters açısı: yüz on derece. Cevabımız C. Yüz kırkı seçen, çevrel çember merkezindeki iki kat kuralını uygulamıştır; o kural O içindir, H için değil.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; diklik merkezinde açı bağıntısı özgün bir değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninin diklik merkezi $A$ köşesidir. $|AB| = 5$ cm ve $|AC| = 12$ cm olduğuna göre $|BC|$ kaç santimetredir?",
+       "options": [
+        "7",
+        "12",
+        "13",
+        "15",
+        "17"
+       ],
+       "answer": 2,
+       "narration": "Diklik merkezi bir köşedeyse orası dik açılıdır.",
+       "steps": [
+        {
+         "text": "Diklik merkezi $A$ → $A$'dan geçen iki yükseklik $[AB]$ ve $[AC]$ → $m(\\widehat{A}) = 90°$.",
+         "narration": "Diklik merkezi bir köşede ise o köşeden çıkan iki kenar zaten birbirine dik; yani üçgen A'da dik."
+        },
+        {
+         "text": "$|BC| = \\sqrt{25 + 144} = 13$. Cevap **C**.",
+         "narration": "Hipotenüs B C: beş, on iki, on üç üçgeninden on üç. Cevabımız C. On yediyi seçen, kenarları toplamıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; diklik merkezinin dik açılı köşede olması özgün bir Pisagor sorusuna bağlandı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_MERKEZLER_04",
+    "title": "Dış teğet çember",
+    "narration": "Son merkez üçgenin dışında: dış teğet çember.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Dışarıdan değen çember",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -2.422,
+        -9.066,
+        7.344,
+        4.3
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.0,
+          3.6
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          4.6,
+          0
+         ]
+        },
+        {
+         "id": "J",
+         "at": [
+          2.461,
+          -4.183
+         ]
+        },
+        {
+         "id": "T",
+         "at": [
+          -1.195,
+          -2.152
+         ]
+        },
+        {
+         "id": "S",
+         "at": [
+          5.852,
+          -1.734
+         ]
+        },
+        {
+         "id": "K",
+         "at": [
+          2.461,
+          0.0
+         ],
+         "hidden": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "A"
+        },
+        {
+         "from": "B",
+         "to": "T",
+         "dashed": true
+        },
+        {
+         "from": "C",
+         "to": "S",
+         "dashed": true
+        },
+        {
+         "from": "A",
+         "to": "J",
+         "dashed": true
+        }
+       ],
+       "circles": [
+        {
+         "center": "J",
+         "radius": 4.183
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "fill": true
+        }
+       ],
+       "angles": []
+      },
+      "caption": "$J$: $A$'nın iç, $B$ ve $C$'nin dış açıortaylarının kesişimi; $|AT| = |AS| = u$, $m(\\widehat{BJC}) = 90° - \\frac{m(\\widehat{A})}{2}$.",
+      "narration": "B C kenarına dışarıdan, A B ve A C'nin uzantılarına da değen bir çember çizelim. Merkezi J, A'ya karşı dış teğet çemberin merkezi.",
+      "beats": [
+       {
+        "narration": "J, üç doğruya eşit uzaklıkta: A'nın iç açıortayı ile B ve C'deki dış açıortaylar J'de kesişir.",
+        "focus": [
+         "AJ",
+         "circle-J"
+        ]
+       },
+       {
+        "narration": "A'dan çembere çizilen iki teğet eşit ve her biri yarı çevreye eşit: A T, A S, u. B J C açısı ise doksan eksi A'nın yarısı; ikinci derste iki dış açıortayın kesişimi olarak görmüştük.",
+        "focus": [
+         "BT",
+         "CS",
+         "T",
+         "S"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $m(\\widehat{BAC}) = 40°$'dir. $A$ köşesine karşı dış teğet çemberin merkezi $J$ olduğuna göre $m(\\widehat{BJC})$ kaç derecedir?",
+       "options": [
+        "50",
+        "70",
+        "110",
+        "130",
+        "140"
+       ],
+       "answer": 1,
+       "narration": "$J$, $B$ ve $C$'deki dış açıortayların kesişimi.",
+       "steps": [
+        {
+         "text": "$m(\\widehat{BJC}) = 90° - \\frac{40°}{2}$.",
+         "narration": "J, B ve C'deki dış açıortayların kesişim noktası. İki dış açıortayın kesiştiği açı, doksan eksi A'nın yarısı."
+        },
+        {
+         "text": "$= 90° - 20° = 70°$. Cevap **B**.",
+         "narration": "Doksan eksi yirmi, yetmiş derece. Cevabımız B. Yüz on, iç teğet merkezi için olan doksan artı A'nın yarısıdır; işareti karıştırma.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dış teğet çember merkezinin açısı özgün bir değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kenar uzunlukları $|AB| = 5$, $|BC| = 6$ ve $|AC| = 7$ birim olan $ABC$ üçgeninde, $A$ köşesine karşı dış teğet çember $[AB$ ışınına $T$ noktasında teğettir. Buna göre $|AT|$ kaç birimdir?",
+       "options": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "12"
+       ],
+       "answer": 3,
+       "narration": "Dış teğet çemberde köşeden çıkan teğet, yarı çevreye eşit.",
+       "steps": [
+        {
+         "text": "$u = \\frac{5 + 6 + 7}{2} = 9$.",
+         "narration": "Yarı çevre: beş artı altı artı yedi, on sekiz; yarısı dokuz."
+        },
+        {
+         "text": "$|AT| = u = 9$. Cevap **D**.",
+         "narration": "A'dan dış teğet çembere çizilen teğet uzunluğu yarı çevreye eşittir: dokuz birim. Neden? A T artı A S, A B artı B C artı C A, yani çevre; ikisi eşit olduğu için her biri yarı çevre. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dış teğet çemberde teğet uzunluğunun yarı çevreye eşitliği özgün bir üçgende soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "**Çevrel** merkez O: kenar orta dikmeleri; köşelere eşit uzaklık $R$. Dik üçgende hipotenüsün ortası.",
+    "**İç teğet** merkez I: iç açıortaylar; kenarlara eşit uzaklık $r$; $A = r \\cdot u$.",
+    "Bir köşeden iç teğet çembere teğet uzunluğu $u - a$; dış teğet çembere $u$.",
+    "**Diklik** merkezi H: yükseklikler; $m(\\widehat{BHC}) = 180° - m(\\widehat{A})$.",
+    "**Dış teğet** merkezi J: $m(\\widehat{BJC}) = 90° - \\frac{m(\\widehat{A})}{2}$."
+   ],
+   "warnings": [
+    "Köşelere eşit uzaklık **çevrel**, kenarlara eşit uzaklık **iç teğet** merkezidir.",
+    "Dik üçgende diklik merkezi **dik açılı köşe**, çevrel merkez **hipotenüsün ortası**.",
+    "İç teğette $90° + \\frac{A}{2}$, dış teğette $90° - \\frac{A}{2}$: işareti karıştırma."
+   ],
+   "narration": "Hadi toparlayalım. Kenar orta dikmeleri çevrel çemberin merkezinde kesişir; bu nokta köşelere eşit uzaklıktadır ve dik üçgende hipotenüsün ortasıdır. İç açıortaylar iç teğet çemberin merkezinde kesişir; kenarlara eşit uzaklıktadır ve alan r çarpı u. Yükseklikler diklik merkezinde kesişir; B H C açısı yüz seksen eksi A. Dış teğet çemberin merkezinde ise B J C açısı doksan eksi A'nın yarısıdır."
+  }
+ }
+}

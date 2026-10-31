@@ -1,0 +1,1357 @@
+{
+ "topic": {
+  "id": "82A07C2D-829A-4557-3CB1-6900D8D5ED1E",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_VEKTOR"
+ },
+ "title": "Vektörler",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "MEB OGM AYT Fizik konu anlatımı, sayfa 11-22 (başvuru; metin yeniden yazıldı)",
+  "ÖSYM 2026 AYT (ızgarada yer değiştirme; metni veride bozuk, VeriDuzeltmeleri #113; model yeni bir yolla kuruldu)",
+  "YKS/AYT/Sorular/FIZ/FIZ_VEKTOR.jsonl (236 soru; yapı ve düzey için okundu, sorular yeni yazıldı)"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Yol mu, yer değiştirme mi?",
+   "narration": "Bir köpek parkta on bir metre koşup başladığı yerden beş metre öteye varabilir. Hangisi önemli? Fizikte çoğu zaman ikincisi: yer değiştirme, yönü olan bir vektördür. Bu derste skaler ve vektörel büyüklükleri, vektörlerin gösterimini, toplanmasını, bileşenlerine ayrılmasını, birim vektörleri ve bağıl hızı göreceksin."
+  },
+  "objectives": [
+   "Skaler ve vektörel büyüklükleri ayırt etmek",
+   "Eşit, ters ve katı vektörleri tanımak",
+   "Vektörleri uç uca ve kosinüs formülüyle toplamak",
+   "Vektörleri bileşenlerine ayırıp i ve j ile yazmak",
+   "Bağıl hızı gözlenen eksi gözlemci kuralıyla bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_VEKTOR_01",
+    "title": "Skaler ve vektörel büyüklükler",
+    "narration": "Bazı büyüklükler tek bir sayıyla anlatılır, bazıları için yön de gerekir. Fiziğin bütün hareket ve kuvvet konuları bu ayrıma dayanır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "İki tür büyüklük",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Skaler (yalnız büyüklük)",
+        "Vektörel (büyüklük ve yön)"
+       ],
+       "rows": [
+        [
+         "Kütle, zaman, sıcaklık",
+         "Kuvvet, ağırlık"
+        ],
+        [
+         "Sürat, uzunluk, hacim",
+         "Hız, yer değiştirme, ivme"
+        ],
+        [
+         "Enerji, iş, güç, ısı",
+         "Momentum, itme, tork"
+        ],
+        [
+         "Elektrik yükü",
+         "Elektrik ve manyetik alan"
+        ]
+       ]
+      },
+      "narration": "Skaler büyüklük yalnız sayı ve birimle, vektörel büyüklük sayı, birim ve yönle anlatılır.",
+      "beats": [
+       {
+        "narration": "Kütle, zaman, sıcaklık, enerji gibi büyüklükler yalnız büyüklükle anlatılır: skaler.",
+        "show": [
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ]
+       },
+       {
+        "narration": "Kuvvet, hız, ivme, momentum için yön de gerekir: vektörel. Sürat skalerdir, hız vektöreldir.",
+        "focus": [
+         "r2"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "I. İvme\nII. İş\nIII. Momentum\nIV. Sürat\n\nYukarıdaki büyüklüklerden hangileri **vektöreldir**?",
+       "options": [
+        "Yalnız I",
+        "I ve II",
+        "II ve IV",
+        "I ve III",
+        "I, III ve IV"
+       ],
+       "answer": 3,
+       "narration": "Her biri için yön gerekir mi diye soralım.",
+       "steps": [
+        {
+         "text": "İvme ve momentum yönlüdür: **vektörel**.",
+         "narration": "İvme ve momentumun yönü vardır; ikisi de vektöreldir."
+        },
+        {
+         "text": "İş bir enerji aktarımıdır, sürat yalnız hızın büyüklüğüdür: **skaler**.",
+         "narration": "İş, bir kuvvetin aktardığı enerjidir; yönü yoktur. Sürat de hızın yalnız büyüklüğüdür. Süratle hızı karıştıran dördüncüyü de ekler. Cevap D.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Skaler-vektörel ayrımı kalıbı; büyüklükler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_VEKTOR_02",
+    "title": "Vektörlerin gösterimi",
+    "narration": "Bir vektör ok ile gösterilir: okun uzunluğu büyüklüğü, doğrultusu ve ucu yönü verir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Eşit, ters, katı",
+      "items": [
+       "Büyüklüğü ve yönü aynı vektörler **eşittir**; başlangıç noktası önemsiz.",
+       "Büyüklüğü aynı, yönü zıt vektör: **ters vektör** $-\\vec{K}$.",
+       "$k\\vec{K}$: büyüklük $|k|$ katı; $k < 0$ ise yön tersine döner."
+      ],
+      "visual": {
+       "kind": "vectors",
+       "view": [
+        -1,
+        -3,
+        9,
+        4
+       ],
+       "grid": true,
+       "vectors": [
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          2,
+          1
+         ],
+         "label": "K",
+         "colour": "lesson",
+         "dashed": false
+        },
+        {
+         "from": [
+          3,
+          2
+         ],
+         "to": [
+          5,
+          3
+         ],
+         "label": "L = K",
+         "colour": "lesson",
+         "dashed": false
+        },
+        {
+         "from": [
+          7,
+          1
+         ],
+         "to": [
+          5,
+          0
+         ],
+         "label": "M = −K",
+         "colour": "brand",
+         "dashed": false
+        },
+        {
+         "from": [
+          1,
+          -2
+         ],
+         "to": [
+          5,
+          0
+         ],
+         "label": "2K",
+         "colour": "ink",
+         "dashed": false
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "K ile L aynı büyüklükte ve aynı yönde: eşit vektörler, başlangıçları farklı olsa da.",
+        "show": [
+         "v1",
+         "v2"
+        ],
+        "focus": [
+         "v1",
+         "v2"
+        ]
+       },
+       {
+        "narration": "M aynı büyüklükte ama ters yönde: eksi K. İki K ise aynı yönde, iki kat uzun.",
+        "show": [
+         "v3",
+         "v4"
+        ],
+        "focus": [
+         "v3",
+         "v4"
+        ]
+       }
+      ],
+      "narration": "Büyüklüğü ve yönü aynı olan vektörler eşittir; nereden başladıkları önemli değildir. Büyüklüğü aynı ama yönü zıt olan vektör, ters vektördür. Bir vektör bir sayıyla çarpılınca büyüklüğü o sayının mutlak değeri kadar büyür; sayı eksiyse yönü de tersine döner."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekildeki birim karelere çizilmiş $\\vec{K}$ ve $\\vec{L}$ vektörleri için aşağıdakilerden hangisi doğrudur?",
+       "figure": {
+        "kind": "vectors",
+        "view": [
+         -5,
+         -3,
+         5,
+         3
+        ],
+        "grid": true,
+        "vectors": [
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           2,
+           1
+          ],
+          "label": "K",
+          "colour": "lesson",
+          "dashed": false
+         },
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           -4,
+           -2
+          ],
+          "label": "L",
+          "colour": "brand",
+          "dashed": false
+         }
+        ]
+       },
+       "options": [
+        "$\\vec{L} = \\vec{K}$",
+        "$\\vec{L} = -2\\vec{K}$",
+        "$\\vec{L} = 2\\vec{K}$",
+        "$\\vec{L} = -\\vec{K}$",
+        "$\\vec{L} = \\frac{1}{2}\\vec{K}$"
+       ],
+       "answer": 1,
+       "narration": "Bileşenleri karşılaştıralım.",
+       "steps": [
+        {
+         "text": "$\\vec{K} = (2, 1)$, $\\vec{L} = (-4, -2)$.",
+         "narration": "K, sağa iki, yukarı bir. L, sola dört, aşağı iki."
+        },
+        {
+         "text": "$\\vec{L} = -2 \\cdot (2, 1) = -2\\vec{K}$.",
+         "narration": "L'nin bileşenleri K'nınkilerin eksi iki katı: L eşittir eksi iki K. Yön ters, büyüklük iki kat. Cevap B.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Vektörün katı kalıbı; vektörler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_VEKTOR_03",
+    "title": "Vektörlerin toplanması",
+    "narration": "Vektörler sayılar gibi toplanmaz: yönleri hesaba girer. Uç uca ekleme ve paralelkenar yöntemi aynı sonucu verir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bileşke",
+      "items": [
+       "Uç uca: ikinci vektör birincinin ucuna; bileşke, ilk başlangıçtan son uca.",
+       "$R^2 = F_1^2 + F_2^2 + 2F_1F_2\\cos\\alpha$ ($\\alpha$: aradaki açı).",
+       "Eşit iki vektör $a$: $0°$ → $2a$, $60°$ → $a\\sqrt{3}$, $90°$ → $a\\sqrt{2}$, $120°$ → $a$, $180°$ → $0$."
+      ],
+      "visual": {
+       "kind": "vectors",
+       "view": [
+        -1,
+        -1,
+        8,
+        6
+       ],
+       "grid": true,
+       "vectors": [
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          4,
+          1
+         ],
+         "label": "A",
+         "colour": "lesson",
+         "dashed": false
+        },
+        {
+         "from": [
+          4,
+          1
+         ],
+         "to": [
+          6,
+          5
+         ],
+         "label": "B",
+         "colour": "brand",
+         "dashed": false
+        },
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          6,
+          5
+         ],
+         "label": "R = A + B",
+         "colour": "ink",
+         "dashed": true
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "A vektörü; B, A'nın ucuna eklendi.",
+        "show": [
+         "v1",
+         "v2"
+        ],
+        "focus": [
+         "v2"
+        ]
+       },
+       {
+        "narration": "Bileşke R, A'nın başından B'nin ucuna.",
+        "show": [
+         "v3"
+        ],
+        "focus": [
+         "v3"
+        ]
+       }
+      ],
+      "narration": "Uç uca eklemede ikinci vektör, yönü bozulmadan birincinin ucuna taşınır; bileşke, ilk vektörün başından son vektörün ucuna çizilen vektördür. İki vektör arasındaki açı alfa ise bileşkenin karesi, F bir kare artı F iki kare artı iki F bir F iki kosinüs alfadır. Eşit iki vektörde açı sıfırsa bileşke iki a, altmışsa a kök üç, doksansa a kök iki, yüz yirmiyse a, yüz sekseniyse sıfırdır."
+     },
+     {
+      "kind": "predict",
+      "title": "Açı büyürse",
+      "prompt": "Eşit büyüklükteki iki vektörün arasındaki açı sıfırdan yüz seksen dereceye doğru büyüyor. Bileşke ne olur?",
+      "choices": [
+       "Küçülür",
+       "Büyür"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "vectors",
+       "view": [
+        -1,
+        -1,
+        8,
+        6
+       ],
+       "grid": true,
+       "vectors": [
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          4,
+          1
+         ],
+         "label": "A",
+         "colour": "lesson",
+         "dashed": false
+        },
+        {
+         "from": [
+          4,
+          1
+         ],
+         "to": [
+          6,
+          5
+         ],
+         "label": "B",
+         "colour": "brand",
+         "dashed": false
+        },
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          6,
+          5
+         ],
+         "label": "R = A + B",
+         "colour": "ink",
+         "dashed": true
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Aynı yönde bileşke en büyük: iki a."
+       },
+       {
+        "narration": "Açı büyüdükçe kosinüs küçülür; yüz seksen derecede bileşke sıfır."
+       }
+      ],
+      "explanation": "Kosinüs azalır: $2a$ → $a\\sqrt{3}$ → $a\\sqrt{2}$ → $a$ → $0$.",
+      "narration": "Aradaki açı büyüyünce bileşke büyür mü, küçülür mü? Tahmin et.",
+      "explanationNarration": "Küçülür. Formüldeki kosinüs, açı büyüdükçe azalır. Aynı yöndeyken iki a olan bileşke, altmışta a kök üç, doksanda a kök iki, yüz yirmide a olur ve zıt yönde sıfıra iner."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Büyüklükleri $6$ N ve $10$ N olan iki kuvvet arasındaki açı $60°$'dir.\n\nBileşke kuvvetin büyüklüğü kaç N'dir?",
+       "options": [
+        "$8$",
+        "$10$",
+        "$12$",
+        "$13$",
+        "$14$"
+       ],
+       "answer": 4,
+       "narration": "Kosinüs formülü; cos altmış yarım.",
+       "steps": [
+        {
+         "text": "$R^2 = 36 + 100 + 2 \\cdot 6 \\cdot 10 \\cdot \\frac{1}{2} = 196$.",
+         "narration": "R kare: otuz altı artı yüz artı iki çarpı altı çarpı on çarpı yarım; yüz doksan altı."
+        },
+        {
+         "text": "$R = 14$ N. Sınır: $4 \\leq R \\leq 16$ ✓.",
+         "narration": "R on dört newton. Bileşke, fark olan dört ile toplam olan on altı arasında; tutarlı. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "Kosinüslü bileşke kalıbı; kuvvetler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir parkta köpek, Ahmet'in yanından koşarak önce $4$ birim doğuya, sonra $5$ birim kuzeye, ardından $1$ birim batıya ve $1$ birim güneye gidiyor.\n\nAhmet köpeğe en kısa yoldan ulaşmak için ne kadar ve hangi yönde koşmalıdır?",
+       "context": "ÖSYM 2026'da sorulan ızgarada yer değiştirme yapısının yeni bir yolla kurulmuş hâli.",
+       "figure": {
+        "kind": "vectors",
+        "view": [
+         -1,
+         -1,
+         6,
+         6
+        ],
+        "grid": true,
+        "vectors": [
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           4,
+           0
+          ],
+          "label": "4",
+          "colour": "lesson",
+          "dashed": false
+         },
+         {
+          "from": [
+           4,
+           0
+          ],
+          "to": [
+           4,
+           5
+          ],
+          "label": "5",
+          "colour": "lesson",
+          "dashed": false
+         },
+         {
+          "from": [
+           4,
+           5
+          ],
+          "to": [
+           3,
+           5
+          ],
+          "label": "1",
+          "colour": "lesson",
+          "dashed": false
+         },
+         {
+          "from": [
+           3,
+           5
+          ],
+          "to": [
+           3,
+           4
+          ],
+          "label": "1",
+          "colour": "lesson",
+          "dashed": false
+         },
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           3,
+           4
+          ],
+          "label": "?",
+          "colour": "brand",
+          "dashed": true
+         }
+        ]
+       },
+       "options": [
+        "$5$ birim; doğudan kuzeye $53°$",
+        "$5$ birim; kuzeyden doğuya $53°$",
+        "$7$ birim; kuzeydoğuya",
+        "$11$ birim; kuzeydoğuya",
+        "$3$ birim; doğuya"
+       ],
+       "answer": 0,
+       "narration": "Köpeğin aldığı yol değil, yer değiştirmesi soruluyor.",
+       "steps": [
+        {
+         "text": "Doğu: $4 - 1 = 3$; kuzey: $5 - 1 = 4$.",
+         "narration": "Doğu-batı yönünde dört doğu, bir batı: net üç doğu. Kuzey-güney yönünde beş kuzey, bir güney: net dört kuzey."
+        },
+        {
+         "text": "Yer değiştirme $\\sqrt{3^2 + 4^2} = 5$ birim.",
+         "narration": "Yer değiştirme, üç dört beş üçgeninin hipotenüsü: beş birim."
+        },
+        {
+         "text": "Yön: $\\tan\\theta = \\frac{4}{3}$, doğudan kuzeye $53°$. Yol uzunluğu $11$ birim ama soru o değil.",
+         "narration": "Doğuyla açı: tanjant dört bölü üç, elli üç derece; kuzeydoğu yönünde. Köpeğin aldığı toplam yol on bir birim; en kısa yol bu değil. Cevap A.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026 modeli: ızgarada yer değiştirme; yol yeni kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Büyüklükler toplanır mı?",
+      "wrong": "Bileşkenin büyüklüğü, vektörlerin büyüklükleri toplamıdır.",
+      "right": "Bu yalnız **aynı yönde** doğrudur. Genel olarak $|F_1 - F_2| \\leq R \\leq F_1 + F_2$.",
+      "why": "Yol uzunluğu ile yer değiştirme de farklıdır: yer değiştirme bir **vektördür**.",
+      "narration": "Sık yapılan bir hata: vektörlerin büyüklüklerini toplamak. Bu yalnız vektörler aynı yöndeyken doğrudur. Genel olarak bileşke, büyüklüklerin farkı ile toplamı arasındadır. Aynı hata yolda da yapılır: alınan yol skaler, yer değiştirme vektördür."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_VEKTOR_04",
+    "title": "Vektörlerin bileşenlerine ayrılması",
+    "narration": "Birden çok vektörü toplamanın en güvenli yolu, her birini yatay ve düşey bileşenlerine ayırmaktır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bileşenler",
+      "items": [
+       "$F_x = F\\cos\\alpha$, $F_y = F\\sin\\alpha$ ($\\alpha$: yatayla açı).",
+       "Aynı eksendeki bileşenleri işaretleriyle **topla**.",
+       "Kalan iki bileşenden: $R = \\sqrt{R_x^2 + R_y^2}$."
+      ],
+      "visual": {
+       "kind": "vectors",
+       "view": [
+        -1,
+        -1,
+        10,
+        8
+       ],
+       "grid": true,
+       "vectors": [
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          8,
+          6
+         ],
+         "label": "F",
+         "colour": "lesson",
+         "dashed": false
+        },
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          8,
+          0
+         ],
+         "label": "Fx = F·cosα",
+         "colour": "brand",
+         "dashed": true
+        },
+        {
+         "from": [
+          8,
+          0
+         ],
+         "to": [
+          8,
+          6
+         ],
+         "label": "Fy = F·sinα",
+         "colour": "brand",
+         "dashed": true
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "F vektörü yatayla alfa açısı yapıyor.",
+        "show": [
+         "v1"
+        ],
+        "focus": [
+         "v1"
+        ]
+       },
+       {
+        "narration": "Yatay bileşen F kosinüs alfa, düşey bileşen F sinüs alfa.",
+        "show": [
+         "v2",
+         "v3"
+        ],
+        "focus": [
+         "v2",
+         "v3"
+        ]
+       }
+      ],
+      "narration": "Yatayla alfa açısı yapan bir F vektörünün yatay bileşeni F kosinüs alfa, düşey bileşeni F sinüs alfadır. Birden çok vektörü toplarken her eksendeki bileşenleri işaretleriyle toplarsın. Geriye kalan yatay ve düşey iki bileşenden bileşke Pisagor ile bulunur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekildeki birim karelere çizilmiş $\\vec{F_1}$, $\\vec{F_2}$ ve $\\vec{F_3}$ vektörlerinin bileşkesinin büyüklüğü kaç birimdir?",
+       "figure": {
+        "kind": "vectors",
+        "view": [
+         -3,
+         -2,
+         5,
+         5
+        ],
+        "grid": true,
+        "vectors": [
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           3,
+           2
+          ],
+          "label": "F₁",
+          "colour": "lesson",
+          "dashed": false
+         },
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           -1,
+           2
+          ],
+          "label": "F₂",
+          "colour": "lesson",
+          "dashed": false
+         },
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           1,
+           -1
+          ],
+          "label": "F₃",
+          "colour": "lesson",
+          "dashed": false
+         },
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           3,
+           3
+          ],
+          "label": "R",
+          "colour": "brand",
+          "dashed": true
+         }
+        ]
+       },
+       "options": [
+        "$3$",
+        "$2\\sqrt{3}$",
+        "$3\\sqrt{2}$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 2,
+       "narration": "Bileşenleri tablo gibi toplayalım.",
+       "steps": [
+        {
+         "text": "$x$: $3 - 1 + 1 = 3$; $y$: $2 + 2 - 1 = 3$.",
+         "narration": "Yatay bileşenler: üç, eksi bir, bir; toplam üç. Düşey bileşenler: iki, iki, eksi bir; toplam üç."
+        },
+        {
+         "text": "$R = \\sqrt{3^2 + 3^2} = 3\\sqrt{2}$.",
+         "narration": "Bileşke, kök dokuz artı dokuz, üç kök iki. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Bileşenlerle toplama kalıbı; vektörler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Büyüklüğü $10$ N olan bir kuvvet yatayla $37°$ açı yapıyor.\n\nKuvvetin yatay bileşeni kaç N'dir? ($\\sin 37° = 0{,}6$; $\\cos 37° = 0{,}8$)",
+       "options": [
+        "$6$",
+        "$8$",
+        "$10$",
+        "$12$",
+        "$14$"
+       ],
+       "answer": 1,
+       "narration": "Yatay bileşen kosinüsle.",
+       "steps": [
+        {
+         "text": "$F_x = 10 \\cdot \\cos 37° = 10 \\cdot 0{,}8 = 8$ N.",
+         "narration": "Yatay bileşen, on çarpı kosinüs otuz yedi, on çarpı sıfır virgül sekiz: sekiz newton."
+        },
+        {
+         "text": "$F_y = 10 \\cdot 0{,}6 = 6$ N.",
+         "narration": "Düşey bileşen altı newton; altıyı işaretleyen sinüsle kosinüsü karıştırmıştır. Cevap B.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bileşen kalıbı; açı yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_VEKTOR_05",
+    "title": "Birim vektörler",
+    "narration": "x ve y eksenleri yönünde büyüklüğü bir olan vektörler, i ve j, her vektörü kısa yazmamızı sağlar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "i ve j",
+      "items": [
+       "$\\vec{v} = a\\,\\hat{i} + b\\,\\hat{j}$: $a$ yatay, $b$ düşey bileşen.",
+       "Büyüklük $|\\vec{v}| = \\sqrt{a^2 + b^2}$; toplamada bileşenler ayrı ayrı toplanır.",
+       "Birim vektör: $\\frac{\\vec{v}}{|\\vec{v}|}$, büyüklüğü $1$, yönü $\\vec{v}$ ile aynı."
+      ],
+      "visual": {
+       "kind": "vectors",
+       "view": [
+        -1,
+        -1,
+        5,
+        4
+       ],
+       "grid": true,
+       "vectors": [
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          1,
+          0
+         ],
+         "label": "i",
+         "colour": "brand",
+         "dashed": false
+        },
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          0,
+          1
+         ],
+         "label": "j",
+         "colour": "brand",
+         "dashed": false
+        },
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          3,
+          2
+         ],
+         "label": "3i + 2j",
+         "colour": "lesson",
+         "dashed": false
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "i ve j: eksenler yönünde, büyüklüğü bir.",
+        "show": [
+         "v1",
+         "v2"
+        ],
+        "focus": [
+         "v1",
+         "v2"
+        ]
+       },
+       {
+        "narration": "Üç i artı iki j: üç birim sağa, iki birim yukarı.",
+        "show": [
+         "v3"
+        ],
+        "focus": [
+         "v3"
+        ]
+       }
+      ],
+      "narration": "i, x ekseni yönünde, j, y ekseni yönünde büyüklüğü bir olan vektörlerdir. Her vektör a i artı b j biçiminde yazılır; büyüklüğü kök a kare artı b karedir. İki vektör toplanırken i'li ve j'li terimler ayrı ayrı toplanır. Bir vektörü büyüklüğüne bölersen aynı yönde, büyüklüğü bir olan birim vektörü bulursun."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\vec{A} = 3\\hat{i} - 2\\hat{j}$ ve $\\vec{B} = -\\hat{i} + 6\\hat{j}$ vektörleri veriliyor.\n\n$|\\vec{A} + \\vec{B}|$ kaç birimdir?",
+       "options": [
+        "$2$",
+        "$\\sqrt{10}$",
+        "$4$",
+        "$\\sqrt{17}$",
+        "$2\\sqrt{5}$"
+       ],
+       "answer": 4,
+       "narration": "i'leri ve j'leri ayrı topla.",
+       "steps": [
+        {
+         "text": "$\\vec{A} + \\vec{B} = (3 - 1)\\hat{i} + (-2 + 6)\\hat{j} = 2\\hat{i} + 4\\hat{j}$.",
+         "narration": "i'ler: üç eksi bir, iki. j'ler: eksi iki artı altı, dört. Toplam iki i artı dört j."
+        },
+        {
+         "text": "$|\\vec{A} + \\vec{B}| = \\sqrt{4 + 16} = 2\\sqrt{5}$.",
+         "narration": "Büyüklük, kök dört artı on altı, iki kök beş. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "Birim vektörle toplama kalıbı; vektörler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\vec{K} = 3\\hat{i} + \\hat{j}$ ve $\\vec{L} = \\hat{i} - 2\\hat{j}$ vektörleri veriliyor.\n\n$|\\vec{K} - \\vec{L}|$ kaç birimdir?",
+       "options": [
+        "$3$",
+        "$2\\sqrt{3}$",
+        "$\\sqrt{13}$",
+        "$4$",
+        "$5$"
+       ],
+       "answer": 2,
+       "narration": "Çıkarma, ters vektörü eklemektir.",
+       "steps": [
+        {
+         "text": "$\\vec{K} - \\vec{L} = \\vec{K} + (-\\vec{L}) = (3 - 1)\\hat{i} + (1 + 2)\\hat{j} = 2\\hat{i} + 3\\hat{j}$.",
+         "narration": "K eksi L, K artı eksi L demektir. i'ler: üç eksi bir, iki. j'ler: bir eksi eksi iki, üç."
+        },
+        {
+         "text": "$|\\vec{K} - \\vec{L}| = \\sqrt{4 + 9} = \\sqrt{13}$.",
+         "narration": "Büyüklük, kök dört artı dokuz, kök on üç. Fark vektörünün yönü, çıkarılandan çıkanınkine doğrudur. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Fark vektörü kalıbı; vektörler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\vec{v} = 6\\hat{i} + 8\\hat{j}$ vektörü yönündeki birim vektörün $\\hat{i}$ bileşeni kaçtır?",
+       "options": [
+        "$\\frac{1}{5}$",
+        "$\\frac{2}{5}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{3}{5}$",
+        "$\\frac{4}{5}$"
+       ],
+       "answer": 3,
+       "narration": "Vektörü büyüklüğüne bölelim.",
+       "steps": [
+        {
+         "text": "$|\\vec{v}| = \\sqrt{36 + 64} = 10$.",
+         "narration": "v'nin büyüklüğü: kök otuz altı artı altmış dört, on."
+        },
+        {
+         "text": "Birim vektör $\\frac{6}{10}\\hat{i} + \\frac{8}{10}\\hat{j} = \\frac{3}{5}\\hat{i} + \\frac{4}{5}\\hat{j}$.",
+         "narration": "Birim vektör, beşte üç i artı beşte dört j. i bileşeni beşte üç. Cevap D.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Birim vektör kalıbı; vektör yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_VEKTOR_06",
+    "title": "Bağıl vektörler",
+    "narration": "Bir hareketi kimin gözünden gördüğün sonucu değiştirir. Bağıl hız, gözlenenin hızından gözlemcinin hızını çıkararak bulunur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bağıl hız",
+      "items": [
+       "B'ye göre A'nın hızı: $\\vec{v}_{AB} = \\vec{v}_A - \\vec{v}_B$ (gözlenen eksi gözlemci).",
+       "Çıkarma: $-\\vec{v}_B$'yi $\\vec{v}_A$'ya ekle.",
+       "Yağmur ve koşan kişi: kişi yağmuru $\\vec{v}_{yağmur} - \\vec{v}_{kişi}$ ile görür."
+      ],
+      "visual": {
+       "kind": "vectors",
+       "view": [
+        -1,
+        -4,
+        6,
+        4
+       ],
+       "grid": true,
+       "vectors": [
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          4,
+          0
+         ],
+         "label": "vA",
+         "colour": "lesson",
+         "dashed": false
+        },
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          0,
+          3
+         ],
+         "label": "vB",
+         "colour": "brand",
+         "dashed": false
+        },
+        {
+         "from": [
+          0,
+          0
+         ],
+         "to": [
+          4,
+          -3
+         ],
+         "label": "vA − vB",
+         "colour": "ink",
+         "dashed": true
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "A doğuya, B kuzeye gidiyor.",
+        "show": [
+         "v1",
+         "v2"
+        ],
+        "focus": [
+         "v1",
+         "v2"
+        ]
+       },
+       {
+        "narration": "B'ye göre A'nın hızı: v A eksi v B.",
+        "show": [
+         "v3"
+        ],
+        "focus": [
+         "v3"
+        ]
+       }
+      ],
+      "narration": "B'deki gözlemciye göre A'nın hızı, A'nın hızından B'nin hızı çıkarılarak bulunur: gözlenen eksi gözlemci. Vektörleri çıkarmak için gözlemcinin hızını ters çevirip ekleriz. Koşan bir kişi dikey yağan yağmuru, yağmurun hızından kendi hızını çıkararak, yani eğik görür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "A aracı doğuya $20$ m/s, B aracı kuzeye $15$ m/s hızla gidiyor.\n\nB'deki gözlemciye göre A'nın hızının büyüklüğü kaç m/s'dir?",
+       "figure": {
+        "kind": "vectors",
+        "view": [
+         -1,
+         -4,
+         6,
+         4
+        ],
+        "grid": true,
+        "vectors": [
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           4,
+           0
+          ],
+          "label": "vA",
+          "colour": "lesson",
+          "dashed": false
+         },
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           0,
+           3
+          ],
+          "label": "vB",
+          "colour": "brand",
+          "dashed": false
+         },
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           4,
+           -3
+          ],
+          "label": "vA − vB",
+          "colour": "ink",
+          "dashed": true
+         }
+        ]
+       },
+       "options": [
+        "$25$",
+        "$30$",
+        "$35$",
+        "$40$",
+        "$50$"
+       ],
+       "answer": 0,
+       "narration": "Gözlenen eksi gözlemci; iki hız dik.",
+       "steps": [
+        {
+         "text": "$\\vec{v}_{AB} = \\vec{v}_A - \\vec{v}_B$: doğuya $20$, güneye $15$.",
+         "narration": "B'ye göre A'nın hızı: A'nın hızı eksi B'nin hızı. Doğuya yirmi, güneye on beş."
+        },
+        {
+         "text": "$|\\vec{v}_{AB}| = \\sqrt{400 + 225} = 25$ m/s.",
+         "narration": "Büyüklük, kök dört yüz artı iki yüz yirmi beş, yirmi beş metre bölü saniye. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "Dik hızlarda bağıl hız kalıbı; hızlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Rüzgârsız havada yağmur damlaları düşey doğrultuda $6$ m/s hızla düşüyor. Yatay yolda $8$ m/s hızla koşan bir kişi damlaları hangi büyüklükte hızla görür?",
+       "figure": {
+        "kind": "vectors",
+        "view": [
+         -9,
+         -7,
+         3,
+         2
+        ],
+        "grid": true,
+        "vectors": [
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           0,
+           -6
+          ],
+          "label": "v yağmur",
+          "colour": "lesson",
+          "dashed": false
+         },
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           -8,
+           0
+          ],
+          "label": "−v kişi",
+          "colour": "brand",
+          "dashed": false
+         },
+         {
+          "from": [
+           0,
+           0
+          ],
+          "to": [
+           -8,
+           -6
+          ],
+          "label": "görünen",
+          "colour": "ink",
+          "dashed": true
+         }
+        ]
+       },
+       "options": [
+        "$6$",
+        "$8$",
+        "$10$",
+        "$12$",
+        "$14$"
+       ],
+       "answer": 2,
+       "narration": "Yağmurun kişiye göre hızı.",
+       "steps": [
+        {
+         "text": "$\\vec{v} = \\vec{v}_{yağmur} - \\vec{v}_{kişi}$: aşağı $6$, geriye $8$.",
+         "narration": "Kişiye göre yağmurun hızı: yağmurun hızı eksi kişinin hızı. Aşağı altı, kişinin koşusunun tersine sekiz."
+        },
+        {
+         "text": "$|\\vec{v}| = \\sqrt{36 + 64} = 10$ m/s; damlalar önden eğik gelir.",
+         "narration": "Büyüklük on metre bölü saniye. Damlalar ona önden eğik gelir; şemsiyesini öne eğmesi bundan. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Yağmur ve bağıl hız kalıbı; hızlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Kime göre?",
+      "wrong": "A'ya göre B'nin hızı $\\vec{v}_A - \\vec{v}_B$.",
+      "right": "A'ya göre B'nin hızı $\\vec{v}_B - \\vec{v}_A$: **gözlenen eksi gözlemci**.",
+      "why": "Gözlemci kendini duruyor sayar; kendi hızını herkesten çıkarır.",
+      "narration": "Sık yapılan bir hata: çıkarma sırasını karıştırmak. Gözlemci kendini duruyor sayar ve kendi hızını gördüğü her şeyden çıkarır. A'daki birine göre B'nin hızı, B'nin hızı eksi A'nın hızıdır."
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Vektörel: kuvvet, hız, ivme, momentum; skaler: kütle, iş, sürat.",
+    "Eşit vektör: aynı büyüklük, aynı yön.",
+    "$R^2 = F_1^2 + F_2^2 + 2F_1F_2\\cos\\alpha$.",
+    "Bileşenler: $F\\cos\\alpha$ ve $F\\sin\\alpha$.",
+    "$\\vec{v} = a\\hat{i} + b\\hat{j}$, $|\\vec{v}| = \\sqrt{a^2 + b^2}$.",
+    "Bağıl hız: gözlenen eksi gözlemci."
+   ],
+   "warnings": [
+    "Yol skaler, **yer değiştirme vektör**.",
+    "Büyüklükler yalnız **aynı yönde** toplanır.",
+    "Bağıl hızda **sıra**: gözlenen eksi gözlemci."
+   ],
+   "narration": "Özetleyelim. Kütle, iş ve sürat gibi büyüklükler skaler; kuvvet, hız, ivme ve momentum vektöreldir. Eşit vektörler aynı büyüklükte ve aynı yöndedir. İki vektörün bileşkesi kosinüslü formülle ya da bileşenlerle bulunur; büyüklükler yalnız aynı yönde toplanır. Vektörler i ve j ile kısa yazılır. Bağıl hız, gözlenenin hızı eksi gözlemcinin hızıdır."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "Sürat",
+    "question": "Hangisi?",
+    "choices": [
+     "Skaler",
+     "Vektörel"
+    ],
+    "answer": 0,
+    "why": "Hız vektörel, **sürat skaler**."
+   },
+   {
+    "sentence": "Eşit iki vektör, 120°",
+    "question": "Bileşke?",
+    "choices": [
+     "a",
+     "2a"
+    ],
+    "answer": 0,
+    "why": "Yüz yirmide **a**."
+   },
+   {
+    "sentence": "A'ya göre B",
+    "question": "Hız?",
+    "choices": [
+     "vA − vB",
+     "vB − vA"
+    ],
+    "answer": 1,
+    "why": "**Gözlenen** eksi gözlemci."
+   }
+  ],
+  "hook": "Üç vektör tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "R² = F₁² + F₂² + **2F₁F₂cosα**."
+   },
+   {
+    "kind": "warning",
+    "text": "Yol skaler, **yer değiştirme vektör**."
+   },
+   {
+    "kind": "term",
+    "term": "Birim vektör",
+    "definition": "Büyüklüğü **1** olan yön göstergesi."
+   }
+  ],
+  "summary": [
+   "Skaler ve vektörel",
+   "Toplama ve bileşenler",
+   "Bağıl hız"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-fizik-kampi",
+  "name": "AYT Fizik kampı",
+  "number": 1,
+  "total": 21,
+  "next": "Kuvvet, Tork ve Denge",
+  "promise": "Vektörden modern fiziğe AYT Fizik: her konu animasyonlu anlatım ve çözümlü sorularla.",
+  "task": {
+   "items": [
+    "Evden markete gidiş yolunu **çiz**; yol uzunluğu ile yer değiştirmeyi ayrı ayrı bul.",
+    "Eşit iki kuvveti $0°$, $90°$ ve $120°$ açıyla **çizip** bileşkeleri karşılaştır.",
+    "Uygulamada AYT Vektörler testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Evden markete giden yolunu kareli kâğıda çiz; aldığın yol ile yer değiştirmeni ayrı ayrı bul. Sonra eşit iki kuvveti sıfır, doksan ve yüz yirmi derece açıyla çizip bileşkeleri karşılaştır. Ardından uygulamada yirmi soru çöz. Bir sonraki derste kuvvet, tork ve dengede görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Skaler ve vektörel büyüklükleri tam listele. Vektörel: yer değiştirme, hız, ivme, kuvvet, ağırlık, momentum, itme, tork, elektrik ve manyetik alan. Skaler: kütle, zaman, sürat, iş, enerji, güç, sıcaklık, basınç, yük, potansiyel, akım. Ağırlığın vektörel, kütlenin skaler olduğu tuzağını vurgula.",
+   "Bileşkenin sınırlarını örnekle: |F₁ − F₂| ≤ R ≤ F₁ + F₂; 6 N ve 8 N için R 2 N ile 14 N arasındadır, aralarında 90° varsa 10 N olur. Eşit büyüklükte iki kuvvet arasında 120° varsa bileşke her birine eşittir.",
+   "Sık kullanılan açı değerlerini tablo yap: sin 37° = 0,6, cos 37° = 0,8, sin 53° = 0,8, sin 30° = 0,5, cos 60° = 0,5, sin 45° = √2/2; 3-4-5 ve 5-12-13 üçgenleri. Kuvveti bileşenlerine ayırırken açının hangi eksenle ölçüldüğüne dikkat ettir.",
+   "Birim vektörle işlem örneği ekle: A = 2i + 3j, B = −i + j ise A + B = i + 4j, A − B = 3i + 2j, |A − B| = √13. Çıkarmanın ters vektörü eklemek olduğunu, kapalı çokgende bileşkenin sıfır olduğunu göster.",
+   "Nehir problemi ekle: akıntı hızı 3 m/s, yüzücünün suya göre hızı 4 m/s, kıyıya dik yüzüyor, nehir 40 m genişliğinde. Karşıya geçiş 10 s sürer, akıntı yönünde 30 m sürüklenir, yere göre hızı 5 m/s olur. Geçiş süresinin akıntıdan bağımsız olduğunu vurgula."
+  ]
+ }
+}

@@ -6,7 +6,7 @@ import {Icon, type IconName} from '../Illustrations/Icon';
 import {Text} from '../Typography/Text';
 import {useVideoLayout} from './VideoLayout';
 
-export type CalloutTone = 'primary' | 'accent' | 'success' | 'warning' | 'danger';
+type CalloutTone = 'primary' | 'accent' | 'success' | 'warning' | 'danger';
 
 type CalloutProps = {
 	tone?: CalloutTone;

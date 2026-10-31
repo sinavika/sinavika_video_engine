@@ -32,8 +32,84 @@ Alt başlıkların dayanağı:
 - **Dönüşümler:** MEB 12.4.1, kazanım 12.4.1.1 ve 12.4.1.2. Doğrunun doğruya göre simetrisi MEB'de yok, alınmadı.
 - **Dik Üçgende Trigonometrik Oranlar:** MEB 9.4.4.3.
 
+## 30 Ekim 2026: KPSS Temel Ekonomi Bilgisi
+
+Sahibin kararıyla eklendi.
+
+**Gerekçe:**
+- KPSS soru kodlamasında 49 soru kapsam dışı kaldı. Bunların 16'sı ekonomi sorusuydu: para politikası, maliye politikası, dış ticaret dengesi, kur. Hepsi Sınavika bankasından.
+- Listede bunlara uyan konu yoktu. "Güncel Ekonomik ve Sosyal Göstergeler" alt başlığı güncel rakamlar içindir, kavram soruları için değil.
+- ÖSYM de bu alandan sormuş: 2014 KPSS Lisans GY-GK 55. soru ("Ulusların Zenginliği"nin yazarı).
+
+Toplam 9 satır eklendi: üç KPSS kategorisinde Vatandaşlık dersine 1 yeni konu ve konu başına 3 alt başlık. Kimlikler yeni üretildi (uuid4, büyük harf). Aynı satırlar üç dosyaya yazıldı:
+- `Desktop\lesson.csv`
+- `Curriculum/Sources/LessonList.csv`
+- `Desktop\sinavika_parse\data\LessonList.csv`
+
+`npm run curriculum -- import` **çalıştırılmadı**; sahibin onayını bekliyor.
+
+| Kategori | Ders | Konu | Konu kimliği | Alt başlıklar |
+|---|---|---|---|---|
+| KPSS_LISANS | VAT | VAT_EKONOMI · Temel Ekonomi Bilgisi | `149267A6-5F1F-46DF-99AC-81115593F2BB` | VAT_EKONOMI_01 `C39D1998-9A4D-46B8-87FA-C1EA87845A82` Para ve Maliye Politikası<br>VAT_EKONOMI_02 `7AC020D4-29C7-46ED-94AC-89DFF01392A5` Dış Ticaret ve Döviz Kuru<br>VAT_EKONOMI_03 `A3830C40-81B7-45B7-BDF9-10D08600C826` Temel İktisat Kavramları |
+| KPSS_ONLISANS | VAT | VAT_EKONOMI · Temel Ekonomi Bilgisi | `C070C192-9131-4159-B6D2-140FA860A0A1` | VAT_EKONOMI_01 `BAFEBA1B-152C-418C-A1FE-9A46653328DD` Para ve Maliye Politikası<br>VAT_EKONOMI_02 `D44F69C3-5917-4457-94BE-E607030DBDCF` Dış Ticaret ve Döviz Kuru<br>VAT_EKONOMI_03 `0610DC93-71C5-4016-A8E3-A5F52518249D` Temel İktisat Kavramları |
+| KPSS_ORTAOGRETIM | VAT | VAT_EKONOMI · Temel Ekonomi Bilgisi | `12692444-65B1-4DD4-904F-DDC00FF3A24B` | VAT_EKONOMI_01 `D393AF5C-559E-4A5A-8C9A-07EE9ADE140A` Para ve Maliye Politikası<br>VAT_EKONOMI_02 `ECD9EBE3-8808-44C8-B25D-57C236AF48BB` Dış Ticaret ve Döviz Kuru<br>VAT_EKONOMI_03 `877CB9F0-4658-4040-B8BF-4DAE0137D508` Temel İktisat Kavramları |
+
+**Eşlenen sorular:** Toplam 418 soru, hepsi kesin. Kayıt: `EgitimVerileri/Esleme-20261029.md`.
+- **İlk 17 soru:** Lisans 10 (ÖSYM 2014 sorusu dahil), Önlisans 6, Ortaöğretim 1.
+- **Sonraki 401 soru:** KPSS ikinci bakışında bu konuya gitti ve sahibin toplu kararıyla kesinleşti (30 Ekim). Bankada çoğu "Güncel Bilgiler" etiketliydi.
+- **Alt başlıklara dağılım (418):** Para ve Maliye Politikası 303, Dış Ticaret ve Döviz Kuru 103, Temel İktisat Kavramları 12.
+
+## 31 Ekim 2026: AYT'de ÖSYM'nin sorduğu dört alt başlık
+
+Gerekçe: sahibin 29 Ekim kuralı. ÖSYM'nin sorduğu ama listede olmayan konu için satır açılır. Dördünün de MEB AYT konu anlatımında ayrı bir bölümü var. Eksikleri `VeriDuzeltmeleri.md` #90, #92, #142, #145 ve #148 bildirmişti.
+
+Toplam 4 satır eklendi: mevcut konulara birer alt başlık. Kimlikler yeni üretildi (uuid4, büyük harf). Her satır ilgili konunun son alt başlığının altına eklendi. Aynı satırlar üç dosyaya yazıldı:
+- `Desktop\lesson.csv`
+- `Curriculum/Sources/LessonList.csv`
+- `Desktop\sinavika_parse\data\LessonList.csv`
+
+`npm run curriculum -- import` **çalıştırılmadı**; sahibin onayını bekliyor.
+
+| Kategori | Ders | Konu | Yeni alt başlık | ÖSYM ve MEB kaynağı |
+|---|---|---|---|---|
+| YKS_AYT | PSI | PSI_TEMEL · Psikolojinin Temel Süreçleri | PSI_TEMEL_09 `67238BDD-0569-4535-BBE5-8302C149E7EA` Sosyal Biliş ve Sosyal Etki | ÖSYM 2024 içsel yükleme; 2022 kişiliğin sosyal koşullarda algılanışı. MEB 2. ünite, "Sosyal Biliş ve Sosyal Etki Türleri" (s. 56–57) |
+| YKS_AYT | PSI | PSI_OGRENNME · Öğrenme Bellek Düşünme | PSI_OGRENNME_09 `684B5CA0-D062-480A-99D8-B5D2B4B058F7` Öğrenmeyi Etkileyen Faktörler | ÖSYM 2024 öğrenilmiş çaresizlik. MEB 3. ünite, "Öğrenmeyi Etkileyen Faktörler" (s. 63–66) |
+| YKS_AYT | FIZ | FIZ_ATOM_RAD · Atom Fiziğine Giriş ve Radyoaktivite | FIZ_ATOM_RAD_09 `1A83EF6D-6C06-49D4-AC00-6836C6D86DD2` Büyük Patlama, Temel Parçacıklar ve Temel Kuvvetler | ÖSYM 2022 dört temel kuvvet; 2026 Higgs bozonu. MEB "Büyük Patlama ve Evrenin Oluşumu" ve "Atom Altı Parçacıklar" (s. 226–234) |
+| YKS_AYT | KIM | KIM_MODERN_ATOM · Modern Atom Teorisi | KIM_MODERN_ATOM_07 `E7F63CB1-2E29-485C-92F4-E7D76D4991A4` Yükseltgenme Basamakları | ÖSYM kükürdün yükseltgenme basamağı sorusu (MEB derlemesinde "Yükseltgenme Basamakları" başlığıyla). MEB "Yükseltgenme Basamakları" (s. 29–31) |
+
+**Eşlenen sorular ve bölümler** (kayıt: `EgitimVerileri/Esleme-20261029.md`, 31 Ekim bölümü):
+- **ÖSYM soruları:** PSI_TEMEL_09'a 2, PSI_OGRENNME_09'a 1, FIZ_ATOM_RAD_09'a 2, KIM_MODERN_ATOM_07'ye 1.
+- **Kuralla eşlenen kitap soruları:** KIM_MODERN_ATOM_07'ye 60. Kural, soru cümlesi yükseltgenme basamağını soruyorsa uygulandı. Redoks tepkimesi, periyodik özellik ve elektron dizilimi soruları yerinde kaldı.
+- **MEB bölümleri:** 18 bölüm yeni kodlara bağlandı: psikoloji 7, fizik 9, kimya 2.
+
+## 31 Ekim 2026: AYT'den kaldırılan konu, FEL_ILK_CAG (#182)
+
+Gerekçe: `VeriDuzeltmeleri.md` #182, sahip kararı. AYT Felsefe'de "İlk Çağ Felsefesi" (FEL_ILK_CAG) ile "MÖ 6. Yüzyıl – MS 2. Yüzyıl Felsefesi" (FEL_MO6_MS2) aynı dönemi kapsıyor. İkisinin on alt başlığı adıyla birebir aynı.
+
+Toplam 10 satır çıkarıldı. Üç dosya yine aynı (md5 `06ebbf0245ce97c08fb7decd21562db0`, 7.963 satır):
+- `Desktop\lesson.csv`
+- `Curriculum/Sources/LessonList.csv`
+- `Desktop\sinavika_parse\data\LessonList.csv`
+
+`npm run curriculum -- import` **çalıştırılmadı**. Katalog ve üretim listesi eski konuyu gösteriyor.
+
+| Kategori | Ders | Kaldırılan | Yerine geçen |
+|---|---|---|---|
+| YKS_AYT | FEL | FEL_ILK_CAG `1B519213-7718-A7F5-852B-F7EF7871C95C` İlk Çağ Felsefesi | FEL_MO6_MS2 `183C7D38-9D49-9F5A-1086-E30EC1C9FDD5` MÖ 6. Yüzyıl – MS 2. Yüzyıl Felsefesi |
+
+Alt başlıklar numara numara eşlenir: FEL_ILK_CAG_NN → FEL_MO6_MS2_NN, adlar aynı. On kimliğin tamamı `KimlikEslemesi-20261031-182.json` dosyasında.
+
+YKS_TYT'deki FEL_ILK_CAG (`6CCB9C4F-F014-86B2-C33C-D1FB8F68312C`, altı alt başlık) **değişmedi**.
+
 ## Bekleyen işler
 
-1. **Backend ve uygulama:** Bu konu ve alt başlıklar uygulamanın ders tablolarına aynı kimliklerle eklenmeli. Bu bir veritabanı yazımıdır; sahibin onayı gerekir. İş başka ajandadır.
+1. **Backend ve uygulama: yapıldı (31 Ekim, sahibin onayıyla).** `sinavika/docs/sql/17-lesson-list-sync-2026-10-31.sql` canlıda çalıştı.
+   - **Eklenenler:** Bu dosyadaki 27, 30 ve 31 Ekim eklemelerinin hepsi aynı kimliklerle girdi: 10 konu ve 65 alt başlık.
+   - **AYT FEL_ILK_CAG:** Uygulamanın arşiv yoluyla pasifleşti (`IsActive = 0`), silinmedi.
+   - **Taşınanlar:** Öğrenci planlarındaki henüz yapılmamış 287 görev ve 60 soru FEL_MO6_MS2'ye taşındı.
+   - **Pasif konuda kalanlar:** 3 konu testi, 60 kart, 2 kart üretim işi, 2 kopya kazanım.
+   - **Doğrulama:** Canlının etkin ders ağacı bu dosyayla birebir aynı. Betik ikinci kez çalışınca hiçbir şey değiştirmedi.
+   - **Seed:** `LessonCollection.cs` de güncel.
+   - **Yedek:** Değişen satırların önceki hâli sinavika_parse oturumunun scratchpad'inde (`yedek-canli-20261031`).
 2. **Soru havuzu:** `EgitimVerileri`'deki ÖSYM ve kaynak sorular yeni konulara yeniden eşlenmeli (`VeriDuzeltmeleri.md` #10, #11). KPSS Sayısal Mantık soruları şu an büyük olasılıkla Problemler'de duruyor.
 3. **Konu anlatımı:** Yeni konuların anlatım dosyası yok. Senaryo yazılırken kaynak durumu ayrıca raporlanır.

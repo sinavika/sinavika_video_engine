@@ -1,0 +1,749 @@
+{
+ "topic": {
+  "id": "6693DF6A-B2C4-CCCE-B8FD-51728998CF56",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_ESITSIZLIK"
+ },
+ "title": "Basit Eşitsizlikler",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "YKS/AYT/CikmisSorular/MAT.jsonl (ÖSYM 2018 grafikle sistem, 2019 sağlar-sağlamaz, 2020 eşitsizlik zinciri, 2022 çarpım zinciri ve iki kök arası tam sayı kalıpları örnek alındı, sorular yeniden kuruldu)",
+  "YKS/AYT/Sorular/MAT/MAT_ESITSIZLIK.jsonl (yapı ve zorluk için)",
+  "AYT'de bu konunun konu anlatımı yok: kurallar TYT Basit Eşitsizlikler dersinden kısaltıldı; işaret öncülleri yoğun örneklemeyle, öteki cevaplar tam hesapla denetlendi"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Eşitsizlik bir sayı değil, bir aralık verir.",
+   "narration": "ÖSYM 2018'den bu yana AYT'de basit eşitsizliklerden beş soru sordu: bir değerin eşitsizliği sağlayıp sağlamadığı, iki kök arasındaki tam sayılar, işaret zincirleri ve grafikle verilen bir sistem. Hepsinde aynı beceri istendi: aralığın uçlarını doğru okumak. Bu derste kuralları sayı doğrusunda hatırlayıp her kalıbı AYT düzeyinde bir soruyla çözeceğiz."
+  },
+  "objectives": [
+   "Sağlar-sağlamaz bilgisinden parametrenin en geniş aralığını bulmak",
+   "İki kök arasındaki tam sayıları saymak",
+   "Aralıklarla toplama, çıkarma ve kare alma yapmak",
+   "Eşitsizlik zincirinden işaret ve büyüklük okumak",
+   "Eşitsizlik sistemini cebirle ve grafikle çözmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_ESITSIZLIK_01",
+    "subtopics": [
+     "MAT_ESITSIZLIK_03",
+     "MAT_ESITSIZLIK_04"
+    ],
+    "title": "Eşitsizlik ve aralık",
+    "narration": "Eşitsizlik bir sayı değil, bir aralık verir. AYT bu aralığın uçlarını sorar: hangi uç dahil, hangisi değil?",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kısa tekrar: eşitsizlik ve aralık",
+      "items": [
+       "İki tarafa aynı sayı eklenir; **pozitif** sayıyla çarpılır, bölünür.",
+       "**Negatif** sayıyla çarpınca ya da bölünce eşitsizlik **yön değiştirir**.",
+       "$[a, b]$ uçlar dahil, $(a, b)$ uçlar hariç; sayı doğrusunda dolu ve boş nokta.",
+       "\"Sağlar\" bilgisi bir eşitsizlik, \"sağlamaz\" bilgisi **ters** eşitsizlik verir."
+      ],
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        -4,
+        5
+       ],
+       "intervals": [
+        {
+         "from": -2,
+         "to": 3,
+         "closedTo": true,
+         "label": "−2 < x ≤ 3"
+        }
+       ],
+       "points": []
+      },
+      "beats": [
+       {
+        "narration": "Eksi iki küçüktür x, x küçük eşittir üç. Sayı doğrusunda eksi ikiden üçe bir aralık.",
+        "show": [
+         "i1"
+        ],
+        "focus": [
+         "i1"
+        ]
+       },
+       {
+        "narration": "Eksi iki dahil değil, boş nokta. Üç dahil, dolu nokta. Aralık gösterimiyle: eksi ikiden üçe, solda normal, sağda köşeli parantez."
+       }
+      ],
+      "narration": "Eşitsizlikte iki tarafa aynı sayı eklenir, pozitif bir sayıyla çarpılır ya da bölünür. Negatif bir sayıyla çarpar ya da bölersen eşitsizlik yön değiştirir. Köşeli parantez ucun dahil, normal parantez hariç olduğunu gösterir; sayı doğrusunda dolu ve boş noktayla çizilir. Bir değerin eşitsizliği sağlamadığı söyleniyorsa, ters eşitsizliği yazarsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ bir gerçel sayı olmak üzere, $2x - 3 \\geq a$ eşitsizliği ile ilgili aşağıdakiler bilinmektedir.\n\n$x = 1$ bu eşitsizliği **sağlamaz**.\n\n$x = 5$ bu eşitsizliği **sağlar**.\n\nBuna göre, $a$ sayısının alabileceği değerleri ifade eden **en geniş** aralık aşağıdakilerden hangisidir?",
+       "options": [
+        "$[-1, 7)$",
+        "$(-1, 7]$",
+        "$[-1, 7]$",
+        "$(1, 5]$",
+        "$(-1, 5]$"
+       ],
+       "answer": 1,
+       "narration": "ÖSYM 2019'da bu kalıbı sordu. İki bilgi iki eşitsizlik verir; uçlara dikkat.",
+       "steps": [
+        {
+         "text": "$x = 1$ sağlamaz: $2 \\cdot 1 - 3 \\geq a$ **yanlış**, yani $-1 < a$.",
+         "narration": "x bir sağlamıyor: iki eksi üç, eksi bir, a'dan büyük eşit değil. Demek ki eksi bir, a'dan küçük. Sağlamamak, ters eşitsizlik demek; eşitlik de gider."
+        },
+        {
+         "text": "$x = 5$ sağlar: $2 \\cdot 5 - 3 \\geq a$, yani $a \\leq 7$.",
+         "narration": "x beş sağlıyor: on eksi üç, yedi, a'dan büyük eşit. a en çok yedi."
+        },
+        {
+         "text": "$-1 < a \\leq 7$: $(-1, 7]$.",
+         "narration": "İkisi birlikte: a, eksi birden büyük, yediden küçük eşit. Eksi bir hariç, yedi dahil. Cevap B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 sağlar-sağlamaz kalıbı örnek alındı; eşitsizlik ve değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Kökler arası mı?",
+      "prompt": "$(x - 1)(x - 5) < 0$ eşitsizliğinin çözümü nerededir?",
+      "choices": [
+       "Kökler arasında",
+       "Köklerin dışında"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        -1,
+        7
+       ],
+       "intervals": [
+        {
+         "from": 1,
+         "to": 5,
+         "label": "çarpım negatif"
+        }
+       ],
+       "points": [
+        {
+         "x": 1,
+         "label": "kök",
+         "open": true
+        },
+        {
+         "x": 5,
+         "label": "kök",
+         "open": true
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Kökler bir ve beş. x üç olsun: iki çarpı eksi iki, eksi dört; negatif.",
+        "show": [
+         "p1",
+         "p2",
+         "i1"
+        ],
+        "focus": [
+         "i1"
+        ]
+       },
+       {
+        "narration": "x sıfır olsun: eksi bir çarpı eksi beş, beş; pozitif. Dışarıda çarpım pozitif."
+       }
+      ],
+      "explanation": "Kökler arasında çarpanlardan biri pozitif, öteki negatif: çarpım **negatif**. Çözüm $1 < x < 5$.",
+      "narration": "Şimdi sıra sende. x eksi bir çarpı x eksi beş, sıfırdan küçük. Çözüm köklerin arasında mı, dışında mı? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: kökler arasında. Bir ile beş arasında x eksi bir pozitif, x eksi beş negatif; çarpımları negatif. Dışarıda iki çarpan aynı işaretli, çarpım pozitif. Bir sonraki soru bunun üzerine kurulu."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ bir tam sayı olmak üzere\n\n$(x - a)(3x - 10) < 0$\n\neşitsizliğini sağlayan **tam 3** tane $x$ tam sayısı bulunmaktadır.\n\nBuna göre, $a$ sayısının alabileceği değerlerin toplamı kaçtır?",
+       "options": [
+        "$3$",
+        "$4$",
+        "$7$",
+        "$10$",
+        "$11$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM bu kalıbı iki tam sayı ile sordu; biz üç tam sayıyla kuralım. Çözüm iki kökün arası.",
+       "steps": [
+        {
+         "text": "Kökler $a$ ve $\\frac{10}{3} \\approx 3{,}33$; çözüm iki kökün **arası**.",
+         "narration": "Kökler a ve on bölü üç, yaklaşık üç virgül üç. Çarpım negatif: çözüm iki kökün arasında."
+        },
+        {
+         "text": "$a > \\frac{10}{3}$ ise aradaki tam sayılar $4, 5, 6$: $a = 7$.",
+         "narration": "a on bölü üçten büyükse, aradaki tam sayılar dörtten başlar. Tam üç tane olması için dört, beş, altı: a yedi olmalı; yedi hariç, çünkü uç dahil değil."
+        },
+        {
+         "text": "$a < \\frac{10}{3}$ ise aradaki tam sayılar $1, 2, 3$: $a = 0$.",
+         "narration": "a on bölü üçten küçükse, tam sayılar üçten aşağı iner. Üç, iki, bir: a sıfır olmalı."
+        },
+        {
+         "text": "$a \\in \\{0, 7\\}$, toplam $7$.",
+         "narration": "a sıfır ya da yedi; toplam yedi. Yalnız bir tarafı düşünen bir değeri kaçırır. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM iki kök arası tam sayı kalıbı örnek alındı; çarpan, tam sayı adedi ve soru (toplam) yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_ESITSIZLIK_02",
+    "title": "Eşitsizliklerde işlemler",
+    "narration": "İki aralıkla işlem yaparken her işlemin kendi kuralı var. En sık hata: çıkarmayı taraf tarafa yapmak ve kare alırken sıfırı unutmak.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Aralıklarla işlem",
+      "items": [
+       "**Toplama**: aynı yönlü eşitsizlikler taraf tarafa toplanır.",
+       "**Çıkarma** yapılmaz: $-y$'nin aralığını bulup **topla**.",
+       "**Çarpma**: uç çarpımlarının en küçüğü ve en büyüğü.",
+       "**Kare**: aralık sıfırı içeriyorsa en küçük değer **0**."
+      ],
+      "narration": "Aralıklarla işlemde dört kural. Aynı yönlü eşitsizlikler taraf tarafa toplanır. Çıkarma taraf tarafa yapılmaz: önce eksi y'nin aralığını bul, sonra topla. Çarpmada uçların dört çarpımına bak; en küçüğü ve en büyüğü aralığı verir. Kare alırken aralık sıfırı içeriyorsa en küçük değer sıfırdır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Taraf tarafa çıkarma",
+      "wrong": "$-2 < x < 3$, $1 < y < 4$ → $-3 < x - y < -1$",
+      "right": "$-4 < -y < -1$ → $-6 < x - y < 2$",
+      "why": "Çıkarmada küçük uçtan küçük uç çıkarılmaz; $-y$'nin aralığı ters döner, sonra toplanır.",
+      "narration": "Sık yapılan bir hata: eksi iki eksi bir, üç eksi dört diye taraf tarafa çıkarmak. Doğrusu, önce y'yi eksiyle çarpmak: eksi dört küçüktür eksi y küçüktür eksi bir. Sonra toplamak: eksi altı küçüktür x eksi y küçüktür iki."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$-2 < x < 3$ ve $1 < y < 4$ olduğuna göre, $2x - y$ ifadesinin alabileceği **kaç farklı tam sayı** değeri vardır?",
+       "options": [
+        "$8$",
+        "$9$",
+        "$10$",
+        "$11$",
+        "$12$"
+       ],
+       "answer": 4,
+       "narration": "Önce iki x'in, sonra eksi y'nin aralığını bulalım.",
+       "steps": [
+        {
+         "text": "$-4 < 2x < 6$ ve $-4 < -y < -1$",
+         "narration": "x'i ikiyle çarpalım: eksi dört küçüktür iki x küçüktür altı. y'yi eksi birle çarpınca yön döner: eksi dört küçüktür eksi y küçüktür eksi bir."
+        },
+        {
+         "text": "Topla: $-8 < 2x - y < 5$",
+         "narration": "Şimdi taraf tarafa toplayalım: eksi sekiz küçüktür iki x eksi y küçüktür beş."
+        },
+        {
+         "text": "Tam sayılar: $-7, -6, \\dots, 4$: **12** tane.",
+         "narration": "Uçlar dahil değil: eksi yediden dörde kadar tam sayılar. Eksi yediden eksi bire yedi, sıfırdan dörde beş: on iki tane. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "Aralıklarla işlem kalıbı; aralıklar ve ifade yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Karenin aralığı",
+      "prompt": "$-3 < x < 2$ ise $x^2$ hangi aralıktadır?",
+      "choices": [
+       "$(4, 9)$",
+       "$[0, 9)$"
+      ],
+      "answer": 1,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -3.5,
+        2.5
+       ],
+       "y": [
+        -1,
+        10
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^2",
+         "label": "y = x²"
+        }
+       ],
+       "points": [
+        {
+         "x": -3,
+         "y": 9,
+         "label": "9"
+        },
+        {
+         "x": 0,
+         "y": 0,
+         "label": "0"
+        },
+        {
+         "x": 2,
+         "y": 4,
+         "label": "4"
+        }
+       ],
+       "segments": [
+        {
+         "from": [
+          -3,
+          0
+         ],
+         "to": [
+          -3,
+          9
+         ],
+         "dashed": true
+        },
+        {
+         "from": [
+          2,
+          0
+         ],
+         "to": [
+          2,
+          4
+         ],
+         "dashed": true
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Uçlarda x kare dokuz ve dört. Ama aralığın içinde sıfır da var."
+       },
+       {
+        "narration": "x sıfır olunca x kare sıfır: grafiğin en alt noktası. Dokuza hiç ulaşmaz, çünkü eksi üç dahil değil."
+       }
+      ],
+      "explanation": "$x = 0$ aralıkta: $x^2$'nin en küçük değeri **0**, en büyüğe $9$'a yaklaşır ama ulaşmaz: $[0, 9)$.",
+      "narration": "Şimdi sıra sende. Eksi üç küçüktür x küçüktür iki ise x kare hangi aralıkta? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: sıfır dahil, dokuz hariç. Uçları kare alıp dört ile dokuz diyen yanılır, çünkü aralığın içinde sıfır var ve sıfırın karesi sıfır. Bir sonraki soruda bunu kullanacağız."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$-3 \\leq x < 2$ olduğuna göre, $x^2 + 4x$ ifadesinin alabileceği **kaç farklı tam sayı** değeri vardır?",
+       "options": [
+        "$13$",
+        "$14$",
+        "$15$",
+        "$16$",
+        "$17$"
+       ],
+       "answer": 3,
+       "narration": "x iki yerde geçiyor; tek bir x'e indirmek için tam kareye tamamlayalım.",
+       "steps": [
+        {
+         "text": "$x^2 + 4x = (x + 2)^2 - 4$",
+         "narration": "x kare artı dört x, x artı iki parantez kare eksi dört."
+        },
+        {
+         "text": "$-1 \\leq x + 2 < 4$: aralık sıfırı içerir, $0 \\leq (x + 2)^2 < 16$.",
+         "narration": "x artı iki, eksi birden dörde: eksi bir dahil, dört hariç. Aralık sıfırı içeriyor: karesi sıfırdan on altıya, on altı hariç."
+        },
+        {
+         "text": "$-4 \\leq x^2 + 4x < 12$: tam sayılar $-4, \\dots, 11$, **16** tane.",
+         "narration": "Dört çıkaralım: eksi dört dahil, on iki hariç. Eksi dörtten on bire on altı tam sayı. Uçları yerine koyan eksi üç ile on iki arasında arar ve yanılır. Cevap D.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Tam kareye tamamlayıp aralık bulma kalıbı; ifade ve aralık yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$, $b$ ve $c$ gerçel sayıları için\n\n$b < a + b < 0 < c + b$\n\neşitsizliği veriliyor.\n\nBuna göre,\n\nI. $a \\cdot b \\cdot c < 0$\n\nII. $(a - c) \\cdot b > 0$\n\nIII. $b + c < a$\n\nifadelerinden hangileri **her zaman** doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2020'de bu kalıbı sordu. Zincirden önce işaretleri, sonra büyüklükleri okuyalım.",
+       "steps": [
+        {
+         "text": "$b < a + b$: $a > 0$. $a + b < 0$: $b < -a < 0$. $0 < c + b$: $c > -b > a > 0$.",
+         "narration": "b küçüktür a artı b: a pozitif. a artı b negatif: b, eksi a'dan küçük, negatif. c artı b pozitif: c, eksi b'den büyük. Eksi b de a'dan büyük. Sıra: c en büyük, sonra a."
+        },
+        {
+         "text": "I: $a > 0$, $b < 0$, $c > 0$: çarpım **negatif**. Doğru.",
+         "narration": "Birinci öncül: iki pozitif, bir negatif; çarpım negatif. Her zaman doğru."
+        },
+        {
+         "text": "II: $c > a$, $a - c < 0$; $b < 0$: çarpım **pozitif**. Doğru.",
+         "narration": "İkinci öncül: c, a'dan büyük, a eksi c negatif. b de negatif; iki negatifin çarpımı pozitif. Her zaman doğru."
+        },
+        {
+         "text": "III: $a = 1$, $b = -2$, $c = 10$: $b + c = 8 > 1$. Her zaman değil.",
+         "narration": "Üçüncü öncül için bir karşı örnek: a bir, b eksi iki, c on. Koşullar sağlanıyor, ama b artı c sekiz, a'dan büyük. Her zaman doğru değil. Cevap C.",
+         "eliminate": [
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 eşitsizlik zinciri kalıbı örnek alındı; zincir ve öncüller yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x$ ve $y$ gerçel sayılar olmak üzere\n\n$x^2 \\cdot y < x \\cdot y < y$\n\neşitsizliği veriliyor.\n\nBuna göre,\n\nI. $x > 0$\n\nII. $x < 1$\n\nIII. $x \\cdot y < 1$\n\nifadelerinden hangileri **kesinlikle** doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 0,
+       "narration": "ÖSYM 2022'de benzer bir zincir sordu. İki eşitsizliği ayrı ayrı sıfıra göre yazalım.",
+       "steps": [
+        {
+         "text": "$x \\cdot y < y$: $y(x - 1) < 0$. $x^2 y < xy$: $x \\cdot y(x - 1) < 0$.",
+         "narration": "Sağdaki eşitsizlik: y çarpı x eksi bir negatif. Soldaki: x çarpı y çarpı x eksi bir negatif."
+        },
+        {
+         "text": "$y(x - 1)$ negatif, $x \\cdot y(x - 1)$ de negatif: $x > 0$. I doğru.",
+         "narration": "İkinci ifade, birincinin x katı. Negatif bir sayının x katı negatif kalıyorsa x pozitiftir. Birinci öncül doğru."
+        },
+        {
+         "text": "$x = 2$, $y = -1$: koşullar sağlanır, $x < 1$ değil. II yanlış.",
+         "narration": "Bir örnek: x iki, y eksi bir. Dört çarpı eksi bir, eksi dört; iki çarpı eksi bir, eksi iki; sonra eksi bir. Sıralama doğru. Ama x, birden büyük. İkinci öncül kesin değil.",
+         "eliminate": [
+          "B",
+          "C",
+          "E"
+         ]
+        },
+        {
+         "text": "$x = \\frac{1}{2}$, $y = 4$: $xy = 2$. III yanlış.",
+         "narration": "Bir örnek daha: x yarım, y dört. Bir, iki, dört: sıralama doğru, ama x çarpı y iki, birden büyük. Üçüncü öncül de kesin değil. Cevap A.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 çarpım zinciri kalıbı örnek alındı; zincir ve öncüller yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_ESITSIZLIK_05",
+    "title": "Eşitsizlik sistemleri",
+    "narration": "Birden çok eşitsizlik birlikte verilince çözüm, hepsinin ortak kısmıdır. Sayı doğrusunda üst üste çizip kesişime bakarız.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sistemin çözümü",
+      "items": [
+       "Her eşitsizliği **ayrı** çöz, sonra çözümlerin **kesişimini** al.",
+       "$a < f < b$ biçimindeki çift eşitsizlik iki ayrı eşitsizliktir.",
+       "Grafikle verilen sistemde her fonksiyonun **işaretini** aralık aralık oku."
+      ],
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        -1,
+        9
+       ],
+       "intervals": [
+        {
+         "from": null,
+         "to": 6,
+         "label": "x < 6",
+         "row": 2
+        },
+        {
+         "from": 2,
+         "to": null,
+         "label": "x > 2",
+         "row": 1
+        },
+        {
+         "from": 2,
+         "to": 6,
+         "label": "ortak çözüm"
+        }
+       ],
+       "points": []
+      },
+      "beats": [
+       {
+        "narration": "Soldaki eşitsizlik: iki x eksi bir küçüktür x artı beş, x küçüktür altı.",
+        "show": [
+         "i1"
+        ],
+        "focus": [
+         "i1"
+        ]
+       },
+       {
+        "narration": "Sağdaki: x artı beş küçüktür üç x artı bir, dört küçüktür iki x, x büyüktür iki.",
+        "show": [
+         "i2"
+        ],
+        "focus": [
+         "i2"
+        ]
+       },
+       {
+        "narration": "İkisi birlikte: x, iki ile altı arasında. Uçlar dahil değil. Tam sayı çözümler üç, dört ve beş.",
+        "show": [
+         "i3"
+        ],
+        "focus": [
+         "i3"
+        ]
+       }
+      ],
+      "narration": "Bir eşitsizlik sisteminde her eşitsizliği ayrı çözer, sonra kesişimini alırsın. a küçüktür f küçüktür b gibi bir çift eşitsizlik de aslında iki eşitsizliktir. Örnek: iki x eksi bir küçüktür x artı beş, küçüktür üç x artı bir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde $f(x) = x + 1$, $g(x) = 1 - x$ ve $h(x) = x$ fonksiyonlarının grafikleri şekilde verilmiştir.\n\n$x \\in [-2, 2]$ olmak üzere\n\n$f(x) \\cdot g(x) > 0$\n\n$g(x) \\cdot h(x) < 0$\n\neşitsizlik sisteminin çözüm kümesi aşağıdakilerden hangisidir?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         -2.2,
+         2.2
+        ],
+        "y": [
+         -2.4,
+         7
+        ],
+        "xLabel": "x",
+        "yLabel": "y",
+        "curves": [
+         {
+          "expression": "x + 1",
+          "label": "y = f(x)"
+         },
+         {
+          "expression": "1 - x",
+          "label": "y = g(x)"
+         },
+         {
+          "expression": "x",
+          "label": "y = h(x)"
+         }
+        ]
+       },
+       "options": [
+        "$(-2, -1)$",
+        "$(-1, 0)$",
+        "$(0, 1)$",
+        "$(-1, 0) \\cup (1, 2)$",
+        "$(-2, -1) \\cup (0, 1)$"
+       ],
+       "answer": 1,
+       "narration": "ÖSYM 2018'de grafikle bir sistem sordu. Her çarpımın işaretini grafikten okuyalım.",
+       "steps": [
+        {
+         "text": "$f > 0$: $x > -1$. $g > 0$: $x < 1$. $h > 0$: $x > 0$.",
+         "narration": "Grafikten: f, eksi birin sağında pozitif. g, birin solunda pozitif. h, sıfırın sağında pozitif."
+        },
+        {
+         "text": "$f \\cdot g > 0$: ikisi de pozitif, $-1 < x < 1$. (İkisi birden negatif olamaz.)",
+         "narration": "f çarpı g pozitif: ikisi aynı işaretli. İkisi de pozitif eksi bir ile bir arasında. İkisinin birden negatif olduğu yer yok."
+        },
+        {
+         "text": "$g \\cdot h < 0$: $x < 0$ (g pozitif, h negatif) ya da $x > 1$ (g negatif, h pozitif).",
+         "narration": "g çarpı h negatif: farklı işaretli. Sıfırın solunda g pozitif, h negatif. Birin sağında g negatif, h pozitif."
+        },
+        {
+         "text": "Kesişim: $(-1, 1) \\cap \\big((-2, 0) \\cup (1, 2)\\big) = (-1, 0)$",
+         "narration": "İki çözümün kesişimi: eksi bir ile sıfır arası. Cevap B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018 grafikle eşitsizlik sistemi kalıbı örnek alındı; fonksiyonlar ve şıklar yeni kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x$ bir tam sayı olmak üzere\n\n$2x - 1 < x + 5 < 3x + 1$\n\neşitsizlik sistemini sağlayan $x$ değerlerinin toplamı kaçtır?",
+       "options": [
+        "$7$",
+        "$9$",
+        "$10$",
+        "$12$",
+        "$15$"
+       ],
+       "answer": 3,
+       "narration": "Kural kartında çözdüğümüz sistem; şimdi tam sayılarla bitirelim.",
+       "steps": [
+        {
+         "text": "$2x - 1 < x + 5$: $x < 6$. $x + 5 < 3x + 1$: $x > 2$.",
+         "narration": "İlk eşitsizlikten x küçüktür altı, ikinciden x büyüktür iki."
+        },
+        {
+         "text": "$2 < x < 6$: $x \\in \\{3, 4, 5\\}$, toplam $12$.",
+         "narration": "x, iki ile altı arasında bir tam sayı: üç, dört, beş. Toplam on iki. Uçları katan iki ve altıyı da ekler, yirmi bulur. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Çift eşitsizlik kalıbı; ifadeler yeni yazıldı"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Negatifle çarpınca **yön değişir**.",
+    "\"Sağlamaz\" bilgisi **ters** eşitsizlik verir.",
+    "$(x - a)(x - b) < 0$: çözüm **kökler arası**.",
+    "Çıkarmada önce $-y$, sonra **topla**.",
+    "Aralık sıfırı içeriyorsa karenin en küçüğü **0**.",
+    "Sistemde çözüm **kesişim**."
+   ],
+   "warnings": [
+    "Uçları kare almak yetmez: **sıfırı** kontrol et.",
+    "**Kesinlikle** sorusunda bir karşı örnek öncülü eler."
+   ],
+   "narration": "Özetleyelim. Negatif bir sayıyla çarpınca ya da bölünce eşitsizlik yön değiştirir. Bir değer eşitsizliği sağlamıyorsa ters eşitsizliği yazarsın. İki çarpanın çarpımı negatifse çözüm kökler arasındadır. Çıkarmayı taraf tarafa yapma; önce eksi y'nin aralığını bul, sonra topla. Aralık sıfırı içeriyorsa karenin en küçük değeri sıfırdır. Sistemde çözüm, çözümlerin kesişimidir. Ve kesinlikle sorularında tek bir karşı örnek bir öncülü eler."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "$-3 < x < 2$",
+    "question": "$x^2$ en az kaç?",
+    "choices": [
+     "0",
+     "4"
+    ],
+    "answer": 0,
+    "why": "**Sıfır** içeride."
+   },
+   {
+    "sentence": "$-2x > 6$",
+    "question": "Çözüm hangisi?",
+    "choices": [
+     "$x > -3$",
+     "$x < -3$"
+    ],
+    "answer": 1,
+    "why": "Negatife bölünce **yön döner**."
+   },
+   {
+    "sentence": "Sistemin çözümü",
+    "question": "Hangisi?",
+    "choices": [
+     "Birleşim",
+     "Kesişim"
+    ],
+    "answer": 1,
+    "why": "**Ortak** kısım."
+   }
+  ],
+  "hook": "Üç eşitsizlik, üç tuzak.",
+  "cards": [
+   {
+    "kind": "warning",
+    "text": "Negatifle çarpınca **yön değişir**."
+   },
+   {
+    "kind": "fact",
+    "text": "Aralık sıfırı içeriyorsa karenin en küçüğü **0**."
+   },
+   {
+    "kind": "term",
+    "term": "Sistem",
+    "definition": "Çözüm, çözümlerin **kesişimi**."
+   }
+  ],
+  "summary": [
+   "Yön değişir",
+   "Sıfırı unutma",
+   "Kesişimi al"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-matematik-kampi",
+  "name": "AYT Matematik kampı",
+  "number": 6,
+  "total": 33,
+  "previous": "Rasyonel Sayılar",
+  "next": "Mutlak Değer",
+  "promise": "Her konu kısa bir tekrar ve AYT düzeyinde çözümlü sorularla.",
+  "task": {
+   "items": [
+    "$(x - a)(2x - 9) < 0$ eşitsizliğini **tam 2** tam sayı sağlıyorsa $a$ hangi değerleri alır? Bul.",
+    "$-1 < x < 4$ için $x^2 - 2x$ ifadesinin aralığını **tam kareye tamamlayarak** bul.",
+    "Uygulamada AYT Basit Eşitsizlikler testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. x eksi a çarpı iki x eksi dokuz sıfırdan küçük eşitsizliğini tam iki tam sayı sağlıyorsa a hangi değerleri alır, bul. Eksi bir küçüktür x küçüktür dört için x kare eksi iki x'in aralığını tam kareye tamamlayarak bul. Sonra uygulamada AYT Basit Eşitsizlikler testinden yirmi soru çöz. Bir sonraki derste mutlak değerde görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Aralık gösterimini tablo yap: açık, kapalı ve yarı açık aralıklar; sayı doğrusunda dolu ve boş nokta. [−2, 5) aralığında 7 tam sayı olduğunu say.",
+   "İki değişkenli aralık sorusunu örnekle: −3 ≤ x < 2 ve 1 < y ≤ 4 ise −4 ≤ −y < −1, x − y ∈ [−7, 1). x × y için uç çarpımlar karşılaştırılır: [−12, 8).",
+   "Kare alırken sıfırı içeren aralık tuzağını göster: −3 < x < 2 ise 0 ≤ x² < 9; en küçük değer uçlardan değil sıfırdan gelir.",
+   "Değişkenle çarpma tuzağını örnekle: 1/x < 2 eşitsizliğinde her iki taraf x ile çarpılamaz; x < 0 ya da x > 1/2 sonucu işaret incelemesiyle bulunur.",
+   "Aritmetik ve geometrik ortalama eşitsizliğini ekle: pozitif a ve b için (a + b)/2 ≥ √(ab). x > 0 için x + 4/x'in en küçük değeri 4'tür ve x = 2'de elde edilir."
+  ]
+ }
+}

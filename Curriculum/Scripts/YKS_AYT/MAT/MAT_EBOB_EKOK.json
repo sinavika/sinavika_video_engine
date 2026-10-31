@@ -1,0 +1,641 @@
+{
+ "topic": {
+  "id": "28B1F29E-FEF3-27AB-600D-79E03496BABF",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_EBOB_EKOK"
+ },
+ "title": "EBOB – EKOK",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "YKS/AYT/CikmisSorular/MAT.jsonl (ÖSYM 2022 faktöriyelli EKOK: kalıp örnek alındı, soru yeniden kuruldu)",
+  "YKS/AYT/Sorular/MAT/MAT_EBOB_EKOK.jsonl (134 soru; yapı ve zorluk için: bölen sayısı, EBOB-EKOK ilişkisi, paylaştırma, ağaç dikme, kalanlı EKOK)",
+  "AYT'de bu konunun konu anlatımı yok: kurallar TYT EBOB – EKOK dersinden kısaltıldı, her cevap kaba kuvvetle denetlendi"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Ortak çarpanlar EBOB'u, bütün çarpanlar EKOK'u verir.",
+   "narration": "EBOB ve EKOK'un hepsi tek bir yazılıştan çıkar: sayının asal çarpanları. AYT bu konuyu faktöriyelli sayılarla, bölen saymayla ve bir sınır koyduğu problemlerle sorar. ÖSYM 2022'de iki faktöriyelli sayının EKOK'unu sordu. Bu derste kuralları kısaca hatırlayıp her kalıbı AYT düzeyinde bir soruyla çözeceğiz."
+  },
+  "objectives": [
+   "Asal çarpanlardan bölen sayısını ve koşullu bölenleri saymak",
+   "EBOB ve EKOK'u asal çarpanlardan ve faktöriyelli sayılardan bulmak",
+   "EBOB · EKOK = a · b kuralını ve sınırını bilmek",
+   "Sınırlı EBOB problemlerinde doğru böleni seçmek",
+   "Kalanlı ve farklı başlangıçlı EKOK problemlerini çözmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_EBOB_EKOK_01",
+    "subtopics": [
+     "MAT_EBOB_EKOK_02",
+     "MAT_EBOB_EKOK_03"
+    ],
+    "title": "Asal çarpanlar ve bölenler",
+    "narration": "EBOB ve EKOK'un hepsi tek bir yazılıştan çıkar: sayının asal çarpanları. AYT bu yazılışla bölen saydırır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bölen sayısı",
+      "items": [
+       "$n = a^x \\cdot b^y \\cdot c^z$ ($a, b, c$ asal) ise pozitif bölen sayısı $(x + 1)(y + 1)(z + 1)$.",
+       "Tam sayı bölenleri: pozitif bölen sayısının **2 katı**.",
+       "\"Asal olmayan bölen\" sayılırken **1** de sayılır; 1 asal değildir.",
+       "\"$k$'nin katı olan bölen\": $n = k \\cdot m$ ise $m$'nin bölen sayısı kadar."
+      ],
+      "narration": "Bir sayıyı asal çarpanlarıyla a üssü x, b üssü y, c üssü z diye yazdığında, pozitif bölenlerinin sayısı x artı bir, y artı bir, z artı birin çarpımıdır. Çünkü her asalın üssünü sıfırdan en büyüğe kadar seçebilirsin. Tam sayı bölenleri bunun iki katıdır. Asal olmayan bölenleri sayarken biri de say; bir asal değildir. Ve bir k sayısının katı olan bölenleri sayarken sayıyı k çarpı m yaz, m'nin bölenlerini say."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$n = 2^a \\cdot 3^b$ ($a$ ve $b$ pozitif tam sayılar) olmak üzere\n\n$n$ sayısının 12 pozitif böleni,\n\n$6n$ sayısının 20 pozitif böleni vardır.\n\n$n$ sayısı 8'e tam bölündüğüne göre, $n$ kaçtır?",
+       "options": [
+        "$48$",
+        "$72$",
+        "$96$",
+        "$108$",
+        "$144$"
+       ],
+       "answer": 1,
+       "narration": "İki bölen sayısı, iki bilinmeyen. Formülü iki kez yazalım.",
+       "steps": [
+        {
+         "text": "$(a + 1)(b + 1) = 12$; $6n = 2^{a+1} \\cdot 3^{b+1}$: $(a + 2)(b + 2) = 20$.",
+         "narration": "n'nin bölen sayısı a artı bir çarpı b artı bir, on iki. Altı n, iki üssü a artı bir çarpı üç üssü b artı bir; bölen sayısı a artı iki çarpı b artı iki, yirmi."
+        },
+        {
+         "text": "Açıp çıkar: $a + b + 3 = 8$, $a + b = 5$ ve $ab = 6$.",
+         "narration": "İki çarpımı açıp birinden ötekini çıkaralım: a artı b artı üç, sekiz. a artı b beş. Birinci eşitlikten a çarpı b altı."
+        },
+        {
+         "text": "$\\{a, b\\} = \\{2, 3\\}$: $n = 2^2 \\cdot 3^3 = 108$ ya da $n = 2^3 \\cdot 3^2 = 72$.",
+         "narration": "Toplamı beş, çarpımı altı olan iki sayı: iki ve üç. n ya iki kare çarpı üç küp, yüz sekiz; ya da iki küp çarpı üç kare, yetmiş iki."
+        },
+        {
+         "text": "8'e bölünmesi için $a \\geq 3$: $n = 72$.",
+         "narration": "n sekize bölünüyor: ikinin üssü en az üç olmalı. Yüz sekizde iki kare var, elenir. n yetmiş iki. Cevap B.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bölen sayısı denklemi kalıbı; sayılar, ikinci koşul ve seçici koşul yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Biri unutmak",
+      "wrong": "$720$'nin asal olmayan bölenleri sayılırken 1 atlanır.",
+      "right": "1 asal değildir: asal olmayan bölenler arasında **1 de vardır**.",
+      "why": "Asal sayının iki pozitif böleni vardır; 1'in yalnız biri. Bu yüzden 1 ne asaldır ne de sayımdan düşer.",
+      "narration": "Sık yapılan bir hata: asal olmayan bölenleri sayarken biri atlamak. Bir asal sayı değildir, çünkü asal sayının tam iki pozitif böleni vardır, birin ise yalnız bir. Asal olmayanlar sayılırken bir de sayılır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "720 sayısının asal olmayan pozitif bölenlerinden kaç tanesi **4'ün katı değildir**?",
+       "options": [
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$",
+        "$9$"
+       ],
+       "answer": 4,
+       "narration": "İki koşul var: dördün katı olmayan ve asal olmayan. Önce birini sayalım, sonra ötekini çıkaralım.",
+       "steps": [
+        {
+         "text": "$720 = 2^4 \\cdot 3^2 \\cdot 5$",
+         "narration": "Yedi yüz yirmiyi asal çarpanlarına ayıralım: iki üssü dört, üç kare, beş."
+        },
+        {
+         "text": "4'ün katı olmayan: 2'nin üssü 0 ya da 1. Sayı: $2 \\cdot 3 \\cdot 2 = 12$.",
+         "narration": "Bir bölen dördün katı değilse içinde en çok bir tane iki vardır: ikinin üssü sıfır ya da bir, iki seçenek. Üçün üssü için üç, beşin üssü için iki seçenek. On iki bölen."
+        },
+        {
+         "text": "Bunlardan asal olanlar: $2$, $3$, $5$. Kalan: $12 - 3 = 9$.",
+         "narration": "Bu on ikinin içinde asal olanlar iki, üç ve beş. Onları çıkarınca dokuz kalır; bir de bu dokuzun içinde. Cevap E.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Koşullu bölen sayma kalıbı; sayı ve iki koşul yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_EBOB_EKOK_04",
+    "subtopics": [
+     "MAT_EBOB_EKOK_05",
+     "MAT_EBOB_EKOK_06"
+    ],
+    "title": "EBOB, EKOK ve ilişkisi",
+    "narration": "İki sayının ortak asal çarpanları EBOB'u, bütün asal çarpanları EKOK'u verir. İkisinin çarpımı da sayıların çarpımıdır, ama yalnız iki sayı için.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "EBOB ve EKOK",
+      "items": [
+       "**EBOB**: ortak asalların **küçük** üslüleri. **EKOK**: bütün asalların **büyük** üslüleri.",
+       "İki sayı için: $\\text{EBOB}(a, b) \\cdot \\text{EKOK}(a, b) = a \\cdot b$.",
+       "$a = d \\cdot m$, $b = d \\cdot n$ ($d$ = EBOB, $m$ ile $n$ aralarında asal) ise $\\text{EKOK} = d \\cdot m \\cdot n$.",
+       "Faktöriyelli sayılarda önce **ortak faktöriyeli** dışarı al."
+      ],
+      "visual": {
+       "kind": "venn",
+       "sets": [
+        {
+         "label": "72",
+         "items": [
+          "2",
+          "3"
+         ]
+        },
+        {
+         "label": "60",
+         "items": [
+          "5"
+         ]
+        }
+       ],
+       "shared": [
+        "2",
+        "2",
+        "3"
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Yetmiş iki, iki çarpı iki çarpı iki çarpı üç çarpı üç. Altmış, iki çarpı iki çarpı üç çarpı beş."
+       },
+       {
+        "narration": "Ortadaki ortak çarpanlar iki, iki ve üç: çarpımları on iki, EBOB."
+       },
+       {
+        "narration": "Bütün çarpanları birer kez al: ortadakiler ve iki yandakiler. İki çarpı iki çarpı üç, çarpı iki çarpı üç, çarpı beş: üç yüz altmış, EKOK. On iki çarpı üç yüz altmış da yetmiş iki çarpı altmış eder."
+       }
+      ],
+      "narration": "EBOB, iki sayının ortak asal çarpanlarından gelir; her ortak asal küçük üssüyle alınır. EKOK, bütün asal çarpanlardan gelir; her asal büyük üssüyle alınır. İki sayı için EBOB çarpı EKOK, sayıların çarpımıdır. Sayıları d çarpı m ve d çarpı n diye yaz: d EBOB ise m ile n aralarında asaldır ve EKOK, d çarpı m çarpı n olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$A = 9! - 8!$\n\n$B = 8! + 7!$\n\neşitlikleri veriliyor.\n\nBuna göre, $\\text{EKOK}(A, B)$ kaçtır?",
+       "options": [
+        "$8 \\cdot 8!$",
+        "$9 \\cdot 8!$",
+        "$64 \\cdot 7!$",
+        "$8 \\cdot 9!$",
+        "$9!$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2022'de faktöriyelli iki sayının EKOK'unu sordu. Biz başka faktöriyellerle aynı yolu izleyelim.",
+       "steps": [
+        {
+         "text": "$A = 8!(9 - 1) = 8 \\cdot 8! = 64 \\cdot 7!$",
+         "narration": "A'da sekiz faktöriyeli dışarı alalım: sekiz faktöriyel çarpı dokuz eksi bir, sekiz çarpı sekiz faktöriyel. Sekiz faktöriyel, sekiz çarpı yedi faktöriyel olduğu için A, altmış dört çarpı yedi faktöriyel."
+        },
+        {
+         "text": "$B = 7!(8 + 1) = 9 \\cdot 7!$",
+         "narration": "B'de yedi faktöriyeli dışarı alalım: yedi faktöriyel çarpı sekiz artı bir, dokuz çarpı yedi faktöriyel."
+        },
+        {
+         "text": "$\\text{EKOK} = 7! \\cdot \\text{EKOK}(64, 9) = 576 \\cdot 7!$",
+         "narration": "İkisinde de yedi faktöriyel var. Geriye altmış dört ile dokuz kalıyor; aralarında asal, EKOK'ları çarpımları: beş yüz yetmiş altı. EKOK, beş yüz yetmiş altı çarpı yedi faktöriyel."
+        },
+        {
+         "text": "$576 \\cdot 7! = 8 \\cdot 72 \\cdot 7! = 8 \\cdot 9!$",
+         "narration": "Şıklarda bu yok; düzenleyelim. Beş yüz yetmiş altı, sekiz çarpı yetmiş iki; yetmiş iki çarpı yedi faktöriyel de dokuz faktöriyel. Sonuç sekiz çarpı dokuz faktöriyel. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 faktöriyelli EKOK kalıbı örnek alındı; faktöriyeller ve şıklar yeni kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Üç sayıda da geçerli mi?",
+      "prompt": "$\\text{EBOB} \\cdot \\text{EKOK} = $ sayıların çarpımı kuralı **üç sayı** için de geçerli mi?",
+      "choices": [
+       "Evet",
+       "Hayır"
+      ],
+      "answer": 1,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sayılar",
+        "EBOB · EKOK",
+        "Çarpım"
+       ],
+       "rows": [
+        [
+         "$4, 6$",
+         "$2 \\cdot 12 = 24$",
+         "$24$"
+        ],
+        [
+         "$4, 6, 10$",
+         "$2 \\cdot 60 = 120$",
+         "$240$"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "Dört ve altı: EBOB iki, EKOK on iki, çarpımları yirmi dört. Sayıların çarpımı da yirmi dört.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Dört, altı ve on: EBOB iki, EKOK altmış, çarpımları yüz yirmi. Ama sayıların çarpımı iki yüz kırk.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       }
+      ],
+      "explanation": "Kural **yalnız iki sayı** için geçerli: üç sayıda ortak çarpanlar birden çok kez sayılır.",
+      "narration": "Şimdi sıra sende. EBOB çarpı EKOK, sayıların çarpımına eşittir kuralı üç sayı için de geçerli mi? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: hayır. Dört, altı ve onda EBOB çarpı EKOK yüz yirmi, sayıların çarpımı ise iki yüz kırk. Kural yalnız iki sayı için geçerli. AYT bu kuralı üç sayıya uygulatan şıklar koyar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x$ ve $y$ pozitif tam sayılar olmak üzere\n\n$\\text{EKOK}(x, y) = 4 \\cdot \\text{EBOB}(x, y)$\n\n$x + y = 75$\n\nolduğuna göre, $x \\cdot y$ çarpımı kaçtır?",
+       "options": [
+        "$450$",
+        "$600$",
+        "$900$",
+        "$1125$",
+        "$1350$"
+       ],
+       "answer": 2,
+       "narration": "EBOB'u d diye adlandırıp iki sayıyı d ile yazalım.",
+       "steps": [
+        {
+         "text": "$x = d \\cdot m$, $y = d \\cdot n$, $m$ ile $n$ aralarında asal: $\\text{EKOK} = d \\cdot m \\cdot n$.",
+         "narration": "EBOB d olsun: x, d çarpı m; y, d çarpı n; m ile n aralarında asal. EKOK, d çarpı m çarpı n."
+        },
+        {
+         "text": "$d \\cdot m \\cdot n = 4d$: $m \\cdot n = 4$, aralarında asal: $\\{m, n\\} = \\{1, 4\\}$.",
+         "narration": "EKOK, dört d'ye eşit: m çarpı n dört. Çarpımı dört olan aralarında asal iki sayı: bir ve dört. İki ile iki aralarında asal değil."
+        },
+        {
+         "text": "$x + y = d(1 + 4) = 75$: $d = 15$, sayılar $15$ ve $60$.",
+         "narration": "x artı y, d çarpı beş, yetmiş beş: d on beş. Sayılar on beş ve altmış."
+        },
+        {
+         "text": "$x \\cdot y = 15 \\cdot 60 = 900$",
+         "narration": "Çarpımları dokuz yüz. Kısa yol: EBOB çarpı EKOK, on beş çarpı altmış. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "EBOB-EKOK ilişkisi kalıbı; oran ve toplam yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ pozitif tam sayılar olmak üzere\n\n$\\text{EBOB}(a, b) = 12$ ve $\\text{EKOK}(a, b) = 360$\n\nolduğuna göre, $a + b$ toplamı **en az** kaçtır?",
+       "options": [
+        "$132$",
+        "$156$",
+        "$204$",
+        "$372$",
+        "$396$"
+       ],
+       "answer": 0,
+       "narration": "Bu kez birden çok ikili var; en küçük toplamı arıyoruz.",
+       "steps": [
+        {
+         "text": "$a = 12m$, $b = 12n$, $m \\cdot n = \\frac{360}{12} = 30$, $m$ ile $n$ aralarında asal.",
+         "narration": "a on iki m, b on iki n. EKOK on iki çarpı m çarpı n, üç yüz altmış: m çarpı n otuz. m ile n aralarında asal olmalı."
+        },
+        {
+         "text": "İkililer: $(1, 30)$, $(2, 15)$, $(3, 10)$, $(5, 6)$.",
+         "narration": "Çarpımı otuz olan aralarında asal ikililer: bir ve otuz, iki ve on beş, üç ve on, beş ve altı."
+        },
+        {
+         "text": "Toplam $12(m + n)$: en az $m + n = 11$, $12 \\cdot 11 = 132$.",
+         "narration": "a artı b, on iki çarpı m artı n. En küçük m artı n, beş artı altı, on bir. Toplam yüz otuz iki. Öteki ikililer yüz elli altı, iki yüz dört ve üç yüz yetmiş iki verir. Cevap A.",
+         "eliminate": [
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "EBOB-EKOK ile ikili bulma kalıbı; sayılar ve \"en az\" sorusu yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_EBOB_EKOK_07",
+    "title": "EBOB problemleri",
+    "narration": "Bir bütün eşit parçalara ayrılıyorsa EBOB aranır. AYT bunu bir sınırla birleştirir: parça en büyük olmayabilir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "EBOB ne zaman?",
+      "items": [
+       "Bir bütünü **eş ve en büyük** parçalara bölmek: EBOB.",
+       "**En az parça** = toplam ÷ EBOB.",
+       "Parça boyu bir sınırla verilirse EBOB'un **bölenleri** arasından seçilir.",
+       "Kapalı bir çevrede köşeye dikim: ağaç sayısı = çevre ÷ aralık."
+      ],
+      "narration": "Bir bütünü eş ve en büyük parçalara ayırıyorsan EBOB ararsın. En az parça sayısı, toplamın EBOB'a bölümüdür. Ama soru parça boyuna bir sınır koyarsa artık EBOB değil, EBOB'un bölenlerinden sınıra uyan seçilir. Kapalı bir çevreye köşelerden başlayarak dikilen ağaçların sayısı da çevrenin aralığa bölümüdür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Üç bidondaki 84, 132 ve 156 litre zeytinyağı, birbirine karıştırılmadan ve hiç artmadan eş hacimli şişelere doldurulacaktır.\n\nŞişelerin hacmi tam sayı litre olacak ve **5 litreden az olmayacaktır**.\n\nBuna göre, en çok kaç şişe kullanılır?",
+       "options": [
+        "$31$",
+        "$46$",
+        "$62$",
+        "$74$",
+        "$93$"
+       ],
+       "answer": 2,
+       "narration": "Şişe hacmi üç miktarı da bölmeli. Ama en çok şişe istendiği için hacmi küçük seçeceğiz.",
+       "steps": [
+        {
+         "text": "Şişe hacmi $84$, $132$ ve $156$'nın ortak böleni: $\\text{EBOB} = 12$'nin bir böleni.",
+         "narration": "Şişe hacmi üç miktarı da tam bölmeli: ortak bölen. EBOB on iki; hacim on ikinin bir böleni."
+        },
+        {
+         "text": "12'nin bölenleri: $1, 2, 3, 4, 6, 12$. En az 5 litre: $6$ ya da $12$.",
+         "narration": "On ikinin bölenleri bir, iki, üç, dört, altı ve on iki. Beş litreden az olmayacak: altı ya da on iki."
+        },
+        {
+         "text": "En çok şişe için en küçük hacim, $6$: $\\frac{84 + 132 + 156}{6} = \\frac{372}{6} = 62$.",
+         "narration": "En çok şişe için hacmi küçük seçeriz: altı litre. Toplam üç yüz yetmiş iki litre, altıya bölünce altmış iki şişe. On iki litreyle otuz bir, dört litreyle doksan üç bulunur; ama dört litre sınırın altında. Cevap C.",
+         "eliminate": [
+          "A",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "EBOB ile paylaştırma kalıbı; üç miktar ve alt sınır yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kenar uzunlukları 84 m ve 120 m olan dikdörtgen biçimindeki bir bahçenin kenarlarına, **her köşede bir ağaç** olacak biçimde eşit aralıklarla ağaç dikilecektir.\n\nAğaçlar arasındaki uzaklık tam sayı metre ve **en çok 10 m** olacağına göre, en az kaç ağaç dikilir?",
+       "options": [
+        "$34$",
+        "$41$",
+        "$51$",
+        "$68$",
+        "$102$"
+       ],
+       "answer": 3,
+       "narration": "Köşelerde ağaç var: aralık iki kenarı da tam bölmeli. Sonra sınıra bakalım.",
+       "steps": [
+        {
+         "text": "Aralık, $84$ ve $120$'yi böler: $\\text{EBOB}(84, 120) = 12$'nin böleni.",
+         "narration": "Her köşede ağaç olduğu için aralık seksen dördü de yüz yirmiyi de bölmeli: on ikinin bir böleni."
+        },
+        {
+         "text": "En az ağaç için en büyük aralık; ama en çok 10 m: aralık $6$ m.",
+         "narration": "En az ağaç için aralığı büyük seçeriz. On iki olmaz, sınır on metre. On ikinin ondan küçük en büyük böleni altı.",
+         "eliminate": [
+          "A"
+         ]
+        },
+        {
+         "text": "Çevre $2(84 + 120) = 408$; ağaç sayısı $\\frac{408}{6} = 68$.",
+         "narration": "Çevre dört yüz sekiz metre. Kapalı çevrede ağaç sayısı çevre bölü aralık: altmış sekiz. Sınırı unutan otuz dört bulur. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "EBOB ile ağaç dikme kalıbı; ölçüler ve üst sınır yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_EBOB_EKOK_08",
+    "title": "EKOK problemleri",
+    "narration": "Olaylar birlikte tekrar ediyorsa ya da bir sayı birkaç bölenden kalan veriyorsa EKOK aranır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "EKOK ne zaman?",
+      "items": [
+       "Birlikte **tekrar eden** olaylar: EKOK aralıkla tekrar eder.",
+       "Kalanlar eşitse: $n = \\text{EKOK} \\cdot k + r$.",
+       "Bölen − kalan hep aynıysa ($d$): $n = \\text{EKOK} \\cdot k - d$.",
+       "Olaylar farklı anlarda başlıyorsa **ilk ortak anı** bul, sonra EKOK ekle."
+      ],
+      "narration": "Birlikte tekrar eden olaylar EKOK aralıkla buluşur. Bir sayı birkaç bölene bölündüğünde hep aynı kalanı veriyorsa, sayı EKOK'un katı artı o kalandır. Kalanlar farklı ama her bölenle kalanın farkı aynıysa, sayı EKOK'un katı eksi o farktır. Olaylar farklı anlarda başlıyorsa önce ilk ortak anı bul, sonra EKOK'u ekle."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Üç basamaklı bir $n$ doğal sayısı 6, 8 ve 9 ile bölündüğünde sırasıyla 4, 6 ve 7 kalanını veriyor.\n\nBuna göre, $n$'nin alabileceği **en büyük** değerin rakamları toplamı kaçtır?",
+       "options": [
+        "$14$",
+        "$16$",
+        "$18$",
+        "$20$",
+        "$22$"
+       ],
+       "answer": 1,
+       "narration": "Kalanlar farklı. Her bölenle kalanının farkına bakalım.",
+       "steps": [
+        {
+         "text": "$6 - 4 = 8 - 6 = 9 - 7 = 2$: $n + 2$ üç sayıya da bölünür.",
+         "narration": "Altı eksi dört, sekiz eksi altı, dokuz eksi yedi: hep iki. Sayıya iki eklersek üç bölene de tam bölünür."
+        },
+        {
+         "text": "$\\text{EKOK}(6, 8, 9) = 72$: $n = 72k - 2$.",
+         "narration": "Altı, sekiz ve dokuzun EKOK'u yetmiş iki. n, yetmiş ikinin bir katından iki eksik."
+        },
+        {
+         "text": "En büyük üç basamaklı: $72 \\cdot 13 = 936$, $n = 934$. Rakamlar toplamı $16$.",
+         "narration": "Bin'i geçmeyen en büyük kat, yetmiş iki çarpı on üç, dokuz yüz otuz altı. n, dokuz yüz otuz dört; rakamlar toplamı on altı. İki çıkarmayı unutan on sekiz bulur. Cevap B.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Kalanlı EKOK kalıbı; bölenler, kalanlar ve soru yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir gösteride A ışığı 12 saniyede bir, B ışığı 18 saniyede bir yanıyor.\n\nA ışığı ilk kez 4. saniyede, B ışığı ilk kez 10. saniyede yanıyor.\n\nBuna göre, iki ışık **üçüncü kez** birlikte hangi saniyede yanar?",
+       "options": [
+        "$28$",
+        "$64$",
+        "$82$",
+        "$100$",
+        "$136$"
+       ],
+       "answer": 3,
+       "narration": "Işıklar aynı anda başlamıyor. Önce ilk ortak anı bulalım.",
+       "steps": [
+        {
+         "text": "A: $4, 16, 28, 40, \\dots$ B: $10, 28, 46, \\dots$ İlk ortak an: $28$.",
+         "narration": "A'nın yandığı anlar: dört, on altı, yirmi sekiz. B'ninkiler: on, yirmi sekiz. İlk kez birlikte yirmi sekizinci saniyede yanarlar."
+        },
+        {
+         "text": "Sonra $\\text{EKOK}(12, 18) = 36$ saniyede bir birlikte.",
+         "narration": "O andan sonra on iki ile on sekizin EKOK'u, otuz altı saniyede bir birlikte yanarlar."
+        },
+        {
+         "text": "$28$, $64$, $100$: üçüncü kez $100$. saniyede.",
+         "narration": "Yirmi sekiz, altmış dört, yüz. Üçüncü kez yüzüncü saniyede. Cevap D.",
+         "eliminate": [
+          "A",
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "EKOK ile birlikte tekrar kalıbı; farklı başlangıç anları eklendi, sayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Bölen sayısı: üslerin **birer fazlasının** çarpımı.",
+    "EBOB: ortakların **küçük** üssü; EKOK: hepsinin **büyük** üssü.",
+    "$\\text{EBOB} \\cdot \\text{EKOK} = a \\cdot b$ **yalnız iki sayıda**.",
+    "$a = dm$, $b = dn$: $m$, $n$ **aralarında asal**.",
+    "Sınır varsa EBOB'un **bölenlerinden** seç.",
+    "Bölen − kalan sabitse $n = \\text{EKOK} \\cdot k - d$."
+   ],
+   "warnings": [
+    "**1** asal değildir; asal olmayan bölenlerde sayılır.",
+    "Farklı anda başlayan olaylarda önce **ilk ortak an**."
+   ],
+   "narration": "Özetleyelim. Pozitif bölen sayısı, asal çarpanların üslerinin birer fazlasının çarpımıdır. EBOB ortak asalların küçük üssüyle, EKOK bütün asalların büyük üssüyle bulunur. EBOB çarpı EKOK, sayıların çarpımıdır; ama yalnız iki sayı için. Sayıları d çarpı m ve d çarpı n yaz; m ile n aralarında asaldır. Problemde bir sınır varsa EBOB'un bölenleri arasından seç. Bölenle kalanın farkı sabitse sayı, EKOK'un katı eksi o farktır. Ve unutma: bir asal değildir."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "$2^4 \\cdot 3^2$",
+    "question": "Böleni kaç?",
+    "choices": [
+     "8",
+     "15"
+    ],
+    "answer": 1,
+    "why": "**5 · 3**"
+   },
+   {
+    "sentence": "4, 6 ve 10",
+    "question": "Çarpım kuralı geçer mi?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "Yalnız **iki sayıda**."
+   },
+   {
+    "sentence": "12'yi bölen, en az 5",
+    "question": "Hangisi?",
+    "choices": [
+     "5",
+     "6"
+    ],
+    "answer": 1,
+    "why": "5, 12'yi **bölmez**."
+   }
+  ],
+  "hook": "Üç EBOB-EKOK tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Bölen sayısı: üslerin **birer fazlası** çarpılır."
+   },
+   {
+    "kind": "warning",
+    "text": "EBOB · EKOK = çarpım **iki sayıda**."
+   },
+   {
+    "kind": "term",
+    "term": "Aralarında asal",
+    "definition": "Ortak böleni yalnız **1**."
+   }
+  ],
+  "summary": [
+   "Üsler + 1",
+   "İki sayıda kural",
+   "Sınırda bölen seç"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-matematik-kampi",
+  "name": "AYT Matematik kampı",
+  "number": 4,
+  "total": 33,
+  "previous": "Bölme ve Bölünebilme",
+  "next": "Rasyonel Sayılar",
+  "promise": "Her konu kısa bir tekrar ve AYT düzeyinde çözümlü sorularla.",
+  "task": {
+   "items": [
+    "$A = 10! - 9!$ ve $B = 9! + 8!$ için $\\text{EKOK}(A, B)$'yi **kendin** bul.",
+    "Zeytinyağı sorusunu bu kez **3 litreden az olmayan** şişelerle çöz.",
+    "Uygulamada AYT EBOB – EKOK testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. A eşittir on faktöriyel eksi dokuz faktöriyel, B eşittir dokuz faktöriyel artı sekiz faktöriyel için EKOK'u kendin bul. Zeytinyağı sorusunu bu kez üç litreden az olmayan şişelerle çöz. Sonra uygulamada AYT EBOB EKOK testinden yirmi soru çöz. Bir sonraki derste rasyonel sayılarda görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Bölen sayısı ve toplamını örnekle: 360 = 2³ × 3² × 5; pozitif bölen sayısı 4 × 3 × 2 = 24, tam sayı bölen sayısı 48, asal bölen sayısı 3, bölenlerin toplamı (1 + 2 + 4 + 8)(1 + 3 + 9)(1 + 5) = 1170.",
+   "EBOB ve EKOK hesabını örnekle: 84 = 2² × 3 × 7, 120 = 2³ × 3 × 5; EBOB 12, EKOK 840; 12 × 840 = 84 × 120. Üç sayıda bu çarpım eşitliğinin geçerli olmadığını vurgula.",
+   "EBOB problemine örnek ekle: 84 m ve 120 m kenarlı dikdörtgen arsanın çevresine köşelere de gelecek biçimde eşit aralıklarla en az ağaç dikmek için aralık 12 m alınır; çevre 408 m, 34 ağaç gerekir.",
+   "EKOK problemine örnek ekle: 12, 18 ve 30 dakikada bir çalan üç zil birlikte çaldıktan sonra EKOK = 180 dakika, yani 3 saat sonra yeniden birlikte çalar.",
+   "Kalan problemlerini iki türde örnekle: 4, 6 ve 9'a bölündüğünde hep 3 kalanını veren en küçük üç basamaklı sayı 36k + 3 biçiminde, 111. 5'e bölününce 3, 7'ye bölününce 5 kalanını veren sayı için x + 2, 35'in katıdır; en küçük pozitif sayı 33."
+  ]
+ }
+}

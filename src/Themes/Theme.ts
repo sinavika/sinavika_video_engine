@@ -3,7 +3,7 @@ import type {AnimationSpec} from '../Animations/AnimationSpec';
 export type CategoricalColor = {fill: string; on: string};
 
 /** All colours are 6-digit hex so they can be tinted with `withAlpha`. */
-export type ThemeColors = {
+type ThemeColors = {
 	/** Canvas colour and the text drawn directly on it. */
 	background: string;
 	text: string;
@@ -31,7 +31,7 @@ export type ThemeColors = {
 	lesson?: CategoricalColor;
 };
 
-export type ThemeBackground =
+type ThemeBackground =
 	| {kind: 'solid'}
 	| {kind: 'gradient'; stops: string[]; angle: number}
 	| {kind: 'glow'; colors: string[]}
@@ -51,13 +51,13 @@ export type ThemeTypography = {
 	labelTransform: 'uppercase' | 'none';
 };
 
-export type ThemeShape = {
+type ThemeShape = {
 	radius: {sm: number; md: number; lg: number};
 	borderWidth: number;
 	elevation: 'none' | 'soft' | 'hard' | 'glow';
 };
 
-export type ThemeMotion = {
+type ThemeMotion = {
 	/** Multiplier on animation speed. Scene durations are not affected. */
 	speed: number;
 	/** Default entrance used by `Animated` when no animation is given. */

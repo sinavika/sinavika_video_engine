@@ -1,4 +1,4 @@
-import {outroScenes} from '../../../Scenes/BrandOutroScene';
+import {outroScenes} from '../../../Scenes/AppEndScene';
 import {estimateReadingSeconds, resolveSceneSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, totalSeconds, type VoiceClips} from '../../../Scenes/Voiceover';
@@ -96,7 +96,7 @@ export const ConceptExplanation = defineTemplate({
 	description: 'Kalıcı görsel üzerinde adım adım açıklama, ilişkili kavram haritası, örnek kullanım.',
 	contentSchema: ConceptExplanationSchema,
 	sampleContent: CONCEPT_EXPLANATION_SAMPLE,
-	defaultTheme: 'WhiteboardMinimal',
+	defaultTheme: 'SinavikaLight',
 	transition: {preset: 'fade', durationSeconds: 0.45},
 	buildScenes,
 	renderOverlay: (content) => <ConceptChrome content={content} />,

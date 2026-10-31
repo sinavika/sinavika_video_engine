@@ -90,7 +90,7 @@ export const ConceptCard = defineImageTemplate({
 		formula: {latex: 'a^m \\cdot a^n = a^{m+n}', caption: 'Tabanlar aynıysa üsler toplanır'},
 		points: ['Bölmede üsler **çıkarılır**', '$a^0 = 1$, $a \\neq 0$', '$a^{-n} = \\dfrac{1}{a^n}$'],
 	},
-	defaultTheme: 'AcademicLight',
+	defaultTheme: 'SinavikaLight',
 	defaultSize: 'Portrait',
 	outputName: (content) => `${content.subject ?? ''} ${content.title}`,
 	Component: ConceptCardImage,

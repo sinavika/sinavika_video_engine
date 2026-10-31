@@ -37,7 +37,7 @@ export const SOCIAL_CONTENT = {
 	PromoPost: {label: 'Tanıtım gönderisi', theme: 'SinavikaLight', sourceKind: null},
 	PromoStory: {label: 'Tanıtım hikâyesi', theme: 'SinavikaLight', sourceKind: null},
 } as const satisfies Record<string, {label: string; theme: ThemeId; sourceKind: string | null}>;
-export type SocialContentKind = keyof typeof SOCIAL_CONTENT;
+type SocialContentKind = keyof typeof SOCIAL_CONTENT;
 
 /** How each format is produced. Carousels and single images share the portrait feed size. */
 export const SOCIAL_FORMATS = {
@@ -47,7 +47,7 @@ export const SOCIAL_FORMATS = {
 	StoryImage: {label: 'Story', imageSize: 'Story', videoFormat: null},
 	LandscapeImage: {label: 'Yatay görsel', imageSize: 'Landscape', videoFormat: null},
 } as const satisfies Record<string, {label: string; imageSize: ImageSizeName | null; videoFormat: VideoFormatId | null}>;
-export type SocialFormat = keyof typeof SOCIAL_FORMATS;
+type SocialFormat = keyof typeof SOCIAL_FORMATS;
 
 /**
  * What a format is called on each platform: the real post type it is
@@ -63,7 +63,6 @@ export const POST_TYPES = {
 } as const satisfies Record<SocialFormat, Partial<Record<SocialPlatform, string>>>;
 
 export const POST_TYPE_NAMES = ['carousel', 'image', 'images', 'reel', 'story', 'photo', 'video', 'short', 'text'] as const;
-export type PostType = (typeof POST_TYPE_NAMES)[number];
 
 /** A line of the plan: one post, on one or more platforms. */
 export type PlanEntry = {
@@ -122,7 +121,7 @@ export const WEEKLY_PLAN: Record<Weekday, readonly PlanEntry[]> = {
  * story every day. Buffer cannot publish TikTok stories, so stories go to
  * Instagram only. The day-by-day concepts live in src/Campaigns.
  */
-export const PROMO_WEEKLY_PLAN: Record<Weekday, readonly PlanEntry[]> = {
+const PROMO_WEEKLY_PLAN: Record<Weekday, readonly PlanEntry[]> = {
 	mon: [
 		{channel: 'Feed', content: 'PromoReel', format: 'Video', platforms: FEED_VIDEO, brief: 'Tanıtım reels: tek modül ya da tek özellik, kullanıcı kazandıran hook'},
 		{channel: 'Story', content: 'PromoStory', format: 'StoryImage', platforms: STORY, brief: 'Günün reels’ine çağrı'},
@@ -175,5 +174,3 @@ export const PLAN_TIMING = {
 	/** A story supports the day's feed post, so it goes out this many minutes before it. */
 	storyLeadMinutes: 180,
 } as const satisfies {platformPriority: readonly SocialPlatform[]; fallbackTime: Record<PlanEntry['channel'], string>; storyLeadMinutes: number};
-
-export const BRAND_HASHTAG = '#sinavika';

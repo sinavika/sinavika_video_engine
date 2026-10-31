@@ -21,7 +21,7 @@ export const LESSON_GROUPS = {
 	ForeignLanguage: {label: 'Yabancı dil', light: '#0E7490', dark: '#67E8F9', lessons: ['Yabancı Dil', 'İngilizce', 'Almanca', 'Fransızca']},
 } as const satisfies Record<string, {label: string; light: string; dark: string; lessons: readonly string[]}>;
 
-export type LessonGroup = keyof typeof LESSON_GROUPS;
+type LessonGroup = keyof typeof LESSON_GROUPS;
 
 const normalise = (text: string): string => text.trim().toLocaleLowerCase('tr-TR');
 
@@ -79,7 +79,7 @@ export const COURSE_LESSON_COLORS = {
 	RUS: '#2B5A7A',
 } as const satisfies Record<string, string>;
 
-export type CourseLessonCode = keyof typeof COURSE_LESSON_COLORS;
+type CourseLessonCode = keyof typeof COURSE_LESSON_COLORS;
 
 /** The colour of a lesson in the education videos, or undefined when the lesson has none and keeps the brand accent. */
 export const courseLessonColor = (code: string | undefined): string | undefined =>

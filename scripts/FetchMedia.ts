@@ -25,10 +25,29 @@ if (!values.commons || !values.to) {
 	process.exit(2);
 }
 
+/**
+ * Commons answers "too many requests" (HTTP 429, or a plain-text page) after about ten files in a row (31 Oct 2026):
+ * wait as long as it asks, three times at most, and never save an answer that is not what was asked for.
+ */
+const fetchCommons = async (url: URL | string, expected: RegExp): Promise<Response> => {
+	for (let attempt = 1; ; attempt++) {
+		const response = await fetch(url, {headers: {'User-Agent': 'SinavikaVideoEngine/1.0 (media credits)'}});
+		const type = response.headers.get('content-type') ?? '';
+		if (response.ok && expected.test(type)) return response;
+		if (attempt >= 3 || response.status === 404) {
+			console.error(`Commons beklenen yanıtı vermedi (${response.status}, ${type || 'türsüz'}): ${String(url).slice(0, 120)}`);
+			process.exit(1);
+		}
+		const wait = Number(response.headers.get('retry-after')) || 20 * attempt;
+		console.error(`Commons istek sınırı: ${wait} sn bekleniyor…`);
+		await new Promise((resolve) => setTimeout(resolve, wait * 1000));
+	}
+};
+
 const title = values.commons.startsWith('File:') ? values.commons : `File:${values.commons}`;
 const api = new URL('https://commons.wikimedia.org/w/api.php');
 api.search = new URLSearchParams({action: 'query', titles: title, prop: 'imageinfo', iiprop: 'url|extmetadata', iiurlwidth: String(MAX_WIDTH), format: 'json', origin: '*'}).toString();
-const response = await fetch(api, {headers: {'User-Agent': 'SinavikaVideoEngine/1.0 (media credits)'}});
+const response = await fetchCommons(api, /json/);
 const data = (await response.json()) as {query?: {pages?: Record<string, {imageinfo?: {thumburl?: string; url: string; descriptionurl: string; extmetadata?: Record<string, {value?: string}>}[]}>}};
 const info = Object.values(data.query?.pages ?? {})[0]?.imageinfo?.[0];
 if (!info) {
@@ -46,7 +65,7 @@ if (!license) {
 
 const file = path.join(LIBRARY, values.to);
 await mkdir(path.dirname(file), {recursive: true});
-await writeFile(file, Buffer.from(await (await fetch(info.thumburl ?? info.url, {headers: {'User-Agent': 'SinavikaVideoEngine/1.0'}})).arrayBuffer()));
+await writeFile(file, Buffer.from(await (await fetchCommons(info.thumburl ?? info.url, /^(image|video|audio)\//)).arrayBuffer()));
 
 const entry: MediaEntry = {
 	file: `${MEDIA_DIRECTORY}/${values.to.split(path.sep).join('/')}`,

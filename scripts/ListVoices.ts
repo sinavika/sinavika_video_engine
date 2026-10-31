@@ -7,7 +7,7 @@
  *
  *   npm run voices -- --audition "Dikkat! Bu soru sınavda çıkabilir."
  *       Speaks the sentence with every usable voice of the catalogue and saves
- *       the clips to out/Auditions/. Costs sentence length x number of voices.
+ *       the clips to Outputs/Auditions/. Costs sentence length x number of voices.
  *
  *   npm run voices -- --audition "..." --brand
  *       Auditions only the usable brand voices (native Turkish speakers).
@@ -27,7 +27,7 @@ import {
 	type VoiceKey,
 	type VoiceModelKey,
 } from '../src/Configurations/Voices';
-import {ELEVENLABS_SPEECH} from '../src/Services/ElevenLabsSpeech';
+import {ELEVENLABS_SPEECH, SPEECH_AUDIO, SPEECH_CONCURRENCY} from '../src/Services/ElevenLabsSpeech';
 import {VoiceCastingError, castVoice} from '../src/Services/VoiceCasting';
 
 const {values} = parseArgs({
@@ -35,7 +35,7 @@ const {values} = parseArgs({
 		audition: {type: 'string'},
 		brand: {type: 'boolean', default: false},
 		model: {type: 'string'},
-		out: {type: 'string', default: 'out/Auditions'},
+		out: {type: 'string', default: 'Outputs/Auditions'},
 	},
 });
 
@@ -50,7 +50,7 @@ const describe = (voice: VoiceKey) => {
 const library = (voice: VoiceKey) => `https://elevenlabs.io/app/voice-library?voiceId=${VOICES[voice].elevenLabsId}`;
 
 if (!values.audition) {
-	console.log(`ElevenLabs hesabı: bu dönem ${remaining ?? '?'} karakter kaldı.  ✓ kullanılabilir   · kullanılamıyor\n`);
+	console.log(`ElevenLabs hesabı: bu dönem ${remaining ?? '?'} karakter kaldı · ses ${SPEECH_AUDIO.outputFormat} · aynı anda ${SPEECH_CONCURRENCY} istek.  ✓ kullanılabilir   · kullanılamıyor\n`);
 	console.log('Marka sesi (ana dili Türkçe; listedeki ilk kullanılabilir ses her şeyi seslendirir):');
 	BRAND_VOICES.forEach((voice) => console.log(`  ${describe(voice)}`));
 	console.log('');
@@ -97,7 +97,7 @@ await mkdir(values.out, {recursive: true});
 console.log(`${candidates.length} ses, toplam ${cost} karakter:`);
 for (const voice of candidates) {
 	const cast = castVoice({profile: 'Promoter', voice, model}, available);
-	const file = path.join(values.out, `${voice}-${cast.modelId}.mp3`);
+	const file = path.join(values.out, `${voice}-${cast.modelId}.${SPEECH_AUDIO.extension}`);
 	await writeFile(file, (await ELEVENLABS_SPEECH.narrate(values.audition, cast)).audio);
 	console.log(`  ${file}`);
 }

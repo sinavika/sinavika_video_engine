@@ -4,9 +4,9 @@ Video: `Outputs/Videos/YKS/TYT/Turkce/02_Soz_Yorumu/Soz_Yorumu_YouTube.mp4` (4K,
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 
-- A: Söz Yorumu Konu Anlatımı | TYT Türkçe Kampı Ders 2
-- B: Altı Çizili Sözle Anlatılmak İstenen Ne? Söz Yorumu | TYT Türkçe Ders 2
-- C: Söz Yorumu: Mecazlı Söz, Özdeyiş ve Sözün İletisi | TYT Türkçe Kampı Ders 2
+- A: YKS TYT Türkçe | Söz Yorumu Konu Anlatımı | Kamp Ders 2
+- B: YKS TYT Türkçe | Altı Çizili Sözle Anlatılmak İstenen Ne? Söz Yorumu | Ders 2
+- C: YKS TYT Türkçe | Söz Yorumu: Mecazlı Söz, Özdeyiş ve Sözün İletisi | Ders 2
 
 ## Açıklama
 
@@ -27,7 +27,7 @@ Bu konu bazı kaynaklarda "söz öbeklerinde anlam" ya da "söz grubunun anlamı
 2. Sevdiğin bir özdeyiş bul; ondan çıkarılabilecek ve çıkarılamayacak birer yargı yaz.
 3. Sınavika'da Söz Yorumu testinden 20 soru çöz; yanlışlarını bu dersin adımlarıyla yeniden çöz.
 
-⏮️ Önceki ders, Sözcükte Anlam: https://youtu.be/m2VY8Az6T2g
+⏮️ Önceki ders, Sözcükte Anlam: https://youtu.be/HpLwEZENciY
 ⏭️ Sıradaki ders: Deyim ve Atasözü. Kanala abone ol, hiçbir dersi kaçırma! 🔔
 🗺️ Kampı baştan izle, Bölüm 0: https://youtu.be/-YSeFFxDOhM
 
@@ -61,3 +61,11 @@ TYT Türkçe Kampı | Sınavika · YKS Kampı | Sınavika
 ## Ayarlar
 
 Kategori Eğitim · dil Türkçe · çocuklara özel değil · ücretli tanıtım yok · yapay zekâ beyanı önceki derslerle aynı · yayın saati sahibin kararı (öneri: 28 Ekim 19:00).
+
+## Yükleme (27 Ekim 2026 gecesi)
+
+Yüklendi ve planlandı: https://youtu.be/Wozt0vLRi1c · herkese açık 28 Ekim 2026 19:00 (GMT+3). Başlık A/B testi (A, B, C), kapak, iki oynatma listesi, etiketler, dil Türkçe, yapay zekâ beyanı "Hayır", bitiş ekranı (abone ol + en son yükleme) girildi.
+
+## Başlık güncellemesi (27 Ekim 2026 gecesi)
+
+Sahibin kararıyla başlıklar "YKS TYT Türkçe |" önekine geçti; Studio'da A/B testi bu üç başlıkla yeniden kuruldu.

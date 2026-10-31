@@ -7,7 +7,7 @@ import type {AppIconName} from './AppScreenParts';
  * plain screen without a tab bar.
  */
 /** `label` is the tr-TR catalogue's, `en` the en-US one's. */
-export type AppTab = {label: string; en: string; icon: AppIconName};
+type AppTab = {label: string; en: string; icon: AppIconName};
 
 const MODULES_TAB: AppTab = {label: 'Modüller', en: 'Modules', icon: 'apps'};
 const PROFILE_TAB: AppTab = {label: 'Profil', en: 'Profile', icon: 'person'};

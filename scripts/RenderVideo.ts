@@ -14,11 +14,12 @@
  * which is what a parent process such as the .NET backend should read.
  * Exit codes: 0 success, 2 invalid job, 1 render failure.
  */
-import {readFile, writeFile} from 'node:fs/promises';
+import {writeFile} from 'node:fs/promises';
 import path from 'node:path';
-import {formatChapters} from '../src/Scenes/SceneChapters';
+import {formatChapters} from '../src/Scenes/SceneChapter';
 import {parseArgs} from 'node:util';
 import {VideoJobValidationError} from '../src/Renderers/VideoJob';
+import {readVideoJob} from '../src/Renderers/VideoJobFile';
 import {renderFrame, renderVideo, renderVideoToOutputs, type RenderProgress} from '../src/Renderers/VideoRenderer';
 
 const {values} = parseArgs({
@@ -59,7 +60,7 @@ const main = async (): Promise<number> => {
 	}
 
 	try {
-		const job: unknown = JSON.parse(await readFile(values.job, 'utf8'));
+		const job = readVideoJob(values.job);
 		const options = {
 			onProgress: reportProgress(),
 			concurrency: values.concurrency ? Number(values.concurrency) : undefined,

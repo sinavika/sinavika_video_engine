@@ -1,0 +1,895 @@
+{
+ "topic": {
+  "id": "F4E83AD3-3CF1-EA3C-3B0B-B68D194705B7",
+  "category": "YKS_AYT",
+  "lesson": "KIM",
+  "code": "KIM_ELEKTRIK"
+ },
+ "title": "Kimya ve Elektrik",
+ "lessonName": "Kimya",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/KIM/KIM_ELEKTRIK.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Limondan pil olur mu?",
+   "narration": "Bir limona bir çinko ve bir bakır parçası saplarsan küçük bir LED'i yakacak kadar elektrik elde edebilirsin; limon sadece bir köprüdür, işi metaller yapar. Bu derste redoks tepkimelerini, elektrokimyasal hücreleri, galvanik pilleri, standart potansiyelleri, Nernst eşitliğini, elektrolizi, Faraday yasalarını ve korozyonu, on beş ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Redoks tepkimesinde yükseltgen ve indirgeni bulmak",
+   "Galvanik hücrede anot, katot, elektron ve iyon akışını yorumlamak",
+   "Standart hücre potansiyelini ve Nernst düzeltmesini hesaplamak",
+   "Elektrolizde ürünleri ve Faraday hesabını yapmak",
+   "Korozyonu ve kurban anodu açıklamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "KIM_ELEKTRIK_01",
+    "subtopics": [],
+    "title": "Yükseltgenme ve indirgenme",
+    "narration": "Pil, akü, paslanma, kaplama: hepsinin arkasında elektron alışverişi vardır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Redoks tepkimeleri",
+      "items": [
+       "Elektron **veren** yükseltgenir (basamağı artar), elektron **alan** indirgenir (basamağı azalır).",
+       "Yükseltgenen tür **indirgendir**; indirgenen tür **yükseltgendir**.",
+       "İndirgenme potansiyeli **büyük** olan iyon, küçük olanın metalinden elektron alır: aktif metal az aktifin iyonunu indirger."
+      ],
+      "beats": [],
+      "narration": "Elektron veren tür yükseltgenir ve yükseltgenme basamağı artar; elektron alan tür indirgenir ve basamağı azalır. Dikkat: yükseltgenen tür başkasını indirgediği için ona indirgen, indirgenen türe ise yükseltgen deriz. Standart indirgenme potansiyeli büyük olan iyon, potansiyeli küçük olanın metalinden elektron alır; yani aktif bir metal, daha az aktif bir metalin iyonunu indirger."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$3$Cu(k) + $8$HNO$_3$(suda) → $3$Cu(NO$_3$)$_2$(suda) + $2$NO(g) + $4$H$_2$O(s)\n\ntepkimesiyle ilgili;\nI. Cu yükseltgenmiştir.\nII. HNO$_3$ indirgendir.\nIII. NO'da N'nin yükseltgenme basamağı $+2$'dir.\n\nifadelerinden hangileri doğrudur?",
+       "context": "ÖSYM 2026'da sorulan bakır ile derişik asit redoksu yapısının nitrik asitle kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Cu: $0$ → $+2$: elektron verdi, **yükseltgendi** (I). NO'da N: $x - 2 = 0$ → **+2** (III).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bakır sıfırdan artı ikiye çıktı; elektron verdi, yükseltgendi. Azot monoksitte azot artı iki."
+        },
+        {
+         "text": "HNO$_3$'teki N $+5$'ten $+2$'ye indi: HNO$_3$ **indirgendi**, yani **yükseltgendir** (II yanlış).",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Nitrik asitteki azot artı beşten artı ikiye indi; nitrik asit indirgendi. İndirgenen tür yükseltgendir, indirgen değil. Cevap D."
+        }
+       ],
+       "narration": "Kim elektron verdi, kim aldı?",
+       "origin": {
+        "changes": "ÖSYM 2026 modeli: sülfürik asit yerine nitrik asit"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$25$ °C'de 1 M AgNO$_3$, 1 M Zn(NO$_3$)$_2$ ve 1 M Cu(NO$_3$)$_2$ çözeltilerinin her birine Ni metali atılıyor.\n(E° indirgenme: Ag$^+$/Ag $+0{,}80$ V; Cu$^{2+}$/Cu $+0{,}34$ V; Ni$^{2+}$/Ni $-0{,}25$ V; Zn$^{2+}$/Zn $-0{,}76$ V)\n\nBuna göre;\nI. AgNO$_3$ çözeltisinde Ag$^+$ indirgenir, Ni yükseltgenir.\nII. Zn(NO$_3$)$_2$ çözeltisinde tepkime olmaz.\nIII. Cu(NO$_3$)$_2$ çözeltisinde Cu$^{2+}$ indirgenir.\n\nifadelerinden hangileri doğrudur?",
+       "context": "ÖSYM'de yılı kayıtsız üç çözeltiye metal atma yapısının başka bir metal ve çözeltilerle kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Ag$^+$ ($+0{,}80$) ve Cu$^{2+}$ ($+0{,}34$) Ni$^{2+}$'den ($-0{,}25$) **büyük**: Ni onları indirger (I, III).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Gümüş ve bakır iyonlarının indirgenme potansiyeli nikelinkinden büyük; nikel metali onlara elektron verir, kendisi yükseltgenir."
+        },
+        {
+         "text": "Zn$^{2+}$ ($-0{,}76$) **küçük**: Ni onu indirgeyemez, tepkime yok (II).",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çinko iyonunun potansiyeli nikelinkinden küçük; nikel onu indirgeyemez, tepkime olmaz. Üçü de doğru. Cevap E."
+        }
+       ],
+       "narration": "Potansiyeli büyük iyon indirgenir.",
+       "origin": {
+        "changes": "ÖSYM modeli (yılı kayıtsız): bakır yerine nikel"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KIM_ELEKTRIK_02",
+    "subtopics": [],
+    "title": "Elektrokimyasal hücreler",
+    "narration": "Bir redoks tepkimesini ikiye bölüp elektronları bir telden geçirirsen, kimyasal enerjiden elektrik elde edersin.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Elektrokimyasal hücre",
+      "items": [
+       "**Anot**: yükseltgenmenin olduğu elektrot, kütlesi **azalır**; **katot**: indirgenme, kütlesi **artar**.",
+       "Elektronlar dış devrede **anottan katoda** akar.",
+       "Tuz köprüsünde **anyonlar anoda**, katyonlar katoda geçer: yük dengesi korunur."
+      ],
+      "visual": {
+       "kind": "electrochemicalCell",
+       "mode": "galvanic",
+       "anode": {
+        "label": "Zn",
+        "solution": "Zn²⁺ (1 M)"
+       },
+       "cathode": {
+        "label": "Cu",
+        "solution": "Cu²⁺ (1 M)"
+       },
+       "voltage": "1,10 V",
+       "bridge": "KNO₃",
+       "anodeDissolves": true,
+       "cathodeGrows": true,
+       "anodeGas": false,
+       "cathodeGas": false,
+       "motion": true
+      },
+      "beats": [
+       {
+        "narration": "Çinko anot, bakır katot; arada tuz köprüsü ve voltmetre.",
+        "show": [],
+        "focus": [
+         "anode",
+         "cathode"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Elektronlar telden çinkodan bakıra akıyor.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "electrons",
+         "wire"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Tuz köprüsünde anyonlar anoda, katyonlar katoda gidiyor; çinko inceliyor, bakır kalınlaşıyor.",
+        "show": [],
+        "focus": [
+         "ions",
+         "bridge"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bir elektrokimyasal hücrede yükseltgenmenin olduğu elektrota anot, indirgenmenin olduğuna katot deriz. Galvanik hücrede anot metali çözünür ve kütlesi azalır; katotta metal iyonları indirgenip birikir, kütlesi artar. Elektronlar dış devrede anottan katoda akar. Tuz köprüsünde anyonlar anoda, katyonlar katoda geçerek iki yarı hücrenin yük dengesini korur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Net tepkimesi $2$Ag$^+$(suda) + Zn(k) → $2$Ag(k) + Zn$^{2+}$(suda) olan galvanik hücrede A yarı hücresinde Zn, B yarı hücresinde Ag elektrot vardır; tuz köprüsü KNO$_3$ içerir.\n\nBu hücreyle ilgili aşağıdakilerden hangisi **yanlıştır**?",
+       "context": "ÖSYM 2018'de sorulan galvanik hücrenin yanlış ifadesi yapısının başka bir metal ve ifadeyle kurulmuş hâli.",
+       "options": [
+        "B yarı hücresinde Ag$^+$ iyonları içeren çözelti vardır.",
+        "Tuz köprüsündeki NO$_3^-$ iyonları A yarı hücresine geçer.",
+        "Ag elektrodun kütlesi zamanla azalır.",
+        "B yarı hücresinde indirgenme olur.",
+        "Elektronlar dış devreye Zn elektrottan verilir."
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Zn yükseltgenir: **anot** (A); Ag$^+$ indirgenir: **katot** (B). NO$_3^-$ anoda gider; elektronlar Zn'den çıkar.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çinko elektron veriyor: A anot. Gümüş iyonu elektron alıyor: B katot; B'de gümüş iyonlu çözelti var ve indirgenme orada. Nitrat iyonları anoda, A'ya gider; elektronlar dış devreye çinkodan verilir."
+        },
+        {
+         "text": "Katotta Ag **birikir**: kütlesi **artar** (C yanlış).",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Katotta gümüş iyonları gümüş metaline dönüşüp birikir; gümüş elektrodun kütlesi artar, azalmaz. Yanlış olan C."
+        }
+       ],
+       "narration": "Zn anot, Ag katot.",
+       "origin": {
+        "changes": "ÖSYM 2018 modeli: magnezyum yerine çinko, yanlış ifade değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "İstemli bir hücrenin şematik gösterimi\nNi(k) | NiSO$_4$(suda) || CuSO$_4$(suda) | Cu(k)\nbiçimindedir.\n\nHücre çalışırken aşağıdakilerden hangisi doğrudur?",
+       "context": "ÖSYM 2021'de sorulan şematik gösterimli hücre yapısının başka metallerle kurulmuş hâli.",
+       "options": [
+        "Ni/NiSO$_4$ yarı hücresine tuz köprüsünden anyon gelir.",
+        "Cu elektrodun kütlesi zamanla azalır.",
+        "Ni$^{2+}$ derişimi zamanla azalır.",
+        "Cu/CuSO$_4$ yarı hücresi anottur.",
+        "Hücre potansiyeli sıfırdan küçüktür."
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Sol: **anot** (Ni yükseltgenir, Ni$^{2+}$ **artar**); sağ: katot (Cu birikir, kütlesi **artar**).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Şematik gösterimde sol taraf anottur: nikel yükseltgenir, nikel iyonu derişimi artar. Sağ taraf katot: bakır birikir, kütlesi artar."
+        },
+        {
+         "text": "Anotta artan pozitif yükü dengelemek için anyonlar **anoda** gelir; istemli hücrede $E > 0$.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Anotta artan pozitif iyonları dengelemek için tuz köprüsünden anyonlar anoda gelir. İstemli bir hücrenin potansiyeli artıdır. Cevap A."
+        }
+       ],
+       "narration": "Gösterimde sol taraf anottur.",
+       "origin": {
+        "changes": "ÖSYM 2021 modeli: kalay-gümüş yerine nikel-bakır"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KIM_ELEKTRIK_03",
+    "subtopics": [],
+    "title": "Galvanik piller",
+    "narration": "Bir pil, kendiliğinden yürüyen bir redoks tepkimesinin enerjisini telden akan elektronlara çevirir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Galvanik pil",
+      "items": [
+       "Galvanik pil **istemli** bir redoks tepkimesinden elektrik üretir: $E_{hücre} > 0$.",
+       "Kütlesi azalan elektrot **anot**, artan **katottur**.",
+       "Tepkime dengeye ulaşınca pil **biter**: $E_{hücre} = 0$."
+      ],
+      "beats": [],
+      "narration": "Galvanik pil, kendiliğinden yürüyen, yani istemli bir redoks tepkimesinden elektrik üretir; hücre potansiyeli artıdır. Kütlesi azalan elektrot anot, kütlesi artan elektrot katottur. Tepkime ilerledikçe potansiyel düşer ve tepkime dengeye ulaştığında hücre potansiyeli sıfır olur: pil biter."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Standart koşullarda Zn(NO$_3$)$_2$ çözeltisine daldırılmış Zn ile Cu(NO$_3$)$_2$ çözeltisine daldırılmış Cu tuz köprüsüyle birleştiriliyor. Hücre çalışırken Zn elektrodun kütlesi azalıyor, Cu elektrodunki artıyor.\n\nBu hücreyle ilgili aşağıdakilerden hangisi doğrudur?",
+       "context": "ÖSYM 2020'de sorulan kütlesi azalan ve artan elektrotlu hücre yapısının başka metallerle kurulmuş hâli.",
+       "options": [
+        "Zn elektrot katottur.",
+        "Hücre potansiyeli sıfırdan küçüktür.",
+        "Zn$^{2+}$'nin standart indirgenme potansiyeli Cu$^{2+}$'ninkinden büyüktür.",
+        "Elektronlar dış devreye Cu elektrottan verilir.",
+        "Çözeltideki Cu$^{2+}$ iyonları indirgenmiştir."
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Zn kütlesi azalıyor: **anot**, elektronlar Zn'den çıkar; istemli hücrede $E > 0$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çinkonun kütlesi azalıyor: çinko anot, elektronlar dış devreye çinkodan verilir. Hücre istemli, potansiyeli artı."
+        },
+        {
+         "text": "Cu elektrotta Cu$^{2+}$ **indirgenip** birikti; Zn$^{2+}$'nin potansiyeli **küçük**.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bakır elektrodun kütlesi arttı: çözeltideki bakır iyonları indirgenip bakır metali olarak birikti. Çinko iyonunun indirgenme potansiyeli bakırınkinden küçüktür. Cevap E."
+        }
+       ],
+       "narration": "Kütlesi artan elektrotta ne oldu?",
+       "origin": {
+        "changes": "ÖSYM 2020 modeli: alüminyum-kalay yerine çinko-bakır"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KIM_ELEKTRIK_04",
+    "subtopics": [],
+    "title": "Standart elektrot potansiyeli",
+    "narration": "Her yarı tepkimenin elektron çekme isteği bir sayıyla ölçülür; iki sayının farkı pilin voltajıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Standart elektrot potansiyeli",
+      "items": [
+       "Potansiyeller standart hidrojen elektroduna (**0 V**) göre ölçülür; 25 °C, 1 M, 1 atm.",
+       "$E°_{hücre} = E°_{katot} - E°_{anot}$ (indirgenme potansiyelleriyle).",
+       "Yarı tepkime bir sayıyla çarpılınca $E°$ **çarpılmaz**; ters çevrilince işareti değişir."
+      ],
+      "beats": [],
+      "narration": "Elektrot potansiyelleri standart hidrojen elektroduna göre ölçülür; onun potansiyeli sıfır kabul edilir. Standart koşullar yirmi beş derece, bir molar ve bir atmosferdir. Standart hücre potansiyeli, katodun indirgenme potansiyelinden anodunkinin çıkarılmasıyla bulunur. Dikkat: bir yarı tepkimeyi bir sayıyla çarpmak potansiyelini değiştirmez; ters çevirmek işaretini değiştirir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "İstemli olduğu bilinen bir hücrenin gösterimi\nX(k) | X$^{2+}$(suda) || Y$^{2+}$(suda) | Y(k)\nbiçimindedir. Hücrenin Ni ve Zn metallerinden yapıldığı biliniyor.\n(E°: Ni$^{2+}$/Ni $-0{,}25$ V; Zn$^{2+}$/Zn $-0{,}76$ V)\n\nBuna göre;\nI. X metali Zn'dir.\nII. Ni(k) miktarı zamanla azalır.\nIII. Standart hücre potansiyeli $+0{,}51$ V'tur.\n\nifadelerinden hangileri doğrudur?",
+       "context": "ÖSYM 2022'de sorulan X ve Y metallerinden hücre yapısının başka metallerle kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Anot (X) potansiyeli **küçük** olan: **Zn** (I). Ni katot: Ni **birikir**, artar (II yanlış).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Anot, indirgenme potansiyeli küçük olandır: çinko. X çinko. Nikel katot; nikel iyonları indirgenip birikir, nikel metali artar."
+        },
+        {
+         "text": "$E° = -0{,}25 - (-0{,}76) = +0{,}51$ V (III).",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hücre potansiyeli katot eksi anot: eksi sıfır virgül yirmi beş eksi eksi sıfır virgül yetmiş altı, artı sıfır virgül elli bir volt. Cevap D."
+        }
+       ],
+       "narration": "Anot, potansiyeli küçük olan.",
+       "origin": {
+        "changes": "ÖSYM 2022 modeli: kadmiyum yerine nikel"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Pb(k) | Pb$^{2+}$(suda, 1 M) || Ag$^+$(suda, 1 M) | Ag(k)\n(E°: Ag$^+$/Ag $+0{,}80$ V; Pb$^{2+}$/Pb $-0{,}13$ V)\n\nStandart koşullardaki bu hücreyle ilgili aşağıdakilerden hangisi doğrudur?",
+       "context": "ÖSYM 2024'te sorulan standart hücre yapısının başka bir metalle kurulmuş hâli.",
+       "options": [
+        "$2$Ag(k) + Pb$^{2+}$ → $2$Ag$^+$ + Pb(k) tepkimesi istemsizdir.",
+        "Hücre potansiyeli $0{,}67$ V'tur.",
+        "Pb yarı hücresi katottur.",
+        "Dış devrede elektronlar Pb yarı hücresine doğru akar.",
+        "Hücre çalıştıkça Ag(k) miktarı azalır."
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "İstemli yön: Pb + $2$Ag$^+$ → Pb$^{2+}$ + $2$Ag, $E° = 0{,}80 - (-0{,}13) = 0{,}93$ V.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İstemli yönde kurşun yükseltgenir, gümüş iyonu indirgenir; potansiyel sıfır virgül seksen eksi eksi sıfır virgül on üç, sıfır virgül doksan üç volt."
+        },
+        {
+         "text": "Ters tepkime **istemsiz** (A). Pb anot, elektronlar Ag'ye akar, Ag birikir.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bunun tersi istemsizdir; A doğru. Kurşun anot; elektronlar gümüş yarı hücresine akar ve gümüş birikir. Potansiyelleri toplayan sıfır virgül altmış yediye gider. Cevap A."
+        }
+       ],
+       "narration": "Hangi yön istemli?",
+       "origin": {
+        "changes": "ÖSYM 2024 modeli: kadmiyum yerine kurşun"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KIM_ELEKTRIK_05",
+    "subtopics": [],
+    "title": "Nernst yaklaşımı",
+    "narration": "Derişimler 1 M değilse pilin voltajı da standart değerden sapar; Nernst eşitliği bu sapmayı hesaplar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Nernst eşitliği",
+      "items": [
+       "$E = E° - \\frac{0{,}059}{n}\\log Q$; $Q$: ürün iyonları / giren iyonları.",
+       "Katot iyonunun derişimi artarsa (ya da anot iyonununki azalırsa) $E$ **artar**.",
+       "İki derişim aynı oranda değişirse ve iyon katsayıları eşitse $E$ değişmez; dengede $E = 0$."
+      ],
+      "beats": [],
+      "narration": "Derişimler bir molar değilse hücre potansiyeli Nernst eşitliğiyle bulunur: E eşittir E sıfır eksi sıfır virgül sıfır elli dokuz bölü n çarpı log Q. Q, ürün iyonlarının derişiminin giren iyonlarınkine oranıdır; n aktarılan elektron sayısıdır. Katottaki iyonun derişimi artarsa ya da anottakinin derişimi azalırsa potansiyel artar. Hücre dengeye ulaşınca potansiyel sıfır olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$25$ °C'de Zn(k) + Cu$^{2+}$(suda) → Zn$^{2+}$(suda) + Cu(k) tepkimesinin standart potansiyeli $1{,}10$ V'tur. [Cu$^{2+}$] $= 0{,}01$ M ve [Zn$^{2+}$] $= 1$ M iken hücre potansiyeli kaç volttur? (Nernst katsayısı $\\frac{0{,}059}{n}$)",
+       "context": "ÖSYM 2022'de sorulan Nernst hesabı yapısının Daniell piliyle kurulmuş hâli.",
+       "options": [
+        "$1{,}159$",
+        "$1{,}130$",
+        "$1{,}100$",
+        "$1{,}071$",
+        "$1{,}041$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$Q = \\frac{1}{0{,}01} = 100$, $\\log Q = 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Q, çinko iyonu bölü bakır iyonu: bir bölü sıfır virgül sıfır bir, yüz; logaritması iki."
+        },
+        {
+         "text": "$E = 1{,}10 - \\frac{0{,}059}{2} \\cdot 2 = 1{,}041$ V.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "E, bir virgül on eksi sıfır virgül sıfır elli dokuz bölü iki çarpı iki: bir virgül sıfır kırk bir volt. Katot iyonu azaldığı için potansiyel düştü. İşaret hatası yapan bir virgül yüz elli dokuza gider. Cevap E."
+        }
+       ],
+       "narration": "$n = 2$, $Q = \\frac{[Zn^{2+}]}{[Cu^{2+}]}$.",
+       "origin": {
+        "changes": "ÖSYM 2022 modeli: bakır-kurşun yerine Daniell pili"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$25$ °C'de Zn(k) | Zn$^{2+}$(suda, $0{,}1$ M) || Cu$^{2+}$(suda, $1$ M) | Cu(k) hücresinin potansiyeli $E$'dir.\n\n$E$, standart potansiyel $E°$ cinsinden aşağıdakilerden hangisidir? (Nernst katsayısı $\\frac{0{,}059}{n}$)",
+       "context": "ÖSYM 2023'te sorulan potansiyelin standart değer cinsinden yazılması yapısının başka bir hücreyle kurulmuş hâli.",
+       "options": [
+        "$E° - 0{,}059$",
+        "$E° - 0{,}0295$",
+        "$E°$",
+        "$E° + 0{,}0295$",
+        "$E° + 0{,}059$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$Q = \\frac{0{,}1}{1} = 0{,}1$, $\\log Q = -1$; $n = 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Q, sıfır virgül bir bölü bir, sıfır virgül bir; logaritması eksi bir. Aktarılan elektron iki."
+        },
+        {
+         "text": "$E = E° - \\frac{0{,}059}{2}(-1) = E° + 0{,}0295$.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "E sıfır eksi sıfır virgül sıfır iki dokuz beş çarpı eksi bir: E sıfır artı sıfır virgül sıfır iki dokuz beş. Anot iyonu az olduğu için potansiyel arttı. Cevap D."
+        }
+       ],
+       "narration": "$Q = \\frac{0{,}1}{1}$.",
+       "origin": {
+        "changes": "ÖSYM 2023 modeli: lityum-kurşun yerine çinko-bakır"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$25$ °C'de\nPt | H$_2$(g, 1 atm) | H$^+$(suda, 1 M) || Y$^+$(suda, $x$ M) | Y(k)\nhücresinin potansiyeli $0$ V'tur. Y$^+$ + e$^-$ → Y için $E° = +0{,}059$ V'tur.\n\nY$^+$ derişimi kaç molardır? (Nernst katsayısı $\\frac{0{,}059}{n}$)",
+       "context": "ÖSYM 2023'te sorulan hidrojen elektrotlu hücrede derişim bulma yapısının başka bir potansiyelle kurulmuş hâli.",
+       "options": [
+        "$0{,}01$",
+        "$0{,}1$",
+        "$1$",
+        "$10$",
+        "$100$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Tepkime H$_2$ + $2$Y$^+$ → $2$H$^+$ + $2$Y: $E° = 0{,}059$ V; $Q = \\frac{1}{x^2}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hidrojen anot, Y katot: E sıfır sıfır virgül sıfır elli dokuz volt. Q, hidrojen iyonunun karesi bölü Y iyonunun karesi, bir bölü x kare."
+        },
+        {
+         "text": "$0 = 0{,}059 - \\frac{0{,}059}{2}\\log\\frac{1}{x^2} = 0{,}059 + 0{,}059\\log x$ → $x = 0{,}1$ M.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sıfır eşittir sıfır virgül sıfır elli dokuz artı sıfır virgül sıfır elli dokuz log x: log x eksi bir, x sıfır virgül bir molar. Cevap B."
+        }
+       ],
+       "narration": "Dengede $E = 0$.",
+       "origin": {
+        "changes": "ÖSYM 2023 modeli: Y'nin potansiyeli değiştirildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KIM_ELEKTRIK_06",
+    "subtopics": [],
+    "title": "Elektroliz",
+    "narration": "Pil kendiliğinden yürüyen tepkimeden elektrik alır; elektroliz ise elektrikle kendiliğinden yürümeyen bir tepkimeyi zorla yürütür.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Elektroliz",
+      "items": [
+       "Dış güç kaynağı **istemsiz** bir tepkimeyi yürütür; anot kaynağın **+**, katot **−** ucuna bağlıdır.",
+       "Erimiş tuzda katyon **katotta** indirgenir (Na), anyon **anotta** yükseltgenir (Cl$_2$).",
+       "Sulu çözeltide aktif metal iyonları (Na$^+$, K$^+$, Mg$^{2+}$…) yerine **su** indirgenir: H$_2$ çıkar."
+      ],
+      "visual": {
+       "kind": "electrochemicalCell",
+       "mode": "electrolysis",
+       "anode": {
+        "label": "C",
+        "solution": "erimiş NaCl"
+       },
+       "cathode": {
+        "label": "Fe",
+        "solution": "erimiş NaCl"
+       },
+       "bridge": "KNO₃",
+       "anodeDissolves": false,
+       "cathodeGrows": true,
+       "anodeGas": true,
+       "cathodeGas": false,
+       "motion": true
+      },
+      "beats": [
+       {
+        "narration": "Erimiş sodyum klorür; anot karbon, katot demir.",
+        "show": [],
+        "focus": [
+         "anode",
+         "cathode"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Güç kaynağı elektronları katoda pompalıyor: sodyum iyonu sodyuma indirgeniyor.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "electrons",
+         "cathode"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Anotta klorür iyonları yükseltgenip klor gazı kabarcıkları çıkarıyor.",
+        "show": [],
+        "focus": [
+         "anode"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Elektrolizde bir dış güç kaynağı kendiliğinden yürümeyen bir tepkimeyi yürütür. Anot kaynağın artı, katot eksi ucuna bağlıdır; yükseltgenme yine anotta, indirgenme katotta olur. Erimiş bir tuzda katyon katotta metal olarak toplanır, anyon anotta yükseltgenir: erimiş sodyum klorürden sodyum ve klor gazı. Sulu çözeltide ise sodyum, potasyum, magnezyum gibi aktif metallerin iyonları yerine su indirgenir ve hidrojen gazı çıkar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Erimiş KBr, grafit anot ve demir katot kullanılarak elektroliz ediliyor; akım elektroliz için yeterlidir.\n\nBuna göre;\nI. Anotta Br$_2$ oluşur.\nII. Aynı sürede akım şiddeti artırılırsa oluşan K metalinin kütlesi artar.\nIII. Zamanla ortamda Fe$^{2+}$ iyonu derişimi artar.\n\nifadelerinden hangileri doğrudur?",
+       "context": "ÖSYM 2023'te sorulan erimiş tuzun elektrolizi yapısının başka bir tuzla kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Anotta Br$^-$ yükseltgenir: **Br$_2$** (I). Daha çok akım: daha çok yük, daha çok **K** (II).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Anotta bromür iyonları yükseltgenip brom oluşturur. Aynı sürede akım artınca geçen yük artar; katotta daha çok potasyum toplanır."
+        },
+        {
+         "text": "Fe **katot**: indirgenme yeri, yükseltgenmez; Fe$^{2+}$ oluşmaz (III yanlış).",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Demir katottur; orada indirgenme olur, demir yükseltgenmez. Demir iyonu oluşmaz. Cevap C."
+        }
+       ],
+       "narration": "Demir katot, yükseltgenmez.",
+       "origin": {
+        "changes": "ÖSYM 2023 modeli: NaCl yerine KBr"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Erimiş CuCl$_x$ bileşiğinden $19300$ C'luk yük geçirilerek $6{,}35$ g Cu ve bir miktar Cl$_2$ gazı elde ediliyor.\n\nBuna göre;\nI. Bileşik CuCl$_2$'dir.\nII. $0{,}2$ mol Cl$_2$ oluşur.\nIII. Cu metali anotta toplanır.\n\nifadelerinden hangileri doğrudur? (Cu = 63,5 g/mol; 1 F = 96500 C)",
+       "context": "ÖSYM 2021'de sorulan elektrolizle bileşik formülü bulma yapısının başka bir metal klorürüyle kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "I ve III"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$\\frac{19300}{96500} = 0{,}2$ mol e$^-$; Cu: $\\frac{6{,}35}{63{,}5} = 0{,}1$ mol → her Cu $2$ e$^-$: **CuCl$_2$** (I).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "On dokuz bin üç yüz kulon, sıfır virgül iki mol elektron. Bakır sıfır virgül bir mol; her bakır iki elektron almış: bileşik CuCl iki."
+        },
+        {
+         "text": "$0{,}2$ mol e$^-$ → **0,1** mol Cl$_2$ (II yanlış); Cu **katotta** toplanır (III yanlış).",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Her klor molekülü için iki elektron: sıfır virgül iki mol elektron sıfır virgül bir mol klor verir, sıfır virgül iki değil. Bakır katotta toplanır. Cevap A."
+        }
+       ],
+       "narration": "Önce mol elektron.",
+       "origin": {
+        "changes": "ÖSYM 2021 modeli: demir yerine bakır klorür"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KIM_ELEKTRIK_07",
+    "subtopics": [],
+    "title": "Faraday yasaları",
+    "narration": "Elektrolizde toplanan madde, geçen yükle orantılıdır; bir mol elektron 96500 kulondur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Faraday yasaları",
+      "items": [
+       "Yük: $Q = I \\cdot t$ (C); mol elektron $= \\frac{Q}{96500}$.",
+       "Toplanan madde mol sayısı = mol elektron / **iyon yükü**: Mg$^{2+}$ için $2$, Al$^{3+}$ için $3$.",
+       "Aynı yük seri bağlı kaplarda **eşdeğer** miktarda madde toplar."
+      ],
+      "beats": [],
+      "narration": "Elektrolizde geçen yük, akım çarpı süredir; kulon cinsindendir. Bir mol elektron doksan altı bin beş yüz kulondur. Toplanan maddenin mol sayısı, mol elektronun iyonun yüküne bölümüdür: magnezyum iki artı için ikiye, alüminyum üç artı için üçe bölersin. Seri bağlı kaplardan aynı yük geçtiği için eşdeğer miktarlarda madde toplanır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Erimiş CaCl$_2$, $19{,}3$ A'lik sabit akımla $1000$ saniye elektroliz ediliyor.\n\nKatotta kaç gram Ca metali toplanır? (Ca = 40 g/mol; 1 F = 96500 C)",
+       "context": "ÖSYM 2024 ve 2026'da sorulan elektrolizde toplanan kütle yapısının erimiş CaCl₂ ile kurulmuş hâli.",
+       "options": [
+        "$2$",
+        "$4$",
+        "$8$",
+        "$12$",
+        "$16$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$Q = 19{,}3 \\cdot 1000 = 19300$ C = $0{,}2$ mol e$^-$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yük, on dokuz virgül üç çarpı bin, on dokuz bin üç yüz kulon: sıfır virgül iki mol elektron."
+        },
+        {
+         "text": "Ca: $\\frac{0{,}2}{2} = 0{,}1$ mol → $4$ g.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Her kalsiyum iyonu iki elektron alır: sıfır virgül bir mol kalsiyum, dört gram. İkiye bölmeyi unutan sekiz grama gider. Cevap B."
+        }
+       ],
+       "narration": "Ca$^{2+}$: iki elektron.",
+       "origin": {
+        "changes": "ÖSYM 2024 modeli: erimiş MgCl₂ yerine CaCl₂; 2026 sulu MgSO₄ sorusu erimiş tuzla düşünüldü"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Erimiş bir krom klorür bileşiği $2$ A akımla $9650$ saniye elektroliz edildiğinde katotta $3{,}47$ g krom toplanıyor.\n\nBileşikte kromun yükseltgenme basamağı kaçtır? (Cr = 52 g/mol; 1 F = 96500 C)",
+       "context": "ÖSYM 2019'da sorulan elektrolizden yükseltgenme basamağı bulma yapısının başka bir metalle kurulmuş hâli.",
+       "options": [
+        "$+2$",
+        "$+3$",
+        "$+4$",
+        "$+5$",
+        "$+6$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$Q = 2 \\cdot 9650 = 19300$ C = $0{,}2$ mol e$^-$; Cr: $\\frac{3{,}47}{52} \\approx 0{,}0667$ mol.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yük on dokuz bin üç yüz kulon, sıfır virgül iki mol elektron. Krom üç virgül kırk yedi bölü elli iki, yaklaşık sıfır virgül sıfır altmış altı yedi mol."
+        },
+        {
+         "text": "$\\frac{0{,}2}{0{,}0667} = 3$: **Cr$^{3+}$**.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Mol elektronun mol kroma oranı üç: her krom üç elektron almış, yükseltgenme basamağı artı üç. Cevap B."
+        }
+       ],
+       "narration": "Mol elektron / mol krom.",
+       "origin": {
+        "changes": "ÖSYM 2019 modeli: iridyum yerine krom"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KIM_ELEKTRIK_08",
+    "subtopics": [],
+    "title": "Korozyon",
+    "narration": "Paslanma da bir pildir: demir anot olur ve yavaş yavaş çözünür.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Korozyon",
+      "items": [
+       "Korozyon, metalin çevresiyle redoks tepkimesine girip **yükseltgenmesidir**; demirin paslanması nem ve oksijen ister.",
+       "**Kurban anot**: demire bağlanan daha **aktif** metal (Zn, Mg) demirin yerine yükseltgenir.",
+       "Boya, yağ, galvanizleme (çinko kaplama) metali havadan ve sudan **yalıtır**."
+      ],
+      "beats": [],
+      "narration": "Korozyon, bir metalin çevresiyle redoks tepkimesine girip yükseltgenmesidir; demirin paslanması için hem nem hem oksijen gerekir. Demire daha aktif bir metal, örneğin çinko ya da magnezyum bağlanırsa, demir yerine o metal yükseltgenir; buna kurban anot deriz. Boya, yağ ya da çinko kaplama, yani galvanizleme, metali hava ve sudan yalıtarak korur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Deniz suyundaki çelik bir boru hattına magnezyum bloklar bağlanıyor ve borunun paslanmadığı gözleniyor.\n\nBunun nedeniyle ilgili;\nI. Demir yerine magnezyum yükseltgenmiştir.\nII. Demir magnezyumdan daha aktiftir.\nIII. Magnezyum kurban anot olarak davranmıştır.\n\nifadelerinden hangileri doğrudur?",
+       "context": "ÖSYM 2025'te sorulan kurban elektrotla paslanmayı önleme yapısının başka bir metalle kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Mg demirden **daha aktif**: demir yerine o yükseltgenir (I), kurban anottur (III).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Magnezyum demirden daha aktiftir; elektronu demirden önce verir. Demir yerine magnezyum yükseltgenir: kurban anot."
+        },
+        {
+         "text": "Demir **daha az** aktif (II yanlış).",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Demir magnezyumdan daha az aktiftir; ikinci yanlış. Cevap D."
+        }
+       ],
+       "narration": "Daha aktif olan önce yükseltgenir.",
+       "origin": {
+        "changes": "ÖSYM 2025 modeli: çinko şerit yerine magnezyum blok"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Katot hep pozitif mi?",
+      "wrong": "Katot her zaman pozitif, anot her zaman negatif kutuptur.",
+      "right": "Tanım işarete değil olaya bağlı: **anot yükseltgenme**, **katot indirgenme** yeridir.",
+      "why": "Galvanik pilde anot **−**, elektrolizde ise kaynağın **+** ucuna bağlıdır.",
+      "narration": "Sık yapılan bir hata: anot ve katodu işaretle tanımlamak. Anot her zaman yükseltgenmenin, katot indirgenmenin olduğu elektrottur. Galvanik pilde anot eksi kutuptur; elektrolizde ise anot güç kaynağının artı ucuna bağlanır. İşaret değişir, tanım değişmez."
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Elektron veren yükseltgenir ama **indirgendir**.",
+    "Anot yükseltgenme, katot indirgenme; elektron anottan katoda.",
+    "Tuz köprüsünde anyonlar anoda gider.",
+    "$E° = E°_{katot} - E°_{anot}$; çarpmak E°'yi değiştirmez.",
+    "$E = E° - \\frac{0{,}059}{n}\\log Q$.",
+    "$Q = It$; mol madde = mol e⁻ / iyon yükü."
+   ],
+   "warnings": [
+    "Yükseltgenen tür **indirgendir**.",
+    "Sulu çözeltide aktif metal **toplanmaz**.",
+    "Mol elektronu **iyon yüküne** böl."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bir limona **çinko kaplı vida** ve **bakır tel** sapla; bir LED ya da voltmetreyle akımı dene.",
+    "Biri boyalı, biri boyasız iki demir çiviyi tuzlu suya koy; bir hafta sonra **paslanmayı** karşılaştır.",
+    "Uygulamada AYT Kimya ve Elektrik testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Yükseltgenme basamağı kurallarını örnekle: element 0; F −1; O genelde −2 (H₂O₂'de −1, OF₂'de +2); H genelde +1 (NaH gibi metal hidrürlerde −1). Örnekler: KMnO₄'te Mn +7, K₂Cr₂O₇'de Cr +6, H₂SO₄'te S +6, NH₄⁺'da N −3.",
+   "Yarı tepkime yöntemiyle denkleştirme örneği ekle (asidik ortam): MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O ve Fe²⁺ → Fe³⁺ + e⁻ (5 ile çarp); toplam: MnO₄⁻ + 5Fe²⁺ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O.",
+   "Standart indirgenme potansiyelleri tablosunu ver (V): Li −3,04; K −2,93; Ca −2,87; Na −2,71; Mg −2,37; Al −1,66; Zn −0,76; Fe −0,44; Ni −0,25; Sn −0,14; Pb −0,13; H 0,00; Cu +0,34; Ag +0,80; Au +1,50. Tablodan istemli tepkime ve aktiflik sırası okumayı örnekle.",
+   "Daniell pilini ve derişim pilini açıkla: Zn | Zn²⁺ || Cu²⁺ | Cu için E° = 0,34 − (−0,76) = 1,10 V; Zn anot (−), Cu katot (+). Aynı elektrotların farklı derişimde kullanıldığı derişim pilinde seyreltik tarafın anot olduğunu ekle.",
+   "Nernst'e ikinci örnek ver: Zn | Zn²⁺ (0,01 M) || Cu²⁺ (1 M) | Cu için E = 1,10 − (0,059/2) log(0,01) = 1,10 + 0,059 = 1,159 V. Ürün derişimi azaldıkça ya da giren derişimi arttıkça pil geriliminin arttığını vurgula.",
+   "Elektroliz ürünlerini tablo yap: erimiş NaCl (katotta Na, anotta Cl₂), derişik sulu NaCl (katotta H₂ ve NaOH, anotta Cl₂), sulu CuSO₄ ve inert elektrot (katotta Cu, anotta O₂). Bakır saflaştırmada saf olmayan bakırın anot, kaplamada kaplanacak cismin katot olduğunu ekle.",
+   "Faraday hesabına örnek ekle: 9,65 A akım 1000 s geçerse 9650 C = 0,1 mol elektron; CuSO₄ çözeltisinden 0,05 mol (3,2 g) Cu toplanır. Seri bağlı kaplarda her kaptan aynı yükün geçtiğini, toplanan mol sayısının iyon yüküne bölündüğünü göster.",
+   "Korozyon ve önlenmesini ayrıntılandır: paslanma için O₂ ve su gerekir, tuz hızlandırır. Boya, galvanizleme (çinko kaplama), kurban anot (Mg, Zn), paslanmaz çelik (Cr, Ni). Kalaylı teneke çizilince demirin daha hızlı paslandığını (Fe, Sn'den aktif), galvanizli demirde çinkonun koruduğunu karşılaştır.",
+   "Pil türlerini ekle: kuru pil (Zn anot, MnO₂ katot, yaklaşık 1,5 V), alkalin pil, kurşun-asit akü (Pb, PbO₂, H₂SO₄; hücre başına yaklaşık 2 V, şarj edilebilir), lityum iyon pil (telefon, elektrikli araç), hidrojen yakıt pili."
+  ]
+ }
+}

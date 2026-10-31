@@ -1,0 +1,682 @@
+{
+ "topic": {
+  "id": "A775A64F-C1B8-4CDF-B78C-E121EA842E73",
+  "category": "YKS_TYT",
+  "lesson": "MAT",
+  "code": "MAT_MODULER"
+ },
+ "title": "Modüler Aritmetik",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "YKS/TYT/KonuAnlatimi/MAT/MAT_MODULER.json (MEB Temel Matematik: kalanlarla toplama, çıkarma, çarpma ve üs alma kuralları)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM: 1 soru; iki makinenin dönüşümlü etiketlediği kartonlar (iki periyot birlikte))",
+  "YKS/TYT/Sorular/MAT/MAT_MODULER.jsonl (17 soru; tamamı periyodik problem: gün, saat, harf dizisi, nöbet)"
+ ],
+ "works": {
+  "additions": [
+   "Birler basamağı döngülerini tablo hâlinde ver (2: 2, 4, 8, 6; 3: 3, 9, 7, 1; 7: 7, 9, 3, 1; 8: 8, 4, 2, 6; 4 ve 9 iki adımlı) ve büyük üslerde son rakam örnekleri.",
+   "Takvim problemlerini ekle: haftanın günleri (mod 7), artık yıl (366 gün), 'bugünden 100 gün sonra hangi gün' tipi; saat problemleri (mod 12 ve 24).",
+   "Modüler denklemlerin çözüm kümesini kalanları deneyerek bulmayı ve 'modda bölme yapılmaz' notunu örnekle."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Bugün salı. 100 gün sonra hangi gün? Takvime bakmadan.",
+   "narration": "Bugün salı ise 100 gün sonra hangi gün olur? Takvim açmana gerek yok: 100'ü 7'ye bölüp kalana bakarsın. Modüler aritmetik, yalnızca kalanlarla çalışan bir matematiktir. TYT'de en çok tekrar eden olaylarla sorulur: haftanın günleri, saat, sırayla dizilen etiketler. Bu derste mod kavramını, kalanlarla işlemi, büyük üslerin kalanını, modüler denklemleri ve periyodik problemleri adım adım göreceğiz."
+  },
+  "objectives": [
+   "İki sayının bir modda denk olup olmadığını bulmak",
+   "Kalanlarla toplama, çarpma ve üs almak",
+   "Büyük bir kuvvetin kalanını döngüyle bulmak",
+   "Gün, saat ve sıra problemlerini modla çözmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_MODULER_01",
+    "subtopics": [
+     "MAT_MODULER_03"
+    ],
+    "title": "Mod kavramı",
+    "narration": "İki sayı bir n sayısına bölündüğünde aynı kalanı veriyorsa bu iki sayı mod n'de denktir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Denklik ve kalan sınıfları",
+      "items": [
+       "$a \\equiv b \\pmod{n}$: $a$ ile $b$'nin $n$'ye bölümünden kalanlar **aynı**; yani $n$, $a - b$'yi böler.",
+       "$17 \\equiv 2 \\pmod{5}$: ikisinin de 5'e bölümünden kalan 2; $17 - 2 = 15$.",
+       "Mod $n$'de yalnızca $n$ farklı kalan vardır: $0, 1, \\ldots, n - 1$. Bunlar **kalan sınıflarıdır**.",
+       "Negatif sayının kalanı: $-3 \\equiv 4 \\pmod{7}$, çünkü $-3 + 7 = 4$."
+      ],
+      "narration": "a denktir b mod n yazdığımızda, a ile b'nin n'ye bölümünden kalanların aynı olduğunu söyleriz. Bu, n'nin a eksi b'yi bölmesiyle aynı şeydir. 17 denktir 2 mod 5: ikisinin de 5'e bölümünden kalan 2 ve farkları 15. Mod n'de yalnızca n farklı kalan vardır: 0'dan n eksi 1'e kadar. Bunlara kalan sınıfları denir. Negatif bir sayının kalanını bulmak için moda ekleme yaparsın: eksi 3, mod 7'de 4'e denktir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Denklik eşitlik değildir",
+      "wrong": "$17 \\equiv 2 \\pmod{5}$ ise $17 = 2$'dir.",
+      "right": "Denklik yalnız **kalanların** aynı olduğunu söyler: $17 = 5 \\cdot 3 + 2$, $2 = 5 \\cdot 0 + 2$.",
+      "why": "Mod n'de denk sayılar arasında hep n'nin katı kadar fark vardır.",
+      "narration": "Denklik bir eşitlik değildir. 17, mod 5'te 2'ye denktir ama 17, 2'ye eşit değildir. Denklik yalnızca iki sayının 5'e bölümünden kalanların aynı olduğunu söyler. Aralarındaki fark her zaman 5'in katıdır: burada 15."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aşağıdaki denkliklerden hangisi **yanlıştır**?",
+       "options": [
+        "$17 \\equiv 2 \\pmod{5}$",
+        "$25 \\equiv 1 \\pmod{6}$",
+        "$-3 \\equiv 4 \\pmod{7}$",
+        "$40 \\equiv 4 \\pmod{9}$",
+        "$30 \\equiv 3 \\pmod{8}$"
+       ],
+       "answer": 4,
+       "narration": "a, b'ye mod m'de denkse a eksi b, m'ye tam bölünür.",
+       "steps": [
+        {
+         "text": "$17 - 2 = 15$ (5'e ✓), $25 - 1 = 24$ (6'ya ✓), $-3 - 4 = -7$ (7'ye ✓), $40 - 4 = 36$ (9'a ✓).",
+         "narration": "On yedi eksi iki on beş, beşe bölünür. Yirmi beş eksi bir yirmi dört, altıya bölünür. Eksi üç eksi dört eksi yedi, yediye bölünür; negatif sayılar da denk olabilir. Kırk eksi dört otuz altı, dokuza bölünür. Bu dördü doğru.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        },
+        {
+         "text": "$30 - 3 = 27$, 8'e **bölünmez**; $30 = 8 \\cdot 3 + 6$ → $30 \\equiv 6 \\pmod{8}$. Cevap **E**.",
+         "narration": "Otuz eksi üç ise yirmi yedi; sekize tam bölünmez. Otuzun sekize bölümünden kalan altıdır; yani otuz, mod sekizde altıya denktir, üçe değil. Yanlış denklik E'de."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki denklik tanımı (m | a − b) negatif sayı da içeren özgün denkliklerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_MODULER_02",
+    "title": "Kalanlarla işlem",
+    "narration": "Bölme ve bölünebilme dersinde kalanları toplayıp çarpmayı görmüştük. Modüler aritmetik bunu üslere kadar taşır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kalanlarla işlem ve üs",
+      "items": [
+       "Toplam, fark ve çarpımın kalanı: sayıların yerine **kalanlarını** koy.",
+       "Üs: $a^k$'nın kalanı için $a$'nın kuvvetlerinde **1'i** ya da **tekrar eden** kalanı ara.",
+       "$2^3 = 8 \\equiv 1 \\pmod{7}$: 2'nin kuvvetleri 7'de **3'lük** döngü yapar.",
+       "Üssü döngü uzunluğuna böl, **kalanı** kadar kuvvete bak."
+      ],
+      "narration": "Toplamın, farkın ve çarpımın kalanını bulmak için sayıların yerine kalanlarını koyarsın. Üslerde ise döngü ararsın: kuvvetleri sırayla hesapla ve 1'in ya da tekrar eden bir kalanın ne zaman çıktığına bak. 2'nin küpü 8 ve 8, 7'ye bölününce 1 kalanını verir. Demek ki 2'nin kuvvetleri mod 7'de üçlü bir döngü yapar. Büyük bir üs için üssü döngü uzunluğuna bölüp kalana bakarsın."
+     },
+     {
+      "kind": "predict",
+      "title": "Son rakam",
+      "context": "$7^{100}$ sayısı",
+      "prompt": "Bu sayının **birler basamağı** kaçtır?",
+      "choices": [
+       "1",
+       "7",
+       "9"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Kuvvet",
+        "Son rakam"
+       ],
+       "rows": [
+        [
+         "$7^1$",
+         "7"
+        ],
+        [
+         "$7^2 = 49$",
+         "9"
+        ],
+        [
+         "$7^3 = 343$",
+         "3"
+        ],
+        [
+         "$7^4 = 2401$",
+         "1"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "beats": [
+       {
+        "narration": "Son rakam, mod 10'daki kalandır. 7'nin kuvvetlerinin son rakamları: 7, 9, 3, 1.",
+        "show": [
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ]
+       },
+       {
+        "narration": "Dördüncü kuvvette 1 çıktı, sonra döngü baştan başlar: döngü uzunluğu 4. 100'ün 4'e bölümünden kalan 0, yani döngünün son elemanı: 1.",
+        "focus": [
+         "r4"
+        ]
+       }
+      ],
+      "explanation": "Son rakamlar $7, 9, 3, 1$ diye **4'lük** döngü yapar. $100 \\equiv 0 \\pmod{4}$: döngünün **son** elemanı, **1**.",
+      "narration": "Şimdi sıra sende. Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 1. 7'nin kuvvetlerinin son rakamları dörtte bir tekrar eder. 100, 4'e tam bölündüğü için kalan sıfırdır ve sıfır kalan döngünün son elemanını gösterir: 1. Kalanı sıfır çıkınca ilk elemana gitmek en sık yapılan hatadır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$2^{50}$ sayısının 7 ile bölümünden kalan kaçtır?",
+       "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+       ],
+       "answer": 3,
+       "narration": "Döngüyü bulalım.",
+       "steps": [
+        {
+         "text": "$2^1 \\equiv 2$, $2^2 \\equiv 4$, $2^3 = 8 \\equiv 1 \\pmod{7}$: döngü **3**.",
+         "narration": "2'nin kuvvetlerinin 7'ye bölümünden kalanlar: 2, 4, sonra 8'in kalanı 1. 1 çıktığı için döngü uzunluğu 3."
+        },
+        {
+         "text": "$50 = 3 \\cdot 16 + 2$ → $2^{50} = (2^3)^{16} \\cdot 2^2 \\equiv 1 \\cdot 4$",
+         "narration": "50'yi 3'e bölelim: 16 kere 3, kalan 2. 2 üssü 50, 2 küpün on altıncı kuvveti çarpı 2 kare. 2 küp 1'e denk, 1'in her kuvveti 1. Geriye 2 kare, yani 4 kalır."
+        },
+        {
+         "text": "Kalan **4**. Cevap **D**.",
+         "narration": "Kalan 4. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki \"üssün kalanı\" kuralı ve havuzdaki kalıp örnek alındı, sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$1! + 2! + 3! + \\cdots + 10!$ toplamının 5 ile bölümünden kalan kaçtır?",
+       "options": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+       ],
+       "answer": 3,
+       "narration": "Hepsini hesaplamaya gerek yok; 5'e tam bölünenleri atalım.",
+       "steps": [
+        {
+         "text": "$5! = 120$ ve sonrası **5'i çarpan** olarak içerir: kalanları **0**.",
+         "narration": "5 faktöriyel ve ondan sonraki her faktöriyel, çarpanları arasında 5'i içerir. Bu yüzden hepsi 5'e tam bölünür; kalanları sıfır."
+        },
+        {
+         "text": "Geriye $1! + 2! + 3! + 4! = 1 + 2 + 6 + 24 = 33$ kalır.",
+         "narration": "Geriye ilk dört terim kalır: 1 artı 2 artı 6 artı 24, 33."
+        },
+        {
+         "text": "$33 = 5 \\cdot 6 + 3$: kalan **3**. Cevap **D**.",
+         "narration": "33'ün 5'e bölümünden kalan 3. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"faktöriyel toplamının kalanı\" kalıbı örnek alındı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$7^{2027}$ sayısının **birler basamağındaki** rakam kaçtır?",
+       "options": [
+        "1",
+        "3",
+        "7",
+        "9",
+        "5"
+       ],
+       "answer": 1,
+       "narration": "Son rakam mod 10'da kalan demektir; 7'nin kuvvetlerinin son rakamları bir döngü izler.",
+       "steps": [
+        {
+         "text": "$7^1 \\to 7$, $7^2 \\to 9$, $7^3 \\to 3$, $7^4 \\to 1$ → döngü **4**.",
+         "narration": "Yedinin kuvvetlerinin son rakamları: yedi, dokuz, üç, bir; sonra yine yedi. Döngü dört adımda bir tekrarlanıyor."
+        },
+        {
+         "text": "$2027 = 4 \\cdot 506 + 3$ → kalan **3** → döngünün **3.** elemanı.",
+         "narration": "Üssü dörde bölelim: iki bin yirmi yedi, dört çarpı beş yüz altı artı üç. Kalan üç; döngünün üçüncü elemanına bakarız."
+        },
+        {
+         "text": "3. eleman **3**. Cevap **B**.",
+         "narration": "Döngünün üçüncü elemanı üç. Yedinin iki bin yirmi yedinci kuvvetinin birler basamağı üçtür. Cevabımız B. Kalan sıfır çıksaydı döngünün son elemanını, yani biri alırdık.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki \"son rakam\" tahmin tablosu özgün bir kuvvetle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$A$ sayısının 9 ile bölümünden kalan 7'dir. Buna göre $A^2 + 2A$ sayısının 9 ile bölümünden kalan kaçtır?",
+       "options": [
+        "0",
+        "3",
+        "5",
+        "6",
+        "8"
+       ],
+       "answer": 0,
+       "narration": "A yerine kalanını koyarak mod 9'da hesaplayalım.",
+       "steps": [
+        {
+         "text": "$A \\equiv 7 \\pmod{9}$ → $A^2 + 2A \\equiv 7^2 + 2 \\cdot 7 = 49 + 14 = 63$.",
+         "narration": "A, mod dokuzda yediye denk. Toplamda ve çarpımda A yerine yedi koyabiliriz: yedinin karesi kırk dokuz, artı iki çarpı yedi on dört; toplam altmış üç."
+        },
+        {
+         "text": "$63 = 9 \\cdot 7$ → kalan **0**.",
+         "narration": "Altmış üç, dokuz çarpı yedi; dokuza tam bölünür, kalan sıfır."
+        },
+        {
+         "text": "Sına: $A = 16$ → $256 + 32 = 288 = 9 \\cdot 32$ ✓. Cevap **A**.",
+         "narration": "Bir örnekle sınayalım: dokuza bölümünden kalanı yedi olan bir sayı on altı. On altının karesi iki yüz elli altı, artı otuz iki, iki yüz seksen sekiz; bu da dokuza tam bölünür. Cevabımız A.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki \"kalanlarla işlem\" kuralı özgün bir ifadeyle soruldu ve bir örnekle sınandı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_MODULER_04",
+    "title": "Modüler denklem",
+    "narration": "Modüler bir denklemde x'in tek bir değeri değil, bir kalan sınıfı bulunur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kalanları dene",
+      "items": [
+       "Mod $n$ küçükse $x$ yerine **0'dan $n - 1$'e** kadar kalanları dene.",
+       "$3x \\equiv 2 \\pmod{5}$: $x = 4$ için $12 \\equiv 2$ ✓.",
+       "Çözüm bir **sınıftır**: $x = 4, 9, 14, 19, \\ldots$ yani $x = 5k + 4$.",
+       "Soru belli bir aralık istiyorsa sınıftan o aralıktaki değeri seç."
+      ],
+      "narration": "Modüler bir denklemde, mod küçükse x yerine 0'dan n eksi 1'e kadar bütün kalanları denersin. 3 x denktir 2 mod 5: x 4 iken 3 çarpı 4, 12; 12'nin 5'e bölümünden kalan 2. Bulduğun şey tek bir sayı değil, bir kalan sınıfıdır: 4, 9, 14, 19 ve böyle devam eder. Soru belli bir aralık istiyorsa bu sınıftan o aralıktaki değeri seçersin."
+     },
+     {
+      "kind": "mistake",
+      "title": "Modda kesirle bölme yok",
+      "wrong": "$3x \\equiv 2 \\pmod{5}$ ise iki tarafı 3'e bölersek $x \\equiv \\frac{2}{3}$ olur.",
+      "right": "Modda kesir yoktur; kalanlar **tam sayıdır**. $x$ için 0'dan 4'e kadar **dene**: $x = 4$.",
+      "why": "İstersen 2'ye denk başka bir sayı ara: $2 \\equiv 12$, $3x \\equiv 12$, $x \\equiv 4$.",
+      "narration": "Modüler denklemde iki tarafı 3'e bölüp x denktir üçte iki demek yanlıştır; kalanlar tam sayıdır. Ya 0'dan 4'e kadar denersin ya da sağ taraftaki 2'yi 3'e bölünebilen denk bir sayıyla değiştirirsin: 2, mod 5'te 12'ye denktir. 3 x denktir 12, buradan x denktir 4."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$3x \\equiv 2 \\pmod{5}$ denkliğini sağlayan **iki basamaklı en küçük** $x$ doğal sayısı kaçtır?",
+       "options": [
+        "10",
+        "12",
+        "14",
+        "16",
+        "19"
+       ],
+       "answer": 2,
+       "narration": "Önce kalan sınıfını, sonra istenen değeri bulalım.",
+       "steps": [
+        {
+         "text": "Dene: $x = 0, 1, 2, 3, 4$ → $3x$: 0, 3, 6, 9, 12 → kalanlar 0, 3, 1, 4, **2** ✓",
+         "narration": "x'e 0'dan 4'e kadar değer verelim. 3 x sırasıyla 0, 3, 6, 9, 12. Bunların 5'e bölümünden kalanlar 0, 3, 1, 4, 2. Kalanı 2 olan x, 4."
+        },
+        {
+         "text": "Sınıf: $x = 5k + 4$: 4, 9, **14**, 19, …",
+         "narration": "Çözüm sınıfı 5 k artı 4: 4, 9, 14, 19 ve devam eder. İki basamaklı en küçük değer 14."
+        },
+        {
+         "text": "Kontrol: $3 \\cdot 14 = 42 \\equiv 2$ ✓. Cevap **C**.",
+         "narration": "Kontrol: 3 çarpı 14, 42; 42'nin 5'e bölümünden kalan 2. Cevabımız C. 19 da sınıfta ama en küçük değil.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; modüler denklem kalıbı MEB kazanımına göre kuruldu, sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_MODULER_05",
+    "title": "Periyodik problemler",
+    "narration": "Son bölüm TYT'nin asıl sorduğu kısım: tekrar eden olaylar. Hepsinde aynı soruyu sorarsın: kaç adımda bir tekrar ediyor?",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Günler, saatler, diziler",
+      "items": [
+       "**Gün**: 7'lik döngü. $n$ gün sonrası için $n$'nin 7'ye bölümünden kalan kadar ilerle.",
+       "**Saat**: 24'lük döngü; ay içinde gün hesabında ayların **gün sayılarını** topla.",
+       "**İki döngü birlikte**: her birini **ayrı** bul ya da ortak periyot için **EKOK** al.",
+       "**Kalan 0** ise döngünün **son** elemanı."
+      ],
+      "narration": "Haftanın günleri 7'lik bir döngüdür: n gün sonrasını bulmak için n'yi 7'ye bölüp kalan kadar ilerlersin. Saatler 24'lük döngü yapar; tarih hesabında ayların gün sayılarını toplarsın. ÖSYM bir soruda iki döngüyü birlikte verdi: iki makinenin kartonlara yazdığı etiketler. Böyle sorularda her döngüyü ayrı ayrı çözersin; ikisinin birlikte tekrar etmesi gerekiyorsa periyotların EKOK'unu alırsın. Ve unutma: kalan sıfırsa döngünün son elemanı."
+     },
+     {
+      "kind": "rule",
+      "title": "Yıllar ve saatler",
+      "items": [
+       "$365 = 7 \\cdot 52 + 1$: aynı tarih ertesi yıl **1 gün** ileri kayar.",
+       "Arada 29 şubat varsa (artık yıl) **2 gün** kayar.",
+       "Saat: $n$ saat sonrası için $n$'yi **24'e** böl; kalan kadar ilerle.",
+       "Gün ve saat birlikte: önce tam günleri, sonra kalan saatleri say."
+      ],
+      "narration": "Yıl hesabı da bir mod hesabıdır. 365 gün, 52 hafta ve 1 gündür; bu yüzden aynı tarih ertesi yıl haftanın bir sonraki gününe kayar. Arada 29 şubat varsa iki gün kayar. Saatte döngü 24'tür: n saat sonrası için n'yi 24'e bölersin; bölüm geçen tam günleri, kalan ise ilerleyeceğin saati verir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "1 Ocak 2027 günü cuma olduğuna göre, 1 Mart 2027 haftanın hangi günüdür?",
+       "options": [
+        "Cumartesi",
+        "Pazar",
+        "Pazartesi",
+        "Salı",
+        "Çarşamba"
+       ],
+       "answer": 2,
+       "narration": "Gün sayısını bulup 7'ye bölelim.",
+       "steps": [
+        {
+         "text": "1 Ocak'tan 1 Mart'a: Ocak 31 + Şubat 28 = **59** gün",
+         "narration": "1 Ocak'tan 1 Mart'a kadar Ocak'ın 31 günü ve Şubat'ın 28 günü geçer; 2027 artık yıl değil. Toplam 59 gün."
+        },
+        {
+         "text": "$59 = 7 \\cdot 8 + 3$: kalan **3**",
+         "narration": "59'u 7'ye bölelim: 7 çarpı 8, 56; kalan 3. Tam 8 hafta geçer ve 3 gün artar."
+        },
+        {
+         "text": "Cumadan 3 gün sonra: cumartesi, pazar, **pazartesi**. Cevap **C**.",
+         "narration": "Cumadan 3 gün ileri gidelim: cumartesi, pazar, pazartesi. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki tarih ve gün periyodu kalıbı örnek alındı, tarihler özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir duvara dizilen karolar sırayla mavi, beyaz, mavi, beyaz biçiminde boyanmış; üzerlerine de sırayla A, B, C, A, B, C harfleri yazılmıştır. İlk karo mavi ve A harflidir. Buna göre 50. karo hangisidir?",
+       "options": [
+        "Beyaz, B",
+        "Mavi, B",
+        "Beyaz, A",
+        "Mavi, A",
+        "Beyaz, C"
+       ],
+       "answer": 0,
+       "narration": "ÖSYM iki makineli karton sorusunda iki döngüyü birlikte verdi. Biz her döngüyü ayrı çözelim.",
+       "steps": [
+        {
+         "text": "Renk döngüsü 2: $50 \\equiv 0 \\pmod{2}$ → son eleman, **beyaz**.",
+         "narration": "Renkler ikili döngü yapıyor. 50, 2'ye tam bölünür; kalan sıfır, yani döngünün son elemanı: beyaz."
+        },
+        {
+         "text": "Harf döngüsü 3: $50 = 3 \\cdot 16 + 2$ → 2. eleman, **B**.",
+         "narration": "Harfler üçlü döngü yapıyor. 50'nin 3'e bölümünden kalan 2; döngünün ikinci elemanı: B."
+        },
+        {
+         "text": "50. karo **beyaz, B**. Cevap **A**.",
+         "narration": "50'nci karo beyaz ve B harfli. Cevabımız A. İki döngü birlikte EKOK'ları olan 6'da bir tekrar eder; 50'nin 6'ya bölümünden kalan 2 de aynı sonucu verir: ikinci karo beyaz, B.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin \"iki makinenin dönüşümlü etiketlediği kartonlar\" kalıbı örnek alındı, bağlam, döngüler ve sıra özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Pazartesi günü saat 10'da telefonunu kapatan bir öğrenci, telefonu 130 saat sonra açmayı planlamıştır. Telefonu açtığında hangi gün ve saat kaç olur?",
+       "options": [
+        "Cuma, saat 8",
+        "Cuma, saat 20",
+        "Cumartesi, saat 8",
+        "Cumartesi, saat 20",
+        "Pazar, saat 4"
+       ],
+       "answer": 3,
+       "narration": "Saatleri günlere ve kalan saatlere ayıralım.",
+       "steps": [
+        {
+         "text": "$130 = 24 \\cdot 5 + 10$: **5 gün** ve **10 saat**.",
+         "narration": "130'u 24'e bölelim: 24 çarpı 5, 120; kalan 10. Yani 5 tam gün ve 10 saat."
+        },
+        {
+         "text": "Pazartesi + 5 gün = **cumartesi**, saat 10'da.",
+         "narration": "Pazartesi saat 10'dan 5 gün sonrası cumartesi saat 10."
+        },
+        {
+         "text": "Kalan 10 saat: cumartesi saat $10 + 10 = 20$. Cevap **D**.",
+         "narration": "Kalan 10 saati de ekleyelim: cumartesi saat 10 artı 10, saat 20. Cevabımız D. Günleri sayarken pazartesiyi de sayan cuma der; pazartesiden 5 gün sonrası salı, çarşamba, perşembe, cuma, cumartesi.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"telefonu belli saat sonra açma\" periyot kalıbı örnek alındı, saat ve süre özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "KAMPÇI kelimesinin harfleri KAMPÇIKAMPÇIKAMPÇI… biçiminde art arda yazılıyor. Buna göre 100. harf hangisidir?",
+       "options": [
+        "K",
+        "A",
+        "M",
+        "P",
+        "Ç"
+       ],
+       "answer": 3,
+       "narration": "Harf dizisi de bir döngüdür.",
+       "steps": [
+        {
+         "text": "KAMPÇI **6** harf: döngü uzunluğu 6.",
+         "narration": "KAMPÇI altı harfli; dizi her altı harfte bir tekrar ediyor."
+        },
+        {
+         "text": "$100 = 6 \\cdot 16 + 4$: kalan **4**.",
+         "narration": "100'ü 6'ya bölelim: 6 çarpı 16, 96; kalan 4."
+        },
+        {
+         "text": "Döngünün 4. harfi: K, A, M, **P**. Cevap **D**.",
+         "narration": "Döngünün dördüncü harfi: K, A, M, P. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"tekrar eden harf dizisinde n. harf\" kalıbı örnek alındı, kelime ve sıra özgün."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$a \\equiv b \\pmod{n}$: kalanlar aynı, $n$ farkı böler.",
+    "Toplam ve çarpımda sayıların yerine **kalanları** koy.",
+    "Büyük üste **döngüyü** bul; üssü döngü uzunluğuna böl.",
+    "Kalan **0** ise döngünün **son** elemanı.",
+    "Modüler denklemin çözümü bir **sınıftır**: $5k + 4$.",
+    "Gün 7, saat 24 döngülü; iki döngüyü **ayrı** çöz."
+   ],
+   "warnings": [
+    "$7^{100}$'ün son rakamı **1**, 7 değil.",
+    "$-3 \\equiv 4 \\pmod{7}$",
+    "Artık yılda şubat **29** gündür.",
+    "Kalan sınıfının **en küçük** iki basamaklısını seç."
+   ],
+   "narration": "Hadi toparlayalım. Mod n'de denk iki sayının kalanları aynıdır. Toplamın ve çarpımın kalanını bulmak için sayıların yerine kalanlarını koyarsın. Büyük bir kuvvetin kalanı için döngüyü bul ve üssü döngü uzunluğuna böl; kalan sıfırsa döngünün son elemanına bak. Modüler denklemin çözümü bir kalan sınıfıdır. Gün, saat ve sıra problemlerinde döngünün uzunluğunu bul; iki döngü varsa her birini ayrı çöz."
+  }
+ },
+ "short": {
+  "hook": "Takvimsiz gün bul.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "$n$ gün sonrası: $n$'yi **7'ye** böl."
+   },
+   {
+    "kind": "warning",
+    "text": "Kalan **0** ise döngünün **son** elemanı."
+   },
+   {
+    "kind": "fact",
+    "text": "$7^{100}$'ün son rakamı **1**."
+   },
+   {
+    "kind": "fact",
+    "text": "$2^3 \\equiv 1 \\pmod{7}$"
+   }
+  ],
+  "summary": [
+   "Böl, kalana bak",
+   "Kalan sıfırsa sondaki",
+   "Önce döngüyü bul"
+  ],
+  "rounds": [
+   {
+    "sentence": "Bugün salı.",
+    "question": "14 gün sonra?",
+    "choices": [
+     "Salı",
+     "Çarşamba"
+    ],
+    "answer": 0,
+    "why": "14, **7'nin** katı."
+   },
+   {
+    "sentence": "Bugün pazartesi.",
+    "question": "10 gün sonra?",
+    "choices": [
+     "Çarşamba",
+     "Perşembe"
+    ],
+    "answer": 1,
+    "why": "Kalan **3**."
+   },
+   {
+    "sentence": "$7^4$ son rakam 1",
+    "question": "7 üssü 8?",
+    "choices": [
+     "1",
+     "7"
+    ],
+    "answer": 0,
+    "why": "Döngü **4**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-matematik-kampi",
+  "name": "TYT Matematik kampı",
+  "number": 17,
+  "total": 23,
+  "previous": "İşlem",
+  "next": "Fonksiyonlar",
+  "promise": "Matematik konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Doğum gününün **bu yıl** ve **gelecek yıl** haftanın hangi gününe denk geldiğini modla bul.",
+    "$3^{100}$ sayısının **son rakamını** döngüyle bul.",
+    "Uygulamada Modüler Aritmetik testinden **20 soru** çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Doğum gününün bu yıl ve gelecek yıl haftanın hangi gününe denk geldiğini modla bul. Sonra 3 üssü 100'ün son rakamını döngüyle bul. En son uygulamada modüler aritmetik testinden yirmi soru çöz; yanlışlarını bu dersteki adımlarla yeniden çöz. Bir sonraki derste fonksiyonlarla devam ediyoruz. Kampta görüşmek üzere!"
+  }
+ }
+}

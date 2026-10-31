@@ -10,7 +10,7 @@ import type {ImageSizeName} from './Schemas/ImageSizes';
  * variant is one template with its own content schema and layout. Adding a
  * design means adding a variant file and one line in ImageTemplateRegistry.
  */
-export type ImageTemplateDefinition<Schema extends z.ZodType> = {
+type ImageTemplateDefinition<Schema extends z.ZodType> = {
 	/** Letters and digits only; together with `variant` it forms the composition id. */
 	category: string;
 	variant: string;
@@ -25,6 +25,14 @@ export type ImageTemplateDefinition<Schema extends z.ZodType> = {
 	pageCount?: (content: z.output<Schema>) => number;
 	/** Text the output file is named after. */
 	outputName: (content: z.output<Schema>) => string;
+	/**
+	 * Text the design cannot set at its fixed sizes and places
+	 * (Configurations/SocialIdentity), one sentence each saying what to shorten.
+	 * Measured without a browser (Components/TextMeasure). A job with any is
+	 * refused before rendering (resolveImageJob), so a post never goes out with
+	 * a title shrunk, cut or run into its picture. Every social design has one.
+	 */
+	checkLayout?: (content: z.output<Schema>, frame: {width: number; height: number}) => string[];
 	Component: React.FC<{content: z.output<Schema>; page: number}>;
 };
 

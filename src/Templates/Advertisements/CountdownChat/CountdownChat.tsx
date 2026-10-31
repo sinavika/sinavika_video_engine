@@ -4,16 +4,15 @@ import {AbsoluteFill, interpolate} from 'remotion';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
-import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
+import {appEndScenes} from '../../../Scenes/AppEndScene';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, VoiceScriptSchema, type VoiceClips} from '../../../Scenes/Voiceover';
 import {plainText} from '../../../Schemas/RichText';
 import {Icon} from '../../../UIUX/Icons';
 import {defineTemplate} from '../../TemplateDefinition';
-import {At, BrowserShot, CLAMP, ease, PromoStage, PromoSubtitle, TypeOn, useLand, useSeconds} from '../PromoKit/PromoKit';
+import {At, BrowserShot, CLAMP, ease, PromoStage, TypeOn, useLand, useSeconds} from '../PromoKit/PromoKit';
 import {PROMO_WEB_SCREEN_NAMES, PROMO_WEB_SCREENS} from '../PromoKit/PromoScreens';
-import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 /**
  * A game countdown on white: a giant orange 3, 2, 1, and under each number one
@@ -23,12 +22,10 @@ import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 const narration = z.string().trim().min(1).max(170);
 
-export const CountdownChatSchema = z.object({
+const CountdownChatSchema = z.object({
 	hook: z.object({lines: z.tuple([plainText(26), plainText(20)]), narration}),
 	rounds: z.array(z.object({tag: plainText(20), question: plainText(70), answer: plainText(110), narration})).length(3),
 	site: z.object({screen: z.enum(PROMO_WEB_SCREEN_NAMES), url: plainText(32), narration}),
-	closing: z.object({line: plainText(28), cta: plainText(26), narration}),
-	subtitles: z.boolean().default(true),
 	script: VoiceScriptSchema,
 	outro: z.object({enabled: z.boolean().default(true)}).default({enabled: true}),
 });
@@ -40,10 +37,9 @@ const GREY = '#64748B';
 const SOFT = '#F1F5F9';
 const LINE = '#E2E8F0';
 
-const Stage: React.FC<{content: Content; narration: string; shown?: string; children: React.ReactNode}> = ({content, narration: text, shown, children}) => (
+const Stage: React.FC<{children: React.ReactNode}> = ({children}) => (
 	<PromoStage ground={<AbsoluteFill style={{background: '#FFFFFF'}} />}>
 		{children}
-		<PromoSubtitle text={text} shown={shown} enabled={content.subtitles} ink="#FFFFFF" fill={INK} />
 	</PromoStage>
 );
 
@@ -68,7 +64,7 @@ const Numeral: React.FC<{value: number; settle: number}> = ({value, settle}) => 
 const HookScene: React.FC<{content: Content}> = ({content}) => {
 	const line = useLand(0.6);
 	return (
-		<Stage content={content} narration={content.hook.narration} shown={content.hook.lines.join(' ')}>
+		<Stage>
 			<Numeral value={3} settle={0} />
 			<At y={1060} w={952}>
 				<div style={{opacity: line, transform: `translateY(${(1 - line) * 30}px)`}}>
@@ -94,7 +90,7 @@ const RoundScene: React.FC<{content: Content; index: number}> = ({content, index
 	const ask = interpolate(seconds, [askAt - 0.1, askAt + 0.2], [0, 1], CLAMP);
 	const thinking = seconds > answerAt - 0.4 && seconds < answerAt;
 	return (
-		<Stage content={content} narration={round.narration}>
+		<Stage>
 			<Numeral value={3 - index} settle={settle} />
 			<At x={230} y={86}>
 				<div style={{opacity: settle, padding: `${u(12)}px ${u(24)}px`, borderRadius: u(999), border: `${u(2)}px solid ${LINE}`}}>
@@ -134,7 +130,7 @@ const SiteScene: React.FC<{content: Content}> = ({content}) => {
 	const Screen = PROMO_WEB_SCREENS[content.site.screen];
 	const rise = ease(interpolate(seconds, [0, 0.7], [0, 1], CLAMP));
 	return (
-		<Stage content={content} narration={content.site.narration} shown={content.site.url}>
+		<Stage>
 			<At y={220} w={952}>
 				<div style={{opacity: rise}}>
 					<Text variant="display" size={TYPE.adScale.headline * 0.8} weight={TYPE.weights.kinetic} color={ORANGE} align="center">
@@ -161,7 +157,6 @@ const SAMPLE: z.input<typeof CountdownChatSchema> = {
 		{tag: 'Plan', question: 'Bu hafta ne çalışayım?', answer: 'Hesap açarsan hedefine ve son denemene göre plan çıkarırım.', narration: 'Beğenirsen hedefine göre plan da çıkarsın.'},
 	],
 	site: {screen: 'siteSinoGuest', url: 'sinavika.com/sinoai', narration: 'SinoAI’yi hesap açmadan dene.'},
-	closing: {line: 'Kayıt olmadan dene.', cta: 'Hemen sor', narration: 'sinavika.com’da hemen dene.'},
 };
 
 const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateScene[] => {
@@ -173,12 +168,11 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 		return say(`round-${index + 1}`, round.narration, Math.max(beat(round.narration, 3), needed), needed);
 	});
 	const site = say('site', content.site.narration, beat(content.site.narration, 2.8), 2.6);
-	const closing = say('closing', content.closing.narration, beat(content.closing.narration, 2.6), 2.4);
 	return [
 		{id: 'hook', seconds: hook.seconds, label: 'Hook', voice: [hook], element: <HookScene content={content} />},
 		...rounds.map((slot, index) => ({id: `round-${index + 1}`, seconds: slot.seconds, label: `${3 - index}`, voice: [slot], element: <RoundScene content={content} index={index} />})),
 		{id: 'site', seconds: site.seconds, label: 'Site', voice: [site], element: <SiteScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard />}] : []),
+		...appEndScenes(content.outro.enabled, say),
 	];
 };
 

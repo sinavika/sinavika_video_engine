@@ -35,6 +35,8 @@ export type UIColors = {
 	errorInk: string;
 	/** Text on brand orange. */
 	onBrand: string;
+	/** Fill of brand buttons: white text reads at 5.2:1 (#EA580C gave 3.6:1). The logo and icons keep `brand`. */
+	action: string;
 };
 
 export const UI_COLORS: Record<UIMode, UIColors> = {
@@ -63,6 +65,7 @@ export const UI_COLORS: Record<UIMode, UIColors> = {
 		warningInk: '#B45309',
 		errorInk: '#B91C1C',
 		onBrand: '#FFFFFF',
+		action: '#C2410C',
 	},
 	dark: {
 		brand: '#F97316',
@@ -88,6 +91,7 @@ export const UI_COLORS: Record<UIMode, UIColors> = {
 		warningInk: '#FBBF24',
 		errorInk: '#F87171',
 		onBrand: '#FFFFFF',
+		action: '#C2410C',
 	},
 };
 

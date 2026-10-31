@@ -1,0 +1,701 @@
+{
+ "topic": {
+  "id": "C2742811-D774-4114-3DEE-F5EADCCD6F8F",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_KOKLU"
+ },
+ "title": "Köklü Sayılar",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/MAT/MAT_KOKLU.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Kök dokuz artı kök on altı, kök yirmi beş değildir.",
+   "narration": "Kök dokuz artı kök on altı kaçtır? Yedi. Peki kök yirmi beş kaç? Beş. Köklü sayılarda en sık yanlış, kökü toplamaya dağıtmaktır ve AYT bu yanlışla bulunan sayıyı şıklara koyar. Köklü ifadeler AYT'de fonksiyonların, denklemlerin ve geometrinin içinde karşına çıkar. Kuralları kısaca hatırlayıp her kalıbı AYT düzeyinde bir soruyla çözeceğiz."
+  },
+  "objectives": [
+   "Karenin karekökünü mutlak değerle açmak",
+   "Köklü sayıları kök içine alarak sıralamak",
+   "Kök derecesine göre tanım kümesini bulmak",
+   "İç içe ve farklı dereceli köklerle işlem yapmak",
+   "Eşlenikle paydayı kurtarmak ve köklü denklemde sahte kökü elemek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_KOKLU_01",
+    "subtopics": [
+     "MAT_KOKLU_02",
+     "MAT_KOKLU_03"
+    ],
+    "title": "Tanım ve kök dışı",
+    "narration": "Kök, üssün tersidir. AYT'nin ilk tuzağı karekökün sonucunun işaretinde: kare kökün sonucu hiçbir zaman negatif değildir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kısa tekrar: kök",
+      "items": [
+       "$\\sqrt[n]{a^m} = a^{m/n}$; **çift** dereceli kökte içi $\\geq 0$, **tek** dereceli kökte her sayı.",
+       "$\\sqrt{a^2} = |a|$, ama $\\sqrt[3]{a^3} = a$.",
+       "Kök dışına çıkarma: $\\sqrt{72} = \\sqrt{36 \\cdot 2} = 6\\sqrt{2}$.",
+       "Kök içine alma ($a \\geq 0$): $a\\sqrt{b} = \\sqrt{a^2 b}$; sıralamada **hepsini içeri al**."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -8.5,
+        8.5
+       ],
+       "y": [
+        -2.6,
+        3.2
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "sqrt(x)",
+         "label": "y = √x",
+         "ends": [
+          "none",
+          "none"
+         ]
+        },
+        {
+         "expression": "cbrt(x)",
+         "label": "y = ∛x",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "beats": [
+       {
+        "narration": "Karekök eğrisi sıfırdan başlar: sola, negatif sayılara hiç geçmez. Çift dereceli kökün içi negatif olamaz.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Küpkök eğrisi ise iki yana da uzanır: eksi sekizin küpkökü eksi iki. Tek dereceli kökte her sayı olur.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "narration": "Kök, kesirli üstür: n'inci dereceden kök, üssü n'ye bölmektir. Çift dereceli bir kökün içi negatif olamaz; tek dereceli kökte her sayı olur. a karenin karekökü a değil, a'nın mutlak değeridir; ama a küpün küpkökü a'dır. Kök dışına çıkarırken en büyük tam kare çarpanı ararsın. Köklü sayıları sıralarken de hepsini kökün içine alırsın."
+     },
+     {
+      "kind": "example",
+      "title": "Önce dışarı çıkar, sonra topla",
+      "example": "$\\sqrt{300} + \\sqrt{75} - \\sqrt{48}$ işlemini yapalım.",
+      "explanation": "$10\\sqrt{3} + 5\\sqrt{3} - 4\\sqrt{3} = 11\\sqrt{3}$: kök içleri **aynı** olunca toplanır.",
+      "beats": [],
+      "narration": "Bir örnek: karekök 300 artı karekök 75 eksi karekök 48 işlemini yapalım. Üçü de farklı görünüyor, ama her birinde bir tam kare saklı. Üç yüz, yüz çarpı üç: on kök üç. Yetmiş beş, yirmi beş çarpı üç: beş kök üç. Kırk sekiz, on altı çarpı üç: dört kök üç. Artık kök içleri aynı: on artı beş eksi dört, on bir kök üç."
+     },
+     {
+      "kind": "mistake",
+      "title": "Karenin karekökü",
+      "wrong": "$\\sqrt{a^2} = a$",
+      "right": "$\\sqrt{a^2} = |a|$; $a < 0$ ise $-a$.",
+      "why": "Karekök hiçbir zaman negatif sonuç vermez: $\\sqrt{(-3)^2} = \\sqrt{9} = 3$.",
+      "narration": "Sık yapılan bir hata: a karenin karekökünü a yazmak. a eksi üç olsun: eksi üçün karesi dokuz, dokuzun karekökü üç; eksi üç değil. Bu yüzden a karenin karekökü, a'nın mutlak değeridir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a < 0 < b$ olduğuna göre,\n\n$\\sqrt{a^2} + \\sqrt{(a - b)^2} - \\sqrt[3]{b^3}$\n\nifadesinin eşiti aşağıdakilerden hangisidir?",
+       "options": [
+        "$-2a$",
+        "$2a$",
+        "$2b$",
+        "$2a - 2b$",
+        "$0$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$\\sqrt{a^2} = |a| = -a$ ($a < 0$).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a karenin karekökü a'nın mutlak değeri; a negatif, eksi a."
+        },
+        {
+         "text": "$\\sqrt{(a - b)^2} = |a - b| = b - a$ ($a < b$).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a eksi b'nin karesinin karekökü, a eksi b'nin mutlak değeri. a, b'den küçük: b eksi a."
+        },
+        {
+         "text": "$\\sqrt[3]{b^3} = b$: toplam $-a + b - a - b = -2a$.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "b küpün küpkökü b. Hepsi: eksi a artı b eksi a eksi b, eksi iki a. Kökleri mutlak değersiz açan sıfır bulur. Cevap A."
+        }
+       ],
+       "narration": "Karekökler mutlak değer olarak çıkar; küpkök olduğu gibi.",
+       "origin": {
+        "changes": "Karekök ve mutlak değer kalıbı; ifade yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a = 3\\sqrt{2}$, $b = 2\\sqrt{5}$, $c = \\sqrt{19}$\n\nolduğuna göre, aşağıdaki sıralamalardan hangisi doğrudur?",
+       "options": [
+        "$a < b < c$",
+        "$a < c < b$",
+        "$b < a < c$",
+        "$c < a < b$",
+        "$c < b < a$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$a = \\sqrt{9 \\cdot 2} = \\sqrt{18}$, $b = \\sqrt{4 \\cdot 5} = \\sqrt{20}$, $c = \\sqrt{19}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç kök iki, dokuz çarpı ikinin karekökü: kök on sekiz. İki kök beş, dört çarpı beşin karekökü: kök yirmi. c zaten kök on dokuz."
+        },
+        {
+         "text": "$18 < 19 < 20$: $a < c < b$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İçleri karşılaştıralım: on sekiz, on dokuz, yirmi. Sıra a, c, b. Cevap B."
+        }
+       ],
+       "narration": "Hepsini kökün içine alalım.",
+       "origin": {
+        "changes": "Kök içine alarak sıralama kalıbı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\sqrt{x - 3} + \\sqrt[4]{7 - x} + \\sqrt[3]{x - 10}$\n\nifadesini **tanımlı** yapan $x$ tam sayılarının toplamı kaçtır?",
+       "options": [
+        "$18$",
+        "$22$",
+        "$25$",
+        "$30$",
+        "$45$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Karekök: $x - 3 \\geq 0$, $x \\geq 3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Karekök çift dereceli: x eksi üç negatif olamaz, x en az üç."
+        },
+        {
+         "text": "Dördüncü dereceden kök: $7 - x \\geq 0$, $x \\leq 7$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dördüncü dereceden kök de çift dereceli: yedi eksi x negatif olamaz, x en çok yedi."
+        },
+        {
+         "text": "Küpkök **tek** dereceli: koşul yok. $x \\in \\{3, \\dots, 7\\}$, toplam $25$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Küpkök tek dereceli: x eksi onun negatif olması sorun değil. x, üçten yediye: üç, dört, beş, altı, yedi; toplam yirmi beş. Küpköke de koşul koyan çözüm bulamaz. Cevap C."
+        }
+       ],
+       "narration": "Üç kök, üç farklı derece. Hangilerinin içi negatif olamaz?",
+       "origin": {
+        "changes": "Kök dereceleri ve tanım kümesi kalıbı; ifade yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_KOKLU_04",
+    "subtopics": [],
+    "title": "Köklerle işlem",
+    "narration": "Köklü sayılarda çarpma serbest, toplama değil. AYT bu farkı iç içe köklerle ve farklı dereceli köklerle sınar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İşlem kuralları",
+      "items": [
+       "$\\sqrt{a} \\cdot \\sqrt{b} = \\sqrt{ab}$ ($a, b \\geq 0$); ama $\\sqrt{a} + \\sqrt{b} \\neq \\sqrt{a + b}$.",
+       "Yalnız **aynı kök içleri** toplanır: $2\\sqrt{3} + 5\\sqrt{3} = 7\\sqrt{3}$.",
+       "İç içe kök: $\\sqrt{a + 2\\sqrt{b}} = \\sqrt{x} + \\sqrt{y}$, $x + y = a$, $xy = b$.",
+       "Farklı dereceler: hepsini **üslü** yaz, üsleri topla."
+      ],
+      "beats": [],
+      "narration": "Köklerle çarpma serbesttir: kök a çarpı kök b, kök a b. Ama toplama öyle değil: yalnız aynı kök içleri toplanır. İç içe kökte, kök içinde a artı iki kök b varsa, toplamı a, çarpımı b olan iki sayı ararsın. Dereceleri farklı kökleri çarparken hepsini üslü yazıp üsleri toplarsın."
+     },
+     {
+      "kind": "predict",
+      "title": "Toplama dağılır mı?",
+      "prompt": "$\\sqrt{9} + \\sqrt{16}$ ile $\\sqrt{9 + 16}$ eşit mi?",
+      "choices": [
+       "Eşit",
+       "Eşit değil"
+      ],
+      "answer": 1,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "İşlem",
+        "Sonuç"
+       ],
+       "rows": [
+        [
+         "$\\sqrt{9} + \\sqrt{16}$",
+         "$3 + 4 = 7$"
+        ],
+        [
+         "$\\sqrt{9 + 16} = \\sqrt{25}$",
+         "$5$"
+        ],
+        [
+         "$\\sqrt{9} \\cdot \\sqrt{16}$",
+         "$12 = \\sqrt{144}$"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "beats": [
+       {
+        "narration": "Kök dokuz artı kök on altı: üç artı dört, yedi.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Dokuz artı on altının karekökü: kök yirmi beş, beş. Yedi ile beş eşit değil.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Çarpmada ise eşitlik var: üç çarpı dört on iki, kök yüz kırk dört de on iki.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "Kök **çarpmaya** dağılır, **toplamaya** dağılmaz: $7 \\neq 5$.",
+      "narration": "Şimdi sıra sende. Kök dokuz artı kök on altı, dokuz artı on altının kareköküne eşit mi? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: eşit değil. Biri yedi, öteki beş. Kök çarpmaya dağılır ama toplamaya dağılmaz. AYT şıklarına bu yanlışla bulunan sayıyı koyar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\sqrt{7 + 2\\sqrt{10}} - \\sqrt{7 - 2\\sqrt{10}}$\n\nişleminin sonucu kaçtır?",
+       "options": [
+        "$1$",
+        "$\\sqrt{2}$",
+        "$2$",
+        "$\\sqrt{6}$",
+        "$2\\sqrt{2}$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$x + y = 7$, $xy = 10$: $5$ ve $2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplamı yedi, çarpımı on olan iki sayı: beş ve iki."
+        },
+        {
+         "text": "$\\sqrt{7 + 2\\sqrt{10}} = \\sqrt{5} + \\sqrt{2}$, $\\sqrt{7 - 2\\sqrt{10}} = \\sqrt{5} - \\sqrt{2}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Artılısı kök beş artı kök iki. Eksilisinde büyük olan önce yazılır: kök beş eksi kök iki; kök iki eksi kök beş olsaydı negatif olurdu."
+        },
+        {
+         "text": "Fark: $(\\sqrt{5} + \\sqrt{2}) - (\\sqrt{5} - \\sqrt{2}) = 2\\sqrt{2}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Farkta kök beşler gider: iki kök iki. Cevap E."
+        }
+       ],
+       "narration": "İç içe kök: toplamı yedi, çarpımı on olan iki sayı arayalım.",
+       "origin": {
+        "changes": "İç içe kök kalıbı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\sqrt[3]{2} \\cdot \\sqrt[6]{4} \\cdot \\sqrt{2}$\n\nçarpımının sonucu kaçtır?",
+       "options": [
+        "$\\sqrt[6]{2}$",
+        "$2$",
+        "$2\\sqrt[6]{2}$",
+        "$2\\sqrt[3]{2}$",
+        "$4$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$2^{1/3} \\cdot (2^2)^{1/6} \\cdot 2^{1/2} = 2^{1/3} \\cdot 2^{1/3} \\cdot 2^{1/2}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Küpkök iki, iki üzeri üçte bir. Dördün altıncı dereceden kökü, iki karenin altıda biri: iki üzeri üçte bir. Kök iki, iki üzeri yarım."
+        },
+        {
+         "text": "Üsler: $\\frac{1}{3} + \\frac{1}{3} + \\frac{1}{2} = \\frac{7}{6}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üsleri toplayalım: üçte bir, üçte bir, yarım; altıda yedi."
+        },
+        {
+         "text": "$2^{7/6} = 2 \\cdot 2^{1/6} = 2\\sqrt[6]{2}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki üzeri altıda yedi, iki çarpı iki üzeri altıda bir: iki çarpı altıncı dereceden kök iki. Cevap C."
+        }
+       ],
+       "narration": "Dereceler farklı: üslü yazalım.",
+       "origin": {
+        "changes": "Farklı dereceli kökler kalıbı; kökler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a = \\sqrt[3]{3}$, $b = \\sqrt[4]{5}$, $c = \\sqrt{2}$\n\nolduğuna göre, aşağıdaki sıralamalardan hangisi doğrudur?",
+       "options": [
+        "$c < a < b$",
+        "$a < c < b$",
+        "$a < b < c$",
+        "$b < c < a$",
+        "$c < b < a$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$\\text{EKOK}(3, 4, 2) = 12$: $a = \\sqrt[12]{3^4}$, $b = \\sqrt[12]{5^3}$, $c = \\sqrt[12]{2^6}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç, dört ve ikinin EKOK'u on iki. Hepsini on ikinci dereceden kök yapalım: küpkökte iç dördüncü kuvvete, dördüncü dereceden kökte küpe, karekökte altıncı kuvvete çıkar."
+        },
+        {
+         "text": "İçler: $3^4 = 81$, $5^3 = 125$, $2^6 = 64$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İçleri hesaplayalım: üç üzeri dört seksen bir, beş küp yüz yirmi beş, iki üzeri altı altmış dört."
+        },
+        {
+         "text": "$64 < 81 < 125$: $c < a < b$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Altmış dört, seksen bir, yüz yirmi beş: c, a, b. Cevap A."
+        }
+       ],
+       "narration": "Kök dereceleri farklı: üç, dört ve iki. Ortak dereceye getirelim.",
+       "origin": {
+        "changes": "Farklı dereceli kökleri sıralama kalıbı; kökler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_KOKLU_05",
+    "subtopics": [
+     "MAT_KOKLU_06"
+    ],
+    "title": "Eşlenik ve payda",
+    "narration": "Paydadaki kökten kurtulmanın yolu eşlenik. AYT bunu uzun bir toplamda kullandırır: terimler birbirini götürür.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Eşlenik",
+      "items": [
+       "$(\\sqrt{a} - \\sqrt{b})(\\sqrt{a} + \\sqrt{b}) = a - b$",
+       "$\\frac{1}{\\sqrt{a} + \\sqrt{b}} = \\frac{\\sqrt{a} - \\sqrt{b}}{a - b}$; ardışık sayılarda payda **1**.",
+       "$\\frac{1}{\\sqrt{k} + \\sqrt{k + 1}} = \\sqrt{k + 1} - \\sqrt{k}$: toplamda terimler **götürür**."
+      ],
+      "beats": [],
+      "narration": "Kök a eksi kök b ile kök a artı kök b'nin çarpımı, a eksi b'dir: kökler kaybolur. Bu yüzden paydada kök varsa eşleniğiyle genişletirsin. Paydadaki sayılar ardışıksa a eksi b bir olur ve kesir, iki kökün farkına dönüşür. Böyle terimlerin toplamında, rasyonel sayılarda gördüğümüz gibi terimler birbirini götürür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\dfrac{1}{\\sqrt{1} + \\sqrt{2}} + \\dfrac{1}{\\sqrt{2} + \\sqrt{3}} + \\dots + \\dfrac{1}{\\sqrt{99} + \\sqrt{100}}$\n\ntoplamı kaçtır?",
+       "options": [
+        "$7$",
+        "$8$",
+        "$9$",
+        "$10$",
+        "$11$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$\\frac{1}{\\sqrt{k} + \\sqrt{k + 1}} = \\frac{\\sqrt{k + 1} - \\sqrt{k}}{(k + 1) - k} = \\sqrt{k + 1} - \\sqrt{k}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir terimi eşleniğiyle çarpalım: payda k artı bir eksi k, bir. Terim, kök k artı bir eksi kök k olur."
+        },
+        {
+         "text": "$(\\sqrt{2} - \\sqrt{1}) + (\\sqrt{3} - \\sqrt{2}) + \\dots + (\\sqrt{100} - \\sqrt{99})$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam: kök iki eksi kök bir, artı kök üç eksi kök iki, böyle kök yüz eksi kök doksan dokuza kadar."
+        },
+        {
+         "text": "Ortadakiler götürür: $\\sqrt{100} - \\sqrt{1} = 10 - 1 = 9$.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Ortadaki bütün kökler birbirini götürür; geriye kök yüz eksi kök bir kalır: on eksi bir, dokuz. Kök biri unutan on bulur. Cevap C."
+        }
+       ],
+       "narration": "Her terimi eşleniğiyle genişletelim.",
+       "origin": {
+        "changes": "Eşlenikle terimleri götüren toplam kalıbı; terim sayısı ve sonuç yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x = \\dfrac{1}{\\sqrt{3} - \\sqrt{2}}$\n\nolduğuna göre, $x + \\dfrac{1}{x}$ toplamı kaçtır?",
+       "options": [
+        "$\\sqrt{3}$",
+        "$2$",
+        "$2\\sqrt{2}$",
+        "$2\\sqrt{3}$",
+        "$2\\sqrt{6}$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$x = \\frac{\\sqrt{3} + \\sqrt{2}}{3 - 2} = \\sqrt{3} + \\sqrt{2}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eşlenikle genişletelim: pay kök üç artı kök iki, payda üç eksi iki, bir. x, kök üç artı kök iki."
+        },
+        {
+         "text": "$\\frac{1}{x} = \\sqrt{3} - \\sqrt{2}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir bölü x de x'in tersi: kök üç eksi kök iki."
+        },
+        {
+         "text": "$x + \\frac{1}{x} = 2\\sqrt{3}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplamda kök ikiler gider: iki kök üç. Cevap D."
+        }
+       ],
+       "narration": "Önce x'in paydasını kökten kurtaralım.",
+       "origin": {
+        "changes": "Eşlenik kalıbı; sayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_KOKLU_07",
+    "subtopics": [],
+    "title": "Köklü denklemler",
+    "narration": "Köklü denklemde kare almak yeni kökler doğurabilir. Her kökü yerine koyup denetlemek bu yüzden zorunlu.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Denklem kuralları",
+      "items": [
+       "$\\sqrt{f} = g$: kare al, $f = g^2$; ama önce **$g \\geq 0$**.",
+       "Bulunan her kökü **yerine koyup** denetle.",
+       "$x$ ile $\\sqrt{x}$ birlikte varsa $t = \\sqrt{x}$ de, $t \\geq 0$."
+      ],
+      "beats": [],
+      "narration": "Karekök bir ifadeye eşitse kare alırsın; ama önce o ifadenin negatif olamayacağını yaz, çünkü karekök negatif olmaz. Kare almak sahte kök doğurabilir; bu yüzden bulduğun her kökü yerine koyup denetle. x ile kök x birlikte geçiyorsa kök x'e t de; t negatif olamaz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\sqrt{x + 7} = x + 1$\n\ndenkleminin çözüm kümesinin elemanları toplamı kaçtır?",
+       "options": [
+        "$-1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Koşul: $x + 1 \\geq 0$, $x \\geq -1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sol taraf karekök, negatif olamaz: x artı bir sıfırdan büyük eşit, x en az eksi bir."
+        },
+        {
+         "text": "Kare al: $x + 7 = x^2 + 2x + 1$, $x^2 + x - 6 = 0$, $x = 2$ ya da $x = -3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki tarafın karesini alalım: x artı yedi, x kare artı iki x artı bir. Düzenleyince x kare artı x eksi altı sıfır: x iki ya da eksi üç."
+        },
+        {
+         "text": "$x = -3$ koşula uymaz; $x = 2$: $\\sqrt{9} = 3$ ✓. Toplam $2$.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eksi üç koşula uymaz: sağ taraf eksi iki olurdu. İki ise uyar: kök dokuz üç, iki artı bir de üç. Toplam iki. İki kökü de toplayan eksi bir bulur. Cevap B."
+        }
+       ],
+       "narration": "Kare alacağız; ama önce sağ tarafın koşulu.",
+       "origin": {
+        "changes": "Sahte kök kalıbı; denklem yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x - 5\\sqrt{x} + 6 = 0$\n\ndenkleminin köklerinin çarpımı kaçtır?",
+       "options": [
+        "$6$",
+        "$13$",
+        "$25$",
+        "$36$",
+        "$49$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$t = \\sqrt{x} \\geq 0$: $t^2 - 5t + 6 = 0$, $t = 2$ ya da $t = 3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kök x'e t diyelim. x, t kare olur: t kare eksi beş t artı altı, sıfır. t iki ya da üç; ikisi de negatif değil."
+        },
+        {
+         "text": "$\\sqrt{x} = 2$: $x = 4$; $\\sqrt{x} = 3$: $x = 9$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kök x iki ise x dört; kök x üç ise x dokuz."
+        },
+        {
+         "text": "Çarpım $4 \\cdot 9 = 36$.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Köklerin çarpımı otuz altı. t'lerin çarpımını, altıyı, cevap sanan yanılır. Cevap D."
+        }
+       ],
+       "narration": "x, kök x'in karesi. Değişken değiştirelim.",
+       "origin": {
+        "changes": "Değişken değiştirme kalıbı; katsayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$\\sqrt{a^2} = |a|$, $\\sqrt[3]{a^3} = a$.",
+    "**Çift** dereceli kökte içi $\\geq 0$.",
+    "Sıralamada hepsini **köke al**.",
+    "Kök **çarpmaya** dağılır, toplamaya dağılmaz.",
+    "Eşlenik: $(\\sqrt{a} - \\sqrt{b})(\\sqrt{a} + \\sqrt{b}) = a - b$.",
+    "Köklü denklemde kökü **denetle**."
+   ],
+   "warnings": [
+    "$\\sqrt{9} + \\sqrt{16} = 7$, $\\sqrt{25} = 5$.",
+    "İç içe kökte eksilide **büyük önce**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "$\\sqrt{11 + 2\\sqrt{30}} + \\sqrt{11 - 2\\sqrt{30}}$ işlemini **kendin** yap.",
+    "$\\frac{1}{\\sqrt{3} + \\sqrt{5}} + \\frac{1}{\\sqrt{5} + \\sqrt{7}} + \\dots + \\frac{1}{\\sqrt{47} + \\sqrt{49}}$ toplamını bul; payda bu kez **2**.",
+    "Uygulamada AYT Köklü Sayılar testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "İç içe kökü açmayı örnekle: √(7 + 2√10) = √5 + √2, √(8 − 2√15) = √5 − √3 (toplamı ve çarpımı veren iki sayı aranır).",
+   "Paydayı kökten kurtarmayı örnekle: 1/(√5 − √3) = (√5 + √3)/2; küp kökte 1/∛2 = ∛4/2.",
+   "Farklı dereceli kökleri sıralat: √3, ∛5 ve ⁶√20 aynı dereceye (6) getirilince ⁶√27, ⁶√25, ⁶√20 olur; sıralama ⁶√20 < ∛5 < √3.",
+   "Köklü denklemde fazla kökü göster: √(x + 5) = x − 1 kare alınınca x² − 3x − 4 = 0, x = 4 ya da −1; x = −1 sağ tarafı negatif yaptığı için atılır.",
+   "Sonsuz iç içe köke ve mutlak değer tuzağına örnek ekle: √(6 + √(6 + …)) = x ise x² = 6 + x, x = 3. −1 < x < 3 için √((x − 3)²) + √((x + 1)²) = (3 − x) + (x + 1) = 4."
+  ]
+ }
+}

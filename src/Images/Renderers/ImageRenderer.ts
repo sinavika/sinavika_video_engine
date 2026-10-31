@@ -2,10 +2,10 @@ import {mkdir} from 'node:fs/promises';
 import path from 'node:path';
 import {renderStill, selectComposition} from '@remotion/renderer';
 import {VideoRenderError, bundleProject} from '../../Renderers/VideoRenderer';
-import {saveNumberedOutput} from '../../Services/OutputFiles';
+import {saveNumberedOutput} from '../../Services/OutputFile';
 import {resolveImageJob, type ResolvedImageJob} from './ImageJob';
 
-export type ImageRenderResult = {
+type ImageRenderResult = {
 	/** One file per image: several for a carousel. */
 	files: string[];
 	category: string;
@@ -20,7 +20,7 @@ export type ImageRenderResult = {
 	warnings: string[];
 };
 
-export type NumberedImageResult = ImageRenderResult & {
+type NumberedImageResult = ImageRenderResult & {
 	/** The production's number in Outputs/Images. */
 	number: number;
 	createdAt: string;

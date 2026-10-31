@@ -13,13 +13,14 @@ import {composeMusic} from './ElevenLabsSpeech';
  * its description and length; rendering the video again spends nothing. The
  * length is rounded up, so re-timing a video by a second reuses the piece.
  */
-export const MUSIC_DIRECTORY = 'Music';
+const MUSIC_DIRECTORY = 'Music';
 const LENGTH_STEP_SECONDS = 5;
 /** How many length steps longer an existing piece may be and still be reused. */
 const REUSE_LONGER_STEPS = 3;
-export type MusicBackend = (description: string, seconds: number) => Promise<Buffer>;
+type MusicBackend = (description: string, seconds: number) => Promise<Buffer>;
 
-const musicFile = async (description: string, videoSeconds: number, publicDirectory: string, compose: MusicBackend): Promise<string> => {
+/** The piece a video of `videoSeconds` plays (made now if there is none): the beat grid is measured from it and the bed is cut from it. */
+export const musicPieceFor = async (description: string, videoSeconds: number, publicDirectory: string, compose: MusicBackend = composeMusic): Promise<string> => {
 	const seconds = Math.ceil((videoSeconds + 1) / LENGTH_STEP_SECONDS) * LENGTH_STEP_SECONDS;
 	const fileFor = (length: number) => path.join(publicDirectory, MUSIC_DIRECTORY, `${createHash('sha256').update(`${description}|${length}`).digest('hex').slice(0, 20)}.mp3`);
 	// A piece already made from the same description, a little longer, is kept:
@@ -43,8 +44,9 @@ const musicFile = async (description: string, videoSeconds: number, publicDirect
  * ends when it plays it.
  */
 export const writeMusicBed = async (
-	{description, videoSeconds, publicDirectory, outputPath}: {description: string; videoSeconds: number; publicDirectory: string; outputPath: string},
+	{description, videoSeconds, publicDirectory, outputPath, piece}: {description: string; videoSeconds: number; publicDirectory: string; outputPath: string; piece?: string},
 	compose: MusicBackend = composeMusic,
 ): Promise<void> => {
-	await levelAudio(await musicFile(description, videoSeconds, publicDirectory, compose), outputPath, AUDIO_LEVELS.musicBed);
+	// The piece whose beats the cuts were placed on, when there is one: another piece would not keep the rhythm.
+	await levelAudio(piece ?? (await musicPieceFor(description, videoSeconds, publicDirectory, compose)), outputPath, AUDIO_LEVELS.musicBed);
 };

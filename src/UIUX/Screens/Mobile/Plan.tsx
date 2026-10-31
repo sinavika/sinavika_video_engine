@@ -2,7 +2,7 @@ import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
 import {Icon} from '../../Icons';
 import {MODULES, type ModuleKey} from '../../ModuleIdentity';
-import {AppHeader, BottomBar, Content, FocusHeader, ModuleScreen, PageTitle, SectionTitle} from '../../Parts/Mobile';
+import {AppHeader, BottomBar, Content, FocusHeader, ModuleLine, ModuleScreen, PageTitle, SectionTitle} from '../../Parts/Mobile';
 import {Bar, Bars, Button, Card, Chip, List, ListRow, Ring, Segmented, Sparkline, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
 
 /** Ders Planı: today, focus timer, progress, schedule and plan settings. Tabs: Bugün · İlerleme · Modüller · Program · Profil. */
@@ -73,16 +73,18 @@ export const PlanTodayScreen: React.FC = () => {
 					</Stack>
 				</Card>
 				<Stack gap={8}>
-					<PlanTask module="lessons" title={t('Paragraf · Ana fikir', 'Reading · Main idea')} meta={t('Mikro ders · 25 dk', 'Micro-lesson · 25 min')} done />
+					<PlanTask module="lessons" title={t('Sözcükte Anlam', 'Word meaning')} meta={t('Dersler · 3 mikro ders · 8 dk', 'Lessons · 3 micro-lessons · 8 min')} done />
 					<PlanTask module="tests" title={t('Problemler · Orta', 'Problems · Medium')} meta={t('20 soru · 25 dk · denemeden önerildi', '20 questions · 25 min · from your exam')} now />
 					<PlanTask module="flashcards" title={t('Kimya kartları', 'Chemistry cards')} meta={t('20 kart · 10 dk', '20 cards · 10 min')} />
 				</Stack>
-				<Card tone="module" module="studyPlan" padding={14}>
-					<Stack row gap={10}>
-						<Icon name="sparkles" size={18} color={mod.color} />
-						<Text role="small" color={colors.ink2}>
-							<b style={{color: colors.ink}}>{t('Plan önerisi:', 'Plan tip:')}</b> {t('Dün planın %80’ini yaptın. Bugün yükü aynı tuttuk.', 'You did 80% yesterday. We kept today’s load the same.')}
-						</Text>
+				<Card padding={14}>
+					<Stack gap={10}>
+						<Stack row justify="space-between">
+							<Text role="headline">{t('Bugün tekrar', 'Review today')}</Text>
+							<Text role="meta">{t('yaklaşık 12 dk', 'about 12 min')}</Text>
+						</Stack>
+						<ModuleLine module="lessons" title={t('5 adım', '5 steps')} sub={t('Dersler · yanlış yaptığın adımlar', 'Lessons · steps you missed')} right={<Icon name="right" size={18} color={colors.subtle} />} />
+						<ModuleLine module="flashcards" title={t('32 kart', '32 cards')} sub={t('Bilgi Kartları · unutmak üzere olduğun kartlar', 'Flashcards · cards about to slip')} right={<Icon name="right" size={18} color={colors.subtle} />} />
 					</Stack>
 				</Card>
 			</Content>
@@ -161,11 +163,11 @@ export const PlanProgressScreen: React.FC = () => {
 					<Stack row justify="space-between">
 						<Text role="headline">{t('Hedefe giden yol', 'Road to your goal')}</Text>
 						<Text role="small">
-							48 → <b style={{color: colors.brand}}>78</b>
+							48 → <b>78</b>
 						</Text>
 					</Stack>
 					<div style={{marginTop: 8}}>
-						<Sparkline points={[0.1, 0.18, 0.24, 0.38, 0.46]} width={318} height={80} color={colors.brand} />
+						<Sparkline points={[0.1, 0.18, 0.24, 0.38, 0.46]} width={318} height={80} />
 					</div>
 					<Text role="small">
 						{t('Bu hızla hedefine', 'At this pace you reach it')} <b style={{color: colors.ink}}>{t('sınavdan 3 hafta önce', '3 weeks before the exam')}</b> {t('ulaşıyorsun.', '.')}

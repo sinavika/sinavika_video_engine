@@ -37,6 +37,7 @@ Seslendirme için ElevenLabs API anahtarı gerekir. `.env.example` dosyasını `
 | `npm run render -- --job <job.json> --out <video.mp4>` | Videoyu tam olarak verilen yola yazar |
 | `npm run image -- --job <job.json> [--job ...]` | Görsel render eder, `Outputs/Images` altına sıradaki numarayla kaydeder |
 | `npm run image -- --job <job.json> --out <görsel.png>` | Görseli tam olarak verilen yola yazar |
+| `npm run cover -- --job <video-işi.json> [--out <kapak.png> \| --out-dir <klasör>]` | Videoyu render etmeden yalnız kapağını üretir (kamp kapağı, kamp tanıtımı ya da video kapağı) |
 | `npm run render -- --job <job.json> --out <kare.png> --frame 120` | Tek kare render eder |
 | `npm run screens [-- --mode both --device]` | Mobil uygulama ekranlarını PNG olarak `Outputs/AppScreens` altına çıkarır |
 | `npm run uiux [-- --only m-deneme --lang en]` | UI/UX çizimlerini (mobil, web paneli, site; açık ve koyu ayrı; ekranlar ve panolar) `Desktop\Sinavika-UIUX3\acik|koyu` altına çıkarır; `--mode light|dark|both`. Ayrıntı: [docs/UIUX/UIUX-Rehberi.md](docs/UIUX/UIUX-Rehberi.md) |
@@ -45,11 +46,11 @@ Seslendirme için ElevenLabs API anahtarı gerekir. `.env.example` dosyasını `
 | `npm run validate -- <job.json> [...]` | Render etmeden doğrular, süreyi raporlar |
 | `npm run validate -- <job.json> --narration` | Ayrıca seslendirme metnini satır satır yazdırır |
 | `npm run stills -- --job <job.json> --formats all` | Her sahneden bir PNG üretir (yerleşim kontrolü) |
-| `npm run render:samples` | Bütün örnek videoları `out/Samples/` altına üretir |
+| `npm run render:samples` | Bütün örnek videoları `Outputs/Samples/` altına üretir |
 | `npm run schema` | Video şablonlarını ve görsel tasarımlarını listeler |
 | `npm run schema -- <TemplateId>` ya da `Image:<Kategori>[:<Tasarım>]` | İçerik şemasını JSON Schema olarak yazdırır |
 | `npm run voices` | Marka sesleri (ana dili Türkçe), hesabın kullanabildikleri, dinleme bağlantıları ve şu an kimin seslendirdiği |
-| `npm run voices -- --audition "<cümle>"` | Cümleyi kullanılabilir seslerle üretir (`out/Auditions/`), dinleyip seçmek için |
+| `npm run voices -- --audition "<cümle>"` | Cümleyi kullanılabilir seslerle üretir (`Outputs/Auditions/`), dinleyip seçmek için |
 | `npm run typecheck` | TypeScript derleme kontrolü |
 | `npm test` | Birim testleri (şema, zamanlama, animasyon, tema kontrastı) |
 | `npm run test:render` | Gerçek render testleri (headless Chrome; birkaç dakika sürer) |
@@ -62,7 +63,7 @@ Motorun tek girdisi düz bir JSON nesnesidir:
 {
   "template": "QuestionSolution",
   "format": "Vertical",
-  "theme": "AcademicLight",
+  "theme": "SinavikaLight",
   "fps": 30,
   "quality": "2160p",
   "voiceover": true,
@@ -86,7 +87,7 @@ Motorun tek girdisi düz bir JSON nesnesidir:
 | --- | --- | --- |
 | `template` | `QuestionSolution`, `TopicExplanation`, `QuickRevision`, `ConceptExplanation`, `ExamPreparation` | zorunlu |
 | `format` | `Vertical` (9:16), `Horizontal` (16:9), `Square` (1:1) | `Vertical` |
-| `theme` | `SinavikaBrand`, `WhiteboardMinimal`, `AcademicLight`, `TechDark`, `VibrantDynamic`, `ExamFocus` | template'in kendi teması |
+| `theme` | `SinavikaLight`, `SinavikaDark`, `SinavikaBrand` | template'in kendi teması |
 | `fps` | 24, 25, 30, 50, 60 | 30 |
 | `quality` | `720p`, `1080p`, `1440p`, `2160p`. **Kural: her zaman en yüksek kalite, 4K.** YouTube'a 4K dosya yüklenir; sosyal medyaya gönderirken motor kendi 1080p kopyasını çıkarır (Buffer/Instagram en fazla 1080p tutar). Düşük kalite yalnız hızlı önizleme için elle seçilir | `2160p` |
 | `voiceover` | `true`, `false` ya da `{profile, voice, model, pace, standIn}` | `false` |
@@ -134,6 +135,13 @@ Ana dili Türkçe sesler ElevenLabs ses kütüphanesindedir: API'den kullanmak i
 API kredili)** olması ve sesin **"My Voices"a eklenmiş** olması gerekir. Marka seslerinden hiçbiri kullanılamıyorsa
 seslendirme **hata verir**; yabancı sese sessizce düşmez. Güncel durumu, dinleme bağlantılarıyla birlikte
 `npm run voices` gösterir. Marka sesini değiştirmek için `BRAND_VOICES` listesinin sırasını değiştirin.
+
+Hesap 30 Ekim 2026'dan beri **ElevenLabs Pro** planında: ayda 600.000 kredi, aynı anda 10 istek. Pro'nun motora kattıkları ([`ElevenLabsSpeech.ts`](src/Services/ElevenLabsSpeech.ts)):
+
+- **Kayıpsız ses.** Seslendirme ve ses efektleri 44,1 kHz WAV olarak gelir (`SPEECH_AUDIO`); Creator'da en iyisi MP3 192 kbps'ti ve karışım her seferinde bir sıkıştırmanın üstüne bir daha sıkıştırılıyordu.
+- **Müzik.** Eleven Music 48 kHz, 320 kbps MP3 üretir; eskiden varsayılan 192 kbps'ti.
+- **Paralel parça.** Tek isteğe sığmayan uzun bir anlatım parçalara bölünür; önbellekte olmayan parçalar artık aynı anda üretilir (`SPEECH_CONCURRENCY`).
+- **Önbellek korunur.** Daha önce üretilip onaylanmış sesler ve müzikler aynen kalır; yeni kalite yalnız yeni üretimlerde gelir.
 
 Bir işte farklı ses, model ya da tempo istemek, ya da ana dili Türkçe olmayan yedek sesi bilerek kabul etmek için:
 
@@ -303,10 +311,14 @@ Ders ve konu listesine bağlı üretim: `Curriculum/` (katalog, üretim kontrol 
 
 | Komut | Ne yapar |
 | --- | --- |
-| `npm run curriculum -- import --lessons <csv> --corpus <klasör>` | Ders listesini ve kaynakları `Curriculum/` içine alır |
+| `npm run curriculum -- import` | Ders listesini (`Desktop\lesson.csv`) ve eğitim verisini (`Desktop\EgitimVerileri`, kopyalanmaz) kontrol listesine bağlar |
 | `npm run curriculum -- status` / `next` | İlerleme ve sıradaki konular |
-| `npm run curriculum -- brief <konu>` | Senaryo yazmak için konunun alt başlıkları, kaynakları ve görsel seti |
+| `npm run curriculum -- brief <konu>` | Senaryo yazmak için konunun alt başlıkları, kaynakları, çıkmış soruları ve görsel seti |
 | `npm run curriculum -- check <senaryo> [--mark]` | Senaryoyu doğrular, hedeflere göre denetler, "Hazırlandı" işaretler |
+| `npm run curriculum -- camp create\|show` | Kamp planı (dersin konuları yayın sırasıyla) |
+| `npm run curriculum -- jobs make <spec>` / `jobs check [kamp]` | Kamp dersinin render işleri ve YouTube notu; bütün kamp işlerinin denetimi |
+| `npm run curriculum -- coverage <kategori>` / `works [kategori]` | Alt konu kapsaması (KPSS üç seviye); Works'ün aktardığı konu dosyaları |
+| `npm run curriculum -- audit` | Dersler arası tekrar ve kart karışımı raporu (`DersDenetimi.md`) |
 | `npm run curriculum -- mark <konu> --stage youtube\|short` | Üretim aşamasını işaretler |
 | `npm run media -- --commons "File:…" --to <yol>` | Wikimedia Commons görselini lisans kaydıyla ekler |
 | `npm run geo` | Harita verilerini kurar: Türkiye (il, bölge, ilçe, akarsu, göl) ve dünya, Türkçe adlarla |
@@ -339,9 +351,15 @@ npm run render -- --job samples/ExamJourney.json
 
 Üretilen görsel ve videolar Sınavika API'ye teslim edilir; orada admin onayını bekler ve onaylanınca Buffer üzerinden Instagram, TikTok ve YouTube'da paylaşılır. Bu araç onay veremez ve yayın yapamaz.
 
+Neyin neden üretildiği şu belgelerdedir:
+- Vizyon, 1 milyon takipçi hedefi, içerik sütunları ve ölçüm: [docs/SocialStrategy.md](docs/SocialStrategy.md).
+- Hook, kurgu ve yayın öncesi kontrol listesi: [docs/SocialCreativePlaybook.md](docs/SocialCreativePlaybook.md).
+- Sabit kapak, reels bitiş kartı ve mağaza rozetleri: [docs/Sosyal-Kimlik-Standardi.md](docs/Sosyal-Kimlik-Standardi.md).
+- Dayanılan kaynaklar: [docs/SocialResources.md](docs/SocialResources.md).
+
 ```bash
 npm run social -- accounts
-npm run social -- plan --month 2026-11 --out Plans/2026-11.json
+npm run social -- plan --month 2026-11 --out Posts/Plans/2026-11.json
 npm run social -- submit --post samples/Social/Post.json
 npm run social -- calendar --from 2026-11-01 --to 2026-12-01
 npm run social -- revisions
@@ -379,7 +397,7 @@ Hepsi isteğe bağlı kapatılabilen marka kapanışıyla biter (`"outro": {"ena
 `--json` ile her stdout satırı bir JSON olayıdır; backend süreci başlatıp satırları okur:
 
 ```bash
-npm run --silent render -- --job job.json --out out/video.mp4 --json
+npm run --silent render -- --job job.json --out Outputs/video.mp4 --json
 ```
 
 ```json
@@ -395,7 +413,7 @@ npm run --silent render -- --job job.json --out out/video.mp4 --json
 import {renderVideo, renderVideoToOutputs} from './src/Renderers/VideoRenderer';
 import {renderImage, renderImageToOutputs} from './src/Images/Renderers/ImageRenderer';
 
-const video = await renderVideo(job, {outputPath: 'out/video.mp4', onProgress: ({stage, progress}) => console.log(stage, progress)});
+const video = await renderVideo(job, {outputPath: 'Outputs/video.mp4', onProgress: ({stage, progress}) => console.log(stage, progress)});
 const numbered = await renderVideoToOutputs(job);        // Outputs/Videos/NN_Ad.mp4
 const image = await renderImageToOutputs(imageJob);      // Outputs/Images/NN_Ad.png
 ```

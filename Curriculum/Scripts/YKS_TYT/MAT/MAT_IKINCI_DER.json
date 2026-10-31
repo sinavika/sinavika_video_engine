@@ -1,0 +1,678 @@
+{
+ "topic": {
+  "id": "6E8010F5-7EFF-8DC6-34D8-AAF46C4C4E4A",
+  "category": "YKS_TYT",
+  "lesson": "MAT",
+  "code": "MAT_IKINCI_DER"
+ },
+ "title": "İkinci Dereceden Denklemler",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "YKS/TYT/KonuAnlatimi/MAT/MAT_IKINCI_DER.json (MEB Temel Matematik: ikinci dereceden bir bilinmeyenli denklem, katsayılar, kökler, çarpanlara ayırma ile çözüm, diskriminant, kökler ve katsayılar arasındaki bağıntılar)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM resmî listesinde TYT'de bu konuya ayrı soru yok; konu, çarpanlara ayırma ve problemler içinde kullanılıyor)",
+  "YKS/TYT/Sorular/MAT/MAT_IKINCI_DER.jsonl (306 soru; tanım, diskriminant, kök bulma ve kök-katsayı kalıpları)"
+ ],
+ "works": {
+  "additions": [
+   "Kök bulma yöntemlerini tam ver: çarpanlara ayırma, tam kareye tamamlama, x = (−b ± √Δ)/2a; her biri için örnek.",
+   "Kökler-katsayılar ilişkisine türetilmiş ifadeleri ekle: x₁² + x₂², 1/x₁ + 1/x₂, |x₁ − x₂| = √Δ/|a|.",
+   "Köklerden denklem kurmayı genişlet: x² − Tx + Ç = 0; kökleri birer fazla ya da iki katı olan denklemi yazma; denklem kurma problemlerinde negatif ya da koşula uymayan kökün elenmesi."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Kökleri bulmadan toplamlarını ve çarpımlarını söyleyebilirsin.",
+   "narration": "x kare eksi 7 x artı 3 eşittir 0 denkleminin kökleri tam sayı değil. Ama köklerin toplamının 7, çarpımının 3 olduğunu hemen söyleyebilirsin. Hatta karelerinin toplamını bile bulabilirsin. İkinci dereceden denklemler TYT'de çoğu zaman problemlerin, fonksiyonların ve köklü denklemlerin içinde karşına çıkar. Bu derste denklemin tanımını, çarpanlara ayırarak çözmeyi, diskriminantı, kökler ile katsayılar arasındaki bağıntıları ve kökleri verilen denklemi kurmayı adım adım göreceğiz."
+  },
+  "objectives": [
+   "Bir denklemin ikinci dereceden olma koşulunu bulmak",
+   "Denklemi çarpanlara ayırarak çözmek",
+   "Diskriminantla kök sayısını belirlemek",
+   "Kökleri bulmadan toplam ve çarpımı kullanmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_IKINCI_DER_01",
+    "title": "İkinci dereceden denklem",
+    "narration": "a x kare artı b x artı c eşittir 0 biçimindeki, a'nın sıfırdan farklı olduğu denklemlere ikinci dereceden bir bilinmeyenli denklem denir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Tanım ve katsayılar",
+      "items": [
+       "$ax^2 + bx + c = 0$, $a \\neq 0$. $a$, $b$, $c$ **katsayılardır**.",
+       "Denklemi sağlayan değerler **köklerdir**; en fazla **iki** kök vardır.",
+       "İkinci dereceden olması için $x^2$'den büyük üslü terimlerin katsayısı **0**, $x^2$'nin katsayısı **sıfırdan farklı** olmalı.",
+       "Kökler $x_1$ ve $x_2$ ile gösterilir."
+      ],
+      "narration": "a x kare artı b x artı c eşittir 0 denkleminde a sıfırdan farklı olmalı; yoksa x kare kaybolur ve denklem birinci dereceye iner. Denklemi sağlayan değerlere kök denir ve en fazla iki kök vardır. Bir denklemin ikinci dereceden olması isteniyorsa, x karenin üstündeki kuvvetlerin katsayıları sıfır, x karenin katsayısı ise sıfırdan farklı olmalıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$(a - 2)x^3 + x^{b - 1} - 4x + 7 = 0$ denklemi ikinci dereceden bir bilinmeyenli bir denklem olduğuna göre, $a + b$ kaçtır?",
+       "options": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+       ],
+       "answer": 2,
+       "narration": "İki koşulu yazalım.",
+       "steps": [
+        {
+         "text": "$x^3$ olmamalı: $a - 2 = 0 \\Rightarrow a = 2$",
+         "narration": "İkinci dereceden olması için x küplü terim olmamalı: katsayısı a eksi 2 sıfır olmalı, a 2."
+        },
+        {
+         "text": "Kalan terim $x^2$ olmalı: $b - 1 = 2 \\Rightarrow b = 3$",
+         "narration": "En büyük üs 2 olmalı: x üssü b eksi 1, x kare olmalı. b eksi 1 eşittir 2, b 3."
+        },
+        {
+         "text": "$a + b = 5$. Cevap **C**.",
+         "narration": "a artı b, 5. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki \"denklemin ikinci dereceden olma koşulu\" örneğinin yöntemi örnek alındı, denklem ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_IKINCI_DER_03",
+    "title": "Çarpanlara ayırarak çözüm",
+    "narration": "Denklemin sol tarafı çarpanlarına ayrılabiliyorsa her çarpanı sıfıra eşitlersin. Çarpanlara ayırma dersinde öğrendiğin her şey burada işe yarar.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Kökler grafikte",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -3,
+        5
+       ],
+       "y": [
+        -5,
+        6
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^2 - 2x - 3",
+         "label": "y = x² − 2x − 3"
+        }
+       ],
+       "points": [
+        {
+         "x": -1,
+         "y": 0,
+         "label": "x = −1"
+        },
+        {
+         "x": 3,
+         "y": 0,
+         "label": "x = 3"
+        }
+       ]
+      },
+      "narration": "x kare eksi 2 x eksi 3 eşittir 0 denklemini çözelim.",
+      "beats": [
+       {
+        "narration": "Çarpımı eksi 3, toplamı eksi 2 olan iki sayı: eksi 3 ve 1. Denklem x eksi 3 çarpı x artı 1 eşittir 0 olur.",
+        "focus": []
+       },
+       {
+        "narration": "Çarpım sıfırsa çarpanlardan biri sıfırdır: x eksi 3 eşittir 0 ya da x artı 1 eşittir 0. Kökler 3 ve eksi 1.",
+        "focus": []
+       },
+       {
+        "narration": "Grafikte kökler, eğrinin x eksenini kestiği noktalardır: eksi 1 ve 3.",
+        "focus": []
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$x^2 - 2x - 15 = 0$ denkleminin kökleri arasındaki farkın mutlak değeri kaçtır?",
+       "options": [
+        "2",
+        "5",
+        "8",
+        "10",
+        "15"
+       ],
+       "answer": 2,
+       "narration": "Çarpanlara ayıralım.",
+       "steps": [
+        {
+         "text": "Çarpımı $-15$, toplamı $-2$: $-5$ ve $3$ → $(x - 5)(x + 3) = 0$",
+         "narration": "Çarpımı eksi 15, toplamı eksi 2 olan iki sayı eksi 5 ve 3. Denklem x eksi 5 çarpı x artı 3 eşittir 0."
+        },
+        {
+         "text": "Kökler $5$ ve $-3$",
+         "narration": "Kökler 5 ve eksi 3."
+        },
+        {
+         "text": "$|5 - (-3)| = 8$. Cevap **C**.",
+         "narration": "Aralarındaki fark 5 eksi eksi 3, 8. Cevabımız C. İşaretleri ters alan kökleri eksi 5 ve 3 bulur; fark yine 8 çıkar ama kök sorulsaydı yanılırdı.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki çarpanlara ayırarak kök bulma kalıbı örnek alındı, denklem özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$2x^2 - 5x - 3 = 0$ denkleminin **pozitif** kökü kaçtır?",
+       "options": [
+        "3",
+        "$\\frac{1}{2}$",
+        "$\\frac{3}{2}$",
+        "5",
+        "1"
+       ],
+       "answer": 0,
+       "narration": "Baş katsayı 1 değil; çarpanlara ayırırken çarpımları kontrol edelim.",
+       "steps": [
+        {
+         "text": "$2x^2 - 5x - 3 = (2x + 1)(x - 3)$. Kontrol: $2x \\cdot x = 2x^2$, $2x \\cdot (-3) + 1 \\cdot x = -5x$, $1 \\cdot (-3) = -3$ ✓.",
+         "narration": "İki x kare için iki x ile x'i, eksi üç için artı bir ile eksi üçü deneriz: iki x artı bir çarpı x eksi üç. Ortadaki terimi kontrol edelim: eksi altı x artı x, eksi beş x. Doğru."
+        },
+        {
+         "text": "$2x + 1 = 0 \\Rightarrow x = -\\frac{1}{2}$; $x - 3 = 0 \\Rightarrow x = 3$.",
+         "narration": "Çarpım sıfırsa çarpanlardan biri sıfırdır. İki x artı bir sıfır ise x eksi yarım; x eksi üç sıfır ise x üç."
+        },
+        {
+         "text": "Pozitif kök **3**. Cevap **A**.",
+         "narration": "Pozitif olan kök üç. Cevabımız A. Kökler toplamı da beş bölü iki çıkmalı: üç eksi yarım, iki buçuk. Tutuyor.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki çarpanlara ayırarak çözüm, baş katsayısı 1'den farklı özgün bir denklemle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_IKINCI_DER_02",
+    "title": "Diskriminant",
+    "narration": "Her denklem kolayca çarpanlarına ayrılmaz. Diskriminant, kökler hakkında bilgiyi doğrudan verir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Delta",
+      "items": [
+       "$\\Delta = b^2 - 4ac$",
+       "$\\Delta > 0$: **iki farklı** gerçel kök. $\\Delta = 0$: **çakışık** iki kök (tek değer). $\\Delta < 0$: **gerçel kök yok**.",
+       "Kök formülü: $x_{1,2} = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}$",
+       "Grafikte: eğri x eksenini **iki noktada**, **bir noktada** ya da **hiç** kesmez."
+      ],
+      "narration": "Diskriminant delta, b kare eksi 4 a c'dir. Delta pozitifse iki farklı gerçel kök vardır; sıfırsa iki kök çakışır, tek bir değer çıkar; negatifse gerçel kök yoktur. Kökler, eksi b artı eksi karekök delta, bölü 2 a formülüyle bulunur. Grafikte bu üç durum, eğrinin x eksenini iki noktada, bir noktada ya da hiç kesmemesi demektir."
+     },
+     {
+      "kind": "predict",
+      "title": "Kök var mı?",
+      "context": "$x^2 + 4 = 0$",
+      "prompt": "Bu denklemin gerçel kökü var mıdır?",
+      "choices": [
+       "İki kök var",
+       "Gerçel kök yok"
+      ],
+      "answer": 1,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -3,
+        3
+       ],
+       "y": [
+        -1,
+        10
+       ],
+       "curves": [
+        {
+         "expression": "x^2 + 4",
+         "label": "y = x² + 4"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "a 1, b 0, c 4. Delta, 0 eksi 16, eksi 16. Negatif.",
+        "focus": []
+       },
+       {
+        "narration": "Grafiğe bak: eğrinin en alçak noktası 4'te; x eksenine hiç değmiyor. x kare hiçbir zaman eksi 4 olamaz.",
+        "focus": []
+       }
+      ],
+      "explanation": "$\\Delta = 0 - 16 < 0$: **gerçel kök yok**. Zaten $x^2 \\geq 0$ olduğu için $x^2 = -4$ olamaz.",
+      "narration": "Şimdi sıra sende. Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap gerçel kök yok. Delta negatif; grafik x eksenini kesmiyor. Daha kısası, bir sayının karesi negatif olamaz, x kare eksi 4'e eşit olamaz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$x^2 - 4x + 1 = 0$ denkleminin köklerinden **büyük** olanı kaçtır?",
+       "options": [
+        "$2 - \\sqrt{3}$",
+        "$2 + \\sqrt{3}$",
+        "$4 + \\sqrt{3}$",
+        "$1 + \\sqrt{3}$",
+        "$2 + \\sqrt{5}$"
+       ],
+       "answer": 1,
+       "narration": "Çarpanlara ayrılmıyor; kök formülünü kullanalım.",
+       "steps": [
+        {
+         "text": "$\\Delta = 16 - 4 = 12$, $\\sqrt{12} = 2\\sqrt{3}$",
+         "narration": "Delta, 16 eksi 4, 12. Karekök 12, 2 karekök 3."
+        },
+        {
+         "text": "$x = \\frac{4 \\pm 2\\sqrt{3}}{2} = 2 \\pm \\sqrt{3}$",
+         "narration": "Kökler eksi b artı eksi karekök delta, bölü 2 a: 4 artı eksi 2 karekök 3, bölü 2. Sadeleşince 2 artı eksi karekök 3."
+        },
+        {
+         "text": "Büyük olan $2 + \\sqrt{3}$. Cevap **B**.",
+         "narration": "Büyük olan 2 artı karekök 3. Cevabımız B. Kontrol: iki kökün toplamı 4, çarpımı 4 eksi 3, yani 1; katsayılarla uyumlu.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki kök formülü kalıbı örnek alındı, denklem özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$x^2 - 6x + m = 0$ denkleminin **iki farklı gerçel kökü** olduğuna göre, $m$'nin alabileceği en büyük tam sayı değeri kaçtır?",
+       "options": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "36"
+       ],
+       "answer": 1,
+       "narration": "İki farklı kök: delta pozitif.",
+       "steps": [
+        {
+         "text": "$\\Delta = 36 - 4m > 0$",
+         "narration": "Delta, b kare eksi 4 a c: 36 eksi 4 m. İki farklı gerçel kök için pozitif olmalı."
+        },
+        {
+         "text": "$4m < 36 \\Rightarrow m < 9$",
+         "narration": "4 m küçüktür 36; m küçüktür 9."
+        },
+        {
+         "text": "En büyük tam sayı **8**. Cevap **B**. $m = 9$'da kökler çakışır.",
+         "narration": "m 9'dan küçük en büyük tam sayı 8. Cevabımız B. 9'u seçen eşitliği almıştır; m 9 olunca delta sıfır olur ve kökler çakışır, farklı değildir.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki diskriminant ve parametre kalıbı örnek alındı, denklem özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$m$ pozitif bir sayı olmak üzere $x^2 + (m - 1)x + 9 = 0$ denkleminin kökleri **çakışık** olduğuna göre, $m$ kaçtır?",
+       "options": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "13"
+       ],
+       "answer": 2,
+       "narration": "Çakışık kök: delta sıfır.",
+       "steps": [
+        {
+         "text": "$\\Delta = (m - 1)^2 - 4 \\cdot 1 \\cdot 9 = 0 \\Rightarrow (m - 1)^2 = 36$",
+         "narration": "Delta, b kare eksi 4 a c: m eksi 1'in karesi eksi 36. Sıfıra eşitleyince m eksi 1'in karesi 36."
+        },
+        {
+         "text": "$m - 1 = 6$ ya da $m - 1 = -6$ → $m = 7$ ya da $m = -5$",
+         "narration": "Karesi 36 olan sayılar 6 ve eksi 6. m eksi 1, 6 ise m 7; eksi 6 ise m eksi 5."
+        },
+        {
+         "text": "$m$ pozitif: **7**. Cevap **C**.",
+         "narration": "m pozitif olduğu için m, 7. Cevabımız C. Yalnız pozitif kökü alan da 7 bulur; ama soru pozitif demeseydi iki değer olurdu.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"çakışık kök için parametre\" kalıbı örnek alındı, denklem özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_IKINCI_DER_04",
+    "subtopics": [
+     "MAT_IKINCI_DER_05"
+    ],
+    "title": "Kökler ve katsayılar",
+    "narration": "En güçlü araç: kökleri bulmadan toplamlarını ve çarpımlarını bilmek.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Toplam ve çarpım",
+      "items": [
+       "$x_1 + x_2 = -\\frac{b}{a}$, $\\;x_1 \\cdot x_2 = \\frac{c}{a}$",
+       "$x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1x_2$",
+       "$\\frac{1}{x_1} + \\frac{1}{x_2} = \\frac{x_1 + x_2}{x_1 x_2}$",
+       "Kökleri $m$ ve $n$ olan denklem: $x^2 - (m + n)x + m \\cdot n = 0$"
+      ],
+      "narration": "Köklerin toplamı eksi b bölü a, çarpımı c bölü a'dır. Bunlardan pek çok ifade türetilir: köklerin kareleri toplamı, toplamın karesinden 2 çarpı çarpım çıkarılarak bulunur. Köklerin tersleri toplamı, toplamın çarpıma bölümüdür. Tersinden de gidebilirsin: kökleri m ve n olan denklem, x kare eksi m artı n çarpı x artı m n eşittir 0'dır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$x^2 - 7x + 3 = 0$ denkleminin kökleri $x_1$ ve $x_2$ olduğuna göre, $x_1^2 + x_2^2$ kaçtır?",
+       "options": [
+        "37",
+        "40",
+        "43",
+        "46",
+        "49"
+       ],
+       "answer": 2,
+       "narration": "Kökleri bulmaya çalışmayalım; toplam ve çarpımı kullanalım.",
+       "steps": [
+        {
+         "text": "$x_1 + x_2 = 7$, $x_1 x_2 = 3$",
+         "narration": "Köklerin toplamı eksi b bölü a: 7. Çarpımı c bölü a: 3."
+        },
+        {
+         "text": "$x_1^2 + x_2^2 = 7^2 - 2 \\cdot 3 = 49 - 6 = 43$",
+         "narration": "Kareler toplamı, toplamın karesinden 2 çarpı çarpım: 49 eksi 6, 43."
+        },
+        {
+         "text": "Cevap **C**. 49'u seçen $-2x_1x_2$'yi unutur.",
+         "narration": "Cevabımız C. 49'u seçen çarpım terimini unutmuştur; tam kare özdeşliğindeki 2 a b gibi.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki kök-katsayı bağıntısı kalıbı örnek alındı, denklem özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$2x^2 - 6x + 3 = 0$ denkleminin kökleri $x_1$ ve $x_2$ olduğuna göre, $\\frac{1}{x_1} + \\frac{1}{x_2}$ kaçtır?",
+       "options": [
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$\\frac{3}{2}$",
+        "$2$",
+        "$3$"
+       ],
+       "answer": 3,
+       "narration": "Baş katsayı 1 değil; bölmeyi unutmayalım.",
+       "steps": [
+        {
+         "text": "$x_1 + x_2 = -\\frac{-6}{2} = 3$, $x_1 x_2 = \\frac{3}{2}$",
+         "narration": "Toplam eksi b bölü a: eksi eksi 6 bölü 2, 3. Çarpım c bölü a: ikide üç."
+        },
+        {
+         "text": "$\\frac{1}{x_1} + \\frac{1}{x_2} = \\frac{x_1 + x_2}{x_1 x_2} = \\frac{3}{3/2} = 2$",
+         "narration": "Terslerin toplamı, paydaları eşitleyince toplamın çarpıma bölümüdür: 3 bölü ikide üç, 2."
+        },
+        {
+         "text": "Cevap **D**. Kısa yol: $\\frac{1}{x_1} + \\frac{1}{x_2} = -\\frac{b}{c} = \\frac{6}{3}$.",
+         "narration": "Cevabımız D. Bir kısa yol daha: a'lar sadeleştiği için köklerin tersleri toplamı her zaman eksi b bölü c'dir; 6 bölü 3, 2.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki köklerin tersleri toplamı kalıbı örnek alındı, denklem özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kökleri 3 ve $-5$ olan, baş katsayısı 1 olan ikinci dereceden denklem aşağıdakilerden hangisidir?",
+       "options": [
+        "$x^2 - 2x - 15 = 0$",
+        "$x^2 + 8x - 15 = 0$",
+        "$x^2 - 8x + 15 = 0$",
+        "$x^2 + 2x - 15 = 0$",
+        "$x^2 + 2x + 15 = 0$"
+       ],
+       "answer": 3,
+       "narration": "Toplam ve çarpımdan denklemi kuralım.",
+       "steps": [
+        {
+         "text": "Toplam $3 + (-5) = -2$, çarpım $3 \\cdot (-5) = -15$",
+         "narration": "Köklerin toplamı 3 artı eksi 5, eksi 2. Çarpımı eksi 15."
+        },
+        {
+         "text": "$x^2 - (-2)x + (-15) = x^2 + 2x - 15 = 0$",
+         "narration": "Denklem x kare eksi toplam çarpı x artı çarpım: x kare eksi eksi 2 x, yani artı 2 x, eksi 15."
+        },
+        {
+         "text": "Kontrol: $(x - 3)(x + 5)$ ✓. Cevap **D**.",
+         "narration": "Kontrol: x eksi 3 çarpı x artı 5 açılınca x kare artı 2 x eksi 15. Cevabımız D. Toplamın işaretini ters koyan A'yı seçer.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"kökleri verilen denklem\" kalıbı örnek alındı, kökler özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$x^2 - 5x + 2 = 0$ denkleminin kökleri $x_1$ ve $x_2$'dir. Kökleri $x_1 + 1$ ve $x_2 + 1$ olan ikinci dereceden denklem aşağıdakilerden hangisidir?",
+       "options": [
+        "$x^2 - 7x + 8 = 0$",
+        "$x^2 - 5x + 8 = 0$",
+        "$x^2 + 7x + 8 = 0$",
+        "$x^2 - 7x + 3 = 0$",
+        "$x^2 - 6x + 8 = 0$"
+       ],
+       "answer": 0,
+       "narration": "Kökleri hesaplamadan toplam ve çarpımla kuralım.",
+       "steps": [
+        {
+         "text": "$x_1 + x_2 = 5$, $x_1 \\cdot x_2 = 2$.",
+         "narration": "Kökler toplamı eksi b bölü a, beş; kökler çarpımı c bölü a, iki."
+        },
+        {
+         "text": "Yeni toplam: $(x_1 + 1) + (x_2 + 1) = 5 + 2 = 7$. Yeni çarpım: $x_1 x_2 + (x_1 + x_2) + 1 = 2 + 5 + 1 = 8$.",
+         "narration": "Yeni köklerin toplamı, eski toplam artı iki: yedi. Yeni çarpım, parantezi açarsak x bir x iki artı x bir artı x iki artı bir: iki artı beş artı bir, sekiz."
+        },
+        {
+         "text": "$x^2 - 7x + 8 = 0$. Cevap **A**.",
+         "narration": "Kökler toplamı T, çarpımı Ç olan denklem x kare eksi T x artı Ç sıfırdır: x kare eksi yedi x artı sekiz. Cevabımız A. Artı yedi x yazan C'yi seçer; toplamın işaretini ters almak gerekir.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki kökler-katsayılar bağıntısı kökleri kaydırılmış özgün bir denklem kurma sorusuna uygulandı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$ax^2 + bx + c = 0$ ve $a \\neq 0$; en fazla **iki** kök.",
+    "Çarpanlara ayrılıyorsa her çarpanı **sıfıra** eşitle.",
+    "$\\Delta = b^2 - 4ac$: pozitif iki kök, sıfır çakışık, negatif **yok**.",
+    "$x_1 + x_2 = -\\frac{b}{a}$, $x_1 x_2 = \\frac{c}{a}$",
+    "$x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1x_2$",
+    "Kökleri $m$, $n$ olan denklem: $x^2 - (m + n)x + mn = 0$."
+   ],
+   "warnings": [
+    "İki **farklı** kök: $\\Delta > 0$, eşitlik değil.",
+    "Toplam **eksi** b bölü a.",
+    "$x^2 = -4$'ün gerçel kökü yok.",
+    "Kökler grafikte **x eksenini kestiği** yerler."
+   ],
+   "narration": "Hadi toparlayalım. İkinci dereceden denklemde a sıfırdan farklıdır ve en fazla iki kök vardır. Denklem çarpanlarına ayrılıyorsa her çarpanı sıfıra eşitle. Diskriminant, b kare eksi 4 a c'dir: pozitifse iki farklı kök, sıfırsa çakışık kök, negatifse gerçel kök yoktur. Köklerin toplamı eksi b bölü a, çarpımı c bölü a'dır; kökleri bulmadan pek çok ifadeyi bunlarla hesaplarsın."
+  }
+ },
+ "short": {
+  "hook": "İkinci derecede üç kısa yol.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Kökler toplamı $-\\frac{b}{a}$, çarpımı $\\frac{c}{a}$."
+   },
+   {
+    "kind": "fact",
+    "text": "$\\Delta < 0$: **gerçel kök yok**."
+   },
+   {
+    "kind": "warning",
+    "text": "İki **farklı** kök: $\\Delta > 0$."
+   },
+   {
+    "kind": "fact",
+    "text": "Kökler: grafiğin **x eksenini** kestiği yerler."
+   }
+  ],
+  "summary": [
+   "Toplam eksi b bölü a",
+   "Delta negatifse kök yok",
+   "Farklı kök: delta pozitif"
+  ],
+  "rounds": [
+   {
+    "sentence": "$x^2 - 5x + 6$",
+    "question": "Kökler toplamı?",
+    "choices": [
+     "5",
+     "6"
+    ],
+    "answer": 0,
+    "why": "Eksi b bölü **a**."
+   },
+   {
+    "sentence": "$x^2 = -9$",
+    "question": "Kök var mı?",
+    "choices": [
+     "Var",
+     "Yok"
+    ],
+    "answer": 1,
+    "why": "Kare **negatif** olmaz."
+   },
+   {
+    "sentence": "Kökler 2 ve 4",
+    "question": "Çarpım kaç?",
+    "choices": [
+     "6",
+     "8"
+    ],
+    "answer": 1,
+    "why": "c bölü **a**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-matematik-kampi",
+  "name": "TYT Matematik kampı",
+  "number": 20,
+  "total": 23,
+  "previous": "Polinomlar",
+  "next": "Permütasyon ve Kombinasyon",
+  "promise": "Matematik konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "$x^2 - 4x + k = 0$ denkleminin **çakışık** kökleri için $k$'yi bul.",
+    "Kökleri 1 ve 6 olan denklemi **kur**, sonra çarpanlarına ayırarak sına.",
+    "Uygulamada İkinci Dereceden Denklemler testinden **20 soru** çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. x kare eksi 4 x artı k eşittir 0 denkleminin kökleri çakışık olsun: k kaç olmalı? Sonra kökleri 1 ve 6 olan denklemi kur ve çarpanlarına ayırarak sına. En son uygulamada ikinci dereceden denklemler testinden yirmi soru çöz; yanlışlarını bu dersteki adımlarla yeniden çöz. Bir sonraki derste permütasyon ve kombinasyonla devam ediyoruz. Kampta görüşmek üzere!"
+  }
+ }
+}

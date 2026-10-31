@@ -1,0 +1,671 @@
+{
+ "topic": {
+  "id": "5A8D37AB-8A0E-DC67-80EE-25BCAE33101B",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_KEPLER"
+ },
+ "title": "Kütle Çekim ve Kepler Yasaları",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/FIZ/FIZ_KEPLER.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Ay neden düşmüyor?",
+   "narration": "Ay neden Dünya'ya düşmüyor? Aslında düşüyor; ama yana o kadar hızlı gidiyor ki Dünya'yı hep ıskalıyor. Bu derste evrensel çekim yasasını, çekim alanını ve potansiyel enerjiyi, uydu hareketini, kaçış hızını ve Kepler yasalarını, dört ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Evrensel çekim kuvvetini kütle ve uzaklıkla ilişkilendirmek",
+   "Çekim alanını yükseklik ve gezegenle karşılaştırmak",
+   "Çekim potansiyel enerjisini yorumlamak",
+   "Uydu hızını, periyodunu ve kaçış hızını bulmak",
+   "Kepler yasalarını uygulamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_KEPLER_01",
+    "subtopics": [],
+    "title": "Evrensel kütle çekim yasası",
+    "narration": "Elmayı yere düşüren kuvvetle Ay'ı yörüngede tutan kuvvet aynıdır: her kütle her kütleyi çeker.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kütle çekim yasası",
+      "items": [
+       "$F = G \\frac{m_1 m_2}{d^2}$: iki kütle birbirini **çeker**.",
+       "Kuvvetler eşit büyüklükte, zıt yönde: **etki-tepki**.",
+       "Uzaklık iki katına çıkınca kuvvet **dörtte birine** iner."
+      ],
+      "beats": [],
+      "narration": "Newton'un evrensel kütle çekim yasasına göre iki kütle birbirini, kütlelerin çarpımıyla doğru, aralarındaki uzaklığın karesiyle ters orantılı bir kuvvetle çeker. Bu iki kuvvet etki-tepki çiftidir: Dünya elmayı ne kadar çekiyorsa elma da Dünya'yı o kadar çeker. Uzaklık iki katına çıkınca kuvvet dörtte birine iner."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aralarındaki uzaklık $d$ olan iki cisim birbirini $F$ kuvvetiyle çekiyor.\n\nUzaklık üç katına, kütlelerden biri iki katına çıkarılırsa çekim kuvveti kaç $F$ olur?",
+       "options": [
+        "$\\frac{1}{9}$",
+        "$\\frac{2}{9}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{4}{3}$",
+        "$6$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Kütle çarpımı **iki kat**; uzaklığın karesi **dokuz kat**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kütlelerden biri iki katına çıktı: çarpım iki kat. Uzaklık üç kat: karesi dokuz kat."
+        },
+        {
+         "text": "$F' = \\frac{2}{9} F$.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kuvvet iki bölü dokuz F. Uzaklığın karesini almayan üçte ikiyi bulur. Cevap B."
+        }
+       ],
+       "narration": "Kütle çarpımı ve uzaklığın karesi.",
+       "origin": {
+        "changes": "Çekim oranı kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_KEPLER_02",
+    "subtopics": [],
+    "title": "Kütle çekim alanı",
+    "narration": "Bir kütle çevresindeki uzayı değiştirir; oraya konan her kütle bir çekim hisseder. Yüzeyde bunu g olarak ölçeriz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Çekim alanı",
+      "items": [
+       "Bir noktadaki çekim alanı $g = \\frac{GM}{r^2}$: oraya konan **birim kütleye** etki eden kuvvet.",
+       "Yüzeyden yükseldikçe $g$ azalır: uzaklık $R + h$.",
+       "Gezegenin içinde merkeze inildikçe $g$ **doğrusal azalır**, merkezde sıfırdır."
+      ],
+      "beats": [],
+      "narration": "Bir noktadaki kütle çekim alanı, oraya konan bir kilogramlık kütleye etki eden kuvvettir: G M bölü merkezden uzaklığın karesi. Yüzeyden yükseldikçe uzaklık R artı h olur ve g azalır. Gezegenin içine inildiğinde ise yalnız içerideki kütle çeker; g merkeze doğru doğrusal azalır ve merkezde sıfırdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yeryüzünde ağırlığı $600$ N olan bir astronot, yeryüzünden Yer yarıçapı kadar yükseğe çıkıyor.\n\nAstronotun oradaki ağırlığı kaç N'dir?",
+       "options": [
+        "$150$",
+        "$200$",
+        "$300$",
+        "$450$",
+        "$600$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Merkeze uzaklık $R$'den $2R$'ye çıktı.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yükseklik Yer yarıçapı kadar; merkeze uzaklık R'den iki R'ye çıktı."
+        },
+        {
+         "text": "$g \\propto \\frac{1}{r^2}$: dörtte bir, $\\frac{600}{4} = 150$ N.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çekim uzaklığın karesiyle azalır: dörtte bir. Ağırlık yüz elli newton. Yalnız yüksekliği iki katına sayan üç yüzü bulur. Cevap A."
+        }
+       ],
+       "narration": "Merkeze uzaklık ne oldu?",
+       "origin": {
+        "changes": "Yükseklikte ağırlık kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kütlesi Yer'inkinin $2$ katı, yarıçapı Yer'inkinin $2$ katı olan bir gezegenin yüzeyindeki çekim ivmesi, Yer'deki $g$'nin kaç katıdır?",
+       "options": [
+        "$4$",
+        "$2$",
+        "$1$",
+        "$\\frac{2}{3}$",
+        "$\\frac{1}{2}$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Kütle iki kat: $g$ **iki kat**; yarıçap iki kat: $g$ **dörtte bir**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çekim ivmesi kütleyle doğru, yarıçapın karesiyle ters orantılı: kütle iki kat, yarıçapın karesi dört kat."
+        },
+        {
+         "text": "$\\frac{2}{4} = \\frac{1}{2}$.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki bölü dört, yarım. Yarıçapın karesini almayan bire ulaşır. Cevap E."
+        }
+       ],
+       "narration": "$g = \\frac{GM}{R^2}$.",
+       "origin": {
+        "changes": "Gezegen yüzeyi kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_KEPLER_03",
+    "subtopics": [],
+    "title": "Kütle çekim potansiyel enerjisi",
+    "narration": "Uzay ölçeğinde m g h yetmez: potansiyel enerjiyi sonsuzu sıfır kabul ederek yazarız.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Çekim potansiyel enerjisi",
+      "items": [
+       "$E_p = -\\frac{G M m}{r}$: sonsuzda sıfır, yaklaştıkça **daha negatif**.",
+       "$mgh$ yalnız yüzeye yakın, **küçük** yüksekliklerde geçerlidir.",
+       "Yörüngedeki bağlı bir sistemin toplam enerjisi **negatiftir**."
+      ],
+      "beats": [],
+      "narration": "Uzaklık büyük olunca çekim potansiyel enerjisini eksi G M m bölü r olarak yazarız; sonsuzda sıfırdır ve gezegene yaklaştıkça daha negatif olur. Alıştığımız m g h, yalnız yüzeye yakın ve g'nin değişmediği küçük yüksekliklerde geçerli bir yaklaşımdır. Yörüngede bağlı duran bir uydunun toplam enerjisi negatiftir; kurtulmak için en az bu kadar enerji vermek gerekir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kütlesi $m$ olan bir uydu, kütlesi $M$ ve yarıçapı $R$ olan bir gezegenin merkezinden $R$ uzaklıktan $2R$ uzaklığa taşınıyor.\n\nUydunun çekim potansiyel enerjisi nasıl değişir?",
+       "options": [
+        "$\\frac{GMm}{R}$ kadar azalır",
+        "$\\frac{GMm}{2R}$ kadar azalır",
+        "$\\frac{GMm}{2R}$ kadar artar",
+        "$\\frac{GMm}{R}$ kadar artar",
+        "Değişmez"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Önce $-\\frac{GMm}{R}$, sonra $-\\frac{GMm}{2R}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "R uzaklıkta potansiyel enerji eksi G M m bölü R; iki R uzaklıkta eksi G M m bölü iki R."
+        },
+        {
+         "text": "Fark $+\\frac{GMm}{2R}$: daha az negatif, **artar**.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Son eksi ilk: artı G M m bölü iki R. Daha az negatif, yani artmış. İşaretleri karıştıran azalır der. Cevap C."
+        }
+       ],
+       "narration": "$E_p = -\\frac{GMm}{r}$.",
+       "origin": {
+        "changes": "Çekim potansiyel enerjisi kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_KEPLER_04",
+    "subtopics": [],
+    "title": "Uydu hareketi",
+    "narration": "Bir uydu sürekli düşer ama yana o kadar hızlı gider ki gezegeni hep ıskalar: çekim, çembersel hareket için gereken kuvveti sağlar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Uydu",
+      "items": [
+       "Çekim merkezcil kuvveti sağlar: $\\frac{GMm}{r^2} = \\frac{mv^2}{r}$ → $v = \\sqrt{\\frac{GM}{r}}$.",
+       "Yörünge hızı uydunun **kütlesine bağlı değildir**; yörünge büyüdükçe hız azalır, periyot **uzar**.",
+       "Yer eşzamanlı uydu ekvator üstünde $24$ saatte bir dolanır, gökyüzünde **sabit** görünür."
+      ],
+      "visual": {
+       "kind": "circular",
+       "mode": "orbit",
+       "bodies": [
+        {
+         "label": "K",
+         "radius": 0.45
+        },
+        {
+         "label": "M",
+         "radius": 1
+        }
+       ],
+       "velocity": true,
+       "acceleration": true,
+       "motion": true
+      },
+      "beats": [
+       {
+        "narration": "Aynı gezegen çevresinde iki uydu: K yakın, M uzak.",
+        "show": [],
+        "focus": [
+         "b1",
+         "b2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "İçteki hem daha hızlı gidiyor hem turunu daha kısa sürede bitiriyor.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "velocity"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Çembersel yörüngedeki bir uyduda kütle çekimi merkezcil kuvveti sağlar. Buradan yörünge hızı kök G M bölü r çıkar; uydunun kendi kütlesi sadeleşir. Yörünge büyüdükçe hız azalır, periyot uzar. Yer eşzamanlı bir uydu, ekvator üzerinde Yer'in dönüşüyle aynı sürede, yirmi dört saatte bir dolanır; bu yüzden yerden bakınca gökyüzünde hep aynı yerde görünür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ekvator üzerinde Yer'in dönüş yönünde çembersel yörüngede dolanan bir iletişim uydusunun, yerdeki bir gözlemciye göre gökyüzünde sabit görünmesi gerekiyor; ama uydu gözlemciye göre doğuya doğru kayıyor.\n\nBu sorunu gidermek için ne yapılmalıdır?",
+       "context": "ÖSYM 2018'de sorulan kayan televizyon uydusu yapısının yeniden yazılmış hâli.",
+       "options": [
+        "Uydunun kütlesi azaltılmalı",
+        "Uydunun kütlesi artırılmalı",
+        "Uydu ters yönde dolandırılmalı",
+        "Uydu daha büyük yarıçaplı bir yörüngeye çıkarılmalı",
+        "Uydu daha küçük yarıçaplı bir yörüngeye indirilmeli"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Doğuya kayıyor: uydu Yer'den **daha hızlı** dönüyor, periyodu 24 saatten kısa.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Uydu gözlemciye göre doğuya kayıyorsa Yer'den daha hızlı dönüyor demektir; periyodu yirmi dört saatten kısa."
+        },
+        {
+         "text": "Periyodu uzatmak için yörünge **büyütülmeli**; kütle hızı değiştirmez.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yörünge yarıçapı büyüdükçe açısal hız azalır, periyot uzar. Kütle yörünge hızını değiştirmez. Cevap D."
+        }
+       ],
+       "narration": "Doğuya kayıyorsa Yer'den hızlı dönüyor.",
+       "origin": {
+        "changes": "ÖSYM 2018 modeli: anlatım değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aynı gezegen çevresinde $r$ ve $4r$ yarıçaplı çembersel yörüngelerde dolanan iki uydunun yörünge hızları oranı $\\frac{v_1}{v_2}$ kaçtır?",
+       "options": [
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$2$",
+        "$4$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$v \\propto \\frac{1}{\\sqrt{r}}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yörünge hızı yarıçapın kareköküyle ters orantılı."
+        },
+        {
+         "text": "$\\frac{v_1}{v_2} = \\sqrt{\\frac{4r}{r}} = 2$.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kök dört, iki: içteki iki kat hızlı. Karekökü unutan dördü bulur. Cevap D."
+        }
+       ],
+       "narration": "$v = \\sqrt{\\frac{GM}{r}}$.",
+       "origin": {
+        "changes": "Yörünge hızı oranı kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_KEPLER_05",
+    "subtopics": [],
+    "title": "Kaçış hızı",
+    "narration": "Bir cismi bir daha geri dönmeyecek şekilde fırlatmak için gereken en küçük hız kaçış hızıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kaçış hızı",
+      "items": [
+       "Kaçış hızı: cismin çekimden kurtulup sonsuza gidebilmesi için en küçük hız, $v = \\sqrt{\\frac{2GM}{R}}$.",
+       "Yüzeyden atılan cismin toplam enerjisi en az **sıfır** olmalı.",
+       "Kaçış hızı, aynı yarıçaptaki yörünge hızının $\\sqrt{2}$ katıdır; cismin kütlesine **bağlı değildir**."
+      ],
+      "beats": [],
+      "narration": "Kaçış hızı, bir cismin gezegenin çekiminden kurtulup bir daha geri dönmemesi için yüzeyden atılması gereken en küçük hızdır. Bu hızda toplam enerji sıfırdır: yarım m v kare, G M m bölü R'ye eşit. Buradan kök iki G M bölü R çıkar; cismin kütlesi sadeleşir. Aynı yarıçaptaki yörünge hızının kök iki katıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kütlesi Yer'inkinin $8$ katı, yarıçapı Yer'inkinin $2$ katı olan bir gezegenden kaçış hızı, Yer'den kaçış hızının kaç katıdır?",
+       "options": [
+        "$1$",
+        "$2$",
+        "$2\\sqrt{2}$",
+        "$4$",
+        "$8$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$\\frac{M}{R}$ oranı $\\frac{8}{2} = 4$ kat.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kaçış hızının karesi kütle bölü yarıçapla orantılı: sekiz bölü iki, dört kat."
+        },
+        {
+         "text": "$v$ **iki kat**: $\\sqrt{4} = 2$.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hız bunun karekökü: iki kat. Karekökü almayan dördü bulur. Cevap B."
+        }
+       ],
+       "narration": "$v = \\sqrt{\\frac{2GM}{R}}$.",
+       "origin": {
+        "changes": "Kaçış hızı kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_KEPLER_06",
+    "subtopics": [],
+    "title": "Kepler yasaları",
+    "narration": "Kepler gezegenlerin hareketini üç yasayla özetledi; Newton'un çekim yasası bu üç yasayı açıklar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kepler yasaları",
+      "items": [
+       "**1.** Gezegenler, Güneş'in bir odakta olduğu **elips** yörüngelerde dolanır.",
+       "**2.** Güneş'i gezegene birleştiren doğru **eşit sürelerde eşit alanlar** tarar: yakınken hızlıdır.",
+       "**3.** $\\frac{T^2}{r^3}$ aynı yıldızın bütün gezegenleri için **sabittir**."
+      ],
+      "visual": {
+       "kind": "kepler",
+       "eccentricity": 0.5,
+       "sector": 0.08,
+       "period": 8,
+       "motion": true
+      },
+      "beats": [
+       {
+        "narration": "Gezegen elips yörüngede; Güneş bir odakta.",
+        "show": [],
+        "focus": [
+         "planet"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Güneş'e yakınken hızlanıyor, uzakken yavaşlıyor.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "planet"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Eşit sürelerde taranan iki alan: biri kısa ve geniş, öbürü uzun ve dar; alanları eşit.",
+        "show": [
+         "sectors"
+        ],
+        "focus": [
+         "sectors"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Kepler'in birinci yasası: gezegenler, Güneş'in odaklardan birinde olduğu elips yörüngelerde dolanır. İkinci yasa: Güneş ile gezegeni birleştiren doğru eşit sürelerde eşit alanlar tarar; bu yüzden gezegen Güneş'e yakınken hızlı, uzakken yavaş gider. Bu, açısal momentumun korunumunun sonucudur. Üçüncü yasa: periyodun karesinin yörünge yarıçapının küpüne oranı aynı yıldızın bütün gezegenleri için sabittir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yerküre, Güneş'e en yakın konumundan her yıl 3 Ocak'ta, en uzak konumundan 4 Temmuz'da geçer.\n\nYerküre'nin;\nI. çizgisel hızı,\nII. Güneş'in ona uyguladığı çekim kuvveti,\nIII. Güneş'e göre açısal hızı\n\nniceliklerinden hangileri 3 Ocak'ta 4 Temmuz'dakinden büyüktür?",
+       "context": "ÖSYM 2026'da sorulan Yerkürenin 3 Ocak konumu yapısının nicelikleri değiştirilmiş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Yakınken çekim **büyük** (II).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yerküre 3 Ocak'ta Güneş'e en yakın; çekim kuvveti uzaklığın karesiyle ters orantılı, en büyük."
+        },
+        {
+         "text": "Eşit alan yasası: yakınken **hızlı** (I) ve açısal hızı **büyük** (III).",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eşit sürelerde eşit alan taranacağı için yakınken daha hızlı gider; hem çizgisel hem açısal hızı büyüktür. Açısal momentum ise her yerde aynıdır. Cevap E."
+        }
+       ],
+       "narration": "3 Ocak'ta Güneş'e en yakın.",
+       "origin": {
+        "changes": "ÖSYM 2026 modeli: nicelikler değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yerküre yörüngesinde eşit sürelerde Güneş'ten uzak K-L yayını ve Güneş'e yakın M-N yayını geçiyor.\n\nBuna göre;\nI. K-L arasında taranan alan, M-N arasındakinden büyüktür.\nII. Yerküre'nin Güneş'e göre açısal momentumu L'den K'ye giderken değişir.\nIII. Yerküre'nin mekanik enerjisi M'de ve N'de aynıdır.\n\nyargılarından hangileri doğrudur?",
+       "context": "ÖSYM 2023'te sorulan Yerkürenin yörüngesindeki K, L, M, N konumları yapısının sözle kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız III",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Eşit sürelerde alanlar **eşit** (I yanlış); çekim Güneş'ten geçer, tork yok: $L$ **sabit** (II yanlış).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kepler'in ikinci yasasına göre eşit sürelerde taranan alanlar eşittir; birinci yanlış. Çekim kuvveti Güneş'ten geçtiği için Güneş'e göre tork sıfırdır; açısal momentum sabittir, ikinci de yanlış."
+        },
+        {
+         "text": "Yalnız çekim iş yapar: mekanik enerji **korunur** (III).",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sürtünme yok, yalnız çekim iş yapar; kinetik ve potansiyel enerjinin toplamı her yerde aynıdır. Cevap B."
+        }
+       ],
+       "narration": "Eşit süre, eşit alan; dış tork yok.",
+       "origin": {
+        "changes": "ÖSYM 2023 modeli: yaylar sözle verildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yerküre, Güneş çevresindeki eliptik yörüngesinde A noktasında Güneş'e $r_1$, B noktasında $r_2$ uzaklıktadır; $r_1 > r_2$.\n\nYerküre'nin A ve B'deki açısal momentumları $L_A$, $L_B$ ve çizgisel hızları $v_A$, $v_B$ arasındaki ilişkiler nedir?",
+       "context": "ÖSYM 2024'te sorulan eliptik yörüngede A ve B konumları yapısının yeniden yazılmış hâli.",
+       "options": [
+        "$L_A > L_B$ ; $v_A = v_B$",
+        "$L_A = L_B$ ; $v_A > v_B$",
+        "$L_A = L_B$ ; $v_A < v_B$",
+        "$L_A < L_B$ ; $v_A > v_B$",
+        "$L_A > L_B$ ; $v_A < v_B$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Tork yok: $L_A = L_B$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Güneş'in çekimi Güneş'ten geçer; tork yok, açısal momentum korunur."
+        },
+        {
+         "text": "$L = m v r$: uzak noktada ($r_1$ büyük) $v$ **küçük**, $v_A < v_B$.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Açısal momentum m v r sabit; uzaklık büyükken hız küçüktür. A uzak, B yakın: A'daki hız küçük. Cevap C."
+        }
+       ],
+       "narration": "Açısal momentum korunur.",
+       "origin": {
+        "changes": "ÖSYM 2024 modeli: anlatım değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir gezegenin Güneş çevresindeki yörünge yarıçapı Yer'inkinin $4$ katıdır.\n\nBu gezegenin yörünge periyodu kaç yıldır?",
+       "options": [
+        "$2$",
+        "$4$",
+        "$8$",
+        "$16$",
+        "$64$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$\\frac{T^2}{r^3}$ sabit: $T^2 = 4^3 = 64$ (yıl²).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Periyodun karesi yarıçapın küpüyle orantılı: dört üzeri üç, altmış dört."
+        },
+        {
+         "text": "$T = 8$ yıl.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kök altmış dört, sekiz yıl. Kare kökü almayan altmış dördü, doğru orantı kuran dördü bulur. Cevap C."
+        }
+       ],
+       "narration": "Kepler'in üçüncü yasası.",
+       "origin": {
+        "changes": "Kepler üçüncü yasa kalıbı; yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Gezegen hep aynı hızla mı?",
+      "wrong": "Gezegenler yörüngelerinde hep aynı süratle dolanır.",
+      "right": "Eliptik yörüngede Güneş'e yakınken **hızlı**, uzakken **yavaş** dolanır.",
+      "why": "Sabit olan, **açısal momentum** ve eşit sürede taranan alandır.",
+      "narration": "Sık yapılan bir hata: gezegenin sürati hiç değişmiyormuş gibi düşünmek. Eliptik yörüngede gezegen Güneş'e yakınken hızlanır, uzaklaşınca yavaşlar. Sabit kalan sürat değil, açısal momentum ve eşit sürede taranan alandır."
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$F = G\\frac{m_1m_2}{d^2}$; etki-tepki.",
+    "$g = \\frac{GM}{r^2}$; yükseldikçe azalır.",
+    "$E_p = -\\frac{GMm}{r}$.",
+    "Uydu: $v = \\sqrt{\\frac{GM}{r}}$, kütleden bağımsız.",
+    "Kaçış: $v = \\sqrt{\\frac{2GM}{R}}$.",
+    "Kepler: elips, eşit alanlar, $\\frac{T^2}{r^3}$ sabit."
+   ],
+   "warnings": [
+    "Uydu hızı **kütlesine** bağlı değil.",
+    "Gezegen yakınken **hızlı**.",
+    "Açısal momentum **sabit**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bir ipi iki raptiyeye bağlayıp kalemle **elips** çiz; raptiyeleri yaklaştırıp uzaklaştırarak basıklığı gör.",
+    "Ay'ı bir ay boyunca her akşam gözle; **evrelerini** ve gökteki yerini not et.",
+    "Uygulamada AYT Kütle Çekim ve Kepler Yasaları testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Yükseklikle çekim ivmesini örnekle: g' = g (R / (R + h))². Yeryüzünde 800 N gelen astronot h = R yükseklikte 200 N, h = 2R yükseklikte yaklaşık 89 N gelir. Yerin içinde merkeze doğru g'nin doğrusal azalıp merkezde sıfır olduğunu ekle.",
+   "Başka gezegende g hesabı ekle: g' = g (M'/M)(R/R')². Kütlesi Dünya'nın 0,1'i, yarıçapı 0,5'i olan bir gezegende g' = 0,4 g = 4 m/s² (Mars'a yakın bir değer).",
+   "Uydu sayılarını ekle: yer durağan uydu ekvator üzerinde yaklaşık 36 000 km yükseklikte, Dünya'nın dönüşüyle aynı periyotta döner (Türksat uyduları). Yüzeye yakın yörünge hızı yaklaşık 7,9 km/s, kaçış hızı yaklaşık 11,2 km/s; kaçış hızı yörünge hızının √2 katıdır.",
+   "Kepler'in üçüncü yasasına ikinci örnek ver: yörünge yarıçapı 9 katına çıkan uydunun periyodu 27 katına çıkar (T² ∝ r³). Dünya'nın ocak başında Güneş'e en yakın ve en hızlı, temmuz başında en uzak ve en yavaş olduğunu ekle.",
+   "Çekim potansiyel enerjisini yorumla: Eₚ = −GMm/r; uydunun toplam enerjisi −GMm/(2r). Yörüngeyi yükseltmek için enerji vermek gerektiği hâlde yeni yörüngede hızın azaldığını açıkla. Cavendish'in burulma terazisiyle G'yi ölçmesini (G = 6,67 · 10⁻¹¹ N·m²/kg²) ekle."
+  ]
+ }
+}

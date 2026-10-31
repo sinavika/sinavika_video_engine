@@ -4,16 +4,15 @@ import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
-import {OUTRO_SCENE_ID} from '../../../Scenes/BrandOutroScene';
+import {appEndScenes} from '../../../Scenes/AppEndScene';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, VoiceScriptSchema, type VoiceClips} from '../../../Scenes/Voiceover';
 import {plainText} from '../../../Schemas/RichText';
 import {Icon} from '../../../UIUX/Icons';
 import {defineTemplate} from '../../TemplateDefinition';
-import {At, CLAMP, ease, PhoneShot, PromoStage, PromoSubtitle, useSeconds} from '../PromoKit/PromoKit';
+import {At, CLAMP, ease, PhoneShot, PromoStage, useSeconds} from '../PromoKit/PromoKit';
 import {PROMO_PHONE_SCREEN_NAMES, PROMO_PHONE_SCREENS} from '../PromoKit/PromoScreens';
-import {PromoEndCard} from '../PromoKit/PromoEndCard';
 
 /**
  * Flat 2D explainer: one solid colour, flat shapes, a big bouncing word, an
@@ -24,14 +23,12 @@ import {PromoEndCard} from '../PromoKit/PromoEndCard';
 const narration = z.string().trim().min(1).max(170);
 const TAG_ICONS = ['list', 'book', 'target', 'playCircle', 'quiz', 'sparkles', 'check'] as const;
 
-export const FlatMorphSchema = z.object({
+const FlatMorphSchema = z.object({
 	word: z.object({text: plainText(10), narration}),
 	morph: z.object({narration}),
 	phone: z.object({screen: z.enum(PROMO_PHONE_SCREEN_NAMES), narration}),
 	tags: z.object({items: z.array(z.object({icon: z.enum(TAG_ICONS), text: plainText(20)})).min(3).max(5), narration}),
-	closing: z.object({line: plainText(30), cta: plainText(26), channels: plainText(40).default('App Store · Google Play'), narration}),
 	ground: z.string().regex(/^#[0-9A-Fa-f]{6}$/).default('#7C3AED'),
-	subtitles: z.boolean().default(true),
 	script: VoiceScriptSchema,
 	outro: z.object({enabled: z.boolean().default(true)}).default({enabled: true}),
 });
@@ -66,10 +63,9 @@ const Ground: React.FC<{color: string}> = ({color}) => {
 	);
 };
 
-const Stage: React.FC<{content: Content; narration: string; shown?: string; children: React.ReactNode; flash?: number}> = ({content, narration: text, shown, children, flash = 0}) => (
+const Stage: React.FC<{content: Content; children: React.ReactNode; flash?: number}> = ({content, children, flash = 0}) => (
 	<PromoStage ground={<Ground color={content.ground} />} overlay={flash > 0 ? <AbsoluteFill style={{background: WHITE, opacity: flash}} /> : undefined}>
 		{children}
-		<PromoSubtitle text={text} shown={shown} enabled={content.subtitles} ink={WHITE} fill={INK} />
 	</PromoStage>
 );
 
@@ -77,7 +73,7 @@ const WordScene: React.FC<{content: Content}> = ({content}) => {
 	const pop = useBounce(0.05);
 	const seconds = useSeconds();
 	return (
-		<Stage content={content} narration={content.word.narration} shown={content.word.text}>
+		<Stage content={content}>
 			<At y={520} w={952}>
 				<div style={{transform: `scale(${pop}) rotate(${Math.sin(seconds * 3) * 2}deg)`}}>
 					<Text variant="display" size={TYPE.adScale.numeral * 1.05} weight={TYPE.weights.kinetic} color={WHITE} align="center" style={{letterSpacing: '-0.05em', textShadow: `0 14px 0 rgba(30,27,75,0.25)`}}>
@@ -109,7 +105,7 @@ const MorphScene: React.FC<{content: Content}> = ({content}) => {
 	const cam = useBounce(0.6);
 	const flash = interpolate(seconds, [1.5, 1.6, 2.0], [0, 1, 0], CLAMP);
 	return (
-		<Stage content={content} narration={content.morph.narration} flash={flash}>
+		<Stage content={content} flash={flash}>
 			<At y={500} w={952}>
 				<div style={{position: 'relative', height: 560, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 					<div style={{position: 'absolute', opacity: 1 - turn, transform: `rotate(${turn * 200}deg) scale(${1 - turn * 0.7})`}}>
@@ -133,7 +129,7 @@ const PhoneScene: React.FC<{content: Content}> = ({content}) => {
 	const rise = useBounce(0);
 	const flash = interpolate(seconds, [0, 0.35], [0.9, 0], CLAMP);
 	return (
-		<Stage content={content} narration={content.phone.narration} flash={flash}>
+		<Stage content={content} flash={flash}>
 			<At y={interpolate(rise, [0, 1], [900, 180])} w={952}>
 				<div style={{display: 'flex', justifyContent: 'center', filter: `drop-shadow(0 ${u(30)}px 0 rgba(30,27,75,0.25))`}}>
 					<PhoneShot width={500} rotate={(1 - Math.min(rise, 1)) * 10}>
@@ -151,7 +147,7 @@ const TagsScene: React.FC<{content: Content; stick?: boolean}> = ({content}) => 
 	const Screen = PROMO_PHONE_SCREENS[content.phone.screen];
 	const items = content.tags.items;
 	return (
-		<Stage content={content} narration={content.tags.narration}>
+		<Stage content={content}>
 			<At y={180} w={952}>
 				<div style={{display: 'flex', justifyContent: 'center', filter: `drop-shadow(0 ${u(30)}px 0 rgba(30,27,75,0.25))`}}>
 					<PhoneShot width={500}>
@@ -195,7 +191,6 @@ const SAMPLE: z.input<typeof FlatMorphSchema> = {
 		],
 		narration: 'Konusunu ve hatanı söyler; istersen videolu anlatımı izle, benzer sorularla pekiştir.',
 	},
-	closing: {line: 'Çözemediğin soruyu çek.', cta: 'Ücretsiz indir', narration: 'Sınavika’yı ücretsiz indir.'},
 };
 
 const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateScene[] => {
@@ -205,13 +200,12 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 	const morph = say('morph', content.morph.narration, Math.max(beat(content.morph.narration, 2.2), 2.2), 2.2);
 	const phone = say('phone', content.phone.narration, beat(content.phone.narration, 2.6), 2.4);
 	const tags = say('tags', content.tags.narration, Math.max(beat(content.tags.narration, 4), 0.6 + content.tags.items.length * 0.4), 0.6 + content.tags.items.length * 0.35);
-	const closing = say('closing', content.closing.narration, beat(content.closing.narration, 2.8), 2.6);
 	return [
 		{id: 'word', seconds: word.seconds, label: 'Kelime', voice: [word], element: <WordScene content={content} />},
 		{id: 'morph', seconds: morph.seconds, label: 'Dönüşüm', voice: [morph], element: <MorphScene content={content} />},
 		{id: 'phone', seconds: phone.seconds, label: 'Telefon', voice: [phone], element: <PhoneScene content={content} />},
 		{id: 'tags', seconds: tags.seconds, label: 'Etiketler', voice: [tags], element: <TagsScene content={content} />},
-		...(content.outro.enabled ? [{id: OUTRO_SCENE_ID, seconds: closing.seconds, label: 'Kapanış', voice: [closing], element: <PromoEndCard cta={content.closing.cta} />}] : []),
+		...appEndScenes(content.outro.enabled, say),
 	];
 };
 

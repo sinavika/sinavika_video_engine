@@ -1,0 +1,721 @@
+{
+ "topic": {
+  "id": "5104EA58-0684-1D29-2C5A-AFCA76C7F309",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_MANYETIK"
+ },
+ "title": "Manyetik Alan ve Manyetik Kuvvet",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/FIZ/FIZ_MANYETIK.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Motor neden döner?",
+   "narration": "Bir elektrik motorunun içinde, mıknatısların arasındaki tellerden akım geçince tel kendiliğinden döner. Akım ile manyetizma aynı olayın iki yüzüdür. Bu derste akımın manyetik alanını, düz tel, halka ve bobini, manyetik alanda yüklü parçacığı, akım taşıyan tele ve paralel tellere etki eden kuvvetleri, üç ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Akımın manyetik alanının yönünü sağ el kuralıyla bulmak",
+   "Düz tel, halka ve bobinin alanını hesaplamak",
+   "Manyetik alanda yüklü parçacığın hareketini yorumlamak",
+   "Akım taşıyan tele etki eden kuvveti bulmak",
+   "Paralel tellerin etkileşimini açıklamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_MANYETIK_01",
+    "subtopics": [],
+    "title": "Akımın manyetik alanı",
+    "narration": "Akım taşıyan bir telin çevresindeki pusula iğnesi sapar: akım, çevresinde manyetik alan oluşturur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Akımın alanı",
+      "items": [
+       "Akım taşıyan tel, çevresinde **çembersel** bir manyetik alan oluşturur.",
+       "Yön **sağ el kuralıyla**: başparmak akım yönünde, kıvrılan parmaklar alanın yönünde.",
+       "Sayfadan dışarı $\\odot$, içeri $\\otimes$ ile gösterilir."
+      ],
+      "visual": {
+       "kind": "magneticField",
+       "mode": "wire",
+       "field": "in",
+       "charge": "+",
+       "current": "out",
+       "currents": [
+        "up",
+        "up"
+       ],
+       "motion": true,
+       "duration": 5
+      },
+      "beats": [
+       {
+        "narration": "Akım sayfadan dışarı doğru.",
+        "show": [],
+        "focus": [
+         "body"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Alan çizgileri tel merkezli çemberler; sağ el kuralıyla saatin tersine dönüyor.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "field"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Akım taşıyan bir tel, çevresinde tel merkezli çembersel bir manyetik alan oluşturur. Yönünü sağ el kuralıyla bulursun: başparmağını akım yönüne tutup teli kavradığında kıvrılan parmakların alanın yönünü gösterir. Sayfa düzlemine dik yönleri göstermek için sayfadan dışarıyı nokta, içeriyi çarpı ile çizeriz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sayfa düzlemine dik, sayfadan dışarı doğru akım taşıyan uzun düz bir telin hemen solundaki K noktasında manyetik alanın yönü nedir?",
+       "options": [
+        "Yukarı",
+        "Aşağı",
+        "Sola",
+        "Sağa",
+        "Sayfadan dışarı"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Akım dışarı: alan **saatin tersine** çembersel.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Başparmak sayfadan dışarı; parmaklar saatin tersine kıvrılır: alan çizgileri saatin tersine döner."
+        },
+        {
+         "text": "Telin solunda, saatin tersine giden çember **aşağı** yönelir.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Saatin tersine dönen çemberin en sol noktasında yön aşağıdır. Alanı tele paralel ya da dışarı sanan yanılır; alan hep çembere teğettir. Cevap B."
+        }
+       ],
+       "narration": "Sağ el kuralını uygulayalım.",
+       "origin": {
+        "changes": "Sağ el kuralı kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_MANYETIK_02",
+    "subtopics": [],
+    "title": "Düz tel ve halka",
+    "narration": "Telin alanı uzaklaştıkça zayıflar; tel bir halka biçiminde bükülünce alan merkezde toplanır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Düz tel ve halka",
+      "items": [
+       "Düz telin alanı $B = 2k\\frac{i}{d}$: tele uzaklaştıkça **azalır**.",
+       "Halkanın merkezindeki alan $B = 2\\pi k\\frac{i}{r}$: halka düzlemine **dik**.",
+       "Birden çok akımın alanları **vektörel** toplanır."
+      ],
+      "beats": [],
+      "narration": "Uzun düz bir telin d uzaklığındaki alanı akımla doğru, uzaklıkla ters orantılıdır: iki k i bölü d. Tel bir halka biçiminde bükülürse merkezdeki alan iki pi k i bölü r olur ve halka düzlemine diktir. Birden çok akımın alanları bir noktada vektörel toplanır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Uzun düz bir telden $d$ uzaklıktaki manyetik alan $B$'dir.\n\nAkım iki katına çıkarılıp uzaklık $4d$ yapılırsa alan kaç $B$ olur?",
+       "options": [
+        "$\\frac{1}{8}$",
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$2$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Akım iki kat: alan **iki kat**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Alan akımla doğru orantılı; akım iki katına çıkınca alan iki katına çıkar."
+        },
+        {
+         "text": "Uzaklık dört kat: alan **dörtte bir**; toplam $\\frac{2}{4} = \\frac{1}{2}$.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Uzaklıkla ters orantılı; dört kat uzakta dörtte bir. İki bölü dört, yarım. Uzaklığın karesini alan sekizde biri bulur. Cevap C."
+        }
+       ],
+       "narration": "$B \\propto \\frac{i}{d}$.",
+       "origin": {
+        "changes": "Düz tel alanı kalıbı; yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aralarında $2d$ bulunan, sayfa düzlemine dik iki uzun paralel telden eşit büyüklükte, **zıt yönlü** akımlar geçiyor ve tam ortadaki manyetik alan $B$ oluyor.\n\nAkımlar **aynı yönlü** yapılırsa ortadaki alan kaç $B$ olur?",
+       "options": [
+        "$0$",
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$2$",
+        "$4$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Zıt akımlarda ortada iki alan **aynı yönde**: toplanır.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Zıt yönlü akımların ortadaki alanları aynı yönü gösterir ve toplanır; B bu toplamdır."
+        },
+        {
+         "text": "Aynı yönlü akımlarda ortadaki alanlar **zıt**, eşit: bileşke **sıfır**.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Akımlar aynı yönlü olunca ortadaki iki alan eşit büyüklükte ve zıt yönlü olur; birbirini yok eder. Cevap A."
+        }
+       ],
+       "narration": "Ortada iki alanın yönlerine bakalım.",
+       "origin": {
+        "changes": "İki telin ortası kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_MANYETIK_03",
+    "subtopics": [],
+    "title": "Solenoid",
+    "narration": "Sarmal biçimde sarılmış bir tel, bobin, içinde düzgün bir alan oluşturur ve bir çubuk mıknatıs gibi davranır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Solenoid",
+      "items": [
+       "$N$ sarımlı, $\\ell$ boylu bobinin içindeki alan $B = 4\\pi k \\frac{N i}{\\ell}$: **düzgün**.",
+       "Bobin bir **çubuk mıknatıs** gibi davranır; kutupları sağ el kuralıyla bulunur.",
+       "İçine demir çekirdek konursa alan **çok büyür**: elektromıknatıs."
+      ],
+      "beats": [],
+      "narration": "Sarmal biçimde sarılmış bir telin, yani solenoidin içinde alan düzgündür: sarım sayısı ve akımla doğru, bobinin boyuyla ters orantılıdır. Bobin bir çubuk mıknatıs gibi davranır; parmaklarını akım yönünde kıvırdığında başparmağın kuzey kutbunu gösterir. İçine demir çekirdek konursa alan çok büyür; buna elektromıknatıs denir ve akım kesilince mıknatıslık biter."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir pil, bir anahtar, bir bobin ve bakır bir yuvadan oluşan devrede, yuvanın üstünde duran iletken bir demir bilye devreyi tamamlıyor; bobin bilyenin hemen üstünde. Anahtar kapatılınca bobin bilyeyi çekiyor; bilye yuvadan kalkınca devre açılıyor.\n\nAnahtar kapalı kaldıkça bilye nasıl hareket eder?",
+       "context": "ÖSYM 2020'de sorulan bobin, demir bilye ve bakır yuva düzeneğinin sözle yeniden kurulmuş hâli.",
+       "options": [
+        "Hareketsiz kalır",
+        "Bobine yapışıp kalır",
+        "Yuvaya bastırılıp orada kalır",
+        "Bobin ile yuva arasında gidip gelir",
+        "İkisinin arasında asılı kalır"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Devre kapalı: bobin **mıknatıslanır**, bilyeyi çeker.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Anahtar kapanınca akım bilyenin üzerinden geçer; bobin mıknatıs olur ve bilyeyi yukarı çeker."
+        },
+        {
+         "text": "Bilye kalkınca devre **açılır**: mıknatıslık biter, bilye düşer, devre yine kapanır.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bilye yuvadan kalkınca devre açılır, bobin mıknatıslığını kaybeder, bilye düşer. Yuvaya değince devre yine kapanır ve olay tekrarlar; bilye gidip gelir. Elektrikli zil böyle çalışır. Cevap D."
+        }
+       ],
+       "narration": "Bilye kalkınca devreye ne olur?",
+       "origin": {
+        "changes": "ÖSYM 2020 modeli: düzenek sözle kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir bobinin sarım sayısı iki katına, boyu iki katına, içinden geçen akım üç katına çıkarılıyor.\n\nBobinin içindeki manyetik alan kaç katına çıkar?",
+       "options": [
+        "$\\frac{3}{2}$",
+        "$3$",
+        "$6$",
+        "$9$",
+        "$12$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$N$ iki kat, $i$ üç kat: pay **altı kat**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sarım sayısı iki kat, akım üç kat: pay altı katına çıkar."
+        },
+        {
+         "text": "$\\ell$ iki kat: alan yarıya; toplam $\\frac{6}{2} = 3$.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bobin iki kat uzadı; alan boyla ters orantılı, yarıya iner. Altı bölü iki, üç. Boyu unutan altıyı bulur. Cevap B."
+        }
+       ],
+       "narration": "$B \\propto \\frac{N i}{\\ell}$.",
+       "origin": {
+        "changes": "Bobin alanı kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_MANYETIK_04",
+    "subtopics": [],
+    "title": "Manyetik alanda yüklü parçacık",
+    "narration": "Manyetik alanda hareket eden bir yüke, hareketine dik bir kuvvet etki eder; bu kuvvet yükü hızlandırmaz, yalnız döndürür.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Yüklü parçacık",
+      "items": [
+       "Hareketli yüke kuvvet $F = qvB\\sin\\theta$; hıza ve alana **dik**.",
+       "Kuvvet hıza dik olduğu için **iş yapmaz**: sürat değişmez, yalnız yön değişir.",
+       "Alana dik giren yük **çember** çizer: $r = \\frac{mv}{qB}$."
+      ],
+      "visual": {
+       "kind": "magneticField",
+       "mode": "particle",
+       "field": "in",
+       "charge": "+",
+       "current": "out",
+       "currents": [
+        "up",
+        "up"
+       ],
+       "motion": true,
+       "duration": 5
+      },
+      "beats": [
+       {
+        "narration": "Sayfadan içeri yönlü alana pozitif bir yük sağa doğru giriyor.",
+        "show": [],
+        "focus": [
+         "body"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Kuvvet hep hıza dik ve çemberin merkezine doğru: yük çember çiziyor.",
+        "show": [
+         "run",
+         "force"
+        ],
+        "focus": [
+         "force"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Manyetik alanda hareket eden bir yüke etki eden kuvvet q v B sinüs tetadır ve hem hıza hem alana diktir. Kuvvet hıza dik olduğundan iş yapmaz: yükün sürati değişmez, yalnız yönü değişir. Alana dik giren yük bu yüzden bir çember çizer; yarıçapı m v bölü q B'dir. Pozitif ile negatif yük zıt yönlere kıvrılır, yüksüz parçacık hiç sapmaz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sayfa düzleminden içeri yönlü düzgün bir manyetik alana sağa doğru giren üç parçacıktan K yukarı doğru, M aşağı doğru kıvrılıyor; L ise doğrusal gidiyor.\n\nBuna göre K, L ve M'nin yükleri aşağıdakilerden hangisi olabilir?",
+       "context": "ÖSYM 2023'te sorulan manyetik alanda farklı yollar izleyen parçacıklar yapısının sözle kurulmuş hâli.",
+       "options": [
+        "K: +, L: nötr, M: −",
+        "K: −, L: nötr, M: +",
+        "K: +, L: +, M: −",
+        "K: nötr, L: +, M: −",
+        "K: −, L: −, M: +"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Sağa giden **pozitif** yük, içeri yönlü alanda **yukarı** itilir: K pozitif.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "F eşittir q v çarpı B: sağa giden pozitif yük, sayfadan içeri yönlü alanda yukarı doğru itilir. K pozitif."
+        },
+        {
+         "text": "Doğrusal giden L **yüksüz**; zıt yöne kıvrılan M **negatif**.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Doğrusal giden L'ye kuvvet etki etmiyor: yüksüz. Ters yöne kıvrılan M negatif. Cevap A."
+        }
+       ],
+       "narration": "Sağ el kuralıyla pozitif yükün kıvrılma yönünü bulalım.",
+       "origin": {
+        "changes": "ÖSYM 2023 modeli: yollar sözle verildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Düzgün bir manyetik alana dik giren bir protonun çizdiği çemberin yarıçapı $r$'dir.\n\nProtonun hızı iki katına, alan üç katına çıkarılırsa yarıçap kaç $r$ olur?",
+       "options": [
+        "$6$",
+        "$3$",
+        "$\\frac{3}{2}$",
+        "$\\frac{4}{3}$",
+        "$\\frac{2}{3}$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Hız iki kat: $r$ **iki kat**; alan üç kat: $r$ **üçte bir**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yarıçap hızla doğru, alanla ters orantılı: hız iki kat, yarıçap iki kat; alan üç kat, yarıçap üçte bir."
+        },
+        {
+         "text": "$r' = \\frac{2}{3} r$.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam iki bölü üç. Oranları ters kuran üç bölü ikiyi bulur. Cevap E."
+        }
+       ],
+       "narration": "$r = \\frac{mv}{qB}$.",
+       "origin": {
+        "changes": "Yarıçap kalıbı; yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Manyetik kuvvet hızlandırır mı?",
+      "wrong": "Manyetik kuvvet yüklü parçacığı hızlandırır.",
+      "right": "Kuvvet hıza **dik**: iş yapmaz, sürat **değişmez**.",
+      "why": "Yalnız hızın **yönü** değişir.",
+      "narration": "Sık yapılan bir hata: manyetik kuvvetin yükü hızlandırdığını sanmak. Kuvvet her an hıza diktir; iş yapmaz, kinetik enerjiyi değiştirmez. Yükün sürati aynı kalır, yalnız yönü değişir."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_MANYETIK_05",
+    "subtopics": [],
+    "title": "Akım taşıyan tele etki eden kuvvet",
+    "narration": "Akım hareket eden yüklerdir; bu yüzden manyetik alandaki akım taşıyan tele de kuvvet etki eder. Elektrik motoru buna dayanır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Tele kuvvet",
+      "items": [
+       "Alandaki akım taşıyan tele kuvvet $F = B i L \\sin\\theta$.",
+       "Yön sağ el kuralıyla: kuvvet akıma ve alana **dik**.",
+       "Akım alana paralelse kuvvet **sıfır**."
+      ],
+      "visual": {
+       "kind": "magneticField",
+       "mode": "force",
+       "field": "in",
+       "charge": "+",
+       "current": "up",
+       "currents": [
+        "up",
+        "up"
+       ],
+       "motion": true,
+       "duration": 5
+      },
+      "beats": [
+       {
+        "narration": "Sayfadan içeri yönlü alanda yukarı akım taşıyan bir tel.",
+        "show": [],
+        "focus": [
+         "body"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Kuvvet akıma ve alana dik: tel sola itiliyor.",
+        "show": [
+         "force"
+        ],
+        "focus": [
+         "force"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Manyetik alandaki akım taşıyan bir tele etki eden kuvvet B i L sinüs tetadır; teta, akım ile alan arasındaki açıdır. Kuvvet hem akıma hem alana diktir ve yönü sağ el kuralıyla bulunur. Akım alana paralelse kuvvet sıfırdır. Elektrik motorlarında ve ampermetrelerde dönen çerçeve bu kuvvetle döner."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir ampermetrede, mıknatısın kutupları arasındaki alanda dönebilen bir tel çerçeveden akım geçince çerçeveye manyetik kuvvet etki eder ve ibre sapar.\n\nAkım aynı kalırken;\nI. kutupları daha güçlü bir mıknatıs kullanmak,\nII. mıknatısın kutuplarını birbirine yaklaştırmak,\nIII. mıknatısın kutuplarını birbirinden uzaklaştırmak\n\ndeğişikliklerinden hangileri ibreyi daha çok saptırır?",
+       "context": "ÖSYM 2022'de sorulan ampermetre çerçevesi yapısının yeniden yazılmış hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Güçlü mıknatıs alanı **büyütür** (I).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Daha güçlü bir mıknatıs çerçevedeki alanı büyütür; kuvvet büyür."
+        },
+        {
+         "text": "Kutuplar **yaklaşınca** aradaki alan büyür (II); uzaklaşınca küçülür (III yanlış).",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kutuplar birbirine yaklaşınca aradaki alan güçlenir; uzaklaşınca zayıflar. Birinci ve ikinci ibreyi daha çok saptırır. Cevap C."
+        }
+       ],
+       "narration": "Kuvvet $B i L$: alan büyürse kuvvet büyür.",
+       "origin": {
+        "changes": "ÖSYM 2022 modeli: anlatım değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Büyüklüğü $0{,}5$ T olan düzgün bir manyetik alanda alana dik duran $40$ cm uzunluğundaki bir telden $3$ A akım geçiyor.\n\nTele etki eden manyetik kuvvet kaç N'dir?",
+       "options": [
+        "$0{,}06$",
+        "$0{,}6$",
+        "$1{,}2$",
+        "$6$",
+        "$60$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$L = 40$ cm $= 0{,}4$ m; alana dik: $\\sin 90° = 1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kırk santimetre sıfır virgül dört metredir; tel alana dik, sinüs bir."
+        },
+        {
+         "text": "$F = 0{,}5 \\cdot 3 \\cdot 0{,}4 = 0{,}6$ N.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kuvvet sıfır virgül beş çarpı üç çarpı sıfır virgül dört: sıfır virgül altı newton. Santimetreyi çevirmeyen altmışı bulur. Cevap B."
+        }
+       ],
+       "narration": "Uzunluğu metreye çevirelim.",
+       "origin": {
+        "changes": "Tele kuvvet kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_MANYETIK_06",
+    "subtopics": [],
+    "title": "İki paralel tel arasındaki kuvvet",
+    "narration": "Akım taşıyan iki paralel tel, birbirinin manyetik alanında olduğu için birbirine kuvvet uygular.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Paralel teller",
+      "items": [
+       "Aynı yönde akım taşıyan paralel teller birbirini **çeker**, zıt yönlüler **iter**.",
+       "Kuvvetler etki-tepki: akımlar farklı olsa bile **eşit büyüklükte**.",
+       "Birim boydaki kuvvet $\\frac{F}{L} = 2k\\frac{i_1 i_2}{d}$: akımların çarpımıyla doğru, uzaklıkla ters."
+      ],
+      "visual": {
+       "kind": "magneticField",
+       "mode": "parallel",
+       "field": "in",
+       "charge": "+",
+       "current": "out",
+       "currents": [
+        "up",
+        "up"
+       ],
+       "motion": true,
+       "duration": 5
+      },
+      "beats": [
+       {
+        "narration": "İki telden aynı yönde akım geçiyor.",
+        "show": [],
+        "focus": [
+         "body"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Teller birbirini çekiyor: kuvvetler eşit ve zıt.",
+        "show": [
+         "run",
+         "force"
+        ],
+        "focus": [
+         "force"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Akım taşıyan iki paralel tel birbirinin manyetik alanındadır ve birbirine kuvvet uygular. Akımlar aynı yönlüyse teller birbirini çeker, zıt yönlüyse iter; elektrik yüklerinin tersine. Bu iki kuvvet etki-tepki çiftidir: akımlar farklı olsa bile eşit büyüklüktedir. Birim boydaki kuvvet akımların çarpımıyla doğru, teller arası uzaklıkla ters orantılıdır."
+     },
+     {
+      "kind": "visual",
+      "title": "Zıt akımlar",
+      "visual": {
+       "kind": "magneticField",
+       "mode": "parallel",
+       "field": "in",
+       "charge": "+",
+       "current": "out",
+       "currents": [
+        "up",
+        "down"
+       ],
+       "motion": true,
+       "duration": 5
+      },
+      "beats": [
+       {
+        "narration": "Zıt yönlü akımlar: teller birbirini itiyor.",
+        "show": [
+         "run",
+         "force"
+        ],
+        "focus": [
+         "force"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Akımlardan biri ters çevrilirse ne olur?"
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Paralel iki uzun telden $i$ ve $3i$ büyüklüğündeki akımlar aynı yönde geçiyor. Birinci tele birim boyda etki eden manyetik kuvvet $F$'dir.\n\nİkinci tele birim boyda etki eden kuvvetin büyüklüğü ve tellerin etkileşimi nedir?",
+       "options": [
+        "$F$ ; birbirini çekerler",
+        "$3F$ ; birbirini çekerler",
+        "$F$ ; birbirini iterler",
+        "$\\frac{F}{3}$ ; birbirini çekerler",
+        "$3F$ ; birbirini iterler"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Kuvvetler etki-tepki: **eşit büyüklükte**, ikisi de $2k\\frac{i \\cdot 3i}{d}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki tele etki eden kuvvetler etki-tepki çiftidir; ikisi de iki k i çarpı üç i bölü d, eşit: F."
+        },
+        {
+         "text": "Aynı yönlü akımlar birbirini **çeker**.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Akımlar aynı yönlü olduğu için teller birbirini çeker. Büyük akımlı tele büyük kuvvet sanan üç F'yi seçer. Cevap A."
+        }
+       ],
+       "narration": "Etki-tepki ve akım yönleri.",
+       "origin": {
+        "changes": "Paralel teller kalıbı; yeni yazıldı"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Akımın alanı çembersel; sağ el kuralı.",
+    "Düz tel $B = 2k\\frac{i}{d}$; halka $2\\pi k\\frac{i}{r}$.",
+    "Bobin içi düzgün: $B = 4\\pi k\\frac{Ni}{\\ell}$.",
+    "Yüke $F = qvB$; çember $r = \\frac{mv}{qB}$.",
+    "Tele $F = BiL\\sin\\theta$.",
+    "Aynı yönlü akımlar çeker, zıt yönlüler iter."
+   ],
+   "warnings": [
+    "Manyetik kuvvet **iş yapmaz**.",
+    "Akım alana paralelse kuvvet **sıfır**.",
+    "Paralel tellerde kuvvetler **eşit**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bir pil ve ampulden kurulan basit devrenin telinin yanına bir pusula koy; iğnenin **saptığını** gör.",
+    "Sağ el kuralını üç örnekte **elinle** dene: düz tel, halka, bobin.",
+    "Uygulamada AYT Manyetik Alan ve Manyetik Kuvvet testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Sağ el kurallarını tablo yap: düz telde başparmak akım, kıvrılan parmaklar alan yönü; bobinde parmaklar akım, başparmak N kutbu; kuvvette dört parmak manyetik alan, başparmak akım ya da pozitif yükün hızı, avuç içi kuvvet yönü. Negatif yükte kuvvetin ters döndüğünü vurgula.",
+   "Manyetik alanda yüklü parçacığı ayrıntılandır: kuvvet hıza dik olduğu için iş yapmaz, sürat değişmez; r = mv/(qB), periyot T = 2πm/(qB) hızdan bağımsızdır (siklotron). Kütle spektrometresinde aynı hız ve yükte ağır iyonun büyük çember çizdiğini, izotopların böyle ayrıldığını ekle.",
+   "Sayısal örnekler ekle: 10 A akımlı düz telden 0,1 m uzakta B = 2 · 10⁻⁷ × 10 / 0,1 = 2 · 10⁻⁵ T. 5 A ve 10 A akımlı, 0,1 m aralıklı paralel tellerde birim uzunluğa düşen kuvvet 2 · 10⁻⁷ × 50 / 0,1 = 10⁻⁴ N/m.",
+   "Dünya'nın manyetik alanını ekle: coğrafi kuzeye yakın olan manyetik güney kutbudur; pusulanın sapma ve eğim açıları; Güneş'ten gelen yüklü parçacıkların kutuplara yönelip kutup ışıklarını oluşturması.",
+   "Manyetik kuvvetin uygulamalarını say: elektrik motoru (akım taşıyan bobine tork), hoparlör, galvanometre ve ampermetre, elektromıknatıslı vinç, MR cihazı, manyetik raylı (maglev) tren."
+  ]
+ }
+}

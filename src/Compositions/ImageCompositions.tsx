@@ -34,7 +34,7 @@ const createImageComponent = (template: AnyImageTemplateDefinition) => {
 };
 
 /** Registers an image design. Its size comes from the props, so one composition serves every format. */
-export const ImageCompositions: React.FC<{template: AnyImageTemplateDefinition}> = ({template}) => {
+const ImageCompositions: React.FC<{template: AnyImageTemplateDefinition}> = ({template}) => {
 	const {component, schema, defaultProps} = useMemo(() => {
 		const propsSchema = createImagePropsSchema(template.contentSchema);
 		const {width, height} = IMAGE_SIZES[template.defaultSize];

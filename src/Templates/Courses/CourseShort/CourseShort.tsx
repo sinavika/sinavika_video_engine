@@ -9,8 +9,9 @@ import {courseLessonTheme} from '../../../Themes/LessonAccent';
 import {CardScene, IntroScene, RecapScene, RevisionChrome} from '../../Education/QuickRevision/QuickRevisionScenes';
 import type {QuickRevisionContent, RevisionCard} from '../../Education/QuickRevision/QuickRevisionSchema';
 import {defineTemplate} from '../../TemplateDefinition';
-import {promotionScene} from '../CoursePromotionScenes';
-import {ShortQuestionScene, VisualCardScene} from './CourseShortScenes';
+import {promotionScene} from '../CoursePromotionScene';
+import {ShortQuestionScene} from './Scenes/ShortQuestionScene';
+import {VisualCardScene} from './Scenes/VisualCardScene';
 
 const estimate = (text: string, minSeconds = 2.6) => estimateReadingSeconds([text], {baseSeconds: 0.8, minSeconds, maxSeconds: 20});
 
@@ -37,7 +38,7 @@ const asRevision = (script: LessonScript): QuickRevisionContent =>
 		cards: script.short.cards.filter((card): card is RevisionCard => card.kind !== 'visual'),
 		summary: script.short.summary,
 		script: {},
-		outro: {enabled: false, callToAction: ''},
+		outro: {enabled: false},
 	}) as QuickRevisionContent;
 
 const buildScenes = (script: LessonScript, voiceClips: VoiceClips = {}): TemplateScene[] => {

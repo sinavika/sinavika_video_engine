@@ -14,9 +14,9 @@ import {z} from 'zod';
 export const MEDIA_DIRECTORY = 'Media';
 export const MEDIA_CREDITS_FILE = 'Credits.json';
 
-export const MEDIA_LICENSES = ['PD', 'CC0', 'CC BY', 'CC BY-SA'] as const;
+const MEDIA_LICENSES = ['PD', 'CC0', 'CC BY', 'CC BY-SA'] as const;
 
-export const MediaEntrySchema = z.object({
+const MediaEntrySchema = z.object({
 	/** Path inside public/, e.g. "Media/History/Ataturk_1923.jpg". */
 	file: z.string().regex(/^Media\/[\w./-]+$/),
 	title: z.string().min(1).max(200),

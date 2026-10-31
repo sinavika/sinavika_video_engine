@@ -39,7 +39,7 @@ export const VOICE_MODEL_KEYS = Object.keys(VOICE_MODELS) as [VoiceModelKey, ...
 /** The model a voice is narrated with unless a job says otherwise. */
 export const VOICE_MODEL_BY_ORIGIN = {native: 'stable', multilingual: 'expressive'} as const satisfies Record<'native' | 'multilingual', VoiceModelKey>;
 
-export type Voice = {
+type Voice = {
 	elevenLabsId: string;
 	name: string;
 	gender: 'female' | 'male';

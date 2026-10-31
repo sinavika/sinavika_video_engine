@@ -112,6 +112,6 @@ npm run store -- --look koyu --only iphone-6.3     # alternatif görünüm (koyu
 npm run store -- --lang en --slides 0,1
 ```
 
-Görseller her zaman en yüksek kalitededir: mağazanın istediği tam piksel ölçüsünde, kayıpsız PNG (en büyük ölçüler: iPad 13" 2064 × 2752, Android 10 inç 2160 × 3840). Dosyalar `out/MobileHeader/<dil>/<ios|android>/<format>/` altına yazılır; alternatif görünümler `out/MobileHeader/_alternatifler/` altına. Arka plandaki dalga slaytlar boyunca kesintisiz devam eder: mağazada yan yana duran görseller tek bir şerit gibi okunur.
+Görseller her zaman en yüksek kalitededir: mağazanın istediği tam piksel ölçüsünde, kayıpsız PNG (en büyük ölçüler: iPad 13" 2064 × 2752, Android 10 inç 2160 × 3840). Dosyalar `Outputs/MobileHeader/<dil>/<ios|android>/<format>/` altına yazılır; alternatif görünümler `Outputs/MobileHeader/_alternatifler/` altına. Arka plandaki dalga slaytlar boyunca kesintisiz devam eder: mağazada yan yana duran görseller tek bir şerit gibi okunur.
 
 App Store kreatif görselleri (iOS / iPadOS 27+): **Header** (`ust-gorsel`, 5244 × 2950 ya da 3840 × 1646) ve **Search Results** (`arama-sonucu`, 5244 × 2950, 3840 × 2560 ya da 1920 × 1280). Her boyut metinli ve metinsiz (`-metinsiz`) iki dosyadır; düzen yatay, üç telefonlu. Metin `STORE_CREATIVE` içindedir. Yalnız bunları üretmek için: `npm run store -- --only ust-gorsel` ya da `--only arama-sonucu`.

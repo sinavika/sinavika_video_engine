@@ -1,0 +1,769 @@
+{
+ "topic": {
+  "id": "D5E9A540-F1C8-7BCB-E776-1C35CCE06B91",
+  "category": "YKS_TYT",
+  "lesson": "FIZ",
+  "code": "FIZ_IS_ENERJI"
+ },
+ "title": "İş, Güç ve Enerji",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/FIZ/FIZ_IS_ENERJI.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Yorulmak iş değildir",
+   "narration": "Duvarı dakikalarca itip yorulsan da fizikte hiç iş yapmamış olabilirsin. Barajdaki su evindeki lambayı nasıl yakar? Bu derste fiziksel işi, gücü, kinetik ve potansiyel enerjiyi, enerjinin korunumunu, verimi ve enerji kaynaklarını öğreneceğiz."
+  },
+  "objectives": [
+   "İş yapılan ve yapılmayan durumları ayırt etmek; işi ve gücü hesaplamak",
+   "Kinetik ve potansiyel enerjiyi hesaplamak; ağırlık merkezini kullanmak",
+   "Mekanik enerjinin korunumunu ve sürtünmenin etkisini açıklamak",
+   "Verimi hesaplamak; enerji kaynaklarını sınıflandırmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_IS_ENERJI_01",
+    "subtopics": [],
+    "title": "Fiziksel iş",
+    "narration": "Günlük dilde ders çalışmak da iştir. Fizikte iş yapılması için bir kuvvet ve o kuvvet yönünde bir yer değiştirme gerekir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "İş yapıldı mı?",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "İş yapılır",
+         "items": [
+          "Çantayı yerden **masaya kaldırmak**",
+          "Kutuyu yatay **itip kaydırmak**",
+          "Serbest düşen elmaya **yer çekimi**"
+         ]
+        },
+        {
+         "title": "İş yapılmaz",
+         "items": [
+          "Duvarı itmek: **yer değiştirme yok**",
+          "Çantayla yatay yürümek: kuvvet yola **dik**",
+          "Halteri havada **tutmak**"
+         ]
+        }
+       ]
+      },
+      "caption": "$W = F \\cdot \\Delta x$ (kuvvet yönündeki yer değiştirme); birimi **joule** ($1 \\text{ J} = 1 \\text{ N} \\cdot \\text{m}$). İş skalerdir.",
+      "beats": [
+       {
+        "narration": "Çantayı yerden masaya kaldırırken kuvvet yukarı, çanta da yukarı gidiyor: iş yapılır. Serbest düşen elmaya da yer çekimi iş yapar.",
+        "show": [],
+        "focus": [
+         "c1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Duvarı ne kadar itersen it, duvar yerinden oynamıyorsa iş sıfırdır; yorulman iş yaptığını göstermez. Çantayla yatay yolda yürürken çantayı tutan kuvvet yukarı, hareket yatay: kuvvet yola dik olduğu için bu kuvvet iş yapmaz.",
+        "show": [],
+        "focus": [
+         "c2"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "İş, kuvvet ile kuvvet yönündeki yer değiştirmenin çarpımıdır; birimi joule."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "I. Bir öğrencinin, yerinden kıpırdamayan bir duvarı dakikalarca itmesi\nII. Bir işçinin yerdeki kutuyu kamyonun kasasına kaldırması\nIII. Elinde valizle yatay bir koridorda sabit hızla yürüyen yolcunun valizi taşıyan kuvveti\n\nDurumlarından hangilerinde fiziksel anlamda iş yapılır?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "I: yer değiştirme yok → iş yok. III: kuvvet yukarı, hareket yatay → iş yok.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Duvar kıpırdamadığı için yer değiştirme yok, iş sıfır. Valizi tutan kuvvet yukarı doğru, yolcu ise yatay gidiyor: kuvvet yönünde yer değiştirme yok, iş sıfır."
+        },
+        {
+         "text": "II: kuvvet yukarı, kutu yukarı → iş yapılır. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kutuyu kaldıran kuvvet yukarı, kutu da yukarı çıkıyor: iş yapılıyor. Cevabımız B. Birinciyi seçen, yorulmayı iş sanmıştır."
+        }
+       ],
+       "narration": "Kuvvet yönünde yer değiştirme var mı?",
+       "origin": {
+        "changes": "Bu ders için yazıldı; iş yapılan ve yapılmayan durumlar özgün örneklerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Yatay zemindeki bir kasa $40$ N'lik yatay kuvvetle $3$ m çekiliyor. Kasa ile zemin arasındaki sürtünme kuvveti $10$ N olduğuna göre, çekme kuvvetinin yaptığı iş ve kasaya yapılan net iş sırasıyla kaç joule'dür?",
+       "options": [
+        "$120$ ve $90$",
+        "$120$ ve $120$",
+        "$90$ ve $120$",
+        "$150$ ve $90$",
+        "$40$ ve $30$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$W_F = 40 \\cdot 3 = 120$ J.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çekme kuvvetinin işi kırk çarpı üç, yüz yirmi joule."
+        },
+        {
+         "text": "$W_{net} = (40 - 10) \\cdot 3 = 90$ J. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Net kuvvet kırk eksi on, otuz newton; net iş otuz çarpı üç, doksan joule. Aradaki otuz joule sürtünmeyle ısıya dönüştü. Cevabımız A. B'yi seçen, sürtünmeyi hesaba katmamıştır."
+        }
+       ],
+       "narration": "Net iş: net kuvvet çarpı yol.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; bir kuvvetin işi ile net iş farkı özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_IS_ENERJI_02",
+    "subtopics": [],
+    "title": "Güç",
+    "narration": "Aynı işi iki kişi yapabilir; hızlı yapan daha güçlüdür.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Birim zamandaki iş",
+      "items": [
+       "Güç $P = \\frac{W}{t}$; birimi **watt** ($1 \\text{ W} = 1 \\text{ J/s}$).",
+       "Aynı iş **daha kısa sürede** yapılırsa güç **büyüktür**.",
+       "Yük kaldırmada iş: $W = m \\cdot g \\cdot h$.",
+       "Beygir gücü: $1 \\text{ hp} \\approx 746 \\text{ W}$."
+      ],
+      "beats": [],
+      "narration": "Güç, birim zamanda yapılan iştir: iş bölü zaman, birimi watt. Bir watt, saniyede bir joule demektir. Aynı yükü aynı yüksekliğe çıkaran iki vinç aynı işi yapar; işi yarı sürede bitiren vinç iki kat güçlüdür. Bir yükü yukarı kaldırırken yapılan iş, ağırlık çarpı yükseklik, yani m g h'dir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Özdeş $K$ ve $L$ vinçleri, aynı yükü aynı yüksekliğe çıkarıyor. $K$ bu işi $20$ saniyede, $L$ ise $40$ saniyede tamamlıyor.\n\nI. İki vincin yüke yaptığı iş eşittir.\nII. $K$'nin gücü $L$'ninkinin $2$ katıdır.\nIII. $K$, yüke $L$'den daha fazla enerji aktarır.\n\nYargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Aynı yük, aynı yükseklik: $W = mgh$ eşit → I doğru; aktarılan enerji de eşit → III yanlış.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yük ve yükseklik aynı olduğu için iki vincin yaptığı iş, yani yüke aktardıkları enerji eşittir. Birinci doğru, üçüncü yanlış."
+        },
+        {
+         "text": "$P = \\frac{W}{t}$: $K$ yarı sürede → $2$ kat güç → II doğru. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Güç iş bölü zaman: K aynı işi yarı sürede yaptığı için gücü iki katıdır. Cevabımız C. Üçüncüyü de seçen, hızlı olanın daha çok enerji aktardığını sanmıştır; hızlı olan daha güçlüdür, enerji aynıdır."
+        }
+       ],
+       "narration": "İş aynı, süre farklı.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2024 güç sorusunun fikri iki vinç ve öncüllerle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kütlesi $60$ kg olan bir öğrenci, $5$ m yüksekliğindeki merdiveni $10$ saniyede çıkıyor. Öğrencinin bu sırada ortalama gücü kaç watt'tır? ($g = 10 \\text{ m/s}^2$)",
+       "options": [
+        "$60$",
+        "$300$",
+        "$600$",
+        "$1500$",
+        "$3000$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$W = m g h = 60 \\cdot 10 \\cdot 5 = 3000$ J.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Öğrenci kendi ağırlığını beş metre yukarı taşıdı: altmış çarpı on çarpı beş, üç bin joule."
+        },
+        {
+         "text": "$P = \\frac{3000}{10} = 300$ W. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bu işi on saniyede yaptığı için güç üç bin bölü on, üç yüz watt. Cevabımız B. Üç bini seçen, işi bulup süreye bölmeyi unutmuştur."
+        }
+       ],
+       "narration": "Önce iş: m·g·h.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; merdiven çıkan öğrencinin gücü özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_IS_ENERJI_03",
+    "subtopics": [
+     "FIZ_IS_ENERJI_04",
+     "FIZ_IS_ENERJI_05"
+    ],
+    "title": "Kinetik ve potansiyel enerji",
+    "narration": "Enerji, iş yapabilme yeteneğidir. Hareketten gelen enerji kinetik, konumdan gelen enerji potansiyeldir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İki enerji",
+      "items": [
+       "Kinetik: $E_K = \\frac{1}{2} m v^2$: hız **2 katı** olursa enerji **4 katı**.",
+       "Yer çekimi potansiyel: $E_P = m g h$; $h$, **ağırlık merkezinin** yüksekliği.",
+       "Esneklik potansiyel: sıkışan ya da gerilen yayda, lastikte depolanır.",
+       "Mekanik enerji: $E_M = E_K + E_P$."
+      ],
+      "beats": [],
+      "narration": "Kinetik enerji, yarım çarpı kütle çarpı hızın karesidir: hız iki katına çıkınca enerji dört katına çıkar. Yer çekimi potansiyel enerjisi m g h'dir; burada h, cismin ağırlık merkezinin yüksekliğidir. Yerde yatan bir direği dikince ağırlık merkezi boyunun yarısı kadar yükselir. Sıkışan bir yayda ya da gerilen bir lastikte de esneklik potansiyel enerjisi depolanır. Kinetik ve potansiyel enerjinin toplamına mekanik enerji denir."
+     },
+     {
+      "kind": "visual",
+      "title": "Düşen topun enerjisi",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        20
+       ],
+       "y": [
+        0,
+        320
+       ],
+       "xLabel": "h (m)",
+       "yLabel": "E (J)",
+       "curves": [
+        {
+         "expression": "10x",
+         "label": "Potansiyel",
+         "ends": [
+          "none",
+          "none"
+         ]
+        },
+        {
+         "expression": "200 - 10x",
+         "label": "Kinetik",
+         "ends": [
+          "none",
+          "none"
+         ]
+        },
+        {
+         "expression": "200",
+         "label": "Mekanik",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [
+        {
+         "x": 10,
+         "y": 100,
+         "label": "Ek = Ep"
+        }
+       ],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "caption": "$1$ kg'lık top $20$ m yükseklikten bırakılıyor ($g = 10$): potansiyel enerji azaldıkça kinetik enerji **aynı miktarda** artar.",
+      "beats": [
+       {
+        "narration": "Başta top duruyor: bütün enerjisi potansiyel, iki yüz joule. Düştükçe yüksekliği, dolayısıyla potansiyel enerjisi azalır.",
+        "show": [],
+        "focus": [
+         "c1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Kaybolan potansiyel enerji kinetik enerjiye dönüşür: on metrede ikisi eşittir, yüzer joule. Toplam, yani mekanik enerji, her yükseklikte iki yüz joule kalır.",
+        "show": [],
+        "focus": [
+         "c2",
+         "c3",
+         "p1"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bir kilogramlık bir topu yirmi metre yükseklikten bırakalım ve sürtünmeyi ihmal edelim."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$K$ cisminin kütlesi $m$, hızı $2v$; $L$ cisminin kütlesi $2m$, hızı $v$'dir. $K$'nin kinetik enerjisi $L$'ninkinin kaç katıdır?",
+       "options": [
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$2$",
+        "$4$",
+        "$8$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$E_K = \\frac{1}{2} m (2v)^2 = 2 m v^2$; $E_L = \\frac{1}{2} (2m) v^2 = m v^2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "K'nin enerjisi yarım çarpı m çarpı iki v'nin karesi: iki m v kare. L'ninki yarım çarpı iki m çarpı v kare: m v kare."
+        },
+        {
+         "text": "Oran $2$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "K'ninki L'ninkinin iki katı. Hız karesiyle girdiği için kütlenin iki katı, hızın iki katının etkisini dengeleyemez. Cevabımız C. Biri seçen, hızı da kütle gibi tek kuvvetiyle hesaplamıştır."
+        }
+       ],
+       "narration": "Hızın karesi.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; kinetik enerjide hızın karesi etkisi özgün bir karşılaştırmayla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Yerde yatan, boyu $2$ m ve kütlesi $30$ kg olan homojen bir direk dik konuma getiriliyor. Direğin potansiyel enerjisi kaç joule artar? ($g = 10 \\text{ m/s}^2$)",
+       "options": [
+        "$300$",
+        "$400$",
+        "$500$",
+        "$600$",
+        "$900$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Ağırlık merkezi yerde iken yerde, dik iken $\\frac{2}{2} = 1$ m yüksekte.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Homojen direğin ağırlık merkezi ortasında. Yatarken yerde, dik dururken bir metre yüksekte."
+        },
+        {
+         "text": "$\\Delta E_P = m g \\Delta h = 30 \\cdot 10 \\cdot 1 = 300$ J. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Potansiyel enerji artışı otuz çarpı on çarpı bir, üç yüz joule. Cevabımız A. Altı yüzü seçen, bütün direğin iki metre yükseldiğini sanmıştır."
+        }
+       ],
+       "narration": "Ağırlık merkezi ne kadar yükselir?",
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB metnindeki ağırlık merkezi kuralı bir direk örneğiyle özgün olarak soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_IS_ENERJI_06",
+    "subtopics": [],
+    "title": "Enerjinin korunumu",
+    "narration": "Enerji yoktan var olmaz, var olan enerji yok olmaz; yalnız biçim değiştirir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Barajdan prize",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "Baraj gölü",
+         "detail": "potansiyel enerji"
+        },
+        {
+         "label": "Akan su",
+         "detail": "kinetik enerji"
+        },
+        {
+         "label": "Türbin",
+         "detail": "dönme enerjisi"
+        },
+        {
+         "label": "Jeneratör",
+         "detail": "elektrik enerjisi"
+        },
+        {
+         "label": "Evde",
+         "detail": "ışık, ısı, hareket"
+        }
+       ]
+      },
+      "caption": "Sürtünmesiz ortamda **mekanik enerji korunur**. Sürtünme varsa bir kısmı ısıya dönüşür; **toplam enerji** yine korunur.",
+      "beats": [
+       {
+        "narration": "Baraj gölündeki suyun potansiyel enerjisi, akan suda kinetik enerjiye dönüşür; su türbini döndürür, jeneratör bunu elektrik enerjisine çevirir.",
+        "show": [],
+        "focus": [
+         "n1",
+         "n2",
+         "n3",
+         "n4"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Hiçbir adımda enerji kaybolmaz, ama bir kısmı sürtünmeyle ısıya dönüşür ve işimize yaramaz. Sürtünme yoksa mekanik enerji korunur; sürtünme varsa mekanik enerji azalır, toplam enerji yine korunur. Canlılar da enerjiyi besinlerdeki kimyasal enerjiden alır.",
+        "show": [],
+        "focus": [
+         "n5"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bir hidroelektrik santralinde enerji bir biçimden ötekine geçer."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Sürtünmesiz bir ortamda $20$ m yükseklikten serbest bırakılan bir taş yere kaç m/s hızla çarpar? ($g = 10 \\text{ m/s}^2$)",
+       "options": [
+        "$5$",
+        "$10$",
+        "$15$",
+        "$20$",
+        "$40$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$m g h = \\frac{1}{2} m v^2$ → $v^2 = 2 g h = 400$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Tepedeki potansiyel enerjinin hepsi yerde kinetik enerjiye dönüşür: m g h eşittir yarım m v kare. Kütleler sadeleşir: v kare, iki çarpı on çarpı yirmi, dört yüz."
+        },
+        {
+         "text": "$v = 20$ m/s. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "v yirmi metre bölü saniye. Kütle sadeleştiği için ağır ya da hafif taş aynı hızla çarpar. Cevabımız D. Kırkı seçen, karekök almayı unutup dört yüzü on ile bölmüştür."
+        }
+       ],
+       "narration": "Potansiyel enerji kinetiğe dönüşür.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; mekanik enerjinin korunumu serbest düşmede özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Sürtünmesiz bir ortamda $16$ m yükseklikten serbest bırakılan bir topun kinetik enerjisi, yere göre potansiyel enerjisinin $3$ katı olduğu anda top yerden kaç metre yüksektedir?",
+       "options": [
+        "$2$",
+        "$4$",
+        "$8$",
+        "$12$",
+        "$16$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$E_M = m g \\cdot 16$ sabit; $E_K = 3 E_P$ → $E_M = 4 E_P$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Mekanik enerji her an aynı: m g çarpı on altı. Kinetik enerji potansiyelin üç katıysa toplam, potansiyelin dört katıdır."
+        },
+        {
+         "text": "$m g h = \\frac{m g \\cdot 16}{4}$ → $h = 4$ m. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Potansiyel enerji toplamın dörtte biri: m g h eşittir m g çarpı on altı bölü dört. h dört metre. Top on iki metre düşmüş, dört metre yüksekte. Cevabımız B. On ikiyi seçen, topun düştüğü mesafeyi yükseklik sanmıştır."
+        }
+       ],
+       "narration": "Mekanik enerji dört eşit paya bölünür.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; serbest düşmede kinetik ve potansiyel enerji oranı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kızak, tepedeki mekanik enerjisi $100$ J iken sürtünmeli bir yokuştan aşağı kayıyor. Yokuş boyunca sürtünme nedeniyle $30$ J enerji ısıya dönüşüyor. Kızağın yokuşun dibinde, yerdeki kinetik enerjisi kaç joule'dür?",
+       "options": [
+        "$30$",
+        "$70$",
+        "$100$",
+        "$130$",
+        "$170$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Dipte potansiyel enerji $0$; $E_K = 100 - 30 = 70$ J. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dipte yükseklik sıfır, bütün mekanik enerji kinetik. Yüz joule'den otuzu ısıya gittiği için kinetik enerji yetmiş joule. Toplam enerji korundu: yetmiş kinetik, otuz ısı. Cevabımız B. Yüzü seçen, sürtünmeli ortamda da mekanik enerjinin korunduğunu sanmıştır."
+        }
+       ],
+       "narration": "Isıya giden enerji mekanik enerjiden düşer.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; sürtünmeli ortamda enerjinin korunumu özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_IS_ENERJI_07",
+    "subtopics": [],
+    "title": "Verim ve enerji kaynakları",
+    "narration": "Hiçbir makine aldığı enerjinin hepsini işe çeviremez.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Biter mi, yenilenir mi?",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Yenilenebilir",
+         "items": [
+          "güneş, rüzgâr",
+          "hidroelektrik, jeotermal",
+          "biyokütle, dalga",
+          "Tükenmez, çevreye **daha az zararlı**"
+         ]
+        },
+        {
+         "title": "Yenilenemez",
+         "items": [
+          "kömür, petrol",
+          "doğal gaz",
+          "nükleer (uranyum)",
+          "Rezervler **tükenir**, çoğu sera gazı salar"
+         ]
+        }
+       ]
+      },
+      "caption": "Verim $= \\frac{\\text{yararlı enerji}}{\\text{harcanan enerji}} \\cdot 100$; her zaman **%100'den küçüktür**.",
+      "beats": [
+       {
+        "narration": "Güneş, rüzgâr, akarsu, yer altındaki sıcak su ve bitkisel atıklar yenilenebilir kaynaklardır: tükenmez ve çevreye daha az zarar verir.",
+        "show": [],
+        "focus": [
+         "c1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Kömür, petrol, doğal gaz ve nükleer yakıt ise yenilenemez: rezervleri tükenir, fosil yakıtlar yanarken sera gazı salar.",
+        "show": [],
+        "focus": [
+         "c2"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Verim, harcanan enerjinin ne kadarının işe yaradığını söyler: yararlı enerji bölü harcanan enerji, yüzle çarpılır. Akkor bir lambanın enerjisinin çoğu ısıya gider, verimi düşüktür; LED lambanın verimi yüksektir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir elektrik motoru $2000$ J elektrik enerjisi harcayarak bir yükü kaldırıyor ve yüke $1500$ J enerji aktarıyor. Motorun verimi yüzde kaçtır?",
+       "options": [
+        "$25$",
+        "$50$",
+        "$60$",
+        "$75$",
+        "$133$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Verim $= \\frac{1500}{2000} \\cdot 100 = \\%75$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yararlı enerji bin beş yüz, harcanan iki bin joule: oran sıfır virgül yetmiş beş, yüzde yetmiş beş. Kalan beş yüz joule ısıya ve sese gitti. Cevabımız D. Yüz otuz üçü seçen, kesri ters kurmuştur; verim yüzde yüzü geçemez."
+        }
+       ],
+       "narration": "Yararlı bölü harcanan.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; verim tanımı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aşağıdakilerden hangisi **yenilenebilir** bir enerji kaynağıdır?",
+       "options": [
+        "Doğal gaz",
+        "Kömür",
+        "Petrol",
+        "Nükleer yakıt",
+        "Jeotermal"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Jeotermal, yer altının sürekli ısısıdır; tükenmez. Öbürleri sınırlı rezervdir. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Jeotermal enerji, yer altındaki sıcak su ve buhardan gelir; yerin ısısı sürekli olduğu için yenilenebilir. Doğal gaz, kömür ve petrol fosil yakıt; nükleer yakıt da sınırlı uranyuma dayanır. Cevabımız E."
+        }
+       ],
+       "narration": "Tükenmeyen kaynak.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; yenilenebilir ve yenilenemez kaynaklar özgün seçeneklerle soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "İş $W = F \\cdot \\Delta x$ (kuvvet yönünde); kuvvet yola dikse ya da yer değiştirme yoksa iş **sıfır**.",
+    "Güç $P = \\frac{W}{t}$, watt.",
+    "$E_K = \\frac{1}{2} m v^2$, $E_P = m g h$ (ağırlık merkezi); $E_M = E_K + E_P$.",
+    "Sürtünmesiz ortamda mekanik enerji korunur; sürtünmede ısıya gider, **toplam** enerji korunur.",
+    "Verim = yararlı / harcanan; güneş, rüzgâr, jeotermal **yenilenebilir**."
+   ],
+   "warnings": [
+    "Yorulmak iş yapmak **değildir**.",
+    "Hız 2 katına çıkınca kinetik enerji **4 katına** çıkar.",
+    "Potansiyel enerjide yükseklik **ağırlık merkezinin** yüksekliğidir."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Merdiveni koşarak ve yürüyerek çık; süreleri ölç, iki durumdaki **gücünü** hesapla.",
+    "Evindeki üç cihazın enerjiyi **hangi biçimden hangisine** çevirdiğini yaz.",
+    "Uygulamada İş, Güç ve Enerji testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Kuvvet-yol grafiğinin altındaki alanın işi verdiğini örnekle; işin birimleri (joule, kilovatsaat) ve kuvvet yola açılıysa yalnız yol yönündeki bileşenin iş yaptığını yaz.",
+   "Mekanik enerjinin korunumuna sayısal örnekler ekle: yüksekten bırakılan top, salınan sarkaç, lunapark treni; sürtünmeli yolda mekanik enerjinin bir kısmının ısıya dönüştüğünü hesapla.",
+   "Verim hesaplarını örnekle: verim = yararlı enerji / harcanan enerji · 100; akkor ampul (%5–10) ile LED'in, elektrik motorunun ve araba motorunun verimlerini karşılaştır.",
+   "Enerji dönüşümleri tablosu ver: pil (kimyasal → elektrik), jeneratör (mekanik → elektrik), motor (elektrik → mekanik), güneş paneli (ışık → elektrik), fotosentez (ışık → kimyasal), sürtünme (mekanik → ısı).",
+   "Enerji kaynaklarının avantaj ve dezavantajlarını tablo yap (hidroelektrik, rüzgâr, güneş, jeotermal, nükleer, fosil yakıtlar) ve Türkiye'den örnek ver (Atatürk Barajı, Denizli-Kızıldere jeotermal, rüzgâr santralleri)."
+  ]
+ }
+}

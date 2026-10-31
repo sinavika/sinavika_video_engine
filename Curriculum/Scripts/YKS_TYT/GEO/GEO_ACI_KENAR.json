@@ -1,0 +1,1095 @@
+{
+ "topic": {
+  "id": "017C0397-2ADD-03DC-9F36-F1D2B77D4959",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_ACI_KENAR"
+ },
+ "title": "Açı – Kenar Bağıntıları",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "YKS/TYT/KonuAnlatimi/GEO/GEO_ACI_KENAR.json (MEB Temel Matematik s. 118-119: açı-kenar bağıntıları, dar ve geniş açılı üçgenlerde kenar karesi bağıntıları)",
+  "YKS/TYT/CikmisSorular/GEO.jsonl (ÖSYM 2019, 2021 açı-kenar ve üçgen eşitsizliği; yalnız yapı örneği); YKS/TYT/Sorular/GEO/GEO_ACI_KENAR.jsonl ve GEO_ACILAR_UCGENLER.jsonl (iç nokta, kenarortay aralığı)",
+  "Temel bağıntılar (açı-kenar sıralaması, üçgen eşitsizliği) Geometri 3'te işlendi; bu ders ileri bağıntılardır (VeriDuzeltmeleri #36)"
+ ],
+ "works": {
+  "additions": [
+   "Geniş açılı ve dar açılı üçgen koşullarıyla kenar aralığı bulma sorularına üç çözümlü örnek ekle; aralıktaki tam sayı değerlerin sayılmasında sınırların dahil olmadığını vurgula.",
+   "İç nokta eşitsizliklerini (u < |PA| + |PB| + |PC| < 2u) ve bir noktadan köşelere uzaklıklar toplamının en küçük olduğu durumu örnekle.",
+   "Kenarortayı iki katına uzatarak kenarortay uzunluğunun aralığını bulma yöntemini ikinci bir sayısal örnekle tekrar et."
+  ]
+ },
+ "short": {
+  "hook": "Açı dar mı, geniş mi?",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "$b^2 > a^2 + c^2$: **geniş**."
+   },
+   {
+    "kind": "fact",
+    "text": "İç nokta: **u < toplam < 2u**."
+   },
+   {
+    "kind": "warning",
+    "text": "Kenarortay: farkın ve toplamın **yarısı**."
+   }
+  ],
+  "summary": [
+   "Kareleri karşılaştır",
+   "Kenarortay: yarılar"
+  ],
+  "rounds": [
+   {
+    "sentence": "Kenarlar 5, 7, 9",
+    "question": "Açı?",
+    "choices": [
+     "Geniş",
+     "Dar"
+    ],
+    "answer": 0,
+    "why": "81 > **74**."
+   },
+   {
+    "sentence": "Çevre 24, iç nokta",
+    "question": "Toplam 12 olur mu?",
+    "choices": [
+     "Olmaz",
+     "Olur"
+    ],
+    "answer": 0,
+    "why": "**Büyük** olmalı."
+   },
+   {
+    "sentence": "Kenarlar 6 ve 10",
+    "question": "Kenarortay 9?",
+    "choices": [
+     "Olmaz",
+     "Olur"
+    ],
+    "answer": 0,
+    "why": "**8**'den küçük."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-geometri-kampi",
+  "name": "TYT Geometri kampı",
+  "number": 9,
+  "total": 23,
+  "previous": "Üçgende Eşlik – Benzerlik",
+  "next": "Üçgende Alan",
+  "promise": "Geometri konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Bir pergeli aç, kapat: kollar arası açı büyüdükçe uçlar arası uzaklığın **nasıl arttığını** gözle.",
+    "Dar-dik-geniş kare bağıntısını, iç nokta sınırlarını ve kenarortay aralığını **bir sayfaya** yaz.",
+    "Uygulamada Açı – Kenar Bağıntıları testinden **20 soru** çöz; her soruda önce **sınırları** yaz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bir pergeli açıp kapat; kollar arasındaki açı büyüdükçe uçlar arasındaki uzaklığın nasıl arttığını gözle. Sonra dar, dik ve geniş açılı üçgenlerdeki kare bağıntısını, iç nokta sınırlarını ve kenarortay aralığını bir sayfaya yaz. En son uygulamada açı kenar bağıntıları testinden yirmi soru çöz; her soruda önce sınırları yaz. Bir sonraki derste üçgende alanla devam ediyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Pergeli açtıkça",
+   "narration": "Bir pergeli yavaşça aç. Kollar arasındaki açı büyüdükçe iki uç birbirinden uzaklaşır; açı doksan dereceyi geçtiği anda uçlar arasındaki uzaklık, Pisagor'un söylediği değeri aşar. Bu derste kenarlardan açının dar mı geniş mi olduğunu anlamayı, üçgenin içindeki bir noktanın sınırlarını ve kenarortayın alabileceği değerleri öğreneceğiz."
+  },
+  "objectives": [
+   "Kenar kareleriyle açının dar, dik ya da geniş olduğunu belirlemek",
+   "Geniş ve dar açı koşulunu üçgen eşitsizliğiyle birleştirip aralık bulmak",
+   "Üçgenin içindeki bir noktanın köşelere uzaklıkları için sınır bulmak",
+   "Kenarortayın alabileceği değerleri bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_ACI_KENAR_02",
+    "title": "Dar, dik ya da geniş",
+    "narration": "Kenarlardan açının dar mı geniş mi olduğunu anlayabilir miyiz? Evet, kareleri karşılaştırarak.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Kareleri karşılaştır",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.8,
+        -0.8,
+        18.8,
+        3.8
+       ],
+       "points": [
+        {
+         "id": "P1",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "Q1",
+         "at": [
+          4,
+          0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "R1",
+         "at": [
+          2,
+          3
+         ],
+         "hidden": true
+        },
+        {
+         "id": "P2",
+         "at": [
+          5.5,
+          0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "Q2",
+         "at": [
+          10.5,
+          0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "R2",
+         "at": [
+          7.3,
+          2.4
+         ],
+         "hidden": true
+        },
+        {
+         "id": "P3",
+         "at": [
+          12,
+          0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "Q3",
+         "at": [
+          18,
+          0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "R3",
+         "at": [
+          14.5,
+          1.8
+         ],
+         "hidden": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "P1",
+         "to": "Q1",
+         "label": "b"
+        },
+        {
+         "from": "Q1",
+         "to": "R1"
+        },
+        {
+         "from": "R1",
+         "to": "P1"
+        },
+        {
+         "from": "P2",
+         "to": "Q2",
+         "label": "b"
+        },
+        {
+         "from": "Q2",
+         "to": "R2"
+        },
+        {
+         "from": "R2",
+         "to": "P2"
+        },
+        {
+         "from": "P3",
+         "to": "Q3",
+         "label": "b"
+        },
+        {
+         "from": "Q3",
+         "to": "R3"
+        },
+        {
+         "from": "R3",
+         "to": "P3"
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "P1",
+          "Q1",
+          "R1"
+         ]
+        },
+        {
+         "points": [
+          "P2",
+          "Q2",
+          "R2"
+         ]
+        },
+        {
+         "points": [
+          "P3",
+          "Q3",
+          "R3"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "R1",
+         "from": "P1",
+         "to": "Q1",
+         "label": "dar"
+        },
+        {
+         "at": "R2",
+         "from": "P2",
+         "to": "Q2",
+         "right": true
+        },
+        {
+         "at": "R3",
+         "from": "P3",
+         "to": "Q3",
+         "label": "geniş"
+        }
+       ]
+      },
+      "caption": "En uzun kenar $b$ ise: $b^2 < a^2 + c^2$ **dar**, $b^2 = a^2 + c^2$ **dik**, $b^2 > a^2 + c^2$ **geniş** açılı.",
+      "narration": "Pisagor teoremi yalnız dik üçgen için bir eşitlik. Ama eşitlik bozulduğunda bile bize bir şey söyler.",
+      "beats": [
+       {
+        "narration": "Ortadaki dik üçgende en uzun kenarın karesi, öbür iki kenarın kareleri toplamına eşit. Karşısındaki açı tam doksan derece.",
+        "focus": [
+         "P2Q2",
+         "angle-R2"
+        ]
+       },
+       {
+        "narration": "Açıyı kapatırsan karşısındaki kenar kısalır: karesi toplamdan küçük kalır, açı dar. Açıyı açarsan kenar uzar: karesi toplamı geçer, açı geniş. Kural: en uzun kenarın karesini öbür iki kenarın kareleri toplamıyla karşılaştır.",
+        "focus": [
+         "P1Q1",
+         "angle-R1",
+         "P3Q3",
+         "angle-R3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kenar uzunlukları $5$, $7$ ve $9$ cm olan bir üçgen için aşağıdakilerden hangisi doğrudur?",
+       "options": [
+        "Dar açılı üçgendir.",
+        "Dik üçgendir.",
+        "Geniş açılı üçgendir.",
+        "Eşkenar üçgendir.",
+        "İkizkenar üçgendir."
+       ],
+       "answer": 2,
+       "narration": "En uzun kenarın karesi, öbür iki kenarın kareleri toplamıyla karşılaştırılır.",
+       "steps": [
+        {
+         "text": "$9^2 = 81$; $5^2 + 7^2 = 25 + 49 = 74$.",
+         "narration": "En uzun kenar dokuz; karesi seksen bir. Öbür iki kenarın kareleri toplamı yirmi beş artı kırk dokuz, yetmiş dört."
+        },
+        {
+         "text": "$81 > 74$ → $9$ cm'lik kenarın karşısındaki açı **geniş**. Cevap **C**.",
+         "narration": "Seksen bir, yetmiş dörtten büyük: dokuzun karşısındaki açı doksan dereceden büyük. Üçgen geniş açılı. Kenarlar farklı olduğu için ikizkenar da değil. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB'deki dar-dik-geniş açılı üçgen kenar bağıntısı özgün bir üçlüyle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $m(\\widehat{ABC}) > 90°$, $|AB| = 6$ cm ve $|BC| = 8$ cm'dir. $|AC|$ bir tam sayı olduğuna göre kaç farklı değer alabilir?",
+       "options": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+       ],
+       "answer": 1,
+       "narration": "Geniş açı alt sınırı yükseltir; üçgen eşitsizliği üst sınırı verir.",
+       "steps": [
+        {
+         "text": "$B$ geniş → $|AC|^2 > 36 + 64 = 100$ → $|AC| > 10$.",
+         "narration": "B açısı geniş; karşısındaki A C'nin karesi, altı kare artı sekiz kareden, yüzden büyük. A C ondan büyük."
+        },
+        {
+         "text": "Üçgen eşitsizliği: $|AC| < 6 + 8 = 14$. Değerler $11, 12, 13$: **3** tane. Cevap **B**.",
+         "narration": "Üçgen eşitsizliğine göre A C, on dörtten küçük. On bir, on iki, on üç: üç değer. Cevabımız B. Yalnız üçgen eşitsizliğini kullanan, ikiden on dörde kadar on bir değer sayar; geniş açı bilgisini kaçırır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; geniş açı koşulu ile üçgen eşitsizliğinin birlikte kullanıldığı özgün bir sayma sorusu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kenar uzunlukları $4$, $5$ ve $x$ cm olan bir üçgenin bütün açıları dar açıdır. $x$ bir tam sayı olduğuna göre kaç farklı değer alabilir?",
+       "options": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+       ],
+       "answer": 1,
+       "narration": "Hem $x$ en uzun kenar olabilir hem de $5$; ikisini de denetle.",
+       "steps": [
+        {
+         "text": "$x$ en uzunsa: $x^2 < 16 + 25 = 41$ → $x \\le 6$.",
+         "narration": "x en uzun kenarsa karşısındaki açı dar olmalı: x kare, kırk birden küçük; x en fazla altı."
+        },
+        {
+         "text": "$5$ en uzunsa: $25 < 16 + x^2$ → $x^2 > 9$ → $x > 3$.",
+         "narration": "Beş en uzun kenarsa onun karşısındaki açı da dar olmalı: yirmi beş, on altı artı x kareden küçük; x kare dokuzdan büyük, x üçten büyük."
+        },
+        {
+         "text": "$3 < x \\le 6$: $4, 5, 6$ → **3** değer. Cevap **B**.",
+         "narration": "İkisi birlikte: x dört, beş ya da altı. Üç değer. Cevabımız B. Yalnız üçgen eşitsizliğine bakan, ikiden dokuza kadar yedi değer bulur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dar açılı üçgen koşulunun iki yönden denetlendiği özgün bir soru."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kolları $6$ cm olan bir pergelin kolları arasındaki açı geniş açıdır. Pergelin iki ucu arasındaki uzaklık santimetre cinsinden bir tam sayı olduğuna göre **en az** kaçtır?",
+       "options": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+       ],
+       "answer": 3,
+       "narration": "Pergelin kolları ve uçlar arası uzaklık bir ikizkenar üçgen kurar.",
+       "steps": [
+        {
+         "text": "Geniş açı → $d^2 > 6^2 + 6^2 = 72$.",
+         "narration": "Kollar altışar santim, aradaki açı geniş. Karşıdaki kenarın, yani uçlar arası uzaklığın karesi yetmiş ikiden büyük."
+        },
+        {
+         "text": "$8^2 = 64 < 72 < 81 = 9^2$ → en az $9$ cm. Cevap **D**.",
+         "narration": "Sekizin karesi altmış dört, yetmiş ikiden küçük; dokuzun karesi seksen bir, büyük. En az dokuz santimetre. Kollar düz bir çizgiye yaklaşınca uzaklık on ikiye yaklaşır ama ona ulaşmaz. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; geniş açı kenar koşulu gerçek hayattan özgün bir pergel durumuyla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Dar açılı bir $ABC$ üçgeninde $|AB| = 6$ cm, $|BC| = 8$ cm ve en uzun kenar $[AC]$'dir. $|AC|$ bir tam sayı olduğuna göre **en büyük** değeri kaçtır?",
+       "options": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "13"
+       ],
+       "answer": 1,
+       "narration": "En uzun kenarın karşısındaki açı da dar olmalı.",
+       "steps": [
+        {
+         "text": "$B$ dar → $|AC|^2 < 36 + 64 = 100$ → $|AC| < 10$.",
+         "narration": "En uzun kenar A C; karşısındaki B açısı da dar olmalı. A C kare, yüzden küçük; A C ondan küçük."
+        },
+        {
+         "text": "$[AC]$ en uzun → $|AC| \\ge 8$. En büyük tam sayı $9$. Cevap **B**.",
+         "narration": "A C en uzun kenar olduğuna göre en az sekiz; ondan küçük en büyük tam sayı dokuz. Cevabımız B. On üçü seçen, yalnız üçgen eşitsizliğine bakmıştır; on ise tam dik açı verir, dar değil.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dar açı koşulunun üst sınır verdiği özgün bir soru."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ACI_KENAR_01",
+    "subtopics": [
+     "GEO_ACI_KENAR_03"
+    ],
+    "title": "Üçgenin içinde bir nokta",
+    "narration": "Üçgenin içinden bir nokta seçelim ve köşelere olan uzaklıklara bakalım.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Yarı çevre ile çevre arası",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        8.7,
+        5.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.6,
+          5
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          8,
+          0
+         ]
+        },
+        {
+         "id": "P",
+         "at": [
+          3.6,
+          1.9
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "A"
+        },
+        {
+         "from": "P",
+         "to": "A",
+         "dashed": true
+        },
+        {
+         "from": "P",
+         "to": "B",
+         "dashed": true
+        },
+        {
+         "from": "P",
+         "to": "C",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ]
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "label": "α"
+        },
+        {
+         "at": "P",
+         "from": "B",
+         "to": "C",
+         "label": "> α"
+        }
+       ]
+      },
+      "caption": "$P$ içteyse: $u < |PA| + |PB| + |PC| < 2u$ ($2u$ çevre); ayrıca $m(\\widehat{BPC}) > m(\\widehat{A})$.",
+      "narration": "P, A B C üçgeninin içinde bir nokta. P'den köşelere çizilen üç doğru parçasının toplamı için iki sınır var.",
+      "beats": [
+       {
+        "narration": "Alt sınır: P A B üçgeninde P A artı P B, A B'den büyük. Üç üçgen için bunu yazıp toplarsan, uzaklıklar toplamının iki katı çevreden büyük çıkar: toplam, yarı çevreden büyük.",
+        "focus": [
+         "PA",
+         "PB",
+         "PC"
+        ]
+       },
+       {
+        "narration": "Üst sınır: P B artı P C, A B artı A C'den küçüktür; içteki yol dıştakinden kısa. Üçünü toplayınca uzaklıklar toplamı çevreden küçük çıkar. Açılarda ise tersi: B P C açısı, A açısından büyüktür.",
+        "focus": [
+         "angle-A",
+         "angle-P"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Çevre uzunluğu $24$ cm olan bir üçgenin iç bölgesindeki bir $P$ noktasının köşelere olan uzaklıkları toplamı santimetre cinsinden bir tam sayıdır. Bu toplam kaç farklı değer alabilir?",
+       "options": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "24"
+       ],
+       "answer": 1,
+       "narration": "Yarı çevre ile çevre arasında, uçlar hariç.",
+       "steps": [
+        {
+         "text": "$u = 12$: $12 < |PA| + |PB| + |PC| < 24$.",
+         "narration": "Yarı çevre on iki. Uzaklıklar toplamı on ikiden büyük, yirmi dörtten küçük."
+        },
+        {
+         "text": "Değerler $13, 14, \\ldots, 23$: $23 - 13 + 1 = 11$. Cevap **B**.",
+         "narration": "On üçten yirmi üçe kadar tam sayılar: yirmi üç eksi on üç artı bir, on bir değer. Cevabımız B. On üçü seçen, uçları da saymıştır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki iç nokta (kablo) yapısı, sayma sorusu olarak özgün değerlerle kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$P$ noktası $ABC$ üçgeninin içindedir. $|AB| = 7$ cm ve $|AC| = 9$ cm olduğuna göre $|PB| + |PC|$ toplamının alabileceği **en büyük** tam sayı değeri kaçtır?",
+       "options": [
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+       ],
+       "answer": 2,
+       "narration": "İçteki yol, dıştaki yoldan kısadır.",
+       "steps": [
+        {
+         "text": "$|PB| + |PC| < |AB| + |AC| = 16$.",
+         "narration": "P içte olduğu için B'den P'ye, oradan C'ye giden yol, B'den A'ya, oradan C'ye giden yoldan kısadır: on altıdan küçük."
+        },
+        {
+         "text": "En büyük tam sayı $15$. Cevap **C**.",
+         "narration": "On altıdan küçük en büyük tam sayı on beş. Cevabımız C. On altıyı seçen, eşitliği kabul etmiştir; P içteyken toplam on altıya ulaşamaz.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; iç noktada PB + PC < AB + AC bağıntısı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Üç evin konumu bir üçgenin köşeleridir ve bu üçgenin çevresi $600$ metredir. Üçgenin içine konacak bir dağıtım kutusundan her eve ayrı bir kablo çekilecektir. Kabloların toplam uzunluğu metre cinsinden bir tam sayı olduğuna göre **en az** kaç metredir?",
+       "options": [
+        "299",
+        "300",
+        "301",
+        "599",
+        "600"
+       ],
+       "answer": 2,
+       "narration": "Uzaklıklar toplamı yarı çevreden büyük.",
+       "steps": [
+        {
+         "text": "Kutu içte → toplam $> \\frac{600}{2} = 300$.",
+         "narration": "Kutu üçgenin içinde; köşelere uzaklıkları toplamı yarı çevreden, yani üç yüzden büyüktür."
+        },
+        {
+         "text": "En az tam sayı $301$. Cevap **C**.",
+         "narration": "Üç yüzden büyük en küçük tam sayı üç yüz bir metre. Cevabımız C. Üç yüzü seçen, eşitliği kabul etmiştir; kutu bir kenarın üstüne konamaz, içte olmalı.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki iç nokta kablo yapısı farklı bir çevre ve soru köküyle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$P$ noktası $ABC$ üçgeninin içindedir ve $m(\\widehat{BAC}) = 70°$'dir. Buna göre $m(\\widehat{BPC})$ aşağıdakilerden hangisi **olabilir**?",
+       "options": [
+        "50",
+        "60",
+        "70",
+        "100",
+        "180"
+       ],
+       "answer": 3,
+       "narration": "$m(\\widehat{BPC}) = m(\\widehat{A}) + m(\\widehat{ABP}) + m(\\widehat{ACP})$.",
+       "steps": [
+        {
+         "text": "Ok ucu kuralı: $m(\\widehat{BPC}) = 70° + m(\\widehat{ABP}) + m(\\widehat{ACP}) > 70°$.",
+         "narration": "A B P C bir ok ucu: B P C açısı, A açısı ile B ve C'deki iki parçanın toplamı. Parçalar sıfırdan büyük olduğu için B P C, yetmişten büyük."
+        },
+        {
+         "text": "Ayrıca $m(\\widehat{BPC}) < 180°$ → yalnız $100$ olabilir. Cevap **D**.",
+         "narration": "P içte olduğu için B P C düz açı olamaz, yüz seksenden küçük. Yetmişten büyük, yüz seksenden küçük tek seçenek yüz. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; iç noktada açı karşılaştırması ok ucu kuralıyla özgün bir soruda soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ACI_KENAR_04",
+    "title": "Kenarortayın sınırları",
+    "narration": "Son bölümde kenarortayın alabileceği değerleri buluyoruz.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Kenarortayı iki katına uzat",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -5.1,
+        8.3,
+        5.1
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.2,
+          4.4
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          7.6,
+          0
+         ]
+        },
+        {
+         "id": "D",
+         "at": [
+          3.8,
+          0.0
+         ]
+        },
+        {
+         "id": "E",
+         "at": [
+          5.4,
+          -4.4
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "c"
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "b"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "label": "Va"
+        },
+        {
+         "from": "D",
+         "to": "E",
+         "label": "Va",
+         "dashed": true
+        },
+        {
+         "from": "B",
+         "to": "E",
+         "label": "b",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "E"
+         ],
+         "fill": true
+        }
+       ],
+       "angles": []
+      },
+      "caption": "$\\frac{|b - c|}{2} < V_a < \\frac{b + c}{2}$",
+      "narration": "A köşesine ait kenarortay A D'yi, D'nin ötesine kendi uzunluğu kadar uzatalım; ucu E olsun.",
+      "beats": [
+       {
+        "narration": "D, hem B C'nin hem A E'nin orta noktası. Köşegenleri birbirini ortalayan dörtgen bir paralelkenardır; öyleyse B E, A C'ye eşit: b.",
+        "focus": [
+         "DE",
+         "BE"
+        ]
+       },
+       {
+        "narration": "Şimdi A B E üçgenine üçgen eşitsizliğini yaz: kenarları c, b ve iki V a. İki V a, b ile c'nin farkından büyük, toplamından küçük. İkiye bölünce kural çıkar: kenarortay, iki kenarın farkının yarısından büyük, toplamının yarısından küçük.",
+        "focus": [
+         "ABE"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Ece'nin evi, okulu ve çarşı bir üçgenin köşeleridir. Evin okula uzaklığı $5$ km, çarşıya uzaklığı $9$ km'dir. Okul ile çarşının tam ortasındaki parkın eve uzaklığı kilometre cinsinden bir tam sayı olduğuna göre **en az** kaçtır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.8,
+         -0.8,
+         8.8,
+         5.775
+        ],
+        "points": [
+         {
+          "id": "E",
+          "at": [
+           0.5,
+           4.975
+          ],
+          "label": "Ev"
+         },
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ],
+          "label": "Okul"
+         },
+         {
+          "id": "C",
+          "at": [
+           8,
+           0
+          ],
+          "label": "Çarşı"
+         },
+         {
+          "id": "P",
+          "at": [
+           4.0,
+           0.0
+          ],
+          "label": "Park"
+         }
+        ],
+        "segments": [
+         {
+          "from": "E",
+          "to": "O",
+          "label": "5"
+         },
+         {
+          "from": "E",
+          "to": "C",
+          "label": "9"
+         },
+         {
+          "from": "O",
+          "to": "P"
+         },
+         {
+          "from": "P",
+          "to": "C"
+         },
+         {
+          "from": "E",
+          "to": "P",
+          "label": "x",
+          "dashed": true
+         }
+        ],
+        "polygons": [],
+        "angles": []
+       },
+       "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "7"
+       ],
+       "answer": 2,
+       "narration": "Park, evden çizilen kenarortayın ucunda.",
+       "steps": [
+        {
+         "text": "Evden parka uzaklık bir kenarortay: $\\frac{9 - 5}{2} < x < \\frac{9 + 5}{2}$ → $2 < x < 7$.",
+         "narration": "Park, okul ile çarşının orta noktası; evden parka uzaklık, evin köşesinden çizilen kenarortay. Kenarortay, dokuz ile beşin farkının yarısından, ikiden büyük; toplamlarının yarısından, yediden küçük."
+        },
+        {
+         "text": "En az tam sayı $3$. Cevap **C**.",
+         "narration": "İkiden büyük en küçük tam sayı üç kilometre. Cevabımız C. İkiyi seçen, sınırı dahil etmiştir; üç nokta bir doğru üzerinde olmadıkça eşitlik olmaz.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki ev-park (kenarortay aralığı) yapısı farklı uzaklıklar ve farklı bir soru köküyle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $|AB| = 6$ cm ve $|AC| = 10$ cm'dir. $A$ köşesine ait kenarortayın uzunluğu santimetre cinsinden bir tam sayı olduğuna göre kaç farklı değer alabilir?",
+       "options": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+       ],
+       "answer": 2,
+       "narration": "$\\frac{10 - 6}{2} < V_a < \\frac{10 + 6}{2}$.",
+       "steps": [
+        {
+         "text": "$2 < V_a < 8$.",
+         "narration": "Kenarortay, on ile altının farkının yarısından, ikiden büyük; toplamlarının yarısından, sekizden küçük."
+        },
+        {
+         "text": "Değerler $3, 4, 5, 6, 7$: **5** tane. Cevap **C**.",
+         "narration": "Üç, dört, beş, altı, yedi: beş değer. Cevabımız C. Yediyi seçen, kenarortayı üçüncü kenar sanıp dörtle on altı arasını saymıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; kenarortay aralığı özgün kenar uzunluklarıyla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $A$ köşesine ait kenarortayın uzunluğu $5$ cm ve $|AB| = 4$ cm'dir. $|AC|$ bir tam sayı olduğuna göre kaç farklı değer alabilir?",
+       "options": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+       ],
+       "answer": 3,
+       "narration": "Uzatılmış kenarortay üçgeni: kenarları $4$, $|AC|$ ve $10$.",
+       "steps": [
+        {
+         "text": "$ABE$ üçgeninde ($|AE| = 2V_a = 10$): $10 - 4 < |AC| < 10 + 4$ → $6 < |AC| < 14$.",
+         "narration": "Kenarortayı iki katına uzattığımızda oluşan üçgenin kenarları dört, A C ve on. Üçgen eşitsizliği: A C, on ile dördün farkından büyük, toplamından küçük; altıdan büyük, on dörtten küçük."
+        },
+        {
+         "text": "Değerler $7, 8, \\ldots, 13$: **7** tane. Cevap **D**.",
+         "narration": "Yediden on üçe kadar yedi değer. Cevabımız D. Bu kez kural ters yönde kullanıldı: kenarortay bilinince kenarın aralığı bulunur.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; kenarortay aralığının ters yönde, kenar bulmak için kullanıldığı özgün bir soru."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $|BC| = 10$ cm ve $A$ köşesine ait kenarortayın uzunluğu $4$ cm'dir. Buna göre $A$ açısı için aşağıdakilerden hangisi doğrudur?",
+       "options": [
+        "Dar açıdır.",
+        "Dik açıdır.",
+        "Geniş açıdır.",
+        "$60°$'dir.",
+        "Belirlenemez."
+       ],
+       "answer": 2,
+       "narration": "Dik üçgende hipotenüse ait kenarortay hipotenüsün yarısıydı.",
+       "steps": [
+        {
+         "text": "$A$ dik olsaydı kenarortay $\\frac{10}{2} = 5$ olurdu; burada $4 < 5$.",
+         "narration": "A açısı dik olsaydı, kenarortay hipotenüsün yarısı, beş olurdu. Burada dört; yarıdan kısa."
+        },
+        {
+         "text": "Apollonius: $b^2 + c^2 = 2 \\cdot 16 + 50 = 82 < 100 = a^2$ → $A$ **geniş**. Cevap **C**.",
+         "narration": "Apollonius ile doğrulayalım: b kare artı c kare, iki çarpı on altı artı elli, seksen iki. Bu, a karenin, yüzün altında; a'nın karşısındaki A açısı geniş. Kural: kenarortay karşı kenarın yarısından kısaysa açı geniş, eşitse dik, uzunsa dar. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; kenarortay uzunluğundan açı türüne geçiş, Apollonius ve kare bağıntısı birleştirilerek özgün bir soruda soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "En uzun kenar $b$: $b^2 < a^2 + c^2$ **dar**, $=$ **dik**, $>$ **geniş**.",
+    "Geniş açı alt sınırı yükseltir; üst sınırı üçgen eşitsizliği verir.",
+    "İç nokta: $u < |PA| + |PB| + |PC| < 2u$; $|PB| + |PC| < |AB| + |AC|$.",
+    "İç nokta: $m(\\widehat{BPC}) > m(\\widehat{A})$.",
+    "Kenarortay: $\\frac{|b - c|}{2} < V_a < \\frac{b + c}{2}$."
+   ],
+   "warnings": [
+    "Dar açılı koşulunda **her** kenarı en uzun kabul edip denetle.",
+    "Sınırlar **dahil değildir**; eşitlikte üçgen kurulmaz.",
+    "Kenarortay aralığı, üçüncü kenarın aralığının **yarısıdır**."
+   ],
+   "narration": "Hadi toparlayalım. En uzun kenarın karesi öbür ikisinin kareleri toplamından küçükse üçgen dar açılı, eşitse dik, büyükse geniş açılıdır; bu koşul üçgen eşitsizliğinin verdiği aralığı daraltır. Üçgenin içindeki bir noktanın köşelere uzaklıkları toplamı yarı çevre ile çevre arasındadır. Kenarortay ise iki kenarın farkının yarısı ile toplamının yarısı arasında kalır."
+  }
+ }
+}

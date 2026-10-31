@@ -1,0 +1,850 @@
+{
+ "topic": {
+  "id": "317D3D3E-69D6-4ACA-D4DF-66CD3E798075",
+  "category": "YKS_TYT",
+  "lesson": "FIZ",
+  "code": "FIZ_ELEK_MANY"
+ },
+ "title": "Elektrik ve Manyetizma",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "MEB TYT Fizik konu anlatımı s. 104–132 (akım, potansiyel fark, direnç, Ohm yasası, seri-paralel bağlama, elektriksel güç ve enerji, mıknatıslar, manyetik alan, akımın manyetik etkisi; yalnız yapı örneği)",
+  "YKS/TYT/CikmisSorular/FIZ.jsonl (ÖSYM 2019–2026 ampul devreleri, anahtarlı devre, gerilim-akım grafiği, ev aletleri enerjisi, LED; yalnız yapı örneği); YKS/TYT/Sorular/FIZ/FIZ_ELEK_MANY.jsonl",
+  "Sorular özgündür; devreler ve grafikler verilen değerlerle çizildi"
+ ],
+ "works": {
+  "additions": [
+   "Direnci etkileyen etkenlere sayısal örnekler ver: telin boyu iki katına çıkınca direnç iki katına çıkar, kesit alanı iki katına çıkınca yarıya iner; aynı telin çekilip inceltilmesi soru tipi; sıcaklıkla direnç değişimi.",
+   "Karışık devre çözümünü adım adım göster: seri ve paralel kısımları indirge, ana akımı bul, kollara dağıt; kısa devre ve açık devre durumları; anahtar açılıp kapanınca lambaların parlaklık değişimi.",
+   "Üreteçlerin bağlanmasını ekle: seri bağlı pillerde gerilim toplanır, paralel bağlı özdeş pillerde gerilim aynı kalır ama kullanım süresi uzar.",
+   "Elektrik güvenliğini yaz: sigorta, topraklı priz, kaçak akım rölesi; ıslak elle prize dokunmamak; elektrik faturasının kilovatsaat üzerinden hesaplanmasına bir örnek (2000 W ısıtıcı 3 saat).",
+   "Manyetizmayı genişlet: Dünya'nın manyetik alanı ve pusula, manyetik alan çizgilerinin özellikleri, akım geçen telde sağ el kuralı, elektromıknatısın gücünü artıran etkenler (sarım sayısı, akım, demir çekirdek) ve kullanım alanları (hurda vinci, zil, MR)."
+  ]
+ },
+ "short": {
+  "hook": "Paralel lamba neden daha sönük?",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "$V = I \\cdot R$"
+   },
+   {
+    "kind": "fact",
+    "text": "Seri: akım **aynı**; paralel: gerilim **aynı**"
+   },
+   {
+    "kind": "warning",
+    "text": "Enerji $= P \\cdot t$ (kWh)"
+   }
+  ],
+  "summary": [
+   "Ohm: V = I·R",
+   "Mıknatısta tek kutup yok"
+  ],
+  "rounds": [
+   {
+    "sentence": "12 V, 4 Ω",
+    "question": "Akım?",
+    "choices": [
+     "3 A",
+     "48 A"
+    ],
+    "answer": 0,
+    "why": "12 bölü **4**."
+   },
+   {
+    "sentence": "Mıknatıs ikiye kırıldı",
+    "question": "Her parça?",
+    "choices": [
+     "N ve S",
+     "tek kutup"
+    ],
+    "answer": 0,
+    "why": "Hep **iki kutup**."
+   },
+   {
+    "sentence": "Ampermetre",
+    "question": "Nasıl bağlanır?",
+    "choices": [
+     "seri",
+     "paralel"
+    ],
+    "answer": 0,
+    "why": "Akım **içinden** geçmeli."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-fizik-kampi",
+  "name": "TYT Fizik kampı",
+  "number": 9,
+  "total": 11,
+  "previous": "Elektrostatik",
+  "next": "Dalgalar",
+  "promise": "Fizik konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Evindeki üç cihazın gücünü etiketinden oku; günlük kullanımına göre **kWh** hesapla.",
+    "Seri ve paralel bağlı iki lamba çiz; birinin bozulduğunda öbürüne **ne olacağını** yaz.",
+    "Uygulamada Elektrik ve Manyetizma testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Evindeki üç cihazın gücünü etiketinden oku ve günlük kullanımına göre kaç kilovatsaat harcadığını hesapla. Sonra seri ve paralel bağlı ikişer lamba çiz; biri bozulunca öbürüne ne olacağını yaz. En son uygulamada elektrik ve manyetizma testinden yirmi soru çöz. Bir sonraki derste dalgalara geçiyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Prizden pusulaya",
+   "narration": "Evdeki lambalar neden biri bozulunca sönmez? Faturadaki kilovatsaat ne demek? Pusula neden hep kuzeyi gösterir? Bu derste akımı, gerilimi, direnci, Ohm yasasını, seri ve paralel bağlamayı, elektriksel güç ve enerjiyi, mıknatısları ve akımın manyetik etkisini öğreneceğiz."
+  },
+  "objectives": [
+   "Akım, gerilim ve direnci tanımlamak; direncin tele bağlılığını açıklamak",
+   "Ohm yasasını ve gerilim-akım grafiğini kullanmak",
+   "Seri ve paralel devrelerde eşdeğer direnç, akım ve lamba parlaklığını bulmak",
+   "Güç ve enerjiyi hesaplamak; mıknatısları ve akımın manyetik etkisini açıklamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_ELEK_MANY_01",
+    "subtopics": [
+     "FIZ_ELEK_MANY_02",
+     "FIZ_ELEK_MANY_03"
+    ],
+    "title": "Akım, gerilim, direnç",
+    "narration": "Bir lambanın yanması için üç şey gerekir: yükleri iten bir üreteç, yüklerin aktığı bir yol ve akışa karşı koyan bir direnç.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Üç büyüklük",
+      "items": [
+       "**Akım** $I = \\frac{q}{t}$: birim zamanda geçen yük; birimi **amper**, **ampermetre** devreye **seri** bağlanır.",
+       "**Potansiyel fark** (gerilim) $V$: yükleri iten etki; birimi **volt**, **voltmetre** **paralel** bağlanır.",
+       "**Direnç** $R = \\rho \\frac{L}{A}$: tel **uzadıkça** artar, **inceldikçe** artar; birimi **ohm** (Ω).",
+       "Dış devrede akım **+ kutuptan − kutba** doğru kabul edilir."
+      ],
+      "narration": "Elektrik akımı, bir iletkenin kesitinden birim zamanda geçen yük miktarıdır; birimi amper, ölçen alet ampermetredir ve devreye seri bağlanır. Potansiyel fark, yükleri hareket ettiren etkidir; birimi volt, voltmetre ölçülecek elemanın uçlarına paralel bağlanır. Direnç, telin akıma karşı koymasıdır: telin cinsine bağlı öz direnç çarpı boy bölü kesit alanı. Tel uzadıkça ve inceldikçe direnç artar; metallerde sıcaklık arttıkça da artar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aynı maddeden yapılmış $K$ telinin boyu $L$, kesit alanı $A$; $M$ telinin boyu $2L$, kesit alanı $\\frac{A}{2}$'dir. $M$'nin direnci $K$'ninkinin kaç katıdır?",
+       "options": [
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$2$",
+        "$4$"
+       ],
+       "answer": 4,
+       "narration": "$R = \\rho \\frac{L}{A}$.",
+       "steps": [
+        {
+         "text": "Boy $2$ katı → direnç $2$ katı; kesit yarı → direnç yine $2$ katı.",
+         "narration": "Direnç boyla doğru orantılı: boy iki katı, direnç iki katı. Kesitle ters orantılı: kesit yarıya inince direnç bir kez daha iki katı."
+        },
+        {
+         "text": "$2 \\cdot 2 = 4$ kat. Cevap **E**.",
+         "narration": "Toplam dört kat. Cevabımız E. Biri seçen, boyun artışıyla kesitin azalmasının birbirini götürdüğünü sanmıştır; ikisi de direnci artırır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; direncin boy ve kesitle değişimi özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir iletken telin kesitinden $10$ saniyede $30$ C yük geçiyor. Telden geçen akım kaç amperdir?",
+       "options": [
+        "$0{,}3$",
+        "$3$",
+        "$20$",
+        "$40$",
+        "$300$"
+       ],
+       "answer": 1,
+       "narration": "$I = \\frac{q}{t}$.",
+       "steps": [
+        {
+         "text": "$I = \\frac{30}{10} = 3$ A. Cevap **B**.",
+         "narration": "Akım, yük bölü zaman: otuz bölü on, üç amper. Cevabımız B. Üç yüzü seçen, bölmek yerine çarpmıştır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; akım tanımı özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ELEK_MANY_04",
+    "title": "Ohm yasası",
+    "narration": "Gerilim, akım ve direnç tek bir bağıntıyla bağlıdır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Eğim dirençtir",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        4
+       ],
+       "y": [
+        0,
+        24
+       ],
+       "xLabel": "I (A)",
+       "yLabel": "V (V)",
+       "curves": [
+        {
+         "expression": "6x",
+         "label": "A: R = 6 Ω"
+        },
+        {
+         "expression": "3x",
+         "label": "B: R = 3 Ω"
+        },
+        {
+         "expression": "x",
+         "label": "C: R = 1 Ω"
+        }
+       ]
+      },
+      "caption": "Ohm yasası: $V = I \\cdot R$. Gerilim-akım grafiğinde doğrunun **eğimi dirençtir**.",
+      "narration": "Bir telin uçlarındaki gerilimi artırırsan akım da aynı oranda artar; gerilimin akıma oranı sabittir ve bu sabit dirençtir.",
+      "beats": [
+       {
+        "narration": "Gerilim-akım grafiğinde her tel orijinden geçen bir doğrudur. A'nın doğrusu en dik: iki amper için on iki volt gerekiyor, direnci altı ohm.",
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "C'nin doğrusu en yatık: aynı gerilimde en çok akımı C geçirir, direnci en küçük. Eğim ne kadar büyükse direnç o kadar büyük.",
+        "focus": [
+         "c3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$A$, $B$ ve $C$ iletkenlerinin uçlarındaki gerilim ile üzerlerinden geçen akımın değerleri grafikte verilmiştir. İletkenlerin dirençleri $R_A$, $R_B$ ve $R_C$ arasındaki ilişki nedir?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         0,
+         5
+        ],
+        "y": [
+         0,
+         14
+        ],
+        "xLabel": "I (A)",
+        "yLabel": "V (V)",
+        "curves": [
+         {
+          "expression": "6x"
+         },
+         {
+          "expression": "3x"
+         },
+         {
+          "expression": "x"
+         }
+        ],
+        "points": [
+         {
+          "x": 2,
+          "y": 12,
+          "label": "A"
+         },
+         {
+          "x": 3,
+          "y": 9,
+          "label": "B"
+         },
+         {
+          "x": 4,
+          "y": 4,
+          "label": "C"
+         }
+        ]
+       },
+       "options": [
+        "$R_A = R_B = R_C$",
+        "$R_C > R_B > R_A$",
+        "$R_B > R_A > R_C$",
+        "$R_A > R_B > R_C$",
+        "$R_A > R_C > R_B$"
+       ],
+       "answer": 3,
+       "narration": "$R = \\frac{V}{I}$.",
+       "steps": [
+        {
+         "text": "$R_A = \\frac{12}{2} = 6$ Ω, $R_B = \\frac{9}{3} = 3$ Ω, $R_C = \\frac{4}{4} = 1$ Ω.",
+         "narration": "Her noktada gerilimi akıma böl: A için on iki bölü iki, altı ohm; B için dokuz bölü üç, üç ohm; C için dört bölü dört, bir ohm."
+        },
+        {
+         "text": "$R_A > R_B > R_C$. Cevap **D**.",
+         "narration": "Sıralama A, B, C. Cevabımız D. B'yi seçen, en büyük akımı geçireni en büyük direnç sanmıştır; tersine, aynı gerilimde çok akım geçiren direnci küçük olandır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2023 gerilim-akım grafiği sorusunun fikri özgün değerlerle direnç sıralamasına çevrildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ELEK_MANY_05",
+    "title": "Seri ve paralel",
+    "narration": "Elemanlar bir devreye iki biçimde bağlanır: art arda ya da yan yana.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Seri bağlama",
+      "visual": {
+       "kind": "circuit",
+       "battery": "12 V",
+       "items": [
+        {
+         "kind": "resistor",
+         "label": "2 Ω"
+        },
+        {
+         "kind": "ammeter"
+        },
+        {
+         "kind": "resistor",
+         "label": "4 Ω"
+        }
+       ]
+      },
+      "caption": "Seride akım her yerde **aynıdır**; eşdeğer direnç $R = R_1 + R_2$; gerilim dirençlerle orantılı **paylaşılır**.",
+      "narration": "Dirençler art arda bağlanırsa akımın tek bir yolu vardır: bu seri bağlamadır.",
+      "beats": [
+       {
+        "narration": "Eşdeğer direnç iki artı dört, altı ohm. On iki voltluk pil altı ohmdan iki amper akım geçirir; ampermetre nereye konursa konsun iki amper gösterir.",
+        "focus": [
+         "e2"
+        ]
+       },
+       {
+        "narration": "Gerilim dirençlerle orantılı paylaşılır: iki ohmluk dirençte dört volt, dört ohmlukta sekiz volt; toplamı pilin on iki voltu.",
+        "focus": [
+         "e1",
+         "e3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Paralel kollar",
+      "visual": {
+       "kind": "circuit",
+       "battery": "pil",
+       "items": [
+        {
+         "kind": "lamp",
+         "label": "K",
+         "brightness": 1
+        },
+        {
+         "parallel": [
+          [
+           {
+            "kind": "lamp",
+            "label": "L",
+            "brightness": 0.25
+           }
+          ],
+          [
+           {
+            "kind": "lamp",
+            "label": "M",
+            "brightness": 0.25
+           }
+          ]
+         ]
+        }
+       ]
+      },
+      "caption": "Paralel kollarda **gerilim aynıdır**, akım paylaşılır: $\\frac{1}{R} = \\frac{1}{R_1} + \\frac{1}{R_2}$. Lambanın parlaklığı üzerindeki **güçle** artar.",
+      "narration": "Özdeş üç lambadan K ana koldadır; L ile M ise birbirine paraleldir.",
+      "beats": [
+       {
+        "narration": "K'den geçen akımın tamamı ikiye ayrılır: yarısı L'den, yarısı M'den geçer. Paralel kolların gerilimi eşittir; özdeş lambalar eşit parlar.",
+        "focus": [
+         "e2",
+         "e3"
+        ]
+       },
+       {
+        "narration": "K'den iki kat akım geçtiği için K'nin gücü dört kat, en parlak o. Evlerdeki prizler ve lambalar paralel bağlıdır: biri bozulsa da öbürleri çalışır.",
+        "focus": [
+         "e1"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki devrede $6$ Ω'luk direnç, birbirine paralel bağlı $3$ Ω ve $6$ Ω'luk dirençlerle seri bağlıdır. Üretecin gerilimi $32$ V olduğuna göre üreteçten çekilen akım kaç amperdir?",
+       "figure": {
+        "kind": "circuit",
+        "battery": "32 V",
+        "items": [
+         {
+          "kind": "resistor",
+          "label": "6 Ω"
+         },
+         {
+          "parallel": [
+           [
+            {
+             "kind": "resistor",
+             "label": "3 Ω"
+            }
+           ],
+           [
+            {
+             "kind": "resistor",
+             "label": "6 Ω"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       "options": [
+        "$4$",
+        "$5$",
+        "$6$",
+        "$8$",
+        "$16$"
+       ],
+       "answer": 0,
+       "narration": "Önce paralel kısmın eşdeğeri.",
+       "steps": [
+        {
+         "text": "Paralel kısım: $\\frac{1}{R} = \\frac{1}{3} + \\frac{1}{6} = \\frac{1}{2}$ → $R = 2$ Ω.",
+         "narration": "Paralel bağlı üç ve altı ohm: bir bölü üç artı bir bölü altı, bir bölü iki. Eşdeğeri iki ohm."
+        },
+        {
+         "text": "Toplam $6 + 2 = 8$ Ω; $I = \\frac{32}{8} = 4$ A. Cevap **A**.",
+         "narration": "Seri bağlı altı ohmla toplam sekiz ohm. Akım otuz iki bölü sekiz, dört amper. Cevabımız A. İkiyi seçen, paralel dirençleri de seri gibi toplayıp on beşe bölmüştür; sekizi seçen, altı ohmu unutmuştur.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; seri-paralel eşdeğer direnç özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki devrede $K$, $L$ ve $M$ lambaları özdeştir. Lambaların parlaklıkları arasındaki ilişki nedir?",
+       "figure": {
+        "kind": "circuit",
+        "battery": "pil",
+        "items": [
+         {
+          "kind": "lamp",
+          "label": "K"
+         },
+         {
+          "parallel": [
+           [
+            {
+             "kind": "lamp",
+             "label": "L"
+            }
+           ],
+           [
+            {
+             "kind": "lamp",
+             "label": "M"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       "options": [
+        "$K = L = M$",
+        "$K > L = M$",
+        "$L = M > K$",
+        "$K > L > M$",
+        "$M > L > K$"
+       ],
+       "answer": 1,
+       "narration": "Akım nerede bölünüyor?",
+       "steps": [
+        {
+         "text": "$K$'nin akımı $I$; $L$ ve $M$ paralel, özdeş → her birinden $\\frac{I}{2}$.",
+         "narration": "Ana koldaki K'den geçen akım I olsun. Bu akım özdeş L ve M arasında eşit bölünür: her birinden I bölü iki."
+        },
+        {
+         "text": "Parlaklık güçle: $P = I^2 R$ → $K$ dört kat → $K > L = M$. Cevap **B**.",
+         "narration": "Parlaklık güce bağlı, güç akımın karesiyle artar: K'nin gücü L'ninkinin dört katı. L ile M eşit. Cevabımız B. C'yi seçen, paralel kollardaki lambaların daha parlak yandığını sanmıştır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin ampul parlaklığı sorularının fikri seri-paralel üç lambayla özgün olarak kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki devrede $X$, $Y$ ve $Z$ lambaları özdeştir ve $S$ anahtarı kapalıdır.\n\nI. $S$ kapalıyken üç lamba da ışık verir.\nII. $S$ açılırsa $Z$ söner.\nIII. $S$ açılırsa $X$'in parlaklığı artar.\n\nYargılarından hangileri doğrudur?",
+       "figure": {
+        "kind": "circuit",
+        "battery": "pil",
+        "items": [
+         {
+          "kind": "lamp",
+          "label": "X"
+         },
+         {
+          "parallel": [
+           [
+            {
+             "kind": "lamp",
+             "label": "Y"
+            }
+           ],
+           [
+            {
+             "kind": "switch",
+             "label": "S"
+            },
+            {
+             "kind": "lamp",
+             "label": "Z"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       "options": [
+        "Yalnız I",
+        "Yalnız III",
+        "I ve II",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "narration": "Açılan anahtar bir kolu keser.",
+       "steps": [
+        {
+         "text": "$S$ kapalı: bütün kollar tam → üç lamba yanar (I). $S$ açık: $Z$'nin kolu kesilir → $Z$ söner (II).",
+         "narration": "Anahtar kapalıyken bütün kollar tamam: üç lamba da yanar. Anahtar açılınca Z'nin bulunduğu kol kesilir ve Z söner. Birinci ve ikinci doğru."
+        },
+        {
+         "text": "Paralel kol azalınca toplam direnç **artar**, ana akım **azalır** → $X$ **sönükleşir** (III yanlış). Cevap **C**.",
+         "narration": "Bir kol kesilince geriye X ile Y seri kalır: toplam direnç büyür, ana koldan geçen akım azalır. X'in parlaklığı azalır; üçüncü yanlış. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2023 anahtarlı devre sorusunun fikri özgün bir devre ve öncüllerle yeniden kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ELEK_MANY_06",
+    "title": "Güç ve enerji",
+    "narration": "Elektrik faturası, harcadığımız elektrik enerjisinin bedelidir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Watt ve kilovatsaat",
+      "items": [
+       "Güç: $P = V \\cdot I = I^2 R = \\frac{V^2}{R}$; birimi **watt**.",
+       "Enerji: $E = P \\cdot t$; faturada **kilovatsaat** (kWh): $1$ kW gücün $1$ saatte harcadığı enerji.",
+       "Aynı ışık için **LED** daha az güç harcar: verimi yüksektir.",
+       "Lambanın **parlaklığı** harcadığı güçle artar."
+      ],
+      "narration": "Elektriksel güç, gerilim çarpı akımdır; birimi watt. Ohm yasasıyla I kare R ya da V kare bölü R olarak da yazılır. Harcanan enerji, güç çarpı süredir. Faturalarda enerji kilovatsaat ile ölçülür: bin watt gücündeki bir cihazın bir saatte harcadığı enerji bir kilovatsaattir. Aynı ışığı veren LED lamba akkor lambadan çok daha az güç harcar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir evdeki cihazların güçleri ve günlük çalışma süreleri şöyledir:\n• $K$ elektrikli ısıtıcı: $2000$ W, günde $1$ saat\n• $L$ televizyon: $100$ W, günde $10$ saat\n• $M$ çamaşır makinesi: $500$ W, günde $6$ saat\n\nCihazların bir günde harcadığı enerjiler $E_K$, $E_L$ ve $E_M$ arasındaki ilişki nedir?",
+       "options": [
+        "$E_K > E_L > E_M$",
+        "$E_M > E_L > E_K$",
+        "$E_K = E_L = E_M$",
+        "$E_M > E_K > E_L$",
+        "$E_L > E_K > E_M$"
+       ],
+       "answer": 3,
+       "narration": "$E = P \\cdot t$.",
+       "steps": [
+        {
+         "text": "$E_K = 2000 \\cdot 1 = 2000$ Wh; $E_L = 100 \\cdot 10 = 1000$ Wh; $E_M = 500 \\cdot 6 = 3000$ Wh.",
+         "narration": "Enerji güç çarpı süre: K iki bin vatsaat, L bin vatsaat, M üç bin vatsaat."
+        },
+        {
+         "text": "$E_M > E_K > E_L$. Cevap **D**.",
+         "narration": "Sıralama M, K, L. Gücü en büyük ısıtıcı değil, uzun süre çalışan çamaşır makinesi en çok enerjiyi harcıyor. Cevabımız D. A'yı seçen, yalnız güçlere bakıp süreyi unutmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2020 ev aletleri tablosu sorusunun fikri farklı cihaz ve değerlerle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$220$ V gerilimle çalışan ve üzerinden $2$ A akım geçen bir ütü $5$ saat çalıştırılıyor. Ütünün harcadığı enerji kaç kilovatsaattir?",
+       "options": [
+        "$0{,}44$",
+        "$1{,}1$",
+        "$2{,}2$",
+        "$4{,}4$",
+        "$2200$"
+       ],
+       "answer": 2,
+       "narration": "Önce güç, sonra kWh.",
+       "steps": [
+        {
+         "text": "$P = V I = 220 \\cdot 2 = 440$ W $= 0{,}44$ kW.",
+         "narration": "Güç, gerilim çarpı akım: iki yüz yirmi çarpı iki, dört yüz kırk watt, yani sıfır virgül kırk dört kilovat."
+        },
+        {
+         "text": "$E = 0{,}44 \\cdot 5 = 2{,}2$ kWh. Cevap **C**.",
+         "narration": "Beş saatte sıfır virgül kırk dört çarpı beş, iki virgül iki kilovatsaat. Cevabımız C. İki bin iki yüzü seçen, sonucu vatsaat olarak bırakmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; güç ve kilovatsaat hesabı özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_ELEK_MANY_07",
+    "subtopics": [
+     "FIZ_ELEK_MANY_08",
+     "FIZ_ELEK_MANY_09"
+    ],
+    "title": "Mıknatıs ve manyetik alan",
+    "narration": "Mıknatıs demiri çeker, pusula hep kuzeyi gösterir. İkisinin arkasında da manyetik alan var.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kutuplar ve alan",
+      "items": [
+       "Her mıknatısın **N** ve **S** kutbu var; aynı kutuplar **iter**, zıt kutuplar **çeker**.",
+       "Kırılan mıknatısın her parçası yine **iki kutupludur**; tek kutup elde edilemez.",
+       "Manyetik alan çizgileri mıknatısın dışında **N'den S'ye**; kutuplarda en sık.",
+       "Dünya bir mıknatıs gibidir: coğrafi kuzeyin yakınında **manyetik S** kutbu var; pusulanın N ucu oraya döner.",
+       "Demir, nikel, kobalt mıknatıstan **etkilenir**."
+      ],
+      "narration": "Her mıknatısın kuzey ve güney diye iki kutbu vardır: aynı kutuplar birbirini iter, zıt kutuplar çeker. Bir mıknatısı ortadan kırarsan tek kutuplu iki parça elde edemezsin: her parçanın yine bir N ve bir S kutbu olur. Mıknatısın çevresindeki etki alanına manyetik alan denir; alan çizgileri dışarıda N kutbundan çıkıp S kutbuna girer ve kutuplarda en sıktır. Dünya da dev bir mıknatıs gibidir: coğrafi kuzey kutbunun yakınında manyetik güney kutbu bulunur. Bu yüzden pusulanın N ucu coğrafi kuzeyi gösterir. Demir, nikel ve kobalt mıknatıstan etkilenir."
+     },
+     {
+      "kind": "rule",
+      "title": "Akımın manyetik etkisi",
+      "items": [
+       "**Oersted**: akım geçen telin yakınındaki pusula **sapar**: akım manyetik alan oluşturur.",
+       "Düz telin alanı tel çevresinde **halkalar** biçimindedir; akım artınca alan **güçlenir**.",
+       "**Elektromıknatıs**: bobin + demir çekirdek; akım, sarım sayısı ve demir çekirdek alanı **artırır**.",
+       "Akım kesilince elektromıknatıs mıknatıslığını **kaybeder**: hurda vinçleri, zil, hoparlör."
+      ],
+      "narration": "Oersted, akım geçen bir telin yakınındaki pusulanın saptığını gördü: elektrik akımı çevresinde manyetik alan oluşturur. Düz bir telin alanı, telin çevresinde halkalar biçimindedir ve akım arttıkça güçlenir. Teli bobin biçiminde sarıp içine demir çekirdek koyarsan elektromıknatıs elde edersin. Akım ve sarım sayısı arttıkça, demir çekirdek kullanıldıkça alan güçlenir. Akım kesilince mıknatıslık kaybolur; hurda vinçleri, kapı zilleri ve hoparlörler bu sayede çalışır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir çubuk mıknatıs tam ortasından ikiye kırılıyor.\n\nI. Her parçanın bir N ve bir S kutbu olur.\nII. Parçalardan biri yalnız N kutbundan oluşur.\nIII. Parçalar kırıldıkları uçlar karşı karşıya gelecek biçimde yaklaştırılınca birbirini çeker.\n\nYargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "II ve III",
+        "I ve III"
+       ],
+       "answer": 4,
+       "narration": "Tek kutup olmaz.",
+       "steps": [
+        {
+         "text": "Kırılan her parça yeniden **iki kutuplu** olur (I doğru, II yanlış).",
+         "narration": "Mıknatısı ne kadar küçük parçalara bölersen böl, her parçanın yine bir N bir S kutbu olur. Birinci doğru, ikinci yanlış."
+        },
+        {
+         "text": "Kırık uçlarda karşı karşıya gelen kutuplar **zıt** → çekerler (III doğru). Cevap **E**.",
+         "narration": "Kırık yerde bir parçada yeni bir S, öbüründe yeni bir N kutbu oluşur. Bu uçlar karşı karşıya gelince zıt kutuplar çekişir. Üçüncü doğru. Cevabımız E.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; mıknatısın kutuplarının ayrılamazlığı öncüllerle özgün olarak soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Pusulanın N ucunun coğrafi kuzeyi göstermesinin nedeni aşağıdakilerden hangisidir?",
+       "options": [
+        "Dünya'nın coğrafi kuzey kutbu yakınında manyetik güney kutbu vardır.",
+        "Dünya'nın coğrafi kuzey kutbu yakınında manyetik kuzey kutbu vardır.",
+        "Pusula iğnesi demirden olduğu için kuzeye çekilir.",
+        "Kuzeyde yer çekimi daha büyüktür.",
+        "Pusulanın N ucu ağırdır."
+       ],
+       "answer": 0,
+       "narration": "Zıt kutuplar çeker.",
+       "steps": [
+        {
+         "text": "Pusulanın N ucunu Dünya'nın **manyetik S** kutbu çeker; bu kutup coğrafi kuzeyin yakınındadır. Cevap **A**.",
+         "narration": "Pusulanın kuzey ucu bir N kutbudur ve zıt kutup olan S tarafından çekilir. Dünya'nın manyetik güney kutbu coğrafi kuzey kutbunun yakınındadır; bu yüzden iğne kuzeyi gösterir. Cevabımız A. B'yi seçen, adların aynı olmasını yeterli sanmıştır; aynı kutuplar iter.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; Dünya'nın manyetik alanı ve pusula özgün olarak soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "I. Bobinden geçen akımı artırmak\nII. Bobinin sarım sayısını artırmak\nIII. Bobinin içindeki demir çekirdeği tahta bir çubukla değiştirmek\n\nİşlemlerinden hangileri bir elektromıknatısın manyetik alanını **güçlendirir**?",
+       "options": [
+        "Yalnız I",
+        "I ve II",
+        "I ve III",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 1,
+       "narration": "Demir çekirdeğin görevi.",
+       "steps": [
+        {
+         "text": "Akım ve sarım sayısı arttıkça alan güçlenir (I, II).",
+         "narration": "Bobinden geçen akım ve sarım sayısı arttıkça manyetik alan güçlenir: birinci ve ikinci doğru."
+        },
+        {
+         "text": "Demir çekirdek alanı **güçlendirir**; tahta koymak zayıflatır (III yanlış). Cevap **B**.",
+         "narration": "Demir çekirdek mıknatıslanarak alanı kat kat güçlendirir; yerine tahta koyarsan bu katkı kaybolur ve alan zayıflar. Üçüncü yanlış. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; elektromıknatısın gücünü etkileyen etkenler öncüllerle özgün olarak soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$I = \\frac{q}{t}$, $R = \\rho \\frac{L}{A}$; ampermetre seri, voltmetre paralel.",
+    "Ohm: $V = I R$; V-I grafiğinin eğimi direnç.",
+    "Seri: $R = R_1 + R_2$, akım aynı; paralel: $\\frac{1}{R} = \\frac{1}{R_1} + \\frac{1}{R_2}$, gerilim aynı.",
+    "$P = V I = I^2 R$; $E = P t$, faturada kWh.",
+    "Mıknatıs hep iki kutuplu; akım manyetik alan oluşturur; elektromıknatıs: akım, sarım, demir çekirdek."
+   ],
+   "warnings": [
+    "Paralel kol eklenince eşdeğer direnç **azalır**, ana akım artar.",
+    "Lambanın parlaklığı **güçle** (akımın karesiyle) artar.",
+    "Pusulanın N ucunu Dünya'nın **manyetik S** kutbu çeker."
+   ],
+   "narration": "Hadi toparlayalım. Akım birim zamanda geçen yüktür; direnç telin boyuyla artar, kesitiyle azalır. Ohm yasasına göre gerilim, akım çarpı dirençtir; gerilim-akım grafiğinin eğimi dirençtir. Seri bağlamada dirençler toplanır ve akım her yerde aynıdır; paralel bağlamada gerilim aynıdır, akım kollara paylaşılır. Güç gerilim çarpı akım, enerji güç çarpı süredir. Mıknatıs her zaman iki kutupludur; akım geçen tel çevresinde manyetik alan oluşturur ve elektromıknatıs akım, sarım ve demir çekirdekle güçlenir."
+  }
+ }
+}

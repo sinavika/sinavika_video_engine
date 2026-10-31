@@ -1,0 +1,896 @@
+{
+ "topic": {
+  "id": "441BF9C9-4EC5-CAA6-4CEE-CC7ECBDF6289",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_INTEGRAL"
+ },
+ "title": "İntegral",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/MAT/MAT_INTEGRAL.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "İntegral, ince şeritleri toplayıp alanı bulmaktır.",
+   "narration": "Kıvrımlı bir bölgenin alanını nasıl ölçersin? Onu ince dikdörtgenlere böler, toplarsın; şeritler inceldikçe toplam gerçek alana yaklaşır. İntegral bu fikrin adıdır, ve aynı zamanda türevin tersidir. ÖSYM integralden her yıl soru soruyor: değişken değiştirme, işaretli alan, iki eğri arası alan. AYT Matematik kampının bu son dersinde hepsini yeni sorularla çözeceğiz."
+  },
+  "objectives": [
+   "Belirsiz integrali türevin tersi olarak kullanmak",
+   "Değişken değiştirmeyle integral almak",
+   "Belirli integrali şerit toplamlarının limiti olarak yorumlamak",
+   "Belirli integralin özelliklerini kullanmak",
+   "İşaretli alanı ve türev grafiğinin alanlarını yorumlamak",
+   "Eğri altı ve iki eğri arası alanı hesaplamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_INTEGRAL_01",
+    "subtopics": [
+     "MAT_INTEGRAL_02"
+    ],
+    "title": "Belirsiz integral",
+    "narration": "İntegral, türevin tersidir: türevi verilen fonksiyonu geri bulmak. Ama türev sabiti siler; bu yüzden geri dönerken her zaman bir sabit ekleriz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Belirsiz integral",
+      "items": [
+       "$\\int f(x)\\,dx = F(x) + c \\iff F'(x) = f(x)$.",
+       "$\\int x^n\\,dx = \\frac{x^{n + 1}}{n + 1} + c$ ($n \\neq -1$); $\\int \\frac{1}{x}\\,dx = \\ln|x| + c$.",
+       "$\\int e^x\\,dx = e^x + c$; $\\int \\cos x\\,dx = \\sin x + c$; $\\int \\sin x\\,dx = -\\cos x + c$.",
+       "Sabit çarpan dışarı çıkar; toplamın integrali integrallerin toplamı."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -2.5,
+        2.5
+       ],
+       "y": [
+        -3,
+        6
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^2 + 2",
+         "label": "y = x² + 2",
+         "ends": [
+          "none",
+          "none"
+         ]
+        },
+        {
+         "expression": "x^2",
+         "label": "y = x²",
+         "ends": [
+          "none",
+          "none"
+         ]
+        },
+        {
+         "expression": "x^2 - 2",
+         "label": "y = x² − 2",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "beats": [
+       {
+        "narration": "Üç eğri: x kare artı iki, x kare, x kare eksi iki. Biri ötekinin yukarı ya da aşağı kaydırılmışı.",
+        "show": [],
+        "focus": [
+         "c1",
+         "c2",
+         "c3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Üçünün de türevi aynı: iki x. Aynı x'te eğimleri eşit, eğriler birbirine paralel ilerliyor.",
+        "show": [],
+        "focus": [
+         "c2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Bu yüzden iki x'in integrali tek bir eğri değil, bir eğri ailesi: x kare artı c. Hangisi olduğunu bir nokta söyler.",
+        "show": [],
+        "focus": [
+         "c1",
+         "c3"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "f x'in integrali, türevi f x olan bir F fonksiyonu artı bir sabittir. x üssü n'in integrali, x üssü n artı bir bölü n artı bir; n eksi bir ise bir bölü x'in integrali ln mutlak değer x. e üssü x'in integrali kendisi; kosinüsün integrali sinüs, sinüsün integrali eksi kosinüs. Sabit çarpan dışarı çıkar, toplamın integrali integrallerin toplamıdır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Kuvvet kuralı nerede bozulur",
+      "wrong": "$\\int \\frac{1}{x^2}\\,dx = \\ln x^2 + c$",
+      "right": "$\\int x^{-2}\\,dx = \\frac{x^{-1}}{-1} + c = -\\frac{1}{x} + c$",
+      "why": "$\\ln$ yalnız $\\frac{1}{x}$'in integralidir. $\\frac{1}{x^2} = x^{-2}$; kuvvet kuralı çalışır.",
+      "narration": "Sık yapılan bir hata: bir bölü x karenin integraline ln x kare demek. Ln yalnız bir bölü x'in integralidir. Bir bölü x kare, x üssü eksi iki; kuvvet kuralıyla eksi bir bölü x."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f'(x) = 6x^2 - 4x + 1$ ve $f(1) = 5$\n\nolduğuna göre, $f(2)$ kaçtır?",
+       "options": [
+        "$8$",
+        "$10$",
+        "$12$",
+        "$14$",
+        "$16$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$f(x) = 2x^3 - 2x^2 + x + c$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İntegral: iki x küp eksi iki x kare artı x artı c."
+        },
+        {
+         "text": "$f(1) = 2 - 2 + 1 + c = 5$: $c = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "f bir: bir artı c, beş. c dört."
+        },
+        {
+         "text": "$f(2) = 16 - 8 + 2 + 4 = 14$.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "f iki: on altı eksi sekiz artı iki artı dört, on dört. Sabiti unutan on bulur. Cevap D."
+        }
+       ],
+       "narration": "Türevden fonksiyona: integral alıp sabiti bulalım.",
+       "origin": {
+        "changes": "Türevden fonksiyon bulma kalıbı; fonksiyon yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\int f(x)\\,dx = x^3 - 2x^2 + 5x + c$\n\nolduğuna göre, $f(2)$ kaçtır?",
+       "options": [
+        "$7$",
+        "$9$",
+        "$11$",
+        "$13$",
+        "$15$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$f(x) = (x^3 - 2x^2 + 5x)' = 3x^2 - 4x + 5$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "f, integralin türevi: üç x kare eksi dört x artı beş."
+        },
+        {
+         "text": "$f(2) = 12 - 8 + 5 = 9$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "f iki: on iki eksi sekiz artı beş, dokuz. İntegralin kendisini ikide hesaplayan on bulur. Cevap B."
+        }
+       ],
+       "narration": "İntegralin türevi fonksiyonun kendisi.",
+       "origin": {
+        "changes": "İntegral ve türev ilişkisi kalıbı; ifade yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_INTEGRAL_03",
+    "subtopics": [],
+    "title": "Değişken değiştirme",
+    "narration": "İç içe bir ifadede içteki fonksiyonun türevi dışarıda duruyorsa, içi yeni bir değişken yaparız. Belirli integralde sınırlar da değişir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Değişken değiştirme",
+      "items": [
+       "$u = g(x)$, $du = g'(x)\\,dx$: $\\int f(g(x))\\,g'(x)\\,dx = \\int f(u)\\,du$.",
+       "Belirli integralde **sınırları da** çevir: $x = a \\to u = g(a)$.",
+       "$\\int_a^b f(kx)\\,dx = \\frac{1}{k}\\int_{ka}^{kb} f(u)\\,du$."
+      ],
+      "beats": [],
+      "narration": "İçteki fonksiyona u dersin; türevi g türev x d x, d u olur. İfade u cinsinden basit bir integrale döner. Belirli integralde sınırları da u'ya çevirmeyi unutma. Özel bir durum: f k x'in integrali, f'nin k ile genişletilmiş aralıktaki integralinin k'da biridir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Gerçel sayılarda tanımlı bir $f$ fonksiyonu, her $a$ tam sayısı için\n\n$\\int_a^{a + 1} f(x)\\,dx = 2a + 1$\n\neşitliğini sağlıyor.\n\nBuna göre, $\\int_1^3 f(2x)\\,dx$ kaçtır?",
+       "options": [
+        "$8$",
+        "$12$",
+        "$16$",
+        "$20$",
+        "$32$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$u = 2x$, $du = 2\\,dx$; $x = 1 \\to u = 2$, $x = 3 \\to u = 6$: $\\frac{1}{2}\\int_2^6 f(u)\\,du$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "u eşittir iki x; d x, d u bölü iki. Sınırlar: x bir iken u iki, x üç iken u altı. İntegral, yarım çarpı ikiden altıya f u."
+        },
+        {
+         "text": "$\\int_2^6 f = \\int_2^3 + \\int_3^4 + \\int_4^5 + \\int_5^6 = 5 + 7 + 9 + 11 = 32$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İkiden altıya dört birim aralık: a iki, üç, dört, beş için iki a artı bir: beş, yedi, dokuz, on bir. Toplam otuz iki."
+        },
+        {
+         "text": "$\\frac{1}{2} \\cdot 32 = 16$.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yarısı on altı. Yarımı unutan otuz iki der. Cevap C."
+        }
+       ],
+       "narration": "ÖSYM 2026'da bu kalıbı sordu. İçteki iki x'e u diyelim.",
+       "origin": {
+        "changes": "ÖSYM 2026 f(2x) integrali kalıbı örnek alındı; koşul ve sınırlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\int_0^1 2x(x^2 + 1)^3\\,dx$\n\nintegralinin değeri kaçtır?",
+       "options": [
+        "$2$",
+        "$\\frac{9}{4}$",
+        "$3$",
+        "$\\frac{13}{4}$",
+        "$\\frac{15}{4}$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$u = x^2 + 1$, $du = 2x\\,dx$; $x = 0 \\to u = 1$, $x = 1 \\to u = 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "u eşittir x kare artı bir, d u iki x d x. Sınırlar: bir ve iki."
+        },
+        {
+         "text": "$\\int_1^2 u^3\\,du = \\frac{u^4}{4}\\Big|_1^2 = \\frac{16 - 1}{4} = \\frac{15}{4}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birden ikiye u küpün integrali: u üssü dört bölü dört. On altı eksi bir, bölü dört: on beş bölü dört. Cevap E."
+        }
+       ],
+       "narration": "İçteki x kare artı birin türevi, dışarıdaki iki x.",
+       "origin": {
+        "changes": "Değişken değiştirmeyle belirli integral kalıbı; ifade yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_INTEGRAL_04",
+    "subtopics": [],
+    "title": "Belirli integral",
+    "narration": "Belirli integral, eğrinin altındaki alanı ince şeritlere bölüp toplamaktır. Şerit sayısı arttıkça toplam, gerçek alana yaklaşır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Şeritlerden alana",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -0.2,
+        2.2
+       ],
+       "y": [
+        -0.3,
+        4.5
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^2",
+         "label": "y = x²",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {
+        "n": {
+         "from": 4
+        }
+       },
+       "points": [],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin",
+       "area": {
+        "curve": 0,
+        "from": 0,
+        "to": 2,
+        "rectangles": "n"
+       }
+      },
+      "caption": "Şerit sayısı arttıkça toplam **alana** yaklaşır.",
+      "beats": [
+       {
+        "narration": "Dört şerit: her şeridin yüksekliği sol ucundaki değer. Toplam bir virgül yetmiş beş; gerçek alandan az, çünkü şeritler eğrinin altında kalıyor.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "Şerit sayısını on beşe çıkaralım: boşluklar küçülüyor, toplam büyüyor.",
+        "show": [],
+        "focus": [],
+        "params": {
+         "n": 15
+        },
+        "swap": []
+       },
+       {
+        "narration": "İki yüz şerit: dikdörtgenler neredeyse eğriyi dolduruyor. Toplam, iki virgül altmış altıya, yani sekiz bölü üçe yaklaşıyor. Belirli integral bu limittir.",
+        "show": [],
+        "focus": [],
+        "params": {
+         "n": 200
+        },
+        "swap": []
+       }
+      ],
+      "narration": "x karenin sıfır ile iki arasındaki alanını dikdörtgenlerle tahmin edelim."
+     },
+     {
+      "kind": "rule",
+      "title": "Belirli integral",
+      "items": [
+       "$\\int_a^b f(x)\\,dx = F(b) - F(a)$, $F' = f$.",
+       "$\\int_a^b f = \\int_a^c f + \\int_c^b f$; $\\int_b^a f = -\\int_a^b f$; $\\int_a^a f = 0$.",
+       "$\\int_a^b f'(x)\\,dx = f(b) - f(a)$: türevin integrali **toplam değişimdir**."
+      ],
+      "beats": [],
+      "narration": "Belirli integral, bir ilkel fonksiyonun üst sınırdaki değerinden alt sınırdaki değerinin çıkarılmasıdır. Aralık bölünebilir; sınırlar yer değiştirirse işaret değişir; aynı sınırlar arasında integral sıfırdır. Ve türevin integrali, fonksiyonun o aralıktaki toplam değişimidir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ bir gerçel sayı olmak üzere\n\n$\\int_0^3 (2x + a)(x - 1)\\,dx = 15$\n\nolduğuna göre, $a$ kaçtır?",
+       "options": [
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$(2x + a)(x - 1) = 2x^2 + (a - 2)x - a$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çarpım: iki x kare artı a eksi iki x eksi a."
+        },
+        {
+         "text": "$\\left[\\frac{2x^3}{3} + \\frac{(a - 2)x^2}{2} - ax\\right]_0^3 = 18 + \\frac{9(a - 2)}{2} - 3a = 9 + \\frac{3a}{2}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İlkel fonksiyon: iki x küp bölü üç, artı a eksi iki çarpı x kare bölü iki, eksi a x. Üçte: on sekiz artı dokuz çarpı a eksi iki bölü iki, eksi üç a. Sadeleşince dokuz artı üç a bölü iki."
+        },
+        {
+         "text": "$9 + \\frac{3a}{2} = 15$: $a = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dokuz artı üç a bölü iki, on beş: a dört. Cevap A."
+        }
+       ],
+       "narration": "ÖSYM 2025'te bu kalıbı sordu. Önce çarpımı açalım.",
+       "origin": {
+        "changes": "ÖSYM 2025 parametreli belirli integral kalıbı örnek alındı; çarpanlar ve sınırlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\int_1^5 f(x)\\,dx = 12$ ve $\\int_3^5 f(x)\\,dx = 4$\n\nolduğuna göre,\n\n$\\int_1^3 (2f(x) + 1)\\,dx$\n\nintegralinin değeri kaçtır?",
+       "options": [
+        "$14$",
+        "$16$",
+        "$18$",
+        "$20$",
+        "$24$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$\\int_1^3 f = 12 - 4 = 8$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birden üçe integral: birden beşe on iki eksi üçten beşe dört, sekiz."
+        },
+        {
+         "text": "$\\int_1^3 (2f + 1) = 2 \\cdot 8 + (3 - 1) = 18$.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki çarpı sekiz, on altı; birin birden üçe integrali iki. Toplam on sekiz. Biri unutan on altı der. Cevap C."
+        }
+       ],
+       "narration": "Aralığı bölelim.",
+       "origin": {
+        "changes": "Belirli integralin özellikleri kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_INTEGRAL_05",
+    "subtopics": [],
+    "title": "İntegralin geometrik yorumu",
+    "narration": "Belirli integral alan değil, işaretli alandır: eksenin üstü artı, altı eksi sayılır. ÖSYM bunu bölge alanları ve türev grafiğiyle soruyor.",
+    "cards": [
+     {
+      "kind": "predict",
+      "title": "İntegral ve alan",
+      "prompt": "$x(x - 2)(x - 4)$ eğrisi ile $x$ ekseni arasındaki alan $8$. $\\int_0^4 x(x - 2)(x - 4)\\,dx$ kaçtır?",
+      "choices": [
+       "$0$",
+       "$8$"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -0.5,
+        4.5
+       ],
+       "y": [
+        -4,
+        4
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x(x - 2)(x - 4)",
+         "label": "y = x(x − 2)(x − 4)",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin",
+       "area": {
+        "curve": 0,
+        "from": 0,
+        "to": 4,
+        "label": "alan 8"
+       }
+      },
+      "beats": [
+       {
+        "narration": "Eğri sıfır ile iki arasında eksenin üstünde, iki ile dört arasında altında. İki parça birbirinin aynası.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "explanation": "Üstteki parça $+4$, alttaki $-4$: integral $0$, alan ise $4 + 4 = 8$.",
+      "narration": "Şimdi sıra sende. Alan sekiz. Sıfırdan dörde integral kaçtır? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: sıfır. İntegral eksenin altını eksi sayar: üstteki dört, alttaki eksi dört; toplam sıfır. Alan ise ikisinin mutlak değerlerinin toplamı, sekiz."
+     },
+     {
+      "kind": "rule",
+      "title": "İşaretli alan",
+      "items": [
+       "Eksenin **üstünde** kalan bölge $+$, **altında** kalan $-$ katkı yapar.",
+       "Alan $= \\int |f(x)|\\,dx$: alttaki parçaların işaretini çevir.",
+       "$f'$ grafiğinde bölge alanları, $f$'nin **değişimleridir**."
+      ],
+      "beats": [],
+      "narration": "Belirli integralde eksenin üstündeki bölgeler artı, altındakiler eksi katkı yapar. Gerçek alanı istiyorsan alttaki parçaların işaretini çevirirsin. Grafik f türeve aitse, her bölgenin alanı f'nin o aralıkta ne kadar arttığını ya da azaldığını söyler."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sürekli bir $f$ fonksiyonunun grafiği $[0, 3]$ aralığında $x$ ekseninin üstündedir ve eksenle arasındaki alan $7$ birimkaredir. $[3, 5]$ aralığında eksenin altındadır, alan $4$; $[5, 6]$ aralığında yine üstündedir, alan $2$ birimkaredir.\n\nBuna göre, $\\int_0^6 f(x)\\,dx$ kaçtır?",
+       "options": [
+        "$-1$",
+        "$1$",
+        "$3$",
+        "$5$",
+        "$13$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$\\int_0^6 f = 7 - 4 + 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üstte kalan yedi ve iki artı, altta kalan dört eksi."
+        },
+        {
+         "text": "$= 5$.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sonuç beş. Alanları toplayan on üç bulur; o, integral değil alan. Cevap D."
+        }
+       ],
+       "narration": "ÖSYM bu kalıbı sordu. Altta kalan bölge eksi sayılır.",
+       "origin": {
+        "changes": "ÖSYM bölge alanlarından integral kalıbı örnek alındı; alanlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir $f$ fonksiyonu için $f(0) = -2$'dir. $f'$ fonksiyonunun grafiği ile $x$ ekseni arasında kalan bölgeler şöyledir: $[0, 2]$'de eksenin **üstünde**, alan $3$; $[2, 5]$'te **altında**, alan $5$; $[5, 7]$'de **üstünde**, alan $4$.\n\nBuna göre, $f$'nin $[0, 7]$ aralığındaki en büyük değeri kaçtır?",
+       "options": [
+        "$-2$",
+        "$0$",
+        "$1$",
+        "$3$",
+        "$5$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$f(2) = -2 + 3 = 1$; $f(5) = 1 - 5 = -4$; $f(7) = -4 + 4 = 0$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "f iki: eksi iki artı üç, bir. f beş: bir eksi beş, eksi dört. f yedi: eksi dört artı dört, sıfır."
+        },
+        {
+         "text": "$f$ $[0, 2]$'de artar, $[2, 5]$'te azalır, $[5, 7]$'de artar: aday değerler $f(2) = 1$, $f(7) = 0$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "f sıfır ile iki arasında artar, iki ile beş arasında azalır, sonra yine artar. En büyük değer ya ikide ya yedide: bir ve sıfır."
+        },
+        {
+         "text": "En büyük değer $1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "En büyük değer bir. Cevap C."
+        }
+       ],
+       "narration": "Türevin integrali, f'nin değişimi: adım adım ilerleyelim.",
+       "origin": {
+        "changes": "ÖSYM türev grafiğinin alanlarından fonksiyon değeri kalıbı örnek alındı; alanlar ve soru yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_INTEGRAL_06",
+    "subtopics": [
+     "MAT_INTEGRAL_07"
+    ],
+    "title": "Eğri altında ve iki eğri arasında alan",
+    "narration": "İki eğri arasındaki alan, üstteki eksi alttaki fonksiyonun integralidir. Önce kesişim noktalarını bulursun; sınırlar onlardır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Alan hesabı",
+      "items": [
+       "İki eğri arası: $\\int_a^b (\\text{üst} - \\text{alt})\\,dx$; $a$, $b$: **kesişimler**.",
+       "Fark fonksiyonunun eğri altı alanı, iki eğri arasındaki alana eşittir.",
+       "Artan $f$'de: sol uçlarla kurulan şerit toplamı alandan **küçük**, sağ uçlarla kurulan **büyük**."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -0.5,
+        3
+       ],
+       "y": [
+        -0.5,
+        5
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^2",
+         "label": "y = x²",
+         "ends": [
+          "none",
+          "none"
+         ]
+        },
+        {
+         "expression": "4x - x^2",
+         "label": "y = 4x − x²",
+         "ends": [
+          "none",
+          "none"
+         ]
+        },
+        {
+         "expression": "4x - 2x^2",
+         "label": "fark: 4x − 2x²",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [
+        {
+         "x": 0,
+         "y": 0,
+         "label": "(0, 0)"
+        },
+        {
+         "x": 2,
+         "y": 4,
+         "label": "(2, 4)"
+        }
+       ],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin",
+       "area": {
+        "curve": 2,
+        "from": 0,
+        "to": 2,
+        "label": "Alan = 8/3"
+       }
+      },
+      "beats": [
+       {
+        "narration": "x kare ile dört x eksi x kare sıfırda ve ikide kesişiyor; arada dört x eksi x kare üstte.",
+        "show": [],
+        "focus": [
+         "c1",
+         "c2",
+         "p1",
+         "p2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Üstten alttakini çıkaralım: dört x eksi iki x kare. Bu fark fonksiyonunun altındaki alan, iki eğri arasındaki alanla aynı.",
+        "show": [],
+        "focus": [
+         "c3",
+         "area"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Sıfırdan ikiye integral: iki x kare eksi iki x küp bölü üç; ikide sekiz eksi on altı bölü üç, sekiz bölü üç.",
+        "show": [],
+        "focus": [
+         "area"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "İki eğri arasındaki alan, üstteki fonksiyondan alttakini çıkarıp integral almaktır; sınırlar eğrilerin kesiştiği noktalardır. Bu, fark fonksiyonunun altındaki alana eşittir. Artan bir fonksiyonda sol uçlardan kurulan dikdörtgenler alanın altında kalır, sağ uçlardan kurulanlar üstüne taşar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$y = x$ doğrusu ile $y = x^a$ eğrisi ($a > 1$ tam sayı) arasında, $0 \\leq x \\leq 1$ aralığında kalan bölgenin alanı $\\dfrac{3}{10}$ birimkaredir.\n\nBuna göre, $a$ kaçtır?",
+       "options": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$0 < x < 1$'de $x^a < x$: alan $\\int_0^1 (x - x^a)\\,dx = \\frac{1}{2} - \\frac{1}{a + 1}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sıfır ile bir arasında x üssü a, x'ten küçük: doğru üstte. Alan, sıfırdan bire x eksi x üssü a'nın integrali: yarım eksi bir bölü a artı bir."
+        },
+        {
+         "text": "$\\frac{1}{2} - \\frac{1}{a + 1} = \\frac{3}{10}$: $\\frac{1}{a + 1} = \\frac{1}{5}$, $a = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yarım eksi bir bölü a artı bir, üç bölü on: bir bölü a artı bir, beşte bir. a dört. Cevap B."
+        }
+       ],
+       "narration": "ÖSYM 2019'da x üssü a eğrisiyle alan kalıbı sordu. Sıfır ile bir arasında üstteki doğru.",
+       "origin": {
+        "changes": "ÖSYM 2019 x üssü a eğrisiyle alan kalıbı örnek alındı; bölge ve alan yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(x) = x^2$ ve $g(x) = 4x - x^2$\n\nfonksiyonlarının grafikleri arasında kalan bölgenin alanı kaç birimkaredir?",
+       "options": [
+        "$2$",
+        "$\\frac{7}{3}$",
+        "$\\frac{8}{3}$",
+        "$3$",
+        "$\\frac{10}{3}$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$x^2 = 4x - x^2$: $2x(x - 2) = 0$, $x = 0$ ya da $x = 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eşitleyelim: iki x kare eksi dört x sıfır; x sıfır ya da iki."
+        },
+        {
+         "text": "Arada $g$ üstte: $\\int_0^2 (4x - 2x^2)\\,dx = \\left[2x^2 - \\frac{2x^3}{3}\\right]_0^2 = 8 - \\frac{16}{3}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Arada g üstte. Fark dört x eksi iki x kare; ilkeli iki x kare eksi iki x küp bölü üç. İkide sekiz eksi on altı bölü üç."
+        },
+        {
+         "text": "Alan $\\frac{8}{3}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Alan sekiz bölü üç. Kural kartındaki şekil tam bu bölgeydi. Cevap C."
+        }
+       ],
+       "narration": "ÖSYM 2021'de iki parabolle alan sordu. Önce kesişimler.",
+       "origin": {
+        "changes": "ÖSYM 2021 iki parabol arasındaki alan kalıbı örnek alındı; paraboller yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$[0, 4]$ aralığında sürekli ve **artan** bir $f$ fonksiyonunun grafiği ile $x$ ekseni arasında kalan bölgenin alanı $A$'dır.\n\nBuna göre $A$,\n\nI. $4 \\cdot f(0)$\n\nII. $2 \\cdot f(2) + 2 \\cdot f(4)$\n\nIII. $f(1) + f(2) + f(3) + f(4)$\n\ndeğerlerinden hangilerinden **küçüktür**?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "I: genişliği $4$, yüksekliği $f(0)$ olan tek dikdörtgen; artan $f$'de grafiğin **altında**: $A > 4f(0)$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birinci: genişliği dört, yüksekliği f sıfır olan bir dikdörtgen. f artan; sol uçtaki değer en küçük, dikdörtgen grafiğin altında kalır. A ondan büyük."
+        },
+        {
+         "text": "II: genişliği $2$ olan iki dikdörtgen, yükseklikler **sağ uçlarda**: grafiğin üstüne taşar, $A$ daha küçük.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İkinci: genişliği iki olan iki dikdörtgen, yükseklikleri sağ uçlarda. Artan fonksiyonda sağ uç en büyük değer; dikdörtgenler grafiğin üstüne taşar. A ondan küçük."
+        },
+        {
+         "text": "III: genişliği $1$ olan dört dikdörtgen, yine **sağ uçlar**: $A$ daha küçük. Cevap: II ve III.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üçüncü: genişliği bir olan dört dikdörtgen, yine sağ uçlar. A ondan da küçük. Cevap D."
+        }
+       ],
+       "narration": "ÖSYM 2022'de bu kalıbı sordu. Her ifade bir dikdörtgen toplamı.",
+       "origin": {
+        "changes": "ÖSYM 2022 artan fonksiyonda dikdörtgen toplamları kalıbı örnek alındı; aralık ve ifadeler yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$\\int f = F + c$, $F' = f$.",
+    "$\\int x^n = \\frac{x^{n + 1}}{n + 1} + c$; $\\int \\frac{1}{x} = \\ln|x| + c$.",
+    "Değişken değiştirince **sınırları** da çevir.",
+    "$\\int_a^b f = F(b) - F(a)$.",
+    "Eksenin altı **eksi** sayılır.",
+    "İki eğri arası: üst eksi alt."
+   ],
+   "warnings": [
+    "Belirsiz integralde **sabiti** unutma.",
+    "İntegral ile alan **aynı şey değil**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "ÖSYM 2026 kalıbını **kendin** çöz: her $a$ tam sayısı için $\\int_a^{a + 1} f = a$ ise $\\int_0^2 f(3x)\\,dx$ kaç?",
+    "$y = x^2$ altındaki alanı $[0, 2]$'de **dört şeritle** elle tahmin et; $\\frac{8}{3}$ ile karşılaştır.",
+    "Uygulamada AYT İntegral testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "İntegral kurallarını tablo yap: ∫xⁿ dx = xⁿ⁺¹/(n + 1) + c (n ≠ −1), ∫(1/x) dx = ln|x| + c, ∫eˣ dx = eˣ + c, ∫aˣ dx = aˣ/ln a + c, ∫sin x dx = −cos x + c, ∫cos x dx = sin x + c, ∫(1/cos²x) dx = tan x + c.",
+   "Değişken değiştirme örneklerini çoğalt: ∫2x(x² + 1)⁵ dx = (x² + 1)⁶/6 + c; ∫cos x sin³x dx = sin⁴x/4 + c; 0'dan 1'e ∫x e^(x²) dx = (e − 1)/2 (sınırlar u = x²'ye göre çevrilir).",
+   "Belirli integralin özelliklerini ekle: aynı sınırda integral sıfır; sınırlar yer değiştirince işaret değişir; ∫ₐᵇ + ∫ᵦᶜ = ∫ₐᶜ; tek fonksiyonun −a'dan a'ya integrali 0, çift fonksiyonunki 0'dan a'ya integralin iki katı.",
+   "Alan ile integral farkını örnekle: 0'dan 3'e ∫(x² − 4x + 3) dx = 0 çıkar ama eğrinin eksenle sınırladığı alan 4/3 + 4/3 = 8/3'tür; eksenin altındaki parça mutlak değerle alınır. y = x² ile y = 2x arasındaki alan 0'dan 2'ye ∫(2x − x²) dx = 4/3.",
+   "Temel teoremi ve uygulamayı ekle: d/dx ∫ₐˣ f(t) dt = f(x); d/dx ∫₀^(x²) cos t dt = 2x cos x². Alanın dikdörtgenlerle yaklaşık hesaplanmasını (Riemann toplamı) ve hızdan yol hesabını (v = 3t² için 0-2 s arası 8 m) göster."
+  ]
+ }
+}

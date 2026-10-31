@@ -1,0 +1,2501 @@
+{
+ "topic": {
+  "id": "8C86C996-67EE-A275-3DEF-4262750D7624",
+  "category": "YKS_AYT",
+  "lesson": "GEO",
+  "code": "GEO_ACIORTAY"
+ },
+ "title": "Açıortay",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/GEO/GEO_ACIORTAY.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Bir oran",
+   "narration": "Bir açıyı ikiye bölen doğru, karşı kenarı rastgele bölmez: komşu iki kenarın oranında böler. Bu derste iç ve dış açıortayları, aralarındaki açıları, açıortay teoremini ve açıortayın uzunluğunu bulan iki formülü göreceksin."
+  },
+  "objectives": [
+   "İç açıortayların kesişimini ve aralarındaki açıyı bulmak",
+   "Dış açıortaylarla oluşan açıları hesaplamak",
+   "İç ve dış açıortay teoremini uygulamak",
+   "Açıortayla alan oranını kullanmak",
+   "İç ve dış açıortay uzunluğunu bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_ACIORTAY_01",
+    "subtopics": [],
+    "title": "İç açıortay",
+    "narration": "Bir iç açıyı iki eş parçaya bölen doğruya iç açıortay denir. Üçgenin üç iç açıortayı tek bir noktada kesişir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İç açıortaylar",
+      "items": [
+       "Üç iç açıortay tek noktada kesişir: **iç teğet çemberin merkezi** $I$.",
+       "$I$, üç kenara **eşit uzaklıktadır**.",
+       "İki iç açıortay arasındaki açı: $m(\\widehat{BIC}) = 90° + \\frac{m(\\widehat{A})}{2}$."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.6,
+        -0.6,
+        6.6,
+        5
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          1.6,
+          4.4
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "C",
+         "at": [
+          6,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "I",
+         "at": [
+          2.23,
+          1.56
+         ],
+         "hidden": false,
+         "dot": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "I",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "I",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "I",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "right": false
+        },
+        {
+         "at": "I",
+         "from": "B",
+         "to": "C",
+         "label": "90° + A/2",
+         "right": false
+        },
+        {
+         "at": "B",
+         "from": "C",
+         "to": "I",
+         "label": "β",
+         "right": false
+        },
+        {
+         "at": "B",
+         "from": "I",
+         "to": "A",
+         "label": "β",
+         "right": false
+        },
+        {
+         "at": "C",
+         "from": "I",
+         "to": "B",
+         "label": "θ",
+         "right": false
+        },
+        {
+         "at": "C",
+         "from": "A",
+         "to": "I",
+         "label": "θ",
+         "right": false
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "B ve C'deki açıları ikiye bölelim: beta ve beta, teta ve teta.",
+        "show": [
+         "AB",
+         "BC",
+         "CA",
+         "BI",
+         "CI",
+         "angle-B",
+         "angle-C"
+        ],
+        "focus": [
+         "angle-B",
+         "angle-C"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Üçüncü açıortay da I'dan geçer: üçü tek noktada buluşur.",
+        "show": [
+         "AI",
+         "angle-A"
+        ],
+        "focus": [
+         "AI"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "B I C üçgeninde I açısı, yüz seksen eksi beta eksi teta. Beta artı teta, doksan eksi A bölü iki; I, doksan artı A bölü iki.",
+        "show": [
+         "angle-I"
+        ],
+        "focus": [
+         "angle-I"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bir üçgenin üç iç açıortayı tek bir noktada kesişir. Bu nokta I, üç kenara eşit uzaklıktadır ve iç teğet çemberin merkezidir. B ve C'den çıkan iki iç açıortayın arasındaki açı, doksan derece artı A'nın yarısıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $I$, $\\widehat{B}$ ve $\\widehat{C}$ iç açıortaylarının kesişim noktasıdır.\n\n$m(\\widehat{BAC}) = 64°$ olduğuna göre, $m(\\widehat{BIC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.6,
+         -0.6,
+         6.6,
+         5.37
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2.54,
+           4.77
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "I",
+          "at": [
+           2.75,
+           1.65
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "I",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "I",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "64°",
+          "right": false
+         },
+         {
+          "at": "I",
+          "from": "B",
+          "to": "C",
+          "label": "x",
+          "right": false
+         },
+         {
+          "at": "B",
+          "from": "C",
+          "to": "I",
+          "label": "β",
+          "right": false
+         },
+         {
+          "at": "B",
+          "from": "I",
+          "to": "A",
+          "label": "β",
+          "right": false
+         },
+         {
+          "at": "C",
+          "from": "I",
+          "to": "B",
+          "label": "θ",
+          "right": false
+         },
+         {
+          "at": "C",
+          "from": "A",
+          "to": "I",
+          "label": "θ",
+          "right": false
+         }
+        ]
+       },
+       "options": [
+        "$112$",
+        "$116$",
+        "$122$",
+        "$128$",
+        "$148$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$2\\beta + 2\\theta = 180° - 64° = 116°$ → $\\beta + \\theta = 58°$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "B ve C'deki açıların toplamı yüz seksen eksi altmış dört, yüz on altı. Yarıları beta artı teta, elli sekiz."
+        },
+        {
+         "text": "$x = 180° - 58° = 122°$, yani $90° + \\frac{64°}{2}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "B I C üçgeninde x, yüz seksen eksi elli sekiz, yüz yirmi iki. Kural da aynı: doksan artı otuz iki. Cevap C."
+        }
+       ],
+       "narration": "İki iç açıortay arasındaki açının kuralını kullanalım; nedenini de görelim.",
+       "origin": {
+        "changes": "İç açıortaylar arası açı kalıbı; açı yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $[AD]$, $\\widehat{BAC}$'nin açıortayıdır; $m(\\widehat{ABC}) = 70°$ ve $m(\\widehat{ACB}) = 40°$'dir.\n\nBuna göre $m(\\widehat{ADC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.6,
+         -0.6,
+         6.6,
+         4.46
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           1.4,
+           3.86
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           2.44,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "B",
+          "from": "C",
+          "to": "A",
+          "label": "70°",
+          "right": false
+         },
+         {
+          "at": "C",
+          "from": "A",
+          "to": "B",
+          "label": "40°",
+          "right": false
+         },
+         {
+          "at": "A",
+          "from": "B",
+          "to": "D",
+          "label": "α",
+          "right": false
+         },
+         {
+          "at": "A",
+          "from": "D",
+          "to": "C",
+          "label": "α",
+          "right": false
+         },
+         {
+          "at": "D",
+          "from": "A",
+          "to": "C",
+          "label": "x",
+          "right": false
+         }
+        ]
+       },
+       "options": [
+        "$105$",
+        "$110$",
+        "$115$",
+        "$120$",
+        "$140$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$m(\\widehat{A}) = 180° - 70° - 40° = 70°$; $m(\\widehat{BAD}) = 35°$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A açısı yüz seksen eksi yetmiş eksi kırk, yetmiş. Açıortay onu ikiye böler: otuz beş."
+        },
+        {
+         "text": "$\\widehat{ADC}$, $ABD$'nin dış açısı: $x = 70° + 35° = 105°$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A D C açısı, A B D üçgeninin dış açısıdır: yetmiş artı otuz beş, yüz beş. Cevap A."
+        }
+       ],
+       "narration": "Önce A'yı bulup ikiye bölelim, sonra dış açıya bakalım.",
+       "origin": {
+        "changes": "Açıortay ve dış açı kalıbı; açılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Artı mı, eksi mi?",
+      "wrong": "İki iç açıortay arasındaki açı $90° - \\frac{A}{2}$.",
+      "right": "İki **iç** açıortay: $90° + \\frac{A}{2}$; iki **dış** açıortay: $90° - \\frac{A}{2}$.",
+      "why": "İç açıortayların kesişimi üçgenin içindedir, açı **genişler**: $90°$'den büyük.",
+      "narration": "Sık yapılan bir hata: iki formülü karıştırmak. İki iç açıortay üçgenin içinde kesişir; aralarındaki açı doksandan büyüktür, doksan artı A bölü iki. İki dış açıortay ise dışarıda kesişir; aradaki açı doksan eksi A bölü ikidir."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ACIORTAY_02",
+    "subtopics": [],
+    "title": "Dış açıortay",
+    "narration": "Bir dış açıyı ikiye bölen doğruya dış açıortay denir. Aynı köşedeki iç ve dış açıortayların ilişkisi, bu bölümün anahtarı.",
+    "cards": [
+     {
+      "kind": "predict",
+      "title": "İç ve dış açıortay",
+      "prompt": "C köşesinde iç açıortay ve dış açıortay çiziliyor. İkisinin arasındaki açı kaç derece?",
+      "choices": [
+       "90°",
+       "Üçgene göre değişir"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.6,
+        -0.6,
+        7.6,
+        4.43
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.21,
+          3.83
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "C",
+         "at": [
+          4,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "D",
+         "at": [
+          7,
+          0
+         ],
+         "hidden": true,
+         "dot": true
+        },
+        {
+         "id": "P",
+         "at": [
+          1.98,
+          1.29
+         ],
+         "hidden": true,
+         "dot": true
+        },
+        {
+         "id": "E",
+         "at": [
+          5.29,
+          2.02
+         ],
+         "hidden": true,
+         "dot": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "P",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "E",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "C",
+         "from": "A",
+         "to": "P",
+         "label": "α",
+         "right": false
+        },
+        {
+         "at": "C",
+         "from": "P",
+         "to": "B",
+         "label": "α",
+         "right": false
+        },
+        {
+         "at": "C",
+         "from": "D",
+         "to": "E",
+         "label": "β",
+         "right": false
+        },
+        {
+         "at": "C",
+         "from": "E",
+         "to": "A",
+         "label": "β",
+         "right": false
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "C'deki iç açı iki alfaya, dış açı iki betaya bölündü.",
+        "show": [
+         "AB",
+         "BC",
+         "CA",
+         "CD",
+         "CP",
+         "CE",
+         "angle-C"
+        ],
+        "focus": [],
+        "swap": []
+       },
+       {
+        "narration": "İç ve dış açı yan yana: iki alfa artı iki beta, yüz seksen.",
+        "show": [],
+        "focus": [
+         "angle-C"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "$2\\alpha + 2\\beta = 180°$ → $\\alpha + \\beta = 90°$: iki açıortay **dik**.",
+      "narration": "Üçgen değişse bu açı değişir mi? Tahmin et.",
+      "explanationNarration": "Her zaman doksan derecedir. İç açı ile dış açı bir doğru açı oluşturur; iki alfa artı iki beta yüz seksen. Açıortaylar yarılarını alır: alfa artı beta doksan. Aynı köşedeki iç ve dış açıortaylar birbirine diktir."
+     },
+     {
+      "kind": "rule",
+      "title": "Dış açıortaylarla açılar",
+      "items": [
+       "Aynı köşedeki iç ve dış açıortay **diktir**.",
+       "İki dış açıortay arasındaki açı: $90° - \\frac{m(\\widehat{A})}{2}$.",
+       "Bir iç ($B$) ve bir dış ($C$) açıortay arasındaki açı: $\\frac{m(\\widehat{A})}{2}$."
+      ],
+      "beats": [],
+      "narration": "Aynı köşedeki iç ve dış açıortaylar birbirine diktir. B ve C'deki iki dış açıortay arasındaki açı doksan eksi A bölü ikidir. B'deki iç açıortay ile C'deki dış açıortay arasındaki açı ise A'nın yarısıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $[BE$, $\\widehat{ABC}$'nin iç açıortayı; $[CE$, $C$ köşesindeki dış açının açıortayıdır.\n\n$m(\\widehat{BAC}) = 72°$ olduğuna göre, $m(\\widehat{BEC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.6,
+         -0.6,
+         9.6,
+         4.93
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           1.43,
+           3.21
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           5,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           9,
+           0
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "E",
+          "at": [
+           6.66,
+           4.33
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "E",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "72°",
+          "right": false
+         },
+         {
+          "at": "E",
+          "from": "B",
+          "to": "C",
+          "label": "x",
+          "right": false
+         },
+         {
+          "at": "B",
+          "from": "C",
+          "to": "E",
+          "label": "β",
+          "right": false
+         },
+         {
+          "at": "B",
+          "from": "E",
+          "to": "A",
+          "label": "β",
+          "right": false
+         },
+         {
+          "at": "C",
+          "from": "D",
+          "to": "E",
+          "label": "θ",
+          "right": false
+         },
+         {
+          "at": "C",
+          "from": "E",
+          "to": "A",
+          "label": "θ",
+          "right": false
+         }
+        ]
+       },
+       "options": [
+        "$24$",
+        "$27$",
+        "$30$",
+        "$32$",
+        "$36$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "C'de dış açı: $2\\theta = 72° + 2\\beta$ → $\\theta = 36° + \\beta$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "C'deki dış açı, A ile B'deki açıların toplamı: iki teta, yetmiş iki artı iki beta. Yarılarsak teta, otuz altı artı beta."
+        },
+        {
+         "text": "$BEC$'de dış açı: $\\theta = \\beta + x$ → $x = 36°$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "B E C üçgeninde de C'deki teta bir dış açıdır: beta artı x. Demek ki x otuz altı, A'nın yarısı. Cevap E."
+        }
+       ],
+       "narration": "C'deki dış açı, BEC üçgeninin de dış açısıdır.",
+       "origin": {
+        "changes": "İç ve dış açıortay kalıbı; açı yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $[BF$ ve $[CF$, $B$ ve $C$ köşelerindeki dış açıların açıortaylarıdır.\n\n$m(\\widehat{BAC}) = 50°$ olduğuna göre, $m(\\widehat{BFC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.98,
+         -4.51,
+         6.76,
+         5.91
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           3.07,
+           5.31
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           5,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "K",
+          "at": [
+           -1.38,
+           -2.39
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "L",
+          "at": [
+           6.16,
+           -3.19
+          ],
+          "hidden": true,
+          "dot": true
+         },
+         {
+          "id": "F",
+          "at": [
+           2.26,
+           -3.91
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "K",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "L",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "F",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "F",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "50°",
+          "right": false
+         },
+         {
+          "at": "F",
+          "from": "B",
+          "to": "C",
+          "label": "x",
+          "right": false
+         }
+        ]
+       },
+       "options": [
+        "$50$",
+        "$65$",
+        "$75$",
+        "$115$",
+        "$130$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Dış açılar: $B$'de $180° - B$, $C$'de $180° - C$; yarılarının toplamı $\\frac{360° - (B + C)}{2} = \\frac{180° + 50°}{2} = 115°$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "B ve C'deki dış açıların yarılarını toplayalım: üç yüz altmış eksi B artı C, bölü iki. B artı C yüz otuz; sonuç yüz on beş."
+        },
+        {
+         "text": "$x = 180° - 115° = 65°$, yani $90° - \\frac{50°}{2}$.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "B F C üçgeninde x, yüz seksen eksi yüz on beş, altmış beş. Kural: doksan eksi yirmi beş. İç açıortay formülünü kullanan yüz on beş bulur. Cevap B."
+        }
+       ],
+       "narration": "İki dış açıortay: doksan eksi A'nın yarısı.",
+       "origin": {
+        "changes": "Dış açıortaylar arası açı kalıbı; açı yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ACIORTAY_03",
+    "subtopics": [],
+    "title": "Açıortay teoremi",
+    "narration": "Açıortay karşı kenarı rastgele bölmez: komşu iki kenarın oranında böler. Bu bölümün sorularının hepsi bu tek orana dayanıyor.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Teorem",
+      "items": [
+       "İç açıortay: $\\frac{|BD|}{|DC|} = \\frac{|AB|}{|AC|}$, yani $\\frac{m}{n} = \\frac{c}{b}$.",
+       "Dış açıortay da aynı oranla böler: $\\frac{|EB|}{|EC|} = \\frac{|AB|}{|AC|}$.",
+       "Alanlar da aynı oranda: $\\frac{A(ABD)}{A(ADC)} = \\frac{c}{b}$."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.6,
+        -0.6,
+        8.6,
+        4.93
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          5.5,
+          4.33
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "C",
+         "at": [
+          8,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "D",
+         "at": [
+          4.67,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "c",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "label": "m",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "label": "n",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "D",
+         "label": "α",
+         "right": false
+        },
+        {
+         "at": "A",
+         "from": "D",
+         "to": "C",
+         "label": "α",
+         "right": false
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "A D, A açısının açıortayı: alfa ve alfa.",
+        "show": [
+         "AB",
+         "AC",
+         "BD",
+         "DC",
+         "AD",
+         "angle-A"
+        ],
+        "focus": [
+         "AD",
+         "angle-A"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "B tarafında c ile m, C tarafında b ile n.",
+        "show": [],
+        "focus": [
+         "AB",
+         "BD"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "m bölü n, c bölü b'ye eşit: uzun kenarın yanındaki parça da uzun.",
+        "show": [],
+        "focus": [
+         "BD",
+         "DC"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Açıortay teoremi şunu söyler: A'dan çizilen açıortay karşı kenarı, A'ya komşu iki kenarın oranında böler. B D bölü D C, A B bölü A C'ye eşittir. Dış açıortay da karşı kenarın uzantısını aynı oranda böler. İki parçanın alanları da bu orandadır, çünkü D iki kenara eşit uzaklıktadır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $[AD]$, $\\widehat{BAC}$'nin açıortayıdır; $|AB| = 9$, $|AC| = 6$ ve $|BC| = 10$ birimdir.\n\nBuna göre $|BD| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         10.9,
+         6.23
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           7.25,
+           5.33
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           10,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           6,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "9",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "D",
+          "label": "α",
+          "right": false
+         },
+         {
+          "at": "A",
+          "from": "D",
+          "to": "C",
+          "label": "α",
+          "right": false
+         }
+        ]
+       },
+       "options": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$\\frac{x}{10 - x} = \\frac{9}{6} = \\frac{3}{2}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "B D, A B'nin yanında: x bölü on eksi x, dokuz bölü altı, yani üç bölü iki."
+        },
+        {
+         "text": "$2x = 30 - 3x$ → $x = 6$; $|DC| = 4$.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "İçler dışlar: iki x, otuz eksi üç x. x altı, D C dört. Oranı ters kuran dört bulur. Cevap D."
+        }
+       ],
+       "narration": "Oranı kuralım: B D, A B'nin yanında.",
+       "origin": {
+        "changes": "Açıortay teoremi kalıbı; kenarlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Eşit kenarlar",
+      "prompt": "A B ile A C eşit. A'dan çizilen açıortay B C'yi nerede keser?",
+      "choices": [
+       "Tam ortada",
+       "B'ye daha yakın"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.6,
+        -0.6,
+        7.8,
+        5.4
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          3.6,
+          4.8
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "C",
+         "at": [
+          7.2,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "D",
+         "at": [
+          3.6,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "D",
+         "label": "α",
+         "right": false
+        },
+        {
+         "at": "A",
+         "from": "D",
+         "to": "C",
+         "label": "α",
+         "right": false
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "A B ile A C eşit; A D açıortay.",
+        "show": [
+         "AB",
+         "AC",
+         "BD",
+         "DC",
+         "AD",
+         "angle-A"
+        ],
+        "focus": [
+         "AB",
+         "AC"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Oran bir: B D ile D C eşit.",
+        "show": [],
+        "focus": [
+         "BD",
+         "DC"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "Oran $\\frac{|AB|}{|AC|} = 1$: $D$ orta nokta; açıortay kenarortaydır.",
+      "narration": "Kenarlar eşitken açıortay karşı kenarı nasıl böler? Tahmin et.",
+      "explanationNarration": "Tam ortadan keser. Oran A B bölü A C, yani bir; B D ile D C eşittir. İkizkenar üçgende tepeden çizilen açıortay aynı zamanda kenarortaydır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $[AE$, $A$ köşesindeki dış açının açıortayıdır ve $E$, $[BC$ ışını üzerindedir. $|AB| = 8$, $|AC| = 5$ ve $|BC| = 6$ birimdir.\n\nBuna göre $|CE| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         16.9,
+         7.64
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           6.25,
+           4.99
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "E",
+          "at": [
+           16,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "K",
+          "at": [
+           8.44,
+           6.74
+          ],
+          "hidden": true,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "8",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "5",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "E",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "K",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "K",
+          "to": "E",
+          "label": "β",
+          "right": false
+         },
+         {
+          "at": "A",
+          "from": "E",
+          "to": "C",
+          "label": "β",
+          "right": false
+         }
+        ]
+       },
+       "options": [
+        "$10$",
+        "$12$",
+        "$14$",
+        "$16$",
+        "$18$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$\\frac{|EB|}{|EC|} = \\frac{8}{5}$: $\\frac{x + 6}{x} = \\frac{8}{5}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "E B bölü E C, sekiz bölü beş. E B, x artı altı; E C, x."
+        },
+        {
+         "text": "$5x + 30 = 8x$ → $x = 10$; $|EB| = 16$.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "İçler dışlar: beş x artı otuz, sekiz x. x on; E B on altı. On altıyı işaretleyen E B'yi bulmuş olur. Cevap A."
+        }
+       ],
+       "narration": "Dış açıortay da aynı oranla böler; parçalar E'den ölçülür.",
+       "origin": {
+        "changes": "Dış açıortay teoremi kalıbı; kenarlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $[AD]$ iç açıortay, $[AE]$ dış açıortaydır; $D$ ve $E$, $BC$ doğrusu üzerindedir. $|AB| = 6$, $|AC| = 4$ ve $|BC| = 5$ birimdir.\n\nBuna göre $|DE|$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         15.9,
+         6.06
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           4.5,
+           3.97
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           5,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           3,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "E",
+          "at": [
+           15,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "K",
+          "at": [
+           5.85,
+           5.16
+          ],
+          "hidden": true,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "K",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "D",
+          "to": "E",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "$6$",
+        "$8$",
+        "$9$",
+        "$10$",
+        "$12$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "İç: $\\frac{|BD|}{|DC|} = \\frac{6}{4}$ → $|BD| = 3$, $|DC| = 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İç açıortay: B D bölü D C, altı bölü dört. Beşi üçe iki bölelim: B D üç, D C iki."
+        },
+        {
+         "text": "Dış: $\\frac{|EC| + 5}{|EC|} = \\frac{6}{4}$ → $|EC| = 10$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dış açıortay: E C'ye y diyelim; y artı beş bölü y, altı bölü dört. y on."
+        },
+        {
+         "text": "$|DE| = 2 + 10 = 12$.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "D E, iki artı on, on iki. Bu arada A'daki açı doksan: iç ve dış açıortay diktir. E C'de duran on bulur. Cevap E."
+        }
+       ],
+       "narration": "İki teorem: önce D, sonra E.",
+       "origin": {
+        "changes": "İç ve dış açıortay teoremi kalıbı; kenarlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $[AD]$, $\\widehat{BAC}$'nin açıortayıdır; $|AB| = 10$ ve $|AC| = 6$ birimdir.\n\n$A(ABC) = 24$ birimkare olduğuna göre, $A(ABD)$ kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -4.32,
+         -10.3,
+         4.18,
+         0.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           -3.42,
+           -9.4
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           3.28,
+           -5.02
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           0.77,
+           -6.66
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "10",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "B",
+           "D"
+          ],
+          "fill": true
+         }
+        ],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "D",
+          "label": "α",
+          "right": false
+         },
+         {
+          "at": "A",
+          "from": "D",
+          "to": "C",
+          "label": "α",
+          "right": false
+         }
+        ]
+       },
+       "options": [
+        "$9$",
+        "$12$",
+        "$15$",
+        "$16$",
+        "$18$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$\\frac{A(ABD)}{A(ADC)} = \\frac{10}{6} = \\frac{5}{3}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "D açıortay üzerinde; A B ve A C'ye uzaklığı eşit. Bu yüzden iki alanın oranı on bölü altı, beş bölü üç."
+        },
+        {
+         "text": "$A(ABD) = 24 \\cdot \\frac{5}{8} = 15$.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam sekiz pay, yirmi dört birimkare; bir pay üç. A B D beş pay, on beş. Cevap C."
+        }
+       ],
+       "narration": "D iki kenara eşit uzaklıkta; alanlar kenarların oranında.",
+       "origin": {
+        "changes": "Açıortay ve alan oranı kalıbı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Oran hangi yönde?",
+      "wrong": "$\\frac{|BD|}{|DC|} = \\frac{|AC|}{|AB|}$.",
+      "right": "$\\frac{|BD|}{|DC|} = \\frac{|AB|}{|AC|}$: her parça **kendi tarafındaki** kenarla eşleşir.",
+      "why": "Uzun kenarın yanındaki parça da **uzundur**.",
+      "narration": "Sık yapılan bir hata: oranı ters kurmak. Her parça kendi tarafındaki kenarla eşleşir: B D, A B ile; D C, A C ile. Kontrol için şunu hatırla: uzun kenarın yanındaki parça da uzundur."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ACIORTAY_04",
+    "subtopics": [],
+    "title": "Açıortay uzunluğu",
+    "narration": "Son olarak açıortayın kendi uzunluğunu bulalım. İki kısa formül, kenarlar ve parçalar bilindiğinde işi bitirir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İki formül",
+      "items": [
+       "İç açıortay: $x^2 = b \\cdot c - m \\cdot n$.",
+       "Dış açıortay: $y^2 = |EB| \\cdot |EC| - b \\cdot c$.",
+       "Önce teoremle **parçaları** bul, sonra formüle koy."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        15.9,
+        6.06
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          4.5,
+          3.97
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "C",
+         "at": [
+          5,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "D",
+         "at": [
+          3,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "E",
+         "at": [
+          15,
+          0
+         ],
+         "hidden": false,
+         "dot": true
+        },
+        {
+         "id": "K",
+         "at": [
+          5.85,
+          5.16
+         ],
+         "hidden": true,
+         "dot": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "c",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "label": "m",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "label": "n",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "K",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "label": "x",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "E",
+         "label": "y",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "A",
+         "from": "D",
+         "to": "E",
+         "right": true
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "İç açıortay x; kenarlar b ve c, parçalar m ve n.",
+        "show": [
+         "AB",
+         "AC",
+         "BD",
+         "DC",
+         "AD"
+        ],
+        "focus": [
+         "AD"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "x kare, b çarpı c eksi m çarpı n.",
+        "show": [],
+        "focus": [
+         "AB",
+         "AC",
+         "BD",
+         "DC"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Dış açıortay y; y kare, E B çarpı E C eksi b çarpı c. İki açıortay A'da dik.",
+        "show": [
+         "CE",
+         "AK",
+         "AE",
+         "angle-A"
+        ],
+        "focus": [
+         "AE"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "İç açıortayın karesi, komşu iki kenarın çarpımından karşı kenardaki iki parçanın çarpımı çıkarılarak bulunur: x kare, b çarpı c eksi m çarpı n. Dış açıortayda sıra tersinedir: y kare, E B çarpı E C eksi b çarpı c. İki formülde de önce teoremle parçaları bulursun."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $[AD]$, $\\widehat{BAC}$'nin açıortayıdır; $|AB| = 8$, $|AC| = 12$ ve $|BC| = 10$ birimdir.\n\nBuna göre $|AD| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         10.9,
+         8.84
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           1,
+           7.94
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           10,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "D",
+          "at": [
+           4,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "8",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "12",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "D",
+          "label": "α",
+          "right": false
+         },
+         {
+          "at": "A",
+          "from": "D",
+          "to": "C",
+          "label": "α",
+          "right": false
+         }
+        ]
+       },
+       "options": [
+        "$4\\sqrt{3}$",
+        "$6\\sqrt{2}$",
+        "$4\\sqrt{5}$",
+        "$9$",
+        "$4\\sqrt{6}$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$\\frac{|BD|}{|DC|} = \\frac{8}{12}$ → $|BD| = 4$, $|DC| = 6$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Teorem: B D bölü D C, sekiz bölü on iki, iki bölü üç. On, dört ve altı diye ayrılır."
+        },
+        {
+         "text": "$x^2 = 8 \\cdot 12 - 4 \\cdot 6 = 96 - 24 = 72$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x kare, sekiz çarpı on iki eksi dört çarpı altı: doksan altı eksi yirmi dört, yetmiş iki."
+        },
+        {
+         "text": "$x = \\sqrt{72} = 6\\sqrt{2}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x, kök yetmiş iki, yani altı kök iki. Cevap B."
+        }
+       ],
+       "narration": "Önce parçalar, sonra uzunluk formülü.",
+       "origin": {
+        "changes": "İç açıortay uzunluğu kalıbı; kenarlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Şekilde $[AE]$, $A$ köşesindeki dış açının açıortayıdır ve $E$, $[BC$ ışını üzerindedir. $|AB| = 6$, $|AC| = 3$ ve $|BC| = 6$ birimdir.\n\nBuna göre $|AE| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         12.9,
+         4.82
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           5.25,
+           2.9
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "E",
+          "at": [
+           12,
+           0
+          ],
+          "hidden": false,
+          "dot": true
+         },
+         {
+          "id": "K",
+          "at": [
+           7.09,
+           3.92
+          ],
+          "hidden": true,
+          "dot": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "3",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "K",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "label": "x",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "K",
+          "to": "E",
+          "label": "β",
+          "right": false
+         },
+         {
+          "at": "A",
+          "from": "E",
+          "to": "C",
+          "label": "β",
+          "right": false
+         }
+        ]
+       },
+       "options": [
+        "$6$",
+        "$2\\sqrt{10}$",
+        "$3\\sqrt{5}$",
+        "$3\\sqrt{6}$",
+        "$9$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$\\frac{|EB|}{|EC|} = \\frac{6}{3} = 2$: $|EC| + 6 = 2|EC|$ → $|EC| = 6$, $|EB| = 12$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "E B bölü E C, altı bölü üç, iki. E C artı altı, iki E C'ye eşit: E C altı, E B on iki."
+        },
+        {
+         "text": "$x^2 = 12 \\cdot 6 - 6 \\cdot 3 = 72 - 18 = 54$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x kare, E B çarpı E C eksi b çarpı c: yetmiş iki eksi on sekiz, elli dört."
+        },
+        {
+         "text": "$x = \\sqrt{54} = 3\\sqrt{6}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x, kök elli dört, yani üç kök altı. Cevap D."
+        }
+       ],
+       "narration": "Dış açıortayda önce E'nin yerini bulalım.",
+       "origin": {
+        "changes": "Dış açıortay uzunluğu kalıbı; kenarlar yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "İki iç açıortay: $90° + \\frac{A}{2}$.",
+    "İki dış açıortay: $90° - \\frac{A}{2}$; iç ve dış: $\\frac{A}{2}$.",
+    "Aynı köşede iç ve dış açıortay dik.",
+    "Teorem: $\\frac{m}{n} = \\frac{c}{b}$, dışta da aynı.",
+    "İç uzunluk: $x^2 = bc - mn$.",
+    "Dış uzunluk: $y^2 = |EB| \\cdot |EC| - bc$."
+   ],
+   "warnings": [
+    "İç açıortaylarda **artı**, dışta **eksi**.",
+    "Her parça **kendi tarafındaki** kenarla eşleşir.",
+    "Dış açıortayda parçalar **E'den** ölçülür."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "$90° + \\frac{A}{2}$ kuralını bir şekilde **kendin** kanıtla.",
+    "Açıortay teoremini iç ve dış için **birer örnekle** uygula.",
+    "Uygulamada AYT Açıortay testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Açıortay teoremine sayısal örnek ekle: |AB| = 6, |AC| = 9, |BC| = 10 ise iç açıortay [BC]'yi 4 ve 6 olarak böler. Aynı üçgende dış açıortayın uzantısı B tarafında |EB| = 20 noktasında kesişir (|EB| / |EC| = 2/3).",
+   "Aynı üçgende iç açıortay uzunluğunu hesaplat: x² = bc − mn = 6 × 9 − 4 × 6 = 30, x = √30. Formülün Stewart bağıntısından geldiğini bir cümleyle belirt.",
+   "Açıortay açı formüllerini tek tabloda örnekle: A = 70° iken iki iç açıortay arası 90° + 35° = 125°, iki dış açıortay arası 90° − 35° = 55°, bir iç bir dış açıortay arası 35°.",
+   "Teoremin alan ispatını ekle: açıortay üzerindeki D noktası iki kola eşit uzaklıkta olduğu için A(ABD) / A(ADC) = |AB| / |AC|; aynı yükseklikten de |BD| / |DC| oranına eşittir.",
+   "Açıortaylı soruların ipuçlarını listele: açıortay + paralel çizgi ikizkenar üçgen kurar; açıortay üzerindeki noktadan kollara dikmeler eşittir; iç açıortayların kesişimi iç teğet çemberin merkezidir."
+  ]
+ }
+}

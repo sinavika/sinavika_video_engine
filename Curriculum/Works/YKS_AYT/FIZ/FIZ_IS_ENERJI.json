@@ -1,0 +1,928 @@
+{
+ "topic": {
+  "id": "ED2FF68F-AAAC-BA04-14E5-06E22BFB6420",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_IS_ENERJI"
+ },
+ "title": "İş, Güç ve Enerji",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/FIZ/FIZ_IS_ENERJI.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Hız treni nasıl gider?",
+   "narration": "Lunaparktaki hız treni ilk tepeye bir motorla çıkar, sonra hiç motor kullanmadan bütün parkuru dolaşır. Sırrı, o tepede depoladığı enerjidir. Bu derste işi, kinetik ve potansiyel enerjiyi, mekanik enerjinin korunumunu, gücü ve yay enerjisini, üç ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Sabit ve değişken kuvvetin işini bulmak",
+   "İş-kinetik enerji teoremini uygulamak",
+   "Potansiyel enerjinin yalnız yüksekliğe bağlı olduğunu kullanmak",
+   "Mekanik enerjinin korunumunu ve sürtünme kaybını yorumlamak",
+   "Gücü ve yay enerjisini hesaplamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_IS_ENERJI_01",
+    "subtopics": [],
+    "title": "Değişken kuvvetin yaptığı iş",
+    "narration": "Fizikte iş, bir kuvvetin cismi kendi yönünde yer değiştirmesidir. Kuvvet değişiyorsa iş, grafiğin altındaki alandan bulunur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İş",
+      "items": [
+       "$W = F \\cdot d \\cdot \\cos\\theta$: yalnız **yer değiştirme yönündeki** bileşen iş yapar.",
+       "Kuvvet yer değiştirmeye dikse iş **sıfır**; zıtsa iş **negatif**.",
+       "Değişken kuvvette iş, kuvvet-yol grafiğinin altındaki **alandır**."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        7
+       ],
+       "y": [
+        0,
+        40
+       ],
+       "xLabel": "x (m)",
+       "yLabel": "F (N)",
+       "curves": [
+        {
+         "expression": "(10x + 30 - abs(10x - 30))/2",
+         "domain": [
+          0,
+          6
+         ],
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin",
+       "area": {
+        "curve": 0,
+        "from": 0,
+        "to": 6,
+        "label": "W = 135 J"
+       }
+      },
+      "beats": [],
+      "narration": "Bir kuvvetin yaptığı iş, kuvvetin yer değiştirme yönündeki bileşeni çarpı yer değiştirmedir: F d kosinüs teta. Kuvvet yer değiştirmeye dikse iş sıfırdır; bir valizi elinde yatay taşırken yer çekimi iş yapmaz. Kuvvet harekete zıtsa iş negatiftir. Kuvvet yol boyunca değişiyorsa iş, kuvvet-yol grafiğinin altındaki alandır; burada üçgen kırk beş, dikdörtgen doksan: yüz otuz beş joule."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yatay sürtünmesiz zeminde duran bir cisme uygulanan yatay kuvvet, ilk $4$ m'de $0$'dan $20$ N'ye düzgün artıyor, sonraki $6$ m'de $20$ N sabit kalıyor.\n\nKuvvetin $10$ m boyunca yaptığı iş kaç J'dür?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         0,
+         11
+        ],
+        "y": [
+         0,
+         25
+        ],
+        "xLabel": "x (m)",
+        "yLabel": "F (N)",
+        "curves": [
+         {
+          "expression": "(5x + 20 - abs(5x - 20))/2",
+          "domain": [
+           0,
+           10
+          ],
+          "ends": [
+           "none",
+           "none"
+          ]
+         }
+        ],
+        "parameters": {},
+        "points": [],
+        "segments": [],
+        "equalScale": false,
+        "axes": "origin"
+       },
+       "options": [
+        "$120$",
+        "$160$",
+        "$200$",
+        "$240$",
+        "$320$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "İlk $4$ m: üçgen, $\\frac{4 \\cdot 20}{2} = 40$ J.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İlk dört metrede kuvvet düzgün artıyor; alan bir üçgen: dört çarpı yirmi bölü iki, kırk joule."
+        },
+        {
+         "text": "Sonraki $6$ m: dikdörtgen, $6 \\cdot 20 = 120$ J; toplam $160$ J.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sonraki altı metrede dikdörtgen: altı çarpı yirmi, yüz yirmi. Toplam yüz altmış joule. Kuvveti hep yirmi sanan iki yüzü bulur. Cevap B."
+        }
+       ],
+       "narration": "Grafiğin altındaki alan.",
+       "origin": {
+        "changes": "Değişken kuvvet kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir yolcu valizini yatay zeminde $10$ m çekiyor. Valizin sapına yatayla $60°$ açı yapan $30$ N'lik bir kuvvet uyguluyor.\n\nBu kuvvetin yaptığı iş kaç J'dür?",
+       "options": [
+        "$150$",
+        "$150\\sqrt{3}$",
+        "$300$",
+        "$450$",
+        "$600$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$W = F d \\cos 60° = 30 \\cdot 10 \\cdot \\frac{1}{2}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Valiz yatay gidiyor; işi kuvvetin yatay bileşeni yapar: otuz çarpı on çarpı kosinüs altmış, yani yarım."
+        },
+        {
+         "text": "$W = 150$ J.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yüz elli joule. Açıyı unutan üç yüzü, sinüs alan yüz elli kök üçü bulur. Cevap A."
+        }
+       ],
+       "narration": "Yalnız yatay bileşen iş yapar.",
+       "origin": {
+        "changes": "Açılı kuvvetin işi kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_IS_ENERJI_02",
+    "subtopics": [],
+    "title": "İş-kinetik enerji teoremi",
+    "narration": "Net kuvvetin yaptığı iş cismin hızını değiştirir. Bu iş, kinetik enerjideki değişime eşittir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İş-enerji teoremi",
+      "items": [
+       "Net kuvvetin işi kinetik enerjideki **değişime** eşittir: $W_{net} = \\Delta E_k$.",
+       "$E_k = \\frac{1}{2} m v^2$: hız iki katına çıkınca enerji **dört katı**.",
+       "Sürtünmenin işi **negatiftir**; kinetik enerjiyi ısıya çevirir."
+      ],
+      "visual": {
+       "kind": "dynamics",
+       "mass": 2,
+       "incline": 0,
+       "friction": 0,
+       "forces": [
+        {
+         "label": "F = 20 N",
+         "magnitude": 20,
+         "direction": "right"
+        }
+       ],
+       "initialVelocity": 10,
+       "time": 1,
+       "g": 10,
+       "graphs": [
+        "v",
+        "x"
+       ]
+      },
+      "beats": [],
+      "narration": "İş-kinetik enerji teoremi: net kuvvetin yaptığı iş, kinetik enerjideki değişime eşittir. Kinetik enerji yarım m v karedir; hız iki katına çıkınca enerji dört katına çıkar. Sürtünme harekete zıt olduğu için işi negatiftir ve kinetik enerjiyi ısıya çevirir. Burada saniyede on metre giden iki kilogramlık cisme yirmi newtonluk kuvvet on beş metre boyunca iş yapıyor: üç yüz joule; hızı yirmiye çıkıyor."
+     },
+     {
+      "kind": "predict",
+      "title": "Hız iki katı",
+      "prompt": "Bir otomobil hızını $30$ km/h'ten $60$ km/h'e çıkarıyor. Kinetik enerjisi kaç katına çıkar?",
+      "choices": [
+       "$2$ katına",
+       "$3$ katına",
+       "$4$ katına"
+      ],
+      "answer": 2,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        2.6
+       ],
+       "y": [
+        0,
+        3.6
+       ],
+       "xLabel": "v",
+       "yLabel": "Eₖ",
+       "curves": [
+        {
+         "expression": "x^2/2",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [
+        {
+         "x": 1,
+         "y": 0.5,
+         "label": "v"
+        },
+        {
+         "x": 2,
+         "y": 2,
+         "label": "2v"
+        }
+       ],
+       "segments": [
+        {
+         "from": [
+          0,
+          0.5
+         ],
+         "to": [
+          1,
+          0.5
+         ],
+         "label": "E",
+         "dashed": true
+        },
+        {
+         "from": [
+          0,
+          2
+         ],
+         "to": [
+          2,
+          2
+         ],
+         "label": "4E",
+         "dashed": true
+        }
+       ],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "beats": [
+       {
+        "narration": "Kinetik enerji hızın karesiyle büyür: v'de E, iki v'de dört E.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "explanation": "$E_k = \\frac{1}{2} m v^2$: hız **iki katı** olunca enerji **dört katı**.",
+      "narration": "Bir otomobil hızını otuzdan altmış kilometreye çıkarıyor. Kinetik enerjisi kaç katına çıkar? Tahmin et.",
+      "explanationNarration": "Dört katına. Kinetik enerji hızın karesiyle orantılıdır; hız iki katı olunca kare dört katı olur. Bu yüzden hızı ikiye katlanan bir aracın fren mesafesi de dört katına çıkar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yatay yolda $20$ m/s hızla giden $1000$ kg'lık bir otomobil fren yaparak duruyor.\n\nSürtünme kuvvetinin yaptığı iş kaç kJ'dür?",
+       "options": [
+        "$200$",
+        "$20$",
+        "$0$",
+        "$-20$",
+        "$-200$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$\\Delta E_k = 0 - \\frac{1}{2} \\cdot 1000 \\cdot 20^2 = -200\\,000$ J.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kinetik enerji yarım çarpı bin çarpı dört yüz, iki yüz bin joule iken sıfıra iniyor: değişim eksi iki yüz bin joule."
+        },
+        {
+         "text": "Net kuvvet sürtünme: $W_f = -200$ kJ.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Otomobili durduran net kuvvet sürtünmedir; işi eksi iki yüz kilojoule. İşaretini unutan artı iki yüzü işaretler. Cevap E."
+        }
+       ],
+       "narration": "İş-enerji teoremini kullanalım.",
+       "origin": {
+        "changes": "Frenleme işi kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_IS_ENERJI_03",
+    "subtopics": [],
+    "title": "Potansiyel enerji",
+    "narration": "Yükseğe kaldırılan bir cisim enerji depolar. Bu enerji yolun biçimine değil, yalnız yüksekliğe bağlıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Potansiyel enerji",
+      "items": [
+       "Yer çekimi potansiyel enerjisi $E_p = m g h$; $h$ seçilen **sıfır düzeyine** göre.",
+       "Yer çekiminin işi **yola bağlı değil**, yalnız yükseklik farkına bağlı.",
+       "Uzun ya da büyük cisimlerde $h$, **ağırlık merkezinin** yüksekliğidir."
+      ],
+      "beats": [],
+      "narration": "Yer çekimi potansiyel enerjisi m g h'dir; h, seçtiğin sıfır düzeyine göre yüksekliktir. Önemli olan değeri değil değişimidir. Yer çekiminin yaptığı iş yolun biçimine bağlı değildir; yalnız başlangıç ile bitiş arasındaki yükseklik farkına bağlıdır. Büyük cisimlerde h, ağırlık merkezinin yüksekliğidir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir kamyonun kasasından, aynı yükseklikten ilk hızsız bırakılan özdeş iki kutu; biri kısa ve dik, öbürü uzun ve yatık sürtünmesiz iki rampadan aynı tezgâha iniyor.\n\nKutuların;\nI. tezgâha ulaştıkları andaki süratleri,\nII. yer çekiminin üzerlerinde yaptığı işler,\nIII. tezgâha ulaşma süreleri\n\nniceliklerinden hangileri kesinlikle aynıdır?",
+       "context": "ÖSYM 2025'te sorulan karpuz düzenekleri yapısının yeniden kurulmuş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Yer çekiminin işi $mgh$: aynı yükseklik farkı → **aynı iş** (II).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kutular aynı yükseklikten aynı tezgâha iniyor; yer çekiminin işi m g h, ikisinde de aynı."
+        },
+        {
+         "text": "Sürtünme yok: $mgh = \\frac{1}{2}mv^2$ → **aynı sürat** (I).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sürtünme olmadığından bu işin tamamı kinetik enerjiye döner; tezgâhtaki süratler de aynı."
+        },
+        {
+         "text": "Uzun rampada ivme küçük, yol uzun: süreler **farklı** (III).",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yatık rampada ivme küçük ve yol uzun; süreler farklıdır. Süreyi de aynı sanan yanılır. Cevap C."
+        }
+       ],
+       "narration": "Neler yalnız yükseklik farkına bağlı?",
+       "origin": {
+        "changes": "ÖSYM 2025 modeli: düzenek ve yargılar değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kütlesi $2$ kg olan bir kitap, yerden $0{,}8$ m yükseklikteki masadan $2{,}3$ m yükseklikteki rafa kaldırılıyor.\n\nKitabın potansiyel enerjisi kaç J artar? ($g = 10$ m/s²)",
+       "options": [
+        "$16$",
+        "$23$",
+        "$30$",
+        "$46$",
+        "$62$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$\\Delta h = 2{,}3 - 0{,}8 = 1{,}5$ m.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kitap bir buçuk metre yükseliyor."
+        },
+        {
+         "text": "$\\Delta E_p = 2 \\cdot 10 \\cdot 1{,}5 = 30$ J.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Potansiyel enerji artışı iki çarpı on çarpı bir buçuk, otuz joule. Raftaki yüksekliği yerden kullanan kırk altıyı bulur. Cevap C."
+        }
+       ],
+       "narration": "Yalnız yükseklik farkı önemli.",
+       "origin": {
+        "changes": "Potansiyel enerji kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_IS_ENERJI_04",
+    "subtopics": [],
+    "title": "Mekanik enerji korunumu",
+    "narration": "Sürtünme yoksa kinetik ve potansiyel enerji birbirine dönüşür ama toplamları değişmez.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Korunum",
+      "items": [
+       "Yalnız yer çekimi ve yay iş yapıyorsa $E_k + E_p$ **sabittir**.",
+       "Yükseklik farkı $h$ ise $v^2 = v_0^2 + 2gh$: yolun biçiminden **bağımsız**.",
+       "Sürtünme varsa kaybolan mekanik enerji **ısıya** dönüşür."
+      ],
+      "visual": {
+       "kind": "energyTrack",
+       "profile": [
+        [
+         0,
+         5
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         6,
+         3
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         12,
+         6
+        ]
+       ],
+       "start": 0,
+       "v0": 0,
+       "mass": 2,
+       "g": 10,
+       "friction": 0,
+       "time": 7,
+       "duration": 8
+      },
+      "beats": [
+       {
+        "narration": "İki kilogramlık cisim beş metreden ilk hızsız bırakılıyor: toplam yüz joule.",
+        "show": [],
+        "focus": [
+         "body"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "İnerken potansiyel enerji kinetiğe dönüşür, tepede tersi; iki çubuk hep aynı çizgiye kadar dolar.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "bars"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Altı metrelik tepeyi çıkamaz: beş metreye kadar çıkar, durur ve geri döner.",
+        "show": [],
+        "focus": [
+         "body"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bir cisme yalnız yer çekimi ve yay kuvveti iş yapıyorsa kinetik enerji ile potansiyel enerjinin toplamı sabittir; buna mekanik enerjinin korunumu denir. Aşağı inerken potansiyel enerji kinetiğe, çıkarken kinetik potansiyele dönüşür. Yükseklik farkı h ise hızın karesi, ilk hızın karesi artı iki g h olur; yolun biçimi önemli değildir. Sürtünme varsa kaybolan mekanik enerji ısıya dönüşür."
+     },
+     {
+      "kind": "visual",
+      "title": "Sürtünmeli pist",
+      "visual": {
+       "kind": "energyTrack",
+       "profile": [
+        [
+         0,
+         5
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         6,
+         3
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         12,
+         6
+        ]
+       ],
+       "start": 0,
+       "v0": 0,
+       "mass": 2,
+       "g": 10,
+       "friction": 3,
+       "time": 7,
+       "duration": 8
+      },
+      "beats": [
+       {
+        "narration": "Cisim her metrede biraz enerjiyi ısıya verir.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "bars"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Isı çubuğu büyür, kinetik ile potansiyelin toplamı azalır: cisim artık ilk yüksekliğine çıkamaz. Üçünün toplamı yine yüz joule.",
+        "show": [],
+        "focus": [
+         "bars"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Aynı pistte bu kez sürtünme var."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir oyuncak araba, çapı $2$ m olan düşey çembersel bir rayda bir tam tur atacak, ardından $3$ m yükseklikteki bir hedefe en az $2$ m/s hızla ulaşacaktır.\n\nArabaya yerde verilmesi gereken en küçük ilk hız kaç m/s'dir? (Sürtünmeler önemsiz, $g = 10$ m/s²)",
+       "context": "ÖSYM 2025'te sorulan çembersel ray ve balon yapısının yeni ölçülerle kurulmuş hâli.",
+       "options": [
+        "$5$",
+        "$5\\sqrt{2}$",
+        "$2\\sqrt{15}$",
+        "$8$",
+        "$10$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Çemberin tepesinde ray arabayı tutmaz: en az $v_t^2 = g r = 10$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çemberin tepesinde araba düşmemek için en az g r kadar hız karesine sahip olmalı: on."
+        },
+        {
+         "text": "Tabandan tepeye $2r = 2$ m: $v_0^2 = 10 + 2 \\cdot 10 \\cdot 2 = 50$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Tepe yerden iki metre yukarıda; enerjiden yerdeki hızın karesi on artı kırk, elli olmalı."
+        },
+        {
+         "text": "Hedef: $v_0^2 = 2^2 + 2 \\cdot 10 \\cdot 3 = 64$ → en az $8$ m/s.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hedefe iki metre bölü saniyeyle ulaşmak için hızın karesi dört artı altmış, altmış dört. İki şartın büyüğü geçerli: sekiz metre bölü saniye. Yalnız çemberi düşünen beş kök ikiyi bulur. Cevap D."
+        }
+       ],
+       "narration": "İki şartı ayrı ayrı yazıp büyüğünü alalım.",
+       "origin": {
+        "changes": "ÖSYM 2025 modeli: ölçüler değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sürtünmesiz bir pistte $1{,}8$ m yükseklikteki bir noktadan $10$ m/s hızla geçen bir kızak, $5$ m yükseklikteki tepeye çıkıyor.\n\nKızağın tepedeki hızı kaç m/s'dir? ($g = 10$ m/s²)",
+       "options": [
+        "$6$",
+        "$8$",
+        "$10$",
+        "$12$",
+        "$14$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$v^2 = 10^2 - 2 \\cdot 10 \\cdot (5 - 1{,}8) = 100 - 64$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kızak üç virgül iki metre yükseliyor. Hızın karesi yüz eksi iki çarpı on çarpı üç virgül iki: yüz eksi altmış dört."
+        },
+        {
+         "text": "$v^2 = 36$ → $v = 6$ m/s.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Otuz altı: hız altı metre bölü saniye. Altmış dördün kökünü cevap sanan sekizi bulur. Cevap A."
+        }
+       ],
+       "narration": "Mekanik enerji korunur.",
+       "origin": {
+        "changes": "Enerji korunumu kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_IS_ENERJI_05",
+    "subtopics": [],
+    "title": "Güç",
+    "narration": "Aynı işi kısa sürede yapan daha güçlüdür. Güç, işin ne kadar hızlı yapıldığıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Güç",
+      "items": [
+       "Güç, birim zamanda yapılan **iştir**: $P = \\frac{W}{t}$; birimi watt.",
+       "Sabit hızla giden araçta $P = F \\cdot v$.",
+       "Aynı işi daha kısa sürede yapan **daha güçlüdür**."
+      ],
+      "beats": [],
+      "narration": "Güç, birim zamanda yapılan iştir: iş bölü zaman; birimi watt, saniyede bir joule. Bir araç sabit hızla gidiyorsa motorun gücü, uyguladığı kuvvet çarpı hızdır. Aynı işi daha kısa sürede yapan daha güçlüdür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kütlesi $60$ kg olan bir öğrenci, $3$ m yüksekliğindeki merdiveni önce yürüyerek $6$ s'de, sonra koşarak $3$ s'de çıkıyor.\n\nİki çıkış için aşağıdakilerden hangisi doğrudur? ($g = 10$ m/s²)",
+       "options": [
+        "İşler eşit; güçler eşit",
+        "Koşarken iş iki katı; güçler eşit",
+        "Koşarken iş ve güç iki katı",
+        "İşler eşit; koşarken güç yarısı",
+        "İşler eşit; koşarken güç iki katı"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "İki çıkışta da $W = 60 \\cdot 10 \\cdot 3 = 1800$ J: işler **eşit**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Öğrenci iki kez aynı yüksekliğe çıkıyor: iş m g h, bin sekiz yüz joule; işler eşit."
+        },
+        {
+         "text": "$P = \\frac{1800}{6} = 300$ W, $\\frac{1800}{3} = 600$ W: koşarken **iki katı**.",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Güç: yürürken bin sekiz yüz bölü altı, üç yüz watt; koşarken üç saniyede, altı yüz watt. Koşarken güç iki katı. Cevap E."
+        }
+       ],
+       "narration": "İş yükseklikle, güç süreyle ilgili.",
+       "origin": {
+        "changes": "İş ve güç karşılaştırma kalıbı; yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yatay yolda $20$ m/s sabit hızla giden bir otomobilin motoru $40$ kW güç veriyor.\n\nOtomobile etki eden sürtünme ve hava direncinin toplamı kaç N'dir?",
+       "options": [
+        "$800$",
+        "$2000$",
+        "$2500$",
+        "$4000$",
+        "$8000$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Sabit hızda motorun kuvveti dirençlere **eşit**: $P = F v$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Otomobil sabit hızla gidiyor; motorun itme kuvveti dirençlere eşit. Güç, kuvvet çarpı hız."
+        },
+        {
+         "text": "$F = \\frac{40\\,000}{20} = 2000$ N.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kırk bin bölü yirmi: iki bin newton. Cevap B."
+        }
+       ],
+       "narration": "Sabit hız: motor kuvveti dirençleri dengeler.",
+       "origin": {
+        "changes": "Güç ve hız kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_IS_ENERJI_06",
+    "subtopics": [],
+    "title": "Yay potansiyel enerjisi",
+    "narration": "Gerilen ya da sıkıştırılan bir yay enerji depolar ve serbest kalınca bu enerjiyi geri verir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Yay",
+      "items": [
+       "Yayın kuvveti uzamayla orantılı: $F = k x$.",
+       "Yay potansiyel enerjisi $E = \\frac{1}{2} k x^2$: kuvvet-uzama grafiğinin altındaki **alan**.",
+       "Sıkıştırma ve germe, aynı $x$ için **aynı enerjiyi** depolar."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        0.25
+       ],
+       "y": [
+        0,
+        50
+       ],
+       "xLabel": "x (m)",
+       "yLabel": "F (N)",
+       "curves": [
+        {
+         "expression": "200x",
+         "domain": [
+          0,
+          0.2
+         ],
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin",
+       "area": {
+        "curve": 0,
+        "from": 0,
+        "to": 0.2,
+        "label": "E = 4 J"
+       }
+      },
+      "beats": [],
+      "narration": "Bir yayı germek ya da sıkıştırmak için gereken kuvvet uzamayla doğru orantılıdır: F eşittir k x. Yayda depolanan enerji kuvvet-uzama grafiğinin altındaki üçgenin alanıdır: yarım k x kare. Aynı miktarda sıkıştırılan ya da gerilen yay aynı enerjiyi depolar. Burada iki yüz newton bölü metrelik yay yirmi santimetre gerilmiş: dört joule."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kütlesi önemsiz özdeş üç yaydan birincisi tavana asılıp ucuna ağırlığı $G$ olan bir cisim bağlanıyor; ikincisi yatay masada iki ucundan $G$ büyüklüğündeki kuvvetlerle sıkıştırılıyor; üçüncüsü iki ucundan $G$ büyüklüğündeki kuvvetlerle geriliyor.\n\nÜç durumda da sistem dengedeyken yaylarda depolanan $E_1$, $E_2$, $E_3$ enerjileri arasındaki ilişki nedir?",
+       "context": "ÖSYM 2020'de sorulan üç yay yapısının yeni düzeneklerle kurulmuş hâli.",
+       "options": [
+        "$E_1 > E_2 > E_3$",
+        "$E_2 = E_3 > E_1$",
+        "$E_1 > E_2 = E_3$",
+        "$E_1 = E_2 = E_3$",
+        "$E_3 > E_2 > E_1$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Her yayın içindeki kuvvet $G$: uzama ya da kısalma $x = \\frac{G}{k}$, **aynı**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç yayda da yayı geren ya da sıkıştıran kuvvet G; tavana asılı yayda tavan da G ile çeker. Hepsinde x, G bölü k: aynı."
+        },
+        {
+         "text": "$E = \\frac{1}{2}kx^2$ ve germe ile sıkıştırma aynı enerji: $E_1 = E_2 = E_3$.",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Enerji yarım k x kare; germe ile sıkıştırma aynı enerjiyi depolar. Üçü eşit. İki uçtan çekilen yayı iki kat gerilmiş sanan yanılır. Cevap D."
+        }
+       ],
+       "narration": "Yayın şekil değişimini ne belirler?",
+       "origin": {
+        "changes": "ÖSYM 2020 modeli: düzenekler değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yay sabiti $400$ N/m olan bir yay $0{,}1$ m sıkıştırılıyor ve önüne konan $0{,}5$ kg'lık bir cisim sürtünmesiz yatay düzlemde serbest bırakılıyor.\n\nCisim yaydan kaç m/s hızla ayrılır?",
+       "options": [
+        "$2\\sqrt{2}$",
+        "$4$",
+        "$4\\sqrt{2}$",
+        "$8$",
+        "$16$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$E = \\frac{1}{2} \\cdot 400 \\cdot 0{,}1^2 = 2$ J.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yayda depolanan enerji yarım çarpı dört yüz çarpı sıfır virgül sıfır bir: iki joule."
+        },
+        {
+         "text": "$2 = \\frac{1}{2} \\cdot 0{,}5 \\cdot v^2$ → $v^2 = 8$, $v = 2\\sqrt{2}$ m/s.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bu enerji tamamen kinetiğe döner: iki eşittir yarım çarpı sıfır virgül beş çarpı v kare. v kare sekiz, v iki kök iki. Kök almayı unutan sekizi bulur. Cevap A."
+        }
+       ],
+       "narration": "Yay enerjisi kinetiğe dönüşür.",
+       "origin": {
+        "changes": "Yay ve kinetik enerji kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$W = F d \\cos\\theta$; değişken kuvvette alan.",
+    "$W_{net} = \\Delta E_k$, $E_k = \\frac{1}{2}mv^2$.",
+    "$E_p = mgh$; yer çekiminin işi yoldan bağımsız.",
+    "Sürtünme yoksa $E_k + E_p$ sabit.",
+    "$P = \\frac{W}{t} = F v$.",
+    "Yay: $E = \\frac{1}{2}kx^2$."
+   ],
+   "warnings": [
+    "Dik kuvvet **iş yapmaz**.",
+    "Hız iki katı → enerji **dört katı**.",
+    "Germe ve sıkıştırma **aynı enerji**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bir topu farklı yüksekliklerden bırak; sekme yüksekliklerini karşılaştır ve kaybı **ısı ve sese** bağla.",
+    "Merdiveni yavaş ve hızlı çıkarken süreyi ölç; kütlenle **gücünü** hesapla.",
+    "Uygulamada AYT İş, Güç ve Enerji testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "İşin işaretini örnekle: kuvvet hareket yönündeyse pozitif, zıt yöndeyse (sürtünme) negatif, dikse sıfır (yatayda taşınan çantanın ağırlığı, çembersel harekette merkezcil kuvvet). Kuvvet-yol grafiğinde alanın iş olduğunu ve eksen altındaki alanın negatif sayıldığını göster.",
+   "Yay işine örnek ekle: k = 200 N/m yay 0,1 m'den 0,3 m'ye gerilirse W = ½ × 200 × (0,09 − 0,01) = 8 J. Yay kuvvetinin uzamayla orantılı olduğunu, bu yüzden işin F × x değil grafiğin alanı olduğunu vurgula.",
+   "Sürtünmeli enerji hesabı ekle: 2 kg cisim 5 m yükseklikten sürtünmeli bir rampadan iniyor ve tabanda 8 m/s hızla geçiyor. Başlangıç enerjisi 100 J, son kinetik enerji 64 J; sürtünmeye 36 J ısı olarak harcanmıştır.",
+   "Güç ve verimi örnekle: 800 W motor 40 kg yükü 20 s'de 30 m yükseltiyor; yararlı iş 12 000 J, harcanan enerji 16 000 J, verim %75. 1 kWh = 3,6 · 10⁶ J olduğunu ve elektrik faturasındaki birimi ekle.",
+   "Enerji birimlerini ve dönüşümlerini ekle: joule, kilowatt saat, kalori (1 cal ≈ 4,18 J), elektronvolt (1 eV = 1,6 · 10⁻¹⁹ J). Hidroelektrik santralde potansiyel enerjinin kinetiğe, sonra elektriğe dönüşümünü zincir hâlinde göster."
+  ]
+ }
+}

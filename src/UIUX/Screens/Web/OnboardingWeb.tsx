@@ -46,7 +46,7 @@ const Title: React.FC<{title: string; muted: string; link: string}> = ({title, m
 			</Text>
 			<Stack row gap={5}>
 				<Text role="small">{muted}</Text>
-				<Text role="small" weight={800} color={colors.brand}>
+				<Text role="small" weight={800} color={colors.brandDeep}>
 					{link}
 				</Text>
 			</Stack>
@@ -87,7 +87,7 @@ export const WebSignInScreen: React.FC = () => {
 					<Text role="small" weight={700} color={colors.ink2}>
 						{t('E-postama kod gönder', 'E-mail me a code')}
 					</Text>
-					<Text role="small" weight={700} color={colors.brand}>
+					<Text role="small" weight={700} color={colors.brandDeep}>
 						{t('Şifremi unuttum', 'Forgot password')}
 					</Text>
 				</Stack>
@@ -112,7 +112,7 @@ export const WebSignInCodeScreen: React.FC = () => {
 				<CodeBoxes digits="4829" />
 				<Stack row justify="center" gap={6}>
 					<Text role="small">{t('Kod gelmedi mi?', 'No code?')}</Text>
-					<Text role="small" weight={700} color={colors.brand}>
+					<Text role="small" weight={700} color={colors.brandDeep}>
 						{t('Tekrar gönder · 0:42', 'Resend · 0:42')}
 					</Text>
 				</Stack>
@@ -140,8 +140,8 @@ export const WebSignUpScreen: React.FC = () => {
 				<Field label={t('E-posta', 'E-mail')} value="ayse@ornek.com" icon="mail" height={46} />
 				<Field label={t('Şifre', 'Password')} value="••••••••••" icon="lock" focus height={46} hint={t('En az 8 karakter ve bir rakam', 'At least 8 characters and a number')} />
 				<Stack row gap={10} align="flex-start">
-					<div style={{width: 20, height: 20, borderRadius: 6, background: colors.brand, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-						<Icon name="check" size={13} color="#FFFFFF" />
+					<div style={{width: 20, height: 20, borderRadius: 6, background: colors.ink, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+						<Icon name="check" size={13} color={colors.bg} />
 					</div>
 					<Text role="meta">{t('Kullanım Koşulları’nı ve KVKK aydınlatma metnini okudum.', 'I have read the Terms and Privacy Notice.')}</Text>
 				</Stack>
@@ -196,8 +196,8 @@ export const WebResetScreen: React.FC = () => {
 const Pick: React.FC<{on?: boolean; icon?: UIIconName; title: string; sub?: string; tag?: string}> = ({on, icon, title, sub, tag}) => {
 	const colors = useColors();
 	return (
-		<Stack row gap={14} style={{padding: 16, borderRadius: UI_RADIUS.lg, background: on ? colors.brandWash : colors.card, border: `1.5px solid ${on ? colors.brand : colors.line}`}}>
-			{icon ? <Tile icon={icon} size={44} color={on ? colors.brand : colors.ink2} /> : null}
+		<Stack row gap={14} style={{padding: 16, borderRadius: UI_RADIUS.lg, background: colors.card, border: `${on ? 2 : 1.5}px solid ${on ? colors.ink : colors.line}`}}>
+			{icon ? <Tile icon={icon} size={44} color={on ? colors.ink : colors.ink2} /> : null}
 			<Stack grow gap={2}>
 				<Stack row gap={8}>
 					<Text role="section" size={16}>
@@ -207,7 +207,7 @@ const Pick: React.FC<{on?: boolean; icon?: UIIconName; title: string; sub?: stri
 				</Stack>
 				{sub ? <Text role="small">{sub}</Text> : null}
 			</Stack>
-			<div style={{width: 22, height: 22, borderRadius: 11, border: on ? `7px solid ${colors.brand}` : `2px solid ${colors.line}`, boxSizing: 'border-box'}} />
+			<div style={{width: 22, height: 22, borderRadius: 11, border: on ? `7px solid ${colors.ink}` : `2px solid ${colors.line}`, boxSizing: 'border-box'}} />
 		</Stack>
 	);
 };
@@ -232,7 +232,7 @@ const GoalCard: React.FC = () => {
 					48
 				</Text>
 				<Icon name="right" size={26} color={colors.subtle} />
-				<Text role="num" size={48} color={colors.brand}>
+				<Text role="num" size={48}>
 					78
 				</Text>
 			</Stack>
@@ -245,6 +245,7 @@ const GoalCard: React.FC = () => {
 
 export const WebOnbExamScreen: React.FC = () => {
 	const t = useT();
+	const colors = useColors();
 	return (
 		<WebOnboarding step={1} over={t('Hedef sınav', 'Target exam')} title={t('Hangi sınava hazırlanıyorsun?', 'Which exam are you preparing for?')} text={t('Planını, denemelerini ve içeriklerini buna göre kuracağız.', 'We build your plan, exams and content around it.')} preview={<GoalCard />}>
 			<Grid columns="1fr 1fr" gap={12}>
@@ -256,7 +257,7 @@ export const WebOnbExamScreen: React.FC = () => {
 			</Text>
 			<Stack row wrap gap={8}>
 				{[['TYT', true], ['AYT · Sayısal', true], ['AYT · Eşit ağırlık', false], ['AYT · Sözel', false], ['YDT', false]].map(([label, on]) => (
-					<Chip key={label as string} tone={on ? 'brand' : 'outline'} icon={on ? 'check' : undefined} style={{height: 40, padding: '0 16px', fontSize: 14, border: on ? '1.5px solid #EA580C' : undefined}}>
+					<Chip key={label as string} tone="outline" icon={on ? 'check' : undefined} style={{height: 40, padding: '0 16px', fontSize: 14, color: on ? colors.ink : colors.ink2, border: `${on ? 2 : 1.5}px solid ${on ? colors.ink : colors.line}`}}>
 						{label as string}
 					</Chip>
 				))}
@@ -281,24 +282,24 @@ export const WebOnbGoalScreen: React.FC = () => {
 						</Stack>
 						<Stack gap={2} align="flex-end">
 							<Text role="meta">{t('Hedef netin', 'Target')}</Text>
-							<Text role="num" size={36} color={colors.brand}>
+							<Text role="num" size={36}>
 								78
 							</Text>
 						</Stack>
 					</Stack>
 					<div style={{position: 'relative', height: 30}}>
 						<div style={{position: 'absolute', left: 0, right: 0, top: 12, height: 6, borderRadius: 3, background: colors.line2}} />
-						<div style={{position: 'absolute', left: '40%', right: '35%', top: 12, height: 6, borderRadius: 3, background: 'linear-gradient(90deg, #FDBA74, #EA580C)'}} />
-						{[40, 65].map((left, index) => (
-							<div key={left} style={{position: 'absolute', left: `calc(${left}% - 13px)`, top: 2, width: 26, height: 26, borderRadius: 13, background: '#FFFFFF', border: `3px solid ${index ? '#EA580C' : '#FDBA74'}`}} />
+						<div style={{position: 'absolute', left: '40%', right: '35%', top: 12, height: 6, borderRadius: 3, background: colors.ink}} />
+						{[40, 65].map((left) => (
+							<div key={left} style={{position: 'absolute', left: `calc(${left}% - 13px)`, top: 2, width: 26, height: 26, borderRadius: 13, background: '#FFFFFF', border: `3px solid ${colors.ink}`}} />
 						))}
 					</div>
 				</Stack>
 			</Card>
 			<Field label={t('Hedef bölüm (isteğe bağlı)', 'Target programme (optional)')} value={t('Bilgisayar Mühendisliği · İstanbul', 'Computer Engineering · Istanbul')} icon="pin" />
-			<Card tone="soft" padding={14} style={{background: colors.brandWash}}>
+			<Card tone="soft" padding={14}>
 				<Stack row gap={10}>
-					<Icon name="trend" size={20} color={colors.brand} />
+					<Icon name="trend" size={20} color={colors.successInk} />
 					<Text role="small" color={colors.ink2}>
 						{t('+30 net, 245 günde gerçekçi: haftada ortalama 1 net.', '+30 in 245 days is realistic: about 1 a week.')}
 					</Text>
@@ -329,12 +330,13 @@ const WeekPlanPreview: React.FC = () => (
 
 export const WebOnbWeakScreen: React.FC = () => {
 	const t = useT();
+	const colors = useColors();
 	const lessons: [string, string, boolean][] = [['Matematik', 'Maths', true], ['Türkçe', 'Turkish', false], ['Geometri', 'Geometry', true], ['Fizik', 'Physics', false], ['Kimya', 'Chemistry', true], ['Biyoloji', 'Biology', false], ['Tarih', 'History', false], ['Coğrafya', 'Geography', false], ['Felsefe', 'Philosophy', false], ['Din Kültürü', 'Religion', false]];
 	return (
 		<WebOnboarding step={4} over={t('Dersler', 'Subjects')} title={t('Hangi derslerde daha çok desteğe ihtiyacın var?', 'Where do you need more support?')} text={t('Planında bu derslere daha çok yer ayırırız. Seçmesen de olur.', 'We give these more room. Optional.')} cta={t('Planımı hazırla', 'Build my plan')} preview={<WeekPlanPreview />}>
 			<Stack row wrap gap={8}>
 				{lessons.map(([tr, en, on]) => (
-					<Chip key={tr} tone={on ? 'brand' : 'outline'} icon={on ? 'check' : undefined} style={{height: 44, padding: '0 18px', fontSize: 14, border: on ? '1.5px solid #EA580C' : undefined}}>
+					<Chip key={tr} tone="outline" icon={on ? 'check' : undefined} style={{height: 44, padding: '0 18px', fontSize: 14, color: on ? colors.ink : colors.ink2, border: `${on ? 2 : 1.5}px solid ${on ? colors.ink : colors.line}`}}>
 						{t(tr, en)}
 					</Chip>
 				))}
@@ -367,11 +369,11 @@ export const WebOnbPlanChoiceScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	return (
-		<WebOnboarding step={6} over={t('3 gün ücretsiz', '3 days free')} title={t('Tüm modülleri 3 gün ücretsiz dene', 'Try every module free for 3 days')} text={t('Bugün ödeme yok. 2. gün hatırlatırız, 3. gün ücret alınır; öncesinde iptal edersen ücret yok.', 'No charge today. Reminder on day 2, charged on day 3 unless you cancel.')} cta={t('3 gün ücretsiz başla', 'Start 3 free days')} preview={<PhonePreview label={t('Tüm modüller açık', 'Every module open')}><HubScreen /></PhonePreview>}>
+		<WebOnboarding step={6} over={t('Paket', 'Plan')} title={t('Paketini seç', 'Pick your plan')} text={t('Ödemeden sonra bütün modüller açılır. İstediğin an iptal edebilirsin; iptal, dönemin sonunda geçerli olur.', 'Every module opens after payment. Cancel any time; it takes effect at the end of the period.')} cta={t('Ödemeye geç', 'Go to payment')} preview={<PhonePreview label={t('Tüm modüller açık', 'Every module open')}><HubScreen /></PhonePreview>}>
 			<Stack gap={10}>
-				{[[t('YKS Yıllık', 'YKS Yearly'), t('₺249/ay · yıllık ₺2.990 · 2 ay hediye', '₺249/mo · ₺2,990 a year'), true], [t('YKS Aylık', 'YKS Monthly'), '₺299/ay', false], [t('Ücretsiz devam et', 'Continue free'), t('Ayda 1 deneme, temel plan', '1 exam a month, basic plan'), false]].map(([title, sub, on]) => (
-					<Stack key={title as string} row gap={14} style={{padding: 16, borderRadius: 18, border: `1.5px solid ${on ? colors.brand : colors.line}`, background: on ? colors.brandWash : colors.card}}>
-						<div style={{width: 22, height: 22, borderRadius: 11, border: on ? `7px solid ${colors.brand}` : `2px solid ${colors.line}`, boxSizing: 'border-box'}} />
+				{[[t('YKS Yıllık', 'YKS Yearly'), t('₺249/ay · yıllık ₺2.990 · 2 ay hediye', '₺249/mo · ₺2,990 a year'), true], [t('YKS Aylık', 'YKS Monthly'), '₺299/ay', false]].map(([title, sub, on]) => (
+					<Stack key={title as string} row gap={14} style={{padding: 16, borderRadius: 18, border: `${on ? 2 : 1.5}px solid ${on ? colors.ink : colors.line}`, background: colors.card}}>
+						<div style={{width: 22, height: 22, borderRadius: 11, border: on ? `7px solid ${colors.ink}` : `2px solid ${colors.line}`, boxSizing: 'border-box'}} />
 						<Stack grow gap={1}>
 							<Text role="section" size={16}>
 								{title as string}
@@ -382,6 +384,9 @@ export const WebOnbPlanChoiceScreen: React.FC = () => {
 					</Stack>
 				))}
 			</Stack>
+			<Text role="small" weight={700} color={colors.ink2}>
+				{t('Şimdilik paket seçme', 'Not now')}
+			</Text>
 			<Stack row gap={8}>
 				{MODULE_ORDER.map((key: ModuleKey) => (
 					<Tile key={key} module={key} size={34} />

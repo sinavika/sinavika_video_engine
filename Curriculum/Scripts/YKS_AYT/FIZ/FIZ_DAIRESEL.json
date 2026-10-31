@@ -1,0 +1,751 @@
+{
+ "topic": {
+  "id": "ABBD5423-0C00-AA76-4011-C2FB52218F62",
+  "category": "YKS_AYT",
+  "lesson": "FIZ",
+  "code": "FIZ_DAIRESEL"
+ },
+ "title": "Düzgün Çembersel Hareket",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "MEB OGM AYT Fizik konu anlatımı, sayfa 139-155 (başvuru; metin yeniden yazıldı)",
+  "ÖSYM 2018, 2019, 2020, 2021 (iki soru), 2022 ve 2023: model olarak kullanıldı, durumlar ve yargılar değiştirildi; 2023 sarkaç sorusunun seçenekleri çizim olduğu için kullanılmadı",
+  "YKS/AYT/Sorular/FIZ/FIZ_DAIRESEL.jsonl (319 soru; yapı ve düzey için okundu, sorular yeni yazıldı)"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Virajda seni kim iter?",
+   "narration": "Bir otomobil virajı dönerken içindekiler kapıya doğru itiliyormuş gibi olur; oysa kimse onları itmez, vücutları düz gitmeye çalışır. Bu derste açısal hızı, periyot ve frekansı, merkezcil ivme ve kuvveti, yatay ve düşey çembersel hareketi, yedi ÖSYM sorusunun modeliyle göreceksin."
+  },
+  "objectives": [
+   "Açısal ve çizgisel hızı ilişkilendirmek",
+   "Periyot ve frekansla hızları hesaplamak",
+   "Merkezcil ivmenin yönünü ve büyüklüğünü bulmak",
+   "Merkezcil kuvveti sağlayan kuvveti belirlemek",
+   "Düşey çemberde ip gerilmesini ve en küçük sürati bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_DAIRESEL_01",
+    "title": "Açısal hız",
+    "narration": "Çember üzerinde dönen bir cismin ne kadar hızlı döndüğünü iki ayrı hızla anlatırız: taradığı açıyla ve aldığı yolla.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Açısal hız",
+      "items": [
+       "Açısal hız $\\omega = \\frac{\\Delta\\theta}{\\Delta t}$: birim zamanda taranan **açı**.",
+       "Çizgisel hız $v = \\omega r$: aynı diskte dıştaki nokta **daha hızlı**.",
+       "Hız çembere **teğettir**; sürat sabit olsa da yönü sürekli değişir."
+      ],
+      "visual": {
+       "kind": "circular",
+       "mode": "disk",
+       "bodies": [
+        {
+         "label": "K",
+         "radius": 0.4
+        },
+        {
+         "label": "L",
+         "radius": 0.7
+        },
+        {
+         "label": "M",
+         "radius": 1
+        }
+       ],
+       "velocity": true,
+       "acceleration": true,
+       "motion": true
+      },
+      "beats": [
+       {
+        "narration": "Aynı diskte üç nokta: K içte, M dışta.",
+        "focus": [
+         "b1",
+         "b2",
+         "b3"
+        ]
+       },
+       {
+        "narration": "Disk dönüyor: üçü de aynı açıyı tarıyor ama M'nin hız oku en uzun.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "velocity"
+        ]
+       }
+      ],
+      "narration": "Açısal hız, birim zamanda taranan açıdır. Çizgisel hız ise çember boyunca birim zamanda alınan yoldur ve açısal hız çarpı yarıçapa eşittir. Aynı diskteki bütün noktalar aynı açısal hızla döner; ama dıştaki nokta aynı sürede daha uzun yay aldığı için daha hızlıdır. Hız her an çembere teğettir; sürat sabit kalsa da yönü sürekli değişir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Aynı merkezli üç çembersel pistte sabit süratle koşan K, L ve M koşucularından K ile L, merkeze göre aynı açıyı aynı sürede tarıyor; M ise aynı açıyı onlardan daha uzun sürede tarıyor.\n\nKoşucuların merkeze göre açısal hızları arasındaki ilişki nedir?",
+       "context": "ÖSYM 2023'te sorulan aynı merkezli kulvarlarda koşucular yapısının sözle kurulmuş hâli.",
+       "options": [
+        "$\\omega_K > \\omega_L > \\omega_M$",
+        "$\\omega_K = \\omega_L > \\omega_M$",
+        "$\\omega_K = \\omega_L = \\omega_M$",
+        "$\\omega_M > \\omega_L > \\omega_K$",
+        "$\\omega_M > \\omega_K = \\omega_L$"
+       ],
+       "answer": 1,
+       "narration": "Açısal hız: açı bölü süre.",
+       "steps": [
+        {
+         "text": "K ile L aynı açıyı aynı sürede: $\\omega_K = \\omega_L$.",
+         "narration": "Açısal hız, taranan açı bölü süredir. K ile L aynı açıyı aynı sürede taradığı için açısal hızları eşittir; pistlerinin yarıçapı önemli değildir."
+        },
+        {
+         "text": "M aynı açıyı daha uzun sürede: $\\omega_M$ **daha küçük**.",
+         "narration": "M aynı açıyı daha uzun sürede tarıyor; açısal hızı daha küçük. Çizgisel hızla karıştıran yarıçaplara bakar. Cevap B.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2023 modeli: pist bilgisi sözle verildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sabit açısal hızla dönen bir hedef tahtasına saplanan K, L ve M oklarının merkeze uzaklıkları sırasıyla $r$, $2r$ ve $3r$'dir.\n\nOkların çizgisel süratleri ve açısal süratleri arasındaki ilişkiler nedir?",
+       "context": "ÖSYM 2021'de sorulan dönen hedef tahtasındaki oklar yapısının sayılarla kurulmuş hâli.",
+       "options": [
+        "$v_K = v_L = v_M$ ; $\\omega_K = \\omega_L = \\omega_M$",
+        "$v_K > v_L > v_M$ ; $\\omega_M > \\omega_L > \\omega_K$",
+        "$v_M > v_L > v_K$ ; $\\omega_M > \\omega_L > \\omega_K$",
+        "$v_M > v_L > v_K$ ; $\\omega_K = \\omega_L = \\omega_M$",
+        "$v_K = v_L = v_M$ ; $\\omega_M > \\omega_L > \\omega_K$"
+       ],
+       "answer": 3,
+       "narration": "Hepsi aynı tahtada.",
+       "steps": [
+        {
+         "text": "Tahtayla birlikte dönüyorlar: açısal hızlar **eşit**.",
+         "narration": "Oklar tahtaya saplı; hepsi tahtayla birlikte aynı açısal hızla döner."
+        },
+        {
+         "text": "$v = \\omega r$: uzaktaki **daha hızlı**, $v_M > v_L > v_K$.",
+         "narration": "Çizgisel hız açısal hız çarpı yarıçap; merkezden en uzak M en hızlı. Cevap D.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021 modeli: konumlar sayıyla verildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DAIRESEL_02",
+    "title": "Periyot ve frekans",
+    "narration": "Bir tam turun süresi periyot, saniyedeki tur sayısı frekanstır; ikisi birbirinin tersidir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Periyot ve frekans",
+      "items": [
+       "Periyot $T$: bir tam turun süresi; frekans $f = \\frac{1}{T}$: saniyedeki tur sayısı.",
+       "$\\omega = \\frac{2\\pi}{T} = 2\\pi f$; $v = \\frac{2\\pi r}{T}$.",
+       "Birimler: $T$ saniye, $f$ hertz."
+      ],
+      "visual": {
+       "kind": "circular",
+       "mode": "orbit",
+       "bodies": [
+        {
+         "label": "K",
+         "radius": 0.45
+        },
+        {
+         "label": "M",
+         "radius": 1
+        }
+       ],
+       "velocity": true,
+       "acceleration": true,
+       "motion": true
+      },
+      "beats": [
+       {
+        "narration": "Gezegenin çevresinde iki taş: K yakın, M uzak.",
+        "focus": [
+         "b1",
+         "b2"
+        ]
+       },
+       {
+        "narration": "İçteki K turunu çok daha kısa sürede tamamlıyor: periyodu küçük.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "b1"
+        ]
+       }
+      ],
+      "narration": "Periyot bir tam turun süresidir; frekans ise saniyedeki tur sayısıdır ve periyodun tersidir. Bir turda iki pi radyan taranır; açısal hız iki pi bölü periyot, çizgisel hız da çevre bölü periyottur. Bir gezegenin çevresinde dolanan cisimlerde içteki cisim hem daha hızlı gider hem daha kısa sürede tur atar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yarıçapı $0{,}5$ m olan bir çemberde düzgün dönen bir cisim $2$ s'de $5$ tur atıyor.\n\nCismin periyodu kaç s ve çizgisel sürati kaç m/s'dir? ($\\pi = 3$)",
+       "options": [
+        "$0{,}4$ ; $7{,}5$",
+        "$0{,}4$ ; $3{,}75$",
+        "$2{,}5$ ; $7{,}5$",
+        "$2{,}5$ ; $1{,}2$",
+        "$0{,}2$ ; $15$"
+       ],
+       "answer": 0,
+       "narration": "Önce frekans.",
+       "steps": [
+        {
+         "text": "$f = \\frac{5}{2} = 2{,}5$ Hz; $T = \\frac{1}{f} = 0{,}4$ s.",
+         "narration": "Saniyede iki buçuk tur: frekans iki buçuk hertz, periyot sıfır virgül dört saniye."
+        },
+        {
+         "text": "$v = 2\\pi r f = 2 \\cdot 3 \\cdot 0{,}5 \\cdot 2{,}5 = 7{,}5$ m/s.",
+         "narration": "Çizgisel hız iki pi r f: iki çarpı üç çarpı sıfır virgül beş çarpı iki buçuk, yedi buçuk. Periyot ile frekansı karıştıran iki buçuk saniyeyi seçer. Cevap A.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Periyot ve frekans kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir gezegenin çevresinde çembersel yörüngelerde dolanan özdeş iki taş parçasından K gezegene daha yakın, M daha uzaktadır.\n\nK'nin aşağıdaki niceliklerinden hangisi M'ninkinden **küçüktür**?",
+       "context": "ÖSYM 2022'de sorulan gezegen halkasındaki parçacıklar yapısının yeniden yazılmış hâli.",
+       "options": [
+        "Çizgisel sürati",
+        "Açısal sürati",
+        "Yörünge periyodu",
+        "Merkezcil ivmesi",
+        "Gezegenin ona uyguladığı çekim kuvveti"
+       ],
+       "answer": 2,
+       "narration": "Yakın yörüngede çekim büyük.",
+       "steps": [
+        {
+         "text": "Yakında çekim **büyük**: merkezcil ivme, çizgisel ve açısal sürat **büyük**.",
+         "narration": "K gezegene yakın; çekim kuvveti ve merkezcil ivmesi büyük. Çekim merkezcil kuvveti sağladığından yakındaki taş daha hızlı döner: çizgisel ve açısal sürati büyük."
+        },
+        {
+         "text": "Daha hızlı ve daha kısa çember: periyot **küçük**.",
+         "narration": "Daha kısa bir çemberi daha hızlı dolandığı için turunu daha kısa sürede tamamlar; periyodu küçüktür. Cevap C.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 modeli: anlatım değiştirildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DAIRESEL_03",
+    "title": "Merkezcil ivme",
+    "narration": "Sürati sabit olan bir cismin de ivmesi olabilir: hızının yönü değişiyorsa.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Merkezcil ivme",
+      "items": [
+       "Sürat sabit olsa da yön değiştiği için **ivme vardır**: $a = \\frac{v^2}{r} = \\omega^2 r$.",
+       "İvme her an **merkeze** doğrudur.",
+       "Aynı diskte $a = \\omega^2 r$: dıştaki noktanın ivmesi **büyük**."
+      ],
+      "visual": {
+       "kind": "circular",
+       "mode": "disk",
+       "bodies": [
+        {
+         "label": "K",
+         "radius": 0.5
+        },
+        {
+         "label": "L",
+         "radius": 1
+        }
+       ],
+       "velocity": true,
+       "acceleration": true,
+       "motion": true
+      },
+      "beats": [
+       {
+        "narration": "İki nokta, ivme okları merkeze dönük.",
+        "focus": [
+         "acceleration"
+        ]
+       },
+       {
+        "narration": "Disk dönerken oklar hep merkeze bakıyor; dıştaki L'nin ivmesi büyük.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "acceleration"
+        ]
+       }
+      ],
+      "narration": "Düzgün çembersel harekette sürat sabittir ama hızın yönü sürekli değişir; bu yüzden cismin ivmesi vardır. Bu ivme her an çemberin merkezine doğrudur ve merkezcil ivme adını alır: v kare bölü r, ya da omega kare r. Aynı diskte açısal hız ortak olduğundan dıştaki noktanın ivmesi büyüktür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yarıçapı $2$ m olan çembersel bir yolda $6$ m/s sabit süratle giden bir aracın merkezcil ivmesi kaç m/s²'dir?",
+       "options": [
+        "$12$",
+        "$18$",
+        "$24$",
+        "$36$",
+        "$72$"
+       ],
+       "answer": 1,
+       "narration": "$a = \\frac{v^2}{r}$.",
+       "steps": [
+        {
+         "text": "$a = \\frac{6^2}{2}$.",
+         "narration": "Merkezcil ivme v kare bölü r: otuz altı bölü iki."
+        },
+        {
+         "text": "$a = 18$ m/s².",
+         "narration": "On sekiz metre bölü saniye kare. Yarıçapa bölmeyi unutan otuz altıyı, çarpan on ikiyi bulur. Cevap B.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Merkezcil ivme kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sürtünmesiz yatay bir düzlemde düzgün çembersel hareket yapan bir cisim için;\nI. Kinetik enerjisi sabittir.\nII. İvmesi her an çemberin merkezine doğrudur.\nIII. Çemberin merkezine göre net torku sıfırdır.\n\nyargılarından hangileri doğrudur?",
+       "context": "ÖSYM 2020'de sorulan düzgün çembersel harekette sıfır olan nicelikler yapısının yargıları değiştirilmiş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız III",
+        "I ve II",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 4,
+       "narration": "Net kuvvet nereye bakıyor?",
+       "steps": [
+        {
+         "text": "Sürat sabit: kinetik enerji **sabit** (I); ivme **merkeze** (II).",
+         "narration": "Sürat değişmediği için kinetik enerji sabittir. İvme hep merkeze doğrudur."
+        },
+        {
+         "text": "Net kuvvet merkezden geçer: kolu sıfır, **tork sıfır** (III).",
+         "narration": "Net kuvvet merkeze yönelir; doğrultusu merkezden geçtiği için merkeze göre torku sıfırdır. Üçü de doğru. Cevap E.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 modeli: yargılar değiştirildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DAIRESEL_04",
+    "title": "Merkezcil kuvvet",
+    "narration": "Çembersel hareket için merkeze doğru bir net kuvvet gerekir. Bu kuvveti ip, sürtünme ya da çekim sağlar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Merkezcil kuvvet",
+      "items": [
+       "Çembersel hareketi sağlayan net kuvvet merkeze doğrudur: $F_m = \\frac{mv^2}{r}$.",
+       "Bu ayrı bir kuvvet **değildir**: ip gerilmesi, sürtünme, çekim gibi bir kuvvet bu rolü üstlenir.",
+       "Kuvvet kesilirse cisim **teğet** doğrultuda doğrusal gider."
+      ],
+      "narration": "Bir cismin çembersel hareket yapması için merkeze doğru bir net kuvvet gerekir: m v kare bölü r. Bu ayrı bir kuvvet türü değildir; ipin gerilmesi, yolun sürtünmesi ya da kütle çekimi bu görevi üstlenir. Bu kuvvet kesilirse cisim eylemsizlikle teğet doğrultuda düz gider; dışarı doğru fırlamaz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Virajların araçlar tarafından güvenle dönülebilmesi için;\nI. virajın içe doğru uygun bir açıyla eğimli yapılması,\nII. yolun tekerlekle sürtünmeyi azaltan bir malzemeyle kaplanması,\nIII. viraj yarıçapının olabildiğince büyük tutulması\n\nönlemlerinden hangileri doğrudur?",
+       "context": "ÖSYM 2018'de sorulan otoyol virajları yapısının önlemleri değiştirilmiş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 3,
+       "narration": "Gereken merkezcil kuvveti ne sağlar, ne azaltır?",
+       "steps": [
+        {
+         "text": "Eğimli yolda normal kuvvetin bir bileşeni **merkeze** yönelir (I).",
+         "narration": "Yol içe doğru eğimliyse yolun tepki kuvvetinin bir bileşeni merkeze bakar ve gereken kuvvete katkı verir."
+        },
+        {
+         "text": "Sürtünme merkezcil kuvveti sağlar: azaltmak **tehlikeli** (II yanlış); büyük $r$ gereken $\\frac{mv^2}{r}$'yi **küçültür** (III).",
+         "narration": "Düz yolda merkezcil kuvveti sürtünme sağlar; onu azaltmak savrulmaya yol açar. Yarıçap büyüdükçe gereken kuvvet küçülür. Birinci ve üçüncü. Cevap D.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018 modeli: önlemler değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yerküre çevresinde sabit süratle çembersel bir yörüngede dolanan bir uydu için;\nI. Bir tur boyunca yer çekiminin yaptığı iş sıfırdır.\nII. Hızı sabittir.\nIII. Üzerindeki net kuvvet sıfırdır.\n\nyargılarından hangileri doğrudur?",
+       "context": "ÖSYM 2021'de sorulan çembersel yörüngedeki uydu yapısının yargıları değiştirilmiş hâli.",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 0,
+       "narration": "Çekim hıza dik.",
+       "steps": [
+        {
+         "text": "Çekim her an harekete **dik**: iş sıfır (I).",
+         "narration": "Kütle çekimi hep merkeze, hareket hep teğet yönde: kuvvet harekete dik, iş sıfır."
+        },
+        {
+         "text": "Hızın **yönü** değişiyor (II yanlış); merkezcil kuvvet var, net kuvvet **sıfır değil** (III yanlış).",
+         "narration": "Sürat sabit ama hızın yönü sürekli değişir; hız sabit değildir. Çembersel hareket için merkeze doğru net kuvvet gerekir; sıfır olamaz. Cevap A.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021 modeli: yargılar değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kütlesi $0{,}5$ kg olan bir taş, $0{,}8$ m uzunluğundaki bir iple yatay düzlemde $4$ m/s süratle döndürülüyor.\n\nİpteki gerilme kuvveti kaç N'dir? (Yer çekimi önemsiz)",
+       "options": [
+        "$2$",
+        "$5$",
+        "$10$",
+        "$20$",
+        "$40$"
+       ],
+       "answer": 2,
+       "narration": "Merkezcil kuvveti ip sağlıyor.",
+       "steps": [
+        {
+         "text": "$T = \\frac{mv^2}{r} = \\frac{0{,}5 \\cdot 16}{0{,}8}$.",
+         "narration": "İp gerilmesi merkezcil kuvvettir: sıfır virgül beş çarpı on altı bölü sıfır virgül sekiz."
+        },
+        {
+         "text": "$T = 10$ N.",
+         "narration": "Sekiz bölü sıfır virgül sekiz: on newton. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Merkezcil kuvvet kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Merkezkaç kuvvet mi?",
+      "wrong": "Çembersel dönen cisme dışa doğru bir merkezkaç kuvvet etki eder.",
+      "right": "Yere göre bakınca yalnız **merkeze doğru** net kuvvet vardır; dışa itilme hissi **eylemsizliktir**.",
+      "why": "İp koparsa cisim **teğet** gider, dışa doğru değil.",
+      "narration": "Sık yapılan bir hata: dönen cisme dışa doğru bir kuvvet etki ettiğini sanmak. Yerden bakınca cisme yalnız merkeze doğru net bir kuvvet etki eder. Virajda kapıya doğru itiliyormuş gibi hissetmen, vücudunun düz gitmek istemesidir. İp koparsa cisim teğet doğrultuda gider."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_DAIRESEL_05",
+    "title": "Yatay ve düşey çembersel hareket",
+    "narration": "Düşey bir çemberde ağırlık da işe karışır: tepede ve dipte ipin gerilmesi farklıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Düşey çember",
+      "items": [
+       "Tepede: $T + mg = \\frac{mv^2}{r}$; dipte: $T - mg = \\frac{mv^2}{r}$.",
+       "İp en çok **dipte** gerilir; tepede ipin gevşememesi için $v \\ge \\sqrt{gr}$.",
+       "Dönme dolapta sürat sabitse merkezcil kuvvet her yerde **aynı büyüklükte**."
+      ],
+      "visual": {
+       "kind": "circular",
+       "mode": "vertical",
+       "bodies": [
+        {
+         "label": "K",
+         "radius": 1
+        }
+       ],
+       "velocity": true,
+       "acceleration": true,
+       "motion": true
+      },
+      "beats": [
+       {
+        "narration": "İpe bağlı bilye düşey çemberde dönüyor.",
+        "show": [
+         "run"
+        ],
+        "focus": [
+         "b1"
+        ]
+       },
+       {
+        "narration": "Tepede gerilme ve ağırlık aşağı; dipte gerilme yukarı, ağırlık aşağı: dipteki gerilme en büyük.",
+        "focus": [
+         "acceleration"
+        ]
+       }
+      ],
+      "narration": "Düşey bir çemberde ağırlık da hesaba girer. Tepede ip gerilmesi ve ağırlık ikisi de merkeze doğrudur: toplamları m v kare bölü r. Dipte gerilme yukarı, ağırlık aşağıdır: gerilme eksi ağırlık m v kare bölü r. Bu yüzden ip en çok dipte gerilir. Tepede ipin gevşememesi için sürat en az kök g r olmalıdır. Sabit süratle dönen bir dönme dolapta ise merkezcil kuvvet her noktada aynı büyüklüktedir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Kütlesi $0{,}2$ kg olan bir bilye, $0{,}4$ m uzunluğundaki bir iple düşey düzlemde döndürülüyor. Bilyenin en alt noktadaki sürati $4$ m/s'dir.\n\nEn alt noktada ipteki gerilme kaç N'dir? ($g = 10$ m/s²)",
+       "options": [
+        "$8$",
+        "$10$",
+        "$12$",
+        "$14$",
+        "$18$"
+       ],
+       "answer": 1,
+       "narration": "Dipte gerilme ağırlığı da yener.",
+       "steps": [
+        {
+         "text": "Dipte: $T - mg = \\frac{mv^2}{r}$; $\\frac{0{,}2 \\cdot 16}{0{,}4} = 8$ N.",
+         "narration": "Dipte gerilme eksi ağırlık merkezcil kuvvete eşit. Merkezcil kuvvet sıfır virgül iki çarpı on altı bölü sıfır virgül dört: sekiz newton."
+        },
+        {
+         "text": "$T = 8 + 0{,}2 \\cdot 10 = 10$ N.",
+         "narration": "Gerilme sekiz artı iki, on newton. Ağırlığı unutan sekizi bulur. Cevap B.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Düşey çember kalıbı; değerler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Sabit açısal hızla dönen bir dönme dolabın kabininde oturan Ece, sırayla dolabın en üst, en alt ve yan noktalarından geçiyor; kütle merkezinin dönme eksenine uzaklığı hep aynı kalıyor.\n\nEce'ye etki eden merkezcil kuvvetin büyüklüğü ile ilgili hangisi doğrudur?",
+       "context": "ÖSYM 2019'da sorulan dönme dolap kabini yapısının yeniden yazılmış hâli.",
+       "options": [
+        "En üstte en büyüktür",
+        "En altta en büyüktür",
+        "Yanlarda en büyüktür",
+        "En üstte sıfırdır",
+        "Her noktada eşittir"
+       ],
+       "answer": 4,
+       "narration": "Merkezcil kuvvet neye bağlı?",
+       "steps": [
+        {
+         "text": "$F_m = m\\omega^2 r$: $m$, $\\omega$ ve $r$ **sabit**.",
+         "narration": "Merkezcil kuvvet m omega kare r; kütle, açısal hız ve uzaklık hep aynı."
+        },
+        {
+         "text": "Büyüklüğü her yerde **aynı**; değişen, onu sağlayan kuvvetlerin payı.",
+         "narration": "Merkezcil kuvvetin büyüklüğü her noktada aynıdır. Değişen, koltuğun tepkisi ile ağırlığın bu kuvveti nasıl paylaştığıdır; altta koltuk daha çok iter. Cevap E.",
+         "eliminate": [
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 modeli: anlatım değiştirildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Yarıçapı $0{,}9$ m olan düşey çembersel bir rayda dönen bir oyuncak arabanın tepe noktasında raydan ayrılmaması için en küçük sürati kaç m/s olmalıdır? ($g = 10$ m/s²)",
+       "options": [
+        "$1$",
+        "$\\sqrt{3}$",
+        "$2$",
+        "$3$",
+        "$9$"
+       ],
+       "answer": 3,
+       "narration": "Tepede yalnız ağırlık merkezcil kuvveti sağlarsa.",
+       "steps": [
+        {
+         "text": "En küçük süratte ray tepki kuvveti sıfır: $mg = \\frac{mv^2}{r}$.",
+         "narration": "En küçük süratte rayın tepkisi sıfıra iner; merkezcil kuvveti yalnız ağırlık sağlar: m g, m v kare bölü r."
+        },
+        {
+         "text": "$v = \\sqrt{gr} = \\sqrt{9} = 3$ m/s.",
+         "narration": "v kök g r: kök dokuz, üç metre bölü saniye. Kökü almayı unutan dokuzu bulur. Cevap D.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Tepede en küçük sürat kalıbı; değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$\\omega = \\frac{\\Delta\\theta}{\\Delta t}$, $v = \\omega r$.",
+    "$T = \\frac{1}{f}$, $\\omega = \\frac{2\\pi}{T}$.",
+    "$a = \\frac{v^2}{r}$, merkeze doğru.",
+    "$F_m = \\frac{mv^2}{r}$; ip, sürtünme ya da çekim sağlar.",
+    "Tepede $T + mg$, dipte $T - mg$ $= \\frac{mv^2}{r}$.",
+    "Tepede en küçük sürat $\\sqrt{gr}$."
+   ],
+   "warnings": [
+    "Sürat sabit ama **ivme var**.",
+    "Merkezkaç kuvvet **yok**: eylemsizlik.",
+    "Aynı diskte **ω aynı**, v farklı."
+   ],
+   "narration": "Özetleyelim. Açısal hız birim zamanda taranan açıdır; çizgisel hız açısal hız çarpı yarıçap. Periyot bir turun süresi, frekans saniyedeki tur sayısıdır. Düzgün çembersel harekette sürat sabittir ama merkeze doğru bir ivme vardır, v kare bölü r. Bunu sağlayan merkezcil kuvveti ip, sürtünme ya da çekim üstlenir. Düşey çemberde tepede gerilme ile ağırlık toplanır, dipte gerilme ağırlığı da yener; tepede en küçük sürat kök g r'dir."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "Sabit süratli dönüş",
+    "question": "İvme var mı?",
+    "choices": [
+     "Var",
+     "Yok"
+    ],
+    "answer": 0,
+    "why": "Yön değişiyor: **merkezcil ivme**."
+   },
+   {
+    "sentence": "İp kopuyor",
+    "question": "Cisim nereye?",
+    "choices": [
+     "Teğet",
+     "Dışa"
+    ],
+    "answer": 0,
+    "why": "**Teğet** doğrultuda düz gider."
+   },
+   {
+    "sentence": "Aynı diskte dış nokta",
+    "question": "Açısal hız?",
+    "choices": [
+     "Aynı",
+     "Büyük"
+    ],
+    "answer": 0,
+    "why": "ω **aynı**, v büyük."
+   }
+  ],
+  "hook": "Üç dönme tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "a = **v² / r**, merkeze doğru."
+   },
+   {
+    "kind": "warning",
+    "text": "Merkezkaç kuvvet **yok**."
+   },
+   {
+    "kind": "term",
+    "term": "Periyot",
+    "definition": "Bir **tam turun** süresi."
+   }
+  ],
+  "summary": [
+   "Açısal hız",
+   "Merkezcil kuvvet",
+   "Düşey çember"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-fizik-kampi",
+  "name": "AYT Fizik kampı",
+  "number": 14,
+  "total": 21,
+  "previous": "İndüksiyon, Alternatif Akım ve Transformatörler",
+  "next": "Dönme, Yuvarlanma ve Açısal Momentum",
+  "promise": "Vektörden modern fiziğe AYT Fizik: her konu animasyonlu anlatım ve çözümlü sorularla.",
+  "task": {
+   "items": [
+    "Bir ipe bağlı silgiyi yatay düzlemde döndür; **hızlandıkça** ipin nasıl gerildiğini hisset.",
+    "Bir bisiklet tekerleğinde iç ve dış noktaların **bir turda** aldığı yolu karşılaştır.",
+    "Uygulamada AYT Düzgün Çembersel Hareket testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bir ipe bağlı silgiyi yatay düzlemde döndür; hızlandıkça ipin elini nasıl daha çok çektiğini hisset. Sonra bir bisiklet tekerleğinde göbeğe yakın ve jantta duran iki noktanın bir turda aldığı yolu karşılaştır. Ardından uygulamada yirmi soru çöz. Bir sonraki derste dönme, yuvarlanma ve açısal momentumda görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Açısal ve çizgisel hız ilişkisini örnekle: aynı diskteki noktaların açısal hızı eşit, dıştakinin çizgisel hızı büyüktür. Dünya'nın dönüşüyle ekvatordaki bir noktanın yaklaşık 1670 km/h hızla döndüğünü 2πR / T ile hesaplat.",
+   "Viraj hesapları ekle: düz virajda sürtünme merkezcil kuvveti sağlar, v(en çok) = √(μgr); μ = 0,5, r = 80 m için 20 m/s. Sürtünmesiz eğimli virajda tanθ = v² / (rg); r = 40 m ve v = 20 m/s için θ = 45°.",
+   "Konik sarkacı ekle: ip gerilmesinin yatay bileşeni merkezcil kuvveti, düşey bileşeni ağırlığı dengeler; tanθ = v² / (rg). Dönme hızı arttıkça ipin yatayla yaptığı açının küçüldüğünü göster.",
+   "Düşey çemberde en küçük hızları ver: ipe bağlı cisimde tepede v(en az) = √(gr); r = 0,4 m için 2 m/s. Enerji korunumuyla dipte en az √(5gr) gerektiğini, çubuğa bağlı cisimde tepe hızının sıfır olabileceğini ekle.",
+   "Dönme dolapta görünür ağırlığı örnekle: v²/r = 2 m/s² ise 50 kg kişi tepede 400 N, dipte 600 N ağırlık hisseder. Merkezkaç kuvvetinin dönen gözlemciye göre hayalî bir kuvvet olduğunu; çamaşır makinesinin sıkmasını ve santrifüjü bu açıdan açıkla."
+  ]
+ }
+}

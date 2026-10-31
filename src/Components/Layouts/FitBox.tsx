@@ -28,11 +28,25 @@ const MEASURING_ATTRIBUTE = 'data-fit-measuring';
  * narrow column, cut off by the column's rounded corners. The box's own width
  * check misses it, because the clipping element hides the overflow.
  */
-const clipsText = (root: HTMLElement): boolean => {
+const clippedElement = (root: HTMLElement): HTMLElement | undefined => {
 	for (const element of Array.from(root.querySelectorAll<HTMLElement>('*'))) {
-		if (element.clientWidth > 0 && element.scrollWidth > element.clientWidth + 1) return true;
+		// KaTeX lays subscripts and fractions out with zero-width table cells that always report a wider scroll
+		// than their box; they are not text being cut off. A formula wider than its own box is still caught by
+		// that box (an option, a step), which is not inside the formula.
+		if (element.closest('.katex')) continue;
+		if (element.clientWidth > 0 && element.scrollWidth > element.clientWidth + 1) return element;
 	}
-	return false;
+	return undefined;
+};
+
+/** Why content does not fit, for the warning: which check failed and, for a cut-off word, where. */
+const overflowReason = (outer: HTMLElement, inner: HTMLElement): string => {
+	if (inner.getBoundingClientRect().height > outer.getBoundingClientRect().height + 0.5) return 'too tall';
+	if (inner.scrollWidth > inner.clientWidth + 1) return `too wide (${inner.scrollWidth} > ${inner.clientWidth})`;
+	const clipped = clippedElement(inner);
+	return clipped
+		? `cut off in <${clipped.tagName.toLowerCase()} class="${clipped.className}"> ${clipped.scrollWidth} > ${clipped.clientWidth} px "${(clipped.textContent ?? '').slice(0, 40)}"`
+		: 'unknown';
 };
 const MEASURING_STYLE_ID = 'fit-box-measuring';
 
@@ -82,14 +96,14 @@ export const FitBox: React.FC<FitBoxProps> = ({align = 'center', minScale = 0.5,
 			const available = outer.getBoundingClientRect();
 			const used = inner.getBoundingClientRect();
 			const limit = available.height * (scale > 1 ? FILL_HEIGHT_SHARE : 1);
-			return used.height <= limit + 0.5 && inner.scrollWidth <= inner.clientWidth + 1 && !clipsText(inner);
+			return used.height <= limit + 0.5 && inner.scrollWidth <= inner.clientWidth + 1 && !clippedElement(inner);
 		};
 
 		const fit = (): void => {
 			if (fitsAt(maxScale)) return;
 			if (!fitsAt(minScale)) {
 				console.warn(
-					`[FitBox] Content overflows even at ${minScale}x: "${(inner.textContent ?? '').slice(0, 80)}"`,
+					`[FitBox] Content overflows even at ${minScale}x (${overflowReason(outer, inner)}): "${(inner.textContent ?? '').slice(0, 80)}"`,
 				);
 				return;
 			}

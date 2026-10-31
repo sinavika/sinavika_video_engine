@@ -8,7 +8,7 @@
  *
  * The jobs in samples/ are narrated as written. Built-in samples are silent by default.
  *
- * Output: out/Samples/*.mp4 and out/Samples/Report.json
+ * Output: Outputs/Samples/*.mp4 and Outputs/Samples/Report.json
  */
 import {readFile, readdir, writeFile} from 'node:fs/promises';
 import path from 'node:path';
@@ -22,7 +22,7 @@ const {values} = parseArgs({
 		quality: {type: 'string'},
 		only: {type: 'string'},
 		'narrate-all': {type: 'boolean', default: false},
-		out: {type: 'string', default: 'out/Samples'},
+		out: {type: 'string', default: 'Outputs/Samples'},
 	},
 });
 

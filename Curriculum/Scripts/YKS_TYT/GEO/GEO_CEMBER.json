@@ -1,0 +1,1425 @@
+{
+ "topic": {
+  "id": "48803963-1F77-EFF4-4164-8CF208C38BD8",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_CEMBER"
+ },
+ "title": "Çember ve Daire",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sources": [
+  "YKS/TYT/CikmisSorular/GEO.jsonl (ÖSYM 2018 silecek, 2019 ip ve yarım daire; yalnız yapı örneği); YKS/TYT/Sorular/GEO/GEO_CEMBER.jsonl",
+  "Bu konu için MEB konu anlatımı eşlenmemiş (VeriDuzeltmeleri #37); çember, teğet ve açı bilgileri temel geometri bilgisiyle kuruldu",
+  "Bütün şekiller verilen ölçülerle koordinatta çizildi; sorular özgündür"
+ ],
+ "works": {
+  "additions": [
+   "Çemberde açı kurallarını tamamla: kirişler dörtgeninde karşılıklı açılar bütünlerdir; içte kesişen kirişlerin açısı yayların toplamının yarısı; dışta kesişen kesenlerin açısı yayların farkının yarısı.",
+   "Kuvvet bağıntılarını ekle: içte kesişen kirişlerde parçaların çarpımı eşit; dış noktadan teğet ve kesen için t² = a · b; çözümlü örnekler.",
+   "Daire parçalarının alanlarını ver: halka (π(R² − r²)), daire dilimi, daire kesmesi (dilim − üçgen); π'nin 3 alındığı sorular.",
+   "Tekerlek tur sayısı ve dişli çark problemlerini (yol = tur · 2πr) örnekle."
+  ]
+ },
+ "short": {
+  "hook": "Çemberde iki dik açı",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Dikme kirişi **ortalar**."
+   },
+   {
+    "kind": "fact",
+    "text": "Çevre açı = **yarım** merkez."
+   },
+   {
+    "kind": "warning",
+    "text": "Çapı gören açı **90°**."
+   }
+  ],
+  "summary": [
+   "Teğet ⟂ yarıçap",
+   "Dilim πr²·α/360"
+  ],
+  "rounds": [
+   {
+    "sentence": "Çevre açı 35°",
+    "question": "Merkez açı?",
+    "choices": [
+     "70°",
+     "35°"
+    ],
+    "answer": 0,
+    "why": "**İki** katı."
+   },
+   {
+    "sentence": "r 13, kiriş 24",
+    "question": "Uzaklık?",
+    "choices": [
+     "5",
+     "12"
+    ],
+    "answer": 0,
+    "why": "5-12-**13**."
+   },
+   {
+    "sentence": "r 6, açı 120°",
+    "question": "Dilim?",
+    "choices": [
+     "12π",
+     "4π"
+    ],
+    "answer": 0,
+    "why": "36π'nin **üçte biri**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "yks-tyt-geometri-kampi",
+  "name": "TYT Geometri kampı",
+  "number": 21,
+  "total": 23,
+  "previous": "Grafik Okuma",
+  "next": "Analitik Geometri",
+  "promise": "Geometri konularının hepsi, sırayla ve soru çözerek.",
+  "task": {
+   "items": [
+    "Pergelle bir çember çiz; bir kirişe merkezden dikme indir ve kirişin **ortalandığını** ölç.",
+    "Merkez, çevre ve teğet-kiriş açılarını, çevre ve alan formüllerini **bir sayfaya** yaz.",
+    "Uygulamada Çember ve Daire testinden **20 soru** çöz; her şekilde önce **yarıçapları** çiz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Pergelle bir çember çiz; bir kiriş seç, merkezden dikme indir ve kirişin tam ortasından kesildiğini ölç. Sonra merkez, çevre ve teğet kiriş açılarını, çevre ve alan formüllerini bir sayfaya yaz. En son uygulamada çember ve daire testinden yirmi soru çöz; her şekilde önce yarıçapları çiz. Bir sonraki derste analitik geometriyle devam ediyoruz. Kampta görüşmek üzere!"
+  }
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Yarıçapı çiz, gerisi gelir",
+   "narration": "Çember sorularının sırrı basit: merkezden bir yarıçap çiz. Bu tek çizgi çoğu zaman bir dik açı ya da bir ikizkenar üçgen ortaya çıkarır. Bu derste kiriş ve teğetin kurduğu dik üçgenleri, çemberdeki açıları, yay uzunluğunu ve daire dilimlerinin alanını öğreneceğiz."
+  },
+  "objectives": [
+   "Kiriş ve teğetin oluşturduğu dik üçgenlerle uzunluk bulmak",
+   "Merkez açı, çevre açı ve teğet-kiriş açısı ilişkilerini kullanmak",
+   "Çemberin çevresini ve yay uzunluğunu hesaplamak",
+   "Daire, daire dilimi ve halka alanlarını bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_CEMBER_02",
+    "subtopics": [
+     "GEO_CEMBER_07",
+     "GEO_CEMBER_08"
+    ],
+    "title": "Kiriş ve teğet",
+    "narration": "Çember sorularında iki dik açı her şeyi çözer.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "İki dik açı",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -4.7,
+        -4.7,
+        5.075,
+        4.7
+       ],
+       "points": [
+        {
+         "id": "O",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "A",
+         "at": [
+          -3.277,
+          -2.294
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          3.277,
+          -2.294
+         ]
+        },
+        {
+         "id": "H",
+         "at": [
+          -0.0,
+          -2.294
+         ]
+        },
+        {
+         "id": "T",
+         "at": [
+          1.368,
+          3.759
+         ]
+        },
+        {
+         "id": "P",
+         "at": [
+          4.375,
+          2.664
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "H",
+         "label": "m"
+        },
+        {
+         "from": "H",
+         "to": "B",
+         "label": "m"
+        },
+        {
+         "from": "O",
+         "to": "H",
+         "dashed": true
+        },
+        {
+         "from": "O",
+         "to": "A",
+         "label": "r"
+        },
+        {
+         "from": "O",
+         "to": "T",
+         "label": "r"
+        },
+        {
+         "from": "T",
+         "to": "P"
+        }
+       ],
+       "circles": [
+        {
+         "center": "O",
+         "radius": 4
+        }
+       ],
+       "polygons": [],
+       "angles": [
+        {
+         "at": "H",
+         "from": "B",
+         "to": "O",
+         "right": true
+        },
+        {
+         "at": "T",
+         "from": "O",
+         "to": "P",
+         "right": true
+        }
+       ]
+      },
+      "caption": "Merkezden kirişe inen dikme kirişi **ortalar**; teğet, değme noktasındaki yarıçapa **diktir**.",
+      "narration": "Çemberin iki noktasını birleştiren doğru parçasına kiriş, çembere tek noktada değen doğruya teğet denir.",
+      "beats": [
+       {
+        "narration": "Merkezden A B kirişine bir dikme indirelim. O A ile O B yarıçap, eşit; O A B ikizkenar üçgen. Dikme kirişi tam ortasından keser: iki parça da m. Böylece yarıçap, dikme ve yarım kiriş bir dik üçgen kurar.",
+        "focus": [
+         "OH",
+         "AH",
+         "HB",
+         "OA"
+        ]
+       },
+       {
+        "narration": "Teğet, değme noktasındaki yarıçapa diktir: O T ile T P arasında dik açı var. Dışarıdaki bir noktadan çembere çizilen iki teğet parçası da birbirine eşittir.",
+        "focus": [
+         "OT",
+         "TP",
+         "angle-T"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki çemberin yarıçapı $13$ cm ve $[AB]$ kirişi $24$ cm'dir. Merkezin bu kirişe uzaklığı $x$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -13.8,
+         -13.8,
+         13.8,
+         13.8
+        ],
+        "points": [
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "A",
+          "at": [
+           -12,
+           -5
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           12,
+           -5
+          ]
+         },
+         {
+          "id": "H",
+          "at": [
+           0,
+           -5
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "24"
+         },
+         {
+          "from": "O",
+          "to": "A",
+          "label": "13"
+         },
+         {
+          "from": "O",
+          "to": "H",
+          "label": "x",
+          "dashed": true
+         }
+        ],
+        "circles": [
+         {
+          "center": "O",
+          "radius": 13
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "H",
+          "from": "B",
+          "to": "O",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "12"
+       ],
+       "answer": 2,
+       "narration": "Dikme kirişi ortalar.",
+       "steps": [
+        {
+         "text": "$|AH| = 12$; $OAH$ dik üçgeni, hipotenüs $13$.",
+         "narration": "Merkezden inen dikme kirişi ortalar: A H on iki. O A H dik üçgeninde hipotenüs yarıçap, on üç."
+        },
+        {
+         "text": "$x = \\sqrt{169 - 144} = 5$. Cevap **C**.",
+         "narration": "Beş, on iki, on üç üçgeninden x beş santimetre. Cevabımız C. On ikiyi seçen, yarım kirişi uzaklık sanmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; kiriş ve merkez uzaklığı 5-12-13 üçgeniyle özgün bir şekilde soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde yarıçapı $6$ cm olan çembere dışındaki $P$ noktasından $T$ noktasında değen bir teğet çizilmiştir. $|OP| = 10$ cm olduğuna göre $|PT| = x$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -6.7,
+         -6.7,
+         10.7,
+         6.7
+        ],
+        "points": [
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "P",
+          "at": [
+           10,
+           0
+          ]
+         },
+         {
+          "id": "T",
+          "at": [
+           3.6,
+           4.8
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "O",
+          "to": "P",
+          "label": "10"
+         },
+         {
+          "from": "O",
+          "to": "T",
+          "label": "6"
+         },
+         {
+          "from": "T",
+          "to": "P",
+          "label": "x"
+         }
+        ],
+        "circles": [
+         {
+          "center": "O",
+          "radius": 6
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "T",
+          "from": "O",
+          "to": "P",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "6",
+        "8",
+        "10",
+        "$2\\sqrt{34}$",
+        "16"
+       ],
+       "answer": 1,
+       "narration": "Teğet yarıçapa dik.",
+       "steps": [
+        {
+         "text": "$OT \\perp TP$ → $OTP$ dik üçgen.",
+         "narration": "Teğet, değme noktasındaki yarıçapa diktir: O T P bir dik üçgen, hipotenüs O P."
+        },
+        {
+         "text": "$x = \\sqrt{100 - 36} = 8$. Cevap **B**.",
+         "narration": "On kare eksi altı kare, altmış dört; x sekiz santimetre. Cevabımız B. İki kök otuz dördü seçen, O P'yi dik kenar sanmıştır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; teğet ve yarıçapın dikliği 6-8-10 üçgeniyle özgün bir şekilde soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde çembere dışındaki $P$ noktasından $A$ ve $B$'de değen iki teğet çizilmiştir. $|PA| = 6$ cm ve $m(\\widehat{APB}) = 60°$ olduğuna göre $|AB| = x$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -4.164,
+         -4.164,
+         7.628,
+         4.164
+        ],
+        "points": [
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "P",
+          "at": [
+           6.928,
+           0
+          ]
+         },
+         {
+          "id": "A",
+          "at": [
+           1.732,
+           3.0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           1.732,
+           -3.0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "P",
+          "to": "A",
+          "label": "6"
+         },
+         {
+          "from": "P",
+          "to": "B"
+         },
+         {
+          "from": "A",
+          "to": "B",
+          "label": "x",
+          "dashed": true
+         }
+        ],
+        "circles": [
+         {
+          "center": "O",
+          "radius": 3.464
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "P",
+          "from": "A",
+          "to": "B",
+          "label": "60°"
+         }
+        ]
+       },
+       "options": [
+        "3",
+        "$3\\sqrt{3}$",
+        "6",
+        "$6\\sqrt{3}$",
+        "12"
+       ],
+       "answer": 2,
+       "narration": "Dış noktadan teğetler eşit.",
+       "steps": [
+        {
+         "text": "$|PA| = |PB| = 6$; $APB$ ikizkenar ve tepe açısı $60°$ → **eşkenar**.",
+         "narration": "Dış noktadan çizilen iki teğet eşittir: P A ile P B altışar santim. Tepe açısı altmış olan ikizkenar üçgen eşkenardır."
+        },
+        {
+         "text": "$x = 6$. Cevap **C**.",
+         "narration": "A B de altı santimetre. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dış noktadan çizilen teğetlerin eşitliği özgün bir şekilde soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir çemberin $[AB]$ ve $[CD]$ kirişleri $E$ noktasında kesişiyor. $|AE| = 4$, $|EB| = 6$ ve $|CE| = 3$ birim olduğuna göre $|ED|$ kaç birimdir?",
+       "options": [
+        "4",
+        "6",
+        "7",
+        "8",
+        "9"
+       ],
+       "answer": 3,
+       "narration": "Kesişen kirişlerde parçaların çarpımı eşit.",
+       "steps": [
+        {
+         "text": "$|AE| \\cdot |EB| = |CE| \\cdot |ED|$ ($AEC \\sim DEB$).",
+         "narration": "A E C ile D E B üçgenleri benzerdir: E'deki ters açılar eşit, A ile D aynı C B yayını gören çevre açılar. Benzerlikten çıkan kural: bir kirişin parçalarının çarpımı, öbür kirişin parçalarının çarpımına eşittir."
+        },
+        {
+         "text": "$4 \\cdot 6 = 3 \\cdot |ED|$ → $|ED| = 8$. Cevap **D**.",
+         "narration": "Dört çarpı altı, yirmi dört; üç çarpı E D, yirmi dört. E D sekiz birim. Cevabımız D. Yedi, toplamları eşitleyenin cevabıdır: dört artı altı, üç artı yedi; oysa kural çarpımla işler.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; kesişen kirişlerde parçaların çarpımı benzerlik gerekçesiyle özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_CEMBER_01",
+    "subtopics": [
+     "GEO_CEMBER_04",
+     "GEO_CEMBER_05",
+     "GEO_CEMBER_06"
+    ],
+    "title": "Çemberde açılar",
+    "narration": "Çemberde açılar, gördükleri yaya göre ölçülür.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Merkez açı, çevre açı",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -4.7,
+        -4.7,
+        4.7,
+        4.7
+       ],
+       "points": [
+        {
+         "id": "O",
+         "at": [
+          0,
+          0
+         ]
+        },
+        {
+         "id": "A",
+         "at": [
+          -3.759,
+          -1.368
+         ]
+        },
+        {
+         "id": "B",
+         "at": [
+          3.759,
+          -1.368
+         ]
+        },
+        {
+         "id": "C",
+         "at": [
+          -0.695,
+          3.939
+         ]
+        }
+       ],
+       "segments": [
+        {
+         "from": "O",
+         "to": "A"
+        },
+        {
+         "from": "O",
+         "to": "B"
+        },
+        {
+         "from": "C",
+         "to": "A"
+        },
+        {
+         "from": "C",
+         "to": "B"
+        }
+       ],
+       "circles": [
+        {
+         "center": "O",
+         "radius": 4
+        }
+       ],
+       "polygons": [],
+       "angles": [
+        {
+         "at": "O",
+         "from": "A",
+         "to": "B",
+         "label": "2α"
+        },
+        {
+         "at": "C",
+         "from": "A",
+         "to": "B",
+         "label": "α"
+        }
+       ]
+      },
+      "caption": "Merkez açı gördüğü yaya **eşit**; çevre açı ve teğet-kiriş açısı gördüğü yayın **yarısı**. Çapı gören çevre açı **90°**.",
+      "narration": "Köşesi merkezde olan açıya merkez açı, köşesi çember üzerinde olan açıya çevre açı denir.",
+      "beats": [
+       {
+        "narration": "Aynı A B yayını gören merkez açı iki alfa ise çevre açı alfa: çevre açı, merkez açının yarısıdır. Yay, gören merkez açıyla aynı ölçüde kabul edilir.",
+        "focus": [
+         "angle-O",
+         "angle-C"
+        ]
+       },
+       {
+        "narration": "Özel durum: A B çap ise merkez açı yüz seksen, çevre açı doksan olur; çapı gören çevre açı her zaman diktir. Teğet ile kiriş arasındaki açı da, kirişin gördüğü yayın yarısıdır; yani o yayı gören çevre açıya eşittir.",
+        "focus": [
+         "CA",
+         "CB"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $O$ merkezli çemberde $m(\\widehat{ACB}) = 35°$'dir. Buna göre $m(\\widehat{AOB}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -4.7,
+         -4.7,
+         4.7,
+         4.7
+        ],
+        "points": [
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "A",
+          "at": [
+           -2.294,
+           -3.277
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           2.294,
+           -3.277
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           0.0,
+           4.0
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "O",
+          "to": "A"
+         },
+         {
+          "from": "O",
+          "to": "B"
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "C",
+          "to": "B"
+         }
+        ],
+        "circles": [
+         {
+          "center": "O",
+          "radius": 4
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "C",
+          "from": "A",
+          "to": "B",
+          "label": "35°"
+         },
+         {
+          "at": "O",
+          "from": "A",
+          "to": "B",
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "35",
+        "55",
+        "70",
+        "105",
+        "145"
+       ],
+       "answer": 2,
+       "narration": "Aynı yayı gören merkez açı, çevre açının iki katı.",
+       "steps": [
+        {
+         "text": "$x = 2 \\cdot 35° = 70°$. Cevap **C**.",
+         "narration": "A C B ve A O B aynı A B yayını görüyor. Merkez açı, çevre açının iki katı: yetmiş derece. Cevabımız C. On yedi buçuk ya da otuz beş, kuralı ters kurmanın sonucu.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; merkez açı ve çevre açı ilişkisi ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $[AB]$, $O$ merkezli çemberin çapıdır ve $C$ çember üzerindedir. $m(\\widehat{CAB}) = 28°$ olduğuna göre $m(\\widehat{ABC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -4.7,
+         -4.7,
+         4.7,
+         4.7
+        ],
+        "points": [
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "A",
+          "at": [
+           -4.0,
+           0.0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           4.0,
+           0.0
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           2.237,
+           3.316
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "A",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "B"
+         }
+        ],
+        "circles": [
+         {
+          "center": "O",
+          "radius": 4
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "28°"
+         },
+         {
+          "at": "C",
+          "from": "A",
+          "to": "B",
+          "right": true
+         },
+         {
+          "at": "B",
+          "from": "C",
+          "to": "A",
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "28",
+        "62",
+        "72",
+        "90",
+        "118"
+       ],
+       "answer": 1,
+       "narration": "Çapı gören çevre açı diktir.",
+       "steps": [
+        {
+         "text": "$m(\\widehat{ACB}) = 90°$ (çapı görüyor).",
+         "narration": "C açısı A B çapını görüyor; çapı gören çevre açı doksan derecedir."
+        },
+        {
+         "text": "$x = 180° - 90° - 28° = 62°$. Cevap **B**.",
+         "narration": "A B C üçgeninde x, yüz seksen eksi doksan eksi yirmi sekiz, altmış iki derece. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; çapı gören çevre açının dikliği özgün bir şekilde soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde çembere $A$ noktasında teğet olan doğru ile $[AB]$ kirişi arasındaki açı $50°$'dir. $C$, çemberin öbür yayı üzerinde olduğuna göre $m(\\widehat{ACB}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -4.7,
+         -4.7,
+         4.7,
+         4.7
+        ],
+        "points": [
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "A",
+          "at": [
+           -0.0,
+           -4.0
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           3.939,
+           0.695
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           -3.464,
+           2.0
+          ]
+         },
+         {
+          "id": "T",
+          "at": [
+           4.0,
+           -4.0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "S",
+          "at": [
+           -3.0,
+           -4.0
+          ],
+          "hidden": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "S",
+          "to": "T"
+         },
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "C",
+          "to": "B"
+         }
+        ],
+        "circles": [
+         {
+          "center": "O",
+          "radius": 4
+         }
+        ],
+        "polygons": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "T",
+          "to": "B",
+          "label": "50°"
+         },
+         {
+          "at": "C",
+          "from": "A",
+          "to": "B",
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "25",
+        "40",
+        "50",
+        "80",
+        "100"
+       ],
+       "answer": 2,
+       "narration": "Teğet-kiriş açısı ile aynı yayı gören çevre açı eşit.",
+       "steps": [
+        {
+         "text": "Teğet-kiriş açısı $= \\frac{\\text{yay } AB}{2}$; çevre açı $ACB$ de aynı yayı görüyor.",
+         "narration": "Teğet ile A B kirişi arasındaki açı, A B yayının yarısıdır. A C B çevre açısı da aynı yayı görür ve yine yayın yarısıdır."
+        },
+        {
+         "text": "$x = 50°$. Cevap **C**.",
+         "narration": "İkisi eşit: x elli derece. A B yayı ise yüz derece. Cevabımız C. Yüzü seçen, yayın kendisini bulmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; teğet-kiriş açısı ile çevre açının eşitliği özgün bir şekilde soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_CEMBER_10",
+    "subtopics": [
+     "GEO_CEMBER_09"
+    ],
+    "title": "Çevre ve yay",
+    "narration": "Çemberin uzunluğu ve bir yayın uzunluğu.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Çevre ve yay uzunluğu",
+      "items": [
+       "Çemberin çevresi $2\\pi r$.",
+       "Merkez açısı $\\alpha$ olan yayın uzunluğu $2\\pi r \\cdot \\frac{\\alpha}{360°}$.",
+       "Yarıçap $k$ katına çıkarsa çevre $k$, alan $k^2$ katına çıkar."
+      ],
+      "narration": "Yarıçapı r olan çemberin çevresi iki pi r. Bir yay, çemberin bir parçasıdır; merkez açısı alfa ise yay uzunluğu çevrenin alfa bölü üç yüz altmışı kadardır. Bütün çemberler birbirine benzerdir: yarıçap k katına çıkarsa çevre k katına, alan k kare katına çıkar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Yarıçapı $6$ cm olan bir çemberde merkez açısı $60°$ olan yayın uzunluğu kaç santimetredir?",
+       "options": [
+        "$\\pi$",
+        "$2\\pi$",
+        "$3\\pi$",
+        "$6\\pi$",
+        "$12\\pi$"
+       ],
+       "answer": 1,
+       "narration": "Çevrenin $\\frac{60}{360}$'ı.",
+       "steps": [
+        {
+         "text": "Çevre $12\\pi$; yay $12\\pi \\cdot \\frac{60}{360} = 2\\pi$. Cevap **B**.",
+         "narration": "Çevre iki pi çarpı altı, on iki pi. Altmış derece, tam turun altıda biri: yay iki pi santimetre. Cevabımız B. On iki pi, çevrenin tamamıdır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yay uzunluğu özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Yarıçapı $R$ olan bir daireyi tam bir kez çevreleyen ip, dört eş parçaya bölünüyor. Bu parçalardan biri, yarıçapı $r$ olan bir daireyi tam bir kez çevreliyor. Büyük dairenin alanı küçüğünkinin kaç katıdır?",
+       "options": [
+        "4",
+        "8",
+        "12",
+        "16",
+        "64"
+       ],
+       "answer": 3,
+       "narration": "Çevreden yarıçaplar oranı, sonra alan için kare.",
+       "steps": [
+        {
+         "text": "$\\frac{2\\pi R}{4} = 2\\pi r$ → $R = 4r$.",
+         "narration": "İpin uzunluğu iki pi R; dörtte biri iki pi r'ye eşit: R, dört r."
+        },
+        {
+         "text": "Alanlar oranı $\\left(\\frac{R}{r}\\right)^2 = 16$. Cevap **D**.",
+         "narration": "Yarıçap dört katı olunca alan on altı katıdır. Cevabımız D. Dördü seçen, çevre oranında durmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2019 ip ve yarım daireler sorusunun fikri tam daireler ve farklı bir bölmeyle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Çevresi $10\\pi$ cm olan bir dairenin alanı kaç santimetrekaredir?",
+       "options": [
+        "$5\\pi$",
+        "$10\\pi$",
+        "$20\\pi$",
+        "$25\\pi$",
+        "$100\\pi$"
+       ],
+       "answer": 3,
+       "narration": "Önce yarıçap.",
+       "steps": [
+        {
+         "text": "$2\\pi r = 10\\pi$ → $r = 5$.",
+         "narration": "Çevre iki pi r, on pi: r beş santimetre."
+        },
+        {
+         "text": "Alan $\\pi \\cdot 25 = 25\\pi$. Cevap **D**.",
+         "narration": "Alan pi r kare, yirmi beş pi santimetrekare. Cevabımız D. Yüz pi'yi seçen, çapı yarıçap sanmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; çevreden yarıçapa ve alana geçiş özgün bir değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir dairenin yarıçapı $3$ katına çıkarılırsa çevresi ve alanı kaç katına çıkar?",
+       "options": [
+        "Çevre 3, alan 3",
+        "Çevre 3, alan 6",
+        "Çevre 3, alan 9",
+        "Çevre 6, alan 9",
+        "Çevre 9, alan 27"
+       ],
+       "answer": 2,
+       "narration": "Uzunluklar $k$, alanlar $k^2$ katına.",
+       "steps": [
+        {
+         "text": "Çevre $2\\pi(3r) = 3 \\cdot 2\\pi r$; alan $\\pi(3r)^2 = 9 \\cdot \\pi r^2$. Cevap **C**.",
+         "narration": "Çevre bir uzunluktur, yarıçapla aynı oranda büyür: üç katı. Alan ise yarıçapın karesiyle büyür: dokuz katı. Bütün daireler benzerdir. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dairelerde benzerlik oranının çevre ve alana etkisi özgün bir soruyla gösterildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_CEMBER_03",
+    "subtopics": [
+     "GEO_CEMBER_11"
+    ],
+    "title": "Daire ve dilim alanı",
+    "narration": "Son bölümde dairenin ve daire diliminin alanı.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Alan formülleri",
+      "items": [
+       "Dairenin alanı $\\pi r^2$.",
+       "Merkez açısı $\\alpha$ olan dilimin alanı $\\pi r^2 \\cdot \\frac{\\alpha}{360°}$.",
+       "Halka (iki çember arası): $\\pi(R^2 - r^2)$; dilimde de aynı oran."
+      ],
+      "narration": "Yarıçapı r olan dairenin alanı pi r kare. Merkez açısı alfa olan bir dilimin alanı, dairenin alfa bölü üç yüz altmışıdır. İç içe iki çember arasındaki halkanın alanı, büyük daireden küçüğü çıkarınca bulunur: pi çarpı R kare eksi r kare. Bir halkanın dilimi için de aynı açı oranı kullanılır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Yarıçapı $6$ cm olan bir dairede merkez açısı $120°$ olan daire diliminin alanı kaç santimetrekaredir?",
+       "options": [
+        "$4\\pi$",
+        "$6\\pi$",
+        "$9\\pi$",
+        "$12\\pi$",
+        "$36\\pi$"
+       ],
+       "answer": 3,
+       "narration": "Dairenin üçte biri.",
+       "steps": [
+        {
+         "text": "$36\\pi \\cdot \\frac{120}{360} = 12\\pi$. Cevap **D**.",
+         "narration": "Dairenin alanı otuz altı pi. Yüz yirmi derece, üç yüz altmışın üçte biri: dilim on iki pi santimetrekare. Cevabımız D. Dört pi, yay uzunluğunun değeridir; alan için r kare kullanılır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; daire dilimi alanı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir arabanın yarım daire biçimindeki arka camındaki silecek, $O$ noktası etrafında dönüyor ve $O$'ya uzaklığı $2$ ile $4$ birim arasındaki noktaları temizliyor. Silecek $120°$ döndüğünde temizlenen alan camın alanının yarısı oluyor. Camın yarıçapı kaç birimdir?",
+       "options": [
+        "$3$",
+        "$2\\sqrt{3}$",
+        "$4$",
+        "$4\\sqrt{2}$",
+        "$5$"
+       ],
+       "answer": 2,
+       "narration": "Temizlenen bölge bir halka dilimi.",
+       "steps": [
+        {
+         "text": "Temizlenen: $\\frac{120}{360} \\cdot \\pi(16 - 4) = 4\\pi$.",
+         "narration": "Silecek dört ile iki yarıçaplı çemberler arasındaki halkanın üçte birini siler: pi çarpı on altı eksi dört, on iki pi; üçte biri dört pi."
+        },
+        {
+         "text": "Cam $\\frac{\\pi R^2}{2}$, yarısı $\\frac{\\pi R^2}{4} = 4\\pi$ → $R = 4$. Cevap **C**.",
+         "narration": "Camın alanı pi R kare bölü iki; yarısı pi R kare bölü dört. Bu dört pi'ye eşit: R kare on altı, R dört birim. Silecek camın kenarına kadar uzanıyor. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2018 silecek sorusunun fikri (halka dilimi) farklı yarıçaplar ve açıyla yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde kenarı $10$ cm olan bir karenin içine kenarlarına teğet bir çember çizilmiştir. Karenin içinde, dairenin dışında kalan bölgenin alanı kaç santimetrekaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -5.8,
+         -5.8,
+         5.8,
+         5.8
+        ],
+        "points": [
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ]
+         },
+         {
+          "id": "A",
+          "at": [
+           -5,
+           -5
+          ]
+         },
+         {
+          "id": "B",
+          "at": [
+           5,
+           -5
+          ]
+         },
+         {
+          "id": "C",
+          "at": [
+           5,
+           5
+          ]
+         },
+         {
+          "id": "D",
+          "at": [
+           -5,
+           5
+          ]
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "10"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "A"
+         }
+        ],
+        "circles": [
+         {
+          "center": "O",
+          "radius": 5
+         }
+        ],
+        "polygons": [],
+        "angles": []
+       },
+       "options": [
+        "$100 - 25\\pi$",
+        "$100 - 50\\pi$",
+        "$25\\pi$",
+        "$75$",
+        "$100 - 10\\pi$"
+       ],
+       "answer": 0,
+       "narration": "Çemberin çapı karenin kenarı.",
+       "steps": [
+        {
+         "text": "Çap $10$ → $r = 5$, daire $25\\pi$.",
+         "narration": "Çember dört kenara teğet; çapı karenin kenarına eşit, on. Yarıçap beş, daire yirmi beş pi."
+        },
+        {
+         "text": "Kalan $= 100 - 25\\pi$. Cevap **A**.",
+         "narration": "Karenin alanı yüz; daireyi çıkarınca yüz eksi yirmi beş pi santimetrekare. Cevabımız A. Yüz eksi on pi, alan yerine çevreyi çıkaranın hatası.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; kare içine teğet çemberde kalan alan özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Merkezden kirişe inen dikme kirişi **ortalar**; teğet yarıçapa **diktir**.",
+    "Dış noktadan çizilen teğetler **eşittir**.",
+    "Merkez açı = yay; çevre açı ve teğet-kiriş açısı = yayın **yarısı**; çapı gören açı $90°$.",
+    "Çevre $2\\pi r$; yay $2\\pi r \\cdot \\frac{\\alpha}{360}$.",
+    "Alan $\\pi r^2$; dilim $\\pi r^2 \\cdot \\frac{\\alpha}{360}$; halka $\\pi(R^2 - r^2)$."
+   ],
+   "warnings": [
+    "Yarım kirişi unutma: dikme kirişi **ikiye** böler.",
+    "Yay uzunluğunda $r$, alanda $r^2$.",
+    "Yarıçap $k$ katı → alan $k^2$ katı."
+   ],
+   "narration": "Hadi toparlayalım. Merkezden kirişe inen dikme kirişi ortalar, teğet de değme noktasındaki yarıçapa diktir; dış noktadan çizilen teğetler eşittir. Merkez açı gördüğü yaya eşit, çevre açı ve teğet kiriş açısı yayın yarısıdır; çapı gören çevre açı diktir. Çevre iki pi r, yay onun açı kadar parçası; alan pi r kare, dilim de onun açı kadar parçası."
+  }
+ }
+}

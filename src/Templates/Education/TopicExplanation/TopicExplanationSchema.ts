@@ -6,7 +6,7 @@ import {OutroSchema} from '../../../Schemas/VideoProps';
 import {VisualSchema} from '../../../Schemas/Visual';
 
 /** The building blocks of a section. A new block kind is one entry here and one case in TopicBlock. */
-export const TopicBlockSchema = z.discriminatedUnion('kind', [
+const TopicBlockSchema = z.discriminatedUnion('kind', [
 	z.object({kind: z.literal('paragraph'), text: richText(360)}),
 	z.object({kind: z.literal('definition'), term: plainText(60), text: richText(300)}),
 	z.object({

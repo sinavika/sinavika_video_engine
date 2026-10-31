@@ -1,0 +1,996 @@
+{
+ "topic": {
+  "id": "0C8E8A40-F5FD-5262-D64C-EE1A9DE6FF6B",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_LOG"
+ },
+ "title": "Logaritma",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "YKS/AYT/CikmisSorular/MAT.jsonl (ÖSYM 2019, 2020, 2023, 2025, 2026 kalıpları örnek alındı, sorular yeniden kuruldu)",
+  "MEB AYT Matematik konu anlatımı (tanım, özellikler, fonksiyon, denklem ve eşitsizlik; yapı için) ve YKS/AYT/Sorular/MAT/MAT_LOG.jsonl",
+  "Her cevap tam sayılarla ya da sayısal olarak tek tek denetlendi"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Logaritma tek bir soru sorar: hangi kuvvet?",
+   "narration": "İki üssü kaç, bin yirmi dört eder? Cevap on. İşte logaritma bu soruyu soran işlemdir: üssü bulur. ÖSYM logaritmayı faktöriyelle, hesap makinesiyle, sütun grafiğiyle soruyor; ama hepsinin altında birkaç özellik yatıyor. Bu derste tanımdan grafiğe, denklemden eşitsizliğe AYT düzeyinde yeni sorular çözeceğiz."
+  },
+  "objectives": [
+   "Logaritmayı üssün tersi olarak tanımak ve tanım koşullarını kullanmak",
+   "Özelliklerle ifadeleri tek logaritmada toplamak",
+   "Logaritma grafiğini üstel fonksiyonun tersi olarak yorumlamak",
+   "Logaritmik denklemleri tanım koşuluyla çözmek",
+   "Tabana göre logaritmik eşitsizlik çözmek",
+   "Büyüme ve ölçek problemlerinde logaritma kullanmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_LOG_01",
+    "title": "Logaritmanın tanımı",
+    "narration": "Logaritma, üs almanın tersidir: \"Hangi kuvvet?\" sorusunun cevabı. Önce tanımı ve logaritmanın hangi koşullarda tanımlı olduğunu görelim.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Tanım ve koşullar",
+      "items": [
+       "$\\log_a b = c \\iff a^c = b$: logaritma bir **üs** bulur.",
+       "Tanımlı olması için: $a > 0$, $a \\neq 1$, $b > 0$.",
+       "$\\log_a 1 = 0$, $\\log_a a = 1$.",
+       "$\\log x$: $10$ tabanında; $\\ln x$: $e$ tabanında."
+      ],
+      "visual": {
+       "kind": "table",
+       "header": [
+        "$n$",
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$"
+       ],
+       "rows": [
+        [
+         "$2^n$",
+         "$2$",
+         "$4$",
+         "$8$",
+         "$16$",
+         "$32$"
+        ],
+        [
+         "$\\log_2(2^n)$",
+         "$1$",
+         "$2$",
+         "$3$",
+         "$4$",
+         "$5$"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "İkinin kuvvetleri: üs bir artınca sayı iki katına çıkıyor.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Logaritma bu işi tersine çevirir: sekizi verirsen üç, otuz ikiyi verirsen beş döner. Logaritma, üssü geri verir.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       }
+      ],
+      "narration": "Log a tabanında b eşittir c demek, a üssü c eşittir b demektir: logaritma, tabanı hangi kuvvete yükseltirsek b'yi bulacağımızı söyler. Tanımlı olması için taban pozitif ve birden farklı, logaritması alınan sayı da pozitif olmalıdır. Her tabanda birin logaritması sıfır, tabanın kendisininki birdir. Taban yazılmamışsa on tabanında, ln yazıyorsa e tabanında logaritmadır."
+     },
+     {
+      "kind": "predict",
+      "title": "Hangi iki sayı arası?",
+      "prompt": "$\\log_2 1000$ hangi iki tam sayı arasındadır?",
+      "choices": [
+       "$9$ ile $10$",
+       "$99$ ile $100$"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "$n$",
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$"
+       ],
+       "rows": [
+        [
+         "$2^n$",
+         "$32$",
+         "$64$",
+         "$128$",
+         "$256$"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "İkinin kuvvetleri sekize kadar: iki yüz elli altı. İkiye katlamaya devam edersen?",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       }
+      ],
+      "explanation": "$2^9 = 512 < 1000 < 1024 = 2^{10}$: $9 < \\log_2 1000 < 10$. Logaritma, sayı **büyürken çok yavaş** büyür.",
+      "narration": "Şimdi sıra sende. Log iki tabanında bin hangi iki tam sayı arasındadır? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: dokuz ile on. İki üssü dokuz beş yüz on iki, iki üssü on bin yirmi dört; bin ikisinin arasında. Sayı bine çıksa da logaritması ona bile ulaşmıyor: logaritma çok yavaş büyür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Elif, $1$'den $27$'ye kadar her $n$ tam sayısı için $\\log_3 n$ değerini hesaplıyor. Değer tam sayıysa kendisini, değilse **tam kısmını** bir kâğıda yazıyor.\n\nElif'in yazdığı sayıların toplamı kaçtır?",
+       "options": [
+        "$39$",
+        "$42$",
+        "$45$",
+        "$48$",
+        "$51$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2019'da bu kalıbı sordu. Üçün kuvvetleri arasında tam kısım değişmez.",
+       "steps": [
+        {
+         "text": "$1 \\leq n < 3$: tam kısım $0$; $3 \\leq n < 9$: $1$; $9 \\leq n < 27$: $2$; $n = 27$: $3$.",
+         "narration": "Bir ve ikide değer sıfır ile bir arası: tam kısım sıfır. Üçten sekize bir, dokuzdan yirmi altıya iki, yirmi yedide tam üç."
+        },
+        {
+         "text": "Adetler: $6$ tane $1$, $18$ tane $2$, $1$ tane $3$.",
+         "narration": "Üçten sekize altı sayı, dokuzdan yirmi altıya on sekiz sayı, bir de yirmi yedi."
+        },
+        {
+         "text": "$6 \\cdot 1 + 18 \\cdot 2 + 3 = 45$.",
+         "narration": "Toplam: altı artı otuz altı artı üç, kırk beş. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 tam kısım toplamı kalıbı örnek alındı; taban ve üst sınır yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\log_{x - 2}(8 - x)$\n\nifadesini tanımlı yapan **kaç tane** $x$ tam sayısı vardır?",
+       "options": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$"
+       ],
+       "answer": 1,
+       "narration": "Üç koşulu birlikte yazalım.",
+       "steps": [
+        {
+         "text": "Taban: $x - 2 > 0$ ve $x - 2 \\neq 1$: $x > 2$, $x \\neq 3$.",
+         "narration": "Taban pozitif ve birden farklı: x ikiden büyük, x üç olamaz."
+        },
+        {
+         "text": "Sayı: $8 - x > 0$: $x < 8$.",
+         "narration": "Logaritması alınan sayı pozitif: x sekizden küçük."
+        },
+        {
+         "text": "$x \\in \\{4, 5, 6, 7\\}$: **4** tane.",
+         "narration": "Üç ile sekiz arası, üç hariç: dört, beş, altı, yedi. Dört tane. Tabanın bir olamayacağını unutan beş bulur. Cevap B.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Logaritmanın tanım koşulları kalıbı; ifade yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_LOG_02",
+    "title": "Logaritmanın özellikleri",
+    "narration": "Logaritmanın özellikleri, çarpmayı toplamaya, bölmeyi çıkarmaya, kuvveti çarpmaya çevirir. ÖSYM bu özellikleri faktöriyelle, hesap makinesiyle, çubukla karşımıza çıkarıyor.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Özellikler",
+      "items": [
+       "$\\log_a(xy) = \\log_a x + \\log_a y$; $\\log_a \\frac{x}{y} = \\log_a x - \\log_a y$.",
+       "$\\log_a x^n = n \\log_a x$; $\\log_{a^m} b^n = \\frac{n}{m}\\log_a b$.",
+       "Taban değiştirme: $\\log_a b = \\frac{\\log_c b}{\\log_c a}$; $\\log_a b \\cdot \\log_b a = 1$.",
+       "$a^{\\log_a b} = b$."
+      ],
+      "narration": "Çarpımın logaritması logaritmaların toplamı, bölümün logaritması farkıdır. Kuvvet, logaritmanın önüne çarpan olarak iner; tabanda kuvvet varsa bölen olarak iner. Taban değiştirmek için iki logaritmayı istediğin aynı tabanda oranlarsın; log a tabanında b ile log b tabanında a'nın çarpımı birdir. Ve a üssü log a tabanında b, b'nin kendisidir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Toplamın logaritması",
+      "wrong": "$\\log(x + y) = \\log x + \\log y$",
+      "right": "$\\log(xy) = \\log x + \\log y$",
+      "why": "Logaritma **çarpımı** toplama çevirir, toplamı değil. $\\log(2 + 8) = 1$, ama $\\log 2 + \\log 8 = \\log 16 \\approx 1{,}2$.",
+      "narration": "Sık yapılan bir hata: log x artı y'yi log x artı log y diye açmak. Logaritma çarpımı toplama çevirir, toplamı değil. Dene: iki artı sekiz on, logaritması bir. Ama log iki artı log sekiz, log on altı: bir virgül ikiye yakın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\log(9!) - \\log M = \\log(7!) + \\log 2$\n\neşitliğini sağlayan $M$ sayısı kaçtır?",
+       "options": [
+        "$12$",
+        "$18$",
+        "$24$",
+        "$36$",
+        "$72$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2025'te bu kalıbı sordu. İki yanı tek bir logaritmaya toplayalım.",
+       "steps": [
+        {
+         "text": "Sol: $\\log \\frac{9!}{M}$; sağ: $\\log(2 \\cdot 7!)$.",
+         "narration": "Sol taraf fark: log dokuz faktöriyel bölü M. Sağ taraf toplam: log iki çarpı yedi faktöriyel."
+        },
+        {
+         "text": "$\\frac{9!}{M} = 2 \\cdot 7!$: $M = \\frac{9 \\cdot 8}{2} = 36$.",
+         "narration": "Logaritmalar eşitse sayılar eşit. Dokuz faktöriyel bölü yedi faktöriyel, dokuz çarpı sekiz: yetmiş iki. İkiye bölünce otuz altı. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2025 faktöriyelli logaritma kalıbı örnek alındı; sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir çubuk eşit uzunlukta $3$ parçaya bölündüğünde her parçanın uzunluğu $\\log_2 x$ birim, eşit uzunlukta $5$ parçaya bölündüğünde her parçanın uzunluğu $\\log_2 \\frac{x}{4}$ birim oluyor.\n\nBuna göre, çubuğun uzunluğu kaç birimdir?",
+       "options": [
+        "$5$",
+        "$8$",
+        "$10$",
+        "$12$",
+        "$15$"
+       ],
+       "answer": 4,
+       "narration": "ÖSYM 2020'de bu kalıbı sordu. Bölümün logaritmasını açalım.",
+       "steps": [
+        {
+         "text": "$\\log_2 \\frac{x}{4} = \\log_2 x - 2$. $L = \\log_2 x$ diyelim.",
+         "narration": "Log iki tabanında x bölü dört: log iki tabanında x eksi iki. Log iki tabanında x'e L diyelim."
+        },
+        {
+         "text": "Uzunluk aynı: $3L = 5(L - 2)$, $L = 5$.",
+         "narration": "Çubuk aynı: üç L, beş çarpı L eksi ikiye eşit. Üç L eşittir beş L eksi on: L beş."
+        },
+        {
+         "text": "Çubuk: $3 \\cdot 5 = 15$.",
+         "narration": "Çubuğun uzunluğu üç çarpı beş: on beş. L'yi bulup cevap sanan beşe düşer. Cevap E.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 çubuk ve logaritma kalıbı örnek alındı; parça sayıları ve bölen yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\log 12 \\approx 1{,}08$ ve $\\log 1{,}5 \\approx 0{,}18$\n\nolarak veriliyor.\n\nBuna göre, $\\log 2$ yaklaşık kaçtır?",
+       "options": [
+        "$0{,}27$",
+        "$0{,}30$",
+        "$0{,}33$",
+        "$0{,}36$",
+        "$0{,}39$"
+       ],
+       "answer": 1,
+       "narration": "ÖSYM 2020'de hesap makinesiyle bu kalıbı sordu. On iki ile bir buçuğun ilişkisi ne?",
+       "steps": [
+        {
+         "text": "$\\frac{12}{1{,}5} = 8 = 2^3$.",
+         "narration": "On iki bölü bir buçuk, sekiz: iki üssü üç."
+        },
+        {
+         "text": "$\\log 8 = \\log 12 - \\log 1{,}5 \\approx 0{,}90$.",
+         "narration": "Log sekiz, log on iki eksi log bir buçuk: sıfır virgül doksan."
+        },
+        {
+         "text": "$3\\log 2 \\approx 0{,}90$: $\\log 2 \\approx 0{,}30$.",
+         "narration": "Log sekiz, üç log iki: log iki sıfır virgül otuz. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 hesap makinesiyle logaritma kalıbı örnek alındı; sayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_LOG_03",
+    "subtopics": [
+     "MAT_LOG_04"
+    ],
+    "title": "Logaritma fonksiyonu ve grafiği",
+    "narration": "Logaritma fonksiyonu, üstel fonksiyonun tersidir. Tersi olduğunu grafikte görmek, tanım kümesini ve artan-azalanlığı ezberlemeden bilmeyi sağlar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Fonksiyon ve grafik",
+      "items": [
+       "$f(x) = \\log_a x$: tanım kümesi $(0, \\infty)$, görüntü kümesi $\\mathbb{R}$.",
+       "$y = a^x$'in **tersi**: grafikler $y = x$ doğrusuna göre simetrik.",
+       "Her tabanda $(1, 0)$ noktasından geçer.",
+       "$a > 1$: **artan**; $0 < a < 1$: **azalan**."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -3,
+        5
+       ],
+       "y": [
+        -3,
+        5
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "equalScale": true,
+       "curves": [
+        {
+         "expression": "2^x",
+         "label": "y = 2ˣ"
+        },
+        {
+         "expression": "x",
+         "label": "y = x"
+        },
+        {
+         "expression": "ln(x)/ln(2)",
+         "label": "y = log₂ x"
+        }
+       ],
+       "points": [
+        {
+         "x": 0,
+         "y": 1,
+         "label": "(0, 1)"
+        },
+        {
+         "x": 1,
+         "y": 0,
+         "label": "(1, 0)"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "İki üssü x: her x için pozitif, sıfır virgül birden geçiyor.",
+        "focus": [
+         "c1",
+         "p1"
+        ]
+       },
+       {
+        "narration": "y eşittir x doğrusunu ayna gibi düşün.",
+        "focus": [
+         "c2"
+        ]
+       },
+       {
+        "narration": "İki üssü x'in aynadaki görüntüsü log iki tabanında x: sıfır virgül bir, bir virgül sıfıra gidiyor. x'ler ile y'ler yer değiştiriyor; bu yüzden logaritmanın tanım kümesi pozitif sayılar.",
+        "focus": [
+         "c3",
+         "p2"
+        ]
+       }
+      ],
+      "narration": "Log a tabanında x fonksiyonu yalnız pozitif sayılarda tanımlıdır ve bütün gerçel sayıları değer olarak alır. a üssü x'in tersidir; bu yüzden iki grafik y eşittir x doğrusuna göre birbirinin ayna görüntüsüdür. Her tabanda bir virgül sıfır noktasından geçer. Taban birden büyükse artan, sıfır ile bir arasındaysa azalandır."
+     },
+     {
+      "kind": "visual",
+      "title": "Taban birden küçükse",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        8
+       ],
+       "y": [
+        -3.5,
+        3.5
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "ln(x)/ln(2)",
+         "label": "y = log₂ x"
+        },
+        {
+         "expression": "ln(x)/ln(0.5)",
+         "label": "y = log₁/₂ x"
+        }
+       ],
+       "points": [
+        {
+         "x": 1,
+         "y": 0,
+         "label": "(1, 0)"
+        }
+       ]
+      },
+      "narration": "Tabanın birden büyük ya da küçük olması grafiği nasıl değiştiriyor, iki tabanı yan yana görelim.",
+      "beats": [
+       {
+        "narration": "Log iki tabanında x: x büyüdükçe artıyor. Taban birden büyük.",
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "Log yarım tabanında x: aynı eğrinin x eksenine göre simetriği, azalıyor. Taban sıfır ile bir arasında.",
+        "focus": [
+         "c2"
+        ]
+       },
+       {
+        "narration": "İkisi de bir virgül sıfırdan geçiyor. Eşitsizlik çözerken bu fark önemli: azalan tabanda yön döner.",
+        "focus": [
+         "p1"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(x) = \\log_2(x - 1) + 3$\n\nolduğuna göre, $f^{-1}(6)$ kaçtır?",
+       "options": [
+        "$9$",
+        "$10$",
+        "$12$",
+        "$17$",
+        "$33$"
+       ],
+       "answer": 0,
+       "narration": "Ters fonksiyonun altıdaki değeri: f'yi altı yapan x.",
+       "steps": [
+        {
+         "text": "$f^{-1}(6) = k \\iff f(k) = 6$.",
+         "narration": "f tersi altı k ise, f k altıdır."
+        },
+        {
+         "text": "$\\log_2(k - 1) + 3 = 6$: $\\log_2(k - 1) = 3$.",
+         "narration": "Log iki tabanında k eksi bir artı üç, altı: log iki tabanında k eksi bir, üç."
+        },
+        {
+         "text": "$k - 1 = 2^3 = 8$: $k = 9$.",
+         "narration": "k eksi bir, iki üssü üç, sekiz: k dokuz. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "Logaritmik fonksiyonun tersi kalıbı; ifade yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a > 1$ olmak üzere $y = \\log_a(x + b)$ fonksiyonunun grafiği $(-1, 0)$ ve $(2, 1)$ noktalarından geçmektedir.\n\nBuna göre, $a + b$ toplamı kaçtır?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         -2.5,
+         6.5
+        ],
+        "y": [
+         -2,
+         2
+        ],
+        "xLabel": "x",
+        "yLabel": "y",
+        "curves": [
+         {
+          "expression": "ln(x + 2)/ln(4)",
+          "label": "y = f(x)"
+         }
+        ],
+        "points": [
+         {
+          "x": -1,
+          "y": 0,
+          "label": "(−1, 0)"
+         },
+         {
+          "x": 2,
+          "y": 1,
+          "label": "(2, 1)"
+         }
+        ]
+       },
+       "options": [
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$"
+       ],
+       "answer": 2,
+       "narration": "Logaritma sıfırsa içi bir; logaritma birse içi taban.",
+       "steps": [
+        {
+         "text": "$(-1, 0)$: $\\log_a(b - 1) = 0$, $b - 1 = 1$, $b = 2$.",
+         "narration": "Eksi bir virgül sıfır: logaritma sıfır, içi bir. b eksi bir, bir: b iki."
+        },
+        {
+         "text": "$(2, 1)$: $\\log_a 4 = 1$, $a = 4$.",
+         "narration": "İki virgül bir: log a tabanında dört, bir. Taban dört."
+        },
+        {
+         "text": "$a + b = 6$.",
+         "narration": "a artı b altı. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Grafiği verilen logaritma fonksiyonu kalıbı; noktalar yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_LOG_05",
+    "title": "Logaritmik denklemler",
+    "narration": "Logaritmik denklemde amaç, logaritmaları tek bir logaritmada toplayıp içleri eşitlemektir. Ama her bulduğun kökü tanım koşullarına sokmadan cevap yazma.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Denklem çözme",
+      "items": [
+       "$\\log_a f(x) = \\log_a g(x) \\Rightarrow f(x) = g(x)$.",
+       "$\\log_a f(x) = c \\Rightarrow f(x) = a^c$.",
+       "Tabanlar farklıysa **taban değiştir**: $\\log_4 9 = \\log_2 3$.",
+       "Her kökü **tanım koşulunda** dene."
+      ],
+      "narration": "Aynı tabanda iki logaritma eşitse içleri eşittir. Logaritma bir sayıya eşitse içi, taban üssü o sayıdır. Tabanlar farklıysa önce tabanları eşitle; örneğin log dört tabanında dokuz, log iki tabanında üçe eşittir. Ve sonunda her kökü, logaritmaların içi pozitif mi diye mutlaka denetle."
+     },
+     {
+      "kind": "mistake",
+      "title": "Tanımı unutmak",
+      "wrong": "$\\log(x - 3) + \\log x = 1$: $x = 5$ ya da $x = -2$.",
+      "right": "Yalnız $x = 5$.",
+      "why": "$x(x - 3) = 10$ iki kök verir; ama $x = -2$'de $\\log(-5)$ tanımsız.",
+      "narration": "Sık yapılan bir hata: log x eksi üç artı log x eşittir bir denkleminde iki kökü de yazmak. x çarpı x eksi üç, on: kökler beş ve eksi iki. Ama eksi ikide logaritmanın içi negatif, tanımsız. Çözüm yalnız beş."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$n$ bir tam sayı ve $1 < n < 1000$ olmak üzere\n\n$\\log_3(\\log_2 n)$\n\nifadesinin değeri bir **pozitif tam sayıdır**.\n\nBuna göre, $n$'nin alabileceği değerlerin toplamı kaçtır?",
+       "options": [
+        "$8$",
+        "$64$",
+        "$128$",
+        "$512$",
+        "$520$"
+       ],
+       "answer": 4,
+       "narration": "ÖSYM 2020'de bu kalıbı sordu. İçten dışa gidelim.",
+       "steps": [
+        {
+         "text": "$\\log_3(\\log_2 n) = k \\geq 1$: $\\log_2 n = 3^k$, $n = 2^{3^k}$.",
+         "narration": "Dıştaki logaritma k olsun, k en az bir. İçteki log iki tabanında n, üç üssü k. n de iki üssü üç üssü k."
+        },
+        {
+         "text": "$k = 1$: $n = 2^3 = 8$; $k = 2$: $n = 2^9 = 512$; $k = 3$: $2^{27}$ çok büyük.",
+         "narration": "k bir: n iki üssü üç, sekiz. k iki: n iki üssü dokuz, beş yüz on iki. k üç: iki üssü yirmi yedi, bini çok aşar."
+        },
+        {
+         "text": "$8 + 512 = 520$.",
+         "narration": "Toplam beş yüz yirmi. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 iç içe logaritma kalıbı örnek alındı; tabanlar ve sınır yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$x$ pozitif bir gerçel sayı olmak üzere\n\n$\\log_4(x + 6) + \\log_4(x + 3) - \\log_4(x + 4) = \\log_2 3$\n\neşitliğini sağlayan $x$ kaçtır?",
+       "options": [
+        "$2\\sqrt{2}$",
+        "$\\sqrt{10}$",
+        "$2\\sqrt{3}$",
+        "$3\\sqrt{2}$",
+        "$2\\sqrt{5}$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2023'te bu kalıbı sordu. Önce sağ tarafı dört tabanına çevirelim.",
+       "steps": [
+        {
+         "text": "$\\log_2 3 = \\log_4 9$. Sol: $\\log_4 \\frac{(x + 6)(x + 3)}{x + 4}$.",
+         "narration": "Log iki tabanında üç, log dört tabanında dokuza eşit: taban da sayı da karesine çıktı. Sol tarafı tek logaritmada topla: x artı altı çarpı x artı üç, bölü x artı dört."
+        },
+        {
+         "text": "$(x + 6)(x + 3) = 9(x + 4)$: $x^2 + 9x + 18 = 9x + 36$.",
+         "narration": "İçler eşit: x kare artı dokuz x artı on sekiz, dokuz x artı otuz altıya eşit."
+        },
+        {
+         "text": "$x^2 = 18$, $x > 0$: $x = 3\\sqrt{2}$.",
+         "narration": "Dokuz x'ler gider: x kare on sekiz. x pozitif: üç kök iki. Bütün içler pozitif, tanım koşulu tamam. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2023 taban değiştirmeli denklem kalıbı örnek alındı; ifadeler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_LOG_06",
+    "title": "Logaritmik eşitsizlikler",
+    "narration": "Eşitsizlikte denklemden farklı tek bir kural var: taban birden küçükse yön döner. Bir de tanım kümesi her zaman çözümün sınırlarından biridir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Eşitsizlik",
+      "items": [
+       "$a > 1$: $\\log_a f(x) > \\log_a g(x) \\iff f(x) > g(x) > 0$.",
+       "$0 < a < 1$: yön **döner**: $f(x) < g(x)$, ve $f(x) > 0$.",
+       "Sayıyı logaritmaya çevir: $-3 = \\log_{1/2} 8$.",
+       "Çözüm = eşitsizliğin çözümü $\\cap$ **tanım kümesi**."
+      ],
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        11
+       ],
+       "y": [
+        -4.5,
+        3
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "ln(x - 1)/ln(0.5)",
+         "label": "y = log₁/₂(x − 1)"
+        },
+        {
+         "expression": "-3",
+         "label": "y = −3"
+        }
+       ],
+       "points": [
+        {
+         "x": 9,
+         "y": -3,
+         "label": "(9, −3)"
+        }
+       ],
+       "segments": [
+        {
+         "from": [
+          1,
+          -4.5
+         ],
+         "to": [
+          1,
+          3
+         ],
+         "label": "x = 1"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Log yarım tabanında x eksi bir: azalan bir eğri. Yalnız x birden büyükken tanımlı.",
+        "focus": [
+         "c1",
+         "s1"
+        ]
+       },
+       {
+        "narration": "Eksi üçten büyük olduğu yer: eğrinin y eşittir eksi üç doğrusunun üstünde kaldığı yer.",
+        "focus": [
+         "c2",
+         "p1"
+        ]
+       },
+       {
+        "narration": "Kesişim dokuzda; eğri azalan olduğu için üstte kalan kısım dokuzun solu. Tanım kümesiyle birlikte: x bir ile dokuz arasında. Yön döndü: büyüktür, küçüktüre dönüştü.",
+        "focus": [
+         "c1",
+         "p1",
+         "s1"
+        ]
+       }
+      ],
+      "narration": "Taban birden büyükse logaritma artandır; eşitsizlik içlere aynı yönde geçer. Taban sıfır ile bir arasındaysa logaritma azalandır; yön döner. Sağdaki sayıyı aynı tabanda bir logaritmaya çevirmek işi kolaylaştırır. Ve çözümü her zaman tanım kümesiyle kesiştir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\log_{\\frac{1}{3}}(2x - 1) \\geq -2$\n\neşitsizliğini sağlayan **kaç tane** $x$ tam sayısı vardır?",
+       "options": [
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$",
+        "$9$"
+       ],
+       "answer": 0,
+       "narration": "Taban birden küçük: yön dönecek.",
+       "steps": [
+        {
+         "text": "$-2 = \\log_{\\frac{1}{3}} 9$: $\\log_{\\frac{1}{3}}(2x - 1) \\geq \\log_{\\frac{1}{3}} 9$.",
+         "narration": "Eksi ikiyi aynı tabanda yazalım: üçte birin eksi ikinci kuvveti dokuz. Eksi iki, log üçte bir tabanında dokuz."
+        },
+        {
+         "text": "Taban $< 1$, yön döner: $2x - 1 \\leq 9$; tanım: $2x - 1 > 0$.",
+         "narration": "Taban birden küçük, yön döner: iki x eksi bir, dokuzdan küçük eşit. Tanım koşulu: iki x eksi bir pozitif."
+        },
+        {
+         "text": "$\\frac{1}{2} < x \\leq 5$: $1, 2, 3, 4, 5$: **5** tane.",
+         "narration": "x yarım ile beş arasında, beş dahil: birden beşe beş tam sayı. Yönü çevirmeyen, sonsuz çözüm bulur. Cevap A."
+        }
+       ],
+       "origin": {
+        "changes": "Tabanı birden küçük logaritmik eşitsizlik kalıbı; ifade yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$, $1$'den farklı pozitif gerçel sayılar olmak üzere\n\n$\\log_3 a < 0 < \\log_b 3$\n\neşitsizliği sağlanmaktadır.\n\nBuna göre,\n\nI. $a \\cdot b > 1$\n\nII. $b - a > 0$\n\nIII. $a + b > 1$\n\nifadelerinden hangileri **her zaman** doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2020'de bu kalıbı sordu. Her logaritmanın işaretinden a ve b'nin yerini bulalım.",
+       "steps": [
+        {
+         "text": "$\\log_3 a < 0$: taban $> 1$, sayı $< 1$: $0 < a < 1$.",
+         "narration": "Log üç tabanında a negatif: taban birden büyük, o hâlde a birden küçük. a sıfır ile bir arasında."
+        },
+        {
+         "text": "$\\log_b 3 > 0$: sayı $3 > 1$, taban da $> 1$ olmalı: $b > 1$.",
+         "narration": "Log b tabanında üç pozitif: üç birden büyük, taban da birden büyük olmalı. b birden büyük."
+        },
+        {
+         "text": "II ve III her zaman doğru; I değil: $a = 0{,}1$, $b = 2$ için $ab = 0{,}2$.",
+         "narration": "b birden büyük, a birden küçük: b eksi a pozitif, a artı b birden büyük. Ama a sıfır virgül bir, b iki olursa çarpım sıfır virgül iki: birinci her zaman doğru değil. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 logaritmanın işaretinden taban-sayı kalıbı örnek alındı; ifadeler yeni yazıldı"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_LOG_07",
+    "title": "Üstel ve logaritmik problemler",
+    "narration": "Logaritma, çok büyük ya da çok hızlı değişen niceliklerin dilidir: büyüme, deprem şiddeti, ses düzeyi. ÖSYM bunu grafik ve büyüme sorularıyla soruyor.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Problemlerde logaritma",
+      "items": [
+       "Üstel büyüme: $N(t) = N_0 \\cdot a^{kt}$; süreyi bulmak için iki tarafın **logaritmasını** al.",
+       "Sayıları **aynı tabanın kuvveti** yaz: logaritmaları üslerle orantılı olur.",
+       "Logaritmik ölçekte eşit aralık, eşit **oran** demektir."
+      ],
+      "narration": "Üstel büyüyen bir nicelikte süreyi bulmak için denklemin iki tarafının logaritmasını alırız. Verilen sayıları aynı tabanın kuvvetleri olarak yazarsak logaritmaları üslerle orantılı olur; taban hangisi olursa olsun oran değişmez. Logaritmik ölçekte eşit aralıklar, eşit farkları değil eşit oranları gösterir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ece, $a = 144$, $b = 1728$ ve $c = 12^6$ sayılarını bir sütun grafiğinde göstermek istiyor. Farklar çok büyük olduğu için her sayının **logaritmasını** alıp sütun yüksekliği olarak kullanıyor.\n\nOrtadaki sütunun yüksekliği $9$ cm olduğuna göre, öteki iki sütunun yükseklikleri toplamı kaç cm'dir?",
+       "options": [
+        "$18$",
+        "$20$",
+        "$22$",
+        "$24$",
+        "$27$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2026'da bu kalıbı sordu. Sayıları on ikinin kuvveti olarak yazalım.",
+       "steps": [
+        {
+         "text": "$a = 12^2$, $b = 12^3$, $c = 12^6$: logaritmalar $2 : 3 : 6$ oranında.",
+         "narration": "Yüz kırk dört on iki kare, bin yedi yüz yirmi sekiz on iki küp, c on iki üssü altı. Logaritmalar üslerle orantılı: iki, üç, altı."
+        },
+        {
+         "text": "Ortadaki $b$: $3$ pay $9$ cm, $1$ pay $3$ cm.",
+         "narration": "Ortadaki sütun b: üç pay dokuz santimetre, bir pay üç santimetre."
+        },
+        {
+         "text": "$a$: $6$ cm, $c$: $18$ cm; toplam $24$ cm.",
+         "narration": "a altı santimetre, c on sekiz santimetre: toplam yirmi dört. Hangi tabanı seçersen seç oran değişmez. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026 logaritmik sütun grafiği kalıbı örnek alındı; sayılar ve yükseklik yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir göletteki nilüfer yapraklarının kapladığı alan, $t$ gün sonra\n\n$A(t) = 500 \\cdot e^{t/5}$\n\nmetrekare olarak modelleniyor.\n\n$\\ln 3 \\approx 1{,}1$ olduğuna göre, alan kaç gün sonra $1500$ metrekareye ulaşır?",
+       "options": [
+        "$3{,}3$",
+        "$4{,}4$",
+        "$5{,}5$",
+        "$6{,}6$",
+        "$7{,}7$"
+       ],
+       "answer": 2,
+       "narration": "Bilinmeyen üste: iki tarafın e tabanında logaritmasını alacağız.",
+       "steps": [
+        {
+         "text": "$500 \\cdot e^{t/5} = 1500$: $e^{t/5} = 3$.",
+         "narration": "Beş yüz çarpı e üssü t bölü beş, bin beş yüz: e üssü t bölü beş, üç."
+        },
+        {
+         "text": "İki tarafın $\\ln$'i: $\\frac{t}{5} = \\ln 3$.",
+         "narration": "İki tarafın e tabanında logaritmasını alalım: t bölü beş, e tabanında logaritma üç."
+        },
+        {
+         "text": "$t = 5 \\ln 3 \\approx 5{,}5$ gün.",
+         "narration": "t beş çarpı bir virgül bir: beş virgül beş gün. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "Üstel büyümede süre kalıbı; model ve sayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$\\log_a b = c \\iff a^c = b$.",
+    "Koşullar: $a > 0$, $a \\neq 1$, $b > 0$.",
+    "Çarpım → toplam, bölüm → fark, kuvvet → çarpan.",
+    "$y = \\log_a x$, $y = a^x$'in **tersi**.",
+    "Taban $< 1$: eşitsizlikte yön **döner**.",
+    "Kökü **tanım koşulunda** dene."
+   ],
+   "warnings": [
+    "$\\log(x + y) \\neq \\log x + \\log y$.",
+    "Taban $1$ olamaz."
+   ],
+   "narration": "Özetleyelim. Logaritma üssü bulur: log a tabanında b eşittir c, a üssü c eşittir b demektir. Taban pozitif ve birden farklı, sayı pozitif olmalı. Çarpım toplama, bölüm farka, kuvvet çarpana döner. Logaritma grafiği, üstel grafiğin y eşittir x'e göre aynasıdır. Taban birden küçükse eşitsizlikte yön döner. Ve her denklemde kökleri tanım koşulunda denetle."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "log(x + y)",
+    "question": "log x + log y mi?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "Çarpım **toplama** döner."
+   },
+   {
+    "sentence": "Taban 1/2",
+    "question": "Eşitsizlik yönü?",
+    "choices": [
+     "Döner",
+     "Kalır"
+    ],
+    "answer": 0,
+    "why": "Fonksiyon **azalan**."
+   },
+   {
+    "sentence": "log₅ 1",
+    "question": "Kaçtır?",
+    "choices": [
+     "0",
+     "1"
+    ],
+    "answer": 0,
+    "why": "5⁰ = **1**."
+   }
+  ],
+  "hook": "Üç logaritma tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Logaritma **üssü** bulur."
+   },
+   {
+    "kind": "warning",
+    "text": "Kökü **tanımda** dene."
+   },
+   {
+    "kind": "term",
+    "term": "Taban değiştirme",
+    "definition": "İki logaritmayı **aynı tabanda** oranla."
+   }
+  ],
+  "summary": [
+   "Logaritma = üs",
+   "Taban < 1: yön döner",
+   "Kök: tanımı dene"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-matematik-kampi",
+  "name": "AYT Matematik kampı",
+  "number": 27,
+  "total": 33,
+  "previous": "Trigonometri",
+  "next": "Üstel Fonksiyon",
+  "promise": "Her konu kısa bir tekrar ve AYT düzeyinde çözümlü sorularla.",
+  "task": {
+   "items": [
+    "ÖSYM 2019 kalıbını **kendin** çöz: $1 \\leq n \\leq 40$ için $\\log_2 n$ değerlerinin tam kısımlarının toplamı kaç?",
+    "$y = 2^x$ ile $y = \\log_2 x$ grafiklerini **aynı eksende** çiz; $y = x$'e göre simetriyi göster.",
+    "Uygulamada AYT Logaritma testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. ÖSYM'nin 2019 kalıbını kendin çöz: birden kırka kadar her n için log iki tabanında n'nin tam kısımlarını topla. Sonra iki üssü x ile log iki tabanında x grafiklerini aynı eksende çiz ve y eşittir x'e göre simetriyi göster. Ardından uygulamada yirmi soru çöz. Bir sonraki derste üstel fonksiyonda görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Özellikleri tek tabloda topla: çarpımın logaritması toplam, bölümün fark; log(bⁿ) = n log b; log_{aᵐ} bⁿ = (n/m) log_a b; taban değiştirme log_a b = log_c b / log_c a; log_a b × log_b c = log_a c; a^(log_a b) = b.",
+   "Sayısal örnekler ekle: log₂ 48 − log₂ 3 = 4. log 2 ≈ 0,301 ise log 8 ≈ 0,903, log 5 ≈ 0,699; 2⁵⁰ sayısı 50 × 0,301 = 15,05 olduğundan 16 basamaklıdır.",
+   "Logaritmik denklemde tanım koşulunu göster: log₂(x + 3) + log₂(x − 1) = 5 ise (x + 3)(x − 1) = 32, x = 5 ya da −7; −7 tanım koşulunu sağlamadığı için atılır.",
+   "Tabanı 1'den küçük eşitsizliğe örnek ver: log_{1/2}(x − 1) > −2 ise x − 1 < 4 (yön döner) ve x − 1 > 0; çözüm 1 < x < 5.",
+   "Gerçek hayat uygulamalarını ekle: pH = −log[H⁺], deprem büyüklüğünde bir birim artışın yaklaşık 10 kat genlik demesi, ses düzeyi (desibel). Yıllık %10 bileşik faizde paranın iki katına çıkma süresi n = log 2 / log 1,1 ≈ 7,3, yani 8 yıl."
+  ]
+ }
+}

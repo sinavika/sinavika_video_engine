@@ -1,0 +1,670 @@
+{
+ "topic": {
+  "id": "08D78F25-CF17-91CB-0C19-5F983537783A",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_FONK"
+ },
+ "title": "Fonksiyonlar",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sources": [
+  "YKS/AYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: 21 fonksiyon sorusu, 11'i bileşke; toplamsal fonksiyon, işlem, grafikten eşitsizlik, öteleme-yansıma, bileşke kalıpları örnek alındı, sorular yeniden kuruldu)",
+  "MEB AYT Matematik konu anlatımı (fonksiyonlar bölümü, yapı için) ve YKS/AYT/Sorular/MAT/MAT_FONK.jsonl",
+  "Her cevap tam hesapla ya da sayısal örneklemeyle denetlendi"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Bileşke: bir fonksiyonun çıktısı, ötekinin girdisi.",
+   "narration": "ÖSYM 2018'den bu yana AYT'de fonksiyonlardan yirmi bir soru sordu; on biri bileşke. Soruların çoğu bir grafikle gelir: hangi doğru üstte, kesişim nerede, grafik nereye kaydı? Bu derste fonksiyon değerini, grafik okumayı, bire birliği, bileşkeyi ve tersi AYT düzeyinde yeni sorularla çözeceğiz."
+  },
+  "objectives": [
+   "İç değişkenle ve kuralın kendisinden fonksiyon değeri bulmak",
+   "İki fonksiyonun grafiğinden eşitsizlik okumak",
+   "Öteleme ve yansımayla değerleri karşılaştırmak",
+   "Bire bir fonksiyonları saymak",
+   "Bileşke ve ters fonksiyonda değer bulmak; grafikte bileşke çözümü saymak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_FONK_01",
+    "subtopics": [
+     "MAT_FONK_02",
+     "MAT_FONK_03"
+    ],
+    "title": "Fonksiyon ve değer",
+    "narration": "Fonksiyon, her elemana tek bir görüntü veren kuraldır. AYT'de değer bulmanın üç yolu var: kuralı yerine koymak, içi eşitlemek ve kuralın kendisinden çıkarım yapmak.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kısa tekrar: değer bulma",
+      "items": [
+       "Fonksiyon: tanım kümesinin **her** elemanının **tek** görüntüsü var.",
+       "$f(2x + 1)$ verilmişse **içi** eşitle: $2x + 1 = t$.",
+       "$f(x + y) = f(x) + f(y)$ ise $f(0) = 0$ ve $f(n) = n \\cdot f(1)$.",
+       "$(f \\pm g)(a) = f(a) \\pm g(a)$; $(f \\cdot g)(a) = f(a) \\cdot g(a)$."
+      ],
+      "narration": "Fonksiyon, tanım kümesinin her elemanına tek bir görüntü veren kuraldır. f iki x artı bir gibi bir ifade verilmişse içini istediğin sayıya eşitlersin. f x artı y, f x artı f y kuralını sağlıyorsa f sıfır sıfırdır ve f n, n çarpı f birdir. İki fonksiyonun toplamı, farkı ve çarpımı da aynı noktadaki değerlerin toplamı, farkı ve çarpımıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Gerçel sayılar kümesi üzerinde tanımlı bir $f$ fonksiyonu her $x$ ve $y$ gerçel sayısı için\n\n$f(x + y) = f(x) + f(y)$\n\neşitliğini sağlamaktadır.\n\n$f(3) - f(1) = 8$ olduğuna göre, $f(5) - f(-2)$ farkı kaçtır?",
+       "options": [
+        "$20$",
+        "$24$",
+        "$28$",
+        "$32$",
+        "$36$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2018'de bu kalıbı sordu. Önce f sıfırı, sonra f biri bulalım.",
+       "steps": [
+        {
+         "text": "$x = y = 0$: $f(0) = 2f(0)$, $f(0) = 0$. $f(n) = n \\cdot f(1)$.",
+         "narration": "x ve y sıfır: f sıfır, iki f sıfır; f sıfır sıfır. Bir, bir, bir diye ekleyince f n, n çarpı f bir."
+        },
+        {
+         "text": "$f(3) - f(1) = 2f(1) = 8$: $f(1) = 4$.",
+         "narration": "f üç eksi f bir, üç f bir eksi f bir, iki f bir: sekiz. f bir dört."
+        },
+        {
+         "text": "$f(-2) = -f(2) = -8$ ($f(2) + f(-2) = f(0) = 0$). $f(5) - f(-2) = 20 + 8 = 28$.",
+         "narration": "f iki artı f eksi iki, f sıfır, sıfır: f eksi iki, eksi sekiz. f beş yirmi. Fark yirmi artı sekiz, yirmi sekiz. Cevap C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018 toplamsal fonksiyon kalıbı örnek alındı; değerler ve istenen yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(2x + 1) = 4x + 7$\n\nolduğuna göre, $f\\big(f(1)\\big)$ değeri kaçtır?",
+       "options": [
+        "$17$",
+        "$19$",
+        "$21$",
+        "$23$",
+        "$25$"
+       ],
+       "answer": 1,
+       "narration": "İçi t yapıp kuralı bulalım.",
+       "steps": [
+        {
+         "text": "$2x + 1 = t$: $x = \\frac{t - 1}{2}$, $f(t) = 2(t - 1) + 7 = 2t + 5$.",
+         "narration": "İki x artı bire t diyelim: x, t eksi bir bölü iki. Dört x, iki t eksi iki; artı yedi: f t, iki t artı beş."
+        },
+        {
+         "text": "$f(1) = 7$, $f(7) = 19$.",
+         "narration": "f bir, yedi. f yedi, on dört artı beş, on dokuz. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "İç değişken kalıbı; ifade yeni yazıldı"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ gerçel sayılar olmak üzere\n\n$f(x) = x^2 + ax + b$\n\n$g(x) = bx - 1$\n\n$(f + g)(1) = 7$ ve $(f - g)(2) = 9$\n\neşitlikleri sağlanıyor.\n\nBuna göre, $a \\cdot b$ çarpımı kaçtır?",
+       "options": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 4,
+       "narration": "ÖSYM 2022'de bu kalıbı sordu. İki eşitlik, iki bilinmeyen.",
+       "steps": [
+        {
+         "text": "$(f + g)(1) = (1 + a + b) + (b - 1) = a + 2b = 7$",
+         "narration": "f bir artı g bir: bir artı a artı b, artı b eksi bir. a artı iki b, yedi."
+        },
+        {
+         "text": "$(f - g)(2) = (4 + 2a + b) - (2b - 1) = 5 + 2a - b = 9$: $2a - b = 4$.",
+         "narration": "f iki eksi g iki: dört artı iki a artı b, eksi iki b eksi bir. Beş artı iki a eksi b, dokuz: iki a eksi b dört."
+        },
+        {
+         "text": "Çöz: $a = 3$, $b = 2$; $a \\cdot b = 6$.",
+         "narration": "İkinci denklemi ikiyle çarpıp birinciyle toplayalım: beş a on beş, a üç. b iki. Çarpım altı. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 fonksiyonlarda işlem kalıbı örnek alındı; fonksiyonlar ve değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_FONK_04",
+    "title": "Grafikle düşünmek",
+    "narration": "AYT fonksiyon sorularının yarısı grafikle gelir. Grafikte üstte olan, değeri büyük olandır; kesişim noktası, değerlerin eşit olduğu yerdir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Grafikten okuma",
+      "items": [
+       "$f(a) < g(a)$: $x = a$'da $f$'nin grafiği $g$'nin **altında**.",
+       "Kesişim noktasında $f(a) = g(a)$; iki yanında üstteki değişir.",
+       "$g(x) = f(x - k)$: grafik **sağa** $k$ birim; $h(x) = -f(x)$: $x$ eksenine göre **yansıma**."
+      ],
+      "narration": "Grafikte iki fonksiyonu karşılaştırırken üstte olan, değeri büyük olandır. f a, g a'dan küçükse x eşittir a'da f'nin grafiği g'nin altındadır. Kesişim noktasında değerler eşittir ve iki yanında üstteki fonksiyon değişir. f x eksi k, grafiği sağa k birim kaydırır; eksi f x ise x eksenine göre yansıtır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde $[0, 4]$ aralığında tanımlı $f(x) = x + 1$ ve $g(x) = 5 - x$ fonksiyonlarının grafikleri şekilde verilmiştir.\n\n$a, b \\in (0, 4)$ olmak üzere\n\n$f(a) < g(a)$\n\n$g(b) < f(b) < 4$\n\neşitsizlikleri sağlandığına göre, $a + b$ toplamı aşağıdakilerden hangisi olabilir?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         0,
+         4
+        ],
+        "y": [
+         -0.3,
+         8
+        ],
+        "xLabel": "x",
+        "yLabel": "y",
+        "curves": [
+         {
+          "expression": "x + 1",
+          "label": "y = f(x)"
+         },
+         {
+          "expression": "5 - x",
+          "label": "y = g(x)"
+         }
+        ],
+        "points": [
+         {
+          "x": 2,
+          "y": 3,
+          "label": "(2, 3)"
+         }
+        ]
+       },
+       "options": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$5$",
+        "$6$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2025'te grafikteki doğrularla benzer bir soru sordu. Her eşitsizliği grafikte bir bölgeye çevirelim.",
+       "steps": [
+        {
+         "text": "Kesişim: $x + 1 = 5 - x$, $x = 2$. $f(a) < g(a)$: $a < 2$.",
+         "narration": "İki doğru x ikide kesişiyor. Kesişimin solunda g üstte: f a, g a'dan küçükse a ikiden küçük."
+        },
+        {
+         "text": "$g(b) < f(b)$: $b > 2$; $f(b) < 4$: $b + 1 < 4$, $b < 3$.",
+         "narration": "g b, f b'den küçükse b kesişimin sağında, ikiden büyük. f b dörtten küçük: b artı bir dörtten küçük, b üçten küçük."
+        },
+        {
+         "text": "$0 < a < 2$, $2 < b < 3$: $2 < a + b < 5$. Şıklarda yalnız $3$.",
+         "narration": "a sıfır ile iki, b iki ile üç arasında: toplam iki ile beş arasında, uçlar hariç. Şıklardan yalnız üç bu aralıkta. Cevap C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2025 grafikten eşitsizlik kalıbı örnek alındı; fonksiyonlar ve koşullar yeni kuruldu"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Hangi yöne kayar?",
+      "prompt": "$g(x) = f(x - 3)$ ise $g$'nin grafiği $f$'ninkine göre nereye kayar?",
+      "choices": [
+       "Sağa 3 birim",
+       "Sola 3 birim"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -3,
+        6
+       ],
+       "y": [
+        -1,
+        6
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "x^2",
+         "label": "y = f(x) = x²"
+        },
+        {
+         "expression": "(x - 3)^2",
+         "label": "y = f(x − 3)"
+        }
+       ],
+       "points": [
+        {
+         "x": 0,
+         "y": 0,
+         "label": "(0, 0)"
+        },
+        {
+         "x": 3,
+         "y": 0,
+         "label": "(3, 0)"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "f'nin en alt noktası x sıfırda. f x eksi üçte aynı değeri almak için içerinin sıfır olması gerekir: x eksi üç sıfır, x üç."
+       },
+       {
+        "narration": "Yani her nokta üç birim sağa gider. Eksi işaret sola gibi görünür ama grafik sağa kayar."
+       }
+      ],
+      "explanation": "$g(3) = f(0)$: $f$'nin $x = 0$'daki değeri $g$'de $x = 3$'te. Grafik **sağa** kayar.",
+      "narration": "Şimdi sıra sende. g x eşittir f x eksi üç ise g'nin grafiği nereye kayar? Biraz düşün.",
+      "explanationNarration": "Doğru cevap: sağa üç birim. g üç, f sıfıra eşit; f'nin sıfırda yaptığını g üçte yapar. İçerideki eksi, sağa kaydırır. f x artı üç olsaydı sola kayardı."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(x) = 2x - 4$ olmak üzere $g$ ve $h$ fonksiyonları\n\n$g(x) = f(x - 3)$\n\n$h(x) = -f(x)$\n\nbiçiminde tanımlanıyor.\n\nBuna göre, $f(0)$, $g(0)$ ve $h(0)$ değerleri için aşağıdaki sıralamalardan hangisi doğrudur?",
+       "options": [
+        "$g(0) < f(0) < h(0)$",
+        "$f(0) < g(0) < h(0)$",
+        "$f(0) < h(0) < g(0)$",
+        "$h(0) < g(0) < f(0)$",
+        "$g(0) < h(0) < f(0)$"
+       ],
+       "answer": 0,
+       "narration": "ÖSYM 2024'te bu kalıbı grafikle sordu. Değerleri tek tek hesaplayalım.",
+       "steps": [
+        {
+         "text": "$f(0) = -4$.",
+         "narration": "f sıfır, eksi dört."
+        },
+        {
+         "text": "$g(0) = f(0 - 3) = f(-3) = -10$.",
+         "narration": "g sıfır, f eksi üç: eksi altı eksi dört, eksi on. Grafik sağa kaydığı için sıfırdaki değer, f'nin eksi üçteki değeri."
+        },
+        {
+         "text": "$h(0) = -f(0) = 4$. Sıra: $-10 < -4 < 4$.",
+         "narration": "h sıfır, eksi f sıfır: dört. Sıra: g sıfır, f sıfır, h sıfır. Cevap A.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2024 öteleme ve yansıma kalıbı örnek alındı; fonksiyon yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_FONK_05",
+    "subtopics": [
+     "MAT_FONK_06"
+    ],
+    "title": "Bire bir ve örten",
+    "narration": "Bire bir fonksiyon farklı elemanları farklı yerlere götürür. AYT bunu fonksiyon sayarak da sorar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bire bir ve örten",
+      "items": [
+       "**Bire bir**: $x_1 \\neq x_2$ ise $f(x_1) \\neq f(x_2)$; yatay her doğru grafiği **en çok bir** kez keser.",
+       "**Örten**: görüntü kümesi değer kümesinin **tamamı**.",
+       "$s(A) = m$, $s(B) = n$: $A$'dan $B$'ye $n^m$ fonksiyon; $m \\leq n$ ise $\\frac{n!}{(n - m)!}$ bire bir fonksiyon."
+      ],
+      "narration": "Bire bir fonksiyon farklı elemanları farklı görüntülere götürür; grafikte yatay her doğru grafiği en çok bir kez keser. Örten fonksiyonda değer kümesinin her elemanı birinin görüntüsüdür. m elemanlı bir kümeden n elemanlı bir kümeye n üzeri m fonksiyon yazılır; bunlardan bire bir olanlar, n'den başlayıp m tane azalan sayının çarpımıdır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Bire bir mi, örten mi?",
+      "wrong": "$f: \\mathbb{R} \\to \\mathbb{R}$, $f(x) = x^2$ bire birdir, çünkü her $x$'in tek görüntüsü var.",
+      "right": "Her $x$'in tek görüntüsü olması **fonksiyon** olmaktır; $f(-2) = f(2) = 4$ olduğu için bire bir **değildir**.",
+      "why": "Bire birlik ters yönde bakar: aynı görüntüye giden iki farklı $x$ olmamalı.",
+      "narration": "Sık yapılan bir hata: her x'in tek görüntüsü var diye fonksiyonu bire bir saymak. Bu, fonksiyon olmanın tanımıdır. Bire birlik ters yöne bakar: x kare fonksiyonunda eksi iki de iki de dörde gider; iki farklı x aynı görüntüye gittiği için bire bir değildir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$A = \\{1, 2, 3\\}$ ve $B = \\{a, b, c, d\\}$ olmak üzere, $A$'dan $B$'ye tanımlanan fonksiyonlardan kaç tanesi **bire bir değildir**?",
+       "options": [
+        "$24$",
+        "$36$",
+        "$40$",
+        "$48$",
+        "$64$"
+       ],
+       "answer": 2,
+       "narration": "Hepsini sayıp bire bir olanları çıkaralım.",
+       "steps": [
+        {
+         "text": "Bütün fonksiyonlar: $4^3 = 64$.",
+         "narration": "A'nın her elemanı B'nin dört elemanından birine gider: dört üzeri üç, altmış dört fonksiyon."
+        },
+        {
+         "text": "Bire bir: $4 \\cdot 3 \\cdot 2 = 24$.",
+         "narration": "Bire bir olanlarda bir dört yere, iki kalan üç yere, üç kalan iki yere gidebilir: yirmi dört."
+        },
+        {
+         "text": "Bire bir olmayan: $64 - 24 = 40$.",
+         "narration": "Bire bir olmayanlar altmış dört eksi yirmi dört, kırk. Cevap C.",
+         "eliminate": [
+          "A",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Fonksiyon sayma kalıbı; kümeler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_FONK_07",
+    "subtopics": [
+     "MAT_FONK_08"
+    ],
+    "title": "Bileşke ve ters fonksiyon",
+    "narration": "ÖSYM bu konudan en çok bileşke sordu: on bir soru. Bileşke, bir fonksiyonun çıktısını ötekine girdi yapmaktır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bileşke ve ters",
+      "items": [
+       "$(f \\circ g)(x) = f\\big(g(x)\\big)$: **önce $g$**, sonra $f$.",
+       "$f^{-1}(b) = a \\iff f(a) = b$: ters fonksiyonda değer bulmak için $f(x) = b$ çöz.",
+       "$f(x) = ax + b$ ise $f^{-1}(x) = \\frac{x - b}{a}$.",
+       "$(g \\circ f)(x)$ biliniyorsa $g(c)$ için önce $f(x) = c$ olan $x$'i bul."
+      ],
+      "narration": "f bileşke g, x'te önce g'yi uygula, sonucu f'ye ver demektir. Ters fonksiyonda değer bulmak için ters fonksiyonu yazmana gerek yok: f x'i o değere eşitleyip çözersin. Doğrusal bir fonksiyonun tersi, x eksi b bölü a'dır. g bileşke f biliniyorsa g'nin bir noktadaki değerini bulmak için önce f x'i o noktaya eşitleyen x'i bulursun."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ ve $b$ sıfırdan farklı tam sayılar olmak üzere $f(x) = ax + b$ fonksiyonu için\n\n$(f \\circ f)(x) = f(x + 3) + f(x)$\n\neşitliği sağlandığına göre, $f(1)$ kaçtır?",
+       "options": [
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$",
+        "$9$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2019'da bu kalıbı sordu. İki tarafı da açıp katsayıları eşitleyelim.",
+       "steps": [
+        {
+         "text": "Sol: $a(ax + b) + b = a^2x + ab + b$.",
+         "narration": "f bileşke f: a çarpı a x artı b, artı b. a kare x artı a b artı b."
+        },
+        {
+         "text": "Sağ: $a(x + 3) + b + ax + b = 2ax + 3a + 2b$.",
+         "narration": "Sağ taraf: a çarpı x artı üç artı b, artı a x artı b. İki a x artı üç a artı iki b."
+        },
+        {
+         "text": "$a^2 = 2a$: $a = 2$. $2b + b = 6 + 2b$: $b = 6$. $f(1) = 8$.",
+         "narration": "x'in katsayıları: a kare, iki a; a sıfır olmadığı için a iki. Sabitler: iki b artı b, altı artı iki b; b altı. f x, iki x artı altı; f bir sekiz. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 bileşke ve öteleme kalıbı örnek alındı; öteleme ve sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(x) = \\dfrac{3x + 1}{x - 2}$ olduğuna göre, $f^{-1}(4)$ değeri kaçtır?",
+       "options": [
+        "$7$",
+        "$9$",
+        "$11$",
+        "$13$",
+        "$15$"
+       ],
+       "answer": 1,
+       "narration": "Tersi yazmadan: f x'i dörde eşitleyelim.",
+       "steps": [
+        {
+         "text": "$f^{-1}(4) = a \\iff f(a) = 4$",
+         "narration": "f üzeri eksi bir, dört, a ise f a dörttür."
+        },
+        {
+         "text": "$\\frac{3a + 1}{a - 2} = 4$: $3a + 1 = 4a - 8$, $a = 9$.",
+         "narration": "Üç a artı bir bölü a eksi iki, dört: üç a artı bir, dört a eksi sekiz; a dokuz. Denetim: yirmi sekiz bölü yedi, dört. Cevap B."
+        }
+       ],
+       "origin": {
+        "changes": "Ters fonksiyonda değer kalıbı; fonksiyon yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$f(x) = 2x - 1$ ve $(g \\circ f)(x) = 6x + 1$\n\nolduğuna göre, $g(3)$ kaçtır?",
+       "options": [
+        "$7$",
+        "$9$",
+        "$11$",
+        "$13$",
+        "$15$"
+       ],
+       "answer": 3,
+       "narration": "g'nin kuralını bulmak gerekmez; f x'in üç olduğu x yeter.",
+       "steps": [
+        {
+         "text": "$f(x) = 3$: $2x - 1 = 3$, $x = 2$.",
+         "narration": "f x üç olsun: iki x eksi bir üç, x iki."
+        },
+        {
+         "text": "$g(3) = g\\big(f(2)\\big) = (g \\circ f)(2) = 6 \\cdot 2 + 1 = 13$",
+         "narration": "g üç, g f iki demek; bu da g bileşke f iki: on iki artı bir, on üç. Cevap D."
+        }
+       ],
+       "origin": {
+        "changes": "Bileşkeden değer kalıbı; fonksiyonlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Dik koordinat düzleminde $[0, 4]$ aralığında tanımlı $f(x) = 2 - |x - 2|$ fonksiyonunun grafiği şekilde verilmiştir.\n\nBuna göre,\n\nI. $(f \\circ f)(x) = 2$\n\nII. $(f \\circ f)(x) = 1$\n\nIII. $(f \\circ f)(x) = 0$\n\neşitliklerinden hangileri **yalnızca iki** farklı $x$ değeri için sağlanır?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         0,
+         4
+        ],
+        "y": [
+         -0.3,
+         3.2
+        ],
+        "xLabel": "x",
+        "yLabel": "y",
+        "curves": [
+         {
+          "expression": "2 - abs(x - 2)",
+          "label": "y = f(x)"
+         }
+        ],
+        "points": [
+         {
+          "x": 2,
+          "y": 2,
+          "label": "(2, 2)"
+         }
+        ]
+       },
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 4,
+       "narration": "ÖSYM 2018'de grafikle bileşke sordu. Önce dıştaki f'yi çözelim: f neye eşit olmalı?",
+       "steps": [
+        {
+         "text": "I: $f(t) = 2 \\iff t = 2$; $f(x) = 2 \\iff x = 2$: **bir** çözüm.",
+         "narration": "Birinci: f t iki, yalnız t ikiyken; tepe noktası. f x iki de yalnız x ikide. Tek çözüm.",
+         "eliminate": [
+          "A",
+          "C",
+          "D"
+         ]
+        },
+        {
+         "text": "II: $f(t) = 1 \\iff t \\in \\{1, 3\\}$; $f(x) = 1$: $x = 1, 3$; $f(x) = 3$: yok (en büyük değer 2). **İki** çözüm.",
+         "narration": "İkinci: f t bir, t bir ya da üç. f x bir, x bir ya da üç; f x üç olamaz, en büyük değer iki. İki çözüm."
+        },
+        {
+         "text": "III: $f(t) = 0 \\iff t \\in \\{0, 4\\}$; $f(x) = 0$: $x = 0, 4$; $f(x) = 4$: yok. **İki** çözüm.",
+         "narration": "Üçüncü: f t sıfır, t sıfır ya da dört. f x sıfır, x sıfır ya da dört; f x dört olamaz. İki çözüm. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018 grafikle bileşke kalıbı örnek alındı; fonksiyon ve değerler yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "İç ifadeyi **t** yap.",
+    "$f(x + y) = f(x) + f(y)$: $f(n) = n \\cdot f(1)$.",
+    "Grafikte **üstteki** büyük; kesişimde eşit.",
+    "$f(x - k)$: **sağa** $k$; $-f(x)$: yansıma.",
+    "$(f \\circ g)(x)$: **önce $g$**.",
+    "$f^{-1}(b)$: $f(x) = b$ **çöz**."
+   ],
+   "warnings": [
+    "Tek görüntü **fonksiyon** olmaktır; bire birlik ayrı bir şart.",
+    "$f(x - 3)$ sağa kayar, **sola değil**."
+   ],
+   "narration": "Özetleyelim. Fonksiyonun içindeki ifadeyi t yap. f x artı y, f x artı f y ise f n, n çarpı f birdir. Grafikte üstteki fonksiyonun değeri büyüktür; kesişimde değerler eşittir. f x eksi k grafiği sağa kaydırır, eksi f x yansıtır. Bileşkede önce içteki fonksiyon uygulanır. Ters fonksiyonda değer için f x'i o değere eşitleyip çöz. Ve unutma: her x'in tek görüntüsü olması fonksiyon olmaktır; bire birlik ayrı bir şarttır."
+  }
+ },
+ "short": {
+  "rounds": [
+   {
+    "sentence": "$f(x - 3)$",
+    "question": "Grafik nereye?",
+    "choices": [
+     "Sağa",
+     "Sola"
+    ],
+    "answer": 0,
+    "why": "**Sağa** 3 birim."
+   },
+   {
+    "sentence": "$(f \\circ g)(x)$",
+    "question": "Önce hangisi?",
+    "choices": [
+     "f",
+     "g"
+    ],
+    "answer": 1,
+    "why": "**İçteki** önce."
+   },
+   {
+    "sentence": "x kare fonksiyonu",
+    "question": "Bire bir mi?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "−2 ile 2 **aynı** yere."
+   }
+  ],
+  "hook": "Üç fonksiyon tuzağı.",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "$f(x - k)$: grafik **sağa** kayar."
+   },
+   {
+    "kind": "warning",
+    "text": "Bileşkede **içteki** önce."
+   },
+   {
+    "kind": "term",
+    "term": "Bire bir",
+    "definition": "Farklı x'ler, **farklı** görüntüler."
+   }
+  ],
+  "summary": [
+   "Sağa kayar",
+   "İçteki önce",
+   "Farklı görüntü"
+  ]
+ },
+ "camp": {
+  "id": "yks-ayt-matematik-kampi",
+  "name": "AYT Matematik kampı",
+  "number": 16,
+  "total": 33,
+  "previous": "Mantık",
+  "next": "Polinomlar",
+  "promise": "Her konu kısa bir tekrar ve AYT düzeyinde çözümlü sorularla.",
+  "task": {
+   "items": [
+    "ÖSYM 2019 sorusunu **kendin** çöz: $f(x) = ax + b$, $(f \\circ f)(x) = f(x + 2) + f(x)$ ise $f(3)$ kaç?",
+    "Grafikteki $f(x) = 2 - |x - 2|$ için $(f \\circ f)(x) = \\frac{3}{2}$ eşitliğinin kaç çözümü olduğunu bul.",
+    "Uygulamada AYT Fonksiyonlar testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. ÖSYM'nin 2019 sorusunu kendin çöz: f x, a x artı b ve f bileşke f, f x artı iki artı f x'e eşitse f üç kaç? Derste gördüğümüz çadır biçimli fonksiyonda f bileşke f'nin üç bölü ikiye eşit olduğu kaç x var, bul. Sonra uygulamada AYT Fonksiyonlar testinden yirmi soru çöz. Bir sonraki derste polinomlarda görüşürüz."
+  }
+ },
+ "works": {
+  "additions": [
+   "Tanım kümesi bulmayı örnekle: f(x) = √(x − 2)/(x − 5) için kök içi sıfır ya da pozitif, payda sıfırdan farklı olmalı: [2, 5) ∪ (5, ∞).",
+   "Fonksiyon türlerini testlerle ver: düşey doğru testi (fonksiyon mu), yatay doğru testi (bire bir mi), görüntü kümesinin değer kümesine eşitliği (örten mi). f: ℝ → ℝ, f(x) = x² bire bir de örten de değildir.",
+   "Ters fonksiyona örnek ver: f(x) = (2x + 3)/(x − 1) ise f⁻¹(x) = (x + 3)/(x − 2). Genel kural: (ax + b)/(cx + d) fonksiyonunun tersi (−dx + b)/(cx − a).",
+   "Bileşkeyi örnekle: f(x) = 2x − 1, g(x) = x² için (f∘g)(x) = 2x² − 1, (g∘f)(x) = (2x − 1)²; bileşke değişmeli değildir ve (f∘g)⁻¹ = g⁻¹∘f⁻¹.",
+   "Tek ve çift fonksiyonu ekle: f(−x) = f(x) ise çift (y eksenine simetrik: x², |x|, cos x), f(−x) = −f(x) ise tek (orijine simetrik: x³, sin x). |f(x)| grafiğinde eksen altının yukarı katlandığını, f(|x|) grafiğinde sağ yarının sola yansıdığını göster."
+  ]
+ }
+}

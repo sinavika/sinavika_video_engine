@@ -1,0 +1,683 @@
+{
+ "topic": {
+  "id": "B00F252F-4CD7-EE29-7434-186525A9EC3C",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_OLASILIK"
+ },
+ "title": "Olasılık",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/MAT/MAT_OLASILIK.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Olasılıkta bütün iş, örnek uzayı doğru kurmaktır.",
+   "narration": "Olasılığın formülü tek satır: istenen durumlar bölü bütün durumlar. AYT'de zorluk formülde değil, örnek uzayda: hangi durumlar eş olasılıklı, bir bilgi verilince örnek uzay nasıl daralır, iki aşamalı bir deneyde ağaç nasıl çizilir? Bu derste bu soruların hepsini AYT düzeyinde yeni sorularla çözeceğiz."
+  },
+  "objectives": [
+   "Eş olasılıklı örnek uzayı kurup basit olasılık hesaplamak",
+   "Geri koymadan çekişi adım adım hesaplamak",
+   "Tümleyen ve birleşim kurallarını kullanmak",
+   "Kombinasyonla olasılık hesaplamak",
+   "Koşullu olasılık ve ağaç diyagramıyla iki aşamalı deneyleri çözmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_OLASILIK_01",
+    "subtopics": [
+     "MAT_OLASILIK_02",
+     "MAT_OLASILIK_03"
+    ],
+    "title": "Örnek uzay ve basit olasılık",
+    "narration": "Olasılığın formülü tek satır: istenen durumlar bölü bütün durumlar. Bütün iş, örnek uzayı doğru kurmaktır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kısa tekrar: olasılık",
+      "items": [
+       "Eş olasılıklı örnek uzayda $P(A) = \\frac{s(A)}{s(E)}$; $0 \\leq P(A) \\leq 1$.",
+       "İki seçim art arda yapılıyorsa örnek uzay **ikililerden** oluşur: $s(E) = m \\cdot n$.",
+       "Geri koymadan çekişte her adımda **kalanlara** böl."
+      ],
+      "beats": [],
+      "narration": "Eş olasılıklı bir örnek uzayda bir olayın olasılığı, olayın eleman sayısının örnek uzayın eleman sayısına bölümüdür; sonuç sıfır ile bir arasındadır. İki seçim art arda yapılıyorsa örnek uzay ikililerden oluşur: m çarpı n. Geri koymadan çekişte her adımda kalanlara bölersin."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "2 büyük, 1 orta ve 3 küçük boy kavanoz ile büyük, orta ve küçük boy birer kapak vardır. Bir kapak, kendi boyundaki ya da daha küçük boydaki bir kavanozu kapatabilir, daha büyüğünü kapatamaz.\n\nRastgele seçilen bir kapağın, rastgele seçilen bir kavanozu kapatabilme olasılığı kaçtır?",
+       "options": [
+        "$\\frac{2}{3}$",
+        "$\\frac{13}{18}$",
+        "$\\frac{7}{9}$",
+        "$\\frac{5}{6}$",
+        "$\\frac{17}{18}$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Örnek uzay: $3$ kapak $\\times$ $6$ kavanoz $= 18$ ikili.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç kapak, altı kavanoz: on sekiz eş olasılıklı ikili."
+        },
+        {
+         "text": "Büyük kapak: $6$; orta kapak: $1 + 3 = 4$; küçük kapak: $3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Büyük kapak altı kavanozun hepsini kapatır. Orta kapak, orta ve küçükleri: dört. Küçük kapak yalnız küçükleri: üç."
+        },
+        {
+         "text": "$\\frac{6 + 4 + 3}{18} = \\frac{13}{18}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İstenen ikililer on üç: olasılık on sekizde on üç. Cevap B."
+        }
+       ],
+       "narration": "ÖSYM tencere ve kapaklarla sordu; biz kavanozlarla kuralım. Örnek uzay: kapak-kavanoz ikilileri.",
+       "origin": {
+        "changes": "ÖSYM tencere-kapak kalıbı örnek alındı; sayılar ve nesneler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Ece'nin çantasında görünüşü aynı 5 farklı kart vardır. Ece, otobüs kartını bulmak için çantadan rastgele bir kart çekiyor; yanlış kartı **geri koymadan** yeniden çekiyor ve otobüs kartını bulana kadar böyle devam ediyor.\n\nEce'nin otobüs kartını **üçüncü** çekişte bulma olasılığı kaçtır?",
+       "options": [
+        "$\\frac{1}{20}$",
+        "$\\frac{1}{10}$",
+        "$\\frac{1}{5}$",
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{3}$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "1. çekiş yanlış: $\\frac{4}{5}$; 2. çekiş yanlış: $\\frac{3}{4}$; 3. çekiş doğru: $\\frac{1}{3}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birincide yanlış kart: beşte dört. İkincide, kalan dört karttan yine yanlış: dörtte üç. Üçüncüde, kalan üç karttan doğrusu: üçte bir."
+        },
+        {
+         "text": "$\\frac{4}{5} \\cdot \\frac{3}{4} \\cdot \\frac{1}{3} = \\frac{1}{5}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Art arda olaylar çarpılır: beşte bir. Aslında kartın kaçıncı sırada çıkacağı eşit olasılıklı: her sıra için beşte bir. Cevap C."
+        }
+       ],
+       "narration": "ÖSYM 4 kartla sordu; biz 5 kartla. Her çekişte kalanlara bölelim.",
+       "origin": {
+        "changes": "Geri koymadan çekiş kalıbı (AYT listesindeki kart sorusu örnek alındı); kart sayısı yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "7 mi, 8 mi?",
+      "prompt": "İki zar atılıyor. Toplamın **7** olma olasılığı mı, **8** olma olasılığı mı daha büyüktür?",
+      "choices": [
+       "7",
+       "8"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Toplam",
+        "İkililer",
+        "Olasılık"
+       ],
+       "rows": [
+        [
+         "7",
+         "(1,6) (2,5) (3,4) (4,3) (5,2) (6,1)",
+         "6/36"
+        ],
+        [
+         "8",
+         "(2,6) (3,5) (4,4) (5,3) (6,2)",
+         "5/36"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "Toplam yedi: bir-altı, iki-beş, üç-dört ve tersleri: altı ikili.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Toplam sekiz: iki-altı, üç-beş, dört-dört ve tersleri; ama dört-dördün tersi kendisi: beş ikili.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "Toplam 7: $\\frac{6}{36}$; toplam 8: $\\frac{5}{36}$. (4, 4) **bir kez** sayılır.",
+      "narration": "Şimdi sıra sende. İki zar atılıyor. Toplamın yedi olma olasılığı mı, sekiz olma olasılığı mı daha büyük? Biraz düşün.",
+      "explanationNarration": "Doğru cevap yedi. Yedinin altı ikilisi var, sekizin beş. Fark dört-dörtten geliyor: o ikilinin tersi kendisi, bir kez sayılır. Zarlar ayırt edilebilir; örnek uzayı otuz altı ikili olarak kurmak bu yüzden önemli."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "İki zar birlikte atılıyor.\n\nÜst yüzlere gelen sayıların çarpımının **6'nın katı** olma olasılığı kaçtır?",
+       "options": [
+        "$\\frac{1}{3}$",
+        "$\\frac{5}{12}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{7}{12}$",
+        "$\\frac{2}{3}$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Bir zar $6$ ise çarpım 6'nın katı: $11$ ikili (en az bir 6).",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Zarlardan biri altıysa çarpım altının katı: en az bir altı olan on bir ikili var."
+        },
+        {
+         "text": "Altısız: biri $3$, öteki $2$ ya da $4$: $(3, 2), (2, 3), (3, 4), (4, 3)$: $4$ ikili.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Altı yoksa bir zar üç, öteki çift olmalı: üç-iki, iki-üç, üç-dört, dört-üç. Dört ikili."
+        },
+        {
+         "text": "$\\frac{11 + 4}{36} = \\frac{15}{36} = \\frac{5}{12}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "On beş ikili: otuz altıda on beş, on ikide beş. Cevap B."
+        }
+       ],
+       "narration": "Örnek uzay 36 ikili. Çarpımda bir 2 ve bir 3 çarpanı olmalı.",
+       "origin": {
+        "changes": "İki zarla çarpım kalıbı; koşul yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_OLASILIK_04",
+    "subtopics": [
+     "MAT_OLASILIK_05"
+    ],
+    "title": "Tümleyen ve birleşim",
+    "narration": "\"En az bir\" gördüğün an tümleyeni düşün; iki olay birlikteyse birleşim formülünü yaz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Tümleyen ve birleşim",
+      "items": [
+       "$P(A') = 1 - P(A)$; \"**en az bir**\": $1 - P(\\text{hiç})$.",
+       "$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$; ayrık olaylarda $P(A \\cap B) = 0$.",
+       "Kombinasyonla olasılık: istenen seçimler bölü **bütün seçimler**."
+      ],
+      "beats": [],
+      "narration": "Bir olayın tümleyeninin olasılığı, birden olayın olasılığının çıkarılmasıdır. En az bir sorusunda hiç olmama olasılığını bulup birden çıkarırsın. İki olayın birleşiminin olasılığı, olasılıkların toplamından kesişimin çıkarılmasıdır; ayrık olaylarda kesişim yoktur. Seçimle kurulan olasılıkta da istenen seçimleri bütün seçimlere bölersin."
+     },
+     {
+      "kind": "mistake",
+      "title": "En az bir altı",
+      "wrong": "Bir zar 3 kez atılırsa en az bir 6 gelme olasılığı $\\frac{3}{6} = \\frac{1}{2}$.",
+      "right": "$1 - \\left(\\frac{5}{6}\\right)^3 = \\frac{91}{216}$",
+      "why": "Olasılıklar toplanamaz; üç atışta birden çok 6 gelebilir. Doğrusu: hiç 6 gelmemenin tümleyeni.",
+      "narration": "Sık yapılan bir hata: üç atış, her birinde altıda bir, toplam yarım demek. Böyle toplamak, iki ya da üç kez altı gelen durumları birden çok sayar. Doğrusu tümleyen: hiç altı gelmeme olasılığı altıda beşin küpü; birden çıkarınca iki yüz on altıda doksan bir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir zar art arda 3 kez atılıyor.\n\nEn az bir atışta 6 gelme olasılığı kaçtır?",
+       "options": [
+        "$\\frac{25}{216}$",
+        "$\\frac{1}{6}$",
+        "$\\frac{1}{3}$",
+        "$\\frac{91}{216}$",
+        "$\\frac{125}{216}$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Hiç 6 gelmemesi: $\\left(\\frac{5}{6}\\right)^3 = \\frac{125}{216}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir atışta altı gelmemesi altıda beş; atışlar bağımsız, üçü birden: iki yüz on altıda yüz yirmi beş."
+        },
+        {
+         "text": "En az bir 6: $1 - \\frac{125}{216} = \\frac{91}{216}$.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "En az bir altı: birden çıkaralım, iki yüz on altıda doksan bir. Cevap D."
+        }
+       ],
+       "narration": "Hata kartını hatırlayalım: tümleyen.",
+       "origin": {
+        "changes": "En az bir kalıbı; deney yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "4 sözel ve 4 sayısal sorudan oluşan 8 sorudan rastgele 4 soru seçiliyor.\n\nSeçilen sorulardan **2'sinin sözel, 2'sinin sayısal** olma olasılığı kaçtır?",
+       "options": [
+        "$\\frac{3}{35}$",
+        "$\\frac{9}{35}$",
+        "$\\frac{12}{35}$",
+        "$\\frac{16}{35}$",
+        "$\\frac{18}{35}$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Bütün seçimler: $\\binom{8}{4} = 70$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sekiz sorudan dördü: yetmiş seçim."
+        },
+        {
+         "text": "İstenen: $\\binom{4}{2} \\cdot \\binom{4}{2} = 6 \\cdot 6 = 36$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki sözel ve iki sayısal: altı çarpı altı, otuz altı."
+        },
+        {
+         "text": "$\\frac{36}{70} = \\frac{18}{35}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Olasılık yetmişte otuz altı, otuz beşte on sekiz. Cevap E."
+        }
+       ],
+       "narration": "Seçimde sıra yok: kombinasyon.",
+       "origin": {
+        "changes": "Kombinasyonla olasılık kalıbı (AYT listesindeki sınav sorusu örnek alındı); sayılar ve koşul yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir sınıftaki öğrencilerin %60'ı basketbolu, %50'si voleybolu, %30'u ise her ikisini de sevmektedir.\n\nBu sınıftan rastgele seçilen bir öğrencinin bu iki sporun **hiçbirini** sevmeme olasılığı kaçtır?",
+       "options": [
+        "$0{,}2$",
+        "$0{,}25$",
+        "$0{,}3$",
+        "$0{,}4$",
+        "$0{,}5$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$P(B \\cup V) = 0{,}6 + 0{,}5 - 0{,}3 = 0{,}8$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "En az birini sevme: sıfır virgül altı artı sıfır virgül beş eksi sıfır virgül üç, sıfır virgül sekiz."
+        },
+        {
+         "text": "Hiçbiri: $1 - 0{,}8 = 0{,}2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hiçbirini sevmeme: bir eksi sıfır virgül sekiz, sıfır virgül iki. Cevap A."
+        }
+       ],
+       "narration": "Önce birleşim, sonra tümleyen.",
+       "origin": {
+        "changes": "Birleşim ve tümleyen kalıbı; yüzdeler yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_OLASILIK_06",
+    "subtopics": [],
+    "title": "Koşullu olasılık ve ağaç",
+    "narration": "İki aşamalı deneylerde ağaç çizilir: dallar çarpılır, yollar toplanır. Bir bilgi verilmişse örnek uzay o bilgiye daralır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Koşullu ve bağımsız",
+      "items": [
+       "Bağımsız olaylar: $P(A \\cap B) = P(A) \\cdot P(B)$.",
+       "Koşullu: $P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}$; örnek uzay **$B$'ye daralır**.",
+       "Ağaçta bir yol: dallar **çarpılır**; aynı sonuca giden yollar **toplanır**."
+      ],
+      "beats": [],
+      "narration": "Bağımsız iki olayın birlikte olma olasılığı, olasılıklarının çarpımıdır. B olduğu bilindiğinde A'nın olasılığı, A ile B'nin kesişiminin olasılığı bölü B'nin olasılığıdır; yani örnek uzay B'ye daralır. İki aşamalı deneylerde ağaç çizersin: bir yol boyunca dallar çarpılır, aynı sonuca giden yollar toplanır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir alışveriş merkezinin birinci kapısının önünde 3, ikinci kapısının önünde 4 otopark vardır. Kaan, kapılardan rastgele birini, sonra o kapının önündeki otoparklardan rastgele birini seçerek park etmiştir. Çıkarken hangi otoparkta olduğunu unutan Kaan, aynı yolla rastgele bir kapı ve otopark seçerek arabasını arıyor.\n\nKaan'ın aradığı otoparkın, park ettiği otopark olma olasılığı kaçtır?",
+       "options": [
+        "$\\frac{1}{12}$",
+        "$\\frac{1}{8}$",
+        "$\\frac{7}{48}$",
+        "$\\frac{1}{6}$",
+        "$\\frac{5}{24}$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Birinci kapıdaki her otopark: $\\frac{1}{2} \\cdot \\frac{1}{3} = \\frac{1}{6}$; ikincideki her otopark: $\\frac{1}{2} \\cdot \\frac{1}{4} = \\frac{1}{8}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir otoparka park etme olasılığı: kapı seçme ve otopark seçme dalları çarpılır. Birinci kapıdakiler altıda bir, ikinci kapıdakiler sekizde bir."
+        },
+        {
+         "text": "Aynı otoparkı seçme: park ve arama **bağımsız**: $p^2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Park etme ve arama bağımsız; aynı otoparkı seçmenin olasılığı o otoparkın olasılığının karesi."
+        },
+        {
+         "text": "$3 \\cdot \\frac{1}{36} + 4 \\cdot \\frac{1}{64} = \\frac{1}{12} + \\frac{1}{16} = \\frac{7}{48}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yolları toplayalım: üç çarpı otuz altıda bir, artı dört çarpı altmış dörtte bir: on ikide bir artı on altıda bir, kırk sekizde yedi. Yedi otoparkı eşit sayan yedide bir der; ama otoparklar eş olasılıklı değil. Cevap C."
+        }
+       ],
+       "narration": "AYT listesindeki otopark sorusu 2 ve 3 otoparkla; biz 3 ve 4 ile. Her otoparkın olasılığı aynı değil.",
+       "origin": {
+        "changes": "İki aşamalı arama kalıbı (AYT listesindeki otopark sorusu örnek alındı); otopark sayıları yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "1, 2, 3, 4, 5 ve 6 rakamlarından birbirinden farklı rastgele iki tanesi seçiliyor.\n\nSeçilen rakamların çarpımının **çift** olduğu bilindiğine göre, toplamlarının da çift olma olasılığı kaçtır?",
+       "options": [
+        "$\\frac{1}{5}$",
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{3}$",
+        "$\\frac{2}{5}$",
+        "$\\frac{1}{2}$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Bütün ikililer $\\binom{6}{2} = 15$; çarpım tek: ikisi de tek, $\\binom{3}{2} = 3$. Çarpım çift: $12$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "On beş ikiliden çarpımı tek olanlar, iki tek rakam: üç. Çarpımı çift olan on iki ikili; yeni örnek uzay bu."
+        },
+        {
+         "text": "Bu 12 içinde toplam çift: ikisi de çift (ikisi de tek olanlar dışarıda): $\\binom{3}{2} = 3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam çiftse iki rakam aynı tek-çiftte. İki tek olanlar zaten elendi; geriye iki çift rakam kalır: üç ikili."
+        },
+        {
+         "text": "$\\frac{3}{12} = \\frac{1}{4}$",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Olasılık on ikide üç, dörtte bir. Örnek uzayı daraltmayan on beşte üç bulur. Cevap B."
+        }
+       ],
+       "narration": "Bilgi verildi: örnek uzay, çarpımı çift olan ikililere daralır.",
+       "origin": {
+        "changes": "Koşullu olasılık kalıbı (AYT listesindeki çarpımı çift soru örnek alındı); rakamlar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "visual",
+      "title": "Otobüse yetişmek",
+      "visual": {
+       "kind": "tree",
+       "root": "Ayşe yola çıkar",
+       "branches": [
+        {
+         "label": "08.02: 0,7",
+         "nodes": [
+          {
+           "label": "yetişir: 0,5",
+           "items": []
+          },
+          {
+           "label": "kaçırır: 0,5",
+           "items": []
+          }
+         ]
+        },
+        {
+         "label": "08.03: 0,3",
+         "nodes": [
+          {
+           "label": "yetişir: 0,8",
+           "items": []
+          },
+          {
+           "label": "kaçırır: 0,2",
+           "items": []
+          }
+         ]
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Otobüs sıfır virgül yedi olasılıkla sekizi iki geçe, yani yüz yirminci saniyede gelir. O zaman Ayşe yalnız yüz saniyede varırsa yetişir.",
+        "show": [],
+        "focus": [
+         "b1",
+         "b1-1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Otobüs sıfır virgül üç olasılıkla sekizi üç geçe, yüz sekseninci saniyede gelir. Ayşe yüz ya da yüz elli saniyede varırsa yetişir.",
+        "show": [],
+        "focus": [
+         "b2",
+         "b2-1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Her yolun dallarını çarpıp yetişilen yolları toplayacağız.",
+        "show": [],
+        "focus": [
+         "root"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Sıradaki soruyu bir ağaçla kuralım. Otobüsün geliş saati ilk dal, Ayşe'nin varış süresi ikinci dal."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir otobüs, belirli bir durağa $0{,}7$ olasılıkla saat 08.02'de, $0{,}3$ olasılıkla 08.03'te gelmektedir. Saat 08.00'de evden çıkan Ayşe'nin durağa varması $0{,}5$ olasılıkla 100 saniye, $0{,}3$ olasılıkla 150 saniye, $0{,}2$ olasılıkla 200 saniye sürmektedir.\n\nOtobüs durağa geldiğinde Ayşe'nin durakta olma olasılığı kaçtır?",
+       "options": [
+        "$0{,}51$",
+        "$0{,}55$",
+        "$0{,}59$",
+        "$0{,}63$",
+        "$0{,}67$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "08.02 = 120. saniye: Ayşe 100 saniyede varırsa yetişir: $0{,}7 \\cdot 0{,}5 = 0{,}35$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sekizi iki geçe, yüz yirminci saniye. Yalnız yüz saniyelik varış yetişir: sıfır virgül yedi çarpı sıfır virgül beş, sıfır virgül otuz beş."
+        },
+        {
+         "text": "08.03 = 180. saniye: 100 ya da 150 saniye: $0{,}3 \\cdot (0{,}5 + 0{,}3) = 0{,}24$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sekizi üç geçe, yüz sekseninci saniye. Yüz ve yüz elli saniye yetişir: sıfır virgül üç çarpı sıfır virgül sekiz, sıfır virgül yirmi dört."
+        },
+        {
+         "text": "Toplam: $0{,}35 + 0{,}24 = 0{,}59$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki yol toplanır: sıfır virgül elli dokuz. Cevap C."
+        }
+       ],
+       "narration": "AYT listesindeki otobüs sorusu benzer sayılarla soruldu. Ağaçtaki iki yolu hesaplayalım.",
+       "origin": {
+        "changes": "Toplam olasılık kalıbı (AYT listesindeki otobüs sorusu örnek alındı); olasılıklar ve süreler yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Koşullu mu, kesişim mi?",
+      "wrong": "\"Kız olduğu bilindiğine göre 11. sınıf\" olasılığı: $\\frac{10}{36}$.",
+      "right": "$P(11 \\mid K) = \\frac{10}{18}$: örnek uzay yalnız **kızlar**.",
+      "why": "Verilen bilgi örnek uzayı daraltır; bütün öğrencilere bölmek kesişimin olasılığını verir, koşullu olasılığı değil.",
+      "narration": "Sık yapılan bir hata: bilgi verilmiş olasılıkta yine bütün duruma bölmek. Kız olduğu biliniyorsa erkekler artık olası değil; örnek uzay kızlardan oluşur. Otuz altıya bölmek, hem kız hem on birinci sınıf olma olasılığını verir; bu başka bir soru."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "Bir kulüpteki öğrencilerin sınıf ve cinsiyete göre dağılımı tabloda verilmiştir.\n\nKulüpten rastgele seçilen bir öğrencinin **kız** olduğu bilindiğine göre, bu öğrencinin 11. sınıf öğrencisi olma olasılığı kaçtır?",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "Sınıf",
+         "Kız",
+         "Erkek"
+        ],
+        "rows": [
+         [
+          "10. sınıf",
+          "8",
+          "12"
+         ],
+         [
+          "11. sınıf",
+          "10",
+          "6"
+         ]
+        ],
+        "highlightColumn": 1
+       },
+       "options": [
+        "$\\frac{5}{18}$",
+        "$\\frac{1}{3}$",
+        "$\\frac{4}{9}$",
+        "$\\frac{5}{9}$",
+        "$\\frac{5}{8}$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Kızlar: $8 + 10 = 18$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Örnek uzay kızlara daralır: onuncu sınıftan sekiz, on birinci sınıftan on; on sekiz kız."
+        },
+        {
+         "text": "Bunlardan 11. sınıf: $10$. Olasılık $\\frac{10}{18} = \\frac{5}{9}$.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bunların onu on birinci sınıfta: on sekizde on, dokuzda beş. Bütün öğrencilere bölen otuz altıda on bulur. Cevap D."
+        }
+       ],
+       "narration": "MEB AYT kitabındaki tablo örneğinin kalıbı. Bilgi: öğrenci kız; örnek uzay kızlar.",
+       "origin": {
+        "changes": "Tablodan koşullu olasılık kalıbı (MEB AYT konu anlatımındaki kulüp tablosu örnek alındı); sayılar yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$P(A) = \\frac{s(A)}{s(E)}$: önce **örnek uzay**.",
+    "\"En az bir\": $1 - P(\\text{hiç})$.",
+    "$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$.",
+    "Bağımsızda olasılıklar **çarpılır**.",
+    "Koşullu: örnek uzay **verilen bilgiye** daralır.",
+    "Ağaç: dallar çarpılır, yollar **toplanır**."
+   ],
+   "warnings": [
+    "Olasılıklar **toplanmaz**: üç atışta yarım değil.",
+    "Eş olasılıklı olmayan durumları **eşit sayma**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Otopark sorusunu **2 ve 3** otoparkla yeniden çöz: olasılık kaç?",
+    "Üç zar atılıyor; en az ikisinin aynı gelme olasılığını **tümleyenle** bul.",
+    "Uygulamada AYT Olasılık testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Zar ve para örneklerini ekle: iki zarın toplamının 7 gelmesi 6/36, 8 gelmesi 5/36, en az bir 6 gelmesi 11/36. Üç para atıldığında en az iki tura gelme olasılığı 4/8 = 1/2.",
+   "İadeli ve iadesiz çekilişi karşılaştır: 4 kırmızı ve 6 mavi top bulunan torbadan iki top çekiliyor. İadesiz ikisinin de kırmızı olma olasılığı (4/10)(3/9) = 2/15, iadeli (2/5)² = 4/25.",
+   "Koşullu olasılığı formülle ver: P(A | B) = P(A ∩ B) / P(B). Zarın çift geldiği biliniyorsa 4'ten büyük olma olasılığı 1/3. Bağımsızlık testini (P(A ∩ B) = P(A)P(B)) ve ayrık olayların bağımsız olmadığını ekle.",
+   "Kombinasyonla olasılık örneği ekle: 10 kişiden 3 kişilik komite seçiliyor; belirli iki kişinin ikisinin de komitede olma olasılığı C(8, 1) / C(10, 3) = 8/120 = 1/15.",
+   "Ağaçla ters koşullu olasılık örneği ekle: A makinesi üretimin %60'ını %2 kusurla, B makinesi %40'ını %5 kusurla yapıyor. Kusurlu ürün olasılığı 0,012 + 0,020 = 0,032; kusurlu ürünün A'dan gelme olasılığı 0,012 / 0,032 = 3/8."
+  ]
+ }
+}

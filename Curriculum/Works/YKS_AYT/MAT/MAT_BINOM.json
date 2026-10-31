@@ -1,0 +1,677 @@
+{
+ "topic": {
+  "id": "A45A6FF6-E009-8F67-2838-142E771B73F1",
+  "category": "YKS_AYT",
+  "lesson": "MAT",
+  "code": "MAT_BINOM"
+ },
+ "title": "Binom",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "AYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_AYT/MAT/MAT_BINOM.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Bir formül, bütün binom soruları: genel terim.",
+   "narration": "Binom açılımında kırk terim de olsa hepsini yazmana gerek yok. ÖSYM 2020'den bu yana AYT'de binomdan dört soru sordu: katsayıların ortalaması, bir terimin katsayısı ve sabit terim. Dördü de tek bir formülle çözüldü: genel terim. Bu derste genel terimi kurup her kalıbı AYT düzeyinde yeni sorularla çözeceğiz."
+  },
+  "objectives": [
+   "Binom açılımını ve Pascal üçgenini kullanmak",
+   "Katsayılar toplamını ve ortalamasını bulmak",
+   "Genel terimle belirli kuvvetli terimi ve sabit terimi bulmak",
+   "Sıradaki ve ortadaki terimi doğru numarayla bulmak",
+   "Çift ve tek kuvvetli katsayıların toplamını bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_BINOM_01",
+    "subtopics": [],
+    "title": "Binom açılımı",
+    "narration": "Binom, iki terimli bir ifadenin kuvvetini açar. AYT bu konudan her yıl bir soru sorar ve hepsi tek bir formüle dayanır: genel terim.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Binom açılımı",
+      "items": [
+       "$(a + b)^n = \\sum_{r=0}^{n} \\binom{n}{r} a^{n - r} b^r$: **$n + 1$** terim.",
+       "Baştan $(r + 1)$. terim: $T_{r+1} = \\binom{n}{r} a^{n - r} b^r$.",
+       "Katsayılar toplamı: değişkenlere **1** ver; $x$'siz terim: $x$'in **üssünü sıfırla**.",
+       "Katsayılar Pascal üçgeninden gelir: her sayı üstündeki iki sayının toplamı."
+      ],
+      "visual": {
+       "kind": "table",
+       "header": [
+        "$n$",
+        "Katsayılar",
+        "Toplam"
+       ],
+       "rows": [
+        [
+         "1",
+         "1 · 1",
+         "2"
+        ],
+        [
+         "2",
+         "1 · 2 · 1",
+         "4"
+        ],
+        [
+         "3",
+         "1 · 3 · 3 · 1",
+         "8"
+        ],
+        [
+         "4",
+         "1 · 4 · 6 · 4 · 1",
+         "16"
+        ],
+        [
+         "5",
+         "1 · 5 · 10 · 10 · 5 · 1",
+         "32"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "Pascal üçgeni: her satırda iki uçta bir, ortadakiler üstteki iki sayının toplamı. Dördüncü satırda altı, üç artı üç.",
+        "show": [],
+        "focus": [
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Satır toplamları iki, dört, sekiz, on altı, otuz iki: iki üzeri n. Çünkü bir artı birin n'inci kuvveti.",
+        "show": [],
+        "focus": [
+         "col3"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "a artı b'nin n'inci kuvveti açılınca n artı bir terim çıkar. Baştan r artı birinci terim: n'nin r'li kombinasyonu çarpı a üzeri n eksi r çarpı b üzeri r. Bütün katsayıların toplamını bulmak için değişkenlere bir verirsin. Sabit terim, yani x'siz terim için genel terimdeki x'in üssünü sıfıra eşitlersin. Katsayılar Pascal üçgeninden gelir."
+     },
+     {
+      "kind": "example",
+      "title": "Bir açılım",
+      "example": "$(x + 2)^4$ ifadesini açalım.",
+      "explanation": "$x^4 + 4 \\cdot 2x^3 + 6 \\cdot 4x^2 + 4 \\cdot 8x + 16 = x^4 + 8x^3 + 24x^2 + 32x + 16$",
+      "beats": [],
+      "narration": "Bir örnek: parantez içinde x artı 2, üssü 4 ifadesini açalım. Katsayılar Pascal'ın dördüncü satırından: bir, dört, altı, dört, bir. x'in üssü dörtten sıfıra iner, ikinin üssü sıfırdan dörde çıkar. x üzeri dört, dört çarpı iki x küp, altı çarpı dört x kare, dört çarpı sekiz x, on altı. Sonuç: x üzeri dört artı sekiz x küp artı yirmi dört x kare artı otuz iki x artı on altı. Katsayıların toplamı seksen bir: üçün dördüncü kuvveti."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$(2x - 3y)^5$ ifadesinin açılımındaki katsayıların toplamı kaçtır?",
+       "options": [
+        "$-32$",
+        "$-1$",
+        "$0$",
+        "$1$",
+        "$32$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$x = y = 1$: $(2 - 3)^5$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x ve y yerine bir koyalım: iki eksi üç, eksi bir; beşinci kuvveti."
+        },
+        {
+         "text": "$(-1)^5 = -1$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eksi birin tek kuvveti eksi bir. Cevap B."
+        }
+       ],
+       "narration": "Katsayılar toplamı: bütün değişkenlere bir verelim.",
+       "origin": {
+        "changes": "Katsayılar toplamı kalıbı; ifade yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Katsayı mı, terim mi?",
+      "prompt": "$(x + 1)^6$ açılımında kaç terim vardır?",
+      "choices": [
+       "6",
+       "7"
+      ],
+      "answer": 1,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "formula",
+       "latex": "(x + 1)^6 = x^6 + 6x^5 + 15x^4 + 20x^3 + 15x^2 + 6x + 1",
+       "caption": "Üsler 6, 5, 4, 3, 2, 1, 0: yedi terim."
+      },
+      "beats": [
+       {
+        "narration": "x'in üssü altıdan başlar ve sıfıra kadar iner: altı, beş, dört, üç, iki, bir, sıfır. Sıfır da bir terim.",
+        "show": [],
+        "focus": [],
+        "swap": []
+       }
+      ],
+      "explanation": "$n$'inci kuvvetin açılımında **$n + 1$** terim vardır: sıfırıncı kuvvet de sayılır.",
+      "narration": "Şimdi sıra sende. x artı birin altıncı kuvveti açılınca kaç terim çıkar? Biraz düşün.",
+      "explanationNarration": "Doğru cevap yedi. x'in üssü altıdan sıfıra iner; sıfırıncı kuvvet, yani sabit terim de bir terimdir. Altıdan sıfıra yedi sayı var. Ortadaki terimi ya da katsayıların ortalamasını soran sorularda bu sayıyı doğru almak şart."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$n$ bir doğal sayı olmak üzere\n\n$(2x - 1)^n$\n\nifadesinin açılımındaki **tüm katsayıların aritmetik ortalaması** $\\frac{1}{7}$ olduğuna göre, bu açılımdaki $x^2$'li terimin katsayısı kaçtır?",
+       "options": [
+        "$30$",
+        "$48$",
+        "$60$",
+        "$72$",
+        "$90$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Toplam: $(2 - 1)^n = 1$; terim sayısı $n + 1$: $\\frac{1}{n + 1} = \\frac{1}{7}$, $n = 6$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Katsayılar toplamı, x yerine bir: iki eksi birin n'inci kuvveti, bir. Terim sayısı n artı bir. Ortalama, bir bölü n artı bir, yedide bir: n altı."
+        },
+        {
+         "text": "$T_{r+1} = \\binom{6}{r}(2x)^{6 - r}(-1)^r$; $x^2$ için $r = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Genel terim: altının r'li kombinasyonu çarpı iki x'in altı eksi r'inci kuvveti çarpı eksi birin r'inci kuvveti. x kare için altı eksi r iki, r dört."
+        },
+        {
+         "text": "$\\binom{6}{4} \\cdot 2^2 \\cdot (-1)^4 = 15 \\cdot 4 = 60$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Altının dörtlü kombinasyonu on beş, iki kare dört, eksi birin dördüncü kuvveti bir: altmış. Cevap C."
+        }
+       ],
+       "narration": "ÖSYM 2020'de bu kalıbı sordu. Ortalama: katsayılar toplamı bölü terim sayısı.",
+       "origin": {
+        "changes": "ÖSYM 2020 katsayı ortalaması kalıbı örnek alındı; ifade ve istenen terim yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$\\left(x^2 + \\dfrac{2}{x}\\right)^6$\n\nifadesinin açılımında $x^3$'lü terimin katsayısı kaçtır?",
+       "options": [
+        "$60$",
+        "$80$",
+        "$120$",
+        "$160$",
+        "$240$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$T_{r+1} = \\binom{6}{r}(x^2)^{6 - r}\\left(\\frac{2}{x}\\right)^r = \\binom{6}{r} 2^r x^{12 - 3r}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Genel terim: altının r'li kombinasyonu çarpı x karenin altı eksi r'inci kuvveti çarpı iki bölü x'in r'inci kuvveti. x'in üssü on iki eksi iki r eksi r, on iki eksi üç r."
+        },
+        {
+         "text": "$12 - 3r = 3$: $r = 3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "On iki eksi üç r üç: r üç."
+        },
+        {
+         "text": "$\\binom{6}{3} \\cdot 2^3 = 20 \\cdot 8 = 160$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Altının üçlü kombinasyonu yirmi, iki küp sekiz: yüz altmış. Cevap D."
+        }
+       ],
+       "narration": "Genel terimde x'in üssünü üçe eşitleyelim.",
+       "origin": {
+        "changes": "Belirli kuvvetli terim kalıbı; ifade ve kuvvet yeni seçildi"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_BINOM_01",
+    "subtopics": [],
+    "title": "Sabit terim ve özel terimler",
+    "narration": "ÖSYM 2022, 2023 ve 2025'te bir parametreyi sabit terimden ya da bir terimin katsayısından buldurdu. Yol hep aynı: genel terimi yaz, üssü eşitle.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Özel terimler",
+      "items": [
+       "**Sabit terim**: genel terimde $x$'in üssü **sıfır**.",
+       "**Orta terim**: $n$ çiftse $\\left(\\frac{n}{2} + 1\\right)$. terim.",
+       "**Çift kuvvetlilerin** katsayıları toplamı: $\\frac{P(1) + P(-1)}{2}$; tek kuvvetliler: $\\frac{P(1) - P(-1)}{2}$."
+      ],
+      "beats": [],
+      "narration": "Sabit terim, genel terimde x'in üssünün sıfır olduğu terimdir. n çiftse açılımın ortasında tek bir terim vardır: n bölü iki artı birinci terim. Çift kuvvetli terimlerin katsayıları toplamı, P birle P eksi birin toplamının yarısıdır; tek kuvvetlilerinki farkının yarısı. Çünkü x eksi bir olunca tek kuvvetliler işaret değiştirir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Kaçıncı terim?",
+      "wrong": "Baştan 4. terim için $r = 4$ alınır: $\\binom{10}{4}$.",
+      "right": "Baştan 4. terim $T_4$, yani $r = 3$: $\\binom{10}{3}$.",
+      "why": "Genel terim $T_{r+1}$'dir; terimin sıra numarası $r$'den bir fazladır.",
+      "narration": "Sık yapılan bir hata: dördüncü terim için r'yi dört almak. Genel terim T r artı bir diye yazılır; ilk terimde r sıfırdır. Dördüncü terim için r üç olmalı."
+     },
+     {
+      "kind": "visual",
+      "title": "Üssü sıfırla",
+      "visual": {
+       "kind": "flipcards",
+       "cards": [
+        {
+         "front": "$\\left(x + \\frac{1}{x}\\right)^6$",
+         "back": "$x^{6 - 2r}$: $r = 3$, sabit terim $\\binom{6}{3} = 20$"
+        },
+        {
+         "front": "$\\left(x^2 + \\frac{1}{x}\\right)^6$",
+         "back": "$x^{12 - 3r}$: $r = 4$, sabit terim $\\binom{6}{4} = 15$"
+        },
+        {
+         "front": "$\\left(x + \\frac{1}{x}\\right)^5$",
+         "back": "$x^{5 - 2r}$: $5 - 2r = 0$ olmaz; sabit terim **yok**"
+        },
+        {
+         "front": "$\\left(x^3 - \\frac{1}{x}\\right)^4$",
+         "back": "$x^{12 - 4r}$: $r = 3$, sabit terim $\\binom{4}{3}(-1)^3 = -4$"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "x artı bir bölü x'in altıncı kuvveti: x'in üssü altı eksi iki r. r üç, sabit terim yirmi.",
+        "show": [],
+        "focus": [
+         "p1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "x kare artı bir bölü x'in altıncı kuvveti: üs on iki eksi üç r. r dört, sabit terim on beş.",
+        "show": [],
+        "focus": [
+         "p2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "x artı bir bölü x'in beşinci kuvveti: beş eksi iki r sıfır olamaz, r tam sayı değil. Bu açılımda sabit terim yok.",
+        "show": [],
+        "focus": [
+         "p3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "x küp eksi bir bölü x'in dördüncü kuvveti: üs on iki eksi dört r, r üç. İşareti unutma: eksi birin küpü eksi bir; sabit terim eksi dört.",
+        "show": [],
+        "focus": [
+         "p4"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Genel terimde üssü sıfırlamayı dört kısa örnekle çalışalım. Her kartta önce kendin dene, sonra çevir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ pozitif bir gerçel sayı olmak üzere\n\n$\\left(x + \\dfrac{a}{x^2}\\right)^6$\n\nifadesinin açılımındaki sabit terim 60 olduğuna göre, $a$ kaçtır?",
+       "options": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$6$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$T_{r+1} = \\binom{6}{r} x^{6 - r} \\cdot a^r x^{-2r} = \\binom{6}{r} a^r x^{6 - 3r}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Genel terim: altının r'li kombinasyonu çarpı x üzeri altı eksi r, çarpı a üzeri r, çarpı x üzeri eksi iki r. x'in üssü altı eksi üç r."
+        },
+        {
+         "text": "Sabit terim: $6 - 3r = 0$, $r = 2$: $\\binom{6}{2} a^2 = 15a^2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sabit terim için altı eksi üç r sıfır, r iki. Terim: on beş a kare."
+        },
+        {
+         "text": "$15a^2 = 60$: $a^2 = 4$, $a = 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "On beş a kare altmış: a kare dört, a pozitif, iki. Cevap B."
+        }
+       ],
+       "narration": "ÖSYM 2023'te sabit terimden parametre buldurdu. Önce sabit terimin hangi r'de olduğunu bulalım.",
+       "origin": {
+        "changes": "ÖSYM 2023 sabit terim kalıbı örnek alındı; ifade ve değer yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ pozitif bir gerçel sayı olmak üzere\n\n$\\left(ax - \\dfrac{1}{x}\\right)^7$\n\nifadesinin açılımında $x^3$'lü terimin katsayısı 672 olduğuna göre, $a$ kaçtır?",
+       "options": [
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$2$",
+        "$4$",
+        "$8$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$T_{r+1} = \\binom{7}{r}(ax)^{7 - r}\\left(-\\frac{1}{x}\\right)^r = \\binom{7}{r} a^{7 - r}(-1)^r x^{7 - 2r}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Genel terim: yedinin r'li kombinasyonu çarpı a x'in yedi eksi r'inci kuvveti çarpı eksi bir bölü x'in r'inci kuvveti. x'in üssü yedi eksi iki r."
+        },
+        {
+         "text": "$7 - 2r = 3$: $r = 2$; katsayı $\\binom{7}{2} a^5 = 21a^5$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yedi eksi iki r üç: r iki. Eksi birin karesi bir; katsayı yirmi bir a üzeri beş."
+        },
+        {
+         "text": "$21a^5 = 672$: $a^5 = 32$, $a = 2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yirmi bir a üzeri beş, altı yüz yetmiş iki: a üzeri beş otuz iki, a iki. Cevap C."
+        }
+       ],
+       "narration": "ÖSYM 2022'de bir terimin katsayısından a'yı buldurdu. Aynı yol.",
+       "origin": {
+        "changes": "ÖSYM 2022 terim katsayısından parametre kalıbı örnek alındı; ifade ve sayılar yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$(x + y)^{10}$ ifadesinin açılımı $x$'in azalan kuvvetlerine göre yazıldığında **baştan 4.** terimin katsayısı kaçtır?",
+       "options": [
+        "$84$",
+        "$120$",
+        "$210$",
+        "$252$",
+        "$330$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Baştan 4. terim: $T_4$, $r = 3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dördüncü terim T dört; r üç."
+        },
+        {
+         "text": "$T_4 = \\binom{10}{3} x^7 y^3 = 120x^7y^3$",
+         "eliminate": [
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Onun üçlü kombinasyonu yüz yirmi: yüz yirmi x üzeri yedi y küp. r'yi dört alan iki yüz on bulur. Cevap B."
+        }
+       ],
+       "narration": "Hata kartını hatırlayalım: dördüncü terim r eşittir üç.",
+       "origin": {
+        "changes": "Sıradaki terim kalıbı; kuvvet ve sıra yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Eksi terimin kuvveti",
+      "wrong": "$(x - 2)^8$ açılımında $x^5$'li terim: $\\binom{8}{3} x^5 \\cdot 2^3 = 448x^5$.",
+      "right": "$\\binom{8}{3} x^5 (-2)^3 = -448x^5$",
+      "why": "İkinci terim $-2$'dir; kuvveti alınırken işaretiyle birlikte, parantez içinde alınır. Tek kuvvette sonuç negatif olur.",
+      "narration": "Sık yapılan bir hata: x eksi iki açılırken ikinci terimi artı iki gibi almak. İkinci terim eksi iki; kuvvetini işaretiyle birlikte alırsın. Eksi ikinin küpü eksi sekiz: x üzeri beşli terimin katsayısı eksi dört yüz kırk sekiz. Çift kuvvette işaret gider, tek kuvvette kalır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$(x - 2)^8$ ifadesinin açılımındaki **ortadaki** terimin katsayısı kaçtır?",
+       "options": [
+        "$280$",
+        "$448$",
+        "$560$",
+        "$1120$",
+        "$1792$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$n = 8$: $9$ terim; orta terim $T_5$, $r = 4$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dokuz terimin ortası beşinci terim: r dört."
+        },
+        {
+         "text": "$\\binom{8}{4} x^4 (-2)^4 = 70 \\cdot 16\\, x^4$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sekizin dörtlü kombinasyonu yetmiş; eksi ikinin dördüncü kuvveti on altı."
+        },
+        {
+         "text": "Katsayı $70 \\cdot 16 = 1120$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yetmiş çarpı on altı, bin yüz yirmi. Cevap D."
+        }
+       ],
+       "narration": "Sekizinci kuvvette dokuz terim var: ortadaki beşinci.",
+       "origin": {
+        "changes": "Orta terim kalıbı; ifade yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$(2x - 1)^5 = a_5x^5 + a_4x^4 + a_3x^3 + a_2x^2 + a_1x + a_0$\n\nolduğuna göre, $a_0 + a_2 + a_4$ toplamı kaçtır?",
+       "options": [
+        "$-243$",
+        "$-122$",
+        "$-121$",
+        "$121$",
+        "$122$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$P(1) = (2 - 1)^5 = 1$: bütün katsayılar toplamı.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x bir: iki eksi birin beşinci kuvveti, bir. Bu bütün katsayıların toplamı."
+        },
+        {
+         "text": "$P(-1) = (-3)^5 = -243$: çift kuvvetliler aynı, tek kuvvetliler ters işaretli.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x eksi bir: eksi üçün beşinci kuvveti, eksi iki yüz kırk üç. Burada çift kuvvetliler aynı kalır, tekler işaret değiştirir."
+        },
+        {
+         "text": "$a_0 + a_2 + a_4 = \\frac{1 + (-243)}{2} = -121$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İkisini toplayınca tekler gider, çiftler iki kez sayılır: bir eksi iki yüz kırk üç, bölü iki: eksi yüz yirmi bir. Cevap C."
+        }
+       ],
+       "narration": "Çift kuvvetli terimlerin katsayıları: x'e bir ve eksi bir verelim.",
+       "origin": {
+        "changes": "Çift kuvvetli katsayılar toplamı kalıbı; ifade yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$a$ sıfırdan farklı bir gerçel sayı olmak üzere\n\n$\\left(x + \\dfrac{a}{x}\\right)^4$ ifadesinin açılımındaki sabit terim ile $\\left(x - \\dfrac{a}{x}\\right)^6$ ifadesinin açılımındaki sabit terimin toplamı 0'dır.\n\nBuna göre, $a$ kaçtır?",
+       "options": [
+        "$\\frac{3}{10}$",
+        "$\\frac{1}{3}$",
+        "$\\frac{3}{5}$",
+        "$\\frac{3}{2}$",
+        "$\\frac{10}{3}$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Birinci: $x^{4 - 2r}$, $r = 2$: $\\binom{4}{2} a^2 = 6a^2$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birincide x'in üssü dört eksi iki r: r iki. Sabit terim altı a kare."
+        },
+        {
+         "text": "İkinci: $x^{6 - 2r}$, $r = 3$: $\\binom{6}{3}(-a)^3 = -20a^3$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İkincide x'in üssü altı eksi iki r: r üç. Sabit terim yirmi çarpı eksi a'nın küpü, eksi yirmi a küp."
+        },
+        {
+         "text": "$6a^2 - 20a^3 = 0$: $a^2(6 - 20a) = 0$, $a \\neq 0$: $a = \\frac{3}{10}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam sıfır: a kare çarpı altı eksi yirmi a, sıfır. a sıfır değil: a, on da üç. Cevap A."
+        }
+       ],
+       "narration": "ÖSYM 2025'te iki açılımın sabit terimlerini karşılaştırdı. İkisini ayrı bulalım.",
+       "origin": {
+        "changes": "ÖSYM 2025 iki sabit terim kalıbı örnek alındı; kuvvetler ve koşul yeni seçildi"
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "AYT tarzı",
+       "stem": "$n$ bir doğal sayı olmak üzere $(1 + x)^n$ ifadesinin açılımında $x^2$'li ve $x^3$'lü terimlerin katsayıları birbirine eşittir.\n\nBuna göre, $n$ kaçtır?",
+       "options": [
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$x^2$'nin katsayısı $\\binom{n}{2}$, $x^3$'ünkü $\\binom{n}{3}$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir artı x'in n'inci kuvvetinde x kare katsayısı n'nin ikili kombinasyonu, x küp katsayısı üçlü kombinasyonu."
+        },
+        {
+         "text": "$\\binom{n}{2} = \\binom{n}{3}$: $2 + 3 = n$, $n = 5$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki kombinasyon eşitse ya alt sayılar eşittir ya da toplamları n'dir. İki ile üç eşit değil: n, iki artı üç, beş."
+        },
+        {
+         "text": "Denetim: $\\binom{5}{2} = \\binom{5}{3} = 10$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Denetim: beşin ikilisi de üçlüsü de on. Cevap B."
+        }
+       ],
+       "narration": "Katsayılar kombinasyon; kombinasyonun simetrisini kullanalım.",
+       "origin": {
+        "changes": "Eşit katsayılar kalıbı; kuvvetler yeni seçildi"
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$T_{r+1} = \\binom{n}{r} a^{n - r} b^r$.",
+    "$n$'inci kuvvette **$n + 1$** terim.",
+    "Katsayılar toplamı: değişkenlere **1**.",
+    "Sabit terim: $x$'in üssü **0**.",
+    "Orta terim ($n$ çift): $\\frac{n}{2} + 1$.",
+    "Çift kuvvetliler: $\\frac{P(1) + P(-1)}{2}$."
+   ],
+   "warnings": [
+    "Baştan $k$. terim için $r = k - 1$.",
+    "Negatif terimin **işaretini** kuvvetle birlikte al."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "$\\left(x^3 - \\frac{1}{x}\\right)^8$ açılımındaki sabit terimi **kendin** bul.",
+    "$(3x - 1)^6$ açılımında **tek** kuvvetli terimlerin katsayıları toplamını bul.",
+    "Uygulamada AYT Binom testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Sabit terime ikinci örnek ver: (2x − 1/x)⁶ açılımında genel terimde x'in üssü 6 − 2r; r = 3 için sabit terim C(6, 3) × 2³ × (−1)³ = −160.",
+   "Katsayılar toplamını ve terim sayısını örnekle: (3x − 2y)⁵ açılımında katsayılar toplamı (3 − 2)⁵ = 1. (a + b + c)ⁿ açılımında C(n + 2, 2) terim vardır.",
+   "Baştan k'ıncı terimi buldur: (x² + 2/x)⁸ açılımında baştan üçüncü terim C(8, 2)(x²)⁶(2/x)² = 112x¹⁰. Sondan sayarken açılımın ters çevrilebileceğini göster.",
+   "Pascal üçgenini ve yaklaşık hesabı ekle: üçgenin n'inci satırındaki sayılar C(n, r) katsayılarıdır, satır toplamı 2ⁿ. (1,01)⁵ ≈ 1 + 5 × 0,01 + 10 × 0,0001 = 1,051."
+  ]
+ }
+}

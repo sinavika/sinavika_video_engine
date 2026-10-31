@@ -1,0 +1,1074 @@
+{
+ "topic": {
+  "id": "600AE788-460D-5D16-F8E3-2BBA2E864F13",
+  "category": "YKS_TYT",
+  "lesson": "FIZ",
+  "code": "FIZ_HAREKET"
+ },
+ "title": "Hareket ve Kuvvet",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/FIZ/FIZ_HAREKET.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Neden öne savruluruz?",
+   "narration": "Otobüs aniden fren yapınca neden öne savruluruz? Gün boyu yürüyüp eve dönen birinin ortalama hızı neden sıfırdır? Bu derste yol ve yer değiştirmeyi, sürat, hız ve ivmeyi, hareket grafiklerini, kuvveti ve bileşkesini, Newton'un üç yasasını ve sürtünmeyi öğreneceğiz."
+  },
+  "objectives": [
+   "Yol ile yer değiştirmeyi, sürat ile hızı ayırt etmek; ivmeyi hesaplamak",
+   "Konum-zaman ve hız-zaman grafiklerinde eğim ve alanı yorumlamak",
+   "Bileşke kuvveti bulmak; Newton'un yasalarını uygulamak",
+   "Statik ve kinetik sürtünmeyi ayırt etmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_HAREKET_01",
+    "subtopics": [],
+    "title": "Yol ve yer değiştirme",
+    "narration": "Hareket, bir cismin bir referans noktasına göre konumunun değişmesidir. Otobüsteki yolcu, yanındaki yolcuya göre durur, yoldaki ağaca göre hareket eder: hareket görecelidir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Yürüdüğün yol, vardığın yer",
+      "visual": {
+       "kind": "vectors",
+       "view": [
+        0,
+        0,
+        6.5,
+        5.5
+       ],
+       "vectors": [
+        {
+         "from": [
+          1,
+          1
+         ],
+         "to": [
+          5,
+          1
+         ],
+         "label": "4 m",
+         "colour": "ink",
+         "dashed": false
+        },
+        {
+         "from": [
+          5,
+          1
+         ],
+         "to": [
+          5,
+          4
+         ],
+         "label": "3 m",
+         "colour": "ink",
+         "dashed": false
+        },
+        {
+         "from": [
+          1,
+          1
+         ],
+         "to": [
+          5,
+          4
+         ],
+         "label": "Δx = 5 m",
+         "colour": "brand",
+         "dashed": true
+        }
+       ],
+       "grid": true
+      },
+      "caption": "Alınan yol skalerdir: gidilen her metre sayılır. Yer değiştirme **vektöreldir**: ilk konumdan son konuma çizilen ok.",
+      "beats": [
+       {
+        "narration": "Aldığı yol, yürüdüğü her metrenin toplamı: dört artı üç, yedi metre. Yol skalerdir, yön söylemez.",
+        "show": [],
+        "focus": [
+         "v1",
+         "v2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Yer değiştirme ise başlangıçtan bitişe çizilen ok: dik kenarları dört ve üç olan üçgenin hipotenüsü, beş metre. Başladığın yere dönersen yolun ne kadar uzun olursa olsun yer değiştirmen sıfırdır.",
+        "show": [],
+        "focus": [
+         "v3"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bir öğrenci önce dört metre doğuya, sonra üç metre kuzeye yürüyor."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Ali sabah evinin kapısından çıkıyor, gün boyunca yürüyüp $6$ saat sonra aynı kapıya dönüyor. Akıllı saati bu sürede $12\\,000$ adım attığını gösteriyor. Ali'nin bir adımı $75$ cm olduğuna göre, bu $6$ saatteki ortalama sürati ve ortalama hızının büyüklüğü kaç km/h'tir?",
+       "options": [
+        "$1{,}5$ ve $0$",
+        "$0$ ve $1{,}5$",
+        "$1{,}5$ ve $1{,}5$",
+        "$9$ ve $0$",
+        "$0$ ve $0$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Yol $= 12\\,000 \\cdot 0{,}75 = 9000$ m $= 9$ km; ortalama sürat $= \\frac{9}{6} = 1{,}5$ km/h.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Aldığı yol on iki bin çarpı sıfır virgül yetmiş beş metre: dokuz bin metre, dokuz kilometre. Ortalama sürat yol bölü zaman: dokuz bölü altı, bir buçuk kilometre bölü saat."
+        },
+        {
+         "text": "Aynı noktaya döndü: yer değiştirme $0$ → ortalama hız $0$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Ali aynı kapıya döndüğü için yer değiştirmesi sıfır; ortalama hız da yer değiştirme bölü zaman olduğundan sıfır. Cevabımız A. Dokuzu seçen, yolu zamana bölmeyi unutmuştur."
+        }
+       ],
+       "narration": "Sürat yolla, hız yer değiştirmeyle.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2023 adım sayar sorusunun fikri farklı değerlerle ve ortalama sürat de sorularak yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kareli bir zeminde hareket eden bir robot önce $6$ m doğuya, sonra $8$ m kuzeye, en son $6$ m batıya gidiyor. Robotun aldığı yol ve yer değiştirmesinin büyüklüğü sırasıyla kaç metredir?",
+       "options": [
+        "20 ve 20",
+        "20 ve 8",
+        "8 ve 20",
+        "14 ve 8",
+        "20 ve 10"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Yol $= 6 + 8 + 6 = 20$ m.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yol, gidilen bütün metrelerin toplamı: altı artı sekiz artı altı, yirmi metre."
+        },
+        {
+         "text": "Doğu $6$, batı $6$ birbirini götürür; yer değiştirme $8$ m kuzey. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Doğuya altı, batıya altı metre birbirini götürür; robot başladığı yerin sekiz metre kuzeyinde. Yer değiştirme sekiz metre. Cevabımız B. On metreyi seçen, ilk iki hareketin hipotenüsünü alıp son adımı unutmuştur."
+        }
+       ],
+       "narration": "Doğu ile batı birbirini götürür.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; yol ve yer değiştirme farkı kareli zeminde özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_HAREKET_02",
+    "subtopics": [
+     "FIZ_HAREKET_03"
+    ],
+    "title": "Sürat, hız, ivme",
+    "narration": "Yol ile yer değiştirme ayrımı, sürat ile hız ayrımını getirir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Üç oran",
+      "items": [
+       "**Sürat** = alınan yol / zaman (skaler).",
+       "**Hız** = yer değiştirme / zaman (vektörel); birimi m/s.",
+       "**İvme** $a = \\frac{\\Delta v}{\\Delta t}$: hızın değişim hızı, birimi $\\text{m/s}^2$.",
+       "Hız ile ivme **aynı yönde**: hızlanır; **zıt yönde**: yavaşlar.",
+       "Düzgün doğrusal harekette hız sabit, ivme **sıfır**."
+      ],
+      "beats": [],
+      "narration": "Sürat, alınan yolun zamana oranıdır ve skalerdir. Hız, yer değiştirmenin zamana oranıdır ve yönü vardır. İvme ise hızın ne kadar hızlı değiştiğini söyler: hız değişimi bölü geçen süre, birimi metre bölü saniye kare. Hız ve ivme aynı yöndeyse cisim hızlanır, zıt yöndeyse yavaşlar. Hız sabitse ivme sıfırdır: buna düzgün doğrusal hareket denir. Trafik ışıklarındaki yeşil dalga da bu fikre dayanır: sabit hızla giden araç her ışığa yeşilde varır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Durgun hâlden harekete geçen bir otomobil, doğrusal bir yolda düzgün hızlanarak $5$ saniyede $20$ m/s hıza ulaşıyor. Otomobilin ivmesi kaç m/s² dir?",
+       "options": [
+        "$4$",
+        "$5$",
+        "$15$",
+        "$20$",
+        "$100$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$a = \\frac{\\Delta v}{\\Delta t} = \\frac{20 - 0}{5} = 4 \\text{ m/s}^2$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hız sıfırdan yirmiye çıktı: değişim yirmi metre bölü saniye. Beş saniyeye bölünce dört: otomobil her saniye hızını dört metre bölü saniye artırıyor. Cevabımız A. Yüzü seçen, bölmek yerine çarpmıştır."
+        }
+       ],
+       "narration": "Hız değişimi bölü süre.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ivme tanımı özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_HAREKET_04",
+    "subtopics": [],
+    "title": "Hareket grafikleri",
+    "narration": "TYT hareketi çoğu zaman bir grafikle sorar. İki kuralı bil: eğim ve alan.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Konum-zaman: eğim hızdır",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        6
+       ],
+       "y": [
+        0,
+        13
+       ],
+       "xLabel": "t (s)",
+       "yLabel": "x (m)",
+       "curves": [
+        {
+         "expression": "2x",
+         "label": "K: v = 2 m/s",
+         "ends": [
+          "none",
+          "none"
+         ]
+        },
+        {
+         "expression": "6",
+         "label": "L: duruyor",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "caption": "Konum-zaman grafiğinde **eğim = hız**. Yatay doğru: cisim **duruyor**.",
+      "beats": [
+       {
+        "narration": "K her saniye iki metre ilerliyor: eğim iki, hız iki metre bölü saniye. Doğru ne kadar dikse cisim o kadar hızlı.",
+        "show": [],
+        "focus": [
+         "c1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "L'nin konumu hiç değişmiyor: grafik yatay, eğim sıfır. L duruyor. Eğim negatif olsaydı cisim geri, yani ters yönde gidiyor olurdu.",
+        "show": [],
+        "focus": [
+         "c2"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Konum-zaman grafiğinde doğrunun eğimi hızı verir."
+     },
+     {
+      "kind": "visual",
+      "title": "Hız-zaman: alan yer değiştirmedir",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        6
+       ],
+       "y": [
+        0,
+        13
+       ],
+       "xLabel": "t (s)",
+       "yLabel": "v (m/s)",
+       "curves": [
+        {
+         "expression": "2x",
+         "label": "a = 2 m/s²",
+         "ends": [
+          "none",
+          "none"
+         ]
+        }
+       ],
+       "parameters": {},
+       "points": [],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin",
+       "area": {
+        "curve": 0,
+        "from": 0,
+        "to": 4,
+        "label": "Δx = 16 m"
+       }
+      },
+      "caption": "Hız-zaman grafiğinde **eğim = ivme**, grafik ile zaman ekseni arasındaki **alan = yer değiştirme**.",
+      "beats": [
+       {
+        "narration": "Bu cismin hızı her saniye iki artıyor: eğim iki, ivme iki metre bölü saniye kare. Düzgün hızlanan hareketin hız-zaman grafiği eğik bir doğrudur.",
+        "show": [],
+        "focus": [
+         "c1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Grafiğin altında kalan alan yer değiştirmedir: ilk dört saniyede taban dört, yükseklik sekiz olan üçgen; alanı on altı. Cisim dört saniyede on altı metre gitmiş.",
+        "show": [],
+        "focus": [
+         "area"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Hız-zaman grafiğinde iki şey okunur: eğim ve alan."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Doğrusal bir yolda hareket eden bir aracın hız-zaman grafiği şekildeki gibidir. Araç $0$-$6$ saniye arasında kaç metre yol alır?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         0,
+         7
+        ],
+        "y": [
+         0,
+         10
+        ],
+        "xLabel": "t (s)",
+        "yLabel": "v (m/s)",
+        "curves": [],
+        "parameters": {},
+        "series": {
+         "kind": "line",
+         "values": [
+          {
+           "x": 0,
+           "y": 0
+          },
+          {
+           "x": 4,
+           "y": 8
+          },
+          {
+           "x": 6,
+           "y": 8
+          }
+         ],
+         "showValues": false
+        },
+        "points": [],
+        "segments": [],
+        "equalScale": false,
+        "axes": "origin"
+       },
+       "options": [
+        "$16$",
+        "$24$",
+        "$32$",
+        "$40$",
+        "$48$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$0$-$4$ s: üçgen, $\\frac{4 \\cdot 8}{2} = 16$ m.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İlk dört saniye grafik bir üçgen çiziyor: taban dört, yükseklik sekiz, alan on altı metre."
+        },
+        {
+         "text": "$4$-$6$ s: dikdörtgen, $2 \\cdot 8 = 16$ m. Toplam $32$ m. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dördüncü saniyeden sonra hız sabit sekiz: iki saniyede on altı metre daha. Toplam otuz iki metre. Cevabımız C. Kırk sekizi seçen, bütün alanı dikdörtgen sanıp altı çarpı sekiz almıştır."
+        }
+       ],
+       "narration": "Alanı iki parçada hesapla.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; hız-zaman grafiğinde alan özgün bir grafikle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Doğrusal yolda hareket eden bir cismin konum-zaman grafiği şekildeki gibidir.\n\nI. $0$-$2$ s arasında hızının büyüklüğü $4$ m/s'dir.\nII. $2$-$5$ s arasında durmaktadır.\nIII. $5$-$7$ s arasında hızının büyüklüğü $2$ m/s'dir.\n\nYargılarından hangileri doğrudur?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         0,
+         8
+        ],
+        "y": [
+         0,
+         10
+        ],
+        "xLabel": "t (s)",
+        "yLabel": "x (m)",
+        "curves": [],
+        "parameters": {},
+        "series": {
+         "kind": "line",
+         "values": [
+          {
+           "x": 0,
+           "y": 0
+          },
+          {
+           "x": 2,
+           "y": 8
+          },
+          {
+           "x": 5,
+           "y": 8
+          },
+          {
+           "x": 7,
+           "y": 0
+          }
+         ],
+         "showValues": false
+        },
+        "points": [],
+        "segments": [],
+        "equalScale": false,
+        "axes": "origin"
+       },
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$0$-$2$ s: eğim $\\frac{8}{2} = 4$ m/s → I doğru. $2$-$5$ s: yatay → II doğru.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İlk iki saniyede konum sekiz metre değişmiş: eğim dört, birinci doğru. İkiden beşe grafik yatay: cisim duruyor, ikinci doğru."
+        },
+        {
+         "text": "$5$-$7$ s: $\\frac{8}{2} = 4$ m/s (geri yönde) → III yanlış. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Beşten yediye konum sekizden sıfıra iniyor: iki saniyede sekiz metre, hız dört metre bölü saniye, ters yönde. Üçüncü yanlış. Cevabımız C. Hepsini seçen, son parçada süreyi dört saniye okumuştur."
+        }
+       ],
+       "narration": "Her parçanın eğimi.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; konum-zaman grafiğinin parçaları öncüllerle özgün olarak soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_HAREKET_05",
+    "subtopics": [
+     "FIZ_HAREKET_06",
+     "FIZ_HAREKET_07"
+    ],
+    "title": "Kuvvet ve bileşke",
+    "narration": "Hareketi değiştiren etki kuvvettir: iten, çeken, durduran, yön değiştiren.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Doğadaki dört temel kuvvet",
+      "visual": {
+       "kind": "conceptMap",
+       "center": "Temel kuvvetler",
+       "related": [
+        {
+         "name": "Kütle çekim",
+         "relation": "en zayıf, menzili sonsuz"
+        },
+        {
+         "name": "Elektromanyetik",
+         "relation": "yükler ve mıknatıslar"
+        },
+        {
+         "name": "Güçlü nükleer",
+         "relation": "en güçlü, çekirdekte"
+        },
+        {
+         "name": "Zayıf nükleer",
+         "relation": "radyoaktif bozunma"
+        }
+       ]
+      },
+      "caption": "Kuvvet vektöreldir, birimi **newton** (N), dinamometreyle ölçülür. Temas gerektiren (itme, sürtünme) ve gerektirmeyen (kütle çekim, manyetik) kuvvetler vardır.",
+      "beats": [
+       {
+        "narration": "Doğada dört temel kuvvet var. Kütle çekim en zayıfıdır ama menzili sonsuzdur; gezegenleri yörüngede tutar. Elektromanyetik kuvvet yükler ve mıknatıslar arasında etkilidir.",
+        "show": [],
+        "focus": [
+         "n1",
+         "n2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Güçlü nükleer kuvvet çekirdekteki parçacıkları bir arada tutar ve en güçlüsüdür. Zayıf nükleer kuvvet radyoaktif bozunmada rol oynar.",
+        "show": [],
+        "focus": [
+         "n3",
+         "n4"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Kuvvet vektörel bir büyüklüktür; birimi newton, ölçen alet dinamometredir. Bazı kuvvetler temas ister, bazıları uzaktan etki eder."
+     },
+     {
+      "kind": "visual",
+      "title": "Bileşke kuvvet",
+      "visual": {
+       "kind": "vectors",
+       "view": [
+        0,
+        0,
+        6,
+        6
+       ],
+       "vectors": [
+        {
+         "from": [
+          1,
+          1
+         ],
+         "to": [
+          4,
+          1
+         ],
+         "label": "3 N",
+         "colour": "lesson",
+         "dashed": false
+        },
+        {
+         "from": [
+          4,
+          1
+         ],
+         "to": [
+          4,
+          5
+         ],
+         "label": "4 N",
+         "colour": "lesson",
+         "dashed": false
+        },
+        {
+         "from": [
+          1,
+          1
+         ],
+         "to": [
+          4,
+          5
+         ],
+         "label": "R = 5 N",
+         "colour": "brand",
+         "dashed": true
+        }
+       ],
+       "grid": true
+      },
+      "caption": "Aynı yöndeki kuvvetler **toplanır**, zıt yöndekiler **çıkarılır**; dik kuvvetlerin bileşkesi Pisagor'la bulunur.",
+      "beats": [
+       {
+        "narration": "Aynı yönde üç ve dört newton yedi eder; zıt yönde olsalardı bir newton, büyüğün yönünde. Burada ise kuvvetler birbirine dik.",
+        "show": [],
+        "focus": [
+         "v1",
+         "v2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Dik kuvvetleri uç uca ekleyince bileşke, başlangıçtan sona çizilen oktur: üç, dört, beş üçgeninden beş newton. Net kuvvet sıfırsa cisim dengededir: ya durur ya da sabit hızla gider.",
+        "show": [],
+        "focus": [
+         "v3"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bir cisme birden çok kuvvet etki ediyorsa hepsinin yerine geçen tek kuvvete bileşke ya da net kuvvet denir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Ahmet ve Canan bir dolabı yatay zeminde sola doğru sırasıyla $30$ N ve $15$ N'lik kuvvetlerle birlikte itiyor. Dolap sola kayarken zemin ile dolap arasında $10$ N'lik sürtünme kuvveti oluşuyor. Dolaba etki eden net kuvvetin büyüklüğü ve yönü nedir?",
+       "options": [
+        "$5$ N – sol",
+        "$45$ N – sol",
+        "$55$ N – sol",
+        "$35$ N – sol",
+        "$35$ N – sağ"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "İtmeler aynı yönde: $30 + 15 = 45$ N sola.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki itme aynı yönde, sola: toplanır, kırk beş newton."
+        },
+        {
+         "text": "Sürtünme harekete zıt: $10$ N sağa. Net $45 - 10 = 35$ N sola. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sürtünme her zaman harekete zıt yöndedir: sağa on newton. Net kuvvet kırk beş eksi on, otuz beş newton, sola. Cevabımız D. Elli beşi seçen, sürtünmeyi de itmelerle aynı yöne koymuştur."
+        }
+       ],
+       "narration": "Sürtünme harekete zıt.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2020 koltuk itme sorusunun fikri farklı değerlerle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir cisme aynı noktadan birbirine dik $6$ N ve $8$ N'lik iki kuvvet etki ediyor. Cisme etki eden bileşke kuvvetin büyüklüğü kaç N'dir?",
+       "options": [
+        "$2$",
+        "$7$",
+        "$10$",
+        "$14$",
+        "$48$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$R = \\sqrt{6^2 + 8^2} = \\sqrt{100} = 10$ N. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dik kuvvetlerin bileşkesi, dik kenarları altı ve sekiz olan üçgenin hipotenüsü: on newton. Cevabımız C. On dördü seçen, kuvvetleri aynı yöndeymiş gibi toplamıştır; ikiyi seçen, zıt yöndeymiş gibi çıkarmıştır."
+        }
+       ],
+       "narration": "Dik kuvvetler: Pisagor.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; dik kuvvetlerin bileşkesi özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_HAREKET_08",
+    "subtopics": [],
+    "title": "Newton'un yasaları",
+    "narration": "Kuvvet ile hareket arasındaki bağı üç yasa kurar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Üç yasa",
+      "items": [
+       "**I. Eylemsizlik**: net kuvvet sıfırsa duran durur, giden **sabit hızla** gider.",
+       "**II. Temel yasa**: $F_{net} = m \\cdot a$; ivme net kuvvetle **aynı yönde**.",
+       "**III. Etki-tepki**: iki cisim birbirine **eşit büyüklükte, zıt yönde** kuvvet uygular.",
+       "Etki ve tepki **farklı cisimlere** etki eder; birbirini dengelemez."
+      ],
+      "beats": [],
+      "narration": "Birinci yasa eylemsizliktir: cisme etki eden net kuvvet sıfırsa duran cisim durur, hareket eden cisim sabit hızla yoluna devam eder. Otobüs aniden fren yapınca öne savrulmamızın nedeni budur. İkinci yasa: net kuvvet, kütle çarpı ivmedir; ivme net kuvvetle aynı yöndedir. Üçüncü yasa etki-tepki: A cismi B'ye kuvvet uygularsa B de A'ya eşit büyüklükte, zıt yönde kuvvet uygular. Bu iki kuvvet farklı cisimlere etki ettiği için birbirini dengelemez."
+     },
+     {
+      "kind": "visual",
+      "title": "Net kuvvet ivme yaratır",
+      "visual": {
+       "kind": "dynamics",
+       "mass": 2,
+       "incline": 0,
+       "friction": 0.2,
+       "forces": [
+        {
+         "label": "F",
+         "magnitude": 10,
+         "direction": "right"
+        }
+       ],
+       "initialVelocity": 0,
+       "time": 4,
+       "g": 10,
+       "graphs": [
+        "v",
+        "a"
+       ]
+      },
+      "caption": "$F_{net} = F - f = 10 - 4 = 6$ N; $a = \\frac{6}{2} = 3 \\text{ m/s}^2$.",
+      "beats": [
+       {
+        "narration": "Kutuya dört kuvvet etki ediyor: ağırlık yirmi newton aşağı, zeminin tepkisi olan normal kuvvet yirmi newton yukarı; bunlar birbirini dengeler. Sağa on newtonluk itme, sola sürtünme.",
+        "show": [],
+        "focus": [],
+        "stage": 0,
+        "swap": []
+       },
+       {
+        "narration": "Sürtünme kuvveti katsayı çarpı normal kuvvet: sıfır virgül iki çarpı yirmi, dört newton. Net kuvvet on eksi dört, altı newton, sağa. İvme altı bölü iki, üç metre bölü saniye kare.",
+        "show": [],
+        "focus": [],
+        "stage": 1,
+        "swap": []
+       },
+       {
+        "narration": "Kutu harekete geçiyor: hızı her saniye üç artıyor, hız-zaman grafiği düz bir çizgi olarak yükseliyor; ivme sabit kaldığı için ivme-zaman grafiği yatay.",
+        "show": [],
+        "focus": [],
+        "stage": 2,
+        "swap": []
+       }
+      ],
+      "narration": "İki kilogramlık kutuyu on newtonla itiyoruz; sürtünme katsayısı sıfır virgül iki."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aşağıdaki araçlardan hangilerine etki eden net kuvvet **sıfırdır**?\n\n• Düz yolda sabit $80$ km/h hızla giden otobüs\n• Kırmızı ışıkta hızlanmaya başlayan motosiklet\n• Kırmızı ışıkta duran bisiklet",
+       "options": [
+        "Yalnız otobüs",
+        "Yalnız bisiklet",
+        "Otobüs ve motosiklet",
+        "Motosiklet ve bisiklet",
+        "Otobüs ve bisiklet"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Sabit hız ve durgunluk: ivme $0$ → $F_{net} = 0$. Hızlanan motosiklet: ivme var → net kuvvet var. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Otobüsün hızı sabit, bisiklet duruyor: ikisinde de ivme sıfır, net kuvvet sıfır. Motosikletin hızı artıyor, ivmesi var; ona etki eden net kuvvet sıfır olamaz. Cevabımız E. Yalnız bisikleti seçen, hareket eden araca mutlaka net kuvvet etki ettiğini sanmıştır."
+        }
+       ],
+       "narration": "Hız değişiyor mu?",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2025 net kuvvet sorusunun fikri farklı araçlarla yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir sinek, hareket hâlindeki bir otobüsün ön camına çarpıyor. Çarpışma anıyla ilgili:\n\nI. Otobüsün sineğe uyguladığı kuvvet, sineğin otobüse uyguladığı kuvvetten büyüktür.\nII. Sineğin ivmesinin büyüklüğü, otobüsünkinden büyüktür.\nIII. İki kuvvet zıt yönlüdür.\n\nYargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve III",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Etki-tepki: kuvvetler **eşit büyüklükte, zıt yönde** → I yanlış, III doğru.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üçüncü yasaya göre otobüs sineğe ne kadar kuvvet uygularsa sinek de otobüse o kadar, zıt yönde kuvvet uygular. Birinci yanlış, üçüncü doğru."
+        },
+        {
+         "text": "Kuvvet aynı, kütle çok küçük → sineğin ivmesi çok büyük ($a = \\frac{F}{m}$) → II doğru. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kuvvetler eşit ama sineğin kütlesi çok küçük: a eşittir F bölü m olduğundan sineğin ivmesi çok büyük olur. İkinci doğru. Cevabımız D. Birinciyi seçen, büyük cismin daha büyük kuvvet uyguladığını sanmıştır; fark kuvvette değil, ivmededir."
+        }
+       ],
+       "narration": "Etki-tepki eşit; ivme kütleye bağlı.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin otomobil-çöp kovası çarpışma sorusunun fikri otobüs-sinek örneğiyle ve öncüllerle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Yatay zeminde duran $5$ kg kütleli bir kutu $30$ N'lik yatay kuvvetle çekiliyor. Kutu ile zemin arasındaki sürtünme kuvveti $10$ N olduğuna göre kutunun ivmesi kaç m/s² dir?",
+       "options": [
+        "$2$",
+        "$4$",
+        "$6$",
+        "$8$",
+        "$10$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$F_{net} = 30 - 10 = 20$ N; $a = \\frac{20}{5} = 4 \\text{ m/s}^2$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Net kuvvet otuz eksi on, yirmi newton. İvme yirmi bölü beş, dört metre bölü saniye kare. Cevabımız B. Altıyı seçen, sürtünmeyi unutup otuzu beşe bölmüştür; sekizi seçen, sürtünmeyi eklemiştir."
+        }
+       ],
+       "narration": "Önce net kuvvet.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; sürtünmeli zeminde F = m·a özgün değerlerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_HAREKET_09",
+    "subtopics": [],
+    "title": "Sürtünme",
+    "narration": "Sürtünme, birbirine değen yüzeyler arasında harekete karşı koyan kuvvettir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Statik ve kinetik",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        10
+       ],
+       "y": [
+        0,
+        8
+       ],
+       "xLabel": "F (N)",
+       "yLabel": "f (N)",
+       "curves": [],
+       "parameters": {},
+       "series": {
+        "kind": "line",
+        "values": [
+         {
+          "x": 0,
+          "y": 0
+         },
+         {
+          "x": 6,
+          "y": 6
+         },
+         {
+          "x": 6.2,
+          "y": 4
+         },
+         {
+          "x": 10,
+          "y": 4
+         }
+        ],
+        "showValues": false
+       },
+       "points": [
+        {
+         "x": 6,
+         "y": 6,
+         "label": "en büyük statik"
+        },
+        {
+         "x": 8.5,
+         "y": 4,
+         "label": "kinetik"
+        }
+       ],
+       "segments": [],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "caption": "Durgun cisimde statik sürtünme, uygulanan kuvvete **eşittir** (en çok $\\mu_s N$). Kayan cisimde kinetik sürtünme sabit: $f_k = \\mu_k N$.",
+      "beats": [
+       {
+        "narration": "Dolap kıpırdamadıkça sürtünme, uyguladığın kuvvete eşittir: iki newtonla iterken iki, beşle iterken beş newton. Buna statik sürtünme denir; bir sınırı vardır.",
+        "show": [],
+        "focus": [
+         "p1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Kuvvet bu sınırı aşınca dolap kaymaya başlar ve sürtünme biraz düşer: kinetik sürtünme, sürtünme katsayısı çarpı normal kuvvettir ve kuvveti artırsan da değişmez. Sürtünme yüzeylerin cinsine ve normal kuvvete bağlıdır; temas alanına bağlı değildir.",
+        "show": [],
+        "focus": [
+         "p2"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Ağır bir dolabı itmeye başladığını düşün. Kuvveti yavaş yavaş artırıyorsun."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Yatay zemindeki $K$, $L$ ve $M$ bloklarının kütleleri sırasıyla $2$ kg, $4$ kg ve $5$ kg; zeminle aralarındaki statik sürtünme katsayıları $0{,}5$; $0{,}3$ ve $0{,}4$'tür. Bloklara yatay olarak sırasıyla $6$ N, $9$ N ve $4$ N'lik kuvvetler uygulanıyor ve hiçbiri hareket etmiyor. Bloklara etki eden sürtünme kuvvetleri $f_K$, $f_L$ ve $f_M$ arasındaki ilişki nedir? ($g = 10 \\text{ m/s}^2$)",
+       "options": [
+        "$f_K = f_L = f_M$",
+        "$f_M > f_L > f_K$",
+        "$f_K > f_L > f_M$",
+        "$f_M > f_K > f_L$",
+        "$f_L > f_K > f_M$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Sınırlar: $K$: $0{,}5 \\cdot 20 = 10$ N, $L$: $0{,}3 \\cdot 40 = 12$ N, $M$: $0{,}4 \\cdot 50 = 20$ N; kuvvetler sınırın altında.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Önce hiçbirinin kaymadığından emin olalım: K'nin sınırı on, L'ninki on iki, M'ninki yirmi newton. Uygulanan kuvvetler bunların altında, bloklar duruyor."
+        },
+        {
+         "text": "Durgunken $f$ = uygulanan kuvvet: $f_K = 6$, $f_L = 9$, $f_M = 4$ N → $f_L > f_K > f_M$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Duran blokta statik sürtünme, uygulanan kuvvete eşittir: K'de altı, L'de dokuz, M'de dört newton. Sıralama L, K, M. Cevabımız E. B'yi seçen, sınır değerleri, yani mü çarpı N'yi sıralamıştır; o değer yalnız kayma başlarken ulaşılan en büyük sürtünmedir."
+        }
+       ],
+       "narration": "Durgun blokta sürtünme uygulanan kuvvete eşit.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2022 statik sürtünme sorusunun fikri farklı kuvvetlerle ve sınır değerleri çeldirici yapılarak yeniden kuruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Yol skaler, **yer değiştirme** vektörel; sürat = yol/zaman, hız = yer değiştirme/zaman.",
+    "İvme $a = \\frac{\\Delta v}{\\Delta t}$; x-t eğimi **hız**, v-t eğimi **ivme**, v-t alanı **yer değiştirme**.",
+    "Bileşke: aynı yön topla, zıt yön çıkar, dik kuvvette Pisagor.",
+    "Newton: eylemsizlik, $F_{net} = m a$, etki-tepki.",
+    "Statik sürtünme uygulanan kuvvete eşit (en çok $\\mu_s N$); kinetik $\\mu_k N$."
+   ],
+   "warnings": [
+    "Sabit hızla giden cisme net kuvvet **sıfırdır**.",
+    "Etki ve tepki **eşittir**; büyük cismin kuvveti büyük değildir.",
+    "Duran cisimde sürtünme $\\mu N$ değil, **uygulanan kuvvettir**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Evden okula giden yolunu çiz; **alınan yol** ile **yer değiştirmeyi** ayrı ayrı tahmin et.",
+    "Konum-zaman ve hız-zaman grafiklerinde **eğim** ve **alanın** ne anlattığını bir sayfaya yaz.",
+    "Uygulamada Hareket ve Kuvvet testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Düzgün doğrusal, düzgün hızlanan ve düzgün yavaşlayan hareket için konum-zaman, hız-zaman ve ivme-zaman grafiklerini üçlü bir tabloda ver; grafikten grafiğe geçişi (eğim ve alan) örnekle.",
+   "Ortalama hız ve ortalama sürat hesaplarını ayırt eden örnekler çöz: gidip dönen cisimde ortalama hız sıfır; yolun yarısını v₁, yarısını v₂ ile giden aracın ortalama süratı 2v₁v₂/(v₁ + v₂).",
+   "Kütle ile ağırlığı karşılaştır: kütle madde miktarı (kg, eşit kollu terazi), ağırlık G = m · g (N, dinamometre); Ay'da kütle aynı kalır, ağırlık yaklaşık altıda birine iner.",
+   "Serbest cisim diyagramı çizme adımlarını ve dengelenmiş kuvvetleri örnekle; Newton yasalarına günlük örnekler: otobüs fren yapınca öne savrulma (eylemsizlik), roket ve kürek (etki-tepki).",
+   "Sürtünmeyi ayrıntılandır: sürtünme kuvvetinin yüzeyin cinsine ve dik kuvvete bağlı olup temas alanına bağlı olmaması; yararlı (yürümek, fren) ve zararlı (aşınma, ısınma) sürtünme örnekleri; kayganlaştırıcılar."
+  ]
+ }
+}

@@ -6,10 +6,15 @@
  * everywhere.
  *
  * Colour rules:
- * - The identity colour is for way-finding: icon tiles, the module's tab bar
- *   pill, its slide, progress, the left edge of plan tasks, soft tints behind
- *   the module's pages. It is never the primary action: actions stay brand
- *   orange.
+ * - Inside a module everything that marks "this screen" is in the module's
+ *   colour: icon tiles, the tab pill, slides, progress, selected states and
+ *   the main action. Buttons use `moduleAction`, the identity colour darkened
+ *   until white text reads at 4.5:1.
+ * - A button that opens another module is in that module's colour (Testi aç
+ *   is Testler indigo wherever it sits).
+ * - Brand orange is only for brand surfaces: the logo, sign-in and sign-up,
+ *   onboarding, payment and subscription, profile and the public site.
+ *   Denemeler's own colour is orange, so it is the one orange module.
  * - Tints are the identity colour at fixed opacities (see `moduleTint`), not
  *   new colours: "saydam" layers of the same hue.
  */
@@ -22,9 +27,9 @@ export type ModuleKey = (typeof MODULE_KEYS)[number];
 export type Bilingual = {tr: string; en: string};
 
 /** One tab of a module's bar. Slot 3 is always Modüller, slot 5 always Profil. */
-export type ModuleTab = {label: Bilingual; icon: UIIconName};
+type ModuleTab = {label: Bilingual; icon: UIIconName};
 
-export type ModuleIdentity = {
+type ModuleIdentity = {
 	key: ModuleKey;
 	name: Bilingual;
 	/** One line under the name on the hub card. */
@@ -66,20 +71,20 @@ export const MODULES: Record<ModuleKey, ModuleIdentity> = {
 	lessons: {
 		key: 'lessons',
 		name: {tr: 'Dersler', en: 'Lessons'},
-		tagline: {tr: 'Mikro ders ve öğrenme rotası', en: 'Micro-lessons and a learning path'},
+		tagline: {tr: 'Konuyu adım adım öğren', en: 'Learn a topic step by step'},
 		icon: 'book',
 		color: {light: '#0284C7', dark: '#38BDF8'},
 		gradientTo: '#22D3EE',
-		code: {api: 'Works (+ Lessons ağacı)', route: '/api/student/works', web: 'works', mobile: 'works', mobilePrefix: 'Work'},
+		code: {api: 'Works', route: '/api/student/works', web: 'works', mobile: 'works', mobilePrefix: 'Work'},
 		tabs: [
 			{label: {tr: 'Dersler', en: 'Lessons'}, icon: 'book'},
-			{label: {tr: 'Konu ağacı', en: 'Topic tree'}, icon: 'tree'},
-			{label: {tr: 'Geçmiş', en: 'History'}, icon: 'history'},
+			{label: {tr: 'Konular', en: 'Topics'}, icon: 'tree'},
+			{label: {tr: 'Tekrar', en: 'Review'}, icon: 'refresh'},
 		],
 		slide: {
-			label: {tr: 'Devam et', en: 'Continue'},
-			title: {tr: 'Sözcükte Anlam', en: 'Word meaning'},
-			text: {tr: 'Türkçe · Ders 4/9 · 11 dakika kaldı', en: 'Turkish · Lesson 4/9 · 11 minutes left'},
+			label: {tr: 'Kaldığın yerden', en: 'Pick up where you left off'},
+			title: {tr: 'Mecaz anlam', en: 'Figurative meaning'},
+			text: {tr: 'Sözcükte Anlam · 2/5 adım · 3 dakika kaldı', en: 'Word meaning · step 2/5 · 3 minutes left'},
 			action: {tr: 'Devam et', en: 'Continue'},
 		},
 	},
@@ -214,8 +219,27 @@ export const moduleTint = (key: ModuleKey, step: keyof typeof TINT, mode: 'light
 
 export const moduleColor = (key: ModuleKey, mode: 'light' | 'dark' = 'light'): string => MODULES[key].color[mode];
 
+/** White text on buttons keeps this contrast (WCAG AA, normal text). */
+export const ACTION_CONTRAST = 4.5;
+
+/**
+ * The fill of a module's buttons: the light identity colour, darkened in 5 %
+ * steps until white text reads at 4.5:1. The same in both themes, because the
+ * lighter dark-theme colours left white text at 1.5–3.0:1 (UI/UX review,
+ * 29 Oct 2026). Dersler #0277B3, Ders Planı #0C857A, Denemeler #C54C0A; the
+ * others already pass.
+ */
+export const moduleAction = (key: ModuleKey): string => {
+	const base = MODULES[key].color.light;
+	for (let step = 0; step <= 20; step++) {
+		const fill = mixColors(base, '#000000', step * 0.05);
+		if (contrastRatio(fill, '#FFFFFF') >= ACTION_CONTRAST) return fill;
+	}
+	return '#000000';
+};
+
 /** Text contrast a module's ink keeps on every tint of its module and on the page (WCAG AA, normal text). */
-export const MODULE_INK_CONTRAST = 4.5;
+const MODULE_INK_CONTRAST = 4.5;
 const PAGE: Record<'light' | 'dark', string> = {light: '#F7F7F8', dark: '#0F1115'};
 
 /**
@@ -237,12 +261,5 @@ export const moduleInk = (key: ModuleKey, mode: 'light' | 'dark' = 'light'): str
 	}
 	return toward;
 };
-
-/**
- * SinoAI has no colour of its own (decided 15 October): it is neutral slate,
- * and its screens are white, like a chat product. `SPARK` is kept as the name
- * of SinoAI's accent surface and is plain ink.
- */
-export const SPARK = 'linear-gradient(135deg, #1E293B 0%, #334155 100%)';
 
 export const moduleGradient = (key: ModuleKey, mode: 'light' | 'dark' = 'light'): string => `linear-gradient(135deg, ${MODULES[key].color[mode]} 0%, ${MODULES[key].gradientTo} 100%)`;
