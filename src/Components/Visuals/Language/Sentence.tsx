@@ -60,6 +60,16 @@ export const linkLevels = (
 /** How far one level lifts an arc and its label. */
 const LINK_LEVEL_RISE = 70;
 
+/** A sentence with arrows and at most this many parts keeps one row; a longer one may wrap. */
+const ONE_ROW_PARTS = 7;
+
+/**
+ * On one row a focused tile does not grow (KPSS Türkçe 8, 31 Oct 2026: the last tile, focused, grew a tenth past the
+ * visual's edge, and two focused neighbours pressed their roles together; FitBox measures with transforms off, so it
+ * cannot see the growth). Focus shows by colour, lift and shadow; the tiles keep a wider gap.
+ */
+const ONE_ROW_GAP = 28;
+
 /**
  * A sentence taken apart: each part on its own tile, the parts that matter in
  * the lesson colour, the role of each part under it, arrows over the tiles
@@ -78,6 +88,9 @@ export const SentenceVisual: React.FC<
   const linkRoom = visual.links.length
     ? u(118) + Math.max(0, ...levels) * u(LINK_LEVEL_RISE * 0.8)
     : 0;
+  // An arrow from one row to the next crosses the tiles and its label lands on a word (KPSS Türkçe 1, 31 Oct 2026):
+  // a short sentence with arrows stays on one row and the box scales it down instead (FitBox).
+  const oneRow = visual.links.length > 0 && visual.parts.length <= ONE_ROW_PARTS;
   let swapOrder = 0;
   return (
     <div
@@ -94,9 +107,9 @@ export const SentenceVisual: React.FC<
         style={{
           position: "relative",
           display: "flex",
-          flexWrap: "wrap",
+          flexWrap: oneRow ? "nowrap" : "wrap",
           justifyContent: "center",
-          columnGap: u(14),
+          columnGap: u(oneRow ? ONE_ROW_GAP : 14),
           rowGap: Math.max(u(14), linkRoom),
           paddingTop: linkRoom,
         }}
@@ -111,6 +124,7 @@ export const SentenceVisual: React.FC<
               part.swap ? built + 1.6 + 1.4 * swapOrder++ : undefined
             }
             measure={tiles.measure(index)}
+            keepWidth={oneRow}
           />
         ))}
         {tiles.boxes
@@ -187,6 +201,8 @@ const SentencePart: React.FC<
     delaySeconds: number;
     swapFallback?: number;
     measure: (element: HTMLDivElement | null) => void;
+    /** On one row a tile keeps its width (its role on one line) and does not grow in focus; the box scales the row instead. */
+    keepWidth: boolean;
   }
 > = ({
   id,
@@ -197,6 +213,7 @@ const SentencePart: React.FC<
   delaySeconds,
   swapFallback,
   measure,
+  keepWidth,
 }) => {
   const palette = useVisualPalette();
   const { u } = useVideoLayout();
@@ -224,8 +241,9 @@ const SentencePart: React.FC<
         flexDirection: "column",
         alignItems: "center",
         gap: u(10),
+        flexShrink: keepWidth ? 0 : 1,
         opacity: rise * look.opacity,
-        transform: `translateY(${(1 - show) * u(24) - look.emphasis * u(10)}px) scale(${1 + 0.1 * look.emphasis + 0.08 * flash})`,
+        transform: `translateY(${(1 - show) * u(24) - look.emphasis * u(10)}px) scale(${1 + (keepWidth ? 0 : 0.1) * look.emphasis + 0.08 * flash})`,
       }}
     >
       <div

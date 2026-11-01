@@ -222,7 +222,9 @@ if (command === 'import') {
 		console.log(`\nÖSYM çıkmış soruları: bu konuya bağlı soru yok${folder ? '' : ' (veri klasörü bulunamadı)'}. Liste: python -m sourceparsing cikmis.`);
 	}
 	console.log(`\nDersin görselleri (öncelik sırasıyla): ${visualKitOf(entry.lesson).join(', ')}`);
-	console.log(`\nSenaryo dosyası: Curriculum/Scripts/${entry.category}/${entry.lesson}/${entry.topic}.json`);
+	// One KPSS video set serves Lisans, Önlisans and Ortaöğretim: their scripts live together under Scripts/KPSS.
+	const scriptFolder = entry.category.startsWith('KPSS') ? 'KPSS' : entry.category;
+	console.log(`\nSenaryo dosyası: Curriculum/Scripts/${scriptFolder}/${entry.lesson}/${entry.topic}.json`);
 } else if (command === 'check') {
 	if (!target) {
 		console.error('Kullanım: npm run curriculum -- check <senaryo.json> [--mark]');

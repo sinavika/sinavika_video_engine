@@ -677,26 +677,26 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 510 | Sözcükte Anlam `SOZCUKTE_ANLAM` | 28 | · | · | · | · | ✓ | 211 (179 / 16) |
-| 511 | Cümlede Anlam `CUMLEDE_ANLAM` | 42 | · | · | · | · | ✓ | 291 (273 / 38) |
-| 512 | Paragraf Bilgisi `PARAGRAFTA_ANLAM` | 18 | · | · | · | · | ✓ | 382 (329 / 183) |
-| 513 | Sözcükte Yapı `YAPI_BILGISI` | 5 | · | · | · | · | ✓ | 100 (96 / 11) |
-| 514 | Ses Bilgisi `SES_BILGISI` | 13 | · | · | · | · | ✓ | 104 (101 / 9) |
-| 515 | İsimler `ISIMLER` | 15 | · | · | · | · | ✓ | 67 (63 / 5) |
-| 516 | Sıfatlar `SIFATLAR` | 10 | · | · | · | · | ✓ | 114 (112 / 4) |
-| 517 | Zamirler `ZAMIRLER` | 8 | · | · | · | · | ✓ | 99 (99 / 2) |
-| 518 | Zarflar `ZARFLAR` | 6 | · | · | · | · | ✓ | 151 (148 / 1) |
-| 519 | Edat, Bağlaç ve Ünlem `EDAT_BAGLAC_UNLEM` | 8 | · | · | · | · | ✓ | 217 (216 / 3) |
-| 520 | Fiiller `FIILLER` | 14 | · | · | · | · | ✓ | 38 (38 / 4) |
-| 521 | Fiilimsiler `FIILIMSILER` | 7 | · | · | · | · | ✓ | 113 (112 / 4) |
-| 522 | Fiilde Çatı `FIILDE_CATI` | 11 | · | · | · | · | ✓ | 33 (31 / 1) |
-| 523 | Cümlenin Ögeleri `CUMLENIN_OGELERI` | 1 | · | · | · | · | ✓ | 69 (66 / 8) |
-| 524 | Cümle Türleri `CUMLE_TURLERI` | 1 | · | · | · | · | ✓ | 28 (25 / 3) |
-| 525 | Anlatım Bozukluğu `ANLATIM_BOZUKLUKLARI` | 17 | · | · | · | · | ✓ | 35 (34 / 8) |
-| 526 | Yazım Kuralları `YAZIM_KURALLARI` | 9 | · | · | · | · | ✓ | 109 (104 / 13) |
-| 527 | Noktalama İşaretleri `NOKTALAMA_ISARETLERI` | 12 | · | · | · | · | ✓ | 89 (85 / 10) |
-| 528 | Söz Sanatları `SOZ_SANATLARI` | 10 | · | · | · | · | ✓ | 13 (11 / 3) |
-| 529 | Sözel Mantık `SOZEL_MUHAKEME_MANTIK` | 1 | · | · | · | · | ✓ | 41 (34 / 26) |
+| 510 | Sözcükte Anlam `SOZCUKTE_ANLAM` | 28 | ✓ | ✓ | · | · | ✓ | 211 (179 / 16) |
+| 511 | Cümlede Anlam `CUMLEDE_ANLAM` | 42 | ✓ | ✓ | · | · | ✓ | 291 (273 / 38) |
+| 512 | Paragraf Bilgisi `PARAGRAFTA_ANLAM` | 18 | ✓ | ✓ | · | · | ✓ | 382 (329 / 183) |
+| 513 | Sözcükte Yapı `YAPI_BILGISI` | 5 | ✓ | ✓ | · | · | ✓ | 100 (96 / 11) |
+| 514 | Ses Bilgisi `SES_BILGISI` | 13 | ✓ | ✓ | · | · | ✓ | 104 (101 / 9) |
+| 515 | İsimler `ISIMLER` | 15 | ✓ | ✓ | · | · | ✓ | 67 (63 / 5) |
+| 516 | Sıfatlar `SIFATLAR` | 10 | ✓ | ✓ | · | · | ✓ | 114 (112 / 4) |
+| 517 | Zamirler `ZAMIRLER` | 8 | ✓ | ✓ | · | · | ✓ | 99 (99 / 2) |
+| 518 | Zarflar `ZARFLAR` | 6 | ✓ | ✓ | · | · | ✓ | 151 (148 / 1) |
+| 519 | Edat, Bağlaç ve Ünlem `EDAT_BAGLAC_UNLEM` | 8 | ✓ | ✓ | · | · | ✓ | 217 (216 / 3) |
+| 520 | Fiiller `FIILLER` | 14 | ✓ | ✓ | · | · | ✓ | 38 (38 / 4) |
+| 521 | Fiilimsiler `FIILIMSILER` | 7 | ✓ | ✓ | · | · | ✓ | 113 (112 / 4) |
+| 522 | Fiilde Çatı `FIILDE_CATI` | 11 | ✓ | ✓ | · | · | ✓ | 33 (31 / 1) |
+| 523 | Cümlenin Ögeleri `CUMLENIN_OGELERI` | 1 | ✓ | ✓ | · | · | ✓ | 69 (66 / 8) |
+| 524 | Cümle Türleri `CUMLE_TURLERI` | 1 | ✓ | ✓ | · | · | ✓ | 28 (25 / 3) |
+| 525 | Anlatım Bozukluğu `ANLATIM_BOZUKLUKLARI` | 17 | ✓ | ✓ | · | · | ✓ | 35 (34 / 8) |
+| 526 | Yazım Kuralları `YAZIM_KURALLARI` | 9 | ✓ | ✓ | · | · | ✓ | 109 (104 / 13) |
+| 527 | Noktalama İşaretleri `NOKTALAMA_ISARETLERI` | 12 | ✓ | ✓ | · | · | ✓ | 89 (85 / 10) |
+| 528 | Söz Sanatları `SOZ_SANATLARI` | 10 | ✓ | ✓ | · | · | ✓ | 13 (11 / 3) |
+| 529 | Sözel Mantık `SOZEL_MUHAKEME_MANTIK` | 1 | ✓ | ✓ | · | · | ✓ | 41 (34 / 26) |
 
 ### Matematik (MAT)
 
@@ -806,26 +806,26 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 607 | Sözcükte Anlam `SOZCUKTE_ANLAM` | 15 | · | · | · | · | ✓ | 1242 (1241 / 18) |
-| 608 | Cümlede Anlam `CUMLEDE_ANLAM` | 19 | · | · | · | · | ✓ | 2600 (2594 / 34) |
-| 609 | Paragraf Bilgisi `PARAGRAF` | 21 | · | · | · | · | ✓ | 1074 (1061 / 144) |
-| 610 | Sözcükte Yapı `YAPI_BILGISI` | 8 | · | · | · | · | ✓ | 682 (682 / 4) |
-| 611 | Ses Bilgisi `SES_BILGISI` | 12 | · | · | · | · | ✓ | 553 (552 / 6) |
-| 612 | İsimler `ISIMLER` | 5 | · | · | · | · | ✓ | 75 (75 / 1) |
-| 613 | Sıfatlar `SIFATLAR` | 7 | · | · | · | · | ✓ | 85 (84 / 2) |
-| 614 | Zamirler `ZAMIRLER` | 7 | · | · | · | · | ✓ | 20 (20 / 2) |
-| 615 | Zarflar `ZARFLAR` | 5 | · | · | · | · | ✓ | 215 (214 / 3) |
-| 616 | Edat, Bağlaç ve Ünlem `EDAT_BAGLAC_UNLEM` | 6 | · | · | · | · | ✓ | 94 (92 / 0) |
-| 617 | Fiiller `FIILLER` | 8 | · | · | · | · | ✓ | 88 (88 / 0) |
-| 618 | Fiilimsiler `FIILIMSILER` | 5 | · | · | · | · | ✓ | 571 (571 / 6) |
-| 619 | Fiilde Çatı `FIILDE_CATI` | 4 | · | · | · | · | ✓ | 190 (189 / 1) |
-| 620 | Cümlenin Ögeleri `CUMLENIN_OGELERI` | 8 | · | · | · | · | ✓ | 615 (614 / 10) |
-| 621 | Cümle Türleri `CUMLE_TURLERI` | 8 | · | · | · | · | ✓ | 151 (150 / 3) |
-| 622 | Anlatım Bozukluğu `ANLATIM_BOZUKLUGU` | 11 | · | · | · | · | ✓ | 449 (448 / 7) |
-| 623 | Yazım Kuralları `YAZIM_KURALLARI` | 10 | · | · | · | · | ✓ | 975 (974 / 11) |
-| 624 | Noktalama İşaretleri `NOKTALAMA` | 13 | · | · | · | · | ✓ | 795 (794 / 9) |
-| 625 | Söz Sanatları `SOZ_SANATLARI` | 9 | · | · | · | · | ✓ | 22 (22 / 4) |
-| 626 | Sözel Mantık `SOZEL_MANTIK` | 8 | · | · | · | · | ✓ | 183 (179 / 29) |
+| 607 | Sözcükte Anlam `SOZCUKTE_ANLAM` | 15 | ✓ | ✓ | · | · | ✓ | 1242 (1241 / 18) |
+| 608 | Cümlede Anlam `CUMLEDE_ANLAM` | 19 | ✓ | ✓ | · | · | ✓ | 2600 (2594 / 34) |
+| 609 | Paragraf Bilgisi `PARAGRAF` | 21 | ✓ | ✓ | · | · | ✓ | 1074 (1061 / 144) |
+| 610 | Sözcükte Yapı `YAPI_BILGISI` | 8 | ✓ | ✓ | · | · | ✓ | 682 (682 / 4) |
+| 611 | Ses Bilgisi `SES_BILGISI` | 12 | ✓ | ✓ | · | · | ✓ | 553 (552 / 6) |
+| 612 | İsimler `ISIMLER` | 5 | ✓ | ✓ | · | · | ✓ | 75 (75 / 1) |
+| 613 | Sıfatlar `SIFATLAR` | 7 | ✓ | ✓ | · | · | ✓ | 85 (84 / 2) |
+| 614 | Zamirler `ZAMIRLER` | 7 | ✓ | ✓ | · | · | ✓ | 20 (20 / 2) |
+| 615 | Zarflar `ZARFLAR` | 5 | ✓ | ✓ | · | · | ✓ | 215 (214 / 3) |
+| 616 | Edat, Bağlaç ve Ünlem `EDAT_BAGLAC_UNLEM` | 6 | ✓ | ✓ | · | · | ✓ | 94 (92 / 0) |
+| 617 | Fiiller `FIILLER` | 8 | ✓ | ✓ | · | · | ✓ | 88 (88 / 0) |
+| 618 | Fiilimsiler `FIILIMSILER` | 5 | ✓ | ✓ | · | · | ✓ | 571 (571 / 6) |
+| 619 | Fiilde Çatı `FIILDE_CATI` | 4 | ✓ | ✓ | · | · | ✓ | 190 (189 / 1) |
+| 620 | Cümlenin Ögeleri `CUMLENIN_OGELERI` | 8 | ✓ | ✓ | · | · | ✓ | 615 (614 / 10) |
+| 621 | Cümle Türleri `CUMLE_TURLERI` | 8 | ✓ | ✓ | · | · | ✓ | 151 (150 / 3) |
+| 622 | Anlatım Bozukluğu `ANLATIM_BOZUKLUGU` | 11 | ✓ | ✓ | · | · | ✓ | 449 (448 / 7) |
+| 623 | Yazım Kuralları `YAZIM_KURALLARI` | 10 | ✓ | ✓ | · | · | ✓ | 975 (974 / 11) |
+| 624 | Noktalama İşaretleri `NOKTALAMA` | 13 | ✓ | ✓ | · | · | ✓ | 795 (794 / 9) |
+| 625 | Söz Sanatları `SOZ_SANATLARI` | 9 | ✓ | ✓ | · | · | ✓ | 22 (22 / 4) |
+| 626 | Sözel Mantık `SOZEL_MANTIK` | 8 | ✓ | ✓ | · | · | ✓ | 183 (179 / 29) |
 
 ### Matematik (MAT)
 
@@ -919,26 +919,26 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 688 | Sözcükte Anlam `SOZCUKTE_ANLAM` | 15 | · | · | · | · | ✓ | 1242 (1241 / 18) |
-| 689 | Cümlede Anlam `CUMLEDE_ANLAM` | 19 | · | · | · | · | ✓ | 2600 (2594 / 34) |
-| 690 | Paragraf Bilgisi `PARAGRAF` | 21 | · | · | · | · | ✓ | 1074 (1061 / 144) |
-| 691 | Sözcükte Yapı `YAPI_BILGISI` | 8 | · | · | · | · | ✓ | 682 (682 / 4) |
-| 692 | Ses Bilgisi `SES_BILGISI` | 12 | · | · | · | · | ✓ | 553 (552 / 6) |
-| 693 | İsimler `ISIMLER` | 5 | · | · | · | · | ✓ | 75 (75 / 1) |
-| 694 | Sıfatlar `SIFATLAR` | 7 | · | · | · | · | ✓ | 85 (84 / 2) |
-| 695 | Zamirler `ZAMIRLER` | 7 | · | · | · | · | ✓ | 20 (20 / 2) |
-| 696 | Zarflar `ZARFLAR` | 5 | · | · | · | · | ✓ | 215 (214 / 3) |
-| 697 | Edat, Bağlaç ve Ünlem `EDAT_BAGLAC_UNLEM` | 6 | · | · | · | · | ✓ | 94 (92 / 0) |
-| 698 | Fiiller `FIILLER` | 8 | · | · | · | · | ✓ | 88 (88 / 0) |
-| 699 | Fiilimsiler `FIILIMSILER` | 5 | · | · | · | · | ✓ | 571 (571 / 6) |
-| 700 | Fiilde Çatı `FIILDE_CATI` | 4 | · | · | · | · | ✓ | 190 (189 / 1) |
-| 701 | Cümlenin Ögeleri `CUMLENIN_OGELERI` | 8 | · | · | · | · | ✓ | 615 (614 / 10) |
-| 702 | Cümle Türleri `CUMLE_TURLERI` | 8 | · | · | · | · | ✓ | 151 (150 / 3) |
-| 703 | Anlatım Bozukluğu `ANLATIM_BOZUKLUGU` | 11 | · | · | · | · | ✓ | 449 (448 / 7) |
-| 704 | Yazım Kuralları `YAZIM_KURALLARI` | 10 | · | · | · | · | ✓ | 975 (974 / 11) |
-| 705 | Noktalama İşaretleri `NOKTALAMA` | 13 | · | · | · | · | ✓ | 795 (794 / 9) |
-| 706 | Söz Sanatları `SOZ_SANATLARI` | 9 | · | · | · | · | ✓ | 22 (22 / 4) |
-| 707 | Sözel Mantık `SOZEL_MANTIK` | 8 | · | · | · | · | ✓ | 183 (179 / 29) |
+| 688 | Sözcükte Anlam `SOZCUKTE_ANLAM` | 15 | ✓ | ✓ | · | · | ✓ | 1242 (1241 / 18) |
+| 689 | Cümlede Anlam `CUMLEDE_ANLAM` | 19 | ✓ | ✓ | · | · | ✓ | 2600 (2594 / 34) |
+| 690 | Paragraf Bilgisi `PARAGRAF` | 21 | ✓ | ✓ | · | · | ✓ | 1074 (1061 / 144) |
+| 691 | Sözcükte Yapı `YAPI_BILGISI` | 8 | ✓ | ✓ | · | · | ✓ | 682 (682 / 4) |
+| 692 | Ses Bilgisi `SES_BILGISI` | 12 | ✓ | ✓ | · | · | ✓ | 553 (552 / 6) |
+| 693 | İsimler `ISIMLER` | 5 | ✓ | ✓ | · | · | ✓ | 75 (75 / 1) |
+| 694 | Sıfatlar `SIFATLAR` | 7 | ✓ | ✓ | · | · | ✓ | 85 (84 / 2) |
+| 695 | Zamirler `ZAMIRLER` | 7 | ✓ | ✓ | · | · | ✓ | 20 (20 / 2) |
+| 696 | Zarflar `ZARFLAR` | 5 | ✓ | ✓ | · | · | ✓ | 215 (214 / 3) |
+| 697 | Edat, Bağlaç ve Ünlem `EDAT_BAGLAC_UNLEM` | 6 | ✓ | ✓ | · | · | ✓ | 94 (92 / 0) |
+| 698 | Fiiller `FIILLER` | 8 | ✓ | ✓ | · | · | ✓ | 88 (88 / 0) |
+| 699 | Fiilimsiler `FIILIMSILER` | 5 | ✓ | ✓ | · | · | ✓ | 571 (571 / 6) |
+| 700 | Fiilde Çatı `FIILDE_CATI` | 4 | ✓ | ✓ | · | · | ✓ | 190 (189 / 1) |
+| 701 | Cümlenin Ögeleri `CUMLENIN_OGELERI` | 8 | ✓ | ✓ | · | · | ✓ | 615 (614 / 10) |
+| 702 | Cümle Türleri `CUMLE_TURLERI` | 8 | ✓ | ✓ | · | · | ✓ | 151 (150 / 3) |
+| 703 | Anlatım Bozukluğu `ANLATIM_BOZUKLUGU` | 11 | ✓ | ✓ | · | · | ✓ | 449 (448 / 7) |
+| 704 | Yazım Kuralları `YAZIM_KURALLARI` | 10 | ✓ | ✓ | · | · | ✓ | 975 (974 / 11) |
+| 705 | Noktalama İşaretleri `NOKTALAMA` | 13 | ✓ | ✓ | · | · | ✓ | 795 (794 / 9) |
+| 706 | Söz Sanatları `SOZ_SANATLARI` | 9 | ✓ | ✓ | · | · | ✓ | 22 (22 / 4) |
+| 707 | Sözel Mantık `SOZEL_MANTIK` | 8 | ✓ | ✓ | · | · | ✓ | 183 (179 / 29) |
 
 ### Matematik (MAT)
 
