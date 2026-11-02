@@ -1,0 +1,822 @@
+{
+ "topic": {
+  "id": "BEE3DFDE-50D8-488F-A6BF-83A68701E26B",
+  "category": "KPSS_ONLISANS",
+  "lesson": "MAT",
+  "code": "MUTLAK_DEGER"
+ },
+ "title": "Mutlak Değer",
+ "lessonName": "Matematik",
+ "exams": [
+  "KPSS"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/KPSS/MAT/MUTLAK_DEGER.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Mutlak değer bir uzaklıktır",
+   "narration": "Mutlak değer bir uzaklıktır. Bu tek cümleyi anlayan, bu konunun sorularının çoğunu sayı doğrusunda bir çizimle çözer. Lisans sınavında bu konudan en sık gelen kalıp, işareti verilen bir harfle mutlak değerli bir ifadeyi sadeleştirmektir. Bu derste tanımdan eşitsizliklere kadar her adımı yeni sorularla çözeceğiz."
+  },
+  "objectives": [
+   "Mutlak değeri sıfıra uzaklık olarak yorumlamak",
+   "İşareti verilen harflerle mutlak değerli ifadeleri açmak",
+   "Sayı doğrusunda uzaklık sorularını çözmek",
+   "Mutlak değerli denklemlerin çözüm sayısını bilmek ve çözmek",
+   "Mutlak değerli eşitsizliklerin çözüm aralığını bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MUTLAK_DEGER_01",
+    "subtopics": [],
+    "title": "Mutlak değerin tanımı",
+    "narration": "Mutlak değer bir uzaklıktır. Bu cümleyi aklında tutarsan konunun bütün kuralları kendiliğinden gelir.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Sıfıra uzaklık",
+      "text": "Bir sayının mutlak değeri, sayı doğrusunda **sıfıra olan uzaklığıdır**; bu yüzden hiçbir zaman **negatif değildir**. $x$ negatifse $|x| = -x$ ve $-x$ **pozitiftir**.",
+      "visual": {
+       "kind": "formula",
+       "latex": "|x| = \\begin{cases} x, & x \\ge 0 \\\\ -x, & x < 0 \\end{cases}",
+       "caption": "5’in de −5’in de mutlak değeri 5; 0’ınki 0"
+      },
+      "beats": [],
+      "narration": "Bir sayının mutlak değeri, sayı doğrusunda sıfıra olan uzaklığıdır. Uzaklık negatif olamayacağı için mutlak değer hiçbir zaman negatif değildir. 5'in de eksi 5'in de sıfıra uzaklığı 5'tir. Tanım şöyle: x sıfır ya da pozitifse mutlak değeri kendisidir; x negatifse mutlak değeri eksi x'tir. Eksi x burada pozitif bir sayıdır, çünkü x negatiftir."
+     },
+     {
+      "kind": "predict",
+      "title": "Negatif bir sayının mutlak değeri",
+      "context": "$x < 0$",
+      "prompt": "$|x|$ neye eşittir?",
+      "choices": [
+       "x",
+       "−x"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "$x$",
+        "$|x|$",
+        "$-x$"
+       ],
+       "rows": [
+        [
+         "$-3$",
+         "3",
+         "3"
+        ],
+        [
+         "$-7$",
+         "7",
+         "7"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "x eksi 3 olsun: mutlak değeri 3. Eksi x de eksi eksi 3, yani 3.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "x eksi 7 olsa da aynı: mutlak değer 7, eksi x de 7.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "$x$ negatifken **$-x$ pozitiftir**; bu yüzden $|x| = -x$.",
+      "narration": "Şimdi sıra sende. x negatifse, x'in mutlak değeri x'e mi eşittir, eksi x'e mi? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap eksi x. x eksi 3 ise mutlak değeri 3'tür; eksi x de 3'tür. Eksi işareti seni yanıltmasın: x negatif olduğu için eksi x pozitif bir sayıdır."
+     },
+     {
+      "kind": "rule",
+      "title": "Özellikler",
+      "items": [
+       "$|x| \\ge 0$; $|x| = 0$ yalnız $x = 0$ iken.",
+       "$|a - b| = |b - a|$ ve $|-a| = |a|$.",
+       "$|a \\cdot b| = |a| \\cdot |b|$ ve $\\left|\\frac{a}{b}\\right| = \\frac{|a|}{|b|}$.",
+       "$\\frac{|x|}{x} = 1$ ise $x > 0$; $\\frac{|x|}{x} = -1$ ise $x < 0$."
+      ],
+      "beats": [],
+      "narration": "Dört özellik. Mutlak değer sıfır ya da pozitiftir; yalnız sıfırın mutlak değeri sıfırdır. a eksi b ile b eksi a'nın mutlak değerleri eşittir; bir sayı ile tersinin de. Çarpımın mutlak değeri mutlak değerlerin çarpımıdır; bölümde de öyle. Son olarak bir sayının mutlak değerini kendisine bölersen sayı pozitifse 1, negatifse eksi 1 bulursun. İşaret sorularında bu bilgi çok işe yarar."
+     },
+     {
+      "kind": "mistake",
+      "title": "Toplamın mutlak değeri",
+      "wrong": "$|a + b| = |a| + |b|$",
+      "right": "$|a + b| \\le |a| + |b|$: $|-3 + 5| = 2$ ama $|-3| + |5| = 8$",
+      "why": "Çarpımda mutlak değer dağılır, toplamda dağılmaz. Eşitlik yalnız $a$ ile $b$ aynı işaretliyse sağlanır.",
+      "narration": "Bir tuzak. Çarpımda mutlak değer dağılıyordu; toplamda da dağılır mı? Hayır. Eksi 3 artı 5'in mutlak değeri 2'dir; ama eksi 3'ün ve 5'in mutlak değerlerinin toplamı 8'dir. Toplamın mutlak değeri, mutlak değerlerin toplamından büyük olamaz; ikisi yalnız a ile b aynı işaretliyse eşittir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$x$, $y$ ve $z$ sıfırdan farklı gerçel sayılar olmak üzere\n$\\frac{|x|}{x} = -1$, $x \\cdot y > 0$ ve $\\frac{|y|}{y} + \\frac{|z|}{z} = 0$\nolduğuna göre $x$, $y$ ve $z$'nin işaretleri sırasıyla aşağıdakilerden hangisidir?",
+       "options": [
+        "$+,\\ -,\\ -$",
+        "$-,\\ +,\\ -$",
+        "$+,\\ +,\\ -$",
+        "$-,\\ -,\\ +$",
+        "$-,\\ -,\\ -$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$\\frac{|x|}{x} = -1$ ⇒ $x < 0$",
+         "eliminate": [
+          "A",
+          "C"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir sayının mutlak değerinin kendisine bölümü, sayı negatifse eksi 1'dir. Sonuç eksi 1 olduğuna göre x negatiftir."
+        },
+        {
+         "text": "$x \\cdot y > 0$ ⇒ $y < 0$",
+         "eliminate": [
+          "B"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x çarpı y pozitif; o zaman y, x ile aynı işaretlidir. y de negatiftir."
+        },
+        {
+         "text": "$\\frac{|y|}{y} = -1$ ⇒ $\\frac{|z|}{z} = 1$ ⇒ $z > 0$. Cevap **D**.",
+         "eliminate": [
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "y negatif olduğu için y'nin mutlak değeri bölü y, eksi 1'dir. Toplam sıfır olduğuna göre z'nin mutlak değeri bölü z, 1 olmalı; z pozitiftir. İşaretler sırasıyla eksi, eksi, artı. Cevap D."
+        }
+       ],
+       "narration": "Üç bilgiyi sırayla işaret diline çevireceğiz.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki mutlak değerle işaretleri sırasıyla buldurma kalıbı örnek alındı; eşitlikler bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MUTLAK_DEGER_01",
+    "subtopics": [],
+    "title": "Mutlak değerli ifadeleri açmak",
+    "narration": "Lisans sınavının bu konudaki en sık kalıbı: bir harfin işareti verilir, mutlak değerli bir ifadenin eşiti sorulur.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İçeriye bak, öyle çıkar",
+      "items": [
+       "Önce içerideki ifadenin **işaretini** bul.",
+       "İçerisi pozitif ya da sıfırsa ifade **aynen** çıkar.",
+       "İçerisi negatifse ifade **işaret değiştirerek** çıkar.",
+       "Önündeki eksiyi **en son** dağıt: $-|3 - x| = -(3 - x)$."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "x < 3 \\Rightarrow |x - 3| = -(x - 3) = 3 - x",
+       "caption": "İçerisi negatif: işaret değiştirerek çıkar"
+      },
+      "beats": [],
+      "narration": "Mutlak değerli bir ifadeyi açmak için önce içerideki ifadenin işaretini bulursun. İçerisi pozitif ya da sıfırsa ifade aynen çıkar. İçerisi negatifse ifade işaret değiştirerek çıkar: x 3'ten küçükse x eksi 3 negatiftir ve mutlak değeri 3 eksi x olur. Mutlak değerin önünde eksi varsa onu en son, parantezin tamamına dağıtırsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$x < -2$ olmak üzere $|x + 2| - |3 - x| + |2x|$ ifadesinin eşiti aşağıdakilerden hangisidir?",
+       "options": [
+        "$-2x - 5$",
+        "$-2x + 1$",
+        "$-4x - 5$",
+        "$2x - 5$",
+        "$-5$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$x + 2 < 0$ ⇒ $|x + 2| = -x - 2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x, eksi 2'den küçük; x artı 2 negatiftir. İşaret değiştirerek çıkar: eksi x eksi 2."
+        },
+        {
+         "text": "$3 - x > 0$ ⇒ $|3 - x| = 3 - x$; $2x < 0$ ⇒ $|2x| = -2x$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "3 eksi x pozitiftir, çünkü negatif bir sayıyı çıkarmak eklemek demektir; aynen çıkar. 2x negatiftir; işaret değiştirerek çıkar: eksi 2x."
+        },
+        {
+         "text": "$(-x - 2) - (3 - x) + (-2x) = -2x - 5$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Şimdi yerine yazalım: eksi x eksi 2, eksi parantez 3 eksi x, artı eksi 2x. Önündeki eksiyi dağıtınca eksi 3 artı x olur. x'ler: eksi x artı x eksi 2x, yani eksi 2x. Sayılar: eksi 2 eksi 3, eksi 5. Sonuç eksi 2x eksi 5. Cevap A."
+        }
+       ],
+       "narration": "Üç mutlak değer var. Her birinin içinin işaretini x eksi 2'den küçük bilgisiyle bulacağız.",
+       "origin": {
+        "changes": "ÖSYM'nin işareti verilen bir harfle mutlak değerli ifadeyi sadeleştirme kalıbı örnek alındı; ifade bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$x < 0 < y$ olmak üzere $|x - y| + |y| - |x|$ ifadesinin eşiti aşağıdakilerden hangisidir?",
+       "options": [
+        "0",
+        "$2x$",
+        "$-2x$",
+        "$2x + 2y$",
+        "$2y$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$x - y < 0$ ⇒ $|x - y| = y - x$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Negatiften pozitif çıkarınca sonuç negatiftir; x eksi y negatif. İşaret değiştirerek çıkar: y eksi x."
+        },
+        {
+         "text": "$|y| = y$; $|x| = -x$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "y pozitif, aynen çıkar. x negatif, işaret değiştirerek çıkar: eksi x."
+        },
+        {
+         "text": "$(y - x) + y - (-x) = 2y$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yerine yazalım: y eksi x, artı y, eksi eksi x. Eksi eksi x, artı x olur; x'ler birbirini götürür. Sonuç 2y. Cevap E."
+        }
+       ],
+       "narration": "x negatif, y pozitif. Her mutlak değerin içine bakalım.",
+       "origin": {
+        "changes": "ÖSYM'nin iki harfin sıralamasıyla mutlak değerli ifadeyi sadeleştirme kalıbı örnek alındı; ifade bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MUTLAK_DEGER_02",
+    "subtopics": [],
+    "title": "Sayı doğrusunda uzaklık",
+    "narration": "Şimdi mutlak değeri sayı doğrusunda görelim. Birçok soru bir çizimle saniyeler içinde çözülür.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Mutlak değer ve uzaklık",
+      "text": "$|x - a|$, sayı doğrusunda $x$ ile $a$ arasındaki **uzaklıktır**. $|x - 1| = 3$ ise $x$, 1'e 3 birim uzaklıktaki sayılardır: $-2$ ve $4$.",
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        -4,
+        6
+       ],
+       "intervals": [
+        {
+         "from": -2,
+         "to": 1,
+         "closedFrom": true,
+         "closedTo": true,
+         "label": "3 birim",
+         "row": 1
+        },
+        {
+         "from": 1,
+         "to": 4,
+         "closedFrom": true,
+         "closedTo": true,
+         "label": "3 birim",
+         "row": 1
+        }
+       ],
+       "points": [
+        {
+         "x": 1,
+         "open": false
+        },
+        {
+         "x": -2,
+         "open": false
+        },
+        {
+         "x": 4,
+         "open": false
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "x eksi 1'in mutlak değeri 3 olsun. Bu, x'in 1'e uzaklığı 3 demektir. Önce 1'i işaretleyelim.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "1'den 3 birim sola gidersek eksi 2'ye, 3 birim sağa gidersek 4'e ulaşırız. İki çözüm var: eksi 2 ve 4.",
+        "show": [
+         "i1",
+         "i2",
+         "p2",
+         "p3"
+        ],
+        "focus": [
+         "i1",
+         "i2",
+         "p2",
+         "p3"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "x eksi a'nın mutlak değeri, sayı doğrusunda x ile a arasındaki uzaklıktır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Sayı doğrusu üzerinde 3 noktasına eşit uzaklıkta olan iki farklı sayının çarpımı $-16$'dır. Buna göre büyük sayı küçük sayıdan kaç fazladır?",
+       "options": [
+        "8",
+        "10",
+        "12",
+        "14",
+        "16"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Sayılar $3 - d$ ve $3 + d$ ($d > 0$)",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Uzaklığa d diyelim. Sayılar 3 eksi d ve 3 artı d'dir."
+        },
+        {
+         "text": "$(3 - d)(3 + d) = 9 - d^2 = -16 \\Rightarrow d^2 = 25 \\Rightarrow d = 5$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çarpımları: 3 eksi d çarpı 3 artı d. Dağıtırsak 9 artı 3d eksi 3d eksi d kare; ortadakiler gider, 9 eksi d kare kalır. Bu eksi 16'ya eşit; d kare 25, d 5."
+        },
+        {
+         "text": "Sayılar $-2$ ve $8$; fark $2d = 10$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sayılar eksi 2 ve 8. Sağlama: eksi 2 çarpı 8, eksi 16. Büyük sayı küçükten 2d, yani 10 fazladır. Cevap B."
+        }
+       ],
+       "narration": "3'e eşit uzaklıktaki iki sayı, 3'ün iki yanında simetrik durur.",
+       "origin": {
+        "changes": "ÖSYM'nin bir noktaya eşit uzaklıktaki iki sayıyı sorduran kalıbı örnek alındı; nokta ve çarpım bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "İki uzaklığın toplamı",
+      "context": "$|x - 1|$: x’in 1’e uzaklığı; $|x - 5|$: x’in 5’e uzaklığı",
+      "prompt": "$|x - 1| + |x - 5|$ ifadesinin en küçük değeri kaçtır?",
+      "choices": [
+       "4",
+       "6"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        -1,
+        7
+       ],
+       "intervals": [
+        {
+         "from": 1,
+         "to": 5,
+         "closedFrom": true,
+         "closedTo": true,
+         "label": "toplam hep 4",
+         "row": 0
+        }
+       ],
+       "points": [
+        {
+         "x": 1,
+         "label": "1",
+         "open": false
+        },
+        {
+         "x": 5,
+         "label": "5",
+         "open": false
+        },
+        {
+         "x": 3,
+         "label": "x = 3",
+         "open": false
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "İfade, x'in 1'e uzaklığı ile 5'e uzaklığının toplamıdır. x 3 olsun: 2 artı 2, 4.",
+        "show": [
+         "p1",
+         "p2",
+         "p3"
+        ],
+        "focus": [
+         "p1",
+         "p2",
+         "p3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "x, 1 ile 5 arasında nerede olursa olsun iki uzaklık birlikte 1 ile 5 arasındaki 4 birimi kaplar. Dışarı çıkarsan toplam büyür.",
+        "show": [
+         "i1"
+        ],
+        "focus": [
+         "i1"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "x, 1 ile 5 **arasındayken** iki uzaklığın toplamı bu iki nokta arasındaki uzaklıktır: **4**.",
+      "narration": "Şimdi sıra sende. x'in 1'e ve 5'e uzaklıklarının toplamı en az kaç olabilir? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 4. x, 1 ile 5 arasındayken x'in 1'e uzaklığı ile 5'e uzaklığı toplanınca 1 ile 5 arasındaki uzaklık çıkar: 4. x bu aralığın dışına çıkarsa bir parçayı iki kez yürürsün ve toplam büyür. Bu tür ifadelerin en küçük değeri, iki nokta arasındaki uzaklıktır."
+     }
+    ]
+   },
+   {
+    "subtopic": "MUTLAK_DEGER_03",
+    "subtopics": [],
+    "title": "Mutlak değerli denklemler",
+    "narration": "Mutlak değerli bir denklem çoğu zaman iki denklemdir. Ne zaman tek, ne zaman hiç çözüm olmadığını da bilmelisin.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kaç çözüm?",
+      "items": [
+       "$|f(x)| = a$ ve $a > 0$ ise **iki** durum: $f(x) = a$ ya da $f(x) = -a$.",
+       "$a = 0$ ise tek durum: $f(x) = 0$.",
+       "$a < 0$ ise **çözüm yoktur**; mutlak değer negatif olamaz.",
+       "$|a| = |b|$ ise $a = b$ ya da $a = -b$."
+      ],
+      "beats": [],
+      "narration": "Mutlak değeri pozitif bir sayıya eşit olan ifadenin içi, o sayı ya da onun negatifi olabilir; iki ayrı denklem çözersin. Mutlak değer sıfıra eşitse içerisi sıfırdır; tek durum vardır. Mutlak değer negatif bir sayıya eşitse çözüm yoktur, çünkü mutlak değer negatif olamaz. İki mutlak değer birbirine eşitse içler ya eşittir ya da birbirinin negatifidir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$|2x - 3| = 7$ eşitliğini sağlayan $x$ değerlerinin toplamı kaçtır?",
+       "options": [
+        "$-2$",
+        "2",
+        "3",
+        "5",
+        "10"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$2x - 3 = 7 \\Rightarrow x = 5$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "2x eksi 3, 7 ise 2x, 10; x, 5."
+        },
+        {
+         "text": "$2x - 3 = -7 \\Rightarrow x = -2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "2x eksi 3, eksi 7 ise 2x, eksi 4; x, eksi 2."
+        },
+        {
+         "text": "$5 + (-2) = 3$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x değerleri 5 ve eksi 2; toplamları 3. Cevap C. D şıkkındaki 5, ikinci durumu unutanın cevabıdır."
+        }
+       ],
+       "narration": "İçerisi 7 ya da eksi 7 olabilir. İki denklemi ayrı çözeceğiz.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki mutlak değerli denklemin köklerini sorduran kalıp örnek alındı; denklem bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$a$ pozitif bir gerçel sayı olmak üzere $|x - a| = 4$ eşitliğini sağlayan $x$ gerçel sayılarının çarpımı $-7$'dir. Buna göre $a$ kaçtır?",
+       "options": [
+        "1",
+        "2",
+        "$\\sqrt{7}$",
+        "$2\\sqrt{2}$",
+        "3"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$x = a + 4$ ya da $x = a - 4$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x eksi a, 4 ya da eksi 4'tür. Yani x, a artı 4 ya da a eksi 4."
+        },
+        {
+         "text": "$(a + 4)(a - 4) = a^2 - 16 = -7 \\Rightarrow a^2 = 9$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bu iki değerin çarpımı a kare eksi 16'dır ve eksi 7'ye eşit. a kare, 9."
+        },
+        {
+         "text": "$a > 0$ ⇒ $a = 3$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "a pozitif olduğu için a, 3'tür. Sağlama: x değerleri 7 ve eksi 1; çarpımları eksi 7. Cevap E."
+        }
+       ],
+       "narration": "Önce iki kökü a cinsinden yazalım.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki köklerin çarpımından parametre buldurma kalıbı örnek alındı; denklem ve çarpım bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$|x - 3| + |y + 2| = 0$ olduğuna göre $x \\cdot y$ çarpımı kaçtır?",
+       "options": [
+        "$-6$",
+        "$-5$",
+        "0",
+        "1",
+        "6"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$|x - 3| \\ge 0$, $|y + 2| \\ge 0$; toplam 0 ⇒ ikisi de **0**",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Mutlak değerler sıfır ya da pozitiftir. İki sıfır ya da pozitif sayının toplamı sıfırsa ikisi de sıfırdır."
+        },
+        {
+         "text": "$x - 3 = 0 \\Rightarrow x = 3$; $y + 2 = 0 \\Rightarrow y = -2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x eksi 3, sıfır; x, 3. y artı 2, sıfır; y, eksi 2."
+        },
+        {
+         "text": "$x \\cdot y = 3 \\cdot (-2) = -6$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x çarpı y, 3 çarpı eksi 2, yani eksi 6. Cevap A. E şıkkındaki 6, y'nin işaretini kaçıranın cevabıdır."
+        }
+       ],
+       "narration": "İki mutlak değerin toplamı sıfır. Bunun tek bir anlamı var.",
+       "origin": {
+        "changes": "ÖSYM'nin iki gerçel sayı için verilen koşuldan ifadenin değerini sorduran kalıbı örnek alındı; koşul bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MUTLAK_DEGER_04",
+    "subtopics": [],
+    "title": "Mutlak değerli eşitsizlikler",
+    "narration": "Son bölümde eşitsizlikler var. Burada da uzaklık düşüncesi her şeyi çözer.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Yakın mı, uzak mı?",
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        -5,
+        7
+       ],
+       "intervals": [
+        {
+         "from": -2,
+         "to": 4,
+         "closedFrom": false,
+         "closedTo": false,
+         "label": "uzaklık < 3",
+         "row": 0
+        },
+        {
+         "from": null,
+         "to": -2,
+         "closedFrom": false,
+         "closedTo": false,
+         "label": "uzaklık > 3",
+         "row": 1
+        },
+        {
+         "from": 4,
+         "to": null,
+         "closedFrom": false,
+         "closedTo": false,
+         "label": "uzaklık > 3",
+         "row": 1
+        }
+       ],
+       "points": []
+      },
+      "beats": [
+       {
+        "narration": "Bu uzaklık 3'ten küçükse x, 1'e 3 birimden yakındır: eksi 2 ile 4 arasında. Mutlak değer küçükse çözüm arada kalır.",
+        "show": [
+         "i1"
+        ],
+        "focus": [
+         "i1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Uzaklık 3'ten büyükse x, 1'den 3 birimden uzaktadır: eksi 2'den küçük ya da 4'ten büyük. Mutlak değer büyükse çözüm dışarıda, iki parça hâlindedir.",
+        "show": [
+         "i2",
+         "i3"
+        ],
+        "focus": [
+         "i2",
+         "i3"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "x eksi 1'in mutlak değeri, x'in 1'e uzaklığıdır."
+     },
+     {
+      "kind": "rule",
+      "title": "Arada mı, dışarıda mı?",
+      "items": [
+       "$|x| < a$ ⇔ $-a < x < a$: çözüm **arada**.",
+       "$|x| > a$ ⇔ $x < -a$ ya da $x > a$: çözüm **dışarıda**.",
+       "$|x - b| \\le a$ ⇔ $b - a \\le x \\le b + a$."
+      ],
+      "beats": [],
+      "narration": "Kısacası mutlak değer bir sayıdan küçükse içerisi o sayının negatifiyle kendisi arasındadır; çözüm arada kalır. Mutlak değer bir sayıdan büyükse içerisi ya negatifinden küçük ya da kendisinden büyüktür; çözüm dışarıda, iki parça hâlindedir. x eksi b'nin mutlak değeri a'dan küçük ya da eşitse x, b eksi a ile b artı a arasındadır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$|x - 2| \\le 3$ olduğuna göre $2x + 1$ ifadesinin alabileceği tam sayı değerlerinin toplamı kaçtır?",
+       "options": [
+        "35",
+        "55",
+        "60",
+        "65",
+        "77"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$-3 \\le x - 2 \\le 3 \\Rightarrow -1 \\le x \\le 5$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Mutlak değer 3'ten küçük ya da eşit; içerisi eksi 3 ile 3 arasındadır. 2 ekleyelim: x, eksi 1 ile 5 arasında, uçlar dahil."
+        },
+        {
+         "text": "$-2 \\le 2x \\le 10 \\Rightarrow -1 \\le 2x + 1 \\le 11$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "2 ile çarpıp 1 ekleyelim: 2x artı 1, eksi 1 ile 11 arasında."
+        },
+        {
+         "text": "$-1 + 0 + 1 + \\cdots + 11 = 65$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Soru x'in değil, 2x artı 1'in tam sayı değerlerini soruyor; x'in tam sayı olması gerekmez. Eksi 1'den 11'e kadar 13 tam sayı var; toplam, ilk ile sonun ortalaması 5, çarpı 13, yani 65. Cevap D. A şıkkındaki 35, x'i tam sayı sananın bulduğu toplamdır."
+        }
+       ],
+       "narration": "Önce x'in aralığını, sonra 2x artı 1'in aralığını bulacağız.",
+       "origin": {
+        "changes": "ÖSYM'nin mutlak değerli eşitsizlikten bir ifadenin tam sayı değerlerini toplatan kalıbı örnek alındı; eşitsizlik ve ifade bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Mutlak değer sıfıra uzaklıktır; negatif olamaz.",
+    "x negatifse mutlak değeri eksi x’tir.",
+    "İçerisi negatifse işaret değiştirerek çıkar.",
+    "x eksi a’nın mutlak değeri, x ile a arasındaki uzaklıktır.",
+    "Mutlak değer pozitif bir sayıya eşitse iki durum vardır.",
+    "Mutlak değer küçükse arada, büyükse dışarıda."
+   ],
+   "warnings": [
+    "$|x| = -2$ gibi bir denklemin **çözümü yoktur**.",
+    "Önündeki eksiyi **parantezin tamamına** dağıt.",
+    "İfadenin tam sayı değerleri ile **x’inkileri** karıştırma."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki **8 soruyu** kâğıtta yeniden çöz; her mutlak değerin içinin işaretini yaz.",
+    "$|x + 1| = 4$ ve $|x + 1| < 4$ için çözümleri **sayı doğrusunda** çiz.",
+    "Uygulamada KPSS Mutlak Değer testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Tanım: sıfıra uzaklık; x < 0 iken |x| = −x ve −x'in pozitif olduğu; |x| / x ile işaret bulma; özellikler (|a − b| = |b − a|, çarpım ve bölüm).",
+   "İfadeleri açma: içerinin işaretini bul, pozitifse aynen, negatifse işaret değiştirerek çıkar; önündeki eksiyi en son dağıt; ÖSYM'nin sadeleştirme kalıbı için üç özgün soru.",
+   "Sayı doğrusunda uzaklık: |x − a| = d'nin iki çözümü, bir noktaya eşit uzaklıktaki iki sayı (a ± d), iki noktanın orta noktası.",
+   "Denklemler: a > 0 iki durum, a = 0 tek durum, a < 0 çözüm yok; |a| = |b|; köklerin toplamı ve çarpımından parametre bulma.",
+   "Eşitsizlikler: küçükse arada, büyükse dışarıda; bir ifadenin tam sayı değerleri ile x'in tam sayı değerlerini karıştırmama."
+  ]
+ }
+}

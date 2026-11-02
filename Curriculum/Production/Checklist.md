@@ -702,103 +702,103 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 530 | Temel Kavramlar `TEMEL_KAVRAMLAR` | 13 | · | · | · | · | ✓ | 153 (130 / 24) |
-| 531 | Bölme ve Bölünebilme `BOLME_BOLUNEBILME` | 11 | · | · | · | · | ✓ | 101 (98 / 6) |
-| 532 | Asal Çarpanlara Ayırma `ASAL_CARPANLARA_AYIRMA` | 6 | · | · | · | · | — | 52 (48 / 5) |
-| 533 | OBEB–OKEK `EBOB_EKOK` | 7 | · | · | · | · | ✓ | 180 (176 / 7) |
-| 534 | Rasyonel Sayılar `RASYONEL_SAYILAR` | 2 | · | · | · | · | ✓ | 64 (59 / 6) |
-| 535 | Basit Eşitsizlikler `BASIT_ESITSIZLIKLER` | 6 | · | · | · | · | — | 46 (42 / 11) |
-| 536 | Mutlak Değer `MUTLAK_DEGER` | 5 | · | · | · | · | ✓ | 57 (53 / 7) |
-| 537 | Üslü Sayılar `USLU_SAYILAR` | 7 | · | · | · | · | ✓ | 70 (67 / 11) |
-| 538 | Köklü Sayılar `KOKLU_SAYILAR` | 7 | · | · | · | · | ✓ | 38 (38 / 2) |
-| 539 | Çarpanlara Ayırma `CARPANLARA_AYIRMA` | 6 | · | · | · | · | ✓ | 37 (34 / 5) |
-| 540 | Oran–Orantı `ORAN_ORANTI` | 7 | · | · | · | · | ✓ | 92 (89 / 7) |
-| 541 | Birinci Dereceden Denklemler `DENKLEMLER` | 5 | · | · | · | · | ✓ | 127 (117 / 15) |
-| 542 | Problemler `PROBLEMLER` | 14 | · | · | · | · | ✓ | 548 (508 / 82) |
-| 543 | Kümeler `KUMELER` | 11 | · | · | · | · | ✓ | 57 (53 / 8) |
-| 544 | İşlem ve Modüler Aritmetik `ISLEM_MODULER_ARITMETIK` | 2 | · | · | · | · | ✓ | 17 (12 / 7) |
-| 545 | Fonksiyon `FONKSIYONLAR` | 10 | · | · | · | · | ✓ | 26 (20 / 9) |
-| 546 | Permütasyon, Kombinasyon ve Olasılık `PERMUTASYON_KOMBINASYON_OLASILIK` | 8 | · | · | · | · | ✓ | 63 (58 / 18) |
-| 547 | Sayısal Mantık `SAYISAL_MANTIK` | 6 | · | · | · | · | — | 172 (161 / 29) |
+| 530 | Temel Kavramlar `TEMEL_KAVRAMLAR` | 13 | ✓ | ✓ | · | · | ✓ | 153 (130 / 24) |
+| 531 | Bölme ve Bölünebilme `BOLME_BOLUNEBILME` | 11 | ✓ | ✓ | · | · | ✓ | 101 (98 / 6) |
+| 532 | Asal Çarpanlara Ayırma `ASAL_CARPANLARA_AYIRMA` | 6 | ✓ | ✓ | · | · | — | 52 (48 / 5) |
+| 533 | OBEB–OKEK `EBOB_EKOK` | 7 | ✓ | ✓ | · | · | ✓ | 180 (176 / 7) |
+| 534 | Rasyonel Sayılar `RASYONEL_SAYILAR` | 2 | ✓ | ✓ | · | · | ✓ | 64 (59 / 6) |
+| 535 | Basit Eşitsizlikler `BASIT_ESITSIZLIKLER` | 6 | ✓ | ✓ | · | · | — | 46 (42 / 11) |
+| 536 | Mutlak Değer `MUTLAK_DEGER` | 5 | ✓ | ✓ | · | · | ✓ | 57 (53 / 7) |
+| 537 | Üslü Sayılar `USLU_SAYILAR` | 7 | ✓ | ✓ | · | · | ✓ | 70 (67 / 11) |
+| 538 | Köklü Sayılar `KOKLU_SAYILAR` | 7 | ✓ | ✓ | · | · | ✓ | 38 (38 / 2) |
+| 539 | Çarpanlara Ayırma `CARPANLARA_AYIRMA` | 6 | ✓ | ✓ | · | · | ✓ | 37 (34 / 5) |
+| 540 | Oran–Orantı `ORAN_ORANTI` | 7 | ✓ | ✓ | · | · | ✓ | 92 (89 / 7) |
+| 541 | Birinci Dereceden Denklemler `DENKLEMLER` | 5 | ✓ | ✓ | · | · | ✓ | 127 (117 / 15) |
+| 542 | Problemler `PROBLEMLER` | 14 | ✓ | ✓ | · | · | ✓ | 548 (508 / 82) |
+| 543 | Kümeler `KUMELER` | 11 | ✓ | ✓ | · | · | ✓ | 57 (53 / 8) |
+| 544 | İşlem ve Modüler Aritmetik `ISLEM_MODULER_ARITMETIK` | 2 | ✓ | ✓ | · | · | ✓ | 17 (12 / 7) |
+| 545 | Fonksiyon `FONKSIYONLAR` | 10 | ✓ | ✓ | · | · | ✓ | 26 (20 / 9) |
+| 546 | Permütasyon, Kombinasyon ve Olasılık `PERMUTASYON_KOMBINASYON_OLASILIK` | 8 | ✓ | ✓ | · | · | ✓ | 63 (58 / 18) |
+| 547 | Sayısal Mantık `SAYISAL_MANTIK` | 6 | ✓ | ✓ | · | · | — | 172 (161 / 29) |
 
 ### Tarih (TAR)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 548 | İslamiyet Öncesi Türk Tarihi `TAR_ISLAM_ONCESI` | 15 | · | · | · | · | ✓ | 696 (669 / 15) |
-| 549 | Türk-İslam Tarihi `TAR_ILK_TURK_ISLAM` | 13 | · | · | · | · | ✓ | 659 (649 / 17) |
-| 550 | Türkiye Tarihi `TAR_TURKIYE` | 9 | · | · | · | · | ✓ | 541 (537 / 7) |
-| 551 | Osmanlı Devleti Kuruluş Dönemi `TAR_OSM_KURULUS` | 11 | · | · | · | · | ✓ | 934 (932 / 4) |
-| 552 | Osmanlı Devleti Yükselme Dönemi `TAR_OSM_YUKSELME` | 12 | · | · | · | · | ✓ | 147 (139 / 4) |
-| 553 | Osmanlı Devleti Kültür ve Medeniyeti `TAR_OSM_KULTUR_UYGARLIK` | 13 | · | · | · | · | ✓ | 1369 (1345 / 41) |
-| 554 | Osmanlı Devleti Duraklama Dönemi `TAR_OSM_17` | 11 | · | · | · | · | ✓ | 633 (629 / 5) |
-| 555 | Osmanlı Devleti Gerileme Dönemi `TAR_OSM_18` | 10 | · | · | · | · | ✓ | 626 (622 / 9) |
-| 556 | Osmanlı Devleti Dağılma Dönemi `TAR_OSM_19` | 14 | · | · | · | · | ✓ | 659 (639 / 41) |
-| 557 | Mustafa Kemal Atatürk’ün Hayatı `TAR_ATATURK_HAYATI` | 9 | · | · | · | · | ✓ | 34 (27 / 7) |
-| 558 | Millî Mücadele Dönemi `TAR_MILLI_MUCADELE` | 24 | · | · | · | · | ✓ | 1118 (1084 / 69) |
-| 559 | Cumhuriyet Dönemi İç Politika `TAR_CUMHURIYET_IC` | 10 | · | · | · | · | ✓ | 299 (296 / 18) |
-| 560 | Atatürk Dönemi Dış Politika `TAR_ATATURK_DIS_POLITIKA` | 9 | · | · | · | · | ✓ | 180 (175 / 18) |
-| 561 | Atatürk İlkeleri `TAR_ATATURK_ILKELERI` | 10 | · | · | · | · | ✓ | 286 (283 / 18) |
-| 562 | Atatürk İnkılapları `TAR_ATATURK_INKILAPLARI` | 13 | · | · | · | · | ✓ | 244 (235 / 26) |
-| 563 | Çağdaş Türk ve Dünya Tarihi `TAR_CAGDAS_TURK_DUNYA` | 9 | · | · | · | · | — | 253 (245 / 27) |
+| 548 | İslamiyet Öncesi Türk Tarihi `TAR_ISLAM_ONCESI` | 15 | ✓ | ✓ | · | · | ✓ | 696 (669 / 15) |
+| 549 | Türk-İslam Tarihi `TAR_ILK_TURK_ISLAM` | 13 | ✓ | ✓ | · | · | ✓ | 659 (649 / 17) |
+| 550 | Türkiye Tarihi `TAR_TURKIYE` | 9 | ✓ | ✓ | · | · | ✓ | 541 (537 / 7) |
+| 551 | Osmanlı Devleti Kuruluş Dönemi `TAR_OSM_KURULUS` | 11 | ✓ | ✓ | · | · | ✓ | 934 (932 / 4) |
+| 552 | Osmanlı Devleti Yükselme Dönemi `TAR_OSM_YUKSELME` | 12 | ✓ | ✓ | · | · | ✓ | 147 (139 / 4) |
+| 553 | Osmanlı Devleti Kültür ve Medeniyeti `TAR_OSM_KULTUR_UYGARLIK` | 13 | ✓ | ✓ | · | · | ✓ | 1369 (1345 / 41) |
+| 554 | Osmanlı Devleti Duraklama Dönemi `TAR_OSM_17` | 11 | ✓ | ✓ | · | · | ✓ | 633 (629 / 5) |
+| 555 | Osmanlı Devleti Gerileme Dönemi `TAR_OSM_18` | 10 | ✓ | ✓ | · | · | ✓ | 626 (622 / 9) |
+| 556 | Osmanlı Devleti Dağılma Dönemi `TAR_OSM_19` | 14 | ✓ | ✓ | · | · | ✓ | 659 (639 / 41) |
+| 557 | Mustafa Kemal Atatürk’ün Hayatı `TAR_ATATURK_HAYATI` | 9 | ✓ | ✓ | · | · | ✓ | 34 (27 / 7) |
+| 558 | Millî Mücadele Dönemi `TAR_MILLI_MUCADELE` | 24 | ✓ | ✓ | · | · | ✓ | 1118 (1084 / 69) |
+| 559 | Cumhuriyet Dönemi İç Politika `TAR_CUMHURIYET_IC` | 10 | ✓ | ✓ | · | · | ✓ | 299 (296 / 18) |
+| 560 | Atatürk Dönemi Dış Politika `TAR_ATATURK_DIS_POLITIKA` | 9 | ✓ | ✓ | · | · | ✓ | 180 (175 / 18) |
+| 561 | Atatürk İlkeleri `TAR_ATATURK_ILKELERI` | 10 | ✓ | ✓ | · | · | ✓ | 286 (283 / 18) |
+| 562 | Atatürk İnkılapları `TAR_ATATURK_INKILAPLARI` | 13 | ✓ | ✓ | · | · | ✓ | 244 (235 / 26) |
+| 563 | Çağdaş Türk ve Dünya Tarihi `TAR_CAGDAS_TURK_DUNYA` | 9 | ✓ | ✓ | · | · | — | 253 (245 / 27) |
 
 ### Geometri (GEO)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 564 | Doğruda Açılar `GEO_DOGRU_ACI` | 7 | · | · | · | · | ✓ | 85 (85 / 1) |
-| 565 | Üçgende Açılar `GEO_UCGEN_ACI` | 6 | · | · | · | · | ✓ | 67 (67 / 4) |
-| 566 | Üçgende Açı-Kenar Bağıntıları `GEO_ACI_KENAR` | 4 | · | · | · | · | ✓ | 6 (6 / 1) |
-| 567 | Üçgende Eşlik ve Benzerlik `GEO_UCGEN_BENZERLIK` | 7 | · | · | · | · | ✓ | 10 (10 / 1) |
-| 568 | Üçgenin Yardımcı Elemanları `GEO_YARDIMCI_ELEMANLAR` | 8 | · | · | · | · | ✓ | 11 (11 / 0) |
-| 569 | Dik Üçgen ve Trigonometri `GEO_DIK_UCGEN_TRIG` | 9 | · | · | · | · | ✓ | 44 (44 / 3) |
-| 570 | Üçgenin Alanı `GEO_UCGEN_ALAN` | 6 | · | · | · | · | ✓ | 16 (12 / 7) |
-| 571 | Çokgenler `GEO_COKGEN` | 5 | · | · | · | · | ✓ | 10 (8 / 3) |
-| 572 | Çember `GEO_CEMBER` | 11 | · | · | · | · | ✓ | 21 (18 / 7) |
-| 573 | Prizmalar `GEO_PRIZMALAR` | 7 | · | · | · | · | ✓ | 11 (10 / 3) |
-| 574 | Doğrunun Analitik İncelenmesi `GEO_ANALITIK` | 8 | · | · | · | · | ✓ | 27 (22 / 7) |
+| 564 | Doğruda Açılar `GEO_DOGRU_ACI` | 7 | ✓ | ✓ | · | · | ✓ | 85 (85 / 1) |
+| 565 | Üçgende Açılar `GEO_UCGEN_ACI` | 6 | ✓ | ✓ | · | · | ✓ | 67 (67 / 4) |
+| 566 | Üçgende Açı-Kenar Bağıntıları `GEO_ACI_KENAR` | 4 | ✓ | ✓ | · | · | ✓ | 6 (6 / 1) |
+| 567 | Üçgende Eşlik ve Benzerlik `GEO_UCGEN_BENZERLIK` | 7 | ✓ | ✓ | · | · | ✓ | 10 (10 / 1) |
+| 568 | Üçgenin Yardımcı Elemanları `GEO_YARDIMCI_ELEMANLAR` | 8 | ✓ | ✓ | · | · | ✓ | 11 (11 / 0) |
+| 569 | Dik Üçgen ve Trigonometri `GEO_DIK_UCGEN_TRIG` | 9 | ✓ | ✓ | · | · | ✓ | 44 (44 / 3) |
+| 570 | Üçgenin Alanı `GEO_UCGEN_ALAN` | 6 | ✓ | ✓ | · | · | ✓ | 16 (12 / 7) |
+| 571 | Çokgenler `GEO_COKGEN` | 5 | ✓ | ✓ | · | · | ✓ | 10 (8 / 3) |
+| 572 | Çember `GEO_CEMBER` | 11 | ✓ | ✓ | · | · | ✓ | 21 (18 / 7) |
+| 573 | Prizmalar `GEO_PRIZMALAR` | 7 | ✓ | ✓ | · | · | ✓ | 11 (10 / 3) |
+| 574 | Doğrunun Analitik İncelenmesi `GEO_ANALITIK` | 8 | ✓ | ✓ | · | · | ✓ | 27 (22 / 7) |
 
 ### Coğrafya (COG)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 575 | Türkiye’nin Coğrafi Konumu `COG_KONUM` | 4 | · | · | · | · | ✓ | 625 (610 / 6) |
-| 576 | Türkiye’nin Özel Tarihlerdeki Durumu `COG_OZEL_TARIH` | 9 | · | · | · | · | ✓ | 20 (12 / 4) |
-| 577 | Türkiye’nin Jeolojik Zamanlardaki Durumu `COG_JEOLOJIK_ZAMAN` | 8 | · | · | · | · | ✓ | 12 (9 / 2) |
-| 578 | Türkiye’de İç Kuvvetler `COG_IC_KUVVETLER` | 8 | · | · | · | · | ✓ | 16 (12 / 5) |
-| 579 | Türkiye’de Dış Kuvvetler `COG_DIS_KUVVETLER` | 7 | · | · | · | · | ✓ | 29 (24 / 5) |
-| 580 | Türkiye’de Başlıca Yüzey Şekilleri `COG_YUZEY_SEKILLERI` | 8 | · | · | · | · | ✓ | 347 (342 / 23) |
-| 581 | Türkiye’nin Su Varlığı `COG_SU_VARLIGI` | 8 | · | · | · | · | ✓ | 20 (17 / 6) |
-| 582 | Türkiye’de Topraklar `COG_TOPRAKLAR` | 7 | · | · | · | · | ✓ | 29 (26 / 8) |
-| 583 | Türkiye’de Bitkiler `COG_BITKILER` | 8 | · | · | · | · | ✓ | 156 (152 / 7) |
-| 584 | Türkiye’nin İklimi `COG_IKLIM` | 9 | · | · | · | · | ✓ | 700 (691 / 11) |
-| 585 | Türkiye’de Doğal Afetler `COG_DOGAL_AFETLER` | 9 | · | · | · | · | ✓ | 16 (15 / 4) |
-| 586 | Türkiye’de Nüfus `COG_NUFUS` | 8 | · | · | · | · | ✓ | 159 (150 / 19) |
-| 587 | Türkiye’de Göçler ve Mekânsal Etkileri `COG_GOCLER` | 8 | · | · | · | · | ✓ | 68 (66 / 6) |
-| 588 | Türkiye’de Yerleşme `COG_YERLESME` | 7 | · | · | · | · | ✓ | 502 (496 / 6) |
-| 589 | Türkiye’de Tarım ve Ekonomi `COG_TARIM_EKONOMI` | 11 | · | · | · | · | ✓ | 331 (325 / 20) |
-| 590 | Türkiye’de Hayvancılık `COG_HAYVANCILIK` | 8 | · | · | · | · | ✓ | 315 (311 / 9) |
-| 591 | Türkiye’de Madenler ve Enerji Kaynakları `COG_MADEN_ENERJI` | 15 | · | · | · | · | ✓ | 307 (301 / 21) |
-| 592 | Türkiye’de Sanayi `COG_SANAYI` | 10 | · | · | · | · | ✓ | 491 (488 / 13) |
-| 593 | Türkiye’de Ulaşım `COG_ULASIM` | 9 | · | · | · | · | ✓ | 823 (814 / 9) |
-| 594 | Türkiye’de Ticaret `COG_TICARET` | 7 | · | · | · | · | ✓ | 186 (184 / 5) |
-| 595 | Türkiye’de Turizm `COG_TURIZM` | 9 | · | · | · | · | ✓ | 316 (304 / 11) |
-| 596 | Türkiye’de Bölgeler `COG_BOLGELER` | 11 | · | · | · | · | ✓ | 320 (315 / 7) |
-| 597 | Türkiye’nin Jeopolitik Konumu `COG_JEOPOLITIK` | 7 | · | · | · | · | ✓ | 20 (16 / 8) |
+| 575 | Türkiye’nin Coğrafi Konumu `COG_KONUM` | 4 | ✓ | ✓ | · | · | ✓ | 625 (610 / 6) |
+| 576 | Türkiye’nin Özel Tarihlerdeki Durumu `COG_OZEL_TARIH` | 9 | ✓ | ✓ | · | · | ✓ | 20 (12 / 4) |
+| 577 | Türkiye’nin Jeolojik Zamanlardaki Durumu `COG_JEOLOJIK_ZAMAN` | 8 | ✓ | ✓ | · | · | ✓ | 12 (9 / 2) |
+| 578 | Türkiye’de İç Kuvvetler `COG_IC_KUVVETLER` | 8 | ✓ | ✓ | · | · | ✓ | 16 (12 / 5) |
+| 579 | Türkiye’de Dış Kuvvetler `COG_DIS_KUVVETLER` | 7 | ✓ | ✓ | · | · | ✓ | 29 (24 / 5) |
+| 580 | Türkiye’de Başlıca Yüzey Şekilleri `COG_YUZEY_SEKILLERI` | 8 | ✓ | ✓ | · | · | ✓ | 347 (342 / 23) |
+| 581 | Türkiye’nin Su Varlığı `COG_SU_VARLIGI` | 8 | ✓ | ✓ | · | · | ✓ | 20 (17 / 6) |
+| 582 | Türkiye’de Topraklar `COG_TOPRAKLAR` | 7 | ✓ | ✓ | · | · | ✓ | 29 (26 / 8) |
+| 583 | Türkiye’de Bitkiler `COG_BITKILER` | 8 | ✓ | ✓ | · | · | ✓ | 156 (152 / 7) |
+| 584 | Türkiye’nin İklimi `COG_IKLIM` | 9 | ✓ | ✓ | · | · | ✓ | 700 (691 / 11) |
+| 585 | Türkiye’de Doğal Afetler `COG_DOGAL_AFETLER` | 9 | ✓ | ✓ | · | · | ✓ | 16 (15 / 4) |
+| 586 | Türkiye’de Nüfus `COG_NUFUS` | 8 | ✓ | ✓ | · | · | ✓ | 159 (150 / 19) |
+| 587 | Türkiye’de Göçler ve Mekânsal Etkileri `COG_GOCLER` | 8 | ✓ | ✓ | · | · | ✓ | 68 (66 / 6) |
+| 588 | Türkiye’de Yerleşme `COG_YERLESME` | 7 | ✓ | ✓ | · | · | ✓ | 502 (496 / 6) |
+| 589 | Türkiye’de Tarım ve Ekonomi `COG_TARIM_EKONOMI` | 11 | ✓ | ✓ | · | · | ✓ | 331 (325 / 20) |
+| 590 | Türkiye’de Hayvancılık `COG_HAYVANCILIK` | 8 | ✓ | ✓ | · | · | ✓ | 315 (311 / 9) |
+| 591 | Türkiye’de Madenler ve Enerji Kaynakları `COG_MADEN_ENERJI` | 15 | ✓ | ✓ | · | · | ✓ | 307 (301 / 21) |
+| 592 | Türkiye’de Sanayi `COG_SANAYI` | 10 | ✓ | ✓ | · | · | ✓ | 491 (488 / 13) |
+| 593 | Türkiye’de Ulaşım `COG_ULASIM` | 9 | ✓ | ✓ | · | · | ✓ | 823 (814 / 9) |
+| 594 | Türkiye’de Ticaret `COG_TICARET` | 7 | ✓ | ✓ | · | · | ✓ | 186 (184 / 5) |
+| 595 | Türkiye’de Turizm `COG_TURIZM` | 9 | ✓ | ✓ | · | · | ✓ | 316 (304 / 11) |
+| 596 | Türkiye’de Bölgeler `COG_BOLGELER` | 11 | ✓ | ✓ | · | · | ✓ | 320 (315 / 7) |
+| 597 | Türkiye’nin Jeopolitik Konumu `COG_JEOPOLITIK` | 7 | ✓ | ✓ | · | · | ✓ | 20 (16 / 8) |
 
 ### Vatandaşlık (VAT)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 598 | Hukukun Temel Kavramları `VAT_HUKUK_TEMEL` | 9 | · | · | · | · | ✓ | 420 (395 / 23) |
-| 599 | Anayasa Hukukuna Giriş `VAT_ANAYASA_GIRIS_TARIH` | 11 | · | · | · | · | ✓ | 414 (410 / 12) |
-| 600 | Temel Hak ve Hürriyetler `VAT_TEMEL_HAKLAR` | 2 | · | · | · | · | ✓ | 268 (262 / 8) |
-| 601 | Yasama `VAT_YASAMA` | 6 | · | · | · | · | ✓ | 375 (369 / 14) |
-| 602 | Yürütme `VAT_YURUTME` | 5 | · | · | · | · | ✓ | 379 (369 / 15) |
-| 603 | Yargı `VAT_YARGI` | 9 | · | · | · | · | ✓ | 376 (368 / 16) |
-| 604 | İdare Hukuku `VAT_IDARE_HUKUKU` | 4 | · | · | · | · | ✓ | 820 (807 / 26) |
-| 605 | Güncel Bilgiler `VAT_GUNCEL_BILGILER` | 13 | · | · | · | · | ✓ | 1520 (1508 / 43) |
-| 606 | Temel Ekonomi Bilgisi `VAT_EKONOMI` | 3 | · | · | · | · | — | 203 (203 / 2) |
+| 598 | Hukukun Temel Kavramları `VAT_HUKUK_TEMEL` | 9 | ✓ | ✓ | · | · | ✓ | 420 (395 / 23) |
+| 599 | Anayasa Hukukuna Giriş `VAT_ANAYASA_GIRIS_TARIH` | 11 | ✓ | ✓ | · | · | ✓ | 414 (410 / 12) |
+| 600 | Temel Hak ve Hürriyetler `VAT_TEMEL_HAKLAR` | 2 | ✓ | ✓ | · | · | ✓ | 268 (262 / 8) |
+| 601 | Yasama `VAT_YASAMA` | 6 | ✓ | ✓ | · | · | ✓ | 375 (369 / 14) |
+| 602 | Yürütme `VAT_YURUTME` | 5 | ✓ | ✓ | · | · | ✓ | 379 (369 / 15) |
+| 603 | Yargı `VAT_YARGI` | 9 | ✓ | ✓ | · | · | ✓ | 376 (368 / 16) |
+| 604 | İdare Hukuku `VAT_IDARE_HUKUKU` | 4 | ✓ | ✓ | · | · | ✓ | 820 (807 / 26) |
+| 605 | Güncel Bilgiler `VAT_GUNCEL_BILGILER` | 13 | ✓ | ✓ | · | · | ✓ | 1520 (1508 / 43) |
+| 606 | Temel Ekonomi Bilgisi `VAT_EKONOMI` | 3 | ✓ | ✓ | · | · | — | 203 (203 / 2) |
 
 ## KPSS · KPSS Önlisans (0/81 video)
 
@@ -831,87 +831,87 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 627 | Temel Kavramlar `TEMEL_KAVRAMLAR` | 8 | · | · | · | · | ✓ | 361 (360 / 20) |
-| 628 | Bölme ve Bölünebilme `BOLME_BOLUNEBILME` | 4 | · | · | · | · | ✓ | 1078 (1076 / 9) |
-| 629 | Asal Çarpanlara Ayırma `ASAL_CARPANLARA_AYIRMA` | 4 | · | · | · | · | — | 306 (306 / 2) |
-| 630 | OBEB–OKEK `EBOB_EKOK` | 4 | · | · | · | · | ✓ | 1118 (1118 / 2) |
-| 631 | Rasyonel Sayılar `RASYONEL_SAYILAR` | 6 | · | · | · | · | ✓ | 392 (389 / 9) |
-| 632 | Basit Eşitsizlikler `BASIT_ESITSIZLIKLER` | 4 | · | · | · | · | ✓ | 235 (233 / 3) |
-| 633 | Mutlak Değer `MUTLAK_DEGER` | 4 | · | · | · | · | ✓ | 300 (298 / 4) |
-| 634 | Üslü Sayılar `USLU_SAYILAR` | 4 | · | · | · | · | ✓ | 321 (319 / 16) |
-| 635 | Köklü Sayılar `KOKLU_SAYILAR` | 4 | · | · | · | · | ✓ | 214 (214 / 2) |
-| 636 | Çarpanlara Ayırma `CARPANLARA_AYIRMA` | 4 | · | · | · | · | ✓ | 216 (216 / 1) |
-| 637 | Oran–Orantı `ORAN_ORANTI` | 6 | · | · | · | · | ✓ | 591 (587 / 5) |
-| 638 | Birinci Dereceden Denklemler `DENKLEMLER` | 4 | · | · | · | · | ✓ | 717 (715 / 13) |
-| 639 | Problemler `PROBLEMLER` | 8 | · | · | · | · | ✓ | 2257 (2252 / 53) |
-| 640 | Kümeler `KUMELER` | 6 | · | · | · | · | ✓ | 271 (271 / 10) |
-| 641 | İşlem ve Modüler Aritmetik `ISLEM_MODULER_ARITMETIK` | 2 | · | · | · | · | ✓ | 88 (88 / 9) |
-| 642 | Fonksiyon `FONKSIYONLAR` | 5 | · | · | · | · | ✓ | 27 (25 / 7) |
-| 643 | Permütasyon, Kombinasyon ve Olasılık `PERMUTASYON_KOMBINASYON_OLASILIK` | 6 | · | · | · | · | ✓ | 262 (261 / 16) |
-| 644 | Sayısal Mantık `SAYISAL_MANTIK` | 6 | · | · | · | · | — | 414 (411 / 25) |
+| 627 | Temel Kavramlar `TEMEL_KAVRAMLAR` | 8 | ✓ | ✓ | · | · | ✓ | 361 (360 / 20) |
+| 628 | Bölme ve Bölünebilme `BOLME_BOLUNEBILME` | 4 | ✓ | ✓ | · | · | ✓ | 1078 (1076 / 9) |
+| 629 | Asal Çarpanlara Ayırma `ASAL_CARPANLARA_AYIRMA` | 4 | ✓ | ✓ | · | · | — | 306 (306 / 2) |
+| 630 | OBEB–OKEK `EBOB_EKOK` | 4 | ✓ | ✓ | · | · | ✓ | 1118 (1118 / 2) |
+| 631 | Rasyonel Sayılar `RASYONEL_SAYILAR` | 6 | ✓ | ✓ | · | · | ✓ | 392 (389 / 9) |
+| 632 | Basit Eşitsizlikler `BASIT_ESITSIZLIKLER` | 4 | ✓ | ✓ | · | · | ✓ | 235 (233 / 3) |
+| 633 | Mutlak Değer `MUTLAK_DEGER` | 4 | ✓ | ✓ | · | · | ✓ | 300 (298 / 4) |
+| 634 | Üslü Sayılar `USLU_SAYILAR` | 4 | ✓ | ✓ | · | · | ✓ | 321 (319 / 16) |
+| 635 | Köklü Sayılar `KOKLU_SAYILAR` | 4 | ✓ | ✓ | · | · | ✓ | 214 (214 / 2) |
+| 636 | Çarpanlara Ayırma `CARPANLARA_AYIRMA` | 4 | ✓ | ✓ | · | · | ✓ | 216 (216 / 1) |
+| 637 | Oran–Orantı `ORAN_ORANTI` | 6 | ✓ | ✓ | · | · | ✓ | 591 (587 / 5) |
+| 638 | Birinci Dereceden Denklemler `DENKLEMLER` | 4 | ✓ | ✓ | · | · | ✓ | 717 (715 / 13) |
+| 639 | Problemler `PROBLEMLER` | 8 | ✓ | ✓ | · | · | ✓ | 2257 (2252 / 53) |
+| 640 | Kümeler `KUMELER` | 6 | ✓ | ✓ | · | · | ✓ | 271 (271 / 10) |
+| 641 | İşlem ve Modüler Aritmetik `ISLEM_MODULER_ARITMETIK` | 2 | ✓ | ✓ | · | · | ✓ | 88 (88 / 9) |
+| 642 | Fonksiyon `FONKSIYONLAR` | 5 | ✓ | ✓ | · | · | ✓ | 27 (25 / 7) |
+| 643 | Permütasyon, Kombinasyon ve Olasılık `PERMUTASYON_KOMBINASYON_OLASILIK` | 6 | ✓ | ✓ | · | · | ✓ | 262 (261 / 16) |
+| 644 | Sayısal Mantık `SAYISAL_MANTIK` | 6 | ✓ | ✓ | · | · | — | 414 (411 / 25) |
 
 ### Tarih (TAR)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 645 | İslamiyet Öncesi Türk Tarihi `TAR_ISLAM_ONCESI` | 9 | · | · | · | · | ✓ | 674 (673 / 11) |
-| 646 | Türkiye Tarihi `TAR_TURKIYE` | 7 | · | · | · | · | ✓ | 534 (534 / 7) |
-| 647 | Türk-İslam Tarihi `TAR_ILK_TURK_ISLAM` | 7 | · | · | · | · | ✓ | 653 (651 / 14) |
-| 648 | Osmanlı Devleti’nin Genel Özellikleri `TAR_OSM_GENEL` | 7 | · | · | · | · | ✓ | 1032 (1031 / 9) |
-| 649 | Osmanlı Devleti’nin Kültür ve Uygarlığı `TAR_OSM_KULTUR_UYGARLIK` | 8 | · | · | · | · | ✓ | 1443 (1440 / 26) |
-| 650 | Osmanlı Devleti Duraklama Dönemi `TAR_OSM_17` | 6 | · | · | · | · | ✓ | 618 (618 / 6) |
-| 651 | Osmanlı Devleti Gerileme Dönemi `TAR_OSM_18` | 5 | · | · | · | · | ✓ | 619 (618 / 6) |
-| 652 | Avrupa’daki Gelişmelerin Osmanlı Devleti’ne Etkileri `TAR_OSM_AVRUPA_ETKI` | 9 | · | · | · | · | ✓ | 27 (26 / 7) |
-| 653 | Osmanlı Devleti Dağılma ve Çöküş Dönemi `TAR_OSM_19` | 10 | · | · | · | · | ✓ | 933 (929 / 30) |
-| 654 | Türkiye Cumhuriyeti İnkılap Tarihi `TAR_INKILAP` | 5 | · | · | · | · | ✓ | 93 (93 / 9) |
-| 655 | I. Dünya Savaşı ve Sonuçları `TAR_1_DUNYA_SAVASI` | 7 | · | · | · | · | ✓ | 46 (46 / 10) |
-| 656 | Mondros Ateşkes Antlaşması ve Cemiyetler `TAR_MONDROS_CEMIYETLER` | 5 | · | · | · | · | ✓ | 165 (161 / 8) |
-| 657 | Kurtuluş Savaşı Hazırlık Dönemi `TAR_KURTULUS_HAZIRLIK` | 8 | · | · | · | · | ✓ | 213 (211 / 23) |
-| 658 | I. TBMM Dönemi `TAR_TBMM_1` | 6 | · | · | · | · | ✓ | 393 (392 / 4) |
-| 659 | Kurtuluş Savaşı Muharebeler Dönemi `TAR_KURTULUS_MUHAREBELER` | 9 | · | · | · | · | ✓ | 360 (358 / 18) |
-| 660 | Atatürk İlkeleri `TAR_ATATURK_ILKELERI` | 7 | · | · | · | · | ✓ | 277 (277 / 16) |
-| 661 | İnkılaplar Dönemi `TAR_ATATURK_INKILAPLARI` | 5 | · | · | · | · | ✓ | 373 (373 / 27) |
-| 662 | Cumhuriyet Dönemi Dış Politika `TAR_ATATURK_DIS_POLITIKA` | 7 | · | · | · | · | ✓ | 203 (202 / 21) |
-| 663 | Çağdaş Türk ve Dünya Tarihi `TAR_CAGDAS_TURK_DUNYA` | 9 | · | · | · | · | — | 218 (215 / 20) |
+| 645 | İslamiyet Öncesi Türk Tarihi `TAR_ISLAM_ONCESI` | 9 | ✓ | ✓ | · | · | ✓ | 674 (673 / 11) |
+| 646 | Türkiye Tarihi `TAR_TURKIYE` | 7 | ✓ | ✓ | · | · | ✓ | 534 (534 / 7) |
+| 647 | Türk-İslam Tarihi `TAR_ILK_TURK_ISLAM` | 7 | ✓ | ✓ | · | · | ✓ | 653 (651 / 14) |
+| 648 | Osmanlı Devleti’nin Genel Özellikleri `TAR_OSM_GENEL` | 7 | ✓ | ✓ | · | · | ✓ | 1032 (1031 / 9) |
+| 649 | Osmanlı Devleti’nin Kültür ve Uygarlığı `TAR_OSM_KULTUR_UYGARLIK` | 8 | ✓ | ✓ | · | · | ✓ | 1443 (1440 / 26) |
+| 650 | Osmanlı Devleti Duraklama Dönemi `TAR_OSM_17` | 6 | ✓ | ✓ | · | · | ✓ | 618 (618 / 6) |
+| 651 | Osmanlı Devleti Gerileme Dönemi `TAR_OSM_18` | 5 | ✓ | ✓ | · | · | ✓ | 619 (618 / 6) |
+| 652 | Avrupa’daki Gelişmelerin Osmanlı Devleti’ne Etkileri `TAR_OSM_AVRUPA_ETKI` | 9 | ✓ | ✓ | · | · | ✓ | 27 (26 / 7) |
+| 653 | Osmanlı Devleti Dağılma ve Çöküş Dönemi `TAR_OSM_19` | 10 | ✓ | ✓ | · | · | ✓ | 933 (929 / 30) |
+| 654 | Türkiye Cumhuriyeti İnkılap Tarihi `TAR_INKILAP` | 5 | ✓ | ✓ | · | · | ✓ | 93 (93 / 9) |
+| 655 | I. Dünya Savaşı ve Sonuçları `TAR_1_DUNYA_SAVASI` | 7 | ✓ | ✓ | · | · | ✓ | 46 (46 / 10) |
+| 656 | Mondros Ateşkes Antlaşması ve Cemiyetler `TAR_MONDROS_CEMIYETLER` | 5 | ✓ | ✓ | · | · | ✓ | 165 (161 / 8) |
+| 657 | Kurtuluş Savaşı Hazırlık Dönemi `TAR_KURTULUS_HAZIRLIK` | 8 | ✓ | ✓ | · | · | ✓ | 213 (211 / 23) |
+| 658 | I. TBMM Dönemi `TAR_TBMM_1` | 6 | ✓ | ✓ | · | · | ✓ | 393 (392 / 4) |
+| 659 | Kurtuluş Savaşı Muharebeler Dönemi `TAR_KURTULUS_MUHAREBELER` | 9 | ✓ | ✓ | · | · | ✓ | 360 (358 / 18) |
+| 660 | Atatürk İlkeleri `TAR_ATATURK_ILKELERI` | 7 | ✓ | ✓ | · | · | ✓ | 277 (277 / 16) |
+| 661 | İnkılaplar Dönemi `TAR_ATATURK_INKILAPLARI` | 5 | ✓ | ✓ | · | · | ✓ | 373 (373 / 27) |
+| 662 | Cumhuriyet Dönemi Dış Politika `TAR_ATATURK_DIS_POLITIKA` | 7 | ✓ | ✓ | · | · | ✓ | 203 (202 / 21) |
+| 663 | Çağdaş Türk ve Dünya Tarihi `TAR_CAGDAS_TURK_DUNYA` | 9 | ✓ | ✓ | · | · | — | 218 (215 / 20) |
 
 ### Geometri (GEO)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 664 | Doğruda Açılar `GEO_DOGRU_ACI` | 4 | · | · | · | · | ✓ | 552 (552 / 3) |
-| 665 | Üçgenler `GEO_UCGENLER` | 4 | · | · | · | · | ✓ | 390 (390 / 0) |
-| 666 | Üçgende Açı-Kenar Bağıntıları `GEO_ACI_KENAR` | 3 | · | · | · | · | ✓ | 22 (22 / 0) |
-| 667 | Üçgende Eşlik `GEO_UCGEN_ESLIK` | 5 | · | · | · | · | ✓ | 4 (4 / 0) |
-| 668 | Üçgenin Yardımcı Elemanları `GEO_YARDIMCI_ELEMANLAR` | 5 | · | · | · | · | ✓ | 14 (14 / 0) |
-| 669 | Dik Üçgen ve Trigonometri `GEO_DIK_UCGEN_TRIG` | 5 | · | · | · | · | ✓ | 228 (228 / 0) |
-| 670 | Üçgenin Alanı `GEO_UCGEN_ALAN` | 4 | · | · | · | · | ✓ | 11 (10 / 3) |
-| 671 | Çokgenler `GEO_COKGEN` | 4 | · | · | · | · | ✓ | 8 (8 / 2) |
-| 672 | Dörtgenler `GEO_DORTGEN` | 8 | · | · | · | · | ✓ | 26 (26 / 6) |
-| 673 | Çember `GEO_CEMBER` | 6 | · | · | · | · | ✓ | 21 (20 / 4) |
-| 674 | Prizmalar `GEO_PRIZMALAR` | 6 | · | · | · | · | ✓ | 7 (7 / 5) |
-| 675 | Piramitler `GEO_PIRAMITLER` | 4 | · | · | · | · | ✓ | 4 (4 / 0) |
-| 676 | Silindir `GEO_SILINDIR` | 4 | · | · | · | · | ✓ | 5 (5 / 1) |
-| 677 | Doğrunun Analitik İncelenmesi `GEO_ANALITIK` | 6 | · | · | · | · | ✓ | 65 (64 / 5) |
+| 664 | Doğruda Açılar `GEO_DOGRU_ACI` | 4 | ✓ | ✓ | · | · | ✓ | 552 (552 / 3) |
+| 665 | Üçgenler `GEO_UCGENLER` | 4 | ✓ | ✓ | · | · | ✓ | 390 (390 / 0) |
+| 666 | Üçgende Açı-Kenar Bağıntıları `GEO_ACI_KENAR` | 3 | ✓ | ✓ | · | · | ✓ | 22 (22 / 0) |
+| 667 | Üçgende Eşlik `GEO_UCGEN_ESLIK` | 5 | ✓ | ✓ | · | · | ✓ | 4 (4 / 0) |
+| 668 | Üçgenin Yardımcı Elemanları `GEO_YARDIMCI_ELEMANLAR` | 5 | ✓ | ✓ | · | · | ✓ | 14 (14 / 0) |
+| 669 | Dik Üçgen ve Trigonometri `GEO_DIK_UCGEN_TRIG` | 5 | ✓ | ✓ | · | · | ✓ | 228 (228 / 0) |
+| 670 | Üçgenin Alanı `GEO_UCGEN_ALAN` | 4 | ✓ | ✓ | · | · | ✓ | 11 (10 / 3) |
+| 671 | Çokgenler `GEO_COKGEN` | 4 | ✓ | ✓ | · | · | ✓ | 8 (8 / 2) |
+| 672 | Dörtgenler `GEO_DORTGEN` | 8 | ✓ | ✓ | · | · | ✓ | 26 (26 / 6) |
+| 673 | Çember `GEO_CEMBER` | 6 | ✓ | ✓ | · | · | ✓ | 21 (20 / 4) |
+| 674 | Prizmalar `GEO_PRIZMALAR` | 6 | ✓ | ✓ | · | · | ✓ | 7 (7 / 5) |
+| 675 | Piramitler `GEO_PIRAMITLER` | 4 | ✓ | ✓ | · | · | ✓ | 4 (4 / 0) |
+| 676 | Silindir `GEO_SILINDIR` | 4 | ✓ | ✓ | · | · | ✓ | 5 (5 / 1) |
+| 677 | Doğrunun Analitik İncelenmesi `GEO_ANALITIK` | 6 | ✓ | ✓ | · | · | ✓ | 65 (64 / 5) |
 
 ### Coğrafya (COG)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 678 | Türkiye’nin Coğrafi Konumu `COG_KONUM` | 4 | · | · | · | · | ✓ | 627 (626 / 11) |
-| 679 | Türkiye’nin İklimi ve Bitki Örtüsü `COG_IKLIM_BITKI` | 6 | · | · | · | · | ✓ | 939 (935 / 15) |
-| 680 | Türkiye Beşerî Coğrafyası `COG_NUFUS_YERLESME` | 8 | · | · | · | · | ✓ | 673 (668 / 27) |
-| 681 | Türkiye’nin Yeryüzü Şekilleri `COG_YER_SEKILLERI` | 9 | · | · | · | · | ✓ | 380 (379 / 39) |
-| 682 | Türkiye’nin Ekonomik Coğrafyası `COG_EKONOMIK` | 16 | · | · | · | · | ✓ | 2759 (2750 / 77) |
-| 683 | Türkiye’nin Coğrafi Bölgeleri `COG_BOLGELER` | 11 | · | · | · | · | ✓ | 336 (334 / 9) |
+| 678 | Türkiye’nin Coğrafi Konumu `COG_KONUM` | 4 | ✓ | ✓ | · | · | ✓ | 627 (626 / 11) |
+| 679 | Türkiye’nin İklimi ve Bitki Örtüsü `COG_IKLIM_BITKI` | 6 | ✓ | ✓ | · | · | ✓ | 939 (935 / 15) |
+| 680 | Türkiye Beşerî Coğrafyası `COG_NUFUS_YERLESME` | 8 | ✓ | ✓ | · | · | ✓ | 673 (668 / 27) |
+| 681 | Türkiye’nin Yeryüzü Şekilleri `COG_YER_SEKILLERI` | 9 | ✓ | ✓ | · | · | ✓ | 380 (379 / 39) |
+| 682 | Türkiye’nin Ekonomik Coğrafyası `COG_EKONOMIK` | 16 | ✓ | ✓ | · | · | ✓ | 2759 (2750 / 77) |
+| 683 | Türkiye’nin Coğrafi Bölgeleri `COG_BOLGELER` | 11 | ✓ | ✓ | · | · | ✓ | 336 (334 / 9) |
 
 ### Vatandaşlık ve Güncel Bilgiler (VAT)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 684 | Vatandaşlık `VAT_VATANDASLIK` | 25 | · | · | · | · | ✓ | 3069 (3060 / 90) |
-| 685 | Güncel Bilgiler `VAT_GUNCEL_BILGILER` | 11 | · | · | · | · | ✓ | 1131 (1124 / 45) |
-| 686 | Değerlendirme `VAT_DEGERLENDIRME` | 6 | · | · | · | · | — | 27 (27 / 0) |
-| 687 | Temel Ekonomi Bilgisi `VAT_EKONOMI` | 3 | · | · | · | · | — | 215 (215 / 2) |
+| 684 | Vatandaşlık `VAT_VATANDASLIK` | 25 | ✓ | ✓ | · | · | ✓ | 3069 (3060 / 90) |
+| 685 | Güncel Bilgiler `VAT_GUNCEL_BILGILER` | 11 | ✓ | ✓ | · | · | ✓ | 1131 (1124 / 45) |
+| 686 | Değerlendirme `VAT_DEGERLENDIRME` | 6 | ✓ | ✓ | · | · | — | 27 (27 / 0) |
+| 687 | Temel Ekonomi Bilgisi `VAT_EKONOMI` | 3 | ✓ | ✓ | · | · | — | 215 (215 / 2) |
 
 ## KPSS · KPSS Ortaöğretim (0/81 video)
 
@@ -944,87 +944,87 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 708 | Temel Kavramlar `TEMEL_KAVRAMLAR` | 8 | · | · | · | · | ✓ | 361 (360 / 20) |
-| 709 | Bölme ve Bölünebilme `BOLME_BOLUNEBILME` | 4 | · | · | · | · | ✓ | 1078 (1076 / 9) |
-| 710 | Asal Çarpanlara Ayırma `ASAL_CARPANLARA_AYIRMA` | 4 | · | · | · | · | — | 306 (306 / 2) |
-| 711 | OBEB–OKEK `EBOB_EKOK` | 4 | · | · | · | · | ✓ | 1118 (1118 / 2) |
-| 712 | Rasyonel Sayılar `RASYONEL_SAYILAR` | 6 | · | · | · | · | ✓ | 392 (389 / 9) |
-| 713 | Basit Eşitsizlikler `BASIT_ESITSIZLIKLER` | 4 | · | · | · | · | ✓ | 235 (233 / 3) |
-| 714 | Mutlak Değer `MUTLAK_DEGER` | 4 | · | · | · | · | ✓ | 300 (298 / 4) |
-| 715 | Üslü Sayılar `USLU_SAYILAR` | 4 | · | · | · | · | ✓ | 321 (319 / 16) |
-| 716 | Köklü Sayılar `KOKLU_SAYILAR` | 4 | · | · | · | · | ✓ | 214 (214 / 2) |
-| 717 | Çarpanlara Ayırma `CARPANLARA_AYIRMA` | 4 | · | · | · | · | ✓ | 216 (216 / 1) |
-| 718 | Oran–Orantı `ORAN_ORANTI` | 6 | · | · | · | · | ✓ | 591 (587 / 5) |
-| 719 | Birinci Dereceden Denklemler `DENKLEMLER` | 4 | · | · | · | · | ✓ | 717 (715 / 13) |
-| 720 | Problemler `PROBLEMLER` | 8 | · | · | · | · | ✓ | 2257 (2252 / 53) |
-| 721 | Kümeler `KUMELER` | 6 | · | · | · | · | ✓ | 271 (271 / 10) |
-| 722 | İşlem ve Modüler Aritmetik `ISLEM_MODULER_ARITMETIK` | 2 | · | · | · | · | ✓ | 88 (88 / 9) |
-| 723 | Fonksiyon `FONKSIYONLAR` | 5 | · | · | · | · | ✓ | 27 (25 / 7) |
-| 724 | Permütasyon, Kombinasyon ve Olasılık `PERMUTASYON_KOMBINASYON_OLASILIK` | 6 | · | · | · | · | ✓ | 262 (261 / 16) |
-| 725 | Sayısal Mantık `SAYISAL_MANTIK` | 6 | · | · | · | · | — | 414 (411 / 25) |
+| 708 | Temel Kavramlar `TEMEL_KAVRAMLAR` | 8 | ✓ | ✓ | · | · | ✓ | 361 (360 / 20) |
+| 709 | Bölme ve Bölünebilme `BOLME_BOLUNEBILME` | 4 | ✓ | ✓ | · | · | ✓ | 1078 (1076 / 9) |
+| 710 | Asal Çarpanlara Ayırma `ASAL_CARPANLARA_AYIRMA` | 4 | ✓ | ✓ | · | · | — | 306 (306 / 2) |
+| 711 | OBEB–OKEK `EBOB_EKOK` | 4 | ✓ | ✓ | · | · | ✓ | 1118 (1118 / 2) |
+| 712 | Rasyonel Sayılar `RASYONEL_SAYILAR` | 6 | ✓ | ✓ | · | · | ✓ | 392 (389 / 9) |
+| 713 | Basit Eşitsizlikler `BASIT_ESITSIZLIKLER` | 4 | ✓ | ✓ | · | · | ✓ | 235 (233 / 3) |
+| 714 | Mutlak Değer `MUTLAK_DEGER` | 4 | ✓ | ✓ | · | · | ✓ | 300 (298 / 4) |
+| 715 | Üslü Sayılar `USLU_SAYILAR` | 4 | ✓ | ✓ | · | · | ✓ | 321 (319 / 16) |
+| 716 | Köklü Sayılar `KOKLU_SAYILAR` | 4 | ✓ | ✓ | · | · | ✓ | 214 (214 / 2) |
+| 717 | Çarpanlara Ayırma `CARPANLARA_AYIRMA` | 4 | ✓ | ✓ | · | · | ✓ | 216 (216 / 1) |
+| 718 | Oran–Orantı `ORAN_ORANTI` | 6 | ✓ | ✓ | · | · | ✓ | 591 (587 / 5) |
+| 719 | Birinci Dereceden Denklemler `DENKLEMLER` | 4 | ✓ | ✓ | · | · | ✓ | 717 (715 / 13) |
+| 720 | Problemler `PROBLEMLER` | 8 | ✓ | ✓ | · | · | ✓ | 2257 (2252 / 53) |
+| 721 | Kümeler `KUMELER` | 6 | ✓ | ✓ | · | · | ✓ | 271 (271 / 10) |
+| 722 | İşlem ve Modüler Aritmetik `ISLEM_MODULER_ARITMETIK` | 2 | ✓ | ✓ | · | · | ✓ | 88 (88 / 9) |
+| 723 | Fonksiyon `FONKSIYONLAR` | 5 | ✓ | ✓ | · | · | ✓ | 27 (25 / 7) |
+| 724 | Permütasyon, Kombinasyon ve Olasılık `PERMUTASYON_KOMBINASYON_OLASILIK` | 6 | ✓ | ✓ | · | · | ✓ | 262 (261 / 16) |
+| 725 | Sayısal Mantık `SAYISAL_MANTIK` | 6 | ✓ | ✓ | · | · | — | 414 (411 / 25) |
 
 ### Tarih (TAR)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 726 | İslamiyet Öncesi Türk Tarihi `TAR_ISLAM_ONCESI` | 9 | · | · | · | · | ✓ | 674 (673 / 11) |
-| 727 | Türkiye Tarihi `TAR_TURKIYE` | 7 | · | · | · | · | ✓ | 534 (534 / 7) |
-| 728 | Türk-İslam Tarihi `TAR_ILK_TURK_ISLAM` | 7 | · | · | · | · | ✓ | 653 (651 / 14) |
-| 729 | Osmanlı Devleti’nin Genel Özellikleri `TAR_OSM_GENEL` | 7 | · | · | · | · | ✓ | 1032 (1031 / 9) |
-| 730 | Osmanlı Devleti’nin Kültür ve Uygarlığı `TAR_OSM_KULTUR_UYGARLIK` | 8 | · | · | · | · | ✓ | 1443 (1440 / 26) |
-| 731 | Osmanlı Devleti Duraklama Dönemi `TAR_OSM_17` | 6 | · | · | · | · | ✓ | 618 (618 / 6) |
-| 732 | Osmanlı Devleti Gerileme Dönemi `TAR_OSM_18` | 5 | · | · | · | · | ✓ | 619 (618 / 6) |
-| 733 | Avrupa’daki Gelişmelerin Osmanlı Devleti’ne Etkileri `TAR_OSM_AVRUPA_ETKI` | 9 | · | · | · | · | ✓ | 27 (26 / 7) |
-| 734 | Osmanlı Devleti Dağılma ve Çöküş Dönemi `TAR_OSM_19` | 10 | · | · | · | · | ✓ | 933 (929 / 30) |
-| 735 | Türkiye Cumhuriyeti İnkılap Tarihi `TAR_INKILAP` | 5 | · | · | · | · | ✓ | 93 (93 / 9) |
-| 736 | I. Dünya Savaşı ve Sonuçları `TAR_1_DUNYA_SAVASI` | 7 | · | · | · | · | ✓ | 46 (46 / 10) |
-| 737 | Mondros Ateşkes Antlaşması ve Cemiyetler `TAR_MONDROS_CEMIYETLER` | 5 | · | · | · | · | ✓ | 165 (161 / 8) |
-| 738 | Kurtuluş Savaşı Hazırlık Dönemi `TAR_KURTULUS_HAZIRLIK` | 8 | · | · | · | · | ✓ | 213 (211 / 23) |
-| 739 | I. TBMM Dönemi `TAR_TBMM_1` | 6 | · | · | · | · | ✓ | 393 (392 / 4) |
-| 740 | Kurtuluş Savaşı Muharebeler Dönemi `TAR_KURTULUS_MUHAREBELER` | 9 | · | · | · | · | ✓ | 360 (358 / 18) |
-| 741 | Atatürk İlkeleri `TAR_ATATURK_ILKELERI` | 7 | · | · | · | · | ✓ | 277 (277 / 16) |
-| 742 | İnkılaplar Dönemi `TAR_ATATURK_INKILAPLARI` | 5 | · | · | · | · | ✓ | 373 (373 / 27) |
-| 743 | Cumhuriyet Dönemi Dış Politika `TAR_ATATURK_DIS_POLITIKA` | 7 | · | · | · | · | ✓ | 203 (202 / 21) |
-| 744 | Çağdaş Türk ve Dünya Tarihi `TAR_CAGDAS_TURK_DUNYA` | 9 | · | · | · | · | — | 218 (215 / 20) |
+| 726 | İslamiyet Öncesi Türk Tarihi `TAR_ISLAM_ONCESI` | 9 | ✓ | ✓ | · | · | ✓ | 674 (673 / 11) |
+| 727 | Türkiye Tarihi `TAR_TURKIYE` | 7 | ✓ | ✓ | · | · | ✓ | 534 (534 / 7) |
+| 728 | Türk-İslam Tarihi `TAR_ILK_TURK_ISLAM` | 7 | ✓ | ✓ | · | · | ✓ | 653 (651 / 14) |
+| 729 | Osmanlı Devleti’nin Genel Özellikleri `TAR_OSM_GENEL` | 7 | ✓ | ✓ | · | · | ✓ | 1032 (1031 / 9) |
+| 730 | Osmanlı Devleti’nin Kültür ve Uygarlığı `TAR_OSM_KULTUR_UYGARLIK` | 8 | ✓ | ✓ | · | · | ✓ | 1443 (1440 / 26) |
+| 731 | Osmanlı Devleti Duraklama Dönemi `TAR_OSM_17` | 6 | ✓ | ✓ | · | · | ✓ | 618 (618 / 6) |
+| 732 | Osmanlı Devleti Gerileme Dönemi `TAR_OSM_18` | 5 | ✓ | ✓ | · | · | ✓ | 619 (618 / 6) |
+| 733 | Avrupa’daki Gelişmelerin Osmanlı Devleti’ne Etkileri `TAR_OSM_AVRUPA_ETKI` | 9 | ✓ | ✓ | · | · | ✓ | 27 (26 / 7) |
+| 734 | Osmanlı Devleti Dağılma ve Çöküş Dönemi `TAR_OSM_19` | 10 | ✓ | ✓ | · | · | ✓ | 933 (929 / 30) |
+| 735 | Türkiye Cumhuriyeti İnkılap Tarihi `TAR_INKILAP` | 5 | ✓ | ✓ | · | · | ✓ | 93 (93 / 9) |
+| 736 | I. Dünya Savaşı ve Sonuçları `TAR_1_DUNYA_SAVASI` | 7 | ✓ | ✓ | · | · | ✓ | 46 (46 / 10) |
+| 737 | Mondros Ateşkes Antlaşması ve Cemiyetler `TAR_MONDROS_CEMIYETLER` | 5 | ✓ | ✓ | · | · | ✓ | 165 (161 / 8) |
+| 738 | Kurtuluş Savaşı Hazırlık Dönemi `TAR_KURTULUS_HAZIRLIK` | 8 | ✓ | ✓ | · | · | ✓ | 213 (211 / 23) |
+| 739 | I. TBMM Dönemi `TAR_TBMM_1` | 6 | ✓ | ✓ | · | · | ✓ | 393 (392 / 4) |
+| 740 | Kurtuluş Savaşı Muharebeler Dönemi `TAR_KURTULUS_MUHAREBELER` | 9 | ✓ | ✓ | · | · | ✓ | 360 (358 / 18) |
+| 741 | Atatürk İlkeleri `TAR_ATATURK_ILKELERI` | 7 | ✓ | ✓ | · | · | ✓ | 277 (277 / 16) |
+| 742 | İnkılaplar Dönemi `TAR_ATATURK_INKILAPLARI` | 5 | ✓ | ✓ | · | · | ✓ | 373 (373 / 27) |
+| 743 | Cumhuriyet Dönemi Dış Politika `TAR_ATATURK_DIS_POLITIKA` | 7 | ✓ | ✓ | · | · | ✓ | 203 (202 / 21) |
+| 744 | Çağdaş Türk ve Dünya Tarihi `TAR_CAGDAS_TURK_DUNYA` | 9 | ✓ | ✓ | · | · | — | 218 (215 / 20) |
 
 ### Geometri (GEO)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 745 | Doğruda Açılar `GEO_DOGRU_ACI` | 4 | · | · | · | · | ✓ | 552 (552 / 3) |
-| 746 | Üçgenler `GEO_UCGENLER` | 4 | · | · | · | · | ✓ | 390 (390 / 0) |
-| 747 | Üçgende Açı-Kenar Bağıntıları `GEO_ACI_KENAR` | 3 | · | · | · | · | ✓ | 22 (22 / 0) |
-| 748 | Üçgende Eşlik `GEO_UCGEN_ESLIK` | 5 | · | · | · | · | ✓ | 4 (4 / 0) |
-| 749 | Üçgenin Yardımcı Elemanları `GEO_YARDIMCI_ELEMANLAR` | 5 | · | · | · | · | ✓ | 14 (14 / 0) |
-| 750 | Dik Üçgen ve Trigonometri `GEO_DIK_UCGEN_TRIG` | 5 | · | · | · | · | ✓ | 228 (228 / 0) |
-| 751 | Üçgenin Alanı `GEO_UCGEN_ALAN` | 4 | · | · | · | · | ✓ | 11 (10 / 3) |
-| 752 | Çokgenler `GEO_COKGEN` | 4 | · | · | · | · | ✓ | 8 (8 / 2) |
-| 753 | Dörtgenler `GEO_DORTGEN` | 8 | · | · | · | · | ✓ | 26 (26 / 6) |
-| 754 | Çember `GEO_CEMBER` | 6 | · | · | · | · | ✓ | 21 (20 / 4) |
-| 755 | Prizmalar `GEO_PRIZMALAR` | 6 | · | · | · | · | ✓ | 7 (7 / 5) |
-| 756 | Piramitler `GEO_PIRAMITLER` | 4 | · | · | · | · | ✓ | 4 (4 / 0) |
-| 757 | Silindir `GEO_SILINDIR` | 4 | · | · | · | · | ✓ | 5 (5 / 1) |
-| 758 | Doğrunun Analitik İncelenmesi `GEO_ANALITIK` | 6 | · | · | · | · | ✓ | 65 (64 / 5) |
+| 745 | Doğruda Açılar `GEO_DOGRU_ACI` | 4 | ✓ | ✓ | · | · | ✓ | 552 (552 / 3) |
+| 746 | Üçgenler `GEO_UCGENLER` | 4 | ✓ | ✓ | · | · | ✓ | 390 (390 / 0) |
+| 747 | Üçgende Açı-Kenar Bağıntıları `GEO_ACI_KENAR` | 3 | ✓ | ✓ | · | · | ✓ | 22 (22 / 0) |
+| 748 | Üçgende Eşlik `GEO_UCGEN_ESLIK` | 5 | ✓ | ✓ | · | · | ✓ | 4 (4 / 0) |
+| 749 | Üçgenin Yardımcı Elemanları `GEO_YARDIMCI_ELEMANLAR` | 5 | ✓ | ✓ | · | · | ✓ | 14 (14 / 0) |
+| 750 | Dik Üçgen ve Trigonometri `GEO_DIK_UCGEN_TRIG` | 5 | ✓ | ✓ | · | · | ✓ | 228 (228 / 0) |
+| 751 | Üçgenin Alanı `GEO_UCGEN_ALAN` | 4 | ✓ | ✓ | · | · | ✓ | 11 (10 / 3) |
+| 752 | Çokgenler `GEO_COKGEN` | 4 | ✓ | ✓ | · | · | ✓ | 8 (8 / 2) |
+| 753 | Dörtgenler `GEO_DORTGEN` | 8 | ✓ | ✓ | · | · | ✓ | 26 (26 / 6) |
+| 754 | Çember `GEO_CEMBER` | 6 | ✓ | ✓ | · | · | ✓ | 21 (20 / 4) |
+| 755 | Prizmalar `GEO_PRIZMALAR` | 6 | ✓ | ✓ | · | · | ✓ | 7 (7 / 5) |
+| 756 | Piramitler `GEO_PIRAMITLER` | 4 | ✓ | ✓ | · | · | ✓ | 4 (4 / 0) |
+| 757 | Silindir `GEO_SILINDIR` | 4 | ✓ | ✓ | · | · | ✓ | 5 (5 / 1) |
+| 758 | Doğrunun Analitik İncelenmesi `GEO_ANALITIK` | 6 | ✓ | ✓ | · | · | ✓ | 65 (64 / 5) |
 
 ### Coğrafya (COG)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 759 | Türkiye’nin Coğrafi Konumu `COG_KONUM` | 4 | · | · | · | · | ✓ | 627 (626 / 11) |
-| 760 | Türkiye’nin İklimi ve Bitki Örtüsü `COG_IKLIM_BITKI` | 6 | · | · | · | · | ✓ | 939 (935 / 15) |
-| 761 | Türkiye Beşerî Coğrafyası `COG_NUFUS_YERLESME` | 8 | · | · | · | · | ✓ | 673 (668 / 27) |
-| 762 | Türkiye’nin Yeryüzü Şekilleri `COG_YER_SEKILLERI` | 9 | · | · | · | · | ✓ | 380 (379 / 39) |
-| 763 | Türkiye’nin Ekonomik Coğrafyası `COG_EKONOMIK` | 16 | · | · | · | · | ✓ | 2759 (2750 / 77) |
-| 764 | Türkiye’nin Coğrafi Bölgeleri `COG_BOLGELER` | 11 | · | · | · | · | ✓ | 336 (334 / 9) |
+| 759 | Türkiye’nin Coğrafi Konumu `COG_KONUM` | 4 | ✓ | ✓ | · | · | ✓ | 627 (626 / 11) |
+| 760 | Türkiye’nin İklimi ve Bitki Örtüsü `COG_IKLIM_BITKI` | 6 | ✓ | ✓ | · | · | ✓ | 939 (935 / 15) |
+| 761 | Türkiye Beşerî Coğrafyası `COG_NUFUS_YERLESME` | 8 | ✓ | ✓ | · | · | ✓ | 673 (668 / 27) |
+| 762 | Türkiye’nin Yeryüzü Şekilleri `COG_YER_SEKILLERI` | 9 | ✓ | ✓ | · | · | ✓ | 380 (379 / 39) |
+| 763 | Türkiye’nin Ekonomik Coğrafyası `COG_EKONOMIK` | 16 | ✓ | ✓ | · | · | ✓ | 2759 (2750 / 77) |
+| 764 | Türkiye’nin Coğrafi Bölgeleri `COG_BOLGELER` | 11 | ✓ | ✓ | · | · | ✓ | 336 (334 / 9) |
 
 ### Vatandaşlık ve Güncel Bilgiler (VAT)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 765 | Vatandaşlık `VAT_VATANDASLIK` | 25 | · | · | · | · | ✓ | 3069 (3060 / 90) |
-| 766 | Güncel Bilgiler `VAT_GUNCEL_BILGILER` | 11 | · | · | · | · | ✓ | 1131 (1124 / 45) |
-| 767 | Değerlendirme `VAT_DEGERLENDIRME` | 6 | · | · | · | · | — | 27 (27 / 0) |
-| 768 | Temel Ekonomi Bilgisi `VAT_EKONOMI` | 3 | · | · | · | · | — | 215 (215 / 2) |
+| 765 | Vatandaşlık `VAT_VATANDASLIK` | 25 | ✓ | ✓ | · | · | ✓ | 3069 (3060 / 90) |
+| 766 | Güncel Bilgiler `VAT_GUNCEL_BILGILER` | 11 | ✓ | ✓ | · | · | ✓ | 1131 (1124 / 45) |
+| 767 | Değerlendirme `VAT_DEGERLENDIRME` | 6 | ✓ | ✓ | · | · | — | 27 (27 / 0) |
+| 768 | Temel Ekonomi Bilgisi `VAT_EKONOMI` | 3 | ✓ | ✓ | · | · | — | 215 (215 / 2) |
 
 ## US_ACT · Enhanced ACT (0/19 video)
 

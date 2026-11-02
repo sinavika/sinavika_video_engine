@@ -1,0 +1,1574 @@
+{
+ "topic": {
+  "id": "1D9F38B2-30E5-496F-A5D2-C97DE9011B14",
+  "category": "KPSS_ONLISANS",
+  "lesson": "GEO",
+  "code": "GEO_UCGEN_ESLIK"
+ },
+ "title": "Üçgende Eşlik",
+ "lessonName": "Geometri",
+ "exams": [
+  "KPSS"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/KPSS/GEO/GEO_UCGEN_BENZERLIK.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Biri öbürünün büyütülmüşü",
+   "narration": "Bir fotoğrafı büyüttüğünde biçimi değişmez, yalnız boyutu değişir. Geometride buna benzerlik denir. Boyut da aynıysa iki şekil eştir: biri öbürünün üstüne konunca tam oturur. KPSS'nin en sevdiği şekilli sorular bu iki fikre dayanır. Bu derste eşliğin üç yolunu, benzerliği ve alanın neden kare oranında büyüdüğünü göreceğiz."
+  },
+  "objectives": [
+   "KKK, KAK ve AKA ile eşliği göstermek",
+   "KKA tuzağını tanımak",
+   "Benzer üçgenleri açılarından tanımak",
+   "Benzerlik oranıyla kenar bulmak",
+   "Thales teoremini ve alan oranını kullanmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_UCGEN_ESLIK_01",
+    "subtopics": [],
+    "title": "Eşlik: kenar-kenar-kenar",
+    "narration": "İki üçgen birbirinin tıpatıp aynısıysa eştir: biri kaldırılıp öbürünün üstüne konunca tam oturur.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Üst üste oturan üçgenler",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        10.76,
+        5.6
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          4,
+          0
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          1,
+          3
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          6.4,
+          2.6
+         ],
+         "label": "D",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          9.86,
+          0.6
+         ],
+         "label": "E",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "F",
+         "at": [
+          8.77,
+          4.7
+         ],
+         "label": "F",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 2
+        },
+        {
+         "from": "C",
+         "to": "A",
+         "dashed": false,
+         "ticks": 3
+        },
+        {
+         "from": "D",
+         "to": "E",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "E",
+         "to": "F",
+         "dashed": false,
+         "ticks": 2
+        },
+        {
+         "from": "F",
+         "to": "D",
+         "dashed": false,
+         "ticks": 3
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "fill": true,
+         "id": "abc",
+         "shade": 1
+        },
+        {
+         "points": [
+          "D",
+          "E",
+          "F"
+         ],
+         "fill": true,
+         "id": "def",
+         "copyOf": "abc",
+         "shade": 1
+        }
+       ],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "Kenarlar karşılıklı eşit: bir çentikli AB ile DE, iki çentikli BC ile EF, üç çentikli CA ile FD.",
+        "show": [],
+        "focus": [
+         "AB",
+         "DE",
+         "BC",
+         "EF",
+         "CA",
+         "FD"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "ABC'yi kaldırıp DEF'in üstüne götürelim. Biraz döndürünce tam oturuyor.",
+        "show": [
+         "def"
+        ],
+        "focus": [
+         "def"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Üç kenarı karşılıklı eşit olan iki üçgen eştir. Buna kenar-kenar-kenar, kısaca KKK eşliği denir. Eş üçgenlerin açıları da karşılıklı eşittir.",
+        "show": [],
+        "focus": [
+         "abc",
+         "def"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Kenarları çentiklerle eşlenmiş iki üçgene bakalım."
+     },
+     {
+      "kind": "rule",
+      "title": "Eş üçgenler",
+      "items": [
+       "Üç kenarı karşılıklı eşit iki üçgen eştir: **KKK**.",
+       "$ABC \\cong DEF$ yazılışında harf sırası eşleşmeyi verir: $A \\leftrightarrow D$, $B \\leftrightarrow E$, $C \\leftrightarrow F$.",
+       "Eş üçgenlerde karşılıklı **bütün** kenarlar ve açılar eşittir."
+      ],
+      "beats": [],
+      "narration": "Üç kenarı karşılıklı eşit iki üçgen eştir; buna KKK eşliği deriz. Eşliği yazarken harflerin sırası önemlidir: ABC eş DEF dediğimizde A, D ile; B, E ile; C, F ile eşleşir. Eş üçgenlerde karşılıklı bütün kenarlar ve bütün açılar eşittir; sorularda bilinmeyen bir kenarı ya da açıyı bu yolla bulursun."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ESLIK_02",
+    "subtopics": [],
+    "title": "Eşlik: kenar-açı-kenar",
+    "narration": "İki kenar ve aralarındaki açı da eşlik için yeter. Ama açı iki kenarın arasında olmalı.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "KAK eşliği",
+      "items": [
+       "İki kenarı ve bu kenarların **arasındaki** açısı karşılıklı eşit iki üçgen eştir: **KAK**.",
+       "Kesişen iki doğru parçası birbirini ortalıyorsa ters açılar sayesinde KAK hazırdır."
+      ],
+      "beats": [],
+      "narration": "İki kenarı ve bu iki kenarın arasındaki açısı karşılıklı eşit olan iki üçgen eştir. Buna kenar-açı-kenar, kısaca KAK eşliği denir. Sık görülen bir durum: iki doğru parçası kesişip birbirini ortalıyorsa, karşılıklı üçgenlerde iki kenar eşittir, aradaki açılar da ters açı olduğu için eşittir. KAK hazırdır."
+     },
+     {
+      "kind": "visual",
+      "title": "Açı arada olmazsa",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.8,
+        -0.9,
+        7,
+        3.6
+       ],
+       "points": [
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "X",
+         "at": [
+          6.6,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "A",
+         "at": [
+          3.06,
+          2.57
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C1",
+         "at": [
+          1.51,
+          0
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C2",
+         "at": [
+          4.61,
+          0
+         ],
+         "label": "C′",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "B",
+         "to": "X",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "A",
+         "label": "4",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C1",
+         "label": "3",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C2",
+         "label": "3",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [
+        {
+         "center": "A",
+         "radius": 3,
+         "arc": [
+          -140,
+          -40
+         ],
+         "dashed": true,
+         "id": "yay",
+         "fill": false,
+         "shade": 1
+        }
+       ],
+       "angles": [
+        {
+         "at": "B",
+         "from": "X",
+         "to": "A",
+         "label": "40°",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "B'deki açı 40 derece, BA kenarı 4 birim. Üçüncü köşe BC ışını üzerinde bir yerde olacak.",
+        "show": [],
+        "focus": [
+         "angle-B",
+         "BA"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "A'dan 3 birimlik bir yay çizelim: AC 3 birim olmalı.",
+        "show": [
+         "yay"
+        ],
+        "focus": [
+         "yay"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Yay ışını iki yerde kesiyor: C ve C üssü. İki farklı üçgen çıkıyor; ikisinde de iki kenar ve bir açı aynı. Demek ki açı arada değilse eşlik garanti değildir.",
+        "show": [
+         "C1",
+         "C2",
+         "AC1",
+         "AC2"
+        ],
+        "focus": [
+         "AC1",
+         "AC2"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Açı iki kenarın arasında değilse ne olur, pergelle görelim."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $[AC]$ ile $[BD]$ doğru parçaları $E$ noktasında kesişmektedir. $|AE| = |EC|$, $|BE| = |ED|$, $|AB| = 3x - 2$ ve $|DC| = x + 8$ birim olduğuna göre $|AB|$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -3.8,
+         -2.6,
+         3.8,
+         2.6
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           -3,
+           1.6
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           3,
+           -1.6
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           -2.2,
+           -1.8
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           2.2,
+           1.8
+          ],
+          "label": "D",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           0,
+           0
+          ],
+          "label": "E",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "E",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "E",
+          "to": "C",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "dashed": false,
+          "ticks": 2
+         },
+         {
+          "from": "E",
+          "to": "D",
+          "dashed": false,
+          "ticks": 2
+         },
+         {
+          "from": "A",
+          "to": "B",
+          "label": "3x − 2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "label": "x + 8",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "E",
+          "from": "A",
+          "to": "B",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "E",
+          "from": "C",
+          "to": "D",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "11",
+        "13",
+        "15",
+        "17",
+        "19"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$|AE| = |EC|$, $m(\\widehat{AEB}) = m(\\widehat{CED})$, $|BE| = |ED|$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "AE ile EC eşit, BE ile ED eşit. Aradaki açılar, AEB ile CED, ters açılar; onlar da eşit."
+        },
+        {
+         "text": "KAK: $AEB \\cong CED \\Rightarrow |AB| = |CD|$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "KAK eşliği: AEB ve CED üçgenleri eş. Karşılıklı kenarlar AB ile CD de eşit."
+        },
+        {
+         "text": "$3x - 2 = x + 8 \\Rightarrow x = 5$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "3x eksi 2, x artı 8'e eşit: 2x, 10; x, 5."
+        },
+        {
+         "text": "$|AB| = 3 \\cdot 5 - 2 = 13$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "AB, 3 çarpı 5 eksi 2, yani 13 birim. Cevap B. x'i bulup 5'te durmak bu sorunun tuzağıdır; soru AB'yi soruyor."
+        }
+       ],
+       "narration": "Karşılıklı iki üçgen var: AEB ve CED. Önce eş olduklarını gösterelim.",
+       "origin": {
+        "changes": "Havuzdaki birbirini ortalayan doğru parçalarıyla eş üçgen kalıbı örnek alındı; ifadeler bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ESLIK_03",
+    "subtopics": [],
+    "title": "Eşlik: açı-kenar-açı",
+    "narration": "Bir kenar ve o kenarın iki ucundaki açılar da eşliği getirir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "AKA eşliği",
+      "items": [
+       "Bir kenarı ve bu kenara komşu iki açısı karşılıklı eşit iki üçgen eştir: **AKA**.",
+       "İki açı eşitse üçüncü açılar da eşittir; eşit bir kenar nerede olursa olsun eşliği verir.",
+       "Dik açılı şekillerde eşit hipotenüs ve eşit bir dar açı aranır."
+      ],
+      "beats": [],
+      "narration": "Bir kenarı ve bu kenarın iki ucundaki açıları karşılıklı eşit olan iki üçgen eştir; buna açı-kenar-açı, kısaca AKA eşliği deriz. İki açı eşitse üçüncü açılar da kendiliğinden eşit olur; bu yüzden eşit bir kenar, karşılık gelen yerdeyse eşlik için yeter. Dik açılı şekillerde genellikle eşit iki hipotenüs ve eşit bir dar açı aranır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $[AB] \\perp [BC]$, $[DC] \\perp [BC]$, $[AE] \\perp [ED]$ ve $|AE| = |ED|$'dir. $|AB| = 3$ birim ve $|CD| = 7$ birim olduğuna göre $|BC|$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         10.9,
+         7.8
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           3
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           7,
+           0
+          ],
+          "label": "E",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           10,
+           0
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           10,
+           7
+          ],
+          "label": "D",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "3",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "label": "7",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "E",
+          "to": "D",
+          "dashed": false,
+          "ticks": 1
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "B",
+          "from": "A",
+          "to": "E",
+          "right": true,
+          "arcs": 1
+         },
+         {
+          "at": "C",
+          "from": "E",
+          "to": "D",
+          "right": true,
+          "arcs": 1
+         },
+         {
+          "at": "E",
+          "from": "A",
+          "to": "D",
+          "right": true,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "8",
+        "9",
+        "10",
+        "12",
+        "21"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$m(\\widehat{BAE}) + m(\\widehat{AEB}) = 90°$ ve $m(\\widehat{AEB}) + m(\\widehat{DEC}) = 90°$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "ABE dik üçgen: A'daki açı ile E'deki açının toplamı 90 derece. E'de de AE ile ED arası 90 derece; doğru açının geri kalanı AEB ile DEC'nin toplamı da 90 derece."
+        },
+        {
+         "text": "$m(\\widehat{BAE}) = m(\\widehat{DEC})$; AKA: $ABE \\cong ECD$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Demek ki A'daki açı, DEC açısına eşit. Hipotenüsler AE ile ED de eşit. İki dik üçgen eş: ABE eş ECD."
+        },
+        {
+         "text": "$|EC| = |AB| = 3$, $|BE| = |CD| = 7$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Karşılıklı kenarlar: EC, AB'ye eşit, 3 birim; BE, CD'ye eşit, 7 birim."
+        },
+        {
+         "text": "$|BC| = 7 + 3 = 10$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "BC, 7 artı 3, 10 birim. Cevap C. E şıkkındaki 21, verilen iki sayıyı çarpanın cevabıdır; bu şekilde kenarlar çarpılmaz, yer değiştirir."
+        }
+       ],
+       "narration": "Dik açılardan eşit açıları bulup iki üçgenin eş olduğunu göstereceğiz.",
+       "origin": {
+        "changes": "Havuzdaki dik açılı şekilde eş üçgenle uzunluk buldurma kalıbı örnek alındı; şekil ve sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ESLIK_04",
+    "subtopics": [],
+    "title": "Üçgenlerde benzerlik",
+    "narration": "Benzer üçgenler aynı biçimde ama farklı boyuttadır: biri öbürünün büyütülmüşüdür.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Büyüyen üçgen",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        11.5,
+        4.9
+       ],
+       "points": [
+        {
+         "id": "P",
+         "at": [
+          0,
+          0
+         ],
+         "label": "P",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "Q",
+         "at": [
+          3,
+          0
+         ],
+         "label": "Q",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R",
+         "at": [
+          0.8,
+          2
+         ],
+         "label": "R",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "K",
+         "at": [
+          4.6,
+          0
+         ],
+         "label": "K",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "M",
+         "at": [
+          10.6,
+          0
+         ],
+         "label": "M",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "N",
+         "at": [
+          6.199999999999999,
+          4
+         ],
+         "label": "N",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "P",
+         "to": "Q",
+         "label": "3",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "Q",
+         "to": "R",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "R",
+         "to": "P",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "K",
+         "to": "M",
+         "label": "6",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "M",
+         "to": "N",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "N",
+         "to": "K",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "P",
+          "Q",
+          "R"
+         ],
+         "fill": true,
+         "id": "kucuk",
+         "shade": 1
+        },
+        {
+         "points": [
+          "K",
+          "M",
+          "N"
+         ],
+         "fill": true,
+         "id": "buyuk",
+         "copyOf": "kucuk",
+         "shade": 1
+        }
+       ],
+       "circles": [],
+       "angles": [
+        {
+         "at": "P",
+         "from": "Q",
+         "to": "R",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "Q",
+         "from": "R",
+         "to": "P",
+         "right": false,
+         "arcs": 2
+        },
+        {
+         "at": "K",
+         "from": "M",
+         "to": "N",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "M",
+         "from": "N",
+         "to": "K",
+         "right": false,
+         "arcs": 2
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "İki üçgenin açıları karşılıklı eşit: tek yaylı açılar ve çift yaylı açılar.",
+        "show": [],
+        "focus": [
+         "angle-P",
+         "angle-Q",
+         "angle-K",
+         "angle-M"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Küçük üçgeni büyütüp büyüğün üstüne götürelim. Tam oturuyor: bütün kenarlar 2 katına çıktı.",
+        "show": [
+         "buyuk"
+        ],
+        "focus": [
+         "buyuk"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Açıları eşit üçgenler benzerdir. İki açının eşit olması yeter, çünkü üçüncü açı kendiliğinden eşit olur.",
+        "show": [],
+        "focus": [
+         "kucuk",
+         "buyuk"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Açıları eşleşen iki üçgene bakalım."
+     },
+     {
+      "kind": "rule",
+      "title": "Benzerlik",
+      "items": [
+       "İki açısı karşılıklı eşit iki üçgen **benzerdir** (AA).",
+       "Üç kenarı orantılı ya da iki kenarı orantılı ve aradaki açısı eşit iki üçgen de benzerdir.",
+       "$ABD \\sim ACB$ yazılışında eşit açılar aynı sıradadır."
+      ],
+      "beats": [],
+      "narration": "İki açısı karşılıklı eşit olan iki üçgen benzerdir; buna açı-açı benzerliği deriz. Üç kenarı orantılı olan, ya da iki kenarı orantılı ve bu kenarların arasındaki açısı eşit olan iki üçgen de benzerdir. Benzerliği yazarken eşit açıları aynı sıraya koy; oranları kurarken hangi kenarın hangisiyle eşleştiğini bu sıra söyler."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $D$ noktası $[AC]$ üzerindedir. $m(\\widehat{ABD}) = m(\\widehat{ACB})$, $|AD| = 4$ birim ve $|DC| = 5$ birim olduğuna göre $|AB| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.8,
+         -0.9,
+         9.8,
+         6
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           4,
+           0
+          ],
+          "label": "D",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           9,
+           0
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           3,
+           5.2
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "D",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "label": "5",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "B",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "B",
+          "from": "A",
+          "to": "D",
+          "right": false,
+          "arcs": 2
+         },
+         {
+          "at": "C",
+          "from": "A",
+          "to": "B",
+          "right": false,
+          "arcs": 2
+         }
+        ]
+       },
+       "options": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$ABD \\sim ACB$ (A ortak, $m(\\widehat{ABD}) = m(\\widehat{ACB})$)",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "ABD ve ACB üçgenlerinde A açısı ortak; ABD açısı ACB açısına eşit. İki açı eşit, üçgenler benzer: ABD benzer ACB."
+        },
+        {
+         "text": "$\\frac{|AB|}{|AC|} = \\frac{|AD|}{|AB|} \\Rightarrow |AB|^2 = |AD| \\cdot |AC|$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sırayla eşleşen kenarları oranlayalım: AB bölü AC, AD bölü AB'ye eşit. İçler dışlar çarpımı: AB kare, AD çarpı AC."
+        },
+        {
+         "text": "$x^2 = 4 \\cdot 9 = 36 \\Rightarrow x = 6$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "AC, 4 artı 5, 9. x kare, 4 çarpı 9, 36; x, 6 birim. Cevap A. AC'yi değil DC'yi, yani 5'i alıp x kare eşittir 20 yazmak bu sorunun tuzağıdır."
+        }
+       ],
+       "narration": "A açısı iki üçgende ortak, bir açı daha eşit: iki üçgen benzer.",
+       "origin": {
+        "changes": "Havuzdaki ortak açılı iç içe benzer üçgen kalıbı örnek alındı; uzunluklar bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ESLIK_05",
+    "subtopics": [],
+    "title": "Benzerlik oranı",
+    "narration": "Benzer üçgenlerde bütün uzunluklar aynı oranla büyür. Bu orana benzerlik oranı denir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Benzerlik oranı",
+      "items": [
+       "Benzer üçgenlerde karşılıklı kenarların oranı sabittir: $k$.",
+       "Çevreler, yükseklikler ve kenarortaylar da aynı $k$ oranındadır.",
+       "Paralel kenar görürsen benzer üçgen ara: $DE \\parallel BC$ ise $ADE \\sim ABC$."
+      ],
+      "beats": [],
+      "narration": "Benzer iki üçgende karşılıklı kenarların oranı hep aynıdır; bu sayıya benzerlik oranı denir ve k ile gösterilir. Yalnız kenarlar değil, çevreler, yükseklikler ve kenarortaylar da aynı k oranındadır. Bir ipucu: şekilde paralel bir doğru görürsen benzer üçgen ara. DE, BC'ye paralelse ADE üçgeni ABC'ye benzer."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $D$, $E$ ve $F$ noktaları $ABC$ üçgeninin kenarları üzerindedir. $[DE] \\parallel [BC]$, $[EF] \\parallel [AB]$, $|AD| = 4$, $|DE| = 6$ ve $|FC| = 12$ birim olduğuna göre $|EF| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.8,
+         -0.9,
+         8,
+         5.1499999999999995
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2.03,
+           4.35
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           7.2,
+           0
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           1.35,
+           2.9
+          ],
+          "label": "D",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           3.75,
+           2.9
+          ],
+          "label": "E",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "F",
+          "at": [
+           2.4,
+           0
+          ],
+          "label": "F",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "D",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "F",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "F",
+          "to": "C",
+          "label": "12",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "E",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "F",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": []
+       },
+       "options": [
+        "4",
+        "6",
+        "7",
+        "8",
+        "12"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$BDEF$ paralelkenar: $|BF| = |DE| = 6$, $|EF| = |DB|$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "DE, BC'ye; EF, AB'ye paralel. Karşılıklı kenarları paralel olan BDEF bir paralelkenardır: BF, DE'ye eşit, 6 birim; EF de DB'ye eşit."
+        },
+        {
+         "text": "$|BC| = 6 + 12 = 18$, $ADE \\sim ABC$: $k = \\frac{6}{18} = \\frac{1}{3}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "BC, 6 artı 12, 18 birim. DE, BC'ye paralel olduğu için ADE, ABC'ye benzer; oran DE bölü BC, 6 bölü 18, üçte bir."
+        },
+        {
+         "text": "$|AB| = 3 \\cdot 4 = 12$, $x = |DB| = 12 - 4 = 8$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "AD, AB'nin üçte biri: AB, 12 birim. DB, 12 eksi 4, 8 birim; x de 8. Cevap D. E şıkkındaki 12 AB'nin kendisi; B şıkkındaki 6 ise EF'yi DE'ye eşit sanmaktır."
+        }
+       ],
+       "narration": "İki paralel bir paralelkenar kurar: BDEF. Sonra benzerlik oranını bulacağız.",
+       "origin": {
+        "changes": "ÖSYM KPSS Lisans 2017'deki kenarlar üzerindeki D, E, F noktalarıyla 'x kaç birimdir' kalıbı örnek alındı; paralellikler ve uzunluklar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki $ABCD$ dörtgeninde $[AB] \\parallel [DC]$'dir. Köşegenler $E$ noktasında kesişmektedir. $|AB| = 4$, $|DC| = 6$ ve $|ED| = 6$ birim olduğuna göre $|BD|$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.8,
+         -0.9,
+         8.8,
+         6.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           4,
+           6
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           8,
+           6
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           0
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           0
+          ],
+          "label": "D",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           4.8,
+           3.6
+          ],
+          "label": "E",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "D",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "C",
+          "from": "D",
+          "to": "A",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "8",
+        "9",
+        "10",
+        "12",
+        "15"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$ABE \\sim CDE$ (iç ters açılar, ters açılar)",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "AB ile DC paralel. ABE ve CDE üçgenlerinde E'deki açılar ters açı; A ile C'deki açılar da iç ters açı. Üçgenler benzer."
+        },
+        {
+         "text": "$k = \\frac{|AB|}{|CD|} = \\frac{4}{6} \\Rightarrow |BE| = \\frac{4}{6} \\cdot 6 = 4$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Oran AB bölü CD, 4 bölü 6. BE, ED ile eşleşir: BE, 6'nın 4 bölü 6'sı, 4 birim."
+        },
+        {
+         "text": "$|BD| = 4 + 6 = 10$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "BD, 4 artı 6, 10 birim. Cevap C. Oranı ters kurup BE'yi 9 bulmak E şıkkındaki 15'i verir; küçük kenar küçük parçayla eşleşir."
+        }
+       ],
+       "narration": "Paralel kenarlar arasında köşegenler bir kelebek oluşturur: ABE ve CDE benzer.",
+       "origin": {
+        "changes": "Havuzdaki yamukta köşegenlerin kelebek benzerliği kalıbı örnek alındı; uzunluklar bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "KKK, KAK ve AKA eşlik verir.",
+    "İki açısı eşit üçgenler benzerdir.",
+    "Benzer üçgenlerde kenarlar k oranında büyür.",
+    "Paralel doğru, benzer üçgen demektir.",
+    "Alanların oranı k²’dir."
+   ],
+   "warnings": [
+    "Açı **arada değilse** (KKA) eşlik yok.",
+    "Oranı **tüm kenara** göre kur.",
+    "Alanda oran **kare** alınır."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki **8 soruyu** kâğıtta şekilleri çizerek yeniden çöz.",
+    "Bir üçgenin orta tabanlarını çiz; dört parçanın **eş** olduğunu kenarlarla göster.",
+    "Uygulamada KPSS Eşlik ve Benzerlik testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Eşlik: KKK, KAK, AKA; ABC ≅ DEF yazılışında harf sırasının eşleşmeyi vermesi; birbirini ortalayan doğru parçalarında ters açılarla KAK.",
+   "KKA (iki kenar ve aralarında olmayan açı) eşlik vermez: pergel yayı ışını iki yerde keser, iki farklı üçgen çıkar.",
+   "Dik açılı şekillerde AKA ile eş üçgen: dik açıların tümlerlerinden eşit açı, eşit hipotenüs; kenarların yer değiştirmesi.",
+   "Benzerlik: AA, KKK oranı, KAK oranı; ortak açılı iç içe üçgende |AB|² = |AD|·|AC|; paralel kenarla benzer üçgen; yamukta kelebek benzerliği.",
+   "Benzerlik oranı k: kenar, çevre, yükseklik k oranında, alan k² oranında; oranı tüm kenara göre kurma (AD/DB = 2/3 ise k = 2/5); Thales teoremi."
+  ]
+ }
+}

@@ -1,6 +1,6 @@
 # YouTube metni: TYT Matematik kampı · Ders 12 · Denklem Çözme
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Matematik/12_Denklem_Cozme/Denklem_Cozme_YouTube.mp4` (4K) · Kapak: `Denklem_Cozme_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Matematik/12_Denklem_Cozme/Denklem_Cozme_YouTube.mp4` (4K) · Kapak: `Denklem_Cozme_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -35,3 +35,8 @@ Epic modern trailer music: a single heartbeat-like sub hit, ticking strings, bra
 TYT kampı YouTube’da, ücretsiz. 🎬 Konu konu, ders ders, soru soru; SinoAI anlatıyor. YouTube’da Sınavika’yı ara ve kampa katıl. Kampa birlikte girmek istediğin arkadaşına gönder.
 
 #sinavika #tyt #yks #tytkampı
+
+## 1 Kasım revizyonu
+
+- **Red notu:** "kamp tanıtımında coğrafya ve tarihteki güçlü animasyonel ekranları telefon ekranına uygun ekle; YouTube olduğu belli olsun; müzik çok iyi; son ekranda indir değil YouTube tanıtım ekranı"
+- **Değişen:** Kesitler: volkan, Malazgirt, 18 Mart, heyelan; telefonu tam dolduran, kamerası kayan çekimler ve YouTube oynatıcısının kırmızı çubuğu. Kanal sayfasında YouTube logosu ve kırmızı Abone ol. Son ekran: YouTube kanal kartı (indir yok). Müzik aynı.

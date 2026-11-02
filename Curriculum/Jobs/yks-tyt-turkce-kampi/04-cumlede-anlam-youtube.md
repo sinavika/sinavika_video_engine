@@ -74,3 +74,7 @@ Yüklendi ve planlandı: https://youtu.be/1IGsR_SUisM · herkese açık 30 Ekim 
 ## Başlık güncellemesi (27 Ekim 2026 gecesi)
 
 Sahibin kararıyla başlıklar "YKS TYT Türkçe |" önekine geçti; Studio'da A/B testi bu üç başlıkla yeniden kuruldu.
+
+## Kapak yenilendi (1 Kasım 2026)
+
+Sahibin isteğiyle YouTube kapağı yeni kamp kapağıyla (29 Ekim standardı, ders renginde) değiştirildi: `Cumlede_Anlam_YouTube_Kapak.png`. Başlık A/B testi sürüyor; kapak test sırasında değiştirilebildi.

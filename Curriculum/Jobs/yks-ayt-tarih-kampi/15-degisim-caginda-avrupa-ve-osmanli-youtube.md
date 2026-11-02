@@ -1,6 +1,6 @@
 # YouTube metni: AYT Tarih kampı · Ders 15 · Değişim Çağında Avrupa ve Osmanlı
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Tarih/15_Degisim_Caginda_Avrupa_Ve_Osmanli/Degisim_Caginda_Avrupa_Ve_Osmanli_YouTube.mp4` (4K) · Kapak: `Degisim_Caginda_Avrupa_Ve_Osmanli_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Tarih/15_Degisim_Caginda_Avrupa_Ve_Osmanli/Degisim_Caginda_Avrupa_Ve_Osmanli_YouTube.mp4` (4K) · Kapak: `Degisim_Caginda_Avrupa_Ve_Osmanli_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

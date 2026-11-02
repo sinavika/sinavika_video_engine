@@ -1,6 +1,6 @@
 # YouTube metni: AYT Matematik kampı · Ders 3 · Bölme ve Bölünebilme
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Matematik/03_Bolme_ve_Bolunebilme/Bolme_ve_Bolunebilme_YouTube.mp4` (4K) · Kapak: `Bolme_ve_Bolunebilme_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Matematik/03_Bolme_ve_Bolunebilme/Bolme_ve_Bolunebilme_YouTube.mp4` (4K) · Kapak: `Bolme_ve_Bolunebilme_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

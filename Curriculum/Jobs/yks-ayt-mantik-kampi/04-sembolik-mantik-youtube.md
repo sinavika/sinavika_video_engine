@@ -1,6 +1,6 @@
 # YouTube metni: AYT Mantık kampı · Ders 4 · Sembolik Mantık
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Mantik/04_Sembolik_Mantik/Sembolik_Mantik_YouTube.mp4` (4K) · Kapak: `Sembolik_Mantik_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Mantik/04_Sembolik_Mantik/Sembolik_Mantik_YouTube.mp4` (4K) · Kapak: `Sembolik_Mantik_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

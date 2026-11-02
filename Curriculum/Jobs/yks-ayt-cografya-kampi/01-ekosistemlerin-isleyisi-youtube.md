@@ -1,6 +1,6 @@
 # YouTube metni: AYT Coğrafya kampı · Ders 1 · Ekosistemlerin Özellikleri ve İşleyişi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/01_Ekosistemlerin_Isleyisi/Ekosistemlerin_Isleyisi_YouTube.mp4` (4K) · Kapak: `Ekosistemlerin_Isleyisi_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/01_Ekosistemlerin_Isleyisi/Ekosistemlerin_Isleyisi_YouTube.mp4` (4K) · Kapak: `Ekosistemlerin_Isleyisi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 7 · Tamlamalar ve Sözcük Grupları
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Turkce/07_Tamlamalar_ve_Sozcuk_Gruplari/Tamlamalar_ve_Sozcuk_Gruplari_YouTube.mp4` (4K) · Kapak: `Tamlamalar_ve_Sozcuk_Gruplari_YouTube_Kapak.jpg` (kamp kapağı).
+Video: `Outputs/Videos/YKS/TYT/Turkce/07_Tamlamalar_ve_Sozcuk_Gruplari/Tamlamalar_ve_Sozcuk_Gruplari_YouTube.mp4` (4K, 15:59) · Kapak: `Tamlamalar_ve_Sozcuk_Gruplari_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 
@@ -27,7 +27,7 @@ Bu derste:
 2. Aynı haberde bir edat grubu ve bir ikileme bul, cümledeki görevini yaz.
 3. Sınavika'da Tamlamalar ve Sözcük Grupları testinden 20 soru çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz.
 
-⏮️ Önceki ders, Ses Bilgisi: (yayın linki)
+⏮️ Önceki ders, Ses Bilgisi: https://youtu.be/0FInObXKv0g
 ⏭️ Sıradaki ders: Yazım Kuralları. Kanala abone ol, hiçbir dersi kaçırma! 🔔
 🗺️ Kampı baştan izle, Bölüm 0: https://youtu.be/-YSeFFxDOhM
 
@@ -37,7 +37,17 @@ Google Play: https://play.google.com/store/apps/details?id=com.sinavika.mobile
 Web: https://sinavika.com
 
 Bölümler:
-(render sonrası `Tamlamalar_ve_Sozcuk_Gruplari_YouTube.chapters.txt` buraya yapıştırılır; bölüm başlıkları: Giriş, İsim tamlaması nedir?, Belirtili isim tamlaması, Belirtisiz isim tamlaması, Zincirleme isim tamlaması, Sıfat tamlaması, Türü farklı tamlama, Edat, bağlama ve unvan grupları, İkileme ve fiilimsi grupları, Özet, Kamp görevi)
+0:00 Giriş
+0:48 İsim tamlaması nedir?
+1:39 Belirtili isim tamlaması
+3:37 Belirtisiz isim tamlaması
+6:22 Zincirleme isim tamlaması
+7:53 Sıfat tamlaması
+9:50 Türü farklı tamlama
+11:48 Edat, bağlama ve unvan grupları
+12:48 İkileme ve fiilimsi grupları
+14:50 Özet
+15:26 Kamp görevi
 
 #TYT #YKS #TYTTürkçe #Tamlamalar #Sınavika
 
@@ -52,3 +62,7 @@ TYT Türkçe Kampı | Sınavika · YKS Kampı | Sınavika
 ## Ayarlar
 
 Kategori Eğitim · dil Türkçe · çocuklara özel değil · ücretli tanıtım yok · yapay zekâ beyanı önceki derslerle aynı · yayın saati sahibin kararı (öneri: 2 Kasım 19:00).
+
+## Yükleme (1 Kasım 2026)
+
+Videoyu sahip yükledi ve yayın gününü kendisi seçti: https://youtu.be/oQJJqUXJej4 · herkese açık 3 Kasım 2026 (planlı). Studio'da girildi ve sunucudan yeniden okunarak doğrulandı: başlık A (sahip: "A/B testini açma, varsayılanı yaz"; B ve C kullanılmadı), yukarıdaki açıklama (bölümler ve önceki ders bağlantısıyla), kapak `Tamlamalar_ve_Sozcuk_Gruplari_YouTube_Kapak.png`, iki oynatma listesi, etiketler, dil Türkçe, kategori Eğitim, ücretli tanıtım yok, yapay zekâ beyanı "Hayır", bitiş ekranı Ders 4'ten içe aktarıldı (abone ol + en son yükleme).

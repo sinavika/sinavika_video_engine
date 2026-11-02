@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 10 · Sözcükte Yapı
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Turkce/10_Sozcukte_Yapi/Sozcukte_Yapi_YouTube.mp4` (4K) · Kapak: `Sozcukte_Yapi_YouTube_Kapak.jpg` (kamp kapağı).
+Video: `Outputs/Videos/YKS/TYT/Turkce/10_Sozcukte_Yapi/Sozcukte_Yapi_YouTube.mp4` (4K, 16:03) · Kapak: `Sozcukte_Yapi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 
@@ -27,7 +27,7 @@ Bu derste:
 2. Her birinin basit, türemiş ya da birleşik olduğunu yaz.
 3. Sınavika'da Sözcükte Yapı testinden 20 soru çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz.
 
-⏮️ Önceki ders, Noktalama İşaretleri: (yayın linki)
+⏮️ Önceki ders, Noktalama İşaretleri: https://youtu.be/ORFawxbpenY
 ⏭️ Sıradaki ders: Sözcük Türleri. Kanala abone ol, hiçbir dersi kaçırma! 🔔
 🗺️ Kampı baştan izle, Bölüm 0: https://youtu.be/-YSeFFxDOhM
 
@@ -37,7 +37,15 @@ Google Play: https://play.google.com/store/apps/details?id=com.sinavika.mobile
 Web: https://sinavika.com
 
 Bölümler:
-(render sonrası `Sozcukte_Yapi_YouTube.chapters.txt` buraya yapıştırılır; bölüm başlıkları: Giriş, Kök ve kök türleri, Gövde, Yapım ekleri, Çekim ekleri, Basit, türemiş, birleşik, Yapıca çözümleme, Özet, Kamp görevi)
+0:00 Giriş
+0:50 Kök ve kök türleri
+3:27 Gövde
+5:08 Yapım ekleri
+6:51 Çekim ekleri
+9:56 Basit, türemiş, birleşik
+13:11 Yapıca çözümleme
+15:00 Özet
+15:30 Kamp görevi
 
 #TYT #YKS #TYTTürkçe #SözcükteYapı #Sınavika
 
@@ -52,3 +60,7 @@ TYT Türkçe Kampı | Sınavika · YKS Kampı | Sınavika
 ## Ayarlar
 
 Kategori Eğitim · dil Türkçe · çocuklara özel değil · ücretli tanıtım yok · yapay zekâ beyanı önceki derslerle aynı · yayın saati sahibin kararı (öneri: 5 Kasım 19:00).
+
+## Yükleme (1 Kasım 2026)
+
+Videoyu sahip yükledi ve yayın gününü kendisi seçti: https://youtu.be/nf4EfN32AVg · herkese açık 6 Kasım 2026 (planlı). Studio'da girildi ve sunucudan yeniden okunarak doğrulandı: başlık A (sahip: "A/B testini açma, varsayılanı yaz"; B ve C kullanılmadı), yukarıdaki açıklama (bölümler ve önceki ders bağlantısıyla), kapak `Sozcukte_Yapi_YouTube_Kapak.png`, iki oynatma listesi, etiketler, dil Türkçe, kategori Eğitim, ücretli tanıtım yok, yapay zekâ beyanı "Hayır", bitiş ekranı Ders 4'ten içe aktarıldı (abone ol + en son yükleme).

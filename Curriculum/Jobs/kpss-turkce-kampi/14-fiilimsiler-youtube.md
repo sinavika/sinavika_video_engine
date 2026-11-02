@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Türkçe kampı · Ders 14 · Fiilimsiler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Turkce/14_Fiilimsiler/Fiilimsiler_YouTube.mp4` (4K) · Kapak: `Fiilimsiler_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Turkce/14_Fiilimsiler/Fiilimsiler_YouTube.mp4` (4K) · Kapak: `Fiilimsiler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

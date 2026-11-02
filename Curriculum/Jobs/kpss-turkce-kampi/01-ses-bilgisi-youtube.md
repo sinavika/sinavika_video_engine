@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Türkçe kampı · Ders 1 · Ses Bilgisi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Turkce/01_Ses_Bilgisi/Ses_Bilgisi_YouTube.mp4` (4K) · Kapak: `Ses_Bilgisi_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Turkce/01_Ses_Bilgisi/Ses_Bilgisi_YouTube.mp4` (4K) · Kapak: `Ses_Bilgisi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -66,9 +66,11 @@ export const ChargesVisual: React.FC<VisualBoxProps & {visual: Charges}> = ({vis
 	// Objects fill the box's height: an electroscope stands about three sizes tall (knob, jar, label), a sphere with
 	// its force arrows above it about two and a half; at a fixed share of the height they came out small (FIZ 8).
 	const hasScope = visual.objects.some((object) => object.shape === 'electroscope');
-	const size = Math.min(slot * 0.34, hasScope ? (height - u(70)) / 3.05 : (height - u(60)) / 2.5);
-	const midY = hasScope ? u(10) + size * 1.6 : u(50) + size * 1.25;
+	// An electroscope also keeps room above its knob for the sign at the top of the arc: it stood over the box's edge
+	// and was cut to a dot (Soru revizyonu, 1 Nov 2026).
+	const size = Math.min(slot * 0.34, hasScope ? (height - u(70)) / 3.3 : (height - u(60)) / 2.5);
 	const sign = Math.max(u(18), size * 0.2);
+	const midY = hasScope ? u(10) + size * 1.6 + sign : u(50) + size * 1.25;
 	const fontSize = u(32);
 	const centreOf = (index: number) => slot * (index + 0.5);
 	return (

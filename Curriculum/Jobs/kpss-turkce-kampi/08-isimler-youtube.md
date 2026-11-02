@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Türkçe kampı · Ders 8 · İsimler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Turkce/08_Isimler/Isimler_YouTube.mp4` (4K) · Kapak: `Isimler_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Turkce/08_Isimler/Isimler_YouTube.mp4` (4K) · Kapak: `Isimler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

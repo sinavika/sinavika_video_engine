@@ -1,6 +1,6 @@
 # YouTube metni: TYT Matematik kampı · Ders 8 · Üslü Sayılar
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Matematik/08_Uslu_Sayilar/Uslu_Sayilar_YouTube.mp4` (4K) · Kapak: `Uslu_Sayilar_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Matematik/08_Uslu_Sayilar/Uslu_Sayilar_YouTube.mp4` (4K) · Kapak: `Uslu_Sayilar_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

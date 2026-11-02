@@ -7,9 +7,19 @@ import {elementLook, useElementState} from '../VisualTimeline';
 
 type Timeline = Extract<CourseVisual, {kind: 'timeline'}>;
 
-const yearText = (year: number, era: Timeline['era']): string => {
-	if (era === 'hijri') return `${year} H.`;
-	return year < 0 ? `MÖ ${-year}` : String(year);
+type DatedEvent = Timeline['events'][number];
+
+const MONTHS = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+
+/** When an event happened, in years: a month and day place it inside its year (19 Mayıs 1919 ≈ 1919.38). */
+export const timelineTime = (event: Pick<DatedEvent, 'year' | 'month' | 'day'>): number => event.year + (event.month ? (event.month - 1) / 12 + ((event.day ?? 1) - 1) / 365 : 0);
+
+/** How an event's date is written: "1071", "MÖ 330", "622 H.", or with its month "Eylül 1919" and day "19 Mayıs 1919". */
+export const timelineDateText = (event: Pick<DatedEvent, 'year' | 'month' | 'day'>, era: Timeline['era']): string => {
+	if (era === 'hijri') return `${event.year} H.`;
+	const year = event.year < 0 ? `MÖ ${-event.year}` : String(event.year);
+	if (!event.month) return year;
+	return `${event.day ? `${event.day} ` : ''}${MONTHS[event.month - 1]} ${year}`;
 };
 
 /**
@@ -21,6 +31,9 @@ const timelineType = (count: number) => (count <= 5 ? {year: 44, label: 32, deta
 
 type TimelineType = ReturnType<typeof timelineType>;
 
+/** A written-out date ("19 Mayıs 1919") is set smaller than a bare year so it still fits its label box. */
+const dateSize = (event: DatedEvent, type: TimelineType) => (event.month ? Math.round(type.year * 0.72) : type.year);
+
 /**
  * Dated events on one line, spaced by time (not evenly), so gaps between
  * events can be seen. Labels alternate above and below the line, and each
@@ -29,19 +42,20 @@ type TimelineType = ReturnType<typeof timelineType>;
 export const TimelineVisual: React.FC<VisualBoxProps & {visual: Timeline}> = ({visual, width, height, delaySeconds = 0}) => {
 	const palette = useVisualPalette();
 	const {u} = useVideoLayout();
-	const events = [...visual.events].sort((a, b) => a.year - b.year);
+	const events = [...visual.events].sort((a, b) => timelineTime(a) - timelineTime(b));
 	const type = timelineType(events.length);
-	const [first, last] = [events[0].year, events[events.length - 1].year];
+	const [first, last] = [timelineTime(events[0]), timelineTime(events[events.length - 1])];
 	const pad = u(90);
 	const labelWidth = Math.min(u(320), (width - pad * 2) / Math.max(1, events.length - 1) + u(140));
 	// Dates bunched at one end (1897, 1911, 1913, 1926 after 1803) left no room for their labels even with the label
 	// slots below; the line then leans towards even spacing, keeping the order and some of the real gaps.
 	const span = width - pad * 2;
-	const proportional = events.map((event) => (event.year - first) / Math.max(1, last - first));
+	// Dated events (months of 1919) span less than a year: the line is scaled to their own span, not to whole years.
+	const proportional = events.map((event) => (timelineTime(event) - first) / Math.max(events.some((event) => event.month) ? 1 / 12 : 1, last - first));
 	const tightest = Math.min(Infinity, ...proportional.slice(1).map((share, index) => (share - proportional[index]) * span));
 	const blend = tightest < labelWidth * 0.5 ? 0.6 : 0;
-	const shareOfYear = new Map(events.map((event, index) => [event.year, proportional[index] * (1 - blend) + (index / Math.max(1, events.length - 1)) * blend]));
-	const xOf = (year: number) => pad + (shareOfYear.get(year) ?? (year - first) / Math.max(1, last - first)) * span;
+	const shares = events.map((_, index) => proportional[index] * (1 - blend) + (index / Math.max(1, events.length - 1)) * blend);
+	const xOf = (index: number) => pad + shares[index] * span;
 	const lineY = height / 2;
 	const axis = useReveal(delaySeconds, 0.7);
 	// Labels alternate above and below the line. Each label's real extent (its longest line, where its box is aligned)
@@ -62,7 +76,7 @@ export const TimelineVisual: React.FC<VisualBoxProps & {visual: Timeline}> = ({v
 		const gap = u(16);
 		const history: Record<string, number[]> = {};
 		const placed: Placed[] = [];
-		const extentOf = (index: number, align?: TimelineAlign) => labelExtent(xOf(events[index].year), labelWidth, width, events[index], yearText(events[index].year, visual.era), u, type, align);
+		const extentOf = (index: number, align?: TimelineAlign) => labelExtent(xOf(index), labelWidth, width, events[index], timelineDateText(events[index], visual.era), u, type, align);
 		const rightOf = (slot: string, back: number) => {
 			const list = history[slot] ?? [];
 			const index = list[list.length - 1 - back];
@@ -71,7 +85,7 @@ export const TimelineVisual: React.FC<VisualBoxProps & {visual: Timeline}> = ({v
 		const fit = (index: number, slot: string): {align?: TimelineAlign; previous?: TimelineAlign} | null => {
 			// A far-row label's stem must not run through a near-row label on its side.
 			if (slot.endsWith('1')) {
-				const x = xOf(events[index].year);
+				const x = xOf(index);
 				const near = history[`${slot.slice(0, -1)}0`] ?? [];
 				if (near.some((other) => {
 					const extent = extentOf(other, placed[other].align);
@@ -84,8 +98,8 @@ export const TimelineVisual: React.FC<VisualBoxProps & {visual: Timeline}> = ({v
 			const centredFree = (left: number) => rightOf(slot, 0) + gap <= left;
 			if (centredFree(own.left)) return {};
 			const leaning = extentOf(index, 'start');
-			if (timelineLabelBox(xOf(events[index].year), labelWidth, width, u).align === 'center' && leaning.right <= width && centredFree(leaning.left)) return {align: 'start'};
-			if (previous !== undefined && placed[previous].align === undefined && timelineLabelBox(xOf(events[previous].year), labelWidth, width, u).align === 'center') {
+			if (timelineLabelBox(xOf(index), labelWidth, width, u).align === 'center' && leaning.right <= width && centredFree(leaning.left)) return {align: 'start'};
+			if (previous !== undefined && placed[previous].align === undefined && timelineLabelBox(xOf(previous), labelWidth, width, u).align === 'center') {
 				const moved = extentOf(previous, 'end');
 				if (moved.left >= rightOf(slot, 1) + gap) {
 					if (moved.right + gap <= own.left) return {previous: 'end'};
@@ -109,7 +123,7 @@ export const TimelineVisual: React.FC<VisualBoxProps & {visual: Timeline}> = ({v
 		// scene's colour, so the stem passes behind it instead of through its letters.
 		placed.forEach((placement, index) => {
 			if (!placement.far) return;
-			const x = xOf(events[index].year);
+			const x = xOf(index);
 			placed.forEach((other, near) => {
 				if (other.far || other.above !== placement.above) return;
 				const extent = extentOf(near, other.align);
@@ -125,7 +139,7 @@ export const TimelineVisual: React.FC<VisualBoxProps & {visual: Timeline}> = ({v
 			{/* Stems and dots first, labels over them: a far-row stem passes behind a near-row label, never over its text. */}
 			{(['stem', 'label'] as const).map((layer) =>
 				events.map((event, index) => (
-					<TimelineEvent key={`${layer}-${event.year}-${index}`} layer={layer} id={`e${index + 1}`} x={xOf(event.year)} lineY={lineY} above={placements[index].above} far={placements[index].far} lean={placements[index].align} backdrop={placements[index].backdrop} row={row} boxHeight={Math.max(u(TIMELINE_BOX), timelineTextHeight(event, labelWidth, u, type) * 1.2)} type={type} year={yearText(event.year, visual.era)} label={event.label} detail={event.detail} delaySeconds={delaySeconds + 0.5 + index * 0.4} width={labelWidth} areaWidth={width} />
+					<TimelineEvent key={`${layer}-${event.year}-${index}`} layer={layer} id={`e${index + 1}`} x={xOf(index)} lineY={lineY} above={placements[index].above} far={placements[index].far} lean={placements[index].align} backdrop={placements[index].backdrop} row={row} boxHeight={Math.max(u(TIMELINE_BOX), timelineTextHeight(event, labelWidth, u, type) * 1.2)} type={type} year={timelineDateText(event, visual.era)} yearSize={dateSize(event, type)} label={event.label} detail={event.detail} delaySeconds={delaySeconds + 0.5 + index * 0.4} width={labelWidth} areaWidth={width} />
 				)),
 			)}
 		</svg>
@@ -156,19 +170,19 @@ const timelineLabelBox = (x: number, width: number, areaWidth: number, u: (value
 const timelineTextHeight = (event: Timeline['events'][number], width: number, u: (value: number) => number, type: TimelineType): number => {
 	const lines = (text: string, size: number, em: number) => Math.max(1, Math.ceil((text.length * u(size) * em) / (width * 0.9)));
 	const detail = event.detail ? u(4) + lines(event.detail, type.detail, 0.5) * u(type.detail) * 1.2 : 0;
-	return u(type.year) + u(4) + lines(event.label, type.label, 0.54) * u(type.label) * 1.15 + detail;
+	return u(dateSize(event, type)) + u(4) + lines(event.label, type.label, 0.54) * u(type.label) * 1.15 + detail;
 };
 
 /** The horizontal span a label's text takes: its longest line (measured em per letter of each line's type), placed as its box aligns it. */
 const labelExtent = (x: number, width: number, areaWidth: number, event: Timeline['events'][number], year: string, u: (value: number) => number, type: TimelineType, lean?: TimelineAlign) => {
 	const {align, boxX} = timelineLabelBox(x, width, areaWidth, u, lean);
-	const text = Math.min(width, Math.max(year.length * u(type.year) * 0.58, event.label.length * u(type.label) * 0.54, (event.detail?.length ?? 0) * u(type.detail) * 0.5));
+	const text = Math.min(width, Math.max(year.length * u(dateSize(event, type)) * 0.58, event.label.length * u(type.label) * 0.54, (event.detail?.length ?? 0) * u(type.detail) * 0.5));
 	if (align === 'start') return {left: boxX, right: boxX + text};
 	if (align === 'end') return {left: boxX + width - text, right: boxX + width};
 	return {left: x - text / 2, right: x + text / 2};
 };
 
-const TimelineEvent: React.FC<{layer: 'stem' | 'label'; id: string; x: number; lineY: number; above: boolean; far?: boolean; lean?: TimelineAlign; backdrop?: boolean; row: number; boxHeight: number; type: TimelineType; year: string; label: string; detail?: string; delaySeconds: number; width: number; areaWidth: number}> = ({layer, id, x, lineY, above, far = false, lean, backdrop = false, row, boxHeight, type, year, label, detail, delaySeconds, width, areaWidth}) => {
+const TimelineEvent: React.FC<{layer: 'stem' | 'label'; id: string; x: number; lineY: number; above: boolean; far?: boolean; lean?: TimelineAlign; backdrop?: boolean; row: number; boxHeight: number; type: TimelineType; year: string; yearSize: number; label: string; detail?: string; delaySeconds: number; width: number; areaWidth: number}> = ({layer, id, x, lineY, above, far = false, lean, backdrop = false, row, boxHeight, type, year, yearSize, label, detail, delaySeconds, width, areaWidth}) => {
 	const palette = useVisualPalette();
 	const {u} = useVideoLayout();
 	const look = elementLook(useElementState(id));
@@ -192,7 +206,7 @@ const TimelineEvent: React.FC<{layer: 'stem' | 'label'; id: string; x: number; l
 			<foreignObject x={boxX} y={boxY} width={width} height={boxHeight}>
 				<div style={{height: '100%', display: 'flex', flexDirection: 'column', justifyContent: above ? 'flex-end' : 'flex-start', alignItems: align === 'center' ? 'center' : `flex-${align}`, textAlign: align === 'center' ? 'center' : align === 'start' ? 'left' : 'right', fontFamily: palette.fontBody, textShadow: halo}}>
 					<div style={{display: 'flex', flexDirection: 'column', alignItems: 'inherit', gap: u(4), padding: backdrop ? `${u(4)}px ${u(8)}px` : 0, margin: backdrop ? `0 ${u(-8)}px` : 0, borderRadius: u(8), backgroundColor: backdrop ? palette.background : 'transparent'}}>
-						<div style={{fontFamily: palette.fontDisplay, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(type.year), color: palette.lesson, lineHeight: 1}}>{year}</div>
+						<div style={{fontFamily: palette.fontDisplay, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(yearSize), color: palette.lesson, lineHeight: 1}}>{year}</div>
 						<div style={{fontWeight: 700, fontSize: u(type.label), color: palette.ink, lineHeight: 1.15}}>{label}</div>
 						{detail ? <div style={{fontSize: u(type.detail), color: palette.muted, lineHeight: 1.2}}>{detail}</div> : null}
 					</div>

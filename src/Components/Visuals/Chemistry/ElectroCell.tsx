@@ -98,7 +98,9 @@ export const ElectroCellVisual: React.FC<VisualBoxProps & {visual: ElectroCell}>
 						{(look) => (
 							<g opacity={look.opacity}>
 								<path d="M 505 650 L 505 280 L 1095 280 L 1095 650 L 1025 650 L 1025 380 L 575 380 L 575 650 Z" fill={palette.fill} stroke={palette.ink} strokeWidth={5} strokeLinejoin="round" />
-								{label(800, 450, `tuz köprüsü (${visual.bridge})`, 'middle', fontSize * 0.62)}
+								{/* Its name over its bar, under the meter: between its legs "tuz köprüsü (KNO₃)" touched both inner edges, and
+								    in the bar the drifting ions crossed it (2 Nov 2026). */}
+								{label(800, 262, `tuz köprüsü (${visual.bridge})`, 'middle', fontSize * 0.62)}
 							</g>
 						)}
 					</Part>
@@ -162,7 +164,8 @@ export const ElectroCellVisual: React.FC<VisualBoxProps & {visual: ElectroCell}>
 				<Part id="cathode">
 					{(look) => (
 						<g opacity={look.opacity}>
-							{plate(cathodeX, cathodeWidth, palette.grid)}
+							{/* Two electrodes of one metal (Pt in an electrolysis) look alike; different metals look different. */}
+							{plate(cathodeX, cathodeWidth, visual.cathode.label === visual.anode.label ? palette.axis : palette.grid)}
 							{label(cathodeX + 50, plateTop - 30, `${visual.cathode.label} (katot)`, 'start', fontSize * 0.7)}
 							{visual.cathodeGas ? bubbles(cathodeX) : null}
 						</g>

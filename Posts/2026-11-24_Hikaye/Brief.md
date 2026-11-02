@@ -11,3 +11,8 @@
 ## Görsel
 
 Kara tahta dokusu, tebeşirle "24 Kasım"; "Öğretmenini etiketle" (etiket görselde yazılı); küçük logo, ürün çağrısı yok.
+
+## 1 Kasım revizyonu
+
+- **Red notu:** "story de etiket olmaz. daha içten bir öğretmenler günü kutlaması olmalı."
+- **Değişen:** "İyi ki varsınız, öğretmenlerim." · "İlk harfi, ilk soruyu ve vazgeçmemeyi sizden öğrendik. Öğretmenler Günü’nüz kutlu olsun." Tahtada "24 Kasım". Etiketleme çağrısı yok.

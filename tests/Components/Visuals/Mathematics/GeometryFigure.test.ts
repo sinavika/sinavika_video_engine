@@ -2,10 +2,9 @@ import {describe, expect, it} from 'vitest';
 import React from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {MathExpression} from '../../../../src/Components/Typography/MathExpression';
-import {tickMarks, tickShares} from '../../../../src/Components/Visuals/Mathematics/Geometry';
+import {anglePartId, axisTicks, blendSector, circleLabelAt, circlePath, letterDistance, placeAngleLabels, rideAlong, sectorPath, slidePosition, sectorOf, tickMarks, tickShares, wedgePath, widestGap} from '../../../../src/Components/Visuals/Mathematics/Geometry';
 import {plotArea} from '../../../../src/Components/Visuals/Mathematics/Plot';
-import {placeLabel, pointSpots, type LabelBox} from '../../../../src/Components/Visuals/Mathematics/FigureLabel';
-import {coneNetPoints, solidMarks, solidSize} from '../../../../src/Components/Visuals/Three/Solid';
+import {figureText, lineSamples, placeLabel, pointSpots, type LabelBox} from '../../../../src/Components/Visuals/Mathematics/FigureLabel';
 import {CourseVisualSchema, circuitLayout, naturalAspect, numberedPartNames} from '../../../../src/Components/Visuals/VisualSchema';
 import {capillaryShares} from '../../../../src/Components/Visuals/Physics/Capillary';
 import {chargeSigns} from '../../../../src/Components/Visuals/Physics/Charges';
@@ -74,8 +73,153 @@ describe('geometry figures', () => {
 		expect(tickMarks([0, 0], [0, 100], 1, 6, 10)).toBe('M6 50 L-6 50');
 	});
 
+	it('marks equal angles with arcs, names angles that share a corner, and copies only an equal angle', () => {
+		// Triangle ABC with a parallel to BC through A (D left, E right): angle DAB is B's alternate angle.
+		const points = [
+			{id: 'A', at: [2, 3]},
+			{id: 'B', at: [0, 0]},
+			{id: 'C', at: [6, 0]},
+			{id: 'D', at: [-1, 3]},
+			{id: 'E', at: [7, 3]},
+		];
+		const triangle = {kind: 'geometry', view: [-1, -1, 7, 4], points, segments: [{from: 'A', to: 'B'}, {from: 'B', to: 'C'}, {from: 'C', to: 'A'}, {from: 'D', to: 'E', dashed: true}]};
+		const parsed = CourseVisualSchema.parse({
+			...triangle,
+			angles: [
+				{at: 'B', from: 'C', to: 'A', id: 'b', arcs: 2},
+				{at: 'A', from: 'D', to: 'B', id: 'b-copy', copyOf: 'b', arcs: 2},
+				{at: 'A', from: 'B', to: 'C'},
+			],
+		});
+		if (parsed.kind !== 'geometry') throw new Error('expected a geometry visual');
+		expect(parsed.angles.map((angle) => angle.arcs)).toEqual([2, 2, 1]);
+		expect(parsed.angles.map(anglePartId)).toEqual(['b', 'b-copy', 'angle-A']);
+		// A copy that does not measure the same (DAC is not B's alternate angle) would teach a wrong equality.
+		const wrong = CourseVisualSchema.safeParse({...triangle, angles: [{at: 'B', from: 'C', to: 'A', id: 'b'}, {at: 'A', from: 'D', to: 'C', copyOf: 'b'}]});
+		expect(wrong.success).toBe(false);
+		expect(JSON.stringify(wrong.error?.issues)).toContain('copy measures');
+		expect(CourseVisualSchema.safeParse({...triangle, angles: [{at: 'A', from: 'D', to: 'B', copyOf: 'b'}]}).success).toBe(false);
+		expect(CourseVisualSchema.safeParse({...triangle, angles: [{at: 'B', from: 'C', to: 'A', id: 'b'}, {at: 'C', from: 'A', to: 'B', id: 'b'}]}).success).toBe(false);
+		expect(CourseVisualSchema.safeParse({...triangle, angles: [{at: 'B', from: 'C', to: 'A', arcs: 4}]}).success).toBe(false);
+	});
+
+	it('slides a point to its new place on a straight way, and lets a figure carry it', () => {
+		const apex = {at: [1.5, 4], moveTo: [5.5, 4]};
+		expect(slidePosition(apex, 0)).toEqual([1.5, 4]);
+		expect(slidePosition(apex, 0.5)).toEqual([3.5, 4]);
+		expect(slidePosition(apex, 1)).toEqual([5.5, 4]);
+		// A point without a place to go stays.
+		expect(slidePosition({at: [2, 2]}, 1)).toEqual([2, 2]);
+		const parsed = CourseVisualSchema.parse({kind: 'geometry', view: [0, 0, 6, 5], points: [{id: 'A', at: [1.5, 4], moveTo: [5.5, 4]}]});
+		if (parsed.kind !== 'geometry') throw new Error('expected a geometry visual');
+		expect(parsed.points[0].moveTo).toEqual([5.5, 4]);
+	});
+
+	it('slides a point round a centre along its circle, and fills discs and sectors', () => {
+		// From the right of the circle a quarter turn to the top, through 45° halfway: always on the circle.
+		const onCircle = {at: [5, 0], moveTo: [0, 5]};
+		const [x, y] = slidePosition(onCircle, 0.5, [0, 0]);
+		expect(x).toBeCloseTo(5 * Math.SQRT1_2);
+		expect(y).toBeCloseTo(5 * Math.SQRT1_2);
+		expect(Math.hypot(...slidePosition(onCircle, 0.3, [0, 0]))).toBeCloseTo(5);
+		// Straight, it would cut across the circle.
+		expect(Math.hypot(...slidePosition(onCircle, 0.5))).toBeLessThan(4);
+		const figure = {kind: 'geometry', view: [-6, -6, 6, 6], points: [{id: 'O', at: [0, 0]}, {id: 'P', at: [5, 0], moveTo: [0, 5], moveAbout: 'O'}]};
+		expect(CourseVisualSchema.safeParse(figure).success).toBe(true);
+		// A slide round O must end as far from O as it began.
+		expect(CourseVisualSchema.safeParse({...figure, points: [{id: 'O', at: [0, 0]}, {id: 'P', at: [5, 0], moveTo: [0, 3], moveAbout: 'O'}]}).success).toBe(false);
+		// A filled sector: from the centre out to the arc and back.
+		expect(sectorPath([0, 0], 10, [0, 90]).startsWith('M0 0 L10 0 A10 10 0 0 0 ')).toBe(true);
+		expect(sectorPath([0, 0], 10, [0, 90]).endsWith(' Z')).toBe(true);
+		// A circle that leaves the figure's box would be drawn over the card and cut by the frame; an arc only needs its own part inside.
+		expect(CourseVisualSchema.safeParse({kind: 'geometry', view: [-1, -1, 6, 6], points: [{id: 'O', at: [0, 0]}], circles: [{center: 'O', radius: 5}]}).success).toBe(false);
+		expect(CourseVisualSchema.safeParse({kind: 'geometry', view: [-1, -1, 6, 6], points: [{id: 'O', at: [0, 0]}], circles: [{center: 'O', radius: 5, arc: [0, 90]}]}).success).toBe(true);
+		const parsed = CourseVisualSchema.parse({kind: 'geometry', view: [-6, -6, 6, 6], points: [{id: 'O', at: [0, 0]}], circles: [{center: 'O', radius: 5, arc: [0, 120], fill: true, shade: 2}]});
+		if (parsed.kind !== 'geometry') throw new Error('expected a geometry visual');
+		expect(parsed.circles[0]).toMatchObject({fill: true, shade: 2});
+	});
+
+	it('draws coordinate axes under an analytic figure, marked every step without the origin', () => {
+		expect(axisTicks(-2.5, 4, 1)).toEqual([-2, -1, 1, 2, 3, 4]);
+		expect(axisTicks(-1, 6, 2)).toEqual([2, 4, 6]);
+		expect(axisTicks(0.5, 0.9, 1)).toEqual([]);
+		const parsed = CourseVisualSchema.parse({kind: 'geometry', view: [-1, -1, 5, 5], axes: {}, points: [{id: 'A', at: [2, 3]}]});
+		if (parsed.kind !== 'geometry') throw new Error('expected a geometry visual');
+		expect(parsed.axes).toEqual({step: 1, numbers: true, grid: false});
+		// Without axes nothing changes for the figures drawn so far.
+		const plain = CourseVisualSchema.parse({kind: 'geometry', view: [-1, -1, 5, 5], points: [{id: 'A', at: [2, 3]}]});
+		if (plain.kind !== 'geometry') throw new Error('expected a geometry visual');
+		expect(plain.axes).toBeUndefined();
+	});
+
+	it('writes a prime where Manrope can draw it, at the top of the letter', () => {
+		expect(figureText('C′')).toBe('C’');
+		expect(figureText('A″')).toBe('A’’');
+		expect(figureText('d1')).toBe('d1');
+	});
+
+	it('names shapes with captions and leaves the corners of example shapes unlettered', () => {
+		const parsed = CourseVisualSchema.parse({
+			kind: 'geometry',
+			view: [0, -1, 4, 3],
+			points: [{id: 'P', at: [0, 0], label: ''}, {id: 'Q', at: [4, 0], label: ''}, {id: 'R', at: [2, 2], label: ''}, {id: 'N', at: [2, -0.8], label: 'çeşitkenar', caption: true}],
+			segments: [{from: 'P', to: 'Q'}, {from: 'Q', to: 'R'}, {from: 'R', to: 'P'}],
+		});
+		if (parsed.kind !== 'geometry') throw new Error('expected a geometry visual');
+		expect(parsed.points.map((point) => point.caption)).toEqual([false, false, false, true]);
+		expect(parsed.points[0].label).toBe('');
+		// A caption is a name, not a sentence.
+		expect(CourseVisualSchema.safeParse({kind: 'geometry', view: [0, 0, 4, 4], points: [{id: 'N', at: [2, 2], label: 'geniş açılı üçgendir', caption: true}]}).success).toBe(false);
+	});
+
+	it('draws a compass arc from one direction to another, counter-clockwise as the figure sees it', () => {
+		// A whole circle is unchanged: two half turns from its right end.
+		expect(circlePath([100, 100], 50)).toBe('M150 100 a50 50 0 1 0 -100 0 a50 50 0 1 0 100 0');
+		// 0° → 90°: from the right end up to the top (screen y is down), a quarter turn the short way.
+		const quarter = circlePath([100, 100], 50, [0, 90]);
+		expect(quarter.startsWith('M150 100 A50 50 0 0 0 ')).toBe(true);
+		expect(quarter.split(' ').slice(-2).map(Number).map(Math.round)).toEqual([100, 50]);
+		// 300° → 60° wraps through 0°: 120° of arc, not 240°.
+		expect(circlePath([0, 0], 10, [300, 60])).toContain('A10 10 0 0 0');
+		expect(circlePath([0, 0], 10, [60, 300])).toContain('A10 10 0 1 0');
+		// The label stands outside the arc's middle: the 0°-90° arc's is up and to the right.
+		const [lx, ly] = circleLabelAt([100, 100], 50, 20, [0, 90]);
+		expect(lx).toBeCloseTo(100 + 70 * Math.SQRT1_2);
+		expect(ly).toBeCloseTo(100 - 70 * Math.SQRT1_2);
+		const parsed = CourseVisualSchema.parse({kind: 'geometry', view: [0, 0, 4, 4], points: [{id: 'B', at: [0, 0]}], circles: [{center: 'B', radius: 3, arc: [20, 80], dashed: true, id: 'pergel', label: '3'}]});
+		if (parsed.kind !== 'geometry') throw new Error('expected a geometry visual');
+		expect(parsed.circles[0]).toMatchObject({arc: [20, 80], dashed: true, id: 'pergel', label: '3'});
+	});
+
+	it('slides a copied angle across and turns it the short way round', () => {
+		// Screen coordinates (y down): B's angle opens from BC (0) up towards BA; its alternate at A opens the other way.
+		const source = sectorOf([0, 0], [100, 0], [40, -60]);
+		expect(source.start).toBeCloseTo(Math.atan2(-60, 40));
+		expect(source.size).toBeCloseTo(-Math.atan2(-60, 40));
+		const target = sectorOf([40, -60], [-60, -60], [0, 0]);
+		expect(target.size).toBeCloseTo(source.size);
+		expect(blendSector(source, target, 0)).toEqual(source);
+		const landed = blendSector(source, target, 1);
+		expect(landed.corner).toEqual(target.corner);
+		expect(Math.cos(landed.start - target.start)).toBeCloseTo(1);
+		// Halfway: the corner is halfway across, the sector has turned half of 180°.
+		const half = blendSector(source, target, 0.5);
+		expect(half.corner).toEqual([20, -30]);
+		expect(Math.abs(Math.cos(half.start - source.start))).toBeLessThan(1e-9);
+		// Corresponding angles only slide: no turn at all.
+		const slid = blendSector(source, sectorOf([0, -80], [100, -80], [40, -140]), 0.5);
+		expect(slid.start).toBeCloseTo(source.start);
+		// The label rides with the slice and lands on its own place.
+		expect(rideAlong([30, -20], source, target, [10, -45], 0)[0]).toBeCloseTo(30);
+		const end = rideAlong([30, -20], source, target, [10, -45], 1);
+		expect(end[0]).toBeCloseTo(10);
+		expect(end[1]).toBeCloseTo(-45);
+		// A slice of a quarter turn from the right: corner, edge, arc, back.
+		expect(wedgePath({corner: [0, 0], start: 0, size: Math.PI / 2}, 10)).toBe(`M0 0 L10 0 A10 10 0 0 1 ${10 * Math.cos(Math.PI / 2)} 10 Z`);
+	});
+
 	it('refuses a figure that names a point it does not have', () => {
-		const figure = {kind: 'geometry', view: [0, 0, 4, 4], points: [{id: 'A', at: [0, 0]}, {id: 'B', at: [4, 0]}]};
+		const figure = {kind: 'geometry', view: [-1, -1, 4, 4], points: [{id: 'A', at: [0, 0]}, {id: 'B', at: [4, 0]}]};
 		expect(CourseVisualSchema.safeParse({...figure, segments: [{from: 'A', to: 'B'}], circles: [{center: 'A', radius: 1}]}).success).toBe(true);
 		// A circle round a centre that is not a point was drawn at the top left corner, over the question.
 		expect(CourseVisualSchema.safeParse({...figure, circles: [{center: 'O', radius: 1}]}).success).toBe(false);
@@ -123,45 +267,10 @@ describe('geometry figures', () => {
 		expect(placeLabel(spots, line, [], bounds)).not.toEqual(spots[0]);
 		const placed = placeLabel(spots, line, [], bounds);
 		expect(line.some(([x, y]) => x > placed[0] && x < placed[2] && y > placed[1] && y < placed[3])).toBe(false);
-	});
-
-	it('unrolls a cone into a sector of radius ℓ and angle 360° · r / ℓ, the base disc touching its arc', () => {
-		const closed = coneNetPoints(3, 4, 0);
-		expect(closed.apex).toEqual([0, 4, 0]);
-		for (const [x, y, z] of closed.base) {
-			expect(Math.hypot(x, z)).toBeCloseTo(3, 9);
-			expect(y).toBe(0);
-		}
-		const open = coneNetPoints(3, 4, 1);
-		expect(open.slant).toBe(5);
-		expect((open.sector * 180) / Math.PI).toBeCloseTo(216, 9);
-		const away = (p: readonly number[]) => Math.hypot(p[0] - open.apex[0], p[1] - open.apex[1], p[2] - open.apex[2]);
-		for (const point of open.base) expect(away(point)).toBeCloseTo(5, 9);
-		const [first, last] = [open.base[0], open.base[open.base.length - 1]];
-		const turn = Math.abs(Math.atan2(last[2] - open.apex[2], last[0] - open.apex[0]) - Math.atan2(first[2] - open.apex[2], first[0] - open.apex[0]));
-		expect(Math.min(turn, 2 * Math.PI - turn)).toBeCloseTo(2 * Math.PI - open.sector, 9);
-		expect(away(open.disc)).toBeCloseTo(5 + 3, 9);
-		expect([open.apex[1], open.disc[1], ...open.base.map((point) => point[1])].every((y) => y === 0)).toBe(true);
-	});
-
-	it('draws a solid in the proportions of its numbers', () => {
-		const box = solidSize({shape: 'cuboid', size: [5, 3, 2]}) as {a: number; b: number; c: number};
-		expect(box.a / box.c).toBeCloseTo(2.5, 6);
-		expect(box.b / box.c).toBeCloseTo(1.5, 6);
-		const cone = solidSize({shape: 'cone', size: [3, 4]}) as {r: number; h: number};
-		expect(cone.h / cone.r).toBeCloseTo(4 / 3, 6);
-	});
-
-	it('writes the measures on a solid: the cone and the pyramid show their right triangle', () => {
-		const cone = solidMarks({shape: 'cone', size: [3, 4], dimensions: ['r', 'h', 'ℓ'], diagonal: undefined});
-		expect(cone.map((mark) => mark.label)).toEqual(['r', 'h', 'ℓ']);
-		// r and ℓ meet at the same point of the rim; h and ℓ start at the apex.
-		expect(cone[0].to).toEqual(cone[2].to);
-		expect(cone[1].from).toEqual(cone[2].from);
-		const pyramid = solidMarks({shape: 'squarePyramid', size: [6, 4], dimensions: ['a', 'h', "h'"], diagonal: undefined});
-		expect(pyramid.filter((mark) => mark.from)).toHaveLength(3);
-		const cube = solidMarks({shape: 'cube', size: undefined, dimensions: ['a'], diagonal: 'a√3'});
-		expect(cube.map((mark) => mark.label)).toEqual(['a', 'a', 'a', 'a√3']);
+		// Every near spot taken by other labels: the label moves out to the outer ring instead of sitting on one.
+		const near = spots.slice(0, 8);
+		const far = placeLabel(spots, [], near, bounds);
+		expect(near.some((box) => box[0] < far[2] && box[2] > far[0] && box[1] < far[3] && box[3] > far[1])).toBe(false);
 	});
 
 	it('names the arrows of a vectors figure v1, v2… and keeps its grid square', () => {
@@ -190,6 +299,41 @@ describe('geometry figures', () => {
 		expect(induced.filter((mark) => mark.x < 0).every((mark) => mark.sign === 'negative')).toBe(true);
 		expect(induced.filter((mark) => mark.x > 0).every((mark) => mark.sign === 'positive')).toBe(true);
 		expect(chargeSigns('sphere', 'neutral', undefined, 100)).toEqual([]);
+	});
+
+	it('finds the widest free direction round a point', () => {
+		// Sides to the right, up and left: the free half below is the widest gap.
+		const best = widestGap([0, Math.PI / 2, Math.PI]);
+		expect(best.gap).toBeCloseTo(Math.PI);
+		expect(best.middle).toBeCloseTo(1.5 * Math.PI);
+		// Directions outside 0..2π are folded in.
+		expect(widestGap([-Math.PI / 2, Math.PI / 2]).gap).toBeCloseTo(Math.PI);
+	});
+
+	it('moves a later angle label off an earlier one, and keeps a clear label where it was', () => {
+		const box = (cx: number, cy: number): LabelBox => [cx - 10, cy - 10, cx + 10, cy + 10];
+		const bounds: LabelBox = [0, 0, 400, 400];
+		// The 50° at the apex and the x below it want the same place (KPSS Geometri 1): x takes its next spot.
+		const placed = placeAngleLabels([[box(100, 100)], [box(105, 104), box(140, 100)], undefined, [box(300, 300), box(320, 300)]], [], [], bounds);
+		expect(placed[0]).toEqual(box(100, 100));
+		expect(placed[1]).toEqual(box(140, 100));
+		expect(placed[2]).toBeUndefined();
+		expect(placed[3]).toEqual(box(300, 300));
+		// A side's length label already standing there counts too, and so does a point under the label.
+		expect(placeAngleLabels([[box(50, 50), box(80, 50)]], [], [box(52, 52)], bounds)[0]).toEqual(box(80, 50));
+		expect(placeAngleLabels([[box(50, 50), box(80, 50)]], [[50, 50]], [], bounds)[0]).toEqual(box(80, 50));
+	});
+
+	it('keeps an angle label off the sides: a side counts as points along it', () => {
+		const box = (cx: number, cy: number): LabelBox => [cx - 10, cy - 10, cx + 10, cy + 10];
+		// Points every 10 px along a 40 px side, without its ends.
+		expect(lineSamples([0, 0], [40, 0], 10)).toEqual([[10, 0], [20, 0], [30, 0]]);
+		expect(lineSamples([0, 0], [5, 0], 10)).toEqual([]);
+		// A label pushed out along a narrow angle's bisector would sit across the far side (x = 100): it takes a clear spot.
+		const side = lineSamples([100, 0], [100, 200], 8);
+		expect(placeAngleLabels([[box(100, 100), box(70, 100)]], side, [], [0, 0, 400, 400])[0]).toEqual(box(70, 100));
+		// A spot clear of the side stays first.
+		expect(placeAngleLabels([[box(60, 100), box(140, 100)]], side, [], [0, 0, 400, 400])[0]).toEqual(box(60, 100));
 	});
 });
 
@@ -340,5 +484,21 @@ describe('biology figures', () => {
 		expect(() => CourseVisualSchema.parse({...chart, couples: [{partners: ['1', '3'], children: []}]})).toThrow(/one generation/);
 		expect(() => CourseVisualSchema.parse({...chart, couples: [{partners: ['1', '2'], children: ['9']}]})).toThrow(/one generation below/);
 		expect(() => CourseVisualSchema.parse({...chart, people: [...people, {id: '4', sex: 'm', generation: 2, x: 1}]})).toThrow(/0.9 columns/);
+	});
+});
+
+describe('geometry: names keep off circles', () => {
+	it('stands a circle’s name clear of the circle, whatever its size', () => {
+		// "r = 2" (5 letters at 30) beside a circle of radius 40: its nearest corner keeps the gap.
+		const [lx, ly] = circleLabelAt([100, 100], 40, 10, undefined, {width: 90, height: 30});
+		const corner = [lx - 45, ly + 15];
+		expect(Math.hypot(corner[0] - 100, corner[1] - 100)).toBeGreaterThanOrEqual(40 + 10 - 1e-9);
+	});
+
+	it('moves a centre’s letter off the circle round it', () => {
+		// The usual 1.12 em lands on a circle of 1.2 em: inside when there is room, else outside.
+		expect(letterDistance(45, [48], 40)).toBeCloseTo(48 + 34, 9);
+		expect(letterDistance(45, [100], 40)).toBe(45);
+		expect(letterDistance(45, [70], 40)).toBeCloseTo(70 - 34, 9);
 	});
 });

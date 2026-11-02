@@ -2,18 +2,19 @@ import {z} from 'zod';
 import {plainText} from '../../Schemas/RichText';
 import {BIOLOGY_VISUALS, CELL_TYPE_PARTS, DIVISION_DEFAULT_STAGES, MEMBRANE_PARTS, TAXONOMY_LEVELS} from './Biology/BiologySchema';
 import {CHEMISTRY_VISUALS} from './Chemistry/ChemistrySchema';
-import {CLIMATE_PARTS, CONTOUR_PARTS, EARTH_PARTS, GEOGRAPHY_VISUALS, GEOTIME_PARTS, INTERIOR_PARTS, LANDFORM_PARTS, PLATE_PARTS, PYRAMID_PARTS, SPHERE_PARTS} from './Geography/GeographySchema';
-import {HUMANITIES_VISUALS} from './Humanities/HumanitiesSchema';
+import {CIVICS_VISUALS, KINSHIP_ROLES} from './Civics/CivicsSchema';
+import {CLIMATE_PARTS, CONTOUR_PARTS, REGIME_PARTS, EARTH_PARTS, GEOGRAPHY_VISUALS, GEOTIME_PARTS, INTERIOR_PARTS, LANDFORM_PARTS, PLATE_PARTS, PYRAMID_PARTS, RIVER_STAGES, SPHERE_PARTS} from './Geography/GeographySchema';
+import {HUMANITIES_VISUALS, mapPartNames} from './Humanities/HumanitiesSchema';
 import {LANGUAGE_VISUALS} from './Language/LanguageSchema';
 import {LITERATURE_VISUALS} from './Literature/LiteratureSchema';
 import {LOGIC_VISUALS} from './Logic/LogicSchema';
 import {MATHEMATICS_VISUALS, ParameterName} from './Mathematics/MathematicsSchema';
 import {PHILOSOPHY_VISUALS} from './Philosophy/PhilosophySchema';
-import {PHYSICS_VISUALS} from './Physics/PhysicsSchema';
-import {processParts} from './Processes/ProcessCatalog';
+import {DYNAMICS_STAGES, INDUCTION_STAGES, PHYSICS_VISUALS} from './Physics/PhysicsSchema';
+import {PROCESS_CATALOG, processParts} from './Processes/ProcessCatalog';
 import {PROCESS_VISUALS} from './Processes/ProcessSchema';
 import {STRUCTURE_VISUALS} from './Structure/StructureSchema';
-import {THREE_VISUALS} from './Three/ThreeSchema';
+import {THREE_VISUALS, earthquakeStages} from './Three/ThreeSchema';
 
 /**
  * The visuals of the education videos: what a card can show next to its
@@ -34,17 +35,20 @@ const Fraction = z.number().min(0).max(1);
  * does while it is said (see VisualTimeline). Parts are named per visual:
  * plot curves c1, c2, c3, points p1…, segments s1…, `tangent`, `area`; vectors v1…; capillary tubes t1…; tank vessels k1…, points p1… and bodies b1…; charges objects o1… and forces f1…; circuit elements e1…; wave rows w1… and points p1…; optics rays r1…, objects o1…, elements m1…; lewis tokens t1…; geometry point ids,
  * sides by their ends ("AB"), polygons by their points ("ABC"), angles
- * "angle-A"; forces by label; flow and cycle steps n1…; timeline events e1…;
+ * "angle-A"; forces by label; flow and cycle steps n1…; timeline events e1…; periods p1… and their marks m1…;
  * map highlights and markers by name; sentence word tiles w1… and links l1…;
  * paragraph sentences s1… and `topic`; concept map branches n1…; comparison columns c1… and their
  * items c1-1…; table rows r1… and columns col1….
  */
 export const VisualBeatSchema = z.object({
 	narration: z.string().trim().min(1).max(700),
-	/** Parts that appear with this beat (and not before). */
-	show: z.array(z.string().min(1).max(40)).max(10).default([]),
+	/**
+	 * Parts that appear with this beat (and not before). 16, like a geometry figure's larger sets: an equiangular
+	 * hexagon's three corner triangles appear with their six dashed sides and three corners (KPSS Geometri 8).
+	 */
+	show: z.array(z.string().min(1).max(40)).max(16).default([]),
 	/** Parts pointed at during this beat; everything else dims. Empty: nothing is singled out. */
-	focus: z.array(z.string().min(1).max(40)).max(10).default([]),
+	focus: z.array(z.string().min(1).max(40)).max(16).default([]),
 	/** The camera: a part of the box as fractions [left, top, right, bottom]; null goes back to the whole figure. */
 	zoom: z.tuple([Fraction, Fraction, Fraction, Fraction]).nullable().optional(),
 	/** New values of the visual's coefficients, eased in while this beat is said. */
@@ -73,6 +77,7 @@ export const CourseVisualSchema = z.discriminatedUnion('kind', [
 	...HUMANITIES_VISUALS,
 	...PROCESS_VISUALS,
 	...LANGUAGE_VISUALS,
+	...CIVICS_VISUALS,
 ]);
 
 export type CourseVisual = z.infer<typeof CourseVisualSchema>;
@@ -136,11 +141,41 @@ export const naturalAspect = (visual: CourseVisual): number | undefined => {
 		const {span, tall} = circuitLayout(visual.items);
 		return span / tall;
 	}
+	// A hemicycle is a half disc over its legend; a room is a hall a little wider than deep.
+	if (visual.kind === 'assembly') return visual.layout === 'room' ? 1.9 : 1.55;
 	// A solid turns in a square-ish space of its own; under a title it shrank into a short band.
 	if (visual.kind === 'solid') return 1.2;
 	// A battle is a wide scene (Humanities/Battle: 1600 × 700) that takes the whole width under its title.
 	if (visual.kind === 'battle' || visual.kind === 'process') return 1600 / 700;
 	return undefined;
+};
+
+/**
+ * The stages a staged scene plays, in order, or null for a visual without stages. A lesson's beats should take such a
+ * scene to its last stage: the meander that never cut off its lake and the landslide that never dammed its valley
+ * were drawn but not shown (KPSS Coğrafya 4-5, 2 Nov 2026).
+ */
+export const visualStages = (visual: CourseVisual): readonly string[] | null => {
+	switch (visual.kind) {
+		case 'river':
+			return RIVER_STAGES[visual.view];
+		case 'earthquake':
+			return earthquakeStages(visual.fault, visual.view);
+		case 'battle':
+			return visual.stages.map((stage) => stage.title);
+		case 'equation':
+			return visual.steps.map((step, index) => step.operation ?? `Adım ${index + 1}`);
+		case 'dynamics':
+			return DYNAMICS_STAGES;
+		case 'induction':
+			return INDUCTION_STAGES;
+		case 'process': {
+			const catalog: readonly {id: string; title: string}[] = PROCESS_CATALOG[visual.process].stages;
+			return (visual.stages ?? catalog.map((stage) => stage.id)).map((id) => catalog.find((stage) => stage.id === id)?.title ?? id);
+		}
+		default:
+			return null;
+	}
 };
 
 /**
@@ -169,6 +204,8 @@ export const numberedPartNames = (visual: CourseVisual): string[] | null => {
 			return count('q', visual.items.length);
 		case 'timeline':
 			return count('e', visual.events.length);
+		case 'periods':
+			return [...count('p', visual.periods.length), ...count('m', visual.marks.length)];
 		case 'battle':
 			return [...count('u', visual.units.length), ...count('s', visual.stages.length)];
 		case 'process':
@@ -281,6 +318,10 @@ export const numberedPartNames = (visual: CourseVisual): string[] | null => {
 			return [...count('i', visual.intervals.length), ...count('p', visual.points.length)];
 		case 'pie':
 			return count('p', visual.slices.length);
+		case 'assembly':
+			return [...count('g', visual.groups.length), ...(visual.head ? ['head'] : [])];
+		case 'kinship':
+			return KINSHIP_ROLES.filter((role) => !(visual.hide as readonly string[]).includes(role));
 		case 'transform':
 			return count('s', visual.steps.length);
 		case 'unitCircle':
@@ -295,6 +336,10 @@ export const numberedPartNames = (visual: CourseVisual): string[] | null => {
 			return [...CONTOUR_PARTS];
 		case 'climate':
 			return [...CLIMATE_PARTS];
+		case 'regime':
+			return [...count('r', visual.rivers.length), ...REGIME_PARTS];
+		case 'windRose':
+			return visual.winds.map((wind) => wind.name);
 		case 'interior':
 			return [...INTERIOR_PARTS];
 		case 'plates':
@@ -303,6 +348,8 @@ export const numberedPartNames = (visual: CourseVisual): string[] | null => {
 			return [...GEOTIME_PARTS];
 		case 'landform':
 			return [...LANDFORM_PARTS[visual.scene]];
+		case 'map':
+			return mapPartNames(visual);
 		case 'pyramid':
 			return [...PYRAMID_PARTS, ...count('p', visual.pyramids.length)];
 		case 'cell':

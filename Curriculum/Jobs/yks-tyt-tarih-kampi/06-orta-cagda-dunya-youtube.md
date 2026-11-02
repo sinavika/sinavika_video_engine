@@ -1,6 +1,6 @@
 # YouTube metni: TYT Tarih kampı · Ders 6 · Orta Çağ'da Dünya
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Tarih/06_Orta_Cagda_Dunya/Orta_Cagda_Dunya_YouTube.mp4` (4K) · Kapak: `Orta_Cagda_Dunya_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Tarih/06_Orta_Cagda_Dunya/Orta_Cagda_Dunya_YouTube.mp4` (4K) · Kapak: `Orta_Cagda_Dunya_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

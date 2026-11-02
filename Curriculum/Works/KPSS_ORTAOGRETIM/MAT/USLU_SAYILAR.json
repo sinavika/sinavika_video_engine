@@ -1,0 +1,671 @@
+{
+ "topic": {
+  "id": "0B13182E-B419-EB56-B381-4912ED71E85B",
+  "category": "KPSS_ORTAOGRETIM",
+  "lesson": "MAT",
+  "code": "USLU_SAYILAR"
+ },
+ "title": "Üslü Sayılar",
+ "lessonName": "Matematik",
+ "exams": [
+  "KPSS"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/KPSS/MAT/USLU_SAYILAR.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Tabanı eşitle, gerisi kolay",
+   "narration": "Lisans sınavında 2009'dan 2020'ye on bir, Ön lisans sınavlarında on soru üslü sayılardan geldi. Hemen hepsi iki hamleyle çözüldü: tabanları eşitlemek ya da en küçük kuvveti ortak paranteze almak. Bu derste işaret kurallarından üslü denklemlere kadar her adımı yeni sorularla göreceğiz; 1'e eşit bir üslü ifadenin üç ayrı çözüm yolu da dahil."
+  },
+  "objectives": [
+   "Üslü ifadelerin işaretini doğru belirlemek",
+   "Çarpma, bölme ve ortak paranteze almayla işlem yapmak",
+   "Üssün üssü, sıfırıncı ve negatif kuvveti kullanmak",
+   "Üslü sayıları tabanı ya da üssü eşitleyerek sıralamak",
+   "Üslü denklemleri çözmek; bir ifadenin 1’e eşit olduğu durumları bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "USLU_SAYILAR_01",
+    "subtopics": [],
+    "title": "Üslü ifade ve işaret",
+    "narration": "Önce üslü ifadenin ne olduğunu ve işaretinin nasıl belirlendiğini hatırlayalım.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Tanım ve işaret",
+      "items": [
+       "$a^n = a \\cdot a \\cdots a$ ($n$ tane): $a$ **taban**, $n$ **üs**.",
+       "Negatif tabanın **çift** kuvveti pozitif, **tek** kuvveti negatiftir: $(-2)^4 = 16$, $(-2)^3 = -8$.",
+       "$-a^n$ ile $(-a)^n$ farklıdır: $-3^2 = -9$, $(-3)^2 = 9$.",
+       "$1^n = 1$; $(-1)^n$ ise $n$ çiftse 1, tekse $-1$."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "(-2)^4 = 16, \\quad -2^4 = -16, \\quad (-2)^3 = -8",
+       "caption": "Parantez ve üssün tekliği işareti belirler"
+      },
+      "beats": [],
+      "narration": "a üzeri n, a'nın kendisiyle n kez çarpımıdır; a'ya taban, n'ye üs denir. Taban negatifse işareti üs belirler: çift kuvvet pozitif, tek kuvvet negatif sonuç verir. Eksi 2'nin 4. kuvveti 16, küpü eksi 8'dir. Parantez yoksa üs yalnız sayıya aittir: eksi 3 kare eksi 9, parantez içindeki eksi 3'ün karesi ise 9'dur. 1'in her kuvveti 1'dir; eksi 1'in kuvveti ise üs çiftse 1, tekse eksi 1'dir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$\\frac{(-3)^4 - 3^4 + (-3)^3}{-3^2}$ işleminin sonucu kaçtır?",
+       "options": [
+        "$-3$",
+        "$-1$",
+        "1",
+        "3",
+        "9"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$(-3)^4 = 81$, $3^4 = 81$, $(-3)^3 = -27$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eksi 3'ün 4. kuvveti, çift kuvvet: 81. 3'ün 4. kuvveti 81. Eksi 3'ün küpü, tek kuvvet: eksi 27."
+        },
+        {
+         "text": "Pay: $81 - 81 - 27 = -27$. Payda: $-3^2 = -9$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Pay: 81 eksi 81 eksi 27, eksi 27. Paydada parantez yok; üs yalnız 3'e ait: eksi 3 kare, eksi 9."
+        },
+        {
+         "text": "$\\frac{-27}{-9} = 3$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eksi 27 bölü eksi 9, 3. Cevap D. A şıkkındaki eksi 3, paydayı parantezli gibi 9 alanın tuzağıdır."
+        }
+       ],
+       "narration": "Her terimin işaretini tek tek belirleyelim; parantezlere dikkat.",
+       "origin": {
+        "changes": "ÖSYM'nin işaretli kuvvetlerle işlem sonucu sorduran kalıbı örnek alındı; ifade bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "USLU_SAYILAR_01",
+    "subtopics": [
+     "USLU_SAYILAR_03"
+    ],
+    "title": "Üslü sayılarda çarpma ve bölme",
+    "narration": "ÖSYM'nin üslü sayı sorularının çoğu iki araçla çözülür: kuralları doğru uygulamak ve ortak paranteze almak.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Çarpma, bölme, ortak parantez",
+      "items": [
+       "$a^m \\cdot a^n = a^{m + n}$; $\\frac{a^m}{a^n} = a^{m - n}$",
+       "$a^n \\cdot b^n = (a \\cdot b)^n$; $\\frac{a^n}{b^n} = \\left(\\frac{a}{b}\\right)^n$",
+       "$2^{x + 3} = 2^3 \\cdot 2^x = 8 \\cdot 2^x$: üssü toplam olanı **çarpıma** ayır.",
+       "Toplama ve çıkarmada **en küçük kuvveti** ortak paranteze al."
+      ],
+      "beats": [],
+      "narration": "Tabanları aynı iki üslü sayıyı çarparken üsler toplanır, bölerken çıkarılır. Üsleri aynı iki sayıyı çarparken de tabanlar çarpılır, üs aynı kalır. Üssü bir toplam olan ifadeyi çarpıma ayırabilirsin: 2 üzeri x artı 3, 8 çarpı 2 üzeri x'tir. Toplama ve çıkarma varsa en küçük kuvveti ortak paranteze alırsın; KPSS sorularının çoğu bu adımla açılır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Toplamada üsler toplanmaz",
+      "wrong": "$2^3 + 2^4 = 2^7$",
+      "right": "$2^3 + 2^4 = 2^3(1 + 2) = 24$",
+      "why": "Üsler yalnız **çarpmada** toplanır. Toplamada ortak paranteze alınır.",
+      "narration": "Sık yapılan bir hata. 2 küp artı 2 üzeri 4, 2 üzeri 7 değildir. Üsler yalnız çarpmada toplanır. Toplamada küçük kuvveti ortak paranteze alırsın: 2 küp çarpı 1 artı 2, yani 8 çarpı 3, 24."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$\\frac{5^8 - 5^6}{5^7 + 5^6}$ işleminin sonucu kaçtır?",
+       "options": [
+        "1",
+        "4",
+        "5",
+        "6",
+        "24"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Pay: $5^6(5^2 - 1) = 5^6 \\cdot 24$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Payda en küçük kuvvet 5 üzeri 6. Ortak paranteze alırsak 5 üzeri 6 çarpı 25 eksi 1, yani 5 üzeri 6 çarpı 24."
+        },
+        {
+         "text": "Payda: $5^6(5 + 1) = 5^6 \\cdot 6$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Paydada da 5 üzeri 6'yı alalım: 5 üzeri 6 çarpı 5 artı 1, yani 5 üzeri 6 çarpı 6."
+        },
+        {
+         "text": "$\\frac{24}{6} = 4$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "5 üzeri 6'lar sadeleşir; 24 bölü 6, 4. Cevap B."
+        }
+       ],
+       "narration": "Pay ve paydada en küçük kuvveti ortak paranteze alalım.",
+       "origin": {
+        "changes": "ÖSYM'nin ortak paranteze alınarak çözülen üslü işlem kalıbı örnek alındı; sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$2^x = a$ olduğuna göre $8^{x + 1} - 4^x$ ifadesinin $a$ türünden eşiti aşağıdakilerden hangisidir?",
+       "options": [
+        "$8a^3 - a^2$",
+        "$a^3 - a^2$",
+        "$8a^3 - 2a$",
+        "$2a^3 - a^2$",
+        "$8a^2 - a$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$8^{x + 1} = 2^{3x + 3} = 2^3 \\cdot (2^x)^3 = 8a^3$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "8, 2 küptür. 8 üzeri x artı 1, 2 üzeri 3x artı 3 olur; bu da 8 çarpı 2 üzeri x'in küpü, yani 8 a küp."
+        },
+        {
+         "text": "$4^x = (2^2)^x = (2^x)^2 = a^2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "4, 2 karedir. 4 üzeri x, 2 üzeri x'in karesi, yani a kare."
+        },
+        {
+         "text": "$8a^3 - a^2$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "İfade 8 a küp eksi a kare olur. Cevap A. B şıkkı, üsteki artı 1'i 8 çarpanına çevirmeyi unutanın cevabıdır."
+        }
+       ],
+       "narration": "Bütün kuvvetleri 2 tabanına çevirip 2 üzeri x'i ortaya çıkaracağız.",
+       "origin": {
+        "changes": "ÖSYM'nin bir üslü ifadeyi verilen harf türünden yazdıran kalıbı örnek alındı; ifade bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "USLU_SAYILAR_02",
+    "subtopics": [],
+    "title": "Üssün üssü, sıfır ve negatif kuvvet",
+    "narration": "Şimdi üç özel durum: kuvvetin kuvveti, sıfırıncı kuvvet ve negatif kuvvet.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Üç özel durum",
+      "items": [
+       "$(a^m)^n = a^{m \\cdot n}$; ama $a^{m^n}$ üssün kendisinin kuvvetidir.",
+       "$a^0 = 1$ ($a \\neq 0$); $0^0$ **tanımsızdır**.",
+       "$a^{-n} = \\frac{1}{a^n}$; $\\left(\\frac{a}{b}\\right)^{-n} = \\left(\\frac{b}{a}\\right)^n$"
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "\\left(\\frac{2}{3}\\right)^{-2} = \\left(\\frac{3}{2}\\right)^{2} = \\frac{9}{4}",
+       "caption": "Negatif üs: kesri ters çevir"
+      },
+      "beats": [],
+      "narration": "Bir kuvvetin kuvvetini alırken üsler çarpılır: 2 küpün karesi, 2 üzeri 6'dır. Ama parantez yoksa ve üs üste yazılmışsa önce üstteki kuvvet hesaplanır. Sıfırdan farklı her sayının sıfırıncı kuvveti 1'dir; sıfırın sıfırıncı kuvveti ise tanımsızdır. Negatif kuvvet, sayının tersini almak demektir: 2 üzeri eksi 3, 1 bölü 8'dir. Kesrin negatif kuvvetinde kesri ters çevirip üssü pozitif yaparsın."
+     },
+     {
+      "kind": "predict",
+      "title": "Hangisi büyük?",
+      "context": "$2^{3^2}$ ve $(2^3)^2$",
+      "prompt": "Hangisi daha büyüktür?",
+      "choices": [
+       "2 üzeri 3 kare",
+       "2 küpün karesi"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "İfade",
+        "Hesap",
+        "Sonuç"
+       ],
+       "rows": [
+        [
+         "$2^{3^2}$",
+         "$3^2 = 9 \\Rightarrow 2^9$",
+         "512"
+        ],
+        [
+         "$(2^3)^2$",
+         "$2^{3 \\cdot 2} = 2^6$",
+         "64"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "2 üzeri 3 kare: önce üstteki kuvvet. 3 kare 9; sonra 2 üzeri 9, 512.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "2 küpün karesi: parantez var, üsler çarpılır. 2 üzeri 6, 64.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "$2^{3^2} = 2^9 = 512$; $(2^3)^2 = 2^6 = 64$. Parantez yoksa **önce üstteki** kuvvet hesaplanır.",
+      "narration": "Şimdi sıra sende. 2 üzeri 3 kare mi büyük, 2 küpün karesi mi? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 2 üzeri 3 kare. Parantez olmadığında önce üstteki kuvvet hesaplanır: 3 kare 9, sonuç 2 üzeri 9, yani 512. Parantezli ifadede ise üsler çarpılır: 2 üzeri 6, yani 64. İkisi aynı şey değildir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$\\left(\\frac{3}{2}\\right)^{-2} + 2^{-1} \\cdot 3^0 - 4^{-1}$ işleminin sonucu kaçtır?",
+       "options": [
+        "$\\frac{1}{4}$",
+        "$\\frac{4}{9}$",
+        "$\\frac{5}{9}$",
+        "$\\frac{25}{36}$",
+        "$\\frac{13}{9}$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$\\left(\\frac{3}{2}\\right)^{-2} = \\left(\\frac{2}{3}\\right)^2 = \\frac{4}{9}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "3 bölü 2'nin eksi 2. kuvveti: kesri ters çevir, 2 bölü 3'ün karesi, 4 bölü 9."
+        },
+        {
+         "text": "$2^{-1} \\cdot 3^0 = \\frac{1}{2} \\cdot 1 = \\frac{1}{2}$; $4^{-1} = \\frac{1}{4}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "2 üzeri eksi 1, 1 bölü 2; 3 üzeri 0, 1. Çarpımları 1 bölü 2. 4 üzeri eksi 1 ise 1 bölü 4."
+        },
+        {
+         "text": "$\\frac{4}{9} + \\frac{1}{2} - \\frac{1}{4} = \\frac{16 + 18 - 9}{36} = \\frac{25}{36}$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Paydaları 36'da eşitleyelim: 16 artı 18 eksi 9, 25. Sonuç 25 bölü 36. Cevap D."
+        }
+       ],
+       "narration": "Her terimi ayrı hesaplayıp sonra toplayalım.",
+       "origin": {
+        "changes": "ÖSYM'nin negatif ve sıfırıncı kuvvetli işlem kalıbı örnek alındı; ifade bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "USLU_SAYILAR_03",
+    "subtopics": [],
+    "title": "Üslü sayıları karşılaştırmak",
+    "narration": "Büyük üslü sayıları hesaplamadan sıralamak için ya tabanları ya da üsleri eşitlersin.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Tabanı ya da üssü eşitle",
+      "items": [
+       "**Tabanlar** eşitse ($a > 1$) üssü büyük olan büyüktür.",
+       "**Üsler** eşitse (pozitif tabanlarda) tabanı büyük olan büyüktür.",
+       "Üsleri ortak bir sayıya indir: $2^{30} = (2^3)^{10} = 8^{10}$.",
+       "Taban 0 ile 1 arasındaysa üs büyüdükçe sayı **küçülür**."
+      ],
+      "beats": [],
+      "narration": "Üslü sayıları karşılaştırmak için onları hesaplamazsın. Tabanlar eşitse ve taban 1'den büyükse, üssü büyük olan büyüktür. Üsler eşitse ve tabanlar pozitifse, tabanı büyük olan büyüktür. Hiçbiri eşit değilse üsleri ortak bir sayıya indirirsin: 2 üzeri 30, 8 üzeri 10'dur. Bir dikkat: taban 0 ile 1 arasındaysa üs büyüdükçe sayı küçülür."
+     },
+     {
+      "kind": "predict",
+      "title": "Yarımın kuvvetleri",
+      "context": "$0{,}5^2$ ve $0{,}5^3$",
+      "prompt": "Hangisi daha büyüktür?",
+      "choices": [
+       "0,5 kare",
+       "0,5 küp"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "İfade",
+        "Değer"
+       ],
+       "rows": [
+        [
+         "$0{,}5^2$",
+         "$0{,}25$"
+        ],
+        [
+         "$0{,}5^3$",
+         "$0{,}125$"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "0 virgül 5 kare, 0 virgül 25.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "0 virgül 5 küp, 0 virgül 125. Her çarpmada sayı yarıya iniyor.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "Taban 0 ile 1 arasındaysa üs büyüdükçe sayı **küçülür**: $0{,}5^2 > 0{,}5^3$.",
+      "narration": "Şimdi sıra sende. 0 virgül 5 kare mi büyük, 0 virgül 5 küp mü? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 0 virgül 5 kare. 1'den küçük pozitif bir sayıyla her çarptığında sayı küçülür; 0 virgül 5 ile çarpmak yarıya indirmek demektir. Bu yüzden üs büyüdükçe sonuç küçülür. Tabanlar eşit diye üssü büyük olanı seçmeden önce tabanın 1'den büyük olup olmadığına bak."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$a = 2^{30}$, $b = 3^{20}$ ve $c = 5^{10}$ olduğuna göre aşağıdaki sıralamalardan hangisi doğrudur?",
+       "options": [
+        "$a < b < c$",
+        "$a < c < b$",
+        "$b < a < c$",
+        "$c < b < a$",
+        "$c < a < b$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$a = (2^3)^{10} = 8^{10}$, $b = (3^2)^{10} = 9^{10}$, $c = 5^{10}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a, 2 küpün 10. kuvveti, yani 8 üzeri 10. b, 3 karenin 10. kuvveti, yani 9 üzeri 10. c zaten 5 üzeri 10."
+        },
+        {
+         "text": "Üsler eşit: $5 < 8 < 9$ ⇒ $c < a < b$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üsler eşit oldu; tabanı büyük olan büyüktür. 5, 8'den; 8, 9'dan küçük. Sıralama: c küçüktür a, a küçüktür b. Cevap E. Üsse bakıp a'yı en büyük seçmek bu sorunun tuzağıdır."
+        }
+       ],
+       "narration": "Üsler 30, 20 ve 10; hepsi 10'un katı. Üsleri 10'a indirelim.",
+       "origin": {
+        "changes": "Havuzdaki üslü sayıları üsleri eşitleyerek sıralatan kalıp örnek alındı; sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "USLU_SAYILAR_04",
+    "subtopics": [],
+    "title": "Üslü denklemler",
+    "narration": "Son bölümde üslü denklemler var. Ön lisans sınavlarında bu konudan gelen soruların çoğu bu türdendir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Tabanı eşitle, üsleri eşitle",
+      "items": [
+       "Tabanlar eşitse ($0$, $1$ ve $-1$ dışında) **üsler eşittir**.",
+       "Üsler eşitse tabanlar eşittir; üs **çiftse** tabanlar ters işaretli de olabilir.",
+       "$a^b = 1$ için üç durum: $a = 1$; $b = 0$ ve $a \\neq 0$; $a = -1$ ve $b$ çift."
+      ],
+      "beats": [],
+      "narration": "Üslü denklem çözmek için iki tarafı aynı tabana yazarsın; tabanlar eşitse üsler de eşittir. Bu kural taban 0, 1 ya da eksi 1 olduğunda geçerli değildir. Üsler eşitse tabanlar eşittir; ama üs çiftse tabanlar birbirinin negatifi de olabilir. Bir üslü ifade 1'e eşitse üç durumu da denemelisin: taban 1 olabilir; üs sıfır ve taban sıfırdan farklı olabilir; ya da taban eksi 1 ve üs çift olabilir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$4^{x + 1} \\cdot 8 = 16^{x - 1}$ olduğuna göre $x$ kaçtır?",
+       "options": [
+        "3",
+        "$\\frac{7}{2}$",
+        "4",
+        "$\\frac{9}{2}$",
+        "5"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$2^{2x + 2} \\cdot 2^3 = 2^{4x - 4}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "4 üzeri x artı 1, 2 üzeri 2x artı 2; 8, 2 küp; 16 üzeri x eksi 1 ise 2 üzeri 4x eksi 4."
+        },
+        {
+         "text": "$2x + 5 = 4x - 4$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sol tarafta üsler toplanır: 2x artı 5. Tabanlar eşit olduğuna göre üsler de eşit: 2x artı 5, 4x eksi 4."
+        },
+        {
+         "text": "$2x = 9 \\Rightarrow x = \\frac{9}{2}$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "9, 2x'e eşit; x, 9 bölü 2. Cevap D."
+        }
+       ],
+       "narration": "Bütün sayılar 2'nin kuvveti. Her şeyi 2 tabanına yazalım.",
+       "origin": {
+        "changes": "ÖSYM'nin tabanları eşitlenerek çözülen üslü denklem kalıbı örnek alındı; denklem bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$a$, $b$ ve $c$ tam sayılar olmak üzere $2^a \\cdot 3^b \\cdot 5^c = 0{,}72$ olduğuna göre $a + b + c$ toplamı kaçtır?",
+       "options": [
+        "1",
+        "3",
+        "5",
+        "6",
+        "7"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$0{,}72 = \\frac{72}{100} = \\frac{2^3 \\cdot 3^2}{2^2 \\cdot 5^2}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "0 virgül 72, 72 bölü 100'dür. 72, 2 küp çarpı 3 kare; 100 ise 2 kare çarpı 5 kare."
+        },
+        {
+         "text": "$= 2^1 \\cdot 3^2 \\cdot 5^{-2}$ ⇒ $a = 1$, $b = 2$, $c = -2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "2'ler sadeleşir, 2 üzeri 1 kalır. 5 kare paydada kaldığı için 5 üzeri eksi 2 olarak yazılır. a 1, b 2, c eksi 2."
+        },
+        {
+         "text": "$1 + 2 - 2 = 1$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "a artı b artı c, 1 artı 2 eksi 2, yani 1. Cevap A. Paydadaki kuvvetin negatif üs olduğunu unutan 5 bulur."
+        }
+       ],
+       "narration": "Ondalık sayıyı kesre çevirip asal çarpanlarına ayıralım.",
+       "origin": {
+        "changes": "ÖSYM'nin üslü ifadeyi a, b, c tam sayılarıyla eşitleyip toplamı sorduran kalıbı örnek alındı; sayı bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$(x - 3)^{x + 2} = 1$ eşitliğini sağlayan $x$ tam sayılarının toplamı kaçtır?",
+       "options": [
+        "$-4$",
+        "$-2$",
+        "0",
+        "2",
+        "4"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Taban 1: $x - 3 = 1 \\Rightarrow x = 4$ ($1^6 = 1$)",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birinci durum: taban 1. x eksi 3, 1 ise x, 4. 1'in 6. kuvveti 1; uygun."
+        },
+        {
+         "text": "Üs 0: $x + 2 = 0 \\Rightarrow x = -2$; taban $-5 \\neq 0$ ($(-5)^0 = 1$)",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İkinci durum: üs sıfır. x artı 2, sıfır ise x, eksi 2. Taban eksi 5, sıfırdan farklı; eksi 5'in sıfırıncı kuvveti 1. Uygun."
+        },
+        {
+         "text": "Taban $-1$: $x = 2$; üs $4$ çift ($(-1)^4 = 1$)",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üçüncü durum: taban eksi 1. x eksi 3, eksi 1 ise x, 2. Üs 4, çift; eksi 1'in 4. kuvveti 1. Bu da uygun."
+        },
+        {
+         "text": "$4 + (-2) + 2 = 4$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Değerler 4, eksi 2 ve 2; toplamları 4. Cevap E. Yalnız ilk iki durumu deneyen 2 bulur."
+        }
+       ],
+       "narration": "Bir üslü ifade 1'e eşit. Üç durumu da deneyeceğiz.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki üslü denklemin çözümlerini sorduran kalıp örnek alındı; denklem bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Negatif tabanın çift kuvveti pozitif, tek kuvveti negatiftir.",
+    "Çarpmada üsler toplanır, bölmede çıkarılır.",
+    "Toplamada en küçük kuvveti ortak paranteze al.",
+    "Negatif üs kesri ters çevirir; sıfırıncı kuvvet 1’dir.",
+    "Karşılaştırmada tabanı ya da üssü eşitle.",
+    "Üslü denklemde iki tarafı aynı tabana yaz.",
+    "Bir üslü ifade 1’e eşitse üç durumu da dene."
+   ],
+   "warnings": [
+    "$2^3 + 2^4 \\neq 2^7$; toplamda üsler **toplanmaz**.",
+    "$2^{3^2} \\neq (2^3)^2$",
+    "Taban 0 ile 1 arasındaysa üs büyüdükçe sayı **küçülür**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki **8 soruyu** kâğıtta yeniden çöz; her soruda ilk hamleni yaz.",
+    "$2^{40}$, $3^{30}$ ve $5^{20}$ sayılarını **hesaplamadan** sırala.",
+    "Uygulamada KPSS Üslü Sayılar testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Tanım ve işaret: negatif tabanın tek ve çift kuvvetleri, −aⁿ ile (−a)ⁿ farkı, (−1)ⁿ; işlem sonucu soruları için iki özgün örnek.",
+   "Çarpma ve bölme kuralları, üssü toplam olan ifadeyi çarpıma ayırma, en küçük kuvveti ortak paranteze alma; 'toplamda üsler toplanmaz' yanılgısı.",
+   "Bir üslü ifadeyi verilen harf türünden yazma (2ˣ = a ise 8ˣ⁺¹, 4ˣ); üssün üssü ile üst üste yazılmış üs farkı.",
+   "Sıfırıncı ve negatif kuvvet: a⁰ = 1, 0⁰ tanımsız, kesrin negatif kuvveti; ondalık sayıyı 2ᵃ · 3ᵇ · 5ᶜ biçiminde yazma.",
+   "Karşılaştırma: tabanı ya da üssü eşitleme, 0 ile 1 arasındaki tabanlarda ters sıra; üç büyük üslü sayıyı sıralama.",
+   "Üslü denklemler: tabanları eşitleme; aᵇ = 1 için üç durum (taban 1, üs 0, taban −1 ve çift üs)."
+  ]
+ }
+}

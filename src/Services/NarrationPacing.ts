@@ -22,9 +22,20 @@ const median = (values: readonly number[]) => {
 	return sorted.length % 2 ? sorted[middle] : (sorted[middle - 1] + sorted[middle]) / 2;
 };
 
-/** Words per second of each line long enough to measure. */
+/** The letters of a spoken word, without its punctuation. */
+const letters = (word: string) => word.replace(/[^\p{L}\p{N}]/gu, '').length;
+
+/**
+ * Letters per second of each line long enough to measure. Words per second misjudged lines full of short spoken
+ * words: "ÖSYM 2023 ve 2026'da" is read as a dozen syllable-long words (letters spelled out, years in words), and a
+ * lead-in read at the usual pace was reported as rushed at 1.5 times (TYT Türkçe 12 render, 1 Nov 2026).
+ */
 const paces = (clips: VoiceClips) =>
-	Object.entries(clips).flatMap(([id, clip]) => (clip.words && clip.words.length >= MIN_WORDS && clip.durationSeconds > 0 ? [{id, clip, pace: clip.words.length / clip.durationSeconds}] : []));
+	Object.entries(clips).flatMap(([id, clip]) => {
+		if (!clip.words || clip.words.length < MIN_WORDS || clip.durationSeconds <= 0) return [];
+		const spoken = clip.words.reduce((sum, word) => sum + letters(word.text), 0);
+		return spoken > 0 ? [{id, clip, pace: spoken / clip.durationSeconds}] : [];
+	});
 
 export const narrationPacingWarnings = (clips: VoiceClips): string[] => {
 	const measured = paces(clips);

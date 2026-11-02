@@ -96,7 +96,7 @@ const looksTurkish = (text: string): boolean =>
  * in optics or "pusula" in geography).
  */
 const RULES: Rule[] = [
-	{pattern: /(?<!\p{L})(sınav\s+)?koç(?:u|un|una|unu|unla|unuz|unuzla|lar|luk|lu[ğk])?(?!\p{L})(?!\s+Üniversitesi)/giu, severity: 'error', message: 'İnsan koç hizmeti yok; SinoAI ya da "yapay zekâ çalışma asistanın" denir.'},
+	{pattern: /(?<!\p{L})(sınav\s+)?koç(?:u|un|una|unu|unla|unuz|unuzla|lar|luk|lu[ğk])?(?!\p{L})(?!\s+Üniversitesi)/giu, severity: 'error', message: 'İnsan koç hizmeti yok; SinoAI denir ("SinoAI’ye sor"). Pazarlamada "yapay zekâ" çağrışımı kullanılmaz (sahip, 1 Kasım 2026).'},
 	{pattern: /\b(exam\s+)?coach(es)?\b/gi, severity: 'error', message: 'No human coach; say SinoAI or "your AI study assistant".'},
 	{pattern: /Sınavika AI|Sinavika AI/g, severity: 'error', message: 'Yapay zekâ asistanının adı SinoAI.'},
 	{pattern: /\bSino AI\b|\bSinoAi\b|\bSinoai\b/g, severity: 'error', message: 'Yazım: SinoAI (bitişik, AI büyük).'},

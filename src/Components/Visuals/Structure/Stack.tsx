@@ -1,5 +1,6 @@
 import React from 'react';
 import {easeFrom} from '../../../Animations/Motion';
+import {readableOn} from '../../../Themes/ColorPalette';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {useElementState} from '../VisualTimeline';
@@ -124,7 +125,8 @@ export const StackVisual: React.FC<VisualBoxProps & {visual: Stack}> = ({visual,
 							return (
 								<g key={s} opacity={dim}>
 									<rect x={x} y={y} width={Math.max(0, segment - 2)} height={barHeight} fill={colours[s]} stroke={look.focused > 0.5 || lit > 0.5 ? palette.ink : 'none'} strokeWidth={2.5} />
-									{full > 76 && grow > 0.9 ? <text x={x + segment / 2} y={y + barHeight / 2 + 9} textAnchor="middle" fontSize={27} fontWeight={800} fill="#FFFFFF" fontFamily={palette.fontBody}>{percentText((value / total) * 100)}</text> : null}
+									{/* White or dark, whichever reads on the slice: white on the app's light blue (%72) hardly read (2 Nov 2026). */}
+									{full > 76 && grow > 0.9 ? <text x={x + segment / 2} y={y + barHeight / 2 + 9} textAnchor="middle" fontSize={27} fontWeight={800} fill={readableOn(colours[s])} fontFamily={palette.fontBody}>{percentText((value / total) * 100)}</text> : null}
 								</g>
 							);
 						})}

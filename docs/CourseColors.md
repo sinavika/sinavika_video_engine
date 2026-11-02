@@ -37,7 +37,7 @@ Koyu temada renk beyaza doğru açılır, böylece koyu zeminde de okunur (`cour
 
 ## 2. Kurallar: bir ders videosunda bir vurgu rengi vardır
 
-Bir ders videosunda **vurgu rengi dersin rengidir**. Marka turuncusu yalnız markayı gösterir.
+Bir ders videosunda **vurgu rengi dersin rengidir**. Marka turuncusu yalnız markayı gösterir. Kamp derslerinin açık sayfalarında logo da turuncu değil, kömür renktedir; turuncu ders rengiyle yarışmasın diye (1 Kasım 2026).
 
 | Öğe | Renk | Kodda nerede |
 |---|---|---|
@@ -49,7 +49,7 @@ Bir ders videosunda **vurgu rengi dersin rengidir**. Marka turuncusu yalnız mar
 | Akış ve döngü şeması: vurgulanan adım ve numaralar | Ders rengi | `DiagramNode` |
 | Alt bant: ders etiketi ve bölüm çubuğu (alttaki ilerleme) | Ders rengi | `StudioBand` |
 | "Sıradaki ders" kartı, kamp görevi numaraları | Ders rengi | `CampTaskScene` |
-| Logo | Marka turuncusu | `BrandMark` |
+| Logo | Kamp dersinin açık sayfalarında kömür (`#0F172A`, logonun resmî tek renk hali); ders renkli ve turuncu zeminlerde beyaz | `BrandMark mono` (`LessonChrome`) |
 | Kapanış (uygulama tanıtımı, mağaza düğmeleri) | Marka turuncusu | `CoursePromotionScenes` |
 | Şekillerde ikinci seri (grafikte ikinci eğri, nokta, açı, kuvvet) | Marka turuncusu | `palette.brand` (VisualFrame) |
 

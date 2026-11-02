@@ -1,6 +1,6 @@
 # YouTube metni: TYT Kimya kampı · Ders 10 · Kimya Her Yerde
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Kimya/10_Kimya_Her_Yerde/Kimya_Her_Yerde_YouTube.mp4` (4K) · Kapak: `Kimya_Her_Yerde_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Kimya/10_Kimya_Her_Yerde/Kimya_Her_Yerde_YouTube.mp4` (4K) · Kapak: `Kimya_Her_Yerde_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

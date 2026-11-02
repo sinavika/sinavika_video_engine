@@ -2,11 +2,11 @@ import React, {createContext, useContext, useId} from 'react';
 import {easeFrom, smoothStep} from '../../../Animations/Motion';
 import {NATURE_COLORS as C} from '../../../Configurations/NatureColors';
 import {withAlpha} from '../../../Themes/Theme';
-import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useFigureFont, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import {useBeatStartFor} from '../VisualTimeline';
 import {LANDFORM_PARTS} from './GeographySchema';
 import {type CourseVisual} from '../VisualSchema';
-import {H, pathOf, Tag, usePartLook, W, World} from '../VisualWorld';
+import {H, LAND_INK, LightGround, pathOf, splitInTwo, Tag, usePartLook, W, World} from '../VisualWorld';
 
 // ---------------------------------------------------------------- landforms
 
@@ -27,8 +27,8 @@ const Callout: React.FC<{id: string; x: number; y: number; tx: number; ty: numbe
 	const label = numbering ? (ROMAN[numbering.indexOf(id)] ?? text) : text;
 	return (
 		<g opacity={look.opacity}>
-			<line x1={x} y1={y} x2={tx} y2={ty + (ty > y ? -12 : 12)} stroke={look.focused > 0.5 ? palette.lesson : palette.ink} strokeWidth={2.5} />
-			<circle cx={x} cy={y} r={5} fill={look.focused > 0.5 ? palette.lesson : palette.ink} />
+			<line x1={x} y1={y} x2={tx} y2={ty + (ty > y ? -12 : 12)} stroke={look.focused > 0.5 ? palette.lesson : LAND_INK} strokeWidth={2.5} />
+			<circle cx={x} cy={y} r={5} fill={look.focused > 0.5 ? palette.lesson : LAND_INK} />
 			<Tag x={tx} y={ty} text={label} anchor={anchor} size={numbering ? 30 : 22} weight={800} focused={look.focused} />
 		</g>
 	);
@@ -44,9 +44,12 @@ const Callout: React.FC<{id: string; x: number; y: number; tx: number; ty: numbe
  * barchan dunes, witness rock, tafoni, yardang). Parts are in LANDFORM_PARTS.
  */
 export const LandformVisual: React.FC<VisualBoxProps & {visual: Landform}> = (props) => (
-	<NumberingContext.Provider value={props.visual.numbered ? LANDFORM_PARTS[props.visual.scene] : null}>
-		<LandformScene {...props} />
-	</NumberingContext.Provider>
+	// The scenery keeps its natural light colours in the dark theme too, so labels take dark ink on a light halo.
+	<LightGround>
+		<NumberingContext.Provider value={props.visual.numbered ? LANDFORM_PARTS[props.visual.scene] : null}>
+			<LandformScene {...props} />
+		</NumberingContext.Provider>
+	</LightGround>
 );
 
 const LandformScene: React.FC<VisualBoxProps & {visual: Landform}> = (props) => {
@@ -71,8 +74,16 @@ const LandformScene: React.FC<VisualBoxProps & {visual: Landform}> = (props) => 
 			return <SoilScene {...props} />;
 		case 'vegetation':
 			return <VegetationScene {...props} />;
+		case 'forestbelts':
+			return <ForestBeltsScene {...props} />;
 		case 'landslide':
 			return <LandslideScene {...props} />;
+		case 'relief':
+			return <ReliefScene {...props} />;
+		case 'aspect':
+			return <AspectScene {...props} />;
+		case 'settlement':
+			return <SettlementScene {...props} />;
 	}
 };
 
@@ -307,8 +318,10 @@ const CoastScene: React.FC<VisualBoxProps & {visual: Landform}> = ({width, heigh
 			<g opacity={looks.kumsal.opacity}>
 				<path d="M0 200 L120 210 L125 222 L0 214 Z" fill={SAND} />
 			</g>
-			<Callout id="falez" x={205} y={312} tx={205} ty={470} text="Falez (yalıyar)" look={looks.falez} />
-			<Callout id="asinim" x={205} y={348} tx={140} ty={540} text="Aşınım düzlüğü" look={looks.asinim} />
+			{/* The cliff face and the platform in front of it: their leaders leave in different directions, so numbered
+			    I and II no longer seem to name one point (Soru revizyonu, 1 Nov 2026). */}
+			<Callout id="falez" x={196} y={306} tx={90} ty={430} text="Falez (yalıyar)" look={looks.falez} />
+			<Callout id="asinim" x={240} y={340} tx={310} ty={480} text="Aşınım düzlüğü" look={looks.asinim} />
 			<Callout id="kiyioku" x={420} y={250} tx={420} ty={350} text="Kıyı oku" look={looks.kiyioku} />
 			<Callout id="lagun" x={620} y={240} tx={620} ty={110} text="Lagün (kıyı gölü)" look={looks.lagun} />
 			<Callout id="tombolo" x={884} y={300} tx={760} ty={480} text="Tombolo" look={looks.tombolo} />
@@ -321,6 +334,8 @@ const CoastScene: React.FC<VisualBoxProps & {visual: Landform}> = ({width, heigh
 const GlacierScene: React.FC<VisualBoxProps & {visual: Landform}> = ({width, height, delaySeconds = 0}) => {
 	const palette = useVisualPalette();
 	const {enter} = useSceneClock(delaySeconds);
+	// Numbered for a question: the snow line takes its numeral and the inset names nothing (it gave the answer away).
+	const numbering = useContext(NumberingContext);
 	const looks = {
 		karsiniri: usePartLook('karsiniri', enter(0.5)),
 		sirk: usePartLook('sirk', enter(1)),
@@ -337,7 +352,7 @@ const GlacierScene: React.FC<VisualBoxProps & {visual: Landform}> = ({width, hei
 			<path d="M200 250 L260 150 L330 90 L400 140 L470 120 L520 200 Q440 230 380 220 Q300 240 200 250 Z" fill="#FFFFFF" />
 			<g opacity={looks.karsiniri.opacity}>
 				<line x1={60} y1={250} x2={940} y2={250} stroke={looks.karsiniri.focused > 0.5 ? palette.lesson : '#2E86C1'} strokeWidth={3} strokeDasharray="14 10" />
-				<Tag x={940} y={232} text="Kalıcı kar sınırı" anchor="end" size={21} focused={looks.karsiniri.focused} />
+				<Tag x={940} y={232} text={numbering ? (ROMAN[numbering.indexOf('karsiniri')] ?? 'Kalıcı kar sınırı') : 'Kalıcı kar sınırı'} anchor="end" size={numbering ? 30 : 21} weight={800} focused={looks.karsiniri.focused} />
 			</g>
 			{/* Cirque bowl with its lake. */}
 			<g opacity={looks.sirk.opacity}>
@@ -350,7 +365,7 @@ const GlacierScene: React.FC<VisualBoxProps & {visual: Landform}> = ({width, hei
 				<g transform="translate(760 70)">
 					<rect x={0} y={0} width={210} height={120} rx={12} fill={palette.surface} stroke={palette.border} strokeWidth={2} />
 					<path d="M20 30 L20 70 Q20 105 105 105 Q190 105 190 70 L190 30" fill="none" stroke={looks.buzulvadisi.focused > 0.5 ? palette.lesson : palette.ink} strokeWidth={5} />
-					<Tag x={105} y={22} text="U biçimli kesit" anchor="middle" size={16} />
+					{numbering ? null : <Tag x={105} y={22} text="U biçimli kesit" anchor="middle" size={16} />}
 				</g>
 			</g>
 			{/* Moraine: rubble the ice pushed and left at its front. */}
@@ -650,28 +665,53 @@ const BeltLabel: React.FC<{y: number; numeral?: string; name: string; range: str
 		</>
 	);
 
-// Plant belts up a southern Taurus slope: the higher, the colder; each belt is named with its height.
-const VegetationScene: React.FC<VisualBoxProps & {visual: Landform}> = ({width, height, delaySeconds = 0}) => {
+/** One plant belt up a slope: its heights (m), colour, name, height range and what grows in it. */
+type Belt = {id: string; from: number; to: number; color: string; name: string; range: string; tree: 'bush' | 'pine' | 'fir' | 'grass' | 'broad' | 'mixed'};
+type PartLook = ReturnType<typeof usePartLook>;
+
+/** Plant belts on the Taurus slope facing the Mediterranean (MEB, Atalay). */
+export const TAURUS_BELTS: Belt[] = [
+	{id: 'maki', from: 0, to: 600, color: '#9DBF6B', name: 'Maki', range: '0–600 m', tree: 'bush'},
+	{id: 'kizilcam', from: 600, to: 1200, color: '#6FA35A', name: 'Kızılçam', range: '600–1.200 m', tree: 'pine'},
+	{id: 'karacam', from: 1200, to: 2000, color: '#3F7D4A', name: 'Karaçam, sedir', range: '1.200–2.000 m', tree: 'fir'},
+	{id: 'alpin', from: 2200, to: 3000, color: '#C9D9A8', name: 'Alpin çayırlar', range: '2.200 m üstü', tree: 'grass'},
+];
+
+/** Plant belts on the Black Sea slope facing the sea (MEB): broadleaf, then mixed, then conifers, then meadows. */
+export const PONTIC_BELTS: Belt[] = [
+	{id: 'genis', from: 0, to: 1000, color: '#8DBE5F', name: 'Geniş yapraklı', range: '0–1.000 m · kayın, kestane, gürgen', tree: 'broad'},
+	{id: 'karisik', from: 1000, to: 1500, color: '#5E9A4E', name: 'Karışık orman', range: '1.000–1.500 m · kayın, sarıçam', tree: 'mixed'},
+	{id: 'igne', from: 1500, to: 2000, color: '#2F6B44', name: 'İğne yapraklı', range: '1.500–2.000 m · ladin, köknar', tree: 'fir'},
+	{id: 'alpin', from: 2200, to: 3000, color: '#C9D9A8', name: 'Alpin çayırlar', range: '2.200 m üstü', tree: 'grass'},
+];
+
+/** A tree of a belt, drawn at (x, y) on the slope; a mixed belt alternates broadleaf and conifer. */
+const BeltTree: React.FC<{kind: Belt['tree']; x: number; y: number; index: number}> = ({kind, x, y, index}) => {
+	const shape = kind === 'mixed' ? (index % 2 === 0 ? 'broad' : 'fir') : kind;
+	if (shape === 'bush') return <circle cx={x} cy={y - 8} r={9} fill="#5E8C3A" />;
+	if (shape === 'grass') return <path d={`M${x} ${y} l-4 -12 M${x} ${y} l4 -10`} stroke="#6B8E23" strokeWidth={3} />;
+	if (shape === 'broad')
+		return (
+			<g>
+				<line x1={x} y1={y} x2={x} y2={y - 14} stroke="#6B4F2A" strokeWidth={3} />
+				<ellipse cx={x} cy={y - 22} rx={12} ry={11} fill="#4E8A3A" />
+			</g>
+		);
+	const fir = shape === 'fir';
+	return <path d={`M${x} ${y - (fir ? 34 : 26)} l${fir ? 9 : 12} ${fir ? 30 : 20} l${fir ? -18 : -24} 0 z`} fill={fir ? '#1F5E3A' : '#3E7D3A'} />;
+};
+
+/**
+ * Plant belts up one slope rising from the sea on the left: each belt comes in with its look, its trees, and its name
+ * and height range at the right; the tree line is a dashed line. Shared by the Taurus and the Black Sea slopes.
+ */
+const SlopeBelts: React.FC<VisualBoxProps & {belts: Belt[]; looks: Record<string, PartLook>; treeLine: {look: PartLook; at: number; range: string}; side: string}> = ({width, height, belts, looks, treeLine, side}) => {
 	const palette = useVisualPalette();
-	const {enter} = useSceneClock(delaySeconds);
 	const numbering = useContext(NumberingContext);
-	const looks = {
-		maki: usePartLook('maki', enter(0.4)),
-		kizilcam: usePartLook('kizilcam', enter(0.9)),
-		karacam: usePartLook('karacam', enter(1.4)),
-		agacsiniri: usePartLook('agacsiniri', enter(1.9)),
-		alpin: usePartLook('alpin', enter(2.4)),
-	};
 	const SEA = 540;
 	// Height (m) to y: 0 m at the sea, 3000 m near the top.
 	const yOf = (metres: number) => SEA - (metres / 3000) * 470;
 	const slope = (y: number) => 80 + ((SEA - y) / 470) * 560; // the slope's x at height y (rising to the right)
-	const belts: {id: keyof typeof looks; from: number; to: number; color: string; name: string; range: string; tree: 'bush' | 'pine' | 'fir' | 'grass'}[] = [
-		{id: 'maki', from: 0, to: 600, color: '#9DBF6B', name: 'Maki', range: '0–600 m', tree: 'bush'},
-		{id: 'kizilcam', from: 600, to: 1200, color: '#6FA35A', name: 'Kızılçam', range: '600–1.200 m', tree: 'pine'},
-		{id: 'karacam', from: 1200, to: 2000, color: '#3F7D4A', name: 'Karaçam, sedir', range: '1.200–2.000 m', tree: 'fir'},
-		{id: 'alpin', from: 2200, to: 3000, color: '#C9D9A8', name: 'Alpin çayırlar', range: '2.200 m üstü', tree: 'grass'},
-	];
 	return (
 		<World width={width} height={height}>
 			<Sky bottom={SEA} />
@@ -690,28 +730,48 @@ const VegetationScene: React.FC<VisualBoxProps & {visual: Landform}> = ({width, 
 				return (
 					<g key={belt.id} opacity={look.opacity}>
 						<path d={`M${slope(y1)} ${y1} L${slope(y2)} ${y2} L${slope(y2) + 260} ${y2 + 30} L${slope(y1) + 260} ${y1 + 30} Z`} fill={belt.color} opacity={0.55} />
-						{trees.map((tree, index) =>
-							belt.tree === 'bush' ? (
-								<circle key={index} cx={tree.x} cy={tree.y - 8} r={9} fill="#5E8C3A" />
-							) : belt.tree === 'grass' ? (
-								<path key={index} d={`M${tree.x} ${tree.y} l-4 -12 M${tree.x} ${tree.y} l4 -10`} stroke="#6B8E23" strokeWidth={3} />
-							) : (
-								<path key={index} d={`M${tree.x} ${tree.y - (belt.tree === 'fir' ? 34 : 26)} l${belt.tree === 'fir' ? 9 : 12} ${belt.tree === 'fir' ? 30 : 20} l${belt.tree === 'fir' ? -18 : -24} 0 z`} fill={belt.tree === 'fir' ? '#1F5E3A' : '#3E7D3A'} />
-							),
-						)}
+						{trees.map((tree, index) => (
+							<BeltTree key={index} kind={belt.tree} x={tree.x} y={tree.y} index={index} />
+						))}
 						<line x1={slope((y1 + y2) / 2) + 40} y1={(y1 + y2) / 2} x2={680} y2={(y1 + y2) / 2} stroke={look.focused > 0.5 ? palette.lesson : palette.muted} strokeWidth={2} strokeDasharray="5 5" />
 						<BeltLabel y={(y1 + y2) / 2} numeral={numeral} name={belt.name} range={belt.range} focused={look.focused} />
 					</g>
 				);
 			})}
 			{/* The tree line. */}
-			<g opacity={looks.agacsiniri.opacity}>
-				<line x1={slope(yOf(2100)) - 30} y1={yOf(2100)} x2={680} y2={yOf(2100)} stroke={looks.agacsiniri.focused > 0.5 ? palette.lesson : '#7B241C'} strokeWidth={3} strokeDasharray="12 8" />
-				<BeltLabel y={yOf(2100)} numeral={numbering ? (ROMAN[numbering.indexOf('agacsiniri')] ?? '') : undefined} name="Orman üst sınırı" range="~2.100 m" focused={looks.agacsiniri.focused} />
+			<g opacity={treeLine.look.opacity}>
+				<line x1={slope(yOf(treeLine.at)) - 30} y1={yOf(treeLine.at)} x2={680} y2={yOf(treeLine.at)} stroke={treeLine.look.focused > 0.5 ? palette.lesson : '#7B241C'} strokeWidth={3} strokeDasharray="12 8" />
+				<BeltLabel y={yOf(treeLine.at)} numeral={numbering ? (ROMAN[numbering.indexOf('agacsiniri')] ?? '') : undefined} name="Orman üst sınırı" range={treeLine.range} focused={treeLine.look.focused} />
 			</g>
-			<Tag x={20} y={SEA + 30} text="Akdeniz · güney yamaç" size={18} />
+			<Tag x={20} y={SEA + 30} text={side} size={18} />
 		</World>
 	);
+};
+
+// Plant belts up a southern Taurus slope: the higher, the colder; each belt is named with its height.
+const VegetationScene: React.FC<VisualBoxProps & {visual: Landform}> = (props) => {
+	const {enter} = useSceneClock(props.delaySeconds ?? 0);
+	const looks = {
+		maki: usePartLook('maki', enter(0.4)),
+		kizilcam: usePartLook('kizilcam', enter(0.9)),
+		karacam: usePartLook('karacam', enter(1.4)),
+		alpin: usePartLook('alpin', enter(2.4)),
+	};
+	const treeLine = {look: usePartLook('agacsiniri', enter(1.9)), at: 2100, range: '~2.100 m'};
+	return <SlopeBelts {...props} belts={TAURUS_BELTS} looks={looks} treeLine={treeLine} side="Akdeniz · güney yamaç" />;
+};
+
+// Plant belts up the Black Sea slope facing the sea: broadleaf low down, then mixed forest, conifers, alpine meadows.
+const ForestBeltsScene: React.FC<VisualBoxProps & {visual: Landform}> = (props) => {
+	const {enter} = useSceneClock(props.delaySeconds ?? 0);
+	const looks = {
+		genis: usePartLook('genis', enter(0.4)),
+		karisik: usePartLook('karisik', enter(0.9)),
+		igne: usePartLook('igne', enter(1.4)),
+		alpin: usePartLook('alpin', enter(2.4)),
+	};
+	const treeLine = {look: usePartLook('agacsiniri', enter(1.9)), at: 2100, range: '~2.000–2.200 m'};
+	return <SlopeBelts {...props} belts={PONTIC_BELTS} looks={looks} treeLine={treeLine} side="Karadeniz · denize bakan yamaç" />;
 };
 
 // A slope of layers parallel to it, soaked by rain: the clay layer becomes a slip surface, a block slides down and
@@ -812,5 +872,354 @@ const LandslideScene: React.FC<VisualBoxProps & {visual: Landform}> = ({width, h
 			<Callout id="kutle" x={(block[0][0] + block[2][0]) / 2} y={(block[0][1] + block[2][1]) / 2} tx={330} ty={200} text="Kütle yamaçtan kayar" look={looks.kutle} />
 			<Callout id="set" x={150} y={474} tx={130} ty={560} text="Vadi kapanır: set gölü" look={looks.set} />
 		</World>
+	);
+};
+
+// ---------------------------------------------------------------- relief and aspect
+
+/** What each landform of the relief scene is, said under it while it is pointed at (not on a numbered question figure). */
+const RELIEF_DEFINITIONS: Record<(typeof LANDFORM_PARTS)['relief'][number], string> = {
+	dag: 'Dağ: çevresine göre çok yüksek, eğimli ve engebeli kütle',
+	ova: 'Ova: çevresine göre alçak, az yarılmış, alüvyonla örtülü düzlük',
+	plato: 'Plato: çevresine göre yüksek, akarsularla derince yarılmış düzlük',
+	vadi: 'Vadi: akarsuyun aşındırıp açtığı oluk; genç arazide V biçimli',
+	delta: 'Delta ovası: akarsuyun getirdiği alüvyon kıyıda birikir',
+};
+
+/** The relief scene: sea level (y) and scale (px per metre), and its landforms' heights in metres. */
+export const RELIEF = {sea: 470, scale: 0.144, coast: 140, delta: 10, plain: 500, plateau: 1200, valley: 550, peak: 2000};
+
+/**
+ * The relief scene's ground from the open sea inland, as [x, metres]: the sea floor rising to the coast, the delta
+ * plain, a mountain, a tectonic plain sunk between it and a ridge, then a plateau cut by two valleys, `cut` (0–1) of
+ * their full depth.
+ */
+export const reliefProfile = (cut: number): [number, number][] => {
+	const top = RELIEF.plateau;
+	const valley = RELIEF.valley * cut;
+	// The open sea takes the first seventh of the width, deepening off the coast, so it reads as a sea and not a pond.
+	return [
+		[0, -1100],
+		[70, -650],
+		[RELIEF.coast, 0],
+		[175, RELIEF.delta],
+		[245, 30],
+		[270, 600],
+		[295, 1500],
+		[318, RELIEF.peak],
+		[342, 1600],
+		[372, 900],
+		[400, RELIEF.plain],
+		[540, RELIEF.plain],
+		[565, 1100],
+		[585, 1500],
+		[605, 1350],
+		[625, top],
+		[690, top],
+		[720, top - valley],
+		[750, top],
+		[840, top],
+		[870, top - valley],
+		[900, top],
+		[W, top],
+	];
+};
+
+// The main landforms side by side, as a section from the sea inland; each is defined under it as it is pointed at.
+const ReliefScene: React.FC<VisualBoxProps & {visual: Landform}> = ({width, height, delaySeconds = 0}) => {
+	const {enter} = useSceneClock(delaySeconds);
+	const numbering = useContext(NumberingContext);
+	const id = useId().replace(/[^a-zA-Z0-9_-]/g, '');
+	const looks = {
+		delta: usePartLook('delta', enter(0.4)),
+		dag: usePartLook('dag', enter(0.9)),
+		ova: usePartLook('ova', enter(1.4)),
+		plato: usePartLook('plato', enter(1.9)),
+		vadi: usePartLook('vadi', enter(2.4)),
+	};
+	const yOf = (metres: number) => RELIEF.sea - metres * RELIEF.scale;
+	// The rivers cut the plateau as the valley comes in.
+	const cut = smoothStep(Math.min(1, looks.vadi.drawn));
+	const ground = reliefProfile(cut).map(([x, metres]) => [x, yOf(metres)] as [number, number]);
+	const land = pathOf([...ground, [W, H], [0, H]], true);
+	const focused = (Object.keys(looks) as (keyof typeof looks)[]).find((part) => looks[part].focused > 0.5);
+	const plainY = yOf(RELIEF.plain);
+	const topY = yOf(RELIEF.plateau);
+	const valleyY = yOf(RELIEF.plateau - RELIEF.valley * cut);
+	return (
+		<World width={width} height={height}>
+			<Sky bottom={RELIEF.sea} />
+			<rect x={0} y={RELIEF.sea} width={W} height={H - RELIEF.sea} fill={C.waterDeep} />
+			<rect x={0} y={RELIEF.sea} width={W} height={14} fill={C.water} />
+			<defs>
+				<clipPath id={`land${id}`}>
+					<path d={land} />
+				</clipPath>
+			</defs>
+			<path d={land} fill="#A98B6A" />
+			<g clipPath={`url(#land${id})`}>
+				{/* The plateau's flat-lying layers, cut through by the valleys. */}
+				{[0, 1, 2, 3].map((band) => (
+					<rect key={band} x={620} y={topY + band * 22} width={W - 620} height={22} fill={ROCK_BANDS[band]} />
+				))}
+				{/* Alluvium: the delta built into the sea, and the fill of the sunken plain. */}
+				<path d={pathOf([[70, yOf(-420)], [RELIEF.coast, yOf(0)], [175, yOf(RELIEF.delta)], [247, yOf(30)], [264, yOf(-160)]], true)} fill={C.silt} />
+				<path d={pathOf([[396, plainY], [544, plainY], [528, plainY + 34], [412, plainY + 34]], true)} fill={C.soil} />
+			</g>
+			{/* Swell on the open sea. */}
+			{[18, 62, 104].map((x, index) => (
+				<path key={x} d={`M${x} ${RELIEF.sea + 22 + (index % 2) * 16} q9 -7 18 0 q9 7 18 0`} fill="none" stroke="#FFFFFF" strokeOpacity={0.75} strokeWidth={2.5} strokeLinecap="round" />
+			))}
+			<Tag x={64} y={RELIEF.sea + 66} text="Deniz" anchor="middle" size={17} />
+			{/* Vegetation along the ground. */}
+			<path d={pathOf(ground.filter(([x]) => x >= RELIEF.coast))} fill="none" stroke={C.landDark} strokeWidth={5} strokeLinejoin="round" />
+			{/* Rivers: at the delta mouth, across the plain and at the bottom of the valleys. */}
+			<ellipse cx={205} cy={yOf(20)} rx={16} ry={4} fill={C.water} />
+			<ellipse cx={470} cy={plainY} rx={18} ry={4} fill={C.water} />
+			{cut > 0.3 ? [720, 870].map((x) => <ellipse key={x} cx={x} cy={valleyY - 2} rx={7 * cut} ry={3} fill={C.water} />) : null}
+			{/* Height scale over the sea. */}
+			{(
+				[
+					[0, '0 m'],
+					[1000, '1.000 m'],
+					[2000, '2.000 m'],
+				] as const
+			).map(([metres, text]) => (
+				<g key={metres}>
+					<line x1={12} x2={30} y1={yOf(metres)} y2={yOf(metres)} stroke={LAND_INK} strokeWidth={2} />
+					<Tag x={36} y={yOf(metres)} text={text} size={15} />
+				</g>
+			))}
+			<Callout id="delta" x={195} y={yOf(16)} tx={160} ty={300} text="Delta ovası" look={looks.delta} />
+			<Callout id="dag" x={315} y={yOf(RELIEF.peak)} tx={315} ty={110} text="Dağ" look={looks.dag} />
+			<Callout id="ova" x={470} y={plainY - 6} tx={470} ty={300} text="Tektonik ova" look={looks.ova} />
+			<Callout id="plato" x={660} y={topY} tx={660} ty={190} text="Plato" look={looks.plato} />
+			<Callout id="vadi" x={870} y={valleyY} tx={880} ty={190} text="Akarsu vadisi" look={looks.vadi} />
+			{numbering ? null : (
+				<>
+					<g opacity={Math.min(looks.ova.opacity, looks.plato.opacity)}>
+						<Tag x={W / 2} y={34} text="Ovayı platodan yükselti değil, çevresine göre konumu ve yarılma ayırır" anchor="middle" size={19} />
+					</g>
+					{focused ? <Tag x={W / 2} y={560} text={RELIEF_DEFINITIONS[focused]} anchor="middle" size={22} weight={800} /> : null}
+				</>
+			)}
+		</World>
+	);
+};
+
+/**
+ * The aspect scene: a mountain whose south slope faces the noon sun (Türkiye is north of the Tropic of Cancer, so the
+ * noon sun is always in the south). Ground level (y), scale (px per metre), the mountain's feet (x) and summit (m), the
+ * olive limits on each slope (metres, ÖSYM KPSS: 500–600 m facing south, 200–250 m facing north) and how low spring
+ * snow lasts on each slope (metres, a sketch: only the order matters), and the sun rays' fall (dy/dx).
+ */
+export const ASPECT = {ground: 500, scale: 0.24, feet: [150, 850] as const, summit: 1500, olive: {south: 550, north: 225}, snow: {south: 1100, north: 700}, rayFall: 0.55};
+
+const aspectRise = (ASPECT.summit * ASPECT.scale) / ((ASPECT.feet[1] - ASPECT.feet[0]) / 2);
+
+/** Where a slope is at a height: x of the south (left) or north (right) slope. */
+export const aspectSlopeX = (side: 'south' | 'north', metres: number) => {
+	const run = (metres * ASPECT.scale) / aspectRise;
+	return side === 'south' ? ASPECT.feet[0] + run : ASPECT.feet[1] - run;
+};
+
+/**
+ * The sun rays of the aspect scene: parallel lines from the south (left), each from its start to where it meets the
+ * south slope. The north slope is steeper than the rays fall, so the summit shades it all.
+ */
+export const aspectRays = () =>
+	[-20, 50, 120, 190, 260, 330].map((y0) => {
+		const x0 = 40;
+		// y0 + fall·(x − x0) = ground − rise·(x − foot)
+		const x = (ASPECT.ground + aspectRise * ASPECT.feet[0] - y0 + ASPECT.rayFall * x0) / (ASPECT.rayFall + aspectRise);
+		return {from: [x0, y0] as [number, number], to: [x, y0 + ASPECT.rayFall * (x - x0)] as [number, number]};
+	});
+
+/** The fall of the aspect scene's slopes (dy/dx), for tests. */
+export const ASPECT_RISE = aspectRise;
+
+// A mountain in the noon sun: the south slope lit almost head-on and warmer, the north slope in shade; olives climb
+// higher and snow melts sooner on the south slope.
+const AspectScene: React.FC<VisualBoxProps & {visual: Landform}> = ({width, height, delaySeconds = 0}) => {
+	const {enter} = useSceneClock(delaySeconds);
+	const numbering = useContext(NumberingContext);
+	const looks = {
+		gunes: usePartLook('gunes', enter(0.4)),
+		guney: usePartLook('guney', enter(0.9)),
+		kuzey: usePartLook('kuzey', enter(1.4)),
+		zeytin: usePartLook('zeytin', enter(1.9)),
+		kar: usePartLook('kar', enter(2.4)),
+	};
+	const yOf = (metres: number) => ASPECT.ground - metres * ASPECT.scale;
+	const summit: [number, number] = [(ASPECT.feet[0] + ASPECT.feet[1]) / 2, yOf(ASPECT.summit)];
+	const south = (metres: number): [number, number] => [aspectSlopeX('south', metres), yOf(metres)];
+	const north = (metres: number): [number, number] => [aspectSlopeX('north', metres), yOf(metres)];
+	const lit = Math.min(1, looks.gunes.drawn);
+	const olive = (x: number, y: number, key: string) => (
+		<g key={key}>
+			<line x1={x} y1={y} x2={x} y2={y - 14} stroke="#6B4F2A" strokeWidth={3} />
+			<ellipse cx={x} cy={y - 18} rx={11} ry={7} fill="#7A8F4E" />
+		</g>
+	);
+	return (
+		<World width={width} height={height}>
+			<Sky bottom={ASPECT.ground} />
+			<rect x={0} y={ASPECT.ground} width={W} height={H - ASPECT.ground} fill="#A98B6A" />
+			<rect x={0} y={ASPECT.ground} width={W} height={8} fill={C.landDark} />
+			{/* The mountain: green below, rock above. */}
+			<path d={pathOf([[ASPECT.feet[0], ASPECT.ground], summit, [ASPECT.feet[1], ASPECT.ground]], true)} fill="#8FA86A" />
+			<path d={pathOf([south(1150), summit, north(1150)], true)} fill="#9A8C7A" />
+			{/* Snow in spring: it lasts lower down on the shaded north slope. */}
+			<g opacity={looks.kar.opacity}>
+				<path d={pathOf([summit, south(ASPECT.snow.south), [south(ASPECT.snow.south)[0] + 16, yOf(ASPECT.snow.south)], [summit[0], summit[1] + 18]], true)} fill="#FFFFFF" />
+				<path d={pathOf([summit, north(ASPECT.snow.north), [north(ASPECT.snow.north)[0] - 16, yOf(ASPECT.snow.north)], [summit[0], summit[1] + 18]], true)} fill="#FFFFFF" />
+			</g>
+			{/* Olive groves up to their limit on each slope. */}
+			<g opacity={looks.zeytin.opacity}>
+				{[120, 260, 400].map((metres) => olive(south(metres)[0] + 26, yOf(metres) + 14, `s${metres}`))}
+				{[70, 160].map((metres) => olive(north(metres)[0] - 26, yOf(metres) + 14, `n${metres}`))}
+				{(
+					[
+						['south', ASPECT.olive.south],
+						['north', ASPECT.olive.north],
+					] as const
+				).map(([side, metres]) => {
+					const x = aspectSlopeX(side, metres);
+					return <line key={side} x1={side === 'south' ? x - 70 : x - 40} x2={side === 'south' ? x + 40 : x + 70} y1={yOf(metres)} y2={yOf(metres)} stroke={looks.zeytin.focused > 0.5 ? '#C2410C' : '#4D5B2A'} strokeWidth={4} strokeDasharray="10 7" />;
+				})}
+				{numbering ? null : (
+					<>
+						<Tag x={aspectSlopeX('south', ASPECT.olive.south) - 76} y={yOf(ASPECT.olive.south)} text="500–600 m" anchor="end" size={18} />
+						<Tag x={aspectSlopeX('north', ASPECT.olive.north) + 76} y={yOf(ASPECT.olive.north)} text="200–250 m" size={18} />
+					</>
+				)}
+			</g>
+			{/* The shade the summit casts on the north slope and the ground beyond it. */}
+			<path d={pathOf([summit, [ASPECT.feet[1], ASPECT.ground], [W, ASPECT.ground], [W, ASPECT.ground + 8], [summit[0], ASPECT.ground + 8], [summit[0], ASPECT.ground]], true)} fill="#1F2937" opacity={0.3 * lit} />
+			{/* The noon sun in the south and its rays reaching the south slope. */}
+			<circle cx={70} cy={70} r={34} fill="#F7C948" opacity={looks.gunes.opacity} />
+			{aspectRays().map(({from, to}, index) => (
+				<line key={index} x1={from[0]} y1={from[1]} x2={from[0] + (to[0] - from[0]) * lit} y2={from[1] + (to[1] - from[1]) * lit} stroke="#E6A623" strokeWidth={4} strokeLinecap="round" opacity={looks.gunes.opacity} />
+			))}
+			<Callout id="gunes" x={92} y={92} tx={125} ty={30} text="Öğle güneşi güneyden" anchor="start" look={looks.gunes} />
+			<Callout id="guney" x={330} y={yOf((330 - ASPECT.feet[0]) * (aspectRise / ASPECT.scale))} tx={300} ty={560} text="Güney yamacı: ışık dike yakın, sıcak" look={looks.guney} />
+			<Callout id="kuzey" x={680} y={yOf((ASPECT.feet[1] - 680) * (aspectRise / ASPECT.scale))} tx={780} ty={120} text="Kuzey yamacı: gölgede, serin" look={looks.kuzey} />
+			<Callout id="zeytin" x={aspectSlopeX('south', ASPECT.olive.south) - 30} y={yOf(ASPECT.olive.south)} tx={150} ty={300} text="Zeytin sınırı" look={looks.zeytin} />
+			<Callout id="kar" x={aspectSlopeX('north', 1050)} y={yOf(1050)} tx={810} ty={235} text="Kar daha uzun kalır" look={looks.kar} />
+			<Tag x={20} y={588} text="GÜNEY" size={16} />
+			<Tag x={W - 20} y={588} text="KUZEY" anchor="end" size={16} />
+		</World>
+	);
+};
+
+// ---------------------------------------------------------------- settlement patterns
+
+/** The clustered village's houses round its spring: a golden-angle spiral, so they pack tight without a grid. */
+export const clusteredHouses = (centre: readonly [number, number], count: number): [number, number][] =>
+	Array.from({length: count}, (_, index) => {
+		const angle = index * 2.39996;
+		const radius = 18 * Math.sqrt(index + 1);
+		return [centre[0] + Math.cos(angle) * radius, centre[1] + Math.sin(angle) * radius];
+	});
+
+/** The scattered houses on the Black Sea slopes: each on its own plot, between the streams. */
+export const SCATTERED_HOUSES: [number, number][] = [
+	[565, 120], [655, 92], [770, 140], [880, 105], [955, 170], [600, 230], [720, 255], [850, 235], [930, 300],
+	[570, 360], [690, 395], [800, 350], [905, 430], [620, 500], [760, 520], [880, 540],
+];
+
+/** The streams cutting the slopes, from the ridge down to the sea. */
+const STREAMS: [number, number][][] = [
+	[[640, 40], [628, 160], [650, 300], [640, 440], [660, 590]],
+	[[820, 40], [835, 170], [818, 300], [840, 450], [828, 590]],
+];
+
+const House: React.FC<{x: number; y: number; grow: number}> = ({x, y, grow}) => (
+	<g transform={`translate(${x} ${y}) scale(${grow})`}>
+		<rect x={-9} y={-7} width={18} height={14} fill={C.house} stroke="#8D6E63" strokeWidth={1.5} />
+		<path d="M-11 -6 L0 -14 L11 -6 Z" fill={C.roof} />
+	</g>
+);
+
+// Two villages from above: one clustered round its spring on a dry plain, one scattered over wet, stream-cut slopes.
+const SettlementScene: React.FC<VisualBoxProps & {visual: Landform}> = ({width, height, delaySeconds = 0}) => {
+	const {enter} = useSceneClock(delaySeconds);
+	const looks = {
+		toplu: usePartLook('toplu', enter(0.4)),
+		daginik: usePartLook('daginik', enter(1.2)),
+		su: usePartLook('su', enter(0.8)),
+		egim: usePartLook('egim', enter(1.0)),
+		tarla: usePartLook('tarla', enter(0.2)),
+	};
+	const centre: [number, number] = [240, 320];
+	const houses = clusteredHouses(centre, 24);
+	// Houses come in one after another as their part comes in.
+	const grow = (index: number, total: number, look: {drawn: number}) => smoothStep(Math.min(1, Math.max(0, look.drawn * (total + 4) - index) / 4));
+	return (
+		<World width={width} height={height}>
+			{/* The dry plain and its open fields. */}
+			<rect x={0} y={0} width={490} height={H} fill="#E8D9B0" />
+			<g opacity={looks.tarla.opacity}>
+				{Array.from({length: 6}, (_, row) =>
+					Array.from({length: 5}, (_, column) => {
+						const x = 18 + column * 94;
+						const y = 70 + row * 86;
+						if (Math.hypot(x + 40 - centre[0], y + 35 - centre[1]) < 120) return null;
+						return <rect key={`${row}-${column}`} x={x} y={y} width={84} height={74} fill={(row + column) % 2 === 0 ? '#D9C27A' : '#B9C77A'} opacity={0.75} />;
+					}),
+				)}
+			</g>
+			{/* The wet, stream-cut slopes: contour lines and woodland. */}
+			<rect x={510} y={0} width={W - 510} height={H} fill="#9CC57A" />
+			<g opacity={looks.egim.opacity}>
+				{[90, 180, 270, 360, 450, 540].map((y, index) => (
+					<path key={y} d={pathOf(Array.from({length: 25}, (_, step) => {
+						const x = 510 + step * 20;
+						return [x, y + Math.sin(step * 0.9 + index) * 14 + (STREAMS.some((stream) => Math.abs(stream[1][0] - x) < 24) ? 18 : 0)] as [number, number];
+					}))} fill="none" stroke="#6F9E52" strokeWidth={looks.egim.focused > 0.5 ? 3.5 : 2} opacity={0.8} />
+				))}
+			</g>
+			{/* Water: the plain's one spring, the slopes' many streams. */}
+			<g opacity={looks.su.opacity}>
+				<circle cx={centre[0]} cy={centre[1]} r={10} fill={C.water} stroke="#FFFFFF" strokeWidth={2} />
+				{STREAMS.map((stream, index) => (
+					<path key={index} d={pathOf(stream)} fill="none" stroke={C.water} strokeWidth={looks.su.focused > 0.5 ? 7 : 5} strokeLinecap="round" />
+				))}
+			</g>
+			<g opacity={looks.toplu.opacity}>
+				{houses.map(([x, y], index) => (
+					<House key={index} x={x} y={y} grow={grow(index, houses.length, looks.toplu)} />
+				))}
+			</g>
+			<g opacity={looks.daginik.opacity}>
+				{SCATTERED_HOUSES.map(([x, y], index) => (
+					<g key={index}>
+						<rect x={x - 22} y={y + 8} width={44} height={22} fill="#7FAE5A" opacity={0.9 * grow(index, SCATTERED_HOUSES.length, looks.daginik)} />
+						<House x={x} y={y} grow={grow(index, SCATTERED_HOUSES.length, looks.daginik)} />
+					</g>
+				))}
+			</g>
+			<line x1={500} y1={0} x2={500} y2={H} stroke="#FFFFFF" strokeWidth={6} />
+			<Tag x={245} y={32} text="Toplu yerleşme · İç Anadolu" anchor="middle" size={22} weight={800} focused={looks.toplu.focused} />
+			<Tag x={750} y={32} text="Dağınık yerleşme · Karadeniz" anchor="middle" size={22} weight={800} focused={looks.daginik.focused} />
+			<HalfCaption x={245} y={575} text="Su az, ova düz: evler çeşmenin çevresinde" />
+			<HalfCaption x={750} y={575} text="Su bol, arazi engebeli ve parçalı: ev başına bir parsel" />
+		</World>
+	);
+};
+
+/**
+ * A caption under one half of a two-part scene, 17 units. Raised to an app still's smallest text, the two halves'
+ * captions ran into each other (settlement types, 2 Nov 2026): one wider than its half takes two lines there.
+ */
+const HalfCaption: React.FC<{x: number; y: number; text: string}> = ({x, y, text}) => {
+	const size = useFigureFont()(17);
+	const lines = size > 17 && text.length * size * 0.55 > 470 ? splitInTwo(text) : [text];
+	return (
+		<>
+			{lines.map((line, index) => (
+				<Tag key={index} x={x} y={y + (index - (lines.length - 1) / 2) * size * 1.2} text={line} anchor="middle" size={17} />
+			))}
+		</>
 	);
 };

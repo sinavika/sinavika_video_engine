@@ -488,24 +488,31 @@ const EarthRotation: React.FC<VisualBoxProps & {visual: Earth}> = ({visual, widt
 					);
 				})}
 			</g>
-			{/* Places with their local time. */}
+			{/* Places with their local time; names of places close together are pushed apart (separateLabels). */}
 			<g opacity={where.opacity}>
-				{visual.places.map((place) => {
-					const angle = angleOf(place.longitude);
-					const [x, y] = rim(angle, R * 0.62);
-					const [lx, ly] = rim(angle, R * 0.62 - 44);
-					return (
-						<g key={place.name}>
-							<circle cx={x} cy={y} r={10} fill={palette.brand} stroke={palette.surface} strokeWidth={3} />
-							<Tag x={lx} y={ly} text={`${place.name} ${clockText(timeOf(place.longitude))}`} anchor="middle" size={20} focused={where.focused} />
+				{(() => {
+					const spots = visual.places.map((place) => {
+						const angle = angleOf(place.longitude);
+						const text = `${place.name} ${clockText(timeOf(place.longitude))}`;
+						const [lx, ly] = rim(angle, R * 0.62 - 44);
+						return {dot: rim(angle, R * 0.62), x: lx, y: ly, width: text.length * 20 * 0.56 + 24, text};
+					});
+					const ys = separateLabels(spots, 34, spots.map((spot) => ({x: spot.dot[0], y: spot.dot[1], width: 28})));
+					return spots.map((spot, index) => (
+						<g key={visual.places[index].name}>
+							<circle cx={spot.dot[0]} cy={spot.dot[1]} r={10} fill={palette.brand} stroke={palette.surface} strokeWidth={3} />
+							{Math.abs(ys[index] - spot.y) > 4 ? <line x1={spot.dot[0]} y1={spot.dot[1]} x2={spot.x} y2={ys[index]} stroke={palette.surface} strokeWidth={2} opacity={0.8} /> : null}
+							<Tag x={spot.x} y={ys[index]} text={spot.text} anchor="middle" size={20} focused={where.focused} />
 						</g>
-					);
-				})}
+					));
+				})()}
 			</g>
 			{/* The rules, on the right. */}
 			<g opacity={hours.opacity}>
-				<Chip x={856} y={86} title="15° = 1 saat" subtitle="360° = 24 saat" focused={hours.focused} opacity={1} />
-				<Chip x={848} y={178} title="1° = 4 dakika" subtitle="doğu ileri, batı geri" focused={hours.focused} opacity={1} />
+				{/* Narrow enough that, grown by its focus, a chip still ends inside the picture and clear of the turning arrow's name
+				    (the "doğu ileri, batı geri" chip lost its right edge at 848, 2 Nov 2026). */}
+				<Chip x={850} y={86} title="15° = 1 saat" subtitle="360° = 24 saat" focused={hours.focused} opacity={1} />
+				<Chip x={850} y={178} title="1° = 4 dakika" subtitle="doğu ileri" focused={hours.focused} opacity={1} />
 			</g>
 			<g opacity={speed.opacity}>
 				<rect x={640} y={262} width={340} height={168} rx={18} fill={palette.surface} stroke={speed.focused > 0.5 ? palette.lesson : palette.border} strokeWidth={speed.focused > 0.5 ? 4 : 2} />
@@ -523,6 +530,33 @@ const EarthRotation: React.FC<VisualBoxProps & {visual: Earth}> = ({visual, widt
 			</g>
 		</World>
 	);
+};
+
+/**
+ * Label heights that keep centred labels from covering one another: a label overlapping one already placed (sideways
+ * by its width, upwards and downwards by `height`) moves down below it. Two places 19° apart (Gökçeada and Iğdır,
+ * KPSS Coğrafya 1, 2 Nov 2026) printed their names on top of each other.
+ */
+export const separateLabels = (labels: readonly {x: number; y: number; width: number}[], height: number, obstacles: readonly {x: number; y: number; width: number}[] = []): number[] => {
+	const order = labels.map((label, index) => ({...label, index})).sort((a, b) => a.y - b.y);
+	// Marks the labels must not cover either (the places' own dots).
+	const placed: {x: number; y: number; width: number}[] = [...obstacles];
+	const ys = labels.map((label) => label.y);
+	for (const label of order) {
+		let y = label.y;
+		for (let moved = true; moved; ) {
+			moved = false;
+			for (const other of placed) {
+				if (Math.abs(other.x - label.x) < (other.width + label.width) / 2 && Math.abs(other.y - y) < height) {
+					y = other.y + height;
+					moved = true;
+				}
+			}
+		}
+		placed.push({x: label.x, y, width: label.width});
+		ys[label.index] = y;
+	}
+	return ys;
 };
 
 // ---------------------------------------------------------------- pressure belts and prevailing winds

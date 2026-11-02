@@ -12,6 +12,7 @@ Eğitim videolarının ders listesi, üretim kontrol listesi, kamp planları ve 
 - Eğitim verisi motorda kopyalanmaz: konu anlatımları ve sorular `Desktop\EgitimVerileri`'den doğrudan okunur (31 Ekim 2026)
 - `Works/<Kategori>/<Ders>/<Konu>.json` · Works'ün aktardığı konu dosyaları (`npm run curriculum -- works`)
 - `Scripts/<Kategori>/<Ders>/<Konu>.json` · senaryolar
+- `QuestionRevision/` · uygulamadaki quiz sorularının revizyonu: revize sorular, kurallar, raporlar ve araçlar; figürleri motor çizer. Plan: [QuestionRevision/CalismaPlani.md](QuestionRevision/CalismaPlani.md). Çekilen veri ve üretilen SQL `Outputs/QuestionRevision/` altında
 - `Jobs/<kamp>/<NN>-<konu>-youtube|reels.json` · render işleri; senaryonun kopyasını değil yolunu taşır (`npm run curriculum -- jobs make|check`), yanında YouTube notu `-youtube.md`
 
 ```bash

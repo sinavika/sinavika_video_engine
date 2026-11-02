@@ -1,7 +1,7 @@
 import React from 'react';
 import {easeFrom} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
-import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useFigureFont, useStillFigure, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import {MEMBRANE_PARTS} from './BiologySchema';
 import {type CourseVisual} from '../VisualSchema';
 import {usePartLook, World} from '../VisualWorld';
@@ -96,7 +96,8 @@ const Part: React.FC<{id: string; entrance: number; children: (focus: number) =>
 };
 
 /** Particles crossing at one place: a crowd on the side they come from, a few on the other, some on the way. */
-const Crossing: React.FC<{kind: Transport; index: number; entrance: number; seconds: number}> = ({kind, index, entrance, seconds}) => {
+/** `numeral`: a question's numbered figure names the transport I, II… after the labelled parts, and gives no hint under it. */
+const Crossing: React.FC<{kind: Transport; index: number; entrance: number; seconds: number; numeral?: string}> = ({kind, index, entrance, seconds, numeral}) => {
 	const palette = useVisualPalette();
 	const look = usePartLook(`t${index + 1}`, entrance);
 	const x = TRANSPORT_AT[kind];
@@ -115,7 +116,14 @@ const Crossing: React.FC<{kind: Transport; index: number; entrance: number; seco
 		) : (
 			<circle key={key} cx={cx} cy={cy} r={kind === 'osmoz' ? 7 : 6.5} fill={colour} opacity={alpha} />
 		);
-	const [title, detail] = TRANSPORT_TEXT[kind];
+	const [title, detail] = numeral ? [numeral, ''] : TRANSPORT_TEXT[kind];
+	// Raised to an app still's smallest text, "çoktan aza, ATP yok" ran into its neighbour's "kanalla, ATP yok": a
+	// detail wider than its place breaks after its comma.
+	const detailSize = useFigureFont()(18);
+	// A question's numerals (I–IV) are what the student answers with: in an app still, shown about 360 pixels wide, they
+	// are drawn half as large again (Soru revizyonu, 2 Nov 2026).
+	const numeralSize = useStillFigure() ? 46 : 30;
+	const detailLines = detailSize > 18 && detail.length * detailSize * 0.55 > 180 ? detail.split(/(?<=,) /) : [detail];
 	const arrowY0 = up ? 410 : 150;
 	const arrowY1 = up ? 150 : 410;
 	const side = x > 900 ? -46 : 46;
@@ -131,8 +139,14 @@ const Crossing: React.FC<{kind: Transport; index: number; entrance: number; seco
 					<text x={x + 70} y={BOTTOM + 53} textAnchor="middle" dominantBaseline="middle" fontSize={15} fontWeight={800} fill={palette.ink} fontFamily={palette.fontBody}>ATP</text>
 				</g>
 			) : null}
-			<text x={x} y={512} textAnchor="middle" fontSize={23 * (1 + 0.08 * look.focused)} fontWeight={800} fill={look.focused > 0.5 ? palette.lesson : palette.ink} stroke={palette.surface} strokeWidth={6} paintOrder="stroke" fontFamily={palette.fontBody}>{title}</text>
-			<text x={x} y={540} textAnchor="middle" fontSize={18} fontWeight={600} fill={palette.muted} stroke={palette.surface} strokeWidth={5} paintOrder="stroke" fontFamily={palette.fontBody}>{detail}</text>
+			<text x={x} y={512} textAnchor="middle" fontSize={(numeral ? numeralSize : 23) * (1 + 0.08 * look.focused)} fontWeight={800} fill={look.focused > 0.5 ? palette.lesson : palette.ink} stroke={palette.surface} strokeWidth={6} paintOrder="stroke" fontFamily={palette.fontBody}>{title}</text>
+			<text x={x} y={540} textAnchor="middle" fontSize={detailSize} fontWeight={600} fill={palette.muted} stroke={palette.surface} strokeWidth={detailSize * 0.28} paintOrder="stroke" fontFamily={palette.fontBody}>
+				{detailLines.map((line, row) => (
+					<tspan key={row} x={x} dy={row === 0 ? 0 : detailSize * 1.1}>
+						{line}
+					</tspan>
+				))}
+			</text>
 		</g>
 	);
 };
@@ -149,6 +163,9 @@ export const MembraneVisual: React.FC<VisualBoxProps & {visual: Membrane}> = ({v
 	const t = Math.max(0, seconds - delaySeconds);
 	const enter = (k: number) => easeFrom(seconds, delaySeconds + k * 0.25, 0.6);
 	const labels = visual.labels ?? (visual.transport.length ? [] : [...MEMBRANE_PARTS]);
+	// A question's numerals (I–VII) name the parts the student answers with: half as large again in an app still.
+	const still = useStillFigure();
+	const partSize = visual.numbered && still ? 34 : 22;
 	const label = (part: string, index: number, focus: number) => {
 		const {anchor, at} = PART_LABEL[part];
 		const colour = focus > 0.5 ? palette.lesson : palette.ink;
@@ -157,7 +174,7 @@ export const MembraneVisual: React.FC<VisualBoxProps & {visual: Membrane}> = ({v
 			<g>
 				<line x1={anchor[0]} y1={anchor[1]} x2={at[0]} y2={at[1] + (below ? -16 : 10)} stroke={colour} strokeWidth={2 + focus} opacity={0.7} />
 				<circle cx={anchor[0]} cy={anchor[1]} r={4.5} fill={colour} />
-				<text x={at[0]} y={at[1]} textAnchor="middle" dominantBaseline={below ? 'hanging' : 'auto'} fontSize={22 * (1 + 0.1 * focus)} fontWeight={focus > 0.5 ? 800 : 700} fill={colour} stroke={palette.surface} strokeWidth={6} paintOrder="stroke" fontFamily={palette.fontBody}>
+				<text x={at[0]} y={at[1]} textAnchor="middle" dominantBaseline={below ? 'hanging' : 'auto'} fontSize={partSize * (1 + 0.1 * focus)} fontWeight={focus > 0.5 ? 800 : 700} fill={colour} stroke={palette.surface} strokeWidth={6} paintOrder="stroke" fontFamily={palette.fontBody}>
 					{visual.numbered ? ROMAN[index] : NAMES[part]}
 				</text>
 			</g>
@@ -234,7 +251,7 @@ export const MembraneVisual: React.FC<VisualBoxProps & {visual: Membrane}> = ({v
 				</Part>
 			))}
 			{visual.transport.map((kind, index) => (
-				<Crossing key={kind} kind={kind} index={index} entrance={enter(8 + index)} seconds={t} />
+				<Crossing key={kind} kind={kind} index={index} entrance={enter(8 + index)} seconds={t} numeral={visual.numbered ? ROMAN[labels.length + index] : undefined} />
 			))}
 		</World>
 	);

@@ -1,6 +1,6 @@
 # YouTube metni: TYT Coğrafya kampı · Ders 10 · Türkiye'nin Yer Şekilleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Cografya/10_Turkiyenin_Yer_Sekilleri/Turkiyenin_Yer_Sekilleri_YouTube.mp4` (4K) · Kapak: `Turkiyenin_Yer_Sekilleri_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Cografya/10_Turkiyenin_Yer_Sekilleri/Turkiyenin_Yer_Sekilleri_YouTube.mp4` (4K) · Kapak: `Turkiyenin_Yer_Sekilleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

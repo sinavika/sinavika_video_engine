@@ -57,6 +57,28 @@ describe('process figures', () => {
 		expect(processVisualSuggestions(script).filter((line) => line.startsWith('s1-c1') && line.includes('"heyelan"'))).toEqual([]);
 	});
 
+	it('takes the relief scene, whose rivers cut valleys and build a delta, for river erosion', () => {
+		const script = withNarration('Akarsular platoyu yararak vadiler açar; kıyıda delta kurar.');
+		const card = script.lesson.sections[0].cards[0];
+		if (!('visual' in card)) throw new Error('the sample opens with a card that can carry a figure');
+		card.visual = {kind: 'landform', scene: 'relief', numbered: false};
+		expect(processVisualSuggestions(script).filter((line) => line.startsWith('s1-c1') && line.includes('"akarsu aşındırması"'))).toEqual([]);
+	});
+
+	it('takes the springs scene, whose karst spring gushes from limestone channels, for karst', () => {
+		const withSpring = (stages?: string[]) => {
+			const script = withNarration('Karstik kaynaklar Toroslar eteklerinde gür çıkar.');
+			const card = script.lesson.sections[0].cards[0];
+			if (!('visual' in card)) throw new Error('the sample opens with a card that can carry a figure');
+			card.visual = {kind: 'process', process: 'spring', labels: [], ...(stages ? {stages} : {})} as unknown as typeof card.visual;
+			return processVisualSuggestions(script).filter((line) => line.startsWith('s1-c1') && line.includes('"karst"'));
+		};
+		expect(withSpring()).toEqual([]);
+		expect(withSpring(['yamac', 'karstik'])).toEqual([]);
+		// Without its karst stage the scene shows no karst.
+		expect(withSpring(['yamac', 'fay'])).toHaveLength(1);
+	});
+
 	it('takes the desert scene for wind erosion', () => {
 		const script = withNarration("Karapınar'da rüzgâr erozyonu kumulları tarlalara taşıdı.");
 		const card = script.lesson.sections[0].cards[0];
@@ -65,14 +87,38 @@ describe('process figures', () => {
 		expect(processVisualSuggestions(script).filter((line) => line.startsWith('s1-c1') && line.includes('"erozyon"'))).toEqual([]);
 	});
 
+	it('lets a map that marks the struck provinces show an earthquake, not a bare map', () => {
+		const quake = (visual: unknown) => {
+			const script = withNarration('6 Şubat 2023 depremleri Kahramanmaraş merkezliydi ve on bir ili etkiledi.');
+			const card = script.lesson.sections[0].cards[0];
+			if (!('visual' in card)) throw new Error('the sample opens with a card that can carry a figure');
+			card.visual = visual as typeof card.visual;
+			return processVisualSuggestions(script).filter((line) => line.startsWith('s1-c1') && line.includes('"deprem"'));
+		};
+		const map = {kind: 'map', base: 'provinces', overlays: [], shades: [], shadeStyle: 'scale', highlights: [], focus: [], markers: [], routes: [], territories: [], ridges: [], lines: [], parallels: [], meridians: []};
+		expect(quake({...map, shades: [{label: 'Etkilenen 11 il', names: ['Hatay', 'Kahramanmaraş']}]})).toEqual([]);
+		expect(quake({...map, markers: [{at: [37.29, 37.49], label: 'Pazarcık 7,7'}]})).toEqual([]);
+		// A map with nothing marked on it shows no earthquake (Vatandaşlık 9, 2 Nov 2026).
+		expect(quake(map)).toHaveLength(1);
+	});
+
 	it('does not take a name or an era for a process', () => {
 		const said = (narration: string) => processVisualSuggestions(withNarration(narration)).filter((line) => line.startsWith('s1-c1'));
 		expect(said('1950 seçimlerini Adnan Menderes ve arkadaşlarının partisi kazandı.')).toEqual([]);
 		expect(said("II. Dünya Savaşı'ndan sonra Soğuk Savaş başladı; Türkiye savaş ilan etti ama savaş dışı kaldı.")).toEqual([]);
 		expect(said('Büyük Menderes ovasında akarsu menderesler çizer.').some((line) => line.includes('"akarsu aşındırması"'))).toBe(true);
+		// The rivers and plains named Büyük and Küçük Menderes are places, not meanders (KPSS Coğrafya 6).
+		expect(said('Gediz, Küçük Menderes ve Büyük Menderes ovaları birer grabendir.')).toEqual([]);
+		expect(said("Ege'ye Meriç, Gediz ve Menderesler dökülür.")).toEqual([]);
 		expect(said("Malazgirt Savaşı'nda Selçuklu süvarisi sahte ricat yaptı.").some((line) => line.includes('"savaş"'))).toBe(true);
 		expect(said('Tehlike anında beden savaş ya da kaç tepkisi verir; afetler, salgınlar, savaş, kirlilik stres yaratır.')).toEqual([]);
 		expect(said("Hobbes'a göre doğa durumu herkesin herkese savaşıdır; herkes herkese karşı savaş hâlindedir.")).toEqual([]);
+		// The law's wartime: "savaş, seferberlik ve olağanüstü hâl", "savaş hukuku" (Vatandaşlık 3, Anayasa m.15) is no battle.
+		expect(said('Savaş, seferberlik ve olağanüstü hâllerde haklar durdurulabilir; savaş hukukuna uygun fiiller dışında yaşama hakkına dokunulamaz. Savaşta ya da olağanüstü hâlde bile.')).toEqual([]);
+		expect(said('Seçimler yalnız savaş sebebiyle bir yıl geriye bırakılabilir; savaş hâlinde Meclis toplanır.')).toEqual([]);
+		// A warship or a war plane is a kind of vessel (Vatandaşlık 9, Montrö); a battle at sea still asks for a figure.
+		expect(said("Montrö'ye göre savaşan devletlerin savaş gemileri boğazdan geçemez; KAAN bir savaş uçağıdır.")).toEqual([]);
+		expect(said('Preveze Deniz Savaşı’nda savaş gemileri Barbaros’un donanmasına yenildi.').some((line) => line.includes('"savaş"'))).toBe(true);
 		// Polyester is a fibre, not a karst polje (KIM 10).
 		expect(said('Naylon ve polyester sentetik liflerdir.')).toEqual([]);
 		expect(said('Karstik arazide polyeler ve obruklar oluşur.').some((line) => line.includes('"karst"'))).toBe(true);

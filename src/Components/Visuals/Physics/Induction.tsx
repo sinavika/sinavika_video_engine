@@ -3,6 +3,7 @@ import {useReveal, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useStageClock} from '../VisualTimeline';
 import {arrowHead} from './ArrowHead';
+import {INDUCTION_STAGES} from './PhysicsSchema';
 
 type Induction = Extract<CourseVisual, {kind: 'induction'}>;
 
@@ -10,8 +11,6 @@ type Induction = Extract<CourseVisual, {kind: 'induction'}>;
 export const INDUCTION_STAGE = {width: 1600, height: 900};
 
 /** The three moments of the experiment, in order; beats move through them with `stage` 0, 1, 2. */
-const INDUCTION_STAGES = ['Yaklaşıyor', 'Duruyor', 'Uzaklaşıyor'] as const;
-
 /**
  * The induced current in the ring as the magnet comes in from the left, stops and goes back: which way it runs on
  * the ring's near side (+1 up, −1 down, 0 none). By Lenz's law the ring opposes the change: an approaching N pole

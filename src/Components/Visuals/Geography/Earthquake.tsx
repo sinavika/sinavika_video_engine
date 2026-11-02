@@ -5,6 +5,7 @@ import {NATURE_COLORS as C} from '../../../Configurations/NatureColors';
 import {withAlpha} from '../../../Themes/Theme';
 import {useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
+import {EARTHQUAKE_STAGES} from '../Three/ThreeSchema';
 import {useStageClock} from '../VisualTimeline';
 import {H, pathOf, W, World} from '../VisualWorld';
 import {Label, StageStrip, TOP} from './ProcessStage';
@@ -13,7 +14,7 @@ type Earthquake = Extract<CourseVisual, {kind: 'earthquake'}>;
 
 // ---------------------------------------------------------------- earthquakes
 
-const QUAKE_STAGES = ['Fay', 'Gerilme birikir', 'Kırılma', 'Dalgalar'] as const;
+const QUAKE_STAGES = EARTHQUAKE_STAGES.section;
 
 const SURFACE = TOP + 90;
 

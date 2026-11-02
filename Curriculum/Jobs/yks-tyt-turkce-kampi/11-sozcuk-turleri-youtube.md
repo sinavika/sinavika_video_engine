@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 11 · Sözcük Türleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Turkce/11_Sozcuk_Turleri/Sozcuk_Turleri_YouTube.mp4` (4K) · Kapak: `Sozcuk_Turleri_YouTube_Kapak.jpg` (kamp kapağı).
+Video: `Outputs/Videos/YKS/TYT/Turkce/11_Sozcuk_Turleri/Sozcuk_Turleri_YouTube.mp4` (4K, 16:38) · Kapak: `Sozcuk_Turleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 
@@ -27,7 +27,7 @@ Bu derste:
 2. ile geçen iki cümle kur: birinde edat, birinde bağlaç olsun.
 3. Sınavika'da Sözcük Türleri testinden 20 soru çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz.
 
-⏮️ Önceki ders, Sözcükte Yapı: (yayın linki)
+⏮️ Önceki ders, Sözcükte Yapı: https://youtu.be/nf4EfN32AVg
 ⏭️ Sıradaki ders: Fiiller. Kanala abone ol, hiçbir dersi kaçırma! 🔔
 🗺️ Kampı baştan izle, Bölüm 0: https://youtu.be/-YSeFFxDOhM
 
@@ -37,7 +37,17 @@ Google Play: https://play.google.com/store/apps/details?id=com.sinavika.mobile
 Web: https://sinavika.com
 
 Bölümler:
-(render sonrası `Sozcuk_Turleri_YouTube.chapters.txt` buraya yapıştırılır; bölüm başlıkları: Giriş, Türü görev belirler, İsimler, İsim çekim ekleri, Sıfatlar, Zamirler, Zarflar, Edat, bağlaç ve ünlem, Türleri sırayla bul, Özet, Kamp görevi)
+0:00 Giriş
+0:55 Türü görev belirler
+1:39 İsimler
+2:22 İsim çekim ekleri
+5:26 Sıfatlar
+7:25 Zamirler
+9:57 Zarflar
+11:49 Edat, bağlaç ve ünlem
+13:57 Türleri sırayla bul
+15:32 Özet
+16:05 Kamp görevi
 
 #TYT #YKS #TYTTürkçe #SözcükTürleri #Sınavika
 
@@ -52,3 +62,7 @@ TYT Türkçe Kampı | Sınavika · YKS Kampı | Sınavika
 ## Ayarlar
 
 Kategori Eğitim · dil Türkçe · çocuklara özel değil · ücretli tanıtım yok · yapay zekâ beyanı önceki derslerle aynı · yayın saati sahibin kararı (öneri: 6 Kasım 19:00).
+
+## Yükleme (1 Kasım 2026)
+
+Videoyu sahip yükledi ve yayın gününü kendisi seçti: https://youtu.be/rNCbvK2rrpo · herkese açık 7 Kasım 2026 (planlı). Studio'da girildi ve sunucudan yeniden okunarak doğrulandı: başlık A (sahip: "A/B testini açma, varsayılanı yaz"; B ve C kullanılmadı), yukarıdaki açıklama (bölümler ve önceki ders bağlantısıyla), kapak `Sozcuk_Turleri_YouTube_Kapak.png`, iki oynatma listesi, etiketler, dil Türkçe, kategori Eğitim, ücretli tanıtım yok, yapay zekâ beyanı "Hayır", bitiş ekranı Ders 4'ten içe aktarıldı (abone ol + en son yükleme).

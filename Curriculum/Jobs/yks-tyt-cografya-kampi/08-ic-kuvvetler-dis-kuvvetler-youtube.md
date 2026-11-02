@@ -1,6 +1,6 @@
 # YouTube metni: TYT Coğrafya kampı · Ders 8 · İç Kuvvetler / Dış Kuvvetler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Cografya/08_Ic_Kuvvetler_Dis_Kuvvetler/Ic_Kuvvetler_Dis_Kuvvetler_YouTube.mp4` (4K) · Kapak: `Ic_Kuvvetler_Dis_Kuvvetler_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Cografya/08_Ic_Kuvvetler_Dis_Kuvvetler/Ic_Kuvvetler_Dis_Kuvvetler_YouTube.mp4` (4K) · Kapak: `Ic_Kuvvetler_Dis_Kuvvetler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

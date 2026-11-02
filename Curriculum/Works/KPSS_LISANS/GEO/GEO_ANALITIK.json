@@ -1,0 +1,1495 @@
+{
+ "topic": {
+  "id": "12F123A1-211A-3FFA-09C0-28AEF3A32425",
+  "category": "KPSS_LISANS",
+  "lesson": "GEO",
+  "code": "GEO_ANALITIK"
+ },
+ "title": "Doğrunun Analitik İncelenmesi",
+ "lessonName": "Geometri",
+ "exams": [
+  "KPSS"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/KPSS/GEO/GEO_ANALITIK.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Her nokta iki sayı",
+   "narration": "Düzlemdeki her noktayı iki sayıyla söyleyebilirsin: ne kadar sağda, ne kadar yukarıda. Bu fikirle geometri hesaba döner: uzaklık bir Pisagor, eğim bir bölme, doğru bir denklem olur. Bu derste koordinat düzleminden noktanın doğruya uzaklığına kadar analitik geometrinin bütün araçlarını, ÖSYM'nin üç kalıbıyla birlikte göreceğiz."
+  },
+  "objectives": [
+   "Koordinat düzleminde bölgeleri ve noktaları okumak",
+   "Uzaklık ve orta noktayı bulmak",
+   "Eğimi ve doğru denklemini yazmak",
+   "Paralel ve dik doğruların eğimlerini kullanmak",
+   "Noktanın doğruya uzaklığını bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_ANALITIK_01",
+    "subtopics": [],
+    "title": "Koordinat düzlemi",
+    "narration": "Dik kesişen iki sayı doğrusu düzlemi dört bölgeye ayırır; her nokta bir sayı ikilisiyle adlandırılır.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Eksenler ve bölgeler",
+      "text": "Yatay eksen $x$, dikey eksen $y$; kesiştikleri nokta orijin $(0, 0)$. $A(3, 2)$'de 3 **apsis**, 2 **ordinattır**. Bölgeler saat yönünün tersine numaralanır: I. bölgede $(+, +)$, II.'de $(-, +)$, III.'te $(-, -)$, IV.'te $(+, -)$.",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -4.6,
+        -4.6,
+        4.6,
+        4.6
+       ],
+       "axes": {
+        "step": 1,
+        "numbers": true,
+        "grid": true
+       },
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          3,
+          2
+         ],
+         "label": "A(3, 2)",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          -2,
+          3
+         ],
+         "label": "B(−2, 3)",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          -3,
+          -2
+         ],
+         "label": "C(−3, −2)",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          2,
+          -3
+         ],
+         "label": "D(2, −3)",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "Ax",
+         "at": [
+          3,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "Ay",
+         "at": [
+          0,
+          2
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "N1",
+         "at": [
+          3,
+          4
+         ],
+         "label": "I. bölge",
+         "hidden": false,
+         "dot": true,
+         "caption": true
+        },
+        {
+         "id": "N2",
+         "at": [
+          -3,
+          4
+         ],
+         "label": "II. bölge",
+         "hidden": false,
+         "dot": true,
+         "caption": true
+        },
+        {
+         "id": "N3",
+         "at": [
+          -3,
+          -4
+         ],
+         "label": "III. bölge",
+         "hidden": false,
+         "dot": true,
+         "caption": true
+        },
+        {
+         "id": "N4",
+         "at": [
+          3,
+          -4
+         ],
+         "label": "IV. bölge",
+         "hidden": false,
+         "dot": true,
+         "caption": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "Ax",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "Ay",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "A'nın x eksenine izdüşümü 3, y eksenine izdüşümü 2: A, 3 virgül 2.",
+        "show": [],
+        "focus": [
+         "AAx",
+         "AAy"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Her bölgeden bir nokta: işaretler bölgeyi söylüyor.",
+        "show": [],
+        "focus": [
+         "A",
+         "B",
+         "C",
+         "D"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Koordinat düzleminde yatay sayı doğrusuna x ekseni, dikey olana y ekseni denir; kesiştikleri nokta orijindir. Bir noktayı önce x sonra y değeriyle yazarız: A 3 virgül 2 noktasında 3 apsis, 2 ordinattır. Eksenler düzlemi dört bölgeye ayırır; bölgeler saat yönünün tersine numaralanır. Birinci bölgede iki işaret de artı, ikincide apsis eksi, üçüncüde ikisi de eksi, dördüncüde ordinat eksidir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$A(a - 3, \\ 2a + 1)$ noktası II. bölgede olduğuna göre $a$'nın alabileceği kaç farklı tam sayı değeri vardır?",
+       "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$a - 3 < 0$ ve $2a + 1 > 0$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "II. bölgede apsis eksi: a eksi 3 sıfırdan küçük. Ordinat artı: 2a artı 1 sıfırdan büyük."
+        },
+        {
+         "text": "$-\\frac{1}{2} < a < 3$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a, 3'ten küçük ve eksi yarımdan büyük."
+        },
+        {
+         "text": "$a \\in \\{0, 1, 2\\}$: 3 değer. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Tam sayılar 0, 1 ve 2: 3 değer. Cevap C. 3'ü de saymak, apsisin sıfır olabileceğini sanmaktır; eksen üzerindeki nokta hiçbir bölgede değildir."
+        }
+       ],
+       "narration": "II. bölgede apsis negatif, ordinat pozitif.",
+       "origin": {
+        "changes": "Havuzdaki bölgesi verilen noktanın koordinatlarından aralık kurma kalıbı örnek alındı; ifadeler bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ANALITIK_02",
+    "subtopics": [],
+    "title": "İki nokta arasındaki uzaklık",
+    "narration": "İki nokta arasındaki uzaklık, aralarına kurulan dik üçgenin hipotenüsüdür.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Uzaklık",
+      "items": [
+       "$|AB| = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$: Pisagor.",
+       "Yatay fark $\\Delta x$, dikey fark $\\Delta y$ dik kenarlardır."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        6.2,
+        5.2
+       ],
+       "axes": {
+        "step": 1,
+        "numbers": true,
+        "grid": true
+       },
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          1,
+          1
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          5,
+          4
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "K",
+         "at": [
+          5,
+          1
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "K",
+         "label": "Δx = 4",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "K",
+         "to": "B",
+         "label": "Δy = 3",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "B",
+         "label": "d",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "K",
+          "B"
+         ],
+         "fill": true,
+         "id": "ucgen",
+         "shade": 2
+        }
+       ],
+       "circles": [],
+       "angles": [
+        {
+         "at": "K",
+         "from": "A",
+         "to": "B",
+         "right": true,
+         "arcs": 1
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "A'dan B'ye: yatayda 4 birim, dikeyde 3 birim.",
+        "show": [],
+        "focus": [
+         "AK",
+         "KB"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Dik üçgenin hipotenüsü uzaklıktır: 3, 4, 5 üçlüsünden 5.",
+        "show": [],
+        "focus": [
+         "AB",
+         "ucgen"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "İki nokta arasındaki uzaklığı bulmak için aralarına bir dik üçgen kur: yatay fark ve dikey fark dik kenarlar, uzaklık hipotenüs. Pisagor'dan uzaklık, farkların karelerinin toplamının kareköküdür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$A(1, 2)$ ve $B(7, 10)$ noktaları arasındaki uzaklık kaç birimdir?",
+       "options": [
+        "6",
+        "8",
+        "9",
+        "10",
+        "12"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$\\Delta x = 6$, $\\Delta y = 8$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yatay fark 7 eksi 1, 6; dikey fark 10 eksi 2, 8."
+        },
+        {
+         "text": "$|AB| = \\sqrt{36 + 64} = 10$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "36 artı 64, 100; karekökü 10. Cevap D. 6, 8, 10 üçlüsü. Farkları toplayıp 14 demek, yolu köşeden dolaşmaktır; uzaklık düz yoldur."
+        }
+       ],
+       "narration": "Farkları alıp Pisagor uygulayalım.",
+       "origin": {
+        "changes": "Havuzdaki iki nokta arasındaki uzaklık kalıbı örnek alındı; noktalar bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ANALITIK_03",
+    "subtopics": [],
+    "title": "Orta nokta",
+    "narration": "Bir doğru parçasının orta noktası, uçlarının koordinatlarının ortalamasıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Orta nokta",
+      "items": [
+       "$M = \\left(\\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2}\\right)$.",
+       "Bir uç ve orta nokta biliniyorsa öbür uç: $B = 2M - A$."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -2.9,
+        -0.9,
+        4.9,
+        5.9
+       ],
+       "axes": {
+        "step": 1,
+        "numbers": true,
+        "grid": true
+       },
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          -2,
+          5
+         ],
+         "label": "A(−2, 5)",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          4,
+          1
+         ],
+         "label": "B(4, 1)",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "M",
+         "at": [
+          1,
+          3
+         ],
+         "label": "M(1, 3)",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "M",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "M",
+         "to": "B",
+         "dashed": false,
+         "ticks": 1
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "M, AB'nin orta noktası: x'ler eksi 2 ile 4'ün ortalaması 1, y'ler 5 ile 1'in ortalaması 3.",
+        "show": [],
+        "focus": [
+         "AM",
+         "MB"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bir doğru parçasının orta noktasının koordinatları, uçların koordinatlarının ortalamasıdır. Bir uç ile orta nokta verilmişse öbür ucu bulmak için orta noktanın 2 katından bilinen ucu çıkar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$[AB]$'nin orta noktası $M(1, 3)$ ve $A(-2, 5)$ olduğuna göre $B(a, b)$ için $a + b$ kaçtır?",
+       "options": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$a = 2 \\cdot 1 - (-2) = 4$, $b = 2 \\cdot 3 - 5 = 1$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a, 2 çarpı 1 eksi eksi 2, yani 4. b, 2 çarpı 3 eksi 5, yani 1."
+        },
+        {
+         "text": "$a + b = 5$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "B, 4 virgül 1; a artı b, 5. Cevap A. M ile A'nın ortalamasını almak, B'yi değil AM'nin ortasını bulur."
+        }
+       ],
+       "narration": "Öbür uç: orta noktanın 2 katı eksi bilinen uç.",
+       "origin": {
+        "changes": "Havuzdaki bir uç ve orta noktadan öbür ucu buldurma kalıbı örnek alındı; noktalar bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ANALITIK_04",
+    "subtopics": [],
+    "title": "Doğrunun eğimi",
+    "narration": "Eğim, doğrunun ne kadar dik çıktığını söyleyen sayıdır: dikey fark bölü yatay fark.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Eğim üçgeni",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -1.4,
+        -0.9,
+        5.9,
+        4.6
+       ],
+       "axes": {
+        "step": 1,
+        "numbers": true,
+        "grid": true
+       },
+       "points": [
+        {
+         "id": "R",
+         "at": [
+          -0.5,
+          0
+         ],
+         "label": "R",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "P",
+         "at": [
+          1,
+          1
+         ],
+         "label": "P",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "Q",
+         "at": [
+          4,
+          3
+         ],
+         "label": "Q",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "K",
+         "at": [
+          4,
+          1
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          5.3,
+          3.87
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "X",
+         "at": [
+          5.5,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "R",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "P",
+         "to": "K",
+         "label": "Δx = 3",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "K",
+         "to": "Q",
+         "label": "Δy = 2",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "R",
+         "from": "X",
+         "to": "E",
+         "label": "α",
+         "right": false,
+         "arcs": 1,
+         "id": "a1"
+        },
+        {
+         "at": "P",
+         "from": "K",
+         "to": "Q",
+         "label": "α",
+         "right": false,
+         "arcs": 1,
+         "id": "a2"
+        },
+        {
+         "at": "K",
+         "from": "P",
+         "to": "Q",
+         "right": true,
+         "arcs": 1
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "P'den Q'ya yatayda 3, dikeyde 2 birim gidiyoruz.",
+        "show": [],
+        "focus": [
+         "PK",
+         "KQ"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Eğim dikey fark bölü yatay fark: 2 bölü 3.",
+        "show": [],
+        "focus": [
+         "KQ",
+         "PK"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Doğrunun x ekseniyle yaptığı açı α, P'deki açıya eşit: yöndeş açılar. Eğim, bu açının tanjantıdır.",
+        "show": [],
+        "focus": [
+         "a1",
+         "a2"
+        ],
+        "note": "m = Δy / Δx = tan α",
+        "swap": []
+       }
+      ],
+      "narration": "Bir doğru üzerinde iki nokta alalım."
+     },
+     {
+      "kind": "rule",
+      "title": "Eğim",
+      "items": [
+       "$m = \\frac{y_2 - y_1}{x_2 - x_1} = \\tan\\alpha$ ($\\alpha$: $x$ ekseninin pozitif yönüyle açı).",
+       "Sağa doğru yükselen doğruda $m > 0$, alçalanda $m < 0$; yatay doğruda $m = 0$, dikeyde tanımsız."
+      ],
+      "beats": [],
+      "narration": "Eğim, iki nokta arasındaki dikey farkın yatay farka oranıdır; doğrunun x ekseninin pozitif yönüyle yaptığı açının tanjantına eşittir. Sağa doğru yükselen doğrunun eğimi pozitif, alçalanınki negatiftir. Yatay doğrunun eğimi sıfır, dikey doğrunun eğimi tanımsızdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$A(2, -1)$ ve $B(5, 5)$ noktalarından geçen doğrunun eğimi kaçtır?",
+       "options": [
+        "$-2$",
+        "$-\\frac{1}{2}$",
+        "$\\frac{1}{2}$",
+        "$2$",
+        "$3$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$m = \\frac{5 - (-1)}{5 - 2} = \\frac{6}{3}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dikey fark 5 eksi eksi 1, 6; yatay fark 5 eksi 2, 3."
+        },
+        {
+         "text": "$m = 2$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eğim 6 bölü 3, 2. Cevap D. Kesri ters kurup yarım bulmak C şıkkının tuzağıdır: önce y'ler."
+        }
+       ],
+       "narration": "Dikey fark bölü yatay fark.",
+       "origin": {
+        "changes": "Havuzdaki iki noktadan geçen doğrunun eğimi kalıbı örnek alındı; noktalar bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ANALITIK_05",
+    "subtopics": [],
+    "title": "Doğru denklemi",
+    "narration": "Bir doğruyu eğimi ve bir noktası belirler; denklemi bu ikisinden yazılır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Eğim değişince",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -4,
+        4
+       ],
+       "y": [
+        -4,
+        6
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "m*x + 1",
+         "label": "y = mx + 1",
+         "ends": [
+          "none",
+          "none"
+         ],
+         "trace": false
+        }
+       ],
+       "parameters": {
+        "m": {
+         "from": 0.5
+        }
+       },
+       "showParameters": true,
+       "points": [
+        {
+         "x": 0,
+         "y": 1,
+         "label": "(0, 1)"
+        }
+       ],
+       "segments": [],
+       "equalScale": true,
+       "axes": "origin"
+      },
+      "beats": [
+       {
+        "narration": "Şimdi eğim yarım: doğru hafifçe yükseliyor ve y eksenini 1'de kesiyor.",
+        "show": [],
+        "focus": [
+         "p1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Eğimi 2'ye çıkaralım: doğru dikleşiyor ama hâlâ 0 virgül 1'den geçiyor.",
+        "show": [],
+        "focus": [
+         "c1"
+        ],
+        "params": {
+         "m": 2
+        },
+        "swap": []
+       },
+       {
+        "narration": "Eğimi eksi 1 yapalım: doğru bu kez sağa doğru alçalıyor. n, yani 1, doğrunun y eksenini kestiği yer; m de eğimi.",
+        "show": [],
+        "focus": [
+         "c1"
+        ],
+        "params": {
+         "m": -1
+        },
+        "swap": []
+       }
+      ],
+      "narration": "y eşittir m x artı 1 doğrusuna bakalım."
+     },
+     {
+      "kind": "rule",
+      "title": "Doğru denklemi",
+      "items": [
+       "Eğimi $m$, bir noktası $(x_1, y_1)$: $y - y_1 = m(x - x_1)$; ya da $y = mx + n$.",
+       "Eksenleri $a$ ve $b$'de kesen doğru: $\\frac{x}{a} + \\frac{y}{b} = 1$.",
+       "$ax + by + c = 0$ biçiminde eğim $-\\frac{a}{b}$."
+      ],
+      "beats": [],
+      "narration": "Eğimi m olan ve bir noktasından geçen doğrunun denklemi y eksi y bir eşittir m çarpı x eksi x birdir. Düzenleyince y eşittir mx artı n biçimine gelir; n, doğrunun y eksenini kestiği yerdir. Eksenleri a ve b noktalarında kesen doğru için x bölü a artı y bölü b eşittir 1 yazılır. Denklem ax artı by artı c eşittir sıfır biçimindeyse eğim eksi a bölü b'dir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$K(2, 5)$ noktasından geçen bir doğru $x$ eksenini apsisi $a$, $y$ eksenini ordinatı $b$ olan noktalarda kesmektedir. Buna göre $(a - 2)(b - 5)$ çarpımının değeri kaçtır?",
+       "options": [
+        "6",
+        "8",
+        "10",
+        "12",
+        "15"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$\\frac{2}{a} + \\frac{5}{b} = 1$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Doğru x bölü a artı y bölü b eşittir 1; K'nin koordinatları onu sağlar: 2 bölü a artı 5 bölü b, 1."
+        },
+        {
+         "text": "$2b + 5a = ab \\Rightarrow ab - 5a - 2b = 0$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Paydaları eşitleyelim: 2b artı 5a, ab'ye eşit. Hepsini bir tarafa alalım: ab eksi 5a eksi 2b, sıfır."
+        },
+        {
+         "text": "$(a - 2)(b - 5) = ab - 5a - 2b + 10 = 10$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "a eksi 2 çarpı b eksi 5'i açarsan ab eksi 5a eksi 2b artı 10 olur; ilk üç terim sıfır, geriye 10 kalır. Cevap C. Doğru K'nin çevresinde dönse de bu çarpım hep 10'dur."
+        }
+       ],
+       "narration": "Eksen kesenleriyle yazılan denkleme K'yi koyalım.",
+       "origin": {
+        "changes": "ÖSYM KPSS Lisans 2009'daki noktadan geçen doğrunun eksen kesenleriyle çarpım kalıbı örnek alındı; nokta bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Eğimi $-2$ olan ve $(1, 4)$ noktasından geçen doğru $x$ eksenini hangi noktada keser?",
+       "options": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$y - 4 = -2(x - 1) \\Rightarrow y = -2x + 6$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "y eksi 4, eksi 2 çarpı x eksi 1: y, eksi 2x artı 6."
+        },
+        {
+         "text": "$y = 0 \\Rightarrow x = 3$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x ekseninde y sıfırdır: eksi 2x artı 6, sıfır; x, 3. Cevap B. E şıkkındaki 6, y eksenini kestiği yerdir."
+        }
+       ],
+       "narration": "Denklemi yazıp y'yi sıfır yapalım.",
+       "origin": {
+        "changes": "Havuzdaki eğimi ve noktası verilen doğrunun eksen kesimi kalıbı örnek alındı; sayılar bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ANALITIK_06",
+    "subtopics": [
+     "GEO_ANALITIK_07"
+    ],
+    "title": "Paralel ve dik doğrular",
+    "narration": "Paralel doğruların eğimleri eşittir; dik doğruların eğimlerinin çarpımı eksi birdir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Paralel ve dik",
+      "items": [
+       "Paralel doğrular: $m_1 = m_2$.",
+       "Dik doğrular: $m_1 \\cdot m_2 = -1$ (biri yatay, öbürü dikey değilse)."
+      ],
+      "beats": [],
+      "narration": "Paralel doğrular aynı açıyla yükselir; eğimleri eşittir. Dik kesişen iki doğrunun eğimlerinin çarpımı eksi birdir: biri 2 ise öbürü eksi yarımdır. Biri yatay öbürü dikey olduğunda bu kural yazılamaz; o durum kendiliğinden diktir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$2x - y + 3 = 0$ doğrusuna paralel olan ve $(1, 1)$ noktasından geçen doğru $y$ eksenini hangi noktada keser?",
+       "options": [
+        "$-3$",
+        "$-2$",
+        "$-1$",
+        "$1$",
+        "$2$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$2x - y + 3 = 0 \\Rightarrow y = 2x + 3$: $m = 2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Verilen doğru y eşittir 2x artı 3; eğimi 2."
+        },
+        {
+         "text": "$y - 1 = 2(x - 1) \\Rightarrow y = 2x - 1$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eğimi 2 olup 1 virgül 1'den geçen doğru: y eksi 1, 2 çarpı x eksi 1; y, 2x eksi 1."
+        },
+        {
+         "text": "$y$ ekseni: $-1$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x sıfırken y, eksi 1. Cevap C. E şıkkındaki 2, eğimin kendisidir."
+        }
+       ],
+       "narration": "Paralel doğrunun eğimi aynı.",
+       "origin": {
+        "changes": "Havuzdaki paralel doğru denklemi kalıbı örnek alındı; doğru ve nokta bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $P(0, 4)$ noktasında dik kesişen iki doğrudan birinin $x$ eksenini kestiği noktanın orijine uzaklığı, öbürününkinin 4 katıdır. Buna göre bu iki doğru ile $x$ ekseni arasında kalan bölgenin alanı kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -2.9,
+         -1.4,
+         8.9,
+         5.4
+        ],
+        "axes": {
+         "step": 2,
+         "numbers": true,
+         "grid": false
+        },
+        "points": [
+         {
+          "id": "P",
+          "at": [
+           0,
+           4
+          ],
+          "label": "P(0, 4)",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "A",
+          "at": [
+           -2,
+           0
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           8,
+           0
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "P",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "P",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "P",
+           "A",
+           "B"
+          ],
+          "fill": true,
+          "id": "ucgen",
+          "shade": 2
+         }
+        ],
+        "circles": [],
+        "angles": [
+         {
+          "at": "P",
+          "from": "A",
+          "to": "B",
+          "right": true,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "10",
+        "12",
+        "15",
+        "16",
+        "20"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$|OA| = d$, $|OB| = 4d$; $|PO|^2 = |OA| \\cdot |OB|$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Doğrular x eksenini A ve B'de kessin: OA d, OB 4d. PAB dik üçgeninde PO hipotenüse ait yükseklik: PO kare, OA çarpı OB."
+        },
+        {
+         "text": "$16 = 4d^2 \\Rightarrow d = 2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "4'ün karesi 16, 4d kareye eşit: d, 2. A eksi 2'de, B 8'de."
+        },
+        {
+         "text": "Alan $\\frac{10 \\cdot 4}{2} = 20$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Taban AB, 2 artı 8, 10; yükseklik 4. Alan 20 birimkare. Cevap E. A şıkkındaki 10 tabandır."
+        }
+       ],
+       "narration": "P'deki dik açıdan x eksenine inen yükseklik PO: Öklid bağıntısı.",
+       "origin": {
+        "changes": "ÖSYM KPSS Lisans 2018'deki dik kesişen iki doğrunun x ekseniyle sınırladığı bölge kalıbı örnek alındı; nokta ve oran bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ANALITIK_08",
+    "subtopics": [],
+    "title": "Noktanın doğruya uzaklığı",
+    "narration": "Bir noktanın bir doğruya uzaklığı, ondan doğruya inen dikin uzunluğudur; bu dikin ayağı doğrunun en yakın noktasıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Noktanın doğruya uzaklığı",
+      "items": [
+       "$P(x_0, y_0)$'ın $ax + by + c = 0$ doğrusuna uzaklığı: $\\frac{|ax_0 + by_0 + c|}{\\sqrt{a^2 + b^2}}$.",
+       "En yakın nokta dikin ayağıdır: $[PB] \\perp d$."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -1.9,
+        -0.9,
+        7.9,
+        6.9
+       ],
+       "axes": {
+        "step": 1,
+        "numbers": true,
+        "grid": true
+       },
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          1,
+          6
+         ],
+         "label": "A(1, 6)",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          3,
+          2
+         ],
+         "label": "B(3, 2)",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "L1",
+         "at": [
+          -1,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "L2",
+         "at": [
+          7,
+          4
+         ],
+         "label": "d",
+         "hidden": false,
+         "dot": false,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "L1",
+         "to": "L2",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "B",
+         "from": "L2",
+         "to": "A",
+         "right": true,
+         "arcs": 1
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "A'dan d doğrusuna en kısa yol, dik olarak inen yoldur; ayağı B.",
+        "show": [],
+        "focus": [
+         "AB"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bir noktanın bir doğruya uzaklığı, noktadan doğruya indirilen dikin uzunluğudur. Formülde noktanın koordinatlarını doğru denkleminde yerine koyar, mutlak değerini alır ve a kare artı b karenin kareköküne bölersin. Doğru üzerindeki en yakın nokta, bu dikin ayağıdır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Mutlak değeri unutma",
+      "wrong": "$\\frac{3 \\cdot 1 + 4 \\cdot (-3) - 1}{5} = -2$: uzaklık $-2$'dir.",
+      "right": "Uzaklık hiçbir zaman negatif olmaz: $\\frac{|-10|}{5} = 2$.",
+      "why": "Pay, mutlak değer içindedir.",
+      "narration": "Sık yapılan bir hata: formüldeki mutlak değeri unutup negatif bir uzaklık bulmak. Uzaklık bir uzunluktur, negatif olamaz. Eksi çıkan sonuç yalnız noktanın doğrunun hangi yanında olduğunu söyler."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$P(1, 2)$ noktasının $3x + 4y - 1 = 0$ doğrusuna uzaklığı kaç birimdir?",
+       "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$\\frac{|3 \\cdot 1 + 4 \\cdot 2 - 1|}{\\sqrt{3^2 + 4^2}} = \\frac{|10|}{5}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Pay: 3 çarpı 1 artı 4 çarpı 2 eksi 1, 10; mutlak değeri 10. Payda: 3 kare artı 4 karenin karekökü, 5."
+        },
+        {
+         "text": "$= 2$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Uzaklık 10 bölü 5, 2 birim. Cevap B."
+        }
+       ],
+       "narration": "Formüle yerleştirelim.",
+       "origin": {
+        "changes": "Havuzdaki noktanın doğruya uzaklığı kalıbı örnek alındı; nokta ve doğru bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Dik koordinat düzleminde $A(1, 6)$ noktasına $d$ doğrusu üzerindeki noktalardan en yakın olanı $B(3, 2)$'dir. $d$ doğrusunun denklemi $y = mx + n$ olduğuna göre $m + n$ kaçtır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.9,
+         -0.9,
+         7.9,
+         6.9
+        ],
+        "axes": {
+         "step": 1,
+         "numbers": true,
+         "grid": true
+        },
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           1,
+           6
+          ],
+          "label": "A(1, 6)",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           3,
+           2
+          ],
+          "label": "B(3, 2)",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "L1",
+          "at": [
+           -1,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "L2",
+          "at": [
+           7,
+           4
+          ],
+          "label": "d",
+          "hidden": false,
+          "dot": false,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "L1",
+          "to": "L2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "B",
+          "from": "L2",
+          "to": "A",
+          "right": true,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$\\frac{3}{2}$",
+        "$2$",
+        "$\\frac{5}{2}$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$m_{AB} = \\frac{2 - 6}{3 - 1} = -2 \\Rightarrow m = \\frac{1}{2}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "AB'nin eğimi eksi 4 bölü 2, eksi 2. d, AB'ye dik; eğimlerin çarpımı eksi 1: m, yarım."
+        },
+        {
+         "text": "$y - 2 = \\frac{1}{2}(x - 3) \\Rightarrow y = \\frac{x}{2} + \\frac{1}{2}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "d, B'den geçiyor: y eksi 2, yarım çarpı x eksi 3; y, x bölü 2 artı yarım. n de yarım."
+        },
+        {
+         "text": "$m + n = 1$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "m artı n, yarım artı yarım, 1. Cevap B. AB'nin eğimini d'nin eğimi sanmak bu sorunun tuzağıdır; d ona diktir."
+        }
+       ],
+       "narration": "En yakın nokta dikin ayağı: AB, d'ye dik.",
+       "origin": {
+        "changes": "ÖSYM KPSS Lisans 2015'teki doğru üzerindeki en yakın nokta kalıbı örnek alındı; noktalar bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Uzaklık: √(Δx² + Δy²).",
+    "Orta nokta: koordinatların ortalaması.",
+    "Eğim Δy / Δx = tan α.",
+    "y = mx + n: m eğim, n y-ekseni kesimi.",
+    "Paralel: m₁ = m₂; dik: m₁ · m₂ = −1.",
+    "Noktanın doğruya uzaklığı |ax₀ + by₀ + c| / √(a² + b²)."
+   ],
+   "warnings": [
+    "Eğimde önce **y farkı**.",
+    "Eksen üzerindeki nokta **bölgede değil**.",
+    "Uzaklıkta **mutlak değer**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki **10 soruyu** kareli kâğıtta çizerek yeniden çöz.",
+    "Kareli kâğıtta iki dik doğru çiz; eğimlerinin çarpımının **−1** olduğunu kontrol et.",
+    "Uygulamada KPSS Analitik Geometri testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Koordinat düzlemi: apsis, ordinat, dört bölgenin işaretleri; bölgesi verilen noktadan aralık (eksen üzerindeki nokta bölgede değil).",
+   "İki nokta arası uzaklık Pisagor'dan; orta nokta ortalamadan, bir uç ve orta noktadan öbür uç B = 2M − A.",
+   "Eğim Δy/Δx = tan α; işaretinin anlamı; yatay doğruda 0, dikeyde tanımsız; y = mx + n'de m eğim, n y-ekseni kesimi.",
+   "Doğru denklemi: nokta-eğim, eksen kesenli x/a + y/b = 1 (K'den geçen doğruda (a − x₀)(b − y₀) sabiti, ÖSYM 2009 kalıbı); ax + by + c = 0'da eğim −a/b.",
+   "Paralel doğrular m₁ = m₂, dik doğrular m₁m₂ = −1; dik kesişen doğrularla x ekseni arasındaki alan Öklid'le (ÖSYM 2018); noktanın doğruya uzaklığı formülü ve en yakın nokta dikin ayağı (ÖSYM 2015)."
+  ]
+ }
+}

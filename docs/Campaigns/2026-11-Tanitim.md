@@ -7,6 +7,21 @@
   - Hepsi yeniden onaya gönderilecek.
 
   Her `Post.json`'a reddedilen gönderinin kimliği `replacesPostId` olarak yazıldı. 40 görsel olduğu gibi yeniden gönderildi. 20 reels altyazısız, ses efektli ve lacivert zeminle yeniden render edilip gönderildi; 10 Kasım'da zaten altyazı yoktu.
+- **1 Kasım incelemesi (22 red):**
+  - **Yeniden gönderilen 12:** açık notlu redlerin hepsi düzeltilip reddedilenlerin yerine gönderildi.
+    - 9 Kasım reels ve hikâyesi: yeni hook.
+    - 10 ve 24 Kasım: Atatürk'le açılış, daha duygusal kurgu.
+    - 11 ve 13 Kasım: SinoAI cümle ortasında; 11'de defter üç dersten, 13'te yeni müzik.
+    - 12 ve 26 Kasım: yeni hook.
+    - 19 Kasım: carousel'e dönüştü.
+    - 24 Kasım hikâyesi: etiketleme çağrısı yok.
+    - 27 Kasım: tam ekran Coğrafya/Tarih animasyonları, YouTube kanal kartı.
+    - 28 Kasım: sorular büyük, cevap kartı küçük.
+    - Ayrıntılar her gönderinin `Brief.md` dosyasında ("1 Kasım revizyonu").
+  - **Hikâyesiz kalan 10 gün:** "." notlu 10 hikâye gönderilmez. Sahip, 1 Kasım: "O günler hikâyesiz."
+    - Günler: 8, 12, 14, 18, 19, 23, 26, 28, 29 ve 30 Kasım.
+    - `revisions` bu redleri listelemeye devam eder; bu beklenen bir durumdur.
+  - **Aralık:** KPSS çalışan hook'u için reels istendi ([`2026-12-Tanitim-Notlari.md`](2026-12-Tanitim-Notlari.md)).
 - **24 Kasım arşivi:** 1928 kara tahta fotoğrafı indirilmedi (indirme sahibin onayı ister). Video depodaki kamu malı portreyi ve 1933 filmini kullanır; kaynak satırı "Arşiv görüntüleri · kamu malı". Onay gelirse fotoğraf eklenir.
 
 - **Tek kaynak:** [`src/Campaigns/Tanitim2026Kasim.ts`](../../src/Campaigns/Tanitim2026Kasim.ts). Kavram, hook ve alternatifleri, sahne akışı, seslendirme taslağı, müzik tarifi, açıklama, hashtag, sütun, huni ve metrik oradadır.

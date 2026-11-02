@@ -1,6 +1,6 @@
 # YouTube metni: TYT Tarih kampı · Ders 5 · Türklerin İslamiyet'i Kabulü ve İlk Türk İslam Devletleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Tarih/05_Turklerin_Islamiyeti_Kabulu/Turklerin_Islamiyeti_Kabulu_YouTube.mp4` (4K) · Kapak: `Turklerin_Islamiyeti_Kabulu_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Tarih/05_Turklerin_Islamiyeti_Kabulu/Turklerin_Islamiyeti_Kabulu_YouTube.mp4` (4K) · Kapak: `Turklerin_Islamiyeti_Kabulu_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

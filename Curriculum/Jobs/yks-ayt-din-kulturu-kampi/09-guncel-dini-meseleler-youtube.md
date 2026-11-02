@@ -1,6 +1,6 @@
 # YouTube metni: AYT Din Kültürü kampı · Ders 9 · Güncel Dinî Meseleler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Din/09_Guncel_Dini_Meseleler/Guncel_Dini_Meseleler_YouTube.mp4` (4K) · Kapak: `Guncel_Dini_Meseleler_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Din/09_Guncel_Dini_Meseleler/Guncel_Dini_Meseleler_YouTube.mp4` (4K) · Kapak: `Guncel_Dini_Meseleler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

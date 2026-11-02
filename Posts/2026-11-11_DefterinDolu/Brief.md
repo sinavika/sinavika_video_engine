@@ -35,3 +35,8 @@ Charming hand-made indie electronica: pencil scribbles and page flips as rhythm,
 Defterin dolu. Aklında ne kaldı? 📓 Sayfanın fotoğrafını SinoAI’ye at; notlarından bilgi kartı ve test hazırlasın. Ürettiği her şey kütüphanende durur. Notlarını paylaşan arkadaşına gönder.
 
 #sinavika #sinoai #yks #kpss #yapayzeka
+
+## 1 Kasım revizyonu
+
+- **Red notu:** "sinoai diyişi kötü tasarım iyi sadece o düzenlenmeli; ilk sayfadaki defterde sadece biyoloji dersleri yazıyor, türkçe biyoloji matematik derslerinden bir lesson sub yazsa daha iyi olabilir"
+- **Değişen:** Defterde "Türkçe · Sözcükte Anlam", "Biyoloji · Mitoz", "Matematik · Üslü Sayılar"; kart, test ve kütüphane aynı sayfadan. SinoAI okuması seçildi (okuma 9): "Sino" ile "Ey" arası 0,40 sn, beğenilen örnekle aynı.

@@ -1,6 +1,6 @@
 # YouTube metni: AYT Edebiyat kampı · Ders 5 · İslamiyet Öncesi Türk Edebiyatı ve Geçiş Dönemi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Edebiyat/05_Islamiyet_Oncesi_ve_Gecis_Donemi/Islamiyet_Oncesi_ve_Gecis_Donemi_YouTube.mp4` (4K) · Kapak: `Islamiyet_Oncesi_ve_Gecis_Donemi_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Edebiyat/05_Islamiyet_Oncesi_ve_Gecis_Donemi/Islamiyet_Oncesi_ve_Gecis_Donemi_YouTube.mp4` (4K) · Kapak: `Islamiyet_Oncesi_ve_Gecis_Donemi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

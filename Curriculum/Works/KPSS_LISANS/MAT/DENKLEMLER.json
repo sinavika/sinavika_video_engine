@@ -1,0 +1,749 @@
+{
+ "topic": {
+  "id": "64578410-3B0B-9ED9-7C4E-15E0972EA511",
+  "category": "KPSS_LISANS",
+  "lesson": "MAT",
+  "code": "DENKLEMLER"
+ },
+ "title": "Birinci Dereceden Denklemler",
+ "lessonName": "Matematik",
+ "exams": [
+  "KPSS"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/KPSS/MAT/DENKLEMLER.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Sözü denkleme çevir",
+   "narration": "Denklemler KPSS Matematiğinin omurgasıdır: problemlerin hepsi sonunda bir denkleme döner. Lisans sınavında 2009'dan 2021'e on beş soru doğrudan bu konudan geldi; üçte biri sözle anlatılan bir durumu denkleme çevirmeyi istedi. Bu derste terazi mantığından denklem sistemlerine ve denklem kurmaya kadar her adımı yeni sorularla göreceğiz."
+  },
+  "objectives": [
+   "Eşitlik ilkeleriyle bir bilinmeyenli denklem çözmek",
+   "Kesirli denklemlerde yasak değerleri dikkate almak",
+   "Denklem sistemlerini yok etme ve yerine koymayla çözmek",
+   "Sözle anlatılan durumları denkleme çevirmek",
+   "Bulunan sonucu sağlamayla denetlemek"
+  ],
+  "sections": [
+   {
+    "subtopic": "DENKLEMLER_01",
+    "subtopics": [
+     "DENKLEMLER_02"
+    ],
+    "title": "Bir bilinmeyenli denklemler",
+    "narration": "Denklem çözmek, bir teraziyi dengede tutmaktır: bir tarafa ne yaparsan öbür tarafa da aynısını yaparsın.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Terazi dengede",
+      "visual": {
+       "kind": "equation",
+       "steps": [
+        {
+         "left": "3(x - 2) + 4",
+         "right": "x + 10"
+        },
+        {
+         "left": "3x - 2",
+         "right": "x + 10"
+        },
+        {
+         "left": "2x - 2",
+         "right": "10",
+         "operation": "−x"
+        },
+        {
+         "left": "2x",
+         "right": "12",
+         "operation": "+2"
+        },
+        {
+         "left": "x",
+         "right": "6",
+         "operation": "÷2"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Önce sol taraftaki parantezi açalım: 3x eksi 6 artı 4, yani 3x eksi 2.",
+        "show": [],
+        "focus": [],
+        "stage": 1,
+        "swap": []
+       },
+       {
+        "narration": "x'leri bir tarafta toplayalım: iki taraftan da x çıkaralım. Solda 2x eksi 2, sağda 10 kalır.",
+        "show": [],
+        "focus": [],
+        "stage": 2,
+        "swap": []
+       },
+       {
+        "narration": "İki tarafa 2 ekleyelim: 2x, 12.",
+        "show": [],
+        "focus": [],
+        "stage": 3,
+        "swap": []
+       },
+       {
+        "narration": "İki tarafı 2'ye bölelim: x, 6. Sağlama: 3 çarpı 4 artı 4, 16; 6 artı 10, 16. Terazi dengede.",
+        "show": [],
+        "focus": [],
+        "stage": 4,
+        "swap": []
+       }
+      ],
+      "narration": "3 çarpı x eksi 2, artı 4, x artı 10'a eşit olsun."
+     },
+     {
+      "kind": "rule",
+      "title": "Eşitlik ilkeleri",
+      "items": [
+       "İki tarafa **aynı** sayı eklenir, çıkarılır; iki taraf **aynı** sıfırdan farklı sayıyla çarpılır, bölünür.",
+       "Kesirli katsayılarda önce **paydaların OKEK'iyle** çarp; paydaki toplamı **parantez** içinde tut.",
+       "$x$'ler gider ve **doğru** bir eşitlik kalırsa her sayı çözümdür; **yanlış** eşitlik kalırsa çözüm yoktur."
+      ],
+      "beats": [],
+      "narration": "Eşitliğin iki tarafına aynı sayıyı ekleyip çıkarabilir, iki tarafı sıfırdan farklı aynı sayıyla çarpıp bölebilirsin; denge bozulmaz. Katsayılar kesirliyse işe paydaların OKEK'iyle çarparak başlarsın; bu sırada paydaki toplamı parantez içinde tutarsın, yoksa işaret hatası yaparsın. Bir uyarı daha: x'ler sadeleşip giderse kalan eşitliğe bak. Doğruysa her sayı çözümdür, yanlışsa hiç çözüm yoktur."
+     },
+     {
+      "kind": "predict",
+      "title": "x'ler giderse",
+      "context": "$2x + 3 = 2(x + 1) + 1$",
+      "prompt": "Bu denklemin çözüm kümesi nedir?",
+      "choices": [
+       "Her sayı",
+       "Çözüm yok"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Adım",
+        "Sonuç"
+       ],
+       "rows": [
+        [
+         "Sağı aç",
+         "$2x + 2 + 1 = 2x + 3$"
+        ],
+        [
+         "$2x$ çıkar",
+         "$3 = 3$"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Sağ tarafı açalım: 2x artı 2 artı 1, yani 2x artı 3. İki taraf aynı.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "İki taraftan 2x çıkarırsak 3 eşittir 3 kalır. Bu her zaman doğru bir eşitlik.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "$x$'ler gidip **doğru** bir eşitlik kaldı: her gerçel sayı çözümdür.",
+      "narration": "Şimdi sıra sende. 2x artı 3, 2 çarpı x artı 1, artı 1'e eşit. Bu denklemin çözümü ne? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap: her sayı. Sağ tarafı açınca iki taraf da 2x artı 3 olur. x'ler gidince 3 eşittir 3 kalır; bu her zaman doğrudur. Bu yüzden x yerine hangi sayıyı koyarsan koy eşitlik sağlanır. Sona 3 eşittir 5 gibi yanlış bir eşitlik kalsaydı çözüm olmazdı."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$\\frac{x - 1}{3} - \\frac{x + 2}{4} = 1$ olduğuna göre $x$ kaçtır?",
+       "options": [
+        "10",
+        "22",
+        "26",
+        "30",
+        "34"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$12$ ile çarp: $4(x - 1) - 3(x + 2) = 12$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "3 ile 4'ün OKEK'i 12. İki tarafı 12 ile çarpalım: 4 çarpı x eksi 1, eksi 3 çarpı x artı 2, eşittir 12."
+        },
+        {
+         "text": "$4x - 4 - 3x - 6 = 12$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Parantezleri açalım. Eksi 3'ü parantezin ikisine de dağıtırız: eksi 3x ve eksi 6."
+        },
+        {
+         "text": "$x - 10 = 12 \\Rightarrow x = 22$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x eksi 10, 12; x, 22. Cevap B. A şıkkındaki 10, eksi 3'ü yalnız x'e dağıtıp 6'yı artı yazanın tuzağıdır."
+        }
+       ],
+       "narration": "Paydalardan kurtulmak için iki tarafı 12 ile çarpacağız.",
+       "origin": {
+        "changes": "ÖSYM'nin kesirli katsayılı bir bilinmeyenli denklem kalıbı örnek alındı; denklem bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "DENKLEMLER_03",
+    "subtopics": [],
+    "title": "Kesirli denklemler",
+    "narration": "Paydada bilinmeyen varsa denklem kesirlidir. Burada tek bir altın kural var: paydayı sıfır yapan değer çözüm olamaz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Payda sıfır olamaz",
+      "items": [
+       "Önce paydayı **sıfır yapan** değerleri yaz; bunlar çözüm olamaz.",
+       "İki tarafı **ortak paydayla** çarp; paydalardan kurtul.",
+       "Bulduğun değer yasak değerlerden biriyse **çözüm yoktur**."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "\\frac{2}{x - 1} + \\frac{3}{x + 1} = \\frac{6}{x^2 - 1}, \\quad x \\neq \\pm 1",
+       "caption": "Önce yasak değerler: x ≠ 1 ve x ≠ −1"
+      },
+      "beats": [],
+      "narration": "Paydada bilinmeyen olan bir denklemde işe paydayı sıfır yapan değerleri yazarak başlarsın; bu değerler hiçbir zaman çözüm olamaz. Sonra iki tarafı ortak paydayla çarpıp paydalardan kurtulursun. Sonunda bulduğun değer yasak değerlerden biriyse denklemin çözümü yoktur."
+     },
+     {
+      "kind": "predict",
+      "title": "Yasak değer",
+      "context": "$\\frac{x + 3}{x - 1} = \\frac{4}{x - 1}$",
+      "prompt": "Bu denklemin çözümü nedir?",
+      "choices": [
+       "x = 1",
+       "Çözüm yok"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Adım",
+        "Sonuç"
+       ],
+       "rows": [
+        [
+         "Paydalar eşit: payları eşitle",
+         "$x + 3 = 4$, $x = 1$"
+        ],
+        [
+         "$x = 1$ için payda",
+         "$1 - 1 = 0$"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Paydalar aynı; payları eşitleyelim: x artı 3, 4; x, 1.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Ama x 1 olursa payda 1 eksi 1, sıfır olur. Sıfıra bölme tanımsızdır.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "Bulunan $x = 1$ paydayı **sıfır** yapar; denklemin **çözümü yoktur**.",
+      "narration": "Şimdi sıra sende. x artı 3 bölü x eksi 1, 4 bölü x eksi 1'e eşit. Çözüm ne? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap: çözüm yok. Payları eşitleyince x 1 çıkıyor; ama 1, paydayı sıfır yapan yasak değer. Kesirli denklemde bulduğun değeri her zaman paydada dene."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$\\frac{2}{x - 1} + \\frac{3}{x + 1} = \\frac{6}{x^2 - 1}$ olduğuna göre $x$ kaçtır?",
+       "options": [
+        "$\\frac{1}{5}$",
+        "$\\frac{3}{5}$",
+        "1",
+        "$\\frac{7}{5}$",
+        "2"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Ortak payda $x^2 - 1 = (x - 1)(x + 1)$ ile çarp: $2(x + 1) + 3(x - 1) = 6$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x kare eksi 1, x eksi 1 çarpı x artı 1'dir. İki tarafı bununla çarpalım: 2 çarpı x artı 1, artı 3 çarpı x eksi 1, eşittir 6."
+        },
+        {
+         "text": "$5x - 1 = 6 \\Rightarrow x = \\frac{7}{5}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Açalım: 2x artı 2 artı 3x eksi 3, yani 5x eksi 1. 5x eksi 1, 6; x, 7 bölü 5."
+        },
+        {
+         "text": "$\\frac{7}{5} \\neq \\pm 1$: geçerli. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "7 bölü 5, yasak değerler olan 1 ve eksi 1'den farklı; çözüm geçerli. Cevap D. C şıkkındaki 1 ise zaten paydayı sıfır yapar."
+        }
+       ],
+       "narration": "Ortak payda x kare eksi 1. Önce yasak değerleri yazalım: 1 ve eksi 1.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki kesirli denklem kalıbı örnek alındı; denklem bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "DENKLEMLER_04",
+    "subtopics": [],
+    "title": "Denklem sistemleri",
+    "narration": "Lisans sınavında bu konudan gelen sorularda en sık kalıp denklem sistemleridir. Çoğu zaman tek tek çözmek gerekmez; denklemleri toplamak ya da çarpanlara ayırmak yeter.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Topla, çıkar, yerine koy",
+      "items": [
+       "**Yok etme**: denklemleri uygun sayılarla çarpıp topla, bir bilinmeyen gitsin.",
+       "**Yerine koyma**: bir denklemden bir bilinmeyeni çek, ötekine yaz.",
+       "Döngülü toplamlarda ($x + y$, $y + z$, $x + z$) üçünü **topla**: $2(x + y + z)$ çıkar.",
+       "$a \\neq b$ verilmişse $a - b$ ile **sadeleştirme** yapılabilir."
+      ],
+      "beats": [],
+      "narration": "İki bilinmeyenli bir sistemi iki yolla çözersin. Yok etmede denklemleri uygun sayılarla çarpıp toplarsın ki bir bilinmeyen gitsin. Yerine koymada bir denklemden bir bilinmeyeni çeker, ötekinde yerine yazarsın. ÖSYM'nin sevdiği iki kısayol daha var: x artı y, y artı z ve x artı z verilirse üçünü toplarsın; x artı y artı z'nin 2 katı çıkar. a ile b'nin farklı olduğu söylenmişse a eksi b sıfır değildir ve iki taraf a eksi b'ye bölünebilir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$x + y = 9$, $y + z = 13$ ve $x + z = 10$ olduğuna göre $x \\cdot y \\cdot z$ çarpımı kaçtır?",
+       "options": [
+        "96",
+        "108",
+        "126",
+        "140",
+        "168"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Topla: $2(x + y + z) = 32 \\Rightarrow x + y + z = 16$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç denklemi toplarsak her harf iki kez gelir: 2 çarpı x artı y artı z, 9 artı 13 artı 10, yani 32. x artı y artı z, 16."
+        },
+        {
+         "text": "$z = 16 - 9 = 7$, $x = 16 - 13 = 3$, $y = 16 - 10 = 6$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplamdan her denklemi çıkaralım: z, 16 eksi 9, 7; x, 16 eksi 13, 3; y, 16 eksi 10, 6."
+        },
+        {
+         "text": "$3 \\cdot 6 \\cdot 7 = 126$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çarpım 3 çarpı 6 çarpı 7, 126. Cevap C."
+        }
+       ],
+       "narration": "Üç denklemi tek tek çözmeden önce taraf tarafa toplayalım.",
+       "origin": {
+        "changes": "ÖSYM'nin üç bilinmeyenli döngülü toplamlar kalıbı örnek alındı; sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$a$ ve $b$ birbirinden farklı gerçel sayılar olmak üzere $a^2 - 5a = b^2 - 5b$ olduğuna göre $a + b$ toplamı kaçtır?",
+       "options": [
+        "$-5$",
+        "$-1$",
+        "0",
+        "1",
+        "5"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$a^2 - b^2 = 5a - 5b$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a kare ile b kareyi sola, 5a ile 5b'yi sağa alalım: a kare eksi b kare, 5a eksi 5b."
+        },
+        {
+         "text": "$(a - b)(a + b) = 5(a - b)$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sol taraf iki kare farkı: a eksi b çarpı a artı b. Sağdan 5'i dışarı alalım: 5 çarpı a eksi b."
+        },
+        {
+         "text": "$a \\neq b$ ⇒ $a - b$ ile böl: $a + b = 5$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "a ile b farklı olduğu için a eksi b sıfır değil; iki tarafı ona bölebiliriz. a artı b, 5. Cevap E. Farklılık şartı olmasaydı bu bölmeyi yapamazdık."
+        }
+       ],
+       "narration": "Kareleri bir tarafa, diğerlerini öbür tarafa toplayıp çarpanlara ayıracağız.",
+       "origin": {
+        "changes": "ÖSYM'nin birbirinden farklı iki sayıyla verilen eşitlik kalıbı örnek alındı; eşitlik bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "DENKLEMLER_05",
+    "subtopics": [],
+    "title": "Denklem kurma",
+    "narration": "Son bölüm en önemlisi: sözle anlatılan bir durumu denkleme çevirmek. Lisans sınavında bu konunun üçte biri bu kalıptan geldi.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Sözden denkleme",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Söz",
+        "Denklem"
+       ],
+       "rows": [
+        [
+         "bir sayının 3 katının 4 eksiği",
+         "$3x - 4$"
+        ],
+        [
+         "bir sayının 4 eksiğinin 3 katı",
+         "$3(x - 4)$"
+        ],
+        [
+         "toplamları 20 olan iki sayı",
+         "$x$ ve $20 - x$"
+        ],
+        [
+         "$a$ kişi $b$ TL öderse",
+         "toplam $a \\cdot b$ TL"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Bir sayının 3 katının 4 eksiği, 3x eksi 4'tür. Önce 3 katı alınır, sonra 4 çıkarılır.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Bir sayının 4 eksiğinin 3 katı ise 3 çarpı x eksi 4'tür. Önce 4 çıkarılır, sonra 3 ile çarpılır. Aynı sözcükler, farklı sıra, farklı denklem.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Toplamı verilen iki sayıdan birine x dersen diğeri 20 eksi x olur; böylece tek bilinmeyenle çalışırsın. Kişi başı ödeme verilince toplam, kişi sayısı çarpı ödemedir.",
+        "show": [
+         "r3",
+         "r4"
+        ],
+        "focus": [
+         "r3",
+         "r4"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Sözcüklerin sırası denklemi değiştirir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "60 araçlık bir otoparkın bir kısmı kapalı, kalanı açık alandır. Boş otoparka gelen 12 araçtan yarısı kapalı, yarısı açık alana park edince boş kapalı yer sayısı, boş açık yer sayısının 2 katı oluyor. Buna göre otoparkın kapalı alanında kaç araçlık yer vardır?",
+       "options": [
+        "22",
+        "32",
+        "34",
+        "38",
+        "40"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Kapalı $K$, açık $60 - K$; 6'şar araç park edince boşlar: $K - 6$ ve $54 - K$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kapalı alan K, açık alan 60 eksi K. Her birine 6 araç park ediyor. Boş kapalı yer K eksi 6; boş açık yer 60 eksi K eksi 6, yani 54 eksi K."
+        },
+        {
+         "text": "$K - 6 = 2(54 - K) \\Rightarrow 3K = 114 \\Rightarrow K = 38$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Boş kapalı yer, boş açık yerin 2 katı: K eksi 6, 108 eksi 2K. 3K, 114; K, 38."
+        },
+        {
+         "text": "Sağlama: boş kapalı 32, boş açık 16. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sağlama: açık alan 22; boş kapalı yer 32, boş açık yer 16; 32, 16'nın 2 katı. Cevap D. A şıkkındaki 22 açık alandır; B şıkkındaki 32 ise boş kapalı yer sayısıdır."
+        }
+       ],
+       "narration": "Kapalı alandaki yer sayısına K diyelim; açık alan 60 eksi K olur.",
+       "origin": {
+        "changes": "ÖSYM'nin iki renk koltuklu salon kalıbı örnek alındı; durum ve sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir kurs, bütün öğrencilerine kitap seti alıyor. Bir erkek öğrencinin seti, bir kız öğrencinin setinin $\\frac{3}{4}$'ü fiyatındadır. Kız öğrenci sayısı erkek öğrenci sayısının 2 katıdır. Setler için toplam 5500 TL ödendiğine göre **kız öğrencilerin** setleri için kaç TL ödenmiştir?",
+       "options": [
+        "1500",
+        "2000",
+        "3000",
+        "4000",
+        "5500"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Erkek: $n$ kişi, $\\frac{3}{4}p$ TL; kız: $2n$ kişi, $p$ TL",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Erkek sayısına n, kızın set fiyatına p diyelim. Kızlar 2n kişi, set p lira; erkekler n kişi, set 4'te 3 p lira."
+        },
+        {
+         "text": "$2np + \\frac{3}{4}np = \\frac{11}{4}np = 5500 \\Rightarrow np = 2000$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam ödeme: 2np artı 4'te 3 np, yani 4'te 11 np. Bu 5500'e eşit; np, 2000."
+        },
+        {
+         "text": "Kızlar: $2np = 4000$ TL. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kızların setleri 2np, yani 4000 lira. Cevap D. A şıkkındaki 1500 erkeklerin ödemesi, E şıkkındaki 5500 ise toplamdır."
+        }
+       ],
+       "narration": "İki bilinmeyen gibi görünüyor ama çarpımlarını bulmak yetecek.",
+       "origin": {
+        "changes": "ÖSYM'nin iki grubun birim fiyatlarıyla toplam ödeme kalıbı örnek alındı; durum ve sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Boş bir rafa önce 20 adet A kitabı, sonra 15 adet B kitabı diziliyor. Rafa dizilen ilk 25 kitabın toplam ağırlığı, son 20 kitabın toplam ağırlığına eşittir. Bir A kitabı 0,6 kg olduğuna göre bir B kitabı kaç kg'dır?",
+       "options": [
+        "0,9",
+        "1",
+        "1,2",
+        "1,5",
+        "1,8"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "İlk 25: 20 A + 5 B; son 20: 5 A + 15 B",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam 35 kitap var. İlk 25 kitap: 20 A ve ardından 5 B. Son 20 kitap ise 16. kitaptan başlar: 5 A ve 15 B."
+        },
+        {
+         "text": "$20a + 5b = 5a + 15b \\Rightarrow 15a = 10b \\Rightarrow b = 1{,}5a$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Ağırlıklar eşit: 20a artı 5b, 5a artı 15b. 15a, 10b; b, a'nın 1 virgül 5 katı."
+        },
+        {
+         "text": "$b = 1{,}5 \\cdot 0{,}6 = 0{,}9$ kg. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "b, 1 virgül 5 çarpı 0 virgül 6, yani 0 virgül 9 kilogram. Cevap A. D şıkkındaki 1 virgül 5 oranın kendisidir; ağırlık değildir."
+        }
+       ],
+       "narration": "İlk 25 ve son 20 kitabın hangi türden olduğunu sayalım.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki sırayla dizilen iki tür ürün kalıbı örnek alındı; durum ve sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Ardışık 7 tam sayının ilk 4'ünün toplamı, son 3'ünün toplamına eşittir. Buna göre bu sayıların en büyüğü kaçtır?",
+       "options": [
+        "9",
+        "12",
+        "15",
+        "16",
+        "18"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "İlk 4: $4x + 6$; son 3: $(x + 4) + (x + 5) + (x + 6) = 3x + 15$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sayılar x'ten x artı 6'ya kadar. İlk dördünün toplamı 4x artı 6; son üçünün toplamı 3x artı 15."
+        },
+        {
+         "text": "$4x + 6 = 3x + 15 \\Rightarrow x = 9$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki toplam eşit: 4x artı 6, 3x artı 15. x, 9."
+        },
+        {
+         "text": "En büyük: $x + 6 = 15$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sayılar 9'dan 15'e kadar; en büyüğü 15. Sağlama: 9 artı 10 artı 11 artı 12, 42; 13 artı 14 artı 15, 42. Cevap C. A şıkkındaki 9 en küçük sayıdır."
+        }
+       ],
+       "narration": "En küçük sayıya x diyelim.",
+       "origin": {
+        "changes": "ÖSYM'nin ardışık sayıların iki grubunu eşitleyen kalıbı örnek alındı; sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "İki tarafa her zaman aynı işlemi yap.",
+    "Kesirli katsayıda paydaların OKEK’iyle çarp.",
+    "x’ler gidince kalan eşitliğe bak: doğruysa her sayı, yanlışsa çözüm yok.",
+    "Kesirli denklemde önce yasak değerleri yaz.",
+    "Döngülü toplamlarda üç denklemi topla.",
+    "Söz sırası denklemi değiştirir.",
+    "Her sonucu ilk denklemde dene."
+   ],
+   "warnings": [
+    "Paydaki toplamı **parantez** içinde tut.",
+    "Paydayı sıfır yapan değer **çözüm olamaz**.",
+    "3 katının 4 eksiği **3x − 4**; 4 eksiğinin 3 katı **3(x − 4)**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki **8 soruyu** kâğıtta yeniden çöz; her birinde bilinmeyeni neye verdiğini yaz.",
+    "Günlük hayatından **bir durumu** denkleme çevir ve çöz.",
+    "Uygulamada KPSS Denklemler testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Eşitlik ilkeleri ve terazi modeli; parantez açma ve paydaki toplamı parantezde tutma; 'her sayı çözüm' ve 'çözüm yok' durumları.",
+   "Kesirli denklemler: önce yasak değerler, sonra ortak paydayla çarpma; bulunan değerin paydayı sıfır yaptığı tuzak.",
+   "Denklem sistemleri: yok etme, yerine koyma, döngülü toplamları toplama, a ≠ b ile sadeleştirme; ÖSYM'nin x, y, z kalıbı için iki özgün soru.",
+   "Denklem kurma: söz sırası (3 katının 4 eksiği, 4 eksiğinin 3 katı), toplamı verilen iki sayı, iki grubun birim fiyatı; bilinmeyeni iyi seçme.",
+   "ÖSYM'nin durum soruları: iki türlü yerlerin dolması, sırayla dizilen ürünlerin ağırlıkları, ardışık sayı grupları; her biri için sağlama alışkanlığı."
+  ]
+ }
+}

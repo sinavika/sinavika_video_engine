@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Türkçe kampı · Ders 17 · Cümle Türleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Turkce/17_Cumle_Turleri/Cumle_Turleri_YouTube.mp4` (4K) · Kapak: `Cumle_Turleri_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Turkce/17_Cumle_Turleri/Cumle_Turleri_YouTube.mp4` (4K) · Kapak: `Cumle_Turleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

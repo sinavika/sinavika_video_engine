@@ -1,6 +1,6 @@
 # YouTube metni: AYT Biyoloji kampı · Ders 9 · Üreme Sistemi ve Embriyonik Gelişim
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Biyoloji/09_Ureme_Sistemi_Ve_Embriyonik_Gelisim/Ureme_Sistemi_Ve_Embriyonik_Gelisim_YouTube.mp4` (4K) · Kapak: `Ureme_Sistemi_Ve_Embriyonik_Gelisim_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Biyoloji/09_Ureme_Sistemi_Ve_Embriyonik_Gelisim/Ureme_Sistemi_Ve_Embriyonik_Gelisim_YouTube.mp4` (4K) · Kapak: `Ureme_Sistemi_Ve_Embriyonik_Gelisim_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -4,6 +4,7 @@ import {NATURE_COLORS as C} from '../../../Configurations/NatureColors';
 import {withAlpha} from '../../../Themes/Theme';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
+import {RIVER_STAGES} from './GeographySchema';
 import {useStageClock} from '../VisualTimeline';
 import {H, pathOf, W, World} from '../VisualWorld';
 import {Label, mixColor, StageStrip, TOP} from './ProcessStage';
@@ -23,7 +24,7 @@ export const RiverVisual: React.FC<VisualBoxProps & {visual: River}> = (props) =
 	}
 };
 
-const PROFILE_STAGES = ['Yer şekli', 'Akış', 'Aşındırma', 'Taşıma', 'Biriktirme'] as const;
+const PROFILE_STAGES = RIVER_STAGES.profile;
 
 const SEA_LEVEL = 470;
 
@@ -158,7 +159,7 @@ const ValleyInset: React.FC<{depth: number; widen: number; show: number}> = ({de
 	);
 };
 
-const MEANDER_STAGES = ['Kıvrılma', 'Dış kıyı aşınır', 'Boyun daralır', 'Kopuk menderes'] as const;
+const MEANDER_STAGES = RIVER_STAGES.meander;
 
 /** A meandering channel by the Kinoshita curve: the bends grow and skew as θ0 grows. */
 const meanderPath = (theta0: number): [number, number][] => {
@@ -266,48 +267,133 @@ const Meander: React.FC<VisualBoxProps & {visual: River}> = ({visual, width, hei
 	);
 };
 
-const DELTA_STAGES = ['Yük taşınır', 'Akıntı yavaşlar', 'Kollara ayrılır', 'Delta ovası'] as const;
+const DELTA_STAGES = RIVER_STAGES.delta;
 
 const COAST = TOP + 230;
+
+const DELTA_MOUTH = [W / 2, COAST] as const;
+
+/** Muddy river water spreading into the sea: browner than the silt grains, so it does not read as a shadow. */
+const PLUME = '#C39A5C';
+
+/** The directions of the distributaries, as angles below the coast (0 = east along the coast, π/2 = straight out to sea). */
+const BRANCH_ANGLES = [0.2, 0.36, 0.5, 0.63, 0.79].map((share) => Math.PI * share);
+
+type DeltaPoint = readonly [number, number];
+
+/**
+ * The delta's outline and its distributaries when the deposits have grown `fan` (0-1) of the way out. The front is
+ * lobed, bulging where each branch carries its load out (an arcuate delta like the Nile's, not a paper fan), and every
+ * branch ends on the front, where it meets the sea: branches that stopped inside the plain (1 Nov 2026) read as a
+ * river drying up on land.
+ */
+export const deltaShape = (fan: number): {front: DeltaPoint[]; branches: {end: DeltaPoint; control: DeltaPoint; angle: number}[]; radius: number} => {
+	// Grown, the front stops short of the frame's bottom and sides, so open sea still shows all round it (at 60 + 250
+	// the fan ran off the bottom of the picture and the sea was left as two pools beside it).
+	const radius = 50 + 170 * fan;
+	const reach = (angle: number) => radius * (1 + BRANCH_ANGLES.reduce((sum, branch) => sum + 0.14 * Math.exp(-(((angle - branch) / 0.11) ** 2)), 0) + 0.03 * Math.sin(angle * 9));
+	const at = (angle: number, scale = 1): DeltaPoint => [DELTA_MOUTH[0] + Math.cos(angle) * reach(angle) * 1.35 * scale, DELTA_MOUTH[1] + Math.sin(angle) * reach(angle) * scale];
+	const front = Array.from({length: 61}, (_, index) => at(Math.PI * (index / 60)));
+	const branches = BRANCH_ANGLES.map((angle) => {
+		const end = at(angle, 0.99);
+		const control: DeltaPoint = [DELTA_MOUTH[0] + (end[0] - DELTA_MOUTH[0]) * 0.3, DELTA_MOUTH[1] + (end[1] - DELTA_MOUTH[1]) * 0.55];
+		return {end, angle, control};
+	});
+	return {front, branches, radius};
+};
+
+/** The gentle swell of the coast either side of the delta, the same in every frame (a ruled line read as a pool's edge). */
+export const deltaCoastY = (x: number): number => COAST + 6 * Math.sin(x / 61) + 4 * Math.sin(x / 23 + 1);
 
 /**
  * A river mouth from above. Where the river meets a shallow, calm sea its
  * flow slows and the load it carries settles: the deposits build out into
  * the sea as a fan, the river splits into distributaries across it, and the
- * new land becomes a delta plain.
+ * new land becomes a delta plain. The sea reads as open sea (1 Nov 2026: a pale
+ * box with a grey oval read as a lake): it reaches the frame on three sides
+ * and deepens away from the coast, swell moves on it, a pale shallow belt
+ * follows the delta front and a muddy plume leaves every branch mouth.
  */
 const Delta: React.FC<VisualBoxProps & {visual: River}> = ({visual, width, height, delaySeconds = 0}) => {
 	const palette = useVisualPalette();
 	const seconds = useSceneSeconds();
+	const id = `delta${useId().replace(/[^a-zA-Z0-9_-]/g, '')}`;
 	const {stage, progress} = useStageClock(DELTA_STAGES.length, {delaySeconds});
 	const fan = stage === 0 ? 0 : stage === 1 ? smooth(progress) * 0.55 : stage === 2 ? 0.55 + 0.35 * smooth(progress) : 0.9 + 0.1 * smooth(progress);
 	const branches = stage >= 2 ? (stage === 2 ? smooth(progress * 1.4) : 1) : 0;
 	const plain = stage === 3 ? smooth(progress) : 0;
-	const mouth = [W / 2, COAST] as const;
-	const radius = 60 + 250 * fan;
-	const fanShape = Array.from({length: 41}, (_, index) => {
-		const angle = Math.PI * (0.06 + 0.88 * (index / 40));
-		const wobble = 1 + 0.06 * Math.sin(index * 1.7);
-		return [mouth[0] + Math.cos(angle) * radius * 1.35 * wobble, mouth[1] + Math.sin(angle) * radius * wobble] as const;
+	const mouth = DELTA_MOUTH;
+	const shape = deltaShape(fan);
+	const {radius} = shape;
+	// The plain joins the land: its ends tuck under the coast, so no strip of sea is left between the two.
+	const along = (from: number, to: number): DeltaPoint[] => Array.from({length: 9}, (_, index) => {
+		const x = from + ((to - from) * index) / 8;
+		return [x, deltaCoastY(x) - 3];
 	});
-	const plume = 0.5 + 0.5 * Math.sin(seconds * 1.5);
-	const distributaries = [-0.75, -0.3, 0.15, 0.55, 0.9].map((spread) => {
-		const end = [mouth[0] + spread * radius * 1.2, mouth[1] + radius * (0.95 - Math.abs(spread) * 0.25)] as const;
-		const control = [mouth[0] + spread * radius * 0.45, mouth[1] + radius * 0.45] as const;
-		return `M${mouth[0]} ${mouth[1]} Q${control[0]} ${control[1]} ${mouth[0] + (end[0] - mouth[0]) * branches} ${mouth[1] + (end[1] - mouth[1]) * branches}`;
-	});
+	const fanPath = pathOf([...shape.front, ...along(shape.front[shape.front.length - 1][0], shape.front[0][0])], true);
+	const shallow = deltaShape(Math.min(1, fan + 0.1)).front.map(([x, y]) => [mouth[0] + (x - mouth[0]) * 1.07, mouth[1] + (y - mouth[1]) * 1.14] as DeltaPoint);
+	const pulse = 0.5 + 0.5 * Math.sin(seconds * 1.5);
+	const coastLine = Array.from({length: 41}, (_, index) => [(index / 40) * W, deltaCoastY((index / 40) * W)] as DeltaPoint);
+	const seaPath = `${pathOf(coastLine)} L${W} ${H} L0 ${H} Z`;
+	const distributaries = shape.branches.map(({end, control}) => `M${mouth[0]} ${mouth[1]} Q${control[0]} ${control[1]} ${mouth[0] + (end[0] - mouth[0]) * branches} ${mouth[1] + (end[1] - mouth[1]) * branches}`);
 
 	return (
 		<World width={width} height={height}>
+			<defs>
+				<linearGradient id={`${id}-sea`} x1="0" y1={COAST} x2="0" y2={H} gradientUnits="userSpaceOnUse">
+					<stop offset="0" stopColor={C.waterLight} />
+					<stop offset="1" stopColor={C.water} />
+				</linearGradient>
+				<clipPath id={`${id}-water`}>
+					<path d={seaPath} />
+				</clipPath>
+			</defs>
 			<StageStrip names={DELTA_STAGES} stage={stage} progress={progress} />
-			<rect x={0} y={TOP + 10} width={W} height={COAST - TOP - 10} fill={C.land} />
-			<rect x={0} y={COAST} width={W} height={H - COAST} fill={C.waterLight} />
-			<path d={`M${W / 2 - 14} ${TOP + 10} C${W / 2 - 60} ${TOP + 90} ${W / 2 + 40} ${TOP + 150} ${W / 2 - 14} ${COAST} L${W / 2 + 14} ${COAST} C${W / 2 + 70} ${TOP + 150} ${W / 2 - 30} ${TOP + 90} ${W / 2 + 14} ${TOP + 10} Z`} fill={C.water} />
-			<ellipse cx={mouth[0]} cy={mouth[1] + 70 + radius * 0.4} rx={110 + radius * 1.1} ry={60 + radius * 0.5} fill={withAlpha(C.silt, 0.25 + 0.15 * plume)} />
-			{fan > 0 ? <path d={pathOf([mouth, ...fanShape], true)} fill={mixColor(C.sand, C.land, plain * 0.6)} stroke={withAlpha(C.gravel, 0.5)} strokeWidth={3} /> : null}
+			<rect x={0} y={TOP + 10} width={W} height={COAST - TOP + 10} fill={C.land} />
+			<path d={seaPath} fill={`url(#${id}-sea)`} />
+			<g clipPath={`url(#${id}-water)`}>
+				{/* swell on the open sea, calmer towards the delta */}
+				{Array.from({length: 18}, (_, index) => {
+					const row = index % 6;
+					const y = COAST + 150 + row * 52 + (index % 2) * 14;
+					const x = ((index * 173 + seconds * (14 + row * 3)) % (W + 160)) - 80;
+					return <path key={index} d={`M${x} ${y} q 18 -8 36 0 q 18 8 36 0`} fill="none" stroke="#FFFFFF" strokeWidth={3} strokeLinecap="round" opacity={0.18 + row * 0.05} />;
+				})}
+				{/* muddy plumes off the branch mouths: the load the river still carries out to sea */}
+				{shape.branches.map(({end, angle}, index) => {
+					const length = (50 + 70 * fan) * (0.8 + 0.2 * Math.sin(seconds * 1.2 + index)) * branches;
+					return (
+						<g key={index} transform={`translate(${end[0]} ${end[1]}) rotate(${(angle * 180) / Math.PI})`} opacity={branches}>
+							<ellipse cx={length * 0.55} cy={0} rx={length * 0.75} ry={22 + 10 * pulse} fill={withAlpha(PLUME, 0.3)} />
+							<ellipse cx={length * 0.35} cy={0} rx={length * 0.45} ry={14} fill={withAlpha(PLUME, 0.42)} />
+						</g>
+					);
+				})}
+				{fan > 0 ? <path d={pathOf([...shallow, ...along(shallow[shallow.length - 1][0], shallow[0][0])], true)} fill={withAlpha('#DCEBF5', 0.55)} /> : null}
+			</g>
+			{/* sand where the waves meet the land */}
+			<path d={pathOf(coastLine)} fill="none" stroke={C.sand} strokeWidth={8} strokeLinecap="round" />
+			<path d={`M${W / 2 - 14} ${TOP + 10} C${W / 2 - 60} ${TOP + 90} ${W / 2 + 40} ${TOP + 150} ${W / 2 - 14} ${COAST + 4} L${W / 2 + 14} ${COAST + 4} C${W / 2 + 70} ${TOP + 150} ${W / 2 - 30} ${TOP + 90} ${W / 2 + 14} ${TOP + 10} Z`} fill={C.water} />
+			{fan > 0 ? (
+				<>
+					<path d={fanPath} fill={mixColor(C.sand, C.land, plain * 0.7)} />
+					<path d={pathOf(shape.front)} fill="none" stroke={C.sand} strokeWidth={6} strokeLinejoin="round" strokeLinecap="round" />
+				</>
+			) : null}
+			{/* reeds and marsh on the young plain */}
+			{plain > 0
+				? shape.front
+						.filter((_, index) => index % 6 === 3)
+						.map(([x, y], index) => <ellipse key={index} cx={mouth[0] + (x - mouth[0]) * 0.7} cy={mouth[1] + (y - mouth[1]) * 0.7} rx={16} ry={7} fill={withAlpha(C.landDark, 0.5 * plain)} />)
+				: null}
 			{distributaries.map((d, index) => (
 				<path key={index} d={d} fill="none" stroke={C.water} strokeWidth={9 - Math.abs(index - 2) * 1.5} strokeLinecap="round" opacity={branches} />
 			))}
+			{/* a sand bar off every mouth */}
+			{shape.branches.map(({end, angle}, index) => {
+				const bar = [end[0] + Math.cos(angle) * 14, end[1] + Math.sin(angle) * 14];
+				return <ellipse key={index} cx={bar[0]} cy={bar[1]} rx={13} ry={5} transform={`rotate(${(angle * 180) / Math.PI + 90} ${bar[0]} ${bar[1]})`} fill={C.sand} opacity={branches} />;
+			})}
 			{Array.from({length: 22}, (_, index) => {
 				const t = ((index / 22 + seconds * 0.12) % 1);
 				const spread = Math.sin(index * 2.3) * 0.9;
@@ -317,7 +403,7 @@ const Delta: React.FC<VisualBoxProps & {visual: River}> = ({visual, width, heigh
 			{visual.labels ? (
 				<>
 					<Label x={W / 2 + 60} y={TOP + 120} anchor="start">Akarsu</Label>
-					<Label x={90} y={H - 30} anchor="start" color={C.waterDeep}>Sığ ve sakin deniz</Label>
+					<Label x={60} y={H - 30} anchor="start" color={C.waterDeep}>Sığ ve sakin deniz</Label>
 					<Label x={W / 2} y={mouth[1] + 70 + radius * 0.9} show={stage === 1 ? smooth(progress * 2) : 0} color={palette.lesson}>Hız düşer, yük çöker</Label>
 					<Label x={W / 2 + radius * 1.1} y={mouth[1] + radius * 0.5} anchor="start" show={stage === 2 ? branches : 0} color={palette.lesson}>Dağıtıcı kollar</Label>
 					<Label x={W / 2} y={mouth[1] + radius * 0.6} show={plain} color={palette.lesson} size={30}>Delta ovası</Label>

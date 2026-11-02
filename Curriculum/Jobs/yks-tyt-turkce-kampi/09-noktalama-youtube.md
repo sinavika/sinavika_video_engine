@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 9 · Noktalama İşaretleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Turkce/09_Noktalama_Isaretleri/Noktalama_Isaretleri_YouTube.mp4` (4K) · Kapak: `Noktalama_Isaretleri_YouTube_Kapak.jpg` (kamp kapağı).
+Video: `Outputs/Videos/YKS/TYT/Turkce/09_Noktalama_Isaretleri/Noktalama_Isaretleri_YouTube.mp4` (4K, 17:30) · Kapak: `Noktalama_Isaretleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 
@@ -20,14 +20,14 @@ Bu derste:
 ✅ Soru ve ünlem işareti, ayraç içindeki (!) ve (?)
 ✅ Çizgiler, tırnak, ayraçlar ve kesme işareti
 ✅ Boş bırakılan yerlere işaret sorusunu çözme yolu
-✅ 5 TYT tarzı soru, adım adım çözümle
+✅ 6 TYT tarzı soru, adım adım çözümle
 
 🎯 Kamp görevi:
 1. Bir köşe yazısında virgüllerin her birinin hangi işi yaptığını yaz.
 2. Aynı yazıda bir noktalı virgül ya da iki nokta bul ve neden konduğunu açıkla.
 3. Sınavika'da Noktalama İşaretleri testinden 20 soru çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz.
 
-⏮️ Önceki ders, Yazım Kuralları: (yayın linki)
+⏮️ Önceki ders, Yazım Kuralları: https://youtu.be/sOU9LYP6BFo
 ⏭️ Sıradaki ders: Sözcükte Yapı. Kanala abone ol, hiçbir dersi kaçırma! 🔔
 🗺️ Kampı baştan izle, Bölüm 0: https://youtu.be/-YSeFFxDOhM
 
@@ -37,7 +37,18 @@ Google Play: https://play.google.com/store/apps/details?id=com.sinavika.mobile
 Web: https://sinavika.com
 
 Bölümler:
-(render sonrası `Noktalama_Isaretleri_YouTube.chapters.txt` buraya yapıştırılır; bölüm başlıkları: Giriş, Nokta, Virgül, Noktalı virgül, İki nokta ve üç nokta, Soru ve ünlem işareti, Kısa çizgi, uzun çizgi, eğik çizgi, Tırnak ve ayraçlar, Kesme işareti, Boş bırakılan yerlere işaret, Özet, Kamp görevi)
+0:00 Giriş
+0:50 Nokta
+1:45 Virgül
+4:41 Noktalı virgül
+6:40 İki nokta ve üç nokta
+8:44 Soru ve ünlem işareti
+11:08 Kısa çizgi, uzun çizgi, eğik çizgi
+11:40 Tırnak ve ayraçlar
+12:15 Kesme işareti
+13:56 Boş bırakılan yerlere işaret
+16:20 Özet
+16:59 Kamp görevi
 
 #TYT #YKS #TYTTürkçe #Noktalama #Sınavika
 
@@ -52,3 +63,7 @@ TYT Türkçe Kampı | Sınavika · YKS Kampı | Sınavika
 ## Ayarlar
 
 Kategori Eğitim · dil Türkçe · çocuklara özel değil · ücretli tanıtım yok · yapay zekâ beyanı önceki derslerle aynı · yayın saati sahibin kararı (öneri: 4 Kasım 19:00).
+
+## Yükleme (1 Kasım 2026)
+
+Videoyu sahip yükledi ve yayın gününü kendisi seçti: https://youtu.be/ORFawxbpenY · herkese açık 5 Kasım 2026 (planlı). Studio'da girildi ve sunucudan yeniden okunarak doğrulandı: başlık A (sahip: "A/B testini açma, varsayılanı yaz"; B ve C kullanılmadı), yukarıdaki açıklama (bölümler ve önceki ders bağlantısıyla), kapak `Noktalama_Isaretleri_YouTube_Kapak.png`, iki oynatma listesi, etiketler, dil Türkçe, kategori Eğitim, ücretli tanıtım yok, yapay zekâ beyanı "Hayır", bitiş ekranı Ders 4'ten içe aktarıldı (abone ol + en son yükleme).

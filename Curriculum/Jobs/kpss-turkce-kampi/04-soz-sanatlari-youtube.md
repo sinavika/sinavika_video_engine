@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Türkçe kampı · Ders 4 · Söz Sanatları
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Turkce/04_Soz_Sanatlari/Soz_Sanatlari_YouTube.mp4` (4K) · Kapak: `Soz_Sanatlari_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Turkce/04_Soz_Sanatlari/Soz_Sanatlari_YouTube.mp4` (4K) · Kapak: `Soz_Sanatlari_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -1,6 +1,6 @@
 # YouTube metni: AYT Felsefe kampı · Ders 2 · Bilgi Felsefesi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Felsefe/02_Bilgi_Felsefesi/Bilgi_Felsefesi_YouTube.mp4` (4K) · Kapak: `Bilgi_Felsefesi_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Felsefe/02_Bilgi_Felsefesi/Bilgi_Felsefesi_YouTube.mp4` (4K) · Kapak: `Bilgi_Felsefesi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

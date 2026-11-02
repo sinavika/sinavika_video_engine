@@ -121,6 +121,12 @@ type OutputRequest<Result> = {
 	metadata?: Record<string, unknown>;
 	/** Overrides the output root. Used by tests. */
 	rootDirectory?: string;
+	/**
+	 * A place of its own instead of a numbered name in the kind's folder: an absolute path without extension
+	 * (`…/Outputs/Videos/YKS/TYT/Turkce/07_Tamlamalar/Tamlamalar_YouTube`), each part's suffix and extension added
+	 * to it. The production is still numbered in the manifest, and an existing file is still never overwritten.
+	 */
+	place?: string;
 };
 
 type SavedOutput<Result> = {
@@ -148,6 +154,7 @@ export const saveNumberedOutput = async <Result>({
 	produce,
 	metadata = {},
 	rootDirectory = outputRoot(),
+	place,
 }: OutputRequest<Result>): Promise<SavedOutput<Result>> => {
 	const directory = path.join(rootDirectory, kind);
 	const work = path.join(directory, WORK_DIRECTORY);
@@ -159,8 +166,9 @@ export const saveNumberedOutput = async <Result>({
 	const files = (parts ?? ['']).map((part) => (typeof part === 'string' ? {suffix: part, extension} : part));
 	const temporaryPaths = files.map((file) => path.join(work, `${randomUUID()}.${file.extension}`));
 	const finalPaths = files.map((file) =>
-		path.join(directory, `${pad(number)}_${name}${file.suffix ? `_${file.suffix}` : ''}.${file.extension}`),
+		place ? `${place}${file.suffix ? `_${file.suffix}` : ''}.${file.extension}` : path.join(directory, `${pad(number)}_${name}${file.suffix ? `_${file.suffix}` : ''}.${file.extension}`),
 	);
+	if (place) await mkdir(path.dirname(place), {recursive: true});
 
 	try {
 		const result = await produce(temporaryPaths);

@@ -1,0 +1,804 @@
+{
+ "topic": {
+  "id": "FBCB5E24-105A-345B-8267-AE7FB916D43E",
+  "category": "KPSS_LISANS",
+  "lesson": "MAT",
+  "code": "PERMUTASYON_KOMBINASYON_OLASILIK"
+ },
+ "title": "Permütasyon, Kombinasyon ve Olasılık",
+ "lessonName": "Matematik",
+ "exams": [
+  "KPSS"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/KPSS/MAT/PERMUTASYON_KOMBINASYON_OLASILIK.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Sıra önemli mi?",
+   "narration": "Bir kurul seçmek ile bir yarışın ilk üç derecesini belirlemek aynı şey değildir; biri kombinasyon, öteki permütasyondur. Bu derste saymanın iki ilkesinden başlayıp permütasyon, kombinasyon ve olasılığa gideceğiz. Lisans sınavında bu konudan gelen sorularda en sık olasılık soruldu. Hepsini yeni sorularla adım adım çözeceğiz."
+  },
+  "objectives": [
+   "Çarpma ve toplama ilkesiyle saymak",
+   "Permütasyon ve tekrarlı permütasyonla sıralamak",
+   "Kombinasyonla seçim yapmak; en az bir koşulunu uygulamak",
+   "Basit olasılığı eşit olasılıklı durumlarla hesaplamak",
+   "Tümleyen olayla en az bir olasılığını bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "PERMUTASYON_KOMBINASYON_OLASILIK_01",
+    "subtopics": [],
+    "title": "Temel sayma ilkesi",
+    "narration": "Bütün sayma soruları iki ilkeye dayanır: art arda yapılan seçimler çarpılır, ya o ya bu denince toplanır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Çarp ya da topla",
+      "items": [
+       "**Çarpma ilkesi**: art arda yapılan seçimlerde seçenek sayıları **çarpılır**.",
+       "**Toplama ilkesi**: \"ya o ya bu\" durumlarında seçenek sayıları **toplanır**.",
+       "Kısıtlı yerden **başla**: ilk basamak 0 olamaz, çift sayıda birler basamağı.",
+       "Kısıt iki yere birden dokunuyorsa **durumlara ayır**, sonra topla."
+      ],
+      "beats": [],
+      "narration": "Art arda yapılan seçimlerde seçenek sayılarını çarparsın: 3 gömlek ve 4 pantolondan 12 farklı kıyafet çıkar. Ya o ya bu durumlarında ise toplarsın. Sayarken her zaman en kısıtlı yerden başlarsın: ilk basamak 0 olamaz, çift sayıda birler basamağı belirlidir. Kısıt iki yere birden dokunuyorsa, örneğin hem birler basamağı hem ilk basamak sıfırla ilgiliyse, durumlara ayırır ve sonra toplarsın."
+     },
+     {
+      "kind": "predict",
+      "title": "Yolları say",
+      "context": "Ankara → İstanbul: **3 yol**; İstanbul → İzmir: **4 yol**",
+      "prompt": "Ankara’dan İstanbul üzerinden İzmir’e kaç farklı yoldan gidilebilir?",
+      "choices": [
+       "7",
+       "12"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Adım",
+        "Seçenek"
+       ],
+       "rows": [
+        [
+         "Ankara → İstanbul",
+         "3"
+        ],
+        [
+         "İstanbul → İzmir",
+         "4"
+        ],
+        [
+         "Toplam",
+         "$3 \\cdot 4 = 12$"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Ankara'dan İstanbul'a 3 yol var.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Her birinden sonra İstanbul'dan İzmir'e 4 yol seçilebilir. Seçimler art arda: 3 çarpı 4, 12.",
+        "show": [
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r2",
+         "r3"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "Art arda iki seçim: $3 \\cdot 4 = 12$. **Toplamak** değil, **çarpmak** gerekir.",
+      "narration": "Şimdi sıra sende. Ankara'dan İstanbul'a 3, İstanbul'dan İzmir'e 4 yol var. İstanbul üzerinden kaç yol? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 12. Yolculuk iki adımda yapılıyor ve her adımın seçimi ötekinden bağımsız. Art arda seçimlerde seçenekler çarpılır: 3 çarpı 4, 12. 7 diyen, ya o ya bu durumu sanıp toplamıştır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "0, 1, 2, 3, 4 ve 5 rakamları kullanılarak rakamları birbirinden farklı üç basamaklı kaç **çift** sayı yazılabilir?",
+       "options": [
+        "40",
+        "48",
+        "52",
+        "60",
+        "100"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Birler 0: yüzler 5, onlar 4 seçenek ⇒ $5 \\cdot 4 = 20$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birler basamağı 0 ise yüzler basamağına kalan 5 rakamın hepsi gelebilir; onlar basamağına kalan 4 rakam. 5 çarpı 4, 20."
+        },
+        {
+         "text": "Birler 2 ya da 4: yüzler $4$ (0 hariç), onlar $4$ ⇒ $2 \\cdot 4 \\cdot 4 = 32$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birler basamağı 2 ise yüzler basamağı 0 olamaz ve 2 olamaz: 4 seçenek. Onlar basamağına kalan 4 rakam, 0 dahil. 16 sayı. Birler basamağı 4 için de 16."
+        },
+        {
+         "text": "$20 + 32 = 52$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam 20 artı 32, 52. Cevap C. B şıkkındaki 48, sıfırlı durumu da ötekiler gibi sayanın; D şıkkındaki 60 ise ilk basamağın sıfır olamayacağını unutanın cevabıdır."
+        }
+       ],
+       "narration": "Birler basamağı kısıtlı. Ama 0 ilk basamakla da ilgili; durumlara ayıralım.",
+       "origin": {
+        "changes": "ÖSYM'nin verilen rakamlarla koşullu sayı yazdırma kalıbı örnek alındı; rakamlar ve koşul bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "PERMUTASYON_KOMBINASYON_OLASILIK_02",
+    "subtopics": [
+     "PERMUTASYON_KOMBINASYON_OLASILIK_03"
+    ],
+    "title": "Faktöriyel ve permütasyon",
+    "narration": "Permütasyon sıralamadır. Kimin önde, kimin arkada olduğu önemliyse permütasyon kullanırsın.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sıralama",
+      "items": [
+       "$n$ farklı nesne **sıraya** $n!$ farklı biçimde dizilir.",
+       "$n$ nesneden $r$ tanesini sıralamak: $P(n, r) = \\frac{n!}{(n - r)!} = n(n - 1)\\cdots$ ($r$ çarpan).",
+       "**Yan yana** olacaklar tek bir blok sayılır; blok kendi içinde de sıralanır."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "P(n, r) = \\frac{n!}{(n - r)!}",
+       "caption": "P(8, 3) = 8 · 7 · 6 = 336"
+      },
+      "beats": [],
+      "narration": "n farklı nesne bir sıraya n faktöriyel farklı biçimde dizilir. n nesneden yalnız r tanesini sıralayacaksan n'den başlayıp r tane azalan sayıyı çarparsın; buna n'nin r'li permütasyonu denir. Bazı nesnelerin yan yana olması isteniyorsa onları tek bir blok gibi düşünürsün; sonra bloğun içini de kendi arasında sıralarsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "8 koşucunun katıldığı ve her koşucunun farklı derece aldığı bir yarışta ilk üç derece kaç farklı şekilde oluşabilir?",
+       "options": [
+        "24",
+        "56",
+        "168",
+        "336",
+        "720"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Birinci 8, ikinci 7, üçüncü 6 seçenek",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birinciliğe 8 koşucudan biri, ikinciliğe kalan 7'den biri, üçüncülüğe kalan 6'dan biri gelir."
+        },
+        {
+         "text": "$8 \\cdot 7 \\cdot 6 = 336$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "8 çarpı 7 çarpı 6, 336. Cevap D. B şıkkındaki 56, sırayı önemsemeyip yalnız 3 kişiyi seçenin bulduğu kombinasyondur."
+        }
+       ],
+       "narration": "Birinci, ikinci ve üçüncü farklı şeyler; sıra önemli.",
+       "origin": {
+        "changes": "ÖSYM'nin turnuvada ilk dereceleri sorduran permütasyon kalıbı örnek alındı; durum ve sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Birbirinden farklı 4 kitap ve birbirinden farklı 3 defter bir rafa yan yana dizilecektir. Defterlerin hepsi yan yana olmak şartıyla kaç farklı dizilim yapılabilir?",
+       "options": [
+        "120",
+        "144",
+        "240",
+        "720",
+        "5040"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Defterler bir blok: 4 kitap + 1 blok = 5 birim ⇒ $5! = 120$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "3 defteri tek bir paket yapalım. Şimdi 4 kitap ve 1 paket, toplam 5 birim var; 5 faktöriyel, 120 dizilim."
+        },
+        {
+         "text": "Blok içinde: $3! = 6$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Paketin içinde 3 defter kendi arasında 3 faktöriyel, 6 farklı biçimde sıralanır."
+        },
+        {
+         "text": "$120 \\cdot 6 = 720$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam 120 çarpı 6, 720. Cevap D. A şıkkındaki 120, bloğun içini sıralamayı unutanın cevabıdır."
+        }
+       ],
+       "narration": "Yan yana olacak defterleri tek bir blok gibi düşünelim.",
+       "origin": {
+        "changes": "ÖSYM'nin bir grubun yan yana olduğu sıralama kalıbı örnek alındı; nesneler ve sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "PERMUTASYON_KOMBINASYON_OLASILIK_04",
+    "subtopics": [],
+    "title": "Tekrarlı permütasyon",
+    "narration": "Bazı nesneler birbirinin aynısıysa onların yer değiştirmesi yeni bir sıralama yaratmaz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Aynıları böl",
+      "items": [
+       "$n$ nesnede $a$ tanesi aynı, $b$ tanesi aynıysa: $\\frac{n!}{a! \\cdot b!}$",
+       "Kelime soruları: aynı harfleri say, faktöriyellerine böl."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "\\frac{n!}{a! \\cdot b!}",
+       "caption": "KİTAP: 5! = 120; KALE: 4!; ELMA ELMA: tekrar var"
+      },
+      "beats": [],
+      "narration": "n nesneyi sıralarken bazıları birbirinin aynısıysa n faktöriyeli bulur, aynı olan her grubun eleman sayısının faktöriyeline bölersin. Çünkü aynı nesnelerin kendi aralarında yer değiştirmesi yeni bir sıralama yaratmaz. Kelime sorularında önce her harften kaç tane olduğunu sayarsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "ANKARA kelimesinin harfleri yer değiştirilerek anlamlı ya da anlamsız 6 harfli kaç farklı kelime yazılabilir?",
+       "options": [
+        "60",
+        "120",
+        "240",
+        "360",
+        "720"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "A: 3 tane; N, K, R: birer tane",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "ANKARA'da 6 harf var: A üç kez geçiyor; N, K ve R birer kez."
+        },
+        {
+         "text": "$\\frac{6!}{3!} = \\frac{720}{6} = 120$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "6 faktöriyel 720; üç A'nın kendi arasındaki 3 faktöriyel, yani 6 farklı yer değiştirmesi aynı kelimeyi verir. 720 bölü 6, 120. Cevap B. E şıkkındaki 720, A'ların aynı olduğunu hesaba katmayanın cevabıdır."
+        }
+       ],
+       "narration": "Hangi harften kaç tane var, onu sayalım.",
+       "origin": {
+        "changes": "ÖSYM'nin tekrarlı rakam ya da harflerle dizilim kalıbı örnek alındı; kelime bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "PERMUTASYON_KOMBINASYON_OLASILIK_05",
+    "subtopics": [],
+    "title": "Kombinasyon",
+    "narration": "Kombinasyon seçimdir: kimin seçildiği önemli, sırası önemsiz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Seçim",
+      "items": [
+       "$C(n, r) = \\binom{n}{r} = \\frac{n!}{r!\\,(n - r)!}$; $\\binom{n}{r} = \\binom{n}{n - r}$",
+       "**Sıra** ya da **görev** varsa permütasyon, yalnız **seçim** varsa kombinasyon.",
+       "\"**En az bir**\" koşulunda: hepsi $-$ hiç olmayan.",
+       "Üçgen sayısı: 3 nokta seç, **aynı doğrudaki** üçlüleri çıkar."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "\\binom{n}{r} = \\frac{n!}{r!\\,(n - r)!}",
+       "caption": "C(9, 3) = 84"
+      },
+      "beats": [],
+      "narration": "n nesneden r tanesini sırası önemsiz olarak seçmenin yolu n'nin r'li kombinasyonudur. Sıra ya da görev farkı varsa, örneğin başkan ve yardımcı seçiliyorsa permütasyon; yalnız bir grup seçiliyorsa kombinasyon kullanırsın. En az bir koşulu varsa bütün seçimlerden hiç olmayan seçimleri çıkarırsın. Üçgen sorularında 3 nokta seçer, aynı doğru üzerindeki üçlüleri çıkarırsın, çünkü onlar üçgen oluşturmaz."
+     },
+     {
+      "kind": "predict",
+      "title": "Sıra önemli mi?",
+      "context": "10 kişiden **3 kişilik bir kurul** seçilecek.",
+      "prompt": "Bu seçim hangisiyle sayılır?",
+      "choices": [
+       "Kombinasyon",
+       "Permütasyon"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Durum",
+        "Sıra önemli mi?",
+        "Yöntem"
+       ],
+       "rows": [
+        [
+         "3 kişilik kurul",
+         "hayır",
+         "kombinasyon"
+        ],
+        [
+         "başkan, yardımcı, sekreter",
+         "evet",
+         "permütasyon"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Kurulda herkes eşit üyedir; Ali, Can, Ece ile Ece, Ali, Can aynı kuruldur. Sıra önemsiz: kombinasyon.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Ama başkan, yardımcı ve sekreter seçilseydi Ali'nin başkan ya da sekreter olması farklı olurdu. Görev varsa permütasyon.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "Kurulda **görev farkı yok**: sıra önemsiz, **kombinasyon**. Görev olsaydı permütasyon.",
+      "narration": "Şimdi sıra sende. 10 kişiden 3 kişilik bir kurul seçilecek. Bu seçim kombinasyonla mı, permütasyonla mı sayılır? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap kombinasyon. Kurulda herkes eşit üyedir; aynı üç kişi hangi sırayla seçilirse seçilsin aynı kurul çıkar. Görev farkı olsaydı, örneğin biri başkan olsaydı, sıra önemli olurdu ve permütasyon kullanırdın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "5 öğretmen ve 4 öğrenci arasından **en az bir öğrencinin** bulunduğu 3 kişilik bir komisyon kaç farklı şekilde seçilebilir?",
+       "options": [
+        "64",
+        "70",
+        "74",
+        "80",
+        "84"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Bütün seçimler: $\\binom{9}{3} = 84$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "9 kişiden 3 kişi: 9 çarpı 8 çarpı 7 bölü 6, 84."
+        },
+        {
+         "text": "Hiç öğrenci yok: $\\binom{5}{3} = 10$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hiç öğrenci olmayan komisyonlar, 5 öğretmenden seçilen 3 kişiliklerdir: 10."
+        },
+        {
+         "text": "$84 - 10 = 74$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "En az bir öğrenci bulunanlar: 84 eksi 10, 74. Cevap C. E şıkkındaki 84, koşulu unutanın cevabıdır."
+        }
+       ],
+       "narration": "En az bir koşulu var. Bütün seçimlerden hiç öğrenci olmayanları çıkaracağız.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki iki gruptan en az birer kişili seçim kalıbı örnek alındı; gruplar ve sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Birbirine paralel iki doğrudan birinde 3, diğerinde 4 nokta işaretleniyor. Bu 7 noktadan herhangi üçü köşe olacak biçimde kaç farklı üçgen çizilebilir?",
+       "options": [
+        "30",
+        "31",
+        "32",
+        "34",
+        "35"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Bütün üçlüler: $\\binom{7}{3} = 35$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "7 noktadan 3 nokta: 7 çarpı 6 çarpı 5 bölü 6, 35."
+        },
+        {
+         "text": "Aynı doğrudakiler: $\\binom{3}{3} + \\binom{4}{3} = 1 + 4 = 5$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birinci doğrudaki 3 noktanın tek üçlüsü, ikinci doğrudaki 4 noktanın 4 üçlüsü var; bunlar üçgen oluşturmaz: 5 üçlü."
+        },
+        {
+         "text": "$35 - 5 = 30$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üçgen sayısı 35 eksi 5, 30. Cevap A. D şıkkındaki 34, yalnız bir doğrunun üçlüsünü çıkaranın cevabıdır."
+        }
+       ],
+       "narration": "Bütün üçlü seçimlerden aynı doğrudaki üçlüleri çıkaracağız.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki paralel doğrular üzerindeki noktalardan üçgen kalıbı örnek alındı; nokta sayıları bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "PERMUTASYON_KOMBINASYON_OLASILIK_06",
+    "subtopics": [
+     "PERMUTASYON_KOMBINASYON_OLASILIK_08"
+    ],
+    "title": "Basit olasılık",
+    "narration": "Lisans sınavında bu konudan gelen soruların çoğu olasılıktı. Formül tek: istenen durumlar bölü bütün durumlar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İstenen bölü tümü",
+      "items": [
+       "$P(A) = \\frac{\\text{istenen durum sayısı}}{\\text{bütün durumların sayısı}}$; $0 \\le P(A) \\le 1$.",
+       "Bütün durumları **eşit olasılıklı** say: iki zar için 36 sıralı ikili.",
+       "**Ayrık** olaylarda: $P(A \\cup B) = P(A) + P(B)$.",
+       "Art arda ve bağımsız olaylarda olasılıklar **çarpılır**; durumlara ayrılan olaylarda **toplanır**."
+      ],
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Toplam",
+        "Durumlar",
+        "Sayı"
+       ],
+       "rows": [
+        [
+         "7",
+         "(1,6) (2,5) … (6,1)",
+         "6"
+        ],
+        [
+         "9",
+         "(3,6) (4,5) (5,4) (6,3)",
+         "4"
+        ],
+        [
+         "12",
+         "(6,6)",
+         "1"
+        ]
+       ]
+      },
+      "beats": [],
+      "narration": "Bir olayın olasılığı, istenen durumların sayısının bütün durumların sayısına bölümüdür ve 0 ile 1 arasındadır. Bütün durumları eşit olasılıklı olacak biçimde saymalısın: iki zar atılınca 36 sıralı ikili vardır; 3 ve 6 ile 6 ve 3 ayrı durumlardır. Aynı anda olamayan ayrık olayların olasılıkları toplanır. Art arda gelen bağımsız olaylarda olasılıklar çarpılır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "İki hilesiz zar birlikte atılıyor. Zarların üst yüzüne gelen sayıların toplamının 9 olma olasılığı kaçtır?",
+       "options": [
+        "$\\frac{1}{12}$",
+        "$\\frac{1}{9}$",
+        "$\\frac{5}{36}$",
+        "$\\frac{1}{6}$",
+        "$\\frac{1}{4}$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Bütün durumlar: $6 \\cdot 6 = 36$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birinci zar 6, ikinci zar 6 farklı sonuç verir: 36 sıralı ikili."
+        },
+        {
+         "text": "Toplam 9: $(3, 6), (4, 5), (5, 4), (6, 3)$ → 4",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplamı 9 olanlar: 3 ve 6, 4 ve 5, 5 ve 4, 6 ve 3. Dört durum; sıra farklıysa ayrı sayılır."
+        },
+        {
+         "text": "$\\frac{4}{36} = \\frac{1}{9}$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Olasılık 4 bölü 36, yani 9'da 1. Cevap B. A şıkkındaki 12'de 1, 3 ve 6 ile 6 ve 3'ü tek durum sayanın cevabıdır."
+        }
+       ],
+       "narration": "Bütün durumlar 36. Toplamı 9 olanları sayalım.",
+       "origin": {
+        "changes": "ÖSYM'nin zar toplamı olasılığı kalıbı örnek alındı; zar sayısı ve toplam bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "2 kız ve 3 erkek öğrenci rastgele yan yana sıralanıyor. İki kız öğrencinin yan yana olma olasılığı kaçtır?",
+       "options": [
+        "$\\frac{1}{5}$",
+        "$\\frac{1}{4}$",
+        "$\\frac{2}{5}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{3}{5}$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Bütün sıralamalar: $5! = 120$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "5 kişi 5 faktöriyel, 120 farklı biçimde sıralanır."
+        },
+        {
+         "text": "Kızlar yan yana: blok + 3 erkek $= 4$ birim ⇒ $4! \\cdot 2! = 48$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki kızı bir blok yapalım: blok ve 3 erkek, 4 birim; 4 faktöriyel, 24. Blok içinde kızlar 2 türlü sıralanır: 48."
+        },
+        {
+         "text": "$\\frac{48}{120} = \\frac{2}{5}$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Olasılık 48 bölü 120, yani 5'te 2. Cevap C. A şıkkındaki 5'te 1, blok içindeki 2 sıralamayı unutanın cevabıdır."
+        }
+       ],
+       "narration": "Bütün sıralamaları ve istenenleri permütasyonla sayalım.",
+       "origin": {
+        "changes": "ÖSYM'nin belli kişilerin yan yana olma olasılığı kalıbı örnek alındı; grup ve sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir torbada 4 kırmızı ve 2 mavi top vardır. Torbadan rastgele bir top çıkarılıp yerine bir mavi top konuyor. Son durumda torbadan rastgele çekilen bir topun mavi olma olasılığı kaçtır?",
+       "options": [
+        "$\\frac{1}{3}$",
+        "$\\frac{4}{9}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{5}{9}$",
+        "$\\frac{2}{3}$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Kırmızı çıktı ($\\frac{4}{6}$): torba 3 K, 3 M ⇒ mavi $\\frac{3}{6}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İlk top kırmızıysa, olasılığı 6'da 4, yerine mavi konunca torbada 3 kırmızı, 3 mavi olur. Mavi çekme olasılığı 6'da 3."
+        },
+        {
+         "text": "Mavi çıktı ($\\frac{2}{6}$): torba 4 K, 2 M ⇒ mavi $\\frac{2}{6}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İlk top maviyse, olasılığı 6'da 2, yerine yine mavi konur; torba değişmez: 4 kırmızı, 2 mavi. Mavi çekme olasılığı 6'da 2."
+        },
+        {
+         "text": "$\\frac{4}{6} \\cdot \\frac{3}{6} + \\frac{2}{6} \\cdot \\frac{2}{6} = \\frac{1}{3} + \\frac{1}{9} = \\frac{4}{9}$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Her durumda olasılıkları çarpar, durumları toplarız: 3'te 1 artı 9'da 1, 9'da 4. Cevap B. A şıkkındaki 3'te 1, top değişmemiş gibi hesaplayanın cevabıdır."
+        }
+       ],
+       "narration": "İlk çıkan topun rengine göre iki durum var.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki torbadan top çıkarıp yerine başka top koyma kalıbı örnek alındı; renkler ve sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "PERMUTASYON_KOMBINASYON_OLASILIK_07",
+    "subtopics": [],
+    "title": "Tümleyen olay",
+    "narration": "Son bölümde bir kısayol: bir olayın olmama olasılığı. \"En az bir\" gördüğünde aklına ilk bu gelmeli.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "1 eksi",
+      "items": [
+       "$P(A') = 1 - P(A)$",
+       "\"**En az biri**\" $= 1 -$ \"**hiçbiri**\".",
+       "Bağımsız olayların **hiçbirinin** olmaması: olmama olasılıkları **çarpılır**."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "P(\\text{en az biri}) = 1 - P(\\text{hiçbiri})",
+       "caption": "Toplamak yerine tümleyeni al"
+      },
+      "beats": [],
+      "narration": "Bir olayın olmama olasılığı, 1'den olma olasılığı çıkarılarak bulunur. En az biri sorulduğunda olasılıkları tek tek toplamak yerine 1'den hiçbirinin olmama olasılığını çıkarırsın. Bağımsız olayların hiçbirinin olmaması için her birinin olmama olasılıklarını çarparsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Hedefe ok atan Ali'nin hedefi vurma olasılığı $\\frac{2}{3}$, Can'ın $\\frac{3}{4}$'tür. İkisi birer ok attığına göre **en az birinin** hedefi vurma olasılığı kaçtır?",
+       "options": [
+        "$\\frac{1}{2}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{5}{6}$",
+        "$\\frac{11}{12}$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Iskalama: Ali $1 - \\frac{2}{3} = \\frac{1}{3}$, Can $1 - \\frac{3}{4} = \\frac{1}{4}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Ali'nin ıskalama olasılığı 3'te 1, Can'ınki 4'te 1."
+        },
+        {
+         "text": "İkisi de ıskalar: $\\frac{1}{3} \\cdot \\frac{1}{4} = \\frac{1}{12}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Atışlar bağımsız; ikisinin de ıskalaması 3'te 1 çarpı 4'te 1, yani 12'de 1."
+        },
+        {
+         "text": "En az biri vurur: $1 - \\frac{1}{12} = \\frac{11}{12}$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "En az birinin vurma olasılığı 1 eksi 12'de 1, 12'de 11. Cevap E. Olasılıkları doğrudan toplayan 1'den büyük bir sayı bulur; bu imkânsızdır."
+        }
+       ],
+       "narration": "En az biri: 1'den ikisinin de ıskalamasını çıkaracağız.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki iki kişiden en az birinin hedefi vurması kalıbı örnek alındı; olasılıklar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Art arda seçimler çarpılır, ya o ya bu toplanır.",
+    "Kısıtlı yerden başla; gerekirse durumlara ayır.",
+    "Sıra ya da görev varsa permütasyon, yalnız seçimse kombinasyon.",
+    "Yan yana olanları blok yap; bloğun içini de sırala.",
+    "Aynı nesneler varsa faktöriyellerine böl.",
+    "Olasılık: istenen bölü tümü; durumları eşit olasılıklı say.",
+    "En az biri: 1 eksi hiçbiri."
+   ],
+   "warnings": [
+    "(3, 6) ile (6, 3) **ayrı** durumlardır.",
+    "Bloğun **içini** sıralamayı unutma.",
+    "Olasılık **1’den büyük** olamaz."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki **10 soruyu** kâğıtta yeniden çöz; her birinde sıra önemli mi, yaz.",
+    "Adının harfleriyle **kaç farklı dizilim** yapılabileceğini bul.",
+    "Uygulamada KPSS Permütasyon, Kombinasyon ve Olasılık testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Temel sayma ilkesi: çarpma ve toplama ilkesi, kısıtlı yerden başlama, sıfırın hem ilk hem son basamağa dokunduğu durumlara ayırma.",
+   "Permütasyon: n!, P(n, r), yan yana olanları blok yapma; ilk dereceler ve dizilim soruları.",
+   "Tekrarlı permütasyon: aynı harf ya da rakamların faktöriyellerine bölme; tanımlı sayılarla tekrarlı dizilim.",
+   "Kombinasyon: sıra ve görev testi; 'en az bir' = hepsi − hiç; paralel doğrulardaki noktalardan üçgen sayma.",
+   "Basit olasılık: eşit olasılıklı durumlar (iki zar için 36 sıralı ikili), yan yana olma olasılığı, top değiştirmede durumlara ayırma.",
+   "Tümleyen olay: P(A') = 1 − P(A), en az biri = 1 − hiçbiri, bağımsız olaylarda çarpma."
+  ]
+ }
+}

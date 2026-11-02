@@ -1,7 +1,7 @@
 import React from 'react';
 import {clamp01, lerp} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
-import {useVisualPalette} from '../VisualFrame';
+import {useStillFigure, useVisualPalette} from '../VisualFrame';
 import {W} from '../VisualWorld';
 
 /**
@@ -25,6 +25,8 @@ export const mixColor = (from: string, to: string, t: number) => {
 /** The stages as chips, the current one in the lesson colour, with a bar for how far it has gone. */
 export const StageStrip: React.FC<{names: readonly string[]; stage: number; progress: number; width?: number}> = ({names, stage, progress, width = W}) => {
 	const palette = useVisualPalette();
+	// An app still shows the last stage alone, without the strip of stage names.
+	if (useStillFigure()) return null;
 	const gap = 12;
 	const chip = (width - gap * (names.length - 1)) / names.length;
 	return (

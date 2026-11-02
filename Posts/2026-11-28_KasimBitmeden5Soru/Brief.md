@@ -27,3 +27,8 @@ Alternatifler: "Bu ayın karnesi." · "Aralık’a nasıl gireceksin?"
 Kasım bitmeden kendine 5 soru sor: kaç deneme, hangi konu, hangi yanlış, kaç gün ve Aralık’ta ne farklı? Cevapların Ders Planı’nda ve deneme sonuçlarında. Kaydet, ay sonunda dön. 📌
 
 #sinavika #yks #kpss #sınavhazırlık
+
+## 1 Kasım revizyonu
+
+- **Red notu:** "sorular çok okunaklı değil biraz daha aşağıda olabilir. cevap kısmı çok büyük"
+- **Değişen:** Sorular büyük (ortak punto) ve sayfanın ortasına yakın; cevap kartı küçük ve her sayfada aynı yerde; çizgiler yalnız cevap alanında.

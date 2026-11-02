@@ -1,6 +1,6 @@
 # YouTube metni: TYT Coğrafya kampı · Ders 2 · Dünya'nın Şekli ve Hareketleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Cografya/02_Dunyanin_Sekli_ve_Hareketleri/Dunyanin_Sekli_ve_Hareketleri_YouTube.mp4` (4K) · Kapak: `Dunyanin_Sekli_ve_Hareketleri_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Cografya/02_Dunyanin_Sekli_ve_Hareketleri/Dunyanin_Sekli_ve_Hareketleri_YouTube.mp4` (4K) · Kapak: `Dunyanin_Sekli_ve_Hareketleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

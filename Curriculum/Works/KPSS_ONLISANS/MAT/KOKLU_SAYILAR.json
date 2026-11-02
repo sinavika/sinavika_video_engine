@@ -1,0 +1,476 @@
+{
+ "topic": {
+  "id": "242AB272-07D1-D7E5-ABAD-3D3BC2F2027B",
+  "category": "KPSS_ONLISANS",
+  "lesson": "MAT",
+  "code": "KOKLU_SAYILAR"
+ },
+ "title": "Köklü Sayılar",
+ "lessonName": "Matematik",
+ "exams": [
+  "KPSS"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/KPSS/MAT/KOKLU_SAYILAR.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Karekök negatif olmaz",
+   "narration": "Eksi 3'ün karesinin karekökü kaçtır? Eksi 3 diyorsan bu ders tam sana göre. Köklü sayılar KPSS'de çoğu zaman tek başına değil, bir işlemin, bir sıralamanın ya da bir denklemin içinde karşına çıkar; 2020 Lisans sınavında doğrudan iki soru geldi. Bu derste karekökün tanımından eşlenik ve köklü denklemlere kadar her adımı yeni sorularla göreceğiz."
+  },
+  "objectives": [
+   "Karekökün negatif olmadığını ve mutlak değerle ilişkisini kullanmak",
+   "Kök dışına çıkarmak, kök içine almak ve köklü sayıları sıralamak",
+   "Köklü sayılarda dört işlem yapmak",
+   "Eşlenikle paydayı kökten kurtarmak; iç içe kökü açmak",
+   "Köklü denklemleri çözmek ve sağlama yapmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "KOKLU_SAYILAR_01",
+    "subtopics": [
+     "KOKLU_SAYILAR_02"
+    ],
+    "title": "Kök dışına çıkarma ve kök içine alma",
+    "narration": "Köklü bir sayıyı sadeleştirmek ve köklü sayıları karşılaştırmak için iki hamle yeter.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Dışarı çıkar, içeri al",
+      "items": [
+       "Kök dışına çıkarma: içini **tam kare çarpanına** ayır: $\\sqrt{72} = \\sqrt{36 \\cdot 2} = 6\\sqrt{2}$.",
+       "Kök içine alma: dıştaki sayının **karesi** içeri girer: $3\\sqrt{5} = \\sqrt{9 \\cdot 5} = \\sqrt{45}$.",
+       "Köklü sayıları sıralamak için hepsini **kök içine al**, içleri karşılaştır."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "\\sqrt{72} = 6\\sqrt{2}",
+       "caption": "72 = 36 · 2; 36’nın kökü 6 dışarı çıkar"
+      },
+      "beats": [],
+      "narration": "Kökün içini sadeleştirmek için onu bir tam kare ile başka bir sayının çarpımına ayırırsın. 72, 36 çarpı 2'dir; 36'nın karekökü 6 dışarı çıkar ve 6 kök 2 kalır. Tersini de yapabilirsin: dıştaki sayının karesini içeri alırsın; 3 kök 5, kök 45'tir. Köklü sayıları sıralamak için hepsini kök içine alır, içlerini karşılaştırırsın."
+     },
+     {
+      "kind": "predict",
+      "title": "Kök hangi aralıkta?",
+      "context": "$\\sqrt{50}$",
+      "prompt": "Hangi iki ardışık tam sayı arasındadır?",
+      "choices": [
+       "6 ile 7",
+       "7 ile 8"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Kare",
+        "Değer"
+       ],
+       "rows": [
+        [
+         "$7^2$",
+         "49"
+        ],
+        [
+         "$8^2$",
+         "64"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "50'ye en yakın tam kareleri bulalım. 7'nin karesi 49; 50'den küçük.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "8'in karesi 64; 50'den büyük. Demek ki kök 50, 7 ile 8 arasında ve 49'a çok yakın olduğu için 7'ye yakın.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "$49 < 50 < 64$ olduğu için $7 < \\sqrt{50} < 8$. Kökü tahmin etmek için iki yanındaki **tam karelere** bak.",
+      "narration": "Şimdi sıra sende. Kök 50 hangi iki tam sayı arasında? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 7 ile 8 arası. 50'nin iki yanındaki tam kareler 49 ve 64'tür; kökleri 7 ve 8. Kök 50 bu ikisinin arasındadır ve 49'a çok yakın olduğu için 7 virgül 1 civarındadır. Şıklarda köklü bir sayıyı yerleştirmen gerektiğinde bu yolu kullan."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$a = 3\\sqrt{5}$, $b = 4\\sqrt{3}$ ve $c = 2\\sqrt{11}$ olduğuna göre aşağıdaki sıralamalardan hangisi doğrudur?",
+       "options": [
+        "$a < b < c$",
+        "$a < c < b$",
+        "$b < c < a$",
+        "$c < a < b$",
+        "$c < b < a$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$a = \\sqrt{45}$, $b = \\sqrt{48}$, $c = \\sqrt{44}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "3'ün karesi 9; 9 çarpı 5, 45: a, kök 45. 4'ün karesi 16; 16 çarpı 3, 48: b, kök 48. 2'nin karesi 4; 4 çarpı 11, 44: c, kök 44."
+        },
+        {
+         "text": "$44 < 45 < 48$ ⇒ $c < a < b$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "İçi büyük olan kök büyüktür. 44, 45'ten; 45, 48'den küçük. Sıralama: c küçüktür a, a küçüktür b. Cevap D. Yalnız dıştaki sayıya bakıp b'yi ya da c'yi yanlış yere koymak bu sorunun tuzağıdır."
+        }
+       ],
+       "narration": "Hepsini kök içine alıp içleri karşılaştıralım.",
+       "origin": {
+        "changes": "Havuzdaki köklü sayıları kök içine alarak sıralatan kalıp örnek alındı; sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KOKLU_SAYILAR_03",
+    "subtopics": [],
+    "title": "Köklü sayılarda dört işlem",
+    "narration": "Köklü sayılarda çarpma serbesttir ama toplama değil. Farkı görelim.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Toplamada aynı kök",
+      "items": [
+       "Toplama ve çıkarma yalnız **aynı köklü** terimlerle yapılır: $2\\sqrt{3} + 5\\sqrt{3} = 7\\sqrt{3}$.",
+       "Önce her kökü **sadeleştir**, sonra topla.",
+       "$\\sqrt{a} \\cdot \\sqrt{b} = \\sqrt{ab}$; $\\frac{\\sqrt{a}}{\\sqrt{b}} = \\sqrt{\\frac{a}{b}}$"
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "\\sqrt{8} + \\sqrt{18} - \\sqrt{50} = 2\\sqrt{2} + 3\\sqrt{2} - 5\\sqrt{2} = 0",
+       "caption": "Önce sadeleştir, aynı kök çıkar"
+      },
+      "beats": [],
+      "narration": "Köklü sayıları toplarken yalnız kökleri aynı olan terimleri toplayabilirsin: 2 kök 3 artı 5 kök 3, 7 kök 3'tür. Kökler farklı görünüyorsa önce her birini sadeleştirirsin; çoğu zaman aynı kök ortaya çıkar. Çarpma ve bölmede ise köklerin içleri çarpılır ya da bölünür."
+     },
+     {
+      "kind": "mistake",
+      "title": "Toplamın kökü",
+      "wrong": "$\\sqrt{9 + 16} = \\sqrt{9} + \\sqrt{16} = 7$",
+      "right": "$\\sqrt{9 + 16} = \\sqrt{25} = 5$",
+      "why": "Kök, çarpıma dağılır ama toplama dağılmaz. Önce içerideki işlem yapılır.",
+      "narration": "Bir tuzak. 9 artı 16'nın karekökü, 3 artı 4, yani 7 değildir. Önce içerideki toplam yapılır: 25; karekökü 5. Kök çarpıma dağılır, toplama dağılmaz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$\\sqrt{0{,}08} + \\sqrt{0{,}18}$ işleminin sonucu kaçtır?",
+       "options": [
+        "$\\frac{\\sqrt{2}}{2}$",
+        "$\\frac{\\sqrt{26}}{10}$",
+        "$\\sqrt{2}$",
+        "$\\frac{\\sqrt{13}}{5}$",
+        "$\\frac{5\\sqrt{2}}{2}$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$\\sqrt{0{,}08} = \\sqrt{\\frac{8}{100}} = \\frac{2\\sqrt{2}}{10}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "0 virgül 08, 8 bölü 100'dür. Kök 8, 2 kök 2; kök 100, 10. Sonuç 2 kök 2 bölü 10."
+        },
+        {
+         "text": "$\\sqrt{0{,}18} = \\sqrt{\\frac{18}{100}} = \\frac{3\\sqrt{2}}{10}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "0 virgül 18, 18 bölü 100'dür. Kök 18, 3 kök 2; sonuç 3 kök 2 bölü 10."
+        },
+        {
+         "text": "$\\frac{5\\sqrt{2}}{10} = \\frac{\\sqrt{2}}{2}$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kökler aynı; topla: 5 kök 2 bölü 10, yani kök 2 bölü 2. Cevap A. B şıkkı, sayıları kökün içinde toplayanın tuzağıdır."
+        }
+       ],
+       "narration": "Ondalık sayıları kesre çevirip kökleri sadeleştirelim.",
+       "origin": {
+        "changes": "ÖSYM'nin köklü sayılarda dört işlem kalıbı örnek alındı; ondalıklı kökler bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KOKLU_SAYILAR_04",
+    "subtopics": [],
+    "title": "Eşlenik ve paydayı kökten kurtarma",
+    "narration": "Şimdi köklerin birbirini götürdüğü iki durum: eşlenik çarpımı ve paydayı kökten kurtarma.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Eşlenikle kurtar",
+      "items": [
+       "$(\\sqrt{a} - \\sqrt{b})(\\sqrt{a} + \\sqrt{b}) = a - b$: eşlenikler çarpılınca kök **kalkar**.",
+       "Paydada $\\sqrt{a}$ varsa pay ve paydayı $\\sqrt{a}$ ile çarp: $\\frac{6}{\\sqrt{3}} = \\frac{6\\sqrt{3}}{3} = 2\\sqrt{3}$.",
+       "Paydada $\\sqrt{a} \\pm \\sqrt{b}$ varsa pay ve paydayı **eşleniğiyle** çarp.",
+       "$\\sqrt{x + y + 2\\sqrt{xy}} = \\sqrt{x} + \\sqrt{y}$: içte toplamı ve çarpımı ara."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "(\\sqrt{a} - \\sqrt{b})(\\sqrt{a} + \\sqrt{b}) = a - b",
+       "caption": "Eşlenikler çarpılınca kök kalkar"
+      },
+      "beats": [],
+      "narration": "Kök a eksi kök b ile kök a artı kök b'ye eşlenik denir; çarpımları a eksi b'dir ve kök ortadan kalkar. Paydada tek bir kök varsa pay ve paydayı o kökle çarparsın: 6 bölü kök 3, 6 kök 3 bölü 3, yani 2 kök 3. Paydada iki kökün toplamı ya da farkı varsa eşleniğiyle çarparsın. Bir de iç içe kök var: kökün içinde bir sayı artı 2 kök bir sayı görürsen, toplamı dıştaki sayıyı, çarpımı içteki sayıyı veren iki sayı ararsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$a = \\sqrt{5} + \\sqrt{3}$ ve $b = \\sqrt{5} - \\sqrt{3}$ olduğuna göre $a^2 + b^2$ toplamı kaçtır?",
+       "options": [
+        "8",
+        "10",
+        "12",
+        "14",
+        "16"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$a + b = 2\\sqrt{5}$; $a \\cdot b = 5 - 3 = 2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a artı b: kök 3'ler gider, 2 kök 5 kalır. a çarpı b: eşlenik çarpımı, 5 eksi 3, yani 2."
+        },
+        {
+         "text": "$a^2 + b^2 = (a + b)^2 - 2ab = 20 - 4 = 16$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a kare artı b kare, a artı b'nin karesinden 2ab çıkarılarak bulunur. 2 kök 5'in karesi 20; 2ab, 4. 20 eksi 4, 16."
+        },
+        {
+         "text": "Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sağlama: a kare 8 artı 2 kök 15, b kare 8 eksi 2 kök 15; toplamları 16. Cevap E."
+        }
+       ],
+       "narration": "a ile b eşlenik. Toplamlarını ve çarpımlarını kullanalım.",
+       "origin": {
+        "changes": "ÖSYM'nin iki köklü ifade verip bir işlemin sonucunu sorduran kalıbı örnek alındı; ifadeler bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$\\frac{4}{\\sqrt{7} - \\sqrt{3}} - \\frac{6}{\\sqrt{3}}$ işleminin sonucu kaçtır?",
+       "options": [
+        "$\\sqrt{7} + \\sqrt{3}$",
+        "$\\sqrt{7} - 2\\sqrt{3}$",
+        "$\\sqrt{7} - \\sqrt{3}$",
+        "$\\sqrt{7}$",
+        "$2\\sqrt{3}$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$\\frac{4(\\sqrt{7} + \\sqrt{3})}{7 - 3} = \\sqrt{7} + \\sqrt{3}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birinci kesri eşleniği kök 7 artı kök 3 ile genişletelim. Payda 7 eksi 3, yani 4 olur; 4'ler sadeleşir: kök 7 artı kök 3."
+        },
+        {
+         "text": "$\\frac{6}{\\sqrt{3}} = \\frac{6\\sqrt{3}}{3} = 2\\sqrt{3}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İkinci kesri kök 3 ile genişletelim: 6 kök 3 bölü 3, yani 2 kök 3."
+        },
+        {
+         "text": "$\\sqrt{7} + \\sqrt{3} - 2\\sqrt{3} = \\sqrt{7} - \\sqrt{3}$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kök 7 artı kök 3 eksi 2 kök 3: kök 3'ler birleşir, eksi kök 3 kalır. Sonuç kök 7 eksi kök 3. Cevap C."
+        }
+       ],
+       "narration": "İki kesrin de paydasını kökten kurtaralım.",
+       "origin": {
+        "changes": "Havuzdaki paydayı kökten kurtarma kalıbı örnek alındı; ifade bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$\\sqrt{5 + 2\\sqrt{6}}$ ifadesinin eşiti aşağıdakilerden hangisidir?",
+       "options": [
+        "$\\sqrt{3} + \\sqrt{2}$",
+        "$\\sqrt{3} - \\sqrt{2}$",
+        "$\\sqrt{5} + 1$",
+        "$\\sqrt{6} + 1$",
+        "$2\\sqrt{3}$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$x + y = 5$, $x \\cdot y = 6$ ⇒ $x = 3$, $y = 2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İçeride 5 artı 2 kök 6 var. Toplamı 5, çarpımı 6 olan iki sayı: 3 ve 2."
+        },
+        {
+         "text": "$(\\sqrt{3} + \\sqrt{2})^2 = 3 + 2 + 2\\sqrt{6} = 5 + 2\\sqrt{6}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sağlama: kök 3 artı kök 2'nin karesi, 3 artı 2 artı 2 kök 6, yani 5 artı 2 kök 6."
+        },
+        {
+         "text": "$\\sqrt{5 + 2\\sqrt{6}} = \\sqrt{3} + \\sqrt{2}$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Demek ki ifade kök 3 artı kök 2'ye eşittir. Cevap A. Ortada eksi olsaydı sonuç büyük kökten küçüğün çıkarılmasıyla, yani kök 3 eksi kök 2 olurdu."
+        }
+       ],
+       "narration": "İç içe kök. Toplamı 5, çarpımı 6 olan iki sayı arayacağız.",
+       "origin": {
+        "changes": "Havuzdaki iç içe kök kalıbı örnek alındı; sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$x = \\sqrt{3} - 1$ olduğuna göre $x^2 + 2x$ ifadesinin değeri kaçtır?",
+       "options": [
+        "1",
+        "2",
+        "3",
+        "$2\\sqrt{3}$",
+        "$4 - 2\\sqrt{3}$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$x + 1 = \\sqrt{3}$ ⇒ $(x + 1)^2 = 3$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x eşittir kök 3 eksi 1 ise x artı 1, kök 3'tür. İki tarafın karesini alalım: x artı 1'in karesi 3."
+        },
+        {
+         "text": "$x^2 + 2x + 1 = 3$ ⇒ $x^2 + 2x = 2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x artı 1'in karesi, x kare artı 2x artı 1'dir. Bu 3'e eşit; 1'i karşıya atarsak x kare artı 2x, 2."
+        },
+        {
+         "text": "Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "İstenen ifade tam olarak elimizde: 2. Cevap B. Yerine koyarak da bulabilirsin: x kare, 4 eksi 2 kök 3; 2x, 2 kök 3 eksi 2; toplamları yine 2."
+        }
+       ],
+       "narration": "Doğrudan yerine koymak uzun sürer. Kökü yalnız bırakıp kare alalım.",
+       "origin": {
+        "changes": "ÖSYM'nin köklü bir değer verip bir ifadenin değerini sorduran kalıbı örnek alındı; ifade bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Karekök negatif olmaz; bir sayının karesinin kökü mutlak değeridir.",
+    "Kök dışına çıkarırken en büyük tam kare çarpanı ara.",
+    "Sıralamada hepsini kök içine al.",
+    "Yalnız aynı kökler toplanır; önce sadeleştir.",
+    "Eşlenikler çarpılınca kök kalkar.",
+    "Köklü denklemde kare al, sonra mutlaka dene."
+   ],
+   "warnings": [
+    "$\\sqrt{(-3)^2} = 3$, $-3$ değil.",
+    "$\\sqrt{9 + 16} \\neq \\sqrt{9} + \\sqrt{16}$",
+    "Kare almak **sahte kök** üretebilir."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki **8 soruyu** kâğıtta yeniden çöz; her köklü denklemde sağlama yap.",
+    "$\\sqrt{50}$, $3\\sqrt{6}$ ve $2\\sqrt{13}$ sayılarını **kök içine alarak** sırala.",
+    "Uygulamada KPSS Köklü Sayılar testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Tanım: karekök negatif olmaz, √(a²) = |a|, tek ve çift dereceli kök, kökün kesirli üs olarak yazılışı; işareti verilen harflerle sadeleştirme.",
+   "Kök dışına çıkarma (en büyük tam kare çarpan) ve kök içine alma; köklü sayıları kök içine alarak sıralama.",
+   "Dört işlem: yalnız aynı kökler toplanır, önce sadeleştir; ondalık sayıların kökü; '√(a + b) = √a + √b' yanılgısı.",
+   "Eşlenik ve paydayı kökten kurtarma; iki köklü ifadenin toplamı ve çarpımıyla a² + b²; iç içe kök (toplamı ve çarpımı aranan iki sayı).",
+   "Köklü denklemler: kökü yalnız bırak, kare al, sahte kökü sağlamayla ele."
+  ]
+ }
+}

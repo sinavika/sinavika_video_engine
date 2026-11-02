@@ -1,0 +1,704 @@
+{
+ "topic": {
+  "id": "0EBB2659-C3DB-DA91-A65A-33ABA07A841F",
+  "category": "KPSS_LISANS",
+  "lesson": "MAT",
+  "code": "RASYONEL_SAYILAR"
+ },
+ "title": "Rasyonel Sayılar",
+ "lessonName": "Matematik",
+ "exams": [
+  "KPSS"
+ ],
+ "sources": [
+  "KPSS/Lisans/KonuAnlatimi/MAT/RASYONEL_SAYILAR.json ve KPSS/OnlisansOrtaogretim/KonuAnlatimi/MAT/RASYONEL_SAYILAR.json (MEB ÖERHGM: kesir türleri, sadeleştirme, dört işlem, sıralama, ondalık gösterim, devirli ondalık)",
+  "ÖSYM KPSS Lisans 2010–2019 (7 soru) ve Ön lisans 2014–2020 (6 soru) rasyonel sayı soruları (CikmisSorular/MAT.jsonl): kalıplar örnek alındı, bütün işlemler ve sayılar yeni yazıldı ve elle doğrulandı",
+  "KPSS Sorular/MAT havuzları (Lisans RASYONEL_SAYILAR 64, Ön lisans RASYONEL_SAYILAR 392 soru)"
+ ],
+ "works": {
+  "additions": [
+   "Kesir türleri: basit, bileşik ve tam sayılı kesir; tam sayılı kesri bileşik kesre çevirme; 0 / a = 0, a / 0 tanımsız.",
+   "Sadeleştirme ve genişletme: yalnız çarpanlar sadeleşir; payına ve paydasına sayı eklenince değeri değişmeyen kesir (3a = 2b gibi oran çıkarımı).",
+   "Dört işlem ve merdivenli kesir: paydaları eşitleme, ters çevirip çarpma, en alttan başlama; ÖSYM'nin tek satırlık işlem soruları için iki özgün örnek.",
+   "Ondalık sayılarla işlem: kesre çevirme, çarpımda basamak sayısı, bölmede 10'un kuvvetiyle genişletme; virgülü yanlış yere koymanın şıklardaki karşılığı.",
+   "Sıralama: eş payda, eş pay, 1'e uzaklık, negatiflerde ters sıra; ÖSYM'nin üç kesri sıralatan kalıbı için iki özgün soru.",
+   "Devirli ondalık sayılar: (tamamı − devretmeyen) / (9'lar ve 0'lar); 0,(9) = 1; devirli sayılarla toplama."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Virgülden kurtul",
+   "narration": "KPSS'de rasyonel sayı soruları çoğu zaman tek satırlık bir işlemdir: virgüllü sayılar, kesirler, merdivenler. Lisans sınavında bu konudan gelen yedi sorunun yedisi de bir işlemin sonucunu sordu. Zor değiller ama hata affetmezler; virgülü bir basamak kaydırırsan şıklarda seni bekleyen bir sayı mutlaka vardır. Bu derste kesir türlerinden devirli ondalık sayılara kadar bütün kuralları yeni sorularla adım adım uygulayacağız."
+  },
+  "objectives": [
+   "Kesir türlerini ayırt etmek ve birbirine çevirmek",
+   "Kesirleri doğru sadeleştirmek ve genişletmek",
+   "Kesirlerle ve merdivenli kesirlerle dört işlem yapmak",
+   "Ondalık sayılarla işlemde virgülden kurtulmak",
+   "Rasyonel sayıları sıralamak; devirli sayıları kesre çevirmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "RASYONEL_SAYILAR_01",
+    "alsoTeaches": [
+     "KPSS_ONLISANS:RASYONEL_SAYILAR_01"
+    ],
+    "title": "Kesir ve kesir türleri",
+    "narration": "Önce rasyonel sayının ne olduğunu ve kesirlerin türlerini netleştirelim.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Kesir türleri",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Tür",
+        "Koşul",
+        "Örnek"
+       ],
+       "rows": [
+        [
+         "Basit kesir",
+         "pay < payda",
+         "$\\frac{3}{7}$"
+        ],
+        [
+         "Bileşik kesir",
+         "pay ≥ payda",
+         "$\\frac{9}{4}$"
+        ],
+        [
+         "Tam sayılı kesir",
+         "tam sayı + basit kesir",
+         "$2\\frac{1}{4} = \\frac{9}{4}$"
+        ]
+       ]
+      },
+      "narration": "Rasyonel sayı, a bölü b biçiminde yazılabilen sayıdır; a ve b tam sayıdır ve b sıfır olamaz. Kesirler üç türe ayrılır.",
+      "beats": [
+       {
+        "narration": "Payı paydasından küçük olan kesir basit kesirdir: 3 bölü 7 gibi. Değeri 1'den küçüktür.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Payı paydasına eşit ya da ondan büyük olan kesir bileşik kesirdir: 9 bölü 4 gibi. Değeri 1 ya da 1'den büyüktür.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Bileşik kesir, bir tam sayı ile bir basit kesrin toplamı olarak da yazılır. 2 tam 1 bölü 4; 2 çarpı 4 artı 1, yani 9 bölü 4'e eşittir.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Sıfır payda olamaz",
+      "wrong": "$\\frac{0}{5}$ **tanımsızdır**.",
+      "right": "$\\frac{0}{5} = 0$; tanımsız olan $\\frac{5}{0}$'dır.",
+      "why": "Payın sıfır olması sorun değildir; sıfırın her sayıya bölümü sıfırdır. Bir sayı sıfıra bölünemez.",
+      "narration": "Bir tuzak. 0 bölü 5 tanımsız mı? Hayır, 0 bölü 5 sıfırdır. Payın sıfır olması sorun değildir. Tanımsız olan, paydanın sıfır olmasıdır: 5 bölü 0 tanımsızdır, çünkü bir sayı sıfıra bölünemez."
+     }
+    ]
+   },
+   {
+    "subtopic": "RASYONEL_SAYILAR_01",
+    "alsoTeaches": [
+     "KPSS_ONLISANS:RASYONEL_SAYILAR_02"
+    ],
+    "title": "Sadeleştirme ve genişletme",
+    "narration": "Kesrin değerini değiştirmeden biçimini değiştirmenin iki yolu var: sadeleştirmek ve genişletmek.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Aynı sayıyla çarp ya da böl",
+      "items": [
+       "**Genişletme**: pay ve payda **aynı** sayıyla çarpılır: $\\frac{2}{3} = \\frac{8}{12}$.",
+       "**Sadeleştirme**: pay ve payda **aynı** sayıya bölünür: $\\frac{18}{24} = \\frac{3}{4}$.",
+       "Sadeleştirme yalnız **çarpanlar** arasında yapılır; toplamın içinden sadeleştirilmez."
+      ],
+      "narration": "Bir kesrin payını ve paydasını aynı sayıyla çarparsan kesir genişler ama değeri değişmez: 2 bölü 3, 8 bölü 12'ye eşittir. Payı ve paydayı aynı sayıya bölersen kesir sadeleşir: 18 bölü 24'ü 6'ya bölersen 3 bölü 4 kalır. Sadeleştirme yalnız çarpanlar arasında yapılır; bir toplamın içinden tek bir terimi sadeleştiremezsin."
+     },
+     {
+      "kind": "mistake",
+      "title": "Toplamın içinden sadeleştirme",
+      "wrong": "$\\frac{6 + 4}{4} = 6$",
+      "right": "$\\frac{6 + 4}{4} = \\frac{10}{4} = \\frac{5}{2}$",
+      "why": "4 paydaki toplamın bir terimidir, çarpanı değildir; önce toplamı bul, sonra sadeleştir.",
+      "narration": "Sık yapılan bir hata. 6 artı 4, bölü 4 kaçtır? Paydaki 4 ile paydadaki 4'ü götürüp 6 demek yanlıştır. Paydaki 4, toplamın bir terimidir, çarpanı değildir. Önce toplamı bul: 10 bölü 4; sonra sadeleştir: 5 bölü 2."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$\\frac{a}{b}$ kesrinin payına 4, paydasına 6 eklendiğinde kesrin değeri değişmiyor. $a + b = 25$ olduğuna göre $b - a$ farkı kaçtır?",
+       "options": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "10"
+       ],
+       "answer": 2,
+       "narration": "Değer değişmiyorsa iki kesir birbirine eşittir. Eşitliği yazıp içler dışlar çarpımı yapalım.",
+       "steps": [
+        {
+         "text": "$\\frac{a + 4}{b + 6} = \\frac{a}{b} \\Rightarrow ab + 6a = ab + 4b \\Rightarrow 3a = 2b$",
+         "narration": "a artı 4 bölü b artı 6, a bölü b'ye eşit. İçler dışlar çarpımı: a b artı 6a, a b artı 4b'ye eşit. a b'ler gider; 6a, 4b'ye eşit, yani 3a, 2b'ye eşit."
+        },
+        {
+         "text": "$\\frac{a}{b} = \\frac{2}{3}$; $a + b = 25$ ⇒ $a = 10$, $b = 15$",
+         "narration": "Demek ki a bölü b, 2 bölü 3'tür. a 2 parça, b 3 parça; toplam 5 parça 25 eder, bir parça 5. a 10, b 15."
+        },
+        {
+         "text": "$b - a = 15 - 10 = 5$. Cevap **C**.",
+         "narration": "b eksi a, 15 eksi 10, yani 5. Cevap C. Sağlama: 14 bölü 21 de 2 bölü 3'tür.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki payına ve paydasına sayı eklenince değeri değişmeyen kesir kalıbı örnek alındı; sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "RASYONEL_SAYILAR_02",
+    "alsoTeaches": [
+     "KPSS_ONLISANS:RASYONEL_SAYILAR_03"
+    ],
+    "title": "Rasyonel sayılarda dört işlem",
+    "narration": "KPSS'nin rasyonel sayı sorularının neredeyse hepsi bir işlem sorusudur. Kuralları sırayla görelim.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Dört işlem",
+      "items": [
+       "Toplama ve çıkarmada **paydalar eşitlenir**, paylar toplanır ya da çıkarılır.",
+       "Çarpmada **pay ile pay**, **payda ile payda** çarpılır.",
+       "Bölmede birinci kesir aynen yazılır, ikinci kesir **ters çevrilip** çarpılır.",
+       "Merdivenli kesirde işleme **en alttan** başlanır."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "\\frac{a}{b} \\div \\frac{c}{d} = \\frac{a}{b} \\cdot \\frac{d}{c}",
+       "caption": "Bölmede ikinci kesir ters çevrilir"
+      },
+      "narration": "Toplama ve çıkarmada önce paydaları eşitlersin, sonra payları toplar ya da çıkarırsın. Çarpmada pay ile payı, payda ile paydayı çarparsın. Bölmede birinci kesri aynen yazar, ikinci kesri ters çevirip çarparsın. Merdiven gibi iç içe yazılmış kesirlerde ise işleme en alttaki kesirden başlarsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$1 + \\cfrac{1}{1 + \\cfrac{1}{2}}$ işleminin sonucu kaçtır?",
+       "options": [
+        "$\\frac{3}{2}$",
+        "$\\frac{5}{3}$",
+        "$\\frac{7}{4}$",
+        "2",
+        "$\\frac{5}{2}$"
+       ],
+       "answer": 1,
+       "narration": "Merdivenli kesir. En alttan başlayacağız.",
+       "steps": [
+        {
+         "text": "En alt: $1 + \\frac{1}{2} = \\frac{3}{2}$",
+         "narration": "En alttaki işlem: 1 artı 1 bölü 2, yani 3 bölü 2."
+        },
+        {
+         "text": "$\\cfrac{1}{\\frac{3}{2}} = \\frac{2}{3}$",
+         "narration": "1 bölü 3 bölü 2: bir sayıyı kesre bölmek, kesrin tersiyle çarpmaktır. Sonuç 2 bölü 3."
+        },
+        {
+         "text": "$1 + \\frac{2}{3} = \\frac{5}{3}$. Cevap **B**.",
+         "narration": "Son olarak 1 artı 2 bölü 3, yani 5 bölü 3. Cevap B. E şıkkındaki 5 bölü 2, merdiveni yukarıdan çözmeye başlayanın bulduğu yanlış sonuçtur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM'nin kesirli işlem sonucu soruları örnek alındı; merdivenli ifade bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$\\left(\\frac{2}{3} - \\frac{1}{4}\\right) \\div \\frac{5}{6}$ işleminin sonucu kaçtır?",
+       "options": [
+        "$\\frac{1}{6}$",
+        "$\\frac{5}{24}$",
+        "$\\frac{25}{72}$",
+        "$\\frac{5}{12}$",
+        "$\\frac{1}{2}$"
+       ],
+       "answer": 4,
+       "narration": "Önce parantez, sonra bölme.",
+       "steps": [
+        {
+         "text": "$\\frac{2}{3} - \\frac{1}{4} = \\frac{8}{12} - \\frac{3}{12} = \\frac{5}{12}$",
+         "narration": "Parantezde paydaları 12'de eşitleyelim: 8 bölü 12 eksi 3 bölü 12, 5 bölü 12."
+        },
+        {
+         "text": "$\\frac{5}{12} \\div \\frac{5}{6} = \\frac{5}{12} \\cdot \\frac{6}{5} = \\frac{1}{2}$. Cevap **E**.",
+         "narration": "Şimdi bölme: ikinci kesri ters çevirip çarparız. 5 bölü 12 çarpı 6 bölü 5; 5'ler sadeleşir, 6 bölü 12 kalır, yani 1 bölü 2. Cevap E. C şıkkındaki 25 bölü 72, kesri ters çevirmeden çarpanın tuzağıdır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM'nin kesirli işlem sonucu soruları örnek alındı; ifade bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "RASYONEL_SAYILAR_02",
+    "alsoTeaches": [
+     "KPSS_ONLISANS:RASYONEL_SAYILAR_05"
+    ],
+    "title": "Ondalık sayılarla işlem",
+    "narration": "ÖSYM'nin en sevdiği rasyonel sayı sorusu virgüllü sayılarla yapılan bölmedir. Virgülden kurtulmayı öğrenince bu sorular birkaç saniyede biter.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Virgülden kurtul",
+      "items": [
+       "Ondalık sayıyı kesre çevir: virgülden sonraki basamak kadar sıfır: $0{,}45 = \\frac{45}{100} = \\frac{9}{20}$.",
+       "Çarpmada virgülden sonraki basamak sayıları **toplanır**: $0{,}3 \\cdot 0{,}02 = 0{,}006$.",
+       "Bölmede pay ve paydayı **aynı 10'un kuvvetiyle** genişlet: $\\frac{0{,}8}{0{,}02} = \\frac{80}{2} = 40$.",
+       "Toplama ve çıkarmada virgüller **alt alta** gelir."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "\\frac{0{,}8}{0{,}02} = \\frac{0{,}8 \\cdot 100}{0{,}02 \\cdot 100} = \\frac{80}{2} = 40",
+       "caption": "Pay ve payda aynı sayıyla genişletilir"
+      },
+      "narration": "Bir ondalık sayıyı kesre çevirmek için virgülü kaldırır, paydaya virgülden sonraki basamak sayısı kadar sıfır yazarsın: 0 virgül 45, 45 bölü 100, yani 9 bölü 20. Çarpmada virgülleri yok sayıp çarparsın; sonuçta virgülden sonra, çarpanlardaki basamak sayılarının toplamı kadar basamak bırakırsın. Bölmede pay ve paydayı aynı 10'un kuvvetiyle genişletip virgülden kurtulursun: 0 virgül 8 bölü 0 virgül 02'yi 100 ile genişlet, 80 bölü 2, 40. Toplama ve çıkarmada ise virgülleri alt alta yazarsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$\\frac{0{,}12}{0{,}04} + \\frac{0{,}6}{0{,}025}$ işleminin sonucu kaçtır?",
+       "options": [
+        "2,7",
+        "5,4",
+        "27",
+        "243",
+        "270"
+       ],
+       "answer": 2,
+       "narration": "İki bölmeyi ayrı ayrı yapıp toplayalım; her birinde virgülden kurtulacağız.",
+       "steps": [
+        {
+         "text": "$\\frac{0{,}12}{0{,}04} = \\frac{12}{4} = 3$",
+         "narration": "Birinci kesirde ikisinin de virgülden sonra iki basamağı var; 100 ile genişlet: 12 bölü 4, 3."
+        },
+        {
+         "text": "$\\frac{0{,}6}{0{,}025} = \\frac{600}{25} = 24$",
+         "narration": "İkinci kesirde paydanın virgülden sonra üç basamağı var; ikisini de 1000 ile genişlet: 600 bölü 25, 24."
+        },
+        {
+         "text": "$3 + 24 = 27$. Cevap **C**.",
+         "narration": "Toplam 3 artı 24, 27. Cevap C. B şıkkındaki 5 virgül 4 ile D şıkkındaki 243, ikinci bölmede virgülü yanlış yere koyanların bulduğu sonuçlardır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM'nin ondalık kesirlerin bölümlerini toplatan kalıbı örnek alındı; sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$\\frac{0{,}6 \\cdot 0{,}15}{0{,}045}$ işleminin sonucu kaçtır?",
+       "options": [
+        "0,2",
+        "2",
+        "20",
+        "200",
+        "2000"
+       ],
+       "answer": 1,
+       "narration": "Önce paydaki çarpımı bulalım; virgülden sonraki basamakları sayacağız.",
+       "steps": [
+        {
+         "text": "$0{,}6 \\cdot 0{,}15$: $6 \\cdot 15 = 90$, virgülden sonra $1 + 2 = 3$ basamak ⇒ $0{,}090$",
+         "narration": "6 çarpı 15, 90. Çarpanlarda virgülden sonra 1 ve 2 basamak var; toplam 3 basamak. Sonuç 0 virgül 090, yani 0 virgül 09."
+        },
+        {
+         "text": "$\\frac{0{,}090}{0{,}045} = \\frac{90}{45} = 2$. Cevap **B**.",
+         "narration": "0 virgül 090 bölü 0 virgül 045: ikisinin de virgülden sonra üç basamağı var; 1000 ile genişlet: 90 bölü 45, 2. Cevap B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM'nin ondalık çarpım ve bölümü birlikte isteyen kalıbı örnek alındı; sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "RASYONEL_SAYILAR_02",
+    "alsoTeaches": [
+     "KPSS_ONLISANS:RASYONEL_SAYILAR_04"
+    ],
+    "title": "Rasyonel sayılarda sıralama",
+    "narration": "İki kesirden hangisinin büyük olduğunu bulmanın birkaç kısa yolu var. Hangisini kullanacağını kesirlerin biçimi söyler.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sıralama yolları",
+      "items": [
+       "**Paydalar eşitse** payı büyük olan büyüktür; **paylar eşitse** paydası küçük olan büyüktür.",
+       "Kesirler 1'e yakınsa **1'e uzaklıklarına** bak: uzaklığı küçük olan büyüktür.",
+       "Negatif kesirlerde sıralama **tersine** döner: $-\\frac{1}{2} > -\\frac{2}{3}$.",
+       "Kesirleri **ondalık** biçime çevirip karşılaştırmak da her zaman işe yarar."
+      ],
+      "narration": "Paydalar eşitse payı büyük olan kesir büyüktür. Paylar eşitse paydası küçük olan kesir büyüktür; çünkü bütün daha az parçaya bölünmüştür. Kesirlerin hepsi 1'e çok yakınsa 1'e uzaklıklarına bakarsın: uzaklığı küçük olan büyüktür. Negatif kesirlerde sıralama tersine döner: eksi 1 bölü 2, eksi 2 bölü 3'ten büyüktür. Hiçbiri işe yaramazsa kesirleri ondalık sayıya çevirip karşılaştırırsın."
+     },
+     {
+      "kind": "predict",
+      "title": "Hangisi büyük?",
+      "context": "İki kesir: $\\frac{7}{8}$ ve $\\frac{8}{9}$",
+      "prompt": "Hangisi daha büyüktür?",
+      "choices": [
+       "7/8",
+       "8/9"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Kesir",
+        "1’e uzaklık"
+       ],
+       "rows": [
+        [
+         "$\\frac{7}{8}$",
+         "$\\frac{1}{8}$"
+        ],
+        [
+         "$\\frac{8}{9}$",
+         "$\\frac{1}{9}$"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "7 bölü 8'in 1'e uzaklığı 1 bölü 8.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "8 bölü 9'un 1'e uzaklığı 1 bölü 9. 1 bölü 9, 1 bölü 8'den küçüktür; yani 8 bölü 9, 1'e daha yakındır.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       }
+      ],
+      "explanation": "$\\frac{8}{9}$, 1'e **daha yakın**: uzaklığı $\\frac{1}{9} < \\frac{1}{8}$. Bu yüzden $\\frac{8}{9} > \\frac{7}{8}$.",
+      "narration": "Şimdi sıra sende. 7 bölü 8 mi büyük, 8 bölü 9 mu? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 8 bölü 9. İki kesrin de 1'e uzaklığı birer parça: 1 bölü 8 ve 1 bölü 9. 1 bölü 9 daha küçük bir parça olduğu için 8 bölü 9, 1'e daha yakındır ve daha büyüktür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$a = \\frac{13}{15}$, $b = \\frac{17}{19}$ ve $c = \\frac{9}{11}$ olduğuna göre aşağıdaki sıralamalardan hangisi doğrudur?",
+       "options": [
+        "$c < a < b$",
+        "$a < c < b$",
+        "$b < a < c$",
+        "$a < b < c$",
+        "$c < b < a$"
+       ],
+       "answer": 0,
+       "narration": "Üç kesrin de 1'e uzaklığının payı aynı: 2. Bu bir ipucu.",
+       "steps": [
+        {
+         "text": "$1 - a = \\frac{2}{15}$, $1 - b = \\frac{2}{19}$, $1 - c = \\frac{2}{11}$",
+         "narration": "Her kesrin 1'e uzaklığını yazalım: a için 2 bölü 15, b için 2 bölü 19, c için 2 bölü 11."
+        },
+        {
+         "text": "Paylar eşit: paydası büyük olan küçük ⇒ $\\frac{2}{19} < \\frac{2}{15} < \\frac{2}{11}$",
+         "narration": "Bu uzaklıkların payları eşit; paydası büyük olan küçüktür. En küçük uzaklık 2 bölü 19, en büyük uzaklık 2 bölü 11."
+        },
+        {
+         "text": "1'e en yakın $b$, en uzak $c$: $c < a < b$. Cevap **A**.",
+         "narration": "1'e en yakın olan b en büyük, en uzak olan c en küçüktür. Sıralama: c küçüktür a, a küçüktür b. Cevap A.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki üç kesri sıralatan kalıp örnek alındı; kesirler bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "RASYONEL_SAYILAR_02",
+    "alsoTeaches": [
+     "KPSS_ONLISANS:RASYONEL_SAYILAR_06"
+    ],
+    "title": "Devirli ondalık sayılar",
+    "narration": "Son bölümde virgülden sonra sonsuza kadar tekrar eden sayıları kesre çevireceğiz.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Devirli sayıyı kesre çevir",
+      "items": [
+       "Pay: **sayının tamamı − devretmeyen kısım**.",
+       "Payda: devreden her basamak için bir **9**, devretmeyen her basamak için bir **0**.",
+       "$0{,}\\overline{4} = \\frac{4}{9}$, $0{,}\\overline{27} = \\frac{27}{99} = \\frac{3}{11}$, $0{,}1\\overline{6} = \\frac{16 - 1}{90} = \\frac{1}{6}$."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "0{,}1\\overline{6} = \\frac{16 - 1}{90} = \\frac{15}{90} = \\frac{1}{6}",
+       "caption": "Devreden bir basamak: 9; devretmeyen bir basamak: 0"
+      },
+      "narration": "Devirli bir ondalık sayıyı kesre çevirmek için payı ve paydayı ayrı yazarsın. Pay, virgülü yok sayarak yazılan sayının tamamından devretmeyen kısmın çıkarılmasıyla bulunur. Paydaya virgülden sonra devreden her basamak için bir 9, devretmeyen her basamak için bir 0 yazarsın. 0 virgül 4 devirli, 4 bölü 9'dur. 0 virgül 27 devirli, 27 bölü 99, yani 3 bölü 11'dir. 0 virgül 1, 6 devirli ise 16 eksi 1, bölü 90; yani 1 bölü 6'dır."
+     },
+     {
+      "kind": "predict",
+      "title": "0,999… kaçtır?",
+      "context": "$0{,}\\overline{9} = 0{,}999\\ldots$",
+      "prompt": "Bu sayı 1’e eşit midir?",
+      "choices": [
+       "Eşit",
+       "1’den küçük"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Yol",
+        "Sonuç"
+       ],
+       "rows": [
+        [
+         "$0{,}\\overline{9} = \\frac{9}{9}$",
+         "$1$"
+        ],
+        [
+         "$3 \\cdot 0{,}\\overline{3}$",
+         "$3 \\cdot \\frac{1}{3} = 1$"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Kuralı uygulayalım: devreden bir basamak var, paydaya bir 9 yazarız. 9 bölü 9, 1.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Bir yol daha: 0 virgül 3 devirli, 1 bölü 3'tür. Bunu 3 ile çarparsan bir yanda 0 virgül 9 devirli, öbür yanda 1 çıkar.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       }
+      ],
+      "explanation": "$0{,}\\overline{9} = \\frac{9}{9} = 1$. İki ayrı yazılış, **aynı** sayı.",
+      "narration": "Şimdi sıra sende. 0 virgül 9 devirli, 1'e eşit mi? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap: eşit. Kurala göre 0 virgül 9 devirli, 9 bölü 9, yani 1'dir. 1 bölü 3'ün 0 virgül 3 devirli olduğunu biliyorsun; onu 3 ile çarpınca hem 0 virgül 9 devirli hem 1 çıkar. Bu iki yazılış aynı sayıyı gösterir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$0{,}\\overline{3} + 0{,}1\\overline{6}$ işleminin sonucu kaçtır?",
+       "options": [
+        "$\\frac{49}{99}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{23}{45}$",
+        "$\\frac{5}{9}$",
+        "$\\frac{2}{3}$"
+       ],
+       "answer": 1,
+       "narration": "İki sayıyı da kesre çevirip toplayalım.",
+       "steps": [
+        {
+         "text": "$0{,}\\overline{3} = \\frac{3}{9} = \\frac{1}{3}$",
+         "narration": "0 virgül 3 devirli: 3 bölü 9, yani 1 bölü 3."
+        },
+        {
+         "text": "$0{,}1\\overline{6} = \\frac{16 - 1}{90} = \\frac{1}{6}$",
+         "narration": "0 virgül 1, 6 devirli: yalnız 6 devrediyor, 1 devretmiyor. Pay 16 eksi 1, 15; payda bir 9 ve bir 0, yani 90. 15 bölü 90, 1 bölü 6."
+        },
+        {
+         "text": "$\\frac{1}{3} + \\frac{1}{6} = \\frac{2}{6} + \\frac{1}{6} = \\frac{1}{2}$. Cevap **B**.",
+         "narration": "1 bölü 3 artı 1 bölü 6: paydaları 6'da eşitle; 2 bölü 6 artı 1 bölü 6, 3 bölü 6, yani 1 bölü 2. Cevap B. A şıkkındaki 49 bölü 99, iki basamağın da devrettiğini sananın; C şıkkındaki 23 bölü 45 ise devretmeyen 1'i çıkarmayı unutanın cevabıdır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki ondalık gösterim soruları örnek alındı; devirli sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Rasyonel sayı a bölü b’dir; b sıfır olamaz.",
+    "Sadeleştirme yalnız çarpanlar arasında yapılır.",
+    "Bölmede ikinci kesir ters çevrilip çarpılır.",
+    "Merdivenli kesirde en alttan başla.",
+    "Ondalık bölmede pay ve paydayı 10’un kuvvetiyle genişlet.",
+    "1’e yakın kesirlerde 1’e uzaklığa bak.",
+    "Devirli sayı: tamamı eksi devretmeyen, bölü 9’lar ve 0’lar."
+   ],
+   "warnings": [
+    "$\\frac{0}{5} = 0$; tanımsız olan $\\frac{5}{0}$.",
+    "Toplamın içinden **sadeleştirme yapılmaz**.",
+    "Negatif kesirlerde sıralama **ters** döner."
+   ],
+   "narration": "Hadi toparlayalım. Rasyonel sayı a bölü b biçiminde yazılan sayıdır ve payda sıfır olamaz; pay sıfırsa kesir sıfırdır. Sadeleştirme yalnız çarpanlar arasında yapılır, toplamın içinden sadeleştirme yapılmaz. Bölmede ikinci kesri ters çevirip çarparsın; merdivenli kesirde en alttan başlarsın. Ondalık sayılarla bölmede pay ve paydayı aynı 10'un kuvvetiyle genişletip virgülden kurtulursun. Sıralamada eş payda, eş pay ve 1'e uzaklık yollarını kullan; negatiflerde sıra tersine döner. Devirli sayıyı kesre çevirirken payı tamamı eksi devretmeyen kısım, paydayı ise 9'lar ve 0'lar oluşturur. Bir sonraki derste basit eşitsizliklere geçiyoruz."
+  }
+ },
+ "short": {
+  "hook": "0,999… = 1 mi?",
+  "cards": [
+   {
+    "kind": "term",
+    "term": "Devirli sayı",
+    "definition": "Payda: **9’lar ve 0’lar**."
+   },
+   {
+    "kind": "warning",
+    "text": "Toplamdan **sadeleştirme yok**."
+   },
+   {
+    "kind": "fact",
+    "text": "**0,999… = 1**"
+   }
+  ],
+  "summary": [
+   "Virgülden kurtul",
+   "Ters çevir, çarp",
+   "1’e uzaklığa bak"
+  ],
+  "rounds": [
+   {
+    "sentence": "7/8 ile 8/9",
+    "question": "Büyük olan?",
+    "choices": [
+     "7/8",
+     "8/9"
+    ],
+    "answer": 1,
+    "why": "1’e **yakın**."
+   },
+   {
+    "sentence": "0/5",
+    "question": "Değeri?",
+    "choices": [
+     "0",
+     "Tanımsız"
+    ],
+    "answer": 0,
+    "why": "**5/0** tanımsız."
+   },
+   {
+    "sentence": "0,999…",
+    "question": "1’e eşit mi?",
+    "choices": [
+     "Eşit",
+     "Küçük"
+    ],
+    "answer": 0,
+    "why": "**9/9** = 1."
+   }
+  ]
+ },
+ "camp": {
+  "id": "kpss-matematik-kampi",
+  "name": "KPSS Matematik kampı",
+  "number": 5,
+  "total": 18,
+  "previous": "OBEB ve OKEK",
+  "next": "Basit Eşitsizlikler",
+  "promise": "Lisans, önlisans ve ortaöğretim KPSS Matematiğinin bütün konuları, çözümlü sorularla.",
+  "task": {
+   "items": [
+    "Bu dersteki **7 soruyu** kâğıtta yeniden çöz; her ondalık bölmede kaçla genişlettiğini yaz.",
+    "**0,(12)**, **0,2(7)** ve **1,(5)** sayılarını kesre çevir.",
+    "Uygulamada KPSS Rasyonel Sayılar testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bu dersteki 7 soruyu kâğıtta yeniden çöz ve her ondalık bölmede kaçla genişlettiğini yaz. Sonra kâğıttaki üç devirli sayıyı kesre çevir. Ardından uygulamada yirmi soru çöz. Bir sonraki derste basit eşitsizliklerle devam ediyoruz."
+  }
+ }
+}

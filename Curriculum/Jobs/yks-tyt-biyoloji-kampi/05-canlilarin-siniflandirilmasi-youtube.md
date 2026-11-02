@@ -1,6 +1,6 @@
 # YouTube metni: TYT Biyoloji kampı · Ders 5 · Canlıların Sınıflandırılması
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Biyoloji/05_Canlilarin_Siniflandirilmasi/Canlilarin_Siniflandirilmasi_YouTube.mp4` (4K) · Kapak: `Canlilarin_Siniflandirilmasi_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Biyoloji/05_Canlilarin_Siniflandirilmasi/Canlilarin_Siniflandirilmasi_YouTube.mp4` (4K) · Kapak: `Canlilarin_Siniflandirilmasi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

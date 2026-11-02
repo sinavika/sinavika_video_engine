@@ -4,10 +4,10 @@ import {smooth} from '../../../Animations/Motion';
 import {BRAND_TYPOGRAPHY} from '../../../Configurations/BrandTypography';
 import {KATEX_OPTIONS} from '../../../Schemas/RichText';
 import {withAlpha} from '../../../Themes/Theme';
-import {useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useFigureFont, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {useStageClock} from '../VisualTimeline';
-import {H, W} from '../VisualWorld';
+import {fittedScale, H, W} from '../VisualWorld';
 
 type Equation = Extract<CourseVisual, {kind: 'equation'}>;
 
@@ -46,6 +46,8 @@ export const EquationVisual: React.FC<VisualBoxProps & {visual: Equation}> = ({v
 	const wobble = stage > 0 ? Math.sin(Math.min(1, seconds / 1.2) * Math.PI * 3) * (1 - Math.min(1, seconds / 1.2)) * 4 : 0;
 	const html = useMemo(() => visual.steps.map((item) => ({left: tex(item.left), right: tex(stepRelation(item.right).value)})), [visual.steps]);
 	const relation = stepRelation(step.right).relation;
+	// "her iki taraf: −5" came out at 24 pixels in an app still.
+	const operationSize = useFigureFont(fittedScale(width, height, W, H))(20);
 	const [pivotX, pivotY] = [345, 250];
 	const beam = 205;
 	const pan = (side: -1 | 1) => {
@@ -87,7 +89,7 @@ export const EquationVisual: React.FC<VisualBoxProps & {visual: Equation}> = ({v
 				<div style={{display: 'flex', flexDirection: 'column', gap: 14, fontSize: 30, color: palette.ink}}>
 					{visual.steps.slice(0, stage + 1).map((item, index) => (
 						<div key={index} style={{display: 'flex', flexDirection: 'column', gap: 4, opacity: index === stage ? change : 0.75}}>
-							{item.operation && index > 0 ? <div style={{fontSize: 20, fontWeight: 800, color: palette.brand}}>{`her iki taraf: ${item.operation}`}</div> : null}
+							{item.operation && index > 0 ? <div style={{fontSize: operationSize, fontWeight: 800, color: palette.brand}}>{`her iki taraf: ${item.operation}`}</div> : null}
 							<div style={{padding: '6px 14px', borderRadius: 14, backgroundColor: index === stage ? withAlpha(palette.lesson, 0.14) : 'transparent'}} dangerouslySetInnerHTML={{__html: tex(`${item.left} ${stepRelation(item.right).relation} ${stepRelation(item.right).value}`)}} />
 						</div>
 					))}

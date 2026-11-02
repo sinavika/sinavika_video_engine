@@ -5,6 +5,10 @@ import {polygonCentre, systemCentres} from './BodyCentre';
 import {gearTrain} from './GearTrain';
 import {forceDirection} from './PlateForce';
 
+/** The stages the dynamics and induction scenes play, in order; beats' `stage` counts them. */
+export const DYNAMICS_STAGES = ['Kuvvetler', 'Net kuvvet ve ivme', 'Hareket'] as const;
+export const INDUCTION_STAGES = ['Yaklaşıyor', 'Duruyor', 'Uzaklaşıyor'] as const;
+
 /** An element of a circuit: a resistor, a lamp (glowing by `brightness`), an ammeter or a switch (`open` breaks it). */
 const CircuitElementSchema = z.object({
 	kind: z.enum(['resistor', 'lamp', 'ammeter', 'switch']),
@@ -22,8 +26,10 @@ export const PHYSICS_VISUALS = [
 	 * Physics: the forces on a body, as arrows from its centre. A force points by
 	 * `direction` — relative to the surface where that matters (the normal force
 	 * is perpendicular to it, friction along it) — or by `angle` in degrees
-	 * (0 to the right, 90 up). Its length is `magnitude` against the largest one,
-	 * or `size` (0-1) when no magnitudes are given.
+	 * (0 to the right, 90 up). Its length outside the body is `magnitude` against
+	 * the largest one, or `size` (0-1) when no magnitudes are given. `angles`
+	 * marks the angle between two forces (by number, 1 the first) with an arc and
+	 * its degrees, or a `label` (θ).
 	 */
 	z
 		.object({
@@ -46,8 +52,16 @@ export const PHYSICS_VISUALS = [
 				)
 				.min(1)
 				.max(6),
+			angles: z
+				.array(z.object({between: z.tuple([z.number().int().min(1), z.number().int().min(1)]), label: plainText(6).optional()}))
+				.max(3)
+				.default([]),
 		})
 		.superRefine((visual, context) => {
+			visual.angles.forEach((angle, index) => {
+				if (angle.between.some((force) => force > visual.forces.length) || angle.between[0] === angle.between[1])
+					context.addIssue({code: 'custom', path: ['angles', index, 'between'], message: `An angle is between two of the ${visual.forces.length} forces.`});
+			});
 			const tilt = visual.surface ?? 0;
 			visual.forces.forEach((force, index) => {
 				// A normal force given by angle must stand perpendicular to the surface.
@@ -99,7 +113,8 @@ export const PHYSICS_VISUALS = [
 	/**
 	 * Physics: vectors as arrows on a square grid (one square, one unit): equal and opposite vectors, a vector
 	 * and its multiples, head-to-tail addition and the resultant. The arrows grow from their tails one after
-	 * another; beats point at them as v1, v2…
+	 * another; beats point at them as v1, v2… `points` are named places marked with a dot, such as the point O a
+	 * torque is taken about; beats point at them as p1, p2…
 	 */
 	z.object({
 		kind: z.literal('vectors'),
@@ -109,14 +124,27 @@ export const PHYSICS_VISUALS = [
 			.array(z.object({from: Point2, to: Point2, label: plainText(12), colour: z.enum(['lesson', 'brand', 'ink']).optional(), dashed: z.boolean().default(false)}))
 			.min(1)
 			.max(8),
+		points: z
+			.array(z.object({at: Point2, label: plainText(6)}))
+			.max(4)
+			.default([]),
 		grid: z.boolean().default(true),
 	}),
 	/**
 	 * Physics: a rod on a pivot with forces and hanging loads at positions along it (from its left end). Each force's
-	 * arm and torque (F · d) are written; the rod then stays level when the torques cancel ("Denge") or turns towards
-	 * the side that wins. `weight` is the rod's own weight at its middle. Beats point at forces f1…, arms a1…, `pivot`,
-	 * `weight` and `sum` (the totals each way). `torques: false` hides the numbers (arms keep their length, the verdict
-	 * stays); `verdict: false` is for forces shown as alternatives to compare: the rod stays still and nothing is summed.
+	 * arm and torque (F · d · sin of its angle) are written; the rod then stays level when the torques cancel ("Denge")
+	 * or turns towards the side that wins. `weight` is the rod's own weight, at its middle or at `weightAt` (a rod that
+	 * is not uniform). Beats point at forces f1…, arms a1…, `pivot`, `weight` and `sum` (the totals each way).
+	 * `torques: false` hides the numbers (arms keep their length, the verdict stays); `verdict: false` is for forces
+	 * shown as alternatives to compare: the rod stays still and nothing is summed.
+	 *
+	 * `support` is what holds the rod: a pivot under it at `pivot` (the default); `none`, a free rod, where `pivot` is
+	 * only the point torques are taken about, marked and named when `pivotLabel` names it ("O"); `rope`, a rope from the
+	 * ceiling tied at `pivot`; `two`, two supports under the rod at `supports`, named by `supportLabels` (K, L), whose
+	 * upward reactions are drawn and named N with the support's name as an index (N_K, N_L): such a rod does not turn.
+	 * A force at an `angle` to the rod (degrees, opening towards the rod's right end; 90 is the usual perpendicular
+	 * force) pulls along that line, an arc marking its angle with the rod; a `rope` force is drawn as a rope to a wall
+	 * or the ceiling along that line, its tension the force (a rope from the rod's end to the wall at 30°).
 	 */
 	z
 		.object({
@@ -133,11 +161,20 @@ export const PHYSICS_VISUALS = [
 						load: z.boolean().default(false),
 						label: plainText(12).optional(),
 						/** Written on the arm instead of its length and torque: the unknown of a question ("x"). */ arm: plainText(8).optional(),
+						/** Its angle with the rod in degrees, opening towards the rod's right end (see above); perpendicular when left out. */
+						angle: z.number().gt(0).lt(180).optional(),
+						/** Written on its arc instead of the degrees ("α"). */ angleLabel: plainText(6).optional(),
+						/** Drawn as a rope to a wall or the ceiling along its line, its tension the force. */ rope: z.boolean().default(false),
 					}),
 				)
 				.min(1)
 				.max(6),
 			weight: z.number().positive().optional(),
+			weightAt: z.number().min(0).optional(),
+			support: z.enum(['pivot', 'none', 'rope', 'two']).default('pivot'),
+			supports: z.tuple([z.number().min(0), z.number().min(0)]).optional(),
+			supportLabels: z.tuple([plainText(3), plainText(3)]).default(['K', 'L']),
+			pivotLabel: plainText(3).optional(),
 			torques: z.boolean().default(true),
 			verdict: z.boolean().default(true),
 			unit: z.string().trim().max(4).default('m'),
@@ -146,7 +183,13 @@ export const PHYSICS_VISUALS = [
 			if (lever.pivot > lever.length) context.addIssue({code: 'custom', path: ['pivot'], message: 'The pivot is off the rod.'});
 			lever.forces.forEach((force, index) => {
 				if (force.at > lever.length) context.addIssue({code: 'custom', path: ['forces', index, 'at'], message: 'The force is off the rod.'});
+				if (force.rope && force.load) context.addIssue({code: 'custom', path: ['forces', index, 'rope'], message: 'A hanging load is not a rope pulling the rod.'});
 			});
+			if (lever.weightAt !== undefined && lever.weightAt > lever.length) context.addIssue({code: 'custom', path: ['weightAt'], message: 'The weight acts off the rod.'});
+			if (lever.weightAt !== undefined && lever.weight === undefined) context.addIssue({code: 'custom', path: ['weightAt'], message: 'weightAt needs the rod\'s weight.'});
+			if (lever.support === 'two' && !lever.supports) context.addIssue({code: 'custom', path: ['supports'], message: 'Two supports need their places.'});
+			if (lever.supports && lever.supports.some((at) => at > lever.length)) context.addIssue({code: 'custom', path: ['supports'], message: 'A support is off the rod.'});
+			if (lever.supports && lever.support !== 'two') context.addIssue({code: 'custom', path: ['supports'], message: 'supports is for support "two".'});
 		}),
 	/**
 	 * Physics: Kepler's laws. A planet on an ellipse (`eccentricity`) round the Sun at a focus, moving by Kepler's

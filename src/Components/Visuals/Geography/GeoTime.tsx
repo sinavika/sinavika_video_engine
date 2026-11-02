@@ -1,9 +1,9 @@
 import React from 'react';
 import {easeFrom} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
-import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useFigureFont, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import {type CourseVisual} from '../VisualSchema';
-import {Tag, usePartLook, World} from '../VisualWorld';
+import {fittedScale, H, Tag, usePartLook, W, World} from '../VisualWorld';
 
 // ---------------------------------------------------------------- geological time column
 
@@ -17,7 +17,9 @@ const ERAS: {id: string; name: string; number: string; age: string; color: strin
 	{
 		id: 'kuvaterner',
 		name: 'Kuvaterner',
-		number: 'III. Zaman · son dönem',
+		// Both namings: current MEB books count it as the last part of the Senozoic (III. Zaman), ÖSYM asks it as the
+		// "Dördüncü Jeolojik Zaman" (KPSS 2018); the column said only "III. Zaman" (KPSS Coğrafya 3, 2 Nov 2026).
+		number: 'IV. Zaman · Senozoyik sonu',
 		age: '~2,6 milyon yıl – bugün',
 		color: '#F3E5AB',
 		top: 24,
@@ -89,6 +91,10 @@ export const GeoTimeVisual: React.FC<VisualBoxProps & {visual: GeoTime}> = ({vis
 	const cenozoic = usePartLook('senozoyik', easeFrom(seconds, delaySeconds + 1.2, 0.6));
 	const left = 40;
 	const columnRight = 320;
+	// An era's number ("IV. Zaman · Senozoyik sonu") raised to an app still's smallest text ran past its layer into the
+	// events (2 Nov 2026): too long for the layer at its size, it takes two lines, cut before its "·" or "(".
+	const numberSize = useFigureFont(fittedScale(width, height, W, H))(17);
+	const numberLines = (text: string) => (text.length * numberSize * 0.55 > columnRight - left - 24 ? text.split(/ (?=[·(])/).map((part) => part.replace(/^· /, '')) : [text]);
 	return (
 		<World width={width} height={height}>
 			{ERAS.map((era) => {
@@ -99,15 +105,21 @@ export const GeoTimeVisual: React.FC<VisualBoxProps & {visual: GeoTime}> = ({vis
 				const opacity = inCenozoic && cenozoic.focused > own.focused ? Math.max(own.opacity, cenozoic.opacity) : own.opacity;
 				const events = visual.turkey ? era.turkey : era.world;
 				const middle = (era.top + era.bottom) / 2;
+				const number = numberLines(era.number);
+				const lift = number.length > 1 ? 6 : 0;
 				return (
 					<g key={era.id} opacity={opacity}>
 						{/* The layer: wavy top edge like bedding, darker when pointed at. */}
 						<path d={`M${left} ${era.bottom} L${left} ${era.top} Q${left + 65} ${era.top - 6} ${left + 130} ${era.top} T${columnRight} ${era.top} L${columnRight} ${era.bottom} Z`} fill={era.color} stroke={focused > 0.5 ? palette.lesson : withAlpha('#3D2B1A', 0.35)} strokeWidth={focused > 0.5 ? 5 : 2} />
-						<text x={left + 14} y={middle - 8} fontSize={27} fontWeight={800} fill={era.id === 'paleozoyik' || era.id === 'prekambriyen' ? '#FFFFFF' : palette.ink} fontFamily={palette.fontDisplay}>
+						<text x={left + 14} y={middle - 8 - lift} fontSize={27} fontWeight={800} fill={era.id === 'paleozoyik' || era.id === 'prekambriyen' ? '#FFFFFF' : palette.ink} fontFamily={palette.fontDisplay}>
 							{era.name}
 						</text>
-						<text x={left + 14} y={middle + 20} fontSize={17} fontWeight={600} fill={era.id === 'paleozoyik' || era.id === 'prekambriyen' ? '#F1F1F1' : palette.ink} fontFamily={palette.fontBody}>
-							{era.number}
+						<text x={left + 14} y={middle + 20 - lift} fontSize={numberSize} fontWeight={600} fill={era.id === 'paleozoyik' || era.id === 'prekambriyen' ? '#F1F1F1' : palette.ink} fontFamily={palette.fontBody}>
+							{number.map((line, index) => (
+								<tspan key={index} x={left + 14} dy={index === 0 ? 0 : numberSize * 1.1}>
+									{line}
+								</tspan>
+							))}
 						</text>
 						<Tag x={columnRight + 18} y={era.top + 18} text={era.age} size={19} weight={800} fill={focused > 0.5 ? palette.lesson : palette.muted} />
 						{events.map((event, index) => (
@@ -123,7 +135,8 @@ export const GeoTimeVisual: React.FC<VisualBoxProps & {visual: GeoTime}> = ({vis
 					Senozoyik
 				</text>
 			</g>
-			<Tag x={columnRight} y={596} text="Katmanlar ölçeksizdir; en eski en altta" anchor="end" size={14} fill={palette.muted} />
+			{/* From the column's left edge: raised in an app still and ending at the column's right, it ran off the page. */}
+			<Tag x={left} y={596} text="Katmanlar ölçeksizdir; en eski en altta" anchor="start" size={14} fill={palette.muted} />
 		</World>
 	);
 };

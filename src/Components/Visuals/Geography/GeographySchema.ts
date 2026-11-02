@@ -15,6 +15,12 @@ export const EARTH_PARTS = {
 /** The named parts of the contour map and its profile. */
 export const CONTOUR_PARTS = ['izohips', 'renk', 'kiyi', 'zirve', 'dik', 'yatik', 'vadi', 'boyun', 'ab', 'izdusum', 'profil'] as const;
 
+/** The eight directions of a wind rose, clockwise from north, as Turkish textbooks write them. */
+export const WIND_DIRECTIONS = ['K', 'KD', 'D', 'GD', 'G', 'GB', 'B', 'KB'] as const;
+
+/** The named parts of the river regime graph, besides its rivers r1, r2, r3. */
+export const REGIME_PARTS = ['taskin', 'kurak', 'kar', 'kis', 'ilkbahar', 'yaz', 'sonbahar'] as const;
+
 /** The named parts of the climate graph. */
 export const CLIMATE_PARTS = ['yagis', 'sicaklik', 'sifir', 'kis', 'ilkbahar', 'yaz', 'sonbahar', 'ozet'] as const;
 
@@ -22,6 +28,13 @@ export const CLIMATE_PARTS = ['yagis', 'sicaklik', 'sifir', 'kis', 'ilkbahar', '
 export const INTERIOR_PARTS = ['kabuk', 'manto', 'astenosfer', 'discekirdek', 'iccekirdek', 'sialsima'] as const;
 
 export const PLATE_PARTS = ['levhalar', 'manto', 'magma', 'sekil', 'oklar'] as const;
+
+/** The stages a river view plays, in order: the strip above it names them and beats pick them by number. */
+export const RIVER_STAGES = {
+	profile: ['Yer şekli', 'Akış', 'Aşındırma', 'Taşıma', 'Biriktirme'],
+	meander: ['Kıvrılma', 'Dış kıyı aşınır', 'Boyun daralır', 'Kopuk menderes'],
+	delta: ['Yük taşınır', 'Akıntı yavaşlar', 'Kollara ayrılır', 'Delta ovası'],
+} as const;
 
 /** The named parts of the geological time column. */
 export const GEOTIME_PARTS = ['prekambriyen', 'paleozoyik', 'mezozoyik', 'senozoyik', 'tersiyer', 'kuvaterner'] as const;
@@ -38,7 +51,11 @@ export const LANDFORM_PARTS = {
 	coasttypes: ['boyuna', 'enine', 'dalmacya', 'ria'],
 	soil: ['ahorizon', 'bhorizon', 'chorizon', 'dhorizon'],
 	vegetation: ['maki', 'kizilcam', 'karacam', 'agacsiniri', 'alpin'],
+	forestbelts: ['genis', 'karisik', 'igne', 'agacsiniri', 'alpin'],
 	landslide: ['egim', 'tabaka', 'su', 'kayma', 'kutle', 'set'],
+	relief: ['dag', 'ova', 'plato', 'vadi', 'delta'],
+	aspect: ['gunes', 'guney', 'kuzey', 'zeytin', 'kar'],
+	settlement: ['toplu', 'daginik', 'su', 'egim', 'tarla'],
 } as const;
 
 /** Population pyramid types of the MEB textbook (see the pyramid visual) and the pyramid's named parts. */
@@ -113,6 +130,43 @@ export const GEOGRAPHY_VISUALS = [
 		profile: z.boolean().default(true),
 	}),
 	/**
+	 * Geography: a wind rose (rüzgâr gülü) of local winds: each blows from its direction (K, KD, D, GD, G, GB, B, KB)
+	 * towards `center` (a region or a city), named at the rim with a short `note` (soğuk, kar getirir); `feel` colours
+	 * it: cold blue, warm red, mild grey. Beats point at a wind by its name.
+	 */
+	z
+		.object({
+			kind: z.literal('windRose'),
+			center: plainText(20).optional(),
+			winds: z
+				.array(z.object({from: z.enum(WIND_DIRECTIONS), name: plainText(16), note: plainText(26).optional(), feel: z.enum(['cold', 'warm', 'mild']).default('mild')}))
+				.min(1)
+				.max(8),
+		})
+		.superRefine((rose, context) => {
+			const seen = new Set<string>();
+			rose.winds.forEach((wind, index) => {
+				if (seen.has(wind.from)) context.addIssue({code: 'custom', path: ['winds', index, 'from'], message: `Two winds blow from ${wind.from}; a rose has one per direction.`});
+				seen.add(wind.from);
+			});
+		}),
+	/**
+	 * Geography: a river regime (akarsu rejimi): the mean monthly flow of one to three rivers as lines, January first.
+	 * `unit` `relative` draws each river in percent of its own largest month (a schematic: the shape is the point, and
+	 * the figure says so); `m3s` draws the figures as given. `snowmelt` lights the spring snowmelt months. Beats point at
+	 * r1, r2, r3, taskin (each river's highest month), kurak (its lowest), kar and the seasons kis, ilkbahar, yaz, sonbahar.
+	 */
+	z.object({
+		kind: z.literal('regime'),
+		title: plainText(40).optional(),
+		rivers: z
+			.array(z.object({name: plainText(28), flow: z.array(z.number().min(0).max(20000)).length(12)}))
+			.min(1)
+			.max(3),
+		unit: z.enum(['relative', 'm3s']).default('relative'),
+		snowmelt: z.boolean().default(false),
+	}),
+	/**
 	 * Geography: a climate graph (sıcaklık-yağış grafiği) as atlases and ÖSYM draw it: monthly precipitation bars
 	 * (mm, left axis) and monthly mean temperature line (°C, right axis), January first. `summary` writes the annual
 	 * total and the annual temperature range. Beats point at yagis, sicaklik, sifir (0 °C), the seasons kis,
@@ -149,12 +203,18 @@ export const GEOGRAPHY_VISUALS = [
 	 * `coast` cliff, platform, spit, lagoon, tombolo, beach, `glacier` snow line, cirque, U-valley, moraine,
 	 * `desert` wind forms, `volcano` batholith, laccolith, sill, dike, cone, crater, lava, `coasttypes` four coast types from above (longitudinal,
 	 * transverse, Dalmatian, ria), `soil` a mature soil profile (A, B, C horizons over the parent rock), `vegetation`
-	 * plant belts up a southern Taurus slope (maquis, Turkish pine, black pine and fir, tree line, alpine meadows), `landslide` a slope with layers
-	 * parallel to it soaked by rain, the clay slip surface, a block sliding down and the lake it dams. Parts per scene in LANDFORM_PARTS.
+	 * plant belts up a southern Taurus slope (maquis, Turkish pine, black pine and fir, tree line, alpine meadows), `forestbelts` the
+	 * same up the Black Sea slope (broadleaf, mixed, conifers, tree line, alpine meadows), `landslide` a slope with layers
+	 * parallel to it soaked by rain, the clay slip surface, a block sliding down and the lake it dams, `relief` the main
+	 * landforms side by side from the sea inland (delta plain, mountain, tectonic plain, plateau cut by valleys, each
+	 * defined as it is pointed at), `aspect` a mountain with the noon sun in the south: the sunny south slope, the shaded
+	 * north slope, the olive limit higher on the south (500–600 m) than on the north (200–250 m) and spring snow lasting
+	 * lower on the north, `settlement` two villages from above: one clustered round its spring on a dry plain, one
+	 * scattered over wet, stream-cut slopes. Parts per scene in LANDFORM_PARTS.
 	 */
 	z.object({
 		kind: z.literal('landform'),
-		scene: z.enum(['fold', 'fault', 'karst', 'coast', 'glacier', 'desert', 'volcano', 'coasttypes', 'soil', 'vegetation', 'landslide']),
+		scene: z.enum(['fold', 'fault', 'karst', 'coast', 'glacier', 'desert', 'volcano', 'coasttypes', 'soil', 'vegetation', 'forestbelts', 'landslide', 'relief', 'aspect', 'settlement']),
 		/** Label the forms I, II, III… (in LANDFORM_PARTS order) instead of naming them: a figure for a question. */
 		numbered: z.boolean().default(false),
 	}),

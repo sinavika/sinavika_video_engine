@@ -1,7 +1,7 @@
 import React, {useId} from 'react';
 import {clamp01, lerp, noise, smooth, smoothStep} from '../../../../Animations/Motion';
 import {withAlpha} from '../../../../Themes/Theme';
-import {useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
+import {useStillFigure, useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
 import {pathOf} from '../../VisualWorld';
 import {Drift, FlowLine, ProcessFrame, ProcessLabel, SCENE, Sky, processCamera, sampled, smoothPath, useProcessClock, type CameraBox, type Point} from '../ProcessScene';
@@ -250,6 +250,9 @@ const Lens: React.FC<{x: number; y: number; show: number; title: string; childre
 /** The cycle as a ring in the corner: the current step lit, the arrows between them. */
 const CycleRing: React.FC<{clock: {current: string; amount: (id: string) => number}}> = ({clock}) => {
 	const palette = useVisualPalette();
+	// Like the stage strip, it tells where the lesson is; an app still shows the end without it (its 18-unit names came
+	// out at 14 still pixels).
+	if (useStillFigure()) return null;
 	const nodes = [
 		{id: 'magma', title: 'Magma'},
 		{id: 'magmatik', title: 'Magmatik'},

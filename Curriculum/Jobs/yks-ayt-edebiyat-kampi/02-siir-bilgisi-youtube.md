@@ -1,6 +1,6 @@
 # YouTube metni: AYT Edebiyat kampı · Ders 2 · Şiir Bilgisi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Edebiyat/02_Siir_Bilgisi/Siir_Bilgisi_YouTube.mp4` (4K) · Kapak: `Siir_Bilgisi_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Edebiyat/02_Siir_Bilgisi/Siir_Bilgisi_YouTube.mp4` (4K) · Kapak: `Siir_Bilgisi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

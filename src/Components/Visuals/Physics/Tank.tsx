@@ -16,6 +16,19 @@ export const vesselHalfWidth = (shape: 'straight' | 'flared' | 'tapered', y: num
 };
 
 /**
+ * Where a body stands across its vessel and how large it is: the vessel's narrowest width under the surface is shared
+ * among the bodies in it, each as large as its share allows (and no deeper than the liquid when it is under), up to
+ * 0.22 of a vessel's slot times its `size`. A fixed 0.15 of the slot made bodies small, and three of them ran past a
+ * vessel's walls (Soru revizyonu, 2 Nov 2026).
+ */
+export const tankBodyPlace = (shape: 'straight' | 'flared' | 'tapered', level: number, slot: number, vessel: number, order: number, count: number, size: number, wall: number, depth: number, submerged: number): {side: number; x: number} => {
+	const halfRoom = Math.min(vesselHalfWidth(shape, 0), vesselHalfWidth(shape, level)) * slot - 2 * wall;
+	const share = (2 * halfRoom) / Math.max(1, count);
+	const side = Math.min(slot * 0.22 * size, share * 0.8, submerged >= 1 ? depth * 0.8 : Infinity);
+	return {side, x: slot * (vessel + 0.5) - halfRoom + share * (order + 0.5) - side / 2};
+};
+
+/**
  * Liquid pressure: vessels of different shapes side by side, filled to the same level (so the pressure at the
  * bottom is the same whatever the shape), optionally joined at the bottom, with liquid layers and marked points
  * at given depths. The liquid rises into place; the points come after it.
@@ -81,9 +94,8 @@ export const TankVisual: React.FC<VisualBoxProps & {visual: Tank}> = ({visual, w
 				const vesselIndex = Math.min(body.vessel, visual.vessels.length - 1);
 				const here = visual.bodies.filter((other) => Math.min(other.vessel, visual.vessels.length - 1) === vesselIndex);
 				const order = here.indexOf(body);
-				const side = slot * 0.15 * body.size;
-				const x = slot * (vesselIndex + 0.5) + (order - (here.length - 1) / 2) * slot * 0.2 - side / 2;
 				const surfaceY = yAt(visual.level);
+				const {side, x} = tankBodyPlace(visual.vessels[vesselIndex].shape, visual.level, slot, vesselIndex, order, here.length, body.size, wall, bottom - surfaceY, body.submerged);
 				const topY = body.submerged < 1 ? surfaceY - (1 - body.submerged) * side : body.at === 'bottom' ? bottom - wall / 2 - side : (surfaceY + bottom) / 2 - side / 2;
 				const underFrom = Math.max(topY, surfaceY);
 				return (

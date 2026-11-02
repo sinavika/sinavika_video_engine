@@ -4,7 +4,13 @@ import {mixColors} from '../../../Themes/ColorPalette';
 import {withAlpha} from '../../../Themes/Theme';
 import {useVideoLayout} from '../../Layouts/VideoLayout';
 import {partLook} from '../Structure/StructureLook';
-import {strikeStyle, useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {strikeStyle, useReveal, useSceneSeconds, useStillFigure, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+
+/**
+ * The size of a word's role and of an arrow's label: 24 in a lesson, 32 in an app still, where the sentence is fitted
+ * to a still 1280 pixels wide and they came out at 22 pixels (2 Nov 2026).
+ */
+const useLabelSize = (): number => (useStillFigure() ? 32 : 24);
 import type {CourseVisual} from '../VisualSchema';
 import {useBeatStartFor, useElementState} from '../VisualTimeline';
 
@@ -233,6 +239,7 @@ const SentencePart: React.FC<
   const rise = Math.min(1, show);
   const slide = u(40);
   const roleColour = lit > 0.5 ? palette.lesson : palette.muted;
+  const labelSize = useLabelSize();
   return (
     <div
       ref={measure}
@@ -298,7 +305,7 @@ const SentencePart: React.FC<
             paddingTop: u(6),
             fontFamily: palette.fontBody,
             fontWeight: 700,
-            fontSize: u(24),
+            fontSize: u(labelSize),
             color: roleColour,
             textTransform: "uppercase",
             letterSpacing: "0.04em",
@@ -359,6 +366,7 @@ const SentenceLink: React.FC<{
   const drawn = easeFrom(seconds, start, 0.9);
   const spark = easeFrom(seconds, start + 0.9, 0.8);
   const look = partLook({ ...state, appear: 1 });
+  const labelSize = useLabelSize();
   // Clear of the tile when it rises into focus.
   const lift = u(16);
   const head: [number, number] = [from.x + from.width / 2, from.y - lift];
@@ -418,12 +426,28 @@ const SentenceLink: React.FC<{
         ) : null}
       </svg>
       {label ? (
+        // Centred on its point by a zero-size flex box, not by translate(-50%): FitBox measures with transforms off,
+        // and a label then stuck out to the right by half its width, so a two-word sentence ("kapının kolu", TYT
+        // Türkçe 7 render, 1 Nov 2026) was reported as overflowing even at half size.
         <div
           style={{
             position: "absolute",
             left: labelX,
             top: labelY,
-            transform: `translate(-50%, -50%) scale(${0.8 + 0.2 * drawn + 0.08 * look.emphasis})`,
+            width: 0,
+            height: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            pointerEvents: "none",
+            // Above every arc, not only its own: a higher (nested) arc comes down across the lower label.
+            zIndex: 1,
+          }}
+        >
+        <div
+          style={{
+            flexShrink: 0,
+            transform: `scale(${0.8 + 0.2 * drawn + 0.08 * look.emphasis})`,
             opacity: easeFrom(seconds, start + 0.45, 0.35) * look.opacity,
             whiteSpace: "nowrap",
             padding: `${u(6)}px ${u(16)}px`,
@@ -437,15 +461,13 @@ const SentenceLink: React.FC<{
             color: look.emphasis > 0.5 ? palette.onLesson : palette.lesson,
             fontFamily: palette.fontBody,
             fontWeight: 800,
-            fontSize: u(24),
+            fontSize: u(labelSize),
             textTransform: "uppercase",
             letterSpacing: "0.04em",
-            pointerEvents: "none",
-            // Above every arc, not only its own: a higher (nested) arc comes down across the lower label.
-            zIndex: 1,
           }}
         >
           {label}
+        </div>
         </div>
       ) : null}
     </>

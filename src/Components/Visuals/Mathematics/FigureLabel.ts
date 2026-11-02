@@ -3,12 +3,31 @@
 /** [left, top, right, bottom] of a label, in pixels. */
 export type LabelBox = [number, number, number, number];
 
+/**
+ * A figure's text as drawn. The prime of A′ (U+2032) has no glyph in Manrope; the fallback sat on the baseline and C′
+ * read as "C/" (KPSS Geometri 4, 1 Nov 2026). The closing quote stands where a prime should, at the top of the letter.
+ * Plane figures and solids (a pyramid's side height h′) use it alike.
+ */
+export const figureText = (text: string): string => text.replaceAll('″', '’’').replaceAll('′', '’');
+
 export const textWidth = (text: string, fontSize: number) => text.length * fontSize * 0.6;
+
+/**
+ * Points every `step` pixels along a line, ends excluded: a line as obstacles for `placeLabel`, so a label that
+ * would sit across a side (the x of a narrow angle pushed out onto the far side, KPSS Geometri 2, 1 Nov 2026) counts
+ * every point it covers and takes a clear spot instead.
+ */
+export const lineSamples = (from: [number, number], to: [number, number], step: number): [number, number][] => {
+	const count = Math.floor(Math.hypot(to[0] - from[0], to[1] - from[1]) / Math.max(1, step));
+	return Array.from({length: Math.max(0, count - 1)}, (_, index) => {
+		const share = (index + 1) / count;
+		return [from[0] + (to[0] - from[0]) * share, from[1] + (to[1] - from[1]) * share] as [number, number];
+	});
+};
 
 export const ringAround = ([cx, cy]: [number, number], radius: number): [number, number][] => [[cx, cy], ...Array.from({length: 8}, (_, index) => [cx + radius * Math.cos((index * Math.PI) / 4), cy + radius * Math.sin((index * Math.PI) / 4)] as [number, number])];
 
-/** The places a point's label may take, best first: up-right as before, then the other corners and sides. */
-export const pointSpots = ([px, py]: [number, number], width: number, height: number, gap: number): LabelBox[] => [
+const spotsAt = ([px, py]: [number, number], width: number, height: number, gap: number): LabelBox[] => [
 	[px + gap, py - gap - height, px + gap + width, py - gap],
 	[px - gap - width, py - gap - height, px - gap, py - gap],
 	[px + gap, py + gap, px + gap + width, py + gap + height],
@@ -18,6 +37,13 @@ export const pointSpots = ([px, py]: [number, number], width: number, height: nu
 	[px - width / 2, py - gap * 1.5 - height, px + width / 2, py - gap * 1.5],
 	[px - width / 2, py + gap * 1.5, px + width / 2, py + gap * 1.5 + height],
 ];
+
+/**
+ * The places a point's label may take, best first: up-right as before, then the other corners and sides, then the
+ * same ring further out. In a crowded small figure (P(2, −1), its foot H and the line d between them in a solution
+ * panel) every near spot was taken and the label sat on another; the outer ring leaves it a clear place.
+ */
+export const pointSpots = (at: [number, number], width: number, height: number, gap: number): LabelBox[] => [...spotsAt(at, width, height, gap), ...spotsAt(at, width, height, gap * 2.6)];
 
 /** The places a segment's label may take: beside its middle on either side, then nearer its ends. */
 export const segmentSpots = (from: [number, number], to: [number, number], width: number, height: number, gap: number): LabelBox[] => {

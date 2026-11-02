@@ -1,6 +1,6 @@
 # YouTube metni: AYT Tarih kampı · Ders 24 · II. Dünya Savaşı Sürecinde Türkiye ve Dünya
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Tarih/24_Ii_Dunya_Savasi_Sureci/Ii_Dunya_Savasi_Sureci_YouTube.mp4` (4K) · Kapak: `Ii_Dunya_Savasi_Sureci_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Tarih/24_Ii_Dunya_Savasi_Sureci/Ii_Dunya_Savasi_Sureci_YouTube.mp4` (4K) · Kapak: `Ii_Dunya_Savasi_Sureci_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

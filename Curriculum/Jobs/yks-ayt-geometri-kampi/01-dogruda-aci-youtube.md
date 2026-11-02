@@ -1,6 +1,6 @@
 # YouTube metni: AYT Geometri kampı · Ders 1 · Doğruda Açı
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Geometri/01_Dogruda_Aci/Dogruda_Aci_YouTube.mp4` (4K) · Kapak: `Dogruda_Aci_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Geometri/01_Dogruda_Aci/Dogruda_Aci_YouTube.mp4` (4K) · Kapak: `Dogruda_Aci_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

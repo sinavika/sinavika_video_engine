@@ -6,6 +6,7 @@ import {CoastProcess} from './Geography/Coast';
 import {CycloneProcess} from './Geography/Cyclone';
 import {DesertProcess} from './Geography/Desert';
 import {ErosionProcess} from './Geography/Erosion';
+import {FairyChimneyProcess} from './Geography/FairyChimney';
 import {FloodProcess} from './Geography/Flood';
 import {GlacierProcess} from './Geography/Glacier';
 import {GreenhouseProcess} from './Geography/Greenhouse';
@@ -49,6 +50,8 @@ export const ProcessVisual: React.FC<VisualBoxProps & {visual: ProcessSpec}> = (
 			return <CoastProcess {...props} />;
 		case 'desert':
 			return <DesertProcess {...props} />;
+		case 'fairychimney':
+			return <FairyChimneyProcess {...props} />;
 		case 'weathering':
 			return <WeatheringProcess {...props} />;
 		case 'greenhouse':

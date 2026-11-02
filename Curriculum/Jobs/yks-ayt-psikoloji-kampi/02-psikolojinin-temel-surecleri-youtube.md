@@ -1,6 +1,6 @@
 # YouTube metni: AYT Psikoloji kampı · Ders 2 · Psikolojinin Temel Süreçleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Psikoloji/02_Psikolojinin_Temel_Surecleri/Psikolojinin_Temel_Surecleri_YouTube.mp4` (4K) · Kapak: `Psikolojinin_Temel_Surecleri_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Psikoloji/02_Psikolojinin_Temel_Surecleri/Psikolojinin_Temel_Surecleri_YouTube.mp4` (4K) · Kapak: `Psikolojinin_Temel_Surecleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

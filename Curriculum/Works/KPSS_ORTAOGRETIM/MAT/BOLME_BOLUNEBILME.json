@@ -1,0 +1,991 @@
+{
+ "topic": {
+  "id": "D37FA4AA-A36F-9180-6098-40DB86810E15",
+  "category": "KPSS_ORTAOGRETIM",
+  "lesson": "MAT",
+  "code": "BOLME_BOLUNEBILME"
+ },
+ "title": "Bölme ve Bölünebilme",
+ "lessonName": "Matematik",
+ "exams": [
+  "KPSS"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/KPSS/MAT/BOLME_BOLUNEBILME.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Bölmeden kalanı bul",
+   "narration": "Bir sayının 9'a bölümünden kalanı bulmak için bölme yapman gerekmez; rakamlarını toplaman yeter. Bu derste bölmenin dört parçasını, 2'den 11'e kadar bütün bölünebilme kurallarını ve kalan bulmanın kısa yollarını göreceğiz. ÖSYM bu konuda çoğu zaman iki kuralı aynı soruda ister: 4 ile 10, 5 ile 11, 4 ile 9 gibi. Hepsini yeni sorularla adım adım çözeceğiz."
+  },
+  "objectives": [
+   "Bölme eşitliğini yazmak ve kalan şartını kullanmak",
+   "Art arda bölmelerde kalanı bulmak",
+   "2, 3, 4, 5, 8, 9, 10 ve 11 ile bölünebilme kurallarını uygulamak",
+   "Bileşik bölenleri aralarında asal çarpanlarla incelemek",
+   "Kalanlarla toplama ve çarpma yapmak; garanti sorularını çözmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "BOLME_BOLUNEBILME_01",
+    "subtopics": [],
+    "title": "Bölme işlemi ve kalan",
+    "narration": "Önce bölme işleminin kendisi. Bu konudaki her soru, tek bir eşitliği doğru yazmaya dayanır.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Bölmenin dört parçası",
+      "text": "**Bölünen = bölen × bölüm + kalan**. Kalan her zaman **bölenden küçüktür**: $0 \\le K < B$. Kalan 0 ise bölünen bölene **tam bölünür**.",
+      "visual": {
+       "kind": "formula",
+       "latex": "A = B \\cdot C + K, \\quad 0 \\le K < B",
+       "caption": "47 = 6 · 7 + 5"
+      },
+      "beats": [],
+      "narration": "Bölme işleminin dört parçası var: bölünen, bölen, bölüm ve kalan. Aralarındaki bağ tek bir eşitliktir: bölünen, bölen çarpı bölüm artı kalana eşittir. 47'yi 6'ya böldüğünde bölüm 7, kalan 5 olur; çünkü 6 çarpı 7, 42; artı 5, 47. Kalanın tek şartı var: sıfırdan küçük olamaz ve bölenden her zaman küçüktür. Kalan sıfırsa bölünen, bölene tam bölünür."
+     },
+     {
+      "kind": "rule",
+      "title": "Kalandan bölene",
+      "items": [
+       "Kalan $K$ ise bölen **en az** $K + 1$'dir.",
+       "Bir sayının $n$'ye bölümünden kalan **en çok** $n - 1$ olabilir.",
+       "$A = B \\cdot C + K$ ve $K < C$ ise $A$'nın $C$'ye bölümünden de kalan $K$'dır.",
+       "Bölüneni en küçük yapmak için **en küçük bölen** seçilir."
+      ],
+      "beats": [],
+      "narration": "Kalan sorularında dört bilgi işini görür. Kalan K ise bölen en az K artı 1'dir; kalan 11 ise bölen en az 12'dir. Tersinden bakarsan bir sayının n'ye bölümünden kalan en çok n eksi 1 olabilir. Üçüncüsü, bölen ile bölüm yer değiştirebilir: kalan bölümden de küçükse, sayıyı bölüme böldüğünde de aynı kalanı bulursun. Son olarak bölüneni en küçük yapmak istiyorsan en küçük böleni seçersin."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir $A$ doğal sayısı bir $B$ doğal sayısına bölündüğünde bölüm 6, kalan 11'dir. Buna göre $A$'nın alabileceği **en küçük** değer kaçtır?",
+       "options": [
+        "72",
+        "77",
+        "83",
+        "84",
+        "89"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$A = 6B + 11$ ve kalan bölenden küçük: $B > 11$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bölme eşitliği: A, 6 çarpı B artı 11. Kalan bölenden küçük olmalı; kalan 11 ise B, 11'den büyüktür."
+        },
+        {
+         "text": "En küçük $B = 12$ ⇒ $A = 6 \\cdot 12 + 11 = 83$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "A'nın en küçük olması için B'yi en küçük seçeriz: B, 12. A, 6 çarpı 12 artı 11, yani 83. Cevap C. B şıkkındaki 77, B'yi 11 alanın tuzağıdır: 11'e bölünen bir sayıda kalan 11 olamaz. A şıkkındaki 72 ise kalanı eklemeyi unutanın sonucudur."
+        }
+       ],
+       "narration": "Önce bölme eşitliğini yazalım, sonra kalanın bölene koyduğu şarta bakalım.",
+       "origin": {
+        "changes": "Havuzdaki bölüm ve kalanı verilip bölüneni sorduran kalıp örnek alındı; sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$a$ pozitif bir tam sayı olmak üzere $\\frac{a + 18}{a}$ ifadesi bir **tek** doğal sayıya eşittir. Buna göre bu koşulu sağlayan $a$ değerlerinin toplamı kaçtır?",
+       "options": [
+        "13",
+        "18",
+        "26",
+        "31",
+        "39"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$\\frac{a + 18}{a} = 1 + \\frac{18}{a}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kesri ikiye ayıralım: a bölü a, 1; artı 18 bölü a. İfade 1 artı 18 bölü a olur."
+        },
+        {
+         "text": "$1 + \\frac{18}{a}$ tek ⇒ $\\frac{18}{a}$ **çift** doğal sayı ⇒ $a \\in \\{1, 3, 9\\}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "1 artı bir sayı tek olacaksa o sayı çift olmalıdır. Yani 18 bölü a, çift bir doğal sayıdır. 18'in bölenlerini deneyelim: a 1 ise 18, a 3 ise 6, a 9 ise 2; üçü de çift. a 2, 6 ya da 18 olursa bölüm 9, 3 ya da 1 çıkar ve tektir."
+        },
+        {
+         "text": "$1 + 3 + 9 = 13$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Uygun değerler 1, 3 ve 9; toplamları 13. Cevap A. E şıkkındaki 39, 18'in bütün bölenlerini toplayanın bulduğu sayıdır; tek olma şartını unutmuştur."
+        }
+       ],
+       "narration": "Kesri iki parçaya ayırınca soru bir bölen sorusuna döner.",
+       "origin": {
+        "changes": "ÖSYM'nin bir kesrin tek doğal sayıya eşit olduğunu verip değerleri sorduran kalıbı örnek alındı; ifade ve sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "BOLME_BOLUNEBILME_04",
+    "subtopics": [],
+    "title": "Art arda bölme",
+    "narration": "Şimdi bir bölmenin bölümü yeniden bölündüğünde ne olduğuna bakalım. Ön lisans müfredatında bunun adı ardışık bölme işlemleridir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Eşitlikleri birleştir",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Adım",
+        "Eşitlik"
+       ],
+       "rows": [
+        [
+         "1. bölme",
+         "$A = 3B + 2$"
+        ],
+        [
+         "2. bölme",
+         "$B = 7C + 4$"
+        ],
+        [
+         "yerine yaz",
+         "$A = 3(7C + 4) + 2$"
+        ],
+        [
+         "dağıt",
+         "$A = 21C + 14$"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "beats": [
+       {
+        "narration": "İki bölmenin eşitliğini yazalım: A, 3B artı 2; B ise 7C artı 4.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r1",
+         "r2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Birinci eşitlikte B'nin yerine 7C artı 4'ü yazalım.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Dağıtınca A, 21C artı 14 olur. Yani A'nın 21'e bölümünden kalan 14'tür. Kısa yol: ilk bölen çarpı ikinci kalan, artı ilk kalan; 3 çarpı 4 artı 2, 14.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "A sayısı 3'e bölündüğünde bölüm B, kalan 2; B de 7'ye bölündüğünde bölüm C, kalan 4 olsun."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$A$, $B$ ve $C$ doğal sayılar olmak üzere $A$ sayısı 5'e bölündüğünde bölüm $B$, kalan 3; $B$ sayısı 4'e bölündüğünde bölüm $C$, kalan 2'dir. Buna göre $A$'nın 20'ye bölümünden kalan kaçtır?",
+       "options": [
+        "3",
+        "5",
+        "8",
+        "11",
+        "13"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$A = 5B + 3$, $B = 4C + 2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki bölme eşitliğini yazalım: A, 5B artı 3; B, 4C artı 2."
+        },
+        {
+         "text": "$A = 5(4C + 2) + 3 = 20C + 13$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "B'nin yerine 4C artı 2 yazalım. 5 çarpı 4C, 20C; 5 çarpı 2, 10; artı 3, 13. A, 20C artı 13 olur."
+        },
+        {
+         "text": "$13 < 20$ ⇒ kalan **13**. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "13, 20'den küçük olduğu için A'nın 20'ye bölümünden kalan doğrudan 13'tür. Cevap E. A şıkkındaki 3, yalnız ilk kalanı yazanın tuzağıdır."
+        }
+       ],
+       "narration": "İki bölme eşitliğini yazıp birini ötekinin içine koyacağız.",
+       "origin": {
+        "changes": "Ön lisans müfredatındaki ardışık bölme işlemleri örnek alındı; bölenler ve kalanlar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "İki basamaklı $\\overline{AB}$ sayısı, iki basamaklı $\\overline{BA}$ sayısına bölündüğünde bölüm 2, kalan 7'dir. Buna göre $A + B$ toplamı kaçtır?",
+       "options": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$10A + B = 2(10B + A) + 7 \\Rightarrow 8A = 19B + 7$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A B, 10A artı B; B A ise 10B artı A. 10A artı B, 2 çarpı 10B artı A, artı 7'ye eşittir. Düzenlersek 8A, 19B artı 7 olur."
+        },
+        {
+         "text": "$8A$ çift ⇒ $19B + 7$ çift ⇒ $B$ tek. $B = 3$: $8A = 64 \\Rightarrow A = 8$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "8A çift olduğuna göre 19B artı 7 de çifttir; bu da B'nin tek olmasını gerektirir. B 1 ise 8A, 26 olur; olmaz. B 3 ise 8A, 64; A, 8. B 5, 7 ya da 9 için A tam sayı çıkmaz."
+        },
+        {
+         "text": "Sağlama: $83 = 2 \\cdot 38 + 7$, kalan $7 < 38$. $A + B = 11$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sağlama: 38 çarpı 2, 76; artı 7, 83. Kalan 7, bölen 38'den küçük. A artı B, 8 artı 3, yani 11. Cevap B."
+        }
+       ],
+       "narration": "Bölme eşitliğini çözümlemeyle yazalım; geri kalanını tek-çift bilgisi çözecek.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki basamaklı sayının basamaklı sayıya bölündüğü kalıp örnek alındı; sayılar, bölüm ve kalan bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "BOLME_BOLUNEBILME_02",
+    "subtopics": [],
+    "title": "2, 5 ve 10 ile bölünebilme",
+    "narration": "Bölünebilme kurallarının en kolay üçüyle başlayalım: 2, 5 ve 10. Üçünde de yalnız son rakama bakarsın.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Son rakama bakılanlar",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Bölen",
+        "Tam bölünme",
+        "Kalan"
+       ],
+       "rows": [
+        [
+         "2",
+         "son rakam çift",
+         "son rakamın 2’ye kalanı"
+        ],
+        [
+         "5",
+         "son rakam 0 ya da 5",
+         "son rakamın 5’e kalanı"
+        ],
+        [
+         "10",
+         "son rakam 0",
+         "son rakamın kendisi"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "2 ile bölünebilmek için son rakam çift olmalıdır: 0, 2, 4, 6 ya da 8. Son rakam tekse kalan 1'dir.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "5 ile bölünebilmek için son rakam 0 ya da 5 olmalıdır. Kalan, son rakamın 5'e bölümünden kalandır.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "10 ile bölünebilmek için son rakam 0 olmalıdır. 10'a bölümden kalan ise doğrudan son rakamdır.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Üç kural, tek tabloda."
+     },
+     {
+      "kind": "predict",
+      "title": "Kalan 8 olabilir mi?",
+      "context": "Sayı: **4738**",
+      "prompt": "4738 sayısının 5’e bölümünden kalan kaçtır?",
+      "choices": [
+       "3",
+       "8"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Adım",
+        "Sonuç"
+       ],
+       "rows": [
+        [
+         "son rakam",
+         "8"
+        ],
+        [
+         "$8 = 5 \\cdot 1 + 3$",
+         "kalan **3**"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Son rakam 8.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Ama kalan bölenden küçük olmalı. 8'i 5'e bölersen bölüm 1, kalan 3.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "5'e bölümden kalan, son rakamın **5'e bölümünden** kalandır; son rakamın kendisi değil: 8 → **3**.",
+      "narration": "Şimdi sıra sende. 4738'in 5'e bölümünden kalan kaç? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 3. 5'e bölümden kalanı son rakam belirler, ama kalan son rakamın kendisi değildir; son rakamın 5'e bölümünden kalandır. 8'i 5'e bölersen kalan 3 çıkar. Kalan her zaman bölenden küçüktür; 8 kalan olamaz."
+     }
+    ]
+   },
+   {
+    "subtopic": "BOLME_BOLUNEBILME_02",
+    "subtopics": [],
+    "title": "4 ve 8 ile bölünebilme",
+    "narration": "4 ve 8'de son rakam yetmez; son iki ya da son üç basamağa bakarsın.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Son iki, son üç basamak",
+      "items": [
+       "**4** ile: son **iki** basamağın oluşturduğu sayı 4'e bölünür.",
+       "**8** ile: son **üç** basamağın oluşturduğu sayı 8'e bölünür.",
+       "4'e ve 8'e bölümden **kalan**, bu son basamakların kalanıdır.",
+       "4'e bölünen her sayı **çifttir**; tek sayı 4'e bölünmez."
+      ],
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sayı",
+        "Bakılan kısım",
+        "Sonuç"
+       ],
+       "rows": [
+        [
+         "7316",
+         "$16 = 4 \\cdot 4$",
+         "4’e bölünür"
+        ],
+        [
+         "51240",
+         "$240 = 8 \\cdot 30$",
+         "8’e bölünür"
+        ],
+        [
+         "9342",
+         "$42 = 4 \\cdot 10 + 2$",
+         "4’e kalan 2"
+        ]
+       ]
+      },
+      "beats": [],
+      "narration": "4 ile bölünebilmede son iki basamağa bakılır: son iki basamağın oluşturduğu sayı 4'e bölünüyorsa sayının tamamı da bölünür. 7316'nın son iki basamağı 16; 16, 4'e bölündüğü için 7316 da bölünür. 8 ile bölünebilmede son üç basamağa bakılır: 51240'ın son üç basamağı 240'tır ve 8'e bölünür. Kalan da aynı yerden bulunur: 9342'nin son iki basamağı 42; 4'e bölümünden kalan 2'dir. Bir de şunu unutma: 4'e bölünen her sayı çifttir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "İki basamaklı $\\overline{AB}$ sayısı 4 ile tam bölünebiliyor ve 5 ile bölündüğünde 1 kalanını veriyor. Buna göre bu koşulu sağlayan $\\overline{AB}$ sayılarının toplamı kaçtır?",
+       "options": [
+        "220",
+        "240",
+        "260",
+        "280",
+        "300"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "5'e bölümünden kalan 1 ⇒ $B = 1$ ya da $B = 6$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "5'e bölümden kalanı son rakam belirler. Kalan 1 ise son rakam 1 ya da 6'dır."
+        },
+        {
+         "text": "4'e bölünen sayı çifttir ⇒ $B = 6$. Sayılar: 16, 36, 56, 76, 96",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "4'e bölünen bir sayı çift olmalı; B 1 olamaz, B 6'dır. Son rakamı 6 olan iki basamaklı sayılardan 4'e bölünenler 16, 36, 56, 76 ve 96. 26, 46, 66 ve 86 ise 4'e bölünmez."
+        },
+        {
+         "text": "$16 + 36 + 56 + 76 + 96 = 56 \\cdot 5 = 280$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bu beş sayı 20'şer artıyor; ortanca terim 56. Toplam, 56 çarpı 5, yani 280. Cevap D."
+        }
+       ],
+       "narration": "İki koşul var. Önce son rakamı belirleyen koşulla başlayalım.",
+       "origin": {
+        "changes": "ÖSYM'nin 4 ile bölünme ve başka bir bölenle kalanı birlikte veren kalıbı örnek alındı; bölen, kalan ve soru bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "1'den 120'ye kadar olan sayılar 120 kartın üzerine birer kez yazılıp kartlar bir torbaya atılıyor. Torbadan bakmadan çekilen kartlar arasında üzerinde **8 ile bölünebilen** bir sayı bulunmasını **garantilemek** için en az kaç kart çekilmelidir?",
+       "options": [
+        "15",
+        "16",
+        "105",
+        "106",
+        "120"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "8'e bölünenler: $120 \\div 8 = 15$ kart. Bölünmeyenler: $120 - 15 = 105$ kart.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Önce 8'e bölünen sayıları sayalım: 120 bölü 8, 15. Yani 15 kartta 8'in katı var, 105 kartta yok."
+        },
+        {
+         "text": "En kötü durum: önce 105 kartın hepsi çekilir.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Garanti sorularında en kötü durumu düşünürüz: şanssızlıkla önce 8'e bölünmeyen 105 kartın hepsi gelir."
+        },
+        {
+         "text": "$105 + 1 = 106$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir sonraki kart mutlaka 8'in katıdır: 105 artı 1, 106. Cevap D. A şıkkındaki 15 yalnız 8'in katlarını sayar; C şıkkındaki 105 ise son kartı eklemeyi unutur."
+        }
+       ],
+       "narration": "Garanti sorusu. En şanssız durumu düşüneceğiz.",
+       "origin": {
+        "changes": "ÖSYM'nin bölünebilen sayılı topu garantileme kalıbı örnek alındı; sayı aralığı ve bölen bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "BOLME_BOLUNEBILME_02",
+    "subtopics": [],
+    "title": "3 ve 9 ile bölünebilme",
+    "narration": "3 ve 9'da son rakama değil, bütün rakamlara bakarsın: rakamları toplarsın.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Rakamlar toplamı",
+      "items": [
+       "**3** ile: rakamları toplamı 3'ün katıdır.",
+       "**9** ile: rakamları toplamı 9'un katıdır.",
+       "3'e ve 9'a bölümden **kalan**, rakamlar toplamının kalanıdır.",
+       "9'a bölünen her sayı 3'e de bölünür; tersi **her zaman doğru değildir**: 12."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "5 + 1 + 3 + 7 = 16 = 9 \\cdot 1 + 7",
+       "caption": "5137 sayısının 9'a bölümünden kalan 7"
+      },
+      "beats": [],
+      "narration": "3 ve 9 ile bölünebilmede rakamları toplarsın. Rakamları toplamı 3'ün katı olan sayı 3'e, 9'un katı olan sayı 9'a tam bölünür. Kalan da bu toplamdan bulunur: 5137'nin rakamları toplamı 16; 16'nın 9'a bölümünden kalan 7 olduğu için 5137'nin 9'a bölümünden kalan da 7'dir. 9'a bölünen her sayı 3'e de bölünür, ama tersi her zaman doğru değildir: 12, 3'e bölünür ama 9'a bölünmez."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Rakamları birbirinden farklı birer **çift** sayı olan üç basamaklı bir doğal sayı 9 ile tam bölünebilmektedir. Buna göre bu sayının alabileceği en büyük değer ile en küçük değer arasındaki fark kaçtır?",
+       "options": [
+        "378",
+        "386",
+        "396",
+        "404",
+        "432"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Çift rakamlar: 0, 2, 4, 6, 8. Üç farklı çift rakamın toplamı **çift** ve en çok $8 + 6 + 4 = 18$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çift rakamlar 0, 2, 4, 6 ve 8'dir. Çift sayıların toplamı çift olur; üç farklı çift rakamın toplamı en çok 8 artı 6 artı 4, yani 18'dir."
+        },
+        {
+         "text": "Toplam 9'un katı ve çift ⇒ toplam **18** ⇒ rakamlar 4, 6, 8",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam 9'un katı olmalı. 9 tek olduğu için olamaz; geriye 18 kalır. 18 yapan tek üçlü 4, 6 ve 8'dir: 2 ile en çok 16'ya, 0 ile en çok 14'e ulaşırsın."
+        },
+        {
+         "text": "En büyük 864, en küçük 468: $864 - 468 = 396$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bu rakamlarla en büyük sayı 864, en küçük sayı 468. Farkları 396. Cevap C."
+        }
+       ],
+       "narration": "Önce rakamlar toplamının hangi değeri alabileceğini bulalım.",
+       "origin": {
+        "changes": "ÖSYM'nin rakamları belli bir türden olan sayının 3 ile bölünmesini soran kalıbı örnek alındı; rakam türü, bölen ve sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "BOLME_BOLUNEBILME_02",
+    "subtopics": [],
+    "title": "6, 12, 15 ve 36 ile bölünebilme",
+    "narration": "Bileşik bir sayıya bölünebilme için yeni kural ezberlemezsin; o sayıyı aralarında asal çarpanlarına ayırırsın.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Aralarında asal çarpanlar",
+      "items": [
+       "**6** ile: hem **2** hem **3** ile bölünür.",
+       "Bileşik bölen, **aralarında asal** çarpanlara ayrılır: $12 = 3 \\cdot 4$, $15 = 3 \\cdot 5$, $36 = 4 \\cdot 9$.",
+       "Sayı her çarpanın kuralını **ayrı ayrı** sağlamalıdır."
+      ],
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Bölen",
+        "Çarpanlar",
+        "Uygulanacak kurallar"
+       ],
+       "rows": [
+        [
+         "6",
+         "$2 \\cdot 3$",
+         "2 kuralı ve 3 kuralı"
+        ],
+        [
+         "12",
+         "$3 \\cdot 4$",
+         "3 kuralı ve 4 kuralı"
+        ],
+        [
+         "15",
+         "$3 \\cdot 5$",
+         "3 kuralı ve 5 kuralı"
+        ],
+        [
+         "36",
+         "$4 \\cdot 9$",
+         "4 kuralı ve 9 kuralı"
+        ]
+       ]
+      },
+      "beats": [],
+      "narration": "Bileşik bir sayıya bölünebilme için o sayıyı aralarında asal çarpanlarına ayırırsın ve her çarpanın kuralını ayrı ayrı uygularsın. 6 ile bölünebilmek için hem 2 hem 3 ile bölünmek gerekir. 12 için 3 ve 4, 15 için 3 ve 5, 36 için 4 ve 9 kullanılır. Sayı bu kuralların hepsini birlikte sağlamalıdır."
+     },
+     {
+      "kind": "mistake",
+      "title": "12 için 2 ve 6 yetmez",
+      "wrong": "2'ye ve 6'ya bölünen sayı **12'ye** bölünür.",
+      "right": "12 için **3 ve 4** kullanılır: 18, 2'ye ve 6'ya bölünür ama 12'ye bölünmez.",
+      "why": "Çarpanlar aralarında asal olmalı. 2 ile 6'nın ortak böleni 2 olduğu için bu iki kural birlikte 12'yi garanti etmez.",
+      "narration": "Bir tuzak. 2'ye ve 6'ya bölünen bir sayı 12'ye de bölünür mü? Hayır. 18, 2'ye ve 6'ya bölünür ama 12'ye bölünmez. Çarpanlar aralarında asal olmalıdır; 2 ile 6'nın ortak böleni 2 olduğu için bu iki kural yetmez. 12 için 3 ve 4 kullanılır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Beş basamaklı $\\overline{3a52b}$ sayısı 15 ile tam bölünebildiğine göre $a + b$ toplamının alabileceği **en büyük** değer kaçtır?",
+       "options": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$15 = 3 \\cdot 5$: $b = 0$ ya da $b = 5$; rakamlar toplamı $10 + a + b$ 3'ün katı.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "15, 3 ile 5'in çarpımıdır ve bunlar aralarında asaldır. 5 için son rakam b, 0 ya da 5 olmalı. 3 için rakamlar toplamı 3'ün katı olmalı: 3 artı a artı 5 artı 2 artı b, yani 10 artı a artı b."
+        },
+        {
+         "text": "$b = 5$: $15 + a$ ⇒ $a \\in \\{0, 3, 6, 9\\}$ ⇒ en çok $9 + 5 = 14$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "b 5 ise toplam 15 artı a olur; a 0, 3, 6 ya da 9 olabilir. a 9 seçilirse a artı b, 14."
+        },
+        {
+         "text": "$b = 0$: $10 + a$ ⇒ $a \\in \\{2, 5, 8\\}$ ⇒ en çok 8. En büyük **14**. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "b 0 ise toplam 10 artı a olur; a 2, 5 ya da 8; a artı b en çok 8. İki durumun en büyüğü 14. Cevap E."
+        }
+       ],
+       "narration": "15'i aralarında asal çarpanlarına ayırıp iki kuralı ayrı ayrı uygulayalım.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki 15 ile bölünebilen harfli sayı kalıbı örnek alındı; sayı ve rakamlar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "BOLME_BOLUNEBILME_02",
+    "subtopics": [],
+    "title": "11 ile bölünebilme",
+    "narration": "11'in kuralı ötekilerden farklıdır: rakamlara sırayla artı ve eksi işareti verirsin.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "11 kuralı",
+      "text": "Rakamlara **sağdan başlayarak** sırayla $+, -, +, -, \\ldots$ işaretleri ver ve topla. Toplam 11'in katıysa (0 dahil) sayı 11'e **tam bölünür**; değilse toplamın 11'e kalanı sayının kalanıdır. Toplam negatifse 11 ekleyerek pozitife çevir.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Rakam",
+        "9",
+        "2",
+        "7",
+        "3",
+        "Toplam"
+       ],
+       "rows": [
+        [
+         "İşaret",
+         "−",
+         "+",
+         "−",
+         "+",
+         "→"
+        ],
+        [
+         "Değer",
+         "−9",
+         "+2",
+         "−7",
+         "+3",
+         "**−11**"
+        ]
+       ],
+       "highlightColumn": 5
+      },
+      "beats": [
+       {
+        "narration": "9273'ü deneyelim. En sağdaki 3'e artı, 7'ye eksi, 2'ye artı, 9'a eksi işareti verilir.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Değerler sırasıyla eksi 9, artı 2, eksi 7 ve artı 3. Toplam eksi 11. Bu sayı 11'in katı olduğu için 9273, 11'e tam bölünür.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Toplam 11'in katı değilse toplamın 11'e bölümünden kalan, sayının kalanını verir. Toplam negatifse önce 11 ekleyerek pozitife çevirirsin.",
+        "show": [],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "11 ile bölünebilme biraz farklıdır. Rakamlara sağdan başlayarak sırayla artı, eksi, artı, eksi işaretleri verirsin ve bu değerleri toplarsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Üç basamaklı $\\overline{4AB}$ sayısı 11 ile, iki basamaklı $\\overline{AB}$ sayısı 5 ile tam bölünebilmektedir. Buna göre $\\overline{4AB}$ sayısının alabileceği değerlerin toplamı kaçtır?",
+       "options": [
+        "880",
+        "905",
+        "935",
+        "945",
+        "990"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$\\overline{AB}$ 5'e bölünür ⇒ $B = 0$ ya da $B = 5$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A B, 5'e bölündüğüne göre B, 0 ya da 5'tir."
+        },
+        {
+         "text": "11 kuralı: $B - A + 4$, 11'in katı.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "11 kuralını sağdan uygulayalım: artı B, eksi A, artı 4. B eksi A artı 4, 11'in katı olmalı."
+        },
+        {
+         "text": "$B = 0$: $4 - A = 0 \\Rightarrow A = 4$ → 440. $B = 5$: $9 - A = 0 \\Rightarrow A = 9$ → 495.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "B 0 ise 4 eksi A, sıfır olmalı; A 4 ve sayı 440. B 5 ise 9 eksi A, sıfır olmalı; A 9 ve sayı 495. A bir rakam olduğu için bu ifadeler 11 ya da eksi 11 olamaz."
+        },
+        {
+         "text": "$440 + 495 = 935$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam: 440 artı 495, 935. Cevap C."
+        }
+       ],
+       "narration": "Önce 5 kuralıyla son rakamı, sonra 11 kuralıyla A'yı bulalım.",
+       "origin": {
+        "changes": "ÖSYM'nin 5 ve 11 ile bölünebilmeyi aynı soruda isteyen kalıbı örnek alındı; sayı ve soru bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "BOLME_BOLUNEBILME_03",
+    "subtopics": [],
+    "title": "Kalanlarla işlem",
+    "narration": "Son bölümde büyük ifadelerin kalanını, sayıların kendisini bilmeden bulacağız.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kalanlarla işlem",
+      "items": [
+       "Toplamın kalanı = kalanların **toplamının** kalanı.",
+       "Çarpımın kalanı = kalanların **çarpımının** kalanı.",
+       "Bir sayının katının kalanı için kalanı aynı katla çarp.",
+       "Sonuç bölenden büyükse **bir kez daha** böl."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "x = 7k + 4 \\Rightarrow 3x = 21k + 12 = 7(3k + 1) + 5",
+       "caption": "3x sayısının 7'ye bölümünden kalan 5"
+      },
+      "beats": [],
+      "narration": "Kalan sorularında sayıların kendisini bilmen gerekmez; kalanlarıyla işlem yaparsın. Bir toplamın kalanı, kalanların toplamının kalanıdır. Bir çarpımın kalanı, kalanların çarpımının kalanıdır. Örneğin x'in 7'ye bölümünden kalan 4 ise 3x'in kalanı için 3 ile 4'ü çarparsın: 12. 12, 7'den büyük olduğu için bir kez daha bölersin ve kalan 5 olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$x$ ve $y$ doğal sayılarının 7'ye bölümünden kalanlar sırasıyla 4 ve 5'tir. Buna göre $3x + 2y$ toplamının 7'ye bölümünden kalan kaçtır?",
+       "options": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "5"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$3x$: $3 \\cdot 4 = 12$; $2y$: $2 \\cdot 5 = 10$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x'in kalanı 4 olduğu için 3x'in kalanını 3 çarpı 4'ten buluruz: 12. y'nin kalanı 5; 2y için 2 çarpı 5, 10."
+        },
+        {
+         "text": "$12 + 10 = 22 = 3 \\cdot 7 + 1$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kalanları toplayalım: 12 artı 10, 22. 22, 7'den büyük; bir kez daha bölelim: 7 çarpı 3, 21; kalan 1."
+        },
+        {
+         "text": "Kalan **1**. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "3x artı 2y'nin 7'ye bölümünden kalan 1. Cevap B. Ara sonuçlar bölenden büyük çıkabilir; en sonda yeniden bölmeyi unutma."
+        }
+       ],
+       "narration": "Sayıları değil, kalanları kullanacağız.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki bir toplamın 7'ye bölümünden kalanını soran kalıp örnek alındı; ifade ve kalanlar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Bölünen, bölen çarpı bölüm artı kalandır; kalan bölenden küçüktür.",
+    "Art arda bölmede eşitlikleri iç içe yaz.",
+    "2, 5 ve 10 için son rakama bakılır.",
+    "4 için son iki, 8 için son üç basamağa bakılır.",
+    "3 ve 9 için rakamlar toplanır.",
+    "11 için sağdan artı, eksi işaretleriyle toplanır.",
+    "Bileşik bölen aralarında asal çarpanlara ayrılır."
+   ],
+   "warnings": [
+    "Kalan **bölenden küçüktür**; 8, 5’e bölümde kalan olamaz.",
+    "12 için **3 ve 4**; 2 ve 6 yetmez.",
+    "Garanti sorusunda **en kötü durumu** düşün, sonra 1 ekle."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki **10 soruyu** kâğıtta yeniden çöz; her kuralı bir örnekle yaz.",
+    "Doğum yılının **2’den 11’e** kadar her sayıya bölümünden kalanı bul.",
+    "Uygulamada KPSS Bölme ve Bölünebilme testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Bölme eşitliği ve kalan şartı: bölen en az kalan artı 1; bölüneni en küçük ya da en büyük yapma; bölen ile bölümün yer değiştirmesi; üç özgün soru.",
+   "Ardışık bölme: iki bölme eşitliğini iç içe yazma, bölenlerin çarpımına bölümden kalan (ilk bölen × ikinci kalan + ilk kalan); basamaklı sayının basamaklı sayıya bölümü.",
+   "Son basamak kuralları (2, 5, 10) ve son iki-üç basamak kuralları (4, 8); kalanın son rakamın kendisi değil, onun kalanı olduğu tuzak; garanti (en kötü durum) soruları.",
+   "Rakamlar toplamı kuralları (3, 9) ve kalan; rakam türü verilen sayılarda toplamın alabileceği değerler (çift rakamlar, asal rakamlar).",
+   "Bileşik bölenler: 6, 12, 15, 18, 36, 45 için aralarında asal çarpanlar; '2 ve 6 → 12' yanılgısı; harfli sayılarda iki kuralı birlikte uygulama.",
+   "11 kuralı (sağdan + − işaretleri), negatif toplamın kalana çevrilmesi; kalanlarla toplama ve çarpma; her biri için iki özgün soru."
+  ]
+ }
+}

@@ -1,6 +1,6 @@
 # YouTube metni: TYT Geometri kampı · Ders 10 · Üçgende Alan
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Geometri/10_Ucgende_Alan/Ucgende_Alan_YouTube.mp4` (4K) · Kapak: `Ucgende_Alan_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Geometri/10_Ucgende_Alan/Ucgende_Alan_YouTube.mp4` (4K) · Kapak: `Ucgende_Alan_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -1,0 +1,741 @@
+{
+ "topic": {
+  "id": "A1A6562E-678E-4ADB-A624-595FB9F75632",
+  "category": "KPSS_LISANS",
+  "lesson": "MAT",
+  "code": "SAYISAL_MANTIK"
+ },
+ "title": "Sayısal Mantık",
+ "lessonName": "Matematik",
+ "exams": [
+  "KPSS"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/KPSS/MAT/SAYISAL_MANTIK.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Kuralı keşfet",
+   "narration": "Sayısal mantık, KPSS Matematik testinin son sorularıdır. Lisans sınavında 2009'dan 2021'e yirmi dokuz soru bu konudan geldi; en çok akıl yürütme, tablo ve grafik ile eşleştirme soruları soruldu. Bu sorular ezber değil, bir kuralı keşfetmeyi ister. Bu derste her türün tek bir anahtar fikrini öğrenip yeni sorularla adım adım uygulayacağız."
+  },
+  "objectives": [
+   "Sayı ve şekil örüntülerinin kuralını bulmak",
+   "Daire grafiği ve tablolardan bilgi okumak",
+   "Kurallara göre sayı yerleştirmek",
+   "Eşleştirme sorularını tabloyla çözmek",
+   "Koşulları birleştirerek sayısal akıl yürütmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "SAYISAL_MANTIK_01",
+    "subtopics": [],
+    "title": "Sayı örüntüleri",
+    "narration": "Sayısal mantık soruları bir kuralı keşfetmeni ister. İlk tür sayı örüntüleri: dizinin kuralını bul, devam ettir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kuralı bul",
+      "items": [
+       "**Farklara** bak: fark sabitse terimler eşit artar ($a, a + d, a + 2d, \\ldots$).",
+       "Farklar sabit değilse **farkların farkına** bak.",
+       "**Oranlara** bak: her terim bir öncekinin aynı katıysa çarpımla ilerler.",
+       "Eşit artan $n$ terimin toplamı: $n \\cdot \\text{ilk} + d \\cdot (0 + 1 + \\cdots + (n - 1))$."
+      ],
+      "beats": [],
+      "narration": "Bir sayı dizisinin kuralını bulmak için önce ardışık terimlerin farklarına bakarsın. Fark sabitse terimler eşit artıyordur. Farklar sabit değilse farkların farkına bakarsın. Bazen de her terim bir öncekinin aynı katıdır; o zaman oranlara bakarsın. Eşit artan n terimin toplamı, n çarpı ilk terim artı artış çarpı sıfırdan n eksi 1'e kadar sayıların toplamıdır."
+     },
+     {
+      "kind": "predict",
+      "title": "Sıradaki terim",
+      "context": "2, 5, 10, 17, 26, …",
+      "prompt": "Dizinin bir sonraki terimi kaçtır?",
+      "choices": [
+       "35",
+       "37"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Terim",
+        "5",
+        "10",
+        "17",
+        "26",
+        "?"
+       ],
+       "rows": [
+        [
+         "Öncekinden fark",
+         "3",
+         "5",
+         "7",
+         "9",
+         "11"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Farklara bakalım: 3, 5, 7, 9. Farklar sabit değil ama her seferinde 2 artıyor.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "Farklar 3, 5, 7, 9, **11**: sıradaki terim $26 + 11 = 37$.",
+      "narration": "Şimdi sıra sende. 2, 5, 10, 17, 26 dizisinin sıradaki terimi kaç? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 37. Farklar 3, 5, 7 ve 9; farkların farkı hep 2. Bir sonraki fark 11 olur; 26 artı 11, 37. Bu dizinin terimleri aslında 1 kare artı 1, 2 kare artı 1, 3 kare artı 1 diye gidiyor: 6 kare artı 1, 37."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir salonun ilk sırasında $n$ sandalye vardır ve sonraki her sırada bir önceki sıradakinden 3 fazla sandalye bulunmaktadır. Salonun ilk 20 sırasında toplam 970 sandalye olduğuna göre $n$ kaçtır?",
+       "options": [
+        "15",
+        "18",
+        "20",
+        "22",
+        "25"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Sıralar: $n, n + 3, \\ldots, n + 57$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İlk sırada n, ikincide n artı 3; yirminci sırada n artı 19 çarpı 3, yani n artı 57 sandalye var."
+        },
+        {
+         "text": "Toplam: $20n + 3 \\cdot (0 + 1 + \\cdots + 19) = 20n + 570$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "20 tane n, artı 3 çarpı 0'dan 19'a kadar sayıların toplamı. 0'dan 19'a toplam 190; 3 çarpı 190, 570."
+        },
+        {
+         "text": "$20n + 570 = 970 \\Rightarrow n = 20$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "20n artı 570, 970; 20n, 400; n, 20. Cevap C."
+        }
+       ],
+       "narration": "Sıralar eşit artıyor. Toplamı n ile yazalım.",
+       "origin": {
+        "changes": "ÖSYM'nin sıralara düzenli artan sayıda kişi oturan salon kalıbı örnek alındı; artış ve toplam bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "SAYISAL_MANTIK_02",
+    "subtopics": [],
+    "title": "Şekil örüntüleri",
+    "narration": "Şekil örüntülerinde ilk birkaç adımı sayıya çevirir, sonra sayı örüntüsü gibi çözersin.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Kibrit kareleri",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Kare sayısı",
+        "1",
+        "2",
+        "3",
+        "4",
+        "$n$"
+       ],
+       "rows": [
+        [
+         "Kibrit",
+         "4",
+         "7",
+         "10",
+         "13",
+         "$3n + 1$"
+        ]
+       ],
+       "highlightColumn": 5
+      },
+      "beats": [
+       {
+        "narration": "Bir kare için 4 kibrit gerekir. İkinci kare yan yana eklenince ortak kenar sayesinde yalnız 3 kibrit eklenir: 7. Üçüncü karede 10, dördüncüde 13.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Her yeni kare 3 kibrit ekliyor ve başta 1 fazlalık var: n kare için 3n artı 1 kibrit. Kuralı bulunca istediğin adımı hesaplarsın.",
+        "show": [],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Kibritlerle yan yana kareler yapalım."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Kibrit çöpleriyle yan yana kareler yapılıyor: 1 kare için 4, 2 kare için 7, 3 kare için 10 kibrit kullanılıyor. Buna göre yan yana 15 kare yapmak için kaç kibrit gerekir?",
+       "options": [
+        "31",
+        "40",
+        "42",
+        "45",
+        "46"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Her yeni kare 3 kibrit ekliyor: $4, 7, 10, \\ldots$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "4, 7, 10 diye gidiyor; her yeni kare 3 kibrit ekliyor."
+        },
+        {
+         "text": "$n$ kare: $3n + 1$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "n kare için 3n artı 1 kibrit: 1 kare için 4, 2 kare için 7."
+        },
+        {
+         "text": "$3 \\cdot 15 + 1 = 46$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "15 kare için 3 çarpı 15 artı 1, 46 kibrit. Cevap E. D şıkkındaki 45, baştaki 1 kibriti unutanın; ortak kenarları hiç saymayıp 15 çarpı 4, 60 diyen ise hiç şıkta değildir."
+        }
+       ],
+       "narration": "Adımları sayıya çevirip kuralı bulalım.",
+       "origin": {
+        "changes": "ÖSYM'nin şekil örüntüsü kalıbı örnek alındı; şekil ve adım sayısı bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "SAYISAL_MANTIK_03",
+    "subtopics": [],
+    "title": "Tablo ve grafik yorumlama",
+    "narration": "Ön lisans sınavlarında bu konunun yarısı, Lisansta dörtte biri grafik okumaydı. En sık gelen grafik daire grafiğidir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Daire grafiği",
+      "items": [
+       "Dilimin payı $= \\frac{\\text{merkez açı}}{360°}$; yüzde verildiyse açı $=$ yüzde $\\times 3{,}6°$.",
+       "Dilimin miktarı $=$ pay $\\times$ toplam.",
+       "İki dilimin **farkı** için açı farkını kullan."
+      ],
+      "visual": {
+       "kind": "pie",
+       "slices": [
+        {
+         "label": "A",
+         "value": 90
+        },
+        {
+         "label": "B",
+         "value": 150
+        },
+        {
+         "label": "C",
+         "value": 120
+        }
+       ],
+       "show": "angle"
+      },
+      "beats": [],
+      "narration": "Daire grafiğinde bir dilimin bütüne oranı, merkez açısının 360 dereceye oranıdır. Yüzde verildiyse açıyı yüzde çarpı 3 virgül 6 dereceyle bulursun: yüzde 25, 90 derecedir. Dilimin miktarı bu pay çarpı toplamdır. İki dilim arasındaki farkı soruyorsa açı farkını kullanmak işi kısaltır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Yüzde açı değildir",
+      "wrong": "%25'lik dilimin merkez açısı **25°**'dir.",
+      "right": "%25'lik dilimin merkez açısı $25 \\cdot 3{,}6 = 90°$'dir.",
+      "why": "Tam daire 360° ve %100'dür; %1, 3,6°'ye karşılık gelir.",
+      "narration": "Bir tuzak. Yüzde 25'lik bir dilimin merkez açısı 25 derece değildir. Tam daire hem 360 derece hem yüzde 100'dür; yüzde 1, 3 virgül 6 dereceye karşılık gelir. Yüzde 25, 25 çarpı 3 virgül 6, yani 90 derecedir: dairenin dörtte biri."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir araç kiralama şirketinin A, B ve C marka araçlarının sayıca dağılımı daire grafiğinde verilmiştir. Şirketin toplam 192 aracı olduğuna göre B marka araçların sayısı, A marka araçların sayısından kaç fazladır?",
+       "figure": {
+        "kind": "pie",
+        "slices": [
+         {
+          "label": "A",
+          "value": 90
+         },
+         {
+          "label": "B",
+          "value": 150
+         },
+         {
+          "label": "C",
+          "value": 120
+         }
+        ],
+        "show": "angle"
+       },
+       "options": [
+        "24",
+        "32",
+        "36",
+        "40",
+        "48"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Açı farkı: $150° - 90° = 60°$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "B'nin merkez açısı 150, A'nınki 90 derece. Fark 60 derece."
+        },
+        {
+         "text": "$\\frac{60}{360} \\cdot 192 = \\frac{1}{6} \\cdot 192 = 32$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "60 derece, dairenin 6'da 1'i. 192'nin 6'da 1'i, 32. Cevap B. Önce iki dilimi ayrı ayrı bulup çıkarsan da aynı sonuca ulaşırsın: 80 eksi 48, 32."
+        }
+       ],
+       "narration": "İki dilimin farkını açı farkıyla bulalım.",
+       "origin": {
+        "changes": "ÖSYM'nin daire grafiğinden iki grubun farkını sorduran kalıbı örnek alındı; açılar ve toplam bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir okulda geçen yıl öğrencilerin sınıflara göre dağılımı daire grafiğinde yüzde olarak verilmiştir. Bu yıl her sınıfın öğrenci sayısı eşit miktarda artmış ve toplam öğrenci sayısı 300 olmuştur. Bu yıl 1. sınıfta 87 öğrenci olduğuna göre geçen yılki toplam öğrenci sayısı kaçtır?",
+       "figure": {
+        "kind": "pie",
+        "slices": [
+         {
+          "label": "1. sınıf",
+          "value": 30
+         },
+         {
+          "label": "2. sınıf",
+          "value": 20
+         },
+         {
+          "label": "3. sınıf",
+          "value": 25
+         },
+         {
+          "label": "4. sınıf",
+          "value": 25
+         }
+        ],
+        "show": "percent"
+       },
+       "options": [
+        "180",
+        "200",
+        "220",
+        "240",
+        "260"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "4 sınıf, her birine $k$: $T + 4k = 300$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dört sınıfın her biri k öğrenci arttı. Toplam: T artı 4k, 300."
+        },
+        {
+         "text": "1. sınıf: $0{,}3T + k = 87$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "1. sınıf geçen yıl toplamın yüzde 30'uydu; bu yıl k fazlası 87: 0 virgül 3 T artı k, 87."
+        },
+        {
+         "text": "$k = 87 - 0{,}3T$ ⇒ $T + 348 - 1{,}2T = 300 \\Rightarrow T = 240$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "İkinci denklemden k, 87 eksi 0 virgül 3 T. Bunu ilk denklemde yerine yazarsak T artı 348 eksi 1 virgül 2 T, 300. 0 virgül 2 T, 48; T, 240. Her sınıfa 15 öğrenci eklenmiş. Cevap D."
+        }
+       ],
+       "narration": "Geçen yılki toplama T, her sınıfa eklenen sayıya k diyelim.",
+       "origin": {
+        "changes": "ÖSYM'nin daire grafiği ve eşit artış kalıbı örnek alındı; yüzdeler ve sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "SAYISAL_MANTIK_04",
+    "subtopics": [],
+    "title": "Sıralama ve yerleştirme",
+    "narration": "Yerleştirme sorularında sayıları bir şekle kurallara uyarak yerleştirirsin. Anahtar, her sayının kaç kez sayıldığını görmektir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kaç kez sayılıyor?",
+      "items": [
+       "Kenar ya da satır toplamları eşitse **bütün toplamları** topla.",
+       "Köşedeki sayı **iki** kenarda, kenar ortasındaki **bir** kenarda sayılır.",
+       "En büyük ya da en küçük toplam için çok sayılan yerlere **büyük** ya da **küçük** sayıları koy."
+      ],
+      "beats": [],
+      "narration": "Yerleştirme sorularında kenar ya da satır toplamları eşit isteniyorsa bütün kenar toplamlarını birlikte toplarsın. Bu toplamda bazı sayılar birden fazla sayılır: bir üçgenin köşesindeki sayı iki kenarda, kenar ortasındaki sayı yalnız bir kenarda yer alır. Toplamı en büyük yapmak için çok sayılan yerlere büyük sayıları koyarsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir üçgenin üç köşesine ve üç kenarının orta noktalarına 1'den 6'ya kadar olan sayılar birer kez yazılacaktır. Her kenar üzerindeki üç sayının toplamı birbirine eşit olacaktır. Buna göre bu eşit toplamın alabileceği **en büyük** değer kaçtır?",
+       "options": [
+        "12",
+        "13",
+        "14",
+        "15",
+        "21"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Üç kenar toplamı: $3S = (1 + \\cdots + 6) + \\text{köşeler} = 21 + \\text{köşeler}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Her kenarda iki köşe ve bir orta nokta var. Üç kenarı toplayınca köşeler iki kez, orta noktalar bir kez sayılır. Yani 3S, bütün sayıların toplamı 21 artı köşelerin toplamıdır."
+        },
+        {
+         "text": "Köşeler en büyük: $4 + 5 + 6 = 15$ ⇒ $3S = 36$, $S = 12$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "S'yi büyütmek için köşelere en büyük sayıları koyarız: 4, 5 ve 6; toplamları 15. 3S, 36; S, 12."
+        },
+        {
+         "text": "Yerleşim: 4–3–5, 5–1–6, 6–2–4. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bu yerleşim gerçekten mümkün: 4 ile 5 arasına 3, 5 ile 6 arasına 1, 6 ile 4 arasına 2. Her kenar 12. Cevap A. E şıkkındaki 21, bütün sayıların toplamıdır."
+        }
+       ],
+       "narration": "Üç kenarın toplamını, sayıların kaç kez sayıldığına göre yazalım.",
+       "origin": {
+        "changes": "ÖSYM'nin kurallarla sayı yerleştirme kalıbı örnek alındı; şekil ve kural bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "SAYISAL_MANTIK_05",
+    "subtopics": [],
+    "title": "Eşleştirme ve gruplama",
+    "narration": "Eşleştirme sorularında kişileri ve seçenekleri bir tabloya dökersin; her olumsuz bilgi bir kutuyu kapatır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Tabloya dök",
+      "items": [
+       "Satırlara kişileri, sütunlara seçenekleri yaz.",
+       "Her **olumsuz** bilgi bir kutuya ✗ koyar.",
+       "Bir satırda ya da sütunda **tek** boş kutu kalırsa o eşleşme **kesindir**."
+      ],
+      "beats": [],
+      "narration": "Eşleştirme sorularında kişileri satırlara, seçenekleri sütunlara yazdığın bir tablo kurarsın. Her olumsuz bilgi bir kutuyu kapatır. Bir satırda ya da sütunda tek bir açık kutu kaldığında o eşleşme kesindir; o kişi ve o seçenek başka yerlerden silinir. Bu adım çoğu zaman zincirleme olarak bütün tabloyu çözer."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Ayla, Berk ve Cansu'nun her biri yüzme, tenis ve voleyboldan farklı birini yapmaktadır.\n• Ayla tenis oynamamaktadır.\n• Voleybol oynayan Berk değildir.\n• Cansu ne yüzmekte ne de voleybol oynamaktadır.\n\nBuna göre aşağıdakilerden hangisi **kesinlikle** doğrudur?",
+       "options": [
+        "Ayla yüzmektedir.",
+        "Berk tenis oynamaktadır.",
+        "Cansu tenis oynamaktadır.",
+        "Berk voleybol oynamaktadır.",
+        "Ayla tenis oynamaktadır."
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Cansu: yüzme ✗, voleybol ✗ ⇒ **tenis**",
+         "eliminate": [
+          "B",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Cansu yüzmüyor ve voleybol oynamıyor; satırında tek açık kutu tenis. Cansu tenis oynar."
+        },
+        {
+         "text": "Berk: voleybol ✗, tenis Cansu'nun ⇒ **yüzme**",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Berk voleybol oynamıyor; tenis de Cansu'nun. Berk'e yüzme kalır."
+        },
+        {
+         "text": "Ayla: **voleybol**. Kesin olan: Cansu tenis. Cevap **C**.",
+         "eliminate": [
+          "A"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Ayla'ya voleybol kalır. Seçeneklerden kesinlikle doğru olan, Cansu'nun tenis oynadığıdır. Cevap C. A şıkkı yanlıştır; yüzen Berk'tir."
+        }
+       ],
+       "narration": "Tabloyu kuralım ve olumsuz bilgilerle kutuları kapatalım.",
+       "origin": {
+        "changes": "ÖSYM'nin kişiler ve seçenekleri bilgilerle eşleştirme kalıbı örnek alındı; kişiler ve bilgiler bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "SAYISAL_MANTIK_06",
+    "subtopics": [],
+    "title": "Sayısal akıl yürütme",
+    "narration": "Son bölüm Lisans sınavında bu konunun en sık sorusu: kısa bir durum, birkaç koşul ve dikkatli bir akıl yürütme.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Koşulları birleştir",
+      "items": [
+       "Tekrar eden bir ilişki varsa **ilk birkaç terimi** yaz; desen ortaya çıkar.",
+       "Sıralı sayılarda **en küçük** ve **en büyük** sınırları bul; arada kalanlar sıkışır.",
+       "Döngüde kaçıncı kez olduğunu sayarken **başlangıcı** birinci say."
+      ],
+      "beats": [],
+      "narration": "Sayısal akıl yürütme sorularında koşulları birleştirirsin. Tekrar eden bir ilişki varsa ilk birkaç terimi yazarsın; çoğu zaman bir desen ortaya çıkar. Sıralı sayılarda en küçük ve en büyük sınırları bulursun; aradaki sayılar bu sınırlara sıkışır. Döngülerde kaçıncı kez olduğunu sayarken başlangıcı birinci kez sayarsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Kapı numaraları 1'den 5'e kadar olan beş daireli bir apartmanda numaraları ardışık olan her iki dairede toplam 13 kişi yaşamaktadır. Apartmanda toplam 30 kişi yaşadığına göre 3 numaralı dairede kaç kişi yaşamaktadır?",
+       "options": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "9"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "1. daire $x$ ⇒ 2. $13 - x$ ⇒ 3. $x$ ⇒ 4. $13 - x$ ⇒ 5. $x$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "1 numaralı dairede x kişi olsun. 2 numaralıda 13 eksi x; 3 numaralıda yine x; 4 numaralıda 13 eksi x; 5 numaralıda x. Tek numaralar ve çift numaralar aynı."
+        },
+        {
+         "text": "Toplam: $3x + 2(13 - x) = x + 26 = 30 \\Rightarrow x = 4$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam: 3x artı 2 çarpı 13 eksi x, yani x artı 26. Bu 30'a eşit; x, 4."
+        },
+        {
+         "text": "3 numaralı daire: $x = 4$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "3 numaralı dairede x, yani 4 kişi yaşar. Çift numaralı dairelerde 9'ar kişi var. Cevap B. E şıkkındaki 9, çift numaralı dairelerin sayısıdır."
+        }
+       ],
+       "narration": "Ardışık ikililerin toplamı hep 13. İlk birkaç daireyi yazalım.",
+       "origin": {
+        "changes": "ÖSYM'nin ardışık dairelerde sabit toplam kalıbı örnek alındı; toplamlar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Beş kardeşin yaşları birbirinden farklı beş tam sayıdır. En küçük iki kardeşin yaşları toplamı 14, en büyük iki kardeşin yaşları toplamı 21'dir. Buna göre beş kardeşin yaşları toplamı kaçtır?",
+       "options": [
+        "40",
+        "41",
+        "42",
+        "43",
+        "44"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$a + b = 14$, $a < b$ ⇒ $b \\ge 8$; $d + e = 21$, $d < e$ ⇒ $d \\le 10$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "a artı b, 14 ve a, b'den küçük; o zaman b en az 8'dir. d artı e, 21 ve d, e'den küçük; o zaman d en çok 10'dur."
+        },
+        {
+         "text": "$8 \\le b < c < d \\le 10$ ⇒ $b = 8$, $c = 9$, $d = 10$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "b, c ve d farklı tam sayılar ve b küçüktür c küçüktür d. 8 ile 10 arasında üç farklı tam sayı ancak 8, 9 ve 10 olabilir. c, 9."
+        },
+        {
+         "text": "Toplam: $14 + 9 + 21 = 44$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam 14 artı 9 artı 21, 44. Yaşlar 6, 8, 9, 10 ve 11. Cevap E."
+        }
+       ],
+       "narration": "Yaşları küçükten büyüğe a, b, c, d, e diyelim; ortadaki c'yi sıkıştıracağız.",
+       "origin": {
+        "changes": "ÖSYM'nin farklı tam sayıları sınırlarla sıkıştırma kalıbı örnek alındı; toplamlar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir binada A, B, C ve D zilleri alfabetik sırayla, art arda eşit aralıklarla çalıyor; D'den sonra yeniden A çalıyor. A zili ilk kez saat 09.00'da çaldı ve D zili ikinci kez saat 10.10'da çaldı. Buna göre art arda çalan iki zil arasında kaç dakika vardır?",
+       "options": [
+        "5",
+        "6",
+        "8",
+        "10",
+        "12"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "A, B, C, D, A, B, C, **D**: 8. zil, 7 aralık",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sıra: A, B, C, D, sonra yine A, B, C, D. D'nin ikinci kez çalması sekizinci çalıştır. Birinci çalıştan sekizinci çalışa 7 aralık geçer."
+        },
+        {
+         "text": "09.00'dan 10.10'a 70 dakika: $7t = 70 \\Rightarrow t = 10$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "09.00'dan 10.10'a 70 dakika geçmiş. 7 aralık 70 dakika; bir aralık 10 dakika. Cevap D. 8 aralık sayan 8 virgül 75 bulur ve şıklarda bulamaz; ilk çalış başlangıçtır."
+        }
+       ],
+       "narration": "Zillerin sırasını yazıp D'nin ikinci kez çalmasına kadar kaç aralık geçtiğini sayalım.",
+       "origin": {
+        "changes": "ÖSYM'nin sırayla çalan ziller kalıbı örnek alındı; zil sayısı ve saatler bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Örüntüde farklara, gerekirse farkların farkına bak.",
+    "Şekil örüntüsünü ilk adımlarda sayıya çevir.",
+    "Daire grafiğinde pay, açının 360’a oranıdır.",
+    "Yerleştirmede her sayının kaç kez sayıldığını gör.",
+    "Eşleştirmede tablo kur; tek kalan kutu kesindir.",
+    "Tekrar eden ilişkide ilk terimleri yaz; desen çıkar."
+   ],
+   "warnings": [
+    "Yüzde 25 = **90°**; açı = yüzde × 3,6.",
+    "Döngüde **başlangıç birinci** sayılır.",
+    "\"Kesinlikle\" ile \"olabilir\" **farklıdır**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki **9 soruyu** kâğıtta yeniden çöz; eşleştirmede tabloyu mutlaka çiz.",
+    "Kendin **bir sayı örüntüsü** yaz ve bir arkadaşına sıradaki terimi sor.",
+    "Uygulamada KPSS Sayısal Mantık testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Sayı örüntüleri: farklar, farkların farkı, oranlar; eşit artan dizide toplam; salon ve sıra soruları.",
+   "Şekil örüntüleri: ilk adımları sayıya çevirip genel kuralı bulma (kibrit kareleri: 3n + 1).",
+   "Daire grafiği: pay = açı / 360, yüzde × 3,6°, iki dilimin farkı; grafik ve eşit artış birlikte.",
+   "Yerleştirme: kenar toplamları eşit düzenekler, köşe ve kenar ortası sayılarının kaç kez sayıldığı.",
+   "Eşleştirme ve gruplama: tablo kurma, olumsuz bilgilerle kutu kapatma, tek kalan kutunun kesinliği; 'kesinlikle doğru' ve 'olabilir' soruları.",
+   "Sayısal akıl yürütme: tekrar eden ilişkilerde ilk terimleri yazma, sınırlarla sıkıştırma, döngülerde başlangıcı birinci sayma."
+  ]
+ }
+}

@@ -1,0 +1,2118 @@
+{
+ "topic": {
+  "id": "7A48005D-6BB0-7750-D246-6A02CFE934B8",
+  "category": "KPSS_ONLISANS",
+  "lesson": "GEO",
+  "code": "GEO_DORTGEN"
+ },
+ "title": "Dörtgenler",
+ "lessonName": "Geometri",
+ "exams": [
+  "KPSS"
+ ],
+ "sources": [
+  "KPSS müfredatı (Ön lisans ve ortaöğretim GEO_DORTGEN 8 alt başlık; Lisans müfredatında ayrı dörtgen konusu yok): paralelkenarın alanı kayan kenarla, yamuğun alanı 180° dönmüş kopyayla, orta noktalar dörtgeni orta tabanlarla gösterildi",
+  "ÖSYM KPSS ön lisans paralelkenar, kare (2020) ve yamuk soruları (CikmisSorular/GEO.jsonl): kalıplar örnek alındı, şekiller ve sayılar yeni yazıldı",
+  "KPSS Sorular/GEO havuzları (Ön lisans GEO_DORTGEN)"
+ ],
+ "works": {
+  "additions": [
+   "Dörtgenin iç açıları toplamı 360° (köşegenle iki üçgen); dış açılar 360°; orantılı açılar.",
+   "Paralelkenar: karşılıklı kenar ve açılar eşit, komşu açılar bütünler, köşegenler birbirini ortalar; alan a·h = a·b·sin A; ardışık açıortaylarla ikizkenar üçgenler (AE = AD) ve çevre.",
+   "Dikdörtgen: köşegenler eşit; d² = a² + b²; çevre ve köşegenden alan (a + b)² = a² + b² + 2ab. Kare: köşegen a√2, alan d²/2; tel kalıbı (alan oranı → kenar oranı).",
+   "Eşkenar dörtgen ve deltoit: köşegenler dik, alan e·f/2, kenar köşegen yarılarıyla Pisagor; deltoitte köşegeni iki dik üçgenden toplama.",
+   "Yamuk: alan (a + c)·h/2 ve 180° dönmüş kopyayla nedeni; orta taban (a + c)/2; ikizkenar yamukta (a − c)/2 ve yükseklik. Kenar orta noktaları dörtgeni paralelkenar, alanı yarı."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "İki yamuk, bir paralelkenar",
+   "narration": "Bir yamuğun kopyasını alıp ters çevirerek yanına koyarsan ne olur? İkisi birlikte kusursuz bir paralelkenar kurar. Yamuğun alan formülü, işte bu paralelkenarın yarısıdır. Bu derste paralelkenar, dikdörtgen, eşkenar dörtgen, kare, yamuk ve deltoidi; her birinin alanının nereden geldiğini görerek öğreneceğiz."
+  },
+  "objectives": [
+   "Dörtgenin açılarını kullanmak",
+   "Paralelkenar ve dikdörtgenin özelliklerini uygulamak",
+   "Eşkenar dörtgen, kare ve deltoitte köşegenleri kullanmak",
+   "Yamuğun alanını ve orta tabanını bulmak",
+   "Orta noktalar dörtgeninin alanını bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_DORTGEN_01",
+    "title": "Dörtgenin açıları",
+    "narration": "Her dörtgen bir köşegenle iki üçgene ayrılır; bu yüzden iç açılarının toplamı 360 derecedir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Dörtgenin açıları",
+      "items": [
+       "Dörtgenin iç açıları toplamı $360°$: bir köşegen onu iki üçgene ayırır.",
+       "Dış açılar toplamı da $360°$."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        6.9,
+        4.9
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "label": "A"
+        },
+        {
+         "id": "B",
+         "at": [
+          6,
+          0
+         ],
+         "label": "B"
+        },
+        {
+         "id": "C",
+         "at": [
+          5,
+          4
+         ],
+         "label": "C"
+        },
+        {
+         "id": "D",
+         "at": [
+          1.2,
+          3.4
+         ],
+         "label": "D"
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "D"
+        },
+        {
+         "from": "D",
+         "to": "A"
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "id": "u1",
+         "label": "180°",
+         "shade": 2
+        },
+        {
+         "points": [
+          "A",
+          "C",
+          "D"
+         ],
+         "id": "u2",
+         "label": "180°",
+         "shade": 3
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "AC köşegeni dörtgeni iki üçgene ayırıyor.",
+        "focus": [
+         "AC"
+        ]
+       },
+       {
+        "narration": "İki üçgenin açıları birlikte dörtgenin açılarını tam dolduruyor: 2 çarpı 180, 360 derece.",
+        "show": [
+         "u1",
+         "u2"
+        ],
+        "focus": [
+         "u1",
+         "u2"
+        ]
+       }
+      ],
+      "narration": "Bir dörtgeni köşegeniyle iki üçgene ayırabilirsin; her üçgenin açıları 180 derece olduğundan dörtgenin iç açıları toplamı 360 derecedir. Dış açılar toplamı da, her çokgende olduğu gibi, 360 derecedir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir dörtgenin iç açılarının ölçüleri 2, 3, 4 ve 6 sayılarıyla orantılıdır. Buna göre en büyük açı kaç derecedir?",
+       "options": [
+        "96",
+        "120",
+        "132",
+        "144",
+        "150"
+       ],
+       "answer": 3,
+       "narration": "Orantıyı k ile yazıp toplamı 360'a eşitleyelim.",
+       "steps": [
+        {
+         "text": "$2k + 3k + 4k + 6k = 360° \\Rightarrow k = 24°$",
+         "narration": "Açılar 2k, 3k, 4k ve 6k; toplamları 360 derece. 15k, 360; k, 24."
+        },
+        {
+         "text": "En büyük açı $6k = 144°$. Cevap **D**.",
+         "narration": "En büyük açı 6k, 6 çarpı 24, 144 derece. Cevap D. Toplamı 180 sanmak, dörtgeni üçgen gibi hesaplamaktır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki açıları orantılı dörtgen kalıbı örnek alındı; oranlar bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DORTGEN_02",
+    "title": "Paralelkenar",
+    "narration": "Karşılıklı kenarları paralel olan dörtgen paralelkenardır. Alanı, dikdörtgenden kaydırılarak elde edildiği için taban çarpı yüksekliktir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Kayan kenar",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        9.4,
+        4.4
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "label": "A"
+        },
+        {
+         "id": "B",
+         "at": [
+          6,
+          0
+         ],
+         "label": "B"
+        },
+        {
+         "id": "C",
+         "at": [
+          6,
+          3.5
+         ],
+         "moveTo": [
+          8.5,
+          3.5
+         ],
+         "label": "C"
+        },
+        {
+         "id": "D",
+         "at": [
+          0,
+          3.5
+         ],
+         "moveTo": [
+          2.5,
+          3.5
+         ],
+         "label": "D"
+        },
+        {
+         "id": "H",
+         "at": [
+          0,
+          0
+         ],
+         "moveTo": [
+          2.5,
+          0
+         ],
+         "label": ""
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "a"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "D"
+        },
+        {
+         "from": "D",
+         "to": "A"
+        },
+        {
+         "from": "D",
+         "to": "H",
+         "label": "h",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "id": "sekil",
+         "label": "a · h",
+         "shade": 2
+        }
+       ]
+      },
+      "narration": "Bir dikdörtgenle başlayalım.",
+      "beats": [
+       {
+        "narration": "Dikdörtgenin tabanı a, yüksekliği h; alanı a çarpı h.",
+        "focus": [
+         "AB",
+         "DH"
+        ]
+       },
+       {
+        "narration": "Üst kenarı tabana paralel kaydıralım.",
+        "show": [
+         "move-C",
+         "move-D",
+         "move-H"
+        ],
+        "focus": [
+         "sekil"
+        ]
+       },
+       {
+        "narration": "Dikdörtgen paralelkenara dönüştü. Taban da yükseklik de aynı; alan hâlâ a çarpı h.",
+        "focus": [
+         "AB",
+         "DH"
+        ],
+        "note": "Paralelkenarın alanı = taban · yükseklik"
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Paralelkenar",
+      "items": [
+       "Karşılıklı kenarlar paralel ve **eşit**; karşılıklı açılar eşit, komşu açılar **bütünler**.",
+       "Köşegenler birbirini **ortalar** (eşit olmaları gerekmez).",
+       "Alan $= a \\cdot h = a \\cdot b \\cdot \\sin A$."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        10.4,
+        4.4
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "label": "A"
+        },
+        {
+         "id": "B",
+         "at": [
+          7,
+          0
+         ],
+         "label": "B"
+        },
+        {
+         "id": "C",
+         "at": [
+          9.0,
+          3.46
+         ],
+         "label": "C"
+        },
+        {
+         "id": "D",
+         "at": [
+          2.0,
+          3.46
+         ],
+         "label": "D"
+        },
+        {
+         "id": "O",
+         "at": [
+          4.5,
+          1.73
+         ],
+         "label": "O"
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "ticks": 1
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "ticks": 2
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "ticks": 1
+        },
+        {
+         "from": "D",
+         "to": "A",
+         "ticks": 2
+        },
+        {
+         "from": "A",
+         "to": "O",
+         "dashed": true
+        },
+        {
+         "from": "O",
+         "to": "C",
+         "dashed": true
+        },
+        {
+         "from": "B",
+         "to": "O",
+         "dashed": true
+        },
+        {
+         "from": "O",
+         "to": "D",
+         "dashed": true
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "D",
+         "label": "60°"
+        },
+        {
+         "at": "C",
+         "from": "D",
+         "to": "B",
+         "label": "60°"
+        },
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "label": "120°"
+        },
+        {
+         "at": "D",
+         "from": "A",
+         "to": "C",
+         "label": "120°"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Karşılıklı kenarlar eşit: tek çentikler ve çift çentikler.",
+        "focus": [
+         "AB",
+         "CD",
+         "BC",
+         "DA"
+        ]
+       },
+       {
+        "narration": "Karşılıklı açılar eşit, 60 ve 60, 120 ve 120; komşu açıların toplamı 180.",
+        "focus": [
+         "angle-A",
+         "angle-B",
+         "angle-C",
+         "angle-D"
+        ]
+       },
+       {
+        "narration": "Köşegenler O'da kesişiyor ve birbirini ortalıyor.",
+        "focus": [
+         "AO",
+         "OC",
+         "BO",
+         "OD"
+        ]
+       }
+      ],
+      "narration": "Paralelkenarda karşılıklı kenarlar hem paralel hem eşittir. Karşılıklı açılar eşit, komşu açılar bütünlerdir; çünkü paralel kenarlar arasında karşı durumlu açılardır. Köşegenler birbirini ortalar ama genelde eşit değildir. Alan taban çarpı yükseklik; yükseklik verilmezse iki kenar ve aralarındaki açının sinüsüyle de yazılır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki $ABCD$ paralelkenarında $[DE]$ ve $[CE]$ sırasıyla $D$ ve $C$ açılarının açıortaylarıdır; $E$ noktası $[AB]$ üzerindedir. $|AE| = 5$ cm olduğuna göre $ABCD$ paralelkenarının çevresi kaç cm'dir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         12.6,
+         5.6000000000000005
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "label": "A"
+         },
+         {
+          "id": "B",
+          "at": [
+           10,
+           0
+          ],
+          "label": "B"
+         },
+         {
+          "id": "C",
+          "at": [
+           11.71,
+           4.7
+          ],
+          "label": "C"
+         },
+         {
+          "id": "D",
+          "at": [
+           1.71,
+           4.7
+          ],
+          "label": "D"
+         },
+         {
+          "id": "E",
+          "at": [
+           5,
+           0
+          ],
+          "label": "E"
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "E",
+          "label": "5"
+         },
+         {
+          "from": "E",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "A"
+         },
+         {
+          "from": "D",
+          "to": "E"
+         },
+         {
+          "from": "C",
+          "to": "E"
+         }
+        ],
+        "angles": [
+         {
+          "at": "D",
+          "from": "A",
+          "to": "E",
+          "id": "d1"
+         },
+         {
+          "at": "D",
+          "from": "E",
+          "to": "C",
+          "id": "d2"
+         },
+         {
+          "at": "C",
+          "from": "D",
+          "to": "E",
+          "arcs": 2,
+          "id": "c1"
+         },
+         {
+          "at": "C",
+          "from": "E",
+          "to": "B",
+          "arcs": 2,
+          "id": "c2"
+         },
+         {
+          "at": "E",
+          "from": "C",
+          "to": "D",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "30",
+        "32",
+        "36",
+        "40",
+        "45"
+       ],
+       "answer": 0,
+       "narration": "Açıortay ile paralel kenarlar birlikte ikizkenar üçgenler kurar.",
+       "steps": [
+        {
+         "text": "$m(\\widehat{ADE}) = m(\\widehat{EDC}) = m(\\widehat{DEA})$ $\\Rightarrow |AD| = |AE| = 5$",
+         "narration": "DE açıortay: ADE ile EDC eşit. DC, AB'ye paralel olduğu için EDC açısı, DEA açısına iç ters açı olarak eşittir. ADE üçgeninde iki açı eşit: AD, AE'ye eşit, 5 cm."
+        },
+        {
+         "text": "Aynı yoldan $|BC| = |BE|$; $|BC| = |AD| = 5 \\Rightarrow |BE| = 5$",
+         "narration": "Aynı akılla BCE üçgeni de ikizkenar: BE, BC'ye eşit. BC, paralelkenarda AD'ye eşit, 5 cm; BE de 5 cm."
+        },
+        {
+         "text": "$|AB| = 10$, çevre $2(10 + 5) = 30$. Cevap **A**.",
+         "narration": "AB, 5 artı 5, 10 cm. Çevre 2 çarpı 10 artı 5, 30 cm. Cevap A. D şıkkındaki 40, AB'nin 4 katıdır; kenarlar eşit değil.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM KPSS ön lisanstaki paralelkenarda iki açıortay ve AE uzunluğundan çevre kalıbı örnek alındı; uzunluk bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki $ABCD$ paralelkenarında $|AB| = 10$ cm, $|AD| = 6$ cm ve $m(\\widehat{DAB}) = 30°$'dir. Buna göre paralelkenarın alanı kaç cm²'dir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         16.2,
+         3.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "label": "A"
+         },
+         {
+          "id": "B",
+          "at": [
+           10,
+           0
+          ],
+          "label": "B"
+         },
+         {
+          "id": "C",
+          "at": [
+           15.2,
+           3.0
+          ],
+          "label": "C"
+         },
+         {
+          "id": "D",
+          "at": [
+           5.2,
+           3.0
+          ],
+          "label": "D"
+         },
+         {
+          "id": "H",
+          "at": [
+           5.2,
+           0
+          ],
+          "label": "H"
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "10"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "label": "6"
+         },
+         {
+          "from": "D",
+          "to": "H",
+          "label": "h",
+          "dashed": true
+         }
+        ],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "D",
+          "label": "30°"
+         },
+         {
+          "at": "H",
+          "from": "B",
+          "to": "D",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "24",
+        "30",
+        "36",
+        "48",
+        "60"
+       ],
+       "answer": 1,
+       "narration": "Yüksekliği 30-60-90 üçgeninden bulalım.",
+       "steps": [
+        {
+         "text": "$h = |DH| = \\frac{6}{2} = 3$",
+         "narration": "D'den AB'ye inen yükseklik, 30 derecenin karşısı: AD'nin yarısı, 3 cm."
+        },
+        {
+         "text": "Alan $= 10 \\cdot 3 = 30$. Cevap **B**.",
+         "narration": "Alan, taban çarpı yükseklik: 10 çarpı 3, 30 santimetrekare. Cevap B. E şıkkındaki 60, iki kenarı doğrudan çarpmaktır; o ancak dikdörtgende doğru olur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki iki kenarı ve açısı verilen paralelkenarın alanı kalıbı örnek alındı; ölçüler bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DORTGEN_03",
+    "title": "Dikdörtgen",
+    "narration": "Açılarının hepsi dik olan paralelkenar dikdörtgendir; köşegenleri de eşittir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Dikdörtgen",
+      "items": [
+       "Bütün açılar $90°$; köşegenler **eşit** ve birbirini ortalar.",
+       "Köşegen: $d^2 = a^2 + b^2$; çevre $2(a + b)$, alan $a \\cdot b$.",
+       "Çevre ve köşegen verilirse: $(a + b)^2 = a^2 + b^2 + 2ab$."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        8.9,
+        5.4
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "label": "A"
+        },
+        {
+         "id": "B",
+         "at": [
+          8,
+          0
+         ],
+         "label": "B"
+        },
+        {
+         "id": "C",
+         "at": [
+          8,
+          4.5
+         ],
+         "label": "C"
+        },
+        {
+         "id": "D",
+         "at": [
+          0,
+          4.5
+         ],
+         "label": "D"
+        },
+        {
+         "id": "O",
+         "at": [
+          4,
+          2.25
+         ],
+         "label": "O"
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "a"
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "b"
+        },
+        {
+         "from": "C",
+         "to": "D"
+        },
+        {
+         "from": "D",
+         "to": "A"
+        },
+        {
+         "from": "A",
+         "to": "O",
+         "ticks": 1
+        },
+        {
+         "from": "O",
+         "to": "C",
+         "ticks": 1
+        },
+        {
+         "from": "B",
+         "to": "O",
+         "ticks": 1
+        },
+        {
+         "from": "O",
+         "to": "D",
+         "ticks": 1
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "D",
+         "right": true
+        },
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "right": true
+        },
+        {
+         "at": "C",
+         "from": "D",
+         "to": "B",
+         "right": true
+        },
+        {
+         "at": "D",
+         "from": "A",
+         "to": "C",
+         "right": true
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Dört açı dik; köşegenler O'da kesişiyor.",
+        "focus": [
+         "angle-A",
+         "angle-B",
+         "angle-C",
+         "angle-D"
+        ]
+       },
+       {
+        "narration": "Dört yarım köşegenin hepsi eşit: köşegenler eşit ve birbirini ortalıyor.",
+        "focus": [
+         "AO",
+         "OC",
+         "BO",
+         "OD"
+        ]
+       }
+      ],
+      "narration": "Dikdörtgen, bütün açıları dik olan paralelkenardır; paralelkenarın her özelliği geçerlidir, üstüne köşegenleri de eşittir. Köşegen Pisagor'dan bulunur: d kare, a kare artı b kare. Çevre ve köşegen birlikte verildiğinde alanı a artı b'nin karesinden bulursun: a artı b'nin karesi, a kare artı b kare artı 2ab'dir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Çevresi 46 cm ve bir köşegeni 17 cm olan dikdörtgenin alanı kaç cm²'dir?",
+       "options": [
+        "96",
+        "108",
+        "120",
+        "132",
+        "144"
+       ],
+       "answer": 2,
+       "narration": "Kenarların toplamını ve kareleri toplamını biliyoruz; çarpımı bulacağız.",
+       "steps": [
+        {
+         "text": "$a + b = 23$, $a^2 + b^2 = 17^2 = 289$",
+         "narration": "Çevre 46 ise a artı b, 23. Köşegen 17: a kare artı b kare, 289."
+        },
+        {
+         "text": "$(a + b)^2 = 529 = 289 + 2ab \\Rightarrow 2ab = 240$",
+         "narration": "a artı b'nin karesi 529; bu, 289 artı 2ab'ye eşit. 2ab, 240."
+        },
+        {
+         "text": "$ab = 120$. Cevap **C**.",
+         "narration": "Alan ab, 120 santimetrekare. Kenarlar 8 ve 15'tir; 8, 15, 17 üçlüsü. Cevap C. E şıkkındaki 144 ise köşegenle çevreyi karıştıran bir hesaptan çıkar.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki çevresi ve köşegeni verilen dikdörtgenin alanı kalıbı örnek alındı; sayılar bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DORTGEN_04",
+    "title": "Eşkenar dörtgen",
+    "narration": "Dört kenarı eşit dörtgen eşkenar dörtgendir; köşegenleri birbirini dik ortalar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Eşkenar dörtgen",
+      "items": [
+       "Dört kenar eşit; köşegenler birbirini **dik** olarak ortalar ve açıları ikiye böler.",
+       "Köşegenler $e$ ve $f$ ise alan $\\frac{e \\cdot f}{2}$.",
+       "Kenar: $a^2 = \\left(\\frac{e}{2}\\right)^2 + \\left(\\frac{f}{2}\\right)^2$."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -4.4,
+        -4.9,
+        4.4,
+        4.9
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          -3,
+          0
+         ],
+         "label": "A"
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          -4
+         ],
+         "label": "B"
+        },
+        {
+         "id": "C",
+         "at": [
+          3,
+          0
+         ],
+         "label": "C"
+        },
+        {
+         "id": "D",
+         "at": [
+          0,
+          4
+         ],
+         "label": "D"
+        },
+        {
+         "id": "O",
+         "at": [
+          0,
+          0
+         ],
+         "label": "O"
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "ticks": 1
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "ticks": 1
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "ticks": 1
+        },
+        {
+         "from": "D",
+         "to": "A",
+         "ticks": 1
+        },
+        {
+         "from": "A",
+         "to": "O",
+         "label": "6",
+         "dashed": true
+        },
+        {
+         "from": "O",
+         "to": "C",
+         "dashed": true
+        },
+        {
+         "from": "B",
+         "to": "O",
+         "label": "8",
+         "dashed": true
+        },
+        {
+         "from": "O",
+         "to": "D",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "O",
+          "B"
+         ],
+         "id": "u",
+         "shade": 3
+        }
+       ],
+       "angles": [
+        {
+         "at": "O",
+         "from": "C",
+         "to": "D",
+         "right": true
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Dört kenar eşit. Köşegenler O'da dik kesişiyor.",
+        "focus": [
+         "angle-O"
+        ]
+       },
+       {
+        "narration": "Köşegenler birbirini ortalıyor: yarıları 6 ve 8. Şekil dört eş dik üçgenden oluşuyor.",
+        "focus": [
+         "u",
+         "AO",
+         "BO"
+        ]
+       },
+       {
+        "narration": "Her dik üçgende hipotenüs kenardır: 6, 8, 10 üçlüsünden 10.",
+        "focus": [
+         "AB"
+        ]
+       }
+      ],
+      "narration": "Eşkenar dörtgenin dört kenarı eşittir. Köşegenleri birbirini dik olarak ortalar; bu yüzden şekil dört eş dik üçgene ayrılır. Her dik üçgenin dik kenarları köşegenlerin yarısı, hipotenüsü de dörtgenin kenarıdır. Alan köşegenlerin çarpımının yarısıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Köşegenlerinin uzunlukları 12 cm ve 16 cm olan eşkenar dörtgenin çevresi kaç cm'dir?",
+       "options": [
+        "24",
+        "28",
+        "32",
+        "36",
+        "40"
+       ],
+       "answer": 4,
+       "narration": "Köşegenler birbirini dik ortalar; yarılardan bir dik üçgen kuralım.",
+       "steps": [
+        {
+         "text": "Yarılar $6$ ve $8$; kenar $\\sqrt{6^2 + 8^2} = 10$",
+         "narration": "Köşegenlerin yarıları 6 ve 8 cm. Kenar, bu dik üçgenin hipotenüsü: 10 cm."
+        },
+        {
+         "text": "Çevre $4 \\cdot 10 = 40$. Cevap **E**.",
+         "narration": "Dört kenar eşit: çevre 40 cm. Cevap E. Köşegenlerin tamamıyla Pisagor yapıp kenarı 20 bulmak, sonra çevreyi şıklarda bulamamak bu sorunun tuzağıdır; yarıları al.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki köşegenleri verilen eşkenar dörtgen kalıbı örnek alındı; köşegenler bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DORTGEN_05",
+    "title": "Kare",
+    "narration": "Kare hem dikdörtgen hem eşkenar dörtgendir; ikisinin bütün özellikleri onda vardır.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Kare",
+      "text": "Karenin kenarı $a$ ise köşegeni $a\\sqrt{2}$, çevresi $4a$, alanı $a^2 = \\frac{d^2}{2}$'dir. Köşegenleri eşit, dik ve birbirini ortalar.",
+      "narration": "Kare hem dikdörtgen hem eşkenar dörtgen olduğu için ikisinin bütün özelliklerini taşır: köşegenler eşit, birbirine dik ve birbirini ortalar. Kenar a ise köşegen a kök 2'dir; alan a kare ya da köşegenin karesinin yarısıdır. Benzer iki karede kenarlar oranı k ise alanlar oranı k karedir; bu bilgi tel sorularında işe yarar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "84 cm uzunluğundaki bir tel ikiye kesiliyor ve her parça bükülerek kare biçiminde birer çerçeve yapılıyor. Büyük karenin alanının 9 katı, küçük karenin alanının 16 katına eşit olduğuna göre küçük karenin bir kenarı kaç cm'dir?",
+       "options": [
+        "8",
+        "9",
+        "10",
+        "12",
+        "15"
+       ],
+       "answer": 1,
+       "narration": "Alanlar oranından kenarlar oranına geçeceğiz: alan oranı, kenar oranının karesi.",
+       "steps": [
+        {
+         "text": "$9 \\cdot A_b = 16 \\cdot A_k \\Rightarrow \\frac{A_b}{A_k} = \\frac{16}{9}$",
+         "narration": "Büyük alanın 9 katı, küçük alanın 16 katı. Büyük alan bölü küçük alan, 16 bölü 9."
+        },
+        {
+         "text": "Kenarlar oranı $\\frac{4}{3}$: kenarlar $4k$ ve $3k$",
+         "narration": "Alanlar oranı kenarlar oranının karesi: kenarlar oranı 4 bölü 3. Kenarlar 4k ve 3k."
+        },
+        {
+         "text": "Çevreler $16k + 12k = 84 \\Rightarrow k = 3$",
+         "narration": "Telin tamamı iki çevrenin toplamı: 16k artı 12k, 28k, 84. k, 3."
+        },
+        {
+         "text": "Küçük kenar $3k = 9$. Cevap **B**.",
+         "narration": "Küçük karenin kenarı 3 çarpı 3, 9 cm. Sağlama: büyük kenar 12; 9 çarpı 144, 16 çarpı 81; ikisi de 1296. Cevap B. D şıkkındaki 12 büyük karenin kenarıdır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM KPSS 2020 ön lisanstaki telden iki kare çerçeve kalıbı örnek alındı; uzunluk ve oran bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DORTGEN_06",
+    "title": "Yamuk",
+    "narration": "En az iki kenarı paralel olan dörtgen yamuktur. Alan formülünün nedeni bir kopyayla görülür.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Yamuğun kopyası",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        11.9,
+        3.9
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "label": "A"
+        },
+        {
+         "id": "B",
+         "at": [
+          7,
+          0
+         ],
+         "label": "B"
+        },
+        {
+         "id": "C",
+         "at": [
+          4,
+          3
+         ],
+         "label": "C"
+        },
+        {
+         "id": "D",
+         "at": [
+          1,
+          3
+         ],
+         "label": "D"
+        },
+        {
+         "id": "E",
+         "at": [
+          11.0,
+          3.0
+         ],
+         "label": ""
+        },
+        {
+         "id": "F",
+         "at": [
+          10.0,
+          0.0
+         ],
+         "label": ""
+        },
+        {
+         "id": "H",
+         "at": [
+          1,
+          0
+         ],
+         "label": ""
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "a"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "label": "c"
+        },
+        {
+         "from": "D",
+         "to": "A"
+        },
+        {
+         "from": "D",
+         "to": "H",
+         "label": "h",
+         "dashed": true
+        },
+        {
+         "from": "C",
+         "to": "E",
+         "label": "a",
+         "dashed": true
+        },
+        {
+         "from": "E",
+         "to": "F",
+         "dashed": true
+        },
+        {
+         "from": "F",
+         "to": "B",
+         "label": "c",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "id": "yamuk",
+         "shade": 2
+        },
+        {
+         "points": [
+          "E",
+          "C",
+          "B",
+          "F"
+         ],
+         "id": "kopya",
+         "copyOf": "yamuk",
+         "shade": 3
+        }
+       ]
+      },
+      "narration": "Tabanları a ve c, yüksekliği h olan bir yamuk.",
+      "beats": [
+       {
+        "narration": "Paralel kenarlar a ve c; aralarındaki uzaklık h.",
+        "focus": [
+         "AB",
+         "CD",
+         "DH"
+        ]
+       },
+       {
+        "narration": "Yamuğun bir kopyasını 180 derece döndürüp BC kenarına yapıştıralım.",
+        "show": [
+         "kopya",
+         "CE",
+         "EF",
+         "FB",
+         "E",
+         "F"
+        ],
+        "focus": [
+         "kopya"
+        ]
+       },
+       {
+        "narration": "İkisi birlikte bir paralelkenar kurdu: tabanı a artı c, yüksekliği h. Yamuk bunun yarısı.",
+        "focus": [
+         "yamuk",
+         "kopya"
+        ],
+        "note": "Yamuğun alanı = (a + c) · h / 2"
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Yamuk",
+      "items": [
+       "Alan $= \\frac{(a + c) \\cdot h}{2}$; orta taban $\\frac{a + c}{2}$.",
+       "İkizkenar yamukta bacaklar eşit; tabandan kesilen parçalar $\\frac{a - c}{2}$."
+      ],
+      "narration": "Yamuğun alanı, paralel kenarların toplamı çarpı yükseklik, bölü 2'dir; az önce bunun nedenini gördün. Bacakların orta noktalarını birleştiren orta taban, tabanların ortalamasıdır. İkizkenar yamukta üst köşelerden inen yükseklikler alt tabandan iki eşit parça keser: her biri a eksi c bölü 2."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki ikizkenar yamukta tabanlar 14 cm ve 6 cm, bacaklar 5 cm'dir. Buna göre yamuğun alanı kaç cm²'dir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         14.9,
+         3.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "label": "A"
+         },
+         {
+          "id": "B",
+          "at": [
+           14,
+           0
+          ],
+          "label": "B"
+         },
+         {
+          "id": "C",
+          "at": [
+           10,
+           3
+          ],
+          "label": "C"
+         },
+         {
+          "id": "D",
+          "at": [
+           4,
+           3
+          ],
+          "label": "D"
+         },
+         {
+          "id": "H",
+          "at": [
+           4,
+           0
+          ],
+          "label": "H"
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "H"
+         },
+         {
+          "from": "H",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "5"
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "label": "6"
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "label": "5"
+         },
+         {
+          "from": "D",
+          "to": "H",
+          "label": "h",
+          "dashed": true
+         }
+        ],
+        "angles": [
+         {
+          "at": "H",
+          "from": "B",
+          "to": "D",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "20",
+        "24",
+        "25",
+        "30",
+        "40"
+       ],
+       "answer": 3,
+       "narration": "Yüksekliği, bacak ve tabandan kesilen parçayla kurulan dik üçgenden bulacağız.",
+       "steps": [
+        {
+         "text": "Kesilen parça $\\frac{14 - 6}{2} = 4$",
+         "narration": "Üst köşelerden inen yükseklikler alt tabandan iki eşit parça keser: 14 eksi 6, 8; her biri 4 cm."
+        },
+        {
+         "text": "$h = \\sqrt{5^2 - 4^2} = 3$",
+         "narration": "Bacak 5, parça 4: yükseklik 3, Pisagor'un 3, 4, 5 üçlüsü."
+        },
+        {
+         "text": "Alan $\\frac{(14 + 6) \\cdot 3}{2} = 30$. Cevap **D**.",
+         "narration": "Alan, tabanlar toplamı 20 çarpı 3 bölü 2, 30 santimetrekare. Cevap D. E şıkkındaki 40, yüksekliği 4 sanmaktır; 4 kesilen parçadır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM KPSS ön lisanstaki yamuk kalıbı ve havuzdaki ikizkenar yamuk alanı örnek alındı; ölçüler bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DORTGEN_07",
+    "title": "Deltoid",
+    "narration": "Komşu kenarları ikişer ikişer eşit olan dörtgen deltoittir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Deltoid",
+      "items": [
+       "$|AB| = |AD|$ ve $|CB| = |CD|$; köşegenler **diktir**.",
+       "$AC$ köşegeni, $BD$'yi ortalar; alan $\\frac{e \\cdot f}{2}$."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -4.9,
+        -8.9,
+        4.9,
+        3.9
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          3
+         ],
+         "label": "A"
+        },
+        {
+         "id": "B",
+         "at": [
+          -4,
+          0
+         ],
+         "label": "B"
+        },
+        {
+         "id": "C",
+         "at": [
+          0,
+          -8
+         ],
+         "label": "C"
+        },
+        {
+         "id": "D",
+         "at": [
+          4,
+          0
+         ],
+         "label": "D"
+        },
+        {
+         "id": "O",
+         "at": [
+          0,
+          0
+         ],
+         "label": "O"
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "5",
+         "ticks": 1
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "label": "5",
+         "ticks": 1
+        },
+        {
+         "from": "C",
+         "to": "B",
+         "ticks": 2
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "ticks": 2
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": true
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "label": "8",
+         "dashed": true
+        }
+       ],
+       "angles": [
+        {
+         "at": "O",
+         "from": "D",
+         "to": "A",
+         "right": true
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "AB ile AD eşit, CB ile CD eşit.",
+        "focus": [
+         "AB",
+         "AD",
+         "CB",
+         "CD"
+        ]
+       },
+       {
+        "narration": "Köşegenler O'da dik kesişiyor; AC, BD'yi ortalıyor.",
+        "focus": [
+         "AC",
+         "BD"
+        ]
+       }
+      ],
+      "narration": "Deltoitte komşu kenarlar ikişer ikişer eşittir. Köşegenler birbirine diktir; eşit kenarların buluştuğu köşelerden geçen köşegen öbürünü ortalar. Alan, eşkenar dörtgende olduğu gibi köşegenlerin çarpımının yarısıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki $ABCD$ deltoidinde $|AB| = |AD| = 5$ cm, $|CB| = |CD| = 4\\sqrt{5}$ cm ve $|BD| = 8$ cm'dir. Buna göre deltoidin alanı kaç cm²'dir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -4.9,
+         -8.9,
+         4.9,
+         3.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           3
+          ],
+          "label": "A"
+         },
+         {
+          "id": "B",
+          "at": [
+           -4,
+           0
+          ],
+          "label": "B"
+         },
+         {
+          "id": "C",
+          "at": [
+           0,
+           -8
+          ],
+          "label": "C"
+         },
+         {
+          "id": "D",
+          "at": [
+           4,
+           0
+          ],
+          "label": "D"
+         },
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ],
+          "label": "O"
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "5",
+          "ticks": 1
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "label": "5",
+          "ticks": 1
+         },
+         {
+          "from": "C",
+          "to": "B",
+          "ticks": 2
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "ticks": 2
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": true
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "label": "8",
+          "dashed": true
+         }
+        ],
+        "angles": [
+         {
+          "at": "O",
+          "from": "D",
+          "to": "A",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "36",
+        "40",
+        "44",
+        "48",
+        "88"
+       ],
+       "answer": 2,
+       "narration": "Köşegen AC'yi iki dik üçgenden parça parça bulacağız.",
+       "steps": [
+        {
+         "text": "$|BO| = 4$; $|AO| = \\sqrt{5^2 - 4^2} = 3$",
+         "narration": "AC, BD'yi ortalar: BO 4 cm. ABO dik üçgeninde AO, 5 ile 4'ten 3 cm."
+        },
+        {
+         "text": "$|CO| = \\sqrt{(4\\sqrt{5})^2 - 4^2} = \\sqrt{64} = 8$",
+         "narration": "CBO dik üçgeninde CO: 4 kök 5'in karesi 80, eksi 16, 64; karekökü 8."
+        },
+        {
+         "text": "$|AC| = 11$; alan $\\frac{11 \\cdot 8}{2} = 44$. Cevap **C**.",
+         "narration": "AC, 3 artı 8, 11 cm. Alan 11 çarpı 8 bölü 2, 44 santimetrekare. Cevap C. E şıkkındaki 88, ikiye bölmeyi unutmaktır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki deltoitte köşegen ve alan kalıbı örnek alındı; kenarlar bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DORTGEN_08",
+    "title": "Dörtgenlerde alan",
+    "narration": "Her dörtgenin kenar orta noktaları bir paralelkenar kurar ve bu paralelkenar dörtgenin tam yarısıdır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Orta noktalar dörtgeni",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        7.9,
+        5.9
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "label": "A"
+        },
+        {
+         "id": "B",
+         "at": [
+          7,
+          0.6
+         ],
+         "label": "B"
+        },
+        {
+         "id": "C",
+         "at": [
+          6,
+          5
+         ],
+         "label": "C"
+        },
+        {
+         "id": "D",
+         "at": [
+          1.2,
+          4.2
+         ],
+         "label": "D"
+        },
+        {
+         "id": "K",
+         "at": [
+          3.5,
+          0.3
+         ],
+         "label": "K"
+        },
+        {
+         "id": "L",
+         "at": [
+          6.5,
+          2.8
+         ],
+         "label": "L"
+        },
+        {
+         "id": "M",
+         "at": [
+          3.6,
+          4.6
+         ],
+         "label": "M"
+        },
+        {
+         "id": "N",
+         "at": [
+          0.6,
+          2.1
+         ],
+         "label": "N"
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "K",
+         "ticks": 1
+        },
+        {
+         "from": "K",
+         "to": "B",
+         "ticks": 1
+        },
+        {
+         "from": "B",
+         "to": "L",
+         "ticks": 2
+        },
+        {
+         "from": "L",
+         "to": "C",
+         "ticks": 2
+        },
+        {
+         "from": "C",
+         "to": "M",
+         "ticks": 3
+        },
+        {
+         "from": "M",
+         "to": "D",
+         "ticks": 3
+        },
+        {
+         "from": "D",
+         "to": "N",
+         "ticks": 1
+        },
+        {
+         "from": "N",
+         "to": "A",
+         "ticks": 1
+        },
+        {
+         "from": "K",
+         "to": "L"
+        },
+        {
+         "from": "L",
+         "to": "M"
+        },
+        {
+         "from": "M",
+         "to": "N"
+        },
+        {
+         "from": "N",
+         "to": "K"
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "K",
+          "L",
+          "M",
+          "N"
+         ],
+         "id": "ic",
+         "shade": 3
+        }
+       ]
+      },
+      "narration": "Herhangi bir dörtgenin kenar orta noktalarını birleştirelim.",
+      "beats": [
+       {
+        "narration": "K, L, M ve N kenarların orta noktaları; KLMN içte bir dörtgen.",
+        "focus": [
+         "ic"
+        ]
+       },
+       {
+        "narration": "AC köşegenini çizelim. ABC üçgeninde KL orta taban: AC'ye paralel ve yarısı. ACD'de NM de öyle. KLMN bir paralelkenar.",
+        "focus": [
+         "AC",
+         "KL",
+         "NM"
+        ]
+       },
+       {
+        "narration": "Köşelerde kalan dört üçgen, köşedeki yarı boyutlu benzerlerdir; toplamları dörtgenin yarısı eder. Geriye kalan KLMN de yarısı.",
+        "focus": [
+         "ic"
+        ],
+        "note": "A(KLMN) = A(ABCD) / 2"
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Dörtgenlerde alan",
+      "items": [
+       "Kenar orta noktaları birleştirilince **paralelkenar** oluşur; alanı dörtgenin **yarısıdır**.",
+       "Köşegenleri dik dörtgende alan $\\frac{e \\cdot f}{2}$."
+      ],
+      "narration": "Herhangi bir dörtgende kenarların orta noktalarını birleştirirsen bir paralelkenar elde edersin; alanı dörtgenin alanının yarısıdır. Köşegenleri birbirine dik olan her dörtgende, eşkenar dörtgen ve deltoit dahil, alan köşegenlerin çarpımının yarısıdır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Her dörtgende değil",
+      "wrong": "Her dörtgenin alanı köşegenlerinin çarpımının yarısıdır.",
+      "right": "$\\frac{e \\cdot f}{2}$ yalnız köşegenleri **dik** olan dörtgenlerde geçerlidir.",
+      "why": "Köşegenler dik değilse alan, aradaki açının sinüsüyle küçülür.",
+      "narration": "Sık yapılan bir hata: e çarpı f bölü 2 formülünü her dörtgene uygulamak. Bu formül yalnız köşegenleri birbirine dik olan dörtgenlerde doğrudur: eşkenar dörtgen, kare ve deltoit gibi. Dikdörtgende ya da genel bir paralelkenarda köşegenler dik değildir; orada alanı taban ve yükseklikle bul."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Alanı 40 cm² olan bir dörtgenin kenarlarının orta noktaları birleştirilerek bir dörtgen elde ediliyor. Buna göre elde edilen dörtgenin alanı kaç cm²'dir?",
+       "options": [
+        "20",
+        "24",
+        "30",
+        "32",
+        "80"
+       ],
+       "answer": 0,
+       "narration": "Orta noktalar dörtgeni, dörtgenin yarısıdır.",
+       "steps": [
+        {
+         "text": "$A(KLMN) = \\frac{40}{2}$",
+         "narration": "Kenar orta noktalarını birleştiren dörtgen, alanın yarısını alır."
+        },
+        {
+         "text": "$= 20$. Cevap **A**.",
+         "narration": "40'ın yarısı, 20 santimetrekare. Cevap A. Köşelerde kalan dört üçgenin her biri farklı olabilir ama toplamları hep yarıdır.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki kenar orta noktaları dörtgeninin alanı kalıbı örnek alındı; alan bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Dörtgenin iç açıları toplamı 360°.",
+    "Paralelkenarın alanı taban · yükseklik.",
+    "Dikdörtgende köşegenler eşit; d² = a² + b².",
+    "Köşegenleri dik dörtgende alan e · f / 2.",
+    "Yamuk: (a + c) · h / 2.",
+    "Orta noktalar dörtgeni alanın yarısı."
+   ],
+   "warnings": [
+    "e · f / 2 yalnız köşegenler **dikse**.",
+    "Eşkenar dörtgende köşegenin **yarısını** al.",
+    "Alan oranından kenara: **karekök** al."
+   ],
+   "narration": "Hadi toparlayalım. Dörtgenin iç açıları toplamı 360 derecedir. Paralelkenarda karşılıklı kenarlar ve açılar eşit, köşegenler birbirini ortalar; alan taban çarpı yüksekliktir. Dikdörtgende köşegenler de eşittir. Köşegenleri dik dörtgenlerde, yani eşkenar dörtgen, kare ve deltoitte, alan köşegenlerin çarpımının yarısıdır. Yamuğun alanı tabanlar toplamı çarpı yükseklik bölü 2'dir. Kenar orta noktalarını birleştiren dörtgen, alanın yarısıdır. Bir sonraki derste çembere geçiyoruz."
+  }
+ },
+ "short": {
+  "hook": "İki yamuk, bir paralelkenar",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Yamuk: $\\frac{(a + c) \\cdot h}{2}$"
+   },
+   {
+    "kind": "term",
+    "term": "Eşkenar dörtgen",
+    "definition": "Köşegenler **dik**; alan $\\frac{e \\cdot f}{2}$"
+   },
+   {
+    "kind": "warning",
+    "text": "e · f / 2 yalnız **dik** köşegende."
+   }
+  ],
+  "summary": [
+   "Açılar 360°",
+   "Paralelkenar: a · h",
+   "Yamuk: (a + c)h / 2"
+  ],
+  "rounds": [
+   {
+    "sentence": "Köşegenler 6 ve 8",
+    "question": "Eşkenar dörtgenin kenarı?",
+    "choices": [
+     "5",
+     "10"
+    ],
+    "answer": 0,
+    "why": "Yarılar **3 ve 4**."
+   },
+   {
+    "sentence": "Tabanlar 4 ve 10",
+    "question": "Orta taban?",
+    "choices": [
+     "7",
+     "14"
+    ],
+    "answer": 0,
+    "why": "Tabanların **ortalaması**."
+   },
+   {
+    "sentence": "Dörtgenin alanı 40",
+    "question": "Orta noktalar dörtgeni?",
+    "choices": [
+     "20",
+     "10"
+    ],
+    "answer": 0,
+    "why": "Her zaman **yarısı**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "kpss-geometri-kampi",
+  "name": "KPSS Geometri kampı",
+  "number": 9,
+  "total": 14,
+  "previous": "Çokgenler",
+  "next": "Çember ve Daire",
+  "promise": "Lisans, önlisans ve ortaöğretim KPSS Geometrisinin bütün konuları, çözümlü sorularla.",
+  "task": {
+   "items": [
+    "Bu dersteki **9 soruyu** kâğıtta şekilleri çizerek yeniden çöz.",
+    "Kâğıttan iki eş yamuk kes; birini çevirip **paralelkenar** kur.",
+    "Uygulamada KPSS Dörtgenler testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bu dersteki 9 soruyu kâğıtta şekilleri çizerek yeniden çöz. Sonra kâğıttan iki eş yamuk kes, birini çevirip yan yana koy ve paralelkenarı kendin kur. Ardından uygulamada yirmi soru çöz. Bir sonraki derste çembere geçiyoruz."
+  }
+ }
+}

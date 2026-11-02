@@ -4,6 +4,7 @@ import {BRAND_TYPOGRAPHY} from '../../../Configurations/BrandTypography';
 import {withAlpha} from '../../../Themes/Theme';
 import {useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
+import {DYNAMICS_STAGES} from './PhysicsSchema';
 import {useStageClock} from '../VisualTimeline';
 import {H, W} from '../VisualWorld';
 
@@ -56,8 +57,6 @@ export const simulateDynamics = (visual: Pick<Dynamics, 'mass' | 'incline' | 'fr
 	}
 	return {samples, normal, weight, driving, staticLimit, kineticFriction};
 };
-
-const DYNAMICS_STAGES = ['Kuvvetler', 'Net kuvvet ve ivme', 'Hareket'] as const;
 
 /**
  * Force → acceleration → motion in one scene. First the forces on the body

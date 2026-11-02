@@ -130,6 +130,11 @@ const ABBREVIATIONS: SpokenRule[] = [
 	// The site is read as Turkish speakers say it; its suffix keeps the apostrophe, as approved in the ads
 	// ("sinavika.com’da" → "Sınavika nokta kom’da"). Until 31 Oct each ad wrote this in its own script.
 	[/\b(?:www\.)?sinavika\.com\b/giu, 'Sınavika nokta kom'],
+	// Groups of states named by a letter and a number are said that way: "D-8" is "De Sekiz", "G20" "Ge Yirmi"
+	// (KPSS Vatandaşlık 9, Güncel Bilgiler); the suffix joins the number: "G20'nin" → "Ge Yirminin".
+	[/\bD-8(?:['’](?=\p{L})|(?![\p{L}\p{N}]))/gu, 'De Sekiz'],
+	[/\bG-?20(?:['’](?=\p{L})|(?![\p{L}\p{N}]))/gu, 'Ge Yirmi'],
+	[/\bG-?7(?:['’](?=\p{L})|(?![\p{L}\p{N}]))/gu, 'Ge Yedi'],
 	// History dates: "MÖ 680" is "milattan önce 680".
 	[/(?<![\p{L}])MÖ(?![\p{L}])/gu, 'milattan önce'],
 	[/(?<![\p{L}])MS(?=\s*\d)/gu, 'milattan sonra'],
@@ -176,6 +181,76 @@ export const romanValue = (roman: string): number => {
  */
 const ROMAN_ORDINAL = new RegExp(String.raw`(?<![\p{L}\p{N}])(${ROMAN_NUMERAL})\.(?=\s)`, 'gu');
 export const spokenRomanOrdinals = (text: string): string => text.replace(ROMAN_ORDINAL, (match, roman: string) => (roman ? turkishOrdinal(romanValue(roman)) : match));
+
+/**
+ * Premise numbers are said as numbers, the way a teacher reads a test: "I ve III'tür" → "bir ve üçtür", "yalnız II" →
+ * "yalnız iki", "IV de yanlıştır" → "dört de yanlıştır", "IV'üncü" → "dördüncü". Before 2 Nov 2026 they reached the
+ * voice as letters, and the last one in "Doğru cevap I ve II. Cevap C." was read as "ikinci".
+ * Left alone: a list whose first number has a dot ("I. ve II. Dünya Savaşı"), a numeral inside a name ("VIII"), a
+ * lone V (a shape, a volume, volts: "V biçimli", "q V'dir", "12 V'luk"), a lone I with a back-vowel suffix (a point or
+ * a current: "I'da kesişir", "I'nın büyüdüğü"; the number takes "birde", "birdir"), and letters among points or arrows
+ * ("E I, I F", "A→I, I→I").
+ */
+const PREMISE = String.raw`(?:IV|V|I{1,3})`;
+const PREMISE_WORDS: Record<string, string> = {I: 'bir', II: 'iki', III: 'üç', IV: 'dört', V: 'beş'};
+/** Not inside a word, not after an arrow or a lone capital (a point's name: "E I"). */
+const PREMISE_START = String.raw`(?<![\p{L}\p{N}'’→=_/\-$\\{}^])(?<!(?:^|[^\p{L}])\p{Lu}\s)`;
+const PREMISE_SUFFIX = String.raw`(?:['’]\p{Ll}+)?`;
+const PREMISE_END = String.raw`(?![\p{L}\p{N}→=_$}^])(?!\s\p{Lu}(?![\p{L}]))`;
+const PREMISE_JOIN = String.raw`(?:\s*,\s*|\s+(?:ve|ile|veya|ya da|[-–])\s+)`;
+const PREMISE_PATTERNS: readonly RegExp[] = [
+	// A list: "I ve II", "I, II ve III'tür", "II ile IV", "II - IV - I - III".
+	new RegExp(String.raw`${PREMISE_START}${PREMISE}${PREMISE_SUFFIX}(?![.\p{L}\p{N}→=])(?:${PREMISE_JOIN}${PREMISE}${PREMISE_SUFFIX}${PREMISE_END})+`, 'gu'),
+	// One number with a suffix: "I'dir", "III'ü", "IV'üncü", "II.'de" (the second quadrant); a lone V only as an ordinal ("V'inci").
+	new RegExp(String.raw`${PREMISE_START}(?:(?:IV|I{1,3})\.?['’]\p{Ll}+|V['’]inci)(?![\p{L}\p{N}])`, 'gu'),
+	// One number after "yalnız" or "öncül": "yalnız I", "Yalnız V".
+	new RegExp(String.raw`(?<=(?:[Yy]alnız|[Öö]ncül)\s)${PREMISE}(?![\p{L}\p{N}])`, 'gu'),
+	// One number before "numaralı", or II, III, IV before "de"/"da" ("IV de"; a lone I or V there is a current or a volume).
+	new RegExp(String.raw`${PREMISE_START}${PREMISE}(?=\snumaralı(?![\p{L}\p{N}]))`, 'gu'),
+	new RegExp(String.raw`${PREMISE_START}(?:IV|I{2,3})(?=\s(?:de|da)(?![\p{L}\p{N}]))`, 'gu'),
+	// A cell division stage: "mayoz I", "profaz I", "metafaz II" are said "mayoz bir", "metafaz iki".
+	new RegExp(String.raw`(?<=(?:[Mm]ayoz|[Pp]rofaz|[Mm]etafaz|[Aa]nafaz|[Tt]elofaz)\s)I{1,2}${PREMISE_SUFFIX}(?![\p{L}\p{N}])`, 'gu'),
+	// A number judged: "I doğru", "IV yanlış", "I değil", "III elenir" (not "I doğru orantılı", a current).
+	new RegExp(String.raw`${PREMISE_START}(?:IV|I{1,3})(?=\s(?:doğru(?:dur)?(?!\sorantı)|yanlış(?:tır)?|değil(?:dir)?|elenir)(?![\p{L}]))`, 'gu'),
+	// II, III and IV alone are numbers wherever they stand ("(III)", "II, ince liflerde"); with a dot they are ordinals.
+	new RegExp(String.raw`${PREMISE_START}(?:IV|I{2,3})(?![.\p{L}\p{N}'’→=_/-])`, 'gu'),
+	// II, III or IV alone in brackets: "(III)", "demir(III) oksit".
+	new RegExp(String.raw`(?<=\()(?:IV|I{2,3})(?=\))`, 'gu'),
+	// A number that ends the text, or follows a comparison, keeps its full stop: "üç > bir = II.", "Cevap II."
+	new RegExp(String.raw`(?:(?<=[=<>]\s)${PREMISE}|${PREMISE_START}(?:IV|I{2,3}))(?=\.\s*$)`, 'gu'),
+	new RegExp(String.raw`(?<=[=<>]\s)${PREMISE}(?=\.\s)`, 'gu'),
+];
+/** One number in a match, with its suffix; a dot is dropped only before a suffix ("II.'de"), never a sentence's full stop. */
+const PREMISE_TOKEN = /(IV|V|I{1,3})(?:\.(?=['’]))?(?:['’](\p{Ll}+))?/gu;
+/** The numbers bir, iki, üç, dört, beş take front-vowel suffixes; a back vowel means the letter was meant. */
+const FRONT_SUFFIX = /^[^aıouâû]*[eiöüî]/u;
+const premiseWord = (roman: string, suffix?: string): string | undefined => {
+	if (!suffix) return PREMISE_WORDS[roman];
+	if (!FRONT_SUFFIX.test(suffix)) return undefined;
+	// "dört" softens before a vowel: dördüncü, dördü.
+	const word = roman === 'IV' && /^[eiöüıuaoâîû]/u.test(suffix) ? 'dörd' : PREMISE_WORDS[roman];
+	return `${word}${suffix}`;
+};
+/** II, III or IV standing alone in a sentence: the sentence talks about premises. */
+const NAMES_PREMISES = new RegExp(String.raw`${PREMISE_START}(?:IV|I{2,3})(?![.\p{L}\p{N}→=_$}^])`, 'u');
+/** I or V alone, not before a dot, an arrow or a lone capital (a point): "I Sibirya", "I:", "V **çalıştık**". */
+const LONE_I_OR_V = new RegExp(String.raw`${PREMISE_START}[IV](?![.\p{L}\p{N}'’→=_$}^])(?!\s\p{Lu}(?![\p{L}]))`, 'gu');
+/** In a sentence that names II, III or IV, a lone I or V is a premise too ("I Sibirya, III Amazon, V Avustralya"). */
+const lonePremises = (text: string): string =>
+	text
+		// In a text that names II, III or IV, "(I)" and "(V)" are premises too; alone they may be a point or a unit ("(I)", "V (V)").
+		.replace(/(?<=\()[IV](?=\))/gu, (roman) => (NAMES_PREMISES.test(text) ? PREMISE_WORDS[roman] : roman))
+		.replace(/[^.!?]+[.!?]*/gu, (sentence) => (NAMES_PREMISES.test(sentence) ? sentence.replace(LONE_I_OR_V, (roman) => PREMISE_WORDS[roman]) : sentence));
+export const spokenPremiseNumbers = (text: string): string =>
+	PREMISE_PATTERNS.reduce(
+		(said, pattern) =>
+			said.replace(pattern, (match) => {
+				const tokens = [...match.matchAll(PREMISE_TOKEN)];
+				if (tokens.some((token) => premiseWord(token[1], token[2]) === undefined)) return match;
+				return match.replace(PREMISE_TOKEN, (_, roman: string, suffix?: string) => premiseWord(roman, suffix) ?? roman);
+			}),
+		lonePremises(text),
+	);
 
 /** A formula alone, as it is read: no pause at its end. */
 export const verbalizeLatex = (latex: string): string => readMath(latex).replace(/,$/, '');
@@ -321,7 +396,7 @@ const narrationWithFormulasRead = (text: string): string =>
 
 /** The text the speech service reads: on-screen text keeps "YKS" and "1912", the voice says "yekase" and "bin dokuz yüz on iki". */
 export const pronounceAbbreviations = (text: string): string =>
-	spokenNumbers(spokenRomanOrdinals(replaceAll(replaceAll(narrationWithFormulasRead(text), DEGREES), ABBREVIATIONS)));
+	spokenNumbers(spokenRomanOrdinals(replaceAll(replaceAll(narrationWithFormulasRead(spokenPremiseNumbers(text)), DEGREES), ABBREVIATIONS)));
 
 /** Joins sentences, adding a full stop where one is missing. */
 export const sentences = (...parts: (string | undefined | false)[]): string =>

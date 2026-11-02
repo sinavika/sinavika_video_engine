@@ -100,6 +100,16 @@ export const PROCESS_CATALOG = {
 		],
 		labels: ['tafoni', 'los'],
 	},
+	fairychimney: {
+		stages: [
+			{id: 'puskurme', title: 'Püskürme', note: 'Erciyes ve Hasandağı püskürür; kül ve tüf katman katman birikir.'},
+			{id: 'sapka', title: 'Sert şapka', note: 'Lav yumuşak tüfün üstünü örter, soğuyup sert bazalt tabakası olur.'},
+			{id: 'asinma', title: 'Aşınma', note: 'Yağmur ve sel suları çatlaklardan girer, yumuşak tüfü oyarak vadiler açar.'},
+			{id: 'baca', title: 'Peri bacası', note: 'Sert şapkanın koruduğu tüf sütun olarak kalır; şapkası düşen baca hızla aşınır.'},
+			{id: 'oyma', title: 'Kaya oyma', note: 'Kolay oyulan tüfe ev, kilise ve güvercinlik oyuldu: Göreme, Ürgüp, Avanos.'},
+		],
+		labels: ['volkan', 'tuf', 'bazalt', 'sapkasiz'],
+	},
 	weathering: {
 		stages: [
 			{id: 'don', title: 'Don olayı', note: 'Çatlağa dolan su donunca genişler ve kayayı yarar.'},

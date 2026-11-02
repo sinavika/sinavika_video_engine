@@ -1,6 +1,6 @@
 # YouTube metni: AYT Geometri kampı · Ders 10 · Üçgende Merkezler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Geometri/10_Ucgende_Merkezler/Ucgende_Merkezler_YouTube.mp4` (4K) · Kapak: `Ucgende_Merkezler_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Geometri/10_Ucgende_Merkezler/Ucgende_Merkezler_YouTube.mp4` (4K) · Kapak: `Ucgende_Merkezler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

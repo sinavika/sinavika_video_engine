@@ -51,6 +51,23 @@ describe('saveNumberedOutput', () => {
 		expect(third.files[0]).toBe(path.join(root, 'Videos', '03_Fizik_Hareket_Konusu.mp4'));
 	});
 
+	it('saves a production at its own place, its parts beside it, numbered in the manifest and never overwritten', async () => {
+		const root = newRoot();
+		const place = path.join(root, 'Videos', 'YKS', 'TYT', 'Turkce', '07_Tamlamalar', 'Tamlamalar_YouTube');
+		const placed = () => saveNumberedOutput({kind: 'Videos', title: 'TYT Türkçe 07', extension: 'mp4', parts: ['', {suffix: 'Kapak', extension: 'png'}], rootDirectory: root, place, produce: write('ders')});
+		const saved = await placed();
+		expect(saved.files).toEqual([`${place}.mp4`, `${place}_Kapak.png`]);
+		expect(readFileSync(`${place}.mp4`, 'utf8')).toBe('ders0');
+		// Nothing numbered in the kind's own folder; the manifest still records the production with its number.
+		expect(outputsIn(root)).toEqual([]);
+		const manifest = readFileSync(path.join(root, 'Videos', 'Manifest.jsonl'), 'utf8').trim().split(/\r?\n/).map((line) => JSON.parse(line));
+		expect(manifest).toHaveLength(1);
+		expect(manifest[0]).toMatchObject({number: 1, files: [`${place}.mp4`, `${place}_Kapak.png`]});
+		// A second render of the same lesson does not replace the first: the old files must be moved away first.
+		await expect(placed()).rejects.toThrow();
+		expect(readFileSync(`${place}.mp4`, 'utf8')).toBe('ders0');
+	});
+
 	it('numbers videos and images independently', async () => {
 		const root = newRoot();
 		await save(root, 'Video Bir');

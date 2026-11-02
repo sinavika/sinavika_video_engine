@@ -1,6 +1,6 @@
 # YouTube metni: TYT Matematik kampı · Ders 6 · Basit Eşitsizlikler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Matematik/06_Basit_Esitsizlikler/Basit_Esitsizlikler_YouTube.mp4` (4K) · Kapak: `Basit_Esitsizlikler_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Matematik/06_Basit_Esitsizlikler/Basit_Esitsizlikler_YouTube.mp4` (4K) · Kapak: `Basit_Esitsizlikler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

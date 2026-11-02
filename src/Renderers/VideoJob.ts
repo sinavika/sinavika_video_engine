@@ -10,7 +10,7 @@ import {
 } from '../Configurations/VideoFormats';
 import {PACE_RANGE, VOICE_KEYS, VOICE_MODEL_KEYS, VOICE_PROFILE_KEYS} from '../Configurations/Voices';
 import {OUTRO_SCENE_ID} from '../Scenes/AppEndScene';
-import type {VoiceClips} from '../Scenes/Voiceover';
+import {estimateNarrationSeconds, type VoiceClips} from '../Scenes/Voiceover';
 import {createVideoPropsSchema, type VideoProps} from '../Schemas/VideoProps';
 import {DEFAULT_SOUNDTRACK_STYLE, SOUNDTRACK_STYLE_KEYS, type SoundtrackStyleKey} from '../Services/SoundtrackComposer';
 import type {VoiceCast, VoiceoverRequest} from '../Services/VoiceCasting';
@@ -34,6 +34,16 @@ const VideoJobSchema = z.object({
 	/** Names the output file when it is saved to Outputs/Videos. Defaults to a name derived from the content. */
 	name: z.string().trim().min(1).max(80).optional(),
 	/**
+	 * Where the finished video goes, from the project root, when it has a place of its own: a camp lesson's
+	 * `Outputs/Videos/YKS/TYT/Turkce/07_Tamlamalar/Tamlamalar_YouTube.mp4`, its cover and chapters beside it. Without
+	 * it a video is saved under the next number in Outputs/Videos (the TYT Türkçe 05–15 renders were moved into their
+	 * folders by hand, 1 Nov 2026).
+	 */
+	output: z
+		.string()
+		.regex(/^Outputs\/Videos\/(?:[A-Za-z0-9_-]+\/)+[A-Za-z0-9_-]+\.mp4$/, 'a path under Outputs/Videos/ ending in .mp4')
+		.optional(),
+	/**
 	 * `true` narrates the video in Turkish with the brand voice, in the delivery
 	 * of the template's voice profile. An object casts differently: another
 	 * profile, a specific voice from the catalogue, another model or tempo, or
@@ -50,6 +60,8 @@ const VideoJobSchema = z.object({
 				standIn: z.boolean().optional(),
 				/** Narration language. Turkish by default; English uses the voice as is, without Turkish readings of abbreviations. */
 				language: z.enum(['tr', 'en']).optional(),
+				/** Another take of the narration (VoiceCasting `take`); 0 or absent is the usual one. */
+				take: z.number().int().min(0).max(50).optional(),
 			}),
 		])
 		.default(false),
@@ -100,6 +112,8 @@ export type ResolvedVideoJob = {
 	inputProps: VideoProps<unknown>;
 	/** Text the output file is named after when it is saved under a number. */
 	outputName: string;
+	/** The job's own place for the video, from the project root, or null for the next number in Outputs/Videos. */
+	output: string | null;
 	/** What the job says about its cover: `false` for none, overrides, or null when it says nothing. */
 	cover: VideoCoverRequest | false | null;
 	/** Whether the video gets music and sound design. */
@@ -192,6 +206,7 @@ export const resolveVideoJob = (raw: unknown): ResolvedVideoJob => {
 		durationInFrames: templateDurationInFrames(template, inputProps.content, inputProps.fps),
 		inputProps,
 		outputName: job.name ?? contentName(inputProps.content, template.title),
+		output: job.output ?? null,
 		cover: job.cover === undefined ? null : job.cover === true ? {} : job.cover,
 		soundtrack: job.soundtrack !== false,
 		soundtrackStyle: typeof job.soundtrack === 'string' ? job.soundtrack : DEFAULT_SOUNDTRACK_STYLE,
@@ -235,6 +250,17 @@ export const withVoiceClips = (
 	inputProps: {...job.inputProps, voiceClips},
 	durationInFrames: templateDurationInFrames(job.template, job.inputProps.content, job.fps, voiceClips, job.inputProps.beats),
 });
+
+/**
+ * A voiced job timed as if its audio were there: every line gets a clip as long as the voice takes to say it
+ * (estimateNarrationSeconds). What `validate` and `curriculum jobs check` measure, so a lesson's length is known
+ * before any narration is paid for; a silent job, or one with its audio, is returned as it is.
+ */
+export const withEstimatedNarration = (job: ResolvedVideoJob): ResolvedVideoJob => {
+	if (!job.voiceover || Object.keys(job.inputProps.voiceClips ?? {}).length > 0) return job;
+	const clips: VoiceClips = Object.fromEntries(voiceLines(job).map((line) => [line.id, {src: 'Voiceovers/estimate.wav', startSeconds: 0, durationSeconds: estimateNarrationSeconds(line.text), playbackRate: 1}]));
+	return withVoiceClips(job, clips);
+};
 
 /** The same job timed to its music: every cut on a beat (Scenes/Rhythm), and the piece the beats came from. */
 export const withBeats = (job: ResolvedVideoJob, beats: number[], musicPiece: string): ResolvedVideoJob => ({

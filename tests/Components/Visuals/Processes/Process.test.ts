@@ -1,4 +1,5 @@
 import {describe, expect, it} from 'vitest';
+import {CHIMNEY, LAVA_PATH, chimneyColumns, columnOutline, flankX} from '../../../../src/Components/Visuals/Processes/Geography/FairyChimney';
 import {massColumns} from '../../../../src/Components/Visuals/Processes/Geography/Landslide';
 import {COAST, LAND, RIVER, SEA_LEVEL, TABLE, cloudAt, heightAt} from '../../../../src/Components/Visuals/Processes/Geography/WaterCycle';
 import {depthY, pressureAt, temperatureAt} from '../../../../src/Components/Visuals/Processes/Geography/Ocean';
@@ -155,5 +156,67 @@ describe('greenhouse effect', () => {
 		expect(surfaceTemperature(1, 0)).toBe(15);
 		expect(surfaceTemperature(1, 1)).toBeGreaterThan(16);
 		expect(surfaceTemperature(1, 1)).toBeLessThan(17);
+	});
+});
+
+describe('fairy chimneys', () => {
+	const span = (outline: readonly (readonly [number, number])[]) => [Math.min(...outline.map(([x]) => x)), Math.max(...outline.map(([x]) => x))];
+
+	it('starts as one plateau: neighbouring columns touch from the top to the ground', () => {
+		const columns = chimneyColumns(0, 0);
+		columns.slice(1).forEach((column, index) => {
+			expect(span(columnOutline(columns[index]))[1]).toBeCloseTo(span(columnOutline(column))[0], 6);
+			expect(column.topHalf).toBeCloseTo(column.baseHalf, 6);
+		});
+		expect(columns[0].x - columns[0].baseHalf).toBe(CHIMNEY.left);
+		expect(columns[columns.length - 1].x + columns[columns.length - 1].baseHalf).toBe(CHIMNEY.right);
+	});
+
+	it('cuts the gullies from the top down: deeper as the rain works, through to the ground at the end', () => {
+		const depths = [0.2, 0.5, 1].map((erode) => chimneyColumns(erode, 0)[2].gully);
+		expect(depths[0]).toBeLessThan(depths[1]);
+		expect(depths[1]).toBeLessThan(depths[2]);
+		expect(chimneyColumns(1, 0)[2].top + depths[2]).toBeCloseTo(CHIMNEY.ground, 6);
+		// Below a gully that has not cut through, the columns still stand on one block.
+		const half = chimneyColumns(0.5, 0);
+		expect(span(columnOutline(half[1]))[1]).toBeCloseTo(span(columnOutline(half[2]))[0], 6);
+	});
+
+	it('leaves columns narrower at the top than at the foot, each under a hat wider than its top', () => {
+		for (const [erode, chimney] of [[0.5, 0], [1, 0], [1, 0.5], [1, 1]] as const) {
+			chimneyColumns(erode, chimney).forEach((column, index) => {
+				expect(column.topHalf).toBeLessThanOrEqual(column.baseHalf);
+				if (index !== CHIMNEY.hatless) expect(column.hat).toBeGreaterThan(column.topHalf);
+				expect(column.top).toBeGreaterThan(80);
+				expect(column.top).toBeLessThan(CHIMNEY.ground);
+			});
+		}
+		// At the end the capped chimneys stand apart, ground between them.
+		const end = chimneyColumns(1, 1);
+		end.slice(1).forEach((column, index) => expect(column.x - column.baseHalf).toBeGreaterThan(end[index].x + end[index].baseHalf));
+	});
+
+	it('wears the chimney that lost its hat down lower and to a point', () => {
+		const end = chimneyColumns(1, 1);
+		const bare = end[CHIMNEY.hatless];
+		expect(bare.hat).toBe(0);
+		end.forEach((column, index) => {
+			if (index === CHIMNEY.hatless) return;
+			expect(bare.top).toBeGreaterThan(column.top + 60);
+			expect(bare.topHalf).toBeLessThan(column.topHalf);
+		});
+	});
+
+	it('lets the lava run only downhill: down the flank to the tuff, then along it to the plateau', () => {
+		LAVA_PATH.slice(1).forEach(([, y], index) => expect(y).toBeGreaterThanOrEqual(LAVA_PATH[index][1]));
+		// It leaves the flank where the flank stands at the tuff's height, and ends on the plateau's edge at the same height.
+		expect(LAVA_PATH[1][0]).toBeCloseTo(flankX(LAVA_PATH[1][1]), 6);
+		expect(LAVA_PATH[LAVA_PATH.length - 1][0]).toBe(CHIMNEY.left);
+		expect(LAVA_PATH[LAVA_PATH.length - 1][1]).toBe(LAVA_PATH[1][1]);
+	});
+
+	it('is the figure that answers a narration about fairy chimneys', () => {
+		const visual = CourseVisualSchema.parse({kind: 'process', process: 'fairychimney'});
+		expect(numberedPartNames(visual)).toEqual(['puskurme', 'sapka', 'asinma', 'baca', 'oyma', 'volkan', 'tuf', 'bazalt', 'sapkasiz']);
 	});
 });

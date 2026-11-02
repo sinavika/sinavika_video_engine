@@ -1,6 +1,6 @@
 # YouTube metni: AYT Tarih kampı · Ders 4 · İslam Medeniyetinin Doğuşu ve İlk İslam Devletleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Tarih/04_Islam_Medeniyetinin_Dogusu/Islam_Medeniyetinin_Dogusu_YouTube.mp4` (4K) · Kapak: `Islam_Medeniyetinin_Dogusu_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Tarih/04_Islam_Medeniyetinin_Dogusu/Islam_Medeniyetinin_Dogusu_YouTube.mp4` (4K) · Kapak: `Islam_Medeniyetinin_Dogusu_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

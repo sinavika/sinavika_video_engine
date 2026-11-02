@@ -11,15 +11,26 @@ import {pathOf, Tag, usePartLook, World} from '../VisualWorld';
 
 type Climate = Extract<CourseVisual, {kind: 'climate'}>;
 
-const MONTH_LETTERS = ['O', 'Ş', 'M', 'N', 'M', 'H', 'T', 'A', 'E', 'E', 'K', 'A'];
+export const MONTH_LETTERS = ['O', 'Ş', 'M', 'N', 'M', 'H', 'T', 'A', 'E', 'E', 'K', 'A'];
 /** Months of each season (0 = Ocak), as Turkish lessons count them: winter is Aralık, Ocak, Şubat. */
-const SEASONS: {id: string; name: string; months: number[]}[] = [
+export const SEASONS: {id: string; name: string; months: number[]}[] = [
 	{id: 'kis', name: 'Kış', months: [11, 0, 1]},
 	{id: 'ilkbahar', name: 'İlkbahar', months: [2, 3, 4]},
 	{id: 'yaz', name: 'Yaz', months: [5, 6, 7]},
 	{id: 'sonbahar', name: 'Sonbahar', months: [8, 9, 10]},
 ];
 const niceCeiling = (value: number, step: number) => Math.max(step, Math.ceil(value / step) * step);
+
+/**
+ * Where the graph's title and its yearly summary go, and where the plot starts below them: one line each, the summary
+ * under the title when both are there ("Antalya (yaklaşık ortalamalar)" ran into "Yıllık yağış ≈ 1.073 mm", KPSS
+ * Coğrafya 9).
+ */
+export const climateHeader = (title: boolean, summary: boolean) => ({
+	titleY: 26,
+	summaryY: title ? 58 : 30,
+	top: title && summary ? 122 : title || summary ? 96 : 50,
+});
 
 /**
  * A climate graph (sıcaklık-yağış grafiği) as Turkish atlases and ÖSYM draw it: monthly precipitation as blue bars
@@ -39,7 +50,8 @@ export const ClimateVisual: React.FC<VisualBoxProps & {visual: Climate}> = ({vis
 
 	const left = 120;
 	const right = 880;
-	const top = visual.title || visual.summary ? 96 : 50;
+	const header = climateHeader(Boolean(visual.title), visual.summary);
+	const top = header.top;
 	const bottom = 520;
 	const step = (right - left) / 12;
 	// Round ticks: the smallest step that needs at most six of them (0–50 by 10, 0–300 by 50, 0–400 by 100).
@@ -123,9 +135,9 @@ export const ClimateVisual: React.FC<VisualBoxProps & {visual: Climate}> = ({vis
 			{MONTH_LETTERS.map((letter, month) => (
 				<Tag key={month} x={left + step * (month + 0.5)} y={bottom + 26} text={letter} anchor="middle" size={19} weight={700} />
 			))}
-			{visual.title ? <Tag x={left} y={30} text={visual.title} size={24} weight={800} /> : null}
+			{visual.title ? <Tag x={left} y={header.titleY} text={visual.title} size={24} weight={800} /> : null}
 			<g opacity={summary.opacity}>
-				<Tag x={right} y={30} text={`Yıllık yağış ≈ ${total.toLocaleString('tr-TR')} mm · Sıcaklık farkı ${String(range).replace('.', ',')} °C`} anchor="end" size={18} focused={summary.focused} />
+				<Tag x={visual.title ? left : right} y={header.summaryY} anchor={visual.title ? 'start' : 'end'} text={`Yıllık yağış ≈ ${total.toLocaleString('tr-TR')} mm · Sıcaklık farkı ${String(range).replace('.', ',')} °C`} size={18} focused={summary.focused} />
 			</g>
 		</World>
 	);

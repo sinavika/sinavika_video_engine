@@ -1,6 +1,6 @@
 # YouTube metni: AYT Mantık kampı · Ders 2 · Klasik Mantık
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Mantik/02_Klasik_Mantik/Klasik_Mantik_YouTube.mp4` (4K) · Kapak: `Klasik_Mantik_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Mantik/02_Klasik_Mantik/Klasik_Mantik_YouTube.mp4` (4K) · Kapak: `Klasik_Mantik_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -8,6 +8,12 @@ import type {CourseVisual} from '../VisualSchema';
 type Molecule = Extract<CourseVisual, {kind: 'molecule'}>;
 
 /**
+ * SmilesDrawer's sizes in its own units, against a bond 30 long: thin bonds well apart, letters a third of a bond.
+ * Structures are drawn whole: compacted, acetic acid became the single word "COOHCH₃".
+ */
+export const MOLECULE_DRAWING = {bondLength: 30, bondThickness: 1.7, bondSpacing: 6.6, fontSizeLarge: 11, fontSizeSmall: 7, padding: 8, compactDrawing: false} as const;
+
+/**
  * A molecule from SMILES, drawn by SmilesDrawer into an SVG. The drawing is
  * done once, before the frame is captured; Remotion waits for it.
  */
@@ -26,7 +32,10 @@ export const MoleculeVisual: React.FC<VisualBoxProps & {visual: Molecule}> = ({v
 	useLayoutEffect(() => {
 		const svg = target.current;
 		if (!svg) return;
-		const drawer = new SmilesDrawer.SvgDrawer({width: drawingWidth, height: drawingHeight, bondThickness: u(5), fontSizeLarge: u(30), fontSizeSmall: u(20), padding: u(20), themes: {sinavika: {C: palette.ink, O: palette.brand, N: palette.lesson, F: palette.ink, CL: palette.ink, BR: palette.ink, I: palette.ink, P: palette.ink, S: palette.ink, B: palette.ink, SI: palette.ink, H: palette.ink, BACKGROUND: 'transparent'}}});
+		// SmilesDrawer measures in its own units, a bond 30 long, and fits the drawing to the box afterwards. Sizes given as
+		// pixels there (thickness 5, letters 30) made a letter as large as a bond: a chloroalkane's C–Cl bond vanished
+		// under "Cl", and double bonds 5 thick 5.1 apart ran together (Soru revizyonu, 2 Nov 2026).
+		const drawer = new SmilesDrawer.SvgDrawer({width: drawingWidth, height: drawingHeight, ...MOLECULE_DRAWING, fontFamily: palette.fontBody, themes: {sinavika: {C: palette.ink, O: palette.brand, N: palette.lesson, F: palette.ink, CL: palette.ink, BR: palette.ink, I: palette.ink, P: palette.ink, S: palette.ink, B: palette.ink, SI: palette.ink, H: palette.ink, BACKGROUND: 'transparent'}}});
 		SmilesDrawer.parse(
 			visual.smiles,
 			(tree) => {
@@ -38,7 +47,7 @@ export const MoleculeVisual: React.FC<VisualBoxProps & {visual: Molecule}> = ({v
 				continueRender(handle);
 			},
 		);
-	}, [visual.smiles, drawingWidth, drawingHeight, handle, palette.ink, palette.brand, palette.lesson, u]);
+	}, [visual.smiles, drawingWidth, drawingHeight, handle, palette.ink, palette.brand, palette.lesson, palette.fontBody]);
 
 	return (
 		<div style={{width, height, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: u(20), opacity: show}}>

@@ -35,21 +35,47 @@ const ANCHOR: React.CSSProperties = {
 };
 
 /** A hub concept with its related concepts around it, each joined by a drawn line. */
+/**
+ * Node centres for an even number of nodes: half in a right column, top to bottom, half in a left column, bottom to
+ * top (clockwise, as the ring went), each node `nodeWidth` wide against its edge, spread evenly down the height.
+ */
+export const conceptColumns = (count: number, width: number, height: number, nodeWidth: number): (readonly [number, number])[] => {
+	const perSide = count / 2;
+	const rowY = (row: number) => (height * (row + 0.5)) / perSide;
+	return Array.from({length: count}, (_, index) =>
+		index < perSide ? ([width - nodeWidth / 2, rowY(index)] as const) : ([nodeWidth / 2, rowY(count - 1 - index)] as const),
+	);
+};
+
+/** About how tall a node's card is: padding, its name's lines and its relation's. */
+const conceptNodeHeight = (item: {name: string; relation?: string}, nodeWidth: number, u: (value: number) => number): number => {
+	const lines = (text: string, size: number) => Math.max(1, Math.ceil((text.length * u(size) * 0.56) / (nodeWidth - u(48))));
+	return u(48) + lines(item.name, 32) * u(32) * 1.25 + (item.relation ? u(6) + lines(item.relation, 24) * u(24) * 1.3 : 0);
+};
+
 export const ConceptMap: React.FC<ConceptMapProps> = ({center, related, width, height, delaySeconds = 0, accent, states = []}) => {
 	const {colors} = useTheme();
 	const {u} = useVideoLayout();
 	const count = related.length;
-	const step = 360 / count;
-	// Even counts are rotated half a step so nodes sit left/right or in the corners, not above the hub.
-	const start = count % 2 === 0 ? -90 + step / 2 : -90;
-	const nodeWidth = Math.min(width * 0.34, u(340));
+	// The hub's longest word should fit at 34 or more; the nodes give up width for it, down to a quarter each.
+	const longestWord = Math.max(...center.split(/\s+/).map((word) => word.length));
+	const growth = states.length > 0 ? 1.14 : 1;
+	const nodeWidth = Math.max(width * 0.24, Math.min(width * 0.31, u(340), (width - u(72) - (longestWord * 0.62 * u(34) + u(72))) / (2 * growth)));
 	// Room for a focused node to grow without reaching the edge of the box.
-	const radiusX = (width - nodeWidth * (states.length > 0 ? 1.14 : 1)) / 2;
-	const radiusY = height * 0.37;
-	const positions = related.map((_, index) => {
-		const angle = ((start + index * step) * Math.PI) / 180;
-		return [width / 2 + radiusX * Math.cos(angle), height / 2 + radiusY * Math.sin(angle)] as const;
-	});
+	const grown = nodeWidth * growth;
+	// Nodes stand in a right and a left column and the hub keeps to the free middle, so a hub or a node that wraps onto
+	// more lines never covers the other; an odd first node stands on top, over the hub. On a ring, four nodes in the
+	// corners covered "Tüm dokular hücreseldir" in the hub, and five covered "Anlam olayları" (Soru revizyonu, 1 Nov 2026).
+	const odd = count % 2 === 1;
+	const top = odd ? Math.min(height * 0.34, conceptNodeHeight(related[0], nodeWidth, u) + u(24)) : 0;
+	const positions: (readonly [number, number])[] = [
+		...(odd ? [[width / 2, top / 2] as const] : []),
+		...conceptColumns(odd ? count - 1 : count, width, height - top, grown).map(([x, y]) => [x, y + top] as const),
+	];
+	const hub = [width / 2, top + (height - top) / 2] as const;
+	const hubWidth = Math.max(width * 0.22, width - 2 * grown - u(72));
+	// The hub's words never break inside: its type shrinks until the longest word fits the hub ("Anla m olayla rı").
+	const hubSize = Math.max(24, Math.min(42, (hubWidth - u(72)) / u(1) / (longestWord * 0.62)));
 
 	return (
 		<div style={{position: 'relative', width, height, flexShrink: 0}}>
@@ -59,7 +85,7 @@ export const ConceptMap: React.FC<ConceptMapProps> = ({center, related, width, h
 					return (
 						<g key={index} opacity={state ? state.appear * (1 - 0.65 * state.dim) : 1}>
 							<DrawPath
-								d={`M${width / 2} ${height / 2}L${x.toFixed(2)} ${y.toFixed(2)}`}
+								d={`M${hub[0]} ${hub[1]}L${x.toFixed(2)} ${y.toFixed(2)}`}
 								stroke={accent ? accent.fill : colors.categorical[index % colors.categorical.length].fill}
 								strokeWidth={u(5) * (state ? 1 + state.emphasis * 0.6 : 1)}
 								delaySeconds={delaySeconds + 0.3 + index * NODE_INTERVAL_SECONDS}
@@ -69,17 +95,17 @@ export const ConceptMap: React.FC<ConceptMapProps> = ({center, related, width, h
 					);
 				})}
 			</svg>
-			<div style={{...ANCHOR, left: width / 2, top: height / 2}}>
+			<div style={{...ANCHOR, left: hub[0], top: hub[1]}}>
 				<Animated animation={{preset: 'scale', easing: 'overshoot'}} delaySeconds={delaySeconds} style={{flexShrink: 0}}>
 					{accent ? (
-						<div style={{maxWidth: width * 0.4, padding: u(32), borderRadius: u(32), backgroundColor: accent.fill, color: accent.on, textAlign: 'center'}}>
-							<Text variant="subtitle" align="center" size={42} style={{color: accent.on}}>
+						<div style={{maxWidth: hubWidth, padding: u(32), borderRadius: u(32), backgroundColor: accent.fill, color: accent.on, textAlign: 'center'}}>
+							<Text variant="subtitle" align="center" size={hubSize} style={{color: accent.on}}>
 								{center}
 							</Text>
 						</div>
 					) : (
-						<Card tone="primary" padding={36} radius="lg" style={{maxWidth: width * 0.4}}>
-							<Text variant="subtitle" align="center" size={42}>
+						<Card tone="primary" padding={36} radius="lg" style={{maxWidth: hubWidth}}>
+							<Text variant="subtitle" align="center" size={hubSize}>
 								{center}
 							</Text>
 						</Card>

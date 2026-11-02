@@ -3,7 +3,7 @@ import {clamp01, easeFrom} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
 import {useVideoLayout} from '../../Layouts/VideoLayout';
 import {RichText} from '../../Typography/RichText';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useFigureFont, useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {UNFOCUSED_FADE, useBeatStartFor, useElementState} from '../VisualTimeline';
 
@@ -12,6 +12,12 @@ type Matching = Extract<CourseVisual, {kind: 'matching'}>;
 const SLOTS = 6;
 const LINE_SECONDS = 0.8;
 const FOCUS_GROWTH = 0.04;
+
+/**
+ * Space between a chip's text and its border, in layout units. At 18 a one-line item that just fit ran from border to
+ * border ("Komşulardaki Müslümanlar kadar", KPSS Tarih 14, 1 Nov 2026); at 30 it wraps to a second line instead.
+ */
+const CHIP_PADDING = 30;
 
 /** A small seeded random generator (mulberry32), so a board is shuffled the same way in every frame and render. */
 const seeded = (seed: number) => () => {
@@ -46,6 +52,25 @@ export const matchingSlots = (pairs: readonly {left: string; right: string}[]): 
 };
 
 /**
+ * The type size of a board's items (in layout units): as large as 40, as long as every item, wrapped to the chip's
+ * width, fits its height. Beside a rule's list the board is narrow and a long partner ("Hükümdarın eşi; yönetimde söz
+ * sahibi") ran to three lines out of its chip at the old two-line size (KPSS Tarih 1, 1 Nov 2026); now it shrinks.
+ */
+export const matchingFontSize = (texts: readonly string[], columnWidth: number, rowHeight: number, u: (value: number) => number, least = 16): number => {
+	const inner = columnWidth - 2 * u(CHIP_PADDING);
+	const fits = (size: number) =>
+		texts.every((text) => {
+			const plain = text.replace(/\*\*/g, '');
+			// Words break early, so a line holds a little less than its width allows.
+			const lines = Math.ceil((plain.length * size * 0.56 * u(1)) / (inner * 0.9));
+			// Two wrapped lines also keep clear of the chip's top and bottom border.
+			return lines * size * 1.2 * u(1) <= Math.min(rowHeight * 0.9, rowHeight - 2 * u(14));
+		});
+	for (let size = 40; size > least; size -= 1) if (fits(size)) return size;
+	return least;
+};
+
+/**
  * A matching exercise: terms on the left, their partners on the right in a shuffled order (matchingSlots), and a
  * line drawn from a term to its partner when the narration reaches the pair (parts p1…). Lines stay once drawn, so
  * the board fills up as the lesson goes; without beats the pairs connect one after another.
@@ -68,9 +93,9 @@ export const MatchingVisual: React.FC<VisualBoxProps & {visual: Matching}> = ({v
 	const rightX = width - columnWidth;
 	// Short items that fit on one line grow with the row (a six-pair board of quotes stayed at the smallest size with
 	// half the row empty, 30 Oct 2026); items that wrap keep the two-line size.
-	const longest = Math.max(...visual.pairs.flatMap((pair) => [pair.left, pair.right]).map((text) => text.replace(/\*\*/g, '').length));
-	const oneLine = Math.min(rowHeight * 0.45, (columnWidth - 2 * u(18)) / (longest * 0.62));
-	const fontSize = Math.max(22, Math.min(40, Math.max(rowHeight * 0.3, oneLine) / u(1)));
+	// An app still's board is drawn taller (workFigureBox) and never goes under its smallest text.
+	const least = useFigureFont()(16);
+	const fontSize = matchingFontSize(visual.pairs.flatMap((pair) => [pair.left, pair.right]), columnWidth, rowHeight, u, least);
 	const slots = matchingSlots(visual.pairs);
 	const slotOf = (pair: number) => slots[pair];
 	const centreY = (slot: number) => titleHeight + slot * (rowHeight + gap) + rowHeight / 2;
@@ -90,7 +115,7 @@ export const MatchingVisual: React.FC<VisualBoxProps & {visual: Matching}> = ({v
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: 'center',
-				padding: `0 ${u(18)}px`,
+				padding: `0 ${u(CHIP_PADDING)}px`,
 				boxSizing: 'border-box',
 				borderRadius: u(22),
 				border: `${u(4)}px solid ${joined > 0.5 || look.emphasis > 0.5 ? palette.lesson : palette.border}`,

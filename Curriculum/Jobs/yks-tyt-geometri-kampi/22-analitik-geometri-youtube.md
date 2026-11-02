@@ -1,6 +1,6 @@
 # YouTube metni: TYT Geometri kampı · Ders 22 · Analitik Geometri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Geometri/22_Analitik_Geometri/Analitik_Geometri_YouTube.mp4` (4K) · Kapak: `Analitik_Geometri_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Geometri/22_Analitik_Geometri/Analitik_Geometri_YouTube.mp4` (4K) · Kapak: `Analitik_Geometri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

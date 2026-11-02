@@ -319,6 +319,12 @@ const innerPages = (content: Content): Slide[] => content.slides.filter((slide, 
  * title fits in), and the line under its deepest text, where pictures start
  * at the latest, so they sit at the same place on every page. In actual pixels.
  */
+/** The answer card of a checklist question page and its gap under the question (owner, 1 Nov 2026: smaller card). */
+const CHECKLIST_CARD = 340;
+const CHECKLIST_GAP = 64;
+/** Sizes the checklist questions may take, largest first. */
+const CHECKLIST_QUESTION_STEPS = [104, 96, 88, 80, 72] as const;
+
 const deckLayout = (content: Content, width: number, height: number) => {
 	const {unit, insets} = imageFrameOf(width, height);
 	const column = width - insets.left - insets.right - GRID_ICON_ROOM;
@@ -380,9 +386,22 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 	// One title size for every page of the post and one line under its deepest text: pictures start there at the latest.
 	const layout = deckLayout(content, canvasWidth, height);
 	const below = layout.pictureTop;
+	// A checklist question page (owner, 1 Nov 2026: "sorular çok okunaklı değil, biraz daha aşağıda olabilir; cevap kısmı
+	// çok büyük"): the question and a short answer card stand together around the middle of the page. Before, the
+	// question sat at the top and the empty card filled the lower half.
+	const checklistPage = content.look === 'checklist' && slide.kind !== 'closing';
+	// The questions are the page: one larger size for all of them, measured to three lines at most.
+	const questions = innerPages(content).filter((page) => page.kind !== 'closing').map((page) => page.title);
+	const questionSize = checklistPage ? seriesSize(questions, CHECKLIST_QUESTION_STEPS, layout.box, () => 3, TITLE_SET).size : layout.titleSize;
+	const linesOf = (text: string) => Math.min(3, lineCount(text, layout.box, {...TITLE_SET, size: questionSize}));
+	const questionHeight = linesOf(slide.title) * questionSize * P.titleLineHeight;
+	// The card stands at one place on every page; each question ends just above it, however many lines it takes.
+	const deepest = Math.max(...questions.map(linesOf)) * questionSize * P.titleLineHeight;
+	const groupTop = Math.max(layout.top, Math.round((height - (deepest + CHECKLIST_GAP + CHECKLIST_CARD)) / 2 - 40));
+	const checklistTop = groupTop + deepest - questionHeight;
 
 	const header = (
-		<Abs x={L} y={layout.top} w={layout.column}>
+		<Abs x={L} y={checklistPage ? checklistTop : layout.top} w={layout.column}>
 			{slide.kicker ? (
 				<div style={{display: 'inline-flex', alignItems: 'center', gap: 12, padding: `${KICKER_PAD}px 22px`, borderRadius: 999, background: content.look === 'proof' || content.look === 'persona' ? 'rgba(255,255,255,0.18)' : ON_DARK.has(content.look) ? 'rgba(255,255,255,0.1)' : `${color}14`, marginBottom: KICKER_GAP}}>
 					{slide.icon ? <Icon name={slide.icon} size={30} color={ON_DARK.has(content.look) ? '#FFFFFF' : color} stroke={2.2} /> : null}
@@ -391,7 +410,7 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 					</Text>
 				</div>
 			) : null}
-			<Text variant="display" size={layout.titleSize} weight={P.titleWeight} color={paint.ink} style={{lineHeight: P.titleLineHeight, letterSpacing: `${P.titleLetterSpacingEm}em`}}>
+			<Text variant="display" size={questionSize} weight={P.titleWeight} color={paint.ink} style={{lineHeight: P.titleLineHeight, letterSpacing: `${P.titleLetterSpacingEm}em`}}>
 				<Title slide={slide} accent={content.look === 'proof' || content.look === 'persona' ? INK : ORANGE} />
 			</Text>
 			{slide.text ? (
@@ -498,20 +517,24 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 				</Abs>
 			</>
 		);
-	} else if (slide.kind !== 'closing' && content.look === 'checklist') {
-		const top = Math.max(height * 0.42, below);
+	} else if (checklistPage) {
+		const top = checklistTop + questionHeight + CHECKLIST_GAP;
 		body = (
 			<Abs x={L - 10} y={top} w={R - L + 20}>
-				<div style={{height: height - top - 90, borderRadius: 34, background: `repeating-linear-gradient(180deg, transparent 0 63px, #DBEAFE 63px 66px), #FFFFFF`, boxShadow: '0 40px 80px -30px rgba(0,0,0,0.5)', padding: '50px 54px', boxSizing: 'border-box', display: 'flex', alignItems: 'flex-start', gap: 40}}>
-					<div style={{width: 150, height: 150, borderRadius: 30, border: `9px solid ${INK}`, flexShrink: 0, boxSizing: 'border-box'}} />
-					<div style={{display: 'flex', flexDirection: 'column', gap: 16, paddingTop: 10}}>
-						<Text size={34} weight={TYPE.weights.display} color={GREY} style={{letterSpacing: '0.08em'}}>
-							{`SORU ${slide.number ?? ''}`}
-						</Text>
-						<Text size={40} weight={TYPE.weights.strong} color={INK}>
-							Cevabın:
-						</Text>
+				<div style={{height: CHECKLIST_CARD, borderRadius: 30, background: '#FFFFFF', boxShadow: '0 40px 80px -30px rgba(0,0,0,0.5)', padding: '40px 48px 0', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 18, overflow: 'hidden'}}>
+					<div style={{display: 'flex', alignItems: 'center', gap: 30}}>
+						<div style={{width: 96, height: 96, borderRadius: 24, border: `7px solid ${INK}`, flexShrink: 0, boxSizing: 'border-box'}} />
+						<div style={{display: 'flex', flexDirection: 'column', gap: 10}}>
+							<Text size={30} weight={TYPE.weights.display} color={GREY} style={{letterSpacing: '0.08em'}}>
+								{`SORU ${slide.number ?? ''}`}
+							</Text>
+							<Text size={38} weight={TYPE.weights.strong} color={INK}>
+								Cevabın:
+							</Text>
+						</div>
 					</div>
+					{/* Ruled lines only under the labels, where the answer is written: across them they read as strike-throughs. */}
+					<div style={{flex: 1, margin: '0 -48px', background: `repeating-linear-gradient(180deg, transparent 0 63px, #DBEAFE 63px 66px)`}} />
 				</div>
 			</Abs>
 		);

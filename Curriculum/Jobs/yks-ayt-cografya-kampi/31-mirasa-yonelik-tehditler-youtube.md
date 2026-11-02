@@ -1,6 +1,6 @@
 # YouTube metni: AYT Coğrafya kampı · Ders 31 · Ortak Doğal ve Kültürel Mirasa Yönelik Tehditler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/31_Mirasa_Yonelik_Tehditler/Mirasa_Yonelik_Tehditler_YouTube.mp4` (4K) · Kapak: `Mirasa_Yonelik_Tehditler_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/31_Mirasa_Yonelik_Tehditler/Mirasa_Yonelik_Tehditler_YouTube.mp4` (4K) · Kapak: `Mirasa_Yonelik_Tehditler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

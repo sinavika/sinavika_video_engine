@@ -1,0 +1,737 @@
+{
+ "topic": {
+  "id": "A3F6BCC7-2B7B-6844-B063-42A4A150B499",
+  "category": "KPSS_LISANS",
+  "lesson": "MAT",
+  "code": "KUMELER"
+ },
+ "title": "Kümeler",
+ "lessonName": "Matematik",
+ "exams": [
+  "KPSS"
+ ],
+ "sources": [
+  "KPSS/Lisans/KonuAnlatimi/MAT/KUMELER.json ve KPSS/OnlisansOrtaogretim/KonuAnlatimi/MAT/KUMELER.json (MEB ÖERHGM: küme, gösterim, alt küme, birleşim, kesişim, fark, tümleyen, kartezyen çarpım, Venn, problemler)",
+  "ÖSYM KPSS Lisans 2009–2021 (8 soru) ve Ön lisans 2014–2020 (11 soru) küme soruları (CikmisSorular/MAT.jsonl): kalıplar örnek alındı, bütün kümeler ve durumlar yeni yazıldı ve elle doğrulandı",
+  "KPSS Sorular/MAT havuzları (Lisans KUMELER 57, Ön lisans KUMELER 271 soru)"
+ ],
+ "works": {
+  "additions": [
+   "Küme yazımı: liste ve ortak özellik; ortak özellikle verilen kümenin belli aralıktaki eleman sayısı; eşit ve denk küme; ∅ ile {∅} farkı.",
+   "Alt küme sayısı: 2ⁿ ve öz alt küme; belirli elemanların kesin bulunduğu ya da bulunmadığı alt kümeler; 'en az biri' = hepsi − hiçbiri.",
+   "Tanımlı kavramları alt küme ilişkisine çevirme (her tiril bir mirildir): alt küme ve öz alt küme.",
+   "Birleşim, kesişim, fark, tümleyen ve simetrik fark; s(A ∪ B) = s(A) + s(B) − s(A ∩ B); tam sayı aralıklarıyla verilen kümelerde uçlar.",
+   "Kartezyen çarpım: sıralı ikililer, s(A × B) = s(A) · s(B), koşullu ikili sayma.",
+   "Venn şeması ve küme problemleri: yalnız, en az biri, hiçbiri; toplamı bölgelere ayırma; iki ve üç kümeli problemler."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Her kişi tek bir bölgede",
+   "narration": "Kümeler, KPSS'de çoğu zaman bir problem kılığında gelir: sınıftaki öğrenciler, bir sınavın testleri, bir restoranın siparişleri. Lisans sınavında bu konudan gelen sekiz sorunun yarısı küme problemiydi; Ön lisans sınavlarında ise en çok alt küme sayısı soruldu. Bu derste küme yazımından Venn şemalarına kadar her adımı yeni sorularla göreceğiz."
+  },
+  "objectives": [
+   "Kümeleri liste ve ortak özellikle yazmak; eleman saymak",
+   "Alt küme sayısını koşullarla hesaplamak",
+   "Birleşim, kesişim, fark, tümleyen ve simetrik farkı bulmak",
+   "Kartezyen çarpımı kurmak ve saymak",
+   "Venn şemasıyla küme problemlerini çözmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "KUMELER_01",
+    "subtopics": [
+     "KUMELER_02",
+     "KUMELER_04"
+    ],
+    "alsoTeaches": [
+     "KPSS_ONLISANS:KUMELER_01"
+    ],
+    "title": "Küme ve eleman",
+    "narration": "Önce kümenin ne olduğunu ve nasıl yazıldığını görelim.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Küme nasıl yazılır?",
+      "items": [
+       "**Liste**: $A = \\{2, 4, 6\\}$; aynı eleman iki kez yazılmaz, sıra önemsizdir.",
+       "**Ortak özellik**: $A = \\{x \\mid x = 2k,\\ k \\in \\{1, 2, 3\\}\\}$.",
+       "$s(A)$: $A$'nın **eleman sayısı**. Eleman sayıları eşit kümeler **denk**, elemanları aynı kümeler **eşittir**.",
+       "Boş küme: $\\emptyset$ ya da $\\{\\ \\}$; $\\{\\emptyset\\}$ ise **bir elemanlı** bir kümedir."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "A = \\{x \\mid x = 2k,\\ k \\in \\{1, 2, 3\\}\\} = \\{2, 4, 6\\}",
+       "caption": "Ortak özellikten listeye"
+      },
+      "narration": "Bir küme iki yolla yazılır. Liste yönteminde elemanlar süslü parantez içinde tek tek yazılır; aynı eleman iki kez yazılmaz ve sıra önemli değildir. Ortak özellik yönteminde elemanların uyduğu kural yazılır. s A, A kümesinin eleman sayısıdır. Eleman sayıları eşit kümelere denk, elemanları tamamen aynı olan kümelere eşit küme denir. Boş kümenin hiç elemanı yoktur; ama içinde boş küme sembolü olan küme, bir elemanlı bir kümedir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$A = \\{x \\mid x = 4k - 1,\\ k \\text{ pozitif tam sayı}\\}$ kümesi veriliyor. $A$ kümesinin elemanlarından kaç tanesi iki basamaklı bir sayıdır?",
+       "options": [
+        "21",
+        "22",
+        "23",
+        "24",
+        "25"
+       ],
+       "answer": 2,
+       "narration": "x'in iki basamaklı olması için k'nin hangi aralıkta olması gerektiğini bulalım.",
+       "steps": [
+        {
+         "text": "$10 \\le 4k - 1 \\le 99 \\Rightarrow 11 \\le 4k \\le 100$",
+         "narration": "x iki basamaklı: 10 ile 99 arasında. 4k eksi 1 bu aralıkta ise 4k, 11 ile 100 arasındadır."
+        },
+        {
+         "text": "$k$ tam sayı: $3 \\le k \\le 25$ (x: 11, 15, …, 99)",
+         "narration": "k tam sayı olduğu için k en az 3, en çok 25'tir. k 3 için x 11, k 25 için x 99."
+        },
+        {
+         "text": "$25 - 3 + 1 = 23$. Cevap **C**.",
+         "narration": "k, 3'ten 25'e kadar: 25 eksi 3 artı 1, 23 değer. Cevap C. D şıkkındaki 24, k'nin alt sınırını 2 alanın, B şıkkındaki 22 ise 1 eklemeyi unutanın cevabıdır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki ortak özellikle verilen kümenin eleman sayısı kalıbı örnek alındı; kural ve aralık bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KUMELER_03",
+    "alsoTeaches": [
+     "KPSS_ONLISANS:KUMELER_02"
+    ],
+    "title": "Alt kümeler",
+    "narration": "Ön lisans sınavlarında bu konudan en çok alt küme sayısı soruldu. Formül kısa, ama koşullu sorular dikkat ister.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Alt küme sayısı",
+      "items": [
+       "$n$ elemanlı kümenin alt küme sayısı $2^n$; öz alt küme sayısı $2^n - 1$.",
+       "Boş küme ve kümenin kendisi de **alt kümedir**.",
+       "Belirli $k$ eleman **kesin bulunsun** ya da **kesin bulunmasın**: kalan $n - k$ elemana bak, $2^{n - k}$.",
+       "\"En az biri bulunsun\" $=$ hepsi $-$ hiçbiri bulunmayan."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "s(A) = n \\;\\Rightarrow\\; 2^n \\text{ alt küme}",
+       "caption": "Her eleman için iki seçenek: var ya da yok"
+      },
+      "narration": "n elemanlı bir kümenin 2 üzeri n alt kümesi vardır; çünkü her eleman için iki seçenek var: alt kümede bulunur ya da bulunmaz. Kümenin kendisi hariç tutulursa öz alt küme sayısı 2 üzeri n eksi 1'dir. Boş küme ve kümenin kendisi de alt kümedir. Bazı elemanların kesin bulunması ya da kesin bulunmaması istenirse onların kararı verilmiş demektir; yalnız kalan elemanlara bakarsın. En az biri bulunsun denirse bütün alt kümelerden hiçbirinin bulunmadığı alt kümeleri çıkarırsın."
+     },
+     {
+      "kind": "predict",
+      "title": "Üç elemanlı küme",
+      "context": "$A = \\{a, b, c\\}$",
+      "prompt": "Bu kümenin kaç alt kümesi vardır?",
+      "choices": [
+       "6",
+       "8"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Eleman sayısı",
+        "Alt kümeler"
+       ],
+       "rows": [
+        [
+         "0",
+         "$\\emptyset$"
+        ],
+        [
+         "1",
+         "$\\{a\\}, \\{b\\}, \\{c\\}$"
+        ],
+        [
+         "2",
+         "$\\{a, b\\}, \\{a, c\\}, \\{b, c\\}$"
+        ],
+        [
+         "3",
+         "$\\{a, b, c\\}$"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Hiç elemanı olmayan alt küme: boş küme. Bir elemanlılar: üç tane.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r1",
+         "r2"
+        ]
+       },
+       {
+        "narration": "İki elemanlılar üç tane, kümenin kendisi bir tane. Toplam 1 artı 3 artı 3 artı 1, 8. 2 küp de 8'dir.",
+        "show": [
+         "r3",
+         "r4"
+        ],
+        "focus": [
+         "r3",
+         "r4"
+        ]
+       }
+      ],
+      "explanation": "$2^3 = 8$: boş küme ve kümenin **kendisi** de sayılır.",
+      "narration": "Şimdi sıra sende. Üç elemanlı bir kümenin kaç alt kümesi var? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 8. 6 diyen, boş kümeyi ve kümenin kendisini saymayı unutmuştur. Her eleman için alt kümede var ya da yok diye iki seçenek vardır: 2 çarpı 2 çarpı 2, 8."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$A = \\{1, 2, 3, 4, 5, 6\\}$ kümesinin alt kümelerinden kaç tanesinde 2 bulunur ama 5 bulunmaz?",
+       "options": [
+        "8",
+        "16",
+        "24",
+        "32",
+        "48"
+       ],
+       "answer": 1,
+       "narration": "2 ve 5'in kararı verilmiş. Kalan elemanlara bakacağız.",
+       "steps": [
+        {
+         "text": "2 kesin var, 5 kesin yok: bu iki elemanın kararı belli",
+         "narration": "2 her alt kümede bulunacak, 5 hiçbirinde bulunmayacak. Bu iki eleman için seçim yapılmaz."
+        },
+        {
+         "text": "Kalan 4 eleman: 1, 3, 4, 6 ⇒ $2^4 = 16$. Cevap **B**.",
+         "narration": "Geriye 1, 3, 4 ve 6 kalıyor; her biri için var ya da yok, iki seçenek. 2 üzeri 4, 16. Cevap B. A şıkkındaki 8, kalan eleman sayısını 3 sananın cevabıdır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki koşullu alt küme sayısı kalıbı örnek alındı; küme ve koşul bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$A = \\{1, 2, 3, 4, 5\\}$ ve $B = \\{1, 2\\}$ kümeleri veriliyor. $A$ kümesinin alt kümelerinden kaç tanesinin $B$ kümesiyle kesişimi boş kümeden farklıdır?",
+       "options": [
+        "8",
+        "16",
+        "24",
+        "28",
+        "31"
+       ],
+       "answer": 2,
+       "narration": "Kesişimin boş olmaması, 1 ya da 2'den en az birinin bulunması demek.",
+       "steps": [
+        {
+         "text": "Bütün alt kümeler: $2^5 = 32$",
+         "narration": "A'nın bütün alt kümeleri 2 üzeri 5, 32."
+        },
+        {
+         "text": "Ne 1 ne 2 olanlar: $2^3 = 8$",
+         "narration": "B ile kesişimi boş olanlar, içinde 1 de 2 de olmayanlardır. Onlar için yalnız 3, 4 ve 5'e bakarız: 2 küp, 8."
+        },
+        {
+         "text": "$32 - 8 = 24$. Cevap **C**.",
+         "narration": "En az biri bulunanlar: 32 eksi 8, 24. Cevap C. E şıkkındaki 31, yalnız boş kümeyi çıkaranın cevabıdır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki başka bir kümeyle kesişimi boş olmayan alt kümeler kalıbı örnek alındı; kümeler bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir öğretmen tiril ve miril adlı iki kavram tanımlıyor ve tahtaya şunu yazıyor: \"Her tiril bir mirildir, ama tiril olmayan en az bir miril vardır.\"\nBu ifade doğru olduğuna göre aşağıdakilerden hangisi kesinlikle doğrudur?",
+       "options": [
+        "Her miril bir tirildir.",
+        "Hiçbir tiril miril değildir.",
+        "Miril olmayan bir tiril vardır.",
+        "Tiril olmayan hiçbir miril yoktur.",
+        "Tiriller kümesi, miriller kümesinin öz alt kümesidir."
+       ],
+       "answer": 4,
+       "narration": "Cümleyi küme diline çevirelim: T tiriller, M miriller.",
+       "steps": [
+        {
+         "text": "\"Her tiril bir mirildir\" ⇒ $T \\subseteq M$",
+         "narration": "Her tiril bir miril ise tirillerin hepsi mirillerin içindedir: T, M'nin alt kümesidir. Bu, B ve C seçeneklerini eler.",
+         "eliminate": [
+          "B",
+          "C"
+         ]
+        },
+        {
+         "text": "\"Tiril olmayan bir miril var\" ⇒ $T \\neq M$",
+         "narration": "Tiril olmayan en az bir miril varsa M, T'den büyüktür; iki küme eşit değildir. Bu da A ve D seçeneklerini eler.",
+         "eliminate": [
+          "A",
+          "D"
+         ]
+        },
+        {
+         "text": "$T \\subset M$: öz alt küme. Cevap **E**.",
+         "narration": "Alt küme ama eşit değil: T, M'nin öz alt kümesidir. Cevap E."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki iki tanımlı kavramı alt küme ilişkisine çeviren kalıp örnek alındı; kavramlar ve seçenekler bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KUMELER_05",
+    "subtopics": [
+     "KUMELER_06",
+     "KUMELER_07",
+     "KUMELER_08"
+    ],
+    "alsoTeaches": [
+     "KPSS_ONLISANS:KUMELER_03",
+     "KPSS_ONLISANS:KUMELER_04"
+    ],
+    "title": "Birleşim, kesişim, fark, tümleyen",
+    "narration": "Şimdi kümelerle yapılan dört işlem. Hepsini aynı Venn şemasında görelim.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "İki küme",
+      "visual": {
+       "kind": "venn",
+       "sets": [
+        {
+         "label": "A",
+         "items": [
+          "1",
+          "2"
+         ]
+        },
+        {
+         "label": "B",
+         "items": [
+          "5",
+          "6"
+         ]
+        }
+       ],
+       "shared": [
+        "3",
+        "4"
+       ]
+      },
+      "narration": "A kümesi 1, 2, 3 ve 4; B kümesi 3, 4, 5 ve 6 olsun. Ortadaki 3 ve 4 iki kümede de var.",
+      "beats": [
+       {
+        "narration": "Birleşim, iki kümedeki bütün elemanlardır: 1'den 6'ya kadar, 6 eleman. Kesişim ise iki kümede de olanlar: 3 ve 4."
+       },
+       {
+        "narration": "A fark B, A'da olup B'de olmayanlardır: 1 ve 2. B fark A ise 5 ve 6. Tümleyen, evrensel kümede olup kümede olmayanlardır."
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Dört işlem",
+      "items": [
+       "$A \\cup B$: en az birinde; $A \\cap B$: ikisinde de.",
+       "$A \\setminus B$: $A$'da olup $B$'de olmayan; $A' $: evrensel kümede olup $A$'da olmayan.",
+       "$s(A \\cup B) = s(A) + s(B) - s(A \\cap B)$",
+       "Simetrik fark: $A \\triangle B = (A \\setminus B) \\cup (B \\setminus A)$; ortak elemanlar **çıkar**."
+      ],
+      "narration": "Birleşim, en az bir kümede olan elemanlardır; kesişim, iki kümede de olanlardır. A fark B, A'da olup B'de olmayan elemanlardır; A'nın tümleyeni ise evrensel kümede olup A'da olmayanlardır. Birleşimin eleman sayısı, iki kümenin eleman sayılarının toplamından kesişimin çıkarılmasıyla bulunur; çünkü ortak elemanlar iki kez sayılmıştır. ÖSYM bazen simetrik farkı tanımlar: iki farkın birleşimi, yani ortak olmayan elemanlar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$A = \\{x \\in \\mathbb{Z} \\mid -3 \\le x < 5\\}$ ve $B = \\{x \\in \\mathbb{Z} \\mid 1 < x \\le 8\\}$ kümeleri veriliyor. Buna göre $A \\setminus B$ fark kümesinin eleman sayısı kaçtır?",
+       "options": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+       ],
+       "answer": 2,
+       "narration": "Kümeleri liste olarak yazalım; uçlara dikkat.",
+       "steps": [
+        {
+         "text": "$A = \\{-3, -2, -1, 0, 1, 2, 3, 4\\}$",
+         "narration": "A: eksi 3 dahil, 5 hariç tam sayılar: eksi 3'ten 4'e kadar, 8 eleman."
+        },
+        {
+         "text": "$B = \\{2, 3, \\ldots, 8\\}$",
+         "narration": "B: 1 hariç, 8 dahil: 2'den 8'e kadar."
+        },
+        {
+         "text": "$A \\setminus B = \\{-3, -2, -1, 0, 1\\}$ ⇒ 5 eleman. Cevap **C**.",
+         "narration": "A'da olup B'de olmayanlar: eksi 3, eksi 2, eksi 1, 0 ve 1; 5 eleman. Cevap C. 1'i B'de sanan 4 bulur; B, 1'den büyükleri alıyor.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM'nin tam sayı aralıklarıyla verilen iki kümenin farkı kalıbı örnek alındı; aralıklar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$X \\triangle Y = (X \\setminus Y) \\cup (Y \\setminus X)$ biçiminde tanımlanıyor. Boş kümeden ve birbirinden farklı $K$ ve $L$ kümeleri için $(K \\triangle L) \\triangle L$ ifadesi aşağıdakilerden hangisine eşittir?",
+       "options": [
+        "$K$",
+        "$L$",
+        "$\\emptyset$",
+        "$K \\cup L$",
+        "$K \\cap L$"
+       ],
+       "answer": 0,
+       "narration": "Simetrik fark ortak elemanları çıkarır. İki kez L ile yapınca ne olur?",
+       "steps": [
+        {
+         "text": "$K \\triangle L$: $K$ ile $L$'nin **ortak olmayan** elemanları",
+         "narration": "K simetrik fark L, yalnız K'da ya da yalnız L'de olan elemanlardır; ortaklar çıkar."
+        },
+        {
+         "text": "Bunu yine $L$ ile al: yalnız $L$'de olanlar çıkar, ortaklar **geri gelir**",
+         "narration": "Şimdi bunu tekrar L ile alalım. Yalnız L'de olanlar iki kümede de var, bu yüzden çıkar. K ile L'nin ortak elemanları ise yalnız L'de var; geri gelir. Yalnız K'da olanlar da kalır."
+        },
+        {
+         "text": "Kalan: yalnız $K$'dakiler ve ortaklar, yani $K$. Cevap **A**.",
+         "narration": "Geriye yalnız K'dakiler ve ortak elemanlar kalır; bu, K'nın tamamıdır. Cevap A. Bir kümeyle iki kez simetrik fark almak onu geri alır, tıpkı bir sayıya bir şey ekleyip sonra çıkarmak gibi.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM'nin tanımlanan simetrik fark işlemi kalıbı örnek alındı; ifade bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KUMELER_09",
+    "alsoTeaches": [
+     "KPSS_ONLISANS:KUMELER_05"
+    ],
+    "title": "Kartezyen çarpım",
+    "narration": "Kartezyen çarpım, iki kümeden sıralı ikililer kurmaktır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Sıralı ikililer",
+      "items": [
+       "$A \\times B = \\{(a, b) \\mid a \\in A,\\ b \\in B\\}$",
+       "$s(A \\times B) = s(A) \\cdot s(B)$",
+       "Sıra önemlidir: $(1, 2) \\neq (2, 1)$; genelde $A \\times B \\neq B \\times A$."
+      ],
+      "visual": {
+       "kind": "table",
+       "header": [
+        "$\\times$",
+        "2",
+        "3",
+        "4"
+       ],
+       "rows": [
+        [
+         "1",
+         "(1, 2)",
+         "(1, 3)",
+         "(1, 4)"
+        ],
+        [
+         "2",
+         "(2, 2)",
+         "(2, 3)",
+         "(2, 4)"
+        ],
+        [
+         "3",
+         "(3, 2)",
+         "(3, 3)",
+         "(3, 4)"
+        ]
+       ]
+      },
+      "narration": "A kartezyen çarpım B, birinci bileşeni A'dan, ikinci bileşeni B'den alınan bütün sıralı ikililerdir. Eleman sayısı, iki kümenin eleman sayılarının çarpımıdır. Sıralı ikilide sıra önemlidir: 1 virgül 2 ile 2 virgül 1 farklıdır; bu yüzden A çarpı B ile B çarpı A genelde aynı küme değildir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$A = \\{1, 2, 3\\}$ ve $B = \\{2, 3, 4\\}$ olmak üzere $A \\times B$ kümesinin elemanlarından kaç tanesinde birinci bileşen ikinci bileşenden küçüktür?",
+       "options": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "9"
+       ],
+       "answer": 3,
+       "narration": "Tablodaki 9 ikiliyi birinci bileşene göre sayalım.",
+       "steps": [
+        {
+         "text": "$a = 1$: $(1, 2), (1, 3), (1, 4)$ → 3",
+         "narration": "Birinci bileşen 1 ise ikinci bileşenin hepsi büyük: 3 ikili."
+        },
+        {
+         "text": "$a = 2$: $(2, 3), (2, 4)$ → 2; $a = 3$: $(3, 4)$ → 1",
+         "narration": "Birinci bileşen 2 ise 3 ve 4 büyük: 2 ikili. 3 ise yalnız 4: 1 ikili."
+        },
+        {
+         "text": "$3 + 2 + 1 = 6$. Cevap **D**.",
+         "narration": "Toplam 3 artı 2 artı 1, 6. Cevap D. E şıkkındaki 9, bütün ikililerin sayısıdır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki kartezyen çarpımda koşullu ikili sayma kalıbı örnek alındı; kümeler ve koşul bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "KUMELER_10",
+    "subtopics": [
+     "KUMELER_11"
+    ],
+    "alsoTeaches": [
+     "KPSS_ONLISANS:KUMELER_06"
+    ],
+    "title": "Venn şemaları ve küme problemleri",
+    "narration": "Son bölüm Lisans sınavının bu konudaki en sık kalıbı: küme problemleri. Hepsinin anahtarı Venn şemasını bölgelere ayırmaktır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bölgelere ayır",
+      "items": [
+       "\"**Yalnız** A\": A'da olup öteki kümelerde olmayan bölge.",
+       "\"**En az biri**\": birleşim; \"**hiçbiri**\": birleşimin dışı.",
+       "Toplamı bölgelere ayır: her kişi **tek bir bölgede** sayılır.",
+       "Üç kümede: $s(A \\cup B \\cup C) = s(A) + s(B) + s(C) - s(A \\cap B) - s(A \\cap C) - s(B \\cap C) + s(A \\cap B \\cap C)$"
+      ],
+      "narration": "Küme problemlerinde Venn şemasını bölgelere ayırırsın. Yalnız A dendiğinde A'da olup öteki kümelerde olmayan bölgeyi anlarsın. En az biri birleşimdir; hiçbiri ise birleşimin dışıdır. Her kişi şemada yalnız bir bölgede sayılır; bölgeleri toplayınca toplam kişi sayısını bulursun. Üç küme için de formül var, ama çoğu zaman bölgeleri tek tek yazmak daha güvenlidir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "40 kişilik bir grupta herkes İngilizce ya da Almancadan en az birini biliyor. Yalnız İngilizce bilenlerin sayısı, Almanca bilenlerin sayısının 3 katından 8 eksiktir. Buna göre yalnız İngilizce bilen kaç kişi vardır?",
+       "options": [
+        "24",
+        "26",
+        "28",
+        "30",
+        "32"
+       ],
+       "answer": 2,
+       "narration": "Grubu iki bölgeye ayıralım: yalnız İngilizce bilenler ve Almanca bilenler.",
+       "steps": [
+        {
+         "text": "Almanca bilen $G$; yalnız İngilizce $3G - 8$",
+         "narration": "Almanca bilenlere G diyelim; buna iki dili bilenler de dahil. Yalnız İngilizce bilenler 3G eksi 8."
+        },
+        {
+         "text": "Herkes en az birini biliyor: $(3G - 8) + G = 40 \\Rightarrow G = 12$",
+         "narration": "Herkes ya yalnız İngilizce biliyor ya da Almanca biliyor; iki bölge birlikte 40 kişi. 4G eksi 8, 40; G, 12."
+        },
+        {
+         "text": "Yalnız İngilizce: $3 \\cdot 12 - 8 = 28$. Cevap **C**.",
+         "narration": "Yalnız İngilizce bilenler 3 çarpı 12 eksi 8, 28 kişi. Cevap C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM'nin en az birini yapanlarla yalnız birini yapanları ilişkilendiren kalıbı örnek alındı; durum ve sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "30 öğrencili bir sınıfta her öğrenci basketbol, voleybol ve futboldan en az birini oynuyor. Voleybol oynayan 14 öğrenci var. Voleybol oynamayan ama futbol oynayan öğrenci sayısı 8'dir. Buna göre yalnız basketbol oynayan kaç öğrenci vardır?",
+       "options": [
+        "6",
+        "8",
+        "10",
+        "12",
+        "14"
+       ],
+       "answer": 1,
+       "narration": "Sınıfı voleybol oynayanlar ve oynamayanlar diye ikiye ayıralım.",
+       "steps": [
+        {
+         "text": "Voleybol oynamayan: $30 - 14 = 16$",
+         "narration": "Herkes en az bir spor oynuyor. Voleybol oynamayanlar 30 eksi 14, 16 kişi."
+        },
+        {
+         "text": "Bu 16 kişi: futbol oynayanlar (8) ve **futbol oynamayanlar**",
+         "narration": "Voleybol oynamayan 16 kişinin 8'i futbol oynuyor. Geri kalan 8 kişi ne voleybol ne futbol oynuyor."
+        },
+        {
+         "text": "Ne voleybol ne futbol ⇒ **yalnız basketbol**: 8. Cevap **B**.",
+         "narration": "Herkes en az bir spor oynadığına göre bu 8 kişi yalnız basketbol oynar. Cevap B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM'nin üç etkinlikten en az birini yapanlar kalıbı örnek alındı; durum ve sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "n elemanlı kümenin 2 üzeri n alt kümesi vardır.",
+    "Kararı verilmiş elemanları çıkar, kalanlara bak.",
+    "En az biri: hepsi eksi hiçbiri.",
+    "Birleşimde ortak elemanları bir kez say.",
+    "A fark B: A’da olup B’de olmayan.",
+    "Kartezyen çarpımda sıra önemli; eleman sayısı çarpımdır.",
+    "Küme problemlerinde her kişi tek bir bölgede sayılır."
+   ],
+   "warnings": [
+    "Boş küme ve kümenin **kendisi** de alt kümedir.",
+    "$\\{\\emptyset\\}$ boş küme **değildir**.",
+    "Aralık uçlarında **dahil mi, hariç mi** dikkat et."
+   ],
+   "narration": "Hadi toparlayalım. Bir kümeyi liste ya da ortak özellikle yazarsın; ortak özellikle verilen kümede elemanları sayarken aralığın uçlarına dikkat edersin. n elemanlı bir kümenin 2 üzeri n alt kümesi vardır; boş küme ve kümenin kendisi de sayılır. Bazı elemanların kararı verilmişse yalnız kalanlara bakarsın; en az biri bulunsun denirse hepsinden hiçbirinin bulunmadığını çıkarırsın. Birleşimde ortak elemanları bir kez sayarsın. Kartezyen çarpımda sıra önemlidir. Küme problemlerinde Venn şemasını bölgelere ayırır, her kişiyi tek bir bölgede sayarsın. Bir sonraki derste işlem ve modüler aritmetiğe geçiyoruz."
+  }
+ },
+ "short": {
+  "hook": "3 elemanlı kümenin kaç alt kümesi var?",
+  "cards": [
+   {
+    "kind": "term",
+    "term": "Alt küme sayısı",
+    "definition": "**2 üzeri n**"
+   },
+   {
+    "kind": "warning",
+    "text": "Boş küme **de alt kümedir**."
+   },
+   {
+    "kind": "fact",
+    "text": "Ortak elemanlar **bir kez** sayılır."
+   }
+  ],
+  "summary": [
+   "2 üzeri n",
+   "Hepsi eksi hiçbiri",
+   "Tek bölgede say"
+  ],
+  "rounds": [
+   {
+    "sentence": "{a, b, c}",
+    "question": "Kaç alt küme?",
+    "choices": [
+     "6",
+     "8"
+    ],
+    "answer": 1,
+    "why": "**2³ = 8**"
+   },
+   {
+    "sentence": "{∅}",
+    "question": "Boş küme mi?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "**Bir** elemanlı."
+   },
+   {
+    "sentence": "(1, 2) ile (2, 1)",
+    "question": "Aynı mı?",
+    "choices": [
+     "Aynı",
+     "Farklı"
+    ],
+    "answer": 1,
+    "why": "Sıra **önemli**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "kpss-matematik-kampi",
+  "name": "KPSS Matematik kampı",
+  "number": 14,
+  "total": 18,
+  "previous": "Problemler",
+  "next": "İşlem ve Modüler Aritmetik",
+  "promise": "Lisans, önlisans ve ortaöğretim KPSS Matematiğinin bütün konuları, çözümlü sorularla.",
+  "task": {
+   "items": [
+    "Bu dersteki **9 soruyu** kâğıtta yeniden çöz; küme problemlerinde Venn şemasını çiz.",
+    "Arkadaş grubundan **iki ya da üç alışkanlık** seç, Venn şemasında göster.",
+    "Uygulamada KPSS Kümeler testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bu dersteki 9 soruyu kâğıtta yeniden çöz; küme problemlerinde mutlaka Venn şemasını çiz. Sonra arkadaş grubundan iki ya da üç alışkanlık seç ve Venn şemasında göster. Ardından uygulamada yirmi soru çöz. Bir sonraki derste işlem ve modüler aritmetikle devam ediyoruz."
+  }
+ }
+}

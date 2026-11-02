@@ -1,6 +1,6 @@
 # YouTube metni: AYT Edebiyat kampı · Ders 7 · Divan Edebiyatı
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Edebiyat/07_Divan_Edebiyati/Divan_Edebiyati_YouTube.mp4` (4K) · Kapak: `Divan_Edebiyati_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Edebiyat/07_Divan_Edebiyati/Divan_Edebiyati_YouTube.mp4` (4K) · Kapak: `Divan_Edebiyati_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

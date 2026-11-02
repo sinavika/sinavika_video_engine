@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 13 · Cümlenin Ögeleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Turkce/13_Cumlenin_Ogeleri/Cumlenin_Ogeleri_YouTube.mp4` (4K) · Kapak: `Cumlenin_Ogeleri_YouTube_Kapak.jpg` (kamp kapağı).
+Video: `Outputs/Videos/YKS/TYT/Turkce/13_Cumlenin_Ogeleri/Cumlenin_Ogeleri_YouTube.mp4` (4K, 16:05) · Kapak: `Cumlenin_Ogeleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 
@@ -27,7 +27,7 @@ Bu derste:
 2. Bir cümle kur: içinde gizli özne ve belirtisiz nesne olsun.
 3. Sınavika'da Cümlenin Ögeleri testinden 20 soru çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz.
 
-⏮️ Önceki ders, Fiiller: (yayın linki)
+⏮️ Önceki ders, Fiiller: https://youtu.be/w3t_qSpCQsc
 ⏭️ Sıradaki ders: Cümle Türleri. Kanala abone ol, hiçbir dersi kaçırma! 🔔
 🗺️ Kampı baştan izle, Bölüm 0: https://youtu.be/-YSeFFxDOhM
 
@@ -37,7 +37,16 @@ Google Play: https://play.google.com/store/apps/details?id=com.sinavika.mobile
 Web: https://sinavika.com
 
 Bölümler:
-(render sonrası `Cumlenin_Ogeleri_YouTube.chapters.txt` buraya yapıştırılır; bölüm başlıkları: Giriş, Cümle ve yüklem, Özne ve çeşitleri, Nesne, Yer tamlayıcısı, Zarf tümleci, Cümle dışı unsurlar, Öge dizilişini bulmak, Özet, Kamp görevi)
+0:00 Giriş
+0:44 Cümle ve yüklem
+1:56 Özne ve çeşitleri
+3:26 Nesne
+5:56 Yer tamlayıcısı
+8:06 Zarf tümleci
+9:43 Cümle dışı unsurlar
+10:14 Öge dizilişini bulmak
+15:07 Özet
+15:34 Kamp görevi
 
 #TYT #YKS #TYTTürkçe #CümleninÖgeleri #Sınavika
 
@@ -52,3 +61,7 @@ TYT Türkçe Kampı | Sınavika · YKS Kampı | Sınavika
 ## Ayarlar
 
 Kategori Eğitim · dil Türkçe · çocuklara özel değil · ücretli tanıtım yok · yapay zekâ beyanı önceki derslerle aynı · yayın saati sahibin kararı (öneri: 8 Kasım 19:00).
+
+## Yükleme (1 Kasım 2026)
+
+Videoyu sahip yükledi ve yayın gününü kendisi seçti: https://youtu.be/FWx70fwDQW8 · herkese açık 9 Kasım 2026 (planlı). Studio'da girildi ve sunucudan yeniden okunarak doğrulandı: başlık A (sahip: "A/B testini açma, varsayılanı yaz"; B ve C kullanılmadı), yukarıdaki açıklama (bölümler ve önceki ders bağlantısıyla), kapak `Cumlenin_Ogeleri_YouTube_Kapak.png`, iki oynatma listesi, etiketler, dil Türkçe, kategori Eğitim, ücretli tanıtım yok, yapay zekâ beyanı "Hayır", bitiş ekranı Ders 4'ten içe aktarıldı (abone ol + en son yükleme).

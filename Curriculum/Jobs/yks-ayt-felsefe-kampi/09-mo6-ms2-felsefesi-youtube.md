@@ -1,6 +1,6 @@
 # YouTube metni: AYT Felsefe kampı · Ders 9 · MÖ 6. Yüzyıl – MS 2. Yüzyıl Felsefesi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Felsefe/09_Mo6_Ms2_Felsefesi/Mo6_Ms2_Felsefesi_YouTube.mp4` (4K) · Kapak: `Mo6_Ms2_Felsefesi_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Felsefe/09_Mo6_Ms2_Felsefesi/Mo6_Ms2_Felsefesi_YouTube.mp4` (4K) · Kapak: `Mo6_Ms2_Felsefesi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

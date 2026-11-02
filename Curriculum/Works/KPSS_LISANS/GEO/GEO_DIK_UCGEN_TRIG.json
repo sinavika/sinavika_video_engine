@@ -1,0 +1,2393 @@
+{
+ "topic": {
+  "id": "EF872058-9571-4044-8865-A6A0D96EAE9A",
+  "category": "KPSS_LISANS",
+  "lesson": "GEO",
+  "code": "GEO_DIK_UCGEN_TRIG"
+ },
+ "title": "Dik Üçgen ve Trigonometri",
+ "lessonName": "Geometri",
+ "exams": [
+  "KPSS"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/KPSS/GEO/GEO_DIK_UCGEN_TRIG.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Aynı üçgenler, iki kare",
+   "narration": "Kenarı aynı iki kareye aynı dört dik üçgeni iki farklı biçimde yerleştir. Birinde ortada tek bir kare kalır, öbüründe iki küçük kare. Kalan alanlar eşit olmak zorunda; işte Pisagor teoremi bu kadar. Bu derste Pisagor'dan Öklid bağıntılarına, özel dik üçgenlerden trigonometrik oranlara kadar dik üçgenin bütün araçlarını göreceğiz."
+  },
+  "objectives": [
+   "Pisagor teoremini ve üçlülerini kullanmak",
+   "Öklid bağıntılarını uygulamak",
+   "30-60-90 ve 45-45-90 üçgenlerinde kenar bulmak",
+   "Trigonometrik oranları dik üçgenden okumak",
+   "Özel açıların oranlarıyla hesap yapmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_DIK_UCGEN_TRIG_01",
+    "subtopics": [],
+    "title": "Pisagor teoremi",
+    "narration": "Dik üçgende hipotenüsün karesi, dik kenarların kareleri toplamına eşittir. Bunu ezberlemek yerine görelim.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Aynı dört üçgen, iki dizilim",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.8,
+        -1,
+        16.8,
+        7.8
+       ],
+       "points": [
+        {
+         "id": "O1",
+         "at": [
+          0,
+          0
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "O2",
+         "at": [
+          7,
+          0
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "O3",
+         "at": [
+          7,
+          7
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "O4",
+         "at": [
+          0,
+          7
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "K1",
+         "at": [
+          4,
+          0
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "K2",
+         "at": [
+          7,
+          4
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "K3",
+         "at": [
+          3,
+          7
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "K4",
+         "at": [
+          0,
+          3
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R1",
+         "at": [
+          9,
+          0
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R2",
+         "at": [
+          16,
+          0
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R3",
+         "at": [
+          16,
+          7
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R4",
+         "at": [
+          9,
+          7
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "U1",
+         "at": [
+          13,
+          0
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "U2",
+         "at": [
+          16,
+          4
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "U3",
+         "at": [
+          13,
+          4
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "U4",
+         "at": [
+          13,
+          7
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "U5",
+         "at": [
+          9,
+          4
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "O1",
+         "to": "K1",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "K1",
+         "to": "O2",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "O2",
+         "to": "K2",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "K2",
+         "to": "O3",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "O3",
+         "to": "O4",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "O4",
+         "to": "O1",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "K1",
+         "to": "K2",
+         "label": "c",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "K2",
+         "to": "K3",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "K3",
+         "to": "K4",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "K4",
+         "to": "K1",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "R1",
+         "to": "R2",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "R2",
+         "to": "R3",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "R3",
+         "to": "R4",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "R4",
+         "to": "R1",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "U1",
+         "to": "U4",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "U5",
+         "to": "U2",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "U1",
+         "to": "U2",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "R4",
+         "to": "U3",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "O1",
+          "K1",
+          "K4"
+         ],
+         "fill": true,
+         "id": "t1",
+         "shade": 3
+        },
+        {
+         "points": [
+          "O2",
+          "K2",
+          "K1"
+         ],
+         "fill": true,
+         "id": "t2",
+         "shade": 3
+        },
+        {
+         "points": [
+          "O3",
+          "K3",
+          "K2"
+         ],
+         "fill": true,
+         "id": "t3",
+         "shade": 3
+        },
+        {
+         "points": [
+          "O4",
+          "K4",
+          "K3"
+         ],
+         "fill": true,
+         "id": "t4",
+         "shade": 3
+        },
+        {
+         "points": [
+          "K1",
+          "K2",
+          "K3",
+          "K4"
+         ],
+         "fill": true,
+         "id": "c2",
+         "label": "c²",
+         "shade": 1
+        },
+        {
+         "points": [
+          "R1",
+          "U1",
+          "U3",
+          "U5"
+         ],
+         "fill": true,
+         "id": "b2",
+         "label": "b²",
+         "shade": 1
+        },
+        {
+         "points": [
+          "U3",
+          "U2",
+          "R3",
+          "U4"
+         ],
+         "fill": true,
+         "id": "a2",
+         "label": "a²",
+         "shade": 1
+        },
+        {
+         "points": [
+          "U5",
+          "U3",
+          "R4"
+         ],
+         "fill": true,
+         "id": "r1",
+         "copyOf": "t1",
+         "shade": 3
+        },
+        {
+         "points": [
+          "R2",
+          "U2",
+          "U1"
+         ],
+         "fill": true,
+         "id": "r2",
+         "copyOf": "t2",
+         "shade": 3
+        },
+        {
+         "points": [
+          "U4",
+          "R4",
+          "U3"
+         ],
+         "fill": true,
+         "id": "r3",
+         "copyOf": "t3",
+         "shade": 3
+        },
+        {
+         "points": [
+          "U3",
+          "U1",
+          "U2"
+         ],
+         "fill": true,
+         "id": "r4",
+         "copyOf": "t4",
+         "shade": 3
+        }
+       ],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "Soldaki kareye dört eş dik üçgen yerleştirdik. Ortada kenarı c olan eğik bir kare kaldı: alanı c kare.",
+        "show": [],
+        "focus": [
+         "c2",
+         "t1",
+         "t2",
+         "t3",
+         "t4"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Aynı dört üçgeni sağdaki kareye taşıyalım; bu kez ikişer ikişer dikdörtgen olacak biçimde diziyoruz.",
+        "show": [
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ],
+        "focus": [
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Sağda geriye iki kare kaldı: kenarı a olan a kare ve kenarı b olan b kare.",
+        "show": [],
+        "focus": [
+         "a2",
+         "b2"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "İki büyük kare aynı, içlerindeki dört üçgen aynı. Demek ki kalan alanlar da eşit: c kare eşittir a kare artı b kare.",
+        "show": [],
+        "focus": [
+         "c2",
+         "a2",
+         "b2"
+        ],
+        "note": "c² = a² + b²",
+        "swap": []
+       }
+      ],
+      "narration": "Kenarı a artı b olan iki eş kare çizelim."
+     },
+     {
+      "kind": "rule",
+      "title": "Pisagor teoremi",
+      "items": [
+       "Dik üçgende: $a^2 + b^2 = c^2$ ($c$ hipotenüs, dik açının karşısı).",
+       "Sık çıkan üçlüler: $3, 4, 5$ · $5, 12, 13$ · $8, 15, 17$ · $7, 24, 25$ ve katları.",
+       "Hipotenüs en uzun kenardır; dik kenarlardan her birinden uzundur."
+      ],
+      "beats": [],
+      "narration": "Dik üçgende dik kenarların kareleri toplamı, hipotenüsün karesine eşittir. Hipotenüs dik açının karşısındaki en uzun kenardır. KPSS sayıları genellikle bilinen üçlülerden seçer: 3, 4, 5; 5, 12, 13; 8, 15, 17; 7, 24, 25 ve bunların katları. Bu üçlüleri tanırsan hesap yapmadan sonucu görürsün."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir göldeki kamışın ucu, kamış dikken su yüzeyinin 8 cm üstündedir. Rüzgâr kamışı eğince ucu, kamışın su yüzeyini kestiği yerden yatayda 12 cm uzakta ve yüzeyden 2 cm yukarıda kalıyor. Kamış eğilirken bükülmediğine göre gölün derinliği $x$ kaç cm'dir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -2.4,
+         -1.6,
+         15.2,
+         16.4
+        ],
+        "points": [
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ],
+          "label": "O",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           7
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "A",
+          "at": [
+           0,
+           15
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           12,
+           7
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           12,
+           9
+          ],
+          "label": "D",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "W1",
+          "at": [
+           -2,
+           7
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "W2",
+          "at": [
+           14.6,
+           7
+          ],
+          "label": "su",
+          "hidden": false,
+          "dot": false,
+          "caption": false
+         },
+         {
+          "id": "F1",
+          "at": [
+           -2,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "F2",
+          "at": [
+           14.6,
+           0
+          ],
+          "label": "dip",
+          "hidden": false,
+          "dot": false,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "W1",
+          "to": "W2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "F1",
+          "to": "F2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "O",
+          "to": "B",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "A",
+          "label": "8",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "12",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "label": "2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "O",
+          "to": "D",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "B",
+          "from": "C",
+          "to": "O",
+          "right": true,
+          "arcs": 1
+         },
+         {
+          "at": "C",
+          "from": "B",
+          "to": "D",
+          "right": true,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "5",
+        "6",
+        "7",
+        "9",
+        "15"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Kamış: $|OA| = |OD| = x + 8$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kamışın boyu dikken x artı 8. Eğilince de boyu aynı: OD, x artı 8."
+        },
+        {
+         "text": "$(x + 8)^2 = 12^2 + (x + 2)^2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "O'dan D'ye bir dik üçgen kuralım: yatay kenar 12, dikey kenar x artı 2. Pisagor: x artı 8'in karesi, 12 kare artı x artı 2'nin karesi."
+        },
+        {
+         "text": "$x^2 + 16x + 64 = 144 + x^2 + 4x + 4 \\Rightarrow 12x = 84$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kareleri açalım: x kare artı 16x artı 64, 144 artı x kare artı 4x artı 4. x kareler gider: 12x, 84."
+        },
+        {
+         "text": "$x = 7$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x, 7 cm. Sağlama: kamış 15 cm; 12 kare artı 9 kare, 144 artı 81, 225; 15'in karesi de 225. Bu, 3, 4, 5 üçlüsünün 3 katı. Cevap C. E şıkkındaki 15 kamışın boyudur; soru derinliği soruyor."
+        }
+       ],
+       "narration": "Kamışın boyu değişmiyor: dikken x artı 8, eğikken bir dik üçgenin hipotenüsü.",
+       "origin": {
+        "changes": "ÖSYM KPSS Lisans 2009'daki su bitkisinin durgun ve rüzgârlı hâli kalıbı örnek alındı; bağlam ve uzunluklar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DIK_UCGEN_TRIG_02",
+    "subtopics": [],
+    "title": "Öklid bağıntıları",
+    "narration": "Dik açıdan hipotenüse inen yükseklik, üçgeni iki küçük dik üçgene ayırır. Üçü de birbirine benzer.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Üç benzer üçgen",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        13.9,
+        6.9
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          4,
+          6
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          13,
+          0
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "H",
+         "at": [
+          4,
+          0
+         ],
+         "label": "H",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "c",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "H",
+         "label": "p",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "H",
+         "to": "C",
+         "label": "k",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "H",
+         "label": "h",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "H",
+          "B",
+          "A"
+         ],
+         "fill": true,
+         "id": "sol",
+         "shade": 1
+        },
+        {
+         "points": [
+          "H",
+          "A",
+          "C"
+         ],
+         "fill": true,
+         "id": "sag",
+         "copyOf": "sol",
+         "shade": 1
+        }
+       ],
+       "circles": [],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "right": true,
+         "arcs": 1
+        },
+        {
+         "at": "H",
+         "from": "C",
+         "to": "A",
+         "right": true,
+         "arcs": 1
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "AH yüksekliği, hipotenüsü p ve k parçalarına ayırıyor.",
+        "show": [],
+        "focus": [
+         "AH",
+         "BH",
+         "HC"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Soldaki HBA üçgenini döndürüp büyütelim: sağdaki HAC üçgeninin tam üstüne oturuyor. İki üçgen benzer.",
+        "show": [
+         "sag"
+        ],
+        "focus": [
+         "sag"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Benzerlikten p bölü h, h bölü k'ye eşit; yani h kare, p çarpı k.",
+        "show": [],
+        "focus": [
+         "AH"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "A'daki dik açıdan hipotenüse yüksekliği indirelim."
+     },
+     {
+      "kind": "rule",
+      "title": "Öklid bağıntıları",
+      "items": [
+       "$|AH|^2 = |BH| \\cdot |HC|$: $h^2 = p \\cdot k$.",
+       "$|AB|^2 = |BH| \\cdot |BC|$ ve $|AC|^2 = |HC| \\cdot |BC|$.",
+       "Kenarın karesi = komşu parça · hipotenüsün tamamı."
+      ],
+      "beats": [],
+      "narration": "Öklid bağıntıları bu benzerlikten gelir. Yüksekliğin karesi, hipotenüs üzerindeki iki parçanın çarpımıdır: h kare eşittir p çarpı k. Bir dik kenarın karesi ise, o kenarın yanındaki parça ile hipotenüsün tamamının çarpımıdır: AB kare, BH çarpı BC; AC kare, HC çarpı BC."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $m(\\widehat{BAC}) = 90°$ ve $[AH] \\perp [BC]$'dir. $|BH| = 4$ birim ve $|HC| = 9$ birim olduğuna göre $|AH| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         13.9,
+         6.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           4,
+           6
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           13,
+           0
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "H",
+          "at": [
+           4,
+           0
+          ],
+          "label": "H",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "H",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "H",
+          "to": "C",
+          "label": "9",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "H",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "right": true,
+          "arcs": 1
+         },
+         {
+          "at": "H",
+          "from": "C",
+          "to": "A",
+          "right": true,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "6",
+        "8",
+        "9",
+        "13",
+        "36"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$x^2 = 4 \\cdot 9 = 36$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x kare, 4 çarpı 9, yani 36."
+        },
+        {
+         "text": "$x = 6$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x, 6 birim. Cevap A. E şıkkındaki 36, x'in karesidir; karekök almayı unutma. D şıkkındaki 13 ise hipotenüsün tamamıdır."
+        }
+       ],
+       "narration": "Yüksekliğin karesi, iki parçanın çarpımı.",
+       "origin": {
+        "changes": "Havuzdaki Öklid yükseklik bağıntısı kalıbı örnek alındı; parçalar bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Aynı şekilde $|BH| = 4$ birim ve $|HC| = 9$ birim olduğuna göre $|AC| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         13.9,
+         6.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           4,
+           6
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           13,
+           0
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "H",
+          "at": [
+           4,
+           0
+          ],
+          "label": "H",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "H",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "H",
+          "to": "C",
+          "label": "9",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "H",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "right": true,
+          "arcs": 1
+         },
+         {
+          "at": "H",
+          "from": "C",
+          "to": "A",
+          "right": true,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "$\\sqrt{13}$",
+        "$2\\sqrt{13}$",
+        "$6$",
+        "$9$",
+        "$3\\sqrt{13}$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$|BC| = 4 + 9 = 13$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Hipotenüs BC, 4 artı 9, 13 birim."
+        },
+        {
+         "text": "$x^2 = |HC| \\cdot |BC| = 9 \\cdot 13 = 117$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "AC'nin yanındaki parça HC, 9 birim. x kare, 9 çarpı 13, 117."
+        },
+        {
+         "text": "$x = \\sqrt{117} = 3\\sqrt{13}$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "117, 9 çarpı 13; karekökü 3 kök 13. Cevap E. B şıkkındaki 2 kök 13, öbür dik kenar AB'dir: 4 çarpı 13'ün karekökü. Parçayı karıştırma: AC'nin yanındaki parça HC'dir."
+        }
+       ],
+       "narration": "Dik kenarın karesi: yanındaki parça çarpı hipotenüsün tamamı.",
+       "origin": {
+        "changes": "Havuzdaki Öklid dik kenar bağıntısı kalıbı örnek alındı; parçalar bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DIK_UCGEN_TRIG_03",
+    "subtopics": [],
+    "title": "30-60-90 üçgeni",
+    "narration": "Eşkenar üçgeni yüksekliğiyle ikiye bölünce iki özel dik üçgen çıkar: 30-60-90 üçgenleri.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Eşkenar üçgenin yarısı",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        4.9,
+        4.364101615137755
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2,
+          3.46
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          4,
+          0
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "H",
+         "at": [
+          2,
+          0
+         ],
+         "label": "H",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "2a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "H",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "H",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "H",
+         "label": "a√3",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "H"
+         ],
+         "fill": true,
+         "id": "yarim",
+         "shade": 2
+        }
+       ],
+       "circles": [],
+       "angles": [
+        {
+         "at": "B",
+         "from": "H",
+         "to": "A",
+         "label": "60°",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "A",
+         "from": "B",
+         "to": "H",
+         "label": "30°",
+         "right": false,
+         "arcs": 1,
+         "id": "a30"
+        },
+        {
+         "at": "H",
+         "from": "B",
+         "to": "A",
+         "right": true,
+         "arcs": 1
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Üç kenar 2a, üç açı 60 derece. A'dan BC'ye yüksekliği indirelim.",
+        "show": [],
+        "focus": [
+         "AH"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Yükseklik tabanı ortalar: BH, a. A'daki 60 derece de ikiye bölünür: 30 derece.",
+        "show": [],
+        "focus": [
+         "BH",
+         "a30"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Soldaki yarım bir 30-60-90 üçgeni: 30 derecenin karşısı a, hipotenüs 2a, 60 derecenin karşısı Pisagor'dan a kök 3.",
+        "show": [],
+        "focus": [
+         "yarim"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Kenarı 2a olan bir eşkenar üçgen alalım."
+     },
+     {
+      "kind": "rule",
+      "title": "30-60-90 üçgeni",
+      "items": [
+       "Kenarlar: $30°$'nin karşısı $a$, $60°$'nin karşısı $a\\sqrt{3}$, hipotenüs $2a$.",
+       "Kısaca: $1 : \\sqrt{3} : 2$. $30°$'nin karşısı hipotenüsün **yarısıdır**."
+      ],
+      "beats": [],
+      "narration": "30-60-90 üçgeninde kenarlar 1, kök 3 ve 2 ile orantılıdır. 30 derecenin karşısındaki kenar a ise 60 derecenin karşısı a kök 3, hipotenüs 2a olur. En çok kullanılan cümle şu: 30 derecenin karşısındaki kenar, hipotenüsün yarısıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki $ABC$ dik üçgeninde $m(\\widehat{ACB}) = 90°$, $m(\\widehat{BAC}) = 30°$ ve $|AB| = 10$ birimdir. Buna göre $|AC| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         9.6,
+         5.9
+        ],
+        "points": [
+         {
+          "id": "C",
+          "at": [
+           0,
+           0
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "A",
+          "at": [
+           8.66,
+           0
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           5
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "10",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "A",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "C",
+          "to": "B",
+          "label": "30°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "C",
+          "from": "A",
+          "to": "B",
+          "right": true,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "5",
+        "$5\\sqrt{3}$",
+        "10",
+        "$10\\sqrt{3}$",
+        "$5\\sqrt{2}$"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$|BC| = \\frac{10}{2} = 5$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "30 derecenin karşısı BC; hipotenüsün yarısı, 5 birim."
+        },
+        {
+         "text": "$x = 5\\sqrt{3}$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "AC, 60 derecenin karşısı: 5 kök 3. Cevap B. A şıkkındaki 5, 30 derecenin karşısıdır; x ise 60 derecenin karşısında. Kenar ile açıyı eşleştirmek bu sorunun tamamıdır."
+        }
+       ],
+       "narration": "30-60-90 üçgeni: önce 30 derecenin karşısını bulalım.",
+       "origin": {
+        "changes": "Havuzdaki 30-60-90 üçgeninde kenar buldurma kalıbı örnek alındı; hipotenüs bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki $ABCD$ karesinin bir kenarı 6 birimdir. $EBC$ bir eşkenar üçgen ve $[EF] \\perp [AD]$ olduğuna göre $|EF| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         6.9,
+         6.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           6,
+           0
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           6
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           6
+          ],
+          "label": "D",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           0.8,
+           3
+          ],
+          "label": "E",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "F",
+          "at": [
+           0,
+           3
+          ],
+          "label": "F",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "F",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "B",
+          "from": "C",
+          "to": "E",
+          "label": "60°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "C",
+          "from": "E",
+          "to": "B",
+          "label": "60°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "F",
+          "from": "E",
+          "to": "A",
+          "right": true,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "3",
+        "$3\\sqrt{3}$",
+        "$6 - 2\\sqrt{3}$",
+        "$6 - 3\\sqrt{3}$",
+        "$3 - \\sqrt{3}$"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$EBC$ eşkenar, kenar 6: yükseklik $\\frac{6\\sqrt{3}}{2} = 3\\sqrt{3}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "EBC eşkenar üçgen, kenarı 6. Yüksekliği, yarısı 30-60-90 üçgeni olduğu için 3 kök 3."
+        },
+        {
+         "text": "$x = 6 - 3\\sqrt{3}$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "E, BC'den 3 kök 3 uzakta; AD'ye uzaklığı karenin kenarından kalan: 6 eksi 3 kök 3. Cevap D. B şıkkındaki 3 kök 3, E'nin BC'ye uzaklığıdır; soru AD'ye uzaklığı soruyor."
+        }
+       ],
+       "narration": "E'nin BC'ye uzaklığı eşkenar üçgenin yüksekliği; x, karenin kenarından kalan.",
+       "origin": {
+        "changes": "ÖSYM KPSS Lisans 2009'daki kare içinde özel açılı üçgenle uzaklık kalıbı örnek alındı; şekil ve sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DIK_UCGEN_TRIG_04",
+    "subtopics": [],
+    "title": "45-45-90 üçgeni",
+    "narration": "Kareyi köşegeniyle ikiye bölünce ikizkenar dik üçgenler çıkar: 45-45-90.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Karenin yarısı",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        3.9,
+        3.9
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          3,
+          0
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          3,
+          3
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          0,
+          3
+         ],
+         "label": "D",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "a√2",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "fill": true,
+         "id": "yarim",
+         "shade": 2
+        }
+       ],
+       "circles": [],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "label": "45°",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "right": true,
+         "arcs": 1
+        },
+        {
+         "at": "C",
+         "from": "A",
+         "to": "B",
+         "label": "45°",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Köşegen kareyi iki eş üçgene böler; köşelerdeki dik açılar ikiye bölünür: 45 derece.",
+        "show": [],
+        "focus": [
+         "AC"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Yarım üçgenin dik kenarları a. Hipotenüs Pisagor'dan: a kare artı a kare, 2a kare; karekökü a kök 2.",
+        "show": [],
+        "focus": [
+         "yarim",
+         "AC"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Kenarı a olan bir kare ve köşegeni."
+     },
+     {
+      "kind": "rule",
+      "title": "45-45-90 üçgeni",
+      "items": [
+       "Kenarlar: $a$, $a$, $a\\sqrt{2}$; kısaca $1 : 1 : \\sqrt{2}$.",
+       "Karenin köşegeni: kenar $\\cdot \\sqrt{2}$."
+      ],
+      "beats": [],
+      "narration": "45-45-90 üçgeni ikizkenar dik üçgendir; kenarları 1, 1 ve kök 2 ile orantılıdır. Dik kenarlar a ise hipotenüs a kök 2; bu, kenarı a olan karenin köşegenidir. Tersine, hipotenüs verilirse dik kenarı bulmak için kök 2'ye bölersin."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki ikizkenar dik üçgenin hipotenüsü 10 birim olduğuna göre alanı kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         10.9,
+         5.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           10,
+           0
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           5,
+           5
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "10",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": false,
+          "ticks": 1
+         },
+         {
+          "from": "C",
+          "to": "B",
+          "dashed": false,
+          "ticks": 1
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "C",
+          "from": "A",
+          "to": "B",
+          "right": true,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "25",
+        "$25\\sqrt{2}$",
+        "50",
+        "$50\\sqrt{2}$",
+        "100"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Dik kenar $\\frac{10}{\\sqrt{2}} = 5\\sqrt{2}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dik kenar, 10 bölü kök 2, yani 5 kök 2."
+        },
+        {
+         "text": "Alan $\\frac{5\\sqrt{2} \\cdot 5\\sqrt{2}}{2} = \\frac{50}{2} = 25$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Alan, iki dik kenarın çarpımının yarısı: 5 kök 2 çarpı 5 kök 2, 50; yarısı 25 birimkare. Cevap A. C şıkkındaki 50, ikiye bölmeyi unutmaktır."
+        }
+       ],
+       "narration": "Önce dik kenarları bulalım: hipotenüs kök 2'ye bölünür.",
+       "origin": {
+        "changes": "Havuzdaki hipotenüsü verilen ikizkenar dik üçgenin alanı kalıbı örnek alındı; hipotenüs bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DIK_UCGEN_TRIG_05",
+    "subtopics": [
+     "GEO_DIK_UCGEN_TRIG_06",
+     "GEO_DIK_UCGEN_TRIG_07",
+     "GEO_DIK_UCGEN_TRIG_08",
+     "GEO_DIK_UCGEN_TRIG_09"
+    ],
+    "title": "Trigonometrik oranlar",
+    "narration": "Dik üçgende bir dar açıya göre kenarların oranları o açının trigonometrik oranlarıdır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Karşı, komşu, hipotenüs",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        9.4,
+        6.9
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          8,
+          0
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          8,
+          6
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "komşu",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "karşı",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "A",
+         "label": "hipotenüs",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "label": "α",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "right": true,
+         "arcs": 1
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "α'nın karşısındaki dik kenar karşı, yanındaki dik kenar komşu, en uzun kenar hipotenüs.",
+        "show": [],
+        "focus": [
+         "BC",
+         "AB",
+         "CA"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Sinüs karşı bölü hipotenüs: 6 bölü 10. Kosinüs komşu bölü hipotenüs: 8 bölü 10.",
+        "show": [],
+        "focus": [
+         "BC",
+         "CA"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Tanjant karşı bölü komşu: 6 bölü 8. Kotanjant komşu bölü karşı: 8 bölü 6.",
+        "show": [],
+        "focus": [
+         "BC",
+         "AB"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bir dar açı seçelim: α."
+     },
+     {
+      "kind": "rule",
+      "title": "Oranlar",
+      "items": [
+       "$\\sin\\alpha = \\frac{\\text{karşı}}{\\text{hipotenüs}}$, $\\cos\\alpha = \\frac{\\text{komşu}}{\\text{hipotenüs}}$",
+       "$\\tan\\alpha = \\frac{\\text{karşı}}{\\text{komşu}}$, $\\cot\\alpha = \\frac{\\text{komşu}}{\\text{karşı}}$; $\\tan\\alpha \\cdot \\cot\\alpha = 1$",
+       "$\\sin\\alpha = \\cos(90° - \\alpha)$: bir açının sinüsü, tümlerinin kosinüsüdür."
+      ],
+      "beats": [],
+      "narration": "Dik üçgende bir dar açının sinüsü, karşı kenarın hipotenüse oranıdır; kosinüsü komşu kenarın hipotenüse oranıdır. Tanjant karşı bölü komşu, kotanjant komşu bölü karşıdır; tanjant ile kotanjantın çarpımı 1'dir. Bir de şu: üçgendeki öbür dar açı, alfanın tümleridir ve onun için karşı ile komşu yer değiştirir. Bu yüzden bir açının sinüsü, tümlerinin kosinüsüne eşittir."
+     },
+     {
+      "kind": "concept",
+      "title": "Özel açılar",
+      "text": "$30°$, $45°$ ve $60°$'nin oranları özel üçgenlerden gelir; ezberlemek yerine üçgenden oku.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "oran",
+        "$30°$",
+        "$45°$",
+        "$60°$"
+       ],
+       "rows": [
+        [
+         "sin",
+         "$\\frac{1}{2}$",
+         "$\\frac{\\sqrt{2}}{2}$",
+         "$\\frac{\\sqrt{3}}{2}$"
+        ],
+        [
+         "cos",
+         "$\\frac{\\sqrt{3}}{2}$",
+         "$\\frac{\\sqrt{2}}{2}$",
+         "$\\frac{1}{2}$"
+        ],
+        [
+         "tan",
+         "$\\frac{\\sqrt{3}}{3}$",
+         "$1$",
+         "$\\sqrt{3}$"
+        ],
+        [
+         "cot",
+         "$\\sqrt{3}$",
+         "$1$",
+         "$\\frac{\\sqrt{3}}{3}$"
+        ]
+       ]
+      },
+      "beats": [],
+      "narration": "30, 45 ve 60 derecenin oranlarını ezberlemek zorunda değilsin; az önceki iki özel üçgenden okursun. Tabloyu satır satır incele: sinüs 30, 30-60-90 üçgeninde 30 derecenin karşısı bölü hipotenüs, yani bir bölü iki. Sinüs 30 ile kosinüs 60'ın aynı olduğuna da dikkat et."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir dar açı için $\\sin\\alpha = \\frac{5}{13}$ olduğuna göre $\\cot\\alpha$ kaçtır?",
+       "options": [
+        "$\\frac{5}{12}$",
+        "$\\frac{5}{13}$",
+        "$\\frac{12}{5}$",
+        "$\\frac{12}{13}$",
+        "$\\frac{13}{5}$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Karşı $5$, hipotenüs $13$ $\\Rightarrow$ komşu $\\sqrt{13^2 - 5^2} = 12$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sinüs karşı bölü hipotenüs: karşı 5, hipotenüs 13. Komşu, Pisagor'dan: 169 eksi 25, 144; karekökü 12."
+        },
+        {
+         "text": "$\\cot\\alpha = \\frac{12}{5}$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kotanjant komşu bölü karşı: 12 bölü 5. Cevap C. A şıkkındaki 5 bölü 12 tanjanttır; kotanjant onun tersidir."
+        }
+       ],
+       "narration": "Bir dik üçgen kuralım: karşı 5, hipotenüs 13.",
+       "origin": {
+        "changes": "Havuzdaki bir oran verilip öbürünü buldurma kalıbı örnek alındı; üçlü bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$\\tan 60° \\cdot \\cot 30° - \\sin^2 45°$ ifadesinin değeri kaçtır?",
+       "options": [
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$\\frac{3}{2}$",
+        "$2$",
+        "$\\frac{5}{2}$"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$\\tan 60° = \\sqrt{3}$, $\\cot 30° = \\sqrt{3}$, $\\sin 45° = \\frac{\\sqrt{2}}{2}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Tanjant 60, kök 3; kotanjant 30 da kök 3; sinüs 45, kök 2 bölü 2."
+        },
+        {
+         "text": "$\\sqrt{3} \\cdot \\sqrt{3} - \\left(\\frac{\\sqrt{2}}{2}\\right)^2 = 3 - \\frac{1}{2}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kök 3 çarpı kök 3, 3. Kök 2 bölü 2'nin karesi, 2 bölü 4, yani yarım."
+        },
+        {
+         "text": "$= \\frac{5}{2}$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "3 eksi yarım, 5 bölü 2. Cevap E. Sinüs 45'in karesini almayı unutursan sonuç düzgün bir sayı çıkmaz; sinüs kare 45, yarımdır."
+        }
+       ],
+       "narration": "Değerleri özel üçgenlerden okuyup yerine yazalım.",
+       "origin": {
+        "changes": "Havuzdaki özel açıların değerleriyle ifade hesaplama kalıbı örnek alındı; ifade bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$2x + 10°$ ve $x + 20°$ dar açılardır. $\\sin(2x + 10°) = \\cos(x + 20°)$ olduğuna göre $x$ kaç derecedir?",
+       "options": [
+        "15",
+        "20",
+        "25",
+        "30",
+        "40"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$(2x + 10°) + (x + 20°) = 90°$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sinüs 2x artı 10, kosinüs x artı 20'ye eşit; bu iki dar açı tümler olmalı. Toplamları 90 derece."
+        },
+        {
+         "text": "$3x + 30° = 90° \\Rightarrow x = 20°$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "3x artı 30, 90: 3x, 60; x, 20 derece."
+        },
+        {
+         "text": "Sağlama: $\\sin 50° = \\cos 40°$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Açılar 50 ve 40 derece; sinüs 50, kosinüs 40'a eşittir. Cevap B. Açıları eşitleyip 2x artı 10, x artı 20 demek x'i 10 verir; şıklarda bile yok, çünkü sinüs ile kosinüs aynı açıda eşit olmaz, tümler açılarda eşit olur."
+        }
+       ],
+       "narration": "Bir açının sinüsü, tümlerinin kosinüsüdür. Sinüs ile kosinüs eşitse açılar tümlerdir.",
+       "origin": {
+        "changes": "Havuzdaki tümler açılarda sinüs ve kosinüs eşitliği kalıbı örnek alındı; ifadeler bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Dik üçgende a² + b² = c².",
+    "Öklid: h² = p·k; kenarın karesi = parça · hipotenüs.",
+    "30-60-90: 1 : √3 : 2.",
+    "45-45-90: 1 : 1 : √2.",
+    "sin = karşı/hipotenüs, cos = komşu/hipotenüs.",
+    "tan = karşı/komşu, cot = komşu/karşı."
+   ],
+   "warnings": [
+    "Öklid’de kenarın **yanındaki** parçayı al.",
+    "30°’nin karşısı hipotenüsün **yarısı**.",
+    "Kotanjant, tanjantın **tersi**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki **9 soruyu** kâğıtta şekilleri çizerek yeniden çöz.",
+    "Kâğıttan dört eş dik üçgen kes; iki dizilimle **Pisagor**’u kendin kur.",
+    "Uygulamada KPSS Dik Üçgen ve Trigonometri testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Pisagor teoremi ve yeniden dizilim ispatı (kenarı a + b olan iki karede aynı dört üçgen); sık üçlüler 3-4-5, 5-12-13, 8-15-17, 7-24-25 ve katları; bükülmeyen kamış gibi gerçek hayat kalıpları.",
+   "Öklid bağıntıları: h² = p·k, |AB|² = p·a, |AC|² = k·a; yüksekliğin ayırdığı üç benzer dik üçgen.",
+   "30-60-90 (1 : √3 : 2, 30°'nin karşısı hipotenüsün yarısı) eşkenar üçgenin yarısı olarak; 45-45-90 (1 : 1 : √2) karenin yarısı olarak; kare içinde eşkenar üçgenle uzaklık.",
+   "Trigonometrik oranlar sin, cos, tan, cot; tan·cot = 1; sin α = cos(90° − α); bir orandan öbürlerini dik üçgen kurarak bulma.",
+   "30°, 45°, 60°'nin oranları tablosu ve özel üçgenlerden okunuşu; özel açılı ifadelerin hesabı."
+  ]
+ }
+}

@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 12 · Fiiller
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Turkce/12_Fiiller/Fiiller_YouTube.mp4` (4K) · Kapak: `Fiiller_YouTube_Kapak.jpg` (kamp kapağı).
+Video: `Outputs/Videos/YKS/TYT/Turkce/12_Fiiller/Fiiller_YouTube.mp4` (4K, 16:24) · Kapak: `Fiiller_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 
@@ -27,7 +27,7 @@ Bu derste:
 2. İki cümle kur: birinde -ma isim-fiil, birinde olumsuzluk eki olsun.
 3. Sınavika'da Fiiller testinden 20 soru çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz.
 
-⏮️ Önceki ders, Sözcük Türleri: (yayın linki)
+⏮️ Önceki ders, Sözcük Türleri: https://youtu.be/rNCbvK2rrpo
 ⏭️ Sıradaki ders: Cümlenin Ögeleri. Kanala abone ol, hiçbir dersi kaçırma! 🔔
 🗺️ Kampı baştan izle, Bölüm 0: https://youtu.be/-YSeFFxDOhM
 
@@ -37,7 +37,16 @@ Google Play: https://play.google.com/store/apps/details?id=com.sinavika.mobile
 Web: https://sinavika.com
 
 Bölümler:
-(render sonrası `Fiiller_YouTube.chapters.txt` buraya yapıştırılır; bölüm başlıkları: Giriş, Fiil ve anlamı, Kipler, Kişi, olumsuzluk, soru, Ek fiil ve birleşik zaman, Yapılarına göre fiiller, Fiilimsiler, Fiilde çatı, Özet, Kamp görevi)
+0:00 Giriş
+0:51 Fiil ve anlamı
+2:32 Kipler
+4:51 Kişi, olumsuzluk, soru
+6:31 Ek fiil ve birleşik zaman
+8:13 Yapılarına göre fiiller
+8:41 Fiilimsiler
+13:20 Fiilde çatı
+15:22 Özet
+15:52 Kamp görevi
 
 #TYT #YKS #TYTTürkçe #Fiilimsiler #Sınavika
 
@@ -52,3 +61,7 @@ TYT Türkçe Kampı | Sınavika · YKS Kampı | Sınavika
 ## Ayarlar
 
 Kategori Eğitim · dil Türkçe · çocuklara özel değil · ücretli tanıtım yok · yapay zekâ beyanı önceki derslerle aynı · yayın saati sahibin kararı (öneri: 7 Kasım 19:00).
+
+## Yükleme (1 Kasım 2026)
+
+Videoyu sahip yükledi ve yayın gününü kendisi seçti: https://youtu.be/w3t_qSpCQsc · herkese açık 8 Kasım 2026 (planlı). Studio'da girildi ve sunucudan yeniden okunarak doğrulandı: başlık A (sahip: "A/B testini açma, varsayılanı yaz"; B ve C kullanılmadı), yukarıdaki açıklama (bölümler ve önceki ders bağlantısıyla), kapak `Fiiller_YouTube_Kapak.png`, iki oynatma listesi, etiketler, dil Türkçe, kategori Eğitim, ücretli tanıtım yok, yapay zekâ beyanı "Hayır", bitiş ekranı Ders 4'ten içe aktarıldı (abone ol + en son yükleme).

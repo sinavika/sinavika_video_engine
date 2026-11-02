@@ -3,8 +3,10 @@
  *
  *   npm run render -- --job samples/QuestionSolution.json
  *       Saves to Outputs/Videos under the next free number, e.g. 03_Geometri_Dik_Ucgende_Hipotenus.mp4
+ *       A job with an `output` (camp lessons: Outputs/Videos/YKS/TYT/Turkce/07_Tamlamalar/Tamlamalar_YouTube.mp4) is
+ *       saved at that place instead, with its cover and chapters beside it.
  *   npm run render -- --job samples/QuestionSolution.json --out out/video.mp4
- *       Writes exactly there instead.
+ *       Writes exactly there instead, the cover beside it (out/video_Kapak.png).
  *   npm run render -- --job job.json --out out/frame.png --frame 120
  *   npm run render -- --job job.json --out out/preview.mp4 --frames 9000-9900
  *       Only those frames: a short preview of one part of a long lesson (chapters are not written).
@@ -16,6 +18,7 @@
  */
 import {writeFile} from 'node:fs/promises';
 import path from 'node:path';
+import {VIDEO_COVER} from '../src/Configurations/VideoCover';
 import {formatChapters} from '../src/Scenes/SceneChapter';
 import {parseArgs} from 'node:util';
 import {VideoJobValidationError} from '../src/Renderers/VideoJob';
@@ -67,10 +70,14 @@ const main = async (): Promise<number> => {
 			frameRange: frameRange ? ([Number(frameRange[1]), Number(frameRange[2])] as [number, number]) : undefined,
 		};
 		// Without --out the video is saved under the next number in Outputs/Videos.
+		// A whole video written with --out gets its cover beside it too, as one saved under Outputs/Videos does (the
+		// cover is also the video's opening frame; without it a camp lesson started differently, 1 Nov 2026). A job
+		// with "cover": false still gets none.
+		const coverBeside = (out: string) => `${out.slice(0, out.length - path.extname(out).length)}_${VIDEO_COVER.fileSuffix}.png`;
 		const result = !values.out
 			? await renderVideoToOutputs(job, options)
 			: values.frame === undefined
-				? await renderVideo(job, {...options, outputPath: values.out})
+				? await renderVideo(job, {...options, outputPath: values.out, coverPath: frameRange ? undefined : coverBeside(values.out)})
 				: await renderFrame(job, {...options, outputPath: values.out, frame: Number(values.frame)});
 
 		// YouTube chapters go next to the video, ready for the description.

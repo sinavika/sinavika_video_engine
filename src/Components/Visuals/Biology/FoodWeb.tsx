@@ -70,15 +70,19 @@ export const FoodWebVisual: React.FC<VisualBoxProps & {visual: FoodWeb}> = ({vis
 				const [food, eater] = link;
 				const from = layout.spots.get(food)!;
 				const to = layout.spots.get(eater)!;
+				// The boxes an arrow must not pass behind: every organism but its two ends.
+				const others = visual.organisms
+					.filter((organism) => organism.id !== food && organism.id !== eater)
+					.map((organism) => {
+						const spot = layout.spots.get(organism.id)!;
+						return {left: spot.x - spot.w / 2, right: spot.x + spot.w / 2, top: spot.y - NODE_H / 2, bottom: spot.y + NODE_H / 2};
+					});
 				return (
 					<Arrow
 						key={index}
 						food={byId.get(food)!}
 						eater={byId.get(eater)!}
-						x1={from.x + offset(outgoing(food), link, from.w)}
-						y1={from.y - NODE_H / 2}
-						x2={to.x + offset(incoming(eater), link, to.w)}
-						y2={to.y + NODE_H / 2 + 4}
+						d={foodWebArrowPath(from.x + offset(outgoing(food), link, from.w), from.y - NODE_H / 2, to.x + offset(incoming(eater), link, to.w), to.y + NODE_H / 2 + 4, others)}
 						entrance={arrival(byId.get(eater)!.level + 0.4)}
 					/>
 				);
@@ -123,12 +127,36 @@ const Node: React.FC<{organism: Organism; x: number; y: number; w: number; entra
 	);
 };
 
-const Arrow: React.FC<{food: Organism; eater: Organism; x1: number; y1: number; x2: number; y2: number; entrance: number}> = ({food, eater, x1, y1, x2, y2, entrance}) => {
+type NodeBox = {left: number; right: number; top: number; bottom: number};
+
+/**
+ * An arrow from food to eater: straight, or, when the straight line would run behind another organism's box (a link
+ * that skips a level, plant to bird past the insect), bowed out to pass beside that box, on the side nearer to the
+ * line. Read straight, a skipping arrow seemed to start at the box it ran behind (Soru revizyonu, 1 Nov 2026).
+ */
+export const foodWebArrowPath = (x1: number, y1: number, x2: number, y2: number, boxes: readonly NodeBox[]): string => {
+	const hit = boxes.find((box) =>
+		Array.from({length: 24}, (_, step) => (step + 1) / 25).some((t) => {
+			const x = x1 + (x2 - x1) * t;
+			const y = y1 + (y2 - y1) * t;
+			return x > box.left - 6 && x < box.right + 6 && y > box.top - 6 && y < box.bottom + 6;
+		}),
+	);
+	if (!hit) return `M${x1} ${y1} L${x2} ${y2}`;
+	// The middle of a quadratic curve lies at (start + 2 control + end) / 4: put it just past the box's nearer side.
+	const middleX = (x1 + x2) / 2;
+	const edge = Math.abs(middleX - (hit.left - 28)) <= Math.abs(middleX - (hit.right + 28)) ? hit.left - 28 : hit.right + 28;
+	const controlX = (4 * edge - x1 - x2) / 2;
+	const controlY = (y1 + y2) / 2;
+	return `M${x1} ${y1} Q${controlX} ${controlY} ${x2} ${y2}`;
+};
+
+const Arrow: React.FC<{food: Organism; eater: Organism; d: string; entrance: number}> = ({food, eater, d, entrance}) => {
 	const palette = useVisualPalette();
 	const from = useOrganismLook(food, entrance);
 	const to = useOrganismLook(eater, entrance);
 	const lit = Math.max(from.focused, to.focused);
 	return (
-		<line x1={x1} y1={y1} x2={x2} y2={y2} stroke={lit > 0.5 ? palette.lesson : withAlpha(palette.ink, 0.6)} strokeWidth={lit > 0.5 ? 5 : 3} markerEnd={lit > 0.5 ? 'url(#foodWebArrowLit)' : 'url(#foodWebArrow)'} opacity={entrance * Math.max(from.opacity, to.opacity)} />
+		<path d={d} fill="none" stroke={lit > 0.5 ? palette.lesson : withAlpha(palette.ink, 0.6)} strokeWidth={lit > 0.5 ? 5 : 3} markerEnd={lit > 0.5 ? 'url(#foodWebArrowLit)' : 'url(#foodWebArrow)'} opacity={entrance * Math.max(from.opacity, to.opacity)} />
 	);
 };

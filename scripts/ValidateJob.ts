@@ -9,7 +9,7 @@
  * Exit codes: 0 all valid, 2 at least one invalid.
  */
 import {resolveImageJob} from '../src/Images/Renderers/ImageJob';
-import {VideoJobValidationError, resolveVideoJob, voiceLines} from '../src/Renderers/VideoJob';
+import {VideoJobValidationError, resolveVideoJob, voiceLines, withEstimatedNarration} from '../src/Renderers/VideoJob';
 import {readVideoJob} from '../src/Renderers/VideoJobFile';
 
 const showNarration = process.argv.includes('--narration');
@@ -29,9 +29,11 @@ for (const file of files) {
 			console.log(`GEÇERLİ  ${file}: ${image.compositionId}, ${image.inputProps.theme}${image.paletteName ? ` + ${image.paletteName}` : ''}, ${image.width}x${image.height} ${image.format}${pages}`);
 			continue;
 		}
-		const job = resolveVideoJob(raw);
+		// A voiced job is timed at the voice's measured pace (withEstimatedNarration): before 1 Nov 2026 the reading-time
+		// estimate printed here was about two thirds of the rendered length.
+		const job = withEstimatedNarration(resolveVideoJob(raw));
 		const seconds = (job.durationInFrames / job.fps).toFixed(1);
-		console.log(`GEÇERLİ  ${file}: ${job.compositionId}, ${job.inputProps.theme}, ${job.width}x${job.height}, ${job.fps} fps, ${seconds} sn`);
+		console.log(`GEÇERLİ  ${file}: ${job.compositionId}, ${job.inputProps.theme}, ${job.width}x${job.height}, ${job.fps} fps, ${seconds} sn${job.voiceover ? ' (seslendirme tahmini)' : ''}`);
 		if (showNarration) voiceLines(job).forEach((line) => console.log(`  [${line.id}] ${line.text}`));
 	} catch (error) {
 		invalid++;

@@ -6,6 +6,7 @@ import {FlowDiagram} from '../Illustrations/FlowDiagram';
 import {Card} from '../Layouts/Card';
 import {FitBox} from '../Layouts/FitBox';
 import {useVideoLayout} from '../Layouts/VideoLayout';
+import {formulaLines} from '../Typography/FormulaLine';
 import {MathExpression} from '../Typography/MathExpression';
 import {Text} from '../Typography/Text';
 import {CellVisual} from './Biology/Cell';
@@ -27,6 +28,8 @@ import {MoleculeVisual} from './Chemistry/Molecule';
 import {PeriodicVisual} from './Chemistry/Periodic';
 import {ReactionVisual} from './Chemistry/Reaction';
 import {ClimateVisual} from './Geography/Climate';
+import {RegimeVisual} from './Geography/Regime';
+import {WindRoseVisual} from './Geography/WindRose';
 import {ContourVisual} from './Geography/Contour';
 import {EarthVisual} from './Geography/Earth';
 import {EarthquakeVisual} from './Geography/Earthquake';
@@ -39,6 +42,7 @@ import {PyramidVisual} from './Geography/Pyramid';
 import {RiverVisual} from './Geography/River';
 import {SpheresVisual} from './Geography/Spheres';
 import {BattleVisual} from './Humanities/Battle';
+import {PeriodsVisual} from './Humanities/PeriodChart';
 import {PictureVisual} from './Humanities/Picture';
 import {MapVisual} from './Humanities/Map';
 import {TimelineVisual} from './Humanities/Timeline';
@@ -51,6 +55,7 @@ import {NumberLineVisual} from './Mathematics/NumberLine';
 import {TransformVisual} from './Mathematics/Transform';
 import {UnitCircleVisual} from './Mathematics/UnitCircle';
 import {GeometryVisual} from './Mathematics/Geometry';
+import {UnitCubeVisual} from './Mathematics/UnitCube';
 import {PlotVisual} from './Mathematics/Plot';
 import {CapillaryVisual} from './Physics/Capillary';
 import {ChargesVisual} from './Physics/Charges';
@@ -117,13 +122,15 @@ import {StackVisual, stackFrame} from './Structure/Stack';
 import {FlipCardVisual} from './Structure/FlipCard';
 import {MatchingVisual} from './Structure/Matching';
 import {PieVisual} from './Structure/Pie';
+import {AssemblyVisual} from './Structure/Assembly';
+import {KinshipVisual} from './Civics/Kinship';
 import {TableVisual} from './Structure/Table';
 import {TreeVisual, treeRatio} from './Structure/Tree';
 import {VennVisual} from './Structure/Venn';
 import {FaultBlock3DVisual} from './Three/FaultBlock3D';
 import {Molecule3DVisual} from './Three/Molecule3D';
 import {SolidVisual} from './Three/Solid';
-import {useVisualPalette, type VisualBoxProps} from './VisualFrame';
+import {useStillFigure, useStillTextFloor, useVisualPalette, type VisualBoxProps} from './VisualFrame';
 import {CELL_STAGE} from './Biology/BiologySchema';
 import type {CourseVisual as CourseVisualSpec} from './VisualSchema';
 import {BeatCamera, BeatNote, useElementState, useNoteSpace} from './VisualTimeline';
@@ -153,11 +160,13 @@ const useStepStates = () => {
  */
 export const CourseVisual: React.FC<VisualBoxProps & {visual: CourseVisualSpec}> = ({visual, width, height, delaySeconds}) => {
 	const noteSpace = useNoteSpace();
+	// A tree in an app still is laid out for the still's smallest text (Tree: levelsAt), which changes its shape.
+	const floor = useStillTextFloor();
 	const available = height - noteSpace;
 	// Drawings made in a fixed world (processes, simulations) get a box of their own proportions, so the camera's
 	// fractions are fractions of the drawing and not of empty margins. A stack and a tree follow their box.
 	const boxAspect = width / Math.max(1, available);
-	const ratio = visual.kind === 'stack' ? stackRatio(visual, boxAspect) : visual.kind === 'tree' ? treeRatio(visual, boxAspect) : worldRatio(visual);
+	const ratio = visual.kind === 'stack' ? stackRatio(visual, boxAspect) : visual.kind === 'tree' ? treeRatio(visual, boxAspect, floor ? floor / width : 0) : worldRatio(visual);
 	const box = ratio ? (width / available > ratio ? {width: available * ratio, height: available} : {width, height: width / ratio}) : {width, height: available};
 	return (
 		<div style={{width, height, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
@@ -168,6 +177,9 @@ export const CourseVisual: React.FC<VisualBoxProps & {visual: CourseVisualSpec}>
 		</div>
 	);
 };
+
+/** The characters a formula's line may take in an app still (FormulaLine). */
+const STILL_FORMULA_WIDTH = 24;
 
 /**
  * Sentences, paragraphs, comparisons and tables are drawn at reading size and then grow
@@ -235,9 +247,31 @@ const VisualOfKind: React.FC<VisualBoxProps & {visual: CourseVisualSpec}> = ({vi
 	const stepFocus = useStepFocus('nodes' in visual ? visual.nodes.length : 0);
 	const stepStates = useStepStates();
 	const palette = useVisualPalette();
+	const still = useStillFigure();
 	const box = {width, height, delaySeconds};
 	switch (visual.kind) {
 		case 'formula':
+			// An app still: the formula in lines of about 24 characters, its caption under the card at its own size. On
+			// one line, fitted to the still's width, its exponents came out at 20 pixels and its caption at 10.
+			if (still)
+				return (
+					<div style={{width, maxHeight: height, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+						<FitBox style={{width, maxHeight: height - (visual.caption ? u(110) : 0)}}>
+							<div style={{display: 'flex', justifyContent: 'center'}}>
+								<Card padding={SPACING.lg} elevated={false}>
+									<Text size={72} align="center">
+										<MathExpression latex={formulaLines(visual.latex, STILL_FORMULA_WIDTH)} display style={{margin: 0}} />
+									</Text>
+								</Card>
+							</div>
+						</FitBox>
+						{visual.caption ? (
+							<Text tone="muted" align="center" size={30} style={{marginTop: u(SPACING.sm)}}>
+								{visual.caption}
+							</Text>
+						) : null}
+					</div>
+				);
 			// The box's width bounds the fit: without it the fit box grew to the formula's own width, so a long formula
 			// (beside a rule's text, in a predict card) never shrank and ran out of its box. The card keeps the
 			// formula's own width (a flex item does not shrink below it), so a short formula still sits in a small card.
@@ -263,6 +297,8 @@ const VisualOfKind: React.FC<VisualBoxProps & {visual: CourseVisualSpec}> = ({vi
 			return <PlotVisual visual={visual} {...box} />;
 		case 'geometry':
 			return <GeometryVisual visual={visual} {...box} />;
+		case 'cubes':
+			return <UnitCubeVisual visual={visual} {...box} />;
 		case 'forces':
 			return <ForcesVisual visual={visual} {...box} />;
 		case 'motion':
@@ -398,6 +434,8 @@ const VisualOfKind: React.FC<VisualBoxProps & {visual: CourseVisualSpec}> = ({vi
 			return <CycleDiagram nodes={visual.nodes} center={visual.center} focusLevels={stepFocus} size={Math.min(width, height)} width={width} height={height} delaySeconds={delaySeconds} />;
 		case 'timeline':
 			return <TimelineVisual visual={visual} {...box} />;
+		case 'periods':
+			return <PeriodsVisual visual={visual} {...box} />;
 		case 'battle':
 			return <BattleVisual visual={visual} {...box} />;
 		case 'process':
@@ -462,6 +500,10 @@ const VisualOfKind: React.FC<VisualBoxProps & {visual: CourseVisualSpec}> = ({vi
 			return <NumberLineVisual visual={visual} {...box} />;
 		case 'pie':
 			return <PieVisual visual={visual} {...box} />;
+		case 'assembly':
+			return <AssemblyVisual visual={visual} {...box} />;
+		case 'kinship':
+			return <KinshipVisual visual={visual} {...box} />;
 		case 'unitCircle':
 			return <UnitCircleVisual visual={visual} {...box} />;
 		case 'transform':
@@ -476,6 +518,10 @@ const VisualOfKind: React.FC<VisualBoxProps & {visual: CourseVisualSpec}> = ({vi
 			return <ContourVisual visual={visual} {...box} />;
 		case 'climate':
 			return <ClimateVisual visual={visual} {...box} />;
+		case 'regime':
+			return <RegimeVisual visual={visual} {...box} />;
+		case 'windRose':
+			return <WindRoseVisual visual={visual} {...box} />;
 		case 'interior':
 			return <InteriorVisual visual={visual} {...box} />;
 		case 'cell':

@@ -1,6 +1,6 @@
 # YouTube metni: TYT Din Kültürü ve Ahlak Bilgisi kampı · Ders 20 · Din ve Sosyal Adalet
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/20_Din_ve_Sosyal_Adalet/Din_ve_Sosyal_Adalet_YouTube.mp4` (4K) · Kapak: `Din_ve_Sosyal_Adalet_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/20_Din_ve_Sosyal_Adalet/Din_ve_Sosyal_Adalet_YouTube.mp4` (4K) · Kapak: `Din_ve_Sosyal_Adalet_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

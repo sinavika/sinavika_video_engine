@@ -21,3 +21,8 @@ Alternatifler: "Mesai bitti, ders başlıyor." · "Az zaman, net plan."
 KPSS’ye çalışırken işe de gidiyorsan, bu senin için. Ders Planı kısa görevlerle her gün biraz ilerletir. Mesaiden sonra çalışan arkadaşına gönder.
 
 #sinavika #kpss #sınavhazırlık
+
+## 1 Kasım revizyonu
+
+- **Red notu:** "hook iyi ama kaydırmalı bir yapı olabilir; bu hook için Aralık’ta video hazırlansın"
+- **Değişen:** Aynı hook’la 5 sayfalık carousel: mesaiden sonra 1 saat ve KPSS planı, deneme, yolda kartlar, kapanış. Yalnız KPSS ekranları. Aralık reels notu: docs/Campaigns/2026-12-Tanitim-Notlari.md.

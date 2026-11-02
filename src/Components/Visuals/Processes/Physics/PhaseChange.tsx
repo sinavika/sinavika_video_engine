@@ -1,7 +1,7 @@
 import React from 'react';
 import {clamp01, lerp, noise, smooth} from '../../../../Animations/Motion';
 import {withAlpha} from '../../../../Themes/Theme';
-import {useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
+import {useFigureFont, useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
 import {pathOf} from '../../VisualWorld';
 import {ProcessFrame, ProcessLabel, processCamera, useProcessClock} from '../ProcessScene';
@@ -135,16 +135,28 @@ export const PhaseChangeProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}
 			</g>
 			<path d={pathOf(curve.map(([x, y]) => [x, y] as const))} fill="none" stroke={palette.lesson} strokeWidth={7} strokeLinecap="round" strokeLinejoin="round" />
 			<circle cx={plotX(now)} cy={plotY(celsius)} r={11} fill={palette.lesson} stroke="#FFFFFF" strokeWidth={3} />
-			{/* Phase names under the curve. */}
-			<g fontFamily={palette.fontBody} fontWeight={700} fontSize={20} fill={palette.muted} textAnchor="middle">
-				{['Katı', 'Katı + sıvı', 'Sıvı', 'Sıvı + gaz', 'Gaz'].map((name, stage) => (
-					<text key={name} x={plotX(timeAt(stage, 0.5))} y={PLOT.y1 + 30} opacity={stage <= stageIndex ? 1 : 0.35}>
-						{name}
-					</text>
-				))}
-			</g>
+			<PhaseNames stageIndex={stageIndex} />
 			<ProcessLabel id="sicaklik" at={[plotX(now), plotY(celsius)]} to={[plotX(now), plotY(celsius) - 70]} text="Sıcaklık sabit" show={plateau ? clock.now(clock.current) : 0} />
 			<ProcessLabel id="tanecik" at={[particles[COUNT - 4].x, particles[COUNT - 4].y]} to={[400, 150]} text={['Tanecikler titreşir', 'Düzen bozulur', 'Tanecikler kayar', 'Tanecikler kopar', 'Tanecikler serbest'][stageIndex]} show={clock.now(clock.current)} />
 		</ProcessFrame>
+	);
+};
+
+/**
+ * The phase names under the curve, each under its part. Raised to an app still's smallest text they ran into each
+ * other on one row ("Katı" over "Katı + sıvı", 2 Nov 2026): there every other name goes a row lower.
+ */
+const PhaseNames: React.FC<{stageIndex: number}> = ({stageIndex}) => {
+	const palette = useVisualPalette();
+	const size = useFigureFont()(20);
+	const staggered = size > 20;
+	return (
+		<g fontFamily={palette.fontBody} fontWeight={700} fontSize={size} fill={palette.muted} textAnchor="middle">
+			{['Katı', 'Katı + sıvı', 'Sıvı', 'Sıvı + gaz', 'Gaz'].map((name, stage) => (
+				<text key={name} x={plotX(timeAt(stage, 0.5))} y={PLOT.y1 + 10 + size + (staggered && stage % 2 === 1 ? size * 1.15 : 0)} opacity={stage <= stageIndex ? 1 : 0.35}>
+					{name}
+				</text>
+			))}
+		</g>
 	);
 };

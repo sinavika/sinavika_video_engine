@@ -1,0 +1,743 @@
+{
+ "topic": {
+  "id": "449E7EB2-42C0-B6B8-428D-2A4D9470E745",
+  "category": "KPSS_ORTAOGRETIM",
+  "lesson": "MAT",
+  "code": "ISLEM_MODULER_ARITMETIK"
+ },
+ "title": "İşlem ve Modüler Aritmetik",
+ "lessonName": "Matematik",
+ "exams": [
+  "KPSS"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/KPSS/MAT/ISLEM_MODULER_ARITMETIK.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Kural ne diyorsa o",
+   "narration": "Bugün salıysa 100 gün sonra hangi gündür? Bu sorunun cevabı bir bölmenin kalanında saklı. İşlem ve modüler aritmetik, KPSS'de çoğu zaman yeni tanımlanan bir işlemle ya da tekrar eden bir döngüyle karşına çıkar. Bu derste tanımlı işlemi, işlemin özelliklerini ve kalanların aritmetiğini yeni sorularla adım adım göreceğiz."
+  },
+  "objectives": [
+   "Tanımlı bir işlemi kuralına göre uygulamak",
+   "İşlemin değişme, birim ve ters eleman özelliklerini sınamak",
+   "İşlem tablosundan birim ve ters elemanı okumak",
+   "Gün, saat ve kuvvet döngülerinde kalanı kullanmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "ISLEM_MODULER_ARITMETIK_01",
+    "subtopics": [],
+    "title": "Tanımlı işlem",
+    "narration": "ÖSYM bu konuda yeni bir işlem tanımlar ve onu kullanmanı ister. Kuralı harfiyen uygulamak yeter.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kuralı harfiyen uygula",
+      "items": [
+       "$a \\ast b = 2a - b + ab$ gibi bir tanımda $a$ yerine **birinci**, $b$ yerine **ikinci** sayı yazılır.",
+       "İç içe işlemde **parantezin içinden** başla.",
+       "Bilinmeyen içeren eşitlikte işlemi açıp **denklem** kur."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "a \\ast b = 2a - b + ab \\;\\Rightarrow\\; 1 \\ast 2 = 2 - 2 + 2 = 2",
+       "caption": "a yerine 1, b yerine 2"
+      },
+      "beats": [],
+      "narration": "Tanımlı işlemde semboller yalnız yer tutucudur. a yıldız b eşittir 2a eksi b artı a b gibi bir tanımda a yerine işlemin solundaki sayıyı, b yerine sağındakini yazarsın. Sıranın önemi büyüktür; çoğu işlemde sayıların yeri değişince sonuç da değişir. İç içe işlemlerde parantezin içinden başlarsın. Bilinmeyen içeren bir eşitlik verilirse işlemi açıp denklem kurarsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Gerçel sayılar kümesi üzerinde $a \\ast b = 2a - b + ab$ işlemi tanımlanıyor. Buna göre $(1 \\ast 2) \\ast 3$ işleminin sonucu kaçtır?",
+       "options": [
+        "5",
+        "7",
+        "8",
+        "9",
+        "11"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$1 \\ast 2 = 2 \\cdot 1 - 2 + 1 \\cdot 2 = 2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "1 yıldız 2: a yerine 1, b yerine 2. 2 eksi 2 artı 2, 2."
+        },
+        {
+         "text": "$2 \\ast 3 = 2 \\cdot 2 - 3 + 2 \\cdot 3 = 7$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Şimdi 2 yıldız 3: a yerine 2, b yerine 3. 4 eksi 3 artı 6, 7."
+        },
+        {
+         "text": "Sonuç **7**. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sonuç 7. Cevap B. Sırayı karıştırıp 3 yıldız 2 hesaplayan 10 bulur; işlemde yer önemlidir."
+        }
+       ],
+       "narration": "Önce parantezin içi.",
+       "origin": {
+        "changes": "ÖSYM'nin tanımlı işlemle iç içe hesap kalıbı örnek alındı; işlem ve sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Gerçel sayılar kümesi üzerinde $a \\circ b = ab - a - b$ işlemi tanımlanıyor. $3 \\circ a = 7$ olduğuna göre $a$ kaçtır?",
+       "options": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$3 \\circ a = 3a - 3 - a = 2a - 3$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "3 halka a: birinci sayı 3, ikinci a. 3a eksi 3 eksi a, yani 2a eksi 3."
+        },
+        {
+         "text": "$2a - 3 = 7 \\Rightarrow a = 5$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "2a eksi 3, 7'ye eşit; 2a, 10; a, 5. Sağlama: 3 çarpı 5 eksi 3 eksi 5, 7. Cevap D."
+        }
+       ],
+       "narration": "İşlemi açıp bir denklem kuracağız.",
+       "origin": {
+        "changes": "ÖSYM'nin tanımlı işlemle verilen eşitlikten bilinmeyeni buldurma kalıbı örnek alındı; işlem bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Sıra önemli",
+      "wrong": "$a \\ast b = 2a - b$ ise $3 \\ast 2 = 2 \\ast 3$",
+      "right": "$3 \\ast 2 = 6 - 2 = 4$, ama $2 \\ast 3 = 4 - 3 = 1$",
+      "why": "Tanımda $a$ ve $b$ farklı görevlerde ise sayıların yeri değişince sonuç değişir. Değişmeyi ancak tanım simetrikse kabul edebilirsin.",
+      "narration": "Bir tuzak. a yıldız b eşittir 2a eksi b ise 3 yıldız 2 ile 2 yıldız 3 aynı mıdır? Hayır. 3 yıldız 2, 6 eksi 2, 4; 2 yıldız 3 ise 4 eksi 3, 1. Tanımda a ile b farklı görevlerdeyse sayıların yeri sonucu değiştirir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Tam sayılar kümesi üzerinde $a \\ast b = a + 2b$ ve $a \\circ b = 2a - b$ işlemleri tanımlanıyor. Buna göre $(3 \\ast 1) \\circ (2 \\ast 2)$ işleminin sonucu kaçtır?",
+       "options": [
+        "4",
+        "6",
+        "8",
+        "10",
+        "14"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$3 \\ast 1 = 3 + 2 = 5$; $2 \\ast 2 = 2 + 4 = 6$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "3 yıldız 1: 3 artı 2 çarpı 1, 5. 2 yıldız 2: 2 artı 2 çarpı 2, 6."
+        },
+        {
+         "text": "$5 \\circ 6 = 2 \\cdot 5 - 6 = 4$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Şimdi halka işlemi: 5 halka 6, 2 çarpı 5 eksi 6, yani 4. Cevap A. İki işlemin kuralını karıştıran farklı bir sonuç bulur; her işlemin kendi kuralını uygula."
+        }
+       ],
+       "narration": "İki ayrı işlem var. Önce parantezlerdeki yıldız işlemleri.",
+       "origin": {
+        "changes": "ÖSYM'nin iki ayrı işlemi aynı ifadede kullandıran kalıbı örnek alındı; işlemler ve sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "ISLEM_MODULER_ARITMETIK_01",
+    "subtopics": [],
+    "title": "İşlemin özellikleri",
+    "narration": "Şimdi bir işlemin özelliklerine bakalım: değişme, birim eleman ve ters eleman. Ön lisans sınavlarında bu özellikler I, II, III öncülleriyle soruldu.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Değişme, birim, ters",
+      "items": [
+       "**Değişme**: her $a, b$ için $a \\ast b = b \\ast a$.",
+       "**Birim eleman** $e$: her $a$ için $a \\ast e = e \\ast a = a$.",
+       "**Ters eleman**: $a \\ast a' = e$; tersi olmayan tek bir eleman bile varsa \"her elemanın tersi var\" **yanlıştır**.",
+       "İşlem tablosunda birim eleman, satırı **başlık satırının aynısı** olan elemandır."
+      ],
+      "beats": [],
+      "narration": "Bir işlem değişmeliyse sayıların yerini değiştirmek sonucu değiştirmez. Birim eleman, her elemanla işleme girdiğinde o elemanı değiştirmeyen elemandır. Bir elemanın tersi, onunla işleme girince birim elemanı veren elemandır; tersi olmayan tek bir eleman bile varsa her elemanın tersi var önermesi yanlıştır. İşlem tablosunda birim eleman, satırı başlık satırının aynısı olan elemandır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Gerçel sayılar kümesi üzerinde $x \\oplus y = x + y + xy$ işlemi tanımlanıyor. Buna göre,\nI. İşlemin değişme özelliği vardır.\nII. İşlemin birim elemanı 0'dır.\nIII. Her gerçel sayının bu işleme göre tersi vardır.\n\nifadelerinden hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "I. $y \\oplus x = y + x + yx = x \\oplus y$: **doğru**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "y daire x, y artı x artı y x'tir; bu x daire y ile aynıdır. Değişme özelliği var."
+        },
+        {
+         "text": "II. $x \\oplus 0 = x + 0 + 0 = x$: **doğru**.",
+         "eliminate": [
+          "A",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x daire 0, x artı 0 artı 0, yani x. 0 her elemanı değiştirmiyor; birim eleman 0."
+        },
+        {
+         "text": "III. $-1 \\oplus y = -1 + y - y = -1 \\neq 0$: $-1$'in tersi **yok**.",
+         "eliminate": [
+          "B",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eksi 1'in tersini arayalım: eksi 1 daire y, eksi 1 artı y eksi y, yani her zaman eksi 1. Hiçbir y ile birim eleman 0'ı vermez. Eksi 1'in tersi yok; üçüncü öncül yanlış."
+        },
+        {
+         "text": "Doğru olanlar I ve II. Cevap **C**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Doğru olanlar birinci ve ikinci öncül. Cevap C."
+        }
+       ],
+       "narration": "Her özelliği tanıma göre sınayalım.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki tanımlı işlemin özelliklerini I-II-III ile sorduran kalıp örnek alındı; işlem bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$A = \\{1, 2, 3, 4\\}$ kümesi üzerinde tanımlı $\\ast$ işlemi tabloda verilmiştir. Bu işlemin birim elemanı $e$, 2'nin tersi $x$ olduğuna göre $e + x$ toplamı kaçtır?",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "$\\ast$",
+         "1",
+         "2",
+         "3",
+         "4"
+        ],
+        "rows": [
+         [
+          "1",
+          "3",
+          "4",
+          "1",
+          "2"
+         ],
+         [
+          "2",
+          "4",
+          "1",
+          "2",
+          "3"
+         ],
+         [
+          "3",
+          "1",
+          "2",
+          "3",
+          "4"
+         ],
+         [
+          "4",
+          "2",
+          "3",
+          "4",
+          "1"
+         ]
+        ]
+       },
+       "options": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Satırı başlıkla aynı olan eleman: 3 ⇒ $e = 3$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Başlık satırı 1, 2, 3, 4. Hangi elemanın satırı bununla aynı? 3'ün satırı: 1, 2, 3, 4. Birim eleman 3."
+        },
+        {
+         "text": "$2 \\ast x = 3$: 2'nin satırında 3, sütun 4'te ⇒ $x = 4$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "2'nin tersi, 2 ile işleme girince birim eleman 3'ü veren elemandır. 2'nin satırında 3, 4'ün sütununda. 2'nin tersi 4."
+        },
+        {
+         "text": "$e + x = 3 + 4 = 7$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "e artı x, 3 artı 4, 7. Cevap E."
+        }
+       ],
+       "narration": "Önce birim elemanı tablodan bulalım.",
+       "origin": {
+        "changes": "ÖSYM'nin işlem tablosundan birim ve ters eleman okutan kalıbı örnek alındı; tablo bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Gerçel sayılar kümesi üzerinde $a \\ast b = a + b - 2$ işlemi tanımlanıyor. Buna göre bu işleme göre 5'in tersi kaçtır?",
+       "options": [
+        "$-3$",
+        "$-1$",
+        "0",
+        "1",
+        "2"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Birim: $a \\ast e = a + e - 2 = a \\Rightarrow e = 2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Birim eleman e, her a için a yıldız e'yi a yapmalı: a artı e eksi 2, a. Buradan e, 2."
+        },
+        {
+         "text": "$5 \\ast x = 5 + x - 2 = 2 \\Rightarrow x = -1$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "5'in tersi x ise 5 yıldız x, birim eleman 2'ye eşit olmalı: 5 artı x eksi 2, 2. x, eksi 1."
+        },
+        {
+         "text": "5'in tersi $-1$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sağlama: 5 artı eksi 1 eksi 2, 2. Cevap B. E şıkkındaki 2 birim elemandır; ters eleman değildir. Tersi bulurken sonucu 0'a değil, birim elemana eşitlersin."
+        }
+       ],
+       "narration": "Ters elemanı bulmak için önce birim elemanı bulmalıyız.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki tanımlı işlemde ters eleman kalıbı örnek alındı; işlem bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "ISLEM_MODULER_ARITMETIK_02",
+    "subtopics": [],
+    "title": "Modüler aritmetik",
+    "narration": "Modüler aritmetik, kalanların aritmetiğidir. Takvimde, saatte ve dönen her şeyde karşına çıkar. Büyük sayılarla uğraşmak yerine önce kalanı bulursun; çoğu zaman cevap birkaç saniyede çıkar.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kalanla düşün",
+      "items": [
+       "$a \\equiv b \\pmod{m}$: $a$ ile $b$'nin $m$'ye bölümünden kalanlar **eşittir**.",
+       "Döngüler: gün **7**, saat kadranı **12**, tam tur **360°**: önce kalanı bul.",
+       "Kuvvetlerde kalanlar **tekrar eder**: döngü uzunluğunu bul, üssü ona böl."
+      ],
+      "visual": {
+       "kind": "table",
+       "header": [
+        "$n$",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+       ],
+       "rows": [
+        [
+         "$2^n$",
+         "2",
+         "4",
+         "8",
+         "16",
+         "32"
+        ],
+        [
+         "7’ye kalan",
+         "2",
+         "4",
+         "1",
+         "2",
+         "4"
+        ]
+       ],
+       "highlightColumn": 0
+      },
+      "beats": [],
+      "narration": "a, m modülüne göre b'ye denktir demek, a ile b'nin m'ye bölümünden kalanların eşit olması demektir. Tekrarlayan her şey bir moddur: haftanın günleri 7'de, saat kadranı 12'de, tam bir tur 360 derecede başa döner. Bu yüzden önce kalanı bulursun. Kuvvetlerin kalanları da belli bir döngüyle tekrar eder; döngünün uzunluğunu bulup üssü ona bölersin."
+     },
+     {
+      "kind": "predict",
+      "title": "Tam turlar",
+      "context": "Bir çark saat yönünde **1000°** dönüyor.",
+      "prompt": "Çark başlangıca göre saat yönünde kaç derece dönmüş konumdadır?",
+      "choices": [
+       "100°",
+       "280°"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Dönüş",
+        "Tam tur",
+        "Kalan"
+       ],
+       "rows": [
+        [
+         "1000°",
+         "$2 \\cdot 360° = 720°$",
+         "280°"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Bir tam tur 360 derecedir ve çarkı başlangıç konumuna getirir. 1000 derecenin içinde 2 tam tur, yani 720 derece var. Kalan 280 derece.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "$1000 = 2 \\cdot 360 + 280$: çark, saat yönünde **280°** dönmüş gibidir.",
+      "narration": "Şimdi sıra sende. Bir çark saat yönünde 1000 derece dönüyor. Başlangıca göre kaç derece dönmüş konumdadır? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 280 derece. Tam turlar çarkı başa getirir; 1000'i 360'a bölünce 2 tam tur ve 280 derece kalır. 100 diyen 1000'den 900 çıkarmıştır; 900 ise tam tur sayısının katı değildir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bugün günlerden salı olduğuna göre 100 gün sonra hangi gündür?",
+       "options": [
+        "Perşembe",
+        "Cuma",
+        "Cumartesi",
+        "Pazar",
+        "Pazartesi"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$100 = 7 \\cdot 14 + 2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "100'ü 7'ye bölelim: 14 tam hafta ve 2 gün kalan."
+        },
+        {
+         "text": "14 hafta sonra yine salı; 2 gün ileri: **perşembe**. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "14 tam hafta sonra yine salıdır. Kalan 2 gün: salıdan 2 gün sonra perşembe. Cevap A."
+        }
+       ],
+       "narration": "Haftanın günleri 7'de bir tekrar eder.",
+       "origin": {
+        "changes": "Havuzdaki takvimde gün bulma kalıbı örnek alındı; gün ve süre bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$47 \\cdot 38 + 25$ işleminin sonucunun 6 ile bölümünden kalan kaçtır?",
+       "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$47 \\equiv 5$, $38 \\equiv 2$, $25 \\equiv 1 \\pmod 6$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Her sayının 6'ya bölümünden kalanı bulalım: 47'nin kalanı 5, 38'in 2, 25'in 1."
+        },
+        {
+         "text": "$5 \\cdot 2 + 1 = 11 \\equiv 5 \\pmod 6$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kalanlarla işlemi yapalım: 5 çarpı 2, 10; artı 1, 11. 11'in 6'ya bölümünden kalan 5."
+        },
+        {
+         "text": "Kalan **5**. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Sonucun 6'ya bölümünden kalan 5. Sağlama: 47 çarpı 38 artı 25, 1811; 1806, 6'nın katı; kalan 5. Cevap E."
+        }
+       ],
+       "narration": "Sayıları çarpmadan, kalanlarıyla işlem yapacağız.",
+       "origin": {
+        "changes": "Havuzdaki modüler aritmetikte kalanlarla işlem kalıbı örnek alındı; sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$2^{50}$ sayısının 7 ile bölümünden kalan kaçtır?",
+       "options": [
+        "1",
+        "2",
+        "4",
+        "5",
+        "6"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$2^1 \\equiv 2$, $2^2 \\equiv 4$, $2^3 = 8 \\equiv 1 \\pmod 7$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "2'nin kuvvetlerinin 7'ye kalanları: 2, 4 ve 8'in kalanı 1. Kalan 1 olunca döngü başa döner."
+        },
+        {
+         "text": "Döngü 3: $50 = 3 \\cdot 16 + 2$ ⇒ $2^{50} \\equiv 2^2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Döngü uzunluğu 3. 50'yi 3'e bölünce kalan 2; yani 2 üzeri 50, 2 karenin kalanını verir."
+        },
+        {
+         "text": "Kalan **4**. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "2 kare 4; kalan 4. Cevap C. B şıkkındaki 2, döngüde kalanın 2 olduğunu görüp 2'nin kendisini yazanın tuzağıdır."
+        }
+       ],
+       "narration": "Kuvvetlerin kalanlarındaki döngüyü kullanacağız.",
+       "origin": {
+        "changes": "Havuzdaki kuvvetin kalanı kalıbı örnek alındı; taban, üs ve bölen bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir duvar saatinin akrebi şu anda 3'ü gösteriyor. 250 saat sonra akrep hangi sayıyı gösterir?",
+       "options": [
+        "10",
+        "11",
+        "12",
+        "1",
+        "2"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$250 = 12 \\cdot 20 + 10$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "250'yi 12'ye bölelim: 20 tam tur ve 10 saat kalan."
+        },
+        {
+         "text": "$3 + 10 = 13 \\equiv 1 \\pmod{12}$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "20 tur sonra akrep yine 3'tedir; 10 saat ileri: 13. Kadranda 13 yoktur; 12'yi geçince 1'e döner. Akrep 1'i gösterir. Cevap D. A şıkkındaki 10, kalanı başlangıca eklemeyi unutanın cevabıdır."
+        }
+       ],
+       "narration": "Akrep 12 saatte bir turu tamamlar.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki dönen bir parçanın son konumunu sorduran kalıp örnek alındı; durum ve sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Pozitif tam sayılar kümesi üzerinde $a \\odot b$ işlemi, $a$'nın $b$'ye bölümünden elde edilen kalanın 2 katı olarak tanımlanıyor. Buna göre her $a$ ve $b$ için,\nI. $a \\odot 2$ ya 0 ya da 2'dir.\nII. $a \\odot b \\le 2b - 2$\nIII. $a \\odot b = b \\odot a$\n\nifadelerinden hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "I ve II",
+        "I ve III",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "I. 2'ye bölümden kalan 0 ya da 1 ⇒ $a \\odot 2 \\in \\{0, 2\\}$: **doğru**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir sayının 2'ye bölümünden kalan 0 ya da 1'dir; 2 katı 0 ya da 2. Birinci öncül doğru."
+        },
+        {
+         "text": "II. Kalan en çok $b - 1$ ⇒ $2(b - 1) = 2b - 2$: **doğru**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kalan en çok b eksi 1 olabilir; 2 katı en çok 2b eksi 2. İkinci öncül de doğru."
+        },
+        {
+         "text": "III. $3 \\odot 5 = 6$, $5 \\odot 3 = 4$: **her zaman değil**. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üçüncü öncülü bir örnekle deneyelim. 3'ün 5'e bölümünden kalan 3, 2 katı 6. 5'in 3'e bölümünden kalan 2, 2 katı 4. Eşit değil. Doğru olanlar I ve II. Cevap B."
+        }
+       ],
+       "narration": "Kalanın alabileceği değerleri hatırlayalım: 0'dan b eksi 1'e kadar.",
+       "origin": {
+        "changes": "ÖSYM'nin bölmede kalanla tanımlanan işlemi I-II-III ile sorduran kalıbı örnek alındı; tanım ve öncüller bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Tanımda a yerine birinci, b yerine ikinci sayıyı yaz.",
+    "İç içe işlemde parantezin içinden başla.",
+    "Birim eleman her elemanı değiştirmez.",
+    "Tersi olmayan tek bir eleman, \"her elemanın tersi var\" önermesini çürütür.",
+    "Döngülerde önce kalanı bul: 7, 12, 360.",
+    "Kuvvetlerin kalanında döngü uzunluğunu bul."
+   ],
+   "warnings": [
+    "Çoğu işlemde **sıra önemlidir**: $a \\ast b \\neq b \\ast a$ olabilir.",
+    "Kalan en çok **bölen eksi 1**’dir.",
+    "Saat kadranında 13 yoktur; 12’yi geçince **başa dön**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki **11 soruyu** kâğıtta yeniden çöz; her tanımlı işlemde harflerin yerine ne yazdığını göster.",
+    "Doğum gününün **gelecek yıl** hangi güne denk geleceğini kalanla bul.",
+    "Uygulamada KPSS İşlem ve Modüler Aritmetik testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Tanımlı işlem: harfleri yer tutucu olarak okuma, iç içe işlemde içten başlama, bilinmeyenli eşitlikte denklem kurma; iki özgün soru.",
+   "İşlemin özellikleri: değişme, birim eleman, ters eleman; tek bir karşı örnekle 'her elemanın tersi var' önermesini çürütme.",
+   "İşlem tablosu: birim elemanı başlık satırıyla aynı satırdan, ters elemanı birim elemanın yerinden okuma.",
+   "Modüler aritmetik: gün (7), saat (12), tur (360°) döngüleri; kuvvetlerin kalanlarında döngü uzunluğu.",
+   "Kalanla tanımlanan işlemler: kalanın 0 ile b − 1 arasında olması; I-II-III öncüllerini sınır değerleri ve karşı örnekle sınama."
+  ]
+ }
+}

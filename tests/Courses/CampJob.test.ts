@@ -1,6 +1,6 @@
 import {describe, expect, it} from 'vitest';
 import {CampSchema} from '../../src/Courses/Camp';
-import {CampJobSpecSchema, campJobFiles, campJobNumber} from '../../src/Courses/CampJob';
+import {CampJobSpecSchema, campJobFiles, campJobNumber, introQuestionCount} from '../../src/Courses/CampJob';
 import {CAMP_SCRIPT_SAMPLE} from '../../src/Courses/LessonScriptSample';
 import {LessonScriptSchema} from '../../src/Courses/LessonScript';
 
@@ -41,8 +41,9 @@ describe('camp jobs (npm run curriculum -- jobs make)', () => {
 		const written = files();
 		expect(Object.keys(written)).toEqual(['01-sozcukte-anlam-youtube.json', '01-sozcukte-anlam-reels.json', '01-sozcukte-anlam-youtube.md']);
 		const youtube = JSON.parse(written['01-sozcukte-anlam-youtube.json']);
-		expect(youtube).toEqual({template: 'CampLesson', format: 'Horizontal', theme: 'SinavikaLight', name: 'TYT Türkçe kampı 01 Sözcükte Anlam YouTube', voiceover: true, script: SCRIPT_FILE});
-		expect(JSON.parse(written['01-sozcukte-anlam-reels.json'])).toMatchObject({template: 'CampShort', format: 'Vertical', script: SCRIPT_FILE});
+		expect(youtube).toEqual({template: 'CampLesson', format: 'Horizontal', theme: 'SinavikaLight', name: 'TYT Türkçe kampı 01 Sözcükte Anlam YouTube', output: 'Outputs/Videos/YKS/TYT/Turkce/01_Sozcukte_Anlam/Sozcukte_Anlam_YouTube.mp4', voiceover: true, script: SCRIPT_FILE});
+		// The reel goes into the same folder (the render saves each at its `output`, its cover beside it).
+		expect(JSON.parse(written['01-sozcukte-anlam-reels.json'])).toMatchObject({template: 'CampShort', format: 'Vertical', output: 'Outputs/Videos/YKS/TYT/Turkce/01_Sozcukte_Anlam/Sozcukte_Anlam_Reels.mp4', script: SCRIPT_FILE});
 		expect(youtube).not.toHaveProperty('content');
 	});
 
@@ -54,8 +55,19 @@ describe('camp jobs (npm run curriculum -- jobs make)', () => {
 		expect(note).not.toContain('**');
 		expect(note).toContain('⏭️ Sıradaki ders: Söz Yorumu.');
 		expect(note).toContain('`Outputs/Videos/YKS/TYT/Turkce/01_Sozcukte_Anlam/Sozcukte_Anlam_YouTube.mp4`');
+		// The engine writes the cover as PNG; the note said .jpg until 1 Nov 2026.
+		expect(note).toContain('`Sozcukte_Anlam_YouTube_Kapak.png`');
 		expect(note).toContain('TYT Türkçe Kampı | Sınavika · YKS Kampı | Sınavika');
 		expect(note).toContain('Bölüm 0: https://youtu.be/');
+	});
+
+	it('refuses an intro that promises a different number of new questions than the lesson has', () => {
+		const questions = script.lesson.sections.flatMap((section) => section.cards).filter((card) => card.kind === 'question').length;
+		expect(introQuestionCount('ÖSYM kalıplarını 8 yeni soruyla çözüyoruz.')).toBe(8);
+		expect(introQuestionCount('11 özgün soru ve çözümleri.')).toBe(11);
+		expect(introQuestionCount('Uygulamada 20 soru çöz.')).toBeUndefined();
+		expect(() => files({spec: {intro: `Kampın ilk dersi: ${questions} yeni soru.`}})).not.toThrow();
+		expect(() => files({spec: {intro: `Kampın ilk dersi: ${questions + 1} yeni soru.`}})).toThrow(/promises/);
 	});
 
 	it('names a KPSS lesson by its own exam: output folder, question style, playlist, no YKS episode 0', () => {

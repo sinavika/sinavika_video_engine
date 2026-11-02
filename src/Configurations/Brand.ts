@@ -9,7 +9,8 @@ export const BRAND = {
 		 * The Sınavika lock-up ("Rafine" icon + wordmark, October 2026) as a white
 		 * PNG with transparency, inside `public/`. Only its alpha channel is used:
 		 * BrandMark paints it in the brand rule's colour, orange #EA580C on light
-		 * backdrops and white on dark or orange ones. Icon and wordmark always
+		 * backdrops and white on dark or orange ones; the one-colour logo is
+		 * charcoal (a lesson video's light pages). Icon and wordmark always
 		 * share one colour. Source vectors: the logo delivery (`kaynak/*.svg`).
 		 */
 		src: 'Brand/SinavikaLogo.png',

@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Türkçe kampı · Ders 6 · Paragrafın Yapısı ve Anlamı
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Turkce/06_Paragrafin_Yapisi_ve_Anlami/Paragrafin_Yapisi_ve_Anlami_YouTube.mp4` (4K) · Kapak: `Paragrafin_Yapisi_ve_Anlami_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Turkce/06_Paragrafin_Yapisi_ve_Anlami/Paragrafin_Yapisi_ve_Anlami_YouTube.mp4` (4K) · Kapak: `Paragrafin_Yapisi_ve_Anlami_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -21,3 +21,8 @@ Alternatifler: "Çözüm, konu özeti, hata analizi." · "Takıldığın sorunun
 Bir fotoğraf, üç cevap: adım adım çözüm, konu özeti ve hata analizi. Takıldığın sorunun fotoğrafını Akıllı Özet’e çek. Uygulamayı indir; bağlantı profilde.
 
 #sinavika #yks #kpss #sınavhazırlık
+
+## 1 Kasım revizyonu
+
+- **Red notu:** "Hook daha güçlü olsun"
+- **Değişen:** Hook "Cevap anahtarı yetmedi mi?" (Durum sorusu); kanıt kartı adım adım çözümü gösterir.

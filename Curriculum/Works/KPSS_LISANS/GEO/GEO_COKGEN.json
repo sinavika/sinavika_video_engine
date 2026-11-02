@@ -1,0 +1,2807 @@
+{
+ "topic": {
+  "id": "1E3A4671-9B38-15E9-CB03-DB02C131A4BF",
+  "category": "KPSS_LISANS",
+  "lesson": "GEO",
+  "code": "GEO_COKGEN"
+ },
+ "title": "Çokgenler",
+ "lessonName": "Geometri",
+ "exams": [
+  "KPSS"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/KPSS/GEO/GEO_COKGEN.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Beş açı, bir tam tur",
+   "narration": "Bir beşgenin beş dış açısını kesip bir noktada yan yana koysan ne olur? Boşluksuz, üst üste binmeden bir tam tur tamamlanır: 360 derece. Altıgende de, yirmigende de aynı. Bu derste çokgenlerin açılarını, köşegenlerini ve düzgün çokgenleri göreceğiz. KPSS'nin altıgen sorularının neden hep eşkenar üçgene döndüğünü de anlayacaksın."
+  },
+  "objectives": [
+   "İç açılar toplamını kullanmak",
+   "Dış açılar toplamını kullanmak",
+   "Köşegen sayısını bulmak",
+   "Düzgün çokgende açı ve kenar sayısı bulmak",
+   "Altıgenin alanını eşkenar üçgenlerle hesaplamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_COKGEN_01",
+    "subtopics": [],
+    "title": "Çokgenin elemanları",
+    "narration": "Çokgen, kendini kesmeyen kenarlarla kapanan bir şekildir. Önce elemanlarına ad verelim.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Kenar, köşe, köşegen, açı",
+      "text": "Çokgenin **kenarları** ve **köşeleri** vardır; komşu olmayan iki köşeyi birleştiren doğru parçası **köşegendir**. Her köşede bir **iç açı** ve onun bütünleri olan bir **dış açı** vardır. Bütün köşegenleri içinde kalan çokgen **dışbükeydir**.",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -2.2,
+        -0.9,
+        6.6,
+        5.9
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          4,
+          0
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          4.61,
+          3.45
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          2.01,
+          4.95
+         ],
+         "label": "D",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          -1.39,
+          2.98
+         ],
+         "label": "E",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "X",
+         "at": [
+          4.89,
+          5.03
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "kenar",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "label": "köşegen",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "X",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "label": "iç açı",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "C",
+         "from": "X",
+         "to": "D",
+         "label": "dış açı",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "AB bir kenar; A, B, C, D, E köşeler.",
+        "show": [],
+        "focus": [
+         "AB"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "AC ve AD köşegenler: komşu olmayan köşeleri birleştiriyorlar.",
+        "show": [],
+        "focus": [
+         "AC",
+         "AD"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "B'deki iç açı; C'de BC uzatılınca oluşan dış açı. İkisi bir köşede yan yana gelince 180 derece eder.",
+        "show": [],
+        "focus": [
+         "angle-B",
+         "angle-C"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Çokgen, kendini kesmeyen doğru parçalarıyla kapanan bir şekildir. Bu doğru parçalarına kenar, buluştukları noktalara köşe denir. Komşu olmayan iki köşeyi birleştiren doğru parçası köşegendir. Her köşede çokgenin içinde kalan bir iç açı vardır; bir kenar uzatılınca oluşan dış açı da onun bütünleridir. Bütün köşegenleri içinde kalan çokgene dışbükey çokgen denir; KPSS soruları genellikle bunlarla ilgilidir."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_COKGEN_02",
+    "subtopics": [],
+    "title": "İç açıların toplamı",
+    "narration": "Bir köşeden çizilen köşegenler çokgeni üçgenlere böler. Üçgen sayısını bilirsen iç açıların toplamını bilirsin.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Üçgenlere bölmek",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -3.9,
+        -3.4,
+        3.9,
+        3.9
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          3
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          -2.85,
+          0.93
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          -1.76,
+          -2.43
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          1.76,
+          -2.43
+         ],
+         "label": "D",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          2.85,
+          0.93
+         ],
+         "label": "E",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "fill": true,
+         "id": "u1",
+         "label": "180°",
+         "shade": 2
+        },
+        {
+         "points": [
+          "A",
+          "C",
+          "D"
+         ],
+         "fill": true,
+         "id": "u2",
+         "label": "180°",
+         "shade": 3
+        },
+        {
+         "points": [
+          "A",
+          "D",
+          "E"
+         ],
+         "fill": true,
+         "id": "u3",
+         "label": "180°",
+         "shade": 2
+        }
+       ],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "A'dan çizilen iki köşegen beşgeni üç üçgene bölüyor.",
+        "show": [
+         "u1"
+        ],
+        "focus": [
+         "u1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Her üçgenin açıları toplamı 180 derece.",
+        "show": [
+         "u2",
+         "u3"
+        ],
+        "focus": [
+         "u2",
+         "u3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Üçgenlerin açıları birlikte beşgenin iç açılarını tam olarak dolduruyor: 3 çarpı 180, 540 derece. n kenarlı çokgende n eksi 2 üçgen olur.",
+        "show": [],
+        "focus": [
+         "u1",
+         "u2",
+         "u3"
+        ],
+        "note": "(n − 2) · 180°",
+        "swap": []
+       }
+      ],
+      "narration": "Bir beşgenin A köşesinden köşegenleri çizelim."
+     },
+     {
+      "kind": "rule",
+      "title": "İç açılar toplamı",
+      "items": [
+       "$n$ kenarlı çokgende iç açılar toplamı $(n - 2) \\cdot 180°$.",
+       "Üçgen $180°$, dörtgen $360°$, beşgen $540°$, altıgen $720°$."
+      ],
+      "beats": [],
+      "narration": "Bir köşeden çizilen köşegenler n kenarlı çokgeni n eksi 2 üçgene ayırır; bu yüzden iç açıların toplamı n eksi 2 çarpı 180 derecedir. Üçgende 180, dörtgende 360, beşgende 540, altıgende 720 derece."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "İç açılarının ölçüleri toplamı $1440°$ olan bir çokgenin kenar sayısı kaçtır?",
+       "options": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "14"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$(n - 2) \\cdot 180° = 1440°$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "n eksi 2 çarpı 180, 1440 derece."
+        },
+        {
+         "text": "$n - 2 = 8 \\Rightarrow n = 10$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "1440 bölü 180, 8; n eksi 2, 8; n, 10. Cevap B. A şıkkındaki 9 değil, D şıkkındaki 12 de değil: 8 üçgen 10 kenarlı çokgen demektir; 2'yi eklemeyi unutma."
+        }
+       ],
+       "narration": "İç açılar toplamı kuralını tersinden kullanacağız.",
+       "origin": {
+        "changes": "Havuzdaki iç açılar toplamından kenar sayısı buldurma kalıbı örnek alındı; toplam bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki $ABCDE$ beşgeninin dört iç açısı $100°$, $110°$, $120°$ ve $95°$'dir. Buna göre $x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -2.2,
+         -0.9,
+         6.6,
+         5.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           4,
+           0
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           4.61,
+           3.45
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           2.01,
+           4.95
+          ],
+          "label": "D",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           -1.39,
+           2.98
+          ],
+          "label": "E",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "B",
+          "from": "C",
+          "to": "A",
+          "label": "100°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "C",
+          "from": "D",
+          "to": "B",
+          "label": "110°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "D",
+          "from": "E",
+          "to": "C",
+          "label": "120°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "E",
+          "from": "A",
+          "to": "D",
+          "label": "95°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "A",
+          "from": "B",
+          "to": "E",
+          "label": "x",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "105",
+        "110",
+        "115",
+        "120",
+        "125"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$(5 - 2) \\cdot 180° = 540°$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Beşgende iç açılar toplamı 3 çarpı 180, 540 derece."
+        },
+        {
+         "text": "$x = 540° - (100° + 110° + 120° + 95°) = 115°$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bilinen dört açının toplamı 425; x, 540 eksi 425, 115 derece. Cevap C. Toplamı 360 sanıp dörtgen gibi hesaplamak bu sorunun tuzağıdır."
+        }
+       ],
+       "narration": "Beşgenin iç açıları toplamı 540 derece.",
+       "origin": {
+        "changes": "Havuzdaki iç açıları verilen çokgende bilinmeyen açı kalıbı örnek alındı; açılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir çokgenin iç açılarının toplamı ile dış açılarının toplamı arasındaki fark $900°$'dir. Buna göre bu çokgenin kenar sayısı kaçtır?",
+       "options": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "14"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$(n - 2) \\cdot 180° - 360° = 900°$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İç açılar toplamı n eksi 2 çarpı 180; dış açılar toplamı 360. Farkları 900."
+        },
+        {
+         "text": "$(n - 2) \\cdot 180° = 1260° \\Rightarrow n - 2 = 7$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "n eksi 2 çarpı 180, 1260; n eksi 2, 7."
+        },
+        {
+         "text": "$n = 9$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "n, 9. Sağlama: dokuzgende iç açılar toplamı 1260, dış açılar 360; fark 900. Cevap A. Dış açılar toplamını da n'ye bağlı sanmak bu sorunun tuzağıdır."
+        }
+       ],
+       "narration": "Dış açılar toplamı her zaman 360; iç açılar toplamını n ile yazalım.",
+       "origin": {
+        "changes": "Havuzdaki iç ve dış açılar toplamı farkından kenar sayısı kalıbı örnek alındı; fark bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_COKGEN_03",
+    "subtopics": [],
+    "title": "Dış açıların toplamı",
+    "narration": "Dış açıların toplamı kenar sayısına bakmaz: her çokgende 360 derecedir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Dış açılar bir noktada",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -3.6,
+        -2,
+        7.2,
+        6.6
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          4,
+          0
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          5.2,
+          3.29
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          2.6,
+          4.79
+         ],
+         "label": "D",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          -1.42,
+          2.47
+         ],
+         "label": "E",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "X0",
+         "at": [
+          0.85,
+          -1.47
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "X1",
+         "at": [
+          5.7,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "X2",
+         "at": [
+          5.78,
+          4.89
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "X3",
+         "at": [
+          1.13,
+          5.64
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "X4",
+         "at": [
+          -2.89,
+          1.62
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "O",
+         "at": [
+          2.18,
+          2.11
+         ],
+         "label": "O",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R0",
+         "at": [
+          3.43,
+          2.11
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R1",
+         "at": [
+          2.61,
+          3.28
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R2",
+         "at": [
+          1.1,
+          2.73
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R3",
+         "at": [
+          1.1,
+          1.48
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R4",
+         "at": [
+          2.81,
+          1.03
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "X0",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "X1",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "X2",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "X3",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "X4",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "O",
+         "to": "R0",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "O",
+         "to": "R1",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "O",
+         "to": "R2",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "O",
+         "to": "R3",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "O",
+         "to": "R4",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "A",
+         "from": "X0",
+         "to": "B",
+         "label": "a",
+         "right": false,
+         "arcs": 1,
+         "id": "e0"
+        },
+        {
+         "at": "B",
+         "from": "X1",
+         "to": "C",
+         "label": "b",
+         "right": false,
+         "arcs": 1,
+         "id": "e1"
+        },
+        {
+         "at": "C",
+         "from": "X2",
+         "to": "D",
+         "label": "c",
+         "right": false,
+         "arcs": 1,
+         "id": "e2"
+        },
+        {
+         "at": "D",
+         "from": "X3",
+         "to": "E",
+         "label": "d",
+         "right": false,
+         "arcs": 1,
+         "id": "e3"
+        },
+        {
+         "at": "E",
+         "from": "X4",
+         "to": "A",
+         "label": "e",
+         "right": false,
+         "arcs": 1,
+         "id": "e4"
+        },
+        {
+         "at": "O",
+         "from": "R4",
+         "to": "R0",
+         "label": "a",
+         "right": false,
+         "arcs": 1,
+         "id": "k0",
+         "copyOf": "e0"
+        },
+        {
+         "at": "O",
+         "from": "R0",
+         "to": "R1",
+         "label": "b",
+         "right": false,
+         "arcs": 1,
+         "id": "k1",
+         "copyOf": "e1"
+        },
+        {
+         "at": "O",
+         "from": "R1",
+         "to": "R2",
+         "label": "c",
+         "right": false,
+         "arcs": 1,
+         "id": "k2",
+         "copyOf": "e2"
+        },
+        {
+         "at": "O",
+         "from": "R2",
+         "to": "R3",
+         "label": "d",
+         "right": false,
+         "arcs": 1,
+         "id": "k3",
+         "copyOf": "e3"
+        },
+        {
+         "at": "O",
+         "from": "R3",
+         "to": "R4",
+         "label": "e",
+         "right": false,
+         "arcs": 1,
+         "id": "k4",
+         "copyOf": "e4"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Beşgenin dış açıları: a, b, c, d ve e.",
+        "show": [],
+        "focus": [
+         "e0",
+         "e1",
+         "e2",
+         "e3",
+         "e4"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Hepsini O noktasına taşıyalım; her biri olduğu gibi kayıyor.",
+        "show": [
+         "k0",
+         "k1",
+         "k2",
+         "k3",
+         "k4",
+         "OR0",
+         "OR1",
+         "OR2",
+         "OR3",
+         "OR4"
+        ],
+        "focus": [
+         "k0",
+         "k1",
+         "k2",
+         "k3",
+         "k4"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Beş dış açı O'nun çevresini boşluksuz, üst üste binmeden dolduruyor: tam bir tur, 360 derece.",
+        "show": [],
+        "focus": [
+         "k0",
+         "k1",
+         "k2",
+         "k3",
+         "k4"
+        ],
+        "note": "a + b + c + d + e = 360°",
+        "swap": []
+       }
+      ],
+      "narration": "Bir beşgenin her köşesinde bir kenarı uzatıp dış açıyı işaretleyelim."
+     },
+     {
+      "kind": "rule",
+      "title": "Dış açılar toplamı",
+      "items": [
+       "Her dışbükey çokgende dış açılar toplamı $360°$'dir.",
+       "Bir köşede iç açı + dış açı $= 180°$."
+      ],
+      "beats": [],
+      "narration": "Her dışbükey çokgende dış açıların toplamı 360 derecedir; çokgenin kaç kenarı olduğu önemli değildir. Nedenini şöyle de görebilirsin: çokgenin çevresinde dolaşan biri her köşede dış açı kadar döner ve başladığı yere döndüğünde tam bir tur atmış olur. Bir köşedeki iç açı ile dış açının toplamı da 180 derecedir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Artan hangisi?",
+      "wrong": "Kenar sayısı arttıkça dış açılar toplamı da artar.",
+      "right": "Dış açılar toplamı her zaman $360°$; artan, **iç** açılar toplamıdır.",
+      "why": "Kenar arttıkça her dış açı küçülür; toplamları aynı kalır.",
+      "narration": "Sık yapılan bir hata: kenar sayısı artınca dış açıların toplamının da büyüdüğünü sanmak. Kenar arttıkça dış açıların sayısı artar ama her biri küçülür; toplam hep 360 derecedir. Kenar sayısıyla büyüyen, iç açıların toplamıdır: her yeni kenar 180 derece ekler."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki $ABCDE$ beşgeninde dört dış açı $70°$, $80°$, $60°$ ve $90°$'dir. Buna göre $x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -3.6,
+         -2,
+         7.2,
+         6.6
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           4,
+           0
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           5.2,
+           3.29
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           2.6,
+           4.79
+          ],
+          "label": "D",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           -1.42,
+           2.47
+          ],
+          "label": "E",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "X0",
+          "at": [
+           0.85,
+           -1.47
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "X1",
+          "at": [
+           5.7,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "X2",
+          "at": [
+           5.78,
+           4.89
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "X3",
+          "at": [
+           1.13,
+           5.64
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "X4",
+          "at": [
+           -2.89,
+           1.62
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "X0",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "X1",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "X2",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "X3",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "X4",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "X0",
+          "to": "B",
+          "label": "x",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "B",
+          "from": "X1",
+          "to": "C",
+          "label": "70°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "C",
+          "from": "X2",
+          "to": "D",
+          "label": "80°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "D",
+          "from": "X3",
+          "to": "E",
+          "label": "60°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "E",
+          "from": "X4",
+          "to": "A",
+          "label": "90°",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "40",
+        "50",
+        "60",
+        "70",
+        "80"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$x = 360° - (70° + 80° + 60° + 90°)$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dış açıların toplamı 360 derece: x, 360 eksi bilinen dört dış açı."
+        },
+        {
+         "text": "$x = 360° - 300° = 60°$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bilinenlerin toplamı 300; x, 60 derece. Cevap C. 540'tan çıkarıp 240 bulmak, dış açıları iç açılarla karıştırmaktır."
+        }
+       ],
+       "narration": "Dış açılar toplamı 360 derece.",
+       "origin": {
+        "changes": "Havuzdaki dış açıları verilen çokgen kalıbı örnek alındı; açılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_COKGEN_04",
+    "subtopics": [],
+    "title": "Köşegen sayısı",
+    "narration": "Bir köşeden kaç köşegen çıkar, toplamda kaç köşegen vardır?",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Altıgenin köşegenleri",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -3.9,
+        -3.4,
+        3.9,
+        3.4
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          -3,
+          0
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          -1.5,
+          -2.6
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          1.5,
+          -2.6
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          3,
+          0
+         ],
+         "label": "D",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          1.5,
+          2.6
+         ],
+         "label": "E",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "F",
+         "at": [
+          -1.5,
+          2.6
+         ],
+         "label": "F",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "F",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "F",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "E",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "E",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "F",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "E",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "F",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "F",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "A'dan kendisine ve iki komşusuna köşegen çizilmez: geriye 6 eksi 3, yani 3 köşegen kalıyor.",
+        "show": [],
+        "focus": [
+         "AC",
+         "AD",
+         "AE"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Her köşeden 3 köşegen: 6 çarpı 3, 18. Ama her köşegeni iki ucundan iki kez saydık.",
+        "show": [],
+        "focus": [
+         "BD",
+         "BE",
+         "BF",
+         "CE",
+         "CF",
+         "DF"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Toplam 18 bölü 2, 9 köşegen. Genel kural: n çarpı n eksi 3, bölü 2.",
+        "show": [],
+        "focus": [],
+        "note": "n(n − 3) / 2",
+        "swap": []
+       }
+      ],
+      "narration": "Bir düzgün altıgenin köşegenlerini sayalım."
+     },
+     {
+      "kind": "rule",
+      "title": "Köşegen sayısı",
+      "items": [
+       "Bir köşeden $n - 3$ köşegen çizilir.",
+       "Toplam köşegen sayısı $\\frac{n(n - 3)}{2}$."
+      ],
+      "beats": [],
+      "narration": "n kenarlı bir çokgende bir köşeden, kendisine ve iki komşusuna köşegen çizilemediği için n eksi 3 köşegen çizilir. Her köşegenin iki ucu olduğu için toplam köşegen sayısı n çarpı n eksi 3, bölü 2'dir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir köşesinden 6 köşegen çizilebilen bir çokgenin toplam köşegen sayısı kaçtır?",
+       "options": [
+        "18",
+        "20",
+        "24",
+        "27",
+        "36"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$n - 3 = 6 \\Rightarrow n = 9$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir köşeden n eksi 3 köşegen çıkar: n eksi 3, 6; n, 9."
+        },
+        {
+         "text": "$\\frac{9 \\cdot 6}{2} = 27$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam köşegen 9 çarpı 6 bölü 2, 27. Cevap D. E şıkkındaki 36, ikiye bölmeyi unutmaktır; her köşegen iki kez sayılmıştı."
+        }
+       ],
+       "narration": "Önce kenar sayısını bulalım.",
+       "origin": {
+        "changes": "Havuzdaki bir köşeden çizilen köşegenlerle toplam köşegen kalıbı örnek alındı; sayı bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Köşegen sayısı, kenar sayısının 2 katı olan çokgen kaç kenarlıdır?",
+       "options": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$\\frac{n(n - 3)}{2} = 2n$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Köşegen sayısı n çarpı n eksi 3 bölü 2; bu, 2n'ye eşit."
+        },
+        {
+         "text": "$n - 3 = 4 \\Rightarrow n = 7$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki tarafı n'ye bölüp 2 ile çarpalım: n eksi 3, 4; n, 7. Sağlama: yedigende köşegen 7 çarpı 4 bölü 2, 14; kenarın 2 katı. Cevap B."
+        }
+       ],
+       "narration": "Köşegen sayısını n ile yazıp kenar sayısının 2 katına eşitleyelim.",
+       "origin": {
+        "changes": "Havuzdaki köşegen sayısı ile kenar sayısı ilişkisi kalıbı örnek alındı; oran bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_COKGEN_05",
+    "subtopics": [],
+    "title": "Düzgün çokgenler",
+    "narration": "Bütün kenarları ve bütün açıları eşit çokgenlere düzgün çokgen denir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Düzgün çokgen",
+      "items": [
+       "Bir dış açı $\\frac{360°}{n}$, bir iç açı $180° - \\frac{360°}{n}$.",
+       "Düzgün altıgen, kenarı ona eşit **altı eşkenar üçgenden** oluşur.",
+       "İç açı verilirse önce dış açıyı bul: $n = \\frac{360°}{\\text{dış açı}}$."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -3.9,
+        -3.4,
+        3.9,
+        3.4
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          -3,
+          0
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          -1.5,
+          -2.6
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          1.5,
+          -2.6
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          3,
+          0
+         ],
+         "label": "D",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          1.5,
+          2.6
+         ],
+         "label": "E",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "F",
+         "at": [
+          -1.5,
+          2.6
+         ],
+         "label": "F",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "O",
+         "at": [
+          0,
+          0
+         ],
+         "label": "O",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "F",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "F",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "O",
+         "to": "A",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "O",
+         "to": "B",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "O",
+         "to": "C",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "O",
+         "to": "D",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "O",
+         "to": "E",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "O",
+         "to": "F",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "O",
+          "A",
+          "B"
+         ],
+         "fill": true,
+         "id": "t0",
+         "label": "S",
+         "shade": 3
+        },
+        {
+         "points": [
+          "O",
+          "B",
+          "C"
+         ],
+         "fill": true,
+         "id": "t1",
+         "label": "S",
+         "shade": 2
+        },
+        {
+         "points": [
+          "O",
+          "C",
+          "D"
+         ],
+         "fill": true,
+         "id": "t2",
+         "label": "S",
+         "shade": 3
+        },
+        {
+         "points": [
+          "O",
+          "D",
+          "E"
+         ],
+         "fill": true,
+         "id": "t3",
+         "label": "S",
+         "shade": 2
+        },
+        {
+         "points": [
+          "O",
+          "E",
+          "F"
+         ],
+         "fill": true,
+         "id": "t4",
+         "label": "S",
+         "shade": 3
+        },
+        {
+         "points": [
+          "O",
+          "F",
+          "A"
+         ],
+         "fill": true,
+         "id": "t5",
+         "label": "S",
+         "shade": 2
+        }
+       ],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "Düzgün altıgenin merkezini köşelere birleştirelim.",
+        "show": [],
+        "focus": [
+         "OA",
+         "OB",
+         "OC",
+         "OD",
+         "OE",
+         "OF"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Altı eş üçgen oluştu. Merkezdeki açıların her biri 360 bölü 6, 60 derece; kenarlar eşit olduğu için hepsi eşkenar üçgen.",
+        "show": [
+         "t0",
+         "t1",
+         "t2",
+         "t3",
+         "t4",
+         "t5"
+        ],
+        "focus": [
+         "t0",
+         "t1",
+         "t2",
+         "t3",
+         "t4",
+         "t5"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Altıgenin alanı, kenarı a olan eşkenar üçgenin 6 katı.",
+        "show": [],
+        "focus": [],
+        "note": "A = 6 · a²√3 / 4",
+        "swap": []
+       }
+      ],
+      "narration": "Düzgün çokgenin bütün dış açıları eşit olduğu için her biri 360 bölü n'dir; iç açı da 180'den bunu çıkararak bulunur. Soruda iç açı verildiğinde en kısa yol, önce dış açıyı bulmak ve 360'ı ona bölmektir. Düzgün altıgen ayrıca özeldir: merkezini köşelere birleştirince altı eşkenar üçgene ayrılır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir iç açısının ölçüsü $140°$ olan düzgün çokgenin kenar sayısı kaçtır?",
+       "options": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Dış açı $180° - 140° = 40°$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bir dış açı, 180 eksi 140, 40 derece."
+        },
+        {
+         "text": "$n = \\frac{360°}{40°} = 9$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Dış açılar toplamı 360; her biri 40 ise 9 kenar vardır. Cevap E."
+        }
+       ],
+       "narration": "Önce dış açıyı bulalım.",
+       "origin": {
+        "changes": "ÖSYM KPSS ön lisanstaki iç açısı verilen düzgün çokgenin kenar sayısı kalıbı örnek alındı; açı bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir kenarı 4 birim olan düzgün altıgenin alanı kaç birimkaredir?",
+       "options": [
+        "$12\\sqrt{3}$",
+        "$18\\sqrt{3}$",
+        "$24\\sqrt{3}$",
+        "$36\\sqrt{3}$",
+        "$48\\sqrt{3}$"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Bir üçgen: $\\frac{4^2\\sqrt{3}}{4} = 4\\sqrt{3}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kenarı 4 olan eşkenar üçgenin alanı 16 kök 3 bölü 4, yani 4 kök 3."
+        },
+        {
+         "text": "Altıgen: $6 \\cdot 4\\sqrt{3} = 24\\sqrt{3}$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Altıgen bunun 6 katı: 24 kök 3 birimkare. Cevap C. E şıkkındaki 48 kök 3, eşkenar üçgen alanında 4'e bölmeyi unutmanın sonucudur."
+        }
+       ],
+       "narration": "Düzgün altıgen altı eşkenar üçgenden oluşur.",
+       "origin": {
+        "changes": "Havuzdaki düzgün altıgenin alanı kalıbı örnek alındı; kenar bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki $ABCDEF$ düzgün altıgeninde $ACE$ üçgeninin alanı 12 birimkare olduğuna göre altıgenin alanı kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -3.9,
+         -3.4,
+         3.9,
+         3.4
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           -3,
+           0
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           -1.5,
+           -2.6
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           1.5,
+           -2.6
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           3,
+           0
+          ],
+          "label": "D",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           1.5,
+           2.6
+          ],
+          "label": "E",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "F",
+          "at": [
+           -1.5,
+           2.6
+          ],
+          "label": "F",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "F",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "F",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "C",
+           "E"
+          ],
+          "fill": true,
+          "id": "ace",
+          "label": "12",
+          "shade": 2
+         }
+        ],
+        "circles": [],
+        "angles": []
+       },
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36",
+        "48"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Altıgen $= 6S$; $ABC$, $CDE$, $EFA$'nın her biri $S$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Altıgen, alanı S olan altı eşkenar üçgendir. Köşelerde kalan ABC, CDE ve EFA üçgenlerinin her biri de, merkezle oluşan bir eşkenar üçgenle aynı taban ve yüksekliğe sahiptir: alanı S."
+        },
+        {
+         "text": "$A(ACE) = 6S - 3S = 3S$: altıgenin yarısı",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "ACE, altıgenden bu üç köşe üçgeni çıkarılınca kalır: 6S eksi 3S, 3S. Yani ACE, altıgenin tam yarısı."
+        },
+        {
+         "text": "Altıgen $= 2 \\cdot 12 = 24$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Altıgen 2 çarpı 12, 24 birimkare. Cevap B. D şıkkındaki 36, ACE'yi altıgenin üçte biri sanmaktır."
+        }
+       ],
+       "narration": "Altıgeni altı eşkenar üçgene bölünce ACE'nin kaç parça aldığını sayalım.",
+       "origin": {
+        "changes": "ÖSYM KPSS ön lisanstaki düzgün altıgende üçgenin alanından altıgenin alanı kalıbı örnek alındı; üçgen ve alan bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "visual",
+      "title": "Eşit açılı altıgen",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        7.9,
+        6.96
+       ],
+       "points": [
+        {
+         "id": "P",
+         "at": [
+          2,
+          0
+         ],
+         "label": "P",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "Q",
+         "at": [
+          5,
+          0
+         ],
+         "label": "Q",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R",
+         "at": [
+          6,
+          1.73
+         ],
+         "label": "R",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "S",
+         "at": [
+          4,
+          5.19
+         ],
+         "label": "S",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "T",
+         "at": [
+          3,
+          5.19
+         ],
+         "label": "T",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "K",
+         "at": [
+          1,
+          1.73
+         ],
+         "label": "K",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "U",
+         "at": [
+          0,
+          0
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "V",
+         "at": [
+          7,
+          0
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "W",
+         "at": [
+          3.5,
+          6.06
+         ],
+         "label": "",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "P",
+         "to": "Q",
+         "label": "3",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "Q",
+         "to": "R",
+         "label": "2",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "R",
+         "to": "S",
+         "label": "4",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "S",
+         "to": "T",
+         "label": "1",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "T",
+         "to": "K",
+         "label": "4",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "K",
+         "to": "P",
+         "label": "2",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "U",
+         "to": "P",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "U",
+         "to": "K",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "V",
+         "to": "Q",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "V",
+         "to": "R",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "W",
+         "to": "S",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "W",
+         "to": "T",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "K"
+         ],
+         "fill": true,
+         "id": "altigen",
+         "shade": 2
+        },
+        {
+         "points": [
+          "U",
+          "P",
+          "K"
+         ],
+         "fill": true,
+         "id": "k1",
+         "shade": 3
+        },
+        {
+         "points": [
+          "V",
+          "R",
+          "Q"
+         ],
+         "fill": true,
+         "id": "k2",
+         "shade": 3
+        },
+        {
+         "points": [
+          "W",
+          "T",
+          "S"
+         ],
+         "fill": true,
+         "id": "k3",
+         "shade": 3
+        }
+       ],
+       "circles": [],
+       "angles": []
+      },
+      "beats": [
+       {
+        "narration": "Kenarları 3, 2, 4, 1, 4 ve 2 birim; açıları eşit ama düzgün değil.",
+        "show": [],
+        "focus": [
+         "altigen"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Bir atlayarak üç kenarı uzatalım: köşelerde üç küçük eşkenar üçgen oluşuyor ve hepsi birlikte büyük bir eşkenar üçgen kuruyor.",
+        "show": [
+         "k1",
+         "k2",
+         "k3",
+         "UP",
+         "UK",
+         "VQ",
+         "VR",
+         "WS",
+         "WT",
+         "U",
+         "V",
+         "W"
+        ],
+        "focus": [
+         "k1",
+         "k2",
+         "k3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Büyük üçgenin kenarı 2 artı 3 artı 2, yani 7. Altıgen, büyük üçgenden üç küçük üçgenin çıkarılmışı.",
+        "show": [],
+        "focus": [
+         "altigen"
+        ],
+        "note": "Altıgen = büyük üçgen − 3 küçük üçgen",
+        "swap": []
+       }
+      ],
+      "narration": "İç açılarının hepsi 120 derece olan ama kenarları farklı bir altıgen."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki altıgenin bütün iç açıları birbirine eşittir. Kenar uzunlukları sırasıyla 3, 2, 4, 1, 4 ve 2 birim olduğuna göre altıgenin alanı kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         7.9,
+         6.96
+        ],
+        "points": [
+         {
+          "id": "P",
+          "at": [
+           2,
+           0
+          ],
+          "label": "P",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "Q",
+          "at": [
+           5,
+           0
+          ],
+          "label": "Q",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "R",
+          "at": [
+           6,
+           1.73
+          ],
+          "label": "R",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "S",
+          "at": [
+           4,
+           5.19
+          ],
+          "label": "S",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "T",
+          "at": [
+           3,
+           5.19
+          ],
+          "label": "T",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "K",
+          "at": [
+           1,
+           1.73
+          ],
+          "label": "K",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "P",
+          "to": "Q",
+          "label": "3",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "Q",
+          "to": "R",
+          "label": "2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "R",
+          "to": "S",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "S",
+          "to": "T",
+          "label": "1",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "T",
+          "to": "K",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "K",
+          "to": "P",
+          "label": "2",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": []
+       },
+       "options": [
+        "$10\\sqrt{3}$",
+        "$11\\sqrt{3}$",
+        "$12\\sqrt{3}$",
+        "$\\frac{49\\sqrt{3}}{4}$",
+        "$14\\sqrt{3}$"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Köşelerde kenarları $2$, $2$, $1$ olan eşkenar üçgenler; büyük üçgenin kenarı $2 + 3 + 2 = 7$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Uzatılan kenarlar köşelerde kenarları 2, 2 ve 1 olan eşkenar üçgenler kurar; dış açılar 60 derecedir. Büyük eşkenar üçgenin kenarı 2 artı 3 artı 2, yani 7."
+        },
+        {
+         "text": "$\\frac{\\sqrt{3}}{4}(7^2 - 2^2 - 2^2 - 1^2) = \\frac{\\sqrt{3}}{4} \\cdot 40$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Altıgen, büyük üçgenden üç küçük üçgenin çıkarılmışı: kök 3 bölü 4 çarpı 49 eksi 4 eksi 4 eksi 1, yani 40."
+        },
+        {
+         "text": "$= 10\\sqrt{3}$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kök 3 bölü 4 çarpı 40, 10 kök 3 birimkare. Cevap A. D şıkkındaki 49 kök 3 bölü 4, büyük üçgenin tamamıdır; köşeleri çıkarmayı unutma."
+        }
+       ],
+       "narration": "Her iç açı 120 derece; bir atlayarak üç kenarı uzatıp eşkenar üçgen kuralım.",
+       "origin": {
+        "changes": "ÖSYM KPSS Lisans 2020'deki iç açıları eşit altıgenin alanı kalıbı örnek alındı; kenarlar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir düzgün çokgenin bir iç açısı, bir dış açısının 4 katıdır. Buna göre bu çokgenin kenar sayısı kaçtır?",
+       "options": [
+        "6",
+        "8",
+        "9",
+        "10",
+        "12"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$4d + d = 180° \\Rightarrow d = 36°$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İç açı 4d, dış açı d: toplamları 180. 5d, 180; d, 36 derece."
+        },
+        {
+         "text": "$n = \\frac{360°}{36°} = 10$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kenar sayısı 360 bölü 36, 10. Sağlama: dış açı 36, iç açı 144 derece; 144, 36'nın 4 katı. Cevap D."
+        }
+       ],
+       "narration": "İç ve dış açı bir köşede 180 eder; dış açıya d diyelim.",
+       "origin": {
+        "changes": "Havuzdaki iç ve dış açı oranından kenar sayısı kalıbı örnek alındı; oran bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "İç açılar toplamı (n − 2) · 180°.",
+    "Dış açılar toplamı her zaman 360°.",
+    "Köşegen sayısı n(n − 3) / 2.",
+    "Düzgün çokgende dış açı 360° / n.",
+    "Düzgün altıgen altı eşkenar üçgendir."
+   ],
+   "warnings": [
+    "İç açıdan önce **dış açıyı** bul.",
+    "Köşegeni **iki kez** sayma: 2’ye böl.",
+    "Eşit açılı altıgen **düzgün olmayabilir**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki **11 soruyu** kâğıtta şekilleri çizerek yeniden çöz.",
+    "Bir kâğıda beşgen çiz, dış açılarını kesip **yan yana** koy; tam turu gör.",
+    "Uygulamada KPSS Çokgenler testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Çokgenin elemanları: kenar, köşe, köşegen, iç ve dış açı (bir köşede toplam 180°), dışbükey çokgen.",
+   "İç açılar toplamı (n − 2)·180°: bir köşeden köşegenlerle n − 2 üçgen; toplamdan kenar sayısı, bilinmeyen iç açı.",
+   "Dış açılar toplamı her dışbükey çokgende 360°: dış açılar bir noktaya taşınınca tam tur; bilinmeyen dış açı.",
+   "Köşegen sayısı: bir köşeden n − 3, toplam n(n − 3)/2; bir köşeden çıkan sayıdan toplama geçiş.",
+   "Düzgün çokgen: dış açı 360°/n, iç açı 180° − 360°/n; iç-dış açı oranından n; düzgün altıgen = 6 eşkenar üçgen, ACE altıgenin yarısı; iç açıları eşit altıgende kenarları uzatıp eşkenar üçgenden çıkarma (ÖSYM 2020 kalıbı)."
+  ]
+ }
+}

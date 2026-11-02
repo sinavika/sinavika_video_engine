@@ -1,6 +1,6 @@
 # YouTube metni: AYT Sosyoloji kampı · Ders 4 · Toplumsal Değişme ve Gelişme
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Sosyoloji/04_Toplumsal_Degisme_Ve_Gelisme/Toplumsal_Degisme_Ve_Gelisme_YouTube.mp4` (4K) · Kapak: `Toplumsal_Degisme_Ve_Gelisme_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Sosyoloji/04_Toplumsal_Degisme_Ve_Gelisme/Toplumsal_Degisme_Ve_Gelisme_YouTube.mp4` (4K) · Kapak: `Toplumsal_Degisme_Ve_Gelisme_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

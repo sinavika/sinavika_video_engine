@@ -1,6 +1,6 @@
 # YouTube metni: AYT Din Kültürü kampı · Ders 3 · Kur'an'da Bazı Kavramlar
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Din/03_Kuranda_Bazi_Kavramlar/Kuranda_Bazi_Kavramlar_YouTube.mp4` (4K) · Kapak: `Kuranda_Bazi_Kavramlar_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Din/03_Kuranda_Bazi_Kavramlar/Kuranda_Bazi_Kavramlar_YouTube.mp4` (4K) · Kapak: `Kuranda_Bazi_Kavramlar_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

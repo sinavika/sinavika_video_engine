@@ -40,7 +40,21 @@ export const MAP_COLORS = {
 	water: '#7FA7C6',
 	waterFill: '#DCE8F1',
 	land: '#FFFFFF',
+	/** The land around Turkey on a map of Turkey's own areas: muted, so it reads as land and never as sea. */
+	neighbour: '#ECE8E1',
 } as const;
+
+/**
+ * The same map on a dark figure (the app's dark theme): white land glared on the dark card. Land is a mid grey and the
+ * sea a deep blue, apart in both lightness and hue: at #262D3A on #14263A (1.1 : 1) land and sea ran together in the
+ * app's dark history maps (Soru revizyonu, 2 Nov 2026); now 1.9 : 1, neighbours 1.5 : 1.
+ */
+export const MAP_COLORS_DARK = {
+	water: '#4A86B8',
+	waterFill: '#0D2644',
+	land: '#4A505A',
+	neighbour: '#3B4049',
+} as const satisfies Record<keyof typeof MAP_COLORS, string>;
 
 /**
  * What a map can draw, by name. Areas are filled (land, provinces), lines

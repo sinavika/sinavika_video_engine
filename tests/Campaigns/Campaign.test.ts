@@ -199,9 +199,10 @@ describe('Tanıtım reels’lerinin temposu (ölçüm ve dış değerlendirme, 2
 		}
 	});
 
-	it('runs 18 s at most: 15 s of its own, then the 3 s app card', () => {
+	it('runs 18 s at most: 15 s of its own, then the 3 s closing card (the app card, or our YouTube channel card)', () => {
 		for (const entry of promoReels) {
-			expect(entry.beats.at(-1), entry.id).toBe(`${REEL_STANDARD.contentMaxSeconds}–${REEL_STANDARD.maxSeconds} sn: AppEndCard.`);
+			// The camp trailer promotes the YouTube channel: it closes on the channel card, not the app card (owner, 1 Nov 2026).
+			expect([`${REEL_STANDARD.contentMaxSeconds}–${REEL_STANDARD.maxSeconds} sn: AppEndCard.`, `${REEL_STANDARD.contentMaxSeconds}–${REEL_STANDARD.maxSeconds} sn: YouTube kanal kartı.`], entry.id).toContain(entry.beats.at(-1));
 			for (const beat of entry.beats) expect(beatEnd(beat), `${entry.id}: ${beat}`).toBeLessThanOrEqual(REEL_STANDARD.maxSeconds);
 		}
 	});

@@ -4,7 +4,7 @@ import {NATURE_COLORS as C} from '../../../Configurations/NatureColors';
 import {withAlpha} from '../../../Themes/Theme';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import {type CourseVisual} from '../VisualSchema';
-import {H, pathOf, Tag, usePartLook, W, World} from '../VisualWorld';
+import {H, LAND_INK, LightGround, pathOf, Tag, usePartLook, W, World} from '../VisualWorld';
 
 // ---------------------------------------------------------------- contour map and profile
 
@@ -222,6 +222,8 @@ export const ContourVisual: React.FC<VisualBoxProps & {visual: Contour}> = ({vis
 					<path d="M470 372 C480 330 500 280 512 212" fill="none" stroke={C.water} strokeWidth={4} strokeLinecap="round" opacity={lines.opacity} />
 				</g>
 				<rect x={0} y={0} width={W} height={MAP_H} rx={18} fill="none" stroke={palette.border} strokeWidth={2} />
+				{/* Labels and marks on the terrain, whose colours do not follow the theme. */}
+				<LightGround>
 				<g opacity={lines.opacity}>
 					{valueSpots.map((spot) => (
 						<Tag key={spot.level} x={spot.x} y={top.y + 40} text={String(spot.level)} anchor="middle" size={15} weight={700} fill="#7A4E2A" />
@@ -232,7 +234,7 @@ export const ContourVisual: React.FC<VisualBoxProps & {visual: Contour}> = ({vis
 					<Tag x={coastAt(330) + 8} y={330} text="0 m kıyı" size={17} focused={coast.focused} />
 				</g>
 				<g opacity={summit.opacity}>
-					<path d={`M${top.x} ${top.y - 12} l10 17 l-20 0 z`} fill={palette.ink} />
+					<path d={`M${top.x} ${top.y - 12} l10 17 l-20 0 z`} fill={LAND_INK} />
 					<Tag x={top.x} y={top.y - 26} text={`${summitHeight} m`} anchor="middle" size={19} focused={summit.focused} />
 				</g>
 				{/* What the lines tell, pointed at one by one. */}
@@ -253,12 +255,13 @@ export const ContourVisual: React.FC<VisualBoxProps & {visual: Contour}> = ({vis
 				</g>
 				{/* The A–B line. */}
 				<g opacity={line.opacity}>
-					<line x1={A_POINT[0]} y1={A_POINT[1]} x2={B_POINT[0]} y2={B_POINT[1]} stroke={palette.ink} strokeWidth={3} strokeDasharray="10 6" />
-					<circle cx={A_POINT[0]} cy={A_POINT[1]} r={7} fill={palette.ink} />
-					<circle cx={B_POINT[0]} cy={B_POINT[1]} r={7} fill={palette.ink} />
+					<line x1={A_POINT[0]} y1={A_POINT[1]} x2={B_POINT[0]} y2={B_POINT[1]} stroke={LAND_INK} strokeWidth={3} strokeDasharray="10 6" />
+					<circle cx={A_POINT[0]} cy={A_POINT[1]} r={7} fill={LAND_INK} />
+					<circle cx={B_POINT[0]} cy={B_POINT[1]} r={7} fill={LAND_INK} />
 					<Tag x={A_POINT[0] - 14} y={A_POINT[1]} text="A" anchor="end" size={22} focused={line.focused} />
 					<Tag x={B_POINT[0] + 14} y={B_POINT[1]} text="B" size={22} focused={line.focused} />
 				</g>
+				</LightGround>
 			</g>
 			{visual.profile ? (
 				<g>

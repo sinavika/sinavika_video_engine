@@ -267,10 +267,12 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 	const call = say('call', content.archive.narration, Math.max(5, shots - date.seconds), Math.max(4, shots - date.seconds));
 	const time = say('time', content.time.narration, 6, 6);
 	const thanks = say('thanks', content.thanks.narration, 8, 8.5);
+	// Atatürk first (owner, 1 Nov 2026: "video Atatürk ile başlamalı, tüyler ürpertmeli"): his portrait and the date, his
+	// words to teachers, and only then the chalk lines.
 	return [
-		{id: 'chalk', seconds: chalkSeconds, label: 'Tebeşir', silent: true, element: <ChalkScene content={content} />},
 		{id: 'archive', seconds: date.seconds + call.seconds, label: 'Arşiv', voice: [date, call], element: <ArchiveScene content={content} seconds={date.seconds + call.seconds} />},
 		{id: 'quote', seconds: content.quote.seconds, label: 'Söz', silent: true, element: <QuoteScene content={content} />},
+		{id: 'chalk', seconds: chalkSeconds, label: 'Tebeşir', silent: true, element: <ChalkScene content={content} />},
 		{id: 'time', seconds: time.seconds, label: 'Zaman', voice: [time], element: <TimeScene content={content} seconds={time.seconds} />},
 		{id: 'thanks', seconds: thanks.seconds, label: 'Teşekkür', voice: [thanks], element: <ThanksScene content={content} />},
 	];
@@ -280,11 +282,12 @@ export const Basogretmen = defineTemplate({
 	id: 'Basogretmen',
 	category: 'Advertisements',
 	title: '24 Kasım: Başöğretmen',
-	description: 'Reklamsız Öğretmenler Günü: kara tahtada tebeşirle “Bir tebeşir, bir kara tahta, bir millet.”; sıcak tonda kamu malı arşivle “24 Kasım 1928 · Başöğretmen”; Atatürk’ün öğretmenlere sözü tebeşirle; tahta 1928’den bugünün sınıf ekranına (çizim); “Sana ilk harfi kim öğretti?” Yalnız küçük logo.',
+	description: 'Reklamsız Öğretmenler Günü: Atatürk’ün kamu malı arşiviyle açılır, “24 Kasım 1928 · Başöğretmen”; öğretmenlere sözü tebeşirle; “Bir tebeşir, bir kara tahta, bir millet.”; tahta 1928’den bugünün sınıf ekranına (çizim); “Sana ilk harfi kim öğretti?” Yalnız küçük logo.',
 	contentSchema: BasogretmenSchema,
 	sampleContent: SAMPLE,
 	defaultTheme: 'SinavikaDark',
-	transition: {preset: 'none'},
+	// Scenes melt into each other (owner, 1 Nov 2026: "çok daha duygusal, ağlamaklı").
+	transition: {preset: 'fade', durationSeconds: 0.8},
 	targetSeconds: {min: 25, max: 50},
 	cutsOnBeat: false,
 	buildScenes,

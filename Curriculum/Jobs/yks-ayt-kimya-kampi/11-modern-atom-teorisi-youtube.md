@@ -1,6 +1,6 @@
 # YouTube metni: AYT Kimya kampı · Ders 11 · Modern Atom Teorisi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Kimya/11_Modern_Atom_Teorisi/Modern_Atom_Teorisi_YouTube.mp4` (4K) · Kapak: `Modern_Atom_Teorisi_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Kimya/11_Modern_Atom_Teorisi/Modern_Atom_Teorisi_YouTube.mp4` (4K) · Kapak: `Modern_Atom_Teorisi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

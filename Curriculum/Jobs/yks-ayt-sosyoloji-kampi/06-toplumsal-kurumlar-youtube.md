@@ -1,6 +1,6 @@
 # YouTube metni: AYT Sosyoloji kampı · Ders 6 · Toplumsal Kurumlar
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Sosyoloji/06_Toplumsal_Kurumlar/Toplumsal_Kurumlar_YouTube.mp4` (4K) · Kapak: `Toplumsal_Kurumlar_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Sosyoloji/06_Toplumsal_Kurumlar/Toplumsal_Kurumlar_YouTube.mp4` (4K) · Kapak: `Toplumsal_Kurumlar_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

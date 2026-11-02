@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 8 · Yazım Kuralları
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Turkce/08_Yazim_Kurallari/Yazim_Kurallari_YouTube.mp4` (4K) · Kapak: `Yazim_Kurallari_YouTube_Kapak.jpg` (kamp kapağı).
+Video: `Outputs/Videos/YKS/TYT/Turkce/08_Yazim_Kurallari/Yazim_Kurallari_YouTube.mp4` (4K, 18:15) · Kapak: `Yazim_Kurallari_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 
@@ -27,7 +27,7 @@ Bu derste:
 2. Kendi yazdığın bir mesajda de, ki ve mi sözlerini kontrol et, yanlışları düzelt.
 3. Sınavika'da Yazım Kuralları testinden 20 soru çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz.
 
-⏮️ Önceki ders, Tamlamalar ve Sözcük Grupları: (yayın linki)
+⏮️ Önceki ders, Tamlamalar ve Sözcük Grupları: https://youtu.be/oQJJqUXJej4
 ⏭️ Sıradaki ders: Noktalama İşaretleri. Kanala abone ol, hiçbir dersi kaçırma! 🔔
 🗺️ Kampı baştan izle, Bölüm 0: https://youtu.be/-YSeFFxDOhM
 
@@ -37,7 +37,19 @@ Google Play: https://play.google.com/store/apps/details?id=com.sinavika.mobile
 Web: https://sinavika.com
 
 Bölümler:
-(render sonrası `Yazim_Kurallari_YouTube.chapters.txt` buraya yapıştırılır; bölüm başlıkları: Giriş, Büyük harflerin kullanımı, de ve da, ki, Soru eki mi, Birleşik kelimeler, Sayıların yazımı, Kısaltmalar ve ekler, İkilemeler ve pekiştirmeler, Özel adlara gelen ekler, Numaralanmış sözlerin yazımı, Özet, Kamp görevi)
+0:00 Giriş
+0:52 Büyük harflerin kullanımı
+3:48 de ve da
+5:56 ki
+7:36 Soru eki mi
+8:22 Birleşik kelimeler
+11:17 Sayıların yazımı
+12:00 Kısaltmalar ve ekler
+13:40 İkilemeler ve pekiştirmeler
+14:16 Özel adlara gelen ekler
+15:11 Numaralanmış sözlerin yazımı
+16:58 Özet
+17:40 Kamp görevi
 
 #TYT #YKS #TYTTürkçe #YazımKuralları #Sınavika
 
@@ -52,3 +64,7 @@ TYT Türkçe Kampı | Sınavika · YKS Kampı | Sınavika
 ## Ayarlar
 
 Kategori Eğitim · dil Türkçe · çocuklara özel değil · ücretli tanıtım yok · yapay zekâ beyanı önceki derslerle aynı · yayın saati sahibin kararı (öneri: 3 Kasım 19:00).
+
+## Yükleme (1 Kasım 2026)
+
+Videoyu sahip yükledi ve yayın gününü kendisi seçti: https://youtu.be/sOU9LYP6BFo · herkese açık 4 Kasım 2026 (planlı). Studio'da girildi ve sunucudan yeniden okunarak doğrulandı: başlık A (sahip: "A/B testini açma, varsayılanı yaz"; B ve C kullanılmadı), yukarıdaki açıklama (bölümler ve önceki ders bağlantısıyla), kapak `Yazim_Kurallari_YouTube_Kapak.png`, iki oynatma listesi, etiketler, dil Türkçe, kategori Eğitim, ücretli tanıtım yok, yapay zekâ beyanı "Hayır", bitiş ekranı Ders 4'ten içe aktarıldı (abone ol + en son yükleme).

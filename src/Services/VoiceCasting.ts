@@ -22,6 +22,12 @@ export type VoiceoverRequest = {
 	standIn?: boolean;
 	/** Narration language; Turkish unless the job says otherwise. */
 	language?: 'tr' | 'en';
+	/**
+	 * Another take of the same narration: the speech seed moves by this number. 0 (the default) is the take every
+	 * cached narration was made with. Used when one take says a name badly, e.g. a long pause inside "Sino Ey Ay"
+	 * (owner, 1 Nov 2026), and the take that says it well is kept with the job.
+	 */
+	take?: number;
 };
 
 /** A fully decided voice: everything the speech service needs to produce a narration. */
@@ -107,7 +113,7 @@ export const castVoice = (request: VoiceoverRequest, availableVoiceIds: Readonly
 		similarity: profile.similarity,
 		style: profile.style,
 		pace: request.pace ?? profile.pace,
-		seed: VOICE_SEED,
+		seed: VOICE_SEED + (request.take ?? 0),
 		note,
 	};
 };

@@ -1,6 +1,6 @@
 # YouTube metni: TYT Din Kültürü ve Ahlak Bilgisi kampı · Ders 21 · Ahlaki Tutum ve Davranışlar
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/21_Ahlaki_Tutum_ve_Davranislar/Ahlaki_Tutum_ve_Davranislar_YouTube.mp4` (4K) · Kapak: `Ahlaki_Tutum_ve_Davranislar_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/21_Ahlaki_Tutum_ve_Davranislar/Ahlaki_Tutum_ve_Davranislar_YouTube.mp4` (4K) · Kapak: `Ahlaki_Tutum_ve_Davranislar_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

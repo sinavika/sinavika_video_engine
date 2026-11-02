@@ -39,6 +39,20 @@ export type VoiceSlot = {id: string; text: string; seconds: number};
 export const VOICE_LEAD_SECONDS = 0.3;
 export const VOICE_TAIL_SECONDS = 0.15;
 
+/**
+ * The brand voice's pace in letters of spoken text per second (numbers, abbreviations and formulas as they are
+ * said), pauses inside a line included: the median of 1,770 cached lines was 11.1 (1 Nov 2026).
+ */
+const NARRATION_LETTERS_PER_SECOND = 11;
+
+/**
+ * How long the voice takes to say a line, before its audio exists. Reading-time estimates (3.3 words a second) are
+ * for text on screen: eleven rendered TYT Türkçe lessons ran 1.52 to 1.57 times them (05 Paragraf: 1518 s
+ * estimated, 2363 s rendered; render notes, 1 Nov 2026). Measured in letters, not words, since spelled-out letters
+ * and numbers read as words are short.
+ */
+export const estimateNarrationSeconds = (text: string): number => pronounceAbbreviations(text).replace(/[^\p{L}\p{N}]/gu, '').length / NARRATION_LETTERS_PER_SECOND;
+
 export type Narrator = (
 	id: string,
 	text: string,

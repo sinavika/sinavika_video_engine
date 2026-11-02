@@ -1,6 +1,6 @@
 # YouTube metni: AYT Coğrafya kampı · Ders 14 · Türkiye'nin İşlevsel Bölgeleri ve Kalkınma Projeleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/14_Turkiyenin_Islevsel_Bolgeleri/Turkiyenin_Islevsel_Bolgeleri_YouTube.mp4` (4K) · Kapak: `Turkiyenin_Islevsel_Bolgeleri_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/14_Turkiyenin_Islevsel_Bolgeleri/Turkiyenin_Islevsel_Bolgeleri_YouTube.mp4` (4K) · Kapak: `Turkiyenin_Islevsel_Bolgeleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

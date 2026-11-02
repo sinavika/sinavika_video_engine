@@ -1,0 +1,692 @@
+{
+ "topic": {
+  "id": "AE21F996-7FE5-4DB7-AC22-65027676455E",
+  "category": "KPSS_ORTAOGRETIM",
+  "lesson": "MAT",
+  "code": "ASAL_CARPANLARA_AYIRMA"
+ },
+ "title": "Asal Çarpanlara Ayırma",
+ "lessonName": "Matematik",
+ "exams": [
+  "KPSS"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/KPSS/MAT/ASAL_CARPANLARA_AYIRMA.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Kaç böleni var?",
+   "narration": "Bir sayının kaç böleni olduğunu, bölenleri tek tek yazmadan yalnız üslerine bakarak bulabilirsin. Bu derste asal sayıyı tanımayı, bir sayıyı asal çarpanlarına ayırmayı, bölen sayısını ve bölenlerin toplamını göreceğiz. ÖSYM bu konuda çoğu zaman tek bir formül sormaz; bir durumu ya da yeni tanımlanmış bir sayı türünü bölen diline çevirmeni ister. Hepsini yeni sorularla adım adım çözeceğiz."
+  },
+  "objectives": [
+   "Bir sayının asal olup olmadığını karekök testiyle anlamak",
+   "Bir sayıyı asal çarpanlarına ayırmak ve üslü yazmak",
+   "Pozitif, tam, asal olmayan, tek ve çift bölen sayısını bulmak",
+   "Bölenlerin toplamını formülle hesaplamak",
+   "Bölen bilgisini durum ve tanım sorularında kullanmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "ASAL_CARPANLARA_AYIRMA_01",
+    "subtopics": [],
+    "title": "Asal sayıyı tanımak",
+    "narration": "Önce bir sayının asal olup olmadığını hızlıca anlamayı öğrenelim. Bütün konu bu bilginin üzerine kurulu.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Asal mı, değil mi?",
+      "items": [
+       "Bir sayının asal olup olmadığını anlamak için **karekökünü geçmeyen** asallara bölmeyi dene.",
+       "Hiçbirine bölünmüyorsa sayı **asaldır**: 97, 2, 3, 5 ve 7'ye bölünmez.",
+       "Asal sayının yalnız **iki** pozitif böleni vardır: 1 ve kendisi.",
+       "İki tam sayının çarpımı asalsa çarpanlardan biri **1 ya da −1**'dir."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "\\sqrt{97} < 10 \\;\\Rightarrow\\; 2,\\ 3,\\ 5,\\ 7",
+       "caption": "97'yi yalnız bu dört asala bölmek yeter"
+      },
+      "beats": [],
+      "narration": "Bir sayının asal olup olmadığını anlamak için bütün sayıları denemen gerekmez. Sayının karekökünü geçmeyen asallara bölmeyi denersin. 97'nin karekökü 9 ile 10 arasındadır; bu yüzden yalnız 2, 3, 5 ve 7'yi denersin. Hiçbirine bölünmediği için 97 asaldır. Asal bir sayının yalnız iki pozitif böleni vardır: 1 ve kendisi. Bu yüzden iki tam sayının çarpımı asalsa çarpanlardan biri mutlaka 1 ya da eksi 1'dir."
+     },
+     {
+      "kind": "predict",
+      "title": "91 asal mı?",
+      "context": "**91** tek sayıdır; 3’e ve 5’e bölünmez.",
+      "prompt": "91 asal mıdır?",
+      "choices": [
+       "Asal",
+       "Asal değil"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Deneme",
+        "Sonuç"
+       ],
+       "rows": [
+        [
+         "2, 3 ve 5",
+         "bölünmez"
+        ],
+        [
+         "$91 \\div 7$",
+         "$13$, tam bölünür"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "91 tek; rakamları toplamı 10, 3'e bölünmez; son rakamı 1, 5'e de bölünmez.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Ama karekökü 9 ile 10 arasında; 7'yi de denemeliyiz. 91 bölü 7, 13.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "$91 = 7 \\cdot 13$: **asal değildir**. Karekök testi 7'ye kadar denemeyi ister.",
+      "narration": "Şimdi sıra sende. 91 asal mı? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap: asal değil. 91'in karekökü 9 ile 10 arasında; o hâlde 2, 3, 5 ve 7'yi denemelisin. 91, 7'ye bölünür: 7 çarpı 13, 91. Çoğu kişi 91'i asal sanar, çünkü 7'yi denemeyi unutur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$x$ bir tam sayı olmak üzere $(x - 2)(x + 4)$ çarpımı bir asal sayıya eşittir. Buna göre $x$'in alabileceği değerlerin toplamı kaçtır?",
+       "options": [
+        "$-8$",
+        "$-5$",
+        "$-2$",
+        "1",
+        "3"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Çarpım asal ⇒ çarpanlardan biri $1$ ya da $-1$.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki tam sayının çarpımı asalsa çarpanlardan biri 1 ya da eksi 1'dir; yoksa çarpımın ikiden fazla pozitif böleni olurdu."
+        },
+        {
+         "text": "$x - 2 = 1 \\Rightarrow x = 3$: $1 \\cdot 7 = 7$, asal. $x - 2 = -1 \\Rightarrow x = 1$: $(-1) \\cdot 5 = -5$, olmaz.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x eksi 2, 1 ise x 3 olur; çarpım 1 çarpı 7, yani 7: asal. x eksi 2, eksi 1 ise x 1 olur; çarpım eksi 5. Asal sayılar pozitiftir, bu olmaz."
+        },
+        {
+         "text": "$x + 4 = -1 \\Rightarrow x = -5$: $(-7) \\cdot (-1) = 7$, asal. $x + 4 = 1 \\Rightarrow x = -3$: $-5$, olmaz.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "x artı 4, eksi 1 ise x eksi 5 olur; çarpım eksi 7 çarpı eksi 1, yani 7: asal. x artı 4, 1 ise x eksi 3 olur ve çarpım eksi 5 çıkar; olmaz."
+        },
+        {
+         "text": "$3 + (-5) = -2$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x'in alabileceği değerler 3 ve eksi 5; toplamları eksi 2. Cevap C. E şıkkındaki 3, negatif durumları denemeyi unutanın cevabıdır."
+        }
+       ],
+       "narration": "İki tam sayının çarpımı asal. O hâlde çarpanlardan biri 1 ya da eksi 1 olmalı.",
+       "origin": {
+        "changes": "ÖSYM'nin bir ifadenin asal sayıya eşit olduğunu verip tam sayı değerlerini sorduran kalıbı örnek alındı; ifade ve sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "ASAL_CARPANLARA_AYIRMA_02",
+    "subtopics": [],
+    "title": "Asal çarpanlara ayırma",
+    "narration": "Şimdi bir sayıyı asal çarpanlarına ayıralım. Bölen sayısı, bölenlerin toplamı, OBEB ve OKEK; hepsi bu ayrılıştan çıkar.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "360’ı asal çarpanlarına ayır",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sayı",
+        "Asal bölen"
+       ],
+       "rows": [
+        [
+         "360",
+         "2"
+        ],
+        [
+         "180",
+         "2"
+        ],
+        [
+         "90",
+         "2"
+        ],
+        [
+         "45",
+         "3"
+        ],
+        [
+         "15",
+         "3"
+        ],
+        [
+         "5",
+         "5"
+        ],
+        [
+         "1",
+         "—"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "beats": [
+       {
+        "narration": "360 çift; 2'ye bölelim: 180. 180 de çift: 90. 90 da çift: 45. Üç kez 2'ye böldük.",
+        "show": [
+         "r1",
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r1",
+         "r2",
+         "r3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "45, 2'ye bölünmez; 3'e geçelim: 15, sonra 5. İki kez 3'e böldük.",
+        "show": [
+         "r4",
+         "r5"
+        ],
+        "focus": [
+         "r4",
+         "r5"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "5 asaldır; 5'e bölünce 1 kalır ve dururuz. Sağ sütundaki asalları çarparsan sayının kendisini bulursun: 360, 2 küp çarpı 3 kare çarpı 5'tir.",
+        "show": [
+         "r6",
+         "r7"
+        ],
+        "focus": [
+         "r6",
+         "r7"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bir sayıyı asal çarpanlarına ayırmak için onu en küçük asaldan başlayarak bölmeye devam edersin."
+     },
+     {
+      "kind": "rule",
+      "title": "Çarpan ağacı ve yazım",
+      "items": [
+       "Asal çarpanlar **küçükten büyüğe** ve **üslü** yazılır: $360 = 2^3 \\cdot 3^2 \\cdot 5$.",
+       "Çarpan ağacında sayıyı iki çarpana ayır, asal olmayan dalları **asala ulaşana kadar** böl.",
+       "Hangi yolla ayırırsan ayır sonuç **aynıdır**; her sayının asal çarpanları tektir.",
+       "Asal bölen sayısı, **farklı** asal çarpanların sayısıdır: 360'ın 3 asal böleni var."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "360 = 36 \\cdot 10 = (2^2 \\cdot 3^2)(2 \\cdot 5) = 2^3 \\cdot 3^2 \\cdot 5",
+       "caption": "Çarpan ağacı da aynı sonuca ulaşır"
+      },
+      "beats": [],
+      "narration": "Asal çarpanlar küçükten büyüğe ve üslü yazılır: 360, 2 küp çarpı 3 kare çarpı 5. Aynı sonuca çarpan ağacıyla da ulaşırsın: 360'ı 36 çarpı 10 diye ayırırsın; 36, 2 kare çarpı 3 kare; 10 ise 2 çarpı 5'tir. Hangi yolla ayırırsan ayır sonuç aynıdır. Asal bölen sayısı ise farklı asal çarpanların sayısıdır: 360'ın asal bölenleri 2, 3 ve 5; yani 3 tane."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$a$ ve $b$ asal sayılar olmak üzere $a \\cdot b + b = 54$ olduğuna göre $a + b$ toplamı kaçtır?",
+       "options": [
+        "18",
+        "20",
+        "22",
+        "26",
+        "28"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$b(a + 1) = 54 = 2 \\cdot 3^3$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "b'yi ortak paranteze alalım: b çarpı a artı 1, 54'e eşit. 54'ü asal çarpanlarına ayırırsak 2 çarpı 3 küp."
+        },
+        {
+         "text": "$b$ asal ⇒ $b = 2$ ya da $b = 3$. $b = 2$: $a + 1 = 27$, $a = 26$ asal değil.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "b asal ve 54'ü böldüğüne göre 2 ya da 3'tür. b 2 ise a artı 1, 27 olur ve a 26 çıkar; 26 asal değildir."
+        },
+        {
+         "text": "$b = 3$: $a + 1 = 18 \\Rightarrow a = 17$, asal. $a + b = 20$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "b 3 ise a artı 1, 18 olur ve a 17 çıkar; 17 asaldır. a artı b, 17 artı 3, yani 20. Cevap B. E şıkkındaki 28, a'nın asal olup olmadığına bakmadan 26 ile 2'yi toplayanın cevabıdır."
+        }
+       ],
+       "narration": "Ortak paranteze alıp 54'ü asal çarpanlarına ayıralım.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki iki asal sayıyla kurulmuş eşitlik kalıbı örnek alındı; eşitlik ve sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Dört basamaklı $\\overline{ABAB}$ sayısının **farklı** asal çarpanları yalnızca 2, 5 ve 101'dir. Buna göre $\\overline{ABAB}$ sayısının alabileceği değerlerin toplamı kaçtır?",
+       "options": [
+        "12120",
+        "15150",
+        "16160",
+        "18180",
+        "20200"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$\\overline{ABAB} = 1010A + 101B = 101 \\cdot \\overline{AB}$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A B A B, 1010 A artı 101 B'dir; 101'i ortak paranteze alırsak 101 çarpı A B olur. 101 asal bir sayıdır."
+        },
+        {
+         "text": "$\\overline{AB} = 2^m \\cdot 5^n$, $m, n \\ge 1$: 10, 20, 40, 80, 50",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Geriye kalan A B'nin asal çarpanları yalnız 2 ve 5 olmalı ve ikisi de bulunmalı. İki basamaklı bu sayılar 10, 20, 40, 80 ve 50'dir. 100 üç basamaklıdır."
+        },
+        {
+         "text": "$101 \\cdot (10 + 20 + 40 + 50 + 80) = 101 \\cdot 200 = 20200$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bu sayıların toplamı 200; 101 ile çarparsak 20200. Cevap E. Şıklardaki diğer sayılar, bu beş sayıdan birini unutanların bulduğu toplamlardır."
+        }
+       ],
+       "narration": "Önce sayıyı çözümleyip 101 çarpanını ortaya çıkaralım.",
+       "origin": {
+        "changes": "ÖSYM'nin harfli sayının asal çarpanlarını kullanan kalıbı örnek alındı; sayı biçimi ve koşul bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "ASAL_CARPANLARA_AYIRMA_03",
+    "subtopics": [
+     "ASAL_CARPANLARA_AYIRMA_04"
+    ],
+    "title": "Pozitif bölen sayısı",
+    "narration": "Bir sayının kaç böleni olduğunu bölenleri tek tek yazmadan bulacağız. Önce formülün nereden geldiğini görelim.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "72’nin bölenleri",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "×",
+        "$3^0$",
+        "$3^1$",
+        "$3^2$"
+       ],
+       "rows": [
+        [
+         "$2^0$",
+         "1",
+         "3",
+         "9"
+        ],
+        [
+         "$2^1$",
+         "2",
+         "6",
+         "18"
+        ],
+        [
+         "$2^2$",
+         "4",
+         "12",
+         "36"
+        ],
+        [
+         "$2^3$",
+         "8",
+         "24",
+         "72"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Her bölen, 2'nin bir kuvveti ile 3'ün bir kuvvetinin çarpımıdır. 2'nin kuvveti 0, 1, 2 ya da 3 olabilir: dört satır.",
+        "show": [
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ],
+        "focus": [
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "3'ün kuvveti 0, 1 ya da 2 olabilir: üç sütun. Tabloda 4 çarpı 3, yani 12 bölen var ve 72'nin bütün bölenleri burada.",
+        "show": [],
+        "focus": [
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "72, 2 küp çarpı 3 karedir. Bütün bölenlerini bir tabloda üretelim."
+     },
+     {
+      "kind": "rule",
+      "title": "Bölen sayısı formülü",
+      "items": [
+       "$n = a^x \\cdot b^y \\cdot c^z$ ise pozitif bölen sayısı $(x + 1)(y + 1)(z + 1)$.",
+       "Tam bölen sayısı, pozitif bölen sayısının **2 katıdır**.",
+       "Asal olmayan bölen sayısı = pozitif bölen sayısı − **asal bölen sayısı**.",
+       "**Tek** bölenler için 2'nin üssünü at; **çift** bölenler = toplam − tek."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "n = a^x \\cdot b^y \\cdot c^z \\;\\Rightarrow\\; (x + 1)(y + 1)(z + 1)",
+       "caption": "72 = 2³ · 3² → 4 · 3 = 12 bölen"
+      },
+      "beats": [],
+      "narration": "Tablodan çıkan formül şu: sayıyı asal çarpanlarına ayır, her üssü 1 artır ve çarp. 72 için 3 artı 1, çarpı 2 artı 1; yani 12. Tam bölen sayısı sorulursa negatif bölenler de sayılır; cevap pozitif bölen sayısının 2 katıdır. Asal olmayan bölenleri bulmak için asal bölenleri çıkarırsın; 1 asal olmadığı için asal olmayanların içinde kalır. Tek bölenleri sayarken 2'nin üssünü yok sayarsın; çift bölenler ise toplamdan tek bölenler çıkarılarak bulunur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$A = 2^3 \\cdot 3^2 \\cdot 5$ sayısının **asal olmayan** pozitif bölenlerinin sayısı kaçtır?",
+       "options": [
+        "21",
+        "22",
+        "23",
+        "24",
+        "48"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "Pozitif bölen sayısı: $(3 + 1)(2 + 1)(1 + 1) = 24$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bütün pozitif bölenler: 3 artı 1, 2 artı 1, 1 artı 1; 4 çarpı 3 çarpı 2, 24."
+        },
+        {
+         "text": "Asal bölenler: 2, 3, 5 → 3 tane",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Asal bölenler, sayının asal çarpanlarıdır: 2, 3 ve 5. Üç tane."
+        },
+        {
+         "text": "$24 - 3 = 21$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "24'ten 3'ü çıkarırsak 21. Cevap A. 1 asal olmadığı için asal olmayan bölenlerin içinde kalır. E şıkkındaki 48 tam bölen sayısıdır; D şıkkındaki 24 ise asal bölenleri çıkarmayı unutanın cevabıdır."
+        }
+       ],
+       "narration": "Önce bütün pozitif bölenleri sayacağız, sonra asal olanları çıkaracağız.",
+       "origin": {
+        "changes": "Havuzdaki asal olmayan bölen sayısı kalıbı örnek alındı; sayı bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "360 sayısının kaç tane **çift** pozitif böleni vardır?",
+       "options": [
+        "6",
+        "12",
+        "16",
+        "18",
+        "24"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$360 = 2^3 \\cdot 3^2 \\cdot 5$; toplam: $4 \\cdot 3 \\cdot 2 = 24$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "360, 2 küp çarpı 3 kare çarpı 5'tir. Toplam pozitif bölen sayısı 24."
+        },
+        {
+         "text": "Tek bölenler: 2'nin üssünü at ⇒ $3^2 \\cdot 5$: $3 \\cdot 2 = 6$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Tek bölenlerde 2 çarpanı bulunamaz; 2'nin üssünü atarız. 3 kare çarpı 5'in bölen sayısı 3 çarpı 2, yani 6."
+        },
+        {
+         "text": "Çift bölenler: $24 - 6 = 18$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Çift bölenler: 24 eksi 6, 18. Cevap D. Kısa yol: çift bölende 2'nin üssü en az 1 olmalı; 1, 2 ya da 3 olabilir, üç seçenek. 3 çarpı 3 çarpı 2, yine 18."
+        }
+       ],
+       "narration": "Toplam bölen sayısından tek bölenleri çıkaracağız.",
+       "origin": {
+        "changes": "Havuzdaki tek ve çift bölen sayısı kalıbı örnek alındı; sayı bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "ASAL_CARPANLARA_AYIRMA_03",
+    "subtopics": [],
+    "title": "Bölenlerle akıl yürütme",
+    "narration": "Son bölümde ÖSYM'nin sevdiği iki kalıp var: bölenlerle kurulmuş bir durum ve soruda yeni tanımlanan bir sayı türü.",
+    "cards": [
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir spor salonunda 1'den 20'ye kadar numaralanmış 20 dolap vardır. Bir antrenör birkaç dolap seçiyor. Seçilen numaralardan biri, seçilen **diğer bütün numaralara** tam bölünüyor. Buna göre antrenör en fazla kaç dolap seçebilir?",
+       "options": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Seçilen bütün numaralar, en büyük numaranın **bölenidir**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Seçilen numaralardan biri diğer hepsine bölünüyorsa diğerleri onun bölenleridir. Yani soru şuna döner: 20'ye kadar hangi sayının en çok böleni var?"
+        },
+        {
+         "text": "$12 = 2^2 \\cdot 3$: 6 bölen; $18 = 2 \\cdot 3^2$: 6; $20 = 2^2 \\cdot 5$: 6; $16 = 2^4$: 5",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bölen sayısı formülüyle bakalım. 12, 2 kare çarpı 3: 3 çarpı 2, 6 bölen. 18 ve 20'nin de 6'şar böleni var. 16 ise 2 üzeri 4'tür ve 5 böleni vardır."
+        },
+        {
+         "text": "En fazla **6** dolap: 1, 2, 3, 4, 6, 12. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "20'ye kadar 6'dan çok böleni olan sayı yoktur. Örneğin 12'yi seçersen 1, 2, 3, 4, 6 ve 12 numaralı dolaplar seçilir. En fazla 6 dolap. Cevap C."
+        }
+       ],
+       "narration": "Önce soruyu bölen diline çevirelim.",
+       "origin": {
+        "changes": "ÖSYM'nin sayıları bir sayının bölenleri olacak biçimde gruplatan kalıbı örnek alındı; durum ve sayı aralığı bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Rakamları toplamı da bir asal sayı olan asal sayıya **toplam asal** sayı denir. Örneğin 23 bir toplam asal sayıdır, çünkü $2 + 3 = 5$ asaldır.\nBuna göre iki basamaklı **en büyük** toplam asal sayının rakamları çarpımı kaçtır?",
+       "options": [
+        "18",
+        "56",
+        "63",
+        "72",
+        "81"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "İki basamaklı asallar büyükten küçüğe: 97, 89, 83, …",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki basamaklı en büyük asallar büyükten küçüğe 97, 89, 83 diye gider."
+        },
+        {
+         "text": "97: $9 + 7 = 16$, asal değil. 89: $8 + 9 = 17$, **asal**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "97'nin rakamları toplamı 16; 16 asal değil. 89'un rakamları toplamı 17; 17 asaldır. Aradığımız sayı 89."
+        },
+        {
+         "text": "$8 \\cdot 9 = 72$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "89'un rakamları çarpımı 8 çarpı 9, yani 72. Cevap D. C şıkkındaki 63, 97'yi en büyük asal olduğu için hemen seçen ve rakamları toplamını denetlemeyi unutanın cevabıdır."
+        }
+       ],
+       "narration": "En büyüğü aradığımız için iki basamaklı asallara büyükten küçüğe bakacağız.",
+       "origin": {
+        "changes": "ÖSYM'nin rakamlarıyla tanımlanan asal sayı kalıbı örnek alındı; tanım ve soru bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Asal testi: karekökü geçmeyen asallara böl.",
+    "İki tam sayının çarpımı asalsa çarpanlardan biri 1 ya da eksi 1’dir.",
+    "Asal çarpanlar küçükten büyüğe, üslü yazılır.",
+    "Bölen sayısı: üsleri 1 artır ve çarp.",
+    "Tam bölen sayısı 2 katıdır; tam bölenlerin toplamı 0’dır.",
+    "Tek bölenler için 2’nin üssünü at.",
+    "Bölenlerin toplamı: kuvvet toplamlarını çarp."
+   ],
+   "warnings": [
+    "**91 = 7 · 13**; asal değildir.",
+    "**1** asal değildir; asal olmayan bölenlere dahildir.",
+    "Asal çarpımda **negatif** çarpanları da dene."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki **8 soruyu** kâğıtta yeniden çöz.",
+    "**100 ile 200** arasındaki asal sayıları karekök testiyle bul.",
+    "Uygulamada KPSS Asal Çarpanlara Ayırma testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Asal sayı testi: karekökü geçmeyen asallara bölme; 91, 119, 133, 143 gibi asal sanılan sayılar; iki tam sayının çarpımı asalsa çarpanlardan birinin ±1 olması.",
+   "Asal çarpanlara ayırma: bölme tablosu ve çarpan ağacı; üslü yazım; asal bölen sayısı; harfli sayılarda çarpan bulma (ABAB = 101 · AB, AAA = 3 · 37 · A).",
+   "Bölen sayısı: kuvvetler tablosundan formüle; tam, asal olmayan, tek ve çift bölen sayısı; her biri için iki özgün soru.",
+   "Bölenlerin toplamı: (1 + a + … + aˣ)(1 + b + … + bʸ); tek ve çift bölenlerin toplamı; tam bölenlerin toplamının 0 olması.",
+   "Bölenlerle akıl yürütme: sayıları bir sayının bölenleri olarak gruplama; belli sayıda böleni olan en küçük sayı; tanımlı asal sayı soruları (rakamları toplamı ya da çarpımı asal)."
+  ]
+ }
+}

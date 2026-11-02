@@ -35,6 +35,7 @@ const PLURAL_NAMES: Record<string, string> = {
 	'src/Themes/FontFamilies.ts': 'a set of constants',
 	'src/Themes/Palettes.ts': 'a set of constants',
 	'src/Schemas/VideoProps.ts': 'the props types of the video compositions',
+	'src/Compositions/WorkFigureProps.ts': 'the props type of the WorkFigure composition',
 	'src/Compositions/AppScreenProps.ts': 'the props types of the app-screen compositions',
 	'src/Compositions/ImageCompositions.tsx': 'the registry of image compositions',
 	'src/Compositions/TemplateCompositions.tsx': 'the registry of template compositions',
@@ -98,11 +99,48 @@ describe('engine layout', () => {
 		expect(elsewhere).toEqual([]);
 	});
 
+	it('centres nothing in a course visual with translate(-50%): FitBox measures with transforms off and sees it stick out', () => {
+		// A sentence's arrow label centred that way was measured half its width to the right and the two-word
+		// "kapının kolu" was reported as overflowing even at half size (TYT Türkçe 7 render, 1 Nov 2026).
+		const offenders = sourceFiles
+			.filter((file) => file.startsWith('src/Components/Visuals/') || file.startsWith('src/Components/Illustrations/'))
+			.filter((file) => readFileSync(path.join(ROOT, file), 'utf-8').split('\n').some((line) => line.includes('translate(-50%') && !line.trim().startsWith('//')));
+		expect(offenders).toEqual([]);
+	});
+
 	it('mirrors src in tests: each test sits in the folder of the src module it tests (docs/Development.md)', () => {
 		const misplaced = filesUnder('tests')
 			.filter((file) => /\.(test|render)\.ts$/.test(file) && file !== 'tests/Architecture.test.ts')
 			.filter((file) => !existsSync(path.join(ROOT, 'src', path.dirname(file).slice('tests'.length))) || path.dirname(file) === 'tests');
 		expect(misplaced).toEqual([]);
+	});
+
+	it('keeps Node built-ins out of everything the video bundle loads (src/index.ts and what it imports)', () => {
+		// The Works figure linker read files with node:fs from a module the WorkFigure composition imported; every render
+		// then failed while bundling (1 Nov 2026). Node-only code belongs in Renderers, Services or scripts.
+		const resolve = (from: string, specifier: string): string | undefined => {
+			const base = path.join(path.dirname(path.join(ROOT, from)), specifier);
+			const found = [`${base}.ts`, `${base}.tsx`, path.join(base, 'index.ts'), path.join(base, 'index.tsx'), base].find((candidate) => existsSync(candidate) && statSync(candidate).isFile());
+			return found ? path.relative(ROOT, found).replaceAll('\\', '/') : undefined;
+		};
+		const seen = new Set<string>();
+		const offenders: string[] = [];
+		const visit = (file: string) => {
+			if (seen.has(file)) return;
+			seen.add(file);
+			const text = readFileSync(path.join(ROOT, file), 'utf-8');
+			for (const match of text.matchAll(/(?:^|\n)\s*(?:import|export)\s+(?!type\b)[^'"]*?from\s+'([^']+)'/g)) {
+				const specifier = match[1];
+				if (/^(node:|fs$|path$|os$|child_process$|crypto$)/.test(specifier)) offenders.push(`${file} → ${specifier}`);
+				else if (specifier.startsWith('.')) {
+					const next = resolve(file, specifier);
+					if (next) visit(next);
+				}
+			}
+		};
+		visit('src/index.ts');
+		expect(seen.size).toBeGreaterThan(100);
+		expect(offenders).toEqual([]);
 	});
 
 	it('keeps the project root and scripts/ free of stray files', () => {

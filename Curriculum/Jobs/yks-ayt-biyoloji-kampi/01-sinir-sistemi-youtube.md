@@ -1,6 +1,6 @@
 # YouTube metni: AYT Biyoloji kampı · Ders 1 · Sinir Sistemi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Biyoloji/01_Sinir_Sistemi/Sinir_Sistemi_YouTube.mp4` (4K) · Kapak: `Sinir_Sistemi_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Biyoloji/01_Sinir_Sistemi/Sinir_Sistemi_YouTube.mp4` (4K) · Kapak: `Sinir_Sistemi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

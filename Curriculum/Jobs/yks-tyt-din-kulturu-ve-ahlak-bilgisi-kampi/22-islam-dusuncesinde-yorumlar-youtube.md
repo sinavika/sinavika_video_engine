@@ -1,6 +1,6 @@
 # YouTube metni: TYT Din Kültürü ve Ahlak Bilgisi kampı · Ders 22 · İslam Düşüncesinde İtikadi, Siyasi ve Fıkhi Yorumlar
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/22_Islam_Dusuncesinde_Yorumlar/Islam_Dusuncesinde_Yorumlar_YouTube.mp4` (4K) · Kapak: `Islam_Dusuncesinde_Yorumlar_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/22_Islam_Dusuncesinde_Yorumlar/Islam_Dusuncesinde_Yorumlar_YouTube.mp4` (4K) · Kapak: `Islam_Dusuncesinde_Yorumlar_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

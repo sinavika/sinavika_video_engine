@@ -1,0 +1,1442 @@
+{
+ "topic": {
+  "id": "1A39A882-A940-471A-A4DD-8326D4EA06CE",
+  "category": "KPSS_ONLISANS",
+  "lesson": "GEO",
+  "code": "GEO_SILINDIR"
+ },
+ "title": "Silindir",
+ "lessonName": "Geometri",
+ "exams": [
+  "KPSS"
+ ],
+ "sources": [
+  "KPSS müfredatı (Ön lisans ve ortaöğretim GEO_SILINDIR 4 alt başlık; Lisans müfredatında ayrı konu yok): silindir, koni ve küre dönel cisim olarak, dönen dikdörtgen, dik üçgen ve yarım daireyle gösterildi",
+  "MEB ÖERHGM Silindir konu anlatımı (KonuAnlatimi/GEO/GEO_SILINDIR.json): elemanlar, açınım, yüzey alanı ve hacim; koni ve küre; örnek alındı, metin yeni yazıldı",
+  "ÖSYM KPSS ön lisans 2018 (silindirde iki küre ve teğet koni) ve lisans 2010 (ikiye kesilen silindir biçimindeki tereyağı) soruları (CikmisSorular/GEO.jsonl): kalıplar örnek alındı, sayılar yeni yazıldı",
+  "KPSS Sorular/GEO havuzu (Ön lisans GEO_SILINDIR)"
+ ],
+ "works": {
+  "additions": [
+   "Silindirin elemanları: iki eş paralel daire taban, eğri yan yüz, eksen (dik silindirde yükseklik), eksen kesiti 2r × h; dikdörtgen bir kenarı etrafında dönünce silindir (dönen kenar h, öbürü r).",
+   "Açınım: yan yüz kenarları 2πr ve h olan dikdörtgen (etiket kalıbı); yüzey alanı 2πr² + 2πrh, üstü açık kapta πr² + 2πrh; çap verilirse önce yarıya böl. Ekseni boyunca ikiye kesilen silindir (ÖSYM 2010): 2rl + πrl + πr².",
+   "Hacim: V = πr²h; yarıçap 2 katı → hacim 4 katı; batan cisim suyu kendi hacmi kadar yükseltir: πr² · x = V.",
+   "Koni: dik üçgen dik kenarı etrafında döner; ℓ² = r² + h², V = πr²h / 3, yanal alan πrℓ, açınım açısı 360° · r / ℓ; karıncanın en kısa yolu açınımdaki kiriş. Küre: yarım daire döner; V = 4πr³/3, A = 4πr²; silindire tam sığan küre silindirin 2/3'ü. Silindirde iki küre ve teğet koni (ÖSYM 2018): kesitte noktanın doğruya uzaklığı."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Dönen dikdörtgen silindir olur",
+   "narration": "Bir dikdörtgeni bir kenarı etrafında döndür: ortaya bir silindir çıkar. Bir dik üçgeni döndürürsen koni, bir yarım daireyi döndürürsen küre. Bu derste silindirin elemanlarını, açınımını, yüzey alanını ve hacmini göreceğiz; koniyle küreyi de ekleyip ÖSYM'nin tereyağı ve teğet koni sorularını yeni sayılarla çözeceğiz."
+  },
+  "objectives": [
+   "Silindirin elemanlarını ve eksen kesitini tanımak",
+   "Açınımdan silindirin ölçülerini bulmak",
+   "Yüzey alanı ve hacim hesaplamak",
+   "Dönel cisimleri tanımak: silindir, koni, küre",
+   "Koni ve kürede hacim ve en kısa yol bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_SILINDIR_01",
+    "title": "Silindirin elemanları",
+    "narration": "Bir dikdörtgen, bir kenarı etrafında döndürülünce silindir oluşur.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Dönen dikdörtgen",
+      "text": "Bir dikdörtgen bir kenarı etrafında $360°$ döndürülünce **dik dairesel silindir** oluşur. Dönme kenarı **eksendir** ve yüksekliğe eşittir: $h$. Ona dik kenar **taban yarıçapı** olur: $r$.",
+      "visual": {
+       "kind": "solid",
+       "shape": "cylinder",
+       "dimensions": [
+        "r",
+        "h"
+       ],
+       "sweep": true
+      },
+      "beats": [
+       {
+        "narration": "Dikdörtgen eksen etrafında dönüyor: karşı kenarı yan yüzü, alt ve üst kenarları iki daireyi çiziyor.",
+        "stage": 0
+       },
+       {
+        "narration": "Dik dairesel silindir: taban yarıçapı r, yüksekliği h.",
+        "stage": 1
+       }
+      ],
+      "narration": "Bir dikdörtgen al ve bir kenarını sabit tutup onun etrafında bir tam tur döndür. Dikdörtgenin karşı kenarı bir yüzey çizer: silindirin yan yüzü. Alt ve üst kenarları da iki daire çizer: tabanlar. Döndüğün kenar silindirin eksenidir ve uzunluğu yüksekliğe eşittir. Ona dik kenar ise taban yarıçapı olur. Böyle bir şeklin dönmesiyle oluşan cisme dönel cisim denir."
+     },
+     {
+      "kind": "rule",
+      "title": "Silindirin elemanları",
+      "items": [
+       "İki eş ve paralel **daire** taban, bir eğri **yan yüz**.",
+       "**Eksen**: taban merkezlerini birleştirir; dik silindirde yüksekliğe eşittir.",
+       "**Eksen kesiti**: eksenden geçen düzlemle kesit, kenarları $2r$ ve $h$ olan dikdörtgen."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -4.6,
+        -1.2,
+        4.6,
+        7.2
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          -3,
+          0
+         ],
+         "label": "A"
+        },
+        {
+         "id": "B",
+         "at": [
+          3,
+          0
+         ],
+         "label": "B"
+        },
+        {
+         "id": "C",
+         "at": [
+          3,
+          6
+         ],
+         "label": "C"
+        },
+        {
+         "id": "D",
+         "at": [
+          -3,
+          6
+         ],
+         "label": "D"
+        },
+        {
+         "id": "O",
+         "at": [
+          0,
+          0
+         ],
+         "label": "O"
+        },
+        {
+         "id": "O2",
+         "at": [
+          0,
+          6
+         ],
+         "label": "O′"
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "O",
+         "label": "r"
+        },
+        {
+         "from": "O",
+         "to": "B",
+         "label": "r"
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "h"
+        },
+        {
+         "from": "C",
+         "to": "O2"
+        },
+        {
+         "from": "O2",
+         "to": "D"
+        },
+        {
+         "from": "D",
+         "to": "A"
+        },
+        {
+         "from": "O",
+         "to": "O2",
+         "label": "eksen",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "id": "kesit",
+         "shade": 2
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Önden bakalım: tabanın çapı AB, yüksekliği BC.",
+        "focus": [
+         "AO",
+         "OB",
+         "BC"
+        ]
+       },
+       {
+        "narration": "Eksen OO′ ortadan geçiyor; kesit ABCD, kenarları 2r ve h olan bir dikdörtgen.",
+        "show": [
+         "kesit"
+        ],
+        "focus": [
+         "OO2",
+         "kesit"
+        ]
+       }
+      ],
+      "narration": "Silindirin iki eş ve paralel dairesel tabanı ve tek bir eğri yan yüzü vardır. Taban merkezlerini birleştiren doğru parçası eksendir; dik silindirde eksen tabanlara diktir ve uzunluğu yüksekliktir. Silindiri ekseninden geçen bir düzlemle kesersen kesit bir dikdörtgendir: bir kenarı çap, yani 2r, öbür kenarı h. Silindiri döndüren dikdörtgenin iki katı genişliğindedir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Kenar uzunlukları 3 cm ve 5 cm olan bir dikdörtgen, 5 cm'lik kenarı etrafında 360° döndürülüyor. Buna göre oluşan cismin hacmi kaç cm³'tür?",
+       "figure": {
+        "kind": "solid",
+        "shape": "cylinder",
+        "dimensions": [
+         "3",
+         "5"
+        ],
+        "size": [
+         3,
+         5
+        ],
+        "sweep": true
+       },
+       "options": [
+        "$15\\pi$",
+        "$30\\pi$",
+        "$45\\pi$",
+        "$75\\pi$",
+        "$90\\pi$"
+       ],
+       "answer": 2,
+       "narration": "Döndüğü kenar eksen ve yükseklik; öbür kenar yarıçap.",
+       "steps": [
+        {
+         "text": "Eksen 5 cm: $h = 5$; öbür kenar yarıçap: $r = 3$",
+         "narration": "Dikdörtgen 5 santimetrelik kenarı etrafında dönüyor: bu kenar eksen, yükseklik 5. Ona dik 3 santimetrelik kenar yarıçap."
+        },
+        {
+         "text": "$V = \\pi \\cdot 3^2 \\cdot 5 = 45\\pi$. Cevap **C**.",
+         "narration": "Hacim pi çarpı 3 kare çarpı 5, 45 pi santimetreküp. Cevap C. D şıkkındaki 75 pi, 3 santimetrelik kenar etrafında döndürmektir: o zaman yarıçap 5, yükseklik 3 olurdu.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "MEB konu anlatımındaki dik dairesel silindirin yarıçap ve yüksekliği kalıbı dönen dikdörtgenle soruldu; ölçüler bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_SILINDIR_02",
+    "title": "Silindirin açınımı",
+    "narration": "Silindirin yan yüzünü açarsak bir dikdörtgen elde ederiz; tabanları da iki daire.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Silindiri açmak",
+      "visual": {
+       "kind": "solid",
+       "shape": "cylinder",
+       "dimensions": [
+        "r",
+        "h"
+       ],
+       "unfold": true
+      },
+      "narration": "Bir silindiri açalım.",
+      "beats": [
+       {
+        "narration": "Dik silindir.",
+        "stage": 0
+       },
+       {
+        "narration": "Taban yarıçapı r, yüksekliği h.",
+        "stage": 1
+       },
+       {
+        "narration": "Yan yüzü açalım: bir dikdörtgen. Bir kenarı tabanın çevresi kadar, 2 pi r; öbür kenarı yükseklik, h. İki daire de dikdörtgenin iki yanında.",
+        "stage": 2
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Taban çapı 8 cm, yüksekliği 15 cm olan silindir biçimindeki bir kutunun yan yüzü, kenarları üst üste binmeden tam saran dikdörtgen bir etiketle kaplanacaktır. Buna göre etiketin uzun kenarı kaç cm'dir? (π = 3 alınız.)",
+       "options": [
+        "8",
+        "12",
+        "15",
+        "24",
+        "48"
+       ],
+       "answer": 3,
+       "narration": "Etiket yan yüzün açınımıdır: bir kenarı tabanın çevresi, öbürü yükseklik.",
+       "steps": [
+        {
+         "text": "Yarıçap $r = 4$; çevre $2\\pi r = 2 \\cdot 3 \\cdot 4 = 24$",
+         "narration": "Çap 8, yarıçap 4. Tabanın çevresi 2 pi r: 2 çarpı 3 çarpı 4, 24."
+        },
+        {
+         "text": "Kenarlar $24$ ve $15$; uzun kenar $24$. Cevap **D**.",
+         "narration": "Etiketin kenarları 24 ve 15; uzun kenar 24 santimetre. Cevap D. E şıkkındaki 48, çapı yarıçap sanmaktır; B şıkkındaki 12 çevrenin yarısı.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki silindir biçimindeki kutuya etiket kalıbı örnek alındı; ölçüler bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir dik silindirin açınımındaki yan yüz, kenarları $12\\pi$ cm ve 10 cm olan bir dikdörtgendir. $12\\pi$ cm'lik kenar tabanın çevresi olduğuna göre silindirin hacmi kaç cm³'tür?",
+       "options": [
+        "$120\\pi$",
+        "$360\\pi$",
+        "$480\\pi$",
+        "$720\\pi$",
+        "$1440\\pi$"
+       ],
+       "answer": 1,
+       "narration": "Tabanın çevresinden yarıçapı bulalım.",
+       "steps": [
+        {
+         "text": "$2\\pi r = 12\\pi \\Rightarrow r = 6$; $h = 10$",
+         "narration": "2 pi r, 12 pi; yarıçap 6. Öbür kenar yükseklik, 10."
+        },
+        {
+         "text": "$V = \\pi \\cdot 36 \\cdot 10 = 360\\pi$. Cevap **B**.",
+         "narration": "Hacim pi çarpı 36 çarpı 10, 360 pi santimetreküp. Cevap B. A şıkkındaki 120 pi dikdörtgenin, yani yan yüzün alanıdır; E şıkkındaki 1440 pi, yarıçapı 12 almaktır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "MEB konu anlatımındaki açınım dikdörtgeninin kenarları (2πr ve h) kalıbı örnek alındı; ölçüler bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_SILINDIR_03",
+    "title": "Silindirin yüzey alanı",
+    "narration": "Yüzey alanı açınımın alanıdır: iki daire ve bir dikdörtgen.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Yüzey alanı",
+      "items": [
+       "Yanal alan $= 2\\pi r \\cdot h$ (açınımdaki dikdörtgen).",
+       "Yüzey alanı $= 2\\pi r^2 + 2\\pi r h$.",
+       "**Üstü açık** kapta tek taban: $\\pi r^2 + 2\\pi r h$."
+      ],
+      "visual": {
+       "kind": "solid",
+       "shape": "cylinder",
+       "dimensions": [
+        "r",
+        "h"
+       ],
+       "unfold": true
+      },
+      "beats": [
+       {
+        "narration": "Silindir.",
+        "stage": 0
+       },
+       {
+        "narration": "Yarıçap r, yükseklik h.",
+        "stage": 1
+       },
+       {
+        "narration": "Açınım: iki daire, her biri pi r kare; bir dikdörtgen, 2 pi r çarpı h. Yüzey alanı bunların toplamı.",
+        "stage": 2
+       }
+      ],
+      "narration": "Yan yüz açılınca kenarları 2 pi r ve h olan bir dikdörtgen olur; yanal alan 2 pi r h'dir. Tüm yüzey alanı için iki tabanın alanı, 2 pi r kare eklenir. Su bardağı ya da kova gibi üstü açık bir kapta yalnız bir taban vardır; o zaman pi r kare artı 2 pi r h."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Taban yarıçapı 3 cm, yüksekliği 5 cm olan üstü açık silindir biçimindeki bir kabın dış yüzeyinin alanı kaç cm²'dir?",
+       "options": [
+        "$30\\pi$",
+        "$39\\pi$",
+        "$48\\pi$",
+        "$54\\pi$",
+        "$60\\pi$"
+       ],
+       "answer": 1,
+       "narration": "Üstü açık: bir taban ve yan yüz.",
+       "steps": [
+        {
+         "text": "Taban $\\pi \\cdot 3^2 = 9\\pi$; yan yüz $2\\pi \\cdot 3 \\cdot 5 = 30\\pi$",
+         "narration": "Tek tabanın alanı pi çarpı 9, 9 pi. Yan yüz 2 pi çarpı 3 çarpı 5, 30 pi."
+        },
+        {
+         "text": "Toplam $9\\pi + 30\\pi = 39\\pi$. Cevap **B**.",
+         "narration": "Toplam 39 pi santimetrekare. Cevap B. C şıkkındaki 48 pi kapalı silindirin alanıdır; soru üstü açık diyor. A şıkkındaki 30 pi yalnız yan yüz.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "MEB konu anlatımındaki silindirin yüzey alanı bağıntısı üstü açık kapla soruldu; ölçüler bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Çap mı, yarıçap mı?",
+      "wrong": "Taban çapı 8 olan silindirde yarıçap yerine 8 kullanılır.",
+      "right": "Soru **çap** veriyorsa önce **yarısını** al: $r = \\frac{d}{2}$.",
+      "why": "Formüllerde hep r var.",
+      "narration": "Sık yapılan bir hata: soruda çap verildiği hâlde onu yarıçap gibi formüle koymak. Silindirin bütün formülleri yarıçapla yazılır: pi r kare, 2 pi r. Çap verilmişse önce ikiye böl. Şıklarda doğru cevabın 2 ya da 4 katını görürsen bu tuzağı düşün."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Taban yarıçapı 3 cm, uzunluğu 20 cm olan silindir biçimindeki bir tereyağı kalıbı, ekseni boyunca kesilerek iki eş parçaya ayrılıyor. Parçalardan biri, bütün yüzeyi şeffaf bir malzemeyle tam olarak kaplanacak biçimde sarılıyor. Buna göre kullanılan malzeme en az kaç cm²'dir?",
+       "figure": {
+        "kind": "solid",
+        "shape": "halfCylinder",
+        "dimensions": [
+         "3",
+         "20"
+        ],
+        "size": [
+         3,
+         20
+        ]
+       },
+       "options": [
+        "$60 + 69\\pi$",
+        "$120 + 60\\pi$",
+        "$120 + 69\\pi$",
+        "$120 + 78\\pi$",
+        "$120 + 129\\pi$"
+       ],
+       "answer": 2,
+       "narration": "Yarım silindirin yüzeyi: kesik yüz, yan yüzün yarısı ve iki yarım daire.",
+       "steps": [
+        {
+         "text": "Kesik yüz: $2r \\cdot l = 6 \\cdot 20 = 120$",
+         "narration": "Kesilen yüz bir dikdörtgen: bir kenarı çap 6, öbürü uzunluk 20; alanı 120."
+        },
+        {
+         "text": "Yan yüzün yarısı: $\\pi r l = 60\\pi$; iki yarım daire: $\\pi r^2 = 9\\pi$",
+         "narration": "Yan yüzün yarısı pi çarpı 3 çarpı 20, 60 pi. İki uçtaki yarım daireler birlikte bir tam daire: 9 pi."
+        },
+        {
+         "text": "Toplam $120 + 69\\pi$. Cevap **C**.",
+         "narration": "Toplam 120 artı 69 pi santimetrekare. Cevap C. B şıkkı uçlardaki yarım daireleri unutmaktır; D şıkkı uçlara tam daire koymaktır, 18 pi.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM KPSS 2010 lisanstaki ekseni boyunca ikiye kesilen silindir biçimindeki tereyağı kalıbı örnek alındı; ölçüler bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_SILINDIR_04",
+    "title": "Silindirin hacmi",
+    "narration": "Silindirin hacmi, prizmada olduğu gibi taban alanı çarpı yüksekliktir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Hacim",
+      "items": [
+       "$V = \\pi r^2 \\cdot h$: taban alanı $\\times$ yükseklik.",
+       "Suya batan cisim, kendi hacmi kadar suyu **yükseltir**: $\\pi r^2 \\cdot x = V_{\\text{cisim}}$."
+      ],
+      "narration": "Silindirin tabanı bir dairedir; alanı pi r kare. Prizmada olduğu gibi hacim, taban alanı çarpı yüksekliktir: pi r kare h. Silindir biçimindeki bir kaba bir cisim tamamen batarsa su, cismin hacmi kadar yükselir: yükselen su da bir silindirdir, tabanı pi r kare, yüksekliği x."
+     },
+     {
+      "kind": "predict",
+      "title": "Yarıçap iki kat",
+      "context": "Aynı yükseklik: yarıçap $r$ ve $2r$.",
+      "prompt": "Yüksekliği aynı kalan bir silindirin yarıçapı 2 katına çıkarsa hacmi kaç katına çıkar?",
+      "choices": [
+       "2 katına",
+       "4 katına"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -2.2,
+        -3.6,
+        9.4,
+        3.6
+       ],
+       "points": [
+        {
+         "id": "O1",
+         "at": [
+          0,
+          0
+         ],
+         "label": ""
+        },
+        {
+         "id": "R1",
+         "at": [
+          1.5,
+          0
+         ],
+         "hidden": true
+        },
+        {
+         "id": "O2",
+         "at": [
+          5.8,
+          0
+         ],
+         "label": ""
+        },
+        {
+         "id": "R2",
+         "at": [
+          8.8,
+          0
+         ],
+         "hidden": true
+        }
+       ],
+       "segments": [
+        {
+         "from": "O1",
+         "to": "R1",
+         "label": "r"
+        },
+        {
+         "from": "O2",
+         "to": "R2",
+         "label": "2r"
+        }
+       ],
+       "circles": [
+        {
+         "center": "O1",
+         "radius": 1.5,
+         "fill": true,
+         "id": "kucuk"
+        },
+        {
+         "center": "O2",
+         "radius": 3,
+         "fill": true,
+         "shade": 2,
+         "id": "buyuk"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Yarıçapı r olan taban: alanı pi r kare.",
+        "show": [
+         "kucuk"
+        ],
+        "focus": [
+         "kucuk"
+        ]
+       },
+       {
+        "narration": "Yarıçapı 2r olan taban: pi çarpı 2r'nin karesi, 4 pi r kare. Taban 4 katı; yükseklik aynı, hacim de 4 katı.",
+        "show": [
+         "buyuk"
+        ],
+        "focus": [
+         "buyuk"
+        ]
+       }
+      ],
+      "explanation": "$\\pi (2r)^2 h = 4 \\cdot \\pi r^2 h$: **4 katı**.",
+      "narration": "Şimdi sıra sende. Yüksekliği aynı kalan bir silindirin yarıçapını 2 katına çıkarırsan hacmi kaç katına çıkar? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 4 katı. Hacimde yarıçap kare olarak geçer: 2r'nin karesi 4r kare. Yükseklik aynı kaldığı için hacim taban alanıyla birlikte 4 katına çıkar. Yükseklik 2 katına çıksaydı hacim yalnız 2 katına çıkardı."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Taban yarıçapı 5 cm olan dik silindir biçimindeki bir kapta su vardır. Kaba ayrıtı 5 cm olan bir küp bırakılınca küp tamamen suya batıyor ve su taşmıyor. Buna göre kaptaki su yüksekliği kaç cm artar? (π = 3 alınız.)",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -6.6,
+         -1,
+         8,
+         10
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           -5,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "B",
+          "at": [
+           5,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "C",
+          "at": [
+           5,
+           9
+          ],
+          "hidden": true
+         },
+         {
+          "id": "D",
+          "at": [
+           -5,
+           9
+          ],
+          "hidden": true
+         },
+         {
+          "id": "W1",
+          "at": [
+           -5,
+           5.667
+          ],
+          "hidden": true
+         },
+         {
+          "id": "W2",
+          "at": [
+           5,
+           5.667
+          ],
+          "hidden": true
+         },
+         {
+          "id": "L1",
+          "at": [
+           -5,
+           4
+          ],
+          "hidden": true
+         },
+         {
+          "id": "L2",
+          "at": [
+           5,
+           4
+          ],
+          "hidden": true
+         },
+         {
+          "id": "K1",
+          "at": [
+           -2.5,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "K2",
+          "at": [
+           2.5,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "K3",
+          "at": [
+           2.5,
+           5
+          ],
+          "hidden": true
+         },
+         {
+          "id": "K4",
+          "at": [
+           -2.5,
+           5
+          ],
+          "hidden": true
+         },
+         {
+          "id": "R1",
+          "at": [
+           6.4,
+           4
+          ],
+          "hidden": true
+         },
+         {
+          "id": "R2",
+          "at": [
+           6.4,
+           5.667
+          ],
+          "hidden": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "D",
+          "to": "A"
+         },
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "L1",
+          "to": "L2",
+          "dashed": true
+         },
+         {
+          "from": "K2",
+          "to": "K3",
+          "label": "5"
+         },
+         {
+          "from": "R1",
+          "to": "R2",
+          "label": "x"
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "B",
+           "W2",
+           "W1"
+          ],
+          "id": "su"
+         },
+         {
+          "points": [
+           "K1",
+           "K2",
+           "K3",
+           "K4"
+          ],
+          "id": "kup",
+          "shade": 3
+         }
+        ]
+       },
+       "options": [
+        "1",
+        "$\\frac{4}{3}$",
+        "$\\frac{5}{3}$",
+        "2",
+        "$\\frac{5}{2}$"
+       ],
+       "answer": 2,
+       "narration": "Küp kendi hacmi kadar suyu yükseltir; yükselen su bir silindirdir.",
+       "steps": [
+        {
+         "text": "Küp: $5^3 = 125$",
+         "narration": "Küpün hacmi 5 küp, 125 santimetreküp."
+        },
+        {
+         "text": "$\\pi r^2 \\cdot x = 3 \\cdot 25 \\cdot x = 125$",
+         "narration": "Yükselen su, tabanı pi r kare, yüksekliği x olan bir silindir: 3 çarpı 25 çarpı x, 125."
+        },
+        {
+         "text": "$x = \\frac{125}{75} = \\frac{5}{3}$. Cevap **C**.",
+         "narration": "x, 125 bölü 75, 5 bölü 3 santimetre. Cevap C. Küpün ayrıtı kadar, yani 5 yükselir sanmak bu sorunun tuzağıdır; su kabın bütün tabanına yayılır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki silindir biçimindeki kaba cisim bırakma kalıbı örnek alındı; ölçüler bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_SILINDIR_04",
+    "title": "Koni ve küre",
+    "narration": "Bir dik üçgen bir dik kenarı etrafında dönerse koni, bir yarım daire çapı etrafında dönerse küre oluşur.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Dönen dik üçgen: koni",
+      "text": "Dik üçgen bir dik kenarı etrafında dönünce **dik dairesel koni** oluşur: eksen kenar $h$, öbür dik kenar $r$, hipotenüs **ana doğru** $\\ell$. $\\ell^2 = r^2 + h^2$; $V = \\frac{1}{3}\\pi r^2 h$.",
+      "visual": {
+       "kind": "solid",
+       "shape": "cone",
+       "dimensions": [
+        "r",
+        "h",
+        "ℓ"
+       ],
+       "sweep": true
+      },
+      "beats": [
+       {
+        "narration": "Dik üçgen, h kenarı etrafında dönüyor: hipotenüs koninin yan yüzünü, r kenarı tabanı çiziyor.",
+        "stage": 0
+       },
+       {
+        "narration": "Dik dairesel koni: yarıçap r, yükseklik h, ana doğru ℓ.",
+        "stage": 1
+       }
+      ],
+      "narration": "Bir dik üçgeni bir dik kenarı etrafında döndürelim. Döndüğü kenar koninin ekseni ve yüksekliği olur, öbür dik kenar taban yarıçapı, hipotenüs ise ana doğru. Üçünün arasında Pisagor bağıntısı var: ana doğrunun karesi, r kare artı h kare. Koni, dairesel tabanlı bir piramit gibidir: hacmi taban alanı çarpı yüksekliğin üçte biri, üçte bir pi r kare h."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Dik kenarları 4 cm ve 6 cm olan bir dik üçgen, 6 cm'lik dik kenarı etrafında 360° döndürülüyor. Buna göre oluşan cismin hacmi kaç cm³'tür?",
+       "figure": {
+        "kind": "solid",
+        "shape": "cone",
+        "dimensions": [
+         "4",
+         "6"
+        ],
+        "size": [
+         4,
+         6
+        ],
+        "sweep": true
+       },
+       "options": [
+        "$16\\pi$",
+        "$32\\pi$",
+        "$48\\pi$",
+        "$96\\pi$",
+        "$144\\pi$"
+       ],
+       "answer": 1,
+       "narration": "Döndüğü kenar yükseklik, öbür dik kenar yarıçap; cisim bir koni.",
+       "steps": [
+        {
+         "text": "Koni: $h = 6$, $r = 4$",
+         "narration": "6 santimetrelik kenar eksen: yükseklik 6. Öbür dik kenar yarıçap: 4."
+        },
+        {
+         "text": "$V = \\frac{1}{3} \\pi \\cdot 16 \\cdot 6 = 32\\pi$. Cevap **B**.",
+         "narration": "Hacim üçte bir çarpı pi çarpı 16 çarpı 6, 32 pi santimetreküp. Cevap B. D şıkkındaki 96 pi üçte biri unutmaktır; C şıkkındaki 48 pi, öbür kenar etrafında döndürmektir.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki dik koninin hacmi kalıbı dönen dik üçgenle soruldu; ölçüler bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "rule",
+      "title": "Koninin açınımı",
+      "items": [
+       "Yan yüz açılınca yarıçapı $\\ell$ olan bir **daire dilimi** olur.",
+       "Dilimin yayı tabanın çevresi: $\\alpha = 360° \\cdot \\frac{r}{\\ell}$.",
+       "Yanal alan $= \\pi r \\ell$."
+      ],
+      "visual": {
+       "kind": "solid",
+       "shape": "cone",
+       "dimensions": [
+        "r",
+        "h",
+        "ℓ"
+       ],
+       "unfold": true
+      },
+      "beats": [
+       {
+        "narration": "Dik koni.",
+        "stage": 0
+       },
+       {
+        "narration": "Yarıçap r, yükseklik h, ana doğru ℓ.",
+        "stage": 1
+       },
+       {
+        "narration": "Yan yüzü açalım: yarıçapı ana doğru olan bir daire dilimi. Yayı tabanın çevresi kadar; taban dairesi yayın yanında.",
+        "stage": 2
+       }
+      ],
+      "narration": "Koninin yan yüzünü ana doğru boyunca kesip açarsan yarıçapı ana doğru olan bir daire dilimi elde edersin. Dilimin yayı tabanın çevresine eşittir; bu yüzden dilimin açısı 360 derece çarpı r bölü ana doğrudur. Yanal alan da pi r çarpı ana doğrudur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Taban yarıçapı 4 cm, ana doğrusu 16 cm olan dik koninin taban çemberindeki bir A noktasından yola çıkan bir karınca, yan yüzey üzerinde dolaşıp yeniden A noktasına dönüyor. Buna göre karıncanın gidebileceği en kısa yol kaç cm'dir?",
+       "figure": {
+        "kind": "solid",
+        "shape": "cone",
+        "dimensions": [
+         "4",
+         "",
+         "16"
+        ],
+        "size": [
+         4,
+         15.49
+        ],
+        "unfold": true
+       },
+       "options": [
+        "8",
+        "12",
+        "16",
+        "$16\\sqrt{2}$",
+        "$8\\pi$"
+       ],
+       "answer": 3,
+       "narration": "Yan yüzü açalım: en kısa yol, açınımda iki A noktasını birleştiren doğru parçasıdır.",
+       "steps": [
+        {
+         "text": "Dilimin açısı $360° \\cdot \\frac{4}{16} = 90°$",
+         "narration": "Açınım, yarıçapı 16 olan bir daire dilimi; açısı 360 çarpı 4 bölü 16, 90 derece."
+        },
+        {
+         "text": "A'nın iki kopyası dilimin iki ucunda: kenarlar 16, 16, arası $90°$",
+         "narration": "Kesilen ana doğru, A noktasını iki uca ayırır. Tepeyle birlikte ikizkenar dik üçgen: iki kenar 16, arasındaki açı 90 derece."
+        },
+        {
+         "text": "En kısa yol $16\\sqrt{2}$. Cevap **D**.",
+         "narration": "En kısa yol bu üçgenin hipotenüsü, 16 kök 2 santimetre. Cevap D. E şıkkındaki 8 pi, taban çemberi boyunca dolaşmaktır; daha uzundur.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki konide karıncanın en kısa yolu kalıbı örnek alındı; ölçüler ve dilimin açısı bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Dönen yarım daire: küre",
+      "text": "Yarım daire çapı etrafında dönünce **küre** oluşur. Yarıçap $r$: $V = \\frac{4}{3}\\pi r^3$, yüzey alanı $4\\pi r^2$.",
+      "visual": {
+       "kind": "solid",
+       "shape": "sphere",
+       "dimensions": [
+        "r"
+       ],
+       "sweep": true
+      },
+      "beats": [
+       {
+        "narration": "Yarım daire çapı etrafında dönüyor.",
+        "stage": 0
+       },
+       {
+        "narration": "Küre: yarıçapı r.",
+        "stage": 1
+       }
+      ],
+      "narration": "Bir yarım daireyi çapı etrafında döndürürsen küre oluşur; yarım dairenin yarıçapı kürenin yarıçapıdır. Kürenin hacmi dörtte üç değil, üçte dört pi r küptür; yüzey alanı 4 pi r kare. Küre, kendisine tam sığan silindirin hacminin üçte ikisi kadardır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Yarıçapı 3 cm olan bir küre, taban yarıçapı 3 cm ve yüksekliği 6 cm olan kapalı bir silindirin içine yerleştiriliyor. Buna göre silindirin içinde boş kalan kısmın hacmi kaç cm³'tür?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -4.4,
+         -1.2,
+         4.4,
+         7.2
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           -3,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "B",
+          "at": [
+           3,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "C",
+          "at": [
+           3,
+           6
+          ],
+          "hidden": true
+         },
+         {
+          "id": "D",
+          "at": [
+           -3,
+           6
+          ],
+          "hidden": true
+         },
+         {
+          "id": "O",
+          "at": [
+           0,
+           3
+          ],
+          "label": "O"
+         },
+         {
+          "id": "E",
+          "at": [
+           3,
+           3
+          ],
+          "hidden": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "6"
+         },
+         {
+          "from": "C",
+          "to": "D"
+         },
+         {
+          "from": "D",
+          "to": "A"
+         },
+         {
+          "from": "O",
+          "to": "E",
+          "label": "3",
+          "dashed": true
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "B",
+           "C",
+           "D"
+          ],
+          "id": "silindir"
+         }
+        ],
+        "circles": [
+         {
+          "center": "O",
+          "radius": 3,
+          "fill": true,
+          "shade": 3,
+          "id": "kure"
+         }
+        ]
+       },
+       "options": [
+        "$18\\pi$",
+        "$27\\pi$",
+        "$36\\pi$",
+        "$54\\pi$",
+        "$90\\pi$"
+       ],
+       "answer": 0,
+       "narration": "Boş kalan kısım, silindirin hacmi eksi kürenin hacmi.",
+       "steps": [
+        {
+         "text": "Silindir: $\\pi \\cdot 9 \\cdot 6 = 54\\pi$",
+         "narration": "Silindirin hacmi pi çarpı 9 çarpı 6, 54 pi."
+        },
+        {
+         "text": "Küre: $\\frac{4}{3}\\pi \\cdot 27 = 36\\pi$",
+         "narration": "Kürenin hacmi üçte dört pi çarpı 27, 36 pi."
+        },
+        {
+         "text": "Boş: $54\\pi - 36\\pi = 18\\pi$. Cevap **A**.",
+         "narration": "Boş kalan kısım 54 pi eksi 36 pi, 18 pi santimetreküp. Cevap A. Küre silindirin üçte ikisi, boşluk üçte biri: 54 pi'nin üçte biri 18 pi.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "MEB konu anlatımındaki küre ve silindir hacimleri silindire tam sığan küreyle soruldu; ölçüler bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Taban yarıçapı 6 birim, yüksekliği 9 birim olan dik dairesel silindirin içinde tabana, birbirine ve silindirin yan yüzüne teğet, yarıçapı 3 birim olan iki eş küre vardır. Tabanı silindirin üst tabanıyla çakışan bir dik koni silindirin içine yerleştirildiğinde kürelere teğet oluyor. Buna göre koninin hacmi kaç birimküptür?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -7.6,
+         -1.2,
+         7.6,
+         10.2
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           -6,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "B",
+          "at": [
+           6,
+           0
+          ],
+          "hidden": true
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           9
+          ],
+          "hidden": true
+         },
+         {
+          "id": "D",
+          "at": [
+           -6,
+           9
+          ],
+          "hidden": true
+         },
+         {
+          "id": "Q",
+          "at": [
+           0,
+           9
+          ],
+          "hidden": true
+         },
+         {
+          "id": "T",
+          "at": [
+           0,
+           4.5
+          ],
+          "label": "T"
+         },
+         {
+          "id": "M1",
+          "at": [
+           -3,
+           3
+          ],
+          "hidden": true
+         },
+         {
+          "id": "M2",
+          "at": [
+           3,
+           3
+          ],
+          "hidden": true
+         },
+         {
+          "id": "W",
+          "at": [
+           6,
+           3
+          ],
+          "hidden": true
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "9"
+         },
+         {
+          "from": "D",
+          "to": "Q"
+         },
+         {
+          "from": "Q",
+          "to": "C",
+          "label": "6"
+         },
+         {
+          "from": "D",
+          "to": "A"
+         },
+         {
+          "from": "D",
+          "to": "T"
+         },
+         {
+          "from": "T",
+          "to": "C"
+         },
+         {
+          "from": "M2",
+          "to": "W",
+          "label": "3",
+          "dashed": true
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "D",
+           "C",
+           "T"
+          ],
+          "id": "koni",
+          "shade": 3
+         }
+        ],
+        "circles": [
+         {
+          "center": "M1",
+          "radius": 3,
+          "fill": true,
+          "shade": 2,
+          "id": "k1"
+         },
+         {
+          "center": "M2",
+          "radius": 3,
+          "fill": true,
+          "shade": 2,
+          "id": "k2"
+         }
+        ]
+       },
+       "options": [
+        "$18\\pi$",
+        "$27\\pi$",
+        "$36\\pi$",
+        "$48\\pi$",
+        "$54\\pi$"
+       ],
+       "answer": 4,
+       "narration": "Eksenden geçen kesite bakalım ve koordinat koyalım: eksen y ekseni, taban x ekseni.",
+       "steps": [
+        {
+         "text": "Kürenin merkezi $(3, 3)$; ana doğru $(6, 9)$'dan tepeye, $(0, 9 - H)$",
+         "narration": "Sağdaki kürenin merkezi 3, 3 noktasında. Koninin ana doğrusu üst tabanın kenarı 6, 9'dan tepeye iner; tepe 0, 9 eksi H'de, H koninin yüksekliği."
+        },
+        {
+         "text": "Doğru $Hx - 6y + 54 - 6H = 0$; uzaklık $\\frac{|36 - 3H|}{\\sqrt{H^2 + 36}} = 3$",
+         "narration": "Bu doğrunun denklemi H x eksi 6 y artı 54 eksi 6H, sıfır. Doğru küreye teğet: merkezin doğruya uzaklığı yarıçap, 3."
+        },
+        {
+         "text": "$(12 - H)^2 = H^2 + 36 \\Rightarrow H = \\frac{9}{2}$",
+         "narration": "Sadeleştirip karesini alalım: 12 eksi H'nin karesi, H kare artı 36. 144 eksi 24H, 36; H, 4 virgül 5."
+        },
+        {
+         "text": "$V = \\frac{1}{3} \\pi \\cdot 36 \\cdot \\frac{9}{2} = 54\\pi$. Cevap **E**.",
+         "narration": "Koninin hacmi üçte bir çarpı pi çarpı 36 çarpı 4 virgül 5, 54 pi birimküp. Cevap E. Tepeyi kürelerin değme noktasına koyup yüksekliği 6 almak yanlıştır: o zaman koninin yan yüzü kürelerin içinden geçer.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM KPSS 2018 ön lisanstaki silindirde iki küre ve onlara teğet koni kalıbı örnek alındı; ölçüler bu ders için seçildi, çözüm noktanın doğruya uzaklığıyla yapıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Dikdörtgen döner: silindir; dik üçgen: koni; yarım daire: küre.",
+    "Silindir açınımı: 2πr × h dikdörtgen ve iki daire.",
+    "Yüzey alanı 2πr² + 2πrh; hacim πr²h.",
+    "Koni: V = πr²h / 3, açı 360° · r / ℓ.",
+    "Küre: V = 4πr³ / 3, A = 4πr²."
+   ],
+   "warnings": [
+    "Çap verilirse önce **yarıya** böl.",
+    "Üstü açık kapta **tek** taban.",
+    "Yarıçap 2 kat: hacim **4 kat**."
+   ],
+   "narration": "Hadi toparlayalım. Bir dikdörtgen bir kenarı etrafında dönünce silindir oluşur; dönen kenar yükseklik, öbürü yarıçap. Silindirin açınımı, kenarları 2 pi r ve h olan bir dikdörtgen ile iki dairedir. Yüzey alanı 2 pi r kare artı 2 pi r h, hacim pi r kare h. Çap verilirse önce yarıya böl; üstü açık kapta tek taban say. Koni dönen bir dik üçgendir, hacmi silindirin üçte biri; küre dönen bir yarım dairedir, hacmi üçte dört pi r küp. Böylece KPSS Geometri kampının sonuna geldik."
+  }
+ },
+ "short": {
+  "hook": "Dönen dikdörtgen silindir olur",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Hacim = **πr²h**"
+   },
+   {
+    "kind": "term",
+    "term": "Dönel cisim",
+    "definition": "Bir şekil **eksen** etrafında döner"
+   },
+   {
+    "kind": "warning",
+    "text": "Çap verildiyse **yarısını** al."
+   }
+  ],
+  "summary": [
+   "Silindir: πr²h",
+   "Koni: πr²h / 3",
+   "Küre: 4πr³ / 3"
+  ],
+  "rounds": [
+   {
+    "sentence": "3 ve 5 kenarlı dikdörtgen",
+    "question": "5 etrafında dönerse r?",
+    "choices": [
+     "3",
+     "5"
+    ],
+    "answer": 0,
+    "why": "Dönen kenar **h**."
+   },
+   {
+    "sentence": "Yarıçap 2 katı",
+    "question": "Hacim?",
+    "choices": [
+     "4 katı",
+     "2 katı"
+    ],
+    "answer": 0,
+    "why": "$r$ **kare**."
+   },
+   {
+    "sentence": "Üstü açık kap",
+    "question": "Kaç taban?",
+    "choices": [
+     "1",
+     "2"
+    ],
+    "answer": 0,
+    "why": "Üst **açık**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "kpss-geometri-kampi",
+  "name": "KPSS Geometri kampı",
+  "number": 14,
+  "total": 14,
+  "previous": "Piramitler",
+  "promise": "Lisans, önlisans ve ortaöğretim KPSS Geometrisinin bütün konuları, çözümlü sorularla.",
+  "task": {
+   "items": [
+    "Bu dersteki **10 soruyu** kâğıtta şekilleri çizerek yeniden çöz.",
+    "Bir kâğıt dikdörtgeni kalemin etrafında döndür; **r** ve **h**yi göster.",
+    "Uygulamada KPSS Silindir testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bu dersteki 10 soruyu kâğıtta şekilleri çizerek yeniden çöz. Sonra küçük bir kâğıt dikdörtgeni bir kalemin etrafında döndür; yarıçapı ve yüksekliği göster. Ardından uygulamada yirmi soru çöz. KPSS Geometri kampını bitirdin; tebrikler!"
+  }
+ }
+}

@@ -1,6 +1,6 @@
 # YouTube metni: TYT Din Kültürü ve Ahlak Bilgisi kampı · Ders 9 · Kur'an-ı Kerim'de İnsan ve Özellikleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/09_Kuranda_Insan/Kuranda_Insan_YouTube.mp4` (4K) · Kapak: `Kuranda_Insan_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/09_Kuranda_Insan/Kuranda_Insan_YouTube.mp4` (4K) · Kapak: `Kuranda_Insan_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

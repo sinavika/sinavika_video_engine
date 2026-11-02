@@ -1,6 +1,6 @@
 # YouTube metni: AYT Coğrafya kampı · Ders 30 · Çevresel Örgütler ve Çevre Anlaşmaları
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/30_Cevresel_Orgutler_Ve_Anlasmalar/Cevresel_Orgutler_Ve_Anlasmalar_YouTube.mp4` (4K) · Kapak: `Cevresel_Orgutler_Ve_Anlasmalar_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/30_Cevresel_Orgutler_Ve_Anlasmalar/Cevresel_Orgutler_Ve_Anlasmalar_YouTube.mp4` (4K) · Kapak: `Cevresel_Orgutler_Ve_Anlasmalar_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

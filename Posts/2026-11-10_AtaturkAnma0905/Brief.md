@@ -36,3 +36,8 @@ Solemn cinematic orchestral elegy: a single sustained cello note under a ticking
 Saat 09.05. Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk’ü aramızdan ayrılışının 88. yılında saygı, sevgi ve özlemle anıyoruz.
 
 #10Kasım #Atatürk #SaygıylaAnıyoruz
+
+## 1 Kasım revizyonu
+
+- **Red notu:** "video atatürk ile başlamalı tüyler ürpertmeli. çok daha duygusal ağlamaklı olmalı."
+- **Değişen:** İlk kare Atatürk portresi (yavaşça gözlere yaklaşır), siren hemen başlar, "10 Kasım 1938 · 09.05"; sonra saat durur, nutuk kesitleri, gençler; kapanışta portre silik, "Saygı, sevgi ve özlemle." ve "Gazi Mustafa Kemal Atatürk · 1881–1938". Sahneler yavaşça birbirine geçer. Müzik: yalnız ney, ardından ağır viyolonsel ve piyano.

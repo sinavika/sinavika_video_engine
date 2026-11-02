@@ -1,6 +1,6 @@
 # YouTube metni: AYT Matematik kampı · Ders 24 · 2.Dereceden Eşitsizlikler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Matematik/24_Ikinci_Dereceden_Esitsizlikler/Ikinci_Dereceden_Esitsizlikler_YouTube.mp4` (4K) · Kapak: `Ikinci_Dereceden_Esitsizlikler_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Matematik/24_Ikinci_Dereceden_Esitsizlikler/Ikinci_Dereceden_Esitsizlikler_YouTube.mp4` (4K) · Kapak: `Ikinci_Dereceden_Esitsizlikler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

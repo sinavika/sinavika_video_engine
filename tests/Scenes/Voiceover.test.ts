@@ -1,12 +1,13 @@
 import {COURSE_DESIGN} from '../../src/Courses/CourseDesign';
+import {CAMP_SCRIPT_SAMPLE} from '../../src/Courses/LessonScriptSample';
 import {mkdtempSync, readdirSync, readFileSync} from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {describe, expect, it} from 'vitest';
 import {BRAND_VOICES, VOICES, VOICE_PROFILES, VOICE_PROFILE_KEYS, type VoiceKey} from '../../src/Configurations/Voices';
-import {resolveVideoJob, voiceLines, withVoiceClips} from '../../src/Renderers/VideoJob';
-import {VOICE_LEAD_SECONDS, VOICE_TAIL_SECONDS, createNarrator, type VoiceClips} from '../../src/Scenes/Voiceover';
-import {lowerFirst, pronounceAbbreviations, sentences, toSpokenText, turkishNumber, turkishNumberOrdinal, verbalizeLatex} from '../../src/Schemas/SpokenText';
+import {resolveVideoJob, voiceLines, withEstimatedNarration, withVoiceClips} from '../../src/Renderers/VideoJob';
+import {VOICE_LEAD_SECONDS, VOICE_TAIL_SECONDS, createNarrator, estimateNarrationSeconds, type VoiceClips} from '../../src/Scenes/Voiceover';
+import {lowerFirst, pronounceAbbreviations, sentences, spokenPremiseNumbers, toSpokenText, turkishNumber, turkishNumberOrdinal, verbalizeLatex} from '../../src/Schemas/SpokenText';
 import {SpeechError, type SpeechBackend} from '../../src/Services/ElevenLabsSpeech';
 import {groupLines, joinScript, segmentLines} from '../../src/Services/NarrationScript';
 import {VoiceCastingError, castVoice, type VoiceCast} from '../../src/Services/VoiceCasting';
@@ -81,6 +82,60 @@ describe('spoken text', () => {
 		expect(toSpokenText('X^RX^r anne, X^rY oğul, XX ve XY')).toBe('iks büyük re, iks küçük re anne, iks küçük re, ye oğul, iks iks ve iks ye');
 		expect(toSpokenText('AO ve BO, Rh⁻ anne, Rh⁺ bebek')).toBe('a o ve be o, re ha negatif anne, re ha pozitif bebek');
 		expect(pronounceAbbreviations(toSpokenText('II. ve III. öncül, XX. yüzyıl, 5 mm, AE kenarı'))).toBe('ikinci ve üçüncü öncül, yirminci yüzyıl, beş milimetre, AE kenarı');
+	});
+
+	it('say premise numbers as numbers, the way a teacher reads a test (2 Nov 2026)', () => {
+		// Before, they reached the voice as letters, and "II." closing an answer was read as "ikinci".
+		expect(pronounceAbbreviations("Etkili olanlar I ve III'tür. Doğru cevap D.")).toBe('Etkili olanlar bir ve üçtür. Doğru cevap D.');
+		expect(pronounceAbbreviations('Doğru cevap I ve II. Cevap C.')).toBe('Doğru cevap bir ve iki. Cevap C.');
+		expect(pronounceAbbreviations("I, II ve III'ün hepsi; yalnız I'dir; Yalnız II.")).toBe('bir, iki ve üçün hepsi; yalnız birdir; Yalnız iki.');
+		expect(pronounceAbbreviations("Kömürü yakar; IV de yanlıştır. III'ü içerenler elenir.")).toBe('Kömürü yakar; dört de yanlıştır. üçü içerenler elenir.');
+		expect(pronounceAbbreviations('Sıra II - IV - I - III.')).toBe('Sıra iki - dört - bir - üç.');
+		expect(pronounceAbbreviations('$4 > 2 = 2$ → III > I = II.')).toBe('dört büyüktür iki eşittir iki → üç > bir eşittir iki.');
+		expect(pronounceAbbreviations('I numaralı il, (III), demir(III) oksit')).toBe('bir numaralı il, (üç), demir(üç) oksit');
+		// In a sentence that names II, III or IV, a lone I or V is a premise too.
+		expect(pronounceAbbreviations("I Sibirya, III Amazon, IV Sahra, V Avustralya'nın içi.")).toBe("bir Sibirya, üç Amazon, dört Sahra, beş Avustralya'nın içi.");
+		expect(pronounceAbbreviations('I: ticaret; II: vergi; III: güç.')).toBe('bir: ticaret; iki: vergi; üç: güç.');
+		expect(pronounceAbbreviations('(I) Sabah kalktık.\n(II) Güneş doğdu.')).toBe('(bir) Sabah kalktık.\n(iki) Güneş doğdu.');
+		// Ordinals written with a suffix, a quadrant, a cell division stage.
+		expect(pronounceAbbreviations("I'inci, II'nci, III'üncü, IV'üncü, V'inci")).toBe('birinci, ikinci, üçüncü, dördüncü, beşinci');
+		expect(pronounceAbbreviations("I. bölgede (+, +), II.'de (-, +)")).toBe('birinci bölgede (+, +), ikide (-, +)');
+		expect(pronounceAbbreviations("Mayoz I'de homologlar ayrılır; metafaz II'de bekler; mayoz I tamamlanır.")).toBe('Mayoz birde homologlar ayrılır; metafaz ikide bekler; mayoz bir tamamlanır.');
+	});
+
+	it('leave letters that are not premises alone: names, shapes, units, points, variables, arrows', () => {
+		const untouched = [
+			'II. Murat ve XX. yüzyıl, VIII. Henry ve I. Dünya Savaşı',
+			"Akarsu V biçimli vadi açar; V'nin ucu yükseğe bakar.",
+			"Potansiyel 1,10 V'tur; 12 V'luk üreteç; sığa q bölü V'dir; P V'si",
+			"İç açıortaylar I'da kesişir; I'dan kenara dik; A C I'nın yüksekliği",
+			'A E, E I, I F ve F A',
+			'E→E, A→I, I→I',
+			'I de artar, V de azalır; akım I doğru orantılıdır.',
+			'**İç teğet** çember (I) ve V (V)',
+			'TAR_II_DUNYA_SUREC.json',
+		];
+		for (const text of untouched) expect(spokenPremiseNumbers(text)).toBe(text);
+		// Inside a formula the letters stay for the formula reader.
+		expect(spokenPremiseNumbers('kütle uzak, $I$ büyür (I, II); $A_{II}$')).toBe('kütle uzak, $I$ büyür (bir, iki); $A_{II}$');
+	});
+
+	it('leave no premise number in any course script for the voice to spell out', () => {
+		// II, III and IV are never letters in a narration; I and V may be (a point, a volume), so they are not checked.
+		const left: string[] = [];
+		const walk = (value: unknown, file: string, key = ''): void => {
+			if (typeof value === 'string') {
+				if (!/arration$/i.test(key)) return;
+				const found = pronounceAbbreviations(value).match(/(?<![\p{L}\p{N}_{])(?:II|III|IV)(?![\p{L}\p{N}_}])/gu);
+				if (found) left.push(`${file}: ${found.join(', ')} in "${value.slice(0, 80)}"`);
+			} else if (Array.isArray(value)) value.forEach((item) => walk(item, file, key));
+			else if (value && typeof value === 'object') Object.entries(value).forEach(([name, item]) => walk(item, file, name));
+		};
+		const scripts = path.join(ROOT, 'Curriculum', 'Scripts');
+		for (const file of readdirSync(scripts, {recursive: true, encoding: 'utf8'}).filter((name) => name.endsWith('.json'))) {
+			walk(JSON.parse(readFileSync(path.join(scripts, file), 'utf8')), file);
+		}
+		expect(left).toEqual([]);
 	});
 
 	it('never drops a relation or a negation from a formula', () => {
@@ -464,6 +519,12 @@ describe('exam abbreviations', () => {
 		expect(pronounceAbbreviations('PDF’in mi var? PDF dosyası, PDFLER')).toBe('Pidiyefin mi var? Pidiyef dosyası, PDFLER');
 	});
 
+	it('say the groups of states D-8, G20 and G7 by letter and number, suffixes joined (2 Nov 2026)', () => {
+		expect(pronounceAbbreviations("D-8 ve G20 toplantısı; G-20'nin ve G7'nin üyeleri, D-8'e katıldı.")).toBe('De Sekiz ve Ge Yirmi toplantısı; Ge Yirminin ve Ge Yedinin üyeleri, De Sekize katıldı.');
+		// Other letters and numbers are not a group of states: a road, a part number, a longer code.
+		expect(pronounceAbbreviations('D-80 yolu, AG20 parçası, G200 ve D-8x')).not.toMatch(/De Sekiz|Ge Yirmi|Ge Yedi/u);
+	});
+
 	it('are never written into a template’s or a sample’s script: the central readings give them (owner, 31 Oct 2026)', () => {
 		// The readings ABBREVIATIONS gives, and the hand-written "Sino Eyay" that bypassed it in some reels.
 		const central = /yekase|kapesese|teyete|ayete|yedete|sino ?ey ?ay|pidiyef|nokta kom/iu;
@@ -513,5 +574,23 @@ describe('exam abbreviations', () => {
 		expect(pronounceAbbreviations('Bugün: XX. Yüzyıl Başlarında Osmanlı. Bölüm: Fetret Devri ve II. Murat.')).toBe('Bugün: yirminci Yüzyıl Başlarında Osmanlı. Bölüm: Fetret Devri ve ikinci Murat.');
 		expect(pronounceAbbreviations('XIX. ve XX. yüzyıl; I. Dünya Savaşı')).toBe('on dokuzuncu ve yirminci yüzyıl; birinci Dünya Savaşı');
 		expect(pronounceAbbreviations('I think I can.')).toBe('I think I can.');
+	});
+});
+
+describe('narration estimate', () => {
+	it('times a line at the voice pace in spoken letters, numbers and abbreviations said in full', () => {
+		// 11 letters a second: "Bir iki üç dört beş" has 15 letters.
+		expect(estimateNarrationSeconds('Bir iki üç dört beş.')).toBeCloseTo(15 / 11, 5);
+		// A year is said in words, so it takes longer than its four digits.
+		expect(estimateNarrationSeconds('1919')).toBeGreaterThan(estimateNarrationSeconds('abcd') * 2);
+		expect(estimateNarrationSeconds('')).toBe(0);
+	});
+
+	it('times a voiced lesson near its rendered length, not at the reading pace', () => {
+		const lesson = resolveVideoJob({template: 'CampLesson', format: 'Horizontal', theme: 'SinavikaLight', voiceover: true, content: CAMP_SCRIPT_SAMPLE});
+		const narrated = withEstimatedNarration(lesson);
+		// Rendered lessons ran about 1.55 times the reading-time estimate (1 Nov 2026).
+		expect(narrated.durationInFrames / lesson.durationInFrames).toBeGreaterThan(1.3);
+		expect(withEstimatedNarration({...lesson, voiceover: null})).toEqual({...lesson, voiceover: null});
 	});
 });

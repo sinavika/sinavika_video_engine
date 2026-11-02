@@ -1,6 +1,6 @@
 # YouTube metni: AYT Biyoloji kampı · Ders 8 · Üriner Sistem
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Biyoloji/08_Uriner_Sistem/Uriner_Sistem_YouTube.mp4` (4K) · Kapak: `Uriner_Sistem_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Biyoloji/08_Uriner_Sistem/Uriner_Sistem_YouTube.mp4` (4K) · Kapak: `Uriner_Sistem_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

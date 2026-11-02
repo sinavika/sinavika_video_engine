@@ -79,3 +79,7 @@ Kategori Eğitim · dil Türkçe · çocuklara özel değil · ücretli tanıtı
 ## Başlık güncellemesi (27 Ekim 2026 gecesi)
 
 Sahibin kararıyla başlıklar "YKS TYT Türkçe |" önekine geçti; Studio'da A/B testi bu üç başlıkla yeniden kuruldu.
+
+## Kapak yenilendi (1 Kasım 2026)
+
+Sahibin isteğiyle YouTube kapağı yeni kamp kapağıyla (29 Ekim standardı, ders renginde) değiştirildi: `Sozcukte_Anlam_YouTube_Kapak.png`. Başlık A/B testi sürüyor; kapak test sırasında değiştirilebildi.

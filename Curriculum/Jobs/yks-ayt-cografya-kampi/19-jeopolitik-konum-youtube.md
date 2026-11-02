@@ -1,6 +1,6 @@
 # YouTube metni: AYT Coğrafya kampı · Ders 19 · Jeopolitik Konum
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/19_Jeopolitik_Konum/Jeopolitik_Konum_YouTube.mp4` (4K) · Kapak: `Jeopolitik_Konum_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/19_Jeopolitik_Konum/Jeopolitik_Konum_YouTube.mp4` (4K) · Kapak: `Jeopolitik_Konum_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

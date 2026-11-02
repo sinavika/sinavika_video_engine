@@ -1,4 +1,5 @@
 import React from 'react';
+import {readableOn} from '../../../Themes/ColorPalette';
 import {withAlpha} from '../../../Themes/Theme';
 import {useVideoLayout} from '../../Layouts/VideoLayout';
 import {RichInline, RichText} from '../../Typography/RichText';
@@ -30,8 +31,8 @@ const ComparisonColumn: React.FC<{id: string; column: Comparison['columns'][numb
 	const look = partLook(state);
 	return (
 		<div style={{flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', borderRadius: u(28), overflow: 'hidden', backgroundColor: palette.surface, border: `${u(3)}px solid ${palette.border}`, boxShadow: look.emphasis > 0.02 ? `inset 0 0 0 ${u(5 * look.emphasis)}px ${accent}` : 'none', opacity: show * look.opacity, transform: `translateY(${(1 - show) * u(30)}px)`}}>
-			<div style={{backgroundColor: accent, color: '#FFFFFF', padding: `${u(18)}px ${u(24)}px`, fontFamily: palette.fontDisplay, fontWeight: 800, fontSize: u(36)}}>
-				{/* Rich like the items, so a title may hold a formula ("Doğru: a/b = k" written in math); plain text and math take the header's white. */}
+			<div style={{backgroundColor: accent, color: readableOn(accent), padding: `${u(18)}px ${u(24)}px`, fontFamily: palette.fontDisplay, fontWeight: 800, fontSize: u(36)}}>
+				{/* Rich like the items, so a title may hold a formula ("Doğru: a/b = k" written in math); plain text and math take the header's ink: white on a dark header, dark on a light one (the ink column of a dark figure is light). */}
 				<RichInline text={column.title} />
 			</div>
 			<div style={{display: 'flex', flexDirection: 'column', gap: u(16), padding: u(24)}}>

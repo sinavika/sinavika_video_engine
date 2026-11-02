@@ -35,3 +35,8 @@ Sleek, tactile tech-house: knob-turn foley and analog clicks, a tight four-on-th
 Hızlı mı, derin mi? Seç. 🎛️ SinoAI’de Hızlı, Dengeli ve Derin seviyeleri var: tek cümleden adım adım anlatıma. Sen hangisini kullanırdın? Yorumlara yaz.
 
 #sinavika #sinoai #yks #kpss #yapayzeka
+
+## 1 Kasım revizyonu
+
+- **Red notu:** "hook berbat."
+- **Değişen:** Hook "Çözümü okudun, anlamadın." (Durum sorusu); SinoAI cümle ortasında ("Bunun için SinoAI’de üç seviye var."), seslendirme okuma 3: "Sino" ile "Ey" arası 0,40 sn.

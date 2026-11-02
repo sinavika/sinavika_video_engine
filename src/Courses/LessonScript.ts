@@ -1,9 +1,9 @@
 import {z} from 'zod';
-import {CourseVisualSchema, VisualBeatSchema, numberedPartNames, type CourseVisual} from '../Components/Visuals/VisualSchema';
+import {CourseVisualSchema, VisualBeatSchema, numberedPartNames, visualStages, type CourseVisual} from '../Components/Visuals/VisualSchema';
 import {latex, plainText, richText} from '../Schemas/RichText';
 import {RevisionCardSchema} from '../Templates/Education/QuickRevision/QuickRevisionSchema';
 import {CampEpisodeSchema} from './Camp';
-import {VOICE_LEAD_SECONDS, VOICE_TAIL_SECONDS} from '../Scenes/Voiceover';
+import {estimateNarrationSeconds, VOICE_LEAD_SECONDS, VOICE_TAIL_SECONDS} from '../Scenes/Voiceover';
 import {CHALLENGE_SCORE_LINE, isSpoken, isWholeSentence, spokenPredictAsk, spokenQuestion, spokenRoundAsk, spokenRoundReveal, THINK_PROMPT} from './LessonSpeech';
 import {COURSE_DESIGN} from './CourseDesign';
 
@@ -277,7 +277,6 @@ export const LessonScriptSchema = z
 
 export type LessonScript = z.infer<typeof LessonScriptSchema>;
 
-const WORDS_PER_SECOND = 2.3;
 const words = (text: string): number => text.split(/\s+/).filter(Boolean).length;
 
 /** Every spoken text of the lesson, in order. */
@@ -307,8 +306,8 @@ const summaryShortNarrations = (script: LessonScript): string[] => [
 	script.short.summary.join(' '),
 ];
 
-/** Estimated spoken length in seconds, before any audio exists. */
-export const estimatedSeconds = (texts: readonly string[]): number => texts.reduce((total, text) => total + words(text) / WORDS_PER_SECOND + 0.8, 0);
+/** Estimated spoken length in seconds, before any audio exists: the voice's measured pace (estimateNarrationSeconds). */
+export const estimatedSeconds = (texts: readonly string[]): number => texts.reduce((total, text) => total + estimateNarrationSeconds(text) + VOICE_LEAD_SECONDS + VOICE_TAIL_SECONDS, 0);
 
 /** A dare shown over the first question: read in one glance. */
 const CHALLENGE_HOOK_MAX_LENGTH = 40;
@@ -351,7 +350,7 @@ export const reviewScript = (script: LessonScript, subtopicCodes: readonly strin
 	if (missing.length > 0) issues.push(`Subtopics without a section: ${missing.join(', ')}.`);
 	const questions = script.lesson.sections.flatMap((section) => section.cards).filter((card) => card.kind === 'question').length;
 	if (questions < 3) issues.push(`Only ${questions} worked question(s); three or more cover the exam's approaches better.`);
-	issues.push(...answerPatternIssues(script), ...mistakeIssues(script), ...worksIssues(script), ...spokenTextIssues(script));
+	issues.push(...answerPatternIssues(script), ...mistakeIssues(script), ...worksIssues(script), ...spokenTextIssues(script), ...stageIssues(script));
 	return {lessonSeconds, shortSeconds, questions, issues, suggestions: [...processVisualSuggestions(script), ...longSentenceSuggestions(script)]};
 };
 
@@ -374,7 +373,7 @@ export const longSentenceSuggestions = (script: LessonScript): string[] =>
  * must slide in the picture"). Each entry: the words that name the process, and the figures that show it. A card
  * passes when it, or a card next to it in the same section, shows one of them. `ignore` names uses of the words that
  * are not the process (30 Oct 2026, AYT Tarih: "Adnan Menderes" is a person, not a meander; "II. Dünya Savaşı",
- * "savaş ilan etti" and "savaş yılları" name a war or an era, not a battle a figure could show; "Kızılırmak Deltası" names a place, not a delta being built; AYT Psikoloji: "savaş ya da kaç tepkisi" is the stress response, and a war in a list of stress sources is not a battle told; AYT Felsefe: Hobbes's "herkesin herkese savaşı" is the state of nature, not a battle). These are
+ * "savaş ilan etti" and "savaş yılları" name a war or an era, not a battle a figure could show; "Kızılırmak Deltası" names a place, not a delta being built; AYT Psikoloji: "savaş ya da kaç tepkisi" is the stress response, and a war in a list of stress sources is not a battle told; AYT Felsefe: Hobbes's "herkesin herkese savaşı" is the state of nature, not a battle; Vatandaşlık 9: a "savaş gemisi" or "savaş uçağı" is a kind of ship or plane, as in Montrö's rule on warships). These are
  * suggestions, not issues: they do not block "Hazırlandı".
  */
 const isProcess = (visual: CourseVisual, process: string) => visual.kind === 'process' && visual.process === process;
@@ -382,21 +381,26 @@ const PROCESS_VISUALS: {name: string; words: RegExp; ignore?: RegExp; shows: (vi
 	{name: 'heyelan', words: /(?<!\p{L})(heyelan|toprak kayma)/iu, shows: (visual) => (visual.kind === 'landform' && visual.scene === 'landslide') || isProcess(visual, 'landslide')},
 	// The desert scene shows wind erosion (sand carried, rocks scoured, dunes moving): Karapınar, AYT Coğrafya 24.
 	{name: 'erozyon', words: /(?<!\p{L})erozyon/iu, shows: (visual) => isProcess(visual, 'erosion') || isProcess(visual, 'desert')},
-	{name: 'deprem', words: /(?<!\p{L})deprem/iu, shows: (visual) => visual.kind === 'earthquake' || visual.kind === 'plates'},
-	{name: 'volkan', words: /(?<!\p{L})(volkan|yanardağ)/iu, shows: (visual) => (visual.kind === 'landform' && visual.scene === 'volcano') || visual.kind === 'plates' || isProcess(visual, 'volcano')},
+	// A map shows where the ground shook: the provinces a dated earthquake struck, the fault lines of a deprem bölgeleri
+	// map (Vatandaşlık 9, the 11 provinces of 6 Şubat 2023). The fault and the waves stay the figure for how it happens.
+	{name: 'deprem', words: /(?<!\p{L})deprem/iu, shows: (visual) => visual.kind === 'earthquake' || visual.kind === 'plates' || (visual.kind === 'map' && (visual.shades.length > 0 || visual.highlights.length > 0 || visual.markers.length > 0))},
+	{name: 'volkan', words: /(?<!\p{L})(volkan|yanardağ)/iu, shows: (visual) => (visual.kind === 'landform' && visual.scene === 'volcano') || visual.kind === 'plates' || isProcess(visual, 'volcano') || isProcess(visual, 'fairychimney')},
+	// Cappadocia: tuff from the volcanoes, a basalt hat, the soft rock worn away round it (KPSS Coğrafya 22, 2 Nov 2026).
+	{name: 'peri bacası', words: /(?<!\p{L})peri\s+baca/iu, shows: (visual) => isProcess(visual, 'fairychimney')},
 	{name: 'buzul', words: /(?<!\p{L})buzul/iu, ignore: /(?<!\p{L})buzul\s+dönem\p{L}*|(?<!\p{L})buzullaşma\p{L}*|(?<!\p{L})buzul\p{L}*\s+(?:hızla\s+)?eri\p{L}*/giu, shows: (visual) => visual.kind === 'landform' && visual.scene === 'glacier'},
-	{name: 'karst', words: /(?<!\p{L})(karst|obruk|dolin|polye(?!ster))/iu, shows: (visual) => (visual.kind === 'landform' && visual.scene === 'karst') || isProcess(visual, 'karst')},
+	{name: 'karst', words: /(?<!\p{L})(karst|obruk|dolin|polye(?!ster))/iu, shows: (visual) => (visual.kind === 'landform' && visual.scene === 'karst') || isProcess(visual, 'karst') || (isProcess(visual, 'spring') && (visual.kind !== 'process' || !visual.stages || visual.stages.includes('karstik')))},
 	{name: 'kaynak', words: /(?<!\p{L})(artezyen|yamaç kaynağı|karstik kaynak|fay kaynağı)/iu, shows: (visual) => isProcess(visual, 'spring')},
 	{name: 'kayaç döngüsü', words: /(?<!\p{L})kayaç döngüsü/iu, shows: (visual) => isProcess(visual, 'rockcycle') || visual.kind === 'cycle'},
 	{name: 'su döngüsü', words: /(?<!\p{L})(su döngüsü|hidrolojik döngü)/iu, shows: (visual) => isProcess(visual, 'watercycle') || visual.kind === 'cycle'},
 	{name: 'karbon döngüsü', words: /(?<!\p{L})karbon döngüsü/iu, shows: (visual) => isProcess(visual, 'carboncycle') || visual.kind === 'cycle'},
 	{name: 'azot döngüsü', words: /(?<!\p{L})(azot döngüsü|nitrifikasyon|denitrifikasyon)/iu, shows: (visual) => isProcess(visual, 'nitrogencycle') || visual.kind === 'cycle'},
-	{name: 'akarsu aşındırması', words: /(?<!\p{L})(menderes|delta|akarsu aşındır|akarsu biriktir)/iu, ignore: /Adnan Menderes|\p{Lu}\p{L}*\s+(?:ve\s+\p{Lu}\p{L}*\s+)?[Dd]elta\p{L}*|[Dd]elta\s+\p{L}(?!\p{L})/gu, shows: (visual) => visual.kind === 'river'},
+	// Büyük and Küçük Menderes are rivers and plains by name; the relief scene cuts valleys and builds a delta.
+	{name: 'akarsu aşındırması', words: /(?<!\p{L})(menderes|delta|akarsu aşındır|akarsu biriktir)/iu, ignore: /Adnan Menderes|(?:Büyük|Küçük)\s+Menderes|Menderesler|\p{Lu}\p{L}*\s+(?:ve\s+\p{Lu}\p{L}*\s+)?[Dd]elta\p{L}*|[Dd]elta\s+\p{L}(?!\p{L})/gu, shows: (visual) => visual.kind === 'river' || (visual.kind === 'landform' && visual.scene === 'relief')},
 	{name: 'kıvrılma', words: /(?<!\p{L})(kıvrılma|antiklinal|senklinal)/iu, shows: (visual) => visual.kind === 'landform' && visual.scene === 'fold'},
 	{
 		name: 'savaş',
 		words: /(?<!\p{L})(savaş[ıi]?(?!\p{L})|savaşında|muharebe|meydan savaş)/iu,
-		ignore: /(?<!\p{L})(dünya|soğuk|uzun|kırk yıllık)\s+savaş\p{L}*|(?<!\p{L})savaş(a|ı|tan)?\s+(ilan|dışı|yılları|sonrası|sonunda|ekonomisi|sanayisi)\p{L}*|(?<!\p{L})savaş\s+(ya da|veya)\s+kaç\p{L}*|(?<!\p{L})herkes(?:in|e)\s+(?:karşı\s+)?(?:herkese\s+(?:karşı\s+)?)?savaş\p{L}*|,\s*savaş\p{L}*\s*,/giu,
+		ignore: /(?<!\p{L})(dünya|soğuk|uzun|kırk yıllık)\s+savaş\p{L}*|(?<!\p{L})savaş(a|ı|tan)?\s+(ilan|dışı|yılları|sonrası|sonunda|ekonomisi|sanayisi)\p{L}*|(?<!\p{L})savaş\s+(ya da|veya)\s+kaç\p{L}*|(?<!\p{L})herkes(?:in|e)\s+(?:karşı\s+)?(?:herkese\s+(?:karşı\s+)?)?savaş\p{L}*|,\s*savaş\p{L}*\s*,|(?<!\p{L})savaş\p{L}*\s*,?\s*seferberlik|(?<!\p{L})savaş\s+hukuk\p{L}*|(?<!\p{L})savaş\s+(?:sebeb|hâl|hal)\p{L}*|(?<!\p{L})savaş\p{L}*\s+(?:ya da|veya)\s+olağanüstü|(?<!\p{L})savaş\s+(?:gemi|uça)\p{L}*/giu,
 		shows: (visual) => visual.kind === 'battle' || visual.kind === 'picture' || visual.kind === 'map',
 	},
 ];
@@ -410,6 +414,71 @@ export const processVisualSuggestions = (script: LessonScript): string[] =>
 			return PROCESS_VISUALS.filter((process) => process.words.test(process.ignore ? said.replace(process.ignore, '') : said) && !near.some(process.shows)).map(
 				(process) => `s${sectionIndex + 1}-c${cardIndex + 1}: the narration names "${process.name}" but no figure here shows it happening.`,
 			);
+		}),
+	);
+
+/**
+ * Fields a script names that its schema does not have, so parsing drops them without a word: a `title` on a stack
+ * chart, a `caption` on a concept card (TYT Türkçe, Sözcükte Yapı: the line never reached the screen). Paths are
+ * written as `curriculum check` names cards (s2-c1) where they lie on a card, as JSON paths elsewhere.
+ */
+export const ignoredFields = (raw: unknown, parsed: unknown): string[] => {
+	const walk = (input: unknown, output: unknown, at: string[]): string[] => {
+		if (Array.isArray(input) && Array.isArray(output)) return input.flatMap((item, index) => walk(item, output[index], [...at, String(index)]));
+		if (!input || typeof input !== 'object' || !output || typeof output !== 'object') return [];
+		return Object.keys(input).flatMap((key) => (key in output ? walk((input as Record<string, unknown>)[key], (output as Record<string, unknown>)[key], [...at, key]) : [[...at, key].join('.')]));
+	};
+	return walk(raw, parsed, []).map((path) => path.replace(/^lesson\.sections\.(\d+)\.cards\.(\d+)\./, (_, section: string, card: string) => `s${Number(section) + 1}-c${Number(card) + 1}: `));
+};
+
+/** A staged scene whose beats stop before its last stage: what the scene builds up to is drawn but never shown. */
+/** The figures a card shows: its own visual and a question's figure. */
+const figuresOf = (card: LessonScript['lesson']['sections'][number]['cards'][number]): CourseVisual[] => [
+	...('visual' in card && card.visual ? [card.visual] : []),
+	...(card.kind === 'question' && card.question.figure ? [card.question.figure] : []),
+];
+
+/**
+ * Areas a map names that its layer does not have. The map leaves them out without a word: "Çin" framed nothing on
+ * the Silk Road map, the world layer calls it "Çin Halk Cumhuriyeti" (KPSS Coğrafya 20, 2 Nov 2026). `namesOf` gives a
+ * layer's names (the check reads them from public/Geo), undefined when it cannot.
+ */
+export const mapNameIssues = (script: LessonScript, namesOf: (layer: string) => readonly string[] | undefined): string[] =>
+	script.lesson.sections.flatMap((section, sectionIndex) =>
+		section.cards.flatMap((card, cardIndex) =>
+			figuresOf(card).flatMap((visual) => {
+				if (visual.kind !== 'map' || typeof visual.base !== 'string') return [];
+				const where = `s${sectionIndex + 1}-c${cardIndex + 1}`;
+				const check = (layer: string, names: readonly string[], field: string) => {
+					const known = namesOf(layer);
+					if (!known) return [];
+					return [...new Set(names)]
+						.filter((name) => !known.includes(name))
+						.map((name) => {
+							const lower = name.toLocaleLowerCase('tr');
+							// Every near name, not the first: "Çin" is both "Çin Halk Cumhuriyeti" and Taiwan's "Çin Cumhuriyeti".
+							const near = known.filter((item) => item.toLocaleLowerCase('tr').startsWith(lower) || lower.startsWith(item.toLocaleLowerCase('tr')) || item.toLocaleLowerCase('tr').includes(lower)).slice(0, 3);
+							return `${where}: the map's ${field} names "${name}", which the ${layer} layer does not have${near.length > 0 ? ` (did you mean ${near.map((item) => `"${item}"`).join(' or ')}?)` : ''}; the map leaves it out.`;
+						});
+				};
+				return [
+					...check(visual.base, visual.focus, 'focus'),
+					...check(visual.base, visual.highlights.map((item) => item.name), 'highlights'),
+					...check(visual.base, visual.shades.flatMap((shade) => shade.names), 'shades'),
+					...visual.overlays.flatMap((overlay) => check(overlay.layer, overlay.names, `${overlay.layer} overlay`)),
+				];
+			}),
+		),
+	);
+
+export const stageIssues = (script: LessonScript): string[] =>
+	script.lesson.sections.flatMap((section, sectionIndex) =>
+		section.cards.flatMap((card, cardIndex) => {
+			if (!('visual' in card) || !card.visual || !('beats' in card) || card.beats.length === 0) return [];
+			const stages = visualStages(card.visual);
+			const reached = Math.max(-1, ...card.beats.map((beat) => beat.stage ?? -1));
+			if (!stages || reached < 0 || reached >= stages.length - 1) return [];
+			return [`s${sectionIndex + 1}-c${cardIndex + 1}: the beats stop at stage ${reached + 1} of ${stages.length}; "${stages[stages.length - 1]}" is never shown.`];
 		}),
 	);
 

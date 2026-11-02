@@ -70,3 +70,7 @@ A/B testi: B `YKS TYT | 120 Soru, 165 Dakika: Sınavı Baştan Sona Tanı | Böl
 - Ayarlar: çocuklara özel değil, ücretli tanıtım yok, yapay zekâ beyanı "Hayır", kategori Eğitim, dil Türkçe, etiketler yukarıdaki gibi.
 - Bitiş ekranı (26 Ekim): 2:56–3:10 arası; video öğesi "Sözcükte Anlam" dersine bağlı ve son sahnedeki pembe ders kartının üstünde, abone ol öğesi sağ altta. Açıklamaya "▶️ İlk ders" linki eklendi.
 - 27 Ekim 2026 gecesi: başlık "YKS TYT |" önekine geçti (A/B testi üç yeni başlıkla yeniden kuruldu); "İlk ders" linki ve bitiş ekranındaki video öğesi yeni 1. derse (HpLwEZENciY) bağlandı. Eski 1. ders (m2VY8Az6T2g) sahibin onayıyla silindi.
+
+## Kapak yenilendi (1 Kasım 2026)
+
+Sahibin onayıyla YouTube kapağı yeni lacivert kamp kapağıyla değiştirildi: `Outputs/Videos/YKS/TYT/Main/TYT_Kampi_00_Tanitim_YouTube_Kapak.png` (29 Ekim standardı, "BÖLÜM 00"). Başlık A/B testi sürüyor; eski `_Kapak_A/B/C.jpg` dosyaları artık kullanılmıyor.

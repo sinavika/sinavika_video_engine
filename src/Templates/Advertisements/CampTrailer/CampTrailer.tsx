@@ -22,11 +22,34 @@ import {Tap} from '../PromoKit/PromoMotion';
  * questions, animated shapes, worked answers), letterboxed like cinema, the
  * words of the voice in the black bars. It ends on our channel's playlist:
  * the search types the name, a tap subscribes.
+ *
+ * Owner, 1 Nov 2026: "kamp tanıtımında coğrafyadaki ve tarihteki güçlü animasyonel ekranları sun, telefon ekranına uygun
+ * render et; YouTube olduğu belli olsun; son ekranda 'Sınavika’yı ücretsiz indir' değil, YouTube tanıtım ekranı". A shot
+ * with `crop` fills the phone: the lesson's figure (cut from its 16:9 frame) panned slowly like a documentary camera,
+ * under a YouTube player's red progress bar. The channel page wears YouTube's red, and the video ends on a YouTube
+ * channel card (`end`) instead of the app card.
  */
 
 const narration = z.string().trim().min(1).max(170);
-/** A shot from a rendered camp lesson (16:9, under public/Media). */
-const ShotSchema = z.object({src: z.string().min(1), label: plainText(30)});
+/**
+ * A shot from a rendered camp lesson (16:9, under public/Media). With `crop` it is drawn for the phone: the figure
+ * (between `top` and `bottom`, fractions of the frame's height, without the lesson's bars) as a big band across the
+ * middle of the screen, `width` of the frame wide, over a blurred copy of itself; the window moves from `from` to `to`
+ * (fractions of the width left over) like a documentary camera.
+ */
+const ShotSchema = z.object({
+	src: z.string().min(1),
+	label: plainText(30),
+	crop: z
+		.object({
+			top: z.number().min(0).max(0.5),
+			bottom: z.number().min(0.5).max(1),
+			width: z.number().min(0.2).max(1).default(0.45),
+			from: z.number().min(0).max(1),
+			to: z.number().min(0).max(1),
+		})
+		.optional(),
+});
 
 const CampTrailerSchema = z.object({
 	title: z.object({lines: z.tuple([plainText(24), plainText(14)]), narration}),
@@ -44,6 +67,8 @@ const CampTrailerSchema = z.object({
 		narration,
 	}),
 	script: VoiceScriptSchema,
+	/** A YouTube channel card at the very end, in place of the app card (outro). */
+	end: z.object({line: plainText(30), sub: plainText(40), subscribe: plainText(14), seconds: z.number().min(2).max(5).default(3.2)}).optional(),
 	outro: z.object({enabled: z.boolean().default(true)}).default({enabled: true}),
 });
 type Content = z.infer<typeof CampTrailerSchema>;
@@ -53,6 +78,62 @@ const BLACK = '#000000';
 const WHITE = '#FFFFFF';
 const ORANGE = '#EA580C';
 const DARK = '#0F0F12';
+/** YouTube's red: the player bar, the logo and the subscribe button say "this is YouTube". */
+const YOUTUBE_RED = '#FF0000';
+
+/** The YouTube mark: a red rounded play button and the word. */
+const YouTubeMark: React.FC<{size: number}> = ({size}) => {
+	const {u} = useVideoLayout();
+	return (
+		<div style={{display: 'flex', alignItems: 'center', gap: u(size * 0.22)}}>
+			<div style={{width: u(size * 1.42), height: u(size), borderRadius: u(size * 0.28), background: YOUTUBE_RED, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+				<div style={{width: 0, height: 0, borderTop: `${u(size * 0.22)}px solid transparent`, borderBottom: `${u(size * 0.22)}px solid transparent`, borderLeft: `${u(size * 0.36)}px solid ${WHITE}`, marginLeft: u(size * 0.06)}} />
+			</div>
+			<Text size={size * 0.92} weight={TYPE.weights.kinetic} color={WHITE} style={{letterSpacing: '-0.03em', lineHeight: 1}}>
+				YouTube
+			</Text>
+		</div>
+	);
+};
+
+/**
+ * A lesson's figure for the phone, on the whole screen (the stage's ground): a blurred, darkened copy fills it, the
+ * figure runs as a wide band across the middle while the camera moves slowly along it, and a YouTube player's mark,
+ * the lesson's name and the red progress bar frame it.
+ */
+const BleedShot: React.FC<{shot: Shot; length: number}> = ({shot, length}) => {
+	const {width, height} = useVideoConfig();
+	const {u} = useVideoLayout();
+	const seconds = useSeconds();
+	const crop = shot.crop!;
+	const videoWidth = width / crop.width;
+	const videoHeight = (videoWidth * 9) / 16;
+	const band = (crop.bottom - crop.top) * videoHeight;
+	const bandTop = height * 0.5 - band / 2;
+	const spare = Math.max(0, videoWidth - width);
+	const progress = Math.min(1, seconds / Math.max(0.1, length));
+	const along = crop.from + (crop.to - crop.from) * ease(progress);
+	const bar = 20 + 60 * progress;
+	return (
+		<AbsoluteFill style={{background: BLACK, overflow: 'hidden'}}>
+			<OffthreadVideo muted src={staticFile(shot.src)} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.25)', filter: `blur(${u(28)}px) brightness(0.42) saturate(1.1)`}} />
+			<div style={{position: 'absolute', left: 0, top: bandTop, width, height: band, overflow: 'hidden', boxShadow: `0 ${u(30)}px ${u(80)}px rgba(0,0,0,0.6)`}}>
+				<OffthreadVideo muted src={staticFile(shot.src)} style={{position: 'absolute', left: -spare * along, top: -crop.top * videoHeight, width: videoWidth, height: videoHeight}} />
+			</div>
+			{/* Under the band, as a YouTube player shows it: the mark, then the lesson's name. */}
+			<div style={{position: 'absolute', left: u(44), right: u(44), top: bandTop + band + u(40), display: 'flex', alignItems: 'center', gap: u(22)}}>
+				<YouTubeMark size={40} />
+				<Text size={34} weight={TYPE.weights.display} color="rgba(255,255,255,0.9)" style={{whiteSpace: 'nowrap'}}>
+					{shot.label}
+				</Text>
+			</div>
+			<div style={{position: 'absolute', left: 0, right: 0, top: bandTop + band - u(5), height: u(10), background: 'rgba(255,255,255,0.3)'}}>
+				<div style={{width: `${bar.toFixed(2)}%`, height: '100%', background: YOUTUBE_RED}} />
+				<div style={{position: 'absolute', left: `calc(${bar.toFixed(2)}% - ${u(14)}px)`, top: -u(9), width: u(28), height: u(28), borderRadius: '50%', background: YOUTUBE_RED}} />
+			</div>
+		</AbsoluteFill>
+	);
+};
 
 /** The letterboxed picture: full canvas width, 16:9. */
 const FRAME = {x: 0, y: 500, w: 952, h: 535};
@@ -64,18 +145,22 @@ const Letterbox: React.FC<{shot: Shot; length: number; word?: string; wordAt?: n
 	const land = ease(Math.max(0, Math.min(1, (seconds - wordAt) / 0.14)));
 	return (
 		<>
-			<div style={{position: 'absolute', left: u(FRAME.x - 40), top: u(FRAME.y), width: u(FRAME.w + 80), height: u(FRAME.h), overflow: 'hidden', background: BLACK}}>
-				<OffthreadVideo muted src={staticFile(shot.src)} style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${push})`}} />
-			</div>
-			<At x={40} y={FRAME.y + FRAME.h + 24} w={872}>
-				<Text size={28} weight={TYPE.weights.display} color="rgba(255,255,255,0.6)">
-					{shot.label}
-				</Text>
-			</At>
+			{shot.crop ? null : (
+				<>
+					<div style={{position: 'absolute', left: u(FRAME.x - 40), top: u(FRAME.y), width: u(FRAME.w + 80), height: u(FRAME.h), overflow: 'hidden', background: BLACK}}>
+						<OffthreadVideo muted src={staticFile(shot.src)} style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${push})`}} />
+					</div>
+					<At x={40} y={FRAME.y + FRAME.h + 24} w={872}>
+						<Text size={28} weight={TYPE.weights.display} color="rgba(255,255,255,0.6)">
+							{shot.label}
+						</Text>
+					</At>
+				</>
+			)}
 			{word && seconds >= wordAt ? (
 				<At y={250} w={952}>
 					<div style={{transform: `scale(${interpolate(land, [0, 1], [1.25, 1])})`, opacity: land, filter: land < 1 ? `blur(${u((1 - land) * 8)}px)` : undefined}}>
-						<Text variant="display" size={110} weight={TYPE.weights.kinetic} color={WHITE} align="center" style={{letterSpacing: '-0.02em'}}>
+						<Text variant="display" size={110} weight={TYPE.weights.kinetic} color={WHITE} align="center" style={{letterSpacing: '-0.02em', textShadow: shot.crop ? '0 6px 30px rgba(0,0,0,0.85)' : undefined}}>
 							{word}
 						</Text>
 					</div>
@@ -85,21 +170,48 @@ const Letterbox: React.FC<{shot: Shot; length: number; word?: string; wordAt?: n
 	);
 };
 
+/** When each shot starts: on its word as it is heard (from the narration's word timings; evenly spread without them). */
+const shotStarts = (words: string[], shots: Shot[], cues: number[], total: number): number[] => {
+	const count = Math.max(words.length, shots.length);
+	return Array.from({length: count}, (_, index) => (index === 0 ? 0 : cues[index] ?? (index * total) / count));
+};
+
+/** The cropped shots on the whole phone screen, each in its own time (the ground under the montage's words). */
+const MontageGround: React.FC<{words: string[]; shots: Shot[]; cues: number[]; total: number}> = ({words, shots, cues, total}) => {
+	const {fps} = useVideoConfig();
+	const starts = shotStarts(words, shots, cues, total);
+	return (
+		<AbsoluteFill style={{background: BLACK}}>
+			{starts.map((start, index) => {
+				const shot = shots[index % shots.length];
+				const end = starts[index + 1] ?? total;
+				// The last shot holds to the end of the scene: the scene is longer than its line by the voice's tail, and
+				// stopping at the line left a black gap of ~0.4 s before the next scene (1 Nov 2026).
+				const last = index === starts.length - 1;
+				return shot.crop ? (
+					<Sequence key={index} from={Math.round(start * fps)} durationInFrames={last ? undefined : Math.max(1, Math.round((end - start) * fps))}>
+						<BleedShot shot={shot} length={end - start} />
+					</Sequence>
+				) : null;
+			})}
+		</AbsoluteFill>
+	);
+};
+
 /**
  * Shots cut on the spoken words: each word starts its own shot when it is
  * heard (from the narration's word timings; evenly spread without them).
  */
 const Montage: React.FC<{words: string[]; shots: Shot[]; cues: number[]; total: number}> = ({words, shots, cues, total}) => {
 	const {fps} = useVideoConfig();
-	const count = Math.max(words.length, shots.length);
-	const starts = Array.from({length: count}, (_, index) => (index === 0 ? 0 : cues[index] ?? (index * total) / count));
+	const starts = shotStarts(words, shots, cues, total);
 	return (
 		<>
 			{starts.map((start, index) => {
 				const end = starts[index + 1] ?? total;
 				const shot = shots[index % shots.length];
 				return (
-					<Sequence key={index} from={Math.round(start * fps)} durationInFrames={Math.max(1, Math.round((end - start) * fps))}>
+					<Sequence key={index} from={Math.round(start * fps)} durationInFrames={index === starts.length - 1 ? undefined : Math.max(1, Math.round((end - start) * fps))}>
 						<Letterbox shot={shot} length={end - start} word={words[index]} wordAt={index === 0 ? Math.max(0, (cues[0] ?? 0) - start) : 0} />
 						{index > 0 ? <SoundEffect id="impact" atSeconds={0} volume={0.5} /> : null}
 					</Sequence>
@@ -123,7 +235,7 @@ const TitleScene: React.FC<{content: Content}> = ({content}) => (
 );
 
 const MontageScene: React.FC<{words: string[]; shots: Shot[]; cues: number[]; seconds: number}> = (props) => (
-	<PromoStage ground={<Black />}>
+	<PromoStage ground={<MontageGround {...props} total={props.seconds} />}>
 		<Montage {...props} total={props.seconds} />
 	</PromoStage>
 );
@@ -139,9 +251,12 @@ const ChannelScene: React.FC<{content: Content; seconds: number}> = ({content, s
 	return (
 		<PromoStage ground={<AbsoluteFill style={{background: DARK}} />}>
 			<At x={40} y={60} w={872}>
-				<div style={{display: 'flex', alignItems: 'center', gap: u(16), height: u(96), padding: `0 ${u(30)}px`, borderRadius: u(48), background: '#1F1F24'}}>
-					<Icon name="search" size={u(40)} color="#A1A1AA" stroke={2.4} />
-					<TypeOn text={channel.search} at={0.1} charsPerSecond={14} size={42} color={WHITE} caret={ORANGE} />
+				<div style={{display: 'flex', alignItems: 'center', gap: u(22)}}>
+					<YouTubeMark size={40} />
+					<div style={{flex: 1, display: 'flex', alignItems: 'center', gap: u(16), height: u(96), padding: `0 ${u(30)}px`, borderRadius: u(48), background: '#1F1F24'}}>
+						<Icon name="search" size={u(40)} color="#A1A1AA" stroke={2.4} />
+						<TypeOn text={channel.search} at={0.1} charsPerSecond={14} size={42} color={WHITE} caret={YOUTUBE_RED} />
+					</div>
 				</div>
 			</At>
 			<div style={{position: 'absolute', inset: 0, opacity: page, transform: `translateY(${(1 - page) * u(60)}px)`}}>
@@ -158,7 +273,7 @@ const ChannelScene: React.FC<{content: Content; seconds: number}> = ({content, s
 								{channel.meta}
 							</Text>
 						</div>
-						<div style={{display: 'flex', alignItems: 'center', gap: u(10), padding: `${u(20)}px ${u(30)}px`, borderRadius: u(999), background: subscribed ? '#27272A' : ORANGE}}>
+						<div style={{display: 'flex', alignItems: 'center', gap: u(10), padding: `${u(20)}px ${u(30)}px`, borderRadius: u(999), background: subscribed ? '#27272A' : YOUTUBE_RED}}>
 							<Icon name={subscribed ? 'bell' : 'plus'} size={u(32)} color={WHITE} stroke={2.6} />
 							<Text size={34} weight={TYPE.weights.kinetic} color={WHITE}>
 								{subscribed ? channel.subscribed : channel.subscribe}
@@ -194,6 +309,48 @@ const ChannelScene: React.FC<{content: Content; seconds: number}> = ({content, s
 			</div>
 			<SoundEffect id="transitionWhoosh" atSeconds={0.9} volume={0.6} />
 			<Tap x={40 + 872 - 120} y={210 + 60} at={tapAt} color="rgba(255,255,255,0.55)" />
+			<SoundEffect id="bell" atSeconds={tapAt + 0.1} volume={0.8} />
+		</PromoStage>
+	);
+};
+
+/** The last screen: our channel on YouTube, with its subscribe button. No app card, no "indir". */
+const YouTubeEndScene: React.FC<{content: Content}> = ({content}) => {
+	const {u} = useVideoLayout();
+	const seconds = useSeconds();
+	const end = content.end!;
+	const card = useLand(0.05, 120, 20);
+	const tapAt = 1.3;
+	const subscribed = seconds >= tapAt + 0.05;
+	return (
+		<PromoStage ground={<AbsoluteFill style={{background: '#0F0F0F'}} />}>
+			<At y={300} w={952}>
+				<div style={{display: 'flex', justifyContent: 'center', opacity: card}}>
+					<YouTubeMark size={76} />
+				</div>
+			</At>
+			<div style={{position: 'absolute', inset: 0, opacity: card, transform: `translateY(${(1 - card) * u(40)}px)`}}>
+				<At y={540} w={952}>
+					<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(26)}}>
+						<div style={{width: u(220), height: u(220), borderRadius: '50%', background: ORANGE, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+							<Img src={staticFile('Brand/SinavikaIcon.svg')} style={{width: u(120), height: u(128)}} />
+						</div>
+						<Text variant="display" size={92} weight={TYPE.weights.kinetic} color={WHITE} align="center">
+							{end.line}
+						</Text>
+						<Text size={38} weight={TYPE.weights.display} color="#AAAAAA" align="center">
+							{end.sub}
+						</Text>
+						<div style={{display: 'flex', alignItems: 'center', gap: u(12), marginTop: u(16), padding: `${u(24)}px ${u(46)}px`, borderRadius: u(999), background: subscribed ? '#272727' : YOUTUBE_RED}}>
+							<Icon name={subscribed ? 'bell' : 'plus'} size={u(38)} color={WHITE} stroke={2.6} />
+							<Text size={42} weight={TYPE.weights.kinetic} color={WHITE}>
+								{subscribed ? content.channel.subscribed : end.subscribe}
+							</Text>
+						</div>
+					</div>
+				</At>
+			</div>
+			<Tap x={476} y={1150} at={tapAt} color="rgba(255,255,255,0.55)" />
 			<SoundEffect id="bell" atSeconds={tapAt + 0.1} volume={0.8} />
 		</PromoStage>
 	);
@@ -264,7 +421,8 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 		{id: 'montage', seconds: montage.seconds, label: 'Kesmeler', voice: [montage], element: <MontageScene words={content.montage.words} shots={content.montage.shots} cues={montageCues} seconds={montage.seconds} />},
 		{id: 'teach', seconds: teach.seconds, label: 'SinoAI', voice: [teach], element: <MontageScene words={content.teach.words} shots={content.teach.shots} cues={teachCues} seconds={teach.seconds} />},
 		{id: 'channel', seconds: channel.seconds, label: 'Kanal', voice: [channel], element: <ChannelScene content={content} seconds={channel.seconds} />},
-		...appEndScenes(content.outro.enabled, say),
+		// The YouTube channel card ends the video when there is one; otherwise the app card does.
+		...(content.end ? [{id: 'youtube-end', seconds: content.end.seconds, label: 'YouTube', silent: true, element: <YouTubeEndScene content={content} />}] : appEndScenes(content.outro.enabled, say)),
 	];
 };
 
@@ -272,7 +430,7 @@ export const CampTrailer = defineTemplate({
 	id: 'CampTrailer',
 	category: 'Advertisements',
 	title: 'TYT kampı fragmanı',
-	description: 'Film fragmanı: siyah ara kartlar ve büyük başlıklar; kampın kendi render edilmiş derslerinden sinema oranında hızlı kesmeler (SinoAI karşılaması, bölüm açılışları, “Önce tahmin et?”, çözümler), sesin kelimeleri siyah bantlarda. Sonda kanalımızın oynatma listesi: arama adı yazar, dokunuş abone olur.',
+	description: 'Film fragmanı: siyah ara kartlar ve büyük başlıklar; kampın kendi render edilmiş derslerinden hızlı kesmeler: sinema oranında ya da telefonu dolduran, kamerası kayan animasyonlar (Coğrafya süreçleri, Tarih savaşları) YouTube oynatıcısının kırmızı çubuğuyla. Sonda kanalımızın oynatma listesi ve isteğe bağlı YouTube kanal kartı.',
 	contentSchema: CampTrailerSchema,
 	sampleContent: SAMPLE,
 	defaultTheme: 'SinavikaDark',

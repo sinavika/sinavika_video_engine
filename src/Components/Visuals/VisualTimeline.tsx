@@ -1,7 +1,7 @@
 import React, {createContext, useContext} from 'react';
 import {easeFrom} from '../../Animations/Motion';
 import {useVideoLayout} from '../Layouts/VideoLayout';
-import {useSceneSeconds, useVisualPalette} from './VisualFrame';
+import {useSceneSeconds, useStillFigure, useVisualPalette} from './VisualFrame';
 import type {VisualBeat} from './VisualSchema';
 
 /**
@@ -200,6 +200,7 @@ export const useStageClock = (count: number, {delaySeconds = 0, secondsPerStage:
 export const BeatCamera: React.FC<{width: number; height: number; children: React.ReactNode}> = ({width, height, children}) => {
 	const timeline = useTimeline();
 	const seconds = useSceneSeconds();
+	const still = useStillFigure();
 	if (!timeline) return <>{children}</>;
 
 	const whole: [number, number, number, number] = [0, 0, 1, 1];
@@ -217,8 +218,10 @@ export const BeatCamera: React.FC<{width: number; height: number; children: Reac
 	const translateX = clampShift(width / 2 - ((left + right) / 2) * width * scale, width);
 	const translateY = clampShift(height / 2 - ((top + bottom) / 2) * height * scale, height);
 
+	// An app still is never zoomed: what a figure draws past its box (a battle's note raised to the still's smallest
+	// text, two lines tall) stays whole and the still is cut round it. The note was cut in half (2 Nov 2026).
 	return (
-		<div style={{position: 'relative', width, height, overflow: 'hidden'}}>
+		<div style={{position: 'relative', width, height, overflow: still ? 'visible' : 'hidden'}} data-layout-camera={scale > 1.001 ? 'zoomed' : undefined}>
 			<div style={{position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', transformOrigin: '0 0', transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`}}>{children}</div>
 		</div>
 	);
@@ -243,7 +246,9 @@ export const BeatNote: React.FC = () => {
 	const note = current >= 0 ? timeline.beats[current].note : undefined;
 	const show = current >= 0 ? easeFrom(seconds, timeline.starts[current] + 0.2, 0.4) : 0;
 	return (
-		<div style={{height: space, display: 'flex', alignItems: 'flex-end', justifyContent: 'center', flexShrink: 0}}>
+		// The full width of the card's column: in a centred column the row shrank to its note, and the note's 92 % of
+		// that broke "a + b + c = 180°" over two lines (KPSS Geometri 2, 1 Nov 2026).
+		<div style={{height: space, alignSelf: 'stretch', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', flexShrink: 0}}>
 			{note ? (
 				<div style={{transform: `translateY(${(1 - show) * u(16)}px)`, opacity: show, maxWidth: '92%', padding: `${u(10)}px ${u(22)}px`, borderRadius: u(999), backgroundColor: palette.lesson, color: palette.onLesson, fontFamily: palette.fontDisplay, fontWeight: 800, fontSize: u(28), textAlign: 'center', lineHeight: 1.2}}>
 					{note}

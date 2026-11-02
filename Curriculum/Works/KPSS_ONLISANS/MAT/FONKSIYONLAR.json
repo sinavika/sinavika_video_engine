@@ -1,0 +1,637 @@
+{
+ "topic": {
+  "id": "07478A13-907F-46FA-930B-31C2D34F369B",
+  "category": "KPSS_ONLISANS",
+  "lesson": "MAT",
+  "code": "FONKSIYONLAR"
+ },
+ "title": "Fonksiyon",
+ "lessonName": "Matematik",
+ "exams": [
+  "KPSS"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/KPSS/MAT/FONKSIYONLAR.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Her eleman, tek görüntü",
+   "narration": "Fonksiyon, bir kümenin her elemanını tek bir elemana götüren kuraldır. ÖSYM bu konuda en çok fonksiyon değerini sordu: Lisans sınavında dokuz sorunun yedisi, bir fonksiyonun bir sayıdaki değerini ya da bu değerden bir bilinmeyeni istedi. Bu derste tanımdan grafiğe, bileşkeden ters fonksiyona kadar her adımı yeni sorularla göreceğiz."
+  },
+  "objectives": [
+   "Bir bağıntının fonksiyon olup olmadığını anlamak; fonksiyon saymak",
+   "Tanım, değer ve görüntü kümesini ayırt etmek",
+   "Fonksiyon değerini, parçalı fonksiyonları ve parametreleri hesaplamak",
+   "Doğrusal fonksiyon grafiğini okumak",
+   "Bire bir, örten, bileşke ve ters fonksiyonu kullanmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FONKSIYONLAR_01",
+    "subtopics": [],
+    "title": "Bağıntı ve fonksiyon",
+    "narration": "Fonksiyon, bir kümenin her elemanını başka bir kümenin tek bir elemanına götüren kuraldır. Bu tanımdaki iki kelime çok önemli: her ve tek.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Her eleman, tek görüntü",
+      "items": [
+       "$f: A \\to B$ bir fonksiyonsa $A$'nın **her** elemanı eşlenir; açıkta eleman kalmaz.",
+       "Her elemanın **tek** görüntüsü vardır; bir eleman iki elemana gidemez.",
+       "$B$'de eşlenmemiş eleman kalabilir; iki eleman aynı görüntüye gidebilir.",
+       "$A$'dan $B$'ye fonksiyon sayısı: $s(B)^{s(A)}$."
+      ],
+      "visual": {
+       "kind": "table",
+       "header": [
+        "$A$",
+        "$f$ ile",
+        "$B$"
+       ],
+       "rows": [
+        [
+         "1",
+         "→",
+         "a"
+        ],
+        [
+         "2",
+         "→",
+         "a"
+        ],
+        [
+         "3",
+         "→",
+         "b"
+        ]
+       ]
+      },
+      "beats": [],
+      "narration": "A'dan B'ye bir fonksiyon, A'nın her elemanını B'nin tek bir elemanıyla eşler. A'da eşlenmemiş eleman kalırsa ya da bir eleman iki elemana giderse bu bir fonksiyon değildir. Ama B'de eşlenmemiş eleman kalabilir ve A'nın iki elemanı aynı görüntüye gidebilir. A'nın her elemanı için B'nin eleman sayısı kadar seçenek olduğundan, fonksiyon sayısı B'nin eleman sayısının A'nın eleman sayısı kadar kuvvetidir."
+     },
+     {
+      "kind": "predict",
+      "title": "İki görüntü",
+      "context": "$A = \\{1, 2, 3\\}$: 1 → a, 2 → a ve b, 3 → c",
+      "prompt": "Bu bağıntı bir fonksiyon mudur?",
+      "choices": [
+       "Fonksiyondur",
+       "Fonksiyon değildir"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Eleman",
+        "Görüntüler"
+       ],
+       "rows": [
+        [
+         "1",
+         "a"
+        ],
+        [
+         "2",
+         "**a ve b**"
+        ],
+        [
+         "3",
+         "c"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "1, a'ya gidiyor; 3, c'ye gidiyor. Bunlar sorun değil.",
+        "show": [
+         "r1",
+         "r3"
+        ],
+        "focus": [
+         "r1",
+         "r3"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Ama 2 hem a'ya hem b'ye gidiyor. Bir elemanın iki görüntüsü olamaz.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "2'nin **iki görüntüsü** var; fonksiyonda her elemanın **tek** görüntüsü olur.",
+      "narration": "Şimdi sıra sende. A kümesinin 2 elemanı hem a'ya hem b'ye eşlenmiş. Bu bağıntı bir fonksiyon mu? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap: fonksiyon değildir. Bir fonksiyonda her elemanın yalnız bir görüntüsü olur. İki elemanın aynı görüntüye gitmesi serbesttir, ama bir elemanın iki görüntüsü olamaz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$A = \\{1, 2, 3\\}$ ve $B = \\{a, b\\}$ olmak üzere $A$'dan $B$'ye tanımlı kaç farklı fonksiyon vardır?",
+       "options": [
+        "4",
+        "6",
+        "8",
+        "9",
+        "12"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Her eleman için 2 seçenek: $a$ ya da $b$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "1, a'ya ya da b'ye gidebilir: 2 seçenek. 2 ve 3 için de aynı."
+        },
+        {
+         "text": "$2 \\cdot 2 \\cdot 2 = 2^3 = 8$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Seçimler bağımsız: 2 çarpı 2 çarpı 2, yani 8 fonksiyon. Cevap C. D şıkkındaki 9, kuvveti ters alıp 3 kare hesaplayanın cevabıdır."
+        }
+       ],
+       "narration": "A'nın her elemanı için kaç seçenek olduğunu sayalım.",
+       "origin": {
+        "changes": "Havuzdaki iki küme arasındaki fonksiyon sayısı kalıbı örnek alındı; kümeler bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FONKSIYONLAR_02",
+    "subtopics": [],
+    "title": "Tanım, değer ve görüntü kümesi",
+    "narration": "Bir fonksiyonun üç kümesi var. Karıştırılan ikisi değer kümesi ile görüntü kümesidir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Üç küme",
+      "items": [
+       "**Tanım kümesi** $A$: fonksiyona giren elemanlar.",
+       "**Değer kümesi** $B$: görüntülerin seçilebileceği küme.",
+       "**Görüntü kümesi** $f(A)$: gerçekten ulaşılan değerler; $f(A) \\subseteq B$."
+      ],
+      "beats": [],
+      "narration": "f, A'dan B'ye bir fonksiyonsa A tanım kümesidir: fonksiyona giren elemanlar. B değer kümesidir: görüntülerin seçilebileceği küme. Görüntü kümesi ise gerçekten ulaşılan değerlerdir ve değer kümesinin bir alt kümesidir. Aynı görüntü birden çok kez çıkarsa görüntü kümesinde bir kez yazılır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$f: \\{-1, 0, 1, 2\\} \\to \\mathbb{Z}$, $f(x) = x^2 - x$ fonksiyonunun görüntü kümesinin eleman sayısı kaçtır?",
+       "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$f(-1) = 2$, $f(0) = 0$, $f(1) = 0$, $f(2) = 2$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Eksi 1 için 1 artı 1, 2. 0 için 0. 1 için 1 eksi 1, 0. 2 için 4 eksi 2, 2."
+        },
+        {
+         "text": "Görüntü kümesi $\\{0, 2\\}$ ⇒ 2 eleman. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Görüntüler 2, 0, 0 ve 2. Kümede tekrar yazılmaz: görüntü kümesi 0 ve 2, iki eleman. Cevap B. D şıkkındaki 4, tanım kümesinin eleman sayısıdır."
+        }
+       ],
+       "narration": "Tanım kümesindeki her elemanın görüntüsünü bulalım.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki sonlu bir küme üzerinde tanımlı fonksiyonun görüntüleri kalıbı örnek alındı; küme ve kural bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FONKSIYONLAR_03",
+    "subtopics": [],
+    "title": "Fonksiyon değeri",
+    "narration": "ÖSYM bu konuda en çok fonksiyon değerini sordu: Lisans sınavında yedi, Ön lisans sınavlarında dört soru.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İçini eşitle",
+      "items": [
+       "$f(a)$: kuralda $x$ yerine $a$ yaz.",
+       "$f(2x - 1) = 6x + 1$ verilip $f(5)$ istenirse **içi eşitle**: $2x - 1 = 5$.",
+       "Parçalı fonksiyonda önce sayının **hangi parçaya** düştüğüne bak."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "f(2x - 1) = 6x + 1, \\quad 2x - 1 = 5 \\Rightarrow x = 3",
+       "caption": "İçteki ifadeyi istenen sayıya eşitle"
+      },
+      "beats": [],
+      "narration": "Bir fonksiyonun bir sayıdaki değerini bulmak için kuralda x yerine o sayıyı yazarsın. Kural içeride bir ifadeyle verilmişse, örneğin f 2x eksi 1 eşittir 6x artı 1 ve f 5 isteniyorsa, içteki ifadeyi 5'e eşitler, x'i bulur, sağ tarafa yazarsın. Parçalı fonksiyonda ise önce sayının hangi koşula uyduğuna bakar, o parçanın kuralını kullanırsın."
+     },
+     {
+      "kind": "mistake",
+      "title": "x yerine 5 yazmak",
+      "wrong": "$f(2x - 1) = 6x + 1$ ise $f(5) = 6 \\cdot 5 + 1 = 31$",
+      "right": "$2x - 1 = 5 \\Rightarrow x = 3$; $f(5) = 6 \\cdot 3 + 1 = 19$",
+      "why": "Sağ taraftaki $x$, fonksiyona giren sayı değildir; fonksiyona giren $2x - 1$'dir.",
+      "narration": "Sık yapılan hata. f 2x eksi 1 eşittir 6x artı 1 iken f 5 için sağ tarafta x yerine 5 yazmak yanlıştır. Fonksiyona giren sayı x değil, 2x eksi 1'dir. Önce 2x eksi 1'i 5'e eşitlersin: x, 3. Sonra sağ tarafa 3 yazarsın: 19."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$f(2x - 1) = 6x + 1$ olduğuna göre $f(5)$ değeri kaçtır?",
+       "options": [
+        "11",
+        "15",
+        "17",
+        "19",
+        "31"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "$2x - 1 = 5 \\Rightarrow x = 3$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "2x eksi 1, 5'e eşit; 2x, 6; x, 3."
+        },
+        {
+         "text": "$f(5) = 6 \\cdot 3 + 1 = 19$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x 3 için sağ taraf 6 çarpı 3 artı 1, 19. Cevap D. E şıkkındaki 31, sağ tarafa doğrudan 5 yazanın tuzağıdır."
+        }
+       ],
+       "narration": "Fonksiyona giren ifadeyi 5'e eşitleyelim.",
+       "origin": {
+        "changes": "ÖSYM'nin içi ifade olan fonksiyonun değerini sorduran kalıbı örnek alındı; ifade bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$f(x) = \\begin{cases} x^2 - 1, & x \\ge 2 \\\\ 3x + 4, & x < 2 \\end{cases}$ fonksiyonu için $f(f(1))$ değeri kaçtır?",
+       "options": [
+        "7",
+        "24",
+        "25",
+        "35",
+        "48"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "$1 < 2$ ⇒ $f(1) = 3 \\cdot 1 + 4 = 7$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "1, 2'den küçük; ikinci parça: 3 çarpı 1 artı 4, 7."
+        },
+        {
+         "text": "$7 \\ge 2$ ⇒ $f(7) = 7^2 - 1 = 48$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Şimdi f 7: 7, 2'den büyük; birinci parça: 49 eksi 1, 48. Cevap E. C şıkkındaki 25, 7'yi de ikinci parçaya koyanın cevabıdır."
+        }
+       ],
+       "narration": "İçten dışa gidelim; her adımda sayının hangi parçaya düştüğüne bakalım.",
+       "origin": {
+        "changes": "ÖSYM'nin parçalı tanımlı fonksiyonda değer kalıbı örnek alındı; parçalar ve sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "$a$ bir gerçel sayı olmak üzere $f(x) = ax + 3$ fonksiyonu için $f(2) + f(-1) = 9$ olduğuna göre $a$ kaçtır?",
+       "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "6"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$f(2) = 2a + 3$, $f(-1) = -a + 3$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "f 2, 2a artı 3; f eksi 1, eksi a artı 3."
+        },
+        {
+         "text": "$2a + 3 - a + 3 = a + 6 = 9 \\Rightarrow a = 3$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Toplam a artı 6, 9'a eşit; a, 3. Cevap C."
+        }
+       ],
+       "narration": "İki değeri a cinsinden yazıp toplayalım.",
+       "origin": {
+        "changes": "ÖSYM'nin parametreli fonksiyonda verilen eşitlikten parametreyi buldurma kalıbı örnek alındı; fonksiyon ve sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FONKSIYONLAR_04",
+    "subtopics": [],
+    "title": "Doğrusal fonksiyon ve grafik",
+    "narration": "Grafik sorularında en çok doğrusal fonksiyon gelir: düzgün artan ya da azalan bir çokluk.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Doğrusal fonksiyon",
+      "items": [
+       "$f(x) = mx + n$: grafiği bir **doğrudur**.",
+       "$m$, $x$ 1 arttığında $y$'nin değişimidir: $m = \\frac{\\Delta y}{\\Delta x}$.",
+       "$n$, başlangıç değeridir: $f(0) = n$."
+      ],
+      "beats": [],
+      "narration": "f x eşittir m x artı n biçimindeki fonksiyonun grafiği bir doğrudur. m, x 1 arttığında y'nin ne kadar değiştiğini gösterir; iki noktadan y'deki değişimi x'teki değişime bölerek bulursun. n ise başlangıç değeridir, yani x sıfırken y'nin değeridir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir aracın deposunda kalan benzin miktarı, aldığı yola bağlı doğrusal bir fonksiyondur ve grafikte verilmiştir. Araç yola dolu depoyla çıktığına göre bu benzinle toplam kaç km yol alabilir?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         0,
+         500
+        ],
+        "y": [
+         0,
+         70
+        ],
+        "curves": [
+         {
+          "expression": "50 - x/10",
+          "domain": [
+           0,
+           400
+          ],
+          "ends": [
+           "closed",
+           "closed"
+          ],
+          "trace": false
+         }
+        ],
+        "parameters": {},
+        "showParameters": true,
+        "points": [
+         {
+          "x": 0,
+          "y": 50,
+          "label": "0 km, 50 L"
+         },
+         {
+          "x": 400,
+          "y": 10,
+          "label": "400 km, 10 L"
+         }
+        ],
+        "segments": [],
+        "equalScale": false,
+        "axes": "edge"
+       },
+       "options": [
+        "400",
+        "500",
+        "520",
+        "550",
+        "600"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$(0, 50)$ ve $(400, 10)$: 400 km'de $50 - 10 = 40$ litre",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Grafik 0 kilometrede 50 litreden başlıyor, 400 kilometrede 10 litreye iniyor. 400 kilometrede 40 litre harcanmış."
+        },
+        {
+         "text": "Kilometre başına $\\frac{40}{400} = 0{,}1$ litre",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kilometre başına 40 bölü 400, 0 virgül 1 litre."
+        },
+        {
+         "text": "$\\frac{50}{0{,}1} = 500$ km. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "50 litre, 50 bölü 0 virgül 1, yani 500 kilometre yetişir. Cevap B. A şıkkındaki 400, grafiğin bittiği yerdir; depo orada henüz boşalmamıştır."
+        }
+       ],
+       "narration": "Grafikten iki noktayı okuyup kilometre başına harcanan benzini bulalım.",
+       "origin": {
+        "changes": "ÖSYM'nin depodaki benzinin yola bağlı doğrusal grafiği kalıbı örnek alındı; değerler bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Çapı 24 cm olan bir balonun havası boşalırken çapı, zamana bağlı doğrusal bir fonksiyon olarak azalıyor ve 2 saniye sonra 20 cm oluyor. Buna göre balonun çapı kaçıncı saniyenin sonunda 10 cm olur?",
+       "options": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "12"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "2 saniyede $24 - 20 = 4$ cm ⇒ saniyede 2 cm: $d(t) = 24 - 2t$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "2 saniyede çap 24'ten 20'ye, yani 4 santimetre azalmış. Saniyede 2 santimetre. Fonksiyon: d t eşittir 24 eksi 2t."
+        },
+        {
+         "text": "$24 - 2t = 10 \\Rightarrow t = 7$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "24 eksi 2t, 10'a eşit; 2t, 14; t, 7. Cevap D. E şıkkındaki 12, çapın tamamen sıfıra indiği andır."
+        }
+       ],
+       "narration": "Önce saniyede ne kadar azaldığını bulup fonksiyonu yazalım.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki doğrusal azalan çap kalıbı örnek alındı; durum ve sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FONKSIYONLAR_05",
+    "subtopics": [],
+    "title": "Bire bir ve örten fonksiyon",
+    "narration": "Şimdi fonksiyonların iki özelliği: bire bir ve örten.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bire bir, örten",
+      "items": [
+       "**Bire bir**: farklı elemanların görüntüleri **farklıdır**: $x_1 \\neq x_2 \\Rightarrow f(x_1) \\neq f(x_2)$.",
+       "**Örten**: değer kümesinde açıkta eleman **kalmaz**; görüntü kümesi değer kümesine eşittir.",
+       "Bir tane karşı örnek, \"bire bir\" ya da \"örten\" iddiasını çürütür."
+      ],
+      "beats": [],
+      "narration": "Bir fonksiyon bire birse farklı elemanların görüntüleri de farklıdır; iki eleman aynı görüntüye gidemez. Örten fonksiyonda değer kümesinde açıkta eleman kalmaz; görüntü kümesi değer kümesinin tamamıdır. Bu özellikleri çürütmek için tek bir karşı örnek yeter."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Gerçel sayılardan gerçel sayılara tanımlı aşağıdaki fonksiyonlar veriliyor:\nI. $f(x) = 2x + 1$ hem bire bir hem örtendir.\nII. $g(x) = x^2$ bire birdir.\nIII. $h(x) = |x|$ örtendir.\n\nifadelerinden hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "I. $2x + 1$: farklı $x$ farklı sonuç; her $y$ için $x = \\frac{y - 1}{2}$: **doğru**.",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "2x artı 1'de farklı x'ler farklı sonuç verir; bire birdir. Her y sayısı için x eşittir y eksi 1 bölü 2 vardır; örtendir. Birinci ifade doğru."
+        },
+        {
+         "text": "II. $g(-1) = g(1) = 1$: bire bir **değil**.",
+         "eliminate": [
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x kare için eksi 1 ve 1 aynı görüntüye, 1'e gider. Bire bir değildir; ikinci ifade yanlış."
+        },
+        {
+         "text": "III. $|x|$ negatif değer almaz: örten **değil**. Cevap **A**.",
+         "eliminate": [
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Mutlak değer hiçbir zaman negatif olmaz; eksi 1 gibi değerlere ulaşılmaz. Örten değildir; üçüncü ifade de yanlış. Doğru olan yalnız birinci. Cevap A."
+        }
+       ],
+       "narration": "Her ifadeyi bir örnek ya da karşı örnekle sınayalım.",
+       "origin": {
+        "changes": "ÖSYM'nin fonksiyon özelliklerini I-II-III ile sınayan kalıbı örnek alındı; fonksiyonlar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Fonksiyonda her eleman eşlenir ve tek görüntüsü olur.",
+    "A’dan B’ye fonksiyon sayısı s(B) üzeri s(A).",
+    "Görüntü kümesi, gerçekten ulaşılan değerlerdir.",
+    "f(2x − 1) verilirse içi istenen sayıya eşitle.",
+    "Parçalı fonksiyonda önce parçayı seç.",
+    "Bileşkede önce içteki fonksiyon uygulanır.",
+    "f(a) = b ise f’nin tersi b’yi a’ya götürür."
+   ],
+   "warnings": [
+    "$f(2x - 1)$’de fonksiyona giren **x değil**, $2x - 1$’dir.",
+    "Grafiğin bittiği yer, olayın bittiği yer **olmayabilir**.",
+    "$f^{-1}(9)$ ile $f(9)$ **farklıdır**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki **10 soruyu** kâğıtta yeniden çöz; her fonksiyon değerinde neyi neye eşitlediğini yaz.",
+    "Telefon tarifeni **doğrusal bir fonksiyon** olarak yaz ve grafiğini çiz.",
+    "Uygulamada KPSS Fonksiyonlar testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Fonksiyon tanımı: her eleman ve tek görüntü; fonksiyon olmayan bağıntı örnekleri; A'dan B'ye fonksiyon sayısı s(B)^s(A).",
+   "Tanım, değer ve görüntü kümesi: sonlu bir küme üzerinde görüntüleri bulma, tekrar eden görüntüleri bir kez yazma.",
+   "Fonksiyon değeri: f(2x − 1) türü sorularda içi eşitleme ve 'x yerine 5 yazma' yanılgısı; parçalı fonksiyonda parça seçimi; parametre bulma.",
+   "Doğrusal fonksiyon ve grafik: iki noktadan eğim, başlangıç değeri, grafiğin bittiği yerden sonrasını hesaplama.",
+   "Bire bir ve örten: karşı örnekle çürütme (x², |x|); doğrusal fonksiyonun hem bire bir hem örten olması.",
+   "Bileşke (önce içteki) ve ters fonksiyon (f(a) = b ⇔ f⁻¹(b) = a); doğrusal fonksiyonun tersi."
+  ]
+ }
+}

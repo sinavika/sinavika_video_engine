@@ -1,6 +1,6 @@
 # YouTube metni: TYT Din Kültürü ve Ahlak Bilgisi kampı · Ders 10 · İnsanın Allah İle İrtibatı
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/10_Insanin_Allah_ile_Irtibati/Insanin_Allah_ile_Irtibati_YouTube.mp4` (4K) · Kapak: `Insanin_Allah_ile_Irtibati_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/10_Insanin_Allah_ile_Irtibati/Insanin_Allah_ile_Irtibati_YouTube.mp4` (4K) · Kapak: `Insanin_Allah_ile_Irtibati_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

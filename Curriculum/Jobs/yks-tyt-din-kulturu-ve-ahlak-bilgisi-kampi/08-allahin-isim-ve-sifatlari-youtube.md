@@ -1,6 +1,6 @@
 # YouTube metni: TYT Din Kültürü ve Ahlak Bilgisi kampı · Ders 8 · Allah'ın İsim ve Sıfatları
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/08_Allahin_Isim_ve_Sifatlari/Allahin_Isim_ve_Sifatlari_YouTube.mp4` (4K) · Kapak: `Allahin_Isim_ve_Sifatlari_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/08_Allahin_Isim_ve_Sifatlari/Allahin_Isim_ve_Sifatlari_YouTube.mp4` (4K) · Kapak: `Allahin_Isim_ve_Sifatlari_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

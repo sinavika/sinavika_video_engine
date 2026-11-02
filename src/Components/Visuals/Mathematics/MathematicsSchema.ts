@@ -2,6 +2,7 @@ import {z} from 'zod';
 import {latex, plainText} from '../../../Schemas/RichText';
 import {expression, Point2} from '../VisualSchemaPart';
 import {isExpression} from './PlotExpression';
+import {shapesSimilar} from './Similarity';
 
 /**
  * The visuals of the education videos: what a card can show next to its
@@ -42,6 +43,17 @@ export const MATHEMATICS_VISUALS = [
 						domain: z.tuple([z.number(), z.number()]).optional(),
 						/** The piece's ends: a filled dot where the end belongs to it, a hollow one where it does not. */
 						ends: z.tuple([z.enum(['none', 'open', 'closed']), z.enum(['none', 'open', 'closed'])]).default(['none', 'none']),
+						/**
+						 * When its coefficients change, the curve as first drawn stays behind as a faint dashed line, so the
+						 * shift itself is seen: demand rising, f(x) → f(x − 2). Without it the old curve vanished and the
+						 * student saw only where the curve ended up (KPSS VAT 8, arz-talep).
+						 */
+						trace: z.boolean().default(false),
+						/**
+						 * The next piece of the curve before it (a piecewise function): drawn in its colour. Each piece
+						 * took a colour of its own and read as another function (AYT Matematik, limit; Soru revizyonu).
+						 */
+						piece: z.boolean().default(false),
 					}),
 				)
 				.max(3)
@@ -51,6 +63,11 @@ export const MATHEMATICS_VISUALS = [
 			 * beats a coefficient with `to` sweeps from `from` to `to` once the curve is drawn.
 			 */
 			parameters: z.partialRecord(ParameterName, z.object({from: z.number(), to: z.number().optional()})).default({}),
+			/**
+			 * The coefficients' values written in the top left corner (a = 2). Off where the letters are only the
+			 * engine's way to move a curve and the lesson never reads them, such as a demand curve shifted right.
+			 */
+			showParameters: z.boolean().default(true),
 			/** Measured data drawn as bars or a line instead of a function, e.g. monthly rainfall. */
 			series: z
 				.object({
@@ -62,8 +79,12 @@ export const MATHEMATICS_VISUALS = [
 					/** Bars: each value written on its bar. Beats point at bars as b1, b2… */ showValues: z.boolean().default(false),
 				})
 				.optional(),
+			/**
+			 * Marked points. `open` draws a hollow dot: the value a function does not take, such as a removable gap of a
+			 * limit question, on an unbroken curve (it used to be split into two curves with hollow ends).
+			 */
 			points: z
-				.array(z.object({x: z.number(), y: z.number(), label: plainText(20).optional()}))
+				.array(z.object({x: z.number(), y: z.number(), label: plainText(20).optional(), style: z.enum(['closed', 'open']).default('closed')}))
 				.max(8)
 				.default([]),
 			/** Helper lines between two places of the plane, e.g. the legs Δx and Δy of a distance or a slope. Beats point at them as s1, s2… */
@@ -115,6 +136,8 @@ export const MATHEMATICS_VISUALS = [
 			] as const) {
 				if (typeof value === 'string' && !defined.includes(value)) context.addIssue({code: 'custom', path: [path], message: `"${value}" is not in parameters.`});
 			}
+			if (plot.curves.some((curve) => curve.trace) && Object.keys(plot.parameters).length === 0)
+				context.addIssue({code: 'custom', path: ['curves'], message: 'A traced curve needs a coefficient that changes; there are no parameters.'});
 			if (plot.tangent && plot.tangent.curve >= plot.curves.length) context.addIssue({code: 'custom', path: ['tangent', 'curve'], message: 'No such curve.'});
 			if (plot.area && plot.area.curve >= plot.curves.length) context.addIssue({code: 'custom', path: ['area', 'curve'], message: 'No such curve.'});
 			if (plot.approach) {
@@ -131,6 +154,34 @@ export const MATHEMATICS_VISUALS = [
 					context.addIssue({code: 'custom', path: ['curves', index, 'domain'], message: 'A domain runs from its smaller end to its larger end.'});
 			});
 		}),
+	/**
+	 * Geometry: unit cubes in an isometric view (x to the lower right, y to the lower left, z up), for volume by counting.
+	 * `group` names cubes a beat shows together (they drop into place: a base layer, then the layers above it); `shade`
+	 * 1-3 marks cubes apart; `dimensions` name the block's edges along x, y and z.
+	 */
+	z
+		.object({
+			kind: z.literal('cubes'),
+			cubes: z
+				.array(
+					z.object({
+						at: z.tuple([z.number().int().min(0).max(9), z.number().int().min(0).max(9), z.number().int().min(0).max(9)]),
+						group: z.string().min(1).max(12).optional(),
+						shade: z.number().int().min(1).max(3).default(1),
+					}),
+				)
+				.min(1)
+				.max(80),
+			dimensions: z.array(plainText(10)).max(3).default([]),
+		})
+		.superRefine((block, context) => {
+			const seen = new Set<string>();
+			block.cubes.forEach((cube, index) => {
+				const key = cube.at.join(',');
+				if (seen.has(key)) context.addIssue({code: 'custom', path: ['cubes', index, 'at'], message: `Two cubes stand at ${key}.`});
+				seen.add(key);
+			});
+		}),
 	/** Geometry: points, segments, circles, angles and polygons in a coordinate box. */
 	z
 		.object({
@@ -138,30 +189,103 @@ export const MATHEMATICS_VISUALS = [
 			/** The coordinates of the box: [minX, minY, maxX, maxY]. y grows upwards. */
 			view: z.tuple([z.number(), z.number(), z.number(), z.number()]),
 			/**
+			 * The coordinate axes through the origin, for analytic geometry: a mark every `step` with its number, the names
+			 * x and y at the ends, and with `grid` light lines across. The figure keeps its shapes, angles and copies.
+			 */
+			axes: z.object({step: z.number().positive().default(1), numbers: z.boolean().default(true), grid: z.boolean().default(false)}).optional(),
+			/**
 			 * `hidden`: a helper point only (a line's far end): no dot and no letter. `dot: false` keeps the
-			 * letter without the dot, for naming a line at its end ("d1").
+			 * letter without the dot, for naming a line at its end ("d1"), or for a caption under a shape ("çeşitkenar").
+			 * An empty label keeps the dot without a letter: the unnamed corners of shapes shown side by side. `caption`: the
+			 * text stands on the point itself instead of beside it (a name under a shape, "dar açılı"); no dot. `moveTo`: where the
+			 * point slides when a beat shows `move-<id>`; its sides, angles and shapes follow (a triangle's apex sliding
+			 * along a parallel keeps its area).
 			 */
 			points: z
-				.array(z.object({id: z.string().min(1).max(4), at: Point2, label: plainText(8).optional(), hidden: z.boolean().default(false), dot: z.boolean().default(true)}))
+				.array(
+					z.object({
+						id: z.string().min(1).max(4),
+						at: Point2,
+						label: z.union([z.literal(''), plainText(12)]).optional(),
+						hidden: z.boolean().default(false),
+						dot: z.boolean().default(true),
+						caption: z.boolean().default(false),
+						moveTo: Point2.optional(),
+						/** The point (a circle's centre) to slide round instead of straight: the angle turns, the distance stays. */
+						moveAbout: z.string().min(1).max(4).optional(),
+					}),
+				)
 				.min(1)
-				.max(16),
+				// 24: a proof drawn twice side by side (Pythagoras' two squares of a + b, KPSS Geometri 6) needs 17.
+				.max(24),
 			/** `ticks`: the equal-length marks across a side (1-3 short strokes); sides with the same count are equal. */
 			segments: z
 				.array(z.object({from: z.string(), to: z.string(), label: plainText(12).optional(), dashed: z.boolean().default(false), ticks: z.number().int().min(0).max(3).default(0)}))
-				.max(16)
+				.max(24)
 				.default([]),
+			/**
+			 * Filled shapes. `id` names one for beats (default: its points' names joined, "ABC"). `copyOf`: the id of a
+			 * congruent or similar shape, corner by corner in order; this one comes over from it when a beat shows it,
+			 * sliding, turning and growing (a flip turns it over), the way one triangle is laid on another. The schema
+			 * checks that the two shapes really are similar. `label` stands at the shape's centre (an area's name, "S");
+			 * `shade` 1-3 tells neighbouring regions apart.
+			 */
 			polygons: z
-				.array(z.object({points: z.array(z.string()).min(3).max(8), fill: z.boolean().default(true)}))
-				.max(4)
+				.array(
+					z.object({
+						points: z.array(z.string()).min(3).max(8),
+						fill: z.boolean().default(true),
+						id: z.string().min(1).max(12).optional(),
+						copyOf: z.string().min(1).max(12).optional(),
+						label: plainText(10).optional(),
+						shade: z.number().int().min(1).max(3).default(1),
+					}),
+				)
+				.max(12)
 				.default([]),
+			/**
+			 * A circle round the point `center`, or with `arc` only the part from one direction to another (degrees,
+			 * 0 = right, counter-clockwise): a compass mark. `label` stands outside it, at the arc's middle (a full
+			 * circle's at its upper right). `id` names it for beats (default `circle-<center>`); a beat that shows it
+			 * draws it then, the way a compass is turned.
+			 */
 			circles: z
-				.array(z.object({center: z.string(), radius: z.number().positive(), label: plainText(12).optional()}))
-				.max(4)
-				.default([]),
-			/** The angle at `at`, between the rays to `from` and `to`. */
-			angles: z
-				.array(z.object({at: z.string(), from: z.string(), to: z.string(), label: plainText(10).optional(), right: z.boolean().default(false)}))
+				.array(
+					z.object({
+						center: z.string(),
+						radius: z.number().positive(),
+						label: plainText(12).optional(),
+						arc: z.tuple([z.number(), z.number()]).optional(),
+						dashed: z.boolean().default(false),
+						id: z.string().min(1).max(12).optional(),
+						/** A filled disc, or with `arc` a filled sector (daire dilimi); `shade` 1-3 as for shapes. */
+						fill: z.boolean().default(false),
+						shade: z.number().int().min(1).max(3).default(1),
+					}),
+				)
 				.max(6)
+				.default([]),
+			/**
+			 * The angle at `at`, between the rays to `from` and `to`. `arcs`: the equal-angle marks (1-3 arcs); angles with
+			 * the same count are equal, like the ticks of sides. `id`: the part's name for beats, when several angles share a
+			 * corner (the default is `angle-<at>`, one name for all of them). `copyOf`: the id of an equal angle elsewhere;
+			 * this angle slides over from there when a beat shows it, the way a proof carries an angle along a parallel.
+			 */
+			angles: z
+				.array(
+					z.object({
+						at: z.string(),
+						from: z.string(),
+						to: z.string(),
+						label: plainText(10).optional(),
+						right: z.boolean().default(false),
+						arcs: z.number().int().min(1).max(3).default(1),
+						id: z.string().min(1).max(12).optional(),
+						copyOf: z.string().min(1).max(12).optional(),
+					}),
+				)
+				// 12: a polygon's five exterior angles and their five copies gathered round one point (KPSS Geometri 8).
+				.max(12)
 				.default([]),
 		})
 		.superRefine((figure, context) => {
@@ -175,8 +299,74 @@ export const MATHEMATICS_VISUALS = [
 				check(segment.to, ['segments', index, 'to']);
 			});
 			figure.polygons.forEach((polygon, index) => polygon.points.forEach((id, at) => check(id, ['polygons', index, 'points', at])));
+			// A copied shape is similar to its source corner by corner: every distance between two corners keeps one ratio.
+			figure.polygons.forEach((polygon, index) => {
+				if (polygon.copyOf === undefined) return;
+				const source = figure.polygons.find((other) => other !== polygon && other.id === polygon.copyOf);
+				if (!source) {
+					context.addIssue({code: 'custom', path: ['polygons', index, 'copyOf'], message: `"${polygon.copyOf}" is not another shape of the figure.`});
+					return;
+				}
+				const corners = (shape: typeof polygon) => shape.points.map((id): [number, number] => {
+					const [x, y] = figure.points.find((point) => point.id === id)?.at ?? [0, 0];
+					return [x, y];
+				});
+				if (!shapesSimilar(corners(source), corners(polygon)))
+					context.addIssue({code: 'custom', path: ['polygons', index, 'copyOf'], message: `The shape is not similar to "${polygon.copyOf}" corner by corner.`});
+			});
 			figure.circles.forEach((circle, index) => check(circle.center, ['circles', index, 'center']));
+			// A circle or arc stays in the figure's box: one larger than the view is drawn over the card around it and cut by
+			// the frame (a dashed full circle round a sector, KPSS Geometri 10).
+			const [minX, minY, maxX, maxY] = figure.view;
+			const slackX = (maxX - minX) * 0.02;
+			const slackY = (maxY - minY) * 0.02;
+			figure.circles.forEach((circle, index) => {
+				const [cx, cy] = figure.points.find((point) => point.id === circle.center)?.at ?? [0, 0];
+				const [from, to] = circle.arc ?? [0, 360];
+				const sweep = circle.arc ? ((((to - from) % 360) + 360) % 360) || 360 : 360;
+				for (let step = 0; step <= 36; step++) {
+					const angle = ((from + (sweep * step) / 36) * Math.PI) / 180;
+					const [x, y] = [cx + circle.radius * Math.cos(angle), cy + circle.radius * Math.sin(angle)];
+					if (x < minX - slackX || x > maxX + slackX || y < minY - slackY || y > maxY + slackY) {
+						context.addIssue({code: 'custom', path: ['circles', index], message: `The circle leaves the view [${figure.view.join(', ')}].`});
+						return;
+					}
+				}
+			});
+			// A point that slides round a centre keeps its distance from it: it moves on a circle.
+			figure.points.forEach((point, index) => {
+				if (point.moveAbout === undefined) return;
+				check(point.moveAbout, ['points', index, 'moveAbout']);
+				const centre = figure.points.find((other) => other.id === point.moveAbout)?.at ?? [0, 0];
+				const from = Math.hypot(point.at[0] - centre[0], point.at[1] - centre[1]);
+				const to = point.moveTo ? Math.hypot(point.moveTo[0] - centre[0], point.moveTo[1] - centre[1]) : from;
+				if (!point.moveTo || Math.abs(from - to) > 0.01 * Math.max(from, to))
+					context.addIssue({code: 'custom', path: ['points', index, 'moveAbout'], message: 'A point that slides round a centre needs a moveTo just as far from it.'});
+			});
 			figure.angles.forEach((angle, index) => (['at', 'from', 'to'] as const).forEach((key) => check(angle[key], ['angles', index, key])));
+			// Angle names are unique; a copy names an angle of the figure that measures the same, or the proof would lie.
+			const angleIds = figure.angles.map((angle) => angle.id).filter((id): id is string => id !== undefined);
+			angleIds.forEach((id, index) => {
+				if (angleIds.indexOf(id) !== index) context.addIssue({code: 'custom', path: ['angles'], message: `Two angles are named "${id}".`});
+			});
+			const where = new Map(figure.points.map((point) => [point.id, point.at]));
+			const size = (angle: (typeof figure.angles)[number]) => {
+				const [cx, cy] = where.get(angle.at) ?? [0, 0];
+				const [ax, ay] = where.get(angle.from) ?? [0, 0];
+				const [bx, by] = where.get(angle.to) ?? [0, 0];
+				const cos = ((ax - cx) * (bx - cx) + (ay - cy) * (by - cy)) / ((Math.hypot(ax - cx, ay - cy) || 1) * (Math.hypot(bx - cx, by - cy) || 1));
+				return (Math.acos(Math.max(-1, Math.min(1, cos))) * 180) / Math.PI;
+			};
+			figure.angles.forEach((angle, index) => {
+				if (angle.copyOf === undefined) return;
+				const source = figure.angles.find((other) => other.id === angle.copyOf);
+				if (!source || source === angle) {
+					context.addIssue({code: 'custom', path: ['angles', index, 'copyOf'], message: `"${angle.copyOf}" is not another angle of the figure.`});
+					return;
+				}
+				if (Math.abs(size(source) - size(angle)) > 1)
+					context.addIssue({code: 'custom', path: ['angles', index, 'copyOf'], message: `The copy measures ${size(angle).toFixed(1)}°, its source "${angle.copyOf}" ${size(source).toFixed(1)}°.`});
+			});
 		}),
 	/**
 	 * Mathematics: an equation solved step by step on a balance. Each step is

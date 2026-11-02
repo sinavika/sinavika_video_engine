@@ -68,15 +68,16 @@
  */
 import path from 'node:path';
 import {parseArgs} from 'node:util';
-import {existsSync} from 'node:fs';
+import {existsSync, readFileSync} from 'node:fs';
 import {mkdir, readdir, readFile, unlink, writeFile} from 'node:fs/promises';
 import {CAMPS_DIRECTORY, CampSchema, campFromChecklist, campMismatches} from '../src/Courses/Camp';
 import {CampJobSpecSchema, campJobFiles, campJobNumber} from '../src/Courses/CampJob';
-import {VideoJobValidationError, durationWarnings, resolveVideoJob} from '../src/Renderers/VideoJob';
+import {VideoJobValidationError, durationWarnings, resolveVideoJob, withEstimatedNarration} from '../src/Renderers/VideoJob';
 import {readVideoJob} from '../src/Renderers/VideoJobFile';
 import {visualKitOf} from '../src/Courses/CourseDesign';
 import {CHECKLIST_STAGES, CURRICULUM_DIRECTORY, STAGE_LABELS, TWIN_LESSONS, entryRef, nextEntry, subtopicCoverage, taughtRefs, unknownSubtopics, type ChecklistEntry, type ChecklistStage, type TeachingScript} from '../src/Courses/Curriculum';
-import {LessonScriptSchema, reviewScript, type LessonScript} from '../src/Courses/LessonScript';
+import {LessonScriptSchema, ignoredFields, mapNameIssues, reviewScript, type LessonScript} from '../src/Courses/LessonScript';
+import {GEO_FILES, GEO_LAYERS} from '../src/Configurations/GeoData';
 import {WORKS_DIRECTORY, worksViewOf} from '../src/Courses/WorksView';
 import {MEDIA_CREDITS_FILE, MEDIA_DIRECTORY, MediaCreditsSchema} from '../src/Courses/MediaLibrary';
 import {dataFoldersIn, educationDataDirectory, importCurriculum, masterLessonList, readChecklist, topicSources, writeChecklist} from '../src/Courses/CurriculumImport';
@@ -84,6 +85,19 @@ import {pastExamFile, readPastExamQuestions, summarizePastExam} from '../src/Cou
 import {lessonMix, repeatedSentences, similarQuestions, type AuditedScript} from '../src/Courses/ScriptAudit';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
+/** The names of a map layer's areas, read from public/Geo; undefined when the data is not there. */
+const geoNameCache = new Map<string, readonly string[] | undefined>();
+const geoLayerNames = (layer: string): readonly string[] | undefined => {
+	if (geoNameCache.has(layer)) return geoNameCache.get(layer);
+	const spec = (GEO_LAYERS as Record<string, {file: keyof typeof GEO_FILES; object: string}>)[layer];
+	const file = spec ? path.join(ROOT, 'public', GEO_FILES[spec.file].src) : '';
+	const names = spec && existsSync(file)
+		? (JSON.parse(readFileSync(file, 'utf8')).objects[spec.object]?.geometries ?? []).map((item: {properties?: {name?: string}}) => item.properties?.name ?? '').filter(Boolean)
+		: undefined;
+	geoNameCache.set(layer, names);
+	return names;
+};
+
 const CURRICULUM = path.join(ROOT, CURRICULUM_DIRECTORY);
 const DATA = educationDataDirectory();
 /** How a data file is shown: from the data folder's name, so the reader sees where it lives. */
@@ -233,7 +247,8 @@ if (command === 'import') {
 	// A script file, or a camp job that names its script.
 	const job = JSON.parse(await readFile(path.resolve(target), 'utf8')) as {script?: unknown};
 	const scriptFile = typeof job.script === 'string' ? path.join(ROOT, job.script) : path.resolve(target);
-	const parsed = LessonScriptSchema.safeParse(JSON.parse(await readFile(scriptFile, 'utf8')));
+	const raw: unknown = JSON.parse(await readFile(scriptFile, 'utf8'));
+	const parsed = LessonScriptSchema.safeParse(raw);
 	if (!parsed.success) {
 		console.error(`GEÇERSİZ  ${target}`);
 		parsed.error.issues.forEach((issue) => console.error(`  ${issue.path.join('.')}: ${issue.message}`));
@@ -251,7 +266,8 @@ if (command === 'import') {
 			.flatMap(({script: other}) => taughtRefs(other.topic.category, other.topic.lesson, other.lesson.sections)),
 	);
 	const review = reviewScript(script, entry?.subtopics.map((subtopic) => subtopic.code).filter((code) => !elsewhere.has(entryRef(entry, code))) ?? []);
-	const issues = [...review.issues];
+	const issues = [...review.issues, ...ignoredFields(raw, script).map((field) => `${field}: no such field here; it is ignored (a typo, or a field this card or figure does not have).`)];
+	issues.push(...mapNameIssues(script, geoLayerNames));
 	if (!entry) issues.push(`Topic id ${script.topic.id} is not in the checklist.`);
 	// Other levels' subtopics a section names (KPSS: one video set for three levels) must exist in their lists.
 	unknownSubtopics(checklist.entries, [{file: target, refs: taughtRefs(script.topic.category, script.topic.lesson, script.lesson.sections)}]).forEach((item) => issues.push(`Subtopic ${item.ref} is in no topic of the checklist.`));
@@ -447,7 +463,10 @@ if (command === 'import') {
 				const episode = (job.inputProps.content as LessonScript).camp;
 				if (episode?.id !== campId || episode.number !== campJobNumber(name)) problems.push(`${shown}: senaryo ${episode?.id ?? '(kampsız)'} ${episode?.number ?? ''}. ders; dosya adı ${campJobNumber(name)}. ders diyor.`);
 				else numbers.add(episode.number);
-				if (name.endsWith('-youtube.json')) durationWarnings(job).forEach((warning) => problems.push(`${shown}: ${warning}`));
+				// A rendered lesson's length is known (the render checked it with its real audio); an estimate within a few
+				// percent of a limit would only repeat a false alarm (TYT Türkçe 05: 2481 s estimated, 2363 s rendered).
+				const rendered = job.output !== null && existsSync(path.join(process.cwd(), job.output));
+				if (name.endsWith('-youtube.json') && !rendered) durationWarnings(withEstimatedNarration(job)).forEach((warning) => problems.push(`${shown}: ${warning}`));
 			} catch (error) {
 				problems.push(`${shown}: ${error instanceof VideoJobValidationError ? error.issues.join(' · ') : String(error)}`);
 			}

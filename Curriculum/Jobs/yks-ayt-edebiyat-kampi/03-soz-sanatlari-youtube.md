@@ -1,6 +1,6 @@
 # YouTube metni: AYT Edebiyat kampı · Ders 3 · Söz Sanatları
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Edebiyat/03_Soz_Sanatlari/Soz_Sanatlari_YouTube.mp4` (4K) · Kapak: `Soz_Sanatlari_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Edebiyat/03_Soz_Sanatlari/Soz_Sanatlari_YouTube.mp4` (4K) · Kapak: `Soz_Sanatlari_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

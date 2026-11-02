@@ -34,7 +34,7 @@ Sürüm: 15 Ekim 2026. Kaynaklar: sinavika.com, mobil ve web uygulamalarının k
 |---|---|
 | **Misyon** | Sınava hazırlanan her öğrencinin, nerede yaşarsa yaşasın, ne çalışacağını bilerek ve her gün biraz ilerleyerek hedefine yaklaşması. |
 | **Vaat** | "Ne çalışacağını biliyorsun, ilerlediğini görüyorsun." Dağınık kaynaklar, rastgele çalışma ve belirsizlik yerine tek yer, net bir sonraki adım ve görünür ilerleme. |
-| **Tanımlayıcı (tagline)** | TR: **Yapay zekâ destekli sınav hazırlığı** · EN: **AI-powered exam prep** · DE: **KI-gestützte Prüfungsvorbereitung** |
+| **Tanımlayıcı (tagline)** | TR: **Sana göre sınav hazırlığı** · EN: **Exam prep built around you** · DE: **Prüfungsvorbereitung, die zu dir passt** (1 Kasım 2026; önceki "Yapay zekâ destekli sınav hazırlığı" bırakıldı: kendimizi yapay zekâ çağrışımıyla değil, SinoAI ile anlatırız) |
 | **Söz (slogan)** | TR: **Ölç, öğren, geliş.** · EN: **Measure. Learn. Grow.** · DE: **Messen. Lernen. Wachsen.** |
 | **Kime** | Sınava hazırlanan öğrenciler ve adaylar (Türkiye'de YKS ve KPSS; ABD'de SAT, AP, MCAT gibi sınavlar; sonra Avrupa). İkincil: veliler, kurumlar, yayınevleri. |
 
@@ -365,7 +365,7 @@ SinoAI, Sınavika'nın konuşan yüzüdür. Öğrencinin hedefini, eksiklerini v
 
 | Öğe | Kural | Ayrıntı |
 |---|---|---|
-| Logo | "Rafine" ikon (kâğıt + kronometre) + "Sınavika" yazısı; ikon ve yazı aynı renk. Açık zeminde turuncu, koyu/turuncu zeminde beyaz, resmî tek renkte kömür. | Logo teslimatı (`Sinavika-Logo/README.md`) |
+| Logo | "Rafine" ikon (kâğıt + kronometre) + "Sınavika" yazısı; ikon ve yazı aynı renk. Açık zeminde turuncu, koyu/turuncu zeminde beyaz, resmî tek renkte kömür. Kamp derslerinin açık sayfalarında tek renk (kömür) kullanılır, çünkü oradaki tek vurgu ders rengidir (1 Kasım 2026). | Logo teslimatı (`Sinavika-Logo/README.md`) |
 | Renk | Marka turuncusu `#EA580C`, koyu zeminde `#FB923C`, kömür `#0F172A`, zemin `#FAFAFA`/`#FFFFFF`, koyu tema `#0F1115`. Yeşil, sarı, kırmızı ve mavi yalnız durum bildirir. | [`src/Configurations/BrandColors.ts`](../src/Configurations/BrandColors.ts) |
 | Yazı tipi | Tek aile: **Manrope** (400–800). Formül KaTeX. İtalik ve 900 kalınlık yok. | [`docs/Brand/Tipografi.md`](Brand/Tipografi.md) |
 | Biçim | Geniş köşe yuvarlaklıkları, ince gri kenarlıklar, bol boşluk, açık turuncu daire içinde çizgi ikonlar. | |
@@ -430,7 +430,8 @@ Kurallar:
 | Mobil EN katalog "Knowledge cards" | §5 | "Flashcards" | Mobil ekibi |
 | Ders içeriği türü "Koç İpucu" | "koç" | "İpucu" | API (içerik üretimi) |
 | API Swagger "Coach API" | Öğrenciye görünmez | İnsan koç hizmeti yoksa ad gözden geçirilmeli | Ürün kararı |
-| Video kapanış sözü (`Brand.ts` `tagline`) ile sitedeki söz farklıydı | Hangisinin kalacağı açıktı | İkisi de kalır, görevleri ayrı: tanımlayıcı "Yapay zekâ destekli sınav hazırlığı" (logo altı, kapanış), slogan "Ölç, öğren, geliş." (kampanya) | Karara bağlandı |
+| Video kapanış sözü (`Brand.ts` `tagline`) ile sitedeki söz farklıydı | Hangisinin kalacağı açıktı | İkisi de kalır, görevleri ayrı: tanımlayıcı (logo altı, kapanış), slogan "Ölç, öğren, geliş." (kampanya) | Karara bağlandı |
+| Tanımlayıcı "Yapay zekâ destekli sınav hazırlığı" | Sahip, 1 Kasım 2026: pazarlamada "yapay zekâ" çağrışımı istenmiyor; SinoAI anlatılır | "Sana göre sınav hazırlığı" (EN "Exam prep built around you"). Sosyal kapaklar ve paylaşım görselleri motorla yeniden yazıldı ve logo teslimatında (`Desktop\Sinavika-Logo\sosyal-medya`) değiştirildi, YouTube banner'ı yüklendi; sitede ve mağazada geçiyorsa web ve mobil ekibi değiştirir | Karara bağlandı; site ve mağaza ekiplerde |
 
 ---
 
@@ -461,7 +462,7 @@ Marka hashtag'i: `#sinavika` (her gönderide).
 - **Yazı tipi:** Tek kaynak [`src/Configurations/BrandTypography.ts`](../src/Configurations/BrandTypography.ts); bütün temalar Manrope kullanır.
   - Tanıtım videolarında yazı boyutları (1080 px kısa kenara göre): giriş 112, ürün üstü başlık 92, kapanış sözü 84, düğme 36.
   - Küçük etiketler videonun diline göre büyük harfle yazılır (`VideoFrame lang`).
-- **Logo:** `public/Brand/SinavikaLogo.png` (beyaz, şeffaf, 2000 × 526). `BrandMark` rengi kurala göre kendisi seçer (`brandLogoColor`). En küçük yükseklik ve boşluk: [`src/Configurations/Brand.ts`](../src/Configurations/Brand.ts).
+- **Logo:** `public/Brand/SinavikaLogo.png` (beyaz, şeffaf, 2000 × 526). `BrandMark` rengi kurala göre kendisi seçer (`brandLogoColor`); `mono` ile açık zeminde turuncu yerine kömür olur (kamp dersleri). En küçük yükseklik ve boşluk: [`src/Configurations/Brand.ts`](../src/Configurations/Brand.ts).
 - **Uygulama ekranları:** Yalnız [`src/Components/AppScreens`](../src/Components/AppScreens) içindeki çizimler kullanılır (açık/koyu, TR/EN). Hayalî ekran, başka uygulamanın ekranı ya da karikatür çizim kullanılmaz: [`docs/AppScreens.md`](AppScreens.md).
 - **Render kalitesi:** Her zaman en yüksek. Videolar 4K, YouTube'a 4K; sosyal medyaya motorun kendi 1080p kopyası gider: [`docs/SocialPlan.md`](SocialPlan.md#video-kalitesi).
 

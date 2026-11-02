@@ -2,13 +2,13 @@ import {existsSync, readFileSync} from 'node:fs';
 import path from 'node:path';
 import {describe, expect, it} from 'vitest';
 import {parseExpression, isExpression} from '../../src/Components/Visuals/Mathematics/PlotExpression';
-import {COURSE_VISUAL_KINDS, CourseVisualSchema} from '../../src/Components/Visuals/VisualSchema';
+import {COURSE_VISUAL_KINDS, CourseVisualSchema, visualStages} from '../../src/Components/Visuals/VisualSchema';
 import {COURSE_LESSON_COLORS} from '../../src/Configurations/LessonColors';
 import {LESSON_VISUAL_KITS, visualKitOf} from '../../src/Courses/CourseDesign';
 import {ChecklistSchema, inProductionOrder, nextEntry, type Category} from '../../src/Courses/Curriculum';
 import {checklistMarkdown, parseLessonList} from '../../src/Courses/CurriculumImport';
 import {LESSON_SCRIPT_SAMPLE} from '../../src/Courses/LessonScriptSample';
-import {LessonScriptSchema, answerPatternIssues, lessonNarrations, mistakeIssues, reviewScript, worksIssues} from '../../src/Courses/LessonScript';
+import {LessonScriptSchema, answerPatternIssues, ignoredFields, lessonNarrations, mapNameIssues, mistakeIssues, reviewScript, stageIssues, worksIssues} from '../../src/Courses/LessonScript';
 import {forceAngle} from '../../src/Components/Visuals/Physics/Forces';
 import {simulateDynamics} from '../../src/Components/Visuals/Physics/Dynamics';
 import {stepRelation} from '../../src/Components/Visuals/Mathematics/Equation';
@@ -180,6 +180,103 @@ describe('lesson script', () => {
 		expect(worksIssues({...script, works: {additions: ['Gerçek ve mecaz anlamı tablo hâlinde karşılaştır.', 'Terim anlamın sık sorulan örneklerini listele.']}})).toEqual([]);
 		expect(reviewScript(bare).issues.join(' ')).toMatch(/Works notes/);
 	});
+
+	describe('staged scenes', () => {
+		// A visual card whose beats walk a staged scene up to `stages` (the stage numbers they name, in order).
+		const withScene = (visual: Record<string, unknown>, stages: (number | undefined)[]) => {
+			const card = {kind: 'visual', title: 'Sahne', visual, narration: 'Sahneye bakalım.', beats: stages.map((stage, index) => ({narration: `Adım ${index + 1} böyle olur.`, ...(stage === undefined ? {} : {stage})}))};
+			return LessonScriptSchema.parse({...LESSON_SCRIPT_SAMPLE, lesson: {...LESSON_SCRIPT_SAMPLE.lesson, sections: [...LESSON_SCRIPT_SAMPLE.lesson.sections, {...LESSON_SCRIPT_SAMPLE.lesson.sections[0], cards: [card]}]}});
+		};
+		const sectionId = `s${LESSON_SCRIPT_SAMPLE.lesson.sections.length + 1}-c1`;
+
+		it('names the stages of rivers, earthquakes and processes, in order', () => {
+			expect(visualStages(CourseVisualSchema.parse({kind: 'river', view: 'meander'}))).toEqual(['Kıvrılma', 'Dış kıyı aşınır', 'Boyun daralır', 'Kopuk menderes']);
+			expect(visualStages(CourseVisualSchema.parse({kind: 'earthquake', view: 'block3d'}))?.at(-1)).toBe('Fay dikliği');
+			expect(visualStages(CourseVisualSchema.parse({kind: 'process', process: 'landslide'}))).toHaveLength(6);
+			// A process that shows only some of its stages ends at the last one it picked, by its title.
+			expect(visualStages(CourseVisualSchema.parse({kind: 'process', process: 'landslide', stages: ['egim', 'su', 'kutle']}))).toEqual(['Dik yamaç', 'Yağış ve kar suyu', 'Kopma ve kayma']);
+			// An equation's stages are its steps, named by the operation done to both sides.
+			expect(visualStages(CourseVisualSchema.parse({kind: 'equation', steps: [{left: '2x+3', right: '11'}, {left: '2x', right: '8', operation: '−3'}, {left: 'x', right: '4', operation: '÷2'}]}))).toEqual(['Adım 1', '−3', '÷2']);
+			expect(visualStages(CourseVisualSchema.parse({kind: 'induction'}))).toHaveLength(3);
+			expect(visualStages(CourseVisualSchema.parse({kind: 'timeline', events: [{id: 'e1', year: 1071, label: 'Malazgirt'}, {id: 'e2', year: 1176, label: 'Miryokefalon'}]}))).toBeNull();
+		});
+
+		it('flags beats that stop before the last stage and names the stage never shown', () => {
+			const meander = {kind: 'river', view: 'meander'};
+			expect(stageIssues(withScene(meander, [0, 1, 2]))).toEqual([`${sectionId}: the beats stop at stage 3 of 4; "Kopuk menderes" is never shown.`]);
+			expect(stageIssues(withScene({kind: 'process', process: 'landslide'}, [0, 1, 2, 3]))[0]).toMatch(/stage 4 of 6; "Set gölü"/);
+			expect(reviewScript(withScene(meander, [0, 1])).issues.join(' ')).toMatch(/Kopuk menderes/);
+		});
+
+		it('accepts beats that reach the last stage, in any order, and scenes the beats do not stage', () => {
+			expect(stageIssues(withScene({kind: 'river', view: 'meander'}, [0, 1, 2, 3]))).toEqual([]);
+			expect(stageIssues(withScene({kind: 'river', view: 'meander'}, [3, 0]))).toEqual([]);
+			expect(stageIssues(withScene({kind: 'process', process: 'landslide', stages: ['egim', 'kutle']}, [0, 1]))).toEqual([]);
+			// Beats without a stage leave the scene to its own clock, which plays every stage.
+			expect(stageIssues(withScene({kind: 'river', view: 'delta'}, [undefined, undefined]))).toEqual([]);
+		});
+	});
+
+	it('names the fields a script writes that its schema drops without a word', () => {
+		const raw = structuredClone(LESSON_SCRIPT_SAMPLE) as typeof LESSON_SCRIPT_SAMPLE & {mood?: string};
+		const card = raw.lesson.sections[1].cards[0] as Record<string, unknown>;
+		card.caption = 'Bu satır hiçbir kartta görünmezdi.';
+		raw.mood = 'neşeli';
+		const parsed = LessonScriptSchema.parse(raw);
+		const fields = ignoredFields(raw, parsed);
+		expect(fields).toContain('mood');
+		// A field on a card is named by the card, as check names cards.
+		expect(fields.some((field) => /^s2-c1: caption$/.test(field))).toBe(card.kind !== 'visual');
+		// A clean script has none; defaults the schema fills in are not counted.
+		expect(ignoredFields(LESSON_SCRIPT_SAMPLE, LessonScriptSchema.parse(LESSON_SCRIPT_SAMPLE))).toEqual([]);
+	});
+
+	it('names the areas a map asks for that its layer does not have, with the near names', () => {
+		const withMap = (map: Record<string, unknown>) =>
+			LessonScriptSchema.parse({
+				...LESSON_SCRIPT_SAMPLE,
+				lesson: {
+					...LESSON_SCRIPT_SAMPLE.lesson,
+					sections: LESSON_SCRIPT_SAMPLE.lesson.sections.map((section, index) => (index === 0 ? {...section, cards: [{kind: 'visual', title: 'Harita', visual: {kind: 'map', ...map}, narration: 'Harita.'}, ...section.cards.slice(1)]} : section)),
+				},
+			});
+		const layers: Record<string, string[]> = {countries: ['Türkiye', 'Çin Halk Cumhuriyeti', 'Çin Cumhuriyeti', 'Hindistan'], provinces: ['Rize', 'Artvin'], regions: ['Karadeniz Bölgesi']};
+		const namesOf = (layer: string) => layers[layer];
+		const issues = mapNameIssues(withMap({base: 'countries', focus: ['Türkiye', 'Çin'], highlights: [{name: 'Hindistan'}]}), namesOf);
+		expect(issues).toHaveLength(1);
+		expect(issues[0]).toMatch(/^s1-c1: the map's focus names "Çin"/);
+		// Every near name is offered: the first match alone would have been Taiwan.
+		expect(issues[0]).toContain('"Çin Halk Cumhuriyeti"');
+		expect(issues[0]).toContain('"Çin Cumhuriyeti"');
+		// Shades and overlays are checked against their own layers; a clean map has nothing to say.
+		expect(mapNameIssues(withMap({base: 'provinces', shades: [{label: 'Çay', names: ['Rize', 'Riza']}], overlays: [{layer: 'regions', names: ['Karadeniz']}]}), namesOf)).toEqual([
+			expect.stringContaining('shades names "Riza"'),
+			expect.stringContaining('regions overlay names "Karadeniz"'),
+		]);
+		expect(mapNameIssues(withMap({base: 'provinces', shades: [{label: 'Çay', names: ['Rize', 'Artvin']}]}), namesOf)).toEqual([]);
+		// A layer whose names cannot be read is not checked.
+		expect(mapNameIssues(withMap({base: 'districts', focus: ['Kadıköy']}), namesOf)).toEqual([]);
+	});
+
+	it.runIf(existsSync(path.resolve(ROOT, 'public', 'Geo', 'World.json')))('finds every area the course maps name in the map data', async () => {
+		const {GEO_FILES, GEO_LAYERS} = await import('../../src/Configurations/GeoData');
+		const {globSync} = await import('node:fs');
+		const cache = new Map<string, string[] | undefined>();
+		const namesOf = (layer: string) => {
+			if (!cache.has(layer)) {
+				const spec = (GEO_LAYERS as Record<string, {file: keyof typeof GEO_FILES; object: string}>)[layer];
+				const file = spec ? path.resolve(ROOT, 'public', GEO_FILES[spec.file].src) : '';
+				cache.set(layer, spec && existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')).objects[spec.object].geometries.map((item: {properties?: {name?: string}}) => item.properties?.name ?? '') : undefined);
+			}
+			return cache.get(layer);
+		};
+		const issues = globSync('Curriculum/Scripts/**/*.json', {cwd: ROOT}).flatMap((file) => {
+			const parsed = LessonScriptSchema.safeParse(JSON.parse(readFileSync(path.resolve(ROOT, file), 'utf8')));
+			return parsed.success ? mapNameIssues(parsed.data, namesOf).map((issue) => `${file}: ${issue}`) : [];
+		});
+		expect(issues).toEqual([]);
+		// Every script of every camp is read and parsed: alongside the rest of the suite it takes more than 5 s.
+	}, 30_000);
 
 	it('counts the extra subtopics a section teaches together as covered', () => {
 		const grouped = LessonScriptSchema.parse({...LESSON_SCRIPT_SAMPLE, lesson: {...LESSON_SCRIPT_SAMPLE.lesson, sections: LESSON_SCRIPT_SAMPLE.lesson.sections.map((section, index) => (index === 0 ? {...section, subtopics: ['SOZCUKTE_ANLAM_13']} : section))}});

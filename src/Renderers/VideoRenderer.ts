@@ -17,7 +17,7 @@ import type {SpeechBackend} from '../Services/ElevenLabsSpeech';
 import {musicPieceFor, writeMusicBed} from '../Services/MusicLibrary';
 import {analyzeBeats, tempoHint} from '../Services/BeatGrid';
 import {templateScenes} from '../Templates/TemplateDefinition';
-import {saveNumberedOutput} from '../Services/OutputFile';
+import {outputRoot, saveNumberedOutput} from '../Services/OutputFile';
 import type {VoiceCast} from '../Services/VoiceCasting';
 import {writeSoundtrack, type SoundtrackCues} from '../Services/SoundtrackComposer';
 import {renderVideoCover} from '../Services/VideoCoverGenerator';
@@ -134,8 +134,17 @@ export const bundleProject = (onProgress?: (progress: number) => void): Promise<
 
 type PageLog = {type: string; text: string};
 
+/**
+ * Notices a library prints about itself that say nothing about the frame: @react-three/fiber still builds a
+ * THREE.Clock, and three.js flags it on every 3D scene (12 'warnings' on the solids of a geometry sweep, 1 Nov 2026).
+ */
+const LIBRARY_NOTICES = [/^THREE\.Clock: This module has been deprecated/];
+
+/** Whether a browser log line is a warning about the video, not a library talking about itself. */
+export const isFrameWarning = (log: PageLog): boolean => (log.type === 'warning' || log.type === 'error') && !LIBRARY_NOTICES.some((notice) => notice.test(log.text));
+
 const collectWarnings = (warnings: string[]) => (log: PageLog) => {
-	if (log.type === 'warning' || log.type === 'error') warnings.push(log.text);
+	if (isFrameWarning(log)) warnings.push(log.text);
 };
 
 /**
@@ -399,12 +408,15 @@ export const renderVideoToOutputs = async (
 	// Throws VideoJobValidationError before a number is claimed.
 	const job = resolveVideoJob(rawJob);
 	const withCover = job.cover !== false;
+	const root = rootDirectory ?? outputRoot();
 	const saved = await saveNumberedOutput({
 		kind: 'Videos',
 		title: job.outputName,
 		extension: 'mp4',
 		parts: withCover ? ['', {suffix: VIDEO_COVER.fileSuffix, extension: 'png'}] : undefined,
-		rootDirectory,
+		rootDirectory: root,
+		// A camp lesson names its own place (`output`, Outputs/... from the project root): it is saved there.
+		place: job.output ? path.join(root, job.output.replace(/^Outputs\//, '')).replace(/\.mp4$/, '') : undefined,
 		metadata: {
 			template: job.template.id,
 			format: job.formatId,

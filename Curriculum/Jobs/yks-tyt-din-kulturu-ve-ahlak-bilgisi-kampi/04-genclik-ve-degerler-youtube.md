@@ -1,6 +1,6 @@
 # YouTube metni: TYT Din Kültürü ve Ahlak Bilgisi kampı · Ders 4 · Gençlik ve Değerler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/04_Genclik_ve_Degerler/Genclik_ve_Degerler_YouTube.mp4` (4K) · Kapak: `Genclik_ve_Degerler_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/04_Genclik_ve_Degerler/Genclik_ve_Degerler_YouTube.mp4` (4K) · Kapak: `Genclik_ve_Degerler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

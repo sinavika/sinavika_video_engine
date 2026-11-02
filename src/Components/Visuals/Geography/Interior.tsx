@@ -2,9 +2,9 @@ import React, {useId} from 'react';
 import {easeFrom} from '../../../Animations/Motion';
 import {NATURE_COLORS as C} from '../../../Configurations/NatureColors';
 import {withAlpha} from '../../../Themes/Theme';
-import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {DrawingScale, useFigureFont, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import {type CourseVisual} from '../VisualSchema';
-import {deg, rad, Tag, usePartLook, World} from '../VisualWorld';
+import {deg, fittedScale, H, rad, Tag, usePartLook, W, World} from '../VisualWorld';
 
 // ---------------------------------------------------------------- the Earth's interior
 
@@ -30,6 +30,10 @@ export const InteriorVisual: React.FC<VisualBoxProps & {visual: Interior}> = ({v
 	const flow = usePartLook('astenosfer', enter(1.5));
 	const crust = usePartLook('kabuk', enter(2));
 	const inset = usePartLook('sialsima', visual.crustInset ? enter(2.5) : 0);
+	// The inset's 15-unit names are under an app still's smallest text: there the whole inset grows until they reach
+	// it, its right edge where it was (raised alone, "Kara: sial + sima (kalın)" ran into "Okyanus: sima (ince)").
+	const worldScale = fittedScale(width, height, W, H);
+	const insetGrow = useFigureFont(worldScale)(15) / 15;
 	const cx = 300;
 	const cy = 300;
 	const R = 270;
@@ -93,20 +97,22 @@ export const InteriorVisual: React.FC<VisualBoxProps & {visual: Interior}> = ({v
 			})}
 			{/* The crust close up: thick under continents, thin under oceans. */}
 			{visual.crustInset ? (
-				<g opacity={inset.opacity} transform="translate(600 468)">
-					<rect x={0} y={0} width={392} height={118} rx={14} fill={palette.surface} stroke={inset.focused > 0.5 ? palette.lesson : palette.border} strokeWidth={inset.focused > 0.5 ? 4 : 2} />
+				<g opacity={inset.opacity} transform={`translate(${992 - 404 * insetGrow} 468) scale(${insetGrow})`}>
+					<DrawingScale scale={worldScale * insetGrow}>
+					<rect x={0} y={0} width={404} height={118} rx={14} fill={palette.surface} stroke={inset.focused > 0.5 ? palette.lesson : palette.border} strokeWidth={inset.focused > 0.5 ? 4 : 2} />
 					<rect x={16} y={34} width={210} height={30} fill="#D7CCC8" />
 					<rect x={16} y={64} width={210} height={30} fill="#6D4C41" />
-					<rect x={226} y={34} width={150} height={36} fill={withAlpha(C.water, 0.7)} />
-					<rect x={226} y={70} width={150} height={24} fill="#6D4C41" />
-					<Tag x={20} y={18} text="Kara: sial + sima (kalın)" size={16} />
-					<Tag x={232} y={18} text="Okyanus: sima (ince)" size={16} />
+					<rect x={226} y={34} width={162} height={36} fill={withAlpha(C.water, 0.7)} />
+					<rect x={226} y={70} width={162} height={24} fill="#6D4C41" />
+					<Tag x={20} y={18} text="Kara: sial + sima (kalın)" size={15} />
+					<Tag x={232} y={18} text="Okyanus: sima (ince)" size={15} />
 					<text x={120} y={54} textAnchor="middle" fontSize={15} fontWeight={700} fill={palette.ink} fontFamily={palette.fontBody}>
 						Sial
 					</text>
 					<text x={120} y={84} textAnchor="middle" fontSize={15} fontWeight={700} fill="#FFFFFF" fontFamily={palette.fontBody}>
 						Sima
 					</text>
+					</DrawingScale>
 				</g>
 			) : null}
 		</World>

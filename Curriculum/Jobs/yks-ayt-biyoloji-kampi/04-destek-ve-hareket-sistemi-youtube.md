@@ -1,6 +1,6 @@
 # YouTube metni: AYT Biyoloji kampı · Ders 4 · Destek ve Hareket Sistemi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Biyoloji/04_Destek_Ve_Hareket_Sistemi/Destek_Ve_Hareket_Sistemi_YouTube.mp4` (4K) · Kapak: `Destek_Ve_Hareket_Sistemi_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Biyoloji/04_Destek_Ve_Hareket_Sistemi/Destek_Ve_Hareket_Sistemi_YouTube.mp4` (4K) · Kapak: `Destek_Ve_Hareket_Sistemi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

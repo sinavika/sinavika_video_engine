@@ -125,6 +125,8 @@ export const EnergyTrackVisual: React.FC<VisualBoxProps & {visual: EnergyTrack}>
 	};
 	const place = along(sample.s);
 	const radius = 30;
+	// Heights are written over the track's ends and peaks.
+	const heightMarks = visual.profile.filter((point, index) => point[1] > 0 && (index === 0 || index === visual.profile.length - 1 || (point[1] >= visual.profile[index - 1][1] && point[1] >= visual.profile[index + 1][1])));
 	// `angle` is the track's direction on screen (y down); the body sits on the track, one radius along its normal.
 	const [bx, by] = [px(place.x) + Math.sin(place.angle) * radius, py(place.h) - Math.cos(place.angle) * radius];
 	const moving = sample.v > 0.05;
@@ -158,9 +160,7 @@ export const EnergyTrackVisual: React.FC<VisualBoxProps & {visual: EnergyTrack}>
 					<text x={area.left - 20} y={py(0) - 14} fill={palette.muted} fontSize={fontSize * 0.7} fontWeight={700}>
 						h = 0
 					</text>
-					{visual.profile
-						.filter((point, index) => point[1] > 0 && (index === 0 || index === visual.profile.length - 1 || (point[1] >= visual.profile[index - 1][1] && point[1] >= visual.profile[index + 1][1])))
-						.map((point) => (
+					{heightMarks.map((point) => (
 							<text key={`h${point[0]}`} x={px(point[0])} y={py(point[1]) - 54} fill={palette.muted} fontSize={fontSize * 0.7} fontWeight={700} textAnchor="middle">
 								{`${format(point[1])} m`}
 							</text>
@@ -176,7 +176,8 @@ export const EnergyTrackVisual: React.FC<VisualBoxProps & {visual: EnergyTrack}>
 									<path d={arrowHead(bx + Math.cos(place.angle) * heading * (arrow + 16), by + Math.sin(place.angle) * heading * (arrow + 16), heading > 0 ? place.angle : place.angle + Math.PI, 30)} fill={palette.brand} />
 								</g>
 							) : null}
-							<text x={bx} y={by - radius - 24} fill={palette.ink} fontSize={fontSize * 0.75} fontWeight={800} textAnchor="middle">
+							{/* Over a peak's height the speed stands a line higher: "0 m/s" sat on "5 m" where the body starts. */}
+							<text x={bx} y={by - radius - 24 - (heightMarks.some((point) => Math.abs(px(point[0]) - bx) < 90 && Math.abs(py(point[1]) - by) < 90) ? fontSize * 0.8 : 0)} fill={palette.ink} fontSize={fontSize * 0.75} fontWeight={800} textAnchor="middle">
 								{`${format(sample.v)} m/s`}
 							</text>
 						</g>
@@ -186,7 +187,8 @@ export const EnergyTrackVisual: React.FC<VisualBoxProps & {visual: EnergyTrack}>
 					{(look) => (
 						<g opacity={barsIn * look.opacity}>
 							<line x1={barsLeft - 30} y1={barBottom - run.start * barScale} x2={barsLeft + bars.length * (barWidth + 30)} y2={barBottom - run.start * barScale} stroke={palette.ink} strokeWidth={4} strokeDasharray="14 10" />
-							<text x={barsLeft + (bars.length * (barWidth + 30)) / 2 - 15} y={barBottom - run.start * barScale - 20} fill={palette.ink} fontSize={fontSize * 0.7} fontWeight={800} textAnchor="middle">
+							{/* A bar reaching the total line writes its value where the total stood ("100" on "toplam 100 J"): the total goes a line higher then. */}
+							<text x={barsLeft + (bars.length * (barWidth + 30)) / 2 - 15} y={barBottom - run.start * barScale - 20 - (bars.some((bar) => (run.start - bar.value) * barScale < fontSize * 0.9) ? fontSize * 0.85 : 0)} fill={palette.ink} fontSize={fontSize * 0.7} fontWeight={800} textAnchor="middle">
 								{`toplam ${format(run.start)} J`}
 							</text>
 							{bars.map((bar, index) => {

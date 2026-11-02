@@ -87,6 +87,18 @@ const plainLine = (text: string): string => text.replaceAll('**', '').replace(/\
 
 type CampJobFile = {name: string; text: string};
 
+/** A camp video's place: `Outputs/Videos/YKS/TYT/Turkce/07_Tamlamalar` + `Tamlamalar` + `YouTube` → `…/Tamlamalar_YouTube.mp4`. */
+const campVideoOutput = (videoFolder: string, stem: string, label: 'YouTube' | 'Reels' | string): string => `${videoFolder}/${stem}_${label}.mp4`;
+
+/**
+ * How many questions a YouTube intro promises ("ÖSYM kalıplarını 8 yeni soruyla çözüyoruz"), if it says. A lesson
+ * that gained a question after its intro was written said "7 yeni soru" over 8 (KPSS Tarih 13, 1 Nov 2026).
+ */
+export const introQuestionCount = (intro: string): number | undefined => {
+	const match = /(\d+)\s+(?:yeni|özgün|çözümlü)\s+soru/i.exec(intro);
+	return match ? Number(match[1]) : undefined;
+};
+
 /**
  * The three files of one camp lesson. `scriptFile` is the script's path from
  * the project root, as the jobs name it.
@@ -98,27 +110,31 @@ export const campJobFiles = (spec: CampJobSpec, script: LessonScript, scriptFile
 	if (episode.number !== spec.number) throw new Error(`${scriptFile}: the script is lesson ${episode.number} of its camp, the spec says ${spec.number}.`);
 	const nn = String(spec.number).padStart(2, '0');
 	const base = `${nn}-${spec.slug}`;
+	const exams = examPath(camp.category);
+	const exam = exams.at(-1)!;
+	const lessonFolder = OUTPUT_FOLDERS[script.topic.lesson.replace(/\d+$/, '')] ?? script.topic.lesson;
+	const videoFolder = `Outputs/Videos/${exams.join('/')}/${lessonFolder}/${nn}_${spec.stem}`;
 	const job = (template: string, format: string, label: string) => ({
 		template,
 		format,
 		theme: 'SinavikaLight',
 		name: `${episode.name} ${nn} ${spec.nameTitle ?? script.title} ${label}`,
+		// The render saves the video here, its cover and chapters beside it (VideoJob `output`).
+		output: campVideoOutput(videoFolder, spec.stem, label),
 		voiceover: true,
 		script: scriptFile,
 	});
 	const json = (value: unknown) => `${JSON.stringify(value, null, '\t')}\n`;
 
-	const exams = examPath(camp.category);
-	const exam = exams.at(-1)!;
-	const lessonFolder = OUTPUT_FOLDERS[script.topic.lesson.replace(/\d+$/, '')] ?? script.topic.lesson;
-	const videoFolder = `Outputs/Videos/${exams.join('/')}/${lessonFolder}/${nn}_${spec.stem}`;
 	const questions = script.lesson.sections.reduce((sum, section) => sum + section.cards.filter((card) => card.kind === 'question').length, 0);
+	const promised = introQuestionCount(spec.intro);
+	if (promised !== undefined && promised !== questions) throw new Error(`${scriptFile}: the intro promises ${promised} new questions, the lesson has ${questions}.`);
 	const chapters = ['Giriş', ...script.lesson.sections.map((section) => section.title), 'Özet', 'Kamp görevi'];
 	const intro = EXAM_INTRO_LINKS[exams[0]] ?? '(yayın linki)';
 	const note = [
 		`# YouTube metni: ${episode.name} · Ders ${spec.number} · ${script.title}`,
 		'',
-		`Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: \`${videoFolder}/${spec.stem}_YouTube.mp4\` (4K) · Kapak: \`${spec.stem}_YouTube_Kapak.jpg\` (kamp kapağı).`,
+		`Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: \`${videoFolder}/${spec.stem}_YouTube.mp4\` (4K) · Kapak: \`${spec.stem}_YouTube_Kapak.png\` (kamp kapağı).`,
 		'',
 		'## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)',
 		'',

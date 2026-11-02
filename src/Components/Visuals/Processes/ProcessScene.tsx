@@ -1,9 +1,9 @@
 import React, {createContext, useContext, useId} from 'react';
 import {clamp01, lerp, noise, smooth} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
-import {useSceneSeconds, useVisualPalette} from '../VisualFrame';
+import {DrawingScale, useFigureFont, useSceneSeconds, useVisualPalette} from '../VisualFrame';
 import {useStageClock} from '../VisualTimeline';
-import {pathOf, Tag, usePartLook, World} from '../VisualWorld';
+import {fittedScale, NotePill, pathOf, Tag, usePartLook, World} from '../VisualWorld';
 import {StageStrip} from '../Geography/ProcessStage';
 import {PROCESS_CATALOG, type ProcessName} from './ProcessCatalog';
 
@@ -141,19 +141,15 @@ export const ProcessFrame: React.FC<{
 			<g clipPath={`url(#pf${id})`}>
 				<rect {...frame} fill={backdrop} />
 				<CameraContext.Provider value={camera}>
-					<g transform={cameraTransform(camera)}>{children}</g>
+					{/* Under the camera a scene unit takes `zoom` times the room: a still's smallest text is worked out from both. */}
+					<DrawingScale scale={fittedScale(width, height, WORLD.width, WORLD.height) * camera.zoom}>
+						<g transform={cameraTransform(camera)}>{children}</g>
+					</DrawingScale>
 				</CameraContext.Provider>
 				{overlay}
 			</g>
 			<rect {...frame} rx={18} fill="none" stroke={withAlpha(palette.ink, 0.15)} strokeWidth={2} />
-			{note ? (
-				<g opacity={clamp01(clock.seconds / 0.6)}>
-					<rect x={SCENE.left} y={NOTE_Y - 24} width={SCENE.right - SCENE.left} height={48} rx={24} fill={withAlpha(palette.ink, 0.06 + 0.1 * noteLook.focused)} />
-					<text x={(SCENE.left + SCENE.right) / 2} y={NOTE_Y + 9} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={700} fontSize={26} fill={palette.ink}>
-						{note}
-					</text>
-				</g>
-			) : null}
+			{note ? <NotePill left={SCENE.left} right={SCENE.right} y={NOTE_Y} text={note} fill={withAlpha(palette.ink, 0.06 + 0.1 * noteLook.focused)} ink={palette.ink} opacity={clamp01(clock.seconds / 0.6)} /> : null}
 		</World>
 	);
 };
@@ -176,12 +172,14 @@ export const ProcessLabel: React.FC<{id: string; at: Point; to: Point; text: str
 	const camera = useContext(CameraContext);
 	const look = usePartLook(id, clamp01(show));
 	const k = 1 / camera.zoom;
+	// The size in scene units: `size` on screen at any zoom, or an app still's smallest text.
+	const shown = useFigureFont()(size * k);
 	const opacity = look.opacity * inView(at[0], at[1], 0, camera);
 	if (opacity < 0.01) return null;
 	// The visible part of the scene, in scene units, and the label's box in it.
 	const halfW = (SCENE.right - SCENE.left) / 2 / camera.zoom;
 	const halfH = (SCENE.bottom - SCENE.top) / 2 / camera.zoom;
-	const width = (text.length * size * 0.58 + 16) * k;
+	const width = text.length * shown * 0.58 + 16 * k;
 	const left = anchor === 'start' ? to[0] : anchor === 'end' ? to[0] - width : to[0] - width / 2;
 	const shift = Math.max(camera.x - halfW + 14 * k - left, Math.min(0, camera.x + halfW - 14 * k - (left + width)));
 	const x = to[0] + shift;
@@ -194,7 +192,7 @@ export const ProcessLabel: React.FC<{id: string; at: Point; to: Point; text: str
 		<g opacity={opacity}>
 			{Math.hypot(x - at[0], y - at[1]) > 24 * k ? <line x1={at[0]} y1={at[1]} x2={leaderX} y2={leaderEnd} stroke={colour} strokeWidth={2.6 * k} strokeLinecap="round" /> : null}
 			<circle cx={at[0]} cy={at[1]} r={5.5 * k} fill={colour} stroke={palette.surface} strokeWidth={1.6 * k} />
-			<Tag x={x} y={y} text={text} anchor={anchor} size={size * k} weight={800} focused={look.focused} />
+			<Tag x={x} y={y} text={text} anchor={anchor} size={shown} weight={800} focused={look.focused} />
 		</g>
 	);
 };
@@ -214,13 +212,15 @@ export const SceneTag: React.FC<{x: number; y: number; text: string; anchor?: 's
 }) => {
 	const camera = useContext(CameraContext);
 	const k = 1 / camera.zoom;
-	const width = text.length * size * 0.58;
+	const shown = useFigureFont()(size * k);
+	// On screen: `size` at any zoom, more in an app still.
+	const width = text.length * shown * camera.zoom * 0.58;
 	const middle = anchor === 'start' ? x + (width * k) / 2 : anchor === 'end' ? x - (width * k) / 2 : x;
 	const opacity = inView(middle, y, width / 2, camera);
 	if (opacity < 0.01) return null;
 	return (
 		<g opacity={opacity}>
-			<Tag x={x} y={y} text={text} anchor={anchor} size={size * k} weight={800} fill={fill} halo={halo} />
+			<Tag x={x} y={y} text={text} anchor={anchor} size={shown} weight={800} fill={fill} halo={halo} />
 		</g>
 	);
 };

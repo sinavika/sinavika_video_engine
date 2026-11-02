@@ -1,6 +1,6 @@
 # YouTube metni: TYT Felsefe kampı · Ders 4 · Ahlak Felsefesi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Felsefe/04_Ahlak_Felsefesi/Ahlak_Felsefesi_YouTube.mp4` (4K) · Kapak: `Ahlak_Felsefesi_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Felsefe/04_Ahlak_Felsefesi/Ahlak_Felsefesi_YouTube.mp4` (4K) · Kapak: `Ahlak_Felsefesi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

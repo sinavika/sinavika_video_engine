@@ -1,6 +1,6 @@
 import React from 'react';
 import {z} from 'zod';
-import {AbsoluteFill, Audio, interpolate, OffthreadVideo, Sequence, staticFile, useVideoConfig} from 'remotion';
+import {AbsoluteFill, Audio, Img, interpolate, OffthreadVideo, Sequence, staticFile, useVideoConfig} from 'remotion';
 import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
 import {Text} from '../../../Components/Typography/Text';
@@ -19,6 +19,10 @@ import {CLAMP, ease, useSeconds} from '../PromoKit/PromoKit';
  * appearing as it is said; then the young, the flags, the crowd; and silence
  * with "Saygı, sevgi ve özlemle." Different from RepublicDay: no red, no
  * flashes, no cuts on a beat; everything slow and still.
+ *
+ * Owner, 1 Nov 2026: "video Atatürk ile başlamalı, tüyler ürpertmeli; çok daha duygusal, ağlamaklı olmalı". With an
+ * `opening` the first frame is his portrait, coming slowly closer while the siren rises, and the closing brings it back
+ * faintly behind the last line; scenes melt into each other instead of cutting.
  */
 
 const ShotSchema = z.object({src: z.string().min(1), from: z.number().min(0).default(0), seconds: z.number().positive(), rate: z.number().min(0.25).max(1).default(0.5)});
@@ -33,8 +37,10 @@ const ClipSchema = z.object({
 });
 
 const AtaturkMemorialSchema = z.object({
+	/** The first shot: his portrait, a slow push towards the eyes, and a line (date and minute). */
+	opening: z.object({image: z.string().min(1), seconds: z.number().min(3).max(8).default(5), line: plainText(40)}).optional(),
 	clock: z.object({time: z.tuple([z.number().int().min(1).max(12), z.number().int().min(0).max(59)]), line: plainText(40), seconds: z.number().min(2).max(6).default(3.2)}),
-	date: z.object({text: plainText(24), footage: z.array(ShotSchema).min(1).max(3)}),
+	date: z.object({text: plainText(24), footage: z.array(ShotSchema).min(1).max(3)}).optional(),
 	siren: z.object({src: z.string().min(1), seconds: z.number().min(2).max(14).default(9)}),
 	speech: z.string().default('Media/History/ataturk-10-yil-nutku-1933.ogg'),
 	source: plainText(48),
@@ -42,7 +48,7 @@ const AtaturkMemorialSchema = z.object({
 	/** Seconds of quiet between two cuts of the speech. */
 	gapSeconds: z.number().min(0).max(2).default(0.6),
 	montage: z.array(ShotSchema).min(1).max(4),
-	closing: z.object({line: plainText(40), seconds: z.number().min(3).max(8).default(5)}),
+	closing: z.object({line: plainText(40), sub: plainText(40).optional(), seconds: z.number().min(3).max(8).default(5)}),
 });
 type Content = z.infer<typeof AtaturkMemorialSchema>;
 type Shot = z.infer<typeof ShotSchema>;
@@ -78,6 +84,39 @@ const Footage: React.FC<{shots: readonly Shot[]; dim?: number}> = ({shots, dim =
 			<AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 40%, transparent 35%, rgba(0,0,0,0.8) 100%)'}} />
 			<AbsoluteFill style={{background: 'linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.85) 82%, #000 100%)'}} />
 			<Grain />
+		</AbsoluteFill>
+	);
+};
+
+/** His portrait, black and white, coming slowly closer to the eyes. */
+const PortraitShot: React.FC<{image: string; seconds: number; dim?: number}> = ({image, seconds, dim = 0}) => {
+	const t = useSeconds();
+	const push = 1.04 + 0.16 * ease(Math.min(1, t / seconds));
+	return (
+		<AbsoluteFill style={{background: BLACK, overflow: 'hidden'}}>
+			<Img src={staticFile(image)} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 30%', transform: `scale(${push})`, transformOrigin: '50% 32%', filter: `grayscale(1) contrast(1.15) brightness(${0.92 - dim})`, opacity: interpolate(t, [0, 0.6], [0, 1], CLAMP)}} />
+			<AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 35%, transparent 30%, rgba(0,0,0,0.85) 100%)'}} />
+			<AbsoluteFill style={{background: 'linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.9) 85%, #000 100%)'}} />
+			<Grain />
+		</AbsoluteFill>
+	);
+};
+
+/** The first scene: his portrait, and the date and minute coming up from the dark. */
+const OpeningScene: React.FC<{content: Content}> = ({content}) => {
+	const t = useSeconds();
+	const opening = content.opening!;
+	const line = interpolate(t, [1.4, 2.6], [0, 1], CLAMP);
+	return (
+		<AbsoluteFill>
+			<PortraitShot image={opening.image} seconds={opening.seconds} />
+			<AbsoluteFill style={{alignItems: 'center', justifyContent: 'flex-end', paddingBottom: '22%'}}>
+				<div style={{opacity: line, transform: `translateY(${(1 - line) * 18}px)`}}>
+					<Text variant="display" size={80} weight={TYPE.weights.display} color={WHITE} align="center" style={{letterSpacing: '0.02em', textShadow: '0 4px 30px rgba(0,0,0,0.9)'}}>
+						{opening.line}
+					</Text>
+				</div>
+			</AbsoluteFill>
 		</AbsoluteFill>
 	);
 };
@@ -123,13 +162,14 @@ const ClockScene: React.FC<{content: Content}> = ({content}) => {
 const DateScene: React.FC<{content: Content}> = ({content}) => {
 	const t = useSeconds();
 	const show = interpolate(t, [0.8, 2], [0, 1], CLAMP);
+	const date = content.date!;
 	return (
 		<AbsoluteFill>
-			<Footage shots={content.date.footage} />
+			<Footage shots={date.footage} />
 			<AbsoluteFill style={{alignItems: 'center', justifyContent: 'flex-end', paddingBottom: '24%'}}>
 				<div style={{opacity: show}}>
 					<Text variant="display" size={96} weight={TYPE.weights.display} color={WHITE} align="center" style={{letterSpacing: '0.02em'}}>
-						{content.date.text}
+						{date.text}
 					</Text>
 				</div>
 			</AbsoluteFill>
@@ -143,11 +183,14 @@ const ClipScene: React.FC<{content: Content; index: number}> = ({content, index}
 	const {fps} = useVideoConfig();
 	const t = useSeconds();
 	const clip = content.clips[index];
+	// His words leave once he has said them, before the next cut fades in: under a fade the two lines overlapped.
+	const length = clip.to - clip.from + content.gapSeconds;
+	const words = interpolate(t, [length - 1.25, length - 0.8], [1, 0], CLAMP);
 	return (
 		<AbsoluteFill>
 			<Footage shots={clip.footage} dim={0.25} />
 			<Audio src={staticFile(content.speech)} trimBefore={Math.round(clip.from * fps)} trimAfter={Math.round(clip.to * fps)} />
-			<AbsoluteFill style={{padding: `${u(160)}px ${u(80)}px ${u(300)}px`, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: u(24)}}>
+			<AbsoluteFill style={{padding: `${u(160)}px ${u(80)}px ${u(300)}px`, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: u(24), opacity: words}}>
 				<div style={{opacity: interpolate(t, [0.1, 0.6], [0, 1], CLAMP)}}>
 					<Text size={30} weight={TYPE.weights.strong} color={SOFT} style={{letterSpacing: '0.06em'}}>
 						{content.source}
@@ -179,10 +222,20 @@ const ClosingScene: React.FC<{content: Content}> = ({content}) => {
 	const logo = interpolate(t, [2, 2.8], [0, 1], CLAMP);
 	return (
 		<AbsoluteFill style={{background: BLACK, alignItems: 'center', justifyContent: 'center'}}>
-			<div style={{opacity: line}}>
-				<Text variant="display" size={84} weight={TYPE.weights.display} color={WHITE} align="center">
+			{content.opening ? (
+				<AbsoluteFill style={{opacity: 0.32 * interpolate(t, [0, 1.2], [0, 1], CLAMP)}}>
+					<PortraitShot image={content.opening.image} seconds={content.closing.seconds} dim={0.25} />
+				</AbsoluteFill>
+			) : null}
+			<div style={{opacity: line, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(22)}}>
+				<Text variant="display" size={84} weight={TYPE.weights.display} color={WHITE} align="center" style={{textShadow: '0 4px 30px rgba(0,0,0,0.9)'}}>
 					{content.closing.line}
 				</Text>
+				{content.closing.sub ? (
+					<Text size={40} weight={TYPE.weights.strong} color={SOFT} align="center" style={{letterSpacing: '0.08em'}}>
+						{content.closing.sub}
+					</Text>
+				) : null}
 			</div>
 			<div style={{position: 'absolute', right: u(70), bottom: u(260), opacity: logo * 0.85}}>
 				<BrandMark size="chrome" color={WHITE} />
@@ -196,7 +249,7 @@ const Siren: React.FC<{content: Content}> = ({content}) => {
 	const {fps} = useVideoConfig();
 	const length = content.siren.seconds;
 	return (
-		<Sequence name="Siren" durationInFrames={Math.round(length * fps)} from={Math.round(1.1 * fps)}>
+		<Sequence name="Siren" durationInFrames={Math.round(length * fps)} from={Math.round((content.opening ? 0.3 : 1.1) * fps)}>
 			<Audio src={staticFile(content.siren.src)} volume={(frame) => interpolate(frame, [0, 1.2 * fps, (length - 2) * fps, length * fps], [0, 0.55, 0.55, 0], CLAMP)} />
 		</Sequence>
 	);
@@ -217,8 +270,9 @@ const SAMPLE: z.input<typeof AtaturkMemorialSchema> = {
 };
 
 const buildScenes = (content: Content): TemplateScene[] => [
+	...(content.opening ? [{id: 'opening', seconds: content.opening.seconds, label: 'Atatürk', silent: true, element: <OpeningScene content={content} />}] : []),
 	{id: 'clock', seconds: content.clock.seconds, label: 'Saat', silent: true, element: <ClockScene content={content} />},
-	{id: 'date', seconds: content.date.footage.reduce((sum, shot) => sum + shot.seconds, 0), label: 'Tarih', silent: true, element: <DateScene content={content} />},
+	...(content.date ? [{id: 'date', seconds: content.date.footage.reduce((sum, shot) => sum + shot.seconds, 0), label: 'Tarih', silent: true, element: <DateScene content={content} />}] : []),
 	...content.clips.map((clip, index) => ({id: `speech-${index + 1}`, seconds: clip.to - clip.from + content.gapSeconds, label: `Nutuk ${index + 1}`, silent: true, element: <ClipScene content={content} index={index} />})),
 	{id: 'montage', seconds: content.montage.reduce((sum, shot) => sum + shot.seconds, 0), label: 'Gençler', silent: true, element: <MontageScene content={content} />},
 	{id: 'closing', seconds: content.closing.seconds, label: 'Saygıyla', silent: true, element: <ClosingScene content={content} />},
@@ -232,7 +286,8 @@ export const AtaturkMemorial = defineTemplate({
 	contentSchema: AtaturkMemorialSchema,
 	sampleContent: SAMPLE,
 	defaultTheme: 'SinavikaDark',
-	transition: {preset: 'none'},
+	// Scenes melt into each other (owner, 1 Nov 2026: more emotional); the gap between speech cuts covers the overlap.
+	transition: {preset: 'fade', durationSeconds: 0.9},
 	targetSeconds: {min: 20, max: 60},
 	cutsOnBeat: false,
 	renderOverlay,

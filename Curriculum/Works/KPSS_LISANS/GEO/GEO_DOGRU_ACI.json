@@ -1,0 +1,2155 @@
+{
+ "topic": {
+  "id": "E0AFB528-F135-37C1-119E-EA7DDB8E3BAA",
+  "category": "KPSS_LISANS",
+  "lesson": "GEO",
+  "code": "GEO_DOGRU_ACI"
+ },
+ "title": "Doğruda Açılar",
+ "lessonName": "Geometri",
+ "exams": [
+  "KPSS"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/KPSS/GEO/GEO_DOGRU_ACI.json"
+ ],
+ "lesson": {
+  "hook": {
+   "headline": "Sekiz açı, iki ölçü",
+   "narration": "İki paralel doğruyu bir kesen kestiğinde sekiz açı oluşur, ama yalnız iki farklı ölçü vardır. Geometrinin bütün açı soruları bu türden birkaç basit ilişkiye dayanır. KPSS'de bu konudan gelen soruların hepsi şekilliydi ve hep aynı soruyu sordu: x kaç derecedir? Bu derste açı türlerinden kırık çizgiye kadar her ilişkiyi şekil üzerinde göreceğiz."
+  },
+  "objectives": [
+   "Açıları ölçüsüne göre adlandırmak",
+   "Komşu, tümler ve bütünler açıları kullanmak",
+   "Ters açıların eşitliğini kullanmak",
+   "Paralel doğrularda yöndeş, iç ters ve karşı durumlu açıları bulmak",
+   "Kırık çizgi kuralını uygulamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_DOGRU_ACI_01",
+    "subtopics": [],
+    "title": "Açı ve açı türleri",
+    "narration": "Geometri kampına açılarla başlıyoruz. Önce açının ne olduğunu ve ölçüsüne göre nasıl adlandırıldığını görelim.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Ölçüsüne göre açılar",
+      "items": [
+       "**Dar açı**: $0° < x < 90°$; **dik açı**: $x = 90°$.",
+       "**Geniş açı**: $90° < x < 180°$; **doğru açı**: $x = 180°$.",
+       "**Tam açı**: $360°$; bir tam tur.",
+       "Açı, başlangıç noktası ortak iki ışının oluşturduğu şekildir; ortak noktaya **köşe** denir."
+      ],
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Açı",
+        "Ölçü"
+       ],
+       "rows": [
+        [
+         "dar",
+         "$0° < x < 90°$"
+        ],
+        [
+         "dik",
+         "$90°$"
+        ],
+        [
+         "geniş",
+         "$90° < x < 180°$"
+        ],
+        [
+         "doğru",
+         "$180°$"
+        ],
+        [
+         "tam",
+         "$360°$"
+        ]
+       ]
+      },
+      "beats": [],
+      "narration": "Açı, başlangıç noktası ortak olan iki ışının oluşturduğu şekildir; ortak noktaya köşe denir. Ölçüsü 0 ile 90 derece arasında olan açı dar açıdır; tam 90 derece dik açıdır. 90 ile 180 derece arasındaki açı geniş açıdır; tam 180 derece doğru açıdır. Bir tam tur ise 360 derecedir ve tam açı adını alır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Ölçüsü $3x - 15$ derece olan bir açı geniş açıdır. Buna göre $x$'in alabileceği **en küçük tam sayı** değeri kaçtır?",
+       "options": [
+        "35",
+        "36",
+        "40",
+        "64",
+        "65"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$90 < 3x - 15 < 180$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Geniş açı 90 dereceden büyük, 180 dereceden küçüktür: 90 küçüktür 3x eksi 15 küçüktür 180."
+        },
+        {
+         "text": "$105 < 3x < 195 \\Rightarrow 35 < x < 65$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üç tarafa 15 ekleyelim: 105 küçüktür 3x küçüktür 195. 3'e bölelim: 35 küçüktür x küçüktür 65."
+        },
+        {
+         "text": "En küçük tam sayı **36**. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x, 35'ten büyük olmalı; 35 dahil değil. En küçük tam sayı 36. Cevap B. A şıkkındaki 35, sınırı dahil sananın tuzağıdır; o zaman açı 90 derece, yani dik açı olur."
+        }
+       ],
+       "narration": "Geniş açının aralığını yazıp x'i yalnız bırakalım.",
+       "origin": {
+        "changes": "Havuzdaki açı türünden aralık kurdurma kalıbı örnek alındı; ifade bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Saat 3.40'ı gösterirken akrep ile yelkovan arasındaki **küçük** açı kaç derecedir?",
+       "options": [
+        "110",
+        "120",
+        "130",
+        "140",
+        "150"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "Yelkovan: $40 \\cdot 6° = 240°$ (12'den itibaren)",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Yelkovan 60 dakikada 360 derece, yani dakikada 6 derece döner. 40 dakikada, 12'den itibaren 240 derece."
+        },
+        {
+         "text": "Akrep: $3 \\cdot 30° + 40 \\cdot 0{,}5° = 110°$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Akrep saatte 30 derece, dakikada yarım derece döner. Saat 3'te 90 derecededir; 40 dakikada 20 derece daha ilerler: 110 derece."
+        },
+        {
+         "text": "$240° - 110° = 130°$: geniş açı. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Aradaki açı 240 eksi 110, 130 derece; 180'den küçük olduğu için küçük açı budur ve bir geniş açıdır. Cevap C. A şıkkındaki 110, akrebin 40 dakikada ilerlediğini unutanın cevabıdır."
+        }
+       ],
+       "narration": "Yelkovan dakikada 6 derece, akrep dakikada yarım derece döner.",
+       "origin": {
+        "changes": "Havuzdaki saat ibreleri arasındaki açı kalıbı örnek alındı; saat bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DOGRU_ACI_02",
+    "subtopics": [
+     "GEO_DOGRU_ACI_03",
+     "GEO_DOGRU_ACI_04"
+    ],
+    "title": "Komşu, tümler ve bütünler açılar",
+    "narration": "Şimdi iki açının birbirine göre adlarına bakalım: komşu, tümler ve bütünler.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Komşu bütünler açılar",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -4.8,
+        -0.9,
+        4.8,
+        3.9
+       ],
+       "points": [
+        {
+         "id": "L",
+         "at": [
+          -4,
+          0
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "O",
+         "at": [
+          0,
+          0
+         ],
+         "label": "O",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R",
+         "at": [
+          4,
+          0
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "K",
+         "at": [
+          2.57,
+          3.06
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "L",
+         "to": "R",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "O",
+         "to": "K",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "O",
+         "from": "R",
+         "to": "K",
+         "label": "50°",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "O",
+         "from": "K",
+         "to": "L",
+         "label": "130°",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "OB ışını, AC doğrusunu iki açıya ayırıyor. Bu iki açının köşesi ve bir kenarı ortak; iç bölgeleri ayrı. Böyle açılara komşu açılar denir.",
+        "show": [],
+        "focus": [
+         "OK",
+         "LR"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "İki komşu açı birlikte bir doğru açı oluşturuyor: 50 artı 130, 180 derece. Toplamı 180 derece olan açılara bütünler açılar denir.",
+        "show": [],
+        "focus": [
+         "angle-O"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "Bir doğru üzerindeki O noktasından bir ışın çıkaralım."
+     },
+     {
+      "kind": "rule",
+      "title": "Tümler ve bütünler",
+      "items": [
+       "**Tümler** açılar: toplamı $90°$; $x$'in tümleri $90° - x$.",
+       "**Bütünler** açılar: toplamı $180°$; $x$'in bütünleri $180° - x$.",
+       "Bir açının bütünleri, tümlerinden her zaman $90°$ fazladır."
+      ],
+      "beats": [],
+      "narration": "Toplamı 90 derece olan iki açıya tümler açılar denir; x'in tümleri 90 eksi x'tir. Toplamı 180 derece olan iki açıya bütünler açılar denir; x'in bütünleri 180 eksi x'tir. İkisini karşılaştırırsan bir açının bütünleri, tümlerinden her zaman 90 derece fazladır: 180 eksi x ile 90 eksi x'in farkı 90'dır."
+     },
+     {
+      "kind": "predict",
+      "title": "Açıortaylar arasındaki açı",
+      "context": "$AOB$ ve $BOC$ komşu bütünler açılar; $OD$ ve $OE$ açıortaylar.",
+      "prompt": "İki açıortay arasındaki açı kaç derecedir?",
+      "choices": [
+       "80°",
+       "90°"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -4.8,
+        -0.9,
+        4.8,
+        4.2
+       ],
+       "points": [
+        {
+         "id": "L",
+         "at": [
+          -4,
+          0
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "O",
+         "at": [
+          0,
+          0
+         ],
+         "label": "O",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R",
+         "at": [
+          4,
+          0
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "K",
+         "at": [
+          2.57,
+          3.06
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          3.26,
+          1.52
+         ],
+         "label": "D",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          -1.52,
+          3.26
+         ],
+         "label": "E",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "L",
+         "to": "R",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "O",
+         "to": "K",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "O",
+         "to": "D",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "O",
+         "to": "E",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "O",
+         "from": "D",
+         "to": "E",
+         "label": "?",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "OD, 50 derecelik açıyı ikiye bölüyor: 25 derece. OE, 130 derecelik açıyı ikiye bölüyor: 65 derece.",
+        "show": [],
+        "focus": [
+         "OD",
+         "OE"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "İki açıortay arasındaki açı 25 artı 65, yani 90 derece. Komşu bütünler açıların ölçüsü ne olursa olsun bu hep böyledir: 180'in yarısı.",
+        "show": [],
+        "focus": [
+         "angle-O"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "Komşu bütünler açıların açıortayları arasındaki açı, $\\frac{180°}{2} = 90°$'dir.",
+      "narration": "Şimdi sıra sende. 50 ve 130 derecelik komşu açıların açıortayları çizilmiş. Aralarındaki açı kaç derece? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 90 derece. Her açıortay kendi açısının yarısını alır; iki yarının toplamı, 180 derecenin yarısıdır. Açıların ölçüsü değişse de sonuç değişmez; bu yüzden KPSS bu bilgiyi sık kullanır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir açının bütünleri, tümlerinin 4 katından $30°$ fazladır. Buna göre bu açı kaç derecedir?",
+       "options": [
+        "50",
+        "60",
+        "65",
+        "70",
+        "75"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Tümleri $90 - x$, bütünleri $180 - x$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Açı x ise tümleri 90 eksi x, bütünleri 180 eksi x'tir."
+        },
+        {
+         "text": "$180 - x = 4(90 - x) + 30 \\Rightarrow 180 - x = 390 - 4x$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bütünleri, tümlerinin 4 katından 30 fazla: 180 eksi x, 4 çarpı 90 eksi x, artı 30. Sağ taraf 390 eksi 4x."
+        },
+        {
+         "text": "$3x = 210 \\Rightarrow x = 70$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "3x, 210; x, 70. Sağlama: tümleri 20, bütünleri 110; 20'nin 4 katı 80, artı 30, 110. Cevap D."
+        }
+       ],
+       "narration": "Açıya x diyelim; tümleri ve bütünleri x ile yazılır.",
+       "origin": {
+        "changes": "Havuzdaki tümler ve bütünler arasındaki ilişkiden açıyı buldurma kalıbı örnek alındı; sayılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bütünler iki açının ölçüleri oranı $\\frac{2}{3}$'tür. Buna göre küçük açının tümleri kaç derecedir?",
+       "options": [
+        "18",
+        "24",
+        "36",
+        "54",
+        "72"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$2k + 3k = 180° \\Rightarrow k = 36°$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Açılar 2k ve 3k; bütünler oldukları için toplamları 180 derece. 5k, 180; k, 36."
+        },
+        {
+         "text": "Küçük açı $2k = 72°$; tümleri $90° - 72° = 18°$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Küçük açı 2 çarpı 36, 72 derece. Tümleri 90 eksi 72, 18 derece. Cevap A. E şıkkındaki 72 açının kendisidir; soru tümlerini soruyor."
+        }
+       ],
+       "narration": "Oranı k ile yazalım; toplam 180 derece.",
+       "origin": {
+        "changes": "Havuzdaki oranı verilen tümler ve bütünler açılar kalıbı örnek alındı; oran bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DOGRU_ACI_05",
+    "subtopics": [],
+    "title": "Ters açılar",
+    "narration": "İki doğru kesiştiğinde dört açı oluşur. Karşılıklı olanlar birbirine eşittir.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Kesişen iki doğru",
+      "text": "Kesişen iki doğrunun oluşturduğu karşılıklı açılara **ters açılar** denir; ters açılar **eşittir**. Yan yana olan açılar ise **bütünlerdir**: $a + b = 180°$.",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -4.6,
+        -4.2,
+        4.6,
+        4.2
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          4,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          -4,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          2.29,
+          3.28
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          -2.29,
+          -3.28
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "O",
+         "at": [
+          0,
+          0
+         ],
+         "label": "O",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "O",
+         "from": "A",
+         "to": "C",
+         "label": "a",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "O",
+         "from": "B",
+         "to": "D",
+         "label": "a",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "O",
+         "from": "C",
+         "to": "B",
+         "label": "b",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "O",
+         "from": "D",
+         "to": "A",
+         "label": "b",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "İki doğru O noktasında kesişiyor.",
+        "show": [],
+        "focus": [
+         "AB",
+         "CD"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Karşılıklı açılar, yani ters açılar eşittir: iki a ve iki b. Yan yana olan a ile b ise bir doğru açı oluşturur; toplamları 180 derecedir.",
+        "show": [],
+        "focus": [
+         "angle-O"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "İki doğru kesiştiğinde dört açı oluşur."
+     },
+     {
+      "kind": "predict",
+      "title": "Tek açıdan dört açı",
+      "context": "$AB$ ve $CD$ doğruları $O$ noktasında kesişiyor; bir açı $40°$.",
+      "prompt": "$x + y + z$ kaç derecedir?",
+      "choices": [
+       "300°",
+       "320°"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -4.6,
+        -4.2,
+        4.6,
+        4.2
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          4,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          -4,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          3.06,
+          2.57
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          -3.06,
+          -2.57
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "O",
+         "at": [
+          0,
+          0
+         ],
+         "label": "O",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "O",
+         "from": "A",
+         "to": "C",
+         "label": "40°",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "O",
+         "from": "C",
+         "to": "B",
+         "label": "x",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "O",
+         "from": "B",
+         "to": "D",
+         "label": "y",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "O",
+         "from": "D",
+         "to": "A",
+         "label": "z",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "x ve z, 40 derecelik açının komşusu; ikisi de 180 eksi 40, yani 140 derece. y ise 40'ın ters açısı; o da 40 derece.",
+        "show": [],
+        "focus": [
+         "angle-O"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Toplam 140 artı 40 artı 140, 320 derece. Daha kısa yol: dört açının toplamı 360 derecedir; 360'tan 40'ı çıkarırsın.",
+        "show": [],
+        "focus": [
+         "AB",
+         "CD"
+        ],
+        "swap": []
+       }
+      ],
+      "explanation": "Kesişen iki doğrunun dört açısının toplamı $360°$'dir; bir açı bilinince öbür üçü de bilinir.",
+      "narration": "Şimdi sıra sende. Kesişen iki doğrudan birinin açısı 40 derece. x artı y artı z kaç derece? Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 320 derece. Bir açıyı bilmek dördünü de bilmek demektir: ters açısı aynı, komşuları 180'e tamamlar. Dört açının toplamı her zaman 360 derecedir; bilinen 40'ı çıkarınca 320 kalır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $AB$ ve $CD$ doğruları $O$ noktasında kesişmektedir. Buna göre $y$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -4.6,
+         -4.2,
+         4.6,
+         4.2
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           4,
+           0
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           -4,
+           0
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           1.37,
+           3.76
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           -1.37,
+           -3.76
+          ],
+          "label": "D",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ],
+          "label": "O",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "O",
+          "from": "A",
+          "to": "C",
+          "label": "2x + 10",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "O",
+          "from": "B",
+          "to": "D",
+          "label": "3x − 20",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "O",
+          "from": "C",
+          "to": "B",
+          "label": "y",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "70",
+        "80",
+        "90",
+        "100",
+        "110"
+       ],
+       "answer": 4,
+       "steps": [
+        {
+         "text": "Ters açılar eşit: $2x + 10 = 3x - 20 \\Rightarrow x = 30$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "2x artı 10 ile 3x eksi 20 karşılıklı açılar, yani ters açılar; eşittirler. x, 30."
+        },
+        {
+         "text": "Ters açı: $2 \\cdot 30 + 10 = 70°$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Bu açı 2 çarpı 30 artı 10, yani 70 derece."
+        },
+        {
+         "text": "$y = 180° - 70° = 110°$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "y bu açının komşusu ve bütünleridir: 180 eksi 70, 110. Cevap E. A şıkkındaki 70, y'yi de ters açı sananın cevabıdır."
+        }
+       ],
+       "narration": "Ters açıları eşitleyip x'i bulacağız; y ise onların komşusu.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki ters açılarla x buldurma kalıbı örnek alındı; ifadeler bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DOGRU_ACI_06",
+    "subtopics": [],
+    "title": "Paralel doğrularda açılar",
+    "narration": "İki paralel doğruyu bir kesen kestiğinde sekiz açı oluşur, ama yalnız iki farklı ölçü vardır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Paralel doğrular ve kesen",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -4.4,
+        -1.4,
+        5.4,
+        4.5
+       ],
+       "points": [
+        {
+         "id": "P",
+         "at": [
+          -4,
+          3
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "Q",
+         "at": [
+          5,
+          3
+         ],
+         "label": "d1",
+         "hidden": false,
+         "dot": false,
+         "caption": false
+        },
+        {
+         "id": "R",
+         "at": [
+          -4,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "S",
+         "at": [
+          5,
+          0
+         ],
+         "label": "d2",
+         "hidden": false,
+         "dot": false,
+         "caption": false
+        },
+        {
+         "id": "A",
+         "at": [
+          1.4,
+          3
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "T",
+         "at": [
+          1.91,
+          4.1
+         ],
+         "label": "d3",
+         "hidden": false,
+         "dot": false,
+         "caption": false
+        },
+        {
+         "id": "U",
+         "at": [
+          -0.51,
+          -1.09
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "P",
+         "to": "Q",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "R",
+         "to": "S",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "U",
+         "to": "T",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "B",
+         "from": "S",
+         "to": "A",
+         "label": "65°",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "A",
+         "from": "Q",
+         "to": "T",
+         "label": "65°",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "A",
+         "from": "P",
+         "to": "B",
+         "label": "65°",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "A",
+         "from": "B",
+         "to": "Q",
+         "label": "115°",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "B noktasında kesenle d2 arasında 65 derecelik bir açı var. A noktasında aynı konumdaki açı da 65 derece: bunlara yöndeş açılar denir ve eşittir.",
+        "show": [],
+        "focus": [
+         "angle-B",
+         "angle-A"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "A noktasında, kesenin öbür yanındaki 65 derece B'deki açının iç ters açısıdır; o da eşittir.",
+        "show": [],
+        "focus": [
+         "angle-A"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "A'daki 115 derece ise B'deki 65 ile kesenin aynı yanında, paralellerin arasında. Bunlara karşı durumlu açılar denir; toplamları 180 derecedir.",
+        "show": [],
+        "focus": [
+         "angle-A",
+         "angle-B"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "d1 ile d2 paralel; d3 ikisini de kesiyor."
+     },
+     {
+      "kind": "rule",
+      "title": "Üç ilişki",
+      "items": [
+       "**Yöndeş** açılar eşittir (aynı konumda).",
+       "**İç ters** ve **dış ters** açılar eşittir (kesenin iki yanında, çapraz).",
+       "**Karşı durumlu** açılar bütünlerdir: toplamları $180°$."
+      ],
+      "beats": [],
+      "narration": "Paralel iki doğruyu bir kesen kestiğinde üç ilişki var. Aynı konumdaki yöndeş açılar eşittir. Kesenin iki yanında çapraz duran iç ters ve dış ters açılar da eşittir. Paralellerin arasında, kesenin aynı yanında duran karşı durumlu açılar ise bütünlerdir; toplamları 180 derecedir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Karşı durumlu açılar eşit değil",
+      "wrong": "Paralellerin arasında, kesenin aynı yanındaki iki açı **eşittir**.",
+      "right": "Bu açılar **karşı durumludur**; toplamları $180°$'dir: $65° + 115° = 180°$.",
+      "why": "Eşit olanlar yöndeş ve iç ters açılardır. Kesenin aynı yanında, paralellerin arasında duranlar bütünlerdir; ikisi de 90° değilse eşit olamazlar.",
+      "narration": "Sık yapılan bir hata. Paralellerin arasında, kesenin aynı yanında duran iki açı eşit değildir; karşı durumlu açılardır ve toplamları 180 derecedir. Şekildeki 65 ile 115 gibi. Eşit olanlar yöndeş ve iç ters açılardır. Bir açıyı ötekine eşitlemeden önce kesenin hangi yanında olduğuna bak."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $d_1 \\parallel d_2$'dir. Buna göre $x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -4.4,
+         -1.4,
+         5.4,
+         4.5
+        ],
+        "points": [
+         {
+          "id": "P",
+          "at": [
+           -4,
+           3
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "Q",
+          "at": [
+           5,
+           3
+          ],
+          "label": "d1",
+          "hidden": false,
+          "dot": false,
+          "caption": false
+         },
+         {
+          "id": "R",
+          "at": [
+           -4,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "S",
+          "at": [
+           5,
+           0
+          ],
+          "label": "d2",
+          "hidden": false,
+          "dot": false,
+          "caption": false
+         },
+         {
+          "id": "A",
+          "at": [
+           0.53,
+           3
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "T",
+          "at": [
+           0.72,
+           4.1
+          ],
+          "label": "d3",
+          "hidden": false,
+          "dot": false,
+          "caption": false
+         },
+         {
+          "id": "U",
+          "at": [
+           -0.21,
+           -1.18
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "P",
+          "to": "Q",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "R",
+          "to": "S",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "U",
+          "to": "T",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "B",
+          "from": "S",
+          "to": "A",
+          "label": "2x + 20",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "A",
+          "from": "Q",
+          "to": "B",
+          "label": "3x + 10",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "25",
+        "30",
+        "35",
+        "40",
+        "45"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "Karşı durumlu açılar: $(2x + 20) + (3x + 10) = 180$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "İki açı da d1 ile d2'nin arasında ve kesenin sağ yanında; karşı durumlu açılardır, toplamları 180 derece."
+        },
+        {
+         "text": "$5x + 30 = 180 \\Rightarrow x = 30$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "5x artı 30, 180; x, 30. Açılar 80 ve 100 derece. Cevap B. Açıları eşit sanan 2x artı 20 ile 3x artı 10'u eşitler ve x için 10 bulur."
+        }
+       ],
+       "narration": "İki açı paralellerin arasında, kesenin aynı yanında.",
+       "origin": {
+        "changes": "ÖSYM'nin paralel doğrularda açı kalıbı örnek alındı; ifadeler bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $D$ noktası $AB$, $E$ noktası $AC$ kenarı üzerindedir ve $DE \\parallel BC$'dir. $m(\\widehat{BAC}) = 50°$ ve $m(\\widehat{ABC}) = 70°$ olduğuna göre $m(\\widehat{AED}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.8,
+         -0.8,
+         6.8,
+         7.17
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2.32,
+           6.37
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           0
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           0.93,
+           2.55
+          ],
+          "label": "D",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           4.53,
+           2.55
+          ],
+          "label": "E",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "50°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "B",
+          "from": "C",
+          "to": "A",
+          "label": "70°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "E",
+          "from": "D",
+          "to": "A",
+          "label": "x",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "50",
+        "55",
+        "60",
+        "65",
+        "70"
+       ],
+       "answer": 2,
+       "steps": [
+        {
+         "text": "$m(\\widehat{C}) = 180° - 50° - 70° = 60°$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Üçgenin iç açılarının toplamı 180 derecedir. C açısı 180 eksi 50 eksi 70, 60 derece."
+        },
+        {
+         "text": "$DE \\parallel BC$: $\\widehat{AED}$ ile $\\widehat{ACB}$ yöndeş ⇒ $x = 60°$. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "DE ile BC paralel, AC ise kesen. AED açısı ile ACB açısı aynı konumda, yani yöndeştir; eşittir. x, 60 derece. Cevap C. E şıkkındaki 70, x'i B açısının yöndeşi sananın cevabıdır; B'nin yöndeşi D'deki açıdır."
+        }
+       ],
+       "narration": "Önce C açısını bulalım; sonra paralellikten x'e geçeceğiz.",
+       "origin": {
+        "changes": "ÖSYM ön lisans sınavındaki üçgende paralel doğru kalıbı örnek alındı; açılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DOGRU_ACI_07",
+    "subtopics": [],
+    "title": "Kesenle oluşan açılar: kırık çizgi",
+    "narration": "Son bölümde ÖSYM'nin en sevdiği paralel kalıbı var: iki paralel arasında kırılan bir çizgi.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Kırık çizgi kuralı",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -1.4,
+        -0.9,
+        6,
+        4.9
+       ],
+       "points": [
+        {
+         "id": "L",
+         "at": [
+          -1,
+          4
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "A",
+         "at": [
+          0,
+          4
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "M",
+         "at": [
+          5.4,
+          4
+         ],
+         "label": "d1",
+         "hidden": false,
+         "dot": false,
+         "caption": false
+        },
+        {
+         "id": "N",
+         "at": [
+          -1,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "K",
+         "at": [
+          5.4,
+          0
+         ],
+         "label": "d2",
+         "hidden": false,
+         "dot": false,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          2.54,
+          2.54
+         ],
+         "label": "E",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "F",
+         "at": [
+          0.94,
+          2.54
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "L",
+         "to": "M",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "N",
+         "to": "K",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "F",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "A",
+         "from": "M",
+         "to": "E",
+         "label": "a",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "B",
+         "from": "K",
+         "to": "E",
+         "label": "b",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "E",
+         "from": "A",
+         "to": "F",
+         "label": "a",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "E",
+         "from": "F",
+         "to": "B",
+         "label": "b",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "A'daki açı 30, B'deki açı 45 derece. E noktasından paralellere bir paralel daha çizelim; kesik çizgi.",
+        "show": [],
+        "focus": [
+         "EF"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "Yeni paralel ile AE arasında iç ters açı oluşur: 30 derece. Yeni paralel ile EB arasında da iç ters açı: 45 derece.",
+        "show": [],
+        "focus": [
+         "angle-E"
+        ],
+        "swap": []
+       },
+       {
+        "narration": "E'deki açı bu iki parçanın toplamı: 30 artı 45, 75 derece. Kural: kırığın içe dönük açısı, paralellerdeki iki açının toplamıdır.",
+        "show": [],
+        "focus": [
+         "angle-E",
+         "angle-A",
+         "angle-B"
+        ],
+        "swap": []
+       }
+      ],
+      "narration": "A'dan E'ye, E'den B'ye kırılan bir çizgi düşünelim."
+     },
+     {
+      "kind": "rule",
+      "title": "Kırığın kuralı",
+      "items": [
+       "İçe doğru kırık: $x = a + b$.",
+       "Kırık noktadan paralellere **bir paralel daha** çiz; açılar iç ters olarak ayrılır.",
+       "Açılar kırığın **ters tarafından** ölçülürse: $a + b + x = 360°$."
+      ],
+      "beats": [],
+      "narration": "Kırık çizgide E'deki açı, paralellerdeki iki açının toplamıdır. Bunu ezberlemek zorunda değilsin: kırık noktadan bir paralel daha çizersen açı iki iç ters açıya ayrılır. Açılar kırığın ters tarafından ölçülmüşse üç açının toplamı 360 derecedir; şekle iyi bak."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $d_1 \\parallel d_2$'dir. Buna göre $x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.4,
+         -0.9,
+         6,
+         4.9
+        ],
+        "points": [
+         {
+          "id": "L",
+          "at": [
+           -1,
+           4
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "A",
+          "at": [
+           0,
+           4
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "M",
+          "at": [
+           5.4,
+           4
+          ],
+          "label": "d1",
+          "hidden": false,
+          "dot": false,
+          "caption": false
+         },
+         {
+          "id": "N",
+          "at": [
+           -1,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "K",
+          "at": [
+           5.4,
+           0
+          ],
+          "label": "d2",
+          "hidden": false,
+          "dot": false,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           2.21,
+           1.17
+          ],
+          "label": "E",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "L",
+          "to": "M",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "N",
+          "to": "K",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "M",
+          "to": "E",
+          "label": "52°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "B",
+          "from": "K",
+          "to": "E",
+          "label": "28°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "E",
+          "from": "A",
+          "to": "B",
+          "label": "x",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "80",
+        "85",
+        "90",
+        "100",
+        "108"
+       ],
+       "answer": 0,
+       "steps": [
+        {
+         "text": "$E$'den paralel çiz: $x$, $52°$ ve $28°$'ye ayrılır",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "E noktasından d1 ve d2'ye paralel bir doğru çizelim. A'daki 52 derecelik açının iç tersi ve B'deki 28 derecelik açının iç tersi E'de oluşur."
+        },
+        {
+         "text": "$x = 52° + 28° = 80°$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "x bu iki açının toplamı: 52 artı 28, 80 derece. Cevap A. D şıkkındaki 100, 180'den çıkarmanın gerektiğini sanan bulur."
+        }
+       ],
+       "narration": "Kırık çizgi kuralı: E'den bir paralel daha çizelim.",
+       "origin": {
+        "changes": "ÖSYM'nin paralel doğrular arasında kırık çizgi kalıbı örnek alındı; açılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $d_1 \\parallel d_2$'dir. $A$ ve $B$'deki açılar paralellerin sol kollarından ölçülmüştür. Buna göre $x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.6,
+         -0.9,
+         6,
+         4.9
+        ],
+        "points": [
+         {
+          "id": "L",
+          "at": [
+           -1.2,
+           4
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "A",
+          "at": [
+           0,
+           4
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "M",
+          "at": [
+           5.4,
+           4
+          ],
+          "label": "d1",
+          "hidden": false,
+          "dot": false,
+          "caption": false
+         },
+         {
+          "id": "N",
+          "at": [
+           -1.2,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "K",
+          "at": [
+           5.4,
+           0
+          ],
+          "label": "d2",
+          "hidden": false,
+          "dot": false,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           1.97,
+           1.65
+          ],
+          "label": "E",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "L",
+          "to": "M",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "N",
+          "to": "K",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "L",
+          "to": "E",
+          "label": "130°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "B",
+          "from": "N",
+          "to": "E",
+          "label": "140°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "E",
+          "from": "A",
+          "to": "B",
+          "label": "x",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "70",
+        "80",
+        "85",
+        "90",
+        "100"
+       ],
+       "answer": 3,
+       "steps": [
+        {
+         "text": "Kırığa bakan açılar: $180° - 130° = 50°$ ve $180° - 140° = 40°$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "A'daki 130 derecelik açının bütünleri, yani kırığa bakan açı 50 derece. B'dekinin bütünleri 40 derece."
+        },
+        {
+         "text": "$x = 50° + 40° = 90°$",
+         "eliminate": [],
+         "mark": [],
+         "sentences": [],
+         "narration": "Şimdi kırık çizgi kuralı: x, bu iki açının toplamı: 90 derece."
+        },
+        {
+         "text": "Sağlama: $130° + 140° + 90° = 360°$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "mark": [],
+         "sentences": [],
+         "narration": "Kısa yol: açılar ters taraftan ölçüldüğünde üçünün toplamı 360 derecedir: 130 artı 140 artı 90, 360. Cevap D. 130 ile 140'ı doğrudan toplayıp 270 bulan şıklarda bir şey bulamaz."
+        }
+       ],
+       "narration": "Bu kez açılar kırığın ters tarafından ölçülmüş. Ya bütünlerini alırız ya da 360 kuralını kullanırız.",
+       "origin": {
+        "changes": "ÖSYM'nin paralel doğrular arasında kırık çizgi kalıbı örnek alındı; açılar ters taraftan ölçülecek biçimde bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Dar açı 90°’den küçük, geniş açı 90° ile 180° arasıdır.",
+    "Tümler açıların toplamı 90°, bütünlerinki 180°’dir.",
+    "Ters açılar eşittir; komşu açılar bütünlerdir.",
+    "Paralellerde yöndeş ve iç ters açılar eşittir.",
+    "Karşı durumlu açıların toplamı 180°’dir.",
+    "Kırık çizgide x = a + b; kırıktan paralel çiz."
+   ],
+   "warnings": [
+    "Karşı durumlu açılar **eşit değil**, bütünlerdir.",
+    "Saatte akrep de **ilerler**: dakikada 0,5°.",
+    "Açılar kırığın **ters tarafındaysa** toplam 360°."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bu dersteki **9 soruyu** kâğıtta şekilleri çizerek yeniden çöz.",
+    "Bir saatin **dört farklı anında** akrep ile yelkovan arasındaki açıyı hesapla.",
+    "Uygulamada KPSS Doğruda Açılar testinden **20 soru** çöz."
+   ]
+  }
+ },
+ "works": {
+  "additions": [
+   "Açı türleri (dar, dik, geniş, doğru, tam) ve ölçü aralığından bilinmeyen bulma; saat ibreleri arasındaki açı (yelkovan 6°, akrep 0,5° dakikada).",
+   "Komşu, tümler ve bütünler açılar; bütünlerin tümlerden 90° fazla olması; komşu bütünler açıların açıortayları arasındaki 90°.",
+   "Ters açılar: karşılıklı açıların eşitliği, komşu açıların bütünlerliği; ifadelerle x bulma.",
+   "Paralel doğrularda yöndeş, iç ters, dış ters ve karşı durumlu açılar; üçgende kenara paralel doğru.",
+   "Kırık çizgi: kırık noktadan paralel çizme, x = a + b ve a + b + x = 360° durumları; ÖSYM'nin şekilli 'x kaç derecedir' kalıbı için iki özgün şekil."
+  ]
+ }
+}

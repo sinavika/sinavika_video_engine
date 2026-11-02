@@ -15,6 +15,12 @@ describe('brand logo', () => {
 		expect(brandLogoColor('#F4F4F5')).toBe('#FFFFFF');
 	});
 
+	it('is charcoal as the one-colour logo on light backdrops, still white on dark or coloured ones', () => {
+		// A camp lesson's light pages: the lesson's colour is the only accent there (owner, 1 Nov 2026).
+		expect(brandLogoColor('#0F172A', true)).toBe(BRAND_COLORS.brand.charcoal);
+		expect(brandLogoColor('#FFFFFF', true)).toBe('#FFFFFF');
+	});
+
 	it('keeps the aspect ratio of the logo file', () => {
 		const png = readFileSync(path.resolve(ROOT, 'public', BRAND.logo.src));
 		const [width, height] = [png.readUInt32BE(16), png.readUInt32BE(20)];

@@ -1,6 +1,6 @@
 # YouTube metni: AYT Matematik kampı · Ders 7 · Mutlak Değer
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Matematik/07_Mutlak_Deger/Mutlak_Deger_YouTube.mp4` (4K) · Kapak: `Mutlak_Deger_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Matematik/07_Mutlak_Deger/Mutlak_Deger_YouTube.mp4` (4K) · Kapak: `Mutlak_Deger_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

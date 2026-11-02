@@ -2,10 +2,12 @@
  * Renders the frames of camp lessons where the layout can go wrong and checks each with the layout guard
  * (Components/Layouts/LayoutGuard): text leaving the frame or its box, text over text, text over the progress bar.
  *
- *   npm run sweep -- <camp id | Curriculum/Scripts/...json | all> [--frames 0.2,0.95] [--scenes figures|all] [--out <folder>]
+ *   npm run sweep -- <camp id | Curriculum/Scripts/...json | all> [--frames 0.2,0.95] [--scenes figures|all] [--only s4-c1,s6-c2] [--out <folder>]
  *
  *   figures  (default) scenes whose card shows a figure, "önce tahmin et" cards and questions with a figure
  *   all      every scene of the lesson
+ *   --only   just these cards (section-card ids, as `curriculum check` names them): a second look after a fix
+ *   --kind   just figures of these kinds (plot,map…): every graph of the curriculum after a change to graphs
  *
  * Writes <out>/ (default Outputs/Sweeps/<date>-<target>/): the frames, RAPOR.md (the warnings, lesson by lesson) and
  * index.html (every frame as a thumbnail with its name, for a look by eye). One browser serves the whole sweep.
@@ -17,7 +19,7 @@
  * FrameMotion). Timing follows the narration estimate (no voice), so times are close to, not exactly, the video's.
  */
 import {existsSync} from 'node:fs';
-import {readdir, readFile, writeFile} from 'node:fs/promises';
+import {mkdir, readdir, readFile, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {parseArgs} from 'node:util';
 import {CampSchema} from '../src/Courses/Camp';
@@ -33,11 +35,11 @@ const SCRIPTS = path.join(ROOT, 'Curriculum', 'Scripts');
 
 const {positionals, values} = parseArgs({
 	allowPositionals: true,
-	options: {frames: {type: 'string', default: '0.2,0.95'}, scenes: {type: 'string', default: 'figures'}, out: {type: 'string'}, motion: {type: 'boolean', default: false}, step: {type: 'string', default: '2.5'}},
+	options: {frames: {type: 'string', default: '0.2,0.95'}, scenes: {type: 'string', default: 'figures'}, only: {type: 'string'}, kind: {type: 'string'}, out: {type: 'string'}, motion: {type: 'boolean', default: false}, step: {type: 'string', default: '2.5'}},
 });
 const [target] = positionals;
 if (!target) {
-	console.error('Kullanım: npm run sweep -- <kamp kimliği | senaryo.json | all> [--frames 0.2,0.95] [--scenes figures|all] [--out <klasör>]');
+	console.error('Kullanım: npm run sweep -- <kamp kimliği | senaryo.json | all> [--frames 0.2,0.95] [--scenes figures|all] [--only s4-c1,s6-c2] [--out <klasör>]');
 	process.exit(2);
 }
 const fractions = values.frames.split(',').map(Number);
@@ -45,6 +47,20 @@ if (fractions.some((share) => !(share >= 0 && share <= 1))) {
 	console.error('--frames 0 ile 1 arasında paylar alır, ör. 0.2,0.95');
 	process.exit(2);
 }
+
+const only = values.only ? new Set(values.only.split(',').map((id) => id.trim())) : null;
+if (only && [...only].some((id) => !/^s\d+-c\d+$/.test(id))) {
+	console.error('--only kart kimlikleri alır, ör. s4-c1,s6-c2');
+	process.exit(2);
+}
+
+const kinds = values.kind ? new Set(values.kind.split(',').map((kind) => kind.trim())) : null;
+/** The kind of figure a card shows: its visual's, or its question's figure's. */
+const figureKind = (card: LessonCard | undefined): string | undefined => {
+	if (!card) return undefined;
+	if ('visual' in card && card.visual) return card.visual.kind;
+	return card.kind === 'question' ? card.question.figure?.kind : undefined;
+};
 
 const allScripts = async (): Promise<string[]> => (await readdir(SCRIPTS, {recursive: true})).filter((file) => file.endsWith('.json')).map((file) => path.join(SCRIPTS, file)).sort();
 
@@ -77,7 +93,7 @@ const chosenScenes = (script: LessonScript) => {
 		job,
 		scenes: plan.scenes
 			.map((scene, index) => ({index, id: scene.id, label: scenes[index].label ?? scene.id, from: scene.from, frames: scene.durationInFrames, card: cards.get(scene.id)}))
-			.filter(({card}) => values.scenes === 'all' || (card && (('visual' in card && card.visual) || card.kind === 'predict' || (card.kind === 'question' && card.question.figure)))),
+			.filter(({id, card}) => (only ? only.has(id) : kinds ? kinds.has(figureKind(card) ?? '') : values.scenes === 'all' || (card && (('visual' in card && card.visual) || card.kind === 'predict' || (card.kind === 'question' && card.question.figure))))),
 	};
 };
 
@@ -143,7 +159,10 @@ try {
 		// One lesson's failure (a dropped connection to the local server) is retried once, then reported, never the end of the sweep.
 		const render = () => renderFrames(job, frames, {withoutVoiceover: true, layoutGuard: true, browser});
 		const results = await render().catch(() => render()).catch((error: unknown) => {
-			rows.push({code, title: parsed.data.title, frame: '', scene: '', warnings: [`Çizilemedi: ${error instanceof Error ? error.message : String(error)}`]});
+			const reason = error instanceof Error ? error.message : String(error);
+			// Said on screen too: a lesson that could not be drawn left no frames, and the report was the only place it was written.
+			console.error(`  ${code} çizilemedi: ${reason.split('\n')[0]}`);
+			rows.push({code, title: parsed.data.title, frame: '', scene: '', warnings: [`Çizilemedi: ${reason}`]});
 			return [];
 		});
 		results.forEach((result, index) => rows.push({code, title: parsed.data.title, frame: path.relative(out, result.outputPath).replaceAll('\\', '/'), scene: `${frames[index].scene.id} ${frames[index].scene.label}`, warnings: result.warnings}));
@@ -173,6 +192,8 @@ const html = [
 	...rows.map((row) => `<figure class="${row.warnings.length ? 'warn' : ''}"><img loading="lazy" src="${row.frame}"><figcaption>${row.code} · ${row.scene}${row.warnings.map((warning) => `<br>⚠ ${warning.replace(/[<>&]/g, '')}`).join('')}</figcaption></figure>`),
 	'</div></body></html>',
 ];
+// A sweep whose lessons all failed drew nothing, so nothing has made the folder yet.
+await mkdir(out, {recursive: true});
 await writeFile(path.join(out, 'RAPOR.md'), report.join('\n'));
 await writeFile(path.join(out, 'index.html'), html.join('\n'));
 console.log(`${rows.length} kare, ${flagged.length} uyarılı. Rapor: ${path.relative(ROOT, path.join(out, 'RAPOR.md'))}`);

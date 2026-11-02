@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 5 · Paragraf
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Turkce/05_Paragraf/Paragraf_YouTube.mp4` (4K) · Kapak: `Paragraf_YouTube_Kapak.jpg` (kamp kapağı).
+Video: `Outputs/Videos/YKS/TYT/Turkce/05_Paragraf/Paragraf_YouTube.mp4` (4K, 39:24) · Kapak: `Paragraf_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 
@@ -40,7 +40,21 @@ Google Play: https://play.google.com/store/apps/details?id=com.sinavika.mobile
 Web: https://sinavika.com
 
 Bölümler:
-(render sonrası `Paragraf_YouTube.chapters.txt` buraya yapıştırılır; bölüm başlıkları: Giriş, Paragrafın yapısı, Konu ve başlık, Ana düşünce, Yardımcı düşünceler, Paragraftan çıkarım, Anlatım biçimleri, Düşünceyi geliştirme yolları, Anlatımın özellikleri, Düşüncenin akışını bozan cümle, Paragrafı ikiye bölme, Cümle yerleştirme ve paragraf tamamlama, Paragraf oluşturma ve sıralama, Özet, Kamp görevi)
+0:00 Giriş
+0:45 Paragrafın yapısı
+4:33 Konu ve başlık
+5:43 Ana düşünce
+12:02 Yardımcı düşünceler
+13:58 Paragraftan çıkarım
+19:33 Anlatım biçimleri
+21:45 Düşünceyi geliştirme yolları
+24:39 Anlatımın özellikleri
+29:13 Düşüncenin akışını bozan cümle
+31:50 Paragrafı ikiye bölme
+33:45 Cümle yerleştirme ve paragraf tamamlama
+36:05 Paragraf oluşturma ve sıralama
+38:06 Özet
+38:50 Kamp görevi
 
 #TYT #YKS #TYTTürkçe #Paragraf #Sınavika
 
@@ -55,3 +69,7 @@ TYT Türkçe Kampı | Sınavika · YKS Kampı | Sınavika
 ## Ayarlar
 
 Kategori Eğitim · dil Türkçe · çocuklara özel değil · ücretli tanıtım yok · yapay zekâ beyanı önceki derslerle aynı · yayın saati sahibin kararı (öneri: 31 Ekim 19:00).
+
+## Yükleme (1 Kasım 2026)
+
+Videoyu sahip yükledi ve yayın gününü kendisi seçti: https://youtu.be/bzxcU27xQ00 · herkese açık 1 Kasım 2026 (yayında). Studio'da girildi ve sunucudan yeniden okunarak doğrulandı: başlık A (sahip: "A/B testini açma, varsayılanı yaz"; B ve C kullanılmadı), yukarıdaki açıklama (bölümler ve önceki ders bağlantısıyla), kapak `Paragraf_YouTube_Kapak.png`, iki oynatma listesi, etiketler, dil Türkçe, kategori Eğitim, ücretli tanıtım yok, yapay zekâ beyanı "Hayır", bitiş ekranı Ders 4'ten içe aktarıldı (abone ol + en son yükleme).

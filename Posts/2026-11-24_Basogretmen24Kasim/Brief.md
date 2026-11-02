@@ -36,3 +36,8 @@ Emotional, uplifting cinematic piano and strings: chalk-on-blackboard textures, 
 Bir tebeşir, bir kara tahta, bir millet. 24 Kasım 1928’de Başöğretmen olan Atatürk’ü saygıyla anıyor, hayatımıza dokunan bütün öğretmenlerimize teşekkür ediyoruz. Sana ilk harfi kim öğretti? Öğretmenini etiketle. ❤️
 
 #24Kasım #ÖğretmenlerGünü #Başöğretmen
+
+## 1 Kasım revizyonu
+
+- **Red notu:** "video atatürk ile başlamalı tüyler ürpertmeli. çok daha duygusal ağlamaklı olmalı."
+- **Değişen:** Atatürk arşiviyle açılır (24 Kasım 1928 · Başöğretmen), ardından öğretmenlere sözü, sonra tebeşir, zaman ve teşekkür. "Öğretmenini etiketle" çağrısı yerine "Bugün ona bir teşekkür borçluyuz." Sahneler yavaşça geçer; müzik daha duygusal.

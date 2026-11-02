@@ -11,15 +11,20 @@ type BrandMarkProps = {
 	size?: BrandLogoSize;
 	/** The text colour readable on the backdrop (defaults to the current ink). The logo's own colour follows from it, see brandLogoColor. */
 	color?: string;
+	/** The one-colour logo: charcoal instead of orange on light backdrops, for screens led by another colour (a lesson's). */
+	mono?: boolean;
 };
 
 /**
  * The brand rule for the logo's colour: orange on light backdrops, white on
  * dark and coloured ones (where the readable text is light). `ink` is the
- * text colour readable on the backdrop.
+ * text colour readable on the backdrop. The one-colour logo (`mono`) is
+ * charcoal on light backdrops: a lesson video's light pages, where the
+ * lesson's colour is the only accent and orange would compete with it
+ * (owner, 1 Nov 2026).
  */
-export const brandLogoColor = (ink: string): string =>
-	/^#[0-9a-f]{6}$/i.test(ink) && relativeLuminance(ink) < 0.4 ? BRAND_COLORS.brand.primary : '#FFFFFF';
+export const brandLogoColor = (ink: string, mono = false): string =>
+	/^#[0-9a-f]{6}$/i.test(ink) && relativeLuminance(ink) < 0.4 ? (mono ? BRAND_COLORS.brand.charcoal : BRAND_COLORS.brand.primary) : '#FFFFFF';
 
 /**
  * The Sınavika logo. Every video draws its logo through this component, so
@@ -27,10 +32,10 @@ export const brandLogoColor = (ink: string): string =>
  * changed in one place: Configurations/Brand.
  *
  * The logo file is white with transparency. It is used as a mask and filled
- * with the brand colour for the backdrop: orange on light themes, white on
- * dark ones and on orange panels.
+ * with the brand colour for the backdrop: orange on light themes (charcoal
+ * when `mono`), white on dark ones and on orange panels.
  */
-export const BrandMark: React.FC<BrandMarkProps> = ({size = 'chrome', color}) => {
+export const BrandMark: React.FC<BrandMarkProps> = ({size = 'chrome', color, mono = false}) => {
 	const ink = useInk();
 	const {u} = useVideoLayout();
 	const {logo} = BRAND;
@@ -56,7 +61,7 @@ export const BrandMark: React.FC<BrandMarkProps> = ({size = 'chrome', color}) =>
 				style={{
 					position: 'absolute',
 					inset: 0,
-					backgroundColor: brandLogoColor(color ?? ink.text),
+					backgroundColor: brandLogoColor(color ?? ink.text, mono),
 					maskImage: mask,
 					WebkitMaskImage: mask,
 					maskSize: '100% 100%',

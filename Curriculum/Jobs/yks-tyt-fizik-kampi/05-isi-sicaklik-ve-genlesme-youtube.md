@@ -1,6 +1,6 @@
 # YouTube metni: TYT Fizik kampı · Ders 5 · Isı, Sıcaklık ve Genleşme
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Fizik/05_Isi_Sicaklik_ve_Genlesme/Isi_Sicaklik_ve_Genlesme_YouTube.mp4` (4K) · Kapak: `Isi_Sicaklik_ve_Genlesme_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Fizik/05_Isi_Sicaklik_ve_Genlesme/Isi_Sicaklik_ve_Genlesme_YouTube.mp4` (4K) · Kapak: `Isi_Sicaklik_ve_Genlesme_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

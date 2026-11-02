@@ -1,6 +1,6 @@
 # YouTube metni: TYT Din Kültürü ve Ahlak Bilgisi kampı · Ders 17 · Din ve Çevre
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/17_Din_ve_Cevre/Din_ve_Cevre_YouTube.mp4` (4K) · Kapak: `Din_ve_Cevre_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/17_Din_ve_Cevre/Din_ve_Cevre_YouTube.mp4` (4K) · Kapak: `Din_ve_Cevre_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

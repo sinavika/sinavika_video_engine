@@ -1,9 +1,9 @@
 import React from 'react';
 import {useVideoLayout} from '../../Layouts/VideoLayout';
-import {type LabelBox, placeLabel, segmentSpots} from '../Mathematics/FigureLabel';
+import {type LabelBox, placeLabel, pointSpots, segmentSpots} from '../Mathematics/FigureLabel';
 import {useReveal, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
-import {elementLook, useElementState} from '../VisualTimeline';
+import {elementLook, Part, useElementState} from '../VisualTimeline';
 import {arrowHead} from './ArrowHead';
 
 type Vectors = Extract<CourseVisual, {kind: 'vectors'}>;
@@ -11,7 +11,7 @@ type Vectors = Extract<CourseVisual, {kind: 'vectors'}>;
 /**
  * Vectors as arrows on a square grid, one square a unit, so equal vectors look equal and a doubled one twice as
  * long. The arrows grow from their tails one after another; each label stands beside its arrow where it covers
- * no other arrow.
+ * no other arrow. Named points (O, the point a torque is taken about) are dots with their names beside them.
  */
 export const VectorsVisual: React.FC<VisualBoxProps & {visual: Vectors}> = ({visual, width, height, delaySeconds = 0}) => {
 	const palette = useVisualPalette();
@@ -33,7 +33,16 @@ export const VectorsVisual: React.FC<VisualBoxProps & {visual: Vectors}> = ({vis
 		const count = Math.max(2, Math.ceil(Math.hypot(to[0] - from[0], to[1] - from[1]) / u(10)));
 		return Array.from({length: count + 1}, (_, index) => [from[0] + ((to[0] - from[0]) * index) / count, from[1] + ((to[1] - from[1]) * index) / count] as [number, number]);
 	});
+	const marks = visual.points.map((point) => at(point.at));
+	const dot = Math.max(u(9), stroke * 1.2);
+	// Points first: their names keep clear of the arrows, and the arrows' names of the dots.
 	const taken: LabelBox[] = [];
+	const pointLabels = visual.points.map((point, index) => {
+		const place = placeLabel(pointSpots(marks[index], point.label.length * fontSize * 0.62, fontSize, dot + u(8)), lines, taken, [0, 0, width, height]);
+		taken.push(place);
+		return place;
+	});
+	lines.push(...marks);
 	const labels = visual.vectors.map((vector, index) => {
 		const [from, to] = ends[index];
 		const place = placeLabel(segmentSpots(from, to, vector.label.length * fontSize * 0.62, fontSize, u(12)), lines, taken, [0, 0, width, height]);
@@ -69,6 +78,18 @@ export const VectorsVisual: React.FC<VisualBoxProps & {visual: Vectors}> = ({vis
 					head={head}
 					fontSize={fontSize}
 				/>
+			))}
+			{visual.points.map((point, index) => (
+				<Part key={`p${index}`} id={`p${index + 1}`}>
+					{(look) => (
+						<g opacity={grid * look.opacity}>
+							<circle cx={marks[index][0]} cy={marks[index][1]} r={dot * look.scale} fill={palette.ink} stroke={palette.surface} strokeWidth={u(3)} />
+							<text x={(pointLabels[index][0] + pointLabels[index][2]) / 2} y={pointLabels[index][3] - fontSize * 0.2} textAnchor="middle" fill={palette.ink} fontSize={fontSize} fontWeight={800} stroke={palette.surface} strokeWidth={u(6)} paintOrder="stroke">
+								{point.label}
+							</text>
+						</g>
+					)}
+				</Part>
 			))}
 		</svg>
 	);

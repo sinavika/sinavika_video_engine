@@ -1,6 +1,6 @@
 # YouTube metni: AYT Psikoloji kampı · Ders 3 · Öğrenme, Bellek, Düşünme
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Psikoloji/03_Ogrenme_Bellek_Dusunme/Ogrenme_Bellek_Dusunme_YouTube.mp4` (4K) · Kapak: `Ogrenme_Bellek_Dusunme_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Psikoloji/03_Ogrenme_Bellek_Dusunme/Ogrenme_Bellek_Dusunme_YouTube.mp4` (4K) · Kapak: `Ogrenme_Bellek_Dusunme_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -10,3 +10,8 @@
 ## Görsel
 
 Beyaz zemin, üç düğme Hızlı / Dengeli / Derin; seçenek görselde; "Akşam reels’te".
+
+## 1 Kasım revizyonu
+
+- **Red notu:** "hook berbat."
+- **Değişen:** Hook "Çözümü anlamadığında ne yapıyorsun?"; seçenekler Tekrar okurum / Birine sorarım / Geçerim.

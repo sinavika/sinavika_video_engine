@@ -21,3 +21,8 @@ Alternatifler: "PDF, fotoğraf, Word, sunum." · "Dosyanı at, çalışmaya baş
 Notların hangi biçimde olursa olsun, SinoAI okur: fotoğraf, PDF, Word, sunum ya da bağlantı. Dosyanı ekle; konu anlatımı, test ve bilgi kartı hazırlasın. Sınavdan önce bakmak için kaydet. 📌
 
 #sinavika #sinoai #yks #kpss #yapayzeka
+
+## 1 Kasım revizyonu
+
+- **Red notu:** "hook berbat daha farklı hook olmalı"
+- **Değişen:** Hook "Hocanın PDF’i hâlâ okunmadı mı?" (Durum sorusu).

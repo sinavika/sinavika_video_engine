@@ -1,0 +1,2118 @@
+{
+ "topic": {
+  "id": "5BC01854-E3E3-0D00-D8EE-6A6C76581881",
+  "category": "KPSS_LISANS",
+  "lesson": "GEO",
+  "code": "GEO_UCGEN_ALAN"
+ },
+ "title": "Üçgenin Alanı",
+ "lessonName": "Geometri",
+ "exams": [
+  "KPSS"
+ ],
+ "sources": [
+  "KPSS müfredatı (Lisans GEO_UCGEN_ALAN 6, Ön lisans 4 alt başlık): alanın biçime değil taban ve yüksekliğe bağlı olduğu kayan köşeyle gösterildi",
+  "ÖSYM KPSS Lisans 2010, 2015, 2017 ve 2018 üçgende alan soruları (CikmisSorular/GEO.jsonl, şekilli): kalıplar örnek alındı, şekiller ve sayılar yeni yazıldı",
+  "KPSS Sorular/GEO havuzları (Lisans ve Ön lisans GEO_UCGEN_ALAN)"
+ ],
+ "works": {
+  "additions": [
+   "Alan = taban · o tabana ait yükseklik / 2; tepe tabana paralel kayınca alan değişmez; karmaşık bölgeyi bütünden çıkarma (dikdörtgen içinde üçgen).",
+   "Dik üçgende alan: dik kenarların çarpımının yarısı; a·h = b·c; ikizkenar dik üçgende x²/2; kare ile ikizkenar dik üçgenin alan oranları (ÖSYM 2017 kalıbı).",
+   "Eşkenar üçgende alan a²√3/4; eşkenar üçgenden ikizkenar dik üçgen çıkarılmış bölge (ÖSYM 2010 kalıbı); iç noktanın kenarlara uzaklıkları toplamı yüksekliğe eşittir (alanı üç parçaya bölerek).",
+   "Alan oranları: ortak yükseklikte taban oranı; kenarortay alanı ikiye böler; karede köşelerden orta noktalara çizilen doğruların oluşturduğu kare 1/5 (ÖSYM 2018 kalıbı, Öklid ile).",
+   "Benzer üçgenlerde alan k²; dikdörtgende karşı kenardaki noktayla kurulan üçgen yarı alan; ağırlık merkezi altı eşit parça, köşelerle üç eşit parça."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Biçim değişir, alan değişmez",
+   "narration": "Bir üçgenin tepesini tabanına paralel bir çizgi boyunca kaydır: üçgen eğilir, uzar, biçimi tanınmaz hâle gelir. Ama alanı bir milim bile değişmez. Çünkü alan biçime değil, taban ile yüksekliğe bakar. KPSS'nin alan sorularının çoğu bu fikre ve birkaç oran kuralına dayanır. Bu derste hepsini şekil üzerinde göreceğiz."
+  },
+  "objectives": [
+   "Taban ve yükseklikle alan hesaplamak",
+   "Dik ve eşkenar üçgenin alanını bulmak",
+   "Ortak yükseklikte alan oranlarını kullanmak",
+   "Benzer üçgenlerde alan oranını uygulamak",
+   "Alan paylaşımı kurallarını kullanmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_UCGEN_ALAN_01",
+    "alsoTeaches": [
+     "KPSS_ONLISANS:GEO_UCGEN_ALAN_01"
+    ],
+    "title": "Taban ve yükseklikle alan",
+    "narration": "Bir üçgenin alanı, tabanı ile o tabana ait yüksekliğin çarpımının yarısıdır. Biçim değil, bu iki uzunluk önemlidir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Üçgenin alanı",
+      "items": [
+       "$A = \\frac{a \\cdot h_a}{2}$: taban ile **o tabana ait** yükseklik.",
+       "Hangi kenarı taban alırsan al alan aynıdır: $a \\cdot h_a = b \\cdot h_b = c \\cdot h_c$.",
+       "Karmaşık bir bölgenin alanı: bütünden **çıkar** ya da parçalara **böl**."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        8.6,
+        4.9
+       ],
+       "points": [
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "label": "B"
+        },
+        {
+         "id": "C",
+         "at": [
+          6,
+          0
+         ],
+         "label": "C"
+        },
+        {
+         "id": "A",
+         "at": [
+          1.5,
+          4
+         ],
+         "moveTo": [
+          5.5,
+          4
+         ],
+         "label": "A"
+        },
+        {
+         "id": "H",
+         "at": [
+          1.5,
+          0
+         ],
+         "moveTo": [
+          5.5,
+          0
+         ],
+         "label": "H"
+        },
+        {
+         "id": "L",
+         "at": [
+          -0.6,
+          4
+         ],
+         "hidden": true
+        },
+        {
+         "id": "R",
+         "at": [
+          8.2,
+          4
+         ],
+         "label": "d",
+         "dot": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "L",
+         "to": "R",
+         "dashed": true
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "a"
+        },
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "A",
+         "to": "C"
+        },
+        {
+         "from": "A",
+         "to": "H",
+         "label": "h",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "id": "ucgen",
+         "label": "S",
+         "shade": 2
+        }
+       ],
+       "angles": [
+        {
+         "at": "H",
+         "from": "C",
+         "to": "A",
+         "right": true
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Tabanı a, yüksekliği h olan bir üçgen: alanı a çarpı h bölü 2.",
+        "focus": [
+         "BC",
+         "AH"
+        ]
+       },
+       {
+        "narration": "A köşesini BC'ye paralel d doğrusu üzerinde kaydıralım.",
+        "show": [
+         "move-A",
+         "move-H"
+        ],
+        "focus": [
+         "ucgen"
+        ]
+       },
+       {
+        "narration": "Üçgenin biçimi değişti ama tabanı da yüksekliği de aynı kaldı; alan da değişmedi.",
+        "focus": [
+         "BC",
+         "AH"
+        ],
+        "note": "Aynı taban, aynı yükseklik: aynı alan"
+       }
+      ],
+      "narration": "Bir üçgenin alanı, bir kenarı ile o kenara ait yüksekliğin çarpımının yarısıdır. Taban hangi kenar olursa olsun sonuç aynıdır. Sorularda karmaşık bir bölge görürsen ya bütün şekilden çıkararak ya da bildiğin parçalara bölerek hesapla."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki $ABCD$ dikdörtgeninde $|AB| = 8$ ve $|BC| = 6$ birimdir. $E$, $[AD]$'nin orta noktası, $F$ ise $[DC]$ üzerinde ve $|DF| = 2$ birimdir. Buna göre $BEF$ üçgeninin alanı kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         8.9,
+         6.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "label": "A"
+         },
+         {
+          "id": "B",
+          "at": [
+           8,
+           0
+          ],
+          "label": "B"
+         },
+         {
+          "id": "C",
+          "at": [
+           8,
+           6
+          ],
+          "label": "C"
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           6
+          ],
+          "label": "D"
+         },
+         {
+          "id": "E",
+          "at": [
+           0,
+           3
+          ],
+          "label": "E"
+         },
+         {
+          "id": "F",
+          "at": [
+           2,
+           6
+          ],
+          "label": "F"
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "8"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "6"
+         },
+         {
+          "from": "C",
+          "to": "F"
+         },
+         {
+          "from": "F",
+          "to": "D",
+          "label": "2"
+         },
+         {
+          "from": "D",
+          "to": "E",
+          "ticks": 1
+         },
+         {
+          "from": "E",
+          "to": "A",
+          "ticks": 1
+         },
+         {
+          "from": "B",
+          "to": "E"
+         },
+         {
+          "from": "E",
+          "to": "F"
+         },
+         {
+          "from": "F",
+          "to": "B"
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "B",
+           "E",
+           "F"
+          ],
+          "id": "bef",
+          "shade": 2
+         }
+        ]
+       },
+       "options": [
+        "12",
+        "14",
+        "15",
+        "16",
+        "18"
+       ],
+       "answer": 2,
+       "narration": "BEF'in tabanı ve yüksekliği kolay görünmüyor. Dikdörtgenden üç dik üçgeni çıkaralım.",
+       "steps": [
+        {
+         "text": "$A(ABCD) = 8 \\cdot 6 = 48$",
+         "narration": "Dikdörtgenin alanı 8 çarpı 6, 48."
+        },
+        {
+         "text": "$A(ABE) = \\frac{8 \\cdot 3}{2} = 12$, $A(EDF) = \\frac{3 \\cdot 2}{2} = 3$, $A(FCB) = \\frac{6 \\cdot 6}{2} = 18$",
+         "narration": "Köşelerdeki üç dik üçgen: ABE'nin dik kenarları 8 ve 3, alanı 12. EDF'nin 3 ve 2, alanı 3. FCB'nin 6 ve 6, alanı 18."
+        },
+        {
+         "text": "$A(BEF) = 48 - 12 - 3 - 18 = 15$. Cevap **C**.",
+         "narration": "BEF, kalan bölge: 48 eksi 12 eksi 3 eksi 18, 15 birimkare. Cevap C. E şıkkındaki 18, FCB üçgenidir; çıkarılacak parçalardan biri.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM KPSS Lisans 2015'teki bileşik şekil içinde üçgenin alanı soru tipi örnek alındı; şekil ve sayılar bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ALAN_02",
+    "alsoTeaches": [
+     "KPSS_ONLISANS:GEO_UCGEN_ALAN_02"
+    ],
+    "title": "Dik üçgende alan",
+    "narration": "Dik üçgende dik kenarlardan biri taban, öbürü yüksekliktir.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Dik üçgende alan",
+      "items": [
+       "$A = \\frac{b \\cdot c}{2}$: dik kenarların çarpımının yarısı.",
+       "Hipotenüse ait yükseklik: $a \\cdot h = b \\cdot c$.",
+       "İkizkenar dik üçgende dik kenar $x$ ise $A = \\frac{x^2}{2}$; hipotenüs $x\\sqrt{2}$."
+      ],
+      "narration": "Dik üçgende dik kenarlar birbirine diktir; biri taban olunca öbürü yükseklik olur. Alan, dik kenarların çarpımının yarısıdır. Aynı alanı hipotenüs ve ona ait yükseklikle de yazabilirsin: hipotenüs çarpı yükseklik, dik kenarların çarpımına eşittir. İkizkenar dik üçgende dik kenar x ise alan x kare bölü 2'dir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki $ABCD$ karesinde $|DE| = |DF|$'dir ve $EF$ kenarı üzerine kurulan $EFGH$ karesi $ABCD$'nin içindedir. $ABCD$ karesinin alanı, $EFD$ üçgeninin alanının 8 katı olduğuna göre $ABCD$ karesinin alanının $EFGH$ karesinin alanına oranı kaçtır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         4.9,
+         4.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "label": "A"
+         },
+         {
+          "id": "B",
+          "at": [
+           4,
+           0
+          ],
+          "label": "B"
+         },
+         {
+          "id": "C",
+          "at": [
+           4,
+           4
+          ],
+          "label": "C"
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           4
+          ],
+          "label": "D"
+         },
+         {
+          "id": "E",
+          "at": [
+           0,
+           2
+          ],
+          "label": "E"
+         },
+         {
+          "id": "F",
+          "at": [
+           2,
+           4
+          ],
+          "label": "F"
+         },
+         {
+          "id": "G",
+          "at": [
+           4,
+           2
+          ],
+          "label": "G"
+         },
+         {
+          "id": "H",
+          "at": [
+           2,
+           0
+          ],
+          "label": "H"
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "F"
+         },
+         {
+          "from": "F",
+          "to": "D",
+          "ticks": 1
+         },
+         {
+          "from": "D",
+          "to": "E",
+          "ticks": 1
+         },
+         {
+          "from": "E",
+          "to": "A"
+         },
+         {
+          "from": "E",
+          "to": "F"
+         },
+         {
+          "from": "F",
+          "to": "G"
+         },
+         {
+          "from": "G",
+          "to": "H"
+         },
+         {
+          "from": "H",
+          "to": "E"
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "E",
+           "F",
+           "D"
+          ],
+          "id": "efd",
+          "shade": 3
+         },
+         {
+          "points": [
+           "E",
+           "F",
+           "G",
+           "H"
+          ],
+          "id": "efgh",
+          "shade": 2
+         }
+        ],
+        "angles": [
+         {
+          "at": "D",
+          "from": "E",
+          "to": "F",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "2",
+        "4",
+        "6",
+        "8",
+        "16"
+       ],
+       "answer": 0,
+       "narration": "Dik kenara t diyelim; bütün alanları t ile yazacağız.",
+       "steps": [
+        {
+         "text": "$|DE| = |DF| = t$: $A(EFD) = \\frac{t^2}{2}$",
+         "narration": "EFD, D'de dik ikizkenar üçgen. Dik kenarlar t ise alanı t kare bölü 2."
+        },
+        {
+         "text": "$A(ABCD) = 8 \\cdot \\frac{t^2}{2} = 4t^2$",
+         "narration": "Karenin alanı bunun 8 katı: 4t kare."
+        },
+        {
+         "text": "$|EF| = t\\sqrt{2} \\Rightarrow A(EFGH) = 2t^2$",
+         "narration": "EF, ikizkenar dik üçgenin hipotenüsü: t kök 2. Üzerindeki karenin alanı t kök 2'nin karesi, 2t kare."
+        },
+        {
+         "text": "$\\frac{4t^2}{2t^2} = 2$. Cevap **A**.",
+         "narration": "Oran 4t kare bölü 2t kare, 2. Cevap A. D şıkkındaki 8, verilen oranın kendisidir; o, üçgenle karenin oranıydı.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM KPSS Lisans 2017'deki iki kare ve ikizkenar dik üçgenin alan oranı kalıbı örnek alındı; şekil ve oran bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Dik kenarları 6 ve 8 birim olan bir dik üçgende hipotenüse ait yükseklik kaç birimdir?",
+       "options": [
+        "$\\frac{12}{5}$",
+        "$4$",
+        "$\\frac{9}{2}$",
+        "$\\frac{24}{5}$",
+        "$5$"
+       ],
+       "answer": 3,
+       "narration": "Alanı iki yoldan yazacağız: dik kenarlarla ve hipotenüsle.",
+       "steps": [
+        {
+         "text": "Hipotenüs $\\sqrt{6^2 + 8^2} = 10$",
+         "narration": "Hipotenüs, 6, 8, 10 üçlüsünden 10 birim."
+        },
+        {
+         "text": "$10 \\cdot h = 6 \\cdot 8 \\Rightarrow h = \\frac{48}{10} = \\frac{24}{5}$. Cevap **D**.",
+         "narration": "Hipotenüs çarpı yükseklik, dik kenarların çarpımına eşit: 10 çarpı h, 48; h, 24 bölü 5, yani 4 tam beşte dört. Cevap D. Bu yükseklik iki dik kenardan da kısa olmalı; E şıkkındaki 5, hipotenüsün yarısıdır, o kenarortaydır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki hipotenüse ait yüksekliği alanla buldurma kalıbı örnek alındı; kenarlar bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ALAN_03",
+    "alsoTeaches": [
+     "KPSS_ONLISANS:GEO_UCGEN_ALAN_03"
+    ],
+    "title": "Eşkenar üçgende alan",
+    "narration": "Eşkenar üçgenin alanı yalnız kenarına bağlıdır.",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Eşkenar üçgende alan",
+      "items": [
+       "Kenar $a$ ise yükseklik $\\frac{a\\sqrt{3}}{2}$, alan $\\frac{a^2\\sqrt{3}}{4}$.",
+       "Yüksekliği 30-60-90 üçgeninden okursun: kenarın yarısının $\\sqrt{3}$ katı."
+      ],
+      "narration": "Eşkenar üçgenin kenarı a ise yüksekliği a kök 3 bölü 2'dir; bunu yükseklikle ayrılan 30-60-90 üçgeninden okursun. Alan, taban çarpı yükseklik bölü 2'den: a kare kök 3 bölü 4."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $ABC$ eşkenar üçgen, $DBC$ ise $|DB| = |DC|$ olan bir ikizkenar dik üçgendir; $|BC| = a$'dır. Taralı bölgenin alanı $9(\\sqrt{3} - 1)$ birimkare olduğuna göre $a$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         6.9,
+         6.096152422706632
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           3,
+           5.2
+          ],
+          "label": "A"
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "label": "B"
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           0
+          ],
+          "label": "C"
+         },
+         {
+          "id": "D",
+          "at": [
+           3,
+           3
+          ],
+          "label": "D"
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "a"
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "D",
+          "to": "B",
+          "ticks": 1
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "ticks": 1
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "B",
+           "D",
+           "C"
+          ],
+          "id": "tarali",
+          "shade": 2
+         }
+        ],
+        "angles": [
+         {
+          "at": "D",
+          "from": "B",
+          "to": "C",
+          "right": true
+         }
+        ]
+       },
+       "options": [
+        "3",
+        "6",
+        "9",
+        "$3\\sqrt{3}$",
+        "$6\\sqrt{3}$"
+       ],
+       "answer": 1,
+       "narration": "Taralı bölge, eşkenar üçgenden ikizkenar dik üçgenin çıkarılmışı.",
+       "steps": [
+        {
+         "text": "$A(ABC) = \\frac{a^2\\sqrt{3}}{4}$",
+         "narration": "Eşkenar üçgenin alanı a kare kök 3 bölü 4."
+        },
+        {
+         "text": "$DBC$: hipotenüs $a$, dik kenar $\\frac{a}{\\sqrt{2}}$; $A = \\frac{a^2}{4}$",
+         "narration": "DBC ikizkenar dik; hipotenüsü a, dik kenarları a bölü kök 2. Alanı, dik kenarın karesinin yarısı: a kare bölü 4."
+        },
+        {
+         "text": "$\\frac{a^2\\sqrt{3}}{4} - \\frac{a^2}{4} = \\frac{a^2(\\sqrt{3} - 1)}{4} = 9(\\sqrt{3} - 1)$",
+         "narration": "Taralı alan, farkları: a kare çarpı kök 3 eksi 1, bölü 4. Bu, 9 çarpı kök 3 eksi 1'e eşit."
+        },
+        {
+         "text": "$a^2 = 36 \\Rightarrow a = 6$. Cevap **B**.",
+         "narration": "Kök 3 eksi 1'ler sadeleşir: a kare bölü 4, 9; a kare 36, a 6. Cevap B. C şıkkındaki 9, a kare bölü 4'tür; işlemi yarıda bırakma.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM KPSS Lisans 2010'daki eşkenar üçgenden ikizkenar dik üçgen çıkarılmış taralı alan kalıbı örnek alındı; alan bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "visual",
+      "title": "İç noktadan kenarlara",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        6.9,
+        6.096152422706632
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          3,
+          5.2
+         ],
+         "label": "A"
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "label": "B"
+        },
+        {
+         "id": "C",
+         "at": [
+          6,
+          0
+         ],
+         "label": "C"
+        },
+        {
+         "id": "P",
+         "at": [
+          2.6,
+          1.6
+         ],
+         "label": "P"
+        },
+        {
+         "id": "T1",
+         "at": [
+          2.6,
+          0.0
+         ],
+         "label": ""
+        },
+        {
+         "id": "T2",
+         "at": [
+          4.46,
+          2.67
+         ],
+         "label": ""
+        },
+        {
+         "id": "T3",
+         "at": [
+          1.34,
+          2.33
+         ],
+         "label": ""
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "A"
+        },
+        {
+         "from": "P",
+         "to": "A",
+         "dashed": true
+        },
+        {
+         "from": "P",
+         "to": "B",
+         "dashed": true
+        },
+        {
+         "from": "P",
+         "to": "C",
+         "dashed": true
+        },
+        {
+         "from": "P",
+         "to": "T1",
+         "label": "d1"
+        },
+        {
+         "from": "P",
+         "to": "T2",
+         "label": "d2"
+        },
+        {
+         "from": "P",
+         "to": "T3",
+         "label": "d3"
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "P",
+          "B",
+          "C"
+         ],
+         "id": "p1",
+         "shade": 2
+        },
+        {
+         "points": [
+          "P",
+          "C",
+          "A"
+         ],
+         "id": "p2"
+        },
+        {
+         "points": [
+          "P",
+          "A",
+          "B"
+         ],
+         "id": "p3",
+         "shade": 3
+        }
+       ],
+       "angles": [
+        {
+         "at": "T1",
+         "from": "C",
+         "to": "P",
+         "right": true
+        },
+        {
+         "at": "T2",
+         "from": "A",
+         "to": "P",
+         "right": true
+        },
+        {
+         "at": "T3",
+         "from": "B",
+         "to": "P",
+         "right": true
+        }
+       ]
+      },
+      "narration": "Eşkenar üçgenin içinde bir P noktası alalım ve kenarlara uzaklıklarına bakalım.",
+      "beats": [
+       {
+        "narration": "P'yi köşelere bağlayınca eşkenar üçgen üç parçaya ayrılıyor.",
+        "focus": [
+         "p1",
+         "p2",
+         "p3"
+        ]
+       },
+       {
+        "narration": "Her parçanın tabanı üçgenin bir kenarı, yani a; yüksekliği P'nin o kenara uzaklığı: d bir, d iki, d üç.",
+        "focus": [
+         "PT1",
+         "PT2",
+         "PT3"
+        ]
+       },
+       {
+        "narration": "Üç parçanın alanlarını toplayalım: a çarpı d'lerin toplamı, bölü 2. Bu, bütün üçgenin alanı a çarpı h bölü 2'ye eşit. Demek ki uzaklıkların toplamı yüksekliğe eşit; P nerede olursa olsun.",
+        "focus": [
+         "p1",
+         "p2",
+         "p3"
+        ],
+        "note": "d1 + d2 + d3 = h"
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Bir eşkenar üçgenin içindeki bir noktanın kenarlara uzaklıkları 2, 3 ve 4 birimdir. Buna göre bu üçgenin alanı kaç birimkaredir?",
+       "options": [
+        "$9\\sqrt{3}$",
+        "$18\\sqrt{3}$",
+        "$27\\sqrt{3}$",
+        "$36\\sqrt{3}$",
+        "$81$"
+       ],
+       "answer": 2,
+       "narration": "Uzaklıkların toplamı yüksekliği verir; yükseklikten kenara, kenardan alana geçeceğiz.",
+       "steps": [
+        {
+         "text": "$h = 2 + 3 + 4 = 9$",
+         "narration": "İç noktanın kenarlara uzaklıkları toplamı yüksekliğe eşit: 2 artı 3 artı 4, 9."
+        },
+        {
+         "text": "$\\frac{a\\sqrt{3}}{2} = 9 \\Rightarrow a = \\frac{18}{\\sqrt{3}} = 6\\sqrt{3}$",
+         "narration": "Yükseklik a kök 3 bölü 2: bu 9'a eşit. a, 18 bölü kök 3, yani 6 kök 3."
+        },
+        {
+         "text": "$A = \\frac{6\\sqrt{3} \\cdot 9}{2} = 27\\sqrt{3}$. Cevap **C**.",
+         "narration": "Alan, taban çarpı yükseklik bölü 2: 6 kök 3 çarpı 9 bölü 2, 27 kök 3 birimkare. Cevap C. B şıkkındaki 18 kök 3, ikiye bölmeyi unutmaktır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki eşkenar üçgende iç noktanın kenarlara uzaklıkları kalıbı örnek alındı; uzaklıklar bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ALAN_04",
+    "alsoTeaches": [
+     "KPSS_ONLISANS:GEO_UCGEN_ALAN_04"
+    ],
+    "title": "Alan oranları",
+    "narration": "Yüksekliği aynı olan üçgenlerin alanları, tabanlarıyla orantılıdır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Ortak yükseklik",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        8.4,
+        5.4
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          1.5,
+          4.5
+         ],
+         "label": "A"
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "label": "B"
+        },
+        {
+         "id": "C",
+         "at": [
+          7.5,
+          0
+         ],
+         "label": "C"
+        },
+        {
+         "id": "D",
+         "at": [
+          3,
+          0
+         ],
+         "label": "D"
+        },
+        {
+         "id": "H",
+         "at": [
+          1.5,
+          0
+         ],
+         "label": "H"
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "label": "2k"
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "label": "3k"
+        },
+        {
+         "from": "C",
+         "to": "A"
+        },
+        {
+         "from": "A",
+         "to": "D"
+        },
+        {
+         "from": "A",
+         "to": "H",
+         "label": "h",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "D"
+         ],
+         "id": "sol",
+         "label": "2S",
+         "shade": 2
+        },
+        {
+         "points": [
+          "A",
+          "D",
+          "C"
+         ],
+         "id": "sag",
+         "label": "3S"
+        }
+       ],
+       "angles": [
+        {
+         "at": "H",
+         "from": "D",
+         "to": "A",
+         "right": true
+        }
+       ]
+      },
+      "narration": "A'dan BC'ye inen yükseklik iki üçgen için de aynı.",
+      "beats": [
+       {
+        "narration": "D, BC'yi 2k ve 3k parçalarına ayırıyor.",
+        "focus": [
+         "BD",
+         "DC"
+        ]
+       },
+       {
+        "narration": "ABD ile ADC'nin yüksekliği ortak: A'dan BC'ye inen h.",
+        "focus": [
+         "AH"
+        ]
+       },
+       {
+        "narration": "Yükseklik aynı olunca alanlar tabanlarla orantılı: 2S ve 3S.",
+        "focus": [
+         "sol",
+         "sag"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Alan oranları",
+      "items": [
+       "Yükseklikleri eşit üçgenlerin alanları oranı, **tabanları** oranına eşittir.",
+       "Tabanları eşit üçgenlerin alanları oranı, **yükseklikleri** oranına eşittir.",
+       "Kenarortay üçgeni alanı **eşit** iki parçaya böler."
+      ],
+      "narration": "Yükseklikleri aynı olan iki üçgenin alanları oranı, tabanlarının oranına eşittir; tabanları aynıysa yüksekliklerin oranına. Özel bir durum: kenarortay karşı kenarı ikiye böldüğü için üçgeni alanı eşit iki parçaya ayırır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $D$ noktası $[BC]$ üzerindedir. $|BD| : |DC| = 2 : 3$ ve $A(ADC) = 18$ birimkare olduğuna göre $A(ABC)$ kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         8.4,
+         5.4
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           1.5,
+           4.5
+          ],
+          "label": "A"
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "label": "B"
+         },
+         {
+          "id": "C",
+          "at": [
+           7.5,
+           0
+          ],
+          "label": "C"
+         },
+         {
+          "id": "D",
+          "at": [
+           3,
+           0
+          ],
+          "label": "D"
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "label": "2k"
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "label": "3k"
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "A",
+          "to": "D"
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "D",
+           "C"
+          ],
+          "id": "sag",
+          "label": "18",
+          "shade": 2
+         }
+        ]
+       },
+       "options": [
+        "24",
+        "27",
+        "28",
+        "30",
+        "45"
+       ],
+       "answer": 3,
+       "narration": "ABD ile ADC'nin yüksekliği ortak; alanlar tabanlarla orantılı.",
+       "steps": [
+        {
+         "text": "$A(ABD) : A(ADC) = 2 : 3$",
+         "narration": "İki üçgenin yüksekliği aynı; alanlar tabanlar gibi 2'ye 3."
+        },
+        {
+         "text": "$3S = 18 \\Rightarrow S = 6$; $A(ABD) = 12$",
+         "narration": "ADC'nin alanı 3S, 18; S, 6. ABD'nin alanı 2S, 12."
+        },
+        {
+         "text": "$A(ABC) = 12 + 18 = 30$. Cevap **D**.",
+         "narration": "Bütün üçgen 12 artı 18, 30 birimkare. Cevap D. B şıkkındaki 27, oranı ters kurup ABD'yi 9 sanmaktır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki ortak yükseklikli üçgenlerde alan oranı kalıbı örnek alındı; oran ve alan bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki $ABCD$ karesinde $K$, $L$, $M$ ve $N$ kenarların orta noktalarıdır. Her köşeden bir orta noktaya çizilen doğrular ortada bir kare oluşturmuştur. Boyalı karenin alanının $ABCD$ karesinin alanına oranı kaçtır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         4.9,
+         4.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "label": "A"
+         },
+         {
+          "id": "B",
+          "at": [
+           4,
+           0
+          ],
+          "label": "B"
+         },
+         {
+          "id": "C",
+          "at": [
+           4,
+           4
+          ],
+          "label": "C"
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           4
+          ],
+          "label": "D"
+         },
+         {
+          "id": "K",
+          "at": [
+           2.0,
+           0.0
+          ],
+          "label": "K"
+         },
+         {
+          "id": "L",
+          "at": [
+           4.0,
+           2.0
+          ],
+          "label": "L"
+         },
+         {
+          "id": "M",
+          "at": [
+           2.0,
+           4.0
+          ],
+          "label": "M"
+         },
+         {
+          "id": "N",
+          "at": [
+           0.0,
+           2.0
+          ],
+          "label": "N"
+         },
+         {
+          "id": "P1",
+          "at": [
+           1.6,
+           0.8
+          ],
+          "label": ""
+         },
+         {
+          "id": "P2",
+          "at": [
+           3.2,
+           1.6
+          ],
+          "label": ""
+         },
+         {
+          "id": "P3",
+          "at": [
+           2.4,
+           3.2
+          ],
+          "label": ""
+         },
+         {
+          "id": "P4",
+          "at": [
+           0.8,
+           2.4
+          ],
+          "label": ""
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "K",
+          "ticks": 1
+         },
+         {
+          "from": "K",
+          "to": "B",
+          "ticks": 1
+         },
+         {
+          "from": "B",
+          "to": "L",
+          "ticks": 1
+         },
+         {
+          "from": "L",
+          "to": "C",
+          "ticks": 1
+         },
+         {
+          "from": "C",
+          "to": "M",
+          "ticks": 1
+         },
+         {
+          "from": "M",
+          "to": "D",
+          "ticks": 1
+         },
+         {
+          "from": "D",
+          "to": "N",
+          "ticks": 1
+         },
+         {
+          "from": "N",
+          "to": "A",
+          "ticks": 1
+         },
+         {
+          "from": "A",
+          "to": "L"
+         },
+         {
+          "from": "B",
+          "to": "M"
+         },
+         {
+          "from": "C",
+          "to": "N"
+         },
+         {
+          "from": "D",
+          "to": "K"
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "P1",
+           "P2",
+           "P3",
+           "P4"
+          ],
+          "id": "ic",
+          "shade": 3
+         }
+        ]
+       },
+       "options": [
+        "$\\frac{1}{5}$",
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{3}$",
+        "$\\frac{2}{5}$",
+        "$\\frac{1}{2}$"
+       ],
+       "answer": 0,
+       "narration": "Karenin kenarına 2a diyelim. AL ile BM birbirine dik; ABL dik üçgeninde Öklid işimizi görür.",
+       "steps": [
+        {
+         "text": "$ABL$: $|AB| = 2a$, $|BL| = a$, $|AL| = a\\sqrt{5}$",
+         "narration": "ABL dik üçgeninde AB 2a, BL a. Pisagor: AL, a kök 5."
+        },
+        {
+         "text": "$[BM] \\perp [AL]$: $|BP| = \\frac{2a \\cdot a}{a\\sqrt{5}} = \\frac{2a}{\\sqrt{5}}$, $|AP| = \\frac{(2a)^2}{a\\sqrt{5}} = \\frac{4a}{\\sqrt{5}}$",
+         "narration": "BM, AL'ye dik; P kesişim noktası. BP, hipotenüse ait yükseklik: dik kenarların çarpımı bölü hipotenüs, 2a bölü kök 5. AP, Öklid'den: AB kare bölü AL, 4a bölü kök 5."
+        },
+        {
+         "text": "İç karenin kenarı $\\frac{4a}{\\sqrt{5}} - \\frac{2a}{\\sqrt{5}} = \\frac{2a}{\\sqrt{5}}$",
+         "narration": "Simetri yüzünden AL üzerindeki öbür kesişim noktası A'dan 2a bölü kök 5 uzaklıkta. İç karenin kenarı, ikisinin farkı: 2a bölü kök 5."
+        },
+        {
+         "text": "$\\frac{4a^2/5}{4a^2} = \\frac{1}{5}$. Cevap **A**.",
+         "narration": "İç karenin alanı 4a kare bölü 5; büyük karenin alanı 4a kare. Oran beşte bir. Cevap A. Göz kararı dörtte bir demek B şıkkının tuzağıdır; boyalı kare göründüğünden küçüktür.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM KPSS Lisans 2018'deki karede orta noktalara çizilen doğruların oluşturduğu kare kalıbı örnek alındı; şekil dört doğruyla bu ders için yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ALAN_05",
+    "title": "Benzer üçgenlerde alan",
+    "narration": "Benzerlik oranı k ise alanların oranı k karedir; dördüncü derste bunu dört eş üçgenle görmüştük.",
+    "cards": [
+     {
+      "kind": "mistake",
+      "title": "Oran kenara, kare alana",
+      "wrong": "Benzerlik oranı $\\frac{1}{3}$ ise alanların oranı da $\\frac{1}{3}$'tür.",
+      "right": "Alanların oranı benzerlik oranının **karesidir**: $\\frac{1}{9}$.",
+      "why": "Alan iki uzunluğun çarpımıdır; ikisi de k ile çarpılır.",
+      "narration": "Sık yapılan bir hata: benzerlik oranını alana da aynen uygulamak. Alan, taban ile yüksekliğin çarpımıdır; ikisi de k ile çarpıldığı için alan k kare ile çarpılır. Oran üçte birse alanlar dokuzda birdir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $[DE] \\parallel [BC]$, $|AD| = 3$ birim ve $|DB| = 6$ birimdir. $A(ADE) = 5$ birimkare olduğuna göre $DECB$ dörtgeninin alanı kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         8.4,
+         6.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2.5,
+           6
+          ],
+          "label": "A"
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "label": "B"
+         },
+         {
+          "id": "C",
+          "at": [
+           7.5,
+           0
+          ],
+          "label": "C"
+         },
+         {
+          "id": "D",
+          "at": [
+           1.67,
+           4.0
+          ],
+          "label": "D"
+         },
+         {
+          "id": "E",
+          "at": [
+           4.17,
+           4.0
+          ],
+          "label": "E"
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "D",
+          "label": "3"
+         },
+         {
+          "from": "D",
+          "to": "B",
+          "label": "6"
+         },
+         {
+          "from": "B",
+          "to": "C"
+         },
+         {
+          "from": "C",
+          "to": "E"
+         },
+         {
+          "from": "E",
+          "to": "A"
+         },
+         {
+          "from": "D",
+          "to": "E"
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "D",
+           "E"
+          ],
+          "id": "ust",
+          "label": "5",
+          "shade": 3
+         },
+         {
+          "points": [
+           "D",
+           "E",
+           "C",
+           "B"
+          ],
+          "id": "alt",
+          "shade": 2
+         }
+        ]
+       },
+       "options": [
+        "20",
+        "25",
+        "30",
+        "36",
+        "40"
+       ],
+       "answer": 4,
+       "narration": "ADE ile ABC benzer; oranı tüm kenara göre kuralım.",
+       "steps": [
+        {
+         "text": "$k = \\frac{|AD|}{|AB|} = \\frac{3}{9} = \\frac{1}{3}$",
+         "narration": "AB, 3 artı 6, 9. Benzerlik oranı 3 bölü 9, üçte bir."
+        },
+        {
+         "text": "$A(ABC) = 5 \\cdot 9 = 45$",
+         "narration": "Alanların oranı k kare, dokuzda bir: ABC'nin alanı 5'in 9 katı, 45."
+        },
+        {
+         "text": "$A(DECB) = 45 - 5 = 40$. Cevap **E**.",
+         "narration": "Dörtgen, büyük üçgenden küçüğün çıkarılmışı: 45 eksi 5, 40 birimkare. Cevap E. C şıkkındaki 30, oranı parçalara göre 1'e 2 alıp karesini almaktır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki paralelle ayrılan üçgende alan kalıbı örnek alındı; uzunluklar ve alan bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ALAN_06",
+    "title": "Üçgende alan paylaşımı",
+    "narration": "Bazı çizgiler alanı her zaman aynı biçimde paylaştırır: kenarortay ikiye, ağırlık merkezi altıya böler.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Kayan köşe, sabit alan",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.9,
+        -0.9,
+        12.9,
+        7.9
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "label": "A"
+        },
+        {
+         "id": "B",
+         "at": [
+          12,
+          0
+         ],
+         "label": "B"
+        },
+        {
+         "id": "C",
+         "at": [
+          12,
+          7
+         ],
+         "label": "C"
+        },
+        {
+         "id": "D",
+         "at": [
+          0,
+          7
+         ],
+         "label": "D"
+        },
+        {
+         "id": "E",
+         "at": [
+          3,
+          7
+         ],
+         "moveTo": [
+          9.5,
+          7
+         ],
+         "label": "E"
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "D"
+        },
+        {
+         "from": "D",
+         "to": "A"
+        },
+        {
+         "from": "A",
+         "to": "E"
+        },
+        {
+         "from": "E",
+         "to": "B"
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "E"
+         ],
+         "id": "abe",
+         "label": "S",
+         "shade": 2
+        }
+       ]
+      },
+      "narration": "Bir dikdörtgen ve tabanı AB olan bir üçgen.",
+      "beats": [
+       {
+        "narration": "ABE üçgeninin tabanı AB; E, karşı kenar DC üzerinde.",
+        "focus": [
+         "abe"
+        ]
+       },
+       {
+        "narration": "E'yi DC üzerinde kaydıralım.",
+        "show": [
+         "move-E"
+        ],
+        "focus": [
+         "abe"
+        ]
+       },
+       {
+        "narration": "Taban AB, yükseklik BC; ikisi de değişmiyor. ABE'nin alanı hep dikdörtgenin yarısı.",
+        "focus": [
+         "AB",
+         "BC"
+        ],
+        "note": "A(ABE) = A(ABCD) / 2"
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Alan paylaşımı",
+      "items": [
+       "Dikdörtgende karşı kenardaki bir noktayla kurulan üçgen: alan dikdörtgenin **yarısı**.",
+       "Kenarortay alanı ikiye, ağırlık merkezi **altı eşit** parçaya böler.",
+       "$G$'nin köşelerle oluşturduğu üç üçgen: her biri bütünün **üçte biri**."
+      ],
+      "narration": "Bir dikdörtgende bir kenar ile karşı kenardaki herhangi bir nokta bir üçgen kurar; bu üçgenin alanı dikdörtgenin yarısıdır, nokta nerede olursa olsun. Üçgende kenarortay alanı ikiye böler; ağırlık merkezi ise altı eşit parçaya. G'yi köşelere birleştirirsen oluşan üç üçgenin her biri bütünün üçte biridir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekildeki $ABCD$ dikdörtgeninde $|AB| = 12$ birim, $|BC| = 7$ birim ve $E$ noktası $[DC]$ üzerindedir. $|DE| = 5$ birim olduğuna göre $ABE$ üçgeninin alanı kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         12.9,
+         7.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "label": "A"
+         },
+         {
+          "id": "B",
+          "at": [
+           12,
+           0
+          ],
+          "label": "B"
+         },
+         {
+          "id": "C",
+          "at": [
+           12,
+           7
+          ],
+          "label": "C"
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           7
+          ],
+          "label": "D"
+         },
+         {
+          "id": "E",
+          "at": [
+           5,
+           7
+          ],
+          "label": "E"
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "12"
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "7"
+         },
+         {
+          "from": "C",
+          "to": "E"
+         },
+         {
+          "from": "E",
+          "to": "D",
+          "label": "5"
+         },
+         {
+          "from": "D",
+          "to": "A"
+         },
+         {
+          "from": "A",
+          "to": "E"
+         },
+         {
+          "from": "E",
+          "to": "B"
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "B",
+           "E"
+          ],
+          "id": "abe",
+          "shade": 2
+         }
+        ]
+       },
+       "options": [
+        "35",
+        "40",
+        "42",
+        "48",
+        "84"
+       ],
+       "answer": 2,
+       "narration": "ABE'nin tabanı AB, yüksekliği BC. DE bilgisi işe yaramıyor.",
+       "steps": [
+        {
+         "text": "Taban $|AB| = 12$, yükseklik $|BC| = 7$",
+         "narration": "Taban AB, 12 birim. E, DC üzerinde; AB'ye uzaklığı dikdörtgenin yüksekliği, 7."
+        },
+        {
+         "text": "$A(ABE) = \\frac{12 \\cdot 7}{2} = 42$. Cevap **C**.",
+         "narration": "Alan 12 çarpı 7 bölü 2, 42 birimkare; dikdörtgenin tam yarısı. Cevap C. DE'nin 5 olması sonucu değiştirmez; E nerede olursa olsun alan aynıdır. E şıkkındaki 84 dikdörtgenin tamamıdır.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM KPSS Lisans 2010'daki dikdörtgende kenar üzerindeki noktayla alan paylaşımı kalıbı örnek alındı; uzunluklar bu ders için seçildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $G$, $ABC$ üçgeninin ağırlık merkezi ve $D$, $[BC]$'nin orta noktasıdır. $A(ABC) = 54$ birimkare olduğuna göre $A(GBD)$ kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.9,
+         7.9,
+         5.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           1.6,
+           5
+          ],
+          "label": "A"
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "label": "B"
+         },
+         {
+          "id": "C",
+          "at": [
+           7,
+           0
+          ],
+          "label": "C"
+         },
+         {
+          "id": "D",
+          "at": [
+           3.5,
+           0.0
+          ],
+          "label": "D"
+         },
+         {
+          "id": "G",
+          "at": [
+           2.87,
+           1.67
+          ],
+          "label": "G"
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B"
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "ticks": 1
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "ticks": 1
+         },
+         {
+          "from": "C",
+          "to": "A"
+         },
+         {
+          "from": "A",
+          "to": "G"
+         },
+         {
+          "from": "G",
+          "to": "D"
+         },
+         {
+          "from": "B",
+          "to": "G"
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "G",
+           "B",
+           "D"
+          ],
+          "id": "gbd",
+          "shade": 3
+         }
+        ]
+       },
+       "options": [
+        "6",
+        "9",
+        "12",
+        "18",
+        "27"
+       ],
+       "answer": 1,
+       "narration": "Kenarortaylar üçgeni altı eşit parçaya böler; GBD bunlardan biri.",
+       "steps": [
+        {
+         "text": "$A(GBD) = \\frac{54}{6}$",
+         "narration": "Üç kenarortay çizilince altı eşit üçgen oluşur; GBD bunlardan biri."
+        },
+        {
+         "text": "$= 9$. Cevap **B**.",
+         "narration": "54 bölü 6, 9 birimkare. Cevap B. D şıkkındaki 18, GBC'dir, yani bütünün üçte biri; E şıkkındaki 27 ise ABD'dir, yarısı.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki ağırlık merkezinde alan paylaşımı kalıbı örnek alındı; alan bu ders için seçildi."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Alan = taban · yükseklik / 2.",
+    "Aynı taban, aynı yükseklik: aynı alan.",
+    "Dik üçgende dik kenarların çarpımının yarısı.",
+    "Eşkenar üçgen: a²√3/4.",
+    "Ortak yükseklikte alanlar tabanlarla orantılı.",
+    "Ağırlık merkezi altı eşit parça verir."
+   ],
+   "warnings": [
+    "Yükseklik **o tabana** ait olmalı.",
+    "Benzerlikte alan oranı **k²**.",
+    "Gereksiz bilgiye takılma: **E nerede olursa olsun**."
+   ],
+   "narration": "Hadi toparlayalım. Üçgenin alanı taban çarpı o tabana ait yükseklik bölü 2'dir; taban ve yükseklik aynı kaldıkça biçim değişse de alan değişmez. Dik üçgende dik kenarların çarpımının yarısı, eşkenar üçgende a kare kök 3 bölü 4. Ortak yükseklikteki üçgenlerin alanları tabanlarıyla orantılıdır; benzer üçgenlerde alan oranı k karedir. Kenarortay alanı ikiye, ağırlık merkezi altıya böler. Bir sonraki derste çokgenlere geçiyoruz."
+  }
+ },
+ "short": {
+  "hook": "Biçim değişir, alan değişmez",
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "Alan = **taban · yükseklik** / 2"
+   },
+   {
+    "kind": "term",
+    "term": "Eşkenar üçgen",
+    "definition": "$\\frac{a^2\\sqrt{3}}{4}$"
+   },
+   {
+    "kind": "warning",
+    "text": "Benzerlikte alan oranı **k²**."
+   }
+  ],
+  "summary": [
+   "Taban · yükseklik / 2",
+   "Ortak yükseklik: taban oranı",
+   "G: altı eşit parça"
+  ],
+  "rounds": [
+   {
+    "sentence": "Tepe paralel kayıyor",
+    "question": "Alan?",
+    "choices": [
+     "Aynı",
+     "Büyür"
+    ],
+    "answer": 0,
+    "why": "Taban ve yükseklik **aynı**."
+   },
+   {
+    "sentence": "Tabanlar 2 : 3",
+    "question": "Alanlar?",
+    "choices": [
+     "2 : 3",
+     "4 : 9"
+    ],
+    "answer": 0,
+    "why": "Yükseklik **ortak**."
+   },
+   {
+    "sentence": "Benzerlik oranı 1/3",
+    "question": "Alan oranı?",
+    "choices": [
+     "1/9",
+     "1/3"
+    ],
+    "answer": 0,
+    "why": "Oranın **karesi**."
+   }
+  ]
+ },
+ "camp": {
+  "id": "kpss-geometri-kampi",
+  "name": "KPSS Geometri kampı",
+  "number": 7,
+  "total": 14,
+  "previous": "Dik Üçgen ve Trigonometri",
+  "next": "Çokgenler",
+  "promise": "Lisans, önlisans ve ortaöğretim KPSS Geometrisinin bütün konuları, çözümlü sorularla.",
+  "task": {
+   "items": [
+    "Bu dersteki **10 soruyu** kâğıtta şekilleri çizerek yeniden çöz.",
+    "Kareli kâğıtta tabanı ve yüksekliği aynı **üç farklı** üçgen çiz; alanlarını say.",
+    "Uygulamada KPSS Üçgenin Alanı testinden **20 soru** çöz."
+   ],
+   "narration": "Şimdi sıra sende, kamp görevin hazır. Bu dersteki 10 soruyu kâğıtta şekilleri çizerek yeniden çöz. Sonra kareli kâğıtta tabanı ve yüksekliği aynı üç farklı üçgen çiz ve alanlarını kareleri sayarak bul. Ardından uygulamada yirmi soru çöz. Bir sonraki derste çokgenlere geçiyoruz."
+  }
+ }
+}

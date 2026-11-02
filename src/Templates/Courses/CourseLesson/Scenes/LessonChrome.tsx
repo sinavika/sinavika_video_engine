@@ -80,14 +80,18 @@ export const StudioHeading: React.FC<{badge?: string; title?: string; size?: num
 	);
 };
 
-/** The bar at the top of every scene of the lesson: lesson, topic, and the logo. In the studio layout, the logo only. */
+/**
+ * The bar at the top of every scene of the lesson: lesson, topic, and the logo. In the studio layout (camp lessons),
+ * the logo only, in its one colour: charcoal on the light pages, so the lesson's colour stays their only accent
+ * (owner, 1 Nov 2026: orange beside the lesson colour competed with it).
+ */
 export const LessonChrome: React.FC<{script: LessonScript}> = ({script}) => {
 	const {u} = useVideoLayout();
 	const studio = useStudio();
 	if (studio) {
 		return (
 			<ChromeBar style={{justifyContent: 'flex-end'}}>
-				<BrandMark />
+				<BrandMark mono />
 			</ChromeBar>
 		);
 	}

@@ -1,6 +1,6 @@
 # YouTube metni: TYT Kimya kampı · Ders 6 · Kimyanın Temel Kanunları
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Kimya/06_Kimyanin_Temel_Kanunlari/Kimyanin_Temel_Kanunlari_YouTube.mp4` (4K) · Kapak: `Kimyanin_Temel_Kanunlari_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Kimya/06_Kimyanin_Temel_Kanunlari/Kimyanin_Temel_Kanunlari_YouTube.mp4` (4K) · Kapak: `Kimyanin_Temel_Kanunlari_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

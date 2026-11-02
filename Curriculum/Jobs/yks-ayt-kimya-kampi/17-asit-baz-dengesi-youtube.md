@@ -1,6 +1,6 @@
 # YouTube metni: AYT Kimya kampı · Ders 17 · Asit-Baz Dengesi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Kimya/17_Asit_Baz_Dengesi/Asit_Baz_Dengesi_YouTube.mp4` (4K) · Kapak: `Asit_Baz_Dengesi_YouTube_Kapak.jpg` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Kimya/17_Asit_Baz_Dengesi/Asit_Baz_Dengesi_YouTube.mp4` (4K) · Kapak: `Asit_Baz_Dengesi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 
