@@ -1,7 +1,8 @@
 import React, {useMemo} from 'react';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor} from '../VisualTimeline';
+import {FigureText} from '../VisualWorld';
 
 type HalfLife = Extract<CourseVisual, {kind: 'halfLife'}>;
 
@@ -51,9 +52,9 @@ export const HalfLifeVisual: React.FC<VisualBoxProps & {visual: HalfLife}> = ({v
 	const runStart = useBeatStartFor('run', 'show') ?? delaySeconds + 1;
 	const fontSize = Math.max(60, 26 / k);
 	const label = (x: number, y: number, text: string, anchor: 'start' | 'middle' | 'end' = 'middle', size = fontSize * 0.8) => (
-		<text x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={800} textAnchor={anchor} stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
+		<FigureText x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={800} textAnchor={anchor} stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
 			{text}
-		</text>
+		</FigureText>
 	);
 	const times = useMemo(() => decayTimes(visual.count, visual.halfLives), [visual.count, visual.halfLives]);
 	// Time in half-lives, stopping at the last one.
@@ -72,7 +73,8 @@ export const HalfLifeVisual: React.FC<VisualBoxProps & {visual: HalfLife}> = ({v
 		.join(' ');
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`} opacity={appear}>
 				<Part id="nuclei">
 					{(look) => (
@@ -123,5 +125,6 @@ export const HalfLifeVisual: React.FC<VisualBoxProps & {visual: HalfLife}> = ({v
 				) : null}
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

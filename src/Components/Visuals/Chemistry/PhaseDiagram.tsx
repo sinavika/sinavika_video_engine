@@ -1,9 +1,10 @@
 import React from 'react';
 import {clamp01, lerp} from '../../../Animations/Motion';
 import {mixColors} from '../../../Themes/ColorPalette';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor} from '../VisualTimeline';
+import {FigureText} from '../VisualWorld';
 
 type PhaseDiagram = Extract<CourseVisual, {kind: 'phaseDiagram'}>;
 type Phase = 'solid' | 'liquid' | 'vapour' | 'gas';
@@ -66,9 +67,9 @@ export const PhaseDiagramVisual: React.FC<VisualBoxProps & {visual: PhaseDiagram
 	const y = (p: number) => lerp(AREA.bottom, AREA.top, p);
 	const names: Record<Phase, string> = {solid: visual.solidLabel, liquid: visual.liquidLabel, vapour: visual.vapourLabel, gas: visual.gasLabel};
 	const text = (px: number, py: number, value: string, anchor: 'start' | 'middle' | 'end' = 'middle', size = labelSize, weight = 800, key?: string | number) => (
-		<text key={key} x={px} y={py} fill={palette.ink} fontSize={size} fontWeight={weight} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={6} paintOrder="stroke">
+		<FigureText key={key} x={px} y={py} fill={palette.ink} fontSize={size} fontWeight={weight} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={6} paintOrder="stroke">
 			{value}
-		</text>
+		</FigureText>
 	);
 
 	const sample = (from: number, to: number, f: (s: number) => [number, number]) => Array.from({length: 81}, (_, index) => f(lerp(from, to, index / 80)));
@@ -96,7 +97,8 @@ export const PhaseDiagramVisual: React.FC<VisualBoxProps & {visual: PhaseDiagram
 	const pointOf = (s: number) => (path?.kind === 'isobar' ? {t: s, p: path.at} : {t: path?.at ?? 0, p: s});
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`} opacity={appear}>
 				<Part id="regions">
 					{(look) => (
@@ -186,5 +188,6 @@ export const PhaseDiagramVisual: React.FC<VisualBoxProps & {visual: PhaseDiagram
 				) : null}
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

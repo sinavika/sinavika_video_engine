@@ -8,8 +8,15 @@
 /** How many frame pixels a text's font size takes: its CSS size times the scale of the transforms above it. */
 export const screenFontSize = (fontSize: number, matrix: {a: number; b: number; c: number; d: number}): number => fontSize * Math.sqrt(Math.abs(matrix.a * matrix.d - matrix.b * matrix.c));
 
-/** The factor a text must grow by to reach the floor (frame pixels); 1 when it is big enough or not drawn at all. */
-export const floorFactor = (shownSize: number, floor: number): number => (shownSize > 0.01 && shownSize < floor - 0.01 ? floor / shownSize : 1);
+/** How close to the floor a text may come and still count as on it. */
+const WITHIN_FLOOR = 0.99;
+
+/**
+ * The factor a text must grow by to reach the floor (frame pixels); 1 when it is big enough, within 1 % of it (the floor
+ * already carries a 2 % margin: a label sized to the floor came out at 19.9 of 20 and was reported as raised), or not
+ * drawn at all.
+ */
+export const floorFactor = (shownSize: number, floor: number): number => (shownSize > 0.01 && shownSize < floor * WITHIN_FLOOR ? floor / shownSize : 1);
 
 /** A raised text: its words and its size before and after, in frame pixels. */
 type RaisedText = {text: string; from: number; to: number};
@@ -46,10 +53,10 @@ const raiseSmallText = (root: Element, floor: number): RaisedText[] => {
 			const partSize = own(part, 'font-size', 'fontSize') && (part === element || (part.textContent ?? '').trim()) ? parseFloat(computed.fontSize) : 0;
 			return {part, size: partSize, target: partSize ? raisedPartSize(partSize, factor, floor / scale) : 0, stroke: own(part, 'stroke-width', 'strokeWidth') && computed.stroke !== 'none' ? parseFloat(computed.strokeWidth) : 0};
 		});
-		const changed = parts.filter(({size: partSize, target}) => partSize > 0 && target > partSize * 1.001);
+		const changed = parts.filter(({size: partSize, target}) => partSize > 0 && target * WITHIN_FLOOR > partSize);
 		if (factor === 1 && changed.length === 0) return;
 		for (const {part, size: partSize, target, stroke} of parts) {
-			if (partSize > 0 && target > partSize * 1.001) part.style.fontSize = `${target}px`;
+			if (partSize > 0 && target * WITHIN_FLOOR > partSize) part.style.fontSize = `${target}px`;
 			// A halo grows with its own part, or with the text when the part has no size of its own.
 			const grow = partSize > 0 ? target / partSize : factor;
 			if (stroke > 0 && grow > 1.001) part.style.strokeWidth = `${stroke * grow}px`;

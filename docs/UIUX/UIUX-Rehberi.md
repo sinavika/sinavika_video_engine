@@ -2,7 +2,7 @@
 
 Web (Next.js + Tailwind), mobil (React Native) ve içerik motoru için ortak arayüz kuralları.
 
-**Tarih:** 29 Ekim 2026
+**Tarih:** 3 Kasım 2026
 **Çizimler:** `Desktop\Sinavika-UIUX3` · `acik/` ve `koyu/` ayrı klasörler (her biri mobil, web-panel, web-site, panolar) · kaynak: `sinavika_video_engine/src/UIUX`
 **Belgeler:** `Modul-Kimligi.md` (renk ve merkezi kod), `Ekran-Envanteri.md` (her çizim ve gerçek rotası), `Adlandirma-Kurallari.md`, `UIUX-Denetim.md`, `BrandIdentity.md`
 
@@ -67,7 +67,8 @@ Modül sırası her yerde aynıdır: Denemeler, Dersler, Testler, Ders Planı, A
 - **Kontrast ve en küçük yazı:**
   - Metin her zeminde en az 4,5:1 olmalı; düğme yazısı da (düğme dolgusu `moduleAction`, modül dışında `action` #C2410C).
   - Küçük turuncu bağlantı `brandDeep` ile yazılır; #EA580C yalnız logo, simge ve büyük başlıkta.
-  - En küçük yazı 12 pt.
+  - Gövde (okuma) yazısı 16 pt, satır aralığı 1,5; alan yazısı 16 pt. En küçük yazı 12 pt.
+  - Anlam yalnız renkle verilmez: doğru/yanlış tik ve çarpıyla, alan hatası uyarı simgesiyle gösterilir.
   - Modül renginde yazı her zaman `ink` ile yazılır (tasarımda `moduleInk`, mobilde `palette.ink`). Bu renk, modülün tonlarında da okunur kalacak kadar koyulaştırılmış modül rengidir.
   - İkon, dolgu ve sekme hapı modülün kendi rengini kullanır.
   - Modül renkli kartın içinde soluk metin kullanılmaz; ikincil metin rengi kullanılır.
@@ -78,7 +79,9 @@ Modül sırası her yerde aynıdır: Denemeler, Dersler, Testler, Ders Planı, A
 
 Kaynak: `src/UIUX/Parts`. Web ve mobil aynı adları ve varyantları kullanır. Halka, çubuk, adım noktaları, anahtar ve odak çizgisi de rengini ekranın bağlamından (`useAccent`) alır.
 
-- **Dokunma alanı:** görünür boy küçük olabilir (`sm` düğme 36 pt), ama uygulamada dokunma alanı en az 44 pt (iOS) ve 48 dp (Android) olur.
+- **Dokunma alanı:** görünür boy küçük olabilir (`sm` düğme 36 pt), ama uygulamada dokunma alanı en az 44 pt (iOS) ve 48 dp (Android) olur; yan yana hedefler arasında en az 8 px boşluk.
+- **Düğme durumları:** `loading` (gönderiliyor: dönen işaret, düğme kilitli, işlem iki kez gitmez), `focus` (web klavye odağı: 2 px koyu halka), `disabled`. Basılı durum dolguyu bir ton koyulaştırır.
+- **Alan:** etiket her zaman görünür; hata alanın hemen altında, uyarı simgesiyle ve o alana özel cümleyle (`Field error`). Şifre alanında göster/gizle.
 
 | Grup | Bileşenler |
 |---|---|
@@ -162,7 +165,10 @@ Yeni ekran eklemek:
 Testler (`tests/UIUX/UIUX.test.ts`) şunları denetler:
 
 - Modül tablosunun eksiksiz olması.
-- Renklerin ayrı ve beyaz yazıya uygun olması.
+- Renklerin ayrı ve beyaz yazıya uygun olması; düğme yazısının iki temada 4,5:1 olması.
+- Denemeler dışındaki modül ekranlarında marka turuncusu olmaması.
+- Gövde yazısının en az 16 pt ve 1,5 satır aralığında, hiçbir yazının 12 pt'nin altında olmaması.
+- SinoAI yazma kutularının altında yapay zekâ notunun olması.
 - Eski adların ("Lens", "Kelime Kartları" vb.) ekranda geçmemesi.
 - Her ekranın TR ve EN olarak hatasız çizilmesi.
 
@@ -175,5 +181,54 @@ Testler (`tests/UIUX/UIUX.test.ts`) şunları denetler:
 - **Dalga 3:** hub slaytlarının veriyle doldurulması (günün adımı ilk slayt), mobil giriş/kayıt akışı, kısaltılmış onboarding, **web onboarding**.
 - **Dalga 4:** modül ekranları (envanterdeki sırayla).
 - **Dalga 5:** koyu tema (her ekranın `koyu/` karşılığı), sakin site sayfaları, boş/hata kalıpları.
+
+## 8. Uygulama kuralları (web ve mobil kodu)
+
+Çizimde görünmeyen ama uygulamada şart olan kurallar. Kaynak: UI UX Pro Max'in 119 UX kuralıyla karşılaştırma (`UX-Kurallari-Karsilastirma-2026-11-03.md`).
+
+**Hareket**
+- Bir ekranda en çok 1–2 öğe hareket eder; sürekli animasyon yalnız yükleniyor göstergesinde.
+- Süreler ortak hareket jetonlarından gelir; gelişte yavaşlayan, gidişte hızlanan eğri.
+- Sistemde "hareketi azalt" açıksa geçişler kısalır, paralaks ve sürekli animasyon durur.
+- Modüller slaytları kendiliğinden dönmez; noktalara dokunarak da geçilir.
+
+**Dokunma ve gezinme**
+- Sistem geri tuşu ve hareketi her ekranda çalışır.
+- Yatay kaydırma yalnız slaytlarda; çekip yenileme yalnız listelerde, çözme ve oynatıcı ekranlarında kapalı.
+- Doğru cevapta hafif, yanlışta uyarı titreşimi.
+- Yüzen sekme çubuğu güvenli alana göre yerleşir; son satır onun altında kalmaz.
+- Web adresi ekranı anlatır; bildirim doğru ekranı açar.
+
+**Klavye ve odak (web)**
+- Her öğeye sekme tuşuyla gelinir, sıra görsel sırayla aynıdır; odak halkası 2 px, sayfaya karşı en az 3:1.
+- Yapışkan üst çubuk ve alt sayfalar odaklanan öğeyi kapatmaz; panelde "ana içeriğe atla" bağlantısı.
+- Oynatıcıda 1–5 şık, Enter devam.
+
+**Formlar**
+- Doğru klavye türü (e-posta, sayı, telefon) ve otomatik doldurma: e-posta, ad, tek seferlik kod.
+- Doğrulama alandan çıkınca yapılır; yazarken uyarılmaz.
+- Gönderiliyor → başarı ya da alan hatası; uzun web formlarında üstte hata özeti ve odak oraya.
+- Girişte şifre yöneticisi ve yapıştırma çalışır; kod kutusu yapıştırılan 6 haneyi dağıtır.
+
+**Metin ve yerleşim**
+- En büyük yazı ayarında ve %200 yakınlaştırmada içerik kesilmez; kutular yazıya göre büyür.
+- Başlık, düğme, hata ve adlar tam görünür; uzun sözcük ve adresler satır içinde kırılır.
+- Okuma metni satırda 45–75 karakter.
+- Web 375, 768, 1024 ve 1440 px'te denenir; yatay kaydırma olmaz.
+
+**Geri bildirim**
+- Kısa işte yükleniyor göstergesi yanıp sönmez; uzun işte sayfa şeklinde iskelet.
+- Kısa bildirim (toast) 3–5 saniye kalır, hata için kullanılmaz.
+- Boş aramada öneri ve ders listesi gösterilir.
+
+**Ekran okuyucu**
+- İkon düğmelerinin adı vardır (zil, profil, geri, kapat, şıklar); figürlerin `alt` metni okunur.
+- Hata ve sayaç değişimi (bildirim sayısı) kısa bir durum mesajıyla duyurulur.
+
+**Yapay zekâ**
+- SinoAI'nin bir yapay zekâ olduğu ve hata yapabileceği yazma kutusunun altında yazar. Bu not ürünün içinde kalır; pazarlama metninde "yapay zekâ destekli" denmez.
+- SinoAI yanıtı parça parça yazılır.
+
+**Performans (web ve mobil ekibi):** görseller WebP ve doğru ölçüde, ekran dışı içerik sonra yüklenir, kod rota başına bölünür, fontlar yazıyı bekletmez, üçüncü taraf betikler sayfayı bekletmez.
 
 Çizimlerdeki sayılar, adlar, yorumlar ve fiyatlar örnektir.

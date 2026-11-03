@@ -15,7 +15,7 @@ Kapak, profil ızgarasında görünen karedir: reels'in ilk karesi ve gönderini
 | Etiket | Başlığın üstünde küçük bir hap: seri, özellik ya da ders. Marka adı yazılmaz, çünkü logo zaten söyler. Ders varsa noktası dersin rengindedir. Yanında sınav hapları (YKS, KPSS) durabilir. |
 | Başlık | Beyaz, Manrope 800. **Punto sabittir:** her kapak biçiminin tek puntosu var. Dikey reels 124 px, 4:5 gönderi 96 px, yatay YouTube 136 px. Kamp serisi kendi tek puntosunu alır (aşağıda). |
 | Yazı yeri | Başlık her kapakta aynı noktadan başlar, etiket olsa da olmasa da. Görsel varsa logonun altından, yoksa ortaya yakın sabit bir yerden. Etiket hep başlığın hemen üstündedir. |
-| Satır | En çok 4 satır. Büyük punto daha az satır alır: dikeyde punto × satır ≤ 576, yatayda ≤ 600, 4:5'te ≤ 400. Satırlar tahminle değil, Manrope'un gerçek harf genişlikleriyle ölçülür ([`TextMeasure.ts`](../src/Images/Components/TextMeasure.ts)). Böylece başlık kesilmez, görsele ya da ders numarasına değmez. |
+| Satır | En çok 4 satır. Büyük punto daha az satır alır: dikeyde punto × satır ≤ 576, yatayda ≤ 600, 4:5'te ≤ 400. Satırlar tahminle değil, Manrope'un gerçek harf genişlikleriyle ölçülür ([`TextMeasure.ts`](../src/Components/Typography/TextMeasure.ts)). Böylece başlık kesilmez, görsele ya da ders numarasına değmez. |
 | Vurgu | Tek kelime ya da ifade, turuncu `#EA580C` üstünde beyaz. Kutu yalnız harflerin boyunda boyanır, üst satırın harf kuyruklarını kapatmaz. Kutu sütunun sol kenarıyla hizalıdır. |
 | Görsel | Varsa başlığın altında: telefon, tarayıcı, kanıt kartı, modül kartları, dev rakam ya da arşiv fotoğrafı. Görsel yoksa başlık kapağın ortasına gelir, kapak boş görünmez. |
 | Kaydır | Carousel kapağında başlığın altında küçük "Kaydır" hapı olabilir. |
@@ -86,7 +86,7 @@ Kapaktan sonraki sayfalar, story'ler ve diğer sosyal görseller de aynı kurala
   - Eskiden 40 karakteri geçen başlık 60'a düşüyordu; aynı carousel'de 72 ve 60 karışıyordu ("Yedi modül" gönderisinde 1. ve 5. sayfa 60, diğerleri 72'ydi).
   - Profil ızgarasının üç karosu (GrowthLine, AppTrio) da başlıklarını tek puntoda yazar; o punto da artık karakter sayısıyla değil, ölçülerek seçilir.
 - **Görseller sabit yerde.** Telefon, tarayıcı, kanıt kartı ve adım numarası, gönderinin en derin yazısının altından başlar. Böylece her sayfada aynı yükseklikte dururlar ve yazıya değmezler.
-- **Ölçüm, tahmin değil.** Satırlar Manrope'un üç ağırlığının (500, 700, 800) gerçek harf genişlikleriyle ölçülür ([`TextMeasure.ts`](../src/Images/Components/TextMeasure.ts)). Puntoyu metnin karakter sayısına göre seçmek yasaktır; bir test bunu kaynak kodda arar.
+- **Ölçüm, tahmin değil.** Satırlar Manrope'un üç ağırlığının (500, 700, 800) gerçek harf genişlikleriyle ölçülür ([`TextMeasure.ts`](../src/Components/Typography/TextMeasure.ts)). Puntoyu metnin karakter sayısına göre seçmek yasaktır; bir test bunu kaynak kodda arar.
 - **Sığmayan yazı reddedilir.** Her sosyal şablonun bir `checkLayout` denetimi vardır: PromoDeck, PromoStory, VideoCover, CampCover, BoldQuestion, GrowthLine ve AppTrio.
   - `resolveImageJob`, render başlamadan önce bu denetimi çalıştırır. Sığmayan yazı küçültülmez ya da kesilmez; iş, neyin kısaltılacağını söyleyen bir hatayla durur. Örnek: "2. sayfa: başlık "…" 56 puntoda 4 satır tutuyor (en çok 3). Kısalt."
   - Kapakta tek satıra sığmayan etiket satırı da reddedilir; eskiden sessizce kesiliyordu.

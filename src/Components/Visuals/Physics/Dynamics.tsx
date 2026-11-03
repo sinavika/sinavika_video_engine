@@ -2,11 +2,11 @@ import React, {useMemo} from 'react';
 import {smooth} from '../../../Animations/Motion';
 import {BRAND_TYPOGRAPHY} from '../../../Configurations/BrandTypography';
 import {withAlpha} from '../../../Themes/Theme';
-import {useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {DYNAMICS_STAGES} from './PhysicsSchema';
 import {useStageClock} from '../VisualTimeline';
-import {H, W} from '../VisualWorld';
+import {H, W, FigureText, fittedScale} from '../VisualWorld';
 
 type Dynamics = Extract<CourseVisual, {kind: 'dynamics'}>;
 
@@ -121,15 +121,16 @@ export const DynamicsVisual: React.FC<VisualBoxProps & {visual: Dynamics}> = ({v
 	if (Math.abs(friction) > 1e-6) arrows.push({label: `${frictionState === 'static' ? 'fs' : 'fk'} = ${number(Math.abs(friction))} N`, dx: along[0] * friction * scale, dy: along[1] * friction * scale, color: '#E4572E'});
 
 	return (
-		<svg width={width} height={height} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{overflow: 'visible', fontFamily: palette.fontBody}}>
+		<DrawingScale scale={fittedScale(width, height, W, H)}>
+			<svg width={width} height={height} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{overflow: 'visible', fontFamily: palette.fontBody}}>
 			<StageChips names={DYNAMICS_STAGES} stage={stage} progress={progress} />
 			{/* the surface */}
 			<line x1={trackStart[0] - 40 * along[0]} y1={trackStart[1] - 40 * along[1]} x2={trackStart[0] + along[0] * trackLength} y2={trackStart[1] + along[1] * trackLength} stroke={palette.axis} strokeWidth={6} />
 			{visual.incline > 0 ? <path d={`M${trackStart[0]} ${trackStart[1]} L${trackStart[0] + along[0] * trackLength} ${trackStart[1]} L${trackStart[0] + along[0] * trackLength} ${trackStart[1] + along[1] * trackLength} Z`} fill={withAlpha(palette.ink, 0.05)} /> : null}
-			{visual.incline > 0 ? <text x={trackStart[0] + 90} y={trackStart[1] - 10} fontSize={24} fontWeight={800} fill={palette.muted}>{`${number(visual.incline, 0)}°`}</text> : null}
+			{visual.incline > 0 ? <FigureText x={trackStart[0] + 90} y={trackStart[1] - 10} fontSize={24} fontWeight={800} fill={palette.muted}>{`${number(visual.incline, 0)}°`}</FigureText> : null}
 			<g transform={`rotate(${-visual.incline} ${centre[0]} ${centre[1]})`}>
 				<rect x={centre[0] - body / 2} y={centre[1] - body / 2} width={body} height={body} rx={8} fill={withAlpha(palette.lesson, 0.18)} stroke={palette.ink} strokeWidth={4} />
-				<text x={centre[0]} y={centre[1] + 9} textAnchor="middle" fontSize={24} fontWeight={BRAND_TYPOGRAPHY.weights.kinetic} fill={palette.ink}>{`${number(visual.mass)} kg`}</text>
+				<FigureText x={centre[0]} y={centre[1] + 9} textAnchor="middle" fontSize={24} fontWeight={BRAND_TYPOGRAPHY.weights.kinetic} fill={palette.ink}>{`${number(visual.mass)} kg`}</FigureText>
 			</g>
 			<g opacity={forcesShow * (stage === 2 ? 0.45 : 1)}>
 				{arrows.map((arrow) => (
@@ -143,22 +144,23 @@ export const DynamicsVisual: React.FC<VisualBoxProps & {visual: Dynamics}> = ({v
 				<g opacity={netShow}>
 					{/* First whether it moves at all (static friction), then the net force and the acceleration. */}
 					{staticLimit > 0 || kineticFriction > 0 ? (
-						<text x={W / 2} y={92} textAnchor="middle" fontSize={24} fontWeight={800} fill={palette.muted}>
+						<FigureText x={W / 2} y={92} textAnchor="middle" fontSize={24} fontWeight={800} fill={palette.muted}>
 							{slides
 								? `fs,max = μs·N = ${number(staticLimit)} N < ${number(Math.abs(driving))} N → kayar;  fk = μk·N = ${number(kineticFriction)} N`
 								: `${number(Math.abs(driving))} N ≤ fs,max = μs·N = ${number(staticLimit)} N → kıpırdamaz (fs = ${number(Math.abs(driving))} N)`}
-						</text>
+						</FigureText>
 					) : null}
-					<text x={W / 2} y={126} textAnchor="middle" fontSize={28} fontWeight={800}>
+					<FigureText x={W / 2} y={126} textAnchor="middle" fontSize={28} fontWeight={800}>
 						<tspan fill={palette.ink}>{`ΣF = ${number(net)} N`}</tspan>
 						<tspan fill={palette.lesson} dx={28}>{`a = ΣF / m = ${number(net)} / ${number(visual.mass)} = ${number(net / visual.mass, 2)} m/s²`}</tspan>
-					</text>
+					</FigureText>
 				</g>
 			) : null}
 			{graphs.map((kind, graphIndex) => (
 				<MotionGraph key={kind} kind={kind} samples={samples} upTo={index} {...graphBoxes[graphIndex]} show={stage >= 2 ? 1 : 0.35} />
 			))}
 		</svg>
+		</DrawingScale>
 	);
 };
 
@@ -174,9 +176,9 @@ const VectorArrow: React.FC<{from: readonly [number, number]; dx: number; dy: nu
 		<g>
 			<line x1={from[0]} y1={from[1]} x2={tip[0] - ux * head * 0.7} y2={tip[1] - uy * head * 0.7} stroke={color} strokeWidth={thick ? 9 : 6} strokeLinecap="round" />
 			<path d={`M${tip[0]} ${tip[1]} L${left[0]} ${left[1]} L${right[0]} ${right[1]} Z`} fill={color} />
-			<text x={tip[0] + ux * 16 + (Math.abs(uy) > 0.7 ? 12 : 0)} y={tip[1] + uy * 16 + (uy > 0.3 ? 18 : uy < -0.3 ? -6 : 8)} textAnchor={Math.abs(ux) < 0.3 ? 'start' : ux > 0 ? 'start' : 'end'} fontSize={22} fontWeight={800} fill={color} paintOrder="stroke" stroke="#FFFFFF" strokeWidth={5}>
+			<FigureText x={tip[0] + ux * 16 + (Math.abs(uy) > 0.7 ? 12 : 0)} y={tip[1] + uy * 16 + (uy > 0.3 ? 18 : uy < -0.3 ? -6 : 8)} textAnchor={Math.abs(ux) < 0.3 ? 'start' : ux > 0 ? 'start' : 'end'} fontSize={22} fontWeight={800} fill={color} paintOrder="stroke" stroke="#FFFFFF" strokeWidth={5}>
 				{label}
-			</text>
+			</FigureText>
 		</g>
 	);
 };
@@ -204,8 +206,8 @@ const MotionGraph: React.FC<{kind: 'v' | 'x' | 'a'; samples: DynamicsSample[]; u
 			<rect x={x} y={y} width={width} height={height} rx={16} fill={palette.surface} stroke={palette.border} strokeWidth={2} />
 			<line x1={px(0)} x2={px(tMax)} y1={py(0)} y2={py(0)} stroke={palette.axis} strokeWidth={3} />
 			<line x1={px(0)} x2={px(0)} y1={y + 16} y2={y + height - 26} stroke={palette.axis} strokeWidth={3} />
-			<text x={px(0) + 8} y={y + 32} fontSize={22} fontWeight={800} fill={palette.ink}>{meta.label}</text>
-			<text x={px(tMax)} y={py(0) + 26} textAnchor="end" fontSize={20} fill={palette.muted}>t (s)</text>
+			<FigureText x={px(0) + 8} y={y + 32} fontSize={22} fontWeight={800} fill={palette.ink}>{meta.label}</FigureText>
+			<FigureText x={px(tMax)} y={py(0) + 26} textAnchor="end" fontSize={20} fill={palette.muted}>t (s)</FigureText>
 			<path d={drawn} fill="none" stroke={palette.lesson} strokeWidth={5} strokeLinejoin="round" />
 			<circle cx={px(now.t)} cy={py(meta.value(now))} r={8} fill={palette.brand} />
 		</g>
@@ -221,7 +223,7 @@ const StageChips: React.FC<{names: readonly string[]; stage: number; progress: n
 				<g key={name}>
 					<rect x={index * (chip + 12)} y={8} width={chip} height={44} rx={22} fill={index === stage ? palette.lesson : index < stage ? withAlpha(palette.lesson, 0.22) : withAlpha(palette.ink, 0.07)} />
 					{index === stage ? <rect x={index * (chip + 12)} y={46} width={chip * progress} height={6} rx={3} fill={withAlpha(palette.onLesson, 0.7)} /> : null}
-					<text x={index * (chip + 12) + chip / 2} y={37} textAnchor="middle" fontSize={22} fontWeight={800} fill={index === stage ? palette.onLesson : palette.ink}>{`${index + 1}. ${name}`}</text>
+					<FigureText x={index * (chip + 12) + chip / 2} y={37} textAnchor="middle" fontSize={22} fontWeight={800} fill={index === stage ? palette.onLesson : palette.ink}>{`${index + 1}. ${name}`}</FigureText>
 				</g>
 			))}
 		</g>

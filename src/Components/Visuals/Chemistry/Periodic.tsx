@@ -4,6 +4,7 @@ import {arrowHead} from '../Physics/ArrowHead';
 import {useReveal, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part} from '../VisualTimeline';
+import {FigureText} from '../VisualWorld';
 
 type Periodic = Extract<CourseVisual, {kind: 'periodic'}>;
 
@@ -67,14 +68,14 @@ export const PeriodicVisual: React.FC<VisualBoxProps & {visual: Periodic}> = ({v
 		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontBody}}>
 			<g opacity={appear}>
 				{Array.from({length: 8}, (_, index) => (
-					<text key={`g${index}`} x={left + cell * (index + 0.5)} y={top - u(16)} textAnchor="middle" fill={palette.muted} fontSize={fontSize * 0.8} fontWeight={800}>
+					<FigureText key={`g${index}`} x={left + cell * (index + 0.5)} y={top - u(16)} textAnchor="middle" fill={palette.muted} fontSize={fontSize * 0.8} fontWeight={800}>
 						{`${index + 1}A`}
-					</text>
+					</FigureText>
 				))}
 				{Array.from({length: 4}, (_, index) => (
-					<text key={`p${index}`} x={left - u(18)} y={top + cell * (index + 0.5) + fontSize * 0.3} textAnchor="end" fill={palette.muted} fontSize={fontSize * 0.8} fontWeight={800}>
+					<FigureText key={`p${index}`} x={left - u(18)} y={top + cell * (index + 0.5) + fontSize * 0.3} textAnchor="end" fill={palette.muted} fontSize={fontSize * 0.8} fontWeight={800}>
 						{index + 1}
-					</text>
+					</FigureText>
 				))}
 			</g>
 			{FIRST_TWENTY.map((element) => {
@@ -86,12 +87,12 @@ export const PeriodicVisual: React.FC<VisualBoxProps & {visual: Periodic}> = ({v
 						{(look) => (
 							<g opacity={appear * (highlighted.size && !lit ? 0.45 : 1) * look.opacity}>
 								<rect x={x + u(3)} y={y + u(3)} width={cell - u(6)} height={cell - u(6)} rx={u(8)} fill={visual.categories ? KIND_COLOURS[element.kind] : palette.surface} stroke={lit || look.scale > 1 ? palette.brand : palette.ink} strokeWidth={(lit ? u(5) : u(2.5)) * look.scale} />
-								<text x={x + cell / 2} y={y + cell * 0.56} textAnchor="middle" fill={palette.ink} fontSize={Math.min(fontSize * 1.3, cell * 0.38)} fontWeight={800}>
+								<FigureText x={x + cell / 2} y={y + cell * 0.56} textAnchor="middle" fill={palette.ink} fontSize={Math.min(fontSize * 1.3, cell * 0.38)} fontWeight={800}>
 									{element.symbol}
-								</text>
-								<text x={x + cell / 2} y={y + cell * 0.84} textAnchor="middle" fill={palette.muted} fontSize={Math.min(fontSize * 0.75, cell * 0.22)} fontWeight={700}>
+								</FigureText>
+								<FigureText x={x + cell / 2} y={y + cell * 0.84} textAnchor="middle" fill={palette.muted} fontSize={Math.min(fontSize * 0.75, cell * 0.22)} fontWeight={700}>
 									{element.z}
-								</text>
+								</FigureText>
 							</g>
 						)}
 					</Part>
@@ -102,9 +103,9 @@ export const PeriodicVisual: React.FC<VisualBoxProps & {visual: Periodic}> = ({v
 					{(['metal', 'semimetal', 'nonmetal', 'noble'] as const).map((kind, index) => (
 						<g key={kind} transform={`translate(${left + index * cell * 2}, ${top + cell * 4 + u(30)})`}>
 							<rect width={u(30)} height={u(30)} rx={u(6)} fill={KIND_COLOURS[kind]} stroke={palette.ink} strokeWidth={u(2)} />
-							<text x={u(40)} y={u(24)} fill={palette.ink} fontSize={fontSize * 0.8} fontWeight={700}>
+							<FigureText x={u(40)} y={u(24)} fill={palette.ink} fontSize={fontSize * 0.8} fontWeight={700}>
 								{KIND_NAMES[kind]}
-							</text>
+							</FigureText>
 						</g>
 					))}
 				</g>
@@ -114,9 +115,9 @@ export const PeriodicVisual: React.FC<VisualBoxProps & {visual: Periodic}> = ({v
 					{/* Along the period: under the table. */}
 					<line x1={left + u(20)} x2={left + cell * 8 - u(20)} y1={top + cell * 4 + u(36)} y2={top + cell * 4 + u(36)} stroke={palette.brand} strokeWidth={u(7)} />
 					<path d={arrowHead(trend.towardsLeft ? left : left + cell * 8, top + cell * 4 + u(36), trend.towardsLeft ? Math.PI : 0, u(26))} fill={palette.brand} />
-					<text x={left + cell * 4} y={top + cell * 4 + u(80)} textAnchor="middle" fill={palette.ink} fontSize={fontSize * 0.9} fontWeight={800}>
+					<FigureText x={left + cell * 4} y={top + cell * 4 + u(80)} textAnchor="middle" fill={palette.ink} fontSize={fontSize * 0.9} fontWeight={800}>
 						{trend.period}
-					</text>
+					</FigureText>
 					{/* Down the group: right of the table. */}
 					<line x1={left + cell * 8 + u(36)} x2={left + cell * 8 + u(36)} y1={top + u(20)} y2={top + cell * 4 - u(20)} stroke={palette.brand} strokeWidth={u(7)} />
 					<path d={arrowHead(left + cell * 8 + u(36), trend.down ? top + cell * 4 : top, trend.down ? Math.PI / 2 : -Math.PI / 2, u(26))} fill={palette.brand} />

@@ -1,9 +1,10 @@
 import React from 'react';
 import {clamp01, lerp} from '../../../Animations/Motion';
 import {mixColors} from '../../../Themes/ColorPalette';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor} from '../VisualTimeline';
+import {FigureText} from '../VisualWorld';
 
 type Greenhouse = Extract<CourseVisual, {kind: 'greenhouse'}>;
 
@@ -57,9 +58,9 @@ export const GreenhouseVisual: React.FC<VisualBoxProps & {visual: Greenhouse}> =
 	const t = visual.motion ? seconds - delaySeconds : 1.2;
 	const labelSize = Math.max(34, 22 / k);
 	const text = (x: number, y: number, value: string, anchor: 'start' | 'middle' | 'end' = 'start', size = labelSize, fill = palette.ink) => (
-		<text x={x} y={y} fill={fill} fontSize={size} fontWeight={800} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={6} paintOrder="stroke">
+		<FigureText x={x} y={y} fill={fill} fontSize={size} fontWeight={800} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={6} paintOrder="stroke">
 			{value}
-		</text>
+		</FigureText>
 	);
 	const phase = (index: number) => ((((t + index * 0.55) % PERIOD) + PERIOD) % PERIOD) / PERIOD;
 	const molecule = (x: number, y: number, shake: number, key: number) => (
@@ -73,7 +74,8 @@ export const GreenhouseVisual: React.FC<VisualBoxProps & {visual: Greenhouse}> =
 	const fill = lerp(warmth(0), warmth(visual.gases), trapping ? warming : 0);
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`} opacity={appear}>
 				<rect x={0} y={BAND.top} width={GREENHOUSE_STAGE.width - 140} height={BAND.bottom - BAND.top} rx={30} fill={mixColors(palette.lesson, palette.surface, 0.88)} />
 				{text(30, BAND.top + 34, visual.atmosphereLabel, 'start', labelSize * 0.85, palette.muted)}
@@ -158,5 +160,6 @@ export const GreenhouseVisual: React.FC<VisualBoxProps & {visual: Greenhouse}> =
 				</Part>
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

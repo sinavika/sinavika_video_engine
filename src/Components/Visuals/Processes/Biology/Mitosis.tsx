@@ -2,7 +2,7 @@ import React from 'react';
 import {clamp01, lerp, noise, smooth, smoothStep} from '../../../../Animations/Motion';
 import {useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
-import {pathOf} from '../../VisualWorld';
+import {pathOf, FigureText} from '../../VisualWorld';
 import {ProcessFrame, ProcessLabel, processCamera, sampled, smoothPath, useProcessClock, type Point} from '../ProcessScene';
 
 type ProcessSpec = Extract<CourseVisual, {kind: 'process'}>;
@@ -145,13 +145,13 @@ export const MitosisProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}> = 
 					}),
 				)}
 			</g>
-			<g fontFamily={palette.fontBody} fontWeight={800} fontSize={24} fill={palette.ink} textAnchor="middle" opacity={clamp01(split * 2 - 1)}>
-				<text x={CELL.x - POLE + 20} y={CELL.y + 250}>2n = 4</text>
-				<text x={CELL.x + POLE - 20} y={CELL.y + 250}>2n = 4</text>
+			<g fontFamily={palette.fontBody} fontWeight={800} fill={palette.ink} textAnchor="middle" opacity={clamp01(split * 2 - 1)}>
+				<FigureText fontSize={24} x={CELL.x - POLE + 20} y={CELL.y + 250}>2n = 4</FigureText>
+				<FigureText fontSize={24} x={CELL.x + POLE - 20} y={CELL.y + 250}>2n = 4</FigureText>
 			</g>
-			<text x={CELL.x} y={CELL.y + 255} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={24} fill={palette.ink} opacity={1 - clamp01(split * 3)}>
+			<FigureText x={CELL.x} y={CELL.y + 255} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={24} fill={palette.ink} opacity={1 - clamp01(split * 3)}>
 				2n = 4
-			</text>
+			</FigureText>
 			<ProcessLabel id="interfaz" at={[CELL.x + 60, CELL.y - 60]} to={[CELL.x + 300, 150]} text="DNA eşlenir" show={clock.now('interfaz')} />
 			<ProcessLabel id="ig" at={[lerp(poles[1][0], CELL.x, 0.5), lerp(poles[1][1], CELL.y, 0.5) - 20]} to={[CELL.x + 330, 150]} text="İğ iplikleri" show={clock.now('profaz')} />
 			<ProcessLabel id="ekvator" at={[CELL.x, CELL.y - 180]} to={[CELL.x - 200, 140]} text="Ekvator düzlemi" show={clock.now('metafaz')} />

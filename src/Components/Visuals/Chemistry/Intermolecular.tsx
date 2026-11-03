@@ -1,9 +1,10 @@
 import React from 'react';
 import {clamp01} from '../../../Animations/Motion';
 import {mixColors} from '../../../Themes/ColorPalette';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {DrawingScale, useFigureFont, useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part} from '../VisualTimeline';
+import {FigureText} from '../VisualWorld';
 
 type Intermolecular = Extract<CourseVisual, {kind: 'intermolecular'}>;
 type Panel = Intermolecular['panels'][number];
@@ -94,18 +95,22 @@ export const hydrationShell = (t: number, anion: boolean) =>
 
 const SUPERSCRIPT: Record<string, string> = {'⁺': '+', '⁻': '−', '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4'};
 
-/** Draws charges like the ⁺ of "Na⁺" as a raised, readable superscript (the font's ⁺ glyph is tiny); the text after it comes back to the line (0.6 × 0.62 em). */
-const withCharges = (value: string): React.ReactNode[] =>
+/**
+ * Draws charges like the ⁺ of "Na⁺" as a raised, readable superscript `size` tall (the font's ⁺ glyph is tiny); the
+ * text after it comes back to the line. The size is given, not a share of the text's: in an app still a charge at 0.62
+ * of its text came out at 15 pixels (2 Nov 2026).
+ */
+const withCharges = (value: string, size: number): React.ReactNode[] =>
 	value
 		.split(/([⁺⁻⁰¹²³⁴]+)/)
 		.filter(Boolean)
 		.map((piece, index) =>
 			/^[⁺⁻⁰¹²³⁴]+$/.test(piece) ? (
-				<tspan key={index} dy="-0.6em" fontSize="0.62em">
+				<tspan key={index} dy={-size * 0.6} fontSize={size}>
 					{[...piece].map((character) => SUPERSCRIPT[character]).join('')}
 				</tspan>
 			) : (
-				<tspan key={index} dy={index > 0 ? '0.37em' : undefined}>
+				<tspan key={index} dy={index > 0 ? size * 0.6 : undefined}>
 					{piece}
 				</tspan>
 			),
@@ -135,11 +140,14 @@ export const IntermolecularVisual: React.FC<VisualBoxProps & {visual: Intermolec
 	const panelWidth = INTERMOLECULAR_STAGE.width / count;
 	const scale = count === 1 ? 1.25 : 1;
 	const labelSize = Math.max(42, 26 / k);
+	// Charges at 0.62 of their text, never under an app still's smallest text, on the stage and inside a panel.
+	const stageFont = useFigureFont(k);
+	const panelFont = useFigureFont(k * scale);
 	// δ signs stay readable when the visual is small (a predict card).
 	const signSize = Math.max(34, 26 / k / scale);
 	const cloud = mixColors(palette.lesson, palette.surface, 0.72);
 	const sign = (x: number, y: number, value: string, opacity = 1, key?: string | number) => (
-		<text
+		<FigureText
 			key={key}
 			x={x}
 			y={y}
@@ -154,7 +162,7 @@ export const IntermolecularVisual: React.FC<VisualBoxProps & {visual: Intermolec
 			paintOrder="stroke"
 		>
 			{value}
-		</text>
+		</FigureText>
 	);
 	const dashed = (link: {from: Point; to: Point}, opacity: number, key: string | number) => (
 		<line key={key} x1={link.from.x} y1={link.from.y} x2={link.to.x} y2={link.to.y} stroke={palette.brand} strokeWidth={6} strokeDasharray="10 9" strokeLinecap="round" opacity={opacity} />
@@ -262,9 +270,9 @@ export const IntermolecularVisual: React.FC<VisualBoxProps & {visual: Intermolec
 			particles: (
 				<>
 					<circle cx={0} cy={0} r={ION_R} fill={palette.lessonDeep} stroke={palette.ink} strokeWidth={3} />
-					<text x={0} y={0} fill={palette.onLesson} fontSize={46} fontWeight={800} textAnchor="middle" dominantBaseline="central">
-						{withCharges(panel.ion ?? '')}
-					</text>
+					<FigureText x={0} y={0} fill={palette.onLesson} fontSize={46} fontWeight={800} textAnchor="middle" dominantBaseline="central">
+						{withCharges(panel.ion ?? '', panelFont(46 * 0.62))}
+					</FigureText>
 					{shell.map((item, index) => water(item.water, index))}
 				</>
 			),
@@ -292,16 +300,20 @@ export const IntermolecularVisual: React.FC<VisualBoxProps & {visual: Intermolec
 	const place = (index: number) => `translate(${panelWidth * (index + 0.5)} ${PANEL_CENTRE_Y}) scale(${scale})`;
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`} opacity={appear}>
 				{visual.panels.map((panel, index) => (
 					<Part key={index} id={`p${index + 1}`}>
 						{(look) => (
 							<g opacity={look.opacity}>
-								<text x={panelWidth * (index + 0.5)} y={LABEL_Y} fill={palette.ink} fontSize={labelSize} fontWeight={800} textAnchor="middle" dominantBaseline="central">
-									{withCharges(panel.label)}
-								</text>
-								<g transform={place(index)}>{drawn[index].particles}</g>
+								<FigureText x={panelWidth * (index + 0.5)} y={LABEL_Y} fill={palette.ink} fontSize={labelSize} fontWeight={800} textAnchor="middle" dominantBaseline="central">
+									{withCharges(panel.label, stageFont(labelSize * 0.62))}
+								</FigureText>
+								<g transform={place(index)}>
+									{/* A panel is drawn smaller again: its ions' charges know it. */}
+									<DrawingScale scale={k * scale}>{drawn[index].particles}</DrawingScale>
+								</g>
 							</g>
 						)}
 					</Part>
@@ -312,7 +324,7 @@ export const IntermolecularVisual: React.FC<VisualBoxProps & {visual: Intermolec
 						<g opacity={look.opacity}>
 							{visual.panels.map((_, index) => (
 								<g key={index} transform={place(index)}>
-									{drawn[index].links}
+									<DrawingScale scale={k * scale}>{drawn[index].links}</DrawingScale>
 								</g>
 							))}
 						</g>
@@ -320,5 +332,6 @@ export const IntermolecularVisual: React.FC<VisualBoxProps & {visual: Intermolec
 				</Part>
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

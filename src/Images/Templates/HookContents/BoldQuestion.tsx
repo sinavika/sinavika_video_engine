@@ -9,7 +9,7 @@ import {withAlpha} from '../../../Themes/Theme';
 import {useInk, useTheme} from '../../../Themes/ThemeContext';
 import {POST_TYPE} from '../../../Configurations/SocialIdentity';
 import {ImageFrame, imageFrameOf, useImageLayout} from '../../Components/ImageFrame';
-import {lineCount, overflowNote} from '../../Components/TextMeasure';
+import {lineCount, overflowNote} from '../../../Components/Typography/TextMeasure';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
 import {BrandingSchema} from '../../Schemas/ImageFields';
 

@@ -1,9 +1,10 @@
 import React, {useMemo} from 'react';
 import {easeFrom} from '../../../Animations/Motion';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor} from '../VisualTimeline';
 import {arrowHead} from './ArrowHead';
+import {FigureText} from '../VisualWorld';
 
 type EnergyTrack = Extract<CourseVisual, {kind: 'energyTrack'}>;
 
@@ -147,7 +148,8 @@ export const EnergyTrackVisual: React.FC<VisualBoxProps & {visual: EnergyTrack}>
 	const barsLeft = 1210;
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`}>
 				<g opacity={appear}>
 					{/* Ground level h = 0 and the track filled down to it. */}
@@ -157,13 +159,13 @@ export const EnergyTrackVisual: React.FC<VisualBoxProps & {visual: EnergyTrack}>
 					/>
 					<polyline points={visual.profile.map((point) => `${px(point[0])},${py(point[1])}`).join(' ')} fill="none" stroke={palette.ink} strokeWidth={8} strokeLinejoin="round" />
 					<line x1={area.left - 20} y1={py(0)} x2={area.left + area.width + 20} y2={py(0)} stroke={palette.axis} strokeWidth={4} strokeDasharray="14 10" />
-					<text x={area.left - 20} y={py(0) - 14} fill={palette.muted} fontSize={fontSize * 0.7} fontWeight={700}>
+					<FigureText x={area.left - 20} y={py(0) - 14} fill={palette.muted} fontSize={fontSize * 0.7} fontWeight={700}>
 						h = 0
-					</text>
+					</FigureText>
 					{heightMarks.map((point) => (
-							<text key={`h${point[0]}`} x={px(point[0])} y={py(point[1]) - 54} fill={palette.muted} fontSize={fontSize * 0.7} fontWeight={700} textAnchor="middle">
+							<FigureText key={`h${point[0]}`} x={px(point[0])} y={py(point[1]) - 54} fill={palette.muted} fontSize={fontSize * 0.7} fontWeight={700} textAnchor="middle">
 								{`${format(point[1])} m`}
-							</text>
+							</FigureText>
 						))}
 				</g>
 				<Part id="body">
@@ -177,9 +179,9 @@ export const EnergyTrackVisual: React.FC<VisualBoxProps & {visual: EnergyTrack}>
 								</g>
 							) : null}
 							{/* Over a peak's height the speed stands a line higher: "0 m/s" sat on "5 m" where the body starts. */}
-							<text x={bx} y={by - radius - 24 - (heightMarks.some((point) => Math.abs(px(point[0]) - bx) < 90 && Math.abs(py(point[1]) - by) < 90) ? fontSize * 0.8 : 0)} fill={palette.ink} fontSize={fontSize * 0.75} fontWeight={800} textAnchor="middle">
+							<FigureText x={bx} y={by - radius - 24 - (heightMarks.some((point) => Math.abs(px(point[0]) - bx) < 90 && Math.abs(py(point[1]) - by) < 90) ? fontSize * 0.8 : 0)} fill={palette.ink} fontSize={fontSize * 0.75} fontWeight={800} textAnchor="middle">
 								{`${format(sample.v)} m/s`}
-							</text>
+							</FigureText>
 						</g>
 					)}
 				</Part>
@@ -188,21 +190,21 @@ export const EnergyTrackVisual: React.FC<VisualBoxProps & {visual: EnergyTrack}>
 						<g opacity={barsIn * look.opacity}>
 							<line x1={barsLeft - 30} y1={barBottom - run.start * barScale} x2={barsLeft + bars.length * (barWidth + 30)} y2={barBottom - run.start * barScale} stroke={palette.ink} strokeWidth={4} strokeDasharray="14 10" />
 							{/* A bar reaching the total line writes its value where the total stood ("100" on "toplam 100 J"): the total goes a line higher then. */}
-							<text x={barsLeft + (bars.length * (barWidth + 30)) / 2 - 15} y={barBottom - run.start * barScale - 20 - (bars.some((bar) => (run.start - bar.value) * barScale < fontSize * 0.9) ? fontSize * 0.85 : 0)} fill={palette.ink} fontSize={fontSize * 0.7} fontWeight={800} textAnchor="middle">
+							<FigureText x={barsLeft + (bars.length * (barWidth + 30)) / 2 - 15} y={barBottom - run.start * barScale - 20 - (bars.some((bar) => (run.start - bar.value) * barScale < fontSize * 0.9) ? fontSize * 0.85 : 0)} fill={palette.ink} fontSize={fontSize * 0.7} fontWeight={800} textAnchor="middle">
 								{`toplam ${format(run.start)} J`}
-							</text>
+							</FigureText>
 							{bars.map((bar, index) => {
 								const x = barsLeft + index * (barWidth + 30);
 								const h = bar.value * barScale;
 								return (
 									<g key={bar.label}>
 										<rect x={x} y={barBottom - h} width={barWidth} height={h} rx={10} fill={bar.colour} />
-										<text x={x + barWidth / 2} y={barBottom + fontSize * 1.05} fill={palette.ink} fontSize={fontSize * 0.9} fontWeight={800} textAnchor="middle">
+										<FigureText x={x + barWidth / 2} y={barBottom + fontSize * 1.05} fill={palette.ink} fontSize={fontSize * 0.9} fontWeight={800} textAnchor="middle">
 											{bar.label}
-										</text>
-										<text x={x + barWidth / 2} y={barBottom - h - 14} fill={palette.ink} fontSize={fontSize * 0.75} fontWeight={800} textAnchor="middle">
+										</FigureText>
+										<FigureText x={x + barWidth / 2} y={barBottom - h - 14} fill={palette.ink} fontSize={fontSize * 0.75} fontWeight={800} textAnchor="middle">
 											{format(bar.value)}
-										</text>
+										</FigureText>
 									</g>
 								);
 							})}
@@ -212,5 +214,6 @@ export const EnergyTrackVisual: React.FC<VisualBoxProps & {visual: EnergyTrack}>
 				</Part>
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

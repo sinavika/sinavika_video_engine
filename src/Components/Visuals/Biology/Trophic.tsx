@@ -3,7 +3,7 @@ import {easeFrom} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
-import {usePartLook, World} from '../VisualWorld';
+import {usePartLook, World, FigureText} from '../VisualWorld';
 
 // ---------------------------------------------------------------- the ecological pyramid
 
@@ -49,20 +49,20 @@ export const TrophicVisual: React.FC<VisualBoxProps & {visual: Trophic}> = ({vis
 			{visual.trends ? (
 				<g opacity={trends.opacity}>
 					<line x1={952} x2={952} y1={base - 10} y2={base - n * step + 8} stroke={palette.ink} strokeWidth={4} markerEnd="url(#trophicArrow)" />
-					<text x={972} y={TROPHIC_STAGE.height / 2 - 206} fontSize={28} fontWeight={800} fill={trends.focused > 0.5 ? palette.lesson : palette.ink} fontFamily={palette.fontBody}>
+					<FigureText x={972} y={TROPHIC_STAGE.height / 2 - 206} fontSize={28} fontWeight={800} fill={trends.focused > 0.5 ? palette.lesson : palette.ink} fontFamily={palette.fontBody}>
 						Yukarı çıktıkça
-					</text>
+					</FigureText>
 					{TRENDS.map(([text, up], k) => (
 						<g key={text} transform={`translate(972 ${TROPHIC_STAGE.height / 2 - 140 + k * 66})`}>
-							<text x={0} y={4} fontSize={36} fontWeight={800} fill={up ? palette.lesson : palette.brand} fontFamily={palette.fontBody}>
+							<FigureText x={0} y={4} fontSize={36} fontWeight={800} fill={up ? palette.lesson : palette.brand} fontFamily={palette.fontBody}>
 								{up ? '↑' : '↓'}
-							</text>
-							<text x={32} y={-4} fontSize={25} fontWeight={700} fill={palette.ink} fontFamily={palette.fontBody}>
+							</FigureText>
+							<FigureText x={32} y={-4} fontSize={25} fontWeight={700} fill={palette.ink} fontFamily={palette.fontBody}>
 								{text}
-							</text>
-							<text x={32} y={22} fontSize={21} fontWeight={600} fill={palette.muted} fontFamily={palette.fontBody}>
+							</FigureText>
+							<FigureText x={32} y={22} fontSize={21} fontWeight={600} fill={palette.muted} fontFamily={palette.fontBody}>
 								{up ? 'artar' : 'azalır'}
-							</text>
+							</FigureText>
 						</g>
 					))}
 				</g>
@@ -82,18 +82,18 @@ const Level: React.FC<{index: number; count: number; label: string; example?: st
 	return (
 		<g opacity={look.opacity} transform={`translate(${cx} ${middle}) scale(${(0.9 + 0.1 * entrance) * (1 + 0.04 * lit)}) translate(${-cx} ${-middle})`}>
 			<rect x={cx - w / 2} y={y} width={w} height={h} rx={14} fill={lit > 0.5 ? palette.lesson : withAlpha(palette.lesson, strength)} stroke={palette.lesson} strokeWidth={2} />
-			<text x={cx} y={example ? middle - 4 : middle + 10} textAnchor="middle" fontSize={30} fontWeight={800} fill={ink} fontFamily={palette.fontBody}>
+			<FigureText x={cx} y={example ? middle - 4 : middle + 10} textAnchor="middle" fontSize={30} fontWeight={800} fill={ink} fontFamily={palette.fontBody}>
 				{label}
-			</text>
+			</FigureText>
 			{example ? (
-				<text x={cx} y={middle + 28} textAnchor="middle" fontSize={23} fontWeight={600} fill={ink} fontFamily={palette.fontBody}>
+				<FigureText x={cx} y={middle + 28} textAnchor="middle" fontSize={23} fontWeight={600} fill={ink} fontFamily={palette.fontBody}>
 					{example}
-				</text>
+				</FigureText>
 			) : null}
 			{value ? (
-				<text x={cx - w / 2 - 18} y={middle + 11} textAnchor="end" fontSize={32} fontWeight={800} fill={lit > 0.5 ? palette.lesson : palette.ink} fontFamily={palette.fontBody}>
+				<FigureText x={cx - w / 2 - 18} y={middle + 11} textAnchor="end" fontSize={32} fontWeight={800} fill={lit > 0.5 ? palette.lesson : palette.ink} fontFamily={palette.fontBody}>
 					{value}
-				</text>
+				</FigureText>
 			) : null}
 		</g>
 	);

@@ -1,8 +1,9 @@
 import React from 'react';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor} from '../VisualTimeline';
 import {arrowHead} from '../Physics/ArrowHead';
+import {FigureText} from '../VisualWorld';
 
 type ElectroCell = Extract<CourseVisual, {kind: 'electrochemicalCell'}>;
 
@@ -43,9 +44,9 @@ export const ElectroCellVisual: React.FC<VisualBoxProps & {visual: ElectroCell}>
 	const runStart = useBeatStartFor('run', 'show') ?? delaySeconds + 1;
 	const fontSize = Math.max(64, 28 / k);
 	const label = (x: number, y: number, text: string, anchor: 'start' | 'middle' | 'end' = 'middle', size = fontSize * 0.75) => (
-		<text x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={800} textAnchor={anchor} stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
+		<FigureText x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={800} textAnchor={anchor} stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
 			{text}
-		</text>
+		</FigureText>
 	);
 	const elapsed = visual.motion ? Math.max(0, seconds - runStart) : 0;
 	const running = visual.motion && seconds >= runStart;
@@ -83,7 +84,8 @@ export const ElectroCellVisual: React.FC<VisualBoxProps & {visual: ElectroCell}>
 		});
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`} opacity={appear}>
 				{galvanic ? (
 					<>
@@ -117,9 +119,9 @@ export const ElectroCellVisual: React.FC<VisualBoxProps & {visual: ElectroCell}>
 									return (
 										<g key={index}>
 											<circle cx={ax} cy={ay} r={21} fill={palette.ink} />
-											<text x={ax} y={ay + 11} fill={palette.surface} fontSize={34} fontWeight={800} textAnchor="middle">−</text>
+											<FigureText x={ax} y={ay + 11} fill={palette.surface} fontSize={34} fontWeight={800} textAnchor="middle">−</FigureText>
 											<circle cx={cx} cy={cy} r={21} fill={palette.lesson} />
-											<text x={cx} y={cy + 11} fill={palette.surface} fontSize={34} fontWeight={800} textAnchor="middle">+</text>
+											<FigureText x={cx} y={cy + 11} fill={palette.surface} fontSize={34} fontWeight={800} textAnchor="middle">+</FigureText>
 										</g>
 									);
 								})}
@@ -134,9 +136,9 @@ export const ElectroCellVisual: React.FC<VisualBoxProps & {visual: ElectroCell}>
 							{galvanic ? (
 								<>
 									<circle cx={800} cy={wireY} r={62} fill={palette.surface} stroke={palette.ink} strokeWidth={6} />
-									<text x={800} y={wireY + 24} fill={palette.ink} fontSize={fontSize * 0.95} fontWeight={800} textAnchor="middle">
+									<FigureText x={800} y={wireY + 24} fill={palette.ink} fontSize={fontSize * 0.95} fontWeight={800} textAnchor="middle">
 										V
-									</text>
+									</FigureText>
 									{visual.voltage ? label(800, wireY - 82, visual.voltage, 'middle', fontSize * 0.75) : null}
 								</>
 							) : (
@@ -186,5 +188,6 @@ export const ElectroCellVisual: React.FC<VisualBoxProps & {visual: ElectroCell}>
 				</Part>
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

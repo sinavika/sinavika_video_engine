@@ -1,0 +1,2596 @@
+{
+ "topic": {
+  "id": "70D3AB44-DA69-715F-BCD0-BAB2A5E398F8",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_COKGEN"
+ },
+ "title": "Çokgenler",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/GEO/GEO_COKGEN.json"
+ ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/YKS/TYT/KonuAnlatimi/GEO/GEO_COKGEN.json (MEB OGM Materyal, TYT Temel Matematik konu anlatımı)",
+   "EgitimVerileri/YKS/TYT/CikmisSorular/GEO/GEO_COKGEN.json (ÖSYM 2018-2026)",
+   "Curriculum/Scripts/YKS_TYT/GEO/GEO_COKGEN.json"
+  ],
+  "additions": [
+   {
+    "note": "Düzgün çokgenler tablosunu ver (n = 3'ten 12'ye: bir iç açı, bir dış açı, köşegen sayısı).",
+    "done": "Bölüm 4'te iki tablo kartı (n = 3-7 ve n = 8-12) bir iç açı, bir dış açı ve köşegen sayısını verir; ardından n ile iç açıyı eşleştirme kartı ve sorular gelir."
+   },
+   {
+    "note": "Düzgün altıgeni ayrıntılandır: altı eşkenar üçgene ayrılır; alan 6 · a²√3/4; kısa köşegen a√3, uzun köşegen 2a; çevrel çember yarıçapı a.",
+    "done": "Bölüm 4'te 'Düzgün altıgen: altı eşkenar üçgen' kartı, ölçü tablosu (çevrel yarıçap a, kısa köşegen a√3, uzun köşegen 2a, 9 köşegen), alan formülü kartı (6 · a²√3/4), çevrilen kartlar, boşluk doldurma, iki test sorusu, rehberli soru ve ÖSYM kalıbında iki altıgen sorusu eklendi."
+   },
+   {
+    "note": "İç açılar toplamı ya da bir dış açı verildiğinde kenar sayısını bulma ve dış açıların oranlı verildiği sorulara örnek ekle; içbükey çokgende de iç açılar toplamının (n − 2) · 180° olduğunu yaz.",
+    "done": "Bölüm 1'de iç açılar toplamından kenar sayısı (1260° sorusu), içbükey çokgen örneği, yanlış kartı ve kural maddesi; Bölüm 2'de oranlı dış açı sorusu (1:2:3:4), robot sorusu ve iç/dış açı toplam oranı sorusu; Bölüm 4'te bir dış açıdan ve bir iç açıdan kenar sayısı soruları ile rehberli soru eklendi."
+   }
+  ],
+  "fixes": [
+   "Çözüm adımlarındaki 'Cevap A/B…' ifadeleri ve cevabı tek adımda veren çözümler, cevabı ele vermeyen 2-4 kademeli ipucuna çevrildi.",
+   "'Her çokgende dış açılar toplamı 360°' ifadesi yalnız dışbükey çokgende doğrudur (içbükeyde dış açılar işaretli sayılır); 'dışbükey çokgende' diye düzeltildi.",
+   "'Bir köşeden çizilen köşegenler çokgeni n − 2 üçgene böler' genel yazılmıştı; içbükey çokgende bir köşeden çizilen köşegenler dışarıda kalabilir. İfade dışbükey çokgene bağlandı, içbükeyde bölmenin uygun köşegenlerle yapıldığı belirtildi."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Her köşede aynı dönüş",
+   "narration": "Bir robot düz bir zeminde ilerliyor ve her köşede aynı yöne 24° dönüyor. Başladığı noktaya ilk döndüğünde kaç kenarlı bir şekil çizmiş olur? Cevap tek bir fikre dayanıyor: dönüşlerin toplamı bir tam tur eder. Bu derste çokgenlerin iç ve dış açılarını, köşegen sayısını, düzgün çokgenleri ve düzgün altıgeni öğreneceksin."
+  },
+  "objectives": [
+   "Çokgenin iç açılar toplamını $(n - 2) \\cdot 180°$ ile bulmak",
+   "İçbükey çokgende de aynı toplamı kullanmak",
+   "Dışbükey çokgende dış açılar toplamının 360° olduğunu kullanmak",
+   "Köşegen sayısını ve bir köşeden oluşan üçgenleri bulmak",
+   "Düzgün çokgende iç ve dış açıdan kenar sayısına geçmek",
+   "n = 3'ten 12'ye düzgün çokgenler tablosunu bilmek",
+   "Düzgün altıgenin alanını ve köşegenlerini kullanmak",
+   "Ortak kenarlı çokgen sorularında ortak köşede tam tur yapmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_COKGEN_01",
+    "subtopics": [
+     "GEO_COKGEN_02"
+    ],
+    "title": "Çokgen ve iç açılar toplamı",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Çokgen, kenar, köşe, köşegen",
+      "text": "Kenarları doğru parçalarından oluşan kapalı şekle **çokgen** denir. Doğru parçalarına **kenar**, uçlarına **köşe** denir; köşe sayısı kenar sayısına eşittir. Komşu olmayan iki köşeyi birleştiren doğru parçası **köşegen**dir. Bütün iç açıları $180°$'den küçük olan çokgene **dışbükey**, iç açılarından biri $180°$'den büyük olan çokgene **içbükey** denir. Çokgenler kenar sayısına göre adlandırılır: 3 kenar üçgen, 4 dörtgen, 5 beşgen, 6 altıgen, 8 sekizgen, 10 ongen."
+     },
+     {
+      "kind": "visual",
+      "title": "Bir köşeden üçgenlere böl",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -3.298,
+        -3.7,
+        3.298,
+        3.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          -2.598,
+          -1.5
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          -3
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          2.598,
+          -1.5
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          2.598,
+          1.5
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          0,
+          3
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "F",
+         "at": [
+          -2.598,
+          1.5
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "F",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "F",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "E",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "fill": true,
+         "shade": 1
+        },
+        {
+         "points": [
+          "A",
+          "D",
+          "E"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ]
+      },
+      "caption": "$n$ kenarlı dışbükey çokgen bir köşeden $n - 2$ üçgene bölünür: iç açılar toplamı $(n - 2) \\cdot 180°$.",
+      "narration": "Bir altıgen alalım ve A köşesinden bütün köşegenleri çizelim. A köşesinden kendisine ve iki komşusuna köşegen çizilmez; geriye üç köşe kalır. Bu üç köşegen altıgeni 6 − 2 = 4 üçgene böler. Üçgenlerin bütün açıları çokgenin iç açılarını tam olarak doldurur; bu yüzden iç açılar toplamı 4 · 180° = 720° olur. Genel kural: $n$ kenarlı çokgende iç açılar toplamı $(n - 2) \\cdot 180°$."
+     },
+     {
+      "kind": "rule",
+      "title": "İç açılar toplamı kuralı",
+      "items": [
+       "$n$ kenarlı çokgenin iç açılar toplamı $(n - 2) \\cdot 180°$.",
+       "Dışbükey çokgende bir köşeden çizilen köşegenler çokgeni $n - 2$ üçgene ayırır.",
+       "Üçgen $180°$, dörtgen $360°$, beşgen $540°$, altıgen $720°$ eder; her yeni kenar $180°$ ekler.",
+       "İçbükey çokgende de iç açılar toplamı $(n - 2) \\cdot 180°$'dir.",
+       "Toplam verilirse $n - 2 = \\frac{\\text{toplam}}{180°}$ olur; $n$ için 2 eklemeyi unutma."
+      ],
+      "narration": "Kuralı hatırlamanın en kolay yolu üçgene dönmektir: her yeni kenar çokgene bir üçgen ekler. Dörtgenden beşgene geçince toplam 180° artar. Toplam yalnızca kenar sayısına bağlıdır; çokgenin düzgün olup olmaması, köşegenlerin nasıl çizildiği ya da çokgenin içbükey olması sonucu değiştirmez."
+     },
+     {
+      "kind": "predict",
+      "title": "Beşgene geçerken",
+      "prompt": "Dörtgenden beşgene geçerken iç açılar toplamı $180°$ artar.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Doğru. Kenar sayısı 1 artınca $n - 2$ de 1 artar; toplam $180°$ büyür: $360° \\to 540°$."
+     },
+     {
+      "kind": "blank",
+      "title": "Sekizgen",
+      "prompt": "Bir sekizgenin iç açılarının ölçüleri toplamı kaç derecedir?",
+      "after": "°",
+      "answers": [
+       "1080"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 1080,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "1440",
+        "feedback": "$8 \\cdot 180°$ hesaplamışsın; önce $n - 2 = 6$ yap."
+       },
+       {
+        "answer": "1260",
+        "feedback": "$n - 1$ almışsın; üçgen sayısı $n - 2$'dir."
+       }
+      ],
+      "explanation": "$(8 - 2) \\cdot 180° = 6 \\cdot 180° = 1080°$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "İç açılarının ölçüleri toplamı $1260°$ olan bir çokgen kaç kenarlıdır?",
+       "options": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "Altıgenin iç açıları toplamı $720°$'dir; $1260°$ için daha fazla kenar gerekir.",
+        "$n - 2 = 7$ bulunur; $7$ üçgen sayısıdır, kenar sayısı değildir.",
+        "Sekizgenin iç açıları toplamı $1080°$'dir.",
+        null,
+        "Ongenin iç açıları toplamı $1440°$'dir."
+       ],
+       "steps": [
+        {
+         "text": "$(n - 2) \\cdot 180° = 1260°$ eşitliğini kur."
+        },
+        {
+         "text": "Her iki yanı $180$'e böl: $1260 \\div 180$ işleminin sonucu $n - 2$'ye eşittir."
+        },
+        {
+         "text": "$n - 2$'yi bulduktan sonra $n$ için 2 eklemeyi unutma; bulduğun sayı üçgen sayısıdır, kenar sayısı değildir."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; iç açılar toplamından kenar sayısına geçiş özgün bir değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "example",
+      "title": "Ok başı biçimli dörtgen",
+      "example": "Bir içbükey dörtgenin üç iç açısı $30°$, $40°$ ve $50°$'dir. Dördüncü iç açısı kaç derecedir?",
+      "explanation": "Dörtgende iç açılar toplamı $(4 - 2) \\cdot 180° = 360°$. Dördüncü açı $360° - (30° + 40° + 50°) = 240°$. Bu açı $180°$'den büyük olduğu için çokgen içbükeydir; ama kural değişmemiştir."
+     },
+     {
+      "kind": "mistake",
+      "title": "İçbükey çokgen",
+      "wrong": "İçbükey bir çokgende iç açılar toplamı $(n - 2) \\cdot 180°$'den farklıdır.",
+      "right": "İçbükey çokgende de iç açılar toplamı $(n - 2) \\cdot 180°$'dir; yalnız bir iç açı $180°$'den büyük olur.",
+      "why": "İçbükey çokgen de, köşegenler çokgenin içinde kalacak biçimde seçilirse $n - 2$ üçgene bölünür. Üçgenlerin açıları yine iç açıları doldurur. $180°$'den büyük açı da bir iç açıdır ve toplama aynen girer: $30° + 40° + 50° + 240° = 360°$."
+     },
+     {
+      "kind": "match",
+      "title": "Çokgen ve toplam",
+      "prompt": "Her çokgeni iç açılar toplamıyla eşleştir.",
+      "titles": [
+       "Çokgen",
+       "İç açılar toplamı"
+      ],
+      "pairs": [
+       {
+        "left": "Beşgen",
+        "right": "540°"
+       },
+       {
+        "left": "Altıgen",
+        "right": "720°"
+       },
+       {
+        "left": "Yedigen",
+        "right": "900°"
+       },
+       {
+        "left": "Sekizgen",
+        "right": "1080°"
+       },
+       {
+        "left": "Ongen",
+        "right": "1440°"
+       }
+      ],
+      "explanation": "Her çokgende $(n - 2) \\cdot 180°$: yedigende $5 \\cdot 180° = 900°$, ongende $8 \\cdot 180° = 1440°$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $ABCDE$ beşgeninde $m(\\widehat{A}) = 100°$, $m(\\widehat{B}) = 120°$, $m(\\widehat{C}) = x + 30°$, $m(\\widehat{D}) = 2x$ ve $m(\\widehat{E}) = x + 50°$'dir. Buna göre $x$ kaçtır?",
+       "options": [
+        "60",
+        "65",
+        "70",
+        "75",
+        "80"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$x = 65$ için açıların toplamı $560°$ olur; beşgende toplam $540°$'dir.",
+        "$x = 70$ için açıların toplamı $580°$ olur.",
+        "$x = 75$ için açıların toplamı $600°$ olur.",
+        "$x = 80$ için açıların toplamı $620°$ olur."
+       ],
+       "steps": [
+        {
+         "text": "Beşgende iç açılar toplamı $(5 - 2) \\cdot 180°$ kaç derecedir?"
+        },
+        {
+         "text": "Beş açıyı topla; $x$'li terimleri ve sayıları ayrı ayrı topla, sonuç yukarıdaki toplama eşit olsun."
+        },
+        {
+         "text": "$4x + 300 = 540$ denklemini kur; $x$'i bulmak için 300'ü çıkarıp 4'e böl."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; beşgende iç açılar toplamı cebirli özgün bir soruyla uygulandı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir altıgenin beş iç açısının ölçüleri $110°$, $120°$, $130°$, $140°$ ve $150°$'dir. Altıncı iç açısı kaç derecedir?",
+       "options": [
+        "50",
+        "60",
+        "70",
+        "80",
+        "90"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Verilen açıların toplamını $670°$ bulmuş olabilirsin; toplamı yeniden hesapla.",
+        "Verilen açıların toplamını $660°$ bulmuş olabilirsin; toplamı yeniden hesapla.",
+        null,
+        "Verilen açıların toplamını $640°$ bulmuş olabilirsin; toplamı yeniden hesapla.",
+        "Verilen açıların toplamını $630°$ bulmuş olabilirsin; toplamı yeniden hesapla."
+       ],
+       "steps": [
+        {
+         "text": "Altıgende iç açılar toplamı $(6 - 2) \\cdot 180°$'dir; bu kaç derece eder?"
+        },
+        {
+         "text": "Verilen beş açıyı topla: $110 + 120 + 130 + 140 + 150$."
+        },
+        {
+         "text": "Altıgenin toplamından verilen beş açının toplamını çıkar: $720° - (\\text{beş açının toplamı})$. Beşgenin toplamını kullanırsan sonuç negatif çıkar."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; altıgende iç açılar toplamı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "findError",
+      "title": "Hatayı bul",
+      "problem": "On birgenin iç açılarının ölçüleri toplamı kaç derecedir? Aşağıdaki çözümde bir satır hatalıdır.",
+      "prompt": "Hatalı satırı seç.",
+      "steps": [
+       "$n = 11$",
+       "İç açılar toplamı $= (11 - 1) \\cdot 180°$",
+       "$= 10 \\cdot 180° = 1800°$"
+      ],
+      "wrongStep": 1,
+      "choiceFeedback": [
+       "Kenar sayısı doğru alınmış.",
+       null,
+       "Bu satırdaki çarpma kendi içinde doğru; hata bir önceki satırdaki sayıda."
+      ],
+      "explanation": "$n - 1$ değil $n - 2$ kullanılmalıydı: $(11 - 2) \\cdot 180° = 9 \\cdot 180° = 1620°$."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_COKGEN_03",
+    "title": "Dış açılar toplamı",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Bir tur, 360 derece",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -2.6,
+        -1.6,
+        7,
+        6.4
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          4,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          5.2,
+          2.6
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          2.4,
+          4.6
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          -0.8,
+          2.6
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "X0",
+         "at": [
+          5.4,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "X1",
+         "at": [
+          5.787,
+          3.871
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "X2",
+         "at": [
+          1.261,
+          5.414
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "X3",
+         "at": [
+          -1.987,
+          1.858
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "X4",
+         "at": [
+          0.412,
+          -1.338
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "X0",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "X1",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "X2",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "X3",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "X4",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ],
+       "angles": [
+        {
+         "at": "B",
+         "from": "X0",
+         "to": "C",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "C",
+         "from": "X1",
+         "to": "D",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "D",
+         "from": "X2",
+         "to": "E",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "E",
+         "from": "X3",
+         "to": "A",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "A",
+         "from": "X4",
+         "to": "B",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "caption": "Dışbükey çokgende dış açılar toplamı **360°**; bir köşede iç açı + dış açı $= 180°$.",
+      "narration": "Beşgenin her kenarını, köşeyi geçecek kadar uzatalım. Uzantı ile sonraki kenar arasındaki açı o köşenin dış açısıdır. Çokgenin çevresinde yürüdüğünü düşün: her köşede dış açı kadar dönersin ve başladığın yere aynı yöne bakarak döndüğünde tam bir tur, yani 360° dönmüş olursun. Kenar sayısı kaç olursa olsun dış açılar toplamı 360°'dir. Her köşede iç açı ile dış açı bütünlerdir."
+     },
+     {
+      "kind": "rule",
+      "title": "Dış açıların özellikleri",
+      "items": [
+       "Dışbükey çokgenin dış açıları toplamı her zaman $360°$'dir; kenar sayısına bağlı değildir.",
+       "Bir köşede iç açı + dış açı $= 180°$.",
+       "İç açılar toplamı $= n \\cdot 180° - 360° = (n - 2) \\cdot 180°$.",
+       "Bir dış açı büyüdükçe aynı köşedeki iç açı küçülür."
+      ],
+      "narration": "Her köşede iç açı ile dış açının toplamı 180° olduğundan $n$ köşede toplam $n \\cdot 180°$ eder. Bunun 360°'si dış açılardır, geriye iç açılar kalır: $n \\cdot 180° - 360° = (n - 2) \\cdot 180°$. Yani iç açılar toplamı kuralı ile dış açılar toplamı kuralı aynı bilginin iki yüzüdür. Dış açılar toplamı sabit olduğundan, kenar sayısı arttıkça dış açılar tek tek küçülür."
+     },
+     {
+      "kind": "predict",
+      "title": "Yirmigende dış açılar",
+      "prompt": "Bir yirmigenin dış açıları toplamı, bir dörtgenin dış açıları toplamıyla aynıdır.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Doğru. Dış açılar toplamı kenar sayısından bağımsız $360°$'dir; yalnız her bir dış açı küçülür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Beşgen biçimindeki bir parkın dört köşesindeki dış açıların ölçüleri $40°$, $50°$, $60°$ ve $70°$'dir. Beşinci köşedeki **iç** açı kaç derecedir?",
+       "options": [
+        "20",
+        "40",
+        "100",
+        "140",
+        "160"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Dış açılar toplamı $360°$'dir; dört dış açının toplamı $220°$ olduğuna göre kalan dış açı $20°$ olamaz.",
+        null,
+        "$100°$ bulmak için dış açılar toplamını $320°$ almak gerekir; toplam $360°$'dir.",
+        "$140°$ beşinci köşedeki **dış** açıdır; soru iç açıyı soruyor.",
+        "İç açı $160°$ olsaydı dış açı $20°$ olurdu; kalan dış açıyı yeniden hesapla."
+       ],
+       "steps": [
+        {
+         "text": "Dış açılar toplamı $360°$'dir; dört dış açının toplamı $40 + 50 + 60 + 70$ kaçtır?"
+        },
+        {
+         "text": "Beşinci dış açı, $360°$ ile bu toplamın farkıdır."
+        },
+        {
+         "text": "Soru **iç** açıyı soruyor: bulduğun dış açıyı $180°$'den çıkar."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dış açılar toplamından iç açıya geçiş özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Düz bir zeminde bir robot, her kenarı eşit uzunlukta bir yolda ilerliyor ve her köşede aynı yöne $24°$ dönüyor. Robot başladığı noktaya ve başlangıç yönüne ilk kez döndüğünde kaç kenarlı bir yol çizmiş olur?",
+       "options": [
+        "10",
+        "12",
+        "14",
+        "15",
+        "18"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "$10 \\cdot 24° = 240°$; tam tur için yetmez.",
+        "$12 \\cdot 24° = 288°$; tam tur için yetmez.",
+        "$14 \\cdot 24° = 336°$; tam tur için yetmez.",
+        null,
+        "$18 \\cdot 24° = 432°$; bu bir tam turdan fazladır."
+       ],
+       "steps": [
+        {
+         "text": "Robotun her dönüşü çizilen çokgenin bir dış açısıdır. Yolu tamamlayınca dönüşlerin toplamı kaç derece olur?"
+        },
+        {
+         "text": "$n \\cdot 24° = 360°$ denklemini kur ve $n$'yi bulmak için $360$'ı $24$'e böl."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dış açılar toplamı gerçek hayattan özgün bir robot hareketiyle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir dörtgenin dış açılarının ölçüleri $1$, $2$, $3$ ve $4$ sayılarıyla orantılıdır. Bu dörtgenin **en büyük iç açısı** kaç derecedir?",
+       "options": [
+        "36",
+        "72",
+        "108",
+        "126",
+        "144"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "$36°$ en küçük dış açıdır; soru en büyük **iç** açıyı soruyor.",
+        "$72°$ ikinci dış açıdır; iç açı için $180°$'den çıkarılır.",
+        "$108°$ üçüncü dış açıdır; onun iç açısı $72°$ olur.",
+        "$126°$ için dış açı $54°$ olmalıydı; oranlarla $x$'i yeniden bul.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Dış açılara $x$, $2x$, $3x$, $4x$ de ve toplamlarını $360°$'ye eşitle."
+        },
+        {
+         "text": "$x$'i bulduktan sonra dış açıları yaz. İç açı $= 180° -$ dış açı olduğuna göre en büyük iç açı hangi dış açının yanındadır?"
+        },
+        {
+         "text": "En büyük iç açı en küçük dış açının yanındadır; bu dış açıyı $180°$'den çıkar."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; orantılı dış açılardan iç açıya geçiş özgün bir soruyla kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "multi",
+      "title": "Hangileri doğru?",
+      "stem": "Dışbükey çokgenlerle ilgili aşağıdakilerden hangileri her zaman doğrudur?",
+      "options": [
+       "Dış açılar toplamı $360°$'dir.",
+       "İç açılar toplamı $360°$'dir.",
+       "Bir köşedeki iç açı ile dış açının toplamı $180°$'dir.",
+       "Kenar sayısı arttıkça dış açılar toplamı artar."
+      ],
+      "answers": [
+       0,
+       2
+      ],
+      "choiceFeedback": [
+       null,
+       "İç açılar toplamı $(n - 2) \\cdot 180°$'dir; yalnız dörtgende $360°$ eder.",
+       null,
+       "Dış açılar toplamı kenar sayısından bağımsız olarak hep $360°$'dir."
+      ],
+      "explanation": "Dış açılar toplamı sabit $360°$'dir ve her köşede iç + dış $= 180°$. İç açılar toplamı kenar sayısına göre değişir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir dışbükey çokgenin iç açılarının ölçüleri toplamı, dış açılarının ölçüleri toplamının $5$ katıdır. Bu çokgen kaç kenarlıdır?",
+       "options": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "$n - 2 = 10$ bulup $n$ için 2 eklemeyi unutmuşsun.",
+        "$n = 11$ için iç açılar toplamı $1620°$ olur; $5 \\cdot 360° = 1800°$ gerekir.",
+        null,
+        "$n = 13$ için iç açılar toplamı $1980°$ olur.",
+        "$n = 14$ için iç açılar toplamı $2160°$ olur."
+       ],
+       "steps": [
+        {
+         "text": "Dış açılar toplamı $360°$'dir; iç açılar toplamı bunun $5$ katı olduğuna göre kaç derecedir?"
+        },
+        {
+         "text": "$(n - 2) \\cdot 180°$ ifadesini bu değere eşitle ve $n - 2$'yi bul."
+        },
+        {
+         "text": "$n - 2$'yi bulduktan sonra $n$ için 2 eklemeyi unutma."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; iç ve dış açılar toplamının oranından kenar sayısı özgün bir soruyla bulundu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_COKGEN_04",
+    "title": "Köşegen sayısı",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Köşegen sayısı",
+      "items": [
+       "Bir köşeden $n - 3$ köşegen çizilir; dışbükey çokgen $n - 2$ üçgene bölünür.",
+       "Toplam köşegen sayısı $\\frac{n(n - 3)}{2}$.",
+       "Her köşegenin iki ucu olduğu için $n(n - 3)$ ikiye bölünür.",
+       "Örnek: altıgende bir köşeden $3$, toplam $9$ köşegen."
+      ],
+      "narration": "Bir köşeden, kendisine ve iki komşusuna köşegen çizilmez; geriye $n - 3$ köşe kalır. $n$ köşenin her birinden $n - 3$ köşegen çıkar, ama her köşegen iki ucundan iki kez sayılır. Bu yüzden toplam köşegen sayısı $\\frac{n(n - 3)}{2}$ olur. Altıgende bir köşeden 3, toplam $\\frac{6 \\cdot 3}{2} = 9$ köşegen vardır."
+     },
+     {
+      "kind": "visual",
+      "title": "Köşegen sayıları",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "n",
+        "Çokgen",
+        "Bir köşeden",
+        "Toplam"
+       ],
+       "rows": [
+        [
+         "4",
+         "Dörtgen",
+         "1",
+         "2"
+        ],
+        [
+         "5",
+         "Beşgen",
+         "2",
+         "5"
+        ],
+        [
+         "6",
+         "Altıgen",
+         "3",
+         "9"
+        ],
+        [
+         "7",
+         "Yedigen",
+         "4",
+         "14"
+        ],
+        [
+         "8",
+         "Sekizgen",
+         "5",
+         "20"
+        ],
+        [
+         "10",
+         "Ongen",
+         "7",
+         "35"
+        ]
+       ],
+       "highlightColumn": 3
+      },
+      "caption": "Toplam sütunu $\\frac{n(n - 3)}{2}$ ile bulunur.",
+      "narration": "Tabloda 'bir köşeden' sütunu hep $n - 3$'tür; toplam sütunu bunun $n$ ile çarpılıp ikiye bölünmüş halidir. Beşgende toplam köşegen sayısı 5'tir, yani kenar sayısına eşittir; bu özellik yalnız beşgene aittir."
+     },
+     {
+      "kind": "predict",
+      "title": "Beşgenin köşegenleri",
+      "prompt": "Beşgende köşegen sayısı kenar sayısına eşittir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Doğru. $\\frac{5 \\cdot 2}{2} = 5$; kenar sayısı da 5'tir."
+     },
+     {
+      "kind": "blank",
+      "title": "On iki kenarlı çokgen",
+      "prompt": "On iki kenarlı bir çokgenin köşegen sayısı kaçtır?",
+      "answers": [
+       "54"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 54,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "108",
+        "feedback": "$12 \\cdot 9 = 108$'i ikiye bölmeyi unutmuşsun; her köşegen iki kez sayıldı."
+       }
+      ],
+      "explanation": "$\\frac{12 \\cdot 9}{2} = 54$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir ongenin kaç köşegeni vardır?",
+       "options": [
+        "20",
+        "27",
+        "30",
+        "32",
+        "35"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "$20$, sekizgenin köşegen sayısıdır.",
+        "$27$, dokuzgenin köşegen sayısıdır.",
+        "$30$ için $n \\cdot 3$ gibi hesaplamış olabilirsin; oysa $n - 3 = 7$'dir.",
+        "$32$ hiçbir çokgenin köşegen sayısı değildir; formülü yeniden uygula.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Formül $\\frac{n(n - 3)}{2}$; $n = 10$ için $n - 3$ kaçtır?"
+        },
+        {
+         "text": "$10$ ile $n - 3$'ü çarp ve ikiye bölmeyi unutma."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; köşegen sayısı formülü özgün bir değerle uygulandı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir köşesinden çizilen bütün köşegenler çokgeni $7$ üçgene ayıran dışbükey çokgenin toplam köşegen sayısı kaçtır?",
+       "options": [
+        "27",
+        "35",
+        "44",
+        "54",
+        "65"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$35$, ongenin köşegen sayısıdır; $n - 2 = 7$ eşitliğinden $n$'yi yeniden bul.",
+        "$44$, on birgenin köşegen sayısıdır.",
+        "$54$, on ikigenin köşegen sayısıdır.",
+        "$65$, on üçgenin köşegen sayısıdır."
+       ],
+       "steps": [
+        {
+         "text": "Bir köşeden çizilen köşegenler çokgeni $n - 2$ üçgene ayırır; $n - 2 = 7$ eşitliğinden $n$'yi bul."
+        },
+        {
+         "text": "Bulduğun $n$ ile $\\frac{n(n - 3)}{2}$ formülünü uygula."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; üçgen sayısından kenar sayısına ve köşegen sayısına geçiş özgün bir soruyla kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Köşegen sayısı formülü",
+      "wrong": "$n$ kenarlı çokgenin köşegen sayısı $n \\cdot (n - 3)$'tür.",
+      "right": "Köşegen sayısı $\\frac{n(n - 3)}{2}$'dir; çarpım ikiye bölünür.",
+      "why": "$n(n - 3)$ her köşegeni iki kez sayar: bir kez bir uçtan, bir kez öteki uçtan. Altıgende $6 \\cdot 3 = 18$ değil, $9$ köşegen vardır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Köşegen sayısı, kenar sayısının $2$ katı olan çokgen kaç kenarlıdır?",
+       "options": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Beşgende köşegen sayısı $5$'tir; kenar sayısının $2$ katı olan $10$ değil.",
+        "Altıgende $9$ köşegen var; $2 \\cdot 6 = 12$ olmalıydı.",
+        null,
+        "Sekizgende $20$ köşegen var; $2 \\cdot 8 = 16$ olmalıydı.",
+        "Dokuzgende $27$ köşegen var; $2 \\cdot 9 = 18$ olmalıydı."
+       ],
+       "steps": [
+        {
+         "text": "$\\frac{n(n - 3)}{2} = 2n$ denklemini yaz."
+        },
+        {
+         "text": "Her iki tarafı $n$'ye böl ($n \\neq 0$) ve $2$ ile çarp; $n - 3$ neye eşit olur?"
+        },
+        {
+         "text": "$n - 3$'ü bulunca $n$'yi hesapla; sonucu köşegen sayısı formülüyle kontrol et."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; köşegen sayısı formülüyle denklem kurma özgün bir soruyla gösterildi."
+       }
+      }
+     },
+     {
+      "kind": "guided",
+      "title": "Köşegenden kenar sayısına",
+      "stem": "Köşegen sayısı $20$ olan çokgen kaç kenarlıdır?",
+      "steps": [
+       {
+        "prompt": "$\\frac{n(n - 3)}{2} = 20$ ise $n(n - 3)$ kaçtır?",
+        "choices": [
+         "10",
+         "20",
+         "40",
+         "60"
+        ],
+        "answer": 2,
+        "choiceFeedback": [
+         "$20$'yi ikiye bölmüşsün; eşitliğin iki yanını $2$ ile çarpmalısın.",
+         "$20$ payın yarısıdır; iki yanı $2$ ile çarp.",
+         null,
+         "$3$ ile çarpmışsın; iki yanı $2$ ile çarpmalısın."
+        ],
+        "explanation": "İki yanı 2 ile çarpınca $n(n - 3) = 40$ olur."
+       },
+       {
+        "prompt": "Çarpımı $40$ olan ve birbirinden $3$ farklı iki sayı ($n$ ve $n - 3$) için $n$'yi bul.",
+        "before": "$n =$",
+        "answers": [
+         "8"
+        ],
+        "input": "number",
+        "explanation": "$8 \\cdot 5 = 40$ olduğundan $n = 8$; sekizgenin köşegen sayısı $20$'dir."
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Köşegen sayısı $14$ olan bir çokgenin iç açılarının ölçüleri toplamı kaç derecedir?",
+       "options": [
+        "720",
+        "900",
+        "1080",
+        "1260",
+        "1440"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "$720°$ altıgenin toplamıdır; altıgenin $9$ köşegeni vardır.",
+        null,
+        "$1080°$ sekizgenin toplamıdır; sekizgenin $20$ köşegeni vardır.",
+        "$1260°$ dokuzgenin toplamıdır; dokuzgenin $27$ köşegeni vardır.",
+        "$1440°$ ongenin toplamıdır; ongenin $35$ köşegeni vardır."
+       ],
+       "steps": [
+        {
+         "text": "$\\frac{n(n - 3)}{2} = 14$ ise $n(n - 3) = 28$; çarpımı $28$ olan ve farkı $3$ olan iki sayıyı bul."
+        },
+        {
+         "text": "Bulduğun $n$ ile $(n - 2) \\cdot 180°$ işlemini yap."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; köşegen sayısından kenar sayısına, oradan iç açılar toplamına geçiş özgün bir soruyla kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_COKGEN_05",
+    "title": "Düzgün çokgenler ve düzgün altıgen",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Düzgün çokgen",
+      "text": "Bütün kenar uzunlukları eşit ve bütün iç açıları eşit olan çokgene **düzgün çokgen** denir. Eşkenar üçgen ve kare, düzgün üçgen ile düzgün dörtgendir; diğerleri düzgün beşgen, düzgün altıgen gibi adlandırılır. Yalnız kenarların eşit olması (eşkenar dörtgen) ya da yalnız açıların eşit olması (dikdörtgen) yetmez. Düzgün $n$-gende bütün dış açılar eşit olduğundan bir dış açı $\\frac{360°}{n}$, bir iç açı $180° - \\frac{360°}{n} = \\frac{(n - 2) \\cdot 180°}{n}$'dir."
+     },
+     {
+      "kind": "classify",
+      "title": "Düzgün mü, değil mi?",
+      "prompt": "Aşağıdaki şekilleri düzgün çokgen olup olmamalarına göre ayır.",
+      "groups": [
+       {
+        "label": "Düzgün çokgen",
+        "items": [
+         "Kare",
+         "Eşkenar üçgen",
+         "Kenarları ve açıları eşit altıgen"
+        ]
+       },
+       {
+        "label": "Düzgün çokgen değil",
+        "items": [
+         "Eşkenar dörtgen (kare değil)",
+         "Dikdörtgen (kare değil)",
+         "İkizkenar üçgen (eşkenar değil)"
+        ]
+       }
+      ],
+      "explanation": "Düzgün çokgende hem kenarlar hem açılar eşit olmalıdır. Eşkenar dörtgende yalnız kenarlar, dikdörtgende yalnız açılar eşittir."
+     },
+     {
+      "kind": "visual",
+      "title": "Eşit kenar, eşit açı",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -3.083,
+        -2.878,
+        9.6,
+        3.2
+       ],
+       "points": [
+        {
+         "id": "p0",
+         "at": [
+          -1.411,
+          -1.942
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "p1",
+         "at": [
+          1.411,
+          -1.942
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "p2",
+         "at": [
+          2.283,
+          0.742
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "p3",
+         "at": [
+          0,
+          2.4
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "p4",
+         "at": [
+          -2.283,
+          0.742
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "h0",
+         "at": [
+          5.2,
+          -2.078
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "h1",
+         "at": [
+          7.6,
+          -2.078
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "h2",
+         "at": [
+          8.8,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "h3",
+         "at": [
+          7.6,
+          2.078
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "h4",
+         "at": [
+          5.2,
+          2.078
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "h5",
+         "at": [
+          4,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "p0",
+         "to": "p1",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "p1",
+         "to": "p2",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "p2",
+         "to": "p3",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "p3",
+         "to": "p4",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "p4",
+         "to": "p0",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "h0",
+         "to": "h1",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "h1",
+         "to": "h2",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "h2",
+         "to": "h3",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "h3",
+         "to": "h4",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "h4",
+         "to": "h5",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "h5",
+         "to": "h0",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "p0",
+          "p1",
+          "p2",
+          "p3",
+          "p4"
+         ],
+         "fill": true,
+         "shade": 1
+        },
+        {
+         "points": [
+          "h0",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ],
+       "angles": [
+        {
+         "at": "p1",
+         "from": "p2",
+         "to": "p0",
+         "label": "108°",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "h1",
+         "from": "h2",
+         "to": "h0",
+         "label": "120°",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "caption": "Düzgün $n$-gende bir dış açı $\\frac{360°}{n}$, bir iç açı $180° - \\frac{360°}{n}$.",
+      "narration": "Düzgün beşgende bir dış açı $\\frac{360°}{5} = 72°$, iç açı $180° - 72° = 108°$. Düzgün altıgende bir dış açı $60°$, iç açı $120°$. Sınavda düzgün çokgenler çoğu zaman ortak bir kenarla yan yana konur; ortak köşedeki açıları toplayarak ilerlersin."
+     },
+     {
+      "kind": "visual",
+      "title": "Düzgün çokgenler tablosu (1)",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "n",
+        "Çokgen",
+        "Bir iç açı",
+        "Bir dış açı",
+        "Köşegen"
+       ],
+       "rows": [
+        [
+         "3",
+         "Üçgen",
+         "60°",
+         "120°",
+         "0"
+        ],
+        [
+         "4",
+         "Kare",
+         "90°",
+         "90°",
+         "2"
+        ],
+        [
+         "5",
+         "Beşgen",
+         "108°",
+         "72°",
+         "5"
+        ],
+        [
+         "6",
+         "Altıgen",
+         "120°",
+         "60°",
+         "9"
+        ],
+        [
+         "7",
+         "Yedigen",
+         "≈ 128,6°",
+         "≈ 51,4°",
+         "14"
+        ]
+       ],
+       "highlightColumn": 3
+      },
+      "caption": "Dış açı $\\frac{360°}{n}$, iç açı $180° - \\frac{360°}{n}$, köşegen $\\frac{n(n - 3)}{2}$.",
+      "narration": "Kenar sayısı arttıkça iç açı $180°$'ye yaklaşır, dış açı $0°$'ye yaklaşır; köşegen sayısı hızla artar. 7 kenarlıda iç ve dış açı tam sayı değildir ($\\frac{900°}{7}$ ve $\\frac{360°}{7}$); bu yüzden 7 ve 11 kenarlı düzgün çokgenlerin açıları sınavda genellikle sorulmaz."
+     },
+     {
+      "kind": "blank",
+      "title": "Düzgün sekizgen",
+      "prompt": "Düzgün sekizgenin bir iç açısı kaç derecedir?",
+      "after": "°",
+      "answers": [
+       "135"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 135,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "45",
+        "feedback": "$45°$ bir **dış** açıdır ($\\frac{360°}{8}$). İç açı için $180°$'den çıkar."
+       }
+      ],
+      "explanation": "Dış açı $\\frac{360°}{8} = 45°$; iç açı $180° - 45° = 135°$."
+     },
+     {
+      "kind": "visual",
+      "title": "Düzgün çokgenler tablosu (2)",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "n",
+        "Çokgen",
+        "Bir iç açı",
+        "Bir dış açı",
+        "Köşegen"
+       ],
+       "rows": [
+        [
+         "8",
+         "Sekizgen",
+         "135°",
+         "45°",
+         "20"
+        ],
+        [
+         "9",
+         "Dokuzgen",
+         "140°",
+         "40°",
+         "27"
+        ],
+        [
+         "10",
+         "Ongen",
+         "144°",
+         "36°",
+         "35"
+        ],
+        [
+         "11",
+         "On birgen",
+         "≈ 147,3°",
+         "≈ 32,7°",
+         "44"
+        ],
+        [
+         "12",
+         "On ikigen",
+         "150°",
+         "30°",
+         "54"
+        ]
+       ],
+       "highlightColumn": 3
+      },
+      "caption": "Tam sayı çıkan dış açılar: $45°$, $40°$, $36°$, $30°$.",
+      "narration": "9, 10 ve 12 kenarlı düzgün çokgenlerde dış açı tam sayıdır ($40°$, $36°$, $30°$); sınavda en çok bunlar ve 5, 6, 8 kenarlılar karşına çıkar. 11 kenarlıda açılar kesirlidir ($\\frac{1620°}{11}$ ve $\\frac{360°}{11}$)."
+     },
+     {
+      "kind": "match",
+      "title": "Düzgün çokgen ve iç açısı",
+      "prompt": "Her düzgün çokgeni bir iç açısıyla eşleştir.",
+      "titles": [
+       "Düzgün çokgen",
+       "Bir iç açı"
+      ],
+      "pairs": [
+       {
+        "left": "Düzgün beşgen",
+        "right": "108°"
+       },
+       {
+        "left": "Düzgün altıgen",
+        "right": "120°"
+       },
+       {
+        "left": "Düzgün sekizgen",
+        "right": "135°"
+       },
+       {
+        "left": "Düzgün dokuzgen",
+        "right": "140°"
+       },
+       {
+        "left": "Düzgün ongen",
+        "right": "144°"
+       },
+       {
+        "left": "Düzgün on ikigen",
+        "right": "150°"
+       }
+      ],
+      "explanation": "Her biri $180° - \\frac{360°}{n}$: dokuzgende $180° - 40° = 140°$, on ikigende $180° - 30° = 150°$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir iç açısının ölçüsü $140°$ olan düzgün çokgen kaç kenarlıdır?",
+       "options": [
+        "9",
+        "10",
+        "12",
+        "15",
+        "18"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$10$ kenarlıda iç açı $144°$ olur.",
+        "$12$ kenarlıda iç açı $150°$ olur.",
+        "$15$ kenarlıda iç açı $156°$ olur.",
+        "$18$ kenarlıda iç açı $160°$ olur."
+       ],
+       "steps": [
+        {
+         "text": "Bir dış açıyı bul: $180° - 140°$."
+        },
+        {
+         "text": "Düzgün çokgende bir dış açı $\\frac{360°}{n}$'dir; $n$'yi bulmak için $360°$'yi bulduğun dış açıya böl."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; düzgün çokgende iç açıdan kenar sayısına dış açı yoluyla geçiş özgün bir değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCDE$ düzgün beşgeninde $[AC]$ köşegeni çizilmiştir. Buna göre $m(\\widehat{BAC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -3.553,
+         -3.127,
+         3.553,
+         3.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           -1.763,
+           -2.427
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           1.763,
+           -2.427
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           2.853,
+           0.927
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           3
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           -2.853,
+           0.927
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "B",
+           "C",
+           "D",
+           "E"
+          ],
+          "fill": true,
+          "shade": 1
+         }
+        ],
+        "angles": [
+         {
+          "at": "B",
+          "from": "C",
+          "to": "A",
+          "label": "108°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "x",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "30",
+        "36",
+        "45",
+        "54",
+        "72"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Taban açıları $30°$ olsaydı tepe açısı $120°$ olurdu; düzgün beşgenin iç açısı $108°$'dir.",
+        null,
+        "Taban açıları $45°$ olsaydı tepe açısı $90°$ olurdu.",
+        "$54°$ iç açının yarısıdır; ikizkenar üçgende taban açıları, $180°$'den tepe açısı çıkarılıp ikiye bölünerek bulunur.",
+        "$72°$ iki taban açısının toplamıdır; ikiye bölmeyi unutmuşsun."
+       ],
+       "steps": [
+        {
+         "text": "Düzgün beşgende $|BA| = |BC|$ olur ve $B$'deki iç açı $108°$'dir."
+        },
+        {
+         "text": "$ABC$ ikizkenar üçgendir; tepe açısı $108°$, taban açıları eşit."
+        },
+        {
+         "text": "İki taban açısının toplamı $180° - 108°$; bunu ikiye böl."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; düzgün beşgende köşegen ve ikizkenar üçgen, ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir iç açısının ölçüsü, bir dış açısının ölçüsünün $4$ katı olan düzgün çokgen kaç kenarlıdır?",
+       "options": [
+        "6",
+        "8",
+        "9",
+        "10",
+        "12"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "$6$ kenarlıda iç açı $120°$, dış açı $60°$'dir; iç açı dış açının $2$ katıdır.",
+        "$8$ kenarlıda $\\frac{135°}{45°} = 3$ kat olur.",
+        "$9$ kenarlıda $\\frac{140°}{40°} = 3{,}5$ kat olur.",
+        null,
+        "$12$ kenarlıda $\\frac{150°}{30°} = 5$ kat olur."
+       ],
+       "steps": [
+        {
+         "text": "Dış açıya $d$ de; iç açı $4d$ olur. Bir köşede ikisi bütünlerdir."
+        },
+        {
+         "text": "$4d + d = 180°$ denkleminden $d$'yi bul."
+        },
+        {
+         "text": "Düzgün çokgende $n = \\frac{360°}{d}$."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; iç ve dış açı oranından kenar sayısı özgün bir soruyla bulundu."
+       }
+      }
+     },
+     {
+      "kind": "blank",
+      "title": "Dış açıdan kenar sayısı",
+      "prompt": "Bir dış açısının ölçüsü $30°$ olan düzgün çokgen kaç kenarlıdır?",
+      "answers": [
+       "12"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 12,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "6",
+        "feedback": "$30°$ bir dış açı; $\\frac{360°}{30°}$ hesapla. $6$ kenarlıda dış açı $60°$ olur."
+       }
+      ],
+      "explanation": "$n = \\frac{360°}{30°} = 12$; düzgün on ikigen."
+     },
+     {
+      "kind": "guided",
+      "title": "Toplamdan iç açıya",
+      "stem": "İç açılarının ölçüleri toplamı $1440°$ olan bir düzgün çokgenin bir iç açısı kaç derecedir?",
+      "steps": [
+       {
+        "prompt": "Önce kenar sayısını bul: $(n - 2) \\cdot 180° = 1440°$ ise $n$ kaçtır?",
+        "before": "$n =$",
+        "answers": [
+         "10"
+        ],
+        "input": "number",
+        "explanation": "$1440 \\div 180 = 8 = n - 2$, buradan $n = 10$."
+       },
+       {
+        "prompt": "Düzgün çokgende iç açılar eşittir; toplamı kenar sayısına bölerek bir iç açıyı bul.",
+        "before": "Bir iç açı =",
+        "after": "°",
+        "answers": [
+         "144"
+        ],
+        "input": "number",
+        "explanation": "$\\frac{1440°}{10} = 144°$; dış açıdan da $180° - 36° = 144°$."
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "İç mi, dış mı?",
+      "wrong": "Düzgün $n$-gende bir iç açı $\\frac{360°}{n}$'dir.",
+      "right": "$\\frac{360°}{n}$ bir **dış** açıdır; bir iç açı $180° - \\frac{360°}{n}$'dir.",
+      "why": "Düzgün altıgende $\\frac{360°}{6} = 60°$ dış açıdır, iç açı $120°$'dir. Soruda iç mi dış mı istendiğine iki kez bak."
+     },
+     {
+      "kind": "concept",
+      "title": "Düzgün altıgen: altı eşkenar üçgen",
+      "text": "Düzgün altıgenin merkezini bütün köşelere birleştir: altı eş üçgen oluşur. Merkezdeki açıların her biri $\\frac{360°}{6} = 60°$'dir ve üçgenin iki kenarı yarıçaptır, yani eşittir. İki kenarı eşit, tepe açısı $60°$ olan üçgen **eşkenardır**. Bu yüzden kenar uzunluğu $a$ ise çevrel çemberin yarıçapı da $a$'dır. Çevre $6a$, bir iç açı $120°$'dir.",
+      "narration": "Bölüm 1'deki altıgende A köşesinden üç köşegen çıkar: $AC$ ve $AE$ kısa, $AD$ uzun köşegendir. Düzgün altıgenin toplam 9 köşegeninin 6'sı kısa, 3'ü uzundur. Uzun köşegenler merkezden geçer ve altıgeni iki eş yamuğa böler."
+     },
+     {
+      "kind": "visual",
+      "title": "Kenarı a olan düzgün altıgen",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Büyüklük",
+        "Değer"
+       ],
+       "rows": [
+        [
+         "Çevre",
+         "6a"
+        ],
+        [
+         "Bir iç açı",
+         "120°"
+        ],
+        [
+         "Çevrel yarıçap",
+         "a"
+        ],
+        [
+         "Kısa köşegen",
+         "a√3"
+        ],
+        [
+         "Uzun köşegen",
+         "2a"
+        ],
+        [
+         "Köşegen sayısı",
+         "9 (6 kısa + 3 uzun)"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "caption": "Kısa köşegen $a\\sqrt{3}$, uzun köşegen $2a$.",
+      "narration": "Kısa köşegen: $ABC$ ikizkenar üçgeninde $|AB| = |BC| = a$ ve tepe açısı $120°$'dir. $B$'den tabana inen yükseklik, $30°$-$60°$-$90°$ üçgenleri oluşturur; yarım taban $a \\cdot \\frac{\\sqrt{3}}{2}$, taban $a\\sqrt{3}$ olur. Uzun köşegen merkezden geçer; iki yarıçap uzunluğundadır: $2a$."
+     },
+     {
+      "kind": "visual",
+      "title": "Düzgün altıgenin alanı",
+      "visual": {
+       "kind": "formula",
+       "latex": "A = 6 \\cdot \\frac{a^2\\sqrt{3}}{4} = \\frac{3a^2\\sqrt{3}}{2}",
+       "caption": "Altı eş eşkenar üçgenin alanları toplamı"
+      },
+      "narration": "Kenarı $a$ olan eşkenar üçgenin alanı $\\frac{a^2\\sqrt{3}}{4}$'tür. Altıgen altı eşkenar üçgenden oluştuğu için alanı $6 \\cdot \\frac{a^2\\sqrt{3}}{4} = \\frac{3a^2\\sqrt{3}}{2}$ olur. Örnek: $a = 2$ için alan $\\frac{3 \\cdot 4 \\cdot \\sqrt{3}}{2} = 6\\sqrt{3}$."
+     },
+     {
+      "kind": "flip",
+      "title": "Düzgün altıgen kartları",
+      "prompt": "Kartı çevirmeden önce karşılığını aklından söyle.",
+      "cards": [
+       {
+        "front": "Çevrel çember yarıçapı",
+        "back": "$a$: merkezden köşeye uzaklık kenara eşittir."
+       },
+       {
+        "front": "Kısa köşegen",
+        "back": "$a\\sqrt{3}$: tepe açısı $120°$ olan ikizkenar üçgenin tabanı."
+       },
+       {
+        "front": "Uzun köşegen",
+        "back": "$2a$: merkezden geçer, iki yarıçap uzunluğundadır."
+       },
+       {
+        "front": "Alan",
+        "back": "$\\frac{3a^2\\sqrt{3}}{2}$: altı eşkenar üçgenin alanı."
+       },
+       {
+        "front": "Köşegen sayısı",
+        "back": "$\\frac{6 \\cdot 3}{2} = 9$: 6 kısa, 3 uzun köşegen."
+       }
+      ]
+     },
+     {
+      "kind": "blank",
+      "title": "Uzun köşegen",
+      "prompt": "Kenarı $6$ cm olan düzgün altıgenin uzun köşegeni kaç cm'dir?",
+      "answers": [
+       "12"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 12,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "6",
+        "feedback": "Uzun köşegen merkezden geçer ve iki yarıçap uzunluğundadır: $2a$."
+       }
+      ],
+      "explanation": "$2a = 2 \\cdot 6 = 12$ cm."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Alanı $54\\sqrt{3}$ cm² olan düzgün altıgenin çevresi kaç cm'dir?",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Çevre $24$ ise $a = 4$ ve alan $24\\sqrt{3}$ olurdu.",
+        "Çevre $30$ ise $a = 5$ ve alan $37{,}5\\sqrt{3}$ olurdu.",
+        null,
+        "Çevre $42$ ise $a = 7$ ve alan $73{,}5\\sqrt{3}$ olurdu.",
+        "Çevre $48$ ise $a = 8$ ve alan $96\\sqrt{3}$ olurdu."
+       ],
+       "steps": [
+        {
+         "text": "Alan $\\frac{3a^2\\sqrt{3}}{2}$; bunu $54\\sqrt{3}$'e eşitle."
+        },
+        {
+         "text": "$\\sqrt{3}$'leri sadeleştirip $a^2$'yi bul, sonra $a$'yı hesapla."
+        },
+        {
+         "text": "Çevre $6a$'dır."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; düzgün altıgende alandan kenara, oradan çevreye geçiş özgün bir soruyla kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kenar uzunluğu $4$ cm olan bir düzgün altıgenin **kısa** köşegeni kaç cm'dir?",
+       "options": [
+        "$2\\sqrt{3}$",
+        "4",
+        "$4\\sqrt{2}$",
+        "$4\\sqrt{3}$",
+        "8"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "$2\\sqrt{3}$ yarım köşegendir; yükseklik tabanı ikiye böler, tabanın tamamını almalısın.",
+        "$4$ kenar uzunluğudur; tepe açısı $120°$ olan üçgenin tabanı kenardan uzundur.",
+        "$4\\sqrt{2}$ karenin köşegeni gibi bulunur; $120°$ açılı ikizkenar üçgende $\\sqrt{3}$ çıkar.",
+        null,
+        "$8$ uzun köşegendir ($2a$); soru kısa köşegeni soruyor."
+       ],
+       "steps": [
+        {
+         "text": "Kısa köşegen, kenarları $4$ ve aralarındaki açı $120°$ olan ikizkenar üçgenin tabanıdır."
+        },
+        {
+         "text": "Tepeden tabana inen yükseklik $30°$-$60°$-$90°$ üçgenleri oluşturur; yarım tabanı $4 \\cdot \\frac{\\sqrt{3}}{2}$ ile bul."
+        },
+        {
+         "text": "Yarım tabanı $2$ ile çarparak tabanı hesapla."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; düzgün altıgenin kısa köşegeni özgün bir değerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "guided",
+      "title": "Çevrel çember ve alan",
+      "stem": "Çevrel çemberinin yarıçapı $8$ cm olan düzgün altıgenin alanı $k\\sqrt{3}$ cm²'dir. $k$ kaçtır?",
+      "steps": [
+       {
+        "prompt": "Düzgün altıgende çevrel çember yarıçapı kenara eşittir. Kenar uzunluğu kaç cm'dir?",
+        "choices": [
+         "4",
+         "8",
+         "$8\\sqrt{3}$",
+         "16"
+        ],
+        "answer": 1,
+        "choiceFeedback": [
+         "Yarıçapın yarısını almışsın; yarıçap kenara eşittir.",
+         null,
+         "$a\\sqrt{3}$ kısa köşegendir, kenar değil.",
+         "$2a$ uzun köşegendir; kenar $a$'dır."
+        ],
+        "explanation": "Merkezden köşelere çizilen yarıçaplar altıgeni eşkenar üçgenlere ayırır: $a = r = 8$."
+       },
+       {
+        "prompt": "$A = \\frac{3a^2\\sqrt{3}}{2}$ formülünde $a = 8$ yazarak $k$'yı bul.",
+        "before": "$k =$",
+        "answers": [
+         "96"
+        ],
+        "input": "number",
+        "explanation": "$\\frac{3 \\cdot 64}{2} = 96$; alan $96\\sqrt{3}$ cm²."
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Eşkenar üçgen biçimindeki bir kâğıdın üç köşesinden, kesikler kâğıdın kenarlarına paralel olacak biçimde birer küçük üçgen kesilip atılıyor ve geriye düzgün bir altıgen kalıyor. Atılan üç üçgenin çevreleri toplamı $27$ birim olduğuna göre altıgenin çevresi kaç birimdir?",
+       "options": [
+        "12",
+        "18",
+        "24",
+        "30",
+        "36"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Çevre $12$ olsaydı $a = 2$ olurdu; bu durumda atılan üç üçgenin çevreleri toplamı verilen $27$ birimden küçük kalırdı.",
+        null,
+        "Çevre $24$ olsaydı $a = 4$ olurdu; bu durumda üçgenlerin çevreleri toplamı $27$ birimden büyük çıkardı.",
+        "Çevre $30$ olsaydı $a = 5$ olurdu; bu durumda üçgenlerin çevreleri toplamı $27$ birimden büyük çıkardı.",
+        "Çevre $36$ olsaydı $a = 6$ olurdu; bu durumda üçgenlerin çevreleri toplamı $27$ birimden çok daha büyük çıkardı."
+       ],
+       "steps": [
+        {
+         "text": "Kesikler kenarlara paralel olduğundan köşelerde kalan küçük üçgenlerin açıları $60°$'dir; hepsi eşkenardır."
+        },
+        {
+         "text": "Her kesik altıgenin bir kenarıdır; bu yüzden her küçük üçgenin kenarı altıgenin kenarı $a$'ya eşittir."
+        },
+        {
+         "text": "Üç eşkenar üçgenin çevreleri toplamı $9a$'dır. $a$'yı bulduktan sonra altıgenin çevresini $6a$ ile hesapla."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 düzgün altıgen kesme sorusunun kalıbı alındı; kâğıt eşkenar üçgen olarak açıkça verildi, çevreler toplamı ve istenen nicelik yeniden yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Düzgün altıgen biçimindeki bir aynanın bir kenarı $6$ birimdir. Aynanın her kenarına, bir kenarı aynanın kenarıyla çakışacak biçimde özdeş dikdörtgen plakalar yerleştiriliyor. Sonra komşu plakaların, aynanın ortak köşesinden dışa doğru çıkan kenarlarının uçları birleştirilerek çokgen biçimli bir çerçeve elde ediliyor. Çerçevenin çevresi $66$ birim olduğuna göre plakalardan birinin alanı kaç birimkaredir?",
+       "options": [
+        "24",
+        "27",
+        "30",
+        "33",
+        "36"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Alan $24$ ise plakanın diğer kenarı $4$ olur ve çerçevenin çevresi $60$ çıkar.",
+        "Alan $27$ ise plakanın diğer kenarı $4{,}5$ olur ve çerçevenin çevresi $63$ çıkar.",
+        null,
+        "Alan $33$ ise plakanın diğer kenarı $5{,}5$ olur ve çerçevenin çevresi $69$ çıkar.",
+        "Alan $36$ ise plakanın diğer kenarı $6$ olur ve çerçevenin çevresi $72$ çıkar."
+       ],
+       "steps": [
+        {
+         "text": "Plakanın aynadan dışa uzanan kenarına $h$ de. Aynanın bir köşesinde tam tur: altıgenin iç açısı $120°$, iki plakanın dik açıları $90° + 90°$. Plakalar arasındaki açı kaç derece?"
+        },
+        {
+         "text": "Aradaki açı $60°$ ve iki kenar $h$ olduğundan, uçları birleştiren parça da $h$ olur (eşkenar üçgen)."
+        },
+        {
+         "text": "Çerçevenin çevresi $6 \\cdot 6 + 6 \\cdot h = 66$ eşitliğinden $h$'yi bul; plakanın alanı $6 \\cdot h$."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 düzgün altıgen ayna ve plaka sorusunun kalıbı alındı; kenar uzunluğu, çerçeve çevresi ve anlatım yeniden yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "rule",
+      "title": "Ortak kenarlı çokgenler",
+      "items": [
+       "Ortak köşede iç açılar ve aradaki açı birlikte tam tur ($360°$) yapar.",
+       "Ortak kenardan çıkan iki kenar birbirine eşittir; uçları birleştirilince ikizkenar üçgen oluşur.",
+       "İkizkenar üçgenin taban açısı $\\frac{180° - \\text{tepe açısı}}{2}$'dir.",
+       "Ortak kenarın iki yanındaki iç açıların toplamı $180°$'den küçükse (ör. $108° + 60°$) aradaki açı bu toplamın kendisidir; büyükse $360°$'den çıkarılır."
+      ],
+      "narration": "Ortak kenarlı iki düzgün çokgende, ortak köşeden çıkan ve ortak olmayan iki kenar, ortak kenara eşittir; bu yüzden birbirine de eşittir. Bu iki kenarı birleştirince bir ikizkenar üçgen çıkar. Önce o köşedeki açıyı bul: iki iç açının toplamı 180°'yi aşıyorsa aradaki açı 360°'den çıkarılarak bulunur. Sonra taban açısını hesaplarsın. ÖSYM bu kalıbı düzgün dokuzgen, beşgen ve altıgen gibi çokgenlerle sorar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $ABCDEF$ düzgün altıgeni ile $ABPQ$ karesi $[AB]$ kenarını ortak kullanmaktadır. $F$ ile $Q$ birleştirildiğine göre $m(\\widehat{AQF}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.7,
+         -2.7,
+         3.7,
+         4.164
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           2,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           3,
+           1.732
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           2,
+           3.464
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           0,
+           3.464
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "F",
+          "at": [
+           -1,
+           1.732
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "P",
+          "at": [
+           2,
+           -2
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "Q",
+          "at": [
+           0,
+           -2
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "F",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "F",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "P",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "P",
+          "to": "Q",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "Q",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "F",
+          "to": "Q",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "B",
+           "C",
+           "D",
+           "E",
+           "F"
+          ],
+          "fill": true,
+          "shade": 1
+         },
+         {
+          "points": [
+           "A",
+           "B",
+           "P",
+           "Q"
+          ],
+          "fill": true,
+          "shade": 1
+         }
+        ]
+       },
+       "options": [
+        "15",
+        "18",
+        "24",
+        "30",
+        "36"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$18°$ için tepe açısı $144°$ olmalı; $A$ köşesindeki açıları yeniden topla.",
+        "$24°$ için tepe açısı $132°$ olmalı.",
+        "$30°$ taban açılarının toplamıdır; ikiye bölmeyi unutmuşsun.",
+        "$36°$ için tepe açısı $108°$ olmalı."
+       ],
+       "steps": [
+        {
+         "text": "$A$ köşesinde tam tur: altıgenin iç açısı $120°$, karenin $90°$. Aradaki $\\widehat{FAQ}$ kaç derecedir?"
+        },
+        {
+         "text": "$|AF|$ ve $|AQ|$ ikisi de ortak kenar $|AB|$'ye eşittir; $AFQ$ ikizkenar üçgendir."
+        },
+        {
+         "text": "Tepe açısını $180°$'den çıkar ve sonucu ikiye böl."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2018 ortak kenarlı düzgün çokgenler sorusunun yapısı, düzgün altıgen ve kare ile özgün biçimde kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $ABCDE$ düzgün beşgeni ile $ABPQ$ karesi $[AB]$ kenarını ortak kullanmakta ve karşılıklı iki yanda durmaktadır. $E$ ile $Q$ birleştirildiğine göre $m(\\widehat{AEQ}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.442,
+         -3.1,
+         3.842,
+         4.393
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           2.4,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           3.142,
+           2.283
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           1.2,
+           3.693
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           -0.742,
+           2.283
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "P",
+          "at": [
+           2.4,
+           -2.4
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "Q",
+          "at": [
+           0,
+           -2.4
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "P",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "P",
+          "to": "Q",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "Q",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "Q",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "B",
+           "C",
+           "D",
+           "E"
+          ],
+          "fill": true,
+          "shade": 1
+         },
+         {
+          "points": [
+           "A",
+           "B",
+           "P",
+           "Q"
+          ],
+          "fill": true,
+          "shade": 1
+         }
+        ]
+       },
+       "options": [
+        "6",
+        "9",
+        "12",
+        "18",
+        "27"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "$6°$ için tepe açısı $168°$ olmalı; $A$ köşesindeki açıları yeniden topla.",
+        null,
+        "$12°$ için tepe açısı $156°$ olmalı.",
+        "$18°$ taban açılarının toplamıdır; ikiye bölmeyi unutmuşsun.",
+        "$27°$ için tepe açısı $126°$ olmalı."
+       ],
+       "steps": [
+        {
+         "text": "$A$ köşesinde tam tur: beşgenin iç açısı $108°$, karenin $90°$. Aradaki $\\widehat{EAQ}$ kaç derecedir?"
+        },
+        {
+         "text": "$|AE|$ ve $|AQ|$ ikisi de $|AB|$'ye eşittir; $AEQ$ ikizkenar üçgendir."
+        },
+        {
+         "text": "Tepe açısını $180°$'den çıkar ve sonucu ikiye böl."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ortak kenarlı kare ve düzgün beşgen, ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "İç açılar toplamı $(n - 2) \\cdot 180°$; içbükey çokgende de geçerlidir.",
+    "Dışbükey çokgende dış açılar toplamı **360°**; iç + dış $= 180°$.",
+    "Köşegen sayısı $\\frac{n(n - 3)}{2}$; bir köşeden $n - 3$ köşegen, $n - 2$ üçgen.",
+    "Düzgün $n$-gende dış açı $\\frac{360°}{n}$, iç açı $180° - \\frac{360°}{n}$; beşgen $108°$, altıgen $120°$.",
+    "Kenar sayısı: toplamdan $n - 2 = \\frac{\\text{toplam}}{180°}$, dış açıdan $n = \\frac{360°}{\\text{dış açı}}$.",
+    "Düzgün altıgen: altı eşkenar üçgen; çevrel yarıçap $a$, kısa köşegen $a\\sqrt{3}$, uzun köşegen $2a$, alan $\\frac{3a^2\\sqrt{3}}{2}$.",
+    "Ortak kenarlı çokgenlerde **ortak köşede** tam tur yap, ikizkenar üçgenin taban açısını bul."
+   ],
+   "warnings": [
+    "Düzgün çokgen sorusunda **dış açıdan** git; denklem kısalır.",
+    "Köşegen sayısında **ikiye bölmeyi** unutma.",
+    "İç açı mı dış açı mı sorulduğunu **iki kez** oku.",
+    "$n - 2$'yi bulduktan sonra $n$ için **2 eklemeyi** unutma."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bir altıgen ve bir sekizgen çiz; bir köşeden köşegenleri çizip **üçgenleri** say.",
+    "Düzgün üçgen, kare, beşgen, altıgen, sekizgen ve ongenin **iç ve dış açılarını** tabloya yaz.",
+    "Uygulamada Çokgenler testinden **20 soru** çöz; düzgün çokgende önce **dış açıyı** bul."
+   ]
+  }
+ }
+}

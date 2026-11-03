@@ -5,7 +5,8 @@ import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualF
 import {useTimeline} from '../VisualTimeline';
 import {EARTH_DATES} from './GeographySchema';
 import {type CourseVisual} from '../VisualSchema';
-import {Chip, deg, pathOf, rad, Tag, usePartLook, W, World} from '../VisualWorld';
+import {Chip, deg, pathOf, rad, Tag, usePartLook, W, World, FigureText} from '../VisualWorld';
+import {textWidth} from '../FigureLabel';
 
 /** Colours of the globe: sea, night side, grid lines, the sun and its rays. */
 const GLOBE = {sea: '#5B9BD5', seaDeep: '#2F6A9F', night: '#14213D', line: '#FFFFFF', sun: '#F9C74F', ray: '#F2A93B'};
@@ -282,21 +283,21 @@ const EarthRays: React.FC<VisualBoxProps & {visual: Earth}> = ({visual, width, h
 			{/* Day lengths on this date. */}
 			<g opacity={lengths.opacity}>
 				<rect x={10} y={398} width={292} height={192} rx={18} fill={palette.surface} stroke={lengths.focused > 0.5 ? palette.lesson : palette.border} strokeWidth={lengths.focused > 0.5 ? 4 : 2} />
-				<text x={26} y={426} fontSize={20} fontWeight={800} fill={palette.ink} fontFamily={palette.fontDisplay}>
+				<FigureText x={26} y={426} fontSize={20} fontWeight={800} fill={palette.ink} fontFamily={palette.fontDisplay}>
 					Gündüz süresi
-				</text>
+				</FigureText>
 				{rows.map((row, index) => {
 					const y = 458 + index * 29;
 					return (
 						<g key={row.name}>
-							<text x={26} y={y + 6} fontSize={17} fontWeight={700} fill={palette.ink} fontFamily={palette.fontBody}>
+							<FigureText x={26} y={y + 6} fontSize={17} fontWeight={700} fill={palette.ink} fontFamily={palette.fontBody}>
 								{row.name}
-							</text>
+							</FigureText>
 							<rect x={104} y={y - 9} width={84} height={18} rx={5} fill={GLOBE.night} opacity={0.8} />
 							<rect x={104} y={y - 9} width={(84 * row.hours) / 24} height={18} rx={5} fill={GLOBE.sun} />
-							<text x={196} y={y + 6} fontSize={17} fontWeight={700} fill={palette.ink} fontFamily={palette.fontBody}>
+							<FigureText x={196} y={y + 6} fontSize={17} fontWeight={700} fill={palette.ink} fontFamily={palette.fontBody}>
 								{hoursText(row.hours)}
-							</text>
+							</FigureText>
 						</g>
 					);
 				})}
@@ -495,7 +496,7 @@ const EarthRotation: React.FC<VisualBoxProps & {visual: Earth}> = ({visual, widt
 						const angle = angleOf(place.longitude);
 						const text = `${place.name} ${clockText(timeOf(place.longitude))}`;
 						const [lx, ly] = rim(angle, R * 0.62 - 44);
-						return {dot: rim(angle, R * 0.62), x: lx, y: ly, width: text.length * 20 * 0.56 + 24, text};
+						return {dot: rim(angle, R * 0.62), x: lx, y: ly, width: textWidth(text, 20, 700) + 24, text};
 					});
 					const ys = separateLabels(spots, 34, spots.map((spot) => ({x: spot.dot[0], y: spot.dot[1], width: 28})));
 					return spots.map((spot, index) => (
@@ -516,17 +517,17 @@ const EarthRotation: React.FC<VisualBoxProps & {visual: Earth}> = ({visual, widt
 			</g>
 			<g opacity={speed.opacity}>
 				<rect x={640} y={262} width={340} height={168} rx={18} fill={palette.surface} stroke={speed.focused > 0.5 ? palette.lesson : palette.border} strokeWidth={speed.focused > 0.5 ? 4 : 2} />
-				<text x={658} y={292} fontSize={20} fontWeight={800} fill={palette.ink} fontFamily={palette.fontDisplay}>
+				<FigureText x={658} y={292} fontSize={20} fontWeight={800} fill={palette.ink} fontFamily={palette.fontDisplay}>
 					Çizgisel hız
-				</text>
+				</FigureText>
 				{speedRows.map((row, index) => (
-					<text key={row.latitude} x={658} y={326 + index * 30} fontSize={18} fontWeight={700} fill={palette.ink} fontFamily={palette.fontBody}>
+					<FigureText key={row.latitude} x={658} y={326 + index * 30} fontSize={18} fontWeight={700} fill={palette.ink} fontFamily={palette.fontBody}>
 						{`${row.latitude === 0 ? 'Ekvator' : `${row.latitude}° K`}: ≈ ${row.kmh.toLocaleString('tr-TR')} km/sa`}
-					</text>
+					</FigureText>
 				))}
-				<text x={658} y={414} fontSize={17} fontWeight={600} fill={palette.muted} fontFamily={palette.fontBody}>
+				<FigureText x={658} y={414} fontSize={17} fontWeight={600} fill={palette.muted} fontFamily={palette.fontBody}>
 					Açısal hız her yerde 15°/saat
-				</text>
+				</FigureText>
 			</g>
 		</World>
 	);

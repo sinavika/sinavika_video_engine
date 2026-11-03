@@ -3,7 +3,7 @@ import {clamp01, lerp, noise, smooth, smoothStep} from '../../../../Animations/M
 import {withAlpha} from '../../../../Themes/Theme';
 import {useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
-import {pathOf} from '../../VisualWorld';
+import {pathOf, FigureText} from '../../VisualWorld';
 import {Cloud, FlowLine, Grass, House, ProcessFrame, ProcessLabel, Rain, SCENE, Sky, Tree, processCamera, sampled, smoothPath, useProcessClock, type CameraBox, type Point} from '../ProcessScene';
 
 type ProcessSpec = Extract<CourseVisual, {kind: 'process'}>;
@@ -326,12 +326,12 @@ const LakeInset: React.FC<{show: number; lake: number; time: number}> = ({show, 
 			{Array.from({length: 7}, (_, index) => (
 				<circle key={index} cx={tongueX - 30 + 60 * noise(index * 3.1)} cy={box.y + 60 + 120 * noise(index * 7.3)} r={4} fill="#5E4128" opacity={0.6} />
 			))}
-			<text x={box.x + 18} y={box.y + 36} fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.ink}>
+			<FigureText x={box.x + 18} y={box.y + 36} fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.ink}>
 				Kuşbakışı
-			</text>
-			<text x={box.x + box.w - 14} y={box.y + box.h - 14} textAnchor="end" fontFamily={palette.fontBody} fontWeight={700} fontSize={20} fill={palette.muted}>
+			</FigureText>
+			<FigureText x={box.x + box.w - 14} y={box.y + box.h - 14} textAnchor="end" fontFamily={palette.fontBody} fontWeight={700} fontSize={20} fill={palette.muted}>
 				Uzungöl · Tortum · Sera
-			</text>
+			</FigureText>
 		</g>
 	);
 };

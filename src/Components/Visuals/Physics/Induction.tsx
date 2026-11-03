@@ -1,9 +1,10 @@
 import React from 'react';
-import {useReveal, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useStageClock} from '../VisualTimeline';
 import {arrowHead} from './ArrowHead';
 import {INDUCTION_STAGES} from './PhysicsSchema';
+import {FigureText} from '../VisualWorld';
 
 type Induction = Extract<CourseVisual, {kind: 'induction'}>;
 
@@ -51,15 +52,16 @@ export const InductionVisual: React.FC<VisualBoxProps & {visual: Induction}> = (
 	const facePole = stage === 0 ? facing : stage === 2 ? away : null;
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`} opacity={appear}>
 				{/* Stage chips. */}
 				{INDUCTION_STAGES.map((name, index) => (
 					<g key={name}>
 						<rect x={200 + index * 420} y={30} width={380} height={64} rx={32} fill={index === stage ? palette.lesson : palette.fill} />
-						<text x={200 + index * 420 + 190} y={74} fill={index === stage ? palette.surface : palette.ink} fontSize={fontSize * 0.7} fontWeight={800} textAnchor="middle">
+						<FigureText x={200 + index * 420 + 190} y={74} fill={index === stage ? palette.surface : palette.ink} fontSize={fontSize * 0.7} fontWeight={800} textAnchor="middle">
 							{`${index + 1}. ${name}`}
-						</text>
+						</FigureText>
 					</g>
 				))}
 				<Part id="magnet">
@@ -67,12 +69,12 @@ export const InductionVisual: React.FC<VisualBoxProps & {visual: Induction}> = (
 						<g opacity={look.opacity}>
 							<rect x={magnetX - magnetWidth} y={axisY - 60} width={magnetWidth / 2} height={120} fill={away === 'N' ? palette.brand : palette.lessonDeep} stroke={palette.ink} strokeWidth={5} />
 							<rect x={magnetX - magnetWidth / 2} y={axisY - 60} width={magnetWidth / 2} height={120} fill={facing === 'N' ? palette.brand : palette.lessonDeep} stroke={palette.ink} strokeWidth={5} />
-							<text x={magnetX - magnetWidth * 0.75} y={axisY + fontSize * 0.36} fill={palette.surface} fontSize={fontSize} fontWeight={800} textAnchor="middle">
+							<FigureText x={magnetX - magnetWidth * 0.75} y={axisY + fontSize * 0.36} fill={palette.surface} fontSize={fontSize} fontWeight={800} textAnchor="middle">
 								{away}
-							</text>
-							<text x={magnetX - magnetWidth * 0.25} y={axisY + fontSize * 0.36} fill={palette.surface} fontSize={fontSize} fontWeight={800} textAnchor="middle">
+							</FigureText>
+							<FigureText x={magnetX - magnetWidth * 0.25} y={axisY + fontSize * 0.36} fill={palette.surface} fontSize={fontSize} fontWeight={800} textAnchor="middle">
 								{facing}
-							</text>
+							</FigureText>
 							{stage !== 1 ? (
 								<g>
 									<line x1={magnetX - magnetWidth / 2} y1={axisY - 110} x2={magnetX - magnetWidth / 2 + (stage === 0 ? 150 : -150)} y2={axisY - 110} stroke={palette.ink} strokeWidth={10} strokeLinecap="round" />
@@ -95,15 +97,15 @@ export const InductionVisual: React.FC<VisualBoxProps & {visual: Induction}> = (
 										const x = ringX + 70 * Math.sqrt(1 - (offset / 220) ** 2);
 										return <path key={offset} d={arrowHead(x, y + (current > 0 ? -24 : 24), current > 0 ? -Math.PI / 2 : Math.PI / 2, 34)} fill={palette.brand} />;
 									})}
-									<text x={ringX + 110} y={axisY + 10} fill={palette.ink} fontSize={fontSize * 0.8} fontWeight={800}>
+									<FigureText x={ringX + 110} y={axisY + 10} fill={palette.ink} fontSize={fontSize * 0.8} fontWeight={800}>
 										i
-									</text>
+									</FigureText>
 								</g>
 							) : null}
 							{facePole ? (
-								<text x={ringX - 120} y={axisY - 250} fill={palette.ink} fontSize={fontSize * 0.75} fontWeight={800} textAnchor="middle">
+								<FigureText x={ringX - 120} y={axisY - 250} fill={palette.ink} fontSize={fontSize * 0.75} fontWeight={800} textAnchor="middle">
 									{`yüz: ${facePole}`}
-								</text>
+								</FigureText>
 							) : null}
 						</g>
 					)}
@@ -118,16 +120,17 @@ export const InductionVisual: React.FC<VisualBoxProps & {visual: Induction}> = (
 							<path d={`M${ringX + 330 - 80} ${axisY + 10} A 85 85 0 0 1 ${ringX + 330 + 80} ${axisY + 10}`} fill="none" stroke={palette.axis} strokeWidth={4} />
 							<line x1={ringX + 330} y1={axisY + 40} x2={ringX + 330 + Math.sin(needle) * 100} y2={axisY + 40 - Math.cos(needle) * 100} stroke={palette.brand} strokeWidth={8} strokeLinecap="round" />
 							<circle cx={ringX + 330} cy={axisY + 40} r={10} fill={palette.ink} />
-							<text x={ringX + 330} y={axisY + 90} fill={palette.ink} fontSize={fontSize * 0.7} fontWeight={800} textAnchor="middle">
+							<FigureText x={ringX + 330} y={axisY + 90} fill={palette.ink} fontSize={fontSize * 0.7} fontWeight={800} textAnchor="middle">
 								G
-							</text>
+							</FigureText>
 						</g>
 					)}
 				</Part>
-				<text x={INDUCTION_STAGE.width / 2} y={850} fill={palette.ink} fontSize={fontSize * 0.8} fontWeight={800} textAnchor="middle">
+				<FigureText x={INDUCTION_STAGE.width / 2} y={850} fill={palette.ink} fontSize={fontSize * 0.8} fontWeight={800} textAnchor="middle">
 					{stage === 0 ? 'Akı artıyor: akım artışa karşı koyar' : stage === 1 ? 'Akı değişmiyor: akım yok' : 'Akı azalıyor: akım ters yönde'}
-				</text>
+				</FigureText>
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

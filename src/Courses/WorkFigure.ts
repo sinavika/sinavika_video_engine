@@ -10,6 +10,7 @@ import {getTheme} from '../Themes/ThemeRegistry';
 import {MODULES} from '../UIUX/ModuleIdentity';
 import {naturalAspect, type CourseVisual, type VisualBeat} from '../Components/Visuals/VisualSchema';
 import {worldRatio} from '../Components/Visuals/CourseVisual';
+import {periodsStillHeight} from '../Components/Visuals/Humanities/PeriodChart';
 import {treeRatio} from '../Components/Visuals/Structure/Tree';
 
 export type WorkFigureMode = 'light' | 'dark';
@@ -143,6 +144,18 @@ const FIGURE_RATIOS: Partial<Record<CourseVisual['kind'], number>> = {timeline: 
 const matchingRatio = (pairs: number): number => WORK_FIGURE_BOX_WIDTH / (64 + pairs * 110);
 
 /**
+ * The shape a figure's still needs from its own content: a matching board's rows, a period chart's rows, a cycle of
+ * five or more steps drawn round a circle (in a 16:10 box its two-row loop put three 206-unit steps 165 apart, each
+ * over the next; 2 Nov 2026).
+ */
+const stillRatio = (visual: CourseVisual): number | undefined => {
+	if (visual.kind === 'matching') return Math.min(1.6, matchingRatio(visual.pairs.length));
+	if (visual.kind === 'periods') return WORK_FIGURE_BOX_WIDTH / Math.max(WORK_FIGURE_BOX_WIDTH / 1.6, periodsStillHeight(visual, WORK_FIGURE_BOX_WIDTH));
+	if (visual.kind === 'cycle' && visual.nodes.length >= 5) return 1;
+	return undefined;
+};
+
+/**
  * The box a figure is drawn in, in layout units: 860 wide, as tall as its natural shape asks (a geometry view, a
  * world map, a battle field), 16:10 when it has none (the still is cut to what is drawn afterwards), never taller than
  * wide by more than 1.6.
@@ -150,7 +163,7 @@ const matchingRatio = (pairs: number): number => WORK_FIGURE_BOX_WIDTH / (64 + p
 export const workFigureBox = (visual: CourseVisual): {width: number; height: number} => {
 	// A tree is laid out for the still's smallest text: its rows grow and its shape with them.
 	const tree = visual.kind === 'tree' ? treeRatio(visual, undefined, WORK_FIGURE_TEXT_FLOOR / WORK_FIGURE_BOX_WIDTH) : undefined;
-	const ratio = naturalAspect(visual) ?? tree ?? worldRatio(visual) ?? (visual.kind === 'matching' ? Math.min(1.6, matchingRatio(visual.pairs.length)) : undefined) ?? FIGURE_RATIOS[visual.kind] ?? 1.6;
+	const ratio = naturalAspect(visual) ?? tree ?? worldRatio(visual) ?? stillRatio(visual) ?? FIGURE_RATIOS[visual.kind] ?? 1.6;
 	const height = Math.round(Math.min(WORK_FIGURE_BOX_WIDTH * 1.6, Math.max(WORK_FIGURE_BOX_WIDTH / 6, WORK_FIGURE_BOX_WIDTH / ratio)));
 	return {width: WORK_FIGURE_BOX_WIDTH, height};
 };

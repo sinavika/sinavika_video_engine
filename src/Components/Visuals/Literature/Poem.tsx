@@ -3,6 +3,7 @@ import {easeFrom} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
+import {textWidth} from '../FigureLabel';
 import {usePartLook, World} from '../VisualWorld';
 import {markRanges, splitLineEnd, stopOffsets, syllableCount} from './Hece';
 
@@ -18,18 +19,15 @@ const TOP = 56;
 const SCHEME = 74;
 const COUNT = 96;
 
-// Manrope's advance widths at weight 600, in ems, by kind of letter. A flat width per letter made a line of narrow
-// letters (i, l, ı are a quarter em) look a third longer than it is, and the poem was drawn small in its box.
-const NARROW = new Set([...'iıìíîjlI.,;:!\'’"|()[] ']);
-const SEMI = new Set([...'frtJ-']);
-const WIDE = new Set([...'mwMW']);
-const emWidth = (text: string) => [...text].reduce((sum, letter) => sum + (NARROW.has(letter) ? 0.27 : SEMI.has(letter) ? 0.38 : WIDE.has(letter) ? 0.85 : letter !== letter.toLocaleLowerCase('tr') ? 0.66 : 0.55), 0);
-/** A line's drawn width: its letters, 6% for the bold rhyme and marks, and each caesura slash. */
-const lineWidth = (text: string, stops: number) => (emWidth(text) * 1.06 + stops * 0.6) * SIZE;
+/**
+ * A line's drawn width: its letters measured (the line is set at 600, its rhyme and marks at 800: measured at 700), and
+ * each caesura slash. A per-letter table of its own here had copied the central measure (2 Nov 2026).
+ */
+const lineWidth = (text: string, stops: number) => textWidth(text, SIZE, 700) + stops * 0.6 * SIZE;
 
 /** Where each line sits and how wide the stage is: the text column, then the rhyme letters, then the syllable counts. */
 export const poemLayout = (visual: Poem) => {
-	const widest = Math.max(...visual.lines.map((line) => lineWidth(line.text, visual.stops.length)), visual.poet ? emWidth(visual.poet) * 1.06 * 28 : 0);
+	const widest = Math.max(...visual.lines.map((line) => lineWidth(line.text, visual.stops.length)), visual.poet ? textWidth(visual.poet, 28, 700) : 0);
 	const textRight = LEFT + widest + 40;
 	const schemeX = textRight + SCHEME / 2;
 	const hasScheme = visual.lines.some((line) => line.scheme);
@@ -143,7 +141,8 @@ const PoemLine: React.FC<{index: number; line: Poem['lines'][number]; stops: num
 					{end.redif}
 				</tspan>
 			) : null}
-			{end.after ? <tspan>{end.after}</tspan> : null}
+			{/* An italic redif leans into what follows it: a comma after "başında" touched its last letter (italic correction). */}
+			{end.after ? <tspan dx={end.redif ? SIZE * 0.08 : undefined}>{end.after}</tspan> : null}
 		</text>
 	);
 };

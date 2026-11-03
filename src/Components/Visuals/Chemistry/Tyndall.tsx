@@ -1,9 +1,10 @@
 import React from 'react';
 import {clamp01, noise} from '../../../Animations/Motion';
 import {mixColors} from '../../../Themes/ColorPalette';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor} from '../VisualTimeline';
+import {FigureText} from '../VisualWorld';
 
 type Tyndall = Extract<CourseVisual, {kind: 'tyndall'}>;
 type MixtureKind = Tyndall['beakers'][number]['kind'];
@@ -47,16 +48,17 @@ export const TyndallVisual: React.FC<VisualBoxProps & {visual: Tyndall}> = ({vis
 	const centreOf = (index: number) => (TYNDALL_STAGE.width + LASER.x + LASER.width) / 2 + (index - (visual.beakers.length - 1) / 2) * BEAKER.gap;
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`} opacity={appear}>
 				<Part id="laser">
 					{(look) => (
 						<g opacity={look.opacity}>
 							<rect x={LASER.x} y={BEAM_Y - LASER.height / 2} width={LASER.width} height={LASER.height} rx={12} fill={palette.ink} />
 							<rect x={LASER.x + LASER.width - 12} y={BEAM_Y - 12} width={18} height={24} fill={red} />
-							<text x={LASER.x + LASER.width / 2} y={BEAM_Y - 70} fill={palette.ink} fontSize={labelSize * 0.9} fontWeight={800} textAnchor="middle">
+							<FigureText x={LASER.x + LASER.width / 2} y={BEAM_Y - 70} fill={palette.ink} fontSize={labelSize * 0.9} fontWeight={800} textAnchor="middle">
 								{visual.laserLabel}
-							</text>
+							</FigureText>
 						</g>
 					)}
 				</Part>
@@ -86,13 +88,13 @@ export const TyndallVisual: React.FC<VisualBoxProps & {visual: Tyndall}> = ({vis
 										strokeWidth={5}
 										strokeLinejoin="round"
 									/>
-									<text x={cx} y={BEAKER.bottom + 50} fill={palette.ink} fontSize={labelSize} fontWeight={800} textAnchor="middle">
+									<FigureText x={cx} y={BEAKER.bottom + 50} fill={palette.ink} fontSize={labelSize} fontWeight={800} textAnchor="middle">
 										{beaker.label}
-									</text>
+									</FigureText>
 									{beaker.detail ? (
-										<text x={cx} y={BEAKER.bottom + 92} fill={palette.muted} fontSize={labelSize * 0.8} fontWeight={600} textAnchor="middle">
+										<FigureText x={cx} y={BEAKER.bottom + 92} fill={palette.muted} fontSize={labelSize * 0.8} fontWeight={600} textAnchor="middle">
 											{beaker.detail}
-										</text>
+										</FigureText>
 									) : null}
 								</g>
 							)}
@@ -130,5 +132,6 @@ export const TyndallVisual: React.FC<VisualBoxProps & {visual: Tyndall}> = ({vis
 				</Part>
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

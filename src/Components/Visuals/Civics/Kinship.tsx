@@ -2,10 +2,12 @@ import React from 'react';
 import {clamp01, easeFrom} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
 import {useVideoLayout} from '../../Layouts/VideoLayout';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, useFigureFont} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {UNFOCUSED_FADE, useBeatStartFor, useElementState} from '../VisualTimeline';
 import {KINSHIP_PARENT, KINSHIP_ROLES, type KinshipRole} from './CivicsSchema';
+import {FigureText} from '../VisualWorld';
+import {textWidth} from '../FigureLabel';
 
 type Kinship = Extract<CourseVisual, {kind: 'kinship'}>;
 
@@ -102,6 +104,7 @@ const STEP_SECONDS = 0.55;
 export const KinshipVisual: React.FC<VisualBoxProps & {visual: Kinship}> = ({visual, width, height, delaySeconds = 0}) => {
 	const palette = useVisualPalette();
 	const {u} = useVideoLayout();
+	const captionSize = useFigureFont()(u(26));
 	const seconds = useSceneSeconds();
 	const looks = KINSHIP_ROLES.map((role) => useElementState(role));
 	const starts = KINSHIP_ROLES.map((role) => useBeatStartFor(role, 'focus'));
@@ -192,9 +195,9 @@ export const KinshipVisual: React.FC<VisualBoxProps & {visual: Kinship}> = ({vis
 							<g key={`n${index}`}>
 								<g opacity={clamp01(shownAmount * 2 - 0.6)}>
 									<circle cx={mx} cy={my} r={Math.min(u(26), rowHeight * 0.18)} fill={palette.lesson} stroke={palette.surface} strokeWidth={u(4)} />
-									<text x={mx} y={my + Math.min(u(26), rowHeight * 0.18) * 0.38} textAnchor="middle" fill={palette.onLesson} style={{fontFamily: palette.fontBody, fontWeight: 800, fontSize: Math.min(u(28), rowHeight * 0.2)}}>
+									<FigureText x={mx} y={my + Math.min(u(26), rowHeight * 0.18) * 0.38} textAnchor="middle" fill={palette.onLesson} style={{fontFamily: palette.fontBody, fontWeight: 800, fontSize: Math.min(u(28), rowHeight * 0.2)}}>
 										{counted}
-									</text>
+									</FigureText>
 								</g>
 							</g>
 						);
@@ -221,18 +224,18 @@ export const KinshipVisual: React.FC<VisualBoxProps & {visual: Kinship}> = ({vis
 							stroke={ego || target ? palette.lesson : palette.border}
 							strokeWidth={u(ego || target ? 5 : 3)}
 						/>
-						<text x={x} y={y + (name ? -nameSize * 0.25 : fontSize * 0.36)} textAnchor="middle" fill={ego ? palette.onLesson : palette.ink} style={{fontFamily: palette.fontBody, fontWeight: 800, fontSize}}>
+						<FigureText x={x} y={y + (name ? -nameSize * 0.25 : fontSize * 0.36)} textAnchor="middle" fill={ego ? palette.onLesson : palette.ink} style={{fontFamily: palette.fontBody, fontWeight: 800, fontSize}}>
 							{CAPTIONS[role]}
-						</text>
+						</FigureText>
 						{name ? (
-							<text x={x} y={y + nameSize * 1.05} textAnchor="middle" fill={ego ? palette.onLesson : palette.muted} style={{fontFamily: palette.fontBody, fontWeight: 700, fontSize: nameSize}}>
+							<FigureText x={x} y={y + nameSize * 1.05} textAnchor="middle" fill={ego ? palette.onLesson : palette.muted} style={{fontFamily: palette.fontBody, fontWeight: 700, fontSize: nameSize}}>
 								{name}
-							</text>
+							</FigureText>
 						) : null}
 						{role === 'kardes' && visual.half ? (
-							<text x={x} y={y + boxHeight / 2 + u(28)} textAnchor="middle" fill={palette.muted} style={{fontFamily: palette.fontBody, fontWeight: 700, fontSize: nameSize * 0.9}}>
+							<FigureText x={x} y={y + boxHeight / 2 + u(28)} textAnchor="middle" fill={palette.muted} style={{fontFamily: palette.fontBody, fontWeight: 700, fontSize: nameSize * 0.9}}>
 								yarım kan
-							</text>
+							</FigureText>
 						) : null}
 					</g>
 				);
@@ -242,16 +245,16 @@ export const KinshipVisual: React.FC<VisualBoxProps & {visual: Kinship}> = ({vis
 				? (() => {
 						const text = kinshipCaption(result);
 						const [x, y] = at(focused.role);
-						const plateWidth = text.length * u(17) + u(40);
+						const plateWidth = textWidth(text, captionSize) + u(40);
 						const below = y + boxHeight / 2 + u(54) < height - u(8);
 						const plateY = below ? y + boxHeight / 2 + u(14) : y - boxHeight / 2 - u(58);
 						const plateX = Math.max(plateWidth / 2 + u(4), Math.min(width - plateWidth / 2 - u(4), x));
 						return (
 							<g opacity={captionShown}>
 								<rect x={plateX - plateWidth / 2} y={plateY} width={plateWidth} height={u(44)} rx={u(22)} fill={palette.ink} />
-								<text x={plateX} y={plateY + u(30)} textAnchor="middle" fill={palette.surface} style={{fontFamily: palette.fontBody, fontWeight: 800, fontSize: u(26)}}>
+								<FigureText x={plateX} y={plateY + u(30)} textAnchor="middle" fill={palette.surface} style={{fontFamily: palette.fontBody, fontWeight: 800, fontSize: u(26)}}>
 									{text}
-								</text>
+								</FigureText>
 							</g>
 						);
 					})()

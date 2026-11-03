@@ -76,4 +76,16 @@ describe('period chart', () => {
 		expect(periodMarkRows([{year: 1040, label: 'Dandanakan'}, {year: 1071, label: 'Malazgirt'}, {year: 1200, label: 'Son'}], x, span)).toEqual([0, 1, 0]);
 		expect(periodMarkRows([{year: 375, label: 'A'}, {year: 744, label: 'B'}], x, span)).toEqual([0, 0]);
 	});
+
+	it('reckons a mark label where it is drawn: pushed in from the edge, it can meet the next one', () => {
+		const x = (year: number) => year;
+		const span = () => 60;
+		// Centred on 190, the second label (160–220) is clear of the first (90–150); kept inside a figure 200 wide it
+		// stands at 140–200 and goes up a row. On the left, the figure begins at 0 in any case.
+		expect(periodMarkRows([{year: 120, label: 'A'}, {year: 190, label: 'B'}], x, span)).toEqual([0, 0]);
+		expect(periodMarkRows([{year: 120, label: 'A'}, {year: 190, label: 'B'}], x, span, 200)).toEqual([0, 1]);
+		expect(periodMarkRows([{year: 10, label: 'A'}, {year: 80, label: 'B'}], x, span)).toEqual([0, 1]);
+		// A gap between labels in a row counts too.
+		expect(periodMarkRows([{year: 100, label: 'A'}, {year: 165, label: 'B'}], x, span, 1000, 10)).toEqual([0, 1]);
+	});
 });

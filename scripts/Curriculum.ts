@@ -49,6 +49,10 @@
  *       topic's own codes, built from the scripts that teach it. Works imports
  *       these, not the scripts: one KPSS episode serves three levels whose
  *       codes differ, and AYT Tarih-2 and Coğrafya-2 get their own files.
+ *       A topic's written lesson (Curriculum/WorksWritten/…, src/Courses/WorksWritten.ts)
+ *       replaces its view once it passes its checks; a refused one is listed.
+ *       --topic YKS_TYT/MAT/MAT_BASAMAK[,…] writes only those topics and removes nothing.
+ *       --written <folder> reads the written lessons from another folder; --dry checks and writes nothing.
  *
  *   npm run curriculum -- jobs make <spec.json> [more specs] [--force]
  *       Writes a camp lesson's render jobs (YouTube + reels) and its YouTube
@@ -79,6 +83,7 @@ import {CHECKLIST_STAGES, CURRICULUM_DIRECTORY, STAGE_LABELS, TWIN_LESSONS, entr
 import {LessonScriptSchema, ignoredFields, mapNameIssues, reviewScript, type LessonScript} from '../src/Courses/LessonScript';
 import {GEO_FILES, GEO_LAYERS} from '../src/Configurations/GeoData';
 import {WORKS_DIRECTORY, worksViewOf} from '../src/Courses/WorksView';
+import {WORKS_WRITTEN_DIRECTORY, WrittenLessonSchema, writtenIssues} from '../src/Courses/WorksWritten';
 import {MEDIA_CREDITS_FILE, MEDIA_DIRECTORY, MediaCreditsSchema} from '../src/Courses/MediaLibrary';
 import {dataFoldersIn, educationDataDirectory, importCurriculum, masterLessonList, readChecklist, topicSources, writeChecklist} from '../src/Courses/CurriculumImport';
 import {pastExamFile, readPastExamQuestions, summarizePastExam} from '../src/Courses/PastExamQuestion';
@@ -115,6 +120,9 @@ const {positionals, values} = parseArgs({
 		stage: {type: 'string', default: 'youtube'},
 		count: {type: 'string', default: '5'},
 		file: {type: 'string'},
+		topic: {type: 'string'},
+		written: {type: 'string'},
+		dry: {type: 'boolean', default: false},
 		undo: {type: 'boolean', default: false},
 		mark: {type: 'boolean', default: false},
 		force: {type: 'boolean', default: false},
@@ -378,30 +386,49 @@ if (command === 'import') {
 	}
 } else if (command === 'works') {
 	const inScope = (category: string) => !target || category === target || category.startsWith(`${target}_`);
-	const entries = (await readChecklist(CURRICULUM)).entries.filter((entry) => inScope(entry.category));
+	// --topic writes only the topics named (CATEGORY/LESSON/TOPIC, comma separated) and removes nothing.
+	const only = values.topic ? new Set(values.topic.split(',').map((item) => item.trim())) : undefined;
+	const entries = (await readChecklist(CURRICULUM)).entries.filter((entry) => inScope(entry.category) && (!only || only.has(`${entry.category}/${entry.lesson}/${entry.topic}`)));
 	const sources = await readScripts();
 	const worksRoot = path.join(CURRICULUM, WORKS_DIRECTORY);
+	// --written <folder> reads written lessons from another folder; --dry checks them and writes nothing.
+	const writtenRoot = values.written ? path.resolve(values.written) : path.join(CURRICULUM, WORKS_WRITTEN_DIRECTORY);
+	const dry = values.dry;
 	const written = new Set<string>();
-	const counts = new Map<string, {views: number; topics: number; open: string[]}>();
+	const counts = new Map<string, {views: number; topics: number; open: string[]; lessons: number}>();
+	const refused: string[] = [];
 	for (const entry of entries) {
 		const lesson = TWIN_LESSONS[entry.lesson] ?? entry.lesson;
 		const result = worksViewOf(
 			entry,
 			sources.filter(({script}) => (TWIN_LESSONS[script.topic.lesson] ?? script.topic.lesson) === lesson),
 		);
-		const count = counts.get(entry.category) ?? {views: 0, topics: 0, open: []};
+		const count = counts.get(entry.category) ?? {views: 0, topics: 0, open: [], lessons: 0};
 		count.topics += 1;
 		if ('view' in result) {
 			const file = path.join(worksRoot, entry.category, entry.lesson, `${entry.topic}.json`);
-			await mkdir(path.dirname(file), {recursive: true});
-			await writeFile(file, `${JSON.stringify(result.view, null, 1)}\n`);
+			// The topic's written lesson replaces the view built from the video scripts once it passes its checks.
+			const writtenFile = path.join(writtenRoot, entry.category, entry.lesson, `${entry.topic}.json`);
+			let output: unknown = result.view;
+			if (existsSync(writtenFile)) {
+				const parsed = WrittenLessonSchema.safeParse(JSON.parse(await readFile(writtenFile, 'utf8')));
+				const issues = parsed.success ? writtenIssues(parsed.data, result.view) : parsed.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`);
+				if (issues.length === 0) {
+					output = parsed.data;
+					count.lessons += 1;
+				} else refused.push(`${entry.category}/${entry.lesson}/${entry.topic}:\n${issues.map((issue) => `    - ${issue}`).join('\n')}`);
+			}
+			if (!dry) {
+				await mkdir(path.dirname(file), {recursive: true});
+				await writeFile(file, `${JSON.stringify(output, null, 1)}\n`);
+			}
 			written.add(file);
 			count.views += 1;
 		} else if (result.missing.length < entry.subtopics.length) count.open.push(`${entry.lesson}/${entry.topic} (${result.missing.length} alt konu eksik)`);
 		counts.set(entry.category, count);
 	}
 	// A view whose topic is no longer fully taught is removed, so Works never imports half a topic.
-	for (const category of counts.keys()) {
+	for (const category of only || dry ? [] : counts.keys()) {
 		const folder = path.join(worksRoot, category);
 		if (!existsSync(folder)) continue;
 		for (const file of (await readdir(folder, {recursive: true})).filter((name) => name.endsWith('.json')).map((name) => path.join(folder, name)))
@@ -409,10 +436,14 @@ if (command === 'import') {
 	}
 	counts.forEach((count, category) => {
 		if (count.views === 0 && count.open.length === 0) return;
-		console.log(`${category}: ${count.views}/${count.topics} konunun Works dosyası → Curriculum/${WORKS_DIRECTORY}/${category}/`);
+		console.log(`${category}: ${count.views}/${count.topics} konunun Works dosyası → Curriculum/${WORKS_DIRECTORY}/${category}/${count.lessons > 0 ? ` (${count.lessons} yazılı ders)` : ''}`);
 		count.open.slice(0, 8).forEach((item) => console.log(`  · yarım: ${item}`));
 		if (count.open.length > 8) console.log(`  · … ${count.open.length - 8} yarım konu daha`);
 	});
+	if (refused.length > 0) {
+		console.error(`\nYazılı ders kullanılmadı, videodan kurulan dosya yazıldı (Curriculum/${WORKS_WRITTEN_DIRECTORY}):\n  ${refused.join('\n  ')}`);
+		process.exitCode = 1;
+	}
 } else if (command === 'jobs' && target === 'make') {
 	const specs = positionals.slice(2);
 	if (specs.length === 0) {

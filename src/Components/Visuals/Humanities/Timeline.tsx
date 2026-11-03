@@ -1,9 +1,11 @@
 import React from 'react';
 import {BRAND_TYPOGRAPHY} from '../../../Configurations/BrandTypography';
 import {useVideoLayout} from '../../Layouts/VideoLayout';
-import {useReveal, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useStillFigure, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {elementLook, useElementState} from '../VisualTimeline';
+import {textWidth} from '../FigureLabel';
+import {wrappedLines} from '../../Typography/TextMeasure';
 
 type Timeline = Extract<CourseVisual, {kind: 'timeline'}>;
 
@@ -53,7 +55,10 @@ export const TimelineVisual: React.FC<VisualBoxProps & {visual: Timeline}> = ({v
 	// Dated events (months of 1919) span less than a year: the line is scaled to their own span, not to whole years.
 	const proportional = events.map((event) => (timelineTime(event) - first) / Math.max(events.some((event) => event.month) ? 1 / 12 : 1, last - first));
 	const tightest = Math.min(Infinity, ...proportional.slice(1).map((share, index) => (share - proportional[index]) * span));
-	const blend = tightest < labelWidth * 0.5 ? 0.6 : 0;
+	// An app still is 860 units wide: there a crowded line is spaced evenly, every label in a slot of its own, as the
+	// written years keep the dates (nine movements of 1827-1886 printed over each other, AYT Edebiyat, 2 Nov 2026).
+	const still = useStillFigure();
+	const blend = tightest < labelWidth * 0.5 ? (still && events.length >= 7 ? 1 : 0.6) : 0;
 	const shares = events.map((_, index) => proportional[index] * (1 - blend) + (index / Math.max(1, events.length - 1)) * blend);
 	const xOf = (index: number) => pad + shares[index] * span;
 	const lineY = height / 2;
@@ -101,7 +106,7 @@ export const TimelineVisual: React.FC<VisualBoxProps & {visual: Timeline}> = ({v
 			if (timelineLabelBox(xOf(index), labelWidth, width, u).align === 'center' && leaning.right <= width && centredFree(leaning.left)) return {align: 'start'};
 			if (previous !== undefined && placed[previous].align === undefined && timelineLabelBox(xOf(previous), labelWidth, width, u).align === 'center') {
 				const moved = extentOf(previous, 'end');
-				if (moved.left >= rightOf(slot, 1) + gap) {
+				if (moved.left >= Math.max(0, rightOf(slot, 1) + gap)) {
 					if (moved.right + gap <= own.left) return {previous: 'end'};
 					if (leaning.right <= width && moved.right + gap <= leaning.left) return {align: 'start', previous: 'end'};
 				}
@@ -165,18 +170,17 @@ const timelineLabelBox = (x: number, width: number, areaWidth: number, u: (value
 	return {align, boxX};
 };
 
-/** How tall a label's text is: the year, the label and the detail, each wrapped to the box width (with some slack, since
- * words break early). */
+/** How tall a label's text is: the year, the label and the detail, each wrapped to the box width. */
 const timelineTextHeight = (event: Timeline['events'][number], width: number, u: (value: number) => number, type: TimelineType): number => {
-	const lines = (text: string, size: number, em: number) => Math.max(1, Math.ceil((text.length * u(size) * em) / (width * 0.9)));
-	const detail = event.detail ? u(4) + lines(event.detail, type.detail, 0.5) * u(type.detail) * 1.2 : 0;
-	return u(dateSize(event, type)) + u(4) + lines(event.label, type.label, 0.54) * u(type.label) * 1.15 + detail;
+	const lines = (text: string, size: number, weight: number) => wrappedLines(text, width, {size: u(size), weight});
+	const detail = event.detail ? u(4) + lines(event.detail, type.detail, 500) * u(type.detail) * 1.2 : 0;
+	return u(dateSize(event, type)) + u(4) + lines(event.label, type.label, 700) * u(type.label) * 1.15 + detail;
 };
 
 /** The horizontal span a label's text takes: its longest line (measured em per letter of each line's type), placed as its box aligns it. */
 const labelExtent = (x: number, width: number, areaWidth: number, event: Timeline['events'][number], year: string, u: (value: number) => number, type: TimelineType, lean?: TimelineAlign) => {
 	const {align, boxX} = timelineLabelBox(x, width, areaWidth, u, lean);
-	const text = Math.min(width, Math.max(year.length * u(dateSize(event, type)) * 0.58, event.label.length * u(type.label) * 0.54, (event.detail?.length ?? 0) * u(type.detail) * 0.5));
+	const text = Math.min(width, Math.max(textWidth(year, u(dateSize(event, type))), textWidth(event.label, u(type.label), 700), textWidth(event.detail ?? '', u(type.detail), 500)));
 	if (align === 'start') return {left: boxX, right: boxX + text};
 	if (align === 'end') return {left: boxX + width - text, right: boxX + width};
 	return {left: x - text / 2, right: x + text / 2};

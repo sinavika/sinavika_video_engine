@@ -1,8 +1,9 @@
 import React from 'react';
 import {clamp01} from '../../../Animations/Motion';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part} from '../VisualTimeline';
+import {FigureText} from '../VisualWorld';
 
 type Retrograde = Extract<CourseVisual, {kind: 'retrograde'}>;
 type Point = {x: number; y: number};
@@ -67,9 +68,9 @@ export const RetrogradeVisual: React.FC<VisualBoxProps & {visual: Retrograde}> =
 	const track = skyTrack(t, visual.year);
 	const fontSize = Math.max(40, 24 / k);
 	const text = (x: number, y: number, value: string, anchor: 'start' | 'middle' | 'end' = 'middle', size = fontSize) => (
-		<text x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={800} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
+		<FigureText x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={800} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
 			{value}
-		</text>
+		</FigureText>
 	);
 	// The sky strip: the stretch of sky Mars crosses around the loop runs left to right; a small drift up and down stands for the tilted orbit.
 	const skyX = (longitude: number) => SKY.left + 40 + ((longitude - track[0] - SKY_FROM) / SKY_SPAN) * (SKY.right - SKY.left - 80);
@@ -89,7 +90,8 @@ export const RetrogradeVisual: React.FC<VisualBoxProps & {visual: Retrograde}> =
 	const far = {x: earth.x + 560 * Math.cos(direction), y: earth.y + 560 * Math.sin(direction)};
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<defs>
 				<clipPath id="retrograde-left">
 					<rect x={20} y={40} width={700} height={660} />
@@ -164,5 +166,6 @@ export const RetrogradeVisual: React.FC<VisualBoxProps & {visual: Retrograde}> =
 				</Part>
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

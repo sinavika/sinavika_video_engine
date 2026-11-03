@@ -46,7 +46,7 @@ const Composer: React.FC<{placeholder?: string}> = ({placeholder}) => {
 	const colors = useColors();
 	const t = useT();
 	return (
-		<div style={{padding: '8px 14px 30px'}}>
+		<div style={{padding: '8px 14px 18px'}}>
 			<div style={{borderRadius: 26, background: colors.card, border: `1px solid ${colors.line}`, boxShadow: UI_SHADOW.card, padding: '12px 10px 10px 16px'}}>
 				<Text role="body" color={colors.subtle}>
 					{placeholder ?? t('SinoAI’ye sor', 'Ask SinoAI')}
@@ -64,6 +64,9 @@ const Composer: React.FC<{placeholder?: string}> = ({placeholder}) => {
 					</div>
 				</Stack>
 			</div>
+			<Text role="meta" align="center" style={{marginTop: 8}}>
+				{t('SinoAI bir yapay zekâ; hata yapabilir. Önemli bilgileri kontrol et.', 'SinoAI is an AI and can make mistakes. Check important facts.')}
+			</Text>
 		</div>
 	);
 };

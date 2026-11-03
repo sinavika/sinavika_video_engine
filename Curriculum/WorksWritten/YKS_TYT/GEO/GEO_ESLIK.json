@@ -1,0 +1,3037 @@
+{
+ "topic": {
+  "id": "6F115FF5-57FB-B606-DE0D-0DF56AA702AD",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_ESLIK"
+ },
+ "title": "Üçgende Eşlik – Benzerlik",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/GEO/GEO_ESLIK.json"
+ ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/YKS/TYT/KonuAnlatimi/GEO/GEO_ESLIK.json (MEB OGM Temel Matematik konu anlatımı)",
+   "EgitimVerileri/YKS/TYT/CikmisSorular/GEO/GEO_ESLIK.json (ÖSYM 2018-2026)",
+   "Curriculum/Scripts/YKS_TYT/GEO/GEO_ESLIK.json"
+  ],
+  "additions": [
+   {
+    "note": "Benzerlik kurallarını tam ver (AA, KAK, KKK) ve dik üçgende hipotenüse inen yüksekliğin oluşturduğu üç benzer üçgeni göster; Öklid bağıntılarının benzerlikten çıktığını açıkla.",
+    "done": "Bölüm 2'de 'Benzerlik kuralları' kartı (AA, KAK, KKK), eşleştirme ve çoklu seçim yoklamaları; dik üçgende yükseklikten doğan üç benzer üçgen şekli, Öklid bağıntılarının benzerlikten türetildiği kural kartı, rehberli çözüm ve |HC| sorusu eklendi."
+   },
+   {
+    "note": "Thales teoremini paralel üç doğru ve iki kesenle sayısal örneklerle ver; temel orantı teoreminin tersini (oran eşitse doğru paraleldir) ekle.",
+    "done": "Bölüm 3'te paralel üç doğru ve iki kesenle iki sayısal örnek (parça ve toplam verilen), boşluk doldurma, sorular; 'Tersi de doğru' kartı ile biri doğru biri yanlış iki tahmin kartı eklendi."
+   },
+   {
+    "note": "Gerçek hayat benzerlik problemleri ekle: direğin gölgesinden yükseklik ölçme, harita ölçeği, fotoğraf büyütme; benzer cisimlerde alan oranı k², hacim oranı k³.",
+    "done": "Bölüm 2'de gölge sorusu, Bölüm 4'te direk gölgesi, harita ölçeği (uzunluk ve alan), fotoğraf büyütme kartları; alan oranı k² ve hacim oranı k³ kural, çevirme kartı, tahmin ve heykel kütlesi sorusuyla işlendi."
+   }
+  ],
+  "fixes": [
+   "Tahterevalli sorusunda 'tahtanın ortasına dik' ifadesi destekle tahta arasındaki dikliği çağrıştırıyordu; destek zemine diktir. Soru metni 'zemine dik' olarak düzeltildi.",
+   "MEB anlatımındaki 'en az biri kenar olmak üzere üç elemanın eşliği yeterlidir' genellemesi yanlıştır: iki kenar ve aralarında olmayan açı (KKA) eşlik vermez. Kural kartında düzeltildi; AAK durumunun AKA'ya döndüğü eklendi.",
+   "Havuz sorusunda (AB = AC, BD = DC) 'D orta noktadır' tek doğru sayılmış; oysa KKK ile ∠BAD = ∠DAC ve AD ⊥ BC de kesin çıkar (birden çok doğru şık). Bu bilgi çoklu seçim kartı olarak yeniden yazıldı.",
+   "Havuz sorusunda 6/9, 8/12 ve 5/7,5 oranlarının hepsi 2/3'tür; üç üçgen de benzerdir, cevap anahtarındaki 'I ve III' yanlıştır. Çoklu seçim kartında doğru karşılaştırma yapıldı.",
+   "Alan şekli ve çözümlerde 'k' hem uzunluk birimi hem benzerlik oranı olarak kullanılmıştı; şekildeki uzunluk etiketleri 2a ve a yapıldı.",
+   "Temel dosyadaki soru ipuçları cevap harfini ve sonucu söylüyordu; ipuçlarına çevrildi, son işlem öğrenciye bırakıldı. Cevap anahtarı dağılımı (C ve D ağırlıklı) yeniden dengelendi."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Gölgeden ağacın boyu",
+   "narration": "Bir ağacın boyunu ölçmek için tepesine tırmanman gerekmez. Güneşli bir günde kendi gölgeni ve ağacın gölgesini ölçmen yeter; çünkü güneş ışınları paralel gelir ve seninle ağacın etrafında aynı biçimli iki üçgen kurar. Bu derste eş ve benzer üçgenleri, paralel doğruların orantılı bölmesini ve alanların neden oranın karesiyle değiştiğini öğreneceksin."
+  },
+  "objectives": [
+   "Eşlik kurallarını (KKK, KAK, AKA) tanımak ve eşlik vermeyen bilgileri ayırmak",
+   "AA, KAK ve KKK ile üçgenlerin benzerliğini göstermek",
+   "Benzerlik oranını uzunluklara ve çevreye uygulamak",
+   "Dik üçgende hipotenüse inen yükseklikten üç benzer üçgen ve Öklid bağıntılarını çıkarmak",
+   "Temel orantı teoremini, tersini, orta tabanı ve Thales teoremini kullanmak",
+   "Alan oranının $k^2$, hacim oranının $k^3$ olduğunu kullanmak",
+   "Gölge, harita ölçeği ve fotoğraf büyütme problemlerini benzerlikle çözmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_ESLIK_01",
+    "subtopics": [
+     "GEO_ESLIK_02",
+     "GEO_ESLIK_03"
+    ],
+    "title": "Eş üçgenler",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Üç bilgi yeter",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        11.3,
+        3.9
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          1.6,
+          3.2
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          4.4,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          7.8,
+          3.2
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          6.2,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "F",
+         "at": [
+          10.6,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "c",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "A",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "E",
+         "label": "c",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "F",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "F",
+         "to": "D",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "fill": true,
+         "shade": 1
+        },
+        {
+         "points": [
+          "D",
+          "E",
+          "F"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ],
+       "angles": [
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "label": "β",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "E",
+         "from": "F",
+         "to": "D",
+         "label": "β",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "caption": "**KKK**, **KAK** ya da **AKA** sağlanırsa üçgenler **eştir**; bütün kenarları, açıları, yükseklikleri eşit.",
+      "narration": "Eş üçgenlerin bütün kenarları ve bütün açıları birbirine eşittir; biri öbürünün üstüne tam oturur. Ama bunu göstermek için altı bilginin hepsi gerekmez. **KKK**: üç kenar eşitse üçgenler eştir. **KAK**: iki kenar ve bu kenarların **arasındaki** açı eşitse eştir. **AKA**: bir kenar ve o kenara komşu iki açı eşitse eştir. Üç açının eşit olması ise yetmez: aynı biçimde ama farklı boyda üçgenler olabilir. Bu durum eşlik değil, benzerliktir."
+     },
+     {
+      "kind": "rule",
+      "title": "Eşlik kuralları ve sonuçları",
+      "items": [
+       "**KKK**: üç kenar karşılıklı eşit.",
+       "**KAK**: iki kenar ve bu kenarların **arasındaki** açı eşit.",
+       "**AKA**: bir kenar ve ona komşu iki açı eşit. İki açı eşitse üçüncüsü de eşit olduğundan 'iki açı ve herhangi bir kenar' da eşlik verir.",
+       "**AAA** eşlik vermez; yalnız benzerlik verir.",
+       "**KKA** (iki kenar ve aralarında olmayan açı) eşlik için yetmez.",
+       "Eş üçgenlerde karşılıklı yükseklikler, kenarortaylar ve açıortaylar da eşittir.",
+       "$ABC \\cong DEF$ yazılışında harf sırası köşeleri eşler: $A \\leftrightarrow D$, $B \\leftrightarrow E$, $C \\leftrightarrow F$."
+      ],
+      "narration": "MEB anlatımındaki 'en az biri kenar olmak üzere üç eleman' cümlesi her üçlüyü kapsamaz. İki kenarı ve eşit olmayan açının karşısındaki kenarı sabit tutarsan çoğu zaman iki farklı üçgen çizebilirsin; bu yüzden KKA kural değildir. Açı-açı-kenar durumunda ise iki açı eşit olduğu için üçüncü açı da eşittir ve durum AKA'ya döner."
+     },
+     {
+      "kind": "classify",
+      "title": "Eşlik verir mi?",
+      "prompt": "Aşağıdaki bilgileri, iki üçgenin eşliğini gösterip göstermemesine göre ayır.",
+      "groups": [
+       {
+        "label": "Eşlik verir",
+        "items": [
+         "Üç kenar karşılıklı eşit",
+         "İki kenar ve aralarındaki açı eşit",
+         "İki açı ve bir kenar eşit"
+        ]
+       },
+       {
+        "label": "Eşlik vermez",
+        "items": [
+         "Üç açı karşılıklı eşit",
+         "İki kenar ve aralarında olmayan açı eşit"
+        ]
+       }
+      ],
+      "explanation": "KKK, KAK ve AKA (iki açı ve bir kenar) eşlik verir. Üç açı yalnız benzerlik verir; iki kenar ve aralarında olmayan açı ise iki farklı üçgene izin verebilir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Üç açı eşitse eş mi?",
+      "wrong": "Üç açısı karşılıklı eşit olan iki üçgen eştir.",
+      "right": "Üç açının eşitliği yalnız benzerlik verir; eşlik için en az bir kenarın da eşit olması gerekir.",
+      "why": "Bir üçgeni iki kat büyütürsen açıların hepsi aynı kalır ama kenarlar değişir. Yani biçim aynıdır, boy aynı değildir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ ve $DEF$ üçgenleri için verilen aşağıdaki bilgilerden hangisi, bu üçgenlerin **eş** olduğunu göstermek için **yeterli değildir**?",
+       "options": [
+        "$m(\\widehat{A}) = m(\\widehat{D})$, $m(\\widehat{B}) = m(\\widehat{E})$, $m(\\widehat{C}) = m(\\widehat{F})$",
+        "$|AB| = |DE|$, $|BC| = |EF|$, $|AC| = |DF|$",
+        "$|AB| = |DE|$, $m(\\widehat{B}) = m(\\widehat{E})$, $|BC| = |EF|$",
+        "$m(\\widehat{A}) = m(\\widehat{D})$, $|AB| = |DE|$, $m(\\widehat{B}) = m(\\widehat{E})$",
+        "$|AB| = |DE|$, $m(\\widehat{A}) = m(\\widehat{D})$, $|AC| = |DF|$"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "Üç kenarın eşitliği (KKK) eşlik için yeterlidir; soru 'yeterli değil' olanı arıyor.",
+        "$B$ açısı $[AB]$ ile $[BC]$'nin arasındadır; bu KAK'tır ve eşlik verir.",
+        "$[AB]$ eşit ve ona komşu $A$ ile $B$ açıları eşit; bu AKA'dır ve eşlik verir.",
+        "$A$ açısı $[AB]$ ile $[AC]$'nin arasındadır; bu KAK'tır ve eşlik verir."
+       ],
+       "steps": [
+        {
+         "text": "Her şıkkı bir eşlik kuralıyla eşleştirmeyi dene: KKK, KAK ya da AKA."
+        },
+        {
+         "text": "KAK'ta eşit açı, eşit iki kenarın **arasında** olmalı. $B$ açısı $[AB]$ ile $[BC]$'nin, $A$ açısı $[AB]$ ile $[AC]$'nin arasındadır."
+        },
+        {
+         "text": "Bir kurala uymayan şık, eşlik yerine başka bir ilişkiyi gösterir. Hangi şıkta kenar bilgisi hiç yok?"
+        }
+       ],
+       "origin": {
+        "changes": "Eşlik kurallarının ayırt edilmesi, AAA'nın yalnız benzerlik verdiği özgün bir seçenek setiyle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "blank",
+      "title": "Köşe sırasına dikkat",
+      "prompt": "$ABC \\cong EFD$ olsun; köşeler sırayla eşleşir: $A \\leftrightarrow E$, $B \\leftrightarrow F$, $C \\leftrightarrow D$. $|AB| = 5$, $|BC| = 7$ ve $|AC| = 9$ ise $|FD|$ kaçtır?",
+      "before": "$|FD| =$",
+      "answers": [
+       "7"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 7,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "5",
+        "feedback": "5, $|AB|$'nin değeri; $[AB]$ ile eşleşen kenar $[EF]$'dir."
+       },
+       {
+        "answer": "9",
+        "feedback": "9, $|AC|$'nin değeri; $[AC]$ ile $[ED]$ eşleşir. $[FD]$, $B$ ile $C$ köşelerine karşılık gelir."
+       }
+      ],
+      "explanation": "$F$ köşesi $B$'ye, $D$ köşesi $C$'ye karşılık gelir. Bu yüzden $[FD]$, $[BC]$ ile eşleşir ve $|FD| = |BC| = 7$ olur."
+     },
+     {
+      "kind": "multi",
+      "title": "İkizkenar üçgende eşlik",
+      "stem": "$ABC$ üçgeninde $|AB| = |AC|$'dir. $D$ noktası $[BC]$ üzerinde ve $|BD| = |DC|$'dir. Buna göre aşağıdakilerden hangileri **her zaman** doğrudur?",
+      "options": [
+       "$ABD \\cong ACD$",
+       "$m(\\widehat{BAD}) = m(\\widehat{DAC})$",
+       "$[AD] \\perp [BC]$",
+       "$|AD| = |BD|$",
+       "$ABC$ üçgeni eşkenardır"
+      ],
+      "answers": [
+       0,
+       1,
+       2
+      ],
+      "choiceFeedback": [
+       null,
+       null,
+       null,
+       "$[AD]$ ile $[BD]$ arasında böyle bir eşitlik verilmedi; $[AD]$ yüksekliktir ve uzunluğu üçgene göre değişir.",
+       "$|AB| = |AC|$ yalnız ikizkenarlığı verir; $|BC|$ ayrıca eşit olmak zorunda değildir."
+      ],
+      "explanation": "$|AB| = |AC|$, $|BD| = |DC|$ ve $[AD]$ ortak olduğundan KKK ile $ABD \\cong ACD$ olur. Eş üçgenlerde karşılıklı açılar eşit: $m(\\widehat{BAD}) = m(\\widehat{DAC})$ ve $m(\\widehat{ADB}) = m(\\widehat{ADC})$. Bu iki açı düz açıyı paylaştığından toplamları 180°'dir; her biri 90° olur."
+     },
+     {
+      "kind": "concept",
+      "title": "Dik açıların çevresinde eş üçgenler",
+      "text": "Bir doğru üzerinde yan yana duran dik açılarda iki dik üçgenin dar açıları birbirini 90°'ye tamamlar. Böyle şekillerde bir dar açıya $\\alpha$ de, öbür dar açıyı $90° - \\alpha$ yaz ve her yerde karşılığını işaretle. Hipotenüsler ya da birer dik kenar eşitse AKA ile eş üçgenleri bulursun; eş üçgenlerin karşılıklı kenarları ise uzunlukları birbirine aktarır.",
+      "narration": "Bu kalıp karede, dik açılı merdiven ve direk problemlerinde çok çıkar. Önce eşit olan kenarı ya da hipotenüsü bul, sonra açıları kovala: tümler açılar iki üçgenin AKA koşulunu tamamlar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $[AB] \\perp [BD]$, $[ED] \\perp [BD]$, $C \\in [BD]$, $[AC] \\perp [CE]$ ve $|AC| = |CE|$'dir. $|AB| = 3$ ve $|ED| = 7$ birim olduğuna göre $|BD|$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         10.7,
+         7.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           3
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           7,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           10,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           10,
+           7
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "3",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "E",
+          "label": "7",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "angles": [
+         {
+          "at": "B",
+          "from": "C",
+          "to": "A",
+          "right": true,
+          "arcs": 1
+         },
+         {
+          "at": "D",
+          "from": "E",
+          "to": "C",
+          "right": true,
+          "arcs": 1
+         },
+         {
+          "at": "C",
+          "from": "E",
+          "to": "A",
+          "right": true,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "21"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "7, $|BC|$'nin değeri; $|BD|$ için $|CD|$'yi de eklemelisin.",
+        "Bu değer eşitliklerden çıkmaz; önce eş üçgenlerden $|BC|$ ve $|CD|$'yi bul.",
+        "Bu değer eşitliklerden çıkmaz; önce eş üçgenlerden $|BC|$ ve $|CD|$'yi bul.",
+        null,
+        "21'i bulmak için 3 ile 7'yi çarpmışsın; $[BD]$ iki parçanın toplamıdır."
+       ],
+       "steps": [
+        {
+         "text": "$m(\\widehat{BAC}) = \\alpha$ ise $m(\\widehat{ACB}) = 90° - \\alpha$ olur. $C$'de düz açı 180° olduğundan $m(\\widehat{ECD})$ kaç derecedir?"
+        },
+        {
+         "text": "$ABC$ ve $CDE$ üçgenlerinde hipotenüsler eşit, açılar $\\alpha$ ve $90° - \\alpha$: AKA ile eş. Karşılıklı kenarları yaz: $[BC]$ hangi kenara, $[CD]$ hangi kenara eşit?"
+        },
+        {
+         "text": "$|BD| = |BC| + |CD|$ olduğunu kullan ve iki uzunluğu yerine yaz."
+        }
+       ],
+       "origin": {
+        "changes": "Dik açılar arasında oluşan eş üçgenler (AKA) özgün ölçülerle, ölçülere uygun çizilmiş bir şekilde soruldu."
+       }
+      }
+     },
+     {
+      "kind": "findError",
+      "title": "Hatayı bul",
+      "problem": "$|AB| = |DE|$, $|BC| = |EF|$ ve $m(\\widehat{A}) = m(\\widehat{D})$ olan $ABC$ ve $DEF$ üçgenlerinin eş olduğunu göstermeye çalışan bir öğrencinin çözümü aşağıdadır.",
+      "prompt": "Hangi satırda hata var?",
+      "steps": [
+       "$|AB| = |DE|$ ve $|BC| = |EF|$ verilmiş.",
+       "$m(\\widehat{A}) = m(\\widehat{D})$ verilmiş; iki kenar ve bir açı eşit.",
+       "Eşit açı verilen iki kenarın arasında olduğundan KAK uygulanır.",
+       "Sonuç: $ABC \\cong DEF$."
+      ],
+      "wrongStep": 2,
+      "choiceFeedback": [
+       "Bu satır yalnız verilenleri yazıyor; hata yok.",
+       "Bu satır da yalnız veriyi özetliyor; hata yok.",
+       null,
+       "Sonuç, önceki satırın doğruluğuna bağlı; hata önceki bir satırda."
+      ],
+      "explanation": "$A$ açısı $[AB]$ ve $[AC]$'nin arasındadır; $[BC]$ ise $A$ açısının karşısındadır. Eşit kenarlar $[AB]$ ile $[BC]$ olduğundan açı bu kenarların arasında değildir. İki kenar ve aralarında olmayan açı (KKA) eşlik vermez."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ESLIK_04",
+    "subtopics": [
+     "GEO_ESLIK_05"
+    ],
+    "title": "Benzer üçgenler",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Aynı biçim, farklı boy",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        11.1,
+        4.3
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          1.2,
+          2.4
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          3.2,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          7.4,
+          3.6
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          5.6,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "F",
+         "at": [
+          10.4,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "c",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "A",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "E",
+         "label": "kc",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "F",
+         "label": "ka",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "F",
+         "to": "D",
+         "label": "kb",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "fill": true,
+         "shade": 1
+        },
+        {
+         "points": [
+          "D",
+          "E",
+          "F"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ],
+       "angles": [
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "label": "β",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "C",
+         "from": "A",
+         "to": "B",
+         "label": "γ",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "E",
+         "from": "F",
+         "to": "D",
+         "label": "β",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "F",
+         "from": "D",
+         "to": "E",
+         "label": "γ",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "caption": "**AA** yeter: iki açı eşitse üçgenler benzer; kenarlar, yükseklikler ve çevreler **k** oranında.",
+      "narration": "Benzer üçgenlerde karşılıklı açılar eşit, karşılıklı kenarlar orantılıdır. Büyük üçgen, küçüğün $k$ kat büyütülmüş hâlidir. Benzerlik $ABC \\sim DEF$ biçiminde yazılır ve harf sırası köşelerin eşleşmesini verir. Ayakkabının farklı numaraları ya da bir fotoğrafın iki farklı boyu da birbirine benzerdir."
+     },
+     {
+      "kind": "rule",
+      "title": "Benzerlik kuralları",
+      "items": [
+       "**AA**: iki açı karşılıklı eşitse üçgenler benzerdir; üçüncü açı zaten eşit çıkar.",
+       "**KAK**: iki kenar orantılı ve bu kenarların **arasındaki** açı eşitse üçgenler benzerdir.",
+       "**KKK**: üç kenar karşılıklı orantılıysa üçgenler benzerdir.",
+       "$ABC \\sim DEF$ ise $\\frac{|AB|}{|DE|} = \\frac{|BC|}{|EF|} = \\frac{|AC|}{|DF|} = k$ ve $m(\\widehat{A}) = m(\\widehat{D})$, $m(\\widehat{B}) = m(\\widehat{E})$, $m(\\widehat{C}) = m(\\widehat{F})$.",
+       "$k = 1$ ise üçgenler eştir; eşlik benzerliğin özel hâlidir.",
+       "Oranı kurarken eşit açıların **karşısındaki** kenarları eşle."
+      ],
+      "narration": "Benzerlikte eşlikten farklı olarak kenarların eşit değil, aynı oranda olması gerekir. En çok AA kullanılır: paralel doğrular, ortak açılar ve ters açılar hep açı eşitliği üretir."
+     },
+     {
+      "kind": "concept",
+      "title": "Benzerlik oranı k",
+      "text": "Benzer üçgenlerde karşılıklı yüksekliklerin, kenarortayların, açıortayların ve çevrelerin oranı da kenarların oranı olan $k$'ye eşittir. Açılar ise değişmez: oran 2 olsa da açılar aynı kalır. Alanlar için oran $k^2$ olur; bunu son bölümde göreceğiz.",
+      "caption": "Uzunluk benzeri her şeyde oran $k$.",
+      "narration": "Bir üçgeni fotokopiyle büyütmeyi düşün: kenarlar, yükseklikler ve çevre aynı oranda büyür, açılar büyümez."
+     },
+     {
+      "kind": "match",
+      "title": "Kural ve koşul",
+      "prompt": "Her benzerlik kuralını koşuluyla eşleştir.",
+      "titles": [
+       "Kural",
+       "Koşul"
+      ],
+      "pairs": [
+       {
+        "left": "AA",
+        "right": "İki açı karşılıklı eşit"
+       },
+       {
+        "left": "KAK",
+        "right": "İki kenar orantılı, aralarındaki açı eşit"
+       },
+       {
+        "left": "KKK",
+        "right": "Üç kenar karşılıklı orantılı"
+       },
+       {
+        "left": "$k = 1$",
+        "right": "Benzer üçgenler aynı zamanda eştir"
+       }
+      ],
+      "explanation": "AA açı, KAK iki kenar ile arasındaki açı, KKK ise üç kenar oranını ister. Oran 1 olursa kenarlar eşit çıkar ve üçgenler eş olur."
+     },
+     {
+      "kind": "multi",
+      "title": "Hangileri benzer?",
+      "stem": "Bir üçgenin iki kenarı 6 cm ve 9 cm, bu kenarlar arasındaki açı 40°'dir. Aşağıdaki üçgenlerden hangileri bu üçgene benzerdir?",
+      "options": [
+       "İki kenarı 8 cm ve 12 cm, aralarındaki açı 40°",
+       "İki kenarı 5 cm ve 7,5 cm, aralarındaki açı 40°",
+       "İki kenarı 4 cm ve 7 cm, aralarındaki açı 40°",
+       "İki kenarı 6 cm ve 9 cm, aralarındaki açı 50°"
+      ],
+      "answers": [
+       0,
+       1
+      ],
+      "choiceFeedback": [
+       null,
+       null,
+       "$\\frac{4}{6} \\neq \\frac{7}{9}$; kenarlar orantılı değil, KAK uygulanamaz.",
+       "Açı 50° olduğundan aradaki açılar eşit değil; KAK uygulanamaz."
+      ],
+      "explanation": "KAK için iki kenar oranı eşit ve aradaki açı eşit olmalı. $\\frac{8}{6} = \\frac{12}{9} = \\frac{4}{3}$ ve $\\frac{5}{6} = \\frac{7{,}5}{9} = \\frac{5}{6}$ olduğundan ilk iki üçgen benzerdir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Açılar da k kat mı büyür?",
+      "wrong": "Benzerlik oranı 2 olan iki üçgenden büyüğünün açıları da küçüğünün 2 katıdır.",
+      "right": "Benzer üçgenlerde karşılıklı açılar eşittir; yalnız uzunluklar $k$ kat olur.",
+      "why": "Üçgenin açıları toplamı hep 180°'dir. Açılar da 2 katına çıksaydı toplam 360° olurdu. Büyütme biçimi değiştirmez, boyutu değiştirir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Boyu $1{,}6$ m olan Ece'nin gölgesi $2$ m iken, aynı anda yakındaki bir ağacın gölgesi $15$ m'dir. Ağacın boyu kaç metredir?",
+       "options": [
+        "10",
+        "11",
+        "12",
+        "$13{,}5$",
+        "15"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "10'u bulmak için oranı yanlış kurmuş olabilirsin; boy ve gölge aynı sırada yazılmalı.",
+        "11 eşitlikten çıkmaz; $\\frac{\\text{boy}}{\\text{gölge}}$ oranını iki durumda da eşitle.",
+        null,
+        "Boyun gölgeye oranı 0,8'dir; $13{,}5$ bu oranla çıkmaz.",
+        "15 ağacın gölgesidir; soru boyu soruyor."
+       ],
+       "steps": [
+        {
+         "text": "Işınlar paralel olduğundan Ece ve ağaç, aynı açılı iki dik üçgen kurar. Boyun gölgeye oranı iki durumda da aynı."
+        },
+        {
+         "text": "$\\frac{1{,}6}{2} = \\frac{h}{15}$ eşitliğini yaz."
+        },
+        {
+         "text": "Soldaki oranı sadeleştir ve $h$'yi bulmak için 15 ile çarp."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM'nin gerçek hayat benzerlik sorularındaki gölge fikri özgün sayılarla kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ ve $DEF$ üçgenleri benzerdir ve $\\frac{|AB|}{|DE|} = \\frac{2}{3}$'tür. $ABC$ üçgeninin çevresi $24$ cm olduğuna göre $DEF$ üçgeninin çevresi kaç santimetredir?",
+       "options": [
+        "12",
+        "16",
+        "18",
+        "24",
+        "36"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "24'ün yarısını almışsın; çevreler kenarlar gibi $\\frac{2}{3}$ oranındadır.",
+        "16'yı bulmak için oranı ters uygulamışsın; $DEF$ büyük üçgendir.",
+        "18 oranın doğru uygulanmasından çıkmaz; $ABC$ ile $DEF$ çevre oranını yeniden kur.",
+        "24, $ABC$'nin çevresidir; $DEF$ farklı boydadır.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Benzer üçgenlerde çevreler de kenarlar gibi aynı oranda: $\\frac{Ç(ABC)}{Ç(DEF)} = \\frac{2}{3}$."
+        },
+        {
+         "text": "$\\frac{24}{Ç(DEF)} = \\frac{2}{3}$ eşitliğini yaz. Hangi üçgen daha büyük?"
+        },
+        {
+         "text": "İçler dışlar çarpımıyla $Ç(DEF)$'i çöz."
+        }
+       ],
+       "origin": {
+        "changes": "Benzerlik oranının çevreye aktarılması özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Paralel doğrulardan benzerlik",
+      "text": "İki paralel doğruyu kesen bir doğru **iç ters açıları** eşit yapar; kesişen iki doğru ise **ters (karşıt) açıları** eşit yapar. Bu iki açı AA benzerliğini verir. Paralel kenarları kesen iki doğrunun kesişmesiyle oluşan şekle **kelebek** denir: kesişim noktasından geçen iki üçgen benzerdir ve oranları paralel kenarların oranına eşittir.",
+      "narration": "Eşleştirirken harfe değil açıya bak: paralel kenarlar birbirinin karşılığıdır ve kesişim noktasından uzanan parçalar da aynı oranı taşır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $[AB] \\parallel [CD]$ ve $[AD]$ ile $[BC]$, $E$ noktasında kesişiyor. $|AB| = 6$, $|CD| = 9$ ve $|AE| = 4$ birim olduğuna göre $|ED| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.04,
+         -0.7,
+         9.36,
+         5.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           5
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           6,
+           5
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           -0.34,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           8.66,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           3.464,
+           3
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "label": "9",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "D",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         }
+        ]
+       },
+       "options": [
+        "5",
+        "6",
+        "$6{,}5$",
+        "7",
+        "8"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "5, tahmin gibi duruyor; benzerlik oranı $\\frac{6}{9}$ ile $|AE|$'ye karşılık gelen kenarı bul.",
+        null,
+        "Bu değer oranlardan çıkmaz; $ABE \\sim DCE$ benzerliğinde $|AE|$'nin karşılığı $|ED|$'dir.",
+        "Bu değer oranlardan çıkmaz; $ABE \\sim DCE$ benzerliğinde $|AE|$'nin karşılığı $|ED|$'dir.",
+        "$|AB|$ ile $|CD|$ oranını ters kurmuş olabilirsin: $|ED|$ büyük üçgende olduğundan $|AE|$'den büyüktür, ama bu kadar değil."
+       ],
+       "steps": [
+        {
+         "text": "$[AB] \\parallel [CD]$ olduğundan iç ters açılar eşit; $E$'de de ters açılar eşit. Bu iki açı hangi iki üçgenin benzerliğini verir?"
+        },
+        {
+         "text": "$ABE \\sim DCE$ ise $|AB|$'nin karşılığı $|DC|$, $|AE|$'nin karşılığı $|DE|$'dir. Oran $\\frac{9}{6}$ ya da $\\frac{6}{9}$ olur."
+        },
+        {
+         "text": "$\\frac{|AE|}{|DE|} = \\frac{|AB|}{|DC|}$ eşitliğinde bilinenleri yerine koy ve $x$'i çöz."
+        }
+       ],
+       "origin": {
+        "changes": "Paralel kenarlı kelebek benzerliği, ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "visual",
+      "title": "Hipotenüse inen yükseklik",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        14,
+        7.2
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          4,
+          6
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          13,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "H",
+         "at": [
+          4,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "c",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "H",
+         "label": "m",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "H",
+         "to": "C",
+         "label": "n",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "H",
+         "label": "h",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "right": true,
+         "arcs": 1
+        },
+        {
+         "at": "H",
+         "from": "A",
+         "to": "B",
+         "right": true,
+         "arcs": 1
+        }
+       ]
+      },
+      "caption": "$A$'da dik açı, $[AH] \\perp [BC]$: $ABC \\sim HBA \\sim HAC$.",
+      "narration": "$A$ köşesinde dik açı olan $ABC$ üçgeninde $A$'dan hipotenüse inen $[AH]$ yüksekliği üçgeni iki dik üçgene böler. $HBA$ üçgeninde $B$ açısı $ABC$ ile ortaktır; ikisi de dik açılıdır. $HAC$ üçgeninde ise $C$ açısı ortaktır. İki açı eşit olduğundan AA ile $ABC \\sim HBA \\sim HAC$ olur. Aynı açıları işaretlersen üç üçgenin kenarlarını kolayca eşleştirirsin."
+     },
+     {
+      "kind": "rule",
+      "title": "Öklid bağıntıları",
+      "items": [
+       "$HBA \\sim HAC$ ($H \\leftrightarrow H$, $B \\leftrightarrow A$, $A \\leftrightarrow C$): $\\frac{m}{h} = \\frac{h}{n}$, yani $h^2 = m \\cdot n$.",
+       "$ABC \\sim HBA$: $\\frac{c}{m} = \\frac{m+n}{c}$, yani $c^2 = m \\cdot (m+n)$.",
+       "$ABC \\sim HAC$: $\\frac{b}{n} = \\frac{m+n}{b}$, yani $b^2 = n \\cdot (m+n)$.",
+       "Alan iki yoldan yazılırsa $b \\cdot c = (m+n) \\cdot h$ çıkar.",
+       "$c^2 + b^2 = (m+n)(m+n) = (m+n)^2$: Pisagor da bu bağıntılardan gelir."
+      ],
+      "narration": "Bu bağıntıları ezberlemek zorunda değilsin; hepsi benzerlik oranından çıkar. Hangi iki üçgeni eşleştirdiğini bil, oranı yaz, içler dışlar çarp. Bu yüzden Öklid bağıntıları aslında üç benzer üçgenin ürünüdür."
+     },
+     {
+      "kind": "guided",
+      "title": "Öklid'i adım adım kur",
+      "stem": "$A$ köşesinde dik açı olan $ABC$ üçgeninde $A$'dan $[BC]$'ye inilen dikmenin ayağı $H$'dir. $|BH| = 2$ ve $|HC| = 8$ birimdir.",
+      "steps": [
+       {
+        "prompt": "$h = |AH|$'yi bulmak için hangi bağıntı kullanılır?",
+        "choices": [
+         "$h^2 = |BH| \\cdot |HC|$",
+         "$h = |BH| + |HC|$",
+         "$h^2 = |BH| \\cdot |BC|$"
+        ],
+        "answer": 0,
+        "choiceFeedback": [
+         null,
+         "Yükseklik, parçaların toplamı değil, çarpımının kareköküdür.",
+         "$|BH| \\cdot |BC|$ çarpımı $|AB|^2$'yi verir, $h^2$'yi değil."
+        ],
+        "explanation": "$HBA \\sim HAC$ benzerliğinden $h^2 = m \\cdot n$ çıkar."
+       },
+       {
+        "prompt": "$|AH|$ kaçtır?",
+        "before": "$|AH| =$",
+        "answers": [
+         "4"
+        ],
+        "input": "number",
+        "explanation": "$h^2 = 2 \\cdot 8 = 16$ olduğundan $h = 4$."
+       },
+       {
+        "prompt": "$|BC| = 10$ olduğuna göre $|AB|^2 = |BH| \\cdot |BC|$ bağıntısıyla $|AB|^2$ kaçtır?",
+        "before": "$|AB|^2 =$",
+        "answers": [
+         "20"
+        ],
+        "input": "number",
+        "explanation": "$|AB|^2 = 2 \\cdot 10 = 20$. Pisagor ile de doğrulanır: $|AH|^2 + |BH|^2 = 16 + 4 = 20$."
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $m(\\widehat{BAC}) = 90°$, $[AH] \\perp [BC]$, $|BH| = 4$ ve $|AH| = 6$ birimdir. Buna göre $|HC| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         14,
+         7.2
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           4,
+           6
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           13,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "H",
+          "at": [
+           4,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "H",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "H",
+          "to": "C",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "H",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "right": true,
+          "arcs": 1
+         },
+         {
+          "at": "H",
+          "from": "A",
+          "to": "B",
+          "right": true,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "9",
+        "10",
+        "13",
+        "24",
+        "36"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "10, $|BH| + |AH|$ toplamıdır; uzunluklar bu soruda çarpımla ilişkilidir.",
+        "13, $|BC|$ değeri olabilir; sorulan yalnız $|HC|$'dir.",
+        "24, $|BH| \\cdot |AH|$ çarpımıdır; doğru bağıntıda $|AH|$'nin karesi vardır.",
+        "36, $|AH|^2$'dir; bunu $|BH|$'ye bölmeyi unutmuşsun."
+       ],
+       "steps": [
+        {
+         "text": "$HBA \\sim HAC$ olduğundan dik kenarlar arasında $\\frac{|HB|}{|HA|} = \\frac{|HA|}{|HC|}$ eşitliği vardır."
+        },
+        {
+         "text": "Bu eşitlik $|AH|^2 = |BH| \\cdot |HC|$ demektir."
+        },
+        {
+         "text": "$6^2 = 4 \\cdot x$ denklemini çöz."
+        }
+       ],
+       "origin": {
+        "changes": "Dik üçgende hipotenüse inen yükseklik, özgün ölçülerle ve ölçülere uygun çizilmiş şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Ortak açı ve bir eşit açı",
+      "text": "İki üçgen bir köşede ortak açıya sahipse ve bir açı daha eşit verilmişse AA ile benzerdir. Örneğin $D \\in [AC]$ ve $m(\\widehat{ABD}) = m(\\widehat{ACB})$ ise $ABD \\sim ACB$ olur. Oranı yazarsan $\\frac{|AB|}{|AC|} = \\frac{|AD|}{|AB|}$ ve buradan $|AB|^2 = |AD| \\cdot |AC|$ çıkar.",
+      "narration": "ÖSYM bunu halat, merdiven ve ışık gibi gerçek hayat kılığında sorar. Şekil ne kadar karışık olursa olsun, önce ortak açıyı, sonra eşit verilen açıyı bul."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $D$ noktası $[AC]$ üzerindedir, $m(\\widehat{ABD}) = m(\\widehat{ACB})$, $|AD| = 4$ ve $|DC| = 5$ birimdir. Buna göre $|AB| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         9.7,
+         6
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           3,
+           5.196
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           9,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           4,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "label": "5",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "angles": [
+         {
+          "at": "B",
+          "from": "A",
+          "to": "D",
+          "label": "α",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "C",
+          "from": "B",
+          "to": "A",
+          "label": "α",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "4",
+        "$2\\sqrt{5}$",
+        "5",
+        "6",
+        "9"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "4, $|AD|$'nin değeridir; $|AB|$ ayrı bir uzunluktur.",
+        "$2\\sqrt{5}$'i bulmak için $|AD| \\cdot |DC| = 20$ almışsın; benzerlikte $|AC|$ kullanılır, $|DC|$ değil.",
+        "5, $|DC|$'nin değeridir; sorulan $|AB|$.",
+        null,
+        "9, $|AC|$'dir; $|AB|^2 = |AD| \\cdot |AC|$ bağıntısında karekök almayı unutmuşsun."
+       ],
+       "steps": [
+        {
+         "text": "$A$'daki açı $ABD$ ve $ACB$ üçgenlerinde ortak, $m(\\widehat{ABD}) = m(\\widehat{ACB})$ de verilmiş. Hangi iki üçgen benzer?"
+        },
+        {
+         "text": "$ABD \\sim ACB$ ise $\\frac{|AB|}{|AC|} = \\frac{|AD|}{|AB|}$ olur."
+        },
+        {
+         "text": "$|AC| = |AD| + |DC|$ olduğunu kullanıp $x^2$'yi bul, sonra karekökünü al."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2024 halat sorusundaki 'ortak açı ve eşit açı' fikri, farklı değerlerle ve bir üçgen şekliyle yeniden kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ESLIK_06",
+    "title": "Temel orantı ve Thales",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Paralel, orantılı böler",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        8.7,
+        5.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.6,
+          5
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          8,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          1.56,
+          3
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          4.76,
+          3
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "D",
+         "label": "m",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "B",
+         "label": "n",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "E",
+         "label": "p",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "C",
+         "label": "r",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "D",
+          "E"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ]
+      },
+      "caption": "$[DE] \\parallel [BC]$ ise $\\frac{m}{n} = \\frac{p}{r}$ ve $\\frac{|DE|}{|BC|} = \\frac{m}{m+n}$.",
+      "narration": "$ABC$ üçgeninde $[BC]$'ye paralel bir $[DE]$ çizersen üstte kalan $ADE$ üçgeni $ABC$'ye benzer olur: $A$ ortak, $D$ ve $E$ açıları $B$ ve $C$ açılarına eşittir. Benzerlikten $\\frac{m}{m+n} = \\frac{p}{p+r} = \\frac{|DE|}{|BC|}$ çıkar ve sadeleşince $\\frac{m}{n} = \\frac{p}{r}$ olur. Yani paralel doğru, kestiği iki kenarı aynı oranda böler."
+     },
+     {
+      "kind": "rule",
+      "title": "Temel orantı, orta taban, Thales",
+      "items": [
+       "$[DE] \\parallel [BC]$ ise $\\frac{|AD|}{|DB|} = \\frac{|AE|}{|EC|}$.",
+       "$\\frac{|AD|}{|AB|} = \\frac{|AE|}{|AC|} = \\frac{|DE|}{|BC|}$; paydada üçgenin **tamamı** (üstteki parça + alttaki parça) vardır.",
+       "$D$ ve $E$ kenarların orta noktalarıysa $[DE]$ **orta taban**dır: $[DE] \\parallel [BC]$ ve $|DE| = \\frac{|BC|}{2}$.",
+       "**Thales**: paralel üç doğru, kestiği her iki doğruyu aynı oranda böler: $\\frac{|AB|}{|BC|} = \\frac{|DE|}{|EF|}$."
+      ],
+      "narration": "En sık yapılan hata $\\frac{|DE|}{|BC|}$ oranını $\\frac{|AD|}{|DB|}$'ye eşitlemektir. $|DE|$, üçgenin bir kenarına paraleldir ve oranı üçgenin tamamıyla kurulur: $\\frac{|AD|}{|AB|}$."
+     },
+     {
+      "kind": "example",
+      "title": "Paralel üç doğru, iki kesen",
+      "example": "$d_1 \\parallel d_2 \\parallel d_3$ doğrularını kesen birinci doğru üzerinde parçalar 3 ve 5, ikinci doğru üzerinde parçalar 6 ve $x$ ise $x$ kaçtır?",
+      "explanation": "Paralel doğrular iki kesende de aynı oranı kurar: $\\frac{3}{5} = \\frac{6}{x}$. İçler dışlar çarpımından $3x = 30$ ve $x = 10$. Parçalar yerine toplam verilirse payları kullan: birinci kesende parçalar 2 ve 3 ise toplam 5 paydır. İkinci kesende toplam uzunluk 20 ise her pay 4 olur ve parçalar 8 ile 12'dir.",
+      "narration": "Oranı her zaman aynı doğrultuda kur: üstteki parça üstteki parçaya, alttaki alttakine. Farkı değil oranı koruduğunu unutma."
+     },
+     {
+      "kind": "blank",
+      "title": "Thales ile uzunluk",
+      "prompt": "$d_1 \\parallel d_2 \\parallel d_3$ doğrularını kesen iki doğrudan birinde parçalar 4 ve 10, öbüründe 6 ve $y$ olarak ölçülmüştür.",
+      "before": "$y =$",
+      "answers": [
+       "15"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 15,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "12",
+        "feedback": "Fark korunmaz, oran korunur: 4 → 6 olduysa 10 da 1,5 katına çıkar."
+       }
+      ],
+      "explanation": "$\\frac{4}{10} = \\frac{6}{y}$ olduğundan $4y = 60$ ve $y = 15$."
+     },
+     {
+      "kind": "concept",
+      "title": "Tersi de doğru",
+      "text": "Bir doğru, üçgenin iki kenarını $\\frac{|AD|}{|DB|} = \\frac{|AE|}{|EC|}$ olacak biçimde bölüyorsa üçüncü kenara **paraleldir**. Oranlar aynı köşeden başlayarak aynı sırada yazılmalıdır; $\\frac{|AD|}{|DB|} = \\frac{|EC|}{|AE|}$ gibi ters yazılmış bir eşitlik paralellik göstermez.",
+      "narration": "Bu yüzden bir paralellik bilgisi ya verilir ya da orandan çıkarılır. İki yönde de aynı eşitlik kullanılır: paralel ise oran eşit, oran eşitse paralel."
+     },
+     {
+      "kind": "predict",
+      "title": "Paralel mi?",
+      "context": "$ABC$ üçgeninde $D \\in [AB]$, $E \\in [AC]$ ve $|AD| = 3$, $|DB| = 6$, $|AE| = 2$, $|EC| = 4$'tür.",
+      "prompt": "'Oranlar eşit olduğundan $[DE] \\parallel [BC]$'dir.' ifadesi doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$\\frac{|AD|}{|DB|} = \\frac{3}{6} = \\frac{1}{2}$ ve $\\frac{|AE|}{|EC|} = \\frac{2}{4} = \\frac{1}{2}$ olduğundan oranlar aynı köşeden aynı sırada eşit; temel orantının tersi gereği $[DE] \\parallel [BC]$."
+     },
+     {
+      "kind": "predict",
+      "title": "Bu da paralel mi?",
+      "context": "Başka bir $ABC$ üçgeninde $D \\in [AB]$, $E \\in [AC]$ ve $|AD| = 3$, $|DB| = 6$, $|AE| = 2$, $|EC| = 5$'tir.",
+      "prompt": "'$[DE] \\parallel [BC]$'dir.' ifadesi doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 1,
+      "explanation": "$\\frac{|AD|}{|DB|} = \\frac{1}{2}$ iken $\\frac{|AE|}{|EC|} = \\frac{2}{5}$'tir; oranlar eşit değil, dolayısıyla $[DE]$, $[BC]$'ye paralel değildir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Fark mı, oran mı?",
+      "wrong": "Birinci kesende parçalar 4 ve 6 iken ikinci kesende 6 ve $x$ varsa fark 2 olduğundan $x = 8$'dir.",
+      "right": "Thales'te oran korunur: $\\frac{4}{6} = \\frac{6}{x}$ ve $x = 9$.",
+      "why": "Paralel doğrular parçaları aynı oranda böler; aynı farkla değil. Fark korunsaydı küçük ve büyük şekillerde de aynı farkı görürdük, oysa büyütmede oran sabittir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $d_1 \\parallel d_2 \\parallel d_3$'tür. Bu doğruları kesen iki doğru üzerinde oluşan parçaların uzunlukları şekilde verilmiştir. Buna göre $x$ kaçtır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1.2,
+         -0.8,
+         10.4,
+         5.8
+        ],
+        "points": [
+         {
+          "id": "L1",
+          "at": [
+           -0.8,
+           5
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "R1",
+          "at": [
+           9.4,
+           5
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "L2",
+          "at": [
+           -0.8,
+           3
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "R2",
+          "at": [
+           9.4,
+           3
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "L3",
+          "at": [
+           -0.8,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "R3",
+          "at": [
+           9.4,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "d1",
+          "at": [
+           9.4,
+           5
+          ],
+          "hidden": false,
+          "dot": false,
+          "caption": false
+         },
+         {
+          "id": "d2",
+          "at": [
+           9.4,
+           3
+          ],
+          "hidden": false,
+          "dot": false,
+          "caption": false
+         },
+         {
+          "id": "d3",
+          "at": [
+           9.4,
+           0
+          ],
+          "hidden": false,
+          "dot": false,
+          "caption": false
+         },
+         {
+          "id": "P1",
+          "at": [
+           1.5,
+           5
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "P2",
+          "at": [
+           0.9,
+           3
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "P3",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "Q1",
+          "at": [
+           6,
+           5
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "Q2",
+          "at": [
+           6.8,
+           3
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "Q3",
+          "at": [
+           8,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "L1",
+          "to": "R1",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "L2",
+          "to": "R2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "L3",
+          "to": "R3",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "P1",
+          "to": "P2",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "P2",
+          "to": "P3",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "Q1",
+          "to": "Q2",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "Q2",
+          "to": "Q3",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         }
+        ]
+       },
+       "options": [
+        "8",
+        "9",
+        "10",
+        "12",
+        "24"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "8'i bulmak için farkı (2) korumaya çalışmışsın; Thales'te oran korunur.",
+        null,
+        "10, 4 ile 6'nın toplamıdır; sorulan oranla kurulan bir uzunluktur.",
+        "12'yi bulmak için 6'yı iki katına çıkarmış olabilirsin; oran eşitliğini kurup çöz.",
+        "24, 4 ile 6'nın çarpımıdır; oranı çarpımla karıştırmışsın."
+       ],
+       "steps": [
+        {
+         "text": "Paralel doğrular, kesenleri aynı oranda böler: soldaki parçalar 4 ve 6, sağdaki parçalar 6 ve $x$."
+        },
+        {
+         "text": "$\\frac{4}{6} = \\frac{6}{x}$ eşitliğini yaz."
+        },
+        {
+         "text": "İçler dışlar çarpımıyla $x$'i bul."
+        }
+       ],
+       "origin": {
+        "changes": "Thales teoremi ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "findError",
+      "title": "Hatayı bul",
+      "problem": "Şekilde $[DE] \\parallel [BC]$, $|AD| = 3$, $|DB| = 2$ ve $|DE| = 6$'dır. Öğrenci $|BC|$'yi aşağıdaki gibi bulmuştur.",
+      "prompt": "Hangi satırda hata var?",
+      "steps": [
+       "$[DE] \\parallel [BC]$ olduğundan $ADE \\sim ABC$.",
+       "$\\frac{|DE|}{|BC|} = \\frac{|AD|}{|DB|} = \\frac{3}{2}$.",
+       "$\\frac{6}{|BC|} = \\frac{3}{2}$.",
+       "$|BC| = 4$."
+      ],
+      "wrongStep": 1,
+      "choiceFeedback": [
+       "Benzerlik gerçekten kurulabilir; hata başka satırda.",
+       null,
+       "Bu satır önceki satırdaki oranı aynen yazıyor; hata oranın kendisinde.",
+       "Bu satırdaki işlem önceki satıra göre doğru; hata oranı kurduğun satırda."
+      ],
+      "explanation": "$\\frac{|DE|}{|BC|}$ oranı, üstteki parçanın üçgenin **tamamına** oranıdır: $\\frac{|AD|}{|AB|} = \\frac{3}{5}$. Doğrusu $\\frac{6}{|BC|} = \\frac{3}{5}$ ve $|BC| = 10$'dur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $[DE] \\parallel [BC]$, $|AD| = 4$, $|DB| = 6$ ve $|BC| = 15$ birimdir. Buna göre $|DE| = x$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         10.7,
+         8.2
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           3,
+           7.5
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           10,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           1.8,
+           4.5
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           5.8,
+           4.5
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "D",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "B",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "15",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "E",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         }
+        ]
+       },
+       "options": [
+        "6",
+        "9",
+        "10",
+        "15",
+        "25"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "9'u bulmak için $\\frac{|DB|}{|AB|}$ oranını kullanmışsın; $|DE|$, $|AD|$'ye karşılık gelir.",
+        "10'u bulmak için $\\frac{|AD|}{|DB|}$ oranını kullanmışsın; paydada üçgenin tamamı olmalı.",
+        "15, $|BC|$'nin kendisidir; $|DE|$ ondan küçüktür.",
+        "25'i bulmak için $\\frac{|AB|}{|DB|}$ oranını kullanmışsın; $|DE|$ için $|AD|$'nin karşılığına bak."
+       ],
+       "steps": [
+        {
+         "text": "$ADE \\sim ABC$ olduğundan $\\frac{|DE|}{|BC|} = \\frac{|AD|}{|AB|}$. $|AB|$ kaçtır?"
+        },
+        {
+         "text": "$|AB| = |AD| + |DB|$. Oranı sadeleştir."
+        },
+        {
+         "text": "Bulduğun oranı $|BC| = 15$ ile çarp."
+        }
+       ],
+       "origin": {
+        "changes": "Temel orantı teoreminde en sık yapılan oran hatası, farklı sayılarla ve ölçülere uygun şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Zemine dik doğrular paraleldir",
+      "text": "Tahterevalli, merdiven ve direk problemlerinde zemine dik olan iki doğru birbirine paraleldir. Bu paralellik, üçgenlerde temel orantıyı ya da benzerliği kurmanı sağlar. Destek tahtanın tam ortasındaysa büyük dik üçgende destek **orta taban** olur ve uçtaki yükseklik desteğin iki katıdır.",
+      "narration": "Soruyu okuyunca ilk iş, zemine dik olan parçaları çizip birbirine paralel olduğunu not etmek olmalı."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir tahterevalli, $4$ m uzunluğundaki doğrusal bir tahta ile bu tahtanın tam ortasına, zemine dik olarak yerleştirilmiş $60$ cm'lik bir destekten oluşuyor. Tahtanın bir ucu yere değdiğinde öbür ucunun yerden yüksekliği $x$ kaç santimetre olur?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.9,
+         -0.8,
+         9.4,
+         2.9
+        ],
+        "points": [
+         {
+          "id": "G1",
+          "at": [
+           -0.6,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "G2",
+          "at": [
+           9,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "L",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "R",
+          "at": [
+           8,
+           2
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "M",
+          "at": [
+           4,
+           1
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "N",
+          "at": [
+           4,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "K",
+          "at": [
+           8,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "G1",
+          "to": "G2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "L",
+          "to": "R",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "N",
+          "to": "M",
+          "label": "60",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "K",
+          "to": "R",
+          "label": "x",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "angles": [
+         {
+          "at": "N",
+          "from": "K",
+          "to": "M",
+          "right": true,
+          "arcs": 1
+         },
+         {
+          "at": "K",
+          "from": "R",
+          "to": "G1",
+          "right": true,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "30",
+        "60",
+        "90",
+        "100",
+        "120"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "30, desteğin yarısıdır; ama destek orta tabandır ve büyük yüksekliğin yarısıdır, tersi değil.",
+        "60 desteğin kendisidir; uçtaki yükseklik ondan büyüktür.",
+        "90'ı bulmak için desteği 1,5 ile çarpmışsın; orta tabanda oran 2'dir.",
+        "100'ü bulmak için tahta uzunluğunu işleme katmışsın; orta tabanda tahtanın uzunluğunun önemi yoktur.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Destek tahtanın ortasında ve zemine dik; uçtaki yükseklik de zemine dik. Bu iki doğru birbirine paralel."
+        },
+        {
+         "text": "Büyük dik üçgende destek, orta noktadan çizilen paralel olduğundan orta tabandır: orta taban, paralel olduğu kenarın yarısıdır."
+        },
+        {
+         "text": "Desteği orta taban olarak yazıp $x$'i bul. Tahtanın uzunluğunun sonuca etkisi yok."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 ve 2021 tahterevalli sorularının fikri, orta taban kuralıyla çözülen sade ve özgün bir soruya dönüştürüldü."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Kollar eşit değilse",
+      "text": "Destek ortada değilse sol kol $a$, sağ kol $b$ olsun. Sol uç yerdeyken sağ ucun yüksekliği $h_1$ ise Thales ile $\\frac{d}{h_1} = \\frac{a}{a+b}$ olur. Sağ uç yerdeyken sol ucun yüksekliği $h_2$ ise $\\frac{d}{h_2} = \\frac{b}{a+b}$ olur. İki eşitliği toplarsan $\\frac{d}{h_1} + \\frac{d}{h_2} = 1$ bulursun.",
+      "narration": "Bu bağıntı kol uzunluklarını bilmeden desteği bulmanı sağlar. ÖSYM 2021'de eşit kollu olmayan tahterevalliyi tam bu yöntemle soruyordu."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Doğrusal bir tahta ve zemine dik bir destekten oluşan, kolları eşit olmayan bir tahterevalli düz zemine konmuştur. Sol uç yere değdiğinde sağ ucun yerden yüksekliği $210$ cm, sağ uç yere değdiğinde ise sol ucun yerden yüksekliği $105$ cm olmaktadır. Buna göre desteğin uzunluğu kaç santimetredir?",
+       "options": [
+        "70",
+        "105",
+        "140",
+        "210",
+        "315"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "105, yüksekliklerden biridir; destek her iki yükseklikten de küçüktür.",
+        "140, iki yüksekliğin ortalaması gibi bir değerdir; ama destek, $\\frac{d}{h_1} + \\frac{d}{h_2} = 1$ eşitliğinden çıkar.",
+        "210, yüksekliklerden biridir; destek bundan küçüktür.",
+        "315, iki yüksekliğin toplamıdır; destek her ikisinden de küçüktür."
+       ],
+       "steps": [
+        {
+         "text": "İki durumda da destek büyük dik üçgenin bir dik kenarına paraleldir. $a$ sol, $b$ sağ kol olsun: $\\frac{d}{h_1} = \\frac{a}{a+b}$ ve $\\frac{d}{h_2} = \\frac{b}{a+b}$."
+        },
+        {
+         "text": "Bu iki oranı toplayınca sağ taraf 1 olur: $\\frac{d}{210} + \\frac{d}{105} = 1$."
+        },
+        {
+         "text": "Paydaları eşitleyip $d$'yi çöz."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021 eşit kollu olmayan tahterevalli fikri, farklı yüksekliklerle ve soru metniyle yeniden kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ESLIK_07",
+    "title": "Benzerlikte alan oranı",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Alanlar k kare",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        9.7,
+        6.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.8,
+          6
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          9,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          0.933,
+          2
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          6.933,
+          2
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "D",
+         "label": "2a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "B",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "D",
+          "E"
+         ],
+         "fill": true,
+         "shade": 1
+        },
+        {
+         "points": [
+          "D",
+          "B",
+          "C",
+          "E"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ]
+      },
+      "caption": "Benzerlik oranı $k$ ise alanların oranı $k^2$.",
+      "narration": "$|AD| = 2a$ ve $|DB| = a$ olsun; $[DE] \\parallel [BC]$. Küçük üçgen büyüğe $\\frac{2}{3}$ oranında benzer. Alan $\\frac{taban \\cdot yükseklik}{2}$ olduğundan hem taban hem yükseklik $\\frac{2}{3}$ oranında küçülür; alan $\\frac{2}{3} \\cdot \\frac{2}{3} = \\frac{4}{9}$ oranında küçülür. Büyük üçgeni 9 eş paya ayırırsan küçük üçgen 4, kalan yamuk $9 - 4 = 5$ pay alır."
+     },
+     {
+      "kind": "rule",
+      "title": "Uzunluk k, alan k², hacim k³",
+      "items": [
+       "Benzerlik oranı $k$ ise uzunluklar (kenar, yükseklik, çevre) $k$ oranındadır.",
+       "**Alanların oranı $k^2$**, **hacimlerin oranı $k^3$**'tür.",
+       "Üçgende $[DE] \\parallel [BC]$ ve $\\frac{|AD|}{|AB|} = \\frac{a}{b}$ ise üst üçgen $a^2$, alttaki yamuk $b^2 - a^2$ pay alır.",
+       "Üçgenler benzer değil ama **aynı yüksekliği paylaşıyorsa** alanların oranı taban oranıdır; kare alınmaz."
+      ],
+      "narration": "Oranı kare almayı unutmak bu bölümün en yaygın hatasıdır. 'Alan' ve 'hacim' sözcüğünü gördüğün an oranı üssüyle çarpmayı alışkanlık hâline getir."
+     },
+     {
+      "kind": "flip",
+      "title": "k, k², k³",
+      "prompt": "Kartı çevirmeden önce karşılığını tahmin et.",
+      "cards": [
+       {
+        "front": "Kenar, yükseklik, çevre",
+        "back": "$k$ oranında"
+       },
+       {
+        "front": "Alan",
+        "back": "$k^2$ oranında"
+       },
+       {
+        "front": "Hacim (ve kütle, aynı malzemede)",
+        "back": "$k^3$ oranında"
+       },
+       {
+        "front": "Ortak yükseklik, farklı taban",
+        "back": "Alan oranı taban oranıdır; $k^2$ değil"
+       }
+      ],
+      "explanation": "Uzunluk bir boyutlu, alan iki boyutlu, hacim üç boyutludur; her boyut $k$ kat büyür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $[DE] \\parallel [BC]$ ve $|AD| : |DB| = 2 : 1$'dir. $A(ABC) = 36$ cm² olduğuna göre $DBCE$ dörtgeninin alanı kaç santimetrekaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         9.7,
+         6.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2.8,
+           6
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           9,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           0.933,
+           2
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           6.933,
+           2
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "D",
+          "label": "2",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "B",
+          "label": "1",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "D",
+           "B",
+           "C",
+           "E"
+          ],
+          "fill": true,
+          "shade": 1
+         }
+        ]
+       },
+       "options": [
+        "12",
+        "16",
+        "20",
+        "24",
+        "32"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "12'yi bulmak için alan oranını $k$ yerine alıp $\\frac{2}{3}$'ün kendisini kullanmışsın; alanlarda oran karesidir.",
+        "16, üst üçgenin alanıdır; sorulan dörtgenin alanı.",
+        null,
+        "24'ü bulmak için $\\frac{2}{3}$ oranını alana doğrudan uygulamışsın; kare alma unutuldu.",
+        "32'yi bulmak için $\\frac{|DB|}{|AB|}$ oranını kullanmışsın; üst üçgen için $\\frac{|AD|}{|AB|}$ gerekir."
+       ],
+       "steps": [
+        {
+         "text": "$ADE \\sim ABC$ ve benzerlik oranı $k = \\frac{|AD|}{|AB|}$. $|AB|$ kaç paydır?"
+        },
+        {
+         "text": "Alan oranı $k^2$ olduğundan $A(ADE)$'yi bul."
+        },
+        {
+         "text": "Dörtgenin alanı = tüm üçgenin alanı − üst üçgenin alanı."
+        }
+       ],
+       "origin": {
+        "changes": "Benzer üçgenlerde alan oranı ve kalan yamuk özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Küpün hacmi",
+      "context": "Bir küpün her ayrıtı 3 katına çıkarılıyor.",
+      "prompt": "'Yeni küpün hacmi eskisinin 27 katı olur.' ifadesi doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Benzerlik oranı $k = 3$ olduğundan hacim oranı $k^3 = 27$'dir. Yüzey alanı ise $k^2 = 9$ kat artar."
+     },
+     {
+      "kind": "example",
+      "title": "Harita ölçeği",
+      "example": "Ölçeği $\\frac{1}{50\\,000}$ olan bir haritada iki şehir arası 6 cm, bir gölün alanı 8 cm²'dir. Gerçek uzaklık ve gölün gerçek alanı nedir?",
+      "explanation": "Ölçek, harita ile gerçek arasındaki benzerlik oranıdır: gerçek uzunluk haritadakinin 50 000 katıdır. Uzaklık: $6 \\cdot 50\\,000 = 300\\,000$ cm $= 3$ km. Alan: oran $k^2$ olduğundan $8 \\cdot 50\\,000^2 = 2 \\cdot 10^{10}$ cm². 1 km² $= 10^{10}$ cm² olduğundan göl 2 km²'dir.",
+      "narration": "Haritada alan sorulursa ölçeği iki kez çarp, yani karesini al. Birimleri (cm → km) dönüştürmeyi son adıma bırak."
+     },
+     {
+      "kind": "blank",
+      "title": "Fotoğraf büyütme",
+      "prompt": "$10 \\times 15$ cm'lik bir fotoğraf benzer biçimde büyütülerek kısa kenarı 30 cm yapılıyor. Büyük fotoğrafın alanı, küçüğünkinin kaç katıdır?",
+      "before": "Alan oranı =",
+      "answers": [
+       "9"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 9,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "3",
+        "feedback": "3, uzunluk oranıdır ($k$). Alanlarda oran $k^2$ olur."
+       }
+      ],
+      "explanation": "Kısa kenar 10'dan 30'a çıktığından $k = 3$. Alan oranı $k^2 = 9$. Kontrol: büyük fotoğraf $30 \\times 45 = 1350$ cm², küçük $10 \\times 15 = 150$ cm², $\\frac{1350}{150} = 9$."
+     },
+     {
+      "kind": "blank",
+      "title": "Direğin gölgesinden boy",
+      "prompt": "Boyu 2 m olan dik bir çubuğun gölgesi 3 m iken, aynı anda yakındaki bir direğin gölgesi 12 m ölçülüyor. Direğin boyu kaç metredir?",
+      "before": "Direğin boyu =",
+      "answers": [
+       "8"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 8,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "9",
+        "feedback": "Fark korunmaz, oran korunur; boy ile gölge arasındaki oranı iki durumda eşitle."
+       }
+      ],
+      "explanation": "Işınlar paralel olduğundan çubuk ve direk, aynı açılı iki dik üçgen kurar: $\\frac{2}{3} = \\frac{h}{12}$. Buradan $h = 8$ m."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir müzik uygulamasındaki ses göstergesi, tabanı $100$ birim olan bir dik üçgendir. Ses seviyesi $x$ iken göstergenin sol köşesinden başlayan ve tabanı $x$ birim olan yeşil dik üçgen, büyük üçgene benzerdir. Ses seviyesi $40$ iken yeşil üçgenin alanı $160$ birimkare olduğuna göre büyük üçgenin yüksekliği $h$ kaç birimdir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.8,
+         -1,
+         11.2,
+         2.9
+        ],
+        "points": [
+         {
+          "id": "O",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "F",
+          "at": [
+           10,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "T",
+          "at": [
+           10,
+           2
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "P",
+          "at": [
+           4,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "Q",
+          "at": [
+           4,
+           0.8
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "O",
+          "to": "P",
+          "label": "40",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "P",
+          "to": "F",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "F",
+          "to": "T",
+          "label": "h",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "O",
+          "to": "T",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "P",
+          "to": "Q",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "O",
+           "P",
+           "Q"
+          ],
+          "fill": true,
+          "shade": 1
+         }
+        ],
+        "angles": [
+         {
+          "at": "F",
+          "from": "T",
+          "to": "O",
+          "right": true,
+          "arcs": 1
+         },
+         {
+          "at": "P",
+          "from": "Q",
+          "to": "O",
+          "right": true,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "8",
+        "20",
+        "25",
+        "40",
+        "50"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "8, yeşil üçgenin yüksekliğidir; soru büyük üçgenin yüksekliğini soruyor.",
+        null,
+        "25 oranın yanlış uygulanmasından çıkar; yeşilin yüksekliği $\\frac{2h}{5}$'ten başla.",
+        "40 yeşil üçgenin tabanıdır; yükseklik değil.",
+        "50, büyük üçgenin tabanının yarısıdır; yüksekliği alan eşitliğinden bulmalısın."
+       ],
+       "steps": [
+        {
+         "text": "Yeşil üçgen büyük üçgenin $\\frac{40}{100}$ oranında küçültülmüşüdür. Yeşilin yüksekliği $h$'nin kaçta kaçı?"
+        },
+        {
+         "text": "Yeşilin alanı $\\frac{1}{2} \\cdot 40 \\cdot \\left(\\frac{2h}{5}\\right) = 160$ denklemini yaz."
+        },
+        {
+         "text": "Sadeleştirip $h$'yi bul. İstersen alan oranı $k^2$ ile büyük üçgenin alanını bulup $\\frac{100 \\cdot h}{2}$'ye eşitleyerek de kontrol edebilirsin."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2023 ses seviyesi göstergesi fikri farklı sayılar ve farklı bir soru köküyle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aynı malzemeden yapılmış, birbirine benzer iki heykelden modelin kütlesi $2$ kg'dır. Gerçek heykelin boyu modelin boyunun $3$ katı olduğuna göre gerçek heykelin kütlesi kaç kilogramdır?",
+       "options": [
+        "6",
+        "18",
+        "27",
+        "54",
+        "162"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "6, kütleyi uzunluk oranı $k$ ile çarpmaktır; kütle hacimle orantılıdır.",
+        "18, $k^2$ ile çarpmaktır; bu alan oranıdır. Kütle için hacim oranı gerekir.",
+        "27, hacim oranıdır ama modelin kütlesiyle çarpmayı unutmuşsun.",
+        null,
+        "162'yi bulmak için $k^4$ kullanmışsın; hacim oranı $k^3$'tür."
+       ],
+       "steps": [
+        {
+         "text": "Aynı malzemede kütle hacimle orantılıdır."
+        },
+        {
+         "text": "Benzerlik oranı $k = 3$ ise hacim oranı $k^3$'tür."
+        },
+        {
+         "text": "Hacim oranını modelin kütlesiyle çarp."
+        }
+       ],
+       "origin": {
+        "changes": "Benzer cisimlerde hacim oranı $k^3$ kuralı, ÖSYM'de görülmeyen ama konunun gerçek hayat kısmına uygun özgün bir kütle sorusuyla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Yamuğun köşegenleri",
+      "text": "$[AB] \\parallel [DC]$ olan bir yamukta köşegenler $E$'de kesişsin. $ABE$ ve $DCE$ üçgenleri benzerdir ve oran $\\frac{|AB|}{|DC|} = \\frac{a}{c}$ ise alanları $a^2$ ve $c^2$ paydır. Yan üçgenler $AED$ ve $BEC$'nin alanları birbirine eşittir ve her biri $a \\cdot c$ paydır. Toplam alan $(a + c)^2$ paydır.",
+      "narration": "Yan üçgenleri bulmanın yolu: $ABE$ ve $AED$ aynı yüksekliği paylaşır, dolayısıyla alanları taban oranı $\\frac{|BE|}{|ED|} = \\frac{a}{c}$ gibidir. Bu, $a^2$ paydan $a \\cdot c$ payı çıkarır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $ABCD$ yamuğunda $[AB] \\parallel [DC]$, $|AB| = 6$, $|DC| = 9$ ve köşegenler $E$ noktasında kesişiyor. $A(ABE) = 24$ birimkare olduğuna göre yamuğun alanı kaç birimkaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         10,
+         4.8
+        ],
+        "points": [
+         {
+          "id": "D",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           9,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "A",
+          "at": [
+           1.5,
+           4
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           7.5,
+           4
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           4.5,
+           2.4
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "label": "9",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "B",
+           "E"
+          ],
+          "fill": true,
+          "shade": 1
+         },
+         {
+          "points": [
+           "D",
+           "C",
+           "E"
+          ],
+          "fill": true,
+          "shade": 1
+         }
+        ]
+       },
+       "options": [
+        "78",
+        "114",
+        "150",
+        "162",
+        "180"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "78, yalnız $ABE$ ile $DCE$'nin toplamıdır; yan üçgenleri unutmuşsun.",
+        "114'te yan üçgenlerden yalnız birini saymışsın; iki tane yan üçgen vardır.",
+        null,
+        "Yan üçgenlerin alanını yanlış bulmuş olabilirsin; ortak yükseklikli üçgenlerde alan oranı taban oranıdır.",
+        "Yan üçgenlerin alanını yanlış bulmuş olabilirsin; ortak yükseklikli üçgenlerde alan oranı taban oranıdır."
+       ],
+       "steps": [
+        {
+         "text": "$[AB] \\parallel [DC]$ olduğundan $ABE \\sim CDE$ ve benzerlik oranı $\\frac{6}{9}$. Alan oranı oranın karesidir; $A(DCE)$'yi bul."
+        },
+        {
+         "text": "$ABE$ ve $AED$ üçgenleri aynı yüksekliği paylaşır; alan oranı $\\frac{|BE|}{|ED|} = \\frac{6}{9}$ kadardır. $A(AED)$'yi bul. $A(BEC)$ de aynı değerdedir."
+        },
+        {
+         "text": "Dört parçanın alanlarını topla."
+        }
+       ],
+       "origin": {
+        "changes": "Yamuk köşegenlerinin oluşturduğu benzer üçgenlerde alan oranı, ölçülere uygun çizilmiş özgün bir şekil ve özgün sayılarla soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Eşlik: **KKK**, **KAK**, **AKA**; üç açının eşitliği eşlik değil **benzerlik** verir, KKA yetmez.",
+    "Benzerlik: **AA**, **KAK**, **KKK**; uzunlukların, yüksekliklerin ve çevrelerin oranı $k$.",
+    "Dik üçgende hipotenüse inen yükseklik üç benzer üçgen verir: $h^2 = m \\cdot n$, $c^2 = m(m+n)$, $b^2 = n(m+n)$.",
+    "Paralel kenarlı **kelebek**: ters açılarla benzerlik; $|AB|^2 = |AD| \\cdot |AC|$ gibi ortak açı kalıpları.",
+    "Temel orantı: $\\frac{|AD|}{|AB|} = \\frac{|AE|}{|AC|} = \\frac{|DE|}{|BC|}$; **orta taban** tabanın yarısı; oran eşitse doğru paraleldir.",
+    "Thales: paralel üç doğru kesenleri orantılı böler; oran korunur, fark korunmaz.",
+    "Alanların oranı $k^2$, hacimlerin oranı $k^3$; ortak yükseklikte alan oranı taban oranıdır."
+   ],
+   "warnings": [
+    "$\\frac{|DE|}{|BC|}$, $\\frac{|AD|}{|DB|}$ değil $\\frac{|AD|}{|AB|}$ oranıdır.",
+    "Karşılıklı kenarları **açılara** göre eşle, harf sırasına göre değil.",
+    "Alan sorusunda oranın **karesini**, hacim sorusunda **küpünü** al.",
+    "Eşlik için üç açı yetmez; iki kenar ve aralarında olmayan açı da yetmez."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Güneşli bir günde bir arkadaşının boyunu ve gölgesini ölç; bir direğin gölgesinden **boyunu** hesapla.",
+    "Eşlik kurallarını (**KKK, KAK, AKA**), benzerlik oranını ve **k²** kuralını bir sayfaya yaz.",
+    "Uygulamada Üçgende Eşlik – Benzerlik testinden **20 soru** çöz; her şekilde önce **eşit açıları** işaretle."
+   ]
+  }
+ }
+}

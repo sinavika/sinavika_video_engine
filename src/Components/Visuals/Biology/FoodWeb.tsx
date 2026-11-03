@@ -3,7 +3,7 @@ import {easeFrom} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
-import {usePartLook, World} from '../VisualWorld';
+import {usePartLook, World, FigureText} from '../VisualWorld';
 import {FOOD_WEB_ROW, foodWebNodeWidth, TROPHIC_NAMES} from './Ecology';
 
 // ---------------------------------------------------------------- food chains and food webs
@@ -99,9 +99,9 @@ const LevelName: React.FC<{level: number; y: number; entrance: number}> = ({leve
 	const palette = useVisualPalette();
 	const look = usePartLook(`t${level}`, entrance);
 	return (
-		<text x={12} y={y + 9} fontSize={26} fontWeight={look.focused > 0.5 ? 800 : 700} fill={look.focused > 0.5 ? palette.lesson : palette.muted} fontFamily={palette.fontBody} opacity={look.opacity}>
+		<FigureText x={12} y={y + 9} fontSize={26} fontWeight={look.focused > 0.5 ? 800 : 700} fill={look.focused > 0.5 ? palette.lesson : palette.muted} fontFamily={palette.fontBody} opacity={look.opacity}>
 			{TROPHIC_NAMES[level - 1]}
-		</text>
+		</FigureText>
 	);
 };
 
@@ -120,9 +120,9 @@ const Node: React.FC<{organism: Organism; x: number; y: number; w: number; entra
 	return (
 		<g opacity={look.opacity} transform={`translate(${x} ${y}) scale(${(0.85 + 0.15 * entrance) * (1 + 0.06 * lit)}) translate(${-x} ${-y})`}>
 			<rect x={x - w / 2} y={y - NODE_H / 2} width={w} height={NODE_H} rx={NODE_H / 2} fill={lit > 0.5 ? palette.lesson : producer ? withAlpha(palette.lesson, 0.22) : palette.surface} stroke={palette.lesson} strokeWidth={3} />
-			<text x={x} y={y + 10} textAnchor="middle" fontSize={30} fontWeight={800} fill={lit > 0.5 ? palette.onLesson : palette.ink} fontFamily={palette.fontBody}>
+			<FigureText x={x} y={y + 10} textAnchor="middle" fontSize={30} fontWeight={800} fill={lit > 0.5 ? palette.onLesson : palette.ink} fontFamily={palette.fontBody}>
 				{organism.label}
-			</text>
+			</FigureText>
 		</g>
 	);
 };

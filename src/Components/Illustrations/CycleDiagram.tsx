@@ -6,6 +6,7 @@ import {DrawPath} from '../Animations/DrawPath';
 import {useVideoLayout} from '../Layouts/VideoLayout';
 import {Text} from '../Typography/Text';
 import {DiagramNode} from './DiagramNode';
+import {wrappedLines} from '../Typography/TextMeasure';
 
 type CycleDiagramProps = {
 	nodes: VisualNode[];
@@ -43,7 +44,7 @@ const pointOn = (cx: number, cy: number, rx: number, ry: number, angle: number):
  */
 const nodeHalfHeight = (node: VisualNode, nodeWidth: number, u: (value: number) => number) => {
 	const inner = Math.max(1, nodeWidth - u(32));
-	const lines = (text: string, size: number) => Math.max(1, Math.ceil((text.replace(/\*\*/g, '').length * u(size) * 0.55) / inner));
+	const lines = (text: string, size: number) => wrappedLines(text.replace(/\*\*/g, ''), inner, {size: u(size), weight: 700});
 	const detail = node.detail ? lines(node.detail, 24) * u(24) * 1.25 + u(8) : 0;
 	return (u(32) + u(44) + u(8) + lines(node.label, 30) * u(30) * 1.2 + detail) / 2;
 };

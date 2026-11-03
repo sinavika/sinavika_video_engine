@@ -1,9 +1,10 @@
 import React from 'react';
 import {easeFrom} from '../../../Animations/Motion';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor} from '../VisualTimeline';
 import {arrowHead} from './ArrowHead';
+import {FigureText} from '../VisualWorld';
 
 type Projectile = Extract<CourseVisual, {kind: 'projectile'}>;
 
@@ -88,25 +89,26 @@ export const ProjectileVisual: React.FC<VisualBoxProps & {visual: Projectile}> =
 				<line x1={bx} y1={by} x2={ex - Math.cos(angle) * 18} y2={ey - Math.sin(angle) * 18} stroke={colour} strokeWidth={10} strokeLinecap="round" />
 				<path d={arrowHead(ex, ey, angle, 30)} fill={colour} />
 				{length > 50 ? (
-					<text x={spot.x} y={spot.y} fill={palette.ink} fontSize={fontSize * 0.75} fontWeight={800} textAnchor={spot.anchor as 'start' | 'end' | 'middle'} stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
+					<FigureText x={spot.x} y={spot.y} fill={palette.ink} fontSize={fontSize * 0.75} fontWeight={800} textAnchor={spot.anchor as 'start' | 'end' | 'middle'} stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
 						{label}
-					</text>
+					</FigureText>
 				) : null}
 			</g>
 		);
 	};
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`}>
 				<g opacity={appear}>
 					{visual.ground ? <line x1={Math.min(px(0) - 160, area.left)} y1={py(0)} x2={Math.max(px(xMax) + 80, area.left + area.width)} y2={py(0)} stroke={palette.ink} strokeWidth={8} /> : null}
 					{/* A launch from a height stands on a block whose right edge is the launch point. */}
 					{visual.height > 0 ? <rect x={px(0) - 140} y={py(visual.height)} width={140} height={py(0) - py(visual.height)} fill={palette.fill} stroke={palette.ink} strokeWidth={5} /> : null}
 					{visual.height > 0 ? (
-						<text x={px(0) - 70} y={(py(0) + py(visual.height)) / 2 + fontSize * 0.3} fill={palette.ink} fontSize={fontSize * 0.75} fontWeight={800} textAnchor="middle">
+						<FigureText x={px(0) - 70} y={(py(0) + py(visual.height)) / 2 + fontSize * 0.3} fill={palette.ink} fontSize={fontSize * 0.75} fontWeight={800} textAnchor="middle">
 							{`${format(visual.height)} m`}
-						</text>
+						</FigureText>
 					) : null}
 				</g>
 				<Part id="path">
@@ -132,9 +134,9 @@ export const ProjectileVisual: React.FC<VisualBoxProps & {visual: Projectile}> =
 						path.apexTime > 0 && path.top > visual.height ? (
 							<g opacity={apexIn * look.opacity}>
 								<line x1={px(path.at(path.apexTime).x)} y1={py(path.top)} x2={px(path.at(path.apexTime).x)} y2={py(0)} stroke={palette.brand} strokeWidth={4} strokeDasharray="12 10" />
-								<text x={px(path.at(path.apexTime).x) + 16} y={(py(path.top) + py(0)) / 2} fill={palette.ink} fontSize={fontSize * 0.8} fontWeight={800}>
+								<FigureText x={px(path.at(path.apexTime).x) + 16} y={(py(path.top) + py(0)) / 2} fill={palette.ink} fontSize={fontSize * 0.8} fontWeight={800}>
 									{`h = ${format(path.top)} m`}
-								</text>
+								</FigureText>
 							</g>
 						) : null
 					}
@@ -145,9 +147,9 @@ export const ProjectileVisual: React.FC<VisualBoxProps & {visual: Projectile}> =
 							<line x1={px(0)} y1={py(0) + 40} x2={px(path.range)} y2={py(0) + 40} stroke={palette.brand} strokeWidth={5} />
 							<line x1={px(0)} y1={py(0) + 26} x2={px(0)} y2={py(0) + 54} stroke={palette.brand} strokeWidth={5} />
 							<line x1={px(path.range)} y1={py(0) + 26} x2={px(path.range)} y2={py(0) + 54} stroke={palette.brand} strokeWidth={5} />
-							<text x={(px(0) + px(path.range)) / 2} y={py(0) + 40 + fontSize} fill={palette.ink} fontSize={fontSize * 0.8} fontWeight={800} textAnchor="middle">
+							<FigureText x={(px(0) + px(path.range)) / 2} y={py(0) + 40 + fontSize} fill={palette.ink} fontSize={fontSize * 0.8} fontWeight={800} textAnchor="middle">
 								{`${visual.rangeLabel} = ${format(path.range)} m`}
-							</text>
+							</FigureText>
 						</g>
 					)}
 				</Part>
@@ -171,5 +173,6 @@ export const ProjectileVisual: React.FC<VisualBoxProps & {visual: Projectile}> =
 				</Part>
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

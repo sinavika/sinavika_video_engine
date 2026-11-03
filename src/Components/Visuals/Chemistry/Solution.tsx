@@ -1,8 +1,9 @@
 import React from 'react';
 import {easeFrom} from '../../../Animations/Motion';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor} from '../VisualTimeline';
+import {FigureText} from '../VisualWorld';
 
 type Solution = Extract<CourseVisual, {kind: 'solution'}>;
 
@@ -31,9 +32,9 @@ export const SolutionVisual: React.FC<VisualBoxProps & {visual: Solution}> = ({v
 	const runStart = useBeatStartFor('run', 'show') ?? delaySeconds + 1;
 	const fontSize = Math.max(70, 30 / k);
 	const label = (x: number, y: number, text: string, anchor: 'start' | 'middle' | 'end' = 'middle', size = fontSize * 0.8) => (
-		<text x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={800} textAnchor={anchor} stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
+		<FigureText x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={800} textAnchor={anchor} stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
 			{text}
-		</text>
+		</FigureText>
 	);
 	const dissolved = visual.motion ? easeFrom(seconds, runStart, 2.5) : 1;
 	const count = visual.beakers.length;
@@ -44,7 +45,8 @@ export const SolutionVisual: React.FC<VisualBoxProps & {visual: Solution}> = ({v
 	const fmt = (value: number) => String(Math.round(value * 100) / 100).replace('.', ',');
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`} opacity={appear}>
 				{visual.beakers.map((beaker, index) => {
 					const x = left0 + index * (beakerWidth + 50);
@@ -79,9 +81,9 @@ export const SolutionVisual: React.FC<VisualBoxProps & {visual: Solution}> = ({v
 														<g key={order} opacity={share}>
 															<circle cx={cx} cy={cy} r={28} fill={fill} stroke={palette.ink} strokeWidth={3} />
 															{ion ? (
-																<text x={cx} y={cy + 12} fill={palette.surface} fontSize={36} fontWeight={800} textAnchor="middle">
+																<FigureText x={cx} y={cy + 12} fill={palette.surface} fontSize={36} fontWeight={800} textAnchor="middle">
 																	{particle.kind === 0 ? '+' : '−'}
-																</text>
+																</FigureText>
 															) : null}
 														</g>
 													);
@@ -107,5 +109,6 @@ export const SolutionVisual: React.FC<VisualBoxProps & {visual: Solution}> = ({v
 				{visual.effect !== 'none' ? label(SOLUTION_STAGE.width / 2, 50, `${EFFECT_NAMES[visual.effect]} ∝ i·m`, 'middle', fontSize * 0.75) : null}
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

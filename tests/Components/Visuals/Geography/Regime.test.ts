@@ -1,4 +1,5 @@
 import {describe, expect, it} from 'vitest';
+import {textWidth} from '../../../../src/Components/Visuals/FigureLabel';
 import {SNOWMELT_MONTHS, legendRow, markLabelOffsets, regimeAxis, regimeSeries} from '../../../../src/Components/Visuals/Geography/Regime';
 import {CourseVisualSchema, numberedPartNames} from '../../../../src/Components/Visuals/VisualSchema';
 
@@ -63,8 +64,8 @@ describe('river regime', () => {
 		const names = ['Fırat (kar beslemeli)', 'Doğu Karadeniz deresi', 'Akdeniz kıyı akarsuyu'];
 		const xs = legendRow(names, 120);
 		expect(xs[0]).toBe(120);
-		xs.slice(1).forEach((x, index) => expect(x).toBeGreaterThan(xs[index] + 38 + names[index].length * 9.6));
+		xs.slice(1).forEach((x, index) => expect(x).toBeGreaterThan(xs[index] + 38 + textWidth(names[index], 18, 700)));
 		// The last name ends before the right edge of the 1000-wide world.
-		expect(xs[2] + 38 + names[2].length * 9.6).toBeLessThan(1000);
+		expect(xs[2] + 38 + textWidth(names[2], 18, 700)).toBeLessThan(1000);
 	});
 });

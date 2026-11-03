@@ -3,6 +3,7 @@ import {easeFrom} from '../../../Animations/Motion';
 import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor, useShownAt} from '../VisualTimeline';
+import {textWidth} from '../FigureLabel';
 import {arrowHead} from './ArrowHead';
 
 type Lever = Extract<CourseVisual, {kind: 'lever'}>;
@@ -315,7 +316,7 @@ export const LeverVisual: React.FC<VisualBoxProps & {visual: Lever}> = ({visual,
 								{visual.torques ? (
 									<>
 										{/* Each total beside a dot in its arrows' colour (text stays ink: the brand colour is never text). */}
-										<circle cx={LEVER_STAGE.width / 2 - 40 - `↻ ${format(balance.clockwise)}`.length * fontSize * 0.6 - fontSize * 0.45} cy={LEVER_STAGE.height - 28 - fontSize * 0.36} r={fontSize * 0.26} fill={palette.lesson} />
+										<circle cx={LEVER_STAGE.width / 2 - 40 - textWidth(`↻ ${format(balance.clockwise)}`, fontSize) - fontSize * 0.45} cy={LEVER_STAGE.height - 28 - fontSize * 0.36} r={fontSize * 0.26} fill={palette.lesson} />
 										<text x={LEVER_STAGE.width / 2 - 40} y={LEVER_STAGE.height - 28} fill={palette.ink} textAnchor="end">
 											{`↻ ${format(balance.clockwise)}`}
 										</text>

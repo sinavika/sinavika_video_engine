@@ -7,6 +7,7 @@ import {useBeatStartFor} from '../VisualTimeline';
 import {LANDFORM_PARTS} from './GeographySchema';
 import {type CourseVisual} from '../VisualSchema';
 import {H, LAND_INK, LightGround, pathOf, splitInTwo, Tag, usePartLook, W, World} from '../VisualWorld';
+import {textWidth} from '../FigureLabel';
 
 // ---------------------------------------------------------------- landforms
 
@@ -1214,7 +1215,7 @@ const SettlementScene: React.FC<VisualBoxProps & {visual: Landform}> = ({width, 
  */
 const HalfCaption: React.FC<{x: number; y: number; text: string}> = ({x, y, text}) => {
 	const size = useFigureFont()(17);
-	const lines = size > 17 && text.length * size * 0.55 > 470 ? splitInTwo(text) : [text];
+	const lines = size > 17 && textWidth(text, size, 700) > 470 ? splitInTwo(text) : [text];
 	return (
 		<>
 			{lines.map((line, index) => (

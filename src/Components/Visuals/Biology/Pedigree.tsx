@@ -3,7 +3,8 @@ import {easeFrom} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
-import {usePartLook, World} from '../VisualWorld';
+import {textWidth} from '../FigureLabel';
+import {usePartLook, World, FigureText} from '../VisualWorld';
 import {GenotypeText} from './GenotypeText';
 
 // ---------------------------------------------------------------- the pedigree chart
@@ -36,7 +37,7 @@ const pedigreeLegend = (visual: Pedigree): LegendItem[] => {
 	];
 };
 /** A legend item's width: its symbols, a gap, then the label at about 0.56 em a letter. */
-const itemWidth = (item: LegendItem) => item.sexes.length * MARK + (item.sexes.length - 1) * 10 + 16 + item.label.length * 0.56 * LEGEND_TEXT;
+const itemWidth = (item: LegendItem) => item.sexes.length * MARK + (item.sexes.length - 1) * 10 + 16 + textWidth(item.label, LEGEND_TEXT, 700);
 
 /**
  * Where each person sits (x in columns, one row per generation), where each legend item sits, and the figure's whole
@@ -122,9 +123,9 @@ export const PedigreeVisual: React.FC<VisualBoxProps & {visual: Pedigree}> = ({v
 						{item.sexes.map((sex, k) => (
 							<Symbol key={sex} sex={sex} state={item.state} x={spot.x + MARK / 2 + k * (MARK + 10)} y={spot.y} size={MARK} />
 						))}
-						<text x={spot.x + item.sexes.length * (MARK + 10) + 6} y={spot.y + LEGEND_TEXT * 0.36} fontSize={LEGEND_TEXT} fontWeight={700} fill={palette.ink} fontFamily={palette.fontBody}>
+						<FigureText x={spot.x + item.sexes.length * (MARK + 10) + 6} y={spot.y + LEGEND_TEXT * 0.36} fontSize={LEGEND_TEXT} fontWeight={700} fill={palette.ink} fontFamily={palette.fontBody}>
 							{item.label}
-						</text>
+						</FigureText>
 					</g>
 				);
 			})}
@@ -172,9 +173,9 @@ const Symbol: React.FC<{sex: Sex; state: State; x: number; y: number; size: numb
 			{state === 'carrier' ? <rect x={x - h * 1.2} y={y - h * 1.2} width={h * 1.2} height={size * 1.2} fill={palette.lesson} clipPath={`url(#${id})`} /> : null}
 			{state === 'carrier' ? <g fill="none" stroke={palette.ink} strokeWidth={size > 50 ? 3.5 : 2.5}>{shape}</g> : null}
 			{state === 'unknown' ? (
-				<text x={x} y={y + size * 0.2} textAnchor="middle" fontSize={size * 0.6} fontWeight={800} fill={palette.ink} fontFamily={palette.fontBody}>
+				<FigureText x={x} y={y + size * 0.2} textAnchor="middle" fontSize={size * 0.6} fontWeight={800} fill={palette.ink} fontFamily={palette.fontBody}>
 					?
-				</text>
+				</FigureText>
 			) : null}
 		</g>
 	);

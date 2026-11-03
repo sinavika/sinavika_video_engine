@@ -1,9 +1,10 @@
 import React, {useId} from 'react';
 import {clamp01, smoothStep} from '../../../Animations/Motion';
 import {mixColors} from '../../../Themes/ColorPalette';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part} from '../VisualTimeline';
+import {FigureText} from '../VisualWorld';
 
 type Emanation = Extract<CourseVisual, {kind: 'emanation'}>;
 
@@ -60,17 +61,17 @@ export const EmanationVisual: React.FC<VisualBoxProps & {visual: Emanation}> = (
 			<g>
 				<circle cx={LIST_X + 26} cy={y - (detail ? detailSize * 0.55 : 0)} r={24} fill={number ? palette.lessonDeep : palette.brand} />
 				{number ? (
-					<text x={LIST_X + 26} y={y - (detail ? detailSize * 0.55 : 0)} fill={palette.onLesson} fontSize={28} fontWeight={800} textAnchor="middle" dominantBaseline="central">
+					<FigureText x={LIST_X + 26} y={y - (detail ? detailSize * 0.55 : 0)} fill={palette.onLesson} fontSize={28} fontWeight={800} textAnchor="middle" dominantBaseline="central">
 						{number}
-					</text>
+					</FigureText>
 				) : null}
-				<text x={LIST_X + 70} y={y - (detail ? detailSize * 0.55 : 0)} fill={palette.ink} fontSize={labelSize} fontWeight={800} dominantBaseline="central">
+				<FigureText x={LIST_X + 70} y={y - (detail ? detailSize * 0.55 : 0)} fill={palette.ink} fontSize={labelSize} fontWeight={800} dominantBaseline="central">
 					{label}
-				</text>
+				</FigureText>
 				{detail ? (
-					<text x={LIST_X + 70} y={y + labelSize * 0.62} fill={palette.muted} fontSize={detailSize} fontWeight={600} dominantBaseline="central">
+					<FigureText x={LIST_X + 70} y={y + labelSize * 0.62} fill={palette.muted} fontSize={detailSize} fontWeight={600} dominantBaseline="central">
 						{detail}
-					</text>
+					</FigureText>
 				) : null}
 			</g>
 		);
@@ -84,7 +85,8 @@ export const EmanationVisual: React.FC<VisualBoxProps & {visual: Emanation}> = (
 	};
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<defs>
 				<radialGradient id={`${id}-core`}>
 					<stop offset="0" stopColor={palette.surface} />
@@ -111,7 +113,7 @@ export const EmanationVisual: React.FC<VisualBoxProps & {visual: Emanation}> = (
 											stroke={palette.surface}
 											strokeWidth={4}
 										/>
-										<text
+										<FigureText
 											x={CENTRE.x}
 											y={CENTRE.y - (ring.inner + ring.outer) / 2}
 											fill={light > 0.45 ? palette.ink : palette.surface}
@@ -121,7 +123,7 @@ export const EmanationVisual: React.FC<VisualBoxProps & {visual: Emanation}> = (
 											dominantBaseline="central"
 										>
 											{index + 1}
-										</text>
+										</FigureText>
 										{leader((ring.inner + ring.outer) / 2, index + 1)}
 										{row(index + 1, level.label, level.detail, String(index + 1))}
 									</g>
@@ -154,5 +156,6 @@ export const EmanationVisual: React.FC<VisualBoxProps & {visual: Emanation}> = (
 				</Part>
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

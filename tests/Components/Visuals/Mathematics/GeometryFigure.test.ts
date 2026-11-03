@@ -4,7 +4,7 @@ import {renderToStaticMarkup} from 'react-dom/server';
 import {MathExpression} from '../../../../src/Components/Typography/MathExpression';
 import {anglePartId, axisTicks, blendSector, circleLabelAt, circlePath, letterDistance, placeAngleLabels, rideAlong, sectorPath, slidePosition, sectorOf, tickMarks, tickShares, wedgePath, widestGap} from '../../../../src/Components/Visuals/Mathematics/Geometry';
 import {plotArea} from '../../../../src/Components/Visuals/Mathematics/Plot';
-import {figureText, lineSamples, placeLabel, pointSpots, type LabelBox} from '../../../../src/Components/Visuals/Mathematics/FigureLabel';
+import {figureText, lineSamples, placeLabel, pointSpots, type LabelBox} from '../../../../src/Components/Visuals/FigureLabel';
 import {CourseVisualSchema, circuitLayout, naturalAspect, numberedPartNames} from '../../../../src/Components/Visuals/VisualSchema';
 import {capillaryShares} from '../../../../src/Components/Visuals/Physics/Capillary';
 import {chargeSigns} from '../../../../src/Components/Visuals/Physics/Charges';

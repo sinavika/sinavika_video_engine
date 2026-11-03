@@ -3,7 +3,7 @@ import {clamp01, lerp, noise, smooth} from '../../../../Animations/Motion';
 import {withAlpha} from '../../../../Themes/Theme';
 import {useFigureFont, useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
-import {pathOf} from '../../VisualWorld';
+import {pathOf, FigureText} from '../../VisualWorld';
 import {ProcessFrame, ProcessLabel, processCamera, useProcessClock} from '../ProcessScene';
 
 type ProcessSpec = Extract<CourseVisual, {kind: 'process'}>;
@@ -115,21 +115,21 @@ export const PhaseChangeProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}
 			<rect x={672} y={BEAKER.y0} width={26} height={BEAKER.y1 - BEAKER.y0} rx={13} fill="#FFFFFF" stroke="#8CA3B7" strokeWidth={3} />
 			<rect x={679} y={plotY(celsius)} width={12} height={BEAKER.y1 - plotY(celsius) - 6} rx={6} fill="#E4572E" />
 			<circle cx={685} cy={BEAKER.y1 + 6} r={18} fill="#E4572E" />
-			<text x={685} y={BEAKER.y0 - 18} textAnchor="middle" fontFamily={palette.fontDisplay} fontWeight={800} fontSize={30} fill={palette.ink}>
+			<FigureText x={685} y={BEAKER.y0 - 18} textAnchor="middle" fontFamily={palette.fontDisplay} fontWeight={800} fontSize={30} fill={palette.ink}>
 				{`${Math.round(celsius)} °C`}
-			</text>
+			</FigureText>
 			{/* The heating curve, drawn as the water is heated. */}
 			<g fontFamily={palette.fontBody} fontWeight={700} fill={palette.ink}>
 				<line x1={PLOT.x0} y1={PLOT.y1} x2={PLOT.x1 + 20} y2={PLOT.y1} stroke={palette.ink} strokeWidth={3} />
 				<line x1={PLOT.x0} y1={PLOT.y1} x2={PLOT.x0} y2={PLOT.y0 - 20} stroke={palette.ink} strokeWidth={3} />
-				<text x={PLOT.x1 + 34} y={PLOT.y1 + 8} textAnchor="start" fontSize={24}>Zaman</text>
-				<text x={PLOT.x0 - 14} y={PLOT.y0 - 30} textAnchor="start" fontSize={24}>Sıcaklık (°C)</text>
+				<FigureText x={PLOT.x1 + 34} y={PLOT.y1 + 8} textAnchor="start" fontSize={24}>Zaman</FigureText>
+				<FigureText x={PLOT.x0 - 14} y={PLOT.y0 - 30} textAnchor="start" fontSize={24}>Sıcaklık (°C)</FigureText>
 				{[0, 100].map((value) => (
 					<g key={value}>
 						<line x1={PLOT.x0} y1={plotY(value)} x2={PLOT.x1} y2={plotY(value)} stroke={withAlpha(palette.ink, 0.25)} strokeWidth={2} strokeDasharray="8 8" />
-						<text x={PLOT.x0 - 14} y={plotY(value) + 8} textAnchor="end" fontSize={24}>
+						<FigureText x={PLOT.x0 - 14} y={plotY(value) + 8} textAnchor="end" fontSize={24}>
 							{value}
-						</text>
+						</FigureText>
 					</g>
 				))}
 			</g>
@@ -151,11 +151,11 @@ const PhaseNames: React.FC<{stageIndex: number}> = ({stageIndex}) => {
 	const size = useFigureFont()(20);
 	const staggered = size > 20;
 	return (
-		<g fontFamily={palette.fontBody} fontWeight={700} fontSize={size} fill={palette.muted} textAnchor="middle">
+		<g fontFamily={palette.fontBody} fontWeight={700} fill={palette.muted} textAnchor="middle">
 			{['Katı', 'Katı + sıvı', 'Sıvı', 'Sıvı + gaz', 'Gaz'].map((name, stage) => (
-				<text key={name} x={plotX(timeAt(stage, 0.5))} y={PLOT.y1 + 10 + size + (staggered && stage % 2 === 1 ? size * 1.15 : 0)} opacity={stage <= stageIndex ? 1 : 0.35}>
+				<FigureText fontSize={size} key={name} x={plotX(timeAt(stage, 0.5))} y={PLOT.y1 + 10 + size + (staggered && stage % 2 === 1 ? size * 1.15 : 0)} opacity={stage <= stageIndex ? 1 : 0.35}>
 					{name}
-				</text>
+				</FigureText>
 			))}
 		</g>
 	);

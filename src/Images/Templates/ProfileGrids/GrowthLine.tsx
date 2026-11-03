@@ -10,7 +10,7 @@ import {withAlpha} from '../../../Themes/Theme';
 import {useTheme} from '../../../Themes/ThemeContext';
 import {POST_TYPE} from '../../../Configurations/SocialIdentity';
 import {imageFrameOf, useImageLayout} from '../../Components/ImageFrame';
-import {lineCount, overflowNote, seriesSize} from '../../Components/TextMeasure';
+import {lineCount, overflowNote, seriesSize} from '../../../Components/Typography/TextMeasure';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
 import {PROFILE_GRID, rowPosition, tileWindow} from './ProfileGridLayout';
 

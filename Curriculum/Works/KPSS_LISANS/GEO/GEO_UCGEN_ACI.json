@@ -13,25 +13,71 @@
  "sourceScripts": [
   "Curriculum/Scripts/KPSS/GEO/GEO_UCGEN_ACI.json"
  ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/KPSS/Lisans/KonuAnlatimi/kpss_lisans_kn_geometri_ucgendeacilar2.json (MEB ÖERHGM, Üçgende Açılar)",
+   "EgitimVerileri/KPSS/Lisans/CikmisSorular/Geometri (ÖSYM 2018, 2020, 2021 - Üçgende Açılar)",
+   "Curriculum/Scripts/KPSS/GEO/GEO_UCGEN_ACI.json"
+  ],
+  "additions": [
+   {
+    "note": "İç açılar toplamının ispatı: bir köşeden karşı kenara paralel çizilir, öbür iki açı iç ters açı olarak o köşeye taşınır ve üç açı bir doğru açı oluşturur.",
+    "done": "Bölüm 1: 'Üç açı, bir doğru açı' kartında ispat adım adım yazıldı (MEB'in C köşesinden AB'ye paralel çizme yolu da anıldı). 'İspatın sırası' kartı ispat adımlarını sıralatıyor."
+   },
+   {
+    "note": "Dış açı kuralı (komşu olmayan iki iç açının toplamı) ve ispatı; üç dış açının toplamının 360° olması; iki kez dış açı uygulayarak çözülen kesişen doğrular soruları.",
+    "done": "Bölüm 2: 'Dış açı kuralı' ispat kartı, 'Dış açı' kural kartı (iç + dış = 180° ve 540° − 180° = 360° gerekçesiyle), tahmin kartı, MEB tipi denklem örneği, kesişen doğrular sorusu ve BE ile CD'nin kesiştiği, dış açının iki kez uygulandığı yeni soru."
+   },
+   {
+    "note": "İçbükey dörtgen (çizme): x = a + b + c; BD'yi uzatıp iki dış açıyla gerekçelendirme.",
+    "done": "Bölüm 2: 'İçbükey şekil: çizme' kartında BD uzatılıp AC'yi E'de keserek iki dış açıyla gerekçe yazıldı; sayılarla adım adım 'guided' kartı ve çizme sorusu eklendi."
+   },
+   {
+    "note": "Açılarına göre (dar, dik, geniş) ve kenarlarına göre (çeşitkenar, ikizkenar, eşkenar) üçgenler; türü en büyük açının belirlediği; orantılı açılardan tür bulma.",
+    "done": "Bölüm 3: tür kavramı, tahmin, 'en büyük açı' hata kartı, multi, classify, 3:4:5 ve 2:3:7 orantılı açı soruları. Bölüm 4: kenara göre türler, tür tablosu, eşleştirme kartı, hata kartı ve eşkenar çevre sorusu."
+   },
+   {
+    "note": "İkizkenar üçgende taban açıları, tepe açısından taban açısı, 'verilen açı tepe mi taban mı' tuzağı; iç içe ikizkenar üçgenler; eşkenar üçgenin 60° açıları ve eşkenarla ikizkenarı birleştiren şekiller.",
+    "done": "Bölüm 5: taban açıları, tepe-taban tuzağı (hata kartı, findError, iki durumlu soru), iç içe ikizkenar sorusu. Bölüm 6: eşkenarın 60° açıları, flip, eşkenar içinde dış açı örneği, CD = CB sorusu ve eşkenarla ikizkenarı birleştiren guided kart."
+   }
+  ],
+  "fixes": [
+   "MEB metninde derece işareti sayıya yapışmış okunuyor: '3600', '1800', '5400' aslında 360°, 180°, 540°; MEB örneğindeki 'x = 340' da 34°. Derste doğru biçimde yazıldı.",
+   "Havuzdaki 'iç açı 38°, komşu dış açı 142°, diğer iki iç açının toplamı' sorusunun cevap anahtarı (90°) yanlış; doğrusu 180° − 38° = 142°. Soru kullanılmadı; kalıp 'Dış açı' bölümündeki sayısal kartlarda yeniden yazıldı.",
+   "Havuzdaki '(2x + 15), (3x − 5) ve 40°' sorusunda 5x + 50 = 180 ⇒ x = 26 çıkar; şıklarda 26 yok ve anahtar (12) çözümle çelişiyor. Soru kullanılmadı; kalıp bu derste doğru çözümlü olarak (2x + 10, 3x − 5, x + 25) yeniden yazıldı.",
+   "Havuzdaki 'A dış açısı 128°, C = 46°, B = C + 14°' sorusunun verileri tutarsız (B + C = 106° ≠ 128°); kullanılmadı.",
+   "Temel dosyada soru ipuçları cevap harfini ('Cevap C' gibi) söylüyordu; ipuçları yeniden yazıldı, son ipucu son işlemi öğrenciye bıraktı.",
+   "Giriş metnindeki 'ÖSYM'nin üçgende açı soruları hep şekilliydi' ifadesi kesin yargı olduğu için yumuşatıldı (2018 sorusu açı değil, çevre sorusudur)."
+  ]
+ },
  "lesson": {
   "hook": {
    "headline": "Üç köşe, bir doğru",
-   "narration": "Bir üçgenin üç köşesini kesip yan yana koysan ne olur? Üç açı birleşir ve dümdüz bir doğru açı oluşturur: 180 derece. Bu derste bunun nedenini paralel doğrularla göreceğiz. Sonra KPSS'nin en sevdiği araca geçeceğiz: dış açı. ÖSYM'nin üçgende açı soruları hep şekilliydi ve çoğu bu iki kuralla çözülüyor."
+   "narration": "Bir üçgenin üç köşesini yırtıp yan yana koyarsan üç açı birleşir ve dümdüz bir doğru açı oluşturur: 180°. Bu derste bunun nedenini paralel doğrularla göreceksin. Sonra KPSS şekillerinin en sevdiği araca geçeceksin: dış açı. Üçgende açı soruları çoğunlukla şekillidir ve iç açı ile dış açı kurallarıyla çözülür."
   },
   "objectives": [
+   "İç açılar toplamının nedenini paralel doğrularla açıklamak",
    "Üçgenin iç açılar toplamını kullanmak",
    "Dış açı kuralını ve dış açılar toplamını uygulamak",
-   "İçbükey şekilde içteki açıyı bulmak",
+   "Dış açıyı iki kez kullanarak kesişen doğrular sorusu çözmek",
+   "İçbükey şekilde (çizme) içteki açıyı bulmak",
    "Üçgenleri açılarına ve kenarlarına göre sınıflandırmak",
-   "İkizkenar ve eşkenar üçgenin açılarını kullanmak"
+   "İkizkenar üçgende tepe-taban ayrımını yapmak",
+   "Eşkenar ve ikizkenar üçgenin birleştiği şekilleri çözmek"
   ],
   "sections": [
    {
     "subtopic": "GEO_UCGEN_ACI_01",
     "subtopics": [],
     "title": "Üçgenin iç açıları",
-    "narration": "Üçgenin üç iç açısının toplamı her zaman 180 derecedir. Önce bunun nedenini görelim, sonra soruda kullanalım.",
+    "narration": "",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Üçgenin elemanları",
+      "text": "Üçgenin temel elemanları **köşeleri**, **kenarları** ve **iç açılarıdır**. Üçgenler kenarlarına ve açılarına göre sınıflandırılır. Bu derste önce iç açıların toplamını, sonra dış açıyı, sonra da üçgen türlerini göreceksin.",
+      "narration": "Üçgenin üç köşesi, bu köşeleri birleştiren üç kenarı ve her köşede iki kenarın oluşturduğu üç iç açısı vardır. Köşeleri A, B, C ile gösteririz. $m(\\widehat{A})$, A köşesindeki iç açının ölçüsüdür."
+     },
      {
       "kind": "visual",
       "title": "Üç açı, bir doğru açı",
@@ -80,7 +126,7 @@
         {
          "id": "D",
          "at": [
-          0.6000000000000001,
+          0.6,
           5.14
          ],
          "hidden": true,
@@ -90,7 +136,7 @@
         {
          "id": "E",
          "at": [
-          6.800000000000001,
+          6.8,
           5.14
          ],
          "hidden": true,
@@ -176,69 +222,34 @@
         }
        ]
       },
-      "beats": [
-       {
-        "narration": "Üçgenin açılarına a, b ve c diyelim.",
-        "show": [],
-        "focus": [
-         "a",
-         "b",
-         "c"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "A köşesinden BC kenarına paralel bir doğru çizelim.",
-        "show": [
-         "DE"
-        ],
-        "focus": [
-         "DE",
-         "BC"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "B'deki b açısı, AB keseninde iç ters açı olur; A'ya aynen taşınır.",
-        "show": [
-         "b2"
-        ],
-        "focus": [
-         "b",
-         "b2"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "C'deki c açısı da AC keseninde iç ters açı olarak A'nın öbür yanına gelir.",
-        "show": [
-         "c2"
-        ],
-        "focus": [
-         "c",
-         "c2"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Şimdi A'da b, a ve c yan yana duruyor ve bir doğru açı oluşturuyor. Demek ki a artı b artı c, 180 derecedir.",
-        "show": [],
-        "focus": [
-         "b2",
-         "a",
-         "c2"
-        ],
-        "zoom": [
-         0.2,
-         0,
-         0.8,
-         0.5
-        ],
-        "note": "a + b + c = 180°",
-        "swap": []
-       }
-      ],
-      "narration": "ABC üçgeninin iç açılarının toplamı neden 180 derece? Bunu bir önceki dersin paralel kuralıyla görelim."
+      "caption": "Kesikli doğru BC'ye paraleldir.",
+      "narration": "ABC üçgeninin açılarına a, b ve c diyelim. A köşesinden BC kenarına paralel bir doğru çiziyoruz. B'deki b açısı ile A'nın sol yanındaki açı, AB keseninde iç ters açıdır; bu yüzden eşittir ve b, A köşesine taşınmış olur. C'deki c açısı da AC keseninde iç ters açı olarak A'nın sağ yanına gelir. Artık A köşesinde b, a ve c yan yana duruyor ve paralel doğrunun üstünde bir doğru açı oluşturuyor. Doğru açı 180° olduğundan $a + b + c = 180°$ olur. MEB kitabı aynı sonucu C köşesinden AB'ye paralel çizerek gösterir; hangi köşeden çizersen çiz sonuç değişmez."
+     },
+     {
+      "kind": "visual",
+      "title": "İspatın sırası",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "Paralel doğru çiz",
+         "detail": "A'dan BC'ye paralel"
+        },
+        {
+         "label": "İç ters açıları taşı",
+         "detail": "b ve c, A köşesine gelir"
+        },
+        {
+         "label": "Doğru açıyı gör",
+         "detail": "A'da b, a, c yan yana"
+        },
+        {
+         "label": "Sonucu yaz",
+         "detail": "a + b + c = 180°"
+        }
+       ]
+      },
+      "caption": "Adımları ispattaki sıraya diz."
      },
      {
       "kind": "rule",
@@ -248,8 +259,29 @@
        "İki açı biliniyorsa üçüncüsü, $180°$'den bu ikisinin toplamı çıkarılarak bulunur.",
        "Bir üçgende en çok **bir** dik ya da geniş açı olabilir; öbür iki açı hep dardır."
       ],
-      "beats": [],
-      "narration": "Her üçgende üç iç açının toplamı 180 derecedir. İki açıyı biliyorsan üçüncüsünü 180'den çıkararak bulursun. Bir de şunu unutma: iki açı 90 derece ya da daha büyük olsaydı toplam 180'i aşardı. Bu yüzden bir üçgende en çok bir dik ya da geniş açı olabilir; öbür ikisi her zaman dar açıdır."
+      "narration": "Her üçgende üç iç açının toplamı 180°'dir. İki açıyı biliyorsan üçüncüsünü, bu ikisinin toplamını 180°'den çıkararak bulursun. İki açı 90° ya da daha büyük olsaydı toplam 180°'yi aşardı. Bu yüzden bir üçgende en çok bir dik ya da geniş açı olabilir; öbür ikisi her zaman dardır."
+     },
+     {
+      "kind": "blank",
+      "title": "Üçüncü açıyı bul",
+      "prompt": "Bir üçgenin iki açısı $48°$ ve $75°$'dir. Üçüncü açı kaç derecedir?",
+      "before": "Üçüncü açı =",
+      "after": "°",
+      "answers": [
+       "57"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 57,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "123",
+        "feedback": "123° iki açının toplamıdır; üçüncü açı için bu toplamı 180°'den çıkarmalısın."
+       }
+      ],
+      "explanation": "$180° - 48° - 75° = 57°$."
      },
      {
       "kind": "question",
@@ -264,39 +296,35 @@
         "80"
        ],
        "answer": 2,
+       "choiceFeedback": [
+        "50° en küçük açıdır; soru en büyük açıyı soruyor.",
+        "60° yalnızca bir açının değeri; üç açıyı da hesaplayıp karşılaştırdın mı?",
+        null,
+        "3x'i alıp −5'i unutmuş olabilirsin; açı ifadesi 3x − 5'ti.",
+        "Denklemi kurarken bir terimi yanlış toplamış olabilirsin; üç açının toplamı 180° çıkıyor mu, kontrol et."
+       ],
        "steps": [
         {
-         "text": "$(2x + 10) + (3x - 5) + (x + 25) = 180$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Üç iç açının toplamı 180 derece: 2x artı 10, 3x eksi 5 ve x artı 25'in toplamı 180."
+         "text": "Üç iç açının toplamı 180°: $(2x + 10) + (3x - 5) + (x + 25) = 180$ denklemini yaz."
         },
         {
-         "text": "$6x + 30 = 180 \\Rightarrow x = 25$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "x'leri toplayalım: 6x. Sayıları toplayalım: 30. 6x artı 30, 180; 6x, 150; x, 25."
+         "text": "x'li terimleri ve sayıları ayrı topla; x'i bul."
         },
         {
-         "text": "Açılar $60°$, $70°$, $50°$; en büyüğü $70°$. Cevap **C**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Açılar 2 çarpı 25 artı 10, 60; 3 çarpı 25 eksi 5, 70; 25 artı 25, 50 derece. Toplam 180, sağlama tamam. En büyüğü 70 derece. Cevap C. x'in kendisini, yani 25'i bulup bırakmak bu sorunun tuzağıdır; soru açıyı soruyor."
+         "text": "x'i bulup bırakma: soru açıyı soruyor. Her ifadeye x'i yerleştir, üç açıyı karşılaştır."
         }
        ],
-       "narration": "Üç açının toplamı 180 derece; denklemi kurup x'i bulacağız, sonra açıları tek tek hesaplayacağız.",
        "origin": {
         "changes": "Havuzdaki açıları ifadeyle verilen üçgen kalıbı örnek alındı; ifadeler bu ders için yazıldı."
        }
       }
+     },
+     {
+      "kind": "mistake",
+      "title": "Paralel görünen paralel değildir",
+      "wrong": "Şekilde DE doğru parçası BC'ye paralel görünüyorsa yöndeş açıları eşit alabilirim.",
+      "right": "Paralellik yalnızca soruda ya da şekilde işaretle verilmişse kullanılır; yoksa açılar ortak açı ve iç açı toplamıyla bulunur.",
+      "why": "Şekiller ölçekli çizilmeyebilir; gözle paralel görünen doğru paralel olmayabilir. KPSS'nin kenarlar üzerindeki D ve E noktalarıyla kurulan şekillerinde çözüm genelde iç açı toplamından geçer."
      },
      {
       "kind": "question",
@@ -439,35 +467,24 @@
         "50"
        ],
        "answer": 1,
+       "choiceFeedback": [
+        "105°'yi doğrudan işleme katmış olabilirsin; küçük üçgenin içindeki açı AED'dir, yani 105°'nin bütünleridir.",
+        null,
+        "DE ∥ BC varsayıp yöndeş açılarla gitmiş olabilirsin; şekilde paralellik işareti yok.",
+        "45° C köşesindeki açıdır; x'in bulunduğu ADE üçgeninde C yoktur.",
+        "A açısını yanlış hesaplamış olabilirsin; ABC üçgeninde 180° − 65° − 45°'yi yeniden hesapla."
+       ],
        "steps": [
         {
-         "text": "$ABC$: $m(\\widehat{A}) = 180° - 65° - 45° = 70°$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "ABC üçgeninde A açısı 180 eksi 65 eksi 45, yani 70 derece."
+         "text": "A açısı hem ABC hem ADE üçgeninin açısıdır. ABC'de A'yı bul: $180° - 65° - 45°$."
         },
         {
-         "text": "$m(\\widehat{AED}) = 180° - 105° = 75°$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "E'deki 105 derecelik açı küçük üçgenin dışında kalıyor. Komşusu AED, onun bütünleri: 180 eksi 105, 75 derece."
+         "text": "E'deki 105°'lik açı ADE üçgeninin dışında kalıyor. Komşusu AED, 105°'nin bütünleridir."
         },
         {
-         "text": "$ADE$: $x = 180° - 70° - 75° = 35°$. Cevap **B**.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "A açısı ADE üçgeninin de açısıdır. Bu üçgende x, 180 eksi 70 eksi 75, yani 35 derece. Cevap B. DE, BC'ye paralel değil; x'i 65 derece sanmak, paralellik verilmeden yöndeş açı kullanmaktır. Şekilde paralel işareti yoksa paralel sayma."
+         "text": "ADE üçgeninde A ve E biliniyor; x'i 180°'den bu ikisini çıkararak bul."
         }
        ],
-       "narration": "A açısı iki üçgende ortak: önce büyük üçgenden A'yı bulacağız. E'deki açıyı da küçük üçgenin içine çevireceğiz.",
        "origin": {
         "changes": "ÖSYM KPSS'nin kenarlar üzerindeki noktalarla ortak açılı iki üçgen kalıbı örnek alındı; şekil ve açılar bu ders için yazıldı."
        }
@@ -479,7 +496,7 @@
     "subtopic": "GEO_UCGEN_ACI_02",
     "subtopics": [],
     "title": "Üçgenin dış açıları",
-    "narration": "Bir kenarı uzattığında köşede yeni bir açı oluşur: dış açı. KPSS'nin şekilli sorularının çoğu bu açıyla çözülür.",
+    "narration": "",
     "cards": [
      {
       "kind": "visual",
@@ -622,69 +639,8 @@
         }
        ]
       },
-      "beats": [
-       {
-        "narration": "BC kenarını C'den öteye uzatalım. Uzantı ile CA arasında kalan açı, C'deki dış açıdır.",
-        "show": [
-         "CK"
-        ],
-        "focus": [
-         "CK",
-         "CA"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "C'den AB'ye paralel bir doğru çizelim.",
-        "show": [
-         "CE"
-        ],
-        "focus": [
-         "CE",
-         "AB"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "A'daki a açısı, AC keseninde iç ters açı olarak C'ye gelir; dönerek yerleşir.",
-        "show": [
-         "a2"
-        ],
-        "focus": [
-         "a",
-         "a2"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "B'deki b açısı ise BC doğrusu boyunca kayar: yöndeş açılar eşittir.",
-        "show": [
-         "b2"
-        ],
-        "focus": [
-         "b",
-         "b2"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Dış açı bu iki parçadan oluşuyor: a artı b. Yani bir dış açı, kendisine komşu olmayan iki iç açının toplamıdır.",
-        "show": [],
-        "focus": [
-         "a2",
-         "b2"
-        ],
-        "zoom": [
-         0.35,
-         0.4,
-         0.95,
-         1
-        ],
-        "note": "C’deki dış açı = a + b",
-        "swap": []
-       }
-      ],
-      "narration": "Dış açıyı da aynı paralel fikriyle bulalım."
+      "caption": "Kesikli doğru AB'ye paraleldir.",
+      "narration": "ABC üçgeninde BC kenarını C'den öteye uzatalım. Uzantı ile CA arasında kalan açı, C köşesindeki dış açıdır. C'den AB'ye paralel bir doğru çizelim. A'daki a açısı, AC keseninde iç ters açı olarak C'ye taşınır. B'deki b açısı ise BC doğrusu boyunca yöndeş açı olarak karşımıza çıkar. Dış açı bu iki parçadan oluşur: $a + b$. Yani dış açı, kendisine komşu olmayan iki iç açının toplamıdır. İç açı toplamıyla da aynı sonuca varırsın: C'deki iç açıya c dersek dış açı $180° - c$, iç açılar toplamından da $a + b$ olur."
      },
      {
       "kind": "rule",
@@ -694,8 +650,46 @@
        "Dış açı, **komşu olmayan** iki iç açının toplamına eşittir.",
        "Bir üçgenin üç dış açısının toplamı her zaman $360°$'dir."
       ],
-      "beats": [],
-      "narration": "Bir köşedeki dış açı, o köşedeki iç açıyla yan yana durur ve onun bütünleridir. Asıl kullanacağın kural şu: dış açı, kendisine komşu olmayan iki iç açının toplamına eşittir. Bir de üç dış açının toplamı her üçgende 360 derecedir."
+      "narration": "Dış açı, kendi köşesindeki iç açıyla yan yana durur ve onunla bir doğru açı oluşturur; yani iç açı + dış açı = 180°'dir. Soruda asıl kullanacağın kural şudur: dış açı, kendisine komşu olmayan iki iç açının toplamına eşittir. Üç köşede üç dış açı toplanırsa $3 \\cdot 180° - 180° = 360°$ bulunur: 540°'den iç açıların 180°'si çıkar. Bu sonuç üçgen nasıl olursa olsun değişmez."
+     },
+     {
+      "kind": "example",
+      "title": "Dış açıyla denklem",
+      "example": "$B$, $C$, $E$ noktaları doğrusaldır. $m(\\widehat{BAC}) = 2x + 10$, $m(\\widehat{ABC}) = x + 15$ ve $m(\\widehat{ACE}) = 4x - 20$ olduğuna göre $x$ kaçtır?",
+      "explanation": "$ACE$, $ABC$ üçgeninin C köşesindeki dış açısıdır; komşu olmayan A ve B açılarının toplamına eşittir: $4x - 20 = (2x + 10) + (x + 15)$. Sağ taraf $3x + 25$ olur; $4x - 20 = 3x + 25$ ve $x = 45$. Sağlama: $m(\\widehat{A}) = 100°$, $m(\\widehat{B}) = 60°$, $m(\\widehat{ACE}) = 160°$ ve $100° + 60° = 160°$."
+     },
+     {
+      "kind": "blank",
+      "title": "Eksik iç açı",
+      "prompt": "Bir üçgenin bir dış açısı $135°$'dir. Komşu olmayan iç açılardan biri $80°$ ise öbürü kaç derecedir?",
+      "before": "Öbür iç açı =",
+      "after": "°",
+      "answers": [
+       "55"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 55,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "45",
+        "feedback": "45° dış açıya komşu iç açıdır (180° − 135°); istenen komşu olmayan açılardan biridir."
+       },
+       {
+        "answer": "215",
+        "feedback": "Dış açıyla bir iç açıyı toplamak yerine çıkarmalısın: dış açı iki iç açının toplamıdır."
+       }
+      ],
+      "explanation": "Dış açı = komşu olmayan iki iç açının toplamı: $135° - 80° = 55°$."
+     },
+     {
+      "kind": "mistake",
+      "title": "Dış açı iç açıya eşit değildir",
+      "wrong": "Bir köşedeki dış açı, o köşedeki iç açıya eşittir.",
+      "right": "Dış açı, o köşedeki iç açının bütünleridir; komşu olmayan iki iç açının toplamına eşittir.",
+      "why": "İç açı ile dış açı yan yana durup doğru açıyı (180°) oluşturur. Eşit olsalar ikisi de 90° olurdu."
      },
      {
       "kind": "predict",
@@ -707,7 +701,7 @@
        "360°"
       ],
       "answer": 1,
-      "thinkSeconds": 4,
+      "explanation": "Her köşede iç + dış = 180°; üç köşede toplam 540°. İç açılar 180° tuttuğundan dış açılara $540° - 180° = 360°$ kalır.",
       "visual": {
        "kind": "geometry",
        "view": [
@@ -847,32 +841,7 @@
          "arcs": 1
         }
        ]
-      },
-      "beats": [
-       {
-        "narration": "Her dış açı, kendi köşesindeki iç açının bütünleridir: x, 180 eksi A; y, 180 eksi B; z, 180 eksi C.",
-        "show": [],
-        "focus": [
-         "angle-A",
-         "angle-B",
-         "angle-C"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Üçünü topla: 540'tan iç açıların toplamı, yani 180 çıkar. Sonuç 360 derece.",
-        "show": [],
-        "focus": [
-         "AB",
-         "BC",
-         "CA"
-        ],
-        "swap": []
-       }
-      ],
-      "explanation": "Üç dış açının toplamı $3 \\cdot 180° - 180° = 360°$'dir.",
-      "narration": "Şimdi sıra sende. Üçgenin her köşesinde bir kenar uzatılmış; x, y ve z dış açılar. Toplamları kaç derece? Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap 360 derece. Üç köşede üç doğru açı var, toplam 540 derece; bunun 180 derecesi iç açılara gider, 360'ı dış açılara kalır. Üçgen nasıl olursa olsun sonuç değişmez."
+      }
      },
      {
       "kind": "question",
@@ -1025,44 +994,214 @@
         ]
        },
        "options": [
+        "30",
         "40",
         "50",
         "60",
-        "70",
         "90"
        ],
-       "answer": 2,
+       "answer": 3,
+       "choiceFeedback": [
+        "30° şekilde B köşesinde verilmiş açıdır; x başka bir köşedeki açıdır.",
+        "BFD üçgeninde toplarken ADB yerine yanlış bir değer kullanmış olabilirsin; ADB'yi dış açı kuralıyla yeniden bul.",
+        "Açıları 180°'den çıkarırken bir değeri eksik almış olabilirsin; BFD'de B köşesi 30°'dir, D köşesindeki açıyı da hesaba kat.",
+        null,
+        "90° ADB açısıdır; doğru ama bir ara sonuçtur, istenen x değil."
+       ],
        "steps": [
         {
-         "text": "$ADC$ üçgeninde dış açı: $m(\\widehat{ADB}) = 20° + 70° = 90°$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "ADC üçgenine bak: D'deki ADB açısı bu üçgenin dış açısıdır. Komşu olmayan iki iç açının toplamı: 20 artı 70, 90 derece."
+         "text": "ADC üçgeninde D köşesindeki ADB açısı bir dış açıdır: komşu olmayan iki iç açının toplamına eşittir."
         },
         {
-         "text": "$BFD$: $x = 180° - 30° - 90° = 60°$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "BFD üçgeninde B'deki açı 30, D'deki açı 90 derece. x, 180 eksi 30 eksi 90, yani 60 derece."
+         "text": "BFD üçgeninde iki açı biliniyor: B köşesindeki 30° ve D köşesindeki ADB."
         },
         {
-         "text": "Cevap **C**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Cevap C. Öbür yoldan da aynı sonuç çıkar. BEC üçgeninde E'deki dış açı 30 artı 70, 100 derece. AFE üçgeninde F'deki açı 180 eksi 20 eksi 100, yani 60 derece; o da x'in ters açısıdır. E şıkkındaki 90, ADB açısıdır; doğru bir ara sonuç ama sorulan açı değil."
+         "text": "x'i, bu iki açıyı 180°'den çıkararak bul."
         }
        ],
-       "narration": "D'deki açıyı dış açı kuralıyla bulalım; sonra BFD üçgeninde x kalır.",
        "origin": {
         "changes": "ÖSYM KPSS'nin kenarlar üzerindeki noktalardan çizilen iki doğru ve kesişimdeki açı kalıbı örnek alındı; şekil ve açılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "Şekilde $D$ noktası $AB$, $E$ noktası $AC$ kenarı üzerindedir; $BE$ ile $CD$, $F$ noktasında kesişir. $m(\\widehat{BAC}) = 50°$, $m(\\widehat{ABE}) = 20°$ ve $m(\\widehat{ACD}) = 30°$ olduğuna göre $m(\\widehat{BFC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.8,
+         -0.8,
+         6.8,
+         7.17
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           3.68,
+           6.37
+          ],
+          "label": "A",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "label": "B",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           0
+          ],
+          "label": "C",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           1.96,
+           3.39
+          ],
+          "label": "D",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           4.6,
+           3.86
+          ],
+          "label": "E",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "F",
+          "at": [
+           3,
+           2.52
+          ],
+          "label": "F",
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [],
+        "circles": [],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "50°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "B",
+          "from": "A",
+          "to": "E",
+          "label": "20°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "C",
+          "from": "A",
+          "to": "D",
+          "label": "30°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "F",
+          "from": "B",
+          "to": "C",
+          "label": "x",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "50",
+        "70",
+        "100",
+        "120",
+        "130"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "50° A köşesindeki verilen açıdır; x, F köşesindeki açıdır.",
+        "70° ilk dış açıdır; FEC üçgeninde ikinci bir dış açıyı daha uygulaman gerekiyor.",
+        null,
+        "İlk dış açıyla A'yı toplamış olabilirsin; A, FEC üçgeninin açısı değildir.",
+        "130° A açısının bütünleridir; x'in A köşesiyle böyle bir ilişkisi yok."
+       ],
+       "steps": [
+        {
+         "text": "ABE üçgeninde E köşesindeki BEC açısı bir dış açıdır: komşu olmayan A ve B açılarının toplamına eşittir."
+        },
+        {
+         "text": "FEC üçgeninde x, F köşesindeki dış açıdır. Komşu olmayan iç açılar FEC ve ECF'dir."
+        },
+        {
+         "text": "FEC açısı BEC ile, ECF açısı ACD ile aynıdır. İkisini topla."
+        }
+       ],
+       "origin": {
+        "changes": "MEB ve ÖSYM'deki dış açıyı zincir halinde kullanan kesişen doğrular kalıbı örnek alındı; şekil, açılar ve soru bu ders için yazıldı."
        }
       }
      },
@@ -1073,6 +1212,7 @@
        "Ok ucu biçimindeki $ABDC$ şeklinde içteki açı: $x = a + b + c$.",
        "Nedeni iki dış açı: $BD$'yi uzat; önce $a + b$, sonra $(a + b) + c$."
       ],
+      "narration": "Ok ucuna benzeyen bu şekle çizme ya da içbükey dörtgen denir; içteki x açısı öbür üç açının toplamıdır. Ezberlemek zorunda değilsin, gerekçesi iki dış açıdır. BD'yi uzat; AC'yi E noktasında kessin. ABE üçgeninde E'deki dış açı, komşu olmayan A ve B açılarının toplamıdır: $a + b$. DEC üçgeninde x, D köşesindeki dış açıdır; komşu olmayan iç açılar DEC ($= a + b$) ve C'dir. Böylece $x = (a + b) + c$ olur.",
       "visual": {
        "kind": "geometry",
        "view": [
@@ -1214,50 +1354,49 @@
          "arcs": 1
         }
        ]
-      },
-      "beats": [
+      }
+     },
+     {
+      "kind": "guided",
+      "title": "Çizmeyi sayılarla çöz",
+      "stem": "$ABDC$ içbükey dörtgeninde $m(\\widehat{A}) = 40°$, $m(\\widehat{ABD}) = 30°$ ve $m(\\widehat{ACD}) = 20°$'dir. $BD$ uzatılıp $AC$'yi kestiği nokta $E$ olsun. $m(\\widehat{BDC}) = x$ bulunacak.",
+      "steps": [
        {
-        "narration": "İçteki x açısını arıyoruz; a, b ve c biliniyor.",
-        "show": [],
-        "focus": [
-         "angle-D"
+        "prompt": "ABE üçgeninde BEC açısı, E köşesindeki dış açıdır. Komşu olmayan A ve B açılarına eşit olduğuna göre kaç derecedir?",
+        "before": "BEC =",
+        "after": "°",
+        "answers": [
+         "70"
         ],
-        "swap": []
+        "input": "number",
+        "explanation": "$40° + 30° = 70°$."
        },
        {
-        "narration": "BD'yi uzatalım; AC'yi E noktasında kessin.",
-        "show": [
-         "DE"
+        "prompt": "DEC üçgeninde x, D köşesindeki dış açıdır. Komşu olmayan iç açılar DEC ($= BEC$) ve C'dir. x kaç derecedir?",
+        "before": "x =",
+        "after": "°",
+        "answers": [
+         "90"
         ],
-        "focus": [
-         "DE"
-        ],
-        "swap": []
+        "input": "number",
+        "explanation": "$70° + 20° = 90°$."
        },
        {
-        "narration": "ABE üçgeninde E'deki dış açı, a artı b'dir.",
-        "show": [
-         "angle-E"
+        "prompt": "Üç açı $a = 40°$, $b = 30°$, $c = 20°$ ve $x = 90°$. Çizmede x ile a, b, c arasındaki bağ hangisidir?",
+        "choices": [
+         "$x = a + b + c$",
+         "$x = 180° - (a + b + c)$",
+         "$x = a + b - c$"
         ],
-        "focus": [
-         "angle-A",
-         "angle-B",
-         "angle-E"
+        "answer": 0,
+        "choiceFeedback": [
+         null,
+         "180° − 90° = 90° olsa da formül bu değildir; 40° + 30° + 20°'yi hesapla.",
+         "c çıkarılırsa 50° çıkar; x = 90° ile uyuşmaz."
         ],
-        "swap": []
-       },
-       {
-        "narration": "DEC üçgeninde D'deki x de bir dış açıdır: a artı b ile c'nin toplamı. Yani x eşittir a artı b artı c.",
-        "show": [],
-        "focus": [
-         "angle-E",
-         "angle-C",
-         "angle-D"
-        ],
-        "swap": []
+        "explanation": "$40° + 30° + 20° = 90°$; x, üç açının toplamıdır."
        }
-      ],
-      "narration": "Ok ucuna benzeyen bu şekle çizme ya da içbükey dörtgen denir. İçteki x açısı, öbür üç açının toplamıdır. Ezberlemek zorunda değilsin; iki kez dış açı kuralı uygularsın."
+      ]
      },
      {
       "kind": "question",
@@ -1389,28 +1528,21 @@
         "120"
        ],
        "answer": 3,
+       "choiceFeedback": [
+        "Üç açıdan birini yanlış okumuş olabilirsin; şekildeki 50°, 25° ve 35°'yi tek tek kontrol et.",
+        "Üç açının hepsini toplamamış olabilirsin; çizmede x'in hesabına üçü de girer.",
+        "Toplama işlemini yeniden yap; üç sayının toplamında küçük bir kayma olmuş olabilir.",
+        null,
+        "180° ile işlem yapmış olabilirsin; çizmede x doğrudan üç açının toplamıdır."
+       ],
        "steps": [
         {
-         "text": "$x = 50° + 25° + 35°$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "x, 50 artı 25 artı 35."
+         "text": "İçbükey dörtgende içteki açı, öbür üç açının toplamıdır (BD'yi uzatıp iki dış açı yazarak görürsün)."
         },
         {
-         "text": "$x = 110°$. Cevap **D**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "x, 110 derece. Cevap D. Sağlama için BC'yi çizebilirsin: ABC üçgeninde B ve C açılarının toplamı 130; bunun 25 ve 35'i dışarıda kalınca DBC üçgenine 70 kalır, x de 180 eksi 70, 110 olur."
+         "text": "Şekildeki A, B ve C köşelerindeki üç açıyı topla: 50°, 25° ve 35°."
         }
        ],
-       "narration": "Çizme kuralı: içteki açı, öbür üç açının toplamı.",
        "origin": {
         "changes": "ÖSYM KPSS'nin 'yukarıdaki şekle göre x kaçtır' içbükey şekil kalıbı örnek alındı; açılar bu ders için yazıldı."
        }
@@ -1422,12 +1554,13 @@
     "subtopic": "GEO_UCGEN_ACI_03",
     "subtopics": [],
     "title": "Açılarına göre üçgenler",
-    "narration": "Üçgenler en büyük açılarına göre üçe ayrılır.",
+    "narration": "",
     "cards": [
      {
       "kind": "concept",
       "title": "Dar, dik, geniş",
-      "text": "Üç açısı da dar olan üçgen **dar açılı**, bir açısı $90°$ olan **dik**, bir açısı $90°$'den büyük olan **geniş açılı** üçgendir.",
+      "text": "Üç açısı da dar olan üçgen **dar açılı**, bir açısı $90°$ olan **dik**, bir açısı $90°$'den büyük olan **geniş açılı** üçgendir. Türü **en büyük açı** belirler.",
+      "narration": "Soldaki üçgenin üç açısı da 90°'den küçüktür; bu dar açılı üçgendir. Ortadakinin bir açısı tam 90°'dir; bu dik üçgendir. Sağdakinin bir açısı 120°'dir; bu geniş açılı üçgendir. MEB kitabı bir ayrıntıyı da vurgular: ikizkenar üçgenler dar açılı, dik ya da geniş açılı olabilir. Yani kenara göre ad ile açıya göre ad birbirinden bağımsızdır.",
       "visual": {
        "kind": "geometry",
        "view": [
@@ -1443,7 +1576,6 @@
           0,
           0
          ],
-         "label": "",
          "hidden": false,
          "dot": true,
          "caption": false
@@ -1454,7 +1586,6 @@
           3,
           0
          ],
-         "label": "",
          "hidden": false,
          "dot": true,
          "caption": false
@@ -1465,7 +1596,6 @@
           0.91,
           2.49
          ],
-         "label": "",
          "hidden": false,
          "dot": true,
          "caption": false
@@ -1476,7 +1606,6 @@
           4,
           0
          ],
-         "label": "",
          "hidden": false,
          "dot": true,
          "caption": false
@@ -1487,7 +1616,6 @@
           7,
           0
          ],
-         "label": "",
          "hidden": false,
          "dot": true,
          "caption": false
@@ -1498,7 +1626,6 @@
           4,
           2.6
          ],
-         "label": "",
          "hidden": false,
          "dot": true,
          "caption": false
@@ -1509,7 +1636,6 @@
           8,
           0
          ],
-         "label": "",
          "hidden": false,
          "dot": true,
          "caption": false
@@ -1520,7 +1646,6 @@
           11.4,
           0
          ],
-         "label": "",
          "hidden": false,
          "dot": true,
          "caption": false
@@ -1531,7 +1656,6 @@
           12.35,
           1.65
          ],
-         "label": "",
          "hidden": false,
          "dot": true,
          "caption": false
@@ -1666,44 +1790,80 @@
          "arcs": 1
         }
        ]
-      },
-      "beats": [
-       {
-        "narration": "Soldaki üçgenin üç açısı da 90 dereceden küçük; üçü de dar. Bu, dar açılı üçgen.",
-        "show": [],
-        "focus": [
-         "angle-P1",
-         "angle-Q1",
-         "angle-R1"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Ortadakinin bir açısı dik, yani 90 derece: dik üçgen.",
-        "show": [],
-        "focus": [
-         "angle-P2"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Sağdakinin bir açısı 120 derece: geniş açılı üçgen.",
-        "show": [],
-        "focus": [
-         "angle-Q3"
-        ],
-        "swap": []
-       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Tür tahmini",
+      "context": "Bir üçgenin iç açıları $50°$, $60°$ ve $70°$'dir.",
+      "prompt": "Bu üçgen dar açılıdır.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
       ],
-      "narration": "Üçgenleri açılarına göre adlandıralım. Üç açısı da 90 dereceden küçükse dar açılı üçgen; bir açısı tam 90 derece ise dik üçgen; bir açısı 90 dereceden büyükse geniş açılı üçgen denir."
+      "answer": 0,
+      "explanation": "En büyük açı 70° ve 90°'den küçük; üç açı da dar. Toplam $50° + 60° + 70° = 180°$ olduğu için böyle bir üçgen vardır."
      },
      {
       "kind": "mistake",
       "title": "En büyük açıya bak",
       "wrong": "İki açısı dar olan üçgen dar açılıdır.",
       "right": "Türü **en büyük açı** belirler; her üçgende en az iki dar açı vardır.",
-      "why": "Dik ve geniş açılı üçgenlerin de iki açısı dardır; ayırt eden, üçüncü açıdır.",
-      "narration": "Sık yapılan bir hata: iki açısı dar diye üçgene dar açılı demek. Oysa her üçgenin en az iki dar açısı vardır; dik üçgenin de, geniş açılı üçgenin de. Türü belirleyen en büyük açıdır. Önce en büyük açıyı bul, sonra karar ver."
+      "why": "Dik ve geniş açılı üçgenlerin de iki açısı dardır; ayırt eden, üçüncü açıdır. Önce en büyük açıyı bul, sonra karar ver."
+     },
+     {
+      "kind": "multi",
+      "title": "Hangileri doğru?",
+      "stem": "Aşağıdaki ifadelerden hangileri **doğrudur**?",
+      "options": [
+       "Her üçgenin en az iki açısı dardır.",
+       "Bir üçgenin iki açısı geniş olabilir.",
+       "İkizkenar üçgen geniş açılı olabilir.",
+       "Eşkenar üçgenin bir açısı dik olabilir.",
+       "Dik üçgenin iki dar açısının toplamı $90°$'dir."
+      ],
+      "answers": [
+       0,
+       2,
+       4
+      ],
+      "choiceFeedback": [
+       null,
+       "İki geniş açının toplamı zaten 180°'yi aşar.",
+       null,
+       "Eşkenar üçgenin her açısı 60°'dir.",
+       null
+      ],
+      "explanation": "Toplam 180° olduğundan en çok bir açı 90° ya da daha büyük olur; geri kalan en az iki açı dardır. Dik üçgende 180° − 90° = 90° iki dar açıya kalır. İkizkenar üçgenin tepe açısı geniş olabilir, örneğin 100°-40°-40°."
+     },
+     {
+      "kind": "classify",
+      "title": "Açılardan türü bul",
+      "prompt": "Her üçgeni, açılarına bakarak türüne yerleştir.",
+      "groups": [
+       {
+        "label": "Dar açılı",
+        "items": [
+         "40°, 60°, 80°",
+         "50°, 50°, 80°"
+        ]
+       },
+       {
+        "label": "Dik",
+        "items": [
+         "30°, 60°, 90°",
+         "20°, 70°, 90°"
+        ]
+       },
+       {
+        "label": "Geniş açılı",
+        "items": [
+         "35°, 40°, 105°",
+         "25°, 25°, 130°"
+        ]
+       }
+      ],
+      "explanation": "Her satırın toplamı 180°'dir. Tür, en büyük açıya göre belirlenir: 80° ve 80° dar, 90° dik, 105° ve 130° geniştir."
      },
      {
       "kind": "question",
@@ -1718,39 +1878,49 @@
         "Eşkenar üçgendir."
        ],
        "answer": 0,
+       "choiceFeedback": [
+        null,
+        "3-4-5 kenarlar için ünlü dik üçgendir; burada oran açılar içindir. Açıları hesaplayıp bak.",
+        "5k'yı büyük görüp geniş sanmış olabilirsin; k'yi bulup 5k'nın 90°'yi geçip geçmediğine bak.",
+        "İkizkenar için iki açının eşit olması gerekir; açıları hesapla.",
+        "Eşkenar için üç açı da eşit, yani 60° olmalıdır; açıları hesapla."
+       ],
        "steps": [
         {
-         "text": "$3k + 4k + 5k = 180° \\Rightarrow k = 15°$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Açılar 3k, 4k ve 5k; toplamları 180 derece. 12k, 180; k, 15."
+         "text": "Açıları $3k$, $4k$, $5k$ yaz; toplamları 180° olduğundan $k$'yi bul."
         },
         {
-         "text": "Açılar $45°$, $60°$, $75°$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Açılar 45, 60 ve 75 derece. En büyüğü 75; 90'dan küçük."
+         "text": "Üç açıyı hesapla; en büyüğüne bak."
         },
         {
-         "text": "Üç açı da dar: **dar açılı**. Cevap **A**.",
-         "eliminate": [
-          "B",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Üç açı da dar olduğu için üçgen dar açılıdır. Cevap A. Açıların hepsi farklı olduğu için ikizkenar ya da eşkenar da değildir. Oranlarda 5'i büyük görüp geniş açı sanmak bu sorunun tuzağıdır."
+         "text": "Türü en büyük açı belirler: 90° ile karşılaştır, açıların eşit olup olmadığına da bak."
         }
        ],
-       "narration": "Orantıyı k ile yazıp açıları bulalım; türü en büyük açı belirler.",
        "origin": {
         "changes": "Havuzdaki açıları orantılı verilen üçgenin türünü buldurma kalıbı örnek alındı; oranlar bu ders için seçildi."
        }
       }
+     },
+     {
+      "kind": "blank",
+      "title": "Başka bir oran",
+      "prompt": "İç açıları 2, 3 ve 7 sayılarıyla orantılı olan bir üçgenin türünü seç.",
+      "before": "Bu üçgen",
+      "after": "tür.",
+      "answers": [
+       "Geniş açılı"
+      ],
+      "choices": [
+       "Dar açılı",
+       "Dik",
+       "Geniş açılı"
+      ],
+      "choiceFeedback": [
+       "Dar açılı demek için üçünün de 90°'den küçük olması gerekir; k'yi bulup en büyük açıyı hesapla.",
+       "Dik üçgen için bir açı tam 90° olmalıydı; en büyük açıyı hesaplayıp kontrol et.",
+       null
+      ],
+      "explanation": "$2k + 3k + 7k = 180° \\Rightarrow k = 15°$. Açılar $30°$, $45°$, $105°$; en büyük açı $90°$'den büyük olduğu için üçgen geniş açılıdır."
      }
     ]
    },
@@ -1758,12 +1928,13 @@
     "subtopic": "GEO_UCGEN_ACI_04",
     "subtopics": [],
     "title": "Kenarlarına göre üçgenler",
-    "narration": "Üçgenler kenarlarına göre de üçe ayrılır; eşit kenarları çentiklerle gösteririz.",
+    "narration": "",
     "cards": [
      {
       "kind": "concept",
       "title": "Çeşitkenar, ikizkenar, eşkenar",
       "text": "Üç kenarı farklı olan **çeşitkenar**, iki kenarı eşit olan **ikizkenar**, üç kenarı eşit olan **eşkenar** üçgendir. Her eşkenar üçgen aynı zamanda ikizkenardır.",
+      "narration": "Şekilde eşit kenarlar aynı sayıda çentikle gösterilir. Soldakinin kenarlarında bir, iki ve üç çentik var: üçü de farklı, yani çeşitkenar. Ortadakinde iki kenar aynı çentiği taşıyor: ikizkenar. Sağdakinde üç kenar da eşit: eşkenar. Eşkenar üçgenin iki kenarı da eşit olduğu için o da bir ikizkenar üçgendir; ters yön doğru değildir.",
       "visual": {
        "kind": "geometry",
        "view": [
@@ -1965,39 +2136,89 @@
        "polygons": [],
        "circles": [],
        "angles": []
+      }
+     },
+     {
+      "kind": "visual",
+      "title": "Kenara göre ve açıya göre türler",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Tür",
+        "Ölçüt",
+        "Sonuç"
+       ],
+       "rows": [
+        [
+         "Çeşitkenar",
+         "3 kenar farklı",
+         "3 açı farklı"
+        ],
+        [
+         "İkizkenar",
+         "2 kenar eşit",
+         "2 taban açısı eşit"
+        ],
+        [
+         "Eşkenar",
+         "3 kenar eşit",
+         "Her açı 60°"
+        ],
+        [
+         "Dar açılı",
+         "3 açı da dar",
+         "En büyük < 90°"
+        ],
+        [
+         "Dik",
+         "1 açı 90°",
+         "Dar açılar: 90°"
+        ],
+        [
+         "Geniş açılı",
+         "1 açı > 90°",
+         "Öbür 2 açı dar"
+        ]
+       ],
+       "highlightColumn": 0
       },
-      "beats": [
+      "caption": "Kenara göre ad ile açıya göre ad birbirinden bağımsızdır.",
+      "narration": "İlk üç satır kenarlara göre, son üç satır açılara göre sınıflandırmadır. Bir üçgen aynı anda iki ada sahip olabilir: örneğin 100°-40°-40° açılı bir üçgen hem ikizkenar hem geniş açılıdır. Eşkenar üçgen ise her zaman dar açılıdır, çünkü açıları 60°'dir."
+     },
+     {
+      "kind": "match",
+      "title": "Tür ve özelliği eşleştir",
+      "prompt": "Her üçgen türünü açılarla ilgili özelliğiyle eşleştir.",
+      "titles": [
+       "Üçgen",
+       "Özellik"
+      ],
+      "pairs": [
        {
-        "narration": "Soldakinin kenarlarında bir, iki ve üç çentik var: üçü de farklı. Çeşitkenar.",
-        "show": [],
-        "focus": [
-         "P1Q1",
-         "Q1R1",
-         "R1P1"
-        ],
-        "swap": []
+        "left": "Çeşitkenar",
+        "right": "Üç açısı da birbirinden farklı"
        },
        {
-        "narration": "Ortadakinde iki kenar aynı çentiği taşıyor: ikizkenar.",
-        "show": [],
-        "focus": [
-         "Q2R2",
-         "R2P2"
-        ],
-        "swap": []
+        "left": "İkizkenar",
+        "right": "Eşit kenarların karşısındaki açılar eşit"
        },
        {
-        "narration": "Sağdakinde üç kenar da eşit: eşkenar.",
-        "show": [],
-        "focus": [
-         "P3Q3",
-         "Q3R3",
-         "R3P3"
-        ],
-        "swap": []
+        "left": "Eşkenar",
+        "right": "Her açısı 60°"
+       },
+       {
+        "left": "Dik üçgen",
+        "right": "İki dar açısının toplamı 90°"
        }
       ],
-      "narration": "Kenarlarına göre adlandıralım. Üç kenarı da farklı uzunlukta olan üçgen çeşitkenar; iki kenarı eşit olan ikizkenar; üç kenarı eşit olan eşkenar üçgendir. Şekilde eşit kenarlar aynı sayıda çentikle gösterilir. Eşkenar üçgenin iki kenarı da eşit olduğu için o da bir ikizkenar üçgendir."
+      "explanation": "Kenar eşitliği açı eşitliğini getirir: eşit kenarların karşısındaki açılar eşittir. Dik üçgende ise 180° − 90° = 90° iki dar açıya kalır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Eşkenar da ikizkenardır",
+      "wrong": "Eşkenar üçgen ikizkenar üçgen sayılmaz.",
+      "right": "Her eşkenar üçgen aynı zamanda ikizkenardır; ters yönde her ikizkenar üçgen eşkenar değildir.",
+      "why": "Eşkenar üçgenin iki kenarı da eşittir, ikizkenar koşulunu sağlar. Ama ikizkenar üçgenin üçüncü kenarı farklı olabilir."
      },
      {
       "kind": "question",
@@ -2012,35 +2233,24 @@
         "27"
        ],
        "answer": 4,
+       "choiceFeedback": [
+        "Çevre üç kenarın toplamıdır; x'i ya da tek bir kenarı çevre sanmış olabilirsin.",
+        "Kenar uzunluğunun 2 katını almış olabilirsin; üçgenin üç kenarı var.",
+        "Kenar uzunluğunu yanlış bulmuş olabilirsin; x'i bulup üç ifadeyi de hesapla, üçü eşit çıkmalı.",
+        "Üç kenarın toplamında bir hata olabilir; kenarlar eşit olduğundan çevre 3 × kenardır.",
+        null
+       ],
        "steps": [
         {
-         "text": "$2x + 1 = x + 5 \\Rightarrow x = 4$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "2x artı 1, x artı 5'e eşit: x, 4."
+         "text": "Eşkenarda üç kenar eşit: ilk iki ifadeyi eşitleyip x'i bul."
         },
         {
-         "text": "Kenarlar: $9$, $9$, $3 \\cdot 4 - 3 = 9$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Kenarlar 2 çarpı 4 artı 1, 9; 4 artı 5, 9; 3 çarpı 4 eksi 3, 9. Üçü de 9; sağlama tamam."
+         "text": "x'i üç ifadeye de yerleştir; üçü eşit çıkmalı (sağlama)."
         },
         {
-         "text": "Çevre $3 \\cdot 9 = 27$. Cevap **E**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "D"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Çevre 3 çarpı 9, 27 birim. Cevap E. x'i bulup 4'te durmak ya da tek kenarı, 9'u cevap sanmak bu sorunun tuzaklarıdır."
+         "text": "Soru çevreyi soruyor: kenar uzunluğunu kaçla çarpman gerekir?"
         }
        ],
-       "narration": "Eşkenar üçgende üç kenar eşit; iki ifadeyi eşitleyip x'i bulalım, üçüncüsüyle sağlayalım.",
        "origin": {
         "changes": "Havuzdaki kenarları ifadeyle verilen özel üçgen kalıbı örnek alındı; ifadeler bu ders için yazıldı."
        }
@@ -2052,7 +2262,7 @@
     "subtopic": "GEO_UCGEN_ACI_05",
     "subtopics": [],
     "title": "İkizkenar üçgen",
-    "narration": "İkizkenar üçgende eşit kenarlar eşit açılar getirir. KPSS bunu en çok bir şeklin içine gizler.",
+    "narration": "",
     "cards": [
      {
       "kind": "visual",
@@ -2149,35 +2359,7 @@
         }
        ]
       },
-      "beats": [
-       {
-        "narration": "AB ile AC eşit; tek çentikler bunu gösteriyor.",
-        "show": [],
-        "focus": [
-         "AB",
-         "AC"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Eşit kenarların karşısındaki açılar, yani B ve C'deki taban açıları da eşittir. Çift yay eşit açıları gösterir.",
-        "show": [],
-        "focus": [
-         "angle-B",
-         "angle-C"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Tepe açısı 40 derece ise taban açılarının toplamı 140, her biri 70 derecedir.",
-        "show": [],
-        "focus": [
-         "angle-A"
-        ],
-        "swap": []
-       }
-      ],
-      "narration": "Bir ikizkenar üçgene bakalım."
+      "narration": "AB ile AC eşittir; tek çentikler bunu gösterir. Eşit kenarların karşısındaki açılar da eşittir: B ve C'deki taban açıları. Çift yay eşit açıları gösterir. Tepe açısı 40° ise taban açılarının toplamı $180° - 40° = 140°$, her biri 70°'dir."
      },
      {
       "kind": "rule",
@@ -2187,16 +2369,66 @@
        "Tepe açısı $\\alpha$ ise her taban açısı $\\frac{180° - \\alpha}{2}$'dir.",
        "Tersi de doğru: iki açısı eşit olan üçgen ikizkenardır."
       ],
-      "beats": [],
-      "narration": "İkizkenar üçgende eşit kenarların karşısındaki açılar eşittir; bunlara taban açıları denir. Tepe açısı alfa ise her taban açısı, 180 eksi alfanın yarısıdır. Kural tersinden de işler: iki açısı eşit olan bir üçgen ikizkenardır. Şekilli sorularda gizli ikizkenar üçgeni bulmak çoğu zaman çözümün kendisidir."
+      "narration": "Eşit kenarların ortak köşesine tepe, karşısındaki kenara taban denir. Taban açıları eşittir. Tepe açısı alfa ise iki taban açısının toplamı $180° - \\alpha$ olur; her biri bunun yarısıdır. Kural tersinden de işler: iki açısı eşit olan bir üçgen ikizkenardır. Şekilli sorularda gizli ikizkenar üçgeni bulmak çoğu zaman çözümün kendisidir."
+     },
+     {
+      "kind": "blank",
+      "title": "Taban açısı",
+      "prompt": "Tepe açısı $50°$ olan bir ikizkenar üçgende taban açılarından biri kaç derecedir?",
+      "before": "Taban açısı =",
+      "after": "°",
+      "answers": [
+       "65"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 65,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "130",
+        "feedback": "130° iki taban açısının toplamıdır; birinin ölçüsü bunun yarısıdır."
+       }
+      ],
+      "explanation": "$\\frac{180° - 50°}{2} = 65°$."
      },
      {
       "kind": "mistake",
       "title": "Tepe mi, taban mı?",
       "wrong": "İkizkenar üçgende bir açı $40°$ ise öbür ikisi $70°$'dir.",
       "right": "$40°$ tepe açısıysa öbürleri $70°$; taban açısıysa öbür taban $40°$, tepe $100°$'dir.",
-      "why": "Verilen açının hangi köşede olduğu sonucu değiştirir.",
-      "narration": "Sık yapılan bir hata: ikizkenar üçgende 40 derece görünce hemen öbür iki açıyı 70 almak. 40 derece tepe açısıysa doğru. Ama taban açısıysa öbür taban açısı da 40, tepe açısı 100 derece olur. Soruda hangi açının verildiğine bak; şekil yoksa iki durumu da düşün."
+      "why": "Verilen açının hangi köşede olduğu sonucu değiştirir. Şekil yoksa iki durumu da düşün."
+     },
+     {
+      "kind": "predict",
+      "title": "Geniş açı nerede olur?",
+      "context": "Bir ikizkenar üçgenin bir açısı $100°$'dir.",
+      "prompt": "Bu üçgenin taban açılarının her biri $40°$'dir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "100° taban açısı olamaz; iki taban açısı eşit olduğundan toplamları 200° olurdu. Demek ki 100° tepe açısıdır ve taban açıları $\\frac{180° - 100°}{2} = 40°$'dir."
+     },
+     {
+      "kind": "findError",
+      "title": "Hatayı bul",
+      "problem": "ABC üçgeninde $|AB| = |AC|$ ve $m(\\widehat{ABC}) = 40°$ olduğuna göre $m(\\widehat{BAC})$ kaç derecedir?",
+      "prompt": "Aşağıdaki çözümde hangi satır hatalı?",
+      "steps": [
+       "$|AB| = |AC|$ olduğundan A tepe köşesidir.",
+       "B ile C taban açılarıdır; $m(\\widehat{B}) = 40°$ ise $m(\\widehat{C}) = 40°$.",
+       "$m(\\widehat{A}) = \\frac{180° - 40°}{2} = 70°$."
+      ],
+      "wrongStep": 2,
+      "choiceFeedback": [
+       "Bu satır doğru: eşit kenarlar AB ile AC ise tepe A'dır.",
+       "Bu satır doğru: tepe A ise B ve C taban açılarıdır, ikisi eşittir.",
+       null
+      ],
+      "explanation": "40° taban açısı olduğundan $m(\\widehat{A}) = 180° - 40° - 40° = 100°$. $\\frac{180° - \\alpha}{2}$ formülü ise tepe açısından taban açısını bulur, tersini bulmaz."
      },
      {
       "kind": "question",
@@ -2305,51 +2537,91 @@
         ]
        },
        "options": [
+        "15",
         "30",
-        "35",
         "40",
         "45",
-        "50"
+        "60"
        ],
        "answer": 3,
+       "choiceFeedback": [
+        "Taban açısı $(180° - \\text{tepe})/2$'dir; bir yerde yarıya bölmeyi ya da çıkarmayı yanlış yapmış olabilirsin.",
+        "30° hem tepe açısı hem DBC'nin değeri; x ise ABD'dir ve ABC'nin B açısından DBC çıkarılarak bulunur.",
+        "BCD üçgeninin açılarını yeniden kontrol et: D ve C köşeleri eşit, üçünün toplamı 180°.",
+        null,
+        "Tepe açısını iki katına çıkararak böyle bir değere gidilmez; böyle bir kural yok."
+       ],
        "steps": [
         {
-         "text": "$ABC$: $m(\\widehat{B}) = m(\\widehat{C}) = \\frac{180° - 30°}{2} = 75°$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "ABC ikizkenar; tepe açısı 30 derece. Taban açıları 180 eksi 30'un yarısı, 75'er derece."
+         "text": "ABC ikizkenar ve tepe açısı 30°: B ve C taban açılarını bul."
         },
         {
-         "text": "$BCD$: $|BD| = |BC| \\Rightarrow m(\\widehat{BDC}) = m(\\widehat{BCD}) = 75°$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "BCD de ikizkenar, çünkü BD ile BC eşit. Eşit kenarların karşısındaki açılar eşit: D'deki açı da C'deki gibi 75 derece."
+         "text": "$|BD| = |BC|$ olduğundan BCD de ikizkenardır, tepesi B'dir. D köşesindeki açı C'dekine eşittir; B köşesindeki DBC açısını hesapla."
         },
         {
-         "text": "$m(\\widehat{DBC}) = 180° - 150° = 30°$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "BCD üçgeninde B'deki açı 180 eksi 75 eksi 75, 30 derece."
-        },
-        {
-         "text": "$x = 75° - 30° = 45°$. Cevap **D**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "x, B'deki 75 derecenin geri kalanı: 75 eksi 30, 45 derece. Cevap D. A şıkkındaki 30, DBC açısıdır; soru ABD'yi soruyor."
+         "text": "ABD açısı, ABC'nin B açısından DBC açısı çıkarılarak bulunur."
         }
        ],
-       "narration": "Şekilde iki ikizkenar üçgen var: ABC ve BCD. Önce büyüğünün taban açılarını bulalım.",
        "origin": {
         "changes": "ÖSYM KPSS'nin iç içe ikizkenar üçgenlerle 'x kaç derecedir' kalıbı örnek alındı; şekil ve açılar bu ders için yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "blank",
+      "title": "Oran verilen ikizkenar",
+      "prompt": "$ABC$ ikizkenar üçgeninde $|AB| = |AC|$ ve $m(\\widehat{A}) = 3 \\cdot m(\\widehat{B})$'dir. $m(\\widehat{C})$ kaç derecedir?",
+      "before": "$m(\\widehat{C})$ =",
+      "after": "°",
+      "answers": [
+       "36"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 36,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "108",
+        "feedback": "108° tepe açısıdır ($3 \\cdot 36°$). Soru C taban açısını soruyor."
+       }
+      ],
+      "explanation": "$m(\\widehat{B}) = m(\\widehat{C}) = a$ ise $m(\\widehat{A}) = 3a$. $3a + a + a = 180° \\Rightarrow a = 36°$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "KPSS tarzı",
+       "stem": "İkizkenar bir üçgenin bir iç açısı $80°$'dir. Buna göre bu üçgenin tepe açısının alabileceği değerlerin toplamı kaç derecedir?",
+       "options": [
+        "20",
+        "80",
+        "100",
+        "120",
+        "160"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Yalnız 80°'nin taban açısı olduğu durumu hesaplamışsın; 80° tepe açısı da olabilir.",
+        "Yalnız 80°'nin tepe açısı olduğu durumu almışsın; 80° taban açısı olabilir ve o zaman tepe farklıdır.",
+        null,
+        "Bir değeri yanlış bulmuş olabilirsin: 80° tabansa tepe, $180° - 2 \\cdot 80°$ olur.",
+        "80 + 80 yazmış olabilirsin; iki durumda tepe açısı farklıdır."
+       ],
+       "steps": [
+        {
+         "text": "80° ya tepe açısıdır ya da taban açısıdır; iki durumu ayrı ayrı düşün."
+        },
+        {
+         "text": "80° tepeyse tepe 80°; 80° tabansa öbür taban da 80° olur ve tepe $180° - 2 \\cdot 80°$'dir."
+        },
+        {
+         "text": "Tepe açısının bulduğun iki değerini topla."
+        }
+       ],
+       "origin": {
+        "changes": "Tepe mi, taban mı tuzağını iki durumlu bir soruya çeviren yeni kalıp; açılar bu ders için yazıldı."
        }
       }
      }
@@ -2359,7 +2631,7 @@
     "subtopic": "GEO_UCGEN_ACI_06",
     "subtopics": [],
     "title": "Eşkenar üçgen",
-    "narration": "Eşkenar üçgende her şey eşittir: üç kenar ve üç açı.",
+    "narration": "",
     "cards": [
      {
       "kind": "rule",
@@ -2369,6 +2641,7 @@
        "Her eşkenar üçgen aynı zamanda ikizkenardır.",
        "Bir açısı $60°$ olan ikizkenar üçgen eşkenardır."
       ],
+      "narration": "Eşkenar üçgenin üç kenarı eşittir; eşit kenarların karşısındaki açılar eşit olduğu için üç açısı da eşittir ve $180° \\div 3 = 60°$ olur. Her eşkenar üçgen aynı zamanda ikizkenardır. Tersinden bir bilgi daha: bir açısı 60° olan ikizkenar üçgende öbür iki açı da 60°'ye çıkar; yani üçgen eşkenardır. Eşkenar üçgenin her dış açısı $180° - 60° = 120°$'dir.",
       "visual": {
        "kind": "geometry",
        "view": [
@@ -2460,9 +2733,191 @@
          "arcs": 1
         }
        ]
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "60° görürsen",
+      "context": "Bir üçgenin iki kenarı eşit ve bir açısı $60°$'dir.",
+      "prompt": "Bu üçgen eşkenardır.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "60° tepe açısıysa taban açıları $(180° - 60°)/2 = 60°$; 60° taban açısıysa öbür taban da 60° ve tepe $180° - 120° = 60°$ olur. Her iki durumda üç açı 60°'dir."
+     },
+     {
+      "kind": "flip",
+      "title": "Eşkenar bilgileri",
+      "prompt": "Kartı çevirmeden önce cevabı düşün.",
+      "cards": [
+       {
+        "front": "Eşkenar üçgenin bir dış açısı",
+        "back": "120°: iç açı 60° olduğundan $180° - 60° = 120°$. Üç dış açı toplamı 360°."
+       },
+       {
+        "front": "Bir açısı 60° olan ikizkenar üçgen",
+        "back": "Eşkenardır: öbür iki açı da 60° çıkar."
+       },
+       {
+        "front": "Kenarı a olan eşkenar üçgenin çevresi",
+        "back": "$3a$"
+       },
+       {
+        "front": "Bir açısı 60° olan çeşitkenar üçgen olur mu?",
+        "back": "Olur: 60°, 50°, 70°. Eşkenar olması için ikizkenar da olması gerekir."
+       }
+      ],
+      "explanation": "Eşkenar üçgen sorularında 60° ve 120° değerleri hep kullanılır."
+     },
+     {
+      "kind": "example",
+      "title": "Eşkenar içinde dış açı",
+      "example": "$ABC$ eşkenar üçgendir. $D$ noktası $AB$, $E$ noktası $AC$ kenarı üzerindedir ve $m(\\widehat{EDB}) = 130°$ olduğuna göre $m(\\widehat{DEC}) = x$ kaç derecedir?",
+      "explanation": "$ABC$ eşkenar olduğundan $m(\\widehat{A}) = 60°$. $ADE$ üçgeninde $\\widehat{ADE}$, 130°'nin bütünleridir: $180° - 130° = 50°$. $\\widehat{DEC}$, $ADE$ üçgeninin E köşesindeki dış açısıdır; komşu olmayan A ve D açılarının toplamıdır: $x = 60° + 50° = 110°$.",
+      "narration": "Bu şekilde eşkenarın verdiği 60° ile ikizkenar mantığı değil, dış açı kuralı çalışır. Küçük üçgeni ADE olarak görmek çözümün anahtarıdır.",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.8,
+        -0.8,
+        4.8,
+        4.26
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2,
+          3.46
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          4,
+          0
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          1,
+          1.73
+         ],
+         "label": "D",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          2.82,
+          2.05
+         ],
+         "label": "E",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "C",
+         "to": "A",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "D",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "D",
+         "from": "E",
+         "to": "B",
+         "label": "130°",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "E",
+         "from": "D",
+         "to": "C",
+         "label": "x",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      }
+     },
+     {
+      "kind": "blank",
+      "title": "Aynı şekil, başka açı",
+      "prompt": "Aynı şekilde $m(\\widehat{EDB}) = 150°$ olsaydı $m(\\widehat{DEC})$ kaç derece olurdu?",
+      "before": "$m(\\widehat{DEC})$ =",
+      "after": "°",
+      "answers": [
+       "90"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 90,
+       "tolerance": 0
       },
-      "beats": [],
-      "narration": "Eşkenar üçgenin üç kenarı eşittir; eşit kenarların karşısındaki açılar eşit olduğu için üç açısı da eşittir, her biri 60 derecedir. Her eşkenar üçgen aynı zamanda ikizkenardır. Tersinden bir bilgi daha: bir açısı 60 derece olan ikizkenar üçgen eşkenardır; çünkü öbür iki açı da 60 dereceye çıkar."
+      "wrongAnswers": [
+       {
+        "answer": "30",
+        "feedback": "30° ADE açısıdır; DEC bunun dış açısıdır, A'nın 60°'si eklenmelidir."
+       }
+      ],
+      "explanation": "$\\widehat{ADE} = 180° - 150° = 30°$. $x = 60° + 30° = 90°$."
+     },
+     {
+      "kind": "mistake",
+      "title": "60° görmek yetmez",
+      "wrong": "Bir açısı $60°$ olan her üçgen eşkenardır.",
+      "right": "Bir açısı $60°$ olan **ikizkenar** üçgen eşkenardır; 60°, 50°, 70° açılı üçgen eşkenar değildir.",
+      "why": "Eşkenar olması için üç açının da 60° olması gerekir; ikizkenar koşulu olmadan tek açı bunu garanti etmez."
      },
      {
       "kind": "question",
@@ -2590,46 +3045,169 @@
         "50"
        ],
        "answer": 1,
+       "choiceFeedback": [
+        "Taban açısını (180° − tepe)/2 yerine başka bir işlemle bulmuş olabilirsin; ACD'nin tepe açısı 160°'dir.",
+        null,
+        "40° CDB açısıdır; DA bu açıyı böldüğü için x onun bir parçasından oluşur, fark alınmalı.",
+        "Bir tahminle ya da paralellik varsayarak gitmiş olabilirsin; şekilde ikizkenar üçgenlerin taban açılarını hesapla.",
+        "BCD'nin taban açısı $(180° - 100°)/2$ ile bulunur; 100°'nin yarısını almak taban açısı vermez."
+       ],
        "steps": [
         {
-         "text": "$|CA| = |CB| = |CD|$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "ABC eşkenar olduğu için CA, CB'ye eşit; CD de CB'ye eşit. Yani CA, CB ve CD'nin üçü de eşit."
+         "text": "C köşesinden çıkan CA, CB ve CD birbirine eşittir; BCD ve ACD ikizkenar üçgenlerdir."
         },
         {
-         "text": "$BCD$: $m(\\widehat{CDB}) = \\frac{180° - 100°}{2} = 40°$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "BCD ikizkenar, tepe açısı 100 derece: D'deki taban açısı 180 eksi 100'ün yarısı, 40 derece."
+         "text": "BCD'de tepe açısı 100° olduğundan CDB taban açısını bul. ACD'de tepe açısı $60° + 100°$ olur; CDA taban açısını bul."
         },
         {
-         "text": "$ACD$: $m(\\widehat{ACD}) = 160°$, $m(\\widehat{CDA}) = \\frac{180° - 160°}{2} = 10°$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "ACD de ikizkenar. C'deki açı 60 artı 100, 160 derece; D'deki taban açısı 180 eksi 160'ın yarısı, 10 derece."
-        },
-        {
-         "text": "$x = 40° - 10° = 30°$. Cevap **B**.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "x, D'deki iki açının farkı: 40 eksi 10, 30 derece. Cevap B. C şıkkındaki 40, CDB açısıdır; DA'nın o açıyı böldüğünü unutma."
+         "text": "DA, CDB açısını bölüyor: x, bu iki taban açısının farkıdır."
         }
        ],
-       "narration": "C'den çıkan üç kenar eşit: CA, CB ve CD. Bu, şekilde iki ikizkenar üçgen olduğu anlamına gelir.",
        "origin": {
         "changes": "ÖSYM KPSS'nin eşkenar üçgenli şekil kalıbı örnek alındı; eşkenar ve ikizkenar üçgeni birleştiren şekil bu ders için yazıldı."
        }
       }
+     },
+     {
+      "kind": "guided",
+      "title": "Eşkenar ve ikizkenar birleşince",
+      "stem": "$ABC$ eşkenar üçgendir. $B$, $C$, $D$ noktaları doğrusaldır ve $|CD| = |CA|$'dır. Buna göre $m(\\widehat{BAD}) = x$ kaç derecedir?",
+      "figure": {
+       "kind": "geometry",
+       "view": [
+        -0.8,
+        -0.8,
+        8.8,
+        4.26
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2,
+          3.46
+         ],
+         "label": "A",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "label": "B",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          4,
+          0
+         ],
+         "label": "C",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          8,
+          0
+         ],
+         "label": "D",
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "C",
+         "to": "A",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 1
+        },
+        {
+         "from": "A",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [],
+       "circles": [],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "D",
+         "label": "x",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "steps": [
+       {
+        "prompt": "ACD açısı, ABC üçgeninin C köşesindeki dış açısıdır. Kaç derecedir?",
+        "choices": [
+         "60°",
+         "120°",
+         "150°"
+        ],
+        "answer": 1,
+        "choiceFeedback": [
+         "60° C köşesindeki iç açıdır; dış açı onun bütünleridir.",
+         null,
+         "150° bir iç açının bütünleri gibi görünse de eşkenarda iç açı 60°'dir."
+        ],
+        "explanation": "$180° - 60° = 120°$ (ya da komşu olmayan A ve B açıları: $60° + 60°$)."
+       },
+       {
+        "prompt": "$|CA| = |CD|$ olduğundan ACD ikizkenardır ve tepe açısı 120°'dir. CAD taban açısı kaç derecedir?",
+        "before": "$m(\\widehat{CAD})$ =",
+        "after": "°",
+        "answers": [
+         "30"
+        ],
+        "input": "number",
+        "explanation": "$\\frac{180° - 120°}{2} = 30°$."
+       },
+       {
+        "prompt": "x = BAC + CAD'dir. x kaç derecedir?",
+        "before": "x =",
+        "after": "°",
+        "answers": [
+         "90"
+        ],
+        "input": "number",
+        "explanation": "$60° + 30° = 90°$."
+       }
+      ]
      }
     ]
    }
@@ -2637,16 +3215,18 @@
   "summary": {
    "points": [
     "İç açıların toplamı 180°; dış açıların toplamı 360°.",
-    "Dış açı, komşu olmayan iki iç açının toplamıdır.",
-    "Çizmede içteki açı: x = a + b + c.",
-    "Üçgenin türünü en büyük açısı belirler.",
-    "İkizkenarda eşit kenarların karşısındaki açılar eşittir.",
-    "Eşkenar üçgenin her açısı 60°’dir."
+    "Dış açı, komşu olmayan iki iç açının toplamıdır; iç + dış = 180°.",
+    "Çizmede (içbükey dörtgen) içteki açı: x = a + b + c.",
+    "Üçgenin türünü en büyük açısı belirler; her üçgende en az iki açı dardır.",
+    "İkizkenarda eşit kenarların karşısındaki açılar eşittir; taban açısı $(180° - \\text{tepe})/2$'dir.",
+    "Eşkenar üçgenin her açısı 60°; bir açısı 60° olan ikizkenar eşkenardır.",
+    "Eşkenar ve ikizkenarın birleştiği şekillerde ortak köşeden çıkan eşit kenarları bul."
    ],
    "warnings": [
     "Paralellik verilmeden **yöndeş açı** kullanma.",
-    "İkizkenarda verilen açı **tepe mi taban mı**, bak.",
-    "İki açısı dar diye üçgen **dar açılı** olmaz."
+    "İkizkenarda verilen açı **tepe mi taban mı**, bak; şekil yoksa iki durumu da düşün.",
+    "İki açısı dar diye üçgen **dar açılı** olmaz; en büyük açıya bak.",
+    "Soru istenen açıyı soruyor: x'i bulup bırakma, ara sonucu cevap sanma."
    ]
   }
  },
@@ -2658,14 +3238,5 @@
     "Uygulamada KPSS Üçgende Açılar testinden **20 soru** çöz."
    ]
   }
- },
- "works": {
-  "additions": [
-   "İç açılar toplamının ispatı: bir köşeden karşı kenara paralel çizilir, öbür iki açı iç ters açı olarak o köşeye taşınır ve üç açı bir doğru açı oluşturur.",
-   "Dış açı kuralı (komşu olmayan iki iç açının toplamı) ve ispatı; üç dış açının toplamının 360° olması; iki kez dış açı uygulayarak çözülen kesişen doğrular soruları.",
-   "İçbükey dörtgen (çizme): x = a + b + c; BD'yi uzatıp iki dış açıyla gerekçelendirme.",
-   "Açılarına göre (dar, dik, geniş) ve kenarlarına göre (çeşitkenar, ikizkenar, eşkenar) üçgenler; türü en büyük açının belirlediği; orantılı açılardan tür bulma.",
-   "İkizkenar üçgende taban açıları, tepe açısından taban açısı, 'verilen açı tepe mi taban mı' tuzağı; iç içe ikizkenar üçgenler; eşkenar üçgenin 60° açıları ve eşkenarla ikizkenarı birleştiren şekiller."
-  ]
  }
 }

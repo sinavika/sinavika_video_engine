@@ -4,7 +4,7 @@ import {withAlpha} from '../../../Themes/Theme';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import {TAXONOMY_LEVELS} from './BiologySchema';
 import {type CourseVisual} from '../VisualSchema';
-import {usePartLook, World} from '../VisualWorld';
+import {usePartLook, World, FigureText} from '../VisualWorld';
 
 // ---------------------------------------------------------------- the taxonomic ranks as a narrowing funnel
 
@@ -53,20 +53,20 @@ export const TaxonomyVisual: React.FC<VisualBoxProps & {visual: Taxonomy}> = ({v
 			{visual.trends ? (
 				<g opacity={trends.opacity}>
 					<line x1={716} x2={716} y1={top + 6} y2={top + 6 * pitch + 40} stroke={palette.ink} strokeWidth={4} markerEnd="url(#taxonomyArrow)" />
-					<text x={738} y={top + 20} fontSize={30} fontWeight={800} fill={trends.focused > 0.5 ? palette.lesson : palette.ink} fontFamily={palette.fontBody}>
+					<FigureText x={738} y={top + 20} fontSize={30} fontWeight={800} fill={trends.focused > 0.5 ? palette.lesson : palette.ink} fontFamily={palette.fontBody}>
 						Türe indikçe
-					</text>
+					</FigureText>
 					{TRENDS.map(([text, up], k) => (
 						<g key={text} transform={`translate(738 ${top + 78 + k * 74})`}>
-							<text x={0} y={4} fontSize={38} fontWeight={800} fill={up ? palette.lesson : palette.brand} fontFamily={palette.fontBody}>
+							<FigureText x={0} y={4} fontSize={38} fontWeight={800} fill={up ? palette.lesson : palette.brand} fontFamily={palette.fontBody}>
 								{up ? '↑' : '↓'}
-							</text>
-							<text x={34} y={-4} fontSize={25} fontWeight={700} fill={palette.ink} fontFamily={palette.fontBody}>
+							</FigureText>
+							<FigureText x={34} y={-4} fontSize={25} fontWeight={700} fill={palette.ink} fontFamily={palette.fontBody}>
 								{text}
-							</text>
-							<text x={34} y={24} fontSize={22} fontWeight={600} fill={palette.muted} fontFamily={palette.fontBody}>
+							</FigureText>
+							<FigureText x={34} y={24} fontSize={22} fontWeight={600} fill={palette.muted} fontFamily={palette.fontBody}>
 								{up ? 'artar' : 'azalır'}
-							</text>
+							</FigureText>
 						</g>
 					))}
 				</g>
@@ -86,12 +86,12 @@ const Level: React.FC<{id: string; index: number; name: string; example: string;
 	return (
 		<g opacity={look.opacity} transform={`translate(${cx} ${y + h / 2}) scale(${1 + 0.04 * lit}) translate(${-cx} ${-(y + h / 2)})`}>
 			<rect x={cx - w / 2} y={y} width={w} height={h} rx={14} fill={fill} stroke={palette.lesson} strokeWidth={2} />
-			<text x={cx - w / 2 + 24} y={y + h / 2} dominantBaseline="middle" fontSize={32} fontWeight={800} fill={ink} fontFamily={palette.fontBody}>
+			<FigureText x={cx - w / 2 + 24} y={y + h / 2} dominantBaseline="middle" fontSize={32} fontWeight={800} fill={ink} fontFamily={palette.fontBody}>
 				{name}
-			</text>
-			<text x={cx + w / 2 - 24} y={y + h / 2} dominantBaseline="middle" textAnchor="end" fontSize={28} fontWeight={600} fontStyle={italic ? 'italic' : 'normal'} fill={ink} fontFamily={palette.fontBody}>
+			</FigureText>
+			<FigureText x={cx + w / 2 - 24} y={y + h / 2} dominantBaseline="middle" textAnchor="end" fontSize={28} fontWeight={600} fontStyle={italic ? 'italic' : 'normal'} fill={ink} fontFamily={palette.fontBody}>
 				{example}
-			</text>
+			</FigureText>
 		</g>
 	);
 };

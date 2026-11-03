@@ -10,7 +10,7 @@ import {withAlpha} from '../../../Themes/Theme';
 import {useInk, useTheme} from '../../../Themes/ThemeContext';
 import {CallToAction} from '../../Components/CallToAction';
 import {ImageFrame, useImageLayout} from '../../Components/ImageFrame';
-import {textWidth} from '../../Components/TextMeasure';
+import {textWidth} from '../../../Components/Typography/TextMeasure';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
 import {BrandingSchema, CallToActionSchema} from '../../Schemas/ImageFields';
 import {BRAND_TYPOGRAPHY} from '../../../Configurations/BrandTypography';

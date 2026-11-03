@@ -115,7 +115,7 @@ Toplam 178 çizim: mobil uygulama 97, web paneli ve web giriş/onboarding 67, we
 | `m-ozet-sonuc` | Çözüm | `LensSessionDetail` | — |
 | `m-ozet-video` | Video analizi | `LensVideo` | — |
 
-### Bilgi Kartları ve SinoAI
+### Bilgi Kartları
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
@@ -124,6 +124,11 @@ Toplam 178 çizim: mobil uygulama 97, web paneli ve web giriş/onboarding 67, we
 | `m-kart-on` | Kart oturumu · ön yüz | `FlashcardSession` | — |
 | `m-kart-arka` | Kart oturumu · cevap | `FlashcardSession` | — |
 | `m-kart-kaydedilen` | Kaydedilenler | `FlashcardSavedTab` | — |
+
+### SinoAI
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `m-sino-ana` | SinoAI | `SinoAi` | — |
 | `m-sino-sohbet` | SinoAI · sohbet | `SinoAiChat` | — |
 | `m-sino-calisma` | SinoAI · çalışma | `SinoAiChat (Çalışma)` | Deneme, tekrar kartları, test ve çalışma planı üretimi; kota yazılı. |
@@ -146,24 +151,34 @@ Toplam 178 çizim: mobil uygulama 97, web paneli ve web giriş/onboarding 67, we
 | `m-profil-iletisim` | Bildirim ve iletişim | `ProfileCommunicationPreferences` | — |
 | `m-profil-guvenlik` | Hesap güvenliği | `ProfileAccountSecurity` | Şifre belirleme ya da değiştirme, oturumlar. |
 | `m-profil-kapat` | Hesabımı kapat | `ProfileAccountClosure` | — |
+| `m-hakkinda` | Hakkında | `ExamAbout` | — |
+| `m-geri-bildirim` | Geri bildirimlerim | `FeedbackMy` | — |
 
-### Bildirim, destek, durumlar
+### Bildirimler
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
 | `m-bildirimler` | Bildirimler | `NotificationInbox` | — |
+
+### Destek
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `m-destek` | Destek | `SupportHub` | — |
 | `m-destek-yeni` | Yeni talep | `SupportNew` | — |
 | `m-destek-talep` | Talep detayı | `SupportTicketDetail` | — |
-| `m-hakkinda` | Hakkında | `ExamAbout` | — |
-| `m-geri-bildirim` | Geri bildirimlerim | `FeedbackMy` | — |
+
+### Durumlar
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `m-durum-bos` | Boş durum | `—` | — |
 | `m-durum-hata` | Yükleniyor, hata, çevrimdışı | `—` | — |
 
 ## Web paneli ve web giriş/onboarding
 
 
-### Web · giriş ve onboarding
+### Web · Giriş ve kayıt
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
@@ -172,6 +187,11 @@ Toplam 178 çizim: mobil uygulama 97, web paneli ve web giriş/onboarding 67, we
 | `w-kayit` | Kayıt ol | `/student/register` | Kayıtta paket yok: önce plan, sonra paket. |
 | `w-sifre-unuttum` | Şifremi unuttum | `/student/forgot-password` | — |
 | `w-sifre-sifirla` | Şifre sıfırla | `/student/reset-password` | — |
+
+### Web · Onboarding
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `w-onb-1-sinav` | Web onboarding 1 · Sınav | `/student/baslangic` | Mobil ile aynı adımlar, sağda canlı önizleme. |
 | `w-onb-2-hedef` | Web onboarding 2 · Hedef | `/student/baslangic` | — |
 | `w-onb-3-tempo` | Web onboarding 3 · Tempo | `/student/baslangic` | — |
@@ -179,22 +199,47 @@ Toplam 178 çizim: mobil uygulama 97, web paneli ve web giriş/onboarding 67, we
 | `w-onb-5-plan` | Web onboarding 5 · Planın hazır | `/student/baslangic` | Sağda aynı planın mobil hali. |
 | `w-onb-6-paket` | Web onboarding 6 · Paketini seç | `/student/baslangic` | Web’de deneme süresi yok: paket seçilir, kartla ödenir; “Şimdilik paket seçme” de var. |
 
-### Web · panel
+### Web · Ana sayfa
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
 | `w-panel-anasayfa` | Ana sayfa | `/student/dashboard` | Günün adımı, plan, hedef, son deneme; modül kısa yolları renkli. |
 | `w-panel-tur` | İlk giriş ipucu | `/student/dashboard` | İlk girişte tek ipucu, günün adımının üstünde. |
 | `w-panel-moduller` | Tüm modüller | `/student/moduller` | — |
+
+### Web · Bildirimler
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `w-panel-bildirimler` | Bildirimler | `/student/bildirimler` | — |
+
+### Web · Profil ve hesap
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `w-panel-profil` | Profil | `/student/profil` | — |
 | `w-panel-abonelik` | Profil · abonelik | `/student/profil` | — |
 | `w-panel-ayarlar` | Profil · bildirim ve görünüm | `/student/profil` | — |
+
+### Web · Destek
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `w-panel-destek` | Destek | `/student/destek` | — |
 | `w-panel-destek-talep` | Destek talebi | `/student/destek/[id]` | — |
+
+### Web · Ödeme
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `w-panel-odeme` | Ödeme | `/student/odeme` | — |
 | `w-panel-odeme-basarili` | Ödeme başarılı | `/student/odeme/basarili` | — |
 | `w-panel-odeme-basarisiz` | Ödeme başarısız | `/student/odeme/basarisiz` | — |
+
+### Web · Durumlar
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `w-panel-durumlar` | Boş, yükleniyor, hata | `—` | — |
 
 ### Web · Denemeler
@@ -249,7 +294,16 @@ Toplam 178 çizim: mobil uygulama 97, web paneli ve web giriş/onboarding 67, we
 | `w-plan-ayarlar` | Ayarlar | `/student/ders-plani/ayarlar` | — |
 | `w-plan-odak` | Odak (çalış) | `/student/ders-plani/calis/[taskId]` | — |
 
-### Web · Kartlar, Özet, SinoAI
+### Web · Akıllı Özet
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `w-ozet-vitrin` | Akıllı Özet | `/student/lens` | Geçmişte konu başlığı. |
+| `w-ozet-yeni` | Yeni analiz | `/student/lens/yeni` | — |
+| `w-ozet-detay` | Analiz detayı | `/student/lens/analiz/[id]` | — |
+| `w-ozet-video` | Video analizi | `/student/lens/video/[id]` | — |
+
+### Web · Bilgi Kartları
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
@@ -257,10 +311,11 @@ Toplam 178 çizim: mobil uygulama 97, web paneli ve web giriş/onboarding 67, we
 | `w-kart-gozat` | Gözat | `/student/flashcard/browse/...` | — |
 | `w-kart-oturum` | Kart oturumu (odak) | `/student/flashcard/session` | — |
 | `w-kart-kaydedilen` | Kaydedilenler | `/student/flashcard (Kaydedilenler)` | — |
-| `w-ozet-vitrin` | Akıllı Özet | `/student/lens` | Geçmişte konu başlığı. |
-| `w-ozet-yeni` | Yeni analiz | `/student/lens/yeni` | — |
-| `w-ozet-detay` | Analiz detayı | `/student/lens/analiz/[id]` | — |
-| `w-ozet-video` | Video analizi | `/student/lens/video/[id]` | — |
+
+### Web · SinoAI
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `w-sino-sohbet` | SinoAI sohbet | `/student/sinoai/[conversationId]` | Solda geçmiş, ortada tek sohbet sütunu. |
 | `w-sino-calisma` | SinoAI çalışma | `/student/sinoai/study` | — |
 | `w-sino-kutuphane` | SinoAI kütüphane | `/student/sinoai/library` | — |
@@ -268,22 +323,52 @@ Toplam 178 çizim: mobil uygulama 97, web paneli ve web giriş/onboarding 67, we
 ## Web sitesi (giriş öncesi)
 
 
-### Web sitesi
+### Web sitesi · Ana sayfa
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
 | `s-anasayfa` | Ana sayfa | `/` | Sitenin header’ı, ikonsuz logo; beyaz ve gri tonlar. Maketlerde gerçek panel ve uygulama çizimleri. |
 | `s-urunler-menu` | Ürünler menüsü | `header` | Ürünler açılınca 7 modül, sitenin sade gri tonlarında. |
+
+### Web sitesi · Sınavlar
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `s-sinavlar` | Sınavlar | `/sinavlar` | — |
 | `s-sinav-yks` | Sınav sayfası · YKS | `/yks-hazirlik (şablon)` | Tüm sınav ve hazırlık sayfaları bu şablonla. |
 | `s-net-hesaplama` | Net hesaplama | `/net-hesaplama` | — |
+
+### Web sitesi · Paketler
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `s-paketler` | Paketler | `/corporate/packages` | Yalnız ücretli paketler; deneme süresi mobil uygulamada. |
+
+### Web sitesi · Ürünler
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `s-urun-denemeler` | Ürün · Denemeler | `/urunler/denemeler (şablon)` | Altı ürün sayfası tek şablon. |
 | `s-urun-ozet` | Ürün · Akıllı Özet | `/urunler/lens` | — |
+
+### Web sitesi · Blog
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `s-blog` | Blog | `/blog` | — |
 | `s-blog-yazi` | Blog yazısı | `/blog/[slug]` | — |
+
+### Web sitesi · Kurumsal
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `s-hakkimizda` | Hakkımızda | `/corporate/about` | — |
 | `s-sss-iletisim` | SSS ve iletişim | `/corporate/sss + /contact` | — |
 | `s-yasal` | Yasal sayfa | `/corporate/yasal/[slug]` | — |
+
+### Web sitesi · SinoAI misafir
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `s-sinoai-misafir` | SinoAI · misafir | `/sinoai` | — |
 

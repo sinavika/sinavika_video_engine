@@ -1,0 +1,2287 @@
+{
+ "topic": {
+  "id": "52F9AA36-1242-276D-0F85-07C5ED498C5A",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_DIKDORTGEN"
+ },
+ "title": "Dikdörtgen",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/GEO/GEO_DIKDORTGEN.json"
+ ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/YKS/TYT/KonuAnlatimi/GEO/GEO_DIKDORTGEN.json (MEB OGM Materyal)",
+   "EgitimVerileri/YKS/TYT/CikmisSorular/GEO/GEO_DIKDORTGEN.json (ÖSYM 2018-2026)",
+   "Curriculum/Scripts/YKS_TYT/GEO/GEO_DIKDORTGEN.json"
+  ],
+  "additions": [
+   {
+    "note": "Katlama problemlerini adım adım çöz: katlanan noktanın yeni yerini belirle, eşit uzunlukları işaretle, Pisagor kur; iki farklı katlama örneği.",
+    "done": "3. bölümde 'Katlama problemleri: dört adım' kartı (yeni yer, eşit uzunluklar, dik üçgen, Pisagor), adımları sıraya dizdiren akış kartı, iki farklı örnek (Örnek 1: köşe karşı kenara düşer; Örnek 2: köşe karşı köşeye düşer), hatalı çözümü buldurma kartı ve üç katlama sorusu eklendi."
+   },
+   {
+    "note": "Dikdörtgenin içindeki bir P noktası için |PA|² + |PC|² = |PB|² + |PD|² bağıntısını örnekle.",
+    "done": "2. bölümde bağıntının kısa ispatını ve köşe ile merkez özel durumlarını veren kavram kartı, doğru/yanlış tahmin kartı, sayılı örnek (6, 2, 7 → 9), 'uzunluk toplamı' tuzağı için hata kartı ve bir soru eklendi."
+   },
+   {
+    "note": "Çevresi sabit dikdörtgenler içinde alanın en büyük olduğu durumun kare olduğunu ve bahçe-yol problemlerini (yolun içte ya da dışta olması) ekle.",
+    "done": "3. bölümde sabit çevrede en büyük alanın kare olduğunu gösteren kavram kartı (a + b = 10 için alan tablosu), tahmin kartı ve soru; yolun içte, dışta, tek yol ve kesişen yol olduğu durumları veren kavram ve tablo kartları, içte ve dışta yol için iki soru ile 'kısalır mı, uzar mı' sınıflama kartı eklendi. Sabit köşegende en büyük alan 2. bölümde verildi."
+   }
+  ],
+  "fixes": [
+   "Alan paylaşımı sorusunda şekildeki E noktası (3, 5) idi: bu durumda A(ADE) = 7,5 çıkıyor, soru ise A(ADE) = 6 veriyor. E noktası |DE| = 2,4 olacak biçimde (2,4, 5)'e taşındı.",
+   "Katlama sorusunun şeklinde [BC'] üzerinde 10 yazıyordu, soruda verilen |BC| = 10 ise etiketsizdi. Etiket [BC]'ye taşındı; |BC'| = |BC| eşitliğini öğrenci kuracak.",
+   "Soru adımları sonuca ve 'Cevap X' ifadesine kadar gidiyordu; ipucu olacak biçimde yeniden yazıldı, son ipucu cevabı vermiyor.",
+   "Doğru cevap harfi dağılımı bozuktu (15 sorunun 7'sinin cevabı C idi). Seçenekler yeniden düzenlendi, harfler dengelendi ve aynı harf üst üste üç kez gelmiyor.",
+   "Katlama sorusu 2. bölümden 3. bölüme taşındı (ÖSYM'de katlama soruları GEO_DIKDORTGEN_03 altında)."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Arsa, bahçe, kâğıt: dikdörtgen her yerde",
+   "narration": "Bir arsanın imar alanı, bir bahçenin çit planı, katlanan bir kâğıt... ÖSYM dikdörtgeni neredeyse hep gerçek hayatın içinde sorar. Bu derste köşegenleri, katlamayı, çevre ve köşegenden alana geçişi, en büyük alanı ve bahçe-yol problemlerini adım adım çalışacaksın. Her küçük anlatımdan sonra seni kısa bir yoklama bekliyor."
+  },
+  "objectives": [
+   "Dikdörtgende eşit köşegenlerin oluşturduğu ikizkenar ve eşkenar üçgenleri kullanmak",
+   "Köşegen, çevre ve alan arasında Pisagor ve özdeşlikle geçiş yapmak",
+   "İçteki P noktası için karşılıklı köşe bağıntısını uygulamak",
+   "Katlama problemlerinde eşit uzunlukları işaretleyip Pisagor kurmak",
+   "Kenardaki noktayla oluşan üçgenlerde alan paylaşımını kullanmak",
+   "Çevresi ya da köşegeni sabit dikdörtgenlerde en büyük alanın kare olduğunu bilmek",
+   "Bahçe-yol ve imar problemlerinde yolun içte ya da dışta olmasını ayırt etmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_DIKDORTGEN_01",
+    "title": "Dikdörtgenin özellikleri",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Dikdörtgen: dik açılı paralelkenar",
+      "text": "Bütün açıları $90°$ olan dörtgene **dikdörtgen** denir. Dikdörtgen bir **paralelkenardır**: karşılıklı kenarları paralel ve eşit, karşılıklı açıları eşit, köşegenleri birbirini ortalar. Kenarları $a$ ve $b$ ise çevresi $2(a + b)$'dir. Dört kenarı da eşit olan dikdörtgene **kare** denir; kare aynı zamanda paralelkenar, dikdörtgen ve eşkenar dörtgendir.",
+      "narration": "Dikdörtgen, açıları dik olan bir paralelkenardır; paralelkenarın bütün özelliklerini taşır. Bu yüzden karşılıklı kenarlar eşit ve paraleldir, ardışık açılar $180°$'ye tamamlanır. Dikdörtgene özgü ek özellik köşegenlerle ilgilidir; bunu hemen aşağıdaki şekilde göreceksin. Kare özel bir dikdörtgendir: dikdörtgenin her özelliği kareye de uygulanır, ama tersi doğru değildir."
+     },
+     {
+      "kind": "predict",
+      "title": "Köşegenler ortalar mı?",
+      "context": "Bir $ABCD$ dikdörtgeninin köşegenlerini çizip kesişim noktasına $E$ diyelim.",
+      "prompt": "Doğru mu yanlış mı: $|AE| = |EC|$ ve $|BE| = |ED|$.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Doğru. Her paralelkenarda köşegenler birbirini ortalar; dikdörtgen de bir paralelkenar olduğu için bu özellik burada da geçerlidir.",
+      "choiceFeedback": [
+       null,
+       "Köşegenlerin birbirini ortalaması paralelkenarın temel özelliğidir; dikdörtgen de paralelkenardır."
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Eşit köşegenler",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        8.7,
+        5.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          8,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          8,
+          5
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          0,
+          5
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          4,
+          2.5
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "E",
+         "label": "k",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "C",
+         "label": "k",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "E",
+         "label": "k",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "D",
+         "label": "k",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "E"
+         ],
+         "fill": true,
+         "shade": 1
+        },
+        {
+         "points": [
+          "C",
+          "D",
+          "E"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "D",
+         "right": true,
+         "arcs": 1
+        },
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "right": true,
+         "arcs": 1
+        }
+       ]
+      },
+      "caption": "Köşegenler **eşit** ve birbirini **ortalar**: dikdörtgen dört **ikizkenar** üçgene ayrılır.",
+      "narration": "Dikdörtgende köşegenler, paralelkenardaki gibi birbirini ortalar; ek olarak **eşittir**: $|AC| = |BD|$. Kesişim noktası $E$ iki köşegeni de ikişer eşit parçaya böldüğü için $|EA| = |EB| = |EC| = |ED| = k$ olur. Yani $E$ dört köşeye eşit uzaklıktadır ve dikdörtgenin dört köşesinden geçen çemberin merkezidir. Böylece dikdörtgen dört **ikizkenar** üçgene ayrılır; karşılıklı olanlar eştir ($ABE \\cong CDE$, $ADE \\cong BCE$). Açı sorularında bu ikizkenar üçgenlerin taban açıları anahtardır."
+     },
+     {
+      "kind": "classify",
+      "title": "Paralelkenarın ötesi",
+      "prompt": "Özellikleri doğru gruba yerleştir.",
+      "groups": [
+       {
+        "label": "Her paralelkenarda",
+        "items": [
+         "Karşılıklı kenarlar paralel ve eşit",
+         "Köşegenler birbirini ortalar",
+         "Karşılıklı açılar eşit"
+        ]
+       },
+       {
+        "label": "Dikdörtgende ek olarak",
+        "items": [
+         "Köşegenler eşit uzunlukta",
+         "Bütün açılar 90°",
+         "Köşegenlerin kesişimi dört köşeye eşit uzak"
+        ]
+       }
+      ],
+      "explanation": "Dikdörtgen, paralelkenarın bütün özelliklerine ek olarak dik açılara ve eşit köşegenlere sahiptir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ dikdörtgeninin köşegenleri $E$ noktasında kesişiyor. $m(\\widehat{AEB}) = 50°$ olduğuna göre $m(\\widehat{EBC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         4.7,
+         9.278
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           4,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           4,
+           8.578
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           8.578
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           2,
+           4.289
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "angles": [
+         {
+          "at": "E",
+          "from": "A",
+          "to": "B",
+          "label": "50°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "B",
+          "from": "C",
+          "to": "E",
+          "label": "x",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "15",
+        "25",
+        "40",
+        "50",
+        "65"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Bu değeri rastgele ya da $65° - 50°$ gibi bir çıkarmayla bulmuş olabilirsin; önce $ABE$ ikizkenar üçgeninin taban açısını hesapla.",
+        null,
+        "$90° - 50°$ yapmışsın; $50°$ köşegenler arasındaki açıdır, $B$'deki dik açıdan doğrudan çıkarılmaz.",
+        "Verilen açıyı $x$ sanmışsın; $x$ başka bir açıdır.",
+        "$65°$, $\\widehat{EBA}$ açısıdır; $x$ ise bunun dik açıya tamamlayanıdır."
+       ],
+       "steps": [
+        {
+         "text": "Köşegenler eşit ve birbirini ortalar; bu yüzden $|EA| = |EB|$ ve $ABE$ ikizkenar üçgendir."
+        },
+        {
+         "text": "İkizkenar üçgende tepe açısı $50°$ ise iki taban açısının toplamı $180° - 50°$ olur. $m(\\widehat{EBA})$ kaçtır?"
+        },
+        {
+         "text": "$\\widehat{ABC}$ bir dik açıdır; $x$, bu dik açının $\\widehat{EBA}$ dışında kalan parçasıdır."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; köşegenlerin oluşturduğu ikizkenar üçgen, ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Köşegenler dik mi?",
+      "wrong": "Dikdörtgenin köşegenleri birbirine diktir.",
+      "right": "Köşegenler eşit ve birbirini ortalar; birbirine dik olmaları yalnız kare (ve eşkenar dörtgen) için geçerlidir.",
+      "why": "Kenarları farklı bir dikdörtgende köşegenler arasındaki açı $90°$ olmaz; dar açı kenar oranına göre değişir. Dik köşegen görürsen şekil kare ya da eşkenar dörtgendir."
+     },
+     {
+      "kind": "rule",
+      "title": "Köşegen ve özel üçgenler",
+      "items": [
+       "Köşegen dikdörtgeni iki eş **dik üçgene** ayırır; köşegen hipotenüs, kenarlar dik kenarlardır.",
+       "Köşegen bir kenarla $30°$ yapıyorsa $30°$-$60°$-$90°$ üçgeni oluşur: kenarlar $x$, $x\\sqrt{3}$, $2x$; $30°$'nin karşısı hipotenüsün yarısıdır.",
+       "Köşegen bir kenarla $45°$ yapıyorsa dikdörtgen bir **karedir**.",
+       "İki köşegen arasındaki dar açı $60°$ ise köşegen yarıları ve $60°$'nin karşısındaki kısa kenar **eşkenar** üçgen oluşturur.",
+       "Köşegenler arasındaki açı $\\alpha$ ise o açıyı taşıyan ikizkenar üçgenin taban açıları $\\frac{180° - \\alpha}{2}$'dir."
+      ],
+      "narration": "Köşegeni çizdiğin anda dikdörtgen iki dik üçgene; iki köşegeni birden çizdiğinde dört ikizkenar üçgene ayrılır. Sorudaki açı $30°$, $45°$, $60°$ gibi tanıdık bir değerse hemen özel üçgeni hatırla: $30°$'nin karşısı hipotenüsün yarısıdır, $60°$'lik tepe açılı ikizkenar üçgen eşkenardır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ dikdörtgeninde köşegen, uzun kenar $[AB]$ ile $30°$'lik açı yapıyor. Kısa kenar $|BC| = 5$ cm olduğuna göre köşegen $|AC| = x$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         9.36,
+         5.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           8.66,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           8.66,
+           5
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           5
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "5",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "x",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "30°",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "$5$",
+        "$5\\sqrt{3}$",
+        "$10$",
+        "$10\\sqrt{3}$",
+        "$20$"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "$5$ zaten verilen $|BC|$ uzunluğudur; köşegen bu dik üçgenin hipotenüsüdür ve dik kenardan uzundur.",
+        "$5\\sqrt{3}$ bu üçgenin diğer dik kenarıdır; sorulan ise hipotenüstür.",
+        null,
+        "$10\\sqrt{3}$ değeri hipotenüsten de büyük çıkar; $30°$-$60°$-$90°$ üçgeninde kenar oranlarını yeniden kontrol et.",
+        "Bu değer hipotenüsü gereğinden fazla büyütüyor; $30°$'nin karşısındaki kenarla hipotenüs arasındaki oranı yanlış kurmuş olabilirsin."
+       ],
+       "steps": [
+        {
+         "text": "$ABC$ üçgeni $B$'de diktir ve $m(\\widehat{A}) = 30°$. Hangi kenar hipotenüs, hangisi $30°$'nin karşısı?"
+        },
+        {
+         "text": "$30°$-$60°$-$90°$ üçgeninde $30°$'nin karşısındaki kenar hipotenüsün yarısıdır; burada o kenar $|BC| = 5$."
+        },
+        {
+         "text": "Hipotenüs $x$ için bu ilişkiyi tersten kullan: $x$'i $|BC|$ cinsinden yaz."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dikdörtgende köşegen ve $30°$-$60°$-$90°$ üçgeni özgün bir şekilde birleştirildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir dikdörtgenin köşegenleri $12$ cm'dir ve köşegenler arasındaki dar açı $60°$'dir. Bu dikdörtgenin alanı kaç santimetrekaredir?",
+       "options": [
+        "$36\\sqrt{3}$",
+        "$72$",
+        "$108$",
+        "$72\\sqrt{3}$",
+        "$144$"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$72$, kısa kenar $6$ ile köşegen $12$'yi çarpmaktan gelir; alan iki komşu **kenarın** çarpımıdır.",
+        "$108$, uzun kenarın karesidir ($6\\sqrt{3} \\cdot 6\\sqrt{3}$); alan için kısa kenarla uzun kenarı çarp.",
+        "$72\\sqrt{3}$, köşegen ile uzun kenarın çarpımıdır; köşegen bir kenar değildir.",
+        "$144$, köşegenin karesidir; alan değildir."
+       ],
+       "steps": [
+        {
+         "text": "Köşegenler eşit ve birbirini ortalar: dört parçanın her biri $6$ cm."
+        },
+        {
+         "text": "Aralarındaki açı $60°$ olan, iki kenarı $6$ olan üçgen eşkenardır; $60°$'nin karşısındaki kısa kenar kaç cm?"
+        },
+        {
+         "text": "Uzun kenarı köşegen $12$ ve kısa kenardan Pisagor ile bul; alan iki komşu kenarın çarpımıdır."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; köşegenler arası açıdan eşkenar üçgen ve alan özgün bir soruyla kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "multi",
+      "title": "Her dikdörtgende doğru olanlar",
+      "stem": "Aşağıdakilerden hangileri **her** dikdörtgen için doğrudur? (Birden fazla seçebilirsin.)",
+      "options": [
+       "Köşegenler eşit uzunluktadır.",
+       "Köşegenler birbirine diktir.",
+       "Köşegenler birbirini ortalar.",
+       "Dört kenar uzunluğu eşittir.",
+       "Ardışık iki açının toplamı $180°$'dir."
+      ],
+      "answers": [
+       0,
+       2,
+       4
+      ],
+      "choiceFeedback": [
+       null,
+       "Köşegenler eşit ve birbirini ortalar ama dik olmaz; dik köşegen kareye özgüdür.",
+       null,
+       "Dört kenarın eşit olması kareye özgüdür.",
+       null
+      ],
+      "explanation": "Eşit köşegenler, köşegenlerin birbirini ortalaması ve ardışık açıların bütünler olması her dikdörtgende geçerlidir. Dik köşegenler ve dört eşit kenar yalnız kare için doğrudur."
+     },
+     {
+      "kind": "match",
+      "title": "Durum ve sonucu eşleştir",
+      "prompt": "Her duruma uygun sonucu bağla.",
+      "pairs": [
+       {
+        "left": "Köşegenlerin kesişim noktası",
+        "right": "Dört köşeye eşit uzaklıkta"
+       },
+       {
+        "left": "Köşegenler arası dar açı 60°",
+        "right": "Eşkenar üçgen oluşur"
+       },
+       {
+        "left": "Köşegen–kenar açısı 30°",
+        "right": "Karşı kenar köşegenin yarısı"
+       },
+       {
+        "left": "Köşegen–kenar açısı 45°",
+        "right": "Dikdörtgen bir kare"
+       }
+      ],
+      "explanation": "Açıyı görünce özel üçgeni hatırla: $30°$ ise yarım hipotenüs, $60°$ ise eşkenar, $45°$ ise kare."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DIKDORTGEN_02",
+    "title": "Köşegen, çevre ve alan",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Köşegen, çevre ve alan",
+      "items": [
+       "Kenarlar $a$, $b$: köşegen $d^2 = a^2 + b^2$.",
+       "Köşegen ve bir kenar bilinirse öbür kenar $b = \\sqrt{d^2 - a^2}$.",
+       "Çevre $2(a + b)$, alan $a \\cdot b$.",
+       "$(a + b)^2 = a^2 + b^2 + 2ab$: çevre ve köşegenden alan bulunur.",
+       "Sık çıkan Pisagor üçlüleri: $3$-$4$-$5$, $5$-$12$-$13$, $8$-$15$-$17$ ve katları."
+      ],
+      "narration": "Kenarları $a$ ve $b$ olan dikdörtgende köşegen, Pisagor ile bulunur: $d^2 = a^2 + b^2$. Çevre $2(a + b)$, alan $a \\cdot b$'dir. Bu üçünü bir özdeşlik bağlar: $(a + b)^2 = a^2 + b^2 + 2ab$. Yani çevreyi ve köşegeni biliyorsan kenarları tek tek bulmadan alanı bulursun: çevreden $a + b$, köşegenden $a^2 + b^2$ gelir, geriye $ab$ kalır."
+     },
+     {
+      "kind": "blank",
+      "title": "Köşegeni hesapla",
+      "prompt": "Kenarları $8$ cm ve $15$ cm olan dikdörtgenin köşegeni kaç cm'dir?",
+      "before": "$d =$",
+      "after": "cm",
+      "answers": [
+       "17"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 17,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "23",
+        "feedback": "$8 + 15$ yaptın; köşegen $d^2 = a^2 + b^2$ ile bulunur."
+       },
+       {
+        "answer": "289",
+        "feedback": "$d^2 = 289$ buldun; karekökü almayı unutma."
+       }
+      ],
+      "explanation": "$d^2 = 64 + 225 = 289$, $d = 17$ ($8$-$15$-$17$ üçlüsü)."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kenar uzunlukları $9$ cm ve $12$ cm olan dikdörtgenin köşegeni kaç santimetredir?",
+       "options": [
+        "9",
+        "12",
+        "13",
+        "15",
+        "21"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "$9$ kenarın kendisidir; köşegen her zaman kenarlardan büyüktür.",
+        "$12$ kenarın kendisidir; köşegen her zaman kenarlardan büyüktür.",
+        "$5$-$12$-$13$ üçlüsüyle karıştırmışsın; burada kenarlar $9$ ve $12$, yani $3$-$4$-$5$'in katı.",
+        null,
+        "$21$ kenarların toplamıdır; köşegen için $d^2 = a^2 + b^2$ kullanılır."
+       ],
+       "steps": [
+        {
+         "text": "Köşegen, kenarları $9$ ve $12$ olan dik üçgenin hipotenüsüdür: $d^2 = 9^2 + 12^2$."
+        },
+        {
+         "text": "$9 = 3 \\cdot 3$ ve $12 = 3 \\cdot 4$: bu, tanıdık bir Pisagor üçlüsünün $3$ katıdır. Üçlünün hipotenüsü kaçtı?"
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dikdörtgende köşegen bir Pisagor üçlüsüyle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Köşegen kenarların toplamı mı?",
+      "wrong": "Dikdörtgenin köşegeni iki kenarın toplamına eşittir: $d = a + b$.",
+      "right": "Köşegen $d^2 = a^2 + b^2$ ile bulunur ve daima $a + b$'den küçüktür.",
+      "why": "Köşegen dik üçgenin hipotenüsüdür; üçgen eşitsizliğine göre bir kenar, diğer ikisinin toplamından küçüktür. Kenarları $3$ ve $4$ olan dikdörtgende köşegen $7$ değil, $5$'tir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Köşegeni $13$ cm ve bir kenarı $5$ cm olan dikdörtgenin alanı kaç santimetrekaredir?",
+       "options": [
+        "30",
+        "60",
+        "65",
+        "78",
+        "120"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "$30$ alanın yarısıdır; dikdörtgenin alanını sorduğunda ikiye bölmezsin.",
+        null,
+        "$65$, köşegen ile verilen kenarın çarpımıdır; alan için komşu iki kenar gerekir.",
+        "$78$, köşegen ile öbür kenarın yarı çarpımıdır; alan formülüyle ilgisi yok.",
+        "$120$, alanın iki katıdır; çarpımı iki kez saymış olabilirsin."
+       ],
+       "steps": [
+        {
+         "text": "Köşegen $13$ dik üçgenin hipotenüsü, bilinen dik kenar $5$: öbür kenar $b = \\sqrt{13^2 - 5^2}$."
+        },
+        {
+         "text": "$5$-$?$-$13$ tanıdık bir Pisagor üçlüsüdür. Öbür kenarı bul."
+        },
+        {
+         "text": "Alan, dikdörtgenin iki komşu kenarının çarpımıdır; ikiye bölme."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; köşegen ve kenardan alana geçiş özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "example",
+      "title": "Çevre ve köşegenden alan",
+      "example": "Çevresi $34$ cm, köşegeni $13$ cm olan dikdörtgenin alanı kaç cm²'dir?",
+      "explanation": "Çevre $2(a + b) = 34$ olduğundan $a + b = 17$. Köşegenden $a^2 + b^2 = 169$. Özdeşlik: $(a + b)^2 = a^2 + b^2 + 2ab$ → $289 = 169 + 2ab$ → $2ab = 120$ → $ab = 60$. Alan $60$ cm²'dir. Kenarlar $5$ ve $12$ çıkar ama bulmak şart değildi. Tuzak: $2ab = 120$'yi alan sanmak.",
+      "narration": "Alan sorulduğunda kenarları ayrı ayrı bulmaya uğraşma. Elindeki iki bilgiyi özdeşliğe yerleştir; $2ab$ ortaya çıkar ve ikiye bölmek son adımdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Çevresi $28$ cm ve köşegeni $10$ cm olan bir dikdörtgenin alanı kaç santimetrekaredir?",
+       "options": [
+        "14",
+        "28",
+        "48",
+        "96",
+        "196"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "$14$, $a + b$ değeridir; alan değil.",
+        "$28$ çevrenin kendisidir.",
+        null,
+        "$96$, $2ab$'dir; $ab$ için ikiye bölmelisin.",
+        "$196$, $(a + b)^2$'dir; özdeşlikten $2ab$'yi çekmeyi unutmuşsun."
+       ],
+       "steps": [
+        {
+         "text": "Çevre $28$ ise $a + b = 14$; köşegen $10$ ise $a^2 + b^2 = 100$."
+        },
+        {
+         "text": "$(a + b)^2 = a^2 + b^2 + 2ab$ özdeşliğinde bilinenleri yerine yaz."
+        },
+        {
+         "text": "$14^2 = 100 + 2ab$ denkleminden $ab$'ye ulaşmak için önce bir çıkarma, sonra bir bölme yapacaksın."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; çevre ve köşegenden özdeşlikle alan bulma özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Köşegeni sabit dikdörtgenler",
+      "text": "Köşegeni $d$ olan dikdörtgenlerde $a^2 + b^2 = d^2$ sabittir. $(a - b)^2 \\ge 0$ olduğundan $a^2 + b^2 \\ge 2ab$, yani $ab \\le \\frac{d^2}{2}$. Eşitlik $a = b$ iken sağlanır: köşegeni sabit dikdörtgenler içinde alan **en çok karede**, $\\frac{d^2}{2}$ olur.",
+      "caption": "Köşegen sabitse alan, kare iken en büyük.",
+      "narration": "Kenarlar birbirinden uzaklaştıkça alan küçülür: köşegen aynı kalsa bile ince uzun bir dikdörtgen az yer kaplar. Alanın en büyük olduğu durumda $a = b$ olur, yani dikdörtgen kareye dönüşür ve alan köşegenin karesinin yarısıdır. Köşegenin karesinin kendisini alan sanmak sık yapılan bir hatadır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Köşegeni $10$ cm olan dikdörtgenlerden alanı **en büyük** olanın alanı kaç santimetrekaredir?",
+       "options": [
+        "24",
+        "25",
+        "40",
+        "48",
+        "50"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "$24$, $6 \\cdot 8$'in yarısıdır; dikdörtgenin alanını ikiye bölmüşsün.",
+        "$25$, köşegenin yarısının karesidir; alan değildir.",
+        "$40$ mümkün bir alandır ama en büyüğü değildir; kenarlar daha da yaklaşabilir.",
+        "$48$, kenarları $6$ ve $8$ olan dikdörtgenin alanıdır; daha büyük bir alan var, kenarları birbirine yaklaştır.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Köşegen sabit: $a^2 + b^2 = 100$. Amaç $ab$'yi büyütmek."
+        },
+        {
+         "text": "$(a - b)^2 \\ge 0$ ifadesini açarak $a^2 + b^2$ ile $2ab$'yi karşılaştır."
+        },
+        {
+         "text": "Eşitlik hangi durumda olur? O durumda $ab$ kaçtır?"
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; sabit köşegende en büyük alanın kare olduğu özgün bir soruyla gösterildi."
+       }
+      }
+     },
+     {
+      "kind": "guided",
+      "title": "Arsa ve imar alanı: adım adım",
+      "stem": "Çevresi $42$ m olan dikdörtgen biçimli bir arsanın her kenarından içeri $1$ m bırakılarak dikdörtgen biçiminde bir imar alanı belirleniyor. İmar alanı $60$ m² olduğuna göre imar alanının köşegeni kaç metredir?",
+      "steps": [
+       {
+        "prompt": "Arsanın komşu iki kenarının toplamı kaç m'dir?",
+        "before": "$a + b =$",
+        "answers": [
+         "21"
+        ],
+        "input": "number",
+        "explanation": "Çevre $2(a + b) = 42$ olduğundan $a + b = 21$."
+       },
+       {
+        "prompt": "İmar alanında her kenar toplam kaç m kısalır?",
+        "choices": [
+         "1 m",
+         "2 m",
+         "4 m"
+        ],
+        "answer": 1,
+        "choiceFeedback": [
+         "Yalnız bir ucu saydın; kenarın iki ucundan da pay bırakılıyor.",
+         null,
+         "$4$ m, iki komşu kenarın birlikte kısalmasıdır; tek bir kenar $2$ m kısalır."
+        ],
+        "explanation": "Kenarın iki ucundan da $1$'er m gidilir: kenar $2$ m kısalır."
+       },
+       {
+        "prompt": "İmar alanının komşu kenarları $x$ ve $y$ ise $x + y$ kaçtır?",
+        "before": "$x + y =$",
+        "answers": [
+         "17"
+        ],
+        "input": "number",
+        "explanation": "İki kenar da $2$ m kısaldığından toplam $4$ m azalır: $21 - 4 = 17$."
+       },
+       {
+        "prompt": "$d^2 = (x + y)^2 - 2xy$ ve $xy = 60$ ise $d^2$ kaçtır?",
+        "before": "$d^2 =$",
+        "answers": [
+         "169"
+        ],
+        "input": "number",
+        "explanation": "$17^2 - 2 \\cdot 60 = 289 - 120 = 169$."
+       },
+       {
+        "prompt": "Köşegen $d$ kaç metredir?",
+        "before": "$d =$",
+        "answers": [
+         "13"
+        ],
+        "input": "number",
+        "explanation": "$d = \\sqrt{169} = 13$ m. Kenarlar $5$ ve $12$'dir ama bulmak gerekmedi."
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Dikdörtgen biçimindeki bir arsanın her kenarından içeri doğru $3$ m bırakılarak, şekildeki gibi dikdörtgen biçiminde bir imar alanı belirleniyor. Arsanın çevresi $52$ m ve imar alanı $48$ m² olduğuna göre imar alanının köşegeni $x$ kaç metredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1,
+         -1,
+         15,
+         13
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           14,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           14,
+           12
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           12
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "P",
+          "at": [
+           3,
+           3
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "Q",
+          "at": [
+           11,
+           3
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "R",
+          "at": [
+           11,
+           9
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "S",
+          "at": [
+           3,
+           9
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "T",
+          "at": [
+           0,
+           3
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "P",
+          "to": "Q",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "Q",
+          "to": "R",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "R",
+          "to": "S",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "S",
+          "to": "P",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "P",
+          "to": "R",
+          "label": "x",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "T",
+          "to": "P",
+          "label": "3",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "P",
+           "Q",
+           "R",
+           "S"
+          ],
+          "fill": true,
+          "shade": 1
+         }
+        ]
+       },
+       "options": [
+        "6",
+        "8",
+        "10",
+        "12",
+        "14"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "$6$, imar alanının bir kenarıdır; köşegen kenardan büyük olur.",
+        "$8$, imar alanının öbür kenarıdır; köşegen soruluyor.",
+        null,
+        "$12$, arsanın kısa kenarıdır; imar alanı bundan $6$ m kısadır.",
+        "$14$, arsanın uzun kenarıdır; köşegen değil."
+       ],
+       "steps": [
+        {
+         "text": "Çevre $52$ ise arsanın komşu kenarları toplamı $26$. Her kenar iki ucundan $3$'er m kısaldığı için imar alanının komşu kenarlarının toplamı kaç olur?"
+        },
+        {
+         "text": "İmar alanı için $x + y$ ve $xy = 48$ bilinir; $(x + y)^2 = x^2 + y^2 + 2xy$ ve köşegen için $d^2 = x^2 + y^2$."
+        },
+        {
+         "text": "$d^2$'yi $(x + y)^2 - 2xy$ ile bul, sonra karekökünü al."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021 imar alanı sorusunun kalıbı (her kenardan pay bırakma ve özdeşlikle köşegen) alındı; pay, çevre ve alan değerleri değiştirildi."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "İçteki P noktası: karşılıklı köşeler",
+      "text": "$ABCD$ dikdörtgeninin **içindeki** (kenarındaki ya da dışındaki de olabilir) bir $P$ noktası için karşılıklı köşelere uzaklıkların **kareleri** toplamı eşittir: $|PA|^2 + |PC|^2 = |PB|^2 + |PD|^2$. Neden? $|AB| = a$, $|AD| = b$ olsun; $P$'nin $[AD]$'ye uzaklığı $x$, $[AB]$'ye uzaklığı $y$ olsun. Dik üçgenlerden $|PA|^2 = x^2 + y^2$, $|PB|^2 = (a - x)^2 + y^2$, $|PC|^2 = (a - x)^2 + (b - y)^2$, $|PD|^2 = x^2 + (b - y)^2$ bulunur. $|PA|^2 + |PC|^2$ ile $|PB|^2 + |PD|^2$ açılınca aynı dört terim çıkar.",
+      "visual": {
+       "kind": "formula",
+       "latex": "|PA|^2 + |PC|^2 = |PB|^2 + |PD|^2",
+       "caption": "Karşılıklı köşe çiftleri: A–C ve B–D"
+      },
+      "narration": "Bağıntıyı Pisagor'un genelleştirilmiş hâli gibi düşün. $P$'yi $C$ köşesine götürürsen $|PC| = 0$ olur ve bağıntı $|AC|^2 = |BC|^2 + |CD|^2$'ye, yani Pisagor'a dönüşür. $P$ merkez olursa dört uzaklık da köşegenin yarısıdır ve iki taraf da $\\frac{d^2}{2}$ eder. Sınavda üç uzaklık verilip dördüncüsü sorulur: karşılıklı köşeleri doğru eşleştirmek yeterlidir."
+     },
+     {
+      "kind": "predict",
+      "title": "P köşeye gelirse",
+      "context": "$P$ noktası $ABCD$ dikdörtgeninin $C$ köşesiyle çakışıyor.",
+      "prompt": "Doğru mu yanlış mı: Bu durumda $|PA|^2 + |PC|^2 = |PB|^2 + |PD|^2$ bağıntısı $|AC|^2 = |BC|^2 + |CD|^2$ olur.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Doğru. $P = C$ ise $|PC| = 0$, $|PA| = |AC|$, $|PB| = |BC|$, $|PD| = |CD|$; bağıntı Pisagor teoremi olur.",
+      "choiceFeedback": [
+       null,
+       "$P = C$ için $|PC| = 0$, $|PA| = |AC|$, $|PB| = |BC|$ ve $|PD| = |DC|$ yazıp bağıntıya yerleştir."
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "P noktası: sayılı örnek",
+      "example": "$ABCD$ dikdörtgeninin içindeki $P$ noktası için $|PA| = 6$, $|PB| = 2$ ve $|PC| = 7$ ise $|PD|$ kaçtır?",
+      "explanation": "Karşılıklı köşeler $A$–$C$ ve $B$–$D$. $|PA|^2 + |PC|^2 = |PB|^2 + |PD|^2$ → $36 + 49 = 4 + |PD|^2$ → $|PD|^2 = 81$ → $|PD| = 9$. Uzunlukları değil **karelerini** toplarız.",
+      "narration": "Karşılıklı çiftleri belirlemek en önemli adımdır: $A$'nın karşısı $C$, $B$'nin karşısı $D$. Bir tarafta $PA$ ile $PC$, öbür tarafta $PB$ ile $PD$ olur."
+     },
+     {
+      "kind": "mistake",
+      "title": "Uzunlukları toplamak",
+      "wrong": "$|PA| + |PC| = |PB| + |PD|$ olur.",
+      "right": "Eşit olan, uzunlukların değil **karelerinin** toplamıdır: $|PA|^2 + |PC|^2 = |PB|^2 + |PD|^2$.",
+      "why": "Az önceki örnekte $|PA| + |PC| = 13$ iken $|PB| + |PD| = 2 + 9 = 11$'dir; toplamlar eşit değildir, kareler toplamı ise $85$'te eşleşir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABCD$ dikdörtgeninin içindeki bir $P$ noktası için $|PA| = 4$ cm, $|PB| = 1$ cm ve $|PC| = 7$ cm'dir. Buna göre $|PD|$ kaç santimetredir?",
+       "options": [
+        "1",
+        "4",
+        "7",
+        "8",
+        "10"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "$1$, $|PB|$'dir; sorulan $|PD|$.",
+        "$4$, $|PA|$'dır; sorulan $|PD|$.",
+        "$7$, $|PC|$'dir; sorulan $|PD|$.",
+        null,
+        "$4 + 7 - 1 = 10$: uzunlukları topladın; bağıntı uzunlukların **karelerini** içerir."
+       ],
+       "steps": [
+        {
+         "text": "Karşılıklı köşe çiftleri $A$–$C$ ve $B$–$D$; $P$ dikdörtgenin içinde olduğundan $|PA|^2 + |PC|^2 = |PB|^2 + |PD|^2$."
+        },
+        {
+         "text": "Bilinen üç uzunluğun karelerini yerine yaz ve $|PD|^2$'yi yalnız bırak."
+        },
+        {
+         "text": "$16 + 49 = 1 + |PD|^2$ denkleminden $|PD|^2$'yi bulup karekök al."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dikdörtgenin içindeki noktada karşılıklı köşelere uzaklıkların kareler toplamı bağıntısı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "flip",
+      "title": "Formülleri çevir",
+      "prompt": "Her kartın arkasını tahmin et, sonra çevirip kontrol et.",
+      "cards": [
+       {
+        "front": "Köşegen",
+        "back": "$d^2 = a^2 + b^2$"
+       },
+       {
+        "front": "Çevre",
+        "back": "$2(a + b)$"
+       },
+       {
+        "front": "Alan",
+        "back": "$a \\cdot b$"
+       },
+       {
+        "front": "Çevre ve köşegen verilince alan",
+        "back": "$(a + b)^2 = d^2 + 2ab$ yazıp $ab$'yi çek."
+       },
+       {
+        "front": "Köşegen sabit, en büyük alan",
+        "back": "Kare: $a = b$ iken alan $\\frac{d^2}{2}$."
+       },
+       {
+        "front": "İçteki $P$ noktası",
+        "back": "$|PA|^2 + |PC|^2 = |PB|^2 + |PD|^2$"
+       }
+      ],
+      "explanation": "Bu altı bilgi, köşegen sorularının neredeyse tamamını çözer."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_DIKDORTGEN_03",
+    "title": "Alan, çevre ve katlama",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Alan, çevre ve dört eş üçgen",
+      "text": "Dikdörtgenin alanı $A = a \\cdot b$, çevresi $2(a + b)$'dir. Köşegenlerin kesişim noktası $E$ ise köşegenler dikdörtgeni **dört eş alanlı** üçgene ayırır: $A(AEB) = A(BEC) = A(CED) = A(DEA) = S$, yani $A(ABCD) = 4S$. Her köşegen dikdörtgeni iki eş dik üçgene böler; her biri $2S$ alanındadır. Alan ve çevre ayrı niceliklerdir: aynı alanlı dikdörtgenlerin çevresi, aynı çevreli dikdörtgenlerin alanı farklı olabilir.",
+      "narration": "Dört üçgenin alanı neden eşit? Köşegenler birbirini ortaladığı için dört üçgenin tabanları (kenarlar) eşit uzaklıktaki yüksekliklerle eşleşir ve her üçgen dikdörtgenin dörtte birini alır. Sınavda bir üçgenin alanı verilip tüm dikdörtgenin alanı sorulabilir: verilen alanı $4$ ile çarp."
+     },
+     {
+      "kind": "blank",
+      "title": "Dört eş üçgen",
+      "prompt": "Alanı $72$ cm² olan bir dikdörtgenin köşegenleri çizilince oluşan dört üçgenden birinin alanı kaç cm²'dir?",
+      "before": "Alan =",
+      "after": "cm²",
+      "answers": [
+       "18"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 18,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "36",
+        "feedback": "$36$, köşegenin ayırdığı iki üçgenden birinin alanıdır; iki köşegen olduğunda dört parça oluşur."
+       }
+      ],
+      "explanation": "Dört eş alanlı üçgen oluşur: $72 \\div 4 = 18$."
+     },
+     {
+      "kind": "rule",
+      "title": "Katlama problemleri: dört adım",
+      "items": [
+       "**Yeni yeri belirle:** katlanan köşe nereye düşüyor (karşı kenara mı, başka bir köşeye mi)?",
+       "**Eşit uzunlukları işaretle:** katlama uzunluğu korur; katlanan köşe ile yeni yeri arasındaki doğru parçasının orta dikmesi kıvrım doğrusudur.",
+       "**Dik üçgeni seç:** dik açı dikdörtgenin köşesinde ya da kıvrımda oluşur.",
+       "**Bilinmeyene $x$ de:** öbür kenarı $(\\text{kenar} - x)$ olarak yaz ve Pisagor kur.",
+       "Katlanan parçanın uzunlukları, açıları ve alanı değişmez; kâğıdın görünen çevresi ise değişebilir."
+      ],
+      "narration": "Katlama, kâğıdı bir doğru boyunca aynalamaktır. Bu yüzden katlanan nokta ile yeni yeri, kıvrım doğrusuna aynı uzaklıktadır; kıvrım üzerindeki her nokta bu iki noktaya eşit uzaklıktadır. Çözerken önce şekle yeni yeri çiz, eşit parçaları aynı harfle ya da işaretle göster, sonra tek bir dik üçgen seç. Çoğu soruda bu üçgen $3$-$4$-$5$ ya da $5$-$12$-$13$ gibi bir üçlüdür."
+     },
+     {
+      "kind": "predict",
+      "title": "Katlanınca uzunluk",
+      "context": "Dikdörtgen bir kâğıdın $C$ köşesi, $B$'den geçen bir doğru boyunca karşı kenara katlanıyor ve $C'$ noktasına geliyor.",
+      "prompt": "Doğru mu yanlış mı: $|BC'| = |BC|$.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Doğru. Katlama bir yansımadır; uzunlukları korur. $B$ sabit kaldığı için $C$ ile yeni yeri $C'$'nin $B$'ye uzaklığı aynıdır.",
+      "choiceFeedback": [
+       null,
+       "Katlama kâğıdı uzatmaz ya da kısaltmaz; sabit noktadan katlanan noktaya olan uzaklık yeni yerde de aynıdır."
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Katlama çözümünün sırası",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "Yeni yeri çiz",
+         "detail": "Köşe nereye düşüyor?"
+        },
+        {
+         "label": "Eşitleri işaretle",
+         "detail": "Katlama uzunluğu korur"
+        },
+        {
+         "label": "Dik üçgeni seç",
+         "detail": "Köşede ya da kıvrımda"
+        },
+        {
+         "label": "Bilinmeyene x de",
+         "detail": "Öbür kenar: kenar − x"
+        },
+        {
+         "label": "Pisagor kur",
+         "detail": "Karekökü en sona bırak"
+        }
+       ]
+      },
+      "caption": "Adımları doğru sıraya diz."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek 1: köşe karşı kenara düşer",
+      "example": "$|AB| = 8$ cm, $|BC| = 10$ cm olan $ABCD$ dikdörtgen kâğıdı, $B$'den geçen $[BE]$ ($E \\in [DC]$) boyunca katlanıyor ve $C$ köşesi $[AD]$ üzerindeki $C'$ noktasına geliyor. $|EC|$ ve $|DE|$ kaçtır?",
+      "explanation": "1) Yeni yer: $C'$, $[AD]$ üzerinde. 2) Eşitler: $|BC'| = |BC| = 10$ ve $|EC'| = |EC|$. 3) $ABC'$ dik üçgeni: $|AC'| = \\sqrt{10^2 - 8^2} = 6$, dolayısıyla $|C'D| = 10 - 6 = 4$. 4) $|EC| = x$ olsun: $|DE| = 8 - x$, $|EC'| = x$. $DEC'$ dik üçgeninde $x^2 = (8 - x)^2 + 4^2$ → $16x = 80$ → $x = 5$. Sonuç: $|EC| = 5$, $|DE| = 3$ ($3$-$4$-$5$ üçgeni).",
+      "narration": "Bu tipte hep iki dik üçgen çıkar: önce $B$ köşeli üçgenle $|AC'|$'yi, sonra $D$ köşeli üçgenle kıvrımın kesişimini buluruz. $x^2$ iki yanda sadeleştiği için denklem birinci derecedendir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ dikdörtgen kâğıdında $|AB| = 6$ cm ve $|BC| = 10$ cm'dir. Kâğıt $B$'den geçen $[BE]$ boyunca katlandığında $C$ köşesi $[AD]$ üzerindeki $C'$ noktasına geliyor. Buna göre $|AC'|$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         6.7,
+         10.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           6,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           6,
+           10
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           10
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C'",
+          "at": [
+           0,
+           8
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           2.667,
+           10
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "10",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C'",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C'",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "B",
+           "C'",
+           "E"
+          ],
+          "fill": true,
+          "shade": 1
+         }
+        ]
+       },
+       "options": [
+        "4",
+        "6",
+        "8",
+        "10",
+        "16"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "$4$, $10 - 6$ işleminden gelir; fark Pisagor değildir.",
+        "$6$, $|AB|$'dir; sorulan $|AC'|$.",
+        null,
+        "$10$, $|BC'|$'dir; hipotenüs ile dik kenarı karıştırmışsın.",
+        "$16$, iki uzunluğun toplamıdır."
+       ],
+       "steps": [
+        {
+         "text": "Katlama uzunlukları korur: $|BC'|$ hangi uzunluğa eşittir?"
+        },
+        {
+         "text": "$ABC'$ üçgeni $A$'da diktir; hipotenüs hangi kenar, verilen dik kenar hangisi?"
+        },
+        {
+         "text": "$|AC'|^2 = |BC'|^2 - |AB|^2$ yaz; karekökünü sen al."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2019 katlama sorusunun fikri (köşenin karşı kenara düşmesi) farklı sayılar ve sade bir kökle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "example",
+      "title": "Örnek 2: köşe karşı köşeye düşer",
+      "example": "$|AB| = 8$ cm, $|BC| = 4$ cm olan $ABCD$ dikdörtgeni, $A$ köşesi $C$ köşesinin üzerine gelecek biçimde katlanıyor. Kıvrım doğrusu $[AB]$'yi $E$'de kesiyor. $|AE|$ kaçtır?",
+      "explanation": "1) $A$'nın yeni yeri $C$. 2) Kıvrım, $[AC]$'nin orta dikmesidir; $E$ üzerinde olduğundan $|EA| = |EC|$. 3) $|AE| = x$ ise $|EB| = 8 - x$; $EBC$ üçgeni $B$'de diktir. 4) $x^2 = (8 - x)^2 + 4^2$ → $16x = 80$ → $x = 5$. Yani $|AE| = |EC| = 5$ ve $|EB| = 3$.",
+      "narration": "Bu kez katlanan köşenin yeni yeri başka bir köşe. Anahtar fikir: kıvrım doğrusunun üstündeki her nokta, katlanan nokta ile yeni yerine eşit uzaklıktadır. Böylece $|EA| = |EC|$ yazıp dik üçgene geçersin."
+     },
+     {
+      "kind": "findError",
+      "title": "Hatalı çözümü bul",
+      "problem": "$|AB| = 9$ cm, $|BC| = 15$ cm olan $ABCD$ dikdörtgen kâğıdı $B$'den geçen $[BE]$ ($E \\in [DC]$) boyunca katlanınca $C$ köşesi $[AD]$ üzerindeki $C'$ noktasına geliyor. $|DE|$ kaç cm'dir?",
+      "prompt": "Hangi satırda hata var?",
+      "steps": [
+       "$|BC'| = |BC| = 15$ (katlama uzunluğu korur).",
+       "$ABC'$ dik üçgeninde $|AC'| = \\sqrt{15^2 - 9^2} = 12$.",
+       "$|C'D| = |AD| - |AC'| = 15 - 12 = 3$.",
+       "$|EC| = |EC'| = x$ ise $|DE| = 9 - x$ ve $x^2 = (9 - x)^2 + 3^2$; buradan $x = 5$.",
+       "Dolayısıyla $|DE| = x = 5$ cm."
+      ],
+      "wrongStep": 4,
+      "choiceFeedback": [
+       "Bu satır doğru: katlama uzunluğu korur.",
+       "Bu satır doğru: $ABC'$ üçgeninde Pisagor doğru kurulmuş.",
+       "Bu satır doğru: $|AD| = |BC| = 15$.",
+       "Bu satır doğru: denklemin çözümü $x = 5$ ve $x$ burada $|EC|$ demek.",
+       null
+      ],
+      "explanation": "Hata son satırda: $x$, $|EC|$'dir; $|DE| = 9 - x = 4$ cm. $DC'E$ üçgeninin kenarları $3$, $4$, $5$'tir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABCD$ dikdörtgeninde $|AB| = 18$ cm ve $|BC| = 12$ cm'dir. Kâğıt, $A$ köşesi $C$ köşesinin üzerine gelecek biçimde katlanıyor ve kıvrım doğrusu $[AB]$'yi $E$ noktasında kesiyor. Buna göre $|EB|$ kaç santimetredir?",
+       "options": [
+        "5",
+        "6",
+        "12",
+        "13",
+        "18"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$6$, $|AB| - |BC|$'dir; böyle bir ilişki katlamadan gelmez.",
+        "$12$, $|BC|$'dir; sorulan $|EB|$.",
+        "$13$, $|AE|$'dir; sorulan $|EB|$.",
+        "$18$, $|AB|$'dir."
+       ],
+       "steps": [
+        {
+         "text": "$A$ katlanınca $C$'ye geliyor; kıvrım $[AC]$'nin orta dikmesidir. Orta dikmedeki $E$ için $|EA|$ ile $|EC|$ arasında nasıl bir ilişki vardır?"
+        },
+        {
+         "text": "$|EA| = x$ ise $|EB| = 18 - x$. $EBC$ üçgeni $B$'de diktir; Pisagor'u $x$ cinsinden yaz."
+        },
+        {
+         "text": "$x^2 = (18 - x)^2 + 12^2$ denkleminde $x^2$ sadeleşir; $x$'i bulduktan sonra sorulan $|EB|$'yi hesapla."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; köşenin karşı köşeye katlanması $5$-$12$-$13$ üçlüsüyle özgün olarak kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kenarları $12$ cm ve $8$ cm olan dikdörtgen bir kâğıt, uzun kenarı ikiye bölünecek biçimde ortadan katlanıyor. Oluşan dikdörtgenin çevresi kaç santimetredir?",
+       "options": [
+        "20",
+        "28",
+        "32",
+        "40",
+        "48"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "$20$: iki boyutu da yarıya indirmişsin.",
+        null,
+        "$32$: kısa kenarı yarıya indirip uzun kenarı olduğu gibi bırakmışsın.",
+        "$40$: katlamadan önceki çevreyi bulmuşsun.",
+        "$48$: yeni alanı hesaplamışsın; çevre soruluyor."
+       ],
+       "steps": [
+        {
+         "text": "Uzun kenar ikiye bölünecek biçimde katlanınca hangi boyut yarıya iner, hangisi aynı kalır?"
+        },
+        {
+         "text": "Yeni dikdörtgenin kenarlarını yaz ve $2(a + b)$ ile çevreyi hesapla."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018 çift katlama sorusunun fikri (katlanan boyutun yarıya inmesi) sade bir tek katlamaya indirgenerek özgün sayılarla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Katlayınca çevre yarıya mı iner?",
+      "wrong": "Kâğıt ortadan katlanınca çevresi de yarıya iner.",
+      "right": "Yalnız katlanan boyut yarıya iner, öbür boyut aynı kalır; yeni çevre $2\\left(\\frac{a}{2} + b\\right)$ olur.",
+      "why": "$10 \\times 6$ bir kâğıt uzun kenardan ortadan katlanınca $5 \\times 6$ olur; çevre $32$'den $22$'ye iner, $16$'ya değil."
+     },
+     {
+      "kind": "visual",
+      "title": "Kenardaki nokta, yarım alan",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        8.7,
+        5.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          8,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          8,
+          5
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          0,
+          5
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          3,
+          5
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "E"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ],
+       "angles": [
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "right": true,
+         "arcs": 1
+        }
+       ]
+      },
+      "caption": "$E \\in [DC]$ ise $A(ABE) = \\frac{a \\cdot b}{2}$; kalan iki üçgenin toplamı da yarı.",
+      "narration": "Dikdörtgenin alanı $a \\cdot b$'dir. Üst kenardaki herhangi bir $E$ noktasını $A$ ve $B$'ye birleştirince $ABE$ üçgeninin tabanı $|AB| = a$, yüksekliği $b$ olur: alanı $\\frac{a \\cdot b}{2}$, yani dikdörtgenin tam yarısı. $E$ üst kenarda nereye kayarsa kaysın bu değişmez. Geriye kalan iki üçgenin ($ADE$ ve $BCE$) alanları toplamı da öbür yarıdır: $A(ADE) + A(BCE) = \\frac{a \\cdot b}{2}$. Sınavda biri verilir, öbürü sorulur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ dikdörtgeninde $|AB| = 8$ cm, $|BC| = 5$ cm ve $E$ noktası $[DC]$ üzerindedir. $A(ADE) = 6$ cm² olduğuna göre $A(BCE)$ kaç santimetrekaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         8.7,
+         5.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           8,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           8,
+           5
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           5
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           2.4,
+           5
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "8",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "5",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "A",
+           "D",
+           "E"
+          ],
+          "fill": true,
+          "shade": 1
+         },
+         {
+          "points": [
+           "B",
+           "C",
+           "E"
+          ],
+          "fill": true,
+          "shade": 1
+         }
+        ],
+        "angles": [
+         {
+          "at": "B",
+          "from": "C",
+          "to": "A",
+          "right": true,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "8",
+        "10",
+        "12",
+        "14",
+        "20"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "$8$ değeri bu alanlardan hiçbirine karşılık gelmiyor; önce kalan iki üçgenin toplamını bul.",
+        "$10$, $20$'nin yarısıdır; iki üçgenin alanı eşit olmak zorunda değil.",
+        "$12$ için $20$'den $8$ çıkarılmış; çıkarılacak alan sorudaki $A(ADE)$ değeridir.",
+        null,
+        "$20$, iki üçgenin toplamıdır; $A(ADE)$'yi çıkarman gerekir."
+       ],
+       "steps": [
+        {
+         "text": "$A(ABCD) = 8 \\cdot 5$ hesapla. $E$, $[DC]$ üzerinde olduğundan $A(ABE)$ dikdörtgenin kaçta kaçıdır?"
+        },
+        {
+         "text": "Kalan iki üçgen $ADE$ ve $BCE$'dir; alanlarının toplamı ne olur?"
+        },
+        {
+         "text": "Bu toplamdan verilen $A(ADE)$ alanını çıkar."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB'deki dikdörtgende kenar üzerindeki noktanın alan paylaşımı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Eş parçalara bölünen dikdörtgen",
+      "text": "Bir dikdörtgen, bir kenarına paralel çitlerle $n$ eş parçaya bölünürse parçaların bir kenarı $\\frac{L}{n}$ olur, öbür kenar değişmez. Harf ver: bahçe $L \\times W$, parça $\\frac{L}{n} \\times W$. Parçanın ve bahçenin çevresini ayrı ayrı yaz; **yarı çevreler** ($L + W$ ve $\\frac{L}{n} + W$) taraf tarafa çıkarılınca bilinmeyenlerden biri yalnız kalır. İç çitlerin toplam uzunluğu $(n - 1) \\cdot W$'dir.",
+      "narration": "Bu tip soruda çitin hangi kenara paralel olduğunu doğru okumak her şeydir: çit kısa kenara paralelse uzun kenar bölünür. Çevre yerine yarı çevreyi kullanmak $2$ çarpanından kurtarır ve işlemleri sadeleştirir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Dikdörtgen biçimindeki bir bahçe, kısa kenarına paralel iki çitle **üç eş** dikdörtgene ayrılıyor. Her parçanın çevresi $30$ m, bahçenin çevresi $50$ m olduğuna göre bahçenin alanı kaç metrekaredir?",
+       "options": [
+        "100",
+        "120",
+        "135",
+        "150",
+        "180"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "$100$, bahçeyi $10 \\times 10$ kare sanmaktan gelir; $L$ ve $W$ farklıdır.",
+        "$120$, denklem sisteminde yapılan bir işlem hatasından çıkar; iki yarı çevreyi çıkararak $L$'yi yeniden bul.",
+        "$135$: $L$ ya da $W$'den birini yanlış bulmuşsun; çıkarma sonucunu $\\frac{2L}{3}$ ile eşle.",
+        null,
+        "$180$, parçaları $\\frac{L}{3}$ olmayan bir uzunluktan gelir; parçaların $\\frac{L}{3} \\times W$ olduğunu kontrol et."
+       ],
+       "steps": [
+        {
+         "text": "Bahçe $L \\times W$ olsun ($L$ uzun kenar). Çitler kısa kenara paralel olduğundan $L$ üç eş parçaya bölünür; bir parçanın boyutları nedir?"
+        },
+        {
+         "text": "Parçanın yarı çevresi $\\frac{L}{3} + W = 15$; bahçenin yarı çevresi $L + W = 25$."
+        },
+        {
+         "text": "İki denklemi taraf tarafa çıkar; $L$ ve $W$'yi bulup alanı $L \\cdot W$ ile hesapla."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin eş dikdörtgen parçalara bölme yapısı özgün bir bahçe durumuyla kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Çevre sabitse en büyük alan karede",
+      "text": "Çevresi sabit dikdörtgenlerde $a + b = k$ sabittir. $(a - b)^2 \\ge 0$ olduğundan $ab \\le \\left(\\frac{a + b}{2}\\right)^2$. Eşitlik $a = b$ iken sağlanır: alan en çok **karede** olur. Kenarlar birbirinden uzaklaştıkça alan küçülür.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "a",
+        "b",
+        "Alan"
+       ],
+       "rows": [
+        [
+         "1",
+         "9",
+         "9"
+        ],
+        [
+         "2",
+         "8",
+         "16"
+        ],
+        [
+         "3",
+         "7",
+         "21"
+        ],
+        [
+         "4",
+         "6",
+         "24"
+        ],
+        [
+         "5",
+         "5",
+         "25"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "caption": "$a + b = 10$ iken alanlar: kenarlar yaklaştıkça alan büyür.",
+      "narration": "Tersi de doğrudur: **alan sabitse çevre en küçük kare iken** olur. Alan sabitken kenarlar farklıysa çevre aynı olmak zorunda da değildir: $64 = 8 \\cdot 8$ için çevre $32$, $64 = 4 \\cdot 16$ için çevre $40$'tır."
+     },
+     {
+      "kind": "predict",
+      "title": "Alan sabit, çevre?",
+      "context": "Alanı $100$ cm² olan dikdörtgenler arasından çevresi en küçük olanı arıyoruz.",
+      "prompt": "Doğru mu yanlış mı: Çevresi en küçük olan dikdörtgen, kenarı $10$ cm olan karedir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Doğru. $10 \\times 10$ karenin çevresi $40$'tır; $5 \\times 20$ dikdörtgenin çevresi $50$'dir. Alan sabitken çevre en küçük kare iken olur.",
+      "choiceFeedback": [
+       null,
+       "$10 \\times 10$ için çevre $40$; $5 \\times 20$ için $50$. Kenarlar uzaklaştıkça çevre büyür."
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Çevresi $24$ cm olan dikdörtgenlerden alanı **en büyük** olanın alanı kaç santimetrekaredir?",
+       "options": [
+        "20",
+        "27",
+        "32",
+        "35",
+        "36"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "$20$ ($2 \\cdot 10$) mümkün bir alandır ama en büyüğü değildir.",
+        "$27$ ($3 \\cdot 9$) mümkün bir alandır ama en büyüğü değildir.",
+        "$32$ ($4 \\cdot 8$) mümkün bir alandır ama en büyüğü değildir.",
+        "$35$ ($5 \\cdot 7$) mümkün bir alandır ama kenarlar daha da yaklaşabilir.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Çevre $24$ ise $a + b = 12$."
+        },
+        {
+         "text": "Toplamı sabit iki sayının çarpımı hangi durumda en büyük olur?"
+        },
+        {
+         "text": "Bu durumda $a$ ve $b$ kaç olur, çarpımları kaç eder?"
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; sabit çevrede en büyük alanın kare olduğu özgün bir soruyla gösterildi."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Yol içte mi, dışta mı?",
+      "text": "Bahçe ya da arsa $a \\times b$, yol (ya da pay) genişliği $w$ olsun. **İçte** yol (kenarlar boyunca): kalan dikdörtgenin boyutları $a - 2w$ ve $b - 2w$. **Dışta** yol (bahçeyi çevreler): dış dikdörtgen $a + 2w$ ve $b + 2w$; yol alanı = dış alan − iç alan. Kenara paralel **tek yol** bahçeyi baştan başa kesiyorsa alanı $w \\cdot a$ (ya da $w \\cdot b$); **iki yol kesişiyorsa** kesişim karesi iki kez sayılır: $w(a + b) - w^2$.",
+      "narration": "İki durumda da yol karşılıklı iki kenardan alındığı için değişim $w$ değil $2w$'dir. Yol alanını çevre $\\times$ genişlik diye hesaplarsan dört köşedeki $w \\times w$'lik kareleri atlarsın. Doğrusu: dışta yol alanı $2(a + b)w + 4w^2$, içte ise $2(a + b)w - 4w^2$'dir."
+     },
+     {
+      "kind": "visual",
+      "title": "Yol türleri bir arada",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Durum",
+        "Yeni boyutlar",
+        "Yol alanı"
+       ],
+       "rows": [
+        [
+         "İçte, çevrede",
+         "a − 2w, b − 2w",
+         "ab − (a−2w)(b−2w)"
+        ],
+        [
+         "Dışta, çevrede",
+         "a + 2w, b + 2w",
+         "(a+2w)(b+2w) − ab"
+        ],
+        [
+         "Tek yol, baştan başa",
+         "—",
+         "w · a (ya da w · b)"
+        ],
+        [
+         "İki yol kesişir",
+         "—",
+         "w(a + b) − w²"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "caption": "Önce yolun yerini belirle, sonra boyutları yaz.",
+      "narration": "Tabloyu satır satır oku: içte kenarlar kısalır, dışta uzar; tek yolda boyutlar değişmez, yalnız şerit kesilir; iki yolun kesiştiği kare tek kez çıkarılmalıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Boyutları $20$ m $\\times$ $15$ m olan dikdörtgen biçimli bir bahçenin dört kenarı boyunca, bahçenin **içinde** kalacak biçimde $1$ m genişliğinde yürüyüş yolu yapılıyor. Yolun iç tarafında kalan dikdörtgen biçimli çimlik alan kaç m²'dir?",
+       "options": [
+        "234",
+        "266",
+        "280",
+        "285",
+        "300"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$266 = 19 \\cdot 14$: her boyutu yalnız $1$ m kısaltmışsın; yol karşılıklı iki kenarda da var.",
+        "$280 = 20 \\cdot 14$: yalnız bir boyutu kısaltmışsın.",
+        "$285 = 19 \\cdot 15$: yalnız bir boyutu kısaltmışsın.",
+        "$300$ bahçenin tüm alanıdır; yolu çıkarmamışsın."
+       ],
+       "steps": [
+        {
+         "text": "Yol bahçenin içinde ve dört kenar boyunca: her boyutun iki ucunda da yol var. Çimliğin her boyutu kaç m kısalır?"
+        },
+        {
+         "text": "Çimliğin boyutlarını yaz; alanı iki boyutun çarpımıdır, yol alanını ayrıca hesaplamana gerek yok."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yolun içte olduğu bahçe problemi özgün değerlerle kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Boyutları $20$ m $\\times$ $15$ m olan dikdörtgen biçimli bir havuzun çevresine, dışarıdan $1$ m genişliğinde bir karo yol döşeniyor. Yolun alanı kaç m²'dir?",
+       "options": [
+        "35",
+        "66",
+        "70",
+        "72",
+        "74"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "$35$ yarı çevreyi veriyor; yol alanı için bu yetmez: $2(a + b)w + 4w^2$ ya da dış alandan iç alanı çıkarma yöntemi gerekir.",
+        "$66$, yolun **içte** olduğu durumun yol alanıdır; burada yol dışta.",
+        "$70$, çevre $\\times$ genişliktir; dört köşedeki $1 \\times 1$'lik kareler unutulmuş.",
+        "$72$: dört köşe karesinden yalnız ikisini saymışsın.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Yol dışta olduğu için dış dikdörtgenin her boyutu iki ucundan $1$'er m uzar. Dış boyutlar kaçtır?"
+        },
+        {
+         "text": "Yol alanı, dış dikdörtgenin alanından havuzun alanının çıkarılmasıyla bulunur: $A_{dış} - A_{havuz}$."
+        },
+        {
+         "text": "Dış alanı çarparak hesapla; havuzun $300$ m²'lik alanını çıkar."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yolun dışta olduğu problem, yolun içte olduğu soruyla karşılaştırılacak biçimde özgün değerlerle kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "classify",
+      "title": "Kısalır mı, uzar mı?",
+      "prompt": "Her durumu, kenarların değişimine göre doğru gruba yerleştir.",
+      "groups": [
+       {
+        "label": "Her kenar $2w$ kısalır",
+        "items": [
+         "Bahçenin içine, kenar boyunca yol",
+         "Arsanın her kenarından imar payı",
+         "Kâğıdın çevresinden şerit kesmek"
+        ]
+       },
+       {
+        "label": "Her kenar $2w$ uzar",
+        "items": [
+         "Havuzun dışına karo yol",
+         "Fotoğrafın çevresine çerçeve",
+         "Bahçenin dışına çit payı"
+        ]
+       }
+      ],
+      "explanation": "Pay ya da yol içeri doğruysa dikdörtgen küçülür, dışarı doğruysa büyür; iki durumda da iki karşı kenar etkilendiği için değişim $2w$'dir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir dikdörtgenin uzun kenarı $\\%20$ uzatılıp kısa kenarı $\\%20$ kısaltılıyor. Dikdörtgenin alanı nasıl değişir?",
+       "options": [
+        "Değişmez.",
+        "$\\%4$ azalır.",
+        "$\\%4$ artar.",
+        "$\\%20$ azalır.",
+        "$\\%40$ azalır."
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Artış ve azalışın yüzdeleri çarpımda birbirini götürmez; katsayıları çarp.",
+        null,
+        "Çarpım $1$'den küçük çıkıyor; alan artmaz.",
+        "$\\%20$ yalnız kısa kenardaki azalmadır; uzun kenardaki artışı da hesaba kat.",
+        "$\\%40$, iki yüzdeyi toplamaktan gelir; alanda yüzdeler toplanmaz, çarpılır."
+       ],
+       "steps": [
+        {
+         "text": "Kenarları $a$ ve $b$ al; yeni kenarlar $1{,}2a$ ve $0{,}8b$ olur."
+        },
+        {
+         "text": "Yeni alanı $ab$ cinsinden yaz: katsayıları çarp ve $1$ ile karşılaştır."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dikdörtgende kenar yüzdelerinin alana etkisi özgün bir soruyla gösterildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kenarları $12$ cm ve $3$ cm olan dikdörtgen bir karton ile alanı eşit olan ikinci dikdörtgen kartonun uzun kenarı $9$ cm'dir. Bu iki kartonun çevreleri farkı kaç santimetredir?",
+       "options": [
+        "4",
+        "13",
+        "26",
+        "30",
+        "56"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$13$, ikinci kartonun yarı çevresidir; çevre için ikiyle çarp, sonra fark al.",
+        "$26$ ikinci kartonun çevresidir; fark soruluyor.",
+        "$30$ ilk kartonun çevresidir; fark soruluyor.",
+        "$56$, iki çevrenin toplamıdır; fark soruluyor."
+       ],
+       "steps": [
+        {
+         "text": "İlk kartonun alanını hesapla; ikinci kartonun alanı da aynıdır."
+        },
+        {
+         "text": "İkinci kartonun kısa kenarını alandan bul; sonra iki çevreyi ayrı ayrı yaz."
+        },
+        {
+         "text": "Büyük çevreden küçük çevreyi çıkar."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 eşit alanlı kartonlar sorusunun fikri (alan sabit, çevre farklı) sade ve özgün bir soruya dönüştürüldü."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Dikdörtgen bir **paralelkenardır**; köşegenleri ayrıca **eşittir** ve birbirini ortalar.",
+    "Köşegenler dikdörtgeni dört **ikizkenar** ve dört **eş alanlı** üçgene ayırır.",
+    "$d^2 = a^2 + b^2$ ve $(a + b)^2 = d^2 + 2ab$: çevre ve köşegenden kenarları bulmadan alan bulunur.",
+    "İçteki $P$ için $|PA|^2 + |PC|^2 = |PB|^2 + |PD|^2$.",
+    "Katlamada uzunluklar korunur: yeni yeri belirle, eşitleri işaretle, dik üçgeni seç, Pisagor kur.",
+    "Kenardaki bir nokta ile karşı köşeler birleşince oluşan üçgen **yarım alan**.",
+    "Sabit çevrede ve sabit köşegende alan **karede** en büyük.",
+    "Yol ya da pay içteyse kenarlar $2w$ kısalır, dıştaysa $2w$ uzar."
+   ],
+   "warnings": [
+    "Köşegen kenarların toplamı değildir: $d^2 = a^2 + b^2$.",
+    "Katlayınca yalnız katlanan boyut değişir; çevrede öbür boyutu unutma.",
+    "Yol alanında dört köşe karesini ($w^2$) unutma; yüzde değişimlerinde katsayıları çarp.",
+    "Alan sorulduysa kenarları bulmak şart değil; **özdeşlik** yeter."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Dikdörtgen bir kâğıdın bir köşesini karşı kenara katla; oluşan **dik üçgenleri** işaretle.",
+    "Köşegen, çevre, alan ve $(a + b)^2$ özdeşliğini **bir sayfaya** yaz.",
+    "Uygulamada Dikdörtgen testinden **20 soru** çöz; gerçek hayat sorularında önce **kenarlara harf** ver."
+   ]
+  }
+ }
+}

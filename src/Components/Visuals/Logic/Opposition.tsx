@@ -3,7 +3,7 @@ import {easeFrom} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
-import {usePartLook, World} from '../VisualWorld';
+import {usePartLook, World, FigureText} from '../VisualWorld';
 
 type Opposition = Extract<CourseVisual, {kind: 'opposition'}>;
 
@@ -120,7 +120,7 @@ const Relation: React.FC<{id: string; label: string; lines: readonly (readonly [
 				/>
 			))}
 			{lines.length > 1 && !first.diagonal ? (
-				<text
+				<FigureText
 					x={segments[1].mid.x + 26}
 					y={segments[1].mid.y}
 					transform={`rotate(90 ${segments[1].mid.x + 26} ${segments[1].mid.y})`}
@@ -132,9 +132,9 @@ const Relation: React.FC<{id: string; label: string; lines: readonly (readonly [
 					opacity={look.drawn}
 				>
 					{label}
-				</text>
+				</FigureText>
 			) : null}
-			<text
+			<FigureText
 				x={labelAt.x}
 				y={labelAt.y}
 				transform={labelAt.rotate ? `rotate(${labelAt.rotate} ${labelAt.x} ${labelAt.y})` : undefined}
@@ -149,7 +149,7 @@ const Relation: React.FC<{id: string; label: string; lines: readonly (readonly [
 				opacity={look.drawn}
 			>
 				{label}
-			</text>
+			</FigureText>
 		</g>
 	);
 };
@@ -167,14 +167,14 @@ const CornerBox: React.FC<{corner: Corner; text: string; truth?: 'D' | 'Y' | '?'
 	return (
 		<g opacity={look.opacity} transform={`translate(${spot.x} ${spot.y}) scale(${(0.85 + 0.15 * entrance) * (1 + 0.06 * look.focused)}) translate(${-spot.x} ${-spot.y})`}>
 			<circle cx={spot.x} cy={spot.y} r={CORNER} fill={lit ? palette.lesson : palette.surface} stroke={palette.lesson} strokeWidth={5} />
-			<text x={spot.x} y={spot.y + 18} textAnchor="middle" fontSize={50} fontWeight={800} fill={lit ? palette.onLesson : palette.lesson} fontFamily={palette.fontDisplay}>
+			<FigureText x={spot.x} y={spot.y + 18} textAnchor="middle" fontSize={50} fontWeight={800} fill={lit ? palette.onLesson : palette.lesson} fontFamily={palette.fontDisplay}>
 				{spot.letter}
-			</text>
-			<text x={textX} y={spot.y - 34} textAnchor={anchor} fontSize={24} fontWeight={700} fill={palette.muted} fontFamily={palette.fontBody}>
+			</FigureText>
+			<FigureText x={textX} y={spot.y - 34} textAnchor={anchor} fontSize={24} fontWeight={700} fill={palette.muted} fontFamily={palette.fontBody}>
 				{spot.name}
-			</text>
+			</FigureText>
 			{lines.map((line, index) => (
-				<text
+				<FigureText
 					key={index}
 					x={textX}
 					y={spot.y + 4 + index * 34}
@@ -185,7 +185,7 @@ const CornerBox: React.FC<{corner: Corner; text: string; truth?: 'D' | 'Y' | '?'
 					fontFamily={palette.fontBody}
 				>
 					{line}
-				</text>
+				</FigureText>
 			))}
 			{truth ? (
 				<g opacity={truthLook.opacity}>
@@ -199,7 +199,7 @@ const CornerBox: React.FC<{corner: Corner; text: string; truth?: 'D' | 'Y' | '?'
 						stroke={truthColour}
 						strokeWidth={2}
 					/>
-					<text
+					<FigureText
 						x={(spot.side === 'left' ? textX - 150 : textX) + 75}
 						y={spot.y + 4 + lines.length * 34 + 20}
 						textAnchor="middle"
@@ -209,7 +209,7 @@ const CornerBox: React.FC<{corner: Corner; text: string; truth?: 'D' | 'Y' | '?'
 						fontFamily={palette.fontBody}
 					>
 						{TRUTH_TEXT[truth]}
-					</text>
+					</FigureText>
 				</g>
 			) : null}
 		</g>

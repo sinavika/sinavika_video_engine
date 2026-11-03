@@ -3,7 +3,7 @@ import {clamp01, lerp, noise, smooth} from '../../../../Animations/Motion';
 import {withAlpha} from '../../../../Themes/Theme';
 import {useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
-import {pathOf} from '../../VisualWorld';
+import {pathOf, FigureText} from '../../VisualWorld';
 import {Drift, ProcessFrame, ProcessLabel, SCENE, Sky, processCamera, sampled, smoothPath, useProcessClock, type CameraBox, type Point} from '../ProcessScene';
 
 type ProcessSpec = Extract<CourseVisual, {kind: 'process'}>;
@@ -129,7 +129,8 @@ export const DesertProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}> = (
 			<ProcessLabel id="mantar" at={[MUSHROOM.x + halfWidth(GROUND - 34), GROUND - 34]} to={[MUSHROOM.x + 150, 290]} text="Mantar kaya" show={clock.now('mantar') * clamp01(blast * 2)} />
 			<ProcessLabel id="sahit" at={[MESA.x, MESA.top + 10]} to={[MESA.x - 40, 250]} text="Şahit kaya" show={clock.now('sahit')} />
 			<ProcessLabel id="tafoni" at={[MESA.x + mesaHalf + 14, layerTop(0) + 48]} to={[MESA.x + 210, 300]} text="Tafoni" show={clock.now('sahit') * clamp01(wear * 2 - 0.6)} />
-			<ProcessLabel id="barkan" at={[duneX - 40, GROUND - DUNE.height * 0.7]} to={[duneX - 160, 330]} text="Barkan" show={clock.now('barkan')} />
+			{/* Low and left of the bird's-eye inset (its box ends at 282): at an app still's size the name ran under it. */}
+			<ProcessLabel id="barkan" at={[duneX - 40, GROUND - DUNE.height * 0.7]} to={[duneX - 190, 345]} text="Barkan" show={clock.now('barkan')} />
 			<ProcessLabel id="los" at={[1330, 300]} to={[1010, 250]} text="Lös: uzağa taşınan ince toz" show={clock.now('barkan') * drift} size={22} />
 		</ProcessFrame>
 	);
@@ -147,12 +148,12 @@ const BarchanInset: React.FC<{show: number}> = ({show}) => {
 			<rect x={box.x} y={box.y} width={box.w} height={box.h} rx={16} fill="#FBF3E3" stroke={withAlpha(palette.ink, 0.3)} strokeWidth={2.5} />
 			<path d={`M${cx - 70} ${cy - 50} Q${cx + 60} ${cy - 70} ${cx + 80} ${cy - 40} Q${cx + 20} ${cy - 30} ${cx + 10} ${cy} Q${cx + 20} ${cy + 30} ${cx + 80} ${cy + 40} Q${cx + 60} ${cy + 70} ${cx - 70} ${cy + 50} Q${cx - 110} ${cy} ${cx - 70} ${cy - 50} Z`} fill={COLOURS.sandDark} stroke="#A57D40" strokeWidth={2} />
 			<path d={`M${box.x + 24} ${cy} l70 0 m-14 -10 l14 10 l-14 10`} stroke={palette.ink} strokeWidth={4} fill="none" />
-			<text x={box.x + 18} y={box.y + 34} fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.ink}>
+			<FigureText x={box.x + 18} y={box.y + 34} fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.ink}>
 				Kuşbakışı barkan
-			</text>
-			<text x={box.x + 22} y={cy + 34} fontFamily={palette.fontBody} fontWeight={700} fontSize={18} fill={palette.muted}>
+			</FigureText>
+			<FigureText x={box.x + 22} y={cy + 34} fontFamily={palette.fontBody} fontWeight={700} fontSize={18} fill={palette.muted}>
 				rüzgâr
-			</text>
+			</FigureText>
 		</g>
 	);
 };

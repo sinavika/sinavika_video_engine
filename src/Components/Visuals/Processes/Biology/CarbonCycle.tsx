@@ -3,7 +3,7 @@ import {clamp01, lerp, noise, smooth} from '../../../../Animations/Motion';
 import {withAlpha} from '../../../../Themes/Theme';
 import {useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
-import {pathOf} from '../../VisualWorld';
+import {pathOf, FigureText} from '../../VisualWorld';
 import {Grass, ProcessFrame, ProcessLabel, SCENE, Sky, Tree, processCamera, useProcessClock, type CameraBox, type Point} from '../ProcessScene';
 
 type ProcessSpec = Extract<CourseVisual, {kind: 'process'}>;
@@ -68,9 +68,9 @@ export const CarbonCycleProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}
 			<rect x={SCENE.left - 100} y={GROUND} width={1800} height={300} fill="#B28E66" />
 			<rect x={SCENE.left - 100} y={GROUND} width={1800} height={14} fill="#8DB86A" />
 			<path d={pathOf([[600, 600], [1600, 590], [1600, 600 - 34 * (0.35 + 0.65 * fossil)], [600, 604 - 30 * (0.35 + 0.65 * fossil)]], true)} fill="#2E2A26" />
-			<text x={1100} y={590} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill="#F3E9DA">
+			<FigureText x={1100} y={590} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill="#F3E9DA">
 				Kömür ve petrol
-			</text>
+			</FigureText>
 			<Grass ground={() => GROUND} x0={SCENE.left} x1={1100} count={24} seed={3} />
 			{TREES.map(([x, y], index) => (
 				<Tree key={x} x={x} y={y} size={1.5 + 0.1 * index} seed={index} />
@@ -134,9 +134,9 @@ export const CarbonCycleProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}
 			<g transform={`translate(${SCENE.right - 70} 110)`}>
 				<rect x={0} y={0} width={30} height={260} rx={15} fill="#FFFFFF" stroke={withAlpha(palette.ink, 0.3)} strokeWidth={3} />
 				<rect x={5} y={255 - 250 * meter} width={20} height={250 * meter} rx={10} fill="#E4572E" />
-				<text x={15} y={290} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={20} fill={palette.ink}>
+				<FigureText x={15} y={290} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={20} fill={palette.ink}>
 					CO₂
-				</text>
+				</FigureText>
 			</g>
 			<ProcessLabel id="fotosentez" at={[TREES[1][0], GROUND - 130]} to={[300, 140]} text="Yapraklar CO₂ alır" show={clock.now('fotosentez')} />
 			<ProcessLabel id="solunum" at={[ANIMAL[0] + 50, GROUND - 70]} to={[640, 200]} text="Solunumla CO₂ verilir" show={clock.now('solunum')} />

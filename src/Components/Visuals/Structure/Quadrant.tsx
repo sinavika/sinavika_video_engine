@@ -4,7 +4,8 @@ import {withAlpha} from '../../../Themes/Theme';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {useElementState} from '../VisualTimeline';
-import {Tag, usePartLook, W, World} from '../VisualWorld';
+import {fitSize} from '../FigureLabel';
+import {Tag, usePartLook, W, World, FigureText} from '../VisualWorld';
 
 type Quadrant = Extract<CourseVisual, {kind: 'quadrant'}>;
 
@@ -89,13 +90,13 @@ export const QuadrantVisual: React.FC<VisualBoxProps & {visual: Quadrant}> = ({v
 					const cx = x0 + 16 + (slot % columns) * (chipWidth + 12);
 					const cy = y0 + 18 + Math.floor(slot / columns) * pitch;
 					const solid = look.focused > 0.5 || lit > 0.5;
-					const size = Math.min(27, (chipWidth - 16) / Math.max(1, item.label.length * 0.56));
+					const size = Math.min(27, fitSize(item.label, chipWidth - 16));
 					return (
 						<g key={item.label} opacity={look.opacity}>
 							<rect x={cx} y={cy} width={chipWidth} height={pitch - 14} rx={12} fill={solid ? palette.lesson : palette.surface} stroke={palette.lesson} strokeWidth={2.5} />
-							<text x={cx + chipWidth / 2} y={cy + (pitch - 14) / 2 + size * 0.36} textAnchor="middle" fontSize={size} fontWeight={800} fill={solid ? palette.onLesson : palette.ink} fontFamily={palette.fontBody}>
+							<FigureText x={cx + chipWidth / 2} y={cy + (pitch - 14) / 2 + size * 0.36} textAnchor="middle" fontSize={size} fontWeight={800} fill={solid ? palette.onLesson : palette.ink} fontFamily={palette.fontBody}>
 								{item.label}
-							</text>
+							</FigureText>
 						</g>
 					);
 				});

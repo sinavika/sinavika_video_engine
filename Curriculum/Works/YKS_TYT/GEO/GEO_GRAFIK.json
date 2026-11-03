@@ -14,23 +14,49 @@
  "sourceScripts": [
   "Curriculum/Scripts/YKS_TYT/GEO/GEO_GRAFIK.json"
  ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/YKS/TYT/CikmisSorular/GEO/GEO_GRAFIK.json (ÖSYM 2019, GEO_GRAFIK_01 ve GEO_GRAFIK_04)",
+   "Curriculum/Scripts/YKS_TYT/GEO/GEO_GRAFIK.json"
+  ],
+  "additions": [
+   {
+    "note": "Daire grafiği okumayı ekle: 360° = %100, bir dilimin açısından yüzdesine ve miktarına geçiş; sütun ve çizgi grafiklerinden oran ve fark soruları.",
+    "done": "4. bölümde eklendi: daire grafiği kavram kartı ve tablosu (360° = %100, açıdan yüzdeye ve miktara geçiş), açı-yüzde eşleştirme, miktar bulma (blank), daire grafiği sorusu ve 'açı yüzde değildir' hata kartı; sütun ve çizgi grafikleri için fark-oran kural kartı, fark mı oran mı sınıflama kartı, sütun grafiğinde yüzde artış sorusu ve çizgi grafiğinde en büyük artış sorusu."
+   },
+   {
+    "note": "Kenarlar üzerinde hareket eden noktanın oluşturduğu alanın zamana göre grafiğini adım adım çizme ve grafikten şeklin kenarlarını bulma örnekleri ekle.",
+    "done": "3. bölümde eklendi: adım adım grafik çizme kural kartı, adımları sıralama kartı, dikdörtgende tam tur örneği (kırılma noktaları tablosuyla), t = 13 için blank, grafikten kenarları ve çevreyi bulan guided kartı ve t = 18 anındaki alanı soran test sorusu."
+   }
+  ],
+  "fixes": [
+   "Temeldeki sorularda ipuçları 'Cevap C' gibi cevap harfini ve son işlemi veriyordu; ipuçlarına çevrildi, harfler kaldırıldı, son işlem öğrenciye bırakıldı.",
+   "Tepe noktası sorusunda grafikteki (5, 25) etiketi cevabı açıkça veriyordu; etiketli nokta kaldırıldı.",
+   "Temelde art arda iki soru C cevaplıydı (koordinat hareketi ve bölge sorusu) ve simetri sorusu orijine göre simetri yüzünden her zaman 0 çıkıyordu; cevap dağılımı düzenlendi, simetri sorusu ABC üçgeninin alanını soran ayırt edici bir soruya çevrildi.",
+   "Doğrunun eksenlerle oluşturduğu üçgen sorusu, aynı bölümdeki görselin (3 ve 4, alan 6) birebir aynısıydı; farklı sayılarla yeniden kuruldu.",
+   "Temeldeki soru adımlarında ve soru kartında video sözleri ('Cevabımız', 'Bonus') ile yalnız seslendirmeye ait narration alanları vardı; yazılı ders için temizlendi."
+  ]
+ },
  "lesson": {
   "hook": {
-   "headline": "Bir şekil, bir grafik",
-   "narration": "Bir karenin kenarında yürüyen bir nokta düşün. Yürüdükçe bir üçgenin alanı önce büyür, sonra sabitlenir. Bu değişimi bir grafikle görmek, şekli hiç çizmeden soruyu çözmeni sağlar. Bu derste koordinat sistemini, nokta ve doğru grafiklerini, uzunluk-alan grafiklerini ve bir çizimdeki bilgiyi doğru okumayı öğreneceğiz."
+   "headline": "Bir şekil, bir grafik: şekli çizmeden soruyu çöz",
+   "narration": "Bir karenin kenarında yürüyen bir nokta düşün. Yürüdükçe oluşan üçgenin alanı önce büyür, sonra sabitlenir. Bu değişimi grafikle görmek, şekli hiç çizmeden soruyu çözmeni sağlar. Bu derste koordinat sistemini, doğru grafiklerini, hareketli noktanın alan grafiklerini ve daire, sütun, çizgi grafiklerinden bilgi okumayı öğreneceksin."
   },
   "objectives": [
-   "Koordinat düzleminde noktaları, bölgeleri ve hareketleri okumak",
+   "Koordinat düzleminde noktaları, bölgeleri, simetriyi ve hareketleri okumak",
    "Doğru grafiğinden eksenlerle oluşan üçgeni ve iki nokta arası uzaklığı bulmak",
-   "Hareket eden bir noktaya bağlı uzunluk ve alan grafiklerini yorumlamak",
-   "Bir çizimde uzaklık ve orta nokta bilgisini doğru okumak"
+   "Hareket eden noktanın alan-zaman grafiğini adım adım çizmek ve grafikten kenarları bulmak",
+   "Uzunluk ve alan grafiklerini yorumlamak",
+   "Bir çizimde uzaklık ve orta nokta bilgisini doğru okumak",
+   "Daire grafiğinde açıdan yüzdeye ve miktara geçmek",
+   "Sütun ve çizgi grafiklerinde oran ve fark sorularını çözmek"
   ],
   "sections": [
    {
     "subtopic": "GEO_GRAFIK_01",
     "subtopics": [],
     "title": "Koordinat sistemi",
-    "narration": "Geometriyi sayılarla yazmanın yolu: dik koordinat sistemi.",
+    "narration": "",
     "cards": [
      {
       "kind": "visual",
@@ -49,26 +75,31 @@
        "yLabel": "y",
        "curves": [],
        "parameters": {},
+       "showParameters": true,
        "points": [
         {
          "x": 3,
          "y": 2,
-         "label": "A(3, 2)"
+         "label": "A(3, 2)",
+         "style": "closed"
         },
         {
          "x": -2,
          "y": 4,
-         "label": "B(−2, 4)"
+         "label": "B(−2, 4)",
+         "style": "closed"
         },
         {
          "x": -3,
          "y": -1,
-         "label": "C(−3, −1)"
+         "label": "C(−3, −1)",
+         "style": "closed"
         },
         {
          "x": 2,
          "y": -3,
-         "label": "D(2, −3)"
+         "label": "D(2, −3)",
+         "style": "closed"
         }
        ],
        "segments": [],
@@ -76,67 +107,78 @@
        "axes": "origin"
       },
       "caption": "Bir nokta $(x, y)$ ile yazılır: önce yatay, sonra dikey. Eksenler düzlemi **dört bölgeye** ayırır.",
-      "beats": [
-       {
-        "narration": "A noktası üç sağda, iki yukarıda: üç virgül iki. B noktası iki solda, dört yukarıda: eksi iki virgül dört. Sola ve aşağıya gidiş eksi işaretlidir.",
-        "show": [],
-        "focus": [
-         "p1",
-         "p2"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Eksenler düzlemi dört bölgeye ayırır. Birinci bölgede iki koordinat da artı, ikincide x eksi, üçüncüde ikisi de eksi, dördüncüde y eksi. x ekseni üzerindeki noktanın y'si sıfır, y ekseni üzerindekinin x'i sıfırdır.",
-        "show": [],
-        "focus": [
-         "p3",
-         "p4"
-        ],
-        "swap": []
-       }
-      ],
-      "narration": "Yatay x ekseni ile dikey y ekseni, başlangıç noktasında dik kesişir. Her noktanın iki koordinatı vardır: önce yatay konum, sonra dikey konum."
+      "narration": "Yatay $x$ ekseni ile dikey $y$ ekseni başlangıç noktasında (orijinde) dik kesişir. Her noktanın iki koordinatı vardır: önce yatay konum, sonra dikey konum. $A(3, 2)$ noktası orijinden 3 birim sağda, 2 birim yukarıdadır. $B(-2, 4)$ noktası 2 birim solda, 4 birim yukarıdadır. Sola ve aşağıya gidiş negatif sayıyla gösterilir: $-2$ gibi."
      },
      {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Ece, $x$ ekseni üzerinde bir nokta işaretliyor. Sonra bu noktanın $x$ koordinatını $2$ azaltıp $y$ koordinatını $1$ artırarak yeni bir nokta buluyor ve bu işlemi her yeni noktaya uyguluyor. İkinci işlemden sonra $y$ ekseni üzerindeki bir noktaya ulaşıyor. Üçüncü işlemden sonra ulaştığı noktanın koordinatları toplamı kaçtır?",
-       "options": [
-        "−1",
-        "0",
-        "1",
-        "2",
-        "3"
-       ],
-       "answer": 2,
-       "steps": [
-        {
-         "text": "Noktalar: $(a, 0)$, $(a - 2, 1)$, $(a - 4, 2)$; $y$ ekseni → $a - 4 = 0$ → $a = 4$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Başlangıç x ekseninde: a virgül sıfır. Her işlemde x iki azalır, y bir artar: a eksi iki virgül bir, sonra a eksi dört virgül iki. Bu nokta y ekseninde, yani x sıfır: a dört."
-        },
-        {
-         "text": "Üçüncü işlem: $(-2, 3)$ → toplam $1$. Cevap **C**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Bir işlem daha: eksi iki virgül üç. Koordinatlar toplamı eksi iki artı üç, bir. Cevabımız C."
-        }
-       ],
-       "narration": "Başlangıç $(a, 0)$; $y$ ekseninde $x = 0$.",
-       "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2019 koordinat düzleminde adım adım hareket sorusunun yapısı farklı adım ve soru köküyle yeniden kuruldu."
+      "kind": "rule",
+      "title": "Bölgeler ve eksenler",
+      "items": [
+       "I. bölge $(+, +)$, II. bölge $(-, +)$, III. bölge $(-, -)$, IV. bölge $(+, -)$.",
+       "Bölgeler saat yönünün tersine numaralanır; I. bölge sağ üsttür.",
+       "$x$ ekseni üzerindeki noktada $y = 0$: $(a, 0)$.",
+       "$y$ ekseni üzerindeki noktada $x = 0$: $(0, b)$.",
+       "Eksenler üzerindeki noktalar **hiçbir bölgede** sayılmaz."
+      ],
+      "narration": "Bir noktanın bölgesini bulmak için iki koordinatın işaretine bakman yeter. Eksen üzerindeki noktalarda koordinatlardan biri 0'dır ve bu noktalar hiçbir bölgeye girmez. Örneğin $(5, 0)$ noktası $x$ ekseni, $(0, -2)$ noktası $y$ ekseni üzerindedir."
+     },
+     {
+      "kind": "classify",
+      "title": "Hangi bölge?",
+      "prompt": "Noktaları bulundukları bölgeye göre grupla.",
+      "groups": [
+       {
+        "label": "I. bölge",
+        "items": [
+         "$(5, 2)$",
+         "$(1, 7)$"
+        ]
+       },
+       {
+        "label": "II. bölge",
+        "items": [
+         "$(-3, 4)$",
+         "$(-1, 6)$"
+        ]
+       },
+       {
+        "label": "III. bölge",
+        "items": [
+         "$(-2, -5)$",
+         "$(-6, -1)$"
+        ]
+       },
+       {
+        "label": "IV. bölge",
+        "items": [
+         "$(4, -2)$",
+         "$(3, -6)$"
+        ]
        }
-      }
+      ],
+      "explanation": "İki koordinatın işaretine bakman yeterli: $(+, +)$ I, $(-, +)$ II, $(-, -)$ III, $(+, -)$ IV."
+     },
+     {
+      "kind": "predict",
+      "title": "Eksen üzerindeki nokta",
+      "prompt": "$(0, -3)$ noktası hangi bölgededir?",
+      "choices": [
+       "III. bölge",
+       "IV. bölge",
+       "Hiçbir bölgede değil"
+      ],
+      "answer": 2,
+      "explanation": "$x$ koordinatı 0 olduğu için nokta $y$ ekseni üzerindedir (orijinin 3 birim altında). Eksen üzerindeki noktalar hiçbir bölgede sayılmaz.",
+      "choiceFeedback": [
+       "$x$ koordinatı negatif değil, sıfır; tekrar bak.",
+       "$x$ koordinatı sıfır olduğunda nokta sağa kaymaz; tekrar bak.",
+       null
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Hareketi koordinata çevir",
+      "example": "$(2, 3)$ noktasından 4 birim sağa, 5 birim aşağı gidildiğinde varılan nokta ve bölgesi nedir?",
+      "explanation": "Sağa gitmek $x$'i artırır: $2 + 4 = 6$. Aşağı gitmek $y$'yi azaltır: $3 - 5 = -2$. Varılan nokta $(6, -2)$; $x$ pozitif, $y$ negatif olduğundan IV. bölgededir. Kural: sağ $+x$, sol $-x$, yukarı $+y$, aşağı $-y$."
      },
      {
       "kind": "question",
@@ -151,70 +193,139 @@
         "Bir eksen üzerinde"
        ],
        "answer": 2,
+       "choiceFeedback": [
+        "İki koordinatın da pozitif kaldığını varsaymışsın; batıya gitmek $x$'i, güneye gitmek $y$'yi azaltır.",
+        "$x$ için doğru yoldasın; $y$'yi $3 - 4$ olarak yeniden hesapla.",
+        null,
+        "$x$'i $2 - 5$ olarak yeniden hesapla; işaretini kontrol et.",
+        "Hiçbir koordinatın sıfır olması için gidilen yol başlangıç değerine eşit olmalı; bu soruda öyle değil."
+       ],
        "steps": [
         {
-         "text": "$(2 - 5,\\; 3 - 4) = (-3, -1)$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Beş birim batı, x'ten beş eksilt: eksi üç. Dört birim güney, y'den dört eksilt: eksi bir. Nokta eksi üç virgül eksi bir."
+         "text": "Batıya gitmek $x$'i, güneye gitmek $y$'yi azaltır."
         },
         {
-         "text": "İki koordinat da negatif → **III. bölge**. Cevap **C**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "İki koordinat da negatif: üçüncü bölge. Cevabımız C."
+         "text": "Yeni koordinatlar: $(2 - 5,\\; 3 - 4)$ işlemini yap."
+        },
+        {
+         "text": "İki koordinatın işaretine bak ve bölgeyi tablodan oku."
         }
        ],
-       "narration": "Sol: $x$ azalır; aşağı: $y$ azalır.",
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki yön tarifli koordinat hareketi yapısı özgün değerlerle kuruldu."
+        "changes": "Havuzdaki yön tarifli koordinat hareketi yapısı özgün değerlerle kuruldu."
        }
       }
+     },
+     {
+      "kind": "mistake",
+      "title": "Koordinat sırası",
+      "wrong": "$(2, 5)$ ile $(5, 2)$ aynı noktayı gösterir; koordinatların sırası önemli değildir.",
+      "right": "Sıra önemlidir: önce $x$ (yatay), sonra $y$ (dikey). $(2, 5)$ ile $(5, 2)$ farklı noktalardır.",
+      "why": "$(2, 5)$ noktası 2 birim sağda, 5 birim yukarıdadır; $(5, 2)$ noktası 5 birim sağda, 2 birim yukarıdadır. Sıra karışırsa uzaklık ve orta nokta sorularında sonuç yanlış çıkar."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$A(-2, 3)$ noktasının $x$ eksenine göre simetriği $B$, $y$ eksenine göre simetriği $C$'dir. $B$ ile $C$'nin koordinatları toplamı kaçtır?",
+       "stem": "Ece, $x$ ekseni üzerinde bir nokta işaretliyor. Bu noktanın $x$ koordinatını $3$ azaltıp $y$ koordinatını $2$ artırarak ikinci noktayı, ikinci noktaya aynı işlemi uygulayarak üçüncü noktayı buluyor. Üçüncü nokta $y$ ekseni üzerindedir. Ece aynı işlemi üçüncü noktaya da uygulayarak dördüncü noktayı buluyor. Dördüncü noktanın koordinatları toplamı kaçtır?",
        "options": [
-        "−3",
-        "−2",
-        "−1",
-        "0",
-        "2"
+        "3",
+        "4",
+        "6",
+        "9",
+        "12"
        ],
-       "answer": 3,
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "Bu sayı üçüncü noktanın koordinatları toplamıdır; bir işlem daha uygulaman gerekiyor.",
+        "Bu değer dördüncü noktanın yalnız bir koordinatına denk geliyor; iki koordinatı da hesaba kat.",
+        "İşaretleri ya da işlem sayısını yeniden kontrol et: $x$ azalıyor, $y$ artıyor.",
+        "İşaretleri ya da işlem sayısını yeniden kontrol et: $x$ azalıyor, $y$ artıyor."
+       ],
        "steps": [
         {
-         "text": "$B(-2, -3)$, $C(2, 3)$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "x eksenine göre simetride x aynı kalır, y'nin işareti değişir: B eksi iki virgül eksi üç. y eksenine göre simetride y aynı kalır, x'in işareti değişir: C iki virgül üç."
+         "text": "Başlangıç noktası $(a, 0)$; her işlemde $x$ 3 azalır, $y$ 2 artar."
         },
         {
-         "text": "Toplam $(-2) + (-3) + 2 + 3 = 0$. Cevap **D**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Dört koordinatın toplamı sıfır: B ile C başlangıç noktasına göre birbirinin simetriğidir. Cevabımız D."
+         "text": "İkinci ve üçüncü noktaları $a$ cinsinden yaz; üçüncüsü $y$ ekseni üzerinde, yani $x = 0$."
+        },
+        {
+         "text": "$a$'yı bulunca dördüncü noktayı bir işlem daha uygulayarak elde et ve koordinatlarını topla."
         }
        ],
-       "narration": "$x$ eksenine göre $y$'nin, $y$ eksenine göre $x$'in işareti değişir.",
        "origin": {
-        "changes": "Bu ders için yazıldı; eksenlere göre simetri özgün bir koordinat sorusuyla gösterildi."
+        "changes": "ÖSYM 2019 adım adım hareket sorusunun kalıbı alındı; işlem miktarları, nokta sayısı ve soru kökü yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Eksenlere göre simetri",
+      "text": "Bir noktanın **$x$ eksenine göre** simetriğinde $x$ aynı kalır, $y$'nin işareti değişir: $(a, b) \\to (a, -b)$. **$y$ eksenine göre** simetriğinde $y$ aynı kalır, $x$'in işareti değişir: $(a, b) \\to (-a, b)$. **Orijine göre** simetriğinde iki işaret de değişir: $(a, b) \\to (-a, -b)$.",
+      "caption": "Eksen üzerindeki bir noktanın o eksene göre simetriği kendisidir."
+     },
+     {
+      "kind": "match",
+      "title": "Simetriği bul",
+      "prompt": "Her işlemi sonucuyla eşleştir.",
+      "titles": [
+       "Nokta ve işlem",
+       "Simetriği"
+      ],
+      "pairs": [
+       {
+        "left": "$P(5, -2)$'nin $x$ eksenine göre simetriği",
+        "right": "$(5, 2)$"
+       },
+       {
+        "left": "$P(5, -2)$'nin $y$ eksenine göre simetriği",
+        "right": "$(-5, -2)$"
+       },
+       {
+        "left": "$P(5, -2)$'nin orijine göre simetriği",
+        "right": "$(-5, 2)$"
+       },
+       {
+        "left": "$(0, 4)$'ün $x$ eksenine göre simetriği",
+        "right": "$(0, -4)$"
+       }
+      ],
+      "explanation": "$x$ eksenine göre yalnız $y$'nin, $y$ eksenine göre yalnız $x$'in işareti değişir; orijine göre ikisi de değişir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$A(-4, 3)$ noktasının $x$ eksenine göre simetriği $B$, $y$ eksenine göre simetriği $C$'dir. $ABC$ üçgeninin alanı kaç birimkaredir?",
+       "options": [
+        "8",
+        "12",
+        "14",
+        "24",
+        "48"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "Dik kenarları koordinat farklarından yeniden bul; koordinatın kendisi uzunluk değildir.",
+        "Kenarlardan birini yarı değerinde almış olabilirsin; $|AB|$ ve $|AC|$'yi koordinat farkıyla yeniden bul.",
+        "Dik kenarları toplamışsın; alan çarpımın yarısıdır.",
+        null,
+        "Dik kenarların çarpımını bulmuşsun; üçgen alanındaki $\\frac{1}{2}$ çarpanını unutma."
+       ],
+       "steps": [
+        {
+         "text": "$B$ ve $C$ noktalarının koordinatlarını simetri kuralıyla bul."
+        },
+        {
+         "text": "$A$ ile $B$ aynı dikey doğru üzerinde, $A$ ile $C$ aynı yatay doğru üzerinde: dik kenarlar bunlardır."
+        },
+        {
+         "text": "$|AB|$ ve $|AC|$'yi koordinat farkından bul; dik üçgenin alanı dik kenarların çarpımının yarısıdır."
+        }
+       ],
+       "origin": {
+        "changes": "Eksenlere göre simetri, özgün bir koordinat ve alan sorusuna dönüştürüldü."
        }
       }
      }
@@ -224,7 +335,7 @@
     "subtopic": "GEO_GRAFIK_02",
     "subtopics": [],
     "title": "Nokta ve doğru grafikleri",
-    "narration": "Bir doğru grafiği, eksenleri kestiği yerlerle hemen bir üçgen verir.",
+    "narration": "",
     "cards": [
      {
       "kind": "visual",
@@ -248,20 +359,25 @@
          "ends": [
           "none",
           "none"
-         ]
+         ],
+         "trace": false,
+         "piece": false
         }
        ],
        "parameters": {},
+       "showParameters": true,
        "points": [
         {
          "x": 0,
          "y": 3,
-         "label": "(0, 3)"
+         "label": "(0, 3)",
+         "style": "closed"
         },
         {
          "x": 4,
          "y": 0,
-         "label": "(4, 0)"
+         "label": "(4, 0)",
+         "style": "closed"
         }
        ],
        "segments": [],
@@ -269,107 +385,131 @@
        "axes": "origin"
       },
       "caption": "Doğrunun $x$ eksenini kestiği yerde $y = 0$, $y$ eksenini kestiği yerde $x = 0$; eksenlerle bir **dik üçgen** kurar.",
-      "beats": [
+      "narration": "Bu doğru $y$ eksenini $(0, 3)$, $x$ eksenini $(4, 0)$ noktasında kesiyor. Bu iki kesim noktası ile başlangıç noktası bir dik üçgen kurar: dik kenarlar 3 ve 4'tür. Alan $\\frac{3 \\cdot 4}{2} = 6$ birimkaredir; doğrunun iki kesim noktası arasındaki parçası, yani hipotenüs, $\\sqrt{9 + 16} = 5$ birimdir. İki nokta arasındaki uzaklık da hep böyle bulunur: yatay fark ve dikey fark bir dik üçgenin dik kenarlarıdır, uzaklık hipotenüstür."
+     },
+     {
+      "kind": "rule",
+      "title": "Kesim noktalarını bulma",
+      "items": [
+       "$x$ eksenini kestiği nokta: denklemde $y = 0$ yaz, $x$'i bul.",
+       "$y$ eksenini kestiği nokta: denklemde $x = 0$ yaz, $y$'yi bul.",
+       "Eksenlerle oluşan dik üçgenin dik kenarları, kesim noktalarının orijine uzaklıklarıdır: $|a|$ ve $|b|$.",
+       "Üçgenin alanı $\\frac{|a| \\cdot |b|}{2}$.",
+       "Kesim noktaları negatif olsa da uzunluk mutlak değerle alınır; alan negatif olmaz."
+      ],
+      "narration": "Doğrunun denklemi verilmişse kesim noktaları denklemden bulunur. Örneğin $2x + 3y = 12$ için $y = 0$ koyunca $x = 6$, $x = 0$ koyunca $y = 4$ çıkar. Kesim noktaları $(6, 0)$ ve $(0, 4)$ olur; eksenlerle oluşan üçgenin alanı $\\frac{6 \\cdot 4}{2} = 12$ birimkaredir."
+     },
+     {
+      "kind": "blank",
+      "title": "Kesim noktasını bul",
+      "prompt": "$3x + 4y = 12$ doğrusunun $x$ eksenini kestiği noktanın $x$ koordinatı kaçtır?",
+      "before": "$x =$",
+      "answers": [
+       "4"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 4,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
        {
-        "narration": "Kesim noktaları ile başlangıç noktası bir dik üçgen kurar: dik kenarlar üç ve dört. Alanı üç çarpı dört bölü iki, altı; hipotenüs, yani doğrunun bu iki nokta arasındaki parçası, beş.",
-        "show": [],
-        "focus": [
-         "c1",
-         "p1",
-         "p2"
-        ],
-        "swap": []
+        "answer": "3",
+        "feedback": "3, doğrunun $y$ eksenini kestiği yerdir ($x = 0$ için $4y = 12$). $x$ ekseni için $y = 0$ koy."
        },
        {
-        "narration": "İki nokta arasındaki uzaklık da hep böyle bulunur: yatay fark ve dikey fark bir dik üçgenin dik kenarlarıdır, uzaklık hipotenüstür.",
-        "show": [],
-        "focus": [
-         "c1"
-        ],
-        "swap": []
+        "answer": "12",
+        "feedback": "$3x = 12$ denkleminin iki yanını 3'e bölmeyi unutmuşsun."
        }
       ],
-      "narration": "Bu doğru y eksenini sıfır virgül üç noktasında, x eksenini dört virgül sıfır noktasında kesiyor."
+      "explanation": "$y = 0$ yazınca $3x = 12$ olur, $x = 4$. Kesim noktası $(4, 0)$."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Bir doğru $y$ eksenini $(0, 3)$, $x$ eksenini $(4, 0)$ noktasında kesiyor. Bu doğrunun eksenlerle oluşturduğu üçgenin alanı kaç birimkaredir?",
+       "stem": "Bir doğru $y$ eksenini $(0, 6)$, $x$ eksenini $(4, 0)$ noktasında kesiyor. Bu doğrunun eksenlerle oluşturduğu üçgenin alanı kaç birimkaredir?",
        "options": [
-        "3",
-        "6",
-        "7",
+        "10",
         "12",
-        "24"
+        "20",
+        "24",
+        "48"
        ],
        "answer": 1,
+       "choiceFeedback": [
+        "Dik kenarları toplamışsın; alan toplam değil çarpımın yarısıdır.",
+        null,
+        "Alan formülünde kenarlar toplanmaz; dik kenarların çarpımına bak.",
+        "Dik kenarları çarpmışsın; üçgen alanındaki $\\frac{1}{2}$ çarpanını unutma.",
+        "Çarpımı bulmuş ve ikiye katlamışsın; alan çarpımın yarısıdır."
+       ],
        "steps": [
         {
-         "text": "Dik üçgenin dik kenarları $3$ ve $4$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Kesim noktaları ile başlangıç noktası bir dik üçgen kurar; dik kenarlar üç ve dört."
+         "text": "Eksenlerle oluşan üçgenin dik açısı başlangıç noktasındadır."
         },
         {
-         "text": "Alan $\\frac{3 \\cdot 4}{2} = 6$. Cevap **B**.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Alan üç çarpı dört bölü iki, altı birimkare. Cevabımız B. On ikiyi seçen, ikiye bölmeyi unutmuştur."
+         "text": "Dik kenarlar, kesim noktalarının başlangıca uzaklığıdır: 6 ve 4."
+        },
+        {
+         "text": "Dik üçgenin alanı, dik kenarların çarpımının yarısıdır."
         }
        ],
-       "narration": "Dik kenarlar, kesim noktalarının başlangıca uzaklıkları.",
        "origin": {
-        "changes": "Bu ders için yazıldı; doğrunun eksenlerle oluşturduğu üçgenin alanı özgün değerlerle soruldu."
+        "changes": "Doğrunun eksenlerle oluşturduğu üçgenin alanı, özgün kesim noktalarıyla soruldu."
        }
       }
      },
      {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Pozitif bölgede kalan bir doğru, $x$ eksenini $(6, 0)$ noktasında kesiyor ve eksenlerle alanı $12$ birimkare olan bir üçgen oluşturuyor. Bu doğru $y$ eksenini hangi noktada keser?",
-       "options": [
-        "$(0, 2)$",
-        "$(0, 3)$",
-        "$(0, 4)$",
-        "$(0, 6)$",
-        "$(0, 8)$"
-       ],
-       "answer": 2,
-       "steps": [
-        {
-         "text": "$\\frac{6 \\cdot b}{2} = 12$ → $b = 4$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Üçgenin dik kenarları altı ve y eksenindeki kesim b. Alan altı çarpı b bölü iki, on iki; b dört."
-        },
-        {
-         "text": "Kesim noktası $(0, 4)$. Cevap **C**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Doğru y eksenini sıfır virgül dört noktasında keser. Cevabımız C. Sıfır virgül ikiyi seçen, alanı altıya bölmüş ama ikiyle çarpmayı unutmuştur."
-        }
-       ],
-       "narration": "Alan $= \\frac{6 \\cdot b}{2}$.",
-       "origin": {
-        "changes": "Bu ders için yazıldı; doğrunun eksenlerle oluşturduğu üçgenden kesim noktası bulma özgün değerlerle soruldu."
-       }
+      "kind": "predict",
+      "title": "Negatif kesim noktaları",
+      "context": "Bir doğru $(-5, 0)$ ve $(0, -2)$ noktalarından geçiyor.",
+      "prompt": "Eksenlerle oluşan üçgenin alanı 5 birimkaredir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Dik kenarlar $|-5| = 5$ ve $|-2| = 2$ olur. Alan $\\frac{5 \\cdot 2}{2} = 5$ birimkaredir.",
+      "choiceFeedback": [
+       null,
+       "Uzunluklar mutlak değerle alınır: 5 ve 2. Alanı yeniden hesapla."
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Negatif alan olmaz",
+      "wrong": "Doğru eksenleri $(-4, 0)$ ve $(0, 3)$ noktalarında kesiyorsa oluşan üçgenin alanı negatif çıkar.",
+      "right": "Alan hiçbir zaman negatif olmaz; uzunluklar mutlak değerle alınır: $\\frac{|-4| \\cdot 3}{2} = 6$.",
+      "why": "Koordinatın işareti yönü gösterir, uzunluğu değil. Dik kenar uzunlukları $|a|$ ve $|b|$'dir; bu yüzden alan her zaman pozitiftir."
+     },
+     {
+      "kind": "concept",
+      "title": "İki nokta arası uzaklık",
+      "text": "$A(x_1, y_1)$ ve $B(x_2, y_2)$ için yatay fark $|x_2 - x_1|$, dikey fark $|y_2 - y_1|$'dir. Bu iki fark bir dik üçgenin dik kenarlarıdır ve $|AB|$ bu üçgenin hipotenüsüdür. Farkları toplamak yanlıştır: uzaklık, Pisagor teoremiyle bulunur.",
+      "visual": {
+       "kind": "formula",
+       "latex": "|AB| = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}",
+       "caption": "Pisagor teoreminin koordinat biçimi"
       }
+     },
+     {
+      "kind": "findError",
+      "title": "Hatalı satırı bul",
+      "problem": "$A(1, 2)$ ve $B(4, 6)$ noktaları arasındaki uzaklık aşağıdaki gibi bulunmuştur.",
+      "prompt": "Hangi satırda hata var?",
+      "steps": [
+       "Yatay fark: $4 - 1 = 3$.",
+       "Dikey fark: $6 - 2 = 4$.",
+       "$|AB| = 3 + 4 = 7$ birim."
+      ],
+      "wrongStep": 2,
+      "choiceFeedback": [
+       "Bu satır doğru: iki $x$'in farkı.",
+       "Bu satır doğru: iki $y$'nin farkı.",
+       null
+      ],
+      "explanation": "Uzaklık, farkların toplamı değil hipotenüsüdür: $|AB| = \\sqrt{3^2 + 4^2} = 5$ birim."
      },
      {
       "kind": "question",
@@ -390,21 +530,19 @@
         "yLabel": "y",
         "curves": [],
         "parameters": {},
+        "showParameters": true,
         "points": [
          {
           "x": 1,
           "y": 1,
-          "label": "A(1, 1)"
+          "label": "A(1, 1)",
+          "style": "closed"
          },
          {
           "x": 5,
           "y": 4,
-          "label": "B(5, 4)"
-         },
-         {
-          "x": 5,
-          "y": 1,
-          "label": "K(5, 1)"
+          "label": "B(5, 4)",
+          "style": "closed"
          }
         ],
         "segments": [],
@@ -419,30 +557,79 @@
         "7"
        ],
        "answer": 3,
+       "choiceFeedback": [
+        "$|AB|$'yi tek bir koordinat farkı sanmış olabilirsin; hem yatay hem dikey fark var.",
+        "Bu, dikey farktır; yatay fark da hesaba girmeli.",
+        "Bu, yatay farktır; dikey fark da hesaba girmeli.",
+        null,
+        "Farkları toplamışsın; uzaklık, bu farkların oluşturduğu dik üçgenin hipotenüsüdür."
+       ],
        "steps": [
         {
-         "text": "$|AK| = 5 - 1 = 4$, $|KB| = 4 - 1 = 3$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "K beş virgül bir noktası, A ile aynı yükseklikte, B'nin tam altında. A K yatay fark, dört; K B dikey fark, üç."
+         "text": "$A$ ile $B$'nin yatay ve dikey farklarını bul.",
+         "visual": {
+          "kind": "comparison",
+          "columns": [
+           {
+            "title": "Yatay fark",
+            "items": [
+             "$x$ koordinatlarının farkı"
+            ]
+           },
+           {
+            "title": "Dikey fark",
+            "items": [
+             "$y$ koordinatlarının farkı"
+            ]
+           }
+          ]
+         }
         },
         {
-         "text": "$|AB| = \\sqrt{16 + 9} = 5$. Cevap **D**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "A K B dik üçgeninde üç, dört, beş: A B beş birim. Cevabımız D. Yediyi seçen, farkları toplamıştır; kuş uçuşu uzaklık hipotenüstür."
+         "text": "Bu iki fark bir dik üçgenin dik kenarlarıdır."
+        },
+        {
+         "text": "Hipotenüsü Pisagor ile hesapla; farkları toplama."
         }
        ],
-       "narration": "$K(5, 1)$ ile bir dik üçgen kur.",
        "origin": {
-        "changes": "Bu ders için yazıldı; iki nokta arasındaki uzaklık koordinat düzleminde dik üçgenle özgün bir soruda gösterildi."
+        "changes": "İki nokta arasındaki uzaklık, koordinat düzleminde dik üçgenle özgün bir soruda gösterildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Pozitif bölgede kalan bir doğru, $x$ eksenini $(6, 0)$ noktasında kesiyor ve eksenlerle alanı $12$ birimkare olan bir üçgen oluşturuyor. Bu doğru $y$ eksenini hangi noktada keser?",
+       "options": [
+        "$(0, 2)$",
+        "$(0, 3)$",
+        "$(0, 4)$",
+        "$(0, 6)$",
+        "$(0, 8)$"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "12'yi yalnız 6'ya bölmüşsün; alan formülündeki $\\frac{1}{2}$ çarpanını unutma.",
+        "Alan denklemini yeniden kur: $\\frac{6 \\cdot b}{2} = 12$.",
+        null,
+        "$y$ kesimini $x$ kesimiyle karıştırmış olabilirsin; alan denklemini yeniden kur.",
+        "Alan denklemini yeniden kur: $\\frac{6 \\cdot b}{2} = 12$."
+       ],
+       "steps": [
+        {
+         "text": "$y$ eksenindeki kesim noktası $(0, b)$ olsun; dik kenarlar 6 ve $b$."
+        },
+        {
+         "text": "Alan eşitliğini yaz: $\\frac{6 \\cdot b}{2} = 12$."
+        },
+        {
+         "text": "Denklemi çöz ve bulduğun $b$ ile kesim noktasını yaz."
+        }
+       ],
+       "origin": {
+        "changes": "Doğrunun eksenlerle oluşturduğu üçgenden kesim noktası bulma, özgün değerlerle soruldu."
        }
       }
      }
@@ -452,7 +639,7 @@
     "subtopic": "GEO_GRAFIK_03",
     "subtopics": [],
     "title": "Uzunluk ve alan grafikleri",
-    "narration": "Bir nokta şekil üzerinde hareket ederken bir alanın nasıl değiştiğini grafikle gösterelim.",
+    "narration": "",
     "cards": [
      {
       "kind": "visual",
@@ -471,6 +658,7 @@
        "yLabel": "A(APD)",
        "curves": [],
        "parameters": {},
+       "showParameters": true,
        "series": {
         "kind": "line",
         "values": [
@@ -493,7 +681,8 @@
         {
          "x": 4,
          "y": 8,
-         "label": "P, B'de"
+         "label": "P, B'de",
+         "style": "closed"
         }
        ],
        "segments": [],
@@ -501,25 +690,113 @@
        "axes": "origin"
       },
       "caption": "Kenarı $4$ olan $ABCD$ karesinde $P$, $A$'dan $B$'ye, sonra $C$'ye gider; $A(APD)$ önce **doğrusal artar**, sonra **sabit** kalır.",
-      "beats": [
-       {
-        "narration": "P, A B üzerindeyken üçgenin tabanı A D, dört; yüksekliği P'nin A D'ye uzaklığı, yani x. Alan iki x: grafik başlangıçtan doğrusal yükselir ve x dörtte sekize ulaşır.",
-        "show": [],
-        "focus": [
-         "p1"
+      "narration": "Kenarı 4 olan karede $P$ noktası $A$'dan yola çıkıp önce $B$'ye, sonra $C$'ye gidiyor; aldığı yola $x$ diyelim. $P$, $[AB]$ üzerindeyken $APD$ üçgeninin tabanı $|AD| = 4$, yüksekliği $P$'nin $AD$'ye uzaklığı yani $x$'tir: $A(APD) = \\frac{4x}{2} = 2x$. Grafik başlangıçtan doğrusal yükselir ve $x = 4$'te 8'e ulaşır. $P$, $[BC]$ üzerine geçince yükseklik hep 4 kalır; alan 8'de sabittir ve grafik yatay çizgiye döner. Böyle sorularda her parçada neyin değiştiğine, neyin sabit kaldığına bak."
+     },
+     {
+      "kind": "rule",
+      "title": "Alan grafiğini adım adım çiz",
+      "items": [
+       "Şekli, noktanın gittiği kenarlara ayır ve her kenarın uzunluğunu yaz.",
+       "Her kenar için üçgenin tabanını ve yüksekliğini belirle: hangisi değişiyor, hangisi sabit?",
+       "Kenara özel alan ifadesini yaz: artıyorsa $kx$, sabitse bir sayı, azalıyorsa $c - kx$.",
+       "Her köşe bir **kırılma noktasıdır**: grafik köşede eğim değiştirir.",
+       "Kırılma noktalarındaki değerleri tabloya yaz ve noktaları doğru parçalarıyla birleştir.",
+       "Grafikten okurken: iki kırılma noktası arasındaki yatay uzaklık o kenarın uzunluğudur (hız 1 ise).",
+       "Alanın sabit kaldığı değer, taban $\\times$ yükseklik $\\div 2$ formülüne konup öbür kenar bulunur."
+      ],
+      "narration": "Hareketli nokta sorularında grafiği çizmek, her kenarı ayrı bir küçük soruya çevirmektir. Köşe geldikçe formül değişir; bu yüzden grafik köşelerde kırılır. Yatay eksen zaman ya da yol olabilir; nokta saniyede 1 cm gidiyorsa ikisi aynı sayıdır. Grafikten kenar bulurken bu işlemi tersine çevirirsin: kırılma noktaları arasındaki yatay uzunluklar kenarları verir, sabit alan değeri de öbür kenarı bulmak için kullanılır."
+     },
+     {
+      "kind": "visual",
+      "title": "Adımları sırala",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "Kenarlara ayır",
+         "detail": "Köşe sırasıyla"
+        },
+        {
+         "label": "Taban ve yükseklik",
+         "detail": "Hangisi değişiyor?"
+        },
+        {
+         "label": "Kenar formülü",
+         "detail": "Artan, sabit ya da azalan"
+        },
+        {
+         "label": "Kırılma noktaları",
+         "detail": "Köşelerde değeri yaz"
+        },
+        {
+         "label": "Grafiği çiz",
+         "detail": "Noktaları birleştir"
+        }
+       ]
+      },
+      "caption": "Alan grafiğini çizerken izlenecek adımları doğru sıraya diz."
+     },
+     {
+      "kind": "example",
+      "title": "Dikdörtgende tam tur",
+      "example": "$|AB| = 6$, $|BC| = 4$ olan $ABCD$ dikdörtgeninde $P$, $A$'dan başlayıp $B$, $C$, $D$ yönünde saniyede 1 cm hızla ilerliyor. $A(APD)$'nin $t$'ye göre grafiğinin kırılma noktalarını bulun.",
+      "explanation": "Taban $|AD| = 4$ sabittir; yükseklik $P$'nin $AD$'ye uzaklığıdır. $[AB]$ üzerinde ($0 \\le t \\le 6$): yükseklik $t$, alan $\\frac{4t}{2} = 2t$; $t = 6$'da 12. $[BC]$ üzerinde ($6 \\le t \\le 10$): yükseklik 6 sabit, alan 12 sabit. $[CD]$ üzerinde ($10 \\le t \\le 16$): $P$, $D$'ye yaklaşırken yükseklik $16 - t$, alan $2(16 - t)$; $t = 16$'da 0. Grafik $(0, 0)$, $(6, 12)$, $(10, 12)$, $(16, 0)$ noktalarını birleştirir: yamuk biçiminde.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "t (sn)",
+        "P",
+        "A(APD)"
+       ],
+       "rows": [
+        [
+         "0",
+         "A",
+         "0"
         ],
-        "swap": []
+        [
+         "6",
+         "B",
+         "12"
+        ],
+        [
+         "10",
+         "C",
+         "12"
+        ],
+        [
+         "16",
+         "D",
+         "0"
+        ]
+       ]
+      }
+     },
+     {
+      "kind": "blank",
+      "title": "13. saniyede alan",
+      "prompt": "Aynı dikdörtgende $t = 13$ saniyede $A(APD)$ kaç cm²'dir?",
+      "before": "$A(APD) =$",
+      "after": "cm²",
+      "answers": [
+       "6"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 6,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "12",
+        "feedback": "12, $P$'nin $[BC]$ üzerindeki sabit değeridir; $t = 13$'te $P$ hangi kenarda?"
        },
        {
-        "narration": "P, B C üzerine geçince yüksekliği hep dört kalır: alan sekizde sabit. Grafik yatay bir çizgiye döner. Böyle sorularda her parçada neyin değiştiğine, neyin sabit kaldığına bak.",
-        "show": [],
-        "focus": [
-         "p1"
-        ],
-        "swap": []
+        "answer": "26",
+        "feedback": "$2t$ formülü yalnız $[AB]$ üzerindeyken geçerlidir."
        }
       ],
-      "narration": "Kenarı dört olan bir karede P noktası A'dan yola çıkıyor, önce B'ye, sonra C'ye gidiyor. Aldığı yola x diyelim ve A P D üçgeninin alanını izleyelim."
+      "explanation": "$t = 13$'te $P$, $[CD]$ üzerinde ve $D$'ye 3 cm kalmıştır. Yükseklik 3, alan $\\frac{4 \\cdot 3}{2} = 6$. Formülle: $2(16 - 13) = 6$."
      },
      {
       "kind": "question",
@@ -542,7 +819,8 @@
            0
           ],
           "hidden": false,
-          "dot": true
+          "dot": true,
+          "caption": false
          },
          {
           "id": "B",
@@ -551,7 +829,8 @@
            0
           ],
           "hidden": false,
-          "dot": true
+          "dot": true,
+          "caption": false
          },
          {
           "id": "C",
@@ -560,7 +839,8 @@
            4
           ],
           "hidden": false,
-          "dot": true
+          "dot": true,
+          "caption": false
          },
          {
           "id": "D",
@@ -569,7 +849,8 @@
            4
           ],
           "hidden": false,
-          "dot": true
+          "dot": true,
+          "caption": false
          },
          {
           "id": "P",
@@ -578,7 +859,8 @@
            1.6
           ],
           "hidden": false,
-          "dot": true
+          "dot": true,
+          "caption": false
          }
         ],
         "segments": [
@@ -627,7 +909,8 @@
            "P",
            "D"
           ],
-          "fill": true
+          "fill": true,
+          "shade": 1
          }
         ],
         "circles": [],
@@ -641,32 +924,158 @@
         "12"
        ],
        "answer": 3,
+       "choiceFeedback": [
+        "$P$'nin konumuna bağlı bir değer bulmuş olabilirsin; $[BC]$ üzerinde alan sabittir.",
+        "Tabanı ya da yüksekliği tek başına almış olabilirsin; ikisini de alan formülüne yaz.",
+        "Yüksekliği 3 almış olabilirsin; $P$ hangi noktada olursa olsun, $[BC]$ üzerinde $AD$'ye uzaklığı kenar uzunluğudur.",
+        null,
+        "Alan formülünde $\\frac{1}{2}$ çarpanını unutmuş olabilirsin."
+       ],
        "steps": [
         {
-         "text": "$P \\in [BC]$ iken $P$'nin $AD$'ye uzaklığı $= |AB| = 4$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Üçgenin tabanı A D, dört. P, B C üzerindeyken A D'ye uzaklığı hep karenin kenarı, dört."
+         "text": "Üçgenin tabanı $[AD]$; uzunluğu karenin kenarına eşittir."
         },
         {
-         "text": "$A(APD) = \\frac{4 \\cdot 4}{2} = 8$, $P$ nerede olursa olsun. Cevap **D**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Alan dört çarpı dört bölü iki, sekiz santimetrekare; P, B C üzerinde nereye kayarsa kaysın değişmez. Bu, grafiğin yatay kısmıdır. Cevabımız D."
+         "text": "$[BC]$ ile $[AD]$ paraleldir: $P$, $[BC]$ üzerindeyken $AD$'ye uzaklığı hep aynıdır."
+        },
+        {
+         "text": "Taban ve yüksekliği üçgen alan formülüne yaz."
         }
        ],
-       "narration": "Taban $[AD]$, yükseklik $P$'nin $AD$'ye uzaklığı.",
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki uzunluk-alan grafiği yapısı, kare üzerinde hareket eden bir noktayla özgün biçimde kuruldu."
+        "changes": "Havuzdaki uzunluk-alan grafiği yapısı, kare üzerinde hareket eden bir noktayla özgün biçimde kuruldu."
        }
       }
+     },
+     {
+      "kind": "mistake",
+      "title": "Köşeden sonra alan",
+      "wrong": "$P$ noktası $B$ köşesini geçtikten sonra da $A(APD)$ aynı hızla artmaya devam eder.",
+      "right": "Köşede formül değişir. $[BC]$ üzerinde yükseklik sabit kaldığı için alan değişmez, grafik yataylaşır.",
+      "why": "Alan = taban $\\times$ yükseklik $\\div 2$. $P$, $AD$'ye paralel bir kenar üzerinde ilerlerken yükseklik değişmez; alan da değişmez."
+     },
+     {
+      "kind": "guided",
+      "title": "Grafikten kenarları bul",
+      "stem": "$ABCD$ dikdörtgeninde $P$, $A$'dan başlayıp $B$, $C$, $D$ yönünde saniyede 1 cm hızla ilerliyor. $A(APD)$'nin $t$'ye göre grafiği, tablodaki kırılma noktalarını doğru parçalarıyla birleştirir. Dikdörtgenin çevresini bulalım.",
+      "figure": {
+       "kind": "table",
+       "header": [
+        "t (sn)",
+        "A(APD)"
+       ],
+       "rows": [
+        [
+         "0",
+         "0"
+        ],
+        [
+         "5",
+         "10"
+        ],
+        [
+         "9",
+         "10"
+        ],
+        [
+         "14",
+         "0"
+        ]
+       ]
+      },
+      "steps": [
+       {
+        "prompt": "Grafik $t = 5$'e kadar artıyor, sonra sabit kalıyor. $P$, $t = 5$'te hangi köşededir?",
+        "choices": [
+         "B köşesinde",
+         "C köşesinde",
+         "D köşesinde"
+        ],
+        "answer": 0,
+        "choiceFeedback": [
+         null,
+         "Alan sabitlenmeye yeni başlıyor; $P$ ilk köşeye ulaşmıştır.",
+         "Alan hâlâ sıfıra inmedi; $P$ ilk köşeye ulaşmıştır."
+        ],
+        "explanation": "Alanın artışı biter bitmez $P$ ilk köşeye (B) gelmiştir; yani $|AB| = 5$."
+       },
+       {
+        "prompt": "Alan $t = 5$ ile $t = 9$ arasında sabit; bu aralıkta $P$, $[BC]$ üzerindedir. $|BC|$ kaç cm?",
+        "before": "$|BC| =$",
+        "answers": [
+         "4"
+        ],
+        "input": "number",
+        "explanation": "Saniyede 1 cm hızla $9 - 5 = 4$ cm yol alınmıştır: $|BC| = 4$."
+       },
+       {
+        "prompt": "Dikdörtgenin çevresi kaç cm?",
+        "before": "Çevre =",
+        "answers": [
+         "18"
+        ],
+        "input": "number",
+        "explanation": "$|AB| = 5$, $|BC| = 4$: çevre $2(5 + 4) = 18$. Kontrol: tepe değeri $\\frac{4 \\cdot 5}{2} = 10$, grafikle uyumlu."
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$|AB| = 8$ cm, $|BC| = 6$ cm olan $ABCD$ dikdörtgeninde $P$ noktası $A$'dan başlayıp $B$, $C$, $D$ yönünde saniyede 1 cm hızla ilerliyor. $t = 18$. saniyede $A(APD)$ kaç cm²'dir?",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "54"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Yüksekliği 2 almış olabilirsin; $P$'nin $D$'ye uzaklığını yeniden hesapla.",
+        null,
+        "Yüksekliği ya da tabanı yanlış almışsın; $P$'nin $AD$'ye uzaklığını yeniden hesapla.",
+        "Bu değer, $P$'nin $[BC]$ üzerinde olduğu sabit alandır; 18. saniyede $P$ hangi kenarda?",
+        "$t$'yi yükseklik sanmışsın; yükseklik $P$'nin $AD$'ye uzaklığıdır."
+       ],
+       "steps": [
+        {
+         "text": "$[AB]$ üzerinde 8 sn, $[BC]$ üzerinde 6 sn geçer; $t = 18$'de $P$ hangi kenardadır?"
+        },
+        {
+         "text": "$[CD]$ üzerinde $P$, $C$'den itibaren kaç cm gitmiştir? $|CD| = 8$ olduğuna göre $D$'ye kaç cm kalmıştır?"
+        },
+        {
+         "text": "Yükseklik, $P$'nin $AD$'ye uzaklığıdır; taban $|AD| = 6$. Alan formülünü uygula."
+        }
+       ],
+       "origin": {
+        "changes": "Dikdörtgende çok kenarlı yol ve zaman ilişkisi, özgün boyutlarla alan değeri sorusuna dönüştürüldü."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Doğrusal mı, eğri mi?",
+      "text": "Alan ifadesinde **tek değişken** varsa grafik doğrusaldır. Bir kenar sabit 6, öbürü $x$ ise alan $6x$'tir: başlangıçtan geçen doğru. **İki kenar birlikte değişirse** grafik eğri olur. Çevre sabit 20 ise kenarlar $x$ ve $10 - x$'tir; alan $A(x) = x(10 - x)$ olur. $x = 0$ ve $x = 10$'da alan 0'dır; en büyük alan, iki kenar eşitken ($x = 5$) elde edilir.",
+      "caption": "Toplamı sabit iki sayının çarpımı, sayılar eşitken en büyüktür."
+     },
+     {
+      "kind": "predict",
+      "title": "Simetri",
+      "context": "Çevresi 20 cm olan dikdörtgenin bir kenarı $x$ cm ise alan $A(x) = x(10 - x)$'tir.",
+      "prompt": "$A(3) = A(7)$ eşitliği doğrudur.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$A(3) = 3 \\cdot 7 = 21$ ve $A(7) = 7 \\cdot 3 = 21$. Kenarlar yer değiştirir; grafik $x = 5$'e göre simetriktir.",
+      "choiceFeedback": [
+       null,
+       "$A(3)$ ve $A(7)$'yi ayrı ayrı hesapla; kenarların yer değiştirdiğine dikkat et."
+      ]
      },
      {
       "kind": "question",
@@ -691,17 +1100,14 @@
           "ends": [
            "none",
            "none"
-          ]
+          ],
+          "trace": false,
+          "piece": false
          }
         ],
         "parameters": {},
-        "points": [
-         {
-          "x": 5,
-          "y": 25,
-          "label": "(5, 25)"
-         }
-        ],
+        "showParameters": true,
+        "points": [],
         "segments": [],
         "equalScale": false,
         "axes": "origin"
@@ -714,30 +1120,26 @@
         "100"
        ],
        "answer": 2,
+       "choiceFeedback": [
+        "Çevre değerini alan sanmış olabilirsin; alan, iki kenarın çarpımıdır.",
+        "Bu, kenarlar eşit olmadığı bir noktadaki alandır; tepe, en büyük değerdir.",
+        null,
+        "Kenarlardan birini ve çevrenin yarısını çarpmış olabilirsin; kenarlar $x$ ve $10 - x$.",
+        "Çevrenin yarısının karesini almış olabilirsin; kenarlar eşitken her biri kaç cm?"
+       ],
        "steps": [
         {
-         "text": "$x(10 - x)$, $x = 5$ iken en büyük.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "İki kenar x ve on eksi x; toplamları on. Çarpım, kenarlar eşitken en büyüktür: x beş."
+         "text": "Kenarlar $x$ ve $10 - x$; toplamları sabit 10."
         },
         {
-         "text": "$A(5) = 5 \\cdot 5 = 25$. Cevap **C**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Tepe noktası beş virgül yirmi beş: en büyük alan yirmi beş santimetrekare, kare. Grafik iki yana simetrik iner; x sıfır ya da on iken alan sıfır. Cevabımız C."
+         "text": "Toplamı sabit iki sayının çarpımı, sayılar eşit olduğunda en büyük olur."
+        },
+        {
+         "text": "Kenarlar eşit olduğunda her birinin uzunluğunu bul ve alanı hesapla."
         }
        ],
-       "narration": "Tepe, iki kenar eşitken: kare.",
        "origin": {
-        "changes": "Bu ders için yazıldı; sabit çevrede alan grafiğinin tepe noktası özgün değerlerle soruldu."
+        "changes": "Sabit çevrede alan grafiğinin tepe noktası özgün değerlerle soruldu; grafikteki cevabı veren nokta etiketi kaldırıldı."
        }
       }
      },
@@ -747,37 +1149,33 @@
        "style": "TYT tarzı",
        "stem": "Bir kenarı $6$ cm olan dikdörtgenlerin öbür kenarı $x$ cm'dir. Alanın $x$'e göre grafiği başlangıçtan geçen bir doğrudur. Grafikte alan $30$ cm² iken $x$ kaçtır?",
        "options": [
-        "4",
         "5",
         "6",
         "24",
-        "36"
+        "36",
+        "180"
        ],
-       "answer": 1,
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "6, sabit kenarın uzunluğudur; $x$ öbür kenar.",
+        "Alandan sabit kenarı çıkarmışsın; alan, kenarların çarpımıdır.",
+        "Alana sabit kenarı eklemişsin; alan, kenarların çarpımıdır.",
+        "Alanı sabit kenarla çarpmışsın; bölmen gerekiyordu."
+       ],
        "steps": [
         {
-         "text": "$A(x) = 6x$; grafik eğimi $6$ olan doğru.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Bir kenar sabit altı, öbürü x: alan altı x. Grafik başlangıçtan geçen, her bir birimde altı artan bir doğru."
+         "text": "Alan, iki kenarın çarpımıdır: $A(x) = 6 \\cdot x$."
         },
         {
-         "text": "$6x = 30$ → $x = 5$. Cevap **B**.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Altı x otuz, x beş santimetre. Cevabımız B. Sabit bir kenarla alan doğrusal artar; iki kenar birlikte değişirse önceki sorudaki gibi eğri bir grafik çıkar."
+         "text": "Alanın 30 olduğu noktada denklemi kur: $6x = 30$."
+        },
+        {
+         "text": "Denklemi $x$ için çöz."
         }
        ],
-       "narration": "Alan $= 6x$: doğrusal.",
        "origin": {
-        "changes": "Bu ders için yazıldı; bir kenarı sabit dikdörtgende doğrusal alan grafiği özgün değerlerle soruldu."
+        "changes": "Bir kenarı sabit dikdörtgende doğrusal alan grafiği özgün değerlerle soruldu."
        }
       }
      }
@@ -787,24 +1185,23 @@
     "subtopic": "GEO_GRAFIK_04",
     "subtopics": [],
     "title": "Veriyi yorumlamak",
-    "narration": "Son bölümde bir çizimdeki geometrik bilgiyi doğru okumayı çalışıyoruz.",
+    "narration": "",
     "cards": [
      {
       "kind": "rule",
       "title": "Okurken üç soru",
       "items": [
        "Uzaklık **neye** göre soruluyor: bir noktaya mı, bir doğruya mı?",
-       "Bir eksene uzaklık, **öbür** koordinatın mutlak değeridir.",
+       "Bir eksene uzaklık, **öbür** koordinatın mutlak değeridir: $x$ eksenine uzaklık $|y|$, $y$ eksenine uzaklık $|x|$.",
        "Orta nokta: koordinatların **ortalaması**."
       ],
-      "beats": [],
-      "narration": "Bir çizimden bilgi okurken önce şunu sor: uzaklık neye göre isteniyor, bir noktaya mı bir doğruya mı? Bir noktanın x eksenine uzaklığı y koordinatıdır, y eksenine uzaklığı x koordinatıdır; işaretine bakmadan. İki noktanın orta noktası, koordinatlarının ortalamasıdır. Bu üç kural, ÖSYM'nin harita ve bahçe sorularında işini görür."
+      "narration": "Bir çizimden bilgi okurken önce uzaklığın neye göre istendiğine bak: bir noktaya mı, bir doğruya mı? Bir noktanın $x$ eksenine uzaklığı $y$ koordinatının mutlak değeridir, $y$ eksenine uzaklığı $x$ koordinatının mutlak değeridir; işaretine bakmadan. İki noktanın orta noktası, koordinatlarının ortalamasıdır. Bu üç kural, ÖSYM'nin harita ve bahçe sorularında işini görür."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Şekilde dik kesişen iki yol eksen olarak alınmış ve bir bahçedeki elma, armut ve ceviz ağaçlarının konumları gösterilmiştir: elma $(2, 5)$, armut $(6, 2)$, ceviz $(4, 4)$. Ara sokağa ($y$ ekseni) en yakın ağaçtan en uzağa doğru sıralama hangisidir?",
+       "stem": "Şekilde dik kesişen iki yol eksen olarak alınmıştır: yatay yol ana cadde, dikey yol ara sokaktır. Bir bahçedeki ağaçların konumları: elma $(2, 5)$, armut $(6, 2)$, ceviz $(4, 4)$. Ara sokağa en yakın ağaçtan en uzağa doğru sıralama hangisidir?",
        "figure": {
         "kind": "plot",
         "x": [
@@ -819,21 +1216,25 @@
         "yLabel": "ara sokak",
         "curves": [],
         "parameters": {},
+        "showParameters": true,
         "points": [
          {
           "x": 2,
           "y": 5,
-          "label": "Elma"
+          "label": "Elma",
+          "style": "closed"
          },
          {
           "x": 6,
           "y": 2,
-          "label": "Armut"
+          "label": "Armut",
+          "style": "closed"
          },
          {
           "x": 4,
           "y": 4,
-          "label": "Ceviz"
+          "label": "Ceviz",
+          "style": "closed"
          }
         ],
         "segments": [],
@@ -841,38 +1242,44 @@
         "axes": "origin"
        },
        "options": [
-        "Elma - Ceviz - Armut",
         "Armut - Ceviz - Elma",
-        "Ceviz - Elma - Armut",
+        "Armut - Elma - Ceviz",
+        "Ceviz - Armut - Elma",
         "Elma - Armut - Ceviz",
-        "Armut - Elma - Ceviz"
+        "Elma - Ceviz - Armut"
        ],
-       "answer": 0,
+       "answer": 4,
+       "choiceFeedback": [
+        "Bu sıralama $y$ koordinatlarına göre, yani ana caddeye uzaklığa göre yapılmış. Soru ara sokağa uzaklığı soruyor.",
+        "Her ağacın ara sokağa uzaklığını koordinatlardan yeniden oku.",
+        "Her ağacın ara sokağa uzaklığını koordinatlardan yeniden oku.",
+        "Armut, ara sokaktan en uzak mı? Koordinatlara yeniden bak.",
+        null
+       ],
        "steps": [
         {
-         "text": "$y$ eksenine uzaklıklar: elma $2$, ceviz $4$, armut $6$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Bir noktanın y eksenine uzaklığı x koordinatıdır: elma iki, ceviz dört, armut altı."
+         "text": "Ara sokak $y$ eksenidir; bir noktanın $y$ eksenine uzaklığı hangi koordinattır?"
         },
         {
-         "text": "Sıralama: elma, ceviz, armut. Cevap **A**.",
-         "eliminate": [
-          "B",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "En yakından en uzağa: elma, ceviz, armut. Cevabımız A. Ana caddeye göre sorulsaydı y koordinatlarına bakardık ve sıralama tersine dönerdi: armut, ceviz, elma."
+         "text": "Her ağacın o koordinatını yaz."
+        },
+        {
+         "text": "Değerleri küçükten büyüğe sırala."
         }
        ],
-       "narration": "$y$ eksenine uzaklık, $x$ koordinatı.",
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2019 bahçedeki ağaçlar sorusunun fikri koordinatlarla ve farklı bir soru köküyle yeniden kuruldu."
+        "changes": "ÖSYM 2019 bahçedeki ağaçlar sorusunun fikri alındı; ağaç konumları, koordinatlar ve soru kökü yeniden kuruldu."
        }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Orta nokta",
+      "text": "İki noktanın orta noktası, $x$ koordinatlarının ve $y$ koordinatlarının ayrı ayrı ortalamasıdır. Uç nokta aranıyorsa: orta nokta, uçlardan birinden öbürüne giden yolun yarısıdır; $A$'dan $M$'ye giden kadar $M$'den ileri gidersin. Dikdörtgenin köşegenleri birbirini ortalar; kesişim noktası her köşegenin orta noktasıdır.",
+      "visual": {
+       "kind": "formula",
+       "latex": "M\\left(\\frac{x_1 + x_2}{2},\\ \\frac{y_1 + y_2}{2}\\right)",
+       "caption": "Orta nokta formülü"
       }
      },
      {
@@ -892,26 +1299,31 @@
         ],
         "curves": [],
         "parameters": {},
+        "showParameters": true,
         "points": [
          {
           "x": 0,
           "y": 0,
-          "label": "A"
+          "label": "A",
+          "style": "closed"
          },
          {
           "x": 6,
           "y": 0,
-          "label": "B"
+          "label": "B",
+          "style": "closed"
          },
          {
           "x": 6,
           "y": 4,
-          "label": "C"
+          "label": "C",
+          "style": "closed"
          },
          {
           "x": 0,
           "y": 4,
-          "label": "D"
+          "label": "D",
+          "style": "closed"
          }
         ],
         "segments": [],
@@ -926,30 +1338,26 @@
         "$(4, 6)$"
        ],
        "answer": 1,
+       "choiceFeedback": [
+        "Koordinatların sırasını karıştırmış olabilirsin: önce $x$, sonra $y$.",
+        null,
+        "$y$ koordinatlarının ortalamasını yeniden hesapla.",
+        "Bu, köşelerden biridir; kesişim noktası köşegenin ortasındadır.",
+        "Koordinatları ters yazmış ve ortalamayı almamışsın; yeniden dene."
+       ],
        "steps": [
         {
-         "text": "$[AC]$'nin orta noktası: $\\left(\\frac{0 + 6}{2}, \\frac{0 + 4}{2}\\right) = (3, 2)$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Dikdörtgenin köşegenleri birbirini ortalar; kesişim noktası A C'nin orta noktası. Koordinatların ortalaması: üç virgül iki."
+         "text": "Dikdörtgenin köşegenleri birbirini ortalar; kesişimleri her köşegenin orta noktasıdır."
         },
         {
-         "text": "Cevap **B**.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Kesişim noktası üç virgül iki. Cevabımız B. İki virgül üçü seçen, koordinatların sırasını karıştırmıştır: önce x, sonra y."
+         "text": "$[AC]$'yi seç ve uç noktalarının koordinatlarını yaz."
+        },
+        {
+         "text": "$x$'lerin ve $y$'lerin ortalamasını ayrı ayrı al; sırayı karıştırma."
         }
        ],
-       "narration": "Köşegenler birbirini ortalar: orta nokta.",
        "origin": {
-        "changes": "Bu ders için yazıldı; koordinat düzleminde orta nokta ve dikdörtgen köşegeni özgün bir soruyla birleştirildi."
+        "changes": "Koordinat düzleminde orta nokta ve dikdörtgen köşegeni özgün bir soruyla birleştirildi."
        }
       }
      },
@@ -959,55 +1367,425 @@
        "style": "TYT tarzı",
        "stem": "$[AB]$ doğru parçasının orta noktası $M(4, 6)$ ve $A(1, 2)$'dir. $B$ noktasının koordinatları toplamı kaçtır?",
        "options": [
-        "13",
+        "10",
+        "12",
+        "14",
         "15",
-        "17",
-        "19",
-        "20"
+        "17"
        ],
-       "answer": 2,
+       "answer": 4,
+       "choiceFeedback": [
+        "Bu, $M$'nin koordinatları toplamıdır; $B$'yi bulman gerekiyor.",
+        "$A$'dan $M$'ye yatay ve dikey farkları bul, aynısını $M$'den ileri götür.",
+        "$A$'dan $M$'ye yatay ve dikey farkları bul, aynısını $M$'den ileri götür.",
+        "$A$'dan $M$'ye yatay ve dikey farkları bul, aynısını $M$'den ileri götür.",
+        null
+       ],
        "steps": [
         {
-         "text": "$A$'dan $M$'ye: $x$ $+3$, $y$ $+4$ → $B = (4 + 3, 6 + 4) = (7, 10)$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "A'dan M'ye giderken x üç, y dört artıyor. M orta nokta olduğuna göre B'ye de aynı kadar gidilir: yedi virgül on."
+         "text": "$A$'dan $M$'ye giderken $x$ ve $y$ ne kadar değişiyor?"
         },
         {
-         "text": "Toplam $17$. Cevap **C**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "B'nin koordinatları toplamı on yedi. Bonus: A ile B arası, yatayda altı, dikeyde sekiz; uzaklık on. Cevabımız C."
+         "text": "$M$ orta nokta olduğuna göre $M$'den $B$'ye de aynı değişim olur."
+        },
+        {
+         "text": "$B$'nin koordinatlarını bulup topla."
         }
        ],
-       "narration": "$M$'den $A$'ya giden kadar, $M$'den öbür yana git.",
        "origin": {
-        "changes": "Bu ders için yazıldı; orta noktadan uç noktaya geçiş özgün değerlerle soruldu."
+        "changes": "Orta noktadan uç noktaya geçiş özgün değerlerle soruldu."
        }
       }
+     },
+     {
+      "kind": "multi",
+      "title": "Dikdörtgeni oku",
+      "context": "Köşeleri $A(0, 0)$, $B(6, 0)$, $C(6, 4)$ ve $D(0, 4)$ olan $ABCD$ dikdörtgeni verilmiştir.",
+      "stem": "Aşağıdakilerden hangileri doğrudur?",
+      "options": [
+       "Köşegen uzunluğu $\\sqrt{52}$ birimdir.",
+       "Köşegenlerin kesişim noktası $(3, 2)$'dir.",
+       "$C$ noktasının $x$ eksenine uzaklığı 6 birimdir.",
+       "Dikdörtgenin alanı 24 birimkaredir.",
+       "$D$ noktası II. bölgededir."
+      ],
+      "answers": [
+       0,
+       1,
+       3
+      ],
+      "choiceFeedback": [
+       null,
+       null,
+       "$x$ eksenine uzaklık $y$ koordinatının mutlak değeridir: $|4| = 4$.",
+       null,
+       "$D(0, 4)$ noktası $y$ ekseni üzerindedir; eksen üzerindeki noktalar hiçbir bölgede sayılmaz."
+      ],
+      "explanation": "$|AC| = \\sqrt{6^2 + 4^2} = \\sqrt{52}$; orta nokta $(3, 2)$; alan $6 \\cdot 4 = 24$. $C$'nin $x$ eksenine uzaklığı 4'tür; $D$ eksen üzerindedir."
+     },
+     {
+      "kind": "concept",
+      "title": "Daire grafiğini okumak",
+      "text": "Daire grafiğinde tüm daire **toplamı** gösterir: $360° = \\%100$, yani $1\\% = 3{,}6°$. Bir dilimin merkez açısı $\\alpha$ ise yüzdesi $\\frac{\\alpha}{360} \\cdot 100$, miktarı $\\frac{\\alpha}{360} \\cdot \\text{toplam}$'dır. Dilim açılarının toplamı $360°$'dir; eksik dilimin açısı $360°$'den diğer açılar çıkarılarak bulunur.",
+      "caption": "Toplam 400 kişilik bir dairenin dilimleri:",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Açı",
+        "Yüzde",
+        "Kişi"
+       ],
+       "rows": [
+        [
+         "72°",
+         "%20",
+         "80"
+        ],
+        [
+         "108°",
+         "%30",
+         "120"
+        ],
+        [
+         "144°",
+         "%40",
+         "160"
+        ],
+        [
+         "36°",
+         "%10",
+         "40"
+        ]
+       ]
+      }
+     },
+     {
+      "kind": "match",
+      "title": "Açıdan yüzdeye",
+      "prompt": "Her merkez açıyı yüzdesiyle eşleştir.",
+      "titles": [
+       "Merkez açı",
+       "Yüzde"
+      ],
+      "pairs": [
+       {
+        "left": "18°",
+        "right": "%5"
+       },
+       {
+        "left": "36°",
+        "right": "%10"
+       },
+       {
+        "left": "54°",
+        "right": "%15"
+       },
+       {
+        "left": "90°",
+        "right": "%25"
+       },
+       {
+        "left": "180°",
+        "right": "%50"
+       }
+      ],
+      "explanation": "$1\\% = 3{,}6°$ olduğundan yüzdeyi $3{,}6$ ile çarparak açıyı bulursun: $15 \\cdot 3{,}6 = 54$."
+     },
+     {
+      "kind": "blank",
+      "title": "Dilimdeki kişi sayısı",
+      "prompt": "Toplam 600 kişinin dağılımını gösteren daire grafiğinde bir dilimin merkez açısı 120°'dir. Bu dilimde kaç kişi vardır?",
+      "before": "Kişi sayısı =",
+      "answers": [
+       "200"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 200,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "120",
+        "feedback": "Açıyı kişi sayısı sanmışsın; açı, toplamın kaçta kaçı olduğunu gösterir."
+       },
+       {
+        "answer": "72000",
+        "feedback": "$120 \\cdot 600$ çarpımını 360'a bölmeyi unutmuşsun."
+       }
+      ],
+      "explanation": "$\\frac{120}{360} \\cdot 600 = \\frac{1}{3} \\cdot 600 = 200$ kişi."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir okuldaki $480$ öğrencinin tercih ettiği spor dalları daire grafiğinde gösterilmiştir. Yüzme dilimi grafikteki kalan kısımdır; diğer dilimlerin merkez açıları tabloda verilmiştir. Futbol seçen öğrenciler, yüzme seçen öğrencilerden kaç fazladır?",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "Spor",
+         "Merkez açı"
+        ],
+        "rows": [
+         [
+          "Futbol",
+          "150°"
+         ],
+         [
+          "Basketbol",
+          "90°"
+         ],
+         [
+          "Voleybol",
+          "72°"
+         ],
+         [
+          "Yüzme",
+          "?"
+         ]
+        ]
+       },
+       "options": [
+        "64",
+        "96",
+        "120",
+        "136",
+        "200"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "Bu, yüzme seçen öğrenci sayısıdır; soru farkı soruyor.",
+        "Bu, voleybol seçenlerin sayısıdır; yüzme dilimini yeniden bul.",
+        "Bu, basketbol seçenlerin sayısıdır; soruda futbol ve yüzme karşılaştırılıyor.",
+        null,
+        "Bu, yalnız futbol seçenlerin sayısıdır; yüzme sayısını çıkarman gerekiyor."
+       ],
+       "steps": [
+        {
+         "text": "Yüzme dilimi kalan kısımdır: $360° - (150° + 90° + 72°)$."
+        },
+        {
+         "text": "Her dilimde kişi sayısı $\\frac{\\text{açı}}{360} \\cdot 480$'dir; $\\frac{480}{360} = \\frac{4}{3}$ kullanabilirsin."
+        },
+        {
+         "text": "Futbol ve yüzme kişi sayılarını bulup farkı al."
+        }
+       ],
+       "origin": {
+        "changes": "Daire grafiğinde eksik dilimi bulup miktara geçme ve fark alma, özgün verilerle kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "rule",
+      "title": "Sütun ve çizgi grafikleri",
+      "items": [
+       "Önce eksenleri ve **birimi** oku: neyin, hangi birimle gösterildiğine bak.",
+       "**Fark** soruları çıkarma ile çözülür: büyük değer $-$ küçük değer.",
+       "**Oran** soruları bölme ile çözülür: A, B'nin kaç katı? $\\frac{A}{B}$.",
+       "**Yüzde değişim** $= \\frac{\\text{değişim}}{\\text{ilk değer}} \\cdot 100$; payda **ilk değerdir**.",
+       "Çizgi grafiğinde iki ardışık nokta arasındaki değişim, o aralıktaki artış ya da azalıştır.",
+       "Eksen sıfırdan başlamıyorsa sütun yüksekliklerinin oranı, değerlerin oranı olmaz."
+      ],
+      "narration": "Sütun ve çizgi grafikleri sorularında önce değerleri tabloya çevirmek işini kolaylaştırır. Ardından soru kalıbına bak: 'kaç fazla' bir farktır, 'kaç katı' bir orandır. Yüzde değişimde paydaya her zaman başlangıç değerini koy; 60'tan 90'a artış $\\frac{30}{60} = \\%50$'dir, $\\frac{30}{90}$ değil."
+     },
+     {
+      "kind": "classify",
+      "title": "Fark mı, oran mı?",
+      "prompt": "Soru kalıplarını çözüm yoluna göre ayır.",
+      "groups": [
+       {
+        "label": "Fark (çıkarma)",
+        "items": [
+         "A, B'den kaç fazla?",
+         "Ocak ile Şubat arasındaki artış miktarı",
+         "En çok ile en az arasındaki fark"
+        ]
+       },
+       {
+        "label": "Oran (bölme)",
+        "items": [
+         "A, B'nin kaç katı?",
+         "Şubat satışı, Ocak satışının yüzde kaçı?",
+         "Dilimin tüm daireye oranı"
+        ]
+       }
+      ],
+      "explanation": "'Kaç fazla, kaç eksik, ne kadar artış' çıkarma; 'kaç katı, yüzde kaçı, oranı' bölme ister."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kitapçının aylık satışları sütun grafiğinde gösterilmiştir; sütunların değerleri tabloda verilmiştir. Satış, Şubat ayından Mart ayına yüzde kaç artmıştır?",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "Ay",
+         "Satış (adet)"
+        ],
+        "rows": [
+         [
+          "Ocak",
+          "40"
+         ],
+         [
+          "Şubat",
+          "60"
+         ],
+         [
+          "Mart",
+          "90"
+         ],
+         [
+          "Nisan",
+          "75"
+         ]
+        ]
+       },
+       "options": [
+        "%30",
+        "%40",
+        "%50",
+        "%60",
+        "%150"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "30, artış miktarıdır (adet); yüzdeye çevirmen gerekiyor.",
+        "Bir sütun değerini yüzde sanmış olabilirsin; oranı hesapla.",
+        null,
+        "Bir sütun değerini yüzde sanmış olabilirsin; oranı hesapla.",
+        "Bu, Mart'ın Şubat'a oranıdır; artış yüzdesi için ilk değeri (100'ü) çıkarman gerekir."
+       ],
+       "steps": [
+        {
+         "text": "Şubat ve Mart sütunlarının değerlerini oku; artış miktarını bul."
+        },
+        {
+         "text": "Yüzde artış, artış miktarının **ilk** değere (Şubat) oranıdır."
+        },
+        {
+         "text": "Bulduğun oranı yüzdeye çevir."
+        }
+       ],
+       "origin": {
+        "changes": "Sütun grafiğinde yüzde artış sorusu özgün verilerle kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir fabrikanın 6 günlük üretimi çizgi grafiğinde gösterilmiştir; noktaların değerleri tabloda verilmiştir. Hangi ardışık iki gün arasında üretimdeki artış en büyüktür?",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "Gün",
+         "Üretim (adet)"
+        ],
+        "rows": [
+         [
+          "1",
+          "20"
+         ],
+         [
+          "2",
+          "45"
+         ],
+         [
+          "3",
+          "30"
+         ],
+         [
+          "4",
+          "50"
+         ],
+         [
+          "5",
+          "45"
+         ],
+         [
+          "6",
+          "55"
+         ]
+        ]
+       },
+       "options": [
+        "1. – 2. gün",
+        "2. – 3. gün",
+        "3. – 4. gün",
+        "4. – 5. gün",
+        "5. – 6. gün"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "Bu aralıkta üretim artmıyor, azalıyor.",
+        "Bu aralıkta artış var ama başka bir aralıktaki artış daha büyük.",
+        "Bu aralıkta üretim artmıyor, azalıyor.",
+        "Bu aralıkta artış var ama başka bir aralıktaki artış daha büyük."
+       ],
+       "steps": [
+        {
+         "text": "Ardışık iki gün arasındaki değişimi, sonraki değerden öncekini çıkararak bul."
+        },
+        {
+         "text": "Azalış olan aralıkları ele; yalnız artışları karşılaştır."
+        },
+        {
+         "text": "En büyük artış miktarını veren aralığı seç."
+        }
+       ],
+       "origin": {
+        "changes": "Çizgi grafiğinde ardışık değişimleri karşılaştıran özgün bir fark sorusu yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Açı yüzde değildir",
+      "wrong": "Daire grafiğinde bir dilimin açısı 90° ise o dilim toplamın %90'ıdır.",
+      "right": "$360° = \\%100$ olduğundan 90° dilim toplamın $\\frac{90}{360} = \\%25$'idir.",
+      "why": "Açı derece cinsindendir, yüzde değil. Yüzdeye geçmek için açıyı 360'a bölüp 100 ile çarparsın."
+     },
+     {
+      "kind": "predict",
+      "title": "Dilimler arası oran",
+      "context": "Bir daire grafiğinde iki dilimin merkez açıları 2:1 oranındadır.",
+      "prompt": "Bu iki dilimdeki miktarlar da 2:1 oranındadır.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Miktar $= \\frac{\\text{açı}}{360} \\cdot \\text{toplam}$ olduğundan miktarlar açılarla doğru orantılıdır; açılar 2:1 ise miktarlar da 2:1'dir.",
+      "choiceFeedback": [
+       null,
+       "Miktar, açıyla aynı sabit sayıyla çarpılarak bulunur; bu yüzden oran korunur."
+      ]
      }
     ]
    }
   ],
   "summary": {
    "points": [
-    "Nokta $(x, y)$: önce yatay, sonra dikey; dört bölgede işaretler değişir.",
-    "Eksen üzerindeki noktada öbür koordinat **sıfır**.",
-    "İki nokta arası uzaklık: yatay ve dikey farkların oluşturduğu dik üçgenin **hipotenüsü**.",
-    "Hareketli noktada alan grafiği: her parçada neyin **değiştiğine** bak.",
-    "Orta nokta koordinatların **ortalaması**; $y$ eksenine uzaklık $|x|$."
+    "Nokta $(x, y)$: önce yatay, sonra dikey; bölgelerde işaretler $(+,+)$, $(-,+)$, $(-,-)$, $(+,-)$.",
+    "Eksen üzerindeki noktada öbür koordinat **sıfırdır**; bu noktalar hiçbir bölgede sayılmaz.",
+    "İki nokta arası uzaklık, yatay ve dikey farkların oluşturduğu dik üçgenin **hipotenüsüdür**.",
+    "Doğrunun eksenlerle oluşturduğu üçgenin alanı $\\frac{|a| \\cdot |b|}{2}$'dir.",
+    "Hareketli noktada alan grafiği: her kenarda taban ve yüksekliğe bak; köşeler **kırılma noktasıdır**.",
+    "Orta nokta koordinatların **ortalaması**; $y$ eksenine uzaklık $|x|$, $x$ eksenine uzaklık $|y|$.",
+    "Daire grafiğinde $360° = \\%100$; miktar $= \\frac{\\text{açı}}{360} \\cdot \\text{toplam}$.",
+    "Fark çıkarma, oran bölme ile bulunur; yüzde değişimde payda **ilk değerdir**."
    ],
    "warnings": [
     "Koordinat sırasını karıştırma: önce $x$.",
     "Uzaklık sorusunda farkları **toplama**; Pisagor kullan.",
-    "Hangi eksene uzaklık sorulduğunu **iki kez** oku."
+    "Hangi eksene uzaklık sorulduğunu **iki kez** oku.",
+    "Daire grafiğinde açıyı yüzde sanma: 90° → %25."
    ]
   }
  },
@@ -1019,11 +1797,5 @@
     "Uygulamada Grafik Okuma testinden **20 soru** çöz; her soruda önce **eksenleri** oku."
    ]
   }
- },
- "works": {
-  "additions": [
-   "Daire grafiği okumayı ekle: 360° = %100, bir dilimin açısından yüzdesine ve miktarına geçiş; sütun ve çizgi grafiklerinden oran ve fark soruları.",
-   "Kenarlar üzerinde hareket eden noktanın oluşturduğu alanın zamana göre grafiğini adım adım çizme ve grafikten şeklin kenarlarını bulma örnekleri ekle."
-  ]
  }
 }

@@ -3,7 +3,7 @@ import {clamp01, lerp, smooth, smoothStep} from '../../../../Animations/Motion';
 import {withAlpha} from '../../../../Themes/Theme';
 import {useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
-import {pathOf} from '../../VisualWorld';
+import {pathOf, FigureText} from '../../VisualWorld';
 import {ProcessFrame, ProcessLabel, processCamera, sampled, useProcessClock, type CameraBox} from '../ProcessScene';
 
 type ProcessSpec = Extract<CourseVisual, {kind: 'process'}>;
@@ -27,6 +27,9 @@ const CAN = {x0: 466, x1: 540, y0: 200, y1: 410};
 const HOLES = [270, 330, 390];
 /** The can stands on a table: the jets fall to this floor. */
 const FLOOR = 600;
+
+/** How far from the can a jet from a hole at `y` lands at full flow (Torricelli, drawn at 0.55 scale). */
+const landing = (y: number) => 0.55 * 2 * Math.sqrt((y - (CAN.y0 + 30)) * (FLOOR - y));
 const TUBE = {x: 900, top: 190, dish: 560};
 const CM = 3.6;
 
@@ -56,9 +59,9 @@ export const PressureProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}> =
 			{(Object.keys(PANELS) as (keyof typeof PANELS)[]).map((id) => (
 				<g key={id} opacity={lit(id)}>
 					<rect x={PANELS[id].x0} y={110} width={PANELS[id].x1 - PANELS[id].x0} height={510} rx={18} fill="#FFFFFF" stroke={withAlpha(palette.ink, 0.12)} strokeWidth={2} />
-					<text x={(PANELS[id].x0 + PANELS[id].x1) / 2} y={150} textAnchor="middle" fontFamily={palette.fontDisplay} fontWeight={800} fontSize={28} fill={palette.ink}>
+					<FigureText x={(PANELS[id].x0 + PANELS[id].x1) / 2} y={150} textAnchor="middle" fontFamily={palette.fontDisplay} fontWeight={800} fontSize={28} fill={palette.ink}>
 						{TITLES[id]}
-					</text>
+					</FigureText>
 				</g>
 			))}
 			{/* Solid: the same brick on its large face and on its small face. */}
@@ -74,9 +77,9 @@ export const PressureProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}> =
 							<path d={pathOf([[brick.x - 10, FOAM_Y], [brick.x - 4, FOAM_Y + brick.sink * press], [brick.x + brick.w + 4, FOAM_Y + brick.sink * press], [brick.x + brick.w + 10, FOAM_Y]], true)} fill="#D9B45E" />
 							<rect x={brick.x} y={y} width={brick.w} height={brick.h} rx={4} fill="#B5523B" stroke="#6E2F21" strokeWidth={2} />
 							<path d={`M${brick.x + brick.w / 2} ${y - 60} l0 40 m-10 -12 l10 12 l10 -12`} stroke={palette.ink} strokeWidth={4} fill="none" />
-							<text x={brick.x + brick.w / 2} y={y - 68} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.ink}>
+							<FigureText x={brick.x + brick.w / 2} y={y - 68} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.ink}>
 								G
-							</text>
+							</FigureText>
 						</g>
 					);
 				})}
@@ -90,17 +93,19 @@ export const PressureProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}> =
 				<rect x={CAN.x1 - 10} y={CAN.y1 + 10} width={10} height={FLOOR - CAN.y1 - 10} fill="#9AA3AC" />
 				<rect x={CAN.x0 - 10} y={FLOOR} width={330} height={8} fill="#7D8791" />
 				{HOLES.map((y, index) => {
+					// Numbers of landing spots closer than a number's width step apart ("2" and "3", 20 apart, touched in an app still).
+					const near = HOLES.find((other) => other !== y && Math.abs(landing(other) - landing(y)) < 40);
+					const nudge = near === undefined ? 0 : landing(y) < landing(near) ? -10 : 10;
 					// Torricelli: the water leaves at v = √(2gh) and falls the rest of the way, so it lands 2√(h · fall) away
 					// (drawn at 0.55 scale to fit the panel). The deeper the hole, the faster and further the jet.
-					const depth = y - (CAN.y0 + 30);
 					const fallHeight = FLOOR - y;
-					const reach = 0.55 * 2 * Math.sqrt(depth * fallHeight) * jets;
+					const reach = landing(y) * jets;
 					const path = sampled((x) => y + fallHeight * ((x - CAN.x1) / Math.max(1, reach)) ** 2, CAN.x1, CAN.x1 + reach, 6);
 					return (
 						<g key={y}>
 							<circle cx={CAN.x1} cy={y} r={5} fill="#2F4F6B" />
 							{jets > 0.02 ? <path d={pathOf(path)} fill="none" stroke="#3E7FC0" strokeWidth={5} strokeLinecap="round" strokeDasharray="10 7" strokeDashoffset={-time * 60} /> : null}
-							{jets > 0.02 ? <text x={CAN.x1 + reach} y={FLOOR + 30} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={20} fill={palette.ink}>{index + 1}</text> : null}
+							{jets > 0.02 ? <FigureText x={CAN.x1 + reach + nudge * jets} y={FLOOR + 30} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={20} fill={palette.ink}>{index + 1}</FigureText> : null}
 						</g>
 					);
 				})}
@@ -112,18 +117,18 @@ export const PressureProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}> =
 				<rect x={TUBE.x - 14} y={TUBE.top} width={28} height={TUBE.dish - TUBE.top + 20} rx={10} fill="#FFFFFF" stroke="#7D8791" strokeWidth={3} />
 				<rect x={TUBE.x - 9} y={TUBE.dish + 14 - column} width={18} height={column} rx={6} fill="#8E969F" />
 				<path d={`M${TUBE.x + 30} ${TUBE.dish + 14} L${TUBE.x + 30} ${TUBE.dish + 14 - column}`} stroke={palette.lesson} strokeWidth={3} />
-				<text x={TUBE.x + 40} y={TUBE.dish + 14 - column / 2} fontFamily={palette.fontBody} fontWeight={800} fontSize={24} fill={palette.lesson}>
+				<FigureText x={TUBE.x + 40} y={TUBE.dish + 14 - column / 2} fontFamily={palette.fontBody} fontWeight={800} fontSize={24} fill={palette.lesson}>
 					{`${Math.round(column / CM)} cm`}
-				</text>
-				<text x={TUBE.x} y={TUBE.top - 12} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={700} fontSize={18} fill={palette.muted}>
+				</FigureText>
+				<FigureText x={TUBE.x} y={TUBE.top - 12} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={700} fontSize={18} fill={palette.muted}>
 					boşluk
-				</text>
+				</FigureText>
 				{/* On a mountain: less air above, a shorter column. */}
 				<path d="M1040 600 L1110 420 L1160 600 Z" fill="#9DA79A" />
 				<rect x={1100} y={420 - mountainColumn} width={14} height={mountainColumn} rx={5} fill="#8E969F" stroke="#7D8791" strokeWidth={2} />
-				<text x={1107} y={410 - mountainColumn} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={700} fontSize={18} fill={palette.ink}>
+				<FigureText x={1107} y={410 - mountainColumn} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={700} fontSize={18} fill={palette.ink}>
 					dağda
-				</text>
+				</FigureText>
 			</g>
 			{/* Pascal: a small push lifts a car. */}
 			<g opacity={lit('pascal')}>
@@ -136,9 +141,9 @@ export const PressureProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}> =
 					<circle cx={24} cy={0} r={8} fill="#222" />
 				</g>
 				<path d={`M1250 ${300 + 70 * lift} l0 50 m-10 -14 l10 14 l10 -14`} stroke={palette.lesson} strokeWidth={6} fill="none" opacity={1 - 0.5 * lift} />
-				<text x={1250} y={290 + 70 * lift} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.lesson}>
+				<FigureText x={1250} y={290 + 70 * lift} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.lesson}>
 					küçük F
-				</text>
+				</FigureText>
 				{[1300, 1350, 1400, 1480].map((x) => (
 					<path key={x} d={`M${x} 545 l0 -24 m-7 9 l7 -9 l7 9`} stroke="#FFFFFF" strokeWidth={3} fill="none" opacity={0.4 + 0.6 * lift} />
 				))}

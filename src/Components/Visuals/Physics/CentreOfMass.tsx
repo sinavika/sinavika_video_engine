@@ -1,7 +1,7 @@
 import React from 'react';
 import {easeFrom} from '../../../Animations/Motion';
 import {useVideoLayout} from '../../Layouts/VideoLayout';
-import {type LabelBox, placeLabel, pointSpots, textWidth} from '../Mathematics/FigureLabel';
+import {type LabelBox, placeLabel, pointSpots, textWidth} from '../FigureLabel';
 import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor, useShownAt} from '../VisualTimeline';

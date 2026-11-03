@@ -144,6 +144,9 @@ export const SignInCodeScreen: React.FC = () => {
 			<Content tabBar={false} gap={18}>
 				<AuthTitle title={t('Doğrulama kodu', 'Verification code')} text={t('ayse@ornek.com adresine gelen 6 haneli kodu gir.', 'Enter the 6-digit code sent to ayse@ornek.com.')} />
 				<CodeBoxes digits="4829" />
+				<Chip tone="outline" icon="note">
+					{t('Kodu yapıştır', 'Paste code')}
+				</Chip>
 				<Stack row justify="space-between">
 					<Text role="small">{t('Kod gelmedi mi?', 'No code?')}</Text>
 					<Text role="small" weight={700} color={colors.brandDeep}>
@@ -247,8 +250,8 @@ export const NewPasswordScreen: React.FC = () => {
 				<Text role="meta" color={colors.muted}>
 					{t('Kodun süresi: 8:12', 'Code expires in 8:12')}
 				</Text>
-				<Field label={t('Yeni şifre', 'New password')} value="••••••••••" icon="lock" focus />
-				<Field label={t('Yeni şifre (tekrar)', 'Repeat password')} placeholder={t('Şifreni tekrar yaz', 'Type it again')} icon="lock" />
+				<Field label={t('Yeni şifre', 'New password')} value="••••••••••" icon="lock" focus trailing={<Icon name="eye" size={18} color={colors.muted} />} />
+				<Field label={t('Yeni şifre (tekrar)', 'Repeat password')} placeholder={t('Şifreni tekrar yaz', 'Type it again')} icon="lock" trailing={<Icon name="eye" size={18} color={colors.muted} />} />
 			</Content>
 			<BottomBar>
 				<Button size="lg" block>

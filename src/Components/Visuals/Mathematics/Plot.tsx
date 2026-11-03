@@ -9,7 +9,7 @@ import {useFigureFont, useReveal, useSceneSeconds, useVisualPalette, type Visual
 import type {CourseVisual} from '../VisualSchema';
 import {easeFrom} from '../../../Animations/Motion';
 import {elementLook, Part, useBeatStartFor, useElementState, useParams, useTimeline} from '../VisualTimeline';
-import {LabelBox, placeLabel, pointSpots, ringAround, segmentSpots, textWidth} from './FigureLabel';
+import {LabelBox, placeLabel, pointSpots, ringAround, segmentSpots, textWidth} from '../FigureLabel';
 
 type Plot = Extract<CourseVisual, {kind: 'plot'}>;
 

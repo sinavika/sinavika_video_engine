@@ -33,6 +33,20 @@ describe('a long formula in an app still', () => {
 		expect(lines(formulaLines('a + b + c + d + e + f \\leq g + h + i + j + k \\rightarrow 1', 14))[1]).toMatch(/^\\leq/);
 	});
 
+	it('breaks a side still too wide before its + and −, never inside brackets or before a sign that opens a term', () => {
+		const result = lines(formulaLines('s(A \\cup B \\cup C) = s(A) + s(B) + s(C) - s(A \\cap B) - s(A \\cap C) - s(B \\cap C) + s(A \\cap B \\cap C)', 24));
+		expect(result[0]).toBe('s(A \\cup B \\cup C)');
+		// A line opening with + or − has an empty group first, for KaTeX to space it as an operation.
+		expect(result.slice(1).every((line) => /^(?:=|\{\} [+-])/.test(line))).toBe(true);
+		for (const line of result) expect(latexWidth(line)).toBeLessThanOrEqual(24);
+		expect(result.join(' ').replaceAll('{} ', '')).toBe('s(A \\cup B \\cup C) = s(A) + s(B) + s(C) - s(A \\cap B) - s(A \\cap C) - s(B \\cap C) + s(A \\cap B \\cap C)');
+		// "= -2" keeps its sign; a sum inside brackets or a fraction stays whole.
+		const signed = lines(formulaLines('y = -2 + (a + b + c + d + e + f + g) + \\frac{x + 1}{2} + 3 + 4 + 5 + 6', 16));
+		expect(signed.every((line) => !/^-2/.test(line))).toBe(true);
+		expect(signed.some((line) => line.includes('(a + b + c + d + e + f + g)'))).toBe(true);
+		expect(signed.some((line) => line.includes('\\frac{x + 1}{2}'))).toBe(true);
+	});
+
 	it('leaves a long formula with nowhere to break as it is', () => {
 		expect(formulaLines('(x + 1)(x + 2)(x + 3)(x + 4)(x + 5)(x + 6)', 20)).toBe('(x + 1)(x + 2)(x + 3)(x + 4)(x + 5)(x + 6)');
 	});

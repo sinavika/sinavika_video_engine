@@ -80,6 +80,21 @@ describe('engine layout', () => {
 		expect(dead.map((entry) => `${entry.file}: ${entry.name}${entry.usedInOwnFile ? ' (export not needed)' : ' (unused)'}`)).toEqual([]);
 	}, 60_000);
 
+	it('measures text by its letters, never by counting them (FigureLabel.textWidth and fitSize, Typography/TextMeasure)', () => {
+		// A letter count times a share of the size gave an "i" the room of an "m"; it was written in 36 places, as a
+		// share (0.52–0.62), as units a letter (u(13), 9.6) or as a size over a count, before one measure replaced them
+		// all (2 Nov 2026). Each pattern caught some of them.
+		const guess = [
+			/\.length \* (\([^()]*\)|[\w.]+(\([^()]*\))?) \* 0\.[4-6]\d*|\.length \* 0\.[4-6]\d* \* /,
+			/\b(label|text|name|title|caption|detail)(\([^()]*\))?( \?\? '[^']*'\))?\.length\)*\s*\*\s*(u\(|[a-z]*([Ss]ize|[Ff]ont|letter)\b|0\.[2-7])/,
+			/\/ \(?Math\.max\(1, (label|text|name)\.length\)/,
+		];
+		const guesses = sourceFiles
+			.filter((file) => !inOtherArea(file))
+			.flatMap((file) => readFileSync(path.join(ROOT, file), 'utf-8').split('\n').flatMap((line, index) => (guess.some((pattern) => pattern.test(line)) ? [`${file}:${index + 1}`] : [])));
+		expect(guesses).toEqual([]);
+	});
+
 	it('defines the shared motion and drawing helpers once', () => {
 		const homes: Record<string, string> = {
 			easeFrom: 'src/Animations/Motion.ts',

@@ -5,6 +5,7 @@ import {useVideoLayout} from '../../Layouts/VideoLayout';
 import {useFigureFont, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {UNFOCUSED_FADE, useBeatStartFor, useElementState} from '../VisualTimeline';
+import {textWidth} from '../FigureLabel';
 
 type Assembly = Extract<CourseVisual, {kind: 'assembly'}>;
 type Group = Assembly['groups'][number];
@@ -271,7 +272,7 @@ export const AssemblyVisual: React.FC<VisualBoxProps & {visual: Assembly}> = ({v
 		const pitch = u(76) * scale;
 		const names = Math.max(least, nameSize * scale);
 		const notes = Math.max(least, noteSize * scale);
-		const labelWidths = visual.groups.map((group) => Math.max(group.name.length * names * 0.56, (group.note?.length ?? 0) * notes * 0.52));
+		const labelWidths = visual.groups.map((group) => Math.max(textWidth(group.name, names), textWidth(group.note ?? '', notes, 600)));
 		const labelDepth = pitch * 0.45 + names * 1.1 + (visual.groups.some((group) => group.note) ? notes * 1.35 : 0);
 		return {scale, pitch, names, notes, ...roomLayout(visual.groups, labelWidths, {backHalf, sideLength, pitch, labelDepth, gap: u(30) * scale})};
 	};

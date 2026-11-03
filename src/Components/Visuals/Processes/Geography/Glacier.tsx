@@ -3,7 +3,7 @@ import {clamp01, lerp, noise, smooth, smoothStep} from '../../../../Animations/M
 import {withAlpha} from '../../../../Themes/Theme';
 import {useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
-import {pathOf} from '../../VisualWorld';
+import {pathOf, FigureText} from '../../VisualWorld';
 import {Drift, FlowLine, Grass, ProcessFrame, ProcessLabel, SCENE, Sky, Tree, processCamera, sampled, smoothPath, useProcessClock, type CameraBox, type Point} from '../ProcessScene';
 
 type ProcessSpec = Extract<CourseVisual, {kind: 'process'}>;
@@ -188,9 +188,9 @@ const ValleyInset: React.FC<{show: number; grind: number}> = ({show, grind}) => 
 			<path d={ground} fill={COLOURS.rock} />
 			<path d={ice} fill={COLOURS.ice} opacity={0.85 * grind} />
 			<path d={pathOf(points)} fill="none" stroke={palette.lesson} strokeWidth={4} />
-			<text x={box.x + 18} y={box.y + 34} fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.ink}>
+			<FigureText x={box.x + 18} y={box.y + 34} fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.ink}>
 				Vadinin kesiti: V → U
-			</text>
+			</FigureText>
 		</g>
 	);
 };

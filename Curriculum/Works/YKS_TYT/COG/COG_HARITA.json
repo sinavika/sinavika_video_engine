@@ -14,84 +14,244 @@
  "sourceScripts": [
   "Curriculum/Scripts/YKS_TYT/COG/COG_HARITA.json"
  ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/YKS/TYT/KonuAnlatimi/COG/COG_HARITA.json (MEB OGM Materyal)",
+   "EgitimVerileri/YKS/TYT/CikmisSorular/COG/COG_HARITA.json (ÖSYM 2021)",
+   "Curriculum/Scripts/YKS_TYT/COG/COG_HARITA.json"
+  ],
+  "additions": [
+   {
+    "note": "Ölçek hesaplarına ek örnekler ekle: harita uzunluğundan gerçek uzunluğa ve tersine geçiş; alan hesabında ölçeğin karesinin kullanılması; iki haritanın ölçeklerini karşılaştırma.",
+    "done": "Ölçek bölümünde harita→gerçek ve gerçek→harita geçişini gösteren örnek, çizgi ölçek boşluk kartı ve iki haritanın ölçeğini karşılaştıran soru eklendi. Uzunluk bölümünde MEB örnekleri, boşluk kartı ve 2 cm sorusu var. Alan için karesi örneği, hata bulma, 20 km² sorusu, iki haritada alan karşılaştırma sorusu ve 'paydayı 2 katına çıkarmak' tahmin kartı eklendi."
+   },
+   {
+    "note": "Büyük ve küçük ölçekli haritaları tabloyla karşılaştır (ayrıntı, gösterilen alan, bozulma) ve projeksiyon türlerini (silindirik, konik, düzlem) bozulmanın en az olduğu yerlerle ver.",
+    "done": "Ölçek bölümünde büyük/küçük ölçek tablosu (ayrıntı, alan, bozulma, izohips aralığı), orta ölçek sınıfı ve sınıflama kartı var. Harita ve unsurları bölümünde projeksiyon tablosu (silindirik: Ekvator, konik: orta enlemler, düzlem: kutup çevresi), tahmin ve soru kartları eklendi."
+   },
+   {
+    "note": "İzohips haritalarında yer şekillerini (tepe, sırt, vadi, boyun, çanak, falez) ve eğim kurallarını (sıklaşan eğriler dik eğim) örnek haritalarla ver; yükselti basamaklarıyla gösterim yöntemleri (renklendirme, gölgelendirme, tarama).",
+    "done": "İzohips bölümünde temeldeki iki izohips örnek haritası (eğriler ve renklendirilmiş profil haritası) kullanıldı. Yer şekilleri tablosu (tepe, zirve, sırt, vadi, boyun, çanak, falez, şelale), eşleştirme ve çoklu seçim kartları, sıklaşan eğri = dik eğim kuralı ve gösterim yöntemleri tablosu (izohips, renklendirme, gölgelendirme, tarama, kabartma) eklendi."
+   }
+  ],
+  "fixes": [
+   "Temeldeki üç hesap sorusunun sayısal şıkları küçükten büyüğe sıralı değildi (2-3-6-18-1,5; 20-10-2-40-200; 20-2-8-16-40). Şıklar sıralandı, cevap anahtarları yeniden hesaplanıp güncellendi (2 cm sorusu B, 20 km² sorusu C, %20 sorusu D).",
+   "Temeldeki eğim çözümünde 'uzaklığı kilometre bırakırsan iki yüz gibi sonuç çıkar' deniyordu; yanlıştı. 400 m ÷ 2 km × 100 = 20.000 çıkar. Doğrusu yazıldı: iki uzunluk da metre olmalı.",
+   "Havuzdaki 1 cm = 5 km ve 1 cm = 20 km haritaları sorusunda A şıkkı ('ilk harita hem daha ayrıntılı hem daha geniş alanı gösterir') yanlış anahtarlanmış: büyük ölçekli harita ayrıntılıdır ama dar alan gösterir. Beş şıkta doğru yanıt yoktu; soru kullanılmadı, ders özgün sorularla yazıldı.",
+   "Havuzdaki kıyı rüzgârları sorusu bu konuyla ilgisiz olduğu için kullanılmadı.",
+   "Temeldeki 2021 tarzı sorunun doğru şıkkı 'Dünya fiziki haritası' idi; ÖSYM'nin ülkeleri ve aradaki alanı gösteren Dünya siyasi haritası kalıbına uygun, tek doğrulu yeni soru yazıldı.",
+   "Video sözleri ('Cevabımız B' gibi) ve temeldeki beats alanları yazılı anlatıma çevrildi ya da kaldırıldı."
+  ]
+ },
  "lesson": {
   "hook": {
    "headline": "Bir kâğıttan dağın yüksekliği, gölün alanı, yolun eğimi.",
-   "narration": "Elinde bir harita olsun. Üzerinde birkaç eğri, köşede küçük bir kesir. Bu kâğıttan bir dağın yüksekliğini, bir gölün alanını, iki şehir arasındaki uzaklığı ve bir yolun ne kadar dik olduğunu bulabilirsin. Bu derste haritayı bir çizimden ayıran şeyi, ölçeği ve ölçekle yapılan hesapları, eş yükselti eğrilerini, profil çıkarmayı ve coğrafi bilgi sistemlerini göreceğiz. Hesaplarda tek bir kural var: birimi asla unutma."
+   "narration": "Elinde bir harita olsun. Üzerinde birkaç eğri, köşede küçük bir kesir. Bu kâğıttan bir dağın yüksekliğini, bir gölün alanını, iki şehir arasındaki uzaklığı ve bir yolun ne kadar dik olduğunu bulabilirsin. Bu derste ölçeği, ölçekle uzunluk, alan ve eğim hesaplarını, izohipsleri, profil çıkarmayı ve coğrafi bilgi sistemlerini göreceksin. Hesaplarda tek bir kural var: birimi asla unutma."
   },
   "objectives": [
    "Harita, kroki ve plan arasındaki farkı ve haritanın unsurlarını bilmek",
-   "Büyük ve küçük ölçekli haritaları karşılaştırmak",
-   "Ölçekle uzunluk, alan ve eğim hesaplamak",
-   "İzohips haritasını okuyup profil çıkarmak"
+   "Silindirik, konik ve düzlem projeksiyonu bozulmanın en az olduğu yerlerle ilişkilendirmek",
+   "Büyük, orta ve küçük ölçekli haritaları karşılaştırmak",
+   "Ölçekle uzunluk ve alan hesaplamak, iki haritanın ölçeğini kıyaslamak",
+   "İzohips haritasından yer şekillerini ve eğimi okumak",
+   "Profil çıkarmak ve yükselti gösterim yöntemlerini ayırt etmek",
+   "Yüzde eğimi doğru birimle hesaplamak",
+   "CBS ve uzaktan algılamayı, noktasal, çizgisel ve alansal gösterimi tanımak"
   ],
   "sections": [
    {
     "subtopic": "COG_HARITA_01",
     "subtopics": [],
-    "title": "Harita ve unsurları",
-    "narration": "Harita, yeryüzünün tamamının ya da bir parçasının kuş bakışı görünüşünün belli bir oranda küçültülerek düzleme aktarılmasıdır. Bu tanımda üç şart var.",
+    "title": "Harita, unsurlar ve projeksiyon",
+    "narration": "",
     "cards": [
      {
       "kind": "concept",
       "title": "Harita, kroki, plan",
-      "text": "**Harita**: kuş bakışı + düzleme aktarma + **ölçekli** küçültme. Harita bilimine **kartografya** denir. **Kroki**: kuş bakışı ve düzlemde ama **ölçeksiz**, kabataslak. **Plan**: bir evin, mahallenin ya da şehrin **çok büyük ölçekli**, ayrıntılı çizimi.",
-      "beats": [],
-      "narration": "Bir çizimin harita sayılması için üç şart vardır: kuş bakışı görünüm, düzleme aktarma ve belirli bir ölçekte küçültme. Harita bilimine kartografya denir. Kroki de kuş bakışıdır ve düzleme çizilir; ama ölçeği yoktur, kabataslaktır. Plan ise bir evin, bir mahallenin ya da bir şehrin çok büyük ölçekli, en küçük ayrıntısına kadar çizilmiş hâlidir."
+      "text": "**Harita**: kuş bakışı görünüşün belli bir oranda küçültülerek düzleme aktarılmasıdır; üç şart vardır: kuş bakışı, düzleme aktarma, **ölçekli** küçültme. Harita bilimine **kartografya** denir. **Kroki**: kuş bakışı ve düzlemdedir ama **ölçeksiz**, kabataslaktır. **Plan**: ev, mahalle ya da şehrin **çok büyük ölçekli**, ayrıntılı çizimidir.",
+      "narration": "Kuş bakışı görünüm ve düzleme aktarma, kroki ile haritanın ortak özelliğidir. Aradaki fark ölçektir: haritada belirli bir küçültme oranı vardır, krokide yoktur. Bu yüzden krokiden uzaklık ya da alan hesaplayamazsın. Plan ise ölçeği çok büyük olan haritadır; en küçük ayrıntıyı bile gösterir."
+     },
+     {
+      "kind": "match",
+      "title": "Kavramı tanımıyla eşle",
+      "prompt": "Her kavramı doğru tanımla eşleştir.",
+      "pairs": [
+       {
+        "left": "Harita",
+        "right": "Kuş bakışı, düzlemde, ölçekli"
+       },
+       {
+        "left": "Kroki",
+        "right": "Kuş bakışı, düzlemde, ölçeksiz"
+       },
+       {
+        "left": "Plan",
+        "right": "Ev, mahalle ya da şehrin çok büyük ölçekli çizimi"
+       },
+       {
+        "left": "Kartografya",
+        "right": "Harita bilimi"
+       }
+      ],
+      "explanation": "Harita ile kroki arasındaki tek fark ölçektir. Plan, ölçeği çok büyük olan bir haritadır."
      },
      {
       "kind": "rule",
-      "title": "Haritanın unsurları ve projeksiyon",
+      "title": "Haritanın unsurları",
       "items": [
-       "**Başlık** amacı, **lejant** işaretlerin anlamını, **ölçek** küçültme oranını, **yön oku** ve **koordinatlar** yeri gösterir.",
-       "Küre düzleme aktarılırken **bozulma** olur; bunu azaltan yöntemlere **projeksiyon** denir.",
-       "**Silindirik**: Ekvator'da doğru, kutuplara doğru bozulma **artar**.",
-       "**Konik**: orta enlemlerde doğru; **Türkiye** haritaları için en uygun.",
-       "**Düzlem (azimutal)**: kutup çevrelerini göstermek için.",
-       "Ölçek değişse de **gerçek uzunluk, gerçek alan, yükselti ve koordinatlar** değişmez."
+       "**Başlık** haritanın amacını, **lejant** (harita anahtarı) işaretlerin anlamını gösterir.",
+       "**Ölçek** küçültme oranıdır; **yön oku** yönleri, **coğrafi koordinatlar** Ekvator ve Greenwich'e göre konumu gösterir.",
+       "Koordinat kullanılmışsa yön oku kullanılmayabilir.",
+       "Ölçek değişse de **gerçek uzunluk, gerçek alan, yükselti ve koordinatlar** değişmez.",
+       "**Genel harita** doğal ve yapay unsurları gösterir (Türkiye fiziki haritası).",
+       "**Tematik harita** konuya özgü veri taşır (nüfus yoğunluğu, jeoloji, toprak haritası)."
       ],
-      "beats": [],
-      "narration": "Bir haritada başlık haritanın amacını, lejant yani harita anahtarı işaretlerin anlamını, ölçek küçültme oranını, yön oku ve coğrafi koordinatlar da yeri gösterir. Küre biçimindeki Dünya düzleme aktarılırken mutlaka bozulma olur; bunu en aza indiren yöntemlere projeksiyon denir. Silindirik projeksiyonda Ekvator doğru çizilir, kutuplara doğru bozulma artar. Konik projeksiyonda orta enlemler doğru çizilir; Türkiye haritaları için en uygun yöntem budur. Kutup çevreleri ise düzlem projeksiyonla gösterilir. Son bir kural: ölçek değişse de gerçek uzunluk, gerçek alan, yükselti ve koordinatlar değişmez."
+      "narration": "Haritada neyin değişip neyin değişmediğini ayırt etmek TYT'de sık sorulur. Harita küçüldükçe ya da büyüdükçe kâğıttaki uzunluk, alan ve ayrıntı değişir. Yeryüzündeki gerçek uzaklık, gerçek alan, yükselti ve koordinat ise aynı kalır. Haritanın türü de amaca bağlıdır: Türkiye'nin fiziki haritası genel, nüfus yoğunluğu haritası tematiktir."
+     },
+     {
+      "kind": "classify",
+      "title": "Ölçek değişince ne olur?",
+      "prompt": "Ölçek değiştiğinde değişen ve değişmeyen öğeleri ayır.",
+      "groups": [
+       {
+        "label": "Ölçekle değişir",
+        "items": [
+         "Haritadaki uzunluk",
+         "Ayrıntı düzeyi",
+         "Gösterilen alan"
+        ]
+       },
+       {
+        "label": "Değişmez",
+        "items": [
+         "Gerçek uzunluk",
+         "Gerçek alan",
+         "Yükselti",
+         "Coğrafi koordinat"
+        ]
+       }
+      ],
+      "explanation": "Kâğıt üzerindeki gösterim ölçeğe bağlıdır; yeryüzünün kendisi ölçeğe bağlı değildir."
+     },
+     {
+      "kind": "visual",
+      "title": "Projeksiyon türleri",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Projeksiyon",
+        "Bozulma en az",
+        "Bozulma artar",
+        "Kullanım"
+       ],
+       "rows": [
+        [
+         "Silindirik",
+         "Ekvator",
+         "Kutuplara doğru",
+         "Dünya haritaları"
+        ],
+        [
+         "Konik",
+         "Orta enlemler",
+         "Ekvator ve kutuplara",
+         "Türkiye haritaları"
+        ],
+        [
+         "Düzlem",
+         "Kutup çevresi",
+         "Ekvator'a doğru",
+         "Kutup bölgeleri, dar alanlar"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "caption": "Küre düzleme aktarılırken bozulma kaçınılmazdır; projeksiyon bunu azaltır.",
+      "narration": "Dünya küre biçiminde olduğu için düzleme aktarırken bozulma olur. Projeksiyon yöntemleri bu bozulmayı en aza indirir, ama yok etmez. Silindirik projeksiyonda silindir Dünya'nın eksenine paralel kesilip açılır; Ekvator doğru çizilir, kutuplara gidildikçe bozulma artar. Konik projeksiyonda koni sarılır; orta enlemlerde bozulma azdır, bu yüzden Türkiye haritaları için en uygundur. Düzlem projeksiyonda düzlem kutup noktasına teğet geçirilir; kutuptan uzaklaştıkça bozulma artar, dar alanlar ve kutup çevreleri için tercih edilir."
+     },
+     {
+      "kind": "predict",
+      "title": "Türkiye için en uygun yöntem",
+      "prompt": "Türkiye haritalarının çiziminde en uygun yöntem konik projeksiyondur. Bu ifade doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Türkiye orta enlemlerdedir ve konik projeksiyon orta enlemlerde en az bozulmayı verir."
      },
      {
       "kind": "question",
       "question": {
        "style": "ÖSYM 2021 tarzı",
-       "stem": "Türkiye ile Arjantin arasında açılacak yeni bir deniz ticaret yolunu araştıran bir öğrenci, iki ülkenin dünyadaki yerini, aralarındaki okyanusları ve kıtaları aynı haritada görmek istemektedir.\n\nBu öğrencinin aşağıdaki haritalardan hangisini incelemesi amacına **uygundur**?",
+       "stem": "Mısır ile Kanada arasındaki deniz ve hava bağlantılarını araştıran bir öğrenci, iki ülkenin dünyadaki yerini, aralarındaki okyanusları ve kıtaları aynı haritada görmek istemektedir.\n\nBu öğrencinin aşağıdaki haritalardan hangisini incelemesi amacına uygundur?",
        "options": [
-        "Güney Amerika siyasi haritası",
-        "Dünya fiziki haritası",
-        "Türkiye fiziki haritası",
-        "Arjantin yer şekilleri haritası",
-        "Akdeniz ülkeleri haritası"
+        "Afrika siyasi haritası",
+        "Dünya siyasi haritası",
+        "Kanada siyasi haritası",
+        "Mısır fiziki haritası",
+        "Kuzey Amerika siyasi haritası"
        ],
        "answer": 1,
+       "choiceFeedback": [
+        "Afrika haritasında Mısır var, ama Kanada ve aradaki okyanus yok.",
+        null,
+        "Yalnız Kanada gösterilir; Mısır ve aradaki alan haritada yer almaz.",
+        "Tek ülkeyi gösterir; ikinci ülke ve okyanuslar eksik kalır.",
+        "Kanada var, ama Mısır'ın bulunduğu kıta bu haritada yoktur."
+       ],
        "steps": [
         {
-         "text": "Türkiye ya da Arjantin **tek başına** yetmez; Akdeniz haritasında Arjantin yok.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Türkiye haritası Arjantin'i, Güney Amerika ve Arjantin haritaları Türkiye'yi göstermez. Akdeniz ülkeleri haritasında da Arjantin yoktur."
+         "text": "İki ülke farklı kıtalardadır; hedef, ikisini birden gösteren bir harita bulmaktır."
         },
         {
-         "text": "İki ülke + okyanuslar + kıtalar → **dünya haritası**, yani küçük ölçek. Cevap **B**.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "İki ülkeyi, aradaki okyanusları ve kıtaları aynı anda görmek için geniş bir alanı gösteren küçük ölçekli bir dünya haritası gerekir. Cevabımız B."
+         "text": "Aradaki okyanusları ve kıtaları da göstermek için çok geniş alanı kapsayan, yani küçük ölçekli bir harita gerekir. Tek ülke ya da tek kıta gösterenleri ele."
         }
        ],
-       "narration": "Haritanın göstermesi gereken alanı belirle: iki ülke ve aradaki her şey.",
        "origin": {
-        "changes": "ÖSYM 2021 TYT harita okuryazarlığı sorusunun yapısı örnek alındı; ülkeler, amaç ve seçenekler değiştirildi."
+        "changes": "ÖSYM 2021 TYT harita okuryazarlığı sorusunun kalıbı alındı; ülkeler, amaç ve seçenekler yeniden yazıldı."
        }
       }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Projeksiyon yöntemleriyle ilgili aşağıdakilerden hangisi **yanlıştır**?",
+       "options": [
+        "Silindirik projeksiyonda Ekvator'dan kutuplara gidildikçe bozulma artar.",
+        "Konik projeksiyon, Türkiye haritalarının çiziminde en uygun yöntemdir.",
+        "Düzlem projeksiyonda kutuplardan Ekvator'a gidildikçe bozulma artar.",
+        "Projeksiyon yöntemleri, Dünya'nın küresel şeklinden doğan bozulmayı tamamen ortadan kaldırır.",
+        "Düzlem projeksiyon, kutup çevresi gibi dar alanların çiziminde tercih edilir."
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "Bu ifade doğru: silindirik yöntemde bozulma Ekvator'dan uzaklaştıkça artar.",
+        "Bu ifade doğru: orta enlemlerdeki Türkiye için konik yöntem uygundur.",
+        "Bu ifade doğru: düzlem yöntemde bozulma kutuptan uzaklaştıkça artar.",
+        null,
+        "Bu ifade doğru: düzlem yöntem dar alanlarda ve kutuplarda kullanılır."
+       ],
+       "steps": [
+        {
+         "text": "Her şıkkı tabloyla karşılaştır: silindirik Ekvator'da, konik orta enlemde, düzlem kutupta doğrudur."
+        },
+        {
+         "text": "Bir şık projeksiyonun etkisini abartıyor. Yöntemlerin amacı bozulmayı 'azaltmak' mıdır, 'sıfırlamak' mı?"
+        }
+       ],
+       "origin": {
+        "changes": "MEB projeksiyon bölümündeki üç yöntem esas alındı; yargılar yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Kroki de ölçeklidir",
+      "wrong": "Kroki de harita gibi ölçeklidir; yalnız daha basit çizilir.",
+      "right": "Krokide ölçek yoktur; kabataslak çizilir. Haritada ise belirli bir küçültme oranı bulunur.",
+      "why": "Kuş bakışı ve düzleme aktarma ortak özelliktir. Ölçeğin olup olmaması harita ile krokiyi ayırır; ölçeksiz çizimden uzaklık hesaplanamaz."
      }
     ]
    },
@@ -99,15 +259,45 @@
     "subtopic": "COG_HARITA_02",
     "subtopics": [],
     "title": "Ölçek",
-    "narration": "Ölçek, haritadaki küçültme oranıdır. Kesir ölçek ve çizgi ölçek olarak iki türlü yazılır.",
+    "narration": "",
     "cards": [
      {
       "kind": "example",
       "title": "Kesir ölçek, çizgi ölçek",
-      "example": "**1/200.000**: haritada 1 cm, gerçekte 200.000 cm, yani **2 km**.",
-      "explanation": "Çizgi ölçek: her 1 cm'lik bölme **2 km** yazılır. Tersine, 2 cm'lik bölme **10 km** ise 1 cm = 5 km = 500.000 cm, ölçek **1/500.000**.",
-      "beats": [],
-      "narration": "Kesir ölçekte pay harita uzunluğunu, payda gerçek uzunluğu gösterir. 1 bölü 200.000: haritada 1 santimetre, gerçekte 200.000 santimetre, yani 2 kilometre. Bu ölçeği çizgi ölçeğe çevirirsek her bir santimetrelik bölmenin üzerine iki kilometre yazarız. Tersini de yapabiliriz: çizgi ölçekte iki santimetrelik bölme on kilometreyi gösteriyorsa bir santimetre beş kilometre eder. Beş kilometre beş yüz bin santimetredir; ölçek bir bölü beş yüz bin olur."
+      "example": "**1/200.000** ölçekli haritada 1 cm, gerçekte 200.000 cm, yani **2 km**'dir.",
+      "explanation": "Kesir ölçekte pay harita uzunluğunu, payda gerçek uzunluğu (cm) gösterir. 1/200.000 → çizgi ölçekte her 1 cm'lik bölmeye **2 km** yazılır. Tersi: çizgi ölçekte 2 cm'lik bölme 10 km ise 1 cm = 5 km = 500.000 cm, ölçek **1/500.000**.",
+      "narration": "Kesir ölçek ile çizgi ölçek aynı bilgiyi verir, yalnız gösterimleri farklıdır. Çizgi ölçeğe geçerken paydayı kilometreye çevirirsin: 200.000 cm = 2 km. Kesir ölçeğe geçerken önce 1 cm'nin kaç km'yi gösterdiğini bulur, sonra o değeri santimetreye çevirirsin."
+     },
+     {
+      "kind": "blank",
+      "title": "Çizgi ölçekten kesir ölçeğe",
+      "prompt": "Çizgi ölçekte 1 cm'lik bölme 3 km'yi gösteriyor. Kesir ölçeğin paydası kaçtır?",
+      "before": "Ölçek = 1 /",
+      "answers": [
+       "300000"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 300000,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "3",
+        "feedback": "3 km'yi santimetreye çevirmeyi unuttun; 1 km = 100.000 cm."
+       },
+       {
+        "answer": "3000",
+        "feedback": "1 km = 1000 cm sandın; doğrusu 100.000 cm."
+       }
+      ],
+      "explanation": "3 km = 3 × 100.000 = 300.000 cm olduğundan ölçek 1/300.000'dir."
+     },
+     {
+      "kind": "concept",
+      "title": "Ölçek sınıfları",
+      "text": "**Büyük ölçekli**: ölçeği 1/200.000'den büyük (plan, topoğrafya haritası). **Orta ölçekli**: 1/200.000 ile 1/500.000 arası (bir ile ait deprem, ulaşım haritası). **Küçük ölçekli**: 1/500.000'den küçük (ülke, kıta, dünya haritası).",
+      "narration": "Büyük ve küçük ölçeği karıştırmamak için paydaya bak: payda küçüldükçe ölçek büyür. 1/25.000, 1/1.000.000'den büyüktür, çünkü kâğıt yeryüzünü daha az küçültmüştür."
      },
      {
       "kind": "visual",
@@ -152,42 +342,85 @@
         ],
         [
          "Örnek",
-         "Plan, topoğrafya haritası",
-         "Dünya ve kıta haritası"
+         "Plan, topoğrafya",
+         "Dünya, kıta"
         ]
        ]
       },
-      "beats": [
+      "narration": "Paydası küçük olan haritada küçültme azdır; bu yüzden ayrıntı fazla, bozulma az olur. Ama aynı kâğıda dar bir alan sığar. Küçük ölçekli harita ise geniş alan gösterir; ayrıntısı az, bozulması fazladır. Küçük ölçekli haritalarda izohipsler arasındaki yükselti farkı da daha büyük seçilir."
+     },
+     {
+      "kind": "classify",
+      "title": "Hangi ölçek sınıfı?",
+      "prompt": "Haritaları ölçek sınıflarına yerleştir.",
+      "groups": [
        {
-        "narration": "Paydası küçük olan haritada küçültme azdır; bu yüzden büyük ölçekli harita ayrıntıyı daha çok gösterir.",
-        "show": [],
-        "focus": [
-         "r1",
-         "r2",
-         "r3"
-        ],
-        "swap": []
+        "label": "Büyük ölçekli",
+        "items": [
+         "Plan",
+         "Topoğrafya haritası"
+        ]
        },
        {
-        "narration": "Ama aynı kâğıda daha dar bir alan sığar. Küçük ölçekli harita ise geniş alan gösterir ve bozulması fazladır.",
-        "show": [],
-        "focus": [
-         "r4",
-         "r5"
-        ],
-        "swap": []
+        "label": "Orta ölçekli",
+        "items": [
+         "İl deprem haritası",
+         "İl ulaşım haritası"
+        ]
        },
        {
-        "narration": "Küçük ölçekli haritalarda izohipsler arasındaki yükselti farkı da daha büyük seçilir. Planlar ve topoğrafya haritaları büyük, dünya ve kıta haritaları küçük ölçeklidir. Ölçeği bir bölü iki yüz binden büyük olanlara büyük, bir bölü beş yüz binden küçük olanlara küçük ölçekli denir.",
-        "show": [],
-        "focus": [
-         "r6",
-         "r7"
-        ],
-        "swap": []
+        "label": "Küçük ölçekli",
+        "items": [
+         "Dünya haritası",
+         "Kıta haritası",
+         "Ülke haritası"
+        ]
        }
       ],
-      "narration": "Büyük ve küçük ölçeği karıştırmamak için tek bir şeye bak: payda. Paydası küçük olan ölçek büyüktür."
+      "explanation": "Ayrıntı arttıkça ölçek büyür: plan ve topoğrafya en büyük, ülke, kıta ve dünya haritaları en küçüktür."
+     },
+     {
+      "kind": "example",
+      "title": "Haritadan gerçeğe, gerçekten haritaya",
+      "example": "1/250.000 ölçekli haritada iki kent arası **8 cm**. Gerçek uzaklık kaç km? Aynı uzaklık 1/1.000.000 ölçekli haritada kaç cm?",
+      "explanation": "Gerçek uzunluk = 8 × 250.000 = 2.000.000 cm = **20 km**. Yeni haritada: 2.000.000 ÷ 1.000.000 = **2 cm**. Kısa yol: payda 4 katına çıktığı için harita uzunluğu 4 kat azalır, 8 ÷ 4 = 2 cm. Ölçeği karşılaştırırsak 1/250.000 daha büyük ölçeklidir; aynı yer orada daha uzun çizilir.",
+      "narration": "Önce gerçek uzaklığı santimetre olarak bulursun. Sonra bu değeri yeni paydaya bölersin. Payda ile harita uzunluğu ters orantılıdır: payda kaç kat artarsa harita uzunluğu o kadar kat azalır. İki haritayı karşılaştırırken de aynı yeri iki haritada ölçüp gerçek uzaklık üzerinden gitmek en güvenli yoldur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aynı iki kent, **1/400.000** ölçekli K haritasında **2 cm** arayla gösterilmiştir. Bu kentler L haritasında **8 cm** arayla gösterildiğine göre, L haritasının ölçeği aşağıdakilerden hangisidir?",
+       "options": [
+        "1/100.000",
+        "1/200.000",
+        "1/400.000",
+        "1/800.000",
+        "1/1.600.000"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "Uzunluk 4 kat arttı; paydayı yalnız 2'ye bölmüşsün.",
+        "K haritasının kendi ölçeğini yazmışsın; L'de uzunluk değişti.",
+        "Paydayı 2 ile çarpmışsın; uzunluk artınca payda azalır.",
+        "Paydayı 4 ile çarpmışsın; harita uzunluğu artınca payda büyümez, küçülür."
+       ],
+       "steps": [
+        {
+         "text": "K haritasından gerçek uzaklığı santimetre olarak bul."
+        },
+        {
+         "text": "L'de aynı uzaklık 8 cm. Ölçek = harita uzunluğu ÷ gerçek uzunluk."
+        },
+        {
+         "text": "Harita uzunluğu 4 kat arttı; payda bu durumda nasıl değişir?"
+        }
+       ],
+       "origin": {
+        "changes": "MEB'deki 'ölçek = HU/GU' kalıbı esas alındı; iki haritanın karşılaştırılması için yeni sayılar kuruldu."
+       }
+      }
      },
      {
       "kind": "question",
@@ -202,40 +435,46 @@
         "Aynı iki şehrin gerçek uzaklığı L haritasında daha fazladır."
        ],
        "answer": 4,
+       "choiceFeedback": [
+        "Doğru ifade: K büyük ölçeklidir, ayrıntısı fazladır.",
+        "Doğru ifade: L küçük ölçeklidir, geniş alan gösterir.",
+        "Doğru ifade: K'nin paydası küçük, küçültmesi azdır.",
+        "Doğru ifade: küçük ölçekte yükselti aralığı büyük seçilir.",
+        null
+       ],
        "steps": [
         {
-         "text": "K'nin paydası küçük → K **büyük ölçek**: ayrıntı fazla, küçültme az. A ve C doğru.",
-         "eliminate": [
-          "A",
-          "C"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "K'nin paydası yüz bin, L'ninki bir milyon. Paydası küçük olan K büyük ölçeklidir: ayrıntı fazla, küçültme az. A ve C doğru."
+         "text": "Paydası küçük olan K büyük ölçeklidir: ayrıntı fazla, küçültme az, alan dar."
         },
         {
-         "text": "L **küçük ölçek**: geniş alan, izohips aralığı büyük. B ve D doğru.",
-         "eliminate": [
-          "B",
-          "D"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "L küçük ölçeklidir; daha geniş bir alanı gösterir ve izohipsler arası yükselti farkı daha büyüktür. B ve D doğru."
+         "text": "L küçük ölçeklidir: geniş alan, fazla bozulma, büyük izohips aralığı."
         },
         {
-         "text": "**Gerçek** uzaklık ölçekle değişmez. Cevap **E**.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "İki şehrin gerçek uzaklığı haritadan haritaya değişmez; değişen yalnız haritadaki uzunluktur. Yanlış olan E."
+         "text": "Yeryüzündeki gerçek uzaklık ölçeğe bağlı mıdır? Bu soruya göre yanlış şıkkı bul."
         }
        ],
-       "narration": "Önce hangisinin büyük ölçekli olduğunu bul.",
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki büyük-küçük ölçek karşılaştırma kalıbı örnek alındı, ölçekler ve seçenekler MEB tablosundan yeniden kuruldu."
+        "changes": "Havuzdaki büyük-küçük ölçek karşılaştırma kalıbı alındı; ölçekler ve seçenekler MEB tablosundan yeniden kuruldu."
        }
       }
+     },
+     {
+      "kind": "mistake",
+      "title": "Büyük sayı, büyük ölçek",
+      "wrong": "1/1.000.000 ölçeği 1/100.000'den büyüktür, çünkü sayısı daha büyüktür.",
+      "right": "1/100.000 daha büyük ölçeklidir; paydası küçük olan ölçek büyüktür.",
+      "why": "Ölçek bir kesirdir. Payı aynı olan kesirlerde paydası küçük olan daha büyüktür; 1/100.000 küçültmeyi daha az yapar ve ayrıntıyı daha çok gösterir."
+     },
+     {
+      "kind": "predict",
+      "title": "İzohips aralığı",
+      "prompt": "Küçük ölçekli haritalarda izohipsler arasındaki yükselti farkı büyük ölçekli haritalara göre daha fazladır. Bu ifade doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Küçük ölçekli haritada alan geniştir; izohipsleri sık tutmak mümkün olmaz, bu yüzden yükselti farkı büyük seçilir."
      }
     ]
    },
@@ -243,20 +482,51 @@
     "subtopic": "COG_HARITA_03",
     "subtopics": [],
     "title": "Uzunluk ve alan hesaplama",
-    "narration": "Ölçekle üç uzunluk hesabı ve bir alan hesabı yapılır. Hepsinin sırrı birim çevirmede.",
+    "narration": "",
     "cards": [
      {
       "kind": "rule",
       "title": "Dört formül",
       "items": [
-       "**Gerçek uzunluk** = harita uzunluğu × ölçek paydası.",
-       "**Harita uzunluğu** = gerçek uzunluk ÷ ölçek paydası.",
-       "**Ölçek** = harita uzunluğu ÷ gerçek uzunluk (ikisi de cm).",
-       "**Gerçek alan** = harita alanı × ölçek paydasının **karesi**.",
-       "Birimler: 1 km = **100.000 cm**; 1 km² = **10.000.000.000 cm²** (10 milyar)."
+       "$\\text{GU} = \\text{HU} \\times \\text{ÖP}$ (gerçek uzunluk = harita uzunluğu × ölçek paydası)",
+       "$\\text{HU} = \\text{GU} \\div \\text{ÖP}$ (gerçek uzunluk cm olmalı)",
+       "$\\text{Ölçek} = \\text{HU} \\div \\text{GU}$ (ikisi de cm)",
+       "$\\text{GA} = \\text{HA} \\times \\text{ÖP}^2$ (alan: paydanın **karesi**)",
+       "1 km = **100.000 cm**; 1 km² = **10.000.000.000 cm²** (10 milyar)."
       ],
-      "beats": [],
-      "narration": "Formüller şunlar. Gerçek uzunluk, harita uzunluğu ile ölçek paydasının çarpımıdır. Harita uzunluğu, gerçek uzunluğun ölçek paydasına bölümüdür. Ölçek, harita uzunluğunun gerçek uzunluğa bölümüdür; ikisi de santimetreye çevrilir. Alan iki boyutlu olduğu için gerçek alanı bulurken harita alanını ölçek paydasının karesiyle çarparız. Birimleri ezberle: bir kilometre yüz bin santimetre, bir kilometrekare on milyar santimetrekaredir."
+      "narration": "Uzunlukta paydayla bir kez, alanda iki kez işlem yaparsın; çünkü alan iki boyutludur. Her işlemin sonunda sonucu istenen birime (çoğunlukla km ya da km²) çevir. Uzunlukta 100.000'e, alanda 10 milyara böl."
+     },
+     {
+      "kind": "example",
+      "title": "Gerçek uzaklık ve harita uzunluğu",
+      "example": "1/400.000 ölçekli haritada 20 cm olan uzaklık gerçekte kaç km? 450 km'lik uzaklık 1/3.000.000 ölçekli haritada kaç cm?",
+      "explanation": "GU = 20 × 400.000 = 8.000.000 cm = **80 km**. HU = 450 km ÷ 3.000.000 cm = 45.000.000 cm ÷ 3.000.000 cm = **15 cm**. İkisinde de önce her şeyi santimetreye getirdik, sonra işlem yaptık.",
+      "narration": "Birinci soruda haritadan gerçeğe, ikincisinde gerçekten haritaya geçtik. Her ikisinde de ortak adım birimdir: kilometreyi santimetreye (×100.000) ya da santimetreyi kilometreye (÷100.000) çevirmek."
+     },
+     {
+      "kind": "blank",
+      "title": "Uzaklığı kendin bul",
+      "prompt": "1/250.000 ölçekli haritada 6 cm olarak ölçülen uzaklık gerçekte kaç km'dir?",
+      "before": "Gerçek uzaklık (km) =",
+      "answers": [
+       "15"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 15,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "1500000",
+        "feedback": "Santimetrede kaldın; 100.000'e bölerek km'ye çevir."
+       },
+       {
+        "answer": "150",
+        "feedback": "1 km = 10.000 cm sandın; doğrusu 100.000 cm."
+       }
+      ],
+      "explanation": "6 × 250.000 = 1.500.000 cm; 1.500.000 ÷ 100.000 = 15 km."
      },
      {
       "kind": "question",
@@ -264,39 +534,60 @@
        "style": "TYT tarzı",
        "stem": "**1/500.000** ölçekli bir haritada 6 cm olarak ölçülen iki şehir arası uzaklık, **1/1.500.000** ölçekli bir haritada kaç cm ile gösterilir?",
        "options": [
+        "1,5",
         "2",
         "3",
         "6",
-        "18",
-        "1,5"
+        "18"
        ],
-       "answer": 0,
+       "answer": 1,
+       "choiceFeedback": [
+        "Paydaların oranını yanlış almışsın: 1.500.000 ÷ 500.000 = 3, 1,5 değil.",
+        null,
+        "Gerçek uzaklığı hesaplamadan paydayı ters çevirmiş olabilirsin; uzunluğu 3'e böl, ama ne kadar böleceğini kontrol et.",
+        "Ölçek değişse de uzunluğun aynı kalacağını sanmışsın; haritada uzunluk değişir.",
+        "Uzunluğu paydalar oranıyla çarpmışsın; payda büyüyünce harita uzunluğu azalır."
+       ],
        "steps": [
         {
-         "text": "Gerçek uzunluk = 6 × 500.000 = 3.000.000 cm = **30 km**.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Gerçek uzaklık, altı kere beş yüz bin, üç milyon santimetre; yani otuz kilometre."
+         "text": "Önce 6 cm'nin gerçekte kaç santimetre ettiğini bul."
         },
         {
-         "text": "Yeni harita: 3.000.000 ÷ 1.500.000 = **2 cm**. Cevap **A**.",
-         "eliminate": [
-          "B",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Yeni haritada üç milyonu bir buçuk milyona böleriz: iki santimetre. Kısa yol da var: payda üç katına çıktıysa harita uzunluğu üçte birine iner. Altının üçte biri iki. Cevabımız A."
+         "text": "Bu değeri yeni ölçeğin paydasına böl."
+        },
+        {
+         "text": "Kontrol: payda 3 katına çıkarsa harita uzunluğu nasıl değişir?"
         }
        ],
-       "narration": "Önce gerçek uzaklığı bul, sonra yeni haritaya çevir.",
        "origin": {
-        "changes": "Bu ders için yazıldı; MEB'deki gerçek uzunluk ve harita uzunluğu formülleri esas alındı, ölçekler ve uzaklık seçildi, çeldiriciler ters işlem ve payda karışıklığından kuruldu."
+        "changes": "MEB'deki gerçek uzunluk ve harita uzunluğu formülleri esas alındı; ölçekler ve uzaklık yeniden seçildi."
        }
       }
+     },
+     {
+      "kind": "example",
+      "title": "Alanda karesi neden gerekir?",
+      "example": "1/300.000 ölçekli haritada **4 cm²** olan bir göl gerçekte kaç km²'dir?",
+      "explanation": "Payda 300.000 cm; karesi 9 × 10¹⁰ cm². GA = 4 × 90.000.000.000 = 360.000.000.000 cm². 1 km² = 10.000.000.000 cm² olduğundan 360 ÷ 10 = **36 km²**. Mantık: bir kenar 300.000 kat büyürse alan 300.000 × 300.000 kat büyür.",
+      "narration": "Kenar uzunluğunu ölçek paydası kadar büyüttüğünde alan paydanın karesi kadar büyür. Küçük bir kareyi düşün: kenarı 1 cm olan harita karesi, 1/300.000 ölçekte kenarı 300.000 cm olan gerçek bir kareye karşılık gelir. Bu karenin alanı 300.000 × 300.000 cm²'dir."
+     },
+     {
+      "kind": "findError",
+      "title": "Hatayı bul",
+      "problem": "1/100.000 ölçekli haritada 3 cm² olan bir adanın gerçek alanı hesaplanıyor.",
+      "prompt": "Çözümün hangi satırında hata var?",
+      "steps": [
+       "Harita alanı 3 cm², ölçek paydası 100.000 cm.",
+       "Gerçek alan = 3 × 100.000 = 300.000 cm².",
+       "1 km² = 10 milyar cm² olduğundan 300.000 cm² yaklaşık 0,00003 km²'dir."
+      ],
+      "wrongStep": 1,
+      "choiceFeedback": [
+       null,
+       null,
+       null
+      ],
+      "explanation": "Alan hesabında ölçek paydasının karesi alınır: 3 × 100.000² = 3 × 10¹⁰ cm² = 30 milyar cm² = 3 km²."
      },
      {
       "kind": "question",
@@ -304,46 +595,89 @@
        "style": "TYT tarzı",
        "stem": "**1/200.000** ölçekli bir haritada **5 cm²** olarak ölçülen bir göl gerçekte kaç km²'dir?",
        "options": [
-        "20",
-        "10",
         "2",
+        "10",
+        "20",
         "40",
         "200"
        ],
-       "answer": 0,
+       "answer": 2,
+       "choiceFeedback": [
+        "Paydanın karesini alıp sonucu fazla bölmüşsün; işlemleri yeniden yap.",
+        "Payda yerine yarısını kullanmış olabilirsin; karesi 40 milyardır.",
+        null,
+        "Harita alanını hesaba katmayıp yalnız paydanın karesini 10 milyara bölmüşsün.",
+        "Birim çevirmeyi unutmuşsun; sonucu cm²'den km²'ye çevirmen gerekir."
+       ],
        "steps": [
         {
-         "text": "Paydanın karesi: 200.000 × 200.000 = **40.000.000.000** (40 milyar).",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Ölçek paydasının karesi: iki yüz bin kere iki yüz bin, kırk milyar."
+         "text": "Paydanın karesini al: 200.000 × 200.000."
         },
         {
-         "text": "Gerçek alan = 5 × 40 milyar = **200 milyar cm²**.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Harita alanıyla çarparız: beş kere kırk milyar, iki yüz milyar santimetrekare."
+         "text": "Bu değeri 5 ile çarp; sonuç cm² cinsinden gerçek alandır."
         },
         {
-         "text": "1 km² = 10 milyar cm² → 200 ÷ 10 = **20 km²**. Cevap **A**.",
-         "eliminate": [
-          "B",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Bir kilometrekare on milyar santimetrekare olduğuna göre iki yüz milyarı on milyara böleriz: yirmi kilometrekare. Karesini almasaydık yanlış bir sonuca giderdik. Cevabımız A."
+         "text": "1 km² = 10 milyar cm² olduğunu kullanarak km²'ye çevir."
         }
        ],
-       "narration": "Alan sorusunda paydanın karesini almayı unutma.",
        "origin": {
-        "changes": "Bu ders için yazıldı; MEB'deki gerçek alan formülü ve örneği esas alındı, ölçek, alan ve sonuç değiştirildi."
+        "changes": "MEB'deki gerçek alan formülü ve örneği esas alındı; ölçek, alan ve sonuç değiştirildi."
        }
       }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "**1/100.000** ölçekli haritada **12 cm²** olarak gösterilen bir göl, **1/200.000** ölçekli haritada kaç cm² ile gösterilir?",
+       "options": [
+        "3",
+        "6",
+        "12",
+        "24",
+        "48"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "Alanı payda oranıyla (2) bölmüşsün; alanda oranın karesi gerekir.",
+        "Ölçek değişince alanın aynı kalacağını sanmışsın.",
+        "Payda büyüyünce alanın arttığını düşünmüşsün; alan küçülür.",
+        "Oranın karesiyle (4) çarpmışsın; yön yanlış: harita alanı azalır."
+       ],
+       "steps": [
+        {
+         "text": "Payda 2 katına çıkıyor; uzunluk kaç katına iner?"
+        },
+        {
+         "text": "Alan, uzunluğun karesiyle orantılıdır; alan kaç katına iner?"
+        },
+        {
+         "text": "12 cm²'yi bu değere göre küçült."
+        }
+       ],
+       "origin": {
+        "changes": "MEB'deki alan formülü ters yönde, iki haritayı karşılaştıracak biçimde yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Paydayı iki katına çıkarmak",
+      "prompt": "Aynı bölge için ölçek paydası 2 katına çıkarılırsa haritadaki alan yarıya iner. Bu ifade doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 1,
+      "explanation": "Alan paydanın karesiyle ters orantılıdır; payda 2 katına çıkarsa harita alanı 4 kat azalır, yani dörtte birine iner."
+     },
+     {
+      "kind": "mistake",
+      "title": "Birim karışıklığı",
+      "wrong": "1 km 100.000 cm olduğundan 1 km² de 100.000 cm²'dir.",
+      "right": "1 km² = 100.000 × 100.000 = 10.000.000.000 cm²'dir (10 milyar).",
+      "why": "Alan birimleri uzunluk birimlerinin karesidir. Dönüştürme çarpanı da karesi alınarak kullanılmalıdır."
      }
     ]
    },
@@ -353,7 +687,7 @@
      "COG_HARITA_06"
     ],
     "title": "İzohipsler ve profil",
-    "narration": "Yer şekilleri haritaya en çok eş yükselti eğrileriyle, yani izohipslerle aktarılır. Bu eğrileri okuyabilen, haritadaki dağı gözünde canlandırabilir.",
+    "narration": "",
     "cards": [
      {
       "kind": "visual",
@@ -365,72 +699,145 @@
        "notes": true,
        "profile": false
       },
-      "beats": [
-       {
-        "narration": "Deniz seviyesinden itibaren aynı yükseltideki noktaları birleştiren eğrilere izohips denir. Bu haritada eğriler iki yüzer metre arayla çizildi.",
-        "show": [],
-        "focus": [
-         "izohips"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Kıyı çizgisi sıfır metre eğrisidir. Sıfırdan sonraki ilk eğri, eğriler arasındaki yükselti farkını verir: burada iki yüz metre.",
-        "show": [],
-        "focus": [
-         "kiyi"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Eğriler iç içe kapalıdır; en içteki eğri en yüksek yeri gösterir. Bu dağın zirvesi bin iki yüz elli metre.",
-        "show": [],
-        "focus": [
-         "zirve"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Zirvenin batısında eğriler birbirine çok yakın: kısa bir yatay uzaklıkta çok yükselinir, yamaç diktir. Doğusunda eğriler seyrek: yamaç az eğimlidir.",
-        "show": [],
-        "focus": [
-         "dik",
-         "yatik"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Vadide eğriler V harfi çizer ve V'nin ucu yükseğe, yani akarsuyun geldiği yöne bakar. Akarsu hep yüksekten alçağa, eğrileri keserek akar.",
-        "show": [],
-        "focus": [
-         "vadi"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "İki tepe arasındaki alçak geçide boyun denir; yollar dağları çoğu zaman buradan aşar.",
-        "show": [],
-        "focus": [
-         "boyun"
-        ],
-        "swap": []
-       }
-      ],
-      "narration": "Bir kıyı, iki tepe ve bir vadi. Hepsini eğrilerden okuyalım."
+      "narration": "Deniz seviyesinden itibaren aynı yükseltideki noktaları birleştiren eğrilere izohips (eş yükselti eğrisi) denir. Bu haritada eğriler 200 m arayla çizilmiştir. Kıyı çizgisi 0 m'dir; sıfırdan sonraki ilk eğri aralığı verir (burada 200 m). İç içe kapalı eğrilerden en içteki en yüksek yeri gösterir; bu dağın zirvesi 1250 m'dir. Zirvenin batısında eğriler sıkışıktır, yamaç diktir; doğusunda seyrektir, yamaç az eğimlidir. Vadide eğriler V çizer ve V'nin ucu yükseğe bakar. İki tepe arasındaki alçak geçide boyun denir."
      },
      {
       "kind": "rule",
       "title": "İzohipslerin özellikleri",
       "items": [
-       "Aynı eğri üzerindeki bütün noktaların yükseltisi **aynıdır**; eğriler birbirini **kesmez**.",
-       "İç içe **kapalı** eğrilerdir; en içteki en yüksek yer (çukurlar hariç).",
-       "Eğriler arası yükselti farkı **eşittir**; kıyı çizgisi **0 m**.",
-       "**Sık** eğri dik yamaç, **seyrek** eğri az eğimli yamaç.",
-       "Denizlerde aynı derinlikleri birleştiren eğrilere **izobat** denir.",
-       "**Renklendirme**: alçaklar yeşil, yükseldikçe sarı, turuncu, kahverengi; renk yer şeklini değil **yükseltiyi** gösterir."
+       "Aynı eğri üzerindeki noktaların yükseltisi **aynıdır**; eğriler birbirini **kesmez**.",
+       "İç içe **kapalı** eğrilerdir; en içteki en yüksek yerdir (çukurlar hariç).",
+       "Eğriler arası yükselti farkı (eküidistans) **eşittir** ve haritanın ölçeğine göre değişir.",
+       "**Sık** eğri dik yamaç, **seyrek** eğri az eğimli yamaç demektir.",
+       "Birbirini çevrelemeyen komşu iki izohipsin yükseltisi aynıdır; bir akarsuyun iki yakası aynı yükseltiyle başlar.",
+       "Denizde aynı derinliği birleştiren eğriye **izobat** denir."
       ],
-      "beats": [],
-      "narration": "Özellikleri toplayalım. Aynı eğri üzerindeki noktaların yükseltisi aynıdır ve eğriler birbirini kesmez. İç içe kapalı eğrilerdir; en içteki en yüksek yeri gösterir, çukurlar hariç. Eğriler arasındaki yükselti farkı her yerde eşittir, kıyı çizgisi de sıfır metredir. Sık eğri dik, seyrek eğri az eğimli yamaç demektir. Denizlerde aynı derinlikteki noktaları birleştiren eğrilere izobat denir. Yer şekilleri renklendirme yöntemiyle de gösterilir: alçak yerler yeşil, yükseldikçe sarı, turuncu ve kahverengi. Dikkat: renk bir yerin ova mı plato mu olduğunu değil, yalnız yükseltisini söyler."
+      "narration": "Eğriler aynı yükseltideki noktaları birleştirdiği için hiçbir noktada birbirini kesemez; kesişse bir noktanın iki yükseltisi olurdu. Sıklık eğimi anlatır: kısa yatay uzaklıkta çok yükselti farkı varsa eğri sık çizilir, eğim fazladır. Örnek haritada batı yamacı sık, doğu yamacı seyrek eğrilidir."
+     },
+     {
+      "kind": "predict",
+      "title": "Komşu izohipsler",
+      "prompt": "Birbirini çevrelemeyen, yan yana iki izohipsin yükselti değeri aynıdır. Bu ifade doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Birbirini çevrelemeyen komşu eğriler aynı yükseltiyi taşır (örneğin bir vadinin iki yakası aynı değerle başlar); çevreleyen eğriler arasında ise aralık kadar fark vardır."
+     },
+     {
+      "kind": "visual",
+      "title": "Yer şekilleri izohipste nasıl görünür?",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Yer şekli",
+        "İzohipste görünüşü"
+       ],
+       "rows": [
+        [
+         "Tepe",
+         "İç içe kapalı eğriler"
+        ],
+        [
+         "Zirve",
+         "Nokta ya da üçgen"
+        ],
+        [
+         "Sırt",
+         "Eğri, yükselti azalan yöne büklüm yapar"
+        ],
+        [
+         "Vadi",
+         "Eğri yükseğe büklümlü, V ucu yukarıda"
+        ],
+        [
+         "Boyun",
+         "İki tepe arasında alçak geçit"
+        ],
+        [
+         "Çanak (çukur)",
+         "İçe dönük ok işareti"
+        ],
+        [
+         "Falez",
+         "Kıyıda eğriler çok sık"
+        ],
+        [
+         "Şelale",
+         "Akarsuda eğriler birbirine yaklaşır"
+        ]
+       ]
+      },
+      "narration": "Vadi ve sırt birbirinin tersidir: vadide eğri yükseğe doğru büküldüğü için V'nin ucu yükseğe bakar; sırtta alçağa doğru büküldüğü için ucu alçağa bakar. Falez, deniz kıyısında dik yamacı; şelale ise akarsu yatağında ani yükselti farkını gösteren eğri sıklaşmasıdır. Çukur alanlarda en içteki eğri en yüksek değil, en alçak yeri gösterir; bu nedenle içe dönük okla belirtilir."
+     },
+     {
+      "kind": "match",
+      "title": "Eğri düzenini yer şekliyle eşle",
+      "prompt": "Her izohips düzenini gösterdiği yer şekliyle eşleştir.",
+      "pairs": [
+       {
+        "left": "Eğriler yükselti artan yöne büklüm yapar",
+        "right": "Vadi"
+       },
+       {
+        "left": "Eğriler yükselti azalan yöne büklüm yapar",
+        "right": "Sırt"
+       },
+       {
+        "left": "Deniz kıyısında eğriler çok sıktır",
+        "right": "Falez"
+       },
+       {
+        "left": "İçe dönük ok işareti vardır",
+        "right": "Çanak (çukur)"
+       },
+       {
+        "left": "İki tepe arasındaki alçak geçittir",
+        "right": "Boyun"
+       }
+      ],
+      "explanation": "Vadi ve sırt çoğu kez karıştırılır: vadide V'nin ucu yükseğe, sırtta alçağa bakar."
+     },
+     {
+      "kind": "visual",
+      "title": "Yükselti gösterim yöntemleri",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Yöntem",
+        "Nasıl gösterir",
+        "Dikkat"
+       ],
+       "rows": [
+        [
+         "İzohips",
+         "Eş yükselti eğrileri",
+         "En yaygın yöntem"
+        ],
+        [
+         "Renklendirme",
+         "Yükselti basamağı renkleri",
+         "Renk yükseltiyi gösterir"
+        ],
+        [
+         "Gölgelendirme",
+         "Yamaçları açık-koyu tonlar",
+         "Dik yamaç koyu; değer yok"
+        ],
+        [
+         "Tarama",
+         "Eğim yönünde kısa çizgiler",
+         "Dik yerde sık ve kalın"
+        ],
+        [
+         "Kabartma",
+         "Üç boyutlu maket",
+         "Yatay ve dikey ölçek"
+        ]
+       ]
+      },
+      "narration": "Renklendirmede deniz seviyesine yakın yerler yeşil, yükseldikçe sarı, turuncu ve kahverengi; buzul ve kalıcı kar beyaz; su mavidir, mavi koyulaştıkça derinlik artar. Renkler ova ya da plato gibi yer şeklini değil yalnız yükseltiyi gösterir. Gölgelendirme ve tarama, eğimi göz önüne getiren yöntemlerdir ama kesin yükselti vermezler. Kabartma ise yer şekillerini gerçeğe en yakın gösterir."
      },
      {
       "kind": "visual",
@@ -442,47 +849,34 @@
        "notes": false,
        "profile": true
       },
-      "beats": [
-       {
-        "narration": "Renklendirilmiş haritada kıyıdaki ovalar yeşil, yükseldikçe sarı ve turuncu, en yüksek yerler kahverengi.",
-        "show": [],
-        "focus": [
-         "renk"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Profil çıkarmak için önce iki nokta seçip arasına bir doğru çizeriz: A ile B.",
-        "show": [
-         "ab"
-        ],
-        "focus": [
-         "ab"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Doğrunun kestiği her eğriden aşağıya, kendi yükseltisine bir çizgi indiririz. Bunlara iz düşüm denir.",
-        "show": [
-         "izdusum"
-        ],
-        "focus": [
-         "izdusum"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Sonra noktaları birleştiririz. İşte kesit: A'dan B'ye önce alçak tepe, sonra boyun, ardından dik yamaçla yükselen ve doğuya doğru yavaşça alçalan yüksek dağ.",
-        "show": [
-         "profil"
-        ],
-        "focus": [
-         "profil"
-        ],
-        "swap": []
-       }
-      ],
-      "narration": "Şimdi aynı haritayı renklendirelim ve bir kesit alalım."
+      "narration": "Renklendirilmiş haritada ovalar yeşil, yükseldikçe sarı ve turuncu, en yüksek yerler kahverengidir. Profil çıkarmak için önce iki nokta seçilir ve aralarına bir doğru çizilir (A–B). Doğrunun kestiği her eğrinin yükseltisi bulunur ve bu yükseltilere göre iz düşümler alınır. Noktalar birleştirilince kesit elde edilir: A'dan B'ye önce alçak tepe, sonra boyun, ardından dik yamaçla yükselen ve doğuya doğru yavaşça alçalan yüksek dağ."
+     },
+     {
+      "kind": "visual",
+      "title": "Profil çıkarma sırası",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "İki nokta seç, doğru çiz",
+         "detail": "Profil alınacak doğrultu"
+        },
+        {
+         "label": "Eğrilerin yükseltisini bul",
+         "detail": "Doğrunun kestiği izohipsler"
+        },
+        {
+         "label": "İz düşümleri al",
+         "detail": "Yükseltiye göre aşağı indir"
+        },
+        {
+         "label": "Noktaları birleştir",
+         "detail": "Kesit elde edilir"
+        }
+       ]
+      },
+      "caption": "Adımları doğru sıraya diz.",
+      "narration": "Profil çıkarma bu dört adımla yapılır. Sıra bozulursa kesit çizilemez: önce doğrultu, sonra yükseltiler, sonra iz düşüm, en sonda birleştirme."
      },
      {
       "kind": "question",
@@ -492,37 +886,98 @@
        "options": [
         "Aynı eğri üzerindeki noktaların yükseltisi aynıdır.",
         "Eğriler birbirini kesmez.",
-        "Eğrilerin sık olduğu yerlerde eğim azdır.",
         "Kıyı çizgisi sıfır metre eğrisidir.",
+        "Eğrilerin sık olduğu yerlerde eğim azdır.",
         "Vadilerde eğriler, ucu yükseğe bakan V şekli çizer."
        ],
-       "answer": 2,
+       "answer": 3,
+       "choiceFeedback": [
+        "Doğru ifade: izohipsin tanımıdır.",
+        "Doğru ifade: her eğri farklı yükseltiyi gösterdiği için kesişmez.",
+        "Doğru ifade: kıyı 0 m eğrisidir.",
+        null,
+        "Doğru ifade: V'nin ucu yükselti artan yöne bakar."
+       ],
        "steps": [
         {
-         "text": "Aynı eğri aynı yükselti; eğriler kesişmez; kıyı 0 m; vadide V yükseğe bakar: **doğru**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Aynı eğri üzerindeki noktalar aynı yükseltidedir, eğriler kesişmez, kıyı sıfır metre eğrisidir ve vadide V'nin ucu yükseğe bakar. Bunlar doğru."
+         "text": "Tanım, kesişmeme, kıyı çizgisi ve vadi kuralları doğrudur."
         },
         {
-         "text": "Sık eğri = kısa yolda çok yükselti = **dik** yamaç. Cevap **C**.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Eğrilerin sık olması, kısa bir yatay uzaklıkta çok yükselindiğini gösterir; yani eğim fazladır, az değil. Yanlış olan C."
+         "text": "Sık eğri, kısa yatay uzaklıkta kaç yükselti değişimi demektir? Eğimle ilişkisini düşün."
         }
        ],
-       "narration": "Sık ve seyrek eğriler eğim hakkında ne söylüyordu?",
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki izohips özellikleri kalıbı örnek alındı, seçenekler MEB maddelerinden kuruldu."
+        "changes": "Havuzdaki izohips özellikleri kalıbı alındı; seçenekler MEB maddelerinden kuruldu."
        }
       }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir izohips haritasında kıyı çizgisinden sonraki ilk eğrinin değeri **100 m**'dir. K noktası, kıyıdan sayıldığında **2. ve 3. eğrilerin arasında** kalmaktadır.\n\nBuna göre K noktasının yükseltisi aşağıdaki aralıklardan hangisinde olabilir?",
+       "options": [
+        "100–200 m",
+        "200–300 m",
+        "300–400 m",
+        "400–500 m",
+        "500–600 m"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Bu aralık 1. ve 2. eğrilerin arasıdır.",
+        null,
+        "Bu aralık 3. ve 4. eğrilerin arasıdır.",
+        "Bu aralık 4. ve 5. eğrilerin arasıdır.",
+        "Bu aralık 5. ve 6. eğrilerin arasıdır."
+       ],
+       "steps": [
+        {
+         "text": "İlk eğrinin değeri eğriler arası yükselti farkını verir."
+        },
+        {
+         "text": "Eğrilerin değerlerini sırayla yaz: kıyı, 1., 2., 3. eğri."
+        },
+        {
+         "text": "K, istenen iki eğrinin değerleri arasındadır; aralığı yaz."
+        }
+       ],
+       "origin": {
+        "changes": "MEB'deki 'ilk eğrinin değeri aralığı verir' özelliğinden yeni bir soru kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "multi",
+      "title": "Doğru ifadeleri seç",
+      "stem": "İzohipslerle ilgili aşağıdaki ifadelerden hangileri doğrudur?",
+      "options": [
+       "Eğriler yükselti artan yöne büklüm yapıyorsa vadi vardır.",
+       "Sık eğri geçen yerde eğim azdır.",
+       "Falez, kıyıda eğrilerin çok sıklaştığı yerde oluşur.",
+       "Renklendirmede kahverengi bir alan mutlaka plato demektir.",
+       "Küçük ölçekli haritada eğriler arası yükselti farkı daha büyüktür."
+      ],
+      "answers": [
+       0,
+       2,
+       4
+      ],
+      "choiceFeedback": [
+       null,
+       "Sık eğri dik yamacı gösterir; eğim fazladır.",
+       null,
+       "Renk yalnız yükseltiyi gösterir, yer şeklini göstermez.",
+       null
+      ],
+      "explanation": "Vadi, falez ve küçük ölçekte büyük izohips aralığı doğrudur. Sık eğri eğimin fazla olduğunu gösterir; renk yer şeklini değil yükseltiyi verir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Renk, yer şekli sanmak",
+      "wrong": "Haritada kahverengi gösterilen yerler her zaman dağ, yeşil gösterilen yerler her zaman ovadır.",
+      "right": "Renk yalnız yükselti basamağını gösterir; yer şekli eğri düzeni ve bölgenin yapısına bakılarak anlaşılır.",
+      "why": "Yeşil bir alan deniz seviyesine yakın olabilir ama yüksek bir plato kahverengi olabilir; yükseltisi benzer olan yer şekilleri aynı renkte görünür."
      }
     ]
    },
@@ -530,15 +985,91 @@
     "subtopic": "COG_HARITA_05",
     "subtopics": [],
     "title": "Eğim hesaplama",
-    "narration": "Eğim, iki nokta arasındaki yükselti farkının yatay uzaklığa oranıdır. Genellikle yüzde ile verilir.",
+    "narration": "",
     "cards": [
      {
       "kind": "example",
       "title": "Eğim formülü",
-      "example": "**Eğim**, yükselti farkının yatay uzaklığa bölünüp **yüzle** çarpılmasıyla bulunur.",
-      "explanation": "Eğim (%) = yükselti farkı ÷ yatay uzaklık × 100; ikisi de **metre**. K–L arası **5000 m**, fark **400 m** → 400 ÷ 5000 × 100 = **%8**. Binde eğim için **1000** ile çarpılır.",
-      "beats": [],
-      "narration": "Eğim, yükselti farkının yatay uzaklığa bölünüp yüzle çarpılmasıyla bulunur. İki uzunluk da metre olmalı. Örneğin K ile L arası beş kilometre, yani beş bin metre; yükselti farkı dört yüz metre olsun. Dört yüzü beş bine bölüp yüzle çarparız: yüzde sekiz. Binde eğim istenirse yüz yerine binle çarparız."
+      "example": "K–L arası gerçek uzaklık **5 km**, yükselti farkı **400 m** ise eğim kaç yüzdedir?",
+      "explanation": "$\\text{Eğim} (\\%) = \\dfrac{\\text{yükselti farkı (m)}}{\\text{yatay uzaklık (m)}} \\times 100$. 5 km = 5000 m olduğundan 400 ÷ 5000 × 100 = **%8**. Binde eğim istenirse 1000 ile çarpılır (80‰).",
+      "narration": "Eğim, yükselti farkının yatay uzaklığa oranıdır. İki uzunluğun da aynı birimde, genellikle metre cinsinden olması gerekir. Uzaklık haritada cm olarak verilmişse önce ölçekle gerçek uzaklığa, sonra metreye çevrilir."
+     },
+     {
+      "kind": "blank",
+      "title": "Eğimi hesapla",
+      "prompt": "Yükselti farkı 300 m, yatay uzaklık 6 km olan iki nokta arasındaki eğim yüzde kaçtır?",
+      "before": "Eğim (%) =",
+      "answers": [
+       "5"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 5,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "50",
+        "feedback": "6 km'yi 600 m almışsın; 6 km = 6000 m."
+       },
+       {
+        "answer": "0,05",
+        "feedback": "Yüzle çarpmayı unutmuşsun."
+       }
+      ],
+      "explanation": "6 km = 6000 m; 300 ÷ 6000 × 100 = %5."
+     },
+     {
+      "kind": "guided",
+      "title": "Adım adım eğim",
+      "stem": "**1/25.000** ölçekli haritada K ve L noktaları arası **6 cm**'dir. K'nin yükseltisi 220 m, L'nin 400 m'dir. K–L arasındaki ortalama eğim yüzde kaçtır?",
+      "steps": [
+       {
+        "prompt": "Gerçek uzaklık kaç metredir?",
+        "before": "Gerçek uzaklık (m) =",
+        "answers": [
+         "1500"
+        ],
+        "input": "number",
+        "explanation": "6 × 25.000 = 150.000 cm = 1500 m."
+       },
+       {
+        "prompt": "Yükselti farkı kaç metredir?",
+        "before": "Fark (m) =",
+        "answers": [
+         "180"
+        ],
+        "input": "number",
+        "explanation": "400 − 220 = 180 m."
+       },
+       {
+        "prompt": "Eğim yüzde kaçtır?",
+        "before": "Eğim (%) =",
+        "answers": [
+         "12"
+        ],
+        "input": "number",
+        "explanation": "180 ÷ 1500 × 100 = %12."
+       }
+      ]
+     },
+     {
+      "kind": "findError",
+      "title": "Hatayı bul",
+      "problem": "1/25.000 ölçekli haritada 4 cm ölçülen iki nokta arasında 250 m yükselti farkı vardır. Eğim hesaplanıyor.",
+      "prompt": "Hangi satırda hata var?",
+      "steps": [
+       "Gerçek uzaklık = 4 × 25.000 = 100.000 cm = 1 km.",
+       "Yükselti farkı 250 m.",
+       "Eğim = 250 ÷ 1 × 100 = %25.000"
+      ],
+      "wrongStep": 2,
+      "choiceFeedback": [
+       null,
+       null,
+       null
+      ],
+      "explanation": "Uzaklık metreye çevrilmeliydi: 1 km = 1000 m, eğim = 250 ÷ 1000 × 100 = %25."
      },
      {
       "kind": "question",
@@ -546,46 +1077,46 @@
        "style": "TYT tarzı",
        "stem": "**1/50.000** ölçekli bir haritada K ve L noktaları arası **4 cm** olarak ölçülmüştür. K'nin yükseltisi **650 m**, L'nin yükseltisi **250 m**'dir.\n\nBuna göre K ile L arasındaki ortalama eğim yüzde kaçtır?",
        "options": [
-        "20",
         "2",
         "8",
         "16",
+        "20",
         "40"
        ],
-       "answer": 0,
+       "answer": 3,
+       "choiceFeedback": [
+        "Uzaklığı yanlış birimle kullanmışsın; yükselti ve uzaklığın birimi aynı olmalı.",
+        "Yükselti farkını ya da uzaklığı yanlış almış olabilirsin; ikisini yeniden hesapla.",
+        "Hesabı yarım bırakmış ya da uzaklığı yanlış hesaplamış olabilirsin.",
+        null,
+        "Uzaklığı 1000 m ya da yükselti farkını yanlış almış olabilirsin; her adımı kontrol et."
+       ],
        "steps": [
         {
-         "text": "Gerçek uzunluk = 4 × 50.000 = 200.000 cm = **2000 m**.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Gerçek uzaklık dört kere elli bin, iki yüz bin santimetre. Metreye çevirmek için yüze böleriz: iki bin metre."
+         "text": "Önce gerçek uzaklığı hesapla ve metreye çevir."
         },
         {
-         "text": "Yükselti farkı = 650 − 250 = **400 m**.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Yükselti farkı altı yüz elli eksi iki yüz elli, dört yüz metre."
+         "text": "Yükselti farkını bul."
         },
         {
-         "text": "Eğim = 400 ÷ 2000 × 100 = **%20**. Cevap **A**.",
-         "eliminate": [
-          "B",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Dört yüzü iki bine bölüp yüzle çarparız: yüzde yirmi. Uzaklığı kilometre olarak bırakan, iki yüz gibi anlamsız bir sonuca gider; birimi metreye çevirmek şart. Cevabımız A."
+         "text": "Farkı uzaklığa böl ve yüzle çarp."
         }
        ],
-       "narration": "Önce gerçek uzaklığı metre olarak bul.",
        "origin": {
-        "changes": "Bu ders için yazıldı; MEB'deki eğim örneği esas alındı, ölçek, uzaklık ve yükseltiler değiştirildi."
+        "changes": "MEB'deki eğim örneği esas alındı; ölçek, uzaklık ve yükseltiler değiştirildi."
        }
       }
+     },
+     {
+      "kind": "predict",
+      "title": "Uzaklık yarıya inerse",
+      "prompt": "Yükselti farkı sabit kalıp yatay uzaklık yarıya inerse eğim 2 katına çıkar. Doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Eğim = fark ÷ uzaklık olduğundan uzaklık yarıya inince eğim iki katına çıkar; izohipste eğrilerin sıklaşması da budur."
      }
     ]
    },
@@ -593,21 +1124,83 @@
     "subtopic": "COG_HARITA_07",
     "subtopics": [],
     "title": "Coğrafi bilgi sistemleri",
-    "narration": "Bugünün haritaları kâğıtta değil, bilgisayarda katman katman yapılır.",
+    "narration": "",
     "cards": [
      {
       "kind": "rule",
       "title": "CBS ve uzaktan algılama",
       "items": [
-       "**CBS**: mekânsal verileri toplayan, depolayan, işleyen, analiz eden ve gösteren sistem.",
-       "Bileşenleri: **donanım, yazılım, veri, yöntem, kullanıcı**.",
-       "**Uzaktan algılama**: uydu, uçak gibi platformlardaki aletlerle yeryüzü hakkında bilgi toplama.",
-       "**Noktasal**: ev, direk, durak, volkanik dağ. **Çizgisel**: akarsu, fay hattı, sıradağ, yol.",
+       "**CBS**: mekânsal verileri toplayan, depolayan, kontrol eden, işleyen, analiz eden ve gösteren sistemdir.",
+       "Bileşenleri: **donanım, yazılım, coğrafi veri, yöntem, kullanıcı**.",
+       "**Uzaktan algılama**: uydu, uçak gibi platformlardaki aletlerle yeryüzü hakkında bilgi toplamadır.",
+       "**Noktasal**: ev, elektrik direği, durak, volkanik dağ. **Çizgisel**: akarsu, fay hattı, sıradağ, yol.",
        "**Alansal**: orman, göl, millî park, deniz.",
-       "Kullanım: ulaşım, tarım, ormancılık, savunma, **afet yönetimi**."
+       "Kullanım: ulaşım, turizm, savunma, sanayi, tarım, ormancılık, **afet yönetimi**."
       ],
-      "beats": [],
-      "narration": "Coğrafi bilgi sistemleri, kısaca CBS, mekânsal verileri toplar, depolar, işler, analiz eder ve haritada gösterir. Bileşenleri donanım, yazılım, veri, yöntem ve kullanıcıdır. Veriler çoğunlukla uzaktan algılamayla, yani uydu ya da uçaktaki aletlerle toplanır. Bu veriler haritaya üç yolla aktarılır: evler, direkler, duraklar ve volkanik dağlar noktasal; akarsular, fay hatları, sıradağlar ve yollar çizgisel; ormanlar, göller, millî parklar ve denizler alansal olarak gösterilir. CBS ulaşımdan tarıma, savunmadan afet yönetimine kadar her alanda kullanılır."
+      "narration": "CBS katman katman çalışır: yollar, akarsular, yerleşmeler ayrı katmanlardır ve istenen katmanlar üst üste getirilerek yeni haritalar üretilir. Veriler çoğunlukla uzaktan algılamayla toplanır. Haritaya aktarırken veri bir noktaysa noktasal, uzayıp giden bir çizgiyse çizgisel, bir yüzey kaplıyorsa alansal yöntem kullanılır."
+     },
+     {
+      "kind": "classify",
+      "title": "Noktasal, çizgisel, alansal",
+      "prompt": "Verileri haritaya aktarılma yöntemine göre ayır.",
+      "groups": [
+       {
+        "label": "Noktasal",
+        "items": [
+         "Ev",
+         "Elektrik direği",
+         "Otobüs durağı",
+         "Volkanik dağ"
+        ]
+       },
+       {
+        "label": "Çizgisel",
+        "items": [
+         "Akarsu",
+         "Fay hattı",
+         "Sıradağ",
+         "Yol"
+        ]
+       },
+       {
+        "label": "Alansal",
+        "items": [
+         "Orman",
+         "Göl",
+         "Millî park",
+         "Deniz"
+        ]
+       }
+      ],
+      "explanation": "Haritada nokta kadar küçük görünenler noktasal, uzayıp gidenler çizgisel, yüzey kaplayanlar alansaldır."
+     },
+     {
+      "kind": "flip",
+      "title": "CBS bileşenleri",
+      "prompt": "Kartı çevir; her bileşenin ne olduğunu hatırla.",
+      "cards": [
+       {
+        "front": "Donanım",
+        "back": "Bilgisayar ve yardımcı aygıtlar"
+       },
+       {
+        "front": "Yazılım",
+        "back": "Kullanılan CBS programları"
+       },
+       {
+        "front": "Veri",
+        "back": "Coğrafi (mekânsal) veriler"
+       },
+       {
+        "front": "Yöntem",
+        "back": "Verinin işlenme ve analiz yöntemleri"
+       },
+       {
+        "front": "Kullanıcı",
+        "back": "Sistemi kullanan ve yöneten kişiler"
+       }
+      ],
+      "explanation": "Beş bileşenden biri eksikse CBS çalışmaz: donanım, yazılım, veri, yöntem ve kullanıcı."
      },
      {
       "kind": "question",
@@ -622,44 +1215,57 @@
         "IV ve V"
        ],
        "answer": 2,
+       "choiceFeedback": [
+        "Durak ve volkanik dağ noktasal gösterilir.",
+        "Millî park alansaldır; yalnız fay hattı çizgiseldir.",
+        null,
+        "Millî park alansal, akarsu çizgiseldir; ikisini birlikte seçmişsin.",
+        "Volkanik dağ noktasal, akarsu çizgiseldir; birini karıştırmışsın."
+       ],
        "steps": [
         {
-         "text": "Durak ve volkanik dağ **noktasal**; millî park **alansal**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Otobüs durakları ve volkanik dağlar haritada birer noktadır. Millî park ise bir alan kaplar."
+         "text": "Durak ve volkanik dağ birer noktadır; millî park bir alan kaplar."
         },
         {
-         "text": "Fay hattı ve akarsu uzayıp giden **çizgiler**. Cevap **C**.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Fay hatları ve akarsular ise uzayıp giden çizgilerdir; çizgisel yöntemle gösterilir. Cevabımız C."
+         "text": "Geriye kalanlar uzayıp giden iki veridir. Hangi öncüller çizgisel?"
         }
        ],
-       "narration": "Her veri için sor: bir nokta mı, bir çizgi mi, bir alan mı?",
        "origin": {
-        "changes": "Bu ders için yazıldı; MEB'deki noktasal, çizgisel ve alansal örnekler esas alındı, öncüller ve seçenekler yeniden düzenlendi."
+        "changes": "MEB'deki noktasal, çizgisel ve alansal örnekler esas alındı; öncüller ve seçenekler yeniden düzenlendi."
        }
       }
+     },
+     {
+      "kind": "mistake",
+      "title": "CBS yalnız çizim yapar sanmak",
+      "wrong": "CBS, yalnızca bilgisayarda harita çizmeye yarayan bir programdır.",
+      "right": "CBS, mekânsal verileri toplar, depolar, işler, analiz eder ve gösterir.",
+      "why": "Bileşenleri yalnız yazılımdan ibaret değildir: donanım, veri, yöntem ve kullanıcı da sistemin parçasıdır. Afet yönetiminden tarıma kadar karar vermek için analiz de yapar."
+     },
+     {
+      "kind": "predict",
+      "title": "Uzaktan algılama",
+      "prompt": "Uzaktan algılama, yeryüzüne temas etmeden platformlardaki aletlerle yeryüzü hakkında bilgi toplama tekniğidir. Doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Uydu, uçak gibi platformlara yerleştirilen ölçüm aletleri, yeryüzündeki doğal ve yapay nesneler hakkında uzaktan bilgi toplar."
      }
     ]
    }
   ],
   "summary": {
    "points": [
-    "Harita: kuş bakışı, düzlem, **ölçekli**; kroki ölçeksiz, plan çok büyük ölçekli.",
-    "Silindirik Ekvator'da, **konik** orta enlemlerde doğru; Türkiye için konik.",
-    "Payda **küçük** → büyük ölçek: ayrıntı fazla, alan dar.",
-    "Gerçek uzunluk = harita × payda; gerçek alan = harita alanı × payda**²**.",
+    "Harita: kuş bakışı, düzlem, **ölçekli**; kroki ölçeksiz, plan çok büyük ölçeklidir.",
+    "Silindirik Ekvator'da, **konik** orta enlemlerde, düzlem kutup çevresinde en az bozulur; Türkiye için konik.",
+    "Payda **küçük** → büyük ölçek: ayrıntı fazla, alan dar, bozulma az.",
+    "Gerçek uzunluk = harita uzunluğu × payda; gerçek alan = harita alanı × payda**²**.",
     "Sık izohips **dik**, seyrek **az eğimli**; vadide V'nin ucu yükseğe bakar.",
-    "Eğim (%) = yükselti farkı ÷ yatay uzaklık × 100, ikisi de **metre**."
+    "Profil: iki nokta, eğri yükseltileri, iz düşüm, birleştirme.",
+    "Eğim (%) = yükselti farkı ÷ yatay uzaklık × 100, ikisi de **metre**.",
+    "CBS: noktasal, çizgisel, alansal gösterim; veriler uzaktan algılamayla toplanır."
    ],
    "warnings": [
     "Ölçek değişince **gerçek** uzunluk ve alan değişmez.",
@@ -677,12 +1283,5 @@
     "Uygulamada Harita Bilgisi testinden **20 soru** çöz; hesap sorularında birimi (cm, m, km) her adımda yaz."
    ]
   }
- },
- "works": {
-  "additions": [
-   "Ölçek hesaplarına ek örnekler ekle: harita uzunluğundan gerçek uzunluğa ve tersine geçiş; alan hesabında ölçeğin karesinin kullanılması; iki haritanın ölçeklerini karşılaştırma.",
-   "Büyük ve küçük ölçekli haritaları tabloyla karşılaştır (ayrıntı, gösterilen alan, bozulma) ve projeksiyon türlerini (silindirik, konik, düzlem) bozulmanın en az olduğu yerlerle ver.",
-   "İzohips haritalarında yer şekillerini (tepe, sırt, vadi, boyun, çanak, falez) ve eğim kurallarını (sıklaşan eğriler dik eğim) örnek haritalarla ver; yükselti basamaklarıyla gösterim yöntemleri (renklendirme, gölgelendirme, tarama)."
-  ]
  }
 }

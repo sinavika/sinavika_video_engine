@@ -3,7 +3,8 @@ import {easeFrom, smoothStep} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
-import {usePartLook, World} from '../VisualWorld';
+import {usePartLook, World, FigureText} from '../VisualWorld';
+import {fitSize} from '../FigureLabel';
 
 type Euler = Extract<CourseVisual, {kind: 'euler'}>;
 type Pair = Euler['pairs'][number];
@@ -12,7 +13,7 @@ type Pair = Euler['pairs'][number];
 export const EULER_STAGE = {width: 1500, height: 760} as const;
 
 /** A label's size so it fits across `room` units: at most `largest`, never under 24. */
-const eulerLabelSize = (label: string, room: number, largest = 36) => Math.max(24, Math.min(largest, room / (Math.max(1, label.length) * 0.58)));
+const eulerLabelSize = (label: string, room: number, largest = 36) => Math.max(24, Math.min(largest, fitSize(label, room)));
 
 /**
  * Where a pair's circles end up, relative to the panel's centre, for circles of radius `r`: equal circles on top of
@@ -86,9 +87,9 @@ const PairPanel: React.FC<{id: string; pair: Pair; cx: number; cy: number; r: nu
 			<Label x={labelA.x} y={labelA.y} text={pair.a} size={eulerLabelSize(pair.a, labelA.room)} fill={aColour} />
 			<Label x={labelB.x} y={labelB.y} text={pair.b} size={eulerLabelSize(pair.b, labelB.room)} fill={bColour} />
 			{pair.caption ? (
-				<text x={cx} y={captionY} textAnchor="middle" fontSize={38} fontWeight={800} fill={lit ? palette.lesson : palette.ink} fontFamily={palette.fontBody} opacity={0.4 + 0.6 * t}>
+				<FigureText x={cx} y={captionY} textAnchor="middle" fontSize={38} fontWeight={800} fill={lit ? palette.lesson : palette.ink} fontFamily={palette.fontBody} opacity={0.4 + 0.6 * t}>
 					{pair.caption}
-				</text>
+				</FigureText>
 			) : null}
 		</g>
 	);
@@ -114,9 +115,9 @@ const labelSpot = (relation: Pair['relation'], a: Circle, b: Circle, which: 'a' 
 const Label: React.FC<{x: number; y: number; text: string; size: number; fill: string; weight?: number}> = ({x, y, text, size, fill, weight = 800}) => {
 	const palette = useVisualPalette();
 	return (
-		<text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fontSize={size} fontWeight={weight} fill={fill} fontFamily={palette.fontBody} stroke={palette.background} strokeWidth={size * 0.28} strokeLinejoin="round" paintOrder="stroke">
+		<FigureText x={x} y={y} textAnchor="middle" dominantBaseline="middle" fontSize={size} fontWeight={weight} fill={fill} fontFamily={palette.fontBody} stroke={palette.background} strokeWidth={size * 0.28} strokeLinejoin="round" paintOrder="stroke">
 			{text}
-		</text>
+		</FigureText>
 	);
 };
 
@@ -176,13 +177,13 @@ const Conclusion: React.FC<{text: string; look: ReturnType<typeof usePartLook>}>
 	return (
 		<g opacity={look.opacity} transform={`translate(${(1 - smoothStep(Math.min(1, look.drawn))) * 40} 0)`}>
 			<rect x={x} y={y} width={540} height={height} rx={26} fill={withAlpha(palette.lesson, 0.12)} stroke={palette.lesson} strokeWidth={look.focused > 0.5 ? 6 : 4} />
-			<text x={x + 36} y={y + 54} fontSize={28} fontWeight={800} fill={palette.lesson} fontFamily={palette.fontBody} letterSpacing={2}>
+			<FigureText x={x + 36} y={y + 54} fontSize={28} fontWeight={800} fill={palette.lesson} fontFamily={palette.fontBody} letterSpacing={2}>
 				SONUÇ
-			</text>
+			</FigureText>
 			{lines.map((line, index) => (
-				<text key={index} x={x + 36} y={y + 112 + index * 54} fontSize={42} fontWeight={800} fill={palette.ink} fontFamily={palette.fontBody}>
+				<FigureText key={index} x={x + 36} y={y + 112 + index * 54} fontSize={42} fontWeight={800} fill={palette.ink} fontFamily={palette.fontBody}>
 					{line}
-				</text>
+				</FigureText>
 			))}
 		</g>
 	);

@@ -5,6 +5,7 @@ import {useVideoLayout} from '../../Layouts/VideoLayout';
 import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {UNFOCUSED_FADE, useBeatStartFor, useElementState} from '../VisualTimeline';
+import {textWidth} from '../FigureLabel';
 
 type Transform = Extract<CourseVisual, {kind: 'transform'}>;
 export type TransformStep = Transform['steps'][number];
@@ -170,7 +171,7 @@ export const TransformVisual: React.FC<VisualBoxProps & {visual: Transform}> = (
 				const name = `${visual.shape[index].name}${options.names}`;
 				const label = options.coordinates ? `${name}(${n(point[0])}, ${n(point[1])})` : name;
 				// A long name near the edge stays inside the grid instead of running onto the numbers beside it.
-				const half = (label.length * font * (options.ghost ? 0.85 : 1) * 0.56) / 2;
+				const half = textWidth(label, font * (options.ghost ? 0.85 : 1)) / 2;
 				const x = Math.min(Math.max(lx, sx(minX) + half + u(6)), sx(maxX) - half - u(6));
 				return (
 					<g key={index}>
@@ -195,6 +196,20 @@ export const TransformVisual: React.FC<VisualBoxProps & {visual: Transform}> = (
 		</g>
 	);
 
+	/** Where the vertices' names of every position stand (and the vertices themselves): a mirror's name keeps clear of them. */
+	const nameBoxes = positions.flatMap((points, step) =>
+		points.flatMap((point, index) => {
+			const [lx, ly] = labelAt(points, index);
+			const size = font * (step < visual.steps.length ? 0.85 : 1);
+			const half = textWidth(`${visual.shape[index].name}${primes(step)}`, size) / 2 + u(4);
+			const [px, py] = screen(point);
+			return [
+				{left: lx - half, right: lx + half, top: ly - size * 0.6, bottom: ly + size * 0.6},
+				{left: px - u(12), right: px + u(12), top: py - u(12), bottom: py + u(12)},
+			];
+		}),
+	);
+
 	/** The mirror, centre or vector of a step, drawn while it plays and kept faint afterwards. */
 	const guide = (index: number) => {
 		const move = visual.steps[index];
@@ -205,16 +220,32 @@ export const TransformVisual: React.FC<VisualBoxProps & {visual: Transform}> = (
 		const mirrorColour = palette.brand;
 		const dashed = `${u(14)} ${u(10)}`;
 		const lineThrough = (a: Point, b: Point, label: string) => {
-			// The mirror runs across the whole view; its name sits near the top right end.
+			// The mirror runs across the whole view; its name sits by its top or right end, on the side clear of the
+			// vertices' names, else by the other end ("x = 4" was printed on C'' at (3, 3), AYT Matematik, 2 Nov 2026).
 			const [ax, ay] = screen(a);
 			const [bx, by] = screen(b);
+			const size = font * 0.9;
+			const wide = textWidth(label, size);
+			const spots = [
+				[bx, by, ay],
+				[ax, ay, by],
+			].flatMap(([x, y, other]) => [
+				{x: x - u(10), y: y + (y < other ? u(30) : -u(18)), anchor: 'end' as const},
+				{x: x + u(10), y: y + (y < other ? u(30) : -u(18)), anchor: 'start' as const},
+			]);
+			const boxOf = (spot: (typeof spots)[number]) => ({left: spot.anchor === 'end' ? spot.x - wide : spot.x, right: spot.anchor === 'end' ? spot.x : spot.x + wide, top: spot.y - size * 0.8, bottom: spot.y + size * 0.25});
+			const free = (spot: (typeof spots)[number]) => {
+				const box = boxOf(spot);
+				return box.left >= 0 && box.right <= width && nameBoxes.every((other) => other.right < box.left || box.right < other.left || other.bottom < box.top || box.bottom < other.top);
+			};
+			const spot = spots.find(free) ?? spots[0];
 			return (
 				<g opacity={opacity}>
 					<line x1={ax} y1={ay} x2={bx} y2={by} stroke={mirrorColour} strokeWidth={u(4)} strokeDasharray={dashed} />
 					<text
-						x={bx - u(10)}
-						y={by + (by < ay ? u(30) : -u(18))}
-						textAnchor="end"
+						x={spot.x}
+						y={spot.y}
+						textAnchor={spot.anchor}
 						fill={mirrorColour}
 						style={{
 							fontFamily: palette.fontBody,

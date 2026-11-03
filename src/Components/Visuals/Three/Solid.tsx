@@ -2,7 +2,7 @@ import React, {useEffect, useMemo} from 'react';
 import * as THREE from 'three';
 import {smooth} from '../../../Animations/Motion';
 import {mixColors} from '../../../Themes/ColorPalette';
-import {figureText} from '../Mathematics/FigureLabel';
+import {figureText} from '../FigureLabel';
 import {useVideoLayout} from '../../Layouts/VideoLayout';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';

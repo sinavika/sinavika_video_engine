@@ -1,0 +1,1535 @@
+{
+ "topic": {
+  "id": "A8E24D7D-E54F-2688-1CA5-437F0AE38319",
+  "category": "YKS_TYT",
+  "lesson": "MAT",
+  "code": "MAT_FONK"
+ },
+ "title": "Fonksiyonlar",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/MAT/MAT_FONK.json"
+ ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/YKS/TYT/KonuAnlatimi/MAT/MAT_FONK.json (MEB OGM Materyal, Temel Matematik konu anlatımı)",
+   "EgitimVerileri/YKS/TYT/CikmisSorular/MAT/MAT_FONK.json (ÖSYM 2018-2026)",
+   "Curriculum/Scripts/YKS_TYT/MAT/MAT_FONK.json"
+  ],
+  "additions": [
+   {
+    "note": "Fonksiyon türlerini örnekle: birim, sabit, doğrusal, parçalı tanımlı, tek ve çift fonksiyon (grafikte simetri).",
+    "done": "3. bölümde 'Fonksiyon türleri' tablolu kartı (birim, sabit, doğrusal, parçalı, çift, tek ve grafikteki simetri), kural-tür eşleştirme, tek/çift/hiçbiri sınıflama ve parçalı fonksiyon değeri hesabı olarak karşılandı."
+   },
+   {
+    "note": "Ters fonksiyon bulma kalıplarını ver: doğrusal f(x) = ax + b için f⁻¹(x) = (x − b)/a; kesirli (ax + b)/(cx + d) için (−dx + b)/(cx − a).",
+    "done": "6. bölümde 'Ters bulma kalıpları' kartı (doğrusal ve kesirli formül, formül görseli), kesirli kalıp örneği, doğrusal ve kesirli sayısal alıştırmalar, ters bulma hatası (findError) ve iki ters değer sorusu ile karşılandı."
+   },
+   {
+    "note": "Bileşkenin özelliklerini ekle: f ∘ g genelde g ∘ f'ye eşit değildir, (f ∘ g)⁻¹ = g⁻¹ ∘ f⁻¹; grafikten f(g(2)) gibi değerler okuma soruları.",
+    "done": "5. bölümde bileşke kuralları kartı, f∘g ≠ g∘f örneği ve yanlış kartı, grafikten (f∘g)(2) ve (g∘f)(2) okuyan guided kart; 6. bölümde 'Bileşke ve ters' kartı ve (f∘g)⁻¹(7) sorusu ile karşılandı."
+   },
+   {
+    "note": "Fonksiyon sayısı formüllerini örnekle: A'dan B'ye fonksiyon sayısı s(B)^s(A), bire bir fonksiyon sayısı permütasyonla; dikey doğru testi.",
+    "done": "4. bölümde sayma kuralları, s(A)=2 ve s(B)=5 için fonksiyon, sabit ve bire bir sayısı örneği, 4³/3⁴ taban-üs yanlışı kartı, sayısal alıştırma ve bire bir sayısı sorusu; dikey doğru testi 1. bölümde kural kartı ve sınıflama kartıyla karşılandı."
+   }
+  ],
+  "fixes": [
+   "Bire bir fonksiyon sayısı sorusunda şıklar sıralı değildi (7 sonda); küçükten büyüğe sıralandı, doğru şık 24 artık C.",
+   "Kesirli fonksiyonun ters değeri sorusunda şıklar sırasızdı (16/3 başta); küçükten büyüğe sıralandı, doğru şık 16/3 artık E.",
+   "Soruların son ipucu 'Cevap C' gibi doğru şıkkı söylüyordu; ipuçları yalnız yöntem verecek, son işlemi öğrenciye bırakacak biçimde yeniden yazıldı.",
+   "Doğru şık dağılımı dengesizdi (C-C ve B-B ardışıklığı, bazı harflerin hiç çıkmaması); şık değerleri ve sıraları değiştirilerek dağılım dengelendi.",
+   "(f·g)(1) = (f+g)(3) sorusu ve alan sorusu yeni şıklarla yeniden çözülüp doğrulandı (g(5) = 16 ve alan = 4)."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "f(2x − 1) = 4x + 3 ise f(5) kaç? x'e 5 yazma.",
+   "narration": "$f(2x - 1) = 4x + 3$ iken $f(5)$ istenirse ilk akla gelen $x$ yerine 5 yazmaktır, ama bu yanlıştır: önce parantezin içini 5 yapan $x$'i bulmalısın. TYT'de fonksiyonlar formülle verilen işlemler ve grafikten okuma olarak sorulur; ÖSYM'nin son yıllardaki fonksiyon sorularının çoğu grafik sorusudur. Bu derste her konuyu kısa anlatıp hemen yoklayacağız."
+  },
+  "objectives": [
+   "Bir bağıntının fonksiyon olup olmadığını iki şart ve düşey doğru testiyle anlamak",
+   "Fonksiyon değerini ve fonksiyonlarla işlemi hesaplamak; f(2x − 1) gibi kuralları çözmek",
+   "Grafikten değer, tanım ve görüntü kümesi okumak; doğrusal ve parçalı fonksiyonu yorumlamak",
+   "Birim, sabit, doğrusal, parçalı, tek ve çift fonksiyonu ayırt etmek",
+   "Bire bir ve örten fonksiyonu tanımak; fonksiyon sayısını bulmak",
+   "Bileşkeyi içten dışa hesaplamak ve grafikten f(g(2)) gibi değerleri okumak",
+   "Ters fonksiyonu bulmak ve (f∘g)⁻¹ = g⁻¹∘f⁻¹ kuralını uygulamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_FONK_01",
+    "subtopics": [
+     "MAT_FONK_02"
+    ],
+    "title": "Fonksiyon nedir?",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Fonksiyonun iki şartı",
+      "items": [
+       "Tanım kümesinin **her** elemanı eşlenmeli; açıkta eleman kalmamalı.",
+       "Her eleman **yalnız bir** elemanla eşlenmeli; bir elemanın iki görüntüsü olamaz.",
+       "Farklı elemanlar aynı elemana gidebilir; bu fonksiyonu bozmaz.",
+       "Değer kümesinde açıkta eleman kalabilir; gerçekten eşlenenler **görüntü kümesidir**: $f(A) \\subseteq B$.",
+       "**Düşey doğru testi**: grafiği her düşey doğru en fazla bir noktada kesiyorsa bağıntı fonksiyondur."
+      ],
+      "narration": "Fonksiyon, bir kümenin her elemanını başka bir kümenin yalnız bir elemanıyla eşleyen kuraldır. Bu yüzden iki şarta bakarsın: tanım kümesinde eşlenmemiş eleman olmayacak ve hiçbir eleman iki farklı elemana gitmeyecek. Değer kümesi için böyle bir şart yoktur; orada boşta eleman kalabilir. Grafikte aynı şartlar düşey doğru testine dönüşür: bir $x$ değerinden çıkan düşey doğru grafiği iki yerde kesiyorsa o $x$'in iki görüntüsü var demektir."
+     },
+     {
+      "kind": "predict",
+      "title": "Fonksiyon mu?",
+      "context": "A: bir sınıftaki öğrenciler, B: haftanın günleri. Her öğrenci doğduğu gün ile eşleniyor.",
+      "prompt": "Bu eşleme A'dan B'ye bir fonksiyon mudur?",
+      "choices": [
+       "Evet",
+       "Hayır"
+      ],
+      "answer": 0,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Şart",
+        "Bu eşlemede"
+       ],
+       "rows": [
+        [
+         "Her öğrenci eşleniyor mu?",
+         "Evet, herkes bir günde doğdu"
+        ],
+        [
+         "Bir öğrenci iki güne gidiyor mu?",
+         "Hayır, tek doğum günü var"
+        ],
+        [
+         "İki öğrenci aynı güne gidebilir mi?",
+         "Evet, sorun değil"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "explanation": "Doğru cevap **Evet**. Her öğrenci tek bir günle eşleniyor; iki şart da sağlanıyor. İki öğrencinin aynı gün doğması fonksiyonu bozmaz, yalnızca fonksiyonun bire bir olmadığını gösterir. Tersini düşünürsen (günlerden öğrencilere) fonksiyon olmaz: bir gün birden çok öğrenciye gider, bazı günlerde hiç öğrenci doğmamış olabilir."
+     },
+     {
+      "kind": "concept",
+      "title": "Tanım, değer ve görüntü kümesi",
+      "text": "$f: A \\to B$ gösteriminde $A$ **tanım kümesi**, $B$ **değer kümesi**dir. $A$'daki elemanların gerçekten eşlendiği elemanlar **görüntü kümesini** oluşturur: $f(A)$. Görüntü kümesi her zaman değer kümesinin alt kümesidir. $(x, y) \\in f$ ise $y = f(x)$; $x$ bağımsız, $y$ bağımlı değişkendir. Grafikte tanım kümesi noktaların **apsislerinin** ($x$), görüntü kümesi **ordinatlarının** ($y$) kümesidir.",
+      "caption": "Tanım kümesi (x'ler) → görüntü kümesi (y'ler)",
+      "narration": "Bir örnek: $A = \\{1, 2, 3\\}$, $B = \\{a, b, c, d\\}$ ve $f = \\{(1, a), (2, c), (3, a)\\}$ olsun. Tanım kümesi $A$, değer kümesi $B$'dir; ama $b$ ve $d$ hiçbir elemanın görüntüsü değildir. Görüntü kümesi $f(A) = \\{a, c\\}$ olur ve $B$'nin alt kümesidir. Tanım kümesi bir aralıksa uç noktaya dikkat et: $(a, b]$ aralığında $a$ kümeye dahil olmadığı için görüntüsü yoktur ve grafikte o nokta içi boş yuvarlakla gösterilir."
+     },
+     {
+      "kind": "predict",
+      "title": "Görüntü kümesi nerede?",
+      "prompt": "Görüntü kümesi, değer kümesinin her zaman bir alt kümesidir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "**Doğru**. Görüntü kümesi yalnız eşlenen elemanlardan oluşur; bunlar zaten değer kümesinin elemanlarıdır. Bu yüzden $f(A) \\subseteq B$ yazılır. Hepsi eşleniyorsa $f(A) = B$ olur."
+     },
+     {
+      "kind": "match",
+      "title": "Kavramları eşle",
+      "prompt": "Her kavramı anlamıyla eşleştir.",
+      "pairs": [
+       {
+        "left": "Tanım kümesi",
+        "right": "Girdilerin ($x$) kümesi"
+       },
+       {
+        "left": "Değer kümesi",
+        "right": "Çıktıların bulunabileceği küme"
+       },
+       {
+        "left": "Görüntü kümesi",
+        "right": "Gerçekten eşlenen elemanların kümesi"
+       },
+       {
+        "left": "Grafikte ordinatlar ($y$)",
+        "right": "Görüntü kümesi elemanları"
+       }
+      ],
+      "explanation": "Tanım kümesi girdileri, değer kümesi çıktıların bulunabileceği geniş kümeyi, görüntü kümesi ise gerçekten kullanılan çıktıları verir. Grafikte y değerleri görüntü kümesini oluşturur."
+     },
+     {
+      "kind": "blank",
+      "title": "Görüntü kümesini say",
+      "prompt": "$A = \\{1, 2, 3\\}$, $B = \\{a, b, c, d\\}$ ve $f = \\{(1, a), (2, c), (3, a)\\}$ fonksiyonunun görüntü kümesi kaç elemanlıdır?",
+      "before": "$s(f(A)) =$",
+      "answers": [
+       "2"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 2,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "3",
+        "feedback": "Üç çift var ama $a$ iki kez görüntü oluyor; aynı eleman bir kez sayılır."
+       },
+       {
+        "answer": "4",
+        "feedback": "Bu değer kümesinin eleman sayısı; görüntü kümesi yalnız eşlenenleri içerir."
+       }
+      ],
+      "explanation": "Görüntü kümesi $\\{a, c\\}$'dir. $a$ iki elemanın görüntüsü olsa da kümede bir kez yazılır."
+     },
+     {
+      "kind": "classify",
+      "title": "Düşey doğru testi",
+      "prompt": "Grafiklerini düşünerek bağıntıları ayır: hangileri fonksiyon, hangileri değil?",
+      "groups": [
+       {
+        "label": "Fonksiyon",
+        "items": [
+         "$y = 2x + 1$",
+         "$y = x^2$",
+         "$y = |x|$"
+        ]
+       },
+       {
+        "label": "Fonksiyon değil",
+        "items": [
+         "$x = y^2$",
+         "$x = 3$",
+         "$x^2 + y^2 = 4$"
+        ]
+       }
+      ],
+      "explanation": "$x = y^2$'de $x = 4$ için $y = 2$ ve $y = -2$ vardır. $x = 3$ düşey bir doğrudur: tek $x$ değerine sonsuz $y$ düşer. Çemberde de bir $x$'e iki $y$ karşılık gelir. Diğer üçünde her düşey doğru grafiği en fazla bir noktada keser."
+     },
+     {
+      "kind": "mistake",
+      "title": "Aynı yere giden iki eleman",
+      "wrong": "İki farklı elemanın aynı görüntüye gitmesi bağıntıyı fonksiyon olmaktan çıkarır.",
+      "right": "Fonksiyon bozulmaz. Bozan, bir elemanın iki farklı görüntüye gitmesi ya da bir elemanın açıkta kalmasıdır.",
+      "why": "Fonksiyon her girdiye tek bir çıktı vermelidir. Farklı girdilerin aynı çıktıyı vermesi serbesttir; bu yalnızca fonksiyonun bire bir olmadığını gösterir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$A = \\{1, 2, 3\\}$ ve $B = \\{a, b\\}$ olmak üzere aşağıdaki bağıntılardan hangisi $A$'dan $B$'ye bir **fonksiyondur**?",
+       "options": [
+        "$\\{(1, a), (2, b)\\}$",
+        "$\\{(1, a), (1, b), (2, a), (3, b)\\}$",
+        "$\\{(1, a), (2, a), (3, a), (3, b)\\}$",
+        "$\\{(1, b), (2, b), (3, b)\\}$",
+        "$\\{(2, a), (3, b)\\}$"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "3 hiçbir elemanla eşlenmemiş; tanım kümesinde açıkta eleman kalamaz.",
+        "1 hem $a$'ya hem $b$'ye gidiyor; bir elemanın iki görüntüsü olamaz.",
+        "3 hem $a$'ya hem $b$'ye gidiyor; bir elemanın iki görüntüsü olamaz.",
+        null,
+        "1 açıkta kalmış; tanım kümesinin her elemanı eşlenmeli."
+       ],
+       "steps": [
+        {
+         "text": "Önce tanım kümesine bak: $1, 2, 3$ elemanlarının **hepsi** birinci bileşen olarak yazılmış mı? Eksik olan şıkları ele."
+        },
+        {
+         "text": "Sonra bir elemanın iki farklı çiftte birinci bileşen olup olmadığına bak: aynı sayı iki farklı elemana gidiyorsa fonksiyon değildir."
+        },
+        {
+         "text": "Kalan şıkta farklı elemanların aynı görüntüye gitmesi serbesttir; iki şartı da sağlayanı seç."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki fonksiyonun iki şartı özgün bağıntılarla soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_FONK_03",
+    "title": "Fonksiyon değeri ve işlemler",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Yerine koy",
+      "items": [
+       "$f(x) = 3x - 2$ ise $f(4) = 3 \\cdot 4 - 2 = 10$: $x$ yerine 4 yazılır.",
+       "$f(2x - 1)$ gibi verilmişse önce **parantezin içini** istenen sayıya eşitle, $x$'i bul.",
+       "Parantezin içi kuralda kurulabiliyorsa $f(x)$'e ulaşılır: $f(2x + 1) = (2x + 1)^2 + 4 \\Rightarrow f(x) = x^2 + 4$.",
+       "$(f + g)(x) = f(x) + g(x)$, $(f \\cdot g)(x) = f(x) \\cdot g(x)$; bölmede $g(x) \\neq 0$ olmalı.",
+       "Fonksiyonlarla işlem yalnız iki tanım kümesinin **ortak elemanlarında** yapılır.",
+       "Katsayı bilinmiyorsa verilen noktaları ($f(1) = 5$ gibi) kurala yazıp denklem kur."
+      ],
+      "narration": "$f(x) = 3x - 2$ ise $f(4)$ için $x$ yerine 4 yazarsın ve 10 bulursun. Ama fonksiyon $f(2x - 1)$ biçiminde verilmişse $f(5)$ için parantezin içi 5 olmalıdır; bu yüzden $2x - 1 = 5$ denklemini çözüp $x$'i bulursun. Fonksiyonlarla işlem yaparken her fonksiyonun değerini ayrı bulur, işlemi sonra yaparsın: $(f + g)(3) = f(3) + g(3)$. Bölme işleminde bölen fonksiyonun sıfır olduğu yer tanım kümesine alınmaz."
+     },
+     {
+      "kind": "example",
+      "title": "f(x) kuralını bulmak",
+      "example": "$f(2x + 1) = 4x^2 + 4x + 5$ olduğuna göre $f(3)$ kaçtır?",
+      "explanation": "$4x^2 + 4x + 5 = (2x + 1)^2 + 4$ yazılır, çünkü $(2x + 1)^2 = 4x^2 + 4x + 1$. Parantezin içi $2x + 1$ yerine $x$ konursa $f(x) = x^2 + 4$ olur. Buradan $f(3) = 9 + 4 = 13$. Kontrol: $2x + 1 = 3$ için $x = 1$ ve $4 + 4 + 5 = 13$.",
+      "narration": "İki yol var: ya parantezin içini 3 yapan $x$'i bulursun, ya da sağ tarafı $(2x + 1)$ cinsinden yazıp $f(x)$ kuralını çıkarırsın. Kural çıkarma yolu, birden çok değer istendiğinde daha hızlıdır."
+     },
+     {
+      "kind": "blank",
+      "title": "Değerleri topla",
+      "prompt": "$f(x) = 3x - 2$ olduğuna göre $f(4) + f(0)$ kaçtır?",
+      "before": "$f(4) + f(0) =$",
+      "answers": [
+       "8"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 8,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "10",
+        "feedback": "Yalnız $f(4)$'ü bulmuşsun; $f(0) = -2$'yi de ekle."
+       }
+      ],
+      "explanation": "$f(4) = 10$ ve $f(0) = -2$ olduğundan toplam $10 + (-2) = 8$."
+     },
+     {
+      "kind": "findError",
+      "title": "Hatayı bul",
+      "problem": "$f(x + 2) = 3x - 1$ olduğuna göre $f(6)$ kaçtır?",
+      "prompt": "Çözümün hangi satırı hatalı?",
+      "steps": [
+       "$f(6)$ için $x$ yerine 6 yazılır.",
+       "$3 \\cdot 6 - 1 = 17$",
+       "$f(6) = 17$"
+      ],
+      "wrongStep": 0,
+      "choiceFeedback": [
+       null,
+       "Bu satırdaki işlem doğru; sorun, hangi sayının yazıldığında.",
+       "Bu satır önceki satırın sonucunu aktarıyor; hata daha önce."
+      ],
+      "explanation": "İlk satır hatalı: parantezin içi $x + 2$ olduğundan $x + 2 = 6$, yani $x = 4$ alınır. Doğru değer $f(6) = 3 \\cdot 4 - 1 = 11$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$f(2x - 1) = 4x + 3$ olduğuna göre, $f(5)$ kaçtır?",
+       "options": [
+        "11",
+        "13",
+        "15",
+        "17",
+        "23"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Bu değer $f(3)$'ün değeridir; $2x - 1 = 3$ yapan $x$ ile bulunur. İstenen parantez içi 5.",
+        "Bu değer $f(4)$'ün değeridir; istenen $f(5)$.",
+        null,
+        "Bu değer $f(6)$'nın değeridir; parantezin içi 6 olurdu.",
+        "$x$ yerine 5 yazmışsın; bu $f(9)$'u verir, çünkü $2 \\cdot 5 - 1 = 9$."
+       ],
+       "steps": [
+        {
+         "text": "$f(5)$ isteniyor: parantezin içi 5 olmalı. $2x - 1 = 5$ denklemini çöz."
+        },
+        {
+         "text": "Bulduğun $x$ değerini sağ taraftaki $4x + 3$ ifadesinde yerine koy."
+        },
+        {
+         "text": "Dikkat: doğrudan $x$ yerine 5 yazmak $f(5)$ değil, $f(2 \\cdot 5 - 1)$ verir."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"f(ax + b) verilen fonksiyon değeri\" kalıbı örnek alındı, ifade özgün."
+       }
+      }
+     },
+     {
+      "kind": "guided",
+      "title": "Koşuldan katsayıları bul",
+      "stem": "$f(x) = ax - 6$ ve $g(x) = bx - 4$ fonksiyonları için $(f + g)(1) = f(1)$ ve $(f + g)(2) = g(2)$ olduğuna göre $a \\cdot b$ kaçtır?",
+      "steps": [
+       {
+        "prompt": "$(f + g)(1) = f(1)$ eşitliğini $f(1) + g(1) = f(1)$ diye açarsan hangi sonuç çıkar?",
+        "choices": [
+         "$g(1) = 0$",
+         "$f(1) = 0$",
+         "$g(1) = f(1)$",
+         "$f(1) = g(1) = 0$"
+        ],
+        "answer": 0,
+        "choiceFeedback": [
+         null,
+         "$f(1)$ iki tarafta da var; sadeleşir, sıfır olan o değildir.",
+         "Eşitlik bunu söylemiyor; $f(1)$ sadeleşince geriye ne kalıyor?",
+         "Yalnız bir fonksiyonun değeri sıfır çıkıyor."
+        ],
+        "explanation": "$f(1)$ iki taraftan sadeleşir, geriye $g(1) = 0$ kalır."
+       },
+       {
+        "prompt": "$g(1) = 0$ koşulundan $b$ kaçtır?",
+        "before": "$b =$",
+        "answers": [
+         "4"
+        ],
+        "input": "number",
+        "explanation": "$g(1) = b - 4 = 0$ olduğundan $b = 4$."
+       },
+       {
+        "prompt": "Aynı yöntemle $(f + g)(2) = g(2)$ eşitliği $f(2) = 0$ verir. Buradan $a$ kaçtır?",
+        "before": "$a =$",
+        "answers": [
+         "3"
+        ],
+        "input": "number",
+        "explanation": "$f(2) = 2a - 6 = 0$ olduğundan $a = 3$."
+       },
+       {
+        "prompt": "$a \\cdot b$ kaçtır?",
+        "before": "$a \\cdot b =$",
+        "answers": [
+         "12"
+        ],
+        "input": "number",
+        "explanation": "$3 \\cdot 4 = 12$."
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$a$ pozitif bir gerçel sayı olmak üzere $f(x) = x + a$ ve $g(x) = ax + 1$ fonksiyonları tanımlanıyor. $(f \\cdot g)(1) = (f + g)(3)$ olduğuna göre, $g(5)$ kaçtır?",
+       "options": [
+        "11",
+        "16",
+        "21",
+        "26",
+        "31"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "$a = 2$ için $g(5) = 11$ olur; ama $a = 2$ eşitliği sağlamaz.",
+        null,
+        "$a = 4$ için $g(5) = 21$ olur; ama $a = 4$ eşitliği sağlamaz.",
+        "$a = 5$ için $g(5) = 26$ olur; ama $a = 5$ eşitliği sağlamaz.",
+        "$a = 6$ için $g(5) = 31$ olur; ama $a = 6$ eşitliği sağlamaz."
+       ],
+       "steps": [
+        {
+         "text": "$(f \\cdot g)(1) = f(1) \\cdot g(1)$ ve $(f + g)(3) = f(3) + g(3)$: ikisini de $a$ cinsinden yaz."
+        },
+        {
+         "text": "Eşitliği kur. İki tarafta da $(a + 1)$ çarpanı çıkar; $a$ pozitif olduğundan bu çarpana bölebilirsin."
+        },
+        {
+         "text": "$a$'yı bulunca $g(x) = ax + 1$ kuralında $x$ yerine 5 yaz."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2023'ün \"(f · g) ile (f + g) eşitliğinden parametre\" kalıbı örnek alındı; eşitlik, nokta ve istenen değer özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_FONK_04",
+    "title": "Grafik",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Grafikten oku",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -1,
+        5
+       ],
+       "y": [
+        -5,
+        7
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "2x - 4",
+         "label": "f(x) = 2x − 4",
+         "ends": [
+          "none",
+          "none"
+         ],
+         "trace": false,
+         "piece": false
+        },
+        {
+         "expression": "6 - x",
+         "label": "g(x) = 6 − x",
+         "ends": [
+          "none",
+          "none"
+         ],
+         "trace": false,
+         "piece": false
+        }
+       ],
+       "parameters": {},
+       "showParameters": true,
+       "points": [
+        {
+         "x": 2,
+         "y": 0,
+         "label": "(2, 0)",
+         "style": "closed"
+        },
+        {
+         "x": 0,
+         "y": -4,
+         "label": "(0, −4)",
+         "style": "closed"
+        },
+        {
+         "x": 3.33,
+         "y": 2.67,
+         "label": "f = g",
+         "style": "closed"
+        }
+       ],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "caption": "Grafikte noktanın x'i girdi, y'si çıktıdır.",
+      "narration": "$f(x) = 2x - 4$ grafiği x eksenini $x = 2$'de keser, çünkü $f(2) = 0$; y eksenini $-4$'te keser, çünkü $f(0) = -4$. İki grafik bir noktada kesişir ve orada $f(x) = g(x)$ olur. Kesişimin solunda $g$'nin grafiği üsttedir, yani $g(x)$ daha büyüktür; sağında $f$'nin grafiği üsttedir. ÖSYM tam bunu sorar: hangi aralıkta hangi fonksiyonun değeri büyük? Grafikte **üstte olan**, değeri büyük olandır."
+     },
+     {
+      "kind": "predict",
+      "title": "Hangisi büyük?",
+      "context": "Yukarıdaki grafikte $f(x) = 2x - 4$ ve $g(x) = 6 - x$ çizilmişti.",
+      "prompt": "$x = 1$ için hangi değer daha büyüktür?",
+      "choices": [
+       "$f(1) > g(1)$",
+       "$g(1) > f(1)$"
+      ],
+      "answer": 1,
+      "explanation": "$x = 1$ kesişimin (yaklaşık $x = 3{,}33$) solundadır ve orada $g$'nin grafiği üsttedir. Hesapla da doğrulanır: $f(1) = -2$, $g(1) = 5$."
+     },
+     {
+      "kind": "concept",
+      "title": "Grafikten bilgi okuma",
+      "text": "Tanım kümesi noktaların apsislerinden, görüntü kümesi ordinatlarından oluşur. $f(x) > 0$ olan aralıklar grafiğin **x ekseni üstündeki**, $f(x) < 0$ olan aralıklar **altındaki** kısımlarıdır. Doğrusal $f(x) = mx + n$ için $m$ eğimdir, $n$ ise y eksenini kestiği yerdir; iki noktadan eğim $m = \\frac{y_2 - y_1}{x_2 - x_1}$ ile bulunur. Eksenleri kestiği noktalar $(x, 0)$ için $f(x) = 0$, $(0, y)$ için $f(0)$ ile bulunur.",
+      "narration": "Grafik sorularında önce aranan değerin hangi eksende olduğuna bak. $f(a)$ istenirse $a$ x ekseninde aranır, dikey çıkılıp grafiğe değilen noktanın y'si okunur. Fonksiyon kuralı verilmemişse grafik üzerindeki iki noktayı $f(x) = mx + n$ kuralında yerine yazarak $m$ ve $n$'i bulabilirsin. Parçalı grafiklerde kritik noktalarda içi boş ya da dolu yuvarlağa dikkat et: dolu nokta fonksiyona dahildir, boş nokta dahil değildir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Eksenleri karıştırmak",
+      "wrong": "$f(a)$ değerini okumak için $a$ sayısını y ekseninde arayıp x ekseninden okumak gerekir.",
+      "right": "$a$ girdidir ve x eksenindedir. $x = a$ doğrusundan grafiğe çıkılır, kesim noktasının y'si $f(a)$'dır.",
+      "why": "Tanım kümesinin elemanları yatay eksende, görüntü kümesinin elemanları düşey eksendedir. $f(x)$ hep y değeridir; bu yüzden girdiyi y'de aramak yanlış değeri okutur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$f(x) = 2x - 4$ fonksiyonunun grafiği ile koordinat eksenleri arasında kalan üçgensel bölgenin alanı kaç birimkaredir?",
+       "options": [
+        "4",
+        "6",
+        "8",
+        "12",
+        "16"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$2 + 4$ toplamını almışsın; alan toplamla değil, dik kenarların çarpımıyla bulunur.",
+        "Dik kenarların çarpımını almışsın ama ikiye bölmeyi unutmuşsun.",
+        "Kesim noktalarını yeniden oku: dik kenarlar x ekseninde ve y ekseninde kalan uzunluklardır.",
+        "Kesim noktalarını yeniden oku; dik kenar uzunlukları bu değerle sonuçlanmaz."
+       ],
+       "steps": [
+        {
+         "text": "Grafik x eksenini $y = 0$ iken, y eksenini $x = 0$ iken keser. Bu iki kesim noktasını bul."
+        },
+        {
+         "text": "Kesim noktaları $(2, 0)$ ve $(0, -4)$. Orijinle birlikte dik üçgen oluşur; dik kenarlar eksenler üstündedir.",
+         "visual": {
+          "kind": "plot",
+          "x": [
+           -1,
+           4
+          ],
+          "y": [
+           -5,
+           2
+          ],
+          "curves": [
+           {
+            "expression": "2x - 4",
+            "ends": [
+             "none",
+             "none"
+            ],
+            "trace": false,
+            "piece": false
+           }
+          ],
+          "parameters": {},
+          "showParameters": true,
+          "points": [
+           {
+            "x": 2,
+            "y": 0,
+            "label": "(2, 0)",
+            "style": "closed"
+           },
+           {
+            "x": 0,
+            "y": -4,
+            "label": "(0, −4)",
+            "style": "closed"
+           }
+          ],
+          "equalScale": false,
+          "axes": "origin"
+         }
+        },
+        {
+         "text": "Uzunluk negatif olmaz: dik kenarlar eksenlere olan uzaklıklardır. Alan, dik kenarların çarpımının yarısıdır; hesabı sen tamamla."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki doğrusal fonksiyon grafikleri ve havuzdaki kalıp örnek alındı, fonksiyon özgün."
+       }
+      }
+     },
+     {
+      "kind": "blank",
+      "title": "İki noktadan değer",
+      "prompt": "Doğrusal $f$ fonksiyonunun grafiği $(1, 3)$ ve $(4, 9)$ noktalarından geçiyor. $f(5)$ kaçtır?",
+      "before": "$f(5) =$",
+      "answers": [
+       "11"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 11,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "2",
+        "feedback": "2 eğimdir; $f(5)$ için $n$ sabitini de bulmalısın."
+       }
+      ],
+      "explanation": "Eğim $m = \\frac{9 - 3}{4 - 1} = 2$. $f(x) = 2x + n$ ve $f(1) = 3$ olduğundan $n = 1$. Buradan $f(5) = 2 \\cdot 5 + 1 = 11$."
+     },
+     {
+      "kind": "concept",
+      "title": "Fonksiyon türleri",
+      "text": "**Birim** fonksiyon her elemanı kendisine götürür: $I(x) = x$. **Sabit** fonksiyonda bütün elemanlar tek bir değere gider ve kuralda $x$ bulunmaz. **Doğrusal** fonksiyon $f(x) = mx + n$ biçimindedir. **Parçalı** fonksiyon, tanım kümesinin alt aralıklarında farklı kurallarla tanımlanır; aralıkların uç noktalarına **kritik nokta** denir. **Çift** fonksiyonda $f(-x) = f(x)$ ve grafik **y eksenine** göre simetriktir; **tek** fonksiyonda $f(-x) = -f(x)$ ve grafik **orijine** göre simetriktir.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Tür",
+        "Kural",
+        "Grafik"
+       ],
+       "rows": [
+        [
+         "Birim",
+         "$I(x) = x$",
+         "$y = x$ doğrusu"
+        ],
+        [
+         "Sabit",
+         "$f(x) = c$",
+         "Yatay doğru"
+        ],
+        [
+         "Doğrusal",
+         "$f(x) = mx + n$",
+         "Eğimli doğru"
+        ],
+        [
+         "Parçalı",
+         "Aralığa göre değişir",
+         "Kritik noktada kırılır"
+        ],
+        [
+         "Çift",
+         "$f(-x) = f(x)$",
+         "y eksenine simetrik"
+        ],
+        [
+         "Tek",
+         "$f(-x) = -f(x)$",
+         "Orijine simetrik"
+        ]
+       ],
+       "highlightColumn": 0
+      },
+      "narration": "Tek ve çift fonksiyonu kuraldan da ayırabilirsin: yalnız çift dereceli terimler (sabit terim dahil) varsa çifttir, yalnız tek dereceli terimler varsa tektir; ikisi karışıksa fonksiyon ne tek ne çifttir. Örneğin $x^2 + 1$ çift, $x^3 + x$ tek, $x + 1$ ise ikisi de değildir. Bir de $f(x) = \\frac{ax + b}{cx + d}$ fonksiyonu $\\frac{a}{c} = \\frac{b}{d}$ ise sabit fonksiyondur."
+     },
+     {
+      "kind": "match",
+      "title": "Kural hangi tür?",
+      "prompt": "Her ifadeyi fonksiyon türüyle eşleştir.",
+      "pairs": [
+       {
+        "left": "$f(x) = 7$",
+        "right": "Sabit"
+       },
+       {
+        "left": "$I(x) = x$",
+        "right": "Birim"
+       },
+       {
+        "left": "$f(x) = 4x - 1$",
+        "right": "Doğrusal"
+       },
+       {
+        "left": "$f(-x) = f(x)$",
+        "right": "Çift"
+       },
+       {
+        "left": "$f(-x) = -f(x)$",
+        "right": "Tek"
+       }
+      ],
+      "explanation": "Kuralında $x$ olmayan sabit, kendisine götüren birim, $mx + n$ biçimindeki doğrusaldır. Simetri koşulları ise çift ve tek fonksiyonları verir."
+     },
+     {
+      "kind": "classify",
+      "title": "Tek mi çift mi?",
+      "prompt": "Her kuralı çift, tek ya da hiçbiri olarak sınıfla.",
+      "groups": [
+       {
+        "label": "Çift",
+        "items": [
+         "$x^2$",
+         "$x^4 + 1$",
+         "$3$"
+        ]
+       },
+       {
+        "label": "Tek",
+        "items": [
+         "$x$",
+         "$x^3$",
+         "$2x$"
+        ]
+       },
+       {
+        "label": "Ne tek ne çift",
+        "items": [
+         "$x + 1$",
+         "$x^2 + x$",
+         "$x^3 + 2$"
+        ]
+       }
+      ],
+      "explanation": "$x^2$, $x^4 + 1$ ve $3$ yalnız çift dereceli terim içerir (sabit terim de çift dereceli sayılır). $x$, $x^3$, $2x$ yalnız tek dereceli terim içerir. Üçüncü grupta çift ve tek dereceli terimler karışıktır; $f(-x)$ ne $f(x)$'e ne $-f(x)$'e eşittir."
+     },
+     {
+      "kind": "blank",
+      "title": "Parçalı fonksiyon",
+      "prompt": "$f(x) = 2x + 1$ ($x < 3$ için), $f(x) = x^2 - 2$ ($x \\geq 3$ için) olduğuna göre $f(2) + f(4)$ kaçtır?",
+      "before": "$f(2) + f(4) =$",
+      "answers": [
+       "19"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 19,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "14",
+        "feedback": "$f(4)$ için $x \\geq 3$ kolu olan $x^2 - 2$ kullanılmalı."
+       }
+      ],
+      "explanation": "$2 < 3$ olduğundan $f(2) = 2 \\cdot 2 + 1 = 5$. $4 \\geq 3$ olduğundan $f(4) = 16 - 2 = 14$. Toplam $5 + 14 = 19$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $f(x) = 2x - 4$ ve $g(x) = 6 - x$ fonksiyonlarının grafikleri verilmiştir. $f(x) < g(x)$ eşitsizliğini sağlayan **en büyük tam sayı** $x$ değeri kaçtır?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         -1,
+         5
+        ],
+        "y": [
+         -5,
+         7
+        ],
+        "xLabel": "x",
+        "yLabel": "y",
+        "curves": [
+         {
+          "expression": "2x - 4",
+          "label": "f(x) = 2x − 4",
+          "ends": [
+           "none",
+           "none"
+          ],
+          "trace": false,
+          "piece": false
+         },
+         {
+          "expression": "6 - x",
+          "label": "g(x) = 6 − x",
+          "ends": [
+           "none",
+           "none"
+          ],
+          "trace": false,
+          "piece": false
+         }
+        ],
+        "parameters": {},
+        "showParameters": true,
+        "points": [
+         {
+          "x": 2,
+          "y": 0,
+          "label": "(2, 0)",
+          "style": "closed"
+         },
+         {
+          "x": 0,
+          "y": -4,
+          "label": "(0, −4)",
+          "style": "closed"
+         },
+         {
+          "x": 3.33,
+          "y": 2.67,
+          "label": "f = g",
+          "style": "closed"
+         }
+        ],
+        "equalScale": false,
+        "axes": "origin"
+       },
+       "options": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "$x = 0$ koşulu sağlar ama en büyük tam sayı değildir.",
+        "$x = 1$ koşulu sağlar ama en büyük tam sayı değildir.",
+        "$x = 2$ koşulu sağlar ama en büyük tam sayı değildir.",
+        null,
+        "$x = 4$'te $f(4) = 4$, $g(4) = 2$ olur; $f(x) < g(x)$ sağlanmaz."
+       ],
+       "steps": [
+        {
+         "text": "$f(x) < g(x)$ olduğu yerde $f$'nin grafiği $g$'nin grafiğinin **altındadır**."
+        },
+        {
+         "text": "Grafiklerin kesiştiği $x$ değerini bulmak için $2x - 4 = 6 - x$ denklemini çöz."
+        },
+        {
+         "text": "$f$'nin altta kaldığı bölge kesişimin hangi tarafındaysa o taraftaki en büyük tam sayıyı belirle; kesişim noktasının kendisi eşitlik verir, küçüktür koşulunu sağlamaz."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2018-2025 grafik sorularındaki \"hangi aralıkta hangisi büyük\" kalıbı örnek alındı; iki doğrusal fonksiyon ve istenen değer özgün."
+       }
+      }
+     },
+     {
+      "kind": "rule",
+      "title": "Doğrusal fonksiyon hikâyeleri",
+      "items": [
+       "Günlük durumlar doğrusal fonksiyonla yazılır: **sabit ücret + birim ücret × miktar**.",
+       "Taksi: açılış 30 TL, kilometresi 12 TL → $f(x) = 12x + 30$.",
+       "**Eğim** birim başına değişimdir; **sabit terim** başlangıç değeridir.",
+       "İki durumu karşılaştırmak için fonksiyonları **eşitle**: kesişim noktası."
+      ],
+      "narration": "Günlük hayattaki birçok durum doğrusal bir fonksiyondur: toplam ücret $f(x) = n + m \\cdot x$ biçimindedir; burada $n$ sabit ücret, $m$ birim ücret, $x$ miktardır. Taksinin açılışı 30 lira, kilometresi 12 lira ise ücret $f(x) = 12x + 30$'dur; 20 kilometre 270 lira tutar. 12 birim başına değişim yani eğimdir, 30 ise başlangıç değeridir. İki tarifeyi karşılaştırmak için iki fonksiyonu eşitlersin; kesişim, ikisinin aynı tuttuğu yerdir."
+     },
+     {
+      "kind": "blank",
+      "title": "Bisiklet kiralama",
+      "prompt": "Bir bisikletin kiralanmasında ücret $f(x) = 15x + 20$ TL ($x$: saat) olarak hesaplanıyor. 245 TL ödeyen kişi kaç saat bisiklet kullanmıştır?",
+      "before": "Saat sayısı =",
+      "answers": [
+       "15"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 15,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "16",
+        "feedback": "Önce sabit ücret olan 20 TL'yi toplam ödemeden çıkarmalısın."
+       }
+      ],
+      "explanation": "$15x + 20 = 245$ ise $15x = 225$ ve $x = 15$ saat olur."
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_FONK_05",
+    "subtopics": [
+     "MAT_FONK_06"
+    ],
+    "title": "Bire bir ve örten",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Bire bir, örten, sayma",
+      "items": [
+       "**Bire bir**: farklı elemanların görüntüleri farklıdır. **Yatay doğru testi**: her yatay doğru grafiği en fazla bir noktada keser.",
+       "**Örten**: $f(A) = B$; değer kümesinde açıkta eleman yoktur. Açıkta eleman kalıyorsa fonksiyon **içine**dir.",
+       "Örtenlik için yatay doğru: değer kümesindeki her yatay doğru grafiği **en az bir** noktada keser.",
+       "$s(A) = m$, $s(B) = n$ ise A'dan B'ye **fonksiyon sayısı** $n^m$ (A'nın her elemanı $n$ yere gidebilir).",
+       "**Bire bir** fonksiyon sayısı: $n \\cdot (n - 1) \\cdots (n - m + 1)$ ($m$ çarpan); bunun için $m \\leq n$ olmalı.",
+       "**Sabit** fonksiyon sayısı $n$. $s(A) = s(B) = n$ ise bire bir fonksiyon sayısı $n!$ ve bire bir olan her fonksiyon örtendir."
+      ],
+      "narration": "Bire birde farklı girdiler farklı çıktılara gider; grafikte yatay bir doğru grafiği iki yerde kesiyorsa o fonksiyon bire bir değildir. Örtende değer kümesinde boşta eleman kalmaz. Sayma sorularında A'nın her elemanı için ayrı seçim yaparsın: $m$ elemanlı A'nın her elemanı $n$ yere gidebiliyorsa $n^m$ fonksiyon vardır. Bire birde ise bir elemanın gittiği yere sonraki gidemez, seçenekler birer azalır: $n(n-1)(n-2)\\cdots$. Eleman sayıları eşit ve sonluysa bire bir olmak örten olmayı da getirir."
+     },
+     {
+      "kind": "predict",
+      "title": "Bire bir olmak için",
+      "context": "$f: A \\to B$ bire bir bir fonksiyondur.",
+      "prompt": "$s(A) \\leq s(B)$ olmak zorundadır.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "**Doğru**. Her eleman farklı bir elemana gitmek zorunda olduğundan B'de en az A kadar eleman bulunmalıdır. A'da B'den çok eleman olsaydı iki eleman aynı yere giderdi."
+     },
+     {
+      "kind": "match",
+      "title": "Terimleri eşle",
+      "prompt": "Her ifadeyi ilgili fonksiyon türüyle eşleştir.",
+      "pairs": [
+       {
+        "left": "$f(A) = B$",
+        "right": "Örten"
+       },
+       {
+        "left": "$f(A) \\neq B$ (açıkta eleman var)",
+        "right": "İçine"
+       },
+       {
+        "left": "Farklı elemanların görüntüleri farklı",
+        "right": "Bire bir"
+       },
+       {
+        "left": "Her yatay doğru grafiği en fazla bir kez keser",
+        "right": "Bire bir"
+       }
+      ],
+      "explanation": "Görüntü kümesi değer kümesinin tamamıysa örten, değilse içinedir. Bire birlik hem tanımla hem de yatay doğru testiyle anlaşılır."
+     },
+     {
+      "kind": "example",
+      "title": "Fonksiyonları saymak",
+      "example": "$s(A) = 2$ ve $s(B) = 5$ olduğuna göre A'dan B'ye tanımlı fonksiyon, sabit fonksiyon ve bire bir fonksiyon sayılarını bulunuz.",
+      "explanation": "A'nın iki elemanının her biri 5 yere gidebilir: $5^2 = 25$ fonksiyon. Sabit fonksiyonda iki eleman da aynı yere gider ve 5 değer seçilebilir: 5 fonksiyon. Bire birde birinci eleman 5 yere, ikincisi kalan 4 yere gider: $5 \\cdot 4 = 20$. Bu, $P(5, 2) = 20$'dir. Bire bir fonksiyonlar 25 fonksiyonun içindedir: $20 \\leq 25$.",
+      "narration": "Fonksiyon sayısında taban değer kümesinin eleman sayısı, üs tanım kümesinin eleman sayısıdır. Bire bir saymak permütasyondur: $P(n, m) = n(n-1)\\cdots(n-m+1)$."
+     },
+     {
+      "kind": "blank",
+      "title": "Fonksiyon sayısı",
+      "prompt": "$s(A) = 4$ ve $s(B) = 3$ ise A'dan B'ye tanımlı kaç fonksiyon vardır?",
+      "before": "Fonksiyon sayısı =",
+      "answers": [
+       "81"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 81,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "64",
+        "feedback": "$4^3$ yazmışsın; taban değer kümesinin eleman sayısı olan 3 olmalı."
+       },
+       {
+        "answer": "12",
+        "feedback": "Eleman sayılarını çarpmışsın; her eleman için seçenek sayısı üs olur."
+       }
+      ],
+      "explanation": "A'nın 4 elemanının her biri B'nin 3 elemanından birine gidebilir: $3^4 = 81$."
+     },
+     {
+      "kind": "multi",
+      "title": "Hangileri doğru?",
+      "context": "$f: A \\to B$ bir fonksiyon, $s(A) = 4$ ve $s(B) = 3$ olsun.",
+      "stem": "Aşağıdakilerden hangileri doğrudur? (Birden fazla seçilebilir.)",
+      "options": [
+       "$f$ bire bir olamaz.",
+       "$f$ örten olabilir.",
+       "$f$ sabit fonksiyon olabilir.",
+       "$f$ hem bire bir hem örten olabilir.",
+       "A'dan B'ye $4^3 = 64$ fonksiyon vardır."
+      ],
+      "answers": [
+       0,
+       1,
+       2
+      ],
+      "choiceFeedback": [
+       null,
+       null,
+       null,
+       "A'da B'den fazla eleman var; bire bir olması mümkün değil.",
+       "Taban değer kümesinin eleman sayısı 3'tür; fonksiyon sayısı $3^4$ olur."
+      ],
+      "explanation": "$4 > 3$ olduğu için iki eleman mutlaka aynı yere gider; bire bir olamaz. Üç değer de kullanılabilir (örten olabilir), hepsi aynı değere de gidebilir (sabit). Fonksiyon sayısı $3^4 = 81$'dir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$A = \\{1, 2, 3\\}$ ve $B = \\{a, b, c, d\\}$ olduğuna göre, A'dan B'ye tanımlı **bire bir** fonksiyonların sayısı kaçtır?",
+       "options": [
+        "7",
+        "12",
+        "24",
+        "64",
+        "81"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Eleman sayılarını toplamışsın; saymada seçenekler çarpılır.",
+        "Yalnız $4 \\cdot 3$ almışsın; üçüncü elemanın da seçeneği var.",
+        null,
+        "Bire bir şartını unutmuşsun; $4^3$ bütün fonksiyonların sayısıdır.",
+        "Taban ile üs ters yazılmış ve bire bir şartı unutulmuş: $3^4$ bütün fonksiyonları bile vermez."
+       ],
+       "steps": [
+        {
+         "text": "1'in B'de kaç seçeneği var? Bire bir olduğundan sonraki her elemanın seçeneği birer azalır."
+        },
+        {
+         "text": "2'nin ve 3'ün kaç seçeneği kaldığını sırayla yaz."
+        },
+        {
+         "text": "Seçenek sayılarını **çarp**; toplamak sayma kuralına uymaz."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki bire bir fonksiyon sayısı kalıbı örnek alındı, kümeler özgün."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Taban ve üs",
+      "wrong": "$s(A) = 3$ ve $s(B) = 2$ ise A'dan B'ye fonksiyon sayısı $3^2 = 9$'dur.",
+      "right": "Fonksiyon sayısı $2^3 = 8$'dir: taban değer kümesinin, üs tanım kümesinin eleman sayısıdır.",
+      "why": "Tanım kümesindeki her eleman, değer kümesindeki 2 elemandan birine gidebilir. 3 eleman için 2 · 2 · 2 = 8 seçim vardır."
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_FONK_07",
+    "title": "Bileşke",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "İçten dışa",
+      "items": [
+       "$(f \\circ g)(x) = f(g(x))$: önce $g$, sonra $f$ uygulanır; işlem sağdan sola yapılır.",
+       "Genellikle $f \\circ g \\neq g \\circ f$; **değişme özelliği yoktur**.",
+       "**Birleşme özelliği vardır**: $f \\circ (g \\circ h) = (f \\circ g) \\circ h$.",
+       "Birim fonksiyon etkisizdir: $f \\circ I = I \\circ f = f$.",
+       "Sayısal değerde **içten dışa** hesapla; kural isteniyorsa $g(x)$'i $f$'nin $x$'lerinin yerine koy.",
+       "$f$ ve $g$ bire bir ise $f \\circ g$ bire bir; ikisi de örten ise $f \\circ g$ örtendir.",
+       "Grafikten $f(g(2))$: önce $x = 2$'den $g$'nin grafiğine çık ve y'yi oku; o sayıyı $f$'nin grafiğinde x olarak kullan."
+      ],
+      "narration": "$(f \\circ g)(x)$ için önce $g$ çalışır, çıkan sonuç $f$'ye girer. Sıra önemlidir; bu yüzden $f \\circ g$ ile $g \\circ f$ genellikle farklıdır. Birleşme özelliği olduğundan üç fonksiyonun bileşkesinde parantez yerini değiştirebilirsin. Grafik sorularında aynı mantık işler: $g(2)$'yi grafikten okur, bulduğun sayıyı $f$'nin grafiğinde x ekseninde aratırsın."
+     },
+     {
+      "kind": "example",
+      "title": "f∘g ile g∘f aynı mı?",
+      "example": "$f(x) = 2x + 1$ ve $g(x) = x^2 - 3$ için $(f \\circ g)(x)$ ve $(g \\circ f)(x)$ kurallarını bulup $x = 1$'deki değerlerini karşılaştırınız.",
+      "explanation": "$(f \\circ g)(x) = f(x^2 - 3) = 2(x^2 - 3) + 1 = 2x^2 - 5$. $(g \\circ f)(x) = g(2x + 1) = (2x + 1)^2 - 3 = 4x^2 + 4x - 2$. $x = 1$ için $(f \\circ g)(1) = -3$ ve $(g \\circ f)(1) = 6$. Sonuçlar farklıdır: sıra önemlidir.",
+      "narration": "Kuralı bulurken dıştaki fonksiyonun $x$'i yerine içteki fonksiyonun tamamını yazarsın. Parantez kullanmayı unutma: $(2x + 1)^2$'yi $2x^2 + 1$ diye açmak sık yapılan hatadır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Sıra önemli değil mi?",
+      "wrong": "$f \\circ g$ ile $g \\circ f$ her zaman aynı sonucu verir.",
+      "right": "Genellikle farklıdırlar: $f(x) = 2x + 1$, $g(x) = x^2 - 3$ için $x = 1$'de $f \\circ g$ değeri $-3$, $g \\circ f$ değeri 6'dır.",
+      "why": "Önce çalışan fonksiyon farklı olduğundan ikinci fonksiyona giren sayı da farklı olur. Bileşkede değişme özelliği yoktur."
+     },
+     {
+      "kind": "blank",
+      "title": "İçteki fonksiyonu bul",
+      "prompt": "$f(x) = 3x - 1$ ve $(f \\circ g)(x) = 6x + 5$ olduğuna göre $g(1)$ kaçtır?",
+      "before": "$g(1) =$",
+      "answers": [
+       "4"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 4,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "11",
+        "feedback": "11, $f(g(1))$'in değeri; $g(1)$ için $3g(1) - 1 = 11$ denklemini çözmelisin."
+       }
+      ],
+      "explanation": "$f(g(x)) = 3g(x) - 1 = 6x + 5$ ise $g(x) = 2x + 2$. Buradan $g(1) = 4$."
+     },
+     {
+      "kind": "guided",
+      "title": "Grafikten bileşke oku",
+      "stem": "Şekilde $f(x) = 2x - 4$ ve $g(x) = 6 - x$ fonksiyonlarının grafikleri verilmiştir. $(f \\circ g)(2) + (g \\circ f)(2)$ kaçtır?",
+      "figure": {
+       "kind": "plot",
+       "x": [
+        -1,
+        5
+       ],
+       "y": [
+        -5,
+        7
+       ],
+       "xLabel": "x",
+       "yLabel": "y",
+       "curves": [
+        {
+         "expression": "2x - 4",
+         "label": "f(x) = 2x − 4",
+         "ends": [
+          "none",
+          "none"
+         ],
+         "trace": false,
+         "piece": false
+        },
+        {
+         "expression": "6 - x",
+         "label": "g(x) = 6 − x",
+         "ends": [
+          "none",
+          "none"
+         ],
+         "trace": false,
+         "piece": false
+        }
+       ],
+       "parameters": {},
+       "showParameters": true,
+       "points": [
+        {
+         "x": 2,
+         "y": 0,
+         "label": "(2, 0)",
+         "style": "closed"
+        },
+        {
+         "x": 0,
+         "y": -4,
+         "label": "(0, −4)",
+         "style": "closed"
+        },
+        {
+         "x": 3.33,
+         "y": 2.67,
+         "label": "f = g",
+         "style": "closed"
+        }
+       ],
+       "equalScale": false,
+       "axes": "origin"
+      },
+      "steps": [
+       {
+        "prompt": "$(f \\circ g)(2) = f(g(2))$ için önce $g(2)$'yi grafikten oku.",
+        "before": "$g(2) =$",
+        "answers": [
+         "4"
+        ],
+        "input": "number",
+        "explanation": "$g(2) = 6 - 2 = 4$."
+       },
+       {
+        "prompt": "Şimdi bu sonucu $f$'ye ver: $f(4)$ kaçtır?",
+        "before": "$(f \\circ g)(2) = f(4) =$",
+        "answers": [
+         "4"
+        ],
+        "input": "number",
+        "explanation": "$f(4) = 2 \\cdot 4 - 4 = 4$."
+       },
+       {
+        "prompt": "$(g \\circ f)(2) = g(f(2))$: grafikte $f(2) = 0$ okunur. $g(0)$ kaçtır?",
+        "before": "$(g \\circ f)(2) = g(0) =$",
+        "answers": [
+         "6"
+        ],
+        "input": "number",
+        "explanation": "$g(0) = 6 - 0 = 6$."
+       },
+       {
+        "prompt": "İki bileşkenin toplamı kaçtır?",
+        "before": "Toplam =",
+        "answers": [
+         "10"
+        ],
+        "input": "number",
+        "explanation": "$4 + 6 = 10$."
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$f(x) = 2x + 1$ ve $g(x) = x^2 - 3$ olduğuna göre, $(f \\circ g)(2) + (g \\circ f)(1)$ kaçtır?",
+       "options": [
+        "7",
+        "9",
+        "11",
+        "13",
+        "15"
+       ],
+       "answer": 1,
+       "steps": [
+        {
+         "text": "$(f \\circ g)(2) = f(g(2))$: önce $g(2)$'yi hesapla, sonra $f$'yi bu sonuçta uygula."
+        },
+        {
+         "text": "$(g \\circ f)(1) = g(f(1))$: bu kez önce $f(1)$, sonra $g$ uygulanır. Sırayı karıştırma."
+        },
+        {
+         "text": "İki sonucu topla."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki bileşke fonksiyon değeri kalıbı örnek alındı, fonksiyonlar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Gerçel sayılar kümesi üzerinde tanımlı $f$ ve $g$ fonksiyonları için $(f \\circ g)(x) = x^2 + x + 2$ ve $(g \\circ f)(x) = x^2 - 2x + 4$ eşitlikleri sağlanıyor. $f(3) = 2$ olduğuna göre $f(7)$ kaçtır?",
+       "options": [
+        "2",
+        "4",
+        "7",
+        "8",
+        "14"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "$f(3) = 2$ zaten verilmişti; istenen $f(7)$.",
+        "Bu $(f \\circ g)(1)$ değeridir; $f$'ye hangi sayıyı gönderdiğine bak.",
+        "$g(2) = 7$'yi bulmuşsun; $f(7)$'ye geçmedin.",
+        null,
+        "Bu $(f \\circ g)(3)$ değeridir; $g(2)$'den çıkan sayıyı kullanmalısın."
+       ],
+       "steps": [
+        {
+         "text": "$f(3) = 2$ verildiği için $(g \\circ f)(3) = g(f(3)) = g(2)$ olur. $(g \\circ f)(x)$ kuralında $x = 3$ yazarak $g(2)$'yi bul."
+        },
+        {
+         "text": "$g(2)$'nin değerini bulunca $(f \\circ g)(2) = f(g(2))$ ifadesinin tam olarak $f(7)$'yi (bulduğun sayıda $f$'yi) verdiğine dikkat et."
+        },
+        {
+         "text": "$(f \\circ g)(x)$ kuralında $x = 2$ yazarak sonucu hesapla."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020'nin iki bileşke eşitliğinden f değeri bulma kalıbı örnek alındı; polinomlar, verilen f değeri ve istenen değer yeniden yazıldı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_FONK_08",
+    "title": "Ters fonksiyon",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Geri al",
+      "items": [
+       "$f(a) = b \\iff f^{-1}(b) = a$; $(x, y) \\in f$ ise $(y, x) \\in f^{-1}$.",
+       "Tersi olması için fonksiyon **bire bir ve örten** olmalı.",
+       "Ters bulma: $y = f(x)$ yaz, $x$'i $y$ cinsinden yalnız bırak, sonra $y$ yerine $x$ yaz.",
+       "$f \\circ f^{-1} = f^{-1} \\circ f = I$ ve $(f^{-1})^{-1} = f$.",
+       "$f$ ile $f^{-1}$'in grafikleri $y = x$ doğrusuna göre **simetriktir**.",
+       "$f^{-1}(x)$, $\\frac{1}{f(x)}$ **değildir**."
+      ],
+      "narration": "Ters fonksiyon çıktıyı girdiye geri götürür: $f(a) = b$ ise $f^{-1}(b) = a$. Bir fonksiyonun tersinin fonksiyon olabilmesi için bire bir ve örten olması gerekir; aksi halde geri dönerken bir çıktının iki girdisi olur ya da boşta çıktı kalır. En sık hata $f^{-1}$ ile $\\frac{1}{f}$'i karıştırmaktır; ters çarpmaya göre değil, işlemin geri alınmasına göredir."
+     },
+     {
+      "kind": "predict",
+      "title": "x² nin tersi var mı?",
+      "context": "$f: \\mathbb{R} \\to \\mathbb{R}$, $f(x) = x^2$.",
+      "prompt": "Bu fonksiyonun ters fonksiyonu vardır.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 1,
+      "explanation": "**Yanlış**. $f(2) = f(-2) = 4$ olduğundan fonksiyon bire bir değildir; geri dönerken 4 hem 2'ye hem $-2$'ye gitmek zorunda kalırdı. Ayrıca negatif sayılar görüntü olmadığı için örten de değildir."
+     },
+     {
+      "kind": "rule",
+      "title": "Ters bulma kalıpları",
+      "items": [
+       "Doğrusal: $f(x) = ax + b \\Rightarrow f^{-1}(x) = \\frac{x - b}{a}$.",
+       "Kesirli: $f(x) = \\frac{ax + b}{cx + d} \\Rightarrow f^{-1}(x) = \\frac{-dx + b}{cx - a}$.",
+       "Kesirlide $a$ ile $d$ yer değiştirir ve $d$'nin işareti değişir; $b$ ve $c$ yerinde kalır.",
+       "$f(x) = x + k$ için $f^{-1}(x) = x - k$; $f(x) = k - x$ kendi tersidir.",
+       "$f^{-1}(m)$ istenirse kalıp yerine $f(a) = m$ denklemini çözmek de yeterlidir."
+      ],
+      "visual": {
+       "kind": "formula",
+       "latex": "f(x)=\\frac{ax+b}{cx+d}\\;\\Rightarrow\\; f^{-1}(x)=\\frac{-dx+b}{cx-a}",
+       "caption": "Paydadaki sabit ile paydaki katsayı yer değiştirir"
+      },
+      "narration": "Kesirli kalıbın kaynağı şudur: $y = \\frac{ax + b}{cx + d}$'de $y(cx + d) = ax + b$ yazılır, $x$'li terimler toplanır: $x(cy - a) = -dy + b$. Böylece $x = \\frac{-dy + b}{cy - a}$ bulunur. Sınavda kalıbı ezberlemek hızlıdır, ama $f^{-1}$'in belirli bir değeri soruluyorsa denklem kurmak daha güvenlidir."
+     },
+     {
+      "kind": "example",
+      "title": "Kesirli fonksiyonun tersi",
+      "example": "$f(x) = \\frac{3x + 1}{x - 2}$ fonksiyonunun tersini kalıpla bulunuz.",
+      "explanation": "$a = 3$, $b = 1$, $c = 1$, $d = -2$. $f^{-1}(x) = \\frac{-dx + b}{cx - a} = \\frac{2x + 1}{x - 3}$. Kontrol: $y = \\frac{3x + 1}{x - 2}$ ise $y(x - 2) = 3x + 1$, $x(y - 3) = 2y + 1$ ve $x = \\frac{2y + 1}{y - 3}$. Sayısal kontrol: $f(3) = 10$ ve $f^{-1}(10) = \\frac{21}{7} = 3$.",
+      "narration": "Payda sabiti $d$ negatif olduğunda $-d$ pozitif olur; işaret hatası en sık burada yapılır."
+     },
+     {
+      "kind": "blank",
+      "title": "Doğrusal fonksiyonun tersi",
+      "prompt": "$f(x) = 4x - 8$ olduğuna göre $f^{-1}(12)$ kaçtır?",
+      "before": "$f^{-1}(12) =$",
+      "answers": [
+       "5"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 5,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "40",
+        "feedback": "$f(12) = 40$'ı hesaplamışsın; istenen $f^{-1}(12)$."
+       }
+      ],
+      "explanation": "$f^{-1}(x) = \\frac{x + 8}{4}$ olduğundan $f^{-1}(12) = \\frac{20}{4} = 5$. Kontrol: $f(5) = 12$."
+     },
+     {
+      "kind": "blank",
+      "title": "Kalıbı uygula",
+      "prompt": "$f(x) = \\frac{2x - 1}{x + 3}$ olduğuna göre $f^{-1}(1)$ kaçtır?",
+      "before": "$f^{-1}(1) =$",
+      "answers": [
+       "4"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 4,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "-4",
+        "feedback": "Pay $-4$, payda $-1$ çıkar; iki negatifin bölümü pozitiftir."
+       }
+      ],
+      "explanation": "$a = 2$, $b = -1$, $c = 1$, $d = 3$ için $f^{-1}(x) = \\frac{-3x - 1}{x - 2}$. $f^{-1}(1) = \\frac{-4}{-1} = 4$. Kontrol: $f(4) = \\frac{7}{7} = 1$."
+     },
+     {
+      "kind": "findError",
+      "title": "Ters bulmada hata",
+      "problem": "$f(x) = 3x - 5$ fonksiyonunun tersi bulunuyor.",
+      "prompt": "Hangi satırda hata var?",
+      "steps": [
+       "$y = 3x - 5$",
+       "$3x = y + 5$",
+       "$x = \\frac{y}{3} + 5$",
+       "$f^{-1}(x) = \\frac{x}{3} + 5$"
+      ],
+      "wrongStep": 2,
+      "choiceFeedback": [
+       "Bu satır başlangıç; doğru yazılmış.",
+       "Bu satırda $-5$ doğru taşınmış.",
+       null,
+       "Bu satır önceki satırdan doğru aktarılmış; hata ondan önce."
+      ],
+      "explanation": "Üçüncü satırda $3x = y + 5$ denkleminin iki tarafı da 3'e bölünmeli: $x = \\frac{y + 5}{3}$. Yalnız $y$ bölünürse 5 yanlış kalır. Doğru ters: $f^{-1}(x) = \\frac{x + 5}{3}$."
+     },
+     {
+      "kind": "rule",
+      "title": "Bileşke ve ters",
+      "items": [
+       "$(f \\circ g)^{-1} = g^{-1} \\circ f^{-1}$: terslerin sırası **yer değiştirir**; önce giyilen en son çıkarılır.",
+       "$(f \\circ g)^{-1}(m)$ için önce $f^{-1}(m)$'yi, sonra bulduğun sayıda $g^{-1}$'i uygula.",
+       "Genellikle $(f \\circ g)^{-1} \\neq f^{-1} \\circ g^{-1}$.",
+       "$(f \\circ g)^{-1}(m) = k$ ise $f(g(k)) = m$ olur; kontrolü böyle yap."
+      ],
+      "narration": "Bir bileşke önce $g$, sonra $f$ uygular. Bunu geri almak için önce $f$'nin yaptığını geri alır, sonra $g$'nin yaptığını geri alırsın. Bu yüzden ters bileşkede sıra değişir. Pratik yol: istenen sayıyı $f^{-1}$'e ver, çıkan sonucu $g^{-1}$'e ver."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$f(x) = 3x - 5$ olduğuna göre, $f^{-1}(7)$ kaçtır?",
+       "options": [
+        "4",
+        "6",
+        "12",
+        "16",
+        "21"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$\\frac{7 + 5}{2}$ gibi bir hesap yapmış olabilirsin; bölen $x$'in katsayısı olan 3 olmalı.",
+        "$3a = 12$'de durmuşsun; $a$'yı bulmak için 3'e bölmelisin.",
+        "Bu $f(7)$; istenen $f^{-1}(7)$.",
+        "7'yi 3 ile çarpmışsın; ters fonksiyonda önce 5 eklenir, sonra 3'e bölünür."
+       ],
+       "steps": [
+        {
+         "text": "$f^{-1}(7) = a$ ise tanımdan $f(a) = 7$'dir."
+        },
+        {
+         "text": "$3a - 5 = 7$ denklemini kur ve çöz."
+        },
+        {
+         "text": "Bulduğun $a$ değerini $f$'de deneyerek 7'yi verdiğini kontrol et."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki ters fonksiyon değeri kalıbı örnek alındı, fonksiyon özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$f(x) = \\frac{2x + 1}{x - 3}$ olduğuna göre $f^{-1}(5)$ kaçtır?",
+       "options": [
+        "$3$",
+        "$\\frac{11}{3}$",
+        "$4$",
+        "$5$",
+        "$\\frac{16}{3}$"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "$x = 3$ paydayı sıfır yapar; $f(3)$ tanımsızdır.",
+        "$5(a - 3) = 5a - 15$'i gözden geçir; içler dışlar eşitliğini yanlış açmış olabilirsin.",
+        "$f(4) = 9$ olduğundan 5'e gitmez.",
+        "Girdi olarak 5'i alıp $f(5)$ gibi düşünmüşsün; istenen $f(a) = 5$ olan $a$.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "$f^{-1}(5) = a$ demek $f(a) = 5$ demektir: $\\frac{2a + 1}{a - 3} = 5$."
+        },
+        {
+         "text": "İçler dışlar çarpımı yap ve $a$'lı terimleri bir tarafa topla."
+        },
+        {
+         "text": "Bulduğun $a$'yı $f(a)$'da yerine koyup 5 çıktığını kontrol et; ters fonksiyonu baştan bulmana gerek yok."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki \"geri al\" kuralı ters fonksiyonu bulmadan değer hesaplamaya uygulandı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$f(x) = 2x + 1$ ve $g(x) = x - 3$ olduğuna göre $(f \\circ g)^{-1}(7)$ kaçtır?",
+       "options": [
+        "3",
+        "6",
+        "9",
+        "12",
+        "17"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "$f^{-1}(7)$'de durmuşsun; $g^{-1}$ de uygulanmalı.",
+        null,
+        "$(f \\circ g)(7)$'yi bulmuşsun; istenen ters bileşke.",
+        "Ters bileşkenin sırasını ve $g^{-1}(x) = x + 3$ kuralını yeniden kontrol et.",
+        "Ters bileşkenin sırasını ve $g^{-1}(x) = x + 3$ kuralını yeniden kontrol et."
+       ],
+       "steps": [
+        {
+         "text": "$(f \\circ g)^{-1} = g^{-1} \\circ f^{-1}$: önce hangi fonksiyonun tersi uygulanır?"
+        },
+        {
+         "text": "$f(x) = 2x + 1$ için $f^{-1}(7)$'yi, $g(x) = x - 3$ için $g^{-1}(x)$ kuralını bul."
+        },
+        {
+         "text": "$f^{-1}(7)$ sonucunu $g^{-1}$'e ver; kontrol için $f(g(k)) = 7$ olup olmadığına bak."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; (f∘g)⁻¹ = g⁻¹∘f⁻¹ kuralının sayısal uygulaması, fonksiyonlar ve değer özgün."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Fonksiyon: **her** eleman eşlenir, **yalnız bir** elemanla; düşey doğru testi.",
+    "$f(2x - 1)$ verilince önce **parantezin içini** istenen sayıya eşitle.",
+    "Grafikte **üstte olan** fonksiyonun değeri büyüktür; $f(a)$'nın $a$'sı x eksenindedir.",
+    "Birim, sabit, doğrusal, parçalı; çift (y eksenine), tek (orijine) simetrik.",
+    "Fonksiyon sayısı $n^m$; bire bir sayısı $n(n-1)\\cdots$ (m çarpan).",
+    "Bileşkede **içten dışa**: $(f \\circ g)(x) = f(g(x))$ ve $f \\circ g \\neq g \\circ f$.",
+    "$f(a) = b \\iff f^{-1}(b) = a$; doğrusalda $\\frac{x - b}{a}$, kesirlide $\\frac{-dx + b}{cx - a}$.",
+    "$(f \\circ g)^{-1} = g^{-1} \\circ f^{-1}$: sıra yer değiştirir."
+   ],
+   "warnings": [
+    "Aynı yere giden iki eleman fonksiyonu bozmaz; bozan, bir elemanın iki görüntüsü olmasıdır.",
+    "Fonksiyon sayısında taban değer kümesinin, üs tanım kümesinin eleman sayısıdır.",
+    "$f^{-1}(7) \\neq f(7)$ ve $f^{-1}(x) \\neq \\frac{1}{f(x)}$.",
+    "Alan ve uzunlukta pozitif değer alınır; eşitsizlikte kesişim noktası dahil değildir."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Telefon ya da internet tarifeni bir **doğrusal fonksiyon** olarak yaz.",
+    "$f(x) = 2x + 3$ için $f^{-1}$'i bul ve $(f \\circ f^{-1})(5)$'i hesapla.",
+    "Uygulamada Fonksiyonlar testinden **20 soru** çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz."
+   ]
+  }
+ }
+}

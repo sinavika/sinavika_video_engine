@@ -5,6 +5,7 @@ import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualF
 import type {CourseVisual} from '../VisualSchema';
 import {useElementState} from '../VisualTimeline';
 import {Tag, usePartLook, W, World} from '../VisualWorld';
+import {textWidth} from '../FigureLabel';
 
 type Stack = Extract<CourseVisual, {kind: 'stack'}>;
 
@@ -17,7 +18,7 @@ const LEGEND = {size: 28, chip: 30, gap: 12, spacing: 32, line: 46, start: 300, 
 
 /** Places the legend chips by the width of their names, from the bars' left edge, then from the frame's edge, then on two lines. */
 export const stackLegend = (series: readonly string[], frameWidth: number = W) => {
-	const widths = series.map((name) => LEGEND.chip + LEGEND.gap + name.length * LEGEND.size * 0.52); // Manrope 800 averages about 0.47 em a letter
+	const widths = series.map((name) => LEGEND.chip + LEGEND.gap + textWidth(name, LEGEND.size));
 	const run = widths.reduce((sum, width) => sum + width, 0) + LEGEND.spacing * (series.length - 1);
 	const right = frameWidth - LEGEND.edge;
 	const start = run <= right - LEGEND.start ? LEGEND.start : LEGEND.edge;
@@ -50,7 +51,7 @@ export const stackWidths = (values: readonly number[], span: number, sliver = 6)
 /** Room left of the bars for the row names (bold, 31 units, a little larger when lit): at least the legend's start,
  * at most 45% of the frame, so a long name ("1. senaryo (yüksek)") is not cut at the frame's left edge. */
 export const stackLabelRoom = (rows: readonly {label: string; note?: string}[], viewWidth: number) =>
-	Math.round(Math.min(viewWidth * 0.45, Math.max(LEGEND.start, ...rows.map((row) => Math.max(row.label.length * 31 * 0.56 * 1.12, (row.note?.length ?? 0) * 20 * 0.55) + 18 + 24))));
+	Math.round(Math.min(viewWidth * 0.45, Math.max(LEGEND.start, ...rows.map((row) => Math.max(textWidth(row.label, 31) * 1.12, textWidth(row.note ?? '', 20, 600)) + 18 + 24))));
 
 /** Height of the stack's drawing: a legend, then a band per row, so a few rows fill a wide card instead of a 1000 × 600 frame. */
 export const stackHeight = (rows: number, legendLines = 1) => 50 + legendLines * LEGEND.line + rows * (rows > 4 ? 100 : 130) + 24;

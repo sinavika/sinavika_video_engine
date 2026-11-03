@@ -9,7 +9,7 @@ import {ImageSchema} from '../../../Schemas/Visual';
 import {useTheme} from '../../../Themes/ThemeContext';
 import {BrandCover, coverIssues, useCoverLayout, type BrandCoverText} from '../../Components/BrandCover';
 import {useImageLayout} from '../../Components/ImageFrame';
-import {textWidth} from '../../Components/TextMeasure';
+import {textWidth} from '../../../Components/Typography/TextMeasure';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
 
 const VideoCoverSchema = z.object({

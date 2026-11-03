@@ -2,6 +2,7 @@ import React from 'react';
 import {easeFrom} from '../../../Animations/Motion';
 import {useSceneSeconds, useStillTextFloor, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
+import {fitSize, textWidth} from '../FigureLabel';
 import {H, usePartLook, W, World} from '../VisualWorld';
 
 type Tree = Extract<CourseVisual, {kind: 'tree'}>;
@@ -12,9 +13,6 @@ const columnCount = (visual: Tree) => visual.branches.reduce((sum, branch) => su
 const MARGIN = 20;
 
 const ITEM_TOP = 334;
-
-/** Letters of the body font are about 0.55 em wide; examples are fitted with this. */
-const EM = 0.55;
 
 /** Below this the examples would be hard to read; a longer example wraps onto a second line instead. */
 const ITEM_MIN = 20;
@@ -27,12 +25,16 @@ const halves = (item: string): string[] => {
 	return [item.slice(0, cut), item.slice(cut + 1)];
 };
 
-/** Words packed into lines no wider than `room` at `size` (`em` a letter), on as many lines as they need. */
-export const wrapWords = (text: string, size: number, room: number, em: number): string[] => {
+/** The weights examples and box labels are set in. */
+const ITEM_WEIGHT = 600;
+const BOX_WEIGHT = 800;
+
+/** Words packed into lines no wider than `room` at `size` and `weight`, on as many lines as they need. */
+export const wrapWords = (text: string, size: number, room: number, weight: number): string[] => {
 	const lines: string[] = [];
 	for (const word of text.split(' ')) {
 		const last = lines.at(-1);
-		if (last !== undefined && (last.length + 1 + word.length) * size * em <= room) lines[lines.length - 1] = `${last} ${word}`;
+		if (last !== undefined && textWidth(`${last} ${word}`, size, weight) <= room) lines[lines.length - 1] = `${last} ${word}`;
 		else lines.push(word);
 	}
 	return lines;
@@ -42,7 +44,7 @@ export const wrapWords = (text: string, size: number, room: number, em: number):
  * An example on one line, or, when it does not fit the column, on two split at the space nearest its middle; in an
  * app still on as many lines as its words need (two halves of "Muhtarlık Zorunlu sıbyan" ran into the next column).
  */
-const wrapItem = (item: string, size: number, room: number, still: boolean): string[] => (item.length * size * EM <= room ? [item] : still ? wrapWords(item, size, room, EM) : halves(item));
+const wrapItem = (item: string, size: number, room: number, still: boolean): string[] => (textWidth(item, size, ITEM_WEIGHT) <= room ? [item] : still ? wrapWords(item, size, room, ITEM_WEIGHT) : halves(item));
 
 /** Where each example's lines stand when examples are `size` tall from `top`, and how low the longest list reaches. */
 const listsAt = (visual: Tree, size: number, room: number, column: number, top = ITEM_TOP, still = false) => {
@@ -63,11 +65,8 @@ const listsAt = (visual: Tree, size: number, room: number, column: number, top =
 	return {lists, bottom};
 };
 
-/** Letters of the bold body font are about 0.58 em wide; box labels are fitted with this. */
-const BOX_EM = 0.58;
-
 /** A box label's lines at `size`: one line when it fits the box, else two split at the space nearest its middle. */
-const boxLines = (label: string, size: number, width: number) => (label.length * size * BOX_EM <= width - 18 ? [label] : halves(label));
+const boxLines = (label: string, size: number, width: number) => (textWidth(label, size, BOX_WEIGHT) <= width - 18 ? [label] : halves(label));
 
 /**
  * One size for every label of a level, so the kinds of a tree read as one series (a long kind, "Yol, çeşme, okul
@@ -80,16 +79,15 @@ const levelSize = (labels: readonly {label: string; width: number}[], tier: numb
 		Math.min(
 			tier,
 			...labels.map(({label, width}) => {
-				const one = (width - 18) / Math.max(1, label.length * BOX_EM);
-				const longestHalf = Math.max(...halves(label).map((part) => part.length));
-				const two = Math.min(24, (width - 18) / Math.max(1, longestHalf * BOX_EM));
+				const one = fitSize(label, width - 18, BOX_WEIGHT);
+				const two = Math.min(24, ...halves(label).map((part) => fitSize(part, width - 18, BOX_WEIGHT)));
 				return Math.max(Math.min(tier, one), two);
 			}),
 		),
 	);
 
 /** A box label's lines: one line or two halves in a lesson; in an app still as many as its words need. */
-const labelLines = (label: string, size: number, width: number, still: boolean) => (still ? wrapWords(label, size, width - 18, BOX_EM) : boxLines(label, size, width));
+const labelLines = (label: string, size: number, width: number, still: boolean) => (still ? wrapWords(label, size, width - 18, BOX_WEIGHT) : boxLines(label, size, width));
 
 /**
  * The boxes of the three levels and the rows they stand in. In a lesson: fixed rows (root at 8, branches at 116,
@@ -103,9 +101,9 @@ const levelsAt = (visual: Tree, worldWidth: number, column: number, least: numbe
 	const branchWidths = visual.branches.map((branch) => Math.min(Math.max(1, branch.nodes.length) * column - 16, 360));
 	const branchSize = Math.max(least, levelSize(visual.branches.map((branch, b) => ({label: branch.label, width: branchWidths[b]})), 30));
 	const kindSize = Math.max(least, levelSize(visual.branches.flatMap((branch) => branch.nodes.map((node) => ({label: node.label, width: column - 14}))), nodeTier));
-	const usualRoot = Math.min(440, visual.root.length * 22 + 90);
-	const rootWidth = still ? Math.min(worldWidth - 2 * MARGIN, Math.max(usualRoot, visual.root.length * Math.max(least, 30) * BOX_EM + 40)) : usualRoot;
-	const rootSize = Math.max(least, Math.min(34, (rootWidth - 18) / Math.max(1, visual.root.length * BOX_EM)));
+	const usualRoot = Math.min(440, textWidth(visual.root, 34, BOX_WEIGHT) + 90);
+	const rootWidth = still ? Math.min(worldWidth - 2 * MARGIN, Math.max(usualRoot, textWidth(visual.root, Math.max(least, 30), BOX_WEIGHT) + 40)) : usualRoot;
+	const rootSize = Math.max(least, Math.min(34, fitSize(visual.root, rootWidth - 18, BOX_WEIGHT)));
 	const heightOf = (base: number, label: string, size: number, width: number) => (still ? Math.max(base, labelLines(label, size, width, still).length * size * 1.08 + 22) : base);
 	const rootHeight = heightOf(64, visual.root, rootSize, rootWidth);
 	const branchHeight = Math.max(60, ...visual.branches.map((branch, b) => heightOf(60, branch.label, branchSize, branchWidths[b])));
@@ -133,12 +131,10 @@ const layoutAt = (visual: Tree, worldWidth: number, least = 0) => {
 	const items = visual.branches.flatMap((branch) => branch.nodes.flatMap((node) => node.items));
 	const anyItems = items.length > 0;
 	const levels = levelsAt(visual, worldWidth, column, least, anyItems);
-	const longest = Math.max(1, ...items.map((item) => item.length));
-	const longestHalf = Math.max(1, ...items.flatMap((item) => halves(item).map((part) => part.length)));
 	const tier = column < 170 ? 22 : column < 250 ? 25 : 31;
 	const itemMin = Math.max(ITEM_MIN, least);
-	const flat = Math.max(itemMin, Math.min(tier, room / (longest * EM)));
-	const wrapped = Math.max(itemMin, Math.min(tier, room / (longestHalf * EM)));
+	const flat = Math.max(itemMin, Math.min(tier, ...items.map((item) => fitSize(item, room, ITEM_WEIGHT))));
+	const wrapped = Math.max(itemMin, Math.min(tier, ...items.flatMap((item) => halves(item).map((part) => fitSize(part, room, ITEM_WEIGHT)))));
 	// A still is cut to what is drawn: it may be as tall as its lists need.
 	const wrappedFits = levels.still || listsAt(visual, wrapped, room, column).bottom + wrapped * 0.5 + 12 <= 680;
 	const itemSize = wrapped > flat * 1.1 && wrappedFits ? wrapped : flat;

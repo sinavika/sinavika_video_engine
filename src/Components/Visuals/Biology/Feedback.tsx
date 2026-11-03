@@ -1,8 +1,9 @@
 import React from 'react';
 import {clamp01} from '../../../Animations/Motion';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor} from '../VisualTimeline';
+import {FigureText} from '../VisualWorld';
 
 type Feedback = Extract<CourseVisual, {kind: 'feedback'}>;
 
@@ -45,9 +46,9 @@ export const FeedbackVisual: React.FC<VisualBoxProps & {visual: Feedback}> = ({v
 	const time = visual.motion ? Math.max(0, seconds - runStart) : visual.period * 2.5;
 	const fontSize = Math.max(60, 28 / k);
 	const text = (x: number, y: number, value: string, size = fontSize * 0.8, anchor: 'start' | 'middle' | 'end' = 'middle', weight = 800) => (
-		<text x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={weight} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
+		<FigureText x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={weight} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
 			{value}
-		</text>
+		</FigureText>
 	);
 	const count = visual.nodes.length;
 	const boxWidth = count === 4 ? 290 : 330;
@@ -71,7 +72,8 @@ export const FeedbackVisual: React.FC<VisualBoxProps & {visual: Feedback}> = ({v
 	const last = boxX(count - 1) + boxWidth / 2;
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`} opacity={appear}>
 				{visual.nodes.map((node, index) => (
 					<Part key={index} id={`n${index + 1}`}>
@@ -144,5 +146,6 @@ export const FeedbackVisual: React.FC<VisualBoxProps & {visual: Feedback}> = ({v
 				</Part>
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

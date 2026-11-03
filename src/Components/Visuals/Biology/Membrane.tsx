@@ -4,8 +4,9 @@ import {withAlpha} from '../../../Themes/Theme';
 import {useFigureFont, useStillFigure, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import {MEMBRANE_PARTS} from './BiologySchema';
 import {type CourseVisual} from '../VisualSchema';
-import {usePartLook, World} from '../VisualWorld';
+import {usePartLook, World, FigureText} from '../VisualWorld';
 import {ORGANELLE_COLORS} from './Cell';
+import {textWidth} from '../FigureLabel';
 
 // ---------------------------------------------------------------- the cell membrane in cross-section
 
@@ -123,7 +124,7 @@ const Crossing: React.FC<{kind: Transport; index: number; entrance: number; seco
 	// A question's numerals (I–IV) are what the student answers with: in an app still, shown about 360 pixels wide, they
 	// are drawn half as large again (Soru revizyonu, 2 Nov 2026).
 	const numeralSize = useStillFigure() ? 46 : 30;
-	const detailLines = detailSize > 18 && detail.length * detailSize * 0.55 > 180 ? detail.split(/(?<=,) /) : [detail];
+	const detailLines = detailSize > 18 && textWidth(detail, detailSize, 600) > 180 ? detail.split(/(?<=,) /) : [detail];
 	const arrowY0 = up ? 410 : 150;
 	const arrowY1 = up ? 150 : 410;
 	const side = x > 900 ? -46 : 46;
@@ -136,17 +137,17 @@ const Crossing: React.FC<{kind: Transport; index: number; entrance: number; seco
 			{kind === 'aktif' ? (
 				<g>
 					<circle cx={x + 70} cy={BOTTOM + 52} r={22} fill={M.atp} stroke={M.headEdge} strokeWidth={2} />
-					<text x={x + 70} y={BOTTOM + 53} textAnchor="middle" dominantBaseline="middle" fontSize={15} fontWeight={800} fill={palette.ink} fontFamily={palette.fontBody}>ATP</text>
+					<FigureText x={x + 70} y={BOTTOM + 53} textAnchor="middle" dominantBaseline="middle" fontSize={15} fontWeight={800} fill={palette.ink} fontFamily={palette.fontBody}>ATP</FigureText>
 				</g>
 			) : null}
-			<text x={x} y={512} textAnchor="middle" fontSize={(numeral ? numeralSize : 23) * (1 + 0.08 * look.focused)} fontWeight={800} fill={look.focused > 0.5 ? palette.lesson : palette.ink} stroke={palette.surface} strokeWidth={6} paintOrder="stroke" fontFamily={palette.fontBody}>{title}</text>
-			<text x={x} y={540} textAnchor="middle" fontSize={detailSize} fontWeight={600} fill={palette.muted} stroke={palette.surface} strokeWidth={detailSize * 0.28} paintOrder="stroke" fontFamily={palette.fontBody}>
+			<FigureText x={x} y={512} textAnchor="middle" fontSize={(numeral ? numeralSize : 23) * (1 + 0.08 * look.focused)} fontWeight={800} fill={look.focused > 0.5 ? palette.lesson : palette.ink} stroke={palette.surface} strokeWidth={6} paintOrder="stroke" fontFamily={palette.fontBody}>{title}</FigureText>
+			<FigureText x={x} y={540} textAnchor="middle" fontSize={detailSize} fontWeight={600} fill={palette.muted} stroke={palette.surface} strokeWidth={detailSize * 0.28} paintOrder="stroke" fontFamily={palette.fontBody}>
 				{detailLines.map((line, row) => (
 					<tspan key={row} x={x} dy={row === 0 ? 0 : detailSize * 1.1}>
 						{line}
 					</tspan>
 				))}
-			</text>
+			</FigureText>
 		</g>
 	);
 };
@@ -174,9 +175,9 @@ export const MembraneVisual: React.FC<VisualBoxProps & {visual: Membrane}> = ({v
 			<g>
 				<line x1={anchor[0]} y1={anchor[1]} x2={at[0]} y2={at[1] + (below ? -16 : 10)} stroke={colour} strokeWidth={2 + focus} opacity={0.7} />
 				<circle cx={anchor[0]} cy={anchor[1]} r={4.5} fill={colour} />
-				<text x={at[0]} y={at[1]} textAnchor="middle" dominantBaseline={below ? 'hanging' : 'auto'} fontSize={partSize * (1 + 0.1 * focus)} fontWeight={focus > 0.5 ? 800 : 700} fill={colour} stroke={palette.surface} strokeWidth={6} paintOrder="stroke" fontFamily={palette.fontBody}>
+				<FigureText x={at[0]} y={at[1]} textAnchor="middle" dominantBaseline={below ? 'hanging' : 'auto'} fontSize={partSize * (1 + 0.1 * focus)} fontWeight={focus > 0.5 ? 800 : 700} fill={colour} stroke={palette.surface} strokeWidth={6} paintOrder="stroke" fontFamily={palette.fontBody}>
 					{visual.numbered ? ROMAN[index] : NAMES[part]}
-				</text>
+				</FigureText>
 			</g>
 		);
 	};
@@ -190,8 +191,8 @@ export const MembraneVisual: React.FC<VisualBoxProps & {visual: Membrane}> = ({v
 			</defs>
 			<rect x={0} y={0} width={1000} height={TOP - 14} fill={withAlpha('#4FA3D9', 0.06)} />
 			<rect x={0} y={BOTTOM + 14} width={1000} height={560 - BOTTOM - 14} fill={withAlpha(palette.lesson, 0.06)} />
-			<text x={14} y={30} fontSize={20} fontWeight={700} fill={palette.muted} fontFamily={palette.fontBody}>hücre dışı</text>
-			<text x={14} y={BOTTOM + 44} fontSize={20} fontWeight={700} fill={palette.muted} fontFamily={palette.fontBody}>sitoplazma</text>
+			<FigureText x={14} y={30} fontSize={20} fontWeight={700} fill={palette.muted} fontFamily={palette.fontBody}>hücre dışı</FigureText>
+			<FigureText x={14} y={BOTTOM + 44} fontSize={20} fontWeight={700} fill={palette.muted} fontFamily={palette.fontBody}>sitoplazma</FigureText>
 			<Part id="fosfolipit" entrance={enter(0)}>
 				{(f) => (
 					<g>

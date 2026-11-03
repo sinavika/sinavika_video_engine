@@ -1,0 +1,1195 @@
+{
+ "topic": {
+  "id": "6CCBD6E2-1C04-2709-A263-56F3580AC57E",
+  "category": "YKS_TYT",
+  "lesson": "FIZ",
+  "code": "FIZ_KALDIRMA"
+ },
+ "title": "Kaldırma Kuvveti",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/FIZ/FIZ_KALDIRMA.json"
+ ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/YKS/TYT/KonuAnlatimi/FIZ/FIZ_KALDIRMA.json (MEB OGM Materyal, TYT Fizik konu anlatımı)",
+   "EgitimVerileri/YKS/TYT/CikmisSorular/FIZ/FIZ_KALDIRMA.json (ÖSYM 2018, 2020, 2022, 2024)",
+   "Curriculum/Scripts/YKS_TYT/FIZ/FIZ_KALDIRMA.json"
+  ],
+  "additions": [
+   {
+    "note": "Yüzen cisimde batan hacmin toplam hacme oranının d_cisim / d_sıvı olduğunu örnekle (buz suda yaklaşık onda dokuzu batık yüzer) ve dinamometre farkı ile taşırma kabı hesaplarını çöz.",
+    "done": "Bölüm 2'de buz örneği ve 180 cm³'lük sayı kutusu, tahta bloğu ve 0,6/0,8 soruları; Bölüm 1'de dinamometre örneği, hata bulma, taşırma kabı karşılaştırma tablosu, sayı kutusu ve üç soru."
+   },
+   {
+    "note": "Aynı cismin farklı sıvılardaki durumunu karşılaştır: gemi denizde tatlı sudakinden daha az batar; Lut Gölü'nde insan kolayca yüzer; hidrometrenin (densimetre) sıvı özkütlesini ölçmesi.",
+    "done": "Bölüm 2'de 'Aynı cisim, farklı sıvı' karşılaştırma kartı (gemi, insan, Lut Gölü), hidrometre kartı ve tahmin kartı, nehir-deniz gemi sorusu ve iki sıvıda yüzen cisim sorusu."
+   },
+   {
+    "note": "Gazlarda kaldırma kuvvetini ekle: helyum balonu, zeplin, sıcak hava balonu (ısınan havanın özkütlesinin azalması).",
+    "done": "Bölüm 3'te gazlarda kaldırma kartı (helyum, zeplin), helyum balonu örneği ve sayı kutusu, helyum sorusu, sıcak hava balonu tahmin kartı, anlatım kartı, sıralama kartı ve sorusu."
+   },
+   {
+    "note": "Canlılardan ve teknolojiden örnek ver: balıkların yüzme kesesi, denizaltının balast tankları, can yeleği; ortalama özkütleyi değiştirerek yüzme-batma kontrolü.",
+    "done": "Bölüm 3'te ortalama özkütle kuralı, eşleştirme kartı, canlılar ve can yeleği kartı, denizaltı balast tankı sorusu ve balık yüzme kesesi sorusu."
+   },
+   {
+    "note": "Bağlı cisimler soru tipini (iple birbirine ya da kabın tabanına bağlı cisimler) kuvvet dengesi tablosuyla adım adım çöz.",
+    "done": "Bölüm 2'de kuvvet dengesi tablosu, iple birbirine bağlı K-L örneği, tabana bağlı cisim için adım adım (guided) kart ve ip gerilmesi sorusu."
+   }
+  ],
+  "fixes": [
+   "Temeldeki uyarı 'Taşan sıvı ancak yüzen cisimde cismin ağırlığına eşittir' eksikti: askıda kalan cisimde de eşittir. 'Yüzen ya da askıda kalan' olarak düzeltildi.",
+   "Temeldeki uyarı 'Yüzen cisme etki eden kaldırma kuvveti batan cisminkinden küçüktür' hacim koşulunu söylemiyordu; yalnız hacimler eşitse doğrudur. 'Aynı hacimde' koşulu eklendi.",
+   "Temeldeki soru ipuçları 'Cevap B' gibi harf veriyor ve son ipucunda sonucu söylüyordu; ipuçları yeniden yazıldı. 'Cevabımız…' gibi video sözleri atıldı.",
+   "Temelde doğru şık harfleri B, C, B, C, A, D, B, D, E, E... gibi dağılıyordu; şıklar ve öncüller yeniden düzenlenerek dengeli bir dağılım kuruldu.",
+   "MEB konu anlatımındaki 'Dikkat' kutusu yük gemilerinin su üzerinde durmasını Bernoulli ilkesindeki basınç farkına bağlıyor; yüzme olayı Arşimet ilkesiyle, yani kaldırma kuvvetinin ağırlığa eşit olmasıyla açıklanır. Derste bu şekilde anlatıldı.",
+   "Havuzdaki ilk örnek soruda cevap anahtarı yanlış: aynı hacimde daha az batan cisme etki eden kaldırma kuvveti daha küçüktür. Soru kullanılmadı.",
+   "Havuzdaki mitoz soruları ve MEB metnindeki titreşim bölümü bu konuya ait değil; kullanılmadı."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Demir gemi neden yüzer, bir çivi neden batar?",
+   "narration": "Bir demir çivi suda batar, ama tonlarca demirden yapılmış gemi yüzer. Tuzlu suda yumurta yükselir, denizaltı istediğinde dalar, helyum balonu gökyüzüne çıkar. Bu derste Arşimet ilkesini, kaldırma kuvvetini hesaplamayı, yüzme, askıda kalma ve batmayı ve günlük hayattaki uygulamaları adım adım öğreneceksin."
+  },
+  "objectives": [
+   "Kaldırma kuvvetini Arşimet ilkesiyle açıklamak ve hesaplamak",
+   "Dinamometre ve taşırma kabıyla kaldırma kuvvetini bulmak",
+   "Yüzme, askıda kalma ve batmayı özkütlelerle karşılaştırmak",
+   "Yüzen cisimde batan hacim oranını $d_c / d_s$ ile bulmak",
+   "Aynı cismin farklı sıvılardaki durumunu ve hidrometreyi yorumlamak",
+   "Gemi, denizaltı, balık ve balonu ortalama özkütleyle açıklamak",
+   "Helyum ve sıcak hava balonunda kaldırma kuvvetini yorumlamak",
+   "İple ya da tabana bağlı cisimlerde kuvvet dengesi kurmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_KALDIRMA_01",
+    "subtopics": [
+     "FIZ_KALDIRMA_02",
+     "FIZ_KALDIRMA_06"
+    ],
+    "title": "Arşimet ilkesi ve taşırma kabı",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Su neden yukarı iter?",
+      "text": "Havuzda bir arkadaşını kucaklamak, karada kaldırmaktan çok daha kolaydır: su onu yukarı iter. Sıvı, içindeki cismin her yüzeyine basınç kuvveti uygular. Yan yüzeylerdeki kuvvetler eşit ve zıt yönlü olduğundan birbirini yok eder. Alt yüzey üst yüzeyden daha derindedir; $F = h \\cdot d \\cdot g \\cdot S$ bağıntısına göre alt yüzeye gelen yukarı yönlü kuvvet, üst yüzeye gelen aşağı yönlü kuvvetten büyüktür. Bu iki kuvvetin farkı yukarı yönlüdür ve **kaldırma kuvveti** adını alır.",
+      "narration": "Kaldırma kuvvetinin kaynağı basınç farkıdır. Derinlik arttıkça sıvı basıncı artar; bu yüzden cismin alt yüzüne gelen kuvvet, üst yüzüne gelenden büyük olur. Cisim sıvının içinde nasıl duruyor olursa olsun (yüzüyor, askıda ya da dipte) bu kuvvet vardır. Cisim yalnız kısmen batıksa sıvıyla temas eden kısım hesaba girer; bu yüzden formülde cismin tamamı değil **batan hacim** yer alır. Aynı mantık gazlar için de geçerlidir: hava ve diğer gazlar da içindeki cisme kaldırma kuvveti uygular."
+     },
+     {
+      "kind": "rule",
+      "title": "Yerini değiştirdiği sıvının ağırlığı",
+      "items": [
+       "Sıvı, içindeki cisme **yukarı doğru** kaldırma kuvveti uygular.",
+       "$F_k = V_{batan} \\cdot d_{sıvı} \\cdot g$: batan hacme ve **sıvının** özkütlesine bağlıdır.",
+       "Kaldırma kuvveti, cismin **yerini değiştirdiği sıvının ağırlığına** eşittir (Arşimet).",
+       "Dinamometreyle: $F_k$ = havadaki ağırlık − sıvıdaki ağırlık.",
+       "Dolu **taşırma kabından** taşan sıvının ağırlığı = $F_k$."
+      ],
+      "narration": "Arşimet ilkesine göre kaldırma kuvveti, cismin yerini değiştirdiği sıvının ağırlığına eşittir. $F_k = V_{batan}\\cdot d_{sıvı}\\cdot g$ ifadesinde yalnız batan hacim, sıvının özkütlesi ve $g$ vardır; cismin kendi özkütlesi ya da kütlesi yoktur. Bu yüzden eşit hacimde batan demir ve tahta küreye aynı sıvıda aynı kaldırma kuvveti etki eder. Bir taşı dinamometreye asıp suya daldırırsan ibre geriler; havadaki ve sudaki değerin farkı kaldırma kuvvetidir. Ağzına kadar dolu bir taşırma kabına cismi bırakırsan taşan sıvının ağırlığı da kaldırma kuvvetidir. Hesapta kütleyi kilogram, hacmi metreküp yazmayı unutma."
+     },
+     {
+      "kind": "predict",
+      "title": "Eşit hacim, farklı madde",
+      "context": "Hacimleri eşit bir demir küre ile bir tahta küre, iplerle tamamen su içine batırılıyor.",
+      "prompt": "Suyun iki küreye uyguladığı kaldırma kuvvetleri için ne söylenir?",
+      "choices": [
+       "Demir küreye etki eden daha büyüktür",
+       "Eşittir",
+       "Tahta küreye etki eden daha büyüktür"
+      ],
+      "answer": 1,
+      "explanation": "$F_k = V_{batan} \\cdot d_{sıvı} \\cdot g$ bağıntısında cismin maddesi yoktur. İki küre de tamamen batıktır, hacimleri ve sıvı aynıdır; kaldırma kuvvetleri eşittir.",
+      "choiceFeedback": [
+       "Ağır olan cisim sıvıdan daha büyük kuvvet görmez; cismin ağırlığı kaldırma kuvvetinin formülünde yer almaz.",
+       null,
+       "Hafif cisim daha çok itilmez; kaldırma kuvveti cismin hafif ya da ağır olmasına değil, batan hacme bağlıdır."
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir taş dinamometreye asıldığında havada $12$ N, tamamen suya daldırıldığında $8$ N gösteriyor. Taşın hacmi kaç santimetreküptür? ($d_{su} = 1000 \\text{ kg/m}^3$, $g = 10 \\text{ m/s}^2$)",
+       "options": [
+        "$40$",
+        "$400$",
+        "$800$",
+        "$1200$",
+        "$4000$"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Hacmi metreküpten santimetreküpe çevirirken bir basamak kaçırmış olabilirsin.",
+        null,
+        "Sudaki ağırlığı kaldırma kuvveti sanmış olabilirsin; kaldırma kuvveti iki okuma arasındaki farktır.",
+        "Havadaki ağırlığı kaldırma kuvveti sanmış olabilirsin; kaldırma kuvveti iki okuma arasındaki farktır.",
+        "Metreküp-santimetreküp dönüşümünde basamak sayısını fazla almış olabilirsin."
+       ],
+       "steps": [
+        {
+         "text": "Dinamometredeki azalma, suyun taşa uyguladığı kaldırma kuvvetidir. Önce bu farkı bul."
+        },
+        {
+         "text": "Taş tamamen suyun içinde: batan hacim taşın hacmine eşittir. $F_k = V \\cdot d \\cdot g$ bağıntısından $V$'yi çek."
+        },
+        {
+         "text": "Hacmi önce metreküp olarak bul; sonra $1 \\text{ m}^3 = 10^6 \\text{ cm}^3$ ile santimetreküpe çevir."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dinamometre ile kaldırma kuvveti ve hacim özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "example",
+      "title": "Dinamometre ile hacim ve özkütle",
+      "example": "Bir cisim dinamometreye asıldığında havada $10$ N gösteriyor. Özkütlesi $800 \\text{ kg/m}^3$ olan bir sıvıda tamamen batıkken $6$ N gösteriyor. Cismin hacmini ve özkütlesini bulun. ($g = 10 \\text{ m/s}^2$)",
+      "explanation": "Kaldırma kuvveti: $F_k = 10 - 6 = 4$ N.\n\nHacim: $V = \\frac{F_k}{d_s \\cdot g} = \\frac{4}{800 \\cdot 10} = 5 \\cdot 10^{-4} \\text{ m}^3 = 500 \\text{ cm}^3$.\n\nCismin ağırlığı havada $10$ N olduğundan kütlesi $1$ kg'dır. Özkütle: $d = \\frac{m}{V} = \\frac{1}{5 \\cdot 10^{-4}} = 2000 \\text{ kg/m}^3 = 2 \\text{ g/cm}^3$.\n\nHacmi bulmak için **sıvının** özkütlesi, cismin özkütlesini bulmak için cismin **havadaki ağırlığı** gerekir."
+     },
+     {
+      "kind": "blank",
+      "title": "Taşan suyun ağırlığı",
+      "prompt": "Ağzına kadar su dolu bir taşırma kabına hacmi $120 \\text{ cm}^3$ olan bir cisim tamamen batacak biçimde bırakılıyor. Taşan suyun ağırlığı kaç N'dur? ($d_{su} = 1 \\text{ g/cm}^3$, $g = 10 \\text{ m/s}^2$)",
+      "before": "Taşan suyun ağırlığı =",
+      "after": "N",
+      "answers": [
+       "1,2"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 1.2,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "0,12",
+        "feedback": "Kütleyi doğru buldun ($0{,}12$ kg) ama $g$ ile çarpıp ağırlığa çevirmeyi unuttun."
+       },
+       {
+        "answer": "1200",
+        "feedback": "Gramı kilograma çevirmeyi unuttun: $120$ g = $0{,}12$ kg."
+       }
+      ],
+      "explanation": "Cisim batıyor, taşan su hacmi $120 \\text{ cm}^3$; kütlesi $120$ g $= 0{,}12$ kg. Ağırlık $= 0{,}12 \\cdot 10 = 1{,}2$ N ve bu aynı zamanda kaldırma kuvvetidir."
+     },
+     {
+      "kind": "findError",
+      "title": "Hatayı bul",
+      "problem": "Bir cisim dinamometreden havada $8$ N, suda $5$ N okunuyor. Hacmi kaç $\\text{cm}^3$'tür? ($d_{su} = 1000 \\text{ kg/m}^3$, $g = 10 \\text{ m/s}^2$)",
+      "prompt": "Çözümün hangi satırında hata var?",
+      "steps": [
+       "$F_k = 8 - 5 = 3$ N",
+       "$V = \\frac{F_k}{d \\cdot g} = \\frac{3}{1000 \\cdot 10}$",
+       "$V = 3 \\cdot 10^{-3} \\text{ m}^3 = 3000 \\text{ cm}^3$",
+       "Cismin hacmi bu durumda $3000 \\text{ cm}^3$'tür."
+      ],
+      "wrongStep": 2,
+      "choiceFeedback": [
+       "Bu satır doğru: kaldırma kuvveti iki okumanın farkıdır.",
+       "Bu satır doğru: formül ve değerler yerinde.",
+       null,
+       "Bu satır önceki satırın sonucunu aktarıyor; hatanın kaynağı daha önce."
+      ],
+      "explanation": "$\\frac{3}{10000} = 3 \\cdot 10^{-4} \\text{ m}^3$ olmalıydı; $3 \\cdot 10^{-3}$ yazıldı. Doğru hacim $3 \\cdot 10^{-4} \\text{ m}^3 = 300 \\text{ cm}^3$'tür."
+     },
+     {
+      "kind": "visual",
+      "title": "Taşırma kabında neler taşar?",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Yüzen ya da askıda cisim",
+         "items": [
+          "Taşan suyun ağırlığı = $F_k$ = cismin ağırlığı",
+          "Taşan hacim = batan hacim (cismin hacminden küçük olabilir)",
+          "Taşan suyun kütlesi = cismin kütlesi"
+         ]
+        },
+        {
+         "title": "Batan cisim",
+         "items": [
+          "Taşan suyun ağırlığı = $F_k$ < cismin ağırlığı",
+          "Taşan hacim = cismin tüm hacmi",
+          "Taşan suyun kütlesi < cismin kütlesi"
+         ]
+        }
+       ]
+      },
+      "caption": "Taşan sıvının ağırlığı her zaman $F_k$'dır; cismin ağırlığına eşit olması yalnız yüzen ve askıda kalan cisimde geçerlidir.",
+      "narration": "Taşma düzeyine kadar dolu kaba bırakılan her cisim, sıvı içindeki hacmi kadar sıvıyı kaptan dışarı taşırır. Cisim yüzüyor ya da askıda kalıyorsa kaldırma kuvveti cismin ağırlığına eşittir; bu nedenle taşan sıvının ağırlığı da cismin ağırlığına eşit olur. Cisim batıyorsa kaldırma kuvveti ağırlıktan küçüktür; aradaki farkı kabın tabanının tepki kuvveti $N$ tamamlar: $F_k + N = G$. Bu durumda taşan sıvının ağırlığı cismin ağırlığından küçüktür, ama taşan hacim cismin kendi hacmine eşittir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Ağzına kadar su dolu bir taşırma kabına bırakılan $K$ cismi $50$ g su taşırıyor ve suda **yüzüyor**.\n\nI. $K$'nin kütlesi $50$ g'dır.\nII. $K$'ye etki eden kaldırma kuvveti $0{,}5$ N'dir.\nIII. $K$'nin hacmi $50 \\text{ cm}^3$'tür.\n\nYargılarından hangileri kesinlikle doğrudur? ($g = 10 \\text{ m/s}^2$)",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "II. yargıyı da incele: taşan suyun ağırlığı ile kaldırma kuvveti arasındaki ilişkiyi Arşimet ilkesiyle yeniden düşün.",
+        "I. yargıyı da incele: yüzen cisimde kaldırma kuvveti ile cismin ağırlığı arasındaki ilişkiyi hatırla.",
+        null,
+        "III. yargıda taşan hacmin cismin hangi kısmının hacmi olduğunu düşün: taşan su yalnız suya batan kısmın yerini doldurur.",
+        "III. yargıda taşan hacmin cismin hangi kısmının hacmi olduğunu düşün: cisim yüzüyorsa tamamı suda değildir."
+       ],
+       "steps": [
+        {
+         "text": "Taşan suyun ağırlığı ile kaldırma kuvveti arasındaki ilişkiyi Arşimet ilkesinden hatırla; 50 g suyun ağırlığını N cinsinden bul."
+        },
+        {
+         "text": "Cisim yüzüyor: kaldırma kuvveti ile cismin ağırlığı arasında nasıl bir ilişki vardır? Bunu kütleye taşı."
+        },
+        {
+         "text": "Taşan su, cismin hangi kısmının yerini almıştır? Bu hacmi cismin tüm hacmiyle karşılaştır."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2022 taşırma kabı sorusunun fikri yüzen tek bir cisimle ve farklı öncüllerle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Taşan su ve cismin ağırlığı",
+      "wrong": "Taşırma kabından taşan suyun ağırlığı, cisim yüzsün ya da batsın, cismin ağırlığına eşittir.",
+      "right": "Taşan suyun ağırlığı her zaman kaldırma kuvvetine eşittir; cismin ağırlığına yalnız yüzen ya da askıda kalan cisimde eşittir.",
+      "why": "Batan cisimde kaldırma kuvveti ağırlıktan küçüktür, farkı kabın tabanı taşır: $F_k + N = G$. Taşan suyun ağırlığı $F_k$ olduğundan cismin ağırlığından küçük kalır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Ağzına kadar su dolu bir taşırma kabına kütlesi $300$ g, hacmi $200 \\text{ cm}^3$ olan bir cisim bırakılıyor. Kaptan kaç gram su taşar? ($d_{su} = 1 \\text{ g/cm}^3$)",
+       "options": [
+        "$200$",
+        "$300$",
+        "$400$",
+        "$500$",
+        "$600$"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "Taşan suyun cismin kütlesine eşit olduğunu sanmış olabilirsin; bu yalnız yüzen ve askıda kalan cisimlerde doğrudur.",
+        "Taşan suyu cismin hacmi ile bir başka büyüklüğün toplamı gibi düşünmüş olabilirsin.",
+        "Kütle ile hacmi toplamış olabilirsin; farklı birimdeki büyüklükler toplanmaz.",
+        "Kütleyi iki katına çıkarmış olabilirsin; taşan su miktarı cismin sıvıdaki hacmiyle belirlenir."
+       ],
+       "steps": [
+        {
+         "text": "Önce cismin batıp batmadığına karar ver: özkütlesini hesapla ve suyunkiyle karşılaştır."
+        },
+        {
+         "text": "Batan cisimde taşan suyun hacmi, cismin hangi büyüklüğüne eşittir?"
+        },
+        {
+         "text": "Taşan suyun hacmini bulduktan sonra 1 $\\text{cm}^3$ suyun kütlesini kullanarak grama çevir."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; batan cisimde taşırma kabı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "multi",
+      "title": "ÖSYM tuzağı: taşan hacim",
+      "stem": "Taşma düzeyine kadar su dolu bir kaba, suda çözünmeyen $K$ ve $L$ cisimleri ayrı ayrı bırakılıyor. İkisi de $80 \\text{ cm}^3$ su taşırıyor. Buna göre aşağıdakilerden hangileri **kesinlikle** doğrudur?",
+      "options": [
+       "$K$ ve $L$'ye etki eden kaldırma kuvvetleri eşittir.",
+       "$K$ ve $L$'nin hacimleri eşittir.",
+       "$K$ ve $L$'nin kütleleri eşittir.",
+       "$K$ ve $L$'nin suya batan hacimleri eşittir."
+      ],
+      "answers": [
+       0,
+       3
+      ],
+      "choiceFeedback": [
+       null,
+       "Cisimlerden biri yüzüyorsa taşan hacim yalnız batan kısmın hacmidir; cismin hacmi bundan büyüktür.",
+       "Kütle ancak cisim yüzüyorsa taşan suyun kütlesine eşit olur; sorudaki bilgiyle böyle bir sonuç çıkmaz.",
+       null
+      ],
+      "explanation": "Taşan hacim, cismin sıvı içindeki (batan) hacmine eşittir; iki cisimde de $80 \\text{ cm}^3$ olduğundan batan hacimler ve dolayısıyla kaldırma kuvvetleri eşittir. Cismin toplam hacmi ve kütlesi hakkında kesin bir şey söylenemez. ÖSYM bu tuzağı sever: taşan hacim ile cismin hacmini karıştırma."
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_KALDIRMA_03",
+    "subtopics": [
+     "FIZ_KALDIRMA_04",
+     "FIZ_KALDIRMA_05"
+    ],
+    "title": "Yüzme, askıda kalma, batma ve bağlı cisimler",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Üç durum",
+      "visual": {
+       "kind": "tank",
+       "vessels": [
+        {
+         "shape": "straight",
+         "label": "Yüzme"
+        },
+        {
+         "shape": "straight",
+         "label": "Askıda"
+        },
+        {
+         "shape": "straight",
+         "label": "Batma"
+        }
+       ],
+       "level": 0.75,
+       "layers": [
+        {
+         "liquid": "water"
+        }
+       ],
+       "connected": false,
+       "bodies": [
+        {
+         "vessel": 0,
+         "label": "K",
+         "submerged": 0.6,
+         "at": "middle",
+         "size": 1
+        },
+        {
+         "vessel": 1,
+         "label": "L",
+         "submerged": 1,
+         "at": "middle",
+         "size": 1
+        },
+        {
+         "vessel": 2,
+         "label": "M",
+         "submerged": 1,
+         "at": "bottom",
+         "size": 1
+        }
+       ]
+      },
+      "caption": "Yüzen: $d_c < d_s$, $F_k = G$. Askıda: $d_c = d_s$, $F_k = G$. Batan: $d_c > d_s$, $F_k < G$.",
+      "narration": "Aynı sıvıya üç farklı cisim bırakıldığında sonucu iki özkütlenin karşılaştırması belirler. K'nin özkütlesi sıvınınkinden küçüktür: K yüzer. Yüzen cisimde kaldırma kuvveti ağırlığa eşittir ve batan kısmın oranı iki özkütlenin oranıdır; özkütlesi 0,6 g/cm³ olan tahtanın onda altısı suyun içindedir. L'nin özkütlesi sıvınınkine eşittir: L bırakıldığı yerde, sıvının içinde askıda kalır; kaldırma kuvveti yine ağırlığına eşittir. M'nin özkütlesi sıvınınkinden büyüktür: M batar ve dibe oturur. Kaldırma kuvveti ağırlıktan küçüktür; aradaki farkı kabın tabanının tepki kuvveti taşır."
+     },
+     {
+      "kind": "visual",
+      "title": "Üç durum tablosu",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Durum",
+        "Özkütle",
+        "Kuvvet",
+        "Konum"
+       ],
+       "rows": [
+        [
+         "Yüzme",
+         "Cisim < sıvı",
+         "Fk = G",
+         "Sıvı yüzeyinde"
+        ],
+        [
+         "Askıda",
+         "Cisim = sıvı",
+         "Fk = G",
+         "Sıvı içinde"
+        ],
+        [
+         "Batma",
+         "Cisim > sıvı",
+         "Fk < G",
+         "Kap tabanında"
+        ]
+       ],
+       "highlightColumn": 0
+      },
+      "caption": "Özkütle karşılaştırması yönü, kuvvet karşılaştırması nedeni gösterir.",
+      "narration": "Tabloyu iki yoldan okuyabilirsin. Özkütle yoluyla: cismin özkütlesi sıvınınkinden küçükse yüzer, eşitse askıda kalır, büyükse batar. Kuvvet yoluyla: kaldırma kuvveti ağırlığa eşitse cisim dengede yüzer ya da askıda kalır; kaldırma kuvveti ağırlıktan küçükse cisim batar. İkisi aynı sonucu verir. Yüzme ile askıda kalma arasındaki fark: yüzen cismin bir kısmı sıvının dışındadır ($V_{batan} < V$), askıda kalan cismin ise tamamı sıvının içindedir ($V_{batan} = V$)."
+     },
+     {
+      "kind": "classify",
+      "title": "Yüzer mi, askıda mı, batar mı?",
+      "prompt": "Her durumu doğru gruba yerleştir.",
+      "groups": [
+       {
+        "label": "Yüzer",
+        "items": [
+         "Tahta (0,6 g/cm³) suda",
+         "Buz (0,9 g/cm³) suda"
+        ]
+       },
+       {
+        "label": "Askıda kalır",
+        "items": [
+         "Özkütlesi 1 g/cm³ olan cisim suda",
+         "Yumurta (1,1 g/cm³), özkütlesi 1,1 g/cm³ olan tuzlu suda"
+        ]
+       },
+       {
+        "label": "Batar",
+        "items": [
+         "Alüminyum (2,7 g/cm³) suda",
+         "Buz (0,9 g/cm³) alkolde (0,8 g/cm³)"
+        ]
+       }
+      ],
+      "explanation": "Karar her zaman cismin özkütlesinin **içinde bulunduğu sıvının** özkütlesiyle karşılaştırılmasına bağlıdır. Aynı buz suda yüzer, alkolde batar."
+     },
+     {
+      "kind": "predict",
+      "title": "Doğru mu, yanlış mı?",
+      "prompt": "Yüzen bir cisme etki eden kaldırma kuvveti, cismin ağırlığına eşittir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Yüzen cisim dengededir: yukarı yönlü kaldırma kuvveti, aşağı yönlü ağırlığa eşit olmalıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Özkütlesi $0{,}6 \\text{ g/cm}^3$ olan tahta bir blok suda yüzüyor. Bloğun hacminin yüzde kaçı suyun **dışındadır**? ($d_{su} = 1 \\text{ g/cm}^3$)",
+       "options": [
+        "$20$",
+        "$25$",
+        "$30$",
+        "$40$",
+        "$60$"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "Batan oranı özkütlelerin oranıyla bulman gerekir; yüzde değeri yanlış elde edilmiş.",
+        "Batan oranı özkütlelerin oranıyla bulman gerekir; yüzde değeri yanlış elde edilmiş.",
+        "Batan oranı özkütlelerin oranıyla bulman gerekir; yüzde değeri yanlış elde edilmiş.",
+        null,
+        "Bu değer batan kısmın oranıdır; soru suyun dışında kalan kısmı soruyor."
+       ],
+       "steps": [
+        {
+         "text": "Cisim yüzüyor: ağırlık = kaldırma kuvveti. Her iki tarafı özkütle ve hacimle yaz."
+        },
+        {
+         "text": "Eşitlikte $g$ sadeleşir; batan hacmin toplam hacme oranını özkütlelerle bul."
+        },
+        {
+         "text": "Soru hangi kısmı soruyor? Batan oranı bulduktan sonra istenen kısma geç."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yüzen cismin batan oranı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "example",
+      "title": "Buz suda ne kadar batar?",
+      "example": "Hacmi $200 \\text{ cm}^3$, özkütlesi $0{,}9 \\text{ g/cm}^3$ olan bir buz bloğu suda yüzüyor. Batan oranı ve batan hacmi bulun, görünen kısmı yorumlayın.",
+      "explanation": "Yüzen cisimde $G = F_k$:\n\n$V \\cdot d_c \\cdot g = V_{batan} \\cdot d_s \\cdot g$ ve buradan $\\frac{V_{batan}}{V} = \\frac{d_c}{d_s}$.\n\nBuz için $\\frac{0{,}9}{1} = \\frac{9}{10}$: buzun **onda dokuzu suyun içindedir**. Batan hacim $200 \\cdot \\frac{9}{10} = 180 \\text{ cm}^3$, suyun dışındaki kısım $20 \\text{ cm}^3$'tür.\n\nBu yüzden buzdağlarının büyük kısmı suyun altında kalır; yalnız tepesi görünür.",
+      "narration": "Oran bağıntısı yalnızca yüzen cisimler için geçerlidir. Cisim askıdaysa özkütleler eşit olduğundan oran 1'dir, yani cismin tamamı batıktır. Oran 1'den büyük çıkıyorsa cisim yüzmez, batar."
+     },
+     {
+      "kind": "blank",
+      "title": "Batan hacim",
+      "prompt": "Hacmi $300 \\text{ cm}^3$, özkütlesi $0{,}6 \\text{ g/cm}^3$ olan bir tahta blok suda yüzüyor. ($d_{su} = 1 \\text{ g/cm}^3$)",
+      "before": "Suyun içindeki hacim =",
+      "after": "$\\text{cm}^3$",
+      "answers": [
+       "180"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 180,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "120",
+        "feedback": "Bu, suyun dışında kalan hacimdir; soru batan hacmi soruyor."
+       }
+      ],
+      "explanation": "Batan oran $\\frac{0{,}6}{1} = 0{,}6$; batan hacim $300 \\cdot 0{,}6 = 180 \\text{ cm}^3$."
+     },
+     {
+      "kind": "visual",
+      "title": "Aynı cisim, farklı sıvı",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Tatlı su (1 g/cm³)",
+         "items": [
+          "Gemi en çok burada batar",
+          "İnsan (≈1 g/cm³) neredeyse tamamen batık yüzer"
+         ]
+        },
+        {
+         "title": "Deniz suyu (≈1,03 g/cm³)",
+         "items": [
+          "Gemi daha az batar",
+          "Gemi gövdesinde tatlı su ve deniz suyu için ayrı yük çizgisi bulunur"
+         ]
+        },
+        {
+         "title": "Lut Gölü (≈1,2 g/cm³)",
+         "items": [
+          "Tuz oranı çok yüksektir",
+          "İnsan, gövdesinin büyük kısmı dışarıda, kolayca yüzer"
+         ]
+        }
+       ]
+      },
+      "caption": "Gemi her sıvıda yüzer: $F_k = G$ sabittir; sıvı yoğunlaştıkça batan hacim azalır.",
+      "narration": "Aynı gemi aynı yükle nehirden denize çıktığında biraz yükselir. Gemi her iki suda da yüzer; kaldırma kuvveti ağırlığına eşittir ve ağırlık değişmediği için kaldırma kuvveti de değişmez. $F_k = V_{batan} \\cdot d_s \\cdot g$ sabit kalacağından, sıvının özkütlesi arttığında batan hacim azalır. Lut Gölü'nde (Ölü Deniz) suyun özkütlesi yaklaşık 1,2 g/cm³'tür; insan vücudunun özkütlesi bundan küçük olduğu için insan çok az batarak yüzer."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Nehirde yüzen bir yük gemisi aynı yükle denize açılıyor. Deniz suyunun özkütlesi nehir suyununkinden büyük olduğuna göre geminin batan kısmının hacmi ve gemiye etki eden kaldırma kuvveti nasıl değişir?",
+       "options": [
+        "Artar – artar",
+        "Artar – değişmez",
+        "Azalır – azalır",
+        "Değişmez – değişmez",
+        "Azalır – değişmez"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "Daha yoğun sıvıda gemi daha az batar; ayrıca yüzen cisimde kaldırma kuvveti ağırlıkla belirlenir.",
+        "Daha yoğun sıvıda aynı kaldırma kuvvetini veren batan hacim büyümez, küçülür.",
+        "Daha az batan gemiye daha az kaldırma kuvveti etki ettiğini sanmış olabilirsin; yüzen cismin kaldırma kuvveti ağırlığına eşittir ve ağırlık sabittir.",
+        "Kaldırma kuvvetinin değişmediğini doğru buldun; ama sıvı değişince batan hacmin de aynı kalması mümkün değil.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Gemi iki suda da yüzüyor; yüzen cisimde kaldırma kuvveti hangi kuvvete eşittir? Yük aynı kalıyor."
+        },
+        {
+         "text": "$F_k = V_{batan} \\cdot d \\cdot g$ değeri sabitse sıvının özkütlesi arttığında batan hacim hangi yönde değişmelidir?"
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2018 tuzlu su sorusunun fikri nehirden denize çıkan gemi örneğiyle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Hidrometre: sıvı özkütlesini ölçer",
+      "text": "**Hidrometre (densimetre)**, alt ucu ağırlıklı, içi boş ve ince uzun bir cam tüptür; sıvıda dik biçimde **yüzer**. Yüzdüğü için $F_k = G$ sabittir; sıvı ne kadar yoğunsa tüp o kadar az batar. Tüpün üzerindeki skalada sıvı yüzeyinin geldiği çizgi özkütleyi gösterir; skala yukarıdan aşağıya doğru büyür. Süt, akü sıvısı, şerbet ya da tuzlu su gibi sıvıların özkütlesini ölçmekte kullanılır.",
+      "narration": "Hidrometrenin çalışması, yüzen cisimdeki batan oran bağıntısının ölçü aletine dönüşmüş hâlidir. Tüpün ağırlığı sabit olduğundan kaldırma kuvveti hep aynıdır; yoğun sıvıda aynı kaldırma kuvvetini sağlamak için daha küçük bir hacmin batması yeterli olur. Tüp yoğun sıvıda yükselir, yani yüzeyin geldiği çizgi daha aşağıdadır ve okunan özkütle daha büyüktür."
+     },
+     {
+      "kind": "predict",
+      "title": "Hidrometre kaba girince",
+      "context": "Bir hidrometre tatlı suda dik biçimde yüzüyor. Aynı hidrometre özkütlesi suyunkinden büyük tuzlu su dolu bir kaba alınıyor.",
+      "prompt": "Hidrometrenin batan kısmının hacmi ne olur?",
+      "choices": [
+       "Azalır",
+       "Artar",
+       "Değişmez"
+      ],
+      "answer": 0,
+      "explanation": "Hidrometre iki sıvıda da yüzer, $F_k = G$ sabittir. Sıvının özkütlesi arttığı için batan hacim azalır; tüp biraz yükselir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aynı $K$ cismi $X$ sıvısında hacminin yarısı, $Y$ sıvısında hacminin dörtte üçü sıvının içinde olacak biçimde yüzüyor.\n\nI. $X$ sıvısının özkütlesi $Y$'ninkinden büyüktür.\nII. Cisme iki sıvıda etki eden kaldırma kuvvetleri eşittir.\nIII. Cismin özkütlesi $X$ sıvısınınkinin dörtte üçüdür.\n\nYargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "II. yargıyı da incele: iki sıvıda da yüzen cisimde kaldırma kuvvetinin neye eşit olduğunu düşün.",
+        "I. yargıyı da incele: kaldırma kuvvetleri eşitken daha az batan sıvının özkütlesi nasıl olmalı?",
+        null,
+        "III. yargıdaki oranı, $X$ sıvısında batan oranla karşılaştır: batan oran $d_c / d_X$'e eşittir.",
+        "III. yargıdaki oranı, $X$ sıvısında batan oranla karşılaştır: batan oran $d_c / d_X$'e eşittir."
+       ],
+       "steps": [
+        {
+         "text": "İki sıvıda da yüzüyor: kaldırma kuvvetini cismin ağırlığıyla karşılaştır."
+        },
+        {
+         "text": "$V_{batan} \\cdot d_{sıvı}$ çarpımı iki durumda eşit olmalı. Hangi sıvıda daha az batıyor; o sıvının özkütlesi nasıl olmalı?"
+        },
+        {
+         "text": "Batan oran $= \\frac{d_c}{d_{sıvı}}$. $X$ için oran yarımdır; III'teki ilişkiyi bu oranla kontrol et."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; aynı cismin iki sıvıda yüzmesi öncüllerle özgün olarak soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Suya bırakılan bir yumurta dibe batıyor. Suya yavaş yavaş tuz eklenip karıştırıldığında yumurta bir süre sonra suyun içinde askıda kalıyor.\n\nI. Tuzlu suyun özkütlesi, saf suyunkinden büyüktür.\nII. Yumurtanın özkütlesi, tuzlu suyun özkütlesine eşittir.\nIII. Yumurtaya etki eden kaldırma kuvveti, saf suyun dibindeyken daha büyüktü.\n\nYargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "I ve II",
+        "I ve III",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Askıda kalan cisimde özkütleler arasındaki ilişkiyi de (II) değerlendir.",
+        null,
+        "III. yargıda, saf suda batan yumurtada $F_k$ ile $G$'yi karşılaştır; kaldırma kuvveti sonradan nasıl değişti?",
+        "I. yargıyı da incele: çözünen tuz suyun özkütlesini nasıl etkiler?",
+        "III. yargıyı tekrar düşün: batan cismin kaldırma kuvveti ağırlığından küçüktür, askıda olanınki ağırlığına eşittir."
+       ],
+       "steps": [
+        {
+         "text": "Tuz suda çözününce suyun özkütlesi nasıl değişir? Askıda kalan cisimde özkütleler arasındaki ilişkiyi hatırla."
+        },
+        {
+         "text": "Saf suda yumurta batıyordu: $F_k$ ile $G$ arasındaki ilişkiyi yaz. Askıdayken aynı ilişkiyi yaz ve iki durumu karşılaştır."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2024 elma-sirke sorusunun fikri yumurta ve tuzlu suyla, askıda kalma durumu üzerinden yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Özkütlesi $0{,}6 \\text{ g/cm}^3$ olan bir cisim, özkütlesi $0{,}8 \\text{ g/cm}^3$ olan bir sıvıda yüzüyor. Cismin hacminin ne kadarı sıvının içindedir?",
+       "options": [
+        "$\\frac{1}{2}$",
+        "$\\frac{3}{5}$",
+        "$\\frac{3}{4}$",
+        "$\\frac{4}{5}$",
+        "$\\frac{4}{3}$"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Batan oranı özkütlelerin oranı olarak kurmadığın belli; yüzen cisimde batan oran iki özkütlenin bölümüdür.",
+        "Cismin özkütlesini doğrudan oran almış olabilirsin; sıvı su olmadığı için sıvının özkütlesine bölmen gerekir.",
+        null,
+        "Sıvının özkütlesini oran sanmış olabilirsin.",
+        "Oranı ters kurdun (sıvı/cisim); yüzen cisimde batan oran 1'den büyük olamaz."
+       ],
+       "steps": [
+        {
+         "text": "Yüzen cisimde $G = F_k$; batan hacim oranını özkütlelerle yaz."
+        },
+        {
+         "text": "Oran, cismin özkütlesinin sıvının özkütlesine bölümüdür; sıvı su değil, $0{,}8 \\text{ g/cm}^3$."
+        },
+        {
+         "text": "Elde ettiğin ondalık oranı sadeleştirerek kesir yap."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; su dışındaki bir sıvıda batan oran özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Eşit hacimli bakır ve cam bilyeler bir su kabına bırakıldığında batıyor, aynı hacimdeki bir mantar ise yüzüyor.\n\nI. Bakır ve cam bilyeye etki eden kaldırma kuvvetleri eşittir.\nII. Mantara etki eden kaldırma kuvveti mantarın ağırlığına eşittir.\nIII. Mantara etki eden kaldırma kuvveti, cam bilyeye etki edenden büyüktür.\n\nYargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "I ve III"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "II. yargıyı da incele: yüzen cisimde kaldırma kuvveti neye eşittir?",
+        "I. yargıyı da incele: tamamen batan eşit hacimli iki cisimde batan hacimler nasıldır?",
+        "Yüzen cisme daha çok kaldırma kuvveti etki ettiğini sanmış olabilirsin; kaldırma kuvveti batan hacimle belirlenir.",
+        null,
+        "III. yargıda mantarın batan hacmini cam bilyeninkiyle karşılaştır."
+       ],
+       "steps": [
+        {
+         "text": "Tamamen batan cisimlerde batan hacim, cismin hacmine eşittir. Bakır ve camın hacimleri eşit."
+        },
+        {
+         "text": "Mantar yüzüyor: kaldırma kuvveti hangi büyüklüğe eşittir? Mantarın batan hacmini diğerleriyle karşılaştır."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2020 eşit hacimli toplar sorusunun fikri farklı maddeler ve farklı üçüncü öncülle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "visual",
+      "title": "Bağlı cisimlerde kuvvet dengesi",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Durum",
+        "Kuvvet dengesi"
+       ],
+       "rows": [
+        [
+         "Tabana iple bağlı, yüzme eğilimli",
+         "Fk = G + T"
+        ],
+        [
+         "Tavana ya da dinamometreye asılı, batık",
+         "Fk + T = G"
+        ],
+        [
+         "Kap tabanında, bağsız",
+         "Fk + N = G"
+        ],
+        [
+         "İple bağlı iki cisim (sistem)",
+         "Toplam Fk = toplam G"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "caption": "Önce kuvvetlerin yönlerini çiz, sonra yukarı kuvvetlerin toplamını aşağı kuvvetlerin toplamına eşitle.",
+      "narration": "Bağlı cisim sorularında cisim dengededir; yukarı yönlü kuvvetlerin toplamı aşağı yönlü kuvvetlerin toplamına eşittir. Üç kuvvet vardır: kaldırma kuvveti $F_k$ (yukarı), ağırlık $G$ (aşağı) ve ip gerilmesi $T$. İp yönünü cismin hareket eğilimi belirler: yüzmek isteyen cismi, tabana bağlı ip aşağı çeker, bu yüzden $F_k = G + T$ olur. Batmak isteyen ve yukarıdan asılan cismi ip yukarı çeker: $F_k + T = G$. İple bağlı iki cismi tek sistem gibi düşünürsen ip gerilmeleri birbirini götürür; ama her cisme ayrıca da denge yazabilirsin. Kaldırma kuvvetini hesaplarken yalnız **batan** hacmi kullan."
+     },
+     {
+      "kind": "example",
+      "title": "İple birbirine bağlı iki cisim",
+      "example": "Ağırlığı $2$ N olan $K$ cismi, kütlesi $300$ g ve hacmi $200 \\text{ cm}^3$ olan $L$ cismine iple bağlanıyor. $K$ yüzüyor, $L$ tamamen suyun içinde asılı ve ip gergin. $K$'nin batan hacmi kaç $\\text{cm}^3$'tür? ($d_{su} = 1000 \\text{ kg/m}^3$, $g = 10 \\text{ m/s}^2$)",
+      "explanation": "**L cismi:** $F_{k,L} = 200 \\cdot 10^{-6} \\cdot 1000 \\cdot 10 = 2$ N, $G_L = 3$ N. İp $L$'yi yukarı çeker: $F_{k,L} + T = G_L$, $2 + T = 3$, $T = 1$ N.\n\n**K cismi:** İp $K$'yi aşağı çeker: $F_{k,K} = G_K + T = 2 + 1 = 3$ N.\n\nBatan hacim: $V_{b} = \\frac{3}{1000 \\cdot 10} = 3 \\cdot 10^{-4} \\text{ m}^3 = 300 \\text{ cm}^3$.\n\n**Sistem kontrolü:** Toplam kaldırma $3 + 2 = 5$ N, toplam ağırlık $2 + 3 = 5$ N: eşit, çözüm tutarlı.",
+      "narration": "Çözümde önce ipin hangi yönde çektiğini bulduk. Ağır olan $L$ aşağı gitmek ister, ip onu yukarı çeker; hafif olan $K$ yukarı çıkmak ister, ip onu aşağı çeker. Her cisim için ayrı denge yazınca $T$ bulunur, sonra $K$'nin kaldırma kuvvetinden batan hacme geçilir."
+     },
+     {
+      "kind": "guided",
+      "title": "Tabana bağlı cisim",
+      "stem": "Hacmi $400 \\text{ cm}^3$, kütlesi $200$ g olan $K$ cismi, bir ucu kabın tabanına bağlı iple tamamen suyun içinde dengede tutuluyor. İp gerilmesi kaç N'dur? ($d_{su} = 1000 \\text{ kg/m}^3$, $g = 10 \\text{ m/s}^2$)",
+      "steps": [
+       {
+        "prompt": "Cismin özkütlesi ($0{,}5 \\text{ g/cm}^3$) sudan küçük. İp gergin ve cisim dengede. Kuvvetler nasıldır?",
+        "choices": [
+         "Yukarı: $F_k$; aşağı: yalnız $G$",
+         "Yukarı: $F_k$; aşağı: $G$ ve $T$",
+         "Yukarı: $F_k$ ve $T$; aşağı: $G$"
+        ],
+        "answer": 1,
+        "choiceFeedback": [
+         "Yalnız ağırlık ve kaldırma kuvveti olsaydı cisim yüzeye çıkardı; ip de bir kuvvet uygular.null",
+         null,
+         "Cisim yüzmek ister, ip onu aşağı çeker; gerilme yukarı yönlü olamaz."
+        ],
+        "explanation": "Cisim yüzme eğiliminde; ip tabana bağlı olduğundan cismi aşağı çeker. Denge: $F_k = G + T$."
+       },
+       {
+        "prompt": "Cismin tamamı suyun içinde. Kaldırma kuvvetini bul. ($400 \\text{ cm}^3 = 4 \\cdot 10^{-4} \\text{ m}^3$)",
+        "before": "$F_k =$",
+        "after": "N",
+        "answers": [
+         "4"
+        ],
+        "input": "number",
+        "explanation": "$F_k = 4 \\cdot 10^{-4} \\cdot 1000 \\cdot 10 = 4$ N."
+       },
+       {
+        "prompt": "Cismin ağırlığını bul. ($200$ g $= 0{,}2$ kg)",
+        "before": "$G =$",
+        "after": "N",
+        "answers": [
+         "2"
+        ],
+        "input": "number",
+        "explanation": "$G = 0{,}2 \\cdot 10 = 2$ N."
+       },
+       {
+        "prompt": "$F_k = G + T$ denkleminden ip gerilmesini bul.",
+        "before": "$T =$",
+        "after": "N",
+        "answers": [
+         "2"
+        ],
+        "input": "number",
+        "explanation": "$T = F_k - G = 4 - 2 = 2$ N."
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Hacmi $500 \\text{ cm}^3$ olan bir cisim, bir ucu kabın tabanına bağlı iple tamamen suyun içinde dengede tutuluyor ve ip gerilmesi $3$ N oluyor. Cismin kütlesi kaç gramdır? ($d_{su} = 1000 \\text{ kg/m}^3$, $g = 10 \\text{ m/s}^2$)",
+       "options": [
+        "$20$",
+        "$200$",
+        "$300$",
+        "$500$",
+        "$800$"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Ağırlığı kütleye çevirirken $g$ ve birim dönüşümünü yanlış yapmış olabilirsin: kütle $= G / g$ ve sonuç gram olarak yazılmalı.",
+        null,
+        "İp gerilmesini cismin ağırlığı sanmış olabilirsin; ip gerilmesi $G$ değildir, dengeye ayrı bir kuvvet olarak girer.",
+        "Kaldırma kuvvetini cismin ağırlığı sanmış olabilirsin; ip gergin olduğundan $F_k$ ve $G$ eşit değildir.",
+        "İp gerilmesini kaldırma kuvvetine eklemişsin; ip yönünü yanlış düşünmüş olabilirsin."
+       ],
+       "steps": [
+        {
+         "text": "İp tabana bağlı, cisim yüzmek istiyor: ip cismi aşağı çeker. Kuvvet dengesini yaz."
+        },
+        {
+         "text": "Kaldırma kuvvetini $F_k = V \\cdot d \\cdot g$ ile hesapla ($500 \\text{ cm}^3 = 5 \\cdot 10^{-4} \\text{ m}^3$)."
+        },
+        {
+         "text": "Dengeden ağırlığı bul, sonra $g = 10$ ile kütleye ve grama çevir."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; tabana iple bağlı cisimde ip gerilmesi ve kütle ilişkisi özgün olarak soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_KALDIRMA_05",
+    "title": "Hayattan örnekler: ortalama özkütle",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Ortalama özkütleyi değiştir",
+      "items": [
+       "**Ortalama özkütle** = toplam kütle / toplam hacim; yüzme-batma bununla karar verilir.",
+       "**Gemi** demirdendir ama içi boş: ortalama özkütlesi sudan **küçüktür**.",
+       "**Denizaltı** balast tanklarına su alınca ortalama özkütlesi artar ve batar; suyu basınçlı havayla boşaltınca çıkar.",
+       "**Balık** yüzme kesesini şişirip söndürerek hacmini, böylece ortalama özkütlesini ayarlar.",
+       "**Can yeleği** hacmi artırıp kütleyi az artırır: ortalama özkütle sudan küçük olur.",
+       "**Gaz balonları** ortalama özkütleleri havanınkinden küçükse yükselir."
+      ],
+      "narration": "Demir suda batar, ama demirden yapılmış gemi yüzer: geminin içi büyük ölçüde havadır ve gövde, demir ile içindeki havadan oluşan bir bütün olarak ele alınır. Bu bütünün ortalama özkütlesi sudan küçüktür. Denizaltı batmak için balast tanklarına deniz suyu alır; hacmi aynı kalır, kütlesi artar, ortalama özkütlesi büyür. Çıkmak için tanklardaki suyu basınçlı havayla dışarı atar. Balıklar da yüzme keselerindeki gazın hacmini değiştirerek derinliklerini ayarlar. Her örnekte ortak fikir aynıdır: cismin maddesini değiştirmeden **ortalama özkütleyi** değiştirerek yüzme, askıda kalma ve batma kontrol edilir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Özkütlesi sudan büyük malzeme hep batar mı?",
+      "wrong": "Özkütlesi sudan büyük bir malzemeden yapılan cisim, şekli ne olursa olsun suda batar.",
+      "right": "Yüzme-batma kararını cismin ortalama özkütlesi verir; içi boş bir gövde, malzemesinin özkütlesi sudan büyük olsa da yüzebilir.",
+      "why": "Demir çivi ile demirden gemi aynı malzemedendir. Geminin içindeki hava hacmi artırdığı için toplam kütle / toplam hacim oranı sudan küçük olur ve gemi yüzer."
+     },
+     {
+      "kind": "match",
+      "title": "Örnek ve yöntemi eşleştir",
+      "prompt": "Her örneği, ortalama özkütleyi nasıl kontrol ettiğiyle eşleştir.",
+      "titles": [
+       "Örnek",
+       "Yöntem"
+      ],
+      "pairs": [
+       {
+        "left": "Gemi",
+        "right": "İçi boş gövde: ortalama özkütle sudan küçük"
+       },
+       {
+        "left": "Denizaltı",
+        "right": "Balast tanklarına su alıp boşaltma"
+       },
+       {
+        "left": "Balık",
+        "right": "Yüzme kesesindeki gazın hacmini değiştirme"
+       },
+       {
+        "left": "Can yeleği",
+        "right": "Hacmi artırıp ortalama özkütleyi düşürme"
+       },
+       {
+        "left": "Sıcak hava balonu",
+        "right": "Havayı ısıtıp özkütlesini azaltma"
+       }
+      ],
+      "explanation": "Beş örnekte de kütle ya da hacim değişir, böylece ortalama özkütle sıvıya (ya da havaya) göre küçülür ya da büyür."
+     },
+     {
+      "kind": "concept",
+      "title": "Canlılar ve can yeleği",
+      "text": "**Balıkların yüzme kesesi** gazla dolu bir kesedir. Balık keseyi şişirince hacmi artar, kütlesi neredeyse aynı kalır: ortalama özkütle azalır ve balık yükselir. Keseyi söndürünce hacim küçülür, balık alçalır. **Can yeleği** köpük ya da hava dolu bölmelerle kullanıcının hacmini artırır, kütleyi çok az artırır; insan + yelek sisteminin ortalama özkütlesi sudan küçük olur. İnsan vücudu da akciğerlerindeki hava nedeniyle özkütlesi suya yakın bir cisimdir; derin nefes alınca batan hacim azalır.",
+      "narration": "Balık yüzme kesesi sayesinde yüzer, askıda kalır ya da dalar; bunun için kanat çırpmaya ihtiyaç duymaz. Teknolojide de aynı fikir kullanılır: denizaltı balast tankıyla, can yeleği ise hacmiyle ortalama özkütleyi ayarlar. Her durumda kaldırma kuvveti $V_{batan}\\cdot d_{sıvı}\\cdot g$ ile belirlenir; hacim arttıkça kaldırma kuvveti artar, ağırlık ise kütleye bağlıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir denizaltının su yüzeyinden derine dalabilmesi için balast tanklarına deniz suyu alması gerekir. Bunun nedeni aşağıdakilerden hangisidir?",
+       "options": [
+        "Denizaltının ortalama özkütlesi artar.",
+        "Denizaltının hacmi artar.",
+        "Deniz suyunun özkütlesi azalır.",
+        "Denizaltıya etki eden kaldırma kuvveti artar.",
+        "Denizaltının kütlesi azalır."
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "Tanklara su alınması dış hacmi büyütmez; denizaltının dış hacmi sabittir.",
+        "Denizaltının kendi tankına su alması, çevredeki deniz suyunun özkütlesini değiştirmez.",
+        "Batmak için ağırlığın kaldırma kuvvetini aşması gerekir; kaldırma kuvvetinin artması batmaya değil yükselmeye yol açar.",
+        "Tankına su alan denizaltının kütlesinin azalmasını beklemek, alınan suyu hesaba katmamak olur."
+       ],
+       "steps": [
+        {
+         "text": "Tanklara su alınınca denizaltının dış hacmi değişir mi? Kütlesi için ne olur?"
+        },
+        {
+         "text": "Ortalama özkütle = kütle / hacim. Hacim sabitken kütle değişirse ortalama özkütle nasıl değişir ve batmak için denizaltının özkütlesi deniz suyununkine göre nasıl olmalıdır?"
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; denizaltının çalışması ortalama özkütle üzerinden özgün olarak soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Dengede (askıda) duran bir balık, yüzme kesesindeki gazı genişletiyor. Balığın kütlesinin değişmediği kabul edilirse\n\nI. Balığın hacmi artar.\nII. Balığa etki eden kaldırma kuvveti artar.\nIII. Balığın ortalama özkütlesi azalır.\n\nyargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "Hacim artınca kaldırma kuvvetinin ve ortalama özkütlenin ne olduğunu da incele.",
+        "Kaldırma kuvvetinin artması hacmin arttığını gösterir; ayrıca özkütle de değişir.",
+        "III. yargıyı da incele: kütle sabit, hacim artıyorsa ortalama özkütle nasıl değişir?",
+        "II. yargıyı da incele: balık tamamen suyun içinde ve hacmi büyüyor; $F_k = V \\cdot d \\cdot g$'de ne değişir?",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Kese şişince balığın toplam hacmi değişir mi?"
+        },
+        {
+         "text": "Balık tamamen suyun içinde: $F_k = V \\cdot d \\cdot g$ bağıntısında hangi nicelik değişti?"
+        },
+        {
+         "text": "Kütle sabit, hacim değişiyor: ortalama özkütle nasıl değişir? Her öncülü bu bilgilerle kontrol et."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; yüzme kesesinin ortalama özkütleyi değiştirmesi özgün öncüllerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Gazlarda kaldırma kuvveti",
+      "text": "Gazlar da akışkandır; içlerindeki cisme $F_k = V \\cdot d_{gaz} \\cdot g$ kadar kaldırma kuvveti uygular. Yaklaşık değerler: hava $1{,}2 \\text{ kg/m}^3$, helyum $0{,}2 \\text{ kg/m}^3$. Helyum havadan hafif olduğundan helyum dolu **balon** ve **zeplin** yükselir. Eski zeplinlerde yanıcı hidrojen kullanılırdı; bugün güvenli olan helyum tercih edilir. Katı ve sıvı cisimlerde hava kaldırması çok küçük olduğundan ihmal edilir.",
+      "narration": "Balon yükselirken çevresindeki havanın özkütlesi azalır; bu yüzden balona etki eden kaldırma kuvveti de azalır. Belli bir yükseklikte kaldırma kuvveti balonun toplam ağırlığına eşit olur ve balon orada dengede kalır. Zeplin de büyük bir helyum hacmiyle havada yüzen, motor ve pervaneyle yönlendirilen bir araçtır. Gazlarda yön ve hız farkından doğan Bernoulli etkisi (uçak kanadı gibi) kaldırma kuvvetinden ayrı bir olaydır; bu konuda yalnız akışkanın özkütlesiyle ilgili kaldırma kuvvetini kullanıyoruz."
+     },
+     {
+      "kind": "example",
+      "title": "Helyum balonu ne kadar yük taşır?",
+      "example": "Hacmi $10 \\text{ m}^3$ olan bir balon helyumla doluyor. Hava $1{,}2 \\text{ kg/m}^3$, helyum $0{,}2 \\text{ kg/m}^3$ özkütleye sahip; balon kabuğunun ağırlığı ihmal ediliyor. Balonun yükselmeden taşıyabileceği en büyük yük kaç kg'dır? ($g = 10 \\text{ m/s}^2$)",
+      "explanation": "Havanın balona uyguladığı kaldırma kuvveti:\n$F_k = V \\cdot d_{hava} \\cdot g = 10 \\cdot 1{,}2 \\cdot 10 = 120$ N.\n\nHelyumun ağırlığı:\n$G_{He} = 10 \\cdot 0{,}2 \\cdot 10 = 20$ N.\n\nEk yükü taşıyabilmek için $F_k \\ge G_{He} + G_{yük}$. Buradan $G_{yük} = 120 - 20 = 100$ N, yani $m = 10$ kg.\n\nBalon, sıvıdaki cisim gibi düşünülür: kaldırma kuvveti ile toplam ağırlığı karşılaştırırız."
+     },
+     {
+      "kind": "blank",
+      "title": "Daha büyük balon",
+      "prompt": "Aynı gazlarla doldurulan, hacmi $20 \\text{ m}^3$ olan bir balonun taşıyabileceği en büyük yükü bul. (Hava $1{,}2 \\text{ kg/m}^3$, helyum $0{,}2 \\text{ kg/m}^3$, kabuk ihmal, $g = 10 \\text{ m/s}^2$)",
+      "before": "Taşınabilecek yük =",
+      "after": "kg",
+      "answers": [
+       "20"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 20,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "24",
+        "feedback": "Yalnız havanın kaldırma kuvvetinin kütle karşılığını aldın; helyumun kendi ağırlığını çıkarmayı unuttun."
+       }
+      ],
+      "explanation": "$F_k = 20 \\cdot 1{,}2 \\cdot 10 = 240$ N, $G_{He} = 20 \\cdot 0{,}2 \\cdot 10 = 40$ N. Yük ağırlığı $200$ N, yani $20$ kg."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Helyumla doldurulmuş bir balon bırakıldığında yükseliyor ve bir süre sonra belli bir yükseklikte kalıyor.\n\nI. Hava da balona kaldırma kuvveti uygular.\nII. Balon yükseldikçe hava seyrelir, kaldırma kuvveti azalır.\nIII. Helyumun özkütlesi havanınkinden büyüktür.\n\nYargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "II. yargıyı da incele: yükseldikçe havanın özkütlesine ne olur?",
+        "I. yargıyı da incele: havada bulunan cisme hava bir kuvvet uygular mı?",
+        null,
+        "Helyum balonun yükselmesini, helyum ile havanın özkütleleri arasındaki ilişki açıklar; III. yargıyı bu ilişkiyle kontrol et.",
+        "I. yargıyı atlamış olabilirsin: gazlar da akışkandır; III'ü de balonun yükselmesiyle kontrol et."
+       ],
+       "steps": [
+        {
+         "text": "Hava bir akışkan mıdır? Akışkanlar içindeki cisme ne uygular?"
+        },
+        {
+         "text": "Yükseldikçe havanın özkütlesi nasıl değişir? $F_k = V \\cdot d_{hava} \\cdot g$ bağıntısında bu değişim neyi etkiler?"
+        },
+        {
+         "text": "Balonun yükselebilmesi için helyumun özkütlesi havanınkine göre nasıl olmalı?"
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; gazların kaldırma kuvveti helyum balonu örneğiyle özgün olarak soruldu."
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Sıcak hava balonu",
+      "prompt": "Sıcak hava balonunun içindeki hava brülörle ısıtıldıkça özkütlesi azalır.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Isınan hava genleşir; balonun alt ucu açık olduğundan bir kısmı dışarı çıkar. Aynı hacimde daha az hava kalır: içerideki havanın özkütlesi azalır."
+     },
+     {
+      "kind": "concept",
+      "title": "Sıcak hava balonu nasıl yükselir?",
+      "text": "Sıcak hava balonunun alt ucu açıktır; hacmi sabit kalır. Brülör içerideki havayı ısıtınca hava genleşir ve bir kısmı dışarı çıkar. Balon içindeki havanın kütlesi ve **özkütlesi azalır**. Balon + sepet + yolcular + içerideki sıcak hava sisteminin ortalama özkütlesi dış havadan küçük olunca dış havanın uyguladığı kaldırma kuvveti toplam ağırlığı aşar ve balon yükselir. Brülör kısılırsa hava soğur, ağırlık artar ve balon alçalır.",
+      "narration": "Burada gaz sabit hacimli bir kese içinde ısıtılmaz; bu yüzden balonun hacmi değişmez. Kaldırma kuvvetini dış havanın özkütlesi ve balonun hacmi belirler; ısıtmak yalnız toplam ağırlığı azaltır. Kaldırma kuvveti ağırlığa eşit olduğunda balon aynı yükseklikte dengede kalır; ısıtma ayarıyla yükseklik kontrol edilir."
+     },
+     {
+      "kind": "visual",
+      "title": "Sıcak hava balonunun yükselişi",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "Brülör içerideki havayı ısıtır"
+        },
+        {
+         "label": "Hava genleşir, bir kısmı çıkar"
+        },
+        {
+         "label": "İçerideki havanın özkütlesi azalır"
+        },
+        {
+         "label": "Kaldırma kuvveti ağırlığı aşar"
+        },
+        {
+         "label": "Balon yükselir"
+        }
+       ]
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Sıcak hava balonunun içindeki hava brülörle ısıtılıyor; balonun alt ucu açıktır ve balonun hacmi değişmemektedir.\n\nI. Balonun içindeki havanın özkütlesi azalır.\nII. Balonun hacmi küçüldüğü için balon yükselir.\nIII. Balonun yükselmesi için dış havanın uyguladığı kaldırma kuvveti, balonun toplam ağırlığından büyük olmalıdır.\n\nYargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "III. yargıyı da incele: bir cismin yükselmesi için kaldırma kuvvetiyle ağırlık arasında nasıl bir ilişki gerekir?",
+        "Balonun hacmi sabit kalıyor; II. yargıdaki hacim değişimi sorudaki bilgiyle uyuşuyor mu?",
+        "II. yargıyı soruda verilen hacim bilgisiyle karşılaştır.",
+        null,
+        null
+       ],
+       "steps": [
+        {
+         "text": "Balonun alt ucu açık: ısınan havanın bir kısmı dışarı çıkıyor. İçeride kalan havanın kütlesi ve hacmi için ne söylenebilir?"
+        },
+        {
+         "text": "Soruda hacmin değişmediği söylenmiş; II. yargıyı bununla karşılaştır."
+        },
+        {
+         "text": "Bir cismin yükselmesi için kaldırma kuvveti ile toplam ağırlık arasında nasıl bir ilişki olmalı?"
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; sıcak hava balonu ısınan havanın özkütlesinin azalması üzerinden özgün olarak soruldu."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "$F_k = V_{batan} \\cdot d_{sıvı} \\cdot g$ = yerini değiştirdiği sıvının ağırlığı; cismin özkütlesine bağlı değildir.",
+    "Dinamometre: havadaki − sıvıdaki ağırlık = $F_k$; taşırma kabında taşan sıvının ağırlığı = $F_k$.",
+    "Yüzme $d_c < d_s$; askıda $d_c = d_s$ (ikisinde $F_k = G$); batma $d_c > d_s$, $F_k < G$.",
+    "Yüzen cisimde batan oran $= \\frac{d_c}{d_s}$; buz suda onda dokuz batık yüzer.",
+    "Aynı cisim yoğun sıvıda daha az batar, kaldırma kuvveti değişmez; hidrometre bu yüzden özkütle ölçer.",
+    "Bağlı cisimlerde önce ip yönünü bul, sonra kuvvet dengesini yaz: $F_k = G + T$ ya da $F_k + T = G$.",
+    "Gemi, denizaltı, balık, can yeleği ve balonlar **ortalama özkütleyi** değiştirerek yüzer, batar ya da yükselir.",
+    "Gazlar da kaldırma kuvveti uygular; ısınan havanın özkütlesi azalır."
+   ],
+   "warnings": [
+    "Kaldırma kuvveti cismin değil, **sıvının** özkütlesine ve batan hacme bağlıdır.",
+    "Taşan sıvının ağırlığı, yalnız yüzen ya da askıda kalan cismin ağırlığına eşittir; taşan hacim ise cismin değil batan kısmın hacmidir.",
+    "Aynı hacimdeki cisimlerde yüzenin kaldırma kuvveti, tamamen batanınkinden **küçüktür**.",
+    "Hesapta kütle kg, hacim $\\text{m}^3$ olmalı; $\\text{cm}^3$ dönüşümünde basamak kaçırma."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bir bardak suya yumurta bırak; yavaş yavaş **tuz** ekleyip yumurtanın yüzmeye başladığı anı gözle.",
+    "Yüzme, askıda kalma ve batmayı **özkütle** ve **kaldırma kuvveti** ile bir tabloda karşılaştır.",
+    "Uygulamada Kaldırma Kuvveti testinden **20 soru** çöz."
+   ]
+  }
+ }
+}

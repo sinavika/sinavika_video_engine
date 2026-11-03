@@ -1,0 +1,1099 @@
+{
+ "topic": {
+  "id": "2BC32341-AB98-3FD0-81F6-DA5322F94CDB",
+  "category": "YKS_TYT",
+  "lesson": "MAT",
+  "code": "MAT_DENKLEM"
+ },
+ "title": "Denklem Çözme",
+ "lessonName": "Matematik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/MAT/MAT_DENKLEM.json"
+ ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/YKS/TYT/KonuAnlatimi/MAT/MAT_DENKLEM.json (MEB OGM Materyal, Temel Matematik konu anlatımı)",
+   "EgitimVerileri/YKS/TYT/CikmisSorular/MAT/MAT_DENKLEM.json (ÖSYM 2018, 2020, 2021)",
+   "Curriculum/Scripts/YKS_TYT/MAT/MAT_DENKLEM.json"
+  ],
+  "additions": [
+   {
+    "note": "İki bilinmeyenli sistemlerde çözüm sayısını katsayılarla belirle: tek çözüm, sonsuz çözüm, çözümsüz; parametreli denklemlerde 'çözümü yoksa a kaçtır' tipi.",
+    "done": "Bölüm 3'te çözüm sayısı tablosu (katsayı oranları), parametreli örnek (çözümsüz ve sonsuz çözüm için a ve b), sınıflandırma kartı, 'çözüm kümesi boş ise a kaçtır' sorusu ve 'orantılı katsayı = sonsuz çözüm' yanılgı kartı eklendi. Bölüm 1'de bir bilinmeyenli parametreli denklem soruları da korundu."
+   },
+   {
+    "note": "Sözel ifadeleri denkleme çevirme sözlüğü ekle: 'fazlası', 'eksiği', 'katı', 'yarısının üç fazlası', 'ardışık', 'toplamları'; her birine örnek cümle ve denklem.",
+    "done": "Bölüm 4'te sözcük, örnek cümle ve denklemden oluşan 8 satırlık sözlük tablosu, yön ve sıra tuzaklarını anlatan kural kartı, eşleştirme, ardışık sayı gösterimleri için çevirmeli kart ve alıştırma soruları eklendi."
+   },
+   {
+    "note": "Üç bilinmeyenli basit sistemleri taraf tarafa toplama yöntemiyle (x + y = 5, y + z = 7, x + z = 6) çöz.",
+    "done": "Bölüm 3'te bu sistemin tam çözümü örnek kartında verildi (üçünü topla, 2'ye böl, x + y + z'den ikili toplamı çıkar); ardından farklı sayılarla basamaklı (guided) alıştırma eklendi."
+   }
+  ],
+  "fixes": [
+   "Kesirli denklem sorusunun çözümünde 'eksiyi yalnız ilk terime dağıtan −6 yazar ve x'i −2 bulur' deniyordu; yanlış. Eksi yalnız ilk terime dağıtılırsa 4x + 4 − 3x − 6 = 12 olur ve x = 14 çıkar. Düzeltildi, 14 şık olarak eklendi.",
+   "3/(x−1) = 2/(x+1) sorusunun şıkları küçükten büyüğe sıralı değildi (−5, −1, 1, 5, 3); sıralandı.",
+   "Soruların ipuçları son adımda 'Cevap C' gibi cevap harfini ve değerini veriyordu; ipuçları yeniden yazıldı, son işlem öğrenciye bırakıldı.",
+   "Doğru cevap harfleri C ve D'de yığılıyordu (10 sorunun 7'si C ya da D); dağılım yeniden kuruldu ve şıklar buna göre düzenlendi.",
+   "Çoğu soruda yanlış şık açıklamaları (choiceFeedback) yoktu; her soruya eklendi.",
+   "Havuzdaki bazı örneklerin cevap anahtarı hatalıydı ve kullanılmadı: x² − 2x − 24 = 0 sorusunda kök 6'dır (şıklarda B), 9 değildir; 3x + 2 = 17 sorusunda iki ifade de yanlış olduğundan cevap 'I ve II yanlıştır'dır; 2 × 9 − 3 = 15 olduğundan kalem sorusunun cevabı E'dir, C değil."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "2 çay 1 simit 35 lira, 1 çay 2 simit 40 lira. 1 çay 1 simit kaç?",
+   "narration": "Çayın ve simidin fiyatını ayrı ayrı bulmadan tek adımda söyleyebilirsin: iki hesabı toplarsan 3 çay 3 simit 75 lira eder, yani 1 çay 1 simit 25 liradır. Denklem çözmek TYT matematiğinin neredeyse her sorusunda kullandığın araçtır; problemlerin yarısı da aslında bir denklem kurma sorusudur. Bu derste bir bilinmeyenli ve kesirli denklemleri, iki ve üç bilinmeyenli sistemleri, bir de sözel ifadeyi denkleme çevirmeyi adım adım çalışacaksın."
+  },
+  "objectives": [
+   "Birinci dereceden denklemi çözüp sağlamasını yapmak",
+   "Çözümün tek, sonsuz ya da hiç olmadığı durumları tanımak",
+   "Kesirli denklemde EKOK ile çarpıp payda kontrolü yapmak",
+   "İki bilinmeyenli sistemi yok etme ve yerine koymayla çözmek",
+   "Katsayı oranlarından sistemin çözüm sayısını belirlemek",
+   "Üç bilinmeyenli basit sistemi taraf tarafa toplayarak çözmek",
+   "Sözel bir ifadeyi doğru sırayla denkleme çevirmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "MAT_DENKLEM_01",
+    "title": "Bir bilinmeyenli denklem",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Denklem nedir?",
+      "text": "İçinde en az bir değişken bulunan iki niceliğin eşitliğine **denklem** denir. $4x + 16 = 0$ ve $2m - n = 24$ birer denklemdir; $2a + 8$ ve $5x - 12$ eşitlik içermediği için denklem değildir.\n\n$a \\neq 0$ olmak üzere $ax + b = 0$ biçimindeki denkleme **birinci dereceden bir bilinmeyenli denklem** denir. Denklemi sağlayan $x$ değerine **kök**, köklerin kümesine **çözüm kümesi** (ÇK) denir.",
+      "narration": "Denklemin derecesi değişkenin kuvvetine bakılarak bulunur: $2y - 6 = 0$ birinci dereceden, $m^2 - 9 = 0$ ikinci dereceden bir denklemdir. Bu derste birinci dereceden denklemlerle çalışacaksın; TYT'deki denklemlerin büyük çoğunluğu birkaç sadeleştirmeden sonra bu biçime iner."
+     },
+     {
+      "kind": "visual",
+      "title": "Terazide denklem",
+      "visual": {
+       "kind": "equation",
+       "steps": [
+        {
+         "left": "3(x - 2) + 5",
+         "right": "2x + 7"
+        },
+        {
+         "left": "3x - 1",
+         "right": "2x + 7",
+         "operation": "parantezi aç"
+        },
+        {
+         "left": "x - 1",
+         "right": "7",
+         "operation": "−2x"
+        },
+        {
+         "left": "x",
+         "right": "8",
+         "operation": "+1"
+        }
+       ]
+      },
+      "caption": "İki tarafa aynı işlemi yaparsan terazi dengede kalır.",
+      "narration": "Denklem bir terazidir. Önce parantezi açarız: $3(x - 2) + 5 = 3x - 6 + 5 = 3x - 1$. İki taraftan $2x$ çıkarınca $x - 1 = 7$ kalır. İki tarafa 1 eklersek $x = 8$ olur. Sağlama yap: sol taraf $3 \\cdot 6 + 5 = 23$, sağ taraf $2 \\cdot 8 + 7 = 23$ ✓."
+     },
+     {
+      "kind": "rule",
+      "title": "Eşitliği bozmayan işlemler",
+      "items": [
+       "İki tarafa **aynı sayıyı** ekleyebilir ya da iki taraftan çıkarabilirsin.",
+       "İki tarafı **sıfırdan farklı** aynı sayıyla çarpabilir ya da bölebilirsin.",
+       "Bulduğun kök **ilk denklemde** yerine yazıldığında eşitliği sağlamalıdır (**sağlama**); sağlamayan sayı çözüm kümesine girmez.",
+       "Eşitsizlikte durum farklıdır: iki taraf **negatif** sayıyla çarpılır ya da bölünürse eşitsizliğin yönü değişir."
+      ],
+      "narration": "Sıfırla çarpmak neden yasak? Çünkü iki tarafı 0 ile çarparsan $0 = 0$ kalır ve denklemdeki bilgi kaybolur. Negatif sayıyla çarpma ya da bölme ise eşitlikte serbesttir; yalnız eşitsizliklerde yön değiştirir. Bu ayrımı karıştırma."
+     },
+     {
+      "kind": "predict",
+      "title": "Eşitlik bozulur mu?",
+      "prompt": "Bir denklemin iki tarafı $-2$'ye bölünürse eşitlik bozulmaz.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Sıfırdan farklı her sayıyla bölmek ya da çarpmak eşitliği korur. Negatif sayı yalnız **eşitsizlikte** yön değiştirir."
+     },
+     {
+      "kind": "blank",
+      "title": "Denklemi çöz",
+      "prompt": "Denklemi çözüp $x$ değerini yaz.",
+      "before": "$5x - 7 = 2x + 11$ ise $x =$",
+      "answers": [
+       "6"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 6,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "4/3",
+        "feedback": "−7'yi karşıya geçirirken işaretini değiştirmedin: $5x - 2x = 11 + 7$ olmalı."
+       }
+      ],
+      "explanation": "$x$'li terimleri sola, sayıları sağa topla: $5x - 2x = 11 + 7$, $3x = 18$, $x = 6$. Sağlama: $5 \\cdot 6 - 7 = 23$ ve $2 \\cdot 6 + 11 = 23$ ✓."
+     },
+     {
+      "kind": "findError",
+      "title": "Hatayı bul",
+      "problem": "Bir öğrenci $4(x - 3) = 2x + 6$ denklemini aşağıdaki gibi çözmüştür. Hangi satırda hata vardır?",
+      "prompt": "Hatalı satırı seç.",
+      "steps": [
+       "$4(x - 3) = 2x + 6$",
+       "$4x - 3 = 2x + 6$",
+       "$2x = 9$",
+       "$x = \\frac{9}{2}$"
+      ],
+      "wrongStep": 1,
+      "choiceFeedback": [
+       "Bu satır yalnızca soruyu yazıyor; doğru.",
+       null,
+       "Bu satır, kendinden önceki satırdan doğru çıkıyor; hata daha önce yapılmış.",
+       "Bu satır da önceki satırdan doğru çıkıyor; hata daha önce yapılmış."
+      ],
+      "explanation": "Parantez açarken $4$ her iki terimle de çarpılmalı: $4(x - 3) = 4x - 12$. Doğrusu $4x - 12 = 2x + 6$, $2x = 18$, $x = 9$. Sağlama: $4 \\cdot 6 = 24 = 18 + 6$ ✓."
+     },
+     {
+      "kind": "predict",
+      "title": "Çözüm var mı?",
+      "context": "$2x + 3 = 2x + 5$",
+      "prompt": "Bu denklemin kaç çözümü vardır?",
+      "choices": [
+       "Bir",
+       "Sonsuz",
+       "Hiç"
+      ],
+      "answer": 2,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "$ax = b$ biçimi",
+        "Çözüm"
+       ],
+       "rows": [
+        [
+         "$a \\neq 0$",
+         "Tek çözüm: $x = \\frac{b}{a}$"
+        ],
+        [
+         "$a = 0$, $b = 0$",
+         "Her sayı: $\\mathbb{R}$"
+        ],
+        [
+         "$a = 0$, $b \\neq 0$",
+         "Çözüm yok: $\\varnothing$"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "explanation": "İki taraftan $2x$ çıkarınca $3 = 5$ kalır: **yanlış** bir eşitlik. Çözüm kümesi **boştur**. $3 = 3$ kalsaydı her sayı çözüm olurdu."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$(a - 2)x = a + 3$ denkleminin **çözüm kümesi boş küme** olduğuna göre, $a$ kaçtır?",
+       "options": [
+        "$-3$",
+        "$0$",
+        "$2$",
+        "$3$",
+        "$5$"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "$a = -3$ için sağ taraf 0 olur; denklem $-5x = 0$ olur ve tek çözümü vardır.",
+        "$a = 0$ için denklem $-2x = 3$ olur; tek çözümü vardır.",
+        null,
+        "$a = 3$ için denklem $x = 6$ olur; tek çözümü vardır.",
+        "$a = 5$ için denklem $3x = 8$ olur; tek çözümü vardır."
+       ],
+       "steps": [
+        {
+         "text": "Çözüm yoksa $x$'in katsayısı **0**, sağ taraf ise **0'dan farklı** olmalı."
+        },
+        {
+         "text": "$x$'in katsayısını sıfıra eşitle: $a - 2 = 0$. Bulduğun $a$ için sağ taraf $a + 3$'ün sıfırdan farklı olduğunu kontrol et."
+        }
+       ],
+       "origin": {
+        "changes": "MEB anlatımındaki çözüm kümesinin üç durumu ve parametreli denklem kalıbı örnek alındı; denklem özgündür."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$(a - 3)x = b + 2$ denkleminin çözüm kümesi **gerçel sayılar kümesi** olduğuna göre $a + b$ toplamı kaçtır?",
+       "options": [
+        "$-5$",
+        "$-1$",
+        "$0$",
+        "$1$",
+        "$5$"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "$a - 3 = 0$ denkleminde sabiti karşıya geçirirken işareti ters çevirmiş olabilirsin.",
+        "İki denklemde de sabiti karşıya geçirirken işareti değiştirmemiş olabilirsin.",
+        "Katsayıyı ve sabiti sıfır yapan değerleri ayrı ayrı bul, sonra topla; toplam sıfır değildir.",
+        null,
+        "$b + 2 = 0$ denkleminde $b$'nin işaretini kontrol et."
+       ],
+       "steps": [
+        {
+         "text": "Her gerçel sayı çözüm olacaksa denklem $0 \\cdot x = 0$ biçimine dönmeli."
+        },
+        {
+         "text": "$x$'in katsayısı $a - 3$ ile sağ taraf $b + 2$'yi ayrı ayrı sıfıra eşitle; $a$ ve $b$'yi bulup topla."
+        }
+       ],
+       "origin": {
+        "changes": "Dersteki 'Çözüm var mı?' tablosunun sonsuz çözüm durumu için özgün olarak yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Her denklemin tek çözümü olur",
+      "wrong": "$ax = b$ biçimindeki her denklemin tek bir çözümü vardır.",
+      "right": "Tek çözüm yalnız $a \\neq 0$ iken vardır. $a = 0$ ise $b = 0$ olunca her sayı çözüm, $b \\neq 0$ olunca çözüm yoktur.",
+      "why": "$x = \\frac{b}{a}$ yazabilmek için $a$'nın sıfırdan farklı olması gerekir. Katsayıda parametre varsa önce katsayının sıfır olduğu durumu ayrıca incele."
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DENKLEM_02",
+    "title": "Kesirli denklemler",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Paydalardan kurtul",
+      "items": [
+       "İki tarafı paydaların **EKOK**'u ile çarp.",
+       "Payda bir ifadeyse önce kesirleri **çarpanlarına ayır**.",
+       "Paydayı **sıfır yapan** değer çözüm olamaz.",
+       "Kesirden önce gelen **$-$ işareti** payın tamamına dağılır: $-\\frac{x - 2}{4} = \\frac{-x + 2}{4}$."
+      ],
+      "narration": "İki tarafı paydaların EKOK'u ile çarparsan kesirler kaybolur ve sıradan bir denklem kalır. Paydada $x$ varsa paydayı sıfır yapan değer asla çözüm olamaz; bulursan atarsın. En sık hata, kesrin önündeki $-$ işaretini yalnız ilk terime dağıtmaktır."
+     },
+     {
+      "kind": "example",
+      "title": "Paydada x olan denklem",
+      "example": "$\\frac{1}{x} + \\frac{1}{2x} = \\frac{3}{4}$ denklemini çözelim.",
+      "explanation": "Paydalar $x$, $2x$ ve $4$; EKOK $4x$ ve $x \\neq 0$. İki tarafı $4x$ ile çarp: $4 + 2 = 3x$, yani $3x = 6$ ve $x = 2$. $x = 2$ paydayı sıfır yapmıyor. Sağlama: $\\frac{1}{2} + \\frac{1}{4} = \\frac{3}{4}$ ✓."
+     },
+     {
+      "kind": "concept",
+      "title": "İçler dışlar çarpımı",
+      "text": "İki kesir birbirine eşitse ($\\frac{a}{b} = \\frac{c}{d}$, $b \\neq 0$, $d \\neq 0$) **içler dışlar çarpımı** yapılır: $a \\cdot d = b \\cdot c$.\n\nBu, iki tarafı $b \\cdot d$ ile çarpmanın kısayoludur. Çarpma işleminden sonra bulunan değerin paydaları sıfır yapıp yapmadığını mutlaka kontrol et.",
+      "narration": "Çapraz çarpımda pay, diğer kesrin paydasıyla çarpılır: $\\frac{3}{x-1} = \\frac{2}{x+1}$ için $3(x + 1) = 2(x - 1)$ yazarsın. Payı kendi paydasıyla çarpmak çok yapılan bir hatadır."
+     },
+     {
+      "kind": "blank",
+      "title": "Kesirleri topla",
+      "prompt": "Denklemi çözüp $x$ değerini yaz.",
+      "before": "$\\frac{x}{2} + \\frac{x}{3} = 10$ ise $x =$",
+      "answers": [
+       "12"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 12,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "25",
+        "feedback": "Payları ve paydaları ayrı ayrı toplamışsın. Kesirler paydalar eşitlenerek toplanır."
+       }
+      ],
+      "explanation": "EKOK 6: $3x + 2x = 60$, $5x = 60$, $x = 12$. Sağlama: $6 + 4 = 10$ ✓."
+     },
+     {
+      "kind": "findError",
+      "title": "İşareti nereye dağıttın?",
+      "problem": "Bir öğrenci $5 - \\frac{x - 2}{4} = 2$ denklemini aşağıdaki gibi çözmüştür. Hangi satırda hata vardır?",
+      "prompt": "Hatalı satırı seç.",
+      "steps": [
+       "Her iki tarafı 4 ile çarp: $20 - (x - 2) = 8$",
+       "$20 - x - 2 = 8$",
+       "$18 - x = 8$",
+       "$x = 10$"
+      ],
+      "wrongStep": 1,
+      "choiceFeedback": [
+       "4 ile çarpma doğru: $4 \\cdot 5 = 20$ ve $4 \\cdot 2 = 8$.",
+       null,
+       "Bu satır, kendinden önceki satırdan doğru çıkıyor; hata daha önce.",
+       "Bu satır da önceki satırdan doğru çıkıyor; hata daha önce."
+      ],
+      "explanation": "$-$ işareti parantezin tamamına dağılır: $-(x - 2) = -x + 2$. Doğrusu $20 - x + 2 = 8$, $22 - x = 8$, $x = 14$. Sağlama: $5 - \\frac{12}{4} = 2$ ✓ ($x = 10$ olsaydı sonuç 3 çıkardı)."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\frac{x + 1}{3} - \\frac{x - 2}{4} = 1$ denklemini sağlayan $x$ kaçtır?",
+       "options": [
+        "$-2$",
+        "$2$",
+        "$6$",
+        "$10$",
+        "$14$"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "$x + (\\text{sabit}) = 12$ aşamasında sabiti karşıya geçirirken çıkarma yerine yanlış yönde işlem yapmış olabilirsin.",
+        null,
+        "Paydaları eşitledikten sonra katsayıları kontrol et ve $4(x + 1) - 3(x - 2) = 12$ denklemini baştan çöz.",
+        "Denklem düzenlendikten sonra $x$'in yanındaki sabiti cevap sanmış olabilirsin; denklemi sonuna kadar çöz.",
+        "$-$ işaretini yalnız ilk terime dağıtmış olabilirsin; işaret parantezin tamamına dağılır."
+       ],
+       "steps": [
+        {
+         "text": "Paydalar 3 ve 4; iki tarafı EKOK olan 12 ile çarp: $4(x + 1) - 3(x - 2) = 12$."
+        },
+        {
+         "text": "$-$ işaretini parantezin tamamına dağıt: $-3(x - 2) = -3x + 6$. Benzer terimleri topla."
+        },
+        {
+         "text": "$x + (\\text{sabit}) = 12$ biçimine geldin; sabiti karşıya geçirip sağlamayla doğrula."
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki kesirli denklem kalıbı örnek alındı; denklem özgündür."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "İşareti tek terime dağıtmak",
+      "wrong": "$-\\frac{x - 2}{4}$ ifadesi $\\frac{-x - 2}{4}$'e eşittir.",
+      "right": "$-\\frac{x - 2}{4} = \\frac{-x + 2}{4}$ olur; $-$ işareti payın tamamına dağılır.",
+      "why": "Kesrin önündeki $-$ işareti, payın tamamını $-1$ ile çarpar. $-(x - 2) = -x + 2$ olduğu için ikinci terimin işareti de değişir."
+     },
+     {
+      "kind": "predict",
+      "title": "Payda kontrolü",
+      "prompt": "$\\frac{x}{x - 3} = \\frac{3}{x - 3}$ denkleminin çözüm kümesi boş kümedir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Paydalar eşit olduğundan paylar da eşit olmalı: $x = 3$. Ama $x = 3$ paydayı sıfır yapar ve tanımsızlık doğurur. Bu yüzden çözüm kümesi $\\varnothing$'dir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\frac{3}{x - 1} = \\frac{2}{x + 1}$ denklemini sağlayan $x$ değeri kaçtır?",
+       "options": [
+        "$-5$",
+        "$-1$",
+        "$0$",
+        "$1$",
+        "$5$"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$x = -1$ için $x + 1 = 0$ olur; payda sıfır olduğundan bu değer çözüm olamaz.",
+        "$x = 0$ için sol taraf $-3$, sağ taraf $2$ olur; eşit değil.",
+        "$x = 1$ için $x - 1 = 0$ olur; payda sıfır olduğundan bu değer çözüm olamaz.",
+        "$3(x - 1) = 2(x + 1)$ yazmış olabilirsin; çapraz çarpımda pay, diğer kesrin paydasıyla çarpılır."
+       ],
+       "steps": [
+        {
+         "text": "İçler dışlar çarpımı yap: $3(x + 1) = 2(x - 1)$. Parantezleri aç."
+        },
+        {
+         "text": "$x$'li terimleri bir tarafa, sayıları diğer tarafa topla."
+        },
+        {
+         "text": "Bulduğun değerin paydaları sıfır yapmadığını ve iki kesri eşit yaptığını kontrol et."
+        }
+       ],
+       "origin": {
+        "changes": "Dersteki 'paydalardan kurtul' kuralı ve payda kontrolü özgün bir denklemle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DENKLEM_03",
+    "title": "İki ve üç bilinmeyenli sistemler",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "İki bilinmeyen, iki denklem",
+      "text": "Tek bir denklemle iki bilinmeyeni bulamazsın: $x + y = 5$ denklemini $(1, 4)$, $(2, 3)$, $(0, 5)$ ve sonsuz sayıda ikili sağlar. İki bilinmeyeni belirlemek için genellikle **iki denklem** gerekir.\n\nBirinci dereceden iki bilinmeyenli her denklem, analitik düzlemde bir **doğru** belirtir. Sistemin çözümü, doğruların **kesim noktası**dır.",
+      "narration": "İki doğru üç biçimde durabilir: bir noktada kesişir (tek çözüm), paralel olur (hiç ortak nokta yok, çözümsüz) ya da üst üste biner (sonsuz çözüm). Katsayılara bakarak bu üç durumdan hangisinde olduğunu bulabilirsin; tablosu bu bölümün ilerisinde yer alıyor."
+     },
+     {
+      "kind": "predict",
+      "title": "Tek denklem yeter mi?",
+      "prompt": "$x + y = 5$ denklemini sağlayan sonsuz sayıda $(x, y)$ ikilisi vardır.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$x$'e istediğin değeri verip $y = 5 - x$ bulabilirsin. Bu yüzden tek denklem iki bilinmeyeni belirlemez."
+     },
+     {
+      "kind": "rule",
+      "title": "Yok etme ve yerine koyma",
+      "items": [
+       "**Yok etme**: bir bilinmeyenin katsayılarını mutlak değerce eşit, işaretçe zıt yap; taraf tarafa topla.",
+       "**Yerine koyma**: bir denklemde bir bilinmeyeni yalnız bırak, öbür denklemde yerine yaz.",
+       "İstenen **bir ifade** ise ($x + y$ gibi) bilinmeyenleri bulmadan **toplayıp çıkararak** ona ulaşmayı dene.",
+       "Bulduğun ikiliyi **iki denklemde de** yerine koyup sağlamayı yap."
+      ],
+      "narration": "Yok etmede gerekirse bir denklemi bir sayıyla çarparak katsayıları eşitlersin. Yerine koymada ise bir denklemde bir bilinmeyen zaten yalnızsa ($x = 2y - 1$ gibi) en kısa yol budur. Soru $x + y$ gibi bir ifade istiyorsa önce denklemleri toplayıp çıkararak bak; çoğu zaman bilinmeyenleri tek tek bulmana gerek kalmaz."
+     },
+     {
+      "kind": "example",
+      "title": "Yok etme örneği",
+      "example": "$3x + 2y = 12$ ve $2x - y = 1$ sistemini çözelim.",
+      "explanation": "İkinci denklemi 2 ile çarp: $4x - 2y = 2$. Birinci denklemle taraf tarafa topla: $7x = 14$, $x = 2$. Birinci denklemde yerine yaz: $6 + 2y = 12$, $y = 3$. Sağlama: $2 \\cdot 2 - 3 = 1$ ✓."
+     },
+     {
+      "kind": "blank",
+      "title": "İstenen ifadeye ulaş",
+      "prompt": "Sistemi çözüp çarpımı yaz.",
+      "before": "$x + y = 10$ ve $x - y = 4$ ise $x \\cdot y =$",
+      "answers": [
+       "21"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 21,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "7",
+        "feedback": "$x = 7$'yi bulmuşsun. Soru $y$'yi de isteyip çarpımı soruyor."
+       }
+      ],
+      "explanation": "Taraf tarafa topla: $2x = 14$, $x = 7$. Sonra $y = 10 - 7 = 3$. Çarpım $7 \\cdot 3 = 21$."
+     },
+     {
+      "kind": "visual",
+      "title": "Çözüm sayısını katsayılardan bul",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Koşul",
+        "Doğrular",
+        "Çözüm kümesi"
+       ],
+       "rows": [
+        [
+         "$\\frac{a}{d} \\neq \\frac{b}{e}$",
+         "Kesişir",
+         "Tek çözüm"
+        ],
+        [
+         "Katsayılar orantılı, sabit değil",
+         "Paralel",
+         "Boş küme"
+        ],
+        [
+         "Katsayılar ve sabit orantılı",
+         "Çakışık",
+         "Sonsuz çözüm"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "caption": "$ax + by + c = 0$ ve $dx + ey + f = 0$ sistemi için.",
+      "narration": "Sistem $ax + by + c = 0$ ve $dx + ey + f = 0$ olsun. $\\frac{a}{d} \\neq \\frac{b}{e}$ ise tek çözüm vardır. $\\frac{a}{d} = \\frac{b}{e} \\neq \\frac{c}{f}$ ise doğrular paraleldir, çözüm kümesi boştur. $\\frac{a}{d} = \\frac{b}{e} = \\frac{c}{f}$ ise doğrular çakışıktır, çözüm kümesi sonsuz elemanlıdır. Sabitler eşitliğin sağında ($ax + by = c$) olsa bile iki denklemde de aynı taraftadır; oranları değişmez. Böylece 'çözümü yoksa $a$ kaçtır' sorusunda önce katsayı oranını eşitler, sonra sabit oranının farklı olduğunu kontrol edersin."
+     },
+     {
+      "kind": "example",
+      "title": "Parametreli sistem",
+      "example": "$x + 2y = 4$ ve $3x + ay = b$ sisteminin (I) çözümsüz, (II) sonsuz çözümlü olması için $a$ ve $b$ ne olmalıdır?",
+      "explanation": "Katsayı oranları eşit olmalı: $\\frac{1}{3} = \\frac{2}{a}$, yani $a = 6$. Sabit oranı $\\frac{4}{b}$. (I) Çözümsüz için $\\frac{4}{b} \\neq \\frac{1}{3}$, yani $a = 6$ ve $b \\neq 12$. (II) Sonsuz çözüm için $\\frac{4}{b} = \\frac{1}{3}$, yani $a = 6$ ve $b = 12$. İki durumda da $a = 6$'dır; farkı $b$ yaratır."
+     },
+     {
+      "kind": "classify",
+      "title": "Çözüm sayısına göre ayır",
+      "prompt": "Her sistemi çözüm sayısına göre doğru gruba yerleştir.",
+      "groups": [
+       {
+        "label": "Tek çözüm",
+        "items": [
+         "$x + y = 3$ ve $x - y = 1$",
+         "$x + 2y = 5$ ve $3x - y = 1$"
+        ]
+       },
+       {
+        "label": "Sonsuz çözüm",
+        "items": [
+         "$x + y = 3$ ve $2x + 2y = 6$",
+         "$2x - y = 4$ ve $4x - 2y = 8$"
+        ]
+       },
+       {
+        "label": "Çözüm yok",
+        "items": [
+         "$x + y = 3$ ve $2x + 2y = 7$",
+         "$2x - y = 4$ ve $4x - 2y = 9$"
+        ]
+       }
+      ],
+      "explanation": "Önce $x$ ve $y$ katsayılarının oranlarına bak. Oranlar farklıysa tek çözüm vardır. Oranlar eşitse sabit oranına bak: eşitse sonsuz çözüm, farklıysa çözüm yok."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kafede 2 çay ile 1 simit 35 TL, 1 çay ile 2 simit 40 TL'dir. Buna göre 1 çay ile 1 simit toplam kaç TL'dir?",
+       "options": [
+        "15",
+        "20",
+        "25",
+        "30",
+        "35"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Bu değer tek bir ürünün fiyatına benziyor; soru çay ile simidin toplamını istiyor.",
+        "Tek bir fiyatı ya da katını bulup bırakmış olabilirsin; soru $c + s$'yi istiyor.",
+        null,
+        "İki denklemin toplamını bölerken kullandığın sayıyı kontrol et: sol tarafta $3c + 3s$ var.",
+        "35, birinci denklemin sağ tarafıdır; ikinci denklemi de kullanman gerekir."
+       ],
+       "steps": [
+        {
+         "text": "Çayın fiyatına $c$, simidin fiyatına $s$ de: $2c + s = 35$ ve $c + 2s = 40$."
+        },
+        {
+         "text": "İstenen $c + s$. İki denklemi taraf tarafa toplarsan sol tarafta $c$ ve $s$'nin kaçar katı oluşur?"
+        },
+        {
+         "text": "Çıkan denklemi ortak çarpana böl; $c$ ve $s$'yi ayrı ayrı bulmana gerek yok."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021'in 'bileşen fiyatlarından içecek fiyatı' sistem kalıbı örnek alındı; bağlam ve sayılar özgündür."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$x = 2y - 1$ ve $3x + y = 11$ olduğuna göre, $x \\cdot y$ çarpımı kaçtır?",
+       "options": [
+        "2",
+        "3",
+        "5",
+        "6",
+        "8"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "Bilinmeyenlerden birini bulup bırakmış olabilirsin; soru çarpımı istiyor.",
+        "Bilinmeyenlerden birini bulup bırakmış olabilirsin; soru çarpımı istiyor.",
+        "İki bilinmeyenin toplamını hesaplamış olabilirsin; soru çarpımı istiyor.",
+        null,
+        "Bilinmeyenleri doğru bulsan da son adımda çarpma yerine başka bir işlem yapmış olabilirsin."
+       ],
+       "steps": [
+        {
+         "text": "$x = 2y - 1$ zaten yalnız; ikinci denklemde $x$ yerine $2y - 1$ yaz."
+        },
+        {
+         "text": "Önce $y$'yi bul, sonra $x = 2y - 1$ ile $x$'i hesapla."
+        },
+        {
+         "text": "İstenen $x \\cdot y$; bulduğun ikiliyi iki denklemde de deneyip sağlamayı yap."
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki yerine koyma yöntemi kalıbı örnek alındı; denklemler özgündür."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$2x + 3y = 5$ ve $4x + ay = 7$ denklem sisteminin **çözüm kümesi boş küme** olduğuna göre, $a$ kaçtır?",
+       "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "6"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "$\\frac{2}{4} = \\frac{1}{2}$ oranından payı almış olabilirsin; oran $\\frac{3}{a}$'ya eşitlenmeli.",
+        "2, birinci denklemdeki $x$ katsayısıdır; $a$ ise ikinci denklemdeki $y$ katsayısıdır.",
+        "$a = 3$ olsaydı oranlar $\\frac{2}{4}$ ve $\\frac{3}{3}$ olurdu; eşit değil, doğrular kesişirdi.",
+        "$a = 4$ olsaydı oranlar $\\frac{2}{4}$ ve $\\frac{3}{4}$ olurdu; eşit değil, doğrular kesişirdi.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Çözüm yoksa doğrular paraleldir: katsayı oranları eşit, sabitlerin oranı farklı olmalı."
+        },
+        {
+         "text": "$\\frac{2}{4} = \\frac{3}{a}$ eşitliğini $a$ için çöz."
+        },
+        {
+         "text": "Bulduğun $a$ için $\\frac{5}{7}$ oranının $\\frac{2}{4}$'e eşit olmadığını kontrol et."
+        }
+       ],
+       "origin": {
+        "changes": "MEB anlatımındaki doğruların paralel, çakışık ve kesişen olma koşulları örnek alındı; denklemler özgündür."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Orantılı katsayı = sonsuz çözüm mü?",
+      "wrong": "Katsayıları orantılı olan iki denklemin sistemi her zaman sonsuz çözümlüdür.",
+      "right": "Katsayılar orantılı olsa bile sabitler aynı oranda değilse doğrular paraleldir ve çözüm kümesi boştur.",
+      "why": "Sonsuz çözüm için $\\frac{a}{d} = \\frac{b}{e} = \\frac{c}{f}$ olmalı. $x + y = 3$ ile $2x + 2y = 7$ örneğinde katsayı oranı $\\frac{1}{2}$, sabit oranı $\\frac{3}{7}$'dir: doğrular paralel."
+     },
+     {
+      "kind": "example",
+      "title": "Üç bilinmeyen: hepsini topla",
+      "example": "$x + y = 5$, $y + z = 7$ ve $x + z = 6$ sistemini çözelim.",
+      "explanation": "Üç denklemi taraf tarafa topla: her bilinmeyen iki kez geçtiği için $2(x + y + z) = 18$, yani $x + y + z = 9$. Şimdi toplamdan ikişerli toplamları çıkar: $z = 9 - 5 = 4$, $x = 9 - 7 = 2$, $y = 9 - 6 = 3$. Sağlama: $2 + 3 = 5$, $3 + 4 = 7$, $2 + 4 = 6$ ✓."
+     },
+     {
+      "kind": "guided",
+      "title": "Üç bilinmeyenli sistem",
+      "stem": "$x + y = 7$, $y + z = 10$ ve $x + z = 9$ olduğuna göre $x \\cdot y \\cdot z$ kaçtır?",
+      "steps": [
+       {
+        "prompt": "Üç denklemi taraf tarafa topla. Sol tarafta her bilinmeyen iki kez geçer.",
+        "before": "$2(x + y + z) =$",
+        "answers": [
+         "26"
+        ],
+        "input": "number",
+        "explanation": "Sağ taraflar: $7 + 10 + 9 = 26$."
+       },
+       {
+        "prompt": "Her iki tarafı 2'ye böl.",
+        "before": "$x + y + z =$",
+        "answers": [
+         "13"
+        ],
+        "input": "number",
+        "explanation": "$26 \\div 2 = 13$."
+       },
+       {
+        "prompt": "$z$'yi bulmak için $x + y + z$'den $x + y = 7$'yi çıkar.",
+        "before": "$z =$",
+        "answers": [
+         "6"
+        ],
+        "input": "number",
+        "explanation": "$13 - 7 = 6$."
+       },
+       {
+        "prompt": "Aynı yolla $x = 13 - 10 = 3$ ve $y = 13 - 9 = 4$ bulunur. Çarpımı hesapla.",
+        "before": "$x \\cdot y \\cdot z =$",
+        "answers": [
+         "72"
+        ],
+        "input": "number",
+        "explanation": "$3 \\cdot 4 \\cdot 6 = 72$. Sağlama: $3 + 4 = 7$, $4 + 6 = 10$, $3 + 6 = 9$ ✓."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_DENKLEM_04",
+    "subtopics": [
+     "MAT_DENKLEM_05"
+    ],
+    "title": "Sözel ifadeden denkleme",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Önce bilinmeyeni seç",
+      "text": "Sözel bir soruyu denkleme çevirmenin üç adımı vardır:\n\n1. **Sorulanı** (ya da hesabı kolaylaştıranı) $x$ olarak seç.\n2. Cümleyi parça parça çevir: 'fazlası', 'katı', 'yarısı' gibi sözcükler birer işlemdir.\n3. 'Eder', 'olur', 'eşittir', 'dengede' gibi sözcükleri **eşittir işareti** olarak oku.",
+      "narration": "ÖSYM bu kalıbı terazi dengesi (2018), bina ve ağaç yüksekliği ya da menü fiyatı (2020) gibi günlük bağlamlarla sorar. Bağlam değişse de yapı aynıdır: sorulanı seç, cümleyi çevir, eşitliği kur."
+     },
+     {
+      "kind": "visual",
+      "title": "Cümleden cebire sözlük",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sözcük",
+        "Örnek cümle",
+        "Denklem"
+       ],
+       "rows": [
+        [
+         "fazlası",
+         "Sayının 5 fazlası 12'dir",
+         "$x + 5 = 12$"
+        ],
+        [
+         "eksiği",
+         "Sayının 3 eksiği 9'dur",
+         "$x - 3 = 9$"
+        ],
+        [
+         "katı",
+         "Sayının 4 katı 20'dir",
+         "$4x = 20$"
+        ],
+        [
+         "yarısı",
+         "Sayının yarısı 6'dır",
+         "$\\frac{x}{2} = 6$"
+        ],
+        [
+         "yarısının 3 fazlası",
+         "Yarısının 3 fazlası 10'dur",
+         "$\\frac{x}{2} + 3 = 10$"
+        ],
+        [
+         "3 katının 4 eksiği",
+         "3 katının 4 eksiği 14'tür",
+         "$3x - 4 = 14$"
+        ],
+        [
+         "ardışık",
+         "Ardışık iki sayının toplamı 31",
+         "$n + (n + 1) = 31$"
+        ],
+        [
+         "toplamları, farkı",
+         "Toplamları 40, farkları 8",
+         "$x + y = 40$, $x - y = 8$"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "caption": "Sıra önemlidir: önce katı/yarısı, sonra fazlası/eksiği.",
+      "narration": "'Fazlası' toplama, 'eksiği' çıkarma, 'katı' çarpma, 'yarısı' ikiye bölmedir. Sıra, cümlede söylenen sıradır: '3 katının 4 eksiği' önce 3 ile çarpar, sonra 4 çıkarır: $3x - 4$. 'Ardışık' sayılarda ilkine $n$ dersen ötekiler $n + 1$, $n + 2$ olur. Toplam ve fark verilince iki bilinmeyenli iki denklem kurulur."
+     },
+     {
+      "kind": "rule",
+      "title": "Sırayı ve yönü koru",
+      "items": [
+       "**A, B'den 5 fazla** ise $A = B + 5$ olur; eksikse $A = B - 5$. Yön hatası en sık tuzaktır.",
+       "**Yarısının 7 fazlası** $\\frac{x}{2} + 7$, **7 fazlasının yarısı** $\\frac{x + 7}{2}$'dir; ikisi farklıdır.",
+       "**Ardışık** tam sayılar $n, n + 1$; ardışık çiftler $2n, 2n + 2$; ardışık tekler $2n + 1, 2n + 3$.",
+       "**Farkı 8 olan** iki sayı $x$ ve $x - 8$; **oranı** $\\frac{3}{2}$ olan iki sayı $3k$ ve $2k$.",
+       "Toplam $T$, fark $F$ ise büyük sayı $\\frac{T + F}{2}$, küçük sayı $\\frac{T - F}{2}$'dir."
+      ],
+      "narration": "Son maddeyi toplam 40, fark 8 örneğiyle dene: büyük sayı $\\frac{40 + 8}{2} = 24$, küçük sayı $\\frac{40 - 8}{2} = 16$. Bu kısayol, iki denklemi toplayıp çıkarmanın sonucudur."
+     },
+     {
+      "kind": "match",
+      "title": "Cümleyi ifadeyle eşleştir",
+      "prompt": "Her sözel ifadeyi cebirsel karşılığıyla eşleştir.",
+      "titles": [
+       "Cümle",
+       "İfade"
+      ],
+      "pairs": [
+       {
+        "left": "Sayının 3 katının 4 eksiği",
+        "right": "$3x - 4$"
+       },
+       {
+        "left": "Sayının 3 eksiğinin 4 katı",
+        "right": "$4(x - 3)$"
+       },
+       {
+        "left": "Sayının yarısının 7 fazlası",
+        "right": "$\\frac{x}{2} + 7$"
+       },
+       {
+        "left": "Sayının 7 fazlasının yarısı",
+        "right": "$\\frac{x + 7}{2}$"
+       }
+      ],
+      "explanation": "Cümledeki **son** söylenen işlem, ifadenin **en dışındaki** işlemdir. '4 katı' sona gelirse çarpma parantezin dışında; '7 fazlası' sona gelirse toplama en dışta ya da pay olarak işlem görür."
+     },
+     {
+      "kind": "flip",
+      "title": "Ardışık sayıları nasıl yazarsın?",
+      "prompt": "Kartı çevirmeden önce gösterimi hatırlamaya çalış.",
+      "cards": [
+       {
+        "front": "Ardışık iki tam sayı",
+        "back": "$n$ ve $n + 1$"
+       },
+       {
+        "front": "Ardışık üç tam sayı",
+        "back": "$n - 1$, $n$, $n + 1$ yazarsan toplamları $3n$ olur."
+       },
+       {
+        "front": "Ardışık iki çift sayı",
+        "back": "$2n$ ve $2n + 2$; aralarındaki fark 2'dir."
+       },
+       {
+        "front": "Ardışık iki tek sayı",
+        "back": "$2n + 1$ ve $2n + 3$; aralarındaki fark 2'dir."
+       },
+       {
+        "front": "Oranı $\\frac{3}{2}$ olan iki sayı",
+        "back": "$3k$ ve $2k$ (oran sabiti $k$ ile yaz)."
+       }
+      ],
+      "explanation": "Ortadaki sayıya $n$ demek ardışık sayı sorularında toplamı kolaylaştırır: $(n - 1) + n + (n + 1) = 3n$."
+     },
+     {
+      "kind": "blank",
+      "title": "Ardışık sayılar",
+      "prompt": "Ardışık üç tam sayıyı $n - 1$, $n$, $n + 1$ al.",
+      "before": "Ardışık üç tam sayının toplamı 48 ise en büyüğü =",
+      "answers": [
+       "17"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 17,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "16",
+        "feedback": "16, ortadaki sayıdır ($3n = 48$). Soru en büyüğünü istiyor."
+       }
+      ],
+      "explanation": "$(n - 1) + n + (n + 1) = 3n = 48$, $n = 16$. Sayılar 15, 16, 17; en büyüğü 17."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir sayının $\\frac{2}{3}$'ü ile $\\frac{1}{4}$'ünün toplamı 33'tür. Bu sayı kaçtır?",
+       "options": [
+        "24",
+        "36",
+        "48",
+        "60",
+        "77"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Bu değer, sayının $\\frac{2}{3}$'üne benziyor; soru sayının kendisini soruyor.",
+        null,
+        "Kesirleri toplayıp $\\frac{11x}{12} = 33$ denklemini baştan kur.",
+        "Kesirleri toplayıp $\\frac{11x}{12} = 33$ denklemini baştan kur.",
+        "$\\frac{2}{3} + \\frac{1}{4} = \\frac{3}{7}$ yazmışsan payları ve paydaları ayrı toplamışsın; kesirler paydalar eşitlenerek toplanır."
+       ],
+       "steps": [
+        {
+         "text": "Sayıya $x$ de: $\\frac{2}{3}x + \\frac{1}{4}x = 33$."
+        },
+        {
+         "text": "Paydaların EKOK'u 12; kesirleri payda eşitleyerek topla."
+        },
+        {
+         "text": "Kesirli katsayıyı yok etmek için iki tarafı 12 ile çarp, sonra $x$'in katsayısına böl."
+        }
+       ],
+       "origin": {
+        "changes": "Dersteki 'cümleden cebire' sözlüğü kesirli özgün bir problemle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Fazlası hangi tarafta?",
+      "wrong": "$A$ sayısı $B$'den 5 fazla ise $B = A + 5$ yazılır.",
+      "right": "$A$, $B$'den 5 fazlaysa $A = B + 5$ yazılır (ya da $B = A - 5$).",
+      "why": "'Fazla' olan, büyük olandır: büyük sayı küçük sayıdan 5 fazladır. Küçüğe 5 ekleyince büyüğü bulursun."
+     },
+     {
+      "kind": "predict",
+      "title": "Toplam ve fark",
+      "prompt": "Toplamları 40, farkları 8 olan iki sayıdan büyüğü 24'tür.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$x + y = 40$ ve $x - y = 8$ taraf tarafa toplanınca $2x = 48$, $x = 24$ olur; küçük sayı 16'dır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Eşit kollu bir terazinin sol kefesinde 3 özdeş kutu ve 50 gramlık bir ağırlık, sağ kefesinde 1 özdeş kutu ve 210 gramlık bir ağırlık vardır. Terazi dengede olduğuna göre bir kutu kaç gramdır?",
+       "options": [
+        "40",
+        "65",
+        "70",
+        "80",
+        "130"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "Bu değeri sağlamaya vurduğunda kefelerin eşit olmadığını göreceksin; denklemi baştan kur.",
+        "Bu değeri iki kefede de yerine koy; kefeler eşit çıkmıyor.",
+        "Bu değeri iki kefede de yerine koy; kefeler eşit çıkmıyor.",
+        null,
+        "50'yi karşıya geçirirken toplamış olabilirsin; sol kefeden çıkarılan ağırlık çıkarılır."
+       ],
+       "steps": [
+        {
+         "text": "Bir kutunun kütlesine $k$ de. Denge, iki kefedeki toplam kütlenin eşit olması demektir: $3k + 50 = k + 210$."
+        },
+        {
+         "text": "$k$'li terimleri bir tarafa, sayıları diğer tarafa topla."
+        },
+        {
+         "text": "Bulduğun $k$ değerini iki kefede de yerine koyup sağlamayı yap."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018'in 'terazi dengesi' denklem kurma kalıbı örnek alındı; bağlam ve sayılar özgündür."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir sayının 3 katının 5 eksiği, aynı sayının 2 katının 7 fazlasına eşittir. Bu sayının yarısının 4 fazlası kaçtır?",
+       "options": [
+        "8",
+        "10",
+        "12",
+        "16",
+        "24"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "$\\frac{x + 4}{2}$ yazmışsın: bu, 4 fazlasının yarısıdır. Soru yarısının 4 fazlasını istiyor.",
+        null,
+        "Sayının kendisini bulup bırakmış olabilirsin; soru başka bir ifadeyi istiyor.",
+        "Sayıya 4 ekleyip yarılamayı unutmuş olabilirsin.",
+        "Sayının 2 katını almış olabilirsin; soru yarısını istiyor."
+       ],
+       "steps": [
+        {
+         "text": "Sayıya $x$ de: 3 katının 5 eksiği $3x - 5$, 2 katının 7 fazlası $2x + 7$. İkisi eşit."
+        },
+        {
+         "text": "$x$'i bul; ama soru $x$'i değil, başka bir ifadeyi soruyor."
+        },
+        {
+         "text": "İstenen 'yarısının 4 fazlası': önce yarıla, sonra 4 ekle."
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki sözel ifadeyi denkleme dönüştürme kalıbı örnek alındı; ifade özgündür."
+       }
+      }
+     },
+     {
+      "kind": "multi",
+      "title": "Birden çok durum",
+      "stem": "Bir bina ile bir ağacın yükseklikleri arasındaki fark 6 metredir. Ağacın yüksekliği iki katına çıktığında bu fark 2 metre olmaktadır. Buna göre binanın yüksekliği için aşağıdakilerden hangileri doğru olabilir? (Birden çok seçenek işaretle.)",
+      "options": [
+       "10 metre",
+       "12 metre",
+       "14 metre",
+       "16 metre"
+      ],
+      "answers": [
+       0,
+       2
+      ],
+      "choiceFeedback": [
+       null,
+       "12 metre için ağaç 6 metredir; iki katı 12 olur ve fark 0 çıkar, 2 değil.",
+       null,
+       "16 metre için ağaç 10 metredir; iki katı 20 olur ve fark 4 çıkar, 2 değil."
+      ],
+      "explanation": "Bina yüksek olsun: bina $= t + 6$. Ağaç iki katına çıkınca fark $|t + 6 - 2t| = |6 - t| = 2$ olur; $t = 4$ ya da $t = 8$. Bina 10 ya da 14 metredir. Ağaç binadan yüksek olsaydı iki katı daha da yüksek olurdu ve fark küçülemezdi; o durum olamaz. Mutlak değerin iki durumunu mutlaka incele."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir konser salonunda genel bilet ile VIP bilet satılmıştır. VIP biletin fiyatı genel biletten 30 TL fazladır. Toplam 12 kişi biletini diğer türle değiştirmiş ve bu değişiklikler sonucunda toplam gelir 120 TL artmıştır. Genel biletten VIP bilete geçen kişi sayısı kaçtır?",
+       "options": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "$120 \\div 30 = 4$ işlemiyle yalnız artışı bulmuş olabilirsin; ters yönde geçen kişileri de hesaba katmalısın.",
+        "Bu değeri denkleme koy: net artış 120 TL etmiyor.",
+        "12'nin yarısı olsaydı iki yönde eşit sayıda kişi geçerdi ve net artış 0 olurdu.",
+        "Bu değer için net artış $30 \\cdot 7 - 30 \\cdot 5 = 60$ olur; 120 değil.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Genelden VIP'e geçen kişi sayısı $k$ olsun; VIP'ten genele geçenler $12 - k$ kişidir."
+        },
+        {
+         "text": "Her $k$ kişi geliri 30 TL artırır, her $12 - k$ kişi 30 TL azaltır; toplam değişim 120 TL."
+        },
+        {
+         "text": "$30k - 30(12 - k) = 120$ denklemini çöz."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020'nin 'menü değiştirenler nedeniyle toplam ödemenin artması' kalıbı örnek alındı; bağlam, fiyat farkı ve sayılar özgündür."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "İki tarafa **aynı işlemi** yap; sonunda **sağlama** yap.",
+    "$x$'ler gidince yanlış eşitlik kalırsa **çözüm yok**, doğru eşitlik kalırsa **her sayı** çözüm.",
+    "Kesirli denklemde **EKOK** ile çarp; eksiyi payın tamamına dağıt; paydayı sıfır yapan değeri ele.",
+    "Sistemde katsayı oranları farklıysa **tek**, katsayılar orantılı sabit değilse **çözüm yok**, hepsi orantılıysa **sonsuz** çözüm vardır.",
+    "İstenen $x + y$ gibi bir ifadeyse denklemleri **topla, çıkar**; üç bilinmeyende üçünü topla, 2'ye böl.",
+    "Sözel ifadede sırayı koru: 3 katının 4 eksiği $3x - 4$; $A$, $B$'den 5 fazla ise $A = B + 5$.",
+    "Soruyu sonuna kadar oku: istenen $x$ mi, başka bir ifade mi?"
+   ],
+   "warnings": [
+    "$-\\frac{x - 2}{4} = \\frac{-x + 2}{4}$",
+    "Paydayı sıfır yapan değer **çözüm olamaz**.",
+    "3 katının 4 eksiği $3x - 4$'tür, $3(x - 4)$ değil.",
+    "Katsayılar orantılı diye sonsuz çözüm yoktur; sabitler de aynı oranda olmalı."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bir market fişinden **iki bilinmeyenli** bir denklem sistemi kur ve çöz.",
+    "$ax + 3 = 5x + b$ denkleminin **sonsuz çözümü** olması için $a$ ve $b$'yi bul.",
+    "Uygulamada Denklem Çözme testinden **20 soru** çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz."
+   ]
+  }
+ }
+}

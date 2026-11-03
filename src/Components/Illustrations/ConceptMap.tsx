@@ -5,6 +5,7 @@ import {DrawPath} from '../Animations/DrawPath';
 import {Card} from '../Layouts/Card';
 import {useVideoLayout} from '../Layouts/VideoLayout';
 import {Text} from '../Typography/Text';
+import {wrappedLines} from '../Typography/TextMeasure';
 
 type ConceptMapProps = {
 	center: string;
@@ -49,7 +50,7 @@ export const conceptColumns = (count: number, width: number, height: number, nod
 
 /** About how tall a node's card is: padding, its name's lines and its relation's. */
 const conceptNodeHeight = (item: {name: string; relation?: string}, nodeWidth: number, u: (value: number) => number): number => {
-	const lines = (text: string, size: number) => Math.max(1, Math.ceil((text.length * u(size) * 0.56) / (nodeWidth - u(48))));
+	const lines = (text: string, size: number) => wrappedLines(text, nodeWidth - u(48), {size: u(size), weight: 700});
 	return u(48) + lines(item.name, 32) * u(32) * 1.25 + (item.relation ? u(6) + lines(item.relation, 24) * u(24) * 1.3 : 0);
 };
 

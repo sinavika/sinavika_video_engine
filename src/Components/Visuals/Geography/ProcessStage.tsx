@@ -2,7 +2,7 @@ import React from 'react';
 import {clamp01, lerp} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
 import {useStillFigure, useVisualPalette} from '../VisualFrame';
-import {W} from '../VisualWorld';
+import {W, FigureText} from '../VisualWorld';
 
 /**
  * Natural processes shown as they happen, stage by stage. Each visual draws
@@ -39,9 +39,9 @@ export const StageStrip: React.FC<{names: readonly string[]; stage: number; prog
 					<g key={name}>
 						<rect x={x} y={8} width={chip} height={44} rx={22} fill={active ? palette.lesson : done ? withAlpha(palette.lesson, 0.22) : withAlpha(palette.ink, 0.07)} />
 						{active ? <rect x={x} y={46} width={chip * progress} height={6} rx={3} fill={withAlpha(palette.onLesson, 0.7)} /> : null}
-						<text x={x + chip / 2} y={37} textAnchor="middle" fontSize={names.length > 4 ? 20 : 22} fontWeight={800} fill={active ? palette.onLesson : palette.ink}>
+						<FigureText x={x + chip / 2} y={37} textAnchor="middle" fontSize={names.length > 4 ? 20 : 22} fontWeight={800} fill={active ? palette.onLesson : palette.ink}>
 							{`${index + 1}. ${name}`}
-						</text>
+						</FigureText>
 					</g>
 				);
 			})}
@@ -53,8 +53,8 @@ export const Label: React.FC<{x: number; y: number; children: React.ReactNode; a
 	const palette = useVisualPalette();
 	if (show <= 0) return null;
 	return (
-		<text x={x} y={y} textAnchor={anchor} fontSize={size} fontWeight={800} fill={color ?? palette.ink} opacity={show} fontFamily={palette.fontBody} paintOrder="stroke" stroke={palette.surface} strokeWidth={size * 0.28} strokeLinejoin="round">
+		<FigureText x={x} y={y} textAnchor={anchor} fontSize={size} fontWeight={800} fill={color ?? palette.ink} opacity={show} fontFamily={palette.fontBody} paintOrder="stroke" stroke={palette.surface} strokeWidth={size * 0.28} strokeLinejoin="round">
 			{children}
-		</text>
+		</FigureText>
 	);
 };

@@ -3,7 +3,7 @@ import {clamp01, lerp, noise, smooth, smoothStep} from '../../../../Animations/M
 import {withAlpha} from '../../../../Themes/Theme';
 import {useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
-import {pathOf} from '../../VisualWorld';
+import {pathOf, FigureText} from '../../VisualWorld';
 import {Drift, FlowLine, ProcessFrame, ProcessLabel, SCENE, Sky, processCamera, sampled, smoothPath, useProcessClock, type CameraBox, type Point} from '../ProcessScene';
 
 type ProcessSpec = Extract<CourseVisual, {kind: 'process'}>;
@@ -134,9 +134,9 @@ export const CoastProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}> = ({
 							<rect key={index} x={-9} y={-7} width={18} height={14} rx={3} fill={COLOURS.rock} stroke="#7C6C5F" transform={`translate(${cliffTop + 10 + index * 12} ${lerp(landY + 30 + index * 25, SEA_LEVEL + 10, 1 - justFell)}) rotate(${(1 - justFell) * 90 * (noise(index) - 0.5)})`} />
 						))
 					: null}
-				<text x={(SCENE.left + DIVIDE) / 2} y={SCENE.top + 36} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={24} fill={palette.ink}>
+				<FigureText x={(SCENE.left + DIVIDE) / 2} y={SCENE.top + 36} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={24} fill={palette.ink}>
 					Kesit
-				</text>
+				</FigureText>
 			</g>
 			<rect x={DIVIDE} y={SCENE.top - 120} width={10} height={900} fill="#FFFFFF" />
 			{/* Right: the coast from above. */}
@@ -162,9 +162,9 @@ export const CoastProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}> = ({
 				<path d={`M${ISLAND[0] - 24} ${barTop} L${ISLAND[0] + 24} ${barTop} L${ISLAND[0] + 16} ${barEnd} L${ISLAND[0] - 16} ${barEnd} Z`} fill={COLOURS.sand} opacity={bar > 0.02 ? 1 : 0} />
 				<ellipse cx={ISLAND[0]} cy={ISLAND[1]} rx={70} ry={52} fill={COLOURS.sand} />
 				<ellipse cx={ISLAND[0]} cy={ISLAND[1]} rx={58} ry={42} fill={COLOURS.landTop} />
-				<text x={(DIVIDE + SCENE.right) / 2} y={SCENE.top + 36} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={24} fill={palette.ink}>
+				<FigureText x={(DIVIDE + SCENE.right) / 2} y={SCENE.top + 36} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={24} fill={palette.ink}>
 					Kuşbakışı
-				</text>
+				</FigureText>
 			</g>
 			<ProcessLabel id="falez" at={[cliffTop, (landY + SEA_LEVEL) / 2]} to={[cliffTop - 170, 150]} text="Falez" show={clock.now('falez')} />
 			<ProcessLabel id="falez" at={[cliffTop - notch + 6, SEA_LEVEL - 4]} to={[cliffTop + 130, 470]} text="Dalga çentiği" show={clock.now('falez') * clamp01(notch / 10)} size={22} />

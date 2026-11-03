@@ -5,9 +5,10 @@ import {useVideoLayout} from '../../Layouts/VideoLayout';
 import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {elementLook, Part, useBeatStartFor, useElementState, useShownAt} from '../VisualTimeline';
-import {figureText, lineSamples, placeLabel, pointSpots, textWidth, type LabelBox} from './FigureLabel';
+import {figureText, lineSamples, placeLabel, pointSpots, textWidth, type LabelBox} from '../FigureLabel';
 import {Growing} from './Plot';
 import {areaCentre, blendShape} from './Similarity';
+import {FigureText} from '../VisualWorld';
 
 type Geometry = Extract<CourseVisual, {kind: 'geometry'}>;
 type Angle = Geometry['angles'][number];
@@ -396,7 +397,7 @@ export const GeometryVisual: React.FC<VisualBoxProps & {visual: Geometry}> = ({v
 							<g opacity={labels * look.opacity}>
 								{point.dot && !point.caption ? <circle cx={px} cy={py} r={u(9) * look.scale} fill={look.scale > 1 ? palette.lesson : palette.ink} /> : null}
 								{point.label !== '' ? (
-									<text
+									<FigureText
 										x={longNameBoxes.has(point.id) ? ((longNameBoxes.get(point.id) as LabelBox)[0] + (longNameBoxes.get(point.id) as LabelBox)[2]) / 2 : px + Math.cos(away) * distance}
 										y={longNameBoxes.has(point.id) ? (longNameBoxes.get(point.id) as LabelBox)[3] - fontSize * 0.2 : py + Math.sin(away) * distance + fontSize * 0.35}
 										fill={palette.ink}
@@ -405,7 +406,7 @@ export const GeometryVisual: React.FC<VisualBoxProps & {visual: Geometry}> = ({v
 										textAnchor="middle"
 									>
 										{figureText(point.label ?? point.id)}
-									</text>
+									</FigureText>
 								) : null}
 							</g>
 						)}
@@ -458,7 +459,7 @@ export const GeometryVisual: React.FC<VisualBoxProps & {visual: Geometry}> = ({v
 			into.push(middle - spread, middle, middle + spread);
 		};
 		visual.angles.forEach((angle, index) => {
-			if (angle.at !== id && angle.label) near(angleLabelAt(angle, index), fontSize * 0.9 * angle.label.length * 0.3, hard);
+			if (angle.at !== id && angle.label) near(angleLabelAt(angle, index), textWidth(angle.label, fontSize * 0.9) / 2, hard);
 		});
 		// Another point blocks about a letter's width; a caption blocks its whole text ("II. bölge" beside B(−2, 3)).
 		for (const other of visual.points)
@@ -472,7 +473,7 @@ export const GeometryVisual: React.FC<VisualBoxProps & {visual: Geometry}> = ({v
 			for (const spot of axisNumberSpots) near(spot.at, spot.halfWidth, hard);
 		}
 		segmentLabels.forEach((labelAt, index) => {
-			if (labelAt) near(labelAt, fontSize * 0.94 * (visual.segments[index].label ?? '').length * 0.3, hard);
+			if (labelAt) near(labelAt, textWidth(visual.segments[index].label ?? '', fontSize * 0.94) / 2, hard);
 		});
 		// A circle through the point takes the directions along it there.
 		for (const circle of visual.circles) {
@@ -488,7 +489,7 @@ export const GeometryVisual: React.FC<VisualBoxProps & {visual: Geometry}> = ({v
 		// fell on a line (the O of KPSS Geometri 1, 1 Nov 2026). It keeps off the lines and its own angles' labels instead.
 		const own: number[] = [];
 		visual.angles.forEach((angle, index) => {
-			if (angle.at === id && angle.label && !angle.right) near(angleLabelAt(angle, index), fontSize * 0.9 * angle.label.length * 0.3 + fontSize * 0.3, own);
+			if (angle.at === id && angle.label && !angle.right) near(angleLabelAt(angle, index), textWidth(angle.label, fontSize * 0.9) / 2 + fontSize * 0.3, own);
 		});
 		return widestGap([...hard, ...own]).middle;
 	}
@@ -504,7 +505,7 @@ export const GeometryVisual: React.FC<VisualBoxProps & {visual: Geometry}> = ({v
 		const length = Math.hypot(normal[0], normal[1]) || 1;
 		// A long label ("hipotenüs") beside a slanted side needs more room than one letter: the text box's half width
 		// and half height, measured along the side's normal, plus a gap.
-		const halfWidth = (segment.label ?? '').length * fontSize * 0.27;
+		const halfWidth = textWidth(segment.label ?? '', fontSize) / 2;
 		const offset = Math.max(fontSize * 1.05, fontSize * 0.4 + halfWidth * Math.abs(normal[0] / length) + fontSize * 0.36 * Math.abs(normal[1] / length));
 		const points = visual.points.filter((point) => !point.hidden).map((point) => at(point.id));
 		let best: {at: [number, number]; clear: number} | undefined;
@@ -569,7 +570,7 @@ export const GeometryVisual: React.FC<VisualBoxProps & {visual: Geometry}> = ({v
 				{Array.from({length: angle.arcs}, (_, mark) => (
 					<path key={mark} d={angleArc(corner, at(angle.from), at(angle.to), radius + mark * arcGap, u(7))} fill="none" stroke={palette.brand} strokeWidth={u(angle.arcs > 1 ? 4 : 5)} strokeLinecap="round" />
 				))}
-				{angle.label ? <text x={lx} y={ly + fontSize * 0.35} fill={palette.ink} fontSize={fontSize * 0.9} fontWeight={800} textAnchor="middle">{figureText(angle.label)}</text> : null}
+				{angle.label ? <FigureText x={lx} y={ly + fontSize * 0.35} fill={palette.ink} fontSize={fontSize * 0.9} fontWeight={800} textAnchor="middle">{figureText(angle.label)}</FigureText> : null}
 			</g>
 		);
 	}
@@ -662,9 +663,9 @@ const AngleCopy: React.FC<{id: string; from: Sector; to: Sector; radius: number;
 			<path d={wedgePath(now, radius * 1.25)} fill={withAlpha(palette.lesson, 0.3)} />
 			<path d={wedgePath(now, radius, false)} fill="none" stroke={palette.brand} strokeWidth={u(5)} strokeLinecap="round" />
 			{label ? (
-				<text x={lx} y={ly + fontSize * 0.35} fill={palette.ink} fontSize={fontSize} fontWeight={800} textAnchor="middle">
+				<FigureText x={lx} y={ly + fontSize * 0.35} fill={palette.ink} fontSize={fontSize} fontWeight={800} textAnchor="middle">
 					{figureText(label)}
-				</text>
+				</FigureText>
 			) : null}
 		</g>
 	);
@@ -675,9 +676,9 @@ const PolygonLabel: React.FC<{corners: [number, number][]; text: string; fontSiz
 	const palette = useVisualPalette();
 	const [x, y] = areaCentre(corners);
 	return (
-		<text x={x} y={y + fontSize * 0.35} fill={palette.ink} fontSize={fontSize} fontWeight={800} textAnchor="middle">
+		<FigureText x={x} y={y + fontSize * 0.35} fill={palette.ink} fontSize={fontSize} fontWeight={800} textAnchor="middle">
 			{figureText(text)}
-		</text>
+		</FigureText>
 	);
 };
 
@@ -735,11 +736,11 @@ const FigureAxes: React.FC<{view: Geometry['view']; axes: NonNullable<Geometry['
 						return (
 							<g key={`x${value}`}>
 								<line x1={sx} y1={oy - mark} x2={sx} y2={oy + mark} stroke={palette.axis} strokeWidth={u(3)} />
-								{axes.numbers ? <text x={sx} y={oy + mark + fontSize} fill={palette.muted} fontSize={fontSize} textAnchor="middle">{formatAxisNumber(value)}</text> : null}
+								{axes.numbers ? <FigureText x={sx} y={oy + mark + fontSize} fill={palette.muted} fontSize={fontSize} textAnchor="middle">{formatAxisNumber(value)}</FigureText> : null}
 							</g>
 						);
 					})}
-					<text x={toScreen([maxX, 0])[0] + u(12)} y={oy + fontSize * 0.35} fill={palette.ink} fontSize={fontSize * 1.2} fontWeight={700} fontStyle="italic">x</text>
+					<FigureText x={toScreen([maxX, 0])[0] + u(12)} y={oy + fontSize * 0.35} fill={palette.ink} fontSize={fontSize * 1.2} fontWeight={700} fontStyle="italic">x</FigureText>
 				</g>
 			) : null}
 			{showY ? (
@@ -750,11 +751,11 @@ const FigureAxes: React.FC<{view: Geometry['view']; axes: NonNullable<Geometry['
 						return (
 							<g key={`y${value}`}>
 								<line x1={ox - mark} y1={sy} x2={ox + mark} y2={sy} stroke={palette.axis} strokeWidth={u(3)} />
-								{axes.numbers ? <text x={ox - mark - u(6)} y={sy + fontSize * 0.35} fill={palette.muted} fontSize={fontSize} textAnchor="end">{formatAxisNumber(value)}</text> : null}
+								{axes.numbers ? <FigureText x={ox - mark - u(6)} y={sy + fontSize * 0.35} fill={palette.muted} fontSize={fontSize} textAnchor="end">{formatAxisNumber(value)}</FigureText> : null}
 							</g>
 						);
 					})}
-					<text x={ox} y={toScreen([0, maxY])[1] - u(14)} fill={palette.ink} fontSize={fontSize * 1.2} fontWeight={700} fontStyle="italic" textAnchor="middle">y</text>
+					<FigureText x={ox} y={toScreen([0, maxY])[1] - u(14)} fill={palette.ink} fontSize={fontSize * 1.2} fontWeight={700} fontStyle="italic" textAnchor="middle">y</FigureText>
 				</g>
 			) : null}
 		</g>
@@ -786,9 +787,9 @@ const CircleMark: React.FC<{id: string; center: [number, number]; radius: number
 				<Growing progress={progress} d={d} stroke={palette.lesson} strokeWidth={u(6) * look.scale} />
 			)}
 			{label ? (
-				<text x={lx} y={ly + fontSize * 0.35} fill={palette.ink} fontSize={fontSize} fontWeight={700} textAnchor="middle" opacity={progress}>
+				<FigureText x={lx} y={ly + fontSize * 0.35} fill={palette.ink} fontSize={fontSize} fontWeight={700} textAnchor="middle" opacity={progress}>
 					{figureText(label)}
-				</text>
+				</FigureText>
 			) : null}
 		</g>
 	);
@@ -811,7 +812,7 @@ const SegmentLine: React.FC<{id: string; from: [number, number]; to: [number, nu
 				</g>
 			)}
 			{ticks > 0 ? <path d={tickMarks(from, to, ticks, u(15) * look.scale, u(13), tickShare)} stroke={palette.ink} strokeWidth={u(5)} strokeLinecap="round" opacity={progress} /> : null}
-			{label && labelAt ? <text x={labelAt[0]} y={labelAt[1] + fontSize * 0.35} fill={palette.ink} fontSize={fontSize} fontWeight={700} textAnchor="middle" opacity={progress}>{figureText(label)}</text> : null}
+			{label && labelAt ? <FigureText x={labelAt[0]} y={labelAt[1] + fontSize * 0.35} fill={palette.ink} fontSize={fontSize} fontWeight={700} textAnchor="middle" opacity={progress}>{figureText(label)}</FigureText> : null}
 		</g>
 	);
 };

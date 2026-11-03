@@ -701,6 +701,29 @@ export const WebStatesScreen: React.FC = () => {
 					</Stack>
 				</Card>
 			</Grid>
+			<Grid columns="1fr 1fr">
+				<Card padding={24}>
+					<Stack gap={14}>
+						<Text role="section">{t('Form hatası ve gönderiliyor', 'Form error and sending')}</Text>
+						<Field label={t('E-posta', 'E-mail')} value="ayse@ornekcom" icon="mail" error={t('E-posta adresinde nokta eksik gibi: ayse@ornek.com', 'The e-mail seems to miss a dot: ayse@ornek.com')} />
+						<Stack row gap={12}>
+							<Button loading>{t('Gönderiliyor…', 'Sending…')}</Button>
+							<Text role="small">{t('İstek sürerken düğme kilitli; işlem iki kez gitmez.', 'Locked while sending, so nothing goes twice.')}</Text>
+						</Stack>
+					</Stack>
+				</Card>
+				<Card padding={24}>
+					<Stack gap={14}>
+						<Text role="section">{t('Klavye odağı', 'Keyboard focus')}</Text>
+						<Text role="small">{t('Sekme tuşuyla gelinen her öğede 2 px koyu halka; fareyle tıklayınca görünmez.', 'A 2 px dark ring on every control reached with Tab; hidden on mouse clicks.')}</Text>
+						<Stack row gap={12}>
+							<Button focus>{t('Kaydet', 'Save')}</Button>
+							<Button tone="ghost">{t('Vazgeç', 'Cancel')}</Button>
+						</Stack>
+						<Field label={t('Ad', 'Name')} value="Ayşe" focus />
+					</Stack>
+				</Card>
+			</Grid>
 			<Card padding={18} tone="soft">
 				<Stack row gap={12}>
 					<Icon name="wifi" size={20} color={colors.warning} />

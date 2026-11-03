@@ -1,8 +1,9 @@
 import React from 'react';
 import {clamp01, smoothStep} from '../../../Animations/Motion';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor} from '../VisualTimeline';
+import {FigureText} from '../VisualWorld';
 
 type GeneExpression = Extract<CourseVisual, {kind: 'geneExpression'}>;
 
@@ -42,17 +43,19 @@ export const GeneExpressionVisual: React.FC<VisualBoxProps & {visual: GeneExpres
 	const time = visual.motion ? Math.max(0, seconds - runStart) : 1e6;
 	const fontSize = Math.max(60, 28 / k);
 	const text = (x: number, y: number, value: string, size = fontSize * 0.62, anchor: 'start' | 'middle' | 'end' = 'middle', weight = 800, fill = palette.ink) => (
-		<text x={x} y={y} fill={fill} fontSize={size} fontWeight={weight} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={6} paintOrder="stroke">
+		<FigureText x={x} y={y} fill={fill} fontSize={size} fontWeight={weight} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={6} paintOrder="stroke">
 			{value}
-		</text>
+		</FigureText>
 	);
 	const mrna = visual.codons.map((codon) => codon.codon).join('');
 	const svg = (children: React.ReactNode) => (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`} opacity={appear}>
 				{children}
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 
 	if (visual.mode === 'transcription') {

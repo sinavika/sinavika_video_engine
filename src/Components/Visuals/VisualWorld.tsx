@@ -1,5 +1,6 @@
 import React from 'react';
 import {contrastRatio, mixColors} from '../../Themes/ColorPalette';
+import {textWidth} from './FigureLabel';
 import {DrawingScale, useFigureFont, useVisualPalette} from './VisualFrame';
 import {elementLook, useElementState} from './VisualTimeline';
 
@@ -44,7 +45,7 @@ export const Chip: React.FC<{x: number; y: number; title: string; subtitle?: str
 	// An app still raises small text: the chip grows with its title.
 	const [titleSize, subtitleSize] = [font(28), font(19)];
 	const grow = titleSize / 28;
-	const width = Math.max(title.length * 17 * grow, (subtitle?.length ?? 0) * 12 * (subtitleSize / 19)) + 44 * grow;
+	const width = Math.max(textWidth(title, titleSize), textWidth(subtitle ?? '', subtitleSize, 600)) + 44 * grow;
 	const height = (subtitle ? 66 : 44) * grow;
 	const fill = focused > 0.5 ? palette.lesson : palette.surface;
 	const text = focused > 0.5 ? palette.onLesson : palette.ink;
@@ -71,8 +72,8 @@ export const splitInTwo = (text: string): string[] => {
 	return [text.slice(0, cut), text.slice(cut + 1)];
 };
 
-/** The lines a note takes in a pill `room` wide: one, or two when its text at `size` (about 0.6 em a letter) is wider. */
-export const noteLines = (text: string, size: number, room: number): string[] => (text.length * size * 0.6 > room ? splitInTwo(text) : [text]);
+/** The lines a note takes in a pill `room` wide: one, or two when its text at `size` is wider. */
+export const noteLines = (text: string, size: number, room: number): string[] => (textWidth(text, size, 700) > room ? splitInTwo(text) : [text]);
 
 /**
  * The note under a wide scene (a battle's stage, a process's step): a pill as wide as the scene with its top at
@@ -120,6 +121,23 @@ export const LightGround: React.FC<{children: React.ReactNode}> = ({children}) =
 
 /** The lesson colour a pointed-at label takes on light scenery: deepened when it is too pale to read on white. */
 const landAccent = (lesson: string): string => (contrastRatio(lesson, LAND_HALO) >= 3 ? lesson : mixColors(lesson, LAND_INK, 0.5));
+
+/**
+ * An SVG text of a figure: as given in a video; in an app still its size, and its halo with it, never under the still's
+ * smallest text, in the units of the drawing it stands in (the nearest DrawingScale: a World, a stage). Figures drew
+ * plain <text> and left 200 stills' text to the still's last guard (TextFloor), which raises without the figure
+ * knowing (2 Nov 2026); a figure's text is this instead.
+ */
+export const FigureText: React.FC<React.SVGProps<SVGTextElement>> = ({fontSize, strokeWidth, style, ...rest}) => {
+	const font = useFigureFont();
+	// The size may come as the attribute or in the style (a kinship chart sets it there).
+	const given = typeof style?.fontSize === 'number' ? style.fontSize : typeof fontSize === 'number' ? fontSize : Number(fontSize);
+	if (!Number.isFinite(given) || given <= 0) return <text fontSize={fontSize} strokeWidth={strokeWidth} style={style} {...rest} />;
+	const shown = font(given);
+	const grow = shown / given;
+	const halo = typeof strokeWidth === 'number' ? strokeWidth * grow : strokeWidth;
+	return typeof style?.fontSize === 'number' ? <text fontSize={fontSize} strokeWidth={halo} style={{...style, fontSize: shown}} {...rest} /> : <text fontSize={shown} strokeWidth={halo} style={style} {...rest} />;
+};
 
 /** Text with a halo so it reads over lines and the globe; lesson-coloured while its part is pointed at. */
 export const Tag: React.FC<{x: number; y: number; text: string; size?: number; anchor?: 'start' | 'middle' | 'end'; focused?: number; weight?: number; fill?: string; halo?: string}> = ({x, y, text, size = 21, anchor = 'start', focused = 0, weight = 700, fill, halo}) => {

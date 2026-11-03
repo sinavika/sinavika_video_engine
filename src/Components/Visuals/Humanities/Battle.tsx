@@ -7,6 +7,7 @@ import {BATTLE_GRID} from './HumanitiesSchema';
 import {type CourseVisual} from '../VisualSchema';
 import {useStageClock} from '../VisualTimeline';
 import {fittedScale, NotePill, pathOf, Tag, usePartLook, World} from '../VisualWorld';
+import {textWidth} from '../FigureLabel';
 
 type Battle = Extract<CourseVisual, {kind: 'battle'}>;
 type Unit = Battle['units'][number];
@@ -186,7 +187,7 @@ export const unitLabelY = (x: number, y: number, depth: number, scale: number, l
 	const grow = (size - NAME_SIZE) / 2;
 	const below = y + (depth + 12) * scale + grow;
 	const above = y - 58 * scale - grow;
-	const half = (label.length * 7.5 * size) / NAME_SIZE;
+	const half = textWidth(label, size) / 2;
 	const usual = inView(x, below, half, camera) >= 1 || inView(x, below, half, camera) >= inView(x, above, half, camera) ? below : above;
 	return flip ? (usual === below ? above : below) : usual;
 };
@@ -207,7 +208,7 @@ export const unitNameSpots = (places: readonly ({x: number; y: number; depth: nu
 	const placed: LabelBox[] = [];
 	return places.map((place) => {
 		if (!place) return {dx: 0, dy: 0, flip: false};
-		const half = (place.label.length * 7.5 * size) / NAME_SIZE;
+		const half = textWidth(place.label, size) / 2;
 		const shift = half + 10;
 		const line = size * 1.35;
 		const boxFor = ({dx, dy, flip}: NameSpot) => fieldLabelBox(place.x + dx, unitLabelY(place.x, place.y, place.depth, place.scale, place.label, camera, size, flip) + dy, place.label, size);
@@ -264,7 +265,7 @@ const NAME_SIZE = 24;
 /** The box a name takes on the field at (x, y): about 7.5 units a letter at 24-unit type, growing with `size`. */
 export const fieldLabelBox = (x: number, y: number, text: string, size = NAME_SIZE): LabelBox => {
 	const grow = size / NAME_SIZE;
-	const half = (text.length * 7.5 + 8) * grow;
+	const half = textWidth(text, size) / 2 + 8 * grow;
 	return {left: x - half, right: x + half, top: y - 22 * grow, bottom: y + 8 * grow};
 };
 
@@ -1120,7 +1121,7 @@ export const BattleVisual: React.FC<VisualBoxProps & {visual: Battle}> = ({visua
 						const spot = groundSpots[index];
 						if (!spot) return null;
 						const [x, y] = spot;
-						const shown = inView(x, y, (ground.name.length * 7 * nameSize) / NAME_SIZE, camera);
+						const shown = inView(x, y, textWidth(ground.name, nameSize, 700) / 2, camera);
 						return shown > 0 ? (
 							<g key={`name${index}`} opacity={shown}>
 								<Tag x={x} y={y} text={ground.name} size={nameSize} anchor="middle" weight={700} fill={night ? NIGHT.name : palette.muted} halo={night ? NIGHT.shade : undefined} />
@@ -1183,7 +1184,7 @@ export const BattleVisual: React.FC<VisualBoxProps & {visual: Battle}> = ({visua
 									if (!unit.label) return null;
 									const labelY = unitLabelY(x, y, depth, scale, unit.label, camera, nameSize, nameSpots[index].flip) + nameSpots[index].dy;
 									const labelX = x + nameSpots[index].dx;
-									const shown = inView(labelX, labelY, (unit.label.length * 7.5 * nameSize) / NAME_SIZE, camera);
+									const shown = inView(labelX, labelY, textWidth(unit.label, nameSize) / 2, camera);
 									return shown > 0 ? (
 										<g opacity={shown}>
 											<Tag x={labelX} y={labelY} text={unit.label} size={nameSize} anchor="middle" weight={800} focused={look.focused} />

@@ -1,6 +1,7 @@
 import React, {createContext, useContext, useId} from 'react';
 import {clamp01, lerp, noise, smooth} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
+import {textWidth} from '../FigureLabel';
 import {DrawingScale, useFigureFont, useSceneSeconds, useVisualPalette} from '../VisualFrame';
 import {useStageClock} from '../VisualTimeline';
 import {fittedScale, NotePill, pathOf, Tag, usePartLook, World} from '../VisualWorld';
@@ -179,7 +180,7 @@ export const ProcessLabel: React.FC<{id: string; at: Point; to: Point; text: str
 	// The visible part of the scene, in scene units, and the label's box in it.
 	const halfW = (SCENE.right - SCENE.left) / 2 / camera.zoom;
 	const halfH = (SCENE.bottom - SCENE.top) / 2 / camera.zoom;
-	const width = text.length * shown * 0.58 + 16 * k;
+	const width = textWidth(text, shown) + 16 * k;
 	const left = anchor === 'start' ? to[0] : anchor === 'end' ? to[0] - width : to[0] - width / 2;
 	const shift = Math.max(camera.x - halfW + 14 * k - left, Math.min(0, camera.x + halfW - 14 * k - (left + width)));
 	const x = to[0] + shift;
@@ -214,7 +215,7 @@ export const SceneTag: React.FC<{x: number; y: number; text: string; anchor?: 's
 	const k = 1 / camera.zoom;
 	const shown = useFigureFont()(size * k);
 	// On screen: `size` at any zoom, more in an app still.
-	const width = text.length * shown * camera.zoom * 0.58;
+	const width = textWidth(text, shown * camera.zoom);
 	const middle = anchor === 'start' ? x + (width * k) / 2 : anchor === 'end' ? x - (width * k) / 2 : x;
 	const opacity = inView(middle, y, width / 2, camera);
 	if (opacity < 0.01) return null;

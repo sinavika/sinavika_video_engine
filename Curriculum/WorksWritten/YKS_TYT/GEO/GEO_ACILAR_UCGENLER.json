@@ -1,0 +1,1517 @@
+{
+ "topic": {
+  "id": "2727EE29-C04A-4DD3-90F0-AF9AFC40B5DE",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_ACILAR_UCGENLER"
+ },
+ "title": "Açılar ve Üçgenler",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/GEO/GEO_ACILAR_UCGENLER.json"
+ ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/YKS/TYT/CikmisSorular/GEO/GEO_ACILAR_UCGENLER.json (ÖSYM 2025, GEO_ACILAR_UCGENLER_01)",
+   "Curriculum/Scripts/YKS_TYT/GEO/GEO_ACILAR_UCGENLER.json"
+  ],
+  "additions": [
+   {
+    "note": "Ortak kenarlı iki üçgende açı sıralamalarından tüm kenarların sıralamasını bulma (zincirleme karşılaştırma) soru tipini çözümlü ekle.",
+    "done": "1. bölümde 'Zincirleme karşılaştırma' örnek kartı (iki üçgen, tam çözüm), adımları sıraya dizdiren akış kartı ve ortak kenarlı dörtgen sorusu eklendi."
+   },
+   {
+    "note": "Kenar uzunluğu tam sayı olduğunda değer sayısı, en büyük ve en küçük çevre soru tiplerini örnekle; ikizkenar üçgende iki durumun (eşit kenar ya da taban) eşitsizlikle ayrı ayrı denetlenmesi.",
+    "done": "3. bölümde en küçük çevre (çeşitkenar örneği ve soru), ikizkenarda iki durum kartı, soru ve çoklu seçim kartı; 4. bölümde değer sayısı sorusu, en büyük/en küçük çevre kuralı, çevre sorusu ve hesap kartları eklendi."
+   },
+   {
+    "note": "Açı-kenar ilişkisinin yalnız aynı üçgende geçerli olduğunu, farklı üçgenlerde karşılaştırma için ortak kenar gerektiğini bir yanlış çözüm örneğiyle göster.",
+    "done": "1. bölümün sonunda 'Yalnız aynı üçgende' kartı ve iki ayrı üçgenin kenarlarını açılarla karşılaştıran yanlış çözümde hatalı satırı buldurduğumuz findError kartı eklendi."
+   }
+  ],
+  "fixes": [
+   "Soru ipuçlarının son adımı 'Cevap D' gibi doğru şık harfini ve sonucu söylüyordu; ipuçları yeniden yazıldı, son işlem öğrenciye bırakıldı.",
+   "Doğru şık dağılımında B harfi 10 sorunun 4'ünde doğruydu ve ardışık geliyordu (6-7 ve 9-10); şıklar yeniden sıralandı, soru sayısı 11'e çıkınca dağılım dengelendi.",
+   "İkizkenar sorusunun şıkları sıralı değildi ('17 ya da 22' ortada, '13' sonda); şıklar küçükten büyüğe dizildi."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Her üç çubuk üçgen olmaz",
+   "narration": "Masada üç çubuk var: 3, 4 ve 8 santim. Kısa olanları uzunun iki ucuna koyup tepede birleştirmeye çalış. Ne kadar uğraşırsan uğraş uçlar buluşmaz. Bu derste hangi uzunlukların üçgen kurduğunu, büyük açının neden büyük kenarı gördüğünü ve sınavda en çok sorulan kenar aralığı sorularını öğreneceksin."
+  },
+  "objectives": [
+   "Bir üçgende açıların sırasından kenarların sırasını bulmak",
+   "Ortak kenarlı iki üçgende kenarları zincirleme sıralamak",
+   "Eşit kenar ve eşit açı ilişkisini dış açı kuralıyla birlikte kullanmak",
+   "Üç uzunluğun üçgen kurup kurmadığını üçgen eşitsizliğiyle denetlemek",
+   "Bilinmeyen kenarın aralığını ve tam sayı değerlerini bulmak",
+   "Tam sayı kenarlı üçgenlerde en küçük ve en büyük çevreyi bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_ACILAR_UCGENLER_02",
+    "title": "Büyük açı, büyük kenar",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Açının karşısındaki kenar",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.5,
+        -0.6,
+        6.5,
+        5
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          1.958,
+          3.392
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          6,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "B",
+         "to": "C",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "A",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "B",
+         "label": "c",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "label": "80°",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "label": "60°",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "C",
+         "from": "A",
+         "to": "B",
+         "label": "40°",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "caption": "Büyük açının karşısında **büyük kenar**, küçük açının karşısında **küçük kenar** vardır.",
+      "narration": "Bir üçgende her kenar, karşısındaki açının küçük harfiyle adlandırılır: A açısının karşısındaki kenar $a$, B'nin karşısındaki $b$, C'nin karşısındaki $c$ olur.\n\nŞekilde en büyük açı $A = 80°$'dir ve karşısındaki $a$ kenarı üçgenin en uzun kenarıdır. En küçük açı $C = 40°$'dir; karşısındaki $c$ kenarı en kısadır. Yani açıların sırası neyse kenarların sırası da odur: $80° > 60° > 40°$ ise $a > b > c$.\n\nEşit açıların karşısındaki kenarlar da eşittir. Bu sıralama yalnız **aynı üçgenin içinde** geçerlidir."
+     },
+     {
+      "kind": "predict",
+      "title": "Doğru mu, yanlış mı?",
+      "prompt": "Bir üçgende bir açı 90°'den büyükse, karşısındaki kenar üçgenin en uzun kenarıdır.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "90°'den büyük bir açı üçgenin en büyük açısıdır; çünkü diğer iki açının toplamı 90°'den küçük kalır. En büyük açının karşısındaki kenar da en uzun kenardır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Harf sırasına kanma",
+      "wrong": "Köşeler A, B, C sırasındaysa kenarlar da $a > b > c$ sırasındadır.",
+      "right": "Sıra harflerden değil açıların büyüklüğünden gelir: her kenar, karşısındaki açı kadar büyüktür.",
+      "why": "Harf sırası ile açı büyüklüğü arasında hiçbir bağ yoktur. Sınavda $a > b > c$ şıkkı çoğu zaman tuzaktır. Her kenarı karşısındaki açıyla eşle ($A \\leftrightarrow a$) ve açıları karşılaştır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $m(\\widehat{A}) = 70°$ ve $m(\\widehat{B}) = 50°$'dir. Kenar uzunlukları $|BC| = a$, $|AC| = b$, $|AB| = c$ olduğuna göre aşağıdaki sıralamalardan hangisi doğrudur?",
+       "options": [
+        "$a > b > c$",
+        "$c > a > b$",
+        "$b > a > c$",
+        "$a > c > b$",
+        "$b > c > a$"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "Kenarları harf sırasına dizmişsin; açıları karşılaştırmadın.",
+        "$c$'yi en büyük almak, C açısını en büyük saymaktır. C açısını hesapla ve A ile karşılaştır.",
+        "$b$'yi en büyük almak, B açısını en büyük saymaktır. B açısı kaç derece, bir bak.",
+        null,
+        "Sıralamayı tersine çevirmiş olabilirsin: büyük açı, büyük kenarı gösterir."
+       ],
+       "steps": [
+        {
+         "text": "Önce üçüncü açıyı bul: iç açılar toplamı $180°$'dir."
+        },
+        {
+         "text": "$m(\\widehat{C}) = 60°$ bulunur. Açıların sırası ile karşılarındaki kenarların sırası aynıdır."
+        },
+        {
+         "text": "Üç açıyı büyükten küçüğe diz ve her açıyı karşısındaki kenarla eşle ($A \\leftrightarrow a$, $B \\leftrightarrow b$, $C \\leftrightarrow c$)."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; büyük açı karşısında büyük kenar kuralı, üçüncü açının hesaplandığı özgün bir sıralama sorusuyla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $m(\\widehat{A}) = 2x$, $m(\\widehat{B}) = x + 30°$ ve $m(\\widehat{C}) = x + 10°$'dir. Bu üçgenin **en kısa** kenarı aşağıdakilerden hangisidir?",
+       "options": [
+        "$[AB]$",
+        "$[AC]$",
+        "$[BC]$",
+        "$[AB]$ ve $[AC]$ eşit",
+        "$[AC]$ ve $[BC]$ eşit"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$[AC]$, B açısının karşısındadır. B açısı üçgenin en küçüğü mü, kontrol et.",
+        "$[BC]$, A açısının karşısındadır. A açısını hesapla; en büyük açının karşısı en uzun kenardır.",
+        "İki kenarın eşit olması için karşılarındaki açıların eşit olması gerekir. Açıları hesaplayıp bak.",
+        "İki kenarın eşit olması için karşılarındaki açıların eşit olması gerekir. Açıları hesaplayıp bak."
+       ],
+       "steps": [
+        {
+         "text": "İç açılar toplamı $180°$: $2x + (x + 30°) + (x + 10°) = 180°$ denklemini kur ve $x$'i bul."
+        },
+        {
+         "text": "Üç açıyı hesapla ve en küçüğünü belirle."
+        },
+        {
+         "text": "En küçük açı hangi köşedeyse, o köşeye değmeyen kenar en kısadır."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; iç açılar cebirle verilip en kısa kenar soruldu, sayılar özgündür."
+       }
+      }
+     },
+     {
+      "kind": "example",
+      "title": "Zincirleme karşılaştırma",
+      "example": "$ABC$ ve $DBC$ üçgenleri $[BC]$ kenarını paylaşır. $ABC$'de $m(\\widehat{A}) = 40°$, $m(\\widehat{B}) = 60°$, $m(\\widehat{C}) = 80°$; $DBC$'de $m(\\widehat{D}) = 90°$, $m(\\widehat{DBC}) = 50°$, $m(\\widehat{DCB}) = 40°$'dir. Beş kenarı büyükten küçüğe sırala.",
+      "explanation": "**$ABC$ üçgeni:** En küçük açı $A = 40°$, karşısında $[BC]$ var. Ortanca açı $B = 60°$, karşısında $[AC]$. En büyük açı $C = 80°$, karşısında $[AB]$. Sıra: $|AB| > |AC| > |BC|$.\n\n**$DBC$ üçgeni:** $D = 90°$ karşısında $[BC]$, $\\widehat{DBC} = 50°$ karşısında $[DC]$, $\\widehat{DCB} = 40°$ karşısında $[DB]$. Sıra: $|BC| > |DC| > |DB|$.\n\n**Birleştirme:** $[BC]$ birinci sıralamada en küçük, ikincide en büyük kenardır; yani iki sıralamayı birbirine bağlar:\n$|AB| > |AC| > |BC| > |DC| > |DB|$.\n\nEn uzun kenar $[AB]$, en kısa kenar $[DB]$'dir."
+     },
+     {
+      "kind": "visual",
+      "title": "Zincirleme karşılaştırmanın adımları",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "Üçüncü açıları bul",
+         "detail": "180° − bilinen iki açı"
+        },
+        {
+         "label": "Her üçgende sırala",
+         "detail": "Büyük açı, büyük kenar"
+        },
+        {
+         "label": "Ortak kenarı bul",
+         "detail": "İki sıralamada da geçen kenar"
+        },
+        {
+         "label": "Zinciri birleştir",
+         "detail": "Ortak kenar köprü olur"
+        }
+       ]
+      },
+      "caption": "Adımları doğru sıraya diz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ dörtgeninde $[BD]$ köşegeni çizilmiştir. Verilen açı ölçülerine göre $[AB]$, $[AD]$, $[BD]$, $[CD]$ ve $[BC]$ doğru parçalarından **en kısa** olanı hangisidir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -5.864,
+         -0.7,
+         3.526,
+         5.7
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           -5.164,
+           3.616
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           2.826,
+           1.632
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           0,
+           5
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "angles": [
+         {
+          "at": "B",
+          "from": "D",
+          "to": "A",
+          "label": "55°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "D",
+          "from": "A",
+          "to": "B",
+          "label": "75°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "B",
+          "from": "C",
+          "to": "D",
+          "label": "60°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "D",
+          "from": "B",
+          "to": "C",
+          "label": "40°",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "$[AB]$",
+        "$[AD]$",
+        "$[BD]$",
+        "$[CD]$",
+        "$[BC]$"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "$[AB]$, üstteki üçgende en büyük açının (75°) karşısındadır; kısa olamaz.",
+        "$[AD]$, üstteki üçgende ortanca açının karşısındadır; $[BD]$'den bile uzundur.",
+        "$[BD]$ iki üçgenin ortak kenarıdır. Yalnız üstteki üçgene bakarsan kısa görünür; alttaki üçgende durumu da bak.",
+        "$[CD]$, alttaki üçgende 60°'nin karşısındadır; 40°'nin karşısındaki kenardan uzundur.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Her üçgende üçüncü açıyı bul: üstteki üçgende $A$'yı, alttaki üçgende $C$'yi."
+        },
+        {
+         "text": "Her üçgende kenarları karşılarındaki açılara göre sırala. İki üçgenin ortak kenarını belirle."
+        },
+        {
+         "text": "Ortak kenar iki sıralamayı birbirine bağlar. Tek bir zincir kur ve zincirin kısa ucuna bak."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin ortak kenarlı iki üçgende kenar sıralama yapısı, ölçülere uygun çizilmiş özgün bir dörtgenle kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Yalnız aynı üçgende",
+      "text": "Büyük açı, büyük kenar kuralı yalnız **aynı üçgenin** açı ve kenarları için geçerlidir. İki ayrı üçgende bir $70°$'lik açı ile bir $50°$'lik açının karşısındaki kenarları karşılaştıramazsın; çünkü açılar şeklin yalnız biçimini belirler, boyutunu değil. İki üçgeni karşılaştırmak için **ortak bir kenar** gerekir: o kenar iki sıralamayı birbirine bağlar."
+     },
+     {
+      "kind": "findError",
+      "title": "Hatalı karşılaştırma",
+      "problem": "İki ayrı üçgen verilmiştir ve ortak kenarları yoktur. $ABC$ üçgeninde $m(\\widehat{A}) = 70°$, $DEF$ üçgeninde $m(\\widehat{D}) = 50°$'dir. Bir öğrenci $|BC|$ ile $|EF|$ uzunluklarını aşağıdaki gibi karşılaştırıyor.",
+      "prompt": "Hatalı satırı bul.",
+      "steps": [
+       "$[BC]$, $A$ açısının karşısındadır; $[EF]$ ise $D$ açısının karşısındadır.",
+       "$70° > 50°$ olduğundan büyük açının karşısındaki kenar da büyüktür: $|BC| > |EF|$.",
+       "Sonuç: $ABC$ üçgeninin $[BC]$ kenarı, $DEF$ üçgeninin $[EF]$ kenarından uzundur."
+      ],
+      "wrongStep": 1,
+      "choiceFeedback": [
+       "Bu satır doğru: $[BC]$ gerçekten A'nın, $[EF]$ de D'nin karşısındadır.",
+       null,
+       "Bu satır yalnız önceki satırın sonucunu yazıyor; asıl hata onu doğuran satırda."
+      ],
+      "explanation": "Büyük açı, büyük kenar kuralı aynı üçgenin kenarları için geçerlidir. $A = 70°$ olan küçük bir üçgende $|BC| = 3$ cm, $D = 50°$ olan büyük bir üçgende $|EF| = 10$ cm olabilir. İki üçgenin kenarlarını karşılaştırmak için ortak bir kenar gerekir."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ACILAR_UCGENLER_03",
+    "title": "Eşit kenar, eşit açı",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "İkizkenarın taban açıları",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.5,
+        -0.6,
+        6.5,
+        4.8
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          3,
+          4.2
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          6,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "k",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "A",
+         "label": "k",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ],
+       "angles": [
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "label": "α",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "C",
+         "from": "A",
+         "to": "B",
+         "label": "α",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "caption": "Eşit kenarların karşısındaki açılar eşittir; eşit açıların karşısındaki kenarlar eşittir.",
+      "narration": "$|AB| = |AC|$ olsun. $[AB]$'nin karşısında $C$ açısı, $[AC]$'nin karşısında $B$ açısı vardır; kenarlar eşit olduğundan bu iki açı da eşittir ve ikisine de $\\alpha$ diyoruz. Yani ikizkenar üçgenin taban açıları eşittir.\n\nKural iki yönlü çalışır: bir üçgende iki açı eşitse karşılarındaki kenarlar da eşittir. Sorularda eşit kenarları gördüğün anda eşit açıları yaz; dış açı kuralıyla birleştirince zincir kendiliğinden ilerler."
+     },
+     {
+      "kind": "blank",
+      "title": "Taban açısı",
+      "prompt": "Tepe açısı 40° olan bir ikizkenar üçgenin bir taban açısı kaç derecedir?",
+      "before": "Taban açısı =",
+      "after": "°",
+      "answers": [
+       "70"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 70,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "140",
+        "feedback": "140°, iki taban açısının toplamıdır. Taban açıları eşit olduğundan birine bu toplamın yarısı düşer."
+       }
+      ],
+      "explanation": "Taban açıları eşittir: $2\\alpha + 40° = 180°$ → $\\alpha = 70°$."
+     },
+     {
+      "kind": "concept",
+      "title": "Dış açı kuralı",
+      "text": "Bir üçgenin bir köşesindeki **dış açı**, o köşeye komşu olmayan iki iç açının toplamına eşittir. Dış açı, komşu iç açıyla birlikte $180°$ yapar. Eşit kenar zincirlerinde bir üçgenden diğerine geçmenin en hızlı yolu budur.",
+      "visual": {
+       "kind": "formula",
+       "latex": "x = a + b",
+       "caption": "$x$ dış açı; $a$ ve $b$ komşu olmayan iç açılar"
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Eşit açı, eşit kenar",
+      "prompt": "Bir üçgende iki iç açı eşitse, bu açıların karşısındaki kenarlar da eşittir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Kural iki yönlüdür: eşit kenarların karşısındaki açılar eşit olduğu gibi, eşit açıların karşısındaki kenarlar da eşittir. Böyle bir üçgen ikizkenardır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Hangi açılar eşit?",
+      "wrong": "$|AB| = |AC|$ ise $m(\\widehat{A}) = m(\\widehat{B})$ olur.",
+      "right": "$|AB| = |AC|$ ise bu kenarların karşısındaki açılar, yani $m(\\widehat{C}) = m(\\widehat{B})$ eşittir.",
+      "why": "Eşit kenarların ortak köşesi $A$ tepe açısıdır. Eşit olan açılar kenarların karşısındaki taban açılarıdır. Kenara değil, karşısındaki açıya bak."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $D$ noktası $[BC]$ üzerindedir. $|AB| = |AD| = |DC|$ ve $m(\\widehat{ACB}) = 35°$ olduğuna göre $m(\\widehat{BAC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.5,
+         -0.6,
+         5.5,
+         3.6
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           1.026,
+           2.819
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           2.052,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           5.052,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "k",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "label": "k",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "D",
+          "label": "k",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "angles": [
+         {
+          "at": "C",
+          "from": "A",
+          "to": "D",
+          "label": "35°",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "70",
+        "75",
+        "110",
+        "140",
+        "145"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "70°, $ADB$ açısıdır; sorulan $x$ değil. $x$ için $A$ köşesindeki iki açıyı birlikte düşün.",
+        null,
+        "110°, $ADC$ açısıdır. Sorulan açı $D$ köşesinde değil, $A$ köşesindedir.",
+        "140°, $ABD$ üçgeninde $B$ ve $D$ açılarının toplamıdır; $A$ açısını bulmak için bunu 180°'den çıkarman gerekir.",
+        "145° = 180° − 35° gibi bir işlemin sonucudur; bu işlem sorulan açıyı vermez."
+       ],
+       "steps": [
+        {
+         "text": "$|AD| = |DC|$ olduğundan $ADC$ üçgeninde hangi iki açı eşittir? Ölçülerini yaz."
+        },
+        {
+         "text": "$ADB$ açısı, $ADC$ üçgeninin $D$ köşesindeki dış açısıdır; dış açı kuralını uygula."
+        },
+        {
+         "text": "$|AB| = |AD|$ ile $ABD$ üçgenindeki eşit açıları yaz, sonra $\\widehat{BAD}$'yi iç açılar toplamından bul. $x$, $\\widehat{BAD}$ ile $\\widehat{DAC}$'nin toplamıdır."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; eşit kenarlar zinciri ve dış açı kuralı, ölçülere uygun çizilmiş özgün bir şekilde birleştirildi."
+       }
+      }
+     },
+     {
+      "kind": "findError",
+      "title": "Dış açıda hata",
+      "problem": "$|AB| = |AC|$ ve $m(\\widehat{A}) = 40°$ olan $ABC$ üçgeninde $B$, $C$, $D$ noktaları doğrusaldır ve $C$, $B$ ile $D$'nin arasındadır. Bir öğrenci $m(\\widehat{ACD})$'yi aşağıdaki gibi buluyor.",
+      "prompt": "Hatalı satırı bul.",
+      "steps": [
+       "$|AB| = |AC|$ olduğundan eşit kenarların karşısındaki açılar eşittir: $m(\\widehat{B}) = m(\\widehat{C})$.",
+       "$2 \\cdot m(\\widehat{B}) = 180° - 40° = 140°$ → $m(\\widehat{B}) = m(\\widehat{C}) = 70°$.",
+       "$\\widehat{ACD}$, $C$ köşesindeki dış açıdır; iç açıyla aynı ölçüdür: $m(\\widehat{ACD}) = 70°$."
+      ],
+      "wrongStep": 2,
+      "choiceFeedback": [
+       "Bu satır doğru: eşit kenarların karşısındaki açılar eşittir.",
+       "Bu satır doğru: taban açıları 70°'dir.",
+       null
+      ],
+      "explanation": "$\\widehat{ACD}$ dış açıdır ve komşu iç açı $\\widehat{C}$ ile birlikte $180°$ yapar: $180° - 70° = 110°$. Dış açı kuralıyla da aynı sonuç çıkar: $40° + 70° = 110°$."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ACILAR_UCGENLER_01",
+    "title": "Üçgen eşitsizliği",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Üç çubuk, üç sonuç",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.8,
+        -2.6,
+        28.8,
+        4.4
+       ],
+       "points": [
+        {
+         "id": "P1",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "Q1",
+         "at": [
+          8,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R1",
+         "at": [
+          3.312,
+          3.745
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "P2",
+         "at": [
+          10,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "Q2",
+         "at": [
+          18,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R2",
+         "at": [
+          13,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "P3",
+         "at": [
+          20,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "Q3",
+         "at": [
+          28,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "R3",
+         "at": [
+          21.5,
+          2.598
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "S3",
+         "at": [
+          26,
+          3.464
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "T1",
+         "at": [
+          4,
+          -1.9
+         ],
+         "label": "üçgen",
+         "hidden": false,
+         "dot": false,
+         "caption": false
+        },
+        {
+         "id": "T2",
+         "at": [
+          14,
+          -1.9
+         ],
+         "label": "düz",
+         "hidden": false,
+         "dot": false,
+         "caption": false
+        },
+        {
+         "id": "T3",
+         "at": [
+          24,
+          -1.9
+         ],
+         "label": "kopuk",
+         "hidden": false,
+         "dot": false,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "P1",
+         "to": "Q1",
+         "label": "8",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "P1",
+         "to": "R1",
+         "label": "5",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "R1",
+         "to": "Q1",
+         "label": "6",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "P2",
+         "to": "R2",
+         "label": "3",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "R2",
+         "to": "Q2",
+         "label": "5",
+         "dashed": true,
+         "ticks": 0
+        },
+        {
+         "from": "P3",
+         "to": "Q3",
+         "label": "8",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "P3",
+         "to": "R3",
+         "label": "3",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "Q3",
+         "to": "S3",
+         "label": "4",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "P1",
+          "Q1",
+          "R1"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ]
+      },
+      "caption": "Her kenar, diğer ikisinin **farkından büyük**, **toplamından küçük**: $|b - c| < a < b + c$.",
+      "narration": "Elinde 8 cm'lik bir çubuk ve iki kısa çubuk olsun; kısa çubukları uçlardan tutup birleştirmeye çalış.\n\n**5 ve 6:** Toplam 11, 8'den büyüktür. Uçlar tepede buluşur ve üçgen oluşur.\n**3 ve 5:** Toplam tam 8'dir. Uçlar ancak tabanın üstünde buluşur; çubuklar düz bir çizgiye yatar, üçgen oluşmaz.\n**3 ve 4:** Toplam 7, 8'den küçüktür. Uçlar birbirine yetişmez.\n\nEşitlik bile yetmez: toplam, en büyük kenardan kesinlikle büyük olmalıdır."
+     },
+     {
+      "kind": "rule",
+      "title": "Üçgen olma koşulu",
+      "items": [
+       "Her kenar, diğer iki kenarın toplamından küçük ve farkından büyüktür: $|b - c| < a < b + c$.",
+       "Kısa yol: iki küçük kenarın toplamı en büyük kenardan büyük mü?",
+       "Toplam en büyük kenara **eşitse** çubuklar düz çizgiye yatar; üçgen oluşmaz.",
+       "Toplam en büyük kenardan küçükse uçlar birbirine yetişmez."
+      ],
+      "narration": "Üç kenarın hepsi için koşulu ayrı ayrı yazmana gerek yok. En büyük kenar koşulu sağlıyorsa diğer ikisi kendiliğinden sağlanır. Bu yüzden önce en büyük kenarı seç, sonra diğer ikisini topla ve en büyük kenarla karşılaştır."
+     },
+     {
+      "kind": "classify",
+      "title": "Üçgen kurar mı?",
+      "prompt": "Uzunluk üçlülerini doğru gruba yerleştir.",
+      "groups": [
+       {
+        "label": "Üçgen kurar",
+        "items": [
+         "4, 5, 6",
+         "6, 9, 10",
+         "1, 8, 8"
+        ]
+       },
+       {
+        "label": "Üçgen kurmaz",
+        "items": [
+         "2, 3, 5",
+         "7, 7, 14",
+         "3, 3, 7"
+        ]
+       }
+      ],
+      "explanation": "$4 + 5 > 6$, $6 + 9 > 10$ ve $1 + 8 > 8$ olduğundan bu üçlüler üçgen kurar. $2 + 3 = 5$ ve $7 + 7 = 14$ eşitliktir; $3 + 3 = 6 < 7$ olduğundan kopuktur. Bu üçlüler üçgen kurmaz."
+     },
+     {
+      "kind": "predict",
+      "title": "Herhangi iki kenar yeter mi?",
+      "prompt": "Üç uzunluktan herhangi ikisinin toplamı üçüncüden büyükse bu üç uzunlukla üçgen kurulur.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 1,
+      "explanation": "Üç toplam koşulunun hepsi gerekir. Örneğin 3, 4, 8'de $8 + 3 > 4$ sağlanır ama $3 + 4 < 8$'dir; üçgen kurulmaz. Bu yüzden iki küçük kenarın toplamını en büyük kenarla karşılaştırmak yeterli ve güvenlidir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aşağıdaki uzunluk üçlülerinden hangileriyle bir üçgen çizilebilir?\n\nI. $3$, $4$, $8$\n\nII. $5$, $6$, $11$\n\nIII. $4$, $7$, $10$",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "I'de iki küçük kenarın toplamı 7'dir; en büyük kenar 8'dir. Karşılaştır.",
+        "II'de iki küçük kenarın toplamı en büyük kenara tam eşittir. Eşitlikte ne olduğunu hatırla.",
+        null,
+        "I'de iki küçük kenarın toplamı en büyük kenardan küçüktür; I'i yeniden denetle.",
+        "II'de iki küçük kenarın toplamı en büyük kenara eşittir; eşitlik yetmez."
+       ],
+       "steps": [
+        {
+         "text": "Her üçlüde iki küçük kenarın toplamını en büyük kenarla karşılaştır."
+        },
+        {
+         "text": "Toplam en büyük kenardan **büyükse** üçgen olur; eşit ya da küçükse olmaz. Üç üçlüyü de bu ölçüte göre denetle."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; üçgen eşitsizliğinin sınır durumu (toplamın eşit olması) özgün üçlülerle sınandı."
+       }
+      }
+     },
+     {
+      "kind": "example",
+      "title": "En küçük çevre: farklı tam sayılar",
+      "example": "Kenar uzunlukları santimetre cinsinden farklı tam sayılar olan ve en küçük kenarı 5 cm olan bir üçgenin çevresi en az kaç santimetredir?",
+      "explanation": "Diğer kenarlar $5 < b < c$ olmalıdır. Çevreyi küçültmek için bu sayıları mümkün olduğunca küçük, yani ardışık seç: $b = 6$, $c = 7$. Kontrol: $5 + 6 = 11 > 7$ sağlanır. Çevre $5 + 6 + 7 = 18$ cm olur.\n\nHiçbir ek koşul yoksa ardışık üçlüleri sırayla dene: $1, 2, 3$ eşitlik olduğundan olmaz; $2, 3, 4$ olur ve çevre $9$ çıkar. ÖSYM 2025'te sorulan durum budur. Ardışık üçlü eşitsizliği sağlamıyorsa kenarları biraz aç."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kenar uzunlukları santimetre cinsinden birbirinden farklı tam sayılar olan bir üçgenin en uzun kenarı $9$ cm'dir. Bu üçgenin çevresi **en az** kaç santimetredir?",
+       "options": [
+        "18",
+        "19",
+        "20",
+        "21",
+        "27"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Diğer iki kenarın toplamını 9 almışsın; bu eşitlik demektir ve üçgen kurulmaz.",
+        null,
+        "Diğer iki kenarın toplamını 11 almışsın. Bundan daha küçük bir toplam da üçgen kuruyorsa en az çevre bu olmaz.",
+        "Diğer iki kenarın toplamını 12 almışsın. Daha küçük toplamları da dene.",
+        "Üç kenarı da 9 almışsın; oysa kenarlar farklı olmalı ve çevre en az istenmiş."
+       ],
+       "steps": [
+        {
+         "text": "Diğer iki kenara $a$ ve $b$ de: ikisi de $9$'dan küçük ve birbirinden farklıdır. Üçgen eşitsizliği $a + b$ için ne söylüyor?"
+        },
+        {
+         "text": "$a$ ve $b$ tam sayı olduğundan $a + b$ en az kaç olabilir? Bu toplamı veren farklı iki sayı olduğunu kontrol et."
+        },
+        {
+         "text": "Çevre $= a + b + 9$; en küçük $a + b$ değerini yerine koy."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2025 çeşitkenar tam sayı üçgen sorusunun fikri alındı, en uzun kenarı verilmiş farklı bir kökle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "İkizkenarda iki durum",
+      "text": "İkizkenar üçgenin iki kenarı verilip hangisinin eşit olduğu söylenmemişse **iki durum** vardır: verilen uzunluklardan biri eşit kenar, diğeri taban olur. Her durumda üç kenarı yaz ve üçgen eşitsizliğini ayrı ayrı denetle. Bazen yalnız biri, bazen ikisi de geçerlidir. İkisi de geçerliyse çevre için iki değer çıkar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir ikizkenar üçgenin iki kenar uzunluğu $4$ cm ve $9$ cm'dir. Bu üçgenin çevresi kaç santimetredir?",
+       "options": [
+        "13",
+        "17",
+        "17 ya da 22",
+        "22",
+        "26"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "4 + 9 yalnız verilen iki kenarın toplamıdır; üçüncü kenarı da hesaba katmalısın.",
+        "17'yi veren 4, 4, 9 üçlüsünü üçgen eşitsizliğiyle denetle.",
+        "İki durumun ikisini de üçgen eşitsizliğiyle denetledin mi? İkisi de koşulu sağlıyor mu, bak.",
+        null,
+        "9 + 9 + 4 + 4 gibi dört kenar toplamı olmuş; üçgenin üç kenarı vardır."
+       ],
+       "steps": [
+        {
+         "text": "Eşit kenarlar $4$ olabilir ya da $9$ olabilir. İki durumu ayrı ayrı yaz."
+        },
+        {
+         "text": "Her durumda üç kenarı yaz ve iki küçük kenarın toplamını en büyük kenarla karşılaştır."
+        },
+        {
+         "text": "Yalnız üçgen kuran durumun çevresini topla."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ikizkenar üçgende hangi kenarın eş olabileceği, üçgen eşitsizliğiyle eleme yapılan özgün bir soruyla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "multi",
+      "title": "İki durum da geçerli olabilir",
+      "stem": "İki kenarının uzunluğu $6$ cm ve $10$ cm olan bir ikizkenar üçgenin çevresi aşağıdakilerden hangileri olabilir?",
+      "options": [
+       "22",
+       "26",
+       "32",
+       "16"
+      ],
+      "answers": [
+       0,
+       1
+      ],
+      "choiceFeedback": [
+       null,
+       null,
+       "6 + 6 + 10 + 10 dört kenarın toplamıdır; üçgenin üç kenarı vardır.",
+       "16 = 6 + 10 yalnız verilen iki kenardır; üçüncü kenar da eklenmeli."
+      ],
+      "explanation": "Eşit kenarlar 6 ise kenarlar 6, 6, 10 olur; $6 + 6 = 12 > 10$ olduğundan üçgen kurulur ve çevre $22$ olur. Eşit kenarlar 10 ise kenarlar 10, 10, 6 olur; $10 + 6 > 10$ sağlandığından çevre $26$ olur. İki durum da geçerli olduğu için çevre iki değer alır."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_ACILAR_UCGENLER_04",
+    "title": "Kenar aralığı ve tam sayılar",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Kenar aralığı",
+      "items": [
+       "İki kenar $b$ ve $c$ ise üçüncü kenar: $|b - c| < a < b + c$.",
+       "Tam sayı değerleri sayılırken **uçlar dahil edilmez**.",
+       "Ortak kenarlı iki üçgende iki aralığın **kesişimi** alınır.",
+       "Açı sırası verilmişse kenar sırası da aralığı daraltır."
+      ],
+      "narration": "İki kenarı $b$ ve $c$ olan bir üçgende üçüncü kenar, $b$ ile $c$'nin farkından büyük, toplamından küçüktür. Tam sayı değerleri sayarken sınırlar dahil edilmez; eşitlikte üçgen kurulmaz. Aralıktaki tam sayıların sayısı $\\text{son} - \\text{ilk} + 1$ ile bulunur. Bir kenar iki üçgenin ortak kenarıysa iki aralığı ayrı ayrı bulur, kesişimini alırsın. Soruda açıların sırası verilmişse karşılarındaki kenarların sırası da aralığı daraltır."
+     },
+     {
+      "kind": "predict",
+      "title": "Kaç tam sayı?",
+      "prompt": "$5 < x < 12$ koşulunu sağlayan tam sayı değeri 6 tanedir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Uçlar dahil değildir; değerler 6, 7, 8, 9, 10, 11'dir. Sayı: $11 - 6 + 1 = 6$."
+     },
+     {
+      "kind": "blank",
+      "title": "En büyük değer",
+      "prompt": "İki kenarı 5 cm ve 9 cm olan bir üçgenin üçüncü kenarı tam sayıdır. Bu kenar en çok kaç santimetre olabilir?",
+      "before": "En çok",
+      "after": "cm",
+      "answers": [
+       "13"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 13,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "14",
+        "feedback": "14, toplam sınırıdır; uçlar dahil olmadığından 14 ile üçgen kurulmaz."
+       }
+      ],
+      "explanation": "$9 - 5 < x < 9 + 5$ → $4 < x < 14$. Üst uç dahil değil; en büyük tam sayı $13$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $|AB| = 6$ cm ve $|AC| = 10$ cm'dir. $|BC|$ santimetre cinsinden bir tam sayı olduğuna göre kaç farklı değer alabilir?",
+       "options": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Sınırları farkla ve toplamla bulmayı kontrol et: $10 - 6$ ve $10 + 6$. Sonra tam sayıları tek tek yaz.",
+        "Sınırlar farkını almışsın (15 − 5); kaç değer olduğunu bulmak için bir artırmak gerekir.",
+        null,
+        "Uçlardan birini (4 ya da 16) dahil etmiş olabilirsin; uçlar dahil değildir.",
+        "4 ve 16'yı da saymışsın; uçlar dahil değildir."
+       ],
+       "steps": [
+        {
+         "text": "Üçgen eşitsizliğini yaz: fark $< |BC| <$ toplam. Sınırları bul."
+        },
+        {
+         "text": "Sınırlar dahil değil; aralıktaki en küçük ve en büyük tam sayıyı belirle."
+        },
+        {
+         "text": "Değer sayısı: son tam sayı $-$ ilk tam sayı $+ 1$."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; üçüncü kenarın tam sayı değerleri özgün uzunluklarla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "En küçük ve en büyük çevre",
+      "text": "İki kenarı $b \\le c$ olan bir üçgende üçüncü kenar tam sayıysa: en küçük değeri $c - b + 1$, en büyük değeri $b + c - 1$'dir. Bunları iki kenarın toplamına ekleyince en küçük çevre $2c + 1$, en büyük çevre $2(b + c) - 1$ çıkar. Önce aralığı yaz; sonra uçlardan içeri doğru **en yakın tam sayıyı** al. Uçların kendisi çevre hesabına girmez."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "İki kenar uzunluğu $7$ cm ve $12$ cm olan bir üçgenin üçüncü kenarı santimetre cinsinden bir tam sayıdır. Bu üçgenin çevresi **en çok** kaç santimetre olabilir?",
+       "options": [
+        "24",
+        "25",
+        "36",
+        "37",
+        "38"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "Üçüncü kenarı alt sınır olan 5 almışsın; alt sınır dahil değildir ve zaten en çok çevre isteniyor.",
+        "Üçüncü kenarın en küçük tam sayı değerini kullanmışsın; bu en az çevreyi verir.",
+        "Üçüncü kenarın en büyük tam sayı değerini bir eksik almış olabilirsin. Üst sınıra en yakın tam sayıyı yeniden bul.",
+        null,
+        "Üçüncü kenarı üst sınır olan 19 almışsın; üst sınır dahil değildir."
+       ],
+       "steps": [
+        {
+         "text": "Üçüncü kenar $c$ için $12 - 7 < c < 12 + 7$ aralığını yaz."
+        },
+        {
+         "text": "Çevre $= 7 + 12 + c$; en çok istendiğinden $c$'nin alabileceği en büyük tam sayıyı belirle."
+        },
+        {
+         "text": "Üst sınır dahil değildir; sınıra en yakın tam sayıyı al ve çevreyi topla."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; tam sayı kenarlı üçgende en büyük çevre kalıbı, özgün uzunluklarla (7 ve 12) kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "blank",
+      "title": "En küçük çevre",
+      "prompt": "İki kenarı 6 cm ve 11 cm olan bir üçgenin üçüncü kenarı tam sayıdır. Üçgenin çevresi en az kaç santimetredir?",
+      "before": "En az",
+      "after": "cm",
+      "answers": [
+       "23"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 23,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "22",
+        "feedback": "22, üçüncü kenarı alt sınır olan 5 almakla çıkar; 5 dahil değildir. Aralıktaki ilk tam sayıyı al."
+       }
+      ],
+      "explanation": "$11 - 6 < c < 11 + 6$ → $5 < c < 17$. En küçük tam sayı $c = 6$; çevre $6 + 11 + 6 = 23$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ dörtgeninde $|AB| = 5$, $|BC| = 7$, $|CD| = 4$ ve $|DA| = 9$ birimdir. $[AC]$ köşegeninin uzunluğu $x$ bir tam sayı olduğuna göre $x$ kaç farklı değer alabilir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.6,
+         -4.6,
+         8.8,
+         4.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           2.5,
+           4.33
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           8,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           8.062,
+           -4
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "5",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "label": "7",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "label": "9",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "label": "x",
+          "dashed": true,
+          "ticks": 0
+         }
+        ]
+       },
+       "options": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Sayımda bir değeri atlamış olabilirsin. Kesişimdeki tam sayıları tek tek yazıp say.",
+        null,
+        "Yalnız $ACD$ üçgeninin koşulunu ya da uçları dahil ederek saymış olabilirsin; iki üçgenin koşulu birlikte sağlanmalı.",
+        "Aralığın uçlarından birini dahil etmiş olabilirsin; uçlar dahil değildir.",
+        "Yalnız $ABC$ üçgeninin koşulunu kullanmış olabilirsin. $[AC]$ ikinci üçgenin de kenarıdır."
+       ],
+       "steps": [
+        {
+         "text": "$[AC]$ iki üçgenin ortak kenarı: $ABC$ ve $ACD$ üçgenlerinde ayrı ayrı üçgen eşitsizliği yaz."
+        },
+        {
+         "text": "İki aralığın ortak (kesişim) kısmını bul."
+        },
+        {
+         "text": "Kesişimdeki tam sayıları tek tek yaz ve say."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ortak kenarlı iki üçgende aralıkların kesişimi, ölçülere uygun çizilmiş özgün bir dörtgenle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $m(\\widehat{A}) < m(\\widehat{B}) < m(\\widehat{C})$, $|AB| = 8$ cm ve $|BC| = 3$ cm'dir. $|AC|$ bir tam sayı olduğuna göre kaç farklı değer alabilir?",
+       "options": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "Üst sınır olan 8'i de saymış olabilirsin; sınırlar dahil değildir.",
+        "Yalnız açı sırasından gelen aralığı saymış olabilirsin; üçgen eşitsizliğinin alt sınırı da var.",
+        "Yalnız üçgen eşitsizliğinden gelen aralığı saymış olabilirsin; açı sırası üst sınırı daraltır.",
+        "Açı sırasından gelen aralıkta uçları dahil etmiş olabilirsin; uçlar dahil değildir."
+       ],
+       "steps": [
+        {
+         "text": "Açı sırasından kenar sırasını yaz. $|AC|$ hangi iki kenarın arasında kalıyor? Bu bir aralık verir."
+        },
+        {
+         "text": "Üçgen eşitsizliğinden $|AC|$ için ikinci bir aralık yaz."
+        },
+        {
+         "text": "İki koşul aynı anda sağlanmalı: aralıkların kesişimindeki tam sayıları say."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; açı-kenar sıralaması ile üçgen eşitsizliği aynı soruda birleştirildi, sayılar özgündür."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Büyük açının karşısında **büyük kenar**, küçük açının karşısında **küçük kenar** vardır; eşit açıların karşısında eşit kenarlar bulunur.",
+    "Ortak kenarlı iki üçgende her üçgeni ayrı sırala, ortak kenarla zinciri birleştir.",
+    "Dış açı, komşu olmayan iki iç açının toplamına eşittir.",
+    "Üçgen eşitsizliği: $|b - c| < a < b + c$; **eşitlik** varsa üçgen olmaz.",
+    "Tam sayı değerleri sayılırken **uçlar** dahil edilmez; değer sayısı son $-$ ilk $+ 1$'dir.",
+    "Ortak kenarlı iki üçgende iki aralığın **kesişimi** alınır; açı sırası aralığı daraltır.",
+    "Üçüncü kenar tam sayıysa ($b \\le c$) en küçük çevre $2c + 1$, en büyük çevre $2(b + c) - 1$'dir."
+   ],
+   "warnings": [
+    "Kenar sıralaması yalnız **aynı üçgende** açı sırasından okunur; iki üçgen ortak kenarla bağlanır.",
+    "İkizkenarda iki seçenek varsa her birini **eşitsizlikle** denetle.",
+    "Harf sırasına değil, açının büyüklüğüne bak.",
+    "Açı sırası verilmişse kenar sırasını da aralığa **ekle**."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Üç kalem ya da çubukla **3-5-8** ve **5-6-8** üçlülerini dene; hangisi kapanıyor, gör.",
+    "Açı-kenar sıralamasını ve $|b - c| < a < b + c$ kuralını **bir sayfaya** örnekle yaz.",
+    "Uygulamada Açılar ve Üçgenler testinden **20 soru** çöz; her soruda önce **aralığı** yaz."
+   ]
+  }
+ }
+}

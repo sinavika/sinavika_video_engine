@@ -4,6 +4,7 @@ import {withAlpha} from '../../../../Themes/Theme';
 import {useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
 import {ProcessFrame, ProcessLabel, processCamera, useProcessClock} from '../ProcessScene';
+import {FigureText} from '../../VisualWorld';
 
 type ProcessSpec = Extract<CourseVisual, {kind: 'process'}>;
 
@@ -42,9 +43,9 @@ export const NumberLineProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}>
 				return (
 					<g key={value}>
 						<line x1={at(value)} y1={LINE.y - 12} x2={at(value)} y2={LINE.y + 12} stroke={palette.ink} strokeWidth={3} />
-						<text x={at(value)} y={LINE.y + 50} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={value === centre ? 800 : 600} fontSize={30} fill={value === centre ? palette.lesson : palette.ink}>
+						<FigureText x={at(value)} y={LINE.y + 50} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={value === centre ? 800 : 600} fontSize={30} fill={value === centre ? palette.lesson : palette.ink}>
 							{value < 0 ? `−${-value}` : value}
-						</text>
+						</FigureText>
 					</g>
 				);
 			})}
@@ -53,18 +54,18 @@ export const NumberLineProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}>
 			{/* Two walkers, three steps each way; the arcs they trace; the numbers they reach. */}
 			<path d={arc(centre, left, 120 * walk)} fill="none" stroke={palette.lesson} strokeWidth={5} strokeDasharray="12 8" />
 			<path d={arc(centre, right, 120 * walk)} fill="none" stroke={palette.lesson} strokeWidth={5} strokeDasharray="12 8" />
-			<text x={(at(centre) + at(left)) / 2} y={LINE.y - 80 * walk - 20} textAnchor="middle" fontFamily={palette.fontDisplay} fontWeight={800} fontSize={34} fill={palette.lesson} opacity={walk}>
+			<FigureText x={(at(centre) + at(left)) / 2} y={LINE.y - 80 * walk - 20} textAnchor="middle" fontFamily={palette.fontDisplay} fontWeight={800} fontSize={34} fill={palette.lesson} opacity={walk}>
 				3
-			</text>
-			<text x={(at(centre) + at(right)) / 2} y={LINE.y - 80 * walk - 20} textAnchor="middle" fontFamily={palette.fontDisplay} fontWeight={800} fontSize={34} fill={palette.lesson} opacity={walk}>
+			</FigureText>
+			<FigureText x={(at(centre) + at(right)) / 2} y={LINE.y - 80 * walk - 20} textAnchor="middle" fontFamily={palette.fontDisplay} fontWeight={800} fontSize={34} fill={palette.lesson} opacity={walk}>
 				3
-			</text>
+			</FigureText>
 			{[left, right].map((value, index) => (
 				<circle key={index} cx={at(value)} cy={LINE.y} r={14} fill={clock.current === 'esitsizlik' ? '#FFFFFF' : palette.lesson} stroke={palette.lesson} strokeWidth={5} opacity={walk} />
 			))}
-			<text x={800} y={200} textAnchor="middle" fontFamily={palette.fontDisplay} fontWeight={800} fontSize={44} fill={palette.ink}>
+			<FigureText x={800} y={200} textAnchor="middle" fontFamily={palette.fontDisplay} fontWeight={800} fontSize={44} fill={palette.ink}>
 				{clock.current === 'uzaklik' ? '|3| = |−3| = 3' : clock.current === 'denklem' ? '|x − 2| = 3  →  x = 5 ya da x = −1' : '|x − 2| < 3  →  −1 < x < 5'}
-			</text>
+			</FigureText>
 			<ProcessLabel id="merkez" at={[at(centre), LINE.y - 12]} to={[at(centre), LINE.y + 120]} text={centre === 0 ? 'Sıfırdan uzaklık' : '2’den uzaklık'} show={clock.now(clock.current)} />
 		</ProcessFrame>
 	);

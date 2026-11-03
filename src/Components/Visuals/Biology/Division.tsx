@@ -4,7 +4,7 @@ import {withAlpha} from '../../../Themes/Theme';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import {DIVISION_DEFAULT_STAGES} from './BiologySchema';
 import {type CourseVisual} from '../VisualSchema';
-import {usePartLook, World} from '../VisualWorld';
+import {usePartLook, World, FigureText} from '../VisualWorld';
 import {ORGANELLE_COLORS as C} from './Cell';
 
 // ---------------------------------------------------------------- mitosis and meiosis, stage by stage
@@ -312,13 +312,13 @@ const Panel: React.FC<{visual: Division; stage: Stage; index: number; slot: {cx:
 			<g transform={`translate(${cx} ${cy}) scale(${1 + 0.05 * lit}) translate(${-cx} ${-cy})`}>
 				<StageDrawing stage={stage} n={visual.n} plant={plant} cx={cx} cy={cy} move={move} lesson={palette.lesson} ink={palette.ink} />
 			</g>
-			<text x={cx} y={top + (visual.numbered ? 272 : 270)} textAnchor="middle" fontSize={(visual.numbered ? 36 : 27) * (1 + 0.06 * lit)} fontWeight={800} fill={lit > 0.5 ? palette.lesson : palette.ink} fontFamily={palette.fontBody}>
+			<FigureText x={cx} y={top + (visual.numbered ? 272 : 270)} textAnchor="middle" fontSize={(visual.numbered ? 36 : 27) * (1 + 0.06 * lit)} fontWeight={800} fill={lit > 0.5 ? palette.lesson : palette.ink} fontFamily={palette.fontBody}>
 				{visual.numbered ? ROMAN[index] : title}
-			</text>
+			</FigureText>
 			{visual.numbered ? null : (
 				<g>
-					<text x={cx} y={top + 298} textAnchor="middle" fontSize={18} fontWeight={600} fill={palette.muted} fontFamily={palette.fontBody}>{note}</text>
-					<text x={cx} y={top + 324} textAnchor="middle" fontSize={20} fontWeight={800} fill={palette.lesson} fontFamily={palette.fontBody}>{ploidy(stage, visual.n)}</text>
+					<FigureText x={cx} y={top + 298} textAnchor="middle" fontSize={18} fontWeight={600} fill={palette.muted} fontFamily={palette.fontBody}>{note}</FigureText>
+					<FigureText x={cx} y={top + 324} textAnchor="middle" fontSize={20} fontWeight={800} fill={palette.lesson} fontFamily={palette.fontBody}>{ploidy(stage, visual.n)}</FigureText>
 				</g>
 			)}
 		</g>

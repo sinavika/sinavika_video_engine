@@ -1,7 +1,8 @@
 import React from 'react';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor} from '../VisualTimeline';
+import {FigureText} from '../VisualWorld';
 
 type Circulation = Extract<CourseVisual, {kind: 'circulation'}>;
 
@@ -79,9 +80,9 @@ export const CirculationVisual: React.FC<VisualBoxProps & {visual: Circulation}>
 	const runStart = useBeatStartFor('run', 'show');
 	const fontSize = Math.max(60, 28 / k);
 	const text = (x: number, y: number, value: string, anchor: 'start' | 'middle' | 'end' = 'middle', size = fontSize * 0.6, weight = 800) => (
-		<text x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={weight} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
+		<FigureText x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={weight} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
 			{value}
-		</text>
+		</FigureText>
 	);
 	const [rich, poor] = [palette.brand, palette.lessonDeep];
 	const vessel = (points: Point[], colour: string) => <polyline points={points.map((point) => `${point.x},${point.y}`).join(' ')} fill="none" stroke={colour} strokeWidth={18} strokeLinejoin="round" strokeLinecap="round" opacity={0.85} />;
@@ -99,7 +100,8 @@ export const CirculationVisual: React.FC<VisualBoxProps & {visual: Circulation}>
 	const cell = visual.motion && runStart !== undefined && seconds >= runStart ? cellAt((seconds - runStart) / visual.period) : undefined;
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`} opacity={appear}>
 				<Part id="small">
 					{(look) => (
@@ -167,5 +169,6 @@ export const CirculationVisual: React.FC<VisualBoxProps & {visual: Circulation}>
 				</g>
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

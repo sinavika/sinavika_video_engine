@@ -2,7 +2,7 @@ import React from 'react';
 import {BRAND_TYPOGRAPHY} from '../../../Configurations/BrandTypography';
 import {mixColors} from '../../../Themes/ColorPalette';
 import {useVideoLayout} from '../../Layouts/VideoLayout';
-import {textWidth} from '../Mathematics/FigureLabel';
+import {textWidth} from '../FigureLabel';
 import {useReveal, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {elementLook, useElementState} from '../VisualTimeline';
@@ -31,24 +31,32 @@ export const periodTicks = (first: number, last: number, most = 7): number[] => 
 /** Height of one row of mark labels, in layout units. */
 const MARK_ROW = 40;
 
+/** Where a mark's label is centred: on its year, or leaning in from an edge of a figure `width` wide. */
+const markLabelCentre = (x: number, span: number, width: number): number => Math.min(width - span / 2, Math.max(span / 2, x));
+
 /**
- * Which row each mark's label takes, 0 nearest the bars: the first row whose last label ends before this one begins
- * (labels are centred on their year and kept inside the figure, as PeriodMark draws them).
+ * Which row each mark's label takes, 0 nearest the bars: the first row whose last label ends `gap` before this one
+ * begins. Labels are centred where PeriodMark draws them: on their year, kept inside the figure. Reckoned on the year
+ * alone, "1923 İzmir İktisat Kongresi", pushed in from the left edge, ran into "1930 Merkez Bankası" (KPSS Tarih 18,
+ * 2 Nov 2026).
  */
-export const periodMarkRows = (marks: readonly {year: number; label: string}[], x: (year: number) => number, span: (text: string) => number): number[] => {
+export const periodMarkRows = (marks: readonly {year: number; label: string}[], x: (year: number) => number, span: (text: string) => number, width = Infinity, gap = 0): number[] => {
 	const ends: number[] = [];
 	const order = marks.map((mark, index) => ({index, at: x(mark.year)})).sort((a, b) => a.at - b.at);
 	const rows: number[] = new Array(marks.length).fill(0);
 	for (const {index, at} of order) {
-		const text = `${periodYear(marks[index].year)} ${marks[index].label}`;
-		const left = at - span(text) / 2;
-		let row = ends.findIndex((end) => end <= left);
+		const wide = span(`${periodYear(marks[index].year)} ${marks[index].label}`);
+		const centre = markLabelCentre(at, wide, width);
+		let row = ends.findIndex((end) => end + gap <= centre - wide / 2);
 		if (row < 0) row = ends.length;
-		ends[row] = at + span(text) / 2;
+		ends[row] = centre + wide / 2;
 		rows[index] = row;
 	}
 	return rows;
 };
+
+/** How wide a period's name and the years under it are, the wider of the two. */
+const nameSpan = (label: string, second: string, u: (value: number) => number): number => Math.max(textWidth(label, u(TYPE.name)), textWidth(second, u(TYPE.years), 700));
 
 /** Type sizes of a period chart: the name in a bar, the years under it, the axis. */
 // A chart of seven states filled a whole card with names at 30 units that read small (KPSS Tarih 1, 1 Nov 2026).
@@ -68,7 +76,7 @@ export const periodsLayout = (visual: Pick<Periods, 'periods' | 'marks'>, width:
 	const x = (year: number) => side + ((year - first) / (last - first)) * (width - 2 * side);
 	// Mark labels in rows above the bars: a label that would run into the one before it (1040 Dandanakan and 1071
 	// Malazgirt on a 840–1231 axis, KPSS Tarih 2) goes up a row.
-	const markRows = periodMarkRows(visual.marks, (year) => side + ((year - first) / (last - first)) * (width - 2 * side), (text) => textWidth(text, u(TYPE.mark)) * 0.92 + u(24));
+	const markRows = periodMarkRows(visual.marks, x, (text) => textWidth(text, u(TYPE.mark)), width, u(24));
 	const rowsOfMarks = visual.marks.length ? Math.max(...markRows) + 1 : 0;
 	const ceiling = visual.marks.length ? u(72) + (rowsOfMarks - 1) * u(MARK_ROW) : u(8);
 	const bottom = height - u(72);
@@ -82,13 +90,22 @@ export const periodsLayout = (visual: Pick<Periods, 'periods' | 'marks'>, width:
 		const [x0, x1] = [x(period.from), x(period.to)];
 		const y = top + index * rowHeight + (rowHeight - barHeight) / 2;
 		const second = periodRange(period.from, period.to) + (period.detail ? ` · ${period.detail}` : '');
-		const textSpan = Math.max(textWidth(period.label, u(TYPE.name)) * 0.92, textWidth(second, u(TYPE.years)) * 0.92);
+		const textSpan = nameSpan(period.label, second, u);
 		const place: 'inside' | 'right' | 'left' = textSpan + 2 * gap <= x1 - x0 ? 'inside' : x1 + gap + textSpan <= width ? 'right' : x0 - gap - textSpan >= 0 ? 'left' : 'inside';
 		const labelX = place === 'inside' ? x0 + gap : place === 'right' ? x1 + gap : x0 - gap;
 		return {x0, x1, y, height: barHeight, place, labelX, second};
 	});
-	return {x, rows, ticks: periodTicks(Math.ceil(first), Math.floor(last)), axisY: bottom + u(12), top, markRows};
+	return {x, rows, ticks: periodTicks(Math.ceil(first), Math.floor(last)), axisY: bottom + u(12), top, markRows, ceiling};
 };
+
+/** The least height of a period's row in an app still: its name and its years on their plate, clear of the next row's. */
+const STILL_ROW = 88;
+
+/**
+ * How tall an app still's period chart must be for every row to hold its name and years: seven states in a 16:10 still
+ * had rows of 50 units, and each name printed over the years of the one above (KPSS Tarih, 2 Nov 2026).
+ */
+export const periodsStillHeight = (visual: Pick<Periods, 'periods' | 'marks'>, width: number): number => periodsLayout(visual, width, 10_000, (value) => value).ceiling + visual.periods.length * STILL_ROW + 72;
 
 /**
  * States, eras or reigns as bars on one year line (History: which states stood side by side, which followed which:
@@ -153,7 +170,7 @@ const PeriodBar: React.FC<{id: string; row: ReturnType<typeof periodsLayout>['ro
 			<g opacity={Math.min(1, Math.max(0, grow * 1.6 - 0.6))}>
 				{/* A name beside its bar sits on a plate of the figure's ground: a mark's line passing by shows neither through nor between its letters (1952 across "II. Dünya Savaşı", KPSS Tarih 21). */}
 				{inside ? null : (() => {
-					const span = Math.max(textWidth(label, u(TYPE.name)), textWidth(row.second, u(TYPE.years))) * 0.95 + u(12);
+					const span = nameSpan(label, row.second, u) + u(12);
 					return <rect x={anchor === 'start' ? row.labelX - u(6) : row.labelX - span + u(6)} y={centre - u(TYPE.name) * 0.95} width={span} height={u(TYPE.name) * 0.95 + u(TYPE.years) + u(12)} rx={u(8)} fill={palette.surface} />;
 				})()}
 				{/* A name inside its bar is outlined in the bar's own colour, so a mark's line behind the bar never crosses its letters. */}
@@ -174,9 +191,8 @@ const PeriodMark: React.FC<{layer: 'line' | 'name'; id: string; x: number; top: 
 	const {u} = useVideoLayout();
 	const look = elementLook(useElementState(id));
 	const show = useReveal(delaySeconds, 0.5) * look.opacity;
-	const span = textWidth(text, u(TYPE.mark)) * 0.92;
 	// The label stays inside the figure: centred on its year, or leaning in from an edge.
-	const labelX = Math.min(width - span / 2, Math.max(span / 2, x));
+	const labelX = markLabelCentre(x, textWidth(text, u(TYPE.mark)), width);
 	const colour = mixColors(palette.brand, palette.ink, 0.15);
 	if (layer === 'line') return <line x1={x} x2={x} y1={top - u(14)} y2={bottom} stroke={colour} strokeWidth={u(4) * look.scale} strokeDasharray={`${u(12)} ${u(8)}`} opacity={show} />;
 	return (

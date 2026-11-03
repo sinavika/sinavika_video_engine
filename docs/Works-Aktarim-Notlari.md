@@ -85,3 +85,20 @@ Mapper `works.additions` alanını okuyor ve motorun kuralıyla denetliyor: en �
 - **Ortaöğretim, Önlisans'ın ikizidir:** aynı konular, aynı kodlar, aynı adlar; `KPSS_ONLISANS:X` yazan bölüm `KPSS_ORTAOGRETIM:X`'i de anlatır.
 - **14 konunun kendi senaryosu yok** (ör. Önlisans `TAR_INKILAP`, `COG_EKONOMIK`, `VAT_VATANDASLIK`; Lisans `TAR_MILLI_MUCADELE`). Alt konuları birkaç senaryoya dağılır. Kontrol listesinde bu kayıtların `files.scripts` alanı onları anlatan bütün senaryoları listeler.
 - **Works tarafı:** toplama işini motor yapar. `Curriculum/Works/KPSS_LISANS`, `KPSS_ONLISANS` ve `KPSS_ORTAOGRETIM` altında 256 konunun her biri kendi seviyesinin kodlarıyla ayrı dosyadır. Geniş konuların (`TAR_INKILAP`, `COG_EKONOMIK`) dosyası birden çok bölümden kurulur. Aktarım bu dosyaları okur; `Curriculum/Scripts/KPSS` doğrudan aktarılmaz. Dosyalar bölümler yazıldıkça çoğalır.
+
+## 8. Yazılı ders katmanı: `Curriculum/WorksWritten` (2 Kasım 2026, pilot)
+
+- **Neden:** Videodan kurulan Works dosyası, sesi olmayan bir videoya benziyordu. Senaryodaki anlatımın yaklaşık %61'i Works'e geçmiyordu (görselin adım adım anlatımı, soru çözümlerinin ayrıntılı açıklaması). Geçen metin sesli okunmak için yazılmıştı ("10 A artı B"). Doğru/yanlış adımlarının hepsinin cevabı "Yanlış"tı, soruların çoğunda son ipucu cevabın harfini söylüyordu. Works notları (`works.additions`) yalnız not olarak kalıyordu.
+- **Ne:** `Curriculum/WorksWritten/<KATEGORİ>/<DERS>/<KONU>.json`, konunun Works için yazılmış dersidir. `npm run curriculum -- works` bu dosyayı denetler (`src/Courses/WorksWritten.ts`); geçerse o konunun `Curriculum/Works` dosyası olarak yazar. Video senaryoları değişmez.
+- **API'de değişiklik gerekmez.** Biçim yine `WorkScriptDto`'dur ve yalnız eşleyicinin okuduğu kartlar ve alanlar kullanılır:
+  - `rule` ve `visual` kartındaki `narration` öğrencinin okuyacağı yazılı açıklamadır ("Konu anlatımı").
+  - Doğru cevabı "Doğru" olan ifadeler `predict` kartıyla yazılır (seçenekler "Doğru" / "Yanlış"). `mistake` kartı her zaman yanlış ifadedir.
+  - Soru adımları ipucudur: cevabın harfini söylemez, son adım da sonucu vermez.
+- **Ek alanlar:** `written` alanı yalnız motor içindir ve API'de yok sayılır: `sources` dersin dayandığı kaynakları, `additions` her Works notunun derste nerede karşılandığını gösterir. Yazılı derste `works.additions` yoktur, çünkü notlar artık dersin içindedir. Bu yüzden konunun `AdditionsJson` alanı boş gelir.
+- **Bölüm anahtarları aynı kalır** (alt konu kodu). Kart sırası değiştiği için adım anahtarları (`03-predict`) değişir; o mikro derslerde öğrencinin kaldığı yer yeniden başlar.
+- **TYT tamam (3 Kasım 2026):** 168 konunun hepsi yazılı derstir.
+  - API'nin 2 Kasım'daki 12 özelliğinin kartlarını kullanır: `blank`, `findError`, `match`, `classify`, `tap`, `split`, `multi`, `flip`, `guided` ve `choiceFeedback`.
+  - Yerelde yeni eşleyiciden geçti (`WorkEngineScenarioDryRunTests` 3/3).
+  - **Bugünkü canlı API bu kartları tanımaz:** içerik ancak 12 özellik ve mig130 canlıya çıktıktan sonra aktarılır.
+  - Rapor: `Curriculum/Production/Works-TYT-Yazili-Ders-Raporu.md`.
+- **Tek konu yazmak:** `npm run curriculum -- works YKS_TYT --topic YKS_TYT/MAT/MAT_BASAMAK`. Bu komut yalnız o konuyu yazar ve hiçbir dosyayı silmez. Bütün kategoriyi yeniden yazmak, görsel şemasına sonradan eklenen varsayılan alanları (`trace`, `piece`, `showParameters` gibi) dosyalara ekler. Bu da resimlerin `rawHash` özetini değiştirir; ardından o kategorinin resimleri yeniden çizilmelidir.

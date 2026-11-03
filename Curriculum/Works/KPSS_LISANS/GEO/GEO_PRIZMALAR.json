@@ -13,29 +13,67 @@
  "sourceScripts": [
   "Curriculum/Scripts/KPSS/GEO/GEO_PRIZMALAR.json"
  ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/KPSS/Lisans/KonuAnlatimi/kpss_lisans_kn_geometri_prizmalar2.json (MEB ÖERHGM Prizmalar)",
+   "EgitimVerileri/KPSS/Lisans/CikmisSorular/GEO_PRIZMALAR (ÖSYM 2010, 2014, 2015) ve doğrulanmış havuz soruları",
+   "Curriculum/Scripts/KPSS/GEO/GEO_PRIZMALAR.json"
+  ],
+  "additions": [
+   {
+    "note": "Prizmanın elemanları: taban, yanal yüz, ayrıt, köşe; n-gen prizmada 2n köşe, 3n ayrıt, n + 2 yüz.",
+    "done": "Bölüm 1'de: 'Prizma ve elemanları' kartı, 3-4-5-6-gen ve n-gen için tam eleman tablosu, terim eşleştirme, ayrıt sayısı boşluk kartı, ayrıt sayısı verilen yüz sorusu ve Euler sağlaması (köşe + yüz = ayrıt + 2) kartıyla karşılandı."
+   },
+   {
+    "note": "Dik prizma: yanal yüzler dikdörtgen, yanal alan = taban çevresi · h, toplam alan = 2 · taban + yanal, hacim = taban · h.",
+    "done": "Bölüm 2'de: dik ve düzgün prizma kuralı, eşkenar üçgen tabanlı ek örnek, 'yanal mı, toplam mı?' yanılgı kartı, 3-4-5 tabanlı yüzey alanı sorusu ve ikizkenar üçgen tabanlı adım adım kart (MEB ve havuz kalıbı) ile karşılandı."
+   },
+   {
+    "note": "Açınım: yanal yüzler taban çevresi uzunluğunda bir şerit; küp açınımında yan yana dört karede bir atlayanlar karşılıklı.",
+    "done": "Bölüm 3'te: üçgen prizma açınımı, şerit uzunluğu = taban çevresi kavramı ve boşluk kartı, küp açınımı kuralı (istisnasıyla: kural yalnız dört karelik şeritli açınım için), karşılıklı yüz sorusu ve açınımın şeridi üzerine tahmin kartıyla karşılandı."
+   },
+   {
+    "note": "Yüzey alanı: açınımın alanı; kesilen cisimde iki yeni yüz (ÖSYM 2020 kalıbı). Hacim: birim küp sayısı, taban alanı · yükseklik; çakılan çivilerden boyutlar (ÖSYM 2018), yapıştırılan küpler (ÖSYM 2014).",
+    "done": "Bölüm 4'te kesilen cisimde iki yeni yüz (kural, örnek, yanılgı kartı, soru), köşeden küp kesme istisnası ve boyalı küp tablosuyla; Bölüm 5'te birim küp sayısı ve taban·yükseklik görseli, çivi sorusu (içeride kalan boyutlar), yapıştırılan küpler yanılgısı ve sorusu, litre–dm³ ve bileşik cisim kartlarıyla karşılandı."
+   },
+   {
+    "note": "Dikdörtgenler prizması: V = abc, A = 2(ab + bc + ca), d = √(a² + b² + c²). Küp: a³, 6a², a√3; ayrıt k katı → alan k², hacim k³ katı.",
+    "done": "Bölüm 6'da V, A ve d kuralı, 3-4-12 örneği, üç yüz alanından hacim kavramı, köşegen hatası avı, iki soru ve yüzey alanı boşluk kartıyla; Bölüm 7'de küp kuralı, ayrıt katlarına göre alan-hacim tablosu, tahmin kartları, soru, köşegenden hacim ve sınıflama kartıyla karşılandı."
+   }
+  ],
+  "fixes": [
+   "Çivi sorusunda 'tamamen çakılıyor' ile 'dışarı taşıyor' çelişiyordu; çivilerin tahtayı boydan boya geçip öbür yüzden çıktığı biçiminde düzeltildi.",
+   "Küp açınımı açıklamasında E ve F yüzleri 'A'nın iki yanında' diye geçiyordu; doğrusu: E, A'nın üstünde, F altındadır ve birbirinin karşısındadır.",
+   "Boyalı küp açıklamasındaki 'yüzlerin ortası 6 (bir yüz)' ifadesi belirsizdi; yüz ortasındaki 6 küpün yalnız bir yüzünün boyalı olduğu açıkça yazıldı.",
+   "Soru ipuçları 'Cevap C' gibi harf veriyor ve son adımda sonucu söylüyordu; ipuçları yeniden yazıldı, son işlem öğrenciye bırakıldı, şık açıklamaları choiceFeedback'e taşındı."
+  ]
+ },
  "lesson": {
   "hook": {
-   "headline": "Kaç küp sığar?",
-   "narration": "Bir kutunun hacmi, içine kaç tane birim küp sığdığıdır. Tabanı bir kat doldurur, yükseklik kadar kat üst üste koyarsın. Bu derste prizmaların elemanlarını, açınımlarını, yüzey alanlarını ve hacimlerini göreceğiz. ÖSYM'nin kesilen tahta, çakılan çivi ve yapıştırılan küp sorularını da bu fikirle çözeceğiz."
+   "headline": "Bir kutuya kaç birim küp sığar?",
+   "narration": "Bir kutunun hacmi, içine kaç birim küp sığdığını söyler: tabanı bir kat doldurursun, sonra yükseklik kadar kat üst üste koyarsın. Bu derste prizmaların elemanlarını, açınımlarını, yüzey alanlarını ve hacimlerini göreceksin. KPSS'nin kesilen tahta, çakılan çivi ve yapıştırılan küp sorularını da bu tek fikirle çözeceksin."
   },
   "objectives": [
-   "Prizmanın elemanlarını saymak",
-   "Dik prizmada alan ve hacim bulmak",
-   "Açınımı yorumlamak",
-   "Dikdörtgenler prizmasında köşegen bulmak",
-   "Küpte alan ve hacmi ilişkilendirmek"
+   "Prizmanın köşe, ayrıt ve yüz sayısını taban kenar sayısından bulmak",
+   "Dik prizmada yanal alan, toplam alan ve hacmi hesaplamak",
+   "Açınımı yorumlamak; küp açınımında karşılıklı yüzleri bulmak",
+   "Kesme, boyama ve yapıştırma sorularında alan ile hacmin nasıl değiştiğini ayırt etmek",
+   "Dikdörtgenler prizmasında hacim, yüzey alanı ve cisim köşegenini bulmak",
+   "Küpte alan ve hacmi ayrıt oranıyla ilişkilendirmek"
   ],
   "sections": [
    {
     "subtopic": "GEO_PRIZMALAR_01",
     "subtopics": [],
     "title": "Prizmanın elemanları",
-    "narration": "Prizma, birbirine paralel iki eş tabanı ve bu tabanları birleştiren yan yüzleri olan cisimdir.",
+    "narration": "",
     "cards": [
      {
       "kind": "concept",
-      "title": "Yüz, ayrıt, köşe",
-      "text": "Prizmanın iki eş ve paralel **tabanı**, tabanları birleştiren **yanal yüzleri** vardır. Yüzlerin kesiştiği doğru parçaları **ayrıt**, ayrıtların buluştuğu noktalar **köşedir**. Tabanı $n$-gen olan prizmada $2n$ köşe, $3n$ ayrıt, $n + 2$ yüz vardır.",
+      "title": "Prizma ve elemanları",
+      "text": "**Prizma**, birbirine paralel ve eş iki **tabanı** olan, tabanların karşılıklı köşelerini birleştiren **yanal yüzlerle** sınırlanan cisimdir. Taban kenarlarına **taban ayrıtı**, tabanların karşılıklı köşelerini birleştiren doğru parçalarına **yanal ayrıt**, iki taban arasındaki uzaklığa **yükseklik** denir. Prizma adını tabanından alır: tabanı üçgen ise üçgen prizma, dörtgen ise dörtgen prizma.",
+      "caption": "Dikdörtgenler prizması: 2 taban, 4 yanal yüz.",
+      "narration": "Yüzlerin kesiştiği doğru parçalarına ayrıt, ayrıtların buluştuğu noktalara köşe denir. Şekildeki dikdörtgenler prizmasının ayrıtları a, b ve c'dir; 8 köşesi, 12 ayrıtı ve 6 yüzü vardır. Tabanı dikdörtgen olduğu için adı dikdörtgenler prizmasıdır. Yanal yüzler, iki yanal ayrıt arasında kalan bölgelerdir; dik prizmada hepsi dikdörtgendir.",
       "visual": {
        "kind": "solid",
        "shape": "cuboid",
@@ -52,24 +90,106 @@
        "unfold": false,
        "split": false,
        "sweep": false
+      }
+     },
+     {
+      "kind": "visual",
+      "title": "Eleman sayıları tablosu",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Tabanı",
+        "Köşe",
+        "Ayrıt",
+        "Yüz"
+       ],
+       "rows": [
+        [
+         "Üçgen",
+         "6",
+         "9",
+         "5"
+        ],
+        [
+         "Dörtgen",
+         "8",
+         "12",
+         "6"
+        ],
+        [
+         "Beşgen",
+         "10",
+         "15",
+         "7"
+        ],
+        [
+         "Altıgen",
+         "12",
+         "18",
+         "8"
+        ],
+        [
+         "$n$-gen",
+         "$2n$",
+         "$3n$",
+         "$n+2$"
+        ]
+       ]
       },
-      "beats": [
+      "caption": "Tabanı $n$-gen olan prizmada: $2n$ köşe, $3n$ ayrıt, $n+2$ yüz.",
+      "narration": "Her tabanda n köşe vardır, iki tabanda toplam 2n köşe olur. Ayrıtlar: her tabanda n tane, yanlarda n tane yanal ayrıt; toplam 3n. Yüzler: iki taban ve n yanal yüz; toplam n + 2. Tabloda her satır bu üç formülün bir örneğidir. Sayıları ezberlemek yerine tabana bakıp 'her tabanda kaç köşe var?' diye düşün."
+     },
+     {
+      "kind": "match",
+      "title": "Terimleri eşleştir",
+      "prompt": "Her terimi doğru tanımıyla eşleştir.",
+      "pairs": [
        {
-        "narration": "Bir dikdörtgenler prizması: iki tabanı ve dört yanal yüzü var.",
-        "show": [],
-        "focus": [],
-        "stage": 0,
-        "swap": []
+        "left": "Taban",
+        "right": "Birbirine paralel, eş iki çokgensel bölge"
        },
        {
-        "narration": "Ayrıtlarının uzunlukları a, b ve c; sekiz köşesi, on iki ayrıtı, altı yüzü var.",
-        "show": [],
-        "focus": [],
-        "stage": 1,
-        "swap": []
+        "left": "Yanal yüz",
+        "right": "İki yanal ayrıt arasında kalan bölge"
+       },
+       {
+        "left": "Taban ayrıtı",
+        "right": "Taban çokgeninin bir kenarı"
+       },
+       {
+        "left": "Yanal ayrıt",
+        "right": "Tabanların karşılıklı köşelerini birleştiren doğru parçası"
+       },
+       {
+        "left": "Yükseklik",
+        "right": "İki taban arasındaki uzaklık"
        }
       ],
-      "narration": "Prizma, birbirine paralel iki eş tabanı olan ve bu tabanların karşılıklı köşelerini birleştiren yan yüzlerden oluşan cisimdir. Prizmanın adı tabanından gelir: tabanı dikdörtgen olan dikdörtgenler prizması, üçgen olan üçgen prizma. Yüzlerin kesiştiği doğru parçalarına ayrıt, ayrıtların buluştuğu noktalara köşe denir. Tabanı n kenarlı olan bir prizmada her tabanda n köşe vardır, toplam 2n. Tabanlarda 2n, yanlarda n ayrıt bulunur, toplam 3n. İki taban ve n yanal yüzle toplam n artı 2 yüz olur."
+      "explanation": "Dik prizmada yanal ayrıt aynı zamanda yüksekliktir; yanal yüzler de dikdörtgendir."
+     },
+     {
+      "kind": "blank",
+      "title": "Ayrıt sayısı",
+      "prompt": "Tabanı yedigen olan bir prizmanın ayrıt sayısı kaçtır?",
+      "answers": [
+       "21"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 21,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "14",
+        "feedback": "14, köşe sayısıdır ($2n$). Ayrıt sayısı $3n$'dir."
+       },
+       {
+        "answer": "9",
+        "feedback": "9, yüz sayısıdır ($n+2$). Ayrıt sayısı $3n$'dir."
+       }
+      ],
+      "explanation": "$3 \\cdot 7 = 21$: tabanlarda $2 \\cdot 7 = 14$, yanlarda 7 ayrıt vardır."
      },
      {
       "kind": "question",
@@ -84,32 +204,37 @@
         "16"
        ],
        "answer": 2,
+       "choiceFeedback": [
+        "Bu şıkkı seçtiysen tabanın kenar sayısını ($n$) bulup bırakmışsın; sorulan yüz sayısı.",
+        "Bu şıkkı seçtiysen yüz sayısını $n+1$ gibi saymışsın; iki tabanı unutma.",
+        null,
+        "Bu şıkkı seçtiysen ayrıt sayısını ikiye bölmüşsün; böyle bir ilişki yoktur.",
+        "Bu şıkkı seçtiysen köşe sayısını ($2n$) bulmuşsun; sorulan yüz sayısı."
+       ],
        "steps": [
         {
-         "text": "$3n = 24 \\Rightarrow n = 8$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Ayrıt sayısı 3n, 24: n, 8. Tabanı sekizgen."
+         "text": "Tabanı $n$-gen olan prizmada ayrıt sayısı $3n$'dir. Önce $n$'yi bul."
         },
         {
-         "text": "Yüz sayısı $n + 2 = 10$. Cevap **C**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Yüz sayısı 8 artı 2, 10. Cevap C. E şıkkındaki 16 köşe sayısıdır, 2n."
+         "text": "$n$'yi bulduktan sonra yüzleri say: iki taban ve $n$ tane yanal yüz."
         }
        ],
-       "narration": "Tabanı n-gen olan prizmada ayrıt 3n, yüz n artı 2.",
        "origin": {
-        "changes": "Havuzdaki prizmanın eleman sayıları kalıbı örnek alındı; sayı bu ders için seçildi."
+        "changes": "Havuzdaki prizma eleman sayıları kalıbı örnek alındı; ayrıt sayısı bu ders için seçildi."
        }
       }
+     },
+     {
+      "kind": "predict",
+      "title": "Euler sağlaması",
+      "context": "Tabanı $n$-gen olan prizmada köşe $2n$, ayrıt $3n$, yüz $n+2$ tanedir.",
+      "prompt": "Her prizmada köşe sayısı + yüz sayısı = ayrıt sayısı + 2 olur.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$2n + (n+2) = 3n + 2$. Küpte: $8 + 6 = 12 + 2$. Elemanları saydıktan sonra bu eşitlikle sağlama yapabilirsin."
      }
     ]
    },
@@ -117,16 +242,19 @@
     "subtopic": "GEO_PRIZMALAR_02",
     "subtopics": [],
     "title": "Dik prizmalar",
-    "narration": "Yanal ayrıtları tabana dik olan prizma dik prizmadır; yanal yüzleri dikdörtgendir.",
+    "narration": "",
     "cards": [
      {
       "kind": "rule",
       "title": "Dik prizma",
       "items": [
-       "Yanal yüzler **dikdörtgen**; yükseklik yanal ayrıta eşit: $h$.",
-       "Yanal alan $=$ taban çevresi $\\times h$; toplam alan $= 2 \\cdot$ taban alanı $+$ yanal alan.",
-       "Hacim $=$ taban alanı $\\times h$."
+       "Yanal ayrıtlar tabana **diktir**; yanal yüzler **dikdörtgendir**, yükseklik yanal ayrıta eşittir: $h$.",
+       "**Düzgün prizma**: tabanı düzgün çokgen olan dik prizma (eşkenar üçgen dik prizma, kare dik prizma, küp).",
+       "Yanal alan $=$ taban çevresi $\\times\\ h$.",
+       "Toplam alan $= 2 \\cdot$ taban alanı $+$ yanal alan.",
+       "Hacim $=$ taban alanı $\\times\\ h$."
       ],
+      "narration": "Yanal yüzlerin alanları toplamı yanal alandır. Bir dikdörtgenler prizmasında bu toplam $(2a + 2b) \\cdot c$'dir; yani taban çevresi $\\cdot$ yükseklik. Toplam alan, buna iki tabanın alanını ekleyerek bulunur. Eğik prizmada yanal yüzler dikdörtgen olmaz (paralelkenar olur); KPSS sorularında prizma denince çoğunlukla dik prizma kastedilir.",
       "visual": {
        "kind": "solid",
        "shape": "triangularPrism",
@@ -134,17 +262,20 @@
        "unfold": false,
        "split": false,
        "sweep": false
-      },
-      "beats": [],
-      "narration": "Yanal ayrıtları tabana dik olan prizmaya dik prizma denir; yanal yüzleri dikdörtgendir ve yüksekliği yanal ayrıta eşittir. Yanal yüzlerin toplam alanı, taban çevresi ile yüksekliğin çarpımıdır; toplam alan buna iki tabanın alanı eklenerek bulunur. Hacim ise taban alanı çarpı yüksekliktir."
+      }
+     },
+     {
+      "kind": "example",
+      "title": "Eşkenar üçgen dik prizma",
+      "example": "Tabanı kenar uzunluğu 6 cm olan eşkenar üçgen, yüksekliği 10 cm olan dik prizmanın yanal alanı ve hacmi kaçtır?",
+      "explanation": "Taban çevresi $3 \\cdot 6 = 18$ cm. Yanal alan $18 \\cdot 10 = 180$ cm². Taban alanı $\\frac{6^2\\sqrt{3}}{4} = 9\\sqrt{3}$ cm². Hacim $9\\sqrt{3} \\cdot 10 = 90\\sqrt{3}$ cm³. Toplam alan istenseydi $2 \\cdot 9\\sqrt{3} + 180 = 180 + 18\\sqrt{3}$ cm² olurdu."
      },
      {
       "kind": "mistake",
       "title": "Yanal mı, toplam mı?",
-      "wrong": "Prizmanın yanal alanı, yan yüzlerle iki tabanın alanları toplamıdır.",
-      "right": "Yanal alan yalnız **yan yüzlerdir**; tabanlar eklenince **tüm yüzey alanı** olur.",
-      "why": "Soru 'yanal' diyorsa tabanları katma.",
-      "narration": "Sık yapılan bir hata: yanal alanı sorulan prizmaya tabanları da eklemek. Yanal alan yalnız yan yüzlerin, yani taban çevresi çarpı yüksekliğin alanıdır. İki tabanın alanı eklenince tüm yüzey alanı elde edilir. Soruyu okurken hangisinin istendiğine dikkat et; şıklarda ikisi de bulunur."
+      "wrong": "Prizmanın yanal alanı, yan yüzlerle iki tabanın alanlarının toplamıdır.",
+      "right": "Yanal alan yalnız **yan yüzlerin** alanıdır. İki taban eklenince **toplam (tüm) yüzey alanı** olur.",
+      "why": "Şıklarda ikisi de bulunur. Soruda 'yanal' yazıyorsa tabanları katma; 'tüm yüzey alanı' yazıyorsa tabanları ekle."
      },
      {
       "kind": "question",
@@ -159,39 +290,76 @@
         "132"
        ],
        "answer": 4,
+       "choiceFeedback": [
+        "Bu şıkkı seçtiysen taban alanını yükseklikle çarpıp hacmi bulmuşsun.",
+        "Bu şıkkı seçtiysen taban alanını taban çevresiyle çarpmışsın; alanlar çarpılmaz, toplanır.",
+        "Bu şıkkı seçtiysen yalnız yanal alanı bulmuşsun; tabanları eklemedin.",
+        "Bu şıkkı seçtiysen tabanlardan yalnız birini eklemişsin; iki taban var.",
+        null
+       ],
        "steps": [
         {
-         "text": "Taban: $\\frac{3 \\cdot 4}{2} = 6$; hipotenüs 5",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Taban üçgeninin alanı 3 çarpı 4 bölü 2, 6. Hipotenüsü 3, 4, 5 üçlüsünden 5."
+         "text": "Hipotenüs, 3-4-5 üçlüsünden 5 cm'dir. Taban alanını ve taban çevresini ayrı ayrı bul."
         },
         {
-         "text": "Yanal alan $(3 + 4 + 5) \\cdot 10 = 120$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Yanal alan, taban çevresi 12 çarpı yükseklik 10, 120."
-        },
-        {
-         "text": "Toplam $2 \\cdot 6 + 120 = 132$. Cevap **E**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "D"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Toplam alan, iki taban 12 artı 120, 132 santimetrekare. Cevap E. A şıkkındaki 60 hacimdir; C şıkkındaki 120 yalnız yanal alan."
+         "text": "Yanal alan $=$ taban çevresi $\\cdot\\ h$. Toplam alan $= 2 \\cdot$ taban alanı $+$ yanal alan; iki sonucu birleştir."
         }
        ],
-       "narration": "İki taban ve üç yanal yüz.",
        "origin": {
         "changes": "Havuzdaki üçgen dik prizmanın yüzey alanı kalıbı örnek alındı; ölçüler bu ders için seçildi."
        }
       }
+     },
+     {
+      "kind": "guided",
+      "title": "Adım adım: ikizkenar üçgen prizma",
+      "stem": "Tabanı kenarları 13 cm, 13 cm ve 10 cm olan ikizkenar üçgen, yüksekliği 9 cm olan dik prizmanın tüm yüzey alanı kaç cm²'dir?",
+      "steps": [
+       {
+        "prompt": "10 cm'lik tabana ait yükseklik kaç cm'dir?",
+        "choices": [
+         "5",
+         "8",
+         "12",
+         "13"
+        ],
+        "answer": 2,
+        "choiceFeedback": [
+         "5, tabanın yarısıdır; yüksekliği bulmak için Pisagor gerekir.",
+         "8 için karelerin farkı 169 − 25 = 144 olmalı; 144'ün kökü 12'dir.",
+         null,
+         "13 yan kenardır, yükseklik değildir."
+        ],
+        "explanation": "Yükseklik tabanı ikiye böler: yarısı 5, yan kenar 13. $5$-$12$-$13$ üçlüsünden yükseklik 12."
+       },
+       {
+        "prompt": "Taban üçgeninin alanı kaç cm²'dir?",
+        "before": "Alan =",
+        "answers": [
+         "60"
+        ],
+        "input": "number",
+        "explanation": "$\\frac{10 \\cdot 12}{2} = 60$."
+       },
+       {
+        "prompt": "Taban çevresi 36 cm. Yanal alan $=$ taban çevresi $\\cdot\\ h$. Yanal alan kaç cm²'dir?",
+        "before": "Yanal alan =",
+        "answers": [
+         "324"
+        ],
+        "input": "number",
+        "explanation": "$36 \\cdot 9 = 324$."
+       },
+       {
+        "prompt": "Tüm yüzey alanı kaç cm²'dir?",
+        "before": "Toplam =",
+        "answers": [
+         "444"
+        ],
+        "input": "number",
+        "explanation": "$2 \\cdot 60 + 324 = 444$ cm²."
+       }
+      ]
      }
     ]
    },
@@ -199,7 +367,7 @@
     "subtopic": "GEO_PRIZMALAR_05",
     "subtopics": [],
     "title": "Prizmanın açınımı",
-    "narration": "Bir prizmanın yüzlerini bir düzleme serersek açınımını elde ederiz; yanal yüzler bir şerit olur.",
+    "narration": "",
     "cards": [
      {
       "kind": "visual",
@@ -212,30 +380,50 @@
        "split": false,
        "sweep": false
       },
-      "beats": [
+      "caption": "Üç yanal yüz yan yana bir şerit olur; iki taban şeridin kenarlarına bitişiktir.",
+      "narration": "Üçgen prizmanın iki üçgen tabanı ve üç dikdörtgen yanal yüzü vardır. Yüzleri bir düzleme serince üç yanal yüz yan yana gelip tek bir dikdörtgen şerit oluşturur. İki üçgen taban da bu şeridin iki kenarına bitişik durur."
+     },
+     {
+      "kind": "concept",
+      "title": "Açınımda şerit",
+      "text": "Dik prizmanın yanal yüzleri yan yana dizilince bir **dikdörtgen şerit** oluşur. Şeridin **uzunluğu taban çevresi**, **genişliği yükseklik** ($h$) olur; alanı yanal alandır. İki taban şeride bitişik ek parçalardır. Açınımın tamamının alanı **yüzey alanıdır**.",
+      "narration": "Bu yüzden yanal alan formülü $\\text{taban çevresi} \\cdot h$'dir: şeridin eni ile boyunun çarpımı. Açınımla ilgili sorularda önce şeridin hangi uzunluğa karşılık geldiğini düşün. Şeridin uzunluğunu verip tabanı sorabilirler; çevreyi taban kenarlarına bölmen gerekir."
+     },
+     {
+      "kind": "blank",
+      "title": "Şeridin uzunluğu",
+      "prompt": "Tabanı dik kenarları 3 cm ve 4 cm olan dik üçgen, yüksekliği 10 cm olan dik prizmanın açınımında yanal şeridin uzunluğu kaç cm'dir?",
+      "answers": [
+       "12"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 12,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
        {
-        "narration": "Üçgen prizma: iki üçgen taban, üç dikdörtgen yanal yüz.",
-        "show": [],
-        "focus": [],
-        "stage": 0,
-        "swap": []
+        "answer": "6",
+        "feedback": "6, taban alanıdır. Şeridin uzunluğu taban çevresidir: 3 + 4 + 5."
        },
        {
-        "narration": "Ayrıtlar ve yüzler.",
-        "show": [],
-        "focus": [],
-        "stage": 1,
-        "swap": []
-       },
-       {
-        "narration": "Yüzleri bir düzleme serelim: üç yanal yüz yan yana bir dikdörtgen şerit, iki üçgen taban da şeridin iki yanında. Şeridin uzunluğu taban çevresi, genişliği yükseklik.",
-        "show": [],
-        "focus": [],
-        "stage": 2,
-        "swap": []
+        "answer": "10",
+        "feedback": "10, şeridin genişliğidir (yükseklik)."
        }
       ],
-      "narration": "Bir üçgen prizmayı açalım."
+      "explanation": "Şeridin uzunluğu taban çevresi: $3 + 4 + 5 = 12$ cm. Genişliği 10 cm; alanı $12 \\cdot 10 = 120$ cm² yanal alandır."
+     },
+     {
+      "kind": "rule",
+      "title": "Küp açınımı",
+      "items": [
+       "Küpün açınımı 6 kareden oluşur; yüzey alanı $6a^2$'dir.",
+       "En yaygın dizilim: yan yana **4 kare** (şerit) ve şeridin üstünde ile altında birer kare.",
+       "Şeritte **bir kare atlayanlar karşılıklıdır**: 1. ile 3., 2. ile 4.",
+       "Şeridin dışındaki iki kare birbirinin karşısındadır.",
+       "İstisna: Bu kural yalnız dört karelik şeritli dizilim için geçerlidir. Başka dizilimlerde zihninde katlayarak karşılıklı yüzleri bul."
+      ],
+      "narration": "Dört kare yan yana katlanınca küpün dört yan yüzünü oluşturur: ilk kare ile üçüncü, ikinci ile dördüncü karşılıklı olur. Şeridin üstündeki ve altındaki kareler kapak olur; onlar birbirinin karşısındadır. Bitişik iki kare ise hiçbir zaman karşılıklı olmaz, çünkü ortak bir ayrıtları vardır."
      },
      {
       "kind": "question",
@@ -593,39 +781,37 @@
         "F"
        ],
        "answer": 2,
+       "choiceFeedback": [
+        "Bu şıkkı seçtiysen A'nın hemen yanındaki bitişik kareyi seçmişsin; bitişik kareler karşılıklı olmaz.",
+        "Bu şıkkı seçtiysen A'nın öbür yanındaki bitişik kareyi seçmişsin; bitişik kareler karşılıklı olmaz.",
+        null,
+        "Bu şıkkı seçtiysen A'nın üstüne bitişik kareyi seçmişsin; ona bitişik olduğu için karşısında olamaz.",
+        "Bu şıkkı seçtiysen A'nın altına bitişik kareyi seçmişsin; karşılıklı olan E ile F'dir."
+       ],
        "steps": [
         {
-         "text": "Şerit: $B, A, C, D$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Dört kare yan yana: B, A, C ve D. Katlandığında küpün çevresini dolanırlar."
+         "text": "Şeritte yan yana dört kare var: B, A, C, D. Katlanınca bu dört kare küpün yan yüzlerini oluşturur; E ve F kapaklardır."
         },
         {
-         "text": "Bir atlayan kareler karşılıklı: $B$–$C$, $A$–$D$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Şeritte bir atlayan iki kare karşılıklı yüzler olur: B ile C, A ile D. E ile F de A'nın iki yanında, birbirinin karşısında."
-        },
-        {
-         "text": "$A$'nın karşısı $D$. Cevap **C**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "A'nın karşısındaki yüz D. Cevap C. E ya da F, A'ya bitişiktir; karşısında olamaz."
+         "text": "Şeritte bir kare atlayanlar karşılıklıdır: 1. ile 3., 2. ile 4. A şeritte kaçıncı kare? Onunla eşleşen kareyi bul."
         }
        ],
-       "narration": "Yan yana dört karede birinci ile üçüncü, ikinci ile dördüncü karşılıklıdır.",
        "origin": {
         "changes": "Havuzdaki küp açınımında karşılıklı yüz kalıbı örnek alındı; açınım bu ders için çizildi."
        }
       }
+     },
+     {
+      "kind": "predict",
+      "title": "Şeridin uzunluğu",
+      "context": "Bir dik prizmanın açınımında yanal yüzler yan yana dizilir.",
+      "prompt": "Yanal yüzlerin oluşturduğu şeridin uzunluğu taban çevresine eşittir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Her yanal yüzün bir kenarı taban ayrıtıdır; yan yana dizilince bu ayrıtların toplamı taban çevresi olur. Diğer kenar yüksekliktir."
      }
     ]
    },
@@ -633,17 +819,39 @@
     "subtopic": "GEO_PRIZMALAR_06",
     "subtopics": [],
     "title": "Prizmanın yüzey alanı",
-    "narration": "Yüzey alanı, açınımın alanıdır: bütün yüzlerin toplamı.",
+    "narration": "",
     "cards": [
      {
       "kind": "rule",
       "title": "Yüzey alanı",
       "items": [
-       "Yüzey alanı $=$ bütün yüzlerin alanları toplamı: açınımın alanı.",
-       "Bir cisim kesilince **yeni yüzler** oluşur; parçaların yüzey alanları toplamı artar."
+       "Yüzey alanı $=$ bütün yüzlerin alanları toplamı $=$ açınımın alanı.",
+       "Dik prizma: $A = 2 \\cdot$ taban alanı $+$ taban çevresi $\\cdot\\ h$.",
+       "Cisim bir düzlemle kesilince kesitte **iki yeni yüz** oluşur; parçaların yüzey alanları toplamı kesit alanının **2 katı** kadar artar.",
+       "Kesince **hacim değişmez**: parçaların hacimleri toplamı bütüne eşittir.",
+       "Yüzlerinden yapıştırınca ortak yüzler dışarıdan kaybolur: yüzey alanı azalır."
       ],
-      "beats": [],
-      "narration": "Bir prizmanın yüzey alanı, bütün yüzlerinin alanlarının toplamıdır; yani açınımının alanı. Bir cisim bir düzlemle kesilirse kesilen yerde iki yeni yüz oluşur; bu yüzden parçaların yüzey alanları toplamı, bütün cismin yüzey alanından büyüktür. Hacim ise değişmez."
+      "narration": "Kesilen bir tahtayı düşün: kesim yerinde iki ayrı parçanın birer yüzü ortaya çıkar. Her ikisi de kesit alanı kadardır. Bu yüzden parçaların yüzey alanları toplamı, bütün tahtanın yüzey alanından kesit alanının iki katı kadar fazladır. Soruda 'yüzey alanları toplamı' farkı verilirse, farkı 2'ye bölüp kesit alanına ulaşırsın."
+     },
+     {
+      "kind": "example",
+      "title": "Tahtayı ikiye kesmek",
+      "example": "Ayrıtları 4 cm, 4 cm ve 8 cm olan dikdörtgenler prizması, ortasından iki özdeş küpe kesiliyor. Küplerin yüzey alanları toplamı, prizmanın yüzey alanından kaç cm² fazladır?",
+      "explanation": "Kesit, kenarı 4 cm olan bir karedir: alanı 16 cm². İki yeni yüz oluşur: fark $2 \\cdot 16 = 32$ cm². Sağlama: prizmanın alanı $2(16 + 32 + 32) = 160$; iki küp $2 \\cdot 6 \\cdot 16 = 192$; $192 - 160 = 32$."
+     },
+     {
+      "kind": "mistake",
+      "title": "Kesince alan değişmez mi?",
+      "wrong": "Bir cisim kesilince parçaların yüzey alanları toplamı, bütün cismin yüzey alanına eşit kalır.",
+      "right": "Kesit düzleminde **iki yeni yüz** oluşur; toplam, kesit alanının 2 katı kadar **artar**. Değişmeden kalan şey **hacimdir**.",
+      "why": "Alan ve hacmi karıştırmak bu soru tipinin en sık tuzağıdır. Hacim parçalara bölününce korunur; yüzey alanı korunmaz."
+     },
+     {
+      "kind": "mistake",
+      "title": "Köşeden küp kesmek",
+      "wrong": "Küp biçimindeki pastanın bir köşesinden küçük bir küp kesip çıkarırsan yüzey alanı azalır.",
+      "right": "Köşedeki küpün dışarıdaki **üç yüzü** gider, yerine aynı alanda **üç yeni iç yüz** görünür. Yüzey alanı **değişmez**; yalnız hacim azalır.",
+      "why": "Bu, kesme kuralının istisnasıdır: parça bütünden ayrılmıyor, bütünün içinden çıkarılıyor. Kaybedilen ve kazanılan yüzler eşit sayıda ve aynı alanda olduğundan oran 1 çıkar."
      },
      {
       "kind": "question",
@@ -658,32 +866,61 @@
         "108"
        ],
        "answer": 1,
+       "choiceFeedback": [
+        "Bu şıkkı seçtiysen küpün yalnız 4 yüzünü saymış olabilirsin; küpün 6 yüzü vardır.",
+        null,
+        "Bu şıkkı seçtiysen yüzey alanını $8a^2$ gibi hesaplamışsın; küpün 6 yüzü vardır.",
+        "Bu şıkkı seçtiysen tahtanın yüzey alanını bulmuşsun; sorulan tek bir küptür.",
+        "Bu şıkkı seçtiysen iki küpün toplamını bulmuşsun; sorulan tek bir küptür."
+       ],
        "steps": [
         {
-         "text": "İki yeni yüz: $2a^2 = 18 \\Rightarrow a^2 = 9$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Kesince iki küpte birer yeni yüz oluşur; ikisi de küpün bir yüzü, a kare. 2a kare, 18; a kare, 9."
+         "text": "Kesince tahtanın içinde iki yeni yüz oluşur; her biri küpün bir yüzüne eşittir."
         },
         {
-         "text": "$a = 3$; bir küp: $6 \\cdot 9 = 54$. Cevap **B**.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Küpün ayrıtı 3; yüzey alanı 6 çarpı 9, 54 birimkare. Cevap B. E şıkkındaki 108 iki küpün toplamıdır."
+         "text": "Artış $= 2 \\cdot$ (küpün bir yüzünün alanı). Bu eşitlikten küpün ayrıtını bul, sonra tek bir küpün yüzey alanını hesapla."
         }
        ],
-       "narration": "Artış, kesim yerinde oluşan iki yeni yüzden geliyor.",
        "origin": {
-        "changes": "ÖSYM KPSS 2020 ön lisanstaki prizmanın iki özdeş küpe kesilmesi kalıbı örnek alındı; artış bu ders için seçildi."
+        "changes": "ÖSYM'nin prizmanın iki özdeş küpe kesilmesi kalıbı örnek alındı; artış bu ders için seçildi."
        }
       }
+     },
+     {
+      "kind": "visual",
+      "title": "Boyalı küp sayma tablosu",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Konum",
+        "Boyalı yüz",
+        "Sayı ($n \\times n \\times n$)"
+       ],
+       "rows": [
+        [
+         "Köşe",
+         "3",
+         "8"
+        ],
+        [
+         "Ayrıt ortası",
+         "2",
+         "$12(n-2)$"
+        ],
+        [
+         "Yüz ortası",
+         "1",
+         "$6(n-2)^2$"
+        ],
+        [
+         "İç",
+         "0",
+         "$(n-2)^3$"
+        ]
+       ]
+      },
+      "caption": "Dıştan boyanan $n \\times n \\times n$ küp birim küplere ayrılırsa.",
+      "narration": "Birim küpün kaç yüzünün boyalı olacağı, büyük küpteki yerine bağlıdır. Köşedekilerin üç yüzü dışarıdadır; ayrıt ortasındakilerin iki, yüz ortasındakilerin bir yüzü dışarıdadır. İçteki küp hiç boyanmaz. Her ayrıtta $n$ küp vardır, iki ucu köşe olduğundan ayrıt ortasında $n-2$ küp kalır. Toplam $n^3$ ile sağlama yap: $n=3$ için $8 + 12 + 6 + 1 = 27$."
      },
      {
       "kind": "question",
@@ -924,39 +1161,49 @@
         "12"
        ],
        "answer": 4,
+       "choiceFeedback": [
+        "Bu şıkkı seçtiysen küpün altı yüzünden yalnız dördünü saymış olabilirsin; küpün 6 yüzü vardır.",
+        null,
+        "Bu şıkkı seçtiysen yüzey alanını $8a^2$ gibi hesaplamışsın; küpün 6 yüzü vardır.",
+        "Bu şıkkı seçtiysen tahtanın yüzey alanını bulmuşsun; soru küplerden birini soruyor.",
+        null
+       ],
        "steps": [
         {
-         "text": "Köşeler: 3 yüzü boyalı, 8 tane",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Köşedeki küplerin üç yüzü dışarıda, boyalı; küpün 8 köşesi var."
+         "text": "27 birim küpü konumuna göre grupla: köşe, ayrıt ortası, yüz ortası, iç. Her grupta kaç yüz boyalıdır?"
         },
         {
-         "text": "Ayrıtların ortası: 2 yüzü boyalı; $12 \\cdot (3 - 2) = 12$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Bir ayrıt üzerinde 3 küp var; iki ucu köşe, ortadaki 1 küpün iki yüzü boyalı. 12 ayrıtta 12 küp."
-        },
-        {
-         "text": "Yüzlerin ortası 6 (bir yüz), iç 1 (boyasız): $8 + 12 + 6 + 1 = 27$. Cevap **E**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "D"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Her yüzün ortasındaki 1 küpün yalnız bir yüzü boyalı: 6 küp. Tam ortadaki 1 küp hiç boyanmaz. Toplam 27, sağlama tamam. İki yüzü boyalı 12 küp. Cevap E. C şıkkındaki 8 köşelerdir; onların üç yüzü boyalı."
+         "text": "Bir ayrıtta 3 küp var; iki ucu köşe. Ayrıtın ortasında kaç küp kalır ve küpün kaç ayrıtı vardır? İkisini çarp."
         }
        ],
-       "narration": "Bir birim küpün kaç yüzünün boyalı olduğu, büyük küpteki yerine bağlı: köşe, ayrıt, yüz ya da iç.",
        "origin": {
         "changes": "Havuzdaki boyanan küpün birim küplere kesilmesi kalıbı örnek alındı; küp bu ders için çizildi."
        }
       }
+     },
+     {
+      "kind": "blank",
+      "title": "Bir yüzü boyalı",
+      "prompt": "Ayrıtı 4 cm olan küp dıştan boyanıp ayrıtı 1 cm olan 64 birim küpe ayrılıyor. Yalnız **bir** yüzü boyalı birim küp sayısı kaçtır?",
+      "answers": [
+       "24"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 24,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "6",
+        "feedback": "Her yüzde 1 değil, $(4-2)^2 = 4$ küp vardır; 6 yüz için $6 \\cdot 4$."
+       },
+       {
+        "answer": "48",
+        "feedback": "48, iki yüzü boyalı küp sayısıdır: $12 \\cdot 2$ değil, her ayrıtta $4-2=2$ küp vardır: 24 de değil 24'tür; yüz ortası sayısı ayrıdır."
+       }
+      ],
+      "explanation": "Her yüzde $(4-2)^2 = 4$ küp, 6 yüzde $6 \\cdot 4 = 24$ küp yalnız bir yüzü boyalıdır."
      }
     ]
    },
@@ -964,7 +1211,7 @@
     "subtopic": "GEO_PRIZMALAR_07",
     "subtopics": [],
     "title": "Prizmanın hacmi",
-    "narration": "Hacim, cismin kaç birim küp aldığıdır. Taban bir kat küp alır; yükseklik kadar kat üst üste konur.",
+    "narration": "",
     "cards": [
      {
       "kind": "visual",
@@ -1303,56 +1550,55 @@
         "3"
        ]
       },
-      "beats": [
-       {
-        "narration": "Taban katı: 4 çarpı 3, 12 birim küp. Bu, taban alanı.",
-        "show": [
-         "kat1"
-        ],
-        "focus": [
-         "kat1"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Üstüne aynı kattan bir tane daha.",
-        "show": [
-         "kat2"
-        ],
-        "focus": [
-         "kat2"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Ve bir tane daha: 3 kat, 3 çarpı 12, 36 birim küp. Hacim, taban alanı çarpı yükseklik.",
-        "show": [
-         "kat3"
-        ],
-        "focus": [
-         "kat3"
-        ],
-        "note": "Hacim = taban alanı · yükseklik",
-        "swap": []
-       }
-      ],
-      "narration": "Tabanı 4'e 3 olan bir prizmayı birim küplerle dolduralım."
+      "caption": "Taban katı $4 \\cdot 3 = 12$ küp; 3 kat: $3 \\cdot 12 = 36$ birim küp.",
+      "narration": "Tabanı 4'e 3 olan bir prizmayı birim küplerle dolduruyoruz. İlk kat $4 \\cdot 3 = 12$ küp alır; bu sayı taban alanıdır. Aynı kattan üst üste 3 tane gerekir. Toplam $3 \\cdot 12 = 36$ birim küp eder: hacim, taban alanı $\\cdot$ yüksekliktir."
      },
      {
       "kind": "rule",
       "title": "Hacim",
       "items": [
        "Hacim $=$ taban alanı $\\times$ yükseklik.",
-       "Dikdörtgenler prizması: $V = a \\cdot b \\cdot c$; küp: $V = a^3$."
+       "Dikdörtgenler prizması: $V = a \\cdot b \\cdot c$; küp: $V = a^3$.",
+       "Birimler: 1 litre $= 1$ dm³; 1 dm³ $= 1000$ cm³.",
+       "Kesince hacimler toplamı değişmez; yüzlerinden yapıştırınca hacimler toplanır."
       ],
-      "beats": [],
-      "narration": "Hacim, bir cismin kaç birim küp aldığıdır. Taban alanı kadar birim küp bir katı doldurur; yükseklik kadar kat üst üste konunca prizma dolar. Bu yüzden hacim taban alanı çarpı yüksekliktir. Dikdörtgenler prizmasında a çarpı b çarpı c, küpte a küp."
+      "narration": "Taban alanı kadar birim küp bir katı doldurur; yükseklik kadar kat üst üste konunca prizma dolar. Bu fikir her dik prizma için geçerlidir: tabanı üçgen, dörtgen ya da altıgen olsun, önce taban alanını bul, sonra yükseklikle çarp. Su ve kap sorularında birimi kontrol et: litreyi dm³'e çevir."
+     },
+     {
+      "kind": "blank",
+      "title": "Hacmi hesapla",
+      "prompt": "Tabanı 5 cm × 4 cm olan, yüksekliği 6 cm olan dikdörtgenler prizmasının hacmi kaç cm³'tür?",
+      "answers": [
+       "120"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 120,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "20",
+        "feedback": "20, taban alanıdır; yükseklikle çarpmayı unuttun."
+       },
+       {
+        "answer": "15",
+        "feedback": "15, ayrıtları toplamak gibi; hacim için üç ayrıt çarpılır."
+       }
+      ],
+      "explanation": "Taban alanı $5 \\cdot 4 = 20$; $V = 20 \\cdot 6 = 120$ cm³."
+     },
+     {
+      "kind": "example",
+      "title": "Üçgen dik prizma",
+      "example": "Tabanı dik kenarları 5 cm ve 12 cm olan dik üçgen, yüksekliği 7 cm olan dik prizmanın hacmi ve yanal alanı kaçtır?",
+      "explanation": "Hipotenüs 13 cm ($5$-$12$-$13$). Taban alanı $\\frac{5 \\cdot 12}{2} = 30$ cm²; hacim $30 \\cdot 7 = 210$ cm³. Taban çevresi $5 + 12 + 13 = 30$ cm; yanal alan $30 \\cdot 7 = 210$ cm². İkisinin sayıca eşit çıkması tesadüftür; birimleri farklıdır (cm³ ve cm²)."
      },
      {
       "kind": "question",
       "question": {
        "style": "KPSS tarzı",
-       "stem": "Uzunluğu 12 cm olan üç çivi, dikdörtgenler prizması biçimindeki bir tahtanın üç farklı yüzüne dik olarak tamamen çakılıyor ve her biri tahtanın öbür yüzüne kadar ulaşıp dışarı taşıyor. Tahtanın dışında kalan çivi parçalarının uzunlukları 2, 5 ve 7 cm olduğuna göre tahtanın hacmi kaç cm³'tür?",
+       "stem": "Uzunluğu 12 cm olan üç çivi, dikdörtgenler prizması biçimindeki bir tahtanın üç farklı yüzüne dik olarak çakılıyor. Her çivi tahtayı boydan boya geçip öbür yüzden dışarı çıkıyor. Tahtanın dışında kalan çivi parçalarının uzunlukları 2 cm, 5 cm ve 7 cm olduğuna göre tahtanın hacmi kaç cm³'tür?",
        "options": [
         "210",
         "280",
@@ -1361,32 +1607,32 @@
         "420"
        ],
        "answer": 3,
+       "choiceFeedback": [
+        "Bu şıkkı seçtiysen üçüncü boyutu 5 yerine 3 almış olabilirsin; her boyut $12 - $ dışarıda kalan parçadır.",
+        "Bu şıkkı seçtiysen üçüncü boyutu yanlış hesaplamış olabilirsin; üç boyutu tek tek yaz.",
+        "Bu şıkkı seçtiysen ikinci boyutu 7 yerine 6 almış olabilirsin; çıkarmayı tekrar kontrol et.",
+        null,
+        "Bu şıkkı seçtiysen 12 cm'lik çivinin tamamını bir boyut saymışsın; içeride kalan kısım boyuttur."
+       ],
        "steps": [
         {
-         "text": "Boyutlar: $12 - 2 = 10$, $12 - 5 = 7$, $12 - 7 = 5$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "İçeride kalan parçalar tahtanın üç boyutu: 12 eksi 2, 10; 12 eksi 5, 7; 12 eksi 7, 5."
+         "text": "Çivi tahtayı boydan boya geçtiği için çivinin tahtanın içinde kalan kısmı, tahtanın o doğrultudaki boyutudur."
         },
         {
-         "text": "$V = 10 \\cdot 7 \\cdot 5 = 350$. Cevap **D**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Hacim 10 çarpı 7 çarpı 5, 350 santimetreküp. Cevap D. Dışarıda kalan parçaları çarpmak, yani 2 çarpı 5 çarpı 7, 70 bulmak bu sorunun tuzağıdır."
+         "text": "Her boyut: $12 -$ dışarıda kalan parça. Üç boyutu bulup hacim formülünü uygula; dışarıda kalan parçaları çarpmak tuzaktır."
         }
        ],
-       "narration": "Her çivi tahtanın bir boyutunu boydan boya geçiyor; içte kalan kısım o boyut.",
        "origin": {
-        "changes": "ÖSYM KPSS 2018 ön lisanstaki tahtaya çakılan üç çivi kalıbı örnek alındı; uzunluklar bu ders için seçildi."
+        "changes": "ÖSYM'nin tahtaya çakılan üç çivi kalıbı örnek alındı; uzunluklar ve anlatım bu ders için yeniden yazıldı."
        }
       }
+     },
+     {
+      "kind": "mistake",
+      "title": "Yapıştırınca hacim?",
+      "wrong": "Küpleri yüzlerinden yapıştırınca ortak yüzler kaybolduğu için toplam hacim azalır.",
+      "right": "Ortak yüzler dışarıdan görünmez; azalan **yüzey alanıdır**. **Hacim**, parçaların hacimleri toplamına eşit kalır.",
+      "why": "Yüzey alanı ile hacmi karıştırmak soruyu bozar. Yapıştırmak hacme bir şey katmaz, bir şey de almaz."
      },
      {
       "kind": "question",
@@ -1401,32 +1647,73 @@
         "216"
        ],
        "answer": 0,
+       "choiceFeedback": [
+        null,
+        "Bu şıkkı seçtiysen hacme yapıştırmadan bir şey eklemişsin; hacimler yalnız toplanır.",
+        "Bu şıkkı seçtiysen bir küpün hacmini 3³ = 27 yerine hatalı bulmuş olabilirsin.",
+        "Bu şıkkı seçtiysen 4 küp yerine 6 küp saymışsın ($6 \\cdot 27$).",
+        "Bu şıkkı seçtiysen 4 küp yerine 8 küp saymışsın ($8 \\cdot 27$)."
+       ],
        "steps": [
         {
-         "text": "Bir küp: $3^3 = 27$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Bir küpün hacmi 3 küp, 27."
+         "text": "Yapıştırmak hacmi değiştirmez: prizmanın hacmi dört küpün hacimleri toplamıdır."
         },
         {
-         "text": "Prizma: $4 \\cdot 27 = 108$. Cevap **A**.",
-         "eliminate": [
-          "B",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Dört küp: 4 çarpı 27, 108 birimküp. Sağlama: prizma 12'ye 3'e 3; 12 çarpı 3 çarpı 3, 108. Cevap A. Yapıştırınca yüzey alanı azalır ama hacim aynen toplanır."
+         "text": "Önce bir küpün hacmini ($a^3$) bul, sonra küp sayısıyla çarp. İstersen prizmanın boyutlarıyla ($4a \\times a \\times a$) sağlama yap."
         }
        ],
-       "narration": "Yapıştırmak hacmi değiştirmez: dört küpün hacmi toplanır.",
        "origin": {
-        "changes": "ÖSYM KPSS 2014 ön lisanstaki özdeş küplerin yapıştırılması kalıbı örnek alındı; sayılar bu ders için seçildi."
+        "changes": "ÖSYM'nin özdeş küplerin yapıştırılması kalıbı örnek alındı; sayılar bu ders için seçildi."
        }
       }
+     },
+     {
+      "kind": "blank",
+      "title": "Kaptaki su",
+      "prompt": "Tabanı 4 dm × 5 dm olan dikdörtgenler prizması biçimindeki bir kapta 60 litre su vardır. Suyun yüksekliği kaç dm'dir? (1 litre = 1 dm³)",
+      "answers": [
+       "3"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 3,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "15",
+        "feedback": "60'ı yalnız 4'e böldün; taban alanı $4 \\cdot 5 = 20$ ile bölmelisin."
+       },
+       {
+        "answer": "12",
+        "feedback": "60'ı yalnız 5'e böldün; taban alanı $4 \\cdot 5 = 20$ ile bölmelisin."
+       }
+      ],
+      "explanation": "$V = 60$ dm³ $=$ taban alanı $\\cdot\\ h = 20 \\cdot h$; $h = 3$ dm."
+     },
+     {
+      "kind": "blank",
+      "title": "Köşesi kesilmiş prizma",
+      "prompt": "Ayrıtları 6, 5 ve 4 birim olan dikdörtgenler prizmasının bir köşesinden, tüm yüksekliği boyunca ayrıtları 2, 2 ve 4 birim olan bir prizma çıkarılıyor. Kalan cismin hacmi kaç birimküptür?",
+      "answers": [
+       "104"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 104,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "16",
+        "feedback": "16, çıkarılan parçanın hacmi; kalanı sormuşlar."
+       },
+       {
+        "answer": "120",
+        "feedback": "120, bütün prizmanın hacmi; çıkarılan parçayı düşmedin."
+       }
+      ],
+      "explanation": "Bütün: $6 \\cdot 5 \\cdot 4 = 120$. Çıkarılan: $2 \\cdot 2 \\cdot 4 = 16$. Kalan: $120 - 16 = 104$."
      }
     ]
    },
@@ -1434,15 +1721,17 @@
     "subtopic": "GEO_PRIZMALAR_03",
     "subtopics": [],
     "title": "Dikdörtgenler prizması",
-    "narration": "Bütün yüzleri dikdörtgen olan prizmanın hacmi, alanı ve köşegeni üç ayrıtından bulunur.",
+    "narration": "",
     "cards": [
      {
       "kind": "rule",
       "title": "Dikdörtgenler prizması",
       "items": [
        "$V = abc$; $A = 2(ab + bc + ca)$.",
-       "Cisim köşegeni: $d = \\sqrt{a^2 + b^2 + c^2}$."
+       "Cisim köşegeni: $d = \\sqrt{a^2 + b^2 + c^2}$.",
+       "Karşılıklı yüzler eştir: üç farklı yüz çifti vardır."
       ],
+      "narration": "Yüzey alanı formülü yanal alan ile iki tabandan gelir: $(2a + 2b)c + 2ab = 2(ab + bc + ca)$. Cisim köşegeni iki kez Pisagor ile bulunur: önce taban köşegeni $\\sqrt{a^2 + b^2}$, sonra bu köşegen ile yükseklikten cisim köşegeni. Sonuç, üç ayrıtın kareleri toplamının kareköküdür. Şekilde 6, 3 ve 2 için $d^2 = 36 + 9 + 4 = 49$, $d = 7$.",
       "visual": {
        "kind": "solid",
        "shape": "cuboid",
@@ -1460,24 +1749,38 @@
        "unfold": false,
        "split": false,
        "sweep": false
-      },
-      "beats": [
-       {
-        "narration": "Ayrıtları 6, 3 ve 2 olan bir prizma.",
-        "show": [],
-        "focus": [],
-        "stage": 0,
-        "swap": []
-       },
-       {
-        "narration": "İçinden geçen d köşegeni: 6 kare artı 3 kare artı 2 kare, 49; d, 7.",
-        "show": [],
-        "focus": [],
-        "stage": 1,
-        "swap": []
-       }
+      }
+     },
+     {
+      "kind": "example",
+      "title": "3, 4 ve 12 ayrıtlı prizma",
+      "example": "Ayrıtları 3 cm, 4 cm ve 12 cm olan dikdörtgenler prizmasının hacmini, yüzey alanını ve cisim köşegenini bulun.",
+      "explanation": "$V = 3 \\cdot 4 \\cdot 12 = 144$ cm³. $A = 2(12 + 48 + 36) = 192$ cm². $d = \\sqrt{9 + 16 + 144} = \\sqrt{169} = 13$ cm. Taban köşegeni 5, ardından $5$-$12$-$13$ üçlüsü de aynı sonucu verir."
+     },
+     {
+      "kind": "concept",
+      "title": "Üç yüz alanından hacim",
+      "text": "Bir köşede buluşan üç yüzün alanları $ab$, $bc$ ve $ca$'dır. Çarpımları $(abc)^2$ olur: **$V = \\sqrt{ab \\cdot bc \\cdot ca}$**. Ayrıtları ayrı ayrı gerekirse hacmi ilgili iki ayrıtın çarpımına, yani yüz alanına bölersin: $a = \\frac{V}{bc}$.",
+      "caption": "Yüz alanlarını toplamak değil, çarpıp karekök almak gerekir.",
+      "narration": "Soruda üç yüzün alanı verilip hacim sorulduğunda ayrıtları bulmaya uğraşma. Üç alanı çarp, karekökünü al: bu hacimdir. Karekökü almayı unutup çarpımı hacim sanmak, alanları toplamak ya da yalnız iki alanı çarpmak sık yapılan hatalardır."
+     },
+     {
+      "kind": "findError",
+      "title": "Köşegen hatasını bul",
+      "problem": "Ayrıtları 3 cm, 4 cm ve 12 cm olan dikdörtgenler prizmasının cisim köşegeni aşağıdaki gibi bulunuyor.",
+      "prompt": "Hangi satır hatalıdır?",
+      "steps": [
+       "Taban köşegeni: $\\sqrt{3^2 + 4^2} = 5$.",
+       "Cisim köşegeni: $d = \\sqrt{5^2 + 12} = \\sqrt{37}$.",
+       "Sonuç: $d = \\sqrt{37}$ cm."
       ],
-      "narration": "Ayrıtları a, b ve c olan dikdörtgenler prizmasının hacmi abc'dir; yüzey alanı karşılıklı eş yüz çiftlerinden 2 çarpı ab artı bc artı ca'dır. Cismin içinden geçen köşegen iki kez Pisagor uygulanarak bulunur: önce taban köşegeni, sonra cisim köşegeni. Sonuç, üç ayrıtın kareleri toplamının kareköküdür."
+      "wrongStep": 1,
+      "choiceFeedback": [
+       "Bu satır doğru: 3-4-5 üçlüsünden taban köşegeni 5'tir.",
+       null,
+       "Bu satır, hatalı satırın sonucunu aktarıyor; hata bir önceki satırdadır."
+      ],
+      "explanation": "Yüksekliğin de karesi alınmalıdır: $d = \\sqrt{5^2 + 12^2} = \\sqrt{169} = 13$ cm."
      },
      {
       "kind": "question",
@@ -1492,28 +1795,21 @@
         "11"
        ],
        "answer": 3,
+       "choiceFeedback": [
+        "Bu şıkkı seçtiysen $2 + 3$ gibi ayrıtları toplamışsın; ayrıt toplamı köşegen vermez.",
+        "Bu şıkkı seçtiysen ayrıtlardan birini yazmışsın; köşegen her ayrıttan uzundur.",
+        "Bu şıkkı seçtiysen yalnız iki ayrıtla (3 ve 6) taban köşegenini bulmuşsun; üçüncü ayrıt eksik.",
+        null,
+        "Bu şıkkı seçtiysen üç ayrıtı toplamışsın ($2 + 3 + 6$); cisim köşegeni bundan kısadır."
+       ],
        "steps": [
         {
-         "text": "$d = \\sqrt{2^2 + 3^2 + 6^2} = \\sqrt{49}$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "d, 4 artı 9 artı 36'nın karekökü: 49'un karekökü."
+         "text": "Cisim köşegeni iki kez Pisagor ile bulunur; sonuç tek formülde: $d^2 = a^2 + b^2 + c^2$."
         },
         {
-         "text": "$d = 7$. Cevap **D**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "d, 7 santimetre. Cevap D. C şıkkındaki kök 45, yalnız iki ayrıtla taban köşegenini bulmaktır."
+         "text": "Üç ayrıtın karelerini topla; toplamın karekökünü alırken toplamın tam kare olup olmadığına bak."
         }
        ],
-       "narration": "Üç ayrıtın kareleri toplamının karekökü.",
        "origin": {
         "changes": "Havuzdaki dikdörtgenler prizmasının cisim köşegeni kalıbı örnek alındı; ayrıtlar bu ders için seçildi."
        }
@@ -1532,32 +1828,45 @@
         "60"
        ],
        "answer": 2,
+       "choiceFeedback": [
+        "Bu sonuç, alanları çarpıp karekök alma yolundan çıkmaz; hesabı tekrar kontrol et.",
+        "Bu sonuç, alanları çarpıp karekök alma yolundan çıkmaz; hesabı tekrar kontrol et.",
+        null,
+        "Bu sonuç, alanları çarpıp karekök alma yolundan çıkmaz; hesabı tekrar kontrol et.",
+        "Bu şıkkı seçtiysen yalnız iki yüz alanını (6 · 10) çarpmışsın; üçünün çarpımının karekökü gerekir."
+       ],
        "steps": [
         {
-         "text": "$ab \\cdot bc \\cdot ca = (abc)^2 = 6 \\cdot 10 \\cdot 15 = 900$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Üç yüz alanını çarpalım: ab çarpı bc çarpı ca, abc'nin karesi. 6 çarpı 10 çarpı 15, 900."
+         "text": "Bir köşede buluşan üç yüzün alanları $ab$, $bc$ ve $ca$'dır. Üçünü çarparsan hangi çarpım çıkar?"
         },
         {
-         "text": "$abc = 30$. Cevap **C**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Hacim abc, 900'ün karekökü, 30 santimetreküp. Ayrıtlar 2, 3 ve 5'tir. Cevap C. 6 artı 10 artı 15'i toplamak ya da çarpımın karekökünü almayı unutup 900 demek bu sorunun tuzaklarıdır."
+         "text": "Çarpım $(abc)^2$'dir. Hacim $abc$ olduğuna göre çarpımdan hacme nasıl geçersin? Alanları toplamak yerine çarpmayı kullan."
         }
        ],
-       "narration": "Üç yüz alanı ab, bc ve ca; çarpımları abc'nin karesi.",
        "origin": {
         "changes": "Havuzdaki üç yüz alanından prizmanın hacmi kalıbı örnek alındı; alanlar bu ders için seçildi."
        }
       }
+     },
+     {
+      "kind": "blank",
+      "title": "Yüzey alanı",
+      "prompt": "Ayrıtları 2 cm, 3 cm ve 6 cm olan dikdörtgenler prizmasının yüzey alanı kaç cm²'dir?",
+      "answers": [
+       "72"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 72,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "36",
+        "feedback": "36, üç farklı yüzün toplamıdır; yüzler çiftler hâlinde vardır, 2 ile çarp."
+       }
+      ],
+      "explanation": "$A = 2(2 \\cdot 3 + 3 \\cdot 6 + 6 \\cdot 2) = 2(6 + 18 + 12) = 72$ cm²."
      }
     ]
    },
@@ -1565,17 +1874,53 @@
     "subtopic": "GEO_PRIZMALAR_04",
     "subtopics": [],
     "title": "Küp",
-    "narration": "Bütün ayrıtları eşit olan dikdörtgenler prizması küptür.",
+    "narration": "",
     "cards": [
      {
       "kind": "rule",
       "title": "Küp",
       "items": [
+       "Bütün ayrıtları eşit olan dikdörtgenler prizması **küptür**.",
        "Ayrıt $a$: $V = a^3$, $A = 6a^2$, cisim köşegeni $a\\sqrt{3}$.",
-       "Ayrıt $k$ katına çıkınca alan $k^2$, hacim $k^3$ katına çıkar."
+       "Ayrıt $k$ katına çıkınca yüzey alanı $k^2$, hacim $k^3$ katına çıkar."
       ],
-      "beats": [],
-      "narration": "Küpün bütün ayrıtları eşittir. Ayrıtı a ise hacmi a küp, yüzey alanı 6a kare, cisim köşegeni a kök 3'tür. Benzerlikte olduğu gibi: ayrıt k katına çıkınca yüzey alanı k kare, hacim k küp katına çıkar."
+      "narration": "Küpte a = b = c olduğundan dikdörtgenler prizması formülleri sadeleşir: hacim a küp, yüzey alanı 6 eş kareden 6a kare, cisim köşegeni $\\sqrt{a^2 + a^2 + a^2} = a\\sqrt{3}$. Alan iki boyutlu, hacim üç boyutlu bir büyüklük olduğu için ayrıt k katına çıkınca alan k kare, hacim k küp katına çıkar."
+     },
+     {
+      "kind": "visual",
+      "title": "Ayrıt değişince alan ve hacim",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Ayrıt",
+        "Yüzey alanı",
+        "Hacim"
+       ],
+       "rows": [
+        [
+         "$a$",
+         "$6a^2$",
+         "$a^3$"
+        ],
+        [
+         "$2a$",
+         "$24a^2$",
+         "$8a^3$"
+        ],
+        [
+         "$3a$",
+         "$54a^2$",
+         "$27a^3$"
+        ],
+        [
+         "$ka$",
+         "$6k^2a^2$",
+         "$k^3a^3$"
+        ]
+       ]
+      },
+      "caption": "Ayrıt 2 katı: alan 4 katı, hacim 8 katı.",
+      "narration": "Tablodaki her satırı ilkiyle karşılaştır: ayrıt 2 katı olunca alan $6 \\cdot 4a^2 = 24a^2$, yani 4 katı; hacim $8a^3$, yani 8 katı. Aynı oran küp olmayan benzer cisimler için de geçerlidir."
      },
      {
       "kind": "predict",
@@ -1587,7 +1932,7 @@
        "8 katına"
       ],
       "answer": 1,
-      "thinkSeconds": 4,
+      "explanation": "Uzunluk, genişlik ve yükseklik üçü birden 2 katına çıkar: $2 \\cdot 2 \\cdot 2 = 8$. Yüzey alanı ise 4 katına çıkar; ikisini karıştırma.",
       "visual": {
        "kind": "cubes",
        "cubes": [
@@ -1669,30 +2014,7 @@
         "2a",
         "2a"
        ]
-      },
-      "beats": [
-       {
-        "narration": "Ortadaki koyu küp ilk küp. Ayrıtı 2 katı olan küpü bu küplerden kuralım.",
-        "show": [],
-        "focus": [
-         "bir"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Öbür yedi küp de geliyor: büyük küp 2 çarpı 2 çarpı 2, 8 küçük küpten oluşuyor.",
-        "show": [
-         "diger"
-        ],
-        "focus": [
-         "diger"
-        ],
-        "swap": []
-       }
-      ],
-      "explanation": "Ayrıt $k$ katı: hacim $k^3$ katı. $2^3 = 8$.",
-      "narration": "Şimdi sıra sende. Bir küpün ayrıtını 2 katına çıkarırsan hacmi kaç katına çıkar? Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap 8 katı. Uzunluk, genişlik ve yükseklik üçü birden 2 katına çıkar: 2 çarpı 2 çarpı 2, 8. Alan ise 4 katına çıkar; hacimle karıştırma."
+      }
      },
      {
       "kind": "question",
@@ -1707,48 +2029,111 @@
         "256"
        ],
        "answer": 1,
+       "choiceFeedback": [
+        "Bu şıkkı seçtiysen bir yüzün alanını ($a^2$) bulup bırakmışsın; hacim ayrıtın küpüdür.",
+        null,
+        "Bu şıkkı seçtiysen yüzey alanını hacim sanmışsın; ikisi farklı büyüklüktür.",
+        "Bu şıkkı seçtiysen ayrıtı doğru bulup hacmi yanlış hesaplamış olabilirsin; $a^3$'ü yeniden hesapla.",
+        "Bu şıkkı seçtiysen bir yüzün alanının karesini almışsın; hacim ayrıtın küpüdür."
+       ],
        "steps": [
         {
-         "text": "$6a^2 = 96 \\Rightarrow a^2 = 16 \\Rightarrow a = 4$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "6a kare, 96; a kare, 16; a, 4."
+         "text": "Küpün yüzey alanı 6 eş karedir: $6a^2$. Bu eşitliği kurup $a$'yı bul."
         },
         {
-         "text": "$V = 4^3 = 64$. Cevap **B**.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Hacim 4 küp, 64 santimetreküp. Cevap B. A şıkkındaki 16 bir yüzün alanıdır."
+         "text": "Ayrıtı bulunca hacim formülü $a^3$ ile hesaplanır. Bir yüzün alanını ($a^2$) hacimle karıştırma."
         }
        ],
-       "narration": "Yüzey alanından ayrıtı bulalım.",
        "origin": {
         "changes": "Havuzdaki yüzey alanından küpün hacmi kalıbı örnek alındı; alan bu ders için seçildi."
        }
       }
+     },
+     {
+      "kind": "predict",
+      "title": "Ayrıt üç kat",
+      "context": "Ayrıtı $a$ olan küpün yüzey alanı $6a^2$'dir.",
+      "prompt": "Küpün ayrıtı 3 katına çıkarsa yüzey alanı 9 katına çıkar.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Alan ayrıtın karesiyle orantılıdır: $3^2 = 9$. Hacim ise $3^3 = 27$ katına çıkar."
+     },
+     {
+      "kind": "blank",
+      "title": "Köşegenden hacim",
+      "prompt": "Cisim köşegeni $6\\sqrt{3}$ cm olan küpün hacmi kaç cm³'tür?",
+      "answers": [
+       "216"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 216,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "36",
+        "feedback": "36, bir yüzün alanıdır ($a^2$); hacim için küpünü al."
+       },
+       {
+        "answer": "108",
+        "feedback": "108, hacmin yarısı; $a = 6$ ise $a^3$'ü yeniden hesapla."
+       }
+      ],
+      "explanation": "$a\\sqrt{3} = 6\\sqrt{3}$ ise $a = 6$. $V = 6^3 = 216$ cm³."
+     },
+     {
+      "kind": "classify",
+      "title": "Ayrıt $k$ katına çıkınca",
+      "prompt": "Küpün ayrıtı $k$ katına çıkınca her büyüklüğün kaç katına çıktığına göre grupla.",
+      "groups": [
+       {
+        "label": "$k$ katı",
+        "items": [
+         "Ayrıt uzunluğu",
+         "Yüz köşegeni",
+         "Cisim köşegeni"
+        ]
+       },
+       {
+        "label": "$k^2$ katı",
+        "items": [
+         "Bir yüzün alanı",
+         "Yüzey alanı"
+        ]
+       },
+       {
+        "label": "$k^3$ katı",
+        "items": [
+         "Hacim",
+         "Aldığı su miktarı"
+        ]
+       }
+      ],
+      "explanation": "Uzunluk türündeki her şey $k$, alan türündeki her şey $k^2$, hacim ve kapasite türündeki her şey $k^3$ katına çıkar."
      }
     ]
    }
   ],
   "summary": {
    "points": [
-    "n-gen prizma: 2n köşe, 3n ayrıt, n + 2 yüz.",
-    "Yanal alan = taban çevresi · h.",
-    "Hacim = taban alanı · yükseklik.",
-    "Dikdörtgenler prizması: d = √(a² + b² + c²).",
-    "Küp: a³, 6a², a√3."
+    "Tabanı $n$-gen prizmada $2n$ köşe, $3n$ ayrıt, $n+2$ yüz vardır.",
+    "Dik prizmada yanal alan $=$ taban çevresi $\\cdot\\ h$; toplam alan $= 2 \\cdot$ taban $+$ yanal alan.",
+    "Hacim $=$ taban alanı $\\cdot$ yükseklik; $1$ litre $= 1$ dm³.",
+    "Açınımın yanal şeridi: uzunluğu taban çevresi, genişliği $h$.",
+    "Küp açınımında şeritte bir kare atlayanlar karşılıklıdır.",
+    "Kesince iki yeni yüz oluşur; hacim değişmez.",
+    "Dikdörtgenler prizması: $d = \\sqrt{a^2 + b^2 + c^2}$.",
+    "Küp: $a^3$, $6a^2$, $a\\sqrt{3}$; ayrıt $k$ katı: alan $k^2$, hacim $k^3$ katı."
    ],
    "warnings": [
-    "Kesince **yeni yüzler** oluşur.",
-    "Ayrıt 2 katı: hacim **8 katı**.",
-    "Yanal alan ile **toplam** alanı karıştırma."
+    "Kesince **yeni yüzler** oluşur; yüzey alanı artar, hacim değişmez. İstisna: köşeden küp çıkarılınca alan değişmez.",
+    "Ayrıt 2 katı olunca hacim **8 katı**, alan 4 katı olur.",
+    "Yanal alan ile **toplam** alanı karıştırma.",
+    "Çivi sorusunda **dışarıda kalan** parçaları değil, içeride kalan boyutları çarp."
    ]
   }
  },
@@ -1760,14 +2145,5 @@
     "Uygulamada KPSS Prizmalar testinden **20 soru** çöz."
    ]
   }
- },
- "works": {
-  "additions": [
-   "Prizmanın elemanları: taban, yanal yüz, ayrıt, köşe; n-gen prizmada 2n köşe, 3n ayrıt, n + 2 yüz.",
-   "Dik prizma: yanal yüzler dikdörtgen, yanal alan = taban çevresi · h, toplam alan = 2 · taban + yanal, hacim = taban · h.",
-   "Açınım: yanal yüzler taban çevresi uzunluğunda bir şerit; küp açınımında yan yana dört karede bir atlayanlar karşılıklı.",
-   "Yüzey alanı: açınımın alanı; kesilen cisimde iki yeni yüz (ÖSYM 2020 kalıbı). Hacim: birim küp sayısı, taban alanı · yükseklik; çakılan çivilerden boyutlar (ÖSYM 2018), yapıştırılan küpler (ÖSYM 2014).",
-   "Dikdörtgenler prizması: V = abc, A = 2(ab + bc + ca), d = √(a² + b² + c²). Küp: a³, 6a², a√3; ayrıt k katı → alan k², hacim k³ katı."
-  ]
  }
 }

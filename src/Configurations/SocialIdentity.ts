@@ -70,7 +70,7 @@ export const coverShape = (width: number, height: number): CoverShape => (width 
  * (the largest step they all fit), so swiping never changes the type; before,
  * a page with a longer title dropped from 72 to 60.
  *
- * Lines are measured, not guessed (Images/Components/TextMeasure), so pictures
+ * Lines are measured, not guessed (Components/Typography/TextMeasure), so pictures
  * are placed under the deepest text of the post, the same place on every page.
  * Text that does not fit at these sizes is refused before rendering (each
  * template's checkLayout, enforced by resolveImageJob): never shrunk, cut or

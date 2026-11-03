@@ -2,7 +2,8 @@ import React from 'react';
 import {easeFrom} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
 import {useVideoLayout} from '../../Layouts/VideoLayout';
-import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {textWidth} from '../FigureLabel';
+import {useFigureFont, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {UNFOCUSED_FADE, useBeatStartFor, useElementState} from '../VisualTimeline';
 
@@ -22,6 +23,7 @@ const written = (value: number) => String(Number(value.toFixed(1))).replace('.',
 export const PieVisual: React.FC<VisualBoxProps & {visual: Pie}> = ({visual, width, height, delaySeconds = 0}) => {
 	const palette = useVisualPalette();
 	const {u} = useVideoLayout();
+	const font = useFigureFont();
 	const seconds = useSceneSeconds();
 	const looks = Array.from({length: SLOTS}, (_, index) => useElementState(index < visual.slices.length ? `p${index + 1}` : undefined));
 	const firstStart = (id: string) => {
@@ -44,10 +46,13 @@ export const PieVisual: React.FC<VisualBoxProps & {visual: Pie}> = ({visual, wid
 	};
 	// The labels sit around the circle: it leaves room for the longest one on either side, and for one line of label
 	// above and below, where a thin slice at the top puts its label (30 Oct 2026: "Karma: 39" was cut at the top).
-	const labelSize = u(34);
-	const longest = Math.max(...visual.slices.map((slice) => label(slice).length)) * labelSize * 0.56;
-	const vertical = height / 2 - u(46) - labelSize - u(12);
-	const radius = Math.max(height * 0.18, Math.min(height * 0.4, vertical, width / 2 - longest - u(70)));
+	// Labels too long for the room beside a full circle are set smaller, down to 20 (never under an app still's
+	// smallest text): "Hemoglobine bağlı: %23" at 34 ran 120 units off a still's left edge (2 Nov 2026).
+	const widest = (size: number) => Math.max(...visual.slices.map((slice) => textWidth(label(slice), size)));
+	const vertical = height / 2 - u(46) - u(34) - u(12);
+	const full = Math.min(height * 0.4, vertical);
+	const labelSize = font(Math.max(u(20), Math.min(u(34), (u(34) * (width / 2 - full - u(70))) / widest(u(34)))));
+	const radius = Math.max(height * 0.18, Math.min(full, width / 2 - widest(labelSize) - u(70)));
 
 	let startAngle = 0;
 	return (

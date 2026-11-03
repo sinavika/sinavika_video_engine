@@ -102,7 +102,8 @@ export const UI_TYPE = {
 	title: [22, 28, 800],
 	section: [17, 23, 800],
 	headline: [15, 20, 700],
-	body: [14.5, 21, 500],
+	/** Reading text: 16 pt with 1.5 line height (UX rule review, 3 Nov 2026; was 14.5). */
+	body: [16, 24, 500],
 	small: [13, 18, 500],
 	meta: [12, 16, 600],
 	/** The smallest text anywhere: 12 pt (UI/UX review, 25 Oct 2026; was 11). */

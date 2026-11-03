@@ -12,6 +12,7 @@ import {type CourseVisual} from '../VisualSchema';
 import {degreeLabel, MAP_LINES, SHADE_COLORS} from './HumanitiesSchema';
 import {easeFrom} from '../../../Animations/Motion';
 import {Part, useBeatStartFor} from '../VisualTimeline';
+import {textWidth} from '../FigureLabel';
 
 /** A river or lake a beat points at: deeper blue, so it stays water and still stands out. */
 const WATER_FOCUS = '#1F5F99';
@@ -472,12 +473,12 @@ export const MapVisual: React.FC<VisualBoxProps & {visual: MapSpec}> = ({visual,
 	placed.push(...overlays.filter((overlay) => overlay.draw === 'water').flatMap((overlay) => overlay.features.map((item) => lakeBox(path.bounds(item), u(4)))));
 	// The shades' legend sits in the lower left corner; labels keep clear of it.
 	const legendRow = u(40);
-	const legendWidth = visual.shades.length > 0 ? u(64) + Math.max(...visual.shades.map((shade) => shade.label.length)) * u(13) : 0;
+	const legendWidth = visual.shades.length > 0 ? u(64) + Math.max(...visual.shades.map((shade) => textWidth(shade.label, u(23), 800))) : 0;
 	const legendTop = height - u(20) - visual.shades.length * legendRow - u(16);
 	if (visual.shades.length > 0) placed.push({left: u(16), right: u(16) + legendWidth, top: legendTop, bottom: height - u(16)});
 	// The credit line in the lower right corner too: "Bor · Bigadiç" sat on it once a still raised it (2 Nov 2026).
 	const creditText = [...credits, ...(visual.territories.length ? ['Sınırlar yaklaşıktır'] : []), ...(visual.ridges.length ? ['Dağ sıraları yaklaşıktır'] : [])].join(' · ');
-	if (creditText) placed.push({left: width - u(16) - creditText.length * creditSize * 0.55, right: width - u(16), top: height - u(14) - creditSize, bottom: height});
+	if (creditText) placed.push({left: width - u(16) - textWidth(creditText, creditSize, 500), right: width - u(16), top: height - u(14) - creditSize, bottom: height});
 	const shadeAlpha = (index: number) => (visual.shades.length === 1 ? 1 : 1 - (0.72 * index) / (visual.shades.length - 1));
 	// Kinds get colours of their own (lesson, brand, then a brown, a purple and a sand); ordered classes get tones of the lesson colour.
 	const CONTRAST = [palette.lesson, palette.brand, ...SHADE_CONTRAST];

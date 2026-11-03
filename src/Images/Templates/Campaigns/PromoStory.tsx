@@ -10,7 +10,7 @@ import {PROMO_PHONE_SCREEN_NAMES, PROMO_PHONE_SCREENS, PROMO_WEB_SCREEN_NAMES, P
 import {Icon} from '../../../UIUX/Icons';
 import {MODULES, MODULE_ORDER, type ModuleKey} from '../../../UIUX/ModuleIdentity';
 import {POST_TYPE} from '../../../Configurations/SocialIdentity';
-import {lineCount, overflowNote} from '../../Components/TextMeasure';
+import {lineCount, overflowNote} from '../../../Components/Typography/TextMeasure';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
 
 /**

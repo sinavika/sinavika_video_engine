@@ -2,15 +2,16 @@
  * A long one-line formula broken into lines at its relations, for an app still. A still is 1280 pixels wide and shown
  * about 360 wide: "x = 7k + 4 ⇒ 3x = 21k + 12 = 7(3k + 1) + 5" fitted on one line came out with its exponents at 20
  * pixels and its caption at 10 (2 Nov 2026). Lines break first where one statement leads to the next (⇒, ⇔, ", \quad"),
- * then, when a statement is still too wide, before its = < ≤ …; each new line begins with its relation, as a written
- * solution goes on. A lesson keeps its one line.
+ * then, when a statement is still too wide, before its = < ≤ …, and when a side is still too wide, before its + and −
+ * ("s(A ∪ B ∪ C) = s(A) + s(B) + s(C) − …" ran off a still, TYT Matematik, 3 Nov 2026); each new line begins with its
+ * relation or sign, as a written solution goes on. A lesson keeps its one line.
  */
 
 /** Relations that lead from one statement to the next: the first places to break. */
 const STEPS = ['\\Longrightarrow', '\\Leftrightarrow', '\\Rightarrow', '\\implies', '\\iff'];
 
 /** Relations inside a statement, longest first so \leq is not read as \le. */
-const RELATIONS = ['\\approx', '\\equiv', '\\neq', '\\leq', '\\geq', '\\to', '\\le', '\\ge', '=', '<', '>'];
+const RELATIONS = ['\\rightleftharpoons', '\\longrightarrow', '\\rightarrow', '\\approx', '\\equiv', '\\neq', '\\leq', '\\geq', '\\to', '\\le', '\\ge', '=', '<', '>'];
 
 /** Spacing commands, which carry no ink and are dropped at a line's ends. */
 const SPACE = /^(?:\\[;,:! ]|\\q?quad(?![a-zA-Z])|~|\s)+|(?:\\[;,:! ]|\\q?quad(?![a-zA-Z])|~|\s)+$/g;
@@ -30,7 +31,7 @@ export const latexWidth = (latex: string): number => {
 		.replace(/\\quad(?![a-zA-Z])/g, '·')
 		.replace(/\\[;:]/g, '˙')
 		.replace(/\\[,! ]/g, '')
-		.replace(/\\(?:Longrightarrow|Leftrightarrow|Rightarrow|implies|iff|approx|equiv|neq|leq|geq|to|le|ge)(?![a-zA-Z])/g, '=')
+		.replace(/\\(?:Longrightarrow|Leftrightarrow|Rightarrow|rightleftharpoons|longrightarrow|rightarrow|implies|iff|approx|equiv|neq|leq|geq|to|le|ge)(?![a-zA-Z])/g, '=')
 		.replace(/\\(?:cdot|times|pm|mp|div|ast|mid|in)(?![a-zA-Z])/g, '+')
 		.replace(/\\[a-zA-Z]+/g, 'x');
 	let width = 0;
@@ -87,6 +88,31 @@ const breakPoints = (latex: string): BreakPoint[] => {
 	return points;
 };
 
+/**
+ * The places a too-wide side may break: before a + or − between terms, outside braces and brackets (not a sign that
+ * opens a term, as in "= -2" or "(-x").
+ */
+const termPoints = (latex: string): BreakPoint[] => {
+	const points: BreakPoint[] = [];
+	let depth = 0;
+	for (let index = 0; index < latex.length; index++) {
+		const char = latex[index];
+		if (char === '\\') {
+			const name = /^\\(?:[a-zA-Z]+|.)/.exec(latex.slice(index))?.[0] ?? '\\';
+			if (name === '\\left' || name === '\\{') depth++;
+			else if (name === '\\right' || name === '\\}') depth--;
+			index += name.length - 1;
+			continue;
+		}
+		if (char === '{' || char === '(' || char === '[') depth++;
+		else if (char === '}' || char === ')' || char === ']') depth--;
+		if (depth !== 0 || index === 0 || (char !== '+' && char !== '-')) continue;
+		const before = latex.slice(0, index).trimEnd();
+		if (/[\w)}\]|!']$/.test(before)) points.push({at: index, skip: 0, step: false});
+	}
+	return points;
+};
+
 /** A formula cut at some of its break points, its pieces without spacing at their ends. */
 const cut = (latex: string, points: readonly BreakPoint[]): string[] => {
 	const pieces: string[] = [];
@@ -121,7 +147,10 @@ export const formulaLines = (latex: string, width: number): string => {
 	// Statement by statement; a statement still too wide is broken before its relations.
 	const lines = cut(latex, steps).flatMap((statement) => {
 		if (latexWidth(statement) <= width) return [statement];
-		return pack(cut(statement, breakPoints(statement).filter((point) => !point.step)), width);
+		const sides = pack(cut(statement, breakPoints(statement).filter((point) => !point.step)), width);
+		// A line broken before its + or − carries an empty group first, so KaTeX spaces the sign as the operation it is,
+		// not as the sign of a number ("−s(A ∩ C)" stood tight against its term).
+		return sides.flatMap((side) => (latexWidth(side) <= width ? [side] : pack(cut(side, termPoints(side)), width).map((line, index) => (index > 0 ? `{} ${line}` : line))));
 	});
 	return lines.length > 1 ? `\\begin{gathered}${lines.join(' \\\\ ')}\\end{gathered}` : latex;
 };

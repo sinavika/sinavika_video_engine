@@ -66,9 +66,30 @@ export const Stack: React.FC<StackProps> = ({gap = 0, row, align, justify, wrap,
 
 type ButtonTone = 'primary' | 'dark' | 'soft' | 'ghost' | 'white' | 'module' | 'moduleSoft' | 'disabled' | 'glass';
 
-type ButtonProps = {tone?: ButtonTone; size?: 'sm' | 'md' | 'lg'; block?: boolean; icon?: UIIconName; iconRight?: UIIconName; module?: ModuleKey; style?: React.CSSProperties; children?: React.ReactNode};
+type ButtonProps = {
+	tone?: ButtonTone;
+	size?: 'sm' | 'md' | 'lg';
+	block?: boolean;
+	icon?: UIIconName;
+	iconRight?: UIIconName;
+	module?: ModuleKey;
+	/** Sending: a spinner instead of the icon, the button locked so the action cannot go twice. */
+	loading?: boolean;
+	/** Keyboard focus (web): a 2 px ring in ink with a gap, at least 3:1 against the page. */
+	focus?: boolean;
+	style?: React.CSSProperties;
+	children?: React.ReactNode;
+};
 
-export const Button: React.FC<ButtonProps> = ({tone = 'primary', size = 'md', block, icon, iconRight, module, style, children}) => {
+/** The busy mark inside a loading button: a three-quarter ring. */
+const Spinner: React.FC<{size: number}> = ({size}) => (
+	<svg width={size} height={size} viewBox="0 0 24 24" style={{flexShrink: 0, display: 'block'}}>
+		<circle cx={12} cy={12} r={9} fill="none" stroke="currentColor" strokeOpacity={0.3} strokeWidth={3} />
+		<path d="M12 3a9 9 0 0 1 9 9" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" />
+	</svg>
+);
+
+export const Button: React.FC<ButtonProps> = ({tone = 'primary', size = 'md', block, icon, iconRight, module, loading, focus, style, children}) => {
 	const colors = useColors();
 	const mod = useModuleColors(module);
 	const accent = useAccent(module);
@@ -104,12 +125,14 @@ export const Button: React.FC<ButtonProps> = ({tone = 'primary', size = 'md', bl
 				whiteSpace: 'nowrap',
 				flexShrink: 0,
 				...tones[tone],
+				...(loading ? {opacity: 0.8, boxShadow: 'none'} : null),
+				...(focus ? {outline: `2px solid ${colors.ink}`, outlineOffset: 3} : null),
 				...style,
 			}}
 		>
-			{icon ? <Icon name={icon} size={font + 3} /> : null}
+			{loading ? <Spinner size={font + 3} /> : icon ? <Icon name={icon} size={font + 3} /> : null}
 			{children}
-			{iconRight ? <Icon name={iconRight} size={font + 3} /> : null}
+			{iconRight && !loading ? <Icon name={iconRight} size={font + 3} /> : null}
 		</div>
 	);
 };
@@ -295,7 +318,7 @@ export const Field: React.FC<FieldProps> = ({label, value, placeholder, icon, tr
 					gap: 10,
 					padding: '0 14px',
 					fontFamily: typography.body,
-					fontSize: 15,
+					fontSize: 16,
 					fontWeight: 500,
 					color: value ? colors.ink : colors.subtle,
 				}}
@@ -304,9 +327,16 @@ export const Field: React.FC<FieldProps> = ({label, value, placeholder, icon, tr
 				<span style={{flex: 1, whiteSpace: 'nowrap', overflow: 'hidden'}}>{value ?? placeholder}</span>
 				{trailing}
 			</div>
-			{error || hint ? (
-				<Text role="meta" color={error ? colors.error : colors.muted}>
-					{error ?? hint}
+			{error ? (
+				<Stack row gap={6} align="flex-start">
+					<Icon name="alert" size={15} color={colors.errorInk} />
+					<Text role="meta" color={colors.errorInk}>
+						{error}
+					</Text>
+				</Stack>
+			) : hint ? (
+				<Text role="meta" color={colors.muted}>
+					{hint}
 				</Text>
 			) : null}
 		</Stack>

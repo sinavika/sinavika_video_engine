@@ -72,6 +72,16 @@ const Composer: React.FC<{placeholder?: string}> = ({placeholder}) => {
 	);
 };
 
+/** Under every composer: SinoAI is an AI and can be wrong (users must know they talk to an AI). */
+const Disclaimer: React.FC = () => {
+	const t = useT();
+	return (
+		<Text role="meta" align="center" style={{marginTop: 8}}>
+			{t('SinoAI bir yapay zekâ; hata yapabilir. Önemli bilgileri kontrol et.', 'SinoAI is an AI and can make mistakes. Check important facts.')}
+		</Text>
+	);
+};
+
 /** The chat page frame inside the panel: history column and the white conversation area. */
 const SinoFrame: React.FC<{active?: 'chat' | 'study' | 'library'; children: React.ReactNode}> = ({active, children}) => {
 	const colors = useColors();
@@ -135,9 +145,7 @@ export const WebSinoChatScreen: React.FC = () => {
 				</Stack>
 				<div style={{flex: 1}} />
 				<Composer placeholder={t('Devam et…', 'Reply…')} />
-				<Text role="meta" align="center">
-					{t('SinoAI hata yapabilir; önemli bilgileri kontrol et.', 'SinoAI can make mistakes; check important facts.')}
-				</Text>
+				<Disclaimer />
 			</div>
 		</SinoFrame>
 	);
@@ -176,6 +184,7 @@ export const WebSinoStudyScreen: React.FC = () => {
 				</div>
 				<div style={{flex: 1}} />
 				<Composer placeholder={t('Örnek: Mol kavramı.pdf’ten 10 soruluk test', 'e.g. a 10-question quiz from Mole.pdf')} />
+				<Disclaimer />
 			</div>
 		</SinoFrame>
 	);

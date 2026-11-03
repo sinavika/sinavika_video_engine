@@ -63,10 +63,13 @@ Araçlar `Tools/` içinde; ajanların yönergesi [YONERGE.md](YONERGE.md).
    - Kitapçıklar "Tamamlandı" yazılır.
 6. `dry_run_exam_sql.py <ay>`: LocalDB'de canlı şemanın kopyasıyla denenir.
    - ekle → beklenenle birebir → API atama kuralları → ikinci ekleme durur → pasif mikroyla durur → atanmışken geri alma durur → geri al → boş hâl.
-7. **Onaydan sonra:**
-   - `upload_stills.py Exams/<ay> --yukle` ile hazır resimler yüklenir;
-   - `ekle.sql` canlıda çalışır (`apply_exam_sql.py <ay> --canli`);
-   - kitapçıklar admin panelinden Kasım slotlarına atanır.
+7. **Onaydan sonra (2 Kasım'dan beri API ile; SQL ile doğrudan yazılmaz, sahip kararı):**
+   - `upload_stills.py Exams/<ay> --yukle` ile hazır resimler yüklenir; `--var-mi` ile depoda olduğu doğrulanır;
+   - `exam_api.py <ay> --kuru`: istekler `dryRun` ile gönderilir (API'nin bütün kuralları; yanıtta yayınevi Sınavika olmalı);
+   - `exam_api.py <ay> --canli`: istek başına bir kitapçık (`POST api/claude/booklets`); göndermeden önce kod canlıda aranır; sonunda `GET api/claude/booklets/{id}` ile geri okunur;
+   - geri alma: `exam_api.py <ay> --geri-al` (denemeye atanmış kitapçığı API silmez);
+   - kitapçıklar admin panelinden ayın slotlarına atanır.
+   - `build_exam_sql.py` ve `dry_run_exam_sql.py` yerel denemede kalır (LocalDB'de canlı şemanın kopyası).
 
 ## 5. Durum
 
@@ -76,6 +79,7 @@ Araçlar `Tools/` içinde; ajanların yönergesi [YONERGE.md](YONERGE.md).
 | 2 Kas 2026 | Ortaöğretim, Önlisans'ın aynası oldu; Ortaöğretim ajanları durduruldu. 596/1.280 kayıt yazıldı. |
 | 2 Kas 2026 | **Kasım hazır, canlıya yazılmadı.** 19 kitapçık, 1.280 soru (1.040 yazılan + 240 Ortaöğretim aynası), 240 figür (motor resimli). `check_exams` bütün ay hatasız. `ekle.sql` LocalDB'de 7 adımı geçti. 428 resim dosyası (54 MB) yerel denetimde tamam. Koni sorusunda (AYT-MAT GEO 8) motor hatası yüzünden yalnız yarıçap etiketli. |
 | 2 Kas 2026 | Motor 8 çizim hatasını düzeltti (koni ve 3B ölçüler, molekül, pil, yüzde çubuğu, zar, hazne, çember etiketleri, koyu tema). Koni sorusu yeniden iki ölçülü. Ayın 240 figürü yeni motorla yeniden çizildi; ay hatasız, `ekle.sql` LocalDB'de 7 adımı yeniden geçti, 428 resim (54 MB) hazır. Canlıya yazılmadı. |
+| 2 Kas 2026 | **Kasım canlıda.** Sahip: "kasım kitapçıklarını canlıya al ama api ile". 428 resim yüklendi (depoda eksik 0). API'de yayınevi düzeltmesi yayına çıktı (her Claude kitapçığı Sınavika). Kuru çalıştırma temiz geçti. İlk yazım 10 kitapçıklık istekle ağ geçidinde 504 verdi; hiçbir şey yazılmadığı iki kez denetlendi. Sonra istek başına bir kitapçıkla 19 kitapçık yazıldı (18–133 sn). API ve veritabanından doğrulandı: 19 Tamamlandı, Sınavika, sistem; 1.280 soru, cevap ve çözüm; 240 figürün hepsi resimli; 162 işaretleme. Panelde atama bekliyor. |
 
 ## 6. Açık konular
 
@@ -99,3 +103,4 @@ Araçlar `Tools/` içinde; ajanların yönergesi [YONERGE.md](YONERGE.md).
 | 1 | 2 Kas 2026 | İlk sürüm: yeni deneme yapısı, Kasım planı, araçlar, akış. |
 | 2 | 2 Kas 2026 | Ortaöğretim = Önlisans (ayna); motor görseli (58) için API koşulu; motor çizim istekleri. |
 | 3 | 2 Kas 2026 | Kasım'ın bütün kitapçıkları yazıldı, denetlendi ve LocalDB'de denendi; taralı bölge API'de çözüldü; koni için geçici çözüm. |
+| 4 | 2 Kas 2026 | Kasım API ile canlıya alındı (`exam_api.py`); canlı yazım yolu API oldu; motor düzeltmeleriyle figürler yeniden çizildi. |

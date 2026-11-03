@@ -3,7 +3,8 @@ import {easeFrom} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
 import {useFigureFont, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import {type CourseVisual} from '../VisualSchema';
-import {fittedScale, H, Tag, usePartLook, W, World} from '../VisualWorld';
+import {fittedScale, H, Tag, usePartLook, W, World, FigureText} from '../VisualWorld';
+import {textWidth} from '../FigureLabel';
 
 // ---------------------------------------------------------------- geological time column
 
@@ -94,7 +95,7 @@ export const GeoTimeVisual: React.FC<VisualBoxProps & {visual: GeoTime}> = ({vis
 	// An era's number ("IV. Zaman · Senozoyik sonu") raised to an app still's smallest text ran past its layer into the
 	// events (2 Nov 2026): too long for the layer at its size, it takes two lines, cut before its "·" or "(".
 	const numberSize = useFigureFont(fittedScale(width, height, W, H))(17);
-	const numberLines = (text: string) => (text.length * numberSize * 0.55 > columnRight - left - 24 ? text.split(/ (?=[·(])/).map((part) => part.replace(/^· /, '')) : [text]);
+	const numberLines = (text: string) => (textWidth(text, numberSize, 600) > columnRight - left - 24 ? text.split(/ (?=[·(])/).map((part) => part.replace(/^· /, '')) : [text]);
 	return (
 		<World width={width} height={height}>
 			{ERAS.map((era) => {
@@ -111,16 +112,16 @@ export const GeoTimeVisual: React.FC<VisualBoxProps & {visual: GeoTime}> = ({vis
 					<g key={era.id} opacity={opacity}>
 						{/* The layer: wavy top edge like bedding, darker when pointed at. */}
 						<path d={`M${left} ${era.bottom} L${left} ${era.top} Q${left + 65} ${era.top - 6} ${left + 130} ${era.top} T${columnRight} ${era.top} L${columnRight} ${era.bottom} Z`} fill={era.color} stroke={focused > 0.5 ? palette.lesson : withAlpha('#3D2B1A', 0.35)} strokeWidth={focused > 0.5 ? 5 : 2} />
-						<text x={left + 14} y={middle - 8 - lift} fontSize={27} fontWeight={800} fill={era.id === 'paleozoyik' || era.id === 'prekambriyen' ? '#FFFFFF' : palette.ink} fontFamily={palette.fontDisplay}>
+						<FigureText x={left + 14} y={middle - 8 - lift} fontSize={27} fontWeight={800} fill={era.id === 'paleozoyik' || era.id === 'prekambriyen' ? '#FFFFFF' : palette.ink} fontFamily={palette.fontDisplay}>
 							{era.name}
-						</text>
-						<text x={left + 14} y={middle + 20 - lift} fontSize={numberSize} fontWeight={600} fill={era.id === 'paleozoyik' || era.id === 'prekambriyen' ? '#F1F1F1' : palette.ink} fontFamily={palette.fontBody}>
+						</FigureText>
+						<FigureText x={left + 14} y={middle + 20 - lift} fontSize={numberSize} fontWeight={600} fill={era.id === 'paleozoyik' || era.id === 'prekambriyen' ? '#F1F1F1' : palette.ink} fontFamily={palette.fontBody}>
 							{number.map((line, index) => (
 								<tspan key={index} x={left + 14} dy={index === 0 ? 0 : numberSize * 1.1}>
 									{line}
 								</tspan>
 							))}
-						</text>
+						</FigureText>
 						<Tag x={columnRight + 18} y={era.top + 18} text={era.age} size={19} weight={800} fill={focused > 0.5 ? palette.lesson : palette.muted} />
 						{events.map((event, index) => (
 							<Tag key={index} x={columnRight + 30} y={era.top + 46 + index * 25} text={`• ${event}`} size={19} weight={focused > 0.5 ? 700 : 600} fill={focused > 0.5 ? palette.ink : palette.muted} />
@@ -131,9 +132,9 @@ export const GeoTimeVisual: React.FC<VisualBoxProps & {visual: GeoTime}> = ({vis
 			{/* Senozoyik spans its two periods. */}
 			<g opacity={Math.max(looks.tersiyer.opacity, looks.kuvaterner.opacity)}>
 				<path d={`M${left - 14} 26 L${left - 22} 26 L${left - 22} 246 L${left - 14} 246`} fill="none" stroke={cenozoic.focused > 0.5 ? palette.lesson : palette.ink} strokeWidth={cenozoic.focused > 0.5 ? 5 : 3} />
-				<text x={left - 30} y={136} fontSize={17} fontWeight={800} fill={cenozoic.focused > 0.5 ? palette.lesson : palette.ink} fontFamily={palette.fontDisplay} transform={`rotate(-90 ${left - 30} 136)`} textAnchor="middle">
+				<FigureText x={left - 30} y={136} fontSize={17} fontWeight={800} fill={cenozoic.focused > 0.5 ? palette.lesson : palette.ink} fontFamily={palette.fontDisplay} transform={`rotate(-90 ${left - 30} 136)`} textAnchor="middle">
 					Senozoyik
-				</text>
+				</FigureText>
 			</g>
 			{/* From the column's left edge: raised in an app still and ending at the column's right, it ran off the page. */}
 			<Tag x={left} y={596} text="Katmanlar ölçeksizdir; en eski en altta" anchor="start" size={14} fill={palette.muted} />

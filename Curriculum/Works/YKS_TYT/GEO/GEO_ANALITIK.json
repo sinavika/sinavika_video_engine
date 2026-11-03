@@ -14,16 +14,50 @@
  "sourceScripts": [
   "Curriculum/Scripts/YKS_TYT/GEO/GEO_ANALITIK.json"
  ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/YKS/TYT/CikmisSorular/GEO/GEO_ANALITIK.json (ÖSYM 2018: ölçekli harita ve helikopter soruları; yalnız kalıp olarak kullanıldı)",
+   "Curriculum/Scripts/YKS_TYT/GEO/GEO_ANALITIK.json"
+  ],
+  "additions": [
+   {
+    "note": "Doğru denkleminin farklı biçimlerini ver: eksenleri kestiği noktalarla x/a + y/b = 1, genel biçim ax + by + c = 0 ve eğimi −a/b; eksenlerle oluşturduğu üçgenin alanı.",
+    "done": "Bölüm 3'te biçimler tablosu, genel biçim ve eksen kesimi kuralı, eğimi −a/b olan blank, −b/a mistake kartı, x/a + y/b = 1 için predict ve guided kartı ile eksenlerle oluşan üçgenin alanı (|a|·|b|/2 ve c²/(2|ab|)) ile alan sorusu eklendi."
+   },
+   {
+    "note": "İki doğrunun kesişim noktasını denklem sistemiyle bulmayı ve üç noktanın doğrusal olma koşulunu (eğimlerin eşitliği) örnekle.",
+    "done": "Kesişim noktası: Bölüm 4'te kural maddesi, çözümlü örnek (y = 2x − 1 ve x + y = 8) ve kesişim sorusu. Doğrusallık: Bölüm 2'de kural maddesi, çözümlü örnek (A, B, C ve c) ve doğrusallık sorusu."
+   },
+   {
+    "note": "Noktanın doğruya uzaklığı formülünü (|ax₀ + by₀ + c| / √(a² + b²)) ve paralel iki doğru arasındaki uzaklığı sayısal örneklerle ver.",
+    "done": "Bölüm 4'te formül kartı, iki sayısal örnek (P(3, 2) ve 3x + 4y + 1 = 0; 6x + 8y − 5 = 0 ile 3x + 4y + 5 = 0), katsayıları eşitleme hatasını arayan findError kartı ve iki uzaklık sorusu eklendi."
+   },
+   {
+    "note": "Simetri kurallarını ekle: noktanın x eksenine, y eksenine, orijine ve y = x doğrusuna göre simetriği.",
+    "done": "Bölüm 1'de simetri tablosu (y = −x ve bir noktaya göre simetri dahil), eşleştirme kartı, y = x için mistake kartı ve simetri sorusu eklendi."
+   }
+  ],
+  "fixes": [
+   "Dik doğru eğimi sorusunun şıkları küçükten büyüğe sıralı değildi (−1/3, −1, −3, 1/3, 3); sıralandı ve cevap anahtarı yeniden hesaplandı: −1/3.",
+   "Soru adımlarının son ipucu cevabı ve harfini veriyordu (\"Cevap D\" gibi); ipuçları yeniden yazıldı, son işlem öğrenciye bırakıldı.",
+   "Soru kartlarındaki seslendirme alanları ve video dili (\"Cevabımız B\", \"Dinleyelim\" vb.) kaldırıldı; açıklamalar yazıya çevrildi, her yanlış şık için choiceFeedback eklendi.",
+   "Temeldeki doğru şık harfleri art arda tekrarlıyordu (D, D ve B, B gibi); şıklar yeniden düzenlenerek harf dağılımı dengelendi, tüm cevaplar yeniden çözüldü.",
+   "Havuzdaki ikinci soru (birim çember, cevap B: a·b = 15) alt konusuz ve TYT analitik kapsamı dışında olduğu için derse alınmadı; cevap anahtarı doğrulandı. Kaynak soruların bozuk formül metni (|AB| = c a 2 d b 2) standart biçimde yazıldı."
+  ]
+ },
  "lesson": {
   "hook": {
    "headline": "Geometri, formülle",
-   "narration": "Bir haritada iki köy arasındaki uzaklığı, cetvel olmadan, yalnız koordinatlarla bulabilirsin. Bir yolun ne kadar dik çıktığını tek bir sayı söyler. Bu derste uzaklık ve orta nokta formüllerini, eğimi, doğru denklemini, paralel ve dik doğruları ve bir noktanın doğruya uzaklığını öğreneceğiz."
+   "narration": "Bir haritada iki köy arasındaki uzaklığı, cetvel olmadan, yalnız koordinatlarla bulabilirsin. Bir yolun ne kadar dik çıktığını tek bir sayı söyler. Bu derste uzaklık ve orta nokta formüllerini, simetriyi, eğimi, doğru denklemini, paralel ve dik doğruları, kesişim noktasını ve bir noktanın doğruya uzaklığını öğreneceksin."
   },
   "objectives": [
    "İki nokta arası uzaklığı, orta noktayı ve ağırlık merkezini koordinatlarla bulmak",
-   "Doğrunun eğimini iki noktadan ve açıdan hesaplamak",
-   "Eğim ve noktadan doğru denklemi yazmak",
-   "Paralel ve dik doğruları ayırt etmek; noktanın doğruya uzaklığını bulmak"
+   "Noktanın eksenlere, orijine ve y = x doğrusuna göre simetriğini yazmak",
+   "Eğimi iki noktadan ve açıdan hesaplamak; üç noktanın doğrusallığını sınamak",
+   "Doğru denkleminin biçimlerini (y = mx + n, x/a + y/b = 1, ax + by + c = 0) kullanmak",
+   "Doğrunun eksenlerle yaptığı üçgenin alanını bulmak",
+   "Paralel ve dik doğruları ayırt etmek; kesişim noktasını denklem sistemiyle bulmak",
+   "Noktanın doğruya ve paralel iki doğru arasındaki uzaklığı hesaplamak"
   ],
   "sections": [
    {
@@ -33,8 +67,8 @@
      "GEO_ANALITIK_04",
      "GEO_ANALITIK_05"
     ],
-    "title": "Uzaklık ve orta nokta",
-    "narration": "Analitik geometri, geometriyi formüllerle yazmaktır. İlk iki formül: uzaklık ve orta nokta.",
+    "title": "Uzaklık, orta nokta ve simetri",
+    "narration": "",
     "cards": [
      {
       "kind": "visual",
@@ -53,26 +87,31 @@
        "yLabel": "y",
        "curves": [],
        "parameters": {},
+       "showParameters": true,
        "points": [
         {
          "x": 1,
          "y": 1,
-         "label": "A(1, 1)"
+         "label": "A(1, 1)",
+         "style": "closed"
         },
         {
          "x": 7,
          "y": 9,
-         "label": "B(7, 9)"
+         "label": "B(7, 9)",
+         "style": "closed"
         },
         {
          "x": 7,
          "y": 1,
-         "label": "K"
+         "label": "K",
+         "style": "closed"
         },
         {
          "x": 4,
          "y": 5,
-         "label": "M(4, 5)"
+         "label": "M(4, 5)",
+         "style": "closed"
         }
        ],
        "segments": [
@@ -117,29 +156,41 @@
        "axes": "origin"
       },
       "caption": "$|AB| = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$; orta nokta $\\left(\\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2}\\right)$.",
-      "beats": [
+      "narration": "$A(1, 1)$ ve $B(7, 9)$ noktalarını düşün. $A$'dan yatay, $B$'den dikey çizgi çekince $K(7, 1)$ noktasında dik açı oluşur. Yatay fark $7 - 1 = 6$, dikey fark $9 - 1 = 8$. Uzaklık bu dik üçgenin hipotenüsüdür: $\\sqrt{36 + 64} = 10$. Uzaklık formülü, Pisagor teoreminin koordinatlarla yazılmış hâlidir. Orta nokta ise koordinatların ortalamasıdır: $\\frac{1 + 7}{2} = 4$ ve $\\frac{1 + 9}{2} = 5$, yani $M(4, 5)$."
+     },
+     {
+      "kind": "rule",
+      "title": "Üç temel formül",
+      "items": [
+       "Uzaklık: $|AB| = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$",
+       "Orta nokta: $M\\left(\\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2}\\right)$",
+       "Ağırlık merkezi: $G\\left(\\frac{x_1 + x_2 + x_3}{3}, \\frac{y_1 + y_2 + y_3}{3}\\right)$",
+       "$M$, $[AB]$'nin orta noktasıysa diğer uç: $B = 2M - A$",
+       "Negatif koordinatta işarete dikkat: $5 - (-1) = 6$"
+      ],
+      "narration": "Uzaklık formülünde iki farkı dik kenar, uzaklığı hipotenüs say. Farkların karesi alındığı için $x_2 - x_1$ yazmakla $x_1 - x_2$ yazmak sonucu değiştirmez; asıl tehlike işaret hatasıdır. Orta nokta ve ağırlık merkezi ortalamadır: iki nokta için ikiye, üç köşe için üçe bölersin. Orta noktası ve bir ucu verilen doğru parçasının öbür ucunu $B = 2M - A$ ile hemen bulursun; çünkü $A$'dan $M$'ye giden adımı bir kez daha atarsın."
+     },
+     {
+      "kind": "blank",
+      "title": "Uzaklığı hesapla",
+      "prompt": "$A(2, 3)$ ve $B(5, 7)$ noktaları arasındaki uzaklık kaç birimdir?",
+      "before": "$|AB| =$",
+      "after": "birim",
+      "answers": [
+       "5"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 5,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
        {
-        "narration": "Yatay fark yedi eksi bir, altı; dikey fark dokuz eksi bir, sekiz. Uzaklık, bu dik üçgenin hipotenüsü: on. Uzaklık formülü, Pisagor'un koordinatlarla yazılmış hâlidir.",
-        "show": [],
-        "focus": [
-         "s1",
-         "s2",
-         "s3"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Orta nokta ise koordinatların ortalaması: bir artı yedinin yarısı dört, bir artı dokuzun yarısı beş. M dört virgül beş. Üçgenin ağırlık merkezi de aynı fikirle bulunur: üç köşenin koordinatlarının ortalaması.",
-        "show": [],
-        "focus": [
-         "p1",
-         "p2",
-         "p4"
-        ],
-        "swap": []
+        "answer": "7",
+        "feedback": "$3$ ile $4$'ü toplamışsın. Uzaklık farkların toplamı değil, hipotenüstür."
        }
       ],
-      "narration": "A bir virgül bir, B yedi virgül dokuz. A'dan yatay, B'den dikey çizgi çekince K noktasında dik açı oluşur."
+      "explanation": "$\\Delta x = 5 - 2 = 3$, $\\Delta y = 7 - 3 = 4$. $|AB| = \\sqrt{9 + 16} = 5$."
      },
      {
       "kind": "question",
@@ -147,39 +198,42 @@
        "style": "TYT tarzı",
        "stem": "$A(-1, 2)$ ve $B(5, 10)$ noktaları arasındaki uzaklık kaç birimdir?",
        "options": [
+        "6",
         "7",
         "8",
-        "9",
         "10",
         "14"
        ],
        "answer": 3,
+       "choiceFeedback": [
+        "Yalnız yatay farkı almış olabilirsin; dikey fark da var.",
+        "Bu, iki farkın ortalaması. Uzaklık ortalama değil, hipotenüstür.",
+        "Yalnız dikey farkı almış olabilirsin; yatay fark da var.",
+        null,
+        "İki farkı toplamışsın. Uzaklık farkların toplamı değil, kareleri toplamının karekökü."
+       ],
        "steps": [
         {
-         "text": "$\\Delta x = 5 - (-1) = 6$, $\\Delta y = 10 - 2 = 8$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Yatay fark beş eksi eksi bir, altı. Dikey fark on eksi iki, sekiz."
+         "text": "Önce iki farkı yaz: $\\Delta x = 5 - (-1)$ ve $\\Delta y = 10 - 2$. İşaretlere dikkat."
         },
         {
-         "text": "$|AB| = \\sqrt{36 + 64} = 10$. Cevap **D**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Altı, sekiz, on üçgeninden uzaklık on birim. Cevabımız D. Sekizi seçen yalnız dikey farka bakmıştır; on dördü seçen iki farkı toplamıştır. Uzaklık farkların toplamı değil, hipotenüstür."
+         "text": "Farklar bir dik üçgenin dik kenarlarıdır; uzaklık bu üçgenin hipotenüsüdür."
+        },
+        {
+         "text": "Şimdi $\\sqrt{(\\Delta x)^2 + (\\Delta y)^2}$ değerini hesapla."
         }
        ],
-       "narration": "Farklar $6$ ve $8$.",
        "origin": {
         "changes": "Bu ders için yazıldı; iki nokta arası uzaklık negatif koordinatla özgün bir soruda soruldu."
        }
       }
+     },
+     {
+      "kind": "mistake",
+      "title": "Farkları toplamak",
+      "wrong": "İki nokta arasındaki uzaklık, $x$ farkı ile $y$ farkının toplamıdır.",
+      "right": "Uzaklık $\\sqrt{(\\Delta x)^2 + (\\Delta y)^2}$'dir; farkların toplamı değildir.",
+      "why": "Farklar dik üçgenin dik kenarlarıdır, uzaklık ise hipotenüstür. Hipotenüs, dik kenarların toplamından her zaman kısadır: $6$ ve $8$ farkında uzaklık $14$ değil, $10$'dur."
      },
      {
       "kind": "question",
@@ -188,38 +242,45 @@
        "stem": "Ölçekli bir haritada $A(1, 3)$ ile $B(9, 9)$ noktaları arasındaki gerçek uzaklık $5$ km'dir. Aynı haritada $A$ ile $C(13, 8)$ arasındaki gerçek uzaklık kaç kilometredir?",
        "options": [
         "$5$",
-        "$5{,}5$",
-        "$6$",
         "$6{,}5$",
-        "$13$"
+        "$10$",
+        "$13$",
+        "$26$"
        ],
-       "answer": 3,
+       "answer": 1,
+       "choiceFeedback": [
+        "$A$ ile $B$ arasındaki gerçek uzaklığı almışsın; sorulan $A$ ile $C$ arası.",
+        null,
+        "Bu, haritadaki $|AB|$ birimi; kilometreye çevrilmemiş ve $|AC|$ değil.",
+        "Bu, haritadaki $|AC|$ birimi; ölçeği uygulamayı unutmuşsun.",
+        "Ölçeği ters uygulamışsın: birim sayısını $2$ ile çarpmışsın."
+       ],
        "steps": [
         {
-         "text": "$|AB| = \\sqrt{64 + 36} = 10$ birim $= 5$ km → $1$ birim $= 0{,}5$ km.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "A B haritada on birim: sekiz ve altı farklarından, altı sekiz on. On birim beş kilometre ise bir birim yarım kilometre."
+         "text": "Önce haritadaki $|AB|$ uzaklığını birim olarak bul: farklar $8$ ve $6$."
         },
         {
-         "text": "$|AC| = \\sqrt{144 + 25} = 13$ birim → $6{,}5$ km. Cevap **D**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "A C: farklar on iki ve beş, beş on iki on üç; on üç birim. Gerçekte on üçün yarısı, altı buçuk kilometre. Cevabımız D. On üçü seçen, haritadaki birimi kilometreye çevirmeyi unutmuştur."
+         "text": "$|AB|$ birimi $5$ km'ye eşitse $1$ birim kaç kilometre eder? Ölçeği bul."
+        },
+        {
+         "text": "Şimdi $|AC|$'yi birim olarak hesapla (farklar $12$ ve $5$) ve ölçekle kilometreye çevir."
         }
        ],
-       "narration": "Önce bir birimin kaç kilometre olduğunu bul.",
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2018 ölçekli harita sorusunun fikri farklı koordinatlar ve iki Pisagor üçlüsüyle yeniden kuruldu."
+        "changes": "Bu ders için yazıldı; ÖSYM 2018 ölçekli harita sorusunun kalıbı farklı koordinatlar ve iki Pisagor üçlüsüyle yeniden kuruldu."
        }
       }
+     },
+     {
+      "kind": "predict",
+      "title": "Orta noktayı tahmin et",
+      "prompt": "$A(2, 6)$ ve $B(8, 2)$ noktalarının orta noktası $(5, 4)$'tür. Bu ifade doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$x$: $\\frac{2 + 8}{2} = 5$; $y$: $\\frac{6 + 2}{2} = 4$. Orta nokta $(5, 4)$'tür."
      },
      {
       "kind": "question",
@@ -227,39 +288,109 @@
        "style": "TYT tarzı",
        "stem": "Köşeleri $A(1, 2)$, $B(5, 4)$ ve $C(3, 9)$ olan üçgenin ağırlık merkezinin koordinatları toplamı kaçtır?",
        "options": [
-        "5",
-        "8",
-        "9",
-        "12",
-        "24"
+        "$3$",
+        "$5$",
+        "$8$",
+        "$9$",
+        "$24$"
        ],
-       "answer": 1,
+       "answer": 2,
+       "choiceFeedback": [
+        "Yalnız $x$ koordinatını bulmuşsun; sorulan koordinatlar toplamı.",
+        "Yalnız $y$ koordinatını bulmuşsun; sorulan koordinatlar toplamı.",
+        null,
+        "$x$'lerin toplamını üçe bölmeden almışsın.",
+        "Tüm koordinatları toplayıp üçe bölmeyi unutmuşsun."
+       ],
        "steps": [
         {
-         "text": "$G = \\left(\\frac{1 + 5 + 3}{3}, \\frac{2 + 4 + 9}{3}\\right) = (3, 5)$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Ağırlık merkezinin x'i, üç x'in ortalaması: dokuz bölü üç, üç. y'si, on beş bölü üç, beş. G üç virgül beş."
+         "text": "Ağırlık merkezinin her koordinatı, köşelerin o koordinatlarının ortalamasıdır."
         },
         {
-         "text": "Toplam $8$. Cevap **B**.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Koordinatlar toplamı sekiz. Cevabımız B. Yirmi dördü seçen, koordinatları toplayıp üçe bölmeyi unutmuştur."
+         "text": "$x_G$ için $1$, $5$, $3$'ü; $y_G$ için $2$, $4$, $9$'u üçe bölerek ortala."
+        },
+        {
+         "text": "Soru $G$'nin koordinatları toplamını istiyor: $x_G + y_G$'yi yaz."
         }
        ],
-       "narration": "Ağırlık merkezi: köşelerin ortalaması.",
        "origin": {
         "changes": "Bu ders için yazıldı; ağırlık merkezinin koordinatları özgün bir üçgende soruldu."
        }
       }
+     },
+     {
+      "kind": "visual",
+      "title": "Simetri kuralları",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Hangisine göre?",
+        "(a, b)'nin simetriği"
+       ],
+       "rows": [
+        [
+         "x eksenine göre",
+         "(a, −b)"
+        ],
+        [
+         "y eksenine göre",
+         "(−a, b)"
+        ],
+        [
+         "Orijine göre",
+         "(−a, −b)"
+        ],
+        [
+         "y = x doğrusuna göre",
+         "(b, a)"
+        ],
+        [
+         "y = −x doğrusuna göre",
+         "(−b, −a)"
+        ],
+        [
+         "M(m, n) noktasına göre",
+         "(2m − a, 2n − b)"
+        ]
+       ]
+      },
+      "caption": "Bir noktaya göre simetride o nokta, iki noktanın orta noktasıdır.",
+      "narration": "Bir eksene göre simetride eksen üzerindeki koordinat aynı kalır, diğer koordinatın işareti değişir. $x$ eksenine göre simetride $y$'nin işareti, $y$ eksenine göre simetride $x$'in işareti değişir. Orijine göre simetride ikisinin de işareti değişir. $y = x$ doğrusuna göre simetride koordinatlar yer değiştirir; işaret değişmez. $y = -x$ doğrusunda ise hem yer değiştirir hem işaret değişir. Örnek: $A(3, -2)$ için $x$ eksenine göre simetrik $(3, 2)$, $y$ eksenine göre $(-3, -2)$, orijine göre $(-3, 2)$, $y = x$'e göre $(-2, 3)$'tür. Bir $M$ noktasına göre simetriği bulurken $M$'yi orta nokta kabul edersin."
+     },
+     {
+      "kind": "match",
+      "title": "Simetrileri eşleştir",
+      "prompt": "$A(3, 5)$ noktasının simetriklerini eşleştir.",
+      "titles": [
+       "Simetri",
+       "Nokta"
+      ],
+      "pairs": [
+       {
+        "left": "$x$ eksenine göre simetriği",
+        "right": "$(3, -5)$"
+       },
+       {
+        "left": "$y$ eksenine göre simetriği",
+        "right": "$(-3, 5)$"
+       },
+       {
+        "left": "Orijine göre simetriği",
+        "right": "$(-3, -5)$"
+       },
+       {
+        "left": "$y = x$ doğrusuna göre simetriği",
+        "right": "$(5, 3)$"
+       }
+      ],
+      "explanation": "$x$ eksenine göre $y$'nin, $y$ eksenine göre $x$'in işareti değişir; orijinde ikisi de değişir; $y = x$'te koordinatlar yer değiştirir."
+     },
+     {
+      "kind": "mistake",
+      "title": "y = x simetrisi",
+      "wrong": "$(a, b)$ noktasının $y = x$ doğrusuna göre simetriği $(-b, -a)$ noktasıdır.",
+      "right": "$y = x$ doğrusuna göre simetrik $(b, a)$'dır; işaretler değişmez, koordinatlar yer değiştirir.",
+      "why": "$(-b, -a)$ noktası $y = -x$ doğrusuna göre simetriktir. Örnek: $(2, 5)$'in $y = x$'e göre simetriği $(5, 2)$'dir; çünkü $(2, 5)$ ile $(5, 2)$'nin orta noktası $(3{,}5;\\ 3{,}5)$ doğrunun üzerindedir."
      },
      {
       "kind": "question",
@@ -274,28 +405,24 @@
         "$(8, 5)$"
        ],
        "answer": 4,
+       "choiceFeedback": [
+        "$A$'dan $M$'ye giden adımı yazmışsın; aynı adımı bir kez daha atmak gerek.",
+        "Koordinatları toplamışsın; orta nokta toplam değil, ortalamadır.",
+        "$x$ koordinatını ortalama yerine toplamla bulmuşsun.",
+        "$y$ koordinatında hata var: $\\frac{-3 + y}{2} = 1$ denklemini yeniden çöz.",
+        null
+       ],
        "steps": [
         {
-         "text": "$\\frac{2 + x}{2} = 5$ → $x = 8$; $\\frac{-3 + y}{2} = 1$ → $y = 5$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Bir noktanın başka bir noktaya göre simetriği demek, o noktanın orta nokta olması demek. İki artı x bölü iki, beş: x sekiz. Eksi üç artı y bölü iki, bir: y beş."
+         "text": "Simetri demek, $M$'nin $[AB]$'nin orta noktası olması demektir."
         },
         {
-         "text": "$B(8, 5)$. Kısa yol: $A$'dan $M$'ye $(+3, +4)$; aynı adımı bir kez daha at. Cevap **E**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "D"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "B sekiz virgül beş. Kısa yol: A'dan M'ye sağa üç, yukarı dört gidilir; aynı adımı bir kez daha atınca B'ye varırsın. Cevabımız E. Üç virgül dördü seçen, yalnız bu adımı yazmıştır."
+         "text": "$B(x, y)$ diyip iki denklem kur: $\\frac{2 + x}{2} = 5$ ve $\\frac{-3 + y}{2} = 1$."
+        },
+        {
+         "text": "Kısa yol: $A$'dan $M$'ye gidince koordinatlar ne kadar değişiyor? $B$'ye varmak için aynı değişimi $M$'ye ekle."
         }
        ],
-       "narration": "$M$, $[AB]$'nin orta noktasıdır.",
        "origin": {
         "changes": "Bu ders için yazıldı; orta noktadan uç nokta özgün değerlerle soruldu."
        }
@@ -309,35 +436,31 @@
        "options": [
         "12",
         "15",
-        "17",
         "21",
-        "25"
+        "108",
+        "225"
        ],
        "answer": 1,
+       "choiceFeedback": [
+        "Yalnız kuzeye uçulan yolu almışsın; doğuya giden yol da var.",
+        null,
+        "Uçulan yolları toplamışsın; soru kuş uçuşu uzaklığı soruyor.",
+        "İki yolu çarpmışsın; uzaklık çarpım değil, hipotenüstür.",
+        "Karekökü almayı unutmuşsun."
+       ],
        "steps": [
         {
-         "text": "Varış noktası $(7, 13)$; farklar $9$ ve $12$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Doğuya dokuz birim: x eksi ikiden yediye. Kuzeye on iki birim: y birden on üçe. Dron yedi virgül on üçte."
+         "text": "Varış noktasını bul: doğuya $9$ birim $x$'i, kuzeye $12$ birim $y$'yi artırır."
         },
         {
-         "text": "$\\sqrt{81 + 144} = 15$. Cevap **B**.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Farklar dokuz ve on iki: üç, dört, beş üçgeninin üç katı, on beş. Cevabımız B. Yirmi biri seçen, uçtuğu yolu toplamıştır; soru kuş uçuşu uzaklığı soruyor."
+         "text": "Başlangıçla varış arasındaki farklar, dik kenarları $9$ ve $12$ olan bir üçgen verir."
+        },
+        {
+         "text": "Hipotenüsü hesapla: $\\sqrt{9^2 + 12^2}$."
         }
        ],
-       "narration": "Yollar dik: Pisagor.",
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2018 kareli zeminde helikopter sorusunun fikri farklı değerlerle ve tek dik dönüşle yeniden kuruldu."
+        "changes": "Bu ders için yazıldı; ÖSYM 2018 kareli zeminde helikopter sorusunun kalıbı farklı değerlerle ve tek dik dönüşle yeniden kuruldu."
        }
       }
      }
@@ -346,12 +469,12 @@
    {
     "subtopic": "GEO_ANALITIK_06",
     "subtopics": [],
-    "title": "Eğim",
-    "narration": "Bir doğrunun ne kadar dik çıktığını tek sayı söyler: eğim.",
+    "title": "Eğim ve doğrusallık",
+    "narration": "",
     "cards": [
      {
       "kind": "visual",
-      "title": "Yükseliş bölü ilerleme",
+      "title": "Yükseliş ve ilerleme oranı",
       "visual": {
        "kind": "plot",
        "x": [
@@ -370,20 +493,25 @@
          "ends": [
           "none",
           "none"
-         ]
+         ],
+         "trace": false,
+         "piece": false
         }
        ],
        "parameters": {},
+       "showParameters": true,
        "points": [
         {
          "x": 2,
          "y": 1,
-         "label": "A(2, 1)"
+         "label": "A(2, 1)",
+         "style": "closed"
         },
         {
          "x": 6,
          "y": 9,
-         "label": "B(6, 9)"
+         "label": "B(6, 9)",
+         "style": "closed"
         }
        ],
        "segments": [
@@ -416,26 +544,68 @@
        "axes": "origin"
       },
       "caption": "$m = \\frac{y_2 - y_1}{x_2 - x_1} = \\tan \\alpha$ ($\\alpha$, doğrunun $x$ ekseniyle pozitif yönde yaptığı açı).",
-      "beats": [
+      "narration": "$A(2, 1)$'den $B(6, 9)$'a giderken doğru $4$ birim ilerler, $8$ birim yükselir. Eğim, yükselişin ilerlemeye oranıdır: $\\frac{8}{4} = 2$. Yani her $1$ birim sağa gidişte doğru $2$ birim yükselir. Eğim aynı zamanda doğrunun $x$ ekseniyle yaptığı açının tanjantıdır."
+     },
+     {
+      "kind": "rule",
+      "title": "Eğim kuralları",
+      "items": [
+       "$m = \\frac{y_2 - y_1}{x_2 - x_1}$: önce $y$ farkı, sonra $x$ farkı.",
+       "$m = \\tan \\alpha$; $\\alpha$ doğrunun $x$ ekseniyle pozitif yönde yaptığı açıdır.",
+       "$0° < \\alpha < 90°$ ise $m > 0$; $90° < \\alpha < 180°$ ise $m < 0$.",
+       "$x$ eksenine paralel (yatay) doğruda $m = 0$; $y$ eksenine paralel (dikey) doğruda eğim tanımsızdır.",
+       "$\\alpha = 45°$ → $m = 1$; $\\alpha = 135°$ → $m = -1$; $\\alpha = 60°$ → $m = \\sqrt{3}$.",
+       "$A$, $B$, $C$ doğrusal ise $m_{AB} = m_{BC} = m_{AC}$."
+      ],
+      "narration": "Eğimin işareti doğrunun yönünü söyler: sağa doğru yükselen doğruda pozitif, sağa doğru alçalan doğruda negatiftir. Yatay doğruda $y$ değişmediği için pay sıfırdır, eğim $0$ olur. Dikey doğruda $x$ değişmediği için payda sıfırdır ve sıfıra bölme tanımsızdır. Üç nokta aynı doğru üzerindeyse herhangi iki tanesinden hesaplanan eğim aynıdır; bu, doğrusallığın koşuludur."
+     },
+     {
+      "kind": "predict",
+      "title": "Eğimin işareti",
+      "prompt": "Sağa doğru inen (soldan sağa alçalan) bir doğrunun eğimi negatiftir. Bu ifade doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Sağa gidildikçe $y$ azalır: $\\Delta y < 0$, $\\Delta x > 0$ olduğundan $m < 0$. Açı $90°$ ile $180°$ arasındadır ve bu aralıkta tanjant negatiftir."
+     },
+     {
+      "kind": "classify",
+      "title": "Eğimi sınıfla",
+      "prompt": "Her doğruyu eğiminin durumuna göre grupla.",
+      "groups": [
        {
-        "narration": "Eğim, yükselişin ilerlemeye oranı: sekiz bölü dört, iki. Her bir birim sağa gidişte doğru iki birim yükselir.",
-        "show": [],
-        "focus": [
-         "s1",
-         "s2"
-        ],
-        "swap": []
+        "label": "Eğim pozitif",
+        "items": [
+         "$\\alpha = 30°$",
+         "$y = 4x - 1$"
+        ]
        },
        {
-        "narration": "Eğim, doğrunun x ekseniyle yaptığı açının tanjantıdır. Kırk beş derecelik doğrunun eğimi bir; sağa doğru inen doğrunun eğimi negatif; yatay doğrunun eğimi sıfır.",
-        "show": [],
-        "focus": [
-         "c1"
-        ],
-        "swap": []
+        "label": "Eğim negatif",
+        "items": [
+         "$\\alpha = 135°$",
+         "$y = -2x + 3$",
+         "$A(1, 5)$, $B(3, 1)$'den geçen doğru"
+        ]
+       },
+       {
+        "label": "Eğim sıfır",
+        "items": [
+         "$y = 7$",
+         "$x$ eksenine paralel doğru"
+        ]
+       },
+       {
+        "label": "Eğim tanımsız",
+        "items": [
+         "$x = 3$",
+         "$y$ eksenine paralel doğru"
+        ]
        }
       ],
-      "narration": "A iki virgül bir'den B altı virgül dokuz'a giderken doğru dört birim ilerliyor, sekiz birim yükseliyor."
+      "explanation": "$A(1, 5)$, $B(3, 1)$ için $m = \\frac{1 - 5}{3 - 1} = -2$. Yatay doğrularda eğim $0$, dikey doğrularda tanımsızdır."
      },
      {
       "kind": "question",
@@ -450,21 +620,24 @@
         "$8$"
        ],
        "answer": 2,
+       "choiceFeedback": [
+        "Oranı ters kurmuşsun: eğimde önce $y$ farkı gelir.",
+        "$\\Delta y$ ile $\\Delta x$ eşit mi? Farkları yeniden hesapla.",
+        null,
+        "Yalnız $x$ farkını almışsın.",
+        "Yalnız $y$ farkını almışsın."
+       ],
        "steps": [
         {
-         "text": "$m = \\frac{9 - 1}{6 - 2} = \\frac{8}{4} = 2$. Cevap **C**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Dikey fark sekiz, yatay fark dört; eğim iki. Cevabımız C. Bir bölü ikiyi seçen, oranı ters kurmuştur: önce y farkı."
+         "text": "Eğim $\\frac{\\Delta y}{\\Delta x}$'tir: pay $y$ farkı, payda $x$ farkı."
+        },
+        {
+         "text": "$\\Delta y = 9 - 1$ ve $\\Delta x = 6 - 2$'yi hesapla."
+        },
+        {
+         "text": "Oranı sadeleştir."
         }
        ],
-       "narration": "$\\frac{\\Delta y}{\\Delta x}$.",
        "origin": {
         "changes": "Bu ders için yazıldı; iki noktadan eğim özgün değerlerle soruldu."
        }
@@ -477,38 +650,47 @@
        "stem": "$x$ ekseniyle pozitif yönde $45°$'lik açı yapan bir doğru $(1, a)$ ve $(4, 7)$ noktalarından geçmektedir. Buna göre $a$ kaçtır?",
        "options": [
         "1",
-        "2",
         "3",
         "4",
+        "7",
         "10"
        ],
-       "answer": 3,
+       "answer": 2,
+       "choiceFeedback": [
+        "Bu doğrunun eğimi; sorulan $a$ değeri.",
+        "$x$ farkını ($4 - 1$) almışsın; $a$ henüz bulunmadı.",
+        null,
+        "$(4, 7)$'nin $y$ koordinatını aynen yazmışsın.",
+        "Doğru sağa giderken yükseliyor, $(1, a)$ ise $(4, 7)$'nin solunda; bu yüzden $a$, $7$'den büyük olamaz."
+       ],
        "steps": [
         {
-         "text": "$m = \\tan 45° = 1$ → $\\frac{7 - a}{4 - 1} = 1$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Kırk beş derecenin tanjantı bir: eğim bir. Yedi eksi a bölü üç, bir."
+         "text": "Eğim, açının tanjantıdır: $\\tan 45°$ kaçtır?"
         },
         {
-         "text": "$7 - a = 3$ → $a = 4$. Cevap **D**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Yedi eksi a üç, a dört. Eğimi bir olan doğruda yatayda ne kadar gidilirse dikeyde de o kadar çıkılır. Cevabımız D. Onu seçen, üçü yediye eklemiştir; doğru sağa giderken yükseliyor, sol uç daha aşağıda."
+         "text": "Eğimi iki noktadan da yaz: $m = \\frac{7 - a}{4 - 1}$ ve bunu bulduğun eğime eşitle."
+        },
+        {
+         "text": "Çıkan denklemi $a$ için çöz."
         }
        ],
-       "narration": "$\\tan 45° = 1$.",
        "origin": {
         "changes": "Bu ders için yazıldı; eğim açısından bilinmeyen koordinat özgün değerlerle soruldu."
        }
       }
+     },
+     {
+      "kind": "mistake",
+      "title": "Yatay ve dikey doğru",
+      "wrong": "Yatay doğrunun eğimi tanımsız, dikey doğrunun eğimi $0$'dır.",
+      "right": "Yatay doğrunun eğimi $0$'dır; dikey doğrunun eğimi tanımsızdır.",
+      "why": "Yatay doğruda $\\Delta y = 0$ olduğundan $m = \\frac{0}{\\Delta x} = 0$. Dikey doğruda $\\Delta x = 0$ olur ve sıfıra bölme tanımsızdır."
+     },
+     {
+      "kind": "example",
+      "title": "Üç nokta doğrusal mı?",
+      "example": "$A(1, 4)$, $B(3, 10)$ ve $C(-1, c)$ noktaları aynı doğru üzerinde ise $c$ kaçtır?",
+      "explanation": "Doğrusal noktalarda her ikili arasındaki eğim aynıdır. $m_{AB} = \\frac{10 - 4}{3 - 1} = 3$. O hâlde $m_{AC}$ de $3$ olmalı: $\\frac{c - 4}{-1 - 1} = 3$, $c - 4 = -6$, $c = -2$. Kontrol: $m_{BC} = \\frac{-2 - 10}{-1 - 3} = \\frac{-12}{-4} = 3$ ✓. Eğimler eşit değilse üç nokta bir üçgen oluşturur."
      },
      {
       "kind": "question",
@@ -523,40 +705,54 @@
         "12"
        ],
        "answer": 3,
+       "choiceFeedback": [
+        "$B$'nin $y$ koordinatını aynen yazmışsın; $x$ artarken doğru yükseliyor.",
+        "$y$'yi de $x$ gibi $2$ artırmışsın; artış oranını eğim belirler.",
+        "$y$ artışını yanlış almışsın; $AB$ arasında $x$ $2$ artarken $y$ kaç artıyor?",
+        null,
+        "$B$'nin $y$ değerini $2$ ile çarpmışsın; doğrusallıkta oran eğimle kurulur."
+       ],
        "steps": [
         {
-         "text": "$m_{AB} = \\frac{6 - 2}{3 - 1} = 2$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Önce A B'nin eğimi: dört bölü iki, iki."
+         "text": "Üç nokta doğrusalsa her ikisi arasındaki eğim aynıdır."
         },
         {
-         "text": "$m_{BC} = \\frac{k - 6}{5 - 3} = 2$ → $k = 10$. Cevap **D**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "B C'nin eğimi de iki olmalı: k eksi altı bölü iki, iki; k on. x iki artınca y dört artıyor: altıdan ona. Cevabımız D. Sekizi seçen, y'yi de x gibi iki artırmıştır."
+         "text": "$m_{AB}$'yi hesapla: $\\frac{6 - 2}{3 - 1}$."
+        },
+        {
+         "text": "$m_{BC} = \\frac{k - 6}{5 - 3}$'ü bu değere eşitle ve $k$'yi çöz."
         }
        ],
-       "narration": "Aynı doğruda her iki noktanın eğimi aynıdır.",
        "origin": {
         "changes": "Bu ders için yazıldı; doğrusal üç nokta eğim eşitliğiyle özgün değerlerle soruldu."
        }
       }
+     },
+     {
+      "kind": "findError",
+      "title": "Eğim hesabında hata ara",
+      "problem": "$A(1, 7)$ ve $B(4, 1)$ noktalarından geçen doğrunun eğimi aşağıdaki gibi hesaplanıyor.",
+      "prompt": "Hatalı satırı seç.",
+      "steps": [
+       "$\\Delta y = 1 - 7 = -6$",
+       "$\\Delta x = 4 - 1 = 3$",
+       "$m = \\frac{6}{3} = 2$"
+      ],
+      "wrongStep": 2,
+      "choiceFeedback": [
+       "Bu satır doğru: $y$ farkı $-6$ çıkar.",
+       "Bu satır doğru: $x$ farkı $3$ çıkar.",
+       null
+      ],
+      "explanation": "Üçüncü satırda $y$ farkının negatif işareti düşmüş. Doğrusu $m = \\frac{-6}{3} = -2$. Doğru sağa doğru indiği için eğimin negatif çıkması beklenir."
      }
     ]
    },
    {
     "subtopic": "GEO_ANALITIK_07",
     "subtopics": [],
-    "title": "Doğru denklemi",
-    "narration": "Eğim ve bir nokta, bir doğruyu tamamen belirler.",
+    "title": "Doğru denklemi ve eksenlerle üçgen",
+    "narration": "",
     "cards": [
      {
       "kind": "visual",
@@ -580,20 +776,25 @@
          "ends": [
           "none",
           "none"
-         ]
+         ],
+         "trace": false,
+         "piece": false
         }
        ],
        "parameters": {},
+       "showParameters": true,
        "points": [
         {
          "x": 0,
          "y": 1,
-         "label": "(0, 1)"
+         "label": "(0, 1)",
+         "style": "closed"
         },
         {
          "x": 1,
          "y": 3,
-         "label": "(1, 3)"
+         "label": "(1, 3)",
+         "style": "closed"
         }
        ],
        "segments": [
@@ -625,29 +826,93 @@
        "equalScale": true,
        "axes": "origin"
       },
-      "caption": "Eğimi $m$, bir noktası $(x_1, y_1)$ olan doğru: $y - y_1 = m(x - x_1)$; $y = mx + n$ biçiminde $n$, $y$ eksenini kestiği yer.",
-      "beats": [
-       {
-        "narration": "Denklemi y eşittir iki x artı bir. Baştaki sayı eğim, sondaki sayı y eksenini kestiği yer. x yerine bir koyarsan y üç çıkar: bir virgül üç doğrunun üzerinde: bir sağa, iki yukarı.",
-        "show": [],
-        "focus": [
-         "p1",
-         "p2",
-         "s1",
-         "s2"
+      "caption": "Eğimi $m$, bir noktası $(x_1, y_1)$ olan doğru: $y - y_1 = m(x - x_1)$; $y = mx + n$ biçiminde $n$, $y$ eksenini kestiği yerdir.",
+      "narration": "$y = 2x + 1$ doğrusunda baştaki sayı eğim, sondaki sayı $y$ eksenini kestiği yerdir. $x = 1$ koyarsan $y = 3$ çıkar: $(1, 3)$ doğrunun üzerindedir; $(0, 1)$'den bir sağa, iki yukarı gidilir. Eğim $m$ ve bir nokta $(x_1, y_1)$ biliniyorsa $y - y_1 = m(x - x_1)$ yazarsın. İki nokta biliniyorsa önce eğimi bulur, sonra bu kalıba koyarsın."
+     },
+     {
+      "kind": "visual",
+      "title": "Doğru denkleminin biçimleri",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Biçim",
+        "Denklem",
+        "Eğim"
+       ],
+       "rows": [
+        [
+         "Eğim–kesim",
+         "y = mx + n",
+         "m"
         ],
-        "swap": []
+        [
+         "Nokta–eğim",
+         "y − y₁ = m(x − x₁)",
+         "m"
+        ],
+        [
+         "Kesim biçimi",
+         "x/a + y/b = 1",
+         "−b/a"
+        ],
+        [
+         "Genel biçim",
+         "ax + by + c = 0",
+         "−a/b"
+        ],
+        [
+         "Yatay doğru",
+         "y = k",
+         "0"
+        ],
+        [
+         "Dikey doğru",
+         "x = k",
+         "Tanımsız"
+        ]
+       ]
+      },
+      "caption": "Hangi biçimle başlarsan başla, doğrunun eğimini ve en az bir noktasını bulursan denklemi yazarsın.",
+      "narration": "Kesim biçimi $\\frac{x}{a} + \\frac{y}{b} = 1$, doğrunun eksenleri $(a, 0)$ ve $(0, b)$ noktalarında kestiğini doğrudan gösterir. Genel biçim $ax + by + c = 0$ ise en sık karşına çıkan biçimdir. Bu iki biçimdeki $a$ ve $b$ harfleri aynı anlamda değildir; karıştırma. Genel biçimde eğimi bulmak için denklemi $y$ için çöz: $by = -ax - c$, yani $y = -\\frac{a}{b}x - \\frac{c}{b}$. Buradan eğim $-\\frac{a}{b}$ olur."
+     },
+     {
+      "kind": "rule",
+      "title": "Genel biçim ve eksenlerle üçgen",
+      "items": [
+       "Genel biçim: $ax + by + c = 0$; eğim $m = -\\frac{a}{b}$ ($b \\neq 0$).",
+       "$x = 0$ için $y = -\\frac{c}{b}$; $y = 0$ için $x = -\\frac{c}{a}$ (eksen kesimleri).",
+       "Kesim biçimi: $\\frac{x}{a} + \\frac{y}{b} = 1$; doğru $(a, 0)$ ve $(0, b)$'den geçer, eğimi $-\\frac{b}{a}$'dır.",
+       "Eksenlerle oluşan üçgen dik üçgendir; alan $= \\frac{|a| \\cdot |b|}{2}$ (kesimlerin çarpımının yarısı).",
+       "Genel biçimde alan: $\\frac{c^2}{2|ab|}$ ($c \\neq 0$).",
+       "Bir nokta doğrunun üzerindeyse koordinatları denklemi sağlar."
+      ],
+      "narration": "Eksenlerle oluşan üçgenin dik kenarları, doğrunun eksenleri kestiği noktaların orijine uzaklıklarıdır. Bu yüzden alan, kesimlerin mutlak değerlerinin çarpımının yarısıdır. Örnek: $2x + 3y - 12 = 0$ için $x$ kesimi $6$, $y$ kesimi $4$'tür; alan $\\frac{6 \\cdot 4}{2} = 12$. Genel biçim formülüyle de aynı sonuç çıkar: $\\frac{144}{2 \\cdot 6} = 12$."
+     },
+     {
+      "kind": "blank",
+      "title": "Genel biçimde eğim",
+      "prompt": "$3x - 2y + 12 = 0$ doğrusunun eğimi kaçtır?",
+      "before": "$m =$",
+      "answers": [
+       "3/2",
+       "1,5"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 1.5,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "-3/2",
+        "feedback": "Paydadaki negatif işareti hesaba katmamışsın: $m = -\\frac{a}{b} = -\\frac{3}{-2}$."
        },
        {
-        "narration": "Genel yol: eğim m ve bir nokta x bir, y bir biliniyorsa, y eksi y bir, m çarpı x eksi x bir. İki nokta biliniyorsa önce eğimi bul, sonra bu kalıba koy.",
-        "show": [],
-        "focus": [
-         "c1"
-        ],
-        "swap": []
+        "answer": "2/3",
+        "feedback": "Oranı ters kurmuşsun: eğim $-\\frac{a}{b}$'dir, $-\\frac{b}{a}$ değil."
        }
       ],
-      "narration": "Bu doğrunun eğimi iki ve y eksenini sıfır virgül bir noktasında kesiyor."
+      "explanation": "$a = 3$, $b = -2$. $m = -\\frac{a}{b} = -\\frac{3}{-2} = \\frac{3}{2}$. Kontrol: $-2y = -3x - 12$ → $y = \\frac{3}{2}x + 6$."
      },
      {
       "kind": "question",
@@ -655,32 +920,42 @@
        "style": "TYT tarzı",
        "stem": "Eğimi $2$ olan ve $(1, 3)$ noktasından geçen doğrunun denklemi $y = 2x + n$ olduğuna göre $n$ kaçtır?",
        "options": [
-        "−1",
-        "1",
-        "2",
-        "3",
-        "5"
+        "$-1$",
+        "$1$",
+        "$2$",
+        "$3$",
+        "$5$"
        ],
        "answer": 1,
+       "choiceFeedback": [
+        "$2 - 3$ yazmışsın; denklemi $3 = 2 \\cdot 1 + n$ diye kur.",
+        null,
+        "Eğimi $n$ sanmışsın; $n$, doğrunun $y$ eksenini kestiği yerdir.",
+        "Noktanın $y$ koordinatını $n$ olarak almışsın; $x$'in katkısı da var.",
+        "$2$'yi $3$'e eklemişsin; karşıya geçirirken işaret değişir."
+       ],
        "steps": [
         {
-         "text": "$3 = 2 \\cdot 1 + n$ → $n = 1$. Cevap **B**.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Nokta doğrunun üzerinde olduğu için koordinatları denklemi sağlar: üç, iki artı n; n bir. Doğru y eşittir iki x artı bir. Cevabımız B. Beşi seçen, ikiyi karşıya geçirirken işaretini değiştirmemiştir."
+         "text": "Nokta doğrunun üzerinde: koordinatları $y = 2x + n$ denklemini sağlar."
+        },
+        {
+         "text": "$x = 1$ ve $y = 3$'ü denklemde yerine koy."
+        },
+        {
+         "text": "Çıkan denklemden $n$'yi çöz."
         }
        ],
-       "narration": "Noktayı denklemde yerine koy.",
        "origin": {
         "changes": "Bu ders için yazıldı; eğim ve noktadan doğru denklemi özgün değerlerle soruldu."
        }
       }
+     },
+     {
+      "kind": "mistake",
+      "title": "Kesim biçiminde eğim",
+      "wrong": "$\\frac{x}{a} + \\frac{y}{b} = 1$ doğrusunun eğimi $\\frac{b}{a}$'dır.",
+      "right": "Eğim $-\\frac{b}{a}$'dır; işaret unutulmamalı.",
+      "why": "Doğru $(a, 0)$ ve $(0, b)$ noktalarından geçer: $m = \\frac{b - 0}{0 - a} = -\\frac{b}{a}$. $a, b > 0$ ise doğru sağa doğru iner, eğim negatiftir."
      },
      {
       "kind": "question",
@@ -695,32 +970,72 @@
         "$y = 2x - 4$"
        ],
        "answer": 2,
+       "choiceFeedback": [
+        "$(2, 0)$ noktası bu denklemi sağlıyor mu? Kontrol et.",
+        "Eğim uygun, ama $y$ kesimi $4$ olmalı; $2$, $x$ eksenini kestiği yer.",
+        null,
+        "Eğimi ters kurmuşsun: $\\frac{\\Delta y}{\\Delta x}$ alınır, $\\frac{\\Delta x}{\\Delta y}$ değil.",
+        "$(2, 0)$'dan geçer ama $y$ eksenini $-4$'te keser; doğru $(0, 4)$'ten geçmeli."
+       ],
        "steps": [
         {
-         "text": "$m = \\frac{4 - 0}{0 - 2} = -2$; $y$ kesimi $4$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Eğim: dört eksi sıfır bölü sıfır eksi iki, eksi iki. Doğru sağa doğru iniyor, eğim negatif. y eksenini dörtte kesiyor: n dört."
+         "text": "Eğimi iki noktadan bul: $(2, 0)$ ve $(0, 4)$ için $m = \\frac{\\Delta y}{\\Delta x}$. İşaretine dikkat."
         },
         {
-         "text": "$y = -2x + 4$. Kontrol: $x = 2$ → $y = 0$ ✓. Cevap **C**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Denklem y eşittir eksi iki x artı dört. Kontrol: x iki iken y sıfır, tutuyor. Cevabımız C. Eksi bir bölü iki x artı dördü seçen, eğimi ters kurmuştur."
+         "text": "Doğru $y$ eksenini $(0, 4)$'te kestiği için $n$ bellidir."
+        },
+        {
+         "text": "Denklemi $y = mx + n$ biçiminde yaz ve $(2, 0)$ ile kontrol et."
         }
        ],
-       "narration": "Önce eğim, sonra $y$ kesimi.",
        "origin": {
         "changes": "Bu ders için yazıldı; eksen kesimlerinden doğru denklemi özgün değerlerle soruldu."
        }
       }
+     },
+     {
+      "kind": "predict",
+      "title": "Kesim biçimini oku",
+      "prompt": "$\\frac{x}{4} + \\frac{y}{2} = 1$ doğrusu $(4, 0)$ ve $(0, 2)$ noktalarından geçer. Bu ifade doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$x = 4$, $y = 0$ için $\\frac{4}{4} + 0 = 1$ ✓. $x = 0$, $y = 2$ için $0 + \\frac{2}{2} = 1$ ✓. Kesim biçiminde paydalar eksen kesimleridir."
+     },
+     {
+      "kind": "guided",
+      "title": "Üçgenin alanını adım adım bul",
+      "stem": "$\\frac{x}{4} + \\frac{y}{-3} = 1$ doğrusunun koordinat eksenleriyle oluşturduğu üçgenin alanını bul.",
+      "steps": [
+       {
+        "prompt": "Doğru eksenleri hangi noktalarda keser?",
+        "choices": [
+         "$(4, 0)$ ve $(0, -3)$",
+         "$(4, 0)$ ve $(0, 3)$",
+         "$(-4, 0)$ ve $(0, -3)$",
+         "$(-3, 0)$ ve $(0, 4)$"
+        ],
+        "answer": 0,
+        "choiceFeedback": [
+         null,
+         "$y$ kesimi paydadaki sayıdır; işareti de dahil.",
+         "$x$ kesimi $4$'tür, $-4$ değil.",
+         "$a$ ile $b$'nin yerini değiştirmişsin."
+        ],
+        "explanation": "Kesim biçiminde $a = 4$, $b = -3$: doğru $(4, 0)$ ve $(0, -3)$'ten geçer."
+       },
+       {
+        "prompt": "Dik kenarların uzunlukları $4$ ve $3$'tür (uzunluk negatif olmaz). Alanı yaz.",
+        "before": "Alan =",
+        "answers": [
+         "6"
+        ],
+        "input": "number",
+        "explanation": "Alan $= \\frac{4 \\cdot 3}{2} = 6$."
+       }
+      ]
      },
      {
       "kind": "question",
@@ -729,34 +1044,30 @@
        "stem": "$2x + 3y = 12$ doğrusu ile koordinat eksenleri arasında kalan üçgenin alanı kaç birimkaredir?",
        "options": [
         "12",
-        "16",
-        "20",
         "24",
-        "48"
+        "36",
+        "72",
+        "144"
        ],
        "answer": 0,
+       "choiceFeedback": [
+        null,
+        "Bu sayı üçgenin alanı olamaz: eksenlerle oluşan şekil bir dik üçgendir. Alan formülünü dik üçgen için yeniden yaz.",
+        "Kesimleri yanlış bulmuş olabilirsin; $x = 0$ ve $y = 0$ vererek yeniden hesapla.",
+        "Denklemdeki $12$'yi hem $x$ hem $y$ kesimi sanmışsın; kesimleri eksenlerdeki değerlerden bul.",
+        "Denklemdeki $12$'yi iki kenar sanıp çarpmışsın; kesimleri bul."
+       ],
        "steps": [
         {
-         "text": "$x = 0$ → $y = 4$; $y = 0$ → $x = 6$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "y eksenini bulmak için x'e sıfır ver: üç y on iki, y dört. x eksenini bulmak için y'ye sıfır ver: iki x on iki, x altı."
+         "text": "Eksenleri kestiği noktaları bul: önce $x = 0$, sonra $y = 0$ ver."
         },
         {
-         "text": "Alan $= \\frac{6 \\cdot 4}{2} = 12$. Cevap **A**.",
-         "eliminate": [
-          "B",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Eksenlerle oluşan üçgen dik üçgen; dik kenarları altı ve dört. Alan altı çarpı dört bölü iki, on iki. Cevabımız A. Yirmi dördü seçen, ikiye bölmeyi unutmuştur."
+         "text": "Kesimler, orijinde dik açı yapan kenarların uzunluklarıdır."
+        },
+        {
+         "text": "Alan $= \\frac{1}{2} \\cdot |x \\text{ kesimi}| \\cdot |y \\text{ kesimi}|$."
         }
        ],
-       "narration": "Eksenleri kestiği noktaları bul: dik üçgenin dik kenarları.",
        "origin": {
         "changes": "Bu ders için yazıldı; doğrunun eksenlerle yaptığı üçgenin alanı özgün bir doğruyla soruldu."
        }
@@ -770,8 +1081,8 @@
      "GEO_ANALITIK_08",
      "GEO_ANALITIK_09"
     ],
-    "title": "Paralel, dik ve uzaklık",
-    "narration": "Son bölümde iki doğrunun durumu ve bir noktanın doğruya uzaklığı.",
+    "title": "Paralel, dik, kesişim ve uzaklık",
+    "narration": "",
     "cards": [
      {
       "kind": "visual",
@@ -795,7 +1106,9 @@
          "ends": [
           "none",
           "none"
-         ]
+         ],
+         "trace": false,
+         "piece": false
         },
         {
          "expression": "5 - 0.5x",
@@ -803,20 +1116,25 @@
          "ends": [
           "none",
           "none"
-         ]
+         ],
+         "trace": false,
+         "piece": false
         }
        ],
        "parameters": {},
+       "showParameters": true,
        "points": [
         {
          "x": 2,
          "y": 4,
-         "label": "(2, 4)"
+         "label": "(2, 4)",
+         "style": "closed"
         },
         {
          "x": 6,
          "y": 6,
-         "label": "P"
+         "label": "P",
+         "style": "closed"
         }
        ],
        "segments": [
@@ -836,33 +1154,73 @@
        "equalScale": true,
        "axes": "origin"
       },
-      "caption": "Paralel doğrularda $m_1 = m_2$; dik doğrularda $m_1 \\cdot m_2 = -1$. Noktanın doğruya uzaklığı: $|ax_0 + by_0 + c| / \\sqrt{a^2 + b^2}$.",
-      "beats": [
+      "caption": "Paralel doğrularda $m_1 = m_2$; dik doğrularda $m_1 \\cdot m_2 = -1$. Noktanın doğruya uzaklığı: $\\frac{|ax_0 + by_0 + c|}{\\sqrt{a^2 + b^2}}$.",
+      "narration": "Çizimdeki doğruların eğimleri $2$ ve $-\\frac{1}{2}$; çarpımları $-1$ olduğu için dik doğrulardır ve $(2, 4)$ noktasında dik açıyla kesişirler. Eğimleri eşit doğrular paraleldir ve hiç kesişmez. Eğimleri farklı doğrular tek bir noktada kesişir. Bir $P$ noktasının bir doğruya uzaklığı, $P$'den doğruya indirilen dikmenin uzunluğudur."
+     },
+     {
+      "kind": "rule",
+      "title": "İki doğrunun durumu",
+      "items": [
+       "Paralel: $m_1 = m_2$ ve sabitler farklı. Genel biçimde $\\frac{a_1}{a_2} = \\frac{b_1}{b_2} \\neq \\frac{c_1}{c_2}$.",
+       "Çakışık: üç oran da eşit; iki denklem aynı doğruyu verir.",
+       "Dik: $m_1 \\cdot m_2 = -1$. Genel biçimde $a_1 a_2 + b_1 b_2 = 0$.",
+       "Yatay doğruya dik olan doğru dikeydir ($x = k$).",
+       "Kesişim noktası: iki denklemi birlikte çöz (yerine koyma ya da yok etme); çıkan $(x, y)$ iki denklemi de sağlar.",
+       "Eğimleri farklı iki doğru her zaman tek noktada kesişir."
+      ],
+      "narration": "Dik doğrunun eğimini bulurken iki şeyi birden yaparsın: eğimi ters çevirir ve işaretini değiştirirsin. Eğimi $3$ olan doğruya dik doğrunun eğimi $-\\frac{1}{3}$'tür. Kesişim noktasını bulmak için iki doğrunun denklemini bir sistem gibi çözersin. Bulduğun noktayı iki denklemde de denemek, işlem hatasını yakalamanın en hızlı yoludur."
+     },
+     {
+      "kind": "example",
+      "title": "Kesişim noktası",
+      "example": "$y = 2x - 1$ ve $x + y = 8$ doğrularının kesişim noktasını bul.",
+      "explanation": "Kesişim noktasında iki denklemin $y$ değerleri eşittir: $2x - 1 = 8 - x$. Buradan $3x = 9$, $x = 3$. $y = 2 \\cdot 3 - 1 = 5$. Kesişim noktası $(3, 5)$. Kontrol: $3 + 5 = 8$ ✓."
+     },
+     {
+      "kind": "predict",
+      "title": "Dik doğru tahmini",
+      "prompt": "Bir doğru $x$ eksenine paralelse, ona dik olan her doğru $y$ eksenine paraleldir. Bu ifade doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$x$ eksenine paralel doğrunun eğimi $0$'dır. Çarpımı $-1$ yapacak bir eğim yoktur; dik doğrunun eğimi tanımsızdır, yani doğru dikeydir."
+     },
+     {
+      "kind": "match",
+      "title": "İlişkiyi bul",
+      "prompt": "Her doğru çiftini ilişkisiyle eşleştir.",
+      "titles": [
+       "Doğru çifti",
+       "İlişkisi"
+      ],
+      "pairs": [
        {
-        "narration": "Bu iki doğrunun eğimleri iki ve eksi bir bölü iki; çarpımları eksi bir. Böyle doğrular diktir: iki virgül dört noktasında dik açıyla kesişirler.",
-        "show": [],
-        "focus": [
-         "c1",
-         "c2",
-         "p1"
-        ],
-        "swap": []
+        "left": "$y = 3x + 1$ ve $y = 3x - 5$",
+        "right": "Paralel"
        },
        {
-        "narration": "Bir noktanın bir doğruya uzaklığı, noktadan doğruya indirilen dikmenin uzunluğudur. Doğru a x artı b y artı c eşittir sıfır biçimindeyse uzaklık, noktayı yerine koyunca çıkan sayının mutlak değeri bölü a kare artı b karenin karekökü.",
-        "show": [
-         "p2",
-         "s1"
-        ],
-        "focus": [
-         "c2",
-         "p2",
-         "s1"
-        ],
-        "swap": []
+        "left": "$y = 2x$ ve $y = -\\frac{1}{2}x + 3$",
+        "right": "Dik"
+       },
+       {
+        "left": "$y = x + 2$ ve $y = 2x + 2$",
+        "right": "Dik olmayan kesişen"
+       },
+       {
+        "left": "$y = 4x - 1$ ve $2y = 8x - 2$",
+        "right": "Çakışık"
        }
       ],
-      "narration": "Eğimleri eşit doğrular paraleldir; hiç kesişmez. Eğimleri farklı doğrular bir noktada kesişir."
+      "explanation": "Eğimleri $3$ ve $3$, sabitleri farklı: paralel. $2 \\cdot \\left(-\\frac{1}{2}\\right) = -1$: dik. Eğimleri $1$ ve $2$: kesişir, çarpım $-1$ değil. $2y = 8x - 2$ ise $y = 4x - 1$: aynı doğru."
+     },
+     {
+      "kind": "mistake",
+      "title": "Dik eğimde yalnız işaret",
+      "wrong": "$y = 2x + 5$ doğrusuna dik doğrunun eğimini bulmak için işareti değiştirmek yeter: eğim $-2$'dir.",
+      "right": "Dik doğrunun eğimi $-\\frac{1}{2}$'dir; hem işaret değişir hem eğim ters çevrilir.",
+      "why": "Dik doğrularda eğimlerin çarpımı $-1$ olmalı. $2 \\cdot (-2) = -4$ olduğundan $-2$ dik değildir; $2 \\cdot \\left(-\\frac{1}{2}\\right) = -1$ sağlanır."
      },
      {
       "kind": "question",
@@ -870,28 +1228,31 @@
        "style": "TYT tarzı",
        "stem": "$y = 3x - 1$ doğrusuna dik olan bir doğrunun eğimi kaçtır?",
        "options": [
-        "$-\\frac{1}{3}$",
-        "$-1$",
         "$-3$",
+        "$-1$",
+        "$-\\frac{1}{3}$",
         "$\\frac{1}{3}$",
         "$3$"
        ],
-       "answer": 0,
+       "answer": 2,
+       "choiceFeedback": [
+        "Yalnız işareti değiştirmişsin; ters çevirmeyi de unutma.",
+        "$-1$, eğimlerin çarpımı; eğimin kendisi değil.",
+        null,
+        "Yalnız ters çevirmişsin; işaret de değişir.",
+        "Verilen doğrunun eğimini yazmışsın; o paralel doğru için geçerli."
+       ],
        "steps": [
         {
-         "text": "$3 \\cdot m_2 = -1$ → $m_2 = -\\frac{1}{3}$. Cevap **A**.",
-         "eliminate": [
-          "B",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Verilen doğrunun eğimi üç. Dik doğrunun eğimiyle çarpımı eksi bir: eksi bir bölü üç. Cevabımız A. Eksi üçü seçen, yalnız işareti değiştirmiş; ters çevirmeyi unutmuştur. Bir bölü üçü seçen ise yalnız ters çevirmiştir."
+         "text": "Verilen doğrunun eğimini $y = mx + n$ biçiminden oku."
+        },
+        {
+         "text": "Dik doğrularda $m_1 \\cdot m_2 = -1$."
+        },
+        {
+         "text": "Bu eşitlikte $m_2$'yi yalnız bırak."
         }
        ],
-       "narration": "$m_1 \\cdot m_2 = -1$.",
        "origin": {
         "changes": "Bu ders için yazıldı; dik doğruların eğim bağıntısı özgün bir doğruyla soruldu."
        }
@@ -910,21 +1271,24 @@
         "$6$"
        ],
        "answer": 3,
+       "choiceFeedback": [
+        "Eşitliği $a - 1 = -4$ gibi kurmuşsun; paralellikte eğimler eşittir, zıt işaretli değil.",
+        "$4 - 1$ yapmışsın; $1$ sol tarafta çıkarılıyor, karşıya $+1$ olarak geçer.",
+        "$a$'yı eğimin kendisi sanmışsın; eğim $a - 1$'dir.",
+        null,
+        "Sabit terimleri de işleme katmışsın; paralellikte yalnız eğimler eşitlenir."
+       ],
        "steps": [
         {
-         "text": "$a - 1 = 4$ → $a = 5$. Cevap **D**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Paralel doğruların eğimleri eşit: a eksi bir, dört; a beş. Sabit terimler farklı olduğu için iki doğru çakışık değil, gerçekten paralel. Cevabımız D. Üçü seçen, biri çıkarmıştır; dördü seçen, a'yı eğimin kendisi sanmıştır."
+         "text": "Paralel doğruların eğimleri eşittir."
+        },
+        {
+         "text": "İkinci doğrunun eğimi $4$, birincinin eğimi $a - 1$'dir."
+        },
+        {
+         "text": "$a - 1 = 4$ denklemini çöz."
         }
        ],
-       "narration": "Paralel doğruların eğimleri eşittir.",
        "origin": {
         "changes": "Bu ders için yazıldı; paralellik koşulundan bilinmeyen özgün değerlerle soruldu."
        }
@@ -934,30 +1298,110 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Başlangıç noktasının $3x + 4y - 10 = 0$ doğrusuna uzaklığı kaç birimdir?",
+       "stem": "$x + 2y = 7$ ve $3x - y = 7$ doğrularının kesişim noktası $A(a, b)$ olduğuna göre $a \\cdot b$ kaçtır?",
        "options": [
-        "1",
-        "2",
-        "$2{,}5$",
-        "5",
-        "10"
+        "$2$",
+        "$3$",
+        "$5$",
+        "$6$",
+        "$10$"
        ],
-       "answer": 1,
+       "answer": 3,
+       "choiceFeedback": [
+        "Yalnız $b$'yi bulmuşsun; $a \\cdot b$ isteniyor.",
+        "Yalnız $a$'yı bulmuşsun; $a \\cdot b$ isteniyor.",
+        "$a + b$'yi bulmuşsun; çarpım isteniyor.",
+        null,
+        "Sistemi çözerken işlem hatası olmuş olabilir; bulduğun noktayı iki denklemde de dene."
+       ],
        "steps": [
         {
-         "text": "$\\frac{|3 \\cdot 0 + 4 \\cdot 0 - 10|}{\\sqrt{9 + 16}} = \\frac{10}{5} = 2$. Cevap **B**.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Başlangıç noktasını yerine koy: eksi on, mutlak değeri on. Payda üç kare artı dört karenin karekökü, beş. Uzaklık iki birim. Cevabımız B. Onu seçen, paydaya bölmeyi unutmuştur."
+         "text": "Kesişim noktası iki denklemi de sağlar: sistemi çözmen gerekir."
+        },
+        {
+         "text": "İkinci denklemden $y = 3x - 7$ yazıp birinci denklemde yerine koy."
+        },
+        {
+         "text": "$a$ ve $b$'yi bulunca çarp; noktayı iki denklemde de kontrol et."
         }
        ],
-       "narration": "$\\frac{|ax_0 + by_0 + c|}{\\sqrt{a^2 + b^2}}$.",
+       "origin": {
+        "changes": "Bu ders için yazıldı; kesişim noktası denklem sistemiyle özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "visual",
+      "title": "Noktanın doğruya uzaklığı",
+      "visual": {
+       "kind": "formula",
+       "latex": "d = \\frac{|ax_0 + by_0 + c|}{\\sqrt{a^2 + b^2}}",
+       "caption": "Paralel doğrularda: $d = \\frac{|c_1 - c_2|}{\\sqrt{a^2 + b^2}}$"
+      },
+      "caption": "Doğru $ax + by + c = 0$ biçiminde yazılmış olmalı.",
+      "narration": "Uzaklığı bulmak için doğruyu önce $ax + by + c = 0$ biçimine getir. Noktanın koordinatlarını $ax + by + c$ ifadesinde yerine koy, sonucun mutlak değerini al ve $\\sqrt{a^2 + b^2}$ ifadesine böl. Paralel iki doğru arasındaki uzaklık, birinin üzerinden alınan herhangi bir noktanın öbürüne uzaklığına eşittir; bu yüzden $\\frac{|c_1 - c_2|}{\\sqrt{a^2 + b^2}}$ olur. Bu kısa formül yalnız iki denklemde $x$ ve $y$ katsayıları aynıysa geçerlidir."
+     },
+     {
+      "kind": "example",
+      "title": "Noktanın doğruya uzaklığı",
+      "example": "$P(3, 2)$ noktasının $3x + 4y + 1 = 0$ doğrusuna uzaklığı kaç birimdir?",
+      "explanation": "$a = 3$, $b = 4$, $c = 1$. Pay: $|3 \\cdot 3 + 4 \\cdot 2 + 1| = |18| = 18$. Payda: $\\sqrt{9 + 16} = 5$. Uzaklık $\\frac{18}{5} = 3{,}6$ birim."
+     },
+     {
+      "kind": "example",
+      "title": "Paralel iki doğru arası",
+      "example": "$6x + 8y - 5 = 0$ ve $3x + 4y + 5 = 0$ doğruları arasındaki uzaklık kaç birimdir?",
+      "explanation": "Katsayılar aynı değil; ikinci denklemi $2$ ile çarp: $6x + 8y + 10 = 0$. Şimdi $c_1 = -5$, $c_2 = 10$. $d = \\frac{|-5 - 10|}{\\sqrt{36 + 64}} = \\frac{15}{10} = 1{,}5$ birim."
+     },
+     {
+      "kind": "findError",
+      "title": "Uzaklık hesabında hata ara",
+      "problem": "$2x + y - 3 = 0$ ve $4x + 2y + 4 = 0$ paralel doğruları arasındaki uzaklık aşağıdaki gibi hesaplanıyor.",
+      "prompt": "Hatalı satırı seç.",
+      "steps": [
+       "Katsayılar orantılı: $2, 1$ ve $4, 2$; doğrular paraleldir.",
+       "Sabitler $-3$ ve $4$; fark $|-3 - 4| = 7$.",
+       "$d = \\frac{7}{\\sqrt{2^2 + 1^2}} = \\frac{7}{\\sqrt{5}}$"
+      ],
+      "wrongStep": 1,
+      "choiceFeedback": [
+       "Bu satır doğru: katsayılar orantılı ve doğrular paralel.",
+       null,
+       "Bu satırdaki işlem formüle uygun; hata bir önceki satırda."
+      ],
+      "explanation": "Formül yalnız $x$ ve $y$ katsayıları aynıyken kullanılır. İkinci denklemi $2$'ye bölüp $2x + y + 2 = 0$ yap. Sabitler $-3$ ve $2$: fark $5$. $d = \\frac{5}{\\sqrt{5}} = \\sqrt{5}$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Başlangıç noktasının $3x + 4y - 10 = 0$ doğrusuna uzaklığı kaç birimdir?",
+       "options": [
+        "$0{,}4$",
+        "$2$",
+        "$2{,}5$",
+        "$5$",
+        "$10$"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Paydada karekök almayı unutmuşsun: payda $\\sqrt{a^2 + b^2}$.",
+        null,
+        "Payı $4$'e bölmüşsün; payda $\\sqrt{a^2 + b^2}$'dir.",
+        "Paydayı cevap sanmışsın; payı paydaya bölmelisin.",
+        "Paydaya bölmeyi unutmuşsun."
+       ],
+       "steps": [
+        {
+         "text": "Doğru $ax + by + c = 0$ biçiminde: $a = 3$, $b = 4$, $c = -10$."
+        },
+        {
+         "text": "Pay: $|3 \\cdot 0 + 4 \\cdot 0 - 10|$; payda: $\\sqrt{3^2 + 4^2}$."
+        },
+        {
+         "text": "Payı paydaya böl."
+        }
+       ],
        "origin": {
         "changes": "Bu ders için yazıldı; noktanın doğruya uzaklığı formülü özgün bir doğruyla uygulandı."
        }
@@ -976,21 +1420,24 @@
         "$2$"
        ],
        "answer": 4,
+       "choiceFeedback": [
+        "Sabitlerin farkını yanlış almış olabilirsin; $c_1$ ve $c_2$'nin işaretlerine dikkat.",
+        "Payı çok küçük bulmuşsun; sabitlerin farkını yeniden hesapla.",
+        "Sabitleri çıkarırken $8$'den $2$'yi çıkarmışsın; $c_2 = -8$ olduğu için fark $2 - (-8)$.",
+        "Paydayı yanlış hesaplamış olabilirsin: $\\sqrt{3^2 + 4^2}$.",
+        null
+       ],
        "steps": [
         {
-         "text": "Eğimler eşit → paralel; uzaklık $\\frac{|2 - (-8)|}{\\sqrt{9 + 16}} = \\frac{10}{5} = 2$. Cevap **E**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "D"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "İki doğrunun a ve b katsayıları aynı: paraleller. Aralarındaki uzaklık, sabitlerin farkının mutlak değeri bölü beş: iki eksi eksi sekiz, on; bölü beş, iki birim. Cevabımız E. Altı bölü beşi seçen, sabitleri çıkarırken işareti karıştırmış, sekizden ikiyi çıkarmıştır."
+         "text": "İki denklemde $x$ ve $y$ katsayıları aynı; doğrular paralel ve formül doğrudan uygulanır."
+        },
+        {
+         "text": "Uzaklık $\\frac{|c_1 - c_2|}{\\sqrt{a^2 + b^2}}$; burada $c_1 = 2$, $c_2 = -8$."
+        },
+        {
+         "text": "Payı ve paydayı hesaplayıp böl."
         }
        ],
-       "narration": "Paralel doğrular: sabitlerin farkı bölü $\\sqrt{a^2 + b^2}$.",
        "origin": {
         "changes": "Bu ders için yazıldı; paralel iki doğru arasındaki uzaklık özgün değerlerle soruldu."
        }
@@ -1001,16 +1448,19 @@
   ],
   "summary": {
    "points": [
-    "Uzaklık $\\sqrt{(\\Delta x)^2 + (\\Delta y)^2}$; orta nokta ve ağırlık merkezi **ortalamalar**.",
-    "Eğim $m = \\frac{\\Delta y}{\\Delta x} = \\tan \\alpha$.",
-    "Doğru: $y - y_1 = m(x - x_1)$ ya da $y = mx + n$.",
-    "Paralel $m_1 = m_2$; dik $m_1 \\cdot m_2 = -1$.",
-    "Noktanın doğruya uzaklığı $\\frac{|ax_0 + by_0 + c|}{\\sqrt{a^2 + b^2}}$."
+    "Uzaklık $\\sqrt{(\\Delta x)^2 + (\\Delta y)^2}$; orta nokta ve ağırlık merkezi **ortalamalardır**.",
+    "Simetri: $x$ eksenine $(a, -b)$, $y$ eksenine $(-a, b)$, orijine $(-a, -b)$, $y = x$'e $(b, a)$.",
+    "Eğim $m = \\frac{\\Delta y}{\\Delta x} = \\tan \\alpha$; üç nokta doğrusalsa eğimler eşittir.",
+    "Doğru: $y - y_1 = m(x - x_1)$, $y = mx + n$, $\\frac{x}{a} + \\frac{y}{b} = 1$, $ax + by + c = 0$ ($m = -\\frac{a}{b}$).",
+    "Eksenlerle oluşan üçgenin alanı, eksen kesimlerinin çarpımının yarısıdır.",
+    "Paralel $m_1 = m_2$; dik $m_1 \\cdot m_2 = -1$; kesişim noktası denklem sistemiyle bulunur.",
+    "Noktanın doğruya uzaklığı $\\frac{|ax_0 + by_0 + c|}{\\sqrt{a^2 + b^2}}$; paralel doğrular arası $\\frac{|c_1 - c_2|}{\\sqrt{a^2 + b^2}}$."
    ],
    "warnings": [
-    "Eğimde önce **y farkı**, sonra x farkı.",
+    "Eğimde önce **y farkı**, sonra x farkı; işareti kaybetme.",
     "Dik eğimde hem **işaret** değişir hem **ters** çevrilir.",
-    "Negatif koordinat çıkarırken **işarete** dikkat."
+    "Negatif koordinat çıkarırken **işarete** dikkat: $5 - (-1) = 6$.",
+    "Paralel doğrular arası uzaklıkta önce **katsayıları eşitle**."
    ]
   }
  },
@@ -1022,13 +1472,5 @@
     "Uygulamada Analitik Geometri testinden **20 soru** çöz; her soruda önce **farkları** yaz."
    ]
   }
- },
- "works": {
-  "additions": [
-   "Doğru denkleminin farklı biçimlerini ver: eksenleri kestiği noktalarla x/a + y/b = 1, genel biçim ax + by + c = 0 ve eğimi −a/b; eksenlerle oluşturduğu üçgenin alanı.",
-   "İki doğrunun kesişim noktasını denklem sistemiyle bulmayı ve üç noktanın doğrusal olma koşulunu (eğimlerin eşitliği) örnekle.",
-   "Noktanın doğruya uzaklığı formülünü (|ax₀ + by₀ + c| / √(a² + b²)) ve paralel iki doğru arasındaki uzaklığı sayısal örneklerle ver.",
-   "Simetri kurallarını ekle: noktanın x eksenine, y eksenine, orijine ve y = x doğrusuna göre simetriği."
-  ]
  }
 }

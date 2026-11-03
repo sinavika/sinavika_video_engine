@@ -14,8 +14,10 @@ describe("an app still's last guard of its smallest text", () => {
 	it('raises only what is under the floor, and leaves a text drawn at no size alone', () => {
 		expect(floorFactor(12.9, 20)).toBeCloseTo(20 / 12.9, 6);
 		expect(floorFactor(20, 20)).toBe(1);
-		// Rounding a hair under the floor is not a raise.
+		// Rounding a hair under the floor is not a raise; a hundredth under it is.
 		expect(floorFactor(19.995, 20)).toBe(1);
+		expect(floorFactor(19.9, 20)).toBe(1);
+		expect(floorFactor(19.7, 20)).toBeCloseTo(20 / 19.7, 6);
 		expect(floorFactor(31, 20)).toBe(1);
 		expect(floorFactor(0, 20)).toBe(1);
 	});

@@ -6,6 +6,7 @@ import {RichText} from '../../Typography/RichText';
 import {useFigureFont, useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {UNFOCUSED_FADE, useBeatStartFor, useElementState} from '../VisualTimeline';
+import {wrappedLines} from '../../Typography/TextMeasure';
 
 type Matching = Extract<CourseVisual, {kind: 'matching'}>;
 
@@ -61,8 +62,8 @@ export const matchingFontSize = (texts: readonly string[], columnWidth: number, 
 	const fits = (size: number) =>
 		texts.every((text) => {
 			const plain = text.replace(/\*\*/g, '');
-			// Words break early, so a line holds a little less than its width allows.
-			const lines = Math.ceil((plain.length * size * 0.56 * u(1)) / (inner * 0.9));
+			// Wrapped at its spaces as the chip wraps it, at the bold of the terms.
+			const lines = wrappedLines(plain, inner, {size: size * u(1), weight: 800});
 			// Two wrapped lines also keep clear of the chip's top and bottom border.
 			return lines * size * 1.2 * u(1) <= Math.min(rowHeight * 0.9, rowHeight - 2 * u(14));
 		});

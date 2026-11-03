@@ -34,7 +34,7 @@ const WorksViewSchema = z.object({
 	works: z.object({additions: z.array(z.string()).min(1).max(WORKS_NOTES_MAX)}).optional(),
 });
 
-type WorksView = z.infer<typeof WorksViewSchema>;
+export type WorksView = z.infer<typeof WorksViewSchema>;
 
 type Source = {file: string; script: LessonScript};
 

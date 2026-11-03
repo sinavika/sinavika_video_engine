@@ -3,7 +3,7 @@ import {easeFrom} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
-import {usePartLook, World} from '../VisualWorld';
+import {usePartLook, World, FigureText} from '../VisualWorld';
 import {fraction, genotypeText, phenotypeKey, ratio, zygote} from './Allele';
 import {GenotypeText} from './GenotypeText';
 
@@ -77,12 +77,12 @@ export const PunnettVisual: React.FC<VisualBoxProps & {visual: Punnett}> = ({vis
 			{visual.cross ? (
 				<GenotypeText text={visual.cross} x={(layout.gx + gridRight) / 2} y={44} size={44} textAnchor="middle" fontWeight={800} fill={palette.ink} fontFamily={palette.fontBody} opacity={titles} />
 			) : null}
-			<text x={(layout.gx + gridRight) / 2} y={layout.top - 16} textAnchor="middle" fontSize={28} fontWeight={700} fill={palette.muted} fontFamily={palette.fontBody} opacity={titles}>
+			<FigureText x={(layout.gx + gridRight) / 2} y={layout.top - 16} textAnchor="middle" fontSize={28} fontWeight={700} fill={palette.muted} fontFamily={palette.fontBody} opacity={titles}>
 				{visual.columnTitle}
-			</text>
-			<text transform={`translate(${TITLE - 18} ${layout.gy + (visual.rows.length * CELL) / 2}) rotate(-90)`} textAnchor="middle" fontSize={28} fontWeight={700} fill={palette.muted} fontFamily={palette.fontBody} opacity={titles}>
+			</FigureText>
+			<FigureText transform={`translate(${TITLE - 18} ${layout.gy + (visual.rows.length * CELL) / 2}) rotate(-90)`} textAnchor="middle" fontSize={28} fontWeight={700} fill={palette.muted} fontFamily={palette.fontBody} opacity={titles}>
 				{visual.rowTitle}
-			</text>
+			</FigureText>
 			{visual.columns.map((gamete, j) => (
 				<Gamete key={`c${j}`} part={`c${j + 1}`} text={gamete} x={layout.gx + j * CELL + 4} y={layout.top} w={CELL - 8} h={layout.head} entrance={easeFrom(seconds, delaySeconds + 0.2 + j * 0.12, 0.4)} />
 			))}
@@ -110,12 +110,12 @@ export const PunnettVisual: React.FC<VisualBoxProps & {visual: Punnett}> = ({vis
 			))}
 			{visual.ratio && visual.phenotypes.length > 1 ? (
 				<g opacity={easeFrom(seconds, delaySeconds + 2.2 + visual.phenotypes.length * 0.25, 0.5)}>
-					<text x={gridRight + 48} y={layout.gy + visual.phenotypes.length * ITEM + 34} fontSize={24} fontWeight={700} fill={palette.muted} fontFamily={palette.fontBody}>
+					<FigureText x={gridRight + 48} y={layout.gy + visual.phenotypes.length * ITEM + 34} fontSize={24} fontWeight={700} fill={palette.muted} fontFamily={palette.fontBody}>
 						Fenotip oranı
-					</text>
-					<text x={gridRight + 48} y={layout.gy + visual.phenotypes.length * ITEM + 76} fontSize={38} fontWeight={800} fill={palette.lesson} fontFamily={palette.fontBody}>
+					</FigureText>
+					<FigureText x={gridRight + 48} y={layout.gy + visual.phenotypes.length * ITEM + 76} fontSize={38} fontWeight={800} fill={palette.lesson} fontFamily={palette.fontBody}>
 						{ratio(counts)}
-					</text>
+					</FigureText>
 				</g>
 			) : null}
 		</World>
@@ -159,12 +159,12 @@ const LegendItem: React.FC<{index: number; label: string; share: string; fill: s
 	return (
 		<g opacity={look.opacity}>
 			<rect x={x} y={y + 10} width={48} height={48} rx={10} fill={fill} stroke={lit > 0.5 ? palette.lesson : withAlpha(palette.ink, 0.3)} strokeWidth={lit > 0.5 ? 4 : 2} />
-			<text x={x + 66} y={y + 45} fontSize={30} fontWeight={lit > 0.5 ? 800 : 700} fill={palette.ink} fontFamily={palette.fontBody}>
+			<FigureText x={x + 66} y={y + 45} fontSize={30} fontWeight={lit > 0.5 ? 800 : 700} fill={palette.ink} fontFamily={palette.fontBody}>
 				{label}
-			</text>
-			<text x={x + LEGEND - 44} y={y + 47} textAnchor="end" fontSize={34} fontWeight={800} fill={palette.lesson} fontFamily={palette.fontBody}>
+			</FigureText>
+			<FigureText x={x + LEGEND - 44} y={y + 47} textAnchor="end" fontSize={34} fontWeight={800} fill={palette.lesson} fontFamily={palette.fontBody}>
 				{share}
-			</text>
+			</FigureText>
 		</g>
 	);
 };

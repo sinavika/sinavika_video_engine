@@ -33,6 +33,15 @@ export const textWidth = (text: string, {size, weight, letterSpacingEm = 0}: Tex
 	return (letters.reduce((sum, letter) => sum + (table[letter] ?? FALLBACK_ADVANCE), 0) / 1000) * size + letterSpacingEm * size * letters.length;
 };
 
+/**
+ * How many lines a text takes in a box `box` wide, for a figure's room: as lineCount, but a word wider than the box
+ * counts as many lines as its width needs instead of Infinity (a box's height worked out from it stays finite).
+ */
+export const wrappedLines = (text: string, box: number, setting: TextSetting): number => {
+	const count = lineCount(text, box, setting);
+	return Number.isFinite(count) ? Math.max(1, count) : Math.max(1, Math.ceil(textWidth(text, setting) / (box * FIT_MARGIN)));
+};
+
 /** How many lines a text takes in a box `box` pixels wide, wrapped at spaces and line breaks as the browser does; Infinity when one word alone is wider than the box. */
 export const lineCount = (text: string, box: number, setting: TextSetting): number => {
 	const room = box * FIT_MARGIN;

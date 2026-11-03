@@ -1,9 +1,10 @@
 import React, {useId} from 'react';
 import {clamp01, smoothStep} from '../../../Animations/Motion';
 import {mixColors} from '../../../Themes/ColorPalette';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor} from '../VisualTimeline';
+import {FigureText} from '../VisualWorld';
 
 type Theseus = Extract<CourseVisual, {kind: 'theseus'}>;
 
@@ -70,9 +71,9 @@ export const TheseusVisual: React.FC<VisualBoxProps & {visual: Theseus}> = ({vis
 	const secondAt = useBeatStartFor('second', 'show');
 	const fontSize = Math.max(44, 24 / k);
 	const text = (x: number, y: number, value: string, anchor: 'start' | 'middle' | 'end' = 'middle', size = fontSize) => (
-		<text x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={800} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
+		<FigureText x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={800} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
 			{value}
-		</text>
+		</FigureText>
 	);
 	const old = mixColors(palette.lessonDeep, palette.surface, 0.15);
 	const fresh = mixColors(palette.lesson, palette.surface, 0.55);
@@ -124,7 +125,8 @@ export const TheseusVisual: React.FC<VisualBoxProps & {visual: Theseus}> = ({vis
 	const pile = Array.from({length: replaced}, (_, index) => ({x: SECOND.left + 40 + (index % 6) * 72, y: WATER + 40 - Math.floor(index / 6) * 18}));
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`} opacity={appear}>
 				<Part id="ship">
 					{(look) => (
@@ -165,5 +167,6 @@ export const TheseusVisual: React.FC<VisualBoxProps & {visual: Theseus}> = ({vis
 				</Part>
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

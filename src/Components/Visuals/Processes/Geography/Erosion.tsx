@@ -3,7 +3,7 @@ import {clamp01, lerp, noise, smooth, smoothStep} from '../../../../Animations/M
 import {withAlpha} from '../../../../Themes/Theme';
 import {useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
-import {pathOf} from '../../VisualWorld';
+import {pathOf, FigureText} from '../../VisualWorld';
 import {Cloud, Drift, FlowLine, Grass, ProcessFrame, ProcessLabel, Rain, SCENE, Sky, Tree, processCamera, sampled, smoothPath, useProcessClock, type CameraBox, type Point} from '../ProcessScene';
 
 type ProcessSpec = Extract<CourseVisual, {kind: 'process'}>;
@@ -244,13 +244,13 @@ export const ErosionProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}> = 
 			<ProcessLabel id="taraca" at={[BARE_CREST[1] + STEP * 2.4, top(BARE_CREST[1] + STEP * 2.4)]} to={[1140, 250]} text="Taraçalar suyu tutar" show={clock.now('onlem')} />
 			<ProcessLabel id="onlem" at={onStrip(BARE_CREST[1] + 60, 0.5)} to={[860, 160]} text="Eğime dik sürülür" show={clock.now('onlem')} />
 			{/* Which hill is which. */}
-			<g opacity={clock.current === 'ortu' ? smooth(clamp01(clock.seconds / 0.8)) : 0} fontFamily={palette.fontDisplay} fontWeight={800} fontSize={30}>
-				<text x={330} y={120} textAnchor="middle" fill={palette.ink}>
+			<g opacity={clock.current === 'ortu' ? smooth(clamp01(clock.seconds / 0.8)) : 0} fontFamily={palette.fontDisplay} fontWeight={800}>
+				<FigureText fontSize={30} x={330} y={120} textAnchor="middle" fill={palette.ink}>
 					Ormanlık yamaç
-				</text>
-				<text x={1030} y={120} textAnchor="middle" fill={palette.ink}>
+				</FigureText>
+				<FigureText fontSize={30} x={1030} y={120} textAnchor="middle" fill={palette.ink}>
 					Çıplak tarla
-				</text>
+				</FigureText>
 			</g>
 		</ProcessFrame>
 	);
@@ -280,12 +280,12 @@ const DamInset: React.FC<{show: number; silt: number; time: number}> = ({show, s
 				<ellipse cx={box.x + 120} cy={box.y + 130} rx={reach} ry={26 + 44 * silt} fill="#B89A6B" />
 			</g>
 			<rect x={box.x + 398} y={box.y + 60} width={14} height={140} rx={4} fill="#8A8F96" stroke="#5E636A" strokeWidth={2} />
-			<text x={box.x + 18} y={box.y + 34} fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.ink}>
+			<FigureText x={box.x + 18} y={box.y + 34} fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.ink}>
 				Kuşbakışı: baraj gölü
-			</text>
-			<text x={box.x + 260} y={box.y + box.h - 14} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={700} fontSize={20} fill={palette.ink}>
+			</FigureText>
+			<FigureText x={box.x + 260} y={box.y + box.h - 14} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={700} fontSize={20} fill={palette.ink}>
 				Gelen mil gölü doldurur
-			</text>
+			</FigureText>
 		</g>
 	);
 };

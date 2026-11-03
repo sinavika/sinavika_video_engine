@@ -19,7 +19,7 @@ import type {LessonCard} from '../../../../Courses/LessonScript';
 import {CHROME_HEIGHT, SPACING} from '../../../../Themes/DesignTokens';
 import {withAlpha} from '../../../../Themes/Theme';
 import {useTheme} from '../../../../Themes/ThemeContext';
-import {lineCount} from '../../../../Images/Components/TextMeasure';
+import {lineCount} from '../../../../Components/Typography/TextMeasure';
 import {STUDIO_HEADING_HEIGHT, StudioHeading, TYPE, useStudio, useVisualBox} from './LessonChrome';
 
 const CARD_KINDS: Record<Exclude<LessonCard['kind'], 'question' | 'predict'>, string> = {

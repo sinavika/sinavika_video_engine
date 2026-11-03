@@ -11,7 +11,7 @@ import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography'
 import {plainText} from '../../../Schemas/RichText';
 import {useTheme} from '../../../Themes/ThemeContext';
 import {imageFrameOf, useImageLayout} from '../../Components/ImageFrame';
-import {lineCount, seriesSize} from '../../Components/TextMeasure';
+import {lineCount, seriesSize} from '../../../Components/Typography/TextMeasure';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
 import {GRID_MARGIN, PROFILE_GRID, tileWindow} from './ProfileGridLayout';
 

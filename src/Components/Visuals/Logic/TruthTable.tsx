@@ -3,8 +3,9 @@ import {easeFrom} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
-import {usePartLook, World} from '../VisualWorld';
+import {usePartLook, World, FigureText} from '../VisualWorld';
 import {evaluate, parseFormula, truthRows, truthVerdict} from './Propositional';
+import {textWidth} from '../FigureLabel';
 
 type TruthTable = Extract<CourseVisual, {kind: 'truthTable'}>;
 
@@ -21,7 +22,8 @@ const TAG_ROOM = 250;
 const VERDICT_ROOM = 100;
 
 /** A formula column's width: wide enough for its header at 34 units, never narrower than a value. */
-const formulaWidth = (text: string) => Math.max(140, Math.min(380, text.length * 21 + 56));
+/** A formula column's width: its header at 34 units, with room either side. */
+const formulaWidth = (text: string) => Math.max(140, Math.min(380, textWidth(text, 34) + 56));
 
 /** The whole table worked out: every row's letter values, each formula's value and what the check decides. */
 export const solveTruthTable = (visual: Pick<TruthTable, 'variables' | 'columns' | 'check'>) => {
@@ -65,7 +67,7 @@ export const TruthTableVisual: React.FC<VisualBoxProps & {visual: TruthTable}> =
 	const fontSize = 36 * k;
 	const rowY = (row: number) => top + header + row * rowHeight;
 	const verdictSize = 32 * k;
-	const verdictWidth = Math.min(TRUTH_TABLE_STAGE.width - 40, solved.verdict.length * verdictSize * 0.56 + 64 * k);
+	const verdictWidth = Math.min(TRUTH_TABLE_STAGE.width - 40, textWidth(solved.verdict, verdictSize) + 64 * k);
 	const verdictY = top + header + rowHeight * count + 30 * k;
 	return (
 		<World width={width} height={height} viewWidth={TRUTH_TABLE_STAGE.width} viewHeight={TRUTH_TABLE_STAGE.height}>
@@ -103,15 +105,15 @@ export const TruthTableVisual: React.FC<VisualBoxProps & {visual: TruthTable}> =
 			{checked ? (
 				<>
 					{solved.marked.map((row) => (
-						<text key={row} x={left + tableWidth + 30 * k} y={rowY(row) + rowHeight / 2} dominantBaseline="middle" fontSize={28 * k} fontWeight={800} fill={palette.lesson} fontFamily={palette.fontBody} opacity={marks.opacity}>
+						<FigureText key={row} x={left + tableWidth + 30 * k} y={rowY(row) + rowHeight / 2} dominantBaseline="middle" fontSize={28 * k} fontWeight={800} fill={palette.lesson} fontFamily={palette.fontBody} opacity={marks.opacity}>
 							{`← ${solved.tag}`}
-						</text>
+						</FigureText>
 					))}
 					<g opacity={verdict.opacity}>
 						<rect x={left + tableWidth / 2 - verdictWidth / 2} y={verdictY} width={verdictWidth} height={64 * k} rx={32 * k} fill={verdict.focused > 0.5 ? palette.lesson : withAlpha(palette.lesson, 0.14)} stroke={palette.lesson} strokeWidth={3 * k} />
-						<text x={left + tableWidth / 2} y={verdictY + 33 * k} textAnchor="middle" dominantBaseline="middle" fontSize={verdictSize} fontWeight={800} fill={verdict.focused > 0.5 ? palette.onLesson : palette.lessonDeep} fontFamily={palette.fontBody}>
+						<FigureText x={left + tableWidth / 2} y={verdictY + 33 * k} textAnchor="middle" dominantBaseline="middle" fontSize={verdictSize} fontWeight={800} fill={verdict.focused > 0.5 ? palette.onLesson : palette.lessonDeep} fontFamily={palette.fontBody}>
 							{solved.verdict}
-						</text>
+						</FigureText>
 					</g>
 				</>
 			) : null}
@@ -134,9 +136,9 @@ const RowBand: React.FC<{id: string; x: number; y: number; width: number; height
 const HeaderText: React.FC<{x: number; y: number; text: string; size: number; colour: string}> = ({x, y, text, size, colour}) => {
 	const palette = useVisualPalette();
 	return (
-		<text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fontSize={size} fontWeight={800} fill={colour} fontFamily={palette.fontBody}>
+		<FigureText x={x} y={y} textAnchor="middle" dominantBaseline="middle" fontSize={size} fontWeight={800} fill={colour} fontFamily={palette.fontBody}>
 			{text}
-		</text>
+		</FigureText>
 	);
 };
 
@@ -144,9 +146,9 @@ const Value: React.FC<{x: number; y: number; value: boolean; size: number; shown
 	const palette = useVisualPalette();
 	const appear = Math.max(0, Math.min(1, shown));
 	return (
-		<text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fontSize={size * (0.7 + 0.3 * appear)} fontWeight={800} fill={value ? TRUE : FALSE} fontFamily={palette.fontBody} opacity={appear}>
+		<FigureText x={x} y={y} textAnchor="middle" dominantBaseline="middle" fontSize={size * (0.7 + 0.3 * appear)} fontWeight={800} fill={value ? TRUE : FALSE} fontFamily={palette.fontBody} opacity={appear}>
 			{value ? 'D' : 'Y'}
-		</text>
+		</FigureText>
 	);
 };
 

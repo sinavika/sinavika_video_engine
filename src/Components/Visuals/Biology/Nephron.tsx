@@ -1,8 +1,9 @@
 import React from 'react';
 import {clamp01, smoothStep} from '../../../Animations/Motion';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor} from '../VisualTimeline';
+import {FigureText} from '../VisualWorld';
 
 type Nephron = Extract<CourseVisual, {kind: 'nephron'}>;
 
@@ -54,9 +55,9 @@ export const NephronVisual: React.FC<VisualBoxProps & {visual: Nephron}> = ({vis
 	const appear = useReveal(delaySeconds, 0.5);
 	const fontSize = Math.max(60, 28 / k);
 	const text = (x: number, y: number, value: string, anchor: 'start' | 'middle' | 'end' = 'middle', size = fontSize * 0.62, weight = 800) => (
-		<text x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={weight} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
+		<FigureText x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={weight} textAnchor={anchor} dominantBaseline="central" stroke={palette.surface} strokeWidth={8} paintOrder="stroke">
 			{value}
-		</text>
+		</FigureText>
 	);
 	const at = {filtration: useBeatStartFor('filtration', 'show'), reabsorption: useBeatStartFor('reabsorption', 'show'), secretion: useBeatStartFor('secretion', 'show'), adh: useBeatStartFor('adh', 'show')};
 	// A note in several short lines, so it fits between the tubes.
@@ -88,7 +89,8 @@ export const NephronVisual: React.FC<VisualBoxProps & {visual: Nephron}> = ({vis
 	const adh = since(at.adh);
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`} opacity={appear}>
 				{/* Peritubular capillaries: the blood that takes back what is reabsorbed and gives what is secreted. */}
 				<polyline points={line([{x: 345, y: 360}, {x: 650, y: 360}])} fill="none" stroke={palette.brand} strokeWidth={10} opacity={0.35} strokeLinecap="round" />
@@ -191,5 +193,6 @@ export const NephronVisual: React.FC<VisualBoxProps & {visual: Nephron}> = ({vis
 				</Part>
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

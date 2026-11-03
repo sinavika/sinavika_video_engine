@@ -13,7 +13,7 @@ import type {LessonScript} from '../../../Courses/LessonScript';
 import {SPACING} from '../../../Themes/DesignTokens';
 import {withAlpha} from '../../../Themes/Theme';
 import {InkProvider, useTheme} from '../../../Themes/ThemeContext';
-import {lineCount} from '../../../Images/Components/TextMeasure';
+import {lineCount} from '../../../Components/Typography/TextMeasure';
 import {useStudio} from '../../Courses/CourseLesson/Scenes/LessonChrome';
 import {CampProgress, lessonNumberText} from './CampChrome';
 

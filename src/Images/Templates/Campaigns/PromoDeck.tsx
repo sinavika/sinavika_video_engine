@@ -15,7 +15,7 @@ import {BRAND_COLORS} from '../../../Configurations/BrandColors';
 import {POST_TYPE} from '../../../Configurations/SocialIdentity';
 import {BrandCover, coverIssues, markPaint, useCoverLayout, type BrandCoverText} from '../../Components/BrandCover';
 import {imageFrameOf, useImageLayout} from '../../Components/ImageFrame';
-import {lineCount, overflowNote, seriesSize} from '../../Components/TextMeasure';
+import {lineCount, overflowNote, seriesSize} from '../../../Components/Typography/TextMeasure';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
 import {GRID_ICON_ROOM} from '../ProfileGrids/ProfileGridLayout';
 

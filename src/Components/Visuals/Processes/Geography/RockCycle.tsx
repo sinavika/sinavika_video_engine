@@ -3,7 +3,7 @@ import {clamp01, lerp, noise, smooth, smoothStep} from '../../../../Animations/M
 import {withAlpha} from '../../../../Themes/Theme';
 import {useStillFigure, useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
-import {pathOf} from '../../VisualWorld';
+import {pathOf, FigureText} from '../../VisualWorld';
 import {Drift, FlowLine, ProcessFrame, ProcessLabel, SCENE, Sky, processCamera, sampled, smoothPath, useProcessClock, type CameraBox, type Point} from '../ProcessScene';
 
 type ProcessSpec = Extract<CourseVisual, {kind: 'process'}>;
@@ -240,9 +240,9 @@ const Lens: React.FC<{x: number; y: number; show: number; title: string; childre
 			</defs>
 			<circle r={60} fill="#FFFFFF" stroke={palette.ink} strokeWidth={3} />
 			<g clipPath={`url(#lens${id})`}>{children}</g>
-			<text y={86} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.ink} stroke={palette.surface} strokeWidth={6} paintOrder="stroke">
+			<FigureText y={86} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.ink} stroke={palette.surface} strokeWidth={6} paintOrder="stroke">
 				{title}
-			</text>
+			</FigureText>
 		</g>
 	);
 };
@@ -275,9 +275,9 @@ const CycleRing: React.FC<{clock: {current: string; amount: (id: string) => numb
 				return (
 					<g key={node.id}>
 						<circle cx={x} cy={y} r={lit ? 13 : 9} fill={lit ? palette.lesson : done ? withAlpha(palette.lesson, 0.45) : palette.surface} stroke={palette.lesson} strokeWidth={3} />
-						<text x={x + (index === 1 ? 20 : index === 3 ? -20 : 0)} y={y + (index === 0 ? -20 : index === 2 ? 32 : 6)} textAnchor={index === 1 ? 'start' : index === 3 ? 'end' : 'middle'} fontFamily={palette.fontBody} fontWeight={lit ? 800 : 700} fontSize={18} fill={lit ? palette.lesson : palette.ink}>
+						<FigureText x={x + (index === 1 ? 20 : index === 3 ? -20 : 0)} y={y + (index === 0 ? -20 : index === 2 ? 32 : 6)} textAnchor={index === 1 ? 'start' : index === 3 ? 'end' : 'middle'} fontFamily={palette.fontBody} fontWeight={lit ? 800 : 700} fontSize={18} fill={lit ? palette.lesson : palette.ink}>
 							{node.title}
-						</text>
+						</FigureText>
 					</g>
 				);
 			})}

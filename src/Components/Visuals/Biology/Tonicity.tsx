@@ -3,7 +3,7 @@ import {easeFrom} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import {type CourseVisual} from '../VisualSchema';
-import {usePartLook, World} from '../VisualWorld';
+import {usePartLook, World, FigureText} from '../VisualWorld';
 import {ORGANELLE_COLORS as C} from './Cell';
 
 // ---------------------------------------------------------------- cells in hypotonic, isotonic and hypertonic media
@@ -126,14 +126,14 @@ const Panel: React.FC<{visual: Tonicity; medium: Medium; index: number; delay: n
 			{dots.map(([x, y], i) => <circle key={i} cx={x} cy={y} r={5} fill={withAlpha('#2E3A55', 0.55)} />)}
 			{visual.cell === 'animal' ? <BloodCell cx={cx} cy={cy} change={change} /> : <PlantCell cx={cx} cy={cy} change={change} lesson={palette.lesson} />}
 			<WaterArrows cx={cx} cy={cy} water={info.water} t={t} strength={easeFrom(seconds, delay + 0.9 + index * 0.35, 0.5)} />
-			<text x={cx} y={46} textAnchor="middle" fontSize={30 * (1 + 0.08 * lit)} fontWeight={800} fill={lit > 0.5 ? palette.lesson : palette.ink} fontFamily={palette.fontBody}>
+			<FigureText x={cx} y={46} textAnchor="middle" fontSize={30 * (1 + 0.08 * lit)} fontWeight={800} fill={lit > 0.5 ? palette.lesson : palette.ink} fontFamily={palette.fontBody}>
 				{visual.numbered ? `${ROMAN[index]}. kap` : info.title}
-			</text>
+			</FigureText>
 			{visual.numbered ? null : (
 				<g>
-					<text x={cx} y={78} textAnchor="middle" fontSize={20} fontWeight={600} fill={palette.muted} fontFamily={palette.fontBody}>{info.note}</text>
-					<text x={cx} y={446} textAnchor="middle" fontSize={27} fontWeight={800} fill={lit > 0.5 ? palette.lesson : palette.ink} fontFamily={palette.fontBody} opacity={easeFrom(seconds, delay + 2.4 + index * 0.35, 0.5)}>{result}</text>
-					<text x={cx} y={480} textAnchor="middle" fontSize={20} fontWeight={600} fill={palette.muted} fontFamily={palette.fontBody} opacity={easeFrom(seconds, delay + 2.6 + index * 0.35, 0.5)}>{detail}</text>
+					<FigureText x={cx} y={78} textAnchor="middle" fontSize={20} fontWeight={600} fill={palette.muted} fontFamily={palette.fontBody}>{info.note}</FigureText>
+					<FigureText x={cx} y={446} textAnchor="middle" fontSize={27} fontWeight={800} fill={lit > 0.5 ? palette.lesson : palette.ink} fontFamily={palette.fontBody} opacity={easeFrom(seconds, delay + 2.4 + index * 0.35, 0.5)}>{result}</FigureText>
+					<FigureText x={cx} y={480} textAnchor="middle" fontSize={20} fontWeight={600} fill={palette.muted} fontFamily={palette.fontBody} opacity={easeFrom(seconds, delay + 2.6 + index * 0.35, 0.5)}>{detail}</FigureText>
 				</g>
 			)}
 		</g>

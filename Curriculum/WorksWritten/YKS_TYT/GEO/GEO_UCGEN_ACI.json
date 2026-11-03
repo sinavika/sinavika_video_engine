@@ -1,0 +1,2038 @@
+{
+ "topic": {
+  "id": "D4622DBF-E3E3-D649-50AC-B27C9ECE2010",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_UCGEN_ACI"
+ },
+ "title": "Üçgende Açı",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/GEO/GEO_UCGEN_ACI.json"
+ ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/YKS/TYT/KonuAnlatimi/GEO/GEO_UCGEN_ACI.json (MEB OGM Materyal, Temel Matematik konu anlatımı)",
+   "EgitimVerileri/YKS/TYT/CikmisSorular/GEO/GEO_UCGEN_ACI.json (ÖSYM 2018-2026 çıkmış soruları ve doğrulanmış havuz soruları)",
+   "Curriculum/Scripts/YKS_TYT/GEO/GEO_UCGEN_ACI.json"
+  ],
+  "additions": [
+   {
+    "note": "İç içe üçgen kurallarını ekle: ok ucu (içbükey dörtgen) x = a + b + c, kelebek (ters açılı iki üçgen) a + b = c + d; her biri için çözümlü örnek.",
+    "done": "4. bölümde: ok ucu kuralı kartı (kanıtıyla), 'ters yönden çözümlü' örnek, sayı yazmalı boşluk ve ölçülere uygun çizilmiş soru; kelebek kuralı kartı (formül görseliyle), cebirli çözümlü örnek, tahmin kartı ve kelebek sorusu."
+   },
+   {
+    "note": "Açıortaylar arası açı kurallarını ver: iki iç açıortay 90° + A/2, iki dış açıortay 90° − A/2, bir iç bir dış açıortay A/2 açı yapar.",
+    "done": "4. bölümde: üç kuralı gösteren tablo kartı (türetmesiyle), eşleştirme kartı, iç, dış ve iç-dış açıortay için ayrı sorular, yanlış kural karıştırmasını gösteren hata kartı ve tahmin kartı."
+   },
+   {
+    "note": "Ardışık ikizkenar üçgen zinciri soru tipini (eşit uzunluklar boyunca açıların katlanarak büyümesi) adım adım çöz; açılar oranlı verildiğinde k ile çözüm.",
+    "done": "3. bölümde: zincir kuralı kartı (α, 2α, 3α), sıralama (flow) kartı, adım adım yönlendirmeli çözüm (guided), oranlı verilmiş çözümlü örnek (k ile) ve oranlı zincir sorusu."
+   },
+   {
+    "note": "Dik üçgende hipotenüse ait kenarortayın üçgeni iki ikizkenar üçgene ayırdığını ve bunun açı sorularında kullanımını örnekle.",
+    "done": "3. bölümde: hipotenüse ait kenarortay kartı (iki ikizkenar üçgen ve açı bağıntıları), boşluk doldurma, çözümlü örnek (m(ADC) = 2·m(B)), açı sorusu ve '1/3 sanma' hata kartı."
+   }
+  ],
+  "fixes": [
+   "Temel dosyadaki soru ipuçları 'Cevap C' gibi şık harfini ve sonucu açıkça veriyordu; tüm ipuçları, son işlemi öğrenciye bırakacak biçimde yeniden yazıldı.",
+   "Temel dosyadaki soruların doğru şıkları art arda ve desenli sıralanmıştı (C, D, B, C, ...); şık sıraları, doğru cevaplar dengeli dağılacak biçimde yeniden düzenlendi.",
+   "Havuzdaki 'dış açı 125° ise komşu iç açı 55°'tir' önermesi doğrudur (180° − 125° = 55°); kaynak bunu yanlış sayıp B şıkkını vermişti. Derste benzer bir ifade doğru kabul edilip bir önerme yanlış olacak biçimde yeniden kuruldu.",
+   "Havuzdaki 'üçüncü açı, ilk ikisinin toplamından 20° fazla' sorusunun çözümü 100° bulup 85° şıkkını işaretliyordu; doğrusu 100°'dir (şıklarda yok), bu soru kullanılmadı.",
+   "Havuzdaki 'dış açı = 3·iç açı + 24' sorusunda C = 62° çıkar (180 − 39 − 79); kaynak 48° diyordu. Havuzdaki 'C = A + B' sorusunda C = 90° çıkar, kaynak 100° diyordu. Havuzdaki 'A + B = 2C − 20, C = A + 10' sorusu ise tutarsızdır (A tam sayı çıkmaz). Üçü de kullanılmadı."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Üç köşe, bir doğru",
+   "narration": "Bir kâğıttan herhangi bir üçgen kes. Üç köşesini yırtıp uçlarını yan yana getir. Üçgen ne kadar büyük ya da küçük, ne kadar sivri ya da basık olursa olsun üç köşe her zaman bir doğru açı oluşturur: 180°. Bu derste iç ve dış açıları, üçgen çeşitlerini, ikizkenar zincirini ve sınavda zaman kazandıran ok ucu, kelebek ve açıortay kurallarını öğreneceksin."
+  },
+  "objectives": [
+   "Üçgenin iç açıları toplamını kullanarak açı hesaplamak",
+   "Dış açı kuralını ve dış açılar toplamını uygulamak",
+   "Üçgenleri açılarına ve kenarlarına göre sınıflandırmak",
+   "Ardışık ikizkenar zincirini ve hipotenüse ait kenarortayı açı sorularında kullanmak",
+   "Ok ucu ve kelebek kurallarıyla hızlı çözüm yapmak",
+   "İç, dış ve iç-dış açıortay bağıntılarını ayırt edip uygulamak"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_UCGEN_ACI_01",
+    "title": "İç açılar toplamı",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "İç açıların toplamı 180°",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.4,
+        -0.5,
+        5.4,
+        4.6
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          3.487,
+          4.156
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          5,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "label": "a",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "label": "b",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "C",
+         "from": "A",
+         "to": "B",
+         "label": "c",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "narration": "Aynı doğru üzerinde olmayan üç noktayı birleştiren doğru parçalarının oluşturduğu şekle **üçgen** denir. $A$, $B$ ve $C$ köşelerdir; $[AB]$, $[BC]$ ve $[CA]$ kenarlardır. Köşelerdeki $a$, $b$ ve $c$ açılarına **iç açı** denir. $A$'dan $[BC]$'ye paralel bir doğru çizersen oluşan iki açı, $b$ ve $c$ ile iç ters açılardır. Böylece $A$ köşesinde $a$, $b$ ve $c$ yan yana gelip bir doğru açı oluşturur. Bu yüzden her üçgende $a + b + c = 180°$ olur."
+     },
+     {
+      "kind": "example",
+      "title": "İki açı biliniyorsa",
+      "example": "Bir üçgenin iki iç açısı $48°$ ve $67°$'dir. Üçüncü iç açı kaç derecedir?",
+      "explanation": "İç açıların toplamı $180°$ olduğundan üçüncü açı $180° - (48° + 67°)$ olur. Önce bilinen iki açıyı topla: $48° + 67° = 115°$. Sonra $180°$'den çıkar: $180° - 115° = 65°$. Kontrol: $48° + 67° + 65° = 180°$."
+     },
+     {
+      "kind": "blank",
+      "title": "Üçüncü açıyı bul",
+      "prompt": "Bir üçgenin iki iç açısı $52°$ ve $71°$'dir. Üçüncü iç açı kaç derecedir?",
+      "before": "Üçüncü açı =",
+      "after": "°",
+      "answers": [
+       "57"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 57,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "123",
+        "feedback": "52 ile 71'i toplayıp bırakmışsın; üçüncü açı için bu toplamı 180°'den çıkarman gerekir."
+       },
+       {
+        "answer": "109",
+        "feedback": "180°'den yalnız 71°'yi çıkarmışsın; 52°'yi de çıkarmalısın."
+       }
+      ],
+      "explanation": "$180° - (52° + 71°) = 180° - 123° = 57°$."
+     },
+     {
+      "kind": "rule",
+      "title": "Orantılı açılar: k yöntemi",
+      "items": [
+       "Açılar $a : b : c$ oranındaysa bunları $ak$, $bk$, $ck$ olarak yaz.",
+       "İç açılar toplamından $(a + b + c)k = 180°$ denklemini kur ve $k$'yı bul.",
+       "Sorulan açıyı $k$ ile hesapla; sonunda üç açının toplamının 180° olduğunu kontrol et.",
+       "Dış açılar orantılıysa toplam 360° alınır (sonraki bölümde)."
+      ],
+      "narration": "Oran verildiğinde açıların gerçek değerlerini bilmeyiz ama birbirlerinin kaç katı olduklarını biliriz. Bu yüzden ortak bir $k$ seçeriz: oran 2 : 3 : 4 ise açılar $2k$, $3k$ ve $4k$'dır. Toplam her zaman 180° olduğundan tek bir denklemle $k$ bulunur. Sorunun cevabı çoğu zaman $k$'nın kendisi değil, onunla çarpılmış açıdır; bu yüzden son adımı atlama."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir üçgenin iç açılarının ölçüleri $2$, $3$ ve $4$ sayılarıyla orantılıdır. Bu üçgenin **en büyük** iç açısı kaç derecedir?",
+       "options": [
+        "60",
+        "72",
+        "80",
+        "90",
+        "100"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Bu değer $3k$, yani orta açıdır; sorulan en büyük açıdır.",
+        "Bu değer en büyük açı olsaydı $k = 18$ olur ve üç açının toplamı 162° kalırdı.",
+        null,
+        "Bu değer en büyük açı olsaydı açıların toplamı 202,5° olurdu; 180° ile uyuşmaz.",
+        "Bu değer en büyük açı olsaydı açıların toplamı 225° olurdu; 180° ile uyuşmaz."
+       ],
+       "steps": [
+        {
+         "text": "Açılara ortak bir çarpanla $2k$, $3k$ ve $4k$ de."
+        },
+        {
+         "text": "İç açıların toplamı $180°$ olduğundan $2k + 3k + 4k = 180$ denklemini çöz ve $k$'yı bul."
+        },
+        {
+         "text": "En büyük açı oranın en büyük sayısına karşılık gelir: bulduğun $k$ ile $4k$'yı hesapla."
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki iç açı oranı sorularının kalıbı özgün sayılarla yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "predict",
+      "title": "Ortalama olan açı",
+      "context": "Bir üçgenin bir iç açısı, diğer iki iç açısının ortalamasına eşittir.",
+      "prompt": "Bu açı her zaman 60°'dir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Açıya $b$, diğerlerine $a$ ve $c$ de. $b = \\frac{a + c}{2}$ ise $a + c = 2b$ olur. Toplam $a + b + c = 2b + b = 3b = 180°$ olduğundan $b = 60°$ çıkar. Hangi üçgen olursa olsun ortalama olan açı 60°'dir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir üçgenin iç açılarından biri, diğer iki iç açısının **ortalamasına** eşittir. Bu üçgenin en küçük iç açısı $35°$ ise en büyük iç açısı kaç derecedir?",
+       "options": [
+        "70",
+        "75",
+        "80",
+        "85",
+        "90"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "En büyük açı 70° olsaydı üçüncü açı 75° çıkar ve 70° en büyük olamazdı.",
+        "Açılar 35°, 70° ve 75° olurdu; hiçbiri diğer ikisinin ortalaması değil.",
+        "Açılar 35°, 65° ve 80° olurdu; hiçbiri diğer ikisinin ortalaması değil.",
+        null,
+        "Açılar 35°, 55° ve 90° olurdu; hiçbiri diğer ikisinin ortalaması değil."
+       ],
+       "steps": [
+        {
+         "text": "Bir açı diğer ikisinin ortalamasıysa o açı kaç derecedir? İç açılar toplamından yararlan."
+        },
+        {
+         "text": "Ortalama olan açı en küçük de en büyük de olamaz; yani en küçük açı ($35°$) ile en büyük açının arasındadır."
+        },
+        {
+         "text": "Üç açının toplamı $180°$ olduğundan en büyük açıyı hesapla."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2023'teki 'bir açı diğer ikisinin ortalaması' fikri farklı bir soru köküyle (en büyük açı) yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Bir noktanın çevresi: 360°",
+      "text": "Bir noktanın etrafındaki tam tur $360°$'dir. Aynı üçgenden $n$ tane, aynı köşeleri bir noktada **boşluksuz ve üst üste gelmeden** birleşiyorsa o köşenin açısı $\\frac{360°}{n}$ olur. ÖSYM bu kalıbı kartonlarla sorar: iki köşe için karton sayısı verilir, üçüncü köşe için istenir. Yol hep aynıdır: önce verilen köşelerin açılarını $\\frac{360°}{n}$ ile bul, üçüncü açıyı $180°$'den hesapla, sonra $\\frac{360°}{\\text{açı}}$ ile karton sayısına dön.",
+      "caption": "Karton sorusunda açı ile parça sayısı ters orantılıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Eş üçgen biçimindeki kartonların $A$ köşeleri bir noktada çakıştırılıp aralarında boşluk kalmayacak ve üst üste gelmeyecek biçimde yan yana dizildiğinde, tam bir tur için **12** karton gerekiyor. Aynı işlem $B$ köşeleriyle **6** kartonla yapılabiliyor. Bu işlem $C$ köşeleriyle kaç kartonla yapılabilir?",
+       "options": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "8"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "3 karton için köşe açısı 120° olurdu; bu, $A$ ve $B$ ile toplanınca 180°'yi aşar.",
+        null,
+        "5 karton için köşe açısı 72° olurdu; 30° + 60° + 72° ≠ 180°.",
+        "6 karton için köşe açısı 60° olurdu; 30° + 60° + 60° ≠ 180°.",
+        "8 karton için köşe açısı 45° olurdu; 30° + 60° + 45° ≠ 180°."
+       ],
+       "steps": [
+        {
+         "text": "Bir köşede boşluksuz dizilen $n$ eş kartonun köşe açısı $\\frac{360°}{n}$'dir. $A$ ve $B$ açılarını bul."
+        },
+        {
+         "text": "Üçgenin iç açıları toplamı $180°$ olduğundan $C$ açısını $A$ ve $B$'den hesapla."
+        },
+        {
+         "text": "$C$ açısını bulunca $\\frac{360°}{C}$ ile karton sayısına geç."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 karton sorusunun fikri (köşeleri çakıştırıp tam tur) farklı sayılar ve soru köküyle yeniden kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Büyük üçgen, büyük toplam mı?",
+      "wrong": "Kenarları uzun çizilen büyük bir üçgenin iç açıları toplamı, küçük bir üçgeninkinden büyüktür.",
+      "right": "Her üçgenin iç açıları toplamı, boyutu ne olursa olsun 180°'dir.",
+      "why": "Açı ölçüsü kenar uzunluğuna değil, kolların birbirine göre açıklığına bağlıdır. Paralel doğru çizerek yapılan ispat her üçgende aynen çalışır; bu yüzden toplam sabittir."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ACI_02",
+    "title": "Dış açılar",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Dış açı kuralı",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.4,
+        -0.5,
+        6.6,
+        4.6
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.893,
+          4.132
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          4,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          6.2,
+          0
+         ],
+         "hidden": true,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "label": "a",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "label": "b",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "C",
+         "from": "D",
+         "to": "A",
+         "label": "a + b",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "narration": "$[BC]$ kenarını $C$'nin ötesine uzatınca $C$'de bir **dış açı** oluşur. Dış açı, $C$'deki iç açıyla komşu bütünlerdir; yani toplamları $180°$'dir. İç açıların toplamı da $180°$ olduğundan dış açı, geriye kalan iki iç açının, yani $a + b$'nin toplamına eşittir."
+     },
+     {
+      "kind": "rule",
+      "title": "Dış açı kuralları",
+      "items": [
+       "Dış açı = kendisine **komşu olmayan** iki iç açının toplamı.",
+       "Dış açı + komşu iç açı = $180°$ (bütünler).",
+       "Her köşede bir dış açı alınırsa üç dış açının toplamı $360°$'dir.",
+       "Bir köşede iki dış açı çizilebilir; bunlar ters açı olduğundan eşittir.",
+       "En büyük dış açı, en küçük iç açıya aittir."
+      ],
+      "narration": "Dış açı sorularında iki yol vardır: komşu iç açının bütünlerini almak ya da komşu olmayan iki iç açıyı toplamak. İkisi aynı sonucu verir; hangisi verilenlere daha yakınsa onu seç. Dış açı iç açıdan her zaman farklı bir bilgi taşımaz ama denklem kurmayı kısaltır: iki iç açı $x$ cinsinden verilmişse doğrudan toplayıp dış açıya eşitlersin."
+     },
+     {
+      "kind": "blank",
+      "title": "Komşu olmayan açı",
+      "prompt": "Bir üçgende bir dış açı $130°$'dir. Bu dış açıya komşu olmayan iç açılardan biri $80°$ ise diğeri kaç derecedir?",
+      "before": "Diğer iç açı =",
+      "after": "°",
+      "answers": [
+       "50"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 50,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "100",
+        "feedback": "180° − 80° yapmışsın. Dış açı, komşu olmayan iki iç açının toplamıdır; 130° − 80° hesapla."
+       },
+       {
+        "answer": "210",
+        "feedback": "130 ile 80'i toplamışsın; dış açı toplama eşittir, o yüzden çıkarma yapmalısın."
+       }
+      ],
+      "explanation": "Dış açı = iki iç açının toplamı olduğundan $80° + x = 130°$, $x = 50°$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $[BC]$ kenarı $C$'nin ötesine uzatılmıştır. $m(\\widehat{BAC}) = 2x$, $m(\\widehat{ABC}) = x + 20$ ve $C$'deki dış açı $110°$ olduğuna göre $x$ kaçtır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.4,
+         -0.5,
+         6.8,
+         4.6
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           3.487,
+           4.156
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           5,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           6.6,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "2x",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "B",
+          "from": "C",
+          "to": "A",
+          "label": "x+20",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "C",
+          "from": "D",
+          "to": "A",
+          "label": "110°",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "30",
+        "40",
+        "50",
+        "55",
+        "60"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$x = 40$ için $A = 80°$ ve $B = 60°$ olur; toplamları 110° etmez.",
+        "$x = 50$ için $A = 100°$ ve $B = 70°$ olur; toplamları 110° etmez.",
+        "$x = 55$ için $A = 110°$ ve $B = 75°$ olur; dış açıya eşit olmaz.",
+        "$x = 60$ için $A = 120°$ ve $B = 80°$ olur; toplamları 110°'yi çok aşar."
+       ],
+       "steps": [
+        {
+         "text": "$C$'deki dış açı, komşu olmayan iki iç açının toplamına eşittir. Bu iki açı hangileri?"
+        },
+        {
+         "text": "$2x + (x + 20) = 110$ denklemini kur ve $x$'i çöz."
+        }
+       ],
+       "origin": {
+        "changes": "Dış açı kuralı cebirli, ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "multi",
+      "title": "Hangileri her zaman doğru?",
+      "stem": "Bir üçgenle ilgili aşağıdaki ifadelerden hangileri **her zaman** doğrudur?",
+      "options": [
+       "İki iç açının toplamı $110°$ ise üçüncü iç açı $70°$'dir.",
+       "Bir dış açı $125°$ ise ona komşu iç açı $55°$'dir.",
+       "Bir dış açı $125°$ ise ona komşu iç açı da $125°$'dir.",
+       "Bir dış açı, komşu iç açısından her zaman küçüktür."
+      ],
+      "answers": [
+       0,
+       1
+      ],
+      "choiceFeedback": [
+       null,
+       null,
+       "Dış açı ile komşu iç açı bütünlerdir (toplamları 180°); eşit olmaları gerekmez.",
+       "Dış açı, $180° - $ (komşu iç açı) kadardır; iç açı $90°$'den büyükse dış açı daha küçük, $90°$'den küçükse daha büyüktür."
+      ],
+      "explanation": "İlk ifade $180° - 110° = 70°$ olduğundan doğrudur. İkinci ifade $180° - 125° = 55°$ olduğundan doğrudur. Üçüncü ifade yanlıştır, çünkü dış ve komşu iç açı bütünlerdir. Dördüncü ifade de yanlıştır: karşılaştırma iç açının $90°$'den büyük ya da küçük olmasına bağlıdır."
+     },
+     {
+      "kind": "predict",
+      "title": "Dik dış açı",
+      "context": "Bir üçgenin dış açılarından biri $90°$'dir.",
+      "prompt": "Bu üçgenin iç açılarından biri de $90°$'dir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Dış açı komşu iç açıyla bütünlerdir: $180° - 90° = 90°$. Yani o köşedeki iç açı da dik olur ve üçgen dik açılıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Orantılı dış açılar",
+      "example": "Bir üçgenin dış açıları $2 : 3 : 4$ oranındadır. İç açıları kaçtır?",
+      "explanation": "Dış açılar $2k$, $3k$, $4k$ olsun. Dış açıların toplamı $360°$ olduğundan $9k = 360°$ ve $k = 40°$ bulunur. Dış açılar $80°$, $120°$ ve $160°$'dir. Her iç açı kendi dış açısının bütünleridir: $100°$, $60°$ ve $20°$. Kontrol: $100° + 60° + 20° = 180°$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir üçgenin dış açılarının ölçüleri $3$, $4$ ve $5$ sayılarıyla orantılıdır. Buna göre bu üçgen için aşağıdakilerden hangisi **doğrudur**?",
+       "options": [
+        "Eşkenar bir üçgendir.",
+        "İkizkenar bir üçgendir.",
+        "Dar açılı bir üçgendir.",
+        "Geniş açılı bir üçgendir.",
+        "Dik açılı bir üçgendir."
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "Eşkenar üçgenin dış açıları eşit (120°) olurdu; burada dış açılar farklı.",
+        "İkizkenar üçgende iki dış açı eşit olur; burada üç dış açı da farklı.",
+        "İç açıları (dış açıların bütünlerini) bulup hepsinin 90°'den küçük olup olmadığına bak.",
+        "İç açıları (dış açıların bütünlerini) bulup 90°'den büyük olan var mı kontrol et.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Dış açıları $3k$, $4k$, $5k$ al; toplamları $360°$ olduğundan $k$'yı bul."
+        },
+        {
+         "text": "Her iç açı, kendi dış açısının $180°$'ye bütünleridir; üç iç açıyı hesapla."
+        },
+        {
+         "text": "İç açıları $90°$ ile karşılaştır ve eşit açı olup olmadığına bak."
+        }
+       ],
+       "origin": {
+        "changes": "Dış açılar toplamı kuralı üçgen çeşidini bulma sorusuyla birleştirildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $ABC$ üçgeninin $B$ ve $C$ köşelerindeki dış açıların ölçüleri sırasıyla $120°$ ve $130°$'dir. Buna göre $m(\\widehat{A})$ kaç derecedir?",
+       "options": [
+        "50",
+        "60",
+        "70",
+        "80",
+        "110"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Bu değer $C$'deki iç açıdır; sorulan $A$'dır.",
+        "Bu değer $B$'deki iç açıdır; sorulan $A$'dır.",
+        null,
+        "$80° + 60° + 50° = 190°$ olurdu; iç açılar toplamı 180° olmalı.",
+        "Bu değer $A$'daki dış açıdır; iç açıyı bulmak için $180°$'den çıkarmalısın."
+       ],
+       "steps": [
+        {
+         "text": "$B$ ve $C$'deki iç açıları, dış açıların bütünleri olarak bul: iç $= 180° - $ dış."
+        },
+        {
+         "text": "Üç iç açının toplamı $180°$ olduğundan $A$'yı hesapla."
+        }
+       ],
+       "origin": {
+        "changes": "Dış açılar toplamı 360° kuralı iç açıya geçişle özgün sayılarla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Dış açılar toplamı",
+      "wrong": "Bir üçgenin dış açılarının toplamı $180°$'dir.",
+      "right": "Her köşeden birer dış açı alınırsa dış açıların toplamı $360°$'dir.",
+      "why": "Her köşede dış açı + iç açı $= 180°$ olduğundan üç köşede toplam $3 \\cdot 180° = 540°$ eder. İç açıların toplamı $180°$ olduğundan dış açıların toplamı $540° - 180° = 360°$ kalır."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ACI_03",
+    "title": "Üçgen çeşitleri",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Açılarına ve kenarlarına göre",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Ölçüt",
+        "Üçgen",
+        "Özelliği"
+       ],
+       "rows": [
+        [
+         "Açılarına göre",
+         "**Dar** açılı",
+         "Üç açı da $< 90°$"
+        ],
+        [
+         "Açılarına göre",
+         "**Dik** açılı",
+         "Bir açı $= 90°$"
+        ],
+        [
+         "Açılarına göre",
+         "**Geniş** açılı",
+         "Bir açı $> 90°$"
+        ],
+        [
+         "Kenarlarına göre",
+         "**Çeşitkenar**",
+         "Üç kenar farklı"
+        ],
+        [
+         "Kenarlarına göre",
+         "**İkizkenar**",
+         "İki kenar eşit; **taban açıları eşit**"
+        ],
+        [
+         "Kenarlarına göre",
+         "**Eşkenar**",
+         "Üç kenar eşit; açılar **60°**"
+        ]
+       ]
+      },
+      "narration": "Üçgenler iki ölçüte göre adlandırılır. Açılarına göre: üç açısı da $90°$'den küçükse dar açılı, bir açısı $90°$ ise dik açılı, bir açısı $90°$'den büyükse geniş açılı üçgendir. Kenarlarına göre: üç kenarı farklıysa çeşitkenar, iki kenarı eşitse ikizkenar, üç kenarı eşitse eşkenar üçgendir. İkizkenar üçgende eşit kenarların karşısındaki taban açıları da eşittir; eşkenar üçgenin her açısı $60°$'dir."
+     },
+     {
+      "kind": "concept",
+      "title": "Açılara göre: en fazla bir dik ya da geniş",
+      "text": "Bir üçgende **en fazla bir** dik ya da geniş açı bulunabilir. İki tanesi toplam en az $180°$ eder ve üçüncü açıya yer kalmaz. Dik üçgende dik açıdan başka iki açı **dardır** ve toplamları $90°$'dir. Dar açılı üçgende üç açı da $90°$'den küçüktür; bu yüzden dış açıların üçü de $90°$'den büyüktür."
+     },
+     {
+      "kind": "classify",
+      "title": "Açıları sınıfla",
+      "prompt": "Her üçgeni, açılarına göre doğru gruba yerleştir.",
+      "groups": [
+       {
+        "label": "Dar açılı",
+        "items": [
+         "50°, 60°, 70°",
+         "80°, 50°, 50°"
+        ]
+       },
+       {
+        "label": "Dik açılı",
+        "items": [
+         "30°, 60°, 90°",
+         "45°, 45°, 90°"
+        ]
+       },
+       {
+        "label": "Geniş açılı",
+        "items": [
+         "20°, 30°, 130°",
+         "100°, 40°, 40°"
+        ]
+       }
+      ],
+      "explanation": "Üç açıdan en büyüğüne bak: $90°$'den küçükse dar, $90°$ ise dik, $90°$'den büyükse geniş açılı üçgendir."
+     },
+     {
+      "kind": "rule",
+      "title": "Kenarlara göre özellikler",
+      "items": [
+       "**İkizkenar**: iki kenar eşit; eşit kenarların karşısındaki **taban açıları** eşit.",
+       "İkizkenar üçgende tepeden tabana inen doğru parçası aynı anda **kenarortay, açıortay ve yüksekliktir**.",
+       "**Eşkenar**: üç kenar eşit, üç açı $60°$; her dış açı $120°$.",
+       "**Çeşitkenar**: üç kenar ve üç açı birbirinden farklı.",
+       "**Büyük açının karşısındaki kenar büyüktür**; eşit açıların karşısındaki kenarlar eşittir.",
+       "İkizkenar üçgende geniş açı yalnız **tepe** açısı olabilir.",
+       "İkizkenar dik üçgenin açıları $45°$, $45°$ ve $90°$'dir."
+      ],
+      "narration": "İkizkenar üçgende iki taban açısı eşit olduğundan tek bir açı bilinirse diğerleri bulunur: tepe açısı verildiyse taban açısı $\\frac{180° - \\text{tepe}}{2}$, taban açısı verildiyse tepe açısı $180° - 2 \\cdot \\text{taban}$. Açı ile kenar arasındaki ilişki de çok kullanılır: en büyük açının karşısı en uzun kenardır."
+     },
+     {
+      "kind": "match",
+      "title": "Üçgeni özelliğiyle eşle",
+      "prompt": "Her üçgen çeşidini özelliğiyle eşleştir.",
+      "titles": [
+       "Üçgen",
+       "Özellik"
+      ],
+      "pairs": [
+       {
+        "left": "İkizkenar üçgen",
+        "right": "Taban açıları eşit"
+       },
+       {
+        "left": "Eşkenar üçgen",
+        "right": "Her açı 60°"
+       },
+       {
+        "left": "Çeşitkenar üçgen",
+        "right": "Üç açı da farklı"
+       },
+       {
+        "left": "Dik üçgen",
+        "right": "İki dar açının toplamı 90°"
+       }
+      ],
+      "explanation": "Kenarlar ile açılar birbirini belirler: eşit kenarların karşısında eşit açılar, farklı kenarların karşısında farklı açılar bulunur."
+     },
+     {
+      "kind": "concept",
+      "title": "İki ölçütü birlikte düşün",
+      "text": "Bir üçgen hem açısına hem kenarına göre adlandırılır: **dar açılı çeşitkenar** ($50°, 60°, 70°$), **dik açılı ikizkenar** ($45°, 45°, 90°$), **geniş açılı ikizkenar** ($100°, 40°, 40°$). **Eşkenar üçgen her zaman dar açılıdır**, çünkü açıları $60°$'dir. ÖSYM bu bilgiyi 'şekildeki beş üçgenden hangisi dar açılı çeşitkenardır?' gibi sorularla ölçer: önce her üçgenin açılarını hesapla, sonra kenarları karşılaştır."
+     },
+     {
+      "kind": "multi",
+      "title": "Hangisi mümkün değil?",
+      "stem": "Aşağıdakilerden hangileri bir üçgen için **mümkün değildir**?",
+      "options": [
+       "Dik açılı eşkenar üçgen",
+       "Geniş açılı ikizkenar üçgen",
+       "Dar açılı çeşitkenar üçgen",
+       "Dik açılı ikizkenar üçgen",
+       "İki geniş açısı olan üçgen"
+      ],
+      "answers": [
+       0,
+       4
+      ],
+      "choiceFeedback": [
+       null,
+       "Tepe açısı $100°$, taban açıları $40°$ olan ikizkenar üçgen vardır; mümkündür.",
+       "Açıları $50°, 60°, 70°$ olan üçgen vardır; mümkündür.",
+       "Açıları $45°, 45°, 90°$ olan üçgen vardır; mümkündür.",
+       null
+      ],
+      "explanation": "Eşkenar üçgenin açıları $60°$'dir, dik açı barındıramaz. İki geniş açının toplamı $180°$'yi aşar. Diğer üçgen türleri mümkündür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $|AB| = |AC|$ ve $m(\\widehat{BAC}) = 80°$'dir. $[BC]$ kenarı $C$'nin ötesine uzatıldığına göre $x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.4,
+         -0.5,
+         6.4,
+         2.9
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2,
+           2.384
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           4,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           6,
+           0
+          ],
+          "hidden": true,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "80°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "C",
+          "from": "D",
+          "to": "A",
+          "label": "x",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "100",
+        "110",
+        "120",
+        "130",
+        "140"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "$100°$ yazmışsan $A$ açısının bütünlerini almışsındır; dış açı $C$'deki iç açıyla ilgilidir.",
+        "$x = 110°$ olsaydı $C = 70°$ ve $B = 70°$ olurdu; toplam $220°$ eder.",
+        "$x = 120°$ olsaydı $C = 60°$ ve $B = 60°$ olurdu; toplam $200°$ eder.",
+        null,
+        "$x = 140°$ olsaydı $C = 40°$ ve $B = 40°$ olurdu; toplam $160°$ eder."
+       ],
+       "steps": [
+        {
+         "text": "$|AB| = |AC|$ ise karşılarındaki $B$ ve $C$ açıları eşittir. İkisine $y$ de ve $180°$ ile denklem kur."
+        },
+        {
+         "text": "$x$, $C$'deki iç açıyla bütünler ya da $A$ ile $B$'nin toplamıdır; ikisinden birini kullan."
+        }
+       ],
+       "origin": {
+        "changes": "İkizkenar üçgende taban açıları ve dış açı kuralı özgün bir şekilde birleştirildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir ikizkenar üçgenin iç açılarından birinin ölçüsü $100°$'dir. Bu üçgenin **en küçük** iç açısı kaç derecedir?",
+       "options": [
+        "40",
+        "50",
+        "60",
+        "80",
+        "100"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$50°$, $100°$'nin yarısıdır; ama bölünmesi gereken $100°$ değil, $180° - 100°$'dir.",
+        "Eşkenar üçgen varsaymış olabilirsin; burada açılardan biri $100°$.",
+        "$80°$ iki taban açısının toplamıdır, birinin ölçüsü değil.",
+        "$100°$ tepe açısıdır ve en büyük açıdır; en küçük açı sorulmuş."
+       ],
+       "steps": [
+        {
+         "text": "$100°$ taban açısı olabilir mi? İkizkenarda taban açıları eşittir; iki taneyse toplamları kaç eder?"
+        },
+        {
+         "text": "$100°$ tepe açısıysa iki taban açısı eşittir ve kalan $180° - 100°$'yi paylaşır; her birini hesapla."
+        }
+       ],
+       "origin": {
+        "changes": "İkizkenar üçgende geniş açının yalnız tepe açısı olabileceği özgün bir soruyla gösterildi."
+       }
+      }
+     },
+     {
+      "kind": "findError",
+      "title": "Hatayı bul",
+      "problem": "$|AB| = |AC|$ ve $m(\\widehat{A}) = 40°$ olan $ABC$ üçgeninde $B$ köşesindeki dış açı kaç derecedir?",
+      "prompt": "Hangi satırda hata var?",
+      "steps": [
+       "$|AB| = |AC|$ olduğundan $m(\\widehat{B}) = m(\\widehat{C})$ olur.",
+       "$m(\\widehat{B}) + m(\\widehat{C}) = 180° - 40° = 140°$ olur.",
+       "Buna göre $m(\\widehat{B}) = 140°$ bulunur.",
+       "$B$'deki dış açı $180° - 140° = 40°$'dir."
+      ],
+      "wrongStep": 2,
+      "choiceFeedback": [
+       "Bu satır doğru: eşit kenarların karşısındaki açılar eşittir.",
+       "Bu satır doğru: iç açılar toplamından $A$ çıkarılınca iki taban açısının toplamı kalır.",
+       null,
+       "Bu satırdaki işlem doğru; ama bir önceki satırdaki yanlış değere dayanıyor."
+      ],
+      "explanation": "İki taban açısının toplamı $140°$ ve birbirine eşit olduklarından her biri $70°$'dir. Doğru çözüm: $m(\\widehat{B}) = 70°$, dış açı $180° - 70° = 110°$ (ya da $40° + 70° = 110°$)."
+     },
+     {
+      "kind": "predict",
+      "title": "Eşkenarın dış açıları",
+      "context": "Bir eşkenar üçgenin her iç açısı $60°$'dir.",
+      "prompt": "Bu üçgenin her dış açısı $120°$'dir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Dış açı komşu iç açıyla bütünlerdir: $180° - 60° = 120°$. Üç dış açının toplamı $3 \\cdot 120° = 360°$ ile de uyuşur."
+     },
+     {
+      "kind": "concept",
+      "title": "Ardışık ikizkenar üçgen zinciri",
+      "text": "$A$ noktasından çıkan iki ışından birinin üzerinde $B$ ve $D$, ötekinin üzerinde $C$ ve $E$ bulunsun ($A$–$B$–$D$ ve $A$–$C$–$E$ sırasıyla). Zikzak çizen $[AB], [BC], [CD], [DE]$ parçaları eşitse $|AB| = |BC| = |CD| = |DE|$ her adımda yeni bir ikizkenar üçgen çıkar. $m(\\widehat{BAC}) = \\alpha$ ise taban açıları sırayla $\\alpha$, $2\\alpha$, $3\\alpha$ olarak **katlanarak** büyür. Her adımda dış açı kuralı kullanılır: önceki iki açı toplanır.",
+      "caption": "Zincirdeki ikizkenar üçgenler: $ABC$, $BCD$, $CDE$."
+     },
+     {
+      "kind": "visual",
+      "title": "Zincirin sırası",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "ABC üçgeni",
+         "detail": "AB = BC → taban açıları α, α"
+        },
+        {
+         "label": "B'deki dış açı",
+         "detail": "m(CBD) = α + α = 2α"
+        },
+        {
+         "label": "BCD üçgeni",
+         "detail": "BC = CD → taban açıları 2α"
+        },
+        {
+         "label": "C'deki dış açı",
+         "detail": "m(DCE) = α + 2α = 3α"
+        },
+        {
+         "label": "CDE üçgeni",
+         "detail": "CD = DE → taban açıları 3α"
+        }
+       ]
+      },
+      "caption": "Çözüm adımlarını doğru sıraya diz.",
+      "narration": "Zincirde her ikizkenar üçgen, bir öncekinin taban açısını yeni bir dış açıya çevirir. Önce $ABC$'de iki taban açısı $\\alpha$ olur. $B$'deki dış açı onların toplamı $2\\alpha$'dır ve $BCD$'nin taban açısı olur. $C$'deki dış açı $\\alpha + 2\\alpha = 3\\alpha$ olur ve $CDE$'nin taban açısıdır. Bu sıra, zincir uzasa da aynen devam eder."
+     },
+     {
+      "kind": "guided",
+      "title": "Zinciri adım adım çöz",
+      "stem": "$A$ noktasından çıkan iki ışından birinin üzerinde $B$ ve $D$, ötekinin üzerinde $C$ ve $E$ vardır ($A$–$B$–$D$ ve $A$–$C$–$E$ sırasıyla). $|AB| = |BC| = |CD| = |DE|$ ve $m(\\widehat{BAC}) = 14°$ olduğuna göre $m(\\widehat{DEC})$ kaç derecedir?",
+      "steps": [
+       {
+        "prompt": "$|AB| = |BC|$ olduğundan $m(\\widehat{ACB})$ kaç derecedir?",
+        "choices": [
+         "7°",
+         "14°",
+         "28°",
+         "152°"
+        ],
+        "answer": 1,
+        "choiceFeedback": [
+         "Açıyı ikiye bölmeye gerek yok; eşit kenarların karşısındaki açılar eşittir.",
+         null,
+         "28°, iki taban açısının toplamıdır.",
+         "152°, $B$'deki iç açıdır."
+        ],
+        "explanation": "$|AB| = |BC|$ olduğundan karşılarındaki $\\widehat{C}$ ve $\\widehat{A}$ eşittir: $14°$."
+       },
+       {
+        "prompt": "$[AB]$ uzatılınca $B$'de oluşan dış açının ölçüsü kaç derecedir?",
+        "before": "m(CBD) =",
+        "after": "°",
+        "answers": [
+         "28"
+        ],
+        "input": "number",
+        "explanation": "Dış açı, komşu olmayan iki iç açının toplamıdır: $14° + 14° = 28°$."
+       },
+       {
+        "prompt": "$|BC| = |CD|$ olduğundan $m(\\widehat{CDB}) = 28°$'dir. $C$'deki dış açı $m(\\widehat{DCE})$ kaç derecedir? ($\\widehat{CAD} = 14°$)",
+        "before": "m(DCE) =",
+        "after": "°",
+        "answers": [
+         "42"
+        ],
+        "input": "number",
+        "explanation": "$ACD$ üçgeninde $C$'deki dış açı $= 14° + 28° = 42°$."
+       },
+       {
+        "prompt": "$|CD| = |DE|$ olduğundan $m(\\widehat{DEC})$ kaç derecedir?",
+        "choices": [
+         "14°",
+         "28°",
+         "42°",
+         "84°"
+        ],
+        "answer": 2,
+        "choiceFeedback": [
+         "Zincirin ilk açısı bu.",
+         "Zincirin ikinci açısı bu.",
+         null,
+         "84°, iki taban açısının toplamıdır."
+        ],
+        "explanation": "$CDE$ üçgeninde eşit kenarların karşısındaki açılar eşittir: $m(\\widehat{DEC}) = m(\\widehat{DCE}) = 42° = 3 \\cdot 14°$."
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Oranlı zincir: k ile çözüm",
+      "example": "Aynı zincirde $|AB| = |BC| = |CD| = |DE|$ ve $m(\\widehat{CDE}) = 2 \\cdot m(\\widehat{CED})$'dir. $m(\\widehat{CED})$ kaç derecedir?",
+      "explanation": "$m(\\widehat{BAC}) = k$ olsun. Zincir kuralından $CDE$ üçgeninin taban açıları $\\widehat{DCE} = \\widehat{DEC} = 3k$ olur. Tepe açısı $\\widehat{CDE} = 180° - 6k$'dir. Oran gereği $180° - 6k = 2 \\cdot 3k$, yani $12k = 180°$ ve $k = 15°$. Sorulan açı $3k = 45°$. Kontrol: tepe açısı $180° - 90° = 90° = 2 \\cdot 45°$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$A$ noktasından çıkan iki ışından birinin üzerinde $B$ ve $D$, ötekinin üzerinde $C$ ve $E$ noktaları ($A$–$B$–$D$ ve $A$–$C$–$E$ sırasıyla) alınmıştır. $|AB| = |BC| = |CD| = |DE|$ ve $m(\\widehat{BAC}) : m(\\widehat{CDE}) = 1 : 4$ olduğuna göre $m(\\widehat{DEC})$ kaç derecedir?",
+       "options": [
+        "36",
+        "54",
+        "72",
+        "90",
+        "108"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Bu değer $2k$ olurdu; zincirin ikinci açısıdır.",
+        null,
+        "Bu değer $4k$, yani $CDE$ üçgeninin tepe açısıdır; sorulan taban açısıdır.",
+        "Bu değer $5k$ olurdu; zincirde böyle bir açı oluşmaz.",
+        "Bu değer $6k$, yani iki taban açısının toplamıdır."
+       ],
+       "steps": [
+        {
+         "text": "$m(\\widehat{BAC}) = k$ olsun. Zincirde taban açıları $k$, $2k$, $3k$ diye büyür. $CDE$ üçgeninin taban açıları kaç $k$'dır?"
+        },
+        {
+         "text": "$CDE$ üçgeninin tepe açısı $180° - 6k$'dir ve orana göre $4k$'ya eşittir. Bu denklemden $k$'yı bul."
+        },
+        {
+         "text": "Sorulan $\\widehat{DEC}$ bir taban açısıdır; $k$ ile hesapla."
+        }
+       ],
+       "origin": {
+        "changes": "Ardışık ikizkenar zincirinde oranlı açı verilmesi (k yöntemi) özgün bir soru köküyle kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Hipotenüse ait kenarortay",
+      "text": "$m(\\widehat{A}) = 90°$ olan $ABC$ dik üçgeninde $D$, hipotenüs $[BC]$'nin orta noktası olsun. Bu durumda $|AD| = |BD| = |DC| = \\frac{|BC|}{2}$ olur. Yani $[AD]$, üçgeni iki **ikizkenar üçgene** ($ABD$ ve $ADC$) ayırır. Taban açıları: $m(\\widehat{BAD}) = m(\\widehat{B})$ ve $m(\\widehat{DAC}) = m(\\widehat{C})$. $D$'deki dış açı kuralından $m(\\widehat{ADC}) = 2 \\cdot m(\\widehat{B})$ ve $m(\\widehat{ADB}) = 2 \\cdot m(\\widehat{C})$ bulunur.",
+      "caption": "Dik açıdan hipotenüse inen kenarortay, hipotenüsün yarısı kadardır."
+     },
+     {
+      "kind": "blank",
+      "title": "Kenarortay uzunluğu",
+      "prompt": "Bir dik üçgende hipotenüs $18$ cm'dir. Hipotenüse ait kenarortay kaç cm'dir?",
+      "before": "Kenarortay =",
+      "after": "cm",
+      "answers": [
+       "9"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 9,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "6",
+        "feedback": "Üçte birini almışsın; dik üçgende hipotenüse ait kenarortay hipotenüsün yarısıdır."
+       },
+       {
+        "answer": "36",
+        "feedback": "Hipotenüsü ikiyle çarpmışsın; kenarortay hipotenüsün yarısıdır."
+       }
+      ],
+      "explanation": "$|AD| = \\frac{|BC|}{2} = \\frac{18}{2} = 9$ cm."
+     },
+     {
+      "kind": "example",
+      "title": "Kenarortay ve açı",
+      "example": "$m(\\widehat{A}) = 90°$ olan $ABC$ üçgeninde $m(\\widehat{B}) = 35°$ ve $D$, $[BC]$'nin orta noktasıdır. $m(\\widehat{ADC})$ kaç derecedir?",
+      "explanation": "$|AD| = |BD|$ olduğundan $ABD$ ikizkenardır ve $m(\\widehat{BAD}) = m(\\widehat{B}) = 35°$. $\\widehat{ADC}$, $ABD$ üçgeninin $D$'deki dış açısıdır: $35° + 35° = 70°$. Kontrol: $m(\\widehat{C}) = 55°$ ve $|DA| = |DC|$ olduğundan $\\widehat{ADC} = 180° - 2 \\cdot 55° = 70°$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$m(\\widehat{A}) = 90°$ olan $ABC$ dik üçgeninde $D$ noktası $[BC]$ hipotenüsünün orta noktasıdır. $m(\\widehat{ADB}) = 130°$ olduğuna göre $m(\\widehat{C})$ kaç derecedir?",
+       "options": [
+        "25",
+        "40",
+        "50",
+        "60",
+        "65"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "Bu değer $\\widehat{B}$'dir; sorulan $\\widehat{C}$'dir.",
+        "Taban açısını bulmak için $180°$'den tepe açısını çıkarıp ikiye bölmelisin; hesabı yeniden kontrol et.",
+        "Bu değer $\\widehat{ADC}$'dir; o, $ADC$ üçgeninin tepe açısıdır, $\\widehat{C}$ ise taban açısıdır.",
+        "$ADC$ üçgenini eşkenar sanmışsın olabilir; tepe açısı $60°$ değil.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Hipotenüse ait kenarortayda $|AD| = |DC|$ olur; $ADC$ üçgeni ikizkenardır. Tepe ve taban açıları hangileri?"
+        },
+        {
+         "text": "$\\widehat{ADB}$ ile $\\widehat{ADC}$ bütünlerdir; $m(\\widehat{ADC})$'yi bul."
+        },
+        {
+         "text": "$ADC$'nin taban açıları eşittir ve toplamları $180° - m(\\widehat{ADC})$'dir; $\\widehat{C}$'yi hesapla."
+        }
+       ],
+       "origin": {
+        "changes": "Dik üçgende hipotenüse ait kenarortayın oluşturduğu ikizkenar üçgenler özgün sayılarla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Kenarortay kaçta kaç?",
+      "wrong": "Dik üçgende hipotenüse ait kenarortayın uzunluğu hipotenüsün üçte birine eşittir.",
+      "right": "Hipotenüse ait kenarortay hipotenüsün yarısı kadardır.",
+      "why": "Üçte bir, ağırlık merkezinin kenarortayı bölme oranıyla karışır. Dik üçgende hipotenüsün orta noktası üç köşeye de eşit uzaklıktadır; bu yüzden $|AD| = |BD| = |DC|$ olur."
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_UCGEN_ACI_04",
+    "title": "Ok ucu, kelebek ve açıortay kuralları",
+    "cards": [
+     {
+      "kind": "rule",
+      "title": "Ok ucu kuralı",
+      "items": [
+       "$ABC$ üçgeninin içindeki $D$ noktası $B$ ve $C$'ye bağlanırsa $m(\\widehat{BDC}) = a + b + c$ olur.",
+       "$a = m(\\widehat{A})$, $b = m(\\widehat{ABD})$, $c = m(\\widehat{ACD})$: üç **uç** açının toplamı.",
+       "$x$, $D$'de $BC$ tarafına bakan ($180°$'den küçük) açıdır; içbükey dörtgenin iç açısı $360° - x$'tir.",
+       "Kanıt: $[AD]$'yi uzat; iki dış açı kuralını topla."
+      ],
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.4,
+        -0.5,
+        5.4,
+        4.7
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          2.5,
+          4.33
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          5,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          2.5,
+          1.5
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "C",
+         "label": "a",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "B",
+         "from": "D",
+         "to": "A",
+         "label": "b",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "C",
+         "from": "A",
+         "to": "D",
+         "label": "c",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "D",
+         "from": "B",
+         "to": "C",
+         "label": "a + b + c",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "narration": "Şekilde $D$ noktası $B$ ve $C$'ye bağlanınca $ABDC$ içbükey bir dörtgen, yani bir ok ucu oluşur. $D$'deki açı, $A$'daki açı ile $D$'ye giden iki koldaki açıların toplamına eşittir. $[AD]$'yi $[BC]$ ile kesişene kadar uzatırsan her iki parçada dış açı kuralı çalışır: $\\widehat{BDE} = a_1 + b$ ve $\\widehat{EDC} = a_2 + c$. Bunları toplayınca ($a_1 + a_2 = a$) $x = a + b + c$ olur."
+     },
+     {
+      "kind": "example",
+      "title": "Ok ucunda eksik açı",
+      "example": "$ABC$ üçgeninin içinde bir $D$ noktası vardır. $m(\\widehat{BAC}) = 50°$, $m(\\widehat{ABD}) = 45°$ ve $m(\\widehat{BDC}) = 130°$ ise $m(\\widehat{ACD})$ kaç derecedir?",
+      "explanation": "Ok ucu kuralı: $m(\\widehat{BDC}) = m(\\widehat{BAC}) + m(\\widehat{ABD}) + m(\\widehat{ACD})$. Değerleri yaz: $130° = 50° + 45° + c$. Buradan $c = 130° - 95° = 35°$ bulunur."
+     },
+     {
+      "kind": "blank",
+      "title": "Ok ucunu kur",
+      "prompt": "$ABC$ üçgeninin içindeki $D$ noktası için $m(\\widehat{BAC}) = 70°$, $m(\\widehat{ABD}) = 30°$ ve $m(\\widehat{ACD}) = 20°$'dir. $m(\\widehat{BDC})$ kaç derecedir?",
+      "before": "m(BDC) =",
+      "after": "°",
+      "answers": [
+       "120"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 120,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "50",
+        "feedback": "Yalnız iki kol açısını toplamışsın; kuralda $A$'daki açı da eklenir."
+       },
+       {
+        "answer": "60",
+        "feedback": "$A$ açısının yarısını almış olabilirsin; ok ucu kuralında yarım alınmaz, üç açı doğrudan toplanır."
+       }
+      ],
+      "explanation": "$70° + 30° + 20° = 120°$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekilde $D$ noktası $ABC$ üçgeninin içindedir. $m(\\widehat{BAC}) = 60°$, $m(\\widehat{ABD}) = 25°$ ve $m(\\widehat{ACD}) = 30°$ olduğuna göre $m(\\widehat{BDC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.4,
+         -0.5,
+         5.4,
+         4.8
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2.5,
+           4.33
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           5,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           2.26,
+           1.582
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "60°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "B",
+          "from": "D",
+          "to": "A",
+          "label": "25°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "C",
+          "from": "A",
+          "to": "D",
+          "label": "30°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "D",
+          "from": "B",
+          "to": "C",
+          "label": "x",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "105",
+        "110",
+        "115",
+        "120",
+        "125"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Üç uç açıyı ($60°$, $25°$, $30°$) toplayınca bu sonuç çıkmıyor; toplamı yeniden hesapla.",
+        "Üç açıdan birini eksik ya da yanlış almış olabilirsin; üçünü de topla.",
+        null,
+        "Üç uç açının toplamını fazla hesaplamış olabilirsin; yeniden topla.",
+        "Ok ucu kuralında ek bir terim yoktur; yalnızca üç uç açı toplanır."
+       ],
+       "steps": [
+        {
+         "text": "$A$, $B$ ve $C$'den $D$'ye uzanan bu şekil bir ok ucudur. $D$'deki açı hangi üç açının toplamıdır?"
+        },
+        {
+         "text": "$60°$, $25°$ ve $30°$'yi topla."
+        }
+       ],
+       "origin": {
+        "changes": "Ok ucu bağıntısı ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Kelebek kuralı",
+      "text": "$[AC]$ ve $[BD]$ doğru parçaları $E$'de kesişsin. Kesişimdeki **ters açılar eşit** olduğundan $ABE$ ve $CDE$ üçgenlerinde bu ortak değeri çıkarınca $m(\\widehat{BAC}) + m(\\widehat{ABD}) = m(\\widehat{ACD}) + m(\\widehat{BDC})$ kalır. Kısaca $a + b = c + d$. Yani ters duran iki üçgenin ikişer uç açısı aynı toplamı verir.",
+      "visual": {
+       "kind": "formula",
+       "latex": "a + b = c + d",
+       "caption": "Kelebek: ters açılı iki üçgen"
+      }
+     },
+     {
+      "kind": "example",
+      "title": "Kelebekte cebirli çözüm",
+      "example": "$[AC]$ ve $[BD]$ doğru parçaları $E$'de kesişiyor. $m(\\widehat{BAC}) = 50°$, $m(\\widehat{ABD}) = 40°$, $m(\\widehat{ACD}) = x$ ve $m(\\widehat{BDC}) = 2x$ ise $x$ kaçtır?",
+      "explanation": "Kelebek kuralı: $a + b = c + d$. Değerleri yaz: $50° + 40° = x + 2x$. Buradan $3x = 90°$ ve $x = 30°$ bulunur. Kontrol: $c + d = 30° + 60° = 90° = a + b$."
+     },
+     {
+      "kind": "predict",
+      "title": "Ters açıların rolü",
+      "context": "$[AC]$ ve $[BD]$ doğru parçaları $E$'de kesişiyor.",
+      "prompt": "Kesişimdeki ters açılar eşit olduğu için $a + b = c + d$ olur.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$ABE$ üçgeninde $a + b + \\theta = 180°$, $CDE$ üçgeninde $c + d + \\theta = 180°$'dir ($\\theta$ ters açılardır). İkisinin farkı $a + b = c + d$ verir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$[AC]$ ve $[BD]$ doğru parçaları $E$ noktasında kesişiyor. $m(\\widehat{BAC}) = 35°$, $m(\\widehat{ABD}) = 65°$, $m(\\widehat{ACD}) = 3x$ ve $m(\\widehat{BDC}) = x + 20°$ olduğuna göre $x$ kaçtır? (Şekli kâğıda çizip açıları yerleştir.)",
+       "options": [
+        "15",
+        "20",
+        "25",
+        "30",
+        "40"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "$x = 15$ için $c + d = 45° + 35° = 80°$ olur; $a + b = 100°$ ile eşit değil.",
+        null,
+        "$x = 25$ için $c + d = 75° + 45° = 120°$ olur; $a + b = 100°$ ile eşit değil.",
+        "$x = 30$ için $c + d = 90° + 50° = 140°$ olur; $a + b = 100°$ ile eşit değil.",
+        "$x = 40$ için $c + d = 120° + 60° = 180°$ olur; $a + b = 100°$ ile eşit değil."
+       ],
+       "steps": [
+        {
+         "text": "$[AC]$ ve $[BD]$ kesişiyor; kelebek kuralı $a + b = c + d$. Bu soruda $a + b$ hangi açıların toplamı?"
+        },
+        {
+         "text": "$a + b$ toplamını önce sayıyla hesapla."
+        },
+        {
+         "text": "$c + d = 3x + (x + 20°)$ ifadesini sadeleştir, $a + b$ toplamına eşitle ve $x$'i kendin bul."
+        }
+       ],
+       "origin": {
+        "changes": "Kelebek kuralı özgün bir soru kökü ve cebirli ölçülerle kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "visual",
+      "title": "Açıortaylar arası açı",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Açıortaylar",
+        "$m(\\widehat{BDC})$"
+       ],
+       "rows": [
+        [
+         "İki **iç** açıortay",
+         "$90° + \\frac{A}{2}$"
+        ],
+        [
+         "İki **dış** açıortay",
+         "$90° - \\frac{A}{2}$"
+        ],
+        [
+         "Bir iç, bir dış",
+         "$\\frac{A}{2}$"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "narration": "$B$ ve $C$'deki açıortaylar $D$'de kesişsin. **İki iç açıortay** için $BDC$ üçgeninde $\\frac{B}{2}$ ve $\\frac{C}{2}$ bulunur; $x = 180° - \\frac{B + C}{2} = 180° - \\frac{180° - A}{2} = 90° + \\frac{A}{2}$. **İki dış açıortay** için bu açı $90° - \\frac{A}{2}$ çıkar: bu açı her zaman $90°$'den küçüktür. **Bir iç bir dış** açıortay kesişirse $\\frac{A}{2}$ elde edilir. Sınavda önce hangi açıortayların kesiştiğine bak, sonra doğru kuralı seç."
+     },
+     {
+      "kind": "match",
+      "title": "Kuralı sayıya çevir",
+      "prompt": "$m(\\widehat{A}) = 80°$ olduğunda $m(\\widehat{BDC})$ değerini doğru eşleştir.",
+      "titles": [
+       "Açıortaylar",
+       "m(BDC)"
+      ],
+      "pairs": [
+       {
+        "left": "İki iç açıortay",
+        "right": "130°"
+       },
+       {
+        "left": "İki dış açıortay",
+        "right": "50°"
+       },
+       {
+        "left": "Bir iç, bir dış açıortay",
+        "right": "40°"
+       }
+      ],
+      "explanation": "İç: $90° + 40° = 130°$. Dış: $90° - 40° = 50°$. İç-dış: $\\frac{80°}{2} = 40°$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABC$ üçgeninde $[BD]$ ve $[CD]$ iç açıortaylardır. $m(\\widehat{BAC}) = 70°$ olduğuna göre $m(\\widehat{BDC}) = x$ kaç derecedir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.4,
+         -0.5,
+         5.4,
+         4
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           2.038,
+           3.53
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           5,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           2.234,
+           1.29
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "C",
+          "label": "70°",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "D",
+          "from": "B",
+          "to": "C",
+          "label": "x",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "55",
+        "110",
+        "115",
+        "125",
+        "145"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "Bu değer $\\frac{B}{2} + \\frac{C}{2}$ toplamıdır; $x$ için bunu $180°$'den çıkarmalısın.",
+        "Bu değer $B + C$ toplamıdır; açıortaylar açıları yarıya böler.",
+        "Kuralın sabit terimi $90°$'dir ve $A$'nın yarısı eklenir; hesabı yeniden kontrol et.",
+        null,
+        "Kuralda $A$'nın kendisi değil **yarısı** vardır; $90° + A$ yazmış olabilirsin."
+       ],
+       "steps": [
+        {
+         "text": "$B$ ve $C$ iç açılarının toplamı $180° - A$'dır. Bunu hesapla."
+        },
+        {
+         "text": "Açıortaylar $B$ ve $C$'yi yarıya böler; $BDC$ üçgeninde bu yarım açıların toplamı kaç derecedir?"
+        },
+        {
+         "text": "$BDC$ üçgeninde $x$'i, $180°$'den yarım açıların toplamını çıkararak bul."
+        }
+       ],
+       "origin": {
+        "changes": "İç açıortay bağıntısı ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $B$ ve $C$ köşelerindeki **dış** açıortaylar $D$ noktasında kesişmektedir. $m(\\widehat{BAC}) = 50°$ olduğuna göre $m(\\widehat{BDC})$ kaç derecedir?",
+       "options": [
+        "25",
+        "50",
+        "65",
+        "115",
+        "130"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Bu değer $A$'nın yarısıdır; kuralda $90°$ ile birleştirilir.",
+        "Bu değer $A$ açısının kendisidir.",
+        null,
+        "Bu değer iç açıortay kuralından ($90° + \\frac{A}{2}$) gelir; burada açıortaylar dıştır.",
+        "Bu değer $B + C$ toplamıdır; yarısını almalısın."
+       ],
+       "steps": [
+        {
+         "text": "$B$ ve $C$'deki dış açılar $180° - B$ ve $180° - C$'dir; açıortaylar bunları yarıya böler."
+        },
+        {
+         "text": "$BDC$ üçgeninde $x = \\frac{B + C}{2}$ olur; $B + C$'yi $A$'dan bul."
+        }
+       ],
+       "origin": {
+        "changes": "Dış açıortay bağıntısı, iç açıortay sorusunun karşılığı olarak özgün sayılarla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABC$ üçgeninde $B$ köşesindeki **iç** açıortay ile $C$ köşesindeki **dış** açıortay $D$ noktasında kesişiyor. $m(\\widehat{BAC}) = 64°$ olduğuna göre $m(\\widehat{BDC})$ kaç derecedir?",
+       "options": [
+        "32",
+        "58",
+        "64",
+        "116",
+        "148"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "İki dış açıortay kuralını ($90° - \\frac{A}{2}$) uygulamışsın; burada biri iç, biri dış açıortaydır.",
+        "Bu değer $A$ açısının kendisidir; kuralda yarısı vardır.",
+        "Bu değer $180° - A$'dır; kuralla ilgisi yok.",
+        "Bu değer $180° - \\frac{A}{2}$'dir; kuralda çıkarma yoktur."
+       ],
+       "steps": [
+        {
+         "text": "$BDC$ üçgeninde $\\widehat{DBC} = \\frac{B}{2}$ ve $\\widehat{BCD} = 90° + \\frac{C}{2}$ olur. Nedenini düşün."
+        },
+        {
+         "text": "$x = 180° - \\frac{B}{2} - 90° - \\frac{C}{2}$ ifadesini $A$ cinsinden sadeleştir."
+        },
+        {
+         "text": "Bulduğun bağıntıyı $A = 64°$ için uygula."
+        }
+       ],
+       "origin": {
+        "changes": "İç-dış açıortay bağıntısı özgün sayılarla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Dış açıortayda hangi kural?",
+      "wrong": "İki dış açıortay kesiştiğinde oluşan $\\widehat{BDC}$ ölçüsü $90° + \\frac{A}{2}$'dir.",
+      "right": "İki dış açıortay kesiştiğinde $m(\\widehat{BDC}) = 90° - \\frac{A}{2}$'dir.",
+      "why": "İç açıortayların kesiştiği açı $90°$'den büyüktür, dış açıortayların kesiştiği açı ise $90°$'den küçüktür. İkisini karıştırmamak için önce açının $90°$'den büyük mü küçük mü olacağına bak."
+     },
+     {
+      "kind": "predict",
+      "title": "İç açıortaylar",
+      "context": "$ABC$ üçgeninde $B$ ve $C$'nin iç açıortayları $D$'de kesişiyor.",
+      "prompt": "$m(\\widehat{BDC})$ her zaman $90°$'den büyüktür.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$m(\\widehat{BDC}) = 90° + \\frac{A}{2}$ ve $A > 0$ olduğundan sonuç her zaman $90°$'den büyüktür."
+     },
+     {
+      "kind": "example",
+      "title": "Yükseklik ile açıortay arası",
+      "example": "$ABC$ üçgeninde $m(\\widehat{B}) = 80°$ ve $m(\\widehat{C}) = 40°$'dir. $A$'dan çizilen yükseklik $[AH]$ ile açıortay $[AE]$ arasındaki $m(\\widehat{HAE})$ kaç derecedir?",
+      "explanation": "Aynı köşeden çizilen yükseklik ile açıortay arasındaki açı, diğer iki açının farkının yarısıdır: $\\frac{|B - C|}{2} = \\frac{80° - 40°}{2} = 20°$. Kontrol: $A = 60°$, açıortay $30°$ böler; $\\widehat{BAH} = 90° - 80° = 10°$; $\\widehat{HAE} = 30° - 10° = 20°$."
+     },
+     {
+      "kind": "blank",
+      "title": "Yükseklik ve açıortay",
+      "prompt": "$ABC$ üçgeninde $m(\\widehat{B}) = 64°$ ve $m(\\widehat{C}) = 30°$'dir. $A$'dan çizilen yükseklik ile açıortay arasındaki açı kaç derecedir?",
+      "before": "m(HAE) =",
+      "after": "°",
+      "answers": [
+       "17"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 17,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "34",
+        "feedback": "Farkı almışsın ama yarısını almamışsın; kuralda $\\frac{B - C}{2}$ vardır."
+       },
+       {
+        "answer": "47",
+        "feedback": "Toplamın yarısını almışsın; kuralda farkın yarısı kullanılır."
+       }
+      ],
+      "explanation": "$\\frac{64° - 30°}{2} = 17°$."
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "**İç açılar** toplamı $180°$; ortalama olan açı $60°$.",
+    "**Dış açı** = komşu olmayan iki iç açının toplamı; dış açılar toplamı $360°$.",
+    "İkizkenarda taban açıları eşit; geniş açı yalnız tepe açısı; eşkenarda açılar $60°$.",
+    "Ardışık ikizkenar zincirinde açılar $\\alpha$, $2\\alpha$, $3\\alpha$ diye büyür.",
+    "Dik üçgende hipotenüse ait kenarortay hipotenüsün yarısıdır ve iki ikizkenar üçgen oluşturur.",
+    "**Ok ucu**: $m(\\widehat{BDC}) = a + b + c$; **kelebek**: $a + b = c + d$.",
+    "İç açıortaylar: $90° + \\frac{A}{2}$; dış: $90° - \\frac{A}{2}$; iç-dış: $\\frac{A}{2}$.",
+    "Yükseklik ile açıortay arası: diğer iki açının farkının yarısı."
+   ],
+   "warnings": [
+    "Bir üçgende en fazla **bir** dik ya da geniş açı olur.",
+    "Dış açı komşu iç açının bütünleridir; komşu olmayan iki iç açının toplamıdır.",
+    "Dış açılar orantılıysa toplam $360°$'dir: önce $k$'yı bul, sonra iç açıya geç.",
+    "İç ve dış açıortay kurallarını karıştırma: iç $> 90°$, dış $< 90°$."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bir kâğıttan üçgen kes, üç köşesini yırtıp yan yana koy: **180°**'yi gör.",
+    "Dış açı kuralını, ok ucu kuralını ve açıortay bağıntılarını **bir sayfada** şekilleriyle yaz.",
+    "Uygulamada Üçgende Açı testinden **20 soru** çöz; her şekilde önce **bilinen açıları** yaz."
+   ]
+  }
+ }
+}

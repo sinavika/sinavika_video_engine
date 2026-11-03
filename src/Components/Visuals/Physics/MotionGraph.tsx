@@ -169,6 +169,11 @@ export const MotionGraphVisual: React.FC<VisualBoxProps & {visual: Kinematics}> 
 					const py = (value: number) => panel.top + panel.height - ((value - low) / (high - low)) * panel.height;
 					const zero = py(0);
 					const timeTicks = spaced(ticks(visual.bodies.flatMap(boundaries)).filter((time) => time > 0), px, fontSize * 1.6);
+					// The time axis's name sits by the arrow, a line further out for each body whose name ends there: a body
+					// stopping at v = 0 put its "K" on "t (s)" (AYT Fizik, 2 Nov 2026).
+					const endNames = visual.bodies.length > 1 ? visual.bodies.map((body, index) => py(kinematicsState(body, total)[panel.kind]) + (index === 0 ? -14 : 40)) : [];
+					const nameAbove = zero > panel.top + panel.height - 10;
+					const timeNameY = [0, 1, 2].map((row) => (nameAbove ? zero - 18 - row * fontSize : zero + fontSize + 6 + row * fontSize)).find((y) => endNames.every((end) => Math.abs(end - y) >= fontSize * 0.9)) ?? (nameAbove ? zero - 18 : zero + fontSize + 6);
 					const valueTicks = spaced(ticks(visual.bodies.flatMap((body) => boundaries(body).flatMap((time) => [kinematicsState(body, time)[panel.kind], kinematicsState(body, Math.max(0, time - 1e-6))[panel.kind]]))).filter((value) => Math.abs(value) > 1e-9), py, fontSize * 0.95);
 					return (
 						<g key={panel.kind}>
@@ -213,7 +218,7 @@ export const MotionGraphVisual: React.FC<VisualBoxProps & {visual: Kinematics}> 
 							<text x={panel.left + 30} y={panel.top - 34} fill={palette.ink} fontSize={fontSize * 0.85} fontWeight={700}>
 								{unitOf[panel.kind]}
 							</text>
-							<text x={panel.left + panel.width + 40} y={zero + (zero > panel.top + panel.height - 10 ? -18 : fontSize + 6)} fill={palette.ink} fontSize={fontSize * 0.85} fontWeight={700} textAnchor="end">
+							<text x={panel.left + panel.width + 40} y={timeNameY} fill={palette.ink} fontSize={fontSize * 0.85} fontWeight={700} textAnchor="end">
 								t (s)
 							</text>
 							{visual.bodies.map((body, index) => {

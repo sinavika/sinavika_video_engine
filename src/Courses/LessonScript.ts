@@ -487,11 +487,16 @@ export const stageIssues = (script: LessonScript): string[] =>
  * them, never the same letter three times in a row, no repeating pattern (ABAB, ABCABC). 88 of 184 camp
  * lessons broke this before the rule (29 Oct 2026: "İç ve Dış Kuvvetler" was A A A A A A E D).
  */
-export const answerPatternIssues = (script: LessonScript): string[] => {
-	const answers = script.lesson.sections
-		.flatMap((section) => section.cards)
-		.flatMap((card) => (card.kind === 'question' ? ['ABCDE'[card.question.answer]] : []))
-		.join('');
+export const answerPatternIssues = (script: LessonScript): string[] =>
+	answerLetterIssues(
+		script.lesson.sections
+			.flatMap((section) => section.cards)
+			.flatMap((card) => (card.kind === 'question' ? ['ABCDE'[card.question.answer]] : []))
+			.join(''),
+	);
+
+/** The same rule for any lesson's correct options in order, as letters ("ABDCE"). */
+export const answerLetterIssues = (answers: string): string[] => {
 	const issues: string[] = [];
 	const counts = [...answers].reduce<Record<string, number>>((total, letter) => ({...total, [letter]: (total[letter] ?? 0) + 1}), {});
 	const [letter, count] = Object.entries(counts).sort((a, b) => b[1] - a[1])[0] ?? ['', 0];

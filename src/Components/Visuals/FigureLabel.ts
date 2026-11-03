@@ -1,3 +1,5 @@
+import {textWidth as measuredWidth} from '../Typography/TextMeasure';
+
 
 
 /** [left, top, right, bottom] of a label, in pixels. */
@@ -10,7 +12,15 @@ export type LabelBox = [number, number, number, number];
  */
 export const figureText = (text: string): string => text.replaceAll('″', '’’').replaceAll('′', '’');
 
-export const textWidth = (text: string, fontSize: number) => text.length * fontSize * 0.6;
+/**
+ * A figure text's width at `fontSize`, from Manrope's own letter widths at `weight` (labels are bold: 800). Every
+ * figure measures with this; it was a letter count times 0.6 of the size here and the same guess at 0.52–0.62 in
+ * twenty other places, so an "i" and an "m" took the same room (2 Nov 2026).
+ */
+export const textWidth = (text: string, fontSize: number, weight = 800) => measuredWidth(text, {size: fontSize, weight});
+
+/** The size at which `text` at `weight` is `room` wide: the largest that fits it into a room on one line. */
+export const fitSize = (text: string, room: number, weight = 800) => room / Math.max(1e-6, textWidth(text, 1, weight));
 
 /**
  * Points every `step` pixels along a line, ends excluded: a line as obstacles for `placeLabel`, so a label that

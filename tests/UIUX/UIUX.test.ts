@@ -5,7 +5,7 @@ import {contrastRatio} from '../../src/Themes/ColorPalette';
 import {UIProvider} from '../../src/UIUX/Context';
 import {UI_ICON_NAMES} from '../../src/UIUX/Icons';
 import {ACTION_CONTRAST, MODULE_KEYS, MODULES, moduleAction, moduleTint, TINT} from '../../src/UIUX/ModuleIdentity';
-import {UI_COLORS} from '../../src/UIUX/Tokens';
+import {UI_COLORS, UI_TYPE} from '../../src/UIUX/Tokens';
 import {UI_SCREENS} from '../../src/UIUX/Registry';
 import {screenSize} from '../../src/UIUX/UIUXProps';
 
@@ -38,6 +38,13 @@ describe('module identity', () => {
 	it('fills buttons so white text reads at 4.5:1, module and brand, in both themes', () => {
 		for (const key of MODULE_KEYS) expect(contrastRatio(moduleAction(key), '#FFFFFF'), key).toBeGreaterThanOrEqual(ACTION_CONTRAST);
 		for (const mode of ['light', 'dark'] as const) expect(contrastRatio(UI_COLORS[mode].action, '#FFFFFF'), mode).toBeGreaterThanOrEqual(ACTION_CONTRAST);
+	});
+
+	it('reads body text at 16 pt or more with a 1.5 line height, and nothing under 12 pt', () => {
+		const [size, lineHeight] = UI_TYPE.body;
+		expect(size).toBeGreaterThanOrEqual(16);
+		expect(lineHeight / size).toBeGreaterThanOrEqual(1.5);
+		for (const [role, [roleSize]] of Object.entries(UI_TYPE)) expect(roleSize, role).toBeGreaterThanOrEqual(12);
 	});
 
 	it('builds tints only from the fixed steps', () => {
@@ -94,6 +101,15 @@ describe('UI/UX screens', () => {
 			// The logo is always orange (the web panel's menu carries it on every page).
 			const html = renderToStaticMarkup(React.createElement(UIProvider, {children: React.createElement(screen.Component)})).replaceAll('background-color:#EA580C;mask-image', '');
 			expect(html, screen.id).not.toMatch(brandOrange);
+		}
+	});
+
+	it('tells the student under every SinoAI composer that SinoAI is an AI and can be wrong', () => {
+		for (const id of ['m-sino-ana', 'm-sino-sohbet', 'm-sino-calisma', 'w-sino-sohbet', 'w-sino-calisma']) {
+			const screen = UI_SCREENS.find((entry) => entry.id === id);
+			expect(screen, id).toBeDefined();
+			const html = renderToStaticMarkup(React.createElement(UIProvider, {children: React.createElement(screen!.Component)}));
+			expect(html, id).toContain('hata yapabilir');
 		}
 	});
 

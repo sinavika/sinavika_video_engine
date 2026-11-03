@@ -3,7 +3,7 @@ import {clamp01, lerp, noise, smooth} from '../../../../Animations/Motion';
 import {withAlpha} from '../../../../Themes/Theme';
 import {useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
-import {pathOf} from '../../VisualWorld';
+import {pathOf, FigureText} from '../../VisualWorld';
 import {Drift, FlowLine, ProcessFrame, ProcessLabel, SCENE, SceneTag, processCamera, smoothPath, useProcessClock, type CameraBox, type Point} from '../ProcessScene';
 
 type ProcessSpec = Extract<CourseVisual, {kind: 'process'}>;
@@ -219,15 +219,15 @@ export const OceanProcess: React.FC<VisualBoxProps & {visual: ProcessSpec}> = ({
 				<rect x={PROBE_X - 12} y={probeY - 10} width={24} height={30} rx={6} fill="#F2C94C" stroke="#8A6D1F" strokeWidth={2} />
 				<g transform={`translate(${PROBE_X + 26} ${Math.min(probeY, depthY(4000) - 60)})`}>
 					<rect x={0} y={-30} width={230} height={86} rx={14} fill={withAlpha('#FFFFFF', 0.92)} />
-					<text x={14} y={-4} fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.ink}>
+					<FigureText x={14} y={-4} fontFamily={palette.fontBody} fontWeight={800} fontSize={22} fill={palette.ink}>
 						{`${Math.round(probeDepth).toLocaleString('tr-TR')} m`}
-					</text>
-					<text x={14} y={24} fontFamily={palette.fontBody} fontWeight={700} fontSize={20} fill="#C0392B">
+					</FigureText>
+					<FigureText x={14} y={24} fontFamily={palette.fontBody} fontWeight={700} fontSize={20} fill="#C0392B">
 						{`${temperatureAt(probeDepth).toFixed(0)} °C`}
-					</text>
-					<text x={104} y={24} fontFamily={palette.fontBody} fontWeight={700} fontSize={20} fill="#1F4E79">
+					</FigureText>
+					<FigureText x={104} y={24} fontFamily={palette.fontBody} fontWeight={700} fontSize={20} fill="#1F4E79">
 						{`${Math.round(pressureAt(probeDepth)).toLocaleString('tr-TR')} atm`}
-					</text>
+					</FigureText>
 				</g>
 			</g>
 			<ProcessLabel id="isik" at={[700, depthY(150)]} to={[760, 330]} text="Işık yaklaşık 200 m'ye iner" show={clock.now('isik')} />

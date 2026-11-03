@@ -1,9 +1,10 @@
 import React from 'react';
 import {clamp01} from '../../../Animations/Motion';
 import {mixColors} from '../../../Themes/ColorPalette';
-import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps, DrawingScale} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor} from '../VisualTimeline';
+import {FigureText} from '../VisualWorld';
 
 type Titration = Extract<CourseVisual, {kind: 'titration'}>;
 type Setup = Pick<Titration, 'flask' | 'burette'>;
@@ -83,9 +84,9 @@ export const TitrationVisual: React.FC<VisualBoxProps & {visual: Titration}> = (
 	samples.sort((a, b) => a - b);
 	const curve = samples.map((volume, index) => `${index ? 'L' : 'M'} ${xOf(volume).toFixed(1)} ${yOf(titrationPH(visual, volume)).toFixed(1)}`).join(' ');
 	const text = (x: number, y: number, value: string, anchor: 'start' | 'middle' | 'end' = 'start', size = labelSize, weight = 800) => (
-		<text x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={weight} textAnchor={anchor} dominantBaseline="central">
+		<FigureText x={x} y={y} fill={palette.ink} fontSize={size} fontWeight={weight} textAnchor={anchor} dominantBaseline="central">
 			{value}
-		</text>
+		</FigureText>
 	);
 
 	const level = BURETTE.top + 20 + ((BURETTE.bottom - BURETTE.top - 20) * added) / capacity;
@@ -97,7 +98,8 @@ export const TitrationVisual: React.FC<VisualBoxProps & {visual: Titration}> = (
 	const buretteLabel = `${amount(visual.burette.molarity)} M ${visual.burette.label}`;
 
 	return (
-		<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
+		<DrawingScale scale={k}>
+			<svg width={width} height={height} style={{overflow: 'visible', fontFamily: palette.fontDisplay}}>
 			<g transform={`translate(${ox} ${oy}) scale(${k})`} opacity={appear}>
 				<Part id="burette">
 					{(look) => (
@@ -188,5 +190,6 @@ export const TitrationVisual: React.FC<VisualBoxProps & {visual: Titration}> = (
 				</Part>
 			</g>
 		</svg>
+		</DrawingScale>
 	);
 };

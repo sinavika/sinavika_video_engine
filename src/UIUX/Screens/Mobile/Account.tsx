@@ -630,7 +630,7 @@ export const ErrorStateScreen: React.FC = () => {
 				<PageTitle module="exam" title={t('Denemelerim', 'My exams')} />
 				<Card padding={14}>
 					<Stack gap={14}>
-						{[80, 60, 70].map((width) => (
+						{[80].map((width) => (
 							<Stack key={width} row gap={12}>
 								<Skeleton width={44} height={44} radius={14} />
 								<Stack grow gap={8}>
@@ -641,9 +641,9 @@ export const ErrorStateScreen: React.FC = () => {
 						))}
 					</Stack>
 				</Card>
-				<Card padding={20} style={{textAlign: 'center'}}>
-					<Stack align="center" gap={10}>
-						<Tile icon="alert" size={44} color={colors.error} style={{background: colors.errorSoft}} />
+				<Card padding={14} style={{textAlign: 'center'}}>
+					<Stack align="center" gap={8}>
+						<Tile icon="alert" size={40} color={colors.error} style={{background: colors.errorSoft}} />
 						<Text role="section" align="center">
 							{t('Sonuçlar şu an yüklenemedi', 'Results could not load')}
 						</Text>
@@ -652,6 +652,14 @@ export const ErrorStateScreen: React.FC = () => {
 						</Text>
 						<Button tone="soft" icon="refresh">
 							{t('Tekrar dene', 'Try again')}
+						</Button>
+					</Stack>
+				</Card>
+				<Card padding={14}>
+					<Stack gap={12}>
+						<Field label={t('E-posta', 'E-mail')} value="ayse@ornekcom" icon="mail" error={t('E-posta adresinde nokta eksik gibi: ayse@ornek.com', 'The e-mail seems to miss a dot: ayse@ornek.com')} />
+						<Button block loading>
+							{t('Gönderiliyor…', 'Sending…')}
 						</Button>
 					</Stack>
 				</Card>

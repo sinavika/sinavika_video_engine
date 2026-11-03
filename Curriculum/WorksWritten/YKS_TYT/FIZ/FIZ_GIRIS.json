@@ -1,0 +1,2131 @@
+{
+ "topic": {
+  "id": "B753EA25-60B3-F194-031D-2E18FA706E57",
+  "category": "YKS_TYT",
+  "lesson": "FIZ",
+  "code": "FIZ_GIRIS"
+ },
+ "title": "Fizik Bilimine Giriş",
+ "lessonName": "Fizik",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/FIZ/FIZ_GIRIS.json"
+ ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/YKS/TYT/KonuAnlatimi/FIZ/FIZ_GIRIS.json (MEB OGM Materyal)",
+   "EgitimVerileri/YKS/TYT/CikmisSorular/FIZ/FIZ_GIRIS.json (ÖSYM 2018, 2020)",
+   "Curriculum/Scripts/YKS_TYT/FIZ/FIZ_GIRIS.json"
+  ],
+  "additions": [
+   {
+    "note": "SI önek tablosunu ekle (giga, mega, kilo, santi, mili, mikro, nano) ve birim dönüşümlerini örnekle: km/h ↔ m/s (÷ 3,6), cm³ ↔ L, g/cm³ ↔ kg/m³; ÖSYM'de birim dönüşümü yapılmadan çözülen yanlış örneği göster.",
+    "done": "Büyüklükler ve SI bölümünde: 'SI önekleri' tablosu ve önek yoklaması (250 mm), 'Birim dönüşümleri' kuralı, g/cm³ → kg/m³ ve L ↔ cm³ örnekleri, özkütle yoklaması, bisikletli adımlı çözümü (guided), 'ÖSYM tuzağı' kartı ve birim çevrilmeden çözülen hız probleminin hatasını buldurma (findError) kartı, SI birimleri ve km/sa → m/s soruları."
+   },
+   {
+    "note": "Ölçme ve hata bölümü ekle: ölçme aracının duyarlılığı, sistematik ve rastgele hata, ölçümü tekrarlayıp ortalama almak; büyüklükleri ölçen araçların listesi (kumpas, mikrometre, dinamometre, termometre, ampermetre, voltmetre).",
+    "done": "Fizik, bilim ve ölçme bölümünde: 'Ölçme ve duyarlılık' kartı, 'Ölçme hataları' kuralı (sistematik, rastgele, ortalama alma), 'Hangi alet neyi ölçer?' tablosu (altı alet dahil), alet eşleştirme, hata sınıflama, ortalama hesabı ve mikrometre sıfır hatası sorusu."
+   },
+   {
+    "note": "Fizik ve teknoloji için örnekler ver: MR ve röntgen, GPS, lazer, fiber optik, güneş paneli, yarı iletkenler; bilime katkı yapan Türk-İslam bilginlerinden İbn-i Heysem (optik) ve Bîrûnî'yi (özkütle ölçümü) kısaca an.",
+    "done": "Fizik, bilim ve ölçme bölümünün son kartlarında: 'Fizik ve teknoloji' kuralı, MR, röntgen, GPS, lazer, fiber optik, güneş paneli ve yarı iletken içeren teknoloji tablosu, İbn-i Heysem ve Bîrûnî kartı, kurum ve bilgin çevirmeli kartları, eşleştirme sorusu."
+   },
+   {
+    "note": "Vektörlerin toplanmasını (uç uca ekleme ve paralelkenar yöntemi), aynı ve zıt yönlü vektörlerin bileşkesini ve bileşkenin en büyük ile en küçük değerini örnekle.",
+    "done": "Skaler ve vektörel bölümünün ikinci yarısında: bileşke vektör kartı, toplama yöntemleri kuralı, uç uca ve paralelkenar çizimleri, 3 N ve 5 N örneği (en büyük 8 N, en küçük 2 N), 5 N ve 12 N çoktan seçmeli yoklama, dik kuvvet hesabı ve iki bileşke sorusu."
+   },
+   {
+    "note": "Bilimsel bilginin özelliklerini (değişebilir, sınanabilir, nesnel, birikimli) ve hipotez, teori, kanun farkını örneklerle tablo yap.",
+    "done": "Fizik, bilim ve ölçme bölümünde iki tablo: 'Bilimsel bilginin özellikleri' (dört özellik, örnekleriyle) ve 'Hipotez, teori, kanun' (örnekli); ardından teori-kanun yanılgısı kartı ve kavram eşleştirmesi."
+   }
+  ],
+  "fixes": [
+   "Temel dosyadaki bilimsel yöntem akışında son adım 'teori ya da yasa' idi; bu, hipotez doğrulanınca kendiliğinden kanuna dönüştüğü izlenimini veriyordu. Son adım 'hipotez doğrulanır ya da çürür' olarak düzeltildi; teori (açıklar) ve kanun (tanımlar) farkı ayrı tabloyla verildi.",
+   "MEB tablosunda joule simgesi küçük 'j' yazılmış; doğru simge büyük J'dir. Derste enerji birimi J olarak yazıldı.",
+   "ÖSYM 2020 birim sorusunun kaynak metninde seçenekler bozuk (Fahrenheit/Celcius kalıntıları). Soru olduğu gibi kullanılmadı; yalnız kalıbı (dakika, °C, km → saniye, kelvin, metre) alınıp yeni sayılarla yeniden yazıldı ve çözüldü.",
+   "Havuzdaki fizik giriş konusu dışı sorular (hücre zarı, ekosistem) ve birden çok şıkkı doğru sayılabilen 'serbest bırakılan cisim' sorusu kullanılmadı; yalnız ölçme duyarlılığı ve yön bilgisi fikirleri alındı."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Doğayı ölçmek: fizik neyi, nasıl inceler?",
+   "narration": "Islak yolda araba neden geç durur, Ay'da neden daha hafif olursun? Fizik bu soruları gözlem, deney ve ölçmeyle yanıtlar. Bu derste fiziğin konusunu, alt dallarını, büyüklükleri ve birimleri, ölçme hatalarını ve vektörleri öğrenecek, her adımda kendini hemen yoklayacaksın."
+  },
+  "objectives": [
+   "Fiziğin konusunu ve bilimsel yöntemi açıklamak",
+   "Hipotez, teori ve kanunu ayırt etmek",
+   "Ölçme aletlerini, sistematik ve rastgele hatayı tanımak",
+   "Bir uygulamanın fiziğin hangi alt dalına girdiğini bulmak",
+   "Yedi temel büyüklüğü, SI birimlerini ve önekleri bilmek; birim dönüşümü yapmak",
+   "Skaler ve vektörel büyüklükleri ayırt etmek",
+   "Vektörleri toplayıp bileşkenin alabileceği değerleri bulmak"
+  ],
+  "sections": [
+   {
+    "subtopic": "FIZ_GIRIS_01",
+    "subtopics": [
+     "FIZ_GIRIS_06",
+     "FIZ_GIRIS_07"
+    ],
+    "title": "Fizik, bilim ve ölçme",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Madde, enerji, uzay, zaman",
+      "visual": {
+       "kind": "conceptMap",
+       "center": "Fizik",
+       "related": [
+        {
+         "name": "Madde",
+         "relation": "yapısı, hâlleri"
+        },
+        {
+         "name": "Enerji",
+         "relation": "türleri, dönüşümü"
+        },
+        {
+         "name": "Uzay",
+         "relation": "konum, uzaklık"
+        },
+        {
+         "name": "Zaman",
+         "relation": "değişim, hız"
+        },
+        {
+         "name": "Gözlem",
+         "relation": "doğayı izlemek"
+        },
+        {
+         "name": "Deney",
+         "relation": "koşulu denetlemek"
+        }
+       ]
+      },
+      "caption": "Fizik; madde, enerji, uzay ve zaman arasındaki ilişkileri **gözlem ve deneyle** inceleyen bir doğa bilimidir.",
+      "narration": "Fizik, madde ile enerjinin uzay ve zaman içindeki ilişkisini inceler. Atom altı parçacıklardan uzak galaksilere kadar her ölçek fiziğin konusudur. Fizik bir doğa bilimidir: söylediği her şey gözleme ve deneye dayanır. Bir düşünce ne kadar güzel olursa olsun, deney onu doğrulamıyorsa bilimsel bilgi sayılmaz."
+     },
+     {
+      "kind": "concept",
+      "title": "Fizik günlük hayatın içinde",
+      "text": "Islak yolda araçların durma mesafesinin neden arttığını, mikrodalga fırının yemeği nasıl ısıttığını, lambanın bizi nasıl aydınlattığını ve emniyet kemerinin bizi nasıl koruduğunu **fizik** sayesinde açıklarız. Gemilerin yüzmesi, uçakların uçması, köprülerin yapımı da fiziğin alanındadır. Evrenin işleyişini anlamak için fizikte **modeller** kullanılır.",
+      "narration": "Model, gerçek olayı basitleştirip sınanabilir hâle getiren zihinsel ya da matematiksel bir tasarımdır. Atom modeli de, gezegenlerin hareket modeli de buna örnektir. Model yeni bulgularla uyuşmazsa değiştirilir."
+     },
+     {
+      "kind": "concept",
+      "title": "Gözlem, deney ve hipotez",
+      "text": "**Gözlem**, doğaya karışmadan olayı izlemektir. **Deney**, koşulları denetleyip bir değişkeni değiştirerek sonucu ölçmektir. **Hipotez**, deneyle sınanabilecek tahmindir. Deneyde yalnız **bir** değişken değiştirilir, diğerleri sabit tutulur; böylece sonucu neyin değiştirdiği anlaşılır.",
+      "narration": "Bilimsel bilgiye gözlem, deney ve akıl yürütmeyle ulaşılır. Akıl yürütme, gözlem ve deney verilerinden genel bir sonuç çıkarmaktır. Sarkaçta ip boyunu değiştirip süreyi ölçersen deney yapmış olursun. Bir gezegenin konumunu her gece not edersen gözlem yaparsın. Ölçümlerden 'ip uzadıkça süre artar' dersen akıl yürütmüş olursun."
+     },
+     {
+      "kind": "visual",
+      "title": "Bilim nasıl ilerler?",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "Gözlem",
+         "detail": "bir olayı fark et"
+        },
+        {
+         "label": "Problem",
+         "detail": "neden böyle?"
+        },
+        {
+         "label": "Hipotez",
+         "detail": "sınanabilir tahmin"
+        },
+        {
+         "label": "Deney",
+         "detail": "tek değişkeni değiştir"
+        },
+        {
+         "label": "Sonuç",
+         "detail": "hipotez doğrulanır ya da çürür"
+        }
+       ]
+      },
+      "caption": "Bilimsel bilgi gözlem, deney ve akıl yürütmeyle üretilir; **sınanabilir** ve yeni bulgularla **değişebilir**.",
+      "narration": "Sonuç adımında hipotez ya da doğrulanır ya da çürütülür. Sonuçlar başkaları tarafından da tekrar sınanır; yeni bir bulgu gelirse bilgi güncellenir."
+     },
+     {
+      "kind": "predict",
+      "title": "Güzel düşünce yeter mi?",
+      "context": "Bir arkadaşın 'Bu açıklama çok mantıklı, o hâlde bilimseldir' diyor.",
+      "prompt": "Deneyle sınanamayan bir açıklama, ne kadar mantıklı görünürse görünsün bilimsel bilgi sayılmaz.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Bilimsel bilgi gözleme ve deneye dayanır. Sınanamayan bir açıklama, mantıklı da olsa bilimsel bilgi değildir."
+     },
+     {
+      "kind": "visual",
+      "title": "Bilimsel bilginin özellikleri",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Özellik",
+        "Anlamı",
+        "Örnek"
+       ],
+       "rows": [
+        [
+         "Değişebilir",
+         "Yeni bulguyla güncellenir",
+         "Atom modelleri"
+        ],
+        [
+         "Sınanabilir",
+         "Deneyle doğrulanır ya da çürür",
+         "İp uzarsa süre artar mı?"
+        ],
+        [
+         "Nesnel",
+         "Kişiye göre değişmez",
+         "Herkes aynı sonucu bulur"
+        ],
+        [
+         "Birikimli",
+         "Eski bilgiye eklenir",
+         "Galilei'den Newton'a"
+        ]
+       ]
+      },
+      "caption": "Bilimsel bilgi kesin ve değişmez değildir; kendini düzeltir.",
+      "narration": "Bilimsel bilgi **değişebilir**: yeni bir bulgu eski açıklamayı yetersiz bırakabilir. **Sınanabilir**: deneyle doğrulanabilir ya da çürütülebilir. **Nesneldir**: aynı koşullarda aynı deneyi kim yaparsa yapsın aynı sonuca ulaşır; kişisel görüşe bağlı değildir. **Birikimlidir**: yeni bilgi önceki bilgilerin üzerine kurulur."
+     },
+     {
+      "kind": "visual",
+      "title": "Hipotez, teori, kanun",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Kavram",
+        "Ne söyler?",
+        "Örnek"
+       ],
+       "rows": [
+        [
+         "Hipotez",
+         "Sınanmamış, test edilebilir tahmin",
+         "İp uzarsa sarkaç yavaşlar"
+        ],
+        [
+         "Teori",
+         "Olayı açıklayan, çok sınanmış model",
+         "Atom teorisi"
+        ],
+        [
+         "Kanun (yasa)",
+         "Düzenli ilişkiyi tanımlar",
+         "Evrensel çekim yasası"
+        ]
+       ]
+      },
+      "caption": "Hipotez tahmin eder, teori **açıklar**, kanun **tanımlar**.",
+      "narration": "Hipotez henüz sınanmamış bir tahmindir. Teori, birçok gözlem ve deneyle desteklenen, olayın **nedenini** açıklayan modeldir. Kanun ise doğadaki düzenli ilişkiyi, çoğu zaman bir formülle, **tanımlar**. Örneğin evrensel çekim yasası kütleler arasındaki kuvvetin nasıl değiştiğini söyler; bunun nedenini açıklamaz. Teori yeterince kanıtlanınca kanun olmaz; ikisinin görevi farklıdır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Teori ve kanun",
+      "wrong": "Bir teori yeterince kanıtlanırsa kanun olur.",
+      "right": "Teori olayı açıklayan modeldir, kanun olaydaki ilişkiyi tanımlar; biri diğerine dönüşmez ve ikisi de yeni bulgularla değişebilir.",
+      "why": "Hipotez sınanınca teoriye, teori de kanuna 'yükselir' sanılır. Oysa kanun 'ne olur?'u, teori 'neden olur?'u yanıtlar."
+     },
+     {
+      "kind": "match",
+      "title": "Kavramı tanımla eşleştir",
+      "prompt": "Her kavramı tanımıyla eşleştir.",
+      "titles": [
+       "Kavram",
+       "Tanım"
+      ],
+      "pairs": [
+       {
+        "left": "Gözlem",
+        "right": "Doğaya karışmadan olayı izlemek"
+       },
+       {
+        "left": "Deney",
+        "right": "Koşulları denetleyip bir değişkeni değiştirmek"
+       },
+       {
+        "left": "Hipotez",
+        "right": "Deneyle sınanabilecek tahmin"
+       },
+       {
+        "left": "Teori",
+        "right": "Çok sınanmış, olayı açıklayan model"
+       },
+       {
+        "left": "Kanun",
+        "right": "Düzenli ilişkiyi özetleyen ifade"
+       }
+      ],
+      "explanation": "Gözlemde müdahale yoktur, deneyde vardır. Hipotez sınanmamıştır; teori açıklar; kanun ilişkiyi tanımlar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bilimsel bilgiye ulaşmak için yapılan aşağıdaki çalışmalardan hangileri kullanılabilir?\nI. Bir sarkacın salınım süresini farklı ip boylarında ölçmek\nII. Bir gezegenin gökyüzündeki konumunu her gece not etmek\nIII. Ölçümlerden \"ip uzadıkça salınım süresi artar\" sonucuna varmak",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "Yalnız deneyi bilimsel saydın; gözlem ve akıl yürütmeyi dışarıda bıraktın.",
+        "Gözlemi tek yol sandın; deney ve akıl yürütme de bilgi üretir.",
+        "Ölçümlerden genel sonuç çıkarmanın bilimsel bir yol olduğunu atladın.",
+        "Değişkeni denetleyerek yapılan deneyi dışarıda bıraktın.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Üç çalışmayı adlandır: değişkeni sen değiştiriyorsan deney, doğayı olduğu gibi izliyorsan gözlem, verilerden genel sonuç çıkarıyorsan akıl yürütme."
+        },
+        {
+         "text": "I'de ip boyunu değiştirip süreyi ölçüyorsun; II'de gezegeni yalnız izleyip kaydediyorsun; III'te ölçümlerden bir sonuç çıkarıyorsun."
+        },
+        {
+         "text": "Bilimsel bilgiye ulaşmak için bu yollardan hangilerini kullanabileceğini düşün."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018 deney-gözlem-akıl yürütme sorusunun kalıbı alındı; üç eylem sarkaç ve gezegen örnekleriyle yeniden yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aşağıdakilerden hangisi bilimsel bilginin özelliklerinden biri **değildir**?",
+       "options": [
+        "Gözlem ve deneye dayanır.",
+        "Aynı koşullarda tekrarlanınca aynı sonucu verir.",
+        "Kesindir, hiçbir zaman değişmez.",
+        "Deneyle sınanabilir.",
+        "Yeni bulgularla değişebilir."
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Bilimsel bilgi gözleme ve deneye dayanır; sorunun 'değildir' kökünü gözden kaçırmış olabilirsin.",
+        "Tekrarlanabilirlik bilimsel bilginin özelliğidir; olumsuz kökü atlamış olabilirsin.",
+        null,
+        "Sınanabilirlik bilimsel bilginin temel özelliğidir; olumsuz kökü atlamış olabilirsin.",
+        "Değişebilirlik bilimsel bilginin özelliğidir; bilim kendini düzeltir."
+       ],
+       "steps": [
+        {
+         "text": "Bilim kendini düzeltir: yeni bir bulgu geldiğinde bilimsel bilgiye ne olur?"
+        },
+        {
+         "text": "Bu özellikle çelişen, 'kesin' ve 'hiçbir zaman' gibi mutlak sözcükler içeren seçeneği ara."
+        }
+       ],
+       "origin": {
+        "changes": "Bilimsel bilginin özellikleri özgün seçeneklerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Ölçme ve duyarlılık",
+      "text": "**Ölçme**, bir büyüklüğü aynı cinsten bir birimle karşılaştırmaktır. Her aracın ölçebildiği **en küçük değer** vardır; buna aracın **duyarlılığı** denir. Cetvelin duyarlılığı 1 mm, kumpasın genellikle 0,1 mm, mikrometrenin 0,01 mm'dir. Duyarlılık arttıkça ölçüm daha güvenilir olur; ama hiçbir ölçüm tam doğru değildir.",
+      "narration": "Aynı uzunluğu cetvelle ve mikrometreyle ölçersen sonuçların güven düzeyi farklı olur: ölçümün güvenilirliği kullanılan aracın duyarlılığına bağlıdır. Bir kalemin boyu için cetvel yeter; telin kalınlığı için mikrometre gerekir. Ölçüm sonucu hep sayı ve birimle birlikte yazılır."
+     },
+     {
+      "kind": "rule",
+      "title": "Ölçme hataları",
+      "items": [
+       "**Sistematik hata**: her ölçümde aynı yönde ve aynı miktarda sapma. Kaynağı genellikle alettir (sıfır ayarı kaymış alet, bozuk ayar).",
+       "Sistematik hata ölçümü tekrarlayıp **ortalama alarak giderilmez**; alet ayarlanarak ya da düzeltme yapılarak giderilir.",
+       "**Rastgele hata**: bazen büyük, bazen küçük, yönü önceden bilinmeyen sapma. Okuma açısı, tepki süresi, ortam dalgalanması buna yol açar.",
+       "Rastgele hata, ölçümü **birçok kez tekrarlayıp ortalama alarak** azaltılır.",
+       "Ortalama = ölçümlerin toplamı / ölçüm sayısı."
+      ],
+      "narration": "Sistematik hatada bütün sonuçlar aynı yöne kayar: örneğin her tartıda 2 g fazla gösteren bir terazi. Beş ölçümün ortalaması alınsa da 2 g fazlalık kalır. Rastgele hatada sonuçlar gerçek değerin hem altına hem üstüne dağılır; ortalama alınca artılar ve eksiler birbirini götürür, hata azalır."
+     },
+     {
+      "kind": "visual",
+      "title": "Hangi alet neyi ölçer?",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Alet",
+        "Ölçtüğü büyüklük",
+        "Birim"
+       ],
+       "rows": [
+        [
+         "Cetvel",
+         "uzunluk",
+         "m"
+        ],
+        [
+         "Kumpas",
+         "küçük uzunluk, iç-dış çap",
+         "m"
+        ],
+        [
+         "Mikrometre",
+         "çok ince kalınlık",
+         "m"
+        ],
+        [
+         "Eşit kollu terazi",
+         "kütle",
+         "kg"
+        ],
+        [
+         "Dinamometre",
+         "kuvvet, ağırlık",
+         "N"
+        ],
+        [
+         "Termometre",
+         "sıcaklık",
+         "K"
+        ],
+        [
+         "Ampermetre",
+         "akım şiddeti",
+         "A"
+        ],
+        [
+         "Voltmetre",
+         "potansiyel farkı (gerilim)",
+         "V"
+        ]
+       ]
+      },
+      "caption": "Dinamometre **kütleyi değil kuvveti** (ağırlığı) ölçer.",
+      "narration": "Kumpas bilye gibi küçük cisimlerin dış çapını, boruların iç çapını ölçer; mikrometre ince tel gibi çok küçük kalınlıklar için daha duyarlıdır. Dinamometre yaylı bir kuvvet ölçerdir; kütleyi ölçen eşit kollu terazi ile karıştırılmamalıdır. Ampermetre devreye seri, voltmetre paralel bağlanır."
+     },
+     {
+      "kind": "match",
+      "title": "Alet ve ölçtüğü",
+      "prompt": "Her aleti ölçtüğü şeyle eşleştir.",
+      "titles": [
+       "Alet",
+       "Ölçtüğü"
+      ],
+      "pairs": [
+       {
+        "left": "Kumpas",
+        "right": "Bir bilyenin dış çapı"
+       },
+       {
+        "left": "Mikrometre",
+        "right": "Çok ince bir telin kalınlığı"
+       },
+       {
+        "left": "Dinamometre",
+        "right": "Cisme etki eden kuvvet"
+       },
+       {
+        "left": "Termometre",
+        "right": "Suyun sıcaklığı"
+       },
+       {
+        "left": "Ampermetre",
+        "right": "Devreden geçen akım şiddeti"
+       },
+       {
+        "left": "Voltmetre",
+        "right": "Pilin uçları arasındaki potansiyel farkı"
+       }
+      ],
+      "explanation": "Her alet bir büyüklüğü ölçer: kumpas ve mikrometre uzunluk, dinamometre kuvvet, termometre sıcaklık, ampermetre akım, voltmetre potansiyel farkı."
+     },
+     {
+      "kind": "classify",
+      "title": "Hangi hata türü?",
+      "prompt": "Her durumu sistematik ya da rastgele hataya yerleştir.",
+      "groups": [
+       {
+        "label": "Sistematik hata",
+        "items": [
+         "Sıfırı kaymış kumpas",
+         "Her tartıda 2 g fazla gösteren terazi",
+         "Ayarı bozuk termometre"
+        ]
+       },
+       {
+        "label": "Rastgele hata",
+        "items": [
+         "Kronometreyi bazen erken, bazen geç durdurmak",
+         "Cetveli her seferinde farklı açıdan okumak",
+         "Ortam sıcaklığının ölçüm sırasında dalgalanması"
+        ]
+       }
+      ],
+      "explanation": "Hep aynı yönde ve miktarda sapma sistematiktir; yönü ve miktarı değişen sapma rastgeledir."
+     },
+     {
+      "kind": "blank",
+      "title": "Ortalama al",
+      "prompt": "Bir öğrenci bir kalemin boyunu beş kez ölçüyor: 4,6 – 4,4 – 4,5 – 4,7 – 4,3 cm. Rastgele hatayı azaltmak için ortalamayı alıyor.",
+      "before": "Ortalama =",
+      "after": "cm",
+      "answers": [
+       "4,5"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 4.5,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "22,5",
+        "feedback": "Toplamı buldun; ölçüm sayısı olan 5'e bölmeyi unuttun."
+       }
+      ],
+      "explanation": "Toplam: 4,6 + 4,4 + 4,5 + 4,7 + 4,3 = 22,5 cm. Ölçüm sayısı 5 olduğundan ortalama 22,5 / 5 = 4,5 cm."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir öğrenci, kapalıyken $0{,}03$ mm gösteren bir mikrometreyle bir telin kalınlığını beş kez ölçüyor; bütün okumalar gerçek değerden $0{,}03$ mm büyük çıkıyor.\n\nI. Bu hata sistematik bir hatadır.\nII. Beş ölçümün ortalaması alınırsa hata ortadan kalkar.\nIII. Mikrometrenin sıfır ayarı düzeltilirse hata giderilir.\n\nYargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız III",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "III'ü atladın: hatanın kaynağı olan alet düzeltilirse hata giderilir.",
+        "I'i atladın: hep aynı yönde ve aynı miktarda sapma sistematik hatadır.",
+        "Ortalama almak sabit sapmayı yok etmez: her okuma aynı miktar büyük, ortalama da aynı miktar büyük kalır.",
+        null,
+        "Ortalamanın sistematik hatayı giderdiğini sandın; ortalama rastgele hatayı azaltır."
+       ],
+       "steps": [
+        {
+         "text": "Sapma her ölçümde aynı yönde ve aynı miktarda mı, yoksa rastgele mi? Hata türünü bununla belirle."
+        },
+        {
+         "text": "Ortalama almak, her sayıya eklenmiş sabit bir miktarı etkiler mi? Her okumaya 0,03 ekliyse ortalamaya ne olur?"
+        },
+        {
+         "text": "Hatanın kaynağı alet. Aletin ayarı düzeltilip ölçüm tekrarlanırsa sapma sürer mi?"
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki ölçme aracı duyarlılığı fikri, sistematik hata ve ortalama alma kavramlarıyla yeni bir öncüllü soruya dönüştürüldü."
+       }
+      }
+     },
+     {
+      "kind": "rule",
+      "title": "Fizik ve teknoloji",
+      "items": [
+       "Fizik **temel bilgiyi** üretir; teknoloji bu bilgiyi araç ve ürüne dönüştürür.",
+       "Teknoloji fiziğe de geri döner: daha duyarlı aletler ve parçacık hızlandırıcıları yeni keşifler getirir.",
+       "CERN'deki bilimsel gelişmelerden PET ve MR gibi görüntüleme teknikleri ve bilgisayar çipi üretimi yararlanır.",
+       "TÜBİTAK araştırmayı teşvik eder; TENMAK enerji, nükleer ve maden; ASELSAN savunma elektroniği; CERN parçacık hızlandırıcıları; NASA uzay çalışmaları yürütür.",
+       "Bir teknolojinin hangi alt dala girdiği sorulursa **çalışma ilkesine** bak."
+      ],
+      "narration": "Fizikte bulunan bir ilke zamanla gündelik bir araca dönüşür. Aynı araç birden çok alt daldan yararlanabilir; bu yüzden sorularda aracın adına değil, nasıl çalıştığına bakmak gerekir."
+     },
+     {
+      "kind": "visual",
+      "title": "Fizik teknolojinin içinde",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Teknoloji",
+        "Dayandığı fizik"
+       ],
+       "rows": [
+        [
+         "MR",
+         "Manyetik alan ve atom çekirdeği"
+        ],
+        [
+         "Röntgen",
+         "X ışınlarının dokudan farklı geçişi"
+        ],
+        [
+         "GPS",
+         "Uydu sinyalleri, hassas zaman ölçümü"
+        ],
+        [
+         "Lazer",
+         "Atomlarda ışık yayılımı (atom fiziği)"
+        ],
+        [
+         "Fiber optik",
+         "Işığın tam yansımayla iletilmesi"
+        ],
+        [
+         "Güneş paneli",
+         "Yarı iletkenin ışıktan elektrik üretmesi"
+        ],
+        [
+         "Yarı iletken (çip)",
+         "Katıların elektrik özellikleri"
+        ]
+       ]
+      },
+      "caption": "Güneş paneli ve yarı iletkenler **katıhâl fiziğinin** alanındadır.",
+      "narration": "MR, vücuttaki atom çekirdeklerinin manyetik alana verdiği tepkiyi kullanır; röntgen ise X ışınlarının kemik ve yumuşak dokudan farklı geçmesine dayanır. GPS, uydulardan gelen sinyallerin yolculuk süresini çok hassas ölçerek konum bulur. Fiber optik kabloda ışık, cam lifin içinde tam yansımalarla ilerler. Güneş paneli ve çipler yarı iletken maddelerle çalışır."
+     },
+     {
+      "kind": "concept",
+      "title": "İbn-i Heysem ve Bîrûnî",
+      "text": "**İbn-i Heysem** (11. yüzyıl) ışığın ve görmenin nasıl gerçekleştiğini deneylerle inceledi; karanlık oda deneyleri yaptı ve ışığın cisimden göze geldiğini savundu. Bu yüzden **optiğin** öncülerinden sayılır. **Bîrûnî** (11. yüzyıl) metallerin ve değerli taşların **özkütlesini** hassas biçimde ölçtü. İkisi de varsayımla yetinmeyip **deney ve ölçmeyi** esas aldı.",
+      "narration": "Bu iki bilgin, bilimsel bilginin gözleme ve ölçmeye dayanması gerektiğini örnekleyen kişilerdir. İbn-i Heysem'i optikle, Bîrûnî'yi özkütle ölçümüyle eşleştirmen yeterlidir."
+     },
+     {
+      "kind": "visual",
+      "title": "Kurumlar ve bilginler",
+      "visual": {
+       "kind": "flipcards",
+       "cards": [
+        {
+         "front": "TÜBİTAK",
+         "back": "Doğa bilimleri araştırmalarını teşvik eder; bilim okuryazarlığını artırır."
+        },
+        {
+         "front": "TENMAK",
+         "back": "Enerji, nükleer ve maden alanında araştırma yapar."
+        },
+        {
+         "front": "ASELSAN",
+         "back": "Türkiye'nin en büyük savunma elektroniği kuruluşudur."
+        },
+        {
+         "front": "CERN",
+         "back": "Parçacık hızlandırıcılar; Higgs bozonunun keşfi."
+        },
+        {
+         "front": "İbn-i Heysem",
+         "back": "Optik: ışık ve görme üzerine deneyler."
+        },
+        {
+         "front": "Bîrûnî",
+         "back": "Özkütle ölçümü."
+        }
+       ]
+      },
+      "caption": "Kartı çevir, cevabını önce kendin hatırla."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aşağıdaki eşleştirmelerden hangisi **yanlıştır**?",
+       "options": [
+        "Fiber optik kablo – ısının iletilmesi",
+        "İbn-i Heysem – ışık ve görme olayları (optik)",
+        "Bîrûnî – özkütle ölçümü",
+        "Güneş paneli – yarı iletken maddeler",
+        "GPS – uydu sinyalleri ve zaman ölçümü"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "İbn-i Heysem ışık ve görme üzerine çalıştı; bu eşleştirme doğru, 'yanlış' olanı aramalıydın.",
+        "Bîrûnî özkütle ölçümleriyle anılır; bu eşleştirme doğru.",
+        "Güneş paneli yarı iletkenle çalışır; bu eşleştirme doğru.",
+        "GPS uydu sinyallerine ve hassas zaman ölçümüne dayanır; bu eşleştirme doğru."
+       ],
+       "steps": [
+        {
+         "text": "Her teknolojinin dayandığı olayı hatırla: fiber kablo içinde ne ilerler? İbn-i Heysem ve Bîrûnî hangi konularla anılır?"
+        },
+        {
+         "text": "Seçenekleri tek tek doğrula; hangisinde yazılan olay teknolojinin çalışma ilkesiyle uyuşmuyor?"
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; teknoloji ve bilgin eşleştirmeleri özgün seçeneklerle soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_GIRIS_02",
+    "title": "Fiziğin alt dalları",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Hangi dal, ne inceler?",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Alt dal",
+        "İnceler",
+        "Örnek"
+       ],
+       "rows": [
+        [
+         "Mekanik",
+         "kuvvet, hareket, denge",
+         "köprü, roket"
+        ],
+        [
+         "Termodinamik",
+         "ısı, sıcaklık, enerji",
+         "buzdolabı, motor"
+        ],
+        [
+         "Elektromanyetizma",
+         "elektrik ve manyetizma",
+         "elektrik motoru"
+        ],
+        [
+         "Optik",
+         "ışık ve ışık olayları",
+         "gözlük, fiber kablo"
+        ],
+        [
+         "Nükleer fizik",
+         "atom çekirdeği",
+         "nükleer santral"
+        ],
+        [
+         "Atom fiziği",
+         "atom ve molekül",
+         "lazer"
+        ],
+        [
+         "Katıhâl fiziği",
+         "kristal katılar",
+         "güneş paneli, pil"
+        ],
+        [
+         "Yüksek enerji ve plazma",
+         "atom altı parçacıklar",
+         "parçacık hızlandırıcı"
+        ]
+       ]
+      },
+      "caption": "Fizik büyüdükçe **sekiz alt dala** ayrıldı; TYT bir uygulamanın hangi dala girdiğini sorar.",
+      "narration": "Tablodaki sekiz dal, fiziğin kendi alt dallarıdır. Her birinin neyi incelediğini ve tipik örneğini bilmek, 'hangi alt dalın çalışma alanına girer?' sorularının tamamını çözer."
+     },
+     {
+      "kind": "rule",
+      "title": "Mekaniğin üç bölümü",
+      "items": [
+       "Mekanik; kuvvet, hareket ve dengeyi inceler. Gemilerin suda gitmesi, uçakların uçması, gezegenlerin hareketi, köprü ve binaların yapımı bu dalın alanındadır.",
+       "**Statik**: denge durumundaki cisimleri inceler.",
+       "**Dinamik**: hareketi kuvvet ve kütleyi dikkate alarak inceler.",
+       "**Kinematik**: harekete neden olan etkiyi dikkate almadan yalnız hareketi (konum, hız, zaman) inceler."
+      ],
+      "narration": "Ayrımı yaparken 'kuvvete bakıyor mu?' diye sor. Kuvvete bakıp hareketi inceliyorsa dinamik, kuvvete hiç bakmadan hareketi anlatıyorsa kinematik, cisim durgun dengedeyse statiktir."
+     },
+     {
+      "kind": "rule",
+      "title": "Alt dalların çalışma alanları",
+      "items": [
+       "**Termodinamik**: ısı alışverişi, ısıl denge, hâl değişimi; bina yalıtımı, ısıtma-soğutma sistemleri, küresel ısınma.",
+       "**Elektromanyetizma**: elektrik yükleri ve akımı, mıknatıslar ve manyetik alan, akımın manyetik etkileri.",
+       "**Optik**: ışığın yapısı, yayılması, yansıması ve kırılması.",
+       "**Nükleer fizik**: atom çekirdeği ve tepkimeleri; radyasyon ve canlılara etkisi, nükleer enerji santralleri, nükleer tıp.",
+       "**Atom fiziği**: atomu (çekirdek ve elektronlar) ve molekülleri inceler; elektron mikroskobu, lazer, 3D yazıcı.",
+       "**Katıhâl fiziği**: kristal yapılı maddeler; güneş paneli, şarjlı pil, hafızalı metal, akıllı kumaş.",
+       "**Yüksek enerji ve plazma fiziği**: atom altı parçacıklar ve plazma hâli; CERN deneyleri, roket ve uzay sanayisi."
+      ],
+      "narration": "Her dalın örneklerini ezberlemek yerine neyi incelediğine bağlamak daha kalıcıdır: ısı ve sıcaklık varsa termodinamik, çekirdek varsa nükleer, kristal katılar varsa katıhâl fiziği."
+     },
+     {
+      "kind": "classify",
+      "title": "Uygulamayı dalına yerleştir",
+      "prompt": "Her uygulamayı çalışma alanına girdiği alt dalın altına koy.",
+      "groups": [
+       {
+        "label": "Mekanik",
+        "items": [
+         "Köprü yapımı",
+         "Roketin hareketi"
+        ]
+       },
+       {
+        "label": "Termodinamik",
+        "items": [
+         "Bina yalıtımı",
+         "Küresel ısınma"
+        ]
+       },
+       {
+        "label": "Optik",
+        "items": [
+         "Işığın yansıması",
+         "Işığın kırılması"
+        ]
+       },
+       {
+        "label": "Katıhâl fiziği",
+        "items": [
+         "Güneş paneli",
+         "Şarjlı pil"
+        ]
+       }
+      ],
+      "explanation": "Kuvvet ve hareket mekanik; ısı ve sıcaklık termodinamik; ışık olayları optik; kristal katıların özelliklerini kullanan ürünler katıhâl fiziğidir."
+     },
+     {
+      "kind": "match",
+      "title": "Mekaniğin bölümleri",
+      "prompt": "Her bölümü ne yaptığı ve örneğiyle eşleştir.",
+      "titles": [
+       "Bölüm",
+       "İnceler"
+      ],
+      "pairs": [
+       {
+        "left": "Statik",
+        "right": "Dengedeki cisimleri inceler: ayakta duran köprü"
+       },
+       {
+        "left": "Dinamik",
+        "right": "Hareketi kuvvet ve kütleyle inceler: arabanın ivmelenmesi"
+       },
+       {
+        "left": "Kinematik",
+        "right": "Hareketi nedenine bakmadan inceler: topun konum-zaman verisi"
+       }
+      ],
+      "explanation": "Statik dengeyi, dinamik kuvvetli hareketi, kinematik kuvvete bakmadan hareketi inceler."
+     },
+     {
+      "kind": "visual",
+      "title": "Fizik ve öbür bilimler",
+      "visual": {
+       "kind": "conceptMap",
+       "center": "Fizik",
+       "related": [
+        {
+         "name": "Biyofizik",
+         "relation": "biyoloji ile"
+        },
+        {
+         "name": "Fizikokimya",
+         "relation": "kimya ile"
+        },
+        {
+         "name": "Jeofizik",
+         "relation": "yer bilimleri ile"
+        },
+        {
+         "name": "Astrofizik",
+         "relation": "astronomi ile"
+        },
+        {
+         "name": "Tıp fiziği",
+         "relation": "tıp ile"
+        },
+        {
+         "name": "Mühendislik",
+         "relation": "teknoloji ile"
+        }
+       ]
+      },
+      "caption": "Biyofizik, fizikokimya, jeofizik, astrofizik: fiziğin **başka bir bilimle** buluştuğu dallar.",
+      "narration": "Canlılardaki fiziksel olaylar biyofizik, kimyasal olayların fiziği fizikokimya, Yer'in fiziği jeofizik, yıldız ve gezegenlerin fiziği astrofiziktir. Fizik ayrıca matematik, felsefe, mühendislik, sanat, spor, arkeoloji ve coğrafya ile de ilişkilidir. Dikkat: nükleer fizik ya da termodinamik başka bir bilimle buluşmaz; fiziğin kendi alt dallarıdır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Termodinamik hangi bilimle buluşur?",
+      "wrong": "Termodinamik, fizikle kimyanın birleşmesinden doğan bir daldır.",
+      "right": "Termodinamik fiziğin kendi alt dalıdır; fizik ile kimyanın buluştuğu dal fizikokimyadır.",
+      "why": "Isı kimyasal tepkimelerde de geçtiği için termodinamik kimyaya ait sanılır. Oysa ısı, sıcaklık ve enerjiyi incelemek fiziğin kendi işidir."
+     },
+     {
+      "kind": "predict",
+      "title": "Atom fiziği",
+      "context": "Elektron mikroskobu, lazer ve 3D yazıcı hangi dalda anılıyor, hatırlayalım.",
+      "prompt": "Atom fiziği, atomu çekirdek ve elektronlardan oluşan bir sistem olarak ele alır; lazer ve elektron mikroskobu çalışma alanına girer.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Atom fiziği atomu ve atomların bağlarla oluşturduğu molekülleri inceler. Elektron mikroskobu ve lazer bu dalın örnekleridir."
+     },
+     {
+      "kind": "multi",
+      "title": "Nükleer fiziğin alanı",
+      "stem": "Aşağıdakilerden hangileri nükleer fiziğin çalışma alanına girer?",
+      "options": [
+       "Nükleer enerji santralleri",
+       "Nükleer tıp",
+       "Radyasyonun canlılar üzerindeki etkisi",
+       "Güneş panelleri",
+       "Bina yalıtımı"
+      ],
+      "answers": [
+       0,
+       1,
+       2
+      ],
+      "choiceFeedback": [
+       null,
+       null,
+       null,
+       "Güneş paneli kristal bir katıdır: katıhâl fiziği.",
+       "Bina yalıtımı ısıyla ilgilidir: termodinamik."
+      ],
+      "explanation": "Atom çekirdeğini ve çekirdek tepkimelerini kullanan ya da etkilerini inceleyen alanlar nükleer fiziğe girer."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Güneş panelleri, şarjlı piller ve akıllı kumaşlar fiziğin hangi alt dalının çalışma alanına girer?",
+       "options": [
+        "Mekanik",
+        "Katıhâl fiziği",
+        "Optik",
+        "Termodinamik",
+        "Nükleer fizik"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Mekanik kuvvet ve hareketle ilgilenir; bu ürünlerin çalışma ilkesi bu değil.",
+        null,
+        "Güneş paneli ışıkla çalışır ama ışığı elektriğe çeviren şey bir katıdır; optik ışığın kendisini inceler.",
+        "Termodinamik ısı ve sıcaklığı inceler; bu ürünlerin ortak noktası ısı değil.",
+        "Nükleer fizik atom çekirdeğiyle ilgilenir; bu ürünler çekirdek tepkimelerine dayanmaz."
+       ],
+       "steps": [
+        {
+         "text": "Bu ürünlerin ortak yanı, hepsinin kristal yapılı katı maddelerin özelliklerinden yararlanmasıdır."
+        },
+        {
+         "text": "Elektrik, manyetik, optik ve esneklik özelliklerini katılar üzerinden inceleyen dal hangisi?"
+        }
+       ],
+       "origin": {
+        "changes": "MEB metnindeki katıhâl fiziği örnekleri özgün soruya dönüştürüldü."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aşağıdakilerden hangisi fiziğin başka bir bilim dalıyla etkileşiminden doğan dallardan biri **değildir**?",
+       "options": [
+        "Biyofizik",
+        "Jeofizik",
+        "Astrofizik",
+        "Termodinamik",
+        "Fizikokimya"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "Biyofizik biyolojiyle buluşmadan doğar; bu yüzden 'değildir' olan değil.",
+        "Jeofizik yer bilimleriyle buluşmadan doğar.",
+        "Astrofizik astronomiyle buluşmadan doğar.",
+        null,
+        "Fizikokimya kimyayla buluşmadan doğar."
+       ],
+       "steps": [
+        {
+         "text": "Biyo-, jeo-, astro- ve kimya sözcükleri başka bilimlerin adlarını taşır."
+        },
+        {
+         "text": "Seçeneklerden hangisinin adı başka bir bilimi çağrıştırmıyor ve ısı ile sıcaklığı inceliyor?"
+        }
+       ],
+       "origin": {
+        "changes": "Disiplinler arası dallar sorusu özgün seçeneklerle kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir araştırmacı, eğik atılan bir topun izlediği yolu, topa etki eden kuvvetleri hesaba katmadan yalnız konum ve hız değerleriyle inceliyor. Bu araştırmacı mekaniğin hangi bölümünde çalışmaktadır?",
+       "options": [
+        "Statik",
+        "Dinamik",
+        "Termodinamik",
+        "Optik",
+        "Kinematik"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "Statik durgun dengeyi inceler; top hareket hâlinde.",
+        "Dinamik kuvveti ve kütleyi de hesaba katar; burada kuvvetler hesaba katılmıyor.",
+        "Termodinamik mekaniğin bölümü değildir.",
+        "Optik mekaniğin bölümü değildir.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Araştırmacı kuvvetleri hesaba katmıyor; yalnız konum ve hızla uğraşıyor."
+        },
+        {
+         "text": "Mekaniğin hangi bölümü hareketi nedenine bakmadan inceler?"
+        }
+       ],
+       "origin": {
+        "changes": "Mekaniğin bölümleri özgün bir durumla soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_GIRIS_03",
+    "subtopics": [
+     "FIZ_GIRIS_05"
+    ],
+    "title": "Büyüklükler ve SI",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Yedi temel büyüklük",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Büyüklük",
+        "SI birimi",
+        "Ölçen alet"
+       ],
+       "rows": [
+        [
+         "Uzunluk",
+         "metre (m)",
+         "cetvel, metre"
+        ],
+        [
+         "Kütle",
+         "kilogram (kg)",
+         "eşit kollu terazi"
+        ],
+        [
+         "Zaman",
+         "saniye (s)",
+         "kronometre"
+        ],
+        [
+         "Sıcaklık",
+         "kelvin (K)",
+         "termometre"
+        ],
+        [
+         "Akım şiddeti",
+         "amper (A)",
+         "ampermetre"
+        ],
+        [
+         "Işık şiddeti",
+         "kandela (cd)",
+         "fotometre"
+        ],
+        [
+         "Madde miktarı",
+         "mol (mol)",
+         "—"
+        ]
+       ]
+      },
+      "caption": "Başka büyüklükle tanımlanamayan bu yedi büyüklük **temel** büyüklüktür; birimleri SI'nın temelidir.",
+      "narration": "Fiziksel nicelikler, başka bir nicelikle ifade edilip edilmemesine göre temel ve türetilmiş olarak ayrılır. Sıcaklığın SI birimi kelvindir; günlük hayatta kullandığımız derece Celsius SI birimi değildir. Madde miktarını ölçen tek bir alet yoktur. Soru genellikle hangisinin temel olduğunu sorar; bu yediyi ve birimlerini bil."
+     },
+     {
+      "kind": "rule",
+      "title": "Türetilmiş büyüklükler",
+      "items": [
+       "Temel büyüklüklerden **türetilir**: alan $\\text{m}^2$, hacim $\\text{m}^3$.",
+       "Hız = yol / zaman → $\\text{m/s}$.",
+       "Kuvvet = kütle · ivme → $\\text{kg} \\cdot \\text{m/s}^2 = \\text{N}$ (newton).",
+       "Enerji $\\text{J}$ (joule), özkütle $\\text{kg/m}^3$, basınç $\\text{Pa}$.",
+       "Birim çevirme: $1 \\text{ km/sa} = \\frac{1000 \\text{ m}}{3600 \\text{ s}}$."
+      ],
+      "narration": "Öbür bütün büyüklükler bu yediden türetilir. Hız yolun zamana oranıdır; birimi $\\text{m/s}$ olur. Kuvvet, kütle ile ivmenin çarpımıdır: $\\text{kg} \\cdot \\text{m/s}^2$; buna newton denir. Birim çevirirken pay ile paydayı ayrı ayrı çevir: $1\\ \\text{km/sa} = 1000\\ \\text{m} / 3600\\ \\text{s}$."
+     },
+     {
+      "kind": "visual",
+      "title": "SI önekleri",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Önek",
+        "Simge",
+        "Çarpan"
+       ],
+       "rows": [
+        [
+         "giga",
+         "G",
+         "10⁹"
+        ],
+        [
+         "mega",
+         "M",
+         "10⁶"
+        ],
+        [
+         "kilo",
+         "k",
+         "10³"
+        ],
+        [
+         "santi",
+         "c",
+         "10⁻²"
+        ],
+        [
+         "mili",
+         "m",
+         "10⁻³"
+        ],
+        [
+         "mikro",
+         "µ",
+         "10⁻⁶"
+        ],
+        [
+         "nano",
+         "n",
+         "10⁻⁹"
+        ]
+       ]
+      },
+      "caption": "Önek, birimin önüne gelip onu 10'un bir kuvvetiyle çarpar.",
+      "narration": "Giga, mega ve kilo büyütür; santi, mili, mikro ve nano küçültür. Örneğin $1\\ \\text{km} = 10^{3}\\ \\text{m}$, $1\\ \\text{cm} = 10^{-2}\\ \\text{m}$, $1\\ \\text{mm} = 10^{-3}\\ \\text{m}$, $1\\ \\mu\\text{m} = 10^{-6}\\ \\text{m}$, $1\\ \\text{nm} = 10^{-9}\\ \\text{m}$. Kütlenin SI birimi kilogram olduğu için gram, $1\\ \\text{g} = 10^{-3}\\ \\text{kg}$ olarak çevrilir."
+     },
+     {
+      "kind": "blank",
+      "title": "Önek uygula",
+      "prompt": "250 mm uzunluğu metreye çevir.",
+      "before": "250 mm =",
+      "after": "m",
+      "answers": [
+       "0,25"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 0.25,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "250000",
+        "feedback": "Mili küçültür: $10^{-3}$ ile çarpılır, $10^{3}$ ile değil."
+       },
+       {
+        "answer": "25",
+        "feedback": "Santi ile mili'yi karıştırdın; mili $10^{-3}$'tür."
+       }
+      ],
+      "explanation": "$250 \\cdot 10^{-3}\\ \\text{m} = 0{,}25\\ \\text{m}$."
+     },
+     {
+      "kind": "rule",
+      "title": "Birim dönüşümleri",
+      "items": [
+       "**km/sa → m/s**: 3,6'ya **böl**. $72\\ \\text{km/sa} = 72 / 3{,}6 = 20\\ \\text{m/s}$.",
+       "**m/s → km/sa**: 3,6 ile **çarp**.",
+       "**Hacim**: $1\\ \\text{cm}^3 = 1\\ \\text{mL}$, $1\\ \\text{dm}^3 = 1\\ \\text{L}$, $1\\ \\text{m}^3 = 1000\\ \\text{L}$; yani $1000\\ \\text{cm}^3 = 1\\ \\text{L}$.",
+       "**Özkütle**: $1\\ \\text{g/cm}^3 = 1000\\ \\text{kg/m}^3$ (g/cm³ → kg/m³ için 1000 ile çarp).",
+       "**Kütle**: $1\\ \\text{t} = 1000\\ \\text{kg}$, $1\\ \\text{g} = 10^{-3}\\ \\text{kg}$, $1\\ \\text{mg} = 10^{-6}\\ \\text{kg}$.",
+       "**Zaman**: 1 dakika = 60 s, 1 saat = 3600 s.",
+       "Pay ve paydayı ayrı ayrı çevir; birimi çevirmeden işlem yapma."
+      ],
+      "narration": "3,6 sayısı 3600 s ile 1000 m'nin oranından gelir: $3600 / 1000 = 3{,}6$. Bu yüzden km/sa'dan m/s'ye geçerken küçülürsün, yani bölersin; ters yönde çarparsın."
+     },
+     {
+      "kind": "example",
+      "title": "g/cm³ → kg/m³",
+      "example": "Özkütlesi $2{,}7\\ \\text{g/cm}^3$ olan alüminyum kaç $\\text{kg/m}^3$'tür?",
+      "explanation": "$1\\ \\text{g} = 10^{-3}\\ \\text{kg}$ ve $1\\ \\text{cm}^3 = 10^{-6}\\ \\text{m}^3$ olduğundan\n$2{,}7\\ \\frac{\\text{g}}{\\text{cm}^3} = \\frac{2{,}7 \\cdot 10^{-3}\\ \\text{kg}}{10^{-6}\\ \\text{m}^3} = 2{,}7 \\cdot 10^{3} = 2700\\ \\text{kg/m}^3$.\nKısa yol: g/cm³ değerini 1000 ile çarp. Tersi için kg/m³ değerini 1000'e böl."
+     },
+     {
+      "kind": "example",
+      "title": "Hacim birimleri",
+      "example": "$2{,}5$ L su kaç $\\text{cm}^3$'tür? $4\\ \\text{m}^3$ kaç L'dir?",
+      "explanation": "$1\\ \\text{L} = 1\\ \\text{dm}^3 = 1000\\ \\text{cm}^3$ olduğundan $2{,}5\\ \\text{L} = 2{,}5 \\cdot 1000 = 2500\\ \\text{cm}^3$.\n$1\\ \\text{m}^3 = 1000\\ \\text{dm}^3 = 1000\\ \\text{L}$ olduğundan $4\\ \\text{m}^3 = 4000\\ \\text{L}$."
+     },
+     {
+      "kind": "blank",
+      "title": "Özkütle dönüşümü",
+      "prompt": "Benzinin özkütlesi $800\\ \\text{kg/m}^3$'tür. Bunu g/cm³ cinsinden yaz.",
+      "before": "800 kg/m³ =",
+      "after": "g/cm³",
+      "answers": [
+       "0,8"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 0.8,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "800000",
+        "feedback": "Yönü ters çevirdin: kg/m³'ten g/cm³'e geçerken 1000'e bölmen gerekir."
+       }
+      ],
+      "explanation": "kg/m³ değeri g/cm³'e çevrilirken 1000'e bölünür: $800 / 1000 = 0{,}8\\ \\text{g/cm}^3$."
+     },
+     {
+      "kind": "guided",
+      "title": "Adım adım hız",
+      "stem": "Bir bisikletli $18$ km'lik yolu $15$ dakikada alıyor. Ortalama hızı kaç m/s'dir?",
+      "steps": [
+       {
+        "prompt": "Önce yolu SI birimine çevir. 18 km kaç metredir?",
+        "choices": [
+         "18 m",
+         "1800 m",
+         "18000 m"
+        ],
+        "answer": 2,
+        "choiceFeedback": [
+         "Kilometreyi metreye çevirmedin.",
+         "1 km 1000 m'dir; 100 ile çarpmışsın.",
+         null
+        ],
+        "explanation": "$18 \\cdot 1000 = 18000$ m."
+       },
+       {
+        "prompt": "Şimdi zamanı SI birimine çevir.",
+        "before": "15 dakika =",
+        "after": "s",
+        "answers": [
+         "900"
+        ],
+        "input": "number",
+        "explanation": "$15 \\cdot 60 = 900$ s."
+       },
+       {
+        "prompt": "Hızı hesapla: yolu zamana böl.",
+        "before": "$v = 18000 / 900 =$",
+        "after": "m/s",
+        "answers": [
+         "20"
+        ],
+        "input": "number",
+        "explanation": "$18000 / 900 = 20\\ \\text{m/s}$. Kontrol: $20 \\cdot 3{,}6 = 72\\ \\text{km/sa}$ ve $18\\ \\text{km} / 0{,}25\\ \\text{sa} = 72\\ \\text{km/sa}$."
+       }
+      ]
+     },
+     {
+      "kind": "concept",
+      "title": "ÖSYM tuzağı: önce SI'ya çevir",
+      "text": "ÖSYM 2020'de bir yarış spikerinin verdiği bilgiler (turun süresi **dakika**, sıcaklık **derece Celsius**, pist uzunluğu **kilometre** cinsinden) SI karşılıklarıyla soruldu. Şıklarda 'saat', 'dakika', 'kilometre', 'derece' gibi günlük hayat birimleri cazip duruyordu; doğru karşılık **saniye, kelvin, metre**ydi. Hesaplı sorularda da aynı tuzak çıkar: verilenler SI'da değilse önce çevir, sonra işlem yap. Birim çevirmeden çözülen bir hatayı aşağıda bulacaksın.",
+      "narration": "Birim çevirmeden yapılan bölme sayı olarak 'düzgün' görünür ama sonuç anlamsızdır: 6 km'yi 2 dakikaya bölmek km/dakika verir, m/s değil. Soru köküne 'SI' ya da 'm/s' yazıyorsa ilk işin çevirme olmalı."
+     },
+     {
+      "kind": "findError",
+      "title": "Hatalı satırı bul",
+      "problem": "Pist uzunluğu $6$ km olan bir yarış pistinde bir tur $2$ dakikada tamamlanıyor. Ortalama hız kaç m/s'dir? Bir öğrenci şöyle çözmüş:",
+      "prompt": "Hangi satırda hata var?",
+      "steps": [
+       "Hız = yol / zaman",
+       "$v = \\frac{6\\ \\text{km}}{2\\ \\text{dk}} = 3$",
+       "Birimi m/s yazalım.",
+       "$v = 3\\ \\text{m/s}$"
+      ],
+      "wrongStep": 1,
+      "choiceFeedback": [
+       "Bu formül doğru: hız yolun zamana oranıdır.",
+       null,
+       "Bu satır yalnız birim yazıyor; hata, daha önce çevirme yapılmamasında.",
+       "Sonuç hatalı ama hata kaynağı bir önceki işlemdedir; asıl hatalı satırı bul."
+      ],
+      "explanation": "Yol ve zaman SI'ya çevrilmeden bölünmüş. Doğrusu: $6\\ \\text{km} = 6000$ m, $2\\ \\text{dk} = 120$ s; $v = 6000 / 120 = 50\\ \\text{m/s}$."
+     },
+     {
+      "kind": "mistake",
+      "title": "Sıcaklığın SI birimi",
+      "wrong": "Sıcaklığın SI birimi derece Celsius'tur.",
+      "right": "Sıcaklığın SI birimi kelvindir (K); derece Celsius günlük hayatta kullanılır ama SI birimi değildir.",
+      "why": "Hava durumunda hep °C duyduğumuz için SI birimi sanılır. Sıcaklık yedi temel büyüklükten biridir ve birimi kelvindir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir hava durumu sunucusu şu bilgileri veriyor:\n• Yağmur 3 saat sürdü.\n• Hava sıcaklığı 20 °C.\n• Rüzgâr saatte 72 kilometre hızla esti.\n\nBu bilgilerdeki zaman, sıcaklık ve hız birimlerinin SI karşılıkları sırasıyla aşağıdakilerden hangisidir?",
+       "options": [
+        "saat – derece Celsius – km/sa",
+        "dakika – kelvin – km/sa",
+        "saniye – kelvin – m/s",
+        "saniye – derece Celsius – m/s",
+        "saat – kelvin – m/s"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Üç birimin de günlük hayat birimi olduğunu fark etmedin; hiçbiri SI değil.",
+        "Zamanı dakikayla, hızı km/sa ile bıraktın; ikisi de SI değil.",
+        null,
+        "Derece Celsius'u SI birimi sandın; sıcaklığın SI birimi kelvindir.",
+        "Saat SI birimi değildir; zamanın SI birimi saniyedir."
+       ],
+       "steps": [
+        {
+         "text": "Zaman ve sıcaklık yedi temel büyüklükten ikisidir; SI birimlerini hatırla."
+        },
+        {
+         "text": "Hız türetilmiş bir büyüklüktür: $\\text{yol birimi} / \\text{zaman birimi}$. Bunları SI'daki birimlerle yaz."
+        },
+        {
+         "text": "Saat ve derece Celsius günlük hayat birimleridir; SI karşılıklarını yaz."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020 Formula 1 spikeri sorusunun kalıbı (günlük birimleri SI'ya çevirme) alındı; bağlam hava durumuna, sayılar ve hız birimi yeniden yazıldı."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Saatte $54$ kilometre hızla giden bir otobüsün hızı kaç m/s'dir?",
+       "options": [
+        "$0{,}9$",
+        "$15$",
+        "$54$",
+        "$194{,}4$",
+        "$3240$"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Saati dakikaya çevirmeye çalışıp ($54 / 60$) m/s'ye ulaşmadın.",
+        null,
+        "Birimi çevirmeden sayıyı aynen almışsın.",
+        "3,6'ya bölmek yerine çarpmışsın.",
+        "Saati dakikaya çevirip ($54 \\cdot 60$) metre-saniye çevirmesiyle karıştırmışsın."
+       ],
+       "steps": [
+        {
+         "text": "$1\\ \\text{km} = 1000\\ \\text{m}$ ve $1\\ \\text{sa} = 3600\\ \\text{s}$ olduğunu kullan."
+        },
+        {
+         "text": "km/sa'dan m/s'ye geçerken sayı küçülür: 3,6 ile çarpmak mı, bölmek mi gerekir?"
+        },
+        {
+         "text": "54 sayısını 3,6'ya böl."
+        }
+       ],
+       "origin": {
+        "changes": "km/sa → m/s çevirmesi yeni sayılarla ve yeni yanlış şık tuzaklarıyla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "I. Kuvvet\nII. Sıcaklık\nIII. Hacim\nIV. Akım şiddeti\nV. Hız\n\nYukarıdaki büyüklüklerden hangileri temel büyüklüktür?",
+       "options": [
+        "II ve IV",
+        "I ve III",
+        "II ve III",
+        "I, IV ve V",
+        "III ve V"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "Kuvvet ve hacim türetilmiştir: kuvvet kütle ile ivmeden, hacim uzunluktan türetilir.",
+        "Hacim türetilmiş bir büyüklüktür; uzunluğun küpüyle bulunur.",
+        "Kuvvet ve hız türetilmiştir.",
+        "Hacim ve hız türetilmiştir."
+       ],
+       "steps": [
+        {
+         "text": "Yedi temel büyüklüğü say: uzunluk, kütle, zaman, sıcaklık, akım şiddeti, ışık şiddeti, madde miktarı."
+        },
+        {
+         "text": "Kuvvet, hacim ve hız hangi büyüklüklerden türetilir? Bu üçünü eleyince geriye ne kalır?"
+        }
+       ],
+       "origin": {
+        "changes": "Temel ve türetilmiş büyüklükler özgün bir listeyle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "I. $1\\ \\text{cm}^3 = 1\\ \\text{mL}$\nII. $1\\ \\text{g/cm}^3 = 100\\ \\text{kg/m}^3$\nIII. $1\\ \\text{m/s} = 3{,}6\\ \\text{km/sa}$\n\nYukarıdaki eşitliklerden hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve III",
+        "II ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "III'ü atladın: m/s'den km/sa'ya geçerken 3,6 ile çarpılır.",
+        "II'yi doğru sandın; özkütle dönüşümünde çarpan 100 değil 1000'dir.",
+        null,
+        "I'i atladın ve II'yi doğru saydın; 1 cm³ gerçekten 1 mL'dir.",
+        "II'deki çarpan hatalı: 1 g/cm³ = 1000 kg/m³."
+       ],
+       "steps": [
+        {
+         "text": "I için hacim tablosunu hatırla: 1 dm³ = 1 L ve 1 cm³ = ?"
+        },
+        {
+         "text": "II için $1\\ \\text{g} = 10^{-3}\\ \\text{kg}$ ve $1\\ \\text{cm}^3 = 10^{-6}\\ \\text{m}^3$ değerleriyle oranı kur: $10^{-3} / 10^{-6}$ kaçtır?"
+        },
+        {
+         "text": "III için 3,6'nın çarpılacağı yönü düşün: m/s büyük birim midir, küçük birim mi?"
+        }
+       ],
+       "origin": {
+        "changes": "Worksteki dönüşümler (cm³ ↔ mL, g/cm³ ↔ kg/m³, m/s ↔ km/sa) özgün bir öncüllü soruda toplandı."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "FIZ_GIRIS_04",
+    "title": "Skaler ve vektörel",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Yön de önemliyse",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Skaler (yönsüz)",
+         "items": [
+          "Sayı + birim yeter",
+          "kütle, zaman, sıcaklık",
+          "enerji, özkütle, basınç",
+          "Temel büyüklüklerin **hepsi**"
+         ]
+        },
+        {
+         "title": "Vektörel (yönlü)",
+         "items": [
+          "Sayı + birim + **yön**",
+          "kuvvet, hız, ivme",
+          "yer değiştirme, ağırlık",
+          "Ok ile gösterilir"
+         ]
+        }
+       ]
+      },
+      "caption": "Kütle skalerdir (kg, eşit kollu terazi); ağırlık **vektöreldir** (N, dinamometre), $G = m \\cdot g$.",
+      "narration": "5 kg demek yeter, ama 5 N'luk kuvvet derken nereye doğru olduğunu da söylemelisin. Temel büyüklüklerin tamamı skalerdir; türetilmişlerin bir kısmı skaler (enerji, özkütle, basınç), bir kısmı vektöreldir (kuvvet, hız, ivme)."
+     },
+     {
+      "kind": "example",
+      "title": "Kütle ve ağırlık",
+      "example": "Kütlesi $60$ kg olan bir öğrencinin ağırlığı Dünya'da ($g = 10\\ \\text{m/s}^2$) ve Ay'da ($g \\approx 1{,}6\\ \\text{m/s}^2$) kaç N'dur?",
+      "explanation": "$G = m \\cdot g$ formülünü kullan.\nDünya: $60 \\cdot 10 = 600$ N.\nAy: $60 \\cdot 1{,}6 = 96$ N.\nKütle iki yerde de 60 kg'dır (skaler, madde miktarı); ağırlık ise çekim kuvvetidir (vektörel) ve çekim azaldığı için Ay'da küçülür. Kütle eşit kollu terazi, ağırlık dinamometre ile ölçülür."
+     },
+     {
+      "kind": "classify",
+      "title": "Skaler mi, vektörel mi?",
+      "prompt": "Her büyüklüğü uygun gruba yerleştir.",
+      "groups": [
+       {
+        "label": "Skaler",
+        "items": [
+         "Kütle",
+         "Zaman",
+         "Sıcaklık",
+         "Enerji",
+         "Özkütle",
+         "Basınç"
+        ]
+       },
+       {
+        "label": "Vektörel",
+        "items": [
+         "Kuvvet",
+         "Hız",
+         "İvme",
+         "Yer değiştirme",
+         "Ağırlık"
+        ]
+       }
+      ],
+      "explanation": "Yönü belirtmek gerekenler vektöreldir: kuvvet, hız, ivme, yer değiştirme, ağırlık. Geri kalanlar sayı ve birimle tamamlanır."
+     },
+     {
+      "kind": "visual",
+      "title": "Okun söyledikleri",
+      "visual": {
+       "kind": "vectors",
+       "view": [
+        0,
+        0,
+        11.5,
+        7
+       ],
+       "vectors": [
+        {
+         "from": [
+          1,
+          5
+         ],
+         "to": [
+          4,
+          5
+         ],
+         "label": "a",
+         "dashed": false
+        },
+        {
+         "from": [
+          6,
+          5
+         ],
+         "to": [
+          9,
+          5
+         ],
+         "label": "b",
+         "colour": "lesson",
+         "dashed": false
+        },
+        {
+         "from": [
+          10.5,
+          2.5
+         ],
+         "to": [
+          10.5,
+          5.5
+         ],
+         "label": "c",
+         "colour": "ink",
+         "dashed": false
+        },
+        {
+         "from": [
+          4,
+          3
+         ],
+         "to": [
+          1,
+          3
+         ],
+         "label": "e = −a",
+         "colour": "brand",
+         "dashed": false
+        },
+        {
+         "from": [
+          1,
+          1
+         ],
+         "to": [
+          7,
+          1
+         ],
+         "label": "d = 2a",
+         "colour": "lesson",
+         "dashed": false
+        }
+       ],
+       "grid": true
+      },
+      "caption": "Eşit vektörler: büyüklük, doğrultu ve yön **aynı**. Zıt vektör: büyüklük aynı, yön **ters**.",
+      "narration": "Vektör bir okla gösterilir: okun boyu büyüklüğü, ucu yönü söyler. Her kare bir birimdir. a ile b aynı uzunlukta ve aynı yöne bakar: eşittirler; okun nerede durduğu önemli değildir. e, a ile aynı uzunlukta ama ters yöndedir: e, a'nın zıttıdır ve $\\vec{e} = -\\vec{a}$ yazılır. c'nin boyu da 3 birimdir, yani büyüklüğü a'nınkine eşittir; ama yönü farklı olduğu için $\\vec{c} \\neq \\vec{a}$. d ise a ile aynı yönde ve iki kat uzundur: $\\vec{d} = 2\\vec{a}$."
+     },
+     {
+      "kind": "match",
+      "title": "Vektör gösterimleri",
+      "prompt": "Her gösterimi anlamıyla eşleştir.",
+      "titles": [
+       "Gösterim",
+       "Anlamı"
+      ],
+      "pairs": [
+       {
+        "left": "$\\vec{a} = \\vec{b}$",
+        "right": "Eşit vektörler"
+       },
+       {
+        "left": "$\\vec{a} = -\\vec{e}$",
+        "right": "Zıt vektörler"
+       },
+       {
+        "left": "$|\\vec{a}| = |\\vec{c}|$",
+        "right": "Büyüklükler eşit"
+       },
+       {
+        "left": "$\\vec{d} = 2\\vec{a}$",
+        "right": "Aynı yönlü, iki kat büyük"
+       }
+      ],
+      "explanation": "Çift çizgi büyüklüğü gösterir, eşit vektör için yön de aynı olmalıdır; başa konan − işareti yönün ters olduğunu söyler; katsayı büyüklüğü katlar."
+     },
+     {
+      "kind": "mistake",
+      "title": "Büyüklüğü eşit vektörler",
+      "wrong": "Büyüklükleri eşit olan iki vektör birbirine eşittir.",
+      "right": "Eşit olmaları için büyüklük, doğrultu ve yönün üçü de aynı olmalıdır; büyüklüğü eşit ama yönü farklı vektörler eşit değildir.",
+      "why": "Okların boyu aynı görününce eşit sanılır. Oysa vektörde yön de kimliğin parçasıdır: a ile c aynı büyüklükte olsa da farklı vektörlerdir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aşağıdakilerden hangisi vektörel bir büyüklüktür?",
+       "options": [
+        "Kütle",
+        "Sıcaklık",
+        "Enerji",
+        "Zaman",
+        "Ağırlık"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "Kütle madde miktarıdır, yönsüzdür; kütle ile ağırlığı karıştırmışsın.",
+        "Sıcaklık sayı ve birimle anlatılır, yönü yoktur.",
+        "Enerji skalerdir; yönü yoktur.",
+        "Zaman skalerdir; yönü yoktur.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Vektörel büyüklük sayı ve birimin yanında yön de ister: kuvvet, hız, ivme, yer değiştirme gibi."
+        },
+        {
+         "text": "Seçeneklerden hangisi bir kuvvettir? Dünya'nın cismi kendine çekmesini düşün."
+        }
+       ],
+       "origin": {
+        "changes": "Skaler-vektörel ayrımı kütle-ağırlık tuzağıyla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "I. Temel büyüklüklerin hepsi skalerdir.\nII. Türetilmiş büyüklüklerin hepsi vektöreldir.\nIII. Kütle skaler, ağırlık vektörel bir büyüklüktür.\n\nYargılarından hangileri doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız III",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "III'ü atladın: kütle skaler, ağırlık vektöreldir.",
+        "I'i atladın: yedi temel büyüklüğün hepsi skalerdir.",
+        "II'yi doğru sandın; enerji ve özkütle türetilmiş ama skalerdir.",
+        null,
+        "II'yi doğru sandın; türetilmişlerin bir kısmı skalerdir."
+       ],
+       "steps": [
+        {
+         "text": "I için yedi temel büyüklüğü düşün: hangisinin yönü var?"
+        },
+        {
+         "text": "II için enerji ve özkütleyi düşün: türetilmiş ama yönü var mı?"
+        },
+        {
+         "text": "III için kütle ve ağırlığın hangisinin bir kuvvet olduğunu hatırla."
+        }
+       ],
+       "origin": {
+        "changes": "MEB metnindeki skaler-vektörel ilkeleri özgün bir öncüllü soruya dönüştürüldü."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kareli düzlemde verilen $K$, $L$, $M$ ve $N$ vektörlerinden hangi ikisi birbirine **eşittir**?",
+       "figure": {
+        "kind": "vectors",
+        "view": [
+         0,
+         0,
+         10,
+         6
+        ],
+        "vectors": [
+         {
+          "from": [
+           1,
+           1
+          ],
+          "to": [
+           3,
+           2
+          ],
+          "label": "K",
+          "colour": "ink",
+          "dashed": false
+         },
+         {
+          "from": [
+           4,
+           3
+          ],
+          "to": [
+           6,
+           4
+          ],
+          "label": "L",
+          "colour": "ink",
+          "dashed": false
+         },
+         {
+          "from": [
+           7,
+           2
+          ],
+          "to": [
+           5,
+           1
+          ],
+          "label": "M",
+          "colour": "ink",
+          "dashed": false
+         },
+         {
+          "from": [
+           8,
+           3
+          ],
+          "to": [
+           9,
+           5
+          ],
+          "label": "N",
+          "colour": "ink",
+          "dashed": false
+         }
+        ],
+        "grid": true
+       },
+       "options": [
+        "K ve M",
+        "K ve L",
+        "L ve N",
+        "M ve N",
+        "K ve N"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "K ve M zıt vektörlerdir; büyüklükleri aynı ama yönleri ters.",
+        null,
+        "N'nin bileşenleri L'ninkinden farklı; yönleri aynı değil.",
+        "M ve N hem farklı yönde hem farklı bileşenli.",
+        "K ve N'nin boyları eşit ama yönleri farklı; eşit değiller."
+       ],
+       "steps": [
+        {
+         "text": "Eşit vektörler büyüklük, doğrultu ve yönce aynıdır. Her vektörün kaç birim sağa/sola ve yukarı/aşağı gittiğini say."
+        },
+        {
+         "text": "K iki birim sağa, bir birim yukarı gidiyor. Aynı hareketi yapan başka bir vektör var mı? Zıt yönlü olanı eşit sayma."
+        }
+       ],
+       "origin": {
+        "changes": "Eşit, zıt ve aynı büyüklükte farklı yönlü vektörler kareli düzlemde özgün olarak çizildi."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Bileşke vektör",
+      "text": "Birden fazla vektörün yerine kullanılabilecek tek vektöre **bileşke vektör** denir ve $\\vec{R}$ ile gösterilir. Vektörler sayılar gibi toplanmaz: yönleri de hesaba katılır. Örneğin 3 birim ve 5 birimlik iki vektör **aynı yöndeyse** bileşke 8 birim, **zıt yöndeyse** 2 birimdir.",
+      "narration": "Bileşke, sistemin tüm etkisini tek başına yapan vektördür. Aynı doğrultuda hesap kolaydır: aynı yönde ise büyüklükler toplanır, zıt yönde ise büyükten küçük çıkarılır ve bileşke büyük olanın yönünde olur."
+     },
+     {
+      "kind": "rule",
+      "title": "Vektör toplama yöntemleri",
+      "items": [
+       "**Uç uca ekleme**: ikinci vektörün başını birinci vektörün ucuna koy. Bileşke, ilk vektörün başından son vektörün ucuna çizilir. Üç ve daha çok vektörde de aynı.",
+       "**Paralelkenar**: iki vektörün başlangıcını aynı noktaya getir, paralelkenarı tamamla. Ortak noktadan çıkan **köşegen** bileşkedir.",
+       "**Aynı yönlü**: $R = F_1 + F_2$ (en büyük değer).",
+       "**Zıt yönlü**: $R = |F_1 - F_2|$ (en küçük değer); yönü büyük olanın yönündedir.",
+       "**Birbirine dik**: $R = \\sqrt{F_1^2 + F_2^2}$.",
+       "Aralarındaki açı ne olursa olsun: $|F_1 - F_2| \\le R \\le F_1 + F_2$."
+      ],
+      "narration": "Aradaki açı 0° ise (aynı yön) bileşke en büyük, 180° ise (zıt yön) en küçük değerini alır. Açı büyüdükçe bileşke küçülür. Bu yüzden 'bileşke şu değer olabilir mi?' sorularında yalnız bu iki sınıra bakılır."
+     },
+     {
+      "kind": "visual",
+      "title": "Uç uca ekleme",
+      "visual": {
+       "kind": "vectors",
+       "view": [
+        0,
+        0,
+        7,
+        6
+       ],
+       "vectors": [
+        {
+         "from": [
+          1,
+          1
+         ],
+         "to": [
+          4,
+          1
+         ],
+         "label": "a",
+         "colour": "lesson",
+         "dashed": false
+        },
+        {
+         "from": [
+          4,
+          1
+         ],
+         "to": [
+          4,
+          5
+         ],
+         "label": "b",
+         "colour": "ink",
+         "dashed": false
+        },
+        {
+         "from": [
+          1,
+          1
+         ],
+         "to": [
+          4,
+          5
+         ],
+         "label": "R",
+         "colour": "brand",
+         "dashed": false
+        }
+       ],
+       "grid": true
+      },
+      "caption": "a ve b uç uca eklenir; R, a'nın başından b'nin ucuna çizilir: $R = \\sqrt{3^2 + 4^2} = 5$ birim.",
+      "narration": "a 3 birim yatay, b 4 birim düşeydir ve birbirine diktir. R bu iki vektörün oluşturduğu dik üçgenin hipotenüsüdür: $R = \\sqrt{9 + 16} = 5$ birim."
+     },
+     {
+      "kind": "predict",
+      "title": "Zıt yönlü kuvvetler",
+      "context": "Aynı doğrultuda, zıt yönlere etki eden 7 N ve 3 N'luk iki kuvvet var.",
+      "prompt": "Bileşke 4 N'dur ve 7 N'luk kuvvetin yönündedir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Zıt yönlü kuvvetlerin bileşkesi büyükten küçüğün çıkarılmasıyla bulunur: $7 - 3 = 4$ N. Yön, büyük olan kuvvetin yönüdür."
+     },
+     {
+      "kind": "visual",
+      "title": "Paralelkenar yöntemi",
+      "visual": {
+       "kind": "vectors",
+       "view": [
+        0,
+        0,
+        9,
+        6
+       ],
+       "vectors": [
+        {
+         "from": [
+          1,
+          1
+         ],
+         "to": [
+          5,
+          1
+         ],
+         "label": "a",
+         "colour": "lesson",
+         "dashed": false
+        },
+        {
+         "from": [
+          1,
+          1
+         ],
+         "to": [
+          3,
+          4
+         ],
+         "label": "b",
+         "colour": "ink",
+         "dashed": false
+        },
+        {
+         "from": [
+          5,
+          1
+         ],
+         "to": [
+          7,
+          4
+         ],
+         "dashed": true,
+         "colour": "ink",
+         "label": "b"
+        },
+        {
+         "from": [
+          3,
+          4
+         ],
+         "to": [
+          7,
+          4
+         ],
+         "dashed": true,
+         "colour": "ink",
+         "label": "a"
+        },
+        {
+         "from": [
+          1,
+          1
+         ],
+         "to": [
+          7,
+          4
+         ],
+         "label": "R",
+         "colour": "brand",
+         "dashed": false
+        }
+       ],
+       "grid": true
+      },
+      "caption": "Ortak başlangıçtan çıkan a ve b ile paralelkenar tamamlanır; köşegen R bileşkedir.",
+      "narration": "Her iki vektörün başı aynı noktaya getirilmiş, kesikli çizgilerle paralelkenar tamamlanmıştır. Ortak noktadan karşı köşeye çizilen R, a ile b'nin bileşkesidir. Kare sayarsak a (4, 0), b (2, 3) bileşenli olduğundan R (6, 3) bileşenli çıkar."
+     },
+     {
+      "kind": "example",
+      "title": "3 N ve 5 N'luk kuvvetler",
+      "example": "Büyüklükleri $3$ N ve $5$ N olan iki kuvvetin bileşkesi en çok ve en az kaç N olabilir?",
+      "explanation": "Aynı yönde: $R_{en\\ büyük} = 3 + 5 = 8$ N.\nZıt yönde: $R_{en\\ küçük} = 5 - 3 = 2$ N.\nAradaki açıya göre bileşke bu iki değer arasında kalır: $2\\ \\text{N} \\le R \\le 8\\ \\text{N}$. Örneğin kuvvetler dik ise $R = \\sqrt{3^2 + 5^2} = \\sqrt{34} \\approx 5{,}8$ N olur."
+     },
+     {
+      "kind": "multi",
+      "title": "Bileşke olabilir mi?",
+      "stem": "Büyüklükleri $5$ N ve $12$ N olan iki kuvvetin bileşkesi aşağıdakilerden hangileri olabilir?",
+      "options": [
+       "6 N",
+       "8 N",
+       "10 N",
+       "17 N",
+       "18 N"
+      ],
+      "answers": [
+       1,
+       2,
+       3
+      ],
+      "choiceFeedback": [
+       "En küçük bileşke $12 - 5 = 7$ N; 6 N bu sınırın altında kalır.",
+       null,
+       null,
+       null,
+       "En büyük bileşke $5 + 12 = 17$ N; 18 N bu sınırın üstünde kalır."
+      ],
+      "explanation": "Bileşke $7\\ \\text{N} \\le R \\le 17\\ \\text{N}$ aralığındadır. Bu aralıktaki 8, 10 ve 17 N olabilir; 6 ve 18 N olamaz."
+     },
+     {
+      "kind": "blank",
+      "title": "Dik kuvvetlerin bileşkesi",
+      "prompt": "Aynı noktaya birbirine dik etki eden $6$ N ve $8$ N'luk iki kuvvetin bileşkesinin büyüklüğünü bul.",
+      "before": "$R = \\sqrt{6^2 + 8^2} =$",
+      "after": "N",
+      "answers": [
+       "10"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 10,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "14",
+        "feedback": "Kuvvetleri düz toplamışsın; bu, aynı yönlü kuvvetlerin bileşkesidir. Dik kuvvetlerde karelerin toplamının karekökü alınır."
+       }
+      ],
+      "explanation": "$R = \\sqrt{36 + 64} = \\sqrt{100} = 10$ N (6-8-10 üçgeni, 3-4-5'in iki katı)."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Büyüklükleri $4$ N ve $7$ N olan iki kuvvetin bileşkesi aşağıdakilerden hangisi **olamaz**?",
+       "options": [
+        "$2$ N",
+        "$3$ N",
+        "$7$ N",
+        "$10$ N",
+        "$11$ N"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "Zıt yönde bileşke tam 3 N olur; bu değer olabilir.",
+        "Aradaki açı uygun seçilirse 7 N bileşke elde edilir; bu değer olabilir.",
+        "Bu değer en küçük ve en büyük sınır arasında kalır; olabilir.",
+        "Aynı yönde bileşke tam 11 N olur; bu değer olabilir."
+       ],
+       "steps": [
+        {
+         "text": "İki kuvvetin bileşkesinin en büyüğü aynı yönde, en küçüğü zıt yönde olduğunda bulunur."
+        },
+        {
+         "text": "En büyük değer $4 + 7$, en küçük değer $7 - 4$ kadardır; bileşke bu iki değerin arasında kalır."
+        },
+        {
+         "text": "Seçeneklerden hangisi bu aralığın dışında kalıyor?"
+        }
+       ],
+       "origin": {
+        "changes": "Bileşkenin alabileceği değer aralığı yeni sayılarla ve 'olamaz' kökle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kareli düzlemde uç uca eklenmiş $K$, $L$ ve $M$ vektörlerinin bileşkesinin büyüklüğü kaç birimdir?",
+       "figure": {
+        "kind": "vectors",
+        "view": [
+         0,
+         0,
+         7,
+         6
+        ],
+        "vectors": [
+         {
+          "from": [
+           1,
+           1
+          ],
+          "to": [
+           5,
+           1
+          ],
+          "label": "K",
+          "colour": "ink",
+          "dashed": false
+         },
+         {
+          "from": [
+           5,
+           1
+          ],
+          "to": [
+           5,
+           4
+          ],
+          "label": "L",
+          "colour": "lesson",
+          "dashed": false
+         },
+         {
+          "from": [
+           5,
+           4
+          ],
+          "to": [
+           1,
+           4
+          ],
+          "label": "M",
+          "colour": "brand",
+          "dashed": false
+         }
+        ],
+        "grid": true
+       },
+       "options": [
+        "$1$",
+        "$3$",
+        "$5$",
+        "$7$",
+        "$11$"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "$4 - 3$ gibi bir çıkarma yapmışsın; vektörlerin yönlerini tam hesaba katmadın.",
+        null,
+        "3-4-5 üçgenini hatırlayıp K ve L'yi dik toplamışsın; M'nin K'yı götürdüğünü atladın.",
+        "$4 + 3$ gibi büyüklükleri düz toplamışsın.",
+        "Üç vektörün boylarını düz toplamışsın ($4 + 3 + 4$); yönler hesaba katılmadı."
+       ],
+       "steps": [
+        {
+         "text": "Uç uca eklenen vektörlerin bileşkesi, ilk vektörün başından son vektörün ucuna çizilir."
+        },
+        {
+         "text": "Her vektörü yatay ve düşey bileşenlerine ayır: K sağa 4, L yukarı 3, M sola kaç birim gidiyor?"
+        },
+        {
+         "text": "Yatay bileşenleri topla, düşey bileşenleri topla; kalan vektörün uzunluğunu bul."
+        }
+       ],
+       "origin": {
+        "changes": "Üç vektörün uç uca toplanması kareli düzlemde özgün olarak çizildi; yatay bileşenler birbirini götürür."
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Fizik madde, enerji, uzay ve zamanı **gözlem ve deneyle** inceler; bilimsel bilgi sınanabilir, nesnel, birikimli ve değişebilirdir.",
+    "Hipotez sınanabilir tahmin, teori olayı açıklayan model, kanun düzenli ilişkiyi tanımlayan ifadedir.",
+    "Sistematik hata aleti düzelterek, rastgele hata tekrar ve ortalamayla azaltılır.",
+    "Mekanik: statik, dinamik, kinematik; güneş paneli ve pil katıhâl fiziğine girer.",
+    "Yedi temel büyüklük ve SI birimleri; önekler: G $10^9$, M $10^6$, k $10^3$, c $10^{-2}$, m $10^{-3}$, µ $10^{-6}$, n $10^{-9}$.",
+    "km/sa ÷ 3,6 = m/s; $1\\ \\text{cm}^3 = 1\\ \\text{mL}$; $1\\ \\text{g/cm}^3 = 1000\\ \\text{kg/m}^3$.",
+    "Skaler: sayı + birim; vektörel: **yön** de gerekir. Aynı yönde büyüklükler toplanır, zıt yönde çıkarılır.",
+    "Bileşke aralığı: $|F_1 - F_2| \\le R \\le F_1 + F_2$."
+   ],
+   "warnings": [
+    "Sıcaklığın SI birimi **kelvin**, derece Celsius değil.",
+    "Birim çevirmeden işlem yapma: dakika, kilometre ve saat SI birimi değildir.",
+    "Kütle skaler, **ağırlık vektörel**; büyüklüğü eşit ama yönü farklı vektörler **eşit değildir**.",
+    "Ortalama almak sistematik hatayı gidermez; yalnız rastgele hatayı azaltır."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Evde ölçebildiğin **beş büyüklüğü** yaz; her birinin SI birimini ve ölçen aletini ekle.",
+    "Yedi temel büyüklüğü ve birimlerini **ezbere** yaz; kütle ile ağırlığın farkını bir cümleyle anlat.",
+    "Uygulamada Fizik Bilimine Giriş testinden **20 soru** çöz."
+   ]
+  }
+ }
+}

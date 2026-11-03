@@ -9,7 +9,7 @@ import {Text} from '../../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY} from '../../../../Configurations/BrandTypography';
 import {COURSE_DESIGN} from '../../../../Courses/CourseDesign';
 import type {LessonScript} from '../../../../Courses/LessonScript';
-import {textWidth} from '../../../../Images/Components/TextMeasure';
+import {textWidth} from '../../../../Components/Typography/TextMeasure';
 import {CHROME_HEIGHT, SPACING} from '../../../../Themes/DesignTokens';
 import {useTheme} from '../../../../Themes/ThemeContext';
 

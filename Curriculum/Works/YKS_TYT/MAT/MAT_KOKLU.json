@@ -14,23 +14,56 @@
  "sourceScripts": [
   "Curriculum/Scripts/YKS_TYT/MAT/MAT_KOKLU.json"
  ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/YKS/TYT/KonuAnlatimi/MAT/MAT_KOKLU.json (MEB OGM Temel Matematik konu anlatımı)",
+   "EgitimVerileri/YKS/TYT/CikmisSorular/MAT/MAT_KOKLU.json (ÖSYM 2018-2026)",
+   "Curriculum/Scripts/YKS_TYT/MAT/MAT_KOKLU.json"
+  ],
+  "additions": [
+   {
+    "note": "1'den 20'ye tam kareler ve 1'den 10'a tam küpler tablosunu, √2 ≈ 1,41, √3 ≈ 1,73, √5 ≈ 2,24 yaklaşık değerlerini ver.",
+    "done": "Kök ve tanımlılık bölümüne üç tablo kartı eklendi: 1-20 tam kareler, 1-10 tam küpler ve √2, √3, √5 yaklaşık değerleri. Ardından bu değerleri kullandıran bir eşleştirme kartı ve MEB'in yaklaşık değer formülü geldi."
+   },
+   {
+    "note": "İç içe kökleri ekle: √(a + 2√b) = √x + √y, burada x + y = a ve x · y = b; örnekler.",
+    "done": "Eşlenik bölümüne 'İç içe kökler' kuralı (formül görselli), üç çözümlü örnek, eşleştirme kartı ve bir TYT tarzı soru eklendi."
+   },
+   {
+    "note": "Tek dereceli kökün içinin negatif olabileceğini (∛−8 = −2) ve √(x²) = |x| kuralının işaretli ifadelerde kullanımını örnekle.",
+    "done": "Kök ve tanımlılık bölümüne gerçel sayı sınıflama kartı, ∛−125 ve işaretli |x| örneği, 'karekök ile kare birbirini götürür' hata kartı ve 2 < x < 5 için işaretli |x| hesabı eklendi."
+   }
+  ],
+  "fixes": [
+   "'Kökleri sırala' tablosundaki '4√1 → √16' satırı yanıltıcıydı (4 sayısı √1 ile çarpılmış gibi görünüyordu); satır '4 → √16' yapıldı.",
+   "8·18/2 sorusunun ve 4/(√5−1) sorusunun şıkları büyüklük sırasına göre dizili değildi; şıklar küçükten büyüğe sıralandı ve cevap anahtarları yeniden hesaplanıp güncellendi.",
+   "Temel'de direk sorusu ve tanımlılık sorusu art arda aynı şıkka (C) denk geliyordu; tanımlılık sorusunun sayıları değiştirildi (3 ≤ x ≤ 8, cevap 6) ve cevap harfi dağılımı dengelendi.",
+   "'Çarpanlara ayırmayı bir sonraki derste göreceğiz' ve 'Cevabımız ...' gibi video sözleri yazılı anlatımdan çıkarıldı.",
+   "Özette 'Payda sadeleşmesini unutma.' ve '√9 tam olarak 3'tür; 3'ten küçük değildir.' uyarıları belirsizdi; açık uyarılarla değiştirildi.",
+   "Temel'de 'ÖSYM 2018'de buzdolabıyla sordu' denmişti; kaynaktaki 2018 sorusunun şekli ve şıkları doğrulanamadığı için soru tamamen özgün bırakıldı ve ÖSYM'ye atıf kaldırıldı.",
+   "Havuzdaki ilk soru kendi çözümünde 'seçeneklerde doğru yok' diyen tutarsız bir cevap anahtarı taşıdığı için kullanılmadı."
+  ]
+ },
  "lesson": {
   "hook": {
    "headline": "√2 + √3 = √5 mi? Hayır. Peki √12 + √27 kaç?",
-   "narration": "Karekök 2 artı karekök 3, karekök 5 eder mi? Etmez. Köklü sayılarda en sık hata, kökleri sıradan sayılar gibi toplamak. Ama karekök 12 artı karekök 27'yi kolayca toplayabilirsin: 5 karekök 3. ÖSYM bu konuda bir köklü sayının hangi iki tam sayı arasında olduğunu, bir sayıyı a kök b biçiminde yazmayı ve eşleniği soruyor. Bu derste kökün tanımını, kök dışına çıkarmayı, dört işlemi, eşleniği ve paydayı kökten kurtarmayı adım adım göreceğiz."
+   "narration": "$\\sqrt{2} + \\sqrt{3}$ toplamı $\\sqrt{5}$ eder mi? Etmez; köklü sayılarda en sık hata, kökleri sıradan sayılar gibi toplamaktır. Oysa $\\sqrt{12} + \\sqrt{27}$ toplamını kolayca bulabilirsin: $5\\sqrt{3}$. Bu derste kökü, kök dışına çıkarmayı, dört işlemi, eşleniği, iç içe kökleri ve köklü denklemleri adım adım çözeceksin."
   },
   "objectives": [
+   "Karekökün tanımını, tek ve çift dereceli kök farkını ve $\\sqrt{x^2} = |x|$ kuralını kullanmak",
    "Köklü bir sayının hangi tam sayılar arasında olduğunu bulmak",
-   "Kök dışına çıkarıp a√b biçiminde yazmak",
+   "Kök dışına çıkarıp kök içine alarak $a\\sqrt{b}$ biçiminde yazmak ve sıralama yapmak",
    "Köklü sayılarda dört işlemi doğru yapmak",
-   "Eşlenikle paydayı kökten kurtarmak"
+   "Eşlenikle paydayı kökten kurtarmak",
+   "$\\sqrt{a \\pm 2\\sqrt{b}}$ biçimindeki iç içe kökleri sadeleştirmek",
+   "Köklü denklemi çözüp yabancı kökü ayıklamak"
   ],
   "sections": [
    {
     "subtopic": "MAT_KOKLU_01",
     "subtopics": [],
-    "title": "Kök ve tanımlılık",
-    "narration": "Karekök a, karesi a olan negatif olmayan sayıdır. Kök, üssün tersidir.",
+    "title": "Kök, tanımlılık ve yerini bulma",
+    "narration": "",
     "cards": [
      {
       "kind": "rule",
@@ -39,10 +72,247 @@
        "$\\sqrt{a}$: karesi $a$ olan **negatif olmayan** sayı. $\\sqrt{9} = 3$, $-3$ değil.",
        "**Çift dereceli** kökün içi negatif olamaz: $\\sqrt{-4}$ gerçel sayı değildir.",
        "**Tek dereceli** kökün içi negatif olabilir: $\\sqrt[3]{-8} = -2$.",
-       "$\\sqrt[n]{a^m} = a^{\\frac{m}{n}}$: kök, kesirli üstür. $\\sqrt{x^2} = |x|$."
+       "$\\sqrt[n]{a^m} = a^{\\frac{m}{n}}$: kök, kesirli üstür. $n$ çift iken $\\sqrt[n]{x^n} = |x|$, $n$ tek iken $\\sqrt[n]{x^n} = x$."
       ],
-      "beats": [],
-      "narration": "Karekök a, karesi a olan negatif olmayan sayıdır. Karekök 9, 3'tür; eksi 3 değil. Karekök gibi çift dereceli bir kökün içi negatif olamaz; karekök eksi 4 bir gerçel sayı değildir. Küpkök gibi tek dereceli kökün içi ise negatif olabilir: küpkök eksi 8, eksi 2'dir. Son olarak kök, kesirli bir üstür: a üssü m'nin n'inci dereceden kökü, a üssü m bölü n. Bu yüzden x karenin karekökü, x'in mutlak değeridir."
+      "narration": "Karekök $a$, karesi $a$ olan **negatif olmayan** sayıdır: $\\sqrt{9} = 3$ olur, $-3$ olmaz. Çift dereceli bir kökün içi negatif olamaz; $\\sqrt{-4}$ gerçel sayı değildir, çünkü hiçbir gerçel sayının karesi negatif çıkmaz. Tek dereceli kökte durum farklıdır: $\\sqrt[3]{-8} = -2$, çünkü $(-2)^3 = -8$. Kök, kesirli bir üstür: $\\sqrt[n]{a^m} = a^{m/n}$. Bu yüzden $\\sqrt{x^2}$ ifadesi $x$ değil $|x|$'tir; $x$ negatif olsa bile karekök negatif çıkmaz."
+     },
+     {
+      "kind": "classify",
+      "title": "Gerçel sayı mı, değil mi?",
+      "prompt": "Her ifadeyi gerçel sayı olup olmamasına göre grupla.",
+      "groups": [
+       {
+        "label": "Gerçel sayıdır",
+        "items": [
+         "$\\sqrt{16}$",
+         "$\\sqrt[3]{-27}$",
+         "$\\sqrt[5]{-32}$",
+         "$\\sqrt{(-3)^2}$"
+        ]
+       },
+       {
+        "label": "Gerçel sayı değildir",
+        "items": [
+         "$\\sqrt{-9}$",
+         "$\\sqrt[4]{-1}$"
+        ]
+       }
+      ],
+      "explanation": "Çift dereceli kökün içi negatifse ($\\sqrt{-9}$, $\\sqrt[4]{-1}$) gerçel sayı yoktur. Tek dereceli kökler negatif içi alır: $\\sqrt[3]{-27} = -3$, $\\sqrt[5]{-32} = -2$. $\\sqrt{(-3)^2} = \\sqrt{9} = 3$ içi pozitif olduğu için tanımlıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Tek dereceli kök ve mutlak değer",
+      "example": "$\\sqrt[3]{-125} + \\sqrt{(-4)^2} - \\sqrt[4]{(-2)^4}$ işleminin sonucu kaçtır?",
+      "explanation": "Tek dereceli kökün içi negatif olabilir: $\\sqrt[3]{-125} = -5$. Çift dereceli kökte sonuç negatif olamaz: $\\sqrt{(-4)^2} = |-4| = 4$ ve $\\sqrt[4]{(-2)^4} = |-2| = 2$. Toplam: $-5 + 4 - 2 = -3$.",
+      "narration": "Kural: $n$ tek ise $\\sqrt[n]{x^n} = x$, $n$ çift ise $\\sqrt[n]{x^n} = |x|$. İşaretli ifadelerde önce kökün içindeki ifadenin işaretini belirlersin. Örneğin $x < 2$ ise $x - 2$ negatiftir; bu yüzden $\\sqrt{(x-2)^2} = |x-2| = 2 - x$ olur. $x > 2$ ise $\\sqrt{(x-2)^2} = x - 2$ olur. Mutlak değerden çıkarken sonuç her zaman sıfır ya da pozitiftir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Kök ile kare götürmez",
+      "wrong": "$\\sqrt{(-3)^2} = -3$ olur, çünkü kök ile kare birbirini götürür.",
+      "right": "$\\sqrt{(-3)^2} = \\sqrt{9} = 3 = |-3|$.",
+      "why": "Karekökün sonucu negatif olamaz. Çift dereceli kök ile çift kuvvet birbirini götürürken ortaya mutlak değer çıkar: $\\sqrt{x^2} = |x|$."
+     },
+     {
+      "kind": "blank",
+      "title": "İşaretli ifadede mutlak değer",
+      "prompt": "$2 < x < 5$ için ifadenin değerini yaz.",
+      "before": "$\\sqrt{(x-2)^2} + \\sqrt{(x-5)^2} =$",
+      "answers": [
+       "3"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 3,
+       "tolerance": 0
+      },
+      "explanation": "$x - 2 > 0$ olduğundan $|x-2| = x-2$. $x - 5 < 0$ olduğundan $|x-5| = 5-x$. Toplam $(x-2) + (5-x) = 3$; sonuç $x$'e bağlı değildir."
+     },
+     {
+      "kind": "visual",
+      "title": "Tam kareler: 1'den 20'ye",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "n",
+        "n²",
+        "n",
+        "n²",
+        "n",
+        "n²"
+       ],
+       "rows": [
+        [
+         "1",
+         "1",
+         "8",
+         "64",
+         "15",
+         "225"
+        ],
+        [
+         "2",
+         "4",
+         "9",
+         "81",
+         "16",
+         "256"
+        ],
+        [
+         "3",
+         "9",
+         "10",
+         "100",
+         "17",
+         "289"
+        ],
+        [
+         "4",
+         "16",
+         "11",
+         "121",
+         "18",
+         "324"
+        ],
+        [
+         "5",
+         "25",
+         "12",
+         "144",
+         "19",
+         "361"
+        ],
+        [
+         "6",
+         "36",
+         "13",
+         "169",
+         "20",
+         "400"
+        ],
+        [
+         "7",
+         "49",
+         "14",
+         "196",
+         "–",
+         "–"
+        ]
+       ]
+      },
+      "caption": "Kök içini bu sayılarla karşılaştırarak köklü sayının yerini bul.",
+      "narration": "Köklü sayılarla hızlı çalışmak için tam kareleri ezbere bil. Karekökün tam sayı olması için kök içinin bu tablodaki bir kare olması gerekir; değilse sayı iki tam karenin arasında kalır. Sonu 2, 3, 7 ya da 8 ile biten bir sayı hiçbir zaman tam kare değildir."
+     },
+     {
+      "kind": "visual",
+      "title": "Tam küpler: 1'den 10'a",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "n",
+        "n³",
+        "n",
+        "n³"
+       ],
+       "rows": [
+        [
+         "1",
+         "1",
+         "6",
+         "216"
+        ],
+        [
+         "2",
+         "8",
+         "7",
+         "343"
+        ],
+        [
+         "3",
+         "27",
+         "8",
+         "512"
+        ],
+        [
+         "4",
+         "64",
+         "9",
+         "729"
+        ],
+        [
+         "5",
+         "125",
+         "10",
+         "1000"
+        ]
+       ]
+      },
+      "caption": "Küpkök sorularında ilk bakacağın tablo.",
+      "narration": "Küpkökler için de aynı mantık geçerlidir. Bazı sayılar hem tam kare hem tam küptür: $64$ için $\\sqrt{64} = 8$, $\\sqrt[3]{64} = 4$ ve $\\sqrt[6]{64} = 2$ olur. $729$ da böyledir: $729 = 27^2 = 9^3$."
+     },
+     {
+      "kind": "visual",
+      "title": "Sık kullanılan yaklaşık değerler",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sayı",
+        "Yaklaşık değer",
+        "Hangi tam sayılar arasında"
+       ],
+       "rows": [
+        [
+         "$\\sqrt{2}$",
+         "≈ 1,41",
+         "1 ile 2"
+        ],
+        [
+         "$\\sqrt{3}$",
+         "≈ 1,73",
+         "1 ile 2"
+        ],
+        [
+         "$\\sqrt{5}$",
+         "≈ 2,24",
+         "2 ile 3"
+        ]
+       ]
+      },
+      "caption": "$\\sqrt{8} = 2\\sqrt{2} \\approx 2{,}82$ ve $\\sqrt{12} = 2\\sqrt{3} \\approx 3{,}46$",
+      "narration": "Bu üç değer, kök dışına çıkardıktan sonra büyüklük tahmini yapmak için çok işe yarar: $\\sqrt{8} = 2\\sqrt{2}$ yaklaşık 2,82; $\\sqrt{12} = 2\\sqrt{3}$ yaklaşık 3,46; $\\sqrt{45} = 3\\sqrt{5}$ yaklaşık 6,72. Şıklar birbirine çok yakınsa tahmin yetmez; o zaman kökleri kök içine alıp içlerini karşılaştırırsın."
+     },
+     {
+      "kind": "match",
+      "title": "Tam kare ve tam küp kökleri",
+      "prompt": "Her köklü ifadeyi değeriyle eşleştir.",
+      "titles": [
+       "Köklü ifade",
+       "Değeri"
+      ],
+      "pairs": [
+       {
+        "left": "$\\sqrt{169}$",
+        "right": "13"
+       },
+       {
+        "left": "$\\sqrt[3]{343}$",
+        "right": "7"
+       },
+       {
+        "left": "$\\sqrt{225}$",
+        "right": "15"
+       },
+       {
+        "left": "$\\sqrt[3]{729}$",
+        "right": "9"
+       },
+       {
+        "left": "$\\sqrt{361}$",
+        "right": "19"
+       }
+      ],
+      "explanation": "$13^2 = 169$, $7^3 = 343$, $15^2 = 225$, $9^3 = 729$, $19^2 = 361$. Tabloyu bildikçe sorular hızlanır."
      },
      {
       "kind": "visual",
@@ -70,31 +340,7 @@
        "highlightColumn": 1
       },
       "caption": "$4 < 7 < 9$ olduğu için $2 < \\sqrt{7} < 3$.",
-      "beats": [
-       {
-        "narration": "7, 4 ile 9 arasında. 4'ün karekökü 2, 9'un karekökü 3.",
-        "show": [
-         "r1",
-         "r3"
-        ],
-        "focus": [
-         "r1",
-         "r3"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Öyleyse karekök 7, 2 ile 3 arasındadır. 7, 9'a daha yakın olduğu için karekök 7 de 3'e daha yakındır: yaklaşık 2,6.",
-        "show": [
-         "r2"
-        ],
-        "focus": [
-         "r2"
-        ],
-        "swap": []
-       }
-      ],
-      "narration": "Bir köklü sayının hangi tam sayılar arasında olduğunu bulmak için iki yanındaki tam kareye bakarsın."
+      "narration": "Bir köklü sayının hangi tam sayılar arasında olduğunu bulmak için kök içinin iki yanındaki tam karelere bakarsın: $7$, $4$ ile $9$ arasındadır; kökleri $2$ ve $3$ olduğundan $2 < \\sqrt{7} < 3$. Daha ince tahmin için MEB yöntemi: $a$'dan küçük en büyük tam kare $x$, büyük en küçük tam kare $y$ ise $\\sqrt{a} \\approx \\sqrt{x} + \\frac{a-x}{y-x}$. Burada $\\sqrt{7} \\approx 2 + \\frac{7-4}{9-4} = 2{,}6$ bulunur."
      },
      {
       "kind": "question",
@@ -109,37 +355,26 @@
         "$\\sqrt{10}$"
        ],
        "answer": 2,
+       "choiceFeedback": [
+        "$\\sqrt{5} \\approx 2{,}24$ olup 2,5'ten küçüktür; direk 2,5 m'den uzun olmalı.",
+        "$\\sqrt{6} \\approx 2{,}45$ hâlâ 2,5'in altında. Sınırı kareleri alarak kontrol et.",
+        null,
+        "$\\sqrt{9} = 3$ tam sınırdır; direk 3 m'den kısa olmalı, 3 m olamaz.",
+        "$\\sqrt{10}$, $\\sqrt{9} = 3$'ten büyüktür; direk 3 m'den uzun olur."
+       ],
        "steps": [
         {
-         "text": "$2{,}5 < x < 3$ → kareleri: $6{,}25 < x^2 < 9$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Boy, 2,5 ile 3 arasında. Hepsi pozitif olduğu için karelerini alabiliriz: 2,5'in karesi 6,25; 3'ün karesi 9. Kökün içi 6,25 ile 9 arasında olmalı."
+         "text": "Boy 2,5 ile 3 arasında. Pozitif sayıların karesini almak sıralamayı bozmaz; sınırların karesini hesapla."
         },
         {
-         "text": "5 ve 6 küçük; 9 sınırda (tam 3), 10 büyük.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "5 ve 6, 6,25'ten küçük. 9 tam sınırda; karekök 9, 3 eder ve 3'ten kısa değildir. 10 ise 9'dan büyük."
+         "text": "$2{,}5^2 = 6{,}25$ ve $3^2 = 9$ olduğundan kökün içi $6{,}25$ ile $9$ arasında olmalı."
         },
         {
-         "text": "$6{,}25 < 7 < 9$: $\\sqrt{7}$. Cevap **C**.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Yalnız 7, 6,25 ile 9 arasında. Cevabımız C."
+         "text": "Her şıkkın kök içini bu aralıkla karşılaştır; 9'un tam sınırda kaldığına dikkat et."
         }
        ],
-       "narration": "ÖSYM 2018'de bir buzdolabının yüksekliğiyle sordu. Kareleri karşılaştıralım.",
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2018'in \"verilen aralıktaki köklü sayı\" kalıbı örnek alındı, bağlam ve sınırlar özgün."
+        "changes": "'Verilen aralıktaki köklü sayı' kalıbı örnek alındı; bağlam (direk) ve sınırlar özgündür."
        }
       }
      },
@@ -147,46 +382,35 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$\\sqrt{x - 3} + \\sqrt{7 - x}$ ifadesini gerçel sayılarda **tanımlı** yapan kaç farklı $x$ tam sayısı vardır?",
+       "stem": "$\\sqrt{x - 3} + \\sqrt{8 - x}$ ifadesini gerçel sayılarda **tanımlı** yapan kaç farklı $x$ tam sayısı vardır?",
        "options": [
-        "3",
-        "4",
         "5",
         "6",
-        "7"
+        "7",
+        "8",
+        "9"
        ],
-       "answer": 2,
+       "answer": 1,
+       "choiceFeedback": [
+        "Uç değerlerden birini dışarıda bıraktın; kökün içi sıfır olabilir.",
+        null,
+        "Aralıktaki tam sayıları sayarken bir fazla saydın; değerleri tek tek yaz.",
+        "İki kökün koşulunu birlikte uygulamadığın için aralığı fazla geniş aldın.",
+        "Yalnız bir kökün koşuluna bakıp ikinci kökü atladığın için sonuç şişti."
+       ],
        "steps": [
         {
-         "text": "$x - 3 \\ge 0 \\Rightarrow x \\ge 3$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Birinci kökün içi x eksi üç, sıfır ya da pozitif olmalı; x üçten büyük ya da eşit."
+         "text": "Çift dereceli kökün içi sıfır ya da pozitif olmalı: $x - 3 \\ge 0$ koşulunu $x$ için çöz."
         },
         {
-         "text": "$7 - x \\ge 0 \\Rightarrow x \\le 7$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "İkinci kökün içi yedi eksi x, sıfır ya da pozitif olmalı; x yediden küçük ya da eşit."
+         "text": "İkinci kök için $8 - x \\ge 0$ koşulunu çöz; sonra iki koşulu aynı sayı doğrusunda birleştir."
         },
         {
-         "text": "$3 \\le x \\le 7$: $3, 4, 5, 6, 7$ → **5** tam sayı. Cevap **C**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "İki koşul birlikte: x üç ile yedi arasında, uçlar dahil. Tam sayılar üç, dört, beş, altı ve yedi; beş tane. Cevabımız C. Üçü seçen uçları dahil etmeyi unutmuştur; kökün içi sıfır olabilir."
+         "text": "Uç değerler dahildir, çünkü kökün içi 0 olabilir. Aralıktaki tam sayıları tek tek yazıp say."
         }
        ],
-       "narration": "Karekökün içi negatif olamaz; iki kökün içi de sıfır ya da pozitif olmalı.",
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki kökün tanımlılık kuralı iki köklü özgün bir ifadeyle soruldu."
+        "changes": "Dersteki tanımlılık kuralı iki köklü özgün bir ifadeyle soruldu."
        }
       }
      }
@@ -197,8 +421,8 @@
     "subtopics": [
      "MAT_KOKLU_03"
     ],
-    "title": "Kök dışına çıkarma",
-    "narration": "Kökün içindeki sayıyı bir tam kare ile başka bir sayının çarpımı olarak yazarsan tam kare kökün dışına çıkar.",
+    "title": "Kök dışına çıkarma ve kök içine alma",
+    "narration": "",
     "cards": [
      {
       "kind": "rule",
@@ -206,11 +430,32 @@
       "items": [
        "Kökün içinde **en büyük tam kareyi** ayır: $\\sqrt{72} = \\sqrt{36 \\cdot 2} = 6\\sqrt{2}$.",
        "Dışarıdaki sayı içeri **karesiyle** girer: $3\\sqrt{5} = \\sqrt{9 \\cdot 5} = \\sqrt{45}$.",
-       "$a\\sqrt{b}$ biçiminde $a$'nın karesi kökün içindeki sayıyı **bölmeli**.",
+       "$a\\sqrt{b}$ biçiminde yazılışta $a^2$, kökün içindeki sayıyı **tam bölmeli**.",
        "Küpkökte **küp** ayrılır: $\\sqrt[3]{54} = \\sqrt[3]{27 \\cdot 2} = 3\\sqrt[3]{2}$."
       ],
-      "beats": [],
-      "narration": "Kökün içinden en büyük tam kareyi ayırırsın: karekök 72, karekök 36 çarpı 2; 36'nın karekökü 6 dışarı çıkar: 6 karekök 2. Ters yönde, dışarıdaki sayı içeri karesiyle girer: 3 karekök 5, karekök 45'tir. Küpkökte ise küp ayrılır: küpkök 54, küpkök 27 çarpı 2; 3 dışarı çıkar."
+      "narration": "Kök dışına çıkarırken kökün içindeki sayıyı bir **tam kare** ile başka bir sayının çarpımı olarak yazarsın; tam karenin kökü dışarı çıkar: $\\sqrt{72} = \\sqrt{36 \\cdot 2} = 6\\sqrt{2}$. En büyük tam kareyi seçersen işlem tek adımda biter. Kök içine alırken tersini yaparsın: dışarıdaki sayı içeri **karesiyle** girer, $3\\sqrt{5} = \\sqrt{9 \\cdot 5} = \\sqrt{45}$. Bu yüzden $a\\sqrt{b}$ yazılışında $a^2$, kök içindeki sayıyı bölmek zorundadır. Küpkökte aynı iş tam küple yapılır: $\\sqrt[3]{54} = \\sqrt[3]{27 \\cdot 2} = 3\\sqrt[3]{2}$."
+     },
+     {
+      "kind": "blank",
+      "title": "Kök dışına çıkar",
+      "prompt": "Boşluğa gelen sayıyı yaz.",
+      "before": "$\\sqrt{98} =$",
+      "after": "$\\cdot \\sqrt{2}$",
+      "answers": [
+       "7"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 7,
+       "tolerance": 0
+      },
+      "explanation": "$98 = 49 \\cdot 2$ olduğundan $\\sqrt{98} = \\sqrt{49} \\cdot \\sqrt{2} = 7\\sqrt{2}$."
+     },
+     {
+      "kind": "example",
+      "title": "En büyük tam kareyi göremezsen",
+      "example": "$\\sqrt{450}$ sayısını $a\\sqrt{b}$ biçiminde yaz.",
+      "explanation": "En büyük tam kareyi hemen görmezsen adım adım çıkar: $\\sqrt{450} = \\sqrt{9 \\cdot 50} = 3\\sqrt{50} = 3\\sqrt{25 \\cdot 2} = 15\\sqrt{2}$. Doğrudan da yapılır: $450 = 225 \\cdot 2$, $\\sqrt{225} = 15$. Her iki yoldan da $15\\sqrt{2}$ bulunur."
      },
      {
       "kind": "visual",
@@ -231,38 +476,54 @@
          "$\\sqrt{18}$"
         ],
         [
-         "$4\\sqrt{1}$",
+         "4",
          "$\\sqrt{16}$"
         ]
        ],
        "highlightColumn": 1
       },
       "caption": "$4 < 3\\sqrt{2} < 2\\sqrt{5}$",
-      "beats": [
-       {
-        "narration": "Dışarıdaki sayıları kareleriyle içeri alırız. 2 karekök 5, karekök 20 olur. 3 karekök 2, karekök 18 olur. 4 de karekök 16'dır.",
-        "show": [
-         "r1",
-         "r2",
-         "r3"
-        ],
-        "focus": [
-         "r1",
-         "r2",
-         "r3"
-        ],
-        "swap": []
-       },
-       {
-        "narration": "Artık hepsi karekök; içi büyük olan büyüktür. 16 küçüktür 18 küçüktür 20. Sıralama: 4, sonra 3 karekök 2, en büyük 2 karekök 5.",
-        "show": [],
-        "focus": [
-         "r1"
-        ],
-        "swap": []
-       }
+      "narration": "Kök içine almanın en çok işe yaradığı yer sıralamadır. Dışarıdaki sayıları kareleriyle içeri alırsın: $2\\sqrt{5} = \\sqrt{20}$, $3\\sqrt{2} = \\sqrt{18}$, $4 = \\sqrt{16}$. Artık hepsi aynı dereceden kök olduğu için içi büyük olan büyüktür: $16 < 18 < 20$, yani $4 < 3\\sqrt{2} < 2\\sqrt{5}$."
+     },
+     {
+      "kind": "findError",
+      "title": "Hatayı bul",
+      "problem": "$3\\sqrt{3}$ ile $2\\sqrt{7}$ sayılarından hangisi büyüktür?",
+      "prompt": "Çözümde hangi satır yanlış?",
+      "steps": [
+       "$3\\sqrt{3} = \\sqrt{3^2 \\cdot 3} = \\sqrt{27}$",
+       "$2\\sqrt{7} = \\sqrt{2 \\cdot 7} = \\sqrt{14}$",
+       "$\\sqrt{27} > \\sqrt{14}$ olduğundan $3\\sqrt{3} > 2\\sqrt{7}$"
       ],
-      "narration": "Kök içine almanın en çok işe yaradığı yer sıralama. 2 karekök 5, 3 karekök 2 ve 4'ü sıralayalım."
+      "wrongStep": 1,
+      "choiceFeedback": [
+       "Bu satır doğru: 3'ün karesi olan 9, kök içine girer.",
+       null,
+       "Bu satır, önceki satırdaki değerle tutarlı; asıl hata ondan geliyor."
+      ],
+      "explanation": "Dışarıdaki sayı içeri **karesiyle** girer: $2\\sqrt{7} = \\sqrt{4 \\cdot 7} = \\sqrt{28}$. $27 < 28$ olduğundan $3\\sqrt{3} < 2\\sqrt{7}$ olur."
+     },
+     {
+      "kind": "concept",
+      "title": "Aynı sayı, farklı derece",
+      "text": "Kök içindeki sayı **1'den büyükse**, derece büyüdükçe kökün değeri küçülür: $\\sqrt{64} = 8$, $\\sqrt[3]{64} = 4$, $\\sqrt[6]{64} = 2$. Kök içi 0 ile 1 arasındaysa sıra tersine döner: $\\sqrt{0{,}25} = 0{,}5$ iken $\\sqrt[3]{0{,}25} \\approx 0{,}63$.",
+      "narration": "Dereceleri farklı kökleri sıralarken her birinin hangi iki tam sayı arasında olduğunu bul. Örneğin $\\sqrt[3]{123}$ için $64 < 123 < 125$ olduğundan $4 < \\sqrt[3]{123} < 5$; $\\sqrt{79}$ için $64 < 79 < 81$ olduğundan $8 < \\sqrt{79} < 9$; $\\sqrt[4]{234}$ için $81 < 234 < 256$ olduğundan $3 < \\sqrt[4]{234} < 4$. Sıralama $\\sqrt[4]{234} < \\sqrt[3]{123} < \\sqrt{79}$ olur."
+     },
+     {
+      "kind": "predict",
+      "title": "Hangisi büyük?",
+      "context": "$\\sqrt{10}$ ile $\\sqrt[3]{10}$",
+      "prompt": "Bu iki sayıdan hangisi daha büyüktür?",
+      "choices": [
+       "$\\sqrt{10}$",
+       "$\\sqrt[3]{10}$"
+      ],
+      "answer": 0,
+      "explanation": "Kök içi 10, yani 1'den büyük. Bu durumda derecesi küçük olan kök büyüktür: $\\sqrt{10} \\approx 3{,}16$, $\\sqrt[3]{10} \\approx 2{,}15$.",
+      "choiceFeedback": [
+       null,
+       "Küpkök çoğu zaman 'daha büyük dereceli, daha büyük' gibi sezilir ama kök içi 1'den büyükse derece büyüdükçe değer küçülür."
+      ]
      },
      {
       "kind": "question",
@@ -277,37 +538,62 @@
         "181"
        ],
        "answer": 3,
+       "choiceFeedback": [
+        "Bu toplam olabilir: $a = 6$ için $b = 5$.",
+        "Bu toplam olabilir: $a = 3$ için $b = 20$.",
+        "Bu toplam olabilir: $a = 2$ için $b = 45$.",
+        null,
+        "Bu toplam olabilir: $a = 1$ için $b = 180$."
+       ],
        "steps": [
         {
-         "text": "$180 = 2^2 \\cdot 3^2 \\cdot 5 = 36 \\cdot 5$: $a^2$, 180'i bölen bir tam kare olmalı → $a \\in \\{1, 2, 3, 6\\}$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "180, 2 kare çarpı 3 kare çarpı 5. a dışarıda olduğuna göre a kare, 180'i bölen bir tam kare olmalı: 1, 4, 9 ya da 36. Yani a 1, 2, 3 ya da 6."
+         "text": "$a$ kök dışına çıkacağına göre $a^2$, 180'i tam bölmeli. 180'i asal çarpanlarına ayır: $2^2 \\cdot 3^2 \\cdot 5$."
         },
         {
-         "text": "$1\\sqrt{180}$, $2\\sqrt{45}$, $3\\sqrt{20}$, $6\\sqrt{5}$ → toplamlar 181, 47, 23, 11.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "a 1 ise b 180, toplam 181. a 2 ise b 45, toplam 47. a 3 ise b 20, toplam 23. a 6 ise b 5, toplam 11."
+         "text": "180'i bölen tam kareler: 1, 4, 9 ve 36. Buna göre $a$ yalnız 1, 2, 3 ya da 6 olabilir."
         },
         {
-         "text": "60 hiçbirinde yok. Cevap **D**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Listede olmayan tek değer 60. Cevabımız D."
+         "text": "Her $a$ için $b = 180 \\div a^2$ değerini bul ve $a + b$ toplamlarını yaz; şıklardan hangisi listede yok?"
         }
        ],
-       "narration": "ÖSYM 2023'te bir karenin alanıyla sordu. Bütün yazılışları bulalım.",
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2023'ün \"a√b biçiminde yazılışlar, toplam hangisi olamaz\" kalıbı örnek alındı, sayı ve bağlam özgün."
+        "changes": "ÖSYM 2023'ün 'a√b biçiminde yazılışlar, toplam hangisi olamaz' kalıbı örnek alındı; sayılar ve anlatım özgündür."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$a = \\sqrt{300}$ ve $b$ pozitif bir köklü sayıdır; $a$ ile $b$ sayılarının ikisi de tam sayı değildir. $\\frac{a}{b}$ tam sayı olduğuna göre $b$ aşağıdakilerden hangisi **olamaz**?",
+       "options": [
+        "$\\sqrt{3}$",
+        "$\\sqrt{12}$",
+        "$\\sqrt{27}$",
+        "$\\sqrt{75}$",
+        "$\\sqrt{300}$"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "$\\frac{\\sqrt{300}}{\\sqrt{3}} = \\sqrt{100} = 10$ tam sayıdır; bu $b$ olabilir.",
+        "$\\frac{\\sqrt{300}}{\\sqrt{12}} = \\sqrt{25} = 5$ tam sayıdır; bu $b$ olabilir.",
+        null,
+        "$\\frac{\\sqrt{300}}{\\sqrt{75}} = \\sqrt{4} = 2$ tam sayıdır; bu $b$ olabilir.",
+        "$\\frac{\\sqrt{300}}{\\sqrt{300}} = 1$ tam sayıdır; bu $b$ olabilir."
+       ],
+       "steps": [
+        {
+         "text": "$b = \\sqrt{k}$ ise $\\frac{a}{b} = \\sqrt{\\frac{300}{k}}$. Bu sayı tam sayı ise $\\frac{300}{k}$ bir tam kare olmalı."
+        },
+        {
+         "text": "$300 = 3 \\cdot 10^2$ olduğundan $\\frac{300}{k}$ yalnız 1, 4, 25 ya da 100 olabilir."
+        },
+        {
+         "text": "Her şıkkın kök içi $k$ için $\\frac{300}{k}$ değerini hesapla; tam kareye dönüşmeyeni ara."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2024'ün 'ikisi de tam sayı olmayan iki sayının oranı tam sayı olabilir' kalıbı örnek alındı; sayılar özgündür."
        }
       }
      },
@@ -324,37 +610,26 @@
         "$b < a < c$"
        ],
        "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$\\sqrt{17}$ ile $\\sqrt{18}$'in sırasını ters aldın.",
+        "Sıralamayı baştan sona ters yazdın; içi büyük olan kök büyüktür.",
+        "$\\sqrt{12}$ ile $\\sqrt{17}$'nin yerini değiştirdin.",
+        "$3\\sqrt{2}$'yi en küçük sandın; katsayıyı içeri alırken karesini almadığın için böyle çıkmış olabilir."
+       ],
        "steps": [
         {
-         "text": "$a = 2\\sqrt{3} = \\sqrt{4 \\cdot 3} = \\sqrt{12}$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Kökün dışındaki iki, içeri karesiyle girer: iki kök üç, kök içinde dört çarpı üç, yani kök on iki."
+         "text": "Hepsini aynı kök biçimine getir: dışarıdaki sayı içeri karesiyle girer. $2\\sqrt{3} = \\sqrt{4 \\cdot 3}$."
         },
         {
-         "text": "$b = 3\\sqrt{2} = \\sqrt{9 \\cdot 2} = \\sqrt{18}$; $c = \\sqrt{17}$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Üç kök iki de kök içinde dokuz çarpı iki, yani kök on sekiz. c zaten kök on yedi."
+         "text": "$3\\sqrt{2} = \\sqrt{9 \\cdot 2}$ ve $c$ zaten $\\sqrt{17}$. Üç sayının kök içlerini hesapla."
         },
         {
-         "text": "$\\sqrt{12} < \\sqrt{17} < \\sqrt{18}$ → $a < c < b$. Cevap **A**.",
-         "eliminate": [
-          "B",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Kök içleri on iki, on yedi ve on sekiz. İçi büyük olan kök büyüktür: a küçük c küçük b. Cevabımız A."
+         "text": "Kök dereceleri eşit olduğunda içi büyük olan büyüktür; çıkan üç sayıyı küçükten büyüğe diz."
         }
        ],
-       "narration": "Katsayıları kökün içine alıp hepsini tek kök hâline getirelim.",
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki \"kökleri sırala: içeri al\" tablosu özgün sayılarla soruldu."
+        "changes": "Dersteki 'kökleri sırala: içeri al' tablosu özgün sayılarla soruldu."
        }
       }
      }
@@ -363,28 +638,154 @@
    {
     "subtopic": "MAT_KOKLU_04",
     "subtopics": [],
-    "title": "Dört işlem",
-    "narration": "Köklü sayılarda toplama ile çarpmanın kuralları çok farklıdır. En çok hata burada yapılır.",
+    "title": "Köklü sayılarda dört işlem",
+    "narration": "",
     "cards": [
      {
       "kind": "rule",
       "title": "Toplama ve çarpma",
       "items": [
        "**Toplama, çıkarma**: yalnız **kökün içi aynı** olanlar toplanır: $2\\sqrt{3} + 5\\sqrt{3} = 7\\sqrt{3}$.",
-       "**Çarpma, bölme**: kök dereceleri aynıysa içler çarpılır: $\\sqrt{2} \\cdot \\sqrt{8} = \\sqrt{16} = 4$.",
+       "**Çarpma, bölme**: kök dereceleri aynıysa içler çarpılır ya da bölünür: $\\sqrt{2} \\cdot \\sqrt{8} = \\sqrt{16} = 4$.",
        "Dereceler farklıysa önce **eşitle**: $\\sqrt{2} \\cdot \\sqrt[3]{2} = \\sqrt[6]{2^3} \\cdot \\sqrt[6]{2^2} = \\sqrt[6]{32}$.",
-       "Toplamadan önce **sadeleştir**: $\\sqrt{12} = 2\\sqrt{3}$, $\\sqrt{27} = 3\\sqrt{3}$."
+       "Toplamadan önce **sadeleştir**: $\\sqrt{12} = 2\\sqrt{3}$, $\\sqrt{27} = 3\\sqrt{3}$.",
+       "Kökün kökü: $\\sqrt[3]{\\sqrt{x}} = \\sqrt[6]{x}$; dereceler çarpılır.",
+       "Kuvvet kökün içine girer: $(\\sqrt[n]{x})^m = \\sqrt[n]{x^m}$."
       ],
-      "beats": [],
-      "narration": "Toplama ve çıkarmada yalnızca kökün içi aynı olan terimler toplanır: 2 karekök 3 artı 5 karekök 3, 7 karekök 3. İçleri farklıysa önce sadeleştir; çoğu zaman aynı köke dönüşürler. Çarpma ve bölmede ise kök dereceleri aynıysa içler çarpılır: karekök 2 çarpı karekök 8, karekök 16, yani 4. Dereceler farklıysa önce dereceleri eşitlersin."
+      "narration": "Toplama ve çıkarmada yalnız kökün içi (ve derecesi) aynı olan terimler toplanır: $2\\sqrt{3} + 5\\sqrt{3} = 7\\sqrt{3}$. İçleri farklıysa önce sadeleştir; çoğu zaman terimler aynı köke dönüşür. Çarpma ve bölmede ise kök dereceleri aynıysa içler çarpılır ya da bölünür: $\\sqrt{2} \\cdot \\sqrt{8} = \\sqrt{16} = 4$. Dereceler farklıysa önce üslü yazıp ortak dereceye getirirsin. Kökün kökünde dereceler çarpılır: $\\sqrt[3]{\\sqrt{x}} = \\sqrt[6]{x}$."
      },
      {
       "kind": "mistake",
       "title": "Kökler toplanmaz",
       "wrong": "$\\sqrt{9} + \\sqrt{16} = \\sqrt{25} = 5$",
       "right": "$\\sqrt{9} + \\sqrt{16} = 3 + 4 = 7$",
-      "why": "Çarpmada $\\sqrt{a} \\cdot \\sqrt{b} = \\sqrt{ab}$ doğrudur; toplamada $\\sqrt{a} + \\sqrt{b} \\neq \\sqrt{a + b}$.",
-      "narration": "Kökleri içleriyle toplamak en sık hata. Karekök 9 artı karekök 16, karekök 25 değildir. 3 artı 4, 7 eder; karekök 25 ise 5. Çarpmada içleri birleştirebilirsin, toplamada asla."
+      "why": "Çarpmada $\\sqrt{a} \\cdot \\sqrt{b} = \\sqrt{ab}$ doğrudur; toplamada $\\sqrt{a} + \\sqrt{b} \\neq \\sqrt{a + b}$. İçleri toplamak yerine önce her kökü kendi başına hesapla ya da sadeleştir."
+     },
+     {
+      "kind": "predict",
+      "title": "Çarpmada içler birleşir",
+      "context": "$\\sqrt{2} \\cdot \\sqrt{8} = \\sqrt{16} = 4$",
+      "prompt": "Bu eşitlik doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Dereceler aynı olduğundan içler çarpılır: $2 \\cdot 8 = 16$ ve $\\sqrt{16} = 4$. Aynı işlemi toplamada yapamazsın; ama çarpmada kökleri birleştirmek her zaman serbesttir.",
+      "choiceFeedback": [
+       null,
+       "Çarpmada $\\sqrt{a} \\cdot \\sqrt{b} = \\sqrt{ab}$ kuralı doğrudur. Yanlış olan, aynı kuralı toplamaya taşımaktır."
+      ]
+     },
+     {
+      "kind": "match",
+      "title": "Sadeleştirip eşleştir",
+      "titles": [
+       "Köklü ifade",
+       "Sadeleşmiş hâli"
+      ],
+      "pairs": [
+       {
+        "left": "$\\sqrt{12}$",
+        "right": "$2\\sqrt{3}$"
+       },
+       {
+        "left": "$\\sqrt{27}$",
+        "right": "$3\\sqrt{3}$"
+       },
+       {
+        "left": "$\\sqrt{48}$",
+        "right": "$4\\sqrt{3}$"
+       },
+       {
+        "left": "$\\sqrt{75}$",
+        "right": "$5\\sqrt{3}$"
+       },
+       {
+        "left": "$\\sqrt{108}$",
+        "right": "$6\\sqrt{3}$"
+       }
+      ],
+      "explanation": "$12 = 4 \\cdot 3$, $27 = 9 \\cdot 3$, $48 = 16 \\cdot 3$, $75 = 25 \\cdot 3$, $108 = 36 \\cdot 3$. Hepsi $\\sqrt{3}$'ün katıdır, bu yüzden birbirleriyle toplanabilir."
+     },
+     {
+      "kind": "guided",
+      "title": "Adım adım toplama",
+      "stem": "$\\sqrt{50} - \\sqrt{18} + \\sqrt{8}$ işleminin sonucunu bul.",
+      "steps": [
+       {
+        "prompt": "$\\sqrt{50}$ ifadesini $a\\sqrt{2}$ biçiminde yazarsan hangisi olur?",
+        "choices": [
+         "$2\\sqrt{5}$",
+         "$5\\sqrt{2}$",
+         "$25\\sqrt{2}$"
+        ],
+        "answer": 1,
+        "choiceFeedback": [
+         "$50 = 25 \\cdot 2$; çıkan sayı $\\sqrt{25}$ olmalı, 2 değil.",
+         null,
+         "Dışarı çıkan sayı $\\sqrt{25} = 5$ olur; 25 içeride kalmış kare sayı."
+        ],
+        "explanation": "$\\sqrt{50} = \\sqrt{25 \\cdot 2} = 5\\sqrt{2}$."
+       },
+       {
+        "prompt": "$\\sqrt{18} = a\\sqrt{2}$ ise $a$ kaçtır?",
+        "before": "$a =$",
+        "answers": [
+         "3"
+        ],
+        "input": "number",
+        "numeric": {
+         "value": 3,
+         "tolerance": 0
+        },
+        "explanation": "$18 = 9 \\cdot 2$ olduğundan $\\sqrt{18} = 3\\sqrt{2}$."
+       },
+       {
+        "prompt": "$\\sqrt{8} = 2\\sqrt{2}$ olduğuna göre sonuç $k\\sqrt{2}$ biçimindedir. $k$ kaçtır?",
+        "before": "$k = 5 - 3 + 2 =$",
+        "answers": [
+         "4"
+        ],
+        "input": "number",
+        "numeric": {
+         "value": 4,
+         "tolerance": 0
+        },
+        "explanation": "Terimlerin hepsi $\\sqrt{2}$'li olduğundan katsayılar toplanır: $5 - 3 + 2 = 4$, sonuç $4\\sqrt{2}$."
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Dereceleri eşitleme",
+      "example": "$\\sqrt[3]{4} \\cdot \\sqrt{2}$ çarpımını $a\\sqrt[6]{2}$ biçiminde yaz.",
+      "explanation": "Üslü yaz: $\\sqrt[3]{4} = 2^{\\frac{2}{3}}$, $\\sqrt{2} = 2^{\\frac{1}{2}}$. Çarpımda üsler toplanır: $\\frac{2}{3} + \\frac{1}{2} = \\frac{7}{6}$. Buradan $2^{\\frac{7}{6}} = 2 \\cdot 2^{\\frac{1}{6}} = 2\\sqrt[6]{2}$. Köklerle: $\\sqrt[6]{16} \\cdot \\sqrt[6]{8} = \\sqrt[6]{128} = \\sqrt[6]{64 \\cdot 2} = 2\\sqrt[6]{2}$."
+     },
+     {
+      "kind": "multi",
+      "title": "Hangileri 6√2'ye eşit?",
+      "stem": "Aşağıdakilerden hangileri $6\\sqrt{2}$ sayısına eşittir?",
+      "options": [
+       "$\\sqrt{72}$",
+       "$\\sqrt{36} \\cdot \\sqrt{2}$",
+       "$\\sqrt{18} + \\sqrt{18}$",
+       "$\\sqrt{36 + 2}$",
+       "$2\\sqrt{12}$"
+      ],
+      "answers": [
+       0,
+       1,
+       2
+      ],
+      "choiceFeedback": [
+       null,
+       null,
+       null,
+       "Toplamada içler birleştirilemez: $\\sqrt{36} + \\sqrt{2} = 6 + \\sqrt{2}$ olurdu, $\\sqrt{38}$ ise hiçbiriyle eşit değildir.",
+       "$2\\sqrt{12} = 2 \\cdot 2\\sqrt{3} = 4\\sqrt{3}$; kök içi 2 değil 3 olduğu için $6\\sqrt{2}$ olamaz."
+      ],
+      "explanation": "$\\sqrt{72} = 6\\sqrt{2}$; $\\sqrt{36} \\cdot \\sqrt{2} = 6\\sqrt{2}$; $\\sqrt{18} + \\sqrt{18} = 3\\sqrt{2} + 3\\sqrt{2} = 6\\sqrt{2}$. Diğer iki ifade $6\\sqrt{2}$'ye eşit değildir."
      },
      {
       "kind": "question",
@@ -399,37 +800,23 @@
         "$5\\sqrt{3}$"
        ],
        "answer": 1,
+       "choiceFeedback": [
+        "İçleri doğrudan toplayıp çıkarmışsın: $12 + 27 - 48 = -9$ olur, bu yöntem yanlış. Önce sadeleştir.",
+        null,
+        "Katsayılardan birini yanlış bulmuşsun; $\\sqrt{48}$'deki tam karenin 16 olduğuna dikkat et.",
+        "Üçüncü terimin işaretini atlamış olabilirsin; terimlerin katsayılarını işaretleriyle işle.",
+        "$\\sqrt{12} + \\sqrt{27}$ toplamını bulup çıkarılan terimi unutmuşsun."
+       ],
        "steps": [
         {
-         "text": "$\\sqrt{12} = 2\\sqrt{3}$, $\\sqrt{27} = 3\\sqrt{3}$, $\\sqrt{48} = 4\\sqrt{3}$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Karekök 12, karekök 4 çarpı 3, yani 2 karekök 3. Karekök 27, karekök 9 çarpı 3, yani 3 karekök 3. Karekök 48, karekök 16 çarpı 3, yani 4 karekök 3."
+         "text": "Üç kökü de $a\\sqrt{3}$ biçimine getir: $12 = 4 \\cdot 3$, $27 = 9 \\cdot 3$, $48 = 16 \\cdot 3$."
         },
         {
-         "text": "$2\\sqrt{3} + 3\\sqrt{3} - 4\\sqrt{3} = (2 + 3 - 4)\\sqrt{3} = \\sqrt{3}$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Artık hepsinin içi aynı: 2 artı 3 eksi 4, 1. Sonuç karekök 3."
-        },
-        {
-         "text": "Cevap **B**.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Cevabımız B. İçleri doğrudan toplayıp çıkaran, 12 artı 27 eksi 48, eksi 9 bulur ve kökünü alamaz."
+         "text": "Dışarı çıkan sayılar 2, 3 ve 4. Artık içleri aynı; katsayıları işaretleriyle işleme koy."
         }
        ],
-       "narration": "Önce her kökü sadeleştirelim.",
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki köklü sayılarda toplama-çıkarma kalıbı örnek alındı, sayılar özgün."
+        "changes": "Havuzdaki toplama-çıkarma kalıbı örnek alındı; sayılar özgündür."
        }
       }
      },
@@ -439,44 +826,33 @@
        "style": "TYT tarzı",
        "stem": "$\\frac{\\sqrt{8} \\cdot \\sqrt{18}}{\\sqrt{2}}$ işleminin sonucu kaçtır?",
        "options": [
+        "$3\\sqrt{2}$",
+        "$4\\sqrt{2}$",
         "$6$",
-        "$6\\sqrt{2}$",
-        "$12$",
-        "$12\\sqrt{2}$",
-        "$3\\sqrt{2}$"
+        "$8$",
+        "$6\\sqrt{2}$"
        ],
-       "answer": 1,
+       "answer": 4,
+       "choiceFeedback": [
+        "Payda $\\sqrt{2}$'yi kökten kurtarırken pay ve paydayı $\\sqrt{2}$ ile çarpıp paydada kalan sayıya bölmeyi yanlış yaptın.",
+        "$12\\sqrt{2}$'yi bölerken yanlış bir sayı kullandın; paydada $(\\sqrt{2})^2$ kalır.",
+        "12'yi $\\sqrt{2}$'ye değil 2'ye bölmüşsün; $\\sqrt{2}$'ye bölmek paydayı kökten kurtarmayı gerektirir.",
+        "Kök içlerini yanlış birleştirdin; çarpmada içler çarpılır, bölmede bölünür.",
+        null
+       ],
        "steps": [
         {
-         "text": "$\\sqrt{8} \\cdot \\sqrt{18} = \\sqrt{144} = 12$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Kökler çarpılırken içleri çarpılır: sekiz çarpı on sekiz, 144; 144'ün karekökü on iki."
+         "text": "Üç kökü tek kök altında birleştir: çarpmada içler çarpılır, bölmede bölünür."
         },
         {
-         "text": "$\\frac{12}{\\sqrt{2}} = \\frac{12\\sqrt{2}}{2} = 6\\sqrt{2}$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "On ikiyi kök ikiye bölüyoruz. Paydayı kökten kurtarmak için pay ve paydayı kök ikiyle çarparız: on iki kök iki bölü iki, yani altı kök iki."
+         "text": "$\\sqrt{\\frac{8 \\cdot 18}{2}}$ ifadesinin içini hesapla."
         },
         {
-         "text": "Kısa yol: $\\sqrt{\\frac{8 \\cdot 18}{2}} = \\sqrt{72} = 6\\sqrt{2}$. Cevap **B**.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "Kısa yoldan da gidebiliriz: hepsini tek kökte topla, sekiz çarpı on sekiz bölü iki, yetmiş iki; yetmiş ikinin karekökü, altı kök iki. Cevabımız B. On ikide kalan, bölmeyi unutmuştur."
+         "text": "Çıkan sayıyı en büyük tam kareyi ayırarak sadeleştir."
         }
        ],
-       "narration": "Kökler çarpılırken ve bölünürken içler birleşir.",
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki köklerde çarpma kuralı ve paydayı kökten kurtarma özgün sayılarla soruldu."
+        "changes": "Dersteki köklerde çarpma-bölme kuralı özgün sayılarla soruldu."
        }
       }
      }
@@ -487,8 +863,8 @@
     "subtopics": [
      "MAT_KOKLU_06"
     ],
-    "title": "Eşlenik",
-    "narration": "Çarpımları rasyonel olan iki köklü ifadeye birbirinin eşleniği denir. Eşlenik, paydadaki kökten kurtulmanın anahtarıdır.",
+    "title": "Eşlenik, paydayı kökten kurtarma ve iç içe kökler",
+    "narration": "",
     "cards": [
      {
       "kind": "predict",
@@ -501,41 +877,81 @@
        "10"
       ],
       "answer": 0,
-      "thinkSeconds": 5,
+      "explanation": "Toplam ile farkın çarpımı karelerin farkıdır: $(\\sqrt{7})^2 - (\\sqrt{3})^2 = 7 - 3 = 4$. Eşleniklerin çarpımında **kökler kaybolur**.",
+      "choiceFeedback": [
+       null,
+       "$\\sqrt{21}$, iki terimi tek çarpım gibi görmekten gelir; oysa her terim ayrı çarpılır ve ortadaki terimler birbirini götürür.",
+       "10, iki sayının karelerini toplamaktır; oysa çarpım karelerin farkıdır."
+      ],
       "visual": {
        "kind": "formula",
        "latex": "(a + b)(a - b) = a^2 - b^2",
-       "caption": "(√7)² − (√3)² = 7 − 3 = 4"
-      },
-      "beats": [
-       {
-        "narration": "Toplam ile farkın çarpımı, karelerin farkıdır: a artı b, çarpı a eksi b, a kare eksi b kare.",
-        "show": [],
-        "focus": [],
-        "swap": []
-       },
-       {
-        "narration": "Karekök 7'nin karesi 7, karekök 3'ün karesi 3. Fark 4. Kökler tamamen kayboldu.",
-        "show": [],
-        "focus": [],
-        "swap": []
-       }
-      ],
-      "explanation": "$(\\sqrt{7})^2 - (\\sqrt{3})^2 = 7 - 3 = 4$. Eşleniklerin çarpımında **kökler kaybolur**.",
-      "narration": "Şimdi sıra sende. Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap 4. Karekök 7 artı karekök 3 ile karekök 7 eksi karekök 3 birbirinin eşleniğidir. Çarpımları karelerin farkı: 7 eksi 3, 4. Eşleniğin işe yaradığı yer burası: çarpınca kökler kaybolur."
+       "caption": "$(\\sqrt{7})^2 - (\\sqrt{3})^2 = 7 - 3 = 4$"
+      }
      },
      {
       "kind": "rule",
       "title": "Paydayı kökten kurtar",
       "items": [
        "Paydada $\\sqrt{a}$ varsa pay ve paydayı $\\sqrt{a}$ ile çarp: $\\frac{6}{\\sqrt{3}} = \\frac{6\\sqrt{3}}{3} = 2\\sqrt{3}$.",
-       "Paydada $\\sqrt{a} - \\sqrt{b}$ varsa **eşleniği** $\\sqrt{a} + \\sqrt{b}$ ile çarp.",
-       "Paydada $a - \\sqrt{b}$ varsa eşleniği $a + \\sqrt{b}$.",
+       "Paydada $\\sqrt{a} - \\sqrt{b}$ varsa **eşleniği** $\\sqrt{a} + \\sqrt{b}$ ile çarp; payda $a - b$ olur.",
+       "Paydada $a - \\sqrt{b}$ varsa eşleniği $a + \\sqrt{b}$; payda $a^2 - b$ olur.",
        "Payı ve paydayı **aynı** sayıyla çarparsın; kesrin değeri değişmez."
       ],
-      "beats": [],
-      "narration": "Paydada karekök a varsa payı ve paydayı karekök a ile çarparsın: 6 bölü karekök 3, 6 karekök 3 bölü 3, yani 2 karekök 3. Paydada iki terim varsa, örneğin karekök a eksi karekök b, onun eşleniğiyle çarparsın: karekök a artı karekök b. Payı ve paydayı aynı sayıyla çarptığın için kesrin değeri değişmez, yalnızca görünüşü değişir."
+      "narration": "Paydada tek terimli bir kök varsa, örneğin $\\sqrt{3}$, pay ve paydayı $\\sqrt{3}$ ile çarparsın: $\\frac{6}{\\sqrt{3}} = \\frac{6\\sqrt{3}}{3} = 2\\sqrt{3}$. Paydada iki terim varsa, örneğin $\\sqrt{a} - \\sqrt{b}$, onun eşleniğiyle çarparsın: $\\sqrt{a} + \\sqrt{b}$. Çarpım karelerin farkı olduğundan paydadaki kökler kaybolur. Payı ve paydayı aynı sayıyla çarptığın için kesrin değeri değişmez, yalnız görünüşü değişir."
+     },
+     {
+      "kind": "flip",
+      "title": "Eşlenik kartları",
+      "prompt": "Kartı çevirmeden önce eşleniği ve çarpımı tahmin et.",
+      "cards": [
+       {
+        "front": "$\\sqrt{a}$",
+        "back": "Eşleniği kendisi; çarpım $a$."
+       },
+       {
+        "front": "$\\sqrt{a} + \\sqrt{b}$",
+        "back": "Eşleniği $\\sqrt{a} - \\sqrt{b}$; çarpım $a - b$."
+       },
+       {
+        "front": "$3 - \\sqrt{2}$",
+        "back": "Eşleniği $3 + \\sqrt{2}$; çarpım $9 - 2 = 7$."
+       },
+       {
+        "front": "$2 + \\sqrt{3}$",
+        "back": "Eşleniği $2 - \\sqrt{3}$; çarpım $4 - 3 = 1$."
+       }
+      ],
+      "explanation": "Eşlenikte yalnız kökün önündeki işaret değişir; çarpım her zaman bir tam kare farkıdır ve kök kalmaz."
+     },
+     {
+      "kind": "mistake",
+      "title": "Eşlenik yerine yalnız kökle çarpmak",
+      "wrong": "$\\frac{1}{\\sqrt{2} + 1}$ ifadesinin paydasını kökten kurtarmak için pay ve paydayı $\\sqrt{2}$ ile çarpmak yeter.",
+      "right": "Payda iki terimli olduğundan eşleniğiyle çarpılır: $\\frac{1}{\\sqrt{2}+1} \\cdot \\frac{\\sqrt{2}-1}{\\sqrt{2}-1} = \\sqrt{2} - 1$.",
+      "why": "$\\sqrt{2}$ ile çarpınca payda $2 + \\sqrt{2}$ olur ve kök yerinde kalır. İki terimli paydada kök, ancak karelerin farkı oluşunca kaybolur."
+     },
+     {
+      "kind": "blank",
+      "title": "Paydayı kurtar",
+      "prompt": "Boşluğa gelen sayıyı yaz.",
+      "before": "$\\frac{6}{\\sqrt{3}} =$",
+      "after": "$\\cdot \\sqrt{3}$",
+      "answers": [
+       "2"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 2,
+       "tolerance": 0
+      },
+      "explanation": "Pay ve paydayı $\\sqrt{3}$ ile çarp: $\\frac{6\\sqrt{3}}{3} = 2\\sqrt{3}$."
+     },
+     {
+      "kind": "example",
+      "title": "Eşleniği a − √b biçiminde",
+      "example": "$\\frac{5}{3 - \\sqrt{7}}$ ifadesinin paydasını kökten kurtar.",
+      "explanation": "Paydanın eşleniği $3 + \\sqrt{7}$. Payda: $(3 - \\sqrt{7})(3 + \\sqrt{7}) = 9 - 7 = 2$. Pay: $5(3 + \\sqrt{7})$. Sonuç: $\\frac{5(3 + \\sqrt{7})}{2} = \\frac{15 + 5\\sqrt{7}}{2}$. Pay ile paydada ortak çarpan olmadığı için daha fazla sadeleşmez."
      },
      {
       "kind": "question",
@@ -543,44 +959,149 @@
        "style": "TYT tarzı",
        "stem": "$\\frac{4}{\\sqrt{5} - 1}$ ifadesinin paydası kökten kurtarılırsa aşağıdakilerden hangisi elde edilir?",
        "options": [
-        "$2\\sqrt{5}$",
-        "$\\sqrt{5} - 1$",
         "$\\frac{\\sqrt{5} + 1}{4}$",
-        "$4\\sqrt{5} + 4$",
-        "$\\sqrt{5} + 1$"
+        "$\\sqrt{5} - 1$",
+        "$\\sqrt{5}$",
+        "$\\sqrt{5} + 1$",
+        "$2\\sqrt{5} + 2$"
        ],
-       "answer": 4,
+       "answer": 3,
+       "choiceFeedback": [
+        "Payı da paydayla aynı sayıyla çarpman gerekirdi; yalnız eşleniği yazıp 4'ü kaybettin.",
+        "Verilen kesri paydadaki sayıyla karıştırdın; kesir ile paydası aynı sayı değildir.",
+        "Payı $4\\sqrt{5} + 4$ bulduktan sonra sadeleştirirken ikinci terimi unuttun.",
+        null,
+        "Paydayı 4 yerine 2 bulmuşsun; $(\\sqrt{5}-1)(\\sqrt{5}+1) = 5 - 1$ olup $\\sqrt{5-1}$ değildir."
+       ],
        "steps": [
         {
-         "text": "Paydanın eşleniği: $\\sqrt{5} + 1$. Pay ve paydayı onunla çarp.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Payda karekök 5 eksi 1. Eşleniği karekök 5 artı 1. Payı da paydayı da bununla çarparız."
+         "text": "Paydanın eşleniği ile pay ve paydayı çarp. Eşlenikte yalnız araya giren işaret değişir."
         },
         {
-         "text": "Payda: $(\\sqrt{5} - 1)(\\sqrt{5} + 1) = 5 - 1 = 4$. Pay: $4(\\sqrt{5} + 1)$.",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Payda karelerin farkı: 5 eksi 1, 4. Pay 4 çarpı karekök 5 artı 1."
+         "text": "Paydada karelerin farkı oluşur: $(\\sqrt{5})^2 - 1^2$. Payı da $4$ ile eşleniğin çarpımı olarak yaz."
         },
         {
-         "text": "$\\frac{4(\\sqrt{5} + 1)}{4} = \\sqrt{5} + 1$. Cevap **E**.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "D"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "4'ler sadeleşir, karekök 5 artı 1 kalır. Cevabımız E. Paydayı sadeleştirmeyi unutan D'yi seçer."
+         "text": "Pay ve paydadaki ortak çarpanı sadeleştir; kalan ifadeyi şıklarla karşılaştır."
         }
        ],
-       "narration": "Paydanın eşleniğiyle çarpalım.",
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki eşlenikle paydayı kökten kurtarma kalıbı örnek alındı, ifade özgün."
+        "changes": "Havuzdaki eşlenikle paydayı kökten kurtarma kalıbı örnek alındı; ifade özgündür."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "İç içe kökler",
+      "text": "$\\sqrt{a \\pm 2\\sqrt{b}}$ biçimindeki bir ifade, toplamı $a$ ve çarpımı $b$ olan iki sayıyla sadeleşir: $x + y = a$ ve $x \\cdot y = b$ ise $\\sqrt{a + 2\\sqrt{b}} = \\sqrt{x} + \\sqrt{y}$ ve $\\sqrt{a - 2\\sqrt{b}} = \\sqrt{x} - \\sqrt{y}$ ($x > y$). İçteki kökün önündeki katsayı **2** olmalıdır; değilse $6\\sqrt{2} = 2\\sqrt{18}$ gibi 2'yi dışarı al.",
+      "narration": "Bu kuralın nedeni açılımdır: $(\\sqrt{x} + \\sqrt{y})^2 = x + y + 2\\sqrt{xy}$. Yani $a + 2\\sqrt{b}$ ifadesini bir toplamın karesi gibi görürsün; $x + y = a$ ve $xy = b$ koşulunu sağlayan iki sayıyı bulursun. $\\sqrt{a - 2\\sqrt{b}}$ biçiminde $\\sqrt{x} - \\sqrt{y}$ pozitif kalmalıdır, bu yüzden $x > y$ seçilir.",
+      "visual": {
+       "kind": "formula",
+       "latex": "\\sqrt{a \\pm 2\\sqrt{b}} = \\sqrt{x} \\pm \\sqrt{y}, \\quad x + y = a, \\ x \\cdot y = b",
+       "caption": "$\\sqrt{a - 2\\sqrt{b}}$ biçiminde büyük kök önde yazılır."
+      }
+     },
+     {
+      "kind": "example",
+      "title": "İç içe kök örnekleri",
+      "example": "$\\sqrt{7 + 2\\sqrt{12}}$, $\\sqrt{11 + 6\\sqrt{2}}$ ve $\\sqrt{8 - 2\\sqrt{15}}$ ifadelerini sadeleştir.",
+      "explanation": "1) $x + y = 7$, $xy = 12$ → 4 ve 3: $\\sqrt{7 + 2\\sqrt{12}} = \\sqrt{4} + \\sqrt{3} = 2 + \\sqrt{3}$. 2) $6\\sqrt{2} = 2\\sqrt{18}$ yaz: $x + y = 11$, $xy = 18$ → 9 ve 2: $\\sqrt{11 + 6\\sqrt{2}} = 3 + \\sqrt{2}$. 3) $x + y = 8$, $xy = 15$ → 5 ve 3: $\\sqrt{8 - 2\\sqrt{15}} = \\sqrt{5} - \\sqrt{3}$. Kontrol: $(\\sqrt{5} - \\sqrt{3})^2 = 8 - 2\\sqrt{15}$."
+     },
+     {
+      "kind": "match",
+      "title": "İç içe kökleri sadeleştir",
+      "titles": [
+       "İç içe kök",
+       "Sadeleşmiş hâli"
+      ],
+      "pairs": [
+       {
+        "left": "$\\sqrt{5 + 2\\sqrt{6}}$",
+        "right": "$\\sqrt{3} + \\sqrt{2}$"
+       },
+       {
+        "left": "$\\sqrt{7 + 2\\sqrt{10}}$",
+        "right": "$\\sqrt{5} + \\sqrt{2}$"
+       },
+       {
+        "left": "$\\sqrt{8 - 2\\sqrt{15}}$",
+        "right": "$\\sqrt{5} - \\sqrt{3}$"
+       },
+       {
+        "left": "$\\sqrt{9 - 2\\sqrt{14}}$",
+        "right": "$\\sqrt{7} - \\sqrt{2}$"
+       }
+      ],
+      "explanation": "Her satırda toplamı ve çarpımı ararsın: $3+2=5$, $3\\cdot2=6$; $5+2=7$, $5\\cdot2=10$; $5+3=8$, $5\\cdot3=15$; $7+2=9$, $7\\cdot2=14$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\sqrt{9 + 4\\sqrt{5}} - \\sqrt{9 - 4\\sqrt{5}}$ işleminin sonucu kaçtır?",
+       "options": [
+        "$4$",
+        "$2\\sqrt{5}$",
+        "$5$",
+        "$6$",
+        "$8$"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "İki kökü çıkarmak yerine toplamışsın; farkta $\\sqrt{5}$ terimleri birbirini götürür.",
+        "$\\sqrt{5}$'i 5 gibi almışsın; kökler sadeleşince $\\sqrt{5}$ terimleri aynı işaretle birbirini götürür.",
+        "Dışarı çıkan sayıları yanlış bulmuşsun; $x + y = 9$ ve $x \\cdot y = 20$ koşulunu sağlayan sayıları yeniden ara.",
+        "Çıkan sayıyı iki kez saymışsın; fark içinde her kökün yalnız bir sabit terimi vardır."
+       ],
+       "steps": [
+        {
+         "text": "$4\\sqrt{5} = 2\\sqrt{20}$ yaz; böylece iki ifade de $9 \\pm 2\\sqrt{20}$ biçiminde olur."
+        },
+        {
+         "text": "Toplamı 9, çarpımı 20 olan iki sayıyı bul ve her kökü $\\sqrt{x} \\pm \\sqrt{y}$ biçiminde yaz (büyük kök önde)."
+        },
+        {
+         "text": "İki sadeleşmiş ifadeyi birbirinden çıkar; $\\sqrt{5}$ terimlerine ne olduğuna bak."
+        }
+       ],
+       "origin": {
+        "changes": "MEB'deki $\\sqrt{a \\pm 2\\sqrt{b}}$ kalıbı örnek alındı; sayılar özgündür."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Selin, $\\sqrt{6} + \\sqrt{3}$ sayısını eşleniği olan $\\sqrt{6} - \\sqrt{3}$ ile çarpmak yerine yanlışlıkla bölmüştür. Buna göre Selin'in bulduğu sayı, bulması gereken sayıdan kaç fazladır?",
+       "options": [
+        "$\\sqrt{2}$",
+        "$2$",
+        "$2\\sqrt{2}$",
+        "$3$",
+        "$3\\sqrt{2}$"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "$2\\sqrt{18}$ terimini yanlış sadeleştirmiş olabilirsin; $\\sqrt{18} = 3\\sqrt{2}$.",
+        "Sonuçtaki $\\sqrt{2}$ çarpanını atmışsın; fark kök içeren bir sayıdır.",
+        null,
+        "3, eşleniklerin çarpımıdır; fark, bölüm ile çarpım arasında alınır.",
+        "Bölümü bulurken paydayı 3 yerine yanlış bir sayı almış olabilirsin."
+       ],
+       "steps": [
+        {
+         "text": "Çarpım: $(\\sqrt{6} + \\sqrt{3})(\\sqrt{6} - \\sqrt{3}) = 6 - 3$. Bulması gereken sayıyı hesapla."
+        },
+        {
+         "text": "Bölüm: paydayı eşlenikle kökten kurtar. Payda $6 - 3 = 3$, pay $(\\sqrt{6} + \\sqrt{3})^2$ olur."
+        },
+        {
+         "text": "$(\\sqrt{6} + \\sqrt{3})^2$ açılımındaki $2\\sqrt{18}$ terimini sadeleştir, 3'e böl; sonra çarpımı çıkar."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021'in 'eşlenikle çarpmak yerine bölmek' kalıbı örnek alındı; sayılar, bağlam ve cevap özgündür."
        }
       }
      }
@@ -590,7 +1111,7 @@
     "subtopic": "MAT_KOKLU_07",
     "subtopics": [],
     "title": "Köklü denklemler",
-    "narration": "Köklü bir denklemi çözmek için kökü yalnız bırakır, sonra iki tarafın karesini alırsın.",
+    "narration": "",
     "cards": [
      {
       "kind": "rule",
@@ -601,8 +1122,54 @@
        "Karekök **negatife eşit olamaz**: $\\sqrt{x + 1} = -2$ çözümsüzdür.",
        "Kare alınca yabancı kök çıkabilir: bulduğun değeri **ilk denklemde dene**."
       ],
-      "beats": [],
-      "narration": "Köklü bir denklemde önce kökü yalnız bırakırsın, sonra iki tarafın karesini alırsın. Karekök 3 x eksi 2 eşittir 5: kare alınca 3 x eksi 2, 25; x 9. Kökün içi negatif olmamalı ve karekök bir negatif sayıya eşit olamaz; karekök x artı 1 eşittir eksi 2 denkleminin çözümü yoktur. Kare almak bazen denklemi sağlamayan yabancı bir kök üretir. Bu yüzden bulduğun değeri mutlaka ilk denklemde dene: x 9 ise karekök 25, gerçekten 5."
+      "narration": "Köklü bir denklemde önce kökü yalnız bırakır, sonra iki tarafın karesini alırsın. $\\sqrt{3x - 2} = 5$ için kare alınca $3x - 2 = 25$ ve $x = 9$ bulunur. Kökün içi negatif olmamalı ve karekök negatif bir sayıya eşit olamaz; $\\sqrt{x + 1} = -2$ denkleminin çözümü yoktur. Kare almak bazen denklemi sağlamayan yabancı bir kök üretir. Bu yüzden bulduğun değeri mutlaka ilk denklemde dene: $x = 9$ ise $\\sqrt{25} = 5$, gerçekten sağlıyor."
+     },
+     {
+      "kind": "predict",
+      "title": "Kare alınca gelen sonuç çözüm mü?",
+      "context": "$\\sqrt{x} + 13 = 8$",
+      "prompt": "Kökü yalnız bırakıp kare alınca $x = 25$ bulunur. $x = 25$ gerçekten çözüm müdür?",
+      "choices": [
+       "Evet, çözümdür",
+       "Hayır, denklemin çözümü yoktur"
+      ],
+      "answer": 1,
+      "explanation": "$\\sqrt{x} = 8 - 13 = -5$ olurdu; karekök negatif olamaz. Deneme: $\\sqrt{25} + 13 = 18 \\neq 8$. Kare alma, işareti yok ettiği için yabancı kök üretti.",
+      "choiceFeedback": [
+       "Kare alınca bulunan değer denklemi her zaman sağlamaz; kontrol etmeden çözüm sayma.",
+       null
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Önce kökü yalnız bırak",
+      "example": "$\\sqrt{x - 1} + 3 = 7$ denklemini çöz.",
+      "explanation": "Kökü yalnız bırak: $\\sqrt{x - 1} = 4$. Kare al: $x - 1 = 16$, yani $x = 17$. Kontrol: $\\sqrt{16} + 3 = 7$ ✓. Kök yalnız kalmadan kare alırsan $(\\sqrt{x-1} + 3)^2$ açılımı kök üretir; bu yüzden önce kökü yalnız bırak."
+     },
+     {
+      "kind": "mistake",
+      "title": "Kare almak her şeyi çözmez",
+      "wrong": "Kare alarak bulduğum her değer denklemin çözümüdür.",
+      "right": "Kare alma işlemi yabancı kök üretebilir; bulunan her değer ilk denklemde denenmelidir.",
+      "why": "Kare alınca $-5$ ile $5$ aynı sonucu verir. Bu yüzden işareti yanlış bir değer kare alma sırasında denkleme girebilir; denemek, yalnız gerçek çözümü bırakır."
+     },
+     {
+      "kind": "findError",
+      "title": "Hatayı bul",
+      "problem": "$\\sqrt{x + 6} = x$ denklemini çöz.",
+      "prompt": "Çözümde hata hangi satırda?",
+      "steps": [
+       "Kare al: $x + 6 = x^2$.",
+       "$x^2 - x - 6 = 0$ → $(x - 3)(x + 2) = 0$.",
+       "$x = 3$ ya da $x = -2$; ikisi de çözümdür."
+      ],
+      "wrongStep": 2,
+      "choiceFeedback": [
+       "Kare alma doğru yapılmış.",
+       "Çarpanlara ayırma doğru yapılmış.",
+       null
+      ],
+      "explanation": "$x = -2$ için $\\sqrt{4} = 2$ iken sağ taraf $-2$'dir; sağlamaz, yabancı köktür. Çözüm yalnız $x = 3$: $\\sqrt{9} = 3$ ✓."
      },
      {
       "kind": "question",
@@ -612,42 +1179,67 @@
        "options": [
         "$-3$",
         "$-1$",
+        "$0$",
         "$1$",
-        "$3$",
-        "$5$"
+        "$3$"
        ],
-       "answer": 2,
+       "answer": 3,
+       "choiceFeedback": [
+        "Bu, kare alınca çıkan adaylardan biri; ama ilk denklemde sol taraf 1, sağ taraf $-1$ olur.",
+        "İlk denklemde sol taraf $\\sqrt{5}$, sağ taraf 1 çıkar; sağlamıyor.",
+        "İlk denklemde sol taraf $\\sqrt{7}$, sağ taraf 2 çıkar; sağlamıyor.",
+        null,
+        "İlk denklemde sol taraf $\\sqrt{13}$, sağ taraf 5 çıkar; sağlamıyor."
+       ],
        "steps": [
         {
-         "text": "Kare al: $2x + 7 = (x + 2)^2 = x^2 + 4x + 4$ → $x^2 + 2x - 3 = 0$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "İki tarafın karesini alırız: 2 x artı 7 eşittir x artı 2'nin karesi, yani x kare artı 4 x artı 4. Her şeyi bir tarafa toplayınca x kare artı 2 x eksi 3 eşittir 0."
+         "text": "İki tarafın karesini al: $2x + 7 = (x + 2)^2$. Sağ tarafı aç ve her şeyi bir tarafa topla."
         },
         {
-         "text": "Çarpımı $-3$, toplamı $2$ olan sayılar: 3 ve $-1$ → $(x + 3)(x - 1) = 0$ → $x = -3$ ya da $x = 1$",
-         "eliminate": [],
-         "mark": [],
-         "sentences": [],
-         "narration": "Bu ifade x artı 3 çarpı x eksi 1 diye ayrılır; çarpanlara ayırmayı bir sonraki derste ayrıntılı göreceğiz. Adaylar eksi 3 ve 1."
+         "text": "$x^2 + 2x - 3 = 0$ denklemini çarpanlarına ayır; iki aday çıkar."
         },
         {
-         "text": "Dene: $x = 1$ → $\\sqrt{9} = 3$ ✓. $x = -3$ → $\\sqrt{1} = 1$ ama $x + 2 = -1$ ✗ **yabancı kök**. Cevap **C**.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ],
-         "mark": [],
-         "sentences": [],
-         "narration": "İlk denklemde deneyelim. x 1 ise sol taraf karekök 9, yani 3; sağ taraf 1 artı 2, yani 3. Sağlıyor. x eksi 3 ise sol taraf karekök 1, yani 1; sağ taraf eksi 1. Karekök negatif olamaz; eksi 3 yabancı kök. Cevabımız C. Kontrol etmeyen A'yı da seçebilir."
+         "text": "Adayları ilk denklemde dene: $x + 2$ negatifse karekökün eşiti olamaz."
         }
        ],
-       "narration": "Kare alalım ama yabancı köke dikkat edelim.",
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki köklü denklem ve yabancı kök kalıbı örnek alındı, denklem özgün."
+        "changes": "Havuzdaki köklü denklem ve yabancı kök kalıbı örnek alındı; denklem özgündür."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\sqrt{x + 5} + \\sqrt{x} = 5$ denklemini sağlayan $x$ değeri kaçtır?",
+       "options": [
+        "1",
+        "4",
+        "9",
+        "16",
+        "20"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "$x = 1$ için sol taraf $\\sqrt{6} + 1 \\neq 5$; sağlamıyor.",
+        null,
+        "$x = 9$ için sol taraf $\\sqrt{14} + 3 \\neq 5$; sağlamıyor.",
+        "$x = 16$ için sol taraf $\\sqrt{21} + 4 \\neq 5$; sağlamıyor.",
+        "$x = 20$ için sol taraf $\\sqrt{25} + \\sqrt{20} \\neq 5$; sağlamıyor."
+       ],
+       "steps": [
+        {
+         "text": "Köklerden birini yalnız bırak: $\\sqrt{x + 5} = 5 - \\sqrt{x}$."
+        },
+        {
+         "text": "İki tarafın karesini al; sağ tarafı $(a - b)^2$ gibi aç. $x$ terimlerinin yok olduğunu gör."
+        },
+        {
+         "text": "Elde ettiğin $10\\sqrt{x} = 20$ denkleminden $\\sqrt{x}$'i, sonra $x$'i bul ve ilk denklemde dene."
+        }
+       ],
+       "origin": {
+        "changes": "MEB'deki köklü denklem anlatımındaki 'kare al, kontrol et' kalıbı örnek alındı; iki köklü özgün denklemdir."
        }
       }
      }
@@ -656,18 +1248,20 @@
   ],
   "summary": {
    "points": [
-    "$\\sqrt{a}$ **negatif olmaz**; çift dereceli kökün içi negatif olamaz.",
-    "Köklü sayının yerini iki yanındaki **tam karelerle** bul.",
-    "Kökten çıkarırken **en büyük tam kareyi** ayır.",
-    "Yalnız **içi aynı** kökler toplanır; çarpmada içler çarpılır.",
-    "$(\\sqrt{a} + \\sqrt{b})(\\sqrt{a} - \\sqrt{b}) = a - b$",
-    "Köklü denklemde kare al, sonucu **ilk denklemde dene**."
+    "$\\sqrt{a}$ negatif olmaz; çift dereceli kökün içi negatif olamaz, tek dereceli kökün içi negatif olabilir ($\\sqrt[3]{-8} = -2$).",
+    "$\\sqrt{x^2} = |x|$; işaretli ifadelerde önce içteki ifadenin işaretini belirle.",
+    "Köklü sayının yerini iki yanındaki tam karelerle (ya da tam küplerle) bul.",
+    "Kök dışına çıkarırken en büyük tam kareyi ayır; içeri alırken dışarıdaki sayının karesini yaz.",
+    "Toplamada yalnız kök içi aynı olanlar toplanır; çarpmada içler çarpılır.",
+    "$(\\sqrt{a} + \\sqrt{b})(\\sqrt{a} - \\sqrt{b}) = a - b$; paydayı eşlenikle kökten kurtar.",
+    "$\\sqrt{a \\pm 2\\sqrt{b}} = \\sqrt{x} \\pm \\sqrt{y}$, burada $x + y = a$ ve $x \\cdot y = b$.",
+    "Köklü denklemde kökü yalnız bırak, kare al, sonucu ilk denklemde dene."
    ],
    "warnings": [
-    "$\\sqrt{9} + \\sqrt{16} \\neq \\sqrt{25}$",
-    "$\\sqrt{9} = 3$, $-3$ değil.",
-    "$\\sqrt{9}$ tam olarak 3'tür; 3'ten küçük değildir.",
-    "Payda sadeleşmesini unutma."
+    "$\\sqrt{9} + \\sqrt{16} \\neq \\sqrt{25}$; kökler içleriyle toplanmaz.",
+    "$\\sqrt{(-3)^2} = 3$, $-3$ değil.",
+    "Karekök negatif bir sayıya eşit olamaz; kare alınca yabancı kök çıkabilir.",
+    "Sıralamada kökleri aynı dereceye ve aynı kök altına getirmeden karşılaştırma."
    ]
   }
  },
@@ -679,12 +1273,5 @@
     "Uygulamada Köklü Sayılar testinden **20 soru** çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz."
    ]
   }
- },
- "works": {
-  "additions": [
-   "1'den 20'ye tam kareler ve 1'den 10'a tam küpler tablosunu, √2 ≈ 1,41, √3 ≈ 1,73, √5 ≈ 2,24 yaklaşık değerlerini ver.",
-   "İç içe kökleri ekle: √(a + 2√b) = √x + √y, burada x + y = a ve x · y = b; örnekler.",
-   "Tek dereceli kökün içinin negatif olabileceğini (∛−8 = −2) ve √(x²) = |x| kuralının işaretli ifadelerde kullanımını örnekle."
-  ]
  }
 }

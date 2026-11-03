@@ -2,11 +2,12 @@ import React from 'react';
 import {easeFrom} from '../../../Animations/Motion';
 import {NATURE_COLORS as C} from '../../../Configurations/NatureColors';
 import {withAlpha} from '../../../Themes/Theme';
-import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
+import {useSceneSeconds, useVisualPalette, type VisualBoxProps, useFigureFont} from '../VisualFrame';
 import {useElementState} from '../VisualTimeline';
 import {type CourseVisual} from '../VisualSchema';
-import {pathOf, Tag, usePartLook, World} from '../VisualWorld';
+import {pathOf, Tag, usePartLook, World, fittedScale, W, H} from '../VisualWorld';
 import {MONTH_LETTERS, SEASONS} from './Climate';
+import {textWidth} from '../FigureLabel';
 
 // ---------------------------------------------------------------- river regime
 
@@ -37,12 +38,12 @@ export const regimeSeries = (flow: readonly number[], unit: Regime['unit']) => {
 export const markLabelOffsets = (marks: readonly {month: number; y: number}[], line: number): number[] =>
 	marks.map((mark, index) => line * marks.slice(0, index).filter((other) => other.month === mark.month && Math.abs(other.y - mark.y) < line * 1.5).length);
 
-/** The legend's items in one row from `left`: each a colour swatch and the river's name. */
-export const legendRow = (names: readonly string[], left: number, letter = 9.6, gap = 34) => {
+/** The legend's items in one row from `left`: each a colour swatch and the river's name at `size`. */
+export const legendRow = (names: readonly string[], left: number, size = 18, gap = 34) => {
 	let x = left;
 	return names.map((name) => {
 		const at = x;
-		x += 38 + name.length * letter + gap;
+		x += 38 + textWidth(name, size, 700) + gap;
 		return at;
 	});
 };
@@ -74,12 +75,14 @@ export const RegimeVisual: React.FC<VisualBoxProps & {visual: Regime}> = ({visua
 	const top = legendY + 70;
 	const bottom = 520;
 	const step = (right - left) / 12;
+	// The legend's names as the World draws them: raised in an app still.
+	const legendSize = useFigureFont(fittedScale(width, height, W, H))(18);
 	const series = visual.rivers.map((river) => regimeSeries(river.flow, visual.unit));
 	const axis = regimeAxis(Math.max(...series.flatMap((item) => item.values), 1));
 	const yOf = (value: number) => bottom - (value / axis.top) * (bottom - top);
 	const xOf = (month: number) => left + step * (month + 0.5);
 	const ticks = Array.from({length: axis.top / axis.step + 1}, (_, index) => axis.step * index);
-	const legend = legendRow(visual.rivers.map((river) => river.name), left);
+	const legend = legendRow(visual.rivers.map((river) => river.name), left, legendSize);
 	const highs = series.map((item) => ({month: item.high, y: yOf(item.values[item.high])}));
 	const lows = series.map((item) => ({month: item.low, y: yOf(item.values[item.low])}));
 	const highShift = markLabelOffsets(highs, 24);

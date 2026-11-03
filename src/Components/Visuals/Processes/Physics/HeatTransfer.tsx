@@ -3,7 +3,7 @@ import {clamp01, lerp, noise, smooth} from '../../../../Animations/Motion';
 import {withAlpha} from '../../../../Themes/Theme';
 import {useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
-import {pathOf} from '../../VisualWorld';
+import {pathOf, FigureText} from '../../VisualWorld';
 import {ProcessFrame, ProcessLabel, processCamera, useProcessClock, type CameraBox} from '../ProcessScene';
 
 type ProcessSpec = Extract<CourseVisual, {kind: 'process'}>;
@@ -54,9 +54,9 @@ export const HeatTransferProcess: React.FC<VisualBoxProps & {visual: ProcessSpec
 			{(Object.keys(PANELS) as (keyof typeof PANELS)[]).map((id) => (
 				<g key={id} opacity={lit(id)}>
 					<rect x={PANELS[id].x0} y={110} width={PANELS[id].x1 - PANELS[id].x0} height={510} rx={18} fill="#FFFFFF" stroke={withAlpha(palette.ink, 0.12)} strokeWidth={2} />
-					<text x={(PANELS[id].x0 + PANELS[id].x1) / 2} y={150} textAnchor="middle" fontFamily={palette.fontDisplay} fontWeight={800} fontSize={28} fill={palette.ink}>
+					<FigureText x={(PANELS[id].x0 + PANELS[id].x1) / 2} y={150} textAnchor="middle" fontFamily={palette.fontDisplay} fontWeight={800} fontSize={28} fill={palette.ink}>
 						{TITLES[id]}
-					</text>
+					</FigureText>
 				</g>
 			))}
 			{/* Conduction: the rod warms from the flame end; the wax beads drop as the heat reaches them. */}
@@ -115,24 +115,24 @@ export const HeatTransferProcess: React.FC<VisualBoxProps & {visual: ProcessSpec
 					return <path key={index} d={pathOf([[890 + index * 6, 260], end])} stroke="#FFC93C" strokeWidth={4} strokeDasharray="14 12" strokeDashoffset={-time * 80} opacity={0.4 + 0.6 * sunshine} />;
 				})}
 				<rect x={PANELS.isima.x0 + 10} y={520} width={PANELS.isima.x1 - PANELS.isima.x0 - 20} height={90} rx={10} fill={hot(0.25 + 0.6 * sunshine)} />
-				<text x={(PANELS.isima.x0 + PANELS.isima.x1) / 2} y={470} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={700} fontSize={22} fill="#FFFFFF">
+				<FigureText x={(PANELS.isima.x0 + PANELS.isima.x1) / 2} y={470} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={700} fontSize={22} fill="#FFFFFF">
 					Boşluk: tanecik yok
-				</text>
+				</FigureText>
 			</g>
 			{/* Equilibrium: heat flows from the hot block to the cold one until they are equal. */}
 			<g opacity={lit('denge')}>
 				<rect x={1220} y={330} width={150} height={150} rx={10} fill={hot(clamp01((hotT - 20) / 60))} />
 				<rect x={1370} y={330} width={150} height={150} rx={10} fill={hot(clamp01((coldT - 20) / 60))} />
-				<g fontFamily={palette.fontDisplay} fontWeight={800} fontSize={34} fill="#FFFFFF" textAnchor="middle">
-					<text x={1295} y={415}>{`${Math.round(hotT)} °C`}</text>
-					<text x={1445} y={415}>{`${Math.round(coldT)} °C`}</text>
+				<g fontFamily={palette.fontDisplay} fontWeight={800} fill="#FFFFFF" textAnchor="middle">
+					<FigureText fontSize={34} x={1295} y={415}>{`${Math.round(hotT)} °C`}</FigureText>
+					<FigureText fontSize={34} x={1445} y={415}>{`${Math.round(coldT)} °C`}</FigureText>
 				</g>
 				<g opacity={1 - balance}>
 					<path d={`M1320 290 L1420 290`} stroke={palette.lesson} strokeWidth={8} strokeLinecap="round" strokeDasharray="16 10" strokeDashoffset={-time * 40} />
 					<path d="M1420 278 L1440 290 L1420 302 Z" fill={palette.lesson} />
-					<text x={1370} y={270} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={24} fill={palette.lesson}>
+					<FigureText x={1370} y={270} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={24} fill={palette.lesson}>
 						Isı
-					</text>
+					</FigureText>
 				</g>
 			</g>
 			<ProcessLabel id="iletim" at={[(ROD.x0 + front) / 2, ROD.y]} to={[230, 230]} text="Tanecikten taneciğe" show={clock.now('iletim')} size={23} />

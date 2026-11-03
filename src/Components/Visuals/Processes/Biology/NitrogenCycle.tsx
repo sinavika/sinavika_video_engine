@@ -3,7 +3,7 @@ import {clamp01, lerp, noise, smooth} from '../../../../Animations/Motion';
 import {withAlpha} from '../../../../Themes/Theme';
 import {useVisualPalette, type VisualBoxProps} from '../../VisualFrame';
 import type {CourseVisual} from '../../VisualSchema';
-import {pathOf, Tag} from '../../VisualWorld';
+import {pathOf, Tag, FigureText} from '../../VisualWorld';
 import {Cloud, Drift, Grass, ProcessFrame, ProcessLabel, Rain, SCENE, Sky, processCamera, useProcessClock, type CameraBox, type Point} from '../ProcessScene';
 
 type ProcessSpec = Extract<CourseVisual, {kind: 'process'}>;
@@ -91,9 +91,9 @@ export const NitrogenCycleProcess: React.FC<VisualBoxProps & {visual: ProcessSpe
 		<g transform="translate(800 110)">
 			<rect x={-150} y={-30} width={300} height={60} rx={30} fill="#FFFFFF" stroke="#3E6FB0" strokeWidth={3} opacity={0.92} />
 			<NitrogenGas x={-118} y={0} />
-			<text x={16} y={10} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={28} fill="#2C4F80">
+			<FigureText x={16} y={10} textAnchor="middle" fontFamily={palette.fontBody} fontWeight={800} fontSize={28} fill="#2C4F80">
 				Havada N₂: %78
-			</text>
+			</FigureText>
 		</g>
 	);
 

@@ -6,7 +6,7 @@ import {BRAND} from '../../Configurations/Brand';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../Configurations/BrandTypography';
 import {COVER_STANDARD as C, coverShape, titleLinesAllowed} from '../../Configurations/SocialIdentity';
 import {imageFrameOf, useImageLayout} from './ImageFrame';
-import {lineCount, overflowNote, seriesSize, textWidth as measuredWidth} from './TextMeasure';
+import {lineCount, overflowNote, seriesSize, textWidth as measuredWidth} from '../../Components/Typography/TextMeasure';
 
 /**
  * The cover of every social post: a reel's first frame (VideoCover) and the

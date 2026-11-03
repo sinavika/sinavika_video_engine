@@ -176,13 +176,14 @@ export const WebForgotScreen: React.FC = () => {
 
 export const WebResetScreen: React.FC = () => {
 	const t = useT();
+	const colors = useColors();
 	return (
 		<AuthLayout>
 			<Title title={t('Yeni şifre', 'New password')} muted="a•••@ornek.com" link={t('Kodu tekrar gönder', 'Resend code')} />
 			<Stack gap={12}>
 				<CodeBoxes digits="482913" />
-				<Field label={t('Yeni şifre', 'New password')} value="••••••••••" icon="lock" focus height={46} />
-				<Field label={t('Yeni şifre (tekrar)', 'Repeat')} placeholder={t('Tekrar yaz', 'Type again')} icon="lock" height={46} />
+				<Field label={t('Yeni şifre', 'New password')} value="••••••••••" icon="lock" focus height={46} trailing={<Icon name="eye" size={18} color={colors.muted} />} />
+				<Field label={t('Yeni şifre (tekrar)', 'Repeat')} placeholder={t('Tekrar yaz', 'Type again')} icon="lock" height={46} trailing={<Icon name="eye" size={18} color={colors.muted} />} />
 				<Button size="lg" block>
 					{t('Şifremi güncelle', 'Update password')}
 				</Button>

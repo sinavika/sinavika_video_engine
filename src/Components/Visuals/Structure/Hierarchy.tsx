@@ -3,7 +3,8 @@ import {easeFrom} from '../../../Animations/Motion';
 import {withAlpha} from '../../../Themes/Theme';
 import {useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
-import {usePartLook, World} from '../VisualWorld';
+import {fitSize, textWidth} from '../FigureLabel';
+import {usePartLook, World, FigureText} from '../VisualWorld';
 
 type Hierarchy = Extract<CourseVisual, {kind: 'hierarchy'}>;
 
@@ -52,7 +53,7 @@ export const detailLines = (text: string, size = DETAIL_SIZE, width = DETAIL_WID
 };
 
 /** A label's font size so it fits a band `width` wide: `max` (30 unless the band is tall) at most, 19 at least. */
-export const labelSize = (label: string, width: number, max = 30) => Math.max(19, Math.min(max, (width - 40) / (label.length * 0.56)));
+export const labelSize = (label: string, width: number, max = 30) => Math.max(19, Math.min(max, fitSize(label, width - 40)));
 
 /** A few levels get taller bands and larger type than many (a four-level pyramid filled half the stage, 30 Oct 2026). */
 const isFew = (n: number) => n <= 4;
@@ -127,7 +128,7 @@ const waterline = (above: number) => TOP + Math.min(330, 70 + above * 120);
 const pyramidWidth = (index: number, n: number, span: number, visual: Hierarchy) => {
 	const base = Math.min(span, 860);
 	const topLabel = visual.levels[n - 1].label;
-	const top = Math.min(base * 0.62, Math.max(300, topLabel.length * (isFew(n) ? 36 : 30) * 0.56 + 60));
+	const top = Math.min(base * 0.62, Math.max(300, textWidth(topLabel, isFew(n) ? 36 : 30) + 60));
 	return base - (index * (base - top)) / Math.max(1, n - 1);
 };
 
@@ -155,9 +156,9 @@ const Step: React.FC<{index: number; count: number; label: string; band: Band; c
 	return (
 		<g opacity={look.opacity} transform={`translate(0 ${drop}) translate(${cx} ${band.middle}) scale(${1 + 0.04 * lit}) translate(${-cx} ${-band.middle})`}>
 			<rect x={cx - w / 2} y={band.top} width={w} height={h} rx={14} fill={lit > 0.5 ? palette.lesson : withAlpha(palette.lesson, strength)} stroke={palette.lesson} strokeWidth={2} />
-			<text x={cx} y={band.middle + size * 0.36} textAnchor="middle" fontSize={size} fontWeight={800} fill={ink} fontFamily={palette.fontBody}>
+			<FigureText x={cx} y={band.middle + size * 0.36} textAnchor="middle" fontSize={size} fontWeight={800} fill={ink} fontFamily={palette.fontBody}>
 				{label}
-			</text>
+			</FigureText>
 		</g>
 	);
 };
@@ -257,7 +258,7 @@ const SliceLabel: React.FC<{index: number; label: string; y: number; cx: number;
 	const look = usePartLook(`l${index + 1}`, entrance);
 	const size = labelSize(label, room);
 	return (
-		<text
+		<FigureText
 			x={cx}
 			y={y + size * 0.36}
 			opacity={look.opacity}
@@ -271,7 +272,7 @@ const SliceLabel: React.FC<{index: number; label: string; y: number; cx: number;
 			paintOrder="stroke"
 		>
 			{label}
-		</text>
+		</FigureText>
 	);
 };
 
@@ -287,7 +288,7 @@ const Detail: React.FC<{id: string; text: string; size: number; y: number; from:
 			<line x1={from} x2={from + (DETAIL_LEFT - 16 - from) * look.drawn} y1={y} y2={y} stroke={withAlpha(palette.lesson, 0.55)} strokeWidth={2.5} strokeDasharray="3 7" strokeLinecap="round" />
 			<circle cx={from} cy={y} r={5} fill={palette.lesson} />
 			{lines.map((line, index) => (
-				<text
+				<FigureText
 					key={index}
 					x={DETAIL_LEFT}
 					y={first + index * lineHeight}
@@ -297,7 +298,7 @@ const Detail: React.FC<{id: string; text: string; size: number; y: number; from:
 					fontFamily={palette.fontBody}
 				>
 					{line}
-				</text>
+				</FigureText>
 			))}
 		</g>
 	);
@@ -319,18 +320,18 @@ const Bracket: React.FC<{id: string; label: string; x: number; top: number; bott
 				strokeWidth={4}
 				strokeLinejoin="round"
 			/>
-			<text
+			<FigureText
 				x={x - 18}
 				y={middle}
 				transform={`rotate(-90 ${x - 18} ${middle})`}
 				textAnchor="middle"
-				fontSize={Math.max(22, Math.min(26, ((bottom - top) / Math.max(1, label.length)) * 1.7))}
+				fontSize={Math.max(22, Math.min(26, fitSize(label, bottom - top)))}
 				fontWeight={800}
 				fill={colour}
 				fontFamily={palette.fontBody}
 			>
 				{label}
-			</text>
+			</FigureText>
 		</g>
 	);
 };

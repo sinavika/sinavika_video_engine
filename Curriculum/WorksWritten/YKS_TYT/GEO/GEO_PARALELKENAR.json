@@ -1,0 +1,2112 @@
+{
+ "topic": {
+  "id": "9052301C-68BC-FBB6-7AAC-CCB64A475ACB",
+  "category": "YKS_TYT",
+  "lesson": "GEO",
+  "code": "GEO_PARALELKENAR"
+ },
+ "title": "Paralelkenar",
+ "lessonName": "Geometri",
+ "exams": [
+  "YKS",
+  "TYT"
+ ],
+ "sourceScripts": [
+  "Curriculum/Scripts/YKS_TYT/GEO/GEO_PARALELKENAR.json"
+ ],
+ "written": {
+  "sources": [
+   "EgitimVerileri/YKS/TYT/KonuAnlatimi/GEO/GEO_PARALELKENAR.json (MEB OGM Materyal, Temel Matematik konu anlatımı)",
+   "EgitimVerileri/YKS/TYT/Havuz/GEO/GEO_PARALELKENAR.json (doğrulanmış havuz; yalnız hatalar için denetlendi)",
+   "Curriculum/Scripts/YKS_TYT/GEO/GEO_PARALELKENAR.json"
+  ],
+  "additions": [
+   {
+    "note": "Paralelkenarda iç bir noktanın karşılıklı kenarlarla oluşturduğu üçgenlerin alanları toplamının toplam alanın yarısı olduğunu ve köşegenlerin dört eş alanlı üçgen oluşturduğunu örnekle.",
+    "done": "3. bölümde 'İç nokta ve alan paylaşımı' kavram kartı, sayısal örnek (alan 100 cm²), P'li şekilli test sorusu ve 'dört üçgen eşit mi' hata kartı eklendi. Köşegenlerin dört eş alanlı üçgen oluşturması ayrı kavram kartı, 72 cm²'lik örnek, eşleştirme ve EFC test sorusuyla örneklendi."
+   },
+   {
+    "note": "Bir köşeden karşı kenarın orta noktasına çizilen doğrunun köşegeni 1 : 2 oranında böldüğünü ve açıortayların oluşturduğu dörtgenin dikdörtgen olduğunu ekle.",
+    "done": "2. bölümde 1 : 2 oranı kavram kartı (benzerlik ve ağırlık merkezi ispatı), sayısal örnek ve test sorusuyla verildi. 1. bölümde dört açıortayın dikdörtgen kurması, köşegeninin |a − b| olduğu kavram kartı, örnek ve test sorusuyla eklendi."
+   },
+   {
+    "note": "Koordinat düzleminde üç köşesi verilen paralelkenarın dördüncü köşesini köşegenlerin orta noktası ortak olduğundan bulmayı örnekle.",
+    "done": "2. bölümde D = A + C − B kavram kartı, sayısal örnek, adım adım 'guided' kart ve test sorusu eklendi; köşelerin sırası verilmezse üç farklı paralelkenar çıkabileceği de belirtildi."
+   }
+  ],
+  "fixes": [
+   "Havuzdaki GEO_PARALELKENAR_01 soruları 'iki kenarın çarpımı alandır' ya da 'kısa kenar × uzun kenar' diyordu; bu yanlış. Doğrusu alan = bir kenar × o kenara ait yükseklik ya da a·b·sin α. Bu sorular kullanılmadı, derste doğru formül yazıldı.",
+   "Temel dosyadaki doğru şık harfleri B ve C'de yığılmıştı (15 sorunun 9'u B ya da C). Şık değerleri ve sıraları yeniden düzenlenerek harfler dengelendi, art arda aynı harf kalmadı; cevaplar yeniden çözülüp doğrulandı."
+  ]
+ },
+ "lesson": {
+  "hook": {
+   "headline": "Tek bir özellik, bir sürü sonuç",
+   "narration": "İki çift karşılıklı kenarı paralel olan bir dörtgen düşün. Bu tek özellikten karşılıklı kenar ve açıların eşitliği, köşegenlerin birbirini ortalaması ve açıortayların kurduğu ikizkenar üçgen çıkar. Bu derste paralelkenarın özelliklerini, köşegenlerini ve alanını öğrenecek, her adımda kendini yoklayacaksın."
+  },
+  "objectives": [
+   "Paralelkenarda karşılıklı ve komşu açı-kenar ilişkilerini kullanmak",
+   "Açıortayın kurduğu ikizkenar üçgeni ve komşu açıortayların dikliğini uygulamak",
+   "Dört açıortayın kurduğu dikdörtgenin köşegenini kenar farkı olarak bulmak",
+   "Köşegenlerin ortalanmasını ve paralelkenar kuralını kullanmak",
+   "Köşeden karşı kenarın orta noktasına giden doğrunun köşegeni 1 : 2 bölmesini bilmek",
+   "Üç köşesi verilen paralelkenarın dördüncü köşesini koordinatla bulmak",
+   "Alanı taban-yükseklik ve sinüsle hesaplamak",
+   "İç nokta ve köşegenlerle oluşan alan paylaşımını çözmek"
+  ],
+  "sections": [
+   {
+    "subtopic": "GEO_PARALELKENAR_01",
+    "title": "Paralelkenarın özellikleri",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Karşılıklı eşit",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        9.578,
+        4.232
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          7,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          8.878,
+          3.532
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          1.878,
+          3.532
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "A",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ],
+       "angles": [
+        {
+         "at": "A",
+         "from": "B",
+         "to": "D",
+         "label": "α",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "C",
+         "from": "D",
+         "to": "B",
+         "label": "α",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "B",
+         "from": "C",
+         "to": "A",
+         "label": "β",
+         "right": false,
+         "arcs": 1
+        },
+        {
+         "at": "D",
+         "from": "A",
+         "to": "C",
+         "label": "β",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "caption": "Karşılıklı kenarlar **eşit ve paralel**, karşılıklı açılar **eşit**, komşu açılar **bütünler**.",
+      "narration": "Paralelkenarda iki çift karşılıklı kenar paraleldir; bütün özellikler bu tek şarttan çıkar. Şekilde $|AB| = |DC| = a$ ve $|BC| = |AD| = b$'dir. Karşılıklı açılar eşittir: $m(\\widehat{A}) = m(\\widehat{C}) = \\alpha$ ve $m(\\widehat{B}) = m(\\widehat{D}) = \\beta$. Komşu iki açı, iki paralel doğruyu kesen bir doğrunun aynı yanındaki iç açılar olduğundan $\\alpha + \\beta = 180°$ olur. Paralellik açıortaylarda da iş başındadır: açıortay, karşı kenarla bir ikizkenar üçgen kurar."
+     },
+     {
+      "kind": "rule",
+      "title": "Paralelkenarın özellikleri",
+      "items": [
+       "Karşılıklı kenarlar paralel ve eşittir.",
+       "Karşılıklı açılar eşittir.",
+       "Komşu açılar bütünlerdir: toplamları $180°$.",
+       "Köşegenler birbirini ortalar.",
+       "Dört kenarı eşit olan paralelkenara eşkenar dörtgen denir; eşkenar dörtgen de paralelkenardır."
+      ],
+      "narration": "Bu beş madde, paralelkenar sorularının araç kutusudur. İlk üçü kenar ve açı sorularında, dördüncüsü köşegen sorularında kullanılır. Genel bir paralelkenarda komşu kenarlar eşit değildir ve köşegenler de eşit değildir; bu eşitlikler yalnız özel durumlarda (eşkenar dörtgen, dikdörtgen) gelir."
+     },
+     {
+      "kind": "classify",
+      "title": "İlişkileri sınıfla",
+      "prompt": "ABCD paralelkenarında köşegenler E'de kesişiyor. Her ilişkiyi doğru gruba yerleştir.",
+      "groups": [
+       {
+        "label": "Her zaman eşit",
+        "items": [
+         "|AB| ile |DC|",
+         "m(A) ile m(C)",
+         "|AE| ile |EC|"
+        ]
+       },
+       {
+        "label": "Toplamı 180°",
+        "items": [
+         "m(A) + m(B)",
+         "m(B) + m(C)",
+         "m(C) + m(D)"
+        ]
+       },
+       {
+        "label": "Genelde eşit değil",
+        "items": [
+         "|AC| ile |BD|",
+         "|AB| ile |BC|"
+        ]
+       }
+      ],
+      "explanation": "Karşılıklı kenarlar ve açılar eşit, köşegenin yarıları da eşittir. Komşu açılar bütünlerdir. İki köşegen ya da iki komşu kenar yalnızca özel paralelkenarlarda eşit olur."
+     },
+     {
+      "kind": "mistake",
+      "title": "Komşu açılar",
+      "wrong": "Paralelkenarda komşu açılar birbirine eşittir.",
+      "right": "Karşılıklı açılar eşittir; komşu açılar bütünlerdir: $\\alpha + \\beta = 180°$.",
+      "why": "Komşu açılar, iki paralel doğruyu kesen doğrunun aynı yanındaki iç açılardır ve toplamları 180°'dir. Komşu açılar eşit olsaydı hepsi 90° olur, şekil dikdörtgene dönüşürdü."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $ABCD$ paralelkenarında $m(\\widehat{A}) = 2x + 10°$ ve $m(\\widehat{B}) = x + 20°$'dir. Buna göre $m(\\widehat{D})$ kaç derecedir?",
+       "options": [
+        "50",
+        "60",
+        "70",
+        "100",
+        "110"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "$x$'in değerini açı sanmış olabilirsin; sorulan açıya ulaşmak için $x$'i yerine koymalısın.",
+        "Denklemi yeniden kur: komşu açıların toplamı 180°. Bu yolla 60° çıkmaz.",
+        null,
+        "$x$'i bulduktan sonra açıları yanlış yerine koymuş olabilirsin; $A$ ve $B$ değerlerini kontrol et.",
+        "Bu değer $A$ açısıdır. $D$, $A$'nın komşusu; karşılığı $B$'dir."
+       ],
+       "steps": [
+        {
+         "text": "$A$ ile $B$ komşu açılardır. Toplamları kaç derece olmalı? Bununla $x$ için bir denklem kur."
+        },
+        {
+         "text": "Denklemden $x$'i bul, sonra $A$ ve $B$'yi hesapla."
+        },
+        {
+         "text": "Sorulan $D$ açısı hangi açının karşısında? Karşılıklı açılar eşittir."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; komşu ve karşılıklı açıların cebirli özgün bir soruyla kullanımı. Şıklar harf dengesi için yeniden düzenlendi."
+       }
+      }
+     },
+     {
+      "kind": "blank",
+      "title": "Karşılıklı, sonra komşu",
+      "prompt": "Bir $ABCD$ paralelkenarında $m(\\widehat{A}) = 4x - 20°$ ve $m(\\widehat{C}) = 2x + 30°$'dir. $m(\\widehat{B})$ kaç derecedir?",
+      "before": "$m(\\widehat{B}) =$",
+      "after": "°",
+      "answers": [
+       "100"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 100,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "80",
+        "feedback": "80° $A$ açısıdır. $B$, $A$'nın komşusu; ikisi bütünlerdir."
+       },
+       {
+        "answer": "25",
+        "feedback": "25, $x$'in değeri; sorulan açı değil."
+       }
+      ],
+      "explanation": "$A$ ile $C$ karşılıklı: $4x - 20 = 2x + 30$ → $x = 25$ → $m(\\widehat{A}) = 80°$. $B$ komşu açı: $180° - 80° = 100°$."
+     },
+     {
+      "kind": "concept",
+      "title": "Açıortay ikizkenar üçgen kurar",
+      "text": "$A$ açısının açıortayı $[DC]$'yi $E$'de kessin. $[DC] \\parallel [AB]$ olduğundan iç ters açılar eşittir: $m(\\widehat{DEA}) = m(\\widehat{EAB})$. Açıortay olduğu için $m(\\widehat{EAB}) = m(\\widehat{DAE})$. Böylece $ADE$ üçgeninde iki açı eşit olur: $|DE| = |AD|$. Aynı yolla $B$'nin açıortayı $[DC]$'yi $F$'de keserse $|CF| = |BC|$ olur.",
+      "caption": "Açıortay + paralellik = ikizkenar üçgen.",
+      "narration": "Paralelkenar sorularında açıortay görünce önce karşı kenarda bir ikizkenar üçgen ara. Kural şu: açıortay karşı kenarı kestiğinde, kesilen parça açıortayın çıktığı köşedeki komşu kenara eşittir. Bu, paralelkenar sorularının en sık kalıbıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ paralelkenarında $A$ açısının açıortayı $[DC]$'yi $E$ noktasında kesiyor. $|AB| = 10$ cm ve $|AD| = 6$ cm olduğuna göre $|EC| = x$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         13.7,
+         5.896
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           10,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           13,
+           5.196
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           3,
+           5.196
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           9,
+           5.196
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "10",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "E",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "label": "6",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "angles": [
+         {
+          "at": "A",
+          "from": "B",
+          "to": "E",
+          "right": false,
+          "arcs": 1
+         },
+         {
+          "at": "A",
+          "from": "E",
+          "to": "D",
+          "right": false,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "4",
+        "6",
+        "8",
+        "10",
+        "16"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "$|DE|$'yi bulup onu $x$ sanmış olabilirsin; sorulan $|EC|$.",
+        "Bu değer $|DC| - |DE|$ işlemiyle çıkmaz; parçaları yeniden yaz.",
+        "$|DC|$'nin tamamını almışsın; $[DC]$ iki parçaya ayrılıyor.",
+        "$|AB| + |AD|$ gibi bir toplam yapmışsın; $x$, $[DC]$ üzerindeki bir parçadır."
+       ],
+       "steps": [
+        {
+         "text": "$[DC] \\parallel [AB]$ olduğundan $m(\\widehat{DEA}) = m(\\widehat{EAB})$. Bunu açıortay bilgisiyle birleştir: $ADE$ üçgeni nasıl bir üçgen?"
+        },
+        {
+         "text": "İkizkenar üçgende eşit kenarlardan biri $|AD|$. $|DE|$ kaçtır?"
+        },
+        {
+         "text": "$|DC| = |AB|$ olduğunu kullan; $x$, $[DC]$'den $|DE|$ çıkarılınca kalan parçadır."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB'deki açıortay ve ikizkenar üçgen ilişkisi ölçülere uygun çizilmiş özgün bir şekille soruldu. Şıklar harf dengesi için yeniden düzenlendi."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Komşu açıortaylar diktir",
+      "text": "$A$ ve $B$ komşu açılar olduğundan $m(\\widehat{A}) + m(\\widehat{B}) = 180°$. Açıortaylar bunları yarıya böler: $\\frac{A}{2} + \\frac{B}{2} = 90°$. Açıortayların kesiştiği $E$ noktasında $AEB$ üçgeninin üçüncü açısı $180° - 90° = 90°$ olur. Yani bir paralelkenarda **komşu açıların açıortayları birbirine diktir**.",
+      "caption": "$m(\\widehat{AEB}) = 90°$",
+      "narration": "Açıortaylar karşı kenarın içinde ya da dışında kesişsin, dik olma özelliği değişmez. Dik üçgen oluştuğu için Pisagor ve 3-4-5, 6-8-10 gibi üçlüler hemen işe yarar."
+     },
+     {
+      "kind": "predict",
+      "title": "Başka bir komşu çift",
+      "prompt": "$A$ ve $D$ açılarının açıortayları da birbirine dik kesişir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$A$ ve $D$ de komşu açılardır: $A + D = 180°$. Yarılarının toplamı $90°$ olduğundan açıortayların kesişiminde üçgenin üçüncü açısı $90°$ olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ paralelkenarında $A$ ve $B$ açılarının açıortayları $E$ noktasında kesişiyor. $|AE| = 6$ cm ve $|BE| = 8$ cm olduğuna göre $|AB| = x$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -2.436,
+         -0.7,
+         10.7,
+         6.652
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           10,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           8.264,
+           5.952
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           -1.736,
+           5.952
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           3.6,
+           4.8
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "label": "6",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "E",
+          "label": "8",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "angles": [
+         {
+          "at": "E",
+          "from": "B",
+          "to": "A",
+          "right": true,
+          "arcs": 1
+         }
+        ]
+       },
+       "options": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "14"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "Hipotenüs, dik kenarların ikisinden de uzundur; bu değer $8$'den küçük.",
+        "Hipotenüs, dik kenarlardan her birinden uzun olmalı; $8$ dik kenarlardan biri.",
+        "Pisagor'u yeniden uygula: $x^2 = 6^2 + 8^2$ ve kareköke dikkat et.",
+        null,
+        "Dik üçgende hipotenüs, dik kenarların toplamı değildir; Pisagor'u kullan."
+       ],
+       "steps": [
+        {
+         "text": "$A$ ile $B$ komşu açılar. Açıortaylar arasındaki $m(\\widehat{AEB})$ kaç derece olur?"
+        },
+        {
+         "text": "$AEB$ hangi tür üçgen? Dik kenarlar $6$ ve $8$; $x$ hangi kenar?"
+        },
+        {
+         "text": "Dik kenarları $6$ ve $8$ olan dik üçgenin hipotenüsünü Pisagor ile ya da bildiğin üçlüyle bul."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB'deki 'komşu açıların açıortayları diktir' bilgisi 6-8-10 üçgeniyle özgün bir soruda kullanıldı. Şıklar harf dengesi için yeniden düzenlendi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ paralelkenarında $A$ ve $B$ açılarının açıortayları $[DC]$'yi sırasıyla $E$ ve $F$ noktalarında kesiyor. $|AB| = 10$ cm ve $|AD| = 4$ cm olduğuna göre $|EF| = x$ kaç santimetredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         12.068,
+         4.459
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           10,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           11.368,
+           3.759
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           1.368,
+           3.759
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           5.368,
+           3.759
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "F",
+          "at": [
+           7.368,
+           3.759
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "label": "10",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "F",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "F",
+          "to": "E",
+          "label": "x",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "label": "4",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "E",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "F",
+          "dashed": true,
+          "ticks": 0
+         }
+        ]
+       },
+       "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "6"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Parçaları hesaplarken bir yerde fazla çıkarma yapmış olabilirsin; $[DC]$ üzerindeki üç parçayı yeniden say.",
+        null,
+        "Çıkarmayı yalnız bir uçtaki parça için yapmış olabilirsin; iki uçta da parça var.",
+        "Bu, $|DE| = |AD|$ değeridir; sorulan ise $|EF|$.",
+        "$10 - 4$ işlemiyle yalnız bir uçtaki parçayı çıkarmışsın; ikinci uçtaki parçayı da düşmelisin."
+       ],
+       "steps": [
+        {
+         "text": "$A$'nın açıortayı $[DC]$'yi $E$'de keserse $|DE|$ hangi kenara eşittir? $B$'nin açıortayı için $|CF|$ nasıl?"
+        },
+        {
+         "text": "$|DC| = |AB|$ olduğunu hatırla; $[DC]$ üzerinde $D, E, F, C$ noktaları sırasıyla dizilmiş."
+        },
+        {
+         "text": "$|DC|$'den iki uçtaki parçaları çıkar; geriye kalan $|EF|$'dir."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; iki komşu açıortayın karşı kenarda ayırdığı parça, ölçülere uygun çizilmiş özgün bir şekille soruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Dört açıortay bir dikdörtgen kurar",
+      "text": "Paralelkenarın dört iç açıortayı kesişince bir **dikdörtgen** oluşur: komşu açıortaylar dik olduğundan dört köşenin hepsi $90°$'dir. Bu dikdörtgenin **köşegeni, komşu kenarların farkına eşittir**: $|a - b|$. Eşkenar dörtgende ($a = b$) açıortaylar köşegenlerle çakışır, dikdörtgen bir noktaya çöker.",
+      "caption": "Dikdörtgenin köşegeni $= |a - b|$",
+      "narration": "Örneğin kenarları 10 ve 4 olan bir paralelkenarda açıortayların kurduğu dikdörtgenin köşegeni 6 cm'dir. Kısa kenar uzun kenarın yarısından kısaysa bu dikdörtgen paralelkenarın dışına taşar; bu yüzden şekle bakıp 'içeride' demek yerine kenar farkını kullan."
+     },
+     {
+      "kind": "example",
+      "title": "Köşegen = kenar farkı",
+      "example": "$|AB| = 17$ cm ve $|AD| = 12$ cm olan paralelkenarın dört iç açıortayı bir dikdörtgen oluşturuyor. Bu dikdörtgenin köşegeni kaç santimetredir?",
+      "explanation": "Dikdörtgenin köşegeni komşu kenarların farkıdır: $|17 - 12| = 5$ cm. Dikdörtgenin iki köşegeni eşit olduğundan ikisi de 5 cm'dir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $ABCD$ paralelkenarında $|AD| = 9$ cm ve $|AB| > |AD|$'dir. İç açıortayların oluşturduğu dikdörtgenin köşegeni $6$ cm olduğuna göre $|AB|$ kaç santimetredir?",
+       "options": [
+        "3",
+        "6",
+        "9",
+        "12",
+        "15"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "$9 - 6$ işlemini yapmışsın; ama $|AB|$, $|AD|$'den uzun verilmiş.",
+        "Bu, köşegenin kendisi; sorulan $|AB|$.",
+        "Bu, $|AD|$'nin değeri.",
+        "Köşegeni iki katına çıkarmış olabilirsin; kenar farkı ilişkisini yeniden yaz.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Dört açıortayın kurduğu dikdörtgenin köşegeni, komşu kenarların farkına eşittir."
+        },
+        {
+         "text": "$|AB| > |AD|$ olduğundan fark $|AB| - |AD|$'dir."
+        },
+        {
+         "text": "Denklemi yaz ve $|AB|$'yi yalnız bırak."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; açıortayların kurduğu dikdörtgenin köşegeni özgün değerlerle, ters yönden (kenar aranarak) soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_PARALELKENAR_02",
+    "title": "Köşegenler",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Birbirini ortalar",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        10.326,
+        4.262
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          7.4,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          9.626,
+          3.562
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          2.226,
+          3.562
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          4.813,
+          1.781
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "E",
+         "label": "e",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "C",
+         "label": "e",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "E",
+         "label": "f",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "D",
+         "label": "f",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ]
+      },
+      "caption": "Köşegenler $E$'de **ortalanır**: $|AE| = |EC|$, $|BE| = |ED|$; ve $|AC|^2 + |BD|^2 = 2(a^2 + b^2)$ ($a$, $b$ komşu kenarlar).",
+      "narration": "Köşegenler $E$'de kesişsin. $ABE$ ile $CDE$ üçgenleri eştir: $|AB| = |DC|$ ve açılar iç ters açıdır. Eşlikten $|AE| = |EC|$ ve $|BE| = |ED|$ çıkar: köşegenler birbirini ortalar. Genel bir paralelkenarda köşegenler eşit de değildir, dik de değildir. $[AE]$, $ABD$ üçgeninin kenarortayıdır; Apollonius bağıntısını yazınca paralelkenar kuralı çıkar: köşegenlerin kareleri toplamı, kenarların kareleri toplamının iki katıdır."
+     },
+     {
+      "kind": "rule",
+      "title": "Köşegenlerin özellikleri",
+      "items": [
+       "Köşegenler birbirini ortalar: $|AE| = |EC|$ ve $|BE| = |ED|$.",
+       "Bir köşegen paralelkenarı iki eş üçgene ayırır.",
+       "İki köşegen paralelkenarı eş alanlı dört üçgene böler.",
+       "Köşegenler eşitse paralelkenar dikdörtgendir.",
+       "Köşegenler dikse paralelkenar eşkenar dörtgendir.",
+       "Paralelkenar kuralı: $e^2 + f^2 = 2(a^2 + b^2)$.",
+       "Köşegen aralığı: $|a - b| < e < a + b$."
+      ],
+      "narration": "Köşegen sorularında önce 'ortalar' bilgisini kullan: köşegenin yarısı ile çalış. Kenar ve köşegenler arasında bir bağıntı gerekirse paralelkenar kuralına geç. Eşit köşegen ya da dik köşegen görürsen paralelkenarın özel bir türüne (dikdörtgen, eşkenar dörtgen) dönüştüğünü hatırla."
+     },
+     {
+      "kind": "predict",
+      "title": "Kesişim noktası",
+      "prompt": "Köşegenlerin kesişim noktası, her iki köşegenin de orta noktasıdır.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Paralelkenarda köşegenler birbirini ortalar; kesişim noktası $E$ hem $[AC]$'nin hem de $[BD]$'nin orta noktasıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir $ABCD$ paralelkenarının köşegenleri $E$ noktasında kesişiyor. $|AC| = 16$ cm, $|BD| = 10$ cm ve $|AB| = 7$ cm olduğuna göre $ABE$ üçgeninin çevresi kaç santimetredir?",
+       "options": [
+        "15",
+        "18",
+        "20",
+        "23",
+        "33"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "$|AB|$ ile $|AE|$'yi toplamış, $|BE|$'yi katmamış olabilirsin.",
+        "$|AE|$ ve $|BE|$ değerlerini yeniden hesapla; köşegenin tamamı değil yarısıyla çalışılır.",
+        null,
+        "$|AC|$'nin tamamını kullanmış olabilirsin; ama $ABE$'nin kenarı $|AE|$'dir.",
+        "Köşegenlerin tamamını almışsın; üçgenin kenarları köşegenin yarılarıdır."
+       ],
+       "steps": [
+        {
+         "text": "Köşegenler birbirini ortaladığına göre $|AE|$ ve $|BE|$ nedir?"
+        },
+        {
+         "text": "$ABE$ üçgeninin üç kenarı $|AB|$, $|AE|$ ve $|BE|$'dir; çevreyi bul."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; köşegenlerin birbirini ortalaması özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Paralelkenar kuralı",
+      "text": "Kenarları $a$ ve $b$, köşegenleri $e$ ve $f$ olan paralelkenarda\n$$e^2 + f^2 = 2(a^2 + b^2)$$\nolur. Köşegenler eşitse ($e = f$) kural $e^2 = a^2 + b^2$ olur; bu Pisagor'dur ve paralelkenarın dikdörtgen olduğunu gösterir.",
+      "caption": "Köşegenlerin kareleri toplamı = kenarların kareleri toplamının 2 katı",
+      "narration": "Kuralı kullanırken önce sağ tarafı hesapla, sonra bilinen köşegenin karesini çıkar. Bulduğun $f$, kenarlar ve köşegen için üçgen eşitsizliğini de sağlamalıdır; tam kare çıkmıyorsa işlemi kontrol et."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kenar uzunlukları $7$ cm ve $9$ cm olan bir paralelkenarın bir köşegeni $14$ cm'dir. Diğer köşegeni kaç santimetredir?",
+       "options": [
+        "8",
+        "10",
+        "12",
+        "14",
+        "16"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "Kuralı $e^2 + f^2 = 2(a^2 + b^2)$ ile yeniden kur; işlem hatası olabilir.",
+        "Karesini aldığında sağ taraftaki toplamı vermiyor; sağ tarafı yeniden hesapla.",
+        "Köşegenleri eşit varsaymışsın; eşit olsalardı paralelkenar dikdörtgen olurdu ve kural başka sonuç verirdi.",
+        "Bu, kenarların toplamı; köşegenler kuralla bulunur."
+       ],
+       "steps": [
+        {
+         "text": "Kural: $e^2 + f^2 = 2(a^2 + b^2)$. Önce sağ tarafı hesapla."
+        },
+        {
+         "text": "Bilinen köşegenin karesini çıkar."
+        },
+        {
+         "text": "Kalan değerin karekökünü al."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; paralelkenar kuralı (Apollonius'tan) özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "Dik köşegen",
+      "wrong": "Paralelkenarın köşegenleri birbirine diktir.",
+      "right": "Köşegenler birbirini ortalar; dik olmaları için paralelkenarın eşkenar dörtgen olması gerekir.",
+      "why": "Genel bir paralelkenarda köşegenler eğik kesişir. Dik olurlarsa dört kenar eşit olur ve paralelkenar eşkenar dörtgene dönüşür."
+     },
+     {
+      "kind": "concept",
+      "title": "Köşegenin uzunluk aralığı",
+      "text": "Köşegen, paralelkenarı kenarları $a$, $b$ ve köşegen olan iki üçgene ayırır. Üçgen eşitsizliğinden\n$$|a - b| < e < a + b$$\nolur. Köşegen tam sayı isteniyorsa uç değerler **dahil edilmez**, ama arada kalan tam sayılar sayılır. Öbür köşegen de aynı aralıktadır; yalnız ikisi birlikte paralelkenar kuralını sağlamalıdır.",
+      "caption": "$|a-b| < e < a+b$",
+      "narration": "Örneğin kenarlar 6 ve 10 ise köşegen 4'ten büyük 16'dan küçüktür; tam sayı değerler 5, 6, ..., 15'tir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kenar uzunlukları $5$ cm ve $9$ cm olan bir paralelkenarın bir köşegeninin uzunluğu santimetre cinsinden bir tam sayıdır. Bu köşegen kaç farklı değer alabilir?",
+       "options": [
+        "4",
+        "5",
+        "7",
+        "8",
+        "9"
+       ],
+       "answer": 4,
+       "choiceFeedback": [
+        "Bu, kenarların farkı; köşegen ise bu değerden büyüktür.",
+        "Bu, kenarlardan birinin uzunluğu; değer sayısını bulman gerekiyor.",
+        "Aralığı doğru bulup sayarken birkaç değeri atlamış olabilirsin.",
+        "Uçlardaki tam sayıların dahil olup olmadığını yeniden değerlendir.",
+        null
+       ],
+       "steps": [
+        {
+         "text": "Köşegen, kenarları $5$ ve $9$ olan bir üçgenin üçüncü kenarıdır. Üçgen eşitsizliğiyle aralığı yaz."
+        },
+        {
+         "text": "Aralığın dışındaki uçları ele, içindeki tam sayıları ardışık say."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; paralelkenarda köşegen aralığı üçgen eşitsizliğiyle özgün değerlerde soruldu. Şıklar harf dengesi için yeniden düzenlendi."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Köşegeni 1 : 2 bölen doğru",
+      "text": "$F$, $[BC]$'nin orta noktası olsun ve $[AF]$, $[BD]$'yi $G$'de kessin. $[BF] \\parallel [AD]$ olduğundan $BFG$ ve $DAG$ üçgenleri benzerdir; benzerlik oranı $\\frac{|BF|}{|AD|} = \\frac{1}{2}$. Buradan $|BG| : |GD| = 1 : 2$, yani $|BG| = \\frac{|BD|}{3}$.\nAynı sonuç, $F$ yerine $[CD]$'nin orta noktası alındığında da geçerlidir: $A$'dan karşı kenarın orta noktasına çizilen doğru, $A$'yı içermeyen köşegeni 1 : 2 oranında böler.",
+      "caption": "$|BG| : |GD| = 1 : 2$",
+      "narration": "Başka bir bakış: köşegenlerin kesişim noktası $E$ olsun. $[AF]$ ve $[BE]$, $ABC$ üçgeninin kenarortaylarıdır, yani $G$ bu üçgenin ağırlık merkezidir. Ağırlık merkezi kenarortayı köşeden itibaren 2 : 1 böldüğünden $|BG| = \\frac{2}{3}|BE| = \\frac{1}{3}|BD|$ olur. Doğru $A$'dan çıktığı için $[AC]$'yi değil, $[BD]$'yi böler."
+     },
+     {
+      "kind": "example",
+      "title": "1 : 2 oranı, sayılarla",
+      "example": "$ABCD$ paralelkenarında $|BD| = 24$ cm, $F$ noktası $[BC]$'nin orta noktası ve $[AF] \\cap [BD] = \\{G\\}$'dir. $|BG|$, $|GD|$ ve köşegenlerin kesişim noktası $E$ için $|GE|$ kaç santimetredir?",
+      "explanation": "$|BG| : |GD| = 1 : 2$ ve toplam 3 pay: $|BG| = \\frac{24}{3} = 8$, $|GD| = 16$. $E$, $[BD]$'nin orta noktası: $|BE| = 12$. $G$, $B$ ile $E$ arasında kaldığından $|GE| = 12 - 8 = 4$ cm."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$ABCD$ paralelkenarında $F$, $[BC]$'nin orta noktasıdır. $[AF]$ doğru parçası $[BD]$ köşegenini $G$ noktasında kesiyor. $|BD| = 18$ cm olduğuna göre $|BG|$ kaç santimetredir?",
+       "options": [
+        "3",
+        "6",
+        "9",
+        "12",
+        "18"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Köşegeni yanlış paylaştırmış olabilirsin; oran 1 : 2 ve toplam pay sayısı kadar bölmelisin.",
+        null,
+        "$G$'yi köşegenin orta noktası sanmışsın; yalnız köşegenlerin kesişim noktası orta noktadır.",
+        "Bu, $|GD|$'nin değeri; sorulan $B$'ye yakın parça.",
+        "Köşegenin tamamını yazmışsın; $G$ onu iki parçaya ayırıyor."
+       ],
+       "steps": [
+        {
+         "text": "$[BF] \\parallel [AD]$ olduğundan $BFG$ ve $DAG$ üçgenleri benzerdir. Benzerlik oranı $\\frac{|BF|}{|AD|}$ kaçtır?"
+        },
+        {
+         "text": "Oran 1 : 2 ise $|BG|$ ile $|GD|$ toplamda kaç pay eder?"
+        },
+        {
+         "text": "Bir payın kaç santimetre olduğunu bul; $|BG|$ kaç paydır?"
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; karşı kenarın orta noktasına giden doğrunun köşegeni 1 : 2 bölmesi özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Koordinatta dördüncü köşe",
+      "text": "Paralelkenarın köşegenlerinin orta noktası ortaktır. $A$, $B$, $C$, $D$ ardışık köşeler ise $[AC]$ ile $[BD]$'nin orta noktaları aynıdır:\n$$\\frac{A + C}{2} = \\frac{B + D}{2} \\Rightarrow D = A + C - B$$\nBu eşitlik apsis ve ordinat için ayrı ayrı yazılır. Üç köşe verilip sıra söylenmezse üç farklı paralelkenar çıkar: $A + C - B$, $A + B - C$ ve $B + C - A$.",
+      "caption": "$D = A + C - B$",
+      "narration": "Önce hangi köşenin hangisinin karşısında olduğuna karar ver: köşegenler karşı köşeleri birleştirir. Karşıdaki iki köşenin toplamı, öbür iki köşenin toplamına eşittir; aranan köşeyi bu eşitlikten yalnız bırak."
+     },
+     {
+      "kind": "example",
+      "title": "Üç köşe verilmiş",
+      "example": "$A(-1, 2)$, $B(3, -1)$ ve $C(6, 3)$ noktaları $ABCD$ paralelkenarının ardışık köşeleridir. $D$ noktasının koordinatlarını bulunuz.",
+      "explanation": "Köşegenler $[AC]$ ve $[BD]$. $x_D = x_A + x_C - x_B = -1 + 6 - 3 = 2$ ve $y_D = y_A + y_C - y_B = 2 + 3 - (-1) = 6$. Demek ki $D(2, 6)$. Kontrol: $\\overrightarrow{AB} = (4, -3)$ ve $\\overrightarrow{DC} = (4, -3)$ eşit. Sıra söylenmeseydi $A + B - C = (-4, -2)$ ve $B + C - A = (10, 0)$ da mümkün olurdu."
+     },
+     {
+      "kind": "guided",
+      "title": "D'yi adım adım bul",
+      "stem": "$A(2, 1)$, $B(6, 2)$ ve $C(9, 6)$ noktaları $ABCD$ paralelkenarının ardışık köşeleridir. $D$ noktasını bulalım.",
+      "steps": [
+       {
+        "prompt": "Hangi doğru parçalarının orta noktaları ortaktır?",
+        "choices": [
+         "$[AC]$ ile $[BD]$",
+         "$[AB]$ ile $[CD]$",
+         "$[AD]$ ile $[BC]$"
+        ],
+        "answer": 0,
+        "choiceFeedback": [
+         null,
+         "Bunlar karşılıklı kenarlardır; orta noktaları ortak olmaz.",
+         "Bunlar da karşılıklı kenarlardır."
+        ],
+        "explanation": "Köşegenler birbirini ortalar: $[AC]$ ile $[BD]$."
+       },
+       {
+        "prompt": "$D(x, y)$ olsun. Apsisler için $2 + 9 = 6 + x$ eşitliğinden $x$ kaçtır?",
+        "before": "$x =$",
+        "answers": [
+         "5"
+        ],
+        "input": "number",
+        "explanation": "$11 = 6 + x$ → $x = 5$."
+       },
+       {
+        "prompt": "Ordinatlar için $1 + 6 = 2 + y$ eşitliğinden $y$ kaçtır?",
+        "before": "$y =$",
+        "answers": [
+         "5"
+        ],
+        "input": "number",
+        "explanation": "$7 = 2 + y$ → $y = 5$. Demek ki $D(5, 5)$."
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Koordinat düzleminde $A(1, 2)$, $B(5, 3)$ ve $C(7, 7)$ noktaları $ABCD$ paralelkenarının ardışık köşeleridir. $D$ noktasının koordinatları toplamı kaçtır?",
+       "options": [
+        "-3",
+        "3",
+        "6",
+        "9",
+        "19"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "Bu toplam, $A + B - C$ ile bulunan başka bir köşeye ait; $D$, $B$'nin karşısındaki köşedir.",
+        "Yalnız apsisi bulmuş olabilirsin; ordinatı da hesaba katıp toplamalısın.",
+        "Yalnız ordinatı yazmış olabilirsin; koordinatların toplamı isteniyor.",
+        null,
+        "Bu toplam, $B + C - A$ ile bulunan başka bir köşeye ait; $D$, $B$'nin karşısındadır."
+       ],
+       "steps": [
+        {
+         "text": "Köşegenler $[AC]$ ve $[BD]$; orta noktaları aynıdır."
+        },
+        {
+         "text": "Apsis ve ordinat için ayrı ayrı $A + C = B + D$ eşitliğinden $D$'nin koordinatlarını bul."
+        },
+        {
+         "text": "Bulduğun $D$'nin iki koordinatını topla."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; köşegenlerin orta noktasının ortak olmasıyla dördüncü köşe bulma özgün koordinatlarla soruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "GEO_PARALELKENAR_03",
+    "title": "Paralelkenarın alanı",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Alan: $a \\cdot h$",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        10.224,
+        4.304
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          7,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          9.524,
+          3.604
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          2.524,
+          3.604
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "H",
+         "at": [
+          2.524,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "a",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "b",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "H",
+         "label": "h",
+         "dashed": true,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ],
+       "angles": [
+        {
+         "at": "H",
+         "from": "B",
+         "to": "D",
+         "right": true,
+         "arcs": 1
+        },
+        {
+         "at": "A",
+         "from": "B",
+         "to": "D",
+         "label": "α",
+         "right": false,
+         "arcs": 1
+        }
+       ]
+      },
+      "caption": "$A = a \\cdot h = a \\cdot b \\cdot \\sin \\alpha$; köşegenler paralelkenarı **dört eş alanlı** üçgene böler.",
+      "narration": "Paralelkenarın alanı, bir kenarı ile o kenara ait yüksekliğin çarpımıdır: $A = a \\cdot h$. $D$'den $[AB]$'ye indirilen dikme yüksekliktir. $A$ açısı biliniyorsa $h = b \\cdot \\sin\\alpha$ olur ve alan $a \\cdot b \\cdot \\sin\\alpha$'dır. Üçgendeki gibi 2'ye bölme yoktur: bir köşegen paralelkenarı iki eş üçgene ayırır ve alan, bu iki üçgenin toplamıdır."
+     },
+     {
+      "kind": "rule",
+      "title": "Alan formülleri",
+      "items": [
+       "$A = a \\cdot h_a = b \\cdot h_b$: her kenar kendi yüksekliğiyle aynı alanı verir.",
+       "$A = a \\cdot b \\cdot \\sin\\alpha$; $\\alpha$ iki komşu kenar arasındaki açıdır.",
+       "$\\sin\\alpha = \\sin(180° - \\alpha)$: açı geniş olsa da alan aynıdır.",
+       "Bir köşegen alanı iki eşit parçaya böler.",
+       "Eşkenar dörtgende köşegenler diktir ve $A = \\frac{e \\cdot f}{2}$."
+      ],
+      "narration": "Formül seçerken eldeki veriye bak: yükseklik verildiyse $a \\cdot h$, kenar ve aradaki açı verildiyse $a \\cdot b \\cdot \\sin\\alpha$. Açı 120° ya da 150° gibi geniş verilmişse sinüsü $180°$'den çıkararak dar açıya çevir. $e \\cdot f / 2$ formülü yalnız köşegenleri dik olan paralelkenar, yani eşkenar dörtgen için geçerlidir."
+     },
+     {
+      "kind": "blank",
+      "title": "Geniş açıda alan",
+      "prompt": "Kenarları $10$ cm ve $6$ cm, aralarındaki açı $150°$ olan paralelkenarın alanı kaç santimetrekaredir?",
+      "before": "$A =$",
+      "after": "cm²",
+      "answers": [
+       "30"
+      ],
+      "input": "number",
+      "numeric": {
+       "value": 30,
+       "tolerance": 0
+      },
+      "wrongAnswers": [
+       {
+        "answer": "60",
+        "feedback": "Sinüsü hesaba katmamışsın; $\\sin 150°$ sıfırdan farklı, 1'den küçük bir değerdir."
+       },
+       {
+        "answer": "15",
+        "feedback": "Üçgen alanı gibi yarıya bölmüşsün; paralelkenar alanında ayrıca 2'ye bölme yoktur."
+       }
+      ],
+      "explanation": "$\\sin 150° = \\sin 30° = \\frac{1}{2}$ olduğundan $A = 10 \\cdot 6 \\cdot \\frac{1}{2} = 30$ cm²."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Kenar uzunlukları $8$ cm ve $6$ cm, aralarındaki açı $60°$ olan paralelkenarın alanı kaç santimetrekaredir?",
+       "options": [
+        "12",
+        "24",
+        "$24\\sqrt{3}$",
+        "48",
+        "$48\\sqrt{3}$"
+       ],
+       "answer": 2,
+       "choiceFeedback": [
+        "Sinüs değerini ½ alıp bir de yarıya bölmüşsün; paralelkenarda yarım yok.",
+        "$\\sin 60°$ yerine $\\sin 30°$ değerini kullanmış olabilirsin.",
+        null,
+        "Sinüsü hesaba katmamışsın; yalnız kenarları çarpmışsın.",
+        "$\\sin 60°$ değerini $\\sqrt{3}$ almışsın; doğru değerini yeniden hatırla."
+       ],
+       "steps": [
+        {
+         "text": "Alan formülü: $a \\cdot b \\cdot \\sin\\alpha$."
+        },
+        {
+         "text": "$\\sin 60°$ değerini yaz; paralelkenarda ayrıca ½ ile çarpma yok."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; paralelkenarda kenar-sinüs alanı özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Bir alan, iki taban",
+      "text": "Aynı paralelkenarda her kenar kendi yüksekliğiyle aynı alanı verir: $a \\cdot h_a = b \\cdot h_b$. Alan sabit olduğundan **uzun kenara ait yükseklik kısa, kısa kenara ait yükseklik uzun** olur.",
+      "caption": "$a \\cdot h_a = b \\cdot h_b$",
+      "narration": "İki yükseklik arasında soru gelirse alanı hesaplamak şart değildir; ama alan bilinmiyorsa önce bir kenar ve yüksekliğiyle bulup sonra diğer çifte eşitle. Yükseklik hiçbir zaman komşu kenardan uzun olamaz; sonucun makul olup olmadığını buradan kontrol edebilirsin."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir paralelkenarın kenarları $10$ cm ve $15$ cm'dir. $10$ cm'lik kenara ait yükseklik $6$ cm olduğuna göre $15$ cm'lik kenara ait yükseklik kaç santimetredir?",
+       "options": [
+        "4",
+        "5",
+        "6",
+        "9",
+        "10"
+       ],
+       "answer": 0,
+       "choiceFeedback": [
+        null,
+        "Alanı bölerken kenar yerine başka bir sayıyla bölmüş olabilirsin; $15 \\cdot h$ eşitliğini yeniden kur.",
+        "Aynı yüksekliği iki kenar için de kullanmışsın; kenarlar farklıysa yükseklikler de farklıdır.",
+        "$15 - 6$ gibi bir çıkarma yapmışsın; yükseklik, alan eşitliğinden bulunur.",
+        "Bu, kısa kenarın uzunluğu; sorulan yükseklik."
+       ],
+       "steps": [
+        {
+         "text": "Önce alanı $10$ cm'lik kenar ve yüksekliğiyle bul."
+        },
+        {
+         "text": "Aynı alanı $15 \\cdot h$ ile eşitle."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; paralelkenarda iki taban ve iki yükseklikle aynı alan özgün değerlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "concept",
+      "title": "Tepesi karşı kenarda olan üçgen",
+      "text": "$E$ noktası $[DC]$ üzerinde olsun. $ABE$ üçgeninin tabanı $|AB|$, yüksekliği $E$'nin $[AB]$'ye uzaklığıdır; $[DC] \\parallel [AB]$ olduğundan bu uzaklık paralelkenarın yüksekliği $h$'dir. Bu nedenle\n$$A(ABE) = \\frac{a \\cdot h}{2} = \\frac{A(ABCD)}{2}$$\nve $E$ nerede olursa olsun değişmez. Geriye kalan iki üçgenin toplamı da yarım alandır: $A(ADE) + A(BCE) = \\frac{A(ABCD)}{2}$.",
+      "caption": "$A(ABE) = \\frac{1}{2}A(ABCD)$",
+      "narration": "Bu durum, taban ortak ve tepe paralel doğru üzerinde kaydığında üçgen alanının değişmemesinin paralelkenardaki halidir. Kaydığı doğru tabana paralel olmalıdır."
+     },
+     {
+      "kind": "guided",
+      "title": "Alanın yarısı",
+      "stem": "Şekildeki $ABCD$ paralelkenarının alanı $40$ cm²'dir. $E$ noktası $[DC]$ üzerinde olduğuna göre $A(ABE)$ kaç santimetrekaredir?",
+      "figure": {
+       "kind": "geometry",
+       "view": [
+        -0.7,
+        -0.7,
+        11.047,
+        5.115
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "B",
+         "at": [
+          8,
+          0
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "C",
+         "at": [
+          10.347,
+          4.415
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "D",
+         "at": [
+          2.347,
+          4.415
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        },
+        {
+         "id": "E",
+         "at": [
+          5.447,
+          4.415
+         ],
+         "hidden": false,
+         "dot": true,
+         "caption": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "C",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "E",
+         "to": "D",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "D",
+         "to": "A",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "A",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        },
+        {
+         "from": "B",
+         "to": "E",
+         "dashed": false,
+         "ticks": 0
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "E"
+         ],
+         "fill": true,
+         "shade": 1
+        }
+       ]
+      },
+      "steps": [
+       {
+        "prompt": "$ABE$ üçgeninin $[AB]$ tabanına ait yüksekliği hangisidir?",
+        "choices": [
+         "$E$'nin $[AB]$'ye uzaklığı, yani paralelkenarın yüksekliği",
+         "$E$ ile $D$ arasındaki uzaklık",
+         "$|DC|$ uzunluğu"
+        ],
+        "answer": 0,
+        "choiceFeedback": [
+         null,
+         "Bu uzaklık $[AB]$'ye dik değil, tabana ait yükseklik olamaz.",
+         "Bu bir taban uzunluğudur, yükseklik değil."
+        ],
+        "explanation": "$[DC] \\parallel [AB]$ olduğu için $E$'nin $[AB]$'ye uzaklığı paralelkenarın yüksekliğine eşittir."
+       },
+       {
+        "prompt": "Paralelkenarın alanı $a \\cdot h = 40$. $A(ABE) = \\frac{a \\cdot h}{2}$ kaçtır?",
+        "before": "$A(ABE) =$",
+        "answers": [
+         "20"
+        ],
+        "input": "number",
+        "explanation": "$\\frac{40}{2} = 20$ cm². $E$, $[DC]$ üzerinde nereye kayarsa kaysın değişmez."
+       }
+      ]
+     },
+     {
+      "kind": "concept",
+      "title": "İç nokta ve alan paylaşımı",
+      "text": "$P$ paralelkenarın iç bölgesinde bir nokta olsun. $P$'nin $[AB]$ ve $[DC]$'ye uzaklıkları $d_1$ ve $d_2$ ise $d_1 + d_2 = h$ olur. $PAB$ ve $PCD$ üçgenlerinin tabanı $a$ olduğundan alanları toplamı\n$$\\frac{a \\cdot d_1}{2} + \\frac{a \\cdot d_2}{2} = \\frac{a \\cdot h}{2} = \\frac{A(ABCD)}{2}$$\nolur. Aynı şekilde $A(PAD) + A(PBC) = \\frac{A(ABCD)}{2}$.",
+      "caption": "$A(PAB) + A(PCD) = A(PAD) + A(PBC) = \\frac{A(ABCD)}{2}$",
+      "narration": "Bu toplam $P$'nin yerinden bağımsızdır. Soruda iç noktadan köşelere doğru parçaları çizilmişse, karşılıklı iki üçgeni eşleştir ve toplamlarını alanın yarısına eşitle."
+     },
+     {
+      "kind": "example",
+      "title": "Dört üçgeni tamamla",
+      "example": "Alanı $100$ cm² olan $ABCD$ paralelkenarında iç bir $P$ noktası için $A(PAB) = 18$ cm² ve $A(PAD) = 27$ cm²'dir. $A(PCD)$ ve $A(PBC)$ kaç santimetrekaredir?",
+      "explanation": "Karşılıklı çiftlerin toplamı alanın yarısı, yani $50$'dir. $A(PAB) + A(PCD) = 50$ → $A(PCD) = 50 - 18 = 32$. $A(PAD) + A(PBC) = 50$ → $A(PBC) = 50 - 27 = 23$. Kontrol: $18 + 27 + 32 + 23 = 100$."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ paralelkenarının alanı $60$ cm²'dir. İç bölgedeki bir $P$ noktası için $A(PAB) = 10$ cm² olduğuna göre $A(PCD)$ kaç santimetrekaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         10.813,
+         5.232
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           8,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           10.113,
+           4.532
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           2.113,
+           4.532
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "P",
+          "at": [
+           4.6,
+           2.9
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "P",
+          "to": "A",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "P",
+          "to": "B",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "P",
+          "to": "C",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "P",
+          "to": "D",
+          "dashed": true,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "P",
+           "A",
+           "B"
+          ],
+          "fill": true,
+          "shade": 1
+         },
+         {
+          "points": [
+           "P",
+           "C",
+           "D"
+          ],
+          "fill": true,
+          "shade": 1
+         }
+        ]
+       },
+       "options": [
+        "5",
+        "10",
+        "15",
+        "20",
+        "30"
+       ],
+       "answer": 3,
+       "choiceFeedback": [
+        "Verilen alanı ikiye bölmüş olabilirsin; ama ilişki toplam alan üzerinden kurulur.",
+        "$PCD$'yi $PAB$'ye eşit sanmışsın; iki alan, yalnızca toplamları sabit olan farklı değerler alabilir.",
+        "Alanın dörtte birini almışsın; dört üçgen yalnız $P$ köşegenlerin kesişimindeyse eşittir.",
+        null,
+        "Karşılıklı iki üçgenin alan toplamını yazmışsın; sorulan yalnız $PCD$."
+       ],
+       "steps": [
+        {
+         "text": "Karşılıklı kenarlara bakan $PAB$ ile $PCD$ üçgenlerinin alanları toplamı, paralelkenar alanının kaçta kaçıdır?"
+        },
+        {
+         "text": "Bu toplamdan verilen alanı çıkar."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; paralelkenarda iç noktanın alan paylaşımı özgün değerlerle, çizilmiş bir şekilde soruldu."
+       }
+      }
+     },
+     {
+      "kind": "mistake",
+      "title": "İç noktadaki dört üçgen",
+      "wrong": "İç bir $P$ noktasının köşelerle kurduğu dört üçgenin alanları birbirine eşittir.",
+      "right": "Dört alan yalnız $P$ köşegenlerin kesişim noktasıysa eşittir; her $P$ için sabit kalan, karşılıklı iki üçgenin toplamının alanın yarısı olmasıdır.",
+      "why": "$P$ yer değiştirdikçe $d_1$ ve $d_2$ değişir, tek tek alanlar değişir. Sabit olan yalnız $d_1 + d_2 = h$ olduğundan karşılıklı iki üçgenin toplamıdır."
+     },
+     {
+      "kind": "concept",
+      "title": "Köşegenler dört eş üçgen verir",
+      "text": "Köşegenler $E$'de kesişsin. $|AE| = |EC|$ olduğundan $ABE$ ve $BCE$ üçgenleri $B$'den aynı yüksekliğe ve eşit tabana sahiptir; alanları eşittir. Aynı akıl yürütme dört üçgenin tamamı için yürür: her biri $\\frac{A(ABCD)}{4}$'tür. Bitişik iki üçgenin toplamı alanın yarısıdır.",
+      "caption": "$A(ABE) = A(BCE) = A(CDE) = A(DAE) = \\frac{A(ABCD)}{4}$",
+      "narration": "Bu özellik, köşegen ve kenarortayın birlikte geldiği alan sorularının başlangıç noktasıdır: önce dört eş parçaya ayır, sonra istenen üçgenin bu parçaların kaçta kaçı olduğunu bul."
+     },
+     {
+      "kind": "example",
+      "title": "Dörtte bir ve yarım",
+      "example": "Alanı $72$ cm² olan $ABCD$ paralelkenarında köşegenler $E$'de kesişiyor. $A(ADE)$ ve $A(ABE) + A(CDE)$ kaç santimetrekaredir?",
+      "explanation": "Dört eş üçgenin her biri $\\frac{72}{4} = 18$ cm²'dir; $A(ADE) = 18$. $ABE$ ile $CDE$ karşılıklı üçgenlerdir: $18 + 18 = 36$ cm², yani alanın yarısı."
+     },
+     {
+      "kind": "match",
+      "title": "Alan paylaşımı",
+      "prompt": "Her durumu alan payıyla eşleştir.",
+      "titles": [
+       "Durum",
+       "Alan payı"
+      ],
+      "pairs": [
+       {
+        "left": "Bir köşegenin ayırdığı iki üçgenden her biri",
+        "right": "Alanın $\\frac{1}{2}$'si"
+       },
+       {
+        "left": "İki köşegenin ayırdığı dört üçgenden her biri",
+        "right": "Alanın $\\frac{1}{4}$'ü"
+       },
+       {
+        "left": "Tepesi karşı kenarda olan, tabanı bir kenar olan üçgen",
+        "right": "Alanın $\\frac{1}{2}$'si"
+       },
+       {
+        "left": "İç noktanın karşılıklı kenarlarla kurduğu iki üçgenin toplamı",
+        "right": "Alanın $\\frac{1}{2}$'si"
+       }
+      ],
+      "explanation": "Köşegen iki eş parça verir; köşegenlerin ikisi dört eş parça verir. Tabanı kenar, tepesi karşı kenarda olan üçgen ile iç noktadan kurulan karşılıklı çift de alanın yarısıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Şekildeki $ABCD$ paralelkenarında köşegenler $E$ noktasında kesişiyor ve $F$, $[BC]$'nin orta noktasıdır. $A(ABCD) = 48$ cm² olduğuna göre $A(EFC)$ kaç santimetrekaredir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -0.7,
+         -0.7,
+         11.2,
+         5.03
+        ],
+        "points": [
+         {
+          "id": "A",
+          "at": [
+           0,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "B",
+          "at": [
+           8,
+           0
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "C",
+          "at": [
+           10.5,
+           4.33
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "D",
+          "at": [
+           2.5,
+           4.33
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "E",
+          "at": [
+           5.25,
+           2.165
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         },
+         {
+          "id": "F",
+          "at": [
+           9.25,
+           2.165
+          ],
+          "hidden": false,
+          "dot": true,
+          "caption": false
+         }
+        ],
+        "segments": [
+         {
+          "from": "A",
+          "to": "B",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "F",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "F",
+          "to": "C",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "C",
+          "to": "D",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "D",
+          "to": "A",
+          "dashed": false,
+          "ticks": 0
+         },
+         {
+          "from": "A",
+          "to": "C",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "B",
+          "to": "D",
+          "dashed": true,
+          "ticks": 0
+         },
+         {
+          "from": "E",
+          "to": "F",
+          "dashed": false,
+          "ticks": 0
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "E",
+           "F",
+           "C"
+          ],
+          "fill": true,
+          "shade": 1
+         }
+        ]
+       },
+       "options": [
+        "4",
+        "6",
+        "8",
+        "12",
+        "16"
+       ],
+       "answer": 1,
+       "choiceFeedback": [
+        "Bölme oranını yanlış almış olabilirsin; önce $A(EBC)$'yi bul.",
+        null,
+        "Paylaşımı yanlış oranlamış olabilirsin; $F$'nin orta nokta olduğunu kullan.",
+        "Yalnız $A(EBC)$'yi bulup $F$ ile bölmeyi unutmuş olabilirsin.",
+        "Alanı 3'e bölmüş olabilirsin; köşegenler 4 eş üçgen verir."
+       ],
+       "steps": [
+        {
+         "text": "Köşegenler paralelkenarı kaç eş üçgene böler? $A(EBC)$ kaçtır?"
+        },
+        {
+         "text": "$[EF]$, $EBC$ üçgeninin hangi özel doğru parçasıdır? Bu doğru parçası alanı nasıl böler?"
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; paralelkenarda köşegenlerin dört eş alanı ve kenarortay özgün bir şekilde birleştirildi."
+       }
+      }
+     },
+     {
+      "kind": "rule",
+      "title": "Diğer alan özellikleri",
+      "items": [
+       "$O$ noktası $[AC]$ köşegeni üzerinde, [NL] ∥ [DC] ve [MK] ∥ [DA] çizilirse köşegen dışında kalan iki paralelkenarın alanı eşittir: $A(DNOM) = A(KBLO)$.",
+       "Kenarların orta noktalarını sırayla birleştirince oluşan dörtgen paralelkenardır ve alanı $\\frac{A(ABCD)}{2}$'dir.",
+       "Eşkenar dörtgen paralelkenarın bütün özelliklerini taşır; ayrıca köşegenleri diktir ve köşegenler açıortaydır.",
+       "Alan sorusunda sıra: önce taban-yükseklik, sonra paylaşım oranları, en sonda sinüs."
+      ],
+      "narration": "Köşegen üzerindeki noktadan çizilen paralellerle paralelkenar dört parçaya ayrılır. Köşegenin üzerinden geçtiği iki küçük paralelkenar ikişer eş yarıma bölünür; $ABC$ ve $ADC$ üçgenlerinin alanları eşit olduğundan köşegen dışında kalan iki parça da eşit alanlı çıkar."
+     },
+     {
+      "kind": "predict",
+      "title": "Köşegen üzerindeki nokta",
+      "prompt": "Köşegen üzerindeki bir noktadan kenarlara paraleller çizilince, köşegen dışında kalan iki paralelkenarın alanı eşittir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$ABC$ ve $ADC$ üçgenlerinin alanları eşittir. Her biri, köşegenin ayırdığı iki küçük paralelkenarın yarılarından ve köşegen dışındaki paralelkenarlardan birinden oluşur. Ortak parçalar çıkarılınca geriye kalan iki paralelkenar eşit alanlı olur."
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "points": [
+    "Karşılıklı kenar ve açılar eşit; komşu açılar **bütünler**.",
+    "Açıortay karşı kenarla **ikizkenar** üçgen kurar; komşu açıortaylar **diktir**.",
+    "Dört açıortay bir **dikdörtgen** kurar; köşegeni $|a - b|$.",
+    "Köşegenler birbirini ortalar; $e^2 + f^2 = 2(a^2 + b^2)$.",
+    "Köşeden karşı kenarın orta noktasına giden doğru köşegeni **1 : 2** böler.",
+    "Üç köşe verilince $D = A + C - B$ (köşegenlerin orta noktası ortak).",
+    "Alan $a \\cdot h = a \\cdot b \\cdot \\sin\\alpha$; köşegenler **dört eş** alan verir.",
+    "İç noktada karşılıklı üçgenlerin toplamı alanın **yarısıdır**."
+   ],
+   "warnings": [
+    "Paralelkenar alanında **ikiye bölme yok**; iki kenarı çarpmak alan değildir, yükseklik ya da sinüs şart.",
+    "Genel paralelkenarda köşegenler **eşit değil**, **dik değil**.",
+    "Karşılıklı ile komşu açıyı karıştırma.",
+    "Koordinat sorusunda köşelerin **sırasına** bak: farklı sıra farklı $D$ verir."
+   ]
+  }
+ },
+ "camp": {
+  "task": {
+   "items": [
+    "Bir paralelkenar çiz, bir açının açıortayını çiz: oluşan **ikizkenar** üçgeni işaretle.",
+    "Köşegen, paralelkenar kuralı ve alan formüllerini **bir sayfaya** yaz.",
+    "Uygulamada Paralelkenar testinden **20 soru** çöz; her açıortayda **ikizkenarı** ara."
+   ]
+  }
+ }
+}
