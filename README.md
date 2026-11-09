@@ -41,7 +41,7 @@ Seslendirme için ElevenLabs API anahtarı gerekir. `.env.example` dosyasını `
 | `npm run render -- --job <job.json> --out <kare.png> --frame 120` | Tek kare render eder |
 | `npm run screens [-- --mode both --device]` | Mobil uygulama ekranlarını PNG olarak `Outputs/AppScreens` altına çıkarır |
 | `npm run uiux [-- --only m-deneme --lang en]` | UI/UX çizimlerini (mobil, web paneli, site; açık ve koyu ayrı; ekranlar ve panolar) `Desktop\Sinavika-UIUX3\acik|koyu` altına çıkarır; `--mode light|dark|both`. Ayrıntı: [docs/UIUX/UIUX-Rehberi.md](docs/UIUX/UIUX-Rehberi.md) |
-| `npm run google-ads [-- --lang tr --exam yks --platform mobile]` | Google Ads setini (YKS/KPSS, mobil uygulama/web sitesi, TR/EN; 3 boyut görsel, metinsiz kopyalar, HTML5 zip, metin CSV, logolar) `Desktop\Sinavika-GoogleAds` altına çıkarır. Plan: [docs/GoogleAds/Icerik-Plani.md](docs/GoogleAds/Icerik-Plani.md) |
+| `npm run google-ads [-- --lang tr --exam yks --platform mobile]` | Google Ads setini (YKS/KPSS, mobil uygulama/web sitesi, TR/EN; 3 boyut görsel, metinsiz kopyalar, HTML5 zip, metin CSV, logolar) `Desktop\Sinavika-GoogleAds` altına çıkarır. Plan: [docs/Ads/GoogleAds/Icerik-Plani.md](docs/Ads/GoogleAds/Icerik-Plani.md) |
 | `npm run render -- ... --concurrency 4 --json` | Paralel sekme sayısı; makine tarafından okunabilir çıktı |
 | `npm run validate -- <job.json> [...]` | Render etmeden doğrular, süreyi raporlar |
 | `npm run validate -- <job.json> --narration` | Ayrıca seslendirme metnini satır satır yazdırır |
@@ -273,7 +273,7 @@ tema eklenir.
 **Kurumsal palet.** Sınavika'nın resmî renkleri tek dosyada durur: [src/Configurations/BrandColors.ts](src/Configurations/BrandColors.ts).
 Bu renklerden iki palet (`SinavikaLightV1`, `SinavikaDarkV1`) ve aynı renkleri taşıyan iki tema (`SinavikaLight`,
 `SinavikaDark`) kurulur. Sosyal medya içeriklerinin tamamı bu iki temayla üretilir; hangi içerik türünün hangi temayı
-kullandığı [docs/SocialPlan.md](docs/SocialPlan.md) içindedir. Eski temalar (`SinavikaBrand` dahil) kendi renklerini korur.
+kullandığı [docs/Social/SocialPlan.md](docs/Social/SocialPlan.md) içindedir. Eski temalar (`SinavikaBrand` dahil) kendi renklerini korur.
 
 ```bash
 npm run image -- --job samples/Images/QuestionSolution-QuestionCard.json --theme SinavikaLight --size Portrait
@@ -303,11 +303,11 @@ Outputs/
 
 Video, kapağıyla birlikte aynı numara altında kaydedilir: `03_Turkce_Ses_Olaylari.mp4` ve `03_Turkce_Ses_Olaylari_Kapak.png`. Kapak videonun
 açılış karesi olarak da videoya yerleştirilir; `"cover": false` ile kapatılır, `"cover": {"title": "...", "emphasis": "..."}` ile metinleri
-değiştirilir. Ayrıntı: [docs/SocialPlan.md](docs/SocialPlan.md).
+değiştirilir. Ayrıntı: [docs/Social/SocialPlan.md](docs/Social/SocialPlan.md).
 
 ## Eğitim videoları (YouTube dersi + kısa özet)
 
-Ders ve konu listesine bağlı üretim: `Curriculum/` (katalog, üretim kontrol listesi, konuya göre gruplanmış kaynaklar), senaryo şeması, `CourseLesson` (YouTube, 16:9) ve `CourseShort` (Reels/TikTok/Shorts) şablonları, derslere özel görseller (grafik, geometri, kuvvet, hareket, molekül, atom, tepkime, zaman çizelgesi, harita, cümle şeması…). Görseller anlatımla eşzamanlı değişir (beat: göster, vurgula, yakınlaştır, katsayı değiştir, aşama ilerlet); süreç görselleri (akarsu, deprem, kuvvet → ivme → hareket, denklem terazisi), önce tahmin sonra gösterim kartı ve 3B görseller (cisim ve açınım, molekül şekli, fay blokları; three.js) vardır. Ayrıntı: [docs/Courses.md](docs/Courses.md).
+Ders ve konu listesine bağlı üretim: `Curriculum/` (katalog, üretim kontrol listesi, konuya göre gruplanmış kaynaklar), senaryo şeması, `CourseLesson` (YouTube, 16:9) ve `CourseShort` (Reels/TikTok/Shorts) şablonları, derslere özel görseller (grafik, geometri, kuvvet, hareket, molekül, atom, tepkime, zaman çizelgesi, harita, cümle şeması…). Görseller anlatımla eşzamanlı değişir (beat: göster, vurgula, yakınlaştır, katsayı değiştir, aşama ilerlet); süreç görselleri (akarsu, deprem, kuvvet → ivme → hareket, denklem terazisi), önce tahmin sonra gösterim kartı ve 3B görseller (cisim ve açınım, molekül şekli, fay blokları; three.js) vardır. Ayrıntı: [docs/Courses/Courses.md](docs/Courses/Courses.md).
 
 | Komut | Ne yapar |
 | --- | --- |
@@ -344,18 +344,18 @@ npm run render -- --job samples/ExamJourney.json
 ```
 
 - `"fps": 60` ile akıcı hareket, `"soundtrack": true` ile kodla üretilen özgün müzik ve ses tasarımı eklenir; ses −14 LUFS'e ayarlanır.
-- Uygulama ekranları merkezi bir katalogdur (11 ekran, açık ve koyu tema); videoda, telefonlu görsellerde (`appScreen`) ve tek başına kullanılır: `npm run screens`. Ayrıntı: [docs/AppScreens.md](docs/AppScreens.md).
-- Tanıtım videolarının standart brifi: [docs/AdPrompt.md](docs/AdPrompt.md). Marka kimliği: [docs/BrandIdentity.md](docs/BrandIdentity.md).
+- Uygulama ekranları merkezi bir katalogdur (11 ekran, açık ve koyu tema); videoda, telefonlu görsellerde (`appScreen`) ve tek başına kullanılır: `npm run screens`. Ayrıntı: [docs/UIUX/AppScreens.md](docs/UIUX/AppScreens.md).
+- Tanıtım videolarının standart brifi: [docs/Ads/AdPrompt.md](docs/Ads/AdPrompt.md). Marka kimliği: [docs/Brand/BrandIdentity.md](docs/Brand/BrandIdentity.md).
 
 ## Sosyal medya teslimi (SocialHub)
 
 Üretilen görsel ve videolar Sınavika API'ye teslim edilir; orada admin onayını bekler ve onaylanınca Buffer üzerinden Instagram, TikTok ve YouTube'da paylaşılır. Bu araç onay veremez ve yayın yapamaz.
 
 Neyin neden üretildiği şu belgelerdedir:
-- Vizyon, 1 milyon takipçi hedefi, içerik sütunları ve ölçüm: [docs/SocialStrategy.md](docs/SocialStrategy.md).
-- Hook, kurgu ve yayın öncesi kontrol listesi: [docs/SocialCreativePlaybook.md](docs/SocialCreativePlaybook.md).
-- Sabit kapak, reels bitiş kartı ve mağaza rozetleri: [docs/Sosyal-Kimlik-Standardi.md](docs/Sosyal-Kimlik-Standardi.md).
-- Dayanılan kaynaklar: [docs/SocialResources.md](docs/SocialResources.md).
+- Vizyon, 1 milyon takipçi hedefi, içerik sütunları ve ölçüm: [docs/Social/SocialStrategy.md](docs/Social/SocialStrategy.md).
+- Hook, kurgu ve yayın öncesi kontrol listesi: [docs/Social/SocialCreativePlaybook.md](docs/Social/SocialCreativePlaybook.md).
+- Sabit kapak, reels bitiş kartı ve mağaza rozetleri: [docs/Social/Sosyal-Kimlik-Standardi.md](docs/Social/Sosyal-Kimlik-Standardi.md).
+- Dayanılan kaynaklar: [docs/Social/SocialResources.md](docs/Social/SocialResources.md).
 
 ```bash
 npm run social -- accounts
@@ -370,7 +370,7 @@ npm run social -- import-sources --file samples/Social/Sources.json
 | Komut | Ne yapar |
 | --- | --- |
 | `accounts` | Aktif hesaplar (`id`, platform, ad) ve Buffer'ın her biri için önerdiği saatler |
-| `plan` | Standart haftalık plandan tarihli takvim: gün, saat (Buffer'dan), içerik türü, format, platformlar. Kurallar: [docs/SocialPlan.md](docs/SocialPlan.md) |
+| `plan` | Standart haftalık plandan tarihli takvim: gün, saat (Buffer'dan), içerik türü, format, platformlar. Kurallar: [docs/Social/SocialPlan.md](docs/Social/SocialPlan.md) |
 | `submit` | Gönderi dosyasındaki medyayı yükler, gönderiyi "onay bekliyor" olarak oluşturur |
 | `calendar` | Tarih aralığındaki plan, hesap bazında durumla |
 | `revisions` | Adminin reddettiği, yeniden hazırlanacak gönderiler ve notları |
@@ -385,7 +385,7 @@ Gönderi dosyası [`samples/Social/Post.json`](samples/Social/Post.json) biçimi
 
 Bu biçim canlıda (API 5 Kasım 2026'da yayınlandı). Videonun yanındaki `_Kapak.png` kendiliğinden kapak olarak yüklenir. Reddedilen bir gönderinin yerine hazırlananda `replacesPostId` eskisinin kimliğidir. Bir kaynak yalnız bir gönderide kullanılabilir; API ikinci kullanımı reddeder.
 
-`.env`: `SINAVIKA_API_URL` ve `SINAVIKA_SOCIALHUB_KEY` (sunucudaki `SocialHub__ClaudeApiKey` ile aynı). İstemci: [`src/Services/SocialHubClient.ts`](src/Services/SocialHubClient.ts). Sunucu tarafı ve uçlar: Sınavika deposunda `docs/social-hub-integration.md`.
+`.env`: `SINAVIKA_API_URL` ve `SINAVIKA_SOCIALHUB_KEY` (sunucudaki `SocialHub__ClaudeApiKey` ile aynı). İstemci: [`src/Social/SocialHubClient.ts`](src/Social/SocialHubClient.ts). Sunucu tarafı ve uçlar: Sınavika deposunda `docs/social-hub-integration.md`.
 
 ## Video template'leri
 

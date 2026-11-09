@@ -16,14 +16,6 @@
   "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2025: 10 soru; temel sayma (yol sayma, eşleştirme, menü), koşullu sıralama (aktiviteler), kombinasyon (uçuş ekipleri, seçim sayıları, ders programı))",
   "YKS/TYT/Sorular/MAT/MAT_PER_KOM.jsonl (336 soru; sayma ilkesi, permütasyon ve kombinasyon kalıpları)"
  ],
- "works": {
-  "additions": [
-   "Koşullu sıralama tiplerini ekle: belirli kişilerin yan yana olması (blok yöntemi), yan yana olmaması (tümleyen), belirli kişilerin uçlarda ya da ortada olması.",
-   "Rakamlarla sayı oluşturma sorularını genişlet: tekrarlı ve tekrarsız, çift ya da tek, 5'e bölünen, belirli bir sayıdan büyük sayılar; 0'ın başa gelemeyeceği.",
-   "Kombinasyonun özelliklerini ve geometrik saymayı ver: C(n, r) = C(n, n − r), alt kümelerin toplamı 2ⁿ; n noktadan geçen doğru ve üçgen sayısı, çokgende köşegen sayısı.",
-   "Izgara üzerinde en kısa yol sayısını (sağa ve yukarı adımların tekrarlı permütasyonu) ve 'en az bir kız olacak şekilde takım seçme' tipini örnekle."
-  ]
- },
  "lesson": {
   "hook": {
    "headline": "Sıra önemliyse permütasyon, değilse kombinasyon.",
@@ -407,6 +399,7 @@
        "$\\binom{n}{r} = \\frac{n!}{r! \\cdot (n - r)!}$: $n$ kişiden $r$ kişilik **grup**.",
        "$\\binom{8}{3} = \\frac{8 \\cdot 7 \\cdot 6}{3 \\cdot 2 \\cdot 1} = 56$",
        "$\\binom{n}{r} = \\binom{n}{n - r}$: 3 kişiyi seçmek, 5 kişiyi dışarıda bırakmaktır.",
+       "**ÖSYM 2021**: 5 kişiyi seçmek ile 11 kişiyi seçmek aynı sayıyı veriyorsa sınıf **16** kişidir.",
        "\"Mutlaka olsun\" → onu ekle, kalanlardan seç. \"Olmasın\" → onu çıkar, kalanlardan seç."
       ],
       "narration": "n kişiden r kişilik bir grup seçmenin yolu C n r'dir: n faktöriyel bölü r faktöriyel çarpı n eksi r faktöriyel. Pratikte r tane azalan sayıyı çarpıp r faktöriyele bölersin: C 8 3, 8 çarpı 7 çarpı 6 bölü 6, yani 56. C n r, C n n eksi r'ye eşittir; çünkü 3 kişiyi seçmek, 5 kişiyi dışarıda bırakmakla aynı şeydir. ÖSYM 2021'de tam olarak bunu sordu: 5 kişiyi seçmek ile 11 kişiyi seçmek aynı sayıyı veriyorsa sınıf 16 kişiliktir. Biri mutlaka grupta olacaksa onu gruba koyup kalanları seçersin; olmayacaksa onu çıkarıp kalanlardan seçersin."
@@ -415,9 +408,9 @@
       "kind": "mistake",
       "title": "En az birde çift sayma",
       "wrong": "En az bir kız: önce 4 kızdan biri, sonra kalan 8 kişiden 2: $4 \\cdot \\binom{8}{2} = 112$.",
-      "right": "Bu yol aynı ekibi **birkaç kez** sayar. Doğrusu: tümü − hiç kız yok = $84 - 10 = 74$.",
+      "right": "112 çıkar: toplam ekip sayısı 84'ten bile fazla. Bu yol aynı ekibi **iki kez** sayar. **Doğru yol**: tümü − hiç kız yok = $84 - 10 = 74$.",
       "why": "Ekipte iki kız varsa, hangisinin \"önce seçilen\" olduğu değişince aynı ekip iki kez sayılır.",
-      "narration": "En az bir sorularında sık yapılan bir hata var: önce bir kız seçip kalan yerleri herkesten seçmek. 4 çarpı C 8 2, 112 çıkar ve bu, toplam ekip sayısı 84'ten bile fazla. Çünkü ekipte iki kız varsa hangisinin önce seçildiği değişince aynı ekip iki kez sayılır. Doğru yol, bütün durumlardan hiç kız olmayan durumları çıkarmaktır."
+      "narration": "En az bir sorularında sık bir hata: önce bir kız seçip kalan yerleri herkesten seçmek. 4 çarpı C 8 2, 112 çıkar: toplam ekip sayısı 84'ten bile fazla. Çünkü ekipte iki kız varsa hangisinin önce seçildiği değişince aynı ekip iki kez sayılır. Doğru yol, bütün durumlardan hiç kız olmayan durumları çıkarmaktır."
      },
      {
       "kind": "question",

@@ -29,7 +29,7 @@ import {WelcomeScene} from './Scenes/WelcomeScene';
  * first lesson. Narrated by SinoAI in the camp voice, no music (camp rule).
  *
  * Content is the script itself, one narration per scene; the scenes draw what
- * the narration says (docs/CampIntro.md has the two scripts in plain text).
+ * the narration says (docs/Courses/CampIntro.md has the two scripts in plain text).
  * Every element lands when its words are heard: its `cue`, a phrase of the
  * narration, defaults to its own name or title (phraseCues).
  */

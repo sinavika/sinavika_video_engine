@@ -5,7 +5,7 @@ import {ffmpeg} from './AudioLeveling';
 
 /**
  * The beat grid of a piece of music, measured from the piece itself, so a
- * reel can cut on the beat (docs/Reels-Kurgu-Fikirleri.md: "her vuruşta bir
+ * reel can cut on the beat (docs/Social/Reels-Kurgu-Fikirleri.md: "her vuruşta bir
  * şey olur, kesmeler vuruşa denk gelir"). ElevenLabs Music is asked for a
  * tempo ("Around 118 BPM"); that tempo is only a hint, the grid is found in
  * the audio: an onset curve (rises in loudness), the period that repeats best

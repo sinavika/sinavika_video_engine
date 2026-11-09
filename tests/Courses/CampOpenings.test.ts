@@ -9,7 +9,7 @@ import {CampFlash} from '../../src/Templates/Camps/CampFlash/CampFlash';
 import {COURSE_DESIGN} from '../../src/Courses/CourseDesign';
 
 /**
- * Every camp lesson on disk against the opening rules (owner, 8 Nov 2026; docs/Courses.md): a cold open in the
+ * Every camp lesson on disk against the opening rules (owner, 8 Nov 2026; docs/Courses/Courses.md): a cold open in the
  * lesson's own words, short, of a kind that varies within the camp, never a greeting. The 15 TYT Türkçe lessons
  * were published before cold opens existed and are left as they are (owner: "tyt 15 dersi için paylaşım yapıldı").
  */

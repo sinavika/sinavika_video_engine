@@ -61,7 +61,7 @@ export const MAP_COLORS_DARK = {
  * are stroked (rivers), water is filled with the water colour (lakes).
  *
  *   regions          the seven geographical regions with their natural borders, which cross provinces
- *                    (from a drawn map, georeferenced: about ±5 km; see docs/Courses.md)
+ *                    (from a drawn map, georeferenced: about ±5 km; see docs/Courses/Courses.md)
  *   provinceRegions  the same regions as whole provinces, as the textbooks list "which province is in which region"
  */
 export const GEO_LAYERS = {

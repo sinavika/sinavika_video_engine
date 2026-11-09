@@ -4,7 +4,7 @@
  *
  * Names, colours and icons come from the one module table
  * (src/UIUX/ModuleIdentity.ts); this file adds the advertising copy around
- * them and the copy check every outgoing text passes (docs/ProductMessaging.md).
+ * them and the copy check every outgoing text passes (docs/Brand/ProductMessaging.md).
  *
  * The pattern for a feature line (from the store review):
  * - `tool`: the module itself is the subject, saying what it does

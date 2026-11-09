@@ -10,7 +10,7 @@ import {InkProvider, useTheme} from '../../../../Themes/ThemeContext';
  * the first one on screen from the first frame with the dare over it, and a
  * closing that asks for the score. A tick counts the seconds, a chime lands
  * with the answer and a whoosh goes with each slide in (27 Oct 2026). In the lesson's colour, like the camp
- * lesson on YouTube (docs/CourseColors.md).
+ * lesson on YouTube (docs/Courses/CourseColors.md).
  */
 
 export const useTone = () => {

@@ -16,13 +16,6 @@
   "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018: 1 soru; polinomun kökü ve P(P(x)) bileşkesi)",
   "YKS/TYT/Sorular/MAT/MAT_POLINOM.jsonl (231 soru; tanım, derece, işlem, kalan ve çarpan teoremi kalıpları)"
  ],
- "works": {
-  "additions": [
-   "Polinom eşitliğini (aynı dereceli terimlerin katsayıları eşit) ve sabit polinom ile sıfır polinomun derecesini örnekle.",
-   "Polinom bölmeyi uzun bölmeyle adım adım göster; ikinci dereceden bir polinoma bölümden kalanın ax + b biçiminde olduğunu ve iki koşulla bulunduğunu örnekle.",
-   "Çift dereceli terimlerin katsayıları toplamını (P(1) + P(−1))/2, tek dereceli olanlarınkini (P(1) − P(−1))/2 ile bulmayı ekle."
-  ]
- },
  "lesson": {
   "hook": {
    "headline": "Bir polinomu bölmeden kalanını bulabilirsin: x yerine bir sayı yaz.",
@@ -56,9 +49,10 @@
        "$P(x) = a_n x^n + \\cdots + a_1 x + a_0$; **üsler doğal sayı** olmalı.",
        "$\\frac{1}{x}$, $\\sqrt{x}$, $x^{-2}$, $2^x$ içeren ifadeler **polinom değildir**.",
        "**Derece**: en büyük üs. **Baş katsayı**: en büyük üslü terimin katsayısı. **Sabit terim**: $a_0$.",
+       "Sabit polinomun derecesi **0**: $P(x) = 7$. Sıfır polinomunun derecesi **tanımsızdır**.",
        "$P(1)$ = **katsayılar toplamı**, $P(0)$ = **sabit terim**."
       ],
-      "narration": "Polinomda x'in kuvvetleri doğal sayı olmalıdır. 1 bölü x, karekök x, x üssü eksi 2 ya da 2 üssü x içeren ifadeler polinom değildir. En büyük üs polinomun derecesidir, o terimin katsayısı baş katsayıdır, x içermeyen terim ise sabit terimdir. İki kısa yol: P 1 katsayılar toplamını, P 0 sabit terimi verir."
+      "narration": "Polinomda x'in kuvvetleri doğal sayı olmalıdır. 1 bölü x, karekök x, x üssü eksi 2 ya da 2 üssü x içeren ifadeler polinom değildir. En büyük üs polinomun derecesidir, o terimin katsayısı baş katsayıdır, x içermeyen terim ise sabit terimdir. P x eşittir 7 gibi sabit bir polinomun derecesi sıfırdır; sıfır polinomunun derecesi ise tanımsızdır. İki kısa yol: P 1 katsayılar toplamını, P 0 sabit terimi verir."
      },
      {
       "kind": "question",
@@ -289,28 +283,28 @@
       "kind": "rule",
       "title": "Kalan teoremi",
       "items": [
-       "$P(x) = B(x) \\cdot Q(x) + K(x)$ ve $\\text{der}[K] < \\text{der}[B]$.",
-       "$P(x)$'in $(x - a)$ ile bölümünden kalan **$P(a)$**.",
-       "$(ax + b)$ ile bölümünden kalan $P\\left(-\\frac{b}{a}\\right)$: böleni sıfır yapan değeri yaz.",
-       "Birinci dereceden bir bölen için kalan bir **sabittir**."
+       "Bölünen = bölen · bölüm + kalan: $P(x) = B(x) \\cdot Q(x) + K(x)$ ve $\\text{der}[K] < \\text{der}[B]$.",
+       "**Kalan teoremi**: $P(x)$'in $(x - a)$ ile bölümünden kalan $P(a)$.",
+       "**Böleni sıfır yapan değeri** x yerine yaz: $(ax + b)$ ile bölümde kalan $P\\left(-\\frac{b}{a}\\right)$.",
+       "Bölen birinci dereceden ise kalan bir **sabit sayıdır**."
       ],
       "narration": "Polinom bölmesinde de bölünen, bölen çarpı bölüm artı kalandır ve kalanın derecesi bölenin derecesinden küçüktür. Kalan teoremi şunu söyler: P x'in x eksi a ile bölümünden kalan P a'dır. Böleni sıfır yapan değeri x yerine yazarsın. Bölen 2 x artı 1 ise x yerine eksi ikide bir yazarsın. Bölen birinci dereceden olduğu için kalan bir sabit sayıdır."
      },
      {
       "kind": "predict",
       "title": "Bölmeden kalan",
-      "context": "$P(x) = x^3 - 4x + 5$ polinomu $(x - 2)$ ile bölünüyor.",
+      "context": "$P(x) = x^3 - 2x + 1$ polinomu $(x - 2)$ ile bölünüyor.",
       "prompt": "Kalan kaçtır?",
       "choices": [
        "5",
-       "13",
+       "$-3$",
        "1"
       ],
       "answer": 0,
       "thinkSeconds": 5,
       "visual": {
        "kind": "formula",
-       "latex": "P(2) = 2^3 - 4 \\cdot 2 + 5 = 8 - 8 + 5 = 5",
+       "latex": "P(2) = 2^3 - 2 \\cdot 2 + 1 = 8 - 4 + 1 = 5",
        "caption": "Böleni sıfır yapan x = 2 yazılır."
       },
       "beats": [
@@ -319,13 +313,13 @@
         "focus": []
        },
        {
-        "narration": "2 küp 8, eksi 4 çarpı 2, eksi 8, artı 5. Kalan 5.",
+        "narration": "2 küp 8, eksi 2 çarpı 2, eksi 4, artı 1. Kalan 5.",
         "focus": []
        }
       ],
-      "explanation": "Kalan $P(2) = 8 - 8 + 5 = 5$. Bölme yapmadan, **böleni sıfır yapan değeri** yazarak bulundu.",
+      "explanation": "Kalan $P(2) = 8 - 4 + 1 = 5$. Bölme yapmadan, **böleni sıfır yapan değeri** yazarak bulundu.",
       "narration": "Şimdi sıra sende. Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap 5. Kalan teoremiyle x yerine böleni sıfır yapan 2'yi yazdık. 13'ü seçen x yerine eksi 2 yazmıştır; x eksi 2'yi sıfır yapan artı 2'dir."
+      "explanationNarration": "Doğru cevap 5. Kalan teoremiyle x yerine böleni sıfır yapan 2'yi yazdık. Eksi 3'ü seçen x yerine eksi 2 yazmıştır; x eksi 2'yi sıfır yapan artı 2'dir. 1'i seçen ise sabit terimi kalan sanmıştır."
      },
      {
       "kind": "question",
@@ -594,7 +588,7 @@
    "warnings": [
     "$x - 2$ için $x$ yerine **2** yazılır, $-2$ değil.",
     "$(-2)^3 = -8$",
-    "Sıfır polinomun derecesi **belirsizdir**.",
+    "Sıfır polinomunun derecesi **tanımsızdır**.",
     "Sabit polinomun derecesi **0**."
    ],
    "narration": "Hadi toparlayalım. Polinomda x'in üsleri doğal sayıdır. P 1 katsayılar toplamını, P 0 sabit terimi verir. Çarpımda dereceler toplanır, iç içe yazmada çarpılır. Bir polinomun x eksi a ile bölümünden kalan P a'dır; kalan sıfırsa x eksi a bir çarpandır. P x artı 1 gibi verilen ifadelerde önce parantezin içini istenen sayıya eşitle."

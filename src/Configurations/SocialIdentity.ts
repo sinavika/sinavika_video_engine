@@ -13,7 +13,7 @@ import {BRAND_COLORS} from './BrandColors';
  *   image says where to get the app.
  *
  * Every value comes from the brand palette (BrandColors); nothing here is
- * chosen per post. docs/Sosyal-Kimlik-Standardi.md explains the rules.
+ * chosen per post. docs/Social/Sosyal-Kimlik-Standardi.md explains the rules.
  */
 
 const {brand, light} = BRAND_COLORS;
@@ -34,7 +34,7 @@ export const COVER_STANDARD = {
 	/**
 	 * One title size per cover shape, in reference pixels: every cover of that
 	 * shape sets its title the same size, so covers side by side read as one
-	 * series (docs/Sosyal-Gorsel-Kurallari.md §2). tall = 9:16 reel, portrait =
+	 * series (docs/Social/Sosyal-Gorsel-Kurallari.md §2). tall = 9:16 reel, portrait =
 	 * 4:5 or square post, wide = 16:9 YouTube.
 	 */
 	titleSizes: {tall: 124, portrait: 96, wide: 136},

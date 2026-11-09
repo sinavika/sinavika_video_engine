@@ -6,6 +6,7 @@ import {CampEpisodeSchema} from './Camp';
 import {estimateNarrationSeconds, VOICE_LEAD_SECONDS, VOICE_TAIL_SECONDS} from '../Scenes/Voiceover';
 import {CHALLENGE_SCORE_LINE, isSpoken, isWholeSentence, spokenPracticeAsk, spokenPredictAsk, spokenQuestion, spokenHook, spokenRoundAsk, spokenRoundReveal, THINK_PROMPT} from './LessonSpeech';
 import {COURSE_DESIGN} from './CourseDesign';
+import {cardCues} from './LessonCue';
 
 /**
  * The script of one topic: the full YouTube lesson and its short summary,
@@ -224,7 +225,7 @@ export const LessonSectionSchema = z.object({
  * One round of a challenge reel. The sentence and the question are read as
  * they are written, then a countdown, then the answer and `why` (LessonSpeech).
  * Short on purpose: a round is about 9 s, so the sentence and the question
- * together are about eight words and the why three or four (docs/CourseNarration.md §10).
+ * together are about eight words and the why three or four (docs/Courses/CourseNarration.md §10).
  */
 export const ChallengeRoundSchema = z
 	.object({
@@ -265,10 +266,9 @@ export const LessonScriptSchema = z
 		 */
 		outOfScope: z.array(z.object({codes: z.array(z.string().min(1).max(80)).min(1).max(12), reason: z.string().min(10).max(240)})).max(4).default([]),
 		/**
-		 * Notes for Sınavika's Works module (the written lessons), which is built from the same script: what a written
-		 * lesson should add beyond the video (full tables and lists, more examples, exceptions, the traps ÖSYM has used),
-		 * each a short instruction in Turkish. The video ignores it. Optional in the schema so drafts load, but the review
-	 * (`worksIssues`) asks for at least two before a lesson is "Hazırlandı".
+		 * Former notes for the Works module. Camp scripts and Works were separated (owner, 9 Nov 2026): no camp script
+		 * carries them any more and the review (`worksIssues`) flags one that does. The field stays in the schema only
+		 * because Works code (src/Works) still types it.
 		 */
 		works: z.object({additions: z.array(z.string().trim().min(10).max(400)).min(1).max(12)}).optional(),
 
@@ -304,7 +304,7 @@ export const LessonScriptSchema = z
 			 * The reel as a challenge: from the first frame a sentence with its
 			 * word in focus, a question, two seconds to answer, then the answer
 			 * and why; hardest-to-guess first. When given, the camp reel is made
-			 * of these rounds instead of the summary cards (docs/CourseNarration.md §10).
+			 * of these rounds instead of the summary cards (docs/Courses/CourseNarration.md §10).
 			 */
 			rounds: z.array(ChallengeRoundSchema).min(2).max(3).optional(),
 			/**
@@ -430,7 +430,7 @@ export const reviewScript = (script: LessonScript, subtopicCodes: readonly strin
 	const questions = script.lesson.sections.flatMap((section) => section.cards).filter((card) => card.kind === 'question').length;
 	if (questions < 3) issues.push(`Only ${questions} worked question(s); three or more cover the exam's approaches better.`);
 	issues.push(...answerPatternIssues(script), ...mistakeIssues(script), ...worksIssues(script), ...spokenTextIssues(script), ...stageIssues(script), ...practiceIssues(script));
-	return {lessonSeconds, shortSeconds, questions, issues, suggestions: [...processVisualSuggestions(script), ...longSentenceSuggestions(script), ...practiceSuggestions(script)]};
+	return {lessonSeconds, shortSeconds, questions, issues, suggestions: [...processVisualSuggestions(script), ...longSentenceSuggestions(script), ...practiceSuggestions(script), ...stillScreenSuggestions(script)]};
 };
 
 /** Every string in a card (its texts, its figure's labels, its narration), for what a section has already said. */
@@ -481,6 +481,46 @@ export const practiceSuggestions = (script: LessonScript): string[] =>
 			if (card.kind !== 'practice' || cardIndex === 0) return [];
 			const share = practiceTaughtShare(section, cardIndex);
 			return share < PRACTICE_TAUGHT_SHARE ? [`s${sectionIndex + 1}-c${cardIndex + 1}: only ${Math.round(share * 100)}% of the practice board was taught before it; teach its items first or make it a visual card.`] : [];
+		}),
+	);
+
+/**
+ * The longest a lesson screen may go without something new on it (9 Nov 2026, Gemini review of the Paragraf lesson:
+ * a table stood almost unchanged for 34 s and a list for 24 s while viewers left).
+ */
+export const MAX_STILL_SCREEN_SECONDS = 10;
+
+/** Every time something comes in on a card while its narration is said (the template's own cues, LessonCue). */
+const cardEventTimes = (card: LessonCard, text: string, seconds: number): number[] => {
+	const cues = cardCues(card, {text, startSeconds: 0, seconds});
+	return [cues.marks, cues.items, ...(cues.itemMarks ?? []), [cues.right, cues.why], cues.rightMarks, cues.whyMarks, [cues.explanation], cues.explanationMarks]
+		.flatMap((list) => [...(list ?? [])])
+		.filter((time): time is number => time !== undefined);
+};
+
+/** The longest stretch of a line with nothing new: between its start, what comes in, and its end. */
+const longestStill = (seconds: number, events: number[]): number => {
+	const times = [0, ...events.filter((time) => time > 0 && time < seconds).sort((a, b) => a - b), seconds];
+	return Math.max(...times.slice(1).map((time, index) => time - times[index]));
+};
+
+/**
+ * Narration said while nothing new comes on screen for longer than MAX_STILL_SCREEN_SECONDS. A card's line is split
+ * by what the template brings in as it is said (list items, a mistake's correction, `**marked**` phrases the voice
+ * reaches: LessonCue cardCues); a visual's beat is one stretch. Questions, predictions and practice boards are left
+ * out (their reading, countdown and steps move the screen). Times are the narration estimate, before any audio.
+ */
+export const stillScreenSuggestions = (script: LessonScript): string[] =>
+	script.lesson.sections.flatMap((section, sectionIndex) =>
+		section.cards.flatMap((card, cardIndex) => {
+			if (card.kind === 'question' || card.kind === 'predict' || card.kind === 'practice') return [];
+			const where = `s${sectionIndex + 1}-c${cardIndex + 1}`;
+			const seconds = estimateNarrationSeconds(card.narration);
+			const beats = 'beats' in card && card.visual ? card.beats : [];
+			const stretches = [{seconds: longestStill(seconds, cardEventTimes(card, card.narration, seconds)), label: 'the card'}, ...beats.map((beat, index) => ({seconds: estimateNarrationSeconds(beat.narration), label: `beat ${index + 1}`}))];
+			return stretches.flatMap(({seconds: still, label}) =>
+				still > MAX_STILL_SCREEN_SECONDS ? [`${where}: ${label} goes about ${Math.round(still)} s with nothing new on screen (at most ${MAX_STILL_SCREEN_SECONDS}); split it into beats, list items or marked phrases the voice says.`] : [],
+			);
 		}),
 	);
 
@@ -638,18 +678,9 @@ export const answerLetterIssues = (answers: string): string[] => {
 	return issues;
 };
 
-/** The fewest Works notes a lesson carries (the 168 TYT lessons have 2-9). */
-const MIN_WORKS_NOTES = 2;
-
-/**
- * Every lesson feeds the written lesson in Works too, and the video always leaves something out (full tables, more
- * examples, exceptions, ÖSYM traps). 202 of 219 AYT lessons went without notes on 31 Oct 2026 because nothing asked
- * for them; now a lesson without them is not "Hazırlandı".
- */
-export const worksIssues = (script: LessonScript): string[] => {
-	const notes = script.works?.additions.length ?? 0;
-	return notes >= MIN_WORKS_NOTES ? [] : [`Works notes: ${notes} of at least ${MIN_WORKS_NOTES}; add what the written lesson needs beyond the video (works.additions).`];
-};
+/** Camp scripts are separate from Works (owner, 9 Nov 2026): a script carries no Works notes. */
+export const worksIssues = (script: LessonScript): string[] =>
+	script.works ? ['works: camp scripts carry no Works notes since 9 Nov 2026 (camp and Works are separate); remove the field.'] : [];
 
 /** A mistake card's wrong idea is said as a statement the student might believe ("Her roman natüralisttir."): Works asks it as true or false. */
 export const mistakeIssues = (script: LessonScript): string[] =>
@@ -662,7 +693,7 @@ export const mistakeIssues = (script: LessonScript): string[] =>
 	);
 
 /**
- * Where the voice and the screen disagree (docs/CourseNarration.md §4): an
+ * Where the voice and the screen disagree (docs/Courses/CourseNarration.md §4): an
  * example or a sentence on screen that is not read as it is written, and a
  * beat that is not a whole sentence (said on its own line, a fragment makes
  * the voice stop mid-thought). Questions and prediction choices need no

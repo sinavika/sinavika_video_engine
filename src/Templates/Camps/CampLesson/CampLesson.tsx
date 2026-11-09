@@ -9,8 +9,9 @@ import {OUTRO_SCENE_ID} from '../../../Scenes/AppEndScene';
 import {createNarrator, VOICE_LEAD_SECONDS, voiceTracksOf, type VoiceClips} from '../../../Scenes/Voiceover';
 import {cuesInLine, spreadCues} from '../../../Courses/LessonCue';
 import {courseLessonTheme} from '../../../Themes/LessonAccent';
-import {CourseLesson} from '../../Courses/CourseLesson/CourseLesson';
+import {CourseLesson, introObjectiveCues} from '../../Courses/CourseLesson/CourseLesson';
 import {LessonChrome, LessonLayoutProvider} from '../../Courses/CourseLesson/Scenes/LessonChrome';
+import {LessonIntroScene} from '../../Courses/CourseLesson/Scenes/LessonIntroScene';
 import {LessonCardScene} from '../../Courses/CourseLesson/Scenes/LessonCardScene';
 import {QuestionScene} from '../../Courses/CourseLesson/Scenes/QuestionScene';
 import {defineTemplate} from '../../TemplateDefinition';
@@ -53,7 +54,7 @@ const campOf = (script: LessonScript): CampEpisode => {
  *   opening   with `lesson.opening`: a question of the lesson, unsolved, or a figure in motion (5–15 s)
  *   welcome   SinoAI greets the viewer on the camp card: camp and lesson number in one breath (campWelcomeNarration)
  *   intro     the lesson's hook and "bu videoda"; after an opening, its `promise` instead of the hook
- *   sections  each opens with its title spoken on its own (sectionTitleNarration), then the lesson's own words
+ *   sections  each but the first opens with its title spoken on its own (sectionTitleNarration), then the lesson's own words
  *   summary, camp task with the next lesson, promotion
  *
  * Every part of it comes from the camp fields and COURSE_DESIGN, so all camp
@@ -88,10 +89,13 @@ const buildScenes = (script: LessonScript, voiceClips: VoiceClips = {}): Templat
 		),
 	};
 
-	// A section opening says its title first, as a line of its own, then the section's first sentence.
+	// A section opening says its title first, as a line of its own, then the section's first sentence. The first
+	// section does not: "Bu videoda" has just named it, and a spoken "Birinci bölüm" there read as a second start
+	// (9 Nov 2026 review of the Paragraf lesson). Its card and chapter stay.
 	const withSpokenTitle = (scene: TemplateScene): TemplateScene => {
 		if (!SECTION_OPENING.test(scene.id)) return scene;
 		const index = Number(scene.id.slice(1)) - 1;
+		if (index === 0) return scene;
 		const text = sectionTitleNarration(index, script.lesson.sections[index].title);
 		const title = say(`${scene.id}-title`, text, estimate(text, COURSE_DESIGN.camp.sectionTitleSeconds), COURSE_DESIGN.camp.sectionTitleSeconds);
 		const voice = [title, ...(scene.voice ?? [])];
@@ -136,7 +140,15 @@ const buildScenes = (script: LessonScript, voiceClips: VoiceClips = {}): Templat
 	const withPromise = (scene: TemplateScene): TemplateScene => {
 		if (scene.id !== 'intro' || !open) return scene;
 		const promise = say('promise', open.promise, estimate(open.promise, 4), 4);
-		return {...scene, seconds: promise.seconds, voice: [promise]};
+		// The objectives come in over the promise, not over the hook's longer line that was cut.
+		const objectiveCues = introObjectiveCues(script, {clip: voiceClips[promise.id], text: promise.text, startSeconds: 0, seconds: promise.seconds});
+		const element = (
+			<>
+				<LessonChrome script={script} />
+				<LessonIntroScene script={script} objectiveCues={objectiveCues} />
+			</>
+		);
+		return {...scene, seconds: promise.seconds, voice: [promise], element};
 	};
 
 	const outroAt = lesson.findIndex((scene) => scene.id === OUTRO_SCENE_ID);

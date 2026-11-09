@@ -99,6 +99,8 @@ describe('camp templates', () => {
 		expect(camp[0].voice?.[0].text).toMatch(/^Sınavika'nın TYT Türkçe kampına hoş geldin!/);
 		expect(camp.find((item) => item.id === 's2')?.voice?.map((slot) => slot.id)).toEqual(['s2-title', 's2']);
 		expect(camp.find((item) => item.id === 's2')?.voice?.[0].text).toBe('İkinci bölüm: Mecaz Anlam.');
+		// The first section is named by "Bu videoda" just before: no spoken "Birinci bölüm" (9 Nov 2026 review).
+		expect(camp.find((item) => item.id === 's1')?.voice?.map((slot) => slot.id)).toEqual(['s1']);
 		expect(camp.filter((item) => item.chapter).map((item) => item.chapter)).toEqual(['Giriş', ...script.lesson.sections.map((section) => section.title), 'Özet', 'Kamp görevi']);
 		expect(camp.find((item) => item.id === 's1')?.transitionIn?.preset).toBe('slide');
 		expect(camp.find((item) => item.id === 's1-c1')?.transitionIn).toBeUndefined();

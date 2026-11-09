@@ -1,5 +1,5 @@
 /**
- * Exports the Google Ads set (docs/GoogleAds/Icerik-Plani.md): pictures in the
+ * Exports the Google Ads set (docs/Ads/GoogleAds/Icerik-Plani.md): pictures in the
  * three Google sizes with and without copy, HTML5 banners as ZIPs, the text
  * assets as CSV and the logo assets, sorted by language, exam and promotion.
  *

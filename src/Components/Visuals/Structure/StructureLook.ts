@@ -15,5 +15,5 @@ import {UNFOCUSED_FADE} from '../VisualTimeline';
  */
 export const partLook = (state: {appear: number; emphasis: number; dim: number}) => ({opacity: state.appear * (1 - UNFOCUSED_FADE * state.dim), emphasis: state.emphasis});
 
-/** Colours of the columns of a comparison and the sets of a Venn diagram: the lesson, the ink, the lesson's deep tone. No brand orange (docs/CourseColors.md). */
+/** Colours of the columns of a comparison and the sets of a Venn diagram: the lesson, the ink, the lesson's deep tone. No brand orange (docs/Courses/CourseColors.md). */
 export const COMPARISON_ACCENTS = (palette: ReturnType<typeof useVisualPalette>): [string, string, string] => [palette.lesson, palette.ink, palette.lessonDeep];

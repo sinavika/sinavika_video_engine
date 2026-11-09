@@ -6,7 +6,7 @@ import {VideoFrame} from '../Components/Layouts/VideoFrame';
 import {CourseVisual} from '../Components/Visuals/CourseVisual';
 import {StillFigure} from '../Components/Visuals/VisualFrame';
 import {VisualTimelineProvider} from '../Components/Visuals/VisualTimeline';
-import {WORK_FIGURE_MIN_TEXT_PX, WORK_FIGURE_ROOM, WORK_FIGURE_STILL_WIDTH, WORK_FIGURE_TEXT_FLOOR, finalBeats, workFigureTheme} from '../Courses/WorkFigure';
+import {WORK_FIGURE_MIN_TEXT_PX, WORK_FIGURE_ROOM, WORK_FIGURE_STILL_WIDTH, WORK_FIGURE_TEXT_FLOOR, finalBeats, workFigureTheme} from '../Works/WorkFigure';
 import {WORK_FIGURE_BEAT_SECONDS, WORK_FIGURE_COMPOSITION_ID, WORK_FIGURE_FPS, WORK_FIGURE_MARGIN, WorkFigurePropsSchema, workFigurePage, workFigureSeconds, type WorkFigureProps} from './WorkFigureProps';
 
 /**

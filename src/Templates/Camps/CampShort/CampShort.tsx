@@ -17,7 +17,7 @@ import {ChallengeRoundScene} from './Scenes/ChallengeRoundScene';
 import {ChallengeScoreScene} from './Scenes/ChallengeScoreScene';
 
 /**
- * The challenge reel (docs/CourseNarration.md §10): the hook said over the
+ * The challenge reel (docs/Courses/CourseNarration.md §10): the hook said over the
  * whole screen in big type from the first frame (about 1.5 s), then each
  * round asked, counted down and answered; one ask for the score. The
  * 27 Oct reels showed the hook small and silent over the first question and

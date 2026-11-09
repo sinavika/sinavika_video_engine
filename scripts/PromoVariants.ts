@@ -2,7 +2,7 @@
  * Writes one version of a promotion reel per promo voice, so the owner can
  * hear them side by side in the admin panel and approve one.
  *
- *   npm run promo-variants -- --dir Posts/2026-10-18_SinoaiLansmanFilmi
+ *   npm run promo-variants -- --dir Posts/<tarih>_<Ad>
  *
  * From the folder's Job.json and Post.json it writes Job_<Voice>.json and
  * Post_<Voice>.json for every voice of PROMO_VOICES (Configurations/Voices),

@@ -1,6 +1,6 @@
 # Kasım 2026 tanıtım kampanyası · 1–30 Kasım
 
-**Durum (30 Ekim 2026):** Bütün içerik üretildi ve sahibin onayına gönderildi (SocialHub, Pending): 20 reels, 6 kaydırmalı gönderi, 4 görsel, 30 hikâye. Reels'lerin kurgu dili ve ses efektleri: [`Reels-Kurgu-Fikirleri.md`](../Reels-Kurgu-Fikirleri.md).
+**Durum (30 Ekim 2026):** Bütün içerik üretildi ve sahibin onayına gönderildi (SocialHub, Pending): 20 reels, 6 kaydırmalı gönderi, 4 görsel, 30 hikâye. Reels'lerin kurgu dili ve ses efektleri: [`Reels-Kurgu-Fikirleri.md`](../Social/Reels-Kurgu-Fikirleri.md).
 
 - **30 Ekim akşamı yeniden gönderim:** Sahip 60 gönderinin hepsini reddetti. Bu bir inceleme reddi değildi; not yalnız ".". Aynı gün iki karar geldi:
   - Videolara altyazı eklenmeyecek (altyazı alanı daraltıyor).
@@ -24,7 +24,7 @@
   - **Aralık:** KPSS çalışan hook'u için reels istendi ([`2026-12-Tanitim-Notlari.md`](2026-12-Tanitim-Notlari.md)).
 - **24 Kasım arşivi:** 1928 kara tahta fotoğrafı indirilmedi (indirme sahibin onayı ister). Video depodaki kamu malı portreyi ve 1933 filmini kullanır; kaynak satırı "Arşiv görüntüleri · kamu malı". Onay gelirse fotoğraf eklenir.
 
-- **Tek kaynak:** [`src/Campaigns/Tanitim2026Kasim.ts`](../../src/Campaigns/Tanitim2026Kasim.ts). Kavram, hook ve alternatifleri, sahne akışı, seslendirme taslağı, müzik tarifi, açıklama, hashtag, sütun, huni ve metrik oradadır.
+- **Tek kaynak:** [`src/Social/Campaigns/Tanitim2026Kasim.ts`](../../src/Social/Campaigns/Tanitim2026Kasim.ts). Kavram, hook ve alternatifleri, sahne akışı, seslendirme taslağı, müzik tarifi, açıklama, hashtag, sütun, huni ve metrik oradadır.
 - **Gönderi taslakları:** `Posts/2026-11-<gün>_<Ad>/`, her biri `Brief.md` ve `Post.json`. Komut: `npm run social -- campaign --campaign tanitim-2026-11`.
 - **Takvim:** [`Posts/Plans/2026-11-Tanitim.json`](../../Posts/Plans/2026-11-Tanitim.json). Komut: `npm run social -- plan --plan tanitim --from 2026-11-01 --to 2026-12-01`.
 - **Test:** `tests/Campaigns/Campaign.test.ts`. Testler şunları denetler:
@@ -38,7 +38,7 @@
 
 ## 1. Çerçeve
 
-- **Sahibin kararı (29 Ekim):** Kasım yalnız tanıtımla geçer; eğitim içeriği yoktur. Kullanılan sütunlar Ürün, Topluluk ve Anlar'dır ([`SocialStrategy.md`](../SocialStrategy.md) §4).
+- **Sahibin kararı (29 Ekim):** Kasım yalnız tanıtımla geçer; eğitim içeriği yoktur. Kullanılan sütunlar Ürün, Topluluk ve Anlar'dır ([`SocialStrategy.md`](../Social/SocialStrategy.md) §4).
 - **Ritim:** `PROMO_WEEKLY_PLAN`. Kasım'da:
   - 20 reels: 18 tanıtım ve 2 özel gün. Her biri Instagram reels, TikTok video ve YouTube Shorts olarak çıkar.
   - 6 kaydırmalı ve 4 tek görsel. Instagram ve TikTok fotoğraf olarak çıkar.
@@ -165,9 +165,9 @@ Test bunu denetler.
 
 ## 5. Üretim kuralları
 
-- Her reels yeni bir şablon, yeni bir sahne dili ve yeni bir müzikle yapılır ([`AdPrompt.md`](../AdPrompt.md)). Test, Ekim şablonlarıyla çakışma olmadığını da denetler.
-- Hook ilk saniyede görüntü, yazı ve sesle birlikte gelir. İlk kare kapaktır ve tek kapak standardındadır ([`Sosyal-Kimlik-Standardi.md`](../Sosyal-Kimlik-Standardi.md)). Kapanış ortak `AppEndCard` ile yapılır ve 3 saniye sürer.
-- **Tempo (29 Ekim ölçümü ve Gemini değerlendirmesi, [`SocialCreativePlaybook.md`](../SocialCreativePlaybook.md) §11).** Tanıtım reels'lerinin süreleri bu kurala göre yeniden yazıldı; test denetler:
+- Her reels yeni bir şablon, yeni bir sahne dili ve yeni bir müzikle yapılır ([`AdPrompt.md`](../Ads/AdPrompt.md)). Test, Ekim şablonlarıyla çakışma olmadığını da denetler.
+- Hook ilk saniyede görüntü, yazı ve sesle birlikte gelir. İlk kare kapaktır ve tek kapak standardındadır ([`Sosyal-Kimlik-Standardi.md`](../Social/Sosyal-Kimlik-Standardi.md)). Kapanış ortak `AppEndCard` ile yapılır ve 3 saniye sürer.
+- **Tempo (29 Ekim ölçümü ve Gemini değerlendirmesi, [`SocialCreativePlaybook.md`](../Social/SocialCreativePlaybook.md) §11).** Tanıtım reels'lerinin süreleri bu kurala göre yeniden yazıldı; test denetler:
   - Ekran hook'u en fazla 5 kelimedir.
   - İçerik 0–15 saniye, bitiş kartı 15–18 saniye.
   - Seslendirme hook'la başlar, en fazla 190 karakterdir ve "Sınavika'yı indir" demez; bunu kart söyler.
@@ -175,7 +175,7 @@ Test bunu denetler.
 - Ses Doğa'dır (Eleven v4). Seslendirmede boşluk ve kesik cümle kontrolü yapılır. Müzik her reels için ElevenLabs Music'ten ayrı üretilir.
 - Ekranlar gerçek uygulama ekranlarıdır (`AppScreens`, UI/UX v3). Telefon çerçevesi ortak `PHONE_GEOMETRY`'yi kullanır. Lacivert ya da açık zemin kullanılır; kahverengi ve yasaklı gradyan kullanılmaz.
 - Gönderiler `PromoDeck` ile yapılır. Beş yeni görünüş eklenir: `mood`, `prompt`, `diagnosis`, `flow`, `checklist`. Kapak boş kalmaz; 2. sayfa ikinci hook'tur.
-- Her gönderi yayın öncesi kontrol listesinden geçer ([`SocialCreativePlaybook.md`](../SocialCreativePlaybook.md) §10).
+- Her gönderi yayın öncesi kontrol listesinden geçer ([`SocialCreativePlaybook.md`](../Social/SocialCreativePlaybook.md) §10).
 
 ## 6. Üretim sırası ve iş yükü
 

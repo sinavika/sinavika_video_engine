@@ -2,14 +2,14 @@
  * The Google Ads plan for Sınavika: one source for the concepts, the proof on
  * each picture, the text assets and the formats. The pictures
  * (GoogleAdImage), the HTML5 banners and the content plan all read it
- * (docs/GoogleAds/Icerik-Plani.md).
+ * (docs/Ads/GoogleAds/Icerik-Plani.md).
  *
  * Audience: students only, no parents. Two markets, each in its own language
  * and folder: Turkey in Turkish (YKS, KPSS) and the United States in English
  * (SAT, ACT). Two promotions: the mobile app and the web site.
  *
  * Every hook names its exam and is built from searched terms (Google Keyword
- * Planner, Oct 2026; docs/GoogleAds/Anahtar-Kelime-ve-Kanca-Kurallari.md), and
+ * Planner, Oct 2026; docs/Ads/GoogleAds/Anahtar-Kelime-ve-Kanca-Kurallari.md), and
  * every picture carries the exam tag (EXAM_TAG) above the hook, so the student
  * knows at a glance which exam the ad is for.
  */

@@ -5,7 +5,7 @@
  *   npm run stills -- --job samples/QuestionSolution.json --formats all --theme SinavikaDark
  *   npm run stills -- --template QuickRevision --formats Vertical,Square     (the template's built-in sample)
  *
- * Files are written to Outputs/Stills/<Template>/<Format>-<Theme>-<n>-<scene>.png
+ * Files are written to Outputs/Checks/Stills/<Template>/<Format>-<Theme>-<n>-<scene>.png
  */
 import path from 'node:path';
 import {parseArgs} from 'node:util';
@@ -19,15 +19,17 @@ const {values} = parseArgs({
 	options: {
 		job: {type: 'string'},
 		template: {type: 'string'},
-		out: {type: 'string', default: 'Outputs/Stills'},
+		out: {type: 'string', default: 'Outputs/Checks/Stills'},
 		formats: {type: 'string'},
 		theme: {type: 'string'},
 		quality: {type: 'string', default: '2160p'},
+		/** No narration: scenes are timed by estimates; for checking layout without spending voice credits. */
+		silent: {type: 'boolean', default: false},
 	},
 });
 
 if (!values.job && !values.template) {
-	console.error('Kullanım: npm run stills -- (--job <job.json> | --template <Id>) [--formats all|Vertical,Horizontal,Square] [--theme <Tema>] [--out <klasör>]');
+	console.error('Kullanım: npm run stills -- (--job <job.json> | --template <Id>) [--formats all|Vertical,Horizontal,Square] [--theme <Tema>] [--out <klasör>] [--silent]');
 	process.exit(2);
 }
 
@@ -38,7 +40,7 @@ const formats = values.formats === 'all' ? VIDEO_FORMAT_IDS : (values.formats?.s
 let warningCount = 0;
 
 for (const format of formats) {
-	const job = {...baseJob, format, quality: values.quality, ...(values.theme ? {theme: values.theme} : {})};
+	const job = {...baseJob, format, quality: values.quality, ...(values.theme ? {theme: values.theme} : {}), ...(values.silent ? {voiceover: false} : {})};
 	const resolved = resolveVideoJob(job);
 	// Scenes are timed by the narration, as in the video; without it a frame number points at another scene.
 	const narrated = await narrateVideoJob(resolved);

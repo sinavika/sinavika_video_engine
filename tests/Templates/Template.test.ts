@@ -24,7 +24,7 @@ import {REEL_STANDARD} from '../../src/Configurations/ReelStandard';
 describe('template registry', () => {
 	it('contains the education and advertisement templates with unique ids', () => {
 		const ids = TEMPLATES.map((template) => template.id);
-		expect(ids).toEqual(['QuestionSolution', 'TopicExplanation', 'QuickRevision', 'ConceptExplanation', 'ExamPreparation', 'AppPromotion', 'ExamJourney', 'SinoAIFilm', 'ProfilePicker', 'OrbReveal', 'Keynote', 'KineticType', 'RepublicDay', 'NightDesk', 'FlatMorph', 'CountdownChat', 'BeforeAfter', 'SlotSpin', 'TearCalendar', 'FocusTimer', 'StudyReceipt', 'SplitDay', 'ThreeModes', 'AtaturkMemorial', 'NotebookDoodle', 'PrintShop', 'GroupChat', 'StudyForecast', 'PuzzleGap', 'ScanViewfinder', 'PovText', 'CardTrick', 'Basogretmen', 'BlockWeek', 'CampTrailer', 'DualScreen', 'LevelSelect', 'GoogleVideoAd', 'AppShowcase', 'CourseLesson', 'CourseShort', 'CampLesson', 'CampShort', 'CampFlash', 'CampIntro']);
+		expect(ids).toEqual(['QuestionSolution', 'TopicExplanation', 'QuickRevision', 'ConceptExplanation', 'ExamPreparation', 'AppPromotion', 'ExamJourney', 'SinoAIFilm', 'ProfilePicker', 'OrbReveal', 'Keynote', 'KineticType', 'RepublicDay', 'NightDesk', 'FlatMorph', 'CountdownChat', 'BeforeAfter', 'SlotSpin', 'TearCalendar', 'FocusTimer', 'StudyReceipt', 'SplitDay', 'ThreeModes', 'AtaturkMemorial', 'NotebookDoodle', 'PrintShop', 'GroupChat', 'StudyForecast', 'PuzzleGap', 'ScanViewfinder', 'PovText', 'CardTrick', 'Basogretmen', 'BlockWeek', 'CampTrailer', 'DualScreen', 'LevelSelect', 'GoogleVideoAd', 'AppShowcase', 'CourseLesson', 'CourseShort', 'CampLesson', 'CampShort', 'CampFlash', 'CampIntro', 'CampLessonIntro']);
 		expect(new Set(ids).size).toBe(ids.length);
 		expect(findTemplate('Nope')).toBeUndefined();
 	});

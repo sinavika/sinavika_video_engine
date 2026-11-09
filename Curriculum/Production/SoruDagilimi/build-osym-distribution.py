@@ -16,7 +16,8 @@ sys.stdout.reconfigure(encoding='utf-8')
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, '..', '..', '..'))
 # The education data is not copied into the engine: it is read where the parsing pipeline writes it (31 Oct 2026).
-DATA = os.environ.get('EGITIM_VERILERI') or os.path.join(os.path.expanduser('~'), 'Desktop', 'EgitimVerileri')
+sys.path.insert(0, os.path.join(ROOT, 'Curriculum', 'Tools'))
+from engine_paths import CURRICULUM, EDUCATION_DATA as DATA  # noqa: E402  bütün yollar merkezde
 EXAMS = {
     'YKS/TYT': ('YKS_TYT', 'yks-tyt'),
     'YKS/AYT': ('YKS_AYT', 'yks-ayt'),
@@ -45,7 +46,7 @@ def osym_rows(folder):
 
 summary = {}
 for folder, (catalog_code, slug) in EXAMS.items():
-    cat = json.load(open(os.path.join(ROOT, 'Curriculum', 'Catalog', catalog_code + '.json'), encoding='utf-8'))
+    cat = json.load(open(os.path.join(CURRICULUM, 'Catalog', catalog_code + '.json'), encoding='utf-8'))
     R = osym_rows(folder)
     years = sorted({r['year'] for r in R if r['year']})
     by_topic = collections.defaultdict(collections.Counter)

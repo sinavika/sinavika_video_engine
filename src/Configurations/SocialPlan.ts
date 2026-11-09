@@ -4,7 +4,7 @@ import type {VideoFormatId} from './VideoFormats';
 
 /**
  * Sınavika's standard weekly publishing plan, as data. Every weekly and
- * monthly calendar is generated from this file (see Services/SocialPlanner.ts);
+ * monthly calendar is generated from this file (see Social/SocialPlanner.ts);
  * changing the plan means changing it here and nowhere else.
  */
 const SOCIAL_PLATFORMS = ['instagram', 'tiktok', 'youtube', 'linkedin'] as const;
@@ -119,7 +119,7 @@ export const WEEKLY_PLAN: Record<Weekday, readonly PlanEntry[]> = {
  * the mobile app and the web site are promoted, with user-winning hooks, not
  * teaching. Four reels (Mon, Wed, Fri, Sun), three posts (Tue, Thu, Sat) and a
  * story every day. Buffer cannot publish TikTok stories, so stories go to
- * Instagram only. The day-by-day concepts live in src/Campaigns.
+ * Instagram only. The day-by-day concepts live in src/Social/Campaigns.
  */
 const PROMO_WEEKLY_PLAN: Record<Weekday, readonly PlanEntry[]> = {
 	mon: [

@@ -1,6 +1,6 @@
 import {randomUUID} from 'node:crypto';
 import {existsSync, rmSync} from 'node:fs';
-import {copyFile, mkdir, rename} from 'node:fs/promises';
+import {copyFile, mkdir, rename, rm} from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -12,7 +12,8 @@ import {planTemplateScenes} from '../Scenes/SceneSeries';
 import {narrationPacingWarnings} from '../Services/NarrationPacing';
 import {sceneChapters, type Chapter} from '../Scenes/SceneChapter';
 import {VOICE_LEAD_SECONDS, type VoiceClips} from '../Scenes/Voiceover';
-import {AUDIO_LEVELS, ffmpeg, masterFilter, measureLoudness} from '../Services/AudioLeveling';
+import {audioProblems, inspectAudio} from '../Services/AudioCheck';
+import {AUDIO_LEVELS, ffmpeg, masterFilter, masterSpeechWav, measureLoudness} from '../Services/AudioLeveling';
 import type {SpeechBackend} from '../Services/ElevenLabsSpeech';
 import {beatsFrom, musicPieceFor, writeMusicBed} from '../Services/MusicLibrary';
 import {analyzeBeats, tempoHint} from '../Services/BeatGrid';
@@ -358,8 +359,8 @@ export const renderVideo = async (rawJob: unknown, options: RenderOptions): Prom
 					totalFrames: composition.durationInFrames,
 				}),
 		});
-		const audioWarning = await finishFile(outputPath, Boolean(job.inputProps.soundtrackSrc));
-		if (audioWarning) warnings.push(audioWarning);
+		const sound = job.inputProps.soundtrackSrc ? 'mix' : Object.keys(job.inputProps.voiceClips).length > 0 ? 'speech' : 'none';
+		warnings.push(...(await finishFile(outputPath, sound)));
 	} catch (error) {
 		throw new VideoRenderError('rendering', error);
 	}
@@ -370,20 +371,36 @@ export const renderVideo = async (rawJob: unknown, options: RenderOptions): Prom
 /**
  * Rewrites the container without its tags, so the published file carries no
  * note about the tools that produced it. The video stream is copied as it is.
- * A video with a soundtrack is also mastered here: its mix of voice, music
- * and effects is brought to -14 LUFS with a -1 dB true-peak ceiling, the
- * level the platforms play at. Other videos keep their audio untouched.
+ * The sound is mastered here: a mix of voice, music and effects to -14 LUFS,
+ * a voice-only video (lessons, episode 0) to -16 LUFS with the speech
+ * service's codec hiss cut (AudioLeveling.masterFilter); both under a -1.5 dB
+ * true-peak ceiling. A video with no sound keeps its silent track. The
+ * finished file is then checked as a listener hears it (AudioCheck), and every
+ * problem comes back as a warning.
  */
-/** Finishes the file and returns a warning when its sound was cut off in the mix. */
-const finishFile = async (file: string, master: boolean): Promise<string | null> => {
+const finishFile = async (file: string, sound: 'mix' | 'speech' | 'none'): Promise<string[]> => {
 	const clean = `${file}.clean.mp4`;
-	const measured = master ? await measureLoudness(file) : null;
-	const audio = master ? ['-c:v', 'copy', '-af', masterFilter(measured), '-ar', '48000', '-c:a', 'aac', '-b:a', VIDEO_ENCODING.audioBitrate] : ['-c', 'copy'];
-	await ffmpeg(['-y', '-i', file, '-map', '0', ...audio, '-map_metadata', '-1', '-fflags', '+bitexact', '-movflags', '+faststart', clean]);
+	const measured = sound === 'none' ? null : await measureLoudness(file);
+	const finish = ['-map_metadata', '-1', '-fflags', '+bitexact', '-movflags', '+faststart', clean];
+	const aac = ['-ar', '48000', '-c:a', 'aac', '-b:a', VIDEO_ENCODING.audioBitrate];
+	if (measured && sound === 'speech') {
+		const raw = `${file}.speech.wav`;
+		const mastered = `${file}.mastered.wav`;
+		try {
+			await ffmpeg(['-y', '-i', file, '-vn', '-ar', '48000', '-c:a', 'pcm_s16le', raw]);
+			await masterSpeechWav(raw, mastered, measured);
+			await ffmpeg(['-y', '-i', file, '-i', mastered, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', ...aac, ...finish]);
+		} finally {
+			await Promise.all([rm(raw, {force: true}), rm(mastered, {force: true})]);
+		}
+	} else {
+		const audio = measured ? ['-c:v', 'copy', '-af', masterFilter(measured), ...aac] : ['-c', 'copy'];
+		await ffmpeg(['-y', '-i', file, '-map', '0', ...audio, ...finish]);
+	}
 	await rename(clean, file);
-	return measured && measured.truePeak > AUDIO_LEVELS.clippingTruePeak
-		? `Audio mix peaks at ${measured.truePeak} dBTP before mastering: voice and music together reach full scale and may crackle.`
-		: null;
+	const warnings = measured && measured.truePeak > AUDIO_LEVELS.clippingTruePeak ? [`Audio mix peaks at ${measured.truePeak} dBTP before mastering: voice and music together reach full scale and may crackle.`] : [];
+	const report = measured ? await inspectAudio(file) : null;
+	return [...warnings, ...(report ? audioProblems(report, sound === 'speech') : [])];
 };
 
 export type NumberedRenderResult = RenderResult & {

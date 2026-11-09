@@ -136,7 +136,8 @@ describe('spoken text', () => {
 			walk(JSON.parse(readFileSync(path.join(scripts, file), 'utf8')), file);
 		}
 		expect(left).toEqual([]);
-	});
+
+	}, 60_000); // reads every course script; slow while a render runs on the same machine
 
 	it('never drops a relation or a negation from a formula', () => {
 		expect(toSpokenText('$3 - 2x \\ge x - 9$ ve $x \\ne 1$, $0 \\le y$')).toBe('3 eksi 2x büyük eşit x eksi 9 ve x eşit değildir 1, 0 küçük eşit y');

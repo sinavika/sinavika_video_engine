@@ -12,7 +12,12 @@ import {SPACING} from '../../../../Themes/DesignTokens';
 import {useTheme} from '../../../../Themes/ThemeContext';
 import {TYPE} from './LessonChrome';
 
-export const LessonIntroScene: React.FC<{script: LessonScript}> = ({script}) => {
+/**
+ * The lesson's opening card: exam, title, the hook's headline and "Bu videoda". With `objectiveCues` (seconds into
+ * the scene) each objective comes in as the voice reaches it, so the list is never a still slide (9 Nov 2026: a list
+ * that stood still for 24 s lost viewers in the Paragraf lesson).
+ */
+export const LessonIntroScene: React.FC<{script: LessonScript; objectiveCues?: (number | undefined)[]}> = ({script, objectiveCues}) => {
 	const {colors, typography} = useTheme();
 	const {u, isLandscape} = useVideoLayout();
 	return (
@@ -44,12 +49,14 @@ export const LessonIntroScene: React.FC<{script: LessonScript}> = ({script}) => 
 						Bu videoda
 					</Text>
 					<div style={{display: 'flex', flexDirection: 'column', gap: u(SPACING.md), marginTop: u(SPACING.md)}}>
-						{script.lesson.objectives.map((objective) => (
-							<div key={objective} style={{display: 'flex', gap: u(16), alignItems: 'flex-start'}}>
-								<Icon name="check" size={40} color={colors.lesson?.fill ?? colors.accent} />
-								{/* An objective may hold a formula ("$v = \lambda f$ kullanmak"): drawn as math, not as typed. */}
-								<RichText text={objective} size={38} weight={typography.strongWeight} />
-							</div>
+						{script.lesson.objectives.map((objective, index) => (
+							<Animated key={objective} animation={{preset: 'slide', direction: 'left', distance: 40}} delaySeconds={objectiveCues?.[index] ?? 0.9 + index * 0.15}>
+								<div style={{display: 'flex', gap: u(16), alignItems: 'flex-start'}}>
+									<Icon name="check" size={40} color={colors.lesson?.fill ?? colors.accent} />
+									{/* An objective may hold a formula ("$v = \lambda f$ kullanmak"): drawn as math, not as typed. */}
+									<RichText text={objective} size={38} weight={typography.strongWeight} />
+								</div>
+							</Animated>
 						))}
 					</div>
 				</Card>

@@ -1,6 +1,6 @@
 import {z} from 'zod';
 import {CourseVisualSchema, VisualBeatSchema} from '../Components/Visuals/VisualSchema';
-import {workFigureBox} from '../Courses/WorkFigure';
+import {workFigureBox} from '../Works/WorkFigure';
 
 /** Props and size of the WorkFigure composition (one lesson figure as the app shows it), shared with its renderer. */
 export const WORK_FIGURE_COMPOSITION_ID = 'WorkFigure';

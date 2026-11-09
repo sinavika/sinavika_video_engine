@@ -16,13 +16,6 @@
   "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2020–2025: 7 soru; çoğu günlük hayat bağlamında (kahve makinesi, ses seviyesi, kalori, içecek yüzdeleri), biri sayı doğrusunda işaret, biri iki bilinmeyenli eşitsizlik bölgesi)",
   "YKS/TYT/Sorular/MAT/MAT_ESITSIZLIK.jsonl (207 soru; aralık, işlemler ve sistem kalıpları)"
  ],
- "works": {
-  "additions": [
-   "x ve y'nin aralıkları verildiğinde x + y, x − y, x · y, x/y ve x² aralıklarını bulma yöntemini ver; çarpımda uç değerlerin dört çarpımının karşılaştırılması.",
-   "Eşitsizliklerin taraf tarafa çıkarılamayacağını ve işaret bilinmeden çarpılamayacağını yanlış çözüm örnekleriyle göster.",
-   "Aralıktaki tam sayıların sayısı ve toplamı, en büyük ve en küçük tam sayı değeri sorularına ek örnekler çöz."
-  ]
- },
  "lesson": {
   "hook": {
    "headline": "Eşitsizliği eksiyle çarparsan yön değişir. Ya taraf tarafa çıkarırsan?",
@@ -86,36 +79,50 @@
       "narration": "Aralık, sayı doğrusunda iki nokta arasındaki bütün gerçek sayılardır.",
       "beats": [
        {
-        "narration": "Köşeli parantez uç noktanın dahil olduğunu gösterir: 2 küçük eşit x küçük eşit 5, kapalı aralıktır. Normal parantez uç noktanın hariç olduğunu gösterir: 2 küçüktür x küçüktür 5, açık aralıktır.",
         "show": [
-         "r1",
-         "r2"
+         "r1"
         ],
         "focus": [
-         "r1",
-         "r2"
-        ]
+         "r1"
+        ],
+        "narration": "Köşeli parantez uç noktanın dahil olduğunu gösterir: 2 küçük eşit x küçük eşit 5, kapalı aralıktır."
        },
        {
-        "narration": "Bir uç dahil, öbürü hariçse yarı açık aralık olur. Sonsuz bir sayı değildir, bu yüzden sonsuzun yanında her zaman normal parantez kullanılır.",
         "show": [
-         "r3",
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "narration": "Normal parantez uç noktanın hariç olduğunu gösterir: 2 küçüktür x küçüktür 5, açık aralıktır."
+       },
+       {
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ],
+        "narration": "Bir uç dahil, öbürü hariçse yarı açık aralık olur."
+       },
+       {
+        "show": [
          "r4"
         ],
         "focus": [
-         "r3",
          "r4"
-        ]
+        ],
+        "narration": "Sonsuz bir sayı değildir, bu yüzden sonsuzun yanında her zaman normal parantez kullanılır."
        }
       ]
      },
      {
       "kind": "mistake",
       "title": "Aralıkta kaç tam sayı var?",
-      "wrong": "$(2, 7]$ aralığında $7 - 2 = 5$ tam sayı ve **2 de dahildir**.",
-      "right": "$(2, 7]$: 3, 4, 5, 6, 7 → **5 tam sayı**; 2 hariç, 7 dahil.",
-      "why": "Tam sayıları sayarken önce uçlara bak. $[a, b]$ kapalı aralığında $b - a + 1$, $(a, b)$ açık aralığında $b - a - 1$ tam sayı vardır.",
-      "narration": "Tam sayı sayarken uçlara dikkat. 2, 7 yarı açık aralığında 2 hariç, 7 dahil: 3, 4, 5, 6, 7; beş tam sayı. Kapalı aralıkta uçlar farkına 1 eklersin, açık aralıkta 1 çıkarırsın. Önce parantezlere bak, sonra say."
+      "wrong": "$(2, 7]$ aralığında 2'den 7'ye kadar **6 tam sayı** vardır.",
+      "right": "Normal parantez 2'yi dışarıda bırakır: 3, 4, 5, 6, 7 → **5 tam sayı**.",
+      "why": "Uçlar tam sayıysa **açık aralıkta** $b - a - 1$, **yarı açık aralıkta** $b - a$, **kapalı aralıkta** $b - a + 1$ tam sayı vardır.",
+      "narration": "Tam sayı sayarken uçlara dikkat. 2, 7 yarı açık aralığında 2'den 7'ye altı tam sayı saymak sık yapılan bir hata. Normal parantez 2'yi dışarıda bırakır: 3, 4, 5, 6, 7; beş tam sayı. Uçlar tam sayıysa açık aralıkta farktan 1 eksik, yarı açık aralıkta fark kadar, kapalı aralıkta farkın 1 fazlası tam sayı vardır. Önce parantezlere bak, sonra say."
      },
      {
       "kind": "question",
@@ -243,9 +250,10 @@
       "kind": "rule",
       "title": "Çarpımın aralığı",
       "items": [
-       "İki aralıktaki sayıların çarpımında **uçların dört çarpımını** hesapla.",
-       "$-2 < x < 3$ ve $1 < y < 4$: $-2 \\cdot 1$, $-2 \\cdot 4$, $3 \\cdot 1$, $3 \\cdot 4$ → $-2, -8, 3, 12$.",
+       "Çarpımda da dikkatli ol: aralığı bulmak için **uçların dört çarpımını** hesapla.",
+       "$-2 < x < 3$ ve $1 < y < 4$: dört çarpım $-2, -8, 3$ ve **3 çarpı 4** $= 12$.",
        "En küçüğü alt sınır, en büyüğü üst sınır: $-8 < x \\cdot y < 12$.",
+       "Yalnız alt uçları ve üst uçları çarpmak **yanlış**: $-2 < x \\cdot y < 12$ çıkar.",
        "Bölmede önce **tersini** al, sonra çarp: $\\frac{x}{y} = x \\cdot \\frac{1}{y}$."
       ],
       "narration": "Çarpımda da dikkatli olmak gerekir. x eksi 2 ile 3 arasında, y 1 ile 4 arasında olsun. x çarpı y'nin aralığını bulmak için uçların dört çarpımını hesaplarsın: eksi 2 çarpı 1, eksi 2; eksi 2 çarpı 4, eksi 8; 3 çarpı 1, 3; 3 çarpı 4, 12. En küçüğü alt sınır, en büyüğü üst sınırdır: x çarpı y, eksi 8 ile 12 arasındadır. Yalnız alt uçları ve üst uçları çarpsaydın eksi 2 ile 12 bulurdun ve yanılırdın. Bölmede ise önce y'nin tersini alır, sonra çarparsın."
@@ -402,11 +410,21 @@
       "beats": [
        {
         "narration": "İki taraftan 3 çıkarırız: eksi 2 x büyük eşit 4. Çıkarma yönü değiştirmez.",
-        "focus": []
+        "focus": [],
+        "stage": 1
        },
        {
-        "narration": "İki tarafı eksi 2'ye böleriz. Negatif sayıya böldüğümüz için yön değişir: x küçük eşit eksi 2. Çözüm kümesi eksi sonsuzdan eksi 2'ye kadar, eksi 2 dahil.",
-        "focus": []
+        "show": [],
+        "focus": [],
+        "narration": "İki tarafı eksi 2'ye böleriz. Negatif sayıya böldüğümüz için yön değişir: x küçük eşit eksi 2.",
+        "stage": 2
+       },
+       {
+        "show": [],
+        "focus": [],
+        "narration": "Çözüm kümesi eksi sonsuzdan eksi 2'ye kadar, eksi 2 dahil.",
+        "stage": 2,
+        "note": "Çözüm kümesi: (−∞, −2]"
        }
       ]
      },
@@ -415,15 +433,15 @@
       "title": "Bir değerle sına",
       "wrong": "$-2x \\geq 4$ ise $x \\geq -2$.",
       "right": "Eksiyle bölünce yön değişir: $x \\leq -2$. Sına: $x = 0$ için $0 \\geq 4$ **yanlış**, demek ki 0 çözüm değil.",
-      "why": "Çözümü bulunca aralığın içinden ve dışından birer değer dene. İçteki sağlamalı, dıştaki sağlamamalı.",
+      "why": "Bir değerle sına: aralığın içinden ve dışından birer değer dene. $x = -3$ için $6 \\geq 4$ **doğru**.",
       "narration": "Eksi 2 x büyük eşit 4'ten x büyük eşit eksi 2 bulmak en sık yapılan hata. Eksiyle bölünce yön değişir: x küçük eşit eksi 2. Emin olmanın kolay bir yolu var: bir değerle sına. x sıfır olsun. Eksi 2 çarpı 0, 0; 0 büyük eşit 4 yanlış. Demek ki 0 çözüm değil, x büyük eşit eksi 2 de doğru olamaz. x eksi 3 olsun: 6 büyük eşit 4, doğru. Çözüm eksi 2 ve daha küçük sayılardır."
      },
      {
       "kind": "rule",
       "title": "Kesirli eşitsizlik",
       "items": [
-       "Paydalar **pozitif sayı** ise paydaların EKOK'u ile çarp; yön değişmez.",
-       "$\\frac{x + 1}{2} > \\frac{x - 3}{3}$ → 6 ile çarp: $3x + 3 > 2x - 6$ → $x > -9$.",
+       "Paydalar **pozitif sayı** ise paydaların EKOK'u ile çarp; **yön değişmez**.",
+       "6 ile çarp: $\\frac{x + 1}{2} > \\frac{x - 3}{3}$ → $3x + 3 > 2x - 6$ → $x > -9$.",
        "Paydada **bilinmeyen** varsa çarpma: işaretini bilmediğin sayıyla çarpılmaz.",
        "Sonucu bir değerle **kontrol et**: $x = 0$ için $\\frac{1}{2} > -1$ ✓."
       ],
@@ -612,7 +630,7 @@
     "Negatif sayıyla çarpmak ya da bölmek **yönü değiştirir**.",
     "Eşitsizlikler taraf tarafa **toplanır**, çıkarılmaz.",
     "Aralık 0'ı içeriyorsa karenin en küçüğü **0**.",
-    "Tam sayı sayısı: kapalıda $b - a + 1$, açıkta $b - a - 1$.",
+    "Tam sayı sayısı: kapalıda $b - a + 1$, yarı açıkta $b - a$, açıkta $b - a - 1$.",
     "Sistemin çözümü, çözümlerin **kesişimidir**."
    ],
    "warnings": [
@@ -653,7 +671,7 @@
   "rounds": [
    {
     "sentence": "$-2x > 6$",
-    "question": "Yön aynı mı kalır?",
+    "question": "Yön aynı mı?",
     "choices": [
      "Evet",
      "Hayır"

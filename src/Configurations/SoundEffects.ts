@@ -5,7 +5,7 @@
  * description does not regenerate a file: delete the file to make it again.
  *
  * Effects are not music: lesson videos and camp reels still have none
- * (docs/CourseNarration.md). The owner asked for these in the challenge
+ * (docs/Courses/CourseNarration.md). The owner asked for these in the challenge
  * reels on 27 Oct 2026, after an outside review found them flat.
  */
 export type SoundEffect = {

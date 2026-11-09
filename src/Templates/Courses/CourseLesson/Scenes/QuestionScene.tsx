@@ -118,7 +118,7 @@ const FigureSolution: React.FC<{question: Question; stepStarts: number[]; answer
 			</FitBox>
 			{thinking && think ? (
 				<div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-					<Countdown left={think.at + think.seconds - seconds} total={think.seconds} />
+					<Countdown left={think.at + think.seconds - seconds} total={think.seconds} label={THINK_LABEL} />
 				</div>
 			) : null}
 		</div>
@@ -129,6 +129,9 @@ const FigureSolution: React.FC<{question: Question; stepStarts: number[]; answer
  * A worked question: read, a counted pause to think (`think`, seconds into the scene), then the solution step by step.
  * `heading` replaces "Soru 2.3" in the studio heading (a camp lesson's cold open shows a question it solves later).
  */
+/** Over a question's countdown: the viewer is asked to pause and try (9 Nov 2026 review: a silent counter read as a stall). */
+export const THINK_LABEL = 'Durdur ve dene';
+
 export const QuestionScene: React.FC<{question: Question; stepStarts: number[]; think?: {at: number; seconds: number}; section: string; number: string; heading?: string; reading?: ReadingCues; stepCues?: StepCues[]}> = ({question, stepStarts, think, section, number, heading, reading, stepCues = []}) => {
 	const {colors, typography} = useTheme();
 	const {u, isLandscape, contentWidth, contentHeight} = useVideoLayout();
@@ -189,7 +192,7 @@ export const QuestionScene: React.FC<{question: Question; stepStarts: number[]; 
 				{/* Studio: the countdown stands in the room right of the centred question, not inside the coming panel. */}
 				{staged && think && thinkingNow ? (
 					<div style={{position: 'absolute', top: 0, bottom: 0, right: 0, width: centred, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-						<Countdown left={think.at + think.seconds - seconds} total={think.seconds} />
+						<Countdown left={think.at + think.seconds - seconds} total={think.seconds} label={THINK_LABEL} />
 					</div>
 				) : null}
 				<FitBox fill style={{flex: 1, ...(staged ? {transform: `translateX(${(1 - solving) * centred}px) scale(${1 + (grow - 1) * (1 - solving)})`, transformOrigin: 'left center'} : {})}}>
@@ -232,7 +235,7 @@ export const QuestionScene: React.FC<{question: Question; stepStarts: number[]; 
 					{figure ? <FigureSolution question={question} stepStarts={stepStarts} answerAt={answerAt} think={think} /> : null}
 					{!figure && !staged && think && thinkingNow ? (
 						<div style={{flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-							<Countdown left={think.at + think.seconds - seconds} total={think.seconds} />
+							<Countdown left={think.at + think.seconds - seconds} total={think.seconds} label={THINK_LABEL} />
 						</div>
 					) : null}
 					{(figure ? [] : visible).map((step, index) => (

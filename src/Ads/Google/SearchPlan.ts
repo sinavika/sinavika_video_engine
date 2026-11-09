@@ -1,5 +1,5 @@
 /**
- * Google Ads search campaigns (docs/GoogleAds/Arama-Plani.md): one campaign per
+ * Google Ads search campaigns (docs/Ads/GoogleAds/README.md): one campaign per
  * exam plus a brand campaign, ad groups that each land on their own exam page,
  * phrase and exact keywords, one responsive search ad per group, account-wide
  * negative keywords and the assets (sitelinks, callouts, snippets).

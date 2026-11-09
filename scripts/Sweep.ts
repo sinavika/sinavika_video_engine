@@ -9,7 +9,7 @@
  *   --only   just these cards (section-card ids, as `curriculum check` names them): a second look after a fix
  *   --kind   just figures of these kinds (plot,map…): every graph of the curriculum after a change to graphs
  *
- * Writes <out>/ (default Outputs/Sweeps/<date>-<target>/): the frames, RAPOR.md (the warnings, lesson by lesson) and
+ * Writes <out>/ (default Outputs/Checks/Sweeps/<date>-<target>/): the frames, RAPOR.md (the warnings, lesson by lesson) and
  * index.html (every frame as a thumbnail with its name, for a look by eye). One browser serves the whole sweep.
  *
  *   npm run sweep -- <target> --motion [--step 2.5]
@@ -98,7 +98,7 @@ const chosenScenes = (script: LessonScript) => {
 };
 
 const date = new Date().toISOString().slice(0, 10);
-const out = path.resolve(values.out ?? path.join(ROOT, 'Outputs', 'Sweeps', `${date}-${path.basename(target, '.json')}`));
+const out = path.resolve(values.out ?? path.join(ROOT, 'Outputs', 'Checks', 'Sweeps', `${date}-${path.basename(target, '.json')}`));
 const files = await scriptFiles();
 const browser = await openRenderBrowser();
 

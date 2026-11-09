@@ -2,7 +2,7 @@ import {describe, expect, it} from 'vitest';
 import {LESSON_SCRIPT_SAMPLE} from '../../src/Courses/LessonScriptSample';
 import {LessonCardSchema, LessonScriptSchema, lessonNarrations, practiceIssues, practiceSuggestions, practiceTaughtShare, unansweredItems} from '../../src/Courses/LessonScript';
 import {PRACTICE_TASKS, spokenPracticeAsk, THINK_PROMPT} from '../../src/Courses/LessonSpeech';
-import {worksCard} from '../../src/Courses/WorksView';
+import {worksCard} from '../../src/Works/WorksView';
 import {CourseLesson} from '../../src/Templates/Courses/CourseLesson/CourseLesson';
 import {CampLesson} from '../../src/Templates/Camps/CampLesson/CampLesson';
 import {CAMP_SCRIPT_SAMPLE} from '../../src/Courses/LessonScriptSample';

@@ -30,7 +30,7 @@ type DiagramNodeProps = {
 export const DiagramNode: React.FC<DiagramNodeProps> = ({node, index, focus = 0, diagramFocus = 0, style, align = 'center', labelSize = 30}) => {
 	const {colors, shape, typography} = useTheme();
 	const {u} = useVideoLayout();
-	// In a lesson's video the diagram speaks in the lesson's colour; elsewhere in the brand's (docs/CourseColors.md).
+	// In a lesson's video the diagram speaks in the lesson's colour; elsewhere in the brand's (docs/Courses/CourseColors.md).
 	const strong = colors.lesson ?? {fill: colors.primary, on: colors.onPrimary};
 	const chip = colors.lesson ?? colors.categorical[index % colors.categorical.length];
 	const lit = focus > 0.5;

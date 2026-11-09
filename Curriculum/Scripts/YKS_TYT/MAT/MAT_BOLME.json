@@ -16,13 +16,6 @@
   "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: 9 soru; 5'i kalanlı bölünebilme ve yeni tanım (ortakatlı, n-değişmeli), 4'ü bölünebilme kuralları)",
   "YKS/TYT/Sorular/MAT/MAT_BOLME.jsonl (226 soru; bölme işlemi, kalan ve bölünebilme kalıpları)"
  ],
- "works": {
-  "additions": [
-   "Bölünebilme kurallarının tam tablosunu ver: 2, 3, 4, 5, 6, 8, 9, 10, 11 ve aralarında asal çarpanlarla 12, 15, 18, 36, 45; her kurala bir örnek.",
-   "Kalan problemlerini genişlet: bir sayının bölümünden kalan biliniyorken 2x, x + 5, x² sayılarının kalanı; ardışık bölme (bölüm yeniden bölünür) soru tipi.",
-   "11 ile bölünebilmede basamakları sağdan +, −, + diye toplama yöntemini ve kalan bulma örneklerini ekle."
-  ]
- },
  "lesson": {
   "hook": {
    "headline": "Bir sayıyı bölmeden kalanını bulabilir misin?",
@@ -74,7 +67,7 @@
       "kind": "example",
       "title": "Kalandan bölen bulmak",
       "example": "Bir bölme işleminde kalan 8 ise bölen en az 9'dur.",
-      "explanation": "Kalan bölenden küçük olmalı: $8 < B$, yani $B \\geq 9$. Bölen ile bölümün toplamı en az soruluyorsa önce bu şartı yaz.",
+      "explanation": "Çünkü kalan 8, **bölenden küçük** olmalı: $8 < B$, yani $B \\geq 9$. En küçük değer soruluyorsa **ilk iş bu şartı** yazmak. Kalan 8, **bölüm 3** ise bölünen en az $9 \\cdot 3 + 8 = 35$.",
       "narration": "Bu şartın bir soruda nasıl işe yaradığını görelim. Bir bölme işleminde kalan 8 ise bölen en az 9'dur. Çünkü kalan 8, bölenden küçük olmak zorunda. Soru bölenin ya da bölünenin en küçük değerini soruyorsa ilk iş bu şartı yazmaktır. Örneğin kalan 8, bölüm 3 ise bölünen en az 9 çarpı 3 artı 8, yani 35 olur."
      },
      {
@@ -319,42 +312,75 @@
       "narration": "Kuralları 52 718 sayısı üzerinde görelim.",
       "beats": [
        {
-        "narration": "Birinci grup son basamağa bakar. 2, 5 ve 10 için yalnız birler basamağı yeter. Son rakam 8: sayı 2'ye tam bölünür, 5'e bölümünden kalan 3'tür.",
         "show": [
          "r1"
         ],
         "focus": [
          "r1"
-        ]
+        ],
+        "narration": "Birinci grup son basamağa bakar. 2, 5 ve 10 için yalnız birler basamağı yeter."
        },
        {
-        "narration": "İkinci grup son birkaç basamağa bakar. 4 için son iki basamak: 18'in 4'e bölümünden kalan 2. 8 için son üç basamak: 718'in 8'e bölümünden kalan 6.",
+        "show": [],
+        "focus": [
+         "r1"
+        ],
+        "narration": "Son rakam 8: sayı 2'ye tam bölünür, 5'e bölümünden kalan 3'tür.",
+        "note": "52 718 → son rakam 8"
+       },
+       {
         "show": [
-         "r2",
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ],
+        "narration": "İkinci grup son birkaç basamağa bakar. 4 için son iki basamak: 18'in 4'e bölümünden kalan 2."
+       },
+       {
+        "show": [
          "r3"
         ],
         "focus": [
-         "r2",
          "r3"
-        ]
+        ],
+        "narration": "8 için son üç basamak: 718'in 8'e bölümünden kalan 6."
        },
        {
-        "narration": "Üçüncü grup bütün rakamlara bakar. 3 ve 9 için rakamlar toplamı: 5 artı 2 artı 7 artı 1 artı 8, 23. 23'ün 3'e bölümünden kalan 2, 9'a bölümünden kalan 5.",
         "show": [
          "r4"
         ],
         "focus": [
          "r4"
-        ]
+        ],
+        "narration": "Üçüncü grup bütün rakamlara bakar. 3 ve 9 için rakamlar toplamı: 5 artı 2 artı 7 artı 1 artı 8, 23.",
+        "note": "5 + 2 + 7 + 1 + 8 = 23"
        },
        {
-        "narration": "11 için rakamları sağdan başlayarak artı, eksi, artı diye işaretlersin. 8 eksi 1 artı 7 eksi 2 artı 5, 17. 17'nin 11'e bölümünden kalan 6.",
+        "show": [],
+        "focus": [
+         "r4"
+        ],
+        "narration": "23'ün 3'e bölümünden kalan 2, 9'a bölümünden kalan 5.",
+        "note": "23 → 3'e kalan 2, 9'a kalan 5"
+       },
+       {
         "show": [
          "r5"
         ],
         "focus": [
          "r5"
-        ]
+        ],
+        "narration": "11 için rakamları sağdan başlayarak artı, eksi, artı diye işaretlersin.",
+        "note": "+8 −1 +7 −2 +5"
+       },
+       {
+        "show": [],
+        "focus": [
+         "r5"
+        ],
+        "narration": "8 eksi 1 artı 7 eksi 2 artı 5, 17. 17'nin 11'e bölümünden kalan 6.",
+        "note": "17 = 11 + 6 → kalan 6"
        }
       ]
      },
@@ -705,11 +731,11 @@
      "3"
     ],
     "answer": 1,
-    "why": "Kalan **3** olur."
+    "why": "**3** kalır."
    },
    {
     "sentence": "**18**, 2'ye ve 6'ya bölünür.",
-    "question": "12'ye bölünür mü?",
+    "question": "12'ye de mi?",
     "choices": [
      "Evet",
      "Hayır"

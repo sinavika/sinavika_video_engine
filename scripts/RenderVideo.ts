@@ -12,6 +12,9 @@
  *       Only those frames: a short preview of one part of a long lesson (chapters are not written).
  *   npm run render -- --job job.json --out out/video.mp4 --json
  *
+ * A whole camp or course lesson is refused while its script has still screens (StillScreenGate, owner 9 Nov 2026);
+ * --allow-still-screens renders it anyway. Single frames and frame ranges are previews and are not checked.
+ *
  * With --json every line on stdout is a JSON event (progress, done, error),
  * which is what a parent process such as the .NET backend should read.
  * Exit codes: 0 success, 2 invalid job, 1 render failure.
@@ -23,6 +26,7 @@ import {formatChapters} from '../src/Scenes/SceneChapter';
 import {parseArgs} from 'node:util';
 import {VideoJobValidationError} from '../src/Renderers/VideoJob';
 import {readVideoJob} from '../src/Renderers/VideoJobFile';
+import {stillScreenGate} from '../src/Renderers/StillScreenGate';
 import {renderFrame, renderVideo, renderVideoToOutputs, type RenderProgress} from '../src/Renderers/VideoRenderer';
 
 const {values} = parseArgs({
@@ -33,6 +37,7 @@ const {values} = parseArgs({
 		frames: {type: 'string'},
 		concurrency: {type: 'string'},
 		json: {type: 'boolean', default: false},
+		'allow-still-screens': {type: 'boolean', default: false},
 	},
 });
 
@@ -64,6 +69,10 @@ const main = async (): Promise<number> => {
 
 	try {
 		const job = readVideoJob(values.job);
+		// A whole lesson is not rendered while its script has still screens (owner, 9 Nov 2026); previews are.
+		const preview = values.frame !== undefined || frameRange !== null;
+		const still = preview || values['allow-still-screens'] ? [] : stillScreenGate(job as {template?: unknown; content?: unknown});
+		if (still.length > 0) throw new VideoJobValidationError(still);
 		const options = {
 			onProgress: reportProgress(),
 			concurrency: values.concurrency ? Number(values.concurrency) : undefined,

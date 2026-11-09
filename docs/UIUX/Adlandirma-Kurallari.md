@@ -3,7 +3,7 @@
 Bu belge API, web ve mobil için ortaktır. Üç projenin `docs/` klasöründe aynı içerikle durur.
 
 **Tarih:** 15 Ekim 2026 · v2 (sekme yuvaları ve feed kararı güncellendi)
-**İlgili belgeler:** `BrandIdentity.md` (ses ve dil), `Modul-Kimligi.md` (renk ve merkezi kod), `UIUX-Rehberi.md` (tasarım sistemi), `UIUX-Denetim.md` (bulgular), `Ekran-Envanteri.md`
+**İlgili belgeler:** `BrandIdentity.md` (ses ve dil), `Modul-Kimligi.md` (renk ve merkezi kod), `UIUX-Rehberi.md` (tasarım sistemi), `UIUX-Gecmis.md` (denetimler ve kararlar), `Ekran-Envanteri.md`
 
 ## 1. Temel kural
 

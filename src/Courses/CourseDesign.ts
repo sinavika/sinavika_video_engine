@@ -106,7 +106,7 @@ export const COURSE_DESIGN = {
 		minCardSeconds: 3,
 		sectionSeconds: 3,
 		/** Silent time to think after a question is read, with a countdown on screen (it used to be a floor that the voice always exceeded, so there was no pause). */
-		questionThinkSeconds: 5,
+		questionThinkSeconds: 3,
 		/**
 		 * Shortest time of a beat's sentence. Short: a beat's line that stopped
 		 * for 2.5 s before the next one was heard as the voice breaking off

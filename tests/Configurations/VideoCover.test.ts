@@ -39,10 +39,10 @@ describe('video cover', () => {
 	});
 
 	it('never lights a promotion’s last word on its own: the job chooses what the cover sells', () => {
-		const promo = JSON.parse(readFileSync(path.resolve(ROOT, 'Posts', '2026-10-21_NetinYalanSoyluyor', 'Job.json'), 'utf8'));
+		const promo = JSON.parse(readFileSync(path.resolve(ROOT, 'Posts', '2026-11-27_TytKampiYoutube', 'Job.json'), 'utf8'));
 		const {cover, ...job} = promo;
 		expect(videoCoverJob(resolveVideoJob({...job, cover: {title: cover.title, kicker: cover.kicker}})).content.emphasis).toBeUndefined();
-		expect(videoCoverJob(resolveVideoJob({...job, cover: {title: cover.title, emphasis: 'yalan', kicker: cover.kicker}})).content.emphasis).toBe('yalan');
+		expect(videoCoverJob(resolveVideoJob({...job, cover: {title: cover.title, emphasis: 'YouTube’da', kicker: cover.kicker}})).content.emphasis).toBe('YouTube’da');
 	});
 
 	it('shortens long titles at a word and drops formula marks', () => {

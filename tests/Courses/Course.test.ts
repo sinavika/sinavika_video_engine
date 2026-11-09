@@ -173,12 +173,12 @@ describe('lesson script', () => {
 		expect(mistakeIssues(withMistake('Gözleme dayanan her roman natüralisttir.'))).toEqual([]);
 	});
 
-	it('asks every lesson for at least two Works notes', () => {
+	it('keeps camp scripts free of Works notes', () => {
 		const {works: _works, ...bare} = script;
-		expect(worksIssues(bare).join(' ')).toMatch(/0 of at least 2/);
-		expect(worksIssues({...script, works: {additions: ['Gerçek ve mecaz anlamı tablo hâlinde karşılaştır.']}}).join(' ')).toMatch(/1 of at least 2/);
-		expect(worksIssues({...script, works: {additions: ['Gerçek ve mecaz anlamı tablo hâlinde karşılaştır.', 'Terim anlamın sık sorulan örneklerini listele.']}})).toEqual([]);
-		expect(reviewScript(bare).issues.join(' ')).toMatch(/Works notes/);
+		expect(worksIssues(bare)).toEqual([]);
+		const withNotes = {...bare, works: {additions: ['Gerçek ve mecaz anlamı tablo hâlinde karşılaştır.']}};
+		expect(worksIssues(withNotes).join(' ')).toMatch(/no Works notes/);
+		expect(reviewScript(withNotes).issues.join(' ')).toMatch(/no Works notes/);
 	});
 
 	describe('staged scenes', () => {

@@ -1,10 +1,10 @@
 """Works yazılı derslerini Claude Message Batches ile yazdırır (yarı fiyat), motorun denetiminden geçirir, hatalıları düzeltme turuna yollar.
 
 Kullanım (motor kökünden):
-  python Curriculum/WorksWritten/Tools/works_batch.py paket  YKS_TYT/MAT/MAT_BASAMAK          → paketi Outputs/WorksWritten/Paketler'e yazar (bakmak için)
+  python Curriculum/WorksWritten/Tools/works_batch.py paket  YKS_TYT/MAT/MAT_BASAMAK          → paketi Outputs/Works/Written/Paketler'e yazar (bakmak için)
   python ... gonder  --model opus|sonnet --hedef <klasör> [--etiket ad] <KAT/DERS/KONU | KAT/DERS> ...
   python ... topla   <batch_id>                                                             → biter bitmez sonuçları hedef klasöre yazar, maliyeti söyler
-  python ... denetle --hedef <klasör> <KAT/DERS/KONU | KAT/DERS> ...                        → motor denetimi (works --dry); sorunları Outputs/WorksWritten/sorunlar.json'a yazar
+  python ... denetle --hedef <klasör> <KAT/DERS/KONU | KAT/DERS> ...                        → motor denetimi (works --dry); sorunları Outputs/Works/Written/sorunlar.json'a yazar
   python ... duzelt  --model opus|sonnet --hedef <klasör> [<KAT/DERS/KONU> ...]             → sorunlu (ya da çıktısı okunamayan) konuları önceki çıktı + sorunlarla yeniden yollar
   python ... maliyet                                                                        → bu araçla harcanan toplam
 
@@ -14,17 +14,15 @@ Anthropic anahtarı Desktop/sinavika_parse istemcisinden okunur, hiçbir yere ya
 """
 import argparse, copy, glob, json, os, re, subprocess, sys, time
 
-ENGINE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
-WORKS = os.path.join(ENGINE, 'Curriculum', 'Works')
-WRITTEN = os.path.join(ENGINE, 'Curriculum', 'WorksWritten')
-OUT = os.path.join(ENGINE, 'Outputs', 'WorksWritten')
-EV = os.path.join(os.path.expanduser('~'), 'Desktop', 'EgitimVerileri')
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'Tools'))
+# Bütün yollar merkezde (Curriculum/Tools/engine_paths.py); Anthropic istemcisinin tek giriş noktası anthropic_api.
+from engine_paths import ENGINE, WORKS, WORKS_WRITTEN as WRITTEN, WORKS_WRITTEN_OUTPUT as OUT, EDUCATION_DATA as EV  # noqa: E402,F401
+import anthropic_api as api  # noqa: E402
+
 YONERGE = os.path.join(os.path.dirname(__file__), 'Yonerge.md')
 STATE = os.path.join(OUT, 'batches.jsonl')
 COSTS = os.path.join(OUT, 'kullanim.jsonl')
 ISSUES = os.path.join(OUT, 'sorunlar.json')
-sys.path.insert(0, os.path.join(os.path.expanduser('~'), 'Desktop', 'sinavika_parse'))
-from sourceparsing import claude_api as api  # noqa: E402
 
 MODELS = {'opus': 'claude-opus-5-5', 'sonnet': 'claude-sonnet-5-5'}
 PRICES = {'claude-opus-5-5': (4.0, 20.0), 'claude-sonnet-5-5': (2.0, 10.0)}
@@ -112,6 +110,9 @@ def sources_of(ref):
 
 #: 'video': temel, videodan kurulan Works dosyasıdır (ilk yazım). 'yazili': temel, konunun bugünkü yazılı dersidir (sonraki geçişler; iyileştirmeler korunur).
 BASE_MODE = {'value': 'video'}
+
+#: --strict: öğretim sırası (tanım, formülden önce anlam, çözümlü örnekler) uyarı değil ret sayılır. Yeni üretimler bununla denetlenir (sahip, 9 Kasım 2026).
+STRICT = {'value': False}
 
 
 def package_of(ref, previous=None, problems=None):
@@ -243,7 +244,7 @@ def check(target, refs):
             issues[ref] = ['Çıktı yok ya da JSON okunamadı.']
         if not present:
             continue
-        run = subprocess.run(['npx', 'tsx', 'scripts/Curriculum.ts', 'works', category, '--topic', ','.join(present), '--dry', '--written', os.path.abspath(target)],
+        run = subprocess.run(['npx', 'tsx', 'scripts/Curriculum.ts', 'works', category, '--topic', ','.join(present), '--dry', '--written', os.path.abspath(target)] + (['--strict'] if STRICT['value'] else []),
                              cwd=ENGINE, capture_output=True, text=True, encoding='utf-8', shell=os.name == 'nt')
         found, current, warning = {}, None, False
         for line in (run.stdout + run.stderr).splitlines():
@@ -281,7 +282,7 @@ def fix(model, target, refs):
         print('Düzeltilecek konu yok.')
 
 
-#: Kart türlerinin alanları (src/Courses/WorksWritten.ts ile aynı); onarım bunların dışındaki alanları atar.
+#: Kart türlerinin alanları (src/Works/WorksWritten.ts ile aynı); onarım bunların dışındaki alanları atar.
 CARD_KEYS = {
     'concept': {'title', 'text', 'caption', 'narration', 'visual'}, 'rule': {'title', 'items', 'narration', 'visual'},
     'example': {'title', 'example', 'explanation', 'narration', 'visual'}, 'visual': {'title', 'visual', 'caption', 'narration'},
@@ -499,8 +500,10 @@ def main():
     parser.add_argument('--hedef', default=WRITTEN)
     parser.add_argument('--etiket', default='')
     parser.add_argument('--temel', choices=['video', 'yazili'], default='video', help='video: ilk yazım; yazili: bugünkü yazılı ders üzerinden yeni geçiş')
+    parser.add_argument('--strict', action='store_true', help='öğretim sırası uyarılarını ret say (yeni üretimler)')
     args = parser.parse_args()
     BASE_MODE['value'] = args.temel
+    STRICT['value'] = args.strict
     if args.komut == 'paket':
         for ref in refs_of(args.konular):
             path = os.path.join(OUT, 'Paketler', *ref.split('/')) + '.json'

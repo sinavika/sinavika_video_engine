@@ -4,7 +4,7 @@ import type React from 'react';
 import {describe, expect, it} from 'vitest';
 import {BRAND_COLORS} from '../../src/Configurations/BrandColors';
 import {APP_END_CARD, COVER_STANDARD, POST_TYPE, STORE_BADGES, titleLinesAllowed} from '../../src/Configurations/SocialIdentity';
-import * as November from '../../src/Campaigns/Tanitim2026Kasim';
+import * as November from '../../src/Social/Campaigns/Tanitim2026Kasim';
 import {lineCount, seriesSize} from '../../src/Components/Typography/TextMeasure';
 import {IMAGE_TEMPLATES} from '../../src/Images/ImageTemplateRegistry';
 import {resolveImageJob} from '../../src/Images/Renderers/ImageJob';
@@ -27,7 +27,7 @@ const AppEndCard = componentOf(appEndScenes(true)[0].element);
  * landscape piece, holiday videos end on the logo alone (Configurations/
  * SpecialDay), and the camp lessons end on the next lesson (YouTube series).
  */
-const OWN_ENDING = new Set(['GoogleVideoAd', 'AppShowcase', 'RepublicDay', 'AtaturkMemorial', 'Basogretmen', 'CampIntro', 'CampLesson', 'CampShort', 'CampFlash', 'CourseLesson', 'CourseShort']);
+const OWN_ENDING = new Set(['GoogleVideoAd', 'AppShowcase', 'RepublicDay', 'AtaturkMemorial', 'Basogretmen', 'CampIntro', 'CampLessonIntro', 'CampLesson', 'CampShort', 'CampFlash', 'CourseLesson', 'CourseShort']);
 
 describe('the one app card every reel ends on', () => {
 	const endingTemplates = TEMPLATES.filter((template) => !OWN_ENDING.has(template.id));

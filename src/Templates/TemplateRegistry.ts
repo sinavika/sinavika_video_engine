@@ -33,6 +33,7 @@ import {DualScreen} from './Advertisements/DualScreen/DualScreen';
 import {LevelSelect} from './Advertisements/LevelSelect/LevelSelect';
 import {AppShowcase} from './Advertisements/AppShowcase/AppShowcase';
 import {CampIntro} from './Camps/CampIntro/CampIntro';
+import {CampLessonIntro} from './Camps/CampLessonIntro/CampLessonIntro';
 import {CampLesson} from './Camps/CampLesson/CampLesson';
 import {CampFlash} from './Camps/CampFlash/CampFlash';
 import {CampShort} from './Camps/CampShort/CampShort';
@@ -95,6 +96,7 @@ export const TEMPLATES: readonly AnyTemplateDefinition[] = [
 	CampShort,
 	CampFlash,
 	CampIntro,
+	CampLessonIntro,
 ];
 
 export const TEMPLATE_IDS: readonly string[] = TEMPLATES.map((template) => template.id);

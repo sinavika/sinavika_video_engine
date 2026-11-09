@@ -123,7 +123,7 @@ const ABBREVIATIONS: SpokenRule[] = [
 	[/\bAYT(?:['’](?=\p{L}))?\b/gu, 'ayete'],
 	[/\bYDT(?:['’](?=\p{L}))?\b/gu, 'yedete'],
 	// "Sino Ey Ay", its suffix kept as written ("Sino Ey Ay’ye"). The owner listened on 31 Oct 2026 to this, the
-	// reels' "Sino Eyay" and a joined "Sinoeyay" (Outputs/VoiceTests/okunus-ornegi) and chose this one.
+	// reels' "Sino Eyay" and a joined "Sinoeyay" (Outputs/Checks/VoiceTests/okunus-ornegi) and chose this one.
 	[/\bSinoAI\b/g, 'Sino Ey Ay'],
 	// "PDF'in" is "Pidiyefin" (owner, Oct 2026: the voice spelled it out). Until 31 Oct this lived in single scripts.
 	[/\bPDF(?:['’](?=\p{L}))?\b/gu, 'Pidiyef'],

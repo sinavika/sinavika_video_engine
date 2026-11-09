@@ -28,7 +28,7 @@
  *
  *   npm run social -- campaign --campaign tanitim-2026-10 [--force]
  *       Writes a Posts/<date>_<Name>/ folder (Brief.md, Post.json draft) for
- *       every post and story of a campaign (src/Campaigns). Days with a post
+ *       every post and story of a campaign (src/Social/Campaigns). Days with a post
  *       an admin rejected get its id as replacesPostId. Nothing is submitted.
  *       The slots to prepare, from the standard weekly plan (Configurations/
  *       SocialPlan.ts), with hours taken from each account's Buffer schedule.
@@ -40,10 +40,10 @@ import {mkdir, readFile, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {parseArgs} from 'node:util';
 import {ZodError} from 'zod';
-import {SocialHubError, createSocialHubClient} from '../src/Services/SocialHubClient';
-import {CAMPAIGNS, scaffoldCampaign, type CampaignId, type ExistingPost} from '../src/Campaigns/CampaignScaffold';
+import {SocialHubError, createSocialHubClient} from '../src/Social/SocialHubClient';
+import {CAMPAIGNS, scaffoldCampaign, type CampaignId, type ExistingPost} from '../src/Social/CampaignScaffold';
 import {SOCIAL_PLANS, type SocialPlanName} from '../src/Configurations/SocialPlan';
-import {planMonth, planRange, type AccountSchedule} from '../src/Services/SocialPlanner';
+import {planMonth, planRange, type AccountSchedule} from '../src/Social/SocialPlanner';
 
 const {values, positionals} = parseArgs({
 	allowPositionals: true,

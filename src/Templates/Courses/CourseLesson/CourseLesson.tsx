@@ -30,12 +30,20 @@ const withChrome = (script: LessonScript, element: React.ReactNode) => (
 	</>
 );
 
+/**
+ * When each "Bu videoda" objective comes in: where the voice names it, else spread over the line from the first
+ * second to 85 % of it, so the list fills while it is talked about.
+ */
+export const introObjectiveCues = (script: LessonScript, line: Parameters<typeof cuesInLine>[0]): (number | undefined)[] =>
+	spreadCues(cuesInLine(line, script.lesson.objectives), Math.min(1, line.seconds * 0.2), line.seconds * 0.85);
+
 const buildScenes = (script: LessonScript, voiceClips: VoiceClips = {}): TemplateScene[] => {
 	const say = createNarrator(voiceClips, script.script);
 	const sections = script.lesson.sections;
 
 	const hook = say('hook', script.lesson.hook.narration, estimate(script.lesson.hook.narration, 5), 5);
-	const scenes: TemplateScene[] = [{id: 'intro', seconds: hook.seconds, label: 'Giriş', voice: [hook], element: withChrome(script, <LessonIntroScene script={script} />)}];
+	const objectiveCues = introObjectiveCues(script, {clip: voiceClips[hook.id], text: hook.text, startSeconds: 0, seconds: hook.seconds});
+	const scenes: TemplateScene[] = [{id: 'intro', seconds: hook.seconds, label: 'Giriş', voice: [hook], element: withChrome(script, <LessonIntroScene script={script} objectiveCues={objectiveCues} />)}];
 
 	sections.forEach((section, sectionIndex) => {
 		const prefix = `s${sectionIndex + 1}`;

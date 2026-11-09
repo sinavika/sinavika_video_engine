@@ -4,7 +4,7 @@ Web (Next.js + Tailwind), mobil (React Native) ve içerik motoru için ortak ara
 
 **Tarih:** 3 Kasım 2026
 **Çizimler:** `Desktop\Sinavika-UIUX3` · `acik/` ve `koyu/` ayrı klasörler (her biri mobil, web-panel, web-site, panolar) · kaynak: `sinavika_video_engine/src/UIUX`
-**Belgeler:** `Modul-Kimligi.md` (renk ve merkezi kod), `Ekran-Envanteri.md` (her çizim ve gerçek rotası), `Adlandirma-Kurallari.md`, `UIUX-Denetim.md`, `BrandIdentity.md`
+**Belgeler:** `Modul-Kimligi.md` (renk ve merkezi kod), `Ekran-Envanteri.md` (her çizim ve gerçek rotası), `Adlandirma-Kurallari.md`, `UIUX-Gecmis.md` (denetimler ve kararlar), `BrandIdentity.md`
 
 ## 0. Temel kurallar
 
@@ -61,7 +61,7 @@ Modül sırası her yerde aynıdır: Denemeler, Dersler, Testler, Ders Planı, A
 - **Modül rengi ve saydam katmanlar:** `Modul-Kimligi.md`. Her modül sayfasının üstü kendi renginin %7'siyle yıkanır; ikon kutuları %12; ilerleme izleri %16; kenarlar %24.
 - **Slaytlar:** modül gradyanı, büyük saydam ikon (filigran), iki yumuşak ışık dairesi, beyaz eylem düğmesi.
 - **Kartlar:** beyaz, 20 px köşe, ince kenarlık ve yumuşak gölge. Modüle ait vurgulu kart `moduleLine` (modül renginde kenar).
-- **Yazı:** yalnız Manrope (`Tipografi-Web.md`, `Tipografi-Mobil.md`). Rol ölçeği `src/UIUX/Tokens.ts` → `UI_TYPE`.
+- **Yazı:** yalnız Manrope (`docs/Brand/Tipografi-Uygulama.md`). Rol ölçeği `src/UIUX/Tokens.ts` → `UI_TYPE`.
 - **Renk jetonları, köşe, gölge:** `src/UIUX/Tokens.ts`. Koyu tema aynı jetonların koyu değerleri; modül renkleri bir ton açılır.
 - **İkonlar:** tek çizgi seti (Lucide uyumlu adlar, `src/UIUX/Icons.tsx`).
 - **Kontrast ve en küçük yazı:**
@@ -174,7 +174,7 @@ Testler (`tests/UIUX/UIUX.test.ts`) şunları denetler:
 
 ## 7. Uygulama sırası
 
-`UIUX-Denetim.md` §5'teki dalgalar geçerlidir. v2 ile değişenler:
+İlk denetimdeki (15 Ekim, [UIUX-Gecmis.md](UIUX-Gecmis.md) §1) dalga sırası geçerlidir; önce güveni bozan küçük düzeltmeler (Dalga 0), sonra şunlar:
 
 - **Dalga 1:** web ve mobilde `moduleIdentity` dosyası, jetonlar, ortak bileşenler.
 - **Dalga 2:** tab bar yuvaları, sayfa başlığında modül çipi, web menüsü ve modül hap sekmeleri.
@@ -184,7 +184,7 @@ Testler (`tests/UIUX/UIUX.test.ts`) şunları denetler:
 
 ## 8. Uygulama kuralları (web ve mobil kodu)
 
-Çizimde görünmeyen ama uygulamada şart olan kurallar. Kaynak: UI UX Pro Max'in 119 UX kuralıyla karşılaştırma (`UX-Kurallari-Karsilastirma-2026-11-03.md`).
+Çizimde görünmeyen ama uygulamada şart olan kurallar. Kaynak: UI UX Pro Max'in 119 UX kuralıyla karşılaştırma (`UX-Kurallari.md`).
 
 **Hareket**
 - Bir ekranda en çok 1–2 öğe hareket eder; sürekli animasyon yalnız yükleniyor göstergesinde.

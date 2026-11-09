@@ -16,13 +16,6 @@
   "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018, 2023, 2025: 3 soru; üçü de sembolle tanımlanan işlem (çokgen, kutucuk gösterimleri))",
   "YKS/TYT/Sorular/MAT/MAT_ISLEM.jsonl (31 soru; tanımlı işlem ve özellik kalıpları)"
  ],
- "works": {
-  "additions": [
-   "Birim ve ters eleman örneklerini çeşitlendir: a ∗ b = a + b + ab işleminde birim 0, a'nın tersi −a/(1 + a); a ∗ b = a + b − 3 işleminde birim 3.",
-   "İşlem tablosundan özellik okuma yöntemini ekle: değişme için köşegene göre simetri, kapalılık için tablonun içindeki elemanlar, birim için satır ve sütun tekrarı.",
-   "Yutan eleman kavramını (a ∗ y = y) bir örnekle ekle ve birim elemanla karıştırılmamasını vurgula."
-  ]
- },
  "lesson": {
   "hook": {
    "headline": "ÖSYM her yıl yeni bir sembol uydurup sana kuralını veriyor.",
@@ -121,7 +114,7 @@
         },
         {
          "text": "$2x + 4 = 6 + x \\Rightarrow x = 2$. Cevap **B**.",
-         "narration": "2 x artı 4 eşittir 6 artı x; x eşittir 2. Cevabımız B. Sırayı karıştırıp iki tarafı aynı açan bir şey bulamaz.",
+         "narration": "2 x artı 4 eşittir 6 artı x; x eşittir 2. Cevabımız B. İki tarafta da a ile b'nin yerini karıştıran 8 artı x eşittir 2 x artı 3 yazar ve 5'i bulur; tanımda ilk sayı a'nın yerine geçer.",
          "eliminate": [
           "A",
           "C",
@@ -141,7 +134,7 @@
        "style": "TYT tarzı",
        "stem": "Bir sayı bir karenin içine yazıldığında karesinin 1 fazlasını, bir üçgenin içine yazıldığında 2 katının 1 eksiğini göstermektedir. İçine 3 yazılmış bir üçgen, bir karenin içine yazılırsa oluşan sembolün değeri kaçtır?",
        "options": [
-        "17",
+        "19",
         "26",
         "37",
         "50",
@@ -160,7 +153,7 @@
         },
         {
          "text": "Cevap **B**. Sırayı ters uygulayan 19 bulur.",
-         "narration": "Cevabımız B. Önce kareyi uygulayan 3'ün karesinin 1 fazlası 10'u, sonra üçgeni uygulayıp 19'u bulur; şıklarda yok ama sıra hatası budur.",
+         "narration": "Cevabımız B. Önce kareyi uygulayan 3'ün karesinin 1 fazlası 10'u, sonra üçgeni uygulayıp 19'u bulur; A şıkkı bu sıra hatası.",
          "eliminate": [
           "A",
           "C",
@@ -189,7 +182,7 @@
       "kind": "rule",
       "title": "Kapalılık, değişme, birleşme",
       "items": [
-       "**Kapalılık**: kümeden iki eleman alınca sonuç yine kümede. Doğal sayılarda çıkarma kapalı değil: $3 - 5 = -2$.",
+       "**Kapalılık**: kümeden iki eleman alınca sonuç yine kümede. Doğal sayılarda **çıkarma kapalı** değil: $3 - 5 = -2$.",
        "**Değişme**: $a \\ast b = b \\ast a$. Sına: tanımda $a$ ile $b$'nin **yerini değiştir**, aynı ifade mi?",
        "**Birleşme**: $(a \\ast b) \\ast c = a \\ast (b \\ast c)$.",
        "Bir **karşı örnek** özelliği yıkmaya yeter."
@@ -409,7 +402,7 @@
         },
         {
          "text": "Kontrol: $7 \\ast 1 = 4$ ✓. Cevap **B**.",
-         "narration": "Kontrol: 7 artı 1 eksi 4, 4; birim eleman. Cevabımız B. Tersi sıfıra eşitleyen eksi 3, toplamadaki gibi eksi 7 düşünen başka bir sonuç bulur.",
+         "narration": "Kontrol: 7 artı 1 eksi 4, 4; birim eleman. Cevabımız B. Birim elemanla tersi karıştıran 4'ü seçer; ters bulunurken 7 yıldız x, sıfıra değil birim eleman 4'e eşitlenir.",
          "eliminate": [
           "A",
           "C",
@@ -565,15 +558,22 @@
         ]
        },
        {
-        "narration": "Bir elemanın tersi, satırında birim elemanı, yani 3'ü veren sütundur. 1'in satırında 3, 1. sütunda: 1'in tersi 1. 2'nin satırında 3, 4. sütunda: 2'nin tersi 4.",
         "show": [
-         "r1",
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ],
+        "narration": "Bir elemanın tersi, satırında birim elemanı, yani 3'ü veren sütundur. 1'in satırında 3, 1. sütunda: 1'in tersi 1."
+       },
+       {
+        "show": [
          "r2"
         ],
         "focus": [
-         "r1",
          "r2"
-        ]
+        ],
+        "narration": "2'nin satırında 3, 4. sütunda: 2'nin tersi 4."
        },
        {
         "narration": "Tablo köşegene göre simetrikse, yani a yıldız b ile b yıldız a hep aynıysa işlem değişmelidir. Bu tablo simetrik.",
@@ -588,7 +588,7 @@
      },
      {
       "kind": "mistake",
-      "title": "Birim eleman a'ya bağlı olamaz",
+      "title": "Birimi iki taraftan kontrol et",
       "wrong": "$a \\ast b = ab + a$ işleminde $a \\ast e = a$'dan $e = 0$; birim eleman 0'dır.",
       "right": "$ae + a = a \\Rightarrow ae = 0 \\Rightarrow e = 0$, ama **diğer taraftan** $e \\ast a = 0 \\cdot a + 0 = 0 \\neq a$. Birim eleman **yoktur**.",
       "why": "Birim eleman **iki taraftan** da çalışmalı: $a \\ast e = e \\ast a = a$.",

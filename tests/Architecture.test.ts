@@ -18,7 +18,7 @@ const sourceFiles = filesUnder('src').filter((file) => /\.tsx?$/.test(file));
  * the promotion and education templates are an archive (25 Oct 2026: "kalsın ama dokunma"), and the ads, store,
  * app-screen, image and campaign code belong to the advertising and social work.
  */
-const OTHER_AREAS = ['src/UIUX/', 'src/Templates/Advertisements/', 'src/Templates/Education/', 'src/Images/', 'src/Ads/', 'src/Store/', 'src/Components/AppScreens/', 'src/Campaigns/'];
+const OTHER_AREAS = ['src/UIUX/', 'src/Templates/Advertisements/', 'src/Templates/Education/', 'src/Images/', 'src/Ads/', 'src/Store/', 'src/Components/AppScreens/', 'src/Social/'];
 const inOtherArea = (file: string) => OTHER_AREAS.some((area) => file.startsWith(area));
 
 /** Files whose plural name is right, each with its reason. */
@@ -112,7 +112,7 @@ describe('engine layout', () => {
 				.map((file) => `${name} in ${file}`),
 		);
 		expect(elsewhere).toEqual([]);
-	});
+	}, 60_000); // reads every source file; slow while a render runs on the same machine
 
 	it('centres nothing in a course visual with translate(-50%): FitBox measures with transforms off and sees it stick out', () => {
 		// A sentence's arrow label centred that way was measured half its width to the right and the two-word
@@ -183,5 +183,64 @@ describe('engine layout', () => {
 		});
 		expect(jobs.length).toBeGreaterThan(0);
 		expect(wrong).toEqual([]);
+	});
+});
+
+/**
+ * The engine is filed by the modules the API and the apps use (owner, 9 Nov 2026): Quizzes, Exams, Works, camps,
+ * social posts. Each module keeps its work under Curriculum (in git) or Posts, and its output under Outputs (outside
+ * git); the shared Python and every path live in Curriculum/Tools (engine_paths.py). docs/Development.md has the map.
+ */
+const CURRICULUM_FOLDERS = ['Camps', 'Catalog', 'Exams', 'Jobs', 'Production', 'Quizzes', 'README.md', 'Scripts', 'Sources', 'Tools', 'Works', 'WorksWritten'];
+const OUTPUT_FOLDERS = ['Brand', 'Camps', 'Checks', 'Covers', 'Exams', 'Images', 'Quizzes', 'Videos', 'Works'];
+/** Folder and file names a module was known by before 9 Nov 2026; nothing may point at them any more. */
+const RETIRED_PATHS = ['QuestionRevision', 'Outputs/WorkFigures', 'Outputs/WorksWritten', 'src/Campaigns', 'Courses/WorkFigure', 'Courses/WorksView', 'Courses/WorksWritten', 'Services/SocialHubClient', 'Services/SocialPlanner', 'Outputs/Stills', 'Outputs/Sweeps', 'Outputs/Yatirim'];
+const pythonTools = filesUnder('Curriculum').filter((file) => file.endsWith('.py'));
+const moduleTools = pythonTools.filter((file) => /^Curriculum\/(Quizzes|Exams)\/Tools\/[^/]+\.py$/.test(file) && !file.endsWith('/paths.py'));
+const SHARED_PYTHON = filesUnder('Curriculum/Tools').filter((file) => file.endsWith('.py')).map((file) => path.basename(file, '.py'));
+
+describe('module layout', () => {
+	it('files Curriculum by module, as the API and the apps do', () => {
+		expect(readdirSync(path.join(ROOT, 'Curriculum')).filter((name) => !CURRICULUM_FOLDERS.includes(name))).toEqual([]);
+	});
+
+	it.runIf(existsSync(path.join(ROOT, 'Outputs')))('files Outputs by module: camps, quizzes, exams, Works, checks', () => {
+		expect(readdirSync(path.join(ROOT, 'Outputs')).filter((name) => !OUTPUT_FOLDERS.includes(name))).toEqual([]);
+	});
+
+	it('keeps every path of the Python tools in Curriculum/Tools/engine_paths.py', () => {
+		const own = pythonTools
+			.filter((file) => !file.endsWith('/engine_paths.py'))
+			.filter((file) => /os\.path\.join\([^)]*["'](Outputs|Desktop)["']/.test(readFileSync(path.join(ROOT, file), 'utf-8')));
+		expect(own).toEqual([]);
+	});
+
+	it('lets a quiz or exam tool reach the shared tools: it imports its paths.py before them', () => {
+		const late = moduleTools.filter((file) => {
+			const imports = [...readFileSync(path.join(ROOT, file), 'utf-8').matchAll(/^(?:from|import) ([a-z_]+)/gm)].map((match) => match[1]);
+			const shared = imports.findIndex((name) => SHARED_PYTHON.includes(name));
+			return shared >= 0 && !imports.slice(0, shared).includes('paths');
+		});
+		expect(late).toEqual([]);
+	});
+
+	it('never imports one module’s tools from another: what quizzes and exams share lives in Curriculum/Tools', () => {
+		const quiz = filesUnder('Curriculum/Quizzes/Tools').map((file) => path.basename(file, '.py'));
+		const exam = filesUnder('Curriculum/Exams/Tools').map((file) => path.basename(file, '.py'));
+		const crossing = moduleTools.filter((file) => {
+			const other = file.includes('/Quizzes/') ? exam : quiz;
+			return [...readFileSync(path.join(ROOT, file), 'utf-8').matchAll(/^(?:from|import) ([a-z_]+)/gm)].some((match) => match[1] !== 'paths' && other.includes(match[1]));
+		});
+		expect(crossing).toEqual([]);
+	});
+
+	it('points nowhere a module used to live (retired 9 Nov 2026)', () => {
+		const texts = [...filesUnder('src'), ...filesUnder('scripts'), ...filesUnder('tests').filter((file) => !file.endsWith('Architecture.test.ts')), ...filesUnder('docs'), ...pythonTools, ...filesUnder('Curriculum').filter((file) => /\.(md|ts)$/.test(file) && !file.startsWith('Curriculum/Production/') && !file.startsWith('Curriculum/Sources/'))]
+			.filter((file) => /\.(ts|tsx|md|py)$/.test(file) && !file.startsWith('docs/Analiz/'));
+		const stale = texts.flatMap((file) => {
+			const text = readFileSync(path.join(ROOT, file), 'utf-8');
+			return RETIRED_PATHS.filter((retired) => text.includes(retired)).map((retired) => `${file}: ${retired}`);
+		});
+		expect(stale).toEqual([]);
 	});
 });

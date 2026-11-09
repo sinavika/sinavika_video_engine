@@ -36,8 +36,45 @@ doğrulama hatası sınıfı (`VideoJobValidationError`).
 | `src/Renderers/` | İşi doğrulama ve render: `VideoJob.ts` (saf, dosya okumaz), `VideoJobFile.ts` (iş dosyasını okur; kamp işinin `script` yolundaki senaryoyu yükler) |
 | `scripts/` | Komutlar (`npm run …`), dosya başına bir komut. `DeadCode.ts`: kimsenin içe aktarmadığı dışa aktarımları listeler |
 | `tests/` | `src` düzenini izler: bir test, sınadığı modülün klasöründedir (`tests/Components/Visuals/Physics/Kepler.test.ts`). Bütün motoru kesen kurallar kökte `Architecture.test.ts`; ortak yollar `tests/Support/Paths.ts` (`ROOT`, `FIXTURES`), ortak veriler `tests/Fixtures/` |
-| `Outputs/` | Bütün çıktılar (video, görsel, kare, örnek, ses denemesi, mağaza görselleri); git dışında |
-| `Posts/` | Sosyal medya gönderileri (yalnız json ve md); ay planları `Posts/Plans/` |
+| `Outputs/` | Bütün çıktılar, git dışında, modül modül: `Camps/`, `Quizzes/`, `Exams/`, `Works/`, `Checks/` (kareler, taramalar, ön izlemeler, ses denemeleri, viral kontrolü); genel `Videos/` ve `Images/` (numaralı), `Covers/`, `Brand/` |
+| `Posts/` | Sosyal medya gönderileri, gönderi başına bir klasör (`<tarih>_<Ad>/`: Brief, Job, Post ve medyası `Media/`); ay planları `Posts/Plans/`. Sosyal kodu `src/Social/` |
+| `Curriculum/` | Eğitim içeriğinin işi, modül modül (aşağıdaki harita); ortak Python ve bütün yollar `Curriculum/Tools/` |
+| `docs/` | Belgeler konu klasörlerinde: `Courses/` (ders ve kamp videoları, anlatım, renkler, matematik okunuşu, Works notları), `Social/` (strateji, plan, kurgu, kimlik standardı, kanallar), `Brand/` (marka kimliği, ürün dili, tipografi), `Ads/` (reklam brifi, mağaza metni, `GoogleAds/`), `UIUX/` (tasarım sistemi, ekranlar, geçmiş), `Campaigns/` (ay kampanyaları), `Analiz/` (veri raporları, `YYYY-AA-GG-Konu.md`). Kökte yalnız `Development.md` durur. Biten işin raporu ayrı dosyada bekletilmez: kararı ve açık kalanı ilgili belgeye katılır, ayrıntısı git geçmişinde kalır |
+
+## Modül haritası (9 Kasım 2026)
+
+Motor, API'deki (`Services/Exams`, `Quizzes`, `Works`, `SocialHubs`) ve mobildeki (`src/modules/exam`, `quiz`, `works`) modüllerle aynı adlarla klasörlenir. Her modülün işi bir oturumda yürür. Bu oturum (merkezî altyapı) kuralları, ortak yapıları ve hata düzeltmeyi taşır; kural değişince bütün oturumlara yazar.
+
+| Modül | İş (git) | Kod ve araç | Çıktı (git dışı) | Belge | Oturum |
+| --- | --- | --- | --- | --- | --- |
+| Kamp | `Curriculum/Camps`, `Scripts`, `Jobs`, `Production`, `Sources` | `src/Courses`, `src/Templates/Camps`, `npm run curriculum` | `Outputs/Camps/<Sınav>/<Bölüm>/<Ders>/<NN>_<Konu>/` | `docs/Courses/` | Kamp senaryoları iyileştirmeleri; render: Render |
+| Quiz | `Curriculum/Quizzes` (Revisions, Reports, Pilot, kurallar) | `Curriculum/Quizzes/Tools` | `Outputs/Quizzes/` (Data, Results, Figures, Work, FigureCheck) | `Curriculum/Quizzes/CalismaPlani.md`, `YazimKurallari.md` | Quiz iyileştirilmesi |
+| Deneme | `Curriculum/Exams` (plan, `<ay>/<kitapçık>/<ders>.jsonl`) | `Curriculum/Exams/Tools` | `Outputs/Exams/` (katalog, Work, Results, Figures) | `Curriculum/Exams/DenemePlani.md`, `YONERGE.md` | Exam iyileştirilmesi |
+| Works | `Curriculum/Works`, `Curriculum/WorksWritten` | `src/Works`, `npm run figures`, `WorksWritten/Tools/works_batch.py` | `Outputs/Works/Figures` (manifest), `Outputs/Works/Written` | `docs/Courses/Works-*.md`, README'ler | Works iyileştirilmesi |
+| Sosyal medya | `Posts/<tarih>_<Ad>/` (medya `Media/` içinde) | `src/Social` (kampanyalar `src/Social/Campaigns`), `npm run social` | gönderinin `Media/` klasörü; kamp reels'i `Outputs/Camps` | `docs/Social/`, `docs/Campaigns/`, `docs/Analiz/` | Sosyal Medya Yönetimi |
+| UI/UX | — | `src/UIUX`, `npm run uiux` | `Desktop\Sinavika-UIUX3` | `docs/UIUX/` | UI/UX |
+| Reklam ve mağaza | — | `src/Ads`, `src/Store`, `npm run google-ads`, `apple-ads`, `store` | `Desktop\Sinavika-GoogleAds`, `Sinavika-AppleAds`, `MobileHeader` | `docs/Ads/` | — |
+| VC | `Desktop\Sinavika-Yatirim` (motorda kod yok) | — | `Desktop\Sinavika-Yatirim\Sunum` | — | VC |
+
+Ortak (merkezî) olanlar, modüller kendi kopyasını yazmaz:
+
+- **Tasarım:** `Themes/`, `Components/`, `Configurations/` (marka, logo, ses, formatlar).
+- **Render ve ses:** `Renderers/`, `Services/` (seslendirme, ses son ayarı `AudioLeveling`, ses denetimi `AudioCheck`, çıktı dosyası `OutputFile`).
+- **Python:** `Curriculum/Tools/`:
+  - `engine_paths.py`: bütün yollar;
+  - `common`, `database`;
+  - `content_api`: Sınavika API'sinin Claude içerik uçları;
+  - `anthropic_api`: Anthropic, Batch ve maliyet kaydı;
+  - figür hattı: `check_revisions`, `render_figures`, `upload_stills`, `RenderFigures.ts`, `FigureCheck`.
+
+  Bir modül aracı önce kendi `Tools/paths.py`'sini içe aktarır; o dosya ortak klasörü Python yoluna ekler.
+
+Kurallar (`tests/Architecture.test.ts` → `module layout`):
+
+- `Curriculum` ve `Outputs` altında yalnız haritadaki klasörler olur. Yeni bir modül önce bu tabloya ve testteki listeye yazılır.
+- Python araçları klasör yolu yazmaz (`"Outputs"`, `"Desktop"`); yolu `engine_paths.py`'den alır.
+- Quiz ve deneme araçları birbirini içe aktarmaz; ikisinin paylaştığı şey `Curriculum/Tools`'a taşınır.
+- Bir modülün eski yerine (listesi testte, `RETIRED_PATHS`) hiçbir kod ya da belge işaret etmez.
 
 Kurallar (`tests/Architecture.test.ts` denetler):
 

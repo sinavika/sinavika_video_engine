@@ -5,7 +5,7 @@ import {GoogleAdBanner} from './GoogleAdBanner';
 import {GoogleAdImage, GoogleAdLayer, GoogleAdLogo} from './GoogleAdImage';
 import {formatSize, GOOGLE_AD_BANNER_ID, GoogleAdBannerPropsSchema, type GoogleAdBannerProps, GOOGLE_AD_IMAGE_ID, GOOGLE_AD_LAYER_ID, GOOGLE_AD_LOGO_ID, GoogleAdImagePropsSchema, GoogleAdLayerPropsSchema, GoogleAdLogoPropsSchema, LAYER_SIZE, type GoogleAdImageProps, type GoogleAdLayerProps, type GoogleAdLogoProps} from './GoogleAdsProps';
 
-/** The Google Ads pictures, HTML5 layers and logo assets (docs/GoogleAds/Icerik-Plani.md). */
+/** The Google Ads pictures, HTML5 layers and logo assets (docs/Ads/GoogleAds/Icerik-Plani.md). */
 const ImagePicture: React.FC<GoogleAdImageProps> = (props) => (
 	<VideoFrame themeId="SinavikaLight" lang={props.lang}>
 		<GoogleAdImage {...props} />

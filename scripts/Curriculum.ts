@@ -49,10 +49,12 @@
  *       topic's own codes, built from the scripts that teach it. Works imports
  *       these, not the scripts: one KPSS episode serves three levels whose
  *       codes differ, and AYT Tarih-2 and Coğrafya-2 get their own files.
- *       A topic's written lesson (Curriculum/WorksWritten/…, src/Courses/WorksWritten.ts)
+ *       A topic's written lesson (Curriculum/WorksWritten/…, src/Works/WorksWritten.ts)
  *       replaces its view once it passes its checks; a refused one is listed.
  *       --topic YKS_TYT/MAT/MAT_BASAMAK[,…] writes only those topics and removes nothing.
  *       --written <folder> reads the written lessons from another folder; --dry checks and writes nothing.
+ *       --strict makes the teaching-order warnings refusals (definition first, meaning before formula,
+ *       worked examples before questions): every new production runs with it (owner, 9 Nov 2026).
  *
  *   npm run curriculum -- jobs make <spec.json> [more specs] [--force]
  *       Writes a camp lesson's render jobs (YouTube + reels) and its YouTube
@@ -65,6 +67,11 @@
  *       camp lesson at least 10 minutes without its outro. Lists scripts of a
  *       camp that have no jobs yet.
  *
+ *   npm run curriculum -- intro <camp id>
+ *       The numbers a camp's episode 0 (CampLessonIntro) shows: its konular with
+ *       their alt konu counts and the ÖSYM questions per topic in the last ten
+ *       years (src/Courses/CampIntroData.ts), as JSON for the job.
+ *
  *   npm run curriculum -- audit
  *       Across all scripts: sentences repeated between lessons, nearly identical
  *       questions, and each lesson's mix of cards and figures. Writes
@@ -76,6 +83,7 @@ import {existsSync, readFileSync} from 'node:fs';
 import {mkdir, readdir, readFile, unlink, writeFile} from 'node:fs/promises';
 import {CAMPS_DIRECTORY, CampSchema, campFromChecklist, campMismatches} from '../src/Courses/Camp';
 import {CampJobSpecSchema, campJobFiles, campJobNumber} from '../src/Courses/CampJob';
+import {readCampIntroData} from '../src/Courses/CampIntroData';
 import {VideoJobValidationError, durationWarnings, resolveVideoJob, withEstimatedNarration} from '../src/Renderers/VideoJob';
 import {readVideoJob} from '../src/Renderers/VideoJobFile';
 import {visualKitOf} from '../src/Courses/CourseDesign';
@@ -83,8 +91,8 @@ import {CHECKLIST_STAGES, CURRICULUM_DIRECTORY, STAGE_LABELS, TWIN_LESSONS, entr
 import {LessonScriptSchema, ignoredFields, mapNameIssues, reviewScript, type LessonScript} from '../src/Courses/LessonScript';
 import {openingVarietyIssues} from '../src/Courses/OpeningVariety';
 import {GEO_FILES, GEO_LAYERS} from '../src/Configurations/GeoData';
-import {WORKS_DIRECTORY, worksViewOf} from '../src/Courses/WorksView';
-import {WORKS_WRITTEN_DIRECTORY, WrittenLessonSchema, writtenIssues, writtenWarnings} from '../src/Courses/WorksWritten';
+import {WORKS_DIRECTORY, worksViewOf} from '../src/Works/WorksView';
+import {WORKS_WRITTEN_DIRECTORY, WrittenLessonSchema, writtenIssues, writtenWarnings} from '../src/Works/WorksWritten';
 import {MEDIA_CREDITS_FILE, MEDIA_DIRECTORY, MediaCreditsSchema} from '../src/Courses/MediaLibrary';
 import {dataFoldersIn, educationDataDirectory, importCurriculum, masterLessonList, readChecklist, topicSources, writeChecklist} from '../src/Courses/CurriculumImport';
 import {pastExamFile, readPastExamQuestions, summarizePastExam} from '../src/Courses/PastExamQuestion';
@@ -124,6 +132,7 @@ const {positionals, values} = parseArgs({
 		topic: {type: 'string'},
 		written: {type: 'string'},
 		dry: {type: 'boolean', default: false},
+		strict: {type: 'boolean', default: false},
 		undo: {type: 'boolean', default: false},
 		mark: {type: 'boolean', default: false},
 		force: {type: 'boolean', default: false},
@@ -240,7 +249,7 @@ if (command === 'import') {
 		console.log(`  Alt başlıklar: ${summary.byMikro.map(([name, n]) => `${name} ${n}`).join(' · ')}`);
 		console.log('  Soru kalıpları (her biri derste en az bir kart ya da çözümlü soruyla temsil edilir):');
 		summary.patterns.forEach(([pattern, n]) => console.log(`    ${n}× ${pattern}`));
-		console.log(`  Şekilli ${summary.withFigure} · eşlemesi inceleme bekleyen ${summary.needsReview}. Sınavdaki yeri bu sayılarla söylenir (docs/Courses.md §0).`);
+		console.log(`  Şekilli ${summary.withFigure} · eşlemesi inceleme bekleyen ${summary.needsReview}. Sınavdaki yeri bu sayılarla söylenir (docs/Courses/Courses.md §0).`);
 	} else {
 		console.log(`\nÖSYM çıkmış soruları: bu konuya bağlı soru yok${folder ? '' : ' (veri klasörü bulunamadı)'}. Liste: python -m sourceparsing cikmis.`);
 	}
@@ -297,7 +306,7 @@ if (command === 'import') {
 	pictures.filter((file) => !credited.has(file)).forEach((file) => issues.push(`Picture ${file} has no entry in public/Media/Credits.json.`));
 	console.log(`${script.lessonName}: ${script.title} · ders ~${Math.round(review.lessonSeconds / 60)} dk · kısa ~${Math.round(review.shortSeconds)} sn · ${review.questions} çözümlü soru`);
 	issues.forEach((issue) => console.log(`  ! ${issue}`));
-	// Suggestions ("?") do not block "Hazırlandı"; they are the next improvements (docs/Courses.md).
+	// Suggestions ("?") do not block "Hazırlandı"; they are the next improvements (docs/Courses/Courses.md).
 	review.suggestions.forEach((suggestion) => console.log(`  ? ${suggestion}`));
 	if (issues.length === 0) console.log('  Hedeflere uygun.');
 	if (values.mark && entry) {
@@ -420,7 +429,8 @@ if (command === 'import') {
 			let output: unknown = result.view;
 			if (existsSync(writtenFile)) {
 				const parsed = WrittenLessonSchema.safeParse(JSON.parse(await readFile(writtenFile, 'utf8')));
-				const issues = parsed.success ? writtenIssues(parsed.data, result.view) : parsed.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`);
+				// --strict (new productions): the teaching order (definition, meaning before formula, worked examples) refuses, not warns.
+					const issues = parsed.success ? [...writtenIssues(parsed.data, result.view), ...(values.strict ? writtenWarnings(parsed.data, result.view) : [])] : parsed.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`);
 				if (parsed.success && issues.length === 0) {
 					output = parsed.data;
 					count.lessons += 1;
@@ -521,6 +531,9 @@ if (command === 'import') {
 	console.log(`${campIds.length} kamp · ${checked} iş · sorun ${problems.length}`);
 	problems.forEach((problem) => console.log(`  ${problem}`));
 	if (problems.length) process.exit(1);
+} else if (command === 'intro' && target) {
+	const camp = CampSchema.parse(JSON.parse(await readFile(path.join(CURRICULUM, CAMPS_DIRECTORY, `${target}.json`), 'utf8')));
+	console.log(JSON.stringify(readCampIntroData(camp, ROOT, masterLessonList()), null, 2));
 } else if (command === 'audit') {
 	const scriptsRoot = path.join(CURRICULUM, 'Scripts');
 	const files = (await readdir(scriptsRoot, {recursive: true})).filter((file) => file.endsWith('.json')).map((file) => path.join(scriptsRoot, file));
@@ -564,6 +577,6 @@ if (command === 'import') {
 	console.log(`${audited.length} ders · ${repeated.length} tekrar eden cümle · ${similar.length} benzer soru · ${mixes.reduce((sum, mix) => sum + mix.suggestions, 0)} süreç önerisi`);
 	console.log(`Rapor: ${path.relative(ROOT, report)}`);
 } else {
-	console.error('Komutlar: import, status, next, mark, brief, check, camp, coverage, works, jobs make|check, audit. Ayrıntı: scripts/Curriculum.ts');
+	console.error('Komutlar: import, status, next, mark, brief, check, camp, coverage, works, jobs make|check, intro, audit. Ayrıntı: scripts/Curriculum.ts');
 	process.exit(2);
 }

@@ -16,13 +16,6 @@
   "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: 8 soru; 4'ü aralığı mutlak değerli eşitsizlikle ifade etme (sıcaklık, paraşüt, saklama, fiyat), 3'ü sayı doğrusunda uzaklık, 1'i ifade)",
   "YKS/TYT/Sorular/MAT/MAT_MUTLAK.jsonl (244 soru; tanım, ifade, denklem ve eşitsizlik kalıpları)"
  ],
- "works": {
-  "additions": [
-   "|x − a| + |x − b| ifadesinin en küçük değerini (|a − b|, x a ile b arasındayken) ve |x − a| − |x − b| ifadesinin alabileceği değer aralığını sayı doğrusu üzerinde örnekle.",
-   "İki mutlak değerli denklemlerde kritik noktalara göre bölgelere ayırma yöntemini adım adım çöz.",
-   "Mutlak değerin özelliklerini ver: |a · b| = |a| · |b|, |a/b| = |a|/|b|, |a + b| ≤ |a| + |b|; |x| < a ve |x| > a eşitsizliklerinin çözüm kümeleri."
-  ]
- },
  "lesson": {
   "hook": {
    "headline": "180 ile 240 derece arası. Bunu tek bir mutlak değerle yaz.",
@@ -207,9 +200,9 @@
       "title": "Mutlak değerden kurtulma",
       "items": [
        "İçi **pozitif ya da sıfır** ise aynen çıkar: $a > 0$ ise $|4a| = 4a$.",
-       "İçi **negatif** ise ters işaretlisi çıkar: $b < 0$ ise $|5b| = -5b$.",
-       "$|-x| = |x|$, $|x \\cdot y| = |x| \\cdot |y|$, $\\sqrt{x^2} = |x|$.",
-       "$|x + y| \\leq |x| + |y|$: toplamın mutlak değeri mutlak değerlerin toplamını geçmez."
+       "İçi **negatif** ise ters işaretlisi çıkar: $b < 0$ ise $|5b| = -5b$, çünkü **eksi 5 b pozitiftir**.",
+       "$|-x| = |x|$; **çarpımın mutlak değeri** $|x \\cdot y| = |x| \\cdot |y|$; $\\sqrt{x^2} = |x|$.",
+       "**Toplamın mutlak değeri** mutlak değerlerin toplamını geçmez: $|x + y| \\leq |x| + |y|$."
       ],
       "narration": "İçi pozitif ya da sıfırsa ifade mutlak değerden aynen çıkar: a pozitifse 4 a'nın mutlak değeri 4 a. İçi negatifse ters işaretlisi çıkar: b negatifse 5 b'nin mutlak değeri eksi 5 b; b negatif olduğu için eksi 5 b pozitiftir. Ayrıca eksi x'in mutlak değeri x'in mutlak değerine eşittir, çarpımın mutlak değeri mutlak değerlerin çarpımıdır ve x karenin karekökü x'in mutlak değeridir. Son olarak toplamın mutlak değeri, mutlak değerlerin toplamını geçmez."
      },
@@ -410,6 +403,14 @@
       }
      },
      {
+      "kind": "mistake",
+      "title": "İki durumu da yaz",
+      "wrong": "$|x - 3| = |x + 5|$ ise $x - 3 = x + 5$ olur; bu denklemin **çözümü yoktur**.",
+      "right": "İki durum var: $x - 3$, $x + 5$'in **tersine de eşit** olabilir; buradan $x = -1$. Uzaklıkla: $x$, 3'e ve $-5$'e **eşit uzaklıkta**.",
+      "why": "İki mutlak değer eşitse içleri ya eşittir ya da birbirinin tersidir. **Kontrol**: $|-1 - 3| = 4$, $|-1 + 5| = 4$.",
+      "narration": "Sık yapılan hata: içleri eşitleyip x eksi 3 eşittir x artı 5 yazmak ve çözüm yok demek. Oysa iki durum var: x eksi 3, x artı 5'in tersine de eşit olabilir. Buradan 2 x eşittir eksi 2, x eşittir eksi 1. Uzaklıkla düşünürsen x, 3'e ve eksi 5'e eşit uzaklıkta, yani tam ortalarında. İki mutlak değer eşitse içleri ya eşittir ya da birbirinin tersidir. Kontrol: eksi 1'in 3'e uzaklığı 4, eksi 5'e uzaklığı da 4."
+     },
+     {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
@@ -494,14 +495,6 @@
     "narration": "Şimdi ÖSYM'nin en çok sorduğu kalıba geldik: bir aralığı mutlak değerle yazmak.",
     "cards": [
      {
-      "kind": "mistake",
-      "title": "Eşit uzaklık",
-      "wrong": "$|x - 3| = |x + 5|$ denklemini çözmek için iki tarafın karesini almak **zorunludur**.",
-      "right": "$x$, 3'e ve $-5$'e **eşit uzaklıkta**: ikisinin ortası, $x = \\frac{3 + (-5)}{2} = -1$.",
-      "why": "İki mutlak değer eşitse x, iki noktanın tam ortasındadır. Kontrol: $|-1 - 3| = 4$, $|-1 + 5| = 4$.",
-      "narration": "x eksi 3'ün mutlak değeri, x artı 5'in mutlak değerine eşit. Uzun hesaplara gerek yok. x artı 5, x ile eksi 5 arasındaki uzaklıktır. Demek ki x, 3'e ve eksi 5'e eşit uzaklıkta: tam ortalarında. 3 artı eksi 5, eksi 2; ikiye bölünce eksi 1. Kontrol edelim: eksi 1'in 3'e uzaklığı 4, eksi 5'e uzaklığı da 4."
-     },
-     {
       "kind": "rule",
       "title": "Aralık ↔ mutlak değer",
       "items": [
@@ -525,11 +518,19 @@
       "narration": "Eşitsizliği de uzaklıkla okuyalım.",
       "beats": [
        {
-        "narration": "x eksi 2'nin mutlak değeri 3'ten küçükse x, 2'ye 3 birimden daha yakındır. Bu sayılar eksi 1 ile 5 arasındadır; uçlar dahil değildir.",
-        "stage": 0,
+        "show": [],
         "focus": [
          "merkez"
-        ]
+        ],
+        "narration": "x eksi 2'nin mutlak değeri 3'ten küçükse x, 2'ye 3 birimden daha yakındır.",
+        "stage": 0
+       },
+       {
+        "show": [],
+        "focus": [],
+        "narration": "Bu sayılar eksi 1 ile 5 arasındadır; uçlar dahil değildir.",
+        "stage": 0,
+        "note": "−1 < x < 5"
        }
       ]
      },
@@ -667,7 +668,7 @@
      "Hayır"
     ],
     "answer": 1,
-    "why": "Sonuç **7**."
+    "why": "**7**."
    },
    {
     "sentence": "$\\sqrt{(-3)^2}$",
@@ -677,7 +678,7 @@
      "Hayır"
     ],
     "answer": 1,
-    "why": "Sonuç **3**."
+    "why": "**3**."
    },
    {
     "sentence": "$|x| = -2$",

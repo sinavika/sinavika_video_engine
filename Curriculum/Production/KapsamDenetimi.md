@@ -1,6 +1,6 @@
 # Kapsam denetimi: MEB ve ÖSYM'ye göre eksikler
 
-27 Ekim 2026. Amaç: [docs/Courses.md §0](../../docs/Courses.md#0-amaç). Ders videolarının kapsamını piyasa değil MEB kazanımları ile ÖSYM'nin soruları ve kılavuzları belirler. Bu belge, konu listemizi (`Curriculum/Catalog`, kaynağı `lesson.csv`) ve yazılmış senaryoları bu iki kaynağa göre denetler.
+27 Ekim 2026. Amaç: [docs/Courses/Courses.md §0](../../docs/Courses/Courses.md#0-amaç). Ders videolarının kapsamını piyasa değil MEB kazanımları ile ÖSYM'nin soruları ve kılavuzları belirler. Bu belge, konu listemizi (`Curriculum/Catalog`, kaynağı `lesson.csv`) ve yazılmış senaryoları bu iki kaynağa göre denetler.
 
 ## 1. Kaynaklar
 

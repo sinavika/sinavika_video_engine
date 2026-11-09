@@ -11,12 +11,12 @@
  *   npm run figures -- --small                        (draw again the figures whose text was under 28 pixels)
  *   npm run figures -- --attach <url>                 (Works copies with `still` set, for the import)
  *
- * Files go to Outputs/WorkFigures/<CATEGORY>/<LESSON>/<TOPIC>/<name>-light.svg (a list to Outputs/WorkFigures/List/
- * <list>/<id>-light.svg); Outputs/WorkFigures/manifest.json records, per figure, its source and JSON pointer, kind,
+ * Files go to Outputs/Works/Figures/<CATEGORY>/<LESSON>/<TOPIC>/<name>-light.svg (a list to Outputs/Works/Figures/List/
+ * <list>/<id>-light.svg); Outputs/Works/Figures/manifest.json records, per figure, its source and JSON pointer, kind,
  * size, files and their SHA-256 (the API names stored stills by it), and the hash of the visual it was drawn from, so
  * a figure that has not changed is not drawn again. `hash` is of the visual as the schema fills it in, `rawHash` of
  * the visual as the file has it: the import compares the file's own (a plot written before a field had a default
- * hashed apart from its drawing, 2 Nov 2026). Every run fills `rawHash` in on rows whose figure is unchanged. One run at a time writes the manifest (Outputs/WorkFigures/run.lock).
+ * hashed apart from its drawing, 2 Nov 2026). Every run fills `rawHash` in on rows whose figure is unchanged. One run at a time writes the manifest (Outputs/Works/Figures/run.lock).
  * A figure whose font or picture did not load is drawn once more before it counts as failed. The run ends with the
  * figures (of this run) whose text is under 28 pixels or whose layout guard found text over text, by kind.
  *
@@ -30,7 +30,7 @@ import path from 'node:path';
 import {parseArgs} from 'node:util';
 import {CourseVisualSchema} from '../src/Components/Visuals/VisualSchema';
 import {VisualBeatSchema} from '../src/Components/Visuals/VisualSchema';
-import {WORK_FIGURE_MIN_TEXT_PX, collectWorkFigures, type WorkFigureEntry} from '../src/Courses/WorkFigure';
+import {WORK_FIGURE_MIN_TEXT_PX, collectWorkFigures, type WorkFigureEntry} from '../src/Works/WorkFigure';
 import {openRenderBrowser} from '../src/Renderers/VideoRenderer';
 import {attachStills, renderWorkFigure, type WorkFigureStill} from '../src/Renderers/WorkFigureRenderer';
 import {outputRoot} from '../src/Services/OutputFile';
@@ -49,7 +49,7 @@ const {values} = parseArgs({
 });
 
 const WORKS = path.join(process.cwd(), 'Curriculum', 'Works');
-const OUT = path.join(outputRoot(), 'WorkFigures');
+const OUT = path.join(outputRoot(), 'Works', 'Figures');
 const MANIFEST = path.join(OUT, 'manifest.json');
 
 /** A figure to draw: its parsed entry, and the visual and beats as its file has them (for `rawHash`). */

@@ -15,8 +15,27 @@ const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), 
  * after every script edit and once took the wrong exam's script). Here the
  * script is read into `content`, so the job resolves like any other.
  */
+/**
+ * A job's content may point at a script anywhere inside it with `{"$script": "Curriculum/Scripts/…json"}` (a camp's
+ * episode 0 shows moments of its own lessons): the reference is replaced by the script file, so the moment always
+ * shows the lesson as it is now.
+ */
+const withScripts = (value: unknown): unknown => {
+	if (Array.isArray(value)) return value.map(withScripts);
+	if (!value || typeof value !== 'object') return value;
+	const entries = Object.entries(value as Record<string, unknown>);
+	if (entries.length === 1 && entries[0][0] === '$script') {
+		const script = entries[0][1];
+		if (typeof script !== 'string' || !script.endsWith('.json')) throw new VideoJobValidationError(['$script: the path of a script file from the project root.']);
+		const scriptFile = path.join(PROJECT_ROOT, script);
+		if (!existsSync(scriptFile)) throw new VideoJobValidationError([`$script: ${script} does not exist.`]);
+		return JSON.parse(readFileSync(scriptFile, 'utf8'));
+	}
+	return Object.fromEntries(entries.map(([key, entry]) => [key, withScripts(entry)]));
+};
+
 export const readVideoJob = (file: string): unknown => {
-	const raw: unknown = JSON.parse(readFileSync(file, 'utf8'));
+	const raw: unknown = withScripts(JSON.parse(readFileSync(file, 'utf8')));
 	if (!raw || typeof raw !== 'object' || !('script' in raw)) return raw;
 	const {script, ...job} = raw as Record<string, unknown>;
 	if (typeof script !== 'string' || !script.endsWith('.json')) throw new VideoJobValidationError(['script: the path of a script file from the project root.']);

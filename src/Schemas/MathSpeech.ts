@@ -4,7 +4,7 @@
  * integrali", "\sum_{k=1}^{n}" "k eşittir 1'den n'e toplam", "\frac{x+1}{x-1}" "kesrin payı x artı 1, paydası x
  * eksi 1". The formula is parsed into a small tree first, so nested parts are read whole
  * ("\frac{\sqrt{x}}{x^2+1}"). Numbers stay digits: spokenNumbers says them afterwards, suffix included ("2'ye" is
- * "ikiye"). The readings are approved by the owner in docs/MatematikOkunus.md; change that table first.
+ * "ikiye"). The readings are approved by the owner in docs/Courses/MatematikOkunus.md; change that table first.
  */
 
 type Token = {type: 'cmd' | 'num' | 'letter' | 'char' | 'text'; value: string; space: boolean};

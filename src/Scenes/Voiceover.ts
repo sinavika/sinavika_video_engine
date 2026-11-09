@@ -118,12 +118,19 @@ const CUE_LEAD_SECONDS = 0.08;
  * Templates use it so that what is drawn arrives with the words that name it,
  * never before (owner, 26 Oct 2026: "söylemler olurken bir sonraki kart çıkıyor").
  */
-export const phraseCues = (clip: VoiceClip | undefined, lineText: string, phrases: readonly string[], fallback: readonly number[], estimateSeconds?: number): number[] => {
+export const phraseCues = (clip: VoiceClip | undefined, lineText: string, phrases: readonly string[], fallback: readonly number[], estimateSeconds?: number): number[] =>
+	phraseTimes(clip, lineText, phrases, estimateSeconds).map((at, index) => at ?? fallback[index] ?? 0);
+
+/**
+ * When each phrase is heard, searched in order as phraseCues does; undefined for a phrase the line never says, so a
+ * scene can tell a named item from one it only shows (the bars ÖSYM data adds after the narrated ones).
+ */
+export const phraseTimes = (clip: VoiceClip | undefined, lineText: string, phrases: readonly string[], estimateSeconds?: number): (number | undefined)[] => {
 	const spoken = spokenWords(clip, lineText, estimateSeconds);
 	let from = 0;
-	return phrases.map((phrase, index) => {
+	return phrases.map((phrase) => {
 		const at = spoken ? findTokens(spoken.tokens, spokenTokens(phrase), from) : -1;
-		if (!spoken || at < 0) return fallback[index] ?? 0;
+		if (!spoken || at < 0) return undefined;
 		from = at + spokenTokens(phrase).length;
 		return Math.max(0, VOICE_LEAD_SECONDS + spoken.seconds[at] - CUE_LEAD_SECONDS);
 	});

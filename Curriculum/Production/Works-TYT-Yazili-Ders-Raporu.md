@@ -29,7 +29,7 @@
 | 3 yeniden yazım + 4 yama turu | 4,77 $ |
 | **Toplam** | **54,73 $** (Sonnet 53,16 $, Opus 1,57 $) |
 
-Ayrıntı `Outputs/WorksWritten/kullanim.jsonl` dosyasında, ayrıca `EgitimVerileri/_Claude/usage.jsonl` dosyasına da işlendi.
+Ayrıntı `Outputs/Works/Written/kullanim.jsonl` dosyasında, ayrıca `EgitimVerileri/_Claude/usage.jsonl` dosyasına da işlendi.
 
 ## Derslerde neler var
 
@@ -89,5 +89,5 @@ Model 833 düzeltme kaydetti; her dosyada `written.fixes` alanında duruyor. Ras
   - `src/Courses/WorksWritten.ts`: şema ve denetimler, 12 yeni kart dahil;
   - `scripts/Curriculum.ts`: `works --topic`, `--written`, `--dry`.
 - **Notlar:**
-  - diğer dersler için özellik önerileri: `docs/Works-Ozellik-Onerileri.md`;
-  - API devir notu: `docs/Works-Aktarim-Notlari.md` §8.
+  - diğer dersler için özellik önerileri: `docs/Courses/Works-Ozellik-Onerileri.md`;
+  - API devir notu: `docs/Courses/Works-Aktarim-Notlari.md` §8.

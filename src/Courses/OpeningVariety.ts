@@ -1,6 +1,6 @@
 /**
  * Camp lessons must not open alike: the same sentence in every video reads as automation and costs trust (owner,
- * 8 Nov 2026, docs/Courses.md "YouTube dersinin akışı"). These checks compare one lesson's cold open with the others
+ * 8 Nov 2026, docs/Courses/Courses.md "YouTube dersinin akışı"). These checks compare one lesson's cold open with the others
  * of its camp; `curriculum check` reports them and tests/Courses/CampOpenings.test.ts holds every camp to them.
  */
 

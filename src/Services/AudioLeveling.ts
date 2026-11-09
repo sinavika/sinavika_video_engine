@@ -1,6 +1,6 @@
 import {rm} from 'node:fs/promises';
 import {RenderInternals} from '@remotion/renderer';
-import {toneWav, type ToneFilter} from './AudioTone';
+import {applyTone, limitPeaks, processWav, toneWav, type ToneFilter} from './AudioTone';
 
 /**
  * Levels for everything that goes into a video's sound, in one place.
@@ -18,6 +18,12 @@ export const AUDIO_LEVELS = {
 	musicBed: {integrated: -36, truePeak: -12},
 	/** The published file. The ceiling is below the -1 dBTP the platforms ask for, because AAC encoding overshoots a little. */
 	master: {integrated: -14, truePeak: -1.5, range: 11},
+	/**
+	 * A voice-only video (lessons, episode 0): -16 LUFS, the level spoken-word platforms ask for. Narration enters the
+	 * mix at -20 with its peaks at -4, so a video with no music bed came out near -26 LUFS: the viewer turned it up and
+	 * heard the hiss (owner, 9 Nov 2026). It is now raised and its peaks limited here.
+	 */
+	speechMaster: {integrated: -16, truePeak: -1.5},
 	/** A mix that measures above this before mastering has most likely been cut off. */
 	clippingTruePeak: -0.3,
 } as const;
@@ -85,8 +91,33 @@ export const levelAudio = async (input: string, output: string, level: AudioLeve
 	await ffmpeg(['-y', '-i', input, '-vn', '-af', [...filters, `volume=${gain.toFixed(2)}dB`].join(','), '-ar', '48000', '-c:a', 'pcm_s16le', '-map_metadata', '-1', '-fflags', '+bitexact', output]);
 };
 
-/** The filter that masters a mix to the published level, set from a measurement of that mix. */
+/** The filter that masters a mix of voice, music and effects to the published level, set from a measurement of that mix. */
 export const masterFilter = (measured: Loudness | null): string =>
 	measured
 		? `loudnorm=${MEASURE_TARGET}:measured_I=${measured.integrated}:measured_TP=${measured.truePeak}:measured_LRA=${measured.range}:measured_thresh=${measured.threshold}:offset=${measured.offset}:linear=true`
 		: `loudnorm=${MEASURE_TARGET}`;
+
+/**
+ * The tone a voice-only video is given when it is mastered: an eighth-order Butterworth low-pass at 12.5 kHz, four
+ * biquads with the Butterworth Q values. Flat through 10 kHz (under 0.2 dB), about 13 dB down at 15 kHz and 17 dB at
+ * 16 kHz: the speech service's codec leaves a thin metallic hiss in that band, where speech carries nothing.
+ */
+export const SPEECH_MASTER_TONE: readonly ToneFilter[] = [0.5098, 0.6013, 0.9, 2.5629].map((q) => ({type: 'lowpass', frequency: 12500, q}));
+
+/**
+ * Masters a voice-only video's sound (a 16-bit WAV) in code, as the ffmpeg that ships with Remotion has no limiter:
+ * the hiss band is cut, one fixed gain brings it to -16 LUFS, and a look-ahead limiter holds the few peaks that would
+ * pass the ceiling (0.7 dB under the true-peak ceiling covers what lies between samples). One gain and no
+ * compression, so the pauses stay as silent as they were.
+ */
+export const masterSpeechWav = async (input: string, output: string, measured: Loudness): Promise<void> => {
+	const {integrated, truePeak} = AUDIO_LEVELS.speechMaster;
+	const gain = 10 ** ((integrated - measured.integrated) / 20);
+	const ceiling = 10 ** ((truePeak - 0.7) / 20);
+	await processWav(input, output, (samples, channels, sampleRate) => {
+		applyTone(samples, channels, sampleRate, SPEECH_MASTER_TONE);
+		for (let index = 0; index < samples.length; index++) samples[index] *= gain;
+		limitPeaks(samples, channels, sampleRate, ceiling);
+	});
+};
+

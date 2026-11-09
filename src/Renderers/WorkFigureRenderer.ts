@@ -6,7 +6,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {promisify} from 'node:util';
 import {renderStill, selectComposition, type HeadlessBrowser} from '@remotion/renderer';
-import {WORK_FIGURE_ROOM, WORK_FIGURE_STILL_WIDTH, collectWorkFigures, isRasterFigure, workFigureBox, type WorkFigureEntry, type WorkFigureMode} from '../Courses/WorkFigure';
+import {WORK_FIGURE_ROOM, WORK_FIGURE_STILL_WIDTH, collectWorkFigures, isRasterFigure, workFigureBox, type WorkFigureEntry, type WorkFigureMode} from '../Works/WorkFigure';
 import {WORK_FIGURE_COMPOSITION_ID, WORK_FIGURE_FPS, WORK_FIGURE_MARGIN, workFigurePage, workFigureSeconds, type WorkFigureProps} from '../Compositions/WorkFigureProps';
 import {bundleProject, isFrameWarning} from './VideoRenderer';
 

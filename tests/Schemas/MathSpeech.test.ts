@@ -7,12 +7,12 @@ import {pronounceAbbreviations, toSpokenText} from '../../src/Schemas/SpokenText
 import {FIXTURES, ROOT} from '../Support/Paths';
 
 /**
- * The Turkish math reader (docs/MatematikOkunus.md, 29 Oct 2026). Readings are what the voice is given: the
+ * The Turkish math reader (docs/Courses/MatematikOkunus.md, 29 Oct 2026). Readings are what the voice is given: the
  * formula read by MathSpeech, then its numbers said by spokenNumbers ("2'ye" → "ikiye").
  */
 const voiced = (latex: string) => pronounceAbbreviations(spokenScreenText(`$${latex}$`));
 
-/** Typical AYT formulas, as the owner approves them in docs/MatematikOkunus.md. */
+/** Typical AYT formulas, as the owner approves them in docs/Courses/MatematikOkunus.md. */
 const AYT: [string, string][] = [
 	// Limit
 	['\\lim_{x\\to 2}', 'x ikiye giderken limit'],
@@ -143,7 +143,7 @@ const AYT: [string, string][] = [
 
 /**
  * Every distinct formula of Curriculum/Scripts with its reading (29 Oct 2026): today's reading, or its fix listed in
- * docs/MatematikOkunus.md. A new script formula needs no row here; a changed reading needs the owner's approval.
+ * docs/Courses/MatematikOkunus.md. A new script formula needs no row here; a changed reading needs the owner's approval.
  */
 const GOLDEN: {formula: string; reading: string}[] = JSON.parse(readFileSync(path.join(FIXTURES, 'MathSpeechGolden.json'), 'utf8'));
 
