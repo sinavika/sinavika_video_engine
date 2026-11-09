@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Geometri kampı · Ders 1 · Doğruda Açılar
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Geometri/01_Dogruda_Acilar/Dogruda_Acilar_YouTube.mp4` (4K) · Kapak: `Dogruda_Acilar_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Geometri/01_Dogruda_Acilar/Dogruda_Acilar_YouTube.mp4` (4K) · Kapak: `Dogruda_Acilar_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

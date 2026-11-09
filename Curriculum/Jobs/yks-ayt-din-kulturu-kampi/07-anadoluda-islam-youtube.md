@@ -1,6 +1,6 @@
 # YouTube metni: AYT Din Kültürü kampı · Ders 7 · Anadolu'da İslam
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Din/07_Anadoluda_Islam/Anadoluda_Islam_YouTube.mp4` (4K) · Kapak: `Anadoluda_Islam_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Din/07_Anadoluda_Islam/Anadoluda_Islam_YouTube.mp4` (4K) · Kapak: `Anadoluda_Islam_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

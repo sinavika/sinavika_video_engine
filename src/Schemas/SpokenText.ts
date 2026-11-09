@@ -122,6 +122,10 @@ const ABBREVIATIONS: SpokenRule[] = [
 	[/\bTYT(?:['’](?=\p{L}))?\b/gu, 'teyete'],
 	[/\bAYT(?:['’](?=\p{L}))?\b/gu, 'ayete'],
 	[/\bYDT(?:['’](?=\p{L}))?\b/gu, 'yedete'],
+	// EBOB and EKOK are said as words, "ebob" and "ekok", not letter by letter (owner, 9 Nov 2026: the TYT
+	// Matematik reel spelled them out). The suffix joins: "EBOB'u" → "ebobu".
+	[/\bEBOB(?:['’](?=\p{L}))?\b/gu, 'ebob'],
+	[/\bEKOK(?:['’](?=\p{L}))?\b/gu, 'ekok'],
 	// "Sino Ey Ay", its suffix kept as written ("Sino Ey Ay’ye"). The owner listened on 31 Oct 2026 to this, the
 	// reels' "Sino Eyay" and a joined "Sinoeyay" (Outputs/Checks/VoiceTests/okunus-ornegi) and chose this one.
 	[/\bSinoAI\b/g, 'Sino Ey Ay'],

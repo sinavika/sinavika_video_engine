@@ -1,6 +1,6 @@
 # YouTube metni: TYT Din Kültürü ve Ahlak Bilgisi kampı · Ders 18 · Din ve Sosyal Değişim
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/18_Din_ve_Sosyal_Degisim/Din_ve_Sosyal_Degisim_YouTube.mp4` (4K) · Kapak: `Din_ve_Sosyal_Degisim_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Din/18_Din_ve_Sosyal_Degisim/Din_ve_Sosyal_Degisim_YouTube.mp4` (4K) · Kapak: `Din_ve_Sosyal_Degisim_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

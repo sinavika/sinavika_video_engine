@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 3 · Deyim ve Atasözü
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/03_Deyim_ve_Atasozu/Deyim_ve_Atasozu_YouTube.mp4` (4K, 17:09) · Kapak: `Deyim_ve_Atasozu_YouTube_Kapak.jpg` (kamp kapağı).
+Video: `Outputs/Camps/YKS/TYT/Turkce/03_Deyim_ve_Atasozu/Deyim_ve_Atasozu_YouTube.mp4` (4K, 17:09) · Kapak: `Deyim_ve_Atasozu_YouTube_Kapak.jpg` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

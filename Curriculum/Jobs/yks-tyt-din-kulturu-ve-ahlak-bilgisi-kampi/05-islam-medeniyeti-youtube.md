@@ -1,6 +1,6 @@
 # YouTube metni: TYT Din Kültürü ve Ahlak Bilgisi kampı · Ders 5 · İslam Medeniyeti ve Özellikleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/05_Islam_Medeniyeti/Islam_Medeniyeti_YouTube.mp4` (4K) · Kapak: `Islam_Medeniyeti_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Din/05_Islam_Medeniyeti/Islam_Medeniyeti_YouTube.mp4` (4K) · Kapak: `Islam_Medeniyeti_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

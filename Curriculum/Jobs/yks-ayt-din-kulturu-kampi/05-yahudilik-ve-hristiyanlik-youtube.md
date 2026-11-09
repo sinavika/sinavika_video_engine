@@ -1,6 +1,6 @@
 # YouTube metni: AYT Din Kültürü kampı · Ders 5 · Yahudilik ve Hristiyanlık
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Din/05_Yahudilik_Ve_Hristiyanlik/Yahudilik_Ve_Hristiyanlik_YouTube.mp4` (4K) · Kapak: `Yahudilik_Ve_Hristiyanlik_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Din/05_Yahudilik_Ve_Hristiyanlik/Yahudilik_Ve_Hristiyanlik_YouTube.mp4` (4K) · Kapak: `Yahudilik_Ve_Hristiyanlik_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

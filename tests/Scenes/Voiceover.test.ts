@@ -531,6 +531,10 @@ describe('exam abbreviations', () => {
 		expect(pronounceAbbreviations('PDF’in mi var? PDF dosyası, PDFLER')).toBe('Pidiyefin mi var? Pidiyef dosyası, PDFLER');
 	});
 
+	it('say EBOB and EKOK as words, not letter by letter, suffixes joined (owner, 9 Nov 2026)', () => {
+		expect(pronounceAbbreviations("EBOB mu, EKOK mu? EBOB'u bul, EKOK'un katı.")).toBe('ebob mu, ekok mu? ebobu bul, ekokun katı.');
+	});
+
 	it('say the groups of states D-8, G20 and G7 by letter and number, suffixes joined (2 Nov 2026)', () => {
 		expect(pronounceAbbreviations("D-8 ve G20 toplantısı; G-20'nin ve G7'nin üyeleri, D-8'e katıldı.")).toBe('De Sekiz ve Ge Yirmi toplantısı; Ge Yirminin ve Ge Yedinin üyeleri, De Sekize katıldı.');
 		// Other letters and numbers are not a group of states: a road, a part number, a longer code.

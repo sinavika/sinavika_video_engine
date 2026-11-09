@@ -1,6 +1,6 @@
 # YouTube metni: AYT Biyoloji kampı · Ders 12 · Genden Proteine
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Biyoloji/12_Genden_Proteine/Genden_Proteine_YouTube.mp4` (4K) · Kapak: `Genden_Proteine_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Biyoloji/12_Genden_Proteine/Genden_Proteine_YouTube.mp4` (4K) · Kapak: `Genden_Proteine_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -1,6 +1,6 @@
 # YouTube metni: TYT kampı · Bölüm 0
 
-Video: `Outputs/Videos/YKS/TYT/Main/TYT_Kampi_00_Tanitim_YouTube.mp4` (4K, 3:10) · Kapak: `Outputs/Videos/YKS/TYT/Main/TYT_Kampi_00_Tanitim_YouTube_Kapak_A.jpg` (1920×1080, 82 KB).
+Video: `Outputs/Camps/YKS/TYT/Main/TYT_Kampi_00_Tanitim_YouTube.mp4` (4K, 3:10) · Kapak: `Outputs/Camps/YKS/TYT/Main/TYT_Kampi_00_Tanitim_YouTube_Kapak_A.jpg` (1920×1080, 82 KB).
 
 ## Başlık
 
@@ -73,4 +73,4 @@ A/B testi: B `YKS TYT | 120 Soru, 165 Dakika: Sınavı Baştan Sona Tanı | Böl
 
 ## Kapak yenilendi (1 Kasım 2026)
 
-Sahibin onayıyla YouTube kapağı yeni lacivert kamp kapağıyla değiştirildi: `Outputs/Videos/YKS/TYT/Main/TYT_Kampi_00_Tanitim_YouTube_Kapak.png` (29 Ekim standardı, "BÖLÜM 00"). Başlık A/B testi sürüyor; eski `_Kapak_A/B/C.jpg` dosyaları artık kullanılmıyor.
+Sahibin onayıyla YouTube kapağı yeni lacivert kamp kapağıyla değiştirildi: `Outputs/Camps/YKS/TYT/Main/TYT_Kampi_00_Tanitim_YouTube_Kapak.png` (29 Ekim standardı, "BÖLÜM 00"). Başlık A/B testi sürüyor; eski `_Kapak_A/B/C.jpg` dosyaları artık kullanılmıyor.

@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Tarih kampı · Ders 10 · XIX. Yüzyılda Osmanlı
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Tarih/10_Osmanli19/Osmanli19_YouTube.mp4` (4K) · Kapak: `Osmanli19_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Tarih/10_Osmanli19/Osmanli19_YouTube.mp4` (4K) · Kapak: `Osmanli19_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

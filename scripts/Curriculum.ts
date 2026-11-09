@@ -301,9 +301,13 @@ if (command === 'import') {
 		}
 	}
 	const creditsFile = path.join(ROOT, 'public', MEDIA_DIRECTORY, MEDIA_CREDITS_FILE);
-	const credited = new Set(existsSync(creditsFile) ? MediaCreditsSchema.parse(JSON.parse(await readFile(creditsFile, 'utf8'))).entries.map((item) => item.file) : []);
+	// The credits file is shared with ads and social posts: one bad entry there must not stop a lesson's check (it did,
+	// 9 Nov 2026, over two Başöğretmen photos). Only a lesson that shows pictures depends on it, and is told why.
 	const pictures = JSON.stringify(script).match(/"src":"(Media\/[^"]+)"/g)?.map((match) => match.slice(7, -1)) ?? [];
-	pictures.filter((file) => !credited.has(file)).forEach((file) => issues.push(`Picture ${file} has no entry in public/Media/Credits.json.`));
+	const credits = existsSync(creditsFile) ? MediaCreditsSchema.safeParse(JSON.parse(await readFile(creditsFile, 'utf8'))) : undefined;
+	if (credits && !credits.success && pictures.length > 0) issues.push(`public/Media/Credits.json does not parse (${credits.error.issues.map((issue) => `entries.${issue.path.slice(1).join('.')}: ${issue.message}`).join('; ')}); the pictures' credits cannot be checked.`);
+	const credited = new Set(credits?.success ? credits.data.entries.map((item) => item.file) : []);
+	if (credits?.success !== false) pictures.filter((file) => !credited.has(file)).forEach((file) => issues.push(`Picture ${file} has no entry in public/Media/Credits.json.`));
 	console.log(`${script.lessonName}: ${script.title} · ders ~${Math.round(review.lessonSeconds / 60)} dk · kısa ~${Math.round(review.shortSeconds)} sn · ${review.questions} çözümlü soru`);
 	issues.forEach((issue) => console.log(`  ! ${issue}`));
 	// Suggestions ("?") do not block "Hazırlandı"; they are the next improvements (docs/Courses/Courses.md).

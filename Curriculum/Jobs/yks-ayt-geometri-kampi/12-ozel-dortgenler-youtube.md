@@ -1,6 +1,6 @@
 # YouTube metni: AYT Geometri kampı · Ders 12 · Özel Dörtgenler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Geometri/12_Ozel_Dortgenler/Ozel_Dortgenler_YouTube.mp4` (4K) · Kapak: `Ozel_Dortgenler_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Geometri/12_Ozel_Dortgenler/Ozel_Dortgenler_YouTube.mp4` (4K) · Kapak: `Ozel_Dortgenler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

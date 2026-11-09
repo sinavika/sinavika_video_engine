@@ -1,6 +1,6 @@
 # YouTube metni: AYT Coğrafya kampı · Ders 28 · Doğal Çevrenin Sınırlılığı
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/28_Dogal_Cevrenin_Sinirliligi/Dogal_Cevrenin_Sinirliligi_YouTube.mp4` (4K) · Kapak: `Dogal_Cevrenin_Sinirliligi_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Cografya/28_Dogal_Cevrenin_Sinirliligi/Dogal_Cevrenin_Sinirliligi_YouTube.mp4` (4K) · Kapak: `Dogal_Cevrenin_Sinirliligi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

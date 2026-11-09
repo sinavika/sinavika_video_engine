@@ -352,6 +352,10 @@ Fen ve matematik süreçleri: `phasechange` (`kati`, `erime`, `sivi`, `kaynama`,
 
 "Eğim artarsa ne olur?" gibi kısa bir soru okunur (`narration`), isteğe bağlı şıklarla; ardından geri sayımlı bir düşünme süresi (`thinkSeconds`, sessiz); sonra soru kenara çekilir ve görsel beat'leriyle oynar; en sonda açıklama (`explanation`, `explanationNarration`) gelir ve doğru şık yanar.
 
+### Matematik kartları (9 Kasım 2026)
+
+Adım adım çözümlü örnek (`example.steps`), soru adımının şekle işaret etmesi (`step.figure`: grafikte boyalı aralık `z1`, tablo hücresi `r2c3`) ve hesabı motorun yaptığı sekiz görsel: işaret tablosu, bölme, bölen merdiveni, şerit modeli, kutu yöntemi, alan modeli, örnek uzay, eşleme. Yazım kuralları, örnekler, denetimler ve testler: [MatematikKartlari.md](MatematikKartlari.md).
+
 ### Sıra sende (`practice` kartı)
 
 Uygulamadaki eşleştirme, kart çevirme ve sıralama adımlarının videodaki karşılığı (8 Kasım 2026). Tahta (`matching`, `flipcards` ya da `ordering`) baştan ekrandadır, çünkü sorunun kendisidir. Sahnenin akışı:

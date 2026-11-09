@@ -1,6 +1,6 @@
 # YouTube metni: AYT Din Kültürü kampı · Ders 4 · İnançla İlgili Meseleler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Din/04_Inancla_Ilgili_Meseleler/Inancla_Ilgili_Meseleler_YouTube.mp4` (4K) · Kapak: `Inancla_Ilgili_Meseleler_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Din/04_Inancla_Ilgili_Meseleler/Inancla_Ilgili_Meseleler_YouTube.mp4` (4K) · Kapak: `Inancla_Ilgili_Meseleler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

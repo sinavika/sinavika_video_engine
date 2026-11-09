@@ -1,6 +1,7 @@
 import {z} from 'zod';
 import {latex, plainText} from '../../../Schemas/RichText';
 import {expression, Point2} from '../VisualSchemaPart';
+import {longDivisionRounds, primeLadder, signBreak} from './MathWork';
 import {isExpression} from './PlotExpression';
 import {shapesSimilar} from './Similarity';
 
@@ -87,6 +88,24 @@ export const MATHEMATICS_VISUALS = [
 				.array(z.object({x: z.number(), y: z.number(), label: plainText(20).optional(), style: z.enum(['closed', 'open']).default('closed')}))
 				.max(8)
 				.default([]),
+			/**
+			 * Shaded strips for x in [from, to] (parts z1, z2…), for the step that says "1 ile 2 arasında" or "f > g olan
+			 * aralık": between two curves (`between`, curve indexes), between a curve and the x axis (`curve`), or the
+			 * plot's whole height. A question's solution step shows one as it is said (TYT Matematik, 9 Nov 2026: steps could
+			 * name an interval of the graph but not point at it).
+			 */
+			regions: z
+				.array(
+					z.object({
+						from: z.number(),
+						to: z.number(),
+						curve: z.number().int().min(0).max(2).optional(),
+						between: z.tuple([z.number().int().min(0).max(2), z.number().int().min(0).max(2)]).optional(),
+						label: plainText(24).optional(),
+					}),
+				)
+				.max(4)
+				.default([]),
 			/** Helper lines between two places of the plane, e.g. the legs Δx and Δy of a distance or a slope. Beats point at them as s1, s2… */
 			segments: z
 				.array(z.object({from: Point2, to: Point2, label: plainText(16).optional(), dashed: z.boolean().default(true)}))
@@ -136,6 +155,12 @@ export const MATHEMATICS_VISUALS = [
 			] as const) {
 				if (typeof value === 'string' && !defined.includes(value)) context.addIssue({code: 'custom', path: [path], message: `"${value}" is not in parameters.`});
 			}
+			plot.regions.forEach((region, index) => {
+				if (region.from >= region.to) context.addIssue({code: 'custom', path: ['regions', index], message: 'A region runs from a smaller x to a larger one.'});
+				const named = [region.curve, ...(region.between ?? [])].filter((curve): curve is number => curve !== undefined);
+				if (named.some((curve) => curve >= plot.curves.length)) context.addIssue({code: 'custom', path: ['regions', index], message: `The plot has ${plot.curves.length} curve(s); curves are counted from 0.`});
+				if (region.curve !== undefined && region.between) context.addIssue({code: 'custom', path: ['regions', index], message: 'A region is under one curve or between two, not both.'});
+			});
 			if (plot.curves.some((curve) => curve.trace) && Object.keys(plot.parameters).length === 0)
 				context.addIssue({code: 'custom', path: ['curves'], message: 'A traced curve needs a coefficient that changes; there are no parameters.'});
 			if (plot.tangent && plot.tangent.curve >= plot.curves.length) context.addIssue({code: 'custom', path: ['tangent', 'curve'], message: 'No such curve.'});
@@ -475,4 +500,173 @@ export const MATHEMATICS_VISUALS = [
 			.max(4),
 		coordinates: z.boolean().default(false),
 	}),
+	/**
+	 * Mathematics (Eşitsizlikler, İkinci Dereceden, Polinomlar, Rasyonel İfadeler): the sign table (işaret tablosu).
+	 * `points` are the critical values in order; each factor (`expression` in x, `label` as written) gets a row of
+	 * signs, then the result row. The engine works out every sign from the expressions and refuses a table whose
+	 * points leave a factor changing sign inside an interval. With `relation` the intervals that solve "result > 0"
+	 * (or <, ≥, ≤) are shaded and the solution set is written under the table. Parts: x (the top row), f1… (factor
+	 * rows), result, solution; i1… are the columns of the intervals.
+	 */
+	z
+		.object({
+			kind: z.literal('signTable'),
+			points: z.array(z.number()).min(1).max(5),
+			factors: z
+				.array(z.object({expression: expression(['x']), label: plainText(24), denominator: z.boolean().default(false)}))
+				.min(1)
+				.max(4),
+			resultLabel: plainText(28).default('Sonuç'),
+			relation: z.enum(['>', '<', '>=', '<=']).optional(),
+		})
+		.superRefine((table, context) => {
+			if (table.points.some((point, index) => index > 0 && point <= table.points[index - 1])) context.addIssue({code: 'custom', path: ['points'], message: 'Critical points go from the smallest to the largest, each once.'});
+			const edges = [-Infinity, ...table.points, Infinity];
+			table.factors.forEach((factor, index) => {
+				edges.slice(1).forEach((to, gap) => {
+					const at = signBreak(factor.expression, edges[gap], to);
+					if (at !== undefined) context.addIssue({code: 'custom', path: ['factors', index], message: `${factor.label} changes sign or is zero near x = ${Number(at.toFixed(3))}, which is not one of the points.`});
+				});
+			});
+		}),
+	/**
+	 * Mathematics (Bölme ve Bölünebilme): a division written the way it is taught, bölünen | bölen with the quotient
+	 * under the divisor and each round's subtraction under the dividend. The engine works the rounds out; one stage
+	 * per round, then the check bölünen = bölen · bölüm + kalan (part `check`). Parts: quotient, remainder, check.
+	 */
+	z
+		.object({
+			kind: z.literal('longDivision'),
+			dividend: z.number().int().min(1).max(99999999),
+			divisor: z.number().int().min(2).max(9999),
+			check: z.boolean().default(true),
+		})
+		.refine((division) => longDivisionRounds(division.dividend, division.divisor).rounds.length <= 8, {message: 'At most 8 rounds fit the board; choose a shorter dividend.'}),
+	/**
+	 * Mathematics (EBOB-EKOK, Asal Çarpanlar): the prime ladder (bölen merdiveni). The numbers on top are divided down
+	 * row by row by the smallest prime that divides one of them; rows whose prime divides all of them are circled.
+	 * `show` writes EBOB, EKOK or both under the ladder, or (one number) its prime powers. One stage per row. Parts:
+	 * r1… (rows), ebob, ekok, powers.
+	 */
+	z
+		.object({
+			kind: z.literal('primeLadder'),
+			numbers: z.array(z.number().int().min(2).max(100000)).min(1).max(3),
+			show: z.enum(['ebob', 'ekok', 'both', 'powers', 'none']).default('both'),
+		})
+		.refine((ladder) => primeLadder(ladder.numbers).rows.length <= 9, {message: 'At most 9 rows fit the ladder; choose smaller numbers.'}),
+	/**
+	 * Mathematics (Problemler, Oran-Orantı, Kesirler): the bar model (şerit modeli). Each bar is a row of pieces drawn on
+	 * one shared scale (`units` long each), so "üç katı" is three times as long on screen. A brace spans pieces of a bar
+	 * with a label ("toplam 60"). Parts: b1… (bars), b1-1… (pieces), k1… (braces).
+	 */
+	z
+		.object({
+			kind: z.literal('barModel'),
+			bars: z
+				.array(
+					z.object({
+						label: plainText(20),
+						pieces: z
+							.array(z.object({units: z.number().positive().max(20), label: plainText(14).optional(), shade: z.enum(['lesson', 'brand', 'empty']).default('lesson')}))
+							.min(1)
+							.max(10),
+					}),
+				)
+				.min(1)
+				.max(4),
+			braces: z
+				.array(z.object({bar: z.number().int().min(0).max(3), from: z.number().int().min(0).max(9), to: z.number().int().min(0).max(9), label: plainText(24), side: z.enum(['above', 'below']).default('below')}))
+				.max(4)
+				.default([]),
+		})
+		.superRefine((model, context) =>
+			model.braces.forEach((brace, index) => {
+				const bar = model.bars[brace.bar];
+				if (!bar || brace.to >= bar.pieces.length || brace.from > brace.to) context.addIssue({code: 'custom', path: ['braces', index], message: 'A brace spans pieces from..to (counted from 0) of an existing bar.'});
+			}),
+		),
+	/**
+	 * Mathematics (Sayma, Permütasyon, Olasılık, Basamak Analizi): the counting slots (kutu yöntemi). One box per place
+	 * with the number of choices left for it; `order` says which boxes are filled first (the restricted places, e.g.
+	 * the units digit of an even number). The product is worked out and written after "=", divided by `divideBy` when
+	 * order does not matter (kombinasyon). One stage per box, then the result. Parts: k1… (boxes), result.
+	 */
+	z
+		.object({
+			kind: z.literal('slots'),
+			slots: z
+				.array(z.object({label: plainText(16).optional(), count: z.number().int().min(0).max(99), note: plainText(22).optional()}))
+				.min(1)
+				.max(7),
+			order: z.array(z.number().int().min(0).max(6)).max(7).optional(),
+			divideBy: z.object({value: z.number().int().min(1).max(5040), label: plainText(8)}).optional(),
+		})
+		.superRefine((slots, context) => {
+			if (slots.order && [...slots.order].sort((a, b) => a - b).join() !== slots.slots.map((_, index) => index).join()) context.addIssue({code: 'custom', path: ['order'], message: 'order lists every box once (0 is the first).'});
+			const product = slots.slots.reduce((total, slot) => total * slot.count, 1);
+			if (slots.divideBy && product % slots.divideBy.value !== 0) context.addIssue({code: 'custom', path: ['divideBy'], message: `${product} is not divisible by ${slots.divideBy.value}.`});
+		}),
+	/**
+	 * Mathematics (Çarpanlara Ayırma, Özdeşlikler, Çarpma): the area model. A rectangle is cut by the sides of its
+	 * rows and columns (`size` sets each side's length on screen, `label` its name: "x", "3", "20"); every cell is
+	 * labelled with its area, worked out from its sides (x · 3 → 3x, x · x → x², 20 · 3 → 60) unless `cells` names it.
+	 * `removed` cells are drawn cut away (a² − b²). Parts: r1c1… (cells), rows, columns, total.
+	 */
+	z
+		.object({
+			kind: z.literal('areaModel'),
+			rows: z
+				.array(z.object({label: plainText(8), size: z.number().positive().max(10)}))
+				.min(1)
+				.max(3),
+			columns: z
+				.array(z.object({label: plainText(8), size: z.number().positive().max(10)}))
+				.min(1)
+				.max(3),
+			cells: z.array(z.array(plainText(10))).optional(),
+			removed: z.array(z.tuple([z.number().int().min(0).max(2), z.number().int().min(0).max(2)])).max(4).default([]),
+			total: plainText(40).optional(),
+		})
+		.refine((model) => !model.cells || (model.cells.length === model.rows.length && model.cells.every((row) => row.length === model.columns.length)), {path: ['cells'], message: 'cells has one row per row and one label per column.'}),
+	/**
+	 * Mathematics (Olasılık): the sample space of two draws (two dice by default) as a grid, each outcome a cell with
+	 * its sum, product or pair. Events (`of` sum/product/difference/max/min/first/second, `is` eq/lt/gt/le/ge/even/odd/
+	 * multipleOf, `value`) colour their cells; the engine counts them and writes P = count/total in lowest terms.
+	 * Parts: grid, e1, e2 (events), p1, p2 (their probabilities).
+	 */
+	z.object({
+		kind: z.literal('sampleSpace'),
+		rows: z.array(z.number().int().min(-20).max(99)).min(2).max(8).default([1, 2, 3, 4, 5, 6]),
+		columns: z.array(z.number().int().min(-20).max(99)).min(2).max(8).default([1, 2, 3, 4, 5, 6]),
+		rowLabel: plainText(16).default('1. zar'),
+		columnLabel: plainText(16).default('2. zar'),
+		cell: z.enum(['sum', 'product', 'difference', 'pair']).default('pair'),
+		events: z
+			.array(
+				z.object({
+					of: z.enum(['sum', 'product', 'difference', 'max', 'min', 'first', 'second']),
+					is: z.enum(['eq', 'lt', 'gt', 'le', 'ge', 'even', 'odd', 'multipleOf']),
+					value: z.number().optional(),
+					label: plainText(20),
+				}),
+			)
+			.max(2)
+			.default([]),
+	}),
+	/**
+	 * Mathematics (Fonksiyonlar, Kümeler, Bağıntı): a mapping between two sets drawn as two ovals with arrows. `arrows`
+	 * pairs an element of the first set with one of the second (indexes). With `properties` the engine says what the
+	 * mapping is (fonksiyon mu, bire bir mi, örten mi) from the arrows. Parts: a1… (arrows), domain, codomain, properties.
+	 */
+	z
+		.object({
+			kind: z.literal('mapping'),
+			name: plainText(4).default('f'),
+			domain: z.object({label: plainText(4).default('A'), items: z.array(plainText(8)).min(1).max(6)}),
+			codomain: z.object({label: plainText(4).default('B'), items: z.array(plainText(8)).min(1).max(6)}),
+			arrows: z.array(z.tuple([z.number().int().min(0).max(5), z.number().int().min(0).max(5)])).max(12),
+			properties: z.boolean().default(false),
+		})
+		.refine((mapping) => mapping.arrows.every(([from, to]) => from < mapping.domain.items.length && to < mapping.codomain.items.length), {path: ['arrows'], message: 'Arrows join an element of the first set to one of the second (indexes from 0).'}),
 ] as const;

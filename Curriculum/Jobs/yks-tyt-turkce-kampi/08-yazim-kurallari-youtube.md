@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 8 · Yazım Kuralları
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/08_Yazim_Kurallari/Yazim_Kurallari_YouTube.mp4` (4K, 18:15) · Kapak: `Yazim_Kurallari_YouTube_Kapak.png` (kamp kapağı).
+Video: `Outputs/Camps/YKS/TYT/Turkce/08_Yazim_Kurallari/Yazim_Kurallari_YouTube.mp4` (4K, 18:15) · Kapak: `Yazim_Kurallari_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 11 · Sözcük Türleri
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/11_Sozcuk_Turleri/Sozcuk_Turleri_YouTube.mp4` (4K, 16:38) · Kapak: `Sozcuk_Turleri_YouTube_Kapak.png` (kamp kapağı).
+Video: `Outputs/Camps/YKS/TYT/Turkce/11_Sozcuk_Turleri/Sozcuk_Turleri_YouTube.mp4` (4K, 16:38) · Kapak: `Sozcuk_Turleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

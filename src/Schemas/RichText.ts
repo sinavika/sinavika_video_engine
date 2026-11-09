@@ -22,6 +22,13 @@ export const KATEX_OPTIONS = {output: 'html', strict: false, throwOnError: true}
 const TURKISH_WORD = /[A-Za-zÇĞİÖŞÜçğıöşü]*[ÇĞİÖŞÜçğıöşü][A-Za-zÇĞİÖŞÜçğıöşü]*/g;
 
 /**
+ * A capitalised word inside a formula ("Anne = 3x", "Toplam = 48") is a word, not a product of letters: KaTeX set it in
+ * italics as A·n·n·e, beside "Kız" upright (TYT Matematik worked examples, 9 Nov 2026). Point names (ABC), single
+ * letters and commands (\Delta) are not touched.
+ */
+const CAPITAL_WORD = /(?<![\\A-Za-z])[A-Z][a-z]{2,}(?![A-Za-z])/g;
+
+/**
  * A degree sign typed into a formula ("40° + 35°") is set by KaTeX as a loose, low glyph with a gap; written as
  * a superscript circle it sits where geometry books put it. The empty group keeps it from clashing with an
  * exponent already there ("a^2°").
@@ -30,7 +37,7 @@ export const normalizeLatex = (latex: string): string =>
 	// Inside \text{…} (a unit such as "cal/g°C") a superscript is not allowed; the glyph is left as typed there.
 	latex
 		.split(/(\\text\{[^{}]*\})/)
-		.map((part) => (part.startsWith('\\text{') ? part : part.replace(/°/g, '{}^{\\circ}').replace(TURKISH_WORD, (word) => `\\text{${word}}`)))
+		.map((part) => (part.startsWith('\\text{') ? part : part.replace(/°/g, '{}^{\\circ}').replace(TURKISH_WORD, (word) => `\\text{${word}}`).replace(CAPITAL_WORD, (word) => `\\text{${word}}`)))
 		.join('');
 
 const ESCAPED_DOLLAR = '';

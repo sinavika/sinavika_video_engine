@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 9 · Noktalama İşaretleri
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/09_Noktalama_Isaretleri/Noktalama_Isaretleri_YouTube.mp4` (4K, 17:30) · Kapak: `Noktalama_Isaretleri_YouTube_Kapak.png` (kamp kapağı).
+Video: `Outputs/Camps/YKS/TYT/Turkce/09_Noktalama_Isaretleri/Noktalama_Isaretleri_YouTube.mp4` (4K, 17:30) · Kapak: `Noktalama_Isaretleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

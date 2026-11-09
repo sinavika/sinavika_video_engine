@@ -12,47 +12,209 @@
   "TYT"
  ],
  "sources": [
-  "YKS/TYT/KonuAnlatimi/MAT/MAT_POLINOM.json (MEB Temel Matematik: polinom kavramı, derece, baş katsayı, sabit terim, katsayılar toplamı, sabit ve sıfır polinom, eşit polinomlar, bölmede kalan)",
-  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018: 1 soru; polinomun kökü ve P(P(x)) bileşkesi)",
-  "YKS/TYT/Sorular/MAT/MAT_POLINOM.jsonl (231 soru; tanım, derece, işlem, kalan ve çarpan teoremi kalıpları)"
+  "YKS/TYT/KonuAnlatimi/yks_tyt_kn_temel-matematik_meb-konu-anlatimi s. 95-98 (MEB OGM: polinom kavramı, derece, baş katsayı, sabit ve sıfır polinom, eşit polinomlar, işlemler ve derece, bölme adımları, kalan ve çarpan)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018: 1 soru; yeni tanımlanan kavram ve R(x) = P(P(x)) bileşkesi, I-II-III kalıbı)",
+  "YKS/TYT/Sorular/MAT/MAT_POLINOM.jsonl (tanım, derece, P(x + a), bölme, kalan ve çarpan teoremi kalıpları)"
  ],
  "lesson": {
   "hook": {
-   "headline": "Bir polinomu bölmeden kalanını bulabilirsin: x yerine bir sayı yaz.",
-   "narration": "Bir polinomu x eksi 2'ye bölmeden kalanını bulmanın yolu çok basit: x yerine 2 yazarsın. Polinomlarda bu tür kısa yollar çok: katsayılar toplamı için x yerine 1, sabit terim için 0 yazarsın. Bu derste polinomun ne olduğunu, derecesini, polinomlarla işlemleri, bölmeyi, kalan ve çarpan teoremlerini adım adım göreceğiz."
+   "headline": "Bir polinomu bölmeden kalanını bulabilirsin: doğru sayıyı yaz.",
+   "narration": "Bir polinomu bölmeden kalanını bulabilir misin? Bulursun; x yerine doğru sayıyı yazman yeter. Polinom sorularının çoğu bu tek fikre dayanır. Tanımdan başlayıp derece, işlemler, bölme, kalan ve çarpan teoremlerine kadar her şeyi soru çözerek göreceğiz."
   },
   "opening": {
    "kind": "mistake",
-   "card": "s3-c5",
-   "narration": "Bu polinomun iki x eksi bire bölümünden kalan kaç? Pek çok aday uzun bölmeye girişir ya da x yerine bir yazar. Oysa böleni sıfır yapan değeri yazmak yeter.",
-   "promise": "Polinomun derecesini, katsayılar toplamını, polinom bölmesini ve kalan teoremini adım adım ele alacağız."
+   "card": "s3-c8",
+   "narration": "P iki x eksi bir verilmiş, P üç soruluyor. Çoğu kişi x yerine doğrudan üç yazıp otuz üçü işaretler. Ama bu yanlış. Sence doğru cevap kaç?",
+   "promise": "Polinomun tanımını, derecesini, işlemleri, bölmeyi, kalan ve çarpan teoremlerini soru çözerek öğreneceksin."
   },
   "objectives": [
    "Bir ifadenin polinom olup olmadığını ve derecesini bulmak",
-   "Katsayılar toplamını ve sabit terimi hızlıca bulmak",
-   "Kalan teoremiyle bölmeden kalanı bulmak",
-   "Çarpan teoremiyle bilinmeyen katsayıyı bulmak"
+   "Polinomlarla işlem yapıp derecenin nasıl değiştiğini görmek",
+   "Polinom bölmesini adım adım yapmak",
+   "Kalan ve çarpan teoremleriyle bölmeden sonuca ulaşmak"
   ],
   "sections": [
    {
     "subtopic": "MAT_POLINOM_01",
-    "subtopics": [
-     "MAT_POLINOM_02"
-    ],
-    "title": "Polinom ve derece",
-    "narration": "Polinom, x'in doğal sayı kuvvetlerinin katsayılarla çarpılıp toplanmasıyla oluşan ifadedir.",
+    "title": "Polinom nedir?",
+    "narration": "Önce polinomun ne olduğunu ve ne olmadığını netleştirelim.",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Polinomun tanımı",
+      "text": "Polinom, x'in **doğal sayı** kuvvetlerinin gerçek sayılarla çarpılıp toplanmasıyla oluşur: $P(x) = a_n x^n + \\cdots + a_1 x + a_0$. Sayılara **katsayı**, x içermeyen $a_0$ terimine **sabit terim** denir.",
+      "narration": "Polinom ne demek? x'in doğal sayı kuvvetlerini gerçek sayılarla çarpıp toplarsın, ortaya polinom çıkar. Bu sayıların her birine katsayı denir. x içermeyen terime de sabit terim denir."
+     },
+     {
+      "kind": "visual",
+      "title": "Polinom mu, değil mi?",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Polinom",
+         "items": [
+          "$3x^4 - x + 2$",
+          "$\\frac{x^2}{5} + 1$",
+          "$7$"
+         ]
+        },
+        {
+         "title": "Polinom değil",
+         "items": [
+          "$\\frac{2}{x} + 1$",
+          "$\\sqrt{x} - 3$",
+          "$2^x + x$"
+         ]
+        }
+       ]
+      },
+      "narration": "Şimdi iki sütuna bak: solda polinomlar, sağda polinom olmayanlar.",
+      "beats": [
+       {
+        "narration": "Üç x üssü dört eksi x artı iki bir polinomdur; üsler dört, bir ve sıfır.",
+        "show": [
+         "c1",
+         "c1-1"
+        ],
+        "focus": [
+         "c1-1"
+        ]
+       },
+       {
+        "narration": "Katsayı kesirli olabilir; x kare bölü beş artı bir de polinomdur.",
+        "show": [
+         "c1-2"
+        ],
+        "focus": [
+         "c1-2"
+        ]
+       },
+       {
+        "narration": "Tek başına yedi de bir polinomdur; yedi, yedi çarpı x üssü sıfır gibidir.",
+        "show": [
+         "c1-3"
+        ],
+        "focus": [
+         "c1-3"
+        ]
+       },
+       {
+        "narration": "İki bölü x'te x paydada duruyor; bu, x üssü eksi bir demektir. Polinom değil.",
+        "show": [
+         "c2",
+         "c2-1"
+        ],
+        "focus": [
+         "c2-1"
+        ]
+       },
+       {
+        "narration": "Karekök x, x üssü ikide birdir; üs kesirli olduğu için polinom değil.",
+        "show": [
+         "c2-2"
+        ],
+        "focus": [
+         "c2-2"
+        ]
+       },
+       {
+        "narration": "İki üssü x'te x üstte duruyor. Bu da polinom değil.",
+        "show": [
+         "c2-3"
+        ],
+        "focus": [
+         "c2-3"
+        ]
+       }
+      ]
+     },
+     {
       "kind": "rule",
-      "title": "Polinomun parçaları",
+      "title": "Polinom olma koşulları",
       "items": [
-       "$P(x) = a_n x^n + \\cdots + a_1 x + a_0$; **üsler doğal sayı** olmalı.",
-       "$\\frac{1}{x}$, $\\sqrt{x}$, $x^{-2}$, $2^x$ içeren ifadeler **polinom değildir**.",
-       "**Derece**: en büyük üs. **Baş katsayı**: en büyük üslü terimin katsayısı. **Sabit terim**: $a_0$.",
-       "Sabit polinomun derecesi **0**: $P(x) = 7$. Sıfır polinomunun derecesi **tanımsızdır**.",
-       "$P(1)$ = **katsayılar toplamı**, $P(0)$ = **sabit terim**."
+       "x'in üsleri **doğal sayı** olmalı: 0, 1, 2, 3, …",
+       "Katsayılar **her gerçek sayı** olabilir: $\\sqrt{2}\\,x^3$ de bir terimdir.",
+       "x **paydada**, **kökün içinde** ya da **üste** olamaz.",
+       "Üste harf varsa, o harf için her üs **doğal sayı** çıkmalı."
       ],
-      "narration": "Polinomda x'in kuvvetleri doğal sayı olmalıdır. 1 bölü x, karekök x, x üssü eksi 2 ya da 2 üssü x içeren ifadeler polinom değildir. En büyük üs polinomun derecesidir, o terimin katsayısı baş katsayıdır, x içermeyen terim ise sabit terimdir. P x eşittir 7 gibi sabit bir polinomun derecesi sıfırdır; sıfır polinomunun derecesi ise tanımsızdır. İki kısa yol: P 1 katsayılar toplamını, P 0 sabit terimi verir."
+      "narration": "Kuralı dört maddede toplayalım. Bir: x'in üsleri doğal sayı olmalı. İki: katsayılar her gerçek sayı olabilir; kök iki çarpı x küp de bir terimdir. Üç: x paydada, kökün içinde ya da üste olamaz. Dört: üste harf varsa, o harf için her üs doğal sayı çıkmalı."
+     },
+     {
+      "kind": "example",
+      "title": "Üste harf olunca",
+      "example": "Üsleri n eksi 2 ile 6 bölü n olan iki terimli ifade, hangi n tam sayıları için polinomdur?",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "n",
+        "n − 2",
+        "6 / n",
+        "Polinom mu?"
+       ],
+       "rows": [
+        [
+         "1",
+         "−1",
+         "6",
+         "Hayır"
+        ],
+        [
+         "2",
+         "0",
+         "3",
+         "Evet"
+        ],
+        [
+         "3",
+         "1",
+         "2",
+         "Evet"
+        ],
+        [
+         "6",
+         "4",
+         "1",
+         "Evet"
+        ]
+       ],
+       "highlightColumn": 3
+      },
+      "narration": "Bir örnek çözelim. Üsleri n eksi 2 ile 6 bölü n olan iki terimli ifade, hangi n tam sayıları için polinomdur?",
+      "beats": [
+       {
+        "narration": "6 bölü n doğal sayı olsun diye n, 6'nın pozitif bölenlerinden biri olmalı: 1, 2, 3 ya da 6.",
+        "show": [
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ]
+       },
+       {
+        "narration": "n 1 iken n eksi 2, eksi 1 çıkar. Negatif üs olduğu için polinom değil.",
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "n 2, 3 ve 6 iken iki üs de doğal sayı. Yani üç değer var: 2, 3 ve 6.",
+        "focus": [
+         "r2",
+         "r3",
+         "r4"
+        ],
+        "note": "n = 2, 3, 6"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Kesirli katsayı serbesttir",
+      "wrong": "Katsayısı kesirli ya da köklü olan ifade polinom değildir.",
+      "right": "Katsayı her gerçek sayı olabilir: $\\sqrt{3}\\,x^2 + \\frac{1}{2}x$ bir polinomdur.",
+      "why": "Kısıt yalnız üslerdedir: x'in üsleri doğal sayı olmalı.",
+      "narration": "Sık yapılan hata şu: köklü ya da kesirli katsayı görünce polinom değil demek. Katsayı her gerçek sayı olabilir; kök üç x kare artı yarım x bir polinomdur. Kısıt yalnız üslerdedir: x'in üsleri doğal sayı olmalı."
      },
      {
       "kind": "question",
@@ -60,38 +222,38 @@
        "style": "TYT tarzı",
        "stem": "Aşağıdakilerden hangisi bir **polinomdur**?",
        "options": [
-        "$x^2 + \\frac{1}{x}$",
-        "$\\sqrt{x} + 1$",
-        "$x^{-2} + 3$",
-        "$3x^4 - x + 2$",
-        "$2^x + 1$"
+        "$x^3 + \\frac{2}{x}$",
+        "$\\sqrt{x} + 4$",
+        "$x^{-1} + x$",
+        "$3^x - x^2$",
+        "$\\frac{x^4}{2} - \\sqrt{5}\\,x + 1$"
        ],
-       "answer": 3,
-       "narration": "Her şıkta x'in üslerine bakalım.",
+       "answer": 4,
+       "narration": "Önce kolay bir soru. Her şıkta x'in üslerine bak.",
        "steps": [
         {
-         "text": "$\\frac{1}{x} = x^{-1}$, $x^{-2}$: **negatif** üs.",
-         "narration": "1 bölü x, x üssü eksi 1'dir; x üssü eksi 2'de de üs negatif. Negatif üs olduğu için A ve C polinom değil.",
+         "text": "$\\frac{2}{x} = 2x^{-1}$ ve $x^{-1}$: **negatif üs**.",
+         "narration": "A şıkkında iki bölü x, iki x üssü eksi birdir; C'de de x üssü eksi bir var. Negatif üs olduğu için ikisi de polinom değil.",
          "eliminate": [
           "A",
           "C"
          ]
         },
         {
-         "text": "$\\sqrt{x} = x^{1/2}$: **kesirli** üs. $2^x$: x **üste**.",
-         "narration": "Karekök x, x üssü ikide birdir; üs kesirli. 2 üssü x'te ise x üstte. B ve E de polinom değil.",
+         "text": "$\\sqrt{x} = x^{1/2}$: **kesirli üs**; $3^x$: x **üstte**.",
+         "narration": "B'de karekök x, x üssü ikide birdir; üs kesirli. D'de üç üssü x var; x üstte duruyor. İkisi de elenir.",
          "eliminate": [
           "B",
-          "E"
+          "D"
          ]
         },
         {
-         "text": "$3x^4 - x + 2$: üsler 4, 1, 0. Cevap **D**.",
-         "narration": "3 x üssü 4 eksi x artı 2'de üsler 4, 1 ve 0; hepsi doğal sayı. Bu bir polinomdur ve derecesi 4. Cevabımız D."
+         "text": "E: üsler 4, 1, 0; katsayılar $\\frac{1}{2}$, $-\\sqrt{5}$, 1. Cevap **E**.",
+         "narration": "E'de üsler dört, bir ve sıfır; hepsi doğal sayı. Katsayıların kesirli ve köklü olması sorun değil. Cevabımız E."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki \"hangisi polinomdur\" kalıbı örnek alındı, ifadeler özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki \"hangisi polinomdur\" kalıbı örnek alındı, ifadeler ve kesirli-köklü katsayılı doğru şık özgün."
        }
       }
      },
@@ -99,28 +261,28 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$P(x) = (2x - 1)^4$ polinomunun **katsayılar toplamı** ile **sabit teriminin** toplamı kaçtır?",
+       "stem": "Ece, bir ifadenin polinom olması için x'in her üssünün doğal sayı olması gerektiğini biliyor. Tahtaya, n bir doğal sayı olmak üzere $P(x) = 2x^{\\frac{12}{n}} - x^{n - 3} + 5$ ifadesini yazıyor ve arkadaşlarından bu ifadeyi polinom yapan bütün n değerlerini bulmalarını istiyor. Buna göre bu n değerlerinin toplamı kaçtır?",
        "options": [
-        "0",
-        "1",
-        "2",
-        "16",
-        "17"
+        "13",
+        "22",
+        "25",
+        "28",
+        "31"
        ],
        "answer": 2,
-       "narration": "Açmadan iki kısa yolu kullanalım.",
+       "narration": "Şimdi ÖSYM tarzı bir soru. İki üssü ayrı ayrı denetleyelim.",
        "steps": [
         {
-         "text": "Katsayılar toplamı $P(1) = (2 - 1)^4 = 1$",
-         "narration": "Katsayılar toplamı P 1'dir: 2 eksi 1, 1; 1'in dördüncü kuvveti 1."
+         "text": "$\\frac{12}{n}$ doğal sayı → n, 12'nin böleni: 1, 2, 3, 4, 6, 12.",
+         "narration": "Birinci üs 12 bölü n. Bunun doğal sayı olması için n, 12'nin bölenlerinden biri olmalı: 1, 2, 3, 4, 6 ya da 12."
         },
         {
-         "text": "Sabit terim $P(0) = (-1)^4 = 1$",
-         "narration": "Sabit terim P 0'dır: eksi 1'in dördüncü kuvveti, çift kuvvet olduğu için 1."
+         "text": "$n - 3 \\geq 0$ → $n \\geq 3$: 3, 4, 6, 12 kalır.",
+         "narration": "İkinci üs n eksi 3; negatif olamaz ama sıfır olabilir. Yani n en az 3. Geriye 3, 4, 6 ve 12 kalır."
         },
         {
-         "text": "$1 + 1 = 2$. Cevap **C**.",
-         "narration": "Toplam 2. Cevabımız C. Parantezi açmaya hiç gerek kalmadı. Sabit terimi eksi 1 sanan sıfırı bulur.",
+         "text": "$3 + 4 + 6 + 12 = 25$. Cevap **C**.",
+         "narration": "Toplam 25. Cevabımız C. İkinci koşulu unutan bütün bölenleri toplayıp 28 bulur. Sıfır üssü yasak sanıp 3'ü atan da 22 bulur.",
          "eliminate": [
           "A",
           "B",
@@ -130,36 +292,152 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; MEB anlatımındaki \"katsayılar toplamı P(1), sabit terim P(0)\" kuralı ve havuzdaki kalıp örnek alındı, polinom özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki üssü harfe bağlı polinom kalıbı örnek alındı; bağlam, üsler ve iki tuzak (bütün bölenler, sıfır üs) özgün."
        }
       }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_POLINOM_02",
+    "title": "Polinomun derecesi",
+    "narration": "Bir polinom hakkında en çok bilgi veren sayı derecesidir.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Derece ve baş katsayı",
+      "text": "Polinomda x'in **en büyük üssü** polinomun **derecesidir**: $\\text{der}[P(x)]$. O terimin katsayısı **baş katsayıdır**.",
+      "narration": "Derece nedir? x'in en büyük üssü, polinomun derecesidir. Bu en büyük üslü terimin katsayısı ise baş katsayıdır."
+     },
+     {
+      "kind": "visual",
+      "title": "Terimleri tek tek oku",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Terim",
+        "Üs",
+        "Katsayı"
+       ],
+       "rows": [
+        [
+         "$4x^2$",
+         "2",
+         "4"
+        ],
+        [
+         "$-7x^5$",
+         "5",
+         "−7"
+        ],
+        [
+         "$x$",
+         "1",
+         "1"
+        ],
+        [
+         "$-3$",
+         "0",
+         "−3"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "narration": "4 x kare eksi 7 x üssü 5 artı x eksi 3 polinomunu terim terim okuyalım.",
+      "beats": [
+       {
+        "narration": "4 x karenin üssü 2, katsayısı 4. Eksi 7 x üssü 5'in üssü 5, katsayısı eksi 7.",
+        "show": [
+         "r1",
+         "r2"
+        ]
+       },
+       {
+        "narration": "x'in üssü 1, katsayısı 1. Eksi 3'te x yok; üssü sıfır, bu sabit terim.",
+        "show": [
+         "r3",
+         "r4"
+        ]
+       },
+       {
+        "narration": "En büyük üs 5. Derece 5, baş katsayı eksi 7. Terimler karışık yazılsa da derece değişmez.",
+        "focus": [
+         "r2"
+        ],
+        "note": "der[P(x)] = 5, baş katsayı −7"
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Özel polinomlar",
+      "items": [
+       "**Sabit polinom**: $P(x) = 7$ gibi; derecesi **0**.",
+       "**Sıfır polinomu**: $P(x) = 0$; derecesi **belirsizdir**.",
+       "**Eşit polinomlar**: aynı dereceli terimlerin **katsayıları eşittir**.",
+       "Bilinmeyen katsayı **sıfır olursa** o terim kaybolur, derece düşer."
+      ],
+      "narration": "Dört özel durum var. Sabit polinom, P x eşittir 7 gibidir; derecesi sıfırdır, çünkü 7, 7 çarpı x üssü sıfırdır. Sıfır polinomunun derecesi belirsizdir; hiçbir terimi yoktur. Eşit polinomlarda aynı dereceli terimlerin katsayıları eşittir. Bilinmeyen bir katsayı sıfır olursa o terim kaybolur, derece düşer."
+     },
+     {
+      "kind": "example",
+      "title": "Sabit polinom olsun",
+      "example": "Katsayıları a eksi 3, b artı 1 ve 5 olan polinom sabit polinomsa a ve b kaçtır?",
+      "narration": "Hemen bir örnek. Katsayıları a eksi 3, b artı 1 ve 5 olan polinom sabit polinomsa a ve b kaçtır?",
+      "steps": [
+       {
+        "narration": "Polinom şöyle: a eksi 3 çarpı x üssü 4, artı b artı 1 çarpı x kare, artı 5.",
+        "math": "P(x) = (a - 3)x^4 + (b + 1)x^2 + 5"
+       },
+       {
+        "narration": "x üssü 4'lü terim kaybolsun: a eksi 3 sıfır, a eşittir 3.",
+        "math": "a - 3 = 0 \\Rightarrow a = 3"
+       },
+       {
+        "narration": "x kareli terim de kaybolsun: b artı 1 sıfır, b eşittir eksi 1.",
+        "math": "b + 1 = 0 \\Rightarrow b = -1"
+       },
+       {
+        "narration": "Geriye P x eşittir 5 kalır; derecesi sıfır olan bir sabit polinom.",
+        "math": "P(x) = 5",
+        "text": "**Sabit polinom**"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Baş katsayı ilk terim değildir",
+      "wrong": "Baş katsayı, polinomda ilk yazılan terimin katsayısıdır.",
+      "right": "Baş katsayı en büyük üslü terimin katsayısıdır: $2x + 5x^3$ için **5**.",
+      "why": "Terimler her sırayla yazılabilir; önce üslere bak.",
+      "narration": "Dikkat, burada çok yapılan bir hata var: baş katsayıyı ilk yazılan terimden okumak. Baş katsayı en büyük üslü terimin katsayısıdır; iki x artı beş x küp için 5. Terimler her sırayla yazılabilir; önce üslere bak."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$P(x) = (a - 2)x^3 + (a + b)x^2 + 3x - 1$ polinomu **birinci dereceden** bir polinom olduğuna göre $a \\cdot b$ çarpımı kaçtır?",
+       "stem": "$P(x) = (m - 2)x^3 + (m + n)x^2 + 4x - 1$ polinomu **birinci dereceden** olduğuna göre $m \\cdot n$ çarpımı kaçtır?",
        "options": [
         "$-4$",
-        "$4$",
         "$-2$",
+        "$0$",
         "$2$",
-        "$0$"
+        "$4$"
        ],
        "answer": 0,
-       "narration": "Birinci dereceden olması için x küp ve x kare terimleri yok olmalı.",
+       "narration": "Birinci dereceden olması için hangi terimler kaybolmalı?",
        "steps": [
         {
-         "text": "$x^3$'ün katsayısı $0$: $a - 2 = 0$ → $a = 2$.",
-         "narration": "Polinom birinci dereceden olacaksa x küplü terim kaybolmalı: a eksi iki sıfır, a iki."
+         "text": "$x^3$'ün katsayısı 0: $m - 2 = 0 \\Rightarrow m = 2$",
+         "narration": "Polinom birinci dereceden olacaksa x küplü terim kaybolmalı: m eksi 2 sıfır, m eşittir 2."
         },
         {
-         "text": "$x^2$'nin katsayısı $0$: $a + b = 0$ → $b = -2$.",
-         "narration": "x kareli terim de kaybolmalı: a artı b sıfır; a iki olduğuna göre b eksi iki. Geriye üç x eksi bir kalır; birinci dereceden."
+         "text": "$x^2$'nin katsayısı 0: $m + n = 0 \\Rightarrow n = -2$",
+         "narration": "x kareli terim de kaybolmalı: m artı n sıfır, n eşittir eksi 2. Geriye 4 x eksi 1 kalır."
         },
         {
-         "text": "$a \\cdot b = 2 \\cdot (-2) = -4$. Cevap **A**.",
-         "narration": "a çarpı b, iki çarpı eksi iki, eksi dört. Cevabımız A.",
+         "text": "$m \\cdot n = 2 \\cdot (-2) = -4$. Cevap **A**.",
+         "narration": "m çarpı n, 2 çarpı eksi 2, eksi 4. Cevabımız A. n'nin işaretini kaçıran 4 bulur.",
          "eliminate": [
           "B",
           "C",
@@ -169,7 +447,46 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki polinomun parçaları ve derece kavramı özgün bir katsayı sorusuna dönüştürüldü."
+        "changes": "Bu ders için yazıldı; havuzdaki katsayısı harfe bağlı derece kalıbı örnek alındı, polinom ve istenen çarpım özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "İki öğrenci aynı polinomu farklı biçimde yazmıştır. Ali $(a + 1)x^2 + 3x + b$, Banu ise $4x^2 + (c - 1)x - 2$ yazmıştır. İki yazım da aynı polinomu gösterdiğine göre $a + b + c$ toplamı kaçtır?",
+       "options": [
+        "3",
+        "5",
+        "7",
+        "9",
+        "11"
+       ],
+       "answer": 1,
+       "narration": "Eşit polinomlarda aynı dereceli terimleri eşleştir.",
+       "steps": [
+        {
+         "text": "$x^2$: $a + 1 = 4 \\Rightarrow a = 3$",
+         "narration": "Aynı polinomsa aynı dereceli terimlerin katsayıları eşit. x kareler: a artı 1 eşittir 4, a eşittir 3."
+        },
+        {
+         "text": "$x$: $c - 1 = 3 \\Rightarrow c = 4$; sabit: $b = -2$",
+         "narration": "x'li terimler: c eksi 1 eşittir 3, c eşittir 4. Sabit terimler: b eşittir eksi 2."
+        },
+        {
+         "text": "$3 + (-2) + 4 = 5$. Cevap **B**.",
+         "narration": "Toplam 3 artı eksi 2 artı 4, yani 5. Cevabımız B. c eksi 1 eşittir 3'ten c'yi 2 bulan 3'e, b'yi artı 2 alan 9'a ulaşır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki eşit polinom tanımı iki öğrencinin yazımı bağlamında özgün sayılarla soruldu."
        }
       }
      }
@@ -178,57 +495,168 @@
    {
     "subtopic": "MAT_POLINOM_03",
     "title": "Polinomlarda işlemler",
-    "narration": "Polinomlar toplanır, çıkarılır, çarpılır ve birbirinin içine yazılabilir. Derece de bu işlemlerde belli kurallarla değişir.",
+    "narration": "Polinomlarla değer bulunur, dört işlem yapılır. Derece de bu işlemlerde belli kurallarla değişir.",
     "cards": [
      {
-      "kind": "rule",
-      "title": "İşlem ve derece",
-      "items": [
-       "**Toplama**: aynı dereceli terimlerin katsayıları toplanır.",
-       "$\\text{der}[P \\cdot Q] = \\text{der}[P] + \\text{der}[Q]$",
-       "$\\text{der}[P(Q(x))] = \\text{der}[P] \\cdot \\text{der}[Q]$",
-       "$P(x + 1)$ gibi ifadelerde $x$ yerine **parantezin içini** yaz."
-      ],
-      "narration": "Polinomları toplarken aynı dereceli terimlerin katsayılarını toplarsın. İki polinomun çarpımının derecesi, derecelerinin toplamıdır. Bir polinomu öbürünün içine yazarsan dereceler çarpılır: P Q x'in derecesi, derecelerin çarpımıdır. P x artı 1 gibi bir ifadede ise x'in olduğu her yere x artı 1 yazarsın."
+      "kind": "concept",
+      "title": "Değer ve işlem",
+      "text": "$P(a)$, x yerine **a yazınca** çıkan sayıdır. Polinomlar toplanır, çıkarılır, çarpılır; sonuç yine bir **polinomdur**.",
+      "narration": "P a ne demek? x'in olduğu her yere a yazınca çıkan sayı. Polinomları toplayabilir, çıkarabilir, çarpabilirsin; sonuç yine bir polinomdur."
      },
      {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "$P(a) = 0$ eşitliğini sağlayan $a$ sayısına $P(x)$ polinomunun bir kökü denir. $P(x) = x^2 - 2x$ ve $R(x) = P(P(x))$ olduğuna göre, I. $-1$, II. $0$, III. $2$ sayılarından hangileri $R(x)$ polinomunun köküdür?",
-       "options": [
-        "Yalnız I",
-        "Yalnız II",
-        "I ve II",
-        "I ve III",
-        "II ve III"
-       ],
-       "answer": 4,
-       "narration": "ÖSYM 2018'de bir polinomun kendisiyle bileşkesinin köklerini sordu. Her sayıyı içten dışa deneyelim.",
-       "steps": [
-        {
-         "text": "$-1$: $P(-1) = 1 + 2 = 3$, $P(3) = 9 - 6 = 3 \\neq 0$ ✗",
-         "narration": "Eksi 1'i deneyelim: P eksi 1, 1 artı 2, yani 3. Sonra P 3, 9 eksi 6, yani 3. Sıfır değil; eksi 1 kök değil."
-        },
-        {
-         "text": "$0$: $P(0) = 0$, $P(0) = 0$ ✓. $2$: $P(2) = 0$, $P(0) = 0$ ✓",
-         "narration": "0'ı deneyelim: P 0, sıfır; P sıfır yine sıfır. Kök. 2'yi deneyelim: P 2, 4 eksi 4, sıfır; P sıfır, sıfır. O da kök."
-        },
-        {
-         "text": "II ve III. Cevap **E**. P'nin kökleri R'nin de köküdür, çünkü P(0) = 0.",
-         "narration": "İkinci ve üçüncü. Cevabımız E. Arkadaki fikir şu: P'nin kökleri R'nin de köküdür, çünkü P'nin kökünde iç kısım sıfır olur ve P sıfır yine sıfırdır.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "D"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2018'in \"R(x) = P(P(x)) polinomunun kökleri\" kalıbı örnek alındı; polinom ve denenen sayılar özgün."
+      "kind": "visual",
+      "title": "Çarpmayı alanla gör",
+      "visual": {
+       "kind": "process",
+       "process": "areamodel",
+       "stages": [
+        "tamkare"
+       ]
+      },
+      "narration": "Polinom çarpmasının ne demek olduğunu bir karenin alanıyla görelim.",
+      "beats": [
+       {
+        "narration": "Kenarı a artı b olan bir kare düşün. Alanı a artı b'nin karesi.",
+        "stage": 0
+       },
+       {
+        "narration": "Büyük parça a çarpı a, yani a kare.",
+        "stage": 0,
+        "focus": [
+         "a2"
+        ]
+       },
+       {
+        "narration": "Yanda iki dikdörtgen var; her biri a çarpı b. Toplam iki a b.",
+        "stage": 0,
+        "focus": [
+         "ab"
+        ]
+       },
+       {
+        "narration": "Köşede küçük kare b kare. Her terim her terimle çarpıldı: a kare artı iki a b artı b kare.",
+        "stage": 0,
+        "focus": [
+         "b2"
+        ]
        }
-      }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "İşlemler ve derece",
+      "items": [
+       "**Toplama, çıkarma**: aynı dereceli terimlerin katsayıları toplanır, çıkarılır.",
+       "**Çarpma**: her terim her terimle çarpılır; $\\text{der}[P \\cdot Q] = m + n$.",
+       "**Toplamda derece**: büyük olanınki; $m > n$ ise $\\text{der}[P \\pm Q] = m$.",
+       "**İç içe yazma**: $\\text{der}[P(Q(x))] = m \\cdot n$; $\\text{der}[P(x)^k] = k \\cdot m$.",
+       "**Kısa yollar**: $P(1)$ katsayılar toplamı, $P(0)$ **sabit terim**, $\\frac{P(1) + P(-1)}{2}$ **çift dereceli** katsayılar toplamı."
+      ],
+      "narration": "P'nin derecesi m, Q'nunki n olsun. Toplama ve çıkarmada aynı dereceli terimlerin katsayıları toplanır, çıkarılır. Çarpmada her terim her terimle çarpılır; dereceler toplanır. Toplamda derece büyük olanınkidir. İç içe yazmada dereceler çarpılır; P x'in k'inci kuvvetinin derecesi k çarpı m. Kısa yollar: P 1 katsayılar toplamı, P 0 sabit terim. P 1 ile P eksi 1'in toplamının yarısı, çift dereceli terimlerin katsayıları toplamı."
+     },
+     {
+      "kind": "example",
+      "title": "Çarpmayı tabloyla yap",
+      "example": "İki x kare eksi üç x artı bir ile x artı dördü çarpalım.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "×",
+        "$x$",
+        "$+4$"
+       ],
+       "rows": [
+        [
+         "$2x^2$",
+         "$2x^3$",
+         "$8x^2$"
+        ],
+        [
+         "$-3x$",
+         "$-3x^2$",
+         "$-12x$"
+        ],
+        [
+         "$+1$",
+         "$x$",
+         "$4$"
+        ]
+       ]
+      },
+      "narration": "Şimdi bir çarpma yapalım. İki x kare eksi üç x artı bir ile x artı dördü çarpalım.",
+      "beats": [
+       {
+        "narration": "Önce iki x kareyi x artı dördün her terimiyle çarp: iki x küp ve sekiz x kare.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Sonra eksi üç x: eksi üç x kare ve eksi on iki x.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "En son artı bir: x ve 4.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "Aynı dereceleri topla: iki x küp artı beş x kare eksi on bir x artı dört. Derece 2 artı 1, yani 3.",
+        "note": "2x³ + 5x² − 11x + 4"
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Açmadan bilgi topla",
+      "example": "Üç x eksi ikinin dördüncü kuvvetini açmadan inceleyelim.",
+      "narration": "Bir örnek daha. Üç x eksi ikinin dördüncü kuvvetini açmadan inceleyelim.",
+      "steps": [
+       {
+        "narration": "Katsayılar toplamı için x yerine 1 yaz: 3 eksi 2, 1; dördüncü kuvveti 1.",
+        "math": "P(1) = 1^4 = 1",
+        "text": "Katsayılar toplamı"
+       },
+       {
+        "narration": "Sabit terim için x yerine 0 yaz: eksi 2'nin dördüncü kuvveti 16.",
+        "math": "P(0) = (-2)^4 = 16",
+        "text": "Sabit terim"
+       },
+       {
+        "narration": "P eksi 1, eksi 5'in dördüncü kuvveti, 625.",
+        "math": "P(-1) = (-5)^4 = 625"
+       },
+       {
+        "narration": "P 1 ile toplayıp ikiye bölünce çift dereceliler 313.",
+        "math": "\\frac{1 + 625}{2} = 313",
+        "text": "**Çift dereceli** katsayılar"
+       },
+       {
+        "narration": "Farkın yarısı tek dereceli katsayıları verir: 1 eksi 625'in yarısı, eksi 312.",
+        "math": "\\frac{1 - 625}{2} = -312",
+        "text": "**Tek dereceli** katsayılar"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Parantezin içine bak",
+      "wrong": "$P(x + 1) = x^2 + 5$ ise $P(3)$, x yerine 3 yazılarak bulunur.",
+      "right": "Parantezin içi 3 olmalı: $x + 1 = 3$, $x = 2$ ve $P(3) = 2^2 + 5 = 9$.",
+      "why": "x yerine 3 yazan aslında $P(4)$'ü bulur: $3^2 + 5 = 14$.",
+      "narration": "Sık yapılan hata: P x artı 1 verilmişken P 3 için x yerine 3 yazmak. Parantezin içi 3 olmalı: x artı 1 eşittir 3, x eşittir 2. P 3, 2 kare artı 5, yani 9. x yerine 3 yazan aslında P 4'ü bulur: 14."
      },
      {
       "kind": "question",
@@ -238,24 +666,24 @@
        "options": [
         "5",
         "6",
-        "7",
         "9",
+        "11",
         "12"
        ],
        "answer": 1,
-       "narration": "Çarpımda dereceler toplanır; x yerine x kare yazılınca derece iki katına çıkar; toplamda büyük olan kalır.",
+       "narration": "Her parçanın derecesini ayrı bul, sonra birleştir.",
        "steps": [
         {
-         "text": "$\\text{der}[P \\cdot Q] = 3 + 2 = 5$.",
-         "narration": "Çarpımda dereceler toplanır: üç artı iki, beş."
+         "text": "$\\text{der}[P \\cdot Q] = 3 + 2 = 5$",
+         "narration": "Çarpımda dereceler toplanır: 3 artı 2, 5."
         },
         {
-         "text": "$\\text{der}[P(x^2)] = 3 \\cdot 2 = 6$.",
-         "narration": "P'de x yerine x kare yazınca en büyük terim x küpten x üzeri altıya çıkar; derece altı."
+         "text": "$\\text{der}[P(x^2)] = 3 \\cdot 2 = 6$",
+         "narration": "P'de x yerine x kare yazınca x küp, x üssü 6 olur; derece 6."
         },
         {
-         "text": "Toplamın derecesi büyük olan: $\\max(5, 6) = 6$. Cevap **B**.",
-         "narration": "Toplamada derece, büyük dereceli polinomun derecesidir: beş ile altıdan büyük olanı, altı. Cevabımız B. On biri hesaplayan dereceleri toplamış olur; toplamada dereceler toplanmaz.",
+         "text": "Toplamda büyük olan: 6. Cevap **B**.",
+         "narration": "Toplamda derece büyük olanınkidir: 6. Cevabımız B. Dereceleri toplayan 11, yalnız çarpıma bakan 5 bulur.",
          "eliminate": [
           "A",
           "C",
@@ -265,7 +693,90 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki işlem ve derece kuralları tek bir özgün soruda birleştirildi."
+        "changes": "Bu ders için yazıldı; havuzdaki derece kuralları kalıbı örnek alındı, çarpım, iç içe yazma ve toplam tek özgün soruda birleştirildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$P(2x - 1) = 4x^2 - 2x + 3$ olduğuna göre $P(3)$ kaçtır?",
+       "options": [
+        "9",
+        "12",
+        "15",
+        "27",
+        "33"
+       ],
+       "answer": 2,
+       "narration": "Bu soruda parantezin içine dikkat.",
+       "steps": [
+        {
+         "text": "$2x - 1 = 3 \\Rightarrow x = 2$",
+         "narration": "P 3 istiyorsak parantezin içi 3 olmalı: 2 x eksi 1 eşittir 3, x eşittir 2."
+        },
+        {
+         "text": "$4 \\cdot 4 - 2 \\cdot 2 + 3 = 16 - 4 + 3 = 15$",
+         "narration": "x yerine 2 yazalım: 4 çarpı 4, 16; eksi 4; artı 3. Sonuç 15.",
+         "mark": [
+          "$P(3)$"
+         ]
+        },
+        {
+         "text": "Cevap **C**. x yerine 3 yazan $P(5)$'i, yani 33'ü bulur.",
+         "narration": "Cevabımız C. x yerine doğrudan 3 yazan 36 eksi 6 artı 3, 33 bulur; o sayı aslında P 5'tir.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"P(x − 2) verilip P(1) istenen\" kalıbı örnek alındı, iç ifade ve polinom özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir sayı, bir polinomda $x$ yerine yazıldığında yine kendisini veriyorsa o sayıya polinomun **sabit noktası** diyelim; yani $P(a) = a$. $P(x) = x^2 - 2$ polinomu ve onu kendisiyle birleştiren $R(x) = P(P(x))$ polinomu veriliyor. I. $-1$, II. $0$, III. $2$ sayılarından hangileri $R$'nin sabit noktasıdır?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve III",
+        "II ve III"
+       ],
+       "answer": 3,
+       "narration": "Yeni tanımlanmış bir kavramla bir soru. Her sayı için önce içi, sonra dışı hesapla.",
+       "steps": [
+        {
+         "text": "$-1$: $P(-1) = 1 - 2 = -1$, $R(-1) = P(-1) = -1$ ✓",
+         "narration": "Eksi 1: P eksi 1, 1 eksi 2, eksi 1. Dışta yine P eksi 1, eksi 1. R eksi 1, eksi 1'e eşit; bu bir sabit nokta.",
+         "eliminate": [
+          "B",
+          "C",
+          "E"
+         ]
+        },
+        {
+         "text": "$0$: $P(0) = -2$, $R(0) = P(-2) = 2 \\neq 0$ ✗",
+         "narration": "0: P 0, eksi 2. Dışta P eksi 2, 4 eksi 2, yani 2. R 0, 2 çıktı, 0 değil; sabit nokta değil."
+        },
+        {
+         "text": "$2$: $P(2) = 2$, $R(2) = P(2) = 2$ ✓. Cevap **D**.",
+         "narration": "2: P 2, 4 eksi 2, yani 2; dışta yine 2. Bu da sabit nokta. Bir ve üç doğru; cevabımız D.",
+         "eliminate": [
+          "A"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018'in yeni kavram tanımlayıp R(x) = P(P(x)) için I-II-III soran kalıbı örnek alındı; kavram (sabit nokta), tanım cümlesi, polinom ve sayılar özgün."
        }
       }
      }
@@ -273,80 +784,409 @@
    },
    {
     "subtopic": "MAT_POLINOM_04",
-    "subtopics": [
-     "MAT_POLINOM_05"
-    ],
-    "title": "Bölme ve kalan teoremi",
-    "narration": "Polinom bölmesi de sayı bölmesi gibidir. Ama kalanı bulmak için çoğu zaman bölme yapmana gerek yoktur.",
+    "title": "Polinomlarda bölme",
+    "narration": "Polinom bölmesi, sayılarla yaptığın bölmenin aynısıdır.",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Bölme eşitliği",
+      "text": "$P(x) = Q(x) \\cdot B(x) + K(x)$: bölünen, **bölen çarpı bölüm** artı **kalandır**. Kalanın derecesi **bölenin derecesinden küçüktür**.",
+      "narration": "Bölünen polinom, bölen çarpı bölüm artı kalandır. Burada tek bir şart var: kalanın derecesi bölenin derecesinden küçüktür."
+     },
+     {
+      "kind": "visual",
+      "title": "Sayı bölmesiyle aynı",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Sayılarda",
+         "items": [
+          "$17 = 5 \\cdot 3 + 2$",
+          "Kalan bölenden küçük: $2 < 5$"
+         ]
+        },
+        {
+         "title": "Polinomlarda",
+         "items": [
+          "$x^2 + 3x + 4 = (x + 1)(x + 2) + 2$",
+          "Kalanın derecesi küçük: $0 < 1$"
+         ]
+        }
+       ]
+      },
+      "narration": "Sayılarla polinomları yan yana koyalım.",
+      "beats": [
+       {
+        "narration": "17'yi 5'e bölünce bölüm 3, kalan 2 olur: 17 eşittir 5 çarpı 3 artı 2.",
+        "show": [
+         "c1",
+         "c1-1"
+        ],
+        "focus": [
+         "c1-1"
+        ]
+       },
+       {
+        "narration": "Kalan bölenden küçük olmak zorunda; 2, 5'ten küçük.",
+        "show": [
+         "c1-2"
+        ],
+        "focus": [
+         "c1-2"
+        ]
+       },
+       {
+        "narration": "Polinomda da aynısı: x kare artı 3 x artı 4, x artı 1 çarpı x artı 2, artı 2'ye eşit.",
+        "show": [
+         "c2",
+         "c2-1"
+        ],
+        "focus": [
+         "c2-1"
+        ]
+       },
+       {
+        "narration": "Bölen birinci dereceden, kalan sıfırıncı dereceden. Kalanın derecesi her zaman bölenden küçük.",
+        "show": [
+         "c2-2"
+        ],
+        "focus": [
+         "c2-2"
+        ]
+       }
+      ]
+     },
+     {
       "kind": "rule",
-      "title": "Kalan teoremi",
+      "title": "Bölme adımları",
       "items": [
-       "Bölünen = bölen · bölüm + kalan: $P(x) = B(x) \\cdot Q(x) + K(x)$ ve $\\text{der}[K] < \\text{der}[B]$.",
-       "**Kalan teoremi**: $P(x)$'in $(x - a)$ ile bölümünden kalan $P(a)$.",
-       "**Böleni sıfır yapan değeri** x yerine yaz: $(ax + b)$ ile bölümde kalan $P\\left(-\\frac{b}{a}\\right)$.",
-       "Bölen birinci dereceden ise kalan bir **sabit sayıdır**."
+       "Bölünen ve bölen **azalan kuvvetlere** göre yazılır; eksik terime **0** konur.",
+       "Bölünenin **ilk terimi** bölenin ilk terimine bölünür: bölümün ilk terimi.",
+       "Bu terim **bölenle çarpılır**, bölünenden **çıkarılır**.",
+       "Kalanın derecesi bölenden **küçük olana kadar** tekrar edilir.",
+       "**Bölümün derecesi**: $\\text{der}[B] = \\text{der}[P] - \\text{der}[Q]$."
       ],
-      "narration": "Polinom bölmesinde de bölünen, bölen çarpı bölüm artı kalandır ve kalanın derecesi bölenin derecesinden küçüktür. Kalan teoremi şunu söyler: P x'in x eksi a ile bölümünden kalan P a'dır. Böleni sıfır yapan değeri x yerine yazarsın. Bölen 2 x artı 1 ise x yerine eksi ikide bir yazarsın. Bölen birinci dereceden olduğu için kalan bir sabit sayıdır."
+      "narration": "Bölmeyi adım adım yaparsın. Önce bölünen ve bölen azalan kuvvetlere göre yazılır; eksik terime sıfır konur. Sonra bölünenin ilk terimi bölenin ilk terimine bölünür; bu, bölümün ilk terimidir. Bu terim bölenle çarpılır ve bölünenden çıkarılır. Kalanın derecesi bölenden küçük olana kadar tekrar edilir. Bölümün derecesi, iki derecenin farkıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Uzun bölme",
+      "example": "x küp eksi 4 x artı 5'i x eksi 2'ye bölelim.",
+      "narration": "Adımları bir örnekte uygulayalım. x küp eksi 4 x artı 5'i x eksi 2'ye bölelim.",
+      "steps": [
+       {
+        "narration": "Önce eksik terimi yaz: x kare yok, yerine sıfır x kare koy.",
+        "math": "x^3 + 0x^2 - 4x + 5",
+        "text": "Eksik terime **0** yaz"
+       },
+       {
+        "narration": "x küpü x'e böl: x kare. x kareyi x eksi 2 ile çarp ve çıkar.",
+        "math": "x^2(x - 2) = x^3 - 2x^2"
+       },
+       {
+        "narration": "Geriye 2 x kare eksi 4 x artı 5 kalır.",
+        "math": "2x^2 - 4x + 5"
+       },
+       {
+        "narration": "2 x kareyi x'e böl: 2 x. Çarp ve çıkar; geriye yalnız 5 kalır.",
+        "math": "2x(x - 2) = 2x^2 - 4x"
+       },
+       {
+        "narration": "5'in derecesi sıfır, bölenden küçük; bölme biter. Bölüm x kare artı 2 x, kalan 5.",
+        "text": "Bölüm $x^2 + 2x$, **kalan 5**"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Eksik terimi atlama",
+      "wrong": "Bölmede eksik terim atlanır, kalan terimler yan yana yazılır.",
+      "right": "Eksik terime 0 yaz: $x^3 - 4x + 5$, $x^3 + 0x^2 - 4x + 5$ olarak bölünür.",
+      "why": "Aynı dereceli terimler alt alta gelmezse çıkarma yanlış olur.",
+      "narration": "Dikkat, burada çok yapılan bir hata var: eksik terimi atlayıp terimleri yan yana yazmak. Eksik terime 0 yaz; x küp eksi 4 x artı 5, x küp artı sıfır x kare eksi 4 x artı 5 olarak bölünür. Aynı dereceli terimler alt alta gelmezse çıkarma yanlış olur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$P(x)$ yedinci dereceden, $Q(x)$ üçüncü dereceden birer polinomdur. $P(x)$'in $Q(x)$ ile bölümünden elde edilen bölümün derecesi a, kalanın derecesinin alabileceği en büyük değer b olduğuna göre $a + b$ kaçtır?",
+       "options": [
+        "4",
+        "6",
+        "7",
+        "9",
+        "10"
+       ],
+       "answer": 1,
+       "narration": "Bölümün ve kalanın derecesini ayrı ayrı düşün.",
+       "steps": [
+        {
+         "text": "$a = 7 - 3 = 4$",
+         "narration": "Bölümün derecesi, derecelerin farkıdır: 7 eksi 3, 4."
+        },
+        {
+         "text": "Kalanın derecesi < 3 → en çok $b = 2$",
+         "narration": "Kalanın derecesi bölenin derecesinden küçük, yani 3'ten küçük; en çok 2."
+        },
+        {
+         "text": "$4 + 2 = 6$. Cevap **B**.",
+         "narration": "a artı b, 6. Cevabımız B. Kalanın derecesini 3 alan 7 bulur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki bölüm ve kalan derecesi kuralları özgün derecelerle tek soruda birleştirildi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir belediye, dikdörtgen biçimindeki bir parkın alanını x türünden $x^3 + 4x^2 + x - 6$ metrekare olarak hesaplamıştır. Parkın bir kenarı $x + 3$ metredir ve park, çevresi boyunca bir kez tel çitle çevrilecektir. Buna göre kullanılacak tel çitin uzunluğunu metre cinsinden veren polinom aşağıdakilerden hangisidir?",
+       "options": [
+        "$x^2 + x - 2$",
+        "$x^2 + 2x + 1$",
+        "$2x^2 + 2x - 4$",
+        "$2x^2 + 4x + 1$",
+        "$2x^2 + 4x + 2$"
+       ],
+       "answer": 4,
+       "narration": "Önce parkın öbür kenarını bulmalıyız.",
+       "steps": [
+        {
+         "text": "Öbür kenar = alan ÷ kenar: $(x^3 + 4x^2 + x - 6) \\div (x + 3)$",
+         "narration": "Dikdörtgenin alanı iki kenarın çarpımıdır. Öbür kenarı bulmak için alanı x artı 3'e böleriz."
+        },
+        {
+         "text": "$x^2(x + 3)$ → kalan $x^2 + x - 6$; $x(x + 3)$ → kalan $-2x - 6$; $-2(x + 3)$ → kalan $0$",
+         "narration": "x küpü x'e böl: x kare; çarp, çıkar, x kare artı x eksi 6 kalır. Sonra artı x; çıkarınca eksi 2 x eksi 6 kalır. En son eksi 2; kalan sıfır."
+        },
+        {
+         "text": "Öbür kenar $x^2 + x - 2$",
+         "narration": "Bölüm x kare artı x eksi 2; bu, parkın öbür kenarı. A şıkkı yalnız bu kenarı veriyor.",
+         "eliminate": [
+          "A"
+         ]
+        },
+        {
+         "text": "Çevre $= 2(x + 3 + x^2 + x - 2) = 2x^2 + 4x + 2$. Cevap **E**.",
+         "narration": "Çevre, iki kenarın toplamının iki katıdır: x kare artı 2 x artı 1'in iki katı, 2 x kare artı 4 x artı 2. Cevabımız E. İki katını unutan B'yi seçer.",
+         "eliminate": [
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki \"alanı polinom olan kartonun parçalara ayrılması\" kalıbı örnek alındı; bağlam (park ve tel çit), polinom, istenen nicelik (çevre) özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_POLINOM_05",
+    "title": "Kalan teoremi",
+    "narration": "Kalanı bulmak için çoğu zaman bölme yapmana bile gerek yok.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Kalan teoremi",
+      "text": "$P(x)$'in $(x - a)$ ile bölümünden kalan $P(a)$'dır: x yerine **böleni sıfır yapan** sayıyı yazarsın, **bölme yapmazsın**.",
+      "narration": "Kalan teoremi şunu söyler: P x'in x eksi a ile bölümünden kalan P a'dır. Yani x yerine böleni sıfır yapan sayıyı yazarsın, bölme yapmazsın."
      },
      {
       "kind": "predict",
-      "title": "Bölmeden kalan",
-      "context": "$P(x) = x^3 - 2x + 1$ polinomu $(x - 2)$ ile bölünüyor.",
-      "prompt": "Kalan kaçtır?",
+      "title": "Neden P(a)?",
+      "context": "$P(x) = (x - 2) \\cdot B(x) + K$ eşitliğinde K kalandır.",
+      "prompt": "x yerine 2 yazarsan sağ tarafta ne kalır?",
       "choices": [
-       "5",
-       "$-3$",
-       "1"
+       "$K$",
+       "$B(2)$",
+       "$0$"
       ],
       "answer": 0,
       "thinkSeconds": 5,
       "visual": {
-       "kind": "formula",
-       "latex": "P(2) = 2^3 - 2 \\cdot 2 + 1 = 8 - 4 + 1 = 5",
-       "caption": "Böleni sıfır yapan x = 2 yazılır."
+       "kind": "equation",
+       "steps": [
+        {
+         "left": "P(x)",
+         "right": "(x - 2) \\cdot B(x) + K"
+        },
+        {
+         "left": "P(2)",
+         "right": "(2 - 2) \\cdot B(2) + K",
+         "operation": "x = 2"
+        },
+        {
+         "left": "P(2)",
+         "right": "0 \\cdot B(2) + K"
+        },
+        {
+         "left": "P(2)",
+         "right": "K"
+        }
+       ]
       },
       "beats": [
        {
-        "narration": "Böleni sıfır yapan değer 2. x yerine 2 yazarız.",
-        "focus": []
+        "narration": "Bölme eşitliğini yaz: P x, x eksi 2 çarpı B x artı K.",
+        "stage": 0
        },
        {
-        "narration": "2 küp 8, eksi 2 çarpı 2, eksi 4, artı 1. Kalan 5.",
-        "focus": []
+        "narration": "Her iki tarafta x yerine 2 yaz.",
+        "stage": 1
+       },
+       {
+        "narration": "2 eksi 2 sıfır; sıfır çarpı B 2 de sıfır.",
+        "stage": 2
+       },
+       {
+        "narration": "Geriye yalnız kalan kalır: P 2 eşittir K.",
+        "stage": 3
        }
       ],
-      "explanation": "Kalan $P(2) = 8 - 4 + 1 = 5$. Bölme yapmadan, **böleni sıfır yapan değeri** yazarak bulundu.",
-      "narration": "Şimdi sıra sende. Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap 5. Kalan teoremiyle x yerine böleni sıfır yapan 2'yi yazdık. Eksi 3'ü seçen x yerine eksi 2 yazmıştır; x eksi 2'yi sıfır yapan artı 2'dir. 1'i seçen ise sabit terimi kalan sanmıştır."
+      "explanation": "x = 2'de bölen sıfır olur; bölüm terimi silinir, **yalnız kalan kalır**: $P(2) = K$.",
+      "narration": "Şimdi sıra sende. Bölme eşitliğine bak.",
+      "explanationNarration": "Doğru cevap K. x eşittir 2'de bölen sıfır olur, bölüm terimi silinir ve yalnız kalan kalır. Sıfırı seçen, bütün sağ tarafın silindiğini sanmıştır; silinen yalnız bölüm terimidir."
+     },
+     {
+      "kind": "rule",
+      "title": "Kalanı bulmanın yolları",
+      "items": [
+       "$(x - a)$ ile bölümde **x yerine a** yazılır: $x - 3$ için $P(3)$.",
+       "$(ax + b)$ ile bölümde **böleni sıfır yapan** $x = -\\frac{b}{a}$ yazılır.",
+       "Bölen birinci dereceyse kalan bir **sabit sayıdır**.",
+       "Bölen ikinci dereceyse kalan **en çok birinci dereceden**: $mx + n$."
+      ],
+      "narration": "Kalanı dört durumda böyle bulursun. x eksi a ile bölümde x yerine a yazılır; x eksi 3 için P 3. a x artı b ile bölümde böleni sıfır yapan eksi b bölü a yazılır. Bölen birinci dereceyse kalan bir sabit sayıdır. Bölen ikinci dereceyse kalan en çok birinci dereceden, m x artı n biçimindedir."
+     },
+     {
+      "kind": "example",
+      "title": "Bölen 2x + 1",
+      "example": "Sekiz x küp eksi iki x artı üçün iki x artı bire bölümünden kalanı bulalım.",
+      "visual": {
+       "kind": "formula",
+       "latex": "P\\left(-\\tfrac{1}{2}\\right) = 8\\left(-\\tfrac{1}{8}\\right) - 2\\left(-\\tfrac{1}{2}\\right) + 3 = 3",
+       "caption": "Böleni sıfır yapan değer: x = −1/2"
+      },
+      "narration": "Bir örnek çözelim. Sekiz x küp eksi iki x artı üçün iki x artı bire bölümünden kalanı bulalım.",
+      "beats": [
+       {
+        "narration": "Önce böleni sıfır yapan değer: iki x artı bir eşittir sıfır, x eşittir eksi ikide bir.",
+        "note": "x = −1/2"
+       },
+       {
+        "narration": "Eksi ikide birin küpü eksi sekizde bir; sekizle çarpınca eksi 1.",
+        "note": "8 · (−1/8) = −1"
+       },
+       {
+        "narration": "Eksi 2 çarpı eksi ikide bir, artı 1. Artı 3 de eklenince kalan 3.",
+        "note": "−1 + 1 + 3 = 3"
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Bölen ikinci dereceden",
+      "example": "Bir polinomun x eksi 1 ile **bölümünden kalan** 3, x artı 1 ile bölümünden kalan 5'tir. x kare eksi 1 ile bölümünden kalan nedir?",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "x",
+        "x² − 1",
+        "Kalan mx + n",
+        "P(x)"
+       ],
+       "rows": [
+        [
+         "1",
+         "0",
+         "m + n",
+         "3"
+        ],
+        [
+         "−1",
+         "0",
+         "−m + n",
+         "5"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "narration": "Bölen ikinci dereceden olunca ne yaparız? Bir polinomun x eksi 1 ile bölümünden kalan 3, x artı 1 ile bölümünden kalan 5'tir. x kare eksi 1 ile bölümünden kalan nedir?",
+      "beats": [
+       {
+        "narration": "Kalan en çok birinci dereceden; ona m x artı n diyelim.",
+        "note": "P(x) = (x² − 1) · B(x) + mx + n"
+       },
+       {
+        "narration": "x yerine 1 yaz: x kare eksi 1 sıfır olur, geriye m artı n kalır. Bu 3'e eşit.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "x yerine eksi 1 yaz: bölen yine sıfır; eksi m artı n, 5'e eşit.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "İki denklemi topla: 2 n eşittir 8, n eşittir 4; m eşittir eksi 1. Kalan eksi x artı 4.",
+        "note": "K(x) = −x + 4"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Böleni sıfır yapan değer",
+      "wrong": "$(2x - 1)$ ile bölümden kalan için x yerine 1 yazılır.",
+      "right": "Böleni sıfır yapan değer yazılır: $2x - 1 = 0$, $x = \\frac{1}{2}$.",
+      "why": "x yerine 1 yazan, $(x - 1)$ ile bölümün kalanını bulur.",
+      "narration": "Sık yapılan hata: bölen 2 x eksi 1 iken x yerine 1 yazmak. Böleni sıfır yapan değer yazılır: 2 x eksi 1 eşittir 0, x eşittir ikide bir. x yerine 1 yazan, x eksi 1 ile bölümün kalanını bulur."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$P(x) = x^3 - 2x^2 + kx + 1$ polinomunun $(x - 2)$ ile bölümünden kalan 7 olduğuna göre, $k$ kaçtır?",
+       "stem": "$P(x) = x^3 + kx^2 - 5x + 4$ polinomunun $(x - 2)$ ile bölümünden kalan 6 olduğuna göre $k$ kaçtır?",
        "options": [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5"
+        "$-1$",
+        "$0$",
+        "$1$",
+        "$2$",
+        "$3$"
        ],
        "answer": 2,
-       "narration": "Kalan teoremiyle denklem kuralım.",
+       "narration": "Kalan teoremiyle bir denklem kuralım.",
        "steps": [
         {
-         "text": "Kalan $P(2) = 8 - 8 + 2k + 1 = 2k + 1$",
-         "narration": "Kalan P 2'dir: 2 küp 8, eksi 2 çarpı 4, eksi 8, artı 2 k, artı 1. Toplam 2 k artı 1."
+         "text": "Kalan $= P(2) = 8 + 4k - 10 + 4 = 4k + 2$",
+         "narration": "Kalan P 2: 8 artı 4 k eksi 10 artı 4; toplam 4 k artı 2."
         },
         {
-         "text": "$2k + 1 = 7 \\Rightarrow k = 3$",
-         "narration": "Bu 7'ye eşit: 2 k eşittir 6, k eşittir 3."
+         "text": "$4k + 2 = 6 \\Rightarrow k = 1$",
+         "narration": "Bu 6'ya eşit: 4 k eşittir 4, k eşittir 1."
         },
         {
-         "text": "Cevap **C**.",
-         "narration": "Cevabımız C.",
+         "text": "Cevap **C**. x yerine $-2$ yazan $k = 0$ bulur.",
+         "narration": "Cevabımız C. x yerine eksi 2 yazan 4 k artı 6 eşittir 6 kurar ve sıfırı seçer.",
          "eliminate": [
           "A",
           "B",
@@ -356,7 +1196,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki kalan teoremi kalıbı örnek alındı, polinom ve kalan özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki kalan teoremi kalıbı örnek alındı, polinom, kalan ve işaret tuzağı özgün."
        }
       }
      },
@@ -364,108 +1204,73 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$P(x + 1) = x^2 + 3x + 2$ olduğuna göre, $P(x)$ polinomunun $(x - 3)$ ile bölümünden kalan kaçtır?",
+       "stem": "$P(x - 2) = x^2 + x - 3$ olduğuna göre, $P(x)$ polinomunun $(x - 1)$ ile bölümünden kalan kaçtır?",
        "options": [
-        "2",
-        "6",
-        "10",
-        "12",
-        "20"
+        "$-3$",
+        "$-1$",
+        "$3$",
+        "$7$",
+        "$9$"
        ],
-       "answer": 3,
-       "narration": "İstenen P 3. Parantezin içini 3 yapalım.",
+       "answer": 4,
+       "narration": "Kalan teoremi ile parantez tuzağı bir arada.",
        "steps": [
         {
-         "text": "Kalan $P(3)$. $x + 1 = 3 \\Rightarrow x = 2$",
-         "narration": "Kalan P 3'tür. Verilen ifadede parantezin içi x artı 1; bunu 3 yapan x, 2."
+         "text": "Kalan $P(1)$; $x - 2 = 1 \\Rightarrow x = 3$",
+         "narration": "Kalan P 1. Parantezin içi 1 olmalı: x eksi 2 eşittir 1, x eşittir 3."
         },
         {
-         "text": "$P(3) = 2^2 + 3 \\cdot 2 + 2 = 4 + 6 + 2 = 12$",
-         "narration": "x yerine 2 yazalım: 4 artı 6 artı 2, 12."
+         "text": "$3^2 + 3 - 3 = 9$",
+         "narration": "x yerine 3 yazalım: 9 artı 3 eksi 3, yani 9."
         },
         {
-         "text": "Cevap **D**. $x$ yerine 3 yazan 20 bulur.",
-         "narration": "Cevabımız D. Doğrudan x yerine 3 yazan 9 artı 9 artı 2, 20 bulur; fonksiyonlar dersindeki tuzağın aynısı.",
+         "text": "Cevap **E**.",
+         "narration": "Cevabımız E. x yerine doğrudan 1 yazan eksi 1, x'i eksi 1 bulan da eksi 3 bulur.",
          "eliminate": [
           "A",
           "B",
           "C",
-          "E"
+          "D"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki \"P(x + a) verilen polinomun kalanı\" kalıbı örnek alındı, polinom özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki \"P(x − 2) verilen polinom\" kalıbı kalan teoremiyle birleştirildi, polinom ve bölen özgün."
        }
       }
      },
      {
       "kind": "question",
       "question": {
-       "style": "TYT tarzı",
-       "stem": "$P(x) = 8x^3 - 4x + 3$ polinomunun $(2x - 1)$ ile bölümünden kalan kaçtır?",
+       "style": "ÖSYM tarzı",
+       "stem": "Bir öğrenci, bir $P(x)$ polinomu hakkında iki bilgi not ediyor: $P(x)$'in katsayılarının toplamı 5'tir ve $P(x)$ polinomu x'e bölündüğünde kalan $-2$'dir. Öğrenci bu iki bilgiyle, polinomu açıkça bilmeden $x^2 - x$ ile bölümünden kalanı bulmak istiyor. Buna göre bu kalan aşağıdakilerden hangisidir?",
        "options": [
-        "0",
-        "1",
-        "2",
-        "3",
-        "5"
+        "$7x - 2$",
+        "$5x - 2$",
+        "$3x - 2$",
+        "$-2x + 5$",
+        "$-2x + 7$"
        ],
-       "answer": 2,
-       "narration": "Bölen birinci dereceden ama x'in katsayısı 1 değil.",
+       "answer": 0,
+       "narration": "Önce verilen bilgileri polinom diline çevir.",
        "steps": [
         {
-         "text": "Böleni sıfır yapan değer: $2x - 1 = 0 \\Rightarrow x = \\frac{1}{2}$",
-         "narration": "Böleni sıfır yapan değeri bulalım: 2 x eksi 1 eşittir 0, x eşittir ikide bir."
+         "text": "$P(1) = 5$, $P(0) = -2$",
+         "narration": "Katsayılar toplamı P 1, yani 5. x'e bölümden kalan P 0, yani eksi 2.",
+         "mark": [
+          "katsayılarının toplamı 5",
+          "kalan $-2$"
+         ]
         },
         {
-         "text": "$P\\left(\\frac{1}{2}\\right) = 8 \\cdot \\frac{1}{8} - 4 \\cdot \\frac{1}{2} + 3 = 1 - 2 + 3 = 2$",
-         "narration": "x yerine ikide bir yazalım. İkide birin küpü sekizde bir; 8 ile çarpınca 1. Eksi 4 çarpı ikide bir, eksi 2. Artı 3. Toplam 2."
+         "text": "$x^2 - x = x(x - 1)$; kalan $mx + n$; $P(0) = n = -2$",
+         "narration": "Bölen x çarpı x eksi 1; ikinci dereceden, kalan m x artı n. x yerine 0 yazınca n eşittir eksi 2."
         },
         {
-         "text": "Cevap **C**.",
-         "narration": "Kalan 2. Cevabımız C. x yerine 1 yazan, bölenin katsayısını unutmuş olur ve 7 bulur.",
+         "text": "$P(1) = m + n = 5 \\Rightarrow m = 7$. Kalan $7x - 2$. Cevap **A**.",
+         "narration": "x yerine 1: m artı n eşittir 5, m eşittir 7. Kalan 7 x eksi 2. Cevabımız A. m'yi doğrudan 5 sanan B'yi seçer.",
          "eliminate": [
-          "A",
           "B",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; MEB anlatımındaki \"ax + b ile bölümden kalan\" kuralı ve havuzdaki kalıp örnek alındı, polinom özgün."
-       }
-      }
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "$P(x)$ polinomunun $(x - 1)$ ile bölümünden kalan 3, $(x + 1)$ ile bölümünden kalan 5'tir. Buna göre $P(x)$'in $(x^2 - 1)$ ile bölümünden kalan aşağıdakilerden hangisidir?",
-       "options": [
-        "$x + 4$",
-        "$-x + 4$",
-        "$4x - 1$",
-        "$x - 4$",
-        "$-x - 4$"
-       ],
-       "answer": 1,
-       "narration": "İkinci dereceden bir polinoma bölünce kalan en fazla birinci derecedendir: ax artı b.",
-       "steps": [
-        {
-         "text": "$P(x) = (x^2 - 1) \\cdot B(x) + ax + b$. Kalan teoremi: $P(1) = 3$, $P(-1) = 5$.",
-         "narration": "Kalan ax artı b olsun. x kare eksi bir, x bir ve x eksi bir için sıfır olur. Kalan teoremine göre P bir üç, P eksi bir beş."
-        },
-        {
-         "text": "$x = 1$: $a + b = 3$; $x = -1$: $-a + b = 5$ → $b = 4$, $a = -1$.",
-         "narration": "x yerine bir koyunca bölüm terimi sıfırlanır: a artı b üç. x yerine eksi bir koyunca: eksi a artı b beş. Toplarsak iki b sekiz, b dört; a eksi bir."
-        },
-        {
-         "text": "Kalan $= -x + 4$. Kontrol: $-1 + 4 = 3$, $1 + 4 = 5$ ✓. Cevap **B**.",
-         "narration": "Kalan eksi x artı dört. Kontrol: x bir iken üç, x eksi bir iken beş. Cevabımız B.",
-         "eliminate": [
-          "A",
           "C",
           "D",
           "E"
@@ -473,7 +1278,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki kalan teoremi ikinci dereceden bir bölene genişletilerek özgün sayılarla soruldu."
+        "changes": "Havuzdaki \"sabit terim ve katsayılar toplamı verilip x² − x ile kalan\" kalıbı örnek alındı; bağlam, değerler (5 ve −2) ve bilgilerin veriliş biçimi özgün."
        }
       }
      }
@@ -482,55 +1287,176 @@
    {
     "subtopic": "MAT_POLINOM_06",
     "title": "Çarpan teoremi",
-    "narration": "Kalan sıfırsa bölen bir çarpandır. Bu basit fikir, çarpan teoremidir.",
+    "narration": "Kalan sıfır çıkarsa ne olur? Bölen, polinomun bir çarpanı olur.",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Çarpan ve kök",
+      "text": "Kalan **sıfırsa** bölen bir **çarpandır**: $P(a) = 0$ ise $(x - a)$, $P(x)$'i tam böler. Bu a sayısına polinomun **kökü** denir.",
+      "narration": "Bir polinomu x eksi a'ya böldün ve kalan sıfırsa, x eksi a bir çarpandır; polinomu tam böler. O a sayısına da polinomun kökü denir."
+     },
+     {
+      "kind": "visual",
+      "title": "Kökler grafikte",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -2,
+        4
+       ],
+       "y": [
+        -6,
+        6
+       ],
+       "curves": [
+        {
+         "expression": "x^3 - 3*x^2 - x + 3",
+         "label": "P(x)"
+        }
+       ],
+       "points": [
+        {
+         "x": -1,
+         "y": 0,
+         "label": "−1"
+        },
+        {
+         "x": 1,
+         "y": 0,
+         "label": "1"
+        },
+        {
+         "x": 3,
+         "y": 0,
+         "label": "3"
+        }
+       ]
+      },
+      "narration": "x küp eksi 3 x kare eksi x artı 3'ün grafiğine bakalım.",
+      "beats": [
+       {
+        "narration": "Eğri x eksenini üç yerde kesiyor; bu noktalarda P x sıfır.",
+        "show": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "P eksi 1 sıfır; o halde x artı 1 bir çarpan.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "P 1 sıfır; x eksi 1 de bir çarpan.",
+        "show": [
+         "p2"
+        ],
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "P 3 sıfır; x eksi 3 de çarpan. Polinom bu üç çarpanın çarpımıdır.",
+        "show": [
+         "p3"
+        ],
+        "focus": [
+         "p3"
+        ],
+        "note": "P(x) = (x + 1)(x − 1)(x − 3)"
+       }
+      ]
+     },
+     {
       "kind": "rule",
-      "title": "Kalan sıfır = çarpan",
+      "title": "Çarpan teoremi",
       "items": [
-       "$P(a) = 0 \\iff (x - a)$, $P(x)$'in bir **çarpanıdır**.",
-       "$P(a) = 0$ ise $a$, $P$'nin bir **köküdür**.",
-       "$(x + 2)$ çarpansa $P(-2) = 0$ yaz.",
-       "İki çarpan verilirse **iki denklem** kurulur."
+       "$P(a) = 0$ ise $(x - a)$ bir **çarpandır**; tersi de doğrudur.",
+       "$(x + 2)$ çarpansa **x yerine eksi 2** yazılır: $P(-2) = 0$.",
+       "$(ax + b)$ çarpansa $P\\left(-\\frac{b}{a}\\right) = 0$ olur.",
+       "İki çarpan verilirse **iki denklem** kurulur.",
+       "Kökleri $r_1$, $r_2$, $r_3$ olan 3. dereceden polinom: $k(x - r_1)(x - r_2)(x - r_3)$; $k$ **baş katsayıdır**."
       ],
-      "narration": "P a sıfır ise x eksi a, P x'in bir çarpanıdır ve a, P'nin bir köküdür. Bir çarpan verildiğinde onu sıfır yapan değeri x yerine yazar ve sonucu sıfıra eşitlersin. x artı 2 çarpansa P eksi 2 sıfırdır. İki çarpan verilirse iki denklem kurarsın."
+      "narration": "Çarpan teoremini maddeler halinde toplayalım. P a sıfırsa x eksi a bir çarpandır; tersi de doğrudur. x artı 2 çarpansa x yerine eksi 2 yazılır, sonuç sıfırdır. a x artı b çarpansa eksi b bölü a'da polinom sıfırdır. İki çarpan verilirse iki denklem kurulur. Kökleri bilinen üçüncü dereceden polinom, k çarpı köklerden gelen üç çarpandır; k baş katsayıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Kökleri deneyerek bul",
+      "example": "x küp eksi 7 x artı 6'nın çarpanlarını bulalım.",
+      "narration": "Şimdi kökleri deneyerek bulma zamanı. x küp eksi 7 x artı 6'nın çarpanlarını bulalım.",
+      "steps": [
+       {
+        "narration": "Baş katsayı 1 iken tam sayı kökler sabit terimin bölenlerindedir.",
+        "text": "Kökler **6'nın bölenlerinde**"
+       },
+       {
+        "narration": "1'i dene: 1 eksi 7 artı 6, sıfır.",
+        "math": "1 - 7 + 6 = 0",
+        "text": "x − 1 çarpan"
+       },
+       {
+        "narration": "2'yi dene: 8 eksi 14 artı 6, yine sıfır.",
+        "math": "8 - 14 + 6 = 0",
+        "text": "x − 2 çarpan"
+       },
+       {
+        "narration": "Eksi 3'ü dene: eksi 27 artı 21 artı 6, sıfır.",
+        "math": "-27 + 21 + 6 = 0",
+        "text": "x + 3 çarpan"
+       },
+       {
+        "narration": "Üç kök bulduk; polinom x eksi 1, x eksi 2 ve x artı 3'ün çarpımıdır.",
+        "math": "x^3 - 7x + 6 = (x - 1)(x - 2)(x + 3)"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "İşareti ters çevir",
+      "wrong": "$(x + 2)$ bir çarpansa $P(2) = 0$ olur.",
+      "right": "Çarpanı sıfır yapan sayı yazılır: $x + 2 = 0$, $x = -2$ ve $P(-2) = 0$.",
+      "why": "İşareti ters çevirmeyi unutan, yanlış denklemi kurar.",
+      "narration": "Son tuzak: x artı 2 çarpan diye P 2 sıfır demek. Çarpanı sıfır yapan sayı yazılır: x artı 2 eşittir 0, x eşittir eksi 2; P eksi 2 sıfırdır. İşareti ters çevirmeyi unutan, yanlış denklemi kurar."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$P(x) = x^3 + ax^2 - 4x + 4$ polinomunun bir çarpanı $(x + 2)$ olduğuna göre, $a$ kaçtır?",
+       "stem": "$P(x) = x^3 + ax^2 + x + 6$ polinomunun bir çarpanı $(x + 2)$ olduğuna göre $a$ kaçtır?",
        "options": [
+        "$-4$",
         "$-2$",
         "$-1$",
-        "$0$",
         "$1$",
         "$2$"
        ],
-       "answer": 1,
+       "answer": 3,
        "narration": "Çarpan teoremiyle denklem kuralım.",
        "steps": [
         {
          "text": "$(x + 2)$ çarpan → $P(-2) = 0$",
-         "narration": "x artı 2 bir çarpansa onu sıfır yapan eksi 2'de polinom sıfır olur."
+         "narration": "x artı 2 çarpansa onu sıfır yapan eksi 2'de polinom sıfırdır."
         },
         {
-         "text": "$-8 + 4a + 8 + 4 = 0 \\Rightarrow 4a + 4 = 0$",
-         "narration": "Eksi 2'nin küpü eksi 8; a çarpı 4, 4 a; eksi 4 çarpı eksi 2, artı 8; artı 4. Toplam 4 a artı 4, sıfıra eşit."
+         "text": "$-8 + 4a - 2 + 6 = 4a - 4 = 0$",
+         "narration": "Eksi 2'nin küpü eksi 8, artı 4 a, eksi 2, artı 6. Toplam 4 a eksi 4, sıfıra eşit."
         },
         {
-         "text": "$a = -1$. Cevap **B**.",
-         "narration": "a eşittir eksi 1. Cevabımız B. Eksi 2'nin küpünü artı 8 alan farklı bir sonuç bulur; tek kuvvette eksi kalır.",
+         "text": "$a = 1$. Cevap **D**. $P(2) = 0$ yazan $-4$ bulur.",
+         "narration": "a eşittir 1. Cevabımız D. Yanlışlıkla P 2'yi sıfıra eşitleyen, 8 artı 4 a artı 2 artı 6'dan eksi 4 bulur.",
          "eliminate": [
           "A",
+          "B",
           "C",
-          "D",
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki çarpan teoremi kalıbı örnek alındı, polinom özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki çarpan teoremi kalıbı örnek alındı, polinom ve işaret tuzağının verdiği değer özgün."
        }
       }
      },
@@ -538,7 +1464,7 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$P(x) = x^3 + ax + b$ polinomunun iki çarpanı $(x - 1)$ ve $(x + 2)$ olduğuna göre, $a \\cdot b$ çarpımı kaçtır?",
+       "stem": "$P(x) = x^3 + ax + b$ polinomunun iki çarpanı $(x - 1)$ ve $(x + 2)$ olduğuna göre $a \\cdot b$ çarpımı kaçtır?",
        "options": [
         "$-6$",
         "$-3$",
@@ -555,7 +1481,7 @@
         },
         {
          "text": "Birinciden ikinciyi çıkar: $9 + 3a = 0 \\Rightarrow a = -3$, $b = 2$",
-         "narration": "Birinci denklemden ikinciyi çıkaralım: b'ler gider; 1 artı 8, 9; a artı 2 a, 3 a. 9 artı 3 a eşittir 0; a eksi 3. Birinci denklemden b, 2."
+         "narration": "Birinci denklemden ikinciyi çıkaralım; b'ler gider: 9 artı 3 a eşittir 0, a eşittir eksi 3. Birinci denklemden b eşittir 2."
         },
         {
          "text": "$a \\cdot b = -6$. Cevap **A**.",
@@ -569,7 +1495,87 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki \"iki çarpanı verilen polinom\" kalıbı örnek alındı, polinom özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki \"iki çarpanı verilen polinom\" kalıbı örnek alındı, polinom ve çarpanlar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         -2,
+         4
+        ],
+        "y": [
+         -12,
+         12
+        ],
+        "xLabel": "x",
+        "yLabel": "y",
+        "curves": [
+         {
+          "expression": "2*(x+1)*(x-1)*(x-3)",
+          "label": "P(x)"
+         }
+        ],
+        "points": [
+         {
+          "x": -1,
+          "y": 0,
+          "label": "−1"
+         },
+         {
+          "x": 1,
+          "y": 0,
+          "label": "1"
+         },
+         {
+          "x": 3,
+          "y": 0,
+          "label": "3"
+         },
+         {
+          "x": 0,
+          "y": 6,
+          "label": "6"
+         }
+        ]
+       },
+       "stem": "Bir öğrenci, grafiği verilen üçüncü dereceden $P(x)$ polinomunun köklerini ve sabit terimini grafikten okuyor. Grafik x eksenini yalnız $-1$, $1$ ve $3$ noktalarında, y eksenini $6$ noktasında kesmektedir. Buna göre $P(x)$ polinomunun $(x - 4)$ ile bölümünden kalan kaçtır?",
+       "options": [
+        "10",
+        "15",
+        "24",
+        "30",
+        "45"
+       ],
+       "answer": 3,
+       "narration": "Grafikten oku, çarpan ve kalan teoremini birlikte kullan.",
+       "steps": [
+        {
+         "text": "Kökler $-1, 1, 3$ → $P(x) = k(x + 1)(x - 1)(x - 3)$",
+         "narration": "Kökler eksi 1, 1 ve 3. Çarpan teoremiyle P x, k çarpı x artı 1, x eksi 1 ve x eksi 3'tür."
+        },
+        {
+         "text": "$P(0) = k \\cdot 1 \\cdot (-1) \\cdot (-3) = 3k = 6 \\Rightarrow k = 2$",
+         "narration": "y eksenini 6'da kesmesi P 0 eşittir 6 demek. x yerine 0: k çarpı 1 çarpı eksi 1 çarpı eksi 3, 3 k. 3 k eşittir 6, k eşittir 2."
+        },
+        {
+         "text": "Kalan $P(4) = 2 \\cdot 5 \\cdot 3 \\cdot 1 = 30$. Cevap **D**.",
+         "narration": "Kalan teoremiyle kalan P 4: 2 çarpı 5 çarpı 3 çarpı 1, yani 30. Cevabımız D. Baş katsayıyı 1 sanan 15 bulur.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki \"kökleri ve baş katsayısı verilen 3. dereceden polinomda değer\" kalıbı örnek alındı; kökler ve baş katsayı grafikten okunacak biçimde verildi, istenen kalan özgün."
        }
       }
      }
@@ -578,78 +1584,79 @@
   ],
   "summary": {
    "points": [
-    "Polinomda üsler **doğal sayı**; $\\frac{1}{x}$, $\\sqrt{x}$ polinom değil.",
+    "Polinomda x'in üsleri **doğal sayı**; katsayılar her gerçek sayı olabilir.",
+    "Derece en büyük üs; baş katsayı o terimin katsayısı.",
     "$P(1)$ katsayılar toplamı, $P(0)$ sabit terim.",
-    "$\\text{der}[P \\cdot Q]$ toplanır, $\\text{der}[P(Q)]$ çarpılır.",
-    "$(x - a)$ ile bölümden kalan **$P(a)$**.",
-    "$P(a) = 0$ ise $(x - a)$ **çarpandır**.",
-    "$P(x + 1)$ verilince önce **parantezin içini** eşitle."
+    "Çarpımda dereceler **toplanır**, iç içe yazmada **çarpılır**.",
+    "Bölünen = bölen · bölüm + kalan; kalanın derecesi bölenden küçük.",
+    "$(x - a)$ ile bölümden kalan **$P(a)$**; $P(a) = 0$ ise $(x - a)$ **çarpandır**."
    ],
    "warnings": [
-    "$x - 2$ için $x$ yerine **2** yazılır, $-2$ değil.",
-    "$(-2)^3 = -8$",
-    "Sıfır polinomunun derecesi **tanımsızdır**.",
-    "Sabit polinomun derecesi **0**."
+    "$P(x + 1)$ verilince önce **parantezin içini** eşitle.",
+    "$(x + 2)$ için x yerine **−2** yazılır.",
+    "Bölmede eksik terime **0** yaz.",
+    "Sıfır polinomunun derecesi **belirsizdir**."
    ],
-   "narration": "Hadi toparlayalım. Polinomda x'in üsleri doğal sayıdır. P 1 katsayılar toplamını, P 0 sabit terimi verir. Çarpımda dereceler toplanır, iç içe yazmada çarpılır. Bir polinomun x eksi a ile bölümünden kalan P a'dır; kalan sıfırsa x eksi a bir çarpandır. P x artı 1 gibi verilen ifadelerde önce parantezin içini istenen sayıya eşitle."
+   "narration": "Hadi toparlayalım. Polinomda x'in üsleri doğal sayıdır, katsayılar ise her gerçek sayı olabilir. Derece en büyük üstür. P 1 katsayılar toplamını, P 0 sabit terimi verir. Çarpımda dereceler toplanır, iç içe yazmada çarpılır. Bölmede kalanın derecesi bölenden küçüktür. x eksi a ile bölümden kalan P a'dır; kalan sıfırsa x eksi a bir çarpandır. Ve her zaman böleni ya da parantezi sıfır yapan doğru sayıyı yaz."
   }
  },
  "short": {
-  "hook": "Polinomda üç kısa yol.",
-  "cards": [
-   {
-    "kind": "fact",
-    "text": "$P(1)$ = **katsayılar toplamı**."
-   },
-   {
-    "kind": "fact",
-    "text": "$P(0)$ = **sabit terim**."
-   },
-   {
-    "kind": "fact",
-    "text": "$(x - a)$ ile kalan **$P(a)$**."
-   },
-   {
-    "kind": "warning",
-    "text": "$\\sqrt{x}$ içeren ifade **polinom değil**."
-   }
-  ],
-  "summary": [
-   "P 1 katsayılar toplamı",
-   "P 0 sabit terim",
-   "Kalan P a"
-  ],
+  "hook": "Polinomu sıfırlayan sayı?",
   "rounds": [
    {
     "sentence": "Katsayılar toplamı",
-    "question": "x yerine ne?",
+    "question": "P(1) mi, P(0) mı?",
     "choices": [
-     "0",
-     "1"
+     "P(1)",
+     "P(0)"
     ],
-    "answer": 1,
-    "why": "**P 1** yaz."
+    "answer": 0,
+    "why": "Sabit terim **P(0)**."
    },
    {
-    "sentence": "$x - 3$ ile bölümden kalan",
-    "question": "P eksi 3 mü?",
+    "sentence": "$x + 2$ bir çarpan",
+    "question": "Hangisi sıfır?",
     "choices": [
-     "Evet",
-     "Hayır"
+     "P(2)",
+     "P(−2)"
     ],
     "answer": 1,
-    "why": "**P 3**."
+    "why": "Kök **eksi 2**."
    },
    {
-    "sentence": "$\\sqrt{x} + 1$",
+    "sentence": "$\\sqrt{2}\\,x^3 + 1$",
     "question": "Polinom mu?",
     "choices": [
      "Evet",
      "Hayır"
     ],
-    "answer": 1,
-    "why": "Üs **kesirli**."
+    "answer": 0,
+    "why": "Kısıt **üslerde**, katsayıda değil."
    }
+  ],
+  "cards": [
+   {
+    "kind": "fact",
+    "text": "$P(1)$ = **katsayılar toplamı**, $P(0)$ = **sabit terim**."
+   },
+   {
+    "kind": "fact",
+    "text": "$(x - a)$ ile bölümden kalan **$P(a)$**."
+   },
+   {
+    "kind": "warning",
+    "text": "$P(x + 1)$ verilince önce **parantezin içini** eşitle."
+   },
+   {
+    "kind": "term",
+    "term": "Çarpan",
+    "definition": "$P(a) = 0$ ise $(x - a)$ **çarpandır**."
+   }
+  ],
+  "summary": [
+   "Üsler doğal sayı",
+   "Kalan: böleni sıfır yapan değer",
+   "Kalan sıfırsa çarpan"
   ]
  },
  "camp": {

@@ -1,6 +1,6 @@
 # YouTube metni: AYT Coğrafya kampı · Ders 26 · Küresel Çevre Sorunları
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/26_Kuresel_Cevre_Sorunlari/Kuresel_Cevre_Sorunlari_YouTube.mp4` (4K) · Kapak: `Kuresel_Cevre_Sorunlari_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Cografya/26_Kuresel_Cevre_Sorunlari/Kuresel_Cevre_Sorunlari_YouTube.mp4` (4K) · Kapak: `Kuresel_Cevre_Sorunlari_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

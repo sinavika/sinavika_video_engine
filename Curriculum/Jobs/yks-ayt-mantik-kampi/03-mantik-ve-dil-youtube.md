@@ -1,6 +1,6 @@
 # YouTube metni: AYT Mantık kampı · Ders 3 · Mantık ve Dil
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Mantik/03_Mantik_Ve_Dil/Mantik_Ve_Dil_YouTube.mp4` (4K) · Kapak: `Mantik_Ve_Dil_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Mantik/03_Mantik_Ve_Dil/Mantik_Ve_Dil_YouTube.mp4` (4K) · Kapak: `Mantik_Ve_Dil_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

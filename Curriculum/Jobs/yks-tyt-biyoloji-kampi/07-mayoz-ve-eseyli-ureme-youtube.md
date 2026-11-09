@@ -1,6 +1,6 @@
 # YouTube metni: TYT Biyoloji kampı · Ders 7 · Mayoz ve Eşeyli Üreme
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Biyoloji/07_Mayoz_ve_Eseyli_Ureme/Mayoz_ve_Eseyli_Ureme_YouTube.mp4` (4K) · Kapak: `Mayoz_ve_Eseyli_Ureme_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Biyoloji/07_Mayoz_ve_Eseyli_Ureme/Mayoz_ve_Eseyli_Ureme_YouTube.mp4` (4K) · Kapak: `Mayoz_ve_Eseyli_Ureme_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

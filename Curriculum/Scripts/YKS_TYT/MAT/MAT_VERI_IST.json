@@ -12,60 +12,586 @@
   "TYT"
  ],
  "sources": [
-  "YKS/TYT/KonuAnlatimi/MAT/MAT_VERI_IST.json (MEB Temel Matematik: veri türleri, sıklık tablosu, sütun, daire ve çizgi grafiği, aritmetik ortalama, ortanca, tepe değer, açıklık)",
-  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: 14 soru; 7'si ortanca (mod-medyan-ortalama birlikte, sıcaklıklar, takım boyları, temsil gücü), aritmetik ortalama (yaş grubu), grafik yorumlama)",
-  "YKS/TYT/Sorular/MAT/MAT_VERI_IST.jsonl (281 soru; ortalama, ortanca ve grafik yorumlama kalıpları)"
+  "YKS/TYT/KonuAnlatimi/yks_tyt_kn_temel-matematik_meb-konu-anlatimi s. 108–112 (MEB OGM: veri, kesikli ve sürekli veri, aritmetik ortalama, ortanca, tepe değer, açıklık, gruplama ve histogram, sütun, daire ve çizgi grafiği)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: 14 soru; ortanca 2018 ve 2021–2026, tepe değer 2019, aritmetik ortalama 2020, grafik yorumlama 2018, 2022, 2023, 2024, 2026)",
+  "YKS/TYT/Sorular/MAT/MAT_VERI_IST.jsonl (soru havuzu: daire grafiği açısı, sıklık tablosu, tepe değer, açıklık ve ortalama kalıpları)"
  ],
  "lesson": {
   "hook": {
-   "headline": "Bir milyarder kafeye girince ortalama gelir uçar. Ortanca kıpırdamaz.",
-   "narration": "Bir kafede on kişi oturuyor ve aylık gelirleri birbirine yakın. İçeri bir milyarder girdiğinde ortalama gelir bir anda uçar, ama ortanca neredeyse hiç değişmez. Hangi ölçünün neyi anlattığını bilmek istatistiğin özüdür. ÖSYM bu konuda son yıllarda en çok ortancayı soruyor; genellikle tepe değer ve ortalamayla birlikte. Bu derste veri türlerini ve grafikleri, aritmetik ortalamayı, ortancayı, tepe değeri ve açıklığı adım adım göreceğiz."
+   "headline": "Ortalama 70, tepe değer 70. Yine de iki sınıf hiç benzemiyor.",
+   "narration": "Bir sınıfın puan ortalaması 70. Öbür sınıfın ortalaması da 70. Ama birinde herkes 70 civarında, ötekinde biri 40, biri 100 almış. Tek bir sayı bütün veriyi anlatmaz. Bu derste veriyi tanımayı, tablo ve grafik okumayı, ortalamayı, ortancayı, tepe değeri ve açıklığı öğreneceğiz."
   },
   "opening": {
-   "kind": "mistake",
-   "card": "s2-c4",
-   "narration": "On kişinin puan ortalaması yetmiş. Biri katılınca ortalama yetmiş iki oluyor. Yeni öğrencinin puanı kaç? Pek çok aday yalnızca iki puanlık farka bakar. Ama toplam değişir.",
-   "promise": "Aritmetik ortalamayı, ortancayı, tepe değeri, açıklığı ve grafik okumayı öğreneceksin."
+   "kind": "visual",
+   "card": "s7-c1",
+   "narration": "İki sınıfın puan ortalaması da 70, en çok alınan puan da 70. Bu iki sınıf gerçekten birbirine benziyor mu?",
+   "promise": "Veri türlerini, tablo ve grafikleri, ortalama, ortanca, tepe değer ve açıklığı ÖSYM tarzı sorularla öğreneceksin."
   },
   "objectives": [
-   "Veriyi uygun grafikle göstermek ve grafikten okumak",
+   "Veriyi nitel, kesikli ya da sürekli olarak ayırmak",
+   "Sıklık tablosu, sütun, daire ve çizgi grafiğini okumak",
    "Aritmetik ortalamayı toplam üzerinden kullanmak",
-   "Ortanca, tepe değer ve açıklığı bulmak",
-   "Ortalama ile ortancanın uç değerlere tepkisini ayırmak"
+   "Ortanca, tepe değer ve açıklığı bulmak ve yorumlamak",
+   "Çok koşullu grafik ve tablo sorularını çözmek"
   ],
   "sections": [
    {
     "subtopic": "MAT_VERI_IST_01",
-    "subtopics": [
-     "MAT_VERI_IST_02",
-     "MAT_VERI_IST_03",
-     "MAT_VERI_IST_04",
-     "MAT_VERI_IST_09"
-    ],
-    "title": "Veri ve grafikler",
-    "narration": "Veri sayısal ya da kategorik olabilir. Hangi grafiğin kullanılacağı verinin türüne ve anlatılmak istenene bağlıdır.",
+    "title": "Veri türleri",
+    "narration": "Önce elindeki verinin türünü tanı. Hangi grafiği çizeceğin, hangi ölçüyü hesaplayacağın buna bağlı.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Veri nedir, türleri neler?",
+      "text": "Gözlem, deney ya da anketle toplanan her bilgi **veri**dir. Bir özellik ya da kategori bildiren veri **nitel**, sayıyla ifade edilen veri **nicel** veridir. Nicel veri sayılarak bulunuyorsa **kesikli**, ölçülerek bulunuyorsa **sürekli** veridir.",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Nitel",
+         "items": [
+          "Göz rengi",
+          "Kan grubu",
+          "Tuttuğu takım"
+         ]
+        },
+        {
+         "title": "Nicel · kesikli",
+         "items": [
+          "Kardeş sayısı",
+          "Maçtaki gol sayısı"
+         ]
+        },
+        {
+         "title": "Nicel · sürekli",
+         "items": [
+          "Boy uzunluğu",
+          "Koşu süresi"
+         ]
+        }
+       ]
+      },
+      "narration": "Bir sonuç çıkarmak için topladığın her bilgi veridir. Ama her veri aynı türden değildir.",
+      "beats": [
+       {
+        "narration": "Göz rengi, kan grubu ya da tuttuğun takım sayı değil, bir özelliktir; bunlar nitel veridir.",
+        "show": [
+         "c1"
+        ],
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "Kardeş sayısı ya da maçtaki gol sayısı sayılarak bulunur; iki buçuk kardeş olmaz, bu kesikli veridir.",
+        "show": [
+         "c2"
+        ],
+        "focus": [
+         "c2"
+        ]
+       },
+       {
+        "narration": "Boy ve koşu süresi ölçülerek bulunur; iki değer arasındaki her değeri alabilir, bu sürekli veridir.",
+        "show": [
+         "c3"
+        ],
+        "focus": [
+         "c3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Türü nasıl tanırsın?",
+      "items": [
+       "**Sayılıyorsa** kesikli: 2,5 kardeş olmaz.",
+       "**Ölçülüyorsa** sürekli: 1,725 metre bir boydur.",
+       "Sayıyla yazılsa da kimlik bildiren veri **nitel**dir: forma numarası, posta kodu.",
+       "Nitel veride **ortalama alınmaz**; en çok tekrar eden sorulur."
+      ],
+      "narration": "Bir: sayılıyorsa kesikli; 2,5 kardeş olmaz. İki: ölçülüyorsa sürekli; 1,725 metre bir boydur. Üç: sayıyla yazılsa da kimlik bildiren veri niteldir, forma numarası gibi. Dört: nitel veride ortalama alınmaz; en çok tekrar eden sorulur."
+     },
+     {
+      "kind": "mistake",
+      "title": "Sayı görünce nicel deme",
+      "wrong": "Sayıyla yazılan her veri nicel veridir.",
+      "right": "Forma numarası sayıyla yazılır ama bir oyuncuyu adlandırır; nitel veridir.",
+      "why": "Toplamak ya da ortalamasını almak anlamsızsa veri niteldir: 10 numara ile 7 numaranın ortalaması 8,5 numara değildir.",
+      "narration": "Sık yapılan hata: sayıyla yazılan her veriyi nicel sanmak. Forma numarası sayıyla yazılır ama bir oyuncuyu adlandırır; nitel veridir. Toplamak ya da ortalamasını almak anlamsızsa veri niteldir. 10 numarayla 7 numaranın ortalaması 8,5 numara değildir."
+     },
+     {
+      "kind": "practice",
+      "title": "Veriyi tanı",
+      "visual": {
+       "kind": "matching",
+       "titles": [
+        "Veri",
+        "Türü"
+       ],
+       "pairs": [
+        {
+         "left": "Kan grubu",
+         "right": "Nitel"
+        },
+        {
+         "left": "Bir ailedeki çocuk sayısı",
+         "right": "Nicel, kesikli"
+        },
+        {
+         "left": "Koşucunun bitirme süresi",
+         "right": "Nicel, sürekli"
+        }
+       ]
+      },
+      "narration": "Üç veri, üç tür. Az önce öğrendiğin ölçütleri kullan.",
+      "beats": [
+       {
+        "narration": "Kan grubu bir kategoridir, sayı değildir; nitel veridir.",
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "Çocuk sayısı sayılır, iki buçuk çocuk olmaz; kesikli nicel veridir.",
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "Bitirme süresi ölçülür, saniyenin her kesrini alabilir; sürekli nicel veridir.",
+        "focus": [
+         "p3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aşağıdakilerden hangisi **sürekli** bir veridir?",
+       "options": [
+        "Bir bebeğin doğum kütlesi",
+        "Bir sınıftaki öğrenci sayısı",
+        "Bir otoparktaki araç sayısı",
+        "Öğrencilerin tuttuğu takım",
+        "Bir kitabın sayfa sayısı"
+       ],
+       "answer": 0,
+       "narration": "Önce kolay bir soru. Sor kendine: sayılıyor mu, ölçülüyor mu?",
+       "steps": [
+        {
+         "text": "Öğrenci, araç ve sayfa sayısı **sayılarak** bulunur: kesikli veri.",
+         "eliminate": [
+          "B",
+          "C",
+          "E"
+         ],
+         "narration": "Öğrenci sayısı, araç sayısı ve sayfa sayısı sayılarak bulunur; bunlar kesikli veridir."
+        },
+        {
+         "text": "Tuttuğu takım bir kategoridir: **nitel** veri.",
+         "eliminate": [
+          "D"
+         ],
+         "narration": "Tuttuğu takım bir sayı değil, bir kategoridir; nitel veridir."
+        },
+        {
+         "text": "Doğum kütlesi **ölçülür**, 3,25 kg gibi her değeri alabilir: sürekli. Cevap **A**.",
+         "narration": "Doğum kütlesi ölçülür; 3,25 kilogram gibi aradaki her değeri alabilir. Sürekli veri budur. Cevabımız A."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB'in kesikli ve sürekli veri tanımı özgün seçeneklerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "context": "I. Okula geliş süresi (dakika)\nII. Okula gelirken kullandığı ulaşım aracı\nIII. Bir haftada çözdüğü soru sayısı\nIV. Okul numarası",
+       "stem": "Bir okulun rehberlik servisi, her öğrenciden verilen dört bilgiyi toplamıştır. Okul numaraları öğrencileri yalnızca birbirinden ayırmak için verilmiştir. Bu verilerle ilgili aşağıdakilerden hangisi **doğrudur**?",
+       "options": [
+        "I ve III kesikli veridir.",
+        "Yalnız II nitel veridir.",
+        "I sürekli, III kesikli veridir.",
+        "IV nicel veridir; ortalaması alınabilir.",
+        "II ve IV sürekli veridir."
+       ],
+       "answer": 2,
+       "narration": "Şimdi dört veri birden. Her birinin türünü tek tek bul.",
+       "steps": [
+        {
+         "text": "I **ölçülür** → sürekli. III **sayılır** → kesikli.",
+         "sentences": [
+          1,
+          3
+         ],
+         "eliminate": [
+          "A"
+         ],
+         "narration": "Geliş süresi ölçülür, 12,5 dakika olabilir; sürekli veridir. Çözülen soru sayısı sayılır; kesikli veridir. A şıkkı I'i kesikli saydığı için yanlış."
+        },
+        {
+         "text": "II bir kategori → nitel. IV kimlik bildirir → **nitel**.",
+         "sentences": [
+          2,
+          4
+         ],
+         "mark": [
+          "yalnızca birbirinden ayırmak için"
+         ],
+         "eliminate": [
+          "B",
+          "D",
+          "E"
+         ],
+         "narration": "Ulaşım aracı bir kategoridir; nitel. Okul numarası yalnızca birbirinden ayırmak için verilmiş; o da nitel. Demek ki iki nitel veri var; B, D ve E elenir."
+        },
+        {
+         "text": "I sürekli, III kesikli. Cevap **C**.",
+         "narration": "Geriye kalan doğru yargı: I sürekli, III kesikli. Cevabımız C."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki öncüllü veri türü yargı kalıbı örnek alındı, veriler ve seçenekler özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_VERI_IST_02",
+    "title": "Sıklık tablosu",
+    "narration": "Ham veri dağınıktır. Sıklık tablosu onu düzenler: her değerin kaç kez geçtiğini yazar.",
     "cards": [
      {
       "kind": "visual",
-      "title": "Sıklıktan sütun grafiğine",
+      "title": "Ham veriden sıklık tablosuna",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Kitap sayısı",
+        "Sıklık",
+        "Değer × sıklık"
+       ],
+       "rows": [
+        [
+         "0",
+         "2",
+         "0"
+        ],
+        [
+         "1",
+         "5",
+         "5"
+        ],
+        [
+         "2",
+         "7",
+         "14"
+        ],
+        [
+         "3",
+         "4",
+         "12"
+        ],
+        [
+         "4",
+         "2",
+         "8"
+        ],
+        [
+         "Toplam",
+         "20",
+         "39"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "narration": "20 öğrenciye bir ayda kaç kitap okudukları soruldu. Yanıtları tek tek okumak yerine sayalım.",
+      "beats": [
+       {
+        "narration": "Hiç kitap okumayan 2, bir kitap okuyan 5 öğrenci var; bu sayılara sıklık denir.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r1",
+         "r2"
+        ]
+       },
+       {
+        "narration": "2 kitap okuyan 7, 3 kitap okuyan 4, 4 kitap okuyan 2 öğrenci var.",
+        "show": [
+         "r3",
+         "r4",
+         "r5"
+        ],
+        "focus": [
+         "r3",
+         "r4",
+         "r5"
+        ]
+       },
+       {
+        "narration": "Sıklıkların toplamı her zaman veri sayısına eşittir: 20 öğrenci.",
+        "show": [
+         "r6"
+        ],
+        "focus": [
+         "col2"
+        ]
+       },
+       {
+        "narration": "Son sütun değer çarpı sıklıktır; toplamı, okunan bütün kitapları verir: 39 kitap.",
+        "focus": [
+         "col3"
+        ],
+        "note": "Toplam kitap = değer × sıklık"
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Sıklık tablosu nasıl okunur?",
+      "items": [
+       "**Sıklıkların toplamı** veri sayısıdır.",
+       "**Değer × sıklık** toplamı, verilerin toplamıdır.",
+       "**En büyük sıklık**, en çok tekrar eden değeri gösterir.",
+       "Çok farklı değer varsa veriler **gruplanır**: 5–10, 11–16 gibi."
+      ],
+      "narration": "Bir: sıklıkların toplamı veri sayısıdır. İki: değer çarpı sıklık toplamı, verilerin toplamıdır. Üç: en büyük sıklık, en çok tekrar eden değeri gösterir. Dört: çok farklı değer varsa veriler gruplanır."
+     },
+     {
+      "kind": "example",
+      "title": "Verileri gruplamak",
+      "example": "On kişinin yaşları: 5, 6, 9, 11, 12, 14, 15, 15, 18, 20.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Yaş grubu",
+        "Kişi sayısı"
+       ],
+       "rows": [
+        [
+         "5–10",
+         "3"
+        ],
+        [
+         "11–16",
+         "5"
+        ],
+        [
+         "17–22",
+         "2"
+        ]
+       ]
+      },
+      "narration": "On kişinin yaşları: 5, 6, 9, 11, 12, 14, 15, 15, 18, 20. Bunları üç gruba ayıralım.",
+      "beats": [
+       {
+        "narration": "Önce açıklığı bul: en büyük 20, en küçük 5; fark 15.",
+        "note": "Açıklık: 20 − 5 = 15"
+       },
+       {
+        "narration": "15'i üç gruba bölünce 5 çıkar; grup genişliği, 5'ten büyük en küçük doğal sayı olan 6'dır.",
+        "note": "15 ÷ 3 = 5 → genişlik 6"
+       },
+       {
+        "narration": "Gruplar 5'ten 10'a, 11'den 16'ya, 17'den 22'ye; içlerinde 3, 5 ve 2 kişi var.",
+        "show": [
+         "r1",
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r1",
+         "r2",
+         "r3"
+        ]
+       },
+       {
+        "narration": "Kişi sayılarının toplamı yine 10; gruplanmış sıklıkların bitişik sütunlarla çizimine histogram denir.",
+        "focus": [
+         "col2"
+        ],
+        "note": "3 + 5 + 2 = 10"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Sıklık toplamı, veri toplamı değil",
+      "wrong": "Sıklık tablosunda verilerin toplamı, sıklıkların toplamıdır.",
+      "right": "Sıklıkların toplamı veri sayısını verir; verilerin toplamı için her değeri sıklığıyla çarpıp toplarsın.",
+      "why": "Kitap tablosunda sıklıklar 20 öğrenciyi, değer × sıklık toplamı 39 kitabı verir.",
+      "narration": "Dikkat et, çok kişi sıklıkları toplayıp verilerin toplamı sanıyor. Sıklıkların toplamı veri sayısını verir; verilerin toplamı için her değeri sıklığıyla çarpıp toplarsın. Kitap tablosunda sıklıklar 20 öğrenciyi, çarpımlar 39 kitabı verir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir basketbol takımının sezondaki 25 maçında attığı üçlük sayılarının sıklık tablosu verilmiştir; 6 üçlük atılan maç sayısı $x$ ile gösterilmiştir. Buna göre takımın **en az 6** üçlük attığı maç sayısı kaçtır?",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "Üçlük sayısı",
+         "4",
+         "5",
+         "6",
+         "7",
+         "8"
+        ],
+        "rows": [
+         [
+          "Maç sayısı",
+          "3",
+          "6",
+          "x",
+          "5",
+          "4"
+         ]
+        ]
+       },
+       "options": [
+        "9",
+        "16",
+        "18",
+        "21",
+        "25"
+       ],
+       "answer": 1,
+       "narration": "Önce eksik sıklığı bul, sonra istenen satırları topla.",
+       "steps": [
+        {
+         "text": "Sıklıkların toplamı maç sayısıdır: $3 + 6 + x + 5 + 4 = 25 \\Rightarrow x = 7$.",
+         "narration": "Sıklıkların toplamı maç sayısına eşit: 3 artı 6 artı x artı 5 artı 4, 25. Buradan x, 7."
+        },
+        {
+         "text": "En az 6: 6, 7 ve 8 üçlük → $7 + 5 + 4 = 16$. Cevap **B**.",
+         "mark": [
+          "en az 6"
+         ],
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "narration": "En az 6 demek 6, 7 ve 8 üçlük demek: 7 artı 5 artı 4, 16 maç. Cevabımız B. 6'yı katmayan 9 bulur."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki eksik sıklıklı tablo kalıbı örnek alındı, bağlam ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir fırın 30 gün boyunca her akşam satılmayan simit sayısını kaydetmiş ve verilen sıklık tablosunu oluşturmuştur. Bu 30 günde satılmayan simitlerin toplamı 45'tir. Buna göre satılmayan simit sayısının **0** olduğu gün sayısı kaçtır?",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "Satılmayan simit",
+         "0",
+         "1",
+         "2",
+         "3",
+         "4"
+        ],
+        "rows": [
+         [
+          "Gün sayısı",
+          "a",
+          "8",
+          "b",
+          "5",
+          "2"
+         ]
+        ]
+       },
+       "options": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+       ],
+       "answer": 4,
+       "narration": "İki bilinmeyen var. Tablonun bize verdiği iki toplamı kullanalım.",
+       "steps": [
+        {
+         "text": "Gün sayısı: $a + 8 + b + 5 + 2 = 30 \\Rightarrow a + b = 15$.",
+         "mark": [
+          "30 gün"
+         ],
+         "narration": "Sıklıkların toplamı gün sayısıdır: a artı 8 artı b artı 5 artı 2, 30. Yani a artı b, 15."
+        },
+        {
+         "text": "Simit toplamı: $0 \\cdot a + 1 \\cdot 8 + 2b + 3 \\cdot 5 + 4 \\cdot 2 = 31 + 2b = 45 \\Rightarrow b = 7$.",
+         "mark": [
+          "toplamı 45"
+         ],
+         "narration": "Değer çarpı sıklık toplamı simitlerin toplamıdır: 8 artı 2 b artı 15 artı 8, yani 31 artı 2 b, 45. Buradan b, 7."
+        },
+        {
+         "text": "$a = 15 - 7 = 8$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "narration": "a, 15 eksi 7, 8. Cevabımız E. 7'yi seçen, b'yi bulup soruyu orada bırakmıştır; soru a'yı istiyor."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; iki bilinmeyenli sıklık tablosu kalıbı, özgün bir bağlam ve sayılarla kuruldu."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_VERI_IST_03",
+    "title": "Sütun ve daire grafiği",
+    "narration": "Sıklık tablosunu çizince grafik olur. Karşılaştırmak için sütun, bütünün parçalarını göstermek için daire grafiği kullanılır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Sütun grafiği",
       "visual": {
        "kind": "plot",
        "x": [
-        0,
-        6
+        -1,
+        5
        ],
        "y": [
         0,
-        10
+        8
        ],
        "xLabel": "Kitap sayısı",
-       "yLabel": "Öğrenci",
+       "yLabel": "Öğrenci sayısı",
+       "axes": "edge",
        "series": {
         "kind": "bars",
+        "showValues": true,
         "values": [
          {
+          "x": 0,
+          "y": 2,
+          "label": "0"
+         },
+         {
           "x": 1,
-          "y": 3,
+          "y": 5,
           "label": "1"
          },
          {
@@ -75,126 +601,517 @@
          },
          {
           "x": 3,
-          "y": 9,
+          "y": 4,
           "label": "3"
          },
          {
           "x": 4,
-          "y": 5,
+          "y": 2,
           "label": "4"
-         },
-         {
-          "x": 5,
-          "y": 1,
-          "label": "5"
          }
         ]
        }
       },
-      "narration": "25 öğrenciye bir ayda kaç kitap okudukları sorulmuş.",
+      "narration": "Kitap tablosunu şimdi bir sütun grafiği olarak çizelim.",
       "beats": [
        {
-        "show": [],
-        "focus": [],
-        "narration": "Sıklık tablosu her değerin kaç kez tekrar ettiğini gösterir. Sütun grafiği bunu çizer.",
-        "note": "Sıklık: her değer kaç kez?"
+        "narration": "Yatay eksende değerler, düşey eksende sıklıklar durur; her sütunun boyu bir sıklıktır.",
+        "note": "Sütun boyu = sıklık"
        },
        {
-        "show": [],
-        "focus": [],
-        "narration": "Grafikte 1 kitap okuyan 3, 2 kitap okuyan 7, 3 kitap okuyan 9, 4 kitap okuyan 5, 5 kitap okuyan 1 öğrenci var.",
-        "note": "3 + 7 + 9 + 5 + 1 = 25 öğrenci"
+        "narration": "En uzun sütun 2 kitap, 7 öğrenci; en çok tekrar eden değeri ilk bakışta görürsün.",
+        "note": "En uzun sütun: 2 kitap"
        },
        {
-        "narration": "En uzun sütun en çok tekrar eden değeri, yani tepe değeri gösterir: 3 kitap.",
-        "focus": []
-       },
-       {
-        "show": [],
-        "focus": [],
-        "narration": "Daire grafiği ise bütünün parçalarını gösterir: bir dilimin açısı, oranı çarpı 360 derecedir.",
-        "note": "Dilim açısı = oran × 360°"
-       },
-       {
-        "show": [],
-        "focus": [],
-        "narration": "Zamanla değişimi göstermek için çizgi grafiği kullanılır.",
-        "note": "Zamanla değişim: çizgi grafiği"
+        "narration": "Sütunlar ayrı durur, çünkü kitap sayısı kesiklidir; sütun grafiği kesikli veri için kullanılır.",
+        "note": "Kesikli veri → sütun grafiği"
        }
       ]
+     },
+     {
+      "kind": "visual",
+      "title": "Daire grafiği",
+      "visual": {
+       "kind": "pie",
+       "slices": [
+        {
+         "label": "Yürüyerek",
+         "value": 9
+        },
+        {
+         "label": "Otobüs",
+         "value": 12
+        },
+        {
+         "label": "Servis",
+         "value": 6
+        },
+        {
+         "label": "Araba",
+         "value": 9
+        }
+       ],
+       "show": "angle"
+      },
+      "narration": "Şimdi 36 öğrencinin okula nasıl geldiğine bakalım.",
+      "beats": [
+       {
+        "narration": "Bütün daire 360 derece ve 36 öğrenciyi gösterir; her öğrenci 10 derecelik bir paydır.",
+        "show": [
+         "p1",
+         "p2",
+         "p3",
+         "p4"
+        ],
+        "note": "360° ÷ 36 = 10° / öğrenci"
+       },
+       {
+        "narration": "Otobüsle gelen 12 öğrencinin dilimi 12 çarpı 10, yani 120 derecedir.",
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "Servisle gelen 6 öğrenci 60 derece; dairenin altıda biri.",
+        "focus": [
+         "p3"
+        ]
+       },
+       {
+        "narration": "Yürüyerek ve arabayla gelen 9'ar öğrencinin dilimleri eşittir: 90'ar derece, dairenin dörtte biri.",
+        "focus": [
+         "p1",
+         "p4"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Açı, oran, sayı",
+      "items": [
+       "Dilim açısı = **oran × 360°**: **12 öğrenci** için 12/36 × 360° = 120°.",
+       "Bir dilimin **sayısı biliniyorsa**, 1 derecenin kaç kişi ettiğini bul.",
+       "Daire grafiği **oranı gösterir**, sayıyı değil.",
+       "Sütun grafiğinden daireye geçerken önce **toplamı** bul."
+      ],
+      "narration": "Bir: dilim açısı, oran çarpı 360 derecedir; 12 öğrenci için 12 bölü 36, çarpı 360, 120 derece. İki: bir dilimin sayısı biliniyorsa, 1 derecenin kaç kişi ettiğini bul. Üç: daire grafiği oranı gösterir, sayıyı değil. Dört: sütun grafiğinden daireye geçerken önce toplamı bul."
+     },
+     {
+      "kind": "example",
+      "title": "Açıdan toplama",
+      "example": "Bir dilim 72 derece ve 18 kişiyi gösteriyor.",
+      "explanation": "72 derece 18 kişiyse 1 kişi **4 derecedir**; bütün daire 360 ÷ 4 = **90 kişidir**.",
+      "narration": "Bir dilim 72 derece ve 18 kişiyi gösteriyor. Grafikte toplam kaç kişi var? 72 derece 18 kişiyse 1 kişi 4 derecedir. Bütün daire 360 bölü 4, yani 90 kişidir."
+     },
+     {
+      "kind": "mistake",
+      "title": "Büyük dilim, büyük sayı değildir",
+      "wrong": "İki ayrı daire grafiğinde dilimi büyük olan grup, sayıca da büyüktür.",
+      "right": "Daire grafiği oranı gösterir; toplamlar farklıysa küçük dilim daha çok kişi olabilir.",
+      "why": "Toplamı 200 olan okulda 90° = 50 kişi; toplamı 40 olan sınıfta 180° = 20 kişi.",
+      "narration": "Sık yapılan hata: iki ayrı daire grafiğinde büyük dilimi büyük sayı sanmak. Daire grafiği oranı gösterir; toplamlar farklıysa küçük dilim daha çok kişi olabilir. Toplamı 200 olan okulda 90 derece 50 kişi, toplamı 40 olan sınıfta 180 derece yalnız 20 kişidir."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Bir ailenin aylık harcamalarını gösteren daire grafiğinde kira dilimi 120 derecedir. Ailenin aylık toplam harcaması 36 000 TL olduğuna göre, kira kaç TL'dir?",
+       "stem": "Bir kafede bir günde satılan 240 içeceğin türlere göre dağılımı daire grafiğinde gösterilmiştir. Buna göre satılan kahve sayısı, satılan su sayısından kaç fazladır?",
+       "figure": {
+        "kind": "pie",
+        "slices": [
+         {
+          "label": "Çay",
+          "value": 100
+         },
+         {
+          "label": "Kahve",
+          "value": 60
+         },
+         {
+          "label": "Limonata",
+          "value": 40
+         },
+         {
+          "label": "Su",
+          "value": 40
+         }
+        ],
+        "show": "angle"
+       },
        "options": [
-        "9000",
-        "10 000",
-        "12 000",
-        "15 000",
-        "18 000"
+        "10",
+        "15",
+        "18",
+        "20",
+        "30"
        ],
-       "answer": 2,
-       "narration": "Açıyı orana çevirelim.",
+       "answer": 3,
+       "narration": "Açıları sayıya çevirmek için önce 1 derecenin kaç içecek ettiğini bul.",
        "steps": [
         {
-         "text": "Oran: $\\frac{120}{360} = \\frac{1}{3}$",
-         "narration": "120 derece, 360 derecenin üçte biri."
+         "text": "360° ↔ 240 içecek → 1° = $\\frac{240}{360} = \\frac{2}{3}$ içecek.",
+         "narration": "Bütün daire 360 derece ve 240 içeceği gösterir. 1 derece, 240 bölü 360, yani üçte iki içecektir."
         },
         {
-         "text": "Kira: $36\\,000 \\cdot \\frac{1}{3} = 12\\,000$",
-         "narration": "Kira, toplam harcamanın üçte biri: 36 bin bölü 3, 12 bin lira."
-        },
-        {
-         "text": "Cevap **C**.",
-         "narration": "Cevabımız C.",
+         "text": "Açı farkı $90° - 60° = 30°$ → $30 \\cdot \\frac{2}{3} = 20$. Cevap **D**.",
          "eliminate": [
           "A",
           "B",
-          "D",
+          "C",
           "E"
-         ]
+         ],
+         "narration": "Kahve 90, su 60 derece; fark 30 derece. 30 çarpı üçte iki, 20 içecek. Cevabımız D. 30'u seçen açı farkını içecek sayısı sanmıştır."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki daire grafiği okuma kalıbı örnek alındı, bağlam ve sayılar özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki daire grafiği açısından sayı bulma kalıbı örnek alındı, bağlam ve sayılar özgün."
        }
       }
      },
      {
       "kind": "question",
       "question": {
-       "style": "TYT tarzı",
-       "stem": "Bu sıklık tablosuna göre öğrencilerin kardeş sayılarının **aritmetik ortalaması** kaçtır?",
-       "context": "20 kişilik bir sınıfta öğrencilerin kardeş sayıları:\nKardeşi olmayan: 4 öğrenci\n1 kardeşi olan: 9 öğrenci\n2 kardeşi olan: 5 öğrenci\n3 kardeşi olan: 2 öğrenci",
+       "style": "ÖSYM tarzı",
+       "stem": "Bir kırtasiyenin deposundaki silgi, defter ve kalemlerin sayıca dağılımı daire grafiğinde gösterilmiştir. Bir hafta içinde depodan bazı ürünler satılmış ve kalan ürünlerin dağılımını gösteren daire grafiği başlangıçtakiyle **aynı** kalmıştır. Başlangıçta 18 silgi olan depodan 4 silgi satıldığına göre, depoda kalan kalem sayısı kaçtır?",
+       "figure": {
+        "kind": "pie",
+        "slices": [
+         {
+          "label": "Silgi",
+          "value": 18
+         },
+         {
+          "label": "Defter",
+          "value": 54
+         },
+         {
+          "label": "Kalem",
+          "value": 90
+         }
+        ],
+        "show": "angle"
+       },
        "options": [
-        "1",
-        "1,25",
-        "1,5",
-        "1,75",
-        "2"
+        "70",
+        "72",
+        "75",
+        "80",
+        "90"
        ],
-       "answer": 1,
-       "narration": "Sıklık tablosunda her değeri kaç kez tekrarlandığıyla çarpıp toplarız.",
+       "answer": 0,
+       "narration": "ÖSYM 2023'te bir dolapla sordu. Grafik aynı kalıyorsa ne aynı kalır?",
        "steps": [
         {
-         "text": "Toplam kardeş $= 0 \\cdot 4 + 1 \\cdot 9 + 2 \\cdot 5 + 3 \\cdot 2 = 0 + 9 + 10 + 6 = 25$.",
-         "narration": "Kardeşi olmayan dört öğrenci sıfır, bir kardeşi olan dokuz öğrenci dokuz, iki kardeşi olan beş öğrenci on, üç kardeşi olan iki öğrenci altı kardeş getirir. Toplam yirmi beş kardeş."
+         "text": "Grafik aynı → **oranlar** aynı; açılar 40°, 120°, 200°.",
+         "mark": [
+          "aynı"
+         ],
+         "narration": "Daire grafiği aynı kaldıysa oranlar aynı kalmıştır. Silgi 40, defter 120, kalem 200 derece."
         },
         {
-         "text": "Ortalama $= \\frac{25}{20} = 1{,}25$. Cevap **B**.",
-         "narration": "Ortalama, toplam bölü öğrenci sayısı: yirmi beş bölü yirmi, bir virgül yirmi beş. Cevabımız B. Bir buçuğu seçen, kardeş sayılarını, yani sıfır, bir, iki ve üçü toplayıp dörde bölmüştür; sıklıkları hesaba katmak gerekir.",
+         "text": "Kalan silgi $18 - 4 = 14$ ↔ 40°. Kalem 200° = 5 × 40° → $5 \\cdot 14 = 70$.",
+         "narration": "Kalan silgi 14 ve 40 dereceyi gösteriyor. Kalem dilimi 200 derece, silginin 5 katı: 5 çarpı 14, 70 kalem."
+        },
+        {
+         "text": "Cevap **A**. 90, kalemlerin **başlangıçtaki** sayısıdır.",
          "eliminate": [
-          "A",
+          "B",
           "C",
           "D",
           "E"
-         ]
+         ],
+         "narration": "Cevabımız A. 90'ı seçen başlangıçtaki kalem sayısını bulmuştur; soru kalanı soruyor."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki sıklık tablosu ve \"toplam = ortalama × sayı\" kuralı özgün verilerle soruldu."
+        "changes": "ÖSYM 2023'ün \"daire grafiği değişmeden ürün azalması\" kalıbı örnek alındı; bağlam, açılar ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_VERI_IST_04",
+    "title": "Çizgi grafiği",
+    "narration": "Bir değer zamanla nasıl değişiyor? Bunu en iyi çizgi grafiği anlatır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Zamanla değişim",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        7
+       ],
+       "y": [
+        0,
+        25
+       ],
+       "xLabel": "Deneme",
+       "yLabel": "Matematik neti",
+       "axes": "edge",
+       "series": {
+        "kind": "line",
+        "showValues": true,
+        "values": [
+         {
+          "x": 1,
+          "y": 12,
+          "label": "1."
+         },
+         {
+          "x": 2,
+          "y": 15,
+          "label": "2."
+         },
+         {
+          "x": 3,
+          "y": 14,
+          "label": "3."
+         },
+         {
+          "x": 4,
+          "y": 19,
+          "label": "4."
+         },
+         {
+          "x": 5,
+          "y": 22,
+          "label": "5."
+         },
+         {
+          "x": 6,
+          "y": 21,
+          "label": "6."
+         }
+        ]
+       }
+      },
+      "narration": "Bir öğrencinin 6 denemedeki matematik netlerini işaretleyip birleştirelim.",
+      "beats": [
+       {
+        "narration": "Yatay eksen zamanı, yani deneme sırasını; düşey eksen neti gösterir.",
+        "note": "Yatay: deneme · Düşey: net"
+       },
+       {
+        "narration": "Çizgi yukarı gidiyorsa net artmış, aşağı gidiyorsa azalmıştır; ikinci denemeden üçüncüye bir düşüş var.",
+        "note": "15 → 14: azalış"
+       },
+       {
+        "narration": "En dik çıkış üçüncüden dördüncü denemeye: 14'ten 19'a, 5 net.",
+        "note": "En büyük artış: +5"
+       },
+       {
+        "narration": "Çizgi grafiği sürekli değişimi ve eğilimi gösterir; zamana bağlı veride bu grafiği seç.",
+        "note": "Zamana bağlı veri → çizgi grafiği"
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Çizgi grafiği okuma",
+      "items": [
+       "Artış miktarı = **son değer − ilk değer**.",
+       "**En dik parça** en büyük değişimdir.",
+       "Yatay parça: o aralıkta **değişim yok**.",
+       "Değişim yüzdeyle sorulursa farkı **ilk değere** böl."
+      ],
+      "narration": "Bir: artış miktarı, son değer eksi ilk değerdir. İki: en dik parça en büyük değişimdir. Üç: yatay parça, o aralıkta değişim yok demektir. Dört: değişim yüzdeyle sorulursa farkı ilk değere bölersin."
+     },
+     {
+      "kind": "mistake",
+      "title": "En yüksek nokta, en büyük artış değil",
+      "wrong": "Grafikte en yüksek nokta, en büyük artışın olduğu yerdir.",
+      "right": "En büyük artış en dik çıkıştır: 3. denemeden 4.'ye +5 net; en yüksek nokta ise 5. deneme.",
+      "why": "Yükseklik değeri, eğim değişimi gösterir; ikisi ayrı sorulardır.",
+      "narration": "Sık yapılan hata: en yüksek noktayı en büyük artış sanmak. En büyük artış en dik çıkıştır; üçüncü denemeden dördüncüye 5 net. En yüksek nokta ise beşinci deneme. Yükseklik değeri, eğim değişimi gösterir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir şehirde bir gün boyunca üç saatte bir ölçülen hava sıcaklıkları çizgi grafiğinde gösterilmiştir. Buna göre sıcaklığın **en çok azaldığı** üç saatlik zaman aralığı hangisidir?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         5,
+         22
+        ],
+        "y": [
+         0,
+         25
+        ],
+        "xLabel": "Saat",
+        "yLabel": "Sıcaklık (°C)",
+        "axes": "edge",
+        "series": {
+         "kind": "line",
+         "showValues": true,
+         "values": [
+          {
+           "x": 6,
+           "y": 8,
+           "label": "06"
+          },
+          {
+           "x": 9,
+           "y": 13,
+           "label": "09"
+          },
+          {
+           "x": 12,
+           "y": 19,
+           "label": "12"
+          },
+          {
+           "x": 15,
+           "y": 21,
+           "label": "15"
+          },
+          {
+           "x": 18,
+           "y": 16,
+           "label": "18"
+          },
+          {
+           "x": 21,
+           "y": 10,
+           "label": "21"
+          }
+         ]
+        }
+       },
+       "options": [
+        "06.00–09.00",
+        "09.00–12.00",
+        "12.00–15.00",
+        "15.00–18.00",
+        "18.00–21.00"
+       ],
+       "answer": 4,
+       "narration": "Soru en büyük değişimi değil, en büyük azalışı soruyor. Dikkat.",
+       "steps": [
+        {
+         "text": "06–09: +5, 09–12: +6, 12–15: +2 → hepsi **artış**.",
+         "mark": [
+          "en çok azaldığı"
+         ],
+         "eliminate": [
+          "A",
+          "B",
+          "C"
+         ],
+         "narration": "Sabahtan öğlene çizgi hep yukarı gidiyor: artı 5, artı 6, artı 2. Bunlar artış; azalış sorulduğu için elenir."
+        },
+        {
+         "text": "15–18: $21 - 16 = 5$ azalış; 18–21: $16 - 10 = 6$ azalış.",
+         "eliminate": [
+          "D"
+         ],
+         "narration": "Öğleden sonra iki düşüş var: 21'den 16'ya 5 derece, 16'dan 10'a 6 derece."
+        },
+        {
+         "text": "En çok azalış 18.00–21.00. Cevap **E**.",
+         "narration": "En dik iniş 18 ile 21 arası. Cevabımız E. B'yi seçen en büyük değişimi bulmuş ama o bir artıştı."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; çizgi grafiğinde aralık karşılaştırma kalıbı özgün sıcaklık verisiyle kuruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir su deposuna dolum borusu, 5 saat boyunca hiç durmadan saatte 15 ton su doldurmuştur. Deponun boşaltma musluğu ise yalnızca bazı saatlerde açılmış, her açıldığında o saatin tamamında açık kalmış ve açıkken saatte 25 ton su boşaltmıştır. Depodaki su miktarının saatlere göre değişimi grafikte verildiğine göre, bu 5 saatte musluktan toplam kaç ton su boşaltılmıştır?",
+       "figure": {
+        "kind": "plot",
+        "x": [
+         -0.5,
+         5.5
+        ],
+        "y": [
+         0,
+         80
+        ],
+        "xLabel": "Saat",
+        "yLabel": "Su (ton)",
+        "axes": "edge",
+        "series": {
+         "kind": "line",
+         "showValues": true,
+         "values": [
+          {
+           "x": 0,
+           "y": 40,
+           "label": "0"
+          },
+          {
+           "x": 1,
+           "y": 55,
+           "label": "1"
+          },
+          {
+           "x": 2,
+           "y": 70,
+           "label": "2"
+          },
+          {
+           "x": 3,
+           "y": 60,
+           "label": "3"
+          },
+          {
+           "x": 4,
+           "y": 50,
+           "label": "4"
+          },
+          {
+           "x": 5,
+           "y": 65,
+           "label": "5"
+          }
+         ]
+        }
+       },
+       "options": [
+        "20",
+        "30",
+        "50",
+        "60",
+        "75"
+       ],
+       "answer": 2,
+       "narration": "Grafikteki her parça bir saatin net değişimi. Musluğun hangi saatlerde açık olduğunu bul.",
+       "steps": [
+        {
+         "text": "Musluk kapalıyken değişim **+15**; açıkken $15 - 25 =$ **−10**.",
+         "mark": [
+          "saatte 15 ton",
+          "saatte 25 ton"
+         ],
+         "narration": "Musluk kapalıysa depo saatte 15 ton artar. Açıksa 15 girer, 25 çıkar; net değişim eksi 10 olur."
+        },
+        {
+         "text": "Değişimler: +15, +15, −10, −10, +15 → musluk **2 saat** açık.",
+         "narration": "Grafiğe bakalım: artı 15, artı 15, eksi 10, eksi 10, artı 15. Musluk yalnız üçüncü ve dördüncü saatlerde açık."
+        },
+        {
+         "text": "Boşaltılan: $2 \\cdot 25 = 50$ ton. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ],
+         "narration": "İki saatte 2 çarpı 25, 50 ton su boşaltılmış. Cevabımız C. 20'yi seçen yalnız net düşüşü, 10 artı 10'u toplamıştır."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; çizgi grafiğinden çok koşullu okuma, ÖSYM 2022'nin \"inen ve binen yolcu\" mantığı örnek alınarak özgün bir depo bağlamıyla kuruldu."
        }
       }
      }
@@ -203,133 +1120,237 @@
    {
     "subtopic": "MAT_VERI_IST_05",
     "title": "Aritmetik ortalama",
-    "narration": "Aritmetik ortalama, değerlerin toplamının değer sayısına bölümüdür. Sorularda asıl iş gören, ortalamanın kendisi değil toplamdır.",
+    "narration": "Şimdi bir veri grubunu tek bir sayıyla özetleyen ölçülere geçiyoruz. İlki aritmetik ortalama.",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Ortalama: eşit paylaştırma",
+      "text": "Aritmetik ortalama, verilerin **toplamının** veri sayısına bölümüdür. Anlamı **eşit paylaştırmadır**: herkes aynı değere sahip olsaydı, her biri ortalama kadar alırdı.",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        4
+       ],
+       "y": [
+        0,
+        10
+       ],
+       "xLabel": "Öğrenci",
+       "yLabel": "Kalem",
+       "axes": "edge",
+       "series": {
+        "kind": "bars",
+        "showValues": true,
+        "values": [
+         {
+          "x": 1,
+          "y": 4,
+          "label": "Ali"
+         },
+         {
+          "x": 2,
+          "y": 9,
+          "label": "Ece"
+         },
+         {
+          "x": 3,
+          "y": 8,
+          "label": "Can"
+         }
+        ]
+       },
+       "segments": [
+        {
+         "from": [
+          0.5,
+          7
+         ],
+         "to": [
+          3.5,
+          7
+         ],
+         "label": "ort. 7",
+         "dashed": true
+        }
+       ]
+      },
+      "narration": "Ortalamayı formülden önce bir paylaşım olarak düşün.",
+      "beats": [
+       {
+        "narration": "Ali'nin 4, Ece'nin 9, Can'ın 8 kalemi var; toplam 21 kalem.",
+        "note": "4 + 9 + 8 = 21"
+       },
+       {
+        "narration": "Kalemleri eşit paylaştırırsak her birine 21 bölü 3, yani 7 kalem düşer.",
+        "note": "21 ÷ 3 = 7"
+       },
+       {
+        "narration": "Ece'nin 2, Can'ın 1 fazla kalemi Ali'nin 3 eksiğini tam kapatır; fazlalar eksiklere eşittir.",
+        "note": "+2 + 1 − 3 = 0"
+       }
+      ]
+     },
      {
       "kind": "rule",
       "title": "Toplam = ortalama × sayı",
       "items": [
-       "Ortalama $= \\frac{\\text{toplam}}{\\text{sayı}}$; tersine **toplam = ortalama × sayı**.",
-       "Bir değer çıkarılınca ya da eklenince **toplamlar** üzerinden düşün.",
-       "Sıklık tablosunda her değeri **sıklığıyla** çarpıp topla.",
-       "Her değer $k$ artarsa ortalama da $k$ artar."
+       "Ortalama = toplam ÷ sayı; tersine **toplam = ortalama × sayı**.",
+       "Ekleme ya da çıkarmada **toplamlar üzerinden** düşün.",
+       "Sıklık tablosunda **değer × sıklık** toplanır, veri sayısına bölünür.",
+       "Her veri $k$ artarsa ortalama **$k$ artar**; her veri $k$ katına çıkarsa ortalama da $k$ katına çıkar.",
+       "Verilerin **ortalamadan farklarının toplamı** sıfırdır."
       ],
-      "narration": "Aritmetik ortalama toplamın sayıya bölümüdür. Sorularda en işe yarayan biçimi tersidir: toplam, ortalama çarpı sayıdır. Bir değer çıkarılıyor ya da ekleniyorsa ortalamalarla değil toplamlarla düşünürsün. Sıklık tablosunda her değeri kaç kez tekrar ettiğiyle çarpıp toplarsın. Bütün değerler k artarsa ortalama da k artar."
+      "narration": "Bir: ortalama, toplam bölü sayıdır; tersine toplam, ortalama çarpı sayıdır. İki: ekleme ya da çıkarmada toplamlar üzerinden düşün. Üç: sıklık tablosunda değer çarpı sıklık toplanır, veri sayısına bölünür. Dört: her veri k artarsa ortalama k artar; k katına çıkarsa ortalama da k katına çıkar. Beş: verilerin ortalamadan farklarının toplamı sıfırdır."
      },
      {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Bir veri grubundaki en küçük sayı 2, en büyük sayı 50'dir. En küçük sayı gruptan çıkarıldığında kalanların aritmetik ortalaması 30, en büyük sayı çıkarıldığında ise kalanların aritmetik ortalaması 26 oluyor. Buna göre gruptaki sayı adedi kaçtır?",
-       "options": [
-        "10",
-        "11",
-        "12",
-        "13",
-        "14"
-       ],
-       "answer": 3,
-       "narration": "ÖSYM 2020'de yaş grubuyla sordu. Toplamlar üzerinden düşünelim.",
-       "steps": [
-        {
-         "text": "Sayı adedi $n$, toplam $S$: $S - 2 = 30(n - 1)$ ve $S - 50 = 26(n - 1)$",
-         "narration": "Gruptaki sayı adedine n, toplama S diyelim. En küçüğü çıkarınca n eksi 1 sayı kalır ve toplamları S eksi 2'dir: 30 çarpı n eksi 1. En büyüğü çıkarınca toplam S eksi 50: 26 çarpı n eksi 1."
-        },
-        {
-         "text": "Taraf tarafa çıkar: $48 = 4(n - 1) \\Rightarrow n - 1 = 12$",
-         "narration": "İki eşitliği taraf tarafa çıkaralım: S'ler gider. Sol tarafta eksi 2 eksi eksi 50, yani 48; sağ tarafta 4 çarpı n eksi 1. n eksi 1, 12."
-        },
-        {
-         "text": "$n = 13$. Cevap **D**.",
-         "narration": "n, 13. Cevabımız D. 12'yi seçen n eksi 1'i cevap sanmıştır.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2020'nin \"en küçük ve en büyük çıkarılınca ortalamalar\" kalıbı örnek alındı; değerler ve bağlam özgün."
+      "kind": "example",
+      "title": "Sıklık tablosundan ortalama",
+      "example": "Kitap tablosunda değer çarpı sıklık toplamı 39, öğrenci sayısı 20.",
+      "explanation": "Ortalama 39 ÷ 20 = **1,95 kitap**; 0, 1, 2, 3, 4'ün düz ortalaması olan 2 değil.",
+      "narration": "Kitap tablosunda değer çarpı sıklık toplamı 39, öğrenci sayısı 20. Ortalama 39 bölü 20, yani 1,95 kitap. Değerlerin düz ortalaması olan 2 değil; çünkü her değeri farklı sayıda öğrenci vermiş."
+     },
+     {
+      "kind": "example",
+      "title": "Gruba biri katılınca",
+      "example": "10 kişinin ortalaması 70; gruba 1 kişi katılınca ortalama 72 oluyor.",
+      "narration": "10 kişinin ortalaması 70; gruba 1 kişi katılınca ortalama 72 oluyor. Yeni kişinin puanı kaç?",
+      "steps": [
+       {
+        "narration": "Önce eski toplamı bul: 10 çarpı 70, 700.",
+        "math": "10 \\cdot 70 = 700",
+        "text": "Eski toplam"
+       },
+       {
+        "narration": "Katılımdan sonra 11 kişi var: 11 çarpı 72, 792.",
+        "math": "11 \\cdot 72 = 792",
+        "text": "Yeni toplam"
+       },
+       {
+        "narration": "Fark yeni kişinin puanıdır: 792 eksi 700, 92.",
+        "math": "792 - 700 = 92",
+        "text": "**Farkı** yeni kişi getirdi"
+       },
+       {
+        "narration": "Kendi 72'si artı on kişiye 2'şer puan.",
+        "math": "72 + 10 \\cdot 2 = 92"
        }
-      }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Ortalamaların ortalaması",
+      "wrong": "60 ve 80 ortalamalı iki grubun birlikte ortalaması 70'tir.",
+      "right": "Grupların kişi sayısı farklıysa öyle değildir: **2 kişi** 60, 3 kişi 80 alırsa ortalama 360 ÷ 5 = 72'dir.",
+      "why": "Genel ortalama, toplam puanın toplam kişiye bölümüdür; kalabalık grup ortalamayı kendine çeker.",
+      "narration": "Sık yapılan hata: iki grubun ortalamalarının ortalamasını almak. Grupların kişi sayısı farklıysa öyle değildir: 2 kişi 60, 3 kişi 80 alırsa ortalama 360 bölü 5, 72'dir. Genel ortalama, toplam puanın toplam kişiye bölümüdür."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "20 kişilik bir sınıfta 5 öğrenci 60, 8 öğrenci 70 ve 7 öğrenci 80 puan almıştır. Sınıfın puan ortalaması kaçtır?",
+       "stem": "Bir öğrencinin ilk dört yazılı notu 65, 70, 80 ve 85'tir. Beş yazılısının ortalamasının 78 olması için beşinci yazılıdan kaç alması gerekir?",
        "options": [
-        "69",
-        "70",
-        "71",
-        "72",
-        "73"
-       ],
-       "answer": 2,
-       "narration": "Sıklıklarla toplamı bulalım.",
-       "steps": [
-        {
-         "text": "Toplam: $5 \\cdot 60 + 8 \\cdot 70 + 7 \\cdot 80 = 300 + 560 + 560 = 1420$",
-         "narration": "Her puanı kaç öğrencinin aldığıyla çarpalım: 5 çarpı 60, 300; 8 çarpı 70, 560; 7 çarpı 80, 560. Toplam 1420."
-        },
-        {
-         "text": "Ortalama: $\\frac{1420}{20} = 71$",
-         "narration": "Toplamı öğrenci sayısına bölelim: 1420 bölü 20, 71."
-        },
-        {
-         "text": "Cevap **C**. 60, 70, 80'in ortalaması 70 sanılmamalı.",
-         "narration": "Cevabımız C. Yalnız 60, 70 ve 80'in ortalamasını alan 70 bulur; ama her puanı farklı sayıda öğrenci almış.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki sıklık tablosundan ortalama kalıbı örnek alındı, sayılar özgün."
-       }
-      }
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "10 kişilik bir grubun sınav puanlarının ortalaması 70'tir. Gruba yeni bir öğrenci katılınca ortalama 72 oluyor. Yeni öğrencinin puanı kaçtır?",
-       "options": [
-        "72",
-        "82",
+        "78",
         "90",
         "92",
-        "94"
+        "95",
+        "98"
        ],
-       "answer": 3,
-       "narration": "Toplamlarla düşünelim.",
+       "answer": 1,
+       "narration": "Toplamla düşün: beş notun toplamı ne olmalı?",
        "steps": [
         {
-         "text": "Önce: $10 \\cdot 70 = 700$. Sonra: $11 \\cdot 72 = 792$",
-         "narration": "Önceki toplam 10 çarpı 70, 700. Yeni öğrenciyle 11 kişi oldu; yeni toplam 11 çarpı 72, 792."
+         "text": "Gereken toplam: $5 \\cdot 78 = 390$. Elindeki: $65 + 70 + 80 + 85 = 300$.",
+         "narration": "Beş notun ortalaması 78 olacaksa toplam 5 çarpı 78, 390 olmalı. İlk dört not 300 ediyor."
         },
         {
-         "text": "Yeni öğrenci: $792 - 700 = 92$",
-         "narration": "Fark yeni öğrencinin puanıdır: 792 eksi 700, 92."
+         "text": "Beşinci not: $390 - 300 = 90$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "narration": "Eksik kalan 390 eksi 300, 90. Cevabımız B. 78'i seçen, istenen ortalamayı not sanmıştır."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"eksik değeri ortalamadan bulma\" kalıbı özgün sayılarla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir okulda A şubesindeki 20 öğrencinin matematik puan ortalaması 75, B şubesindeki 30 öğrencinin puan ortalaması 80'dir. İki şubenin bütün öğrencilerinin puan ortalaması kaçtır?",
+       "options": [
+        "76",
+        "77",
+        "77,5",
+        "78",
+        "80"
+       ],
+       "answer": 3,
+       "narration": "Az önceki hatayı burada yapma. Toplamları bul.",
+       "steps": [
+        {
+         "text": "Toplamlar: $20 \\cdot 75 = 1500$ ve $30 \\cdot 80 = 2400$.",
+         "narration": "A şubesinin toplamı 20 çarpı 75, 1500. B şubesinin toplamı 30 çarpı 80, 2400."
         },
         {
-         "text": "Cevap **D**. Ortalamayı 2 artırmak için kendisi 72'nin **11 × 2** fazlası olmalı.",
-         "narration": "Cevabımız D. Kısa yoldan da görebilirsin: yeni öğrenci 72'lik ortalamaya kendi payını verir, bir de diğer on kişinin ortalamasını 2'şer yükseltir: 72 artı 20, 92.",
+         "text": "Genel ortalama $\\frac{1500 + 2400}{50} = \\frac{3900}{50} = 78$. Cevap **D**.",
          "eliminate": [
           "A",
           "B",
           "C",
           "E"
-         ]
+         ],
+         "narration": "Toplam 3900 puan, 50 öğrenci: 3900 bölü 50, 78. Cevabımız D. 77,5'i seçen ortalamaların ortalamasını almıştır; kalabalık B şubesi ortalamayı kendine çeker."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki \"yeni değer eklenince ortalama\" kalıbı örnek alındı, sayılar özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki grupların genel ortalaması kalıbı örnek alındı, bağlam ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir koşu kulübündeki sporcuların bir haftada koştukları mesafeler birbirinden farklıdır. En az koşan sporcu 6 km, en çok koşan sporcu 46 km koşmuştur. En az koşan sporcu hesaba katılmadığında diğerlerinin ortalaması 26 km, en çok koşan sporcu hesaba katılmadığında diğerlerinin ortalaması 21 km oluyor. Buna göre kulüpteki sporcu sayısı kaçtır?",
+       "options": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+       ],
+       "answer": 4,
+       "narration": "ÖSYM 2020'de bir yaş grubuyla sordu. Ortalamaları bırak, toplamları yaz.",
+       "steps": [
+        {
+         "text": "Sporcu sayısı $n$, toplam $S$: $S - 6 = 26(n - 1)$ ve $S - 46 = 21(n - 1)$.",
+         "narration": "Sporcu sayısına n, toplama S diyelim. En az koşanı çıkarınca n eksi 1 kişi kalır: S eksi 6, 26 çarpı n eksi 1. En çok koşanı çıkarınca S eksi 46, 21 çarpı n eksi 1."
+        },
+        {
+         "text": "Taraf tarafa çıkar: $40 = 5(n - 1) \\Rightarrow n - 1 = 8$.",
+         "narration": "İki eşitliği taraf tarafa çıkaralım, S'ler gider. Solda 46 eksi 6, 40; sağda 5 çarpı n eksi 1. n eksi 1, 8."
+        },
+        {
+         "text": "$n = 9$. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "narration": "n, 9 sporcu. Cevabımız E. 8'i seçen n eksi 1'i cevap sanmıştır."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020'nin \"en küçük ve en büyük çıkarılınca ortalamalar\" kalıbı örnek alındı; bağlam ve sayılar özgün."
        }
       }
      }
@@ -337,43 +1358,99 @@
    },
    {
     "subtopic": "MAT_VERI_IST_06",
-    "subtopics": [
-     "MAT_VERI_IST_07",
-     "MAT_VERI_IST_08"
-    ],
-    "title": "Ortanca, tepe değer, açıklık",
-    "narration": "Şimdi ÖSYM'nin en çok sorduğu kısım: ortanca. Yanında tepe değer ve açıklık da sık sorulur.",
+    "title": "Ortanca",
+    "narration": "ÖSYM'nin 2021'den bu yana her yıl sorduğu ölçüye geldik: ortanca.",
     "cards": [
      {
-      "kind": "rule",
-      "title": "Üç ölçü",
-      "items": [
-       "**Ortanca (medyan)**: küçükten büyüğe sırala; tek sayıdaysa **ortadaki**, çift sayıdaysa **ortadaki ikisinin ortalaması**.",
-       "**Tepe değer (mod)**: en çok tekrar eden değer; birden fazla olabilir ya da hiç olmayabilir.",
-       "**Açıklık**: en büyük − en küçük.",
-       "Ortancayı bulmadan önce **mutlaka sırala**."
-      ],
-      "narration": "Ortanca için verileri küçükten büyüğe sıralarsın. Veri sayısı tekse ortadaki değer, çiftse ortadaki iki değerin ortalaması ortancadır. Tepe değer en çok tekrar eden değerdir; birden fazla olabilir ya da hiç olmayabilir. Açıklık en büyük değerden en küçüğün çıkarılmasıdır. En sık hata, sıralamadan ortadaki değeri almaktır."
+      "kind": "concept",
+      "title": "Ortanca: tam ortadaki değer",
+      "text": "Veriler küçükten büyüğe **sıralandığında** tam ortada kalan değer **ortancadır** (medyan). Veri sayısı tekse ortadaki değer, çiftse **ortadaki iki değerin ortalaması** alınır. Ortanca, verilerin yarısını altında, yarısını üstünde bırakır.",
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        0,
+        10
+       ],
+       "points": [
+        {
+         "x": 2,
+         "label": "2"
+        },
+        {
+         "x": 4,
+         "label": "4"
+        },
+        {
+         "x": 5,
+         "label": "5"
+        },
+        {
+         "x": 7,
+         "label": "7"
+        },
+        {
+         "x": 9,
+         "label": "9"
+        },
+        {
+         "x": 8,
+         "label": "8"
+        }
+       ]
+      },
+      "narration": "Ortalama hesap ister, ortanca sıralama. Sayı doğrusunda görelim.",
+      "beats": [
+       {
+        "narration": "Elimizde 7, 2, 9, 4 ve 5 var; sayı doğrusuna koyunca kendiliğinden sıralanırlar.",
+        "show": [
+         "p1",
+         "p2",
+         "p3",
+         "p4",
+         "p5"
+        ]
+       },
+       {
+        "narration": "Beş değerin ortadakisi üçüncü değerdir: 5. Solunda iki, sağında iki değer var.",
+        "focus": [
+         "p3"
+        ]
+       },
+       {
+        "narration": "Gruba 8 eklenirse altı değer olur; ortada 5 ile 7 kalır ve ortanca 6 olur.",
+        "show": [
+         "p6"
+        ],
+        "focus": [
+         "p3",
+         "p4"
+        ],
+        "note": "(5 + 7) ÷ 2 = 6"
+       }
+      ]
      },
      {
-      "kind": "mistake",
-      "title": "Tepe değer her zaman tek değildir",
-      "wrong": "Her veri grubunun **tek bir** tepe değeri vardır.",
-      "right": "3, 3, 5, 8, 8 grubunun iki tepe değeri var: **3 ve 8**. 1, 2, 3, 4 grubunda **hiç** tepe değer yoktur.",
-      "why": "Tepe değer en çok tekrar edendir; eşit sayıda tekrar eden birden çok değer olabilir, hiçbir değer tekrar etmeyebilir.",
-      "narration": "Tepe değer her zaman tek değildir. 3, 3, 5, 8, 8 grubunda 3 de 8 de ikişer kez geçer; iki tepe değer vardır. 1, 2, 3, 4 grubunda ise hiçbir değer tekrar etmediği için tepe değer yoktur. ÖSYM soruyu bu yüzden yalnızca iki değer eşittir diye kurar."
+      "kind": "rule",
+      "title": "Ortancanın yeri",
+      "items": [
+       "$n$ tekse ortanca $\\frac{n+1}{2}$. terimdir: **7 veride 4. terim**.",
+       "$n$ çiftse $\\frac{n}{2}$. ve sonraki terimin ortalamasıdır: **8 veride 4. ve 5. terim**.",
+       "Ortanca bulunmadan önce veriler **mutlaka sıralanır**.",
+       "En büyük değer daha da büyürse **ortanca değişmez**, ortalama artar."
+      ],
+      "narration": "Bir: n tekse ortanca n artı 1 bölü 2'nci terimdir; 7 veride 4. terim. İki: n çiftse n bölü 2'nci ve sonraki terimin ortalamasıdır; 8 veride 4. ve 5. terim. Üç: ortanca bulunmadan önce veriler mutlaka sıralanır. Dört: en büyük değer daha da büyürse ortanca değişmez, ortalama artar."
      },
      {
       "kind": "predict",
       "title": "Uç değer",
-      "context": "Bir veri grubu: 4, 5, 6, 7, 8. Gruba 100 sayısı ekleniyor.",
+      "context": "Veri grubu: 4, 5, 6, 7, 8. Gruba 100 sayısı ekleniyor.",
       "prompt": "Hangisi daha çok değişir?",
       "choices": [
-       "Ortalama",
+       "Aritmetik ortalama",
        "Ortanca"
       ],
       "answer": 0,
-      "thinkSeconds": 5,
+      "thinkSeconds": 4,
       "visual": {
        "kind": "table",
        "header": [
@@ -406,7 +1483,7 @@
         ]
        },
        {
-        "narration": "100 eklenince toplam 130, ortalama yaklaşık 21,7'ye fırlar. Ortanca ise ortadaki iki sayının ortalaması, 6,5; neredeyse kıpırdamadı.",
+        "narration": "100 eklenince ortalama 21,7'ye fırlar; ortanca ise 6,5 olur, neredeyse kıpırdamaz.",
         "show": [
          "r2"
         ],
@@ -415,243 +1492,584 @@
         ]
        }
       ],
-      "explanation": "Ortalama **uç değerlerden** çok etkilenir; ortanca yalnız **sıraya** bakar. Gelir gibi uç değerli verilerde ortanca daha iyi temsil eder.",
+      "explanation": "Ortalama **uç değerlerden** çok etkilenir; ortanca yalnız **sıraya** bakar. Gelir gibi uç değerli verilerde ortanca merkezi daha iyi temsil eder.",
       "narration": "Şimdi sıra sende. Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap ortalama. Ortalama bütün değerlerin toplamını kullandığı için tek bir uç değer onu çok çeker. Ortanca ise yalnızca ortadaki değere bakar. Kafeye giren milyarder örneği tam olarak buydu."
+      "explanationNarration": "Doğru cevap aritmetik ortalama. Ortalama bütün değerlerin toplamını kullandığı için tek bir uç değer onu çok çeker. Ortanca ise yalnız sıraya bakar."
+     },
+     {
+      "kind": "example",
+      "title": "Önce sırala",
+      "example": "Sıcaklıklar: 12, 15, 12, 18, 14, 16.",
+      "explanation": "Sırala: 12, 12, 14, 15, 16, 18. Altı değer var; ortanca (14 + 15) ÷ 2 = **14,5**.",
+      "narration": "Sıcaklıklar: 12, 15, 12, 18, 14, 16. Ortanca kaç? Sırala: 12, 12, 14, 15, 16, 18. Altı değer var; ortanca 14 ile 15'in ortalaması, 14,5. Sıralamadan ortadaki 12 ile 18'i alan 15 bulur."
+     },
+     {
+      "kind": "mistake",
+      "title": "Ortanca gruptan bir sayı olmayabilir",
+      "wrong": "Bir veri grubunun ortancası her zaman gruptaki sayılardan biridir.",
+      "right": "Çift sayıda veride ortanca ortadaki iki değerin ortalamasıdır: 2, 4, 6, 8 için ortanca 5'tir.",
+      "why": "Ortanca bir değer değil, bir konumdur; ortadaki iki değer eşitse ancak gruptaki bir sayıya eşit olur.",
+      "narration": "Sık yapılan hata: ortancanın mutlaka gruptaki bir sayı olduğunu düşünmek. Çift sayıda veride ortanca ortadaki iki değerin ortalamasıdır; 2, 4, 6, 8 için 5'tir. Ortanca bir değer değil, bir konumdur."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Bir hafta boyunca ölçülen sıcaklıklar 12, 15, 12, 18, 18, 14 ve 18 derecedir. Bu veri grubunun tepe değerine eşit olan ölçümler gruptan çıkarılıyor. Kalan ölçümlerin ortancası kaçtır?",
+       "stem": "9 öğrencinin bir haftada çözdüğü test sayıları 14, 9, 21, 9, 16, 12, 18, 25 ve 11'dir. Bu veri grubunun ortancası kaçtır?",
        "options": [
         "12",
-        "13",
         "14",
         "15",
+        "16",
         "18"
        ],
        "answer": 1,
-       "narration": "ÖSYM 2023'te tam bu kalıbı sordu. Adım adım gidelim.",
+       "narration": "Kural bir: önce sırala.",
        "steps": [
         {
-         "text": "Tepe değer: 18 (3 kez). Çıkar → 12, 15, 12, 14",
-         "narration": "En çok tekrar eden değer 18, üç kez. Üç 18'i çıkarınca 12, 15, 12 ve 14 kalır."
+         "text": "Sırala: 9, 9, 11, 12, **14**, 16, 18, 21, 25.",
+         "narration": "Küçükten büyüğe: 9, 9, 11, 12, 14, 16, 18, 21, 25."
         },
         {
-         "text": "Sırala: 12, 12, 14, 15 → çift sayı: $\\frac{12 + 14}{2} = 13$",
-         "narration": "Sıralayalım: 12, 12, 14, 15. Dört değer var, çift; ortadaki iki değer 12 ve 14. Ortalamaları 13."
-        },
-        {
-         "text": "Cevap **B**. Sıralamadan ortadakileri alan 13,5 bulur.",
-         "narration": "Cevabımız B. Sıralamadan ortadaki iki değeri, 15 ile 12'yi alan 13,5 bulur; sıralama şart.",
+         "text": "9 veri, tek → 5. terim: **14**. Cevap **B**.",
          "eliminate": [
           "A",
           "C",
           "D",
           "E"
-         ]
+         ],
+         "narration": "Dokuz veri var, tek; ortanca beşinci terim, 14. Cevabımız B. Sıralamadan beşinci sayıyı alan 16, ortalamayı bulan 15 bulur."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2023'ün \"modu çıkarılan verinin medyanı\" kalıbı örnek alındı, değerler özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki sırasız veriden ortanca kalıbı özgün sayılarla soruldu."
        }
       }
      },
      {
       "kind": "question",
       "question": {
-       "style": "TYT tarzı",
-       "stem": "Birbirinden farklı tam sayılardan oluşan ve küçükten büyüğe sıralanmış 4, 6, $a$, 10, $b$ veri grubunun ortancası ile aritmetik ortalaması birbirine eşittir. Buna göre $a + b$ toplamının alabileceği **en küçük** değer kaçtır?",
+       "style": "ÖSYM tarzı",
+       "stem": "Bir okçuluk takımındaki 9 sporcunun puanları küçükten büyüğe 61, 64, 66, 70, 72, 74, 79, 80 ve 85'tir. Sporculardan biri takımdan ayrıldığında kalan 8 sporcunun puanlarının ortancası 73 oluyor. Buna göre ayrılan sporcunun puanı **en çok** kaçtır?",
        "options": [
-        "16",
-        "18",
-        "20",
-        "24",
-        "25"
+        "70",
+        "72",
+        "74",
+        "79",
+        "85"
        ],
-       "answer": 2,
-       "narration": "ÖSYM 2024'te ortanca ile ortalamayı birlikte sordu. Koşulları yazalım.",
+       "answer": 0,
+       "narration": "ÖSYM 2021'de bir takımdan ayrılan oyuncuyla sordu. Kim ayrılırsa ortadaki ikili nasıl kayar?",
        "steps": [
         {
-         "text": "Ortanca $a$ (5 değer, ortadaki). Ortalama $\\frac{20 + a + b}{5} = a \\Rightarrow b = 4a - 20$",
-         "narration": "Beş değer var, sıralı; ortanca ortadaki değer, a. Ortalama, 4 artı 6 artı a artı 10 artı b, bölü 5: 20 artı a artı b bölü 5. Bu a'ya eşit: 20 artı a artı b eşittir 5 a; b eşittir 4 a eksi 20."
+         "text": "8 sporcu kalınca ortanca = 4. ve 5. puanın ortalaması. 73 için ortadaki ikili **72 ve 74** olmalı.",
+         "narration": "Sekiz kişi kalınca ortanca dördüncü ve beşinci puanın ortalamasıdır. 73 çıkması için ortadaki ikili 72 ile 74 olmalı."
         },
         {
-         "text": "Sıra koşulu: $6 < a < 10$ ve $b > 10$. $a = 7 \\to b = 8$ ✗; $a = 8 \\to b = 12$ ✓",
-         "narration": "Sıralı ve farklı oldukları için a, 6 ile 10 arasında; b de 10'dan büyük olmalı. a 7 ise b 8 olur; 10'dan küçük, olmaz. a 8 ise b 12; olur."
-        },
-        {
-         "text": "En küçük $a + b = 8 + 12 = 20$. Cevap **C**.",
-         "narration": "a büyüdükçe b de büyüdüğü için en küçük toplam a 8, b 12 iken: 20. Cevabımız C. b'nin 10'dan büyük olması gerektiğini unutan 15 bulur.",
+         "text": "72'nin altından biri ayrılırsa 72 ve 74 ortaya kayar. 72 ayrılırsa ortanca 72, üstten biri ayrılırsa 71.",
          "eliminate": [
-          "A",
           "B",
+          "C",
           "D",
           "E"
-         ]
+         ],
+         "narration": "72'nin altından biri ayrılırsa 72 ile 74 ortaya kayar ve ortanca 73 olur. 72 ayrılırsa ortanca 72, daha büyük biri ayrılırsa 71 olur."
+        },
+        {
+         "text": "Ayrılan 61, 64, 66 ya da 70; en çok **70**. Cevap **A**.",
+         "narration": "Ayrılan sporcu 61, 64, 66 ya da 70 olabilir. En büyüğü 70. Cevabımız A."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2024'ün \"sıralı veri grubunda ortalama ve medyan ilişkisi\" kalıbı örnek alındı; veri, koşul ve sorulan nicelik özgün."
+        "changes": "ÖSYM 2021'in \"gruptan ayrılan kişiden sonra medyan\" kalıbı örnek alındı; tek bileşenli özgün veri, ortancanın değişmesi koşulu ve \"en çok\" sorusu özgün."
        }
       }
      },
      {
       "kind": "question",
       "question": {
-       "style": "TYT tarzı",
-       "stem": "Tam sayılardan oluşan ve küçükten büyüğe sıralanmış 3, $x$, 7, $y$, 12 veri grubunda yalnızca iki değer birbirine eşittir. Bu veri grubunun tepe değeri, ortancası ve aritmetik ortalaması birbirine eşit olduğuna göre, $x$ kaçtır?",
+       "style": "ÖSYM tarzı",
+       "stem": "Bir öğretmen, tam sayılardan oluşan beş sayılık bir veri grubunu küçükten büyüğe 2, $a$, 8, $b$, $c$ biçiminde tahtaya yazıyor ve gruptaki sayılardan yalnız ikisinin birbirine eşit olduğunu söylüyor. Grubun tepe değeri, ortancası ve aritmetik ortalaması aynı sayı olduğuna göre $c$ **en çok** kaçtır?",
        "options": [
-        "3",
-        "4",
-        "5",
-        "6",
-        "7"
+        "13",
+        "15",
+        "17",
+        "19",
+        "21"
        ],
        "answer": 3,
-       "narration": "ÖSYM 2018'de mod, medyan ve ortalamayı birlikte sordu. Önce en kolay olanı bulalım.",
+       "narration": "ÖSYM 2018'de tepe değer, ortanca ve ortalamayı birlikte sordu. En kolay olandan başla.",
        "steps": [
         {
-         "text": "Ortanca: ortadaki **7**. O hâlde tepe değer ve ortalama da 7.",
-         "narration": "Beş değer var ve sıralı; ortanca ortadaki 7. Tepe değer ve ortalama da 7 olmalı."
+         "text": "Beş sıralı veri → ortanca **8**. O hâlde ortalama 8: toplam 40 → $a + b + c = 30$.",
+         "narration": "Beş veri sıralı, ortanca ortadaki 8. Ortalama da 8 olmalı; toplam 5 çarpı 8, 40. Buradan a artı b artı c, 30."
         },
         {
-         "text": "Ortalama 7: toplam $35$ → $3 + x + 7 + y + 12 = 35 \\Rightarrow x + y = 13$",
-         "narration": "Ortalama 7 ise toplam 5 çarpı 7, 35. 3 artı x artı 7 artı y artı 12, 35; x artı y, 13."
+         "text": "Tepe değer 8 → $a = 8$ ya da $b = 8$. $a = 8$ ise $b + c = 22$, $8 < b$: en çok $c = 13$.",
+         "narration": "Tepe değerin 8 olması için 8 iki kez geçmeli. a 8 ise b artı c, 22; b en az 9 olacağından c en çok 13."
         },
         {
-         "text": "Tepe değer 7: $x = 7$ ya da $y = 7$. $x = 7$ ise $y = 6 < 7$ ✗. $y = 7$ ise $x = 6$ ✓. Cevap **D**.",
-         "narration": "Tepe değerin 7 olması için 7 iki kez geçmeli: ya x ya y 7'dir. x 7 olursa y 6 olur; ama y, 7'den sonra geldiği için 7'den küçük olamaz. Demek ki y 7, x 6. Veri 3, 6, 7, 7, 12. Cevabımız D.",
+         "text": "$b = 8$ ise $a + c = 22$, $2 < a < 8$: $a = 3$ → $c = 19$. Cevap **D**.",
          "eliminate": [
           "A",
           "B",
           "C",
           "E"
-         ]
+         ],
+         "narration": "b 8 ise a artı c, 22. a, 2'den büyük olmalı; en küçük 3. O zaman c, 19: veri 2, 3, 8, 8, 19. Cevabımız D. Yalnız a eşittir 8 durumunu deneyen 13'te kalır."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2018'in \"mod, medyan ve ortalamanın eşit olduğu sıralı veri\" kalıbı örnek alındı; veri ve sorulan bilinmeyen özgün."
+        "changes": "ÖSYM 2018'in \"mod, medyan ve ortalamanın eşit olduğu sıralı veri\" kalıbı örnek alındı; veri, iki durumlu inceleme ve \"en büyük değer\" sorusu özgün."
        }
       }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_VERI_IST_07",
+    "subtopics": [
+     "MAT_VERI_IST_08"
+    ],
+    "title": "Tepe değer ve açıklık",
+    "narration": "İki ölçü daha: en çok tekrar edeni gösteren tepe değer ve verinin ne kadar yayıldığını gösteren açıklık.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Aynı ortalama, farklı sınıf",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sınıf",
+        "Puanlar",
+        "Ortalama",
+        "Tepe değer",
+        "Açıklık"
+       ],
+       "rows": [
+        [
+         "A",
+         "68, 70, 70, 72",
+         "70",
+         "70",
+         "4"
+        ],
+        [
+         "B",
+         "40, 70, 70, 100",
+         "70",
+         "70",
+         "60"
+        ]
+       ],
+       "highlightColumn": 4
+      },
+      "caption": "Tepe değer en çok tekrar eden değerdir; açıklık en büyük ile en küçük değerin farkıdır.",
+      "narration": "İki küçük sınıfın puanlarını yan yana koyalım.",
+      "beats": [
+       {
+        "narration": "A sınıfında 68, 70, 70 ve 72 var; ortalama 70, en çok tekrar eden de 70.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "B sınıfında 40, 70, 70 ve 100 var; ortalama da tepe değer de yine 70.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Farkı açıklık gösterir: A'da 72 eksi 68, 4; B'de 100 eksi 40, 60.",
+        "focus": [
+         "col5"
+        ],
+        "note": "Açıklık büyük → veri dağınık"
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Tepe değer ve açıklık",
+      "items": [
+       "**Tepe değer**, en çok tekrar eden değerdir; sütun grafiğinde en uzun sütun.",
+       "Eşit en büyük sıklıklar varsa **birden çok tepe değer** olur: 3, 3, 8, 8, 9 için 3 ve 8.",
+       "Hiçbir değer diğerlerinden çok tekrar etmiyorsa **tepe değer yoktur**: 1, 2, 3, 4.",
+       "**Açıklık**, en büyük eksi en küçüktür; büyükse veri dağınık, küçükse birbirine yakın.",
+       "Açıklık yalnız **iki uca** bakar; aradaki değerleri görmez."
+      ],
+      "narration": "Bir: tepe değer, en çok tekrar eden değerdir; sütun grafiğinde en uzun sütun. İki: eşit en büyük sıklıklar varsa birden çok tepe değer olur; 3, 3, 8, 8, 9 için 3 ve 8. Üç: hiçbir değer diğerlerinden çok tekrar etmiyorsa tepe değer yoktur. Dört: açıklık, en büyük eksi en küçüktür. Beş: açıklık yalnız iki uca bakar."
+     },
+     {
+      "kind": "example",
+      "title": "Nitel veride tepe değer",
+      "example": "Göz renkleri: kahverengi, yeşil, kahverengi, mavi, kahverengi, yeşil.",
+      "explanation": "Tepe değer **kahverengidir**. Nitel veride ortalama ve açıklık yoktur; tepe değer yine bulunur.",
+      "narration": "Göz renkleri: kahverengi, yeşil, kahverengi, mavi, kahverengi, yeşil. Tepe değer kahverengidir, üç kez geçiyor. Nitel veride ortalama ve açıklık yoktur; ama tepe değer yine bulunur."
+     },
+     {
+      "kind": "mistake",
+      "title": "Sıklık değil, değer",
+      "wrong": "Sıklık tablosunda tepe değer, en büyük sıklık sayısıdır.",
+      "right": "Tepe değer, en büyük sıklığa sahip değerdir; kitap tablosunda 7 değil, 2 kitap.",
+      "why": "Sorulan bir veri değeridir; sıklık o değerin kaç kez geçtiğini söyler.",
+      "narration": "Sık yapılan hata: tablodaki en büyük sıklığı tepe değer sanmak. Tepe değer, en büyük sıklığa sahip değerdir; kitap tablosunda 7 değil, 2 kitap. Sorulan bir veri değeridir; sıklık o değerin kaç kez geçtiğini söyler."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "7 öğrencinin sınav puanları küçükten büyüğe 50, 55, 60, 65, 70, 75 ve 80'dir. Öğrencilerden biri gruptan ayrıldığında kalan 6 öğrencinin puanlarının ortancası değişmemiştir. Buna göre ayrılan öğrencinin puanı kaçtır?",
+       "stem": "3, 8, 5, 8, 12, 5, 8, 20, 5, 9 veri grubunun **tepe değerlerinin toplamı** ile **açıklığının** toplamı kaçtır?",
        "options": [
-        "55",
-        "60",
-        "65",
-        "70",
-        "75"
-       ],
-       "answer": 2,
-       "narration": "ÖSYM 2021'de bir voleybol takımından ayrılan oyuncuyla sordu. Ortancanın nasıl değiştiğine bakalım.",
-       "steps": [
-        {
-         "text": "Başta 7 değer: ortanca 4. sıradaki **65**.",
-         "narration": "Yedi değer var; ortanca dördüncü sıradaki 65."
-        },
-        {
-         "text": "6 değer kalınca ortanca = 3. ve 4. değerin ortalaması. 65 kalması için bu ikisi **60 ve 70** olmalı.",
-         "narration": "Bir öğrenci ayrılınca altı değer kalır; ortanca üçüncü ve dördüncü değerlerin ortalaması olur. Bunun 65 kalması için ortadaki iki değerin 60 ile 70 olması gerekir: ortalamaları 65."
-        },
-        {
-         "text": "Bu, yalnızca **65** ayrılırsa olur: 50, 55, 60, 70, 75, 80. Cevap **C**.",
-         "narration": "60 ile 70'in ortada kalması için aralarındaki 65 ayrılmalı: 50, 55, 60, 70, 75, 80. Başka biri ayrılırsa ortadaki ikili kayar; örneğin 50 ayrılırsa ortanca 67,5 olur. Cevabımız C.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2021'in \"gruptan ayrılan kişiden sonra medyanın değişmemesi\" kalıbı örnek alındı; veri ve bağlam özgün."
-       }
-      }
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "3, 7, 7, 9, 12, 15, 15, 20 veri grubunun **ortancası** ile **açıklığının** toplamı kaçtır?",
-       "options": [
+        "22",
         "25",
-        "26",
-        "27,5",
-        "29",
-        "30"
+        "30",
+        "34",
+        "37"
        ],
        "answer": 2,
-       "narration": "Veri sayısı çift ise ortanca, ortadaki iki değerin ortalamasıdır.",
+       "narration": "Dikkat: soru tepe değerlerin toplamını soruyor. Tek mi, birden çok mu?",
        "steps": [
         {
-         "text": "Veriler sıralı, **8** tane (çift) → ortanca $= \\frac{9 + 12}{2} = 10{,}5$.",
-         "narration": "Veriler zaten küçükten büyüğe sıralı ve sekiz tane; sayı çift. Ortadaki iki değer dördüncü ve beşinci: dokuz ve on iki. Ortalamaları on virgül beş; ortanca bu."
+         "text": "5 üç kez, 8 üç kez geçer; diğerleri birer kez → tepe değerler **5 ve 8**, toplam 13.",
+         "narration": "Sayalım: 5 üç kez, 8 de üç kez geçiyor; diğerleri birer kez. İki tepe değer var: 5 ve 8, toplamları 13."
         },
         {
-         "text": "Açıklık $= 20 - 3 = 17$.",
-         "narration": "Açıklık, en büyük değer eksi en küçük değer: yirmi eksi üç, on yedi."
-        },
-        {
-         "text": "$10{,}5 + 17 = 27{,}5$. Cevap **C**.",
-         "narration": "Toplam on virgül beş artı on yedi, yirmi yedi virgül beş. Cevabımız C. Tepe değer burada tek değil; hem yedi hem on beş ikişer kez geçiyor. Ama soru tepe değeri değil, ortancayı soruyor.",
+         "text": "Açıklık $= 20 - 3 = 17$. Toplam $13 + 17 = 30$. Cevap **C**.",
          "eliminate": [
           "A",
           "B",
           "D",
           "E"
-         ]
+         ],
+         "narration": "Açıklık, 20 eksi 3, 17. 13 artı 17, 30. Cevabımız C. Tepe değeri yalnız 8 sanan 25 bulur."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki üç ölçü (ortanca, tepe değer, açıklık) çift sayıda veriyle özgün bir soruda birleştirildi."
+        "changes": "Bu ders için yazıldı; havuzdaki iki tepe değerli veri ve açıklık kalıpları özgün bir veriyle birleştirildi."
        }
       }
      },
      {
       "kind": "question",
       "question": {
-       "style": "TYT tarzı",
-       "stem": "Bir şirkette çalışan 5 kişinin aylık maaşları bin TL cinsinden 20, 22, 24, 25 ve 200'dür. Bu veri grubu için aşağıdakilerden hangisi **doğrudur**?",
+       "style": "ÖSYM tarzı",
+       "stem": "42 öğrencinin bir sınavdan aldığı puanların sıklık tablosu verilmiştir; bazı sıklıklar silinmiştir. Bu puanların iki tepe değeri vardır: **60 ve 70**. Puanı bu tepe değerlerden birine eşit olan öğrencilerin toplam sayısı 22'dir. Buna göre 90 puan alan öğrenci sayısı kaçtır?",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "Puan",
+         "50",
+         "60",
+         "70",
+         "80",
+         "90"
+        ],
+        "rows": [
+         [
+          "Öğrenci sayısı",
+          "4",
+          "?",
+          "?",
+          "7",
+          "?"
+         ]
+        ]
+       },
        "options": [
-        "Ortanca 58,2'dir.",
-        "Aritmetik ortalama, ortancadan büyüktür.",
-        "Açıklık 25'tir.",
-        "Tepe değer 200'dür.",
-        "Aritmetik ortalama 24'tür."
+        "3",
+        "5",
+        "7",
+        "8",
+        "9"
        ],
-       "answer": 1,
-       "narration": "Bir uç değer ortalamayı çok etkiler, ortancayı etkilemez.",
+       "answer": 4,
+       "narration": "ÖSYM 2019'da tepe değerli bir sütun grafiğiyle sordu. İki tepe değer ne demek?",
        "steps": [
         {
-         "text": "Ortanca (sıralı, 3. değer) $= 24$; ortalama $= \\frac{20 + 22 + 24 + 25 + 200}{5} = \\frac{291}{5} = 58{,}2$.",
-         "narration": "Veriler sıralı ve beş tane; ortanca üçüncü değer, yirmi dört. Aritmetik ortalama: toplam iki yüz doksan bir, bölü beş, elli sekiz virgül iki.",
-         "eliminate": [
-          "A",
-          "E"
-         ]
+         "text": "İki tepe değer → sıklıkları **eşit**: $2x = 22 \\Rightarrow x = 11$.",
+         "mark": [
+          "60 ve 70"
+         ],
+         "narration": "60 ve 70 ikisi de tepe değerse sıklıkları eşittir ve en büyüktür. Toplamları 22 ise her biri 11."
         },
         {
-         "text": "Açıklık $= 200 - 20 = 180$; her değer **bir kez** geçiyor → tepe değer **yok**.",
-         "narration": "Açıklık iki yüz eksi yirmi, yüz seksen. Her değer yalnız bir kez geçtiği için bu grubun tepe değeri yoktur.",
+         "text": "90 alan: $42 - (4 + 11 + 11 + 7) = 9$; 9 < 11, tepe değerler bozulmaz.",
+         "narration": "90 alan öğrenci sayısı 42 eksi 4, 11, 11 ve 7'nin toplamı: 42 eksi 33, 9. 9, 11'den küçük; tepe değerler bozulmaz."
+        },
+        {
+         "text": "Cevap **E**.",
          "eliminate": [
+          "A",
+          "B",
           "C",
           "D"
-         ]
-        },
-        {
-         "text": "$58{,}2 > 24$ → ortalama ortancadan **büyük**. Cevap **B**.",
-         "narration": "Ortalama elli sekiz virgül iki, ortanca yirmi dört; ortalama daha büyük. Tek bir yüksek maaş ortalamayı yukarı çekti; oysa beş kişiden dördü yirmi beş binin altında kazanıyor. Böyle uç değerli verilerde ortanca, merkezi daha iyi temsil eder. Cevabımız B."
+         ],
+         "narration": "Cevabımız E."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki \"uç değer\" tahmin tablosu özgün bir maaş verisiyle soruldu."
+        "changes": "ÖSYM 2019'un \"tepe değerlerin toplam sıklığı verilen puan dağılımı\" kalıbı örnek alındı; tablo, koşullar ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_VERI_IST_09",
+    "title": "Grafik ve tablo yorumlama",
+    "narration": "Son adım: ÖSYM'nin grafik soruları. Hesap kolaydır; asıl iş grafiği doğru okumaktır.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Grafiğe üç soru sor",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "Eksenler ve birim",
+         "detail": "Sayı mı, yüzde mi, açı mı?"
+        },
+        {
+         "label": "Ne ile ne ilişkili?",
+         "detail": "İki grafik aynı grubu mu anlatıyor?"
+        },
+        {
+         "label": "Soru neyi istiyor?",
+         "detail": "Bulduğun değer istenen nicelik mi?"
+        }
+       ]
+      },
+      "narration": "Bir grafiğe bakınca hesaba atlama. Önce üç soru sor.",
+      "beats": [
+       {
+        "narration": "Bir: grafik neyi, hangi birimle gösteriyor? Sayı mı, yüzde mi, açı mı?",
+        "show": [
+         "n1"
+        ],
+        "focus": [
+         "n1"
+        ]
+       },
+       {
+        "narration": "İki: iki grafik varsa birinin oranını öbürünün sayısına bağlayan ilişkiyi bul.",
+        "show": [
+         "n2"
+        ],
+        "focus": [
+         "n2"
+        ]
+       },
+       {
+        "narration": "Üç: bulduğun değer gerçekten sorunun istediği nicelik mi? Başlangıç mı, kalan mı?",
+        "show": [
+         "n3"
+        ],
+        "focus": [
+         "n3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Oran ile yüzdeyi birleştir",
+      "example": "Bir okulda kızlar daire grafiğinde 90 derecelik, erkekler 270 derecelik dilimdir; kızların **yüzde 40'ı**, erkeklerin yüzde 20'si gönüllüdür ve 50 gönüllü vardır.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "—",
+        "Kız",
+        "Erkek"
+       ],
+       "rows": [
+        [
+         "Dilim",
+         "90°",
+         "270°"
+        ],
+        [
+         "Oran",
+         "1/4",
+         "3/4"
+        ],
+        [
+         "Gönüllü",
+         "%40",
+         "%20"
+        ],
+        [
+         "Gönüllü payı",
+         "0,1",
+         "0,15"
+        ]
+       ]
+      },
+      "narration": "Bir okulda kızlar daire grafiğinde 90 derecelik, erkekler 270 derecelik dilimdir; kızların yüzde 40'ı, erkeklerin yüzde 20'si gönüllüdür ve 50 gönüllü vardır.",
+      "beats": [
+       {
+        "narration": "90 derece dairenin dörtte biridir; kızlar dörtte bir, erkekler dörtte üç.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Kızlardan gelen pay dörtte birin yüzde 40'ı, 0,1; erkeklerden gelen pay 0,15.",
+        "show": [
+         "r3",
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ]
+       },
+       {
+        "narration": "Gönüllüler okulun 0,25'i, yani dörtte biridir; 50 gönüllü varsa okulda 200 öğrenci vardır.",
+        "note": "50 ÷ 0,25 = 200"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Yüzde büyük, sayı büyük değil",
+      "wrong": "Yüzdesi büyük olan grubun sayısı da büyüktür.",
+      "right": "Yüzde, grubun kendi içindeki payıdır; kızların %40'ı 20 kişi, erkeklerin %20'si 30 kişidir.",
+      "why": "Sayıyı bulmak için yüzdeyi o grubun büyüklüğüyle çarparsın.",
+      "narration": "Sık yapılan hata: yüzdesi büyük olanın sayısını da büyük sanmak. Yüzde, grubun kendi içindeki payıdır; kızların yüzde 40'ı 20 kişi, erkeklerin yüzde 20'si 30 kişidir. Sayıyı bulmak için yüzdeyi o grubun büyüklüğüyle çarparsın."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir kargo şubesinde kırmızı (K), mavi (M) ve sarı (S) etiketli koliler vardır; aynı etiketli kolilerin her biri eşit ağırlıktadır. Kolilerin sayıca dağılımını ve toplam ağırlıklarının dağılımını gösteren iki daire grafiğindeki dilim açıları tabloda verilmiştir. Bir K, bir M ve bir S kolinin ağırlıkları sırasıyla $a_K$, $a_M$ ve $a_S$ olduğuna göre, aşağıdakilerden hangisi doğrudur?",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "Koli",
+         "Sayıca dağılım",
+         "Ağırlıkça dağılım"
+        ],
+        "rows": [
+         [
+          "K",
+          "150°",
+          "100°"
+         ],
+         [
+          "M",
+          "90°",
+          "120°"
+         ],
+         [
+          "S",
+          "120°",
+          "140°"
+         ]
+        ]
+       },
+       "options": [
+        "$a_K < a_S < a_M$",
+        "$a_K < a_M < a_S$",
+        "$a_S < a_K < a_M$",
+        "$a_M < a_S < a_K$",
+        "$a_S < a_M < a_K$"
+       ],
+       "answer": 0,
+       "narration": "ÖSYM 2018'de iki daire grafiğiyle sordu. Bir kolinin ağırlığı neye bağlı?",
+       "steps": [
+        {
+         "text": "Bir koli = toplam ağırlık ÷ sayı → **ağırlık açısı ÷ sayı açısı** ile orantılı.",
+         "narration": "Bir kolinin ağırlığı, o renkteki toplam ağırlık bölü koli sayısıdır. İki grafik de bütünü 360 dereceye böldüğü için ağırlık açısının sayı açısına oranına bakmak yeter."
+        },
+        {
+         "text": "K: $\\frac{100}{150} = \\frac{2}{3}$, M: $\\frac{120}{90} = \\frac{4}{3}$, S: $\\frac{140}{120} = \\frac{7}{6}$.",
+         "narration": "K için 100 bölü 150, üçte iki. M için 120 bölü 90, üçte dört. S için 140 bölü 120, altıda yedi."
+        },
+        {
+         "text": "$\\frac{2}{3} < \\frac{7}{6} < \\frac{4}{3}$ → $a_K < a_S < a_M$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "narration": "Üçte iki, altıda yediden; altıda yedi de üçte dörtten küçük. Sıra K, S, M. Cevabımız A. B'yi seçen yalnız ağırlık grafiğine bakmıştır."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018'in \"sayıca ve ağırlıkça iki daire grafiğinden birim ağırlık sıralaması\" kalıbı örnek alındı; bağlam, açılar ve sonuç özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "context": "E-kitap olarak da yayımlananların oranı:\nRoman: %60\nŞiir: %40\nDeneme: %40\nÖykü: %20",
+       "stem": "Bir yayınevinin bir yılda bastığı kitapların türlere göre sayıca dağılımı daire grafiğinde gösterilmiştir. Listede, her türde basılan kitaplardan e-kitap olarak da yayımlananların oranı verilmiştir. Bu yayınevi bu yıl 75 kitabı e-kitap olarak da yayımladığına göre, toplam kaç kitap basmıştır?",
+       "figure": {
+        "kind": "pie",
+        "slices": [
+         {
+          "label": "Roman",
+          "value": 60
+         },
+         {
+          "label": "Şiir",
+          "value": 30
+         },
+         {
+          "label": "Deneme",
+          "value": 45
+         },
+         {
+          "label": "Öykü",
+          "value": 45
+         }
+        ],
+        "show": "angle"
+       },
+       "options": [
+        "120",
+        "144",
+        "160",
+        "180",
+        "200"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2024'te fabrikalarla sordu. Tıpkı gönüllü örneğindeki gibi oranları birleştir.",
+       "steps": [
+        {
+         "text": "Oranlar: roman $\\frac{120}{360} = \\frac{1}{3}$, şiir $\\frac{1}{6}$, deneme $\\frac{1}{4}$, öykü $\\frac{1}{4}$.",
+         "narration": "Açıları orana çevirelim: roman üçte bir, şiir altıda bir, deneme dörtte bir, öykü dörtte bir."
+        },
+        {
+         "text": "E-kitap payı: $\\frac{1}{3} \\cdot 0{,}6 + \\frac{1}{6} \\cdot 0{,}4 + \\frac{1}{4} \\cdot 0{,}4 + \\frac{1}{4} \\cdot 0{,}2 = \\frac{5}{12}$.",
+         "narration": "Her türün payını yüzdesiyle çarpıp toplayalım: 0,2 artı on beşte bir, artı 0,1 artı 0,05. Toplam on ikide beş."
+        },
+        {
+         "text": "Toplam $\\cdot \\frac{5}{12} = 75 \\Rightarrow$ toplam $= 180$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "narration": "Toplamın on ikide beşi 75 ise toplam 180 kitap. Kontrol: 36 artı 12 artı 18 artı 9, 75. Cevabımız D."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2024'ün \"daire grafiği ve türlere göre yüzdeler, toplamdan bütünü bulma\" kalıbı örnek alındı; bağlam, açılar, yüzdeler ve sonuç özgün."
        }
       }
      }
@@ -660,24 +2078,26 @@
   ],
   "summary": {
    "points": [
-    "Daire grafiğinde açı = **oran × 360**.",
-    "**Toplam = ortalama × sayı**; çıkarma-eklemede toplamla düşün.",
-    "Sıklık tablosunda değerleri **sıklıklarıyla** çarp.",
-    "Ortanca: önce **sırala**; çift sayıda ortadaki ikisinin ortalaması.",
-    "Tepe değer en çok tekrar eden; açıklık en büyük − en küçük.",
-    "Ortalama **uç değerlere** duyarlı, ortanca değil."
+    "Veri **nitel**, **kesikli** ya da **sürekli** olabilir; sayıyla yazılan her veri nicel değildir.",
+    "Sıklıkların toplamı **veri sayısı**; değer × sıklık toplamı **veri toplamı**.",
+    "Daire grafiğinde açı = **oran × 360°**; grafik oranı gösterir, sayıyı değil.",
+    "Çizgi grafiğinde **en dik parça** en büyük değişimdir.",
+    "**Toplam = ortalama × sayı**; ekleme ve çıkarmada toplamla düşün.",
+    "Ortanca için önce **sırala**; çift sayıda ortadaki iki değerin ortalaması.",
+    "Tepe değer en çok tekrar eden değer; **açıklık** en büyük − en küçük.",
+    "Ortalama **uç değerlere** duyarlıdır, ortanca değildir."
    ],
    "warnings": [
-    "Sıralamadan ortanca alınmaz.",
-    "60, 70, 80'in ortalaması sınıf ortalaması değildir.",
-    "$n - 1$ ile $n$'yi karıştırma.",
-    "Sıralı veride koşul: **farklı** ve **artan**."
+    "En büyük sıklık tepe değer değil; tepe değer o sıklığın **değeri**.",
+    "Kişi sayıları farklıysa ortalamaların ortalaması alınmaz.",
+    "Yüzdesi büyük grubun sayısı büyük olmayabilir.",
+    "Bulduğun değer, sorunun istediği nicelik mi? Bir kez daha oku."
    ],
-   "narration": "Hadi toparlayalım. Grafikleri okurken daire grafiğinde açıyı orana çevir. Ortalama sorularında toplamla düşün: toplam, ortalama çarpı sayıdır. Ortancayı bulmadan önce mutlaka sırala; veri sayısı çiftse ortadaki iki değerin ortalamasını al. Tepe değer en çok tekrar eden, açıklık en büyük eksi en küçüktür. Ortalama uç değerlerden çok etkilenir, ortanca ise neredeyse hiç."
+   "narration": "Hadi toparlayalım. Önce verinin türünü tanı: nitel mi, kesikli mi, sürekli mi? Sıklık tablosunda değerleri sıklıklarıyla çarp. Daire grafiğinde açıyı orana çevir, çizgi grafiğinde en dik parçaya bak. Ortalamada toplamla düşün. Ortancadan önce mutlaka sırala. Tepe değer en çok tekrar eden, açıklık en büyük eksi en küçüktür. Ve unutma: ortalama uç değerlerden çok etkilenir, ortanca neredeyse hiç."
   }
  },
  "short": {
-  "hook": "İstatistikte üç tuzak.",
+  "hook": "Ortalama yanıltır.",
   "cards": [
    {
     "kind": "warning",
@@ -689,19 +2109,29 @@
    },
    {
     "kind": "fact",
-    "text": "Uç değer **ortalamayı** çeker."
+    "text": "Uç değer **ortalamayı** çeker, ortancayı değil."
    },
    {
-    "kind": "fact",
-    "text": "Açıklık = en büyük − **en küçük**."
+    "kind": "warning",
+    "text": "Forma numarası **nitel** veridir."
    }
   ],
   "summary": [
-   "Önce sırala",
-   "Toplamla düşün",
-   "Uç değer ortalamayı çeker"
+   "Önce türü tanı",
+   "Ortanca için sırala",
+   "Toplamla düşün"
   ],
   "rounds": [
+   {
+    "sentence": "Forma numaraları: 10, 7, 23",
+    "question": "Nicel mi?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "Kimlik bildirir: **nitel**."
+   },
    {
     "sentence": "7, 2, 9, 4, 5",
     "question": "Ortanca 9 mu?",
@@ -713,24 +2143,14 @@
     "why": "Sıralayınca **5**."
    },
    {
-    "sentence": "2, 4, 6, 8",
-    "question": "Ortanca?",
+    "sentence": "2 kişi 60, 3 kişi 80",
+    "question": "Ortalama 70 mi?",
     "choices": [
-     "5",
-     "4"
+     "Evet",
+     "Hayır"
     ],
-    "answer": 0,
-    "why": "4 ile 6'nın **ortası**."
-   },
-   {
-    "sentence": "Gruba 100 eklendi.",
-    "question": "Hangisi fırlar?",
-    "choices": [
-     "Ortalama",
-     "Ortanca"
-    ],
-    "answer": 0,
-    "why": "Uç değer **çeker**."
+    "answer": 1,
+    "why": "72: **kalabalık** çeker."
    }
   ]
  },

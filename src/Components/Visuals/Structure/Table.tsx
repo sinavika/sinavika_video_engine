@@ -8,13 +8,18 @@ import {UNFOCUSED_FADE, useElementState} from '../VisualTimeline';
 
 type Table = Extract<CourseVisual, {kind: 'table'}>;
 
-/** How a table cell stands: its row and its column are parts of their own; a cell dims only when both do. */
+/**
+ * How a table cell stands: its row, its column and the cell itself ("r2c3") are parts of their own; a cell dims only
+ * when all three do. Pointing at cells lights one value of a frequency or truth table instead of its whole row
+ * (TYT Matematik, 9 Nov 2026).
+ */
 const useCellLook = (row: string, column: string) => {
 	const rowState = useElementState(row);
 	const columnState = useElementState(column);
+	const cellState = useElementState(`${row}${column.replace(/^col/, 'c')}`);
 	return {
-		opacity: Math.min(rowState.appear, columnState.appear) * (1 - UNFOCUSED_FADE * Math.min(rowState.dim, columnState.dim)),
-		emphasis: Math.max(rowState.emphasis, columnState.emphasis),
+		opacity: Math.min(rowState.appear, columnState.appear, cellState.appear) * (1 - UNFOCUSED_FADE * Math.min(rowState.dim, columnState.dim, cellState.dim)),
+		emphasis: Math.max(rowState.emphasis, columnState.emphasis, cellState.emphasis),
 	};
 };
 

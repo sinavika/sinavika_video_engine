@@ -42,7 +42,8 @@ export const collectWorkFigures = (script: ScriptLike): WorkFigureEntry[] => {
 		(section.cards ?? []).forEach((card, c) => {
 			const base = `/lesson/sections/${s}/cards/${c}`;
 			const tag = `s${s + 1}c${c + 1}`;
-			add(`${base}/visual`, `${tag}-visual`, card.visual, card.beats);
+			// A worked example's steps move its figure the way beats do.
+			add(`${base}/visual`, `${tag}-visual`, card.visual, Array.isArray(card.steps) && card.steps.length ? card.steps : card.beats);
 			const question = card.question as {figure?: unknown; steps?: {visual?: unknown}[]} | undefined;
 			if (question) {
 				add(`${base}/question/figure`, `${tag}-figure`, question.figure);

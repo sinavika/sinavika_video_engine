@@ -157,6 +157,9 @@ export const useParams = (defaults: Partial<Record<string, {from: number; to?: n
  * scene's narration (when the scene says how long it is), each at least 1.2 s;
  * otherwise each lasts `secondsPerStage`.
  */
+/** The shortest a stage of a visual without beats may last (seconds). */
+const MIN_STAGE_SECONDS = 0.5;
+
 export const useStageClock = (count: number, {delaySeconds = 0, secondsPerStage: preferred = 3.2} = {}): {stage: number; progress: number; seconds: number; duration: number} => {
 	const timeline = useTimeline();
 	const sceneLength = useContext(SceneLengthContext);
@@ -164,7 +167,10 @@ export const useStageClock = (count: number, {delaySeconds = 0, secondsPerStage:
 	const current = useBeatIndex();
 	if (!timeline) {
 		// The last stage should be reached with time to see it: the stages end a second before the scene does.
-		const secondsPerStage = sceneLength ? Math.min(preferred * 1.6, Math.max(1.2, (sceneLength - delaySeconds - 1) / count)) : preferred;
+		// At least half a second a stage, so a long scene is not rushed and a short one still reaches its last stage: at
+		// 1.2 s a stage a six-row prime ladder under a five-second line stopped at its third row (9 Nov 2026). A scene
+		// with more stages than its line can carry is a review suggestion (LessonScript stageIssues).
+		const secondsPerStage = sceneLength ? Math.min(preferred * 1.6, Math.max(MIN_STAGE_SECONDS, (sceneLength - delaySeconds - 1) / count)) : preferred;
 		const elapsed = Math.max(0, now - delaySeconds);
 		const stage = Math.min(count - 1, Math.floor(elapsed / secondsPerStage));
 		const into = elapsed - stage * secondsPerStage;

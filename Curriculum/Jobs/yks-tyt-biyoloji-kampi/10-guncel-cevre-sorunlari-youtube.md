@@ -1,6 +1,6 @@
 # YouTube metni: TYT Biyoloji kampı · Ders 10 · Güncel Çevre Sorunları
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Biyoloji/10_Guncel_Cevre_Sorunlari/Guncel_Cevre_Sorunlari_YouTube.mp4` (4K) · Kapak: `Guncel_Cevre_Sorunlari_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Biyoloji/10_Guncel_Cevre_Sorunlari/Guncel_Cevre_Sorunlari_YouTube.mp4` (4K) · Kapak: `Guncel_Cevre_Sorunlari_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -1,6 +1,6 @@
 # YouTube metni: TYT Din Kültürü ve Ahlak Bilgisi kampı · Ders 7 · Allah'ın Varlığı ve Birliği
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/07_Allahin_Varligi_ve_Birligi/Allahin_Varligi_ve_Birligi_YouTube.mp4` (4K) · Kapak: `Allahin_Varligi_ve_Birligi_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Din/07_Allahin_Varligi_ve_Birligi/Allahin_Varligi_ve_Birligi_YouTube.mp4` (4K) · Kapak: `Allahin_Varligi_ve_Birligi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

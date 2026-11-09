@@ -1,6 +1,6 @@
 # YouTube metni: AYT Tarih kampı · Ders 22 · Atatürkçülük ve Türk İnkılabı
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Tarih/22_Ataturkculuk_Ve_Turk_Inkilabi/Ataturkculuk_Ve_Turk_Inkilabi_YouTube.mp4` (4K) · Kapak: `Ataturkculuk_Ve_Turk_Inkilabi_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Tarih/22_Ataturkculuk_Ve_Turk_Inkilabi/Ataturkculuk_Ve_Turk_Inkilabi_YouTube.mp4` (4K) · Kapak: `Ataturkculuk_Ve_Turk_Inkilabi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

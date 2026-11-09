@@ -12,54 +12,312 @@
   "TYT"
  ],
  "sources": [
-  "YKS/TYT/KonuAnlatimi/MAT/MAT_ORAN.json (MEB Temel Matematik konu anlatımı: oran, orantı, orantı sabiti, özellikler, doğru ve ters orantı, orantılı paylaştırma, günlük hayattan örnekler)",
-  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: 7 soru; doğru orantı (aidat, ayakkabı numarası, kalemlik, açılar), orantı problemleri (fındık ezmesi tarifi, şişe kütlesi, mızrak atışı))",
-  "YKS/TYT/Sorular/MAT/MAT_ORAN.jsonl (225 soru; oran, doğru-ters orantı ve orantı problemleri kalıpları)"
+  "YKS/TYT/KonuAnlatimi/MAT/MAT_ORAN.json (MEB Temel Matematik konu anlatımı s. 47–49: oran, orantı, orantı sabiti, içler-dışlar, orantının özellikleri, doğru ve ters orantı, orantılı …)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: doğrusal ilişki (ayakkabı numarası, 2018), doğru orantılı paylaştırma (kalemlik, 2020), tarifte artan malzeme (fındık ezmesi, 2022), adet ve kütle oranı (şişeler, 2024))",
+  "YKS/TYT/Sorular/MAT/MAT_ORAN.jsonl (oran, orantı sabiti, doğru-ters orantı, bileşik orantı, ölçek ve orantı problemleri kalıpları)"
  ],
  "lesson": {
   "hook": {
-   "headline": "2 ölçü limon, 5 ölçü su. Elinde 6 litre limon, 20 litre su var. Ne artar?",
-   "narration": "Bir limonata tarifinde 2 ölçü limon suyuna 5 ölçü su karışıyor. Elinde 6 litre limon suyu ve 20 litre su var. En fazla limonatayı yaptığında hangisinden ne kadar artar? ÖSYM 2022'de aynı soruyu fındık ezmesiyle sordu. Oran orantı, matematiğin günlük hayata en çok değdiği konu: tarifler, haritalar, işçiler, hız. Bu derste oranı ve orantıyı, doğru ve ters orantıyı, orantılı paylaştırmayı, bileşik orantıyı ve doğrusal ilişkileri adım adım göreceğiz."
+   "headline": "Tarif, harita, hız: hepsinin arkasında oran var.",
+   "narration": "Bir tarifi iki katına çıkarmak, haritada yol ölçmek, bir işi daha çok kişiyle bitirmek. Hepsinin arkasında aynı fikir var: oran ve orantı."
   },
   "opening": {
-   "kind": "question",
-   "card": "s4-c2",
-   "narration": "2 ölçü limon, 5 ölçü su. Elinde 6 litre limon, 20 litre su var. Ne artar? 6 usta 8 günde 3 duvar örüyor. 4 usta 12 günde kaç duvar örer?",
-   "promise": "Oranı, doğru ve ters orantıyı, bileşik orantıyı ve orantı sabitiyle çözülen soruları adım adım ele alacağız."
+   "kind": "mistake",
+   "card": "s4-c7",
+   "narration": "Saatte 60 kilometreyle 5 saatte aldığın yolu 4 saatte almak istiyorsun. Hızını kaç kilometre artırmalısın? Çoğu öğrenci hızlıca 12 der ve yanılır.",
+   "promise": "Oranı, orantı sabitini, doğru, ters ve bileşik orantıyı, ölçeği ve ÖSYM'nin tarif ve doğrusal ilişki sorularını adım adım çözeceksin."
   },
   "objectives": [
-   "Orantı sabitiyle bilinmeyenleri bulmak",
-   "Doğru ve ters orantıyı ayırt etmek",
-   "Bir miktarı doğru ya da ters orantılı paylaştırmak",
-   "Bileşik orantı ve doğrusal ilişki sorularını çözmek"
+   "Oranı ve orantı sabiti k'yi kullanmak",
+   "Doğru ve ters orantıyı ayırt edip paylaştırma yapmak",
+   "Bileşik orantı ve ölçek sorularını çözmek",
+   "Tarif, kütle ve doğrusal ilişki problemlerini kurmak"
   ],
   "sections": [
    {
     "subtopic": "MAT_ORAN_01",
-    "subtopics": [
-     "MAT_ORAN_02"
-    ],
-    "title": "Oran ve orantı",
-    "narration": "Oran, iki çokluğun bölme yoluyla karşılaştırılmasıdır. İki oranın eşitliğine de orantı denir.",
+    "title": "Oran",
+    "narration": "Önce oranla başlayalım: iki çokluğu bölerek karşılaştırmak.",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Oran nedir?",
+      "text": "**Oran**, aynı türden iki çokluğun **bölme** yoluyla karşılaştırılmasıdır. $a$'nın $b$'ye oranı $\\frac{a}{b}$ ya da $a : b$ diye yazılır.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Karşılaştırma",
+        "Bölme",
+        "Sade oran"
+       ],
+       "rows": [
+        [
+         "Kız : erkek",
+         "12 : 18",
+         "2 : 3"
+        ],
+        [
+         "Kız : sınıf",
+         "12 : 30",
+         "2 : 5"
+        ],
+        [
+         "Erkek : sınıf",
+         "18 : 30",
+         "3 : 5"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "narration": "Oran, aynı türden iki çokluğu bölme yoluyla karşılaştırmaktır. a'nın b'ye oranını a bölü b ya da a'ya b diye yazarsın.",
+      "beats": [
+       {
+        "narration": "Bir sınıfta 12 kız, 18 erkek var. Kızların erkeklere oranı 12'ye 18, sadeleşince 2'ye 3.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Kızların bütün sınıfa oranı ise 12'ye 30, yani 2'ye 5. Parçayı bütünle de karşılaştırabilirsin.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Erkeklerin sınıfa oranı 3'e 5. Bak, 2 artı 3, sınıfın 5 parçasıdır.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ]
+     },
+     {
       "kind": "rule",
-      "title": "Orantı sabiti k",
+      "title": "Oranın kuralları",
       "items": [
-       "$\\frac{a}{b} = \\frac{c}{d}$ ise **içler dışlar** çarpımı eşittir: $a \\cdot d = b \\cdot c$.",
-       "$\\frac{a}{3} = \\frac{b}{5} = k$ ise $a = 3k$, $b = 5k$: her şeyi **k cinsinden** yaz.",
-       "Payların toplamı paydaların toplamına bölünürse oran değişmez: $\\frac{a + b}{3 + 5} = k$.",
-       "Oranlar çarpılırsa **k'nin karesi** çıkar: $\\frac{a}{3} \\cdot \\frac{b}{5} = k^2$."
+       "Oranın **birimi yoktur**; iki çokluk önce **aynı birime** çevrilir.",
+       "Oran **sadeleşir**: $12 : 18 = 2 : 3$.",
+       "Oran $2 : 3$ ise çokluklar $2k$ ve $3k$, bütün $5k$ olur.",
+       "Parçanın bütüne oranı **kesir** gibi okunur: kızlar sınıfın $\\frac{2}{5}$'i."
       ],
-      "narration": "İki oran eşitse içler çarpımı dışlar çarpımına eşittir: a çarpı d, b çarpı c. En güçlü yöntem ise orantı sabiti: a bölü 3 eşittir b bölü 5 eşittir k ise a 3 k, b 5 k olur. Her şeyi k cinsinden yazınca soru tek bilinmeyene iner. Payların toplamını paydaların toplamına bölersen oran değişmez. Oranları çarparsan k kare elde edersin."
+      "narration": "Oranın birimi yoktur; bu yüzden iki çokluk önce aynı birime çevrilir. Oran sadeleşir: 12'ye 18, 2'ye 3 olur. Oran 2'ye 3 ise çokluklar 2 k ve 3 k, bütün de 5 k olur. Parçanın bütüne oranı kesir gibi okunur: kızlar sınıfın beşte ikisidir."
+     },
+     {
+      "kind": "example",
+      "title": "Bilyelerin oranı",
+      "example": "Bir torbada 24 kırmızı ve 16 **mavi bilye** var. Kırmızıların mavilere oranı kaçtır?",
+      "explanation": "Sadeleştir: $24 : 16 = 3 : 2$. Kırmızılar torbanın **beşte üçü**.",
+      "narration": "Bir torbada 24 kırmızı ve 16 mavi bilye var. Kırmızıların mavilere oranı kaçtır? Sadeleştir: 24'e 16, 8'e bölününce 3'e 2. Kırmızılar torbanın beşte üçü."
      },
      {
       "kind": "mistake",
       "title": "Oranda birimler aynı olmalı",
-      "wrong": "**3 saatin 45 dakikaya oranı** $\\frac{3}{45} = \\frac{1}{15}$'tir.",
-      "right": "Önce aynı birime çevir: 3 saat = **180 dakika**. Oran $\\frac{180}{45} = 4$.",
-      "why": "Oran, **aynı türden** iki çokluğun karşılaştırmasıdır; birimler eşitlenmeden bölünmez.",
-      "narration": "Oranda en sık hata birimleri unutmak. 3 saatin 45 dakikaya oranı 3 bölü 45 değildir. Önce aynı birime çevir: 3 saat 180 dakika. 180 bölü 45, 4. Yani 3 saat, 45 dakikanın 4 katıdır. Oran, aynı türden iki çokluğun karşılaştırmasıdır."
+      "wrong": "3 saatin 45 dakikaya oranı $\\frac{3}{45} = \\frac{1}{15}$'tir.",
+      "right": "Önce aynı birime çevir: 3 saat **180 dakika**; oran $\\frac{180}{45} = 4$.",
+      "why": "Oran **aynı türden** ve aynı birimdeki iki çokluğun karşılaştırmasıdır.",
+      "narration": "Sık yapılan hata: 3 saatin 45 dakikaya oranını 3 bölü 45 sanmak. Önce aynı birime çevir: 3 saat 180 dakika, oran 180 bölü 45, yani 4. Oran aynı türden ve aynı birimdeki iki çokluğun karşılaştırmasıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir okulda öğretmen sayısının öğrenci sayısına oranı $\\frac{2}{45}$'tir. Okulda 630 öğrenci olduğuna göre kaç öğretmen vardır?",
+       "options": [
+        "14",
+        "28",
+        "30",
+        "42",
+        "56"
+       ],
+       "answer": 1,
+       "narration": "Isınalım: oranı k ile yazıyoruz.",
+       "steps": [
+        {
+         "text": "Öğretmen $= 2k$, öğrenci $= 45k$.",
+         "narration": "Oran 2'ye 45 olduğuna göre öğretmenler 2 k, öğrenciler 45 k."
+        },
+        {
+         "text": "$45k = 630 \\Rightarrow k = 14$",
+         "narration": "45 k, 630'a eşit; k, 14."
+        },
+        {
+         "text": "Öğretmen $= 2 \\cdot 14 = 28$. Cevap **B**.",
+         "narration": "Öğretmen sayısı 2 çarpı 14, yani 28. Cevabımız B. 14'ü seçen k'yi bulup durmuş; soru 2 k'yi soruyor.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki oran sorularının kalıbı örnek alındı, bağlam ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir markette aynı deterjanın 2 kg'lık paketi 90 TL, 5 kg'lık paketi 210 TL ve 8 kg'lık paketi 352 TL'ye satılmaktadır. Bir otel, toplam 40 kg deterjanı yalnızca tek bir paket türünden alacaktır. Buna göre otelin en ucuz seçenekle ödeyeceği tutar, en pahalı seçenekle ödeyeceği tutardan kaç TL azdır?",
+       "options": [
+        "40",
+        "60",
+        "80",
+        "100",
+        "120"
+       ],
+       "answer": 4,
+       "narration": "ÖSYM oranı çoğu zaman alışverişle sorar. Kilogram başına fiyatı karşılaştır.",
+       "steps": [
+        {
+         "text": "Kilogram fiyatları: $\\frac{90}{2} = 45$, $\\frac{210}{5} = 42$, $\\frac{352}{8} = 44$ TL.",
+         "narration": "Önce birim fiyatları bul: 2 kiloluk 45, 5 kiloluk 42, 8 kiloluk 44 lira. En ucuz 5 kiloluk, en pahalı 2 kiloluk.",
+         "mark": [
+          "en ucuz"
+         ]
+        },
+        {
+         "text": "40 kg: $40 \\cdot 42 = 1680$ TL ve $40 \\cdot 45 = 1800$ TL.",
+         "narration": "40 kiloyu 5'lik paketle alırsa 1680, 2'lik paketle alırsa 1800 lira öder."
+        },
+        {
+         "text": "Fark $1800 - 1680 = 120$ TL. Cevap **E**.",
+         "narration": "Fark 120 lira. Kısa yol: kilo başına 3 lira fark, 40 kiloda 120 lira. Cevabımız E. 80'i seçen 8'lik paketi en pahalı sanmış.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki birim fiyat karşılaştırma kalıbı örnek alındı, paketler, fiyatlar ve sorulan nicelik özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_ORAN_02",
+    "title": "Orantı ve orantı sabiti",
+    "narration": "İki oran eşitse orantı kurarsın. Orantının en güçlü aracı orantı sabiti k'dir.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Orantı ve orantı sabiti",
+      "text": "İki oranın eşitliğine **orantı** denir: $\\frac{a}{b} = \\frac{c}{d}$. Ortak değere **orantı sabiti** denir, adı $k$. $b$ ve $c$ içler, $a$ ve $d$ dışlardır.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "k",
+        "a = 3k",
+        "b = 5k",
+        "a / b"
+       ],
+       "rows": [
+        [
+         "1",
+         "3",
+         "5",
+         "3/5"
+        ],
+        [
+         "2",
+         "6",
+         "10",
+         "3/5"
+        ],
+        [
+         "4",
+         "12",
+         "20",
+         "3/5"
+        ]
+       ],
+       "highlightColumn": 3
+      },
+      "narration": "İki oranın eşitliğine orantı denir. Ortak değere orantı sabiti diyoruz, adı k.",
+      "beats": [
+       {
+        "narration": "a bölü 3 eşittir b bölü 5 eşittir k olsun. k 1 iken a 3, b 5.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "k 2 iken a 6, b 10. k 4 iken a 12, b 20.",
+        "show": [
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r2",
+         "r3"
+        ]
+       },
+       {
+        "narration": "Son sütuna bak: a ile b değişiyor ama a bölü b hep beşte üç. Orantıyı tutan budur.",
+        "focus": [
+         "col4"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Orantının özellikleri",
+      "items": [
+       "İçler çarpımı dışlar çarpımına eşittir: $a \\cdot d = b \\cdot c$.",
+       "Her şeyi **k cinsinden** yaz: $\\frac{a}{3} = \\frac{b}{5} = k$ ise $a = 3k$, $b = 5k$.",
+       "Paylar toplamı bölü paydalar toplamı da $k$'dir: $\\frac{a + b}{3 + 5} = k$.",
+       "Oranlar çarpılırsa **k kare** çıkar: $\\frac{a}{3} \\cdot \\frac{b}{5} = k^2$."
+      ],
+      "narration": "İçler çarpımı dışlar çarpımına eşittir: a çarpı d, b çarpı c. En güçlü yol, her şeyi k cinsinden yazmak: a 3 k, b 5 k olur. Paylar toplamı bölü paydalar toplamı da k'ye eşittir. Oranlar çarpılırsa k kare çıkar."
+     },
+     {
+      "kind": "example",
+      "title": "k ile iki bilinmeyen",
+      "example": "a'nın 2'ye oranı b'nin 7'ye oranına eşit, toplamları 36. a ve b kaçtır?",
+      "narration": "a'nın 2'ye oranı b'nin 7'ye oranına eşit, toplamları 36. a ve b kaçtır?",
+      "steps": [
+       {
+        "narration": "Önce k cinsinden yaz: a 2 k, b 7 k.",
+        "math": "a = 2k, \\quad b = 7k",
+        "text": "**k cinsinden** yaz"
+       },
+       {
+        "narration": "Toplamları 9 k ve 36'ya eşit; k 4.",
+        "math": "2k + 7k = 9k = 36 \\Rightarrow k = 4"
+       },
+       {
+        "narration": "a 8, b 28. Kontrol: 8 bölü 2 de, 28 bölü 7 de 4.",
+        "math": "a = 8, \\quad b = 28",
+        "text": "**Kontrol**: iki oran da 4"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Oran sayıyı vermez",
+      "wrong": "Oran $2 : 3$ ise $a = 2$ ve $b = 3$'tür.",
+      "right": "Oran yalnız **k katlarını** söyler: $a = 2k$, $b = 3k$; $a = 4$, $b = 6$ da olur.",
+      "why": "Oran büyüklüğü değil **bağıntıyı** verir; $k$'yi bulmak için ikinci bir bilgi gerekir.",
+      "narration": "Bir hata daha: oran 2'ye 3 ise a 2, b 3 sanmak. Oran yalnız k katlarını söyler: a 2 k, b 3 k; a 4, b 6 da olabilir. Oran büyüklüğü değil bağıntıyı verir; k'yi bulmak için ikinci bir bilgi gerekir."
      },
      {
       "kind": "question",
@@ -86,7 +344,7 @@
         },
         {
          "text": "$b = 5 \\cdot 3 = 15$. Cevap **D**.",
-         "narration": "b, 5 çarpı 3, yani 15. Cevabımız D.",
+         "narration": "b, 5 çarpı 3, yani 15. Cevabımız D. 3'te durup 9'u ya da a'yı veren yanılır.",
          "eliminate": [
           "A",
           "B",
@@ -104,33 +362,33 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Bir sınıftaki kız öğrencilerin sayısının erkek öğrencilerin sayısına oranı $\\frac{3}{5}$'tir. Sınıfa 4 kız öğrenci daha katılınca kızların sayısı erkeklerin sayısına **eşit** oluyor. Buna göre sınıfın **ilk** mevcudu kaçtır?",
+       "stem": "Bir kütüphanede roman sayısının hikâye kitabı sayısına oranı $\\frac{5}{3}$'tür. Kütüphaneye 12 yeni hikâye kitabı bağışlanıyor ve aynı gün 6 roman ödünç veriliyor. Bu durumda kütüphanedeki roman sayısı hikâye kitabı sayısına eşit oluyor. Buna göre kütüphanede başlangıçta kaç roman vardı?",
        "options": [
-        "12",
-        "16",
-        "20",
-        "24",
-        "32"
+        "45",
+        "48",
+        "54",
+        "60",
+        "72"
        ],
-       "answer": 1,
+       "answer": 0,
        "narration": "Orantı sabitiyle iki sayıyı tek bilinmeyene bağlayalım.",
        "steps": [
         {
-         "text": "Kız $= 3k$, erkek $= 5k$.",
-         "narration": "Oran üçe beş olduğuna göre kızlar üç k, erkekler beş k diyelim.",
+         "text": "Roman $= 5k$, hikâye $= 3k$.",
+         "narration": "Oran beşe üç; romanlar 5 k, hikâyeler 3 k."
+        },
+        {
+         "text": "$5k - 6 = 3k + 12 \\Rightarrow 2k = 18 \\Rightarrow k = 9$",
+         "narration": "6 roman gidince 5 k eksi 6, 12 hikâye gelince 3 k artı 12 kalır; ikisi eşit. 2 k 18, k 9.",
          "mark": [
-          "$\\frac{3}{5}$'tir"
+          "eşit oluyor"
          ]
         },
         {
-         "text": "$3k + 4 = 5k$ → $2k = 4$ → $k = 2$.",
-         "narration": "Dört kız katılınca kızlar üç k artı dört olur ve erkeklere eşitlenir: üç k artı dört, beş k. Buradan iki k dört, k iki."
-        },
-        {
-         "text": "Kız $6$, erkek $10$ → ilk mevcut $16$. Cevap **B**.",
-         "narration": "Kızlar altı, erkekler on; ilk mevcut on altı. Kontrol: dört kız gelince kızlar on, erkekler on, eşit. Cevabımız B. Yirmiyi seçen yeni mevcudu vermiştir; soru ilk mevcudu soruyor.",
+         "text": "Başlangıçta roman $5 \\cdot 9 = 45$. Cevap **A**.",
+         "narration": "Başlangıçta 45 roman vardı. Kontrol: sonunda 39 roman, 39 hikâye. Cevabımız A. 72'yi seçen roman ile hikâyenin ilk toplamını vermiş.",
          "eliminate": [
-          "A",
+          "B",
           "C",
           "D",
           "E"
@@ -138,7 +396,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki orantı sabiti k yöntemi özgün bir sınıf problemiyle soruldu."
+        "changes": "Bu ders için yazıldı; havuzdaki \"oran değişince eşitlenen iki çokluk\" kalıbı örnek alındı, bağlam ve sayılar özgün."
        }
       }
      }
@@ -146,54 +404,290 @@
    },
    {
     "subtopic": "MAT_ORAN_03",
-    "subtopics": [
-     "MAT_ORAN_04"
-    ],
-    "title": "Doğru ve ters orantı",
-    "narration": "İki çokluk birlikte artıp azalıyorsa doğru orantılıdır. Biri artarken öbürü azalıyorsa ters orantılıdır.",
+    "title": "Doğru orantı",
+    "narration": "Şimdi orantı çeşitlerine geçelim. İlki doğru orantı: biri kaç katına çıkarsa öbürü de o katına çıkar.",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Doğru orantı nedir?",
+      "text": "İki çokluktan biri artarken öbürü de **aynı oranda** artıyorsa, biri azalırken öbürü de aynı oranda azalıyorsa bu çokluklar **doğru orantılıdır**: $\\frac{y}{x} = k$.",
+      "narration": "Biri artarken öbürü de aynı oranda artıyorsa çokluklar doğru orantılıdır. Bölümleri, yani y bölü x, hep aynı kalır."
+     },
+     {
       "kind": "visual",
-      "title": "Doğru mu, ters mi?",
+      "title": "Doğru orantının grafiği",
       "visual": {
-       "kind": "comparison",
-       "columns": [
+       "kind": "plot",
+       "x": [
+        0,
+        6
+       ],
+       "y": [
+        0,
+        100
+       ],
+       "xLabel": "Defter sayısı",
+       "yLabel": "Tutar (TL)",
+       "curves": [
         {
-         "title": "Doğru: $\\frac{a}{b} = k$",
-         "items": [
-          "Alınan ürün ve ödenen para",
-          "İşçi sayısı ve yapılan iş",
-          "Sabit hızda süre ve alınan yol"
+         "expression": "15*x",
+         "domain": [
+          0,
+          6
          ]
+        }
+       ],
+       "points": [
+        {
+         "x": 2,
+         "y": 30,
+         "label": "(2, 30)"
         },
         {
-         "title": "Ters: $a \\cdot b = k$",
-         "items": [
-          "İşçi sayısı ve işin bitme süresi",
-          "Hız ve aynı yolu alma süresi",
-          "Kişi sayısı ve yiyeceğin yetme süresi"
-         ]
+         "x": 4,
+         "y": 60,
+         "label": "(4, 60)"
         }
        ]
       },
-      "narration": "Hangi orantı olduğuna bakmadan çözüme başlama.",
+      "narration": "Bir defter 15 lira olsun. Defter sayısı ile tutarı grafikte görelim.",
       "beats": [
        {
-        "narration": "Doğru orantıda bölüm sabittir. İki kat ürün alırsan iki kat para ödersin; iki kat işçi iki kat iş yapar.",
+        "narration": "2 defter 30 lira; tutarın defter sayısına oranı 15.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "4 defter 60 lira; oran yine 15. Defter iki katına çıktı, tutar da iki katına çıktı.",
+        "show": [
+         "p2"
+        ],
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "Noktaları birleştir: orijinden geçen bir doğru. Doğru orantının grafiği hep böyledir.",
         "show": [
          "c1"
         ],
         "focus": [
          "c1"
         ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Doğru orantıyı kurmak",
+      "items": [
+       "Doğru orantıda **bölüm sabittir**: $\\frac{y}{x} = k$, yani $y = kx$.",
+       "Grafiği **orijinden geçen** bir doğrudur.",
+       "Çapraz kur: $a$'ya $b$, $c$'ye $x$ karşılık geliyorsa $a \\cdot x = b \\cdot c$.",
+       "Örnekler: alınan ürün ve **ödenen para**, sabit hızda **süre ve yol**, işçi sayısı ve **yapılan iş**."
+      ],
+      "narration": "Doğru orantıda bölüm sabittir: y eşittir k x. Grafiği orijinden geçen bir doğrudur. Çapraz kur: a'ya b, c'ye x karşılık geliyorsa a çarpı x, b çarpı c'ye eşittir. Örnekler: alınan ürün ve ödenen para, sabit hızda süre ve yol, işçi sayısı ve yapılan iş."
+     },
+     {
+      "kind": "example",
+      "title": "Defterin fiyatı",
+      "example": "5 defter 60 lira ise 8 defter kaç liradır?",
+      "narration": "5 defter 60 lira ise 8 defter kaç liradır?",
+      "steps": [
+       {
+        "narration": "Defter artınca tutar da artar, bu doğru orantı.",
+        "text": "**Doğru orantı**"
        },
        {
-        "narration": "Ters orantıda çarpım sabittir. İki kat işçi, işi yarı sürede bitirir; iki kat hızla aynı yolu yarı sürede alırsın.",
+        "narration": "Çapraz çarp: 5 çarpı x, 60 çarpı 8; x 96 lira.",
+        "math": "5 \\cdot x = 60 \\cdot 8 \\Rightarrow x = 96",
+        "text": "Çapraz çarp"
+       },
+       {
+        "narration": "Ya da önce birim fiyatı bul: bir defter 12 lira, 8 defter 96 lira.",
+        "math": "60 \\div 5 = 12, \\quad 12 \\cdot 8 = 96",
+        "text": "**Birim fiyat**"
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Doğru orantılı paylaştırma",
+      "example": "120 lira iki kardeşe 3 ve 5 ile **doğru orantılı** paylaştırılıyor. Her biri kaç lira alır?",
+      "narration": "120 lira iki kardeşe 3 ve 5 ile doğru orantılı paylaştırılıyor. Her biri kaç lira alır?",
+      "steps": [
+       {
+        "narration": "Paylar 3 k ve 5 k; toplam 8 k, 120'ye eşit, k 15.",
+        "math": "3k + 5k = 8k = 120 \\Rightarrow k = 15",
+        "text": "Paylar **3k ve 5k**"
+       },
+       {
+        "narration": "Kardeşler 45 ve 75 lira alır.",
+        "math": "3 \\cdot 15 = 45, \\quad 5 \\cdot 15 = 75",
+        "text": "**45 ve 75 lira**"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Birlikte artmak yetmez",
+      "wrong": "Birlikte artan her iki çokluk doğru orantılıdır.",
+      "right": "Aynı oranda artmalı: yaş 2 katına çıkınca boy 2 katına çıkmaz; yaş ile boy **doğru orantılı değildir**.",
+      "why": "Doğru orantıyı **bölümün sabit** kalması belirler; yalnız birlikte artmak yetmez.",
+      "narration": "Büyük bir tuzak: birlikte artan her iki çokluğu doğru orantılı sanmak. Aynı oranda artmalı: yaşın iki katına çıkınca boyun iki katına çıkmaz. Doğru orantıyı bölümün sabit kalması belirler."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir miktar para üç kardeş arasında 2, 3 ve 5 ile **doğru orantılı** olarak paylaştırılıyor. En çok para alan ile en az para alan arasındaki fark 36 TL olduğuna göre, paylaştırılan para kaç TL'dir?",
+       "options": [
+        "90",
+        "100",
+        "120",
+        "150",
+        "180"
+       ],
+       "answer": 2,
+       "narration": "Paylaştırmada bu kez farktan toplama gidelim.",
+       "steps": [
+        {
+         "text": "Paylar $2k$, $3k$, $5k$",
+         "narration": "Doğru orantıda paylar 2 k, 3 k ve 5 k olur."
+        },
+        {
+         "text": "En çok − en az: $5k - 2k = 3k = 36 \\Rightarrow k = 12$",
+         "narration": "En çok alan 5 k, en az alan 2 k. Farkları 3 k ve 36'ya eşit; k 12."
+        },
+        {
+         "text": "Toplam: $10k = 120$ TL. Cevap **C**.",
+         "narration": "Toplam para 10 k, yani 120 lira. Paylar 24, 36 ve 60 lira. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki doğru orantılı paylaştırma kalıbı örnek alındı, oranlar ve verilen fark özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Ece'nin bir kısmı roman olan toplam 60 kitabı vardır. Ece bu kitapları üç rafa şöyle yerleştirmiştir:\n• Raflardaki kitap sayıları 2, 3 ve 5 ile doğru orantılıdır.\n• Her raftaki roman sayısı birbirine eşittir.\n• Raflardan birinde romanların o raftaki bütün kitaplara oranı $\\frac{1}{2}$, başka bir rafta ise $\\frac{1}{3}$'tür.\nBuna göre Ece'nin toplam kaç romanı vardır?",
+       "options": [
+        "6",
+        "9",
+        "12",
+        "15",
+        "18"
+       ],
+       "answer": 4,
+       "narration": "ÖSYM 2020'de bu kalıbı kalemliklerle sordu. Koşulları tek tek kullanalım.",
+       "steps": [
+        {
+         "text": "$2k + 3k + 5k = 10k = 60 \\Rightarrow k = 6$: raflarda 12, 18, 30 kitap.",
+         "narration": "Kitap sayıları 2 k, 3 k, 5 k; toplam 10 k, 60. k 6; raflarda 12, 18 ve 30 kitap var."
+        },
+        {
+         "text": "Her rafta $r$ roman: $\\frac{r}{12} = \\frac{1}{2}$ ve $\\frac{r}{18} = \\frac{1}{3}$ → $r = 6$. Başka çift aynı $r$'yi vermez.",
+         "narration": "Her rafta r roman olsun. Oranı yarım olan rafta kitaplar r'nin iki katı, üçte bir olanda üç katı. 12 ve 18 ikisi de r 6'yı verir."
+        },
+        {
+         "text": "Toplam roman $3 \\cdot 6 = 18$. Cevap **E**.",
+         "narration": "Üç rafta da 6 roman var; toplam 18. Cevabımız E. 6'yı seçen yalnız bir raftaki roman sayısını vermiş.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2020'nin \"doğru orantılı paylaştırma ve eşit sayıda alt grup\" kalıbı örnek alındı; bağlam (kitap-raf), toplam, oranlar ve çözüm özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_ORAN_04",
+    "title": "Ters orantı",
+    "narration": "Bazı çokluklar ise ters yönde gider: biri iki katına çıkınca öbürü yarıya iner.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Ters orantı nedir?",
+      "text": "Biri artarken öbürü **aynı oranda azalıyorsa** çokluklar **ters orantılıdır**. Bu kez **çarpım sabittir**: $x \\cdot y = k$.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "İşçi",
+        "Gün",
+        "İşçi × gün"
+       ],
+       "rows": [
+        [
+         "2",
+         "12",
+         "24"
+        ],
+        [
+         "4",
+         "6",
+         "24"
+        ],
+        [
+         "6",
+         "4",
+         "24"
+        ],
+        [
+         "8",
+         "3",
+         "24"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "narration": "Biri artarken öbürü aynı oranda azalıyorsa çokluklar ters orantılıdır. Bu kez çarpım sabittir: x çarpı y eşittir k.",
+      "beats": [
+       {
+        "narration": "2 işçi bir işi 12 günde bitiriyor. 4 işçi aynı işi 6 günde bitirir.",
         "show": [
-         "c2"
+         "r1",
+         "r2"
         ],
         "focus": [
-         "c2"
+         "r1",
+         "r2"
+        ]
+       },
+       {
+        "narration": "6 işçi 4 günde, 8 işçi 3 günde bitirir. İşçi arttıkça gün azalıyor.",
+        "show": [
+         "r3",
+         "r4"
+        ],
+        "focus": [
+         "r3",
+         "r4"
+        ]
+       },
+       {
+        "narration": "Son sütuna bak: işçi çarpı gün hep 24. Ters orantıda sabit kalan çarpımdır.",
+        "focus": [
+         "col3"
         ]
        }
       ]
@@ -252,85 +746,101 @@
       ],
       "explanation": "Hız ile süre **ters orantılı**: $60 \\cdot 4 = 80 \\cdot t$, $t = 3$ saat.",
       "narration": "Şimdi sıra sende. Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap 3 saat. Hız artınca süre azalır; bu ters orantıdır. 5 saat 20 dakikayı seçen doğru orantı kurmuş, yani hızlandıkça daha geç varacağını hesaplamıştır."
+      "explanationNarration": "Doğru cevap 3 saat. Hız artınca süre azalır; bu ters orantıdır. 5 saat 20 dakikayı seçen doğru orantı kurmuş, yani hızlandıkça daha geç varacağını hesaplamış."
      },
      {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "90 bilye, üç kardeş arasında yaşları olan 3, 4 ve 6 ile **ters orantılı** olarak paylaştırılıyor. Buna göre en çok bilye alan kardeş kaç bilye alır?",
-       "options": [
-        "15",
-        "20",
-        "30",
-        "40",
-        "45"
-       ],
-       "answer": 3,
-       "narration": "Ters orantıda paylar bölenlerle ters gider: en küçük sayıya en çok pay düşer.",
-       "steps": [
-        {
-         "text": "Paylar $\\frac{k}{3}$, $\\frac{k}{4}$, $\\frac{k}{6}$",
-         "narration": "Ters orantıda pay ile sayının çarpımı sabittir. Paylar k bölü 3, k bölü 4 ve k bölü 6."
-        },
-        {
-         "text": "$\\frac{k}{3} + \\frac{k}{4} + \\frac{k}{6} = \\frac{4k + 3k + 2k}{12} = \\frac{9k}{12} = 90 \\Rightarrow k = 120$",
-         "narration": "Toplamları 90. Paydaları 12'de eşitleyince 4 k artı 3 k artı 2 k, bölü 12; yani 9 k bölü 12. Bu 90'a eşit, k 120."
-        },
-        {
-         "text": "En çok alan, en küçük sayıya karşılık gelen: $\\frac{120}{3} = 40$. Cevap **D**.",
-         "narration": "En çok bilyeyi 3 yaşındaki alır: 120 bölü 3, 40. Diğerleri 30 ve 20 alır; toplam 90. Cevabımız D. Soruyu en büyük kardeş diye okuyup 6 yaşındakinin payını veren 20'yi seçer; en çok bilye en küçük sayıya düşer.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; MEB anlatımındaki \"ters orantılı paylaştırma\" örneğinin yöntemi ve havuzdaki kalıp örnek alındı, bağlam ve sayılar özgün."
-       }
-      }
+      "kind": "rule",
+      "title": "Ters orantıyı kurmak",
+      "items": [
+       "Ters orantıda **çarpım sabittir**: $x \\cdot y = k$.",
+       "Düz kur: $a$ ile $b$, $c$ ile $x$ eşleşiyorsa $a \\cdot b = c \\cdot x$.",
+       "Ters paylaştırmada paylar $\\frac{k}{2}$, $\\frac{k}{3}$, $\\frac{k}{6}$ diye yazılır; **en küçük sayıya en çok** pay düşer.",
+       "Örnekler: işçi ve **bitirme süresi**, hız ve **yolu alma süresi**, kişi sayısı ve **yiyeceğin yetme süresi**."
+      ],
+      "narration": "Ters orantıda çarpım sabittir: x çarpı y eşittir k. Düz kur: a ile b, c ile x eşleşiyorsa a çarpı b, c çarpı x'e eşittir. Ters paylaştırmada paylar k bölü 2, k bölü 3, k bölü 6 diye yazılır; en küçük sayıya en çok pay düşer. Örnekler: işçi ve bitirme süresi, hız ve yolu alma süresi, kişi sayısı ve yiyeceğin yetme süresi."
      },
      {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Bir miktar para üç kardeş arasında 2, 3 ve 5 ile **doğru orantılı** olarak paylaştırılıyor. En çok para alan ile en az para alan arasındaki fark 36 TL olduğuna göre, paylaştırılan para kaç TL'dir?",
-       "options": [
-        "90",
-        "100",
-        "120",
-        "150",
-        "180"
-       ],
-       "answer": 2,
-       "narration": "ÖSYM 2020'de kalemlikleri 3, 4 ve 6 ile doğru orantılı paylaştırdı. Biz farktan toplama gidelim.",
-       "steps": [
-        {
-         "text": "Paylar $2k$, $3k$, $5k$",
-         "narration": "Doğru orantıda paylar 2 k, 3 k ve 5 k olur."
-        },
-        {
-         "text": "En çok − en az: $5k - 2k = 3k = 36 \\Rightarrow k = 12$",
-         "narration": "En çok alan 5 k, en az alan 2 k. Farkları 3 k ve 36'ya eşit; k 12."
-        },
-        {
-         "text": "Toplam: $10k = 120$ TL. Cevap **C**.",
-         "narration": "Toplam para 2 k artı 3 k artı 5 k, yani 10 k: 120 lira. Cevabımız C. Paylar 24, 36 ve 60 lira.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2020'nin \"3, 4 ve 6 ile doğru orantılı paylaştırma\" kalıbı örnek alındı, bağlam, oranlar ve sorulan nicelik özgün."
+      "kind": "example",
+      "title": "İşçi ve gün",
+      "example": "6 işçi bir işi 10 günde bitiriyor. Aynı işi 15 işçi kaç günde bitirir?",
+      "narration": "6 işçi bir işi 10 günde bitiriyor. Aynı işi 15 işçi kaç günde bitirir?",
+      "steps": [
+       {
+        "narration": "İşçi artarsa süre azalır; ters orantı.",
+        "text": "**Ters orantı**"
+       },
+       {
+        "narration": "6 çarpı 10, 60 işçi-gün.",
+        "math": "6 \\cdot 10 = 60",
+        "text": "İşçi × gün sabit"
+       },
+       {
+        "narration": "60 bölü 15, 4 gün.",
+        "math": "60 \\div 15 = 4",
+        "text": "**4 gün**"
        }
-      }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Ters orantılı paylaştırma",
+      "example": "90 bilye 2, 3 ve 6 ile ters orantılı paylaştırılıyor. Her pay kaç bilyedir?",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sayı",
+        "Pay",
+        "Bilye"
+       ],
+       "rows": [
+        [
+         "2",
+         "k/2",
+         "45"
+        ],
+        [
+         "3",
+         "k/3",
+         "30"
+        ],
+        [
+         "6",
+         "k/6",
+         "15"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "narration": "90 bilye 2, 3 ve 6 ile ters orantılı paylaştırılıyor. Her pay kaç bilyedir?",
+      "beats": [
+       {
+        "narration": "Ters orantıda paylar k bölü 2, k bölü 3 ve k bölü 6 olur.",
+        "focus": [
+         "col2"
+        ]
+       },
+       {
+        "narration": "Paydaları 6'da eşitle: 3 k artı 2 k artı k, bölü 6; bu da k. Toplam 90, yani k 90.",
+        "focus": [
+         "col2"
+        ],
+        "note": "k = 90"
+       },
+       {
+        "narration": "Paylar 45, 30 ve 15; toplam 90. En küçük sayı olan 2'ye en çok bilye düştü.",
+        "focus": [
+         "col3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "En çok pay kime?",
+      "wrong": "Ters orantılı paylaştırmada en büyük sayıya en büyük pay düşer.",
+      "right": "En küçük sayıya en büyük pay düşer: 2, 3, 6 ile ters paylaşımda 2'nin payı **45**, 6'nınki **15**.",
+      "why": "Pay ile sayının **çarpımı sabit**; sayı büyüdükçe pay küçülür.",
+      "narration": "Sık hata: ters orantılı paylaştırmada en büyük sayıya en büyük payı vermek. En küçük sayıya en büyük pay düşer: 2'nin payı 45, 6'nınki 15. Pay ile sayının çarpımı sabit; sayı büyüdükçe pay küçülür."
      },
      {
       "kind": "question",
@@ -338,83 +848,26 @@
        "style": "TYT tarzı",
        "stem": "Bir aracın saatte 60 km hızla 5 saatte aldığı yolu **4 saatte** alabilmesi için hızını saatte kaç km **artırması** gerekir?",
        "options": [
-        "10",
         "12",
         "15",
+        "18",
         "20",
         "25"
        ],
-       "answer": 2,
+       "answer": 1,
        "narration": "Yol sabitken hız ve süre ters orantılıdır.",
        "steps": [
         {
          "text": "Yol $= 60 \\cdot 5 = 300$ km.",
-         "narration": "Yol, hız çarpı süre: altmış çarpı beş, üç yüz kilometre."
+         "narration": "Yol, hız çarpı süre: 60 çarpı 5, 300 kilometre."
         },
         {
-         "text": "Yeni hız $= \\frac{300}{4} = 75$ km/sa. (Süre $\\frac{4}{5}$'ine indi → hız $\\frac{5}{4}$ katına çıktı.)",
-         "narration": "Aynı üç yüz kilometreyi dört saatte almak için hız üç yüz bölü dört, yetmiş beş olmalı. Süre beşte dörde inince hız dörtte beş katına çıkar; ters orantı budur."
+         "text": "Yeni hız $= \\frac{300}{4} = 75$ km/sa.",
+         "narration": "Aynı 300 kilometreyi 4 saatte almak için hız 300 bölü 4, 75 olmalı. Süre kısalınca hız artar."
         },
         {
-         "text": "Artış $= 75 - 60 = 15$. Cevap **C**.",
-         "narration": "Hız altmıştan yetmiş beşe çıkmalı; artış on beş. Cevabımız C. Hız ile süreyi doğru orantılı sanan, altmışın beşte dördünü, kırk sekizi bulur ve aradaki on ikiyi işaretler; oysa süre kısalınca hız artar.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; dersteki \"hız ve süre\" ters orantı tablosu özgün bir problemle soruldu."
-       }
-      }
-     }
-    ]
-   },
-   {
-    "subtopic": "MAT_ORAN_07",
-    "title": "Tarif ve karışım problemleri",
-    "narration": "ÖSYM'nin son yıllardaki orantı problemlerinin çoğu bir tarif ya da karışım içerir. Anahtar soru: hangi malzeme önce biter?",
-    "cards": [
-     {
-      "kind": "rule",
-      "title": "Önce biten malzeme",
-      "items": [
-       "Tarifin oranını yaz: limon : su = 2 : 5.",
-       "Her malzeme için **kaç tarif** yapılabileceğini bul.",
-       "En az tarif veren malzeme **önce biter**; üretimi o belirler.",
-       "Öbür malzemeden **artan** = elindeki − kullanılan."
-      ],
-      "narration": "Tarif problemlerini dört adımda çözersin. Önce tarifin oranını yaz. Sonra her malzemenin kaç tarife yettiğini bul. En az tarife yeten malzeme önce biter ve üretimi o belirler. Öbür malzemeden ne kadar arttığını da elindekinden kullanılanı çıkararak bulursun."
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Bir limonata tarifinde limon suyu ve su 2 : 5 oranında karıştırılmaktadır. Elinde 6 litre limon suyu ve 20 litre su olan biri, bu tarifle en fazla limonatayı yaptığında hangisinden kaç litre artar?",
-       "options": [
-        "2 litre limon suyu",
-        "5 litre su",
-        "8 litre su",
-        "1 litre limon suyu",
-        "Hiçbiri artmaz"
-       ],
-       "answer": 1,
-       "narration": "ÖSYM 2022'nin fındık ezmesi sorusundaki yolu izleyelim.",
-       "steps": [
-        {
-         "text": "6 L limon suyu için gereken su: $6 \\cdot \\frac{5}{2} = 15$ L. Elde 20 L var: yeter.",
-         "narration": "6 litre limon suyunun hepsini kullanırsak ne kadar su gerekir? 2 ölçüye 5 ölçü; 6 litreye 15 litre su. Elimizde 20 litre var, yetiyor."
-        },
-        {
-         "text": "20 L su için gereken limon suyu: $20 \\cdot \\frac{2}{5} = 8$ L. Elde 6 L var: **yetmez**.",
-         "narration": "Tersinden de bakalım: 20 litre suyun hepsi için 8 litre limon suyu gerekir, ama elimizde 6 litre var. Önce limon suyu biter."
-        },
-        {
-         "text": "Limon suyu biter; su artar: $20 - 15 = 5$ L. Cevap **B**.",
-         "narration": "Limon suyunun hepsi kullanılır, sudan 20 eksi 15, yani 5 litre artar. Cevabımız B.",
+         "text": "Artış $= 75 - 60 = 15$. Cevap **B**.",
+         "narration": "Artış 15. Cevabımız B. Hız ile süreyi doğru orantılı sanan, 60'ın beşte dördünü, 48'i bulur ve aradaki 12'yi işaretler.",
          "eliminate": [
           "A",
           "C",
@@ -424,9 +877,585 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2022'nin \"fındık ezmesi tarifinde artan malzeme\" kalıbı örnek alındı, bağlam ve sayılar özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki hız-süre ters orantı kalıbı örnek alındı, sayılar özgün."
        }
       }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir bisikletin pedala bağlı ön dişlisinde 42 diş vardır. Arka tekerleğe bağlı iki vites dişlisinden birinde 14, diğerinde 21 diş bulunur ve zincir her an yalnız birine takılıdır. Arka dişli tekerlekle birlikte döner. Zincirle bağlı iki dişlinin diş sayısı ile tur sayısı ters orantılıdır. Buna göre Ayşe pedalı 20 tur çevirdiğinde arka tekerlek, 14 dişli vitesteyken 21 dişli vitestekine göre kaç tur fazla döner?",
+       "options": [
+        "5",
+        "10",
+        "15",
+        "20",
+        "40"
+       ],
+       "answer": 3,
+       "narration": "Diş sayısı ile tur sayısının çarpımı sabit; bunu iki vites için ayrı ayrı kuralım.",
+       "steps": [
+        {
+         "text": "Diş × tur sabit: ön dişli $42 \\cdot 20 = 840$.",
+         "narration": "Zincirle bağlı dişlilerde diş sayısı çarpı tur sayısı sabittir. Ön dişli için 42 çarpı 20, 840."
+        },
+        {
+         "text": "14 dişli: $\\frac{840}{14} = 60$ tur; 21 dişli: $\\frac{840}{21} = 40$ tur.",
+         "narration": "14 dişli arka dişli 840 bölü 14, 60 tur döner. 21 dişli olan 840 bölü 21, 40 tur döner."
+        },
+        {
+         "text": "Tekerlek arka dişliyle döner: fark $60 - 40 = 20$. Cevap **D**.",
+         "narration": "Tekerlek arka dişliyle aynı sayıda döner. Fark 20 tur. Cevabımız D. 40'ı seçen yalnız 21 dişli vitesteki tur sayısını vermiş.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"birbirini çeviren dişliler\" ters orantı kalıbı örnek alındı, bisiklet bağlamı, iki vites karşılaştırması ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_ORAN_05",
+    "title": "Bileşik orantı",
+    "narration": "Gerçek hayatta çoğu zaman birden fazla çokluk birlikte değişir. Bu duruma bileşik orantı denir.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Bileşik orantı nedir?",
+      "text": "Üç ya da daha fazla çokluk arasındaki orantıya **bileşik orantı** denir. Her çokluğun aranan çoklukla ilişkisi **ayrı ayrı** belirlenir: doğru mu, ters mi?",
+      "narration": "Üç ya da daha fazla çokluk arasındaki orantıya bileşik orantı denir. Her çokluğun aranan çoklukla ilişkisine ayrı ayrı bakarsın."
+     },
+     {
+      "kind": "visual",
+      "title": "Usta, gün ve duvar",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Usta",
+        "Gün",
+        "Duvar"
+       ],
+       "rows": [
+        [
+         "6",
+         "8",
+         "3"
+        ],
+        [
+         "12",
+         "8",
+         "6"
+        ],
+        [
+         "12",
+         "4",
+         "3"
+        ],
+        [
+         "4",
+         "12",
+         "3"
+        ]
+       ]
+      },
+      "narration": "Usta, gün ve iş arasındaki bağı bir tabloda kuralım.",
+      "beats": [
+       {
+        "narration": "6 usta 8 günde 3 duvar örsün.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Usta iki katına çıkarsa aynı sürede iş de iki katı olur: 6 duvar. Usta ile iş doğru orantılı.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Aynı 3 duvar için 12 usta 4 gün yeter. Usta ile gün ters orantılı.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "4 usta 12 günde de 3 duvar örer: usta çarpı gün yine 48.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Bileşik orantıyı kurmak",
+      "items": [
+       "Yapılan iş, **işçi sayısıyla** da **çalışma süresiyle** de doğru orantılıdır.",
+       "Oranı kur: $\\frac{\\text{iş}}{\\text{işçi} \\cdot \\text{gün} \\cdot \\text{saat}}$ iki durumda da **aynıdır**.",
+       "Önce **birim işi** bul: bir işçinin bir saatte yaptığı iş.",
+       "Karma paylaştırmada pay $\\frac{\\text{doğru orantılı sayı}}{\\text{ters orantılı sayı}}$ ile orantılıdır."
+      ],
+      "narration": "Yapılan iş, işçi sayısıyla da çalışma süresiyle de doğru orantılıdır. Oranı kur: iş bölü işçi çarpı gün çarpı saat, iki durumda da aynıdır. Önce birim işi bul: bir işçinin bir saatte yaptığı iş. Karma paylaştırmada pay, doğru orantılı sayı bölü ters orantılı sayıyla orantılıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Fırınlar ve ekmek",
+      "example": "3 fırın 4 saatte 600 ekmek pişiriyor. 2 fırın 9 saatte kaç ekmek pişirir?",
+      "narration": "3 fırın 4 saatte 600 ekmek pişiriyor. 2 fırın 9 saatte kaç ekmek pişirir?",
+      "steps": [
+       {
+        "narration": "Birim işi bul: bir fırın bir saatte 600 bölü 12, 50 ekmek pişirir.",
+        "math": "\\frac{600}{3 \\cdot 4} = 50",
+        "text": "**Birim iş**"
+       },
+       {
+        "narration": "2 fırın 9 saatte 18 fırın-saat çalışır: 900 ekmek.",
+        "math": "2 \\cdot 9 \\cdot 50 = 900",
+        "text": "**900 ekmek**"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Hepsi doğru orantılı değil",
+      "wrong": "Bileşik orantıda bütün çokluklar aranan çoklukla doğru orantılıdır.",
+      "right": "Her çokluğu **ayrı ayrı** sına: işçi artınca iş artar ama **bitirme süresi azalır**.",
+      "why": "Aranan süreyse işçi **ters**, iş **doğru** orantılıdır; hepsini doğru kurmak cevabı bozar.",
+      "narration": "Sık hata: bileşik orantıda bütün çoklukları aranan çoklukla doğru orantılı sanmak. Her çokluğu ayrı ayrı sına: işçi artınca iş artar ama bitirme süresi azalır. Aranan süreyse işçi ters, iş doğru orantılıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "5 özdeş makine günde 8 saat çalışarak 6 günde 1200 parça üretmektedir. Aynı makinelerden 4 tanesi günde 10 saat çalışırsa 9 günde kaç parça üretir?",
+       "options": [
+        "1440",
+        "1600",
+        "1800",
+        "2000",
+        "2400"
+       ],
+       "answer": 2,
+       "narration": "Önce birim işi bulalım.",
+       "steps": [
+        {
+         "text": "Bir makine bir saatte: $\\frac{1200}{5 \\cdot 8 \\cdot 6} = \\frac{1200}{240} = 5$ parça.",
+         "narration": "5 makine, günde 8 saat, 6 gün: 240 makine-saat. 1200 bölü 240, bir makine bir saatte 5 parça üretir."
+        },
+        {
+         "text": "Yeni çalışma: $4 \\cdot 10 \\cdot 9 = 360$ makine-saat.",
+         "narration": "4 makine, günde 10 saat, 9 gün: 360 makine-saat."
+        },
+        {
+         "text": "$360 \\cdot 5 = 1800$ parça. Cevap **C**.",
+         "narration": "360 çarpı 5, 1800 parça. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki bileşik orantı (işçi-gün-saat-iş) kalıbı örnek alındı, bağlam ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir şirket 18 000 TL'lik ikramiyeyi Berk, Can ve Deniz arasında paylaştırıyor. Her çalışanın payı, şirketteki kıdem yılıyla doğru, yıl içinde kullandığı izin günü sayısıyla ters orantılıdır. Berk'in kıdemi 2 yıl ve izni 4 gün, Can'ın kıdemi 3 yıl ve izni 6 gün, Deniz'in kıdemi 4 yıl ve izni 2 gündür. Buna göre Deniz'in aldığı ikramiye, Berk'inkinden kaç TL fazladır?",
+       "options": [
+        "9 000",
+        "10 500",
+        "12 000",
+        "13 500",
+        "15 000"
+       ],
+       "answer": 0,
+       "narration": "Doğru orantılı sayıyı paya, ters orantılı sayıyı paydaya yazalım.",
+       "steps": [
+        {
+         "text": "Pay, $\\frac{\\text{kıdem}}{\\text{izin}}$ ile orantılı: Berk $\\frac{2}{4}$, Can $\\frac{3}{6}$, Deniz $\\frac{4}{2}$.",
+         "narration": "Pay, kıdem bölü izinle orantılı. Berk için 2 bölü 4, yarım. Can için 3 bölü 6, o da yarım. Deniz için 4 bölü 2, yani 2."
+        },
+        {
+         "text": "$\\frac{1}{2} : \\frac{1}{2} : 2 = 1 : 1 : 4$ → paylar $k$, $k$, $4k$; $6k = 18\\,000$, $k = 3000$.",
+         "narration": "2'yle genişletince oranlar 1'e 1'e 4 olur. Paylar k, k ve 4 k; toplam 6 k, 18 000. k 3000 lira."
+        },
+        {
+         "text": "Deniz 12 000, Berk 3000 TL: fark **9 000 TL**. Cevap **A**.",
+         "narration": "Deniz 12 000, Berk 3000 lira alır; fark 9000 lira. Cevabımız A. 12 000'i seçen farkı değil Deniz'in payını vermiş.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"bir sayıyla doğru, diğeriyle ters orantılı paylaştırma\" kalıbı örnek alındı, bağlam (ikramiye, kıdem, izin) ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_ORAN_06",
+    "title": "Ölçek",
+    "narration": "Haritalar ve maketler bir doğru orantıyla çizilir. Bu orana ölçek denir.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Ölçek nedir?",
+      "text": "**Ölçek**, haritadaki uzunluğun gerçek uzunluğa oranıdır. İki uzunluk **aynı birimde** yazılır: $1 : 100\\,000$ ölçekte haritadaki 1 cm, gerçekte 100 000 cm'dir.",
+      "narration": "Ölçek, haritadaki uzunluğun gerçek uzunluğa oranıdır. İki uzunluk aynı birimde yazılır. 1'e 100 000 ölçekte haritadaki 1 santimetre, gerçekte 100 000 santimetredir."
+     },
+     {
+      "kind": "visual",
+      "title": "Santimetreden kilometreye",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "Harita: 1 cm",
+         "detail": "ölçek 1 : 200 000"
+        },
+        {
+         "label": "Gerçek: 200 000 cm",
+         "detail": "payda ile çarp"
+        },
+        {
+         "label": "2 000 m",
+         "detail": "100'e böl"
+        },
+        {
+         "label": "2 km",
+         "detail": "1000'e böl"
+        }
+       ]
+      },
+      "narration": "Birimleri adım adım çevirelim.",
+      "beats": [
+       {
+        "narration": "1'e 200 000 ölçekli haritada 1 santimetre çizilmiş olsun.",
+        "show": [
+         "n1"
+        ],
+        "focus": [
+         "n1"
+        ]
+       },
+       {
+        "narration": "Gerçekte bu 200 000 santimetredir.",
+        "show": [
+         "n2"
+        ],
+        "focus": [
+         "n2"
+        ]
+       },
+       {
+        "narration": "100'e bölünce 2000 metre, 1000'e bölünce 2 kilometre.",
+        "show": [
+         "n3",
+         "n4"
+        ],
+        "focus": [
+         "n3",
+         "n4"
+        ]
+       },
+       {
+        "narration": "Kısa yol: santimetreden kilometreye geçerken 100 000'e bölersin, yani beş basamak kaydırırsın.",
+        "focus": [
+         "n4"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Ölçekle hesap",
+      "items": [
+       "Gerçek uzunluk = haritadaki uzunluk × **ölçeğin paydası**.",
+       "Bir kilometre **100 000 cm**'dir: beş basamak kaydır.",
+       "Paydası küçük olan ölçek **büyük ölçektir**; daha ayrıntılı gösterir.",
+       "Alanlar ölçeğin **karesiyle** değişir: $1 : 1000$ ölçekte 1 cm², gerçekte 1 000 000 cm²."
+      ],
+      "narration": "Gerçek uzunluk, haritadaki uzunluk çarpı ölçeğin paydasıdır. Bir kilometre 100 000 santimetredir; beş basamak kaydırırsın. Paydası küçük olan ölçek büyük ölçektir ve daha ayrıntılı gösterir. Alanlar ise ölçeğin karesiyle değişir."
+     },
+     {
+      "kind": "example",
+      "title": "Haritadan gerçeğe",
+      "example": "Ölçeği 1'e 50 000 olan bir haritada 3 santimetrelik yol gerçekte kaç kilometredir?",
+      "narration": "Ölçeği 1'e 50 000 olan bir haritada 3 santimetrelik yol gerçekte kaç kilometredir?",
+      "steps": [
+       {
+        "narration": "Gerçek uzunluk 3 çarpı 50 000, 150 000 santimetre.",
+        "math": "3 \\cdot 50\\,000 = 150\\,000",
+        "text": "Santimetre"
+       },
+       {
+        "narration": "100 000'e böl: 1,5 kilometre.",
+        "math": "150\\,000 \\div 100\\,000 = 1{,}5",
+        "text": "**1,5 km**"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Büyük ölçek, küçük payda",
+      "wrong": "Paydası büyük olan ölçek daha ayrıntılı bir haritadır.",
+      "right": "Paydası küçük olan ölçek büyüktür: $1 : 5000$, $1 : 500\\,000$'den çok daha **ayrıntılıdır**.",
+      "why": "Payda büyüdükçe 1 cm daha **uzun bir gerçek yolu** temsil eder; ayrıntı azalır.",
+      "narration": "Bir yanılgı: paydası büyük olan ölçeği daha ayrıntılı sanmak. Paydası küçük olan ölçek büyüktür: 1'e 5000, 1'e 500 000'den çok daha ayrıntılıdır. Payda büyüdükçe 1 santimetre daha uzun bir gerçek yolu temsil eder."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "1 : 200 000 ölçekli bir haritada iki köy arasındaki uzaklık 4,5 cm olarak ölçülmüştür. Bu iki köy arasındaki gerçek uzaklık kaç km'dir?",
+       "options": [
+        "0,09",
+        "0,45",
+        "0,9",
+        "4,5",
+        "9"
+       ],
+       "answer": 4,
+       "narration": "Ölçeği bir soruda kullanalım.",
+       "steps": [
+        {
+         "text": "Gerçek uzaklık $= 4{,}5 \\cdot 200\\,000 = 900\\,000$ cm",
+         "narration": "Haritadaki her 1 santimetre gerçekte 200 000 santimetredir. 4,5 çarpı 200 000, 900 000 santimetre."
+        },
+        {
+         "text": "$900\\,000 \\div 100\\,000 = 9$ km. Cevap **E**.",
+         "narration": "1 kilometre 100 000 santimetredir; 900 000 bölü 100 000, 9 kilometre. Cevabımız E. 0,9 ya da 0,09'u seçen bir basamak fazla kaydırmış.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki ölçek sorularının kalıbı örnek alındı, ölçek ve uzunluk özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir yürüyüş grubunun rotası, 1 : 250 000 ölçekli bir haritada 6 cm uzunluğunda görünmektedir. Grup lideri, aynı bölgenin 1 : 150 000 ölçekli daha ayrıntılı haritasını kullanmaya karar veriyor. Buna göre rota, yeni haritada eski haritadakine göre kaç cm daha uzun görünür?",
+       "options": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "10"
+       ],
+       "answer": 1,
+       "narration": "Önce gerçek uzunluğu bul, sonra yeni haritaya geç.",
+       "steps": [
+        {
+         "text": "Gerçek rota $= 6 \\cdot 250\\,000 = 1\\,500\\,000$ cm $= 15$ km.",
+         "narration": "Gerçek rota 6 çarpı 250 000, 1 500 000 santimetre, yani 15 kilometre."
+        },
+        {
+         "text": "Yeni haritada $\\frac{1\\,500\\,000}{150\\,000} = 10$ cm.",
+         "narration": "Yeni haritada bu uzunluk 1 500 000 bölü 150 000, 10 santimetre. Haritadaki uzunluk ile payda ters orantılı: 6 çarpı 250, 10 çarpı 150."
+        },
+        {
+         "text": "Fark $10 - 6 = 4$ cm. Cevap **B**.",
+         "narration": "Rota 6 santimetreden 10 santimetreye çıktı; 4 santimetre daha uzun. Cevabımız B. 10'u seçen farkı değil yeni uzunluğu vermiş.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"ölçek değişince haritadaki uzunluk\" kalıbı örnek alındı, bağlam ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_ORAN_07",
+    "title": "Tarif, karışım ve kütle",
+    "narration": "Şimdi ÖSYM'nin sevdiği orantı problemlerine geçiyoruz. Önce tarifler ve karışımlar.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Orantı problemi nedir?",
+      "text": "Orantı problemlerinde sözel bilgiyi **oranla** yazarsın. Üç kalıp sık çıkar: **tarif ve karışım**, **adet ve kütle**, **doğrusal ilişki**.",
+      "narration": "Orantı problemlerinde sözel bilgiyi oranla yazarsın. Üç kalıp sık çıkar: tarif ve karışım, adet ve kütle, doğrusal ilişki."
+     },
+     {
+      "kind": "visual",
+      "title": "Kaç tarife yeter?",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Malzeme",
+        "Elde",
+        "Tarif başına",
+        "Kaç tarif?"
+       ],
+       "rows": [
+        [
+         "Limon suyu",
+         "6 L",
+         "2 L",
+         "3"
+        ],
+        [
+         "Su",
+         "20 L",
+         "5 L",
+         "4"
+        ]
+       ],
+       "highlightColumn": 3
+      },
+      "narration": "Bir limonata tarifi 2 ölçü limon suyuna 5 ölçü su istiyor. Elinde 6 litre limon suyu ve 20 litre su var.",
+      "beats": [
+       {
+        "narration": "Limon suyu 6 litre; her tarif 2 litre istiyor. 3 tarife yeter.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Su 20 litre; her tarif 5 litre istiyor. 4 tarife yeter.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Limon suyu 3 tarifte biter, yani önce o biter. 3 tarif 15 litre su kullanır; 5 litre su artar.",
+        "focus": [
+         "col4"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Önce biten malzeme",
+      "items": [
+       "Tarifin oranını yaz: limon suyu : su $= 2 : 5$.",
+       "Her malzemenin **kaç tarife** yettiğini bul.",
+       "En az tarife yeten malzeme **önce biter**; üretimi o belirler.",
+       "Öbür malzemeden **artan** = elindeki − kullanılan."
+      ],
+      "narration": "Tarifin oranını yaz: limon suyuna su, 2'ye 5. Her malzemenin kaç tarife yettiğini bul. En az tarife yeten malzeme önce biter; üretimi o belirler. Öbür malzemeden artanı, elindekinden kullanılanı çıkararak bulursun."
+     },
+     {
+      "kind": "mistake",
+      "title": "Az olan mı biter?",
+      "wrong": "Tarifte elinde en az bulunan malzeme önce biter.",
+      "right": "Önce en az **tarife yeten** biter: $1 : 4$ tarifte 10 kg şeker 10 tarife, 30 kg un 7,5 tarife yeter; **un biter**.",
+      "why": "Miktarı değil, miktarın **tarifteki paya** bölümünü karşılaştır.",
+      "narration": "Sık hata: tarifte elinde en az bulunan malzemenin önce biteceğini sanmak. Önce en az tarife yeten biter: 1'e 4 tarifte 10 kilo şeker 10 tarife, 30 kilo un 7,5 tarife yeter; un biter. Miktarı değil, miktarın tarifteki paya bölümünü karşılaştır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir boya atölyesinde yeşil boya, mavi ve sarı boyanın belirli bir oranda karıştırılmasıyla elde edilmektedir. Bu oranla, 15 kg mavi ve 40 kg sarı boyanın bulunduğu birinci depoda üretim yapıldığında yalnızca 10 kg sarı boya artmıştır. 32 kg mavi ve 54 kg sarı boyanın bulunduğu ikinci depoda üretim yapıldığında ise yalnızca bir miktar mavi boya artmıştır. Buna göre ikinci depoda kaç kg mavi boya artmıştır?",
+       "options": [
+        "5",
+        "6",
+        "8",
+        "9",
+        "12"
+       ],
+       "answer": 0,
+       "narration": "ÖSYM 2022'de bu kalıbı fındık ezmesiyle sordu. Önce oranı birinci depodan çıkaralım.",
+       "steps": [
+        {
+         "text": "Birinci depo: 15 kg mavi ile $40 - 10 = 30$ kg sarı kullanıldı → mavi : sarı $= 1 : 2$.",
+         "narration": "Birinci depoda mavinin hepsi, 15 kilo, kullanıldı. Sarıdan 10 kilo arttı, yani 30 kilo kullanıldı. Oran 15'e 30, 1'e 2.",
+         "mark": [
+          "yalnızca 10 kg sarı boya artmıştır"
+         ]
+        },
+        {
+         "text": "İkinci depo: sarının hepsi biter; 54 kg sarıya $54 \\div 2 = 27$ kg mavi gerekir.",
+         "narration": "İkinci depoda mavi arttığına göre sarının hepsi, 54 kilo, kullanıldı. 1'e 2 oranında 54 kilo sarıya 27 kilo mavi gerekir."
+        },
+        {
+         "text": "Artan mavi $32 - 27 = 5$ kg. Cevap **A**.",
+         "narration": "Elde 32 kilo mavi vardı; 27'si kullanıldı, 5 kilo arttı. Cevabımız A.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022'nin \"iki imalathanede artan malzemeden oranı bulma\" kalıbı örnek alındı; bağlam (boya), miktarlar ve oran özgün."
+       }
+      }
+     },
+     {
+      "kind": "example",
+      "title": "Adet ve kütle",
+      "example": "Mavi bilyelerin sayısı kırmızıların 2 katı, toplam kütleleri eşit. Bir kırmızı bilye bir maviden kaç kat ağırdır?",
+      "narration": "Mavi bilyelerin sayısı kırmızıların 2 katı, toplam kütleleri eşit. Bir kırmızı bilye bir maviden kaç kat ağırdır?",
+      "steps": [
+       {
+        "narration": "Toplam kütle, adet çarpı bir tanenin kütlesidir.",
+        "text": "Toplam kütle: **adet** × bir tane"
+       },
+       {
+        "narration": "n çarpı r, 2 n çarpı m'ye eşit; r, 2 m.",
+        "math": "n \\cdot r = 2n \\cdot m \\Rightarrow r = 2m"
+       },
+       {
+        "narration": "Yani kırmızı bilye 2 kat ağır.",
+        "text": "Kırmızı **2 kat** ağır"
+       }
+      ]
      },
      {
       "kind": "question",
@@ -449,11 +1478,11 @@
         },
         {
          "text": "$3n \\cdot r = \\frac{6}{5} \\cdot 4n \\cdot m \\Rightarrow 3r = \\frac{24}{5}m$",
-         "narration": "Kırmızıların toplam kütlesi 3 n çarpı r. Bu, mavilerin toplam kütlesinin, yani 4 n çarpı m'nin, beşte altısı. n'ler sadeleşir: 3 r eşittir beşte yirmi dört m."
+         "narration": "Kırmızıların toplam kütlesi 3 n çarpı r. Bu, 4 n çarpı m'nin beşte altısı. n'ler sadeleşir: 3 r eşittir beşte 24 m."
         },
         {
          "text": "$r = \\frac{8}{5}m$. Cevap **C**.",
-         "narration": "Her iki tarafı 3'e bölersek r, beşte sekiz m. Bir kırmızı bilye, bir mavinin beşte sekiz katıdır. Cevabımız C. Adet oranını hesaba katmayan beşte altıyı seçer.",
+         "narration": "3'e bölersek r, beşte sekiz m. Cevabımız C. Beşte altıyı seçen adet oranını hesaba katmamış; onda dokuzu seçen bölmek yerine çarpmış.",
          "eliminate": [
           "A",
           "B",
@@ -463,106 +1492,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2024'ün \"adet oranı ve toplam kütle oranından bir tanenin kütlesi\" kalıbı örnek alındı, bağlam ve oranlar özgün."
-       }
-      }
-     }
-    ]
-   },
-   {
-    "subtopic": "MAT_ORAN_05",
-    "subtopics": [
-     "MAT_ORAN_06"
-    ],
-    "title": "Bileşik orantı ve ölçek",
-    "narration": "Birden çok çokluk aynı anda değişiyorsa bileşik orantı kurarsın. Haritalardaki ölçek ise bir doğru orantıdır.",
-    "cards": [
-     {
-      "kind": "rule",
-      "title": "Bileşik orantı ve ölçek",
-      "items": [
-       "İş = işçi × gün × (saat): yapılan iş, işçi sayısıyla da süreyle de **doğru orantılı**.",
-       "Kur: $\\frac{\\text{iş}_1}{\\text{işçi}_1 \\cdot \\text{gün}_1} = \\frac{\\text{iş}_2}{\\text{işçi}_2 \\cdot \\text{gün}_2}$",
-       "**Ölçek** = haritadaki uzunluk : gerçek uzunluk; ikisi **aynı birimde**.",
-       "1 : 50 000 ölçekli haritada 3 cm = 150 000 cm = **1,5 km**."
-      ],
-      "narration": "Bileşik orantıda en kolay yol, yapılan işi işçi sayısı ile çalışılan günün çarpımına bölmektir; bu oran iki durumda da aynıdır. Ölçek ise haritadaki uzunluğun gerçek uzunluğa oranıdır ve iki uzunluk aynı birimde olmalıdır. 1'e 50 bin ölçekli bir haritada 3 santimetre, gerçekte 150 bin santimetredir; bu da 1,5 kilometre eder."
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "6 usta 8 günde 3 duvar örmektedir. Aynı hızda çalışan 4 usta 12 günde kaç duvar örer?",
-       "options": [
-        "2",
-        "3",
-        "4",
-        "5",
-        "6"
-       ],
-       "answer": 1,
-       "narration": "Bileşik orantıyı kuralım.",
-       "steps": [
-        {
-         "text": "Bir usta bir günde: $\\frac{3}{6 \\cdot 8} = \\frac{3}{48} = \\frac{1}{16}$ duvar",
-         "narration": "Önce bir ustanın bir günde ne kadar duvar ördüğünü bulalım: 3 duvar bölü 6 çarpı 8, yani 48 usta-gün. Bir usta bir günde on altıda bir duvar örer."
-        },
-        {
-         "text": "4 usta 12 gün: $4 \\cdot 12 \\cdot \\frac{1}{16} = \\frac{48}{16} = 3$",
-         "narration": "4 usta 12 günde 4 çarpı 12, yani 48 usta-gün çalışır. 48 çarpı on altıda bir, 3 duvar."
-        },
-        {
-         "text": "Cevap **B**. Usta azaldı ama gün arttı; ikisi dengelendi.",
-         "narration": "Cevabımız B. Usta sayısı azaldı ama gün sayısı arttı; ikisinin çarpımı yine 48 olduğu için aynı iş çıktı.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki bileşik orantı (işçi-gün-iş) kalıbı örnek alındı, sayılar özgün."
-       }
-      }
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "1 : 200 000 ölçekli bir haritada iki köy arasındaki uzaklık 4,5 cm olarak ölçülmüştür. Bu iki köy arasındaki gerçek uzaklık kaç km'dir?",
-       "options": [
-        "0,9",
-        "9",
-        "90",
-        "4,5",
-        "45"
-       ],
-       "answer": 1,
-       "narration": "Ölçeği bir soruda kullanalım.",
-       "steps": [
-        {
-         "text": "Gerçek uzaklık $= 4{,}5 \\cdot 200\\,000 = 900\\,000$ cm",
-         "narration": "Haritadaki her 1 santimetre gerçekte 200 bin santimetredir. 4,5 çarpı 200 bin, 900 bin santimetre."
-        },
-        {
-         "text": "1 km $= 100\\,000$ cm → $900\\,000 \\div 100\\,000 = 9$ km",
-         "narration": "1 kilometre 100 bin santimetredir. 900 bin bölü 100 bin, 9 kilometre."
-        },
-        {
-         "text": "Cevap **B**.",
-         "narration": "Cevabımız B. Birim çevirmede bir sıfır kaçıran 90 ya da 0,9 bulur; santimetreden kilometreye beş basamak kaydırılır.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki ölçek sorularının kalıbı örnek alındı, ölçek ve uzunluk özgün."
+        "changes": "ÖSYM 2024'ün \"adet oranı ve toplam kütle oranından bir tanenin kütlesi\" kalıbı örnek alındı; bağlam (bilye) ve oranlar özgün."
        }
       }
      }
@@ -571,55 +1501,187 @@
    {
     "subtopic": "MAT_ORAN_07",
     "title": "Doğrusal ilişki",
-    "narration": "Bazı çokluklar arasındaki ilişki tam bir doğru orantı değildir ama doğrusaldır: biri sabit miktarda artarken öbürü de sabit miktarda artar.",
+    "narration": "Son kalıp doğrusal ilişki. Burada değerler değil, artışlar orantılıdır.",
     "cards": [
+     {
+      "kind": "visual",
+      "title": "Taksi ücreti",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        10
+       ],
+       "y": [
+        0,
+        160
+       ],
+       "xLabel": "Yol (km)",
+       "yLabel": "Ücret (TL)",
+       "curves": [
+        {
+         "expression": "12*x + 30",
+         "domain": [
+          0,
+          10
+         ]
+        }
+       ],
+       "points": [
+        {
+         "x": 0,
+         "y": 30,
+         "label": "açılış 30"
+        },
+        {
+         "x": 5,
+         "y": 90,
+         "label": "(5, 90)"
+        },
+        {
+         "x": 10,
+         "y": 150,
+         "label": "(10, 150)"
+        }
+       ]
+      },
+      "narration": "Bir taksi ücretini grafikte izleyelim.",
+      "beats": [
+       {
+        "narration": "Taksi binişte 30 lira alıyor, her kilometre için 12 lira ekliyor.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "5 kilometrede 90 lira, 10 kilometrede 150 lira.",
+        "show": [
+         "p2",
+         "p3"
+        ],
+        "focus": [
+         "p2",
+         "p3"
+        ]
+       },
+       {
+        "narration": "Yol 2 katına çıktı ama ücret 2 katına çıkmadı. Doğru orijinden geçmiyor.",
+        "show": [
+         "c1"
+        ],
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "Ama her kilometre ücreti hep 12 lira artırıyor. Doğrusal ilişkide sabit olan artıştır.",
+        "focus": [
+         "c1"
+        ],
+        "note": "artış: km başına 12 TL"
+       }
+      ]
+     },
      {
       "kind": "rule",
       "title": "Artışlar orantılıdır",
       "items": [
-       "Doğrusal ilişkide **değerler** değil, **artışlar** orantılıdır.",
-       "İki bilinen noktadan **birim artışı** bul.",
-       "Başlangıç değerine **artış × adım** ekle.",
-       "Örnek: ayakkabı numarası, sıcaklık birimleri, taksi ücreti."
+       "Doğrusal ilişkide **değerler** değil **artışlar** orantılıdır.",
+       "İki bilinen noktadan **birim artışı** bul: $\\frac{150 - 90}{10 - 5} = 12$.",
+       "Sonuç = başlangıç değeri + **birim artış × adım**.",
+       "Grafiği orijinden geçmiyorsa ilişki **doğru orantı değildir**."
       ],
-      "narration": "Doğrusal bir ilişkide değerlerin kendisi değil, artışları orantılıdır. ÖSYM 2018'de iki ayakkabı numarası standardı arasındaki ilişkiyi sordu. Yöntem şu: iki bilinen noktadan bir birimlik artışa karşılık gelen artışı bul, sonra başlangıç değerine ekle."
+      "narration": "Doğrusal ilişkide değerler değil artışlar orantılıdır. İki bilinen noktadan birim artışı bul: 60 lira bölü 5 kilometre, 12 lira. Sonuç, başlangıç değeri artı birim artış çarpı adım sayısıdır. Grafiği orijinden geçmiyorsa ilişki doğru orantı değildir."
+     },
+     {
+      "kind": "example",
+      "title": "Kısalan mum",
+      "example": "Bir mumun boyu 20 santimetre ve her saat 1,5 santimetre kısalıyor. 6 saat sonra boyu kaç santimetre olur?",
+      "explanation": "**Sonuç** = başlangıç + artış × adım: $20 - 1{,}5 \\cdot 6 = 11$ cm.",
+      "narration": "Bir mumun boyu 20 santimetre ve her saat 1,5 santimetre kısalıyor. 6 saat sonra boyu kaç santimetre olur? Sonuç, başlangıç artı artış çarpı adım: 20 eksi 1,5 çarpı 6, yani 11 santimetre."
+     },
+     {
+      "kind": "mistake",
+      "title": "Doğrusal, orantılı değil",
+      "wrong": "Doğrusal ilişkideki iki çokluk her zaman doğru orantılıdır.",
+      "right": "Yalnız **orijinden geçen** doğru, doğru orantıdır: taksi 5 km'de 90, 10 km'de 150 TL.",
+      "why": "Başlangıç değeri sıfır değilse **bölüm sabit kalmaz**; sabit kalan artıştır.",
+      "narration": "Tuzak: doğrusal ilişkideki iki çokluğu her zaman doğru orantılı sanmak. Yalnız orijinden geçen doğru, doğru orantıdır: taksi 5 kilometrede 90, 10 kilometrede 150 lira. Başlangıç değeri sıfır değilse bölüm sabit kalmaz."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Santigrat ve fahrenhayt sıcaklık birimleri arasında doğrusal bir ilişki vardır. 0 santigrat derece 32 fahrenhayt, 100 santigrat derece 212 fahrenhayt derecedir. Buna göre 25 santigrat derece kaç fahrenhayt derecedir?",
+       "stem": "Boş olmayan bir depoya her dakika aynı miktarda su akmaktadır. Depoda 4. dakikanın sonunda 100 litre, 10. dakikanın sonunda 190 litre su vardır. Buna göre başlangıçta depoda kaç litre su vardı?",
        "options": [
-        "57",
-        "67",
-        "77",
-        "87",
-        "97"
+        "0",
+        "10",
+        "25",
+        "30",
+        "40"
        ],
-       "answer": 2,
-       "narration": "Birim artışı bulalım.",
+       "answer": 4,
+       "narration": "Önce dakikadaki artışı bulalım.",
        "steps": [
         {
-         "text": "100 santigratlık artış → $212 - 32 = 180$ fahrenhaytlık artış. 1 santigrat → $1{,}8$ fahrenhayt.",
-         "narration": "Santigrat 0'dan 100'e çıkınca fahrenhayt 32'den 212'ye, yani 180 artıyor. Bir santigrat derecelik artış, 1,8 fahrenhayt derecelik artış demek."
+         "text": "6 dakikada $190 - 100 = 90$ L → dakikada **15 L**.",
+         "narration": "4. dakikadan 10. dakikaya, 6 dakikada, su 90 litre arttı. Dakikada 15 litre."
         },
         {
-         "text": "25 santigrat: $32 + 25 \\cdot 1{,}8 = 32 + 45 = 77$",
-         "narration": "25 santigrat derece için başlangıç değeri 32'ye 25 çarpı 1,8, yani 45 ekleriz: 77."
-        },
-        {
-         "text": "Cevap **C**. 45'i doğru orantıyla bulup 32'yi eklemeyen yanılır.",
-         "narration": "Cevabımız C. Bu bir doğru orantı değil: 25, 100'ün dörtte biri ama 77, 212'nin dörtte biri değil. Başlangıç değerini unutma.",
+         "text": "Başlangıç $= 100 - 4 \\cdot 15 = 40$ L. Cevap **E**.",
+         "narration": "4 dakikada 60 litre gelmiş; başlangıçta 100 eksi 60, 40 litre vardı. Cevabımız E. Sıfırı seçen ilişkiyi doğru orantı sanmış.",
          "eliminate": [
           "A",
           "B",
-          "D",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; doğrusal ilişkide başlangıç değerini bulma kalıbı özgün bir bağlamla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir okulun bilim kulübü, sıcaklığı ölçmek için X adını verdiği yeni bir birim tanımlamıştır. Santigrat derece ile X birimi arasında doğrusal bir ilişki vardır. Kulübün ölçümlerine göre 10 °C, 45 X'e; 30 °C ise 85 X'e karşılık gelmektedir. Buna göre 55 °C kaç X'tir?",
+       "options": [
+        "110",
+        "120",
+        "125",
+        "135",
+        "150"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2018'de iki ayakkabı numarası standardıyla sordu. Birim artışı bulalım.",
+       "steps": [
+        {
+         "text": "20 °C'lik artış → $85 - 45 = 40$ X; 1 °C → **2 X**.",
+         "narration": "10'dan 30'a, 20 santigrat derecelik artışta X 45'ten 85'e, 40 artıyor. Her santigrat derece 2 X demek."
+        },
+        {
+         "text": "55 °C, 30 °C'den 25 derece fazla: $85 + 25 \\cdot 2 = 135$.",
+         "narration": "55, 30'dan 25 fazla. 85'e 25 çarpı 2, yani 50 ekle: 135."
+        },
+        {
+         "text": "Cevap **D**.",
+         "narration": "Cevabımız D. 110'u seçen başlangıç değerini atlayıp yalnız 55 çarpı 2 yapmış; bu ilişki doğru orantı değil.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2018'in \"iki standart arasında doğrusal ilişki\" (ayakkabı numarası) kalıbı örnek alındı, bağlam ve sayılar özgün."
+        "changes": "ÖSYM 2018'in \"iki standart arasında doğrusal ilişki\" (ayakkabı numarası) kalıbı örnek alındı; bağlam (sıcaklık birimi), değerler ve sorulan nicelik özgün."
        }
       }
      }
@@ -628,62 +1690,64 @@
   ],
   "summary": {
    "points": [
+    "Oran, **aynı birimdeki** iki çokluğun bölümüdür.",
     "Orantıda her şeyi **k cinsinden** yaz: $a = 3k$, $b = 5k$.",
     "Doğru orantıda **bölüm**, ters orantıda **çarpım** sabittir.",
-    "Ters orantılı paylaştırmada **en küçük sayıya en çok** pay düşer.",
-    "Tarifte en az tarife yeten malzeme **önce biter**.",
-    "Bileşik orantıda iş, işçi × gün ile doğru orantılıdır.",
+    "Ters paylaştırmada **en küçük sayıya en çok** pay düşer.",
+    "Bileşik orantıda önce **birim işi** bul.",
+    "Ölçekte gerçek uzunluk = harita uzunluğu × **payda**.",
+    "Tarifte **en az tarife yeten** malzeme önce biter.",
     "Doğrusal ilişkide **artışlar** orantılıdır; başlangıcı ekle."
    ],
    "warnings": [
+    "Oran $2 : 3$ ise $a = 2$ değil, $a = 2k$.",
     "Hız artarsa süre **azalır**.",
-    "Ölçekte uzunluklar **aynı birimde** olmalı.",
-    "Ters orantıda $\\frac{k}{3}$, $\\frac{k}{4}$, $\\frac{k}{6}$ yaz.",
+    "Paydası küçük ölçek **büyük ölçektir**.",
     "Doğrusal ilişki doğru orantı **değildir**."
    ],
-   "narration": "Hadi toparlayalım. Orantıda her şeyi k cinsinden yaz. Doğru orantıda bölüm, ters orantıda çarpım sabittir. Ters orantılı paylaştırmada en küçük sayıya en büyük pay düşer. Tarif problemlerinde önce biten malzemeyi bul; üretimi o belirler. Bileşik orantıda iş, işçi ile günün çarpımıyla doğru orantılıdır. Doğrusal ilişkide ise değerler değil artışlar orantılıdır; başlangıç değerini eklemeyi unutma."
+   "narration": "Hadi toparlayalım. Oran, aynı birimdeki iki çokluğun bölümüdür; orantıda her şeyi k cinsinden yaz. Doğru orantıda bölüm, ters orantıda çarpım sabittir. Ters paylaştırmada en küçük sayıya en çok pay düşer. Bileşik orantıda önce birim işi bul. Ölçekte haritadaki uzunluğu paydayla çarp. Tarifte en az tarife yeten malzeme önce biter. Doğrusal ilişkide ise artışlar orantılıdır; başlangıç değerini eklemeyi unutma."
   }
  },
  "short": {
-  "hook": "Orantıda üç tuzak.",
+  "hook": "Oran sayı değildir.",
   "cards": [
    {
     "kind": "term",
-    "term": "Ters orantı",
-    "definition": "Çarpım sabit: biri artarken öbürü **azalır**."
+    "term": "Orantı sabiti",
+    "definition": "Oran **2 : 3** ise $a = 2k$, $b = 3k$."
    },
    {
     "kind": "fact",
-    "text": "60 km/sa 4 saat = 80 km/sa **3 saat**."
+    "text": "Ters orantıda **çarpım** sabit: iki kat usta, yarı süre."
    },
    {
     "kind": "warning",
-    "text": "Ters paylaşımda en küçük sayıya **en çok** pay."
+    "text": "Ters paylaşımda en **küçük** sayıya en çok pay."
    },
    {
     "kind": "fact",
-    "text": "Tarifte önce biten malzeme **üretimi belirler**."
+    "text": "Tarifte en az **tarife yeten** önce biter."
    }
   ],
   "summary": [
+   "Oran k katlarını verir",
    "Ters orantıda çarpım sabit",
-   "Önce biten belirler",
-   "Artışlar orantılı"
+   "En küçük sayıya en çok pay"
   ],
   "rounds": [
    {
-    "sentence": "Hız artıyor, yol aynı.",
-    "question": "Süre artar mı?",
+    "sentence": "Oran **2 : 3**.",
+    "question": "a kesin 2 mi?",
     "choices": [
-     "Artar",
-     "Azalır"
+     "Evet",
+     "Hayır"
     ],
     "answer": 1,
-    "why": "**Ters** orantı."
+    "why": "a = **2k**."
    },
    {
-    "sentence": "İki kat usta, aynı iş.",
-    "question": "Süre?",
+    "sentence": "**İki kat** usta, aynı iş.",
+    "question": "Süre ne olur?",
     "choices": [
      "İki katı",
      "Yarısı"
@@ -692,14 +1756,14 @@
     "why": "**Ters** orantı."
    },
    {
-    "sentence": "3, 4, 6 ile ters paylaşım",
-    "question": "En çok kim?",
+    "sentence": "2, 3, 6 ile ters paylaşım",
+    "question": "En çok kime?",
     "choices": [
-     "3",
+     "2",
      "6"
     ],
     "answer": 0,
-    "why": "En **küçüğü**."
+    "why": "En **küçüğe**."
    }
   ]
  },

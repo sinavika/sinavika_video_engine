@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Matematik kampı · Ders 1 · Temel Kavramlar
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Matematik/01_Temel_Kavramlar/Temel_Kavramlar_YouTube.mp4` (4K) · Kapak: `Temel_Kavramlar_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Matematik/01_Temel_Kavramlar/Temel_Kavramlar_YouTube.mp4` (4K) · Kapak: `Temel_Kavramlar_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

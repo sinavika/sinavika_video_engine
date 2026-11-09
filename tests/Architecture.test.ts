@@ -194,7 +194,7 @@ describe('engine layout', () => {
 const CURRICULUM_FOLDERS = ['Camps', 'Catalog', 'Exams', 'Jobs', 'Production', 'Quizzes', 'README.md', 'Scripts', 'Sources', 'Tools', 'Works', 'WorksWritten'];
 const OUTPUT_FOLDERS = ['Brand', 'Camps', 'Checks', 'Covers', 'Exams', 'Images', 'Quizzes', 'Videos', 'Works'];
 /** Folder and file names a module was known by before 9 Nov 2026; nothing may point at them any more. */
-const RETIRED_PATHS = ['QuestionRevision', 'Outputs/WorkFigures', 'Outputs/WorksWritten', 'src/Campaigns', 'Courses/WorkFigure', 'Courses/WorksView', 'Courses/WorksWritten', 'Services/SocialHubClient', 'Services/SocialPlanner', 'Outputs/Stills', 'Outputs/Sweeps', 'Outputs/Yatirim'];
+const RETIRED_PATHS = ['QuestionRevision', 'Outputs/WorkFigures', 'Outputs/WorksWritten', 'src/Campaigns', 'Courses/WorkFigure', 'Courses/WorksView', 'Courses/WorksWritten', 'Services/SocialHubClient', 'Services/SocialPlanner', 'Outputs/Stills', 'Outputs/Sweeps', 'Outputs/Yatirim', 'Outputs/Videos/YKS', 'Outputs/Videos/KPSS'];
 const pythonTools = filesUnder('Curriculum').filter((file) => file.endsWith('.py'));
 const moduleTools = pythonTools.filter((file) => /^Curriculum\/(Quizzes|Exams)\/Tools\/[^/]+\.py$/.test(file) && !file.endsWith('/paths.py'));
 const SHARED_PYTHON = filesUnder('Curriculum/Tools').filter((file) => file.endsWith('.py')).map((file) => path.basename(file, '.py'));
@@ -232,6 +232,12 @@ describe('module layout', () => {
 			return [...readFileSync(path.join(ROOT, file), 'utf-8').matchAll(/^(?:from|import) ([a-z_]+)/gm)].some((match) => match[1] !== 'paths' && other.includes(match[1]));
 		});
 		expect(crossing).toEqual([]);
+	});
+
+	it('caches a batch prompt for an hour through anthropic_api.cached_system, never with the 5-minute default', () => {
+		// 2–5 Nov 2026: a 5-minute cache died inside every Works batch (11–24 % cache reads on 715 requests).
+		const shortCache = pythonTools.filter((file) => /['"]cache_control['"]\s*:\s*\{\s*['"]type['"]\s*:\s*['"]ephemeral['"]\s*\}/.test(readFileSync(path.join(ROOT, file), 'utf-8')));
+		expect(shortCache).toEqual([]);
 	});
 
 	it('points nowhere a module used to live (retired 9 Nov 2026)', () => {

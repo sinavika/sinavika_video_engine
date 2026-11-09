@@ -2,7 +2,7 @@ import type React from 'react';
 import {COURSE_DESIGN} from '../../../Courses/CourseDesign';
 import {spokenPracticeAsk, spokenPredictAsk, spokenQuestion, THINK_PROMPT} from '../../../Courses/LessonSpeech';
 import {LESSON_SCRIPT_SAMPLE} from '../../../Courses/LessonScriptSample';
-import {LessonScriptSchema, type LessonScript} from '../../../Courses/LessonScript';
+import {cardBeats, LessonScriptSchema, type LessonScript} from '../../../Courses/LessonScript';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
 import {createNarrator, VOICE_LEAD_SECONDS, type VoiceClips} from '../../../Scenes/Voiceover';
@@ -119,8 +119,9 @@ const buildScenes = (script: LessonScript, voiceClips: VoiceClips = {}): Templat
 				return;
 			}
 			const line = say(id, card.narration, estimate(card.narration), pacing.minCardSeconds);
-			// A visual told in beats: each beat's sentence follows the card's, and the figure follows the sentences.
-			const beats = 'beats' in card && card.visual ? card.beats : [];
+			// A visual told in beats, or a worked example's steps: each sentence follows the card's, and the figure (or the
+			// step's line) follows the sentences.
+			const beats = cardBeats(card);
 			const beatSlots = beats.map((beat, beatIndex) => say(`${id}-b${beatIndex + 1}`, beat.narration, estimate(beat.narration, pacing.beatSeconds), pacing.beatSeconds));
 			const slots = [line, ...beatSlots];
 			const startOf = (slotIndex: number) => slots.slice(0, slotIndex).reduce((sum, slot) => sum + slot.seconds, 0);

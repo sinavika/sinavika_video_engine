@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Coğrafya kampı · Ders 14 · Türkiye’de Yerleşme
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Cografya/14_Yerlesme/Yerlesme_YouTube.mp4` (4K) · Kapak: `Yerlesme_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Cografya/14_Yerlesme/Yerlesme_YouTube.mp4` (4K) · Kapak: `Yerlesme_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -12,33 +12,101 @@
   "TYT"
  ],
  "sources": [
-  "YKS/TYT/KonuAnlatimi/MAT/MAT_RASYONEL.json (MEB Temel Matematik konu anlatımı: rasyonel sayılarda dört işlem, ondalık sayılar, virgül kaydırma, devirli ondalık sayılar)",
-  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: 8 soru; 4'ü dört işlem ve günlük hayat (şişe, tablo, lale sapı), 2'si ondalık gösterim, 1'er kesir türü ve sıralama)",
-  "YKS/TYT/Sorular/MAT/MAT_RASYONEL.jsonl (147 soru; kesir türleri, dört işlem ve sıralama kalıpları)"
+  "YKS/TYT/KonuAnlatimi/yks_tyt_kn_temel-matematik_meb-konu-anlatimi s. 28-30, 103 (MEB Temel Matematik: rasyonel sayılarda dört işlem, ondalık sayılar, virgül kaydırma, devirli ondalık sayılar, pozitif ve negatif rasyonel sayılarda sıralama)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: 8 soru; eşit bölmeli ölçek okuma (2018 şişe, 2019 radyo), boyalı kareler oranı (2021), iki doğru bir yanlış ifade (2022), toplamı 1 olan gruplar (2023), basit kesir …)",
+  "YKS/TYT/Sorular/MAT/MAT_RASYONEL.jsonl (soru havuzu: kesir türleri, denk kesir, dört işlem, sıralama, ondalık ve devirli sayı kalıpları)"
  ],
  "lesson": {
   "hook": {
-   "headline": "13/14 mü büyük, 17/18 mi? Hesap yapmadan söyle.",
-   "narration": "On üçte on dört mü daha büyük, on yedide on sekiz mi? Paydaları eşitlemeden, bölme yapmadan bunu birkaç saniyede söyleyebilirsin. Rasyonel sayılar TYT'de çoğu zaman tek başına değil, günlük hayatın içinde sorulur: bir şişedeki su, bir tablodaki boyalı kareler, lale saplarının uzunluğu. Bu derste kesir türlerini, dört işlemi, sıralamanın kısa yollarını, ondalık sayıları ve devirli ondalık sayıları adım adım göreceğiz."
+   "headline": "0,4555… kesir olarak kaç? Cevap 45/99 değil.",
+   "narration": "Sıfır virgül dört beş beş beş diye giden sayı kesir olarak kaçtır? Çoğu öğrenci kırk beş bölü doksan dokuz yazar ve yanılır. Kesir türlerinden devirli sayılara kadar rasyonel sayıları baştan sona, soru çözerek işleyeceğiz."
   },
   "opening": {
    "kind": "mistake",
-   "card": "s5-c3",
-   "narration": "İki devirli ondalık sayının farkı kaç? Çoğu öğrenci devirli sayıyı kesre çevirirken bir adımı unutur. Sıfır virgül dokuz devirlinin birden küçük olduğunu sananlar da var.",
-   "promise": "Kesirleri sıralamayı, ondalık ve devirli sayıları kesre çevirmeyi ve işlem önceliğini öğreneceksin."
+   "card": "s6-c6",
+   "narration": "Sıfır virgül dört beş beş beş diye giden sayıyı kesre çevir. Çoğu öğrenci kırk beş bölü doksan dokuz yazar. Sen ne yazardın?",
+   "promise": "Kesir türlerini, sadeleştirmeyi, dört işlemi, sıralamayı, ondalık ve devirli sayıları soru çözerek öğreneceksin."
   },
   "objectives": [
-   "Basit, bileşik ve tam sayılı kesri ayırmak",
-   "Rasyonel sayılarda dört işlemi doğru sırayla yapmak",
-   "Kesirleri hesap yapmadan sıralamak",
+   "Basit, bileşik ve tam sayılı kesri ayırmak ve birbirine çevirmek",
+   "Kesirleri sadeleştirmek, genişletmek ve denk kesir bulmak",
+   "Dört işlemi ve iç içe kesirleri doğru öncelikle yapmak",
+   "Pozitif ve negatif kesirleri hesap yapmadan sıralamak",
    "Ondalık ve devirli ondalık sayıları kesre çevirmek"
   ],
   "sections": [
    {
     "subtopic": "MAT_RASYONEL_01",
-    "title": "Kesir türleri",
-    "narration": "Rasyonel sayı, a bölü b biçiminde yazılabilen sayıdır; a ve b tam sayı, b sıfırdan farklı. Önce kesir türlerini ayıralım.",
+    "title": "Rasyonel sayı ve kesir türleri",
+    "narration": "Önce rasyonel sayının ne olduğunu, sonra kesirlerin üç türünü görelim.",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Rasyonel sayı nedir?",
+      "text": "$a$ ve $b$ tam sayı, $b \\neq 0$ olmak üzere $\\frac{a}{b}$ biçiminde yazılabilen sayılara **rasyonel sayı** denir. $a$ **pay**, $b$ **payda**dır. Her tam sayı rasyoneldir: $5 = \\frac{5}{1}$.",
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        -2,
+        2
+       ],
+       "ticks": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+       ],
+       "points": [
+        {
+         "x": -0.75,
+         "label": "−3/4"
+        },
+        {
+         "x": 0.5,
+         "label": "1/2"
+        },
+        {
+         "x": 1.75,
+         "label": "7/4"
+        }
+       ]
+      },
+      "narration": "Bir **rasyonel sayı**, a bölü b biçiminde yazılabilen sayıdır; a ve b tam sayı, b sıfırdan farklı.",
+      "beats": [
+       {
+        "narration": "İkide bir, bütünü iki eş parçaya bölüp birini almaktır; sıfır ile birin tam ortasındadır.",
+        "show": [
+         "p2"
+        ],
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "Eksi dörtte üç sıfırın solundadır; rasyonel sayılar negatif de olabilir.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "Dörtte yedi ise birden büyüktür; bir ile iki arasına düşer.",
+        "show": [
+         "p3"
+        ],
+        "focus": [
+         "p3"
+        ]
+       },
+       {
+        "narration": "Payda asla sıfır olamaz. Her tam sayı da rasyoneldir: beş, birde beş diye yazılır.",
+        "note": "b ≠ 0 · 5 = 5/1"
+       }
+      ]
+     },
      {
       "kind": "visual",
       "title": "Üç kesir türü",
@@ -72,10 +140,10 @@
        ],
        "highlightColumn": 1
       },
-      "narration": "Kesirleri payla paydanın büyüklüğüne göre ayırırız.",
+      "narration": "Kesirleri pay ile paydanın büyüklüğüne göre üçe ayırırız.",
       "beats": [
        {
-        "narration": "Basit kesirde pay paydadan küçüktür: beşte üç. Pozitif bir basit kesir her zaman 1'den küçüktür.",
+        "narration": "Basit kesirde pay paydadan küçüktür: beşte üç. Pozitif bir basit kesir her zaman birden küçüktür.",
         "show": [
          "r1"
         ],
@@ -84,7 +152,7 @@
         ]
        },
        {
-        "narration": "Bileşik kesirde pay, paydaya eşit ya da ondan büyüktür: dörtte yedi. Bileşik kesir 1'e eşit ya da 1'den büyüktür.",
+        "narration": "Bileşik kesirde pay, paydaya eşit ya da ondan büyüktür: dörtte yedi. Değeri bir ya da daha büyüktür.",
         "show": [
          "r2"
         ],
@@ -93,120 +161,136 @@
         ]
        },
        {
+        "narration": "Tam sayılı kesir, bir tam sayı ile bir basit kesrin toplamıdır: bir tam dörtte üç.",
         "show": [
          "r3"
         ],
         "focus": [
          "r3"
-        ],
-        "narration": "Tam sayılı kesir bir tam sayı ile bir basit kesrin toplamıdır: 1 tam dörtte üç."
+        ]
        },
        {
-        "show": [],
+        "narration": "Bir tam dörtte üç, dört artı üç bölü dört, yani dörtte yedidir.",
         "focus": [
          "r3"
         ],
-        "narration": "Bileşik kesre çevirmek için tamı paydayla çarpıp paya eklersin: 4 artı 3, dörtte yedi.",
         "note": "1 tam 3/4 = (4 + 3)/4 = 7/4"
        }
       ]
      },
      {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Aşağıdakilerden hangisi $\\frac{3}{4}$ sayısından büyük, **basit** bir kesirdir?",
-       "options": [
-        "$\\frac{4}{3}$",
-        "$\\frac{5}{7}$",
-        "$\\frac{7}{9}$",
-        "$\\frac{2}{3}$",
-        "$\\frac{9}{8}$"
+      "kind": "practice",
+      "title": "Kesirleri türüne eşleştir",
+      "visual": {
+       "kind": "matching",
+       "titles": [
+        "Kesir",
+        "Türü"
        ],
-       "answer": 2,
-       "narration": "ÖSYM 2025'te bu kalıbı sordu. İki şartı ayrı ayrı uygulayalım.",
-       "steps": [
+       "pairs": [
         {
-         "text": "Basit kesir: pay < payda. $\\frac{4}{3}$ ve $\\frac{9}{8}$ **bileşik**.",
-         "narration": "Önce basit kesir şartı: pay paydadan küçük olmalı. Üçte dört ve sekizde dokuz bileşik kesir. A ve E gidiyor.",
-         "eliminate": [
-          "A",
-          "E"
-         ]
+         "left": "5/8",
+         "right": "Basit kesir: pay paydadan küçük"
         },
         {
-         "text": "$\\frac{3}{4} = 1 - \\frac{1}{4}$, $\\frac{5}{7} = 1 - \\frac{2}{7}$, $\\frac{2}{3} = 1 - \\frac{1}{3}$: 1'e daha **uzak**, yani daha küçük.",
-         "narration": "Şimdi dörtte üçten büyük olanı arayalım. Dörtte üç, 1'den dörtte bir eksik. Yedide beş, 1'den yedide iki eksik; yedide iki, dörtte birden büyük, yani yedide beş daha küçük. Üçte iki, 1'den üçte bir eksik; o da daha küçük. B ve D gidiyor.",
-         "eliminate": [
-          "B",
-          "D"
-         ]
+         "left": "9/9",
+         "right": "Bileşik kesir: pay paydaya eşit"
         },
         {
-         "text": "$\\frac{7}{9} = 1 - \\frac{2}{9}$ ve $\\frac{2}{9} < \\frac{1}{4}$: **büyük**. Cevap **C**.",
-         "narration": "Dokuzda yedi, 1'den dokuzda iki eksik. Dokuzda iki, dörtte birden küçük; demek ki dokuzda yedi 1'e daha yakın ve dörtte üçten büyük. Cevabımız C."
+         "left": "2 tam 1/3",
+         "right": "Tam sayılı kesir: 7/3'e eşit"
         }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2025'in \"verilen sayıdan büyük, basit bir kesir\" kalıbı örnek alındı, kesirler özgün."
+       ]
+      },
+      "thinkSeconds": 5,
+      "narration": "Şimdi az önceki tabloyu bir de sen kullan.",
+      "beats": [
+       {
+        "narration": "Sekizde beşte pay paydadan küçük; bu bir basit kesirdir.",
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "Dokuz bölü dokuzda pay paydaya eşit; bu bileşik bir kesirdir ve değeri tam birdir.",
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "İki tam üçte bir, tam sayılı kesirdir; üç çarpı iki artı bir, üçte yediye eşittir.",
+        "focus": [
+         "p3"
+        ]
        }
-      }
-     }
-    ]
-   },
-   {
-    "subtopic": "MAT_RASYONEL_03",
-    "subtopics": [
-     "MAT_RASYONEL_02"
-    ],
-    "title": "Dört işlem",
-    "narration": "Rasyonel sayılarda her işlemin kendi kuralı var. Önce kuralları, sonra işlem önceliğini görelim.",
-    "cards": [
+      ]
+     },
      {
       "kind": "rule",
-      "title": "Dört işlemin kuralları",
+      "title": "Tam sayılı kesir ↔ bileşik kesir",
       "items": [
-       "**Sadeleştirme**: pay ve payda aynı sayıya bölünür; en sade hâl için EBOB'a böl.",
-       "**Toplama, çıkarma**: paydalar EKOK'ta eşitlenir, paylar toplanır: $\\frac{1}{4} + \\frac{1}{6} = \\frac{3}{12} + \\frac{2}{12} = \\frac{5}{12}$.",
-       "**Çarpma**: pay ile pay, payda ile payda çarpılır; önce çapraz sadeleştir.",
-       "**Bölme**: birinci kesir aynen, ikinci **ters çevrilip** çarpılır: $\\frac{2}{3} \\div \\frac{4}{9} = \\frac{2}{3} \\cdot \\frac{9}{4} = \\frac{3}{2}$."
+       "**Tam sayılı → bileşik**: tamı paydayla çarp, paya ekle: $2\\frac{1}{3} = \\frac{2 \\cdot 3 + 1}{3} = \\frac{7}{3}$.",
+       "**Bileşik → tam sayılı**: payı paydaya böl; bölüm tam, kalan yeni pay: $\\frac{11}{4} = 2\\frac{3}{4}$.",
+       "**Negatif** tam sayılı kesirde eksi hepsinin önündedir: $-2\\frac{1}{3} = -\\frac{7}{3}$."
       ],
-      "narration": "Sadeleştirmede pay ve paydayı aynı sayıya bölersin; en sade hâl için ikisinin EBOB'una bölersin. Toplama ve çıkarmada paydaları EKOK'ta eşitlersin: dörtte bir artı altıda bir, on ikide üç artı on ikide iki, on ikide beş. Çarpmada pay ile payı, payda ile paydayı çarparsın; çarpmadan önce çapraz sadeleştirme işini kolaylaştırır. Bölmede birinci kesir aynen kalır, ikinci kesir ters çevrilip çarpılır: üçte iki bölü dokuzda dört, üçte iki çarpı dörtte dokuz, ikide üç."
+      "narration": "Tam sayılı kesri bileşik kesre çevirmek için tamı paydayla çarpar, paya eklersin: iki tam üçte bir, üçte yedi. Bileşik kesri geri çevirmek için payı paydaya bölersin: dörtte on bir, iki tam dörtte üç. Negatif tam sayılı kesirde eksi işareti hepsinin önündedir."
+     },
+     {
+      "kind": "example",
+      "title": "Bileşik kesri tam sayılıya çevir",
+      "example": "Dörtte on biri tam sayılı kesir olarak yaz.",
+      "narration": "Dörtte on biri tam sayılı kesir olarak yaz. Bölmeyi yapalım.",
+      "steps": [
+       {
+        "narration": "On biri dörde bölünce bölüm iki, kalan üç olur.",
+        "math": "11 = 4 \\cdot 2 + 3"
+       },
+       {
+        "narration": "Bölüm iki tam kısım, kalan üç yeni pay; payda değişmez, dört kalır.",
+        "math": "\\frac{11}{4} = 2 + \\frac{3}{4}",
+        "text": "Tam **2**, pay **3**, payda **4**"
+       },
+       {
+        "narration": "Sonuç iki tam dörtte üç. Geri çevirince dört çarpı iki artı üç, yine on bir eder.",
+        "math": "4 \\cdot 2 + 3 = 11",
+        "text": "Sonuç: **2 tam** $\\frac{3}{4}$"
+       }
+      ]
      },
      {
       "kind": "mistake",
-      "title": "Paydalar toplanmaz",
-      "wrong": "$\\frac{1}{2} + \\frac{1}{3} = \\frac{2}{5}$",
-      "right": "Paydalar toplanmaz, eşitlenir: $\\frac{1}{2} + \\frac{1}{3} = \\frac{3}{6} + \\frac{2}{6} = \\frac{5}{6}$",
-      "why": "Mantıkla da kontrol et: iki pozitif sayının toplamı **ikisinden de büyük** olmalı; beşte iki ise ikide birden küçük.",
-      "narration": "En klasik hata: ikide bir artı üçte biri, payları ve paydaları ayrı ayrı toplayıp beşte iki bulmak. Paydalar toplanmaz, eşitlenir: altıda üç artı altıda iki, altıda beş. Mantıkla da kontrol edebilirsin: iki pozitif sayının toplamı ikisinden de büyük olmalı. Beşte iki ise ikide birden küçük, demek ki yanlış."
+      "title": "Eksi işareti nereye ait?",
+      "wrong": "$-2\\frac{1}{3}$ sayısı $-2 + \\frac{1}{3} = -\\frac{5}{3}$ demektir.",
+      "right": "Eksi hepsine aittir: $-2\\frac{1}{3} = -\\left(2 + \\frac{1}{3}\\right) = -\\frac{7}{3}$.",
+      "why": "Sayı doğrusunda $-2\\frac{1}{3}$, $-2$'nin **solundadır**; $-\\frac{5}{3}$ ise $-2$'nin sağında kalır.",
+      "narration": "Çok yapılan bir hata: eksi iki tam üçte biri, eksi iki artı üçte bir sanıp eksi üçte beş bulmak. Eksi hepsine aittir: sayı, eksi parantez iki artı üçte bir, yani eksi üçte yedidir. Sayı doğrusunda düşün: eksi iki tam üçte bir, eksi ikinin solundadır."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$\\left(\\frac{1}{2} - \\frac{1}{3}\\right) \\div \\frac{5}{12} + \\frac{3}{5}$ işleminin sonucu kaçtır?",
+       "stem": "$3\\frac{2}{5}$ tam sayılı kesrinin bileşik kesir olarak yazılışı aşağıdakilerden hangisidir?",
        "options": [
-        "$\\frac{1}{2}$",
-        "$\\frac{3}{5}$",
-        "$\\frac{4}{5}$",
-        "$1$",
-        "$\\frac{6}{5}$"
+        "$\\frac{6}{5}$",
+        "$\\frac{11}{5}$",
+        "$\\frac{13}{5}$",
+        "$\\frac{17}{5}$",
+        "$\\frac{32}{5}$"
        ],
        "answer": 3,
-       "narration": "İşlem önceliğine dikkat ederek ilerleyelim.",
+       "narration": "Kuralı hemen bir soruda uygulayalım.",
        "steps": [
         {
-         "text": "Parantez: $\\frac{1}{2} - \\frac{1}{3} = \\frac{3}{6} - \\frac{2}{6} = \\frac{1}{6}$",
-         "narration": "Önce parantez içi. İkide bir eksi üçte bir; paydaları 6'da eşitleriz: altıda üç eksi altıda iki, altıda bir."
+         "text": "Tamı paydayla çarp: $3 \\cdot 5 = 15$.",
+         "narration": "Tam kısım üç, payda beş. Önce tamı paydayla çarparız: üç çarpı beş, on beş."
         },
         {
-         "text": "Bölme: $\\frac{1}{6} \\div \\frac{5}{12} = \\frac{1}{6} \\cdot \\frac{12}{5} = \\frac{2}{5}$",
-         "narration": "Sonra bölme, toplamadan önce gelir. Altıda bir bölü on ikide beş: ikinci kesri ters çevirip çarparız. Altıda bir çarpı beşte on iki. 12 ile 6 sadeleşir, beşte iki kalır."
+         "text": "Paya ekle: $15 + 2 = 17$ → $\\frac{17}{5}$.",
+         "narration": "Çıkan sayıyı paya ekleriz: on beş artı iki, on yedi. Payda aynı kalır: beşte on yedi."
         },
         {
-         "text": "Toplama: $\\frac{2}{5} + \\frac{3}{5} = 1$. Cevap **D**.",
-         "narration": "En son toplama: beşte iki artı beşte üç, beşte beş, yani 1. Cevabımız D.",
+         "text": "$\\frac{11}{5}$ tamı **paya** çarpmaktan, $\\frac{32}{5}$ rakamları **yan yana** yazmaktan gelir. Cevap **D**.",
+         "narration": "Beşte on biri seçen, tamı payla çarpıp beşi eklemiştir. Beşte otuz ikiyi seçen, üçle ikiyi yan yana yazmıştır. Cevabımız D.",
          "eliminate": [
           "A",
           "B",
@@ -216,7 +300,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; MEB anlatımındaki karışık işlem örneğinin yapısı ve havuzdaki dört işlem kalıbı örnek alındı, kesirler özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki tam sayılı kesri bileşik kesre çevirme kalıbı örnek alındı, sayı ve çeldiriciler özgün."
        }
       }
      },
@@ -224,40 +308,509 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$\\frac{2}{3} + \\frac{3}{4} - \\frac{5}{6}$ işleminin sonucu kaçtır?",
+       "stem": "Bir kart oyununda $a$ pozitif bir tam sayı olmak üzere birinci karta $\\frac{a}{7}$, ikinci karta $\\frac{a}{4}$ yazılıyor. Oyunun kurallarına göre birinci karttaki kesir **basit kesir**, ikinci karttaki kesir **bileşik kesir** olmalı; ayrıca ikinci karttaki kesir bir **tam sayıya eşit olmamalıdır**. Buna göre $a$'nın alabileceği değerlerin toplamı kaçtır?",
        "options": [
-        "$0$",
-        "$\\frac{5}{12}$",
-        "$\\frac{7}{12}$",
-        "$\\frac{3}{4}$",
-        "$\\frac{11}{12}$"
+        "6",
+        "11",
+        "15",
+        "18",
+        "21"
        ],
-       "answer": 2,
-       "narration": "Toplama ve çıkarmada önce paydaları eşitleriz; paydalar toplanmaz.",
+       "answer": 1,
+       "narration": "ÖSYM 2025'te basit kesir tanımını sordu. Biz üç kuralı birden uygulayalım.",
        "steps": [
         {
-         "text": "Ortak payda $\\text{EKOK}(3, 4, 6) = 12$: $\\frac{8}{12} + \\frac{9}{12} - \\frac{10}{12}$.",
-         "narration": "Üç, dört ve altının EKOK'u on iki. İki bölü üç, sekiz bölü on iki; üç bölü dört, dokuz bölü on iki; beş bölü altı, on bölü on iki olur."
+         "text": "Birinci kart basit: $a < 7$ → $a \\in \\{1, \\ldots, 6\\}$.",
+         "narration": "Birinci kart basit kesir olacak, yani pay paydadan küçük: a, yediden küçük. a bir ile altı arasında.",
+         "mark": [
+          "basit kesir"
+         ]
         },
         {
-         "text": "$\\frac{8 + 9 - 10}{12} = \\frac{7}{12}$. Cevap **C**.",
-         "narration": "Paydalar eşitlenince yalnız payları toplayıp çıkarırız: sekiz artı dokuz eksi on, yedi. Sonuç yedi bölü on iki. Cevabımız C.",
+         "text": "İkinci kart bileşik: $a \\geq 4$ → $a \\in \\{4, 5, 6\\}$.",
+         "narration": "İkinci kart bileşik kesir olacak: a en az dört. Geriye dört, beş ve altı kalır. Birden altıya hepsini toplayıp yirmi biri bulan bu şartı unutmuştur.",
+         "mark": [
+          "bileşik kesir"
+         ],
+         "eliminate": [
+          "E"
+         ]
+        },
+        {
+         "text": "$a = 4$ ise $\\frac{4}{4} = 1$: tam sayı, olmaz. $a \\in \\{5, 6\\}$.",
+         "narration": "Ama a dört olursa ikinci kart dörtte dört, yani bir olur; bu bir tam sayı. Dördü atarız. On beşi seçen bu son şartı atlamıştır.",
+         "mark": [
+          "tam sayıya eşit olmamalıdır"
+         ],
+         "eliminate": [
+          "C"
+         ]
+        },
+        {
+         "text": "$5 + 6 = 11$. Cevap **B**.",
+         "narration": "Toplam beş artı altı, on bir. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2025'in basit kesir sorusundaki tanım bilgisi örnek alındı; iki kartlı, üç koşullu yapı, bağlam ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_RASYONEL_02",
+    "title": "Sadeleştirme ve genişletme",
+    "narration": "Aynı sayı farklı kesirlerle yazılabilir. Bunun adı denk kesir.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Denk kesirler",
+      "text": "Değeri aynı olan kesirlere **denk kesir** denir: $\\frac{1}{2} = \\frac{2}{4} = \\frac{4}{8}$. Pay ve payda **aynı sayıyla** çarpılır ya da bölünürse kesrin değeri değişmez.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Kesir",
+        "Bütün kaç parça?",
+        "Alınan parça"
+       ],
+       "rows": [
+        [
+         "$\\frac{1}{2}$",
+         "2",
+         "1"
+        ],
+        [
+         "$\\frac{2}{4}$",
+         "4",
+         "2"
+        ],
+        [
+         "$\\frac{4}{8}$",
+         "8",
+         "4"
+        ]
+       ],
+       "highlightColumn": 0
+      },
+      "narration": "Pizzayı ikiye bölüp bir dilim alsan da, sekize bölüp dört dilim alsan da aynı miktarı yersin. Bunlara **denk kesir** denir.",
+      "beats": [
+       {
+        "narration": "İkide bir: bütün iki parça, bir parça alınmış.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Dörtte iki: parçalar yarıya bölünmüş, alınan parça sayısı da iki katına çıkmış.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Sekizde dört: yine aynı miktar. Pay ve payda hep birlikte iki katına çıkıyor.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Sadeleştirme ve genişletme",
+      "items": [
+       "**Genişletme**: pay ve payda aynı sayıyla çarpılır: $\\frac{2}{5} = \\frac{6}{15}$.",
+       "**Sadeleştirme**: pay ve payda aynı sayıya bölünür: $\\frac{12}{18} = \\frac{2}{3}$.",
+       "**En sade hâl** için EBOB'a böl; artık ortak bölen kalmaz.",
+       "Sadeleştirme yalnız **çarpanlarda** yapılır, toplamda yapılmaz."
+      ],
+      "narration": "Genişletmede pay ve paydayı aynı sayıyla çarparsın: beşte iki, on beşte altı. Sadeleştirmede aynı sayıya bölersin: on sekizde on iki, üçte iki. En sade hâl için ikisinin EBOB'una bölersin; on iki ile on sekizin EBOB'u altı. Sadeleştirme yalnız çarpanlarda yapılır; bunu birazdan göreceğiz."
+     },
+     {
+      "kind": "example",
+      "title": "En sade hâl",
+      "example": "Yetmiş ikide kırk sekizi en sade hâline getir.",
+      "explanation": "$\\text{EBOB}(48, 72) = 24$; tek adımda **en sade hâl**: $\\frac{2}{3}$.",
+      "visual": {
+       "kind": "formula",
+       "latex": "\\frac{48}{72} = \\frac{48 \\div 24}{72 \\div 24} = \\frac{2}{3}"
+      },
+      "narration": "Yetmiş ikide kırk sekizi en sade hâline getir.",
+      "beats": [
+       {
+        "narration": "İstersen adım adım gidersin: üç kez ikiye, bir kez üçe bölersin.",
+        "note": "48/72 → 24/36 → 12/18 → 6/9 → 2/3"
+       },
+       {
+        "narration": "Kısa yol EBOB'dur: kırk sekiz ile yetmiş ikinin EBOB'u yirmi dört.",
+        "note": "EBOB(48, 72) = 24"
+       },
+       {
+        "narration": "İkisini de yirmi dörde bölünce üçte iki kalır; artık ortak bölen yok.",
+        "note": "48/72 = 2/3"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Toplamda sadeleştirme olmaz",
+      "wrong": "$\\frac{3 + 6}{3 + 9}$ kesrinde 3'ler sadeleşir, kesir $\\frac{6}{9}$ olur.",
+      "right": "Önce topla: $\\frac{3 + 6}{3 + 9} = \\frac{9}{12} = \\frac{3}{4}$.",
+      "why": "Sadeleştirme yalnız **çarpanlarda** yapılır. $\\frac{6}{9} = \\frac{2}{3}$, $\\frac{3}{4}$ değil.",
+      "narration": "Bak, burada çok kişi tökezler: üç artı altı bölü üç artı dokuzda üçleri silip dokuzda altı yazmak. Önce topla: pay dokuz, payda on iki, sadeleşince dörtte üç. Sadeleştirme yalnız çarpanlarda yapılır; dokuzda altı ise üçte ikidir, dörtte üç değil."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\frac{2}{5}$ kesrine denk olan ve payı ile paydasının toplamı 63 olan kesrin paydası kaçtır?",
+       "options": [
+        "18",
+        "25",
+        "35",
+        "40",
+        "45"
+       ],
+       "answer": 4,
+       "narration": "Genişletmeyi bir bilinmeyenle düşünelim.",
+       "steps": [
+        {
+         "text": "Denk kesir: $\\frac{2k}{5k}$ ($k$ pozitif tam sayı).",
+         "narration": "Beşte ikiye denk her kesir, pay ve paydanın aynı k sayısıyla çarpılmasıyla bulunur: beş k'da iki k."
+        },
+        {
+         "text": "$2k + 5k = 63 \\Rightarrow 7k = 63 \\Rightarrow k = 9$.",
+         "narration": "Pay ile paydanın toplamı iki k artı beş k, yedi k. Yedi k altmış üç ise k dokuz."
+        },
+        {
+         "text": "Payda $5 \\cdot 9 = 45$, pay $18$: $\\frac{18}{45}$. Cevap **E**.",
+         "narration": "Payda beş çarpı dokuz, kırk beş. Pay on sekiz; on sekizi seçen payı bulmuş ama soru paydayı soruyor. Cevabımız E.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki denk kesir bulma kalıbı örnek alındı, koşul ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Selin, 48 eş kareden oluşan bir panonun karelerinin $\\frac{3}{8}$'ini maviye boyamıştır. Daha sonra panonun kenarına 12 beyaz eş kare daha ekleyerek panoyu büyütmüştür. Selin, büyüyen panoda mavi karelerin tüm karelere oranının $\\frac{2}{3}$ olmasını istemektedir. Buna göre Selin'in kaç beyaz kareyi daha maviye boyaması gerekir?",
+       "options": [
+        "12",
+        "14",
+        "22",
+        "26",
+        "40"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2021'de boyalı kareleri bir oranla sordu. Adım adım ilerleyelim.",
+       "steps": [
+        {
+         "text": "Mavi kare: $48 \\cdot \\frac{3}{8} = 18$.",
+         "narration": "Önce mavi kare sayısı: kırk sekizin sekizde üçü. Kırk sekizi sekize bölünce altı, altı çarpı üç on sekiz."
+        },
+        {
+         "text": "Yeni toplam: $48 + 12 = 60$; istenen mavi: $60 \\cdot \\frac{2}{3} = 40$.",
+         "narration": "Pano büyüdü: kırk sekiz artı on iki, altmış kare. Bunun üçte ikisi kırk. Kırkı seçen, zaten boyalı olanları çıkarmayı unutmuştur.",
+         "mark": [
+          "12 beyaz eş kare"
+         ],
+         "eliminate": [
+          "E"
+         ]
+        },
+        {
+         "text": "$40 - 18 = 22$. Cevap **C**.",
+         "narration": "Boyanacak kare sayısı kırk eksi on sekiz, yirmi iki. On dördü seçen eklenen kareleri unutup kırk sekizin üçte ikisinden hesaplamıştır. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021'in boyalı kareler oranı kalıbı örnek alındı; panonun büyütülmesi, iki oran ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_RASYONEL_03",
+    "title": "Dört işlem",
+    "narration": "Toplamadan bölmeye her işlemin bir kuralı var; önce nedenini görelim.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Neden paydaları eşitleriz?",
+      "text": "Kesirleri toplamak için parçaların **aynı büyüklükte** olması gerekir. Bu yüzden toplama ve çıkarmada önce **paydalar eşitlenir**, sonra paylar toplanır.",
+      "visual": {
+       "kind": "pie",
+       "slices": [
+        {
+         "label": "1/2 = 3/6",
+         "value": 3
+        },
+        {
+         "label": "1/3 = 2/6",
+         "value": 2
+        },
+        {
+         "label": "Kalan 1/6",
+         "value": 1
+        }
+       ],
+       "show": "value"
+      },
+      "narration": "İkide bir ile üçte biri toplamak istiyorsun ama parçalar farklı büyüklükte. **Aynı büyüklükte** parçalara ihtiyacın var.",
+      "beats": [
+       {
+        "narration": "Bütünü altı eş dilime böl. İkide bir, bu dilimlerden üç tanesidir.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "Üçte bir ise iki dilimdir. Artık ikisi de aynı büyüklükte dilimlerden oluşuyor.",
+        "show": [
+         "p2"
+        ],
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "Üç dilim artı iki dilim, beş dilim eder: altıda beş. Geriye altıda bir kalır.",
+        "show": [
+         "p3"
+        ],
+        "focus": [
+         "p1",
+         "p2"
+        ]
+       },
+       {
+        "narration": "Altı, iki ile üçün EKOK'udur; ortak payda olarak hep EKOK'u seçeriz.",
+        "note": "EKOK(2, 3) = 6"
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Dört işlem ve öncelik",
+      "items": [
+       "**Toplama, çıkarma**: paydaları EKOK'ta eşitle, payları topla ya da çıkar.",
+       "**Çarpma**: pay ile pay, payda ile payda çarpılır; önce **çapraz sadeleştir**.",
+       "**Bölme**: birinci kesir aynen, ikinci kesir **ters çevrilip** çarpılır.",
+       "**İşlem önceliği**: parantez, üs, çarpma-bölme (soldan sağa), en son toplama-çıkarma.",
+       "Tam sayılı kesir çarpma ve bölmeden önce **bileşik kesre** çevrilir."
+      ],
+      "narration": "Toplama ve çıkarmada paydaları EKOK'ta eşitler, payları toplar ya da çıkarırsın. Çarpmada pay ile payı, payda ile paydayı çarparsın; önce çapraz sadeleştirirsen sayılar küçülür. Bölmede birinci kesir aynen kalır, ikinci kesir ters çevrilip çarpılır. İşlem önceliği şöyle: önce parantez, sonra üs, sonra soldan sağa çarpma ve bölme, en son toplama ve çıkarma. Tam sayılı kesir varsa çarpmadan önce onu bileşik kesre çevir."
+     },
+     {
+      "kind": "example",
+      "title": "Bölmede ters çevir",
+      "example": "Üçte ikiyi dokuzda dörde böl.",
+      "explanation": "$\\frac{2}{3} \\div \\frac{4}{9} = \\frac{2}{3} \\cdot \\frac{9}{4} = \\frac{3}{2}$: **çapraz sadeleştirme** hesabı kısalttı.",
+      "visual": {
+       "kind": "formula",
+       "latex": "\\frac{2}{3} \\div \\frac{4}{9} = \\frac{2}{3} \\cdot \\frac{9}{4} = \\frac{1 \\cdot 3}{1 \\cdot 2} = \\frac{3}{2}"
+      },
+      "narration": "Üçte ikiyi dokuzda dörde böl.",
+      "beats": [
+       {
+        "narration": "Birinci kesir aynen kalır, ikinci kesir ters döner: üçte iki çarpı dörtte dokuz.",
+        "note": "÷ 4/9 → · 9/4"
+       },
+       {
+        "narration": "Çarpmadan önce çapraz sadeleştir: iki ile dört ikiye, üç ile dokuz üçe bölünür.",
+        "note": "2 ile 4 → 1 ile 2 · 3 ile 9 → 1 ile 3"
+       },
+       {
+        "narration": "Geriye bir çarpı üç bölü bir çarpı iki kalır, yani ikide üç.",
+        "note": "= 3/2"
+       },
+       {
+        "narration": "Sağlama: ikide üç çarpı dokuzda dört, on sekizde on iki, yani üçte iki eder.",
+        "note": "3/2 · 4/9 = 12/18 = 2/3"
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "İç içe kesir",
+      "example": "İç içe kesirde en alttaki kesirden başla.",
+      "visual": {
+       "kind": "formula",
+       "latex": "1 + \\cfrac{1}{1 + \\cfrac{1}{2}} = \\frac{5}{3}"
+      },
+      "narration": "İç içe kesirde en alttaki kesirden başla. Şu merdivene bak.",
+      "steps": [
+       {
+        "narration": "En alttan başla: bir artı ikide bir, ikide üç.",
+        "math": "1 + \\frac{1}{2} = \\frac{3}{2}",
+        "text": "**En alttan** başla"
+       },
+       {
+        "narration": "Bir bölü ikide üç, ikide üçün ters çevrilmişidir: üçte iki.",
+        "math": "1 \\div \\frac{3}{2} = \\frac{2}{3}",
+        "text": "**Ters çevir**"
+       },
+       {
+        "narration": "En üstte bir artı üçte iki kalır: üçte beş.",
+        "math": "1 + \\frac{2}{3} = \\frac{5}{3}"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Paydalar toplanmaz",
+      "wrong": "$\\frac{1}{2} + \\frac{1}{3} = \\frac{2}{5}$",
+      "right": "Paydalar toplanmaz, eşitlenir: $\\frac{1}{2} + \\frac{1}{3} = \\frac{3}{6} + \\frac{2}{6} = \\frac{5}{6}$",
+      "why": "Mantıkla da kontrol et: toplam, $\\frac{1}{2}$'den **büyük** olmalı; $\\frac{2}{5}$ ise ondan küçük.",
+      "narration": "En klasik hata: ikide bir artı üçte biri, payları ve paydaları ayrı ayrı toplayıp beşte iki bulmak. Paydalar toplanmaz, eşitlenir: altıda üç artı altıda iki, altıda beş. Mantıkla da kontrol et: toplam, ikide birden büyük olmalı; beşte iki ise ondan küçük."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\left(\\frac{1}{2} - \\frac{1}{3}\\right) \\div \\frac{5}{12} + \\frac{3}{5}$ işleminin sonucu kaçtır?",
+       "options": [
+        "$\\frac{2}{5}$",
+        "$1$",
+        "$\\frac{6}{5}$",
+        "$\\frac{7}{5}$",
+        "$\\frac{5}{3}$"
+       ],
+       "answer": 1,
+       "narration": "İşlem önceliğine dikkat ederek ilerleyelim.",
+       "steps": [
+        {
+         "text": "Parantez: $\\frac{1}{2} - \\frac{1}{3} = \\frac{3}{6} - \\frac{2}{6} = \\frac{1}{6}$",
+         "narration": "Önce parantez içi. İkide bir eksi üçte bir; paydaları altıda eşitleriz: altıda üç eksi altıda iki, altıda bir."
+        },
+        {
+         "text": "Bölme: $\\frac{1}{6} \\div \\frac{5}{12} = \\frac{1}{6} \\cdot \\frac{12}{5} = \\frac{2}{5}$",
+         "narration": "Bölme toplamadan önce gelir. Altıda bir bölü on ikide beş: ikinci kesri ters çevirip çarparız. On iki ile altı sadeleşir, beşte iki kalır."
+        },
+        {
+         "text": "Toplama: $\\frac{2}{5} + \\frac{3}{5} = 1$. Cevap **B**.",
+         "narration": "En son toplama: beşte iki artı beşte üç, beşte beş, yani bir. Beşte ikide kalan, son toplamayı yapmamıştır. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki karışık işlem örneğinin yapısı örnek alındı, kesirler özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\cfrac{2}{1 - \\cfrac{1}{3}} + \\frac{1}{2}$ işleminin sonucu kaçtır?",
+       "options": [
+        "$\\frac{4}{3}$",
+        "$\\frac{11}{6}$",
+        "$\\frac{5}{2}$",
+        "$3$",
+        "$\\frac{7}{2}$"
+       ],
+       "answer": 4,
+       "narration": "İç içe kesri en alttan çözelim.",
+       "steps": [
+        {
+         "text": "Alt kesir: $1 - \\frac{1}{3} = \\frac{2}{3}$.",
+         "narration": "En alttan başlarız: bir eksi üçte bir, üçte iki."
+        },
+        {
+         "text": "$2 \\div \\frac{2}{3} = 2 \\cdot \\frac{3}{2} = 3$.",
+         "narration": "İki bölü üçte iki: ikinci kesri ters çevirip çarparız, iki çarpı ikide üç, üç. Bölmek yerine çarpan üçte dört bulur ve sonunda altıda on bire varır.",
+         "eliminate": [
+          "B"
+         ]
+        },
+        {
+         "text": "$3 + \\frac{1}{2} = \\frac{7}{2}$. Cevap **E**.",
+         "narration": "En son toplama: üç artı ikide bir, ikide yedi. Cevabımız E.",
+         "eliminate": [
+          "A",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki iç içe kesir kalıbı örnek alındı, ifade ve çeldiriciler özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir pastacının elinde hacimleri litre cinsinden $\\frac{1}{12}$, $\\frac{1}{6}$, $\\frac{1}{3}$, $\\frac{2}{3}$ ve $\\frac{5}{6}$ olan beş ölçü kabı vardır. Pastacı, 1 litrelik iki boş sürahinin her birine tam dolu iki farklı kabı boşaltıyor ve iki sürahi de tam doluyor. Her kap en fazla bir kez kullanılıyor. Buna göre hiç kullanılmayan kabın hacmi kaç litredir?",
+       "options": [
+        "$\\frac{1}{12}$",
+        "$\\frac{1}{6}$",
+        "$\\frac{1}{3}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{5}{6}$"
+       ],
+       "answer": 0,
+       "narration": "ÖSYM 2023'te toplamı bir olan gruplar sordu. Biz ölçü kaplarıyla deneyelim.",
+       "steps": [
+        {
+         "text": "Toplamı 1 olan çift: $\\frac{1}{6} + \\frac{5}{6} = 1$.",
+         "narration": "Her sürahiye giren iki kabın toplamı bir litre olmalı. Altıda bir ile altıda beş toplanınca altıda altı, yani bir."
+        },
+        {
+         "text": "İkinci çift: $\\frac{1}{3} + \\frac{2}{3} = 1$.",
+         "narration": "Üçte bir ile üçte iki de toplanınca bir eder. İki sürahi doldu; bu dört kap kullanıldı.",
          "eliminate": [
           "B",
+          "C",
           "D",
           "E"
          ]
         },
         {
-         "text": "Tuzak: $\\frac{2 + 3 - 5}{3 + 4 - 6} = \\frac{0}{1} = 0$ → **paydalar toplanmaz**.",
-         "narration": "Sıfırı seçen payları ve paydaları ayrı ayrı toplayıp çıkarmış olur: iki artı üç eksi beş sıfır, üç artı dört eksi altı bir. Bu yanlıştır; paydalar toplanmaz.",
-         "eliminate": [
-          "A"
-         ]
+         "text": "$\\frac{1}{12}$'nin eşi $\\frac{11}{12}$ olurdu, yok. Cevap **A**.",
+         "narration": "On ikide birin eşi on ikide on bir olmalıydı, ama böyle bir kap yok. Kullanılmayan kap on ikide bir litrelik. Cevabımız A."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki \"paydalar toplanmaz\" uyarısı, tuzak seçenekli özgün bir işlemle soruldu."
+        "changes": "ÖSYM 2023'ün \"toplamı 1 olan ikişerli gruplar\" kalıbı örnek alındı; ölçü kabı bağlamı ve kesirler özgün."
        }
       }
      }
@@ -265,19 +818,69 @@
    },
    {
     "subtopic": "MAT_RASYONEL_04",
-    "title": "Sıralama",
-    "narration": "Kesirleri sıralamanın dört yolu var. Hangisini seçeceğin kesirlerin görünüşüne bağlı.",
+    "title": "Rasyonel sayılarda sıralama",
+    "narration": "Kesirleri sıralamanın tek bir anlamı var: sayı doğrusunda hangisi daha sağda?",
     "cards": [
      {
-      "kind": "rule",
-      "title": "Sıralamanın kısa yolları",
-      "items": [
-       "**Paydalar eşitse** payı büyük olan büyüktür.",
-       "**Paylar eşitse** paydası küçük olan büyüktür: $\\frac{3}{7} > \\frac{3}{8}$.",
-       "Pay ile payda arasındaki fark eşitse **1'e uzaklığa** bak: $\\frac{a}{a+1}$ biçiminde payda büyüdükçe kesir büyür.",
-       "Hiçbiri değilse **ondalık sayıya** çevir ya da çapraz çarp."
-      ],
-      "narration": "Paydalar eşitse payı büyük olan büyüktür. Paylar eşitse paydası küçük olan büyüktür: yedide üç, sekizde üçten büyüktür, çünkü bütünü daha az parçaya bölmüşsün. Pay ile payda arasındaki fark hep aynıysa 1'e uzaklığa bak: 1'e en yakın olan en büyüktür. Bunların hiçbiri yoksa ondalık sayıya çevirir ya da çapraz çarparsın."
+      "kind": "concept",
+      "title": "Büyük olan sağdadır",
+      "text": "Sayı doğrusunda **sağdaki** sayı daha büyüktür. Kesirleri sıralamak, onları doğruda yerine koymaktır.",
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        0,
+        1
+       ],
+       "ticks": [
+        0,
+        0.5,
+        1
+       ],
+       "points": [
+        {
+         "x": 0.375,
+         "label": "3/8"
+        },
+        {
+         "x": 0.4286,
+         "label": "3/7"
+        },
+        {
+         "x": 0.75,
+         "label": "3/4"
+        }
+       ]
+      },
+      "narration": "Kesirleri karşılaştırmanın en sağlam yolu, onları sayı doğrusunda düşünmek. **Sağdaki** sayı daha büyüktür.",
+      "beats": [
+       {
+        "narration": "Payları aynı üç kesir alalım. Sekizde üç, yarımın biraz solunda.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "Yedide üç biraz daha sağda; çünkü yedi parçanın her biri, sekiz parçanınkinden büyük.",
+        "show": [
+         "p2"
+        ],
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "Dörtte üç ise çok daha sağda. Paylar eşitse paydası küçük olan büyüktür.",
+        "show": [
+         "p3"
+        ],
+        "focus": [
+         "p3"
+        ]
+       }
+      ]
      },
      {
       "kind": "predict",
@@ -313,7 +916,7 @@
       },
       "beats": [
        {
-        "narration": "On dörtte on üç, 1'den on dörtte bir eksik. On sekizde on yedi, 1'den on sekizde bir eksik.",
+        "narration": "On dörtte on üç, birden on dörtte bir eksik. On sekizde on yedi, birden on sekizde bir eksik.",
         "show": [
          "r1",
          "r2"
@@ -324,52 +927,172 @@
         ]
        },
        {
-        "narration": "On sekizde bir, on dörtte birden küçük. Yani on sekizde on yedi 1'e daha yakın.",
+        "narration": "On sekizde bir, on dörtte birden küçük. Yani on sekizde on yedi bire daha yakın.",
         "focus": [
          "r2"
         ]
        }
       ],
       "explanation": "$\\frac{17}{18}$ 1'e daha **yakın**: eksiği $\\frac{1}{18} < \\frac{1}{14}$. Bu yüzden daha büyüktür.",
-      "narration": "Şimdi sıra sende. Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap on sekizde on yedi. İki kesrin de 1'den eksiği payı 1 olan bir kesir. Eksiği küçük olan 1'e daha yakındır, yani daha büyüktür. Payda eşitlemeye hiç gerek kalmadı."
+      "narration": "Şimdi sıra sende. Payda eşitlemeden bir tahmin yap.",
+      "explanationNarration": "Doğru cevap on sekizde on yedi. İki kesrin de birden eksiği, payı bir olan bir kesir. Eksiği küçük olan bire daha yakındır, yani daha büyüktür. Payda eşitlemeye hiç gerek kalmadı."
+     },
+     {
+      "kind": "rule",
+      "title": "Sıralamanın kısa yolları",
+      "items": [
+       "**Paydalar eşitse** payı büyük olan büyüktür.",
+       "**Paylar eşitse** paydası küçük olan büyüktür: $\\frac{3}{7} > \\frac{3}{8}$.",
+       "**Basit kesirde** pay ile payda farkı eşitse **paydası büyük** olan büyüktür.",
+       "**Bileşik kesirde** fark eşitse paydası **küçük** olan büyüktür: $\\frac{5}{4} > \\frac{7}{6}$.",
+       "**Negatif** kesirlerde pozitif hâllerini sırala, sonra **sırayı ters çevir**.",
+       "Hiçbiri yoksa **ondalığa** çevir ya da çapraz çarp."
+      ],
+      "narration": "Paydalar eşitse payı büyük olan büyüktür. Paylar eşitse paydası küçük olan büyüktür; yedide üç sekizde üçten büyük. Basit kesirde pay ile payda farkı eşitse paydası büyük olan bire daha yakındır, daha büyüktür. Bileşik kesirde ise tersi: fark eşitse paydası küçük olan büyüktür; dörtte beş, altıda yediden büyük. Negatif kesirlerde önce pozitif hâllerini sırala, sonra sırayı ters çevir. Hiçbiri yoksa ondalığa çevir ya da çapraz çarp."
+     },
+     {
+      "kind": "example",
+      "title": "Negatif kesirleri sırala",
+      "example": "Eksi üçte iki ile eksi dörtte üçü karşılaştır.",
+      "explanation": "$\\frac{2}{3} < \\frac{3}{4}$ olduğu için $-\\frac{3}{4} < -\\frac{2}{3}$: sıra **ters döner**.",
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        -1,
+        0
+       ],
+       "ticks": [
+        -1,
+        -0.5,
+        0
+       ],
+       "points": [
+        {
+         "x": -0.6667,
+         "label": "−2/3"
+        },
+        {
+         "x": -0.75,
+         "label": "−3/4"
+        }
+       ]
+      },
+      "narration": "Eksi üçte iki ile eksi dörtte üçü karşılaştır.",
+      "beats": [
+       {
+        "narration": "Önce eksileri at: üçte iki birden üçte bir eksik, dörtte üç ise dörtte bir eksik. Dörtte üç daha büyük.",
+        "note": "2/3 < 3/4"
+       },
+       {
+        "narration": "Eksi dörtte üç sıfırdan daha uzakta, yani daha solda kalır.",
+        "show": [
+         "p2"
+        ],
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "Eksi üçte iki sıfıra daha yakın, yani daha büyüktür. Negatifte sıra ters döner.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Paydası büyük, kesir büyük mü?",
+      "wrong": "Paydası büyük olan kesir her zaman daha büyüktür.",
+      "right": "Paylar eşitse tersi doğru: $\\frac{1}{8} < \\frac{1}{3}$. Payda büyüdükçe **parça küçülür**.",
+      "why": "Payda, bütünün kaç parçaya bölündüğüdür; sekize bölünen pastanın dilimi, üçe bölünenin diliminden küçüktür.",
+      "narration": "Bir yanılgı: paydası büyük olan kesrin her zaman daha büyük olduğunu sanmak. Paylar eşitse tersi doğru: sekizde bir, üçte birden küçüktür. Payda, bütünün kaç parçaya bölündüğüdür; sekize bölünen pastanın dilimi daha küçüktür."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$a = \\frac{7}{8}$, $b = \\frac{11}{12}$, $c = \\frac{5}{6}$ olduğuna göre, aşağıdaki sıralamalardan hangisi doğrudur?",
+       "stem": "$a = \\frac{7}{8}$, $b = \\frac{11}{12}$, $c = \\frac{5}{6}$ olduğuna göre aşağıdaki sıralamalardan hangisi doğrudur?",
        "options": [
         "$a < b < c$",
-        "$c < a < b$",
         "$b < a < c$",
-        "$c < b < a$",
-        "$a < c < b$"
+        "$a < c < b$",
+        "$c < a < b$",
+        "$c < b < a$"
        ],
-       "answer": 1,
-       "narration": "Aynı yolu üç kesirde deneyelim.",
+       "answer": 3,
+       "narration": "Bire uzaklık yolunu üç kesirde deneyelim.",
        "steps": [
         {
          "text": "$a = 1 - \\frac{1}{8}$, $b = 1 - \\frac{1}{12}$, $c = 1 - \\frac{1}{6}$",
-         "narration": "Üç kesirde de payla payda arasındaki fark 1. a, 1'den sekizde bir eksik; b, on ikide bir eksik; c, altıda bir eksik."
+         "narration": "Üç kesirde de payla payda arasındaki fark bir. a birden sekizde bir eksik, b on ikide bir eksik, c altıda bir eksik."
         },
         {
          "text": "Eksikler: $\\frac{1}{6} > \\frac{1}{8} > \\frac{1}{12}$. Eksiği büyük olan küçüktür.",
          "narration": "Eksikleri sıralayalım: altıda bir en büyük, sonra sekizde bir, en küçük on ikide bir. Eksiği büyük olan kesir küçüktür."
         },
         {
-         "text": "$c < a < b$. Cevap **B**.",
-         "narration": "En küçük c, sonra a, en büyük b. c küçüktür a küçüktür b. Cevabımız B.",
+         "text": "$c < a < b$. Cevap **D**.",
+         "narration": "En küçük c, sonra a, en büyük b. c küçüktür a küçüktür b. Cevabımız D.",
          "eliminate": [
           "A",
+          "B",
           "C",
-          "D",
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki rasyonel sayılarda sıralama sorularının kalıbı örnek alındı, kesirler özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki rasyonel sayılarda sıralama kalıbı örnek alındı, kesirler özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "context": "• Sayı $\\frac{2}{5}$'ten büyüktür.\n• Sayı $\\frac{3}{7}$'den büyüktür.\n• Sayı $\\frac{4}{9}$'dan büyüktür.",
+       "stem": "Bir bilgi yarışmasında sunucu aklından bir sayı tutuyor ve yarışmacılara bu sayıyla ilgili bu üç ipucunu veriyor. Ardından bu ipuçlarından ikisinin doğru, birinin yanlış olduğunu söylüyor. Buna göre sunucunun tuttuğu sayı aşağıdakilerden hangisi olabilir?",
+       "options": [
+        "$\\frac{3}{8}$",
+        "$\\frac{5}{12}$",
+        "$\\frac{7}{16}$",
+        "$\\frac{9}{20}$",
+        "$\\frac{1}{2}$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2022'de bu kalıbı bir öğretmenin tahtasıyla sordu. Önce sınırları sıralayalım.",
+       "steps": [
+        {
+         "text": "$\\frac{2}{5} = 0{,}4$; $\\frac{3}{7} \\approx 0{,}43$; $\\frac{4}{9} \\approx 0{,}44$",
+         "narration": "Beşte iki sıfır virgül dört; yedide üç yaklaşık sıfır virgül kırk üç; dokuzda dört yaklaşık sıfır virgül kırk dört."
+        },
+        {
+         "text": "Sayı $\\frac{4}{9}$'u geçerse **üçü de** doğru olur: sayı $\\frac{4}{9}$'dan büyük olamaz.",
+         "narration": "Sayı en büyük sınırı geçerse üç ipucu da doğru olur. Bu yüzden dokuzda dörtten büyük olamaz; yirmide dokuz ve ikide bir gider.",
+         "eliminate": [
+          "D",
+          "E"
+         ]
+        },
+        {
+         "text": "$\\frac{3}{8} = 0{,}375$, $\\frac{5}{12} \\approx 0{,}417$: $\\frac{3}{7}$'ye ulaşmıyor.",
+         "narration": "Sekizde üç hiçbir sınırı geçmiyor. On ikide beş yaklaşık sıfır virgül kırk iki; yalnız birinci ipucu doğru olur.",
+         "eliminate": [
+          "A",
+          "B"
+         ]
+        },
+        {
+         "text": "$\\frac{7}{16} = 0{,}4375$: $\\frac{3}{7} < \\frac{7}{16} < \\frac{4}{9}$. Cevap **C**.",
+         "narration": "On altıda yedi, sıfır virgül dört üç yedi beş. Yedide üçten büyük, dokuzda dörtten küçük; tam iki ipucu doğru. Cevabımız C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022'nin \"üç ifadeden ikisi doğru, biri yanlış\" kalıbı örnek alındı; yarışma bağlamı, sınır kesirleri ve şıklar özgün."
        }
       }
      }
@@ -377,58 +1100,193 @@
    },
    {
     "subtopic": "MAT_RASYONEL_05",
-    "title": "Ondalık sayılar",
-    "narration": "Paydası 10, 100, 1000 olan kesirlere ondalık kesir denir. Ondalık sayılarda işlemler virgülün yerine dikkat ister.",
+    "title": "Ondalık gösterim",
+    "narration": "Paydası on, yüz, bin gibi onun kuvveti olan kesirlere ondalık kesir, virgüllü yazılışlarına ondalık sayı denir.",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Virgülün sağındaki basamaklar",
+      "text": "Paydası 10, 100, 1000 olan kesirler **ondalık sayı** olarak yazılır: $\\frac{347}{100} = 3{,}47$. Virgülün sağında **onda birler**, **yüzde birler**, **binde birler** basamağı vardır.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Basamak",
+        "Değer",
+        "3,47'de"
+       ],
+       "rows": [
+        [
+         "Birler",
+         "1",
+         "3"
+        ],
+        [
+         "Onda birler",
+         "$\\frac{1}{10}$",
+         "4"
+        ],
+        [
+         "Yüzde birler",
+         "$\\frac{1}{100}$",
+         "7"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "narration": "Üç virgül kırk yedi aslında bir toplamdır. Virgülün sağına geçtikçe her basamak bir öncekinin onda biri olur.",
+      "beats": [
+       {
+        "narration": "Birler basamağında üç var: üç tam.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Onda birler basamağında dört var: onda dört.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Yüzde birler basamağında yedi var: yüzde yedi. Hepsi birlikte yüzde üç yüz kırk yedi eder.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Kesirden ondalığa",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Kesir",
+        "Paydayı 10'un kuvveti yap",
+        "Ondalık"
+       ],
+       "rows": [
+        [
+         "$\\frac{3}{5}$",
+         "$\\frac{6}{10}$",
+         "$0{,}6$"
+        ],
+        [
+         "$\\frac{7}{4}$",
+         "$\\frac{175}{100}$",
+         "$1{,}75$"
+        ],
+        [
+         "$\\frac{3}{8}$",
+         "$\\frac{375}{1000}$",
+         "$0{,}375$"
+        ],
+        [
+         "$\\frac{1}{3}$",
+         "Olmaz: 3 ne 2 ne 5",
+         "$0{,}333\\ldots$"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "narration": "Bir kesri ondalığa çevirmenin iki yolu var: payı paydaya bölmek ya da paydayı onun kuvveti yapmak.",
+      "beats": [
+       {
+        "narration": "Beşte üçü ikiyle genişlet: onda altı, yani sıfır virgül altı.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Dörtte yediyi yirmi beşle genişlet: yüzde yüz yetmiş beş, yani bir virgül yetmiş beş.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Sekizde üçü yüz yirmi beşle genişlet: sıfır virgül üç yüz yetmiş beş.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "Üçte biri ise hiçbir sayıyla onun kuvvetine çeviremezsin; bölme hiç bitmez.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ]
+       },
+       {
+        "narration": "Kural şu: sadeleşmiş kesrin paydasında yalnız iki ve beş çarpanı varsa ondalık açılım biter.",
+        "focus": [
+         "r1",
+         "r2",
+         "r3"
+        ],
+        "note": "Payda yalnız 2 ve 5 → sonlu ondalık"
+       }
+      ]
+     },
      {
       "kind": "rule",
       "title": "Virgülün kuralları",
       "items": [
-       "**Toplama, çıkarma**: virgüller alt alta gelir.",
-       "**Çarpma**: virgül yokmuş gibi çarp; sonuçta virgülden sonraki basamak sayılarının **toplamı** kadar ayır.",
-       "**10, 100, 1000 ile çarpma** virgülü sağa, **bölme** sola kaydırır.",
-       "**Bölme**: böleni virgülden kurtar, bölüneni de aynı sayıyla çarp: $1{,}2 \\div 0{,}04 = 120 \\div 4 = 30$."
+       "**Toplama, çıkarma**: virgüller alt alta gelir: $12 - 11{,}7 = 12{,}0 - 11{,}7 = 0{,}3$.",
+       "**Çarpma**: virgül yokmuş gibi çarp, basamak sayılarının **toplamı** kadar ayır: $0{,}3 \\cdot 0{,}02 = 0{,}006$.",
+       "**On, yüz, bin ile çarpma** virgülü sağa, **bölme** sola kaydırır: $2{,}35 \\cdot 100 = 235$.",
+       "**Bölmede** böleni virgülden kurtar, bölüneni de aynı sayıyla çarp: $1{,}2 \\div 0{,}04 = 120 \\div 4 = 30$."
       ],
-      "narration": "Toplama ve çıkarmada virgüller alt alta gelir. Çarpmada virgül yokmuş gibi çarparsın, sonra iki sayının virgülden sonraki basamak sayılarını toplar, o kadar basamak ayırırsın: sıfır virgül üç çarpı sıfır virgül iki, sıfır virgül sıfır altı. 10 ile çarpmak virgülü bir basamak sağa, 10'a bölmek bir basamak sola kaydırır. Ondalık bir sayıya bölerken böleni virgülden kurtarırsın: bir virgül iki bölü sıfır virgül sıfır dört; ikisini de 100 ile çarp, 120 bölü 4, yani 30."
+      "narration": "Toplama, çıkarma: virgüller alt alta gelir; on ikiyi on iki virgül sıfır diye düşün. Çarpma: virgül yokmuş gibi çarp, sonra basamak sayılarının toplamı kadar ayır. Sıfır virgül üç çarpı sıfır virgül sıfır iki, sıfır virgül sıfır sıfır altı. On, yüz, bin ile çarpma virgülü sağa, bölme sola kaydırır. Bölmede böleni virgülden kurtarırsın: bir virgül iki bölü sıfır virgül sıfır dört, yüz yirmi bölü dört, otuz."
      },
      {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Bir öğretmen, boyları 12,4 cm, 11,7 cm, 13,1 cm ve 12 cm olan dört kalemin boylarını eşitlemek için üç kalemden birer parça kesip atmıştır. Buna göre kesilen parçaların uzunlukları toplamı kaç cm'dir?",
-       "options": [
-        "1,8",
-        "2,1",
-        "2,4",
-        "2,7",
-        "3,0"
-       ],
-       "answer": 2,
-       "narration": "ÖSYM 2026'da lale saplarıyla sordu; biz kalemlerle deneyelim.",
-       "steps": [
-        {
-         "text": "Yalnız kesilebiliyor: hepsi **en kısa** kaleme, 11,7 cm'ye eşitlenir.",
-         "narration": "Kalemler yalnızca kısaltılabilir, uzatılamaz. Bu yüzden hepsi en kısa kalemin boyuna, 11,7 santimetreye eşitlenir. Üç kalemden kesilmesi de bunu doğruluyor."
-        },
-        {
-         "text": "$12{,}4 - 11{,}7 = 0{,}7$; $13{,}1 - 11{,}7 = 1{,}4$; $12 - 11{,}7 = 0{,}3$",
-         "narration": "12,4'ten 11,7 çıkınca 0,7. 13,1'den 11,7 çıkınca 1,4. 12'den 11,7 çıkınca 0,3."
-        },
-        {
-         "text": "$0{,}7 + 1{,}4 + 0{,}3 = 2{,}4$. Cevap **C**.",
-         "narration": "Toplam 0,7 artı 1,4 artı 0,3, yani 2,4 santimetre. Cevabımız C.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2026'nın \"sap uzunluklarını eşitlemek için kesilen parçalar\" kalıbı örnek alındı, bağlam ve sayılar özgün."
+      "kind": "example",
+      "title": "Virgülü say",
+      "example": "Sıfır virgül on beş ile bir virgül iki sayılarını çarp.",
+      "narration": "Sıfır virgül on beş ile bir virgül iki sayılarını çarp.",
+      "steps": [
+       {
+        "narration": "Virgülleri unut: on beş çarpı on iki, yüz seksen.",
+        "math": "15 \\cdot 12 = 180",
+        "text": "**Virgülleri unut**"
+       },
+       {
+        "narration": "Virgülden sonra birinde iki, ötekinde bir basamak var; toplam üç basamak.",
+        "math": "2 + 1 = 3",
+        "text": "Basamakları say"
+       },
+       {
+        "narration": "Yüz seksende sağdan üç basamak ayır: sıfır virgül yüz seksen, yani sıfır virgül on sekiz.",
+        "math": "0{,}15 \\cdot 1{,}2 = 0{,}180 = 0{,}18"
        }
-      }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Basamağı çok olan büyük değil",
+      "wrong": "$0{,}45$ sayısı $0{,}5$'ten büyüktür, çünkü 45 sayısı 5'ten büyüktür.",
+      "right": "Basamak basamak karşılaştır: onda birlerde $4 < 5$, yani $0{,}45 < 0{,}5$.",
+      "why": "Eşit basamakla yaz: $0{,}5 = 0{,}50$ ve $45 < 50$.",
+      "narration": "Sık bir hata: sıfır virgül kırk beşin sıfır virgül beşten büyük olduğunu sanmak, çünkü kırk beş beşten büyük. Basamak basamak karşılaştır: onda birler basamağında dört, beşten küçük. Eşit basamakla yaz: sıfır virgül beş, sıfır virgül elli olur; kırk beş elliden küçük."
      },
      {
       "kind": "question",
@@ -447,15 +1305,15 @@
        "steps": [
         {
          "text": "$\\frac{0{,}12}{0{,}003}$: pay ve paydayı **1000** ile çarp → $\\frac{120}{3} = 40$.",
-         "narration": "Birinci kesirde paydada virgülden sonra üç basamak var. Pay ve paydayı bin ile çarparız: 120 bölü 3, kırk."
+         "narration": "Birinci kesirde paydada virgülden sonra üç basamak var. Pay ve paydayı bin ile çarparız: yüz yirmi bölü üç, kırk."
         },
         {
          "text": "$\\frac{1{,}5}{0{,}05}$: pay ve paydayı **100** ile çarp → $\\frac{150}{5} = 30$.",
-         "narration": "İkinci kesirde paydada iki basamak var. Pay ve paydayı yüz ile çarparız: 150 bölü 5, otuz."
+         "narration": "İkinci kesirde paydada iki basamak var. Pay ve paydayı yüz ile çarparız: yüz elli bölü beş, otuz."
         },
         {
          "text": "$40 + 30 = 70$. Cevap **D**.",
-         "narration": "Toplam kırk artı otuz, yetmiş. Cevabımız D. Yediyi ya da yedi yüzü seçen, virgülü kaydırırken pay ile paydayı aynı sayıyla çarpmamış olur.",
+         "narration": "Toplam kırk artı otuz, yetmiş. Pay ile paydayı farklı sayılarla çarpan, virgülü yanlış yere koyar. Cevabımız D.",
          "eliminate": [
           "A",
           "B",
@@ -465,7 +1323,362 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki virgülün kuralları özgün ondalık sayılarla soruldu."
+        "changes": "Bu ders için yazıldı; havuzdaki ondalık sayılarla bölme kalıbı örnek alındı, sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir öğretmen, boyları 14,2 cm, 13,6 cm, 15 cm ve 13,9 cm olan dört kalemi masaya yan yana diziyor. Kalemlerin boylarını eşitlemek için üç kalemi kalemtıraşla açarak kısaltıyor; hiçbir kaleme ekleme yapılamıyor. Buna göre öğretmenin kalemlerden kısalttığı uzunlukların toplamı kaç cm'dir?",
+       "options": [
+        "2,3",
+        "2,6",
+        "2,9",
+        "3,3",
+        "3,6"
+       ],
+       "answer": 0,
+       "narration": "ÖSYM 2026'da lale saplarıyla sordu; biz kalemlerle deneyelim.",
+       "steps": [
+        {
+         "text": "Yalnız kısaltılabiliyor: hepsi **en kısa** kaleme, 13,6 cm'ye eşitlenir.",
+         "narration": "Kalemler yalnız kısaltılabilir, uzatılamaz. Bu yüzden hepsi en kısa kalemin boyuna, on üç virgül altı santimetreye eşitlenir.",
+         "mark": [
+          "hiçbir kaleme ekleme yapılamıyor"
+         ]
+        },
+        {
+         "text": "$14{,}2 - 13{,}6 = 0{,}6$; $15 - 13{,}6 = 1{,}4$; $13{,}9 - 13{,}6 = 0{,}3$",
+         "narration": "On dört virgül ikiden sıfır virgül altı, on beşten bir virgül dört, on üç virgül dokuzdan sıfır virgül üç kısalır."
+        },
+        {
+         "text": "$0{,}6 + 1{,}4 + 0{,}3 = 2{,}3$. Cevap **A**.",
+         "narration": "Toplam iki virgül üç santimetre. Üç virgül üçü seçen, kalemleri en uzun kaleme eşitlemeye çalışmıştır; ama uzatmak mümkün değil. Cevabımız A.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026'nın \"uzunlukları eşitlemek için kesilen parçalar\" kalıbı örnek alındı; kalem bağlamı ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir hemşire, bir hastanın vücut sıcaklığını şekildeki termometreyle ölçüyor. Termometrede 36 °C ile 38 °C arasındaki her 1 derecelik aralık 5 eş parçaya bölünmüştür ve ibre ölçülen sıcaklığı göstermektedir. İlaç verildikten bir saat sonra hastanın sıcaklığı 0,8 °C düşmüştür. Buna göre hastanın bir saat sonraki sıcaklığı kaç °C'dir?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         -1,
+         -1.6,
+         11,
+         1.6
+        ],
+        "points": [
+         {
+          "id": "b0",
+          "at": [
+           0,
+           0
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "b1",
+          "at": [
+           1,
+           0
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "b2",
+          "at": [
+           2,
+           0
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "b3",
+          "at": [
+           3,
+           0
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "b4",
+          "at": [
+           4,
+           0
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "b5",
+          "at": [
+           5,
+           0
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "b6",
+          "at": [
+           6,
+           0
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "b7",
+          "at": [
+           7,
+           0
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "b8",
+          "at": [
+           8,
+           0
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "b9",
+          "at": [
+           9,
+           0
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "b10",
+          "at": [
+           10,
+           0
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "t0",
+          "at": [
+           0,
+           0.8
+          ],
+          "label": "36 °C",
+          "dot": false
+         },
+         {
+          "id": "t1",
+          "at": [
+           1,
+           0.4
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "t2",
+          "at": [
+           2,
+           0.4
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "t3",
+          "at": [
+           3,
+           0.4
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "t4",
+          "at": [
+           4,
+           0.4
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "t5",
+          "at": [
+           5,
+           0.8
+          ],
+          "label": "37 °C",
+          "dot": false
+         },
+         {
+          "id": "t6",
+          "at": [
+           6,
+           0.4
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "t7",
+          "at": [
+           7,
+           0.4
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "t8",
+          "at": [
+           8,
+           0.4
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "t9",
+          "at": [
+           9,
+           0.4
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "t10",
+          "at": [
+           10,
+           0.8
+          ],
+          "label": "38 °C",
+          "dot": false
+         },
+         {
+          "id": "P",
+          "at": [
+           8,
+           -0.9
+          ],
+          "label": "İbre"
+         }
+        ],
+        "segments": [
+         {
+          "from": "b0",
+          "to": "b10"
+         },
+         {
+          "from": "b0",
+          "to": "t0"
+         },
+         {
+          "from": "b1",
+          "to": "t1"
+         },
+         {
+          "from": "b2",
+          "to": "t2"
+         },
+         {
+          "from": "b3",
+          "to": "t3"
+         },
+         {
+          "from": "b4",
+          "to": "t4"
+         },
+         {
+          "from": "b5",
+          "to": "t5"
+         },
+         {
+          "from": "b6",
+          "to": "t6"
+         },
+         {
+          "from": "b7",
+          "to": "t7"
+         },
+         {
+          "from": "b8",
+          "to": "t8"
+         },
+         {
+          "from": "b9",
+          "to": "t9"
+         },
+         {
+          "from": "b10",
+          "to": "t10"
+         },
+         {
+          "from": "P",
+          "to": "b8"
+         }
+        ]
+       },
+       "options": [
+        "36,8",
+        "37",
+        "37,2",
+        "37,6",
+        "38,4"
+       ],
+       "answer": 0,
+       "narration": "ÖSYM eşit bölmeli göstergeleri sever: şişe, radyo, termometre. Önce bir çizginin kaç derece olduğunu bul.",
+       "steps": [
+        {
+         "text": "Her küçük parça: $\\frac{1}{5} = 0{,}2$ °C.",
+         "narration": "Bir derece beş eş parçaya bölünmüş; her parça beşte bir, yani sıfır virgül iki derece.",
+         "mark": [
+          "5 eş parçaya bölünmüştür"
+         ]
+        },
+        {
+         "text": "İbre 37'den sonra **3.** çizgide: $37 + 3 \\cdot 0{,}2 = 37{,}6$ °C.",
+         "narration": "İbre otuz yediden sonraki üçüncü çizgide. Otuz yedi artı üç çarpı sıfır virgül iki, otuz yedi virgül altı derece."
+        },
+        {
+         "text": "$37{,}6 - 0{,}8 = 36{,}8$ °C. Cevap **A**.",
+         "narration": "Sıcaklık sıfır virgül sekiz düştü: otuz yedi virgül altı eksi sıfır virgül sekiz, otuz altı virgül sekiz. Otuz yedi virgül altıyı seçen ilk ölçümde kalmış, otuz sekiz virgül dördü seçen düşüşü eklemiştir. Cevabımız A.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2018 (şişe) ve 2019 (radyo frekansı) sorularının \"eşit bölmeli gösterge okuma\" kalıbı örnek alındı; termometre bağlamı, ölçek, ibre yeri ve düşüş adımı özgün."
        }
       }
      }
@@ -474,65 +1687,159 @@
    {
     "subtopic": "MAT_RASYONEL_06",
     "title": "Devirli ondalık sayılar",
-    "narration": "Virgülden sonra bir düzenle tekrar eden basamakları olan sayılara devirli ondalık sayı denir. Bunları kesre çevirmenin tek bir kuralı var.",
+    "narration": "Bazı kesirlerin bölmesi hiç bitmez; basamaklar bir düzenle tekrar eder.",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Devirli ondalık sayı",
+      "text": "Virgülden sonra bir basamak grubu sonsuza kadar **tekrar ediyorsa** sayıya **devirli ondalık sayı** denir. Tekrar eden kısmın üstüne çizgi çekilir: $0{,}333\\ldots = 0{,}\\overline{3}$.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Kesir",
+        "Bölme",
+        "Yazılışı"
+       ],
+       "rows": [
+        [
+         "$\\frac{1}{3}$",
+         "$0{,}333\\ldots$",
+         "$0{,}\\overline{3}$"
+        ],
+        [
+         "$\\frac{5}{6}$",
+         "$0{,}8333\\ldots$",
+         "$0{,}8\\overline{3}$"
+        ],
+        [
+         "$\\frac{3}{11}$",
+         "$0{,}2727\\ldots$",
+         "$0{,}\\overline{27}$"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "narration": "Üçte biri bölmeye başla: sıfır virgül üç, üç, üç. Bu bölme hiç bitmez. Böyle sayılara **devirli ondalık sayı** denir.",
+      "beats": [
+       {
+        "narration": "Üçte bir, sıfır virgül üç devirli: yalnız üç tekrar eder.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Altıda beşte sekiz bir kez gelir, sonra üç tekrar eder: sıfır virgül sekiz, üç devirli.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "On birde üçte iki basamak birlikte döner: sıfır virgül yirmi yedi devirli.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Neden dokuzlar?",
+      "visual": {
+       "kind": "equation",
+       "steps": [
+        {
+         "left": "x",
+         "right": "0,333…"
+        },
+        {
+         "left": "10x",
+         "right": "3,333…",
+         "operation": "× 10"
+        },
+        {
+         "left": "9x",
+         "right": "3",
+         "operation": "− x"
+        },
+        {
+         "left": "x",
+         "right": "3/9 = 1/3",
+         "operation": "÷ 9"
+        }
+       ]
+      },
+      "narration": "Dokuzlar nereden geliyor? Sıfır virgül üç devirliye x diyelim ve terazide izleyelim.",
+      "beats": [
+       {
+        "narration": "x, sıfır virgül üç üç üç diye sonsuza kadar gidiyor.",
+        "stage": 0
+       },
+       {
+        "narration": "İki kefeyi de on ile çarp: on x, üç virgül üç üç üç olur.",
+        "stage": 1
+       },
+       {
+        "narration": "Şimdi iki kefeden de x'i çıkar; virgülden sonraki üçler birbirini götürür, dokuz x eşittir üç kalır.",
+        "stage": 2
+       },
+       {
+        "narration": "Dokuza bölünce x, dokuzda üç, yani üçte bir. Devreden bir basamak, paydada bir dokuz demek.",
+        "stage": 3
+       }
+      ]
+     },
      {
       "kind": "rule",
       "title": "Devirli sayıyı kesre çevir",
       "items": [
-       "Tekrar eden kısmın üstüne çizgi çekilir: $0{,}333\\ldots = 0{,}\\overline{3}$.",
-       "**Pay**: sayının tamamı (virgülsüz) − devretmeyen kısım.",
-       "**Payda**: devreden basamak kadar **9**, devretmeyen ondalık basamak kadar **0**.",
-       "$0{,}\\overline{3} = \\frac{3}{9} = \\frac{1}{3}$, $\\;1{,}2\\overline{5} = \\frac{125 - 12}{90} = \\frac{113}{90}$"
+       "**Pay**: sayının virgülsüz tamamı − devretmeyen kısım.",
+       "**Payda**: devreden basamak kadar **9**, virgülden sonra devretmeyen basamak kadar **0**.",
+       "Örnek: $0{,}\\overline{3} = \\frac{3}{9} = \\frac{1}{3}$",
+       "Bir örnek daha: $1{,}2\\overline{5} = \\frac{125 - 12}{90} = \\frac{113}{90}$"
       ],
-      "narration": "Tekrar eden kısmın üstüne bir çizgi çekeriz: sıfır virgül üç üç üç, sıfır virgül üç devirli. Kesre çevirmek için payda sayının virgülsüz tamamından devretmeyen kısmı çıkarırsın. Paydaya devreden her basamak için bir 9, virgülden sonra devretmeyen her basamak için bir 0 yazarsın. Sıfır virgül üç devirli, dokuzda üç, yani üçte bir. Bir virgül iki beş devirli: 125 eksi 12, bölü 90; doksanda yüz on üç."
+      "narration": "Pay için sayının virgülsüz tamamından devretmeyen kısmı çıkarırsın. Payda için devreden her basamağa bir dokuz, virgülden sonra devretmeyen her basamağa bir sıfır yazarsın. Örnek: sıfır virgül üç devirli, dokuzda üç, yani üçte bir. Bir örnek daha: bir virgül iki, beş devirli; yüz yirmi beş eksi on iki, bölü doksan, doksanda yüz on üç."
+     },
+     {
+      "kind": "example",
+      "title": "Devretmeyen sıfır",
+      "example": "İki virgül sıfır yedi devirli sayısını kesre çevir.",
+      "explanation": "Devretmeyen kısım **20**: virgülden önceki 2 ve sonraki 0. Payda: bir 9, bir 0.",
+      "visual": {
+       "kind": "formula",
+       "latex": "2{,}0\\overline{7} = \\frac{207 - 20}{90} = \\frac{187}{90}"
+      },
+      "narration": "İki virgül sıfır yedi devirli sayısını kesre çevir. Burada yalnız yedi devrediyor.",
+      "beats": [
+       {
+        "narration": "Sayının virgülsüz tamamı iki yüz yedi; devretmeyen kısım yirmi, çünkü sıfır da devretmiyor.",
+        "note": "207 − 20 = 187"
+       },
+       {
+        "narration": "Bir basamak devrediyor, bir basamak devretmiyor: payda doksan.",
+        "note": "Payda: 90"
+       },
+       {
+        "narration": "Sonuç doksanda yüz seksen yedi. Sağlama: bölünce iki virgül sıfır yedi yedi yedi çıkar.",
+        "note": "187/90 = 2,0777…"
+       }
+      ]
      },
      {
       "kind": "mistake",
       "title": "0,999… eşittir 1",
       "wrong": "$0{,}\\overline{9}$ sayısı 1'den **biraz küçüktür**.",
-      "right": "$0{,}\\overline{9} = \\frac{9}{9} = 1$. İki yazım **aynı sayıdır**.",
-      "why": "Kural bunu doğrudan verir: pay 9, payda 9. Bir de $\\frac{1}{3} = 0{,}\\overline{3}$ ise $3 \\cdot \\frac{1}{3} = 0{,}\\overline{9} = 1$.",
-      "narration": "Şaşırtıcı ama doğru: sıfır virgül dokuz devirli, 1'e eşittir. Kurala uygula: pay 9, payda 9, sonuç 1. Başka bir yoldan da görebilirsin: üçte bir, sıfır virgül üç devirli. Üç katı, sıfır virgül dokuz devirli ve aynı zamanda üçte üç, yani 1."
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "$2{,}\\overline{3} - 0{,}\\overline{6}$ işleminin sonucu kaçtır?",
-       "options": [
-        "$\\frac{4}{3}$",
-        "$\\frac{5}{3}$",
-        "$\\frac{16}{9}$",
-        "$2$",
-        "$\\frac{17}{9}$"
-       ],
-       "answer": 1,
-       "narration": "Son soru. Devirli sayıları önce kesre çevirelim.",
-       "steps": [
-        {
-         "text": "$2{,}\\overline{3} = \\frac{23 - 2}{9} = \\frac{21}{9}$; $0{,}\\overline{6} = \\frac{6}{9}$",
-         "narration": "İki virgül üç devirli: pay 23 eksi 2, yani 21; payda bir tane 9. Dokuzda yirmi bir. Sıfır virgül altı devirli: dokuzda altı."
-        },
-        {
-         "text": "$\\frac{21}{9} - \\frac{6}{9} = \\frac{15}{9} = \\frac{5}{3}$",
-         "narration": "Paydalar zaten eşit: dokuzda yirmi bir eksi dokuzda altı, dokuzda on beş. 3 ile sadeleştirince üçte beş."
-        },
-        {
-         "text": "Cevap **B**. Sağlama: $2{,}333\\ldots - 0{,}666\\ldots = 1{,}666\\ldots = \\frac{5}{3}$",
-         "narration": "Cevabımız B. Sağlayalım: iki virgül üç üç üç eksi sıfır virgül altı altı altı, bir virgül altı altı altı; bu da üçte beştir.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki devirli ondalık sayı işlem sorularının kalıbı örnek alındı, sayılar özgün."
-       }
-      }
+      "right": "Kural doğrudan verir: $0{,}\\overline{9} = \\frac{9}{9} = 1$. İki yazım **aynı sayıdır**.",
+      "why": "Başka yoldan: $\\frac{1}{3} = 0{,}\\overline{3}$; üç katı $0{,}\\overline{9}$ ve aynı zamanda $\\frac{3}{3} = 1$.",
+      "narration": "Şaşırtıcı bir yanılgı: sıfır virgül dokuz devirlinin birden biraz küçük olduğunu sanmak. Kural doğrudan verir: pay dokuz, payda dokuz, sonuç bir. Başka yoldan da gör: üçte bir, sıfır virgül üç devirli; üç katı sıfır virgül dokuz devirli, aynı zamanda üçte üç, yani bir."
      },
      {
       "kind": "question",
@@ -540,36 +1847,83 @@
        "style": "TYT tarzı",
        "stem": "$0{,}4\\overline{5}$ sayısının rasyonel sayı olarak yazılışı aşağıdakilerden hangisidir?",
        "options": [
-        "$\\frac{41}{90}$",
-        "$\\frac{45}{99}$",
-        "$\\frac{5}{11}$",
+        "$\\frac{41}{99}$",
+        "$\\frac{4}{9}$",
         "$\\frac{9}{20}$",
-        "$\\frac{41}{99}$"
+        "$\\frac{45}{99}$",
+        "$\\frac{41}{90}$"
        ],
-       "answer": 0,
-       "narration": "Kural: pay, sayının tamamı eksi devretmeyen kısım; payda, devreden basamak kadar 9, devretmeyen basamak kadar 0.",
+       "answer": 4,
+       "narration": "Önce sayıyı dikkatle oku: hangi basamak devrediyor?",
        "steps": [
         {
-         "text": "Pay: $45 - 4 = 41$ (tamamı **eksi** devretmeyen kısım).",
-         "narration": "Virgülden sonraki sayının tamamı 45; devretmeyen kısım 4. Pay, 45 eksi 4, yani 41."
+         "text": "Devreden yalnız **5**: $0{,}4\\overline{5} = 0{,}4555\\ldots$; 4 devretmiyor.",
+         "narration": "Dört bir kez gelir, sonra beş sonsuza kadar tekrar eder. Doksan dokuzda kırk beşi seçen, dördü de devrediyor sanmıştır.",
+         "eliminate": [
+          "D"
+         ]
         },
         {
-         "text": "Payda: **1** devreden basamak → **9**, **1** devretmeyen basamak → **0**: $90$.",
-         "narration": "Virgülden sonra bir basamak devrediyor, bu yüzden paydaya bir tane dokuz yazarız; bir basamak da devretmiyor, onun için bir sıfır ekleriz. Payda doksan."
+         "text": "Pay: $45 - 4 = 41$. Payda: bir 9, bir 0 → $90$.",
+         "narration": "Pay, virgülsüz tamamı eksi devretmeyen kısım: kırk beş eksi dört, kırk bir. Payda bir dokuz ve bir sıfır: doksan. Doksan dokuzda kırk biri seçen sıfırı unutmuştur.",
+         "eliminate": [
+          "A"
+         ]
         },
         {
-         "text": "$0{,}4\\overline{5} = \\frac{41}{90}$. Cevap **A**.",
-         "narration": "Sayı 41 bölü 90'dır. Cevabımız A. 45 bölü 99'u seçen, dördün devretmediğini görmeyip sayıyı sıfır virgül kırk beş kırk beş gibi okumuştur.",
+         "text": "$0{,}4\\overline{5} = \\frac{41}{90}$. Cevap **E**.",
+         "narration": "Sayı doksanda kırk bir. Yirmide dokuz, sıfır virgül kırk beşin kendisidir; devri görmeyen onu seçer. Cevabımız E.",
          "eliminate": [
           "B",
-          "C",
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki devirli sayıyı kesre çevirme kalıbı örnek alındı, sayı ve çeldiriciler özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kilidin şifresi $\\frac{3}{7}$ kesrinin ondalık açılımıyla belirlenmiştir. Şifre, bu açılımda virgülden sonraki 100. basamaktaki rakam ile 101. basamaktaki rakamın bu sırayla yan yana yazılmasıyla oluşan iki basamaklı sayıdır. Hesap makinesi $\\frac{3}{7}$ için $0{,}428571428\\ldots$ sonucunu göstermektedir. Buna göre kilidin şifresi kaçtır?",
+       "options": [
+        "28",
+        "42",
+        "57",
+        "71",
+        "85"
+       ],
+       "answer": 2,
+       "narration": "Devri bulursan yüzüncü basamağa kadar saymana gerek kalmaz.",
+       "steps": [
+        {
+         "text": "$\\frac{3}{7} = 0{,}\\overline{428571}$: devir **6** basamaklı.",
+         "narration": "Ekrandaki sayıya bak: dört, iki, sekiz, beş, yedi, bir; sonra yine dört geliyor. Devreden kısım altı basamaklı."
+        },
+        {
+         "text": "$100 = 6 \\cdot 16 + 4$ → 100. basamak devrin **4.** rakamı: **5**.",
+         "narration": "Yüzü altıya böl: bölüm on altı, kalan dört. On altı tam tur atılır; yüzüncü basamak devrin dördüncü rakamı, beş."
+        },
+        {
+         "text": "$101 = 6 \\cdot 16 + 5$ → 101. basamak devrin **5.** rakamı: **7**.",
+         "narration": "Yüz biri altıya bölünce kalan beş; yüz birinci basamak devrin beşinci rakamı, yedi."
+        },
+        {
+         "text": "Şifre **57**. Cevap **C**.",
+         "narration": "Şifre elli yedi. Kalanı yanlış sayıp bir basamak kayan, seksen beşi ya da yetmiş biri bulur. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B",
           "D",
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki devirli sayıyı kesre çevirme kuralı devretmeyen basamağı olan özgün bir sayıyla soruldu."
+        "changes": "Havuzdaki \"devirli sayıda n. basamak\" kalıbı örnek alındı; kilit şifresi bağlamı, iki basamağı birlikte sorma ve kesir özgün."
        }
       }
      }
@@ -578,24 +1932,25 @@
   ],
   "summary": {
    "points": [
-    "Basit kesir **1'den küçük**, bileşik kesir 1 ya da daha büyük.",
-    "Toplamada paydalar **eşitlenir**; bölmede ikinci kesir **ters çevrilir**.",
-    "İşlem önceliği: parantez, çarpma-bölme, toplama-çıkarma.",
-    "Fark sabitse **1'e yakın** olan büyük; paylar eşitse paydası küçük olan büyük.",
+    "Rasyonel sayı $\\frac{a}{b}$, $b \\neq 0$; basit kesir **1'den küçük**, bileşik kesir 1 ya da daha büyük.",
+    "Pay ve payda **aynı sayıyla** çarpılır ya da bölünür; toplamda sadeleştirme yapılmaz.",
+    "Toplamada paydalar **EKOK'ta eşitlenir**; bölmede ikinci kesir **ters çevrilir**.",
+    "İşlem önceliği: parantez, üs, çarpma-bölme, toplama-çıkarma; iç içe kesirde en alttan başla.",
+    "Paylar eşitse paydası **küçük** olan büyük; negatiflerde sıra **ters döner**.",
     "Ondalık çarpmada virgülden sonraki basamaklar **toplanır**.",
     "Devirli: pay = tamamı − devretmeyen; payda = devreden kadar **9**, devretmeyen kadar **0**."
    ],
    "warnings": [
     "$\\frac{1}{2} + \\frac{1}{3} \\neq \\frac{2}{5}$",
+    "$-2\\frac{1}{3} = -\\frac{7}{3}$, $-\\frac{5}{3}$ değil.",
     "$0{,}\\overline{9} = 1$",
-    "Yalnız kesilebiliyorsa **en kısaya** eşitlenir.",
-    "Paylar eşitse paydası **küçük** olan büyük."
+    "Yalnız kısaltılabiliyorsa **en kısaya** eşitle."
    ],
-   "narration": "Hadi toparlayalım. Pozitif basit kesir 1'den küçük, bileşik kesir 1 ya da daha büyüktür. Toplamada paydaları eşitlersin, bölmede ikinci kesri ters çevirip çarparsın. Sıralamada önce kısa yollara bak: pay ile payda arasındaki fark sabitse 1'e en yakın olan en büyüktür. Ondalık çarpmada virgülden sonraki basamak sayılarını toplarsın. Devirli sayıyı kesre çevirirken pay, sayının tamamından devretmeyen kısmın çıkarılmasıdır; paydaya devreden kadar 9, devretmeyen kadar 0 yazarsın."
+   "narration": "Hadi toparlayalım. Rasyonel sayı a bölü b'dir, payda sıfır olamaz; basit kesir birden küçük, bileşik kesir bir ya da daha büyüktür. Pay ve paydayı aynı sayıyla çarpar ya da bölersin, ama toplamda sadeleştirme yapmazsın. Toplamada paydaları eşitler, bölmede ikinci kesri ters çevirirsin. Sıralamada paylar eşitse paydası küçük olan büyüktür, negatiflerde sıra ters döner. Ondalık çarpmada basamakları toplarsın. Devirli sayıda pay, tamamı eksi devretmeyen kısım; paydaya devreden kadar dokuz, devretmeyen kadar sıfır yazarsın."
   }
  },
  "short": {
-  "hook": "Kesirlerde üç tuzak.",
+  "hook": "Kesirler göründüğü gibi değil.",
   "cards": [
    {
     "kind": "term",
@@ -612,24 +1967,24 @@
    },
    {
     "kind": "fact",
-    "text": "Fark sabitse **1'e yakın** olan büyük."
+    "text": "Paylar eşitse paydası **küçük** olan büyük."
    }
   ],
   "summary": [
    "Paydalar eşitlenir",
-   "0,9 devirli = 1",
-   "1'e yakın olan büyük"
+   "0,9 devirli tam 1'dir",
+   "Basamak basamak karşılaştır"
   ],
   "rounds": [
    {
-    "sentence": "3/7 ve 3/8",
-    "question": "Büyük olan?",
+    "sentence": "$\\frac{1}{2} + \\frac{1}{3}$",
+    "question": "$\\frac{2}{5}$ mi?",
     "choices": [
-     "3/7",
-     "3/8"
+     "Evet",
+     "Hayır"
     ],
-    "answer": 0,
-    "why": "Payda **küçük**."
+    "answer": 1,
+    "why": "Paydalar **eşitlenir**."
    },
    {
     "sentence": "$0{,}\\overline{9}$",
@@ -642,14 +1997,14 @@
     "why": "Tam **1**."
    },
    {
-    "sentence": "3/5 ve 0,6",
-    "question": "Eşit mi?",
+    "sentence": "$0{,}45$ ve $0{,}5$",
+    "question": "Büyük olan?",
     "choices": [
-     "Evet",
-     "Hayır"
+     "0,45",
+     "0,5"
     ],
-    "answer": 0,
-    "why": "Onda **altı**."
+    "answer": 1,
+    "why": "Onda birlerde **5**."
    }
   ]
  },

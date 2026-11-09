@@ -1,6 +1,6 @@
 # YouTube metni: TYT Din Kültürü ve Ahlak Bilgisi kampı · Ders 11 · Kur'an-ı Kerim'de Gençler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/11_Kuranda_Gencler/Kuranda_Gencler_YouTube.mp4` (4K) · Kapak: `Kuranda_Gencler_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Din/11_Kuranda_Gencler/Kuranda_Gencler_YouTube.mp4` (4K) · Kapak: `Kuranda_Gencler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -12,76 +12,133 @@
   "TYT"
  ],
  "sources": [
-  "YKS/TYT/KonuAnlatimi/MAT/MAT_MANTIK.json (MEB Temel Matematik: önerme, doğruluk değeri, denklik, değil, ve, veya, ya da, ise, ancak ve ancak, doğruluk tablosu, niceleyiciler)",
-  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2021–2026: 6 soru; hepsi günlük bir durumla verilen p, q, r önermeleri ve doğruluk değeri bilinen bir bileşik önermeden durumu bulma (tablolar, doktor kartı, uçak bileti, araba dizilişi))",
-  "YKS/TYT/Sorular/MAT/MAT_MANTIK.jsonl (256 soru; önerme, bileşik önerme, koşullu önerme ve niceleyici kalıpları)"
+  "YKS/TYT/KonuAnlatimi/MAT/MAT_MANTIK.json (MEB Temel Matematik konu anlatımı s. 58–65: önerme, doğruluk değeri, denklik, değil, ve, veya, ya da, ise, ancak ve ancak, doğruluk tablosu, açık önerme, niceleyiciler)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2021–2026: 6 soru; günlük bir durumdan üç önerme ve doğruluk değeri verilen bileşik önerme: 2021 tablolar, 2022 yol ayrımı, 2023 doktor kartı, 2024 uçak bileti, 2025 iç içe koşullu, 2026 araba dizilişi)",
+  "YKS/TYT/Sorular/MAT/MAT_MANTIK.jsonl (önerme, doğruluk değeri, bileşik önerme, koşullu önerme, doğruluk tablosu ve niceleyici kalıpları)"
  ],
  "lesson": {
   "hook": {
-   "headline": "\"p ise q\" önermesi ne zaman yanlıştır? Yalnızca bir durumda.",
-   "narration": "p ise q önermesi ne zaman yanlıştır? Dört durumdan yalnızca birinde: p doğru, q yanlışken. ÖSYM mantık sorularının neredeyse hepsini aynı kalıpta soruyor: günlük bir durumdan üç önerme veriyor, bileşik bir önermenin doğru ya da yanlış olduğunu söylüyor ve senden durumu bulmanı istiyor. Bu kalıbı çözmek için dört bağlacın tablosunu bilmen yeter. Bu derste önermeyi, değil, ve, veya bağlaçlarını, koşullu önermeyi, doğruluk tablosunu ve niceleyicileri adım adım göreceğiz."
+   "headline": "\"p ise q\" ne zaman yanlıştır? Dört durumdan yalnız birinde.",
+   "narration": "p ise q önermesi ne zaman yanlıştır? Dört durumdan yalnızca birinde. ÖSYM mantığı hep aynı kalıpta soruyor: günlük bir durum, üç önerme ve bir bileşik önerme. Bu derste o kalıbı adım adım çözeceğiz."
   },
   "opening": {
    "kind": "mistake",
-   "card": "s4-c3",
-   "narration": "Bazı sayılar çifttir. Bu önermenin değili ne? Pek çok aday yalnızca yüklemi olumsuz yapar. Ama niceleyici de değişir.",
-   "promise": "Önermeyi, doğruluk tablosunu, ve, veya, ise bağlaçlarını, niceleyicileri ve denk önermeleri adım adım ele alacağız."
+   "card": "s8-c7",
+   "narration": "Her tam sayının iki fazlası pozitiftir. Bu önermenin değili ne? Çoğu öğrenci büyüktürü küçüktüre çevirip geçer. Oysa iki şey birden değişir.",
+   "promise": "Önermeyi, bağlaçları, koşullu önermeyi, doğruluk tablosunu ve niceleyicileri öğreneceksin; ÖSYM'nin günlük hayat sorularını da çözeceksin."
   },
   "objectives": [
    "Bir ifadenin önerme olup olmadığını ayırt etmek",
-   "Değil, ve, veya, ise, ancak ve ancak bağlaçlarının doğruluk değerini bulmak",
-   "Bileşik önermenin doğruluk değerinden bileşenleri geri bulmak",
+   "Değil, ve, veya, ya da bağlaçlarıyla doğruluk değeri bulmak",
+   "Koşullu ve iki yönlü koşullu önermeyi çözmek",
+   "Doğruluk tablosu kurup totoloji ve denkliği görmek",
+   "Yanlış ya da doğru verilen bileşik önermeden durumu geri bulmak",
    "Niceleyicili önermelerin değilini yazmak"
   ],
   "sections": [
    {
     "subtopic": "MAT_MANTIK_01",
-    "subtopics": [
-     "MAT_MANTIK_02"
-    ],
     "title": "Önerme",
-    "narration": "Önerme, doğru ya da yanlış olduğu kesin olarak söylenebilen bir hükümdür. Doğru ya da yanlış olması önemli değil; kesin olması önemli.",
+    "narration": "Mantığın yapı taşı önermedir. Önce neyin önerme olduğunu, neyin olmadığını ayıralım.",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Önerme nedir?",
+      "text": "**Önerme**, doğru ya da yanlış olduğu **kesin** olarak söylenebilen hüküm cümlesidir. Önermeler $p$, $q$, $r$ gibi küçük harflerle gösterilir.",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Önerme",
+         "items": [
+          "7 bir asal sayıdır.",
+          "13 + 5 = 16",
+          "Bir haftada 7 gün vardır."
+         ]
+        },
+        {
+         "title": "Önerme değil",
+         "items": [
+          "Sinemaya gidelim mi?",
+          "Kapıyı kapat.",
+          "En güzel renk mavidir."
+         ]
+        }
+       ]
+      },
+      "narration": "Önerme, doğru ya da yanlış olduğu kesin söylenebilen bir hükümdür.",
+      "beats": [
+       {
+        "narration": "Soldakiler önerme. Yedi asaldır doğru, on üç artı beş on altıdır ise yanlış.",
+        "show": [
+         "c1"
+        ],
+        "focus": [
+         "c1-1",
+         "c1-2"
+        ]
+       },
+       {
+        "narration": "İkisi de önerme, çünkü ikisinin de doğruluk değeri kesin.",
+        "focus": [
+         "c1-2",
+         "c1-3"
+        ]
+       },
+       {
+        "narration": "Sağdakiler önerme değil. Soru ve emir cümlesine doğru ya da yanlış diyemezsin.",
+        "show": [
+         "c2"
+        ],
+        "focus": [
+         "c2-1",
+         "c2-2"
+        ]
+       },
+       {
+        "narration": "En güzel renk mavidir ise kişiden kişiye değişir. Kesin değil, önerme değil.",
+        "focus": [
+         "c2-3"
+        ]
+       }
+      ]
+     },
+     {
       "kind": "predict",
-      "title": "Önerme mi?",
-      "context": "\"Asal olan her sayı tek sayıdır.\"",
+      "title": "Yanlışsa da önerme mi?",
+      "context": "\"İstanbul, Türkiye'nin başkentidir.\"",
       "prompt": "Bu ifade bir önerme midir?",
       "choices": [
        "Önerme değil",
-       "Yanlış bir önerme"
+       "Yanlış bir önerme",
+       "Doğru bir önerme"
       ],
       "answer": 1,
-      "thinkSeconds": 5,
+      "thinkSeconds": 4,
       "visual": {
        "kind": "table",
        "header": [
         "İfade",
+        "Kesin mi?",
         "Önerme mi?"
        ],
        "rows": [
         [
-         "Asal olan her sayı tek sayıdır.",
-         "Evet, yanlış (2 çift)"
+         "İstanbul başkenttir.",
+         "Evet, yanlış",
+         "Evet, değeri 0"
         ],
         [
-         "Bugün sinemaya gidelim mi?",
-         "Hayır, soru"
-        ],
-        [
-         "En lezzetli meyve çilektir.",
-         "Hayır, kişiye göre"
-        ],
-        [
-         "13 + 5 = 16",
-         "Evet, yanlış"
+         "Hava çok güzel.",
+         "Kişiye göre",
+         "Hayır"
         ]
        ],
-       "highlightColumn": 1
+       "highlightColumn": 2
       },
       "beats": [
        {
-        "narration": "Asal olan her sayı tek sayıdır: kesin bir hüküm. 2 asal ve çift olduğu için yanlış. Ama yanlış olması onu önerme olmaktan çıkarmaz.",
+        "narration": "İstanbul başkenttir kesin bir hüküm. Başkent Ankara olduğu için yanlış.",
         "show": [
          "r1"
         ],
@@ -90,33 +147,44 @@
         ]
        },
        {
-        "narration": "Soru cümleleri, istekler ve kişiden kişiye değişen yargılar önerme değildir. 13 artı 5 eşittir 16 ise yanlış ama kesin bir önermedir.",
+        "narration": "Hava çok güzel ise kişiden kişiye değişir; doğru ya da yanlış diyemeyiz.",
         "show": [
-         "r2",
-         "r3",
-         "r4"
+         "r2"
         ],
         "focus": [
-         "r2",
-         "r3",
-         "r4"
+         "r2"
         ]
        }
       ],
-      "explanation": "Önerme olmak için **kesin** bir hüküm yeter; doğru olması gerekmez. Bu ifade **yanlış bir önermedir**.",
-      "narration": "Şimdi sıra sende. Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap yanlış bir önerme. Bir ifadenin önerme olması için doğruluğunun ya da yanlışlığının kesin olarak söylenebilmesi yeter. Doğruluk değeri 1 ya da 0 diye yazılır: doğru 1, yanlış 0."
+      "explanation": "Önerme olmak için **kesin hüküm** yeter; doğru olması gerekmez. Bu ifade **yanlış bir önermedir**.",
+      "narration": "Şimdi sıra sende. Şu ifadeye bak.",
+      "explanationNarration": "Doğru cevap yanlış bir önerme. Kesin hüküm yeter; yanlış olması onu önerme olmaktan çıkarmaz."
      },
      {
       "kind": "rule",
-      "title": "Doğruluk değeri ve denklik",
+      "title": "Önerme olmayanlar",
       "items": [
-       "Doğru önerme **1** ya da D, yanlış önerme **0** ya da Y ile gösterilir.",
-       "Doğruluk değerleri aynı olan önermeler **denktir**: $p \\equiv q$.",
-       "$p$'nin değili $p'$: doğruysa yanlış, yanlışsa doğru olur. $(p')' \\equiv p$.",
-       "$n$ önermenin **$2^n$** farklı doğruluk durumu vardır."
+       "**Soru** cümleleri: \"Saat kaç?\"",
+       "**Emir ve istek** cümleleri: \"Kapıyı kapat.\"",
+       "**Ünlemler**: \"Ne güzel!\"",
+       "**Kişiye göre** değişen yargılar: \"En iyi film budur.\""
       ],
-      "narration": "Doğru bir önermenin doğruluk değeri 1, yanlış olanınki 0'dır. Doğruluk değerleri aynı olan iki önerme denktir. Bir önermenin değili hükmünü tersine çevirir: p doğruysa p değil yanlıştır. Değilin değili önermenin kendisidir. n tane önerme için 2 üssü n farklı doğruluk durumu vardır; iki önerme için 4, üç önerme için 8."
+      "narration": "Önerme olmayanları dört grupta topla. Bir: soru cümleleri. İki: emir ve istek cümleleri. Üç: ünlemler. Dört: kişiye göre değişen yargılar."
+     },
+     {
+      "kind": "example",
+      "title": "Önerme mi, değil mi?",
+      "example": "\"Bir yılda 12 ay vardır.\" ifadesi önerme midir?",
+      "explanation": "Kesin bir hüküm: **doğru bir önerme**, değeri 1.",
+      "narration": "Bir yılda 12 ay vardır ifadesi önerme midir? Doğru mu yanlış mı, kesin karar verebiliyor muyuz? Evet. Kesin bir hüküm: doğru bir önerme, değeri 1."
+     },
+     {
+      "kind": "mistake",
+      "title": "Yanlış ifade de önermedir",
+      "wrong": "Yanlış olan bir ifade önerme değildir.",
+      "right": "Yanlış ifade de önermedir; **doğruluk değeri** 0'dır.",
+      "why": "Önerme olmak için **kesin hüküm** yeter; doğru olması gerekmez.",
+      "narration": "Sık yapılan hata: yanlış ifade önerme değildir sanmak. Ama yanlış ifade de önermedir; doğruluk değeri sıfırdır. Önerme olmak için kesin hüküm yeter."
      },
      {
       "kind": "question",
@@ -124,57 +192,18 @@
        "style": "TYT tarzı",
        "stem": "Aşağıdakilerden hangisi bir **önerme değildir**?",
        "options": [
-        "7 bir asal sayıdır.",
-        "2 + 2 = 5",
-        "Bu soruyu çözebilir misin?",
-        "Ankara, Türkiye'nin başkentidir.",
-        "Her kare bir dikdörtgendir."
-       ],
-       "answer": 2,
-       "narration": "Önerme, doğru ya da yanlış olduğu kesin olarak söylenebilen hüküm cümlesidir.",
-       "steps": [
-        {
-         "text": "A, D, E: **doğru** önermeler. B: **yanlış** bir önerme; yanlış olması önerme olmasını **engellemez**.",
-         "narration": "Yedi asaldır, Ankara başkenttir, her kare bir dikdörtgendir; bunlar doğru önermelerdir. İki artı iki beştir ise yanlış bir önermedir; ama doğruluk değeri kesin olarak söylenebildiği için yine de bir önermedir.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ]
-        },
-        {
-         "text": "**Soru** cümlesi doğru ya da yanlış **olamaz** → önerme değil. Cevap **C**.",
-         "narration": "Bu soruyu çözebilir misin ise bir soru cümlesidir; doğru ya da yanlış diye değerlendirilemez. Bu yüzden önerme değildir. Emir ve ünlem cümleleri de önerme değildir. Cevabımız C."
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; dersteki \"Önerme mi?\" tahmin tablosu özgün ifadelerle soruldu."
-       }
-      }
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "$p$: \"$3 > 5$\" ve $q$: \"2 bir asal sayıdır.\" önermeleri veriliyor. Buna göre aşağıdaki önermelerden hangisinin doğruluk değeri **0**'dır?",
-       "options": [
-        "$p' \\wedge q$",
-        "$p \\vee q$",
-        "$p \\Rightarrow q$",
-        "$q \\Rightarrow p$",
-        "$p' \\Leftrightarrow q$"
+        "12, 3'ün katıdır.",
+        "Her üçgenin dört kenarı vardır.",
+        "$5 < 2$",
+        "Pencereyi açar mısın?",
+        "Ankara bir ildir."
        ],
        "answer": 3,
-       "narration": "Önce p ve q'nun doğruluk değerlerini bulalım.",
+       "narration": "Önce kolay bir soruyla ısınalım.",
        "steps": [
         {
-         "text": "$p \\equiv 0$ (3, 5'ten büyük değil), $q \\equiv 1$ (2 asal) → $p' \\equiv 1$.",
-         "narration": "Üç beşten büyük değildir; p yanlış, sıfır. İki asaldır; q doğru, bir. p'nin değili ise bir."
-        },
-        {
-         "text": "$p' \\wedge q = 1 \\wedge 1 = 1$; $p \\vee q = 0 \\vee 1 = 1$; $p \\Rightarrow q = 0 \\Rightarrow 1 = 1$; $p' \\Leftrightarrow q = 1 \\Leftrightarrow 1 = 1$.",
-         "narration": "p değil ve q: bir ve bir, bir. p veya q: sıfır veya bir, bir. p ise q: yanlıştan her şey çıkar, bir. p değil ancak ve ancak q: ikisi de bir, bir.",
+         "text": "A ve E doğru, B ve C yanlış; ama hepsi **kesin** hüküm, hepsi önerme.",
+         "narration": "On iki üçün katıdır doğru, Ankara bir ildir doğru. Üçgenin dört kenarı olması ve beşin ikiden küçük olması yanlış ama kesin. Hepsi önerme.",
          "eliminate": [
           "A",
           "B",
@@ -183,41 +212,163 @@
          ]
         },
         {
-         "text": "$q \\Rightarrow p = 1 \\Rightarrow 0 = 0$. Cevap **D**.",
-         "narration": "q ise p ise bir ise sıfır; koşullu önerme yalnız doğrudan yanlış çıktığında yanlıştır. Doğruluk değeri sıfır. Cevabımız D."
+         "text": "\"Pencereyi açar mısın?\" bir **soru**: doğru ya da yanlış olamaz. Cevap **D**.",
+         "narration": "Pencereyi açar mısın ise bir soru; doğru ya da yanlış diyemeyiz. Önerme değil. Cevabımız D."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki bağlaç tabloları ve koşullu önerme kuralı özgün önermelerle tek soruda birleştirildi."
+        "changes": "Bu ders için yazıldı; MEB'in önerme olan ve olmayan ifadeler örneğinin kalıbı alındı, ifadelerin hepsi özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "context": "I. Sınıfımızda 32 öğrenci vardır.\nII. Matematik en zevkli derstir.\nIII. 17 bir asal sayıdır.\nIV. Bugün nöbetçi kim?\nV. 2 + 3 = 6",
+       "stem": "Bir matematik öğretmeni sınıf panosuna bu beş ifadeyi yazmış ve öğrencilerinden yalnızca önerme olanların altını çizmelerini istemiştir. Doğru ya da yanlış olduğu kesin olarak söylenebilen ifadeleri eksiksiz seçen bir öğrenci hangilerinin altını çizer?",
+       "options": [
+        "I, III ve V",
+        "I ve III",
+        "III ve V",
+        "I, II ve III",
+        "I, III, IV ve V"
+       ],
+       "answer": 0,
+       "narration": "Şimdi sınavdaki gibi okuyarak çözelim.",
+       "steps": [
+        {
+         "text": "II kişiye göre değişir, IV bir soru: **önerme değil**.",
+         "narration": "İki numaralı ifade kişiden kişiye değişir; dört numara bir soru. İkisi de önerme değil. Bunları içeren D ve E elenir.",
+         "sentences": [
+          2,
+          4
+         ],
+         "eliminate": [
+          "D",
+          "E"
+         ]
+        },
+        {
+         "text": "I sayılarak kontrol edilir, III doğru, V yanlış ama **kesin**: üçü de önerme.",
+         "narration": "Bir numaranın doğruluğu sayılarak kesin bulunur. On yedi asaldır, doğru. İki artı üç altıdır ise yanlış ama kesin. Üçü de önerme.",
+         "sentences": [
+          1,
+          3,
+          5
+         ],
+         "eliminate": [
+          "B",
+          "C"
+         ]
+        },
+        {
+         "text": "Cevap **A**: I, III ve V.",
+         "narration": "Yanlış olan beşinciyi atlayan B'yi seçer. Cevabımız A."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki numaralı ifadelerden önerme seçme kalıbı örnek alındı, bağlam ve ifadeler özgün."
        }
       }
      }
     ]
    },
    {
-    "subtopic": "MAT_MANTIK_04",
-    "subtopics": [
-     "MAT_MANTIK_03"
-    ],
-    "title": "Ve, veya, ya da",
-    "narration": "İki önermeyi bir bağlaçla birleştirince bileşik önerme elde edersin. Her bağlacın tek bir kuralı var.",
+    "subtopic": "MAT_MANTIK_02",
+    "title": "Doğruluk değeri ve denklik",
+    "narration": "Her önermenin iki olası değeri var: doğru ya da yanlış. Bu değere doğruluk değeri diyoruz.",
     "cards": [
      {
-      "kind": "visual",
-      "title": "Bağlaçların tablosu",
+      "kind": "concept",
+      "title": "Doğruluk değeri",
+      "text": "Doğru önermenin doğruluk değeri **1** ya da D, yanlış önermeninki **0** ya da Y'dir. Doğruluk değerleri **aynı** olan önermelere **denk** önermeler denir: $p \\equiv q$.",
       "visual": {
        "kind": "table",
        "header": [
-        "$p$",
-        "$q$",
-        "$p \\wedge q$ (ve)",
-        "$p \\vee q$ (veya)",
-        "$p \\veebar q$ (ya da)"
+        "Önerme",
+        "Değeri"
+       ],
+       "rows": [
+        [
+         "p: 9 tek sayıdır.",
+         "1"
+        ],
+        [
+         "q: 4 asaldır.",
+         "0"
+        ],
+        [
+         "r: 2 + 7 = 9",
+         "1"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "narration": "Doğru önermeye 1, yanlışa 0 deriz. Değerleri aynı olan önermeler denktir.",
+      "beats": [
+       {
+        "narration": "Dokuz tek sayıdır doğru; p'nin değeri 1.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Dört asal değil, çünkü ikiye bölünür. q yanlış, değeri 0.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "İki artı yedi dokuz eder. r doğru, değeri 1.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "p ile r'nin değeri aynı. Bu yüzden p denktir r.",
+        "focus": [
+         "r1",
+         "r3"
+        ],
+        "note": "p ≡ r"
+       }
+      ]
+     },
+     {
+      "kind": "predict",
+      "title": "Kaç durum var?",
+      "prompt": "Üç önermenin kaç farklı doğruluk durumu vardır?",
+      "choices": [
+       "3",
+       "6",
+       "8"
+      ],
+      "answer": 2,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "p",
+        "q",
+        "r"
        ],
        "rows": [
         [
          "1",
          "1",
+         "1"
+        ],
+        [
          "1",
          "1",
          "0"
@@ -225,6 +376,14 @@
         [
          "1",
          "0",
+         "1"
+        ],
+        [
+         "1",
+         "0",
+         "0"
+        ],
+        [
          "0",
          "1",
          "1"
@@ -232,24 +391,23 @@
         [
          "0",
          "1",
-         "0",
-         "1",
-         "1"
+         "0"
         ],
         [
          "0",
          "0",
+         "1"
+        ],
+        [
          "0",
          "0",
          "0"
         ]
-       ],
-       "highlightColumn": 2
+       ]
       },
-      "narration": "Bağlaçları kısa kurallarla hatırla.",
       "beats": [
        {
-        "narration": "Ve bağlacı titizdir: yalnızca ikisi de doğruyken doğrudur. Bir tane yanlış varsa sonuç yanlıştır.",
+        "narration": "p doğruyken q ve r için dört durum var.",
         "show": [
          "r1",
          "r2",
@@ -257,63 +415,549 @@
          "r4"
         ],
         "focus": [
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ]
+       },
+       {
+        "narration": "p yanlışken yine dört durum var. Toplam sekiz.",
+        "show": [
+         "r5",
+         "r6",
+         "r7",
+         "r8"
+        ],
+        "focus": [
+         "r5",
+         "r6",
+         "r7",
+         "r8"
+        ]
+       }
+      ],
+      "explanation": "Her yeni önerme durum sayısını **ikiye katlar**: $2 \\cdot 2 \\cdot 2 = 8$. $n$ önerme için **$2^n$** durum vardır.",
+      "narration": "Şimdi bir tahmin yap.",
+      "explanationNarration": "Doğru cevap sekiz. Her önerme durum sayısını ikiye katlar: iki çarpı iki çarpı iki. n önerme için 2 üssü n durum vardır."
+     },
+     {
+      "kind": "rule",
+      "title": "Doğruluk değeri kuralları",
+      "items": [
+       "Doğru: **1** ya da D; yanlış: **0** ya da Y.",
+       "Değerleri aynı olan önermeler **denktir**: $p \\equiv q$.",
+       "Değerleri farklıysa **denk değildir**: $p \\not\\equiv q$.",
+       "$n$ önerme için **$2^n$** doğruluk durumu vardır."
+      ],
+      "narration": "Bir: doğruya 1, yanlışa 0 denir. İki: değerleri aynı olan önermeler denktir. Üç: değerleri farklıysa denk değildir. Dört: n önerme için 2 üssü n durum vardır."
+     },
+     {
+      "kind": "example",
+      "title": "Denk mi?",
+      "example": "p: 15, 5'in katıdır. q: 21 bir asal sayıdır. p ile q denk midir?",
+      "explanation": "p doğru, q yanlış: **değerler farklı**, p ile q **denk değil**.",
+      "narration": "p: 15, 5'in katıdır. q: 21 bir asal sayıdır. p ile q denk midir? Bak: p doğru, q yanlış. Çünkü 21, 3 çarpı 7'dir. Değerler farklı, p ile q denk değil."
+     },
+     {
+      "kind": "mistake",
+      "title": "Denklik anlama bakmaz",
+      "wrong": "Denk önermeler aynı anlamı taşır.",
+      "right": "Denklik yalnız **doğruluk değerine** bakar: \"2 çifttir\" ile \"3 tektir\" denktir.",
+      "why": "İkisinin de değeri 1; **konuları farklı** olsa da denktirler.",
+      "narration": "Bir yanılgı: denk önermeler aynı anlamı taşır sanmak. Oysa denklik yalnız doğruluk değerine bakar. İkisinin de değeri 1; konuları farklı olsa da denktirler."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$p$: \"24, 4'e tam bölünür.\", $q$: \"15 bir çift sayıdır.\", $r$: \"$3^2 = 9$\" önermeleri veriliyor. Buna göre aşağıdakilerden hangisi **doğrudur**?",
+       "options": [
+        "$p \\equiv q$",
+        "$q \\equiv r$",
+        "$p \\equiv 0$",
+        "$r \\equiv 0$",
+        "$p \\equiv r$"
+       ],
+       "answer": 4,
+       "narration": "Önce her önermenin değerini bulalım.",
+       "steps": [
+        {
+         "text": "$p \\equiv 1$, $q \\equiv 0$, $r \\equiv 1$.",
+         "narration": "Yirmi dört dörde bölünür, p doğru. On beş tek, q yanlış. Üç kare dokuz, r doğru.",
+         "eliminate": [
+          "C",
+          "D"
+         ]
+        },
+        {
+         "text": "Değerleri aynı olan $p$ ile $r$: $p \\equiv r$. Cevap **E**.",
+         "narration": "Değerleri aynı olanlar p ile r; ikisi de 1. Yani p denktir r. Cevabımız E.",
+         "eliminate": [
+          "A",
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki doğruluk değeri bulma kalıbı örnek alındı, önermeler özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir öğretmen tahtaya 6 farklı önerme yazmıştır. Bu önermelerden 3'ünün doğruluk değerleri her durumda birbirine eşittir; yani bu üçü birbirine denktir. Kalan 3 önerme ise hem birbirinden hem de bu üç önermeden bağımsızdır. Buna göre tahtadaki önermelerin birlikte kaç farklı doğruluk durumu vardır?",
+       "options": [
+        "8",
+        "16",
+        "32",
+        "64",
+        "128"
+       ],
+       "answer": 1,
+       "narration": "Burada sayma kuralını dikkatle kullanacağız.",
+       "steps": [
+        {
+         "text": "Denk üç önerme hep aynı değeri alır: **tek önerme gibi** sayılır.",
+         "narration": "Denk üç önerme her durumda aynı değeri alır. Biri 1 ise üçü de 1'dir. Bu yüzden tek bir önerme gibi sayılır."
+        },
+        {
+         "text": "Bağımsız önerme sayısı $1 + 3 = 4$ → $2^4 = 16$. Cevap **B**.",
+         "narration": "Bağımsız önerme sayısı bir artı üç, dört. Durum sayısı 2 üssü 4, yani 16. Altısını bağımsız sayan 64'ü bulur. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"bir kısmı denk önermelerin doğruluk durumu sayısı\" kalıbı örnek alındı, sayılar ve bağlam özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_MANTIK_03",
+    "title": "Bileşik önerme ve değil",
+    "narration": "Önermeleri bağlaçlarla birleştirince yeni önermeler kurarsın. Önce bağlaçları tanıyalım, sonra en basit işlemle başlayalım: değil.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Bileşik önerme",
+      "text": "**Bileşik önerme**, iki ya da daha fazla önermenin ve, veya, ya da, ise, ancak ve ancak bağlaçlarıyla birleşmesidir. Bir önermenin **değili** $p'$, hükmünü tersine çevirir.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Bağlaç",
+        "Sembol",
+        "Örnek"
+       ],
+       "rows": [
+        [
+         "değil",
+         "$p'$",
+         "7 asal değildir."
+        ],
+        [
+         "ve",
+         "$\\wedge$",
+         "Çay ve kek aldım."
+        ],
+        [
+         "veya",
+         "$\\vee$",
+         "Çay veya kek alırım."
+        ],
+        [
+         "ya da",
+         "$\\veebar$",
+         "Ya çay ya kek."
+        ],
+        [
+         "ise",
+         "$\\Rightarrow$",
+         "Yağarsa yer ıslanır."
+        ],
+        [
+         "ancak ve ancak",
+         "$\\Leftrightarrow$",
+         "Ancak ve ancak çiftse."
+        ]
+       ]
+      },
+      "narration": "Önermeleri bir bağlaçla birleştirince bileşik önerme elde edersin.",
+      "beats": [
+       {
+        "narration": "Değil tek bir önermeye uygulanır ve hükmünü tersine çevirir.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
          "r1"
         ]
        },
        {
-        "narration": "Veya bağlacı cömerttir: yalnızca ikisi de yanlışken yanlıştır. Bir tane doğru yeter.",
+        "narration": "Ve ile veya iki önermeyi birleştirir; birazdan farklarını göreceğiz.",
+        "show": [
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r2",
+         "r3"
+        ]
+       },
+       {
+        "narration": "Ya da, iki seçenekten yalnız birini ister.",
+        "show": [
+         "r4"
+        ],
         "focus": [
          "r4"
         ]
        },
        {
-        "narration": "Ya da bağlacı ise farklılık ister: biri doğru öbürü yanlışsa doğrudur, ikisi aynıysa yanlıştır.",
+        "narration": "İse ve ancak ve ancak koşul kurar. ÖSYM'nin en sevdikleri bunlar.",
+        "show": [
+         "r5",
+         "r6"
+        ],
         "focus": [
-         "r2",
-         "r3"
+         "r5",
+         "r6"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Değilin tablosu",
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p"
+       ],
+       "columns": [
+        {
+         "formula": "~p",
+         "label": "değil"
+        },
+        {
+         "formula": "~(~p)",
+         "label": "değilin değili"
+        }
+       ]
+      },
+      "narration": "Değili tabloda görelim.",
+      "beats": [
+       {
+        "narration": "p doğruyken p değil yanlış, p yanlışken p değil doğru.",
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "Değilin değilini alınca başa dönersin. p değilin değili, p'ye denktir.",
+        "focus": [
+         "c2"
         ]
        }
       ]
      },
      {
       "kind": "rule",
-      "title": "De Morgan",
+      "title": "Değil kuralları",
       "items": [
-       "$(p \\wedge q)' \\equiv p' \\vee q'$",
-       "$(p \\vee q)' \\equiv p' \\wedge q'$",
-       "Değil, parantezin içine girerken **ve'yi veya'ya**, **veya'yı ve'ye** çevirir.",
-       "\"Yağmur yağıyor ve rüzgâr esiyor\"un değili: \"Yağmur yağmıyor **veya** rüzgâr esmiyor.\""
+       "$p \\equiv 1$ ise $p' \\equiv 0$; $p \\equiv 0$ ise $p' \\equiv 1$.",
+       "Değilin değili kendisidir: $(p')' \\equiv p$.",
+       "Değil hükmü tersine çevirir: \"**7 asaldır**\" → \"7 asal değildir\".",
+       "İşaretlerde: $=$ değili $\\neq$, $>$ değili **küçük eşittir**, $<$ değili $\\geq$."
       ],
-      "narration": "De Morgan kuralı: bir bileşik önermenin değilini alırken değil, her önermeye ayrı ayrı dağılır ve bağlaç değişir; ve, veya olur; veya, ve olur. Yağmur yağıyor ve rüzgâr esiyor önermesinin değili, yağmur yağmıyor veya rüzgâr esmiyor önermesidir."
+      "narration": "Bir: p doğruysa p değil yanlış, yanlışsa doğrudur. İki: değilin değili önermenin kendisidir. Üç: değil hükmü tersine çevirir; 7 asaldır, 7 asal değildir olur. Dört: eşittirin değili eşit değil, büyüktürün değili küçük eşittir."
+     },
+     {
+      "kind": "example",
+      "title": "Değil ve değilin değili",
+      "example": "p: 9, 3'ün katıdır. p değil ve değilin değili nedir?",
+      "explanation": "p doğru, **p değil yanlış**, değilin değili yine **doğru**.",
+      "narration": "p: 9, 3'ün katıdır. p değil ve değilin değili nedir? p doğru. Değili, 9, 3'ün katı değildir; p değil yanlış. Değilin değili yine p; yani doğru."
+     },
+     {
+      "kind": "mistake",
+      "title": "Büyüktürün değili",
+      "wrong": "$x > 3$ önermesinin değili $x < 3$ olur.",
+      "right": "Doğrusu küçük eşittir: **$x \\leq 3$**. $x = 3$ de ilk önermeyi yanlış yapar.",
+      "why": "Değil, önermeyi yanlış yapan **bütün durumları** kapsar.",
+      "narration": "Çok yapılan hata: x büyüktür 3'ün değilini x küçüktür 3 yazmak. Doğrusu küçük eşittir: x eşit 3 de ilk önermeyi yanlış yapar. Değil, önermeyi yanlış yapan bütün durumları kapsar."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$(p \\vee q) \\wedge r'$ önermesi **doğru** olduğuna göre, aşağıdakilerden hangisi **kesinlikle** doğrudur?",
+       "stem": "$p$: \"$2^3 = 6$\" önermesi veriliyor. Buna göre $p'$ önermesi ve doğruluk değeri aşağıdakilerden hangisidir?",
        "options": [
+        "$2^3 > 6$, değeri 1",
+        "$2^3 = 6$, değeri 1",
+        "$2^3 \\neq 6$, değeri 1",
+        "$2^3 \\neq 6$, değeri 0",
+        "$2^3 < 6$, değeri 0"
+       ],
+       "answer": 2,
+       "narration": "Değil ile doğruluk değerini birlikte bulalım.",
+       "steps": [
+        {
+         "text": "$2^3 = 8$ → $p \\equiv 0$, $p' \\equiv 1$.",
+         "narration": "İki üssü üç sekizdir, altı değil. p yanlış, p değil doğru. Değeri 0 diyen şıklar elenir.",
+         "eliminate": [
+          "D",
+          "E"
+         ]
+        },
+        {
+         "text": "Eşittirin değili **eşit değildir**: $2^3 \\neq 6$. Cevap **C**.",
+         "narration": "Eşittir işaretinin değili eşit değildir. Büyüktür, değil sayılmaz; A tuzak. Cevabımız C.",
+         "eliminate": [
+          "A",
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki önermenin değilini ve değerini bulma kalıbı örnek alındı, önerme özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir alışveriş merkezinin otoparkında saat başı dolu yer sayısı ekrana yazılmaktadır. Saat 14.00'te ekranda yazan sayı $x$ olmak üzere $p$: \"$x \\leq 30$\" ve $q$: \"$x > 55$\" önermeleri veriliyor. $p'$ ve $q'$ önermelerinin **ikisi de doğru** olduğuna göre $x$ aşağıdakilerden hangisi olabilir?",
+       "options": [
+        "20",
+        "25",
+        "28",
+        "30",
+        "48"
+       ],
+       "answer": 4,
+       "narration": "İşaretlerin değilini doğru yazarsan soru biter.",
+       "steps": [
+        {
+         "text": "$p' \\equiv 1$ → $x > 30$.",
+         "narration": "p değil doğru. Küçük eşitin değili büyüktür: x otuzdan büyük. Otuzu seçen, değili yanlış yazmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        },
+        {
+         "text": "$q' \\equiv 1$ → $x \\leq 55$. $30 < x \\leq 55$: **48**. Cevap **E**.",
+         "narration": "q değil doğru. Büyüktürün değili küçük eşittir: x en çok 55. 48 iki koşulu da sağlar. Cevabımız E."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin günlük bir ölçümden önerme kurma yaklaşımı örnek alındı, bağlam ve eşitsizlikler özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_MANTIK_04",
+    "title": "Ve, veya, ya da",
+    "narration": "Şimdi üç bağlacın kuralını tek tek görelim. Her birinin tek cümlelik bir kuralı var.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Ve ile veya",
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p",
+        "q"
+       ],
+       "columns": [
+        {
+         "formula": "p ∧ q",
+         "label": "ve"
+        },
+        {
+         "formula": "p ∨ q",
+         "label": "veya"
+        }
+       ]
+      },
+      "narration": "Ve ile veyayı aynı tabloda karşılaştıralım.",
+      "beats": [
+       {
+        "narration": "Ve bağlacı titizdir: p ve q yalnız ikisi de doğruyken doğrudur.",
+        "focus": [
+         "c1",
+         "r1"
+        ]
+       },
+       {
+        "narration": "Bir tane yanlış varsa ve bağlacı yanlış olur.",
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "Veya bağlacı cömerttir: bir tanesinin doğru olması yeter.",
+        "focus": [
+         "c2"
+        ]
+       },
+       {
+        "narration": "Veya yalnız ikisi de yanlışken yanlıştır. Son satıra bak.",
+        "focus": [
+         "c2",
+         "r4"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "predict",
+      "title": "Ya çorba ya tatlı",
+      "context": "Menüde şu yazıyor: \"Ya çorba ya tatlı seçebilirsin.\"",
+      "prompt": "Çorba ile tatlıyı birlikte seçen kurala uymuş olur mu?",
+      "choices": [
+       "Evet",
+       "Hayır"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "p: çorba",
+        "q: tatlı",
+        "p ya da q"
+       ],
+       "rows": [
+        [
+         "1",
+         "1",
+         "0"
+        ],
+        [
+         "1",
+         "0",
+         "1"
+        ],
+        [
+         "0",
+         "1",
+         "1"
+        ],
+        [
+         "0",
+         "0",
+         "0"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "Ya da bağlacı farklılık ister: biri doğru, öbürü yanlışsa doğrudur.",
+        "show": [
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r2",
+         "r3"
+        ]
+       },
+       {
+        "narration": "İkisi de doğru ya da ikisi de yanlışsa ya da bağlacı yanlıştır.",
+        "show": [
+         "r1",
+         "r4"
+        ],
+        "focus": [
+         "r1",
+         "r4"
+        ]
+       }
+      ],
+      "explanation": "Ya da, **yalnız biri** doğruyken doğrudur. İkisini birden seçmek kuralı **bozar**.",
+      "narration": "Şimdi sıra sende. Menüye bak.",
+      "explanationNarration": "Doğru cevap hayır. Ya da, yalnız biri doğruyken doğrudur. Çorba da tatlı da doğruysa kural bozulur."
+     },
+     {
+      "kind": "rule",
+      "title": "Ve ile veyanın özellikleri",
+      "items": [
+       "$p \\wedge p' \\equiv 0$, $p \\vee p' \\equiv 1$.",
+       "$p \\wedge 1 \\equiv p$, $p \\wedge 0 \\equiv 0$.",
+       "$p \\vee 1 \\equiv 1$, $p \\vee 0 \\equiv p$.",
+       "**De Morgan**: $(p \\wedge q)' \\equiv p' \\vee q'$ ve $(p \\vee q)' \\equiv p' \\wedge q'$.",
+       "Dağılma: $p \\wedge (q \\vee r) \\equiv (p \\wedge q) \\vee (p \\wedge r)$."
+      ],
+      "narration": "Bir: önerme ile değili ve ile bağlanırsa hep yanlış, veya ile bağlanırsa hep doğrudur. İki: ve bağlacında 1 etkisizdir, 0 her şeyi sıfırlar. Üç: veyada tersi; 1 her şeyi bir yapar, 0 etkisizdir. Dört: De Morgan. Değil parantezin içine girince ve, veya olur; veya, ve olur. Beş: ve bağlacı veya üzerine dağılır, çarpmanın toplamaya dağılması gibi."
+     },
+     {
+      "kind": "example",
+      "title": "Parantezden başla",
+      "example": "p doğru, q yanlış, r doğru. (p ve q) veya r önermesinin değeri nedir?",
+      "explanation": "Önce parantez: **yanlış**. Sonra yanlış veya doğru: **doğru**.",
+      "narration": "p doğru, q yanlış, r doğru. p ve q, veya r önermesinin değeri nedir? Önce parantez: doğru ve yanlış, sonuç yanlış. Sonra yanlış veya doğru: veyada bir doğru yeter, sonuç doğru."
+     },
+     {
+      "kind": "example",
+      "title": "De Morgan cümlede",
+      "example": "\"Ali çay içti ve kek yedi.\" önermesinin değili nedir?",
+      "explanation": "Değili: Ali çay **içmedi veya** kek **yemedi**.",
+      "narration": "Ali çay içti ve kek yedi önermesinin değili nedir? De Morgan'a göre değil her parçaya dağılır, ve bağlacı veya olur. Değili: Ali çay içmedi veya kek yemedi."
+     },
+     {
+      "kind": "mistake",
+      "title": "Veya doğruysa ne biliriz?",
+      "wrong": "Veya bağlacı doğruysa iki önerme de doğrudur.",
+      "right": "Veya için **en az biri** doğru yeter; hangisi olduğu **belli değildir**.",
+      "why": "Veya yalnız **ikisi de yanlışken** yanlıştır; diğer üç durumda doğrudur.",
+      "narration": "Dikkat et, tuzak burada: veya doğruysa ikisi de doğrudur sanmak. Veya için en az biri doğru yeter; hangisi olduğu belli değildir. Veya yalnız ikisi de yanlışken yanlıştır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$(p \\vee q) \\wedge r'$ önermesi **doğru** olduğuna göre aşağıdakilerden hangisi **kesinlikle** doğrudur?",
+       "options": [
+        "$r \\equiv 0$",
         "$p \\equiv 1$",
         "$q \\equiv 1$",
         "$r \\equiv 1$",
-        "$r \\equiv 0$",
         "$p \\equiv q$"
        ],
-       "answer": 3,
-       "narration": "Ve bağlacından başlayalım.",
+       "answer": 0,
+       "narration": "Ana bağlaçtan başlayalım.",
        "steps": [
         {
-         "text": "Ve doğruysa **iki taraf da doğru**: $p \\vee q \\equiv 1$ ve $r' \\equiv 1$.",
-         "narration": "Ana bağlaç ve. Ve bağlacı doğruysa iki tarafı da doğrudur: p veya q doğru, r değil de doğru."
+         "text": "Ve doğru → iki taraf da doğru: $p \\vee q \\equiv 1$, $r' \\equiv 1$.",
+         "narration": "Ana bağlaç ve. Ve doğruysa iki taraf da doğrudur."
         },
         {
-         "text": "$r' \\equiv 1 \\Rightarrow r \\equiv 0$: **kesin**.",
-         "narration": "r değil doğruysa r yanlıştır. Bu kesin bir bilgi."
-        },
-        {
-         "text": "$p \\vee q \\equiv 1$: p ya da q'dan **en az biri** doğru; hangisi belli değil. Cevap **D**.",
-         "narration": "p veya q doğruysa ikisinden en az biri doğrudur ama hangisi olduğunu bilemeyiz. p ya da q için kesin bir şey söyleyemeyiz. Kesin olan yalnızca r'nin yanlış olması. Cevabımız D.",
+         "text": "$r' \\equiv 1$ → $r \\equiv 0$: **kesin**.",
+         "narration": "r değil doğruysa r yanlıştır. Bu kesin; r eşittir 1 diyen D elenir.",
          "eliminate": [
-          "A",
+          "D"
+         ]
+        },
+        {
+         "text": "$p \\vee q \\equiv 1$: en az biri doğru, **hangisi belli değil**. Cevap **A**.",
+         "narration": "p veya q doğru; en az biri doğru ama hangisi bilinmez. p ile q için kesin bir şey yok. Cevabımız A.",
+         "eliminate": [
           "B",
           "C",
           "E"
@@ -328,39 +972,77 @@
      {
       "kind": "question",
       "question": {
-       "style": "TYT tarzı",
-       "stem": "Bir internet alışverişinde Deniz için p: Hızlı kargoyu seçmiştir. q: Hediye paketini seçmemiştir. r: Ürün sigortasını seçmiştir. önermeleri veriliyor. $(p \\wedge q') \\vee (p' \\wedge r)$ önermesi doğru ve r önermesi yanlış olduğuna göre, Deniz hızlı kargo, hediye paketi ve ürün sigortası seçimlerinden hangilerini yapmıştır?",
+       "style": "ÖSYM tarzı",
+       "context": "p: Her masada en az bir çay vardır.\nq: Masalardaki toplam kahve sayısı, toplam çay sayısından azdır.\nr: En az bir masada tatlı yoktur.",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "Masa",
+         "Çay",
+         "Kahve",
+         "Tatlı"
+        ],
+        "rows": [
+         [
+          "1",
+          "2",
+          "0",
+          "1"
+         ],
+         [
+          "2",
+          "1",
+          "1",
+          "0"
+         ],
+         [
+          "3",
+          "0",
+          "2",
+          "2"
+         ]
+        ]
+       },
+       "stem": "Bir kafede üç masanın verdiği siparişler tabloda gösterilmiştir. Bu siparişlerle ilgili p, q ve r önermeleri veriliyor. Buna göre aşağıdaki bileşik önermelerden hangisinin doğruluk değeri **1**'dir?",
        "options": [
-        "Hızlı kargo ve hediye paketi",
-        "Yalnız hediye paketi",
-        "Yalnız hızlı kargo",
-        "Hızlı kargo ve ürün sigortası",
-        "Üçünü de"
+        "$p \\vee q$",
+        "$p' \\wedge q$",
+        "$(p \\vee r) \\wedge q$",
+        "$(p \\vee q)' \\wedge r$",
+        "$(q \\vee r) \\wedge p$"
        ],
-       "answer": 0,
-       "narration": "ÖSYM 2024'te uçak bileti seçimleriyle sordu. Önce bilinen değerden başlayalım.",
+       "answer": 3,
+       "narration": "Önce tablodan her önermenin değerini okuyalım.",
        "steps": [
         {
-         "text": "$r \\equiv 0$ → $p' \\wedge r \\equiv 0$ (ve'de bir yanlış yeter).",
-         "narration": "r yanlış, yani Deniz sigortayı seçmemiş. Sağdaki parantez p değil ve r; içinde yanlış bir önerme olduğu için ve bağlacı yanlış."
+         "text": "3. masada çay yok → $p \\equiv 0$.",
+         "narration": "Üçüncü masada hiç çay yok. Her masada çay vardır önermesi yanlış: p sıfır."
         },
         {
-         "text": "Veya doğru, sağ taraf yanlış → **sol taraf doğru**: $p \\equiv 1$, $q' \\equiv 1$ yani $q \\equiv 0$.",
-         "narration": "Veya bağlacı doğru ama sağ taraf yanlış; öyleyse sol taraf doğru olmalı. p ve q değil doğru: p doğru, q yanlış. Hızlı kargoyu seçmiş. q, hediye paketini seçmedi diyordu ve yanlış; demek ki hediye paketini seçmiş."
+         "text": "Çay $2 + 1 + 0 = 3$, kahve $0 + 1 + 2 = 3$: az değil → $q \\equiv 0$.",
+         "narration": "Toplam çay üç, toplam kahve de üç. Üç, üçten az değildir; q sıfır."
         },
         {
-         "text": "Hızlı kargo ✓, hediye paketi ✓, sigorta ✗. Cevap **A**.",
-         "narration": "Hızlı kargo ve hediye paketi seçilmiş, sigorta seçilmemiş. Cevabımız A. q önermesinin olumsuz kurulduğuna dikkat: q yanlışsa paket seçilmiştir.",
+         "text": "2. masada tatlı yok → $r \\equiv 1$.",
+         "narration": "İkinci masada tatlı yok. En az bir masada tatlı yoktur önermesi doğru: r bir."
+        },
+        {
+         "text": "A: $0 \\vee 0 = 0$. B, C, E: içinde $\\wedge 0$ var → **0**.",
+         "narration": "A'da sıfır veya sıfır, sıfır. B, C ve E'de ve bağlacının bir yanı sıfır; sonuç sıfır.",
          "eliminate": [
+          "A",
           "B",
           "C",
-          "D",
           "E"
          ]
+        },
+        {
+         "text": "D: $(0 \\vee 0)' \\wedge 1 = 1 \\wedge 1 = 1$. Cevap **D**.",
+         "narration": "D'de parantez sıfır, değili bir; bir ve bir, bir. Cevabımız D."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2024'ün \"seçimlerle ilgili üç önerme ve doğru bileşik önerme\" kalıbı örnek alındı; bağlam, önermeler ve bileşik önerme özgün."
+        "changes": "Bu ders için yazıldı; ÖSYM'nin günlük bir durumdan üç önerme kurup bileşik önermenin değerini sorma kalıbı (2021–2024) örnek alındı; tablo, önermeler ve şıklar özgün."
        }
       }
      }
@@ -368,141 +1050,572 @@
    },
    {
     "subtopic": "MAT_MANTIK_05",
-    "subtopics": [
-     "MAT_MANTIK_06",
-     "MAT_MANTIK_07"
-    ],
     "title": "Koşullu önerme",
-    "narration": "Şimdi ÖSYM'nin en sevdiği bağlaca geldik: ise.",
+    "narration": "Şimdi ÖSYM'nin en sevdiği bağlaca geldik: ise. Bunu bir söz gibi düşüneceğiz.",
     "cards": [
      {
-      "kind": "visual",
-      "title": "İse ve ancak ve ancak",
+      "kind": "concept",
+      "title": "İse bir sözdür",
+      "text": "**Koşullu önerme** $p \\Rightarrow q$, \"p ise q\" diye okunur. $p$ **hipotez**, $q$ **hüküm**dür. Önerme bir söz gibidir: p olursa q olacak.",
       "visual": {
-       "kind": "table",
-       "header": [
-        "$p$",
-        "$q$",
-        "$p \\Rightarrow q$",
-        "$p \\Leftrightarrow q$"
-       ],
-       "rows": [
-        [
-         "1",
-         "1",
-         "1",
-         "1"
-        ],
-        [
-         "1",
-         "0",
-         "0",
-         "0"
-        ],
-        [
-         "0",
-         "1",
-         "1",
-         "0"
-        ],
-        [
-         "0",
-         "0",
-         "1",
-         "1"
-        ]
-       ],
-       "highlightColumn": 2
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "Hipotez p",
+         "detail": "Antrenmana gelirsen"
+        },
+        {
+         "label": "Hüküm q",
+         "detail": "maçta oynarsın"
+        }
+       ]
       },
-      "caption": "$p \\Rightarrow q \\equiv p' \\vee q$. Karşıt tersi denktir: $p \\Rightarrow q \\equiv q' \\Rightarrow p'$.",
-      "narration": "p ise q, bir sözdür: p olursa q olacak.",
+      "narration": "Koşullu önerme bir söz gibidir. p hipotez, q hükümdür.",
       "beats": [
        {
-        "narration": "Söz yalnızca bir durumda bozulur: p olur ama q olmaz. Yani p doğru, q yanlışken p ise q yanlıştır.",
+        "narration": "Antrenör diyor ki: antrenmana gelirsen maçta oynarsın.",
         "show": [
-         "r2"
+         "n1"
         ],
         "focus": [
-         "r2"
+         "n1"
         ]
        },
        {
+        "narration": "Antrenmana gelmek hipotez, maçta oynamak hükümdür.",
         "show": [
-         "r1",
-         "r3",
-         "r4"
+         "n2"
         ],
         "focus": [
-         "r3",
-         "r4"
-        ],
-        "narration": "p yanlışsa söz bozulmamıştır; q ne olursa olsun önerme doğrudur."
-       },
-       {
-        "show": [],
-        "focus": [
-         "r3",
-         "r4"
-        ],
-        "narration": "Bunu bir örnekle düşün: sınav kazanırsan sana bisiklet alacağım. Kazanmazsan, bisiklet alsam da almasam da sözümü tutmuş sayılırım.",
-        "note": "Kazanmazsan söz bozulmaz"
-       },
-       {
-        "narration": "Ancak ve ancak bağlacı ise iki önermenin aynı değeri almasını ister: ikisi de doğru ya da ikisi de yanlışken doğrudur.",
-        "focus": [
-         "r1",
-         "r4"
+         "n2"
         ]
        }
       ]
      },
      {
-      "kind": "rule",
-      "title": "Totoloji ve çelişki",
-      "items": [
-       "Her durumda **doğru** olan önerme **totolojidir**: $p \\vee p' \\equiv 1$.",
-       "Her durumda **yanlış** olan önerme **çelişkidir**: $p \\wedge p' \\equiv 0$.",
-       "$p \\Rightarrow q \\equiv p' \\vee q$: ise bağlacını veya ile yazmak sadeleştirmeyi kolaylaştırır.",
-       "$1 \\Rightarrow q \\equiv q$, $0 \\Rightarrow q \\equiv 1$, $p \\Rightarrow 1 \\equiv 1$."
+      "kind": "predict",
+      "title": "Söz bozuldu mu?",
+      "context": "Antrenör: \"Antrenmana gelirsen maçta oynarsın.\" Ece antrenmana gelmedi ama maçta oynadı.",
+      "prompt": "Antrenör sözünü bozmuş olur mu?",
+      "choices": [
+       "Evet, bozdu",
+       "Hayır, bozmadı"
       ],
-      "narration": "Bazı önermeler her durumda doğrudur; bunlara totoloji denir. p veya p değil her zaman doğrudur, çünkü ikisinden biri mutlaka doğrudur. Her durumda yanlış olan önermelere ise çelişki denir: p ve p değil hiçbir zaman doğru olamaz. Sadeleştirmede işe yarayan bir denklik daha var: p ise q, p değil veya q'ya denktir. Ayrıca doğrudan bir şeye giden ise önermesi o şeyin değerini alır, yanlıştan giden ise önermesi her zaman doğrudur."
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p",
+        "q"
+       ],
+       "columns": [
+        {
+         "formula": "p ⇒ q",
+         "label": "ise"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Söz yalnız bir durumda bozulur: Ece gelir ama oynatılmaz.",
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Gelir ve oynarsa söz tutulmuştur; önerme doğrudur.",
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Gelmezse antrenör ne yaparsa yapsın söz bozulmaz. p yanlışken önerme hep doğrudur.",
+        "focus": [
+         "r3",
+         "r4"
+        ]
+       }
+      ],
+      "explanation": "p yanlışken $p \\Rightarrow q$ **her zaman doğrudur**. Yalnız **$1 \\Rightarrow 0$** yanlıştır.",
+      "narration": "Şimdi bir tahmin yap.",
+      "explanationNarration": "Doğru cevap hayır. Ece gelmediği için hipotez yanlış; söz hiç sınanmadı. İse yalnız doğrudan yanlışa giderken yanlıştır."
+     },
+     {
+      "kind": "rule",
+      "title": "İse bağlacının kuralları",
+      "items": [
+       "$p \\Rightarrow q$ yalnız **$1 \\Rightarrow 0$** iken yanlıştır.",
+       "$p \\Rightarrow q \\equiv p' \\vee q$.",
+       "$1 \\Rightarrow q \\equiv q$, $0 \\Rightarrow q \\equiv 1$, $p \\Rightarrow 1 \\equiv 1$.",
+       "Karşıtı $q \\Rightarrow p$, tersi $p' \\Rightarrow q'$, **karşıt tersi** $q' \\Rightarrow p'$.",
+       "Yalnız karşıt tersi $p \\Rightarrow q$'ya **denktir**."
+      ],
+      "narration": "Bir: ise yalnız doğrudan yanlışa giderken yanlıştır. İki: p ise q, p değil veya q'ya denktir. Üç: doğrudan giden ise, varılan önermenin değerini alır; yanlıştan giden ise hep doğrudur. Dört: yer değiştirirsen karşıtı, değillerini alırsan tersi, ikisini birden yaparsan karşıt tersi bulursun. Beş: yalnız karşıt tersi asıl önermeye denktir."
+     },
+     {
+      "kind": "example",
+      "title": "Karşıt tersi cümlede",
+      "example": "\"Yağmur yağarsa yer ıslanır.\" önermesinin karşıt tersi nedir?",
+      "explanation": "Karşıt tersi: yer **ıslanmazsa** yağmur **yağmamıştır**. Asıl önermeyle **denktir**.",
+      "narration": "Yağmur yağarsa yer ıslanır önermesinin karşıt tersi nedir? Önce yer değiştir, sonra ikisinin de değilini al. Karşıt tersi: yer ıslanmazsa yağmur yağmamıştır. Asıl önermeyle denktir."
+     },
+     {
+      "kind": "example",
+      "title": "İç içe ise",
+      "example": "p yanlış, q doğru, r yanlış. (p ise q) ise r önermesinin değeri nedir?",
+      "explanation": "Önce parantez: **doğru**. Sonra doğru ise yanlış: **yanlış**.",
+      "narration": "p yanlış, q doğru, r yanlış. p ise q, ise r önermesinin değeri nedir? Önce parantez: yanlıştan giden ise hep doğrudur. Sonra doğru ise yanlış: ise yalnız bu durumda yanlıştır. Sonuç yanlış."
+     },
+     {
+      "kind": "mistake",
+      "title": "Tersi değili değildir",
+      "wrong": "$p \\Rightarrow q$ önermesinin değili $p' \\Rightarrow q'$ önermesidir.",
+      "right": "Değili $p \\wedge q'$: söz **bozulduğunda** p olmuş, q olmamıştır.",
+      "why": "Çünkü $p \\Rightarrow q \\equiv p' \\vee q$; De Morgan ile değili $p \\wedge q'$ olur. **Tersi** ile **değili** farklıdır.",
+      "narration": "Sık yapılan hata: p ise q'nun değilini p değil ise q değil sanmak. Değili p ve q değildir; söz bozulduğunda p olmuş, q olmamıştır. Çünkü p ise q, p değil veya q'ya denktir. Tersi ile değili farklıdır."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Bir sağlık kartında Murat Bey'in yaşı 48 olarak yazılıdır. p: Murat Bey'in kilosu 70 kilogramdan fazladır. q: Murat Bey'in boyu 160 cm ile 170 cm arasındadır. r: Murat Bey'in yaşı 45 ile 55 arasındadır. $(p \\wedge q) \\Rightarrow r'$ önermesi **yanlış** olduğuna göre, Murat Bey'in boyu ve kilosu aşağıdakilerden hangisi olabilir?",
+       "stem": "$p$: \"$4 \\cdot 5 = 20$\" ve $q$: \"20 bir çift sayıdır.\" önermeleri veriliyor. Buna göre $p \\Rightarrow q$ önermesinin **karşıt tersi** aşağıdakilerden hangisidir?",
        "options": [
-        "158 cm, 72 kg",
-        "165 cm, 68 kg",
-        "168 cm, 74 kg",
-        "172 cm, 75 kg",
-        "162 cm, 70 kg"
+        "$4 \\cdot 5 \\neq 20$ ise 20 çift sayı değildir.",
+        "20 çift sayı değil ise $4 \\cdot 5 \\neq 20$.",
+        "20 çift sayı ise $4 \\cdot 5 = 20$.",
+        "$4 \\cdot 5 = 20$ ve 20 çift sayı değildir.",
+        "20 çift sayı değil ise $4 \\cdot 5 = 20$."
        ],
-       "answer": 2,
-       "narration": "ÖSYM 2023'te bir doktor kartıyla sordu. İse bağlacı yanlışsa ne bildiğimizi düşünelim.",
+       "answer": 1,
+       "narration": "Karşıt tersin iki hamlesini uygulayalım.",
        "steps": [
         {
-         "text": "İse yanlış → sol **doğru**, sağ **yanlış**: $p \\wedge q \\equiv 1$ ve $r' \\equiv 0$.",
-         "narration": "İse bağlacı yalnızca bir durumda yanlıştır: sol taraf doğru, sağ taraf yanlış. Sol taraf p ve q doğru; sağ taraf r değil yanlış, yani r doğru. Yaş 48, gerçekten 45 ile 55 arasında; tutarlı."
+         "text": "Karşıt ters: yer değiştir ve iki tarafın değilini al: $q' \\Rightarrow p'$.",
+         "narration": "Karşıt ters için önce yer değiştir, sonra ikisinin de değilini al. Sonuç q değil ise p değil."
         },
         {
-         "text": "$p \\wedge q \\equiv 1$ → **p de q de doğru**: kilo 70'ten fazla, boy 160 ile 170 arasında.",
-         "narration": "p ve q doğruysa ikisi de doğrudur. Kilo 70'ten fazla, boy 160 ile 170 santimetre arasında olmalı."
-        },
-        {
-         "text": "A: boy 158 ✗. B: kilo 68 ✗. D: boy 172 ✗. E: kilo 70, fazla değil ✗. C: 168 cm, 74 kg ✓. Cevap **C**.",
-         "narration": "A şıkkında boy 158, aralığın dışında. B'de kilo 68, 70'ten az. D'de boy 172, aralığın dışında. E'de kilo tam 70; 70'ten fazla değil. C'de boy 168, kilo 74; iki koşul da sağlanıyor. Cevabımız C.",
+         "text": "$q'$: 20 çift sayı değil; $p'$: $4 \\cdot 5 \\neq 20$. Cevap **B**.",
+         "narration": "q değil, yirmi çift sayı değil; p değil, dört çarpı beş yirmiye eşit değil. A tersi, C karşıtı, D değilidir. Cevabımız B.",
          "eliminate": [
           "A",
-          "B",
+          "C",
           "D",
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2023'ün \"kart bilgilerinden üç önerme ve yanlış bileşik önerme\" kalıbı örnek alındı; bileşik önerme, aralıklar ve seçenekler özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki koşullu önermenin karşıt tersi kalıbı örnek alındı, önermeler özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "context": "p: Yolculuk hafta sonu yapılacaktır.\nq: Bilet öğrenci biletidir.\nr: Koltuk cam kenarıdır.",
+       "stem": "Bir otobüs firması sattığı her biletin üstüne yolculuk gününü, ücret türünü (öğrenci ya da tam) ve koltuk yerini (cam kenarı ya da koridor) yazmaktadır. Elif'in biletiyle ilgili p, q ve r önermeleri veriliyor. $(p \\Rightarrow q) \\Rightarrow (r \\Rightarrow q)$ önermesi **yanlış** olduğuna göre, Elif'in biletinde aşağıdakilerden hangisi yazıyor olabilir?",
+       "options": [
+        "Hafta sonu · öğrenci · cam kenarı",
+        "Hafta içi · tam · koridor",
+        "Hafta sonu · tam · cam kenarı",
+        "Hafta içi · öğrenci · cam kenarı",
+        "Hafta içi · tam · cam kenarı"
+       ],
+       "answer": 4,
+       "narration": "ÖSYM 2025'te doğum tarihiyle tam bu yapıyı sordu: iç içe ise.",
+       "steps": [
+        {
+         "text": "Dıştaki ise yanlış → sol $p \\Rightarrow q \\equiv 1$, sağ $r \\Rightarrow q \\equiv 0$.",
+         "narration": "En dıştaki ise yanlış. O hâlde sol parantez doğru, sağ parantez yanlış."
+        },
+        {
+         "text": "$r \\Rightarrow q \\equiv 0$ → $r \\equiv 1$, $q \\equiv 0$: **cam kenarı**, **tam** bilet.",
+         "narration": "r ise q yanlış: r doğru, q yanlış. Koltuk cam kenarı, bilet tam. Öğrenci yazan A ve D ile koridor yazan B elenir.",
+         "eliminate": [
+          "A",
+          "B",
+          "D"
+         ]
+        },
+        {
+         "text": "$p \\Rightarrow 0 \\equiv 1$ → $p \\equiv 0$: **hafta içi**. Cevap **E**.",
+         "narration": "Sol parantez p ise q doğru ama q yanlış. Öyleyse p de yanlış: yolculuk hafta içi. C tuzak. Cevabımız E.",
+         "eliminate": [
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2025'in iç içe koşullu önerme kalıbı, (p ⇒ q) ⇒ (r ⇒ q) yanlış, örnek alındı; bağlam, önermeler ve şıklar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_MANTIK_06",
+    "title": "İki yönlü koşullu önerme",
+    "narration": "İse bağlacını iki yöne birden çalıştırırsak ne olur? Ancak ve ancak bağlacını elde ederiz.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Ancak ve ancak",
+      "text": "**İki yönlü koşullu önerme** $p \\Leftrightarrow q$, \"p ancak ve ancak q\" diye okunur ve $(p \\Rightarrow q) \\wedge (q \\Rightarrow p)$ demektir. Değerler **aynıysa** doğru, **farklıysa** yanlıştır.",
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p",
+        "q"
+       ],
+       "columns": [
+        {
+         "formula": "p ⇒ q"
+        },
+        {
+         "formula": "q ⇒ p"
+        },
+        {
+         "formula": "(p ⇒ q) ∧ (q ⇒ p)"
+        },
+        {
+         "formula": "p ⇔ q"
+        }
+       ],
+       "check": "equivalence"
+      },
+      "narration": "Ancak ve ancak, iki yöne verilen bir sözdür. Değerler aynıysa doğru, farklıysa yanlış.",
+      "beats": [
+       {
+        "narration": "Önce p ise q sütununa bak: yalnız ikinci satır yanlış.",
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "Ters yönde q ise p yalnız üçüncü satırda yanlış.",
+        "focus": [
+         "c2"
+        ]
+       },
+       {
+        "narration": "İkisini ve ile bağlayınca birinci ve dördüncü satır doğru kalır.",
+        "focus": [
+         "c3"
+        ]
+       },
+       {
+        "narration": "Son sütun ancak ve ancak. Değerleri aynı, yani iki önerme denktir.",
+        "focus": [
+         "c4",
+         "sonuc"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Ancak ve ancak kuralları",
+      "items": [
+       "$p \\Leftrightarrow q$: değerler **aynıysa** doğru, **farklıysa** yanlış.",
+       "$p \\Leftrightarrow p \\equiv 1$, $p \\Leftrightarrow p' \\equiv 0$.",
+       "$p \\Leftrightarrow 1 \\equiv p$, $p \\Leftrightarrow 0 \\equiv p'$.",
+       "$p \\Leftrightarrow q \\equiv p' \\Leftrightarrow q'$; $(p \\Leftrightarrow q)' \\equiv p \\Leftrightarrow q'$."
+      ],
+      "narration": "Bir: değerler aynıysa doğru, farklıysa yanlış. İki: bir önerme kendisiyle her zaman denk, değiliyle hiçbir zaman. Üç: doğruyla bağlarsan önerme aynen kalır, yanlışla bağlarsan değiline döner. Dört: iki tarafın değilini almak sonucu değiştirmez; tek tarafınkini almak tersine çevirir."
+     },
+     {
+      "kind": "example",
+      "title": "İki yöne de bak",
+      "example": "\"Bir üçgen eşkenardır **ancak ve ancak** üç açısı eşittir.\" önermesi doğru mu?",
+      "explanation": "İki yön de **doğru**: önerme **doğrudur**.",
+      "narration": "Bir üçgen eşkenardır ancak ve ancak üç açısı eşittir önermesi doğru mu? Eşkenar üçgenin açıları eşittir; açıları eşit üçgen de eşkenardır. İki yön de doğru, önerme doğrudur."
+     },
+     {
+      "kind": "mistake",
+      "title": "İkisi de yanlışken",
+      "wrong": "$p \\Leftrightarrow q$ yalnız iki önerme de doğruyken doğrudur.",
+      "right": "İkisi de **yanlışken** de doğrudur: $0 \\Leftrightarrow 0 \\equiv 1$.",
+      "why": "Ancak ve ancak, değerlerin **aynı** olmasına bakar; doğru olmalarına değil.",
+      "narration": "Bir tuzak daha: ancak ve ancak yalnız ikisi de doğruyken doğru sanmak. İkisi de yanlışken de doğrudur. Ancak ve ancak, değerlerin aynı olmasına bakar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$p \\equiv 1$ ve $q \\equiv 0$ olduğuna göre aşağıdaki önermelerden hangisinin doğruluk değeri **1**'dir?",
+       "options": [
+        "$p \\Leftrightarrow q$",
+        "$p' \\Leftrightarrow q'$",
+        "$(p \\Leftrightarrow q)'$",
+        "$p \\wedge q$",
+        "$p \\Rightarrow q$"
+       ],
+       "answer": 2,
+       "narration": "Şıkları tek tek hesaplayalım.",
+       "steps": [
+        {
+         "text": "A: $1 \\Leftrightarrow 0 = 0$. B: $0 \\Leftrightarrow 1 = 0$.",
+         "narration": "A'da değerler farklı; ancak ve ancak sıfır. B'de p değil sıfır, q değil bir; yine farklı, sıfır.",
+         "eliminate": [
+          "A",
+          "B"
+         ]
+        },
+        {
+         "text": "D: $1 \\wedge 0 = 0$. E: $1 \\Rightarrow 0 = 0$.",
+         "narration": "D'de ve bağlacının bir yanı yanlış; sıfır. E'de doğrudan yanlışa gidiş; sıfır.",
+         "eliminate": [
+          "D",
+          "E"
+         ]
+        },
+        {
+         "text": "C: $(1 \\Leftrightarrow 0)' = 0' = 1$. Cevap **C**.",
+         "narration": "C'de önce ancak ve ancak sıfır, değili bir. Cevabımız C."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki doğruluk değeri verilen önermelerle bağlaç hesabı kalıbı örnek alındı, şıklar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "Paket",
+         "Ağırlık (kg)",
+         "Ek ücret"
+        ],
+        "rows": [
+         [
+          "K",
+          "7",
+          "Alındı"
+         ],
+         [
+          "L",
+          "3",
+          "Alındı"
+         ],
+         [
+          "M",
+          "5",
+          "Alınmadı"
+         ],
+         [
+          "N",
+          "9",
+          "Alınmadı"
+         ],
+         [
+          "P",
+          "4",
+          "Alınmadı"
+         ]
+        ]
+       },
+       "stem": "Bir kargo şirketi \"Paket 5 kilogramdan ağırsa ek ücret alınır, ağır değilse alınmaz.\" kuralını uygulamaktadır. Bir günde gönderilen beş paketin bilgileri tabloda verilmiştir. Her paket için p: \"Paket 5 kilogramdan ağırdır.\" ve q: \"Pakete ek ücret alınmıştır.\" önermeleri tanımlanıyor. Buna göre hangi paketler için $p \\Leftrightarrow q$ önermesi **yanlıştır**?",
+       "options": [
+        "L ve N",
+        "Yalnız L",
+        "Yalnız N",
+        "L ve M",
+        "L, M ve N"
+       ],
+       "answer": 0,
+       "narration": "Kural iki yönlü; tabloyu satır satır okuyalım.",
+       "steps": [
+        {
+         "text": "Ancak ve ancak, değerler **farklıysa** yanlış.",
+         "narration": "Ancak ve ancak, değerler farklıyken yanlıştır. Her paket için p ile q'yu karşılaştıralım."
+        },
+        {
+         "text": "K: 1, 1. M: 5 kg, **ağır değil**: 0, 0. P: 0, 0. Hepsi doğru.",
+         "narration": "K ağır ve ücretli; değerler aynı. M tam 5 kilogram, 5'ten ağır değil; ücret de yok. P de aynı. M'yi içeren D ve E elenir.",
+         "eliminate": [
+          "D",
+          "E"
+         ]
+        },
+        {
+         "text": "L: 0, 1. N: 1, 0. İkisi **yanlış**. Cevap **A**.",
+         "narration": "L hafif ama ücret alınmış; N ağır ama alınmamış. İkisinde değerler farklı. Cevabımız A.",
+         "eliminate": [
+          "B",
+          "C"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin tablodan önerme değeri okuma yaklaşımı ancak ve ancak bağlacına uygulandı; bağlam, tablo ve şıklar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_MANTIK_07",
+    "title": "Doğruluk tablosu",
+    "narration": "Karmaşık bir bileşik önermenin her durumdaki değerini görmek için doğruluk tablosu kurarız.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Tabloyu kurmak",
+      "text": "**Doğruluk tablosu**, önermelerin bütün durumlarını satır satır yazar ve bileşik önermenin her satırdaki değerini gösterir. Her satırda doğru olan önerme **totoloji**, her satırda yanlış olan **çelişkidir**.",
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p",
+        "q"
+       ],
+       "columns": [
+        {
+         "formula": "~p"
+        },
+        {
+         "formula": "~p ∨ q"
+        },
+        {
+         "formula": "p ⇒ q"
+        }
+       ],
+       "check": "equivalence"
+      },
+      "narration": "Doğruluk tablosu, bütün durumları satır satır gösterir.",
+      "beats": [
+       {
+        "narration": "İki önerme için dört satır var: p ile q'nun bütün durumları.",
+        "focus": [
+         "v"
+        ]
+       },
+       {
+        "narration": "Önce p değil sütununu yaz; p'nin tam tersi.",
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "Sonra p değil veya q: satırların üçü doğru, yalnız ikincisi yanlış.",
+        "focus": [
+         "c2"
+        ]
+       },
+       {
+        "narration": "Son sütun p ise q ile aynı. Bu yüzden ikisi denktir.",
+        "focus": [
+         "c3",
+         "sonuc"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Totoloji",
+      "visual": {
+       "kind": "truthTable",
+       "variables": [
+        "p",
+        "q"
+       ],
+       "columns": [
+        {
+         "formula": "p ∧ q"
+        },
+        {
+         "formula": "(p ∧ q) ⇒ p"
+        }
+       ],
+       "check": "consistency"
+      },
+      "narration": "Şimdi her satırda doğru çıkan bir önerme görelim.",
+      "beats": [
+       {
+        "narration": "p ve q yalnız birinci satırda doğru.",
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "Ama p ve q, ise p her satırda doğru çıkıyor.",
+        "focus": [
+         "c2"
+        ]
+       },
+       {
+        "narration": "Her satırda doğru olduğu için bu bir totolojidir.",
+        "focus": [
+         "sonuc"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Tablo kurmanın yolu",
+      "items": [
+       "Satır sayısı: $n$ önerme için **$2^n$**.",
+       "İlk sütunun yarısı 1, yarısı 0; sonraki sütunda değerler **daha sık** değişir.",
+       "**İçten dışa** çalış: önce parantez, sonra ana bağlaç.",
+       "Her satır 1 ise **totoloji**, her satır 0 ise **çelişki**.",
+       "İki önermenin sütunları aynıysa önermeler **denktir**."
+      ],
+      "narration": "Bir: satır sayısı 2 üssü n. İki: ilk sütunun yarısı 1, yarısı 0; sonraki sütunda değerler daha sık değişir. Üç: içten dışa çalış; önce parantez, sonra ana bağlaç. Dört: her satır 1 ise totoloji, her satır 0 ise çelişki. Beş: sütunlar aynıysa önermeler denktir."
+     },
+     {
+      "kind": "example",
+      "title": "Totoloji mi?",
+      "example": "p veya q, ise p önermesi totoloji midir?",
+      "explanation": "Tek bir yanlış satır: p yanlış, q doğru. Önerme **totoloji değil**.",
+      "narration": "p veya q, ise p önermesi totoloji midir? Bozmak için tek bir yanlış satır yeter. p yanlış, q doğru alalım. p veya q doğru, p yanlış; doğrudan yanlışa gidiyor. Totoloji değil."
+     },
+     {
+      "kind": "mistake",
+      "title": "Tek satır yetmez",
+      "wrong": "Bir önermenin totoloji olduğunu göstermek için tek bir doğru satır yeter.",
+      "right": "**Bütün satırlara** bakmalısın; tek bir 0 bile totolojiyi bozar.",
+      "why": "Totoloji **her durumda** doğrudur; bir satır yalnız o durumu gösterir.",
+      "narration": "Sık hata: totoloji için tek bir doğru satır yeter sanmak. Bütün satırlara bakmalısın; tek bir sıfır bile totolojiyi bozar. Totoloji her durumda doğrudur."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$(p \\Rightarrow q)' \\wedge (p' \\vee q)$ önermesi aşağıdakilerden hangisine denktir?",
+       "options": [
+        "$p$",
+        "$q$",
+        "$p \\wedge q'$",
+        "$0$",
+        "$1$"
+       ],
+       "answer": 3,
+       "narration": "Tablo kurmadan, denklikle sadeleştirelim.",
+       "steps": [
+        {
+         "text": "$p \\Rightarrow q \\equiv p' \\vee q$.",
+         "narration": "İse bağlacını veyayla yaz: p ise q, p değil veya q'ya denktir."
+        },
+        {
+         "text": "Önerme $X' \\wedge X$ biçiminde: **çelişki**, $\\equiv 0$. Cevap **D**.",
+         "narration": "Öyleyse önerme, bir şeyin değili ve kendisi. Bu her zaman yanlıştır; bir çelişkidir. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki çelişkiye sadeleşen bileşik önerme kalıbı örnek alındı, önerme özgün."
        }
       }
      },
@@ -510,38 +1623,92 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$p \\Rightarrow q$ önermesi aşağıdakilerden hangisine **denktir**?",
+       "stem": "Aşağıdakilerden hangisi bir **totolojidir**?",
        "options": [
-        "$q \\Rightarrow p$",
-        "$p' \\Rightarrow q'$",
-        "$q' \\Rightarrow p'$",
-        "$p \\wedge q'$",
-        "$p' \\wedge q$"
+        "$p \\wedge p'$",
+        "$p \\Rightarrow (p \\vee q)$",
+        "$(p \\vee q) \\Rightarrow p$",
+        "$p \\Leftrightarrow p'$",
+        "$p \\wedge q$"
        ],
-       "answer": 2,
-       "narration": "Koşullu önermenin denklerini tablo ile sınayalım.",
+       "answer": 1,
+       "narration": "Her satırda doğru olanı arıyoruz.",
        "steps": [
         {
-         "text": "$p \\Rightarrow q$ yalnız $p \\equiv 1$, $q \\equiv 0$ iken **yanlış**.",
-         "narration": "p ise q yalnızca p doğru, q yanlışken yanlıştır. Denk bir önerme de yalnızca bu durumda yanlış olmalı."
-        },
-        {
-         "text": "$q' \\Rightarrow p'$: yanlış olması için $q' \\equiv 1$, $p' \\equiv 0$, yani $q \\equiv 0$, $p \\equiv 1$. **Aynı durum** ✓",
-         "narration": "q değil ise p değil önermesi ne zaman yanlış? q değil doğru, p değil yanlışken; yani q yanlış, p doğruyken. Tam olarak aynı durum. Bu karşıt terstir ve denktir."
-        },
-        {
-         "text": "$q \\Rightarrow p$ (karşıt) ve $p' \\Rightarrow q'$ (ters) **denk değil**. Cevap **C**.",
-         "narration": "q ise p ile p değil ise q değil, p ise q'ya denk değildir; ikisi de p yanlış, q doğruyken yanlış olur. Cevabımız C. Günlük dilde de öyle: yağmur yağarsa yer ıslanır diyorsan, yer ıslak değilse yağmur yağmamıştır.",
+         "text": "A, D: her satırda **0** (çelişki). E: yalnız ilk satırda 1.",
+         "narration": "p ve p değil ile p ancak ve ancak p değil hep yanlış; bunlar çelişki. p ve q de yalnız bir satırda doğru.",
          "eliminate": [
           "A",
-          "B",
           "D",
+          "E"
+         ]
+        },
+        {
+         "text": "C: $p \\equiv 0$, $q \\equiv 1$ için $1 \\Rightarrow 0 = 0$.",
+         "narration": "C'yi az önce gördük: p yanlış, q doğruyken yanlış çıkıyor.",
+         "eliminate": [
+          "C"
+         ]
+        },
+        {
+         "text": "B: $p \\equiv 1$ ise $1 \\Rightarrow 1$; $p \\equiv 0$ ise $0 \\Rightarrow$ her şey 1. Cevap **B**.",
+         "narration": "B'de p doğruysa p veya q da doğru; ise doğru. p yanlışsa yanlıştan giden ise zaten doğru. Her satırda doğru. Cevabımız B."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki totoloji seçme kalıbı örnek alındı, şıklar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "context": "p: Ada ile Bora arasında tam olarak 3 kişi vardır.\nq: Can, Dila'nın hemen sağındadır.\nr: Ece, Dila'nın yanındadır.",
+       "stem": "Bir okul fotoğrafı için Ada, Bora, Can, Dila ve Ece soldan sağa tek sıra hâlinde yan yana dizilmiştir. Bu dizilişle ilgili p, q ve r önermeleri veriliyor. $(q \\vee r) \\Rightarrow (p \\Rightarrow r)$ önermesi **yanlış** olduğuna göre, sıranın tam ortasında kim durmaktadır?",
+       "options": [
+        "Ada",
+        "Bora",
+        "Can",
+        "Dila",
+        "Ece"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2026'da arabaların dizilişiyle sordu. Önce önermelerin değerlerini çıkaralım.",
+       "steps": [
+        {
+         "text": "Dıştaki ise yanlış → $q \\vee r \\equiv 1$ ve $p \\Rightarrow r \\equiv 0$.",
+         "narration": "En dıştaki ise yanlış. Sol taraf q veya r doğru, sağ taraf p ise r yanlış."
+        },
+        {
+         "text": "$p \\Rightarrow r \\equiv 0$ → $p \\equiv 1$, $r \\equiv 0$; o hâlde $q \\equiv 1$.",
+         "narration": "p ise r yanlışsa p doğru, r yanlış. r yanlış olunca q veya r'nin doğru olması için q doğru olmalı."
+        },
+        {
+         "text": "p doğru: Ada ile Bora **iki uçta**.",
+         "narration": "Ada ile Bora arasında üç kişi varsa ikisi iki uçtadır. Ortada ikisi de olamaz.",
+         "eliminate": [
+          "A",
+          "B"
+         ]
+        },
+        {
+         "text": "q: Dila 2, Can 3 ya da Dila 3, Can 4. Dila 3'teyse Ece 2'de, Dila'nın yanında: **r doğru olurdu**.",
+         "narration": "Can, Dila'nın hemen sağında: Dila ikide Can üçte, ya da Dila üçte Can dörtte. İkincisinde Ece ikide kalır, Dila'nın yanındadır; r doğru olurdu.",
+         "eliminate": [
+          "D"
+         ]
+        },
+        {
+         "text": "Dila 2, Can 3, Ece 4: ortada **Can**. Cevap **C**.",
+         "narration": "Öyleyse Dila ikide, Can üçte, Ece dörtte. Ece Dila'nın yanında değil, r gerçekten yanlış. Ortada Can var. Cevabımız C.",
+         "eliminate": [
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki koşullu önermenin karşıt, ters ve karşıt tersi kalıbı örnek alındı."
+        "changes": "Bu ders için yazıldı; ÖSYM 2026'nın dizilim ve yanlış bileşik önerme kalıbı örnek alındı; kişiler, önermeler ve bileşik önerme özgün."
        }
       }
      }
@@ -550,63 +1717,266 @@
    {
     "subtopic": "MAT_MANTIK_08",
     "title": "Niceleyiciler",
-    "narration": "Her ve bazı sözcüklerine niceleyici denir. Bunların değilini almak sınavda sık yapılan bir hatadır.",
+    "narration": "Son durak: içinde değişken olan önermeler ve her, bazı sözcükleri.",
     "cards": [
      {
-      "kind": "rule",
+      "kind": "concept",
+      "title": "Açık önerme",
+      "text": "İçinde değişken olan ve değişkene göre doğru ya da yanlış olan önermeye **açık önerme** denir: $p(x)$. Onu doğru yapan değerlerin kümesi **doğruluk kümesidir**.",
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        0,
+        7
+       ],
+       "ticks": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+       ],
+       "intervals": [
+        {
+         "from": 2,
+         "to": 5,
+         "closedFrom": false,
+         "closedTo": true,
+         "label": "2 < x ≤ 5"
+        }
+       ],
+       "points": [
+        {
+         "x": 3
+        },
+        {
+         "x": 4
+        },
+        {
+         "x": 5
+        }
+       ]
+      },
+      "narration": "Değişken içeren önermeye açık önerme denir.",
+      "beats": [
+       {
+        "narration": "p x, iki küçüktür x küçük eşit beş olsun. x bir tam sayı.",
+        "show": [
+         "i1"
+        ],
+        "focus": [
+         "i1"
+        ]
+       },
+       {
+        "narration": "Önermeyi doğru yapan tam sayılar üç, dört ve beştir.",
+        "show": [
+         "p1",
+         "p2",
+         "p3"
+        ],
+        "focus": [
+         "p1",
+         "p2",
+         "p3"
+        ]
+       },
+       {
+        "narration": "Bu üç sayı doğruluk kümesidir. Altı için önerme yanlıştır.",
+        "focus": [
+         "p1",
+         "p2",
+         "p3"
+        ],
+        "note": "Doğruluk kümesi: {3, 4, 5}"
+       }
+      ]
+     },
+     {
+      "kind": "visual",
       "title": "Her ve bazı",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sembolle",
+        "Sözle"
+       ],
+       "rows": [
+        [
+         "$\\forall x \\in \\mathbb{N}, x^2 \\geq 0$",
+         "Her doğal sayının karesi ≥ 0'dır."
+        ],
+        [
+         "$\\exists x \\in \\mathbb{Z}, x + 3 = 1$",
+         "Bazı tam sayıların 3 fazlası 1'dir."
+        ]
+       ]
+      },
+      "narration": "Niceleyiciler sembolle de yazılır.",
+      "beats": [
+       {
+        "narration": "Ters A, her demektir; evrensel niceleyicidir. Her doğal sayının karesi sıfır ya da daha büyüktür.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Ters E, bazı yani en az bir demektir; varlıksal niceleyicidir. Eksi iki için x artı üç birdir.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Niceleyicinin değili",
       "items": [
-       "$\\forall$: **her**, bütün. $\\exists$: **bazı**, en az bir.",
-       "\"Her\"in değili \"**bazı ... değil**\": $(\\forall x, p(x))' \\equiv \\exists x, p'(x)$.",
-       "\"Bazı\"nın değili \"**hiçbiri**\", yani \"her ... değil\": $(\\exists x, p(x))' \\equiv \\forall x, p'(x)$.",
-       "Değil alırken niceleyici **değişir**, hüküm de **değil** olur."
+       "Değilde **her, bazı** olur; bazı, her olur: $\\forall$ ↔ $\\exists$.",
+       "Hüküm de döner: $=$ ↔ $\\neq$, $<$ ↔ $\\geq$, $>$ ↔ $\\leq$.",
+       "$(\\forall x, p(x))' \\equiv \\exists x, p'(x)$: her'in değili **bazı değil**.",
+       "$(\\exists x, p(x))' \\equiv \\forall x, p'(x)$: bazı'nın değili **hiçbiri**."
       ],
-      "narration": "Her niceleyicisi bütün elemanlar için, bazı niceleyicisi en az bir eleman için söylenir. Her ile başlayan bir önermenin değili bazı ile kurulur ve hüküm olumsuz olur. Bazı ile başlayan bir önermenin değili ise her ile kurulur: hiçbiri. Değil alırken hem niceleyici değişir hem de hüküm tersine döner."
+      "narration": "Bir: değil alırken her, bazı olur; bazı, her olur. İki: hüküm de tersine döner; eşittir eşit değil, küçüktür büyük eşit olur. Üç: her ile kurulan önermenin değili bazı değil diye kurulur. Dört: bazı ile kurulan önermenin değili hiçbiri demektir."
+     },
+     {
+      "kind": "example",
+      "title": "Her'in değili",
+      "example": "\"Her öğrenci kahvaltı yapar.\" önermesinin değili nedir?",
+      "explanation": "Değili: **bazı** öğrenciler kahvaltı **yapmaz**.",
+      "narration": "Her öğrenci kahvaltı yapar önermesinin değili nedir? Her, bazı olur; hüküm de olumsuz olur. Değili: bazı öğrenciler kahvaltı yapmaz. Tek bir kahvaltısız öğrenci yeter."
+     },
+     {
+      "kind": "example",
+      "title": "Sembolle değil",
+      "example": "Her x gerçek sayısı için x kare büyük eşit 0 önermesinin değili nedir?",
+      "explanation": "**Değili**: $\\exists x \\in \\mathbb{R}, x^2 < 0$. Asıl önerme doğru olduğu için değili **yanlıştır**.",
+      "narration": "Her x gerçek sayısı için x kare büyük eşit 0 önermesinin değili nedir? Her, bazı olur; büyük eşit, küçük olur. Değili: bazı x için x kare küçüktür sıfır. Asıl önerme doğru olduğu için değili yanlıştır."
      },
      {
       "kind": "mistake",
-      "title": "Her'in değili hiçbiri değil",
-      "wrong": "\"Her öğrenci başarılıdır.\" önermesinin değili \"**Hiçbir** öğrenci başarılı değildir.\"",
-      "right": "Değili \"**Bazı** öğrenciler başarılı değildir.\" **Tek bir başarısız öğrenci**, ilk önermeyi yanlış yapmaya yeter.",
-      "why": "Değil, önermeyi yanlış yapan **en küçük** durumu söyler; hepsinin tersini değil.",
-      "narration": "En sık hata: her öğrenci başarılıdır önermesinin değilini hiçbir öğrenci başarılı değildir diye yazmak. Doğrusu: değili, bazı öğrenciler başarılı değildir. Çünkü her öğrencinin başarılı olmadığını göstermek için tek bir başarısız öğrenci yeter."
+      "title": "Bazı'nın değili",
+      "wrong": "\"Bazı sayılar çifttir.\" önermesinin değili \"Bazı sayılar çift değildir.\" önermesidir.",
+      "right": "Değili \"**Hiçbir** sayı çift değildir.\" Niceleyici de **değişir**.",
+      "why": "İkisi **aynı anda doğru** olabilir; oysa bir önerme ile değili asla birlikte doğru olamaz.",
+      "narration": "Burası çok karışır: bazı sayılar çifttir önermesinin değilini bazı sayılar çift değildir yazmak. Değili hiçbir sayı çift değildir; niceleyici de değişir. İkisi aynı anda doğru olabilir, oysa önerme ile değili birlikte doğru olamaz."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "\"Bazı sayılar çifttir.\" önermesinin değili aşağıdakilerden hangisidir?",
+       "stem": "$\\forall x \\in \\mathbb{Z}, x + 2 > 0$ önermesinin değili aşağıdakilerden hangisidir?",
        "options": [
-        "Bazı sayılar çift değildir.",
-        "Hiçbir sayı çift değildir.",
-        "Her sayı çifttir.",
-        "Bazı sayılar tektir.",
-        "En az bir sayı çifttir."
+        "$\\exists x \\in \\mathbb{Z}, x + 2 < 0$",
+        "$\\forall x \\in \\mathbb{Z}, x + 2 \\leq 0$",
+        "$\\forall x \\in \\mathbb{Z}, x + 2 < 0$",
+        "$\\exists x \\in \\mathbb{Z}, x + 2 > 0$",
+        "$\\exists x \\in \\mathbb{Z}, x + 2 \\leq 0$"
        ],
-       "answer": 1,
-       "narration": "Niceleyicinin değilini yazalım.",
+       "answer": 4,
+       "narration": "Değilde iki şeyin birden değiştiğini unutma.",
        "steps": [
         {
-         "text": "\"Bazı\"nın değili **her ... değil**: niceleyici değişir, hüküm tersine döner.",
-         "narration": "Bazı ile kurulan önermenin değilinde niceleyici her olur ve hüküm olumsuz olur."
+         "text": "Niceleyici değişir: $\\forall$ → $\\exists$.",
+         "narration": "Önce niceleyici: her, bazı olur. Her ile başlayan B ve C elenir.",
+         "eliminate": [
+          "B",
+          "C"
+         ]
         },
         {
-         "text": "\"Her sayı çift **değildir**\" = \"**Hiçbir** sayı çift değildir.\"",
-         "narration": "Her sayı çift değildir, yani hiçbir sayı çift değildir. Bazı sayıların çift olduğu iddiasını yanlış çıkarmanın tek yolu, hiç çift sayı olmamasıdır."
-        },
-        {
-         "text": "Cevap **B**. A, ilk önermeyle **birlikte** doğru olabilir; değil olamaz.",
-         "narration": "Cevabımız B. A şıkkı tuzak: bazı sayılar çift değildir önermesi, bazı sayılar çifttir önermesiyle aynı anda doğru olabilir. Bir önerme ile değili ise asla aynı anda doğru olamaz.",
+         "text": "Hüküm değişir: $>$ → $\\leq$. Cevap **E**.",
+         "narration": "Sonra hüküm: büyüktürün değili küçük eşittir. Küçüktür yazan A, sıfırı unutur. D hükmü hiç değiştirmemiş. Cevabımız E.",
          "eliminate": [
           "A",
-          "C",
-          "D",
-          "E"
+          "D"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki niceleyicili önermenin değili kalıbı örnek alındı."
+        "changes": "Bu ders için yazıldı; havuzdaki niceleyicili açık önermenin değili kalıbı örnek alındı, önerme özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "context": "p: Her dairenin faturası 300 TL'den fazladır.\nq: Bazı dairelerin faturaları birbirine eşittir.\nr: Hiçbir dairenin faturası 400 TL'den fazla değildir.",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "Daire",
+         "Su faturası (TL)"
+        ],
+        "rows": [
+         [
+          "1",
+          "320"
+         ],
+         [
+          "2",
+          "410"
+         ],
+         [
+          "3",
+          "275"
+         ],
+         [
+          "4",
+          "410"
+         ],
+         [
+          "5",
+          "390"
+         ]
+        ]
+       },
+       "stem": "Bir apartmandaki beş dairenin bu ayki su faturaları tabloda verilmiştir. Bu faturalarla ilgili niceleyici içeren p, q ve r önermeleri veriliyor. Buna göre aşağıdaki bileşik önermelerden hangisinin doğruluk değeri **1**'dir?",
+       "options": [
+        "$(p \\vee q) \\wedge r'$",
+        "$p \\vee r$",
+        "$p' \\wedge r$",
+        "$q \\Rightarrow r$",
+        "$q' \\vee p$"
+       ],
+       "answer": 0,
+       "narration": "Her ve hiçbiri, tek bir örnekle bozulur. Tabloya bakalım.",
+       "steps": [
+        {
+         "text": "3. daire 275 TL: \"her\" bozuldu → $p \\equiv 0$.",
+         "narration": "Üçüncü daire 275 lira öder. Her dairenin faturası 300'den fazla değil; tek örnek yeter, p sıfır."
+        },
+        {
+         "text": "2. ve 4. daire 410 TL → $q \\equiv 1$; $410 > 400$ → $r \\equiv 0$.",
+         "narration": "İkinci ve dördüncü daire 410 lira; eşit faturalar var, q bir. 410, 400'den fazla; hiçbiri bozuldu, r sıfır."
+        },
+        {
+         "text": "B: $0 \\vee 0$, C: $1 \\wedge 0$, D: $1 \\Rightarrow 0$, E: $0 \\vee 0$: hepsi **0**.",
+         "narration": "B'de sıfır veya sıfır, C'de bir ve sıfır, D'de bir ise sıfır, E'de sıfır veya sıfır. Hepsi sıfır.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        },
+        {
+         "text": "A: $(0 \\vee 1) \\wedge 1 = 1$. Cevap **A**.",
+         "narration": "A'da p veya q bir, r değil bir; sonuç bir. Cevabımız A."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin tablodan önerme değeri okuma kalıbı niceleyicili önermelere uygulandı; tablo, önermeler ve şıklar özgün."
        }
       }
      }
@@ -615,46 +1985,48 @@
   ],
   "summary": {
    "points": [
-    "Önerme **kesin** bir hükümdür; yanlış olabilir.",
-    "**Ve**: ikisi de doğruysa doğru. **Veya**: ikisi de yanlışsa yanlış.",
-    "**İse**: yalnız $1 \\Rightarrow 0$ yanlış. **Ancak ve ancak**: değerler aynıysa doğru.",
-    "İse yanlışsa sol taraf **doğru**, sağ taraf **yanlış**.",
-    "De Morgan: değil içeri girerken ve ↔ veya.",
-    "Her'in değili **bazı ... değil**; bazı'nın değili **hiçbiri**."
+    "Önerme **kesin** bir hükümdür; yanlış da olabilir, o zaman değeri 0'dır.",
+    "$n$ önerme için **$2^n$** durum vardır; değerleri aynı önermeler **denktir**.",
+    "**Ve**: ikisi de doğruysa doğru. **Veya**: ikisi de yanlışsa yanlış. **Ya da**: yalnız biri doğruysa doğru.",
+    "**İse** yalnız $1 \\Rightarrow 0$ iken yanlış; denki karşıt tersi $q' \\Rightarrow p'$.",
+    "**Ancak ve ancak**: değerler aynıysa doğru.",
+    "İse yanlış verildiyse sol **doğru**, sağ **yanlış**; buradan geri çöz.",
+    "Her'in değili **bazı değil**; bazı'nın değili **hiçbiri**."
    ],
    "warnings": [
-    "Yanlış bir ifade de önermedir.",
+    "$x > 3$'ün değili $x \\leq 3$.",
     "Veya doğruysa hangisinin doğru olduğu **belli değil**.",
-    "$p \\Rightarrow q$'nun denki karşıt tersidir: $q' \\Rightarrow p'$.",
-    "\"70'ten fazla\" 70'i içermez."
+    "$(p \\Rightarrow q)'$, tersi değil: $p \\wedge q'$.",
+    "Totoloji için **bütün satırlar** 1 olmalı."
    ],
-   "narration": "Hadi toparlayalım. Önerme kesin bir hükümdür ve yanlış da olabilir. Ve bağlacı yalnızca ikisi de doğruyken doğrudur; veya bağlacı yalnızca ikisi de yanlışken yanlıştır. İse bağlacı yalnızca doğrudan yanlışa giderken yanlıştır. ÖSYM sorularında bir ise önermesi yanlış verildiyse sol taraf doğru, sağ taraf yanlıştır; buradan her bileşeni bulursun. Değil alırken De Morgan kuralını uygula ve her ile bazı niceleyicilerini değiştir."
+   "narration": "Hadi toparlayalım. Önerme kesin bir hükümdür ve yanlış da olabilir. Ve yalnız ikisi de doğruyken doğru, veya yalnız ikisi de yanlışken yanlıştır. İse yalnız doğrudan yanlışa giderken yanlıştır; ancak ve ancak değerler aynıyken doğrudur. ÖSYM bir ise önermesini yanlış verirse sol taraf doğru, sağ taraf yanlıştır. Değil alırken işareti eşitlikle birlikte çevir, her ile bazıyı değiştir."
   }
  },
  "short": {
-  "hook": "Mantıkta üç tuzak.",
+  "hook": "İse ne zaman yanlış?",
   "cards": [
+   {
+    "kind": "term",
+    "term": "Önerme",
+    "definition": "**Kesin** hüküm: yanlış da olabilir."
+   },
    {
     "kind": "fact",
     "text": "p ise q yalnız **1 ise 0** iken yanlış."
    },
    {
     "kind": "warning",
-    "text": "Yanlış bir ifade de **önermedir**."
-   },
-   {
-    "kind": "warning",
-    "text": "Her'in değili **bazı ... değil**."
+    "text": "Bazı'nın değili **hiçbiri**."
    },
    {
     "kind": "fact",
-    "text": "Veya: bir doğru **yeter**."
+    "text": "Ancak ve ancak: değerler **aynıysa** doğru."
    }
   ],
   "summary": [
    "İse yalnız 1 ise 0 yanlış",
-   "Yanlış da önermedir",
-   "Her'in değili bazı değil"
+   "Bazı'nın değili hiçbiri",
+   "x > 3'ün değili x ≤ 3"
   ],
   "rounds": [
    {
@@ -665,27 +2037,27 @@
      "Yanlış"
     ],
     "answer": 0,
-    "why": "Söz **bozulmadı**."
+    "why": "Yanlıştan **her şey** çıkar."
    },
    {
-    "sentence": "Asal her sayı tektir.",
-    "question": "Önerme mi?",
-    "choices": [
-     "Evet",
-     "Hayır"
-    ],
-    "answer": 0,
-    "why": "**Yanlış** bir önerme."
-   },
-   {
-    "sentence": "Her öğrenci başarılıdır.",
-    "question": "Değili hiçbiri mi?",
+    "sentence": "**Bazı** sayılar çifttir.",
+    "question": "Değili \"bazısı değil\" mi?",
     "choices": [
      "Evet",
      "Hayır"
     ],
     "answer": 1,
-    "why": "**Bazısı** değildir."
+    "why": "Değili: **hiçbiri**."
+   },
+   {
+    "sentence": "$x > 3$",
+    "question": "Değili $x < 3$ mü?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "**Eşit** de girer."
    }
   ]
  },

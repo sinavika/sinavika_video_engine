@@ -12,43 +12,129 @@
   "TYT"
  ],
  "sources": [
-  "YKS/TYT/KonuAnlatimi/MAT/MAT_USLU.json (MEB Temel Matematik konu anlatımı: tanım, pozitif ve negatif tabanın kuvvetleri, negatif ve sıfırıncı kuvvet, çarpma-bölme, üssün üssü, sıralama, üslü denklemler)",
-  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: 7 soru; tanım (oyun hamuru, taban ya da üs 3), bilimsel gösterim (mikroskop, işlemci), üssün üssü, üslü denklem)",
-  "YKS/TYT/Sorular/MAT/MAT_USLU.jsonl (222 soru; tanım, çarpma-bölme ve denklem kalıpları)"
+  "YKS/TYT/KonuAnlatimi/yks_tyt_kn_temel-matematik_meb-konu-anlatimi (MEB OGM Temel Matematik konu anlatımı: üslü ifadenin tanımı, tek ve çift kuvvetler, negatif ve sıfırıncı kuvvet, çarpma-bölme, ortak paranteze alma, üssün …)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: 7 soru; her adımda parçalara ayırma (2018), mikroskopta bilimsel gösterim (2021), taban ya da üssü 3 olan sayılar (2022), üslü eşitlik (2022), işlem sonuçlarını karşılaştırma …)",
+  "YKS/TYT/Sorular/MAT/MAT_USLU.jsonl (soru havuzu; tanım, çarpma-bölme, ortak paranteze alma, sıralama ve denklem kalıpları)"
  ],
  "lesson": {
   "hook": {
-   "headline": "(−2)⁴ ile −2⁴ aynı sayı mı?",
-   "narration": "Parantez içinde eksi 2'nin dördüncü kuvveti ile eksi, 2'nin dördüncü kuvveti aynı sayı mı? Biri 16, öbürü eksi 16. Üslü sayılarda bir parantez, bir eksi işareti ya da üssün nerede durduğu sonucu tamamen değiştirir. ÖSYM bu konuyu çoğu zaman bir bağlamla sorar: her adımda ikiye bölünen oyun hamuru, bir mikroskobun büyütmesi, işlemcilerin hızı. Bu derste üslü ifadenin tanımını, işlem kurallarını, negatif ve sıfırıncı kuvveti, sıralamayı ve üslü denklemleri adım adım göreceğiz."
+   "headline": "Kâğıdı 42 kez katla: Ay'a ulaşır mı?",
+   "narration": "Kalınlığı 0,1 milimetre olan bir kâğıdı her seferinde ikiye katladığını düşün. 42 katlamada kalınlık, Dünya ile Ay arasındaki uzaklığı geçer. Sebebi 2 üssü 42: her katlama bir çarpan 2 daha demek. Bu derste üslü sayıları tanımından denklemlerine kadar, nedenleriyle birlikte adım adım öğreneceğiz."
   },
   "opening": {
-   "kind": "question",
-   "card": "s1-c5",
-   "narration": "Bir parantez sonucu değiştirir mi? Eksi iki üzeri dört ile parantez içindeki eksi ikinin dördüncü kuvveti aynı sayı mı?",
-   "promise": "Üslü sayıların kurallarını, negatif üssü, basamak sayısı sorularını ve üslü denklemleri soru çözerek pekiştireceğiz."
+   "kind": "mistake",
+   "card": "s1-c8",
+   "narration": "Eksi 3 kare ile parantez içinde eksi 3'ün karesi aynı sayı mı? Bu soruda öğrencilerin çoğu bir işaret kaybediyor. Önce sen bak.",
+   "promise": "Üslü sayıların bütün kurallarını nedenleriyle, ardından sıralamayı ve denklemleri ÖSYM tarzı sorularla göreceksin."
   },
   "objectives": [
-   "Negatif tabanın tek ve çift kuvvetlerinin işaretini bilmek",
-   "Çarpma, bölme ve üssün üssü kurallarını doğru uygulamak",
-   "Negatif ve sıfırıncı kuvveti hesaplamak",
+   "Üslü ifadeyi tekrarlı çarpım olarak okumak, kuvvetin işaretini bulmak",
+   "Çarpma, bölme ve üssün üssü kurallarını nedenleriyle uygulamak",
+   "Negatif ve sıfırıncı kuvveti, bilimsel gösterimi kullanmak",
    "Üslü sayıları sıralamak ve üslü denklemleri çözmek"
   ],
   "sections": [
    {
     "subtopic": "MAT_USLU_01",
-    "title": "Üslü ifade",
-    "narration": "a üssü n, a'nın kendisiyle n kez çarpımıdır. a'ya taban, n'ye üs ya da kuvvet denir.",
+    "title": "Üslü ifade nedir?",
+    "narration": "Önce temel soru: üslü bir ifade sana ne söylüyor?",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Üslü ifade",
+      "text": "$a^n$, **a sayısının n kez kendisiyle çarpımıdır**. Alttaki $a$ **taban**, üstteki $n$ **üs** ya da kuvvettir. $5^3 = 5 \\cdot 5 \\cdot 5 = 125$; $5 \\cdot 3$ değil.",
+      "narration": "Bak, a üssü n, a sayısının n kez kendisiyle çarpımıdır. Alttaki a'ya taban, üstteki n'ye üs denir. Örneğin 5 küp, beş kere beş kere beş, 125 eder; beş çarpı üç değil."
+     },
+     {
+      "kind": "visual",
+      "title": "Her üs bir çarpan daha",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Kuvvet",
+        "Açılım",
+        "Değer"
+       ],
+       "rows": [
+        [
+         "$2^1$",
+         "$2$",
+         "2"
+        ],
+        [
+         "$2^2$",
+         "$2 \\cdot 2$",
+         "4"
+        ],
+        [
+         "$2^3$",
+         "$2 \\cdot 2 \\cdot 2$",
+         "8"
+        ],
+        [
+         "$2^4$",
+         "$2 \\cdot 2 \\cdot 2 \\cdot 2$",
+         "16"
+        ],
+        [
+         "$2^{10}$",
+         "on tane 2",
+         "1024"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "narration": "Üs bir artınca ne olur, tabloda izle.",
+      "beats": [
+       {
+        "narration": "2'nin birinci kuvveti 2, karesi 2 kere 2, yani 4.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Küpünde bir 2 daha gelir ve sonuç 8 olur.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "Her yeni üs, bir çarpan 2 daha demektir; sayı her adımda ikiye katlanır.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ]
+       },
+       {
+        "narration": "On kez katlarsan 1024'e ulaşırsın. Üslü büyüme işte bu kadar hızlıdır.",
+        "show": [
+         "r5"
+        ],
+        "focus": [
+         "r5"
+        ]
+       }
+      ]
+     },
      {
       "kind": "rule",
       "title": "Kuvvetin işareti",
       "items": [
-       "$a^n = \\underbrace{a \\cdot a \\cdots a}_{n}$: $3^4 = 81$.",
-       "Pozitif tabanın her kuvveti **pozitiftir**.",
-       "Negatif tabanın **çift** kuvveti pozitif, **tek** kuvveti negatiftir: $(-2)^4 = 16$, $(-2)^3 = -8$.",
-       "Sıfırın pozitif kuvvetleri **0**dır; 1'in her kuvveti **1**dir."
+       "**Pozitif tabanın** her kuvveti pozitiftir: $3^3 = 27$.",
+       "**Negatif tabanın çift kuvveti** pozitiftir: $(-2)^4 = 16$.",
+       "**Negatif tabanın tek kuvveti** negatiftir: $(-2)^3 = -8$.",
+       "**Sıfırın** pozitif kuvvetleri $0$, **birin** her kuvveti $1$'dir."
       ],
-      "narration": "a üssü n, a'nın n kez kendisiyle çarpımıdır: 3 üssü 4, 3 çarpı 3 çarpı 3 çarpı 3, yani 81. Pozitif bir tabanın her kuvveti pozitiftir. Negatif bir tabanın çift kuvveti pozitif, tek kuvveti negatiftir: parantez içinde eksi 2'nin dördüncü kuvveti 16, küpü eksi 8. Sıfırın pozitif kuvvetleri sıfır, 1'in bütün kuvvetleri 1'dir."
+      "narration": "Pozitif tabanın her kuvveti pozitiftir: 3 küp, 27. Negatif tabanın çift kuvveti pozitiftir, çünkü eksiler ikişer ikişer eşleşip artı olur. Negatif tabanın tek kuvveti negatiftir; bir eksi açıkta kalır. Sıfırın pozitif kuvvetleri sıfır, birin her kuvveti birdir."
      },
      {
       "kind": "predict",
@@ -84,7 +170,7 @@
       },
       "beats": [
        {
-        "narration": "Parantez varsa üs eksi işaretini de kapsar: eksi 2'yi dört kez çarparsın. Çift kuvvet olduğu için sonuç 16.",
+        "narration": "Parantez varsa üs eksiyi de kapsar: eksi 2'yi dört kez çarparsın ve sonuç 16 olur.",
         "show": [
          "r1"
         ],
@@ -93,7 +179,7 @@
         ]
        },
        {
-        "narration": "Parantez yoksa üs yalnız 2'ye aittir: önce 2 üssü 4, yani 16 hesaplanır, sonra eksi işareti eklenir: eksi 16.",
+        "narration": "Parantez yoksa üs yalnız 2'ye aittir: önce 2 üssü 4, yani 16, sonra eksi gelir.",
         "show": [
          "r2"
         ],
@@ -102,36 +188,125 @@
         ]
        }
       ],
-      "explanation": "Üs, **hemen solundaki** sayıya aittir. $(-2)^4 = 16$ ama $-2^4 = -16$.",
-      "narration": "Şimdi sıra sende. Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap eşit değil. Üs her zaman hemen solundaki sayıya ya da parantezin tamamına aittir. Parantez içinde eksi 2'nin dördüncü kuvveti 16, ama parantezsiz eksi 2 üssü 4, eksi 16'dır. İşlem önceliğinde üs, eksi işaretinden önce gelir."
+      "explanation": "Üs, **hemen solundaki** sayıya ya da parantezin tamamına aittir: $(-2)^4 = 16$, $-2^4 = -16$.",
+      "narration": "Şimdi sıra sende, bir tahmin yap.",
+      "explanationNarration": "Doğru cevap eşit değil. Üs, hemen solundaki sayıya ya da parantezin tamamına aittir. İşlem önceliğinde üs, baştaki eksiden önce gelir."
+     },
+     {
+      "kind": "example",
+      "title": "Bakteriler çoğalıyor",
+      "example": "Her saat ikiye bölünen 3 bakteri, 5 saat sonra kaç olur?",
+      "explanation": "Her saat bir çarpan 2 gelir: $3 \\cdot 2^5 = 3 \\cdot 32 = 96$.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Saat",
+        "Hesap",
+        "Bakteri"
+       ],
+       "rows": [
+        [
+         "0",
+         "$3$",
+         "3"
+        ],
+        [
+         "1",
+         "$3 \\cdot 2$",
+         "6"
+        ],
+        [
+         "2",
+         "$3 \\cdot 2^2$",
+         "12"
+        ],
+        [
+         "3",
+         "$3 \\cdot 2^3$",
+         "24"
+        ],
+        [
+         "5",
+         "$3 \\cdot 2^5$",
+         "96"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "narration": "Şimdi bir örnek çözelim. Her saat ikiye bölünen 3 bakteri, 5 saat sonra kaç olur? Her saat bir çarpan 2 gelir.",
+      "beats": [
+       {
+        "narration": "Başta 3 bakteri var; bir saat sonra her biri ikiye bölünür ve 6 olur.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "İki saatte 3 çarpı 2 kare, üç saatte 3 çarpı 2 küp.",
+        "show": [
+         "r3",
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ]
+       },
+       {
+        "narration": "Beş saatte 3 çarpı 2 üssü 5, yani 3 çarpı 32, 96 bakteri.",
+        "show": [
+         "r5"
+        ],
+        "focus": [
+         "r5"
+        ]
+       },
+       {
+        "narration": "Dikkat et: bu 6 üssü 5 değildir, çünkü üs yalnız 2'ye aittir.",
+        "focus": [
+         "r5"
+        ],
+        "note": "3 · 2⁵ ≠ 6⁵"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Üs bir çarpan değildir",
+      "wrong": "$3^4 = 12$, çünkü üs ile taban çarpılır.",
+      "right": "Üs, tabanın kaç kez çarpıldığını söyler: $3^4 = 3 \\cdot 3 \\cdot 3 \\cdot 3 = 81$.",
+      "why": "Çarpma tekrarlı toplamadır; üs ise tekrarlı çarpmadır.",
+      "narration": "Sık yapılan bir hata: 3 üssü 4'ü 12 sanmak. Üs, tabanın kaç kez çarpıldığını söyler: üç kere üç kere üç kere üç, 81. Çarpma tekrarlı toplamadır; üs ise tekrarlı çarpmadır."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Bir laboratuvarda her hücre bir saatte 3 hücreye bölünmektedir. Başlangıçta 2 hücre olduğuna göre, 4 saat sonunda kaç hücre olur?",
+       "stem": "$(-1)^{7} + (-1)^{10} + 0^{5} + 1^{8}$ işleminin sonucu kaçtır?",
        "options": [
-        "24",
-        "54",
-        "81",
-        "162",
-        "486"
+        "$-3$",
+        "$-1$",
+        "$0$",
+        "$1$",
+        "$3$"
        ],
        "answer": 3,
-       "narration": "ÖSYM 2018'de oyun hamuruyla sordu. Biz hücrelerle deneyelim.",
+       "narration": "Isınma sorusu: her terimin işaretine bak.",
        "steps": [
         {
-         "text": "Her saat sayı **3 katına** çıkar: 1 saat $2 \\cdot 3$, 2 saat $2 \\cdot 3^2$.",
-         "narration": "Her hücre üçe bölündüğü için her saat hücre sayısı 3 katına çıkar. Bir saat sonra 2 çarpı 3, iki saat sonra 2 çarpı 3 kare."
+         "text": "$(-1)^7 = -1$ (tek kuvvet), $(-1)^{10} = 1$ (çift kuvvet).",
+         "narration": "Eksi birin yedinci kuvveti tek kuvvet, sonuç eksi bir. Onuncu kuvveti çift kuvvet, sonuç bir."
         },
         {
-         "text": "4 saat sonra: $2 \\cdot 3^4 = 2 \\cdot 81 = 162$",
-         "narration": "Dört saat sonra 2 çarpı 3 üssü 4. 3 üssü 4, 81; 2 çarpı 81, 162."
+         "text": "$0^5 = 0$, $1^8 = 1$.",
+         "narration": "Sıfırın beşinci kuvveti sıfır, birin sekizinci kuvveti bir."
         },
         {
-         "text": "Cevap **D**. 81'i seçen başlangıçtaki 2 hücreyi unutur.",
-         "narration": "Cevabımız D. 81'i seçen başlangıçtaki 2 hücreyi unutmuş, 486'yı seçen bir saat fazla saymış olur.",
+         "text": "$-1 + 1 + 0 + 1 = 1$. Cevap **D**.",
+         "narration": "Toplarsak eksi bir artı bir artı sıfır artı bir, yani bir. Cevabımız D. Üçü seçen, tek kuvveti de pozitif saymıştır.",
          "eliminate": [
           "A",
           "B",
@@ -141,7 +316,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2018'in \"her adımda parçalara ayırma\" üslü artış kalıbı örnek alındı, bağlam ve sayılar özgün."
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki tek ve çift kuvvet özellikleri özgün bir işlemle soruldu."
        }
       }
      },
@@ -149,79 +324,81 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Aşağıdaki sayılardan hangisi, tabanı ve üssü **1'den büyük doğal sayılar** olan bir üslü ifade biçiminde **yazılamaz**?",
+       "stem": "$-3^2 + (-3)^2 - (-2)^3$ işleminin sonucu kaçtır?",
        "options": [
-        "32",
-        "49",
-        "50",
-        "81",
-        "125"
+        "$-8$",
+        "$0$",
+        "$8$",
+        "$10$",
+        "$26$"
        ],
        "answer": 2,
-       "narration": "ÖSYM 2022'de sayıları üslü ifade olarak yazmayı sordu. Her sayıyı asal çarpanlarına ayıralım.",
+       "narration": "Şimdi parantezin yerine dikkat et.",
        "steps": [
         {
-         "text": "$32 = 2^5$, $49 = 7^2$, $125 = 5^3$",
-         "narration": "32, 2 üssü 5. 49, 7 kare. 125, 5 küp. Üçü de yazılabiliyor. A, B ve E gidiyor.",
+         "text": "$-3^2 = -(3^2) = -9$: parantez yok, eksi kuvvete girmez.",
+         "narration": "Eksi üç karede parantez yok; kare yalnız üçe aittir. Üç kare dokuz, sonuç eksi dokuz. Yirmi altıyı seçen burada dokuz yazmıştır.",
          "eliminate": [
-          "A",
-          "B",
           "E"
          ]
         },
         {
-         "text": "$81 = 3^4 = 9^2$: iki biçimde yazılır.",
-         "narration": "81, 3 üssü 4 ya da 9 kare. Bu da yazılabiliyor. D gidiyor.",
+         "text": "$(-3)^2 = 9$; $(-2)^3 = -8$, öyleyse $-(-8) = +8$.",
+         "narration": "Parantez içindeki eksi üçün karesi dokuz. Eksi ikinin küpü eksi sekiz; önündeki eksiyle artı sekiz olur. Eksi sekizi seçen bu işareti kaçırmıştır.",
          "eliminate": [
-          "D"
+          "A"
          ]
         },
         {
-         "text": "$50 = 2 \\cdot 5^2$: çarpanların üsleri **farklı**, tek bir kuvvet olamaz. Cevap **C**.",
-         "narration": "50, 2 çarpı 5 kare. 2'nin üssü 1, 5'in üssü 2; ortak bir üs yok. 50 tek bir taban ve üsle yazılamaz. Cevabımız C."
+         "text": "$-9 + 9 + 8 = 8$. Cevap **C**.",
+         "narration": "Eksi dokuz artı dokuz sıfır, artı sekiz, sekiz. Cevabımız C.",
+         "eliminate": [
+          "B",
+          "D"
+         ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2022'nin \"sayıları üslü ifade olarak yazma\" kalıbı örnek alındı, sayılar ve soru kökü özgün."
+        "changes": "Bu ders için yazıldı; dersteki \"Parantez fark eder mi?\" tahmini özgün sayılarla bir işleme dönüştürüldü."
        }
       }
      },
      {
       "kind": "question",
       "question": {
-       "style": "TYT tarzı",
-       "stem": "$-2^4 + (-2)^4 - (-1)^5$ işleminin sonucu kaçtır?",
+       "style": "ÖSYM tarzı",
+       "stem": "Ece, okulda bir duyuruyu 1. gün 4 arkadaşına iletiyor. Sonraki her gün, duyuruyu bir önceki gün öğrenen her öğrenci onu henüz duymamış 4 öğrenciye iletiyor; böylece 1. gün 4, 2. gün 16 öğrenci duyuruyu yeni öğreniyor. Ece dahil herkes duyuruyu 4 yerine 2 öğrenciye iletseydi, 5. gün yeni öğrenen öğrenci sayısı kadar öğrenci kaçıncı gün duyuruyu yeni öğrenirdi?",
        "options": [
-        "$-61$",
-        "$-31$",
-        "$-1$",
-        "$1$",
-        "$33$"
+        "5",
+        "10",
+        "16",
+        "20",
+        "32"
        ],
-       "answer": 3,
-       "narration": "Parantez varsa eksi de kuvvete girer; parantez yoksa girmez.",
+       "answer": 1,
+       "narration": "ÖSYM 2018'de her adımda parçalara ayrılan bir hamurla sordu. Biz bir duyuruyla deneyelim.",
        "steps": [
         {
-         "text": "$-2^4 = -(2^4) = -16$ (parantez **yok**, eksi kuvvete **girmez**).",
-         "narration": "Eksi iki üssü dörtte parantez yok; kuvvet yalnız ikiye uygulanır, eksi dışarıda kalır. İki üssü dört on altı; sonuç eksi on altı."
+         "text": "4'erli: $n$. gün $4^n$ öğrenci; 5. gün $4^5 = 1024$.",
+         "narration": "Her gün yeni öğrenenler dörde katlanıyor: birinci gün 4, ikinci gün 4 kare. Beşinci gün 4 üssü 5, yani 1024 öğrenci."
         },
         {
-         "text": "$(-2)^4 = 16$ (çift kuvvet → **pozitif**); $(-1)^5 = -1$ (tek kuvvet → **negatif**).",
-         "narration": "Parantez içindeki eksi ikinin dördüncü kuvveti, çift kuvvet olduğu için pozitif on altı. Eksi birin beşinci kuvveti, tek kuvvet olduğu için eksi bir."
+         "text": "$4^5 = (2^2)^5 = 2^{10}$.",
+         "narration": "1024'ü 2'nin kuvveti olarak yazalım: 4, 2 kare olduğu için 4 üssü 5, 2 üssü 10 eder."
         },
         {
-         "text": "$-16 + 16 - (-1) = 0 + 1 = 1$. Cevap **D**.",
-         "narration": "Eksi on altı artı on altı sıfır; sıfır eksi eksi bir, artı bir. Sonuç bir. Cevabımız D. Otuz üçü seçen, eksi iki üssü dördü artı on altı sanmıştır.",
+         "text": "2'şerli: $n$. gün $2^n$ öğrenci; $2^n = 2^{10} \\Rightarrow n = 10$. Cevap **B**.",
+         "narration": "İkişer iletilseydi n'inci gün 2 üssü n öğrenci öğrenirdi. Bu, 2 üssü 10'a eşitse n, 10. Cevabımız B. Otuz ikiyi seçen, beşinci gündeki sayıyı bulup durmuştur.",
          "eliminate": [
           "A",
-          "B",
           "C",
+          "D",
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki \"Parantez fark eder mi?\" tahmin tablosu özgün bir işlemle soruldu."
+        "changes": "ÖSYM 2018'in \"her adımda her parçayı ayırma\" kalıbı örnek alındı; bağlam (duyuru), sayılar ve sorulan nicelik (aynı sayıya kaçıncı gün ulaşılır) özgün."
        }
       }
      }
@@ -229,64 +406,226 @@
    },
    {
     "subtopic": "MAT_USLU_02",
-    "title": "Çarpma, bölme, toplama",
-    "narration": "Üslü sayılarla işlem yaparken önce tabanlara ya da üslere bak: hangisi aynıysa kural ona göre seçilir.",
+    "title": "Çarpma, bölme ve ortak paranteze alma",
+    "narration": "Kuralları ezberlemeden önce, çarpanları sayarak nereden geldiklerini görelim.",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Neden üsler toplanır?",
+      "text": "$2^3 \\cdot 2^2$ çarpımında **üç tane 2** ile **iki tane 2** yan yana gelir. Hepsi birden **beş tane 2** eder: $2^5$. Üsleri toplamak, **çarpanları saymaktır**.",
+      "narration": "Formülden önce nedenini görelim. 2 küp çarpı 2 kare çarpımında üç tane 2 ile iki tane 2 yan yana gelir. Hepsi birden beş tane 2 eder. Yani üsleri toplamak, çarpanları saymaktır."
+     },
+     {
+      "kind": "visual",
+      "title": "Çarpanları say",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "İşlem",
+        "Açılım",
+        "Sonuç"
+       ],
+       "rows": [
+        [
+         "$2^3 \\cdot 2^2$",
+         "$(2 \\cdot 2 \\cdot 2) \\cdot (2 \\cdot 2)$",
+         "$2^5$"
+        ],
+        [
+         "$\\frac{2^5}{2^2}$",
+         "beş 2'den ikisi sadeleşir",
+         "$2^3$"
+        ],
+        [
+         "$2^3 \\cdot 5^3$",
+         "$(2 \\cdot 5)(2 \\cdot 5)(2 \\cdot 5)$",
+         "$10^3$"
+        ],
+        [
+         "$2^3 + 2^2$",
+         "$8 + 4$",
+         "$12$"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "narration": "Dört işlemi açılımlarıyla karşılaştıralım.",
+      "beats": [
+       {
+        "narration": "Çarpmada çarpanlar yan yana gelir: beş tane 2, yani 2 üssü 5.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Bölmede paydaki beş tane 2'den ikisi paydadakilerle sadeleşir; üç tane 2 kalır.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Üsler aynıysa her 2 bir 5 ile eşleşir: üç tane 10, yani 10 küp.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "Toplamada ise çarpan sayılmaz: 8 artı 4, 12 eder; 2 üssü 5 değil.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ]
+       }
+      ]
+     },
      {
       "kind": "rule",
       "title": "İşlem kuralları",
       "items": [
-       "**Tabanlar aynı**, çarpma: üsler toplanır, $a^m \\cdot a^n = a^{m+n}$.",
-       "**Tabanlar aynı**, bölme: üsler çıkarılır, $\\frac{a^m}{a^n} = a^{m-n}$.",
-       "**Üsler aynı**: tabanlar çarpılır, $a^n \\cdot b^n = (a \\cdot b)^n$.",
-       "**Toplama**: yalnız aynı terimler toplanır, ortak paranteze al: $3 \\cdot 2^5 + 2^5 = 4 \\cdot 2^5 = 2^7$."
+       "**Tabanlar aynıysa, çarpmada** üsler toplanır: $a^m \\cdot a^n = a^{m+n}$.",
+       "**Tabanlar aynıysa, bölmede** üsler çıkarılır: $\\frac{a^m}{a^n} = a^{m-n}$.",
+       "**Üsler aynıysa** tabanlar çarpılır: $a^n \\cdot b^n = (a \\cdot b)^n$.",
+       "**Toplama ve çıkarmada** yalnız aynı terimler birleşir: $3 \\cdot 2^5 + 2^5 = 4 \\cdot 2^5 = 2^7$."
       ],
-      "narration": "Tabanlar aynıysa çarpmada üsler toplanır: a üssü m çarpı a üssü n, a üssü m artı n. Bölmede üsler çıkarılır. Üsler aynıysa tabanlar çarpılır: a üssü n çarpı b üssü n, a çarpı b'nin n'inci kuvveti. Toplamada ise kural yoktur; yalnızca aynı terimleri toplarsın, ortak paranteze alarak: 3 çarpı 2 üssü 5 artı 2 üssü 5, 4 çarpı 2 üssü 5, o da 2 üssü 7 eder."
+      "narration": "Tabanlar aynıysa, çarpmada üsler toplanır. Tabanlar aynıysa, bölmede üsler çıkarılır. Üsler aynıysa tabanlar çarpılır: 2 küp çarpı 5 küp, 10 küp. Toplama ve çıkarmada yalnız aynı terimler birleşir; ortak paranteze alırsın: 4 tane 2 üssü 5, o da 2 üssü 7."
+     },
+     {
+      "kind": "example",
+      "title": "Ortak tabana çevir",
+      "example": "16 çarpı 32 işlemini 2'nin kuvvetleriyle yap.",
+      "narration": "Bir örnek yapalım. 16 çarpı 32 işlemini 2'nin kuvvetleriyle yap.",
+      "steps": [
+       {
+        "narration": "16, 2 üssü 4; 32 ise 2 üssü 5.",
+        "math": "16 = 2^4, \\quad 32 = 2^5"
+       },
+       {
+        "narration": "Ortak taban 2 olunca çarpma, üsleri toplamaya döner: 4 artı 5, 2 üssü 9.",
+        "math": "2^4 \\cdot 2^5 = 2^{4 + 5} = 2^9",
+        "text": "**Üsleri topla**"
+       },
+       {
+        "narration": "2 üssü 9, 512 eder. Dört tane 2'ye beş tane 2 eklendi, o kadar.",
+        "math": "2^9 = 512"
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Aynı terimleri birleştir",
+      "example": "Aynı tabanlı terimleri ortak paranteze al.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Toplam",
+        "Ortak parantez",
+        "Sonuç"
+       ],
+       "rows": [
+        [
+         "$2^5 + 2^5$",
+         "$2 \\cdot 2^5$",
+         "$2^6$"
+        ],
+        [
+         "$3^4 + 3^4 + 3^4$",
+         "$3 \\cdot 3^4$",
+         "$3^5$"
+        ],
+        [
+         "$2^{x+1} + 2^x$",
+         "$2^x(2 + 1)$",
+         "$3 \\cdot 2^x$"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "narration": "İkinci örnek: aynı tabanlı terimleri ortak paranteze al.",
+      "beats": [
+       {
+        "narration": "2 üssü 5 artı 2 üssü 5, iki tane 2 üssü 5'tir; bu da 2 üssü 6.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Üç tane 3 üssü 4, 3 çarpı 3 üssü 4, yani 3 üssü 5.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "2 üssü x artı 1, 2 çarpı 2 üssü x demektir. Ortak paranteze alınca 3 çarpı 2 üssü x kalır.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ]
      },
      {
       "kind": "mistake",
-      "title": "Tabanlar çarpılmaz",
-      "wrong": "$2^3 \\cdot 2^4 = 4^7$ ve $2^3 + 2^4 = 2^7$",
-      "right": "$2^3 \\cdot 2^4 = 2^{7} = 128$; $2^3 + 2^4 = 8 + 16 = 24$",
-      "why": "Tabanlar aynıyken çarpmada **taban aynı kalır**, üsler toplanır. Toplamada üsler hiç toplanmaz.",
-      "narration": "İki klasik hata. 2 küp çarpı 2 üssü 4'ü 4 üssü 7 yazmak: taban aynı kalır, yalnız üsler toplanır. Doğrusu 2 üssü 7, yani 128. İkincisi 2 küp artı 2 üssü 4'ü 2 üssü 7 yazmak: toplamada üsler toplanmaz. 8 artı 16, 24 eder."
+      "title": "Tabanlar çarpılmaz, üsler toplanmaz",
+      "wrong": "$2^3 \\cdot 2^4 = 4^7$ ve $2^3 + 2^4 = 2^7$.",
+      "right": "Taban aynı kalır: $2^3 \\cdot 2^4 = 2^7 = 128$. Toplamda ise $8 + 16 = 24$.",
+      "why": "Çarpmada çarpanları sayarsın; toplamada sayacak çarpan yoktur.",
+      "narration": "İki klasik hata var: 2 küp çarpı 2 üssü 4'e 4 üssü 7 demek, toplamaya da 2 üssü 7 demek. Taban aynı kalır: çarpım 2 üssü 7, yani 128. Toplamda ise 8 artı 16, 24 eder. Çarpmada çarpanları sayarsın; toplamada sayacak çarpan yoktur."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Bir mikroskop, nesnenin görüntüsünü merceklerinin büyütme oranlarının çarpımı kadar büyük gösterir. Büyüklüğü $3{,}2 \\cdot 10^{-3}$ mm olan bir nesneye büyütme oranları 5 kat ve 50 kat olan iki mercekli bir mikroskopla bakılıyor. Nesnenin görüntüsü kaç mm'dir?",
+       "stem": "$\\dfrac{3^{7} \\cdot 9^{2}}{27^{2}}$ işleminin sonucu kaçtır?",
        "options": [
-        "0,08",
-        "0,8",
-        "8",
-        "80",
-        "800"
+        "3",
+        "9",
+        "27",
+        "81",
+        "243"
        ],
-       "answer": 1,
-       "narration": "ÖSYM 2021'de bu kalıbı sordu. Bilimsel gösterimle çalışalım.",
+       "answer": 4,
+       "narration": "Önce ortak tabana çevir.",
        "steps": [
         {
-         "text": "Toplam büyütme: $5 \\cdot 50 = 250$ kat.",
-         "narration": "Mikroskobun toplam büyütmesi 5 çarpı 50, yani 250 kat."
+         "text": "$9^2 = (3^2)^2 = 3^4$, $27^2 = (3^3)^2 = 3^6$.",
+         "narration": "Hepsini 3 tabanına çevirelim. 9 kare, 3 üssü 4; 27 kare, 3 üssü 6."
         },
         {
-         "text": "$3{,}2 \\cdot 10^{-3} \\cdot 250 = 800 \\cdot 10^{-3} = 0{,}8$",
-         "narration": "3,2 çarpı 250, 800 eder. 800 çarpı 10 üssü eksi 3, virgülü üç basamak sola kaydırmaktır: 0,8."
+         "text": "$\\frac{3^7 \\cdot 3^4}{3^6} = 3^{7+4-6} = 3^5$.",
+         "narration": "Payda üsler toplanır, paydada çıkarılır: 7 artı 4 eksi 6, 5."
         },
         {
-         "text": "Görüntü **0,8 mm**. Cevap **B**.",
-         "narration": "Görüntü 0,8 milimetre. Cevabımız B. Negatif üssü yanlış yönde kaydıran 800'ü bulur.",
+         "text": "$3^5 = 243$. Cevap **E**.",
+         "narration": "3 üssü 5, 243. Cevabımız E. 27'yi seçen, 9 kareyi 3 kare sanmıştır.",
          "eliminate": [
           "A",
+          "B",
           "C",
-          "D",
-          "E"
+          "D"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2021'in \"mikroskopta görüntü büyüklüğü\" bilimsel gösterim kalıbı örnek alındı, sayılar özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki ortak tabana çevirip sadeleştirme kalıbı örnek alındı, ifade özgün."
        }
       }
      },
@@ -294,30 +633,30 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$2^5 \\cdot 5^3$ sayısı kaç basamaklıdır?",
+       "stem": "$\\dfrac{2^{x+3} - 2^{x+1}}{2^{x+1}}$ ifadesinin değeri kaçtır?",
        "options": [
         "3",
         "4",
-        "5",
         "6",
-        "8"
+        "8",
+        "12"
        ],
-       "answer": 1,
-       "narration": "2 ile 5'i eşleştirip 10'un kuvvetini oluşturalım.",
+       "answer": 0,
+       "narration": "Payda toplama var; ortak paranteze alacağız.",
        "steps": [
         {
-         "text": "$2^5 = 2^2 \\cdot 2^3$ → $2^5 \\cdot 5^3 = 2^2 \\cdot (2 \\cdot 5)^3$.",
-         "narration": "İki üssü beşi, iki kare çarpı iki küp diye ayıralım. İki küp ile beş küp aynı üssü taşıdığı için birleşir: iki çarpı beşin küpü."
+         "text": "$2^{x+3} = 2^{x+1} \\cdot 2^2$.",
+         "narration": "Payda iki terim var ve ikisinde de 2 üssü x artı 1 saklı. 2 üssü x artı 3, 2 üssü x artı 1 çarpı 4'tür."
         },
         {
-         "text": "$= 4 \\cdot 10^3 = 4000$.",
-         "narration": "İki çarpı beş on; onun küpü bin. Dört çarpı bin, dört bin."
+         "text": "Pay $= 2^{x+1}(4 - 1) = 3 \\cdot 2^{x+1}$.",
+         "narration": "Ortak paranteze alınca pay, 3 çarpı 2 üssü x artı 1 olur."
         },
         {
-         "text": "$4000$ → **4** basamaklı. Cevap **B**.",
-         "narration": "Dört bin dört basamaklı bir sayıdır. Cevabımız B. Sekizi seçen üsleri toplamış; beşi seçen yalnızca büyük üsse bakmış olur. Tabanlar ancak üsler eşitse çarpılabilir.",
+         "text": "$\\frac{3 \\cdot 2^{x+1}}{2^{x+1}} = 3$. Cevap **A**.",
+         "narration": "Paydadaki 2 üssü x artı 1 ile sadeleşir ve 3 kalır. Cevabımız A. 4'ü seçen, ikinci terimi unutup yalnız ilk terimi bölmüştür.",
          "eliminate": [
-          "A",
+          "B",
           "C",
           "D",
           "E"
@@ -325,7 +664,73 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki \"tabanlar çarpılmaz, üsler eşitse birleşir\" kuralı basamak sayısı sorusuna dönüştürüldü."
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki ortak paranteze alma kuralı bilinmeyenli özgün bir ifadeyle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir şirketin ürettiği dört hafıza kartı modelinden bazılarının kapasiteleri tabloda verilmiştir. 2. modelden başlayarak her modelin kapasitesi, bir önceki modelin kapasitesinin aynı katıdır. Buna göre 1. modelin kapasitesi kaç bayttır?",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "Model",
+         "Kapasite (bayt)"
+        ],
+        "rows": [
+         [
+          "1. model",
+          "?"
+         ],
+         [
+          "2. model",
+          "$3 \\cdot 2^{20}$"
+         ],
+         [
+          "3. model",
+          "?"
+         ],
+         [
+          "4. model",
+          "$3 \\cdot 2^{26}$"
+         ]
+        ]
+       },
+       "options": [
+        "$3 \\cdot 2^{14}$",
+        "$3 \\cdot 2^{16}$",
+        "$3 \\cdot 2^{17}$",
+        "$3 \\cdot 2^{18}$",
+        "$3 \\cdot 2^{23}$"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2026'da işlemci nesilleriyle sordu. Tabloyu okuyalım.",
+       "steps": [
+        {
+         "text": "Her adımda aynı $r$ çarpanı: 2'den 4'e iki adım, $r^2 = \\frac{3 \\cdot 2^{26}}{3 \\cdot 2^{20}} = 2^6$.",
+         "narration": "Her modelde kapasite aynı r sayısıyla çarpılıyor. İkinci modelden dördüncüye iki adım var, yani r kare. r kare, 2 üssü 26 bölü 2 üssü 20, 2 üssü 6."
+        },
+        {
+         "text": "$r = 2^3 = 8$ (kapasite pozitif).",
+         "narration": "Karesi 2 üssü 6 olan pozitif sayı 2 üssü 3, yani 8. A şıkkı, r'yi 2 üssü 6 sanan yanılgıdır.",
+         "eliminate": [
+          "A"
+         ]
+        },
+        {
+         "text": "1. model $= \\frac{3 \\cdot 2^{20}}{2^3} = 3 \\cdot 2^{17}$. Cevap **C**.",
+         "narration": "Birinci model, ikincinin sekizde biri: 3 çarpı 2 üssü 20 bölü 2 üssü 3, 3 çarpı 2 üssü 17. Cevabımız C. E şıkkı bölmek yerine çarpmaktan gelir.",
+         "eliminate": [
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026'nın \"nesiller arası oran aynı, tabloda eksik değer\" kalıbı örnek alındı; bağlam (hafıza kartı), taban 2'li değerler ve sorulan model özgün."
        }
       }
      }
@@ -333,137 +738,631 @@
    },
    {
     "subtopic": "MAT_USLU_03",
-    "subtopics": [
-     "MAT_USLU_04"
-    ],
-    "title": "Üssün üssü, negatif ve sıfırıncı kuvvet",
-    "narration": "Şimdi üç özel durum: üssün üssü, sıfırıncı kuvvet ve negatif kuvvet.",
+    "title": "Üssün üssü",
+    "narration": "Bir üslü ifadenin de kuvveti alınabilir. Burada parantezin yeri her şeyi değiştirir.",
     "cards": [
      {
-      "kind": "visual",
-      "title": "Özel kuvvetler",
+      "kind": "concept",
+      "title": "Üssün üssü",
+      "text": "$(a^m)^n$ demek, $a^m$ çarpanını **n kez yan yana yazmak** demektir. Her çarpanda **m tane a** var; toplam **m çarpı n tane a** olur: $(a^m)^n = a^{m \\cdot n}$.",
+      "narration": "Şimdi üssün üssüne bakalım. a üssü m'nin n'inci kuvveti, a üssü m çarpanını n kez yan yana yazmak demektir. Her çarpanda m tane a var. Toplam m çarpı n tane a olur."
+     },
+     {
+      "kind": "predict",
+      "title": "Üst kat nerede?",
+      "context": "$(2^3)^2$ ve $2^{3^2}$",
+      "prompt": "Bu iki sayı eşit mi?",
+      "choices": [
+       "Eşit",
+       "Eşit değil"
+      ],
+      "answer": 1,
+      "thinkSeconds": 5,
       "visual": {
        "kind": "table",
        "header": [
-        "Kural",
-        "Örnek"
+        "İfade",
+        "Açılım",
+        "Sonuç"
        ],
        "rows": [
         [
-         "$(a^m)^n = a^{m \\cdot n}$",
-         "$(2^3)^2 = 2^6 = 64$"
+         "$(2^3)^2$",
+         "$2^3 \\cdot 2^3$",
+         "$2^6 = 64$"
         ],
         [
-         "$a^{m^n}$: önce $m^n$",
-         "$2^{3^2} = 2^9 = 512$"
+         "$2^{3^2}$",
+         "$3^2 = 9$, önce bu",
+         "$2^9 = 512$"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "Parantez varsa 2 küpü iki kez çarparsın: altı tane 2, yani 64.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Parantez yoksa üst kat önce hesaplanır: 3 kare 9, sonuç 2 üssü 9, yani 512.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       }
+      ],
+      "explanation": "Parantez varsa üsler çarpılır. Parantez yoksa **üst kat önce** hesaplanır.",
+      "narration": "Önce sen tahmin et.",
+      "explanationNarration": "Doğru cevap eşit değil. Parantez varsa üsler çarpılır, parantez yoksa üst kat önce hesaplanır. ÖSYM 2025'te tam olarak bu farkı sordu."
+     },
+     {
+      "kind": "rule",
+      "title": "Üssün üssü kuralları",
+      "items": [
+       "**Parantez varsa** üsler çarpılır: $(a^m)^n = a^{m \\cdot n}$.",
+       "**Parantez yoksa** üst kat önce hesaplanır: $2^{3^2} = 2^9$.",
+       "**Taban çevirirken** kullan: $8^5 = (2^3)^5 = 2^{15}$, $27^4 = 3^{12}$.",
+       "**Çarpımın kuvveti** her çarpana dağılır: $(2x)^3 = 8x^3$."
+      ],
+      "narration": "Parantez varsa üsler çarpılır. Parantez yoksa üst kat önce hesaplanır, sonra taban o kuvvete yükseltilir. Taban çevirirken bu kuralı kullanırsın: 8 üssü 5, 2 üssü 15; 27 üssü 4, 3 üssü 12. Çarpımın kuvveti her çarpana dağılır: 2x'in küpü, 8 x küp."
+     },
+     {
+      "kind": "example",
+      "title": "Tek tabana indir",
+      "example": "Tabanı 3 olacak biçimde yaz ve sadeleştir.",
+      "explanation": "Önce **üssün üssü**, sonra **üsleri topla**.",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "9⁵ · 27²"
+        },
+        {
+         "label": "(3²)⁵ · (3³)²"
+        },
+        {
+         "label": "3¹⁰ · 3⁶"
+        },
+        {
+         "label": "3¹⁶"
+        }
+       ]
+      },
+      "narration": "Bir örnek: tabanı 3 olacak biçimde yaz ve sadeleştir. Önce üssün üssü, sonra üsleri topla.",
+      "beats": [
+       {
+        "narration": "İfade 9 üssü 5 çarpı 27 kare. 9, 3 kare; 27, 3 küp.",
+        "show": [
+         "n1",
+         "n2"
+        ],
+        "focus": [
+         "n2"
+        ]
+       },
+       {
+        "narration": "Üssün üssünde üsler çarpılır: 3 üssü 10 ve 3 üssü 6.",
+        "show": [
+         "n3"
+        ],
+        "focus": [
+         "n3"
+        ]
+       },
+       {
+        "narration": "Tabanlar aynı, üsleri topla: 3 üssü 16.",
+        "show": [
+         "n4"
+        ],
+        "focus": [
+         "n4"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Üssün üssünde toplama yok",
+      "wrong": "$(2^3)^4 = 2^7$, çünkü üsler toplanır.",
+      "right": "Üssün üssünde üsler çarpılır: $(2^3)^4 = 2^{12}$.",
+      "why": "Dört tane $2^3$ yan yana gelir: $3 + 3 + 3 + 3 = 12$.",
+      "narration": "Sık hata: 2 küpün dördüncü kuvvetine 2 üssü 7 demek. Üssün üssünde üsler çarpılır: 2 üssü 12. Dört tane 2 küp yan yana gelir; 3 artı 3 artı 3 artı 3, 12."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\dfrac{(2^3)^4 \\cdot 4^3}{8^5}$ işleminin sonucu kaçtır?",
+       "options": [
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$4$",
+        "$8$"
+       ],
+       "answer": 4,
+       "narration": "Her şeyi 2 tabanına indirelim.",
+       "steps": [
+        {
+         "text": "$(2^3)^4 = 2^{12}$, $4^3 = 2^6$, $8^5 = 2^{15}$.",
+         "narration": "2 küpün dördüncü kuvveti 2 üssü 12; 4 küp 2 üssü 6; 8 üssü 5, 2 üssü 15."
+        },
+        {
+         "text": "$2^{12 + 6 - 15} = 2^3 = 8$. Cevap **E**.",
+         "narration": "Üsler: 12 artı 6 eksi 15, 3. 2 küp, 8. Cevabımız E. Dörtte biri seçen, üssün üssünde üsleri toplamıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki tabanı 2'ye çevirip üssün üssünü uygulama kalıbı örnek alındı, ifade özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir hesap makinesinde üs alma tuşu art arda kullanılınca makine işlemleri soldan sağa yapar: 2, üs, 3, üs, 3 tuşlandığında önce $2^3$ hesaplanır, sonra sonucun küpü alınır. Selin aynı tuşlamayı kâğıda parantez kullanmadan $2^{3^3}$ biçiminde yazıp kurala uygun hesaplıyor. Selin'in bulduğu sonuç, makinenin bulduğu sonucun kaç katıdır?",
+       "options": [
+        "$2^{3}$",
+        "$2^{6}$",
+        "$2^{9}$",
+        "$2^{18}$",
+        "$2^{27}$"
+       ],
+       "answer": 3,
+       "narration": "Makine ile kâğıt arasındaki fark, parantezin yeri.",
+       "steps": [
+        {
+         "text": "Makine: $(2^3)^3 = 2^9$.",
+         "narration": "Makine soldan sağa gidiyor: önce 2 küp, sonra onun küpü. Bu üssün üssüdür, üsler çarpılır: 2 üssü 9. C şıkkı makinenin kendi sonucu.",
+         "eliminate": [
+          "C"
+         ]
+        },
+        {
+         "text": "Selin: üst kat önce, $3^3 = 27$ → $2^{27}$.",
+         "narration": "Parantez yoksa üst kat önce hesaplanır: 3 küp 27. Selin'in sonucu 2 üssü 27. E şıkkı onun sonucu, oran değil.",
+         "eliminate": [
+          "E"
+         ]
+        },
+        {
+         "text": "$\\frac{2^{27}}{2^9} = 2^{18}$. Cevap **D**.",
+         "narration": "Oran, 2 üssü 27 bölü 2 üssü 9; üsler çıkarılır: 2 üssü 18. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2025'in \"parantezsiz üssün üssü farklı değer verir\" kalıbı örnek alındı; hesap makinesi bağlamı, sayılar ve oran sorusu özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_USLU_04",
+    "title": "Sıfırıncı ve negatif kuvvet",
+    "narration": "Üs sıfır ya da negatif olunca ne olur? Bunu ezberlemeyecek, bir desenden çıkaracağız.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Üs küçülürse",
+      "text": "Üs **bir azaldıkça** sayı **tabana bölünür**. Desen sıfırın altına sürünce **sıfırıncı kuvvet 1** olur, **negatif kuvvet** de sayının tersini verir.",
+      "narration": "Üs bir azaldıkça sayı tabana bölünür. Bu deseni sıfıra kadar ve sıfırın altına sürdür. Sıfırıncı kuvvet 1 olur, negatif kuvvet de sayının tersini verir."
+     },
+     {
+      "kind": "visual",
+      "title": "Merdivenden aşağı",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Kuvvet",
+        "Değer",
+        "Adım"
+       ],
+       "rows": [
+        [
+         "$2^3$",
+         "8",
+         "başlangıç"
         ],
         [
-         "$a^0 = 1$ $(a \\neq 0)$; $0^0$ tanımsız",
-         "$7^0 = 1$"
+         "$2^2$",
+         "4",
+         "÷ 2"
         ],
         [
-         "$a^{-n} = \\frac{1}{a^n}$",
-         "$2^{-3} = \\frac{1}{8}$"
+         "$2^1$",
+         "2",
+         "÷ 2"
         ],
         [
-         "$(\\frac{a}{b})^{-n} = (\\frac{b}{a})^n$",
-         "$(\\frac{2}{3})^{-2} = \\frac{9}{4}$"
+         "$2^0$",
+         "1",
+         "÷ 2"
+        ],
+        [
+         "$2^{-1}$",
+         "$\\frac{1}{2}$",
+         "÷ 2"
+        ],
+        [
+         "$2^{-2}$",
+         "$\\frac{1}{4}$",
+         "÷ 2"
         ]
        ],
        "highlightColumn": 1
       },
-      "narration": "Beş kural.",
+      "narration": "Merdivenden aşağı inelim.",
       "beats": [
        {
+        "narration": "8, 4, 2: üs her azaldığında sayı ikiye bölünüyor.",
         "show": [
-         "r1"
-        ],
-        "focus": [
-         "r1"
-        ],
-        "narration": "Üssün üssünde üsler çarpılır: 2 küpün karesi, 2 üssü 6, yani 64."
-       },
-       {
-        "show": [
-         "r2"
-        ],
-        "focus": [
-         "r2"
-        ],
-        "narration": "Ama parantez yoksa üst kat önce hesaplanır: 2 üssü 3 kare, 2 üssü 9, yani 512."
-       },
-       {
-        "show": [],
-        "focus": [
          "r1",
-         "r2"
-        ],
-        "narration": "ÖSYM 2025'te tam olarak bu farkı sordu.",
-        "note": "(2³)² = 64 ama 2 üssü 3² = 512"
-       },
-       {
-        "narration": "Sıfırdan farklı her sayının sıfırıncı kuvveti 1'dir. Sıfırın sıfırıncı kuvveti ise tanımsızdır.",
-        "show": [
+         "r2",
          "r3"
         ],
         "focus": [
+         "r2",
          "r3"
         ]
        },
        {
+        "narration": "Bir kez daha böl: 2 bölü 2, 1. Demek ki 2 üssü 0, 1'dir.",
         "show": [
          "r4"
         ],
         "focus": [
          "r4"
-        ],
-        "narration": "Negatif kuvvet, sayının tersini alır: 2 üssü eksi 3, sekizde bir."
+        ]
        },
        {
+        "narration": "Durma, devam et: ikide bir, sonra dörtte bir. 2 üssü eksi 2, 2 karenin tersidir.",
         "show": [
-         "r5"
+         "r5",
+         "r6"
         ],
         "focus": [
-         "r5"
+         "r5",
+         "r6"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Özel kuvvetler",
+      "items": [
+       "**Sıfırıncı kuvvet**: $a \\neq 0$ ise $a^0 = 1$; $0^0$ tanımsızdır.",
+       "**Negatif kuvvet**: $a^{-n} = \\frac{1}{a^n}$, örneğin $2^{-3} = \\frac{1}{8}$.",
+       "**Kesrin negatif kuvveti** kesri ters çevirir: $(\\frac{2}{3})^{-2} = (\\frac{3}{2})^2$.",
+       "**Sıfırın** negatif kuvveti tanımsızdır, çünkü sıfırın tersi yoktur."
+      ],
+      "narration": "Sıfırıncı kuvvet: sıfırdan farklı her sayının sıfırıncı kuvveti 1'dir; sıfırın sıfırıncı kuvveti tanımsızdır. Negatif kuvvet, pozitif kuvvetin tersidir: 2 üssü eksi 3, sekizde bir. Kesrin negatif kuvveti kesri ters çevirir. Sıfırın negatif kuvveti tanımsızdır, çünkü sıfırın tersi yoktur."
+     },
+     {
+      "kind": "example",
+      "title": "Kesrin negatif kuvveti",
+      "example": "Üçte ikinin eksi ikinci kuvvetini hesapla.",
+      "explanation": "Önce **kesri ters çevir**, sonra üssü pozitif yap.",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "(2/3)⁻²"
+        },
+        {
+         "label": "(3/2)²"
+        },
+        {
+         "label": "9/4"
+        }
+       ]
+      },
+      "narration": "Bir örnek: üçte ikinin eksi ikinci kuvvetini hesapla. Önce kesri ters çevir, sonra üssü pozitif yap.",
+      "beats": [
+       {
+        "narration": "Üsteki eksi, kesri ters çevir diyor.",
+        "show": [
+         "n1"
         ],
-        "narration": "Kesirde negatif kuvvet kesri ters çevirir: üçte ikinin eksi ikinci kuvveti, dörtte dokuz."
+        "focus": [
+         "n1"
+        ]
+       },
+       {
+        "narration": "Üçte iki, ikide üç olur ve üs artık 2'dir.",
+        "show": [
+         "n2"
+        ],
+        "focus": [
+         "n2"
+        ]
+       },
+       {
+        "narration": "İkide üçün karesi, dörtte dokuz. Sonuç pozitif ve 1'den büyük.",
+        "show": [
+         "n3"
+        ],
+        "focus": [
+         "n3"
+        ]
        }
       ]
      },
      {
       "kind": "mistake",
       "title": "Negatif üs, negatif sayı değil",
-      "wrong": "$2^{-3} = -8$",
-      "right": "$2^{-3} = \\frac{1}{2^3} = \\frac{1}{8}$, **pozitif** bir sayıdır.",
-      "why": "Üsteki eksi, sayıyı negatif yapmaz; tersini alır.",
-      "narration": "Negatif üs, sayıyı negatif yapmaz. 2 üssü eksi 3, eksi 8 değil, sekizde birdir ve pozitiftir. Üsteki eksi işareti sayının çarpmaya göre tersini alır."
+      "wrong": "$2^{-3} = -8$, çünkü üsteki eksi sayıyı negatif yapar.",
+      "right": "Negatif üs tersini alır: $2^{-3} = \\frac{1}{2^3} = \\frac{1}{8}$.",
+      "why": "Sonuç pozitiftir: pozitif bir sayının hiçbir kuvveti negatif olmaz.",
+      "narration": "Sık hata: 2 üssü eksi 3'e eksi 8 demek. Negatif üs tersini alır: 2 küpün tersi, sekizde bir. Sonuç pozitiftir: pozitif bir sayının hiçbir kuvveti negatif olmaz."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$\\frac{2^{-3} + 2^{-2}}{2^{-4}}$ işleminin sonucu kaçtır?",
+       "stem": "$3^{-2} + 3^{0} - 3^{-1}$ işleminin sonucu kaçtır?",
        "options": [
-        "2",
-        "4",
-        "6",
-        "8",
-        "12"
+        "$\\frac{7}{9}$",
+        "$1$",
+        "$\\frac{10}{9}$",
+        "$\\frac{13}{9}$",
+        "$\\frac{5}{3}$"
        ],
-       "answer": 2,
-       "narration": "Negatif kuvvetlerle bir işlem.",
+       "answer": 0,
+       "narration": "Her terimi kesir olarak yaz.",
        "steps": [
         {
-         "text": "Pay: $2^{-3} + 2^{-2} = \\frac{1}{8} + \\frac{2}{8} = \\frac{3}{8}$",
-         "narration": "Önce pay: 2 üssü eksi 3, sekizde bir; 2 üssü eksi 2, dörtte bir, yani sekizde iki. Toplamları sekizde üç."
+         "text": "$3^{-2} = \\frac{1}{9}$, $3^0 = 1$, $3^{-1} = \\frac{1}{3} = \\frac{3}{9}$.",
+         "narration": "3 üssü eksi 2, dokuzda bir. 3 üssü sıfır, bir. 3 üssü eksi 1, üçte bir, yani dokuzda üç."
         },
         {
-         "text": "Payda: $2^{-4} = \\frac{1}{16}$. Kesre bölmek = tersiyle çarpmak: $\\frac{3}{8} \\cdot 16 = 6$",
-         "narration": "Payda 2 üssü eksi 4, on altıda bir. On altıda bire bölmek, 16 ile çarpmak demektir. Sekizde üç çarpı 16, 6."
+         "text": "$\\frac{1}{9} + \\frac{9}{9} - \\frac{3}{9} = \\frac{7}{9}$. Cevap **A**.",
+         "narration": "Paydaları dokuz yapıp topla: bir artı dokuz eksi üç, yedi. Sonuç dokuzda yedi. Cevabımız A. On üç bölü dokuzu seçen, son terimin önündeki eksiyi kaçırmıştır.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki negatif ve sıfırıncı kuvvetli işlem kalıbı örnek alındı, ifade özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir ilacın kandaki miktarı her saat bir önceki saatin yarısına iniyor. Şu anki miktar 40 mg'dır ve t saat sonraki miktar $40 \\cdot 2^{-t}$ mg ile hesaplanıyor; t yerine negatif bir sayı yazılınca geçmişteki miktar bulunuyor. Buna göre 2 saat sonraki miktarın, 3 saat önceki miktara oranı kaçtır?",
+       "options": [
+        "$2^{-6}$",
+        "$2^{-5}$",
+        "$2^{-1}$",
+        "$2$",
+        "$2^{5}$"
+       ],
+       "answer": 1,
+       "narration": "Negatif üs burada zamanda geriye gitmek demek.",
+       "steps": [
+        {
+         "text": "2 saat sonra: $t = 2$, $40 \\cdot 2^{-2} = 10$ mg.",
+         "narration": "İki saat sonrası için t yerine 2 yaz: 40 çarpı 2 üssü eksi 2, 40'ın dörtte biri, 10 miligram."
         },
         {
-         "text": "Cevap **C**.",
-         "narration": "Cevabımız C. Kısa yol da var: payı ve paydayı 2 üssü 4 ile çarparsan 2 artı 4, yani 6 kalır.",
+         "text": "3 saat önce: $t = -3$, $40 \\cdot 2^{3} = 320$ mg.",
+         "narration": "Üç saat öncesi için t eksi 3 olur ve üs artı 3'e döner. 40 çarpı 8, 320 miligram. t'yi artı 3 alan 2'yi bulur.",
+         "eliminate": [
+          "D"
+         ]
+        },
+        {
+         "text": "$\\frac{10}{320} = \\frac{1}{32} = 2^{-5}$. Cevap **B**.",
+         "narration": "Oran 10 bölü 320, otuz ikide bir, yani 2 üssü eksi 5. Cevabımız B. 2 üssü 5'i seçen oranı ters kurmuştur.",
+         "eliminate": [
+          "A",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin yeni tanımlanmış bir modelle işlem yaptıran bağlamlı soru yapısı örnek alındı, ilaç modeli ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "title": "Bilimsel gösterim ve basamak sayısı",
+    "narration": "Mikroskoplar, işlemciler, uydu ölçümleri: ÖSYM'nin bağlamlı soruları çoğu zaman 10'un kuvvetleriyle gelir.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Bilimsel gösterim",
+      "text": "Çok büyük ve çok küçük sayılar $a \\cdot 10^n$ biçiminde yazılır: buna **bilimsel gösterim** denir. Burada **a, 1 ile 10 arasındadır**: 1 olabilir, 10 olamaz. **n bir tam sayıdır**.",
+      "narration": "Çok büyük ve çok küçük sayıları kısa yazmanın bir yolu var: bilimsel gösterim. Sayıyı a çarpı 10 üssü n biçiminde yazarsın. Burada a, 1 ile 10 arasındadır: 1 olabilir, 10 olamaz. n bir tam sayıdır."
+     },
+     {
+      "kind": "visual",
+      "title": "Virgül nereye kayıyor?",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sayı",
+        "Bilimsel gösterim",
+        "Virgül"
+       ],
+       "rows": [
+        [
+         "$45\\,000$",
+         "$4{,}5 \\cdot 10^4$",
+         "4 basamak sola"
+        ],
+        [
+         "$0{,}0032$",
+         "$3{,}2 \\cdot 10^{-3}$",
+         "3 basamak sağa"
+        ],
+        [
+         "$32 \\cdot 10^5$",
+         "$3{,}2 \\cdot 10^6$",
+         "1 basamak sola"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "narration": "Virgülün nereye kaydığını izle.",
+      "beats": [
+       {
+        "narration": "45 binde virgül 4 basamak sola kayar: 4,5 çarpı 10 üssü 4.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "0,0032'de virgül 3 basamak sağa kayar: 3,2 çarpı 10 üssü eksi 3.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "32 çarpı 10 üssü 5 bilimsel değildir; 32'yi 3,2 yapınca üs bir artar.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Bilimsel gösterimle işlem",
+      "items": [
+       "**Virgül sola** kayarsa üs kaydığı basamak kadar artar.",
+       "**Virgül sağa** kayarsa üs kaydığı basamak kadar azalır.",
+       "**Çarpmada** önler çarpılır, üsler toplanır: $(2 \\cdot 10^3)(4 \\cdot 10^5) = 8 \\cdot 10^8$.",
+       "**Basamak sayısı**: $1 \\leq a < 10$ ise $a \\cdot 10^n$ sayısı $n + 1$ basamaklıdır."
+      ],
+      "narration": "Virgül sola kayarsa üs kaydığı basamak kadar artar. Virgül sağa kayarsa üs kaydığı basamak kadar azalır. Çarpmada önler çarpılır, üsler toplanır: 2 çarpı 4, 8; 3 artı 5, 8. Basamak sayısı için şunu ezberle: a çarpı 10 üssü n, n artı 1 basamaklıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Kaç basamaklı?",
+      "example": "Bir çarpımın kaç basamaklı olduğunu 10'un kuvvetiyle bul.",
+      "explanation": "Her **2 ile 5** eşleşince bir **10** doğar.",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "2⁵ · 5⁷"
+        },
+        {
+         "label": "2⁵ · 5⁵ · 5²"
+        },
+        {
+         "label": "10⁵ · 25"
+        },
+        {
+         "label": "2 500 000: 7 basamak"
+        }
+       ]
+      },
+      "narration": "Bir örnek: bir çarpımın kaç basamaklı olduğunu 10'un kuvvetiyle bul. Her 2 ile 5 eşleşince bir 10 doğar.",
+      "beats": [
+       {
+        "narration": "Elimizde 2 üssü 5 çarpı 5 üssü 7 var. Beş tane 2'yi beş tane 5 ile eşleştir.",
+        "show": [
+         "n1",
+         "n2"
+        ],
+        "focus": [
+         "n2"
+        ]
+       },
+       {
+        "narration": "Beş eşleşme 10 üssü 5 eder; artakalan iki tane 5, 25 eder.",
+        "show": [
+         "n3"
+        ],
+        "focus": [
+         "n3"
+        ]
+       },
+       {
+        "narration": "25'in arkasına beş sıfır gelir: 2 milyon 500 bin, yani yedi basamak.",
+        "show": [
+         "n4"
+        ],
+        "focus": [
+         "n4"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Küçük sayının üssü",
+      "wrong": "$0{,}0045 = 4{,}5 \\cdot 10^{3}$.",
+      "right": "Küçük sayının üssü negatiftir: $0{,}0045 = 4{,}5 \\cdot 10^{-3}$.",
+      "why": "1'den küçük bir sayı, 10'un pozitif kuvvetiyle yazılamaz; $4{,}5 \\cdot 10^3 = 4500$ olur.",
+      "narration": "Sık hata: 0,0045'i 4,5 çarpı 10 üssü 3 yazmak. Küçük sayının üssü negatiftir: 10 üssü eksi 3. 1'den küçük bir sayı, 10'un pozitif kuvvetiyle yazılamaz; o çarpım 4500 eder."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$8^{4} \\cdot 5^{13}$ sayısı kaç basamaklıdır?",
+       "options": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "17"
+       ],
+       "answer": 2,
+       "narration": "2'leri 5'lerle eşleştir.",
+       "steps": [
+        {
+         "text": "$8^4 = 2^{12}$: $2^{12} \\cdot 5^{13} = 2^{12} \\cdot 5^{12} \\cdot 5$.",
+         "narration": "8 üssü 4, 2 üssü 12. On iki tane 2'yi on iki tane 5 ile eşleştir; bir tane 5 artar."
+        },
+        {
+         "text": "$= 10^{12} \\cdot 5 = 5 \\cdot 10^{12}$.",
+         "narration": "Eşleşenler 10 üssü 12 eder. Sayı, 5 çarpı 10 üssü 12."
+        },
+        {
+         "text": "$n + 1 = 13$ basamak. Cevap **C**.",
+         "narration": "5'in arkasında on iki sıfır var: on üç basamak. Cevabımız C. On ikiyi seçen baştaki 5'i unutmuş, on yediyi seçen üsleri toplamıştır.",
          "eliminate": [
           "A",
           "B",
@@ -473,7 +1372,48 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki negatif kuvvetli işlem sorularının kalıbı örnek alındı, ifade özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki 2 ile 5'i eşleştirip basamak sayısı bulma kalıbı örnek alındı, sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir fotoğraf makinesinin sensöründe kare biçimli pikseller bir kenar boyunca yan yana dizilmiştir. Bir pikselin kenar uzunluğu $4 \\cdot 10^{-6}$ metredir ve sensörün bir kenarı boyunca 6000 piksel vardır. Pikseller arasında boşluk olmadığına göre, sensörün bu kenarının uzunluğu kaç milimetredir?",
+       "options": [
+        "0,0024",
+        "0,024",
+        "0,24",
+        "2,4",
+        "24"
+       ],
+       "answer": 4,
+       "narration": "ÖSYM 2021'de mikroskopla sordu. Biz bir kamera sensörüyle çalışalım; birimlere dikkat.",
+       "steps": [
+        {
+         "text": "Kenar: $4 \\cdot 10^{-6} \\cdot 6 \\cdot 10^3$ m.",
+         "narration": "Kenar uzunluğu, piksel kenarı çarpı piksel sayısıdır. 6000'i 6 çarpı 10 üssü 3 yazalım."
+        },
+        {
+         "text": "$= 24 \\cdot 10^{-3}$ m $= 0{,}024$ m.",
+         "narration": "Önler çarpılır, 4 çarpı 6, 24; üsler toplanır, eksi 6 artı 3, eksi 3. Sonuç 0,024 metre. B şıkkı metre cinsinden kalmıştır.",
+         "eliminate": [
+          "B"
+         ]
+        },
+        {
+         "text": "1 m = 1000 mm: $0{,}024 \\cdot 1000 = 24$ mm. Cevap **E**.",
+         "narration": "Bir metre bin milimetredir; 0,024 çarpı 1000, 24 milimetre. Cevabımız E. 2,4'ü seçen santimetreye çevirmiştir.",
+         "eliminate": [
+          "A",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2021'in \"bilimsel gösterimle verilen ölçüyü bir çarpanla büyütüp birim çevirme\" kalıbı örnek alındı; sensör bağlamı ve sayılar özgün."
        }
       }
      }
@@ -481,48 +1421,219 @@
    },
    {
     "subtopic": "MAT_USLU_05",
-    "title": "Sıralama",
-    "narration": "Üslü sayıları sıralamanın iki yolu var: tabanları eşitlemek ya da üsleri eşitlemek.",
+    "title": "Üslü sayılarda karşılaştırma",
+    "narration": "Hesap makinesi olmadan 2 üssü 30 mu büyük, 3 üssü 20 mi? Bunun bir yolu var.",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Hangisi büyük?",
+      "text": "İki üslü sayıdan hangisinin büyük olduğunu bulmak için önce **tabanları** ya da **üsleri** aynı yaparsın. Sonra yalnız **farklı kalanı** karşılaştırırsın.",
+      "narration": "Hangisi büyük sorusunda tek bir strateji var. Önce tabanları ya da üsleri aynı yaparsın. Sonra yalnız farklı kalanı karşılaştırırsın."
+     },
+     {
+      "kind": "visual",
+      "title": "Taban 1'den büyük mü, küçük mü?",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        -3,
+        3.2
+       ],
+       "y": [
+        0,
+        9
+       ],
+       "xLabel": "üs",
+       "yLabel": "değer",
+       "curves": [
+        {
+         "expression": "2^x",
+         "label": "2^x"
+        },
+        {
+         "expression": "(1/2)^x",
+         "label": "(1/2)^x"
+        }
+       ],
+       "points": [
+        {
+         "x": 2,
+         "y": 4,
+         "label": "2²"
+        },
+        {
+         "x": 3,
+         "y": 8,
+         "label": "2³"
+        },
+        {
+         "x": 1,
+         "y": 0.5,
+         "label": "1/2"
+        },
+        {
+         "x": 2,
+         "y": 0.25,
+         "label": "1/4"
+        }
+       ]
+      },
+      "narration": "Tabanın 1'den büyük ya da küçük olması sırayı değiştirir.",
+      "beats": [
+       {
+        "narration": "Taban 2 iken eğri sağa gittikçe yükselir: üs büyüdükçe sayı büyür.",
+        "show": [
+         "c1"
+        ],
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "2 kare 4, 2 küp 8. Tabanlar aynıysa üssü büyük olan büyüktür.",
+        "show": [
+         "p1",
+         "p2"
+        ],
+        "focus": [
+         "p1",
+         "p2"
+        ]
+       },
+       {
+        "narration": "Taban ikide bir olunca eğri tersine iner.",
+        "show": [
+         "c2"
+        ],
+        "focus": [
+         "c2"
+        ]
+       },
+       {
+        "narration": "İkide bir, dörtte birden büyüktür. Bu tabanda üs büyüdükçe sayı küçülür.",
+        "show": [
+         "p3",
+         "p4"
+        ],
+        "focus": [
+         "p3",
+         "p4"
+        ]
+       }
+      ]
+     },
      {
       "kind": "rule",
       "title": "Eşitle, sonra karşılaştır",
       "items": [
-       "**Tabanlar aynıysa** (taban > 1): üssü büyük olan büyüktür.",
-       "**Üsler aynıysa** (pozitif tabanlar): tabanı büyük olan büyüktür.",
-       "Üsleri eşitlemek için üslerin **EBOB**'unu kullan: $2^{30} = (2^3)^{10} = 8^{10}$.",
-       "Taban 0 ile 1 arasındaysa üs büyüdükçe sayı **küçülür**: $\\left(\\frac{1}{2}\\right)^3 < \\left(\\frac{1}{2}\\right)^2$."
+       "**Tabanlar aynıysa** ve taban 1'den büyükse üssü büyük olan büyüktür.",
+       "**Üsler aynıysa** ve tabanlar pozitifse tabanı büyük olan büyüktür.",
+       "**Üsleri eşitlemek** için üslerin EBOB'unu kullan: $2^{30} = (2^3)^{10} = 8^{10}$.",
+       "**Eşitlenemiyorsa** iki kuvvetin arasına yerleştir: $2^x = 40$ ise $2^5 < 2^x < 2^6$, yani $5 < x < 6$."
       ],
-      "narration": "Tabanlar aynı ve 1'den büyükse üssü büyük olan büyüktür. Üsler aynı ve tabanlar pozitifse tabanı büyük olan büyüktür. İkisi de farklıysa birini eşitlersin. Üsleri eşitlemek için üslerin EBOB'unu kullan: 2 üssü 30, 2 küpün onuncu kuvveti, yani 8 üssü 10. Bir uyarı: taban 0 ile 1 arasındaysa üs büyüdükçe sayı küçülür. İkide birin küpü, karesinden küçüktür."
+      "narration": "Tabanlar aynıysa ve taban 1'den büyükse üssü büyük olan büyüktür. Üsler aynıysa ve tabanlar pozitifse tabanı büyük olan büyüktür. Üsleri eşitlemek için üslerin EBOB'unu kullan: 2 üssü 30, 8 üssü 10. Eşitlenemiyorsa iki kuvvetin arasına yerleştir: 2 üssü x 40 ise x, 5 ile 6 arasındadır."
+     },
+     {
+      "kind": "example",
+      "title": "Üsleri eşitleyerek sırala",
+      "example": "Üç sayıyı üsleri eşitleyerek sırala.",
+      "narration": "Bir örnek: üç sayıyı üsleri eşitleyerek sırala.",
+      "steps": [
+       {
+        "narration": "30, 20 ve 10'un EBOB'u 10. 2 üssü 30, 8 üssü 10 olur.",
+        "math": "a = 2^{30} = (2^3)^{10} = 8^{10}",
+        "text": "Üsleri **10** yap"
+       },
+       {
+        "narration": "3 üssü 20, 3 karenin onuncu kuvvetidir: 9 üssü 10.",
+        "math": "b = 3^{20} = (3^2)^{10} = 9^{10}"
+       },
+       {
+        "narration": "5 üssü 10 zaten hazır.",
+        "math": "c = 5^{10}"
+       },
+       {
+        "narration": "Üsler eşit olunca tabanı büyük olan büyüktür. Tabanlar 5, 8, 9; sıra c, a, b.",
+        "math": "5^{10} < 8^{10} < 9^{10}",
+        "text": "**Tabanı büyük olan** büyük"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Kesir tabanda sıra döner",
+      "wrong": "$(\\frac{1}{2})^{5}$, $(\\frac{1}{2})^{3}$ sayısından büyüktür, çünkü üssü daha büyüktür.",
+      "right": "Taban 0 ile 1 arasında: $(\\frac{1}{2})^5 = \\frac{1}{32} < \\frac{1}{8} = (\\frac{1}{2})^3$.",
+      "why": "Bir kesir kendisiyle çarpıldıkça küçülür.",
+      "narration": "Sık hata: ikide birin beşinci kuvvetini, küpünden büyük sanmak. Taban 0 ile 1 arasında: beşinci kuvvet otuz ikide bir, küp sekizde bir. Bir kesir kendisiyle çarpıldıkça küçülür."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$a = 2^{30}$, $b = 3^{20}$ ve $c = 5^{10}$ olduğuna göre, aşağıdaki sıralamalardan hangisi doğrudur?",
+       "stem": "$a = 4^{15}$, $b = 8^{9}$ ve $c = 16^{7}$ olduğuna göre, aşağıdaki sıralamalardan hangisi doğrudur?",
        "options": [
         "$a < b < c$",
-        "$c < a < b$",
-        "$b < a < c$",
         "$a < c < b$",
+        "$b < a < c$",
+        "$b < c < a$",
         "$c < b < a$"
        ],
-       "answer": 1,
-       "narration": "Üsleri eşitleyelim.",
+       "answer": 3,
+       "narration": "Bu kez tabanları eşitleyelim.",
        "steps": [
         {
-         "text": "Üslerin EBOB'u 10: $a = (2^3)^{10} = 8^{10}$, $b = (3^2)^{10} = 9^{10}$, $c = 5^{10}$",
-         "narration": "30, 20 ve 10'un EBOB'u 10. a, 2 küpün onuncu kuvveti, yani 8 üssü 10. b, 3 karenin onuncu kuvveti, yani 9 üssü 10. c zaten 5 üssü 10."
+         "text": "$a = (2^2)^{15} = 2^{30}$, $b = (2^3)^9 = 2^{27}$, $c = (2^4)^7 = 2^{28}$.",
+         "narration": "Tabanların hepsi 2'nin kuvveti. a, 2 üssü 30; b, 2 üssü 27; c, 2 üssü 28."
         },
         {
-         "text": "Üsler aynı: tabanları karşılaştır, $5 < 8 < 9$.",
-         "narration": "Üsler aynı olduğuna göre tabanları karşılaştırırız: 5 küçüktür 8 küçüktür 9."
+         "text": "Taban aynı ve 1'den büyük: $27 < 28 < 30$.",
+         "narration": "Taban aynı ve birden büyük; üssü büyük olan büyüktür. Üsler 27, 28, 30."
         },
         {
-         "text": "$c < a < b$. Cevap **B**.",
-         "narration": "Öyleyse c küçüktür a küçüktür b. Cevabımız B. Yalnız üslere bakan, a'yı en büyük sanıp yanılır.",
+         "text": "$b < c < a$. Cevap **D**.",
+         "narration": "Sıra b, c, a. Cevabımız D. Yalnız tabana bakan, c'yi en büyük sanır.",
          "eliminate": [
           "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki tabanları eşitleyerek sıralama yöntemi özgün sayılarla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir laboratuvarda üç bakteri türü inceleniyor. Başlangıçta her türden 1 bakteri vardır ve t saat sonra X türünün sayısı $2^t$, Y türünün sayısı $3^t$, Z türünün sayısı $5^t$ ile modelleniyor. X türü 40'a, Y türü 100'e, Z türü 200'e ulaştığı anlarda ölçüm yapılıyor ve bu anlar sırasıyla x, y ve z saat oluyor. Buna göre x, y ve z arasındaki sıralama hangisidir?",
+       "options": [
+        "$z < y < x$",
+        "$x < y < z$",
+        "$x < z < y$",
+        "$y < z < x$",
+        "$z < x < y$"
+       ],
+       "answer": 0,
+       "narration": "Burada tabanlar da üsler de eşitlenemiyor. Aralık yöntemini kullanacağız.",
+       "steps": [
+        {
+         "text": "$2^5 = 32 < 40 < 64 = 2^6$ → $5 < x < 6$.",
+         "narration": "40'ı 2'nin kuvvetleri arasına yerleştir: 32 ile 64 arasında. Demek ki x, 5 ile 6 arasında."
+        },
+        {
+         "text": "$3^4 = 81 < 100 < 243 = 3^5$ → $4 < y < 5$.",
+         "narration": "100, 81 ile 243 arasında; öyleyse y, 4 ile 5 arasında."
+        },
+        {
+         "text": "$5^3 = 125 < 200 < 625 = 5^4$ → $3 < z < 4$. Cevap **A**.",
+         "narration": "200, 125 ile 625 arasında; z, 3 ile 4 arasında. Sıra z, y, x. Cevabımız A. Hedef sayılara bakıp x'i en küçük sanan B'ye düşer.",
+         "eliminate": [
+          "B",
           "C",
           "D",
           "E"
@@ -530,7 +1641,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; MEB anlatımındaki üsleri eşitleyerek sıralama yöntemi ve havuzdaki kalıp örnek alındı, sayılar özgün."
+        "changes": "MEB anlatımındaki \"üslü sayıyı iki kuvvet arasına yerleştirerek sıralama\" yöntemi örnek alındı; bakteri modeli, tabanlar ve hedef sayılar özgün."
        }
       }
      }
@@ -539,48 +1650,155 @@
    {
     "subtopic": "MAT_USLU_06",
     "title": "Üslü denklemler",
-    "narration": "Üslü bir denklemi çözmek için tabanları eşitlersin. Tabanlar eşitse üsler de eşittir.",
+    "narration": "Son durak: bilinmeyen üste çıkınca denklem nasıl çözülür?",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Üslü denklem",
+      "text": "Bilinmeyen **üste** ise iki tarafı **aynı tabana** çevirirsin. Tabanlar eşitlenince **üsler de eşit** olur ve denklem sıradan bir denkleme döner.",
+      "narration": "Bilinmeyen üste ise ne yaparsın? İki tarafı aynı tabana çevirirsin. Tabanlar eşitlenince üsler de eşit olur ve denklem sıradan bir denkleme döner."
+     },
      {
       "kind": "rule",
       "title": "Denklem çözme",
       "items": [
-       "$a^x = a^y$ ve $a \\neq 0, 1, -1$ ise $x = y$.",
-       "Tabanları **ortak asal** tabana çevir: $4 = 2^2$, $8 = 2^3$, $27 = 3^3$.",
-       "$a^x = 1$ ise $x = 0$ ($a \\neq 0$) ya da $a = 1$; $a = -1$ ise $x$ çift.",
-       "$x^a = y^a$ ve $a$ tek ise $x = y$; $a$ çift ise $x = y$ ya da $x = -y$."
+       "**Tabanlar eşitse** üsler eşittir: $a^x = a^y$ ise $x = y$ ($a \\neq -1, 0, 1$).",
+       "**Ortak tabana** çevir: $4 = 2^2$, $8 = 2^3$, $9 = 3^2$, $27 = 3^3$.",
+       "**Toplam varsa** ortak paranteze al: $2^{x+1} + 2^x = 3 \\cdot 2^x$.",
+       "**Sonuç 1 ise** üç durum: üs $0$, taban $1$, ya da taban $-1$ ve üs çift."
       ],
-      "narration": "a üssü x eşittir a üssü y ise ve taban 0, 1 ya da eksi 1 değilse üsler eşittir. Bunun için tabanları ortak bir asal tabana çevirirsin: 4, 2 kare; 8, 2 küp; 27, 3 küp. Sonuç 1 ise üç ihtimal vardır: üs sıfırdır, taban 1'dir ya da taban eksi 1 ve üs çifttir. Üsler aynı ve tek ise tabanlar eşittir; üs çift ise tabanlar eşit ya da birbirinin tersidir."
+      "narration": "Tabanlar eşitse üsler eşittir; yalnız taban eksi 1, 0 ya da 1 olmamalı, çünkü onların kuvvetleri tekrar eder. Ortak tabana çevir: 4, 2 kare; 8, 2 küp; 9, 3 kare; 27, 3 küp. Toplam varsa ortak paranteze al. Sonuç 1 ise üç durum var: üs sıfır, taban bir, ya da taban eksi bir ve üs çift."
+     },
+     {
+      "kind": "example",
+      "title": "Ortak tabana çevir",
+      "example": "Tabanları 2'ye çevirerek denklemi çöz.",
+      "visual": {
+       "kind": "equation",
+       "steps": [
+        {
+         "left": "4^{x+1}",
+         "right": "8^{x-1}"
+        },
+        {
+         "left": "2^{2x+2}",
+         "right": "2^{3x-3}",
+         "operation": "ortak taban 2"
+        },
+        {
+         "left": "2x + 2",
+         "right": "3x - 3",
+         "operation": "üsleri eşitle"
+        },
+        {
+         "left": "5",
+         "right": "x",
+         "operation": "−2x, +3"
+        }
+       ]
+      },
+      "narration": "Bir örnek: tabanları 2'ye çevirerek denklemi çöz.",
+      "beats": [
+       {
+        "narration": "Denklemde 4 üssü x artı 1, 8 üssü x eksi 1'e eşit.",
+        "stage": 0
+       },
+       {
+        "narration": "4, 2 kare; 8, 2 küp. Üssün üssünden 2 üssü 2x artı 2 ve 2 üssü 3x eksi 3 gelir.",
+        "stage": 1
+       },
+       {
+        "narration": "Tabanlar eşit, öyleyse üsler eşit: 2x artı 2, 3x eksi 3.",
+        "stage": 2
+       },
+       {
+        "narration": "İki taraftan 2x çıkar, 3 ekle: x eşittir 5. Kontrol et: iki taraf da 2 üssü 12.",
+        "stage": 3,
+        "note": "Kontrol: 4⁶ = 8⁴ = 2¹²"
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Ortak paranteze al",
+      "example": "Ortak paranteze alarak denklemi çöz.",
+      "visual": {
+       "kind": "equation",
+       "steps": [
+        {
+         "left": "3^{x+2} - 3^x",
+         "right": "216"
+        },
+        {
+         "left": "3^x(9 - 1)",
+         "right": "216",
+         "operation": "ortak parantez"
+        },
+        {
+         "left": "3^x",
+         "right": "27",
+         "operation": "÷ 8"
+        },
+        {
+         "left": "x",
+         "right": "3",
+         "operation": "27 = 3³"
+        }
+       ]
+      },
+      "narration": "İkinci örnek: ortak paranteze alarak denklemi çöz.",
+      "beats": [
+       {
+        "narration": "3 üssü x artı 2 eksi 3 üssü x, 216'ya eşit.",
+        "stage": 0
+       },
+       {
+        "narration": "3 üssü x artı 2, 9 çarpı 3 üssü x demektir. Ortak paranteze alınca 3 üssü x çarpı 8 kalır.",
+        "stage": 1
+       },
+       {
+        "narration": "İki tarafı 8'e böl: 3 üssü x, 27.",
+        "stage": 2
+       },
+       {
+        "narration": "27, 3 küp olduğu için x eşittir 3.",
+        "stage": 3
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Toplamda üsler toplanmaz",
+      "wrong": "$2^x + 2^x = 2^{2x}$.",
+      "right": "Aynı terimler toplanır: $2^x + 2^x = 2 \\cdot 2^x = 2^{x+1}$.",
+      "why": "Toplamada üsler toplanmaz; kaç tane olduğunu sayarsın.",
+      "narration": "Sık hata: 2 üssü x artı 2 üssü x'e 2 üssü 2x demek. Aynı terimler toplanır: iki tane 2 üssü x, yani 2 üssü x artı 1. Toplamada üsler toplanmaz; kaç tane olduğunu sayarsın."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$4^{x+1} = 8^{x-1}$ olduğuna göre, $x$ kaçtır?",
+       "stem": "$9^{x-1} = 27^{x-3}$ olduğuna göre, $x$ kaçtır?",
        "options": [
         "1",
-        "3",
-        "5",
         "7",
-        "9"
+        "8",
+        "9",
+        "11"
        ],
-       "answer": 2,
-       "narration": "Tabanları 2'ye çevirelim.",
+       "answer": 1,
+       "narration": "Tabanları 3'e çevir.",
        "steps": [
         {
-         "text": "$4^{x+1} = (2^2)^{x+1} = 2^{2x+2}$; $8^{x-1} = (2^3)^{x-1} = 2^{3x-3}$",
-         "narration": "4, 2 kare olduğu için sol taraf 2 üssü 2 x artı 2 olur. 8, 2 küp olduğu için sağ taraf 2 üssü 3 x eksi 3 olur."
+         "text": "$9^{x-1} = 3^{2x-2}$, $27^{x-3} = 3^{3x-9}$.",
+         "narration": "9, 3 kare; 27, 3 küp. Sol taraf 3 üssü 2x eksi 2, sağ taraf 3 üssü 3x eksi 9. Üçü ikinci terime de çarpmayı unutma."
         },
         {
-         "text": "Tabanlar eşit: $2x + 2 = 3x - 3 \\Rightarrow x = 5$",
-         "narration": "Tabanlar eşit, öyleyse üsler eşit: 2 x artı 2 eşittir 3 x eksi 3. x eşittir 5."
-        },
-        {
-         "text": "Kontrol: $4^6 = 2^{12}$, $8^4 = 2^{12}$ ✓. Cevap **C**.",
-         "narration": "Kontrol: 4 üssü 6, 2 üssü 12; 8 üssü 4 de 2 üssü 12. Cevabımız C.",
+         "text": "$2x - 2 = 3x - 9 \\Rightarrow x = 7$. Cevap **B**.",
+         "narration": "Üsleri eşitle: 2x eksi 2, 3x eksi 9. x eşittir 7. Cevabımız B. Biri seçen, 3x eksi 3 yazıp dokuzu kaçırmıştır.",
          "eliminate": [
           "A",
-          "B",
+          "C",
           "D",
           "E"
          ]
@@ -595,28 +1813,71 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$(x - 2)^{x + 3} = 1$ eşitliğini sağlayan $x$ tam sayılarının **toplamı** kaçtır?",
+       "stem": "$2^{x+3} + 2^{x+1} = 160$ olduğuna göre, $x$ kaçtır?",
        "options": [
-        "$-3$",
-        "$0$",
-        "$1$",
-        "$3$",
-        "$4$"
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
        ],
-       "answer": 2,
-       "narration": "Sonucu 1 olan bir üslü ifade. Üç ihtimali de deneyeceğiz.",
+       "answer": 3,
+       "narration": "Toplam var: önce ortak parantez.",
        "steps": [
         {
-         "text": "Üs sıfır: $x + 3 = 0 \\Rightarrow x = -3$; taban $-5 \\neq 0$ ✓",
-         "narration": "Birinci ihtimal: üs sıfır. x artı 3 eşittir 0, x eksi 3. Taban eksi 5, sıfır değil; geçerli."
+         "text": "$2^{x+3} = 8 \\cdot 2^x$, $2^{x+1} = 2 \\cdot 2^x$.",
+         "narration": "İki terimi de 2 üssü x cinsinden yaz: 2 üssü x artı 3, 8 çarpı 2 üssü x; 2 üssü x artı 1, 2 çarpı 2 üssü x."
         },
         {
-         "text": "Taban 1: $x - 2 = 1 \\Rightarrow x = 3$ ✓. Taban $-1$: $x = 1$, üs $4$ **çift** ✓",
-         "narration": "İkinci ihtimal: taban 1. x eksi 2 eşittir 1, x 3. Üçüncü ihtimal: taban eksi 1. x 1 olur, üs 1 artı 3, yani 4. Çift olduğu için eksi 1'in dördüncü kuvveti 1; bu da geçerli."
+         "text": "$2^x(8 + 2) = 160 \\Rightarrow 2^x = 16$.",
+         "narration": "Ortak paranteze al: 2 üssü x çarpı 10, 160. İki tarafı 10'a böl: 2 üssü x, 16."
         },
         {
-         "text": "Toplam: $-3 + 3 + 1 = 1$. Cevap **C**.",
-         "narration": "Çözümler eksi 3, 3 ve 1. Toplamları 1. Cevabımız C. Yalnız üssü sıfıra eşitleyen eksi 3'ü, eksi 1 tabanını unutan 0'ı bulur.",
+         "text": "$16 = 2^4 \\Rightarrow x = 4$. Cevap **D**.",
+         "narration": "16, 2 üssü 4; x eşittir 4. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; denetimde eksik bulunan \"ortak paranteze alarak üslü denklem\" kalıbı özgün bir denklemle eklendi."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir bilgisayar oyununda ekrandaki sayı makinesi, girilen her n tam sayısı için $(n - 3)^{n + 2}$ değerini hesaplıyor. Oyuncu, makineye girildiğinde ekranda 1 yazan bütün n tam sayılarını bulduğunda bir sonraki bölüme geçiyor. Buna göre oyuncunun bulması gereken n tam sayılarının toplamı kaçtır?",
+       "options": [
+        "$-2$",
+        "$2$",
+        "$4$",
+        "$6$",
+        "$8$"
+       ],
+       "answer": 2,
+       "narration": "Sonucu 1 olan bir üslü ifade. Üç durumu da tek tek dene.",
+       "steps": [
+        {
+         "text": "Üs sıfır: $n + 2 = 0 \\Rightarrow n = -2$; taban $-5 \\neq 0$ ✓",
+         "narration": "Birinci durum, üs sıfır: n artı 2 sıfır, n eksi 2. Taban eksi 5, sıfır değil; geçerli."
+        },
+        {
+         "text": "Taban 1: $n - 3 = 1 \\Rightarrow n = 4$ ✓",
+         "narration": "İkinci durum, taban bir: n eksi 3 bir, n dört. Birin her kuvveti bir; geçerli."
+        },
+        {
+         "text": "Taban $-1$: $n = 2$, üs $4$ **çift** ✓",
+         "narration": "Üçüncü durum, taban eksi bir: n iki. Üs iki artı iki, dört; çift olduğu için sonuç bir. Bu da geçerli."
+        },
+        {
+         "text": "Toplam: $-2 + 4 + 2 = 4$. Cevap **C**.",
+         "narration": "Toplam eksi iki artı dört artı iki, dört. Cevabımız C. İkiyi seçen eksi bir tabanını, altıyı seçen sıfır üssünü unutmuştur.",
          "eliminate": [
           "A",
           "B",
@@ -626,7 +1887,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki \"üslü ifade 1'e eşit\" denklem kalıbı örnek alındı, ifade özgün."
+        "changes": "MEB anlatımındaki \"a üssü b eşittir 1 için üç durum\" kuralı ve havuzdaki kalıp örnek alındı; oyun bağlamı ve ifade özgün."
        }
       }
      }
@@ -635,57 +1896,58 @@
   ],
   "summary": {
    "points": [
-    "Negatif tabanın **çift** kuvveti pozitif, **tek** kuvveti negatif.",
-    "Aynı taban: çarpmada üsler **toplanır**, bölmede **çıkarılır**.",
-    "$(a^m)^n = a^{mn}$ ama $a^{m^n}$'de önce $m^n$ hesaplanır.",
-    "$a^0 = 1$, $a^{-n} = \\frac{1}{a^n}$; negatif üs sayıyı **negatif yapmaz**.",
-    "Sıralamada tabanları ya da üsleri **eşitle**.",
-    "Denklemde **ortak tabana** çevir, üsleri eşitle."
+    "$a^n$, $a$'nın $n$ kez çarpımıdır; negatif tabanın **çift** kuvveti pozitif, **tek** kuvveti negatiftir.",
+    "Aynı taban: çarpmada üsler **toplanır**, bölmede **çıkarılır**; toplamada **ortak paranteze** al.",
+    "$(a^m)^n = a^{mn}$; parantez yoksa **üst kat önce** hesaplanır.",
+    "$a^0 = 1$, $a^{-n} = \\frac{1}{a^n}$: negatif üs **tersini** alır.",
+    "Bilimsel gösterim $a \\cdot 10^n$, $1 \\leq a < 10$; bu sayı $n + 1$ basamaklıdır.",
+    "Sıralamada tabanı ya da üssü **eşitle**; olmuyorsa iki kuvvetin **arasına** yerleştir.",
+    "Denklemde **ortak tabana** çevir ve üsleri eşitle; sonuç 1 ise **üç durum** var."
    ],
    "warnings": [
-    "$-2^4 = -16$, $(-2)^4 = 16$",
-    "$2^3 \\cdot 2^4 \\neq 4^7$",
-    "$2^3 + 2^4 \\neq 2^7$",
-    "$0^0$ tanımsızdır."
+    "$-3^2 = -9$, ama $(-3)^2 = 9$.",
+    "$2^3 \\cdot 2^4 \\neq 4^7$ ve $2^x + 2^x \\neq 2^{2x}$.",
+    "$2^{-3}$ negatif değil: $\\frac{1}{8}$.",
+    "Taban 0 ile 1 arasında: üs büyüdükçe sayı **küçülür**."
    ],
-   "narration": "Hadi toparlayalım. Negatif bir tabanın çift kuvveti pozitif, tek kuvveti negatiftir; üs hemen solundaki sayıya aittir. Aynı tabanlı sayılarda çarpmada üsler toplanır, bölmede çıkarılır; toplamada ise yalnızca ortak paranteze alırsın. Üssün üssünde üsler çarpılır, ama parantez yoksa üst kat önce hesaplanır. Sıfırıncı kuvvet 1, negatif kuvvet ise sayının tersidir. Sıralamada tabanları ya da üsleri eşitle, denklemde ortak tabana çevir."
+   "narration": "Hadi toparlayalım. Üslü ifade tekrarlı çarpımdır ve üs, hemen solundakine aittir. Aynı tabanlı sayılarda çarpmada üsler toplanır, bölmede çıkarılır; toplamada yalnız ortak paranteze alırsın. Üssün üssünde üsler çarpılır, parantez yoksa üst kat önce gelir. Sıfırıncı kuvvet 1, negatif kuvvet tersidir. Sıralamada bir şeyi eşitle, denklemde ortak tabana çevir."
   }
  },
  "short": {
-  "hook": "Üslü sayılarda üç tuzak.",
+  "hook": "Eksinin karesi hep artı mı?",
   "cards": [
    {
     "kind": "warning",
-    "text": "$-2^4 = -16$ ama $(-2)^4 = 16$"
+    "text": "$-3^2 = -9$ ama $(-3)^2 = 9$"
    },
    {
-    "kind": "warning",
-    "text": "$2^3 \\cdot 2^4 = 2^7$, $4^7$ değil."
+    "kind": "fact",
+    "text": "$2^3 \\cdot 2^4 = 2^7$: taban **aynı kalır**."
    },
    {
     "kind": "fact",
     "text": "$2^{-3} = \\frac{1}{8}$: **pozitif**."
    },
    {
-    "kind": "fact",
-    "text": "$a^0 = 1$, $0^0$ tanımsız."
+    "kind": "warning",
+    "text": "$(2^3)^2 = 2^6$ ama $2^{3^2} = 2^9$"
    }
   ],
   "summary": [
-   "Üs solundakine ait",
-   "Taban aynı kalır",
-   "Negatif üs ters alır"
+   "Üs solundakine aittir",
+   "Çarpmada taban aynı kalır",
+   "Negatif üs tersini alır"
   ],
   "rounds": [
    {
-    "sentence": "$-2^4$",
-    "question": "16 mı?",
+    "sentence": "$-3^2$",
+    "question": "9 mu?",
     "choices": [
      "Evet",
      "Hayır"
     ],
     "answer": 1,
-    "why": "Sonuç **eksi 16**."
+    "why": "Sonuç **eksi 9**."
    },
    {
     "sentence": "$2^{-3}$",
@@ -698,14 +1960,14 @@
     "why": "Sekizde **bir**."
    },
    {
-    "sentence": "$2^3 \\cdot 2^4$",
-    "question": "4 üssü 7 mi?",
+    "sentence": "2 küpün karesi",
+    "question": "2 üssü 5 mi?",
     "choices": [
      "Evet",
      "Hayır"
     ],
     "answer": 1,
-    "why": "**2 üssü 7**."
+    "why": "Üsler **çarpılır**: 2 üssü 6."
    }
   ]
  },

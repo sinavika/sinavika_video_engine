@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 6 · Ses Bilgisi
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/06_Ses_Bilgisi/Ses_Bilgisi_YouTube.mp4` (4K, 23:23) · Kapak: `Ses_Bilgisi_YouTube_Kapak.png` (kamp kapağı).
+Video: `Outputs/Camps/YKS/TYT/Turkce/06_Ses_Bilgisi/Ses_Bilgisi_YouTube.mp4` (4K, 23:23) · Kapak: `Ses_Bilgisi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

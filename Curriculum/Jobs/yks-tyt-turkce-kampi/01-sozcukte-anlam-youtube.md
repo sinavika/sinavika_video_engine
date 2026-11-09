@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 1 · Sözcükte Anlam
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/01_Sozcukte_Anlam/Sozcukte_Anlam_YouTube.mp4` (4K, 21:38; 27 Ekim akşamı yeni senaryoyla yeniden render) · Kapak: `Sozcukte_Anlam_YouTube_Kapak.jpg` (kamp kapağı, seri tasarımı).
+Video: `Outputs/Camps/YKS/TYT/Turkce/01_Sozcukte_Anlam/Sozcukte_Anlam_YouTube.mp4` (4K, 21:38; 27 Ekim akşamı yeni senaryoyla yeniden render) · Kapak: `Sozcukte_Anlam_YouTube_Kapak.jpg` (kamp kapağı, seri tasarımı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

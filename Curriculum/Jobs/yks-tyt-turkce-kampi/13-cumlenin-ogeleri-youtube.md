@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 13 · Cümlenin Ögeleri
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/13_Cumlenin_Ogeleri/Cumlenin_Ogeleri_YouTube.mp4` (4K, 16:05) · Kapak: `Cumlenin_Ogeleri_YouTube_Kapak.png` (kamp kapağı).
+Video: `Outputs/Camps/YKS/TYT/Turkce/13_Cumlenin_Ogeleri/Cumlenin_Ogeleri_YouTube.mp4` (4K, 16:05) · Kapak: `Cumlenin_Ogeleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

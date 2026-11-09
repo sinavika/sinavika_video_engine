@@ -1,6 +1,6 @@
 # YouTube metni: AYT Coğrafya kampı · Ders 11 · Ekonomik Faaliyetler ve Doğal Kaynaklar
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/11_Ekonomik_Faaliyetler_Ve_Dogal_Kaynaklar/Ekonomik_Faaliyetler_Ve_Dogal_Kaynaklar_YouTube.mp4` (4K) · Kapak: `Ekonomik_Faaliyetler_Ve_Dogal_Kaynaklar_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Cografya/11_Ekonomik_Faaliyetler_Ve_Dogal_Kaynaklar/Ekonomik_Faaliyetler_Ve_Dogal_Kaynaklar_YouTube.mp4` (4K) · Kapak: `Ekonomik_Faaliyetler_Ve_Dogal_Kaynaklar_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

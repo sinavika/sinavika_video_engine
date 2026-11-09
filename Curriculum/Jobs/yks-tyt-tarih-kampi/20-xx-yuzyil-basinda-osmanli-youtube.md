@@ -1,6 +1,6 @@
 # YouTube metni: TYT Tarih kampı · Ders 20 · XX. Yüzyıl Başlarında Osmanlı Devleti ve Dünya
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Tarih/20_XX_Yuzyil_Basinda_Osmanli/XX_Yuzyil_Basinda_Osmanli_YouTube.mp4` (4K) · Kapak: `XX_Yuzyil_Basinda_Osmanli_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Tarih/20_XX_Yuzyil_Basinda_Osmanli/XX_Yuzyil_Basinda_Osmanli_YouTube.mp4` (4K) · Kapak: `XX_Yuzyil_Basinda_Osmanli_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

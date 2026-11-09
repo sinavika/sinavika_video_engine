@@ -144,7 +144,7 @@ def params_of(model, body):
             + 'Yönergeye göre yazılı dersi yaz; yalnız JSON döndür.\n\n' + json.dumps(body, ensure_ascii=False))
     effort = 'high' if body['konu'].split('/')[1] in HIGH_EFFORT else 'medium'
     return {'model': MODELS[model], 'max_tokens': 128000, 'thinking': {'type': 'adaptive'}, 'output_config': {'effort': effort},
-            'system': [{'type': 'text', 'text': open(YONERGE, encoding='utf-8').read(), 'cache_control': {'type': 'ephemeral'}}],
+            'system': api.cached_system(open(YONERGE, encoding='utf-8').read()),
             'messages': [{'role': 'user', 'content': text}]}
 
 
@@ -197,7 +197,10 @@ def lesson_json(text):
 def price(model, usage):
     p_in, p_out = PRICES[model]
     fresh = usage.get('input_tokens', 0)
-    return 0.5 * (fresh * p_in + usage.get('cache_read_input_tokens', 0) * p_in * 0.1 + usage.get('cache_creation_input_tokens', 0) * p_in * 1.25 + usage.get('output_tokens', 0) * p_out) / 1e6
+    # Cache writes: 1.25x for the 5-minute cache, 2x for the 1-hour one (the batches use the 1-hour cache since 9 Nov 2026).
+    hour = (usage.get('cache_creation') or {}).get('ephemeral_1h_input_tokens', 0)
+    writes = (usage.get('cache_creation_input_tokens', 0) - hour) * 1.25 + hour * 2.0
+    return 0.5 * (fresh * p_in + usage.get('cache_read_input_tokens', 0) * p_in * 0.1 + writes * p_in + usage.get('output_tokens', 0) * p_out) / 1e6
 
 
 def collect(batch_id):
@@ -443,7 +446,7 @@ def submit_patches(model, target, refs):
         # Çözümlü örnek ekleyen yamada hesap doğruluğu önemli: sayısal derslerde yüksek düşünme düzeyi.
         effort = 'high' if ref.split('/')[1] in HIGH_EFFORT and any(p.startswith('uyarı: ') for p in issues[ref]) else 'medium'
         requests.append({'custom_id': custom_id(ref), 'params': {'model': MODELS[model], 'max_tokens': 128000, 'thinking': {'type': 'adaptive'}, 'output_config': {'effort': effort},
-                                                                 'system': [{'type': 'text', 'text': system, 'cache_control': {'type': 'ephemeral'}}], 'messages': [{'role': 'user', 'content': text}]}})
+                                                                 'system': api.cached_system(system), 'messages': [{'role': 'user', 'content': text}]}})
     batch_id = api.submit_batch(requests)
     with open(STATE, 'a', encoding='utf-8') as handle:
         handle.write(json.dumps({'id': batch_id, 'model': model, 'target': os.path.abspath(target), 'refs': refs, 'tag': 'yama', 'at': time.strftime('%Y-%m-%dT%H:%M:%S')}, ensure_ascii=False) + '\n')

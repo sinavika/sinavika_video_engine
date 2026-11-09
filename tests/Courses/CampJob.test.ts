@@ -41,9 +41,9 @@ describe('camp jobs (npm run curriculum -- jobs make)', () => {
 		const written = files();
 		expect(Object.keys(written)).toEqual(['01-sozcukte-anlam-youtube.json', '01-sozcukte-anlam-reels.json', '01-sozcukte-anlam-youtube.md']);
 		const youtube = JSON.parse(written['01-sozcukte-anlam-youtube.json']);
-		expect(youtube).toEqual({template: 'CampLesson', format: 'Horizontal', theme: 'SinavikaLight', name: 'TYT Türkçe kampı 01 Sözcükte Anlam YouTube', output: 'Outputs/Videos/YKS/TYT/Turkce/01_Sozcukte_Anlam/Sozcukte_Anlam_YouTube.mp4', voiceover: true, script: SCRIPT_FILE});
+		expect(youtube).toEqual({template: 'CampLesson', format: 'Horizontal', theme: 'SinavikaLight', name: 'TYT Türkçe kampı 01 Sözcükte Anlam YouTube', output: 'Outputs/Camps/YKS/TYT/Turkce/01_Sozcukte_Anlam/Sozcukte_Anlam_YouTube.mp4', voiceover: true, script: SCRIPT_FILE});
 		// The reel goes into the same folder (the render saves each at its `output`, its cover beside it).
-		expect(JSON.parse(written['01-sozcukte-anlam-reels.json'])).toMatchObject({template: 'CampShort', format: 'Vertical', output: 'Outputs/Videos/YKS/TYT/Turkce/01_Sozcukte_Anlam/Sozcukte_Anlam_Reels.mp4', script: SCRIPT_FILE});
+		expect(JSON.parse(written['01-sozcukte-anlam-reels.json'])).toMatchObject({template: 'CampShort', format: 'Vertical', output: 'Outputs/Camps/YKS/TYT/Turkce/01_Sozcukte_Anlam/Sozcukte_Anlam_Reels.mp4', script: SCRIPT_FILE});
 		expect(youtube).not.toHaveProperty('content');
 	});
 
@@ -54,7 +54,7 @@ describe('camp jobs (npm run curriculum -- jobs make)', () => {
 		expect(note).toContain("2. Sınavika'da Sözcükte Anlam testinden 10 soru çöz.");
 		expect(note).not.toContain('**');
 		expect(note).toContain('⏭️ Sıradaki ders: Söz Yorumu.');
-		expect(note).toContain('`Outputs/Videos/YKS/TYT/Turkce/01_Sozcukte_Anlam/Sozcukte_Anlam_YouTube.mp4`');
+		expect(note).toContain('`Outputs/Camps/YKS/TYT/Turkce/01_Sozcukte_Anlam/Sozcukte_Anlam_YouTube.mp4`');
 		// The engine writes the cover as PNG; the note said .jpg until 1 Nov 2026.
 		expect(note).toContain('`Sozcukte_Anlam_YouTube_Kapak.png`');
 		expect(note).toContain('TYT Türkçe Kampı | Sınavika · YKS Kampı | Sınavika');
@@ -74,7 +74,7 @@ describe('camp jobs (npm run curriculum -- jobs make)', () => {
 		const kpss = LessonScriptSchema.parse({...CAMP_SCRIPT_SAMPLE, topic: {...CAMP_SCRIPT_SAMPLE.topic, category: 'KPSS_LISANS', lesson: 'VAT', code: 'VAT_HUKUK_TEMEL'}, camp: {...CAMP_SCRIPT_SAMPLE.camp!, id: 'kpss-vatandaslik-kampi', name: 'KPSS Vatandaşlık kampı'}});
 		const kpssCamp = {...camp, id: 'kpss-vatandaslik-kampi', name: 'KPSS Vatandaşlık kampı', category: 'KPSS', lesson: 'VAT', exams: ['KPSS']};
 		const note = campJobFiles({...spec, code: 'VAT_HUKUK_TEMEL', slug: 'hukukun-temel-kavramlari', stem: 'Hukukun_Temel_Kavramlari'}, kpss, 'Curriculum/Scripts/KPSS/VAT/VAT_HUKUK_TEMEL.json', kpssCamp).find((file) => file.name.endsWith('.md'))!.text;
-		expect(note).toContain('`Outputs/Videos/KPSS/Vatandaslik/01_Hukukun_Temel_Kavramlari/');
+		expect(note).toContain('`Outputs/Camps/KPSS/Vatandaslik/01_Hukukun_Temel_Kavramlari/');
 		expect(note).toContain('KPSS tarzı soru');
 		expect(note).toContain('KPSS Vatandaşlık Kampı | Sınavika · KPSS Kampı | Sınavika');
 		expect(note).toContain('Bölüm 0: (yayın linki)');

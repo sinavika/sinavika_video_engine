@@ -1,6 +1,6 @@
 # YouTube metni: TYT Din Kültürü ve Ahlak Bilgisi kampı · Ders 14 · Bazı Genç Sahabiler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/14_Bazi_Genc_Sahabiler/Bazi_Genc_Sahabiler_YouTube.mp4` (4K) · Kapak: `Bazi_Genc_Sahabiler_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Din/14_Bazi_Genc_Sahabiler/Bazi_Genc_Sahabiler_YouTube.mp4` (4K) · Kapak: `Bazi_Genc_Sahabiler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

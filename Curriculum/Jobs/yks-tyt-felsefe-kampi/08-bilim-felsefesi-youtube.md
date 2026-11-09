@@ -1,6 +1,6 @@
 # YouTube metni: TYT Felsefe kampı · Ders 8 · Bilim Felsefesi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Felsefe/08_Bilim_Felsefesi/Bilim_Felsefesi_YouTube.mp4` (4K) · Kapak: `Bilim_Felsefesi_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Felsefe/08_Bilim_Felsefesi/Bilim_Felsefesi_YouTube.mp4` (4K) · Kapak: `Bilim_Felsefesi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

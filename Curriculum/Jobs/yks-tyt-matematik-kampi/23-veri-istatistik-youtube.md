@@ -1,6 +1,6 @@
 # YouTube metni: TYT Matematik kampı · Ders 23 · Veri – İstatistik
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Matematik/23_Veri_Istatistik/Veri_Istatistik_YouTube.mp4` (4K) · Kapak: `Veri_Istatistik_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Matematik/23_Veri_Istatistik/Veri_Istatistik_YouTube.mp4` (4K) · Kapak: `Veri_Istatistik_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

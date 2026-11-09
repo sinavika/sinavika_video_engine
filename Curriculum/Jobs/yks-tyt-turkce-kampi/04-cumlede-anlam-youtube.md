@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 4 · Cümlede Anlam
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/04_Cumlede_Anlam/Cumlede_Anlam_YouTube.mp4` (4K, 27:04) · Kapak: `Cumlede_Anlam_YouTube_Kapak.jpg` (kamp kapağı).
+Video: `Outputs/Camps/YKS/TYT/Turkce/04_Cumlede_Anlam/Cumlede_Anlam_YouTube.mp4` (4K, 27:04) · Kapak: `Cumlede_Anlam_YouTube_Kapak.jpg` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

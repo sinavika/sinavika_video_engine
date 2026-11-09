@@ -1,6 +1,6 @@
 # YouTube metni: AYT Felsefe kampı · Ders 10 · MS 2. Yüzyıl – MS 15. Yüzyıl Felsefesi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Felsefe/10_Ms2_Ms15_Felsefesi/Ms2_Ms15_Felsefesi_YouTube.mp4` (4K) · Kapak: `Ms2_Ms15_Felsefesi_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Felsefe/10_Ms2_Ms15_Felsefesi/Ms2_Ms15_Felsefesi_YouTube.mp4` (4K) · Kapak: `Ms2_Ms15_Felsefesi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

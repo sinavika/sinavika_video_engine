@@ -12,162 +12,582 @@
   "TYT"
  ],
  "sources": [
-  "YKS/TYT/KonuAnlatimi/MAT/MAT_OLASILIK.json (MEB Temel Matematik: deney, örnek uzay, olay, olasılık, tümleyen, ayrık, bağımsız olaylar)",
-  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: 9 soru; hepsi basit olasılık ve sayma birlikte (kartlar, şifre, ocak tuşları, kargo paketleri, hediye, defolu halı, tartı))",
-  "YKS/TYT/Sorular/MAT/MAT_OLASILIK.jsonl (240 soru; örnek uzay, basit olasılık ve bağımsız olay kalıpları)"
+  "YKS/TYT/KonuAnlatimi/yks_tyt_kn_temel-matematik_meb-konu-anlatimi s. 80–83 (MEB: deney, çıktı, örnek uzay, olay, ayrık olaylar, tümleyen, imkânsız ve kesin olay, olasılık kavramı)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: her yıl bir olasılık sorusu; tartı 2018, kartlar 2019, tuş takımı 2020, captcha 2021, klavye 2022, ocak 2023, kargo 2024, hediye 2025, halı 2026)",
+  "YKS/TYT/Sorular/MAT/MAT_OLASILIK.jsonl (havuz: örnek uzay, basit olasılık, tümleyen, bağımsız ve bağımlı olay kalıpları)"
  ],
  "lesson": {
   "hook": {
-   "headline": "Para 4 kez yazı geldi. 5. atışta yazı gelme olasılığı azalır mı?",
-   "narration": "Bir para art arda 4 kez yazı geldi. Beşinci atışta tura gelmesi daha mı olası? Hayır; para önceki atışları hatırlamaz, olasılık yine yarım. Olasılık, sezgilerin en çok yanıldığı konulardan biri. ÖSYM bu konuda her yıl bir soru soruyor ve neredeyse hepsinde olasılığı saymayla birleştiriyor: kartlar, şifreler, kargo paketleri. Bu derste örnek uzayı, olasılığın tanımını, tümleyen olayı, ayrık ve bağımsız olayları adım adım göreceğiz."
+   "headline": "En az biri seçilsin: tek tek sayma, tümleyene bak.",
+   "narration": "Sekiz çalışandan üçü bir eğitime gidecek. Arda ve Bora'dan en az birinin gitme olasılığı kaç? ÖSYM 2018'den bu yana her yıl bir olasılık sorusu sordu ve hemen hepsinde olasılığı saymayla birleştirdi. Bu derste örnek uzayı, olayı, olasılığı, tümleyeni, ayrık ve bağımsız olayları sırayla öğreneceğiz."
   },
   "opening": {
    "kind": "question",
-   "card": "s2-c2",
-   "narration": "Para 4 kez yazı geldi. 5. atışta yazı gelme olasılığı azalır mı? İki zar atılıyor. En az birinin altı gelme olasılığı kaç?",
-   "promise": "Örnek uzayı, olay olasılığını, bağımsız olayları ve en az bir sorularını tümleyenle çözmeyi öğreneceksin."
+   "card": "s3-c7",
+   "narration": "Sekiz çalışandan üçü eğitime gidecek. Arda ve Bora'dan en az birinin gitme olasılığı kaç? Durumları tek tek sayarsan kaybolursun; çok daha kısa bir yol var.",
+   "promise": "Örnek uzayı saymayı, olasılığı hesaplamayı, tümleyeni, ayrık ve bağımsız olayları adım adım öğreneceksin."
   },
   "objectives": [
-   "Örnek uzayı ve istenen durumları saymak",
+   "Bir deneyin örnek uzayını ve olaylarını doğru saymak",
    "Olasılığı istenen bölü tüm durumlar olarak hesaplamak",
-   "\"En az\" sorularında tümleyeni kullanmak",
-   "Bağımsız olaylarda olasılıkları çarpmak"
+   "\"En az bir\" sorularını tümleyenle kısaltmak",
+   "Ayrık olaylarda toplamak, kesişimi bir kez çıkarmak",
+   "Bağımsız ve bağımlı olaylarda olasılıkları çarpmak"
   ],
   "sections": [
    {
     "subtopic": "MAT_OLASILIK_01",
     "subtopics": [
-     "MAT_OLASILIK_02",
-     "MAT_OLASILIK_03"
+     "MAT_OLASILIK_02"
     ],
-    "title": "Örnek uzay ve olasılık",
-    "narration": "Olasılık, istenen durumların sayısının bütün durumların sayısına oranıdır. Önce bütün durumları doğru saymalısın.",
+    "title": "Deney, örnek uzay ve olay",
+    "narration": "Olasılığın ilk adımı saymaktır. Önce neyi saydığını bilmelisin: deneyi, sonuçlarını ve olayı.",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Deney ve örnek uzay",
+      "text": "**Deney**: tekrarlanabilen, her seferinde farklı sonuç verebilen süreç. **Çıktı**: deneyin bir sonucu. **Örnek uzay** $E$: bütün çıktıların kümesi. **Olay**: örnek uzayın bir alt kümesi.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Deney",
+        "Örnek uzay E",
+        "s(E)"
+       ],
+       "rows": [
+        [
+         "Bir para",
+         "{Y, T}",
+         "2"
+        ],
+        [
+         "Bir zar",
+         "{1, 2, 3, 4, 5, 6}",
+         "6"
+        ],
+        [
+         "İki para",
+         "{YY, YT, TY, TT}",
+         "4"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "narration": "Bir parayı havaya atmak bir deney sayılır. Yazı ya da tura, bu deneyin birer çıktısıdır.",
+      "beats": [
+       {
+        "narration": "Bütün çıktıların kümesine örnek uzay denir. Bir parada örnek uzay yazı ve turadır, iki eleman.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Bir zarın örnek uzayı birden altıya kadar altı sayıdır.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "İki parada yazı tura ile tura yazı ayrı çıktılardır. Bu yüzden dört eleman var.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "Örnek uzayın her alt kümesine olay denir. Zarda çift gelmesi iki, dört, altı kümesidir.",
+        "focus": [
+         "r2"
+        ]
+       }
+      ]
+     },
+     {
       "kind": "rule",
-      "title": "Olasılığın tanımı",
+      "title": "Örnek uzayı saymak",
       "items": [
-       "**Örnek uzay** $E$: bütün olası sonuçlar. **Olay** $A$: örnek uzayın bir alt kümesi.",
-       "$P(A) = \\frac{s(A)}{s(E)}$: istenen durum ÷ tüm durumlar (sonuçlar **eşit olasılıklı** ise).",
-       "$0 \\leq P(A) \\leq 1$. İmkânsız olay 0, kesin olay 1.",
-       "İki zar: $6 \\cdot 6 = 36$ sonuç. İki para: 4 sonuç."
+       "**n para** birlikte atılır ya da bir para n kez atılırsa: $s(E) = 2^n$.",
+       "**n zar** atılırsa: $s(E) = 6^n$. İki zar: $36$ çıktı.",
+       "Para ve zar birlikte atılırsa **çarparsın**: bir para ve bir zar, $2 \\cdot 6 = 12$.",
+       "Olay sayısı **alt küme** sayısıdır: $s(E) = n$ ise $2^n$ olay."
       ],
-      "narration": "Bir deneyin bütün olası sonuçlarına örnek uzay denir; bunların bir kısmı da bir olaydır. Sonuçlar eşit olasılıklıysa bir olayın olasılığı, istenen durumların sayısının bütün durumların sayısına bölümüdür. Olasılık 0 ile 1 arasındadır: imkânsız olay 0, kesin olay 1. İki zar atıldığında 6 çarpı 6, 36 sonuç; iki para atıldığında 4 sonuç vardır."
+      "narration": "Örnek uzayı her seferinde yazmana gerek yok. n para birlikte atılırsa ya da bir para n kez atılırsa çıktı sayısı ikinin n'inci kuvvetidir. n zar atılırsa altının n'inci kuvveti; iki zarda otuz altı çıktı. Para ve zar birlikte atılırsa çarparsın: bir para ve bir zar, iki çarpı altı, on iki. Olay sayısı alt küme sayısıdır: örnek uzay n elemanlıysa iki üzeri n olay vardır."
      },
      {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "İki zar birlikte atılıyor. Üst yüze gelen sayıların toplamının 8 olma olasılığı kaçtır?",
-       "options": [
-        "$\\frac{1}{6}$",
-        "$\\frac{5}{36}$",
-        "$\\frac{1}{9}$",
-        "$\\frac{7}{36}$",
-        "$\\frac{2}{9}$"
+      "kind": "rule",
+      "title": "Olay türleri",
+      "items": [
+       "**İmkânsız olay**: hiç gerçekleşemez, boş küme $\\varnothing$. Zarda 7 gelmesi.",
+       "**Kesin olay**: her zaman gerçekleşir, örnek uzayın kendisi. Zarda 7'den küçük gelmesi.",
+       "**Kesişim** $A \\cap B$: iki olayın aynı anda olması. Zarda çift ve asal: $\\{2\\}$.",
+       "**Birleşim** $A \\cup B$: en az birinin olması. Zarda çift ya da asal: $\\{2, 3, 4, 5, 6\\}$."
+      ],
+      "narration": "Olaylar da küme gibi davranır. İmkânsız olay hiç gerçekleşemez, boş kümedir: zarda yedi gelmesi gibi. Kesin olay her zaman gerçekleşir, örnek uzayın kendisidir: zarda yediden küçük gelmesi. Kesişim iki olayın aynı anda olmasıdır: zarda çift ve asal, yalnız iki. Birleşim en az birinin olmasıdır: çift ya da asal; iki, üç, dört, beş, altı."
+     },
+     {
+      "kind": "example",
+      "title": "İki zarda bir olay",
+      "example": "İki zar atılıyor: toplamı 5 olan olay kaç elemanlıdır?",
+      "explanation": "Toplam 5: (1, 4), (2, 3), (3, 2), (4, 1). **Dört** eleman; (1, 4) ile (4, 1) farklıdır.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Birinci zar",
+        "İkinci zar",
+        "Toplam"
        ],
-       "answer": 1,
-       "narration": "İstenen durumları tek tek yazalım.",
-       "steps": [
-        {
-         "text": "Tüm durumlar: $6 \\cdot 6 = 36$",
-         "narration": "İki zarın birlikte 36 sonucu var."
-        },
-        {
-         "text": "Toplam 8: (2,6), (3,5), (4,4), (5,3), (6,2) → **5** durum",
-         "narration": "Toplamı 8 olanlar: 2 ile 6, 3 ile 5, 4 ile 4, 5 ile 3, 6 ile 2. Beş durum. 2 ile 6 ve 6 ile 2 farklı durumlardır, çünkü zarlar farklı."
-        },
-        {
-         "text": "$P = \\frac{5}{36}$. Cevap **B**.",
-         "narration": "Olasılık 36'da 5. Cevabımız B. 2 ile 6'yı bir kez sayan, 36'da 3 gibi yanlış bir sonuç bulur.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki iki zar olasılığı kalıbı örnek alındı."
+       "rows": [
+        [
+         "1",
+         "4",
+         "5"
+        ],
+        [
+         "2",
+         "3",
+         "5"
+        ],
+        [
+         "3",
+         "2",
+         "5"
+        ],
+        [
+         "4",
+         "1",
+         "5"
+        ]
+       ]
+      },
+      "narration": "İki zar atılıyor: toplamı 5 olan olay kaç elemanlıdır? Birinci zarı ve ikinci zarı ayrı düşün.",
+      "beats": [
+       {
+        "narration": "Birinci zar bir gelirse ikinci zar dört gelmeli. Birinci zar iki gelirse ikinci üç.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r1",
+         "r2"
+        ]
+       },
+       {
+        "narration": "Birinci zar üç ya da dört gelirse ikinci zar iki ya da bir gelir.",
+        "show": [
+         "r3",
+         "r4"
+        ],
+        "focus": [
+         "r3",
+         "r4"
+        ]
+       },
+       {
+        "narration": "Dört eleman var. Bir dört ile dört bir ayrı çıktılardır, çünkü zarlar farklı.",
+        "focus": [
+         "r1",
+         "r4"
+        ]
        }
-      }
+      ]
      },
      {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Aralarında Ali ve Can'ın da bulunduğu 7 kişilik bir gruptan rastgele 2 kişi seçiliyor. Ali ve Can'dan **en az birinin** seçilmiş olma olasılığı kaçtır?",
-       "options": [
-        "$\\frac{10}{21}$",
-        "$\\frac{11}{21}$",
-        "$\\frac{2}{7}$",
-        "$\\frac{4}{7}$",
-        "$\\frac{1}{3}$"
+      "kind": "mistake",
+      "title": "YT ile TY aynı mı?",
+      "wrong": "İki para atılınca örnek uzay {YY, YT, TT} olur; üç elemanlıdır.",
+      "right": "Paralar farklı olduğu için YT ile TY ayrı çıktılardır: $E = \\{YY, YT, TY, TT\\}$, dört eleman.",
+      "why": "Üç elemanlı yazarsan çıktılar eşit olasılıklı olmaz: bir yazı bir tura, aslında iki yoldan gelir.",
+      "narration": "Çok yapılan hata: iki parada örnek uzayı yazı yazı, yazı tura, tura tura diye üç eleman yazmak. Paralar farklı olduğu için yazı tura ile tura yazı ayrı çıktılardır; dört eleman var. Üç elemanlı yazarsan çıktılar eşit olasılıklı olmaz; bir yazı bir tura aslında iki yoldan gelir."
+     },
+     {
+      "kind": "practice",
+      "title": "Kaç çıktı?",
+      "visual": {
+       "kind": "matching",
+       "titles": [
+        "Deney",
+        "Çıktı sayısı"
        ],
-       "answer": 1,
-       "narration": "ÖSYM 2025'te hediye verilen misafirlerle sordu. Saymayı kombinasyonla yapalım.",
-       "steps": [
+       "pairs": [
         {
-         "text": "Tüm seçimler: $\\binom{7}{2} = 21$",
-         "narration": "7 kişiden 2 kişi: C 7 2, 21 seçim."
+         "left": "Bir para",
+         "right": "2 çıktı"
         },
         {
-         "text": "İkisi de seçilmez: diğer 5'ten 2 → $\\binom{5}{2} = 10$. En az biri: $21 - 10 = 11$",
-         "narration": "Ali de Can da seçilmezse 2 kişi diğer 5 kişiden seçilir: C 5 2, 10. En az birinin seçildiği durumlar 21 eksi 10, 11."
+         "left": "Üç para",
+         "right": "8 çıktı"
         },
         {
-         "text": "$P = \\frac{11}{21}$. Cevap **B**.",
-         "narration": "Olasılık 21'de 11. Cevabımız B. İstenmeyenin olasılığını veren A şıkkı tuzaktır.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ]
+         "left": "Bir zar",
+         "right": "6 çıktı"
+        },
+        {
+         "left": "İki zar",
+         "right": "36 çıktı"
         }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2025'in \"rastgele ikisine hediye, belli iki kişiden en az biri\" kalıbı örnek alındı, bağlam ve sayılar özgün."
+       ]
+      },
+      "thinkSeconds": 5,
+      "narration": "Şimdi dört deney ve dört çıktı sayısı var.",
+      "beats": [
+       {
+        "narration": "Bir para iki çıktı verir: yazı ya da tura.",
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "Üç parada iki üzeri üç, sekiz çıktı var.",
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "Bir zar altı, iki zar altı çarpı altı, otuz altı çıktı verir.",
+        "focus": [
+         "p3",
+         "p4"
+        ]
        }
-      }
+      ]
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Üzerlerinde 3, 5, 7 ve 9 yazan dört karttan rastgele ikisi seçilip üzerlerindeki sayılar toplanıyor. Toplamın $k$ olma olasılığı $\\frac{1}{3}$ olduğuna göre, $k$ kaçtır?",
+       "stem": "Bir madeni para art arda 3 kez atılıyor, ardından bir zar atılıyor. Bu deneyin örnek uzayı kaç elemanlıdır?",
        "options": [
-        "8",
-        "10",
         "12",
-        "14",
-        "16"
+        "18",
+        "24",
+        "36",
+        "48"
        ],
-       "answer": 2,
-       "narration": "ÖSYM 2019'da kartlarla bir yaş iddiası kurdu. Bütün durumları listeleyelim.",
+       "answer": 4,
+       "narration": "Kolay bir soruyla başlayalım.",
        "steps": [
         {
-         "text": "Tüm seçimler $\\binom{4}{2} = 6$: 3+5=8, 3+7=10, 3+9=**12**, 5+7=**12**, 5+9=14, 7+9=16",
-         "narration": "Dört karttan iki kart, C 4 2, 6 seçim. Toplamlar: 3 artı 5, 8; 3 artı 7, 10; 3 artı 9, 12; 5 artı 7, 12; 5 artı 9, 14; 7 artı 9, 16."
+         "text": "Para 3 kez: $2^3 = 8$ çıktı.",
+         "narration": "Para üç kez atılıyor: iki çarpı iki çarpı iki, sekiz çıktı."
         },
         {
-         "text": "Olasılık $\\frac{1}{3} = \\frac{2}{6}$: **iki kez** çıkan toplam",
-         "narration": "Üçte bir, altıda ikidir. Yani k, altı toplamdan ikisinde çıkan değer olmalı. Yalnızca 12 iki kez çıkıyor."
+         "text": "Zar: 6 çıktı. Hepsi birlikte: $8 \\cdot 6 = 48$.",
+         "narration": "Zarın altı çıktısı var. Deneyler art arda yapıldığı için çarparız: sekiz çarpı altı, kırk sekiz."
         },
         {
-         "text": "$k = 12$. Cevap **C**.",
-         "narration": "k, 12. Cevabımız C. Diğer toplamların her biri bir kez çıkıyor; olasılıkları altıda bir.",
+         "text": "Cevap **E**. $2 \\cdot 3 \\cdot 6 = 36$ ya da $3 \\cdot 6 = 18$ bulan, üssü yanlış okumuştur.",
+         "narration": "Cevabımız E. Otuz altı bulan iki üzeri üçü iki çarpı üç saymıştır; on sekiz bulan da üç atışı üç çıktı sanmıştır.",
          "eliminate": [
           "A",
           "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB'deki \"n para, n zar\" örnek uzay kuralı ve havuzdaki örnek uzay sayma kalıbı örnek alındı; deney ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kutu oyununda iki zar birlikte atılıyor. Oyuncu, üst yüze gelen sayılardan büyük olanı puan olarak alıyor; iki sayı eşitse o sayıyı alıyor. Örneğin (2, 5) gelirse 5, (3, 3) gelirse 3 puan alıyor. Buna göre \"oyuncunun 4 puan alması\" olayı kaç elemanlıdır?",
+       "options": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+       ],
+       "answer": 3,
+       "narration": "Şimdi yeni tanımlanmış bir kuralla bir olay sayalım.",
+       "steps": [
+        {
+         "text": "4 puan: iki zarın **büyüğü 4**. İki zar da 4 ya da daha küçük, en az biri 4.",
+         "narration": "Dört puan almak, büyük sayının dört olması demek. İki zar da dörtten büyük olamaz ve en az biri dört olmalı.",
+         "mark": [
+          "4 puan alması"
+         ]
+        },
+        {
+         "text": "Biri 4, öbürü küçük: (4, 1), (4, 2), (4, 3), (1, 4), (2, 4), (3, 4) → 6. Bir de (4, 4).",
+         "narration": "Biri dört, öbürü daha küçük: dört bir, dört iki, dört üç ve tersleri, altı durum. Bir de ikisi birden dört: dört dört."
+        },
+        {
+         "text": "$6 + 1 = 7$. Cevap **D**. (4, 4)'ü unutan 6, iki kez sayan 8 bulur.",
+         "narration": "Toplam yedi eleman. Cevabımız D. Dört dördü unutan altı, onu iki kez sayan sekiz bulur.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin yeni bir kural tanımlayıp olay saydıran kalıbı örnek alındı; \"büyük olanı puan alma\" kuralı ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_OLASILIK_03",
+    "title": "Basit olasılık",
+    "narration": "Örnek uzayı saymayı öğrendin. Şimdi bir olayın ne kadar olası olduğunu tek bir kesirle söyleyeceğiz.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Olasılık bir orandır",
+      "text": "Çıktılar **eşit olasılıklı** ise bir $A$ olayının olasılığı $P(A) = \\frac{s(A)}{s(E)}$: **istenen** durum sayısı bölü **tüm** durum sayısı.",
+      "visual": {
+       "kind": "formula",
+       "latex": "P(A) = \\frac{s(A)}{s(E)}",
+       "caption": "istenen ÷ tüm"
+      },
+      "narration": "Çıktılar eşit olasılıklı ise olasılık bir orandır. İstenen durumların sayısını tüm durumların sayısına bölersin.",
+      "beats": [
+       {
+        "narration": "Zarda çift gelme olasılığını düşün. Çift sayılar iki, dört, altı; üç durum."
+       },
+       {
+        "narration": "Tüm durumlar altı. Olasılık altıda üç, yani yarım."
+       }
+      ]
+     },
+     {
+      "kind": "visual",
+      "title": "Sıfır ile bir arası",
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        0,
+        1
+       ],
+       "ticks": [
+        0,
+        0.25,
+        0.5,
+        0.75,
+        1
+       ],
+       "points": [
+        {
+         "x": 0,
+         "label": "İmkânsız"
+        },
+        {
+         "x": 0.5,
+         "label": "Zarda çift"
+        },
+        {
+         "x": 1,
+         "label": "Kesin"
+        }
+       ]
+      },
+      "narration": "Olasılık hep sıfır ile bir arasındadır. Bunu bir çizgi gibi düşün.",
+      "beats": [
+       {
+        "narration": "Sıfır imkânsız olaydır: zarda yedi gelmesi.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "Zarda çift gelmesi tam ortada durur, yarım.",
+        "show": [
+         "p2"
+        ],
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "Bir kesin olaydır: zarda yediden küçük gelmesi.",
+        "show": [
+         "p3"
+        ],
+        "focus": [
+         "p3"
+        ]
+       },
+       {
+        "narration": "Birden büyük ya da negatif bir olasılık bulursan bir yerde hata yapmışsın demektir.",
+        "focus": [
+         "p1",
+         "p3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Olasılık hesaplarken",
+      "items": [
+       "Önce **tüm durumları** say: $s(E)$, kesrin paydası.",
+       "Sonra **istenen durumları** say: $s(A)$. Sıra önemliyse sıralı say.",
+       "Seçim sorularında **kombinasyon**: 7 kişiden 2 kişi $\\binom{7}{2} = 21$.",
+       "Eşit olasılıklı değilse bu oran kullanılmaz: **hileli** zarda yüzlerin şansı farklıdır."
+      ],
+      "narration": "Önce tüm durumları say; bu kesrin paydasıdır. Sonra istenen durumları say; bu da pay. Sıra önemliyse sıralı saymayı unutma. Seçim sorularında kombinasyon kullanırsın: yedi kişiden iki kişi, C yedi iki, yirmi bir seçim. Eşit olasılıklı değilse bu oran kullanılmaz; hileli zarda yüzlerin şansı farklıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Torbadan iki top",
+      "example": "Torbada 3 kırmızı, 5 mavi top var; rastgele 2 top çekiliyor. **İkisinin de kırmızı** olma olasılığı kaç?",
+      "narration": "Torbada 3 kırmızı, 5 mavi top var; rastgele 2 top çekiliyor. İkisinin de kırmızı olma olasılığı kaç?",
+      "steps": [
+       {
+        "narration": "Tüm seçimler: sekiz toptan iki top, C sekiz iki, yirmi sekiz.",
+        "math": "\\binom{8}{2} = 28",
+        "text": "Tüm seçimler"
+       },
+       {
+        "narration": "İstenen seçimler: üç kırmızıdan iki tane, C üç iki, üç.",
+        "math": "\\binom{3}{2} = 3",
+        "text": "İki kırmızı"
+       },
+       {
+        "narration": "Olasılık yirmi sekizde üç. Pay istenen, payda tüm durumlar.",
+        "math": "P = \\frac{3}{28}",
+        "text": "**İstenen bölü tüm**"
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Kartlardan biri",
+      "example": "1'den 30'a kadar numaralı kartlardan biri çekiliyor. Numaranın 4'e bölünme olasılığı kaç?",
+      "explanation": "Tüm durum 30. Dördün katları 4, 8, …, 28: **7 tane**. $P = \\frac{7}{30}$.",
+      "narration": "1'den 30'a kadar numaralı kartlardan biri çekiliyor. Numaranın 4'e bölünme olasılığı kaç? Tüm durum 30. Dördün katları dört, sekiz, on iki diye yirmi sekize kadar gider: 7 tane. Olasılık otuzda yedi."
+     },
+     {
+      "kind": "mistake",
+      "title": "Pay ve payda aynı yolla",
+      "wrong": "İki top çekilirken tüm durumlar $8 \\cdot 7 = 56$, iki kırmızı $\\binom{3}{2} = 3$ olduğundan olasılık $\\frac{3}{56}$'dır.",
+      "right": "Pay ve payda **aynı yolla** sayılır: ikisi de sırasız $\\frac{3}{28}$; ikisi de **sıralı** $\\frac{6}{56} = \\frac{3}{28}$.",
+      "why": "Payı sırasız, paydayı sıralı sayarsan her seçimi paydada iki kez saymış olursun.",
+      "narration": "Sık hata: torbadan iki top çekerken tüm durumları sekiz çarpı yedi, elli altı; iki kırmızıyı ise C üç iki, üç almak. Pay ve payda aynı yolla sayılır. İkisi de sırasızsa yirmi sekizde üç; ikisi de sıralı sayılırsa elli altıda altı, yine yirmi sekizde üç. Payı sırasız, paydayı sıralı sayarsan her seçimi paydada iki kez saymış olursun."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kutuda 5 kırmızı, 4 mavi ve bir miktar yeşil kalem vardır. Kutudan rastgele alınan bir kalemin yeşil olma olasılığı $\\frac{1}{4}$ olduğuna göre, kutuda kaç yeşil kalem vardır?",
+       "options": [
+        "3",
+        "4",
+        "6",
+        "9",
+        "12"
+       ],
+       "answer": 0,
+       "narration": "Bu kez olasılık verilmiş, sayıyı biz bulacağız.",
+       "steps": [
+        {
+         "text": "Yeşil $y$ ise toplam $9 + y$: $\\frac{y}{9 + y} = \\frac{1}{4}$.",
+         "narration": "Yeşil kalem sayısına y diyelim. Toplam kalem dokuz artı y. Olasılık, y bölü dokuz artı y, dörtte bire eşit."
+        },
+        {
+         "text": "İçler dışlar: $4y = 9 + y \\Rightarrow 3y = 9 \\Rightarrow y = 3$.",
+         "narration": "İçler dışlar çarpımı: dört y eşittir dokuz artı y. Üç y dokuz, y üç."
+        },
+        {
+         "text": "Kontrol: $\\frac{3}{12} = \\frac{1}{4}$. Cevap **A**. 12 toplam kalemdir, yeşil değil.",
+         "narration": "Kontrol edelim: on ikide üç, dörtte bir. Cevabımız A. On ikiyi seçen yeşil kalem yerine toplam kalem sayısını vermiştir.",
+         "eliminate": [
+          "B",
+          "C",
           "D",
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2019'un \"iki kartın toplamının olasılığından sayıyı bulma\" kalıbı örnek alındı, kart sayıları ve bağlam özgün."
+        "changes": "Bu ders için yazıldı; MEB'deki \"olasılıktan bilye sayısını bulma\" örneği ve havuzdaki kalıp örnek alındı; renkler ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir zekâ oyununda 3 × 3'lük bir tahtanın karelerine şekildeki sayılar yazılmıştır. Ece, hiçbir ikisi aynı satırda ya da aynı sütunda olmayan 3 kareyi rastgele seçiyor ve bu karelerdeki sayıları topluyor. Buna göre toplamın çift olma olasılığı kaçtır?",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "1. sütun",
+         "2. sütun",
+         "3. sütun"
+        ],
+        "rows": [
+         [
+          "2",
+          "7",
+          "4"
+         ],
+         [
+          "9",
+          "6",
+          "1"
+         ],
+         [
+          "8",
+          "3",
+          "5"
+         ]
+        ]
+       },
+       "options": [
+        "$\\frac{1}{6}$",
+        "$\\frac{1}{3}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{5}{6}$"
+       ],
+       "answer": 3,
+       "narration": "ÖSYM 2020'de bir dolap şifresinin tuşlarıyla sordu. Önce tahtaya iyi bak.",
+       "steps": [
+        {
+         "text": "Örnek uzay: 1. satırdan 3, 2. satırdan 2, 3. satırdan 1 seçenek → $3 \\cdot 2 \\cdot 1 = 6$ seçim.",
+         "narration": "Birinci satırdan üç kare seçebilirsin. İkinci satırda o sütun kapandı, iki seçenek kalır; üçüncü satırda bir. Toplam altı seçim.",
+         "mark": [
+          "aynı satırda ya da aynı sütunda olmayan"
+         ]
+        },
+        {
+         "text": "Toplamlar: 2+6+5 = 13, 2+1+3 = 6, 7+9+5 = 21, 7+1+8 = 16, 4+9+3 = 16, 4+6+8 = 18.",
+         "narration": "Altı seçimin toplamlarını yazalım: on üç, altı, yirmi bir, on altı, on altı ve on sekiz."
+        },
+        {
+         "text": "Çift toplamlar: 6, 16, 16, 18 → 4. $P = \\frac{4}{6} = \\frac{2}{3}$. Cevap **D**.",
+         "narration": "Çift olanlar dört tane. Olasılık altıda dört, yani üçte iki. Cevabımız D. Altıda bir ise üç sayının da çift olduğu tek seçimdir: dört, altı, sekiz.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2020'nin \"3 × 3 tuşlardan farklı satır ve sütunda üç sayı seçme\" kalıbı örnek alındı; bağlam, tahtadaki sayılar ve istenen olay (toplamın çift olması) özgün."
        }
       }
      }
@@ -175,49 +595,115 @@
    },
    {
     "subtopic": "MAT_OLASILIK_04",
-    "subtopics": [
-     "MAT_OLASILIK_05"
-    ],
-    "title": "Tümleyen ve ayrık olaylar",
-    "narration": "Bir olayın gerçekleşmemesi de bir olaydır. \"En az\" sorularında çoğu zaman tümleyen daha kolaydır.",
+    "title": "Tümleyen olay",
+    "narration": "Bazen bir olayın olmasını saymak zordur, olmamasını saymak kolaydır. Tümleyen tam bu işe yarar.",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Tümleyen olay",
+      "text": "$A$ olayının **tümleyeni** $A'$: $A$'nın dışında kalan bütün çıktılar. $A$ ile $A'$ birlikte örnek uzayı doldurur: $P(A) + P(A') = 1$.",
+      "visual": {
+       "kind": "pie",
+       "slices": [
+        {
+         "label": "6 gelir",
+         "value": 1
+        },
+        {
+         "label": "6 gelmez",
+         "value": 5
+        }
+       ],
+       "show": "value"
+      },
+      "narration": "Zarda altı gelmesine A dersen, altı gelmemesi A'nın tümleyeni olur.",
+      "beats": [
+       {
+        "narration": "Altı gelmesi tek bir çıktı: altıda bir.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "Geri kalan beş çıktı tümleyendir: altıda beş.",
+        "show": [
+         "p2"
+        ],
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "İkisi birlikte bütün daireyi doldurur. Olasılıklarının toplamı bir.",
+        "focus": [
+         "p1",
+         "p2"
+        ]
+       }
+      ]
+     },
+     {
       "kind": "rule",
-      "title": "Tümleyen ve ayrık",
+      "title": "En az bir = 1 − hiç",
       "items": [
-       "$P(A') = 1 - P(A)$: olmama olasılığı.",
-       "\"En az bir\" = 1 − \"**hiç**\".",
-       "**Ayrık** olaylar aynı anda gerçekleşemez: $P(A \\cup B) = P(A) + P(B)$.",
-       "Ayrık değilse: $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$."
+       "Olmama olasılığı: $P(A') = 1 - P(A)$.",
+       "En az bir sorusunda tümleyen **hiç**tir: $1 - P(\\text{hiç})$.",
+       "En çok sorusunda tümleyen aşırısıdır: 3 parada en çok 2 yazının tümleyeni **3 yazı**.",
+       "Tümleyen daha kısa olanı seçmektir: **az durumlu** tarafı say, birden çıkar."
       ],
-      "narration": "Bir olayın gerçekleşmeme olasılığı, 1'den gerçekleşme olasılığının çıkarılmasıdır. En az bir sorularında çoğu zaman hiç olmama durumunu bulup 1'den çıkarmak en kısa yoldur. Aynı anda gerçekleşemeyen olaylara ayrık olaylar denir; ya da bağlacıyla birleşen ayrık olayların olasılıkları toplanır. Ayrık değillerse kümelerdeki gibi kesişimi bir kez çıkarırsın."
+      "narration": "Olmama olasılığı, birden olma olasılığının çıkarılmasıdır. En az bir sorusunda tümleyen hiçtir: hiç olmama olasılığını bul, birden çıkar. En çok sorusunda tümleyen aşırısıdır: üç parada en çok iki yazının tümleyeni 3 yazı. Tümleyen daha kısa olanı seçmektir: hangi taraf az durumluysa onu say, birden çıkar."
+     },
+     {
+      "kind": "example",
+      "title": "Vuramama olasılığı",
+      "example": "Bir atıcının hedefi vurma olasılığı 0,3. Vuramama olasılığı kaç?",
+      "explanation": "Vuramamak, vurmanın **tümleyeni**dir: $1 - 0{,}3 = 0{,}7$.",
+      "narration": "Bir atıcının hedefi vurma olasılığı 0,3. Vuramama olasılığı kaç? Vuramamak, vurmanın tümleyenidir: bir eksi 0,3, yani 0,7."
+     },
+     {
+      "kind": "example",
+      "title": "En az bir tura",
+      "example": "4 para atılıyor. **En az bir tura** gelme olasılığı kaç?",
+      "explanation": "Hiç tura yok ise yalnız YYYY: $\\frac{1}{16}$. Sonra $1 - \\frac{1}{16} = \\frac{15}{16}$.",
+      "narration": "4 para atılıyor. En az bir tura gelme olasılığı kaç? Bir, iki, üç ya da dört tura; dört durumu ayrı saymak uzun sürer. Hiç tura yok ise tek bir durum var: dört yazı, on altıda bir. Bir eksi on altıda bir, on altıda on beş."
+     },
+     {
+      "kind": "mistake",
+      "title": "Altıda bir artı altıda bir",
+      "wrong": "İki zarda en az bir 6 gelme olasılığı $\\frac{1}{6} + \\frac{1}{6} = \\frac{1}{3}$'tür.",
+      "right": "Tümleyenle bul: hiç 6 gelmemesi $\\frac{25}{36}$, en az bir 6 ise $\\frac{11}{36}$.",
+      "why": "Toplarsan (6, 6) durumu **iki kez** sayılır: $\\frac{12}{36}$ değil, $\\frac{11}{36}$.",
+      "narration": "Sık hata: iki zarda en az bir altı gelme olasılığını altıda bir artı altıda bir, üçte bir bulmak. Tümleyenle bul: hiç altı gelmemesi otuz altıda yirmi beş, en az bir altı ise otuz altıda on bir. Toplarsan altı altı durumu iki kez sayılır."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "İki zar birlikte atılıyor. Zarlardan **en az birinin** 6 gelme olasılığı kaçtır?",
+       "stem": "İki zar birlikte atılıyor. Üst yüze gelen sayıların toplamının 11'den küçük olma olasılığı kaçtır?",
        "options": [
-        "$\\frac{1}{6}$",
-        "$\\frac{1}{3}$",
-        "$\\frac{11}{36}$",
-        "$\\frac{25}{36}$",
-        "$\\frac{5}{18}$"
+        "$\\frac{5}{6}$",
+        "$\\frac{8}{9}$",
+        "$\\frac{11}{12}$",
+        "$\\frac{17}{18}$",
+        "$\\frac{35}{36}$"
        ],
        "answer": 2,
-       "narration": "En az bir: tümleyeni kullanalım.",
+       "narration": "Saymadan önce hangi tarafın kısa olduğuna bak.",
        "steps": [
         {
-         "text": "Hiç 6 gelmemesi: her zar 5 seçenek → $\\frac{5 \\cdot 5}{36} = \\frac{25}{36}$",
-         "narration": "Hiçbir zarın 6 gelmemesi: her zar 1'den 5'e, 5 seçenek. 5 çarpı 5, 25 durum; olasılık 36'da 25."
+         "text": "Tümleyen: toplam **11 ya da 12**. (5, 6), (6, 5), (6, 6) → 3 durum.",
+         "narration": "Toplamı on birden küçük olanları saymak uzun sürer. Tümleyene bak: toplam on bir ya da on iki. Beş altı, altı beş ve altı altı; üç durum."
         },
         {
-         "text": "En az bir 6: $1 - \\frac{25}{36} = \\frac{11}{36}$",
-         "narration": "En az birinin 6 gelmesi, 1 eksi 36'da 25, yani 36'da 11."
+         "text": "$P = 1 - \\frac{3}{36} = \\frac{33}{36} = \\frac{11}{12}$.",
+         "narration": "Bir eksi otuz altıda üç, otuz altıda otuz üç; sadeleşince on ikide on bir."
         },
         {
-         "text": "Cevap **C**. Altıda biri ikiyle çarpan 1/3 bulur; (6, 6) iki kez sayılmış olur.",
-         "narration": "Cevabımız C. Her zar için altıda bir deyip toplayan üçte bir bulur; ama iki zarın da 6 geldiği durumu iki kez saymış olur.",
+         "text": "Cevap **C**. (6, 5)'i unutan $\\frac{17}{18}$, yalnız 12'yi çıkaran $\\frac{35}{36}$ bulur.",
+         "narration": "Cevabımız C. Altı beşi unutan on sekizde on yedi, yalnız on iki toplamını çıkaran otuz altıda otuz beş bulur.",
          "eliminate": [
           "A",
           "B",
@@ -227,7 +713,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki \"en az bir\" tümleyen kalıbı örnek alındı."
+        "changes": "Bu ders için yazıldı; havuzdaki iki zar ve tümleyen kalıbı örnek alındı; eşik ve şıklar özgün."
        }
       }
      },
@@ -235,38 +721,199 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Bazıları defolu olan 20 üründen rastgele 2 tanesi seçiliyor. Seçilen ürünlerin **ikisinin de defolu** olma olasılığı $\\frac{3}{95}$ olduğuna göre, **ikisinin de defosuz** olma olasılığı kaçtır?",
+       "stem": "Bir şirket, aralarında Arda ve Bora'nın da bulunduğu 8 çalışanından rastgele 3'ünü yurt dışındaki bir eğitime gönderecektir. Seçimde her üçlünün seçilme şansı eşittir. Buna göre Arda ile Bora'dan **en az birinin** eğitime gönderilme olasılığı kaçtır?",
        "options": [
-        "$\\frac{12}{19}$",
-        "$\\frac{3}{5}$",
-        "$\\frac{7}{19}$",
-        "$\\frac{4}{5}$",
-        "$\\frac{92}{95}$"
+        "$\\frac{5}{14}$",
+        "$\\frac{3}{7}$",
+        "$\\frac{15}{28}$",
+        "$\\frac{9}{14}$",
+        "$\\frac{5}{7}$"
        ],
-       "answer": 0,
-       "narration": "ÖSYM 2026'da halılarla sordu. Önce defolu ürün sayısını bulalım.",
+       "answer": 3,
+       "narration": "ÖSYM 2025'te misafirlere verilen hediyelerle sordu. En az bir dediği için tümleyene gidelim.",
        "steps": [
         {
-         "text": "Defolu $d$: $\\frac{\\binom{d}{2}}{\\binom{20}{2}} = \\frac{d(d - 1)}{380} = \\frac{3}{95} \\Rightarrow d(d - 1) = 12 \\Rightarrow d = 4$",
-         "narration": "Defolu ürün sayısına d diyelim. İkisinin de defolu olma olasılığı C d 2 bölü C 20 2, yani d çarpı d eksi 1 bölü 380. Bu 95'te 3'e eşit: d çarpı d eksi 1, 12. Ardışık iki sayının çarpımı 12 ise d 4."
+         "text": "Tüm seçimler: $\\binom{8}{3} = 56$.",
+         "narration": "Sekiz çalışandan üç kişi: C sekiz üç, elli altı seçim.",
+         "mark": [
+          "en az birinin"
+         ]
         },
         {
-         "text": "Defosuz 16: $\\frac{\\binom{16}{2}}{\\binom{20}{2}} = \\frac{120}{190} = \\frac{12}{19}$",
-         "narration": "Defosuz ürün 16 tane. İkisinin de defosuz olma olasılığı C 16 2 bölü C 20 2: 120 bölü 190, yani 19'da 12."
+         "text": "İkisi de gitmez: üç kişi diğer 6'dan → $\\binom{6}{3} = 20$, olasılık $\\frac{20}{56} = \\frac{5}{14}$.",
+         "narration": "Arda da Bora da gitmezse üç kişi kalan altı kişiden seçilir: C altı üç, yirmi. Olasılık elli altıda yirmi, on dörtte beş."
         },
         {
-         "text": "Cevap **A**. $\\frac{92}{95}$ \"en az biri defosuz\" olasılığıdır.",
-         "narration": "Cevabımız A. E şıkkındaki 95'te 92, 1'den 95'te 3'ün çıkarılmasıdır; o, ikisinin de defolu olmama, yani en az birinin defosuz olma olasılığıdır. İkisinin de defosuz olması daha dar bir olaydır.",
+         "text": "En az biri: $1 - \\frac{5}{14} = \\frac{9}{14}$. Cevap **D**.",
+         "narration": "En az biri gider: bir eksi on dörtte beş, on dörtte dokuz. Cevabımız D. On dörtte beş istenmeyenin olasılığıdır; yirmi sekizde on beş ise yalnız birinin gitmesidir.",
          "eliminate": [
+          "A",
           "B",
           "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2025'in \"rastgele seçimde belli iki kişiden en az birinin seçilmesi\" kalıbı örnek alındı; bağlam, kişi sayısı, seçilen sayı ve şıklar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_OLASILIK_05",
+    "title": "Ayrık olaylar",
+    "narration": "İki olay aynı anda olamıyorsa işin en kolay hâli gelir: olasılıkları toplarsın. Aynı anda olabiliyorsa dikkat.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Ayrık olay",
+      "text": "Ortak çıktısı olmayan olaylar **ayrık**tır: $A \\cap B = \\varnothing$. Zarda **çift** gelmesi ile 5 gelmesi ayrıktır; çift ile **asal** ayrık değildir, ikisinde de 2 var.",
+      "visual": {
+       "kind": "venn",
+       "sets": [
+        {
+         "label": "Çift",
+         "items": [
+          "4",
+          "6"
+         ]
+        },
+        {
+         "label": "Asal",
+         "items": [
+          "3",
+          "5"
+         ]
+        }
+       ],
+       "shared": [
+        "2"
+       ]
+      },
+      "narration": "Ortak çıktısı olmayan olaylar ayrıktır; ikisi aynı anda gerçekleşemez.",
+      "beats": [
+       {
+        "narration": "Zarda çift gelmesi ile beş gelmesi ayrıktır. Hiçbir sayı hem çift hem beş olamaz."
+       },
+       {
+        "narration": "Çift ile asal ise ayrık değildir. İki sayısı iki kümede birden duruyor.",
+        "note": "Kesişim: {2}"
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Ya da: topla, gerekirse çıkar",
+      "items": [
+       "Ayrık ise **topla**: $P(A \\cup B) = P(A) + P(B)$.",
+       "Ayrık değilse **kesişimi çıkar**: $P(A) + P(B) - P(A \\cap B)$.",
+       "Bir olay ve tümleyeni her zaman **ayrık**tır: $A \\cap A' = \\varnothing$.",
+       "Ayrık mı? **Ortak çıktı** ara: varsa kesişim boş değildir."
+      ],
+      "narration": "Ayrık ise topla: ya da ile bağlanan iki olayın olasılıkları toplanır. Ayrık değilse kesişimi çıkar; yoksa ortak çıktıyı iki kez saymış olursun. Bir olay ve tümleyeni her zaman ayrıktır. Ayrık mı diye bakmak için ortak çıktı ara: varsa kesişim boş değildir."
+     },
+     {
+      "kind": "example",
+      "title": "4'ün ya da 6'nın katı",
+      "example": "1'den 20'ye kadar numaralı kartlardan biri çekiliyor. Numaranın 4'ün ya da 6'nın katı olma olasılığı kaç?",
+      "visual": {
+       "kind": "venn",
+       "sets": [
+        {
+         "label": "4'ün katı",
+         "items": [
+          "4",
+          "8",
+          "16",
+          "20"
+         ]
+        },
+        {
+         "label": "6'nın katı",
+         "items": [
+          "6",
+          "18"
+         ]
+        }
+       ],
+       "shared": [
+        "12"
+       ]
+      },
+      "narration": "1'den 20'ye kadar numaralı kartlardan biri çekiliyor. Numaranın 4'ün ya da 6'nın katı olma olasılığı kaç?",
+      "steps": [
+       {
+        "narration": "Dördün katları beş tane: dört, sekiz, on iki, on altı, yirmi.",
+        "text": "4'ün katı: **5 kart**"
+       },
+       {
+        "narration": "Altının katları üç tane: altı, on iki, on sekiz.",
+        "text": "6'nın katı: **3 kart**"
+       },
+       {
+        "narration": "On iki iki kümede de var; onu bir kez sayarız.",
+        "math": "5 + 3 - 1 = 7",
+        "text": "12 **bir kez** sayılır"
+       },
+       {
+        "narration": "Yedi kart var; olasılık yirmide yedi.",
+        "math": "P = \\frac{7}{20}"
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Kırmızı ya da mavi",
+      "example": "Torbada 4 kırmızı, 3 mavi, 5 yeşil top var. Çekilen topun kırmızı ya da mavi olma olasılığı kaç?",
+      "explanation": "Olaylar **ayrık**: $\\frac{4}{12} + \\frac{3}{12} = \\frac{7}{12}$.",
+      "narration": "Torbada 4 kırmızı, 3 mavi, 5 yeşil top var. Çekilen topun kırmızı ya da mavi olma olasılığı kaç? Bir top hem kırmızı hem mavi olamaz. Olaylar ayrık: on ikide dört artı on ikide üç, on ikide yedi."
+     },
+     {
+      "kind": "mistake",
+      "title": "Çift ya da asal",
+      "wrong": "Zarda çift ya da asal gelme olasılığı $\\frac{3}{6} + \\frac{3}{6} = 1$'dir.",
+      "right": "Kesişimi çıkar: 2 hem çift hem asaldır, $\\frac{3}{6} + \\frac{3}{6} - \\frac{1}{6} = \\frac{5}{6}$.",
+      "why": "Olasılık 1 olsaydı kesin olay olurdu; oysa zarda 1 gelince sayı ne çift ne asaldır.",
+      "narration": "Sık hata: zarda çift ya da asal gelme olasılığını altıda üç artı altıda üç, yani bir bulmak. Kesişimi çıkar: 2 hem çift hem asaldır; sonuç altıda beş. Olasılık 1 olsaydı kesin olay olurdu; oysa zarda 1 gelince sayı ne çift ne asaldır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "1'den 30'a kadar numaralanmış 30 karttan rastgele biri çekiliyor. Çekilen kartın numarasının 5'in **ya da** 7'nin katı olma olasılığı kaçtır?",
+       "options": [
+        "$\\frac{1}{5}$",
+        "$\\frac{3}{10}$",
+        "$\\frac{1}{3}$",
+        "$\\frac{2}{5}$",
+        "$\\frac{1}{2}$"
+       ],
+       "answer": 2,
+       "narration": "Önce olayların ayrık olup olmadığına bakalım.",
+       "steps": [
+        {
+         "text": "5'in katları: 5, 10, 15, 20, 25, 30 → **6**. 7'nin katları: 7, 14, 21, 28 → **4**.",
+         "narration": "Beşin katları altı tane, yedinin katları dört tane."
+        },
+        {
+         "text": "Ortak kat en az 35, 30'dan büyük: kesişim **boş**, olaylar **ayrık**.",
+         "narration": "İkisinin ortak katı en az otuz beş; o da otuzdan büyük. Kesişim boş, olaylar ayrık."
+        },
+        {
+         "text": "$\\frac{6}{30} + \\frac{4}{30} = \\frac{10}{30} = \\frac{1}{3}$. Cevap **C**.",
+         "narration": "Ayrık olduğu için toplarız: otuzda on, üçte bir. Cevabımız C. Alışkanlıkla bir eksiltip otuzda dokuz bulan B'ye düşer.",
+         "eliminate": [
+          "A",
+          "B",
           "D",
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2026'nın \"ikisinin de defolu olma olasılığından ikisinin de defosuz olma olasılığı\" kalıbı örnek alındı; ürün sayısı ve olasılık özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki \"katları ve kesişim\" kalıbı örnek alındı; kesişimin boş çıktığı özgün sayılar seçildi."
        }
       }
      },
@@ -274,28 +921,31 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "1'den 20'ye kadar numaralanmış kartlardan rastgele biri çekiliyor. Çekilen kartın numarasının 3'ün **ya da** 5'in katı olma olasılığı kaçtır?",
+       "stem": "Bir lisede okul sonrası açılan satranç ve yüzme kurslarıyla ilgili şu bilgiler veriliyor: öğrencilerin %40'ı satranç kursuna, %35'i yüzme kursuna gidiyor ve %15'i her iki kursa da gidiyor. Okuldan rastgele seçilen bir öğrencinin bu kursların hiçbirine gitmiyor olma olasılığı yüzde kaçtır?",
        "options": [
-        "$\\frac{1}{2}$",
-        "$\\frac{9}{20}$",
-        "$\\frac{2}{5}$",
-        "$\\frac{7}{20}$",
-        "$\\frac{1}{4}$"
+        "25",
+        "40",
+        "45",
+        "60",
+        "75"
        ],
        "answer": 1,
-       "narration": "Olaylar ayrık değil; kesişimi bir kez çıkaracağız.",
+       "narration": "Ayrık olmayan iki olay ve bir tümleyen. Sırayla gidelim.",
        "steps": [
         {
-         "text": "3'ün katları: 3, 6, 9, 12, 15, 18 → **6**. 5'in katları: 5, 10, 15, 20 → **4**.",
-         "narration": "1'den 20'ye 3'ün katları 6 tane, 5'in katları 4 tane."
+         "text": "En az bir kurs: $40 + 35 - 15 = 60$ → %60.",
+         "narration": "Önce en az bir kursa gidenleri bulalım. Kırk artı otuz beş eksi on beş, yüzde altmış. On beşi çıkarmazsak iki kursa gidenleri iki kez sayarız.",
+         "mark": [
+          "%15'i her iki kursa da gidiyor"
+         ]
         },
         {
-         "text": "İkisinin de katı: **15** → 1 tane. $6 + 4 - 1 = 9$",
-         "narration": "15 hem 3'ün hem 5'in katı; iki kez saydık. 6 artı 4 eksi 1, 9 kart."
+         "text": "Hiçbirine gitmemek, en az birinin **tümleyeni**: $100 - 60 = 40$.",
+         "narration": "Hiçbirine gitmemek, en az birine gitmenin tümleyenidir. Yüz eksi altmış, yüzde kırk."
         },
         {
-         "text": "$P = \\frac{9}{20}$. Cevap **B**.",
-         "narration": "Olasılık 20'de 9. Cevabımız B. 15'i iki kez sayan 20'de 10, yani yarım bulur.",
+         "text": "Cevap **B**. 25 kesişimi çıkarmayı unutanın; 60 sorulanın tümleyeni.",
+         "narration": "Cevabımız B. Yirmi beşi seçen kesişimi çıkarmayı unutmuştur; altmış ise sorulanın tümleyenidir.",
          "eliminate": [
           "A",
           "C",
@@ -305,7 +955,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki \"ya da\" olasılığı (ayrık olmayan olaylar) kalıbı örnek alındı, sayılar özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki \"iki bölümü hedefleyen öğrenciler\" yüzde kalıbı örnek alındı; bağlam, yüzdeler ve sorulan olay özgün."
        }
       }
      }
@@ -313,9 +963,77 @@
    },
    {
     "subtopic": "MAT_OLASILIK_06",
-    "title": "Bağımsız olaylar",
-    "narration": "Bir olayın sonucu öbürünü etkilemiyorsa olaylar bağımsızdır. Bağımsız olayların birlikte gerçekleşme olasılığı çarpılarak bulunur.",
+    "title": "Bağımlı ve bağımsız olaylar",
+    "narration": "Bir olayın sonucu öbürünü etkilemiyorsa olaylar bağımsızdır, etkiliyorsa bağımlıdır. İkisini ayırmak sorunun yarısıdır.",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Bağımsız mı, bağımlı mı?",
+      "text": "**Bağımsız**: birinin sonucu öbürünün olasılığını değiştirmez (iki ayrı zar, art arda para). **Bağımlı**: değiştirir (torbadan **geri konmadan** çekiliş).",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Bağımsız",
+         "items": [
+          "İki zar atmak",
+          "Parayı art arda atmak",
+          "Çekilen top geri konuyor"
+         ]
+        },
+        {
+         "title": "Bağımlı",
+         "items": [
+          "Geri konmadan top çekmek",
+          "Aynı gruptan sırayla seçmek"
+         ]
+        }
+       ]
+      },
+      "narration": "Bağımsız olaylarda birinin sonucu öbürünün olasılığını değiştirmez. Bağımlı olaylarda değiştirir.",
+      "beats": [
+       {
+        "narration": "İki zar atarsan birinci zarın sonucu ikinciyi etkilemez.",
+        "show": [
+         "c1",
+         "c1-1"
+        ],
+        "focus": [
+         "c1-1"
+        ]
+       },
+       {
+        "narration": "Para da öyle: art arda atışlar birbirinden bağımsızdır. Top geri konuyorsa torba hiç değişmez.",
+        "show": [
+         "c1-2",
+         "c1-3"
+        ],
+        "focus": [
+         "c1-2",
+         "c1-3"
+        ]
+       },
+       {
+        "narration": "Top geri konmuyorsa ikinci çekilişte torba değişir; olaylar bağımlı olur.",
+        "show": [
+         "c2",
+         "c2-1"
+        ],
+        "focus": [
+         "c2-1"
+        ]
+       },
+       {
+        "narration": "Aynı gruptan sırayla seçmek de bağımlıdır. Seçilen kişi bir daha seçilemez.",
+        "show": [
+         "c2-2"
+        ],
+        "focus": [
+         "c2-2"
+        ]
+       }
+      ]
+     },
      {
       "kind": "predict",
       "title": "Para hatırlar mı?",
@@ -376,176 +1094,140 @@
         ]
        }
       ],
-      "explanation": "Atışlar **bağımsızdır**: 5. atışta yazı olasılığı yine $\\frac{1}{2}$. Ama \"5 atışın **hepsinin** yazı gelmesi\" baştan sorulsaydı $\\left(\\frac{1}{2}\\right)^5 = \\frac{1}{32}$ olurdu.",
+      "explanation": "Atışlar **bağımsızdır**: 5. atışta yazı olasılığı yine $\\frac{1}{2}$. Beş atışın **hepsinin** yazı gelmesi baştan sorulsaydı $\\left(\\frac{1}{2}\\right)^5 = \\frac{1}{32}$ olurdu.",
       "narration": "Şimdi sıra sende. Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap tam yarım. Bu yanılgının adı kumarbaz yanılgısıdır: art arda yazı geldi diye sıranın turaya geldiğini sanmak. Ama soru en baştan sorulsaydı, yani beş atışın hepsinin yazı gelme olasılığı istenseydi, bağımsız olasılıkları çarpardık: ikide birin beşinci kuvveti, 32'de 1."
+      "explanationNarration": "Doğru cevap tam yarım. Art arda yazı geldi diye sıranın turaya geldiğini sanmanın adı kumarbaz yanılgısıdır. Beş atışın hepsinin yazı gelmesi en baştan sorulsaydı ise olasılıkları çarpardık: otuz ikide bir."
      },
      {
       "kind": "rule",
       "title": "Çarpma kuralı",
       "items": [
-       "Bağımsız $A$ ve $B$: $P(A \\cap B) = P(A) \\cdot P(B)$.",
-       "\"**Ve**\" çarpar, ayrık durumlar için \"**ya da**\" toplar.",
-       "\"Yalnız biri\": (A olur, B olmaz) **ya da** (A olmaz, B olur).",
-       "Çekilen **geri konmazsa** ikinci çekilişte toplam ve sayılar değişir."
+       "Bağımsız ise **çarp**: $P(A \\cap B) = P(A) \\cdot P(B)$.",
+       "Bağımlı ise ikinci adımda **yeni durumu** kullan: $\\frac{3}{8} \\cdot \\frac{2}{7}$.",
+       "Yalnız biri: (A olur, B olmaz) ya da (A olmaz, B olur); iki ayrık durumu **topla**.",
+       "Ve **çarpar**, ayrık durumlar arasındaki ya da **toplar**."
       ],
-      "narration": "Bağımsız iki olayın birlikte gerçekleşme olasılığı, olasılıklarının çarpımıdır. Kısaca ve çarpar, ayrık durumlar arasındaki ya da toplar. Yalnız birinin gerçekleşmesi istenirse iki durumu ayrı ayrı hesaplayıp toplarsın: A olur B olmaz, ya da A olmaz B olur. Bir torbadan çekilen top geri konmazsa olaylar bağımlı olur; ikinci çekilişte toplam ve sayılar değişir."
+      "narration": "Bağımsız ise çarp: iki olayın birlikte olma olasılığı, olasılıklarının çarpımıdır. Bağımlı ise ikinci adımda yeni durumu kullan; torbada kalan topları say. Yalnız biri istenirse iki durum yazarsın: A olur B olmaz, ya da A olmaz B olur. Ve çarpar, ayrık durumlar arasındaki ya da toplar."
      },
      {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Bir hedef oyununda Ali'nin isabet ettirme olasılığı 0,6, Can'ın 0,5'tir. İkisi birbirinden bağımsız olarak birer atış yaptığına göre, **yalnız birinin** isabet ettirme olasılığı kaçtır?",
-       "options": [
-        "0,2",
-        "0,3",
-        "0,5",
-        "0,6",
-        "0,8"
-       ],
-       "answer": 2,
-       "narration": "ÖSYM 2018'de bir tartının yüzde olasılıklarıyla sordu. Durumları ayıralım.",
-       "steps": [
-        {
-         "text": "Ali vurur, Can vuramaz: $0{,}6 \\cdot 0{,}5 = 0{,}3$",
-         "narration": "Birinci durum: Ali vurur, Can vuramaz. Can'ın vuramama olasılığı 1 eksi 0,5, yani 0,5. Bağımsız oldukları için çarparız: 0,6 çarpı 0,5, 0,3."
-        },
-        {
-         "text": "Ali vuramaz, Can vurur: $0{,}4 \\cdot 0{,}5 = 0{,}2$",
-         "narration": "İkinci durum: Ali vuramaz, Can vurur. Ali'nin vuramama olasılığı 0,4. 0,4 çarpı 0,5, 0,2."
-        },
-        {
-         "text": "Ayrık durumlar: $0{,}3 + 0{,}2 = 0{,}5$. Cevap **C**.",
-         "narration": "Bu iki durum aynı anda olamaz; toplarız: 0,3 artı 0,2, 0,5. Cevabımız C. İkisinin birden vurma olasılığı 0,3'tür; o, yalnız biri değildir.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2018'in \"iki bağımsız ölçümün olasılıklarıyla durum sayma\" yaklaşımı ve havuzdaki kalıp örnek alındı, bağlam ve olasılıklar özgün."
+      "kind": "example",
+      "title": "Geri konmadan iki top",
+      "example": "Torbada 3 kırmızı, 5 mavi top var. **Geri konmadan** 2 top çekiliyor: ikisinin de kırmızı olma olasılığı kaç?",
+      "narration": "Torbada 3 kırmızı, 5 mavi top var. Geri konmadan 2 top çekiliyor: ikisinin de kırmızı olma olasılığı kaç?",
+      "steps": [
+       {
+        "narration": "İlk çekilişte sekiz topun üçü kırmızı: sekizde üç.",
+        "math": "\\frac{3}{8}",
+        "text": "1. çekiliş"
+       },
+       {
+        "narration": "Bir kırmızı çıktı ve geri konmadı. Yedi top kaldı, ikisi kırmızı: yedide iki.",
+        "math": "\\frac{2}{7}",
+        "text": "**Geri konmadı**"
+       },
+       {
+        "narration": "Çarparız: elli altıda altı, yani yirmi sekizde üç. Kombinasyonla bulduğumuz sonuçla aynı.",
+        "math": "\\frac{3}{8} \\cdot \\frac{2}{7} = \\frac{6}{56} = \\frac{3}{28}"
        }
-      }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "İki bağımsız atış",
+      "example": "Ali'nin hedefi vurma olasılığı 0,6, Can'ın 0,5. İkisinin de vurma olasılığı kaç?",
+      "explanation": "Bağımsız oldukları için çarp: $0{,}6 \\cdot 0{,}5 = 0{,}3$.",
+      "narration": "Ali'nin hedefi vurma olasılığı 0,6, Can'ın 0,5. İkisinin de vurma olasılığı kaç? Atışlar birbirini etkilemez. Bağımsız oldukları için çarp: 0,6 çarpı 0,5, yani 0,3."
+     },
+     {
+      "kind": "mistake",
+      "title": "Ayrık ile bağımsız",
+      "wrong": "Ayrık iki olay her zaman bağımsızdır.",
+      "right": "Ayrık olaylar birbirini dışlar: biri olursa öbürü olamaz; bu, olabilecek en güçlü etkidir.",
+      "why": "Zarda çift ve 5 gelmesi ayrıktır: $P(A \\cap B) = 0$, ama $P(A) \\cdot P(B) = \\frac{1}{12}$; çarpma kuralı tutmaz.",
+      "narration": "Çok karıştırılan bir yanılgı: ayrık iki olayı bağımsız sanmak. Ayrık olaylar birbirini dışlar: biri olursa öbürü olamaz; bu, olabilecek en güçlü etkidir. Zarda çift ve 5 gelmesi ayrıktır; birlikte olma olasılığı sıfır, ama olasılıkların çarpımı on ikide bir."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Bir torbada 3 kırmızı ve 5 mavi top vardır. Torbadan art arda, çekilen top **geri konmadan** 2 top çekiliyor. İki topun da kırmızı olma olasılığı kaçtır?",
+       "stem": "Bir torbada 4 kırmızı ve 6 mavi top vardır. Torbadan bir top çekilip rengine bakılıyor ve geri konuyor; sonra ikinci top çekiliyor. Buna göre çekilen iki topun farklı renkte olma olasılığı kaçtır?",
        "options": [
-        "$\\frac{3}{28}$",
-        "$\\frac{9}{64}$",
-        "$\\frac{3}{32}$",
-        "$\\frac{1}{8}$",
-        "$\\frac{3}{14}$"
-       ],
-       "answer": 0,
-       "narration": "Geri konmadığı için ikinci çekilişte sayılar değişir.",
-       "steps": [
-        {
-         "text": "1. çekiliş kırmızı: $\\frac{3}{8}$",
-         "narration": "İlk çekilişte 8 topun 3'ü kırmızı: 8'de 3."
-        },
-        {
-         "text": "2. çekiliş kırmızı (1 kırmızı eksildi): $\\frac{2}{7}$",
-         "narration": "Bir kırmızı çekildi ve geri konmadı. Torbada 7 top kaldı, 2'si kırmızı: 7'de 2."
-        },
-        {
-         "text": "$\\frac{3}{8} \\cdot \\frac{2}{7} = \\frac{6}{56} = \\frac{3}{28}$. Cevap **A**.",
-         "narration": "8'de 3 çarpı 7'de 2, 56'da 6, sadeleşince 28'de 3. Cevabımız A. Geri konuyormuş gibi hesaplayan 8'de 3'ün karesini, 64'te 9'u bulur.",
-         "eliminate": [
-          "B",
-          "C",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki \"geri konmadan çekiliş\" bağımlı olay kalıbı örnek alındı, sayılar özgün."
-       }
-      }
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Hilesiz bir madeni para art arda 3 kez atılıyor. **Tam olarak 2 kez** yazı gelme olasılığı kaçtır?",
-       "options": [
-        "$\\frac{1}{8}$",
-        "$\\frac{1}{4}$",
-        "$\\frac{3}{8}$",
-        "$\\frac{1}{2}$",
-        "$\\frac{3}{4}$"
-       ],
-       "answer": 2,
-       "narration": "Örnek uzayı ve istenen durumları sayalım.",
-       "steps": [
-        {
-         "text": "Örnek uzay: $2^3 = 8$ eşit olasılıklı sonuç.",
-         "narration": "Her atışta iki sonuç var; üç atışta iki çarpı iki çarpı iki, sekiz sonuç. Hepsi eşit olasılıklı."
-        },
-        {
-         "text": "Tam 2 yazı: $YYT$, $YTY$, $TYY$ → **3** durum ($\\binom{3}{2} = 3$).",
-         "narration": "Tam iki yazı gelen durumlar: yazı yazı tura, yazı tura yazı, tura yazı yazı. Üç durum; üç atıştan yazı gelecek ikisini seçmek, üçün ikilisi."
-        },
-        {
-         "text": "$P = \\frac{3}{8}$. Cevap **C**.",
-         "narration": "Olasılık üç bölü sekiz. Cevabımız C. Sekizde biri seçen yalnız bir sıralamayı saymıştır; tam iki yazının üç farklı sırası var.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; dersteki bağımsız olaylar konusu sıralamaların sayılması gereken özgün bir para sorusuyla soruldu."
-       }
-      }
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Bir torbada 4 kırmızı ve 6 mavi top vardır. Torbadan art arda 2 top çekiliyor; çekilen top renge bakıldıktan sonra **geri konuyor**. Buna göre iki topun da kırmızı olma olasılığı kaçtır?",
-       "options": [
-        "$\\frac{2}{15}$",
-        "$\\frac{4}{25}$",
-        "$\\frac{1}{5}$",
-        "$\\frac{2}{5}$",
+        "$\\frac{6}{25}$",
+        "$\\frac{12}{25}$",
+        "$\\frac{13}{25}$",
+        "$\\frac{8}{15}$",
         "$\\frac{16}{25}$"
        ],
        "answer": 1,
-       "narration": "Top geri konunca torba ikinci çekişte aynı kalır; çekilişler bağımsızdır.",
+       "narration": "Top geri konuyor mu, konmuyor mu? Önce ona bak.",
        "steps": [
         {
-         "text": "1. çekiliş: $\\frac{4}{10}$; top **geri konduğu** için 2. çekiliş de $\\frac{4}{10}$.",
-         "narration": "İlk çekilişte kırmızı gelme olasılığı on topta dört, yani dört bölü on. Top geri konduğu için torba değişmez; ikinci çekilişte de dört bölü on."
+         "text": "Geri konuyor: çekilişler **bağımsız**. Kırmızı $\\frac{4}{10}$, mavi $\\frac{6}{10}$, iki çekilişte de aynı.",
+         "narration": "Top geri konduğu için torba değişmez; çekilişler bağımsız. Her çekilişte kırmızı ondan dört, mavi ondan altı.",
+         "mark": [
+          "geri konuyor"
+         ]
         },
         {
-         "text": "$\\frac{4}{10} \\cdot \\frac{4}{10} = \\frac{16}{100} = \\frac{4}{25}$. Cevap **B**.",
-         "narration": "Bağımsız olayların olasılıkları çarpılır: dört bölü on çarpı dört bölü on, on altı bölü yüz, sadeleşince dört bölü yirmi beş. Cevabımız B.",
+         "text": "Farklı renk iki sırayla olur: KM $\\frac{4}{10} \\cdot \\frac{6}{10} = \\frac{6}{25}$, MK de $\\frac{6}{25}$.",
+         "narration": "Farklı renk iki sırayla gelir: önce kırmızı sonra mavi, ya da önce mavi sonra kırmızı. Her biri dört bölü on çarpı altı bölü on, yirmi beşte altı."
+        },
+        {
+         "text": "Ayrık sıraları topla: $\\frac{12}{25}$. Cevap **B**.",
+         "narration": "Bu iki sıra ayrıktır; toplarız: yirmi beşte on iki. Cevabımız B. Tek sırayı sayan yirmi beşte altıyı, top geri konmuyormuş gibi hesaplayan on beşte sekizi bulur.",
          "eliminate": [
+          "A",
           "C",
           "D",
           "E"
          ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"bir mavi, bir kırmızı\" çekiliş kalıbı örnek alındı; geri konarak çekiliş ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kargo şirketinin uygulaması, her sipariş için tahmini teslim süresini gösteriyor. Uygulama bu süreyi %25 olasılıkla gerçek süreden 1 gün kısa, %15 olasılıkla 1 gün uzun, %60 olasılıkla da doğru gösteriyor. Gerçek teslim süreleri 3 gün ve 4 gün olan iki sipariş için uygulama birbirinden bağımsız birer tahmin gösterecektir. Buna göre iki siparişin uygulamada aynı süreyle görünme olasılığı yüzde kaçtır?",
+       "options": [
+        "6",
+        "9",
+        "15",
+        "20",
+        "24"
+       ],
+       "answer": 4,
+       "narration": "ÖSYM 2018'de bir tartının hatalı ölçümleriyle sordu. Her siparişin görünebileceği süreleri yazalım.",
+       "steps": [
+        {
+         "text": "3 günlük: 2 (%25), 4 (%15), 3 (%60). 4 günlük: 3 (%25), 5 (%15), 4 (%60).",
+         "narration": "Üç günlük sipariş iki, dört ya da üç gün görünebilir. Dört günlük sipariş üç, beş ya da dört gün görünebilir."
         },
         {
-         "text": "Geri **konmasaydı**: $\\frac{4}{10} \\cdot \\frac{3}{9} = \\frac{2}{15}$ (tuzak A).",
-         "narration": "Top geri konmasaydı ikinci çekilişte dokuz topta üç kırmızı kalırdı: dört bölü on çarpı üç bölü dokuz, iki bölü on beş. A şıkkı bu durumun cevabıdır; soruyu dikkatli oku.",
+         "text": "İkisi de 3 gün: ilki doğru, öbürü 1 gün kısa → $0{,}60 \\cdot 0{,}25 = 0{,}15$.",
+         "narration": "İkisinin de üç gün görünmesi için ilki doğru, ikincisi bir gün kısa görünmeli. Bağımsız oldukları için çarparız: yüzde on beş."
+        },
+        {
+         "text": "İkisi de 4 gün: ilki 1 gün uzun, öbürü doğru → $0{,}15 \\cdot 0{,}60 = 0{,}09$.",
+         "narration": "İkisinin de dört gün görünmesi için ilki bir gün uzun, ikincisi doğru görünmeli: yüzde dokuz."
+        },
+        {
+         "text": "Ayrık durumlar: $15 + 9 = 24$ → %24. Cevap **E**.",
+         "narration": "Bu iki durum aynı anda olamaz; toplarız: yüzde yirmi dört. Cevabımız E. Yalnız bir durumu bulan on beşi ya da dokuzu seçer.",
          "eliminate": [
-          "A"
+          "A",
+          "B",
+          "C",
+          "D"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki geri konmadan çekiliş sorusunun karşılığı olarak geri konarak çekiliş özgün sayılarla soruldu."
+        "changes": "Bu ders için yazıldı; ÖSYM 2018'in \"hatalı ölçen tartıda iki kişinin eşit görünmesi\" kalıbı örnek alındı; bağlam (kargo uygulaması), yüzdeler ve süreler özgün."
        }
       }
      }
@@ -554,48 +1236,45 @@
   ],
   "summary": {
    "points": [
-    "$P(A) = \\frac{\\text{istenen}}{\\text{tüm}}$; olasılık 0 ile 1 arasında.",
-    "Zarlarda (2, 6) ile (6, 2) **farklı** durumlardır.",
-    "\"En az bir\" = 1 − \"hiç\".",
-    "Bağımsız olaylar: olasılıklar **çarpılır**.",
-    "\"Yalnız biri\": iki ayrık durumu **topla**.",
-    "Geri konmayan çekilişte ikinci adımın sayıları **değişir**."
+    "Örnek uzay bütün çıktılardır: $n$ parada $2^n$, $n$ zarda $6^n$ eleman.",
+    "Olay örnek uzayın alt kümesidir; imkânsız olay $\\varnothing$, kesin olay $E$.",
+    "$P(A) = \\frac{s(A)}{s(E)}$: pay ve payda **aynı yolla** sayılır.",
+    "En az bir = 1 − **hiç**: $P(A') = 1 - P(A)$.",
+    "Ayrık ise **topla**; değilse kesişimi bir kez **çıkar**.",
+    "Bağımsız ise **çarp**; geri konmayan çekilişte ikinci adım **değişir**."
    ],
    "warnings": [
+    "Zarlarda (2, 6) ile (6, 2) **farklı** çıktılardır.",
     "Para önceki atışları **hatırlamaz**.",
-    "\"İkisi de defosuz\" ile \"en az biri defosuz\" farklıdır.",
-    "İstenmeyenin olasılığını cevap sanma.",
-    "Geri konmazsa $\\frac{3}{8} \\cdot \\frac{2}{7}$, $\\left(\\frac{3}{8}\\right)^2$ değil."
+    "Ayrık olaylar bağımsız **değildir**.",
+    "İstenmeyenin olasılığını cevap sanma."
    ],
-   "narration": "Hadi toparlayalım. Olasılık, istenen durumların bütün durumlara oranıdır; önce örnek uzayı doğru say. En az bir sorularında hiç olmama olasılığını 1'den çıkar. Bağımsız olayların birlikte olma olasılığı çarpılır, ayrık durumların olasılıkları toplanır. Para ve zar önceki sonuçları hatırlamaz. Geri konmayan çekilişlerde ise ikinci adımın sayıları değişir."
+   "narration": "Hadi toparlayalım. Örnek uzay bir deneyin bütün çıktılarıdır, olay da onun bir alt kümesi. Olasılık istenen durumların tüm durumlara oranıdır; pay ve paydayı aynı yolla say. En az bir sorusunda hiç olmamayı bul, birden çıkar. Ayrık olaylarda topla, ayrık değilse kesişimi bir kez çıkar. Bağımsız olaylarda çarp; geri konmayan çekilişte ikinci adımın sayıları değişir."
   }
  },
  "short": {
-  "hook": "Olasılıkta üç tuzak.",
-  "cards": [
-   {
-    "kind": "warning",
-    "text": "Para önceki atışları **hatırlamaz**."
-   },
-   {
-    "kind": "fact",
-    "text": "En az bir = 1 − **hiç**."
-   },
-   {
-    "kind": "fact",
-    "text": "Bağımsız olaylar: **çarp**."
-   },
-   {
-    "kind": "warning",
-    "text": "Geri konmazsa sayılar **değişir**."
-   }
-  ],
-  "summary": [
-   "Para hatırlamaz",
-   "En az bir: tümleyen",
-   "Bağımsızları çarp"
-  ],
+  "hook": "Para geçmişi hatırlar mı?",
   "rounds": [
+   {
+    "sentence": "İki para: **bir yazı, bir tura**",
+    "question": "Olasılık?",
+    "choices": [
+     "1/3",
+     "1/2"
+    ],
+    "answer": 1,
+    "why": "YT ve TY."
+   },
+   {
+    "sentence": "Zarda **çift ya da asal**",
+    "question": "Kesin mi?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "**2** iki kez sayılmaz."
+   },
    {
     "sentence": "4 kez yazı geldi.",
     "question": "Sonraki yazı?",
@@ -605,27 +1284,31 @@
     ],
     "answer": 0,
     "why": "Para **hatırlamaz**."
-   },
-   {
-    "sentence": "İki zar, toplam 2",
-    "question": "Olasılık?",
-    "choices": [
-     "1/36",
-     "1/6"
-    ],
-    "answer": 0,
-    "why": "Yalnız **1 ve 1**."
-   },
-   {
-    "sentence": "İki para atılıyor.",
-    "question": "En az bir yazı?",
-    "choices": [
-     "Yarım",
-     "Dörtte üç"
-    ],
-    "answer": 1,
-    "why": "**Tümleyen** kullan."
    }
+  ],
+  "cards": [
+   {
+    "kind": "term",
+    "term": "Örnek uzay",
+    "definition": "Bir deneyin **bütün** çıktıları."
+   },
+   {
+    "kind": "fact",
+    "text": "$P(A) = \\frac{s(A)}{s(E)}$: istenen bölü tüm."
+   },
+   {
+    "kind": "fact",
+    "text": "En az bir = 1 − **hiç**."
+   },
+   {
+    "kind": "warning",
+    "text": "Ayrık olaylar bağımsız **değildir**."
+   }
+  ],
+  "summary": [
+   "İstenen bölü tüm",
+   "En az bir: tümleyen",
+   "Ayrıkta topla, bağımsızda çarp"
   ]
  },
  "camp": {

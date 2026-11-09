@@ -1,6 +1,6 @@
 # YouTube metni: AYT Coğrafya kampı · Ders 8 · Küresel İklim Değişimi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/08_Kuresel_Iklim_Degisimi/Kuresel_Iklim_Degisimi_YouTube.mp4` (4K) · Kapak: `Kuresel_Iklim_Degisimi_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Cografya/08_Kuresel_Iklim_Degisimi/Kuresel_Iklim_Degisimi_YouTube.mp4` (4K) · Kapak: `Kuresel_Iklim_Degisimi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

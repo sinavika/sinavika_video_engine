@@ -1,6 +1,6 @@
 # YouTube metni: TYT Felsefe kampı · Ders 11 · 15. Yüzyıl ve 17. Yüzyıl Felsefeleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Felsefe/11_15_17_Yuzyil_Felsefesi/15_17_Yuzyil_Felsefesi_YouTube.mp4` (4K) · Kapak: `15_17_Yuzyil_Felsefesi_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Felsefe/11_15_17_Yuzyil_Felsefesi/15_17_Yuzyil_Felsefesi_YouTube.mp4` (4K) · Kapak: `15_17_Yuzyil_Felsefesi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

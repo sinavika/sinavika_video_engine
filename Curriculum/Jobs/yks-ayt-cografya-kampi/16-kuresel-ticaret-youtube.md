@@ -1,6 +1,6 @@
 # YouTube metni: AYT Coğrafya kampı · Ders 16 · Küresel Ticaret
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/16_Kuresel_Ticaret/Kuresel_Ticaret_YouTube.mp4` (4K) · Kapak: `Kuresel_Ticaret_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Cografya/16_Kuresel_Ticaret/Kuresel_Ticaret_YouTube.mp4` (4K) · Kapak: `Kuresel_Ticaret_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 14 · Cümle Türleri
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/14_Cumle_Turleri/Cumle_Turleri_YouTube.mp4` (4K, 16:08) · Kapak: `Cumle_Turleri_YouTube_Kapak.png` (kamp kapağı).
+Video: `Outputs/Camps/YKS/TYT/Turkce/14_Cumle_Turleri/Cumle_Turleri_YouTube.mp4` (4K, 16:08) · Kapak: `Cumle_Turleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

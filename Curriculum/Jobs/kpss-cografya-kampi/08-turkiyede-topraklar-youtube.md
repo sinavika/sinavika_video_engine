@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Coğrafya kampı · Ders 8 · Türkiye’de Topraklar
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Cografya/08_Topraklar/Topraklar_YouTube.mp4` (4K) · Kapak: `Topraklar_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Cografya/08_Topraklar/Topraklar_YouTube.mp4` (4K) · Kapak: `Topraklar_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

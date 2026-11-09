@@ -1,6 +1,6 @@
 # YouTube metni: AYT Matematik kampı · Ders 31 · Limit
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Matematik/31_Limit/Limit_YouTube.mp4` (4K) · Kapak: `Limit_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Matematik/31_Limit/Limit_YouTube.mp4` (4K) · Kapak: `Limit_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

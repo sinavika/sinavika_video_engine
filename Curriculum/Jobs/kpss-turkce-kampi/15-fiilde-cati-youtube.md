@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Türkçe kampı · Ders 15 · Fiilde Çatı
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Turkce/15_Fiilde_Cati/Fiilde_Cati_YouTube.mp4` (4K) · Kapak: `Fiilde_Cati_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Turkce/15_Fiilde_Cati/Fiilde_Cati_YouTube.mp4` (4K) · Kapak: `Fiilde_Cati_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

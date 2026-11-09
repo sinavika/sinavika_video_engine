@@ -1,6 +1,6 @@
 # YouTube metni: AYT Tarih kampı · Ders 25 · II. Dünya Savaşı Sonrasında Türkiye ve Dünya
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Tarih/25_Ii_Dunya_Savasi_Sonrasi/Ii_Dunya_Savasi_Sonrasi_YouTube.mp4` (4K) · Kapak: `Ii_Dunya_Savasi_Sonrasi_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Tarih/25_Ii_Dunya_Savasi_Sonrasi/Ii_Dunya_Savasi_Sonrasi_YouTube.mp4` (4K) · Kapak: `Ii_Dunya_Savasi_Sonrasi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

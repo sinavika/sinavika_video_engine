@@ -1,6 +1,6 @@
 # YouTube metni: AYT Matematik kampı · Ders 20 · Permütasyon ve Kombinasyon
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Matematik/20_Permutasyon_ve_Kombinasyon/Permutasyon_ve_Kombinasyon_YouTube.mp4` (4K) · Kapak: `Permutasyon_ve_Kombinasyon_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Matematik/20_Permutasyon_ve_Kombinasyon/Permutasyon_ve_Kombinasyon_YouTube.mp4` (4K) · Kapak: `Permutasyon_ve_Kombinasyon_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

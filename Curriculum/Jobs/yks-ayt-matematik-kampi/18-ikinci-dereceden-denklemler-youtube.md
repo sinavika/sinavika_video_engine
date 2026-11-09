@@ -1,6 +1,6 @@
 # YouTube metni: AYT Matematik kampı · Ders 18 · 2.Dereceden Denklemler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Matematik/18_Ikinci_Dereceden_Denklemler/Ikinci_Dereceden_Denklemler_YouTube.mp4` (4K) · Kapak: `Ikinci_Dereceden_Denklemler_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Matematik/18_Ikinci_Dereceden_Denklemler/Ikinci_Dereceden_Denklemler_YouTube.mp4` (4K) · Kapak: `Ikinci_Dereceden_Denklemler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

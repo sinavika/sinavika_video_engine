@@ -1,6 +1,6 @@
 # YouTube metni: AYT Coğrafya kampı · Ders 22 · Çevre Sorunları ve Türleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/22_Cevre_Sorunlari_Ve_Turleri/Cevre_Sorunlari_Ve_Turleri_YouTube.mp4` (4K) · Kapak: `Cevre_Sorunlari_Ve_Turleri_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Cografya/22_Cevre_Sorunlari_Ve_Turleri/Cevre_Sorunlari_Ve_Turleri_YouTube.mp4` (4K) · Kapak: `Cevre_Sorunlari_Ve_Turleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

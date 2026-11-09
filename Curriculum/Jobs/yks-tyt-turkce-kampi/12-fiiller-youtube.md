@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 12 · Fiiller
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/12_Fiiller/Fiiller_YouTube.mp4` (4K, 16:24) · Kapak: `Fiiller_YouTube_Kapak.png` (kamp kapağı).
+Video: `Outputs/Camps/YKS/TYT/Turkce/12_Fiiller/Fiiller_YouTube.mp4` (4K, 16:24) · Kapak: `Fiiller_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

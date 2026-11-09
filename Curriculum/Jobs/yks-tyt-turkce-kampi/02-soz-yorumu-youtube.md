@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 2 · Söz Yorumu
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/02_Soz_Yorumu/Soz_Yorumu_YouTube.mp4` (4K, 16:34) · Kapak: `Soz_Yorumu_YouTube_Kapak.jpg` (kamp kapağı).
+Video: `Outputs/Camps/YKS/TYT/Turkce/02_Soz_Yorumu/Soz_Yorumu_YouTube.mp4` (4K, 16:34) · Kapak: `Soz_Yorumu_YouTube_Kapak.jpg` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

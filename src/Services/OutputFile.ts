@@ -123,7 +123,7 @@ type OutputRequest<Result> = {
 	rootDirectory?: string;
 	/**
 	 * A place of its own instead of a numbered name in the kind's folder: an absolute path without extension
-	 * (`…/Outputs/Videos/YKS/TYT/Turkce/07_Tamlamalar/Tamlamalar_YouTube`), each part's suffix and extension added
+	 * (`…/Outputs/Camps/YKS/TYT/Turkce/07_Tamlamalar/Tamlamalar_YouTube`), each part's suffix and extension added
 	 * to it. The production is still numbered in the manifest, and an existing file is still never overwritten.
 	 */
 	place?: string;

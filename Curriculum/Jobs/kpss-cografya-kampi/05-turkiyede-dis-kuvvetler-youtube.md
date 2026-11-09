@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Coğrafya kampı · Ders 5 · Türkiye’de Dış Kuvvetler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Cografya/05_DisKuvvetler/DisKuvvetler_YouTube.mp4` (4K) · Kapak: `DisKuvvetler_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Cografya/05_DisKuvvetler/DisKuvvetler_YouTube.mp4` (4K) · Kapak: `DisKuvvetler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

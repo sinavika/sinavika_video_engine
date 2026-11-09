@@ -1,6 +1,6 @@
 # YouTube metni: TYT Kimya kampı · Ders 1 · Kimya Bilimi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Kimya/01_Kimya_Bilimi/Kimya_Bilimi_YouTube.mp4` (4K) · Kapak: `Kimya_Bilimi_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Kimya/01_Kimya_Bilimi/Kimya_Bilimi_YouTube.mp4` (4K) · Kapak: `Kimya_Bilimi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -1,6 +1,6 @@
 # YouTube metni: TYT Biyoloji kampı · Ders 2 · Canlıların Temel Bileşenleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Biyoloji/02_Canlilarin_Temel_Bilesenleri/Canlilarin_Temel_Bilesenleri_YouTube.mp4` (4K) · Kapak: `Canlilarin_Temel_Bilesenleri_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Biyoloji/02_Canlilarin_Temel_Bilesenleri/Canlilarin_Temel_Bilesenleri_YouTube.mp4` (4K) · Kapak: `Canlilarin_Temel_Bilesenleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

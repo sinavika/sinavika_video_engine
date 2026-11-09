@@ -3,7 +3,7 @@
  *
  *   npm run render -- --job samples/QuestionSolution.json
  *       Saves to Outputs/Videos under the next free number, e.g. 03_Geometri_Dik_Ucgende_Hipotenus.mp4
- *       A job with an `output` (camp lessons: Outputs/Videos/YKS/TYT/Turkce/07_Tamlamalar/Tamlamalar_YouTube.mp4) is
+ *       A job with an `output` (camp lessons: Outputs/Camps/YKS/TYT/Turkce/07_Tamlamalar/Tamlamalar_YouTube.mp4) is
  *       saved at that place instead, with its cover and chapters beside it.
  *   npm run render -- --job samples/QuestionSolution.json --out out/video.mp4
  *       Writes exactly there instead, the cover beside it (out/video_Kapak.png).

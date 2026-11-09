@@ -12,36 +12,42 @@
   "TYT"
  ],
  "sources": [
-  "YKS/TYT/KonuAnlatimi/MAT/MAT_EBOB_EKOK.json (MEB Temel Matematik konu anlatımı: asal çarpanlara ayırma, bölen sayısı, EBOB, EKOK, a · b = EBOB · EKOK, EBOB ve EKOK problemleri, periyodik olaylar)",
-  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2023 ve 2026: asal çarpanlar ve bölenler; EBOB-EKOK problemleri ÖSYM listesinde çoğunlukla Problemler konusunda)",
-  "YKS/TYT/Sorular/MAT/MAT_EBOB_EKOK.jsonl (206 soru; asal çarpanlara ayırma, EBOB-EKOK ilişkisi ve EKOK problemleri kalıpları)"
+  "YKS/TYT/KonuAnlatimi/yks_tyt_kn_temel-matematik_meb-konu-anlatimi s. 24–27 (MEB: asal çarpanlara ayırma, bölen sayısı, EBOB, EKOK, a · b = EBOB · EKOK, EBOB ve EKOK problemleri, periyodik olaylar)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2023: AB/BA gruplara ayırma; ÖSYM 2026: alanları verilen dikdörtgenlerin kenarları)",
+  "YKS/TYT/Sorular/MAT/MAT_EBOB_EKOK.jsonl (bölen sayısı, EBOB-EKOK ilişkisi, parsel, ağaç, direk, nöbet, kalan kalıpları)"
  ],
  "lesson": {
   "hook": {
-   "headline": "EBOB mu, EKOK mu? Soruyu okuyunca karar ver.",
-   "narration": "Bir tarlayı en büyük eş karelere bölmek. Üç lambanın yeniden birlikte yanması. Eş fayanslardan en küçük kareyi yapmak. Bu soruların hepsi aynı aileden ama biri EBOB, öbürleri EKOK ister. Öğrencilerin çoğu hesabı bilir, hangisini kullanacağını karıştırır. Bu derste önce sayıyı asal çarpanlarına ayırmayı ve bölen saymayı göreceğiz. Sonra EBOB ile EKOK'u bulup aralarındaki ilişkiyi kuracağız ve problemi okur okumaz hangisini kullanacağına karar vermeyi öğreneceğiz."
+   "headline": "Parçalıyor musun, birleştiriyor musun? Cevap EBOB ya da EKOK.",
+   "narration": "Bir tarlayı en büyük eş karelere bölmek. Üç lambanın yeniden birlikte yanmasını beklemek. İkisi de aynı aileden, ama biri EBOB, öbürü EKOK ister. Hesabı bilen çok, hangisini seçeceğini bilen az. Asal çarpanlardan başlayıp bu kararı kendin verecek hâle geleceğiz."
   },
   "opening": {
    "kind": "mistake",
-   "card": "s2-c3",
-   "narration": "72'nin pozitif bölenlerinden kaç tanesi tek? Birçok öğrenci bütün bölenleri tek tek yazar ve birini atlar. Oysa asal çarpanlar bu sayıyı birkaç saniyede söyler.",
-   "promise": "Asal çarpanlara ayırmayı, bölen sayısını, EBOB ve EKOK'u ve hangisinin sorulduğunu sorudan anlamayı öğreneceksin."
+   "card": "s7-c7",
+   "narration": "Üç lamba aynı anda yanıyor. Dördüncü kez birlikte yanmaları için kaç EKOK beklemen gerekir? Öğrencilerin çoğu dört der ve tuzağa düşer.",
+   "promise": "Asal çarpanlardan başlayıp bölen sayısını, EBOB'u, EKOK'u ve hangisinin sorulduğunu problemden okumayı adım adım kuracağız."
   },
   "objectives": [
-   "Bir sayıyı asal çarpanlarına ayırıp bölen sayısını bulmak",
-   "İki ya da üç sayının EBOB ve EKOK'unu bulmak",
-   "a · b = EBOB · EKOK ilişkisini kullanmak",
-   "Problemde EBOB mu EKOK mu gerektiğine karar vermek"
+   "Bir sayıyı asal çarpanlarına ayırmak ve bölen sayısını formülle bulmak",
+   "EBOB ve EKOK'u hem listeyle hem asal çarpanlarla bulmak",
+   "a · b = EBOB · EKOK bağını ve a = d · x yazımını kullanmak",
+   "Problemi okur okumaz EBOB mu EKOK mu gerektiğine karar vermek"
   ],
   "sections": [
    {
     "subtopic": "MAT_EBOB_EKOK_01",
     "title": "Asal çarpanlara ayırma",
-    "narration": "Her pozitif tam sayı, asal sayıların çarpımı olarak tek bir biçimde yazılır. Bu konunun bütün hesapları buradan başlar.",
+    "narration": "Bu konunun bütün hesapları tek bir işten başlar: sayıyı asal parçalarına ayırmak.",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Asal sayı ve asal çarpan",
+      "text": "**Asal sayı**, 1'den büyük olup yalnız 1'e ve kendisine bölünen sayıdır: 2, 3, 5, 7, 11… **1 asal değildir.** 1'den büyük her doğal sayı, asalların çarpımı olarak **tek bir biçimde** yazılır.",
+      "narration": "Önce temel taşı koyalım. Asal sayı, 1'den büyük olup yalnız 1'e ve kendisine bölünen sayıdır. Dikkat et, 1 asal değildir. Bak, 1'den büyük her doğal sayı asalların çarpımı olarak tek bir biçimde yazılır."
+     },
+     {
       "kind": "visual",
-      "title": "540'ı asal çarpanlarına ayır",
+      "title": "360'ı asal çarpanlarına ayıralım",
       "visual": {
        "kind": "table",
        "header": [
@@ -50,16 +56,16 @@
        ],
        "rows": [
         [
-         "540",
+         "360",
          "2"
         ],
         [
-         "270",
+         "180",
          "2"
         ],
         [
-         "135",
-         "3"
+         "90",
+         "2"
         ],
         [
          "45",
@@ -80,11 +86,11 @@
        ],
        "highlightColumn": 1
       },
-      "caption": "$540 = 2^2 \\cdot 3^3 \\cdot 5$",
-      "narration": "540'ı en küçük asal sayıdan başlayarak bölelim.",
+      "caption": "$360 = 2^3 \\cdot 3^2 \\cdot 5$",
+      "narration": "Bölme merdiveniyle 360'ı parçalayalım.",
       "beats": [
        {
-        "narration": "540 çift, 2'ye bölelim: 270. 270 de çift: 135. İki tane 2 çıktı.",
+        "narration": "360 çift, 2'ye bölünce 180. 180 de çift, 90. 90 da çift, 45. Üç tane 2 çıktı.",
         "show": [
          "r1",
          "r2",
@@ -92,12 +98,847 @@
         ],
         "focus": [
          "r1",
+         "r2",
+         "r3"
+        ]
+       },
+       {
+        "narration": "45'in rakamları toplamı 9, yani 3'e bölünür: 15. 15 de 3'e bölünür: 5. İki tane 3 çıktı.",
+        "show": [
+         "r4",
+         "r5"
+        ],
+        "focus": [
+         "r4",
+         "r5"
+        ]
+       },
+       {
+        "narration": "5 asaldır, 5'e bölünce 1 kalır ve dururuz. Sonuç: 360 eşittir 2 küp çarpı 3 kare çarpı 5.",
+        "show": [
+         "r6",
+         "r7"
+        ],
+        "focus": [
+         "r6",
+         "r7"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Ayırmanın kuralları",
+      "items": [
+       "**En küçük asaldan** başla: önce 2, sonra 3, 5, 7…",
+       "Bölünmüyorsa **bir sonraki asala** geç; bölüm 1 olunca dur.",
+       "Aynı asalları **üslü** yaz: $2 \\cdot 2 \\cdot 2 = 2^3$.",
+       "Ayrılış **tektir**: hangi sırayla bölersen böl aynı sonuç çıkar."
+      ],
+      "narration": "Bu işin üç kuralı ve bir güvencesi var. En küçük asaldan başla: önce 2, sonra 3, 5, 7. Bölünmüyorsa bir sonraki asala geç; bölüm 1 olunca dur. Aynı asalları üslü yaz: üç tane 2, 2 küp olur. Güvence de şu: ayrılış tektir, hangi sırayla bölersen böl aynı sonuç çıkar."
+     },
+     {
+      "kind": "example",
+      "title": "84'ü ayır",
+      "example": "84'ü asal çarpanlarına ayıralım.",
+      "narration": "Şimdi bir örnek. 84'ü asal çarpanlarına ayıralım.",
+      "steps": [
+       {
+        "narration": "84 çift, 2'ye bölünce 42. 42 de çift, 2'ye bölünce 21.",
+        "math": "84 \\div 2 = 42, \\quad 42 \\div 2 = 21"
+       },
+       {
+        "narration": "21 tek ama rakamları toplamı 3; 3'e bölünce 7 kalır.",
+        "math": "21 \\div 3 = 7"
+       },
+       {
+        "narration": "7 asaldır, kendine bölünür ve 1 kalır.",
+        "math": "7 \\div 7 = 1",
+        "text": "**7 asal**"
+       },
+       {
+        "narration": "Sonuç: 84 eşittir 2 kare çarpı 3 çarpı 7.",
+        "math": "84 = 2^2 \\cdot 3 \\cdot 7"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Her çarpan asal olmalı",
+      "wrong": "$60 = 2^2 \\cdot 15$ yazımı, 60'ın asal çarpanlarına ayrılmış hâlidir.",
+      "right": "15 asal değil: $60 = 2^2 \\cdot 3 \\cdot 5$ yazılır.",
+      "why": "Asal çarpanlara ayırmada her çarpan asal olmalıdır; yoksa bölen sayısı yanlış çıkar.",
+      "narration": "Çok yapılan bir hata: 60'ı 2 kare çarpı 15 diye bırakmak. Ama 15 asal değil: 60 eşittir 2 kare çarpı 3 çarpı 5 diye yazılır. Asal çarpanlara ayırmada her çarpan asal olmalıdır; yoksa birazdan göreceğin bölen sayısı yanlış çıkar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$756 = 2^a \\cdot 3^b \\cdot 7^c$ olduğuna göre $a + b + c$ toplamı kaçtır?",
+       "options": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+       ],
+       "answer": 3,
+       "narration": "Isınma sorusu. Bölme merdivenini kur.",
+       "steps": [
+        {
+         "text": "$756 \\div 2 = 378$, $378 \\div 2 = 189$ → iki kez 2: $a = 2$.",
+         "narration": "756 çift, 2'ye bölünce 378. 378 de çift, 189. 189 tek; iki kez 2'ye böldük, a eşittir 2."
+        },
+        {
+         "text": "$189 \\div 3 = 63$, $63 \\div 3 = 21$, $21 \\div 3 = 7$ → $b = 3$; geriye 7: $c = 1$.",
+         "narration": "189'un rakamları toplamı 18, 3'e bölünür: 63, sonra 21, sonra 7. Üç kez 3, b eşittir 3. Geriye kalan 7 asal, c eşittir 1."
+        },
+        {
+         "text": "$a + b + c = 2 + 3 + 1 = 6$. Cevap **D**.",
+         "narration": "a artı b artı c, 2 artı 3 artı 1, yani 6. Cevabımız D.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki bölme merdiveni örnek alındı, sayı özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir parkta kenar uzunlukları metre cinsinden 1'den büyük birer tam sayı olan, dikdörtgen biçiminde üç çiçek tarhı vardır. Tarhların alanları 34, 35 ve 57 metrekaredir. Park görevlisi her tarhın çevresini tek sıra çitle çevirecektir. Buna göre kullanılacak çitin toplam uzunluğu kaç metredir?",
+       "options": [
+        "53",
+        "106",
+        "110",
+        "114",
+        "120"
+       ],
+       "answer": 1,
+       "narration": "ÖSYM 2026'da alanları verilen dikdörtgenleri sordu. Bu soru da o kalıptan.",
+       "steps": [
+        {
+         "text": "Kenarlar 1'den büyük: her alan **iki asalın çarpımı**. $34 = 2 \\cdot 17$, $35 = 5 \\cdot 7$, $57 = 3 \\cdot 19$.",
+         "narration": "Kenarlar 1'den büyük olduğu için 1 çarpı 34 gibi yazımlar yok. Her alan iki asalın çarpımı: 34, 2 çarpı 17; 35, 5 çarpı 7; 57, 3 çarpı 19."
+        },
+        {
+         "text": "Ayrılış tek, kenarlar kesin. Çevreler: $2(2 + 17) = 38$, $2(5 + 7) = 24$, $2(3 + 19) = 44$.",
+         "narration": "Asal çarpanlara ayrılış tek olduğu için kenarlar kesin. Çevreler 2 çarpı 19, yani 38; 2 çarpı 12, yani 24; 2 çarpı 22, yani 44."
+        },
+        {
+         "text": "$38 + 24 + 44 = 106$ m. Cevap **B**.",
+         "narration": "Toplam 38 artı 24 artı 44, 106 metre. Cevabımız B. 53'ü seçen, kenarları toplayıp 2 ile çarpmayı unutmuştur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026'nın alanları iki asalın çarpımı olan dikdörtgenler kalıbı örnek alındı; bağlam, alanlar ve sorulan nicelik (toplam çevre) özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_EBOB_EKOK_02",
+    "subtopics": [
+     "MAT_EBOB_EKOK_03"
+    ],
+    "title": "Pozitif bölenler ve bölen sayısı",
+    "narration": "Bir sayının kaç böleni var? Tek tek yazmadan, asal çarpanlardan bulacağız.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Bölen ve kat",
+      "text": "a sayısı b'yi kalansız bölüyorsa a, b'nin **bölenidir**; b de a'nın **katıdır**. 12'nin **pozitif bölenleri**: 1, 2, 3, 4, 6, 12.",
+      "narration": "Bir sayı başka bir sayıyı kalansız bölüyorsa onun bölenidir; bölünen sayı da onun katıdır. Örneğin 12'nin pozitif bölenleri 1, 2, 3, 4, 6 ve 12. Altı tane."
+     },
+     {
+      "kind": "visual",
+      "title": "72'nin bölenleri bir tabloya sığar",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "×",
+        "3⁰ = 1",
+        "3¹ = 3",
+        "3² = 9"
+       ],
+       "rows": [
+        [
+         "2⁰ = 1",
+         "1",
+         "3",
+         "9"
+        ],
+        [
+         "2¹ = 2",
+         "2",
+         "6",
+         "18"
+        ],
+        [
+         "2² = 4",
+         "4",
+         "12",
+         "36"
+        ],
+        [
+         "2³ = 8",
+         "8",
+         "24",
+         "72"
+        ]
+       ]
+      },
+      "narration": "72, 2 küp çarpı 3 kare. Her bölen, 2'nin bir kuvveti ile 3'ün bir kuvvetinin çarpımıdır.",
+      "beats": [
+       {
+        "narration": "Satırlarda 2'nin kuvvetleri var. Üs sıfırsa 1, birse 2 ile başlarız.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r1",
          "r2"
         ]
        },
        {
-        "narration": "135 tek, rakamları toplamı 9; 3'e bölünür: 45, sonra 15, sonra 5. Üç tane 3 çıktı.",
+        "narration": "Üs 2 ve 3 de olur. Yani 2'nin üssü için dört seçenek var: 0, 1, 2 ve 3.",
         "show": [
+         "r3",
+         "r4"
+        ],
+        "focus": [
+         "r3",
+         "r4"
+        ]
+       },
+       {
+        "narration": "Sütunlarda 3'ün üssü 0, 1 ya da 2. Bu da üç seçenek.",
+        "focus": [
+         "col2",
+         "col3",
+         "col4"
+        ]
+       },
+       {
+        "narration": "Dört satır çarpı üç sütun, 12 kutu. 72'nin tam 12 pozitif böleni var.",
+        "focus": [
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Bölen sayısı formülü",
+      "items": [
+       "**Pozitif bölen sayısı**: $A = x^a \\cdot y^b \\cdot z^c$ ise $(a+1)(b+1)(c+1)$.",
+       "**Negatif bölen sayısı** da aynıdır; **tam sayı bölen sayısı** bunun 2 katıdır.",
+       "**Asal bölenler** yalnız tabanlardır: $x$, $y$, $z$.",
+       "**Tam sayı bölenlerinin toplamı** 0'dır; her bölen tersiyle sadeleşir."
+      ],
+      "narration": "Tablodan formül çıkıyor. Pozitif bölen sayısı, üslerin birer fazlasının çarpımıdır. Negatif bölen sayısı da aynıdır; tam sayı bölen sayısı bunun 2 katıdır. Asal bölenler yalnız tabanlardır. Son not: tam sayı bölenlerinin toplamı 0'dır, çünkü her bölen tersiyle sadeleşir."
+     },
+     {
+      "kind": "example",
+      "title": "540'ın bölen sayısı",
+      "example": "540'ın pozitif bölen sayısını bulalım.",
+      "narration": "Formülü hemen kullanalım. 540'ın pozitif bölen sayısını bulalım.",
+      "steps": [
+       {
+        "narration": "540, 2 kare çarpı 3 küp çarpı 5. 5'in üssü yazılmasa da 1'dir.",
+        "math": "540 = 2^2 \\cdot 3^3 \\cdot 5^1"
+       },
+       {
+        "narration": "Üslerin birer fazlası 3, 4 ve 2.",
+        "text": "Üslerin birer fazlası: **3, 4, 2**"
+       },
+       {
+        "narration": "Çarpımları 24: 540'ın 24 pozitif böleni var.",
+        "math": "3 \\cdot 4 \\cdot 2 = 24",
+        "text": "Pozitif bölen"
+       },
+       {
+        "narration": "Negatiflerle birlikte 48 tam sayı böleni olur.",
+        "math": "2 \\cdot 24 = 48",
+        "text": "Tam sayı bölen"
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Tek bölenler",
+      "example": "540'ın tek bölenlerini sayalım.",
+      "narration": "Bir adım öteye geçelim. 540'ın tek bölenlerini sayalım.",
+      "steps": [
+       {
+        "narration": "Tek bir sayının içinde 2 çarpanı olamaz. O yüzden 2'yi tamamen atarız.",
+        "text": "Tek bölende **2 bulunmaz**"
+       },
+       {
+        "narration": "Geriye 3 küp çarpı 5 kalır. Bölen sayısı 4 çarpı 2, yani 8.",
+        "math": "4 \\cdot 2 = 8",
+        "text": "Geriye $3^3 \\cdot 5$ kalır"
+       },
+       {
+        "narration": "Çift bölenler de geriye kalanlar: 24 eksi 8, yani 16 tane.",
+        "math": "24 - 8 = 16",
+        "text": "**Çift bölen**"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Üslere 1 ekle",
+      "wrong": "$72 = 2^3 \\cdot 3^2$ sayısının pozitif bölen sayısı, üslerin çarpımı olan 6'dır.",
+      "right": "Her üsse 1 eklenir: $4 \\cdot 3 = 12$.",
+      "why": "Bölende 2'nin üssü 0 da olabilir; tablonun ilk satırı bu.",
+      "narration": "Klasik bir hata: üsleri doğrudan çarpıp 72 için 6 bölen demek. Her üsse 1 eklenir: 4 çarpı 3, yani 12. Bölende 2'nin üssü 0 da olabilir; tablonun ilk satırını hatırla."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "252 sayısının **tam sayı** bölenlerinin sayısı kaçtır?",
+       "options": [
+        "9",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "answer": 4,
+       "narration": "Kökteki kalın söze dikkat: tam sayı.",
+       "steps": [
+        {
+         "text": "$252 = 2^2 \\cdot 3^2 \\cdot 7$.",
+         "narration": "252, 4 çarpı 63; 63 de 9 çarpı 7. Yani 252, 2 kare çarpı 3 kare çarpı 7."
+        },
+        {
+         "text": "Pozitif bölen sayısı $(2+1)(2+1)(1+1) = 18$.",
+         "narration": "Üslerin birer fazlası 3, 3 ve 2. Çarpımları 18 pozitif bölen."
+        },
+        {
+         "text": "Tam sayı bölenleri negatifleri de sayar: $2 \\cdot 18 = 36$. Cevap **E**.",
+         "narration": "Soru tam sayı bölenlerini istiyor, negatifler de sayılır. 2 çarpı 18, yani 36. Cevabımız E. 18'i seçen yalnız pozitifleri saymıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki tam sayı bölen sayısı kuralı özgün bir sayıyla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "200 sayısının pozitif bölenlerinden kaç tanesi **10'un katıdır**?",
+       "options": [
+        "6",
+        "8",
+        "9",
+        "10",
+        "12"
+       ],
+       "answer": 0,
+       "narration": "Bir sayının katı olan bölenler için kısa bir yol var.",
+       "steps": [
+        {
+         "text": "10'un katı olan bölen $10 \\cdot m$ biçimindedir; $200 = 10 \\cdot 20$ olduğundan $m$, 20'nin bölenidir.",
+         "narration": "10'un katı olan her bölen 10 çarpı m biçimindedir. 200, 10 çarpı 20 olduğuna göre m, 20'yi bölmelidir."
+        },
+        {
+         "text": "$20 = 2^2 \\cdot 5$ → $3 \\cdot 2 = 6$: 10, 20, 40, 50, 100, 200.",
+         "narration": "20, 2 kare çarpı 5; bölen sayısı 3 çarpı 2, yani 6. Tek tek de bakabilirsin: 10, 20, 40, 50, 100 ve 200."
+        },
+        {
+         "text": "Cevap **A**. 12, 200'ün bütün pozitif bölenlerinin sayısıdır.",
+         "narration": "Cevabımız A. 12'yi seçen, 200'ün bütün bölenlerini saymıştır.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki 360 için katı olan bölenler kalıbı örnek alındı, sayı ve istenen kat özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir kütüphane görevlisi raftaki kitapları 5'erli bağlarsa bağ sayısı iki basamaklı $\\overline{AB}$, 6'şarlı bağlarsa iki basamaklı $\\overline{BA}$ oluyor. Görevli kitapların hepsini, her bağda eşit sayıda kitap olacak biçimde artansız bağlamak istiyor. Buna göre bağ sayısı aşağıdakilerden hangisi olabilir?",
+       "options": [
+        "12",
+        "20",
+        "27",
+        "36",
+        "40"
+       ],
+       "answer": 2,
+       "narration": "ÖSYM 2023'te bilyelerle sordu. Biz kitaplarla deneyelim.",
+       "steps": [
+        {
+         "text": "$5 \\cdot (10A + B) = 6 \\cdot (10B + A) \\Rightarrow 44A = 55B \\Rightarrow 4A = 5B$.",
+         "narration": "Kitap sayısı iki yoldan aynı: 5 çarpı AB, 6 çarpı BA'ya eşit. Açınca 44 A eşittir 55 B, sadeleşince 4 A eşittir 5 B."
+        },
+        {
+         "text": "Rakamlarda tek çözüm $A = 5$, $B = 4$: kitap sayısı $5 \\cdot 54 = 270 = 6 \\cdot 45$.",
+         "narration": "A ve B rakam olduğu için tek çözüm A eşittir 5, B eşittir 4. Kitap sayısı 5 çarpı 54, yani 270. Kontrol: 6 çarpı 45 de 270."
+        },
+        {
+         "text": "Paket sayısı 270'in **böleni** olmalı: $270 = 2 \\cdot 3^3 \\cdot 5$; 12, 20, 36 ve 40 bölmez.",
+         "narration": "Eşit paketlemede paket sayısı 270'in böleni olmalı. 270, 2 çarpı 3 küp çarpı 5. 12, 20, 36 ve 40 bu sayıyı bölmez.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        },
+        {
+         "text": "$270 \\div 27 = 10$: 27 paket, her pakette 10 kitap. Cevap **C**.",
+         "narration": "27 böler: 27 paket, her pakette 10 kitap. Cevabımız C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2023'ün AB/BA gruplara ayırma kalıbı örnek alındı; bağlam (kitap paketleri), grup büyüklükleri 5 ve 6, sayı 270 ve şıklar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_EBOB_EKOK_04",
+    "title": "EBOB: en büyük ortak bölen",
+    "narration": "Şimdi iki sayıya birlikte bakıyoruz. İkisini de bölen en büyük sayı hangisi?",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "EBOB nedir?",
+      "text": "İki ya da daha çok sayının **ortak bölenlerinin en büyüğüne** en büyük ortak bölen, kısaca **EBOB** denir. EBOB(12, 18) = 6.",
+      "narration": "İki ya da daha çok sayının ortak bölenlerinin en büyüğüne en büyük ortak bölen, kısaca EBOB denir. Örneğin 12 ile 18'in EBOB'u 6."
+     },
+     {
+      "kind": "visual",
+      "title": "Neden 6?",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sayı",
+        "Pozitif bölenler"
+       ],
+       "rows": [
+        [
+         "12",
+         "1, 2, 3, 4, 6, 12"
+        ],
+        [
+         "18",
+         "1, 2, 3, 6, 9, 18"
+        ],
+        [
+         "Ortak",
+         "1, 2, 3, 6"
+        ],
+        [
+         "En büyüğü",
+         "6 = EBOB(12, 18)"
+        ]
+       ]
+      },
+      "narration": "Neden 6? Bölenleri yan yana yazıp görelim.",
+      "beats": [
+       {
+        "narration": "12'nin bölenleri 1, 2, 3, 4, 6 ve 12. 18'in bölenleri 1, 2, 3, 6, 9 ve 18.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r1",
+         "r2"
+        ]
+       },
+       {
+        "narration": "İkisinde de olan bölenler 1, 2, 3 ve 6.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "En büyüğü 6, işte EBOB bu. Bak, bütün ortak bölenler 6'nın bölenleri.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r3",
+         "r4"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "EBOB'u asal çarpanlardan bul",
+      "items": [
+       "Sayıları **asal çarpanlarına** ayır.",
+       "**Ortak** asalları al, her birinin **küçük üssüyle**.",
+       "Neden küçük üs? EBOB **iki sayıyı da** bölmeli.",
+       "Ortak asal yoksa EBOB 1'dir: sayılar **aralarında asaldır**.",
+       "Kesri sadeleştirirken pay ve paydayı **EBOB'a böl**: $\\frac{12}{18} = \\frac{2}{3}$."
+      ],
+      "narration": "Büyük sayılarda liste yazmak zor. O yüzden sayıları asal çarpanlarına ayır. Ortak asalları al, her birinin küçük üssüyle. Neden küçük üs? EBOB iki sayıyı da bölmeli. Ortak asal yoksa EBOB 1'dir; bu sayılara aralarında asal denir. Kesri sadeleştirirken de pay ve paydayı EBOB'a bölersin."
+     },
+     {
+      "kind": "example",
+      "title": "48 ve 180",
+      "example": "48 ile 180'in EBOB'unu bulalım.",
+      "explanation": "EBOB(48, 180) = 2² · 3 = 12",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Asal",
+        "48",
+        "180",
+        "EBOB'a giren"
+       ],
+       "rows": [
+        [
+         "2",
+         "2⁴",
+         "2²",
+         "2²"
+        ],
+        [
+         "3",
+         "3¹",
+         "3²",
+         "3¹"
+        ],
+        [
+         "5",
+         "yok",
+         "5¹",
+         "alınmaz"
+        ]
+       ],
+       "highlightColumn": 3
+      },
+      "narration": "Bir örnekle oturtalım. 48 ile 180'in EBOB'unu bulalım.",
+      "beats": [
+       {
+        "narration": "48, 2 üssü 4 çarpı 3. 180, 2 kare çarpı 3 kare çarpı 5.",
+        "focus": [
+         "col2",
+         "col3"
+        ]
+       },
+       {
+        "narration": "2 ikisinde de var; küçük üs 2, yani 2 kare alınır.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "3 de ortak; küçük üs 1, yani 3 alınır.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "5 yalnız 180'de var, ortak değil, alınmaz. EBOB, 4 çarpı 3, yani 12.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "col4"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "EBOB'da küçük üs",
+      "wrong": "EBOB bulunurken ortak asalların büyük üssü alınır.",
+      "right": "Küçük üssü alınır: $2^4 \\cdot 3 = 48$ sayısı 180'i bölmez.",
+      "why": "EBOB iki sayının da böleni olmalıdır; bu yüzden hiçbir üs, sayılardaki üssü geçemez.",
+      "narration": "Sık karıştırılan nokta: EBOB'da ortak asalların büyük üssünü almak. Küçük üssü alınır: 2 üssü 4 çarpı 3, yani 48, 180'i bölmez. EBOB iki sayının da böleni olmalıdır."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\text{EBOB}(90, 150)$ kaçtır?",
+       "options": [
+        "6",
+        "10",
+        "15",
+        "30",
+        "450"
+       ],
+       "answer": 3,
+       "narration": "Kuralı bir kez uygulayalım.",
+       "steps": [
+        {
+         "text": "$90 = 2 \\cdot 3^2 \\cdot 5$, $150 = 2 \\cdot 3 \\cdot 5^2$.",
+         "narration": "90, 2 çarpı 3 kare çarpı 5. 150, 2 çarpı 3 çarpı 5 kare."
+        },
+        {
+         "text": "Ortak asallar 2, 3, 5; küçük üsler: $2 \\cdot 3 \\cdot 5 = 30$. Cevap **D**.",
+         "narration": "Üç asal da ortak; her birinin küçük üssü 1. EBOB, 2 çarpı 3 çarpı 5, yani 30. Cevabımız D. 6, 10 ve 15 de ortak bölen ama en büyüğü değil; 450 ise EKOK.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki EBOB bulma kalıbı özgün sayılarla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir okulun A sınıfında 36, B sınıfında n öğrenci vardır. İki sınıfın öğrencileri, sınıflar karışmadan ve bütün gruplarda eşit sayıda öğrenci olacak şekilde gruplara ayrılacaktır. Bir gruptaki öğrenci sayısının alabileceği en büyük değer 12'dir. n, 100'den küçük olduğuna göre n kaç farklı değer alabilir?",
+       "options": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+       ],
+       "answer": 1,
+       "narration": "Şimdi okuma isteyen bir soru. Koşulları tek tek yaz.",
+       "steps": [
+        {
+         "text": "Grup büyüklüğü hem 36'yı hem $n$'yi böler; en büyüğü 12 → $\\text{EBOB}(36, n) = 12$.",
+         "narration": "Grup büyüklüğü iki sınıfı da kalansız bölmeli. En büyük değer 12 diyor; yani 36 ile n'nin EBOB'u 12."
+        },
+        {
+         "text": "$n = 12k$, $36 = 12 \\cdot 3$; EBOB tam 12 olsun diye $k$, 3'ün katı **olamaz**.",
+         "narration": "n, 12'nin katı: 12 çarpı k. 36 da 12 çarpı 3. EBOB tam 12 kalsın diye k, 3'ün katı olmamalı."
+        },
+        {
+         "text": "$12k < 100 \\Rightarrow k \\leq 8$; $k \\in \\{1, 2, 4, 5, 7, 8\\}$ → **6** değer. Cevap **B**.",
+         "narration": "12 k, 100'den küçük; k en çok 8. 3 ve 6 çıkar, geriye 1, 2, 4, 5, 7 ve 8 kalır: 6 değer. Cevabımız B. 8'i seçen 36 ile 72'yi de saymıştır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki EBOB koşullu değer sayma kalıbı örnek alındı, sınıf bağlamı ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_EBOB_EKOK_05",
+    "title": "EKOK: en küçük ortak kat",
+    "narration": "EBOB'un ikizi EKOK. Bu kez bölen değil, kat arıyoruz.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "EKOK nedir?",
+      "text": "İki ya da daha çok sayının **pozitif ortak katlarının en küçüğüne** en küçük ortak kat, kısaca **EKOK** denir. EKOK(4, 6) = 12.",
+      "narration": "İki ya da daha çok sayının pozitif ortak katlarının en küçüğüne en küçük ortak kat, kısaca EKOK denir. Örneğin 4 ile 6'nın EKOK'u 12."
+     },
+     {
+      "kind": "visual",
+      "title": "Ortak katlar",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sayı",
+        "Pozitif katlar"
+       ],
+       "rows": [
+        [
+         "4",
+         "4, 8, 12, 16, 20, 24, …"
+        ],
+        [
+         "6",
+         "6, 12, 18, 24, 30, …"
+        ],
+        [
+         "Ortak",
+         "12, 24, 36, …"
+        ],
+        [
+         "En küçüğü",
+         "12 = EKOK(4, 6)"
+        ]
+       ]
+      },
+      "narration": "Katları yan yana yazalım.",
+      "beats": [
+       {
+        "narration": "4'ün katları 4, 8, 12, 16 diye gider. 6'nın katları 6, 12, 18, 24.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r1",
+         "r2"
+        ]
+       },
+       {
+        "narration": "İkisinde de olanlar 12, 24, 36. Ortak katlar sonsuza kadar sürer.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "En küçüğü 12, işte EKOK bu. Bütün ortak katlar da 12'nin katlarıdır.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r3",
+         "r4"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "EKOK'u asal çarpanlardan bul",
+      "items": [
+       "**Bütün** asalları al, her birinin **büyük üssüyle**.",
+       "Neden büyük üs? EKOK **iki sayıya da** bölünmeli.",
+       "Aralarında asal sayılarda EKOK, sayıların **çarpımıdır**: EKOK(8, 15) = 120.",
+       "Biri diğerinin katıysa EBOB **küçük olan**, EKOK **büyük olan**.",
+       "Kesirleri toplarken paydalar **EKOK'ta** eşitlenir."
+      ],
+      "narration": "EKOK için kural tam tersi. Bütün asalları al, her birinin büyük üssüyle. Neden büyük üs? EKOK iki sayıya da bölünmeli, her sayının bütün çarpanlarını taşımalı. Aralarında asal sayılarda EKOK sayıların çarpımıdır: 8 ile 15 için 120. Biri diğerinin katıysa EBOB küçük olan, EKOK büyük olandır. Kesirleri toplarken de paydalar EKOK'ta eşitlenir."
+     },
+     {
+      "kind": "example",
+      "title": "Üç sayının EKOK'u",
+      "example": "12, 18 ve 30'un EKOK'unu bölme tablosuyla bulalım.",
+      "explanation": "EKOK(12, 18, 30) = 2² · 3² · 5 = 180",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "1. sayı",
+        "2. sayı",
+        "3. sayı",
+        "Bölen"
+       ],
+       "rows": [
+        [
+         "12",
+         "18",
+         "30",
+         "2"
+        ],
+        [
+         "6",
+         "9",
+         "15",
+         "2"
+        ],
+        [
+         "3",
+         "9",
+         "15",
+         "3"
+        ],
+        [
+         "1",
+         "3",
+         "5",
+         "3"
+        ],
+        [
+         "1",
+         "1",
+         "5",
+         "5"
+        ],
+        [
+         "1",
+         "1",
+         "1",
+         "bitti"
+        ]
+       ],
+       "highlightColumn": 3
+      },
+      "narration": "Üç sayıda pratik bir yol var. 12, 18 ve 30'un EKOK'unu bölme tablosuyla bulalım.",
+      "beats": [
+       {
+        "narration": "Üçü de çift, 2'ye bölüyoruz.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "6, 9 ve 15 kaldı. 2 yalnız 6'yı böler; bölünmeyenler aynen aşağı iner.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Sonra iki kez 3'e, en son 5'e bölüyoruz ve hepsi 1 oluyor.",
+        "show": [
+         "r3",
          "r4",
          "r5",
          "r6"
@@ -109,263 +950,86 @@
         ]
        },
        {
-        "narration": "5'i 5'e bölünce 1 kalır. Sonuç: 540 eşittir 2 kare çarpı 3 küp çarpı 5.",
-        "show": [
-         "r7"
-        ],
+        "narration": "Sağdaki bölenlerin çarpımı EKOK: 2 kare çarpı 3 kare çarpı 5, yani 180.",
         "focus": [
-         "r6"
+         "col4"
         ]
        }
       ]
      },
      {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "360 sayısı asal çarpanlarına ayrıldığında $2^a \\cdot 3^b \\cdot 5^c$ biçiminde yazılmaktadır. Buna göre $a + b + c$ toplamı kaçtır?",
-       "options": [
-        "5",
-        "6",
-        "7",
-        "8",
-        "9"
-       ],
-       "answer": 1,
-       "narration": "360'ı en küçük asaldan başlayarak bölelim.",
-       "steps": [
-        {
-         "text": "$360 \\div 2 = 180$, $180 \\div 2 = 90$, $90 \\div 2 = 45$ → üç kez 2: $a = 3$.",
-         "narration": "360 ikiye bölünür, 180; tekrar ikiye, 90; tekrar ikiye, 45. 45 artık ikiye bölünmez. Üç kez ikiye böldük; a üç."
-        },
-        {
-         "text": "$45 \\div 3 = 15$, $15 \\div 3 = 5$ → $b = 2$; $5 \\div 5 = 1$ → $c = 1$.",
-         "narration": "45 üçe bölünür, 15; tekrar üçe, 5. İki kez üç; b iki. Son olarak 5 beşe bölünür, 1. c bir."
-        },
-        {
-         "text": "$360 = 2^3 \\cdot 3^2 \\cdot 5$ → $a + b + c = 3 + 2 + 1 = 6$. Cevap **B**.",
-         "narration": "360, iki üssü üç çarpı üç üssü iki çarpı beş. a artı b artı c, üç artı iki artı bir, altı. Cevabımız B.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; dersteki asal çarpanlara ayırma tablosu özgün bir sayıyla soruldu."
-       }
-      }
-     }
-    ]
-   },
-   {
-    "subtopic": "MAT_EBOB_EKOK_02",
-    "subtopics": [
-     "MAT_EBOB_EKOK_03"
-    ],
-    "title": "Bölen sayısı",
-    "narration": "Bir sayının kaç tane böleni olduğunu, bölenleri tek tek yazmadan bulabilirsin.",
-    "cards": [
-     {
-      "kind": "rule",
-      "title": "Bölen sayısı formülü",
-      "items": [
-       "$A = x^a \\cdot y^b \\cdot z^c$ ise **pozitif bölen sayısı** $(a+1)(b+1)(c+1)$.",
-       "**Tam sayı bölen sayısı** bunun 2 katıdır; negatif bölenler de sayılır.",
-       "**Asal bölenler** yalnız $x$, $y$, $z$'dir.",
-       "Asal olmayan pozitif bölen sayısı = pozitif bölen sayısı − asal bölen sayısı (**1 de bu gruptadır**)."
-      ],
-      "narration": "A sayısı x üssü a çarpı y üssü b çarpı z üssü c ise pozitif bölen sayısı, üslerin birer fazlasının çarpımıdır: a artı 1, çarpı b artı 1, çarpı c artı 1. Tam sayı bölenlerini soruyorsa negatifler de sayılır, sonuç 2 katına çıkar. Asal bölenler yalnızca tabanlardır. Asal olmayan bölenleri bulmak için pozitif bölen sayısından asal bölen sayısını çıkarırsın; 1 asal olmadığı için bu grupta kalır."
+      "kind": "mistake",
+      "title": "EKOK'ta bütün asallar",
+      "wrong": "EKOK bulunurken yalnız ortak asallar alınır.",
+      "right": "Bütün asallar alınır: 72 ile 120'nin EKOK'unda ortak olmayan 5 de vardır, EKOK 360.",
+      "why": "5 alınmazsa sonuç 72 olur ve 120'ye bölünmez.",
+      "narration": "Bir hata da şu: EKOK'ta yalnız ortak asalları almak. Bütün asallar alınır: 72 ile 120'nin EKOK'unda ortak olmayan 5 de vardır, sonuç 360. 5 alınmazsa sonuç 72 olur ve 120'ye bölünmez."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "540 sayısının **asal olmayan** pozitif bölenlerinin sayısı kaçtır?",
+       "stem": "$\\text{EKOK}(8, 12, 20)$ kaçtır?",
        "options": [
-        "21",
+        "4",
+        "24",
+        "40",
+        "60",
+        "120"
+       ],
+       "answer": 4,
+       "narration": "Üç sayıyla kuralı deneyelim.",
+       "steps": [
+        {
+         "text": "$8 = 2^3$, $12 = 2^2 \\cdot 3$, $20 = 2^2 \\cdot 5$.",
+         "narration": "8, 2 küp; 12, 2 kare çarpı 3; 20, 2 kare çarpı 5."
+        },
+        {
+         "text": "Bütün asallar, büyük üsler: $2^3 \\cdot 3 \\cdot 5 = 120$. Cevap **E**.",
+         "narration": "Bütün asallar büyük üsleriyle: 2 küp, 3 ve 5. Çarpım 120. Cevabımız E. 4'ü seçen EBOB'u bulmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki üç sayılı EKOK kalıbı özgün sayılarla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir kasanın şifresi; 2, 3, 4, 5, 6 ve 8 sayılarının her birine kalansız bölünebilen dört basamaklı en büyük doğal sayıdır. Kasayı açmak isteyen Mert bu sayıyı bulup rakamlarını sırayla tuşlayacaktır. Buna göre Mert'in tuşlayacağı rakamların toplamı kaçtır?",
+       "options": [
+        "9",
+        "18",
         "24",
         "27",
-        "48",
-        "69"
-       ],
-       "answer": 0,
-       "narration": "Az önce ayırdığımız 540'ı kullanalım.",
-       "steps": [
-        {
-         "text": "$540 = 2^2 \\cdot 3^3 \\cdot 5^1$: pozitif bölen sayısı $3 \\cdot 4 \\cdot 2 = 24$.",
-         "narration": "540, 2 kare çarpı 3 küp çarpı 5 üssü 1. Üslerin birer fazlası 3, 4 ve 2. Çarpımları 24: 540'ın 24 pozitif böleni var."
-        },
-        {
-         "text": "Asal bölenler: 2, 3, 5 → **3** tane.",
-         "narration": "Bunların kaçı asal? Yalnızca tabanlar: 2, 3 ve 5. Üç tane."
-        },
-        {
-         "text": "$24 - 3 = 21$. Cevap **A**.",
-         "narration": "24 eksi 3, 21. Cevabımız A. 48'i seçen tam sayı bölenleri saymış, 24'ü seçen asal bölenleri çıkarmayı unutmuş olur.",
-         "eliminate": [
-          "B",
-          "C",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; MEB anlatımındaki bölen sayısı kuralları ve havuzdaki kalıp örnek alındı, sayı özgün."
-       }
-      }
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "72 sayısının pozitif bölenlerinden kaç tanesi **tek** sayıdır?",
-       "options": [
-        "2",
-        "3",
-        "4",
-        "6",
-        "12"
-       ],
-       "answer": 1,
-       "narration": "Tek bölen, içinde 2 çarpanı olmayan bölendir.",
-       "steps": [
-        {
-         "text": "$72 = 2^3 \\cdot 3^2$. Toplam bölen sayısı $(3+1)(2+1) = 12$.",
-         "narration": "72, iki küp çarpı üç kare. Toplam pozitif bölen sayısı, üslerin birer fazlasının çarpımı: dört çarpı üç, on iki."
-        },
-        {
-         "text": "Tek bölende 2 **olmaz** → yalnız $3^0, 3^1, 3^2$: $1, 3, 9$ → **3** tane.",
-         "narration": "Tek bir bölenin içinde iki çarpanı bulunamaz. Geriye yalnız üçün kuvvetleri kalır: bir, üç ve dokuz. Yani üç tane tek bölen var. Kısa yol: ikinin üssünü yok sayıp kalan üslerle formülü uygula; iki artı bir, üç."
-        },
-        {
-         "text": "Tek bölen **3**; çift bölen $12 - 3 = 9$. Cevap **B**.",
-         "narration": "Tek bölenler üç tane; çift bölenler on iki eksi üç, dokuz tane. Cevabımız B. On ikiyi seçen tüm bölenleri saymış olur.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; dersteki bölen sayısı formülü tek bölen sayısını bulmaya uygulandı."
-       }
-      }
-     }
-    ]
-   },
-   {
-    "subtopic": "MAT_EBOB_EKOK_04",
-    "subtopics": [
-     "MAT_EBOB_EKOK_05"
-    ],
-    "title": "EBOB ve EKOK bulma",
-    "narration": "EBOB en büyük ortak bölen, EKOK en küçük ortak kattır. İkisini de asal çarpanlardan bulursun.",
-    "cards": [
-     {
-      "kind": "visual",
-      "title": "72 ve 120",
-      "visual": {
-       "kind": "comparison",
-       "columns": [
-        {
-         "title": "EBOB: ortaklar, küçük üs",
-         "items": [
-          "$72 = 2^3 \\cdot 3^2$",
-          "$120 = 2^3 \\cdot 3 \\cdot 5$",
-          "$\\text{EBOB} = 2^3 \\cdot 3 = 24$"
-         ]
-        },
-        {
-         "title": "EKOK: hepsi, büyük üs",
-         "items": [
-          "Ortak olmayan 5 de alınır",
-          "$2^3 \\cdot 3^2 \\cdot 5$",
-          "$\\text{EKOK} = 360$"
-         ]
-        }
-       ]
-      },
-      "narration": "72 ve 120'yi asal çarpanlarına ayıralım: 72, 2 küp çarpı 3 kare. 120, 2 küp çarpı 3 çarpı 5.",
-      "beats": [
-       {
-        "show": [
-         "c1"
-        ],
-        "focus": [
-         "c1-1",
-         "c1-2"
-        ],
-        "narration": "EBOB için yalnız ortak tabanları alırsın, her birinin küçük üssüyle."
-       },
-       {
-        "show": [],
-        "focus": [
-         "c1-3"
-        ],
-        "narration": "2'nin küçük üssü 3, 3'ün küçük üssü 1. EBOB, 8 çarpı 3, yani 24."
-       },
-       {
-        "show": [
-         "c2"
-        ],
-        "focus": [
-         "c2-1",
-         "c2-2"
-        ],
-        "narration": "EKOK için bütün tabanları alırsın, her birinin büyük üssüyle. 2 küp, 3 kare ve ortak olmayan 5."
-       },
-       {
-        "show": [],
-        "focus": [
-         "c2-3"
-        ],
-        "narration": "EKOK, 8 çarpı 9 çarpı 5, yani 360."
-       }
-      ]
-     },
-     {
-      "kind": "rule",
-      "title": "Kısa yollar",
-      "items": [
-       "Aralarında asal sayılarda: $\\text{EBOB} = 1$, $\\text{EKOK} = a \\cdot b$.",
-       "Biri diğerinin katıysa: EBOB **küçük olan**, EKOK **büyük olan**.",
-       "EBOB her iki sayıyı da böler; EKOK her iki sayıya da bölünür.",
-       "Kesir sadeleştirmede EBOB, payda eşitlemede EKOK kullanılır."
-      ],
-      "narration": "Birkaç kısa yol. Aralarında asal sayılarda EBOB 1, EKOK sayıların çarpımıdır: 8 ve 15 için EKOK 120. Biri diğerinin katıysa EBOB küçük olan, EKOK büyük olandır: 12 ve 36 için EBOB 12, EKOK 36. EBOB iki sayıyı da böler, EKOK iki sayıya da bölünür. Kesir sadeleştirirken EBOB'u, paydaları eşitlerken EKOK'u kullanırsın."
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "$\\text{EBOB}(36, 60) + \\text{EKOK}(36, 60)$ toplamı kaçtır?",
-       "options": [
-        "180",
-        "186",
-        "192",
-        "196",
-        "204"
+        "30"
        ],
        "answer": 2,
-       "narration": "İki sayıyı asal çarpanlarına ayıralım.",
+       "narration": "Şifre sorusu. Önce hangi sayıyı aradığını bul.",
        "steps": [
         {
-         "text": "$36 = 2^2 \\cdot 3^2$, $60 = 2^2 \\cdot 3 \\cdot 5$.",
-         "narration": "36, iki kare çarpı üç kare; 60, iki kare çarpı üç çarpı beş."
+         "text": "Hepsine bölünen sayı ortak kattır; ortak katlar **EKOK'un katlarıdır**.",
+         "narration": "Altı sayının hepsine bölünen sayı, hepsinin ortak katıdır. Ortak katlar da EKOK'un katlarıdır."
         },
         {
-         "text": "EBOB: **ortak** asallar, **küçük** üsler → $2^2 \\cdot 3 = 12$. EKOK: **bütün** asallar, **büyük** üsler → $2^2 \\cdot 3^2 \\cdot 5 = 180$.",
-         "narration": "EBOB için ortak asalları en küçük üsleriyle alırız: iki kare çarpı üç, on iki. EKOK için bütün asalları en büyük üsleriyle alırız: iki kare çarpı üç kare çarpı beş, 180."
+         "text": "$\\text{EKOK}(2, 3, 4, 5, 6, 8) = 2^3 \\cdot 3 \\cdot 5 = 120$.",
+         "narration": "2 ve 4, 8'in içinde; 6 da 8 ile 3'ün içinde. EKOK, 2 küp çarpı 3 çarpı 5, yani 120."
         },
         {
-         "text": "$12 + 180 = 192$. Kontrol: $12 \\cdot 180 = 2160 = 36 \\cdot 60$. Cevap **C**.",
-         "narration": "Toplam 12 artı 180, 192. Kontrol edelim: EBOB çarpı EKOK, iki sayının çarpımına eşit olmalı; 12 çarpı 180, 2160; 36 çarpı 60 da 2160. Cevabımız C.",
+         "text": "$9999 \\div 120 \\approx 83{,}3$ → $83 \\cdot 120 = 9960$.",
+         "narration": "Dört basamaklı en büyük katı arıyoruz. 9999'u 120'ye bölünce 83 tam çıkar. 83 çarpı 120, yani 9960."
+        },
+        {
+         "text": "$9 + 9 + 6 + 0 = 24$. Cevap **C**.",
+         "narration": "Rakamlar toplamı 9 artı 9 artı 6 artı 0, yani 24. Cevabımız C. 9'u seçen en küçük dört basamaklı katı, 1080'i almıştır.",
          "eliminate": [
           "A",
           "B",
@@ -375,7 +1039,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki EBOB-EKOK bulma kuralı ve EBOB × EKOK = sayıların çarpımı kontrolü özgün sayılarla soruldu."
+        "changes": "Havuzdaki şifre sorusunun bölünebilen en küçük sayı kalıbı örnek alındı; bölenler, dört basamaklı en büyük sayı koşulu ve rakam toplamı özgün."
        }
       }
      }
@@ -383,9 +1047,93 @@
    },
    {
     "subtopic": "MAT_EBOB_EKOK_06",
-    "title": "EBOB ve EKOK ilişkisi",
-    "narration": "İki sayı ile EBOB ve EKOK'ları arasında çok kullanışlı bir eşitlik var.",
+    "title": "EBOB ile EKOK arasındaki bağ",
+    "narration": "EBOB ile EKOK birbirinden bağımsız değil. Aralarında güçlü bir bağ var.",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Çarpım eşitliği",
+      "text": "İki pozitif tam sayı için **sayıların çarpımı**, **EBOB ile EKOK'un çarpımına** eşittir: $a \\cdot b = \\text{EBOB}(a, b) \\cdot \\text{EKOK}(a, b)$.",
+      "narration": "Şunu ezberle: iki pozitif tam sayı için sayıların çarpımı, EBOB ile EKOK'un çarpımına eşittir. a çarpı b eşittir EBOB çarpı EKOK."
+     },
+     {
+      "kind": "visual",
+      "title": "Hiçbir üs kaybolmaz",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Asal",
+        "12",
+        "18",
+        "EBOB",
+        "EKOK"
+       ],
+       "rows": [
+        [
+         "2",
+         "2²",
+         "2¹",
+         "2¹",
+         "2²"
+        ],
+        [
+         "3",
+         "3¹",
+         "3²",
+         "3¹",
+         "3²"
+        ],
+        [
+         "Değer",
+         "12",
+         "18",
+         "6",
+         "36"
+        ]
+       ]
+      },
+      "narration": "Neden böyle? 12 ile 18'e bakalım.",
+      "beats": [
+       {
+        "narration": "2'nin üsleri 2 ve 1. EBOB küçüğünü, EKOK büyüğünü alıyor.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "3'ün üsleri 1 ve 2. Yine biri EBOB'a, biri EKOK'a gidiyor.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Hiçbir üs kaybolmuyor, sadece paylaşılıyor. 12 çarpı 18, 216; 6 çarpı 36 da 216.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "EBOB verilince sayıları yaz",
+      "items": [
+       "EBOB $d$ ise sayılar $a = d \\cdot x$, $b = d \\cdot y$ biçimindedir.",
+       "$x$ ve $y$ **aralarında asaldır**; değilse EBOB $d$'den büyük olurdu.",
+       "O zaman **EKOK** $= d \\cdot x \\cdot y$.",
+       "EKOK, EBOB'un **katıdır**; EKOK'u EBOB'a bölünce $x \\cdot y$ çıkar."
+      ],
+      "narration": "Bu bağı kullanmanın en güçlü yolu şu. EBOB d ise sayılar d çarpı x ve d çarpı y biçimindedir. x ve y aralarında asaldır; değilse EBOB d'den büyük olurdu. O zaman EKOK, d çarpı x çarpı y. EKOK, EBOB'un katıdır; EKOK'u EBOB'a bölünce x çarpı y çıkar."
+     },
      {
       "kind": "predict",
       "title": "Eksik sayıyı bul",
@@ -400,22 +1148,28 @@
       "thinkSeconds": 5,
       "visual": {
        "kind": "formula",
-       "latex": "a \\cdot b = \\text{EBOB}(a, b) \\cdot \\text{EKOK}(a, b)",
-       "caption": "18 · b = 6 · 72 → b = 24"
+       "latex": "18 \\cdot b = 6 \\cdot 72",
+       "caption": "b = 432 ÷ 18 = 24"
       },
       "beats": [
        {
-        "narration": "İki sayının çarpımı, EBOB ile EKOK'un çarpımına eşittir. 18 çarpı b, 6 çarpı 72'ye eşit.",
-        "focus": []
+        "narration": "İki sayının çarpımı EBOB ile EKOK'un çarpımına eşit. 18 çarpı b, 6 çarpı 72'ye eşittir."
        },
        {
-        "narration": "6 çarpı 72, 432. 432'yi 18'e bölersek b, 24 çıkar.",
-        "focus": []
+        "narration": "6 çarpı 72, 432. 432'yi 18'e bölersek b, 24 çıkar."
        }
       ],
-      "explanation": "$18 \\cdot b = 6 \\cdot 72 = 432$, $b = 24$. Kontrol: $\\text{EBOB}(18, 24) = 6$, $\\text{EKOK}(18, 24) = 72$.",
+      "explanation": "$18 \\cdot b = 432$, $b = 24$. Kontrol: EBOB(18, 24) = 6, EKOK(18, 24) = 72.",
       "narration": "Şimdi sıra sende. Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap 24. a çarpı b eşittir EBOB çarpı EKOK. 18 çarpı b, 432'ye eşit; b 24. Kontrol edelim: 18 ile 24'ün EBOB'u 6, EKOK'u 72. Bu eşitlik yalnız iki sayı için geçerlidir; üç sayıda kullanılmaz."
+      "explanationNarration": "Doğru cevap 24. Kontrol edelim: 18 ile 24'ün EBOB'u 6, EKOK'u 72. Tutuyor."
+     },
+     {
+      "kind": "mistake",
+      "title": "Eşitlik yalnız iki sayı için",
+      "wrong": "Üç sayının çarpımı da EBOB ile EKOK'larının çarpımına eşittir.",
+      "right": "Eşitlik yalnız iki sayı için geçerlidir: $2 \\cdot 4 \\cdot 8 = 64$ ama $\\text{EBOB} \\cdot \\text{EKOK} = 2 \\cdot 8 = 16$.",
+      "why": "Üç sayıda ortanca üsler ne EBOB'a ne EKOK'a girer.",
+      "narration": "Dikkat, bir tuzak: bu eşitliği üç sayıya taşımak. Eşitlik yalnız iki sayı için geçerlidir. 2, 4 ve 8'in çarpımı 64, ama EBOB çarpı EKOK, 2 çarpı 8, yani 16. Üç sayıda ortanca üsler ne EBOB'a ne EKOK'a girer."
      },
      {
       "kind": "question",
@@ -434,15 +1188,15 @@
        "steps": [
         {
          "text": "$a = 6x$, $b = 6y$; $x$ ve $y$ **aralarında asal**. $\\text{EKOK} = 6xy = 72 \\Rightarrow xy = 12$.",
-         "narration": "EBOB 6 ise sayılar 6 x ve 6 y biçimindedir ve x ile y aralarında asaldır; yoksa EBOB 6'dan büyük olurdu. EKOK 6 x y'dir ve 72'ye eşit, öyleyse x çarpı y 12."
+         "narration": "Sayılar 6 x ve 6 y; x ile y aralarında asal. EKOK 6 x y, 72'ye eşit; öyleyse x çarpı y, 12."
         },
         {
-         "text": "Aralarında asal çarpanlar: $(1, 12)$ ve $(3, 4)$. $(2, 6)$ olmaz, ortak böleni 2.",
-         "narration": "Çarpımı 12 olan ve aralarında asal olan ikililer: 1 ile 12, 3 ile 4. 2 ile 6 olmaz, çünkü ikisi de 2'ye bölünür."
+         "text": "Aralarında asal ikililer: $(1, 12)$ ve $(3, 4)$. $(2, 6)$ olmaz, ortak böleni 2.",
+         "narration": "Çarpımı 12 olan aralarında asal ikililer: 1 ile 12, 3 ile 4. 2 ile 6 olmaz, çünkü ikisi de 2'ye bölünür."
         },
         {
-         "text": "Sayılar 6 ve 72 (toplam 78) ya da 18 ve 24 (toplam **42**). Cevap **A**.",
-         "narration": "1 ile 12'den 6 ve 72 çıkar, toplam 78. 3 ile 4'ten 18 ve 24 çıkar, toplam 42. En az toplam 42. Cevabımız A. 2 ile 6'yı da deneyen, EBOB'u 12 olan 12 ve 36'yı bulur; toplam 48 ama şartı sağlamaz.",
+         "text": "6 ve 72 (toplam 78) ya da 18 ve 24 (toplam **42**). Cevap **A**.",
+         "narration": "1 ile 12'den 6 ve 72 çıkar, toplam 78. 3 ile 4'ten 18 ve 24 çıkar, toplam 42. En az toplam 42, cevabımız A. 48'i seçen 2 ile 6'yı denemiştir.",
          "eliminate": [
           "B",
           "C",
@@ -455,81 +1209,287 @@
         "changes": "Bu ders için yazıldı; havuzdaki EBOB-EKOK ilişkisi sorularının kalıbı örnek alındı, sayılar özgün."
        }
       }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Ece'nin yaşının, ağabeyi Can'ın yaşına oranı $\\frac{3}{5}$'tir. İki kardeşin yaşları birer tam sayıdır ve yaşlarının en büyük ortak böleni ile en küçük ortak katının toplamı 64'tür. Buna göre Can, Ece'den kaç yaş büyüktür?",
+       "options": [
+        "2",
+        "4",
+        "5",
+        "6",
+        "8"
+       ],
+       "answer": 4,
+       "narration": "Oranla verilen sayılarda az önceki yazımı kullanırız.",
+       "steps": [
+        {
+         "text": "Ece $3d$, Can $5d$; 3 ile 5 aralarında asal → $\\text{EBOB} = d$, $\\text{EKOK} = 15d$.",
+         "narration": "Oran 3'e 5 ise Ece 3 d, Can 5 d yaşındadır. 3 ile 5 aralarında asal; EBOB d, EKOK 15 d."
+        },
+        {
+         "text": "$d + 15d = 64 \\Rightarrow 16d = 64 \\Rightarrow d = 4$: yaşlar 12 ve 20.",
+         "narration": "d artı 15 d, 64. 16 d eşittir 64, d eşittir 4. Ece 12, Can 20 yaşında."
+        },
+        {
+         "text": "$20 - 12 = 8$. Cevap **E**.",
+         "narration": "Fark 20 eksi 12, yani 8. Cevabımız E. 4'ü seçen, d'yi bulup orada durmuştur.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki oranı verilen sayılarda EBOB + EKOK kalıbı örnek alındı; yaş bağlamı, oran, toplam ve sorulan fark özgün."
+       }
+      }
      }
     ]
    },
    {
     "subtopic": "MAT_EBOB_EKOK_07",
     "title": "EBOB problemleri",
-    "narration": "Şimdi problemlere geçiyoruz. İlk soru her zaman şu: EBOB mu, EKOK mu?",
+    "narration": "Artık problemlere geçiyoruz. İlk soru hep aynı: EBOB mu, EKOK mu?",
     "cards": [
      {
+      "kind": "concept",
+      "title": "EBOB problemi nasıl tanınır?",
+      "text": "Elinde **büyük bir bütün** var ve onu **eş, en büyük parçalara** ayırıyorsan: EBOB. Parçanın boyu her uzunluğu **kalansız bölmeli**.",
+      "narration": "Problemi okurken şuna bak: elinde büyük bir bütün var mı? Onu eş, en büyük parçalara ayırıyorsan EBOB arıyorsun. Çünkü parçanın boyu her uzunluğu kalansız bölmeli."
+     },
+     {
       "kind": "visual",
-      "title": "Hangisini kullanmalı?",
+      "title": "18 m'ye 12 m'lik bahçe",
       "visual": {
-       "kind": "comparison",
-       "columns": [
+       "kind": "geometry",
+       "view": [
+        -2,
+        -2,
+        20,
+        14
+       ],
+       "points": [
         {
-         "title": "EBOB: büyüğü parçala",
-         "items": [
-          "Tarlayı **en büyük eş karelere** böl",
-          "Farklı uzunlukları **eşit ve en uzun** parçalara kes",
-          "Çevreye **eşit aralıkla, en az** ağaç dik"
-         ]
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "label": ""
         },
         {
-         "title": "EKOK: küçükleri birleştir",
-         "items": [
-          "Eş fayanslardan **en küçük kare** yap",
-          "Olaylar **yeniden birlikte** ne zaman olur?",
-          "Gruplara ayrılınca **hep aynı kalan** veren sayı"
-         ]
+         "id": "B",
+         "at": [
+          18,
+          0
+         ],
+         "label": ""
+        },
+        {
+         "id": "C",
+         "at": [
+          18,
+          12
+         ],
+         "label": ""
+        },
+        {
+         "id": "D",
+         "at": [
+          0,
+          12
+         ],
+         "label": ""
+        },
+        {
+         "id": "E",
+         "at": [
+          6,
+          0
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "F",
+         "at": [
+          6,
+          12
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "G",
+         "at": [
+          12,
+          0
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "H",
+         "at": [
+          12,
+          12
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "K",
+         "at": [
+          0,
+          6
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "L",
+         "at": [
+          18,
+          6
+         ],
+         "label": "",
+         "dot": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "18 m"
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "label": "12 m"
+        },
+        {
+         "from": "C",
+         "to": "D"
+        },
+        {
+         "from": "D",
+         "to": "A"
+        },
+        {
+         "from": "E",
+         "to": "F",
+         "dashed": true
+        },
+        {
+         "from": "G",
+         "to": "H",
+         "dashed": true
+        },
+        {
+         "from": "K",
+         "to": "L",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "fill": true
         }
        ]
       },
-      "narration": "Problemi okur okumaz karar ver.",
+      "narration": "Bunu bir bahçede görelim: 18 metreye 12 metre.",
       "beats": [
        {
+        "narration": "Bahçeyi hiç artık kalmadan eş karelere böleceğiz. Karenin kenarı 18'i de 12'yi de bölmeli.",
         "show": [
-         "c1"
+         "ABCD",
+         "AB",
+         "BC",
+         "CD",
+         "DA"
         ],
         "focus": [
-         "c1"
-        ],
-        "narration": "Elinde büyük bir şey var ve onu eş, en büyük parçalara bölüyorsan EBOB kullanırsın."
+         "AB",
+         "BC"
+        ]
        },
        {
-        "show": [],
-        "focus": [
-         "c1-1",
-         "c1-2"
-        ],
-        "narration": "Tarlayı en büyük eş karelere bölmek ya da farklı uzunluktaki kumaşları eşit ve en uzun parçalara kesmek böyledir."
-       },
-       {
-        "show": [],
-        "focus": [
-         "c1-3"
-        ],
-        "narration": "Çevreye eşit aralıklarla en az ağaç dikmek de öyle."
-       },
-       {
+        "narration": "En büyük kenar 6 metre, 18 ile 12'nin EBOB'u. Bir kenara 3, diğerine 2 kare sığar; toplam 6 parsel.",
         "show": [
-         "c2"
+         "EF",
+         "GH",
+         "KL"
         ],
         "focus": [
-         "c2-1"
-        ],
-        "narration": "Küçük parçaları birleştirip büyük bir şey yapıyorsan EKOK kullanırsın."
+         "EF",
+         "GH",
+         "KL"
+        ]
        },
        {
-        "show": [],
+        "narration": "3 ya da 2 metrelik kareler de olurdu ama daha çok parsel çıkardı. En büyük kare, en az parsel demektir.",
         "focus": [
-         "c2-2"
+         "ABCD"
         ],
-        "narration": "Tekrar eden olayların ne zaman birlikte olacağını soruyorsan da EKOK kullanırsın."
+        "note": "Kenar 6 m = EBOB(18, 12)"
        }
       ]
+     },
+     {
+      "kind": "rule",
+      "title": "EBOB'un dört kalıbı",
+      "items": [
+       "Dikdörtgeni **en büyük eş karelere** böl: kenar EBOB, parsel sayısı = alan ÷ kare alanı.",
+       "Farklı uzunlukları **eşit ve en uzun** parçalara kes: parça boyu EBOB.",
+       "Kapalı çevreye **eşit aralıkla en az** ağaç dik: aralık EBOB, ağaç sayısı = çevre ÷ aralık.",
+       "Farklı sıvıları **karıştırmadan** eş, en büyük şişelere doldur: şişe hacmi EBOB."
+      ],
+      "narration": "Sınavda dört kalıp döner. Dikdörtgeni en büyük eş karelere böl: kenar EBOB. Farklı uzunlukları eşit ve en uzun parçalara kes: parça boyu EBOB. Kapalı çevreye eşit aralıkla en az ağaç dik: aralık EBOB. Farklı sıvıları karıştırmadan eş, en büyük şişelere doldur: şişe hacmi yine EBOB."
+     },
+     {
+      "kind": "example",
+      "title": "Üç çıta",
+      "example": "Uzunlukları 48, 72 ve 120 cm olan üç çıtayı eşit ve en uzun parçalara keselim.",
+      "narration": "Bir örnek çözelim. Uzunlukları 48, 72 ve 120 cm olan üç çıtayı eşit ve en uzun parçalara keselim.",
+      "steps": [
+       {
+        "narration": "Önce 48 ile 72'yi ayıralım: 2 üssü 4 çarpı 3 ve 2 küp çarpı 3 kare.",
+        "math": "48 = 2^4 \\cdot 3, \\quad 72 = 2^3 \\cdot 3^2"
+       },
+       {
+        "narration": "120 ise 2 küp çarpı 3 çarpı 5.",
+        "math": "120 = 2^3 \\cdot 3 \\cdot 5"
+       },
+       {
+        "narration": "Ortak asallar 2 ve 3, küçük üsleriyle: 2 küp çarpı 3, yani 24 santimetre.",
+        "math": "2^3 \\cdot 3 = 24",
+        "text": "Parça boyu: **24 cm**"
+       },
+       {
+        "narration": "48 bölü 24, 2; 72 bölü 24, 3; 120 bölü 24, 5. Toplam 10 parça.",
+        "math": "2 + 3 + 5 = 10",
+        "text": "**10 parça**"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Kapalı çevrede 1 eklenmez",
+      "wrong": "Kapalı bir çevreye eşit aralıkla dikilen ağaç sayısı, aralık sayısının 1 fazlasıdır.",
+      "right": "Kapalı çevrede ağaç sayısı aralık sayısına eşittir; ilk ağaç aynı zamanda son ağaçtır.",
+      "why": "1 fazlası yalnız uçları açık, düz bir yolda geçerlidir.",
+      "narration": "Çevre sorularında herkesin bir kez düştüğü tuzak: aralık sayısına 1 eklemek. Kapalı çevrede ağaç sayısı aralık sayısına eşittir; ilk ağaç aynı zamanda son ağaçtır. 1 fazlası yalnız uçları açık, düz bir yolda geçerlidir."
      },
      {
       "kind": "question",
@@ -544,19 +1504,19 @@
         "140"
        ],
        "answer": 1,
-       "narration": "Büyük bir tarlayı en büyük eş parçalara bölüyoruz: EBOB.",
+       "narration": "Büyük bir tarlayı en büyük eş parçalara bölüyoruz.",
        "steps": [
         {
-         "text": "Karenin kenarı iki boyutu da bölmeli ve en büyük olmalı: $\\text{EBOB}(84, 120) = 12$ m.",
-         "narration": "Karenin kenarı 84'ü de 120'yi de tam bölmeli ve olabildiğince büyük olmalı. Bu EBOB'dur. 84, 2 kare çarpı 3 çarpı 7; 120, 2 küp çarpı 3 çarpı 5. Ortaklar küçük üsle: 2 kare çarpı 3, yani 12 metre."
+         "text": "Kare kenarı: $\\text{EBOB}(84, 120) = 2^2 \\cdot 3 = 12$ m.",
+         "narration": "Karenin kenarı 84'ü de 120'yi de bölmeli ve en büyük olmalı. 84, 2 kare çarpı 3 çarpı 7; 120, 2 küp çarpı 3 çarpı 5. EBOB 12 metre."
         },
         {
          "text": "Bir kenara $84 \\div 12 = 7$, diğerine $120 \\div 12 = 10$ kare.",
-         "narration": "84 metrelik kenara 84 bölü 12, 7 kare sığar. 120 metrelik kenara 120 bölü 12, 10 kare sığar."
+         "narration": "84 metrelik kenara 7 kare, 120 metrelik kenara 10 kare sığar."
         },
         {
          "text": "$7 \\cdot 10 = 70$ parsel. Cevap **B**.",
-         "narration": "Toplam 7 çarpı 10, 70 parsel. Cevabımız B.",
+         "narration": "Toplam 7 çarpı 10, yani 70 parsel. Cevabımız B.",
          "eliminate": [
           "A",
           "C",
@@ -566,7 +1526,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; MEB anlatımındaki \"tarlanın en büyük karelere bölünmesi\" problem tipi ve havuzdaki kalıp örnek alındı, sayılar özgün."
+        "changes": "MEB anlatımındaki tarlanın en büyük karelere bölünmesi tipi örnek alındı, sayılar özgün."
        }
       }
      },
@@ -578,34 +1538,75 @@
        "options": [
         "8",
         "12",
+        "15",
         "16",
-        "20",
-        "24"
+        "17"
        ],
-       "answer": 2,
+       "answer": 3,
        "narration": "EBOB'un ikinci yüzü: çevreye eşit aralıkla ağaç dikmek.",
        "steps": [
         {
          "text": "Aralık iki kenarı da bölmeli; en az ağaç için en büyük aralık: $\\text{EBOB}(45, 75) = 15$ m.",
-         "narration": "Köşelerde ağaç olacağı için aralık iki kenarı da tam bölmeli. En az ağaç için aralık olabildiğince büyük olmalı: 45 ile 75'in EBOB'u, 15 metre."
+         "narration": "Köşelerde ağaç olacağı için aralık iki kenarı da bölmeli. En az ağaç için aralık en büyük olmalı: 45 ile 75'in EBOB'u, 15 metre."
         },
         {
-         "text": "Çevre $= 2(45 + 75) = 240$ m. Kapalı bir çevrede ağaç sayısı = aralık sayısı: $240 \\div 15 = 16$.",
-         "narration": "Bahçenin çevresi 2 çarpı 45 artı 75, yani 240 metre. Kapalı bir çevrede ağaç sayısı aralık sayısına eşittir, çünkü başlangıç ağacı aynı zamanda son ağaçtır. 240 bölü 15, 16."
+         "text": "Çevre $= 2(45 + 75) = 240$ m; ağaç sayısı $= 240 \\div 15 = 16$.",
+         "narration": "Çevre 2 çarpı 120, yani 240 metre. Kapalı çevrede ağaç sayısı aralık sayısına eşit: 240 bölü 15, 16."
         },
         {
-         "text": "Cevap **C**.",
-         "narration": "16 ağaç gerekir. Cevabımız C. Düz bir çizgide olsaydı aralık sayısına 1 eklerdik; kapalı çevrede eklenmez.",
+         "text": "Cevap **D**. 17, kapalı çevrede 1 eklemektir.",
+         "narration": "16 ağaç gerekir, cevabımız D. 17'yi seçen kapalı çevrede 1 eklemiştir.",
          "eliminate": [
           "A",
           "B",
-          "D",
+          "C",
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki çevreye ağaç dikme (EBOB) problem tipi örnek alındı, sayılar özgün."
+        "changes": "Havuzdaki çevreye eşit aralıkla ağaç dikme kalıbı örnek alındı, sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Kenar uzunlukları 60 m ve 84 m olan dikdörtgen biçimindeki bir arsa, hiç artmayacak şekilde en büyük kenarlı eş kare parsellere ayrılacaktır. Her parselin dört köşesine birer aydınlatma direği dikilecek, komşu parsellerin ortak köşesine yalnız bir direk konulacaktır. Buna göre arsaya en az kaç direk dikilir?",
+       "options": [
+        "24",
+        "35",
+        "40",
+        "42",
+        "48"
+       ],
+       "answer": 4,
+       "narration": "Parselleri bulmak yetmiyor; soru başka bir şey soruyor.",
+       "steps": [
+        {
+         "text": "Kare kenarı: $\\text{EBOB}(60, 84) = 12$ m.",
+         "narration": "60, 2 kare çarpı 3 çarpı 5; 84, 2 kare çarpı 3 çarpı 7. EBOB 12 metre, kare kenarı bu."
+        },
+        {
+         "text": "$60 \\div 12 = 5$, $84 \\div 12 = 7$: $5 \\cdot 7 = 35$ parsel.",
+         "narration": "Kısa kenara 5, uzun kenara 7 parsel sığar; 35 parsel var. Ama soru parseli değil, direği soruyor.",
+         "eliminate": [
+          "B"
+         ]
+        },
+        {
+         "text": "Direkler ızgaranın köşeleri: $(5 + 1) \\cdot (7 + 1) = 48$. Cevap **E**.",
+         "narration": "Kısa kenar boyunca 6, uzun kenar boyunca 8 sıra direk vardır. 6 çarpı 8, yani 48 direk. Cevabımız E. 24 yalnız çevredeki direklerdir.",
+         "eliminate": [
+          "A",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki parsel köşelerine direk dikme kalıbı örnek alındı; ölçüler, ortak köşe koşulu ve şıklar özgün."
        }
       }
      }
@@ -614,42 +1615,378 @@
    {
     "subtopic": "MAT_EBOB_EKOK_08",
     "title": "EKOK problemleri",
-    "narration": "Son bölüm EKOK problemleri. En sık sorulanı, belli aralıklarla tekrar eden olayların yeniden birlikte olması.",
+    "narration": "Son bölüm EKOK problemleri. Burada parçalamıyoruz; birleştiriyoruz ve bekliyoruz.",
     "cards": [
      {
+      "kind": "concept",
+      "title": "EKOK problemi nasıl tanınır?",
+      "text": "Küçük, eş parçaları **birleştirip** büyük bir bütün yapıyorsan ya da **tekrar eden olayların** yeniden birlikte olmasını soruyorsan: EKOK.",
+      "narration": "Küçük, eş parçaları birleştirip büyük bir bütün yapıyorsan EKOK arıyorsun. Tekrar eden olayların yeniden birlikte olmasını soruyorsan da EKOK."
+     },
+     {
+      "kind": "visual",
+      "title": "Fayanslardan kare",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        -2,
+        -2,
+        14,
+        14
+       ],
+       "points": [
+        {
+         "id": "A",
+         "at": [
+          0,
+          0
+         ],
+         "label": ""
+        },
+        {
+         "id": "B",
+         "at": [
+          12,
+          0
+         ],
+         "label": ""
+        },
+        {
+         "id": "C",
+         "at": [
+          12,
+          12
+         ],
+         "label": ""
+        },
+        {
+         "id": "D",
+         "at": [
+          0,
+          12
+         ],
+         "label": ""
+        },
+        {
+         "id": "E",
+         "at": [
+          6,
+          0
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "F",
+         "at": [
+          6,
+          12
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "G",
+         "at": [
+          0,
+          4
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "H",
+         "at": [
+          12,
+          4
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "K",
+         "at": [
+          0,
+          8
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "L",
+         "at": [
+          12,
+          8
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "M",
+         "at": [
+          6,
+          4
+         ],
+         "label": "",
+         "dot": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "A",
+         "to": "B",
+         "label": "12 cm"
+        },
+        {
+         "from": "B",
+         "to": "C"
+        },
+        {
+         "from": "C",
+         "to": "D"
+        },
+        {
+         "from": "D",
+         "to": "A",
+         "label": "12 cm"
+        },
+        {
+         "from": "E",
+         "to": "F",
+         "dashed": true
+        },
+        {
+         "from": "G",
+         "to": "H",
+         "dashed": true
+        },
+        {
+         "from": "K",
+         "to": "L",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "A",
+          "E",
+          "M",
+          "G"
+         ],
+         "fill": true,
+         "shade": 2,
+         "label": "6 × 4"
+        },
+        {
+         "points": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "fill": false
+        }
+       ]
+      },
+      "narration": "Elinde 6'ya 4 santimetrelik eş fayanslar var. En küçük kareyi yapalım.",
+      "beats": [
+       {
+        "narration": "Tek bir fayans: eni 6, boyu 4 santimetre.",
+        "show": [
+         "AEMG"
+        ],
+        "focus": [
+         "AEMG"
+        ]
+       },
+       {
+        "narration": "Karenin kenarı hem 6'nın hem 4'ün katı olmalı. En küçüğü 12, yani 6 ile 4'ün EKOK'u.",
+        "show": [
+         "ABCD",
+         "AB",
+         "BC",
+         "CD",
+         "DA",
+         "EF",
+         "GH",
+         "KL"
+        ],
+        "focus": [
+         "AB",
+         "DA"
+        ]
+       },
+       {
+        "narration": "Bir kenara 2, diğerine 3 fayans dizilir. Toplam 6 fayans.",
+        "focus": [
+         "ABCD"
+        ],
+        "note": "144 ÷ 24 = 6 fayans"
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "EKOK'un dört kalıbı",
+      "items": [
+       "Eş dikdörtgenlerden **en küçük kare**: kare kenarı EKOK.",
+       "Olaylar **yeniden birlikte**: EKOK kadar sonra.",
+       "Her bölmede **aynı kalan** $k$ varsa: sayı $= \\text{EKOK} \\cdot t + k$.",
+       "Her bölmede kalan **bölenden 1 eksikse**: sayı $= \\text{EKOK} \\cdot t - 1$."
+      ],
+      "narration": "EKOK'ta da dört kalıp var. Eş dikdörtgenlerden en küçük kare: kare kenarı EKOK. Olaylar yeniden birlikte: EKOK kadar sonra. Her bölmede aynı kalan varsa sayı, EKOK'un bir katı artı kalandır. Her bölmede kalan bölenden 1 eksikse sayı, EKOK'un bir katı eksi 1'dir."
+     },
+     {
+      "kind": "example",
+      "title": "Nöbet günü",
+      "example": "4 ve 6 günde bir nöbet tutan iki hemşire pazartesi birlikte nöbetteyse 4. kez hangi gün birliktedir?",
+      "narration": "Günlü bir örnek. 4 ve 6 günde bir nöbet tutan iki hemşire pazartesi birlikte nöbetteyse 4. kez hangi gün birliktedir?",
+      "steps": [
+       {
+        "narration": "İkisi, 4 ile 6'nın EKOK'u olan 12 günde bir birlikte nöbet tutar.",
+        "text": "4 ile 6'nın EKOK'u: **12 gün**"
+       },
+       {
+        "narration": "Pazartesi birinci kezdir. Dördüncü kez için üç aralık geçer: 36 gün.",
+        "math": "3 \\cdot 12 = 36"
+       },
+       {
+        "narration": "Hafta 7 günde bir döner. 36'yı 7'ye bölünce kalan 1.",
+        "math": "36 = 7 \\cdot 5 + 1"
+       },
+       {
+        "narration": "Pazartesiden 1 gün sonrası salı. Dördüncü birlikte nöbet salı günüdür.",
+        "text": "Pazartesi + 1 gün: **salı**"
+       }
+      ]
+     },
+     {
       "kind": "mistake",
-      "title": "İlk karşılaşmayı sayma",
-      "wrong": "Başlangıçta birlikte olan olaylar **4. kez** birlikte olmak için $4 \\cdot \\text{EKOK}$ kadar beklenir.",
-      "right": "Başlangıç **1.** karşılaşmadır. 4. kez için **3 aralık** geçer: $3 \\cdot \\text{EKOK}$.",
-      "why": "n. kez birlikte olmak için $(n - 1) \\cdot \\text{EKOK}$ kadar süre geçer.",
-      "narration": "Periyot sorularının en sık tuzağı. Olaylar başlangıçta birlikteyse bu birinci karşılaşmadır. Dördüncü kez birlikte olmaları için üç aralık geçer, yani 3 çarpı EKOK. n'inci kez için n eksi 1 çarpı EKOK kadar süre geçer."
+      "title": "İlk karşılaşmayı say",
+      "wrong": "Başlangıçta birlikte olan olaylar, 4. kez birlikte olmak için $4 \\cdot \\text{EKOK}$ kadar bekler.",
+      "right": "Başlangıç birinci karşılaşmadır; 4. kez için 3 aralık geçer.",
+      "why": "Kısacası aralık sayısı, karşılaşma sayısından bir eksiktir.",
+      "narration": "Periyot sorularının bir numaralı tuzağı: dördüncü kez için 4 EKOK beklemek. Başlangıç birinci karşılaşmadır; 4. kez için 3 aralık geçer. Kısacası aralık sayısı, karşılaşma sayısından bir eksiktir."
+     },
+     {
+      "kind": "practice",
+      "title": "EBOB mu, EKOK mu?",
+      "visual": {
+       "kind": "flipcards",
+       "cards": [
+        {
+         "front": "Fayanslardan en küçük kare",
+         "back": "EKOK: küçük parçaları birleştiriyorsun."
+        },
+        {
+         "front": "Kumaşları eşit, en uzun parçalara kes",
+         "back": "EBOB: büyük bütünü parçalıyorsun."
+        },
+        {
+         "front": "Lambalar yeniden birlikte yanar",
+         "back": "EKOK: tekrar eden olaylar."
+        },
+        {
+         "front": "Bahçeyi en büyük eş karelere böl",
+         "back": "EBOB: büyük bütünü parçalıyorsun."
+        }
+       ]
+      },
+      "thinkSeconds": 5,
+      "narration": "Şimdi karar verme sırası sende. Dört durum var; her biri EBOB mu, EKOK mu?",
+      "beats": [
+       {
+        "narration": "Fayanslardan kare yapmak küçükleri birleştirmektir: EKOK.",
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "Kumaşları eşit ve en uzun parçalara kesmek bütünü parçalamaktır: EBOB.",
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "Lambaların yeniden birlikte yanması tekrar eden bir olaydır: EKOK.",
+        "focus": [
+         "p3"
+        ]
+       },
+       {
+        "narration": "Bahçeyi en büyük eş karelere bölmek yine parçalamaktır: EBOB.",
+        "focus": [
+         "p4"
+        ]
+       }
+      ]
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Üç lambadan biri 12 saniyede, biri 18 saniyede, biri 30 saniyede bir yanmaktadır. Üç lamba aynı anda yandıktan sonra **4. kez** birlikte yanmaları için ilk yanıştan itibaren kaç dakika geçmelidir?",
+       "stem": "Bir sahnedeki üç lambadan biri 12 saniyede, biri 18 saniyede, biri 30 saniyede bir yanmaktadır. Üç lambanın ilk kez aynı anda yandığı andan dördüncü kez aynı anda yandığı ana kadar kaç dakika geçer?",
        "options": [
-        "6",
         "9",
         "12",
         "15",
-        "18"
+        "18",
+        "21"
        ],
-       "answer": 1,
-       "narration": "Tekrar eden olaylar: EKOK.",
+       "answer": 0,
+       "narration": "Tekrar eden olaylar; aklına EKOK gelsin.",
        "steps": [
         {
-         "text": "$12 = 2^2 \\cdot 3$, $18 = 2 \\cdot 3^2$, $30 = 2 \\cdot 3 \\cdot 5$ → $\\text{EKOK} = 2^2 \\cdot 3^2 \\cdot 5 = 180$ sn = **3 dk**.",
-         "narration": "12, 18 ve 30'un EKOK'unu bulalım. Bütün tabanlar büyük üsleriyle: 2 kare, 3 kare ve 5. Çarpım 180 saniye, yani 3 dakika. Lambalar her 3 dakikada bir birlikte yanar."
+         "text": "$\\text{EKOK}(12, 18, 30) = 2^2 \\cdot 3^2 \\cdot 5 = 180$ sn $= 3$ dk.",
+         "narration": "12, 18 ve 30'un EKOK'u: 2 kare çarpı 3 kare çarpı 5, yani 180 saniye. Lambalar her 3 dakikada bir birlikte yanar."
         },
         {
          "text": "İlk yanış 1. kez; 4. kez için **3 aralık**: $3 \\cdot 3 = 9$ dk.",
-         "narration": "İlk birlikte yanış birinci kezdir. Dördüncü kez için üç aralık geçmeli: 3 çarpı 3, 9 dakika."
+         "narration": "İlk birlikte yanış birinci kezdir. Dördüncü kez için üç aralık geçer: 3 çarpı 3, yani 9 dakika."
         },
         {
-         "text": "Cevap **B**. 12 dk, ilk yanışı saymayan tuzaktır.",
-         "narration": "Cevabımız B. 12'yi seçen ilk yanışı saymamış, 4 aralık almıştır.",
+         "text": "Cevap **A**. 12, ilk yanışı saymayan tuzaktır.",
+         "narration": "Cevabımız A. 12'yi seçen ilk yanışı saymamış, dört aralık almıştır.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "MEB anlatımındaki makineler beşinci kez birlikte periyot tipi örnek alındı; lamba bağlamı ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kutudaki bilyeler 6'şarlı sayıldığında 5, 8'erli sayıldığında 7, 10'arlı sayıldığında 9 bilye artmaktadır. Buna göre kutuda **en az** kaç bilye vardır?",
+       "options": [
+        "59",
+        "119",
+        "120",
+        "121",
+        "239"
+       ],
+       "answer": 1,
+       "narration": "Kalanlara dikkatle bak; hepsinde bir ortaklık var.",
+       "steps": [
+        {
+         "text": "Her kalan bölenden 1 eksik: $N + 1$ sayısı 6, 8 ve 10'un ortak katıdır.",
+         "narration": "5, 6'dan 1 eksik; 7, 8'den; 9, 10'dan. Kutuya 1 bilye eklersek hepsi tam bölünür. Yani N artı 1, üçünün ortak katıdır."
+        },
+        {
+         "text": "$\\text{EKOK}(6, 8, 10) = 2^3 \\cdot 3 \\cdot 5 = 120 \\Rightarrow N = 119$.",
+         "narration": "6, 8 ve 10'un EKOK'u 2 küp çarpı 3 çarpı 5, yani 120. N, 120 eksi 1, yani 119."
+        },
+        {
+         "text": "Cevap **B**. 121, 1'i çıkaracağına eklemektir; 120, $N + 1$'in kendisidir.",
+         "narration": "Cevabımız B. 121'i seçen 1'i çıkaracağına eklemiş, 120'yi seçen N artı 1'de durmuştur.",
          "eliminate": [
           "A",
           "C",
@@ -659,46 +1996,48 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; MEB anlatımındaki \"makineler beşinci kez birlikte\" periyodik problem tipi ve havuzdaki EKOK problemleri örnek alındı, bağlam ve sayılar özgün."
+        "changes": "Havuzdaki her bölmede kalan veren EKOK kalıbının bölenden 1 eksik türü (EKOK − 1) özgün sayılarla yazıldı."
        }
       }
      },
      {
       "kind": "question",
       "question": {
-       "style": "TYT tarzı",
-       "stem": "Bir kutudaki bilyeler 4'erli, 6'şarlı ve 9'arlı gruplara ayrıldığında her seferinde 1 bilye artmaktadır. Kutuda 1'den fazla bilye olduğuna göre, kutuda **en az** kaç bilye vardır?",
+       "style": "ÖSYM tarzı",
+       "stem": "Bir fabrikadaki üç paketleme makinesinden biri 40 saniyede, biri 60 saniyede, biri 75 saniyede bir koli kapatmaktadır. Üç makine ilk kez saat 08.15'te aynı anda koli kapatıyor ve gün boyu duraksamadan çalışıyor. Buna göre üç makine dördüncü kez aynı anda koli kapattığında saat kaçtır?",
        "options": [
-        "19",
-        "25",
-        "36",
-        "37",
-        "73"
+        "08.35",
+        "08.40",
+        "08.45",
+        "08.55",
+        "09.05"
        ],
-       "answer": 3,
-       "narration": "EKOK'un bir başka yüzü: hep aynı kalanı veren sayı.",
+       "answer": 2,
+       "narration": "Son soru, saatle biten bir periyot problemi.",
        "steps": [
         {
-         "text": "Bilye sayısı $N$ ise $N - 1$ sayısı 4'e, 6'ya ve 9'a tam bölünür.",
-         "narration": "Her gruplamada 1 bilye artıyorsa, o bir bilyeyi çıkardığımızda kalan sayı 4'e, 6'ya ve 9'a tam bölünür. Yani N eksi 1, üçünün ortak katıdır."
+         "text": "$40 = 2^3 \\cdot 5$, $60 = 2^2 \\cdot 3 \\cdot 5$, $75 = 3 \\cdot 5^2$ → $\\text{EKOK} = 2^3 \\cdot 3 \\cdot 5^2 = 600$ sn.",
+         "narration": "Makineler EKOK kadar sürede bir birlikte koli kapatır. 40, 60 ve 75'in EKOK'u 2 küp çarpı 3 çarpı 5 kare, yani 600 saniye."
         },
         {
-         "text": "En küçük ortak kat: $\\text{EKOK}(4, 6, 9) = 36$, $N = 36 + 1 = 37$.",
-         "narration": "En az bilye için en küçük ortak katı alırız. 4, 2 kare; 6, 2 çarpı 3; 9, 3 kare. EKOK, 2 kare çarpı 3 kare, yani 36. N, 36 artı 1, yani 37."
-        },
-        {
-         "text": "Cevap **D**. 36'yı seçen artan bilyeyi eklemeyi unutur.",
-         "narration": "Cevabımız D. 36'yı seçen artan bilyeyi eklemeyi unutmuş olur. 1 bilye de bu şartı sağlar, bu yüzden soru 1'den fazla diyor.",
+         "text": "600 sn = 10 dk: 08.15, 08.25, 08.35, 08.45 …",
+         "narration": "600 saniye 10 dakikadır. Birlikte kapattıkları anlar 08.15, 08.25, 08.35 ve 08.45 diye gider.",
          "eliminate": [
           "A",
-          "B",
-          "C",
+          "B"
+         ]
+        },
+        {
+         "text": "08.15 birinci kez; dördüncü kez 3 aralık sonra: **08.45**. Cevap **C**.",
+         "narration": "08.15 birinci kezdir. Dördüncü kez üç aralık sonra, 08.45'te gelir. Cevabımız C. 08.55'i seçen dört aralık saymıştır.",
+         "eliminate": [
+          "D",
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki \"her gruplamada aynı kalan\" EKOK problem tipi örnek alındı, sayılar özgün."
+        "changes": "MEB anlatımındaki makineler ve saat örneği kalıp olarak alındı; makine süreleri, başlangıç saati ve sorulan karşılaşma sırası özgün."
        }
       }
      }
@@ -707,80 +2046,81 @@
   ],
   "summary": {
    "points": [
-    "Pozitif bölen sayısı **üslerin birer fazlasının çarpımı**; tam sayı böleni 2 katı.",
-    "EBOB: **ortak** tabanlar, **küçük** üs. EKOK: **bütün** tabanlar, **büyük** üs.",
-    "$a \\cdot b = \\text{EBOB} \\cdot \\text{EKOK}$ (yalnız iki sayı için).",
-    "EBOB verilince sayıları $6x$, $6y$ yaz; $x$, $y$ **aralarında asal**.",
-    "Büyüğü eş, en büyük parçalara bölmek **EBOB**.",
+    "1'den büyük her sayı asalların çarpımı olarak **tek biçimde** yazılır.",
+    "Pozitif bölen sayısı **üslerin birer fazlasının çarpımı**; tam sayı bölen sayısı 2 katı.",
+    "EBOB: **ortak** asallar, **küçük** üs. EKOK: **bütün** asallar, **büyük** üs.",
+    "$a \\cdot b = \\text{EBOB} \\cdot \\text{EKOK}$, yalnız iki sayı için.",
+    "EBOB $d$ ise sayılar $dx$ ve $dy$; $x$, $y$ **aralarında asal**.",
+    "Büyük bütünü eş, en büyük parçalara bölmek **EBOB**.",
     "Küçükleri birleştirmek ya da tekrar eden olaylar **EKOK**; n. kez için $(n - 1)$ aralık."
    ],
    "warnings": [
-    "1 asal değildir ama **asal olmayan bölenlere** girer.",
-    "$(2, 6)$ aralarında asal değildir.",
-    "İlk karşılaşma **1. kez** sayılır.",
+    "Her çarpan asal olmalı: $2^2 \\cdot 15$ yetmez.",
+    "Kapalı çevrede ağaç sayısı **aralık sayısına** eşittir.",
+    "İlk karşılaşma **birinci kez** sayılır.",
     "Tam sayı bölenleri sorulursa **negatifleri** de say."
    ],
-   "narration": "Hadi toparlayalım. Pozitif bölen sayısı, üslerin birer fazlasının çarpımıdır. EBOB için ortak tabanları küçük üsleriyle, EKOK için bütün tabanları büyük üsleriyle alırsın. İki sayının çarpımı EBOB ile EKOK'un çarpımına eşittir. EBOB verildiğinde sayıları EBOB'un katı olarak yaz ve katsayıların aralarında asal olduğunu unutma. Büyük bir şeyi eş, en büyük parçalara bölmek EBOB; küçük parçaları birleştirmek ya da tekrar eden olaylar EKOK ister. n'inci kez birlikte olmak için n eksi 1 aralık geçer."
+   "narration": "Hadi toparlayalım. Her sayı asallara tek biçimde ayrılır. Pozitif bölen sayısı, üslerin birer fazlasının çarpımıdır. EBOB için ortak asalları küçük üsleriyle, EKOK için bütün asalları büyük üsleriyle alırsın. İki sayının çarpımı EBOB ile EKOK'un çarpımına eşittir. Büyük bütünü parçalamak EBOB, küçükleri birleştirmek ya da tekrar eden olaylar EKOK ister. Ve unutma: n'inci kez birlikte olmak için n eksi 1 aralık geçer."
   }
  },
  "short": {
-  "hook": "EBOB mu, EKOK mu?",
+  "hook": "Parçala mı, birleştir mi?",
+  "rounds": [
+   {
+    "sentence": "Fayanslardan en küçük **kare**.",
+    "question": "Hangisi?",
+    "choices": [
+     "EBOB",
+     "EKOK"
+    ],
+    "answer": 1,
+    "why": "Küçükleri **birleştir**."
+   },
+   {
+    "sentence": "Kapalı çevrede **16 aralık**.",
+    "question": "Kaç ağaç?",
+    "choices": [
+     "17",
+     "16"
+    ],
+    "answer": 1,
+    "why": "Kapalı çevrede **+1 yok**."
+   },
+   {
+    "sentence": "$72 = 2^3 \\cdot 3^2$",
+    "question": "Kaç pozitif bölen?",
+    "choices": [
+     "12",
+     "6"
+    ],
+    "answer": 0,
+    "why": "Üslere **1 ekle**."
+   }
+  ],
   "cards": [
    {
     "kind": "term",
     "term": "EBOB",
-    "definition": "Ortak tabanlar, **küçük** üs."
+    "definition": "Ortak asallar, **küçük** üs."
    },
    {
     "kind": "term",
     "term": "EKOK",
-    "definition": "Bütün tabanlar, **büyük** üs."
+    "definition": "Bütün asallar, **büyük** üs."
    },
    {
     "kind": "fact",
-    "text": "$a \\cdot b = \\text{EBOB} \\cdot \\text{EKOK}$"
+    "text": "Bölen sayısı: üslere **1 ekle**, çarp."
    },
    {
     "kind": "warning",
-    "text": "n. kez birlikte: **(n − 1)** aralık."
+    "text": "Kapalı çevrede ağaç sayısı = **aralık sayısı**."
    }
   ],
   "summary": [
    "Parçala: EBOB",
-   "Birleştir: EKOK",
-   "İlk karşılaşmayı say"
-  ],
-  "rounds": [
-   {
-    "sentence": "Tarlayı en büyük **eş karelere** böl.",
-    "question": "Hangisi?",
-    "choices": [
-     "EBOB",
-     "EKOK"
-    ],
-    "answer": 0,
-    "why": "Büyüğü **parçala**."
-   },
-   {
-    "sentence": "Lambalar yeniden **birlikte** yanar.",
-    "question": "Hangisi?",
-    "choices": [
-     "EBOB",
-     "EKOK"
-    ],
-    "answer": 1,
-    "why": "Tekrar eden olay."
-   },
-   {
-    "sentence": "2 ve 6",
-    "question": "Aralarında asal mı?",
-    "choices": [
-     "Evet",
-     "Hayır"
-    ],
-    "answer": 1,
-    "why": "Ortak bölen **2**."
-   }
+   "Birleştir ya da bekle: EKOK",
+   "Üslere 1 ekle, sonra çarp"
   ]
  },
  "camp": {

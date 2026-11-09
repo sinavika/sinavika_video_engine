@@ -1,6 +1,6 @@
 # YouTube metni: TYT Tarih kampı · Ders 9 · Devletleşme Sürecinde Savaşçılar ve Askerler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Tarih/09_Savascilar_ve_Askerler/Savascilar_ve_Askerler_YouTube.mp4` (4K) · Kapak: `Savascilar_ve_Askerler_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Tarih/09_Savascilar_ve_Askerler/Savascilar_ve_Askerler_YouTube.mp4` (4K) · Kapak: `Savascilar_ve_Askerler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

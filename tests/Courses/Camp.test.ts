@@ -156,7 +156,7 @@ describe('beats on language visuals', () => {
 	it('names the parts of sentences, comparisons and tables', () => {
 		expect(numberedPartNames({kind: 'sentence', parts: [{text: 'Bu', highlight: false}, {text: 'kırdı.', highlight: true}], links: [{from: 1, to: 2}]})).toEqual(['w1', 'w2', 'l1']);
 		expect(numberedPartNames({kind: 'comparison', columns: [{title: 'A', items: ['x', 'y']}, {title: 'B', items: ['z']}]})).toEqual(['c1', 'c1-1', 'c1-2', 'c2', 'c2-1']);
-		expect(numberedPartNames({kind: 'table', header: ['a', 'b'], rows: [['1', '2']]})).toEqual(['r1', 'col1', 'col2']);
+		expect(numberedPartNames({kind: 'table', header: ['a', 'b'], rows: [['1', '2']]})).toEqual(['r1', 'col1', 'col2', 'r1c1', 'r1c2']);
 		expect(numberedPartNames({kind: 'formula', latex: 'x'})).toBeNull();
 	});
 

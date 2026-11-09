@@ -1,6 +1,6 @@
 # YouTube metni: AYT Coğrafya kampı · Ders 17 · Türkiye Turizmi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/17_Turkiye_Turizmi/Turkiye_Turizmi_YouTube.mp4` (4K) · Kapak: `Turkiye_Turizmi_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Cografya/17_Turkiye_Turizmi/Turkiye_Turizmi_YouTube.mp4` (4K) · Kapak: `Turkiye_Turizmi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

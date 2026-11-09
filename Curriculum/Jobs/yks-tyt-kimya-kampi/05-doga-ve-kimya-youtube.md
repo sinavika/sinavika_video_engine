@@ -1,6 +1,6 @@
 # YouTube metni: TYT Kimya kampı · Ders 5 · Doğa ve Kimya
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Kimya/05_Doga_ve_Kimya/Doga_ve_Kimya_YouTube.mp4` (4K) · Kapak: `Doga_ve_Kimya_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Kimya/05_Doga_ve_Kimya/Doga_ve_Kimya_YouTube.mp4` (4K) · Kapak: `Doga_ve_Kimya_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

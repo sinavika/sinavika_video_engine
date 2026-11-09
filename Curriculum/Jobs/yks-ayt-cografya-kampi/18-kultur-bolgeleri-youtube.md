@@ -1,6 +1,6 @@
 # YouTube metni: AYT Coğrafya kampı · Ders 18 · Kültür Bölgeleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/18_Kultur_Bolgeleri/Kultur_Bolgeleri_YouTube.mp4` (4K) · Kapak: `Kultur_Bolgeleri_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Cografya/18_Kultur_Bolgeleri/Kultur_Bolgeleri_YouTube.mp4` (4K) · Kapak: `Kultur_Bolgeleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

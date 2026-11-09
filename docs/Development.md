@@ -74,6 +74,7 @@ Kurallar (`tests/Architecture.test.ts` → `module layout`):
 - `Curriculum` ve `Outputs` altında yalnız haritadaki klasörler olur. Yeni bir modül önce bu tabloya ve testteki listeye yazılır.
 - Python araçları klasör yolu yazmaz (`"Outputs"`, `"Desktop"`); yolu `engine_paths.py`'den alır.
 - Quiz ve deneme araçları birbirini içe aktarmaz; ikisinin paylaştığı şey `Curriculum/Tools`'a taşınır.
+- Anthropic'e giden her çağrı `anthropic_api` üzerinden yapılır. Toplu işlerin (Batch) sabit istemi `cached_system(...)` ile **1 saatlik önbellekle** gönderilir; sabit kısım sistem isteminde bayt bayt aynı kalır, değişen kısım kullanıcı mesajına konur. 5 dakikalık önbellek toplu işin ortasında ölür: 2–5 Kasım'da Works isteklerinde önbellek okuma oranı %11–24'te kaldı. 1 saatlik önbellekle ilk ölçüm (9 Kasım, kamp senaryosu aracı, yaklaşık 68 bin token sabit önek): ikinci istek öneki önbellekten okudu. 40 dakika sonraki toplu iş de öneki okudu; isabet %62, kalan kısım derse özel içerik. Ücretli çağrı sahibin açık onayıyla yapılır.
 - Bir modülün eski yerine (listesi testte, `RETIRED_PATHS`) hiçbir kod ya da belge işaret etmez.
 
 Kurallar (`tests/Architecture.test.ts` denetler):

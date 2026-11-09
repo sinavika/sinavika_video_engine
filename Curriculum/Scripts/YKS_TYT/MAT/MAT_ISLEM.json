@@ -12,218 +12,119 @@
   "TYT"
  ],
  "sources": [
-  "YKS/TYT/KonuAnlatimi/MAT/MAT_ISLEM.json (MEB Temel Matematik: gerçek sayılarda kapalılık, değişme, birleşme, birim eleman ve ters eleman)",
-  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018, 2023, 2025: 3 soru; üçü de sembolle tanımlanan işlem (çokgen, kutucuk gösterimleri))",
-  "YKS/TYT/Sorular/MAT/MAT_ISLEM.jsonl (31 soru; tanımlı işlem ve özellik kalıpları)"
+  "YKS/TYT/KonuAnlatimi/MAT/MAT_ISLEM.json (MEB Temel Matematik konu anlatımı: değişme, birleşme, birim (etkisiz) eleman, toplama ve çarpmaya göre ters)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018, 2023, 2025: 3 soru; üçü de şekille ya da konumla tanımlanan gösterim: çokgen içine yazılan sayı, köşelere yazılan sayılar)",
+  "YKS/TYT/Sorular/MAT/MAT_ISLEM.jsonl (tanımlı işlem, gösterim, birim ve ters eleman kalıpları)"
  ],
  "lesson": {
   "hook": {
-   "headline": "ÖSYM her yıl yeni bir sembol uydurup sana kuralını veriyor.",
-   "narration": "Bir çokgenin içine yazılmış sayı, köşeli bir kutucuk, bir üçgen işareti. ÖSYM işlem sorularında her seferinde yeni bir sembol tanımlıyor ve kuralını soruda veriyor. Bu soruları çözmek için ezber değil, kuralı harfiyen uygulamak gerekir. Bu derste tanımlı işlemi, işlemin özelliklerini, birim ve ters elemanı, işlem tablosunu adım adım göreceğiz."
+   "headline": "Kutucuğun köşesindeki sayılar da bir işlem.",
+   "narration": "Bir kutucuğun köşelerine dört sayı yazılmış, yanında bir üçgen. ÖSYM son yıllarda işlem sorularını tam böyle, şekillerle soruyor. Kural her seferinde soruda verilir; senin işin onu harfiyen uygulamak. Bu derste işlemi, özelliklerini, birim ve ters elemanı ve işlem tablosunu adım adım çözeceğiz."
   },
   "opening": {
-   "kind": "mistake",
-   "card": "s3-c2",
-   "narration": "Bu işleme göre yedinin tersi kaç? Birçok öğrenci tersi eksi yedi ya da yedide bir sanır. Ama ters eleman, işlemin kendi birim elemanına göre bulunur.",
-   "promise": "Tanımlanan işlemlerle hesap yapmayı, değişme ve birleşme özelliğini, birim ve ters elemanı bulmayı öğreneceksin."
+   "kind": "question",
+   "card": "s2-c7",
+   "narration": "Kutucuğun değeri üçgenin değerine eşit. Peki x kaç? Kuralı konumla eşleştiren bunu bir dakikada çözer, ezberle giden takılır.",
+   "promise": "İşlemi tanımlamayı, şekilli gösterimleri, özellikleri, birim ve ters elemanı ve işlem tablosunu soru çözerek öğreneceksin."
   },
   "objectives": [
-   "Sembolle tanımlanan bir işlemi doğru sırayla uygulamak",
-   "Değişme ve birleşme özelliklerini sınamak",
+   "Tanımlanan bir işlemi doğru sırayla uygulamak",
+   "Şekille verilen gösterimleri tanımla eşleştirmek",
+   "Kapalılık, değişme ve birleşme özelliklerini sınamak",
    "Birim elemanı ve bir elemanın tersini bulmak",
-   "İşlem tablosunu okumak"
+   "İşlem tablosundan birim, ters ve değişmeyi okumak"
   ],
   "sections": [
    {
     "subtopic": "MAT_ISLEM_01",
-    "title": "Tanımlı işlem",
-    "narration": "Tanımlı işlem, bir sembolün iki sayıyla ne yapacağını söyleyen bir kuraldır. Kuralı harfiyen uygularsın.",
+    "title": "İşlem kavramı",
+    "narration": "Önce işlemin ne olduğunu netleştirelim: iki sayı girer, tek bir sonuç çıkar.",
     "cards": [
      {
-      "kind": "rule",
-      "title": "Kuralı harfiyen uygula",
-      "items": [
-       "Tanımda harfler **yer tutucudur**: $a \\triangle b = 2a - b + ab$ ise $3 \\triangle 1$ için $a = 3$, $b = 1$.",
-       "**Sıra önemlidir**: $3 \\triangle 1$ ile $1 \\triangle 3$ farklı olabilir.",
-       "Parantez varsa **içeriden** başla.",
-       "Sembol bir şekil olabilir (çokgen, kutucuk): tanımdaki **konumları** eşleştir."
+      "kind": "concept",
+      "title": "İşlem nedir?",
+      "text": "Bir kümenin **iki elemanını** alıp onlara **tek bir sonuç** eşleyen kurala **işlem** denir. Toplama ve çarpma bildiğin işlemlerdir; soruda ise **yeni bir sembol** tanımlanır.",
+      "visual": {
+       "kind": "flow",
+       "nodes": [
+        {
+         "label": "İki eleman: a ve b"
+        },
+        {
+         "label": "Kural: a ∗ b = 2a + b",
+         "detail": "İlk sayı a, ikinci sayı b"
+        },
+        {
+         "label": "Tek sonuç: 3 ∗ 5 = 11"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Makineye iki sayı girer: birincisi a'nın, ikincisi b'nin yerine geçer.",
+        "show": [
+         "n1"
+        ],
+        "focus": [
+         "n1"
+        ]
+       },
+       {
+        "narration": "Kural ne yapılacağını söyler: a yıldız b eşittir 2 a artı b.",
+        "show": [
+         "n2"
+        ],
+        "focus": [
+         "n2"
+        ]
+       },
+       {
+        "narration": "Ve tek bir sonuç çıkar: 3 yıldız 5, 2 çarpı 3 artı 5, yani 11.",
+        "show": [
+         "n3"
+        ],
+        "focus": [
+         "n3"
+        ]
+       }
       ],
-      "narration": "Tanımdaki harfler birer yer tutucudur. a üçgen b, 2 a eksi b artı a b ise 3 üçgen 1'de a yerine 3, b yerine 1 yazarsın. Sıra önemlidir; 3 üçgen 1 ile 1 üçgen 3 farklı sonuç verebilir. Parantez varsa içeriden başlarsın. ÖSYM sembolü bir şekil olarak da verebilir: bir çokgenin içine yazılan sayı ya da bir kutucuğun köşelerindeki sayılar. O zaman tanımdaki konumları şekildeki konumlarla eşleştirirsin."
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Gerçel sayılar üzerinde $a \\triangle b = 2a - b + ab$ işlemi tanımlanıyor. Buna göre $(3 \\triangle 1) \\triangle 2$ kaçtır?",
-       "options": [
-        "22",
-        "26",
-        "28",
-        "30",
-        "34"
-       ],
-       "answer": 3,
-       "narration": "İçeriden başlayalım.",
-       "steps": [
-        {
-         "text": "$3 \\triangle 1 = 2 \\cdot 3 - 1 + 3 \\cdot 1 = 6 - 1 + 3 = 8$",
-         "narration": "Önce parantez: 3 üçgen 1. a 3, b 1. 2 çarpı 3 eksi 1 artı 3 çarpı 1: 6 eksi 1 artı 3, 8."
-        },
-        {
-         "text": "$8 \\triangle 2 = 2 \\cdot 8 - 2 + 8 \\cdot 2 = 16 - 2 + 16 = 30$",
-         "narration": "Şimdi 8 üçgen 2. a 8, b 2. 2 çarpı 8 eksi 2 artı 8 çarpı 2: 16 eksi 2 artı 16, 30."
-        },
-        {
-         "text": "Cevap **D**.",
-         "narration": "Cevabımız D.",
-         "eliminate": [
-          "A",
-          "B",
-          "C",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki tanımlı işlem kalıbı örnek alındı, işlem kuralı ve sayılar özgün."
-       }
-      }
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "$a \\ast b = 2a + b$ işlemi tanımlanıyor. $x \\ast 4 = 3 \\ast x$ olduğuna göre, $x$ kaçtır?",
-       "options": [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5"
-       ],
-       "answer": 1,
-       "narration": "İki tarafı da tanıma göre açalım; sıraya dikkat.",
-       "steps": [
-        {
-         "text": "Sol: $x \\ast 4 = 2x + 4$ ($a = x$, $b = 4$)",
-         "narration": "Sol taraf x yıldız 4. a yerine x, b yerine 4: 2 x artı 4."
-        },
-        {
-         "text": "Sağ: $3 \\ast x = 6 + x$ ($a = 3$, $b = x$)",
-         "narration": "Sağ taraf 3 yıldız x. a yerine 3, b yerine x: 6 artı x."
-        },
-        {
-         "text": "$2x + 4 = 6 + x \\Rightarrow x = 2$. Cevap **B**.",
-         "narration": "2 x artı 4 eşittir 6 artı x; x eşittir 2. Cevabımız B. İki tarafta da a ile b'nin yerini karıştıran 8 artı x eşittir 2 x artı 3 yazar ve 5'i bulur; tanımda ilk sayı a'nın yerine geçer.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2025'in \"tanımlı gösterimle kurulan denklem\" kalıbı örnek alındı, işlem ve sayılar özgün."
-       }
-      }
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Bir sayı bir karenin içine yazıldığında karesinin 1 fazlasını, bir üçgenin içine yazıldığında 2 katının 1 eksiğini göstermektedir. İçine 3 yazılmış bir üçgen, bir karenin içine yazılırsa oluşan sembolün değeri kaçtır?",
-       "options": [
-        "19",
-        "26",
-        "37",
-        "50",
-        "65"
-       ],
-       "answer": 1,
-       "narration": "ÖSYM 2018'de bir çokgenin içine yazılan sayıyla sordu. İçteki şekilden başlayalım.",
-       "steps": [
-        {
-         "text": "İç: üçgende 3 → $2 \\cdot 3 - 1 = 5$",
-         "narration": "En içte üçgenin içinde 3 var. Üçgen, 2 katının 1 eksiği: 2 çarpı 3 eksi 1, 5."
-        },
-        {
-         "text": "Dış: karede 5 → $5^2 + 1 = 26$",
-         "narration": "Bu 5, karenin içine yazılmış oluyor. Kare, karesinin 1 fazlası: 25 artı 1, 26."
-        },
-        {
-         "text": "Cevap **B**. Sırayı ters uygulayan 19 bulur.",
-         "narration": "Cevabımız B. Önce kareyi uygulayan 3'ün karesinin 1 fazlası 10'u, sonra üçgeni uygulayıp 19'u bulur; A şıkkı bu sıra hatası.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2018'in \"şeklin içine yazılan sayıyla tanımlanan değer\" kalıbı örnek alındı, şekiller, kurallar ve sayılar özgün."
-       }
-      }
-     }
-    ]
-   },
-   {
-    "subtopic": "MAT_ISLEM_02",
-    "subtopics": [
-     "MAT_ISLEM_03",
-     "MAT_ISLEM_04"
-    ],
-    "title": "İşlemin özellikleri",
-    "narration": "Toplama ve çarpmanın bildiğin özellikleri, tanımlı bir işlemde olabilir de olmayabilir de. Bir özelliğin var olduğunu göstermek için genel olarak ispat gerekir; olmadığını göstermek için ise tek bir örnek yeter. Her birini sınamanın kısa bir yolu var.",
-    "cards": [
-     {
-      "kind": "rule",
-      "title": "Kapalılık, değişme, birleşme",
-      "items": [
-       "**Kapalılık**: kümeden iki eleman alınca sonuç yine kümede. Doğal sayılarda **çıkarma kapalı** değil: $3 - 5 = -2$.",
-       "**Değişme**: $a \\ast b = b \\ast a$. Sına: tanımda $a$ ile $b$'nin **yerini değiştir**, aynı ifade mi?",
-       "**Birleşme**: $(a \\ast b) \\ast c = a \\ast (b \\ast c)$.",
-       "Bir **karşı örnek** özelliği yıkmaya yeter."
-      ],
-      "narration": "Kapalılık: kümeden iki eleman alıp işlem yapınca sonuç yine kümede kalıyorsa işlem kapalıdır. Doğal sayılarda çıkarma kapalı değildir: 3 eksi 5, eksi 2. Değişme özelliğini sınamak için tanımda a ile b'nin yerini değiştir: ifade aynı kalıyorsa işlem değişmelidir. Birleşme özelliği, üç elemanda parantezin yerinin sonucu değiştirmemesidir. Bir özelliğin olmadığını göstermek için tek bir karşı örnek yeter."
+      "narration": "İşlem, bir kümenin iki elemanını alıp onlara tek bir sonuç eşleyen kuraldır. Toplama bildiğin bir işlem; soruda ise yeni bir sembol tanımlanır."
      },
      {
       "kind": "predict",
-      "title": "Birleşme var mı?",
-      "context": "$a \\ast b = a - b$",
-      "prompt": "$(1 \\ast 2) \\ast 3$ ile $1 \\ast (2 \\ast 3)$ eşit mi?",
+      "title": "Sıra fark eder mi?",
+      "context": "$a \\ast b = 3a - b$",
+      "prompt": "$4 \\ast 1$ ile $1 \\ast 4$ aynı sonucu verir mi?",
       "choices": [
-       "Eşit",
-       "Eşit değil"
+       "Aynı",
+       "Farklı"
       ],
       "answer": 1,
-      "thinkSeconds": 5,
+      "thinkSeconds": 4,
       "visual": {
        "kind": "table",
        "header": [
-        "Gruplama",
-        "Hesap",
+        "İşlem",
+        "Yerine koy",
         "Sonuç"
        ],
        "rows": [
         [
-         "$(1 \\ast 2) \\ast 3$",
-         "$(1 - 2) - 3$",
-         "−4"
+         "$4 \\ast 1$",
+         "$a = 4,\\ b = 1$",
+         "$11$"
         ],
         [
-         "$1 \\ast (2 \\ast 3)$",
-         "$1 - (2 - 3)$",
-         "2"
+         "$1 \\ast 4$",
+         "$a = 1,\\ b = 4$",
+         "$-1$"
         ]
        ],
        "highlightColumn": 2
       },
       "beats": [
        {
-        "narration": "Soldan gruplarsak 1 eksi 2, eksi 1; eksi 1 eksi 3, eksi 4.",
+        "narration": "4 yıldız 1'de a 4, b 1: 3 çarpı 4 eksi 1, 11.",
         "show": [
          "r1"
         ],
@@ -232,7 +133,7 @@
         ]
        },
        {
-        "narration": "Sağdan gruplarsak 2 eksi 3, eksi 1; 1 eksi eksi 1, 2. Sonuçlar farklı.",
+        "narration": "1 yıldız 4'te a 1, b 4: 3 çarpı 1 eksi 4, eksi 1.",
         "show": [
          "r2"
         ],
@@ -241,32 +142,193 @@
         ]
        }
       ],
-      "explanation": "$-4 \\neq 2$: çıkarma işleminin **birleşme özelliği yoktur**. Tek bir karşı örnek yeter.",
+      "explanation": "İlk sayı her zaman **a**'nın yerine geçer; sıra değişince sonuç **değişebilir**.",
       "narration": "Şimdi sıra sende. Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap eşit değil. Eksi 4 ile 2 farklı; çıkarma işleminde parantezin yeri sonucu değiştirir. Bir özelliğin olmadığını göstermek için böyle tek bir karşı örnek yeter."
+      "explanationNarration": "Sonuçlar farklı: 11 ile eksi 1. İlk sayı her zaman a'nın yerine geçer; sıra değişince sonuç değişebilir."
+     },
+     {
+      "kind": "rule",
+      "title": "Kuralı harfiyen uygula",
+      "items": [
+       "Harfler **yer tutucudur**: ilk sayı $a$'nın, ikinci sayı $b$'nin yerine geçer.",
+       "**Sıra önemlidir**: $4 \\ast 1 = 11$, ama $1 \\ast 4 = -1$.",
+       "Parantez varsa **içeriden başla**: $(2 \\ast 1) \\ast 3$'te önce $2 \\ast 1$.",
+       "Bilinmeyen varsa **tanıma göre aç**, sonra denklemi çöz."
+      ],
+      "narration": "Bir: harfler yer tutucudur; ilk sayı a'nın, ikinci sayı b'nin yerine geçer. İki: sıra önemlidir; az önce gördün, 11 ile eksi 1. Üç: parantez varsa içeriden başla. Dört: bilinmeyen varsa tanıma göre aç, sonra denklemi çöz."
+     },
+     {
+      "kind": "example",
+      "title": "Parantezli işlem",
+      "example": "Önce 2 yıldız 1, sonra sonucu yıldız 3.",
+      "narration": "Aynı kuralla parantezli bir işlem yapalım. Önce 2 yıldız 1, sonra sonucu yıldız 3.",
+      "steps": [
+       {
+        "narration": "Parantezin içi: 2 yıldız 1, 3 çarpı 2 eksi 1, 5.",
+        "math": "2 \\ast 1 = 3 \\cdot 2 - 1 = 5",
+        "text": "Önce parantez"
+       },
+       {
+        "narration": "Bu 5 artık a'nın yerine geçer: 5 yıldız 3, 15 eksi 3, 12.",
+        "math": "5 \\ast 3 = 3 \\cdot 5 - 3 = 12"
+       },
+       {
+        "narration": "Sonuç 12; parantez, hangi işlemin önce yapılacağını söyledi.",
+        "text": "Sonuç: **12**"
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Bilinmeyenli işlem",
+      "example": "x yıldız 2 eşittir 13 ise x kaç?",
+      "explanation": "$x \\ast 2 = 3x - 2 = 13 \\Rightarrow x = 5$",
+      "visual": {
+       "kind": "equation",
+       "steps": [
+        {
+         "left": "3x - 2",
+         "right": "13"
+        },
+        {
+         "left": "3x",
+         "right": "15",
+         "operation": "+2"
+        },
+        {
+         "left": "x",
+         "right": "5",
+         "operation": "÷3"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Tanıma göre aç: a yerine x, b yerine 2; 3 x eksi 2 eşittir 13.",
+        "stage": 0
+       },
+       {
+        "narration": "İki kefeye 2 ekleriz: 3 x eşittir 15.",
+        "stage": 1
+       },
+       {
+        "narration": "Üçe böleriz: x eşittir 5.",
+        "stage": 2
+       }
+      ],
+      "narration": "Şimdi bilinmeyenli bir örnek. x yıldız 2 eşittir 13 ise x kaç?"
+     },
+     {
+      "kind": "mistake",
+      "title": "Büyük sayı a değildir",
+      "wrong": "$a \\ast b = 3a - b$ ise $1 \\ast 4 = 3 \\cdot 4 - 1 = 11$ olur.",
+      "right": "İlk sayı $a$'dır: $1 \\ast 4 = 3 \\cdot 1 - 4 = -1$.",
+      "why": "Tanımdaki sıra, **yazıdaki sıradır**; harfleri soldan sağa eşleştir.",
+      "narration": "Sık yapılan hata şu: 1 yıldız 4'te büyük sayıyı a sanıp 11 bulmak. İlk sayı a'dır; 3 çarpı 1 eksi 4, eksi 1. Tanımdaki sıra, yazıdaki sıradır; harfleri soldan sağa eşleştir."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Gerçel sayılar üzerinde $a \\circ b = a^2 - b$ işlemi tanımlanıyor. Buna göre $2 \\circ 3$ ile $3 \\circ 2$ arasındaki fark, yani $(3 \\circ 2) - (2 \\circ 3)$ kaçtır?",
+       "stem": "Gerçel sayılar üzerinde $a \\triangle b = a^2 - 2b$ işlemi tanımlanıyor. Buna göre $5 \\triangle 3$ kaçtır?",
        "options": [
-        "0",
-        "4",
-        "6",
-        "7",
-        "8"
+        "$-1$",
+        "$13$",
+        "$16$",
+        "$19$",
+        "$31$"
        ],
-       "answer": 2,
-       "narration": "Kuralı harfiyen uygulayalım; bu fark işlemin değişme özelliği olup olmadığını da gösterecek.",
+       "answer": 3,
+       "narration": "Isınma sorusu: kuralı harfiyen uygula.",
        "steps": [
         {
-         "text": "$3 \\circ 2 = 3^2 - 2 = 7$; $2 \\circ 3 = 2^2 - 3 = 1$.",
-         "narration": "Üç halka iki: üçün karesi dokuz, eksi iki, yedi. İki halka üç: ikinin karesi dört, eksi üç, bir."
+         "text": "$a = 5$, $b = 3$: $5^2 - 2 \\cdot 3$",
+         "narration": "İlk sayı 5, a'nın yerine; ikinci sayı 3, b'nin yerine geçer. 5'in karesi eksi 2 çarpı 3."
         },
         {
-         "text": "$7 - 1 = 6$ → sonuçlar **farklı**: işlemin **değişme özelliği yok**. Cevap **C**.",
-         "narration": "Fark yedi eksi bir, altı. Sıra değişince sonuç değişti; demek ki bu işlemin değişme özelliği yoktur. Değişme özelliği için a halka b ile b halka a her zaman eşit olmalıydı. Cevabımız C.",
+         "text": "$25 - 6 = 19$. Cevap **D**.",
+         "narration": "25 eksi 6, 19. Cevabımız D. Sırayı karıştırıp 3 üçgen 5'i hesaplayan eksi 1 bulur; işareti karıştıran 31.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki tanımlı işlem kalıbı örnek alındı, kural ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Gerçel sayılar üzerinde $a \\ast b = a \\cdot b - a + b$ işlemi tanımlanıyor. $(2 \\ast 3) \\ast x = 25$ olduğuna göre $x$ kaçtır?",
+       "options": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+       ],
+       "answer": 1,
+       "narration": "İçeriden başlayalım, sonra denklemi kuralım.",
+       "steps": [
+        {
+         "text": "$2 \\ast 3 = 2 \\cdot 3 - 2 + 3 = 7$",
+         "narration": "Önce parantez: 2 yıldız 3, 2 çarpı 3 eksi 2 artı 3, 7."
+        },
+        {
+         "text": "$7 \\ast x = 7x - 7 + x = 8x - 7$",
+         "narration": "Şimdi 7 yıldız x: a 7, b x. 7 x eksi 7 artı x, yani 8 x eksi 7."
+        },
+        {
+         "text": "$8x - 7 = 25 \\Rightarrow x = 4$. Cevap **B**.",
+         "narration": "8 x eksi 7 eşittir 25; 8 x eşittir 32; x eşittir 4. Cevabımız B. 7'yi b'nin yerine koyan 6 x artı 7 yazar ve 3'ü bulur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki iç içe tanımlı işlemle kurulan denklem kalıbı örnek alındı, kural ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Ece'nin tasarladığı bir sayı makinesinde önce $a$, sonra $b$ sayısı girildiğinde ekranda $a \\ast b = a \\cdot b - 2b$ değeri görünmektedir. Ece makineye önce 4, sonra 3 giriyor. Ardından ekranda çıkan sayıyı önce, $x$ sayısını sonra girdiğinde ekranda 20 görüyor. Buna göre $x$ kaçtır?",
+       "options": [
+        "2",
+        "4",
+        "5",
+        "8",
+        "10"
+       ],
+       "answer": 2,
+       "narration": "Girme sırası, tanımdaki sıradır. Adım adım gidelim.",
+       "steps": [
+        {
+         "text": "Önce 4, sonra 3: $4 \\ast 3 = 4 \\cdot 3 - 2 \\cdot 3 = 6$",
+         "narration": "İlk girilen a, ikinci girilen b. Önce 4, sonra 3: 4 çarpı 3 eksi 2 çarpı 3, 6.",
+         "mark": [
+          "önce 4, sonra 3"
+         ]
+        },
+        {
+         "text": "Önce 6, sonra $x$: $6 \\ast x = 6x - 2x = 4x$",
+         "narration": "Ekranda 6 çıktı. Önce 6, sonra x girilince 6 x eksi 2 x, yani 4 x."
+        },
+        {
+         "text": "$4x = 20 \\Rightarrow x = 5$. Cevap **C**.",
+         "narration": "4 x eşittir 20, x eşittir 5. Cevabımız C. Önce 3 sonra 4 giren ekranda 4 görür, sonra 2 x eşittir 20 yazar ve 10'u bulur.",
          "eliminate": [
           "A",
           "B",
@@ -276,7 +338,564 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki değişme özelliği kuralı özgün bir işlemle hesap üzerinden soruldu."
+        "changes": "Bu ders için yazıldı; ÖSYM 2025'in tanımlı gösterimle kurulan denklem kalıbı örnek alındı, makine bağlamı, kural ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "title": "Şekille verilen işlem",
+    "narration": "ÖSYM'nin 2018, 2023 ve 2025'te sorduğu işlem sorularının üçü de bu kalıpta: sembol bir şekil, sayılar şeklin içinde ya da köşelerinde.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Sembol bir şekil olabilir",
+      "text": "İşlem bazen bir **şeklin içine** ya da **köşelerine** yazılan sayılarla tanımlanır. Kural değişmez: şekildeki **konumu** tanımdaki harfle eşleştir.",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        0,
+        0,
+        10,
+        10
+       ],
+       "points": [
+        {
+         "id": "P",
+         "at": [
+          2,
+          2
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "Q",
+         "at": [
+          8,
+          2
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "R",
+         "at": [
+          8,
+          8
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "S",
+         "at": [
+          2,
+          8
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "A",
+         "at": [
+          3,
+          7
+         ],
+         "label": "a",
+         "dot": false
+        },
+        {
+         "id": "B",
+         "at": [
+          7,
+          7
+         ],
+         "label": "b",
+         "dot": false
+        },
+        {
+         "id": "C",
+         "at": [
+          3,
+          3
+         ],
+         "label": "c",
+         "dot": false
+        },
+        {
+         "id": "D",
+         "at": [
+          7,
+          3
+         ],
+         "label": "d",
+         "dot": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "S",
+         "to": "Q",
+         "dashed": true
+        },
+        {
+         "from": "R",
+         "to": "P",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "P",
+          "Q",
+          "R",
+          "S"
+         ],
+         "id": "kutu",
+         "fill": true
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Kutucuğun dört köşesine dört sayı yazılır: sol üstte a, sağ üstte b, sol altta c, sağ altta d.",
+        "show": [
+         "kutu",
+         "A",
+         "B",
+         "C",
+         "D"
+        ]
+       },
+       {
+        "narration": "Bizim tanımımızda a ile d çarpılır; bunlar bir çaprazdır.",
+        "show": [
+         "SQ"
+        ],
+        "focus": [
+         "A",
+         "D"
+        ]
+       },
+       {
+        "narration": "Öbür çaprazdaki b ile c de çarpılır ve birinci çarpımdan çıkarılır.",
+        "show": [
+         "RP"
+        ],
+        "focus": [
+         "B",
+         "C"
+        ]
+       }
+      ],
+      "narration": "İşlem bazen bir şeklin içine ya da köşelerine yazılan sayılarla tanımlanır. Kural değişmez: şekildeki konumu tanımdaki harfle eşleştir."
+     },
+     {
+      "kind": "rule",
+      "title": "Konumla tanımlanan işlem",
+      "items": [
+       "Önce **konumları eşleştir**: hangi köşe $a$, hangisi $d$?",
+       "Bizim kutucuğumuzda değer **çaprazların farkı**: $a \\cdot d - b \\cdot c$.",
+       "İç içe şekil varsa **en içten başla**; içteki değer dıştakinin sayısı olur.",
+       "Şıklarda şekil varsa her şıkkın **değerini tek tek** hesapla."
+      ],
+      "narration": "Bir: önce konumları eşleştir; hangi köşe a, hangisi d? İki: bizim kutucuğumuzda değer çaprazların farkı, a çarpı d eksi b çarpı c. Üç: iç içe şekil varsa en içten başla. Dört: şıklarda şekil varsa her şıkkın değerini tek tek hesapla."
+     },
+     {
+      "kind": "example",
+      "title": "Kutucuğun değeri",
+      "example": "Köşelerinde 5, 2, 3 ve 4 yazan kutucuk kaç eder?",
+      "explanation": "$5 \\cdot 4 - 2 \\cdot 3 = 20 - 6 = 14$",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        0,
+        0,
+        10,
+        10
+       ],
+       "points": [
+        {
+         "id": "P",
+         "at": [
+          2,
+          2
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "Q",
+         "at": [
+          8,
+          2
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "R",
+         "at": [
+          8,
+          8
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "S",
+         "at": [
+          2,
+          8
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "A",
+         "at": [
+          3,
+          7
+         ],
+         "label": "5",
+         "dot": false
+        },
+        {
+         "id": "B",
+         "at": [
+          7,
+          7
+         ],
+         "label": "2",
+         "dot": false
+        },
+        {
+         "id": "C",
+         "at": [
+          3,
+          3
+         ],
+         "label": "3",
+         "dot": false
+        },
+        {
+         "id": "D",
+         "at": [
+          7,
+          3
+         ],
+         "label": "4",
+         "dot": false
+        }
+       ],
+       "segments": [
+        {
+         "from": "S",
+         "to": "Q",
+         "dashed": true
+        },
+        {
+         "from": "R",
+         "to": "P",
+         "dashed": true
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "P",
+          "Q",
+          "R",
+          "S"
+         ],
+         "id": "kutu",
+         "fill": true
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Sol üstte 5, sağ üstte 2, sol altta 3, sağ altta 4 var.",
+        "show": [
+         "kutu",
+         "A",
+         "B",
+         "C",
+         "D"
+        ]
+       },
+       {
+        "narration": "Birinci çapraz: 5 çarpı 4, 20.",
+        "show": [
+         "SQ"
+        ],
+        "focus": [
+         "A",
+         "D"
+        ]
+       },
+       {
+        "narration": "İkinci çapraz: 2 çarpı 3, 6. Fark 20 eksi 6, yani 14.",
+        "show": [
+         "RP"
+        ],
+        "focus": [
+         "B",
+         "C"
+        ],
+        "note": "20 − 6 = 14"
+       }
+      ],
+      "narration": "Hemen bir tane hesaplayalım. Köşelerinde 5, 2, 3 ve 4 yazan kutucuk kaç eder?"
+     },
+     {
+      "kind": "example",
+      "title": "İç içe şekiller",
+      "example": "Karenin içinde bir çember, çemberin içinde 2 var.",
+      "visual": {
+       "kind": "geometry",
+       "view": [
+        0,
+        0,
+        10,
+        10
+       ],
+       "points": [
+        {
+         "id": "P",
+         "at": [
+          1,
+          1
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "Q",
+         "at": [
+          9,
+          1
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "R",
+         "at": [
+          9,
+          9
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "S",
+         "at": [
+          1,
+          9
+         ],
+         "label": "",
+         "dot": false
+        },
+        {
+         "id": "O",
+         "at": [
+          5,
+          5
+         ],
+         "label": "2",
+         "dot": false
+        }
+       ],
+       "polygons": [
+        {
+         "points": [
+          "P",
+          "Q",
+          "R",
+          "S"
+         ],
+         "id": "kare",
+         "fill": false
+        }
+       ],
+       "circles": [
+        {
+         "center": "O",
+         "radius": 2.5,
+         "id": "cember"
+        }
+       ]
+      },
+      "narration": "Şimdi iç içe şekiller. Karenin içinde bir çember, çemberin içinde 2 var.",
+      "steps": [
+       {
+        "narration": "Kural şu: çember, içindeki sayının 3 fazlasını gösterir.",
+        "text": "Çember: **3 fazlası**",
+        "focus": [
+         "cember"
+        ]
+       },
+       {
+        "narration": "En içten başlarız: çemberde 2, 2 artı 3, yani 5 olur.",
+        "math": "2 + 3 = 5",
+        "text": "En içten başla",
+        "focus": [
+         "O"
+        ]
+       },
+       {
+        "narration": "Kare, içindeki sayının karesini gösterir; içinde artık 5 var, 25.",
+        "math": "5^2 = 25",
+        "text": "Kare: **karesi**",
+        "focus": [
+         "kare"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Dıştan başlama",
+      "wrong": "İç içe şekillerde önce dıştaki şeklin kuralı uygulanır.",
+      "right": "En içteki şekilden başlanır: çemberde $2 \\to 5$, sonra karede $5 \\to 25$.",
+      "why": "İçteki şeklin değeri, dıştakinin içindeki sayıdır; tıpkı **parantez** gibi.",
+      "narration": "Şu hata çok yapılır: önce dıştaki karenin kuralını uygulamak; 2'nin karesi 4, 3 fazlası 7. En içteki şekilden başlanır: çemberde 2, 5 olur; karede 5, 25 olur. İçteki şeklin değeri, dıştakinin içindeki sayıdır; tıpkı parantez gibi."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kutucuğun köşelerine yazılan dört sayıdan sol üstteki $a$, sağ üstteki $b$, sol alttaki $c$, sağ alttaki $d$ olmak üzere kutucuğun değeri $a \\cdot d - b \\cdot c$ sayısına eşittir. Şekildeki kutucuğun değeri 20 olduğuna göre $x$ kaçtır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         0,
+         0,
+         10,
+         10
+        ],
+        "points": [
+         {
+          "id": "P",
+          "at": [
+           2,
+           2
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "Q",
+          "at": [
+           8,
+           2
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "R",
+          "at": [
+           8,
+           8
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "S",
+          "at": [
+           2,
+           8
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "A",
+          "at": [
+           3,
+           7
+          ],
+          "label": "4",
+          "dot": false
+         },
+         {
+          "id": "B",
+          "at": [
+           7,
+           7
+          ],
+          "label": "x",
+          "dot": false
+         },
+         {
+          "id": "C",
+          "at": [
+           3,
+           3
+          ],
+          "label": "1",
+          "dot": false
+         },
+         {
+          "id": "D",
+          "at": [
+           7,
+           3
+          ],
+          "label": "7",
+          "dot": false
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "P",
+           "Q",
+           "R",
+           "S"
+          ],
+          "id": "kutu",
+          "fill": true
+         }
+        ]
+       },
+       "options": [
+        "8",
+        "12",
+        "20",
+        "36",
+        "48"
+       ],
+       "answer": 0,
+       "narration": "Şekilden konumları oku.",
+       "steps": [
+        {
+         "text": "$a = 4$, $b = x$, $c = 1$, $d = 7$",
+         "narration": "Konumları eşleştir: sol üst a, 4; sağ üst b, x; sol alt c, 1; sağ alt d, 7."
+        },
+        {
+         "text": "$4 \\cdot 7 - x \\cdot 1 = 28 - x$",
+         "narration": "Değer a çarpı d eksi b çarpı c: 4 çarpı 7 eksi x çarpı 1, yani 28 eksi x."
+        },
+        {
+         "text": "$28 - x = 20 \\Rightarrow x = 8$. Cevap **A**.",
+         "narration": "28 eksi x eşittir 20, x eşittir 8. Cevabımız A. Farkı ters alan, x eksi 28 eşittir 20 yazar ve 48'i bulur.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2023 ve 2025'in köşelere yazılan sayılarla tanımlanan gösterim kalıbı örnek alındı, tanım (çaprazların farkı), şekil ve sayılar özgün."
        }
       }
      },
@@ -284,36 +903,714 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Gerçel sayılar üzerinde tanımlanan aşağıdaki işlemlerden hangisinin **değişme** özelliği vardır?",
+       "stem": "Bir kutucuğun köşelerine yazılan sayılardan sol üstteki $a$, sağ üstteki $b$, sol alttaki $c$, sağ alttaki $d$ olmak üzere kutucuğun değeri $a \\cdot d - b \\cdot c$'dir. Bir üçgenin köşelerine yazılan sayılardan en üstteki $p$, alttakiler $q$ ve $r$ olmak üzere üçgenin değeri $p \\cdot (q + r)$'dir. Şekildeki kutucuğun değeri üçgenin değerine eşit olduğuna göre $x$ kaçtır?",
+       "figure": {
+        "kind": "geometry",
+        "view": [
+         0,
+         0,
+         20,
+         10
+        ],
+        "points": [
+         {
+          "id": "P",
+          "at": [
+           1,
+           2
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "Q",
+          "at": [
+           7,
+           2
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "R",
+          "at": [
+           7,
+           8
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "S",
+          "at": [
+           1,
+           8
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "A",
+          "at": [
+           2.2,
+           6.8
+          ],
+          "label": "x",
+          "dot": false
+         },
+         {
+          "id": "B",
+          "at": [
+           5.8,
+           6.8
+          ],
+          "label": "2",
+          "dot": false
+         },
+         {
+          "id": "C",
+          "at": [
+           2.2,
+           3.2
+          ],
+          "label": "3",
+          "dot": false
+         },
+         {
+          "id": "D",
+          "at": [
+           5.8,
+           3.2
+          ],
+          "label": "4",
+          "dot": false
+         },
+         {
+          "id": "E",
+          "at": [
+           9.5,
+           5
+          ],
+          "label": "=",
+          "dot": false
+         },
+         {
+          "id": "T",
+          "at": [
+           15,
+           8.5
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "U",
+          "at": [
+           12,
+           2
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "V",
+          "at": [
+           18,
+           2
+          ],
+          "label": "",
+          "dot": false
+         },
+         {
+          "id": "F",
+          "at": [
+           15,
+           6.6
+          ],
+          "label": "2",
+          "dot": false
+         },
+         {
+          "id": "G",
+          "at": [
+           13.2,
+           2.8
+          ],
+          "label": "4",
+          "dot": false
+         },
+         {
+          "id": "H",
+          "at": [
+           16.8,
+           2.8
+          ],
+          "label": "3",
+          "dot": false
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           "P",
+           "Q",
+           "R",
+           "S"
+          ],
+          "id": "kutu",
+          "fill": true
+         },
+         {
+          "points": [
+           "U",
+           "V",
+           "T"
+          ],
+          "id": "ucgen",
+          "fill": true,
+          "shade": 2
+         }
+        ]
+       },
        "options": [
-        "$a \\ast b = a - b$",
-        "$a \\ast b = 2a + b$",
-        "$a \\ast b = a + b + ab$",
-        "$a \\ast b = a^2 + b$",
-        "$a \\ast b = a - 2b$"
+        "2",
+        "5",
+        "7",
+        "9",
+        "13"
        ],
-       "answer": 2,
-       "narration": "Her tanımda a ile b'nin yerini değiştirelim.",
+       "answer": 1,
+       "narration": "ÖSYM son yıllarda iki gösterimi tanımlayıp böyle eşitlikler kuruyor. İki şeklin değerini ayrı ayrı bulalım.",
        "steps": [
         {
-         "text": "A: $b - a \\neq a - b$. B: $2b + a \\neq 2a + b$.",
-         "narration": "A şıkkında yer değiştirince b eksi a olur; a eksi b'den farklı. B şıkkında 2 b artı a olur; 2 a artı b'den farklı. 1 ile 2'yi dene: 4 ile 5.",
+         "text": "Kutucuk: $a = x$, $b = 2$, $c = 3$, $d = 4$ → $4x - 6$",
+         "narration": "Kutucukta sol üst x, sağ üst 2, sol alt 3, sağ alt 4. Değer x çarpı 4 eksi 2 çarpı 3, yani 4 x eksi 6."
+        },
+        {
+         "text": "Üçgen: $p = 2$, $q = 4$, $r = 3$ → $2 \\cdot (4 + 3) = 14$",
+         "narration": "Üçgende en üstte 2, altta 4 ve 3. Değer 2 çarpı 4 artı 3, yani 14."
+        },
+        {
+         "text": "$4x - 6 = 14 \\Rightarrow x = 5$. Cevap **B**.",
+         "narration": "4 x eksi 6 eşittir 14; 4 x eşittir 20; x eşittir 5. Cevabımız B. Çapraz yerine satırları çarpan 2 x eksi 12 yazar ve 13'ü bulur.",
          "eliminate": [
           "A",
-          "B"
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2023'ün iki gösterim tanımlayıp eşitlik kuran kalıbı örnek alındı, iki tanım, şekiller ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_ISLEM_02",
+    "title": "Kapalılık",
+    "narration": "Bir işlem, sonucu kümenin dışına çıkarıyor mu? Kapalılık bunu sorar.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Kapalılık nedir?",
+      "text": "Bir kümeden alınan **her iki elemanın** işlem sonucu yine **aynı kümede** kalıyorsa işlem o kümede **kapalıdır**.",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Doğal sayılarda toplama",
+         "items": [
+          "3 + 5 = 8 ✓",
+          "0 + 7 = 7 ✓",
+          "Sonuç hep doğal sayı: kapalı"
          ]
         },
         {
-         "text": "D: $b^2 + a \\neq a^2 + b$. E: $b - 2a \\neq a - 2b$.",
-         "narration": "D şıkkında b kare artı a; a kare artı b'den farklı. E şıkkında b eksi 2 a; a eksi 2 b'den farklı.",
+         "title": "Doğal sayılarda çıkarma",
+         "items": [
+          "5 − 3 = 2 ✓",
+          "3 − 5 = −2 ✗",
+          "Bir sonuç dışarıda: kapalı değil"
+         ]
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Doğal sayılarda toplama yapalım: 3 artı 5, 8; 0 artı 7, 7.",
+        "show": [
+         "c1",
+         "c1-1",
+         "c1-2"
+        ]
+       },
+       {
+        "narration": "Hangi iki doğal sayıyı toplarsan topla sonuç doğal sayıdır: toplama kapalı.",
+        "show": [
+         "c1-3"
+        ],
+        "focus": [
+         "c1-3"
+        ]
+       },
+       {
+        "narration": "Çıkarmada 5 eksi 3, 2; burada sorun yok.",
+        "show": [
+         "c2",
+         "c2-1"
+        ]
+       },
+       {
+        "narration": "Ama 3 eksi 5, eksi 2: doğal sayı değil. Çıkarma doğal sayılarda kapalı değil.",
+        "show": [
+         "c2-2",
+         "c2-3"
+        ],
+        "focus": [
+         "c2-2",
+         "c2-3"
+        ]
+       }
+      ],
+      "narration": "Bir kümeden alınan her iki elemanın sonucu yine aynı kümede kalıyorsa işlem o kümede kapalıdır."
+     },
+     {
+      "kind": "predict",
+      "title": "Ortalama kapalı mı?",
+      "context": "Tam sayılarda $a \\ast b = \\frac{a + b}{2}$",
+      "prompt": "Bu işlem tam sayılar kümesinde kapalı mı?",
+      "choices": [
+       "Kapalı",
+       "Kapalı değil"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "İşlem",
+        "Sonuç",
+        "Tam sayı mı?"
+       ],
+       "rows": [
+        [
+         "$2 \\ast 4$",
+         "$3$",
+         "Evet"
+        ],
+        [
+         "$1 \\ast 2$",
+         "$\\frac{3}{2}$",
+         "Hayır"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "2 yıldız 4: 2 artı 4 bölü 2, 3; tam sayı.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Ama 1 yıldız 2, ikide üç; tam sayı değil.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       }
+      ],
+      "explanation": "$1 \\ast 2 = \\frac{3}{2}$ tam sayı değil: **tek bir karşı örnek** kapalılığı bozar.",
+      "narration": "Şimdi sıra sende. Bir tahmin yap.",
+      "explanationNarration": "Kapalı değil. 1 yıldız 2, ikide üç çıktı ve kümenin dışına düştü. Tek bir karşı örnek kapalılığı bozar."
+     },
+     {
+      "kind": "rule",
+      "title": "Kapalılığı sına",
+      "items": [
+       "Kapalı demek için **her iki eleman** için düşün: iki tam sayının toplamı **her zaman** tam sayıdır.",
+       "Kapalı değil demek için **tek bir karşı örnek** yeter: doğal sayılarda $3 - 5 = -2$.",
+       "**Küme önemlidir**: çıkarma tam sayılarda kapalı, doğal sayılarda değil.",
+       "Sonlu kümede **sonuçları listele**; hepsi kümede mi?"
+      ],
+      "narration": "Bir: kapalı demek için her iki eleman için düşün; iki tam sayının toplamı her zaman tam sayıdır. İki: kapalı değil demek için tek bir karşı örnek yeter. Üç: küme önemlidir; çıkarma tam sayılarda kapalı, doğal sayılarda değil. Dört: sonlu kümede sonuçları listele."
+     },
+     {
+      "kind": "example",
+      "title": "Sonlu kümede çarpma",
+      "example": "0, 1 ve 2 kümesinde çarpma kapalı mı?",
+      "explanation": "$2 \\cdot 2 = 4$ kümede yok: çarpma bu kümede **kapalı değil**.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "·",
+        "0",
+        "1",
+        "2"
+       ],
+       "rows": [
+        [
+         "0",
+         "0",
+         "0",
+         "0"
+        ],
+        [
+         "1",
+         "0",
+         "1",
+         "2"
+        ],
+        [
+         "2",
+         "0",
+         "2",
+         "4"
+        ]
+       ]
+      },
+      "beats": [
+       {
+        "narration": "0 ile çarpınca hep 0, 1 ile çarpınca sayının kendisi çıkar; hepsi kümede.",
+        "show": [
+         "r1",
+         "r2"
+        ]
+       },
+       {
+        "narration": "Ama 2 çarpı 2, 4; 4 kümede yok. Çarpma bu kümede kapalı değil.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ],
+      "narration": "Sonlu bir kümede deneyelim. 0, 1 ve 2 kümesinde çarpma kapalı mı?"
+     },
+     {
+      "kind": "mistake",
+      "title": "Birkaç örnek yetmez",
+      "wrong": "Birkaç örnekte sonuç kümede çıktıysa işlem kapalıdır.",
+      "right": "Her iki eleman için sonuç kümede olmalı; tek bir dışarı çıkan sonuç kapalılığı bozar.",
+      "why": "Tek sayılarda $1 + 3 = 4$ çifttir: toplama tek sayılarda **kapalı değil**.",
+      "narration": "Şöyle düşünen çok: birkaç örnekte sonuç kümede çıktıysa işlem kapalıdır. Her iki eleman için sonuç kümede olmalı; tek bir dışarı çıkan sonuç kapalılığı bozar. Tek sayılarda 1 artı 3, 4 eder; 4 çifttir, toplama tek sayılarda kapalı değil."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Aşağıdaki işlemlerden hangisi **doğal sayılar** kümesinde kapalıdır?",
+       "options": [
+        "$a \\ast b = a - b$",
+        "$a \\ast b = \\frac{a}{b}$",
+        "$a \\ast b = a - 2b$",
+        "$a \\ast b = \\sqrt{a + b}$",
+        "$a \\ast b = a \\cdot b + 1$"
+       ],
+       "answer": 4,
+       "narration": "Her şık için tek bir karşı örnek arayalım.",
+       "steps": [
+        {
+         "text": "$2 - 5 = -3$, $1 - 2 \\cdot 1 = -1$: negatif çıkar.",
+         "narration": "A ile C'de negatif sonuç çıkabilir: 2 eksi 5, eksi 3; 1 eksi 2 çarpı 1, eksi 1. Doğal sayı değil.",
+         "eliminate": [
+          "A",
+          "C"
+         ]
+        },
+        {
+         "text": "$\\frac{1}{2}$ ve $\\sqrt{2}$ doğal sayı değil.",
+         "narration": "B'de 1 bölü 2, D'de 1 artı 1'in karekökü, yani karekök 2. İkisi de doğal sayı değil.",
+         "eliminate": [
+          "B",
+          "D"
+         ]
+        },
+        {
+         "text": "İki doğal sayının çarpımı doğaldır, 1 fazlası da. Cevap **E**.",
+         "narration": "Son şıkta iki doğal sayının çarpımı doğal sayıdır, 1 fazlası da doğal sayıdır. Cevabımız E."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki kapalılık tanımı ve karşı örnek yöntemi özgün işlemlerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kodlama dersinde öğretmen, yalnız 0, 1, 2 ve 3 sayılarını kullanabilen bir hesap makinesi için $A = \\{0, 1, 2, 3\\}$ kümesi üzerinde üç işlem öneriyor. Makine yalnız sonucu her zaman yine A kümesinde olan işlemleri yapabiliyor. Buna göre öğretmenin önerdiği işlemlerden hangileri bu makinede kullanılabilir?",
+       "context": "I. $a \\ast b = |a - b|$\nII. $a \\ast b$: $a \\cdot b$ çarpımının 4'e bölümünden kalan\nIII. $a \\ast b = a + b - 1$",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "Yalnız III",
+        "I ve II",
+        "II ve III"
+       ],
+       "answer": 3,
+       "narration": "Makinede kullanılabilmek, işlemin bu kümede kapalı olması demek. Her işlemin en küçük ve en büyük sonucuna bakalım.",
+       "steps": [
+        {
+         "text": "I: $|a - b|$ en az $0$, en çok $|3 - 0| = 3$ → kapalı.",
+         "narration": "Bir numarada farkın mutlak değeri en az 0, en çok 3 eksi 0'dan 3. Sonuç hep A'da, kapalı.",
+         "eliminate": [
+          "B",
+          "C",
+          "E"
+         ]
+        },
+        {
+         "text": "II: 4'e bölümden kalan $0, 1, 2$ ya da $3$ → kapalı.",
+         "narration": "İki numarada 4'e bölümden kalan yalnız 0, 1, 2 ya da 3 olabilir. Kapalı.",
+         "eliminate": [
+          "A"
+         ]
+        },
+        {
+         "text": "III: $0 \\ast 0 = -1 \\notin A$ → kapalı değil. Cevap **D**.",
+         "narration": "Üç numarada 0 yıldız 0, eksi 1; A'da yok. Tek karşı örnek yeter. Cevabımız D."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki öncüllü işlem özelliği kalıbı örnek alındı, hesap makinesi bağlamı, küme ve işlemler özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_ISLEM_03",
+    "subtopics": [
+     "MAT_ISLEM_04"
+    ],
+    "title": "Değişme ve birleşme",
+    "narration": "Toplamada sırayı da parantezi de dert etmezsin. Tanımlı işlemde ise önce sınaman gerekir.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Değişme ve birleşme",
+      "text": "**Değişme**: $a \\ast b = b \\ast a$; sıra sonucu değiştirmez. **Birleşme**: $(a \\ast b) \\ast c = a \\ast (b \\ast c)$; parantezin yeri sonucu değiştirmez.",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Değişme",
+         "items": [
+          "2 + 5 = 5 + 2 ✓",
+          "2 − 5 ≠ 5 − 2 ✗"
+         ]
+        },
+        {
+         "title": "Birleşme",
+         "items": [
+          "(2 + 3) + 4 = 2 + (3 + 4) ✓",
+          "(8 − 3) − 2 ≠ 8 − (3 − 2) ✗"
+         ]
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Toplamada 2 artı 5 ile 5 artı 2 aynı: toplama değişmeli.",
+        "show": [
+         "c1",
+         "c1-1"
+        ]
+       },
+       {
+        "narration": "Çıkarmada 2 eksi 5, eksi 3; 5 eksi 2 ise 3. Çıkarma değişmeli değil.",
+        "show": [
+         "c1-2"
+        ],
+        "focus": [
+         "c1-2"
+        ]
+       },
+       {
+        "narration": "Toplamada parantezi nereye koyarsan koy sonuç 9.",
+        "show": [
+         "c2",
+         "c2-1"
+        ]
+       },
+       {
+        "narration": "Çıkarmada soldan gruplayınca 3, sağdan gruplayınca 7 çıkar. Birleşme yok.",
+        "show": [
+         "c2-2"
+        ],
+        "focus": [
+         "c2-2"
+        ]
+       }
+      ],
+      "narration": "Değişme, sıranın sonucu değiştirmemesidir. Birleşme ise üç elemanda parantezin yerinin sonucu değiştirmemesidir."
+     },
+     {
+      "kind": "predict",
+      "title": "Birleşme var mı?",
+      "context": "$a \\ast b = a + b + 1$",
+      "prompt": "Bu işlemin birleşme özelliği var mı?",
+      "choices": [
+       "Var",
+       "Yok"
+      ],
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Gruplama",
+        "Aç",
+        "Sonuç"
+       ],
+       "rows": [
+        [
+         "$(a \\ast b) \\ast c$",
+         "$(a + b + 1) + c + 1$",
+         "$a + b + c + 2$"
+        ],
+        [
+         "$a \\ast (b \\ast c)$",
+         "$a + (b + c + 1) + 1$",
+         "$a + b + c + 2$"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "Soldan grupla: önce a yıldız b, sonra c ile. a artı b artı c artı 2 çıkar.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Sağdan grupla: önce b yıldız c, sonra a ile. Yine a artı b artı c artı 2.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       }
+      ],
+      "explanation": "İki gruplama da **her** $a, b, c$ için aynı ifadeyi verir: birleşme özelliği **vardır**.",
+      "narration": "Şimdi sıra sende. Bir tahmin yap.",
+      "explanationNarration": "Var. İki gruplama harflerle aynı ifadeyi verdi; bu her a, b, c için geçerli. Var demek için böyle harflerle göstermek gerekir."
+     },
+     {
+      "kind": "rule",
+      "title": "Değişmeyi ve birleşmeyi sına",
+      "items": [
+       "Değişme için tanımda $a$ ile $b$'nin **yerini değiştir**: ifade aynı kalıyorsa değişmelidir.",
+       "Kısa yol: $a$ ile $b$ tanımda **simetrik** ise değişme vardır: $a + b + ab$.",
+       "Birleşme için **iki gruplamayı da** harfle aç ve karşılaştır.",
+       "Yok demek için **tek sayısal karşı örnek** yeter."
+      ],
+      "narration": "Bir: değişme için tanımda a ile b'nin yerini değiştir; ifade aynı kalıyorsa değişmelidir. İki: kısa yol, a ile b tanımda simetrik ise değişme vardır. Üç: birleşme için iki gruplamayı da harfle aç. Dört: yok demek için tek sayısal karşı örnek yeter."
+     },
+     {
+      "kind": "example",
+      "title": "Değişme sınaması",
+      "example": "Yer değiştir ve karşılaştır.",
+      "narration": "Bakalım a yıldız b eşittir 2 a artı 2 b eksi a b değişmeli mi? Yer değiştir ve karşılaştır.",
+      "steps": [
+       {
+        "narration": "Tanım: 2 a artı 2 b eksi a b.",
+        "math": "a \\ast b = 2a + 2b - ab"
+       },
+       {
+        "narration": "a ile b'nin yerini değiştir: 2 b artı 2 a eksi b a.",
+        "math": "b \\ast a = 2b + 2a - ba",
+        "text": "Yer değiştir"
+       },
+       {
+        "narration": "Toplama ve çarpma değişmeli olduğu için iki ifade aynı: işlem değişmeli.",
+        "text": "Aynı ifade: **değişmeli**"
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Birleşmeye karşı örnek",
+      "example": "Bir, bir ve bir ile iki gruplamayı dene.",
+      "narration": "Şimdi a yıldız b eşittir 2 a artı b işleminde birleşmeyi sınayalım. Bir, bir ve bir ile iki gruplamayı dene.",
+      "steps": [
+       {
+        "narration": "Soldan: 1 yıldız 1, 3; sonra 3 yıldız 1, 2 çarpı 3 artı 1, 7.",
+        "math": "(1 \\ast 1) \\ast 1 = 3 \\ast 1 = 2 \\cdot 3 + 1 = 7",
+        "text": "Soldan grupla"
+       },
+       {
+        "narration": "Sağdan: 1 yıldız 1, 3; sonra 1 yıldız 3, 2 artı 3, 5.",
+        "math": "1 \\ast (1 \\ast 1) = 1 \\ast 3 = 2 \\cdot 1 + 3 = 5",
+        "text": "Sağdan grupla"
+       },
+       {
+        "narration": "Sonuçlar farklı: 7, 5'e eşit değil; birleşme özelliği yok.",
+        "math": "7 \\neq 5",
+        "text": "Birleşme **yok**"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Tek örnek kanıt değil",
+      "wrong": "Bir örnekte $(a \\ast b) \\ast c = a \\ast (b \\ast c)$ çıktıysa birleşme özelliği vardır.",
+      "right": "Var demek için **her** $a, b, c$ için harflerle göstermek gerekir; tek örnek yalnız **yok** demeye yeter.",
+      "why": "Örneğin $a \\ast b = 2a + b$ işleminde sıfırlarla eşitlik çıkar, $1, 1, 1$ ile çıkmaz.",
+      "narration": "Bir örnekte eşitlik çıktıysa birleşme var sanılır. Var demek için her a, b, c için harflerle göstermek gerekir; tek örnek yalnız yok demeye yeter. Örneğin a yıldız b eşittir 2 a artı b işleminde sıfırlarla eşitlik çıkar, 1, 1, 1 ile çıkmaz."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Gerçel sayılar üzerinde tanımlanan aşağıdaki işlemlerden hangisinin **değişme** özelliği vardır?",
+       "options": [
+        "$a \\ast b = a + b + ab$",
+        "$a \\ast b = 2a + b$",
+        "$a \\ast b = a - b$",
+        "$a \\ast b = a^2 + b$",
+        "$a \\ast b = ab - a$"
+       ],
+       "answer": 0,
+       "narration": "Her tanımda a ile b'nin yerini değiştirelim.",
+       "steps": [
+        {
+         "text": "B: $2b + a \\neq 2a + b$. C: $b - a \\neq a - b$.",
+         "narration": "B'de yer değiştirince 2 b artı a olur; farklı. C'de b eksi a olur; o da farklı.",
+         "eliminate": [
+          "B",
+          "C"
+         ]
+        },
+        {
+         "text": "D: $b^2 + a \\neq a^2 + b$. E: $ba - b \\neq ab - a$.",
+         "narration": "D'de b kare artı a, E'de b a eksi b çıkar. İkisi de değişir.",
          "eliminate": [
           "D",
           "E"
          ]
         },
         {
-         "text": "C: $b + a + ba = a + b + ab$ ✓. Cevap **C**.",
-         "narration": "C şıkkında yer değiştirince b artı a artı b a olur; toplama ve çarpma değişmeli olduğu için aynı ifade. Cevabımız C. Kısa yol: tanımda a ile b simetrikse, yani rolleri aynıysa işlem değişmelidir."
+         "text": "A: $b + a + ba = a + b + ab$ ✓. Cevap **A**.",
+         "narration": "A'da yer değiştirince b artı a artı b a; aynı ifade, a ile b simetrik. Cevabımız A."
         }
        ],
        "origin": {
@@ -325,34 +1622,78 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "**Tam sayılar** kümesi üzerinde tanımlanan aşağıdaki işlemlerden hangisi bu kümede **kapalı değildir**?",
+       "stem": "Gerçel sayılar üzerinde tanımlanan $a \\ast b = 3a + mb - 2$ işleminin değişme özelliği olduğuna göre $2 \\ast 4$ kaçtır?",
        "options": [
-        "$a \\ast b = a + b$",
-        "$a \\ast b = a - b$",
-        "$a \\ast b = a \\cdot b$",
-        "$a \\ast b = \\frac{a}{b}$",
-        "$a \\ast b = a^2 + b$"
+        "8",
+        "10",
+        "12",
+        "14",
+        "16"
        ],
-       "answer": 3,
-       "narration": "Kapalılık: kümeden alınan her iki elemanın sonucu yine kümede olmalı.",
+       "answer": 4,
+       "narration": "Önce m'yi değişme özelliğinden bulalım.",
        "steps": [
         {
-         "text": "İki tam sayının **toplamı**, **farkı**, **çarpımı** ve $a^2 + b$ her zaman tam sayıdır → kapalı.",
-         "narration": "İki tam sayıyı toplarsak, çıkarırsak ya da çarparsak sonuç yine tam sayıdır. a kare artı b de tam sayıdır. Bu dört işlem tam sayılarda kapalıdır.",
+         "text": "$3a + mb - 2 = 3b + ma - 2$ her $a, b$ için → $m = 3$",
+         "narration": "Değişme için a yıldız b, b yıldız a'ya eşit olmalı. Bu her a, b için doğruysa katsayılar eşittir: m eşittir 3."
+        },
+        {
+         "text": "$2 \\ast 4 = 3 \\cdot 2 + 3 \\cdot 4 - 2 = 16$. Cevap **E**.",
+         "narration": "2 yıldız 4: 3 çarpı 2 artı 3 çarpı 4 eksi 2, 16. Cevabımız E. m'yi 1 sanıp hesaplayan 8 bulur.",
          "eliminate": [
           "A",
           "B",
           "C",
-          "E"
+          "D"
          ]
-        },
-        {
-         "text": "$1 \\ast 2 = \\frac{1}{2} \\notin \\mathbb{Z}$; $b = 0$ için **tanımsız** → kapalı **değil**. Cevap **D**.",
-         "narration": "a bölü b ise kapalı değildir: bir yıldız iki, bir bölü iki eder ve bu bir tam sayı değildir. Üstelik b sıfır olunca işlem tanımsızdır. Kapalı olmadığını göstermek için tek bir karşı örnek yeter. Cevabımız D."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki kapalılık özelliği karşı örnekle özgün bir soruya dönüştürüldü."
+        "changes": "Bu ders için yazıldı; havuzdaki \"değişmeli olduğuna göre katsayıyı bul\" kalıbı örnek alındı, işlem ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir mağazada yüzde $a$ ve yüzde $b$'lik iki indirim art arda uygulandığında toplam indirim yüzdesi $a \\ast b = a + b - \\frac{a \\cdot b}{100}$ işlemiyle bulunuyor. Örneğin yüzde 10 ve yüzde 10'luk indirimler art arda uygulanınca toplam indirim yüzde 19 olur. Buna göre aşağıdaki ifadelerden hangileri doğrudur?",
+       "context": "I. $a \\ast b = b \\ast a$\nII. $(a \\ast b) \\ast c = a \\ast (b \\ast c)$\nIII. $20 \\ast 25 = 45$",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "narration": "Gerçek hayattan bir işlem. Her ifadeyi ayrı sınayalım.",
+       "steps": [
+        {
+         "text": "I: $a$ ile $b$ simetrik → **doğru**.",
+         "narration": "Bir numara: tanımda a ile b'nin rolleri aynı; yer değiştirince ifade değişmez. Doğru.",
+         "eliminate": [
+          "B"
+         ]
+        },
+        {
+         "text": "II: Her indirim kalan fiyatı $\\left(1 - \\frac{a}{100}\\right)$ ile çarpar; çarpma birleşmeli → **doğru**.",
+         "narration": "İki numara: her indirim kalan fiyatı bir oranla çarpar. Üç indirimde aynı üç oran çarpılır, gruplama fark etmez. Doğru.",
+         "eliminate": [
+          "A",
+          "D"
+         ]
+        },
+        {
+         "text": "III: $20 + 25 - \\frac{20 \\cdot 25}{100} = 45 - 5 = 40 \\neq 45$ → **yanlış**. Cevap **C**.",
+         "narration": "Üç numara: 20 artı 25 eksi 5, 40; 45 değil. İndirimleri doğrudan toplayan yanılır. Cevabımız C.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki öncüllü özellik kalıbı örnek alındı, art arda indirim bağlamı ve işlem özgün."
        }
       }
      }
@@ -360,127 +1701,490 @@
    },
    {
     "subtopic": "MAT_ISLEM_05",
-    "subtopics": [
-     "MAT_ISLEM_06"
-    ],
-    "title": "Birim ve ters eleman",
-    "narration": "Toplamada 0, çarpmada 1 hiçbir şeyi değiştirmez. Tanımlı bir işlemin de böyle bir birim elemanı olabilir.",
+    "title": "Birim eleman",
+    "narration": "Toplamada 0, çarpmada 1 hiçbir şeyi değiştirmez. Tanımlı bir işlemin de böyle bir elemanı olabilir.",
     "cards": [
      {
-      "kind": "rule",
-      "title": "Birim ve ters",
-      "items": [
-       "**Birim eleman** $e$: her $a$ için $a \\ast e = e \\ast a = a$. Toplamada 0, çarpmada 1.",
-       "Bulmak için $a \\ast e = a$ yaz ve $e$'yi çöz; sonuç $a$'ya **bağlı olmamalı**.",
-       "$a$'nın **tersi** $a^{-1}$: $a \\ast a^{-1} = e$. Toplamada $-a$, çarpmada $\\frac{1}{a}$.",
-       "Önce birimi bul, sonra tersi ara."
+      "kind": "concept",
+      "title": "Birim (etkisiz) eleman",
+      "text": "Her $a$ için $a \\ast e = e \\ast a = a$ oluyorsa $e$ **birim elemandır**: işleme girdiği sayıyı **hiç değiştirmez**.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "İşlem",
+        "Birim ile",
+        "Birim"
+       ],
+       "rows": [
+        [
+         "Toplama",
+         "$a + 0 = a$",
+         "$0$"
+        ],
+        [
+         "Çarpma",
+         "$a \\cdot 1 = a$",
+         "$1$"
+        ],
+        [
+         "$a \\ast b = a + b - 4$",
+         "$a \\ast 4 = a + 4 - 4 = a$",
+         "$4$"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "Toplamada 0 ekleyince sayı değişmez; birim 0.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Çarpmada 1 ile çarpınca sayı değişmez; birim 1.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "a yıldız b eşittir a artı b eksi 4 işleminde 4 ekleyip 4 çıkarırsın; birim 4.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
       ],
-      "narration": "Birim eleman e, her a için a yıldız e'yi a yapan elemandır. Toplamada birim eleman 0, çarpmada 1'dir. Bulmak için a yıldız e eşittir a yazar ve e'yi çözersin; bulduğun değer a'ya bağlı olmamalı. Bir elemanın tersi ise onunla işleme girince birim elemanı veren elemandır. Toplamada a'nın tersi eksi a, çarpmada 1 bölü a. Ters ararken önce birimi bulmak zorundasın."
+      "narration": "Bir e elemanı her a için a yıldız e'yi a yapıyorsa birim elemandır: işleme girdiği sayıyı hiç değiştirmez."
      },
      {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Gerçel sayılar üzerinde $a \\ast b = a + b - 4$ işlemi tanımlanıyor. Bu işleme göre 7'nin tersi kaçtır?",
-       "options": [
-        "$-1$",
-        "$1$",
-        "$3$",
-        "$4$",
-        "$7$"
+      "kind": "predict",
+      "title": "Birim hep 1 mi?",
+      "context": "$a \\ast b = \\frac{a \\cdot b}{2}$",
+      "prompt": "Bu işlemin birim elemanı kaçtır?",
+      "choices": [
+       "$1$",
+       "$2$",
+       "Yok"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Deneme",
+        "Hesap",
+        "Sonuç"
        ],
-       "answer": 1,
-       "narration": "Önce birimi, sonra tersi bulalım.",
+       "rows": [
+        [
+         "$5 \\ast 1$",
+         "$\\frac{5 \\cdot 1}{2}$",
+         "$2{,}5 \\neq 5$"
+        ],
+        [
+         "$5 \\ast 2$",
+         "$\\frac{5 \\cdot 2}{2}$",
+         "$5$ ✓"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "5 yıldız 1, 5 bölü 2, iki virgül beş; 5 değişti, 1 birim değil.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "5 yıldız 2, 10 bölü 2, 5; 5 değişmedi.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       }
+      ],
+      "explanation": "$\\frac{a \\cdot e}{2} = a$ ise $e = 2$: birim işleme göre değişir, **1 olmak zorunda değil**.",
+      "narration": "Şimdi sıra sende. Bir tahmin yap.",
+      "explanationNarration": "Birim eleman 2. a çarpı e bölü 2, a'ya eşitse e 2'dir. Birim işleme göre değişir, 1 olmak zorunda değil."
+     },
+     {
+      "kind": "rule",
+      "title": "Birimi bulmak",
+      "items": [
+       "**Eşitliği kur**: $a \\ast e = a$ yaz, $e$'yi çöz.",
+       "Bulduğun $e$ **sabit olmalı**: $e = a + 1$ gibi çıkarsa birim **yoktur**.",
+       "Değişmeli değilse **iki taraftan** dene: $e \\ast a = a$ da sağlanmalı.",
+       "Kısa yol: $a \\ast b = a + b + k$ ise **birim** $e = -k$."
+      ],
+      "narration": "Bir: eşitliği kur; a yıldız e eşittir a yaz, e'yi çöz. İki: bulduğun e sabit olmalı; e eşittir a artı 1 gibi çıkarsa birim yoktur. Üç: değişmeli değilse iki taraftan dene. Dört: kısa yol, a artı b artı k biçimindeki işlemde birim eksi k'dır."
+     },
+     {
+      "kind": "example",
+      "title": "Birimi bul",
+      "example": "Önce a yıldız e eşittir a yaz.",
+      "visual": {
+       "kind": "equation",
        "steps": [
         {
-         "text": "Birim: $a \\ast e = a + e - 4 = a \\Rightarrow e = 4$",
-         "narration": "a yıldız e eşittir a: a artı e eksi 4 eşittir a. a'lar gider, e eşittir 4. Birim eleman 4."
+         "left": "a + e + 3ae",
+         "right": "a"
         },
         {
-         "text": "Ters: $7 \\ast x = 7 + x - 4 = 4 \\Rightarrow x = 1$",
-         "narration": "7'nin tersi x olsun: 7 yıldız x birim elemana, yani 4'e eşit olmalı. 7 artı x eksi 4 eşittir 4; x eşittir 1."
+         "left": "e + 3ae",
+         "right": "0",
+         "operation": "−a"
         },
         {
-         "text": "Kontrol: $7 \\ast 1 = 4$ ✓. Cevap **B**.",
-         "narration": "Kontrol: 7 artı 1 eksi 4, 4; birim eleman. Cevabımız B. Birim elemanla tersi karıştıran 4'ü seçer; ters bulunurken 7 yıldız x, sıfıra değil birim eleman 4'e eşitlenir.",
-         "eliminate": [
-          "A",
-          "C",
-          "D",
-          "E"
-         ]
+         "left": "e(1 + 3a)",
+         "right": "0",
+         "operation": "ortak çarpan"
+        },
+        {
+         "left": "e",
+         "right": "0",
+         "operation": "her a için"
         }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; MEB anlatımındaki birim ve ters eleman tanımları ve havuzdaki kalıp örnek alındı, işlem özgün."
+       ]
+      },
+      "narration": "a yıldız b eşittir a artı b artı 3 a b işleminin birimini bulalım. Önce a yıldız e eşittir a yaz.",
+      "steps": [
+       {
+        "narration": "a artı e artı 3 a e, a'ya eşit olmalı.",
+        "text": "Birim tanımını yaz",
+        "stage": 0
+       },
+       {
+        "narration": "İki kefeden a çıkar: e artı 3 a e eşittir 0.",
+        "text": "İki kefeden a çıkar",
+        "stage": 1
+       },
+       {
+        "narration": "e'yi ortak paranteze al: e çarpı 1 artı 3 a, 0.",
+        "text": "**Ortak paranteze** al",
+        "stage": 2
+       },
+       {
+        "narration": "Bu her a için doğru olmalı; o hâlde e eşittir 0.",
+        "math": "e = 0",
+        "text": "**Her a için**",
+        "stage": 3
+       },
+       {
+        "narration": "1 artı 3 a'yı sıfırlamak a'yı bulmak olurdu; birim a'ya bağlı olamaz.",
+        "text": "Birim a'ya bağlı olmaz",
+        "stage": 3
        }
-      }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Birimi iki taraftan dene",
+      "wrong": "$a \\ast b = a + 2b$ işleminde birim eleman 0'dır.",
+      "right": "Yalnız sağdan çalışır: $a \\ast 0 = a$, ama $0 \\ast a = 2a$. Birim eleman **yoktur**.",
+      "why": "Birim eleman **iki taraftan** da sayıyı değiştirmemeli.",
+      "narration": "a yıldız b eşittir a artı 2 b işleminde a yıldız e eşittir a yazınca e sıfır çıkar ve birim 0 sanılır. Yalnız sağdan çalışır: a yıldız 0, a; ama 0 yıldız a, 2 a. Birim eleman iki taraftan da sayıyı değiştirmemeli."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Sıfırdan farklı gerçel sayılar üzerinde $a \\ast b = \\frac{a \\cdot b}{2}$ işlemi tanımlanıyor. Bu işleme göre 4'ün tersi kaçtır?",
+       "stem": "Gerçel sayılar üzerinde $a \\ast b = a + b + 5$ işlemi tanımlanıyor. Bu işleme göre birim (etkisiz) eleman kaçtır?",
        "options": [
-        "$\\frac{1}{4}$",
-        "$\\frac{1}{2}$",
-        "$1$",
-        "$2$",
-        "$4$"
-       ],
-       "answer": 2,
-       "narration": "Bir çarpma benzeri işlemde birim ve ters.",
-       "steps": [
-        {
-         "text": "Birim: $\\frac{a \\cdot e}{2} = a \\Rightarrow e = 2$",
-         "narration": "a yıldız e eşittir a: a çarpı e bölü 2, a'ya eşit. İki tarafı a'ya bölüp 2 ile çarparız: e eşittir 2. Birim eleman 1 değil, 2."
-        },
-        {
-         "text": "Ters: $\\frac{4 \\cdot x}{2} = 2 \\Rightarrow 2x = 2 \\Rightarrow x = 1$",
-         "narration": "4'ün tersi x olsun: 4 yıldız x birim elemana, yani 2'ye eşit olmalı. 4 x bölü 2, 2 x; 2 x eşittir 2; x eşittir 1."
-        },
-        {
-         "text": "Kontrol: $4 \\ast 1 = 2$ ✓. Cevap **C**. Alışkanlıkla $\\frac{1}{4}$ diyen birimi 1 sanmıştır.",
-         "narration": "Kontrol: 4 çarpı 1 bölü 2, 2; birim eleman. Cevabımız C. Çarpmadaki alışkanlıkla dörtte bir diyen, birim elemanı 1 sanmıştır.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki birim ve ters eleman kalıbı örnek alındı, işlem özgün."
-       }
-      }
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Gerçel sayılar üzerinde $a \\ast b = a + b + 3ab$ işlemi tanımlanıyor. Bu işleme göre **birim (etkisiz) eleman** kaçtır?",
-       "options": [
+        "$-10$",
+        "$-5$",
         "$0$",
         "$1$",
-        "$-\\frac{1}{3}$",
-        "$3$",
-        "$-3$"
+        "$5$"
        ],
-       "answer": 0,
-       "narration": "Birim eleman e için her a'da a yıldız e, a'ya eşit olmalı.",
+       "answer": 1,
+       "narration": "Kısa yolu da sınayalım.",
        "steps": [
         {
-         "text": "$a \\ast e = a$ → $a + e + 3ae = a$ → $e + 3ae = 0$.",
-         "narration": "a yıldız e eşittir a yazalım: a artı e artı üç a e eşittir a. a'lar sadeleşir: e artı üç a e sıfır."
+         "text": "$a + e + 5 = a \\Rightarrow e = -5$",
+         "narration": "a yıldız e eşittir a: a artı e artı 5 eşittir a; e eşittir eksi 5."
         },
         {
-         "text": "$e(1 + 3a) = 0$ **her** $a$ için → $e = 0$.",
-         "narration": "e'yi ortak paranteze alırsak e çarpı bir artı üç a sıfır. Bu her a için doğru olmalı; bir artı üç a, a'ya göre değişir. Bu yüzden e sıfır olmalı. Birim eleman a'ya bağlı olamaz."
+         "text": "Kontrol: $a + (-5) + 5 = a$ ✓; işlem değişmeli. Cevap **B**.",
+         "narration": "Kontrol: a artı eksi 5 artı 5, a. İşlem değişmeli olduğu için öbür taraf da tutar. Cevabımız B. Alışkanlıkla 0 diyen toplamanın birimini almıştır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki birim eleman tanımı ve havuzdaki kalıp örnek alındı, işlem özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir bilgisayar oyununda gücü $a$ ve $b$ olan iki karakter takım kurduğunda takımın gücü $a \\ast b = ab - 3a - 3b + 12$ ile hesaplanıyor. Bir karakter, hangi karakterle takım kurarsa kursun onun gücünü hiç değiştirmiyorsa oyunda bu karaktere gölge deniyor. Buna göre gölge karakterin gücü kaçtır?",
+       "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "12"
+       ],
+       "answer": 3,
+       "narration": "Hikâyedeki tanımı matematiğe çevirelim.",
+       "steps": [
+        {
+         "text": "Gölge = birim eleman: $a \\ast e = a$",
+         "narration": "Gölge, takım kurduğu herkesin gücünü değiştirmiyor; bu, işlemin birim elemanı.",
+         "mark": [
+          "hiç değiştirmiyorsa"
+         ]
         },
         {
-         "text": "Kontrol: $a \\ast 0 = a + 0 + 0 = a$ ✓. Cevap **A**.",
-         "narration": "Kontrol edelim: a yıldız sıfır, a artı sıfır artı sıfır, a. Doğru. Cevabımız A. Eksi üçte biri seçen, e'yi bulmak için yanlışlıkla bir artı üç a'yı sıfıra eşitlemiştir; bu, a'yı bulmak olur.",
+         "text": "$ae - 3a - 3e + 12 = a \\Rightarrow e(a - 3) = 4(a - 3)$",
+         "narration": "a yıldız e eşittir a yaz ve düzenle: e çarpı a eksi 3, 4 çarpı a eksi 3'e eşit çıkar."
+        },
+        {
+         "text": "$e = 4$. Kontrol: $7 \\ast 4 = 28 - 21 - 12 + 12 = 7$ ✓. Cevap **D**.",
+         "narration": "Her a için e eşittir 4. Kontrol: 7 yıldız 4, 28 eksi 21 eksi 12 artı 12, 7. Cevabımız D. Sabit terimi birim sanan 12'yi, a eksi 3'ü sıfırlayan 3'ü seçer.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki birim eleman kalıbı örnek alındı, oyun bağlamı ve işlem özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_ISLEM_06",
+    "title": "Ters eleman",
+    "narration": "Bir sayıyla işleme girip seni birim elemana götüren sayı, o sayının tersidir.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Ters eleman",
+      "text": "$a \\ast x = x \\ast a = e$ oluyorsa $x$'e $a$'nın **tersi** denir ve $a^{-1}$ diye yazılır. Ters, **birim elemanı** verir.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "İşlem",
+        "Tersiyle",
+        "Birim"
+       ],
+       "rows": [
+        [
+         "Toplama",
+         "$5 + (-5) = 0$",
+         "$0$"
+        ],
+        [
+         "Çarpma",
+         "$5 \\cdot \\frac{1}{5} = 1$",
+         "$1$"
+        ],
+        [
+         "$a \\ast b = a + b - 4$",
+         "$7 \\ast 1 = 7 + 1 - 4 = 4$",
+         "$4$"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "Toplamada birim 0: 5 ile eksi 5, 0 verir; 5'in tersi eksi 5.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Çarpmada birim 1: 5 ile beşte bir, 1 verir.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "a artı b eksi 4 işleminde birim 4: 7 ile 1, 4 verir; 7'nin tersi 1.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ],
+      "narration": "Bir sayıyla işleme girip birim elemanı veren sayıya onun tersi denir. a'nın tersi a üzeri eksi 1 diye yazılır."
+     },
+     {
+      "kind": "predict",
+      "title": "5'in tersi",
+      "context": "$a \\ast b = a + b - 4$, birim eleman $4$",
+      "prompt": "Bu işleme göre 5'in tersi kaçtır?",
+      "choices": [
+       "$-5$",
+       "$3$",
+       "$4$"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "equation",
+       "steps": [
+        {
+         "left": "5 + x - 4",
+         "right": "4"
+        },
+        {
+         "left": "x + 1",
+         "right": "4",
+         "operation": "sadeleştir"
+        },
+        {
+         "left": "x",
+         "right": "3",
+         "operation": "−1"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "5'in tersi x olsun: 5 artı x eksi 4, birim elemana, yani 4'e eşit.",
+        "stage": 0
+       },
+       {
+        "narration": "Sadeleştir: x artı 1 eşittir 4.",
+        "stage": 1
+       },
+       {
+        "narration": "x eşittir 3.",
+        "stage": 2
+       }
+      ],
+      "explanation": "Ters, **birim elemanı** verir: $5 \\ast 3 = 4$. $-5$ toplamanın tersidir, bu işlemin değil.",
+      "narration": "Şimdi sıra sende. Bir tahmin yap.",
+      "explanationNarration": "5'in tersi 3. Kontrol: 5 artı 3 eksi 4, 4. Eksi 5 toplamanın tersidir, bu işlemin değil; 4 ise birimin kendisi."
+     },
+     {
+      "kind": "rule",
+      "title": "Tersi bulmak",
+      "items": [
+       "**Önce birimi bul**; birim yoksa ters de yoktur.",
+       "$a \\ast x = e$ yaz ve $x$'i çöz: **birime eşitle**, sıfıra değil.",
+       "Birimin tersi **kendisidir**: $e \\ast e = e$.",
+       "Her elemanın tersi olmayabilir: çarpmada **0'ın tersi yoktur**.",
+       "Kısa yol: $a \\ast b = a + b + k$ ise **a'nın tersi** $-a - 2k$."
+      ],
+      "narration": "Bir: önce birimi bul; birim yoksa ters de yoktur. İki: a yıldız x eşittir e yaz ve x'i çöz; birime eşitle, sıfıra değil. Üç: birimin tersi kendisidir. Dört: her elemanın tersi olmayabilir; çarpmada 0'ın tersi yoktur. Beş: kısa yol, a artı b artı k işleminde a'nın tersi eksi a eksi 2 k."
+     },
+     {
+      "kind": "example",
+      "title": "Çarpma benzeri işlemde ters",
+      "example": "Önce birim, sonra ters.",
+      "narration": "a yıldız b eşittir a çarpı b bölü 2 işleminde 4'ün tersini bulalım. Önce birim, sonra ters.",
+      "steps": [
+       {
+        "narration": "Birimi az önce bulmuştuk: a çarpı e bölü 2, a'ya eşitse e eşittir 2.",
+        "math": "\\frac{a \\cdot e}{2} = a \\Rightarrow e = 2",
+        "text": "Önce birim"
+       },
+       {
+        "narration": "4'ün tersi x olsun: 4 çarpı x bölü 2, birim olan 2'ye eşit.",
+        "math": "\\frac{4 \\cdot x}{2} = 2",
+        "text": "Sonra ters"
+       },
+       {
+        "narration": "2 x eşittir 2, x eşittir 1. Dörtte bir değil, 1.",
+        "math": "2x = 2 \\Rightarrow x = 1",
+        "text": "4'ün tersi **1**"
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Tersi olmayan eleman",
+      "example": "Eksi 1'in tersi var mı?",
+      "narration": "a yıldız b eşittir a artı b artı a b işleminde bakalım. Eksi 1'in tersi var mı?",
+      "steps": [
+       {
+        "narration": "Önce birim: a artı e artı a e eşittir a; e çarpı 1 artı a, 0. Birim 0.",
+        "math": "a + e + ae = a \\Rightarrow e = 0",
+        "text": "Önce birim"
+       },
+       {
+        "narration": "3'ün tersi: 3 artı x artı 3 x eşittir 0, x eşittir eksi dörtte üç.",
+        "math": "3 + x + 3x = 0 \\Rightarrow x = -\\frac{3}{4}",
+        "text": "3'ün tersi var"
+       },
+       {
+        "narration": "Eksi 1'in tersi: eksi 1 artı x eksi x eşittir 0, yani eksi 1 eşittir 0.",
+        "math": "-1 + x - x = 0",
+        "text": "$-1 = 0$ olamaz ✗"
+       },
+       {
+        "narration": "Bu bir çelişki; eksi 1'in tersi yok.",
+        "text": "$-1$'in **tersi yok**"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Ters sıfır vermez",
+      "wrong": "Bir sayının tersi, onunla işleme girince 0 veren sayıdır.",
+      "right": "Ters, **birim elemanı** veren sayıdır; birim 0 değilse sonuç da 0 olmaz.",
+      "why": "Yalnız birimi 0 olan işlemlerde ters 0 verir; toplama gibi.",
+      "narration": "Çok yapılan hata şu: tersi, işleme girince 0 veren sayı sanmak. Ters, birim elemanı veren sayıdır; birim 0 değilse sonuç da 0 olmaz. Yalnız birimi 0 olan işlemlerde ters 0 verir; toplama gibi."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Gerçel sayılar üzerinde $a \\ast b = a + b + 6$ işlemi tanımlanıyor. Bu işleme göre 2'nin tersi kaçtır?",
+       "options": [
+        "$-14$",
+        "$-8$",
+        "$-6$",
+        "$-2$",
+        "$2$"
+       ],
+       "answer": 0,
+       "narration": "Önce birim, sonra ters.",
+       "steps": [
+        {
+         "text": "Birim: $a + e + 6 = a \\Rightarrow e = -6$",
+         "narration": "Önce birim: a artı e artı 6 eşittir a; e eşittir eksi 6."
+        },
+        {
+         "text": "$2 + x + 6 = -6 \\Rightarrow x = -14$. Cevap **A**.",
+         "narration": "2'nin tersi x: 2 artı x artı 6, eksi 6'ya eşit; x eşittir eksi 14. Cevabımız A. Sıfıra eşitleyen eksi 8'i, toplamanın tersini alan eksi 2'yi bulur.",
          "eliminate": [
           "B",
           "C",
@@ -490,7 +2194,91 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki birim eleman tanımı ve \"birim eleman a'ya bağlı olamaz\" uyarısı özgün bir işlemle soruldu."
+        "changes": "Bu ders için yazıldı; havuzdaki ters eleman kalıbı örnek alındı, işlem ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Sıfırdan farklı gerçel sayılar üzerinde $a \\ast b = \\frac{a \\cdot b}{3}$ işlemi tanımlanıyor. Bu işleme göre 6'nın tersi kaçtır?",
+       "options": [
+        "$\\frac{1}{6}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{3}{2}$",
+        "$2$",
+        "$3$"
+       ],
+       "answer": 2,
+       "narration": "Çarpmaya benzeyen bir işlem; birim 1 olmayabilir.",
+       "steps": [
+        {
+         "text": "Birim: $\\frac{a \\cdot e}{3} = a \\Rightarrow e = 3$",
+         "narration": "Birim: a çarpı e bölü 3, a'ya eşit; e eşittir 3."
+        },
+        {
+         "text": "$\\frac{6x}{3} = 3 \\Rightarrow 2x = 3 \\Rightarrow x = \\frac{3}{2}$",
+         "narration": "6'nın tersi x: 6 x bölü 3, yani 2 x, birim olan 3'e eşit; x eşittir ikide üç."
+        },
+        {
+         "text": "Cevap **C**. $\\frac{1}{6}$ çarpmanın tersi; $\\frac{1}{2}$ birimi 1 sanınca çıkar.",
+         "narration": "Cevabımız C. Altıda bir çarpmanın tersidir; ikide bir, birimi 1 sanıp 2 x eşittir 1 yazınca çıkar.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki birim ve ters eleman kalıbı örnek alındı, işlem ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kart oyununda puanı $a$ ve $b$ olan iki kart birleştirildiğinde yeni kartın puanı $a \\ast b = a + b - 5$ ile bulunuyor. Hangi kartla birleşirse birleşsin onun puanını değiştirmeyen karta **nötr kart**, bir kartla birleşince nötr kartın puanını veren karta da o kartın **eş kartı** deniyor. Puanı 8 olan kart ile eş kartının puanları toplamı kaçtır?",
+       "options": [
+        "8",
+        "10",
+        "13",
+        "16",
+        "20"
+       ],
+       "answer": 1,
+       "narration": "Hikâyenin içindeki birimi ve tersi bulalım.",
+       "steps": [
+        {
+         "text": "Nötr kart = birim: $a + e - 5 = a \\Rightarrow e = 5$",
+         "narration": "Nötr kart birim eleman: a artı e eksi 5 eşittir a, e eşittir 5.",
+         "mark": [
+          "nötr kart"
+         ]
+        },
+        {
+         "text": "Eş kart = ters: $8 + x - 5 = 5 \\Rightarrow x = 2$",
+         "narration": "Eş kart ters eleman: 8 artı x eksi 5, nötr kartın puanı olan 5'e eşit; x eşittir 2.",
+         "mark": [
+          "eş kartı"
+         ]
+        },
+        {
+         "text": "$8 + 2 = 10$. Cevap **B**.",
+         "narration": "Toplam 8 artı 2, 10. Cevabımız B. Eş kart yerine nötr kartı alan 13'ü bulur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki birim ve ters eleman kalıbı, yeni tanımlanmış kavramlarla (nötr kart, eş kart) ÖSYM tarzı bir bağlama taşındı; işlem ve sayılar özgün."
        }
       }
      }
@@ -499,11 +2287,12 @@
    {
     "subtopic": "MAT_ISLEM_07",
     "title": "İşlem tablosu",
-    "narration": "Sonlu bir kümede işlem bir tabloyla da verilebilir. Bu durumda hesap yapmazsın; tablodan okursun. Birim elemanı, tersleri ve değişme özelliğini tablonun biçiminden anlarsın.",
+    "narration": "Sonlu bir kümede işlem bir tabloyla verilebilir. O zaman hesap yapmazsın, tablodan okursun.",
     "cards": [
      {
-      "kind": "visual",
-      "title": "Tabloyu oku",
+      "kind": "concept",
+      "title": "Tabloyu okumak",
+      "text": "Sonlu bir kümede işlem **tabloyla** verilebilir: **satırdaki** eleman $a$, **sütundaki** eleman $b$, kesiştikleri kutu $a \\ast b$.",
       "visual": {
        "kind": "table",
        "header": [
@@ -542,105 +2331,375 @@
          "4",
          "1"
         ]
-       ],
-       "highlightColumn": 3
+       ]
       },
-      "caption": "Satırdaki sayı $a$, sütundaki $b$, kesiştikleri kutu $a \\ast b$.",
-      "narration": "Tabloda satırdaki sayı a, sütundaki sayı b'dir; kesiştikleri kutu a yıldız b'yi verir.",
       "beats": [
        {
-        "narration": "Birim elemanı bulmak için başlık satırının aynısı olan satırı ararsın. 3'ün satırı 1, 2, 3, 4: başlıkla aynı. Birim eleman 3.",
+        "narration": "Bu tablo 1, 2, 3, 4 kümesinde bir yıldız işlemi tanımlıyor.",
         "show": [
-         "r3"
-        ],
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ]
+       },
+       {
+        "narration": "2 yıldız 4'e bakalım: 2'nin satırı ile 4'ün sütunu 3'te kesişir.",
         "focus": [
-         "r3"
+         "r2",
+         "col5"
         ]
        },
        {
-        "show": [
-         "r1"
-        ],
+        "narration": "4 yıldız 2 için 4'ün satırına, 2'nin sütununa git: o da 3.",
         "focus": [
-         "r1"
-        ],
-        "narration": "Bir elemanın tersi, satırında birim elemanı, yani 3'ü veren sütundur. 1'in satırında 3, 1. sütunda: 1'in tersi 1."
-       },
-       {
-        "show": [
-         "r2"
-        ],
-        "focus": [
-         "r2"
-        ],
-        "narration": "2'nin satırında 3, 4. sütunda: 2'nin tersi 4."
-       },
-       {
-        "narration": "Tablo köşegene göre simetrikse, yani a yıldız b ile b yıldız a hep aynıysa işlem değişmelidir. Bu tablo simetrik.",
-        "show": [
-         "r4"
-        ],
-        "focus": [
-         "r4"
+         "r4",
+         "col3"
         ]
+       }
+      ],
+      "narration": "Sonlu bir kümede işlem tabloyla verilebilir. Satırdaki eleman a, sütundaki eleman b; kesiştikleri kutu a yıldız b."
+     },
+     {
+      "kind": "visual",
+      "title": "Birim, ters ve simetri",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "∗",
+        "1",
+        "2",
+        "3",
+        "4"
+       ],
+       "rows": [
+        [
+         "1",
+         "3",
+         "4",
+         "1",
+         "2"
+        ],
+        [
+         "2",
+         "4",
+         "1",
+         "2",
+         "3"
+        ],
+        [
+         "3",
+         "1",
+         "2",
+         "3",
+         "4"
+        ],
+        [
+         "4",
+         "2",
+         "3",
+         "4",
+         "1"
+        ]
+       ]
+      },
+      "caption": "Birim, satırı ve sütunu başlıkla aynı olan elemandır.",
+      "beats": [
+       {
+        "narration": "3'ün satırı 1, 2, 3, 4; başlıkla aynı. Sütunu da aynı. Birim eleman 3.",
+        "focus": [
+         "r3",
+         "col4"
+        ]
+       },
+       {
+        "narration": "2'nin tersi için 2'nin satırında birim olan 3'ü ara; 4'ün sütununda. 2'nin tersi 4.",
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "1'in satırında 3, 1'in sütununda duruyor: 1'in tersi kendisi.",
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "1'in satırı ile 1'in sütunu aynı sayılar: 3, 4, 1, 2. Tablo köşegene göre simetrik, işlem değişmeli.",
+        "focus": [
+         "r1",
+         "col2"
+        ]
+       }
+      ],
+      "narration": "Şimdi aynı tablodan birimi, tersleri ve değişmeyi okuyalım."
+     },
+     {
+      "kind": "rule",
+      "title": "Tablodan okunanlar",
+      "items": [
+       "**Birim**: satırı ve sütunu **başlıkla aynı** olan eleman.",
+       "**Ters**: $a$'nın satırında **birimin bulunduğu** sütun.",
+       "**Değişme**: tablo **köşegene göre simetrik** ise vardır.",
+       "**Kapalılık**: tablodaki **her sonuç kümede** ise vardır."
+      ],
+      "narration": "Bir: birim, satırı ve sütunu başlıkla aynı olan elemandır. İki: ters, a'nın satırında birimin bulunduğu sütundur. Üç: değişme, tablo köşegene göre simetrik ise vardır. Dört: kapalılık, tablodaki her sonuç kümede ise vardır."
+     },
+     {
+      "kind": "example",
+      "title": "Tablodan ifade hesabı",
+      "example": "Önce parantez, sonra ters.",
+      "narration": "Aynı tablodan 2 yıldız 4, yıldız 2'nin tersini hesaplayalım. Önce parantez, sonra ters.",
+      "steps": [
+       {
+        "narration": "Parantez: 2 yıldız 4, tablodan 3.",
+        "math": "2 \\ast 4 = 3",
+        "text": "2'nin satırı, 4'ün sütunu"
+       },
+       {
+        "narration": "2'nin tersi: 2'nin satırında 3, 4'ün sütununda; 2'nin tersi 4.",
+        "text": "Birim 3, **2'nin satırında**: 2'nin tersi 4"
+       },
+       {
+        "narration": "Şimdi 3 yıldız 4: 3 birim olduğu için sonuç 4.",
+        "math": "3 \\ast 4 = 4",
+        "text": "**3 birim**"
        }
       ]
      },
      {
       "kind": "mistake",
-      "title": "Birimi iki taraftan kontrol et",
-      "wrong": "$a \\ast b = ab + a$ işleminde $a \\ast e = a$'dan $e = 0$; birim eleman 0'dır.",
-      "right": "$ae + a = a \\Rightarrow ae = 0 \\Rightarrow e = 0$, ama **diğer taraftan** $e \\ast a = 0 \\cdot a + 0 = 0 \\neq a$. Birim eleman **yoktur**.",
-      "why": "Birim eleman **iki taraftan** da çalışmalı: $a \\ast e = e \\ast a = a$.",
-      "narration": "Birim elemanı iki taraftan da kontrol et. a yıldız b eşittir a b artı a işleminde a yıldız e eşittir a'dan e sıfır çıkar. Ama e yıldız a'ya bakalım: 0 çarpı a artı 0, 0 eder; a değil. Birim eleman iki taraftan da çalışmadığı için bu işlemin birim elemanı yoktur."
+      "title": "Satırla sütunu karıştırma",
+      "wrong": "Tabloda $2 \\ast 3$ ile $3 \\ast 2$ her zaman aynı yerdedir.",
+      "right": "Satır $a$, sütun $b$: $2 \\ast 3$ ikinci satırda, $3 \\ast 2$ üçüncü satırdadır.",
+      "why": "Değişme özelliği yoksa satırla sütunu karıştırmak **cevabı değiştirir**.",
+      "narration": "Şöyle düşünülür: tabloda 2 yıldız 3 ile 3 yıldız 2 aynı yerdedir. Satır a, sütun b: 2 yıldız 3 ikinci satırda, 3 yıldız 2 üçüncü satırdadır. Değişme özelliği yoksa satırla sütunu karıştırmak cevabı değiştirir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\{1, 2, 3, 4\\}$ kümesinde tanımlanan $\\ast$ işleminin tablosu şekilde verilmiştir. Tabloda satırdaki eleman işlemde soldaki, sütundaki eleman sağdaki elemandır. $x \\ast 4 = 1 \\ast 2$ olduğuna göre $(x \\ast 1) + (4 \\ast x)$ toplamı kaçtır?",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "∗",
+         "1",
+         "2",
+         "3",
+         "4"
+        ],
+        "rows": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "1"
+         ],
+         [
+          "2",
+          "4",
+          "1",
+          "2",
+          "3"
+         ],
+         [
+          "3",
+          "1",
+          "2",
+          "3",
+          "4"
+         ],
+         [
+          "4",
+          "3",
+          "4",
+          "1",
+          "2"
+         ]
+        ]
+       },
+       "options": [
+        "2",
+        "5",
+        "6",
+        "7",
+        "8"
+       ],
+       "answer": 4,
+       "narration": "Bu tablo simetrik değil; satır ile sütuna dikkat.",
+       "steps": [
+        {
+         "text": "$1 \\ast 2$: 1'in satırı, 2'nin sütunu → $3$",
+         "narration": "Önce sağ taraf: 1 yıldız 2, 1'in satırı ile 2'nin sütunu; 3."
+        },
+        {
+         "text": "$x \\ast 4 = 3$: 4'ün sütununda 3 yalnız 2'nin satırında → $x = 2$",
+         "narration": "Şimdi x yıldız 4 eşittir 3. x satırda, 4 sütunda; 4'ün sütununda 3 yalnız 2'nin satırında. x eşittir 2."
+        },
+        {
+         "text": "$(2 \\ast 1) + (4 \\ast 2) = 4 + 4 = 8$. Cevap **E**.",
+         "narration": "2 yıldız 1, 4; 4 yıldız 2, 4. Toplam 8. Cevabımız E. Satırla sütunu karıştıran x'i 1 bulur ve 5'e ulaşır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki işlem tablosu okuma kalıbı örnek alındı, simetrik olmayan tablo ve sorulan ifade özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir robot kolu yalnızca 0, 90, 180 ve 270 derecelik dönüşler yapabilmektedir. Art arda yapılan $a$ ve $b$ derecelik iki dönüş $a \\ast b$ ile gösterilir; toplam dönüş 360'tan küçükse aynen, değilse 360 çıkarılarak yazılır. Bu işlemin tablosu şekilde verilmiştir. Buna göre aşağıdakilerden hangisi yanlıştır?",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "∗",
+         "0",
+         "90",
+         "180",
+         "270"
+        ],
+        "rows": [
+         [
+          "0",
+          "0",
+          "90",
+          "180",
+          "270"
+         ],
+         [
+          "90",
+          "90",
+          "180",
+          "270",
+          "0"
+         ],
+         [
+          "180",
+          "180",
+          "270",
+          "0",
+          "90"
+         ],
+         [
+          "270",
+          "270",
+          "0",
+          "90",
+          "180"
+         ]
+        ]
+       },
+       "options": [
+        "Birim eleman 0'dır.",
+        "90'ın tersi 270'tir.",
+        "İşlem değişmelidir.",
+        "$270 \\ast 270 = 90$'dır.",
+        "180'in tersi kendisidir."
+       ],
+       "answer": 3,
+       "narration": "Her ifadeyi tablodan doğrulayalım.",
+       "steps": [
+        {
+         "text": "0'ın satırı başlıkla aynı → birim 0: **A doğru**.",
+         "narration": "0'ın satırı başlıkla aynı; birim 0. A doğru.",
+         "eliminate": [
+          "A"
+         ]
+        },
+        {
+         "text": "$90 \\ast 270 = 0$ ve $180 \\ast 180 = 0$ → **B ve E doğru**.",
+         "narration": "90 yıldız 270, 0; 180 yıldız 180, 0. İkisi de birimi veriyor; B ve E doğru.",
+         "eliminate": [
+          "B",
+          "E"
+         ]
+        },
+        {
+         "text": "Tablo köşegene göre simetrik → **C doğru**.",
+         "narration": "Tablo köşegene göre simetrik; art arda dönüşte sıra fark etmez. C doğru.",
+         "eliminate": [
+          "C"
+         ]
+        },
+        {
+         "text": "$270 + 270 = 540$, $540 - 360 = 180 \\neq 90$ → **D yanlış**. Cevap **D**.",
+         "narration": "270 artı 270, 540; 360 çıkarınca 180. 90 değil, yanlış olan D. Cevabımız D."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki tablodan birim, ters ve değişme okuma kalıbı örnek alındı, robot kolu bağlamı ve tablo özgün."
+       }
+      }
      }
     ]
    }
   ],
   "summary": {
    "points": [
-    "Tanımlı işlemde harfler **yer tutucudur**; sıra önemlidir.",
-    "Parantez varsa **içeriden** başla.",
-    "Değişme için $a$ ile $b$'nin yerini değiştir; ifade aynı mı?",
-    "Birim $e$: $a \\ast e = e \\ast a = a$; $a$'ya bağlı olmamalı.",
-    "Tersi: $a \\ast a^{-1} = e$. Önce birimi bul.",
-    "Tabloda birim, satırı **başlıkla aynı** olan eleman."
+    "Tanımlı işlemde harfler **yer tutucudur**: ilk sayı $a$, ikinci sayı $b$.",
+    "Şekilli gösterimde **konumu** tanımla eşleştir; iç içe şekilde **en içten** başla.",
+    "**Kapalılık**: her sonuç kümede olmalı; tek karşı örnek bozar.",
+    "**Değişme** için yer değiştir; **birleşme** için iki gruplamayı harfle aç.",
+    "**Birim** $e$: $a \\ast e = e \\ast a = a$; sabit olmalı.",
+    "**Ters**, birim elemanı verir; önce birimi bul.",
+    "Tabloda birim, satırı **başlıkla aynı** olan eleman; simetri değişmeyi gösterir."
    ],
    "warnings": [
-    "$3 \\triangle 1 \\neq 1 \\triangle 3$ olabilir.",
-    "Birimi **iki taraftan** kontrol et.",
-    "Ters, birim elemanı verir; sıfırı değil.",
-    "Bir karşı örnek özelliği yıkar."
+    "Büyük sayı $a$ değildir; sıra **yazıldığı gibi**.",
+    "Birimi **iki taraftan** dene.",
+    "Ters, **sıfırı** değil birimi verir.",
+    "Tek örnek özelliği kanıtlamaz, ancak **yıkar**."
    ],
-   "narration": "Hadi toparlayalım. Tanımlı işlemde harfler yer tutucudur ve sıra önemlidir; parantez varsa içeriden başla. Değişme özelliğini sınamak için a ile b'nin yerini değiştir. Birim eleman her elemanı değiştirmeyen elemandır ve iki taraftan da çalışmalıdır. Bir elemanın tersi onunla birlikte birim elemanı verir; bu yüzden önce birimi bulursun. İşlem tablosunda birim eleman, satırı başlık satırıyla aynı olan elemandır."
+   "narration": "Hadi toparlayalım. Tanımlı işlemde harfler yer tutucudur; ilk sayı a'nın, ikinci sayı b'nin yerine geçer. Şekilli gösterimde konumu eşleştir, iç içe şekilde en içten başla. Kapalılığı tek bir karşı örnek bozar. Değişme için yer değiştir, birleşme için iki gruplamayı harfle aç. Birim eleman iki taraftan da sayıyı değiştirmez; ters, birim elemanı verir. Tabloda birim, satırı başlıkla aynı olan elemandır."
   }
  },
  "short": {
-  "hook": "İşlemde üç tuzak.",
+  "hook": "Bu işlemin tersi var mı?",
   "cards": [
    {
-    "kind": "fact",
-    "text": "Harfler **yer tutucudur**: önce sırayı eşleştir."
+    "kind": "term",
+    "term": "Birim eleman",
+    "definition": "Sayıyı **değiştirmeyen** eleman: $a \\ast e = a$."
    },
    {
     "kind": "warning",
-    "text": "Birim eleman **iki taraftan** çalışmalı."
+    "text": "Ters, **birimi** verir; sıfırı değil."
    },
    {
     "kind": "fact",
-    "text": "Ters, **birim** elemanı verir."
+    "text": "Simetrik tablo: işlem **değişmeli**."
    },
    {
     "kind": "fact",
-    "text": "Simetrik tablo: **değişme** var."
+    "text": "İç içe şekilde **en içten** başla."
    }
   ],
   "summary": [
-   "Sıra önemli",
    "Birimi iki taraftan dene",
-   "Ters birimi verir"
+   "Ters birimi verir",
+   "Sıra yazıldığı gibi"
   ],
   "rounds": [
+   {
+    "sentence": "Çarpmada **birim**",
+    "question": "Sıfır mı?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "Birim **1**."
+   },
    {
     "sentence": "$a \\ast b = a - b$",
     "question": "Değişmeli mi?",
@@ -652,24 +2711,14 @@
     "why": "Sıra **önemli**."
    },
    {
-    "sentence": "Toplamada birim eleman",
-    "question": "Kaç?",
+    "sentence": "Çarpmada **0**",
+    "question": "Tersi var mı?",
     "choices": [
-     "0",
-     "1"
-    ],
-    "answer": 0,
-    "why": "Sıfır **değiştirmez**."
-   },
-   {
-    "sentence": "Çarpmada 5'in tersi",
-    "question": "Eksi 5 mi?",
-    "choices": [
-     "Evet",
-     "Hayır"
+     "Var",
+     "Yok"
     ],
     "answer": 1,
-    "why": "**Beşte bir**."
+    "why": "**Sıfırın** tersi yok."
    }
   ]
  },

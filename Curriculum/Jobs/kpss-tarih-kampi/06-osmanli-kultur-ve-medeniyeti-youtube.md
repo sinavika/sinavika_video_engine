@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Tarih kampı · Ders 6 · Osmanlı Kültür ve Medeniyeti
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Tarih/06_OsmanliKultur/OsmanliKultur_YouTube.mp4` (4K) · Kapak: `OsmanliKultur_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Tarih/06_OsmanliKultur/OsmanliKultur_YouTube.mp4` (4K) · Kapak: `OsmanliKultur_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

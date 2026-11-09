@@ -15,7 +15,8 @@ import {VisualTimelineProvider} from '../../../../Components/Visuals/VisualTimel
 import {BRAND_TYPOGRAPHY} from '../../../../Configurations/BrandTypography';
 import {COURSE_DESIGN} from '../../../../Courses/CourseDesign';
 import type {CardCues, Cues} from '../../../../Courses/LessonCue';
-import type {LessonCard} from '../../../../Courses/LessonScript';
+import {cardBeats, type ExampleStep, type LessonCard} from '../../../../Courses/LessonScript';
+import {MathExpression} from '../../../../Components/Typography/MathExpression';
 import {CHROME_HEIGHT, SPACING} from '../../../../Themes/DesignTokens';
 import {withAlpha} from '../../../../Themes/Theme';
 import {useTheme} from '../../../../Themes/ThemeContext';
@@ -77,7 +78,44 @@ const WrongBelief: React.FC<{text: string; struckAt: number}> = ({text, struckAt
 	);
 };
 
-const CardText: React.FC<{card: TextCard; cues?: CardCues}> = ({card, cues}) => {
+/**
+ * A worked example's solution, written line by line as each step is said. Every line has its place from the start
+ * (nothing moves when the next arrives); the line being said carries the lesson tint and its number grows, the lines
+ * before it stay readable. Without times (a still), the lines come in one after another.
+ */
+const WorkedSteps: React.FC<{steps: readonly ExampleStep[]; starts?: readonly number[]}> = ({steps, starts}) => {
+	const {colors, typography} = useTheme();
+	const {u} = useVideoLayout();
+	const seconds = useSceneSeconds();
+	const lesson = colors.lesson?.fill ?? colors.accent;
+	const at = (index: number) => starts?.[index] ?? 0.8 + index * 0.9;
+	return (
+		<div style={{display: 'flex', flexDirection: 'column', gap: u(10)}} data-worked-steps={steps.length}>
+			{steps.map((step, index) => {
+				const show = easeFrom(seconds, at(index), 0.45);
+				const next = index + 1 < steps.length ? at(index + 1) : undefined;
+				const active = next === undefined ? show : Math.min(show, 1 - easeFrom(seconds, next, 0.4));
+				return (
+					<div key={index} style={{display: 'flex', gap: u(18), alignItems: 'center', margin: `0 0 0 ${-u(14)}px`, padding: `${u(8)}px ${u(14)}px`, borderRadius: u(16), backgroundColor: withAlpha(lesson, 0.09 * active), opacity: show, transform: `translateY(${(1 - show) * u(22)}px)`}}>
+						<div style={{width: u(46), height: u(46), borderRadius: '50%', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: active > 0.5 ? lesson : withAlpha(lesson, 0.14), color: active > 0.5 ? (colors.lesson?.on ?? colors.onAccent) : lesson, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(24), transform: `scale(${1 + 0.12 * active})`}}>
+							{index + 1}
+						</div>
+						<div style={{display: 'flex', flexDirection: 'column', gap: u(4), minWidth: 0}}>
+							{step.math ? (
+								<Text size={TYPE.example}>
+									<MathExpression latex={step.math} />
+								</Text>
+							) : null}
+							{step.text ? <RichText text={step.text} size={step.math ? TYPE.cardBody - 8 : TYPE.cardBody} tone={step.math ? 'muted' : undefined} /> : null}
+						</div>
+					</div>
+				);
+			})}
+		</div>
+	);
+};
+
+const CardText: React.FC<{card: TextCard; cues?: CardCues; stepStarts?: readonly number[]}> = ({card, cues, stepStarts}) => {
 	const {colors, typography} = useTheme();
 	const {u} = useVideoLayout();
 	switch (card.kind) {
@@ -110,6 +148,7 @@ const CardText: React.FC<{card: TextCard; cues?: CardCues}> = ({card, cues}) => 
 					<div style={{padding: `${u(24)}px ${u(30)}px`, borderLeft: `${u(10)}px solid ${colors.lesson?.fill ?? colors.accent}`, backgroundColor: withAlpha(colors.lesson?.fill ?? colors.accent, 0.08), borderRadius: u(16)}}>
 						<RichText text={card.example} size={TYPE.example} weight={typography.strongWeight} markCues={cues?.marks} />
 					</div>
+					{card.steps.length > 0 ? <WorkedSteps steps={card.steps} starts={stepStarts} /> : null}
 					{card.explanation ? (
 						<Animated animation={{preset: 'slide', direction: 'up', distance: 24}} delaySeconds={cues?.explanation ?? 0.8}>
 							<RichText text={card.explanation} size={TYPE.cardBody - 4} tone="muted" markCues={cues?.explanationMarks} />
@@ -219,7 +258,7 @@ const StudioCard: React.FC<{card: FigureCard; beatStarts?: number[]; beatEnds?: 
 	const box = onlyVisual ? {width: contentWidth, height: below - (captionLines ? u(captionLines * captionSize * 1.4 + SPACING.md) : 0)} : {width: contentWidth * COURSE_DESIGN.visualShare, height: below};
 	const figure = visual ? (
 		<div style={{width: box.width, height: box.height, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-			<VisualTimelineProvider beats={'beats' in card ? card.beats : undefined} starts={beatStarts} ends={beatEnds} sceneSeconds={sceneSeconds} openFirst>
+			<VisualTimelineProvider beats={cardBeats(card)} starts={beatStarts} ends={beatEnds} sceneSeconds={sceneSeconds} openFirst>
 				<CourseVisual visual={visual} width={box.width} height={box.height} delaySeconds={0.5} />
 			</VisualTimelineProvider>
 		</div>
@@ -242,7 +281,7 @@ const StudioCard: React.FC<{card: FigureCard; beatStarts?: number[]; beatEnds?: 
 					<FitBox fill maxScale={visual ? 1 : 1.15} style={{flex: 1}}>
 						<Animated delaySeconds={0.3}>
 							<div style={{display: 'flex', flexDirection: 'column', gap: u(SPACING.md), maxWidth: visual ? undefined : u(STUDIO_TEXT_WIDTH)}}>
-								{card.kind === 'visual' ? captionText : <CardText card={card} cues={cues} />}
+								{card.kind === 'visual' ? captionText : <CardText card={card} cues={cues} stepStarts={beatStarts} />}
 							</div>
 						</Animated>
 					</FitBox>
@@ -296,14 +335,14 @@ export const LessonCardScene: React.FC<{card: FigureCard; section: string; numbe
 					) : (
 						<Animated delaySeconds={0.3}>
 							<div style={{display: 'flex', flexDirection: 'column', gap: u(SPACING.md)}}>
-								<CardText card={card} cues={cues} />
+								<CardText card={card} cues={cues} stepStarts={beatStarts} />
 							</div>
 						</Animated>
 					)}
 				</TextColumn>
 				{visual ? (
 					<div style={{width: box.width, height: box.height, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-						<VisualTimelineProvider beats={'beats' in card ? card.beats : undefined} starts={beatStarts} ends={beatEnds} sceneSeconds={sceneSeconds} openFirst>
+						<VisualTimelineProvider beats={cardBeats(card)} starts={beatStarts} ends={beatEnds} sceneSeconds={sceneSeconds} openFirst>
 							<CourseVisual visual={visual} width={box.width} height={box.height} delaySeconds={0.5} />
 						</VisualTimelineProvider>
 					</div>

@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Geometri kampı · Ders 5 · Üçgenin Yardımcı Elemanları
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Geometri/05_Yardimci_Elemanlar/Yardimci_Elemanlar_YouTube.mp4` (4K) · Kapak: `Yardimci_Elemanlar_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Geometri/05_Yardimci_Elemanlar/Yardimci_Elemanlar_YouTube.mp4` (4K) · Kapak: `Yardimci_Elemanlar_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

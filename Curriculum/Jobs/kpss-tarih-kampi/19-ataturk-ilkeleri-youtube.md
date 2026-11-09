@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Tarih kampı · Ders 19 · Atatürk İlkeleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Tarih/19_AtaturkIlkeleri/AtaturkIlkeleri_YouTube.mp4` (4K) · Kapak: `AtaturkIlkeleri_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Tarih/19_AtaturkIlkeleri/AtaturkIlkeleri_YouTube.mp4` (4K) · Kapak: `AtaturkIlkeleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

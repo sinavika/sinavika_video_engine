@@ -1,6 +1,6 @@
 # YouTube metni: TYT Geometri kampı · Ders 3 · Açılar ve Üçgenler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Geometri/03_Acilar_ve_Ucgenler/Acilar_ve_Ucgenler_YouTube.mp4` (4K) · Kapak: `Acilar_ve_Ucgenler_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Geometri/03_Acilar_ve_Ucgenler/Acilar_ve_Ucgenler_YouTube.mp4` (4K) · Kapak: `Acilar_ve_Ucgenler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

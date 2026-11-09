@@ -136,7 +136,7 @@ Sahip Ders 5–10'u (Paragraf, Ses Bilgisi, Tamlamalar ve Sözcük Grupları, Ya
 - 6 yeni ders: başlık A (A/B testi yok), açıklama (iş notundaki metin, bölümler `*.chapters.txt` dosyasından, önceki ders bağlantısıyla), kamp kapağı (`*_YouTube_Kapak.png`, 3840 × 2160), iki oynatma listesi, etiketler, ücretli tanıtım yok, yapay zekâ beyanı "Hayır", bitiş ekranı Ders 4'ten içe aktarıldı. Her videonun açıklaması sunucudan okunup dosyayla karakter karakter karşılaştırıldı. Noktalama dersinin notunda "5 soru" yazıyordu, betikte 6 soru var; açıklama 6 diye düzeltildi. Video kimlikleri her dersin iş notunun "Yükleme" bölümünde.
 - Ders 1–4: YouTube kapakları 29 Ekim kamp kapağıyla (ders renginde, logo sol üstte) değiştirildi. Başlık A/B testleri sürüyor; kapak test sırasında değiştirilebildi.
 - Ana Sayfa: geri dönen aboneler için öne çıkan video Ders 5 Paragraf yapıldı (yayında olan en son ders). Planlı dersler yayına girdikçe aynı yer güncellenir.
-- Bölüm 0: sahibin onayıyla ("Evet, değiştir") eski turuncu kapak yeni lacivert kamp kapağıyla (`Outputs/Videos/YKS/TYT/Main/TYT_Kampi_00_Tanitim_YouTube_Kapak.png`, "BÖLÜM 00", ders renklerinde noktalar) değiştirildi. Başlık A/B testi sürüyor. Böylece TYT kampının 11 videosunun hepsi yeni kapakta.
+- Bölüm 0: sahibin onayıyla ("Evet, değiştir") eski turuncu kapak yeni lacivert kamp kapağıyla (`Outputs/Camps/YKS/TYT/Main/TYT_Kampi_00_Tanitim_YouTube_Kapak.png`, "BÖLÜM 00", ders renklerinde noktalar) değiştirildi. Başlık A/B testi sürüyor. Böylece TYT kampının 11 videosunun hepsi yeni kapakta.
 
 Studio tuzakları:
 - Boş açıklama kutusunda Ctrl+A tümünü seçmiyor, "a" harfi yazıyor: ilk denemede 5 açıklama "a" ile başladı, sonradan silindi. Boş kutuda Ctrl+A kullanma; yazdıktan sonra kutunun ilk harflerini oku.
@@ -155,3 +155,17 @@ Sahip kampın son 5 dersini yükledi: Sözcük Türleri, Fiiller, Cümlenin Öge
 Studio tuzakları (ek):
 - Uzun açıklamayı yazarken araç 30 saniyede "zaman aşımı" verebiliyor ama metin yine de tam yazılıyor. Yeniden yazmadan önce kutudaki metnin özetini (hash) dosyayla karşılaştır. Kutunun metni sonda fazladan bir satır sonu taşır; karşılaştırmadan önce onu at.
 - Oynatma listesi penceresinde kutulara öğe referansıyla tıklamak pencereyi kapatabiliyor. Pencereyi açınca kutulara ekrandaki konumlarından tıkla, sonra yakınlaştırıp işaretlendiklerini gör.
+
+## 8. TYT Türkçe kampının bitişi ve TYT Matematik Bölüm 0: 9 Kasım 2026
+
+İstek: "TYT Türkçe kampı videoları bitsin, yarın kalan 2 video uygun saatlerde paylaşılsın; o gün ya da 11 Kasım'da uygun bir saate TYT Matematik 0 videosu yüklensin."
+
+- Ders 15 Anlatım Bozukluğu 11 Kasım 18:00'den **10 Kasım 21:00**'e alındı. Ders 14 Cümle Türleri 10 Kasım 18:00'de kaldı. Böylece TYT Türkçe kampı 10 Kasım akşamı biter; iki ders arasında 3 saat var.
+- TYT Matematik Bölüm 0'ı sahip yükledi (https://youtu.be/S9bPjvzsidk, 4:48). Yayın **11 Kasım Çarşamba 19:00**; sahibin seçtiği 15:00 okul saatine denk geldiği için akşama alındı. 10 Kasım'a konmadı: özel gün ve Türkçe'nin son iki dersi o gün yayında.
+- Ayarlar: başlık, açıklama (dosyayla karakter karakter aynı), kamp kapağı, etiketler, ücretli tanıtım yok, yapay zekâ beyanı "Hayır", bitiş ekranı Ders 4'ten (abone ol + en son yükleme). Metinler `Curriculum/Jobs/yks-tyt-matematik-kampi/00-matematik-kampi-tanitim-youtube.md`.
+- Yeni oynatma listesi: **TYT Matematik Kampı | Sınavika** (herkese açık, en eski önce, Türkçe). Bölüm 0 ayrıca "YKS Kampı | Sınavika" listesinde.
+- Saat seçimi: kanalda 5 abone olduğu için Studio "izleyicilerin YouTube'da olduğu saatler" kartını göstermiyor ("yeterli veri yok"). Saatler öğrencilerin günlük düzenine göre seçildi: okul çıkışından sonra 18:00 ve akşam 19:00–21:00. Veri oluşunca bu kart yeniden kontrol edilmeli.
+- Matematik Ders 1 yüklenince Bölüm 0'ın açıklamasına "▶️ İlk ders" bağlantısı eklenmeli. Kamp reels'leri 23 Kasım'dan itibaren "Dersin tamamı YouTube'da" diyor; Matematik derslerinin o tarihe kadar kanalda olması gerekiyor.
+
+Studio tuzağı (ek): Planlama penceresinde takvimden güne tıklamak bazen tarihi değiştirmiyor. Tarih kutusuna "10 Kas 2026" yazıp Enter'a bas; saati listeden seç.
+

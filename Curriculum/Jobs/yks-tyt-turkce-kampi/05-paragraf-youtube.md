@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 5 · Paragraf
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/05_Paragraf/Paragraf_YouTube.mp4` (4K, 39:24) · Kapak: `Paragraf_YouTube_Kapak.png` (kamp kapağı).
+Video: `Outputs/Camps/YKS/TYT/Turkce/05_Paragraf/Paragraf_YouTube.mp4` (4K, 39:24) · Kapak: `Paragraf_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

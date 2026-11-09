@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Vatandaşlık kampı · Ders 7 · İdare Hukuku
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Vatandaslik/07_IdareHukuku/IdareHukuku_YouTube.mp4` (4K) · Kapak: `IdareHukuku_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Vatandaslik/07_IdareHukuku/IdareHukuku_YouTube.mp4` (4K) · Kapak: `IdareHukuku_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

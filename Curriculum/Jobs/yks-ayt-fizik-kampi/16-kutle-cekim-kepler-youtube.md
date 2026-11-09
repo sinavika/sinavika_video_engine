@@ -1,6 +1,6 @@
 # YouTube metni: AYT Fizik kampı · Ders 16 · Kütle Çekim ve Kepler Yasaları
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Fizik/16_Kutle_Cekim_Kepler/Kutle_Cekim_Kepler_YouTube.mp4` (4K) · Kapak: `Kutle_Cekim_Kepler_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Fizik/16_Kutle_Cekim_Kepler/Kutle_Cekim_Kepler_YouTube.mp4` (4K) · Kapak: `Kutle_Cekim_Kepler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

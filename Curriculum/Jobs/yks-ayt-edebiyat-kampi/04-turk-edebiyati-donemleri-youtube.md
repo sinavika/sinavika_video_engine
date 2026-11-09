@@ -1,6 +1,6 @@
 # YouTube metni: AYT Edebiyat kampı · Ders 4 · Türk Edebiyatı Dönemleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Edebiyat/04_Turk_Edebiyati_Donemleri/Turk_Edebiyati_Donemleri_YouTube.mp4` (4K) · Kapak: `Turk_Edebiyati_Donemleri_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Edebiyat/04_Turk_Edebiyati_Donemleri/Turk_Edebiyati_Donemleri_YouTube.mp4` (4K) · Kapak: `Turk_Edebiyati_Donemleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

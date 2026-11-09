@@ -1,5 +1,6 @@
 import {CUE_LEAD_SECONDS, findTokens, spokenTokens, spokenWords, VOICE_LEAD_SECONDS, type VoiceClip} from '../Scenes/Voiceover';
 import {parseRichText} from '../Schemas/RichText';
+import {toSpokenText} from '../Schemas/SpokenText';
 import type {LessonCard, Question} from './LessonScript';
 
 /**
@@ -21,12 +22,28 @@ type SpokenLine = {clip?: VoiceClip; text: string; startSeconds: number; seconds
 /** Seconds into the scene, per part; undefined when the part is not said and has no place of its own. */
 export type Cues = readonly (number | undefined)[];
 
-/** The plain words of rich text: emphasis marks dropped, formulas left out. */
-const plainWords = (text: string): string =>
+/**
+ * The words of rich text as the voice says them: emphasis marks dropped, a formula as it is read ("$123 \equiv 6$" is
+ * "123 denktir 6"), or with `formulas: false` left out.
+ */
+export const plainWords = (text: string, {formulas = true} = {}): string =>
 	parseRichText(text)
-		.filter((segment) => segment.kind === 'text' || segment.kind === 'strong')
-		.map((segment) => segment.value)
+		.flatMap((segment) => (segment.kind === 'text' || segment.kind === 'strong' ? [segment.value] : formulas ? [toSpokenText(`$${segment.value}$`)] : []))
 		.join(' ');
+
+/**
+ * The ways a phrase may be heard: by its words, as always; with `formulas`, then also with its formulas read out. Only
+ * an example's explanation is looked for so: one that opened with a formula and went on in other words never came on
+ * screen (TYT Matematik, Modüler Aritmetik, 9 Nov 2026). Everywhere else a part not found is spread over the line
+ * (spreadCues); found by a formula's short reading ("x kare", "bir") it was placed at the wrong words, and 30 rule and
+ * example cards of other camps fell under the still screen gate (measured over every camp script, 9 Nov 2026).
+ */
+const phraseReadings = (phrase: string, formulas: boolean): string[][] => {
+	const words = spokenTokens(plainWords(phrase, {formulas: false}));
+	if (!formulas) return [words];
+	const withFormulas = spokenTokens(plainWords(phrase));
+	return words.join(' ') === withFormulas.join(' ') ? [words] : [words, withFormulas];
+};
 
 /** Longest first: four words of a phrase find its place more surely than two; one word only for a one-word phrase. */
 const PREFIX_LENGTHS = [4, 3, 2];
@@ -37,20 +54,21 @@ const PREFIX_LENGTHS = [4, 3, 2];
  * narration often goes on differently from the screen text. With `anywhere`, a
  * phrase not found after the previous one is looked for from the line's start.
  */
-export const cuesInLine = (line: SpokenLine, phrases: readonly string[], {anywhere = false} = {}): Cues => {
+export const cuesInLine = (line: SpokenLine, phrases: readonly string[], {anywhere = false, formulas = false} = {}): Cues => {
 	const spoken = spokenWords(line.clip, line.text, line.seconds);
 	if (!spoken) return phrases.map(() => undefined);
 	let from = 0;
 	return phrases.map((phrase) => {
-		const tokens = spokenTokens(plainWords(phrase));
-		const lengths = tokens.length === 1 ? [1] : PREFIX_LENGTHS.filter((length) => length <= tokens.length);
-		for (const length of lengths) {
-			const wanted = tokens.slice(0, length);
-			let at = findTokens(spoken.tokens, wanted, from);
-			if (at < 0 && anywhere) at = findTokens(spoken.tokens, wanted, 0);
-			if (at >= 0) {
-				from = at + wanted.length;
-				return line.startSeconds + Math.max(0, VOICE_LEAD_SECONDS + spoken.seconds[at] - CUE_LEAD_SECONDS);
+		for (const tokens of phraseReadings(phrase, formulas)) {
+			const lengths = tokens.length === 1 ? [1] : PREFIX_LENGTHS.filter((length) => length <= tokens.length);
+			for (const length of lengths) {
+				const wanted = tokens.slice(0, length);
+				let at = findTokens(spoken.tokens, wanted, from);
+				if (at < 0 && anywhere) at = findTokens(spoken.tokens, wanted, 0);
+				if (at >= 0) {
+					from = at + wanted.length;
+					return line.startSeconds + Math.max(0, VOICE_LEAD_SECONDS + spoken.seconds[at] - CUE_LEAD_SECONDS);
+				}
 			}
 		}
 		return undefined;
@@ -146,7 +164,9 @@ export const cardCues = (card: LessonCard, line: SpokenLine): CardCues => {
 			return {items, itemMarks: markCues(line, card.items).map((marks, index) => marksAfter(marks, items[index]))};
 		}
 		case 'example': {
-			const [explanation] = card.explanation ? cuesInLine(line, [card.explanation], {anywhere: true}) : [undefined];
+			// By its words; failing that, by its formula read out, after the example's own words: a solution that opens with
+			// the example's number ("$123 \equiv 6$") would otherwise be found where the example itself is read.
+			const explanation = card.explanation ? (cuesInLine(line, [card.explanation], {anywhere: true})[0] ?? cuesInLine(line, [card.example, card.explanation], {formulas: true})[1]) : undefined;
 			const marks = markCues(line, [card.example, card.explanation ?? '']);
 			return {marks: marks[0], explanation, explanationMarks: explanation === undefined ? marks[1] : marksAfter(marks[1], explanation)};
 		}

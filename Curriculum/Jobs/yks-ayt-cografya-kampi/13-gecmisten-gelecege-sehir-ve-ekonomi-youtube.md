@@ -1,6 +1,6 @@
 # YouTube metni: AYT Coğrafya kampı · Ders 13 · Geçmişten Geleceğe Şehir ve Ekonomi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/13_Gecmisten_Gelecege_Sehir_Ve_Ekonomi/Gecmisten_Gelecege_Sehir_Ve_Ekonomi_YouTube.mp4` (4K) · Kapak: `Gecmisten_Gelecege_Sehir_Ve_Ekonomi_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Cografya/13_Gecmisten_Gelecege_Sehir_Ve_Ekonomi/Gecmisten_Gelecege_Sehir_Ve_Ekonomi_YouTube.mp4` (4K) · Kapak: `Gecmisten_Gelecege_Sehir_Ve_Ekonomi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

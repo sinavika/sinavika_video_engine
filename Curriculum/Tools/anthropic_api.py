@@ -21,3 +21,5 @@ API, VERSION, PRICES, params, record_usage, cost, available, message, text_of, m
     _client.API, _client.VERSION, _client.PRICES, _client.params, _client.record_usage, _client.cost, _client.available,
     _client.message, _client.text_of, _client.models)
 submit_batch, batch_status, batch_results, wait_batch = _client.submit_batch, _client.batch_status, _client.batch_results, _client.wait_batch
+# A batch's fixed prompt is cached for an hour (a 5-minute cache dies before the batch ends): system=cached_system(text).
+CACHE_TTL, cached_system = _client.CACHE_TTL, _client.cached_system

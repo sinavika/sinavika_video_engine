@@ -1,6 +1,6 @@
 # YouTube metni: TYT Din Kültürü ve Ahlak Bilgisi kampı · Ders 16 · Din, Kültür ve Sanat
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/16_Din_Kultur_ve_Sanat/Din_Kultur_ve_Sanat_YouTube.mp4` (4K) · Kapak: `Din_Kultur_ve_Sanat_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Din/16_Din_Kultur_ve_Sanat/Din_Kultur_ve_Sanat_YouTube.mp4` (4K) · Kapak: `Din_Kultur_ve_Sanat_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

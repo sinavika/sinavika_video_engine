@@ -355,6 +355,9 @@ export const PlotVisual: React.FC<VisualBoxProps & {visual: Plot}> = ({visual, w
 				<rect x={area.left} y={area.top} width={area.right - area.left} height={area.bottom - area.top} />
 			</clipPath>
 			<g clipPath={`url(#${clipId})`}>
+				{visual.regions.map((region, index) => (
+					<PlotRegion key={`z${index}`} id={`z${index + 1}`} region={region} valueOf={valueOf} x={x} y={y} yRange={visual.y} top={area.top} bottom={area.bottom} progress={axes} fontSize={labelFont} />
+				))}
 				{visual.area ? <AreaUnder area={visual.area} valueOf={(at) => valueOf(visual.area!.curve, at)} params={params} x={x} y={y} zeroY={zeroY} progress={extras * areaLook.opacity} emphasis={areaLook.scale} /> : null}
 				{traceData.map((data, index) =>
 					data && traceShown > 0 ? (
@@ -842,6 +845,49 @@ const Approach: React.FC<{
 			{approach.label && meets && progress > 0.85 ? (
 				<text x={axisX + u(16)} y={y(limits[0]) - u(16)} fill={palette.ink} fontSize={fontSize * 1.15} fontWeight={palette.strongWeight} opacity={Math.min(1, (progress - 0.85) / 0.15)}>
 					{approach.label}
+				</text>
+			) : null}
+		</g>
+	);
+};
+
+/**
+ * The outline of a shaded region in the plot's own units: the strip between two curves, between a curve and the
+ * x axis, or (neither) the whole height of the y range. Points are [x, y]; a curve's undefined values are left out.
+ */
+export const regionOutline = (region: NonNullable<Plot['regions']>[number], valueOf: (curve: number, at: number) => number, yRange: readonly [number, number], samples = 60): [number, number][] => {
+	const xs = Array.from({length: samples + 1}, (_, index) => region.from + ((region.to - region.from) * index) / samples);
+	const along = (curve: number) => xs.map((at): [number, number] => [at, valueOf(curve, at)]).filter(([, value]) => Number.isFinite(value));
+	if (region.between) return [...along(region.between[0]), ...along(region.between[1]).reverse()];
+	if (region.curve !== undefined) return [[region.from, 0], ...along(region.curve), [region.to, 0]];
+	return [
+		[region.from, yRange[0]],
+		[region.from, yRange[1]],
+		[region.to, yRange[1]],
+		[region.to, yRange[0]],
+	];
+};
+
+/** A shaded region (z1, z2…): it fills in as it comes, its edges dashed, its name over it; lit while pointed at. */
+const PlotRegion: React.FC<{id: string; region: NonNullable<Plot['regions']>[number]; valueOf: (curve: number, at: number) => number; x: Scale; y: Scale; yRange: readonly [number, number]; top: number; bottom: number; progress: number; fontSize: number}> = ({id, region, valueOf, x, y, yRange, top, bottom, progress, fontSize}) => {
+	const palette = useVisualPalette();
+	const {u} = useVideoLayout();
+	const look = elementLook(useElementState(id));
+	const shown = progress * look.appear;
+	if (shown <= 0.001) return null;
+	const [domainBottom, domainTop] = yRange;
+	const outline = regionOutline(region, valueOf, [domainBottom, domainTop]);
+	const d = outline.length ? `M${outline.map(([px, py]) => `${x(px)} ${y(Math.max(domainBottom, Math.min(domainTop, py)))}`).join(' L')} Z` : '';
+	const strong = look.scale > 1.01;
+	return (
+		<g opacity={look.opacity / Math.max(0.001, look.appear) * shown} data-plot-region={id}>
+			<path d={d} fill={withAlpha(palette.brand, strong ? 0.3 : 0.18)} stroke="none" />
+			{[region.from, region.to].map((at, index) => (
+				<line key={index} x1={x(at)} x2={x(at)} y1={top} y2={bottom} stroke={palette.brand} strokeWidth={u(3)} strokeDasharray={`${u(10)} ${u(10)}`} opacity={0.7} />
+			))}
+			{region.label ? (
+				<text x={(x(region.from) + x(region.to)) / 2} y={top + fontSize * 1.3} fill={palette.brand} fontSize={fontSize} fontWeight={palette.strongWeight} textAnchor="middle" stroke={palette.surface} strokeWidth={u(6)} paintOrder="stroke">
+					{region.label}
 				</text>
 			) : null}
 		</g>

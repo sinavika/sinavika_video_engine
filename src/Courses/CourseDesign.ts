@@ -139,7 +139,8 @@ export const COURSE_DESIGN = {
 export const LESSON_VISUAL_KITS: Record<string, readonly CourseVisualKind[]> = {
 	TRK: ['sentence', 'paragraph', 'comparison', 'table', 'flow', 'conceptMap'],
 	TDE: ['poem', 'sentence', 'verses', 'timeline', 'comparison', 'table', 'conceptMap', 'picture'],
-	MAT: ['formula', 'plot', 'equation', 'geometry', 'solid', 'cubes', 'table', 'venn', 'flow'],
+	// The teaching visuals of TYT Matematik (9 Nov 2026): the engine works out what they show (Mathematics/MathWork).
+	MAT: ['formula', 'plot', 'equation', 'numberLine', 'signTable', 'longDivision', 'primeLadder', 'barModel', 'slots', 'areaModel', 'sampleSpace', 'mapping', 'geometry', 'solid', 'cubes', 'table', 'venn', 'flow'],
 	GEO: ['geometry', 'solid', 'cubes', 'formula', 'plot', 'table'],
 	FIZ: ['dynamics', 'forces', 'vectors', 'lever', 'centreOfMass', 'pulley', 'gears', 'kinematics', 'energyTrack', 'projectile', 'collision', 'electricField', 'parallelPlates', 'magneticField', 'induction', 'circular', 'kepler', 'retrograde', 'oscillator', 'interference', 'doppler', 'bohr', 'rutherford', 'halfLife', 'nuclear', 'photoelectric', 'motion', 'plot', 'capillary', 'tank', 'charges', 'circuit', 'wave', 'optics', 'formula', 'table', 'conceptMap', 'tree', 'flow'],
 	KIM: ['micelle', 'greenhouse', 'tyndall', 'phaseDiagram', 'titration', 'stoichiometry', 'intermolecular', 'rutherford', 'orbitals', 'gas', 'solution', 'energyProfile', 'equilibrium', 'electrochemicalCell', 'distillation', 'nuclear', 'atom', 'periodic', 'lewis', 'molecule', 'molecule3d', 'reaction', 'plot', 'table', 'flow', 'cycle', 'stack', 'comparison', 'tree'],

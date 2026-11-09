@@ -1,6 +1,6 @@
 # YouTube metni: TYT Tarih kampı · Ders 18 · Sermaye ve Emek
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Tarih/18_Sermaye_ve_Emek/Sermaye_ve_Emek_YouTube.mp4` (4K) · Kapak: `Sermaye_ve_Emek_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Tarih/18_Sermaye_ve_Emek/Sermaye_ve_Emek_YouTube.mp4` (4K) · Kapak: `Sermaye_ve_Emek_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

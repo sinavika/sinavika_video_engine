@@ -1,6 +1,6 @@
 # YouTube metni: TYT Fizik kampı · Ders 9 · Elektrik ve Manyetizma
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Fizik/09_Elektrik_ve_Manyetizma/Elektrik_ve_Manyetizma_YouTube.mp4` (4K) · Kapak: `Elektrik_ve_Manyetizma_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Fizik/09_Elektrik_ve_Manyetizma/Elektrik_ve_Manyetizma_YouTube.mp4` (4K) · Kapak: `Elektrik_ve_Manyetizma_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

@@ -1,6 +1,6 @@
 # YouTube metni: AYT Coğrafya kampı · Ders 3 · Ekosistemlerin Unsurları
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Cografya/03_Ekosistemlerin_Unsurlari/Ekosistemlerin_Unsurlari_YouTube.mp4` (4K) · Kapak: `Ekosistemlerin_Unsurlari_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Cografya/03_Ekosistemlerin_Unsurlari/Ekosistemlerin_Unsurlari_YouTube.mp4` (4K) · Kapak: `Ekosistemlerin_Unsurlari_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

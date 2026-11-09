@@ -1,6 +1,6 @@
 # YouTube metni: AYT Tarih kampı · Ders 26 · Toplumsal Devrim Çağında Dünya ve Türkiye
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Tarih/26_Toplumsal_Devrim_Cagi/Toplumsal_Devrim_Cagi_YouTube.mp4` (4K) · Kapak: `Toplumsal_Devrim_Cagi_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Tarih/26_Toplumsal_Devrim_Cagi/Toplumsal_Devrim_Cagi_YouTube.mp4` (4K) · Kapak: `Toplumsal_Devrim_Cagi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

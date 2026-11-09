@@ -40,7 +40,7 @@ export const CampJobSpecSchema = z.object({
 });
 type CampJobSpec = z.infer<typeof CampJobSpecSchema>;
 
-/** Where a lesson's finished videos are filed under Outputs/Videos (owner, 26 Oct 2026), by lesson code. */
+/** Where a lesson's finished videos are filed under Outputs/Camps (owner, 26 Oct 2026), by lesson code. */
 const OUTPUT_FOLDERS: Record<string, string> = {
 	TRK: 'Turkce',
 	TDE: 'Edebiyat',
@@ -87,7 +87,7 @@ const plainLine = (text: string): string => text.replaceAll('**', '').replace(/\
 
 type CampJobFile = {name: string; text: string};
 
-/** A camp video's place: `Outputs/Videos/YKS/TYT/Turkce/07_Tamlamalar` + `Tamlamalar` + `YouTube` → `…/Tamlamalar_YouTube.mp4`. */
+/** A camp video's place: `Outputs/Camps/YKS/TYT/Turkce/07_Tamlamalar` + `Tamlamalar` + `YouTube` → `…/Tamlamalar_YouTube.mp4`. */
 const campVideoOutput = (videoFolder: string, stem: string, label: 'YouTube' | 'Reels' | string): string => `${videoFolder}/${stem}_${label}.mp4`;
 
 /**
@@ -113,7 +113,7 @@ export const campJobFiles = (spec: CampJobSpec, script: LessonScript, scriptFile
 	const exams = examPath(camp.category);
 	const exam = exams.at(-1)!;
 	const lessonFolder = OUTPUT_FOLDERS[script.topic.lesson.replace(/\d+$/, '')] ?? script.topic.lesson;
-	const videoFolder = `Outputs/Videos/${exams.join('/')}/${lessonFolder}/${nn}_${spec.stem}`;
+	const videoFolder = `Outputs/Camps/${exams.join('/')}/${lessonFolder}/${nn}_${spec.stem}`;
 	const job = (template: string, format: string, label: string) => ({
 		template,
 		format,

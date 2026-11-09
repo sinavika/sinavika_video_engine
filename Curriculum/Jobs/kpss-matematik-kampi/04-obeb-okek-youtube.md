@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Matematik kampı · Ders 4 · OBEB ve OKEK
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Matematik/04_OBEB_OKEK/OBEB_OKEK_YouTube.mp4` (4K) · Kapak: `OBEB_OKEK_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Matematik/04_OBEB_OKEK/OBEB_OKEK_YouTube.mp4` (4K) · Kapak: `OBEB_OKEK_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

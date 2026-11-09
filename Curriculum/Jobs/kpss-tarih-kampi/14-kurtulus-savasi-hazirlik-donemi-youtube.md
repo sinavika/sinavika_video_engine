@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Tarih kampı · Ders 14 · Kurtuluş Savaşı Hazırlık Dönemi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Tarih/14_KurtulusHazirlik/KurtulusHazirlik_YouTube.mp4` (4K) · Kapak: `KurtulusHazirlik_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Tarih/14_KurtulusHazirlik/KurtulusHazirlik_YouTube.mp4` (4K) · Kapak: `KurtulusHazirlik_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

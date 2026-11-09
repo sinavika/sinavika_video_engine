@@ -12,26 +12,27 @@
   "TYT"
  ],
  "sources": [
-  "YKS/TYT/KonuAnlatimi/MAT/MAT_KUME.json (MEB konu anlatımı bu konuda metin içermiyor; anlatım MEB ortaöğretim matematik kazanımlarındaki küme kavramları ve ÖSYM soruları esas alınarak yazıldı)",
-  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: 11 soru; kesişim (harf kümeleri), alt küme, fark, Venn şeması (bölünebilme, isimler), küme problemleri (içecekler, fotoğraf albümü))",
-  "YKS/TYT/Sorular/MAT/MAT_KUME.jsonl (304 soru; eleman, alt küme, işlemler, Venn ve problem kalıpları)"
+  "YKS/TYT/KonuAnlatimi/yks_tyt_kn_temel-matematik_meb-konu-anlatimi (MEB Temel Matematik, s. 66–72: küme kavramı, gösterimler, boş ve evrensel küme, alt küme sayısı, eşit kümeler, birleşim, kesişim, fark, tümleme, sıralı …)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: 11 küme sorusu; yalnız kalıpları örnek alındı: harf kümesiyle kesişim, kümeleri eşleştirme, Venn'de bölge okuma, ya iki ya üç kişilik sayma)",
+  "YKS/TYT/Sorular/MAT/MAT_KUME.jsonl (havuz: eşit kümeler, koşullu alt küme, tablodan Venn bölgesi, kartezyen çarpım kalıpları)"
  ],
  "lesson": {
   "hook": {
-   "headline": "100 fotoğraf, her birinde 2 ya da 3 kardeş. Üçü birlikte kaç fotoğrafta?",
-   "narration": "Bir albümde 100 fotoğraf var; her fotoğrafta üç kardeşten ya ikisi ya üçü birlikte. Her kardeş 83 fotoğrafta görünüyor. Üçünün birlikte olduğu kaç fotoğraf var? ÖSYM 2020'de bunu sordu ve cevabı bir Venn şeması çizmeden, tek bir sayma fikriyle bulabilirsin. Bu derste kümenin temel kavramlarını, alt kümeleri, birleşim, kesişim, fark ve tümleyeni, Venn şemalarını, kartezyen çarpımı ve küme problemlerini adım adım göreceğiz."
+   "headline": "Peynir zorunlu, sucukla sosis birlikte yok: kaç farklı pizza?",
+   "narration": "Bir pizzacıda yedi malzeme var. Peynir mutlaka olacak, sucukla sosis aynı pizzada olmayacak. Kaç farklı pizza yapılır? Bu aslında bir alt küme sorusu. Kümelerde her şey birkaç fikre dayanır: her eleman ya var ya yok, ortak olanı iki kez sayma, bölgeleri içten dışa doldur."
   },
   "opening": {
-   "kind": "question",
-   "card": "s2-c4",
-   "narration": "100 fotoğraf, her birinde 2 ya da 3 kardeş. Üçü birlikte kaç fotoğrafta? Bu iki küme için hangisi doğru?",
-   "promise": "Küme gösterimlerini, alt küme sayısını, kesişim ve birleşimi ve Venn şemasıyla çözülen problemleri birlikte göreceğiz."
+   "kind": "mistake",
+   "card": "s2-c10",
+   "narration": "Yedi malzemeli bir pizzacıdasın. Peynir mutlaka olacak, sucukla sosis birlikte olmayacak. Çoğu öğrenci burada 64 der ve yanılır. Sence kaç farklı pizza var?",
+   "promise": "Küme ve elemandan alt kümeye, işlemlerden Venn şemasına ve sözel problemlere kadar kümelerin hepsini soru çözerek göreceğiz."
   },
   "objectives": [
-   "Kümeyi göstermek ve eleman sayısını bulmak",
-   "Alt küme sayısını hesaplamak",
+   "Kümeyi tanımak, göstermek ve eleman sayısını bulmak",
+   "Alt küme sayısını koşullarla hesaplamak, eşit ve denk kümeyi ayırmak",
    "Birleşim, kesişim, fark ve tümleyeni Venn şemasında okumak",
-   "Küme problemlerini sayma yoluyla çözmek"
+   "Kartezyen çarpımı sıralı ikililerle kurmak",
+   "Küme problemlerini bölgelere sayı yazarak çözmek"
   ],
   "sections": [
    {
@@ -40,41 +41,173 @@
      "MAT_KUME_02"
     ],
     "title": "Küme ve eleman",
-    "narration": "Küme, iyi tanımlanmış nesnelerin topluluğudur. İyi tanımlanmış demek, bir nesnenin kümeye ait olup olmadığının kesin söylenebilmesi demek.",
+    "narration": "Matematikte küme, gündelik dildeki topluluktan daha katıdır. Bak neden.",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Küme nedir?",
+      "text": "**Küme**, iyi tanımlanmış ve birbirinden farklı nesnelerin topluluğudur. **İyi tanımlı** demek, bir nesnenin kümeye ait olup olmadığını herkesin aynı cevapla söyleyebilmesidir. Kümeyi oluşturan her nesneye **eleman** denir: $3 \\in A$, \"3, A'nın elemanıdır\" diye okunur.",
+      "narration": "Küme, iyi tanımlanmış ve birbirinden farklı nesnelerin topluluğudur. İyi tanımlı ne demek? Bir nesneyi gösterdiğimde herkes aynı cevabı vermeli. Kümeyi oluşturan her nesneye eleman denir."
+     },
+     {
+      "kind": "predict",
+      "title": "Hangisi küme?",
+      "prompt": "Aşağıdakilerden hangisi bir küme belirtir?",
+      "choices": [
+       "Sınıfın uzun boylu öğrencileri",
+       "Türkiye'nin güzel şehirleri",
+       "Haftanın günleri"
+      ],
+      "answer": 2,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Küme değil",
+         "items": [
+          "Uzun boylu öğrenciler",
+          "Güzel şehirler"
+         ]
+        },
+        {
+         "title": "Küme",
+         "items": [
+          "Haftanın günleri",
+          "Tek rakamlar"
+         ]
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "Uzun boylu ya da güzel sözcükleri kişiye göre değişir; bu topluluklar küme değildir.",
+        "show": [
+         "c1"
+        ],
+        "focus": [
+         "c1"
+        ]
+       },
+       {
+        "narration": "Haftanın günleri ve tek rakamlar ise herkes için aynıdır; bunlar kümedir.",
+        "show": [
+         "c2"
+        ],
+        "focus": [
+         "c2"
+        ]
+       }
+      ],
+      "explanation": "Haftanın günleri **herkes için aynıdır**: yedi gün. Uzun boylu ve güzel kişiden kişiye değişir; **iyi tanımlı değildir**.",
+      "narration": "Önce sen tahmin et.",
+      "explanationNarration": "Doğru cevap haftanın günleri. Bir günün haftanın günü olup olmadığını herkes aynı söyler. Ama kimin uzun boylu, hangi şehrin güzel olduğu kişiden kişiye değişir; bunlar küme belirtmez."
+     },
+     {
+      "kind": "visual",
+      "title": "Üç gösterim",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Yöntem",
+        "Gösterim"
+       ],
+       "rows": [
+        [
+         "Liste",
+         "A = {1, 3, 5, 7, 9}"
+        ],
+        [
+         "Ortak özellik",
+         "A = {x | x tek rakam}"
+        ],
+        [
+         "Venn şeması",
+         "Eğri içinde •1 •3 •5 •7 •9"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "narration": "Aynı kümeyi üç farklı yolla yazabilirsin. Tek rakamlara bakalım.",
+      "beats": [
+       {
+        "narration": "Liste yönteminde elemanları süslü parantez içinde, virgülle ayırarak yazarsın.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Ortak özellik yönteminde x öyle ki x tek rakam dersin; dik çizgi öyle ki demektir.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Venn şemasında elemanlar kapalı bir eğrinin içinde, önlerinde birer noktayla durur.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ]
+     },
      {
       "kind": "rule",
       "title": "Kümenin dili",
       "items": [
-       "**Liste**: $A = \\{1, 2, 3\\}$; **ortak özellik**: 4'ten küçük pozitif tam sayılar; **Venn**: kapalı bir eğrinin içi.",
-       "Eleman sayısı $s(A)$: $s(\\{1, 2, 3\\}) = 3$. Tekrar eden eleman bir kez sayılır.",
-       "\"Güzel şehirler\" bir küme **değildir**: iyi tanımlı değil.",
-       "**Boş küme** hiç elemanı olmayan kümedir; içinde boş küme bulunan küme ise **1 elemanlıdır**."
+       "$a \\in A$: a, A'nın **elemanıdır**; $a \\notin A$: **elemanı değildir**.",
+       "$s(A)$ **eleman sayısıdır**; tekrar eden eleman **bir kez** sayılır.",
+       "Eleman sayısı bir doğal sayıysa küme **sonludur**, değilse **sonsuzdur**.",
+       "Üzerinde çalışılan bütün kümeleri içeren kümeye **evrensel küme** denir: $E$.",
+       "Elemanı olmayan küme **boş kümedir**: $\\varnothing$ ya da $\\{\\ \\}$."
       ],
-      "narration": "Bir kümeyi üç yolla gösterirsin: elemanlarını listeleyerek, ortak özelliklerini yazarak ya da bir Venn şemasıyla. Eleman sayısını s A diye yazarız ve tekrar eden eleman bir kez sayılır. Güzel şehirler bir küme değildir, çünkü kimin güzel olduğu kişiden kişiye değişir. Bir de ince nokta: boş kümenin hiç elemanı yoktur, ama içinde boş küme bulunan bir kümenin bir elemanı vardır: o da boş kümedir."
+      "narration": "a, A'nın elemanıdır demek için eleman işaretini kullanırız; elemanı değildir demek için üstünü çizeriz. s A eleman sayısıdır ve tekrar eden eleman bir kez sayılır. Eleman sayısı bir doğal sayıysa küme sonludur, değilse sonsuzdur. Üzerinde çalıştığımız bütün kümeleri içeren kümeye evrensel küme denir. Elemanı olmayan küme de boş kümedir."
+     },
+     {
+      "kind": "example",
+      "title": "Harflerden küme",
+      "example": "MATEMATİK sözcüğünün harflerinden oluşan kümenin 6 elemanı vardır.",
+      "explanation": "Sözcükte **9 harf** var ama kümede 6 eleman: $\\{M, A, T, E, İ, K\\}$.",
+      "narration": "Bak: MATEMATİK sözcüğünün harflerinden oluşan kümenin 6 elemanı vardır. Sözcükte 9 harf var ama M, A ve T ikişer kez geçiyor; her biri kümeye bir kez yazılır."
+     },
+     {
+      "kind": "mistake",
+      "title": "Boş küme mi?",
+      "wrong": "$\\{\\varnothing\\}$ kümesi boş kümedir, çünkü içinde boş küme yazıyor.",
+      "right": "İçinde boş küme bulunan $\\{\\varnothing\\}$ kümesinin **1 elemanı** vardır; boş değildir.",
+      "why": "Boş kümenin hiç elemanı yoktur: $s(\\varnothing) = 0$, ama $s(\\{\\varnothing\\}) = 1$. İçinde boş kutu olan kutu boş değildir.",
+      "narration": "Çok yapılan bir hata: içinde boş küme yazan kümeyi boş sanmak. İçinde boş küme bulunan kümenin 1 elemanı vardır; boş değildir. Boş kümenin hiç elemanı yoktur. Şöyle düşün: içinde boş bir kutu olan kutu boş mudur? Değildir."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$A = \\{x \\mid x \\text{ asal sayı ve } x < 20\\}$ kümesinin eleman sayısı kaçtır?",
+       "stem": "KELEBEK sözcüğünün harflerinden oluşan kümenin eleman sayısı kaçtır?",
        "options": [
-        "7",
-        "8",
-        "9",
-        "10",
-        "6"
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
        ],
        "answer": 1,
-       "narration": "Ortak özellik yöntemiyle verilen kümeyi liste yöntemiyle yazalım.",
+       "narration": "Isınma sorusuyla başlayalım.",
        "steps": [
         {
-         "text": "20'den küçük asallar: $2, 3, 5, 7, 11, 13, 17, 19$.",
-         "narration": "Yirmiden küçük asal sayılar: iki, üç, beş, yedi, on bir, on üç, on yedi ve on dokuz."
+         "text": "Harfler: K, E, L, E, B, E, K. Tekrar edenleri **bir kez** yaz: $\\{K, E, L, B\\}$.",
+         "narration": "Harfleri sırayla yaz: K, E, L, E, B, E, K. E üç kez, K iki kez geçiyor; kümede her biri bir kez yazılır."
         },
         {
-         "text": "$s(A) = 8$. Dikkat: **1 asal değil**, **2 tek çift asal**. Cevap **B**.",
-         "narration": "Toplam sekiz eleman var; s A sekiz. Dikkat iki tuzağa: bir asal sayı değildir, onu ekleyen dokuz bulur; iki ise tek çift asal sayıdır, onu unutan yedi bulur. Cevabımız B.",
+         "text": "$4$ eleman. Cevap **B**. 7'yi seçen harf sayısını saymıştır.",
+         "narration": "Küme K, E, L ve B: dört eleman. Cevabımız B. Yediyi seçen, harf sayısını eleman sayısı sanmıştır.",
          "eliminate": [
           "A",
           "C",
@@ -84,7 +217,42 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki kümenin dili (ortak özellik ve liste yöntemi) asal sayı tuzaklarıyla soruldu."
+        "changes": "Bu ders için yazıldı; havuzdaki \"sözcüğün harflerinden küme\" kalıbı örnek alındı, sözcük özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Deniz, telefonunun ekran kilidi için iki basamaklı bir sayı seçecektir. Seçeceği sayının rakamları toplamı 7 olacak ve rakamları birbirinden farklı olacaktır. Deniz'in seçebileceği sayıların kümesi $K$ olsun. Buna göre $K$ kümesinin elemanlarından kaç tanesi **çift** sayıdır?",
+       "options": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "7"
+       ],
+       "answer": 2,
+       "narration": "Şimdi ortak özellikle verilen bir kümeyi listeye çevireceksin.",
+       "steps": [
+        {
+         "text": "Rakamları toplamı 7 olan iki basamaklı sayılar: $16, 25, 34, 43, 52, 61, 70$. $07$ iki basamaklı **değildir**.",
+         "narration": "Onlar basamağı 1'den başlar: 16, 25, 34, 43, 52, 61 ve 70. Sıfır yedi iki basamaklı değildir. 7 tek olduğu için rakamlar zaten hep farklı."
+        },
+        {
+         "text": "Çift olanlar: $16, 34, 52, 70$ → **4** tane. Cevap **C**.",
+         "narration": "Bunlardan çift olanlar 16, 34, 52 ve 70: dört tane. Cevabımız C. 70'i unutan 3, bütün kümeyi sayan 7 bulur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin günlük bağlamlı rakam kümesi soruları (telefon numarası) kalıp olarak alındı; bağlam, koşullar ve sorulan nicelik özgün."
        }
       }
      }
@@ -95,152 +263,259 @@
     "subtopics": [
      "MAT_KUME_04"
     ],
-    "title": "Alt küme",
-    "narration": "A'nın her elemanı B'de de varsa A, B'nin alt kümesidir. Alt kümeleri saymanın kısa bir yolu var.",
+    "title": "Alt küme, eşit ve denk kümeler",
+    "narration": "Bir kümenin içinden küçük kümeler seçmek: alt küme. Sonra da iki kümenin ne zaman eşit, ne zaman denk olduğu.",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Alt küme nedir?",
+      "text": "$A$'nın **her elemanı** $B$'de de varsa $A$, $B$'nin **alt kümesidir**: $A \\subseteq B$. Bir eleman bile **dışarıda kalırsa** alt küme değildir. $\\{1, 2\\} \\subseteq \\{1, 2, 3\\}$ **ama** $\\{1, 4\\} \\not\\subseteq \\{1, 2, 3\\}$.",
+      "narration": "A'nın her elemanı B'de de varsa, A, B'nin alt kümesidir. Bir eleman bile dışarıda kalırsa alt küme değildir. 1, 2 kümesi 1, 2, 3'ün alt kümesidir; ama 1, 4 değildir, çünkü 4 dışarıda."
+     },
      {
       "kind": "visual",
       "title": "Her eleman: var ya da yok",
       "visual": {
        "kind": "table",
        "header": [
-        "Kümenin eleman sayısı",
-        "Alt küme sayısı"
+        "Küme",
+        "Alt kümeler",
+        "Sayı"
        ],
        "rows": [
         [
-         "1: {a}",
-         "2: ∅, {a}"
+         "{a}",
+         "∅, {a}",
+         "2"
         ],
         [
-         "2: {a, b}",
+         "{a, b}",
+         "∅, {a}, {b}, {a, b}",
          "4"
         ],
         [
-         "3: {a, b, c}",
+         "{a, b, c}",
+         "∅, {a}, …, {a, b, c}",
          "8"
         ],
         [
-         "n",
-         "$2^n$"
+         "n elemanlı",
+         "her eleman var ya da yok",
+         "2ⁿ"
         ]
        ],
-       "highlightColumn": 1
+       "highlightColumn": 2
       },
-      "caption": "Öz alt küme sayısı $2^n - 1$ (kümenin kendisi hariç). Boş küme her kümenin alt kümesidir.",
-      "narration": "Bir alt küme kurarken her eleman için tek bir karar verirsin: alt kümede var ya da yok.",
+      "narration": "Alt küme kurarken her eleman için tek karar verirsin: var ya da yok.",
       "beats": [
        {
-        "narration": "1 elemanlı kümede iki alt küme var: boş küme ve kendisi. 2 elemanlıda her eleman için iki seçenek, 2 çarpı 2, 4 alt küme.",
+        "narration": "Tek elemanlı kümede a ya var ya yok: iki alt küme, boş küme ve kendisi.",
         "show": [
-         "r1",
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "İki elemanda her birinin iki seçeneği var: 2 çarpı 2, 4 alt küme.",
+        "show": [
          "r2"
         ],
         "focus": [
-         "r1",
          "r2"
         ]
        },
        {
+        "narration": "Üç elemanda 2 çarpı 2 çarpı 2, 8 alt küme.",
         "show": [
-         "r3",
-         "r4"
+         "r3"
         ],
         "focus": [
-         "r3",
-         "r4"
-        ],
-        "narration": "3 elemanlıda 2 çarpı 2 çarpı 2, 8. n elemanlı kümenin 2 üssü n alt kümesi vardır."
+         "r3"
+        ]
        },
        {
-        "show": [],
+        "narration": "n eleman için n tane ikili karar verirsin: 2 üssü n alt küme.",
+        "show": [
+         "r4"
+        ],
         "focus": [
          "r4"
         ],
-        "narration": "Kendisi hariç tutulursa öz alt küme sayısı 2 üssü n eksi 1.",
-        "note": "Öz alt küme sayısı: 2ⁿ − 1"
+        "note": "Alt küme sayısı: 2ⁿ"
        }
       ]
+     },
+     {
+      "kind": "rule",
+      "title": "Alt kümenin kuralları",
+      "items": [
+       "n elemanlı kümenin **alt küme sayısı** $2^n$'dir.",
+       "Kendisi dışındakiler **öz alt kümedir**: $2^n - 1$ tane.",
+       "**Boş küme** her kümenin, her küme de **kendisinin** alt kümesidir.",
+       "Belli elemanlar **zorunlu** ya da **yasaksa** yalnız serbest elemanlar sayılır.",
+       "$A \\subseteq B$ ve $B \\subseteq C$ ise $A \\subseteq C$."
+      ],
+      "narration": "n elemanlı kümenin alt küme sayısı 2 üssü n'dir. Kendisi dışındakilere öz alt küme denir; onlar 2 üssü n eksi 1 tane. Boş küme her kümenin alt kümesidir, her küme de kendisinin. Belli elemanlar zorunlu ya da yasaksa onların kararı verilmiştir; yalnız serbest elemanları sayarsın. Son olarak A, B'nin, B de C'nin alt kümesiyse A, C'nin alt kümesidir."
+     },
+     {
+      "kind": "example",
+      "title": "En az biri bulunsun",
+      "example": "1, 2, 3, 4, 5, 6 kümesinin 1 ve 2'den en az birini içeren alt küme sayısı 48'dir.",
+      "narration": "Bir örnek: 1, 2, 3, 4, 5, 6 kümesinin 1 ve 2'den en az birini içeren alt küme sayısı 48'dir.",
+      "steps": [
+       {
+        "narration": "Bütün alt kümeler 2 üssü 6, yani 64.",
+        "math": "2^6 = 64",
+        "text": "Bütün alt kümeler"
+       },
+       {
+        "narration": "1 ile 2'nin hiçbirinin bulunmadığı alt kümeler kalan 4 elemandan kurulur: 2 üssü 4, 16.",
+        "math": "2^4 = 16",
+        "text": "**Hiçbiri** yok"
+       },
+       {
+        "narration": "Bunları çıkar: 64 eksi 16, 48.",
+        "math": "64 - 16 = 48",
+        "text": "**En az biri** var"
+       }
+      ]
+     },
+     {
+      "kind": "concept",
+      "title": "Eşit ve denk kümeler",
+      "text": "Elemanları **tamamen aynı** olan kümeler **eşittir**: $\\{1, 2, 3\\} = \\{3, 1, 2\\}$; sıra ve tekrar önemli değildir. Eleman **sayıları aynı** olan kümeler **denktir**: $\\{1, 2, 3\\} \\equiv \\{a, b, c\\}$. $A \\subseteq B$ ve $B \\subseteq A$ ise $A = B$.",
+      "narration": "Elemanları tamamen aynı olan kümeler eşittir; sıranın ve tekrarın önemi yoktur. Eleman sayıları aynı olan kümeler ise denktir: 1, 2, 3 ile a, b, c denktir ama eşit değildir. İki küme birbirinin alt kümesiyse eşittir."
+     },
+     {
+      "kind": "example",
+      "title": "Eşit kümeden bilinmeyen",
+      "example": "a artı 1, 4 ve 6 kümesi 2, 4 ve 6 kümesine eşitse a eşittir 1 olur.",
+      "explanation": "Eşit kümelerde her elemanın **bir eşi** olmalı: 4 ve 6 eşleşti, $a + 1 = 2$.",
+      "narration": "Bir örnek daha: a artı 1, 4 ve 6 kümesi 2, 4 ve 6 kümesine eşitse a eşittir 1 olur. Eşit kümelerde her elemanın bir eşi olmalı; 4 ve 6 eşleşti, a artı 1'in eşi 2."
+     },
+     {
+      "kind": "mistake",
+      "title": "Eşit mi, denk mi?",
+      "wrong": "Eleman sayıları aynı olan iki küme **eşittir**.",
+      "right": "Bunlar yalnızca **denktir**; eşit olmaları için elemanların **aynı** olması gerekir.",
+      "why": "Her eşit küme denktir, ama her denk küme eşit değildir: $\\{1, 2\\} \\equiv \\{x, y\\}$, fakat $\\{1, 2\\} \\neq \\{x, y\\}$.",
+      "narration": "Sık hata: iki kümenin elemanları sayıca tutuyor diye onları eşit sanmak. Bunlar yalnızca denktir; eşit olmaları için elemanların aynı olması gerekir. Her eşit küme denktir, ama her denk küme eşit değildir."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$A = \\{1, 2, 3, 4, 5\\}$ kümesinin alt kümelerinden kaç tanesinde 1 bulunur ama 2 bulunmaz?",
+       "stem": "$\\{a, b, c, d\\}$ kümesinin öz alt küme sayısı kaçtır?",
        "options": [
         "4",
         "8",
-        "16",
-        "24",
-        "32"
+        "14",
+        "15",
+        "16"
        ],
-       "answer": 1,
-       "narration": "Var ya da yok kararını kullanalım.",
+       "answer": 3,
+       "narration": "Kuralı hemen dene.",
        "steps": [
         {
-         "text": "1 için karar **sabit**: var. 2 için karar **sabit**: yok.",
-         "narration": "1 her alt kümede bulunacak; onun kararı verildi. 2 hiçbirinde bulunmayacak; onun kararı da verildi."
+         "text": "$2^4 = 16$ alt küme.",
+         "narration": "Dört elemanlı kümenin 2 üssü 4, yani 16 alt kümesi var."
         },
         {
-         "text": "Serbest kalan 3, 4, 5: her biri var ya da yok → $2^3 = 8$",
-         "narration": "Geriye 3, 4 ve 5 kalıyor. Her biri için iki seçenek var: 2 çarpı 2 çarpı 2, 8."
-        },
-        {
-         "text": "Cevap **B**.",
-         "narration": "Cevabımız B. Kural şu: belli elemanların bulunması ya da bulunmaması isteniyorsa, yalnız serbest kalan elemanlar sayılır ve 2 üssü serbest eleman sayısı alınır.",
+         "text": "Öz alt kümede yalnız kümenin kendisi hariç: $16 - 1 = 15$. Cevap **D**.",
+         "narration": "Öz alt kümede yalnız kümenin kendisi dışarıda kalır: 16 eksi 1, 15. Cevabımız D. Boş kümeyi de çıkaran 14, hiç çıkarmayan 16 bulur.",
          "eliminate": [
           "A",
+          "B",
           "C",
-          "D",
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki \"belli elemanı bulunan alt küme sayısı\" kalıbı örnek alındı, küme ve koşullar özgün."
+        "changes": "Bu ders için yazıldı; dersteki öz alt küme kuralı, iki tuzak değeri şıklarda olacak biçimde soruldu."
        }
       }
-     },
-     {
-      "kind": "mistake",
-      "title": "Eşit mi, denk mi?",
-      "wrong": "$\\{1, 2, 3\\}$ ile $\\{a, b, c\\}$ **eşit** kümelerdir, çünkü ikisi de 3 elemanlı.",
-      "right": "Eleman sayıları aynı olan kümeler **denktir**. **Eşit kümelerin** ise elemanları tamamen aynıdır.",
-      "why": "Eşit kümeler denktir, ama denk kümeler eşit olmayabilir.",
-      "narration": "Eşit ve denk kümeleri karıştırma. Eleman sayıları aynı olan kümelere denk denir: 1, 2, 3 ile a, b, c denktir. Eşit kümelerin ise elemanları tamamen aynıdır. Her eşit küme denktir ama her denk küme eşit değildir."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$A = \\{a, b, c\\}$ ve $B = \\{1, 2, 3\\}$ kümeleri için aşağıdakilerden hangisi **doğrudur**?",
+       "stem": "$\\{a + 2, 7, 3\\}$ ve $\\{5, b - 1, 7\\}$ kümeleri eşit olduğuna göre $a + b$ toplamı kaçtır?",
        "options": [
-        "$A$ ile $B$ denk kümelerdir.",
-        "$A = B$",
-        "$A \\subset B$",
-        "$B \\subset A$",
-        "$A \\cap B = A$"
+        "7",
+        "8",
+        "9",
+        "10",
+        "12"
        ],
        "answer": 0,
-       "narration": "Eşit kümeler aynı elemanlara, denk kümeler aynı sayıda elemana sahiptir.",
+       "narration": "Eşit kümelerde her elemanın bir eşi olmalı.",
        "steps": [
         {
-         "text": "Ortak eleman **yok**: $A \\ne B$, $A \\not\\subset B$, $B \\not\\subset A$, $A \\cap B = \\varnothing$.",
-         "narration": "A'nın elemanları harf, B'nin elemanları sayı; ortak elemanları yok. Bu yüzden eşit değiller, biri ötekinin alt kümesi değil ve kesişimleri boş küme.",
+         "text": "3, ikinci kümede ancak $b - 1$ olabilir: $b - 1 = 3$, $b = 4$.",
+         "narration": "Birinci kümedeki 3, ikinci kümede ne olabilir? 5 değil, 7 değil; ancak b eksi 1. Buradan b eşittir 4."
+        },
+        {
+         "text": "Geriye $a + 2$ ile $5$ kalır: $a + 2 = 5$, $a = 3$.",
+         "narration": "Geriye a artı 2 ile 5 kalıyor: a artı 2 eşittir 5, a eşittir 3."
+        },
+        {
+         "text": "$a + b = 7$. Cevap **A**. $a + 2 = 7$ diyen 9 bulur ama 5 eşsiz kalır.",
+         "narration": "a artı b, 7. Cevabımız A. a artı 2'yi 7'ye eşitleyen 9 bulur; ama o zaman 5'in eşi kalmaz, kümeler eşit olmaz.",
          "eliminate": [
           "B",
           "C",
           "D",
           "E"
          ]
-        },
-        {
-         "text": "$s(A) = s(B) = 3$ → **denk** ($A \\equiv B$). Cevap **A**.",
-         "narration": "Ama ikisinin de üçer elemanı var. Eleman sayıları eşit olan kümelere denk küme denir. Cevabımız A. Eşit kümeler her zaman denktir; ama denk kümeler eşit olmak zorunda değildir."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki \"Eşit mi, denk mi?\" uyarısı özgün kümelerle soruldu."
+        "changes": "Bu ders için yazıldı; havuzdaki \"eşit kümelerden bilinmeyen bulma\" kalıbı örnek alındı, kümeler ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir pizzacıda mantar, zeytin, sucuk, mısır, biber, sosis ve peynir olmak üzere 7 çeşit malzeme vardır. Selin bu malzemelerden bazılarını seçerek pizza yaptıracaktır. Pizzasında peynir mutlaka bulunacak, sucuk ile sosis ise **birlikte bulunmayacaktır**. Malzeme seçimi farklı olan pizzalar farklı sayıldığına göre Selin kaç farklı pizza yaptırabilir?",
+       "options": [
+        "16",
+        "32",
+        "48",
+        "64",
+        "96"
+       ],
+       "answer": 2,
+       "narration": "Şimdi gerçek bir durumda alt küme sayalım.",
+       "steps": [
+        {
+         "text": "Peynir **zorunlu**: kararı verildi. Sucuk ve sosis için **3 durum**: ikisi de yok, yalnız sucuk, yalnız sosis.",
+         "narration": "Pizza, malzemelerin bir alt kümesidir. Peynir zorunlu, onun kararı verildi. Sucukla sosis birlikte olmayacak: ya ikisi de yok, ya yalnız sucuk, ya yalnız sosis. Üç durum.",
+         "mark": [
+          "birlikte bulunmayacaktır"
+         ]
+        },
+        {
+         "text": "Serbest: mantar, zeytin, mısır, biber → $2^4 = 16$.",
+         "narration": "Geriye mantar, zeytin, mısır ve biber kalıyor; her biri var ya da yok. 2 üssü 4, 16."
+        },
+        {
+         "text": "$3 \\cdot 16 = 48$. Cevap **C**.",
+         "narration": "Üç durumun her biri 16 seçenekle birleşir: 3 çarpı 16, 48. Cevabımız C. Kısıtı unutan 64, sucukla sosisi tamamen atan 16, tam birini zorunlu sanan 32 bulur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"belli elemanı bulunan ya da bulunmayan alt küme\" kalıbı günlük bir bağlama taşındı; bağlam, koşullar ve sayılar özgün."
        }
       }
      }
@@ -249,185 +524,149 @@
    {
     "subtopic": "MAT_KUME_05",
     "subtopics": [
-     "MAT_KUME_06",
-     "MAT_KUME_07",
-     "MAT_KUME_08"
+     "MAT_KUME_06"
     ],
-    "title": "Kümelerde işlemler",
-    "narration": "Dört işlem var: birleşim, kesişim, fark ve tümleyen.",
+    "title": "Birleşim ve kesişim",
+    "narration": "İki kümeyi bir araya getirmenin iki yolu var: hepsini almak ya da yalnız ortakları almak.",
     "cards": [
      {
       "kind": "visual",
-      "title": "Dört işlem",
+      "title": "Hepsi mi, ortaklar mı?",
       "visual": {
-       "kind": "table",
-       "header": [
-        "İşlem",
-        "Anlamı",
-        "A = {1,2,3,4}, B = {3,4,5}"
+       "kind": "venn",
+       "sets": [
+        {
+         "label": "A = {1, 2, 3, 4}",
+         "items": [
+          "1",
+          "2"
+         ]
+        },
+        {
+         "label": "B = {3, 4, 5}",
+         "items": [
+          "5"
+         ]
+        }
        ],
-       "rows": [
-        [
-         "Birleşim $A \\cup B$",
-         "En az birinde olanlar",
-         "{1, 2, 3, 4, 5}"
-        ],
-        [
-         "Kesişim $A \\cap B$",
-         "İkisinde de olanlar",
-         "{3, 4}"
-        ],
-        [
-         "Fark $A \\setminus B$",
-         "A'da olup B'de olmayanlar",
-         "{1, 2}"
-        ],
-        [
-         "Tümleyen $A'$",
-         "Evrensel kümede olup A'da olmayanlar",
-         "E = {1,…,6} ise {5, 6}"
-        ]
-       ],
-       "highlightColumn": 2
+       "shared": [
+        "3",
+        "4"
+       ]
       },
-      "caption": "$s(A \\cup B) = s(A) + s(B) - s(A \\cap B)$",
       "narration": "A kümesi 1, 2, 3, 4; B kümesi 3, 4, 5 olsun.",
       "beats": [
        {
-        "narration": "Birleşim, en az bir kümede olan elemanlardır: 1'den 5'e. Kesişim, iki kümede de olanlardır: 3 ve 4.",
-        "show": [
-         "r1",
-         "r2"
-        ],
-        "focus": [
-         "r1",
-         "r2"
-        ]
+        "narration": "Birleşim, en az bir kümede olan elemanlardır: 1, 2, 3, 4 ve 5.",
+        "note": "A ∪ B = {1, 2, 3, 4, 5}"
        },
        {
-        "narration": "A fark B, A'da olup B'de olmayanlardır: 1 ve 2. Tümleyen ise evrensel kümede olup A'da olmayanlardır.",
-        "show": [
-         "r3",
-         "r4"
-        ],
-        "focus": [
-         "r3",
-         "r4"
-        ]
+        "narration": "Kesişim, iki kümede de olanlardır: yalnız ortadaki 3 ve 4.",
+        "note": "A ∩ B = {3, 4}"
        }
       ]
      },
      {
+      "kind": "concept",
+      "title": "Birleşim ve kesişim",
+      "text": "**Birleşim** $A \\cup B$: $A$'da **veya** $B$'de olan bütün elemanlar. **Kesişim** $A \\cap B$: hem $A$'da hem $B$'de olan **ortak** elemanlar. Ortak eleman yoksa $A \\cap B = \\varnothing$; bu kümelere **ayrık kümeler** denir.",
+      "narration": "Birleşim, A'da veya B'de olan bütün elemanlardır. Kesişim ise hem A'da hem B'de olan, yani ortak elemanlardır. Ortak eleman yoksa kesişim boş kümedir; bu kümelere ayrık kümeler denir."
+     },
+     {
       "kind": "predict",
       "title": "Kesişimi bul",
-      "context": "$s(A) = 8$, $s(B) = 6$ ve $s(A \\cup B) = 11$",
+      "context": "$s(A) = 9$, $s(B) = 7$ ve $s(A \\cup B) = 12$",
       "prompt": "$A \\cap B$ kümesinin eleman sayısı kaçtır?",
       "choices": [
-       "2",
-       "3",
-       "14"
+       "4",
+       "12",
+       "16"
       ],
-      "answer": 1,
+      "answer": 0,
       "thinkSeconds": 5,
       "visual": {
        "kind": "venn",
        "sets": [
         {
-         "label": "A: 8 eleman",
+         "label": "A: 9 eleman",
          "items": [
           "yalnız A: 5"
          ]
         },
         {
-         "label": "B: 6 eleman",
+         "label": "B: 7 eleman",
          "items": [
           "yalnız B: 3"
          ]
         }
        ],
        "shared": [
-        "3"
+        "4"
        ]
       },
       "beats": [
        {
-        "narration": "A ile B'nin eleman sayılarını toplarsan 14 bulursun. Ama ortak elemanlar iki kez sayıldı.",
-        "focus": []
+        "narration": "A ile B'nin eleman sayılarını toplarsan 16 bulursun; ama ortadakiler iki kez sayıldı.",
+        "note": "9 + 7 = 16"
        },
        {
-        "narration": "Birleşim 11 olduğuna göre iki kez sayılan elemanlar 14 eksi 11, yani 3 tane. Yalnız A'da 5, yalnız B'de 3 eleman kalır.",
-        "focus": []
+        "narration": "Birleşim 12 olduğuna göre iki kez sayılan 16 eksi 12, yani 4 eleman var.",
+        "note": "16 − 12 = 4"
        }
       ],
-      "explanation": "$11 = 8 + 6 - s(A \\cap B)$, $s(A \\cap B) = 3$. Kesişim, toplamda **iki kez** sayılır.",
+      "explanation": "$12 = 9 + 7 - s(A \\cap B)$, yani $s(A \\cap B) = 4$. Kesişim toplamda **iki kez** sayılır.",
       "narration": "Şimdi sıra sende. Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap 3. Birleşimin eleman sayısı, iki kümenin eleman sayılarının toplamından kesişimin çıkarılmasıyla bulunur, çünkü kesişimdeki elemanlar toplamda iki kez sayılır."
+      "explanationNarration": "Doğru cevap 4. Kesişimdeki elemanlar toplamda iki kez sayılır; birleşimi bulmak için kesişimi bir kez çıkarırsın. 16'yı seçen bu fazlalığı görmemiştir."
+     },
+     {
+      "kind": "rule",
+      "title": "Birleşim ve kesişimin kuralları",
+      "items": [
+       "**Birleşimin eleman sayısı**: $s(A \\cup B) = s(A) + s(B) - s(A \\cap B)$.",
+       "$A \\subseteq B$ ise $A \\cup B = B$ ve $A \\cap B = A$.",
+       "**Boş kümeyle**: $A \\cup \\varnothing = A$, $A \\cap \\varnothing = \\varnothing$.",
+       "İkisinde de **değişme** ve **birleşme** özelliği var: $A \\cup B = B \\cup A$.",
+       "**Dağılma**: $A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C)$."
+      ],
+      "narration": "Birleşimin eleman sayısı, iki kümenin toplamından kesişimin çıkarılmasıdır. A, B'nin alt kümesiyse birleşim B'nin kendisi, kesişim A'nın kendisidir. Boş kümeyle birleşim kümeyi değiştirmez, kesişim ise boş kümeyi verir. İkisinde de değişme ve birleşme özelliği var; sıra önemli değil. Bir de dağılma: A kesişim, B birleşim C; A kesişim B ile A kesişim C'nin birleşimine eşittir."
+     },
+     {
+      "kind": "example",
+      "title": "Formülle say",
+      "example": "A kümesi 2, 4, 6, 8, 10 ve **B kümesi** 3, 6, 9 ise birleşimin 7 elemanı vardır.",
+      "explanation": "Toplam **8 eleman** sayılır: $5 + 3$. Ama **6 iki kez** sayıldı: $8 - 1 = 7$.",
+      "narration": "Bak: A kümesi 2, 4, 6, 8, 10 ve B kümesi 3, 6, 9 ise birleşimin 7 elemanı vardır. Toplam 8 eleman sayılır: 5 artı 3. Ama 6 iki kez sayıldı, bir kez çıkar: 7."
+     },
+     {
+      "kind": "mistake",
+      "title": "Ortakları iki kez sayma",
+      "wrong": "$s(A \\cup B)$, $s(A)$ ile $s(B)$'nin toplamına eşittir.",
+      "right": "Toplama, ortak elemanları **iki kez** sayar; kesişim bir kez **çıkarılmalıdır**.",
+      "why": "Doğrudan toplama yalnız **ayrık** kümelerde doğrudur: $A \\cap B = \\varnothing$ ise $s(A \\cup B) = s(A) + s(B)$.",
+      "narration": "Sık hata: birleşimin eleman sayısını iki kümenin toplamı sanmak. Toplama, ortak elemanları iki kez sayar; kesişim bir kez çıkarılmalıdır. Doğrudan toplama yalnız ayrık kümelerde doğrudur, çünkü orada ortak eleman yoktur."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$A = \\{1, 2, 3, 4, 6\\}$ ve $B = \\{2, 4, 5, 6, 8\\}$ olduğuna göre, $(A \\setminus B) \\cup (B \\setminus A)$ kümesinin eleman sayısı kaçtır?",
+       "stem": "$s(A) = 12$, $s(B) = 9$ ve $s(A \\cap B) = 4$ olduğuna göre $s(A \\cup B)$ kaçtır?",
        "options": [
-        "2",
-        "3",
-        "4",
-        "5",
-        "6"
-       ],
-       "answer": 2,
-       "narration": "İki farkı ayrı ayrı bulup birleştirelim.",
-       "steps": [
-        {
-         "text": "$A \\setminus B = \\{1, 3\\}$",
-         "narration": "A'da olup B'de olmayanlar: 1 ve 3."
-        },
-        {
-         "text": "$B \\setminus A = \\{5, 8\\}$",
-         "narration": "B'de olup A'da olmayanlar: 5 ve 8."
-        },
-        {
-         "text": "Birleşim $\\{1, 3, 5, 8\\}$: **4** eleman. Cevap **C**.",
-         "narration": "Birleşimleri 1, 3, 5, 8: dört eleman. Bu küme, yalnızca bir kümede bulunan elemanlardır; kesişim dışarıda kalır. Cevabımız C.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki fark ve birleşim işlem kalıbı örnek alındı, kümeler özgün."
-       }
-      }
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "$a$ bir tam sayı olmak üzere dört elemanlı $B = \\{1, 4, 7, a\\}$ kümesinin her elemanına 3 eklenerek dört elemanlı yeni bir küme elde ediliyor. Bu iki kümenin kesişimi 3 elemanlı olduğuna göre, $a$'nın alabileceği değerlerin toplamı kaçtır?",
-       "options": [
-        "$-2$",
-        "$8$",
-        "$10$",
-        "$12$",
-        "$18$"
+        "13",
+        "17",
+        "21",
+        "25",
+        "29"
        ],
        "answer": 1,
-       "narration": "ÖSYM 2022'de bu kalıbı sordu. Sistemli deneyelim.",
+       "narration": "Formülü hemen kullanalım.",
        "steps": [
         {
-         "text": "Yeni küme $\\{4, 7, 10, a + 3\\}$. $a$ olmadan ortaklar: **4 ve 7**. Bir ortak daha gerekir.",
-         "narration": "Yeni küme 4, 7, 10 ve a artı 3. a'yı hesaba katmazsak ortak elemanlar 4 ve 7. Kesişimin 3 elemanlı olması için bir ortak daha gerekiyor."
+         "text": "$s(A \\cup B) = 12 + 9 - 4$",
+         "narration": "Birleşim, iki kümenin toplamından kesişimin çıkarılmasıdır: 12 artı 9 eksi 4."
         },
         {
-         "text": "$a$ yeni kümede: $a = 10$ ✓. $a + 3$, B'de: $a + 3 = 1 \\Rightarrow a = -2$ ✓; $a + 3 = 4$ ya da $7$ → $a = 1$ ya da $4$ ✗ (tekrar)",
-         "narration": "Birinci yol: a yeni kümede olsun; a 10 ise kesişim 4, 7, 10 olur. İkinci yol: a artı 3, B'de olsun. a artı 3 eşittir 1 ise a eksi 2; yeni kümede 1 de olur, kesişim 1, 4, 7. a artı 3, 4 ya da 7 olursa a, 1 ya da 4 çıkar; B'de tekrar eden eleman olur ve küme dört elemanlı kalmaz."
-        },
-        {
-         "text": "Değerler $10$ ve $-2$: toplam **8**. Cevap **B**.",
-         "narration": "a'nın alabileceği değerler 10 ve eksi 2; toplamları 8. Cevabımız B. Yalnız bir yolu deneyen 10'u ya da eksi 2'yi işaretler.",
+         "text": "$= 17$. Cevap **B**. 21, kesişimi çıkarmayı unutanın cevabıdır.",
+         "narration": "Sonuç 17. Cevabımız B. Kesişimi çıkarmayı unutan 21 bulur.",
          "eliminate": [
           "A",
           "C",
@@ -437,64 +676,280 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2022'nin \"elemanları değiştirilen kümeyle kesişim\" kalıbı örnek alındı; işlem (çarpma yerine toplama), küme ve sayılar özgün."
+        "changes": "Bu ders için yazıldı; birleşim formülünün doğrudan uygulaması, sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir sınıfta iki takım kuruluyor. Kırmızı takımdaki öğrencilerin adları SELİN ve KEREM; Mavi takımdaki öğrencilerin adları ise MERT, ELA ve bir öğrencinin daha adıdır. Kırmızı takımdaki adların harflerinden oluşan küme $K$, Mavi takımdaki adların harflerinden oluşan küme $M$ olsun. $K \\cap M = \\{E, L, M, R\\}$ olduğuna göre Mavi takımdaki diğer öğrencinin adı aşağıdakilerden hangisi olabilir?",
+       "options": [
+        "ALİ",
+        "BURAK",
+        "NUR",
+        "SEDA",
+        "UMUT"
+       ],
+       "answer": 4,
+       "narration": "Bu kalıbı ÖSYM sever: adlar, harfler, kümeler.",
+       "steps": [
+        {
+         "text": "$K$: SELİN ve KEREM → $\\{S, E, L, İ, N, K, R, M\\}$.",
+         "narration": "Önce K kümesini yaz: SELİN'den S, E, L, İ, N; KEREM'den K, R, M. Sekiz harf."
+        },
+        {
+         "text": "MERT ve ELA kesişime zaten **E, L, M, R** veriyor. Üçüncü ad $K$'den yeni harf **getirmemeli**: S, İ, N, K yasak.",
+         "narration": "MERT'ten M, E, R; ELA'dan E ve L kesişime giriyor. Kesişim zaten tamam. Üçüncü ad K'den yeni harf getirirse kesişim büyür: S, İ, N ve K yasak."
+        },
+        {
+         "text": "ALİ'de İ, BURAK'ta K, NUR'da N, SEDA'da S var: **elenir**.",
+         "narration": "ALİ'de İ, BURAK'ta K, NUR'da N, SEDA'da S var; hepsi elenir.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        },
+        {
+         "text": "UMUT: U, M, T; M zaten kesişimde. Cevap **E**.",
+         "narration": "UMUT'ta U, M ve T var; U ile T, K'de yok, M zaten kesişimde. Cevabımız E."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2023'ün \"adların harflerinden oluşan kümelerin kesişimi\" kalıbı örnek alındı; adlar, takım bağlamı, kesişim ve şıklar özgün."
        }
       }
      }
     ]
    },
    {
-    "subtopic": "MAT_KUME_10",
-    "title": "Venn şemaları",
-    "narration": "ÖSYM Venn şemasını genellikle bölünebilme ya da isimlerle birlikte sorar: boyalı bölgenin hangi koşulları sağladığını okursun.",
+    "subtopic": "MAT_KUME_07",
+    "subtopics": [
+     "MAT_KUME_08"
+    ],
+    "title": "Fark ve tümleyen",
+    "narration": "Şimdi çıkarma: bir kümeden başka bir kümenin elemanlarını atmak.",
     "cards": [
      {
+      "kind": "visual",
+      "title": "Çıkarınca ne kalır?",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "İşlem",
+        "Anlamı",
+        "Örnek"
+       ],
+       "rows": [
+        [
+         "A \\ B",
+         "A'da olup B'de olmayanlar",
+         "{1, 2}"
+        ],
+        [
+         "B \\ A",
+         "B'de olup A'da olmayanlar",
+         "{5, 6}"
+        ],
+        [
+         "A'",
+         "E'de olup A'da olmayanlar",
+         "{5, 6, 7, 8}"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "narration": "Evrensel küme 1'den 8'e kadar olsun; A 1, 2, 3, 4; B 3, 4, 5, 6.",
+      "beats": [
+       {
+        "narration": "A fark B, A'da olup B'de olmayanlardır: 1 ve 2.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "B fark A ise 5 ve 6; sırayı değiştirince sonuç değişti.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "A tümleyen, evrensel kümede olup A'da olmayanlardır: 5, 6, 7 ve 8.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "concept",
+      "title": "Fark ve tümleyen",
+      "text": "**Fark** $A \\setminus B$: $A$'da olup $B$'de **olmayan** elemanlar; $A \\setminus B \\neq B \\setminus A$. **Tümleyen** $A'$: **evrensel kümede** olup $A$'da olmayan elemanlar, yani $A' = E \\setminus A$.",
+      "narration": "Fark, A'da olup B'de olmayan elemanlardır ve sıra önemlidir. Tümleyen ise evrensel kümede olup A'da olmayan elemanlardır; evrensel kümeden A'yı çıkarırsın. Bu yüzden evrensel küme değişince tümleyen de değişir."
+     },
+     {
       "kind": "rule",
-      "title": "Boyalı bölgeyi oku",
+      "title": "Fark ve tümleyenin kuralları",
       "items": [
-       "Bir bölge için her kümeye tek tek sor: **içinde mi, dışında mı?**",
-       "İçinde olduğu kümelerin koşulları **sağlanır**, dışında olduklarınınki **sağlanmaz**.",
-       "Sonra her adayı bu koşullarla tek tek **sına**.",
-       "Bölünebilmede alt küme ilişkisine dikkat: 12'ye bölünen her sayı 2'ye ve 3'e de bölünür."
+       "$A \\setminus B = A \\cap B'$: **fark**, tümleyenle **kesişimdir**.",
+       "$A \\setminus A = \\varnothing$, $A \\setminus \\varnothing = A$; **ayrık kümelerde** $A \\setminus B = A$.",
+       "$A \\cup A' = E$, $A \\cap A' = \\varnothing$, $(A')' = A$.",
+       "$E' = \\varnothing$ ve $\\varnothing' = E$.",
+       "**De Morgan**: $(A \\cup B)' = A' \\cap B'$, $(A \\cap B)' = A' \\cup B'$."
       ],
-      "narration": "Boyalı bölgeyi okumak için her kümeye tek tek sorarsın: bu bölge kümenin içinde mi, dışında mı? İçinde olduğu kümelerin koşulları sağlanır, dışında olduklarınınki sağlanmaz. Sonra her adayı bu koşullarla sınarsın. Bölünebilmede kümeler iç içe olabilir: 12'ye bölünen her sayı hem 2'ye hem 3'e bölünür."
+      "narration": "A fark B, A kesişim B tümleyendir; yani fark, tümleyenle kesişimdir. Bir kümenin kendisinden farkı boş kümedir, boş kümeden farkı kendisidir; ayrık kümelerde A fark B, A'nın kendisidir. A ile tümleyeninin birleşimi evrensel kümedir, kesişimi boş kümedir. Evrensel kümenin tümleyeni boş küme, boş kümenin tümleyeni evrensel kümedir. Ve De Morgan: birleşimin tümleyeni, tümleyenlerin kesişimidir."
+     },
+     {
+      "kind": "example",
+      "title": "De Morgan sayılarla",
+      "example": "Evrensel küme 1'den 6'ya, A 1, 2, 3 ve B 3, 4 ise A birleşim B'nin tümleyeni 5 ve 6'dır.",
+      "narration": "Bak: evrensel küme 1'den 6'ya, A 1, 2, 3 ve B 3, 4 ise A birleşim B'nin tümleyeni 5 ve 6'dır.",
+      "steps": [
+       {
+        "narration": "Tümleyenleri ayrı ayrı bul: A tümleyen 4, 5, 6.",
+        "math": "A' = \\{4, 5, 6\\}",
+        "text": "Tümleyenleri ayrı bul"
+       },
+       {
+        "narration": "B tümleyen 1, 2, 5, 6.",
+        "math": "B' = \\{1, 2, 5, 6\\}"
+       },
+       {
+        "narration": "Kesişimleri yine 5 ve 6. İşte De Morgan.",
+        "math": "A' \\cap B' = \\{5, 6\\} = (A \\cup B)'",
+        "text": "**De Morgan** tutar"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Farkta sıra",
+      "wrong": "$A \\setminus B$ ile $B \\setminus A$ aynı kümedir.",
+      "right": "Sıra değişince sonuç değişir: $\\{1, 2, 3\\} \\setminus \\{3, 4\\} = \\{1, 2\\}$, ama $\\{3, 4\\} \\setminus \\{1, 2, 3\\} = \\{4\\}$.",
+      "why": "Farkta **hangi kümeden** çıkardığın önemlidir; fark işleminin değişme özelliği **yoktur**.",
+      "narration": "Sık hata: A fark B ile B fark A'yı aynı sanmak. Sıra değişince sonuç değişir: 1, 2, 3 fark 3, 4 kümesi 1 ve 2'dir; ama 3, 4 fark 1, 2, 3 yalnız 4'tür. Farkta hangi kümeden çıkardığın önemlidir."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "2 ile tam bölünen tam sayılar kümesi $A$, 3 ile tam bölünen tam sayılar kümesi $B$, 4 ile tam bölünen tam sayılar kümesi $C$ olsun. $A$ ve $B$ kümelerinin ikisinde de bulunup $C$ kümesinde bulunmayan sayılar boyanıyor. Buna göre I. 18, II. 24, III. 30 sayılarından hangileri boyalı bölgededir?",
+       "stem": "$E = \\{1, 2, 3, \\ldots, 10\\}$ evrensel kümesinin alt kümeleri $A = \\{2, 4, 6, 8, 10\\}$ ve $B = \\{1, 2, 3, 4, 5\\}$ olduğuna göre $(A \\cup B)'$ kümesinin eleman sayısı kaçtır?",
        "options": [
-        "Yalnız I",
-        "Yalnız II",
-        "I ve II",
-        "I ve III",
-        "II ve III"
+        "2",
+        "3",
+        "5",
+        "7",
+        "8"
        ],
-       "answer": 3,
-       "narration": "ÖSYM 2019'da bölünebilme kümeleriyle sordu. Koşulları yazalım: 2'ye ve 3'e bölünecek, 4'e bölünmeyecek.",
+       "answer": 0,
+       "narration": "Önce birleşimi, sonra tümleyeni bulalım.",
        "steps": [
         {
-         "text": "18: 2'ye ✓, 3'e ✓, 4'e bölünmez ✓ → **boyalı**",
-         "narration": "18, 2'ye bölünür, 3'e bölünür, 4'e bölünmez. Üç koşulu da sağlar: boyalı bölgede."
+         "text": "$A \\cup B = \\{1, 2, 3, 4, 5, 6, 8, 10\\}$: 8 eleman.",
+         "narration": "A birleşim B: 1, 2, 3, 4, 5, 6, 8 ve 10. Sekiz eleman."
         },
         {
-         "text": "24: 2'ye ✓, 3'e ✓, ama 4'e **bölünür** ✗",
-         "narration": "24, 2'ye ve 3'e bölünür ama 4'e de bölünür. C'nin içinde olduğu için boyalı değil."
-        },
-        {
-         "text": "30: 2'ye ✓, 3'e ✓, 4'e bölünmez ✓ → **boyalı**. Cevap **D**.",
-         "narration": "30, 2'ye ve 3'e bölünür, 4'e bölünmez: boyalı. Birinci ve üçüncü. Cevabımız D.",
+         "text": "$(A \\cup B)' = \\{7, 9\\}$ → **2**. Cevap **A**.",
+         "narration": "Evrensel kümede olup birleşimde olmayanlar yalnız 7 ve 9. Cevabımız A. Sekizi seçen tümleyeni almayı unutmuştur.",
          "eliminate": [
-          "A",
           "B",
           "C",
+          "D",
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2019'un \"bölünebilme kümeleri ve Venn şemasında boyalı bölge\" kalıbı örnek alındı, kümeler ve sayılar özgün; şekil yerine bölge sözle tanımlandı."
+        "changes": "Bu ders için yazıldı; birleşimin tümleyeni kalıbı, kümeler özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$A$ ve $B$, $E$ evrensel kümesinin alt kümeleri olmak üzere $(A \\cup B)' \\cup (A \\setminus B)$ kümesi aşağıdakilerden hangisine eşittir?",
+       "options": [
+        "$A'$",
+        "$B'$",
+        "$A \\cap B$",
+        "$A \\cup B$",
+        "$E$"
+       ],
+       "answer": 1,
+       "narration": "İfadeyi kurallarla sadeleştirelim.",
+       "steps": [
+        {
+         "text": "De Morgan: $(A \\cup B)' = A' \\cap B'$.",
+         "narration": "De Morgan'la birleşimin tümleyeni, tümleyenlerin kesişimidir: A tümleyen kesişim B tümleyen."
+        },
+        {
+         "text": "Fark: $A \\setminus B = A \\cap B'$.",
+         "narration": "Fark da tümleyenle kesişimdir: A fark B, A kesişim B tümleyen."
+        },
+        {
+         "text": "$(A' \\cap B') \\cup (A \\cap B') = (A' \\cup A) \\cap B' = E \\cap B' = B'$. Cevap **B**.",
+         "narration": "İkisinde de B tümleyen ortak, onu dışarı alırız. A tümleyen birleşim A evrensel kümedir ve E kesişim B tümleyen, B tümleyendir. Cevabımız B.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki tümleyenli ifade sadeleştirme kalıbı örnek alındı, ifade özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "context": "I. $\\{1, 2, 3\\}$\nII. $\\{2, 4, 5\\}$\nIII. $\\{3, 4, 6\\}$",
+       "stem": "Numaraları verilen üç küme ayrı kutulara konuyor ve kutulara A, B, C etiketleri birer kez yapıştırılıyor; her etiket, kutudaki kümenin adı oluyor. $4 \\in A \\cap B$ ve $6 \\in B \\setminus C$ olduğuna göre A, B ve C etiketli kutulardaki kümeler sırasıyla hangileridir?",
+       "options": [
+        "I - II - III",
+        "I - III - II",
+        "II - I - III",
+        "II - III - I",
+        "III - II - I"
+       ],
+       "answer": 3,
+       "narration": "Bu kalıpta kümeleri elemanların izini sürerek eşleştirirsin.",
+       "steps": [
+        {
+         "text": "$4 \\in A \\cap B$: 4 yalnız II ve III'te. $A$ ile $B$ bunlardır, $C = \\text{I}$.",
+         "narration": "4 hem A'da hem B'de olmalı. 4 yalnız iki ve üç numaralı kümelerde var; demek ki A ile B bunlar, C ise bir numaralı küme. C'si bir olmayan şıklar gider.",
+         "eliminate": [
+          "A",
+          "B",
+          "C"
+         ]
+        },
+        {
+         "text": "$6 \\in B \\setminus C$: 6 yalnız III'te → $B = \\text{III}$, $A = \\text{II}$. Cevap **D**.",
+         "narration": "6, B'de olup C'de olmamalı. 6 yalnız üç numaralı kümede var; o hâlde B üç, A iki. Sıralama iki, üç, bir. Cevabımız D.",
+         "eliminate": [
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2026'nın \"üç kümeyi A, B, C ile eşleştirme\" kalıbı örnek alındı; kümeler, koşullar ve doğru sıralama özgün."
        }
       }
      }
@@ -503,41 +958,548 @@
    {
     "subtopic": "MAT_KUME_09",
     "title": "Kartezyen çarpım",
-    "narration": "İki kümeden sıralı ikililer oluşturursan kartezyen çarpımı elde edersin.",
+    "narration": "Şimdi kümeleri çarpacağız: iki kümeden sıralı ikililer kurarak.",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Sıralı ikili",
+      "text": "$(a, b)$ bir **sıralı ikilidir**: $a$ birinci, $b$ ikinci **bileşendir**. Sıra önemlidir: $(2, 5) \\neq (5, 2)$. İki sıralı ikili ancak bileşenleri **sırasıyla eşitse** eşittir: $(x, 3) = (4, y)$ ise $x = 4$, $y = 3$.",
+      "narration": "a virgül b bir sıralı ikilidir; a birinci, b ikinci bileşendir. Kümede sıra önemli değildi, burada önemli: 2, 5 ile 5, 2 farklıdır. İki sıralı ikili ancak bileşenleri sırasıyla eşitse eşittir."
+     },
+     {
+      "kind": "visual",
+      "title": "A × B düzlemde",
+      "visual": {
+       "kind": "plot",
+       "x": [
+        0,
+        4
+       ],
+       "y": [
+        0,
+        3
+       ],
+       "xLabel": "A",
+       "yLabel": "B",
+       "equalScale": true,
+       "points": [
+        {
+         "x": 1,
+         "y": 1,
+         "label": "(1, 1)"
+        },
+        {
+         "x": 2,
+         "y": 1,
+         "label": "(2, 1)"
+        },
+        {
+         "x": 3,
+         "y": 1,
+         "label": "(3, 1)"
+        },
+        {
+         "x": 1,
+         "y": 2,
+         "label": "(1, 2)"
+        },
+        {
+         "x": 2,
+         "y": 2,
+         "label": "(2, 2)"
+        },
+        {
+         "x": 3,
+         "y": 2,
+         "label": "(3, 2)"
+        }
+       ]
+      },
+      "narration": "A 1, 2, 3; B 1 ve 2 olsun. A çarpım B'yi düzlemde çizelim.",
+      "beats": [
+       {
+        "narration": "Birinci bileşen A'dan, ikinci bileşen B'den gelir; önce ikinci bileşeni 1 olanlar.",
+        "show": [
+         "p1",
+         "p2",
+         "p3"
+        ],
+        "focus": [
+         "p1",
+         "p2",
+         "p3"
+        ]
+       },
+       {
+        "narration": "Sonra ikinci bileşeni 2 olanlar: toplam 3 çarpı 2, 6 nokta.",
+        "show": [
+         "p4",
+         "p5",
+         "p6"
+        ],
+        "focus": [
+         "p4",
+         "p5",
+         "p6"
+        ],
+        "note": "s(A × B) = 3 · 2 = 6"
+       }
+      ]
+     },
+     {
       "kind": "rule",
-      "title": "Sıralı ikililer",
+      "title": "Kartezyen çarpımın kuralları",
       "items": [
-       "$A \\times B$: birinci bileşeni A'dan, ikincisi B'den gelen **sıralı ikililer**.",
-       "$s(A \\times B) = s(A) \\cdot s(B)$",
-       "Sıra önemlidir: $(1, a) \\neq (a, 1)$; genellikle $A \\times B \\neq B \\times A$.",
-       "Örnek: $A = \\{1, 2\\}$, $B = \\{a, b, c\\}$ → $A \\times B$ 6 elemanlı."
+       "$A \\times B$: birinci bileşeni $A$'dan, ikincisi $B$'den gelen **bütün sıralı ikililer**.",
+       "**Eleman sayısı**: $s(A \\times B) = s(A) \\cdot s(B)$.",
+       "Kümeler farklıysa $A \\times B \\neq B \\times A$; ama eleman sayıları **yine eşittir**.",
+       "**Boş kümeyle** çarpım boştur: $A \\times \\varnothing = \\varnothing$.",
+       "Grafikte birinci bileşen **x ekseninde**, ikinci bileşen **y ekseninde**."
       ],
-      "narration": "A kartezyen çarpım B, birinci bileşeni A'dan, ikinci bileşeni B'den gelen sıralı ikililerin kümesidir. Eleman sayısı, iki kümenin eleman sayılarının çarpımıdır. Sıralı ikilide sıra önemlidir: 1 virgül a, a virgül 1'e eşit değildir. A 1 ve 2'den, B a, b ve c'den oluşuyorsa A kartezyen çarpım B'nin 2 çarpı 3, yani 6 elemanı vardır."
+      "narration": "A kartezyen çarpım B, birinci bileşeni A'dan, ikincisi B'den gelen bütün sıralı ikililerdir. Eleman sayısı, iki kümenin eleman sayılarının çarpımıdır. Kümeler farklıysa A çarpım B ile B çarpım A farklıdır; ama eleman sayıları yine eşittir. Boş kümeyle çarpım boştur. Grafikte birinci bileşen x ekseninde, ikinci bileşen y ekseninde durur."
+     },
+     {
+      "kind": "example",
+      "title": "İkilileri yaz",
+      "example": "A kümesi 1, 2, 3 ve B kümesi 3, 4 ise A çarpım B'nin 6 elemanı vardır.",
+      "explanation": "Hepsini yaz: $(1,3), (1,4), (2,3), (2,4), (3,3), (3,4)$: **6 ikili**.",
+      "narration": "Bak: A kümesi 1, 2, 3 ve B kümesi 3, 4 ise A çarpım B'nin 6 elemanı vardır. Hepsini yaz: 1, 3; 1, 4; 2, 3; 2, 4; 3, 3; 3, 4. Gerçekten 6 ikili."
+     },
+     {
+      "kind": "mistake",
+      "title": "Yer değiştirme",
+      "wrong": "$(2, 5)$ ikilisi $A \\times B$ kümesindeyse $(5, 2)$ ikilisi de oradadır.",
+      "right": "Sıralı ikilide birinci bileşen **A'dan** gelir; $5 \\notin A$ ise $(5, 2)$ kümede yoktur.",
+      "why": "Kartezyen çarpımda **yer değiştirme** serbest değildir: $(5, 2)$ ancak $B \\times A$'nın elemanı olabilir.",
+      "narration": "Sık hata: 2, 5 kümedeyse 5, 2'nin de orada olduğunu sanmak. Sıralı ikilide birinci bileşen A'dan gelir; 5, A'da yoksa 5, 2 ikilisi A çarpım B'de yoktur. Kartezyen çarpımda yer değiştirme serbest değildir."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$A = \\{1, 2, 3\\}$ ve $B = \\{a, b\\}$ olduğuna göre $A \\times B$ kümesinin **alt küme** sayısı kaçtır?",
+       "stem": "$A = \\{1, 2, 3\\}$ ve $B = \\{a, b\\}$ olduğuna göre aşağıdakilerden hangisi $A \\times B$ kümesinin elemanı **değildir**?",
        "options": [
-        "6",
-        "12",
-        "32",
-        "64",
-        "8"
+        "$(1, a)$",
+        "$(2, b)$",
+        "$(3, a)$",
+        "$(3, b)$",
+        "$(a, 2)$"
        ],
-       "answer": 3,
-       "narration": "Önce kartezyen çarpımın eleman sayısını bulalım.",
+       "answer": 4,
+       "narration": "Sıralı ikilinin sırasına dikkat.",
        "steps": [
         {
-         "text": "$s(A \\times B) = s(A) \\cdot s(B) = 3 \\cdot 2 = 6$.",
-         "narration": "Kartezyen çarpım, birinci kümeden bir, ikinci kümeden bir eleman alınarak kurulan sıralı ikililerdir. Eleman sayısı üç çarpı iki, altı: bir a, bir b, iki a, iki b, üç a, üç b."
+         "text": "Birinci bileşen $\\{1, 2, 3\\}$'ten, ikinci bileşen $\\{a, b\\}$'den gelmeli.",
+         "narration": "A çarpım B'nin her elemanında birinci bileşen 1, 2 ya da 3; ikinci bileşen a ya da b olmalı."
         },
         {
-         "text": "Alt küme sayısı $= 2^{6} = 64$. Cevap **D**.",
-         "narration": "Altı elemanlı bir kümenin alt küme sayısı ikinin altıncı kuvveti, altmış dört. Cevabımız D. Altıyı seçen alt küme sayısını değil eleman sayısını vermiştir.",
+         "text": "$(a, 2)$: birinci bileşen $a \\notin A$. Cevap **E**.",
+         "narration": "İlk dört şık bu kurala uyuyor. a virgül 2'de ise birinci bileşen a, A'da yok; bu ikili B çarpım A'nın elemanıdır. Cevabımız E.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki sıralı ikili kuralı özgün kümelerle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir kafe, kahvaltıda bir içecek ve bir hamur işinden oluşan ikili menüler sunmaktadır. İçecekler kümesi $A$, hamur işleri kümesi $B$ olmak üzere her menü $A \\times B$ kümesinin bir elemanıdır. Kafe menüye 2 yeni içecek eklediğinde menü sayısı 10 artmıştır. Daha sonra hamur işlerinden 1 tanesini çıkardığında menü sayısı 7 azalmıştır. Buna göre kafenin başlangıçtaki menü sayısı kaçtır?",
+       "options": [
+        "20",
+        "25",
+        "28",
+        "35",
+        "40"
+       ],
+       "answer": 1,
+       "narration": "Şimdi kartezyen çarpımı gerçek bir durumda kullanalım.",
+       "steps": [
+        {
+         "text": "$s(A) = i$, $s(B) = h$. 2 içecek eklenince her biri $h$ menü getirir: $2h = 10$, $h = 5$.",
+         "narration": "İçecek sayısına i, hamur işi sayısına h diyelim. Eklenen her içecek, her hamur işiyle bir menü kurar: 2 çarpı h, 10. Yani h, 5."
+        },
+        {
+         "text": "Bir hamur işi çıkınca $i + 2$ menü gider: $i + 2 = 7$, $i = 5$.",
+         "narration": "Çıkan hamur işi, o anki bütün içeceklerle kurulan menüleri götürür: i artı 2 menü. i artı 2, 7; i, 5."
+        },
+        {
+         "text": "Başlangıç $5 \\cdot 5 = 25$. Cevap **B**.",
+         "narration": "Başlangıçta 5 çarpı 5, 25 menü vardı. Cevabımız B. 35 içecek eklendikten sonraki, 28 hamur işi çıktıktan sonraki sayıdır.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki kartezyen çarpımın eleman sayısı kalıbı ÖSYM tarzı bir günlük bağlama taşındı; bağlam ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_KUME_10",
+    "title": "Venn şemaları",
+    "narration": "Venn şeması kümeleri bölgelere ayırır; her bölge aslında bir koşul cümlesidir.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Üç kümede sekiz bölge",
+      "visual": {
+       "kind": "venn",
+       "sets": [
+        {
+         "label": "A"
+        },
+        {
+         "label": "B"
+        },
+        {
+         "label": "C"
+        }
+       ]
+      },
+      "narration": "Üç küme çizdiğimizde en çok sekiz bölge oluşur.",
+      "beats": [
+       {
+        "narration": "Ortadaki bölge üç kümenin de içindedir: A kesişim B kesişim C.",
+        "note": "A ∩ B ∩ C"
+       },
+       {
+        "narration": "İki kümenin içinde olup üçüncünün dışında kalan üç bölge vardır.",
+        "note": "(A ∩ B) \\ C, (A ∩ C) \\ B, (B ∩ C) \\ A"
+       },
+       {
+        "narration": "Tek bir kümede kalan üç bölge ve hiçbir kümede olmayan dış bölge de var.",
+        "note": "Yalnız A, yalnız B, yalnız C ve dışarısı"
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Bölgeyi oku",
+      "items": [
+       "Bölge için her kümeye sor: **içinde mi, dışında mı?**",
+       "İçinde olduğu kümelerin koşulu **sağlanır**, dışında olduklarınınki **sağlanmaz**.",
+       "Koşulları birleştir: içinde olmak **kesişim**, dışında olmak **fark** demektir.",
+       "Her adayı koşullarla **tek tek sına**.",
+       "Bölünebilmede dikkat: 12'ye bölünen her sayı **3'e de bölünür**."
+      ],
+      "narration": "Bölge için her kümeye sor: içinde mi, dışında mı? İçinde olduğu kümelerin koşulu sağlanır, dışında olduklarınınki sağlanmaz. Koşulları birleştir: içinde olmak kesişim, dışında olmak fark demektir. Her adayı bu koşullarla tek tek sına. Bölünebilmede dikkat: 12'ye bölünen her sayı 3'e de bölünür, bu yüzden o kümeler iç içedir."
+     },
+     {
+      "kind": "example",
+      "title": "Hangi bölgede?",
+      "example": "4'e bölünenler A, 6'ya bölünenler B ise A fark B bölgesinde 20 vardır, 24 yoktur.",
+      "explanation": "Çünkü $20$, 6'ya **bölünmez**; $24$ ise 6'ya da bölünür ve **kesişime** düşer.",
+      "narration": "Bak: 4'e bölünenler A, 6'ya bölünenler B ise A fark B bölgesinde 20 vardır, 24 yoktur. Çünkü 20, 6'ya bölünmez; 24 ise 6'ya da bölünür ve kesişime düşer."
+     },
+     {
+      "kind": "mistake",
+      "title": "A ile yalnız A",
+      "wrong": "Venn şemasında $A$ kümesi, $A$'nın tek başına kaldığı bölgedir.",
+      "right": "Çemberin **bütün içi** $A$'dır: ortak bölgeler de dahil.",
+      "why": "**Yalnız A** ile **A** farklıdır: yalnız A, $A \\setminus (B \\cup C)$ bölgesidir.",
+      "narration": "Sık hata: A kümesini, A'nın tek başına kaldığı bölge sanmak. Çemberin bütün içi A'dır; ortak bölgeler de dahil. Yalnız A ile A farklıdır: yalnız A, A fark B birleşim C bölgesidir."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "figure": {
+        "kind": "venn",
+        "sets": [
+         {
+          "label": "A",
+          "items": [
+           "1",
+           "4",
+           "7"
+          ]
+         },
+         {
+          "label": "B",
+          "items": [
+           "3",
+           "8"
+          ]
+         }
+        ],
+        "shared": [
+         "2",
+         "5"
+        ]
+       },
+       "stem": "Şekildeki Venn şemasında $A$ ve $B$ kümelerinin elemanları gösterilmiştir. Buna göre $(A \\setminus B) \\cup (B \\setminus A)$ kümesinin elemanlarının toplamı kaçtır?",
+       "options": [
+        "12",
+        "19",
+        "23",
+        "30",
+        "33"
+       ],
+       "answer": 2,
+       "narration": "Şekle bak ve bölgeleri oku.",
+       "steps": [
+        {
+         "text": "$A \\setminus B = \\{1, 4, 7\\}$, $B \\setminus A = \\{3, 8\\}$.",
+         "narration": "A fark B, yalnız A bölgesi: 1, 4, 7. B fark A, yalnız B bölgesi: 3 ve 8."
+        },
+        {
+         "text": "Toplam $12 + 11 = 23$. Cevap **C**.",
+         "narration": "1 artı 4 artı 7, 12; 3 artı 8, 11; hepsi 23. Cevabımız C. Ortadaki 2 ve 5'i de toplayan 30, yalnız A fark B'yi alan 12 bulur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki \"elemanları Venn şemasında verilen işlem\" kalıbı örnek alındı, elemanlar ve ifade özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "Öğrenci",
+         "Satranç",
+         "Tiyatro",
+         "Müzik"
+        ],
+        "rows": [
+         [
+          "Arda",
+          "✓",
+          "✓",
+          "–"
+         ],
+         [
+          "Buse",
+          "✓",
+          "–",
+          "✓"
+         ],
+         [
+          "Can",
+          "✓",
+          "✓",
+          "✓"
+         ],
+         [
+          "Defne",
+          "–",
+          "✓",
+          "–"
+         ],
+         [
+          "Emre",
+          "–",
+          "✓",
+          "✓"
+         ]
+        ]
+       },
+       "stem": "Bir okulda beş öğrencinin üye olduğu kulüpler tabloda ✓ işaretiyle gösterilmiştir. Satranç, tiyatro ve müzik kulüplerine üye öğrencilerin kümeleri sırasıyla $S$, $T$ ve $M$'dir. Bu kümeler bir Venn şemasında çizildiğinde $(T \\setminus S) \\cap M$ bölgesine yazılacak öğrenci aşağıdakilerden hangisidir?",
+       "options": [
+        "Arda",
+        "Buse",
+        "Can",
+        "Defne",
+        "Emre"
+       ],
+       "answer": 4,
+       "narration": "Tablodaki bilgiyi Venn şemasının bölgelerine taşıyalım.",
+       "steps": [
+        {
+         "text": "$T \\setminus S$: tiyatroda olup satrançta olmayanlar → **Defne, Emre**.",
+         "narration": "Önce T fark S: tiyatroda olup satrançta olmayanlar. Arda, Buse ve Can satrançta; geriye Defne ve Emre kalıyor.",
+         "eliminate": [
+          "A",
+          "B",
+          "C"
+         ]
+        },
+        {
+         "text": "Bunlardan müzikte olan **Emre**. Cevap **E**.",
+         "narration": "Şimdi müzikle kesiştir. Defne müzikte yok, Emre var. Cevabımız E.",
+         "eliminate": [
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Havuzdaki \"tablodan Venn şemasındaki bölgeyi bulma\" kalıbı örnek alındı; öğrenciler, kulüpler, tablo ve bölge ifadesi özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_KUME_11",
+    "title": "Küme problemleri",
+    "narration": "Son durak: sözel küme problemleri. Hepsi aynı işle başlar: bölgelere sayı yazmak.",
+    "cards": [
+     {
+      "kind": "visual",
+      "title": "Sözcükler ve bölgeler",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "İfade",
+        "Bölge"
+       ],
+       "rows": [
+        [
+         "A'yı yapanlar",
+         "a + b"
+        ],
+        [
+         "Yalnız A",
+         "a"
+        ],
+        [
+         "İkisini de",
+         "b"
+        ],
+        [
+         "En az birini",
+         "a + b + c"
+        ],
+        [
+         "Yalnız birini",
+         "a + c"
+        ],
+        [
+         "En çok birini",
+         "a + c + d"
+        ],
+        [
+         "Hiçbirini",
+         "d"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "narration": "İki kümede dört bölge var: yalnız A'ya a, ortaya b, yalnız B'ye c, dışarıya d diyelim.",
+      "beats": [
+       {
+        "narration": "A'yı yapanlar a artı b; yalnız A yapanlar a; ikisini de yapanlar b.",
+        "show": [
+         "r1",
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r1",
+         "r2",
+         "r3"
+        ]
+       },
+       {
+        "narration": "En az birini yapanlar a, b ve c; yalnız birini yapanlar a ile c.",
+        "show": [
+         "r4",
+         "r5"
+        ],
+        "focus": [
+         "r4",
+         "r5"
+        ]
+       },
+       {
+        "narration": "En çok birini yapanlara dışarıdaki d de girer; hiçbirini yapmayanlar yalnız d.",
+        "show": [
+         "r6",
+         "r7"
+        ],
+        "focus": [
+         "r6",
+         "r7"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "İçten dışa yaz",
+      "items": [
+       "Önce **en içteki** bölgeyi yaz: iki ya da üç kümenin ortağı.",
+       "Sonra dışa doğru git: **yalnız** bölgeler, en sonda **hiçbiri**.",
+       "**En az biri** birleşimdir; **en çok biri** hiçbirini de sayar.",
+       "**Toplam**, bütün bölgelerin toplamıdır: $a + b + c + d$."
+      ],
+      "narration": "Önce en içteki bölgeyi yaz: iki ya da üç kümenin ortağı. Sonra dışa doğru git: yalnız bölgeler, en sonda hiçbiri. En az biri birleşimdir; en çok biri derken hiçbirini yapmayanlar da sayılır. Toplam, bütün bölgelerin toplamıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Çay ve kahve",
+      "example": "30 kişide çay içen 18, kahve içen 15, ikisini de içen 7 ise hiçbirini içmeyen 4 kişidir.",
+      "explanation": "İçten dışa yaz: ortada **7**, yalnız çay $11$, yalnız kahve $8$; dışarıda $30 - 26 = 4$.",
+      "narration": "Bak: 30 kişide çay içen 18, kahve içen 15, ikisini de içen 7 ise hiçbirini içmeyen 4 kişidir. İçten dışa yaz: ortada 7, yalnız çay 11, yalnız kahve 8. Toplam 26; dışarıda 30 eksi 26, 4."
+     },
+     {
+      "kind": "rule",
+      "title": "Sayarak topla",
+      "items": [
+       "Her nesneyi **kaç kişinin** içerdiğini düşün.",
+       "Toplam görünme = tekliler + 2 × ikililer + 3 × üçlüler.",
+       "Bu toplam, kişilerin **kendi sayılarının toplamına** eşittir."
+      ],
+      "narration": "Bazı üç kümeli sorularda şema yerine saymak hızlıdır. Her nesneyi kaç kişinin içerdiğini düşün. Tek kişilik nesne toplama 1, ikili 2, üçlü 3 katar. Bu toplam, kişilerin kendi sayılarının toplamına eşittir ve tek bir denklem verir."
+     },
+     {
+      "kind": "mistake",
+      "title": "En az biri, yalnız biri",
+      "wrong": "\"En az bir sporu yapanlar\" ile \"yalnız bir sporu yapanlar\" aynı sayıdır.",
+      "right": "En az biri, ikisini de yapanları **içerir**: $a + b + c$. Yalnız biri **içermez**: $a + c$.",
+      "why": "Aradaki fark tam olarak **ortak bölgedir**; sözcüğü atlarsan cevap ortak bölge kadar kayar.",
+      "narration": "Sık hata: en çok karıştırılan iki ifadeyi aynı saymak. En az biri, ikisini de yapanları içerir; yalnız biri içermez. Aradaki fark tam olarak ortak bölgedir; sözcüğü atlarsan cevap o kadar kayar."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "36 kişilik bir sınıfta voleybol oynayan 20, basketbol oynayan 16 öğrenci vardır. Bu iki sporu da oynamayan 6 öğrenci olduğuna göre, bu sporlardan **yalnız birini** oynayan kaç öğrenci vardır?",
+       "options": [
+        "6",
+        "10",
+        "14",
+        "24",
+        "30"
+       ],
+       "answer": 3,
+       "narration": "Önce birleşimi bulalım.",
+       "steps": [
+        {
+         "text": "En az birini oynayan: $36 - 6 = 30$.",
+         "narration": "Hiçbirini oynamayan 6 kişi; en az birini oynayan 36 eksi 6, 30."
+        },
+        {
+         "text": "İkisini de: $20 + 16 - 30 = 6$.",
+         "narration": "İkisini de oynayanlar: 20 artı 16 eksi 30, 6."
+        },
+        {
+         "text": "Yalnız biri: $30 - 6 = 24$. Cevap **D**.",
+         "narration": "Yalnız birini oynayanlar: 30 eksi 6, 24. Yalnız voleybol 14, yalnız basketbol 10. Cevabımız D. 30'u seçen, en az birini oynayanları saymıştır.",
          "eliminate": [
           "A",
           "B",
@@ -547,43 +1509,36 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki kartezyen çarpım ve alt küme sayısı kuralları birleştirilerek özgün bir soru yazıldı."
+        "changes": "Bu ders için yazıldı; havuzdaki iki kümeli problem kalıbı örnek alındı, bağlam ve sayılar özgün."
        }
       }
-     }
-    ]
-   },
-   {
-    "subtopic": "MAT_KUME_11",
-    "title": "Küme problemleri",
-    "narration": "Son bölüm: küme problemleri. İki yöntem kullanacağız: birleşim formülü ve sayarak toplama.",
-    "cards": [
+     },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "40 kişilik bir sınıfta İngilizce bilen 25, Almanca bilen 18 öğrenci vardır. Bu iki dilden hiçbirini bilmeyen 7 öğrenci olduğuna göre, iki dili de bilen kaç öğrenci vardır?",
+       "stem": "Bir yaz okulundaki öğrenciler resim, müzik ve drama atölyelerine katılmaktadır. Resme 22, müziğe 25, dramaya 20 öğrenci katılıyor. Resim ve müziğe birlikte 8, müzik ve dramaya birlikte 9, resim ve dramaya birlikte 7 öğrenci katılıyor; bu sayılara üç atölyeye birden katılan 4 öğrenci de dahildir. Buna göre bu atölyelerden **yalnız birine** katılan kaç öğrenci vardır?",
        "options": [
-        "5",
-        "7",
-        "10",
+        "3",
         "12",
-        "15"
+        "31",
+        "43",
+        "47"
        ],
        "answer": 2,
-       "narration": "Birleşim formülünü kullanalım.",
+       "narration": "Üç küme var; içten dışa yazacağız.",
        "steps": [
         {
-         "text": "En az bir dil bilen: $40 - 7 = 33$",
-         "narration": "Hiçbirini bilmeyen 7 kişi. En az bir dil bilen 40 eksi 7, yani 33 kişi. Bu, birleşimin eleman sayısı."
+         "text": "Ortaya **4**. İkili bölgeler: $8 - 4 = 4$, $9 - 4 = 5$, $7 - 4 = 3$.",
+         "narration": "Üçüne birden katılan 4 kişi ortaya. İkili bölgelerden bu 4'ü çıkar: resim ve müzik yalnız 4, müzik ve drama yalnız 5, resim ve drama yalnız 3."
         },
         {
-         "text": "$33 = 25 + 18 - x \\Rightarrow x = 10$",
-         "narration": "Birleşim, iki kümenin toplamından kesişimin çıkarılmasıdır: 33 eşittir 25 artı 18 eksi x. 43 eksi x, 33; x, 10."
+         "text": "Yalnız resim $22 - 4 - 4 - 3 = 11$, yalnız müzik $25 - 4 - 4 - 5 = 12$, yalnız drama $20 - 3 - 5 - 4 = 8$.",
+         "narration": "Şimdi yalnız bölgeler: resimden ortadakileri çıkar, 11 kalır. Müzikten çıkar, 12 kalır. Dramadan çıkar, 8 kalır."
         },
         {
-         "text": "Cevap **C**.",
-         "narration": "İki dili de bilen 10 öğrenci. Yalnız İngilizce bilen 15, yalnız Almanca bilen 8; 15 artı 8 artı 10 artı 7, 40. Cevabımız C.",
+         "text": "$11 + 12 + 8 = 31$. Cevap **C**.",
+         "narration": "Yalnız birine katılanlar 11 artı 12 artı 8, 31. Cevabımız C. 47 ise en az birine katılanların sayısıdır; yalnız sözcüğünü atlayan onu seçer.",
          "eliminate": [
           "A",
           "B",
@@ -593,57 +1548,46 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki iki kümeli küme problemi kalıbı örnek alındı, bağlam ve sayılar özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki üç kümeli katılım problemi kalıbı örnek alındı; bağlam, sayılar ve sorulan bölge özgün."
        }
       }
      },
      {
-      "kind": "rule",
-      "title": "Sayarak topla",
-      "items": [
-       "Her kişiyi **kaç kez** saydığını düşün.",
-       "Toplam görünme = (ikili olanlar × 2) + (üçlü olanlar × 3).",
-       "Bu toplam, her kişinin görünme sayılarının toplamına eşittir.",
-       "Tek bir denklemle **üçlü** grubun sayısı çıkar."
-      ],
-      "narration": "Üç kümeli bazı problemlerde Venn şeması çizmek yerine saymak daha hızlıdır. Her nesneyi kaç kez saydığını düşün. Bir fotoğrafta iki kişi varsa o fotoğraf toplam görünme sayısına 2, üç kişi varsa 3 katkı yapar. Bu toplam, her kişinin göründüğü fotoğraf sayılarının toplamına eşittir ve tek bir denklem verir."
-     },
-     {
       "kind": "question",
       "question": {
-       "style": "TYT tarzı",
-       "stem": "Üç arkadaşın katıldığı 60 etkinliğin her birine bu arkadaşlardan ya ikisi ya da üçü birlikte katılmıştır. Arkadaşların her biri 45 etkinliğe katıldığına göre, üçünün birlikte katıldığı kaç etkinlik vardır?",
+       "style": "ÖSYM tarzı",
+       "stem": "Bir şarkı yarışmasında üç jüri üyesi 40 şarkının her birine \"geçer\" ya da \"kalır\" oyu vermiştir. Yarışma sonunda her şarkının jüriden ya tam bir ya da tam üç \"geçer\" oyu aldığı görülmüştür. Jüri üyelerinin verdiği \"geçer\" oyu sayıları 18, 20 ve 22 olduğuna göre, üç jüri üyesinden de \"geçer\" oyu alan şarkı sayısı kaçtır?",
        "options": [
-        "5",
         "10",
         "15",
         "20",
-        "25"
+        "25",
+        "30"
        ],
-       "answer": 2,
-       "narration": "ÖSYM 2020'de fotoğraf albümüyle sordu. Sayarak toplayalım.",
+       "answer": 0,
+       "narration": "Son soru: şema yok, tek bir sayma denklemi var.",
        "steps": [
         {
-         "text": "Toplam katılım: $3 \\cdot 45 = 135$",
-         "narration": "Her arkadaş 45 etkinliğe katıldı. Üç arkadaşın toplam katılım sayısı 3 çarpı 45, 135."
+         "text": "Toplam geçer oyu: $18 + 20 + 22 = 60$.",
+         "narration": "Jürinin verdiği geçer oylarını topla: 18 artı 20 artı 22, 60."
         },
         {
-         "text": "Üçlü $x$, ikili $60 - x$: $2(60 - x) + 3x = 135$",
-         "narration": "Üçünün birlikte olduğu etkinliklere x dersek, ikili etkinlikler 60 eksi x. İkili etkinlik katılıma 2, üçlü etkinlik 3 ekler: 2 çarpı 60 eksi x, artı 3 x, 135."
+         "text": "Üç oy alan $x$, bir oy alan $40 - x$: $1 \\cdot (40 - x) + 3x = 60$.",
+         "narration": "Üç geçer alan şarkılara x dersek, bir geçer alanlar 40 eksi x. Tekli şarkı toplama 1, üçlü şarkı 3 katar: 40 eksi x artı 3 x, 60."
         },
         {
-         "text": "$120 + x = 135 \\Rightarrow x = 15$. Cevap **C**.",
-         "narration": "120 artı x eşittir 135; x, 15. Üçünün birlikte katıldığı 15 etkinlik var. Cevabımız C.",
+         "text": "$40 + 2x = 60 \\Rightarrow x = 10$. Cevap **A**.",
+         "narration": "40 artı 2 x eşittir 60; x, 10. Cevabımız A. 20'yi seçen, 60'ı doğrudan 3'e bölmüştür.",
          "eliminate": [
-          "A",
           "B",
+          "C",
           "D",
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2020'nin \"her fotoğrafta ya iki ya üç kardeş\" sayma kalıbı örnek alındı, bağlam ve sayılar özgün."
+        "changes": "ÖSYM 2020'nin \"her nesnede ya iki ya üç kişi\" sayma kalıbı örnek alındı; bağlam, \"ya bir ya üç\" koşulu, farklı kişi sayıları ve sorulan nicelik özgün."
        }
       }
      }
@@ -652,77 +1596,79 @@
   ],
   "summary": {
    "points": [
-    "Tekrar eden eleman **bir kez** sayılır; içinde boş küme olan küme 1 elemanlıdır.",
-    "n elemanlı kümenin $2^n$ alt kümesi, $2^n - 1$ öz alt kümesi vardır.",
-    "Koşullu alt kümede yalnız **serbest** elemanları say.",
+    "Küme **iyi tanımlıdır**; tekrar eden eleman bir kez sayılır, $s(\\{\\varnothing\\}) = 1$.",
+    "n elemanlı kümenin $2^n$ alt kümesi, $2^n - 1$ öz alt kümesi var; koşulluda **serbest** elemanları say.",
+    "Eşit kümelerin elemanları aynıdır; denk kümelerin **eleman sayıları** aynıdır.",
     "$s(A \\cup B) = s(A) + s(B) - s(A \\cap B)$",
-    "Venn'de her kümeye sor: **içinde mi, dışında mı?**",
-    "Üçlü sayma: toplam görünme = 2 × ikili + 3 × üçlü."
+    "$A \\setminus B = A \\cap B'$; De Morgan: $(A \\cup B)' = A' \\cap B'$.",
+    "$s(A \\times B) = s(A) \\cdot s(B)$ ve sıralı ikilide sıra önemlidir.",
+    "Venn'de her kümeye sor: **içinde mi, dışında mı?** Problemde bölgeleri içten dışa yaz."
    ],
    "warnings": [
-    "Denk küme eşit küme **değildir**.",
-    "Kesişim toplamda **iki kez** sayılır.",
-    "24, 4'e de bölünür: boyalı değil.",
-    "$(1, a) \\neq (a, 1)$"
+    "$\\{\\varnothing\\}$ boş küme **değildir**.",
+    "$A \\setminus B \\neq B \\setminus A$",
+    "\"En az biri\" ile \"yalnız biri\" farklıdır.",
+    "Tümleyen evrensel kümeye göre bulunur."
    ],
-   "narration": "Hadi toparlayalım. Kümede tekrar eden eleman bir kez sayılır. n elemanlı kümenin 2 üssü n alt kümesi vardır; belli elemanlar zorunluysa ya da yasaksa yalnızca serbest elemanları sayarsın. Birleşimin eleman sayısı, iki kümenin toplamından kesişimin çıkarılmasıyla bulunur. Venn şemasında boyalı bölgeyi okurken her kümeye içinde mi dışında mı diye sor. Üç kümeli sayma sorularında da her nesneyi kaç kez saydığını düşün."
+   "narration": "Hadi toparlayalım. Küme iyi tanımlıdır ve tekrar eden eleman bir kez sayılır. n elemanlı kümenin 2 üssü n alt kümesi var; koşul varsa yalnız serbest elemanları sayarsın. Eşit kümelerin elemanları, denk kümelerin eleman sayıları aynıdır. Birleşimde kesişimi bir kez çıkar. Fark, tümleyenle kesişimdir. Kartezyen çarpımda sıra önemlidir. Venn şemasında her kümeye içinde mi dışında mı diye sor, problemde bölgeleri içten dışa doldur."
   }
  },
  "short": {
-  "hook": "Kümelerde üç tuzak.",
+  "hook": "Boş küme gerçekten boş mu?",
   "cards": [
    {
-    "kind": "fact",
-    "text": "n elemanlı kümenin **$2^n$** alt kümesi var."
+    "kind": "term",
+    "term": "Alt küme",
+    "definition": "Her elemanı büyük kümede olan küme: **$2^n$** tane."
    },
    {
     "kind": "warning",
-    "text": "Kesişim toplamda **iki kez** sayılır."
-   },
-   {
-    "kind": "warning",
-    "text": "Denk küme, eşit küme **değildir**."
+    "text": "$\\{\\varnothing\\}$ boş değil: **1 elemanlı**."
    },
    {
     "kind": "fact",
-    "text": "İçinde boş küme olan küme **1 elemanlı**."
+    "text": "$s(A \\cup B) = s(A) + s(B) - s(A \\cap B)$"
+   },
+   {
+    "kind": "warning",
+    "text": "$(1, 2) \\neq (2, 1)$: sıralı ikilide **sıra** önemli."
    }
   ],
   "summary": [
-   "2 üssü n alt küme",
-   "Kesişimi bir kez çıkar",
-   "Denk eşit değildir"
+   "İçinde boş küme olan küme 1 elemanlı",
+   "n eleman, 2 üssü n alt küme",
+   "Kesişimi bir kez çıkar"
   ],
   "rounds": [
    {
-    "sentence": "4 elemanlı bir küme",
-    "question": "Kaç alt küme?",
-    "choices": [
-     "8",
-     "16"
-    ],
-    "answer": 1,
-    "why": "2 üssü **4**."
-   },
-   {
-    "sentence": "8 ve 6 elemanlı, birleşim 11",
-    "question": "Kesişim kaç?",
-    "choices": [
-     "3",
-     "14"
-    ],
-    "answer": 0,
-    "why": "14 eksi **11**."
-   },
-   {
-    "sentence": "İçinde yalnız boş küme olan küme",
-    "question": "Boş mu?",
+    "sentence": "$\\{\\varnothing\\}$",
+    "question": "Boş küme mi?",
     "choices": [
      "Evet",
      "Hayır"
     ],
     "answer": 1,
-    "why": "**1** elemanı var."
+    "why": "**Bir** elemanı var."
+   },
+   {
+    "sentence": "$\\{a, b, c\\}$",
+    "question": "Kaç alt küme?",
+    "choices": [
+     "6",
+     "8"
+    ],
+    "answer": 1,
+    "why": "2 üssü **3**."
+   },
+   {
+    "sentence": "A'da 5, B'de 4, ortak 2 eleman",
+    "question": "Birleşim kaç?",
+    "choices": [
+     "7",
+     "9"
+    ],
+    "answer": 0,
+    "why": "Ortak **bir kez** sayılır."
    }
   ]
  },

@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Tarih kampı · Ders 8 · XVII. Yüzyılda Osmanlı
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Tarih/08_Osmanli17/Osmanli17_YouTube.mp4` (4K) · Kapak: `Osmanli17_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Tarih/08_Osmanli17/Osmanli17_YouTube.mp4` (4K) · Kapak: `Osmanli17_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

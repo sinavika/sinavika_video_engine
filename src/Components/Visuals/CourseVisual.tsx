@@ -52,6 +52,14 @@ import {SentenceVisual} from './Language/Sentence';
 import {PoemVisual, poemLayout} from './Literature/Poem';
 import {EquationVisual} from './Mathematics/Equation';
 import {NumberLineVisual} from './Mathematics/NumberLine';
+import {AreaModelVisual, areaModelFrame} from './Mathematics/AreaModel';
+import {BarModelVisual, barModelFrame} from './Mathematics/BarModel';
+import {CountingBoardVisual, slotsFrame} from './Mathematics/CountingBoard';
+import {LongDivisionVisual, longDivisionFrame} from './Mathematics/LongDivision';
+import {MappingVisual, mappingFrame} from './Mathematics/Mapping';
+import {PrimeLadderVisual, primeLadderFrame} from './Mathematics/PrimeLadder';
+import {SampleSpaceVisual, sampleSpaceFrame} from './Mathematics/SampleSpace';
+import {SignTableVisual, signTableFrame} from './Mathematics/SignTable';
 import {TransformVisual} from './Mathematics/Transform';
 import {UnitCircleVisual} from './Mathematics/UnitCircle';
 import {GeometryVisual} from './Mathematics/Geometry';
@@ -225,10 +233,29 @@ export const worldRatio = (visual: CourseVisualSpec): number | undefined => {
 			return oscillatorStage(visual).width / oscillatorStage(visual).height;
 		case 'electricField':
 			return (visual.view[2] - visual.view[0]) / (visual.view[3] - visual.view[1]);
+		// The mathematics teaching visuals are drawn in a world of their own size (Mathematics/MathWork).
+		case 'signTable':
+			return ratioOf(signTableFrame(visual));
+		case 'longDivision':
+			return ratioOf(longDivisionFrame(visual));
+		case 'primeLadder':
+			return ratioOf(primeLadderFrame(visual));
+		case 'barModel':
+			return ratioOf(barModelFrame(visual));
+		case 'slots':
+			return ratioOf(slotsFrame(visual));
+		case 'areaModel':
+			return ratioOf(areaModelFrame(visual));
+		case 'sampleSpace':
+			return ratioOf(sampleSpaceFrame(visual));
+		case 'mapping':
+			return ratioOf(mappingFrame(visual));
 		default:
 			return WORLD_RATIO[visual.kind];
 	}
 };
+
+const ratioOf = (frame: {width: number; height: number}): number => frame.width / frame.height;
 
 /** Width / height of the visuals drawn in a fixed 1000 x 600 world. */
 /** A stack's box follows its rows and legend, widening with a wide card (StackVisual's frame). */
@@ -501,6 +528,22 @@ const VisualOfKind: React.FC<VisualBoxProps & {visual: CourseVisualSpec}> = ({vi
 			return <EquationVisual visual={visual} {...box} />;
 		case 'numberLine':
 			return <NumberLineVisual visual={visual} {...box} />;
+		case 'signTable':
+			return <SignTableVisual visual={visual} {...box} />;
+		case 'longDivision':
+			return <LongDivisionVisual visual={visual} {...box} />;
+		case 'primeLadder':
+			return <PrimeLadderVisual visual={visual} {...box} />;
+		case 'barModel':
+			return <BarModelVisual visual={visual} {...box} />;
+		case 'slots':
+			return <CountingBoardVisual visual={visual} {...box} />;
+		case 'areaModel':
+			return <AreaModelVisual visual={visual} {...box} />;
+		case 'sampleSpace':
+			return <SampleSpaceVisual visual={visual} {...box} />;
+		case 'mapping':
+			return <MappingVisual visual={visual} {...box} />;
 		case 'pie':
 			return <PieVisual visual={visual} {...box} />;
 		case 'assembly':

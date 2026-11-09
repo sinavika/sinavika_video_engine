@@ -1,6 +1,6 @@
 # YouTube metni: TYT Tarih kampı · Ders 1 · Tarih ve Zaman
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Tarih/01_Tarih_ve_Zaman/Tarih_ve_Zaman_YouTube.mp4` (4K) · Kapak: `Tarih_ve_Zaman_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Tarih/01_Tarih_ve_Zaman/Tarih_ve_Zaman_YouTube.mp4` (4K) · Kapak: `Tarih_ve_Zaman_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

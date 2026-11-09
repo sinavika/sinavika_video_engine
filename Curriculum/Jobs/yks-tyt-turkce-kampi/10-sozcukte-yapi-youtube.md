@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 10 · Sözcükte Yapı
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/10_Sozcukte_Yapi/Sozcukte_Yapi_YouTube.mp4` (4K, 16:03) · Kapak: `Sozcukte_Yapi_YouTube_Kapak.png` (kamp kapağı).
+Video: `Outputs/Camps/YKS/TYT/Turkce/10_Sozcukte_Yapi/Sozcukte_Yapi_YouTube.mp4` (4K, 16:03) · Kapak: `Sozcukte_Yapi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

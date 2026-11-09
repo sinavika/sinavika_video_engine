@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 15 · Anlatım Bozukluğu
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/15_Anlatim_Bozuklugu/Anlatim_Bozuklugu_YouTube.mp4` (4K, 16:12) · Kapak: `Anlatim_Bozuklugu_YouTube_Kapak.png` (kamp kapağı).
+Video: `Outputs/Camps/YKS/TYT/Turkce/15_Anlatim_Bozuklugu/Anlatim_Bozuklugu_YouTube.mp4` (4K, 16:12) · Kapak: `Anlatim_Bozuklugu_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 
@@ -61,3 +61,5 @@ Kategori Eğitim · dil Türkçe · çocuklara özel değil · ücretli tanıtı
 ## Yükleme (1 Kasım 2026)
 
 Videoyu sahip yükledi ve yayın gününü kendisi seçti: https://youtu.be/60QetlDeLJc · herkese açık 11 Kasım 2026 (planlı). Studio'da girildi ve sunucudan yeniden okunarak doğrulandı: başlık A (sahip: "A/B testini açma, varsayılanı yaz"; B ve C kullanılmadı), yukarıdaki açıklama (bölümler ve önceki ders bağlantısıyla), kapak `Anlatim_Bozuklugu_YouTube_Kapak.png`, iki oynatma listesi, etiketler, dil Türkçe, kategori Eğitim, ücretli tanıtım yok, yapay zekâ beyanı "Hayır", bitiş ekranı Ders 4'ten içe aktarıldı (abone ol + en son yükleme).
+
+9 Kasım 2026: sahibin isteğiyle ("yarın kalan 2 video uygun saatlerde paylaşılsın") yayın **10 Kasım 2026 21:00**'e alındı; Ders 14 aynı gün 18:00'de.

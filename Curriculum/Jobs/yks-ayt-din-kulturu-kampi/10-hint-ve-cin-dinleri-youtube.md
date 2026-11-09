@@ -1,6 +1,6 @@
 # YouTube metni: AYT Din Kültürü kampı · Ders 10 · Hint ve Çin Dinleri
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Din/10_Hint_Ve_Cin_Dinleri/Hint_Ve_Cin_Dinleri_YouTube.mp4` (4K) · Kapak: `Hint_Ve_Cin_Dinleri_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Din/10_Hint_Ve_Cin_Dinleri/Hint_Ve_Cin_Dinleri_YouTube.mp4` (4K) · Kapak: `Hint_Ve_Cin_Dinleri_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

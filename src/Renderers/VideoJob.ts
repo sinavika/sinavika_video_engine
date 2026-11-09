@@ -35,13 +35,13 @@ const VideoJobSchema = z.object({
 	name: z.string().trim().min(1).max(80).optional(),
 	/**
 	 * Where the finished video goes, from the project root, when it has a place of its own: a camp lesson's
-	 * `Outputs/Videos/YKS/TYT/Turkce/07_Tamlamalar/Tamlamalar_YouTube.mp4`, its cover and chapters beside it. Without
+	 * `Outputs/Camps/YKS/TYT/Turkce/07_Tamlamalar/Tamlamalar_YouTube.mp4`, its cover and chapters beside it. Without
 	 * it a video is saved under the next number in Outputs/Videos (the TYT Türkçe 05–15 renders were moved into their
 	 * folders by hand, 1 Nov 2026).
 	 */
 	output: z
 		.string()
-		.regex(/^Outputs\/Videos\/(?:[A-Za-z0-9_-]+\/)+[A-Za-z0-9_-]+\.mp4$/, 'a path under Outputs/Videos/ ending in .mp4')
+		.regex(/^Outputs\/(?:Camps|Videos)\/(?:[A-Za-z0-9_-]+\/)+[A-Za-z0-9_-]+\.mp4$/, 'a path under Outputs/Camps/ (or Outputs/Videos/) ending in .mp4')
 		.optional(),
 	/**
 	 * `true` narrates the video in Turkish with the brand voice, in the delivery

@@ -1,6 +1,6 @@
 # YouTube metni: TYT Türkçe kampı · Ders 7 · Tamlamalar ve Sözcük Grupları
 
-Video: `Outputs/Videos/YKS/TYT/Turkce/07_Tamlamalar_ve_Sozcuk_Gruplari/Tamlamalar_ve_Sozcuk_Gruplari_YouTube.mp4` (4K, 15:59) · Kapak: `Tamlamalar_ve_Sozcuk_Gruplari_YouTube_Kapak.png` (kamp kapağı).
+Video: `Outputs/Camps/YKS/TYT/Turkce/07_Tamlamalar_ve_Sozcuk_Gruplari/Tamlamalar_ve_Sozcuk_Gruplari_YouTube.mp4` (4K, 15:59) · Kapak: `Tamlamalar_ve_Sozcuk_Gruplari_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

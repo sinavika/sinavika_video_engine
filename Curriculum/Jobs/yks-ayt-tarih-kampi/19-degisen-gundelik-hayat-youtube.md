@@ -1,6 +1,6 @@
 # YouTube metni: AYT Tarih kampı · Ders 19 · XIX. ve XX. Yüzyılda Değişen Gündelik Hayat
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Tarih/19_Degisen_Gundelik_Hayat/Degisen_Gundelik_Hayat_YouTube.mp4` (4K) · Kapak: `Degisen_Gundelik_Hayat_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Tarih/19_Degisen_Gundelik_Hayat/Degisen_Gundelik_Hayat_YouTube.mp4` (4K) · Kapak: `Degisen_Gundelik_Hayat_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

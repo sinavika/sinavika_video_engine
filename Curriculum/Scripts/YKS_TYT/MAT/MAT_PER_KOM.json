@@ -12,73 +12,162 @@
   "TYT"
  ],
  "sources": [
-  "YKS/TYT/KonuAnlatimi/MAT/MAT_PER_KOM.json (MEB Temel Matematik: toplama ve çarpma yoluyla sayma, faktöriyel, permütasyon, tekrarlı ve dairesel permütasyon, kombinasyon)",
-  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2025: 10 soru; temel sayma (yol sayma, eşleştirme, menü), koşullu sıralama (aktiviteler), kombinasyon (uçuş ekipleri, seçim sayıları, ders programı))",
-  "YKS/TYT/Sorular/MAT/MAT_PER_KOM.jsonl (336 soru; sayma ilkesi, permütasyon ve kombinasyon kalıpları)"
+  "YKS/TYT/KonuAnlatimi/yks_tyt_kn_temel-matematik_meb-konu-anlatimi s. 72–79 (MEB OGM: çarpma yoluyla sayma, faktöriyel, permütasyon, tekrarlı permütasyon, kombinasyon ve özellikleri, noktalardan doğru ve üçgen sayısı)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2018–2026: yol sayma, eşleştirme, menüden seçim, koşullu sıralama, C(n,5) = C(n,11) kalıbı, iki ekip kurma, tablodan ders seçme, grup sayısı)",
+  "YKS/TYT/Sorular/MAT/MAT_PER_KOM.jsonl (soru havuzu: sayma ilkesi, faktöriyel, yan yana sıralama, kelime dizilimi, test çıktısı, en az bir koşullu seçim)"
  ],
  "lesson": {
   "hook": {
-   "headline": "Sıra önemliyse permütasyon, değilse kombinasyon.",
-   "narration": "8 kişiden bir başkan ve bir başkan yardımcısı seçmek ile 8 kişiden 2 kişilik bir komite seçmek aynı şey mi? İlkinde sıra önemli: Ali başkan, Can yardımcı ile Can başkan, Ali yardımcı farklı. İkincisinde değil. Sayma sorularının yarısı bu tek soruyla çözülür: sıra önemli mi? Bu derste temel sayma ilkesini, permütasyonu, tekrarlı ve dairesel permütasyonu ve kombinasyonu adım adım göreceğiz."
+   "headline": "Sıra önemli mi? Bütün soru bu.",
+   "narration": "7 kişilik bir takımdan kaptan ve yardımcı seçmek ile 2 kişilik bir grup seçmek aynı sayıyı mı verir? Biri 42, öbürü 21. Fark tek bir sorudan geliyor: sıra önemli mi? Bu derste saymanın kurallarını, faktöriyeli, permütasyonu, özdeşleri, yuvarlak masayı ve kombinasyonu soru çözerek göreceğiz."
   },
   "opening": {
-   "kind": "mistake",
-   "card": "s3-c2",
-   "narration": "KAPAK kelimesinin harfleriyle kaç farklı kelime yazılır? Çoğu öğrenci beş faktöriyel der. Ama tekrar eden harfler aynı kelimeyi birden çok kez saydırır.",
-   "promise": "Toplama ve çarpma yolunu, permütasyonu, tekrarlı permütasyonu ve kombinasyonu ayırmayı öğreneceksin."
+   "kind": "question",
+   "card": "s3-c9",
+   "narration": "Beş işi iki koşula uyarak kaç farklı sırayla yapabilirsin? Hepsini tek tek yazmadan bulmanın bir yolu var; bu soruyu ders içinde birlikte çözeceğiz.",
+   "promise": "Saymanın iki kuralını, faktöriyeli, permütasyonu, özdeşleri, yuvarlak masayı ve kombinasyonu soru çözerek öğreneceksin."
   },
   "objectives": [
    "Toplama ve çarpma yoluyla saymayı ayırmak",
-   "Sıralama sorularında permütasyon kullanmak",
-   "Tekrarlı ve dairesel sıralamaları saymak",
+   "Faktöriyelli ifadeleri açıp sadeleştirmek",
+   "Koşullu sıralamalarda permütasyon kurmak",
+   "Özdeş nesneleri ve yuvarlak masayı saymak",
    "Seçim sorularında kombinasyon kullanmak"
   ],
   "sections": [
    {
     "subtopic": "MAT_PER_KOM_01",
-    "subtopics": [
-     "MAT_PER_KOM_02"
-    ],
     "title": "Temel sayma ilkesi",
-    "narration": "Saymanın iki temel kuralı var: ya da toplar, ve çarpar.",
+    "narration": "Önce saymanın iki temel kuralını kuralım: ne zaman toplarsın, ne zaman çarparsın?",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Sayma ne demek?",
+      "text": "Sayma, olası durumları **tek tek yazmadan** bulmaktır. İş **ya bir yoldan ya öbüründen** yapılıyorsa **toplama**, **art arda adımlarla** yapılıyorsa **çarpma** yoluyla sayılır.",
+      "narration": "Sayma sorularında amacın, olası durumları tek tek yazmadan bulmaktır. Bir iş ya bir yoldan ya öbüründen yapılıyorsa toplama yoluyla sayarsın. İş art arda adımlarla yapılıyorsa çarpma yoluyla sayarsın."
+     },
+     {
+      "kind": "visual",
+      "title": "Üç gömlek, iki pantolon",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Gömlek",
+        "Siyah pantolon",
+        "Gri pantolon"
+       ],
+       "rows": [
+        [
+         "Beyaz",
+         "Beyaz + Siyah",
+         "Beyaz + Gri"
+        ],
+        [
+         "Mavi",
+         "Mavi + Siyah",
+         "Mavi + Gri"
+        ],
+        [
+         "Yeşil",
+         "Yeşil + Siyah",
+         "Yeşil + Gri"
+        ]
+       ]
+      },
+      "narration": "Bak, dolabında üç gömlek ve iki pantolon var.",
+      "beats": [
+       {
+        "narration": "Beyaz gömleği seçtin: iki pantolondan birini giyersin, iki kombin çıkar.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Mavi gömlekle yine iki kombin, yeşil gömlekle yine iki kombin.",
+        "show": [
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r2",
+         "r3"
+        ]
+       },
+       {
+        "narration": "Her gömlek için iki seçenek var: 3 çarpı 2, 6 kombin. İşte çarpma yolu bu.",
+        "focus": [
+         "col2",
+         "col3"
+        ],
+        "note": "3 · 2 = 6"
+       }
+      ]
+     },
      {
       "kind": "rule",
       "title": "Ya da toplar, ve çarpar",
       "items": [
-       "**Toplama yoluyla**: seçeneklerden **biri** yapılacaksa sayılar toplanır. 3 tren **ya da** 2 otobüs: 5 yol.",
-       "**Çarpma yoluyla**: adımlar **art arda** yapılacaksa sayılar çarpılır. 3 gömlek **ve** 4 pantolon: 12 kombin.",
-       "**Faktöriyel**: $n! = 1 \\cdot 2 \\cdots n$; $n$ farklı nesne $n!$ biçimde sıralanır.",
-       "Koşul varsa **önce koşullu** adımı say."
+       "**Ya da** varsa topla: 3 tren ya da 2 otobüs, $3 + 2 = 5$ yol.",
+       "**Ve** varsa çarp: 3 gömlek ve 4 pantolon, $3 \\cdot 4 = 12$ kombin.",
+       "**Çok adım** varsa hepsini çarp: $n_1 \\cdot n_2 \\cdots n_k$.",
+       "**Koşullu adım** varsa önce onu doldur: sayı yazarken 0 başa gelemez."
       ],
-      "narration": "Bir işi farklı yollardan biriyle yapacaksan seçenekleri toplarsın: 3 tren ya da 2 otobüs, 5 yol. İşi art arda adımlarla yapacaksan her adımın seçeneklerini çarparsın: 3 gömlek ve 4 pantolon, 12 kombin. n farklı nesne n faktöriyel biçimde sıralanır. Koşullu bir adım varsa önce onu say."
+      "narration": "Ya da varsa topla: 3 tren ya da 2 otobüs varsa 5 yolun var. Ve varsa çarp: 3 gömlek ve 4 pantolon, 12 kombin. Çok adım varsa hepsini çarp; adım sayısı ne olursa olsun kural aynı. Koşullu adım varsa önce onu doldur; örneğin sayı yazarken 0 başa gelemez."
+     },
+     {
+      "kind": "example",
+      "title": "Rakamlarla sayı yazmak",
+      "example": "1, 2, 3, 4 ve 5 rakamlarıyla rakamları farklı kaç tane üç basamaklı sayı yazılır?",
+      "explanation": "**Yüzler** 5, **onlar** 4, **birler** 3 seçenek: $5 \\cdot 4 \\cdot 3 = 60$.",
+      "narration": "Bir örnekle başlayalım. 1, 2, 3, 4 ve 5 rakamlarıyla rakamları farklı kaç tane üç basamaklı sayı yazılır? Yüzler basamağına 5 rakamdan biri gelir. Onlar basamağına kalan 4 rakam, birler basamağına kalan 3 rakam gelir. 5 çarpı 4 çarpı 3, 60."
+     },
+     {
+      "kind": "example",
+      "title": "Sıfır varsa dikkat",
+      "example": "0, 1, 2, 3 ve 4 rakamlarıyla rakamları farklı kaç tane üç basamaklı sayı yazılır?",
+      "explanation": "**Yüzler basamağına 0 gelemez**: 4 seçenek. **Onlar** 4, **birler** 3: $4 \\cdot 4 \\cdot 3 = 48$.",
+      "narration": "Şimdi aynı soruda 0 olsun. 0, 1, 2, 3 ve 4 rakamlarıyla rakamları farklı kaç tane üç basamaklı sayı yazılır? Yüzler basamağına 0 gelemez, o yüzden önce orayı doldur: 4 seçenek. Onlar basamağına 0 artık gelebilir: kalan 4 rakam. Birler basamağına kalan 3 rakam. 4 çarpı 4 çarpı 3, 48."
+     },
+     {
+      "kind": "mistake",
+      "title": "Hiç almamak da bir seçenek",
+      "wrong": "İsteğe bağlı bir adımda seçenek sayısı, çeşit sayısı kadardır.",
+      "right": "Hiç almamak da bir seçenektir: 2 çeşit meyve varsa meyve adımında **3 seçenek** vardır.",
+      "why": "Almamak ayrı bir durum doğurur; sayılmazsa sonuç eksik kalır.",
+      "narration": "Sık yapılan bir hata: isteğe bağlı bir adımda seçenekleri yalnız çeşit sayısı kadar saymak. Hiç almamak da bir seçenektir: 2 çeşit meyve varsa meyve adımında 3 seçenek vardır. Almamak ayrı bir durum doğurur; sayılmazsa sonuç eksik kalır."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Bir kafede 3 çeşit çorba, 4 çeşit ana yemek ve 2 çeşit tatlı vardır. Bir müşteri bir çorba ve bir ana yemek seçecek, tatlı ise isterse bir tane alacaktır. Bu müşteri yemeğini kaç farklı şekilde seçebilir?",
+       "stem": "Okul kantininde 4 çeşit sandviç, 3 çeşit içecek ve 2 çeşit meyve vardır. Merve bir sandviç ve bir içecek alacak; meyveyi ise isterse bir tane alacak, istemezse hiç almayacaktır. Buna göre Merve alışverişini kaç farklı şekilde yapabilir?",
        "options": [
-        "9",
+        "14",
         "24",
-        "27",
+        "26",
         "36",
         "48"
        ],
        "answer": 3,
-       "narration": "ÖSYM 2022'de pastane menüsüyle sordu. Tatlı adımındaki seçeneği doğru sayalım.",
+       "narration": "Hadi bunu bir soruda dene.",
        "steps": [
         {
-         "text": "Çorba 3, ana yemek 4 seçenek.",
-         "narration": "Çorba için 3, ana yemek için 4 seçenek var."
+         "text": "Sandviç **4**, içecek **3** seçenek.",
+         "narration": "Sandviç için 4, içecek için 3 seçenek var."
         },
         {
-         "text": "Tatlı: 2 çeşit **ya da hiç** → **3** seçenek.",
-         "narration": "Tatlıda dikkat: 2 çeşitten birini alabilir ya da hiç almayabilir. Almamak da bir seçenek; toplam 3."
+         "text": "Meyve: 2 çeşit **ya da hiç** → **3** seçenek.",
+         "narration": "Meyvede dikkat: 2 çeşitten birini alabilir ya da hiç almayabilir. Almamak da bir seçenek; toplam 3.",
+         "mark": [
+          "istemezse hiç almayacaktır"
+         ]
         },
         {
-         "text": "$3 \\cdot 4 \\cdot 3 = 36$. Cevap **D**.",
-         "narration": "Adımlar art arda yapıldığı için çarparız: 3 çarpı 4 çarpı 3, 36. Cevabımız D. Tatlıyı almama seçeneğini unutan 24 bulur.",
+         "text": "$4 \\cdot 3 \\cdot 3 = 36$. Cevap **D**.",
+         "narration": "Üç adım art arda geliyor, çarparız: 4 çarpı 3 çarpı 3, 36. Cevabımız D. Almamayı unutan 24'ü seçer.",
          "eliminate": [
           "A",
           "B",
@@ -88,7 +177,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2022'nin \"menüden seçim sayısı\" temel sayma kalıbı örnek alındı, bağlam ve sayılar özgün."
+        "changes": "Bu ders için yazıldı; ÖSYM 2022'nin menüden seçim kalıbı örnek alındı; kantin bağlamı, isteğe bağlı adım ve sayılar özgün."
        }
       }
      },
@@ -96,84 +185,106 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "A şehrinden B şehrine 3 farklı yol, B şehrinden C şehrine 2 farklı yol vardır. Ayrıca A şehrinden C şehrine B'ye uğramadan giden 4 farklı yol vardır. Buna göre A şehrinden C şehrine kaç farklı yoldan gidilebilir?",
+       "stem": "Bir spor salonunun dolap şifreleri dört karakterden oluşmaktadır. Şifrenin ilk karakteri A, B ya da C harflerinden biridir; diğer üç karakteri ise birbirinden farklı rakamlardır. Salon yönetimi, şifrelerin kolay tahmin edilmemesi için son karakterin tek rakam olmasını ve 0 rakamının hiç kullanılmamasını istemektedir. Buna göre kaç farklı şifre oluşturulabilir?",
        "options": [
-        "9",
-        "10",
-        "12",
-        "24",
-        "14"
+        "504",
+        "630",
+        "840",
+        "1008",
+        "1512"
        ],
-       "answer": 1,
-       "narration": "Bir rotada adımlar art arda gelirse çarparız; farklı rotalardan biri seçilirse toplarız.",
+       "answer": 2,
+       "narration": "ÖSYM bu kalıpta koşulları uzun bir metne gizler. Önce koşullu yeri dolduralım.",
        "steps": [
         {
-         "text": "B üzerinden: A→B **ve** B→C → $3 \\cdot 2 = 6$.",
-         "narration": "B üzerinden gitmek için önce A'dan B'ye, sonra B'den C'ye gideriz. İki adım art arda olduğu için çarparız: üç çarpı iki, altı."
+         "text": "Koşullu yer önce: son karakter **tek** ve 0 yok → 1, 3, 5, 7, 9: **5** seçenek.",
+         "narration": "Önce koşullu yeri doldururuz. Son karakter tek rakam olacak ve 0 kullanılmayacak: 1, 3, 5, 7 ya da 9. Yani 5 seçenek.",
+         "mark": [
+          "son karakterin tek rakam olmasını"
+         ]
         },
         {
-         "text": "Doğrudan: $4$ yol.",
-         "narration": "B'ye uğramadan giden dört yol daha var."
+         "text": "İlk karakter harf: **3** seçenek.",
+         "narration": "İlk karakter A, B ya da C: 3 seçenek."
         },
         {
-         "text": "B üzerinden **ya da** doğrudan → $6 + 4 = 10$. Cevap **B**.",
-         "narration": "Ya B üzerinden ya da doğrudan gideceğiz; iki seçenek birbirini dışladığı için toplarız: altı artı dört, on. Cevabımız B. Yirmi dördü seçen her şeyi çarpmış olur.",
+         "text": "Ortadaki iki rakam: 1–9'dan sonuncu çıkınca **8**, sonra **7** → $8 \\cdot 7 = 56$.",
+         "narration": "Ortadaki iki rakam için 1'den 9'a kadar 9 rakam var; sonda biri kullanıldı, 8 kaldı. Sonra 7 kalır. 8 çarpı 7, 56."
+        },
+        {
+         "text": "$3 \\cdot 5 \\cdot 56 = 840$. Cevap **C**.",
+         "narration": "Hepsini çarparız: 3 çarpı 5 çarpı 56, 840. Cevabımız C. Tek rakam koşulunu unutan 3 çarpı 9 çarpı 8 çarpı 7, yani 1512 bulur.",
          "eliminate": [
           "A",
-          "C",
+          "B",
           "D",
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki \"ya da toplar, ve çarpar\" kuralı özgün bir yol problemiyle soruldu."
+        "changes": "Bu ders için yazıldı; havuzdaki koşullu basamak doldurma kalıbı ÖSYM tarzı uzun bir bağlamla kuruldu; şifre bağlamı, koşullar ve sayılar özgün."
        }
       }
      }
     ]
    },
    {
-    "subtopic": "MAT_PER_KOM_03",
-    "title": "Permütasyon",
-    "narration": "Permütasyon, sıranın önemli olduğu dizilişlerin sayısıdır.",
+    "subtopic": "MAT_PER_KOM_02",
+    "title": "Faktöriyel",
+    "narration": "Sıralama sorularında hep aynı çarpım çıkar: n, n eksi 1, n eksi 2 diye iner. Bu çarpımın bir adı var.",
     "cards": [
      {
+      "kind": "concept",
+      "title": "n faktöriyel",
+      "text": "$n!$, 1'den $n$'ye kadar **ardışık doğal sayıların çarpımıdır**: $4! = 1 \\cdot 2 \\cdot 3 \\cdot 4 = 24$. **Sıfır faktöriyel** ve **bir faktöriyel** 1 kabul edilir.",
+      "narration": "n faktöriyel, 1'den n'ye kadar ardışık doğal sayıların çarpımıdır. 4 faktöriyel, 1 çarpı 2 çarpı 3 çarpı 4, yani 24. Sıfır faktöriyel ve bir faktöriyel 1 kabul edilir."
+     },
+     {
       "kind": "predict",
-      "title": "Sıra önemli mi?",
-      "context": "8 kişilik bir kulüpten bir başkan ve bir başkan yardımcısı seçilecek.",
-      "prompt": "Kaç farklı seçim yapılabilir?",
+      "title": "Raftaki kitaplar",
+      "context": "5 farklı kitap bir rafa yan yana dizilecek.",
+      "prompt": "Kaç farklı dizilim vardır?",
       "choices": [
-       "28",
-       "56"
+       "25",
+       "60",
+       "120"
       ],
-      "answer": 1,
-      "thinkSeconds": 5,
+      "answer": 2,
+      "thinkSeconds": 4,
       "visual": {
        "kind": "table",
        "header": [
-        "Adım",
+        "Raf yeri",
         "Seçenek"
        ],
        "rows": [
         [
-         "Başkan",
-         "8"
+         "1. yer",
+         "5"
         ],
         [
-         "Yardımcı (başkan hariç)",
-         "7"
+         "2. yer",
+         "4"
         ],
         [
-         "Toplam",
-         "8 · 7 = 56"
+         "3. yer",
+         "3"
+        ],
+        [
+         "4. yer",
+         "2"
+        ],
+        [
+         "5. yer",
+         "1"
         ]
        ],
        "highlightColumn": 1
       },
       "beats": [
        {
-        "narration": "Başkan için 8 seçenek var. Başkan seçildikten sonra yardımcı için 7 kişi kalır.",
+        "narration": "İlk yere 5 kitaptan biri gelir, ikinci yere kalan 4 kitaptan biri.",
         "show": [
          "r1",
          "r2"
@@ -184,7 +295,216 @@
         ]
        },
        {
-        "narration": "8 çarpı 7, 56. Ali başkan, Can yardımcı ile Can başkan, Ali yardımcı farklı seçimlerdir; sıra önemli.",
+        "narration": "Sonra 3, 2 ve en son 1 seçenek kalır.",
+        "show": [
+         "r3",
+         "r4",
+         "r5"
+        ],
+        "focus": [
+         "r3",
+         "r4",
+         "r5"
+        ]
+       }
+      ],
+      "explanation": "$5 \\cdot 4 \\cdot 3 \\cdot 2 \\cdot 1 = 5! = 120$. $n$ farklı nesne her zaman $n!$ biçimde sıralanır.",
+      "narration": "Şimdi sıra sende. Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 120. 5 çarpı 4 çarpı 3 çarpı 2 çarpı 1, yani 5 faktöriyel. n farklı nesne her zaman n faktöriyel biçimde sıralanır. 25'i seçen, her yere 5 kitabın da konabileceğini sanmıştır."
+     },
+     {
+      "kind": "rule",
+      "title": "Faktöriyelle işlem",
+      "items": [
+       "**Açılım**: $n! = n \\cdot (n - 1)!$; örneğin $6! = 6 \\cdot 5!$.",
+       "**Bölme**: açıp sadeleştir, $\\frac{8!}{6!} = 8 \\cdot 7 = 56$.",
+       "**Toplama**: ortak çarpana al, $5! + 4! = 4! \\cdot (5 + 1) = 144$.",
+       "**Hızlı değerler**: $3! = 6$, $4! = 24$, $5! = 120$, $6! = 720$."
+      ],
+      "narration": "Açılım: n faktöriyel, n çarpı n eksi 1 faktöriyeldir; örneğin 6 faktöriyel, 6 çarpı 5 faktöriyel. Bölme: açıp sadeleştir; 8 faktöriyel bölü 6 faktöriyel, 8 çarpı 7, 56. Toplama: ortak çarpana alırsın; 5 faktöriyel artı 4 faktöriyel, 4 faktöriyel çarpı 6, 144. Hızlı değerler: 3 faktöriyel 6, 4 faktöriyel 24, 5 faktöriyel 120, 6 faktöriyel 720."
+     },
+     {
+      "kind": "example",
+      "title": "Açıp sadeleştir",
+      "example": "10 faktöriyel bölü 8 faktöriyel çarpı 2 faktöriyel kaçtır?",
+      "explanation": "**Aç ve sadeleştir**: $\\frac{10 \\cdot 9 \\cdot 8!}{8! \\cdot 2!}$; **8 faktöriyeller gider**, $\\frac{90}{2} = 45$.",
+      "narration": "Bir örnek çözelim. 10 faktöriyel bölü 8 faktöriyel çarpı 2 faktöriyel kaçtır? Aç ve sadeleştir: 10 faktöriyel, 10 çarpı 9 çarpı 8 faktöriyeldir. 8 faktöriyeller gider, 90 kalır; 2 faktöriyele bölünce 45."
+     },
+     {
+      "kind": "example",
+      "title": "Faktöriyelli denklem",
+      "example": "n artı 1 faktöriyel, n eksi 1 faktöriyelin 20 katı ise n kaçtır?",
+      "narration": "Bir tane daha. n artı 1 faktöriyel, n eksi 1 faktöriyelin 20 katı ise n kaçtır?",
+      "steps": [
+       {
+        "narration": "Aç: n artı 1 faktöriyel, n artı 1 çarpı n çarpı n eksi 1 faktöriyeldir.",
+        "math": "(n + 1)! = (n + 1) \\cdot n \\cdot (n - 1)!",
+        "text": "**Aç**"
+       },
+       {
+        "narration": "Sadeleştir: n artı 1 çarpı n, 20 olur.",
+        "math": "(n + 1) \\cdot n = 20",
+        "text": "**Sadeleştir**"
+       },
+       {
+        "narration": "20, 5 çarpı 4 olduğu için n eşittir 4.",
+        "math": "20 = 5 \\cdot 4 \\Rightarrow n = 4"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Faktöriyeller bölünmez",
+      "wrong": "$\\frac{6!}{3!}$ ifadesi $2!$ sonucunu verir.",
+      "right": "Faktöriyeller böyle bölünmez: açıp sadeleştir, $\\frac{6!}{3!} = 6 \\cdot 5 \\cdot 4 = 120$.",
+      "why": "Sayıları bölebilirsin, faktöriyel işaretini değil: $720 \\div 6 = 120$, oysa $2! = 2$.",
+      "narration": "Sık bir hata: 6 faktöriyel bölü 3 faktöriyeli 2 faktöriyel sanmak. Faktöriyeller böyle bölünmez: açıp sadeleştirirsin, 6 çarpı 5 çarpı 4, 120. Sayıları bölebilirsin, faktöriyel işaretini değil: 720 bölü 6, 120 eder."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\frac{7! + 6!}{6!}$ ifadesinin değeri kaçtır?",
+       "options": [
+        "7",
+        "8",
+        "13",
+        "42",
+        "49"
+       ],
+       "answer": 1,
+       "narration": "Önce kısa bir soru.",
+       "steps": [
+        {
+         "text": "Aç: $7! = 7 \\cdot 6!$",
+         "narration": "7 faktöriyeli 6 faktöriyele kadar açarız: 7 çarpı 6 faktöriyel."
+        },
+        {
+         "text": "Ortak çarpan: $\\frac{6! \\cdot (7 + 1)}{6!}$",
+         "narration": "Paydaki iki terim de 6 faktöriyel içerir; ortak çarpana alırız: 6 faktöriyel çarpı 7 artı 1."
+        },
+        {
+         "text": "Sadeleş: $7 + 1 = 8$. Cevap **B**.",
+         "narration": "6 faktöriyeller sadeleşir, 8 kalır. Cevabımız B. Yalnız 7 faktöriyeli bölüp artı 1'i unutan 7 bulur.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; dersteki ortak çarpana alma kuralı özgün bir ifadeyle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir kütüphaneci, raftaki birbirinden farklı kitapları yan yana kaç farklı biçimde dizebileceğini hesaplamıştır. Rafa farklı bir kitap daha eklenince dizilim sayısının tam 6 katına çıktığını görmüştür. Buna göre kitap eklendikten sonra raftaki kitaplar kaç farklı biçimde dizilebilir?",
+       "options": [
+        "6",
+        "24",
+        "120",
+        "360",
+        "720"
+       ],
+       "answer": 4,
+       "narration": "Şimdi faktöriyeli bir hikâyenin içinde bulalım.",
+       "steps": [
+        {
+         "text": "$n$ kitap: $n!$ dizilim. Bir kitap eklenince: $(n + 1)!$",
+         "narration": "Rafta n kitap varsa n faktöriyel dizilim vardır. Bir kitap eklenince n artı 1 faktöriyel olur."
+        },
+        {
+         "text": "$\\frac{(n + 1)!}{n!} = n + 1 = 6$ → $n = 5$.",
+         "narration": "Yeni sayı eskisinin 6 katı: n artı 1 faktöriyel bölü n faktöriyel, n artı 1. Bu 6'ya eşit, demek ki n eşittir 5.",
+         "mark": [
+          "6 katına"
+         ]
+        },
+        {
+         "text": "Eklendikten sonra 6 kitap: $6! = 720$. Cevap **E**.",
+         "narration": "Soru kitap eklendikten sonrasını soruyor: 6 kitap, 6 faktöriyel, 720. Cevabımız E. Eklenmeden önceki 5 faktöriyeli, yani 120'yi seçen soruyu yarım okumuştur.",
+         "mark": [
+          "kitap eklendikten sonra"
+         ],
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki faktöriyel oranı kalıbı bir bağlamla ÖSYM tarzında kuruldu; kütüphane bağlamı ve sorulan nicelik özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_PER_KOM_03",
+    "title": "Permütasyon",
+    "narration": "Şimdi seçtiklerini sıraya dizmeye geçiyoruz: permütasyon.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Permütasyon nedir?",
+      "text": "Permütasyon, $n$ farklı nesneden $r$ tanesini seçip **sıraya dizmektir**. Burada **sıra önemlidir**: **AB ile BA** iki farklı dizilimdir.",
+      "narration": "Permütasyon, n farklı nesneden r tanesini seçip sıraya dizmektir. Burada sıra önemlidir. AB ile BA aynı harfleri taşır ama iki farklı dizilimdir."
+     },
+     {
+      "kind": "predict",
+      "title": "Kaptan ve yardımcı",
+      "context": "7 kişilik bir voleybol takımından bir kaptan ve bir kaptan yardımcısı seçilecek.",
+      "prompt": "Kaç farklı seçim yapılabilir?",
+      "choices": [
+       "21",
+       "42",
+       "49"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Görev",
+        "Seçenek"
+       ],
+       "rows": [
+        [
+         "Kaptan",
+         "7"
+        ],
+        [
+         "Yardımcı (kaptan hariç)",
+         "6"
+        ],
+        [
+         "Toplam",
+         "7 · 6 = 42"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "beats": [
+       {
+        "narration": "Kaptan için 7 seçenek var; kaptan seçilince yardımcı için 6 kişi kalır.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r1",
+         "r2"
+        ]
+       },
+       {
+        "narration": "7 çarpı 6, 42. Ece kaptan, Su yardımcı ile Su kaptan, Ece yardımcı farklı seçimlerdir.",
         "show": [
          "r3"
         ],
@@ -193,57 +513,107 @@
         ]
        }
       ],
-      "explanation": "Görevler farklı olduğu için **sıra önemlidir**: $P(8, 2) = 8 \\cdot 7 = 56$. Komite seçseydik 28 olurdu.",
+      "explanation": "Görevler farklı, **sıra önemli**: $P(7, 2) = 7 \\cdot 6 = 42$.",
       "narration": "Şimdi sıra sende. Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap 56. Başkan ve yardımcı farklı görevler; bu yüzden sıra önemli ve bu bir permütasyon. Görevsiz iki kişilik bir komite seçseydik Ali ile Can'ı iki kez saymamak için 2'ye böler ve 28 bulurduk."
+      "explanationNarration": "Doğru cevap 42. Görevler farklı olduğu için sıra önemli; bu bir permütasyon. 49'u seçen, aynı kişinin hem kaptan hem yardımcı olabileceğini sanmıştır."
      },
      {
       "kind": "rule",
-      "title": "Permütasyon",
+      "title": "Permütasyonun kuralları",
       "items": [
-       "$n$ nesneden $r$ tanesinin sıralanışı: $P(n, r) = \\frac{n!}{(n - r)!} = n(n - 1)\\cdots$ ($r$ çarpan).",
-       "**Yan yana** olacaklar tek bir blok sayılır; blok **kendi içinde** de sıralanır.",
-       "\"A, B'den **önce**\": bütün sıralamaların **yarısı**.",
-       "Koşullu yerler varsa **önce onları** doldur."
+       "**Formül**: $P(n, r) = \\frac{n!}{(n - r)!}$, yani $n$'den başlayan $r$ tane azalan çarpan.",
+       "**Örnek**: $P(6, 2) = 6 \\cdot 5 = 30$.",
+       "**Yan yana** olanlar tek blok sayılır; blok kendi içinde de sıralanır.",
+       "**Önce-sonra** koşulunda dizilimlerin **yarısı** alınır.",
+       "**Yan yana olmasın** deniyorsa tümünden yan yana olanlar çıkarılır."
       ],
-      "narration": "n nesneden r tanesini sıralamanın yolu, n'den başlayarak r tane azalan sayıyı çarpmaktır. Yan yana olması istenenleri tek bir blok gibi düşünürsün; blok kendi içinde de sıralanır. A'nın B'den önce gelmesi isteniyorsa bütün sıralamaların yarısını alırsın, çünkü her sıralamanın bir de A ile B'nin yer değiştirdiği eşi vardır. Koşullu yerler varsa önce onları doldurursun."
+      "narration": "Formül: n'nin r'li permütasyonu, n faktöriyel bölü n eksi r faktöriyeldir; pratikte n'den başlayıp r tane azalan sayıyı çarparsın. Örnek: 6'nın 2'li permütasyonu, 6 çarpı 5, 30. Yan yana olanlar tek blok sayılır; blok kendi içinde de sıralanır. Önce-sonra koşulunda dizilimlerin yarısını alırsın, çünkü A ile B yer değiştirince her dizilimin bir eşi çıkar. Yan yana olmasın deniyorsa tümünden yan yana olanları çıkarırsın."
+     },
+     {
+      "kind": "example",
+      "title": "Yan yana koşulu",
+      "example": "5 kişi yan yana sıralanacak ve Ali ile Ece yan yana olacak; kaç farklı sıralama vardır?",
+      "narration": "Yan yana koşuluna bir örnek. 5 kişi yan yana sıralanacak ve Ali ile Ece yan yana olacak; kaç farklı sıralama vardır?",
+      "steps": [
+       {
+        "narration": "Blok: Ali ile Ece'yi tek birim yaparsın; blok ve 3 kişi, 4 birim.",
+        "text": "**Blok**: Ali ile Ece tek birim"
+       },
+       {
+        "narration": "4 birim 4 faktöriyel, yani 24 biçimde sıralanır.",
+        "math": "4! = 24"
+       },
+       {
+        "narration": "Blok içi ise 2 durum: Ali solda ya da Ece solda.",
+        "text": "**Blok içi**: 2 durum"
+       },
+       {
+        "narration": "24 çarpı 2, 48.",
+        "math": "24 \\cdot 2 = 48"
+       }
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Önce-sonra koşulu",
+      "example": "A, B, C ve D harfleri sıralanacak ve A harfi B harfinden önce gelecek; kaç sıralama vardır?",
+      "narration": "Şimdi önce-sonra koşulu. A, B, C ve D harfleri sıralanacak ve A harfi B harfinden önce gelecek; kaç sıralama vardır?",
+      "steps": [
+       {
+        "narration": "Tümü: 4 faktöriyel, 24 sıralama.",
+        "math": "4! = 24",
+        "text": "**Tümü**"
+       },
+       {
+        "narration": "Her sıralamada A ile B'nin yerini değiştirince bir eşi çıkar; yarısında A önde.",
+        "text": "**Yarısı**: her sıralamanın bir eşi var"
+       },
+       {
+        "narration": "24'ün yarısı, 12.",
+        "math": "\\frac{24}{2} = 12"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Bloğun içini unutma",
+      "wrong": "Yan yana oturacak iki kişi tek blok sayılınca sonuç bulunmuş olur.",
+      "right": "Blok kendi içinde de sıralanır: Ali solda ya da Ece solda, sonuç **2 ile çarpılır**.",
+      "why": "İki düzen gerçekten farklıdır; biri sayılmazsa sonuç yarıya düşer.",
+      "narration": "Sık yapılan hata: yan yana oturacak iki kişiyi tek blok sayınca işin bittiğini sanmak. Blok kendi içinde de sıralanır: Ali solda olabilir, Ece solda olabilir; sonuç 2 ile çarpılır. İki düzen gerçekten farklıdır; biri sayılmazsa sonuç yarıya düşer."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "A, B, C, D ve E harfleri bir sıraya diziliyor. C harfi en sonda olacak ve A harfi B harfinden önce gelecek şekilde kaç farklı dizilim vardır?",
+       "stem": "7 sporcunun katıldığı bir yarışmada birinci, ikinci ve üçüncü kaç farklı biçimde belirlenebilir?",
        "options": [
-        "12",
-        "18",
-        "24",
-        "60",
-        "96"
+        "35",
+        "105",
+        "210",
+        "343",
+        "5040"
        ],
-       "answer": 0,
-       "narration": "ÖSYM 2025'te aktivitelerin sırasıyla sordu. Koşulları tek tek uygulayalım.",
+       "answer": 2,
+       "narration": "Önce kısa bir soru.",
        "steps": [
         {
-         "text": "C en sonda: **sabit**. Kalan 4 harf 4 yere: $4! = 24$",
-         "narration": "C en sona yerleşti; tek bir seçeneği var. Kalan A, B, D ve E dört yere 4 faktöriyel, 24 biçimde dizilir."
+         "text": "Dereceler farklı: **sıra önemli** → permütasyon.",
+         "narration": "Birinci, ikinci ve üçüncü farklı derecelerdir; sıra önemli, bu bir permütasyon."
         },
         {
-         "text": "A, B'den önce: yarısı → $\\frac{24}{2} = 12$",
-         "narration": "Bu 24 dizilişin yarısında A, B'den önce, yarısında sonra. Yarısını alırız: 12."
-        },
-        {
-         "text": "Cevap **A**.",
-         "narration": "Cevabımız A. A'nın B'den önce olmasını unutan 24'ü, C koşulunu unutan 60'ı bulur.",
+         "text": "$P(7, 3) = 7 \\cdot 6 \\cdot 5 = 210$. Cevap **C**.",
+         "narration": "7'den başlayıp 3 azalan sayı çarparız: 7 çarpı 6 çarpı 5, 210. Cevabımız C. Sırayı önemsemeyen 35, aynı kişiyi tekrar sayan 343 bulur.",
          "eliminate": [
+          "A",
           "B",
-          "C",
           "D",
           "E"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2025'in \"önce-sonra koşullu sıralama\" kalıbı örnek alındı, nesneler ve koşullar özgün."
+        "changes": "Bu ders için yazıldı; klasik derece belirleme permütasyonu özgün sayılarla soruldu."
        }
       }
      },
@@ -251,28 +621,73 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "5 arkadaş bir sıraya yan yana oturacaktır. Ali ile Ayşe **yan yana** oturmak istediğine göre, kaç farklı oturma düzeni vardır?",
+       "stem": "Ayşe ve Burak'ın da aralarında bulunduğu 6 arkadaş bir sıraya yan yana dizilecektir. Ayşe ile Burak yan yana olmayacağına göre kaç farklı dizilim vardır?",
        "options": [
-        "24",
-        "48",
-        "60",
-        "96",
-        "120"
+        "120",
+        "240",
+        "360",
+        "480",
+        "720"
        ],
-       "answer": 1,
-       "narration": "Yan yana olanları bir blok yapalım.",
+       "answer": 3,
+       "narration": "Yan yana olmasın diyorsa tümünden çıkaralım.",
        "steps": [
         {
-         "text": "Ali ve Ayşe **tek blok**: blok + 3 kişi = **4 birim** → $4! = 24$",
-         "narration": "Ali ile Ayşe'yi tek bir blok gibi düşünelim. Blok ve diğer 3 kişi, toplam 4 birim; 4 faktöriyel, 24 biçimde sıralanır."
+         "text": "Tümü: $6! = 720$",
+         "narration": "Önce koşulsuz bütün dizilimler: 6 faktöriyel, 720."
         },
         {
-         "text": "Blok kendi içinde: Ali-Ayşe ya da Ayşe-Ali → $2! = 2$",
-         "narration": "Blok kendi içinde de iki türlü olur: Ali solda ya da Ayşe solda."
+         "text": "Yan yana olanlar: blok + 4 kişi → $5! \\cdot 2 = 240$",
+         "narration": "İstenmeyen durum yan yana olmaları. Onları blok yaparız: blok ve 4 kişi, 5 faktöriyel; blok içi 2. 120 çarpı 2, 240."
         },
         {
-         "text": "$24 \\cdot 2 = 48$. Cevap **B**.",
-         "narration": "24 çarpı 2, 48. Cevabımız B. Bloğun kendi içindeki sırasını unutan 24 bulur.",
+         "text": "$720 - 240 = 480$. Cevap **D**.",
+         "narration": "720 eksi 240, 480. Cevabımız D. 240'ı seçen istenmeyen durumu cevap sanmıştır.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki yan yana sıralama kalıbı tümleyenle soruldu; kişiler ve sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Deniz bir cumartesi günü alışveriş, yemek yapma, ödev, spor ve kitap okuma işlerinin hepsini birer kez yapacak ve bir işi bitirmeden diğerine başlamayacaktır. Deniz yemeği alışverişten sonra yapacak, ödevine ise spordan hemen sonra başlayacaktır. Buna göre Deniz bu beş işi kaç farklı sırayla yapabilir?",
+       "options": [
+        "6",
+        "12",
+        "24",
+        "48",
+        "60"
+       ],
+       "answer": 1,
+       "narration": "Açılıştaki soruya geldik. Koşulları tek tek uygulayalım.",
+       "steps": [
+        {
+         "text": "**Hemen sonra**: spor ve ödev tek blok, sırası sabit.",
+         "narration": "Ödev spordan hemen sonra geliyor; ikisini tek bir blok yaparız. Blokta sıra belli: önce spor, sonra ödev.",
+         "mark": [
+          "spordan hemen sonra"
+         ]
+        },
+        {
+         "text": "Birimler: blok, alışveriş, yemek, kitap → $4! = 24$",
+         "narration": "Artık 4 birim var: blok, alışveriş, yemek ve kitap. 4 faktöriyel, 24 sıra."
+        },
+        {
+         "text": "**Önce-sonra**: alışveriş yemekten önce → yarısı, $12$. Cevap **B**.",
+         "narration": "Yemek alışverişten sonra olacak; 24 sıranın tam yarısında alışveriş önde. 24'ün yarısı, 12. Cevabımız B. Yarıyı unutan 24, bloğu iki yönlü sayan 48 bulur.",
+         "mark": [
+          "alışverişten sonra"
+         ],
          "eliminate": [
           "A",
           "C",
@@ -282,7 +697,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki \"yan yana oturma\" permütasyon kalıbı örnek alındı, sayılar özgün."
+        "changes": "Bu ders için yazıldı; ÖSYM 2025'in işleri koşullara göre sıralama kalıbı örnek alındı; işler ve koşullar (hemen sonra bloğu, önce-sonra) özgün."
        }
       }
      }
@@ -290,49 +705,172 @@
    },
    {
     "subtopic": "MAT_PER_KOM_04",
-    "subtopics": [
-     "MAT_PER_KOM_05"
-    ],
-    "title": "Tekrarlı ve dairesel",
-    "narration": "Bazı nesneler birbirinin aynıysa ya da dizilim bir çember üzerindeyse sayma biraz değişir.",
+    "title": "Tekrarlı permütasyon",
+    "narration": "Peki dizdiğin nesnelerden bazıları birbirinin aynısıysa ne olur?",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Özdeş nesneler",
+      "text": "Birbirinin **aynısı olan nesnelere** özdeş denir. Özdeş nesneler yer değiştirince **yeni bir dizilim oluşmaz**: ANNE'deki iki N'nin yerini değiştirsen **kelime yine ANNE** olur.",
+      "narration": "Birbirinin aynısı olan nesnelere özdeş denir. Özdeş nesneler yer değiştirince yeni bir dizilim oluşmaz. ANNE'deki iki N'nin yerini değiştirsen kelime yine ANNE olur."
+     },
+     {
+      "kind": "visual",
+      "title": "AAB nasıl dizilir?",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "İki A farklı sayılırsa",
+        "Özdeş sayılınca"
+       ],
+       "rows": [
+        [
+         "A₁A₂B ve A₂A₁B",
+         "AAB"
+        ],
+        [
+         "A₁BA₂ ve A₂BA₁",
+         "ABA"
+        ],
+        [
+         "BA₁A₂ ve BA₂A₁",
+         "BAA"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "narration": "A, A ve B harflerini dizelim.",
+      "beats": [
+       {
+        "narration": "İki A'yı bir an farklı sayalım: A bir ve A iki. İlk satırda iki dizilim var.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Ama A'lar aynı olduğu için bu ikisi aynı kelimedir: AAB.",
+        "focus": [
+         "r1"
+        ],
+        "note": "2 dizilim → 1 kelime"
+       },
+       {
+        "narration": "Diğer satırlarda da her kelime iki kez sayılmış.",
+        "show": [
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r2",
+         "r3"
+        ]
+       },
+       {
+        "narration": "Sonuç: 3 faktöriyel bölü 2 faktöriyel, 3 kelime.",
+        "focus": [
+         "col2"
+        ],
+        "note": "3! / 2! = 3"
+       }
+      ]
+     },
+     {
       "kind": "rule",
-      "title": "Özdeşler ve çember",
+      "title": "Özdeşlere böl",
       "items": [
-       "**Tekrarlı**: $n$ nesneden $a$ tanesi, $b$ tanesi özdeşse $\\frac{n!}{a! \\cdot b!}$.",
-       "ANNE kelimesi: $\\frac{4!}{2!} = 12$ farklı dizilim.",
-       "**Dairesel**: $n$ kişi yuvarlak masaya $(n - 1)!$ biçimde oturur; birini sabitle.",
-       "Kolye ya da anahtarlık **ters çevrilebiliyorsa** ayrıca 2'ye böl."
+       "**Formül**: $n$ nesnenin $a$ tanesi ve $b$ tanesi özdeşse $\\frac{n!}{a! \\cdot b!}$.",
+       "**Örnek**: ANNE, $\\frac{4!}{2!} = 12$.",
+       "**Sabit yer**: koşullu harfi önce yerine koy, kalanları tekrarlı diz.",
+       "**Yol sayma**: 4 sağ ve 2 yukarı adım, $\\frac{6!}{4! \\cdot 2!} = 15$ yol."
       ],
-      "narration": "Özdeş nesneler yer değiştirince yeni bir dizilim oluşmaz. Bu yüzden n faktöriyeli, özdeş nesnelerin sayılarının faktöriyellerine bölersin. ANNE kelimesinde iki N var: 4 faktöriyel bölü 2 faktöriyel, 12. Yuvarlak bir masada ise başlangıç noktası yoktur; bir kişiyi sabitleyip kalanları sıralarsın: n eksi 1 faktöriyel. Kolye gibi ters çevrilebilen dizilimlerde ayrıca 2'ye bölersin."
+      "narration": "Formül: n nesnenin a tanesi ve b tanesi özdeşse, n faktöriyeli a faktöriyel çarpı b faktöriyele bölersin. Örnek: ANNE'de iki N var; 4 faktöriyel bölü 2 faktöriyel, 12. Sabit yer: bir harfin yeri belliyse önce onu koyar, kalanları tekrarlı dizersin. Yol sayma: 4 sağ ve 2 yukarı adımlık bir yol, 4 tane S ve 2 tane Y harfinin dizilişidir; 15 yol."
+     },
+     {
+      "kind": "example",
+      "title": "Kelime dizilimi",
+      "example": "ARABA kelimesinin harfleriyle kaç farklı dizilim yazılır?",
+      "explanation": "**Say**: 3 A, 1 R, 1 B. **Böl**: $\\frac{5!}{3!} = \\frac{120}{6} = 20$.",
+      "narration": "Bir örnek. ARABA kelimesinin harfleriyle kaç farklı dizilim yazılır? Say: 3 A, 1 R ve 1 B var. Böl: 5 faktöriyel bölü 3 faktöriyel, 120 bölü 6, 20."
+     },
+     {
+      "kind": "example",
+      "title": "Rakam dizilimi",
+      "example": "1, 1, 2, 2 ve 2 rakamlarının hepsiyle kaç farklı beş basamaklı sayı yazılır?",
+      "explanation": "**Say**: iki tane 1, üç tane 2. $\\frac{5!}{2! \\cdot 3!} = \\frac{120}{12} = 10$.",
+      "narration": "Rakamlarla da aynı. 1, 1, 2, 2 ve 2 rakamlarının hepsiyle kaç farklı beş basamaklı sayı yazılır? Say: iki tane 1, üç tane 2 var. 5 faktöriyel bölü 2 faktöriyel çarpı 3 faktöriyel, 120 bölü 12, 10."
+     },
+     {
+      "kind": "mistake",
+      "title": "Özdeşleri unutma",
+      "wrong": "KARAR kelimesinin harfleri $5! = 120$ farklı biçimde dizilir.",
+      "right": "Özdeşler için böl: iki A ve iki R var, $\\frac{5!}{2! \\cdot 2!} = 30$.",
+      "why": "Her kelime 4 kez sayılmıştır, çünkü A'lar ve R'ler kendi aralarında yer değişince kelime aynı kalır.",
+      "narration": "Sık hata: KARAR'ın harflerini 5 faktöriyel, 120 biçimde dizmek. Özdeşler için böl: iki A ve iki R var; 120 bölü 4, 30. Her kelime 4 kez sayılmıştır, çünkü A'lar ve R'ler kendi aralarında yer değişince kelime aynı kalır."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "KAPAK kelimesinin harflerinin yerleri değiştirilerek anlamlı ya da anlamsız 5 harfli kaç farklı kelime yazılabilir?",
+       "stem": "TATİL kelimesinin harflerinin yerleri değiştirilerek anlamlı ya da anlamsız 5 harfli kaç farklı kelime yazılabilir?",
        "options": [
-        "15",
-        "20",
-        "30",
         "60",
-        "120"
+        "72",
+        "96",
+        "120",
+        "240"
        ],
-       "answer": 2,
+       "answer": 0,
        "narration": "Özdeş harfleri sayalım.",
        "steps": [
         {
-         "text": "K: 2, A: 2, P: 1 → 5 harf",
-         "narration": "KAPAK'ta 5 harf var: iki K, iki A ve bir P."
+         "text": "5 harf: iki **T** özdeş, A, İ, L farklı.",
+         "narration": "TATİL'de 5 harf var; iki T özdeş, diğerleri farklı."
         },
         {
-         "text": "$\\frac{5!}{2! \\cdot 2!} = \\frac{120}{4} = 30$",
-         "narration": "5 faktöriyel 120. İki K ve iki A için 2 faktöriyel çarpı 2 faktöriyel, 4'e böleriz: 30."
+         "text": "$\\frac{5!}{2!} = \\frac{120}{2} = 60$. Cevap **A**.",
+         "narration": "5 faktöriyel bölü 2 faktöriyel, 120 bölü 2, 60. Cevabımız A. Özdeş T'leri unutan 120 bulur.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki kelime dizilimi kalıbı örnek alındı, kelime özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "Bir öğrencinin 8 soruluk bir denemede 5 doğru ve 2 yanlış cevabı ile 1 boş sorusu vardır. Sonuç çıktısında her soru sırasıyla D, Y ya da B harfiyle gösterilir; örneğin DDYDBDYD bir çıktıdır. Buna göre bu öğrencinin sonuç çıktısı kaç farklı biçimde olabilir?",
+       "options": [
+        "56",
+        "84",
+        "168",
+        "336",
+        "6720"
+       ],
+       "answer": 2,
+       "narration": "Sonuç çıktısını bir harf dizisi gibi düşünelim.",
+       "steps": [
+        {
+         "text": "Çıktı = 8 harflik dizi: 5 **D**, 2 **Y**, 1 **B**.",
+         "narration": "Her sonuç çıktısı 8 harflik bir dizidir: 5 D, 2 Y ve 1 B."
         },
         {
-         "text": "Cevap **C**. Özdeşleri unutan 120 bulur.",
-         "narration": "Cevabımız C. Özdeş harfleri hesaba katmayan 120, yalnız birini katan 60 bulur.",
+         "text": "$\\frac{8!}{5! \\cdot 2! \\cdot 1!} = \\frac{8 \\cdot 7 \\cdot 6}{2} = 168$",
+         "narration": "Tekrarlı permütasyon: 8 faktöriyel bölü 5 faktöriyel çarpı 2 faktöriyel çarpı 1 faktöriyel. 8 çarpı 7 çarpı 6 bölü 2, 168."
+        },
+        {
+         "text": "Cevap **C**.",
+         "narration": "Cevabımız C. Y'lerin 2 faktöriyelini unutan 336 bulur.",
          "eliminate": [
           "A",
           "B",
@@ -342,36 +880,230 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki tekrarlı permütasyon (kelime) kalıbı örnek alındı, kelime özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki test sonuç çıktısı kalıbı örnek alındı; soru sayısı, dağılım ve örnek çıktı özgün."
        }
       }
      },
      {
       "kind": "question",
       "question": {
-       "style": "TYT tarzı",
-       "stem": "6 arkadaş yuvarlak bir masanın etrafına oturacaktır. Ece ile Deniz yan yana oturmak istediğine göre, kaç farklı oturma düzeni vardır?",
+       "style": "ÖSYM tarzı",
+       "stem": "Bir kurye, kareli bir mahallede A noktasındaki depodan B noktasındaki müşteriye yalnızca doğuya ve kuzeye giderek en kısa yoldan ulaşacaktır. Bunun için 4 sokak doğuya ve 3 sokak kuzeye gitmesi gerekir. Kurye yolda, depodan 2 sokak doğuda ve 1 sokak kuzeyde bulunan C eczanesine uğramak zorundadır. Buna göre kurye kaç farklı en kısa yoldan gidebilir?",
        "options": [
+        "18",
+        "20",
         "24",
-        "48",
-        "120",
-        "240",
-        "720"
+        "35",
+        "54"
        ],
-       "answer": 1,
-       "narration": "Dairesel permütasyonu blok fikriyle birleştirelim.",
+       "answer": 0,
+       "narration": "ÖSYM yol saymayı bir hikâyeyle sorar. Yolu harflerle yazalım.",
        "steps": [
         {
-         "text": "Ece ve Deniz **tek blok**: blok + 4 kişi = **5 birim**.",
-         "narration": "Ece ile Deniz'i tek bir blok yapalım. Blok ve diğer 4 kişi, toplam 5 birim."
+         "text": "A'dan C'ye: 2 **D**, 1 **K** → $\\frac{3!}{2! \\cdot 1!} = 3$",
+         "narration": "Önce depodan eczaneye: 2 doğu ve 1 kuzey adımı. 3 faktöriyel bölü 2 faktöriyel, 3 yol.",
+         "mark": [
+          "C eczanesine uğramak zorundadır"
+         ]
         },
         {
-         "text": "Yuvarlak masada 5 birim: $(5 - 1)! = 24$. Blok kendi içinde: $2$",
-         "narration": "Yuvarlak masada 5 birim, 5 eksi 1 faktöriyel, yani 24 biçimde oturur. Blok kendi içinde de iki türlü olur."
+         "text": "C'den B'ye: 2 **D**, 2 **K** → $\\frac{4!}{2! \\cdot 2!} = 6$",
+         "narration": "Sonra eczaneden müşteriye: 2 doğu ve 2 kuzey. 4 faktöriyel bölü 2 faktöriyel çarpı 2 faktöriyel, 6 yol."
         },
         {
-         "text": "$24 \\cdot 2 = 48$. Cevap **B**.",
-         "narration": "24 çarpı 2, 48. Cevabımız B. Masayı düz sıra gibi düşünen 5 faktöriyel çarpı 2, 240 bulur.",
+         "text": "İki parça art arda: $3 \\cdot 6 = 18$. Cevap **A**.",
+         "narration": "İki parça art arda gidildiği için çarparız: 3 çarpı 6, 18. Cevabımız A. Eczane koşulunu unutan 7 adımın dizilişini sayar ve 35 bulur.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM 2018'in yol sayma kalıbı örnek alındı; kurye bağlamı, zorunlu uğrak noktası ve sayılar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_PER_KOM_05",
+    "title": "Dairesel permütasyon",
+    "narration": "Sıra bir çember üzerindeyse başlangıç noktası kaybolur. Yuvarlak masaya geçelim.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Yuvarlak masa",
+      "text": "Yuvarlak masada **baş ya da son yoktur**. Herkes **bir sandalye kayarsa** oturuş değişmez, çünkü **herkesin komşuları** aynı kalır.",
+      "narration": "Yuvarlak masada baş ya da son yoktur. Herkes bir sandalye kayarsa oturuş değişmez. Neden mi? Çünkü herkesin komşuları aynı kalır; kimin sağında kim olduğu değişmez."
+     },
+     {
+      "kind": "visual",
+      "title": "Üç kişi yuvarlak masada",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Düz sırada",
+        "Yuvarlak masada"
+       ],
+       "rows": [
+        [
+         "ABC, BCA, CAB",
+         "1 oturuş"
+        ],
+        [
+         "ACB, CBA, BAC",
+         "1 oturuş"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "narration": "A, B ve C yuvarlak masaya otursun.",
+      "beats": [
+       {
+        "narration": "Düz sırada ABC, BCA ve CAB farklıdır. Masada ise aynı oturuşun döndürülmüş hâlidir.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "ACB, CBA ve BAC de masada tek bir oturuştur.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Düz sırada 6 dizilim var, masada yalnız 2 oturuş: 3 eksi 1 faktöriyel.",
+        "focus": [
+         "col2"
+        ],
+        "note": "(3 − 1)! = 2"
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Çemberde sayma",
+      "items": [
+       "**Formül**: $n$ kişi yuvarlak masaya $(n - 1)!$ biçimde oturur.",
+       "**Sabitle**: bir kişiyi oturt, kalan $n - 1$ kişiyi düz sırala.",
+       "**Yan yana** koşulunda blok bir birimdir; $k$ birim $(k - 1)!$, blok içi ayrıca çarpılır.",
+       "**Kolye** ya da bilezik ters çevrilebiliyorsa $\\frac{(n - 1)!}{2}$."
+      ],
+      "narration": "Formül: n kişi yuvarlak masaya n eksi 1 faktöriyel biçimde oturur. Sabitle: bir kişiyi bir sandalyeye oturt; kalan n eksi 1 kişi ona göre düz sıralanır. Yan yana koşulunda blok bir birim olur; k birim masaya k eksi 1 faktöriyel biçimde oturur, blok içi ayrıca çarpılır. Kolye ya da bilezik ters çevrilebiliyorsa sonucu ayrıca 2'ye bölersin."
+     },
+     {
+      "kind": "example",
+      "title": "Beş kişilik masa",
+      "example": "5 kişi yuvarlak bir masaya kaç farklı biçimde oturur?",
+      "explanation": "**Birini sabitle**: kalan 4 kişi $4! = 24$ biçimde sıralanır.",
+      "narration": "Bir örnek. 5 kişi yuvarlak bir masaya kaç farklı biçimde oturur? Birini sabitle: kalan 4 kişi 4 faktöriyel, 24 biçimde sıralanır. Düz sırada 120 olurdu; her oturuş 5 kez sayılmıştı."
+     },
+     {
+      "kind": "example",
+      "title": "Bileklik",
+      "example": "6 farklı boncuk bir bilekliğe kaç farklı biçimde dizilir?",
+      "narration": "Bir tane daha. 6 farklı boncuk bir bilekliğe kaç farklı biçimde dizilir?",
+      "steps": [
+       {
+        "narration": "Önce çember: 6 eksi 1 faktöriyel, 120.",
+        "math": "(6 - 1)! = 120",
+        "text": "**Önce çember**"
+       },
+       {
+        "narration": "Ters çevir: bileklik çevrilince aynı dizilim görünür.",
+        "text": "**Ters çevir**: aynı dizilim"
+       },
+       {
+        "narration": "120'nin yarısı, 60.",
+        "math": "\\frac{120}{2} = 60"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Döndürme yeni oturuş değil",
+      "wrong": "Yuvarlak masada $n$ kişi $n!$ farklı biçimde oturur.",
+      "right": "Döndürme aynı oturuştur: $n$ kişi $(n - 1)!$ biçimde oturur.",
+      "why": "Her oturuş $n!$ içinde $n$ kez sayılır, çünkü herkes kayınca hiçbir komşu değişmez.",
+      "narration": "Sık hata: yuvarlak masada n kişinin n faktöriyel biçimde oturduğunu sanmak. Döndürme aynı oturuştur: n kişi n eksi 1 faktöriyel biçimde oturur. Her oturuş n faktöriyelin içinde n kez sayılır, çünkü herkes kayınca hiçbir komşu değişmez."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "7 arkadaş yuvarlak bir masanın etrafına kaç farklı biçimde oturabilir?",
+       "options": [
+        "120",
+        "360",
+        "720",
+        "2520",
+        "5040"
+       ],
+       "answer": 2,
+       "narration": "Önce kısa bir soru.",
+       "steps": [
+        {
+         "text": "Birini sabitle: kalan **6** kişi düz sıralanır.",
+         "narration": "Bir kişiyi sabitleriz; kalan 6 kişi ona göre sıralanır."
+        },
+        {
+         "text": "$(7 - 1)! = 6! = 720$. Cevap **C**.",
+         "narration": "7 eksi 1 faktöriyel, 6 faktöriyel, 720. Cevabımız C. Düz sıra gibi sayan 5040, masayı kolye gibi ikiye bölen 360 bulur.",
+         "eliminate": [
+          "A",
+          "B",
+          "D",
+          "E"
+         ]
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; MEB anlatımındaki dairesel permütasyon özgün sayıyla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir düğün yemeğinde üç evli çift, altı kişilik yuvarlak bir masaya oturacaktır. Masadaki sandalyeler birbirinden ayırt edilmemekte, yalnızca kimin kimin yanında oturduğu önemsenmektedir. Her çiftin eşleri yan yana oturmak istediğine göre bu altı kişi masaya kaç farklı biçimde oturabilir?",
+       "options": [
+        "8",
+        "16",
+        "24",
+        "48",
+        "96"
+       ],
+       "answer": 1,
+       "narration": "Şimdi blok ile yuvarlak masayı birleştirelim.",
+       "steps": [
+        {
+         "text": "Her çift **tek blok**: masada 3 birim.",
+         "narration": "Her çifti bir blok yaparız. Masada artık 3 birim var.",
+         "mark": [
+          "eşleri yan yana oturmak istediğine"
+         ]
+        },
+        {
+         "text": "3 birim yuvarlak masada: $(3 - 1)! = 2$",
+         "narration": "3 birim yuvarlak masaya 3 eksi 1 faktöriyel, yani 2 biçimde oturur."
+        },
+        {
+         "text": "Her blok kendi içinde 2: $2 \\cdot 2 \\cdot 2 = 8$",
+         "narration": "Her çiftte eşler yer değiştirebilir: 2 çarpı 2 çarpı 2, 8."
+        },
+        {
+         "text": "$2 \\cdot 8 = 16$. Cevap **B**.",
+         "narration": "2 çarpı 8, 16. Cevabımız B. Masayı düz sıra gibi düşünüp 3 faktöriyel alan 48 bulur.",
          "eliminate": [
           "A",
           "C",
@@ -381,7 +1113,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; MEB anlatımındaki dairesel permütasyon ve havuzdaki \"yan yana oturma\" kalıbı örnek alındı, sayılar özgün."
+        "changes": "Bu ders için yazıldı; dairesel permütasyon ile blok yönteminin birleştiği kalıp bağlamlı ve çok koşullu biçimde kuruldu; bağlam ve sayılar özgün."
        }
       }
      }
@@ -390,64 +1122,165 @@
    {
     "subtopic": "MAT_PER_KOM_06",
     "title": "Kombinasyon",
-    "narration": "Kombinasyon, sıranın önemli olmadığı seçimlerin sayısıdır.",
+    "narration": "Son durak: sıranın önemsiz olduğu seçimler, yani kombinasyon.",
     "cards": [
      {
-      "kind": "rule",
-      "title": "Seçim",
-      "items": [
-       "$\\binom{n}{r} = \\frac{n!}{r! \\cdot (n - r)!}$: $n$ kişiden $r$ kişilik **grup**.",
-       "$\\binom{8}{3} = \\frac{8 \\cdot 7 \\cdot 6}{3 \\cdot 2 \\cdot 1} = 56$",
-       "$\\binom{n}{r} = \\binom{n}{n - r}$: 3 kişiyi seçmek, 5 kişiyi dışarıda bırakmaktır.",
-       "**ÖSYM 2021**: 5 kişiyi seçmek ile 11 kişiyi seçmek aynı sayıyı veriyorsa sınıf **16** kişidir.",
-       "\"Mutlaka olsun\" → onu ekle, kalanlardan seç. \"Olmasın\" → onu çıkar, kalanlardan seç."
+      "kind": "concept",
+      "title": "Kombinasyon nedir?",
+      "text": "Kombinasyon, $n$ farklı nesneden $r$ tanesini **sırasız seçmektir**: bir grup, bir ekip, bir alt küme. **Ali ile Can'ın ekibi**, Can ile Ali'nin ekibiyle aynıdır.",
+      "narration": "Kombinasyon, n farklı nesneden r tanesini sırasız seçmektir. Bir grup, bir ekip ya da bir alt küme seçiyorsan kombinasyon kullanırsın. Ali ile Can'ın ekibi, Can ile Ali'nin ekibiyle aynıdır."
+     },
+     {
+      "kind": "predict",
+      "title": "Kaptan değil, grup",
+      "context": "Aynı 7 kişilik takımdan bir konferansa gidecek 2 kişilik bir grup seçilecek.",
+      "prompt": "Kaç farklı grup seçilebilir?",
+      "choices": [
+       "21",
+       "42"
       ],
-      "narration": "n kişiden r kişilik bir grup seçmenin yolu C n r'dir: n faktöriyel bölü r faktöriyel çarpı n eksi r faktöriyel. Pratikte r tane azalan sayıyı çarpıp r faktöriyele bölersin: C 8 3, 8 çarpı 7 çarpı 6 bölü 6, yani 56. C n r, C n n eksi r'ye eşittir; çünkü 3 kişiyi seçmek, 5 kişiyi dışarıda bırakmakla aynı şeydir. ÖSYM 2021'de tam olarak bunu sordu: 5 kişiyi seçmek ile 11 kişiyi seçmek aynı sayıyı veriyorsa sınıf 16 kişiliktir. Biri mutlaka grupta olacaksa onu gruba koyup kalanları seçersin; olmayacaksa onu çıkarıp kalanlardan seçersin."
+      "answer": 0,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Adım",
+        "Sayı"
+       ],
+       "rows": [
+        [
+         "Sıralı seçim",
+         "7 · 6 = 42"
+        ],
+        [
+         "Her grup kaç kez sayıldı?",
+         "2 kez (Ece-Su, Su-Ece)"
+        ],
+        [
+         "Grup sayısı",
+         "42 / 2 = 21"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "beats": [
+       {
+        "narration": "Önce sıralı seçelim: 7 çarpı 6, 42.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Ama Ece ile Su, Su ile Ece aynı gruptur; her grup 2 kez sayıldı.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "42'yi 2'ye böleriz: 21 grup.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ],
+      "explanation": "Sıra önemsiz: $\\binom{7}{2} = \\frac{7 \\cdot 6}{2!} = 21$. Kombinasyon, permütasyonun $r!$'e bölünmüşüdür.",
+      "narration": "Şimdi sıra sende. Bir tahmin yap.",
+      "explanationNarration": "Doğru cevap 21. Grupta görev yok, sıra önemsiz. Kaptan ve yardımcıda 42 bulmuştuk; orada her grup 2 kez sayılıyordu. Kombinasyon, permütasyonun r faktöriyele bölünmüşüdür."
+     },
+     {
+      "kind": "rule",
+      "title": "Kombinasyonun kuralları",
+      "items": [
+       "**Formül**: $\\binom{n}{r} = \\frac{n!}{r! \\cdot (n - r)!} = \\frac{P(n, r)}{r!}$.",
+       "**Örnek**: $\\binom{8}{3} = \\frac{8 \\cdot 7 \\cdot 6}{3 \\cdot 2 \\cdot 1} = 56$.",
+       "**Simetri**: $\\binom{n}{r} = \\binom{n}{n - r}$; 3 kişiyi seçmek, 5 kişiyi dışarıda bırakmaktır.",
+       "**Eşitlik**: $\\binom{n}{a} = \\binom{n}{b}$ ve $a \\neq b$ ise $n = a + b$.",
+       "**Mutlaka olsun**: onu koy, kalan yerleri kalanlardan seç; olmasın: onu çıkar.",
+       "**En az bir**: tümünden hiç olmayanları çıkar."
+      ],
+      "narration": "Formül: C n r, n faktöriyel bölü r faktöriyel çarpı n eksi r faktöriyeldir; yani permütasyonu r faktöriyele bölersin. Örnek: C 8 3, 8 çarpı 7 çarpı 6 bölü 3 çarpı 2 çarpı 1, 56. Simetri: 8 kişiden 3 kişiyi seçmek, 5 kişiyi dışarıda bırakmakla aynıdır. Eşitlik: C n a, C n b'ye eşitse ve a ile b farklıysa n, a artı b'dir. Mutlaka olsun deniyorsa onu ekibe koyar, kalan yerleri kalanlardan seçersin; olmasın deniyorsa onu çıkarırsın. En az bir deniyorsa tümünden hiç olmayanları çıkarırsın."
+     },
+     {
+      "kind": "example",
+      "title": "Mutlaka ekipte",
+      "example": "9 kişilik bir sınıftan Deniz'in mutlaka bulunduğu 4 kişilik kaç ekip seçilir?",
+      "explanation": "**Deniz ekipte**: kalan 3 yer, kalan 8 kişi. $\\binom{8}{3} = 56$.",
+      "narration": "Bir örnek. 9 kişilik bir sınıftan Deniz'in mutlaka bulunduğu 4 kişilik kaç ekip seçilir? Deniz ekipte; geriye 3 yer ve 8 kişi kalır. C 8 3, 56."
+     },
+     {
+      "kind": "example",
+      "title": "Noktalardan doğru ve üçgen",
+      "example": "Herhangi üçü doğrusal olmayan 6 noktayla kaç doğru ve kaç üçgen çizilir?",
+      "narration": "Seçim geometride de çıkar. Herhangi üçü doğrusal olmayan 6 noktayla kaç doğru ve kaç üçgen çizilir?",
+      "steps": [
+       {
+        "narration": "İki nokta bir doğru belirler: C 6 2, 15.",
+        "math": "\\binom{6}{2} = 15",
+        "text": "**İki nokta** bir doğru"
+       },
+       {
+        "narration": "Üç nokta bir üçgen belirler: C 6 3, 20.",
+        "math": "\\binom{6}{3} = 20",
+        "text": "**Üç nokta** bir üçgen"
+       }
+      ]
      },
      {
       "kind": "mistake",
       "title": "En az birde çift sayma",
-      "wrong": "En az bir kız: önce 4 kızdan biri, sonra kalan 8 kişiden 2: $4 \\cdot \\binom{8}{2} = 112$.",
-      "right": "112 çıkar: toplam ekip sayısı 84'ten bile fazla. Bu yol aynı ekibi **iki kez** sayar. **Doğru yol**: tümü − hiç kız yok = $84 - 10 = 74$.",
-      "why": "Ekipte iki kız varsa, hangisinin \"önce seçilen\" olduğu değişince aynı ekip iki kez sayılır.",
-      "narration": "En az bir sorularında sık bir hata: önce bir kız seçip kalan yerleri herkesten seçmek. 4 çarpı C 8 2, 112 çıkar: toplam ekip sayısı 84'ten bile fazla. Çünkü ekipte iki kız varsa hangisinin önce seçildiği değişince aynı ekip iki kez sayılır. Doğru yol, bütün durumlardan hiç kız olmayan durumları çıkarmaktır."
+      "wrong": "5 erkek ve 4 kızdan en az bir kızlı 3 kişilik ekip sayısı $4 \\cdot \\binom{8}{2} = 112$'dir.",
+      "right": "Bu yol aynı ekibi birden çok kez sayar: 112, toplam ekip sayısı 84'ten bile büyük. **Doğru yol**: $84 - \\binom{5}{3} = 84 - 10 = 74$.",
+      "why": "Ekipte iki kız varsa, hangisinin önce seçildiği değişince aynı ekip iki kez sayılır.",
+      "narration": "Sık hata: en az bir kızlı ekibi 4 çarpı C 8 2, yani 112 bulmak. Bu yol aynı ekibi birden çok kez sayar; 112, toplam ekip sayısı 84'ten bile büyük. Doğru yol: 84'ten hiç kız olmayan 10 ekibi çıkar, 74. Ekipte iki kız varsa, hangisinin önce seçildiği değişince aynı ekip iki kez sayılır."
      },
      {
       "kind": "question",
       "question": {
-       "style": "TYT tarzı",
-       "stem": "8 kişilik bir sınıftan 3 kişilik bir proje ekibi seçilecektir. Ali bu ekipte **mutlaka** bulunacağına göre, ekip kaç farklı şekilde seçilebilir?",
+       "style": "ÖSYM tarzı",
+       "stem": "Bir bilim kulübünde, üyeler arasından 4 kişilik bir ekip kaç farklı şekilde seçilebiliyorsa 8 kişilik bir ekip de tam o kadar farklı şekilde seçilebilmektedir. Kulüp danışmanı bu üyeler arasından bir bilim şenliğine gidecek 2 kişilik bir grup seçecektir. Buna göre bu grup kaç farklı şekilde seçilebilir?",
        "options": [
-        "21",
-        "28",
-        "35",
-        "56",
-        "336"
+        "12",
+        "24",
+        "33",
+        "55",
+        "66"
        ],
-       "answer": 0,
-       "narration": "Ali'yi ekibe koyup kalan yerleri dolduralım.",
+       "answer": 4,
+       "narration": "ÖSYM 2021'de bu kalıbı sordu. Önce üye sayısını bulalım.",
        "steps": [
         {
-         "text": "Ali ekipte: kalan **2** yer, kalan **7** kişi.",
-         "narration": "Ali ekibe girdi. 3 kişilik ekipte 2 yer kaldı; Ali dışında 7 kişi var."
+         "text": "$\\binom{n}{4} = \\binom{n}{8}$ ve $4 \\neq 8$ → $n = 4 + 8 = 12$.",
+         "narration": "4 kişilik ve 8 kişilik ekip sayıları eşit. Simetriden n, 4 artı 8, yani 12 üye var.",
+         "mark": [
+          "tam o kadar"
+         ]
         },
         {
-         "text": "$\\binom{7}{2} = \\frac{7 \\cdot 6}{2} = 21$",
-         "narration": "7 kişiden 2 kişi seçmek: 7 çarpı 6 bölü 2, 21."
+         "text": "$\\binom{12}{2} = \\frac{12 \\cdot 11}{2} = 66$.",
+         "narration": "12 üyeden 2 kişilik grup: 12 çarpı 11 bölü 2, 66."
         },
         {
-         "text": "Cevap **A**. Koşulsuz seçim $\\binom{8}{3} = 56$; sıralı seçim 336.",
-         "narration": "Cevabımız A. Koşulu unutan C 8 3, yani 56; sırayı önemseyen 8 çarpı 7 çarpı 6, 336 bulur.",
+         "text": "Cevap **E**.",
+         "narration": "Cevabımız E. Üye sayısında duran 12'yi, 11 üyeyle hesaplayan 55'i seçer.",
          "eliminate": [
+          "A",
           "B",
           "C",
-          "D",
-          "E"
+          "D"
          ]
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki \"belli kişinin bulunduğu seçim\" kombinasyon kalıbı örnek alındı, sayılar özgün."
+        "changes": "Bu ders için yazıldı; ÖSYM 2021'in C(n, 5) = C(n, 11) kalıbı örnek alındı; bağlam, ekip büyüklükleri ve sorulan seçim özgün."
        }
       }
      },
@@ -455,106 +1288,28 @@
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "6 kişiden 3'er kişilik bir sabah ekibi ve bir akşam ekibi oluşturulacaktır. En tecrübeli iki kişi aynı ekipte olmayacağına göre, ekipler kaç farklı şekilde oluşturulabilir?",
+       "stem": "6 erkek ve 3 kız öğrencinin bulunduğu bir münazara kulübünden 4 kişilik bir ekip seçilecektir. Ekipte **en az bir kız** bulunacağına göre ekip kaç farklı şekilde seçilebilir?",
        "options": [
-        "8",
-        "10",
-        "12",
-        "16",
-        "20"
-       ],
-       "answer": 2,
-       "narration": "ÖSYM 2019'da uçuş ekipleriyle sordu. Bütün durumlardan istenmeyenleri çıkaralım.",
-       "steps": [
-        {
-         "text": "Sabah ekibi seçilince akşam ekibi **kendiliğinden** belli: $\\binom{6}{3} = 20$",
-         "narration": "Sabah ekibini seçtiğimizde kalan 3 kişi akşam ekibidir. Bu yüzden yalnız sabah ekibini sayarız: C 6 3, 20 durum."
-        },
-        {
-         "text": "İkisi sabahta: kalan 1 kişi 4'ten → 4. İkisi akşamda: sabah 4'ten 3 → 4. İstenmeyen **8**.",
-         "narration": "İstenmeyen durumlar: iki tecrübeli de sabah ekibinde ise kalan bir yer için 4 kişiden biri seçilir, 4 durum. İkisi de akşam ekibindeyse sabah ekibi diğer 4 kişiden 3 kişi, yine 4 durum. Toplam 8."
-        },
-        {
-         "text": "$20 - 8 = 12$. Cevap **C**.",
-         "narration": "20 eksi 8, 12. Cevabımız C. Akşamda olma durumunu unutan 16 bulur.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2019'un \"en tecrübeliler aynı ekipte olmayacak\" kombinasyon kalıbı örnek alındı; kişi ve ekip sayıları özgün."
-       }
-      }
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "5 erkek ve 4 kız öğrenci arasından 3 kişilik bir ekip seçilecektir. Ekipte **en az bir kız** bulunması gerektiğine göre, ekip kaç farklı şekilde seçilebilir?",
-       "options": [
-        "40",
-        "64",
-        "74",
-        "80",
-        "84"
-       ],
-       "answer": 2,
-       "narration": "En az koşulunda tümünden istenmeyeni çıkarmak en kısa yoldur.",
-       "steps": [
-        {
-         "text": "Tüm seçimler: $\\binom{9}{3} = \\frac{9 \\cdot 8 \\cdot 7}{6} = 84$",
-         "narration": "Koşulsuz bütün seçimler: 9 kişiden 3, C 9 3: 9 çarpı 8 çarpı 7 bölü 6, 84."
-        },
-        {
-         "text": "Hiç kız olmayan (hepsi erkek): $\\binom{5}{3} = 10$",
-         "narration": "İstenmeyen durum: hiç kız olmaması, yani 3 kişinin de erkek olması. C 5 3, 10."
-        },
-        {
-         "text": "$84 - 10 = 74$. Cevap **C**.",
-         "narration": "84 eksi 10, 74. Cevabımız C. Bir kızı önce seçip kalanları 8 kişiden seçen, aynı ekipleri birkaç kez sayar ve yanlış sonuç bulur.",
-         "eliminate": [
-          "A",
-          "B",
-          "D",
-          "E"
-         ]
-        }
-       ],
-       "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki \"en az bir\" kombinasyon kalıbı örnek alındı, sayılar özgün."
-       }
-      }
-     },
-     {
-      "kind": "question",
-      "question": {
-       "style": "TYT tarzı",
-       "stem": "Kareli bir haritada A noktasından B noktasına yalnızca sağa ve yukarı giderek ulaşmak için 4 birim sağa ve 2 birim yukarı gitmek gerekmektedir. A'dan B'ye kaç farklı en kısa yol vardır?",
-       "options": [
-        "6",
-        "8",
-        "12",
         "15",
-        "30"
+        "84",
+        "96",
+        "111",
+        "126"
        ],
        "answer": 3,
-       "narration": "ÖSYM 2018'de bir oyuncakta yol saydırdı. Yolları harf dizisi gibi düşünelim.",
+       "narration": "En az koşulunda tümünden istenmeyeni çıkaralım.",
        "steps": [
         {
-         "text": "Her yol 6 adım: 4 **S** (sağ) ve 2 **Y** (yukarı). Örnek: SSYSYS",
-         "narration": "Her en kısa yol 6 adımdan oluşur: 4 sağ ve 2 yukarı. Bir yol, örneğin sağ sağ yukarı sağ yukarı sağ diye yazılabilir."
+         "text": "Tümü: $\\binom{9}{4} = \\frac{9 \\cdot 8 \\cdot 7 \\cdot 6}{24} = 126$",
+         "narration": "Koşulsuz bütün ekipler: 9 kişiden 4 kişi, C 9 4. 9 çarpı 8 çarpı 7 çarpı 6 bölü 24, 126."
         },
         {
-         "text": "6 adımdan 2'sinin **Y** olacağını seç: $\\binom{6}{2} = 15$",
-         "narration": "Farklı yollar, 6 adımdan hangi 2'sinin yukarı olacağını seçmekle belirlenir: C 6 2, 6 çarpı 5 bölü 2, 15. Tekrarlı permütasyonla da aynı sonuç: 6 faktöriyel bölü 4 faktöriyel çarpı 2 faktöriyel."
+         "text": "Hiç kız yok: $\\binom{6}{4} = 15$",
+         "narration": "İstenmeyen durum hiç kız olmaması: 4 kişinin hepsi erkek. C 6 4, 15."
         },
         {
-         "text": "Cevap **D**.",
-         "narration": "Cevabımız D.",
+         "text": "$126 - 15 = 111$. Cevap **D**.",
+         "narration": "126 eksi 15, 111. Cevabımız D. 126'yı seçen koşulu unutmuş, 15'i seçen istenmeyen durumu cevap sanmıştır.",
          "eliminate": [
           "A",
           "B",
@@ -564,36 +1319,77 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2018'in \"yol sayma\" kalıbı örnek alındı; ızgara ve sayılar özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki en az bir koşullu seçim kalıbı örnek alındı, sayılar özgün."
        }
       }
      },
      {
       "kind": "question",
       "question": {
-       "style": "TYT tarzı",
-       "stem": "Bir düzlemde herhangi üçü **doğrusal olmayan** 7 nokta vardır. Köşeleri bu noktalardan seçilen kaç farklı üçgen çizilebilir?",
+       "style": "ÖSYM tarzı",
+       "stem": "Bir sanat merkezinde haftalık süreleri tabloda verilen altı atölye vardır ve atölyelerin saatleri birbiriyle çakışmamaktadır. Ela, birbirinden farklı üç atölyeye yazılarak haftada toplam 9 saat atölyede bulunmak istemektedir. Buna göre Ela atölyelerini kaç farklı şekilde seçebilir?",
+       "figure": {
+        "kind": "table",
+        "header": [
+         "Atölye",
+         "Süre (saat)"
+        ],
+        "rows": [
+         [
+          "Resim",
+          "2"
+         ],
+         [
+          "Seramik",
+          "2"
+         ],
+         [
+          "Dans",
+          "3"
+         ],
+         [
+          "Tiyatro",
+          "3"
+         ],
+         [
+          "Müzik",
+          "4"
+         ],
+         [
+          "Fotoğraf",
+          "5"
+         ]
+        ],
+        "highlightColumn": 1
+       },
        "options": [
-        "21",
-        "35",
-        "42",
-        "70",
-        "210"
+        "4",
+        "5",
+        "6",
+        "8",
+        "10"
        ],
        "answer": 1,
-       "narration": "Üçgen için 3 nokta seçmek yeter; noktaların sırası önemli değil.",
+       "narration": "ÖSYM tabloyla seçim sorar. Önce toplamı 9 eden süreleri bulalım.",
        "steps": [
         {
-         "text": "Üçgen = 3 noktalık **seçim**; sıra önemsiz → kombinasyon.",
-         "narration": "Bir üçgeni üç köşesi belirler. Aynı üç noktayı hangi sırayla seçersek seçelim aynı üçgen çıkar; sıra önemsiz. Bu bir kombinasyondur."
+         "text": "Toplamı 9 olan üçlüler: $2 + 2 + 5$ ve $2 + 3 + 4$. $3 + 3 + 3$ olmaz: 3 saatlik yalnız iki atölye var.",
+         "narration": "Toplamı 9 eden üçlüler: 2 artı 2 artı 5 ve 2 artı 3 artı 4. 3 artı 3 artı 3 olmaz, çünkü 3 saatlik yalnız iki atölye var.",
+         "mark": [
+          "toplam 9 saat"
+         ]
         },
         {
-         "text": "$\\binom{7}{3} = \\frac{7 \\cdot 6 \\cdot 5}{3 \\cdot 2 \\cdot 1} = 35$.",
-         "narration": "Yediden üç seçme: yedi çarpı altı çarpı beş, bölü üç çarpı iki çarpı bir; iki yüz on bölü altı, otuz beş."
+         "text": "$2 + 2 + 5$: Resim, Seramik, Fotoğraf → **1** seçim.",
+         "narration": "2 artı 2 artı 5 için iki 2 saatlik atölyenin ikisi de ve Fotoğraf alınır: tek seçim."
         },
         {
-         "text": "Cevap **B**.",
-         "narration": "Otuz beş farklı üçgen çizilebilir. Cevabımız B. İki yüz onu seçen sırayı önemsemiş, yani permütasyon yapmıştır. Herhangi üçünün doğrusal olmaması önemli: üç nokta aynı doğru üzerinde olsaydı üçgen oluşmazdı.",
+         "text": "$2 + 3 + 4$: $2 \\cdot 2 \\cdot 1 = 4$ seçim.",
+         "narration": "2 artı 3 artı 4 için 2 saatlikten biri, 3 saatlikten biri ve Müzik: 2 çarpı 2 çarpı 1, 4 seçim."
+        },
+        {
+         "text": "$1 + 4 = 5$. Cevap **B**.",
+         "narration": "Bu iki durum birbirini dışlar, toplarız: 1 artı 4, 5. Cevabımız B. Yalnız ikinci durumu sayan 4 bulur.",
          "eliminate": [
           "A",
           "C",
@@ -603,7 +1399,7 @@
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki seçim (kombinasyon) kuralı klasik üçgen sayısı sorusuyla özgün sayılarla soruldu."
+        "changes": "Bu ders için yazıldı; ÖSYM 2023'ün tablodan süreye göre ders seçme kalıbı örnek alındı; atölyeler, süreler ve toplam özgün."
        }
       }
      }
@@ -612,77 +1408,78 @@
   ],
   "summary": {
    "points": [
-    "**Ya da** toplar, **ve** çarpar.",
-    "Sıra önemliyse **permütasyon**: $n(n - 1)\\cdots$",
-    "\"Önce\" koşulu: sıralamaların **yarısı**.",
-    "Özdeş nesneler: $\\frac{n!}{a! \\cdot b!}$; yuvarlak masa $(n - 1)!$.",
-    "Sıra önemsizse **kombinasyon**: $\\binom{n}{r}$.",
-    "\"En az\", \"olmasın\" koşullarında **tümünden istenmeyeni** çıkar."
+    "**Ya da** toplar, **ve** çarpar; koşullu adımı önce doldur.",
+    "$n!$, 1'den $n$'ye kadar sayıların çarpımı; faktöriyeli açıp sadeleştir.",
+    "Sıra önemliyse **permütasyon**: $P(n, r) = n(n - 1)\\cdots$",
+    "Yan yana: blok yap, blok içini unutma; önce-sonra: **yarısı**.",
+    "Özdeşler: $\\frac{n!}{a! \\cdot b!}$; yuvarlak masa: $(n - 1)!$.",
+    "Sıra önemsizse **kombinasyon**: $\\binom{n}{r}$; $\\binom{n}{r} = \\binom{n}{n - r}$.",
+    "\"En az bir\", \"olmasın\": **tümünden istenmeyeni** çıkar."
    ],
    "warnings": [
-    "Başkan ve yardımcı: 56; iki kişilik komite: 28.",
     "\"Hiç almamak\" da bir seçenektir.",
-    "$\\binom{n}{r} = \\binom{n}{n - r}$",
-    "Bir ekip seçilince diğeri **kendiliğinden** belli olur."
+    "Kaptan ve yardımcı 42, iki kişilik grup 21.",
+    "$\\frac{6!}{3!} \\neq 2!$: açıp sadeleştir.",
+    "Soru önceyi mi, sonrayı mı soruyor? İki kez oku."
    ],
-   "narration": "Hadi toparlayalım. Seçeneklerden biri yapılacaksa topla, adımlar art arda yapılacaksa çarp. Sıra önemliyse permütasyon, değilse kombinasyon kullan. Bir nesnenin diğerinden önce gelmesi isteniyorsa bütün sıralamaların yarısını al. Özdeş nesnelerde faktöriyele bölersin; yuvarlak masada bir kişiyi sabitlersin. Koşullu seçimlerde bazen en kolay yol, bütün durumlardan istenmeyenleri çıkarmaktır."
+   "narration": "Hadi toparlayalım. Seçeneklerden biri yapılacaksa topla, adımlar art arda geliyorsa çarp. Faktöriyelleri açıp sadeleştir. Sıra önemliyse permütasyon, değilse kombinasyon kullan. Yan yana koşulunda blok yap ve blok içini unutma; önce-sonra koşulunda yarısını al. Özdeşlere böl, yuvarlak masada bir kişiyi sabitle. En az bir ya da olmasın koşulunda tümünden istenmeyeni çıkar."
   }
  },
  "short": {
-  "hook": "Sıra önemli mi?",
+  "hook": "Sıra mı, seçim mi?",
   "cards": [
    {
     "kind": "fact",
-    "text": "Sıra önemli: **permütasyon**."
+    "text": "Sıra önemli: **permütasyon**, $P(7, 2) = 42$."
    },
    {
     "kind": "fact",
-    "text": "Sıra önemsiz: **kombinasyon**."
+    "text": "Sıra önemsiz: **kombinasyon**, $\\binom{7}{2} = 21$."
    },
    {
     "kind": "warning",
-    "text": "ANNE: $\\frac{4!}{2!} = 12$"
+    "text": "Yuvarlak masa: $(n - 1)!$"
    },
    {
     "kind": "fact",
-    "text": "Yuvarlak masa: $(n - 1)!$"
+    "text": "Özdeşler: $\\frac{n!}{a! \\cdot b!}$"
    }
   ],
   "summary": [
    "Sıra önemliyse permütasyon",
-   "Özdeşlere böl",
+   "Özdeşlere böl, çemberde birini sabitle",
    "Ya da toplar, ve çarpar"
   ],
   "rounds": [
    {
-    "sentence": "8 kişiden başkan ve yardımcı",
+    "sentence": "7 kişiden **kaptan** ve yardımcı",
     "question": "Kaç seçim?",
     "choices": [
-     "28",
-     "56"
+     "21",
+     "42"
     ],
     "answer": 1,
     "why": "Sıra **önemli**."
    },
    {
-    "sentence": "8 kişiden 2 kişilik komite",
+    "sentence": "7 kişiden **2 kişilik** grup",
     "question": "Kaç seçim?",
     "choices": [
-     "28",
-     "56"
+     "21",
+     "42"
     ],
     "answer": 0,
     "why": "Sıra **önemsiz**."
    },
    {
-    "sentence": "ANNE harfleri",
-    "question": "Kaç dizilim?",
+    "sentence": "4 kişi **yuvarlak** masada",
+    "question": "Kaç oturuş?",
     "choices": [
-     "12",
+     "6",
      "24"
     ],
     "answer": 0,
-    "why": "İki N **özdeş**."
+    "why": "**Birini** sabitle: $3! = 6$."
    }
   ]
  },

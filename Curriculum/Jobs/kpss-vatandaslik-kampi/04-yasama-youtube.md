@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Vatandaşlık kampı · Ders 4 · Yasama
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Vatandaslik/04_Yasama/Yasama_YouTube.mp4` (4K) · Kapak: `Yasama_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Vatandaslik/04_Yasama/Yasama_YouTube.mp4` (4K) · Kapak: `Yasama_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

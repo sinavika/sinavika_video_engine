@@ -1,6 +1,6 @@
 # YouTube metni: TYT Din Kültürü ve Ahlak Bilgisi kampı · Ders 13 · Hz. Muhammed ve Gençler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Din/13_Hz_Muhammed_ve_Gencler/Hz_Muhammed_ve_Gencler_YouTube.mp4` (4K) · Kapak: `Hz_Muhammed_ve_Gencler_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Din/13_Hz_Muhammed_ve_Gencler/Hz_Muhammed_ve_Gencler_YouTube.mp4` (4K) · Kapak: `Hz_Muhammed_ve_Gencler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

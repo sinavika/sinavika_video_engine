@@ -1,6 +1,6 @@
 # YouTube metni: AYT Din Kültürü kampı · Ders 8 · İslam Düşüncesinde Tasavvufi Yorumlar
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Din/08_Tasavvufi_Yorumlar/Tasavvufi_Yorumlar_YouTube.mp4` (4K) · Kapak: `Tasavvufi_Yorumlar_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Din/08_Tasavvufi_Yorumlar/Tasavvufi_Yorumlar_YouTube.mp4` (4K) · Kapak: `Tasavvufi_Yorumlar_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

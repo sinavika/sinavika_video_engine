@@ -1,12 +1,14 @@
 import {z} from 'zod';
-import {CourseVisualSchema, VisualBeatSchema, numberedPartNames, visualStages, type CourseVisual} from '../Components/Visuals/VisualSchema';
-import {latex, plainText, richText} from '../Schemas/RichText';
+import {CourseVisualSchema, VisualBeatSchema, numberedPartNames, visualStages, type CourseVisual, type VisualBeat} from '../Components/Visuals/VisualSchema';
+import {latex, parseRichText, plainText, richText} from '../Schemas/RichText';
 import {RevisionCardSchema} from '../Templates/Education/QuickRevision/QuickRevisionSchema';
 import {CampEpisodeSchema} from './Camp';
 import {estimateNarrationSeconds, VOICE_LEAD_SECONDS, VOICE_TAIL_SECONDS} from '../Scenes/Voiceover';
 import {CHALLENGE_SCORE_LINE, isSpoken, isWholeSentence, spokenPracticeAsk, spokenPredictAsk, spokenQuestion, spokenHook, spokenRoundAsk, spokenRoundReveal, THINK_PROMPT} from './LessonSpeech';
 import {COURSE_DESIGN} from './CourseDesign';
 import {cardCues} from './LessonCue';
+import {arithmeticIssues} from './ArithmeticCheck';
+import {figureWordIssues, optionOrderIssues, questionFitIssues, workedExampleSuggestions} from './QuestionReview';
 
 /**
  * The script of one topic: the full YouTube lesson and its short summary,
@@ -20,6 +22,13 @@ import {cardCues} from './LessonCue';
  */
 
 const narration = z.string().trim().min(1).max(1400);
+
+/**
+ * What a solution step does to the question's own figure while it is said: the parts it shows or points at (an
+ * interval of a graph z1, a cell of a table r2c3, a slice of a pie p2, a point p1), a zoom, a stage, a short note.
+ * Steps could name "1 ile 2 arası" or "tablodaki 3. satır" but not point at it (TYT Matematik, 9 Nov 2026).
+ */
+export const StepFigureSchema = VisualBeatSchema.omit({narration: true, swap: true});
 
 /** A question: the stem, the options, the correct one, and the solution step by step. */
 export const QuestionSchema = z
@@ -43,6 +52,7 @@ export const QuestionSchema = z
 					text: richText(260),
 					latex: latex(200).optional(),
 					visual: CourseVisualSchema.optional(),
+					figure: StepFigureSchema.optional(),
 					/** Options this step rules out, by letter: they are struck through and fade as the step is said. */
 					eliminate: z.array(z.enum(['A', 'B', 'C', 'D', 'E'])).max(4).default([]),
 					/** Words of the passage or the stem this step points at: a marker stroke is drawn under them as the step is said. */
@@ -73,10 +83,27 @@ export const QuestionSchema = z
 			step.mark.forEach((phrase) => {
 				if (!shown.includes(phrase.toLocaleLowerCase('tr'))) context.addIssue({code: 'custom', path: ['steps', index, 'mark'], message: `"${phrase}" is not in the passage or the stem as written.`});
 			});
+			if (step.figure) {
+				if (!question.figure) {
+					context.addIssue({code: 'custom', path: ['steps', index, 'figure'], message: 'The step points at the figure, but the question has none.'});
+					return;
+				}
+				const names = numberedPartNames(question.figure);
+				const known = new Set((names ?? []).map((name) => name.toLocaleLowerCase('tr')));
+				const unknown = names ? [...step.figure.show, ...step.figure.focus].filter((name) => !known.has(name.toLocaleLowerCase('tr'))) : [];
+				if (unknown.length > 0) context.addIssue({code: 'custom', path: ['steps', index, 'figure'], message: `No part ${unknown.join(', ')} on the question's ${question.figure.kind}; its parts are ${names?.join(', ')}.`});
+			}
 		});
 	});
 
 export type Question = z.infer<typeof QuestionSchema>;
+
+/**
+ * The question's figure told in beats, one per solution step: what each step shows or points at (its `figure`), or
+ * nothing. Undefined when no step points at the figure, so a figure without step pointers looks as before.
+ */
+export const questionFigureBeats = (question: Question): VisualBeat[] | undefined =>
+	question.steps.some((step) => step.figure) ? question.steps.map((step) => ({narration: step.narration, show: [], focus: [], swap: [], ...step.figure})) : undefined;
 
 /** The interactive boards a practice card can be (the app's match, flip and ordering steps). */
 export const PRACTICE_VISUALS = ['matching', 'flipcards', 'ordering'] as const;
@@ -96,14 +123,34 @@ export const unansweredItems = (visual: CourseVisual, beats: readonly {focus: re
  */
 const beats = z.array(VisualBeatSchema).max(10).default([]);
 
+/**
+ * One line of a worked example's solution (9 Nov 2026, TYT Matematik rewrite): what is written (`math`, a short
+ * `text` such as "Taraf tarafa topla", or both) and the sentence said while it is written. Lines come one by one, each
+ * with its own narration, the way a teacher writes on the board. A step is also a beat: on a card with a visual
+ * it can show, point at, zoom or move the figure to a stage. Before, the solution was a single block that came in
+ * when its first plain words were said, and a solution that opened with a formula never came in at all.
+ */
+export const ExampleStepSchema = VisualBeatSchema.extend({
+	math: latex(200).optional(),
+	text: richText(160).optional(),
+}).refine((step) => step.math !== undefined || step.text !== undefined, {message: 'A step writes a line: math, text or both.'});
+
+export type ExampleStep = z.infer<typeof ExampleStepSchema>;
+
 /** The cards of a lesson. Every kind can carry a visual; `visual` is a card that is mostly a visual. */
 export const LessonCardSchema = z.discriminatedUnion('kind', [
 	/** A definition or an explanation. */
 	z.object({kind: z.literal('concept'), title: plainText(70), text: richText(420), visual: CourseVisualSchema.optional(), beats, narration}),
 	/** Rules or properties as a short list. */
 	z.object({kind: z.literal('rule'), title: plainText(70), items: z.array(richText(160)).min(1).max(6), visual: CourseVisualSchema.optional(), beats, narration}),
-	/** An example and what it shows. */
-	z.object({kind: z.literal('example'), title: plainText(70), example: richText(300), explanation: richText(300).optional(), visual: CourseVisualSchema.optional(), beats, narration}),
+	/**
+	 * An example and what it shows: the solution as one `explanation`, or written line by line in `steps` (a worked
+	 * example: the card's narration reads the example, then each step is said as its line comes in).
+	 */
+	z
+		.object({kind: z.literal('example'), title: plainText(70), example: richText(300), explanation: richText(300).optional(), visual: CourseVisualSchema.optional(), beats, steps: z.array(ExampleStepSchema).max(7).default([]), narration})
+		.refine((card) => card.steps.length === 0 || card.beats.length === 0, {path: ['beats'], message: 'A worked example moves its figure with its steps; give the steps what the beats would do (show, focus, stage).'})
+		.refine((card) => card.steps.length === 0 || card.explanation === undefined, {path: ['explanation'], message: 'A worked example ends on its last step; write the closing line as that step instead of an explanation.'}),
 	/** A common mistake: what students do, what is right, and why. */
 	z.object({kind: z.literal('mistake'), title: plainText(70), wrong: richText(220), right: richText(220), why: richText(260).optional(), narration}),
 	/** A card that is mostly a figure: a map, a plot, a molecule, a timeline. */
@@ -163,6 +210,16 @@ export const LessonCardSchema = z.discriminatedUnion('kind', [
 
 export type LessonCard = z.infer<typeof LessonCardSchema>;
 
+/**
+ * The beats a card is told in after its own line: a worked example's steps, otherwise the beats of its visual
+ * (questions, predictions and practice boards time their own lines).
+ */
+export const cardBeats = (card: LessonCard): readonly z.infer<typeof VisualBeatSchema>[] => {
+	// `?? []`: a card built in code without parsing has no steps field.
+	if (card.kind === 'example' && (card.steps ?? []).length > 0) return card.steps;
+	return 'beats' in card && 'visual' in card && card.visual ? card.beats : [];
+};
+
 /** The ways a camp lesson may open (lesson.opening.kind). */
 export const OPENING_KINDS = ['question', 'mistake', 'visual'] as const;
 
@@ -210,9 +267,10 @@ export const LessonSectionSchema = z.object({
 					if (!names) return;
 					const known = new Set(names.map((name) => name.toLocaleLowerCase('tr')));
 					const visual = card.visual;
-					card.beats.forEach((beat, beatIndex) => {
+					const field = card.kind === 'example' && (card.steps ?? []).length > 0 ? 'steps' : 'beats';
+					cardBeats(card).forEach((beat, beatIndex) => {
 						const unknown = [...beat.show, ...beat.focus, ...beat.swap].filter((name) => !known.has(name.toLocaleLowerCase('tr')));
-						if (unknown.length > 0) context.addIssue({code: 'custom', path: [index, 'beats', beatIndex], message: `No part ${unknown.join(', ')} on this ${visual.kind}; its parts are ${names.join(', ')}.`});
+						if (unknown.length > 0) context.addIssue({code: 'custom', path: [index, field, beatIndex], message: `No part ${unknown.join(', ')} on this ${visual.kind}; its parts are ${names.join(', ')}.`});
 						const noSwap = beat.swap.filter((name) => visual.kind !== 'sentence' || !visual.parts[Number(name.replace(/^w/i, '')) - 1]?.swap);
 						if (noSwap.length > 0) context.addIssue({code: 'custom', path: [index, 'beats', beatIndex, 'swap'], message: `${noSwap.join(', ')} has no swap word.`});
 					});
@@ -352,7 +410,7 @@ export const lessonNarrations = (script: LessonScript): string[] => [
 			if (card.kind === 'question') return [card.question.narration, `${spokenQuestion(card.question)} ${THINK_PROMPT}`, ...card.question.steps.map((step) => step.narration)];
 			if (card.kind === 'predict') return [spokenPredictAsk(card), ...card.beats.map((beat) => beat.narration), card.explanationNarration];
 			if (card.kind === 'practice') return [spokenPracticeAsk(card), ...card.beats.map((beat) => beat.narration)];
-			return [card.narration, ...('beats' in card ? card.beats.map((beat) => beat.narration) : [])];
+			return [card.narration, ...cardBeats(card).map((beat) => beat.narration)];
 		}),
 	]),
 	script.lesson.summary.narration,
@@ -429,8 +487,14 @@ export const reviewScript = (script: LessonScript, subtopicCodes: readonly strin
 	if (missing.length > 0) issues.push(`Subtopics without a section: ${missing.join(', ')}.`);
 	const questions = script.lesson.sections.flatMap((section) => section.cards).filter((card) => card.kind === 'question').length;
 	if (questions < 3) issues.push(`Only ${questions} worked question(s); three or more cover the exam's approaches better.`);
-	issues.push(...answerPatternIssues(script), ...mistakeIssues(script), ...worksIssues(script), ...spokenTextIssues(script), ...stageIssues(script), ...practiceIssues(script));
-	return {lessonSeconds, shortSeconds, questions, issues, suggestions: [...processVisualSuggestions(script), ...longSentenceSuggestions(script), ...practiceSuggestions(script), ...stillScreenSuggestions(script)]};
+	issues.push(...answerPatternIssues(script), ...mistakeIssues(script), ...worksIssues(script), ...spokenTextIssues(script), ...stageIssues(script), ...practiceIssues(script), ...arithmeticIssues(script), ...figureWordIssues(script), ...strayEscapeIssues(script));
+	return {
+		lessonSeconds,
+		shortSeconds,
+		questions,
+		issues,
+		suggestions: [...processVisualSuggestions(script), ...longSentenceSuggestions(script), ...practiceSuggestions(script), ...stillScreenSuggestions(script), ...rushedStageSuggestions(script), ...optionOrderIssues(script), ...questionFitIssues(script), ...workedExampleSuggestions(script)],
+	};
 };
 
 /** Every string in a card (its texts, its figure's labels, its narration), for what a section has already said. */
@@ -516,7 +580,7 @@ export const stillScreenSuggestions = (script: LessonScript): string[] =>
 			if (card.kind === 'question' || card.kind === 'predict' || card.kind === 'practice') return [];
 			const where = `s${sectionIndex + 1}-c${cardIndex + 1}`;
 			const seconds = estimateNarrationSeconds(card.narration);
-			const beats = 'beats' in card && card.visual ? card.beats : [];
+			const beats = cardBeats(card);
 			const stretches = [{seconds: longestStill(seconds, cardEventTimes(card, card.narration, seconds)), label: 'the card'}, ...beats.map((beat, index) => ({seconds: estimateNarrationSeconds(beat.narration), label: `beat ${index + 1}`}))];
 			return stretches.flatMap(({seconds: still, label}) =>
 				still > MAX_STILL_SCREEN_SECONDS ? [`${where}: ${label} goes about ${Math.round(still)} s with nothing new on screen (at most ${MAX_STILL_SCREEN_SECONDS}); split it into beats, list items or marked phrases the voice says.`] : [],
@@ -531,7 +595,7 @@ const MAX_SPOKEN_WORDS = 30;
 export const longSentenceSuggestions = (script: LessonScript): string[] =>
 	script.lesson.sections.flatMap((section, sectionIndex) =>
 		section.cards.flatMap((card, cardIndex) =>
-			(card.kind === 'question' ? card.question.steps.map((step) => step.narration ?? '') : [card.narration, ...('beats' in card ? card.beats.map((beat) => beat.narration) : [])])
+			(card.kind === 'question' ? card.question.steps.map((step) => step.narration ?? '') : [card.narration, ...cardBeats(card).map((beat) => beat.narration)])
 				.flatMap((text) => text.split(/(?<=[.!?…])\s+/u))
 				.filter((sentence) => sentence.split(/\s+/).length > MAX_SPOKEN_WORDS)
 				.map((sentence) => `s${sectionIndex + 1}-c${cardIndex + 1}: a spoken sentence of ${sentence.split(/\s+/).length} words ("${sentence.slice(0, 50)}…"); split it so the voice can breathe.`),
@@ -575,11 +639,17 @@ const PROCESS_VISUALS: {name: string; words: RegExp; ignore?: RegExp; shows: (vi
 	},
 ];
 
+/**
+ * Lessons whose words name no process of nature or history: in mathematics "delta" is the discriminant and a
+ * "döngü" a loop, not a river's delta or the water cycle (TYT Matematik, İkinci Dereceden, 7 false suggestions).
+ */
+const NO_PROCESS_LESSONS = new Set(['MAT', 'GEO']);
+
 export const processVisualSuggestions = (script: LessonScript): string[] =>
-	script.lesson.sections.flatMap((section, sectionIndex) =>
+	NO_PROCESS_LESSONS.has(script.topic.lesson) ? [] : script.lesson.sections.flatMap((section, sectionIndex) =>
 		section.cards.flatMap((card, cardIndex) => {
 			if (card.kind === 'question') return [];
-			const said = [card.narration, ...('beats' in card ? card.beats.map((beat) => beat.narration) : [])].join(' ');
+			const said = [card.narration, ...cardBeats(card).map((beat) => beat.narration)].join(' ');
 			const near = section.cards.slice(Math.max(0, cardIndex - 1), cardIndex + 2).flatMap((other) => ('visual' in other && other.visual ? [other.visual] : []));
 			return PROCESS_VISUALS.filter((process) => process.words.test(process.ignore ? said.replace(process.ignore, '') : said) && !near.some(process.shows)).map(
 				(process) => `s${sectionIndex + 1}-c${cardIndex + 1}: the narration names "${process.name}" but no figure here shows it happening.`,
@@ -644,11 +714,28 @@ export const mapNameIssues = (script: LessonScript, namesOf: (layer: string) => 
 export const stageIssues = (script: LessonScript): string[] =>
 	script.lesson.sections.flatMap((section, sectionIndex) =>
 		section.cards.flatMap((card, cardIndex) => {
-			if (!('visual' in card) || !card.visual || !('beats' in card) || card.beats.length === 0) return [];
+			const told = cardBeats(card);
+			if (!('visual' in card) || !card.visual || told.length === 0) return [];
 			const stages = visualStages(card.visual);
-			const reached = Math.max(-1, ...card.beats.map((beat) => beat.stage ?? -1));
+			const reached = Math.max(-1, ...told.map((beat) => beat.stage ?? -1));
 			if (!stages || reached < 0 || reached >= stages.length - 1) return [];
 			return [`s${sectionIndex + 1}-c${cardIndex + 1}: the beats stop at stage ${reached + 1} of ${stages.length}; "${stages[stages.length - 1]}" is never shown.`];
+		}),
+	);
+
+/**
+ * A staged visual told without beats shares its card's line among its stages. Under about a second a stage (a six-row
+ * prime ladder under a five-second line) the figure runs ahead of the voice: tell it in beats, one sentence a stage.
+ */
+export const rushedStageSuggestions = (script: LessonScript): string[] =>
+	script.lesson.sections.flatMap((section, sectionIndex) =>
+		section.cards.flatMap((card, cardIndex) => {
+			if (!('visual' in card) || !card.visual || cardBeats(card).length > 0 || card.kind === 'predict' || card.kind === 'practice') return [];
+			const stages = visualStages(card.visual);
+			if (!stages || stages.length < 3) return [];
+			const seconds = estimateNarrationSeconds(card.narration);
+			const perStage = (seconds - 1.5) / stages.length;
+			return perStage < 1 ? [`s${sectionIndex + 1}-c${cardIndex + 1}: the ${card.visual.kind} plays ${stages.length} stages in about ${Math.round(seconds)} s of narration; tell it in beats, one sentence a stage.`] : [];
 		}),
 	);
 
@@ -677,6 +764,28 @@ export const answerLetterIssues = (answers: string): string[] => {
 	if (period && !run) issues.push(`The answers repeat every ${period} questions (${answers}).`);
 	return issues;
 };
+
+/** Fields that hold a bare formula: a backslash belongs there. */
+const FORMULA_FIELDS = new Set(['latex', 'math', 'left', 'right', 'expression']);
+
+/** Every text of a value that is rich text, not a bare formula. */
+const richStrings = (value: unknown): string[] =>
+	typeof value === 'string' ? [value] : Array.isArray(value) ? value.flatMap(richStrings) : value && typeof value === 'object' ? Object.entries(value).flatMap(([key, item]) => (FORMULA_FIELDS.has(key) ? [] : richStrings(item))) : [];
+
+/**
+ * A backslash outside a formula before a letter or an apostrophe ("$R$\'nin", "\div 4") is drawn on screen and read
+ * by the voice as it stands (TYT Matematik, Polinomlar and Fonksiyonlar, 9 Nov 2026: "R \'nin sabit noktası"). The set
+ * difference written in text, "A \ B", is a sign of its own and stays.
+ */
+const STRAY_ESCAPE = /\\['’\p{L}]/u;
+
+export const strayEscapeIssues = (script: LessonScript): string[] =>
+	script.lesson.sections.flatMap((section, sectionIndex) =>
+		section.cards.flatMap((card, cardIndex) => {
+			const stray = richStrings(card).flatMap((text) => parseRichText(text).filter((segment) => (segment.kind === 'text' || segment.kind === 'strong') && STRAY_ESCAPE.test(segment.value)));
+			return stray.length ? [`s${sectionIndex + 1}-c${cardIndex + 1}: a backslash outside a formula ("${stray[0].value.trim().slice(0, 30)}") is shown and read as written; write the apostrophe or sign plainly.`] : [];
+		}),
+	);
 
 /** Camp scripts are separate from Works (owner, 9 Nov 2026): a script carries no Works notes. */
 export const worksIssues = (script: LessonScript): string[] =>
@@ -708,7 +817,7 @@ export const spokenTextIssues = (script: LessonScript): string[] => {
 		section.cards.forEach((card, cardIndex) => {
 			const where = `s${sectionIndex + 1}-c${cardIndex + 1}`;
 			if (card.kind === 'question') return;
-			const beats = 'beats' in card ? card.beats : [];
+			const beats = card.kind === 'example' && (card.steps ?? []).length > 0 ? card.steps : 'beats' in card ? card.beats : [];
 			const said = [card.narration, ...beats.map((beat) => beat.narration), card.kind === 'predict' ? card.explanationNarration : ''].join(' ');
 			beats.forEach((beat, beatIndex) => {
 				if (!isWholeSentence(beat.narration)) issues.push(`${where} beat ${beatIndex + 1} is not a whole sentence: "${beat.narration}".`);

@@ -1,6 +1,6 @@
 # YouTube metni: AYT Fizik kampı · Ders 5 · Hareket
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Fizik/05_Hareket/Hareket_YouTube.mp4` (4K) · Kapak: `Hareket_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Fizik/05_Hareket/Hareket_YouTube.mp4` (4K) · Kapak: `Hareket_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

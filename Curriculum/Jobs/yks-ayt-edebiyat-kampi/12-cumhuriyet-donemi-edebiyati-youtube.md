@@ -1,6 +1,6 @@
 # YouTube metni: AYT Edebiyat kampı · Ders 12 · Cumhuriyet Dönemi Edebiyatı
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Edebiyat/12_Cumhuriyet_Donemi_Edebiyati/Cumhuriyet_Donemi_Edebiyati_YouTube.mp4` (4K) · Kapak: `Cumhuriyet_Donemi_Edebiyati_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Edebiyat/12_Cumhuriyet_Donemi_Edebiyati/Cumhuriyet_Donemi_Edebiyati_YouTube.mp4` (4K) · Kapak: `Cumhuriyet_Donemi_Edebiyati_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

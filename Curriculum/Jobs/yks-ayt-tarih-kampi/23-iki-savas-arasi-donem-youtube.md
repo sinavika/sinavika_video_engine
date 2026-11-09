@@ -1,6 +1,6 @@
 # YouTube metni: AYT Tarih kampı · Ders 23 · İki Savaş Arasındaki Dönemde Türkiye ve Dünya
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Tarih/23_Iki_Savas_Arasi_Donem/Iki_Savas_Arasi_Donem_YouTube.mp4` (4K) · Kapak: `Iki_Savas_Arasi_Donem_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Tarih/23_Iki_Savas_Arasi_Donem/Iki_Savas_Arasi_Donem_YouTube.mp4` (4K) · Kapak: `Iki_Savas_Arasi_Donem_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

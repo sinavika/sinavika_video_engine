@@ -1,0 +1,676 @@
+{
+	"topic": {
+		"id": "CCBC3826-453C-66B0-27E6-94C50FE3CFC3",
+		"category": "YKS_TYT",
+		"lesson": "MAT",
+		"code": "MAT_TEMEL"
+	},
+	"title": "Matematik kartları",
+	"lessonName": "Matematik",
+	"exams": [
+		"YKS",
+		"TYT"
+	],
+	"sources": [
+		"YKS/TYT/KonuAnlatimi/MAT/MAT_TEMEL.json (MEB Temel Matematik konu anlatımı: rakam ve sayı kümeleri, işaret kuralları, tek-çift, ardışık sayılar ve terim sayısı, asal ve aralarında asal sayılar, işlem önceliği, faktöriyel)",
+		"YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2020–2026: 16 soru; 8'i tek-çift (2020–2025 her yıl), 3'ü sayı kümeleri ve rakamlar, 2'si ardışık sayılar, 2'si işlem önceliği, 1'i asal sayılar (2025 asalız sayı))",
+		"YKS/TYT/Sorular/MAT/MAT_TEMEL.jsonl (soru havuzu; işaret, sıralama, aralarında asal, faktöriyel kalıpları)"
+	],
+	"lesson": {
+		"hook": {
+			"headline": "2020–2025 arasındaki her TYT'de bir tek-çift sorusu vardı.",
+			"narration": "Temel kavramlar kolay sanılır. Ama 2020 ile 2025 arasındaki her TYT'de en az bir tek-çift sorusu vardı. Çoğu bir lamba ipinin, bir apartmanın ya da bir elma kasasının içine saklanmıştı. Bu derste bütün matematiğin temelini, soru çözerek kuracağız."
+		},
+		"opening": {
+			"kind": "question",
+			"card": "s2-c1",
+			"narration": "Grafikten aralık okumak.",
+			"promise": "Yeni kartları göreceksin."
+		},
+		"objectives": [
+			"Bir sayının hangi sayı kümesine girdiğini bulmak",
+			"İşaret kurallarıyla sonucun işaretini hesap yapmadan bilmek",
+			"Tek-çift sorularında belli olmayan harfi iki durumla çözmek",
+			"Ardışık sayılarda terim sayısını ve toplamı bulmak",
+			"Asal ve aralarında asal sayıları ayırmak",
+			"İşlem önceliğini ve faktöriyeli doğru uygulamak"
+		],
+		"sections": [
+			{
+				"title": "Yeni kartlar",
+				"narration": "Yeni matematik kartlarını deneyelim.",
+				"cards": [
+					{
+						"kind": "example",
+						"title": "Yakalama",
+						"example": "Saatte 60 km giden aracın **90 km arkasından**, aynı yönde saatte 90 km giden bir araç çıkıyor. **Kaç saatte** yakalar?",
+						"narration": "Saatte 60 km giden aracın 90 km arkasından, aynı yönde saatte 90 km giden bir araç çıkıyor. Kaç saatte yakalar?",
+						"steps": [
+							{
+								"narration": "Aynı yöndeler: ara her saat 90 eksi 60, yani 30 kilometre kapanır.",
+								"math": "V_{fark} = 90 - 60 = 30",
+								"text": "Aynı yön: hızlar çıkarılır"
+							},
+							{
+								"narration": "Kapanacak ara 90 kilometre: 30 çarpı t eşittir 90.",
+								"math": "30 \\cdot t = 90"
+							},
+							{
+								"narration": "Her iki tarafı 30'a bölelim: t eşittir 3 saat.",
+								"math": "t = 3",
+								"text": "**3 saatte** yakalar."
+							}
+						]
+					},
+					{
+						"kind": "example",
+						"title": "Yaş problemi şeritle",
+						"example": "Annenin yaşı kızının yaşının **3 katı**, yaşları toplamı **48**.",
+						"narration": "Annenin yaşı kızının yaşının 3 katı, yaşları toplamı 48. Kızın yaşını şeritle bulalım.",
+						"visual": {
+							"kind": "barModel",
+							"bars": [
+								{
+									"label": "Kız",
+									"pieces": [
+										{
+											"units": 1,
+											"label": "x"
+										}
+									]
+								},
+								{
+									"label": "Anne",
+									"pieces": [
+										{
+											"units": 1,
+											"label": "x"
+										},
+										{
+											"units": 1,
+											"label": "x"
+										},
+										{
+											"units": 1,
+											"label": "x"
+										}
+									]
+								}
+							],
+							"braces": [
+								{
+									"bar": 1,
+									"from": 0,
+									"to": 2,
+									"label": "3x",
+									"side": "below"
+								}
+							]
+						},
+						"steps": [
+							{
+								"narration": "Kızın yaşı bir parça: x.",
+								"show": [
+									"b1"
+								],
+								"focus": [
+									"b1"
+								],
+								"math": "Kız = x"
+							},
+							{
+								"narration": "Anne üç katı: aynı uzunlukta üç parça.",
+								"show": [
+									"b2",
+									"k1"
+								],
+								"focus": [
+									"b2"
+								],
+								"math": "Anne = 3x"
+							},
+							{
+								"narration": "Toplam dört parça, 48 eder; bir parça 12.",
+								"math": "4x = 48 \\Rightarrow x = 12",
+								"text": "Kız **12**, anne **36** yaşında."
+							}
+						]
+					},
+					{
+						"kind": "visual",
+						"title": "İşaret tablosu",
+						"narration": "x eksi 2 çarpı x artı 1, bölü x eksi 4 ifadesinin sıfırdan büyük ya da eşit olduğu aralıkları bulalım.",
+						"visual": {
+							"kind": "signTable",
+							"points": [
+								-1,
+								2,
+								4
+							],
+							"factors": [
+								{
+									"expression": "x+1",
+									"label": "x + 1"
+								},
+								{
+									"expression": "x-2",
+									"label": "x − 2"
+								},
+								{
+									"expression": "x-4",
+									"label": "x − 4",
+									"denominator": true
+								}
+							],
+							"resultLabel": "Sonuç",
+							"relation": ">="
+						},
+						"beats": [
+							{
+								"narration": "Kritik noktalar eksi 1, 2 ve 4.",
+								"show": [
+									"x"
+								],
+								"focus": [
+									"x"
+								]
+							},
+							{
+								"narration": "x artı 1, eksi 1'den sonra pozitif.",
+								"show": [
+									"f1"
+								],
+								"focus": [
+									"f1"
+								]
+							},
+							{
+								"narration": "x eksi 2, 2'den sonra pozitif.",
+								"show": [
+									"f2"
+								],
+								"focus": [
+									"f2"
+								]
+							},
+							{
+								"narration": "Payda x eksi 4; 4 noktası tanımsız.",
+								"show": [
+									"f3"
+								],
+								"focus": [
+									"f3"
+								]
+							},
+							{
+								"narration": "İşaretleri çarpalım.",
+								"show": [
+									"result"
+								],
+								"focus": [
+									"result"
+								]
+							},
+							{
+								"narration": "Sıfıra eşit ya da büyük olan aralıkları alalım.",
+								"show": [
+									"solution"
+								],
+								"focus": [
+									"solution"
+								]
+							}
+						]
+					},
+					{
+						"kind": "visual",
+						"title": "Bölme işlemi",
+						"narration": "1749'u 6'ya bölelim.",
+						"visual": {
+							"kind": "longDivision",
+							"dividend": 1749,
+							"divisor": 6
+						},
+						"beats": [
+							{
+								"narration": "17'de 6, 2 kere var.",
+								"stage": 0
+							},
+							{
+								"narration": "54'te 6, 9 kere var.",
+								"stage": 1
+							},
+							{
+								"narration": "9'da 6, 1 kere var; kalan 3.",
+								"stage": 2
+							},
+							{
+								"narration": "Sağlama: 6 çarpı 291 artı 3.",
+								"stage": 3
+							}
+						]
+					},
+					{
+						"kind": "visual",
+						"title": "EBOB ve EKOK",
+						"narration": "24 ile 36'nın EBOB ve EKOK'unu bölen merdiveniyle bulalım.",
+						"visual": {
+							"kind": "primeLadder",
+							"numbers": [
+								24,
+								36
+							]
+						},
+						"beats": [
+							{
+								"narration": "24 de 36 da ikiye bölünür; bu iki halkalı, ikisini de böldü.",
+								"stage": 0
+							},
+							{
+								"narration": "12 ile 18 de ikiye bölünür; yine halkalı.",
+								"stage": 1
+							},
+							{
+								"narration": "6 ikiye bölünür, 9 bölünmez; 9 aynen iner.",
+								"stage": 2
+							},
+							{
+								"narration": "3 ile 9 üçe bölünür; bu üç de halkalı.",
+								"stage": 3
+							},
+							{
+								"narration": "Geriye kalan 3 üçe bölünür, satır 1 olur.",
+								"stage": 4
+							},
+							{
+								"narration": "Halkalı asallar EBOB, hepsi EKOK: 12 ve 72.",
+								"stage": 5
+							}
+						]
+					},
+					{
+						"kind": "visual",
+						"title": "Kutu yöntemi",
+						"narration": "1, 2, 3, 4, 5 rakamlarıyla rakamları farklı kaç tane üç basamaklı çift sayı yazılır?",
+						"visual": {
+							"kind": "slots",
+							"slots": [
+								{
+									"label": "Yüzler",
+									"count": 4
+								},
+								{
+									"label": "Onlar",
+									"count": 3
+								},
+								{
+									"label": "Birler",
+									"count": 2,
+									"note": "çift olmalı"
+								}
+							],
+							"order": [
+								2,
+								0,
+								1
+							]
+						}
+					},
+					{
+						"kind": "visual",
+						"title": "Alan modeli",
+						"narration": "x artı 2 çarpı x artı 3'ü alan modeliyle açalım.",
+						"visual": {
+							"kind": "areaModel",
+							"rows": [
+								{
+									"label": "x",
+									"size": 3
+								},
+								{
+									"label": "2",
+									"size": 1.4
+								}
+							],
+							"columns": [
+								{
+									"label": "x",
+									"size": 3
+								},
+								{
+									"label": "3",
+									"size": 1.8
+								}
+							],
+							"total": "x² + 5x + 6"
+						}
+					},
+					{
+						"kind": "visual",
+						"title": "İki zar",
+						"narration": "İki zar atılıyor. Toplamın 7 olma olasılığı nedir?",
+						"visual": {
+							"kind": "sampleSpace",
+							"cell": "sum",
+							"events": [
+								{
+									"of": "sum",
+									"is": "eq",
+									"value": 7,
+									"label": "Toplam 7"
+								},
+								{
+									"of": "first",
+									"is": "eq",
+									"value": 6,
+									"label": "İlk zar 6"
+								}
+							]
+						}
+					},
+					{
+						"kind": "visual",
+						"title": "Fonksiyon mu?",
+						"narration": "A kümesinden B kümesine bu eşleme bir fonksiyon mu?",
+						"visual": {
+							"kind": "mapping",
+							"domain": {
+								"label": "A",
+								"items": [
+									"1",
+									"2",
+									"3"
+								]
+							},
+							"codomain": {
+								"label": "B",
+								"items": [
+									"a",
+									"b",
+									"c",
+									"d"
+								]
+							},
+							"arrows": [
+								[
+									0,
+									0
+								],
+								[
+									1,
+									2
+								],
+								[
+									2,
+									3
+								]
+							],
+							"properties": true
+						}
+					}
+				]
+			},
+			{
+				"title": "Şekilli sorular",
+				"narration": "Şimdi şekilli sorular.",
+				"cards": [
+					{
+						"kind": "question",
+						"question": {
+							"style": "TYT tarzı",
+							"stem": "Grafikte f ve g fonksiyonları verilmiştir. Buna göre f(x) > g(x) eşitsizliğini sağlayan x aralığı hangisidir?",
+							"figure": {
+								"kind": "plot",
+								"x": [
+									-1,
+									5
+								],
+								"y": [
+									-2,
+									8
+								],
+								"curves": [
+									{
+										"expression": "-(x-1)*(x-4)+2",
+										"label": "f"
+									},
+									{
+										"expression": "2",
+										"label": "g"
+									}
+								],
+								"points": [
+									{
+										"x": 1,
+										"y": 2,
+										"label": "A"
+									},
+									{
+										"x": 4,
+										"y": 2,
+										"label": "B"
+									}
+								],
+								"regions": [
+									{
+										"from": 1,
+										"to": 4,
+										"between": [
+											0,
+											1
+										],
+										"label": "f > g"
+									}
+								]
+							},
+							"options": [
+								"(−1, 1)",
+								"(1, 4)",
+								"(0, 4)",
+								"(4, 5)",
+								"(2, 4)"
+							],
+							"answer": 1,
+							"narration": "Grafikten okunan bir eşitsizlik sorusu.",
+							"steps": [
+								{
+									"text": "Kesişim noktaları **x = 1** ve **x = 4**.",
+									"narration": "Önce iki grafiğin kesiştiği noktaları bul: x eşittir 1 ve x eşittir 4.",
+									"figure": {
+										"focus": [
+											"p1",
+											"p2"
+										]
+									}
+								},
+								{
+									"text": "Bu aralıkta f, g'nin **üstünde**.",
+									"narration": "Bu iki nokta arasında f, g'nin üstünde kalıyor.",
+									"figure": {
+										"show": [
+											"z1"
+										],
+										"focus": [
+											"z1"
+										]
+									}
+								},
+								{
+									"text": "Cevap **B**: $(1, 4)$.",
+									"narration": "Yani aralık 1 ile 4 arası. Cevabımız B.",
+									"eliminate": [
+										"A",
+										"C",
+										"D",
+										"E"
+									]
+								}
+							]
+						}
+					},
+					{
+						"kind": "question",
+						"question": {
+							"style": "TYT tarzı",
+							"stem": "Tabloda bir sınıftaki öğrencilerin kardeş sayıları verilmiştir. Buna göre kardeş sayısının modu kaçtır?",
+							"figure": {
+								"kind": "table",
+								"header": [
+									"Kardeş sayısı",
+									"0",
+									"1",
+									"2",
+									"3"
+								],
+								"rows": [
+									[
+										"Öğrenci",
+										"4",
+										"9",
+										"6",
+										"3"
+									]
+								]
+							},
+							"options": [
+								"0",
+								"1",
+								"2",
+								"3",
+								"9"
+							],
+							"answer": 1,
+							"narration": "Bir sıklık tablosu.",
+							"steps": [
+								{
+									"text": "Mod, **en sık** görülen değerdir.",
+									"narration": "Mod, en sık görülen değerdir."
+								},
+								{
+									"text": "En büyük sıklık **9**: kardeş sayısı **1**.",
+									"narration": "En büyük sıklık 9; bu da kardeş sayısı 1 olan öğrenciler.",
+									"figure": {
+										"focus": [
+											"r1c3",
+											"col3"
+										]
+									}
+								},
+								{
+									"text": "Cevap **B**.",
+									"narration": "Mod 1. Cevabımız B.",
+									"eliminate": [
+										"A",
+										"C",
+										"D",
+										"E"
+									],
+									"figure": {
+										"focus": [
+											"r1c3",
+											"col3"
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		],
+		"summary": {
+			"points": [
+				"$\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}$; önce değeri hesapla: **kök tam çıkıyorsa** sayı rasyoneldir.",
+				"Çarpma ve bölmede **aynı işaret artı**, ters işaret eksi; negatifin çift kuvveti pozitiftir.",
+				"Sayı doğrusunda **sağdaki büyüktür**; $0 < x < 1$ ise $x^2 < x$.",
+				"Çarpım tekse **bütün çarpanlar tek**; belli olmayan harfte **iki durumu dene**.",
+				"Terim sayısı $= \\frac{\\text{son} - \\text{ilk}}{\\text{ortak fark}} + 1$.",
+				"**1 asal değildir**; ardışık sayılar aralarında asaldır.",
+				"Parantez, üs, **çarpma-bölme soldan sağa**, en son toplama-çıkarma.",
+				"$n! = n \\cdot (n - 1)!$; toplamada **küçük faktöriyeli** ortak paranteze al."
+			],
+			"warnings": [
+				"$\\frac{22}{7}$ rasyoneldir; $\\pi$ değildir.",
+				"$-3^2 = -9$, $(-3)^2 = 9$.",
+				"$a \\cdot b$ çift ise ikisinin birden çift olması gerekmez.",
+				"$24 \\div 4 \\cdot 2 = 12$, 3 değil."
+			],
+			"narration": "Hadi toparlayalım. Sayı kümeleri iç içedir; bir sayıyı sınıflamadan önce değerini hesapla. Çarpma ve bölmede aynı işaret artı, ters işaret eksi verir. Sayı doğrusunda sağdaki sayı büyüktür. Çarpım tekse bütün çarpanlar tektir; belli olmayan harf için iki durumu dene. Ardışık sayılarda atlamaları sayıp bir eklersin. Bir asal değildir, ardışık sayılar aralarında asaldır. İşlemde önce parantez, sonra üs, sonra soldan sağa çarpma ve bölme gelir. Faktöriyelde de büyüğü küçüğe kadar açarsın."
+		}
+	},
+	"short": {
+		"hook": "Sıfır seni şaşırtacak.",
+		"rounds": [
+			{
+				"sentence": "$0 \\div 5$",
+				"question": "Tanımsız mı?",
+				"choices": [
+					"Evet",
+					"Hayır"
+				],
+				"answer": 1,
+				"why": "Sonuç **0**; tanımsız olan 5 bölü 0."
+			},
+			{
+				"sentence": "**Sıfır** sayısı",
+				"question": "Tek mi, çift mi?",
+				"choices": [
+					"Tek",
+					"Çift"
+				],
+				"answer": 1,
+				"why": "2'ye **kalansız** bölünür."
+			},
+			{
+				"sentence": "$24 \\div 4 \\cdot 2$",
+				"question": "Sonuç 3 mü?",
+				"choices": [
+					"Evet",
+					"Hayır"
+				],
+				"answer": 1,
+				"why": "Soldan sağa: **12**."
+			}
+		],
+		"cards": [
+			{
+				"kind": "warning",
+				"text": "$0 \\div 5 = 0$, ama $5 \\div 0$ **tanımsız**."
+			},
+			{
+				"kind": "fact",
+				"text": "**Sıfır** çift sayıdır."
+			},
+			{
+				"kind": "warning",
+				"text": "Çarpma ve bölme **soldan sağa**."
+			},
+			{
+				"kind": "term",
+				"term": "Asal sayı",
+				"definition": "**1'den büyük**, yalnız 1'e ve kendisine bölünen sayı."
+			}
+		],
+		"summary": [
+			"Sayı bölü 0 tanımsız",
+			"Sıfır çifttir",
+			"Çarpma-bölme soldan sağa"
+		]
+	},
+	"camp": {
+		"id": "yks-tyt-matematik-kampi",
+		"name": "TYT Matematik kampı",
+		"number": 1,
+		"total": 23,
+		"next": "Sayı Basamakları",
+		"promise": "Matematik konularının hepsi, sırayla ve soru çözerek.",
+		"task": {
+			"items": [
+				"$\\sqrt{16}$, $\\sqrt{18}$, $\\frac{1}{3}$ ve $\\pi$ sayılarını **rasyonel ve irrasyonel** diye ayır.",
+				"Kendine bir tek-çift sorusu kur: üç harf, iki bilgi, **her zaman** sorusu.",
+				"Uygulamada Temel Kavramlar testinden **20 soru** çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz."
+			],
+			"narration": "Şimdi sıra sende, kamp görevin hazır. Karekök 16, karekök 18, üçte bir ve pi sayılarını rasyonel ve irrasyonel diye ayır. Sonra kendine bir tek-çift sorusu kur: üç harf, iki bilgi ve bir her zaman sorusu. En son uygulamada temel kavramlar testinden yirmi soru çöz; yanlışlarını bu dersteki adımlarla yeniden çöz. Bir sonraki derste sayı basamaklarıyla devam ediyoruz. Kampta görüşmek üzere!"
+		}
+	}
+}

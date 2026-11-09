@@ -13,7 +13,8 @@ import {CourseVisual, worldRatio} from '../../../../Components/Visuals/CourseVis
 import {strikeStyle, useSceneSeconds} from '../../../../Components/Visuals/VisualFrame';
 import {BRAND_TYPOGRAPHY} from '../../../../Configurations/BrandTypography';
 import {passageLineBreaks, passageSentences, type ReadingCues, type StepCues} from '../../../../Courses/LessonCue';
-import {OPTION_LETTERS, type Question} from '../../../../Courses/LessonScript';
+import {OPTION_LETTERS, questionFigureBeats, type Question} from '../../../../Courses/LessonScript';
+import {VisualTimelineProvider} from '../../../../Components/Visuals/VisualTimeline';
 import {CHROME_HEIGHT, SPACING} from '../../../../Themes/DesignTokens';
 import {withAlpha} from '../../../../Themes/Theme';
 import {useInk, useTheme} from '../../../../Themes/ThemeContext';
@@ -139,6 +140,7 @@ export const QuestionScene: React.FC<{question: Question; stepStarts: number[]; 
 	const answerAt = (stepStarts.at(-1) ?? 0) + 0.6;
 	// The question's figure sits at the top of the solution panel: as wide as the panel, at most 45% of its height.
 	const figure = question.figure;
+	const figureBeats = questionFigureBeats(question);
 	const panelWidth = isLandscape ? ((contentWidth - u(SPACING.xl)) * 0.95) / 1.95 - u(SPACING.lg) * 2 - u(6) : contentWidth - u(SPACING.lg) * 2 - u(6);
 	// A tall geometry figure (a pole, a mirror image below a line) gets a 20% taller box; in the usual 5:3 box it
 	// was drawn small in the middle of empty width.
@@ -229,7 +231,10 @@ export const QuestionScene: React.FC<{question: Question; stepStarts: number[]; 
 					</Text>
 					{figure ? (
 						<div style={{width: figureWidth, height: figureHeight, alignSelf: 'center', flexShrink: 0}}>
-							<CourseVisual visual={figure} width={figureWidth} height={figureHeight} delaySeconds={0.4} />
+							{/* Each solution step can point at a part of the figure as it is said (step.figure). */}
+							<VisualTimelineProvider beats={figureBeats} starts={stepStarts} ends={stepStarts.map((_, index) => stepStarts[index + 1] ?? answerAt + 2)}>
+								<CourseVisual visual={figure} width={figureWidth} height={figureHeight} delaySeconds={0.4} />
+							</VisualTimelineProvider>
 						</div>
 					) : null}
 					{figure ? <FigureSolution question={question} stepStarts={stepStarts} answerAt={answerAt} think={think} /> : null}

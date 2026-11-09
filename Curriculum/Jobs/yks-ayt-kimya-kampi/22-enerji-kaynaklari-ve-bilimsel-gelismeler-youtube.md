@@ -1,6 +1,6 @@
 # YouTube metni: AYT Kimya kampı · Ders 22 · Enerji Kaynakları ve Bilimsel Gelişmeler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Kimya/22_Enerji_Kaynaklari_Ve_Bilimsel_Gelismeler/Enerji_Kaynaklari_Ve_Bilimsel_Gelismeler_YouTube.mp4` (4K) · Kapak: `Enerji_Kaynaklari_Ve_Bilimsel_Gelismeler_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Kimya/22_Enerji_Kaynaklari_Ve_Bilimsel_Gelismeler/Enerji_Kaynaklari_Ve_Bilimsel_Gelismeler_YouTube.mp4` (4K) · Kapak: `Enerji_Kaynaklari_Ve_Bilimsel_Gelismeler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

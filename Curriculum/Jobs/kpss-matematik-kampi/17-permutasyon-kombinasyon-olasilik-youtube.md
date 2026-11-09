@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Matematik kampı · Ders 17 · Permütasyon, Kombinasyon ve Olasılık
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Matematik/17_Permutasyon_Kombinasyon_Olasilik/Permutasyon_Kombinasyon_Olasilik_YouTube.mp4` (4K) · Kapak: `Permutasyon_Kombinasyon_Olasilik_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Matematik/17_Permutasyon_Kombinasyon_Olasilik/Permutasyon_Kombinasyon_Olasilik_YouTube.mp4` (4K) · Kapak: `Permutasyon_Kombinasyon_Olasilik_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

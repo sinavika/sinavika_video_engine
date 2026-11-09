@@ -12,36 +12,44 @@
   "TYT"
  ],
  "sources": [
-  "YKS/TYT/KonuAnlatimi/MAT/MAT_TEMEL.json (MEB Temel Matematik konu anlatımı: sayı kümeleri, işaret kuralları, tek-çift, ardışık, asal ve aralarında asal sayılar, işlem önceliği, faktöriyel)",
-  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2020–2026: 15 soru; 7'si tek-çift sayı, 3'ü sayı kümeleri, 2'si ardışık sayı, 2'si işlem önceliği, 1'i asal sayı)",
-  "YKS/TYT/Sorular/MAT/MAT_TEMEL.jsonl (256 soru; sayı kümeleri, tek-çift ve işlem önceliği kalıpları)"
+  "YKS/TYT/KonuAnlatimi/MAT/MAT_TEMEL.json (MEB Temel Matematik konu anlatımı: rakam ve sayı kümeleri, işaret kuralları, tek-çift, ardışık sayılar ve terim sayısı, asal ve aralarında asal sayılar, işlem önceliği, faktöriyel)",
+  "YKS/TYT/CikmisSorular/MAT.jsonl (ÖSYM 2020–2026: 16 soru; 8'i tek-çift (2020–2025 her yıl), 3'ü sayı kümeleri ve rakamlar, 2'si ardışık sayılar, 2'si işlem önceliği, 1'i asal sayılar (2025 asalız sayı))",
+  "YKS/TYT/Sorular/MAT/MAT_TEMEL.jsonl (soru havuzu; işaret, sıralama, aralarında asal, faktöriyel kalıpları)"
  ],
  "lesson": {
   "hook": {
-   "headline": "ÖSYM 2020–2025 arasında her yıl bir tek-çift sorusu sordu.",
-   "narration": "Temel kavramlar adı üstünde, kolay sanılır. Ama ÖSYM 2020'den 2025'e kadar her yıl en az bir tek-çift sorusu sordu ve bu soruların çoğu aynı kalıpta: verilen ifadelerden hangileri her zaman tek, hangileri her zaman çift? Bu derste matematiğin bütün konularında kullanacağın temeli kuracağız: sayı kümeleri, işaretler, tek ve çift sayılar, ardışık sayılar, asal sayılar, işlem önceliği ve faktöriyel. Her birini bir TYT tarzı soruyla sağlamlaştıracağız."
+   "headline": "2020–2025 arasındaki her TYT'de bir tek-çift sorusu vardı.",
+   "narration": "Temel kavramlar kolay sanılır. Ama 2020 ile 2025 arasındaki her TYT'de en az bir tek-çift sorusu vardı. Çoğu bir lamba ipinin, bir apartmanın ya da bir elma kasasının içine saklanmıştı. Bu derste bütün matematiğin temelini, soru çözerek kuracağız."
   },
   "opening": {
-   "kind": "mistake",
-   "card": "s1-c3",
-   "narration": "Hangisi rasyonel olmayan bir sayı? Çoğu öğrenci kök işaretini gördüğü her sayıyı irrasyonel sanır. Ama kökün altına bakmadan karar veremezsin.",
-   "promise": "Sayı kümelerini, tek ve çift sayıları, asal sayıları ve işlem önceliğini tuzaklarıyla öğreneceksin."
+   "kind": "question",
+   "card": "s4-c9",
+   "narration": "Bir düğmeye kaç kez basıldığını bilmeden, o sayının tek mi çift mi olduğunu söyleyebilir misin? Bu soruyu dersin ortasında birlikte çözeceğiz.",
+   "promise": "Sayı kümelerini, işaretleri, tek-çifti, ardışık ve asal sayıları, işlem önceliğini ve faktöriyeli soru çözerek öğreneceksin."
   },
   "objectives": [
    "Bir sayının hangi sayı kümesine girdiğini bulmak",
-   "Tek-çift kurallarıyla her zaman doğru olanı seçmek",
-   "Ardışık sayılarda terim sayısını ve toplamı hesaplamak",
+   "İşaret kurallarıyla sonucun işaretini hesap yapmadan bilmek",
+   "Tek-çift sorularında belli olmayan harfi iki durumla çözmek",
+   "Ardışık sayılarda terim sayısını ve toplamı bulmak",
+   "Asal ve aralarında asal sayıları ayırmak",
    "İşlem önceliğini ve faktöriyeli doğru uygulamak"
   ],
   "sections": [
    {
     "subtopic": "MAT_TEMEL_01",
     "title": "Sayı kümeleri",
-    "narration": "Matematikte her sayı bir aileye aittir. Önce bu aileleri ve birbirlerini nasıl kapsadıklarını görelim.",
+    "narration": "Matematikte her sayının bir ailesi var. Önce bu aileleri tanıyalım, sonra birbirinin içine nasıl girdiklerini görelim.",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Rakam ve sayı",
+      "text": "**Rakam**, sayıları yazmak için kullandığımız on sembolden biridir: 0, 1, 2, …, 9. **Sayı** ise **bir çokluğun adıdır** ve rakamlarla yazılır: 507, üç rakamla yazılmış **tek bir sayıdır**.",
+      "narration": "Önce iki sözcüğü ayıralım. Rakam, sayıları yazmak için kullandığımız on sembolden biridir: sıfırdan dokuza. Sayı ise bir çokluğun adıdır ve rakamlarla yazılır. Bak, 507 üç rakamla yazılmış tek bir sayıdır."
+     },
+     {
       "kind": "visual",
-      "title": "İç içe sayı kümeleri",
+      "title": "Sayı aileleri",
       "visual": {
        "kind": "table",
        "header": [
@@ -53,17 +61,17 @@
         [
          "Doğal sayılar",
          "$\\mathbb{N}$",
-         "0, 1, 2, 3"
+         "0, 1, 2, 3, …"
         ],
         [
          "Tam sayılar",
          "$\\mathbb{Z}$",
-         "-2, -1, 0, 1, 2"
+         "…, −2, −1, 0, 1, 2, …"
         ],
         [
          "Rasyonel sayılar",
          "$\\mathbb{Q}$",
-         "$\\frac{3}{4}$, -5, 0,25"
+         "$\\frac{3}{4}$, $-5$, $0{,}25$"
         ],
         [
          "İrrasyonel sayılar",
@@ -78,11 +86,120 @@
        ],
        "highlightColumn": 0
       },
-      "caption": "$\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}$ ve $\\mathbb{Q} \\cup \\mathbb{Q}' = \\mathbb{R}$",
-      "narration": "Sayı kümeleri iç içedir: her doğal sayı bir tam sayıdır, her tam sayı bir rasyonel sayıdır, her rasyonel sayı da bir gerçel sayıdır.",
+      "narration": "Şimdi aileleri tek tek görelim. Tablo satır satır gelecek.",
       "beats": [
        {
-        "narration": "Doğal sayılar sıfırdan başlar: 0, 1, 2, 3. Tam sayılara negatifler de katılır: eksi 2, eksi 1, 0, 1, 2.",
+        "narration": "Doğal sayılar sıfırdan başlar ve birer birer artar: 0, 1, 2, 3 diye sonsuza kadar gider.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Tam sayılarda doğal sayılara negatifler de eklenir: eksi 1, eksi 2, eksi 3.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       },
+       {
+        "narration": "Rasyonel sayı, a bölü b biçiminde yazılabilen sayıdır; a ve b tam sayı, b sıfırdan farklı.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "Bak, eksi 5 bile rasyoneldir, çünkü eksi 5 bölü 1 diye yazılır. Sıfır virgül yirmi beş de dörtte birdir.",
+        "focus": [
+         "r3"
+        ],
+        "note": "−5 = −5/1 · 0,25 = 1/4"
+       },
+       {
+        "narration": "Kesir olarak yazılamayan sayılar irrasyoneldir: karekök 2 ve pi gibi.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ]
+       },
+       {
+        "narration": "Rasyonellerle irrasyoneller birleşince gerçel sayılar çıkar. Sayı doğrusundaki her nokta bir gerçel sayıdır.",
+        "show": [
+         "r5"
+        ],
+        "focus": [
+         "r5"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Kümeler iç içe",
+      "items": [
+       "Her **doğal sayı** bir tam sayıdır: $\\mathbb{N} \\subset \\mathbb{Z}$.",
+       "Her **tam sayı** bir rasyonel sayıdır: $-5 = \\frac{-5}{1}$.",
+       "Rasyoneller ve **irrasyoneller** birlikte gerçel sayılardır: $\\mathbb{Q} \\cup \\mathbb{Q}' = \\mathbb{R}$.",
+       "**Ortak elemanları yok**: bir gerçel sayı ya rasyoneldir ya irrasyoneldir.",
+       "$\\sqrt{-4}$ gibi **negatifin karekökü** gerçel sayı değildir."
+      ],
+      "narration": "Bu aileler iç içedir. Her doğal sayı bir tam sayıdır. Her tam sayı bir rasyonel sayıdır, çünkü paydasına 1 yazarsın. Rasyoneller ve irrasyoneller birlikte gerçel sayılardır. Ama ortak elemanları yok: bir sayı ya rasyoneldir ya irrasyonel, ikisi birden olamaz. Son olarak negatifin karekökü, örneğin karekök eksi 4, gerçel sayı değildir."
+     },
+     {
+      "kind": "predict",
+      "title": "Hangisi kesir olur?",
+      "context": "$0{,}333\\ldots$ ve $\\sqrt{2} = 1{,}4142135\\ldots$",
+      "prompt": "Bu iki sayıdan hangisi rasyoneldir?",
+      "choices": [
+       "$0{,}333\\ldots$",
+       "$\\sqrt{2}$",
+       "İkisi de"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Sayı",
+        "Ondalık hâli",
+        "Ne olur?"
+       ],
+       "rows": [
+        [
+         "$\\frac{1}{4}$",
+         "0,25",
+         "Biter: rasyonel"
+        ],
+        [
+         "$\\frac{1}{3}$",
+         "0,333…",
+         "Devreder: rasyonel"
+        ],
+        [
+         "$\\sqrt{2}$",
+         "1,4142135…",
+         "Tekrar yok: irrasyonel"
+        ],
+        [
+         "$\\pi$",
+         "3,1415926…",
+         "Tekrar yok: irrasyonel"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "Dörtte bir sıfır virgül yirmi beştir ve biter. Üçte bir ise sıfır virgül üç üç üç diye devreder.",
         "show": [
          "r1",
          "r2"
@@ -93,88 +210,113 @@
         ]
        },
        {
+        "narration": "Karekök 2 ile pi'nin virgülden sonrası hiç bitmez ve hiçbir parça düzenli tekrar etmez.",
         "show": [
-         "r3"
-        ],
-        "focus": [
-         "r3"
-        ],
-        "narration": "Rasyonel sayı, a bölü b biçiminde yazılabilen sayıdır; a ve b tam sayı, b sıfırdan farklı."
-       },
-       {
-        "show": [],
-        "focus": [
-         "r3"
-        ],
-        "narration": "Üç bölü dört, eksi 5 ve sıfır virgül yirmi beş rasyoneldir, çünkü eksi 5, eksi 5 bölü 1 diye yazılır.",
-        "note": "−5 = −5/1 · 0,25 = 1/4"
-       },
-       {
-        "show": [
+         "r3",
          "r4"
         ],
         "focus": [
+         "r3",
          "r4"
-        ],
-        "narration": "Kesir olarak yazılamayan sayılar irrasyoneldir: karekök 2, pi."
-       },
-       {
-        "show": [
-         "r5"
-        ],
-        "focus": [
-         "r5"
-        ],
-        "narration": "Rasyonellerle irrasyoneller birlikte gerçel sayıları oluşturur."
+        ]
        }
-      ]
+      ],
+      "explanation": "Ondalık açılımı **biten** ya da **devreden** sayılar rasyoneldir: $0{,}333\\ldots = \\frac{1}{3}$. Hiç bitmeyen ve **tekrar etmeyen** açılım irrasyoneldir.",
+      "narration": "Şimdi sıra sende. İki sayıya bak.",
+      "explanationNarration": "Doğru cevap sıfır virgül üç üç üç. Bu sayı üçte birdir; devreden her ondalık bir kesirdir. Karekök 2'nin açılımı ise ne biter ne tekrar eder, o yüzden irrasyoneldir."
+     },
+     {
+      "kind": "example",
+      "title": "Önce kökü hesapla",
+      "example": "Karekök 25 beş eder, rasyoneldir. Karekök 20 iki kök beş eder, irrasyoneldir.",
+      "explanation": "Neden? Yirmiyi **dört çarpı beş** diye ayır: $\\sqrt{20} = 2\\sqrt{5}$; beşin kökü **tam çıkmaz**.",
+      "narration": "Karekök 25 beş eder, rasyoneldir. Karekök 20 iki kök beş eder, irrasyoneldir. Neden? Yirmiyi dört çarpı beş diye ayır; dördün kökü çıkar ama beşin kökü tam çıkmaz."
      },
      {
       "kind": "mistake",
-      "title": "Kök gördün diye irrasyonel değil",
-      "wrong": "$\\sqrt{9}$ ve $\\sqrt{0{,}25}$ kök işareti taşıdığı için **irrasyoneldir**.",
-      "right": "$\\sqrt{9} = 3$ ve $\\sqrt{0{,}25} = 0{,}5$: ikisi de **rasyoneldir**. Kök, ancak tam çıkmıyorsa irrasyoneldir: $\\sqrt{12}$.",
-      "why": "Önce kökü hesapla. Sonuç bir kesir olarak yazılabiliyorsa sayı rasyoneldir.",
-      "narration": "Sık yapılan bir hata: kök işaretini gören irrasyonel der. Karekök 9, 3'tür. Karekök sıfır virgül yirmi beş, sıfır virgül beştir. İkisi de rasyonel. Kökü önce hesapla; sonuç tam çıkmıyorsa, örneğin karekök 12 gibi, o zaman irrasyoneldir."
+      "title": "Kök gördün diye irrasyonel deme",
+      "wrong": "Kök işareti taşıyan her sayı **irrasyoneldir**.",
+      "right": "Önce kökü hesapla: $\\sqrt{9} = 3$ ve $\\sqrt{0{,}25} = 0{,}5$ **rasyoneldir**; $\\sqrt{12}$ ise **tam çıkmaz**, irrasyoneldir.",
+      "why": "Rasyonel olmak, iki tam sayının oranı olarak yazılabilmektir; sayının görünüşüne değil, **değerine** bakılır.",
+      "narration": "Çok yapılan bir hata: kök işaretini gören irrasyonel der. Önce kökü hesapla. Karekök 9 üçtür, karekök sıfır virgül yirmi beş de sıfır virgül beştir; ikisi de rasyoneldir. Karekök 12 ise tam çıkmaz, irrasyoneldir. Rasyonel olmak, iki tam sayının oranı olarak yazılabilmektir. Yani görünüşe değil, değerine bak."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Aşağıdakilerden hangisi **rasyonel olmayan** bir gerçel sayıdır?",
+       "stem": "Aşağıdakilerden hangisi bir **tam sayı değildir**?",
        "options": [
-        "$\\sqrt{12}$",
-        "$\\frac{22}{7}$",
-        "$\\sqrt{9}$",
-        "$-5$",
-        "$\\sqrt{0{,}25}$"
+        "$-7$",
+        "$0$",
+        "$\\frac{12}{4}$",
+        "$\\frac{9}{2}$",
+        "$\\sqrt{49}$"
        ],
-       "answer": 0,
-       "narration": "ÖSYM 2024'te bu kalıbı sordu. Her şıkkı hesaplayarak gidelim.",
+       "answer": 3,
+       "narration": "Kolay bir soruyla başlayalım. Her şıkkı önce sadeleştir.",
        "steps": [
         {
-         "text": "$\\sqrt{9} = 3$, $-5 = \\frac{-5}{1}$, $\\sqrt{0{,}25} = 0{,}5 = \\frac{1}{2}$: hepsi kesir olarak yazılır.",
-         "narration": "Karekök 9, 3 eder. Eksi 5, eksi 5 bölü 1 diye yazılır. Karekök sıfır virgül yirmi beş, sıfır virgül beş, yani bir bölü iki. Üçü de rasyonel. C, D ve E gidiyor.",
+         "text": "$-7$ ve $0$ tam sayıdır; sıfır da tam sayılar kümesindedir.",
+         "eliminate": [
+          "A",
+          "B"
+         ],
+         "narration": "Eksi 7 bir tam sayıdır. Sıfır da tam sayılar kümesindedir. A ve B gidiyor."
+        },
+        {
+         "text": "$\\frac{12}{4} = 3$ ve $\\sqrt{49} = 7$: görünüşleri kesir ve kök, değerleri tam sayı.",
          "eliminate": [
           "C",
-          "D",
           "E"
-         ]
+         ],
+         "narration": "On iki bölü dört üç eder, karekök kırk dokuz yedi eder. Görünüşleri kesir ve kök ama değerleri tam sayı. C ve E de gidiyor."
         },
         {
-         "text": "$\\frac{22}{7}$ iki tam sayının oranı: **rasyonel**. Pi'ye yakın ama pi değil.",
-         "narration": "B şıkkı tuzak. 22 bölü 7, pi sayısına yakın bir değer ama pi değil. İki tam sayının oranı olduğu için rasyoneldir. B de gidiyor.",
-         "eliminate": [
-          "B"
-         ]
-        },
-        {
-         "text": "$\\sqrt{12} = 2\\sqrt{3}$: kök tam çıkmıyor, **irrasyonel**. Cevap **A**.",
-         "narration": "Karekök 12, iki kök üç eder ve tam çıkmaz. Kesir olarak yazılamaz, irrasyoneldir. Cevabımız A."
+         "text": "$\\frac{9}{2} = 4{,}5$: iki tam sayının arasında kalır. Cevap **D**.",
+         "narration": "Dokuz bölü iki ise dört virgül beştir; dört ile beşin arasında kalır, tam sayı değildir. Ama rasyoneldir. Cevabımız D."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2024'ün \"rasyonel sayı olmayan bir gerçel sayı\" kalıbı örnek alındı, şıklar özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki sayı kümesi sınıflama sorularının kalıbı örnek alındı, şıklar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir öğretmen tahtaya on kart asıyor: $-3$, $0$, $\\sqrt{25}$, $\\frac{6}{4}$, $0{,}\\overline{7}$, $\\sqrt{8}$, $\\pi$, $-\\sqrt{36}$, $\\frac{-10}{5}$ ve $\\sqrt{2} \\cdot \\sqrt{8}$. Elif doğal sayı olan kartları, Mert doğal sayı olmayan tam sayıları, Selin tam sayı olmayan rasyonel sayıları, Kaan da irrasyonel sayıları alıyor. Her kartı yalnız bir öğrenci alıyor. Buna göre Mert'in aldığı kartlardaki sayıların toplamı kaçtır?",
+       "options": [
+        "$-11$",
+        "$-9$",
+        "$-8$",
+        "$-5$",
+        "$-3$"
+       ],
+       "answer": 0,
+       "narration": "Şimdi ÖSYM tarzı bir soru. Kartların çoğu kılık değiştirmiş; önce gerçek değerlerini bul.",
+       "steps": [
+        {
+         "text": "$\\sqrt{25} = 5$, $-\\sqrt{36} = -6$, $\\frac{-10}{5} = -2$, $\\sqrt{2} \\cdot \\sqrt{8} = \\sqrt{16} = 4$.",
+         "narration": "Karekök 25 beştir. Eksi karekök 36, eksi altıdır. Eksi on bölü beş, eksi ikidir. Karekök 2 çarpı karekök 8 ise karekök 16, yani dört."
+        },
+        {
+         "text": "Elif: $0$, $5$, $4$. Selin: $\\frac{6}{4}$, $0{,}\\overline{7}$. Kaan: $\\sqrt{8}$, $\\pi$.",
+         "narration": "Doğal sayılar Elif'e gider: sıfır, beş ve dört. Altı bölü dört ve sıfır virgül yedi devirli Selin'e gider. Karekök 8 ile pi Kaan'a gider."
+        },
+        {
+         "text": "Mert: $-3$, $-6$, $-2$ → toplam $-11$. Cevap **A**.",
+         "eliminate": [
+          "B",
+          "C",
+          "D",
+          "E"
+         ],
+         "narration": "Geriye doğal olmayan tam sayılar kalır: eksi üç, eksi altı ve eksi iki. Toplamları eksi on bir, cevabımız A. Eksi karekök 36'yı kaçıran eksi beşe, eksi on bölü beşi kaçıran eksi dokuza düşer."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; ÖSYM'nin sayı kümesi ve kılık değiştirmiş sayı yaklaşımı örnek alındı; kart bağlamı, sayılar ve sorulan toplam özgün."
        }
       }
      }
@@ -182,132 +324,539 @@
    },
    {
     "subtopic": "MAT_TEMEL_02",
-    "subtopics": [
-     "MAT_TEMEL_09"
-    ],
-    "title": "İşaretler ve sıralama",
-    "narration": "Şimdi pozitif ve negatif sayılarla işlem yapmanın kurallarına ve sayı doğrusunda sıralamaya bakalım.",
+    "title": "Pozitif ve negatif sayılar",
+    "narration": "Şimdi sayıların işaretine geçelim. Bir sonucun eksi mi artı mı çıkacağını hesap yapmadan bilmek sınavda zaman kazandırır.",
     "cards": [
      {
-      "kind": "rule",
-      "title": "İşaret kuralları",
-      "items": [
-       "**Sıfır** ne pozitif ne negatiftir.",
-       "Çarpma ve bölmede **aynı işaret pozitif**, **ters işaret negatif** sonuç verir.",
-       "Ters işaretli iki sayının toplamında **büyük olandan küçük** çıkarılır, işaret **mutlak değerce büyük** olanınkidir: $-7 + 3 = -4$.",
-       "Sayı doğrusunda **sağdaki** sayı her zaman daha büyüktür: $-2 > -5$."
-      ],
-      "narration": "Dört kural. Birincisi, sıfır ne pozitif ne de negatiftir. İkincisi, çarpma ve bölmede aynı işaretli iki sayı pozitif, ters işaretli iki sayı negatif sonuç verir. Üçüncüsü, ters işaretli iki sayıyı toplarken büyük olandan küçük olanı çıkarırsın ve sonucun işareti mutlak değerce büyük olanın işaretidir: eksi 7 artı 3, eksi 4 eder. Dördüncüsü, sayı doğrusunda sağdaki sayı her zaman büyüktür: eksi 2, eksi 5'ten büyüktür."
+      "kind": "concept",
+      "title": "İşaret ne demek?",
+      "text": "Sayı doğrusunda sıfırın **sağındaki** sayılar pozitif, **solundaki** sayılar negatiftir. **Sıfır** ne pozitif ne negatiftir: $-0 = +0 = 0$. Önünde işaret olmayan sayı pozitiftir.",
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        -5,
+        5
+       ],
+       "ticks": [
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "points": [
+        {
+         "x": -3,
+         "label": "−3"
+        },
+        {
+         "x": 2,
+         "label": "2"
+        },
+        {
+         "x": 0,
+         "label": "0"
+        }
+       ]
+      },
+      "narration": "Sayı doğrusunu düşün. Sıfırın sağındaki sayılar pozitif, solundaki sayılar negatiftir. Sıfır ise ne pozitif ne negatiftir.",
+      "beats": [
+       {
+        "narration": "Bak, 2 sıfırın sağında duruyor; önünde işaret yazmasa da pozitiftir.",
+        "show": [
+         "p2"
+        ],
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "Eksi 3 ise sıfırın solunda; önündeki eksi işareti onun negatif olduğunu söyler.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "Sıfır tam ortada durur. Eksi sıfır da artı sıfır da aynı sayıdır: sıfır.",
+        "show": [
+         "p3"
+        ],
+        "focus": [
+         "p3"
+        ]
+       }
+      ]
      },
      {
       "kind": "predict",
-      "title": "Kare mi büyük, küp mü?",
-      "context": "$a$ bir negatif tam sayıdır.",
-      "prompt": "$a^2$ mi daha büyüktür, $a^3$ mü?",
+      "title": "Eksi çarpı eksi neden artı?",
+      "context": "$-3 \\cdot 2 = -6, \\quad -3 \\cdot 1 = -3, \\quad -3 \\cdot 0 = 0$",
+      "prompt": "Örüntü sürerse $-3 \\cdot (-1)$ kaç olur?",
       "choices": [
-       "a kare daha büyük",
-       "a küp daha büyük"
+       "$-3$",
+       "$3$"
       ],
-      "answer": 0,
-      "thinkSeconds": 4,
+      "answer": 1,
+      "thinkSeconds": 5,
       "visual": {
        "kind": "table",
        "header": [
-        "$a$",
-        "$a^2$",
-        "$a^3$"
+        "Çarpım",
+        "Sonuç"
        ],
        "rows": [
         [
-         "-1",
-         "1",
-         "-1"
+         "$-3 \\cdot 2$",
+         "$-6$"
         ],
         [
-         "-2",
-         "4",
-         "-8"
+         "$-3 \\cdot 1$",
+         "$-3$"
         ],
         [
-         "-3",
-         "9",
-         "-27"
+         "$-3 \\cdot 0$",
+         "$0$"
+        ],
+        [
+         "$-3 \\cdot (-1)$",
+         "$3$"
+        ],
+        [
+         "$-3 \\cdot (-2)$",
+         "$6$"
         ]
        ],
        "highlightColumn": 1
       },
       "beats": [
        {
-        "narration": "Birkaç değer deneyelim. a eksi 2 olsun. a kare, eksi 2 çarpı eksi 2, yani 4. a küp ise eksi 8.",
+        "narration": "Çarpanı birer azalttıkça sonuç her seferinde üç artıyor: eksi altı, eksi üç, sıfır.",
         "show": [
-         "r2"
+         "r1",
+         "r2",
+         "r3"
         ],
         "focus": [
-         "r2"
-        ]
+         "r1",
+         "r2",
+         "r3"
+        ],
+        "note": "Her adımda +3"
        },
        {
-        "narration": "a eksi 1 ya da eksi 3 olsa da durum değişmez: çift kuvvet pozitif, tek kuvvet negatif çıkar.",
+        "narration": "Örüntü bozulmaz: bir sonraki adımda sonuç üç, sonra altı olur.",
         "show": [
-         "r1",
-         "r3"
+         "r4",
+         "r5"
         ],
         "focus": [
-         "r1",
-         "r3"
+         "r4",
+         "r5"
         ]
        }
       ],
-      "explanation": "Negatif sayının **çift kuvveti pozitif**, **tek kuvveti negatiftir**. Pozitif her zaman negatiften büyük: $a^2 > a^3$.",
-      "narration": "Şimdi sıra sende. Bir tahmin yap.",
-      "explanationNarration": "Doğru cevap a kare. Negatif bir sayının çift kuvveti pozitif, tek kuvveti negatif çıkar. Pozitif bir sayı her zaman negatif bir sayıdan büyük olduğu için a kare, a küpten büyüktür. Sayı doğrusu sorularında işaretleri önce bu kuralla belirle."
+      "explanation": "Çarpanı her azalttığında sonuç 3 artar. Bu yüzden $-3 \\cdot (-1) = 3$: **iki negatifin çarpımı pozitiftir**.",
+      "narration": "Şimdi sıra sende. Üç çarpıma bak ve örüntüyü yakala.",
+      "explanationNarration": "Doğru cevap artı üç. Örüntü bozulmadan ilerleyince iki negatifin çarpımı pozitif çıkar. Bu bir ezber değil, sayıların düzeninin sonucu."
+     },
+     {
+      "kind": "rule",
+      "title": "İşaret kuralları",
+      "items": [
+       "Çarpma ve bölmede **aynı işaret** pozitif verir: $(-6) \\div (-2) = 3$.",
+       "**Ters işaret** negatif verir: $(-4) \\cdot 5 = -20$.",
+       "İki negatifin **toplamı** negatiftir: $-3 + (-5) = -8$.",
+       "Ters işaretli toplamda **mutlak değerce büyükten** küçüğü çıkar, büyüğün işaretini al: $-7 + 3 = -4$.",
+       "Negatifin **çift kuvveti** pozitif, **tek kuvveti** negatiftir: $(-2)^4 = 16$, $(-2)^3 = -8$."
+      ],
+      "narration": "Bu kuralları beş maddede toplayalım. Çarpma ve bölmede aynı işaret pozitif verir: eksi altı bölü eksi iki, artı üç. Ters işaret negatif verir: eksi dört çarpı beş, eksi yirmi. İki negatifin toplamı negatiftir: borca borç eklenir. Ters işaretli toplamda mutlak değerce büyükten küçüğü çıkar, büyüğün işaretini al. Son olarak negatifin çift kuvveti pozitif, tek kuvveti negatiftir."
+     },
+     {
+      "kind": "example",
+      "title": "Üslerden işaret bulmak",
+      "example": "a kare çarpı b üssü beş negatif, a üssü yedi çarpı b üssü sekiz pozitif ise **a pozitif, b negatiftir**.",
+      "explanation": "Neden? $a^2$ ve $b^8$ **çift kuvvet**, hep pozitif. İşareti **tek kuvvetler** belirler.",
+      "narration": "a kare çarpı b üssü beş negatif, a üssü yedi çarpı b üssü sekiz pozitif ise a pozitif, b negatiftir. Neden? a kare ve b üssü sekiz çift kuvvet, hep pozitif. İşareti tek kuvvetler belirler."
      },
      {
       "kind": "mistake",
-      "title": "Eksi işareti her zaman negatif değil",
-      "wrong": "$-a$ her zaman **negatif** bir sayıdır.",
-      "right": "$a < 0$ ise $-a$ **pozitiftir**: $a = -3$ için $-a = 3$.",
-      "why": "Eksi işareti sayının tersini alır. Sayının işaretini harfin aldığı değer belirler.",
-      "narration": "Bir tuzak. Eksi a her zaman negatif mi? Hayır. a eksi 3 ise eksi a, 3 olur ve pozitiftir. Eksi işareti bir sayının tersini alır; sonucun işareti harfin değerine bağlıdır."
+      "title": "Eksi üç kare",
+      "wrong": "$-3^2$ ifadesi $9$'a eşittir.",
+      "right": "Üs yalnız 3'e aittir: $-3^2 = -(3 \\cdot 3) = -9$. Parantezliyse $(-3)^2 = 9$ olur.",
+      "why": "Parantez yoksa eksi işareti kuvvete **katılmaz**; önce üs alınır, sonra eksi konur.",
+      "narration": "Dikkat et, burada çok puan gidiyor. Eksi üç kareyi dokuz sanmak yanlış. Üs yalnız 3'e aittir: önce üç kare dokuz, sonra önüne eksi gelir, eksi dokuz. Parantezliyse eksi üçün karesi dokuzdur. Parantez yoksa eksi işareti kuvvete katılmaz."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$a < 0 < b$ olduğuna göre aşağıdakilerden hangisi **kesinlikle pozitiftir**?",
+       "stem": "$(-2)^4 - (-3)^2 \\cdot (-1)^3$ işleminin sonucu kaçtır?",
        "options": [
-        "$a \\cdot b$",
-        "$a + b$",
-        "$\\frac{a}{b}$",
-        "$a^3$",
-        "$b - a$"
+        "$-25$",
+        "$-7$",
+        "$7$",
+        "$16$",
+        "$25$"
        ],
        "answer": 4,
-       "narration": "a negatif, b pozitif. İşaret kurallarını tek tek uygulayalım.",
+       "narration": "İşaret kurallarını bir işlemde deneyelim.",
        "steps": [
         {
-         "text": "$a \\cdot b$: $(-)(+) = (-)$; $a^3$: tek kuvvet, işaret **korunur** $(-)$; $\\frac{a}{b}$: $(-)/(+) = (-)$.",
-         "narration": "Negatif ile pozitifin çarpımı negatiftir; a çarpı b negatif. Negatif bir sayının tek kuvveti işaretini korur; a küp negatif. Negatifin pozitife bölümü de negatiftir.",
+         "text": "Çift kuvvetler pozitif: $(-2)^4 = 16$, $(-3)^2 = 9$. Tek kuvvet negatif: $(-1)^3 = -1$.",
+         "narration": "Eksi ikinin dördüncü kuvveti çift kuvvet, artı on altı. Eksi üçün karesi artı dokuz. Eksi birin küpü tek kuvvet, eksi bir."
+        },
+        {
+         "text": "Çıkarmadan önce çarpma: $9 \\cdot (-1) = -9$.",
+         "narration": "Çıkarmadan önce çarpma yapılır: dokuz çarpı eksi bir, eksi dokuz."
+        },
+        {
+         "text": "$16 - (-9) = 16 + 9 = 25$. Cevap **E**.",
          "eliminate": [
           "A",
+          "B",
           "C",
           "D"
-         ]
-        },
-        {
-         "text": "$a + b$: $a=-5,\\ b=2 \\Rightarrow -3$; $a=-1,\\ b=3 \\Rightarrow 2$ → işareti **belli değil**.",
-         "narration": "a artı b'nin işareti sayıların büyüklüğüne bağlıdır. a eksi beş, b iki ise toplam eksi üç; a eksi bir, b üç ise toplam iki. Kesin pozitif diyemeyiz.",
-         "eliminate": [
-          "B"
-         ]
-        },
-        {
-         "text": "$b - a = b + |a| > 0$: pozitife pozitif eklenir. Cevap **E**.",
-         "narration": "b eksi a ise b artı a'nın mutlak değerine eşittir; pozitif bir sayıya pozitif bir sayı eklenir, sonuç her zaman pozitiftir. Cevabımız E. Eksi işareti her zaman negatif demek değildir: eksi a burada pozitiftir."
+         ],
+         "narration": "On altı eksi eksi dokuz, on altı artı dokuz eder: yirmi beş. Cevabımız E. Eksi birin küpünü artı bir alan yediye düşer."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; dersteki işaret kuralları ve \"eksi işareti her zaman negatif değil\" uyarısı özgün bir işaret sorusuna dönüştürüldü."
+        "changes": "Bu ders için yazıldı; havuzdaki işaretli kuvvet işlemlerinin kalıbı örnek alındı, ifade ve çeldiriciler özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir kutup istasyonunda pazartesi, salı ve çarşamba günleri öğlen ölçülen sıcaklıklar sırasıyla $a$, $b$ ve $c$ santigrat derecedir; hiçbiri sıfır değildir. Araştırmacı defterine $a^3 \\cdot b^2 < 0$, $a \\cdot c^5 > 0$ ve $a + b > 0$ yazıyor. Buna göre; I. salı günü sıcaklık sıfırın üstündedir, II. çarşamba günü sıcaklık sıfırın altındadır, III. salı ve çarşamba sıcaklıklarının çarpımı pozitiftir ifadelerinden hangileri kesinlikle doğrudur?",
+       "options": [
+        "Yalnız I",
+        "Yalnız II",
+        "I ve II",
+        "I ve III",
+        "I, II ve III"
+       ],
+       "answer": 2,
+       "narration": "Şimdi bağlamlı bir soru. Sıcaklıkların işaretini üç bilgiden tek tek çıkaracağız.",
+       "steps": [
+        {
+         "text": "$b^2 > 0$ olduğundan $a^3 < 0$ → $a < 0$: pazartesi sıfırın altında.",
+         "narration": "b kare pozitif. Çarpım negatif olduğuna göre a küp negatif, yani a negatif. Pazartesi hava sıfırın altında."
+        },
+        {
+         "text": "$a < 0$ ve $a \\cdot c^5 > 0$ → $c^5 < 0$ → $c < 0$. II doğru.",
+         "narration": "a negatif ve a çarpı c üssü beş pozitif. O hâlde c üssü beş negatif; tek kuvvet işareti korur, c negatif. İkinci ifade doğru."
+        },
+        {
+         "text": "$a < 0$ ve $a + b > 0$ → $b > 0$, üstelik $|b| > |a|$. I doğru.",
+         "eliminate": [
+          "B"
+         ],
+         "narration": "a negatifken a artı b pozitifse b pozitif olmak zorunda, üstelik mutlak değerce a'dan büyük. Birinci ifade doğru. B gidiyor."
+        },
+        {
+         "text": "$b > 0$, $c < 0$ → $b \\cdot c < 0$. III yanlış. Cevap **C**.",
+         "eliminate": [
+          "A",
+          "D",
+          "E"
+         ],
+         "narration": "b pozitif, c negatif; çarpımları negatiftir. Üçüncü ifade yanlış. Birinci ve ikinci doğru, cevabımız C."
+        }
+       ],
+       "origin": {
+        "changes": "MEB konu anlatımındaki üslü ifadelerden işaret bulma örneği ve havuzdaki \"kesinlikle doğrudur\" kalıbı örnek alındı; sıcaklık bağlamı ve koşullar özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_TEMEL_09",
+    "title": "Sayı doğrusunda sıralama",
+    "narration": "Sıralama sorularında elinde hep bir araç var: sayı doğrusu. Bir sayıyı doğruya yerleştirebiliyorsan onu sıralayabilirsin.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Sağdaki büyüktür",
+      "text": "Sayı doğrusunda **sağdaki** sayı her zaman **daha büyüktür**. Bu yüzden negatiflerde sıfıra **yakın olan** büyüktür: $-2 > -5$.",
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        -6,
+        4
+       ],
+       "ticks": [
+        -6,
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4
+       ],
+       "points": [
+        {
+         "x": -5,
+         "label": "−5"
+        },
+        {
+         "x": -2,
+         "label": "−2"
+        },
+        {
+         "x": 1,
+         "label": "1"
+        },
+        {
+         "x": 3,
+         "label": "3"
+        }
+       ]
+      },
+      "narration": "Kural tek cümle: sayı doğrusunda sağdaki sayı her zaman daha büyüktür.",
+      "beats": [
+       {
+        "narration": "Pozitiflerde bu kolay: üç, birin sağında, üç daha büyük.",
+        "show": [
+         "p3",
+         "p4"
+        ],
+        "focus": [
+         "p3",
+         "p4"
+        ]
+       },
+       {
+        "narration": "Şimdi negatiflere bak: eksi iki, eksi beşin sağında. Yani eksi iki daha büyük.",
+        "show": [
+         "p1",
+         "p2"
+        ],
+        "focus": [
+         "p1",
+         "p2"
+        ]
+       },
+       {
+        "narration": "Negatiflerde sıfıra yakın olan büyüktür. Borcu iki lira olan, borcu beş lira olandan daha zengindir.",
+        "focus": [
+         "p2"
+        ],
+        "note": "−2 > −5"
+       }
+      ]
+     },
+     {
+      "kind": "predict",
+      "title": "Karesi alınınca büyür mü?",
+      "context": "$x = \\frac{1}{2}$",
+      "prompt": "Hangisi daha büyüktür: $x$ mi, $x^2$ mi?",
+      "choices": [
+       "$x$",
+       "$x^2$"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        0,
+        2.2
+       ],
+       "ticks": [
+        0,
+        0.25,
+        0.5,
+        1,
+        2
+       ],
+       "points": [
+        {
+         "x": 0.5,
+         "label": "x"
+        },
+        {
+         "x": 0.25,
+         "label": "x²"
+        },
+        {
+         "x": 2,
+         "label": "1/x"
+        }
+       ]
+      },
+      "beats": [
+       {
+        "narration": "x yarım ise x kare, yarım çarpı yarım, dörtte bir olur. Dörtte bir, yarımın solunda kalır.",
+        "show": [
+         "p1",
+         "p2"
+        ],
+        "focus": [
+         "p1",
+         "p2"
+        ]
+       },
+       {
+        "narration": "Bir bölü x ise ikidir ve birin sağına geçer.",
+        "show": [
+         "p3"
+        ],
+        "focus": [
+         "p3"
+        ]
+       }
+      ],
+      "explanation": "Birden küçük pozitif bir sayıyı kendisiyle çarpınca **küçülür**: $0 < x < 1$ ise $x^2 < x < 1 < \\frac{1}{x}$.",
+      "narration": "Şimdi sıra sende. Bir sayının karesi her zaman kendisinden büyük müdür?",
+      "explanationNarration": "Doğru cevap x. Yarımın yarısını alıyorsun; bir parçanın parçası daha küçüktür. Birden büyük sayılarda ise tersi olur, karesi alınınca büyür."
+     },
+     {
+      "kind": "rule",
+      "title": "Sıralama araçları",
+      "items": [
+       "Negatiflerde **sıfıra yakın** olan büyüktür: $-0{,}3 > -0{,}5$.",
+       "$0 < x < 1$ ise **kuvvet aldıkça küçülür**: $x^3 < x^2 < x$.",
+       "$x > 1$ ise **kuvvet aldıkça büyür**: $x < x^2 < x^3$.",
+       "$-1 < x < 0$ ise **önce işarete bak**: $x < x^3 < 0 < x^2$.",
+       "Kesirleri sıralamak için **ondalığa çevir** ya da ortak paydaya getir."
+      ],
+      "narration": "Sıralamada beş araç kullanırsın. Negatiflerde sıfıra yakın olan büyüktür. Sıfır ile bir arasındaki sayıda kuvvet aldıkça küçülür. Birden büyük sayıda kuvvet aldıkça büyür. Eksi bir ile sıfır arasındaysa önce işarete bak: kare pozitif, küp negatif ve küp sıfıra daha yakın. Son olarak kesirleri sıralamak için ondalığa çevir ya da ortak paydaya getir."
+     },
+     {
+      "kind": "example",
+      "title": "Bir sayıyı dört biçimde yerleştir",
+      "example": "x yarım ise x küp sekizde bir, x kare dörtte bir ve bir bölü x ikidir.",
+      "explanation": "Sırala: sekizde bir, dörtte bir, yarım ve iki. Yani $x^3 < x^2 < x < \\frac{1}{x}$.",
+      "narration": "x yarım ise x küp sekizde bir, x kare dörtte bir ve bir bölü x ikidir. Sırala: sekizde bir, dörtte bir, yarım ve iki. Yani x küp, x kare, x ve bir bölü x."
+     },
+     {
+      "kind": "mistake",
+      "title": "Büyük rakam, büyük sayı değil",
+      "wrong": "$-5$, $-2$'den büyüktür, çünkü 5 sayısı 2'den büyüktür.",
+      "right": "Sayı doğrusunda $-2$ sağda kalır: $-5 < -2$.",
+      "why": "Negatiflerde sıfırdan **uzaklaştıkça** sayı küçülür.",
+      "narration": "Bir tuzak: eksi beşi eksi ikiden büyük sanmak, çünkü beş ikiden büyük. Sayı doğrusunda eksi iki sağda kalır, yani eksi beş daha küçük. Negatiflerde sıfırdan uzaklaştıkça sayı küçülür."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$x = -\\frac{1}{2}$ olduğuna göre $x$, $x^2$ ve $x^3$ sayılarının küçükten büyüğe sıralanışı aşağıdakilerden hangisidir?",
+       "options": [
+        "$x < x^3 < x^2$",
+        "$x < x^2 < x^3$",
+        "$x^3 < x < x^2$",
+        "$x^2 < x^3 < x$",
+        "$x^3 < x^2 < x$"
+       ],
+       "answer": 0,
+       "narration": "Önce değerleri hesaplayalım, sonra doğruya yerleştirelim.",
+       "steps": [
+        {
+         "text": "$x = -0{,}5$, $x^2 = 0{,}25$, $x^3 = -0{,}125$.",
+         "narration": "x eksi yarım, yani eksi sıfır virgül beş. Kare pozitif çıkar: dörtte bir. Küp negatif kalır: eksi sekizde bir."
+        },
+        {
+         "text": "Tek pozitif $x^2$: **en büyük** o.",
+         "eliminate": [
+          "B",
+          "D",
+          "E"
+         ],
+         "narration": "Pozitif olan yalnız x kare, demek ki en büyük o. x kareyi en sağa koymayan B, D ve E gidiyor."
+        },
+        {
+         "text": "$-0{,}5 < -0{,}125$, yani $x < x^3$. Cevap **A**.",
+         "eliminate": [
+          "C"
+         ],
+         "narration": "Geriye iki negatif kaldı. Eksi sıfır virgül beş sıfırdan daha uzakta, o daha küçük. x küçüktür x küp küçüktür x kare. Cevabımız A."
+        }
+       ],
+       "origin": {
+        "changes": "Bu ders için yazıldı; havuzdaki kuvvetlerle sıralama sorularının kalıbı örnek alındı, sayı ve şıklar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir öğretmen tahtaya çizdiği sayı doğrusunda yalnızca $x$ noktasını işaretliyor ve öğrencilerden $x^2$, $x^3$ ve $\\frac{1}{x}$ sayılarına karşılık gelen noktaları da aynı doğru üzerinde işaretlemelerini istiyor. Öğrenciler doğru işaretleme yaptığında bu dört nokta soldan sağa hangi sırayla dizilir?",
+       "figure": {
+        "kind": "numberLine",
+        "range": [
+         -2.5,
+         1.5
+        ],
+        "ticks": [
+         -2,
+         -1,
+         0,
+         1
+        ],
+        "points": [
+         {
+          "x": -0.6,
+          "label": "x"
+         }
+        ]
+       },
+       "options": [
+        "$x,\\ \\frac{1}{x},\\ x^3,\\ x^2$",
+        "$\\frac{1}{x},\\ x^3,\\ x,\\ x^2$",
+        "$\\frac{1}{x},\\ x,\\ x^3,\\ x^2$",
+        "$x^3,\\ x,\\ \\frac{1}{x},\\ x^2$",
+        "$x,\\ x^3,\\ x^2,\\ \\frac{1}{x}$"
+       ],
+       "answer": 2,
+       "narration": "Bu soru bir şekilden okunuyor. Önce x'in nerede durduğuna bak.",
+       "steps": [
+        {
+         "text": "Şekilden: $-1 < x < 0$.",
+         "narration": "Şekilde x, eksi bir ile sıfırın arasında. Yani x negatif ve mutlak değeri birden küçük."
+        },
+        {
+         "text": "$x^2 > 0$, öbür üçü negatif: $x^2$ **en sağda**.",
+         "eliminate": [
+          "E"
+         ],
+         "narration": "x kare pozitif, diğer üçü negatif. O yüzden x kare en sağda. E gidiyor."
+        },
+        {
+         "text": "Mutlak değeri 1'den küçük sayıya bölmek büyütür: $\\frac{1}{x} < -1$, **en solda**.",
+         "eliminate": [
+          "A",
+          "D"
+         ],
+         "narration": "Bir bölü x'e bak. Mutlak değeri birden küçük bir sayıya bölmek büyütür; bir bölü x eksi birin solunda kalır. En solda o. A ve D gidiyor."
+        },
+        {
+         "text": "$x^3$ sıfıra $x$'ten yakın: $x < x^3$. Cevap **C**.",
+         "eliminate": [
+          "B"
+         ],
+         "narration": "Mutlak değeri birden küçük sayının kuvveti sıfıra yaklaşır; x küp, x'in sağındadır. Sıra: bir bölü x, x, x küp, x kare. Cevabımız C."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2024'ün sayı doğrusu ve eşit bölmeli gösterimden okuma yaklaşımı ile havuzdaki sıralama kalıbı örnek alındı; bağlam ve sorulan sıralama özgün."
        }
       }
      }
@@ -316,42 +865,54 @@
    {
     "subtopic": "MAT_TEMEL_03",
     "title": "Tek ve çift sayılar",
-    "narration": "Şimdi ÖSYM'nin en sevdiği konuya geldik: tek ve çift sayılar.",
+    "narration": "Şimdi ÖSYM'nin her yıl kapısını çaldığı konuya geldik. 2020 ile 2025 arasındaki her TYT'de tek ve çift sayılardan soru vardı.",
     "cards": [
      {
-      "kind": "visual",
-      "title": "Tek-çift tablosu",
+      "kind": "concept",
+      "title": "Tek mi, çift mi?",
+      "text": "**Çift sayı**, 2'ye kalansız bölünen tam sayıdır: $2n$. **Tek sayı**, 2'ye bölününce 1 kalan tam sayıdır: $2n + 1$. **Sıfır çifttir**; negatifler de tek ya da çift olur: $-4$ çift, $-7$ tek.",
+      "narration": "Tanımla başlayalım. Çift sayı, 2'ye kalansız bölünen tam sayıdır; 2n diye yazılır. Tek sayı ise 2'ye bölününce 1 kalan tam sayıdır: 2n artı 1. Dikkat: sıfır çifttir, çünkü 2'ye kalansız bölünür. Negatifler de tek ya da çift olur: eksi dört çift, eksi yedi tek."
+     },
+     {
+      "kind": "predict",
+      "title": "İki tek bir araya gelince",
+      "context": "Bir salonda sandalyeler ikişerli dizilmiş. 7 kişilik bir grup ile 9 kişilik bir grup birleşip oturuyor.",
+      "prompt": "Herkes ikişerli oturabilir mi, yoksa biri yalnız kalır mı?",
+      "choices": [
+       "Herkes ikişerli oturur",
+       "Biri yalnız kalır"
+      ],
+      "answer": 0,
+      "thinkSeconds": 5,
       "visual": {
        "kind": "table",
        "header": [
-        "İşlem",
-        "Sonuç"
+        "Grup",
+        "İkişerli",
+        "Artan"
        ],
        "rows": [
         [
-         "T + T, Ç + Ç",
-         "Çift"
+         "7 kişi",
+         "3 çift",
+         "1"
         ],
         [
-         "T + Ç",
-         "Tek"
+         "9 kişi",
+         "4 çift",
+         "1"
         ],
         [
-         "T · T",
-         "Tek"
-        ],
-        [
-         "T · Ç, Ç · Ç",
-         "Çift"
+         "7 + 9 = 16",
+         "8 çift",
+         "0"
         ]
        ],
-       "highlightColumn": 1
+       "highlightColumn": 2
       },
-      "caption": "Çift sayılar $2n$, tek sayılar $2n + 1$ biçimindedir. **Sıfır çift sayıdır.**",
-      "narration": "Çift sayı 2'ye kalansız bölünen sayıdır ve 2n biçiminde yazılır. Tek sayı 2n artı 1 biçimindedir. Sıfır da çift bir sayıdır.",
       "beats": [
        {
-        "narration": "Toplamada: aynı türden iki sayının toplamı çifttir. Tek artı tek çift, çift artı çift çift. Tek ile çiftin toplamı ise tektir.",
+        "narration": "Yedi kişi üç çift oluşturur ve bir kişi artar. Dokuz kişide de dört çift ve bir artan var.",
         "show": [
          "r1",
          "r2"
@@ -362,69 +923,303 @@
         ]
        },
        {
-        "narration": "Çarpmada: sonucun tek olması için bütün çarpanların tek olması gerekir. Tek bir çift çarpan bile sonucu çift yapar.",
+        "narration": "Gruplar birleşince iki artan birbiriyle eşleşir: on altı kişi, sekiz çift, artan yok.",
         "show": [
-         "r3",
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       }
+      ],
+      "explanation": "Her tek sayıda **bir artan** vardır. İki tekin artanları eşleşir: **tek + tek = çift**. Tek ile çiftte artan yalnız kalır: tek + çift = tek.",
+      "narration": "Şimdi sıra sende. Salondaki iki gruba bak.",
+      "explanationNarration": "Doğru cevap: herkes ikişerli oturur. Her tek sayıda bir kişi artar ve iki grubun artanları birbirini bulur. Bu yüzden tek artı tek çifttir."
+     },
+     {
+      "kind": "visual",
+      "title": "Tek-çift tablosu",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "İşlem",
+        "Sonuç",
+        "Neden"
+       ],
+       "rows": [
+        [
+         "T + T, Ç + Ç",
+         "Çift",
+         "Artanlar eşleşir"
+        ],
+        [
+         "T + Ç",
+         "Tek",
+         "Bir artan kalır"
+        ],
+        [
+         "T · T",
+         "Tek",
+         "Hiç çift çarpan yok"
+        ],
+        [
+         "T · Ç, Ç · Ç",
+         "Çift",
+         "Bir çift çarpan yeter"
+        ],
+        [
+         "Kuvvet ($n \\geq 1$)",
+         "Tabanın türü",
+         "Tür değişmez"
+        ]
+       ],
+       "highlightColumn": 1
+      },
+      "narration": "Bu düşünceyi bütün işlemlere yayalım.",
+      "beats": [
+       {
+        "narration": "Toplamada ve çıkarmada aynı türden iki sayı çift verir. Tek ile çift ise tek verir.",
+        "show": [
+         "r1",
+         "r2"
+        ],
+        "focus": [
+         "r1",
+         "r2"
+        ]
+       },
+       {
+        "narration": "Çarpmada sonuç ancak bütün çarpanlar tekse tek çıkar.",
+        "show": [
+         "r3"
+        ],
+        "focus": [
+         "r3"
+        ]
+       },
+       {
+        "narration": "Tek bir çift çarpan bile sonucu çift yapar, çünkü çarpım artık ikiye bölünür.",
+        "show": [
          "r4"
         ],
         "focus": [
-         "r3",
          "r4"
+        ]
+       },
+       {
+        "narration": "Kuvvet almak türü değiştirmez: tek sayının her kuvveti tek, çift sayının her pozitif kuvveti çifttir.",
+        "show": [
+         "r5"
+        ],
+        "focus": [
+         "r5"
         ]
        }
       ]
      },
      {
       "kind": "rule",
-      "title": "Soruyu çözme yolu",
+      "title": "Tek-çift sorusunu çözme yolu",
       "items": [
-       "Verilen bilgiden **her harfin** tek mi çift mi olduğunu bul.",
-       "Bulamadığın harf için **iki durumu da** dene.",
-       "**Her zaman** isteniyorsa ifade iki durumda da aynı sonucu vermeli.",
-       "Sayı yerine koyarken **en küçük** değerleri seç: tek için 1, çift için 2."
+       "Çarpım **tek** ise bütün çarpanlar tektir.",
+       "Çarpım **çift** ise en az bir çarpan çifttir; hangisi olduğu **belli olmayabilir**.",
+       "Belli olmayan harf için **iki durumu da** dene: tek için 1, çift için 2 koy.",
+       "**Her zaman** isteniyorsa ifade iki durumda da aynı sonucu vermelidir.",
+       "Çıkarma toplama gibidir: $a - b$ ile $a + b$ **aynı türdendir**."
       ],
-      "narration": "Tek-çift sorularını dört adımda çözersin. Önce verilen bilgiden her harfin tek mi çift mi olduğunu bul. Bulamadığın bir harf varsa iki durumu da dene. Soru her zaman diyorsa, ifade iki durumda da aynı sonucu vermeli. Sayı koyarken işini kolaylaştır: tek için 1, çift için 2 kullan."
+      "narration": "Şimdi bu soruları çözmenin yolunu kuralım. Çarpım tek ise bütün çarpanlar tektir; bu en güçlü bilgidir. Çarpım çift ise en az bir çarpan çifttir, ama hangisi olduğu belli olmayabilir. Belli olmayan harf için iki durumu da dene: tek için 1, çift için 2 koy. Her zaman isteniyorsa ifade iki durumda da aynı sonucu vermelidir. Bir de unutma: çıkarma toplama gibidir, a eksi b ile a artı b aynı türdendir."
+     },
+     {
+      "kind": "example",
+      "title": "İki durumu dene",
+      "example": "a çarpı b çift ve b çift ise a tek de olabilir, çift de; bu yüzden a artı b'nin türü belli değildir.",
+      "narration": "a çarpı b çift ve b çift ise a tek de olabilir, çift de; bu yüzden a artı b'nin türü belli değildir.",
+      "steps": [
+       {
+        "narration": "Dene: a bir, b iki ise toplam üç, tek.",
+        "math": "1 + 2 = 3",
+        "text": "Toplam **tek**"
+       },
+       {
+        "narration": "a iki, b iki ise toplam dört, çift.",
+        "math": "2 + 2 = 4",
+        "text": "Toplam **çift**"
+       },
+       {
+        "narration": "İki durum farklı sonuç verdi; toplamın türü belli değil.",
+        "text": "**Farklı sonuç**: tür belli değil"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Çift çarpım, iki çift demek değil",
+      "wrong": "$a \\cdot b$ çift ise $a$ ve $b$ ikisi de çifttir.",
+      "right": "En az biri çifttir: $2 \\cdot 3 = 6$ çifttir ama 3 tektir.",
+      "why": "Bir çift çarpan çarpımı çift yapmaya **yeter**; öbür çarpan için iki durumu da düşün.",
+      "narration": "Sınavda en çok düşülen hata: a çarpı b çift ise ikisini de çift sanmak. En az biri çifttir, o kadar. İki çarpı üç altı eder ve çifttir, ama üç tektir. Bir çift çarpan yeter; öbür çarpan için iki durumu da düşün."
+     },
+     {
+      "kind": "practice",
+      "title": "Kartı çevirmeden söyle",
+      "visual": {
+       "kind": "flipcards",
+       "cards": [
+        {
+         "front": "Tek · Tek · Çift",
+         "back": "Çift: bir çift çarpan yeter."
+        },
+        {
+         "front": "Tek + Tek + Tek",
+         "back": "Tek: üç artandan biri yalnız kalır."
+        },
+        {
+         "front": "Çift üssü 3",
+         "back": "Çift: kuvvet türü değiştirmez."
+        },
+        {
+         "front": "Tek − Çift",
+         "back": "Tek: çıkarma toplama gibidir."
+        }
+       ]
+      },
+      "thinkSeconds": 6,
+      "narration": "Dört işlem, dört kart. Her kartın sonucu tek mi, çift mi?",
+      "beats": [
+       {
+        "narration": "Tek çarpı tek çarpı çift, çifttir; çarpımda bir çift çarpan yeter.",
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "Üç tekin toplamı tektir: iki artan eşleşir, üçüncüsü yalnız kalır.",
+        "focus": [
+         "p2"
+        ]
+       },
+       {
+        "narration": "Çift sayının küpü çifttir; kuvvet almak türü değiştirmez.",
+        "focus": [
+         "p3"
+        ]
+       },
+       {
+        "narration": "Tek eksi çift tektir, çünkü çıkarma toplama gibi davranır.",
+        "focus": [
+         "p4"
+        ]
+       }
+      ]
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$a$, $b$ ve $c$ pozitif tam sayıları için $a \\cdot b$ bir tek sayı, $b + c$ bir çift sayıdır. Buna göre, I. $a + c$, II. $a \\cdot c + b$, III. $a + b + c$ ifadelerinden hangileri **her zaman tek** sayıdır?",
+       "stem": "Bir öğretmen, üç pozitif tam sayı için tahtaya şu bilgileri yazıyor: $c$ tektir, $b + c$ tektir ve $a \\cdot b$ çifttir. Buna göre I. $a \\cdot c + b$, II. $b \\cdot (a + c)$, III. $a + b + c$ ifadelerinden hangilerinin sonucu $a$ ne olursa olsun **çift**tir?",
        "options": [
         "Yalnız I",
         "Yalnız II",
         "Yalnız III",
-        "I ve III",
+        "I ve II",
         "II ve III"
        ],
-       "answer": 2,
-       "narration": "ÖSYM'nin 2020–2025 arasında her yıl sorduğu kalıp. Önce harflerin türünü bulalım.",
+       "answer": 1,
+       "narration": "Bu soruda bir harf belli olmayacak. İki durum yöntemini kullanacağız.",
        "steps": [
         {
-         "text": "$a \\cdot b$ tek ise $a$ ve $b$ **ikisi de tek**. $b$ tek ve $b + c$ çift ise $c$ de **tek**.",
-         "narration": "a çarpı b tek ise iki çarpan da tek olmalı: a tek, b tek. b tek ve b artı c çift ise c de tek olmalı, çünkü tek artı tek çift eder. Üç harf de tek.",
+         "text": "$c$ tek ve $b + c$ tek → $b$ **çift**.",
          "mark": [
-          "bir tek sayı",
-          "bir çift sayıdır"
-         ]
+          "$b + c$ tektir"
+         ],
+         "narration": "c tek ve b artı c tek. Toplamın tek olması için biri tek, biri çift olmalı; c tek olduğuna göre b çift."
         },
         {
-         "text": "I: $T + T = Ç$. II: $T \\cdot T + T = T + T = Ç$.",
-         "narration": "Birinci ifade a artı c: tek artı tek, çift. İkinci ifade a çarpı c artı b: tek çarpı tek tek eder, artı tek, çift. Birinci ve ikinci ifade tek değil. A, B, D ve E gidiyor.",
+         "text": "$b$ zaten çift olduğu için $a \\cdot b$ çift bilgisi $a$'yı **belirlemez**.",
+         "narration": "a çarpı b çift, ama b zaten çift olduğu için bu bilgi a hakkında bir şey söylemiyor. a için iki durumu da deneyeceğiz."
+        },
+        {
+         "text": "$b = 2$, $c = 1$. I: $a = 1$ → 3, $a = 2$ → 4. III: $a = 1$ → 4, $a = 2$ → 5. İkisi de **değişiyor**.",
+         "eliminate": [
+          "A",
+          "C",
+          "D",
+          "E"
+         ],
+         "narration": "b yerine 2, c yerine 1 koy. Birinci ifade a bir iken üç, a iki iken dört çıkıyor. Üçüncü ifade dört ve beş çıkıyor. İkisi de her zaman çift değil."
+        },
+        {
+         "text": "II: $b$ çift çarpan → $b \\cdot (a + c)$ **her durumda çift**. Cevap **B**.",
+         "narration": "İkinci ifadede b çarpan olarak duruyor. b çift olduğu için a ne olursa olsun çarpım çifttir. Yalnız iki, cevabımız B."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2022 ve 2025 tek-çift sorularının \"bir harf belirsiz kalır, hangileri her zaman\" kalıbı örnek alındı; koşullar ve ifadeler özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir vantilatörün düğmesine her basıldığında vantilatör şekildeki sırayla bir sonraki duruma geçer: kapalı, 1. kademe, 2. kademe, 3. kademe ve yeniden kapalı. Başlangıçta kapalı olan vantilatörün düğmesine önce $A$ kez basılıyor ve vantilatör 2. kademede çalışıyor. Sonra düğmeye $B$ kez daha basılıyor ve vantilatör 1. kademeye geçiyor. En son $C$ kez daha basılıyor ve vantilatör 3. kademede çalışıyor. Buna göre aşağıdakilerden hangisi **tek** sayıdır?",
+       "figure": {
+        "kind": "cycle",
+        "nodes": [
+         {
+          "label": "Kapalı"
+         },
+         {
+          "label": "1. kademe"
+         },
+         {
+          "label": "2. kademe"
+         },
+         {
+          "label": "3. kademe"
+         }
+        ],
+        "center": "Düğme"
+       },
+       "options": [
+        "$A \\cdot B + C$",
+        "$B \\cdot C$",
+        "$A + B + C$",
+        "$A \\cdot (B + C)$",
+        "$(A + C) \\cdot B$"
+       ],
+       "answer": 2,
+       "narration": "Şimdi ÖSYM tarzı bir soru. Basış sayılarını bilmiyoruz, ama türlerini bulabiliriz.",
+       "steps": [
+        {
+         "text": "Döngüde dört durum var: **4 basış** vantilatörü aynı duruma döndürür.",
+         "narration": "Döngüde dört durum var. Düğmeye dört kez basınca vantilatör başladığı yere döner. Bu yüzden dörtlü turların dışında kalan basışlar önemli."
+        },
+        {
+         "text": "Kapalı → 2. kademe: 2, 6, 10, … basış → $A$ **çift**.",
+         "narration": "Kapalıdan ikinci kademeye iki basışla gidilir; üstüne dörtlü turlar eklenebilir: iki, altı, on. Hepsi çift, A çift."
+        },
+        {
+         "text": "2. kademe → 1. kademe: 3, 7, 11, … → $B$ **tek**. 1. kademe → 3. kademe: 2, 6, … → $C$ **çift**.",
+         "narration": "İkinci kademeden birinci kademeye üç basış gerekir: üç, yedi, on bir; B tek. Birinciden üçüncü kademeye iki basış: C çift."
+        },
+        {
+         "text": "A, B, D ve E şıklarında çift çarpan ya da çift toplam var → hepsi çift.",
          "eliminate": [
           "A",
           "B",
           "D",
           "E"
-         ]
+         ],
+         "narration": "A şıkkı çift artı çift, çift. B ve D şıklarında çift bir çarpan var. E şıkkında A artı C çift, çarpım yine çift. Hepsi gidiyor."
         },
         {
-         "text": "III: $T + T + T = T$. Cevap **C**.",
-         "narration": "Üçüncü ifade a artı b artı c: üç tek sayının toplamı tektir. Yalnız üç. Cevabımız C."
+         "text": "$A + B + C$: çift + tek + çift = **tek**. Cevap **C**.",
+         "narration": "A artı B artı C ise çift artı tek artı çift, tek. Cevabımız C."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; ÖSYM 2020–2025 tek-çift sorularının \"ifadelerinden hangileri her zaman\" kalıbı örnek alındı, koşullar ve ifadeler özgün."
+        "changes": "ÖSYM 2023'ün \"ip çekilince durum değiştiren lamba\" kalıbı örnek alındı; vantilatör bağlamı, durum geçişleri ve şıklar özgün."
        }
       }
      }
@@ -433,59 +1228,245 @@
    {
     "subtopic": "MAT_TEMEL_04",
     "title": "Ardışık sayılar",
-    "narration": "Ardışık sayılar belli bir kurala göre art arda gelen, aralarındaki fark eşit olan sayılardır.",
+    "narration": "Ardışık sayılar matematiğin her yerinde karşına çıkar: sayarken, toplarken, raflarda, takvimlerde. Önce ne olduklarını, sonra nasıl sayıldıklarını görelim.",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Ardışık ne demek?",
+      "text": "**Ardışık sayılar**, belli bir kurala göre art arda gelen ve aralarındaki fark **eşit** olan sayılardır. Bu farka **ortak fark** denir: 7, 8, 9'da 1; 7, 9, 11'de 2 (**ardışık tek**); 5, 10, 15'te 5.",
+      "narration": "Ardışık sayılar, belli bir kurala göre art arda gelen ve aralarındaki fark eşit olan sayılardır. Bu farka ortak fark denir. Yedi, sekiz, dokuzda ortak fark bir. Yedi, dokuz, on birde iki; bunlar ardışık tek sayılar. Beş, on, on beşte ise ortak fark beş."
+     },
+     {
+      "kind": "visual",
+      "title": "Neden bir ekliyoruz?",
+      "visual": {
+       "kind": "numberLine",
+       "range": [
+        0,
+        16
+       ],
+       "ticks": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15
+       ],
+       "intervals": [
+        {
+         "from": 3,
+         "to": 6,
+         "closedFrom": true,
+         "closedTo": true,
+         "label": "+3",
+         "row": 1
+        },
+        {
+         "from": 6,
+         "to": 9,
+         "closedFrom": true,
+         "closedTo": true,
+         "label": "+3",
+         "row": 1
+        },
+        {
+         "from": 9,
+         "to": 12,
+         "closedFrom": true,
+         "closedTo": true,
+         "label": "+3",
+         "row": 1
+        },
+        {
+         "from": 12,
+         "to": 15,
+         "closedFrom": true,
+         "closedTo": true,
+         "label": "+3",
+         "row": 1
+        }
+       ],
+       "points": [
+        {
+         "x": 3
+        },
+        {
+         "x": 6
+        },
+        {
+         "x": 9
+        },
+        {
+         "x": 12
+        },
+        {
+         "x": 15
+        }
+       ]
+      },
+      "narration": "Üçten on beşe üçer üçer sayalım. Kaç sayı söyleriz?",
+      "beats": [
+       {
+        "narration": "Üçten başlıyoruz; ilk sayı hiç atlamadan yerinde duruyor.",
+        "show": [
+         "p1"
+        ],
+        "focus": [
+         "p1"
+        ]
+       },
+       {
+        "narration": "On beşten üçü çıkarırsan on iki, üçe bölersen dört: bu, atlama sayısı.",
+        "show": [
+         "i1",
+         "i2",
+         "i3",
+         "i4"
+        ],
+        "focus": [
+         "i1",
+         "i2",
+         "i3",
+         "i4"
+        ]
+       },
+       {
+        "narration": "Her atlama yeni bir sayıya konar; başlangıçtaki sayıyı da katınca beş terim olur. Artı bir buradan gelir.",
+        "show": [
+         "p2",
+         "p3",
+         "p4",
+         "p5"
+        ],
+        "focus": [
+         "p1",
+         "p2",
+         "p3",
+         "p4",
+         "p5"
+        ],
+        "note": "4 atlama, 5 terim"
+       }
+      ]
+     },
      {
       "kind": "rule",
       "title": "Terim sayısı ve toplam",
       "items": [
-       "Ardışık tam sayılarda fark **1**, ardışık tek ya da çift sayılarda fark **2**dir.",
-       "**Terim sayısı** = $\\frac{\\text{son} - \\text{ilk}}{\\text{artış}} + 1$",
-       "**Toplam** = $\\frac{\\text{ilk} + \\text{son}}{2} \\cdot$ terim sayısı",
-       "Terim sayısı tekse toplam = **ortadaki terim** × terim sayısı.",
-       "5'ten 25'e tek sayılar: $\\frac{25 - 5}{2} + 1 = 11$ terim."
+       "Ardışık tam sayılarda ortak fark **1**, ardışık tek ya da çift sayılarda **2**.",
+       "**Terim sayısı** $= \\frac{\\text{son} - \\text{ilk}}{\\text{ortak fark}} + 1$",
+       "**Toplam** $= \\frac{\\text{ilk} + \\text{son}}{2} \\cdot \\text{terim sayısı}$",
+       "Terim sayısı tekse **ortanca terim** $= \\frac{\\text{toplam}}{\\text{terim sayısı}}$.",
+       "İki kısa yol: $1 + 2 + \\cdots + n = \\frac{n(n + 1)}{2}$ ve $1 + 3 + \\cdots + (2n - 1) = n^2$."
       ],
-      "narration": "Ardışık tam sayılarda fark 1, ardışık tek ya da çift sayılarda fark 2'dir. Terim sayısını bulmak için sondan ilki çıkarır, artışa böler ve 1 eklersin. Toplamı bulmak için ilk ile sonun ortalamasını terim sayısıyla çarparsın. Terim sayısı tekse daha da kısası var: ortadaki terim çarpı terim sayısı. Örneğin 5'ten 25'e kadar tek sayılar: 25 eksi 5, 20; 2'ye böl, 10; 1 ekle, 11 terim."
+      "narration": "Gördüklerini formüle dökelim. Ardışık tam sayılarda ortak fark bir, ardışık tek ya da çift sayılarda iki. Terim sayısı, sondan ilki çıkarıp ortak farka bölmek ve bir eklemektir. Toplam, ilk ile sonun ortalaması çarpı terim sayısıdır. Terim sayısı tekse ortanca terim, toplam bölü terim sayısıdır. İki kısa yol da ezberle: birden n'ye toplam n çarpı n artı bir bölü iki, ilk n tek sayının toplamı n kare."
+     },
+     {
+      "kind": "example",
+      "title": "Çift sayıları say",
+      "example": "On iki ile kırk sekiz arasındaki çift sayılar, uçlar dahil, on dokuz tanedir.",
+      "narration": "On iki ile kırk sekiz arasındaki çift sayılar, uçlar dahil, on dokuz tanedir.",
+      "steps": [
+       {
+        "narration": "Kırk sekizden on ikiyi çıkar, otuz altı; ikiye böl, on sekiz.",
+        "math": "\\frac{48 - 12}{2} = 18"
+       },
+       {
+        "narration": "Bir ekle, on dokuz terim.",
+        "math": "18 + 1 = 19",
+        "text": "Uçlar dahil: **bir ekle**"
+       },
+       {
+        "narration": "Toplamları da otuz çarpı on dokuz, beş yüz yetmiş.",
+        "math": "30 \\cdot 19 = 570",
+        "text": "**Toplamları**"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Bir eklemeyi unutma",
+      "wrong": "5'ten 25'e kadar tek sayılar $\\frac{25 - 5}{2} = 10$ tanedir.",
+      "right": "Bir ekle: $\\frac{25 - 5}{2} + 1 = 11$ tane: 5, 7, 9, …, 25.",
+      "why": "Bölme **atlama sayısını** verir; terimler atlamalardan bir fazladır.",
+      "narration": "Çok sık yapılan hata: beşten yirmi beşe tek sayıları on sanmak. Bir ekle: on bir tane. İstersen parmaklarınla say, beşten başlayıp yirmi beşte bitir. Bölme atlama sayısını verir; terimler atlamalardan bir fazladır."
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Ardışık beş tek sayının toplamı 85'tir. Buna göre bu sayıların **en büyüğü** kaçtır?",
+       "stem": "17'den 83'e kadar olan tek sayılar, uçlar dahil, kaç tanedir?",
        "options": [
-        "19",
-        "21",
-        "23",
-        "25",
-        "27"
+        "32",
+        "33",
+        "34",
+        "66",
+        "67"
        ],
-       "answer": 1,
-       "narration": "Ortadaki terim yöntemini kullanalım.",
+       "answer": 2,
+       "narration": "Terim sayısı formülünü uygulayalım.",
        "steps": [
         {
-         "text": "Terim sayısı tek (5): ortadaki terim $= \\frac{85}{5} = 17$.",
-         "narration": "Beş terim var, yani terim sayısı tek. Toplam, ortadaki terim çarpı terim sayısı. Ortadaki terim 85 bölü 5, yani 17.",
-         "mark": [
-          "Ardışık beş tek sayının"
-         ]
+         "text": "$83 - 17 = 66$, ortak fark 2: $\\frac{66}{2} = 33$ atlama.",
+         "narration": "Seksen üçten on yediyi çıkar: altmış altı. Ardışık tek sayılarda ortak fark iki; ikiye bölünce otuz üç atlama."
         },
         {
-         "text": "Sayılar: 13, 15, **17**, 19, 21. Ortadan sonra iki terim daha var.",
-         "narration": "17'nin iki yanında ikişer sayı var ve fark 2: 13, 15, 17, 19, 21. Toplamları gerçekten 85. Yalnızca en büyüğünü bulmak için 17'nin üstüne iki kez 2 ekle."
-        },
-        {
-         "text": "En büyük $= 17 + 2 \\cdot 2 = 21$. Cevap **B**.",
-         "narration": "En büyük sayı 17 artı 4, yani 21. Cevabımız B. 17'yi seçen ortadaki terimde kalır, 25'i seçen farkı 2 yerine 4 alır.",
+         "text": "Terim sayısı $= 33 + 1 = 34$. Cevap **C**.",
          "eliminate": [
           "A",
-          "C",
+          "B",
           "D",
           "E"
-         ]
+         ],
+         "narration": "Atlamalara başlangıç sayısını ekle: otuz dört terim. Cevabımız C. Bir eklemeyi unutan otuz üçe, ikiye bölmeyi unutan altmış altıya düşer."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki ardışık sayı toplam sorularının kalıbı örnek alındı, sayılar özgün."
+        "changes": "Bu ders için yazıldı; MEB konu anlatımındaki terim sayısı formülü özgün sayılarla soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir kütüphanede raflar 1'den başlayarak sırayla numaralandırılmıştır. Ece 7 numaralı raftan başlayıp ileriye doğru dörder dörder sayarak iki basamaklı $AB$ numaralı rafa ulaşıyor. Ardından bu raftan geriye doğru beşer beşer sayarak 12 numaralı rafa ulaşıyor. Buna göre $AB$ sayısı kaç farklı değer alabilir?",
+       "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+       ],
+       "answer": 3,
+       "narration": "Şimdi ÖSYM tarzı bir soru. İki ayrı ortak farkla kurulan iki listeyi kesiştireceğiz.",
+       "steps": [
+        {
+         "text": "İleri dörder: 7, 11, 15, 19, 23, 27, … → $AB$, 4'e bölününce **3 kalır**.",
+         "narration": "Yedi numaradan dörder dörder ilerleyince yedi, on bir, on beş, on dokuz diye gidersin. Bu sayıların hepsi dörde bölününce üç kalanını verir."
+        },
+        {
+         "text": "Geri beşer 12'ye varıyor: $AB$ ∈ 17, 22, 27, 32, 37, 42, 47, …",
+         "narration": "Geriye beşer sayıp on ikiye vardığına göre AB, on ikiden beşer yukarı çıkılarak bulunur: on yedi, yirmi iki, yirmi yedi, otuz iki."
+        },
+        {
+         "text": "Ortaklar: 27, 47, 67, 87. Her biri bir öncekinden **20** fazla.",
+         "narration": "İki listenin ilk ortak sayısı yirmi yedi. Sonra ortaklar yirmişer artar, çünkü hem dörde hem beşe uyan adım yirmidir: kırk yedi, altmış yedi, seksen yedi."
+        },
+        {
+         "text": "Bir sonraki 107, üç basamaklı. **4** değer. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "narration": "Bir sonraki yüz yedi, üç basamaklı. Yani AB dört farklı değer alır. Cevabımız D."
+        }
+       ],
+       "origin": {
+        "changes": "Ayça'nın 56'dan altışar ileri, beşer geri saydığı ÖSYM kalıbı örnek alındı; raf bağlamı, başlangıç ve ortak farklar, sorulan nicelik özgün."
        }
       }
      }
@@ -497,122 +1478,273 @@
      "MAT_TEMEL_06"
     ],
     "title": "Asal ve aralarında asal",
-    "narration": "Asal sayı ile aralarında asal sayılar farklı şeylerdir. Önce ikisini ayıralım.",
+    "narration": "Asal sayılar, sayıların yapı taşlarıdır. Ama asal sayı ile aralarında asal sayılar farklı şeylerdir; önce birini, sonra öbürünü öğreneceğiz.",
     "cards": [
      {
-      "kind": "visual",
-      "title": "Asal mı, aralarında asal mı?",
+      "kind": "concept",
+      "title": "Asal sayı",
+      "text": "**Asal sayı**, 1'den büyük olan ve yalnızca **1'e ve kendisine** bölünen doğal sayıdır. Yani asal sayının **tam iki** pozitif böleni vardır.",
       "visual": {
-       "kind": "comparison",
-       "columns": [
-        {
-         "title": "Asal sayı",
-         "items": [
-          "**1'den büyük**, yalnız 1'e ve kendisine bölünür",
-          "2, 3, 5, 7, 11, 13…",
-          "En küçüğü 2; tek çift asal 2"
-         ]
-        },
-        {
-         "title": "Aralarında asal",
-         "items": [
-          "**1'den başka ortak böleni** olmayan sayılar",
-          "8 ile 15: ikisi de asal değil ama aralarında asal",
-          "Ardışık sayılar her zaman aralarında asaldır"
-         ]
-        }
-       ]
+       "kind": "table",
+       "header": [
+        "Sayı",
+        "Pozitif bölenleri",
+        "Asal mı?"
+       ],
+       "rows": [
+        [
+         "1",
+         "1",
+         "Hayır: tek bölen"
+        ],
+        [
+         "2",
+         "1, 2",
+         "Evet"
+        ],
+        [
+         "6",
+         "1, 2, 3, 6",
+         "Hayır"
+        ],
+        [
+         "7",
+         "1, 7",
+         "Evet"
+        ],
+        [
+         "9",
+         "1, 3, 9",
+         "Hayır"
+        ]
+       ],
+       "highlightColumn": 1
       },
-      "narration": "İki kavramı yan yana koyalım.",
+      "narration": "Asal sayı, 1'den büyük olan ve yalnızca 1'e ve kendisine bölünen doğal sayıdır. Kısacası asalın tam iki pozitif böleni vardır.",
       "beats": [
        {
+        "narration": "İkinin bölenleri bir ve iki, yedinin bölenleri bir ve yedi. İkisinin de tam iki böleni var: asal.",
         "show": [
-         "c1"
+         "r2",
+         "r4"
         ],
         "focus": [
-         "c1-1",
-         "c1-2"
-        ],
-        "narration": "Asal sayı 1'den büyük olan ve yalnızca 1'e ve kendisine bölünen sayıdır: 2, 3, 5, 7, 11, 13."
+         "r2",
+         "r4"
+        ]
        },
        {
-        "show": [],
-        "focus": [
-         "c1-3"
-        ],
-        "narration": "En küçük asal 2'dir ve 2, tek çift asal sayıdır. 1 asal değildir, negatif asal sayı da yoktur."
-       },
-       {
+        "narration": "Altının dört, dokuzun üç böleni var. Fazladan bölenleri olduğu için asal değiller.",
         "show": [
-         "c2"
+         "r3",
+         "r5"
         ],
         "focus": [
-         "c2-1"
-        ],
-        "narration": "Aralarında asal bir sayı çiftinin özelliğidir: 1'den başka ortak bölenleri yoktur."
+         "r3",
+         "r5"
+        ]
        },
        {
-        "show": [],
-        "focus": [
-         "c2-2"
+        "narration": "Birin ise tek böleni var: kendisi. İki bölen şartını sağlamadığı için bir asal değildir.",
+        "show": [
+         "r1"
         ],
-        "narration": "8 ile 15 asal değildir ama aralarında asaldır."
-       },
-       {
-        "show": [],
         "focus": [
-         "c2-3"
-        ],
-        "narration": "Ardışık sayılar her zaman aralarında asaldır; ardışık çift sayılar ise 2'ye bölündükleri için değildir."
+         "r1"
+        ]
        }
       ]
+     },
+     {
+      "kind": "rule",
+      "title": "Asal sayıların özellikleri",
+      "items": [
+       "İlk sekiz asal: **2, 3, 5, 7, 11, 13, 17, 19**.",
+       "**2** hem en küçük asal hem de tek çift asaldır.",
+       "**1 asal değildir**; negatif sayılar da asal değildir.",
+       "**Karekökünü geçmeyen asallara** böl: $91 = 7 \\cdot 13$ asal değildir.",
+       "İki asalın **toplamı tekse** asallardan biri **2**dir."
+      ],
+      "narration": "Asallarla ilgili beş bilgi. İlk sekiz asal iki, üç, beş, yedi, on bir, on üç, on yedi ve on dokuzdur. İki hem en küçük asal hem de tek çift asaldır; diğer bütün çiftler ikiye bölünür. Bir asal değildir; negatif sayılar da asal değildir. Bir sayının asallığını anlamak için karekökünü geçmeyen asallara böl. Son olarak iki asalın toplamı tekse asallardan biri ikidir."
+     },
+     {
+      "kind": "example",
+      "title": "97 asal mı?",
+      "example": "Doksan yedi asaldır: iki, üç, beş ve yediye bölünmüyor.",
+      "explanation": "$9^2 = 81 < 97 < 100 = 10^2$: karekökü 10'dan küçük, bu yüzden 10'dan **küçük asalları denemek** yeter.",
+      "narration": "Doksan yedi asaldır: iki, üç, beş ve yediye bölünmüyor. Neden yalnız bunları denedik? Doksan yedi, seksen bir ile yüz arasında; karekökü ondan küçük. Ondan küçük asalları denemek yeter."
      },
      {
       "kind": "mistake",
       "title": "1 asal sayı değildir",
       "wrong": "En küçük asal sayı **1**dir, çünkü 1 yalnız kendisine bölünür.",
-      "right": "Asal sayılar **1'den büyüktür**. En küçük asal sayı **2**dir.",
-      "why": "Tanımın ilk şartı 1'den büyük olmaktır. 1 ise her pozitif tam sayı ile aralarında asaldır.",
-      "narration": "En sık yapılan hata: 1'i asal saymak. Asal sayının tanımında ilk şart 1'den büyük olmaktır. Bu yüzden en küçük asal sayı 2'dir. 1'in özelliği başka: 1, her pozitif tam sayıyla aralarında asaldır."
+      "right": "Asal sayılar **1'den büyüktür**; en küçük asal sayı **2**dir.",
+      "why": "Asalın tam iki böleni olmalı, 1'in ise tek böleni var. 1, her pozitif tam sayıyla **aralarında asaldır**; bu başka bir kavram.",
+      "narration": "En sık hata: biri asal saymak. Asal sayılar 1'den büyüktür; en küçük asal sayı ikidir. Asalın tam iki böleni olmalı, birin ise tek böleni var. Ama bir, başka bir kavramda baş roldedir: her pozitif tam sayıyla aralarında asaldır."
+     },
+     {
+      "kind": "concept",
+      "title": "Aralarında asal",
+      "text": "İki sayının **1'den başka ortak böleni** yoksa bu sayılar **aralarında asaldır**. Bu bir sayı çiftinin özelliğidir; sayıların kendilerinin asal olması **gerekmez**: 8 ile 15 aralarında asaldır.",
+      "narration": "Şimdi ikinci kavram. İki sayının 1'den başka ortak böleni yoksa bu sayılar aralarında asaldır. Bu, tek bir sayının değil, bir sayı çiftinin özelliğidir. Sayıların kendilerinin asal olması gerekmez: sekiz ile on beş aralarında asaldır."
+     },
+     {
+      "kind": "visual",
+      "title": "Aralarında asal mı?",
+      "visual": {
+       "kind": "comparison",
+       "columns": [
+        {
+         "title": "Aralarında asal",
+         "items": [
+          "8 ve 15: ortak bölen yalnız 1",
+          "Ardışık tam sayılar: 20 ve 21",
+          "Ardışık tek sayılar: 15 ve 17",
+          "Farklı iki asal: 7 ve 11",
+          "1 ve her pozitif tam sayı"
+         ]
+        },
+        {
+         "title": "Aralarında asal değil",
+         "items": [
+          "14 ve 21: ortak bölen 7",
+          "Ardışık çift sayılar: 2'ye bölünür",
+          "Bir sayı ve katı: 6 ve 18"
+         ]
+        }
+       ]
+      },
+      "narration": "Hangi çiftler aralarında asal, hangileri değil? Yan yana koyalım.",
+      "beats": [
+       {
+        "narration": "Sekiz iki küp, on beş üç çarpı beş. Ortak asal çarpanları yok, aralarında asaldırlar.",
+        "show": [
+         "c1"
+        ],
+        "focus": [
+         "c1-1"
+        ]
+       },
+       {
+        "narration": "Ardışık sayılar her zaman aralarında asaldır, çünkü ortak bölen aradaki farkı da böler ve fark yalnızca bir.",
+        "focus": [
+         "c1-2"
+        ]
+       },
+       {
+        "narration": "Ardışık teklerde fark iki, ama tek sayılar ikiye bölünmez; onlar da aralarında asaldır.",
+        "focus": [
+         "c1-3"
+        ]
+       },
+       {
+        "narration": "Farklı iki asalın ortak böleni yoktur. Bir ise her pozitif tam sayıyla aralarında asaldır.",
+        "focus": [
+         "c1-4",
+         "c1-5"
+        ]
+       },
+       {
+        "narration": "On dört ile yirmi birin ikisi de yediye bölünür; aralarında asal değiller.",
+        "show": [
+         "c2"
+        ],
+        "focus": [
+         "c2-1"
+        ]
+       },
+       {
+        "narration": "Ardışık çift sayılar ikiye bölünür. Bir sayı ile katı da aralarında asal değildir.",
+        "focus": [
+         "c2-2",
+         "c2-3"
+        ]
+       }
+      ]
      },
      {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "Aşağıdaki sayı ikililerinden hangisi **aralarında asal değildir**?",
+       "stem": "Aşağıdakilerden hangisi bir **asal** sayıdır?",
        "options": [
-        "8 ve 15",
-        "9 ve 16",
-        "1 ve 20",
-        "14 ve 21",
-        "25 ve 36"
+        "51",
+        "57",
+        "87",
+        "91",
+        "97"
        ],
-       "answer": 3,
-       "narration": "Her ikilinin ortak bölenine bakalım.",
+       "answer": 4,
+       "narration": "Kolay görünüyor ama dördü kılık değiştirmiş. Her birini küçük asallara bölelim.",
        "steps": [
         {
-         "text": "$8 = 2^3$, $15 = 3 \\cdot 5$; $9 = 3^2$, $16 = 2^4$: ortak asal çarpan yok.",
-         "narration": "8, 2 küptür; 15, 3 çarpı 5. 9, 3 karedir; 16, 2 üssü 4. Hiçbirinde ortak asal çarpan yok. A ve B aralarında asal, gidiyor.",
+         "text": "Rakamları toplamı 3'ün katı: $51 = 3 \\cdot 17$, $57 = 3 \\cdot 19$, $87 = 3 \\cdot 29$.",
          "eliminate": [
           "A",
-          "B"
-         ]
+          "B",
+          "C"
+         ],
+         "narration": "Elli birin rakamları toplamı altı, elli yedinin on iki, seksen yedinin on beş; hepsi üçe bölünür. A, B ve C gidiyor."
         },
         {
-         "text": "1 her sayıyla aralarında asal. $25 = 5^2$, $36 = 2^2 \\cdot 3^2$: ortak çarpan yok.",
-         "narration": "1, her pozitif tam sayıyla aralarında asaldır. 25, 5 kare; 36, 2 kare çarpı 3 kare: ortak çarpan yok. C ve E gidiyor.",
+         "text": "$91 = 7 \\cdot 13$: asal görünür ama değildir.",
          "eliminate": [
-          "C",
-          "E"
-         ]
+          "D"
+         ],
+         "narration": "Doksan bir tek ve üçe bölünmüyor, o yüzden asal sanılır. Ama yedi çarpı on üç eder. D de gidiyor."
         },
         {
-         "text": "$14 = 2 \\cdot 7$, $21 = 3 \\cdot 7$: ortak bölen **7**. Cevap **D**.",
-         "narration": "14, 2 çarpı 7; 21, 3 çarpı 7. İkisi de 7'ye bölünüyor. Ortak bölenleri 1'den başka 7 de olduğu için aralarında asal değiller. Cevabımız D."
+         "text": "$97$: 2, 3, 5, 7'ye bölünmez, **asaldır**. Cevap **E**.",
+         "narration": "Doksan yedi ise az önce gördüğümüz gibi iki, üç, beş ve yediye bölünmüyor. Asaldır, cevabımız E."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki aralarında asal sayı sorularının kalıbı örnek alındı, sayılar özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki asal sayı tanıma sorularının kalıbı örnek alındı, sayılar özgün."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "İki basamaklı bir asal sayının rakamlarının yerleri değiştirildiğinde elde edilen sayı da asal ise bu sayıya **ayna asal** denir. Örneğin 13 bir ayna asaldır, çünkü 31 de asaldır. Rakamları aynı olan 11 de bu tanıma uyar. Buna göre 50'den küçük bütün ayna asal sayıların toplamı kaçtır?",
+       "options": [
+        "98",
+        "109",
+        "117",
+        "128",
+        "140"
+       ],
+       "answer": 1,
+       "narration": "Yeni tanımlanmış bir kavram. Önce adayları yaz, sonra tek tek dene.",
+       "steps": [
+        {
+         "text": "50'den küçük iki basamaklı asallar: 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47.",
+         "narration": "Önce ellinin altındaki iki basamaklı asalları yaz. On bir, on üç, on yedi, on dokuz, yirmi üç, yirmi dokuz, otuz bir, otuz yedi, kırk bir, kırk üç ve kırk yedi."
+        },
+        {
+         "text": "Tersi çift olanlar gider: 32, 92, 14, 34, 74.",
+         "narration": "Tersi çift sayı olanlar hemen gider. Yirmi üçün tersi otuz iki, yirmi dokuzun doksan iki, kırk birin on dört, kırk üçün otuz dört, kırk yedinin yetmiş dört."
+        },
+        {
+         "text": "Tuzak: $19 \\to 91 = 7 \\cdot 13$, asal değil.",
+         "eliminate": [
+          "D"
+         ],
+         "narration": "Asıl tuzak on dokuz. Tersi doksan bir, ama doksan bir yedi çarpı on üç. On dokuzu sayan yüz yirmi sekize düşer."
+        },
+        {
+         "text": "$11 + 13 + 17 + 31 + 37 = 109$. Cevap **B**.",
+         "eliminate": [
+          "A",
+          "C",
+          "E"
+         ],
+         "narration": "Geriye on bir, on üç, on yedi, otuz bir ve otuz yedi kalıyor. Tersleri on bir, otuz bir, yetmiş bir, on üç ve yetmiş üç; hepsi asal. Toplamları yüz dokuz, cevabımız B."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM 2025'in \"asalız sayı\" gibi yeni tanımlanmış asal kavramı kalıbı örnek alındı; ayna asal tanımı, sınır ve sorulan toplam özgün."
        }
       }
      }
@@ -620,12 +1752,71 @@
    },
    {
     "subtopic": "MAT_TEMEL_07",
-    "subtopics": [
-     "MAT_TEMEL_08"
-    ],
-    "title": "İşlem önceliği ve faktöriyel",
-    "narration": "Son bölümde işlemleri hangi sırayla yapacağını ve faktöriyeli göreceğiz.",
+    "title": "İşlem önceliği",
+    "narration": "Bir ifadede birden çok işlem varsa hangisini önce yapacaksın? Bu sıra herkes için aynı; yoksa aynı soruya herkes farklı cevap verirdi.",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "İşlem önceliği nedir?",
+      "text": "**İşlem önceliği**, bir ifadede birden çok işlem varken **hangisinin önce** yapılacağını belirleyen sıradır. Herkes aynı sırayı izlediği için **aynı ifade** herkes için **aynı sonucu** verir.",
+      "narration": "İşlem önceliği, bir ifadede birden çok işlem varken hangisinin önce yapılacağını belirleyen sıradır. Bir trafik kuralı gibi düşün: herkes uyarsa aynı ifade herkes için aynı sonucu verir."
+     },
+     {
+      "kind": "predict",
+      "title": "Soldan sağa mı?",
+      "context": "$2 + 3 \\cdot 4$",
+      "prompt": "Bu işlemin sonucu kaçtır?",
+      "choices": [
+       "$20$",
+       "$14$"
+      ],
+      "answer": 1,
+      "thinkSeconds": 4,
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Yol",
+        "İşlem",
+        "Sonuç"
+       ],
+       "rows": [
+        [
+         "Soldan sağa",
+         "$(2 + 3) \\cdot 4$",
+         "20"
+        ],
+        [
+         "Önce çarpma",
+         "$2 + 3 \\cdot 4 = 2 + 12$",
+         "14"
+        ]
+       ],
+       "highlightColumn": 2
+      },
+      "beats": [
+       {
+        "narration": "Soldan sağa gidersen önce iki artı üç beş, sonra çarpı dört, yirmi bulursun.",
+        "show": [
+         "r1"
+        ],
+        "focus": [
+         "r1"
+        ]
+       },
+       {
+        "narration": "Önce çarpmayı yaparsan üç çarpı dört on iki, artı iki, on dört.",
+        "show": [
+         "r2"
+        ],
+        "focus": [
+         "r2"
+        ]
+       }
+      ],
+      "explanation": "Doğru sonuç **14**. Çarpma, tekrarlı toplamanın kısa yazılışıdır: $3 \\cdot 4 = 4 + 4 + 4$. Önce bu **paketi açarsın**, sonra toplarsın.",
+      "narration": "Şimdi sıra sende. Bu işleme hızlıca bir cevap ver.",
+      "explanationNarration": "Doğru cevap on dört. Üç çarpı dört, aslında dört artı dört artı dördün kısa yazılışıdır. Önce bu paketi açarsın, sonra toplarsın. Bu yüzden çarpma toplamadan önce gelir."
+     },
      {
       "kind": "visual",
       "title": "İşlem sırası",
@@ -638,33 +1829,40 @@
         },
         {
          "label": "Üslü ifadeler",
-         "detail": "Parantezden sonra kuvvetler"
+         "detail": "Sonra kuvvetler"
         },
         {
          "label": "Çarpma ve bölme",
-         "detail": "Soldan sağa, hangisi önce gelirse"
+         "detail": "Eşit öncelik, soldan sağa"
         },
         {
          "label": "Toplama ve çıkarma",
-         "detail": "Soldan sağa"
+         "detail": "Eşit öncelik, soldan sağa"
         }
        ]
       },
-      "narration": "İşlem önceliği dört adımdır.",
+      "narration": "Şimdi bütün sırayı dört basamakta görelim.",
       "beats": [
        {
-        "narration": "Önce parantez içindeki işlemler yapılır, içten dışa doğru. Sonra üslü ifadeler hesaplanır.",
+        "narration": "Önce parantez içindeki işlemler yapılır; iç içe parantez varsa en içten başlanır.",
         "show": [
-         "n1",
+         "n1"
+        ],
+        "focus": [
+         "n1"
+        ]
+       },
+       {
+        "narration": "Sonra üslü ifadeler hesaplanır: iki küp sekiz olur.",
+        "show": [
          "n2"
         ],
         "focus": [
-         "n1",
          "n2"
         ]
        },
        {
-        "narration": "Sonra çarpma ve bölme gelir. İkisi aynı önceliktedir: soldan sağa hangisi önce gelirse o yapılır.",
+        "narration": "Sonra çarpma ve bölme gelir. İkisi aynı önceliktedir: soldan sağa, hangisi önce gelirse.",
         "show": [
          "n3"
         ],
@@ -673,7 +1871,7 @@
         ]
        },
        {
-        "narration": "En son toplama ve çıkarma yapılır, yine soldan sağa.",
+        "narration": "En son toplama ve çıkarma yapılır; onlar da soldan sağa.",
         "show": [
          "n4"
         ],
@@ -684,141 +1882,427 @@
       ]
      },
      {
+      "kind": "rule",
+      "title": "Basamak basamak",
+      "items": [
+       "Önce **parantez içi**, içten dışa: $[2 \\cdot (5 - 3)]^2 = 4^2 = 16$.",
+       "Sonra **üslü ifadeler**: $3 + 2^3 = 3 + 8 = 11$.",
+       "**Çarpma ve bölme** soldan sağa: $24 \\div 4 \\cdot 2 = 6 \\cdot 2 = 12$.",
+       "En son **toplama ve çıkarma**, soldan sağa: $10 - 4 + 3 = 9$.",
+       "Kesir çizgisi bir **parantez** gibidir: pay ve payda ayrı ayrı hesaplanır."
+      ],
+      "narration": "Her basamağı bir örnekle görelim. Önce parantez içi, içten dışa: beş eksi üç iki, iki çarpı iki dört, dördün karesi on altı. Sonra üslü ifadeler: üç artı iki küp, üç artı sekiz, on bir. Çarpma ve bölme soldan sağa: yirmi dört bölü dört altı, çarpı iki on iki. En son toplama ve çıkarma, soldan sağa: on eksi dört artı üç, dokuz. Son olarak kesir çizgisi bir parantez gibidir."
+     },
+     {
+      "kind": "example",
+      "title": "Adım adım bir işlem",
+      "example": "Parantez içinde iki küp eksi beş, sonra bölü üç, çarpı beş, artı iki: sonuç yedidir.",
+      "narration": "Parantez içinde iki küp eksi beş, sonra bölü üç, çarpı beş, artı iki: sonuç yedidir. Adım adım bakalım.",
+      "steps": [
+       {
+        "narration": "Parantezin içinde önce üs: iki küp sekiz, eksi beş, üç.",
+        "math": "2^3 - 5 = 8 - 5 = 3",
+        "text": "Parantez içi"
+       },
+       {
+        "narration": "Şimdi soldan sağa: üç bölü üç bir, bir çarpı beş beş.",
+        "math": "3 \\div 3 \\cdot 5 = 1 \\cdot 5 = 5",
+        "text": "**Soldan sağa**"
+       },
+       {
+        "narration": "En son toplama: beş artı iki, yedi.",
+        "math": "5 + 2 = 7",
+        "text": "En son toplama"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Çarpma bölmeden önce değil",
+      "wrong": "Çarpma, bölmeden önce yapılır: $24 \\div 4 \\cdot 2 = 24 \\div 8 = 3$.",
+      "right": "Çarpma ve bölme **eşit önceliklidir**, soldan sağa gidilir: $24 \\div 4 \\cdot 2 = 12$.",
+      "why": "Bölme, tersiyle çarpmaktır: $24 \\cdot \\frac{1}{4} \\cdot 2 = 12$. Sıra yine **soldan sağa**.",
+      "narration": "Ezberden gelen bir hata: çarpmayı bölmeden önce yapmak. Bunu yapan yirmi dört bölü sekiz, üç bulur. Oysa çarpma ve bölme eşit önceliklidir, soldan sağa gidilir: on iki. Bölme, tersiyle çarpmaktır; yirmi dört çarpı dörtte bir çarpı iki yine on iki."
+     },
+     {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
-       "stem": "$18 - 12 \\div 3 \\cdot 2 + 1$ işleminin sonucu kaçtır?",
+       "stem": "$5 + 2 \\cdot (7 - 3)^2 \\div 8$ işleminin sonucu kaçtır?",
        "options": [
-        "5",
+        "4",
         "9",
-        "11",
         "13",
-        "17"
+        "14",
+        "37"
        ],
-       "answer": 2,
-       "narration": "İşlem önceliğini adım adım uygulayalım.",
+       "answer": 1,
+       "narration": "Sırayı basamak basamak uygulayalım.",
        "steps": [
         {
-         "text": "Çarpma ve bölme soldan sağa: önce $12 \\div 3 = 4$, sonra $4 \\cdot 2 = 8$.",
-         "narration": "Parantez ve üslü ifade yok. Çarpma ve bölmeye geçiyoruz, soldan sağa. Önce 12 bölü 3, 4 eder. Sonra 4 çarpı 2, 8 eder."
+         "text": "Parantez: $7 - 3 = 4$. Üs: $4^2 = 16$.",
+         "narration": "Önce parantez: yedi eksi üç, dört. Sonra üs: dördün karesi on altı."
         },
         {
-         "text": "Toplama ve çıkarma: $18 - 8 + 1 = 11$. Cevap **C**.",
-         "narration": "Geriye 18 eksi 8 artı 1 kaldı. Soldan sağa: 10 artı 1, 11. Cevabımız C.",
+         "text": "Soldan sağa: $2 \\cdot 16 = 32$, $32 \\div 8 = 4$.",
+         "narration": "Şimdi soldan sağa: iki çarpı on altı, otuz iki; bölü sekiz, dört."
+        },
+        {
+         "text": "$5 + 4 = 9$. Cevap **B**.",
          "eliminate": [
           "A",
-          "B",
-          "D"
-         ]
-        },
-        {
-         "text": "Tuzak: $3 \\cdot 2$ önce yapılırsa $12 \\div 6 = 2$ ve sonuç 17 çıkar. **Yanlış.**",
-         "narration": "E şıkkındaki 17 bir tuzak. Önce 3 çarpı 2 yapılırsa 12 bölü 6, 2 olur ve sonuç 17 çıkar. Ama bölme solda olduğu için önce o yapılmalı.",
-         "eliminate": [
+          "C",
+          "D",
           "E"
-         ]
+         ],
+         "narration": "En son beş artı dört, dokuz. Cevabımız B. Beş artı ikiyi önce toplayan on dörde, bölmeyi unutan otuz yediye düşer."
         }
        ],
        "origin": {
-        "changes": "Bu ders için yazıldı; havuzdaki işlem önceliği sorularının kalıbı örnek alındı, sayılar özgün."
+        "changes": "Bu ders için yazıldı; havuzdaki işlem önceliği sorularının kalıbı örnek alındı, ifade ve çeldiriciler özgün."
        }
       }
      },
      {
-      "kind": "rule",
-      "title": "Faktöriyel",
-      "items": [
-       "1'den n'ye kadar **pozitif tam sayıların** çarpımı: $n! = 1 \\cdot 2 \\cdot 3 \\cdots n$",
-       "5 faktöriyel $= 120$; $0! = 1$ ve $1! = 1$.",
-       "$n! = n \\cdot (n-1)!$: büyük faktöriyeli küçüğe göre aç.",
-       "Toplama ve çıkarmada **küçük faktöriyel** ortak paranteze alınır.",
-       "$\\frac{9! + 8!}{8!} = \\frac{8!(9 + 1)}{8!} = 10$"
-      ],
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir öğretmen tahtaya $3 + 5 \\cdot x$ işlemini yazıyor ve $x$ yerine bir pozitif tam sayı koyup iki öğrenciden sonucu bulmalarını istiyor. Deniz işlem önceliğini unutup işlemleri soldan sağa yapıyor. Ece ise önce çarpmayı yapıyor. Deniz'in bulduğu sonuç, Ece'nin bulduğu sonuçtan 24 fazla çıkıyor. Buna göre öğretmenin $x$ yerine yazdığı sayı kaçtır?",
+       "options": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+       ],
+       "answer": 4,
+       "narration": "İki öğrencinin yaptığını ayrı ayrı yazalım.",
+       "steps": [
+        {
+         "text": "Ece: önce çarpma → $3 + 5x$.",
+         "narration": "Ece kurala uyuyor: önce beş çarpı x, sonra üç ekliyor. Sonucu üç artı beş x."
+        },
+        {
+         "text": "Deniz: soldan sağa → $(3 + 5) \\cdot x = 8x$.",
+         "narration": "Deniz soldan sağa gidiyor: önce üç artı beş, sekiz; sonra çarpı x. Sonucu sekiz x."
+        },
+        {
+         "text": "$8x - (3 + 5x) = 24$ → $3x - 3 = 24$ → $3x = 27$.",
+         "narration": "Deniz'in sonucu yirmi dört fazla: sekiz x eksi, üç artı beş x, eşittir yirmi dört. Sadeleşince üç x eksi üç eşittir yirmi dört, yani üç x yirmi yedi."
+        },
+        {
+         "text": "$x = 9$. Kontrol: Deniz 72, Ece 48, fark 24. Cevap **E**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "D"
+         ],
+         "narration": "x dokuz. Kontrol edelim: Deniz yetmiş iki, Ece kırk sekiz buluyor; fark yirmi dört. Cevabımız E."
+        }
+       ],
+       "origin": {
+        "changes": "ÖSYM'nin \"bir öğrenci işlemi yanlış yapıp sonucu karşılaştırıyor\" kalıbı (Mehmet ile Selim) örnek alındı; işlem, öğrenciler ve sorulan bilinmeyen özgün."
+       }
+      }
+     }
+    ]
+   },
+   {
+    "subtopic": "MAT_TEMEL_08",
+    "title": "Faktöriyel",
+    "narration": "Son durak faktöriyel. Sayma ve olasılık konularında sürekli karşına çıkacak, o yüzden şimdi sağlam kuralım.",
+    "cards": [
+     {
+      "kind": "concept",
+      "title": "Faktöriyel nedir?",
+      "text": "**n faktöriyel**, 1'den n'ye kadar bütün pozitif tam sayıların çarpımıdır ve $n!$ diye yazılır: $4! = 1 \\cdot 2 \\cdot 3 \\cdot 4 = 24$. **Sıfır faktöriyel** 1 kabul edilir.",
       "visual": {
-       "kind": "formula",
-       "latex": "n! = n \\cdot (n-1)!",
-       "caption": "5! = 5 · 4! = 120"
+       "kind": "table",
+       "header": [
+        "$n$",
+        "$n!$",
+        "Değer"
+       ],
+       "rows": [
+        [
+         "1",
+         "1",
+         "1"
+        ],
+        [
+         "2",
+         "$1 \\cdot 2$",
+         "2"
+        ],
+        [
+         "3",
+         "$1 \\cdot 2 \\cdot 3$",
+         "6"
+        ],
+        [
+         "4",
+         "$1 \\cdot 2 \\cdot 3 \\cdot 4$",
+         "24"
+        ],
+        [
+         "5",
+         "$4! \\cdot 5$",
+         "120"
+        ],
+        [
+         "6",
+         "$5! \\cdot 6$",
+         "720"
+        ]
+       ],
+       "highlightColumn": 2
       },
-      "narration": "n faktöriyel, 1'den n'ye kadar bütün pozitif tam sayıların çarpımıdır. 5 faktöriyel, 1 çarpı 2 çarpı 3 çarpı 4 çarpı 5, yani 120 eder. Sıfır faktöriyel ve 1 faktöriyel 1'dir. En çok kullanacağın özellik şu: n faktöriyel, n çarpı n eksi 1 faktöriyeldir. Toplama ya da çıkarma varsa küçük faktöriyeli ortak paranteze al. Örneğin 9 faktöriyel artı 8 faktöriyel, bölü 8 faktöriyel: 9 faktöriyeli 9 çarpı 8 faktöriyel diye aç, 8 faktöriyeli ortak paranteze al; 9 artı 1, yani 10 kalır."
+      "narration": "n faktöriyel, 1'den n'ye kadar bütün pozitif tam sayıların çarpımıdır; n'nin yanına ünlem koyarak yazarız. Sıfır faktöriyel ise 1 kabul edilir.",
+      "beats": [
+       {
+        "narration": "Bir faktöriyel bir, iki faktöriyel iki, üç faktöriyel altı.",
+        "show": [
+         "r1",
+         "r2",
+         "r3"
+        ],
+        "focus": [
+         "r1",
+         "r2",
+         "r3"
+        ]
+       },
+       {
+        "narration": "Dört faktöriyel, bir çarpı iki çarpı üç çarpı dört, yirmi dört.",
+        "show": [
+         "r4"
+        ],
+        "focus": [
+         "r4"
+        ]
+       },
+       {
+        "narration": "Değerler çok hızlı büyür: beş faktöriyel yüz yirmi, altı faktöriyel yedi yüz yirmi.",
+        "show": [
+         "r5",
+         "r6"
+        ],
+        "focus": [
+         "r5",
+         "r6"
+        ]
+       }
+      ]
+     },
+     {
+      "kind": "rule",
+      "title": "Faktöriyelle işlem",
+      "items": [
+       "**Açma kuralı**: $n! = n \\cdot (n - 1)! = n \\cdot (n - 1) \\cdot (n - 2)!$",
+       "**Bölmede** büyüğü küçüğe kadar aç, sadeleştir: $\\frac{7!}{5!} = 7 \\cdot 6 = 42$.",
+       "**Toplama ve çıkarmada** küçük faktöriyeli ortak paranteze al: $6! - 5! = 5!(6 - 1) = 600$.",
+       "Faktöriyeller **bölünmez, açılır**: $\\frac{6!}{3!} \\neq 2!$.",
+       "$n!$ içinde asal $p$ kaç kez var? $n$'yi $p$'ye art arda böl, **bölümleri topla**."
+      ],
+      "narration": "Faktöriyelde tek bir açma kuralı var: n faktöriyeli, n çarpı n eksi bir faktöriyel diye açmak. Bölmede büyüğü küçüğe kadar aç, sadeleştir: yedi faktöriyel bölü beş faktöriyel, yedi çarpı altı, kırk iki. Toplama ve çıkarmada küçük faktöriyeli ortak paranteze al: altı faktöriyel eksi beş faktöriyel, beş faktöriyel çarpı beş, altı yüz. Faktöriyeller bölünmez, açılır. Son olarak bir asalın kaç kez geçtiğini bulmak için art arda böl, bölümleri topla."
+     },
+     {
+      "kind": "example",
+      "title": "Ortak paranteze al",
+      "example": "Dokuz faktöriyel artı sekiz faktöriyel, bölü sekiz faktöriyel, ona eşittir.",
+      "explanation": "Dokuz faktöriyeli **dokuz çarpı sekiz faktöriyel** diye aç, **ortak paranteze al**: $\\frac{8!(9 + 1)}{8!}$. Sadeleşince **on kalır**.",
+      "narration": "Dokuz faktöriyel artı sekiz faktöriyel, bölü sekiz faktöriyel, ona eşittir. Dokuz faktöriyeli dokuz çarpı sekiz faktöriyel diye aç. Paydaki sekiz faktöriyeli ortak paranteze al: dokuz artı bir. Sekiz faktöriyeller sadeleşir, on kalır."
+     },
+     {
+      "kind": "example",
+      "title": "Sondaki sıfırlar",
+      "example": "Yirmi beş faktöriyelin sonunda **altı tane sıfır** vardır.",
+      "narration": "Yirmi beş faktöriyelin sonunda altı tane sıfır vardır.",
+      "steps": [
+       {
+        "narration": "Her sıfır bir on demektir, her on de bir iki ile bir beşten oluşur.",
+        "math": "10 = 2 \\cdot 5",
+        "text": "Her sıfır **bir on**"
+       },
+       {
+        "narration": "İki çarpanı bol, beşleri sayalım: yirmi beş bölü beş, beş.",
+        "math": "25 \\div 5 = 5",
+        "text": "2 **çarpanı bol**: 5'leri say"
+       },
+       {
+        "narration": "Beş bölü beş, bir. Toplam altı.",
+        "math": "5 \\div 5 = 1, \\quad 5 + 1 = 6",
+        "text": "**6 sıfır**"
+       }
+      ]
+     },
+     {
+      "kind": "mistake",
+      "title": "Faktöriyeli bölme",
+      "wrong": "$\\frac{6!}{3!} = 2!$ olur, çünkü $6 \\div 3 = 2$.",
+      "right": "Faktöriyeller açılır, bölünmez: $\\frac{6!}{3!} = 6 \\cdot 5 \\cdot 4 = 120$.",
+      "why": "Kontrol et: $6! = 720$, $3! = 6$ ve $720 \\div 6 = 120$; $2!$ ise yalnız 2.",
+      "narration": "Bir tuzak daha: altı faktöriyel bölü üç faktöriyeli iki faktöriyel sanmak. Faktöriyeller açılır, bölünmez: altı faktöriyeli üç faktöriyele kadar aç, altı çarpı beş çarpı dört, yüz yirmi. Kontrol et: yedi yüz yirmi bölü altı, yüz yirmi. İki faktöriyel ise yalnız iki."
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "TYT tarzı",
+       "stem": "$\\frac{8! - 7!}{6!}$ işleminin sonucu kaçtır?",
+       "options": [
+        "7",
+        "8",
+        "42",
+        "49",
+        "56"
+       ],
+       "answer": 3,
+       "narration": "Çıkarma var; küçük faktöriyeli ortak paranteze alalım.",
+       "steps": [
+        {
+         "text": "$8! = 8 \\cdot 7!$ → $8! - 7! = 7!(8 - 1) = 7 \\cdot 7!$.",
+         "narration": "Paydaki küçük faktöriyel yedi faktöriyel. Sekiz faktöriyel, sekiz çarpı yedi faktöriyeldir. Ortak paranteze alınca yedi faktöriyel çarpı yedi kalır."
+        },
+        {
+         "text": "$\\frac{7 \\cdot 7!}{6!} = 7 \\cdot 7 = 49$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "narration": "Yedi faktöriyel bölü altı faktöriyel, yedidir. Yedi çarpı yedi, kırk dokuz. Cevabımız D. Çıkarmayı görmezden gelip yalnız sekiz faktöriyeli bölen elli altıya düşer."
+        }
+       ],
+       "origin": {
+        "changes": "MEB konu anlatımındaki ortak paranteze alma örneği özgün bir ifadeyle soruldu."
+       }
+      }
+     },
+     {
+      "kind": "question",
+      "question": {
+       "style": "ÖSYM tarzı",
+       "stem": "Bir bilgisayar programı, girilen $n$ pozitif tam sayısı için $n!$ sayısını hesaplıyor ve bu sayının sonunda kaç tane sıfır olduğunu ekrana yazıyor. Bir öğrenci programa farklı sayılar giriyor ve her seferinde ekranda 2 yazısını görüyor. Buna göre öğrencinin girdiği sayıların toplamı **en çok** kaçtır?",
+       "options": [
+        "10",
+        "46",
+        "50",
+        "60",
+        "75"
+       ],
+       "answer": 3,
+       "narration": "Son soru. Sondaki sıfırları beş çarpanlarıyla sayacağız.",
+       "steps": [
+        {
+         "text": "Sondaki sıfır sayısı = içindeki **5 çarpanı** sayısı; 2 çarpanı her zaman daha bol.",
+         "narration": "Sondaki her sıfır bir on, her on bir iki ve bir beş ister. İki çarpanı hep daha bol olduğu için beşleri saymak yeter."
+        },
+        {
+         "text": "$5!$'den $9!$'a kadar bir tane 5 → bir sıfır. $10!$: 5 ve 10 → **iki** sıfır.",
+         "narration": "Beş faktöriyelden dokuz faktöriyele kadar yalnız bir beş var. On faktöriyelde beş ve on gelir: iki beş, iki sıfır."
+        },
+        {
+         "text": "$11!$, $12!$, $13!$, $14!$: yeni 5 yok, hâlâ iki. $15!$: üç.",
+         "narration": "On bir, on iki, on üç ve on dört faktöriyelde yeni beş çarpanı yok, sıfır sayısı hâlâ iki. On beşte üçüncü beş gelir."
+        },
+        {
+         "text": "$10 + 11 + 12 + 13 + 14 = 60$. Cevap **D**.",
+         "eliminate": [
+          "A",
+          "B",
+          "C",
+          "E"
+         ],
+         "narration": "Ekranda iki yazdıran sayılar ondan on dörde beş sayı; toplamları altmış. Cevabımız D. On beşi de katan yetmiş beşe düşer."
+        }
+       ],
+       "origin": {
+        "changes": "MEB konu anlatımındaki \"n! içinde asal çarpan sayısı\" kuralı ve ÖSYM'nin bağlamlı tanım yaklaşımı örnek alındı; program bağlamı ve sorulan toplam özgün."
+       }
+      }
      }
     ]
    }
   ],
   "summary": {
    "points": [
-    "$\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}$; kök tam çıkıyorsa sayı **rasyoneldir**.",
-    "Negatif sayının **çift kuvveti pozitif**, tek kuvveti negatiftir.",
-    "Çarpımın tek olması için **bütün çarpanlar tek** olmalı.",
-    "Ardışık sayıda terim sayısı $\\frac{\\text{son} - \\text{ilk}}{\\text{artış}} + 1$.",
+    "$\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}$; önce değeri hesapla: **kök tam çıkıyorsa** sayı rasyoneldir.",
+    "Çarpma ve bölmede **aynı işaret artı**, ters işaret eksi; negatifin çift kuvveti pozitiftir.",
+    "Sayı doğrusunda **sağdaki büyüktür**; $0 < x < 1$ ise $x^2 < x$.",
+    "Çarpım tekse **bütün çarpanlar tek**; belli olmayan harfte **iki durumu dene**.",
+    "Terim sayısı $= \\frac{\\text{son} - \\text{ilk}}{\\text{ortak fark}} + 1$.",
     "**1 asal değildir**; ardışık sayılar aralarında asaldır.",
-    "Çarpma ve bölme **soldan sağa**; faktöriyelde küçüğü ortak paranteze al."
+    "Parantez, üs, **çarpma-bölme soldan sağa**, en son toplama-çıkarma.",
+    "$n! = n \\cdot (n - 1)!$; toplamada **küçük faktöriyeli** ortak paranteze al."
    ],
    "warnings": [
-    "$\\frac{22}{7}$ rasyoneldir, pi değildir.",
-    "$-a$ her zaman negatif değildir.",
-    "Sıfır **çift** sayıdır, işaretsizdir.",
-    "$12 \\div 3 \\cdot 2 = 8$, 2 değil."
+    "$\\frac{22}{7}$ rasyoneldir; $\\pi$ değildir.",
+    "$-3^2 = -9$, $(-3)^2 = 9$.",
+    "$a \\cdot b$ çift ise ikisinin birden çift olması gerekmez.",
+    "$24 \\div 4 \\cdot 2 = 12$, 3 değil."
    ],
-   "narration": "Hadi toparlayalım. Sayı kümeleri iç içedir; kök tam çıkıyorsa sayı rasyoneldir. Negatif bir sayının çift kuvveti pozitif, tek kuvveti negatiftir. Bir çarpımın tek olması için bütün çarpanlar tek olmalı. Ardışık sayılarda terim sayısı, sondan ilki çıkarıp artışa bölüp 1 ekleyerek bulunur. 1 asal değildir, ardışık sayılar ise her zaman aralarında asaldır. Çarpma ve bölme soldan sağa yapılır; faktöriyelde de küçük olanı ortak paranteze alırsın."
+   "narration": "Hadi toparlayalım. Sayı kümeleri iç içedir; bir sayıyı sınıflamadan önce değerini hesapla. Çarpma ve bölmede aynı işaret artı, ters işaret eksi verir. Sayı doğrusunda sağdaki sayı büyüktür. Çarpım tekse bütün çarpanlar tektir; belli olmayan harf için iki durumu dene. Ardışık sayılarda atlamaları sayıp bir eklersin. Bir asal değildir, ardışık sayılar aralarında asaldır. İşlemde önce parantez, sonra üs, sonra soldan sağa çarpma ve bölme gelir. Faktöriyelde de büyüğü küçüğe kadar açarsın."
   }
  },
  "short": {
-  "hook": "Üç soruda temel kavramlar.",
+  "hook": "Sıfır seni şaşırtacak.",
+  "rounds": [
+   {
+    "sentence": "$0 \\div 5$",
+    "question": "Tanımsız mı?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "Sonuç **0**; tanımsız olan 5 bölü 0."
+   },
+   {
+    "sentence": "**Sıfır** sayısı",
+    "question": "Tek mi, çift mi?",
+    "choices": [
+     "Tek",
+     "Çift"
+    ],
+    "answer": 1,
+    "why": "2'ye **kalansız** bölünür."
+   },
+   {
+    "sentence": "$24 \\div 4 \\cdot 2$",
+    "question": "Sonuç 3 mü?",
+    "choices": [
+     "Evet",
+     "Hayır"
+    ],
+    "answer": 1,
+    "why": "Soldan sağa: **12**."
+   }
+  ],
   "cards": [
    {
-    "kind": "term",
-    "term": "Asal sayı",
-    "definition": "**1'den büyük**, yalnız 1'e ve kendisine bölünen sayı."
-   },
-   {
     "kind": "warning",
-    "text": "Bir **çift** çarpan, çarpımı çift yapar."
-   },
-   {
-    "kind": "warning",
-    "text": "$\\frac{22}{7}$ **rasyoneldir**."
+    "text": "$0 \\div 5 = 0$, ama $5 \\div 0$ **tanımsız**."
    },
    {
     "kind": "fact",
     "text": "**Sıfır** çift sayıdır."
+   },
+   {
+    "kind": "warning",
+    "text": "Çarpma ve bölme **soldan sağa**."
+   },
+   {
+    "kind": "term",
+    "term": "Asal sayı",
+    "definition": "**1'den büyük**, yalnız 1'e ve kendisine bölünen sayı."
    }
   ],
   "summary": [
-   "1 asal değildir",
-   "Bir çift çarpan yeter",
-   "Kesir rasyoneldir"
-  ],
-  "rounds": [
-   {
-    "sentence": "**1** sayısı",
-    "question": "Asal mı?",
-    "choices": [
-     "Evet",
-     "Hayır"
-    ],
-    "answer": 1,
-    "why": "Asal **1'den büyüktür**."
-   },
-   {
-    "sentence": "Tek çarpı tek çarpı **çift**",
-    "question": "Sonuç tek mi?",
-    "choices": [
-     "Evet",
-     "Hayır"
-    ],
-    "answer": 1,
-    "why": "Bir çift yeter: **çift**."
-   },
-   {
-    "sentence": "22/7",
-    "question": "İrrasyonel mi?",
-    "choices": [
-     "Evet",
-     "Hayır"
-    ],
-    "answer": 1,
-    "why": "Kesir: **rasyonel**."
-   }
+   "Sayı bölü 0 tanımsız",
+   "Sıfır çifttir",
+   "Çarpma-bölme soldan sağa"
   ]
  },
  "camp": {

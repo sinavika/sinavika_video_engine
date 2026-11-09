@@ -9,6 +9,7 @@ import {LANGUAGE_VISUALS} from './Language/LanguageSchema';
 import {LITERATURE_VISUALS} from './Literature/LiteratureSchema';
 import {LOGIC_VISUALS} from './Logic/LogicSchema';
 import {MATHEMATICS_VISUALS, ParameterName} from './Mathematics/MathematicsSchema';
+import {longDivisionRounds, primeLadder} from './Mathematics/MathWork';
 import {PHILOSOPHY_VISUALS} from './Philosophy/PhilosophySchema';
 import {DYNAMICS_STAGES, INDUCTION_STAGES, PHYSICS_VISUALS} from './Physics/PhysicsSchema';
 import {PROCESS_CATALOG, processParts} from './Processes/ProcessCatalog';
@@ -38,7 +39,7 @@ const Fraction = z.number().min(0).max(1);
  * "angle-A"; forces by label; flow and cycle steps n1…; timeline events e1…; periods p1… and their marks m1…;
  * map highlights and markers by name; sentence word tiles w1… and links l1…;
  * paragraph sentences s1… and `topic`; concept map branches n1…; comparison columns c1… and their
- * items c1-1…; table rows r1… and columns col1….
+ * items c1-1…; table rows r1…, columns col1… and cells r1c1….
  */
 export const VisualBeatSchema = z.object({
 	narration: z.string().trim().min(1).max(700),
@@ -165,6 +166,12 @@ export const visualStages = (visual: CourseVisual): readonly string[] | null => 
 			return visual.stages.map((stage) => stage.title);
 		case 'equation':
 			return visual.steps.map((step, index) => step.operation ?? `Adım ${index + 1}`);
+		case 'longDivision':
+			return [...longDivisionRounds(visual.dividend, visual.divisor).rounds.map((_, index) => `${index + 1}. adım`), ...(visual.check ? ['Sağlama'] : [])];
+		case 'primeLadder':
+			return [...primeLadder(visual.numbers).rows.map((row) => `÷ ${row.prime}`), ...(visual.show === 'none' ? [] : ['Sonuç'])];
+		case 'slots':
+			return [...(visual.order ?? visual.slots.map((_, index) => index)).map((index) => visual.slots[index].label ?? `${index + 1}. kutu`), 'Sonuç'];
 		case 'dynamics':
 			return DYNAMICS_STAGES;
 		case 'induction':
@@ -194,7 +201,11 @@ export const numberedPartNames = (visual: CourseVisual): string[] | null => {
 		case 'comparison':
 			return visual.columns.flatMap((column, index) => [`c${index + 1}`, ...count(`c${index + 1}-`, column.items.length)]);
 		case 'table':
-			return [...count('r', visual.rows.length), ...count('col', Math.max(visual.header.length, ...visual.rows.map((row) => row.length)))];
+			return [
+				...count('r', visual.rows.length),
+				...count('col', Math.max(visual.header.length, ...visual.rows.map((row) => row.length))),
+				...visual.rows.flatMap((row, rowIndex) => row.map((_, column) => `r${rowIndex + 1}c${column + 1}`)),
+			];
 		case 'flow':
 		case 'cycle':
 			return count('n', visual.nodes.length);
@@ -318,8 +329,35 @@ export const numberedPartNames = (visual: CourseVisual): string[] | null => {
 			return visual.mode === 'diffusion' ? ['tube', 'fronts', 'meet', 'run'] : ['container', 'particles', 'gauges'];
 		case 'numberLine':
 			return [...count('i', visual.intervals.length), ...count('p', visual.points.length)];
+		case 'plot':
+			return [
+				...count('c', visual.curves.length),
+				...count('p', visual.points.length),
+				...count('s', visual.segments.length),
+				...count('z', visual.regions.length),
+				...count('b', visual.series?.kind === 'bars' ? visual.series.values.length : 0),
+				...(visual.tangent ? ['tangent'] : []),
+				...(visual.area ? ['area'] : []),
+				...(visual.approach ? ['approach'] : []),
+			];
 		case 'pie':
 			return count('p', visual.slices.length);
+		case 'signTable':
+			return ['x', ...count('f', visual.factors.length), 'result', 'solution', ...count('i', visual.points.length + 1)];
+		case 'longDivision':
+			return ['quotient', 'remainder', 'check'];
+		case 'primeLadder':
+			return [...count('r', primeLadder(visual.numbers).rows.length), 'ebob', 'ekok', 'powers'];
+		case 'barModel':
+			return [...count('b', visual.bars.length), ...visual.bars.flatMap((bar, index) => count(`b${index + 1}-`, bar.pieces.length)), ...count('k', visual.braces.length)];
+		case 'slots':
+			return [...count('k', visual.slots.length), 'result'];
+		case 'areaModel':
+			return ['rows', 'columns', 'total', ...visual.rows.flatMap((_, row) => visual.columns.map((__, column) => `r${row + 1}c${column + 1}`))];
+		case 'sampleSpace':
+			return ['grid', ...count('e', visual.events.length), ...count('p', visual.events.length)];
+		case 'mapping':
+			return ['domain', 'codomain', 'properties', ...count('a', visual.arrows.length)];
 		case 'assembly':
 			return [...count('g', visual.groups.length), ...(visual.head ? ['head'] : [])];
 		case 'kinship':

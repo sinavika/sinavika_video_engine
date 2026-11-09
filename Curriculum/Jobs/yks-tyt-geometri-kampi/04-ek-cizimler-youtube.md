@@ -1,6 +1,6 @@
 # YouTube metni: TYT Geometri kampı · Ders 4 · Ek Çizimler
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Geometri/04_Ek_Cizimler/Ek_Cizimler_YouTube.mp4` (4K) · Kapak: `Ek_Cizimler_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Geometri/04_Ek_Cizimler/Ek_Cizimler_YouTube.mp4` (4K) · Kapak: `Ek_Cizimler_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

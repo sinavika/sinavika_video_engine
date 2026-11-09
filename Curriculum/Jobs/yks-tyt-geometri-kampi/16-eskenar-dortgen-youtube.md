@@ -1,6 +1,6 @@
 # YouTube metni: TYT Geometri kampı · Ders 16 · Eşkenar Dörtgen
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Geometri/16_Eskenar_Dortgen/Eskenar_Dortgen_YouTube.mp4` (4K) · Kapak: `Eskenar_Dortgen_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Geometri/16_Eskenar_Dortgen/Eskenar_Dortgen_YouTube.mp4` (4K) · Kapak: `Eskenar_Dortgen_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

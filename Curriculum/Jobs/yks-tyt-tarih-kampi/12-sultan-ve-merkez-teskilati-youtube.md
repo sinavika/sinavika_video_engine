@@ -1,6 +1,6 @@
 # YouTube metni: TYT Tarih kampı · Ders 12 · Sultan ve Osmanlı Merkez Teşkilatı
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Tarih/12_Sultan_ve_Merkez_Teskilati/Sultan_ve_Merkez_Teskilati_YouTube.mp4` (4K) · Kapak: `Sultan_ve_Merkez_Teskilati_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Tarih/12_Sultan_ve_Merkez_Teskilati/Sultan_ve_Merkez_Teskilati_YouTube.mp4` (4K) · Kapak: `Sultan_ve_Merkez_Teskilati_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

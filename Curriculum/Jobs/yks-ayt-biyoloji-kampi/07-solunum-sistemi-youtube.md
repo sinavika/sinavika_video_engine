@@ -1,6 +1,6 @@
 # YouTube metni: AYT Biyoloji kampı · Ders 7 · Solunum Sistemi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Biyoloji/07_Solunum_Sistemi/Solunum_Sistemi_YouTube.mp4` (4K) · Kapak: `Solunum_Sistemi_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Biyoloji/07_Solunum_Sistemi/Solunum_Sistemi_YouTube.mp4` (4K) · Kapak: `Solunum_Sistemi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

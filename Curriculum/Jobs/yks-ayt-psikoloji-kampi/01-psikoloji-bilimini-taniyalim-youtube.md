@@ -1,6 +1,6 @@
 # YouTube metni: AYT Psikoloji kampı · Ders 1 · Psikoloji Bilimini Tanıyalım
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Psikoloji/01_Psikoloji_Bilimini_Taniyalim/Psikoloji_Bilimini_Taniyalim_YouTube.mp4` (4K) · Kapak: `Psikoloji_Bilimini_Taniyalim_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Psikoloji/01_Psikoloji_Bilimini_Taniyalim/Psikoloji_Bilimini_Taniyalim_YouTube.mp4` (4K) · Kapak: `Psikoloji_Bilimini_Taniyalim_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

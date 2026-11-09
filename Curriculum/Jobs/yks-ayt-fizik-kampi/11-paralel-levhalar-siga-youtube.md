@@ -1,6 +1,6 @@
 # YouTube metni: AYT Fizik kampı · Ders 11 · Paralel Levhalar ve Sığa
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Fizik/11_Paralel_Levhalar_Siga/Paralel_Levhalar_Siga_YouTube.mp4` (4K) · Kapak: `Paralel_Levhalar_Siga_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Fizik/11_Paralel_Levhalar_Siga/Paralel_Levhalar_Siga_YouTube.mp4` (4K) · Kapak: `Paralel_Levhalar_Siga_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

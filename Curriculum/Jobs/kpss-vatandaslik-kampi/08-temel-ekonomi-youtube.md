@@ -1,6 +1,6 @@
 # YouTube metni: KPSS Vatandaşlık kampı · Ders 8 · Temel Ekonomi Bilgisi
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/KPSS/Vatandaslik/08_TemelEkonomi/TemelEkonomi_YouTube.mp4` (4K) · Kapak: `TemelEkonomi_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/KPSS/Vatandaslik/08_TemelEkonomi/TemelEkonomi_YouTube.mp4` (4K) · Kapak: `TemelEkonomi_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

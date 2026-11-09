@@ -1,6 +1,6 @@
 # YouTube metni: TYT Geometri kampı · Ders 8 · Üçgende Eşlik – Benzerlik
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/TYT/Geometri/08_Eslik_Benzerlik/Eslik_Benzerlik_YouTube.mp4` (4K) · Kapak: `Eslik_Benzerlik_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/TYT/Geometri/08_Eslik_Benzerlik/Eslik_Benzerlik_YouTube.mp4` (4K) · Kapak: `Eslik_Benzerlik_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 

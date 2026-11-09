@@ -1,6 +1,6 @@
 # YouTube metni: AYT Fizik kampı · Ders 7 · İş, Güç ve Enerji
 
-Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Videos/YKS/AYT/Fizik/07_Is_Guc_Enerji/Is_Guc_Enerji_YouTube.mp4` (4K) · Kapak: `Is_Guc_Enerji_YouTube_Kapak.png` (kamp kapağı).
+Video: henüz render edilmedi (sahibin komutuyla). Render sonrası yeri: `Outputs/Camps/YKS/AYT/Fizik/07_Is_Guc_Enerji/Is_Guc_Enerji_YouTube.mp4` (4K) · Kapak: `Is_Guc_Enerji_YouTube_Kapak.png` (kamp kapağı).
 
 ## Başlık (A/B testi, yalnız başlık; kapak serinin kapağı olarak sabit)
 
