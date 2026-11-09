@@ -71,6 +71,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Analitik Geometri nedir?",
+      "text": "**Analitik geometri**, şekilleri çizimle değil **koordinatlarla** ve **denklemlerle** inceler. Her nokta bir $(x, y)$ sayı çiftidir, doğru ise bir denklemdir. Böylece uzaklık, eğim, kesişim gibi geometri soruları işleme dönüşür. TYT'de her yıl bu konudan 1-2 soru gelir. Günlük hayatta harita koordinatları ve navigasyon aynı fikre dayanır.\n\nBu bölümün konusu **iki nokta arası uzaklık, orta nokta, ağırlık merkezi ve simetri**. Fikir basit: $(0, 0)$'dan $(3, 4)$'e gitmek için $3$ birim sağa, $4$ birim yukarı çıkarsın; bu iki hareket bir dik üçgenin dik kenarlarıdır ve doğrudan yol $\\sqrt{9 + 16} = 5$ birimdir. Orta nokta ise iki ucun ortalamasıdır: $(0, 0)$ ile $(6, 8)$'in ortası $(3, 4)$'tür."
+     },
+     {
       "kind": "visual",
       "title": "Hipotenüs ve ortalama",
       "visual": {
@@ -169,6 +174,18 @@
        "Negatif koordinatta işarete dikkat: $5 - (-1) = 6$"
       ],
       "narration": "Uzaklık formülünde iki farkı dik kenar, uzaklığı hipotenüs say. Farkların karesi alındığı için $x_2 - x_1$ yazmakla $x_1 - x_2$ yazmak sonucu değiştirmez; asıl tehlike işaret hatasıdır. Orta nokta ve ağırlık merkezi ortalamadır: iki nokta için ikiye, üç köşe için üçe bölersin. Orta noktası ve bir ucu verilen doğru parçasının öbür ucunu $B = 2M - A$ ile hemen bulursun; çünkü $A$'dan $M$'ye giden adımı bir kez daha atarsın."
+     },
+     {
+      "kind": "example",
+      "title": "Uzaklık ve orta nokta",
+      "example": "$A(0, -1)$ ve $B(5, 11)$ noktaları arasındaki uzaklığı ve $[AB]$'nin orta noktasını bul.",
+      "explanation": "1) Farkları yaz: $\\Delta x = 5 - 0 = 5$, $\\Delta y = 11 - (-1) = 12$. 2) Dik kenarları $5$ ve $12$ olan üçgenin hipotenüsü: $\\sqrt{25 + 144} = \\sqrt{169} = 13$. 3) Orta nokta koordinatların ortalamasıdır: $x = \\frac{0 + 5}{2} = 2{,}5$, $y = \\frac{-1 + 11}{2} = 5$. Orta nokta $M(2{,}5;\\ 5)$."
+     },
+     {
+      "kind": "example",
+      "title": "Uç nokta ve uzaklık",
+      "example": "$A(-2, 4)$ noktası ile $[AB]$'nin orta noktası $M(3, -1)$ verilmiştir. $B$ noktasını ve $|AB|$ uzunluğunu bul.",
+      "explanation": "1) $M$, $[AB]$'nin orta noktasıdır: $B = 2M - A$. 2) $x$: $2 \\cdot 3 - (-2) = 8$; $y$: $2 \\cdot (-1) - 4 = -6$. Yani $B(8, -6)$. 3) Farkları yaz: $\\Delta x = 8 - (-2) = 10$, $\\Delta y = -6 - 4 = -10$. 4) $|AB| = \\sqrt{10^2 + (-10)^2} = \\sqrt{200} = 10\\sqrt{2}$. Negatif farkın karesi pozitiftir; işaret yalnız çıkarma aşamasında önemlidir."
      },
      {
       "kind": "blank",
@@ -473,6 +490,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Eğim nedir?",
+      "text": "**Eğim**, bir doğrunun ne kadar dik olduğunu ve hangi yöne gittiğini söyleyen sayıdır. Bir merdivende her adımda $2$ birim ilerleyip $1$ birim yükseliyorsan eğim $\\frac{1}{2}$'dir; $1$ birim ilerleyip $3$ birim yükselirsen eğim $3$'tür, yani merdiven daha diktir. Eğim $=\\frac{\\text{yükseliş}}{\\text{ilerleme}}$.\n\nSağa doğru alçalan doğruda yükseliş negatif olduğundan eğim de negatif çıkar. Bu bölümde eğimi iki noktadan ve açıdan bulacak, üç noktanın aynı doğru üzerinde olup olmadığını (doğrusallık) eğimlerin eşitliğiyle sınayacaksın."
+     },
+     {
       "kind": "visual",
       "title": "Yükseliş ve ilerleme oranı",
       "visual": {
@@ -606,6 +628,18 @@
        }
       ],
       "explanation": "$A(1, 5)$, $B(3, 1)$ için $m = \\frac{1 - 5}{3 - 1} = -2$. Yatay doğrularda eğim $0$, dikey doğrularda tanımsızdır."
+     },
+     {
+      "kind": "example",
+      "title": "İki noktadan eğim",
+      "example": "$A(2, 1)$ ve $B(5, 10)$ noktalarından geçen doğrunun eğimini bul.",
+      "explanation": "1) Eğim yükselişin ilerlemeye oranıdır: önce $y$ farkını yaz, $\\Delta y = 10 - 1 = 9$. 2) Sonra $x$ farkını yaz, $\\Delta x = 5 - 2 = 3$. 3) Oranla: $m = \\frac{9}{3} = 3$. Pozitif çıktı, çünkü doğru sağa doğru yükseliyor. Noktaları ters sırayla alsaydın da ($\\frac{1 - 10}{2 - 5}$) aynı sonuç çıkardı."
+     },
+     {
+      "kind": "example",
+      "title": "Açıdan eğim",
+      "example": "$x$ ekseniyle pozitif yönde $135°$ açı yapan doğru $A(2, 5)$ ve $B(6, b)$ noktalarından geçiyor. $b$ kaçtır?",
+      "explanation": "1) Eğim açının tanjantıdır: $m = \\tan 135° = -1$ (doğru sağa doğru alçalır). 2) Eğimi iki noktadan yaz: $m = \\frac{b - 5}{6 - 2} = \\frac{b - 5}{4}$. 3) Bunu $-1$'e eşitle: $\\frac{b - 5}{4} = -1$. 4) $b - 5 = -4$, yani $b = 1$. Kontrol: $A$'dan $B$'ye $4$ birim sağa gidince $4$ birim aşağı iniyor, eğim $-1$ ✓."
      },
      {
       "kind": "question",
@@ -755,6 +789,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Doğru denklemi nedir?",
+      "text": "Bir **doğru denklemi**, doğru üzerindeki her noktanın sağladığı kuraldır. $y = 2x$ kuralında $x = 1$ iken $y = 2$, $x = 2$ iken $y = 4$ olur: $(1, 2)$ ve $(2, 4)$ doğrunun üzerindedir, $(1, 3)$ değildir. Bir doğruyu belirlemek için eğimini ve bir noktasını bilmek yeter.\n\nDoğru koordinat eksenlerini keserse, iki kesim noktası ve orijin bir **dik üçgen** oluşturur; bu üçgenin alanı sınavda sık sorulur. Bu bölümde doğru denkleminin biçimlerini, genel biçimden eğimi ve eksenlerle oluşan üçgenin alanını öğreneceksin."
+     },
+     {
       "kind": "visual",
       "title": "y = mx + n",
       "visual": {
@@ -876,6 +915,17 @@
       "narration": "Kesim biçimi $\\frac{x}{a} + \\frac{y}{b} = 1$, doğrunun eksenleri $(a, 0)$ ve $(0, b)$ noktalarında kestiğini doğrudan gösterir. Genel biçim $ax + by + c = 0$ ise en sık karşına çıkan biçimdir. Bu iki biçimdeki $a$ ve $b$ harfleri aynı anlamda değildir; karıştırma. Genel biçimde eğimi bulmak için denklemi $y$ için çöz: $by = -ax - c$, yani $y = -\\frac{a}{b}x - \\frac{c}{b}$. Buradan eğim $-\\frac{a}{b}$ olur."
      },
      {
+      "kind": "predict",
+      "title": "Yatay doğru",
+      "prompt": "$y = 5$ doğrusu $x$ eksenine paraleldir ve eğimi $0$'dır. Bu ifade doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$y = 5$ doğrusunda her noktanın $y$ değeri $5$'tir, yani $\\Delta y = 0$. Bu yüzden doğru yataydır, $x$ eksenine paraleldir ve eğimi $0$'dır."
+     },
+     {
       "kind": "rule",
       "title": "Genel biçim ve eksenlerle üçgen",
       "items": [
@@ -887,6 +937,18 @@
        "Bir nokta doğrunun üzerindeyse koordinatları denklemi sağlar."
       ],
       "narration": "Eksenlerle oluşan üçgenin dik kenarları, doğrunun eksenleri kestiği noktaların orijine uzaklıklarıdır. Bu yüzden alan, kesimlerin mutlak değerlerinin çarpımının yarısıdır. Örnek: $2x + 3y - 12 = 0$ için $x$ kesimi $6$, $y$ kesimi $4$'tür; alan $\\frac{6 \\cdot 4}{2} = 12$. Genel biçim formülüyle de aynı sonuç çıkar: $\\frac{144}{2 \\cdot 6} = 12$."
+     },
+     {
+      "kind": "example",
+      "title": "İki noktadan doğru denklemi",
+      "example": "$A(1, 5)$ ve $B(3, 1)$ noktalarından geçen doğrunun denklemini $y = mx + n$ biçiminde yaz.",
+      "explanation": "1) Önce eğimi bul: $m = \\frac{1 - 5}{3 - 1} = \\frac{-4}{2} = -2$. 2) Noktalardan birini nokta–eğim kalıbına koy: $y - 5 = -2(x - 1)$. 3) Parantezi aç: $y - 5 = -2x + 2$. 4) $5$'i karşıya geçir: $y = -2x + 7$. Kontrol: $B(3, 1)$ için $-6 + 7 = 1$ ✓."
+     },
+     {
+      "kind": "example",
+      "title": "Genel biçimde eğim ve alan",
+      "example": "$4x + 3y - 12 = 0$ doğrusunun eğimini ve koordinat eksenleriyle oluşturduğu üçgenin alanını bul.",
+      "explanation": "1) Eğim: $a = 4$, $b = 3$ olduğundan $m = -\\frac{a}{b} = -\\frac{4}{3}$. 2) $x = 0$ verirsen $3y = 12$, $y = 4$: doğru $(0, 4)$'ten geçer. 3) $y = 0$ verirsen $4x = 12$, $x = 3$: doğru $(3, 0)$'dan geçer. 4) Eksenlerle oluşan üçgen dik üçgendir, dik kenarlar $3$ ve $4$'tür. 5) Alan $= \\frac{3 \\cdot 4}{2} = 6$. Kontrol: $\\frac{c^2}{2|ab|} = \\frac{144}{2 \\cdot 12} = 6$ ✓."
      },
      {
       "kind": "blank",
@@ -1085,6 +1147,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "İki doğrunun durumu ve uzaklık",
+      "text": "Düzlemde iki doğru ya **kesişir** (tek ortak nokta), ya **paraleldir** (hiç ortak nokta yok) ya da **çakışıktır** (sonsuz ortak nokta). Kesişirken dik açı yapıyorlarsa **dik** doğrulardır. Bunu eğimler söyler: eşit eğim paralellik, çarpımı $-1$ olan eğimler diklik demektir.\n\nBasit bir örnek: $y = 1$ ve $y = 4$ yatay doğrulardır, paraleldir ve aralarındaki uzaklık $3$ birimdir. $x = 2$ dikey doğrusu ise bunların ikisine de diktir ve $y = 1$'i $(2, 1)$ noktasında keser. Kesişim noktası iki denklemi birlikte sağlayan noktadır. Bir noktanın doğruya uzaklığı ise o noktadan doğruya inen dikmenin uzunluğudur. Bu bölümde paralellik ve diklik koşullarını, kesişim noktasını ve uzaklık formüllerini öğreneceksin."
+     },
+     {
       "kind": "visual",
       "title": "Eğimler çarpımı −1",
       "visual": {
@@ -1175,6 +1242,12 @@
       "title": "Kesişim noktası",
       "example": "$y = 2x - 1$ ve $x + y = 8$ doğrularının kesişim noktasını bul.",
       "explanation": "Kesişim noktasında iki denklemin $y$ değerleri eşittir: $2x - 1 = 8 - x$. Buradan $3x = 9$, $x = 3$. $y = 2 \\cdot 3 - 1 = 5$. Kesişim noktası $(3, 5)$. Kontrol: $3 + 5 = 8$ ✓."
+     },
+     {
+      "kind": "example",
+      "title": "Dik doğrunun denklemi",
+      "example": "$A(1, 2)$ noktasından geçen ve $2x - y + 3 = 0$ doğrusuna dik olan doğrunun denklemini yaz.",
+      "explanation": "1) Verilen doğrunun eğimini bul: $y = 2x + 3$ olduğundan $m_1 = 2$. 2) Dik doğrularda $m_1 \\cdot m_2 = -1$ olduğundan $m_2 = -\\frac{1}{2}$. 3) $A(1, 2)$ noktasını nokta–eğim kalıbına koy: $y - 2 = -\\frac{1}{2}(x - 1)$. 4) Her iki tarafı $2$ ile çarp: $2y - 4 = -x + 1$. 5) Düzenle: $x + 2y - 5 = 0$. Kontrol: $A(1, 2)$ için $1 + 4 - 5 = 0$ ✓."
      },
      {
       "kind": "predict",

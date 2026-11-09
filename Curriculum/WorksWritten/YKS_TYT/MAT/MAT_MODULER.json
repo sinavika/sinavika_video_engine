@@ -66,6 +66,16 @@
     "title": "Mod kavramı ve kalan sınıfları",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Modüler Aritmetik nedir?",
+      "text": "Modüler aritmetik, sayıların büyüklüğüyle değil **kalanlarıyla** ilgilenen matematiktir. Saat bunun en bilinen örneğidir: saat 10'dan 5 saat sonrası 15 değil 3'tür, çünkü kadran 12'de başa döner. Haftanın günleri de aynı biçimde 7'de başa döner. TYT'de bu fikir üç yerde çıkar: büyük üslerin son rakamı, takvim ve saat problemleri, sırayla tekrar eden diziler. Bu derste önce kalan sınıflarını, sonra kalanlarla işlemi, üsleri, modüler denklemleri ve periyodik problemleri öğreneceksin."
+     },
+     {
+      "kind": "concept",
+      "title": "Mod ve kalan sınıfı nedir?",
+      "text": "Mod, bir sayıyı hangi sayıya bölüp kalana baktığını söyler. \"Mod 5\" demek \"sayıları 5'e böl, yalnız kalana bak\" demektir. Örneğin 17'nin 5'e bölümünden kalan 2, 2'nin kalanı da 2'dir; 17 ile 2 mod 5'te aynı kalandadır, yani birbirine **denktir**. Mod 5'te kalan yalnızca 0, 1, 2, 3 ya da 4 olabilir; bu beş kalan beş sınıf oluşturur. Bu bölümde denklik yazımını, kalan sınıflarını ve negatif sayıların kalanını öğreneceksin."
+     },
+     {
       "kind": "rule",
       "title": "Denklik ve kalan sınıfları",
       "items": [
@@ -131,6 +141,18 @@
       },
       "caption": "Mod 5 kalan sınıfları",
       "narration": "Bir sayının hangi sınıfta olduğunu bulmak için sayıyı mod sayısına bölüp kalana bakarsın. Negatif sayıda kalan negatif çıkarsa moda ekleyerek 0 ile $n - 1$ arasına getirirsin. Örneğin $-17 = 5 \\cdot (-4) + 3$ olduğundan $-17$, mod 5'te 3. sınıftadır. Tablodaki $-3$ ile 2 ve 7 aynı satırda: fark 5'in katı."
+     },
+     {
+      "kind": "example",
+      "title": "Denk kalanı bulma",
+      "example": "$47 \\equiv x \\pmod{9}$ olacak biçimde 0 ile 8 arasındaki $x$ kaçtır?",
+      "explanation": "47'yi 9'a böl: $47 = 9 \\cdot 5 + 2$. Kalan 2 olduğundan $x = 2$. Sına: $47 - 2 = 45$ ve 45, 9'un katı olduğundan denklik doğrudur."
+     },
+     {
+      "kind": "example",
+      "title": "Negatif sayının kalan sınıfı",
+      "example": "$-23$ sayısı mod 6'da 0 ile 5 arasındaki hangi kalana denktir?",
+      "explanation": "Kalan 0 ile 5 arasında olmalı. $-23$'e 6'nın katlarını ekleyerek bu aralığa getir: $-23 + 24 = 1$. Yani $-23 = 6 \\cdot (-4) + 1$ ve kalan 1. Sık yapılan hata, 23'ün kalanını (5) alıp işareti değiştirmektir: $-5$ aralık dışıdır, 6 ekleyince yine $-5 + 6 = 1$ çıkar. Sına: $-23 - 1 = -24$ ve $-24$, 6'nın katıdır."
      },
      {
       "kind": "classify",
@@ -232,6 +254,11 @@
     "title": "Kalanlarla işlem ve üs",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Kalanlarla işlem nedir?",
+      "text": "Büyük sayılarla işlem yapıp sonunda kalana bakmak yerine işlemi baştan **kalanlarla** yapabilirsin. Örneğin 13 ve 8'in 5'e bölümünden kalanlar 3 ve 3'tür. $13 + 8 = 21$ ve 21'in kalanı 1; kalanlarla $3 + 3 = 6$ ve 6'nın kalanı 1. İki yol da aynı sonucu verir. Üs için de böyledir: $13^2 = 169 = 5 \\cdot 33 + 4$ ve kalanla $3^2 = 9$, 9'un kalanı 4. Bu bölümde toplama, çıkarma, çarpma ve üs alırken kalanlarla çalışmayı öğreneceksin."
+     },
+     {
       "kind": "rule",
       "title": "Kalanlarla işlem",
       "items": [
@@ -247,6 +274,12 @@
       "title": "Toplama, çıkarma, çarpma",
       "example": "$A$'nın 7 ile bölümünden kalan 5, $B$'nin 7 ile bölümünden kalan 4 ise $A + B$, $A \\cdot B$ ve $A - B$ sayılarının 7 ile bölümünden kalanlar kaçtır?",
       "explanation": "Toplam: $5 + 4 = 9 \\equiv 2$. Çarpım: $5 \\cdot 4 = 20 = 7 \\cdot 2 + 6$, kalan 6. Fark: $5 - 4 = 1$. Ters fark $B - A$ için $4 - 5 = -1 \\equiv 6$. Sına: $A = 12$, $B = 11$ alırsak $A + B = 23 \\equiv 2$ ve $A \\cdot B = 132 = 7 \\cdot 18 + 6$ olur."
+     },
+     {
+      "kind": "example",
+      "title": "Negatif çıkan işlem sonucu",
+      "example": "$A$'nın 7 ile bölümünden kalan 3, $B$'nin 7 ile bölümünden kalan 5'tir. $A^2 - 2B$ sayısının 7 ile bölümünden kalanı bulun.",
+      "explanation": "Her sayının yerine kalanını koy: $A^2 - 2B \\equiv 3^2 - 2 \\cdot 5 = 9 - 10 = -1$. Kalan negatif olamaz; 7'nin bir katını ekleyerek 0 ile 6 arasına getir: $-1 + 7 = 6$. Kalan **6**. Sına: $A = 3$, $B = 5$ alırsak $A^2 - 2B = -1 = 7 \\cdot (-1) + 6$ olur."
      },
      {
       "kind": "mistake",
@@ -347,6 +380,11 @@
         "changes": "Bu ders için yazıldı; havuzdaki faktöriyel toplamının kalanı kalıbı örnek alındı."
        }
       }
+     },
+     {
+      "kind": "concept",
+      "title": "Üsler neden döngü yapar?",
+      "text": "Bir sayının kuvvetlerini mod'a göre yazarsan kalanlar bir süre sonra kendini tekrar eder. Mod 5'te 3'ün kuvvetleri: $3^1 = 3$, $3^2 = 9 \\equiv 4$, $3^3 = 27 \\equiv 2$, $3^4 = 81 \\equiv 1$. Kalan 1 olunca sonraki kuvvet yeniden 3'ten başlar: $3^5 \\equiv 3$, sonra 4, 2, 1 diye sürer. Yani kalanlar 4 adımda bir tekrar eder. Büyük bir üssün kalanını bulmak için ilk birkaç kuvveti yazıp döngüyü görmen yeter."
      },
      {
       "kind": "rule",
@@ -641,6 +679,11 @@
     "title": "Modüler denklem",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Modüler denklem nedir?",
+      "text": "Modüler denklem, bilinmeyen $x$ için yazılmış bir denkliktir: hangi $x$ sayıları verilen denkliği sağlar? En basit örnek $x + 3 \\equiv 1 \\pmod{5}$. $x = 3$ için $3 + 3 = 6$ ve 6'nın 5'e bölümünden kalan 1; sağlıyor. $x = 8$ de sağlar, çünkü $8 + 3 = 11$ ve kalan 1. Yani çözüm tek bir sayı değil, 3, 8, 13, … diye giden bir kalan sınıfıdır. Bu bölümde çözümü kalanları deneyerek bulmayı, çözümsüz ve çok çözümlü durumları öğreneceksin."
+     },
+     {
       "kind": "rule",
       "title": "Kalanları dene",
       "items": [
@@ -693,6 +736,12 @@
        ],
        "highlightColumn": 2
       }
+     },
+     {
+      "kind": "example",
+      "title": "Önce sabiti at, sonra dene",
+      "example": "$3x + 1 \\equiv 2 \\pmod{7}$ denkleminin çözüm kümesini bulun.",
+      "explanation": "Önce 1'i karşı tarafa at: $3x \\equiv 1 \\pmod{7}$. $x = 0, 1, \\ldots, 6$ için $3x$ değerleri 0, 3, 6, 9, 12, 15, 18'dir; 7'ye bölümünden kalanlar 0, 3, 6, 2, 5, 1, 4 çıkar. Kalan 1 yalnız $x = 5$ için gelir. Çözüm kümesi $x \\equiv 5 \\pmod{7}$, yani $x = 7k + 5$: 5, 12, 19, … Sına: $x = 12$ için $3 \\cdot 12 + 1 = 37 = 7 \\cdot 5 + 2$, kalan 2 ✓."
      },
      {
       "kind": "blank",
@@ -850,6 +899,11 @@
     "title": "Periyodik problemler",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Periyodik problem nedir?",
+      "text": "Periyodik problem, belli aralıkla kendini tekrar eden bir düzenin sorulduğu problemdir: haftanın günleri 7 günde, kadran saati 12 saatte, \"A, B, C, A, B, C, …\" dizisi 3 harfte tekrar eder. Sorulan şey genellikle çok uzaktaki bir sıranın (100. gün, 50. harf) neye denk geldiğidir. Hepsinde çözüm aynıdır: sırayı döngü uzunluğuna böl, kalana bak. Örneğin A, B, C dizisinde 8. harf: $8 = 3 \\cdot 2 + 2$, kalan 2, yani B."
+     },
+     {
       "kind": "rule",
       "title": "Günler, saatler, diziler",
       "items": [
@@ -910,6 +964,12 @@
       "title": "Bugünden 100 gün sonra",
       "example": "Bugün salı. 100 gün sonra ve 100 gün önce hangi gündür?",
       "explanation": "$100 = 7 \\cdot 14 + 2$. Kalan 2. 100 gün sonra: salıdan 2 gün ileri → çarşamba, **perşembe**. 100 gün önce: salıdan 2 gün geri → pazartesi, **pazar**. Tam haftalar günü değiştirmez."
+     },
+     {
+      "kind": "example",
+      "title": "Geçmişe gitmek: 50 gün önce",
+      "example": "İki gün sonra çarşamba olacağına göre 50 gün önce hangi gündü?",
+      "explanation": "Önce bugünü bul: iki gün sonra çarşamba ise bugün pazartesidir. $50 = 7 \\cdot 7 + 1$, kalan 1. Geçmişe gittiğimiz için pazartesiden 1 gün **geri** sayarız: **pazar**. Sına: pazardan 50 gün sonrası, 1 gün ileri sayınca pazartesidir; bu da bugünle uyuşuyor."
      },
      {
       "kind": "predict",
@@ -977,6 +1037,11 @@
        "Bu satır yalnız önceki satırın sonucunu yazıyor; hata daha önce."
       ],
       "explanation": "Geçmişe giderken kalan kadar **geri** sayılır: çarşambadan 3 gün geri → salı, pazartesi, **pazar**. 45 gün önce pazardı."
+     },
+     {
+      "kind": "concept",
+      "title": "Yıl ve saat hesabı neden mod?",
+      "text": "Bir hafta 7 gündür. Bugün çarşamba ise 7 gün sonra yine çarşamba, 8 gün sonra perşembedir: tam haftalar günü değiştirmez, yalnız artan günler kaydırır. Bir yıl 365 gündür ve $365 = 7 \\cdot 52 + 1$: yani 52 tam hafta ve 1 gün fazla. Bu yüzden aynı tarih ertesi yıl bir gün ileri kayar. Saatlerde de aynı fikir geçerlidir: kadran 12 saatte, gün 24 saatte başa döner. Sıradaki kart bu kaymaları kurallara döküyor."
      },
      {
       "kind": "rule",

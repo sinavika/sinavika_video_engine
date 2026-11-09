@@ -24,8 +24,8 @@ const ScreenPicture: React.FC<UIUXScreenProps> = ({id, lang, mode}) => {
 };
 
 const boardCell = (screen: UIScreen) => {
-	const size = screenSize(screen.platform, screen.height);
-	const width = screen.platform === 'mobile' ? BOARD.mobileWidth : BOARD.webWidth;
+	const size = screenSize(screen.platform, screen.height, screen.portrait);
+	const width = screen.platform === 'mobile' ? BOARD.mobileWidth : screen.platform === 'tablet' ? (screen.portrait ? BOARD.tabletPortraitWidth : BOARD.tabletWidth) : BOARD.webWidth;
 	return {size, width, scale: width / size.width, height: (size.height * width) / size.width};
 };
 
@@ -80,7 +80,7 @@ const BoardPicture: React.FC<UIUXBoardProps> = ({ids, title, lang, mode, columns
 								<Text role="meta" size={13} style={{height: 26}}>
 									{screen.id}
 								</Text>
-								<div style={{position: 'relative', width: cell.width, height: cell.height, marginTop: BOARD.caption - 52, borderRadius: screen.platform === 'mobile' ? 34 : 14, overflow: 'hidden', boxShadow: '0 20px 50px -24px rgba(15, 23, 42, 0.45)', background: dark ? '#0F1115' : '#FFFFFF'}}>
+								<div style={{position: 'relative', width: cell.width, height: cell.height, marginTop: BOARD.caption - 52, borderRadius: screen.platform === 'mobile' ? 34 : screen.platform === 'tablet' ? 26 : 14, overflow: 'hidden', boxShadow: '0 20px 50px -24px rgba(15, 23, 42, 0.45)', background: dark ? '#0F1115' : '#FFFFFF'}}>
 									<div style={{width: cell.size.width, height: cell.size.height, transform: `scale(${cell.scale})`, transformOrigin: 'top left'}}>
 										<Component />
 									</div>
@@ -108,7 +108,7 @@ export const UIUXComposition: React.FC = () => (
 			calculateMetadata={({props}) => {
 				const parsed = UIUXScreenPropsSchema.parse(props);
 				const screen = findScreen(parsed.id);
-				return {props: parsed, ...screenSize(screen.platform, screen.height)};
+				return {props: parsed, ...screenSize(screen.platform, screen.height, screen.portrait)};
 			}}
 		/>
 		<Composition

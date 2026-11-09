@@ -64,6 +64,11 @@
      {
       "kind": "concept",
       "title": "Mutlak değer nedir?",
+      "text": "Mutlak değer, bir sayının sayı doğrusunda **sıfıra olan uzaklığıdır**. Uzaklık, atılan adım sayısı gibidir: yönü değil, uzunluğu önemlidir. Bu yüzden hiçbir zaman negatif çıkmaz.\n\nÖrneğin 4 ile −4, sıfırdan aynı uzaklıktadır: ikisi de 4 adım uzakta. İkisinin de mutlak değeri 4'tür. Günlük hayatta da böyledir: evinizden doğuya 3 km gitmek ya da batıya 3 km gitmek, yol uzunluğu olarak aynıdır.\n\nTYT'de her yıl mutlak değer sorusu gelir. Mutlak değeri 'uzaklık' diye okumayı öğrenirsen ifadeleri, denklemleri ve eşitsizlikleri hesap yapmadan yorumlayabilirsin. Bu bölümde sıfıra ve iki nokta arasındaki uzaklığa bakacağız."
+     },
+     {
+      "kind": "concept",
+      "title": "Mutlak değerin tanımı",
       "text": "Bir sayının mutlak değeri, sayı doğrusunda o sayının **0'a olan uzaklığıdır**. Uzaklık negatif olamayacağı için $|x| \\geq 0$ olur.\n\nTanım parçalıdır: $x \\geq 0$ ise $|x| = x$; $x < 0$ ise $|x| = -x$. Örneğin $|4| = 4$ ve $|-4| = -(-4) = 4$.\n\nİki sayı arasındaki uzaklık da aynı mantıkla yazılır: $a$ ile $b$ arasındaki uzaklık $|a - b|$'dir.",
       "narration": "Mutlak değeri iki şekilde okuyabilirsin. Birincisi uzaklık: $|x|$, $x$'in sıfıra uzaklığıdır ve mesafe olduğu için hiçbir zaman negatif çıkmaz. İkincisi parçalı tanım: sayı sıfır ya da pozitifse olduğu gibi kalır, negatifse işareti değişir. $x = -4$ için $-x = 4$ olur; öndeki $-$ işareti sayıyı her zaman negatif yapmaz, negatif bir sayının önüne konunca onu pozitife çevirir. Sayı doğrusunda iki nokta arasındaki uzaklık da $|a - b|$ ile yazılır."
      },
@@ -219,6 +224,18 @@
       "explanation": "$x = 1$ için $0 + 6$, $x = 4$ için $3 + 3$, $x = 7$ için $6 + 0$: hepsi 6. İki uzaklığın toplamı, x iki nokta arasında kaldıkça **sabit** ve en küçüktür."
      },
      {
+      "kind": "example",
+      "title": "İki uzaklığın toplamı",
+      "example": "$|x - 2| + |x - 9|$ ifadesinin en küçük değerini bul.",
+      "explanation": "**1. adım:** İfade, $x$'in 2'ye ve 9'a uzaklıkları toplamıdır.\n\n**2. adım:** 2 ile 9 arasındaki uzaklık $|2 - 9| = 7$'dir.\n\n**3. adım:** $x$ bu iki sayının arasındayken toplam hep 7'dir. Deneyelim: $x = 2$ için $0 + 7 = 7$; $x = 5$ için $3 + 4 = 7$; $x = 9$ için $7 + 0 = 7$.\n\n**4. adım:** $x$ aralığın dışına çıkınca toplam büyür: $x = 0$ için $2 + 9 = 11$; $x = 11$ için $9 + 2 = 11$.\n\nEn küçük değer **7**'dir."
+     },
+     {
+      "kind": "example",
+      "title": "Değeri alan tam sayıları say",
+      "example": "$|x + 2| + |x - 4|$ ifadesi en küçük değerini kaç farklı $x$ tam sayısı için alır?",
+      "explanation": "**1. adım:** $|x + 2| = |x - (-2)|$ olduğundan ifade, $x$'in $-2$'ye ve 4'e uzaklıkları toplamıdır.\n\n**2. adım:** $-2$ ile 4 arasındaki uzaklık $|-2 - 4| = 6$'dır. En küçük değer 6'dır ve $x$, $-2$ ile 4 arasındayken (uçlar dahil) alınır: $-2 \\leq x \\leq 4$.\n\n**3. adım:** Kontrol: $x = -2$ için $0 + 6 = 6$; $x = 1$ için $3 + 3 = 6$; $x = 4$ için $6 + 0 = 6$. Dışarıda $x = -3$ için $1 + 7 = 8$ olur, yani 6'dan büyüktür.\n\n**4. adım:** Aralıktaki tam sayılar: $-2, -1, 0, 1, 2, 3, 4$. Toplam **7** tam sayı vardır. Tuzak: uçlar da dahildir."
+     },
+     {
       "kind": "blank",
       "title": "Farkın en büyük değeri",
       "prompt": "$|x - 3| - |x - 10|$ ifadesinin alabileceği **en büyük** değer kaçtır?",
@@ -322,6 +339,11 @@
     "title": "Mutlak değerli ifadeler",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Mutlak değerli ifadeler nedir?",
+      "text": "İçinde mutlak değer bulunan ve değişken içerebilen ifadelere mutlak değerli ifade denir. Bu ifadenin değeri, mutlak değerin **içindeki sayının işaretine** bağlıdır.\n\nBasit bir deneme: $|x - 3|$ için $x = 7$ iken içerisi $4$ olur ve sonuç $4$'tür. $x = 1$ iken içerisi $-2$ olur ve sonuç $2$'dir. Yani içerisi negatifse işaret değişir, pozitifse değişmez.\n\nBu bölümde mutlak değerden nasıl kurtulacağını, mutlak değerin çarpım, bölüm ve toplamdaki özelliklerini ve **kritik nokta** kavramını öğreneceksin. ÖSYM bu bilgileri işareti verilmiş ifadelerle sınar."
+     },
+     {
       "kind": "rule",
       "title": "Mutlak değerden kurtulma",
       "items": [
@@ -345,6 +367,12 @@
        "Toplam ve farkta mutlak değer **dağılmaz**: genel olarak $|a + b| \\neq |a| + |b|$."
       ],
       "narration": "Çarpma ve bölmede mutlak değer içeri dağılır: $|a \\cdot b| = |a| \\cdot |b|$ ve $\\left|\\frac{a}{b}\\right| = \\frac{|a|}{|b|}$. Çünkü çarpımın uzaklığı, uzaklıkların çarpımıdır. Toplamada ise durum farklıdır. $a = -3$ ve $b = 2$ alırsan $|a + b| = 1$, ama $|a| + |b| = 5$ olur. İşaretler farklıysa sayılar birbirini götürür ve toplam küçülür; işaretler aynıysa götürme olmaz ve eşitlik sağlanır. Bu yüzden her zaman $|a + b| \\leq |a| + |b|$ yazılır."
+     },
+     {
+      "kind": "example",
+      "title": "İşaretine göre açma",
+      "example": "$-2 < x < 3$ olduğuna göre $|x + 2| - |x - 3|$ ifadesini sadeleştir.",
+      "explanation": "**1. adım:** $x > -2$ olduğundan $x + 2 > 0$ olur; pozitif ifade aynen çıkar: $|x + 2| = x + 2$.\n\n**2. adım:** $x < 3$ olduğundan $x - 3 < 0$ olur; negatif ifade ters işaretli çıkar: $|x - 3| = -(x - 3) = 3 - x$.\n\n**3. adım:** Yerine yaz: $(x + 2) - (3 - x)$. Eksi işareti parantezin tamamına dağılır: $x + 2 - 3 + x = 2x - 1$.\n\n**4. adım:** Kontrol: $x = 0$ için $|2| - |-3| = 2 - 3 = -1$ ve $2 \\cdot 0 - 1 = -1$. Sonuç $2x - 1$'dir."
      },
      {
       "kind": "example",
@@ -531,6 +559,11 @@
     "title": "Mutlak değerli denklemler",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Mutlak değerli denklem nedir?",
+      "text": "Mutlak değerli denklem, bilinmeyenin mutlak değerin **içinde** bulunduğu denklemdir. Mutlak değer uzaklık olduğundan bu denklemler 'şu noktadan şu kadar uzakta olan sayıyı bul' sorusuna dönüşür.\n\nBasit bir örnek: $|x| = 5$ ise $x$, sıfırdan 5 birim uzaktadır; bu sayı hem 5 hem $-5$ olabilir. Yani mutlak değerli denklemlerde çoğu zaman **iki durum** vardır, bazen hiç çözüm yoktur.\n\nSınavda bu denklemler tek başına ya da iki mutlak değerle birlikte gelir. Bu bölümde durumlara ayırarak çözmeyi, yabancı kökü ayıklamayı ve kritik noktalarla bölgelere ayırma yöntemini çalışacağız."
+     },
+     {
       "kind": "predict",
       "title": "Çözüm var mı?",
       "context": "$|x + 4| = -2$",
@@ -580,6 +613,12 @@
        "$|a - b| = k$: $a$ ile $b$ arasındaki uzaklık $k$ birimdir."
       ],
       "narration": "Mutlak değer bir sayıyı uzaklığa çevirdiği için içerisi ya sağ taraf kadardır ya da onun tersi kadardır; bu yüzden iki durum çözülür. Sağ tarafta değişken de varsa mutlak değerin sonucu negatif olamayacağından bulunan her değer yerine konup denetlenmelidir. Bunu yapmazsan yabancı kök çözüme girer. İki mutlak değerin toplamının sıfır olması ise ikisinin de sıfır olmasını zorunlu kılar; çünkü her biri sıfır ya da pozitiftir."
+     },
+     {
+      "kind": "example",
+      "title": "Tek mutlak değerli denklem",
+      "example": "$|3x - 6| = 12$ denkleminin çözüm kümesini bul.",
+      "explanation": "**1. adım:** Sağ taraf 12 ve pozitif; bu yüzden mutlak değerin içi ya 12 ya da $-12$'dir. İki durumu ayrı çözeceğiz.\n\n**2. adım:** $3x - 6 = 12$ ise $3x = 18$, yani $x = 6$.\n\n**3. adım:** $3x - 6 = -12$ ise $3x = -6$, yani $x = -2$.\n\n**4. adım:** Kontrol: $x = 6$ için $|18 - 6| = 12$; $x = -2$ için $|-6 - 6| = 12$. İkisi de sağlar.\n\nÇözüm kümesi $\\{-2, 6\\}$."
      },
      {
       "kind": "example",
@@ -853,6 +892,24 @@
     "title": "Mutlak değerli eşitsizlikler",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Mutlak değerli eşitsizlik nedir?",
+      "text": "Mutlak değerli eşitsizlik, mutlak değerin bir sayıdan **küçük ya da büyük** olduğunu söyleyen ifadedir. Mutlak değer bir uzaklık olduğundan bu eşitsizlikler 'bir noktaya uzaklığı en fazla şu kadar olan sayılar' ya da 'en az şu kadar olan sayılar' demektir.\n\nGünlük hayattan bir örnek: evinize 2 km'den yakın olan yerler tek bir bölge oluşturur; 2 km'den uzak olanlar ise evin iki yanında kalır. Çözüm kümesi ya tek bir aralık ya da iki ayrı parça çıkar.\n\nBu bölümde eşitsizlikleri aralığa çevirmeyi ve verilen bir aralığı mutlak değerle yazmayı çalışacağız. ÖSYM bunu fırın sıcaklığı, saklama koşulu ya da kâr-zarar gibi bağlamlarla sorar."
+     },
+     {
+      "kind": "predict",
+      "title": "0'a yakın tam sayılar",
+      "context": "0'a uzaklığı 3'ten **küçük** olan tam sayıları düşün.",
+      "prompt": "Bu koşulu sağlayan kaç tam sayı vardır?",
+      "choices": [
+       "5",
+       "6",
+       "7"
+      ],
+      "answer": 0,
+      "explanation": "$-2, -1, 0, 1, 2$ sayılarının sıfıra uzaklığı 3'ten küçüktür. $3$ ve $-3$'ün uzaklığı tam 3'tür, 'küçük' denildiği için bunlar dahil değildir. Bu fikir mutlak değerli eşitsizliklerin temelidir."
+     },
+     {
       "kind": "visual",
       "title": "Çözüm kümeleri tablosu",
       "visual": {
@@ -910,6 +967,18 @@
        ]
       },
       "narration": "$|x - 2| < 3$ ise x, 2'ye 3 birimden daha yakındır. Bu sayılar $-1$ ile $5$ arasındadır; uçlar eşitlik içermediği için dahil değildir."
+     },
+     {
+      "kind": "example",
+      "title": "Uzaklıkla aralığı bul",
+      "example": "$|x - 1| < 4$ eşitsizliğinin çözüm kümesini bul ve içindeki tam sayıları say.",
+      "explanation": "**1. adım:** $|x - 1|$, $x$'in 1'e uzaklığıdır. Eşitsizlik bu uzaklığın 4'ten küçük olmasını ister.\n\n**2. adım:** 1'in 4 birim soluna ve 4 birim sağına bak: $1 - 4 = -3$ ve $1 + 4 = 5$. Uzaklık 4'ten küçük olacağından $x$, bu iki sayının arasındadır: $-3 < x < 5$.\n\n**3. adım:** Uçlarda uzaklık tam 4 olur, eşitsizlik de 'küçüktür' dediği için uçlar dahil değildir.\n\n**4. adım:** Tam sayılar: $-2, -1, 0, 1, 2, 3, 4$. Toplam 7 tam sayı vardır."
+     },
+     {
+      "kind": "example",
+      "title": "Dışarıda kalanları say",
+      "example": "$|2x + 1| \\geq 5$ eşitsizliğinin çözüm kümesinde **bulunmayan** kaç tam sayı vardır?",
+      "explanation": "**1. adım:** 'Büyük ya da eşit' eşitsizliği iki ayrı parça verir: $2x + 1 \\geq 5$ ya da $2x + 1 \\leq -5$.\n\n**2. adım:** Birinci parça: $2x \\geq 4$, yani $x \\geq 2$. İkinci parça: $2x \\leq -6$, yani $x \\leq -3$.\n\n**3. adım:** Çözüm kümesi $x \\leq -3$ ya da $x \\geq 2$. Çözüm dışında kalanlar iki parçanın arasındaki $-3 < x < 2$ aralığıdır.\n\n**4. adım:** Bu aralıktaki tam sayılar $-2, -1, 0, 1$'dir. Çözüm kümesinde bulunmayan 4 tam sayı vardır. Tuzak: uçlar ($-3$ ve $2$) çözüme dahildir, bu yüzden dışarıda sayılmaz."
      },
      {
       "kind": "rule",

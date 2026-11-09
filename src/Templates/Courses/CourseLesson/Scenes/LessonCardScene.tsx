@@ -22,7 +22,7 @@ import {useTheme} from '../../../../Themes/ThemeContext';
 import {lineCount} from '../../../../Components/Typography/TextMeasure';
 import {STUDIO_HEADING_HEIGHT, StudioHeading, TYPE, useStudio, useVisualBox} from './LessonChrome';
 
-const CARD_KINDS: Record<Exclude<LessonCard['kind'], 'question' | 'predict'>, string> = {
+const CARD_KINDS: Record<Exclude<LessonCard['kind'], 'question' | 'predict' | 'practice'>, string> = {
 	concept: 'Kavram',
 	rule: 'Kural',
 	example: 'Örnek',
@@ -30,9 +30,9 @@ const CARD_KINDS: Record<Exclude<LessonCard['kind'], 'question' | 'predict'>, st
 	visual: 'Şekil',
 };
 
-type TextCard = Exclude<LessonCard, {kind: 'question' | 'visual' | 'predict'}>;
+type TextCard = Exclude<LessonCard, {kind: 'question' | 'visual' | 'predict' | 'practice'}>;
 
-type FigureCard = Exclude<LessonCard, {kind: 'question' | 'predict'}>;
+type FigureCard = Exclude<LessonCard, {kind: 'question' | 'predict' | 'practice'}>;
 
 /** 0 → 1 over `duration` seconds from `from`, with the lesson's easing. */
 

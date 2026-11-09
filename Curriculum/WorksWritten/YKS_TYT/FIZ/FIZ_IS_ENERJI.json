@@ -69,6 +69,27 @@
     "title": "Fiziksel iş",
     "cards": [
      {
+      "kind": "concept",
+      "title": "İş, Güç ve Enerji nedir?",
+      "text": "**Enerji**, bir cismin iş yapabilme yeteneğidir; **iş**, bir kuvvetin cismi kendi yönünde yer değiştirmesidir; **güç** ise işin ne kadar hızlı yapıldığıdır. Bu üç büyüklük birbirine bağlıdır: iş yapılınca enerji aktarılır, aynı işi kısa sürede yapan daha büyük güç harcar. TYT fizikte hem hesap soruları (iş, güç, kinetik ve potansiyel enerji, korunum, verim) hem de yorum soruları gelir. Günlük hayattan örnek: merdiveni koşarak çıkmak da yürüyerek çıkmak da aynı işi gerektirir, ama koşarken gücün daha büyüktür; yediğin besin bu işin enerjisini sağlar."
+     },
+     {
+      "kind": "concept",
+      "title": "Fiziksel iş nedir?",
+      "text": "Fizikte **iş**, bir kuvvetin cismi kendi yönünde yer değiştirmesidir. İki şart birlikte aranır: cisme kuvvet etki etmeli ve cisim bu kuvvetin yönünde yol almalıdır. Basit bir durum: bir kutuyu $5$ N'luk kuvvetle kendi yönünde $2$ m iterseniz $5 \\cdot 2 = 10$ birimlik iş yaparsınız. Kuvvet ya da yol iki katına çıkarsa iş de iki katına çıkar; yol sıfırsa iş de sıfırdır. İşin birimi **joule**'dür. Bu bölümde iş yapılan ve yapılmayan durumları, açılı kuvveti, kuvvet-yol grafiğini ve işin birimlerini göreceksin."
+     },
+     {
+      "kind": "predict",
+      "title": "Çantayla yürümek",
+      "prompt": "Elinde çantayla yatay yolda sabit hızla yürüyen kişi, çantayı taşıyan kuvvetle çantaya iş yapar.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 1,
+      "explanation": "Çantayı tutan kuvvet yukarı yönlüdür, çanta ise yatay gider. Kuvvet yola dik olduğundan bu kuvvet iş yapmaz."
+     },
+     {
       "kind": "visual",
       "title": "İş yapıldı mı?",
       "visual": {
@@ -118,6 +139,18 @@
        "caption": "$\\theta$: kuvvet ile yer değiştirme arasındaki açı"
       },
       "narration": "Bir kızağı ipten çekerken ip yatayla açı yapar. İpteki kuvvetin bir kısmı kızağı ileri çeker, bir kısmı da yukarı kaldırmaya çalışır. Kızağı ilerleten yalnız yatay parçadır; bu yüzden iş hesabında yalnız $F\\cos\\theta$ kullanılır. Açı büyüdükçe cos değeri küçülür ve aynı kuvvetle yapılan iş azalır."
+     },
+     {
+      "kind": "example",
+      "title": "Doğrudan iş hesabı",
+      "example": "Yatay zeminde bir kutuyu yatay $20$ N'luk kuvvetle $4$ m iten kişinin yaptığı iş kaç joule'dür?",
+      "explanation": "Kuvvet ile yer değiştirme aynı yöndedir; yani $\\theta = 0^\\circ$ ve $\\cos\\theta = 1$. Bu durumda $W = F \\cdot \\Delta x = 20 \\cdot 4 = 80$ J. Kuvvet harekete paralel olduğu için iş pozitiftir: kutuya $80$ J enerji aktarılmıştır."
+     },
+     {
+      "kind": "example",
+      "title": "Açılı kuvvet ve sürtünme",
+      "example": "Yatayla $60^\\circ$ açı yapan $40$ N'luk kuvvet, yatay zeminde bir kutuyu $5$ m çekiyor. Kutuya etki eden sürtünme kuvveti $6$ N'dur. Çekme kuvvetinin işini, sürtünmenin işini ve net işi bulun. ($\\cos 60^\\circ = 0{,}5$)",
+      "explanation": "Çekme kuvvetinde yalnız yol yönündeki bileşen sayılır: $F\\cos 60^\\circ = 40 \\cdot 0{,}5 = 20$ N, dolayısıyla $W_F = 20 \\cdot 5 = 100$ J. Sürtünme harekete zıt olduğu için işi negatiftir: $W_s = -6 \\cdot 5 = -30$ J. Net iş, işlerin işaretli toplamıdır: $100 - 30 = 70$ J. Tuzak: $40 \\cdot 5 = 200$ J yazmak açıyı unutmaktır; sürtünmenin işini toplamaya eklemek de işaret hatasıdır."
      },
      {
       "kind": "blank",
@@ -389,6 +422,11 @@
     "title": "Güç",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Güç nedir?",
+      "text": "**Güç**, işin yapılma hızıdır: birim zamanda yapılan iştir. Aynı $600$ J'lük işi $10$ saniyede yapan, her saniye $60$ J iş yapmış olur; $20$ saniyede yapan ise saniyede $30$ J. İş aynıdır, ama ilki iki kat güçlüdür. Güç, işin süreye oranıdır ve birimi **watt**'tır ($1$ watt $= 1$ joule/saniye). Bu bölümde işin süreye oranını, yük kaldırmada gücü ve kuvvet ile hız arasındaki ilişkiyi göreceksin."
+     },
+     {
       "kind": "rule",
       "title": "Birim zamandaki iş",
       "items": [
@@ -418,6 +456,18 @@
       ],
       "answer": 0,
       "explanation": "$P = F \\cdot v$ bağıntısında $F$ sabitse güç hızla doğru orantılıdır; hız 2 katına çıkınca güç de 2 katına çıkar."
+     },
+     {
+      "kind": "example",
+      "title": "Yük kaldıran motorun gücü",
+      "example": "Bir motor, kütlesi $20$ kg olan yükü $3$ m yüksekliğe $6$ saniyede çıkarıyor ($g = 10 \\text{ m/s}^2$). Motorun ortalama gücü kaç watt'tır?",
+      "explanation": "Önce yapılan işi bul: yükü kaldırmak için $W = m g h = 20 \\cdot 10 \\cdot 3 = 600$ J. Güç, işin süreye oranıdır: $P = \\frac{W}{t} = \\frac{600}{6} = 100$ W. Yani motor her saniyede $100$ J iş yapar. Süre yarıya inseydi iş aynı kalır, güç $200$ W olurdu."
+     },
+     {
+      "kind": "example",
+      "title": "Sabit hızla giden araç",
+      "example": "Sabit $20$ m/s hızla giden bir aracın motoru $2000$ N'luk çekme kuvveti uyguluyor. Motorun gücü kaç watt'tır ve $10$ saniyede yaptığı iş kaç joule'dür?",
+      "explanation": "Kuvvet sabit ve hareket yönünde olduğundan $P = F \\cdot v = 2000 \\cdot 20 = 40\\,000$ W. Süre $10$ s ise iş $W = P \\cdot t = 40\\,000 \\cdot 10 = 400\\,000$ J. Kontrol: araç $20 \\cdot 10 = 200$ m gider ve $W = F \\cdot \\Delta x = 2000 \\cdot 200 = 400\\,000$ J; iki yol aynı sonucu verir."
      },
      {
       "kind": "question",
@@ -583,6 +633,22 @@
     "title": "Kinetik ve potansiyel enerji",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Mekanik enerji nedir?",
+      "text": "**Enerji**, iş yapabilme yeteneğidir. Mekanik enerjinin iki ana türü vardır: hareketten gelen **kinetik enerji** ve konumdan ya da şekilden gelen **potansiyel enerji**. Koşan bir sporcu ve hızla giden araç kinetik enerjiye; yüksek bir raftaki kitap yer çekimi potansiyel enerjisine; sıkıştırılmış bir yay ise esneklik potansiyel enerjisine sahiptir. Kütle iki katına çıkınca kinetik enerji de iki katına çıkar; kitap iki kat yükseğe konunca potansiyel enerji de iki katı olur. Bu bölümde bu enerjilerin nelere bağlı olduğunu ve nasıl hesaplandığını göreceksin."
+     },
+     {
+      "kind": "predict",
+      "title": "Durgun cismin enerjisi",
+      "prompt": "Durgun bir cismin hiçbir enerjisi olamaz.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 1,
+      "explanation": "Cisim durgunsa kinetik enerjisi sıfırdır, ama yüksekteyse ya da sıkışmış bir yayın ucundaysa potansiyel enerjisi vardır. Masadaki kitap yere göre potansiyel enerjiye sahiptir."
+     },
+     {
       "kind": "rule",
       "title": "İki enerji",
       "items": [
@@ -697,6 +763,18 @@
       ],
       "answer": 0,
       "explanation": "$E_K = \\frac{1}{2} m v^2$ hızın karesiyle orantılıdır; $(3v)^2 = 9v^2$ olduğundan enerji 9 katına çıkar."
+     },
+     {
+      "kind": "example",
+      "title": "Kinetik ve potansiyel enerji hesabı",
+      "example": "Kütlesi $2$ kg olan bir cisim $6$ m/s hızla gidiyor. Kütlesi $3$ kg olan başka bir cisim yerden $4$ m yükseklikte duruyor ($g = 10 \\text{ m/s}^2$). İkisinin enerjisini bulun.",
+      "explanation": "Hareketli cisim kinetik enerjiye sahiptir: $E_K = \\frac{1}{2} m v^2 = \\frac{1}{2} \\cdot 2 \\cdot 36 = 36$ J. Yüksekte duran cisim potansiyel enerjiye sahiptir: $E_P = m g h = 3 \\cdot 10 \\cdot 4 = 120$ J. Birincide hız, ikincide yükseklik enerjiyi belirler; durgun cisimde kinetik enerji sıfırdır."
+     },
+     {
+      "kind": "example",
+      "title": "Hız değişiminde yapılan iş",
+      "example": "Kütlesi $2$ kg olan bir cismin hızı $3$ m/s'den $5$ m/s'ye çıkıyor. Cisme yapılan net iş kaç joule'dür?",
+      "explanation": "İş-enerji teoremine göre $W_{net} = \\Delta E_K$. İlk kinetik enerji: $\\frac{1}{2} \\cdot 2 \\cdot 3^2 = 9$ J. Son kinetik enerji: $\\frac{1}{2} \\cdot 2 \\cdot 5^2 = 25$ J. Net iş $25 - 9 = 16$ J. Tuzak: hız farkını ($5 - 3 = 2$) alıp karesini hesaplamak $\\frac{1}{2} \\cdot 2 \\cdot 4 = 4$ J verir ve yanlıştır; kinetik enerjiler ayrı ayrı bulunur, sonra çıkarılır."
      },
      {
       "kind": "question",
@@ -1234,6 +1312,11 @@
     "title": "Verim ve enerji kaynakları",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Verim ve enerji kaynakları nedir?",
+      "text": "Bir cihaz harcadığı enerjinin hepsini işe yarar biçime çeviremez; bir kısmı çoğunlukla ısıya dönüşür. **Verim**, harcanan enerjinin ne kadarının yararlı olduğunu söyler. Örneğin bir cihaz $100$ J harcayıp $40$ J ışık verirse yararlı kısım $\\frac{40}{100}$'dür; yani verimi %40'tır. Kalan $60$ J ısıya gitmiş, ama yok olmamıştır. **Enerji kaynakları** ise enerjiyi nereden aldığımızı gösterir ve yenilenebilir ya da yenilenemez diye ayrılır. Bu bölümde verimi, cihazların verimlerini ve kaynakların avantaj ve dezavantajlarını göreceksin."
+     },
+     {
       "kind": "rule",
       "title": "Verim",
       "items": [
@@ -1287,6 +1370,12 @@
       "title": "Akkor ampul ve LED",
       "example": "Aynı $10$ J ışık enerjisini üretmek için akkor ampul $200$ J, LED lamba $25$ J elektrik enerjisi harcıyor. İkisinin verimini ve harcadıkları enerjinin oranını bulun.",
       "explanation": "Akkor ampul: $\\frac{10}{200} \\cdot 100 = \\%5$; kalan $190$ J ısıya gider. LED lamba: $\\frac{10}{25} \\cdot 100 = \\%40$. Akkor ampul, aynı ışık için LED'den $\\frac{200}{25} = 8$ kat fazla enerji harcar. Verimi büyük olan cihaz aynı yararlı işi daha az enerjiyle yapar."
+     },
+     {
+      "kind": "example",
+      "title": "Vinç motorunun verimi",
+      "example": "Bir vinç $1000$ W elektrik gücü harcayarak $100$ kg'lık yükü $8$ m yüksekliğe $10$ saniyede çıkarıyor ($g = 10 \\text{ m/s}^2$). Vincin verimi yüzde kaçtır?",
+      "explanation": "Yararlı iş, yükün kazandığı potansiyel enerjidir: $W = m g h = 100 \\cdot 10 \\cdot 8 = 8000$ J. Yararlı güç $\\frac{8000}{10} = 800$ W. Verim, yararlı gücün harcanan güce oranıdır: $\\frac{800}{1000} \\cdot 100 = \\%80$. Kalan $200$ W ısıya ve sürtünmeye gider. Tuzak: $8000$ J ile $1000$ W'ı doğrudan oranlamak; birimler ve süre aynı cins nicelik üzerinden karşılaştırılmalıdır."
      },
      {
       "kind": "blank",

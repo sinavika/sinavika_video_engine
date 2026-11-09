@@ -6,9 +6,14 @@ Kamp derslerinin (YouTube) ve reels'lerinin nasıl konuştuğu, nasıl açılıp
 
 ## 1. Açılış: SinoAI karşılar
 
-Her kamp dersi YouTube'daki gibi bir sunucu karşılamasıyla açılır. Sunucu **SinoAI**'dir. Karşılama kamp verisinden üretilir, her derste aynı kalıptadır ve senaryoya yazılmaz (`campWelcomeNarration`, [Camp.ts](../src/Courses/Camp.ts)).
+Kamp dersi dersin kendi sorularından biriyle açılır (soğuk açılış, `lesson.opening`; [Courses.md](Courses.md) "YouTube dersinin akışı"). Ardından sunucu karşılaması gelir. Sunucu **SinoAI**'dir. Karşılama kamp verisinden üretilir, her derste aynı kalıptadır ve senaryoya yazılmaz (`campWelcomeNarration`, [Camp.ts](../src/Courses/Camp.ts)).
 
-> Merhaba, ben SinoAI. Sınavika'nın TYT Türkçe kampına hoş geldin! Bugün kampın dördüncü dersindeyiz: Cümlede Anlam. Geçen derste Deyim ve Atasözü konusunu işlemiştik. Konuyu adım adım öğrenecek, sınav tarzı sorular çözeceğiz. Videonun sonunda da seni bir kamp görevi bekliyor. Hazırsan başlayalım!
+> Sınavika'nın TYT Türkçe kampına hoş geldin! Bugün kampın dördüncü dersindeyiz: Cümlede Anlam.
+
+8 Kasım 2026'dan beri karşılama tek nefestir (yaklaşık 5 sn). Kalkanlar:
+- "Merhaba, ben SinoAI" (sahibin isteği);
+- "geçen derste…": izleyicilerin %99'u yeni;
+- "konuyu adım adım öğreneceğiz… hazırsan başlayalım": öğretim başlamadan geçen 30 saniyede izleyicilerin dörtte üçü ayrılıyordu.
 
 - **İlk ders:** kampın ne olduğunu anlatır ("Bu kampta Türkçe konularının hepsini sırayla ve soru çözerek işleyeceğiz").
 - **Son ders:** "kampın son dersi" der.
@@ -97,7 +102,7 @@ Her beat ayrı bir satır olarak okunur. Yarım cümle ("Müzikte nota,") okundu
 
 ### Düşünme süresi sayılır
 
-Soru okunduktan sonra 5 saniye sessiz düşünme süresi vardır (`COURSE_DESIGN.pacing.questionThinkSeconds`). Bu sürede çözüm panelinde geri sayım görünür: boşalan bir halka, her saniye büyüyerek değişen sayı ve altında "DÜŞÜN" yazısı. Tahmin kartlarında da aynı sayaç kullanılır.
+Soru okunduktan sonra 5 saniye sessiz düşünme süresi vardır (`COURSE_DESIGN.pacing.questionThinkSeconds`). Bu sürede çözüm panelinde geri sayım görünür: boşalan bir halka, her saniye büyüyerek değişen sayı ve altında "DÜŞÜN" yazısı. Tahmin kartlarında da aynı sayaç kullanılır. "Sıra sende" kartında sayaç tahtanın yanında durur; tahta saklanmaz, çünkü sorunun kendisidir. Görev cümlesini şablon söyler ("Önce sen eşleştir."), senaryo yazmaz ([Courses.md](Courses.md), `practice` kartı).
 
 ### Öğrenci odaklı senaryo için araştırma
 
@@ -161,6 +166,12 @@ Kapak, kamp kapağıdır ([CampCover](../src/Images/Templates/Thumbnails/CampCov
 - zemin dersin renginde, kamp tanıtımında lacivert; düzen kapak standardında ([`Sosyal-Kimlik-Standardi.md`](Sosyal-Kimlik-Standardi.md)), logo sol üstte;
 - etiket olarak kampın adı ve sınav etiketleri;
 - konu adı;
+- **kanca satırı** (8 Kasım 2026): konunun altında beyaz bir şeritte, ders renginde tek satır, en çok 40 harf. Tıklamak için bir neden verir ("Fabrika nereye kurulur?"). Kaynağı:
+  - iş dosyasının `cover.hook` alanı;
+  - yoksa dersin kanca başlığı (`lesson.hook.headline`, 40 harfe sığıyorsa);
+  - reels kapağında reels kancası (`short.hook`).
+
+  Kanca kısaltılmaz; sığmazsa yazı küçülür. Neden: dersler 4–7 bin kez gösterilip yalnız konu adıyla %0,3–0,5 tıklandı;
 - videonun türü ("Konu anlatımı" ya da "Kısa tekrar") ve dev ders numarası ("03 / 16");
 - kampın ilerleme noktaları.
 
@@ -194,17 +205,27 @@ Kurgu buna göre yeniden kuruldu.
 
 Akış (`short.rounds`, [CampShort/Scenes](../src/Templates/Camps/CampShort/Scenes)):
 
-1. **İlk karede soru.** Ayrı başlık kartı yoktur. İlk tur animasyonsuz, ilk kareden ekrandadır.
-   - Kanca (`short.hook`, en çok 40 karakter: "Üçünde de tuzak var.") sorunun üstünde ders renginde bir şerit olarak görünür ama **okunmaz**. Duyulan ilk şey sorunun kendisidir.
+1. **İlk saniyede kanca** (8 Kasım 2026'dan beri):
+   - Kanca (`short.hook`, en çok 40 karakter: "Üç soru, üçü de tuzak.") ilk kareden ders renginde tam ekran ve iri harflerle görünür. Her sözcük, ses ona gelince bir kez atar.
+   - Kanca seslendirilir (`hook` satırı, yaklaşık 1,5 sn). Sonra sayfa yukarı kalkar ve ilk soru altından gelir.
+   - Neden: 27 Ekim düzeninde kanca küçük ve sessizdi, ilk 5 saniye kıpırdamıyordu. İzleyici ortalama 4–8 sn kaldı ([analiz](Analiz/2026-11-08-Kamp-ve-Reels-Analizi.md)).
    - Ses kapalı izleyen de kancayı okur.
+   - **Güvenli alan:** reels'te bütün yazılar `REEL_SAFE_AREA` içinde kalır: üst 240, sağ 170, alt 480, sol 110 px (1080×1920). Bu ölçüler iPhone'daki Instagram ve TikTok ekran görüntülerinden alındı. Üstte platformun çubuğu, sağda beğeni sütunu, altta hesap adı ve açıklama vardır. Uzun telefonlar ayrıca iki yandan yaklaşık 50 px keser. Tur bu alana sığmazsa küçültülür (`FitBox`).
 2. **2–3 tur**, her biri yaklaşık 9 saniye:
    - vurgulu sözcüğüyle bir cümle, bir soru ve 2–3 seçenek. Cümle ve soru ekranda yazdığı gibi okunur;
    - 2 saniyelik sessiz geri sayım (`COURSE_DESIGN.camp.roundThinkSeconds`). Şıklar soru okunurken de ekrandadır;
    - cevap yanar ve 3–4 sözcüklük "neden" söylenir ("Deyim! Öğüt vermiyor."). Ses bitince sahne geçer; en kısa bekleme `roundRevealSeconds` (1,6 sn).
-3. **Tek çağrı:** "Kaçta kaç? Yoruma yaz." (`CHALLENGE_SCORE_LINE`). Kampın dersi altta küçük ve sessiz bir satırla anılır. Uygulama tanıtımı reels'te yoktur; turu olmayan özet reels'te durur.
+3. **Tek çağrı:** "Kaçta kaç? Yoruma yaz." (`CHALLENGE_SCORE_LINE`). Altında sessiz bir YouTube kartı durur: YouTube işareti, "Konunun tamamı ücretsiz" ve kampın dersi. Kamp hesapları uygulamayı değil, YouTube kampını tanıtır. Uygulama tanıtımı reels'te yoktur; turu olmayan özet reels'te durur.
+
+**Flash reels (8–12 sn deneme, `CampFlash`, 8 Kasım 2026):** sahibin önerisiyle en kısa biçim. Aynı senaryodan üretilir:
+- 0–2 sn: problem, yani reels kancası tam ekran ve sesli;
+- 2–8 sn: ilk turun sorusu, 1 saniye düşünme, cevap ve "neden";
+- son 2 sn: sessiz YouTube kartı ("Konunun tamamı ücretsiz", kamp ve ders).
+
+Ana hesaplarda bağlantı uygulamaya, kamp hesaplarında YouTube kampına gider. Süre sınırı 7–12 sn (`COURSE_DESIGN.length.flash`); bütün kamplar testte bu tavanı geçmez.
 
 Turları yazarken:
-- Toplam süre 30 saniyenin altındadır (`COURSE_DESIGN.length.challenge`). `check`, Doğa sesinin ölçülen hızıyla hesaplar: saniyede 1,9 sözcük, satır başına 0,45 sn ses payı.
+- Toplam süre 32 saniyenin altındadır (`COURSE_DESIGN.length.challenge`; 8 Kasım'da sesli kanca için 30'dan 32'ye çıktı). `check`, Doğa sesinin ölçülen hızıyla hesaplar: saniyede 1,9 sözcük, satır başına 0,45 sn ses payı.
   - Bu hızla tur başına cümle + soru yaklaşık 8 sözcük, cevap + neden 3–5 sözcük kalır.
   - Tur 14 sözcüğü geçerse `check` uyarır.
 - **Her tur bir tuzaktır.** Sorular dersin "dikkat" notlarından gelir: olgun → ham (olumsuzluk karşıtlık değildir), biraz → nicel, günlük dildeki terim, kalıbı bozulmuş deyim, keşkesiz pişmanlık, yorum taşıyan bilgi cümlesi.
@@ -216,7 +237,8 @@ Turları yazarken:
 - Müzik yoktur. **Ses efektleri** vardır (sahibin isteği, 27 Ekim 2026):
   - geri sayımın her saniyesinde bir tik;
   - cevap yanarken kısa bir zil;
-  - 2. ve 3. soruya ve skor kartına girişte bir hışırtı. İlk soruda hışırtı yoktur, çünkü soru ilk karede zaten ekrandadır.
+  - açılışta kancayla bir vuruş, kanca sayfası kalkarken bir hışırtı;
+  - 2. ve 3. soruya ve skor kartına girişte bir hışırtı.
 - Efektler ElevenLabs Sound Effects ile bir kez üretildi ve `public/SoundEffects/` altında tutuluyor. Tarifleri ve tepe seviyeleri [SoundEffects.ts](../src/Configurations/SoundEffects.ts) içinde. Seviyeler anlatımın altında kalacak biçimde ayarlı; anlatımın tepesi −4 dBFS, efektler −9 ile −14 dBFS arasında.
   - `npm run sound-effects` yalnız eksik efektleri üretir; kredi yalnız onlar için harcanır.
   - `npm run sound-effects -- --relevel` ElevenLabs'in sakladığı dosyaları (`Source/`) yeniden seviyeler; kredi harcamaz.

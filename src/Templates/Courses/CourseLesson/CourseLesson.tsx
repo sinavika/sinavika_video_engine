@@ -1,6 +1,6 @@
 import type React from 'react';
 import {COURSE_DESIGN} from '../../../Courses/CourseDesign';
-import {spokenPredictAsk, spokenQuestion, THINK_PROMPT} from '../../../Courses/LessonSpeech';
+import {spokenPracticeAsk, spokenPredictAsk, spokenQuestion, THINK_PROMPT} from '../../../Courses/LessonSpeech';
 import {LESSON_SCRIPT_SAMPLE} from '../../../Courses/LessonScriptSample';
 import {LessonScriptSchema, type LessonScript} from '../../../Courses/LessonScript';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
@@ -14,6 +14,7 @@ import {LessonCardScene} from './Scenes/LessonCardScene';
 import {LessonChrome} from './Scenes/LessonChrome';
 import {LessonIntroScene} from './Scenes/LessonIntroScene';
 import {LessonSummaryScene} from './Scenes/LessonSummaryScene';
+import {PracticeScene} from './Scenes/PracticeScene';
 import {PredictScene} from './Scenes/PredictScene';
 import {QuestionScene} from './Scenes/QuestionScene';
 import {SectionScene} from './Scenes/SectionScene';
@@ -96,6 +97,19 @@ const buildScenes = (script: LessonScript, voiceClips: VoiceClips = {}): Templat
 				scenes.push({id, seconds: startOf(slots.length), label: `Tahmin ${number}`, voice: slots, element: withChrome(script, <PredictScene card={card} timing={timing} section={section.title} number={number} />)});
 				return;
 			}
+			if (card.kind === 'practice') {
+				// The board is on screen from the start: the lead-in and the task, a silent pause to answer (the countdown),
+				// then each beat gives its answers.
+				const askText = spokenPracticeAsk(card);
+				const asked = say(`${id}-q`, askText, estimate(askText));
+				const ask = {...asked, seconds: asked.seconds + card.thinkSeconds};
+				const beatSlots = card.beats.map((beat, beatIndex) => say(`${id}-b${beatIndex + 1}`, beat.narration, estimate(beat.narration, pacing.beatSeconds), pacing.beatSeconds));
+				const slots = [ask, ...beatSlots];
+				const startOf = (slotIndex: number) => slots.slice(0, slotIndex).reduce((sum, slot) => sum + slot.seconds, 0);
+				const timing = {thinkAt: asked.seconds, thinkSeconds: card.thinkSeconds, beatStarts: beatSlots.map((_, beatIndex) => startOf(beatIndex + 1)), beatEnds: beatSlots.map((_, beatIndex) => startOf(beatIndex + 2))};
+				scenes.push({id, seconds: startOf(slots.length), label: `Sıra sende ${number}`, voice: slots, element: withChrome(script, <PracticeScene card={card} timing={timing} section={section.title} number={number} sceneSeconds={startOf(slots.length)} />)});
+				return;
+			}
 			const line = say(id, card.narration, estimate(card.narration), pacing.minCardSeconds);
 			// A visual told in beats: each beat's sentence follows the card's, and the figure follows the sentences.
 			const beats = 'beats' in card && card.visual ? card.beats : [];
@@ -129,7 +143,7 @@ const buildScenes = (script: LessonScript, voiceClips: VoiceClips = {}): Templat
 /**
  * The full lesson of one topic for YouTube: an opening with what the video
  * covers, the topic's sections card by card (concepts, rules, examples,
- * common mistakes, figures and worked questions), a summary, and a short
+ * common mistakes, figures, your-turn boards and worked questions), a summary, and a short
  * app promotion that is shown but not spoken. Its content is a lesson script
  * (Courses/LessonScript); the same script also makes the short (CourseShort).
  */

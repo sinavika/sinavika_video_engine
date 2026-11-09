@@ -37,25 +37,40 @@ Görevin: `temel`i **baz alıp** dersi yazılı derse dönüştürmek, kaynaklar
 5. **Hataları düzelt.**
    - `temel`deki ya da kaynaklardaki yanlış bilgiyi, yanlış cevap anahtarını, hatalı çözümü düzelt.
    - Her düzeltmeyi kısaca `written.fixes` dizisine yaz: ne yanlıştı, doğrusu ne.
-6. **Etkileşimli yap.**
-   - "Küçük anlat, hemen yoklat" ritmini kur. Art arda **en çok 3 okuma kartı** olur (concept, rule, example, görsel); arada öğrenciye bir şey yaptır.
+6. **Öğretim sırasını koru.** Sahibin kuralı (5 Kasım 2026): öğrenci konuyu tanımadan içeriğe, anlamını bilmeden formüle, çözüm görmeden soruya girmez.
+   1. **Dersin ilk kartı, konunun tanımıdır:** ilk bölümün ilk kartı bir `concept` kartıdır.
+      - Başlığı "<Konu> nedir?" olur.
+      - Metni konuyu sade bir tanımla anlatır, sınavda neden önemli olduğunu söyler ve günlük hayattan ya da sınavdan kısa bir örnek verir.
+   2. **Her bölüm, alt konunun tanımıyla açılır:** ilk kart bir `concept` kartıdır. Alt konunun ne olduğunu, hangi kavramlarla çalışacağını söyler. Tahmin kartı (`predict`) ya da kural listesi tanımın önüne geçmez.
+   3. **Sayısal derslerde formülden önce anlam:**
+      - Formül, kural ya da bağıntı vermeden önce fikri sözle ve basit sayılarla anlat: bu büyüklük ne demek, neden böyle davranıyor?
+      - Formül bir yerden çıkıyorsa çıkarılışını göster: çözümlemeden, Pisagor'dan, tanımdan.
+      - Formül kartı (rule ya da formula görseli) bu tanımdan ve sezgiden **sonra** gelir.
+   4. **Sorudan önce çözümlü örnekler:**
+      - Bölümün ilk sorusundan (question, blank, guided, findError, multi) önce `example` kartlarıyla çözümlü örnek ver: sayısal derslerde **en az 2**, sözel derslerde **en az 1**.
+      - Her örneğin `explanation` alanı tam çözümdür: adım adım, her adımın nedeniyle. Yalnız sonucu söyleyen tek satır değildir.
+      - Örnekler kolaydan zora gider. İlki kuralın doğrudan kullanımıdır, ikincisi ÖSYM tarzı bir tuzak ya da birleşik durumdur.
+      - Sözel derslerde örnek, bir ÖSYM soru kalıbının nasıl düşünülerek çözüldüğünü gösterir: parçayı okuma, şıkları eleme, ipucu sözcükler.
+   5. Sonra yoklama kartları ve sorular gelir. Soruların zorluğu da kolaydan zora artar.
+7. **Etkileşimli yap.**
+   - "Küçük anlat, hemen yoklat" ritmini kur. Art arda **en çok 4 okuma kartı** olur (concept, rule, görsel); arada öğrenciye bir şey yaptır. Çözümlü örnekler (`example`) bu sayıya girmez; yönlendirilmiş pratiktir.
    - Her bölümde en az bir öğretici kart ve en az bir soran kart bulunur.
    - Yoklama kartları (blank, match, classify, tap, split, multi, flip, guided, findError) bölümde **önce bir öğretici karttan sonra** gelir. Tahmin (`predict`) bilerek öğretimden önce gelebilir.
-7. **Kart türlerini içeriğe göre seç.** Hepsini doldurmak zorunda değilsin; konuya uyanı kullan:
+8. **Kart türlerini içeriğe göre seç.** Hepsini doldurmak zorunda değilsin; konuya uyanı kullan:
    - Türkçe ek ve kökte `split` ve `classify`;
    - paragraf ve cümlede `tap`;
    - kavram ile tanım ya da olay ile tarihte `match` ve `flip`;
    - hesapta `blank` (`input: "number"`), `guided` ve `findError`;
    - öncüllü sorularda `multi`.
-8. **Soru (`question`) kuralları:**
+9. **Soru (`question`) kuralları:**
    - 5 şık, tek doğru. Doğru şıklar sınavdaki gibi dağılır: bir harf soruların yarısını almaz, aynı harf üç kez üst üste gelmez, ABAB gibi desen olmaz. Sayısal şıklar küçükten büyüğe sıralanır.
    - `steps` **ipuçlarıdır**: her yanlış denemede biri açılır. 2–4 ipucu yaz. İpucu cevabın harfini **asla** söylemez. **Son ipucu da cevabı vermez**: son işlemi öğrenciye bırak.
    - Önemli sorularda `choiceFeedback` yaz: her yanlış şık için "bu şıkkı seçtiysen şunu karıştırdın" açıklaması, doğru şıkta `null`. Açıklama doğru cevabı ele vermez.
-9. **Doğru/yanlış dengesi.**
+10. **Doğru/yanlış dengesi.**
    - `mistake` kartı her zaman **yanlış** bir ifadedir. `wrong` alanına öğrencinin inanabileceği yanlış yargıyı tek cümle olarak yaz ("… sanmak" gibi bir davranış değil).
    - Doğru ifadeler için `predict` kullan: `"choices": ["Doğru", "Yanlış"]`, `"answer": 0`.
    - İkisinden bir derste dengeli sayıda olsun.
-10. **Dil:**
+11. **Dil:**
     - Türkçe, sen dili, sade ve öğretici, cümle düzeninde (sentence case) başlıklar.
     - "quiz" değil "test"; marka adları yalnız Sınavika ve SinoAI.
     - Vurgu `**…**`, formül `$…$`.
@@ -140,9 +155,10 @@ Görsel bir veridir; uygulama onu motorun çizimiyle gösterir.
 ## 5. Kontrol listesi (göndermeden önce)
 
 - Bölüm sayısı, sırası ve alt konu kodları `temel`le aynı.
+- Dersin ve her bölümün ilk kartı bir tanım (`concept`). Sayısal bölümde formül anlamından sonra geliyor. İlk sorudan önce yeterli çözümlü örnek var (sayısal 2, sözel 1).
 - Her Works notu `written.additions`'ta harfi harfine geçiyor.
 - Her soru yeniden çözüldü ve cevap anahtarı doğru; ipuçları cevabı vermiyor.
 - Formül, yıl ve sayıların hepsi yazı biçiminde; video sözü yok.
-- Art arda en çok 3 okuma kartı; yoklama kartları öğretimden sonra. Dikkat: `flow`, `matching` ve `flipcards` görselli `visual` kartı **soran** karttır (sıralama, eşleştirme, kart); bölümde öğretici sayılmaz, önüne bir öğretici kart koy.
+- Art arda en çok 4 okuma kartı (çözümlü örnekler sayılmaz); yoklama kartları öğretimden sonra. Dikkat: `flow`, `matching` ve `flipcards` görselli `visual` kartı **soran** karttır (sıralama, eşleştirme, kart); bölümde öğretici sayılmaz, önüne bir öğretici kart koy.
 - `choiceFeedback` dizisi seçenek sayısı kadar öğe taşır (soruda tam 5) ve doğru şıkkın yerinde `null` olur.
 - JSON geçerli: tırnaklar kaçışlı, LaTeX'te ters bölü çift (`\\overline`).

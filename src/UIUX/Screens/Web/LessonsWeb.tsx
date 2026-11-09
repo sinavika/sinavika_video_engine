@@ -305,7 +305,7 @@ const LessonSide: React.FC = () => {
 };
 
 /** The player page: timeline, the step column with its bar and the actions, and "Bu mikro derste". */
-const StudyPlayer: React.FC<{now?: number; done: number; current?: boolean; step: string; nav: React.ReactNode; center?: boolean; children: React.ReactNode}> = ({now = 1, done, current = true, step, nav, center, children}) => {
+export const StudyPlayer: React.FC<{now?: number; done: number; current?: boolean; step: string; nav: React.ReactNode; center?: boolean; children: React.ReactNode}> = ({now = 1, done, current = true, step, nav, center, children}) => {
 	const colors = useColors();
 	return (
 		<UIProvider module="lessons" web>
@@ -339,13 +339,13 @@ const StudyPlayer: React.FC<{now?: number; done: number; current?: boolean; step
 	);
 };
 
-const Back: React.FC<{children?: string; icon?: UIIconName}> = ({children = 'Önceki adım', icon = 'left'}) => (
+export const Back: React.FC<{children?: string; icon?: UIIconName}> = ({children = 'Önceki adım', icon = 'left'}) => (
 	<Button tone="ghost" size="lg" icon={icon}>
 		{children}
 	</Button>
 );
 
-const Main: React.FC<{children: string}> = ({children}) => <Button size="lg">{children}</Button>;
+export const Main: React.FC<{children: string}> = ({children}) => <Button size="lg">{children}</Button>;
 
 export const WebLessonConceptScreen: React.FC = () => (
 	<StudyPlayer done={0} step="adım 1 / 5" nav={<><Back /><Main>Devam</Main></>}>

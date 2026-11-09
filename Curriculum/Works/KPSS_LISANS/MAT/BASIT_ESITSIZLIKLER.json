@@ -72,6 +72,27 @@
     "cards": [
      {
       "kind": "concept",
+      "title": "Basit eşitsizlikler nedir?",
+      "text": "Eşitsizlik, iki şeyin eşit olmadığını ve hangisinin büyük olduğunu söyler. 'Yaşın 18'den büyük' demek tek bir sayı değil, 19, 20, 35 gibi bir sayı kümesi demektir. Asansör tabelasında 'en çok 300 kg' yazıyorsa 300 kg ve altı serbest, üstü yasaktır. Bu konuda bu kümeleri sayı doğrusunda ve aralık olarak göstermeyi, eşitsizlikleri çözmeyi ve aralıklarla işlem yapmayı öğreneceksin. KPSS'de bu kalıptan sık soru gelir: iki harfin aralığı verilir, toplamları, farkları ya da çarpımları sorulur."
+     },
+     {
+      "kind": "predict",
+      "title": "Sınırdaki sayı",
+      "context": "Bir sınavda 'puan en az 50 olmalı' koşulu var.",
+      "prompt": "Puanı tam 50 olan öğrenci bu koşulu sağlar.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "'En az 50', 50 ve 50'den büyük sayıları kapsar; yani 50'nin kendisi de dahildir. Sayı doğrusunda böyle bir uç dolu nokta ile gösterilir.",
+      "choiceFeedback": [
+       null,
+       "'En az' ifadesi sınır sayıyı da içine alır; 'en az 50' ile '50'den çok' aynı şey değildir."
+      ]
+     },
+     {
+      "kind": "concept",
       "title": "Açık uç, kapalı uç",
       "text": "**<** ve **>** ucu **dahil etmez** (açık uç, boş nokta); **≤** ve **≥** ucu **dahil eder** (kapalı uç, dolu nokta). $-2 \\le x < 3$ aralığı $[-2, 3)$ diye de yazılır.",
       "narration": "Eşitsizlik, bir sayının hangi aralıkta olduğunu söyler. $<$ ve $>$ işaretleri ucu dahil etmez; sayı doğrusunda o uç boş noktayla gösterilir. $\\le$ ve $\\ge$ işaretleri ucu dahil eder; o uç dolu noktadır. Doğrudaki ilk aralıkta $-2$ dolu, $3$ boş noktadır. Aralık yazımında köşeli parantez ucu dahil eder, normal parantez etmez: $[-2, 3)$. $x > 1$ için 1 hariçtir ve aralık sağa doğru sonsuza gider. Sonsuz bir sayı olmadığı için o uç her zaman açıktır.",
@@ -251,6 +272,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Eşitsizlik çözmek nedir?",
+      "text": "Eşitsizlik çözmek, eşitsizliği sağlayan bütün sayıları bulmaktır. Fikir terazi gibidir: $5 < 8$ doğrudur. İki yana 2 eklersen $7 < 10$ yine doğrudur; iki yanı 2 ile çarparsan $10 < 16$ yine doğrudur. Ama iki yanı $-1$ ile çarparsan $-5$ ve $-8$ elde edersin ve $-5 > -8$ yazman gerekir: yön değişti. Çünkü negatifle çarpmak sayıları sayı doğrusunda ayna gibi çevirir. Bu bölümde bu fikirle $x$'i yalnız bırakacak, üç taraflı eşitsizlikleri çözecek ve tam sayı değerlerini bulacaksın."
+     },
+     {
       "kind": "rule",
       "title": "Yön ne zaman değişir?",
       "items": [
@@ -284,6 +310,12 @@
        ]
       },
       "narration": "$-3x + 5 \\ge -7$ eşitsizliğinde önce iki yandan 5 çıkarılır: $-3x \\ge -12$. Yön değişmez. Sonra $-3$'e bölünür; negatif sayıya bölündüğü için yön değişir: $x \\le 4$. Sağlama: $x = 0$ için $5 \\ge -7$ doğrudur ve $0 \\le 4$ ile tutarlıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Negatif katsayılı eşitsizlik",
+      "example": "$5 - 2x > -3$ eşitsizliğini çözelim.",
+      "explanation": "Önce 5'i karşıya at; toplama ve çıkarmada yön değişmez: $-2x > -8$. Şimdi $-2$'ye böl. Negatif sayıya bölündüğü için yön değişir: $x < 4$. Sağlama: $x = 0$ için $5 > -3$ doğru. Uç $x = 4$ için $5 - 8 = -3$ olur ve $-3 > -3$ yanlıştır; yani 4 hariçtir. Çözüm kümesi $(-\\infty, 4)$."
      },
      {
       "kind": "example",
@@ -533,6 +565,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Aralıklarla işlem nedir?",
+      "text": "Bazen $x$ tek bir sayı değil, bir aralıktır: $x$, 2 ile 5 arasında; $y$, 1 ile 3 arasında olsun. O zaman $x + y$ de bir aralıkta kalır. En küçük durumda $2 + 1 = 3$, en büyük durumda $5 + 3 = 8$ olur; yani toplam 3 ile 8 arasındadır. Aralıklarla dört işlem, uç değerleri deneyerek yapılır. Bu bölümde toplama, çıkarma, çarpma ve kare almada yeni aralığı bulacak, 'her zaman doğru' sorularını bu aralıklarla sınayacaksın."
+     },
+     {
       "kind": "rule",
       "title": "Aralıklarla işlem",
       "items": [
@@ -604,6 +641,18 @@
        null,
        "Hangi $x$ için $x^2 \\ge 9$ olur? $x \\ge 3$ ya da $x \\le -3$ gerekir; aralıkta böyle değer yok."
       ]
+     },
+     {
+      "kind": "example",
+      "title": "Toplam ve fark aralığı",
+      "example": "$2 < x < 5$ ve $1 < y < 3$ ise $x + y$ ve $x - y$ hangi aralıklardadır?",
+      "explanation": "Aynı yönlü eşitsizlikler taraf tarafa toplanır: $2 + 1 < x + y < 5 + 3$, yani $3 < x + y < 8$. Fark için taraf tarafa çıkarma yapılmaz; önce $y$'yi $-1$ ile çarp. Negatifle çarpıldığı için yön değişir: $-3 < -y < -1$. Şimdi $2 < x < 5$ ile taraf tarafa topla: $2 + (-3) < x - y < 5 + (-1)$, yani $-1 < x - y < 4$. Kontrol: $x = 2$ ve $y = 3$'e yaklaşınca fark $-1$'e yaklaşır."
+     },
+     {
+      "kind": "example",
+      "title": "Çarpımın aralığı",
+      "example": "$-2 < x < 4$ ve $-3 < y < 1$ ise $x \\cdot y$ hangi aralıktadır?",
+      "explanation": "Çarpımda uçların dört çarpımını bul: $(-2)(-3) = 6$, $(-2)(1) = -2$, $4 \\cdot (-3) = -12$, $4 \\cdot 1 = 4$. En küçüğü $-12$, en büyüğü 6'dır. Uçlar açık olduğu için bu değerlere ulaşılmaz: $-12 < x \\cdot y < 6$. Negatif ile negatifin çarpımının pozitif olduğunu unutup $(-2)(-3)$'ü $-6$ bulursan üst sınırı yanlış yazarsın."
      },
      {
       "kind": "guided",
@@ -822,6 +871,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Eşitsizlik sistemi nedir?",
+      "text": "Eşitsizlik sistemi, aynı $x$ için birden çok koşulun verilmesidir. **Ve** bağlacı koşulların ikisini birlikte ister: 'yaşın 18'den büyük **ve** 65'ten küçük' ise yalnız 19 ile 64 arasındaki yaşlar uygundur. **Veya** bağlacı birini sağlamayı yeter sayar: 'yaşın 10'dan küçük **veya** 65'ten büyük' ise 5 de 70 de uygundur, 30 uygun değildir. Bu bölümde ortak kısmı ve birleşimi sayı doğrusunda bulacak, eşit ifadeleri ortak değerle sıralayacaksın."
+     },
+     {
       "kind": "visual",
       "title": "Ortak kısım",
       "visual": {
@@ -894,6 +948,18 @@
        "Bu sistemde 'veya' var; birleşim ister."
       ],
       "explanation": "'Ve' bağlacı iki koşulun aynı anda sağlanmasını ister; çözüm ortak kısımdır. 'Veya' bağlacı ise birleşim ister."
+     },
+     {
+      "kind": "example",
+      "title": "İki koşulun ortak kısmı",
+      "example": "$x - 1 > 2$ ve $x + 2 \\le 9$ sistemini sağlayan $x$ değerlerini bulalım.",
+      "explanation": "Her eşitsizliği ayrı çöz. Birincide 1'i karşıya at: $x > 3$. İkincide 2'yi karşıya at: $x \\le 7$. 've' bağlacı olduğu için ortak kısmı al: $x$ hem 3'ten büyük hem 7'ye eşit ya da küçük olmalı. Çözüm: $3 < x \\le 7$, yani $(3, 7]$. 3 hariç, 7 dahil olduğundan tam sayılar 4, 5, 6 ve 7'dir."
+     },
+     {
+      "kind": "example",
+      "title": "Ve: negatife bölme tuzağı",
+      "example": "$4 - 2x < 10$ ve $x - 3 \\le 1$ sistemini sağlayan tam sayıların sayısını bulalım.",
+      "explanation": "Birinci eşitsizlikte 4'ü karşıya at: $-2x < 6$. $-2$'ye bölünce yön değişir: $x > -3$. İkincide 3'ü karşıya at: $x \\le 4$. 've' bağlacı olduğu için ortak kısmı al: $-3 < x \\le 4$. $-3$ hariç, 4 dahil olduğundan tam sayılar $-2, -1, 0, 1, 2, 3, 4$ olur; sayısı $4 - (-2) + 1 = 7$. Negatife bölerken yönü çevirmezsen $x < -3$ bulur ve yanlış sonuca gidersin."
      },
      {
       "kind": "question",

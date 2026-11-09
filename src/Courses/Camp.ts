@@ -58,7 +58,7 @@ export const CampEpisodeSchema = z
 		/** The lesson's number in the camp, from 1. */
 		number: z.number().int().min(1).max(99),
 		total: z.number().int().min(2).max(99),
-		/** The previous lesson's title, recalled in the welcome. The first lesson has none. */
+		/** The previous lesson's title (linked in the YouTube description, CampJob; the welcome no longer recalls it, 8 Nov 2026). The first lesson has none. */
 		previous: plainText(60).optional(),
 		/** The next lesson's title, announced at the end. The last lesson has none. */
 		next: plainText(60).optional(),
@@ -147,11 +147,12 @@ const capitalise = (text: string): string => text.charAt(0).toLocaleUpperCase('t
 const toCamp = (name: string): string => (/kampı$/.test(name) ? name.replace(/kampı$/, 'kampına') : `${name} serisine`);
 
 /**
- * The welcome at the start of every camp lesson, in SinoAI's voice: who is
- * speaking, which camp and which lesson this is, what came before, and what
- * the viewer will get. YouTube viewers expect a host to greet them (owner,
- * 25 Oct 2026); the words are the same in every lesson so the series sounds
- * like one.
+ * The welcome of every camp lesson, in the narrator's voice: which camp and which
+ * lesson this is, in one breath (about 5 s). The words are the same in every
+ * lesson so the series sounds like one. No "Merhaba, ben SinoAI", no "geçen
+ * derste…", no "konuyu adım adım öğreneceğiz… hazırsan başlayalım": 99% of the
+ * viewers are new and three in four had left by the 30th second, before any
+ * teaching (owner and the 8 Nov 2026 analysis, docs/Analiz).
  */
 export const campWelcomeNarration = (camp: CampEpisode, lesson: {title: string; lessonName: string}): string => {
 	if (camp.welcome) return camp.welcome;
@@ -159,14 +160,9 @@ export const campWelcomeNarration = (camp: CampEpisode, lesson: {title: string; 
 		camp.number === 1
 			? `Bu kampta ${lesson.lessonName} konularının hepsini sırayla ve soru çözerek işleyeceğiz. Bugün kampın ilk dersindeyiz: ${lesson.title}.`
 			: camp.number === camp.total
-				? `Bugün kampın son dersindeyiz: ${lesson.title}.${camp.previous ? ` Geçen derste ${camp.previous} konusunu işlemiştik.` : ''}`
-				: `Bugün kampın ${turkishOrdinal(camp.number)} dersindeyiz: ${lesson.title}.${camp.previous ? ` Geçen derste ${camp.previous} konusunu işlemiştik.` : ''}`;
-	return [
-		`Merhaba, ben SinoAI. Sınavika'nın ${toCamp(camp.name)} hoş geldin!`,
-		where,
-		'Konuyu adım adım öğrenecek, sınav tarzı sorular çözeceğiz. Videonun sonunda da seni bir kamp görevi bekliyor.',
-		'Hazırsan başlayalım!',
-	].join(' ');
+				? `Bugün kampın son dersindeyiz: ${lesson.title}.`
+				: `Bugün kampın ${turkishOrdinal(camp.number)} dersindeyiz: ${lesson.title}.`;
+	return [`Sınavika'nın ${toCamp(camp.name)} hoş geldin!`, where].join(' ');
 };
 
 /**

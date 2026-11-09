@@ -14,7 +14,7 @@ import {PHONE_GEOMETRY} from '../../Components/AppScreens/PhoneFrame';
 
 const {width: W, height: H} = UI_CANVAS.web;
 
-type PanelItem = 'home' | 'modules' | ModuleKey | 'notifications' | 'profile' | 'support';
+type PanelItem = 'home' | 'modules' | ModuleKey | 'stats' | 'notifications' | 'profile' | 'support';
 
 /** A menu row: neutral icon and text; only the active row shows its module colour (a thin bar and the icon), on a light grey pill. */
 const NavRow: React.FC<{item: PanelItem; active: boolean; label: string; icon: UIIconName; badge?: string}> = ({item, active, label, icon, badge}) => {
@@ -55,6 +55,7 @@ const Sidebar: React.FC<{active: PanelItem}> = ({active}) => {
 			<Text role="over" size={10.5} style={{padding: '14px 10px 6px'}}>
 				{t('Hesap', 'Account')}
 			</Text>
+			<NavRow item="stats" active={active === 'stats'} label={t('İstatistiklerim', 'My statistics')} icon="chart" />
 			<NavRow item="notifications" active={active === 'notifications'} label={t('Bildirimler', 'Notifications')} icon="bell" badge="3" />
 			<NavRow item="support" active={active === 'support'} label={t('Destek', 'Support')} icon="headset" />
 			<div style={{flex: 1}} />

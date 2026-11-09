@@ -112,6 +112,21 @@ for (const job of jobs) {
 	if (row && row.hash === hashOf(job)) row.rawHash = rawHashOf(job);
 }
 const redraw = new Set((values.kinds ?? '').split(',').map((kind) => kind.trim()).filter(Boolean));
+// A figure that moved (a card added before it shifts its pointer) but draws the same as a figure already in the
+// manifest takes that figure's still instead of being drawn again: same files, same sha256, nothing to upload (5 Nov
+// 2026: new cards shifted 1,757 TYT and KPSS figures whose data had not changed).
+const drawnByHash = new Map<string, ManifestRow>();
+for (const row of Object.values(manifest)) if (existsSync(row.light) && existsSync(row.dark)) drawnByHash.set(row.hash, row);
+let relinked = 0;
+for (const job of jobs) {
+	const row = manifest[keyOf(job)];
+	if (values.force || redraw.has(job.entry.visual.kind) || (row && row.hash === hashOf(job) && existsSync(row.light))) continue;
+	const same = drawnByHash.get(hashOf(job));
+	if (!same) continue;
+	manifest[keyOf(job)] = {...same, pointer: job.entry.pointer, name: job.entry.name, source: job.source, rawHash: rawHashOf(job)};
+	relinked++;
+}
+if (relinked) console.log(`${relinked} görsel çizilmeden aynı resme bağlandı.`);
 const tooSmall = (row: ManifestRow | undefined) => row?.textPx !== undefined && row.textPx < WORK_FIGURE_MIN_TEXT_PX;
 const pending = jobs
 	.filter((job) => values.force || redraw.has(job.entry.visual.kind) || (values.small && tooSmall(manifest[keyOf(job)])) || manifest[keyOf(job)]?.hash !== hashOf(job) || !existsSync(manifest[keyOf(job)].light))

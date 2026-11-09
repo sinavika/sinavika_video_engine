@@ -72,6 +72,18 @@
     "title": "Temel sayma ilkesi",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Permütasyon, Kombinasyon ve Olasılık nedir?",
+      "text": "Bu konu, bir olayın **kaç farklı biçimde** gerçekleşebileceğini saymayı ve bir olayın **olma şansını** hesaplamayı öğretir. Permütasyon nesneleri sıraya dizmeyi, kombinasyon sıra önemsiz seçim yapmayı, olasılık ise istenen durumların bütün durumlara oranını inceler. Günlük hayatta 3 gömlek ve 4 pantolondan $3 \\cdot 4 = 12$ farklı kıyafet çıkması, 5 kişiden 2 kişilik takım seçmenin 10 yolu olması bu konunun örnekleridir. KPSS Matematik'te sayma ve olasılık soruları sık karşına çıkar; bu yüzden önce saymayı, sonra olasılığı öğreneceksin.",
+      "caption": "Sayma: kaç yolu var? Olasılık: ne kadar şanslı?"
+     },
+     {
+      "kind": "concept",
+      "title": "Temel sayma ilkesi nedir?",
+      "text": "Temel sayma ilkesi, bir işin kaç farklı biçimde yapılabileceğini bulmanın iki kuralıdır. **Çarpma ilkesi**: işin birden çok adımı varsa ve her adım yapılacaksa seçenek sayıları çarpılır. **Toplama ilkesi**: seçenekler birbirinin yerine geçiyorsa ('ya o ya bu') seçenek sayıları toplanır. Örnek: 2 çorba ve 3 ana yemekten birer tane seçmek $2 \\cdot 3 = 6$ menü verir; ama 2 çorbadan biri ya da 3 ana yemekten biri seçilecekse $2 + 3 = 5$ seçenek vardır. Rakamlarla sayı yazarken 0'ın başa gelememesi gibi kısıtlar da bu bölümün konusudur.",
+      "caption": "Hepsi yapılacaksa çarp, biri yapılacaksa topla."
+     },
+     {
       "kind": "rule",
       "title": "Çarp ya da topla",
       "items": [
@@ -125,6 +137,12 @@
       "example": "Bir kütüphanede 6 roman ve 4 şiir kitabı var. a) Bir kitap seçmenin kaç yolu vardır? b) Bir roman ve bir şiir kitabı seçmenin kaç yolu vardır?",
       "explanation": "a) Seçilen kitap ya romandır ya şiir kitabıdır; ikisi aynı anda olamaz: $6 + 4 = 10$. b) Önce roman (6 yol), sonra şiir kitabı (4 yol) seçilir; iki seçim de yapılacak: $6 \\cdot 4 = 24$. Soruda 've' çarpmayı, 'ya da' toplamayı işaret eder.",
       "narration": "Aynı kitaplık, iki farklı soru: tek kitap mı, yoksa iki kitap mı seçiyorsun? Tek seçimde seçenekler birbirinin yerine geçer ve toplanır. İki seçimin ikisi de yapılıyorsa her birinin yanına diğerinin seçenekleri gelir ve çarparsın."
+     },
+     {
+      "kind": "example",
+      "title": "Menü seçimi",
+      "example": "Bir lokantada 3 çeşit çorba, 4 çeşit ana yemek, 2 çeşit tatlı ve 3 çeşit meyve vardır. Menü; bir çorba, bir ana yemek ve tatlı ya da meyveden yalnız biri seçilerek oluşturuluyor. Kaç farklı menü yapılabilir?",
+      "explanation": "Önce 'ya o ya bu' kısmını çöz: tatlı ya da meyve yalnız biri seçildiği için seçenekler toplanır: $2 + 3 = 5$. Menüde çorba, ana yemek ve bu 5 seçenekten biri art arda seçilir; üç seçimin üçü de yapılacağı için çarpılır: $3 \\cdot 4 \\cdot 5 = 60$. Önce toplama sonra çarpma gerektiren sorularda parantez içini önce hesapla."
      },
      {
       "kind": "blank",
@@ -287,6 +305,12 @@
     "cards": [
      {
       "kind": "concept",
+      "title": "Permütasyon nedir?",
+      "text": "Permütasyon, nesneleri bir **sıraya dizmektir**; sıra önemlidir. A, B, C üç kişi sıraya dizilirse ilk yere 3 kişiden biri, ikinci yere kalan 2 kişiden biri, son yere kalan 1 kişi gelir: $3 \\cdot 2 \\cdot 1 = 6$ dizilim (ABC, ACB, BAC, BCA, CAB, CBA). Yalnız bir kısım sıralanıyorsa, örneğin 3 kişiden 2'si iki sandalyeye oturuyorsa, yalnız o iki yer için seçim yapılır: $3 \\cdot 2 = 6$. Bu bölümde bu çarpımların kısa yazılışı olan faktöriyeli ve $P(n, r)$'yi öğreneceksin.",
+      "caption": "Sıra önemli = permütasyon"
+     },
+     {
+      "kind": "concept",
       "title": "Faktöriyel",
       "text": "$n! = n \\cdot (n-1) \\cdots 2 \\cdot 1$ ifadesi 1'den $n$'e kadar sayıların çarpımıdır. Tanım gereği $0! = 1$ ve $1! = 1$'dir. Faktöriyeller çok hızlı büyür; bu yüzden hepsini açmak yerine **sadeleştirirsin**: $\\frac{8!}{6!} = 8 \\cdot 7 = 56$. Büyük faktöriyeli küçüğüne bağlamak da işe yarar: $(n+1)! = (n+1) \\cdot n!$.",
       "caption": "Hesaplarken hepsini açma; ortak çarpanı sadeleştir.",
@@ -328,6 +352,18 @@
        ]
       },
       "narration": "Faktöriyel, n farklı nesnenin bir sıraya kaç farklı biçimde dizilebileceğini veren sayıdır. 0! = 1 olması bir tanımdır; sonraki kartlarda göreceğin $P(n, n) = \\frac{n!}{0!}$ bağıntısının tutarlı kalmasını sağlar. İki faktöriyelin oranında büyük olan, küçüğünü içerir; küçüğüne kadar olan çarpanlar sadeleşir ve geriye yalnız fark kadar çarpan kalır."
+     },
+     {
+      "kind": "example",
+      "title": "Faktöriyel işlemi",
+      "example": "$\\frac{7!}{5!} + 3!$ işleminin sonucu kaçtır?",
+      "explanation": "$7! = 7 \\cdot 6 \\cdot 5!$ olduğundan $\\frac{7!}{5!} = 7 \\cdot 6 = 42$. $3! = 3 \\cdot 2 \\cdot 1 = 6$. Toplam: $42 + 6 = 48$. Büyük faktöriyeli küçüğünün içinde göstermek sadeleştirmeyi kolaylaştırır."
+     },
+     {
+      "kind": "example",
+      "title": "Denklemde faktöriyel",
+      "example": "$\\frac{(n+2)!}{n!} = 56$ ise $n$ kaçtır?",
+      "explanation": "$(n+2)! = (n+2)(n+1) \\cdot n!$ olduğundan $n!$ sadeleşir ve $(n+2)(n+1) = 56$ kalır. Ardışık iki sayının çarpımı 56 ise sayılar 8 ve 7'dir: $n + 2 = 8$, yani $n = 6$. Kontrol: $\\frac{8!}{6!} = 8 \\cdot 7 = 56$."
      },
      {
       "kind": "blank",
@@ -552,6 +588,12 @@
     "title": "Tekrarlı permütasyon",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Kombinasyon nedir?",
+      "text": "Kombinasyon, bir gruptan **sırası önemsiz** olarak seçim yapmaktır. A, B, C üç kişiden iki kişilik takım seçelim: AB, AC, BC; yani 3 takım. AB ile BA aynı takımdır. İki kişiyi sıraya dizseydik (başkan ve yardımcı gibi) 6 durum olurdu: AB, BA, AC, CA, BC, CB. Seçimde her takım 2 kez sayıldığı için sıralı sayıyı 2'ye böleriz: $6 \\div 2 = 3$. Soruda görev, sıra ya da derece yoksa ve yalnız 'kimler seçiliyor' soruluyorsa kombinasyon düşün.",
+      "caption": "Sıra önemsiz = kombinasyon"
+     },
+     {
       "kind": "predict",
       "title": "Aynı harfler",
       "context": "ALA kelimesinde iki A vardır.",
@@ -613,6 +655,18 @@
        "N yalnız bir kez geçiyor; tekrar eden harf değil."
       ],
       "explanation": "B iki, A üç kez geçer; L ve N birer kezdir. Bu yüzden $\\frac{7!}{2! \\cdot 3!}$ işlemi gerekir."
+     },
+     {
+      "kind": "example",
+      "title": "Temsilci grubu seçmek",
+      "example": "8 öğrenciden 3 kişilik bir temsilci grubu kaç farklı biçimde seçilir?",
+      "explanation": "Temsilcilerin görev farkı yok; kimlerin seçildiği önemlidir, sıra önemsizdir. Bu yüzden kombinasyon kullanılır: $\\binom{8}{3} = \\frac{8 \\cdot 7 \\cdot 6}{3 \\cdot 2 \\cdot 1} = \\frac{336}{6} = 56$. Sıralı sayarsak $8 \\cdot 7 \\cdot 6 = 336$ çıkardı; her grup $3! = 6$ kez sayılmış olurdu, bu yüzden 6'ya böldük."
+     },
+     {
+      "kind": "example",
+      "title": "İki gruptan seçim",
+      "example": "6 kadın ve 5 erkek arasından 2 kadın ve 2 erkek içeren 4 kişilik bir kurul kaç farklı biçimde seçilebilir?",
+      "explanation": "Kurulda görev farkı yok, sıra önemsiz: kombinasyon kullanılır. Kadınlardan 2 kişi: $\\binom{6}{2} = \\frac{6 \\cdot 5}{2} = 15$. Erkeklerden 2 kişi: $\\binom{5}{2} = \\frac{5 \\cdot 4}{2} = 10$. İki seçimin ikisi de yapılacağı için çarpma ilkesi uygulanır: $15 \\cdot 10 = 150$."
      },
      {
       "kind": "blank",
@@ -740,6 +794,12 @@
     "title": "Kombinasyon",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Tekrarlı permütasyon nedir?",
+      "text": "Sıralanacak nesneler arasında birbirinin aynısı olanlar varsa buna **tekrarlı permütasyon** denir. Farklı iki harf A ve B iki biçimde dizilir: AB ve BA. İki harf de A ise AA tek biçimdir; çünkü iki A'nın yer değiştirmesi hiçbir şeyi değiştirmez. Yani aynı nesneler yüzünden bazı dizilişler birbirinin kopyasıdır ve kopyalar yalnız bir kez sayılmalıdır. Kelime ve rakamlarla sayı yazma sorularında önce hangi nesnenin kaç kez geçtiğini say.",
+      "caption": "Aynı nesnelerin yer değiştirmesi yeni dizilim vermez."
+     },
+     {
       "kind": "predict",
       "title": "Sıra önemli mi?",
       "context": "10 kişiden **3 kişilik bir kurul** seçilecek.",
@@ -814,6 +874,18 @@
        }
       ],
       "explanation": "Seçilenlerin sıralanması ya da farklı görev alması sonucu değiştiriyorsa permütasyon; yalnız 'kimler' soruluyorsa kombinasyondur."
+     },
+     {
+      "kind": "example",
+      "title": "ARABA sözcüğü",
+      "example": "ARABA sözcüğünün harfleriyle anlamlı ya da anlamsız 5 harfli kaç farklı sözcük yazılabilir?",
+      "explanation": "Harfleri say: A üç kez, R bir kez, B bir kez geçer; toplam 5 harf. Hepsi farklı olsaydı $5! = 120$ dizilim olurdu. Üç A'nın kendi aralarındaki $3! = 6$ yer değişimi aynı sözcüğü verir; her sözcük 6 kez sayılmıştır. Bu yüzden 6'ya böleriz: $\\frac{5!}{3!} = \\frac{120}{6} = 20$."
+     },
+     {
+      "kind": "example",
+      "title": "Sıfırlı rakamlarla sayı",
+      "example": "1, 1, 2, 2, 0 rakamlarının hepsi birer kez kullanılarak beş basamaklı kaç farklı sayı yazılabilir?",
+      "explanation": "Önce 0 kısıtını düşünmeden hepsini diz. Aynı olan iki 1 ve iki 2 vardır: $\\frac{5!}{2! \\cdot 2!} = \\frac{120}{4} = 30$. Bunların bir kısmı 0 ile başlar ve beş basamaklı sayı olmaz. 0 başta ise kalan 1, 1, 2, 2 rakamları dizilir: $\\frac{4!}{2! \\cdot 2!} = 6$. İstenen sayı $30 - 6 = 24$."
      },
      {
       "kind": "blank",
@@ -960,6 +1032,12 @@
     "title": "Basit olasılık",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Basit olasılık nedir?",
+      "text": "Olasılık, bir olayın gerçekleşme şansını 0 ile 1 arasında bir sayıyla ifade eder: 0 imkânsız, 1 kesin demektir. Hesaplamak için istenen durumların sayısı, bütün durumların sayısına bölünür; ancak bütün durumlar **eşit şansa** sahip olmalıdır. Örnek: hilesiz bir zarda çift sayı gelmesi için bütün durumlar 6'dır; istenenler 2, 4 ve 6 olduğundan 3 durum vardır. Olasılık $\\frac{3}{6}$, yani $\\frac{1}{2}$'dir. Çarpma ilkesi, permütasyon ve kombinasyon bu bölümde pay ve paydadaki durum sayılarını bulmak için kullanılır.",
+      "caption": "Olasılık = istenen durumlar / bütün durumlar (hepsi eşit şanslı)"
+     },
+     {
       "kind": "predict",
       "title": "36 sıralı ikili",
       "context": "İki hilesiz zar atılıyor.",
@@ -1010,6 +1088,18 @@
        ]
       },
       "narration": "Bir olayın olasılığı, istenen durumların sayısının bütün durumların sayısına bölümüdür ve 0 ile 1 arasındadır. Bütün durumları eşit olasılıklı olacak biçimde saymalısın: iki zar atılınca 36 sıralı ikili vardır; 3 ve 6 ile 6 ve 3 ayrı durumlardır. Aynı anda olamayan ayrık olayların olasılıkları toplanır. Art arda gelen bağımsız olaylarda olasılıklar çarpılır; olay durumlara ayrılıyorsa her durumun olasılığını önce kendi içinde çarpar, sonra durumları toplarsın."
+     },
+     {
+      "kind": "example",
+      "title": "Asal sayı gelmesi",
+      "example": "Hilesiz bir zar atılıyor. Üst yüze asal sayı gelme olasılığı kaçtır?",
+      "explanation": "Bütün durumlar: 1, 2, 3, 4, 5, 6, yani 6 durum ve hepsi eşit olasılıklı. Asal olanlar 2, 3 ve 5'tir: 3 durum. 1 asal sayı değildir; bu yaygın bir tuzaktır. Olasılık $\\frac{3}{6} = \\frac{1}{2}$."
+     },
+     {
+      "kind": "example",
+      "title": "Toplamı 5'ten küçük",
+      "example": "İki hilesiz zar birlikte atılıyor. Zarların toplamının 5'ten küçük olma olasılığı kaçtır?",
+      "explanation": "Bütün durumlar: $6 \\cdot 6 = 36$ sıralı ikili. Toplam 2: (1,1) → 1 durum. Toplam 3: (1,2), (2,1) → 2 durum. Toplam 4: (1,3), (2,2), (3,1) → 3 durum. Toplamın 2, 3 ya da 4 olması aynı anda olamayan ayrık durumlardır; durum sayıları toplanır: $1 + 2 + 3 = 6$. Olasılık $\\frac{6}{36} = \\frac{1}{6}$."
      },
      {
       "kind": "blank",
@@ -1259,6 +1349,12 @@
     "title": "Tümleyen olay",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Tümleyen olay nedir?",
+      "text": "Bir olayın **tümleyeni**, o olay gerçekleşmediğinde olan her şeydir. Madeni para atarken yazı gelmesi bir olaydır, tura gelmesi onun tümleyenidir. Olay ya olur ya olmaz; bu yüzden olma ve olmama olasılıklarının toplamı her zaman 1'dir: yazı için $\\frac{1}{2}$, tura için $1 - \\frac{1}{2} = \\frac{1}{2}$. 'En az biri' gibi çok durumlu olayları tek tek saymak uzundur; bunun yerine tümleyeni, yani 'hiçbiri' durumunu hesaplayıp 1'den çıkarırsın. Bu kalıp sorularda sık karşına çıkar.",
+      "caption": "Olma olasılığı + olmama olasılığı = 1"
+     },
+     {
       "kind": "rule",
       "title": "Tümleyen kuralı",
       "items": [
@@ -1272,6 +1368,18 @@
        "caption": "Toplamak yerine tümleyeni al"
       },
       "narration": "Bir olayın olmama olasılığı, 1'den olma olasılığı çıkarılarak bulunur; çünkü olay ya olur ya olmaz ve ikisinin toplamı 1'dir. En az biri sorulduğunda olasılıkları tek tek toplamak yerine 1'den hiçbirinin olmama olasılığını çıkarırsın. Bağımsız olayların hiçbirinin olmaması için her birinin olmama olasılıklarını çarparsın."
+     },
+     {
+      "kind": "example",
+      "title": "Gelmeme olasılığı",
+      "example": "Hilesiz bir zar atılıyor. Üst yüze 6 gelmeme olasılığı kaçtır?",
+      "explanation": "6 gelmesinin olasılığı 6 durumdan 1'i olduğu için $\\frac{1}{6}$'dır. 6 gelmemesi bu olayın tümleyenidir: $1 - \\frac{1}{6} = \\frac{5}{6}$. Aynı sonucu doğrudan da bulabilirsin: 1, 2, 3, 4, 5 yüzlerinden biri gelirse olay gerçekleşir; 6 durumdan 5'i, yani $\\frac{5}{6}$. İki yol da aynı sonucu verir; tümleyen yolu çok durumlu sorularda çok daha kısadır."
+     },
+     {
+      "kind": "example",
+      "title": "Hiç kırmızı çıkmazsa",
+      "example": "Bir torbada 4 kırmızı ve 6 mavi top vardır. Rastgele bir top çekilip rengi görüldükten sonra torbaya geri atılıyor. Bu işlem 3 kez yapılıyor. En az bir kez kırmızı top çekilme olasılığı kaçtır?",
+      "explanation": "'En az bir kırmızı' 1, 2 ya da 3 kırmızı demektir; bu üç durumu ayrı ayrı hesaplamak uzundur. Tümleyeni al: hiç kırmızı çekilmemesi, yani üçünde de mavi çekilmesi. Top geri atıldığı için çekilişler birbirinden bağımsızdır ve her çekilişte mavi olasılığı $\\frac{6}{10} = \\frac{3}{5}$'tir. Bağımsız olaylar birlikte olacağı için çarpılır: $\\left(\\frac{3}{5}\\right)^3 = \\frac{27}{125}$. En az bir kırmızı: $1 - \\frac{27}{125} = \\frac{98}{125}$."
      },
      {
       "kind": "blank",

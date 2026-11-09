@@ -319,8 +319,13 @@ const innerPages = (content: Content): Slide[] => content.slides.filter((slide, 
  * title fits in), and the line under its deepest text, where pictures start
  * at the latest, so they sit at the same place on every page. In actual pixels.
  */
-/** The answer card of a checklist question page and its gap under the question (owner, 1 Nov 2026: smaller card). */
-const CHECKLIST_CARD = 340;
+/**
+ * The answer card of a checklist question page and its gap under the question (owner, 1 Nov 2026: smaller card; 5 Nov:
+ * smaller again, one ruled line under the label, and the pair a little under the middle of the page).
+ */
+const CHECKLIST_CARD = 250;
+/** How far under the page's middle the question and its card stand together. */
+const CHECKLIST_DROP = 40;
 const CHECKLIST_GAP = 64;
 /** Sizes the checklist questions may take, largest first. */
 const CHECKLIST_QUESTION_STEPS = [104, 96, 88, 80, 72] as const;
@@ -397,7 +402,7 @@ const PromoDeckImage: React.FC<{content: Content; page: number}> = ({content, pa
 	const questionHeight = linesOf(slide.title) * questionSize * P.titleLineHeight;
 	// The card stands at one place on every page; each question ends just above it, however many lines it takes.
 	const deepest = Math.max(...questions.map(linesOf)) * questionSize * P.titleLineHeight;
-	const groupTop = Math.max(layout.top, Math.round((height - (deepest + CHECKLIST_GAP + CHECKLIST_CARD)) / 2 - 40));
+	const groupTop = Math.max(layout.top, Math.round((height - (deepest + CHECKLIST_GAP + CHECKLIST_CARD)) / 2 + CHECKLIST_DROP));
 	const checklistTop = groupTop + deepest - questionHeight;
 
 	const header = (

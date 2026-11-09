@@ -60,6 +60,16 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Açılar ve Üçgenler nedir?",
+      "text": "Üçgen, üç kenarı ve üç açısı olan kapalı bir şekildir ve **iç açılarının toplamı her zaman 180°'dir**. Bu konuda açılar ile kenarlar arasındaki ilişkiyi, ikizkenar üçgeni, dış açıyı ve üç uzunluğun üçgen kurup kurmadığını öğrenirsin. TYT Geometri'de hemen her yıl bu konudan soru çıkar; çözümler genelde birkaç küçük kuralın zincirlenmesidir. Günlük hayatta çatı kirişleri ve bisiklet çerçeveleri üçgendir, çünkü üçgen şekil değiştirmez. Aynı mantık sınavda da açı ve kenar ilişkilerini bulmanı sağlar."
+     },
+     {
+      "kind": "concept",
+      "title": "Büyük açı, büyük kenar nedir?",
+      "text": "Üçgenin her kenarı bir açının karşısında durur ve açı büyüdükçe karşısındaki kenar uzar. Bir kapıyı düşün: menteşeden çıkan iki kenar sabitken kapıyı az açarsan uçlar birbirine yakın, çok açarsan uzak olur. Aynı fikir üçgende de geçerlidir: $30°$, $60°$ ve $90°$ açılı bir üçgende en kısa kenar $30°$'nin, en uzun kenar $90°$'nin karşısındadır. Bu alt konuda kenarları açılara göre sıralamayı, ortak kenarlı iki üçgeni zincirleme karşılaştırmayı ve kuralın yalnız aynı üçgende geçerli olduğunu öğreneceksin."
+     },
+     {
       "kind": "visual",
       "title": "Açının karşısındaki kenar",
       "visual": {
@@ -184,6 +194,18 @@
       "wrong": "Köşeler A, B, C sırasındaysa kenarlar da $a > b > c$ sırasındadır.",
       "right": "Sıra harflerden değil açıların büyüklüğünden gelir: her kenar, karşısındaki açı kadar büyüktür.",
       "why": "Harf sırası ile açı büyüklüğü arasında hiçbir bağ yoktur. Sınavda $a > b > c$ şıkkı çoğu zaman tuzaktır. Her kenarı karşısındaki açıyla eşle ($A \\leftrightarrow a$) ve açıları karşılaştır."
+     },
+     {
+      "kind": "example",
+      "title": "Kenarları sıralama",
+      "example": "$ABC$ üçgeninde $m(\\widehat{A}) = 50°$ ve $m(\\widehat{B}) = 60°$'dir. Kenar uzunluklarını büyükten küçüğe sırala.",
+      "explanation": "**1. adım:** Üçüncü açıyı bul: $m(\\widehat{C}) = 180° - 50° - 60° = 70°$.\n\n**2. adım:** Her kenarı karşısındaki açıyla eşle: $[BC]$, $A$'nın; $[AC]$, $B$'nin; $[AB]$, $C$'nin karşısındadır.\n\n**3. adım:** Açılar $70° > 60° > 50°$ olduğundan karşılarındaki kenarlar da aynı sıradadır: $|AB| > |AC| > |BC|$."
+     },
+     {
+      "kind": "example",
+      "title": "Cebirle verilen açılar",
+      "example": "$ABC$ üçgeninde $m(\\widehat{A}) = x + 20°$, $m(\\widehat{B}) = 2x - 10°$ ve $m(\\widehat{C}) = 3x - 10°$'dir. Kenar uzunluklarını karşılaştır.",
+      "explanation": "**1. adım:** İç açılar toplamı $180°$: $(x + 20°) + (2x - 10°) + (3x - 10°) = 180°$. Buradan $6x = 180°$ ve $x = 30°$.\n\n**2. adım:** Açılar: $m(\\widehat{A}) = 50°$, $m(\\widehat{B}) = 50°$, $m(\\widehat{C}) = 80°$.\n\n**3. adım:** En büyük açı $C = 80°$, karşısındaki $[AB]$ en uzun kenardır.\n\n**4. adım:** $A$ ve $B$ açıları eşit olduğundan karşılarındaki kenarlar da eşittir: $|BC| = |AC|$.\n\nSonuç: $|AB| > |BC| = |AC|$. Tuzak, eşit açıların eşit kenar vermesidir."
      },
      {
       "kind": "question",
@@ -476,6 +498,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Eşit kenar, eşit açı nedir?",
+      "text": "Bir üçgende iki kenar eşitse bu üçgene **ikizkenar** denir. İkizkenar üçgen simetriktir: eşit kenarların karşısındaki açılar da eşittir. Kural iki yönlüdür; iki açı eşitse karşılarındaki kenarlar da eşittir. Bu alt konuda bir de **dış açıyı** kullanacaksın. Dış açı, bir kenarı uzatınca oluşan açıdır. Örneğin iç açıları $40°$, $60°$ ve $80°$ olan üçgende $80°$'lik köşenin dış açısı $180° - 80° = 100°$ olur. Bu, komşu olmayan iki iç açının toplamına, $40° + 60° = 100°$'ye eşittir."
+     },
+     {
       "kind": "visual",
       "title": "İkizkenarın taban açıları",
       "visual": {
@@ -573,6 +600,18 @@
       },
       "caption": "Eşit kenarların karşısındaki açılar eşittir; eşit açıların karşısındaki kenarlar eşittir.",
       "narration": "$|AB| = |AC|$ olsun. $[AB]$'nin karşısında $C$ açısı, $[AC]$'nin karşısında $B$ açısı vardır; kenarlar eşit olduğundan bu iki açı da eşittir ve ikisine de $\\alpha$ diyoruz. Yani ikizkenar üçgenin taban açıları eşittir.\n\nKural iki yönlü çalışır: bir üçgende iki açı eşitse karşılarındaki kenarlar da eşittir. Sorularda eşit kenarları gördüğün anda eşit açıları yaz; dış açı kuralıyla birleştirince zincir kendiliğinden ilerler."
+     },
+     {
+      "kind": "example",
+      "title": "İkizkenarın taban açısı",
+      "example": "Tepe açısı $80°$ olan bir ikizkenar üçgenin taban açılarından biri kaç derecedir?",
+      "explanation": "**1. adım:** İkizkenar üçgenin taban açıları eşittir; her birine $\\alpha$ diyelim.\n\n**2. adım:** İç açılar toplamı $180°$ olduğundan $2\\alpha + 80° = 180°$.\n\n**3. adım:** $2\\alpha = 100°$, buradan $\\alpha = 50°$ bulunur.\n\nKontrol: $50° + 50° + 80° = 180°$ olur."
+     },
+     {
+      "kind": "example",
+      "title": "Tepe hangi köşe?",
+      "example": "$ABC$ üçgeninde $|AB| = |BC|$ ve $m(\\widehat{C}) = 50°$'dir. $B$ köşesindeki dış açının ölçüsü kaç derecedir?",
+      "explanation": "**1. adım:** Eşit kenarlar $[AB]$ ve $[BC]$'dir; ortak köşeleri $B$ tepe köşesidir.\n\n**2. adım:** Eşit kenarların karşısındaki açılar eşittir: $[AB]$'nin karşısında $C$, $[BC]$'nin karşısında $A$ vardır. Yani $m(\\widehat{A}) = m(\\widehat{C}) = 50°$.\n\n**3. adım:** $m(\\widehat{B}) = 180° - 50° - 50° = 80°$.\n\n**4. adım:** Dış açı komşu iç açıyla $180°$ yapar: $180° - 80° = 100°$. Dış açı kuralıyla kontrol: $50° + 50° = 100°$. Sonuç $100°$."
      },
      {
       "kind": "blank",
@@ -784,6 +823,11 @@
     "title": "Üçgen eşitsizliği",
     "narration": "",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Üçgen eşitsizliği nedir?",
+      "text": "Üçgen eşitsizliği, üç uzunluğun bir üçgen kurup kurmadığını söyleyen kuraldır. Fikir basittir: bir noktadan diğerine **doğrudan gitmek** her zaman iki kenar üzerinden dolaşmaktan kısadır. Yani bir kenar, diğer iki kenarın toplamından küçük olmalıdır. Örneğin $3$ ve $4$ cm'lik çubuklar $8$ cm'lik çubuğu kapatamaz, çünkü $3 + 4 = 7 < 8$. Bu alt konuda üçlülerin üçgen kurup kurmadığını denetlemeyi ve ikizkenar ile çevre sorularında bu denetimi kullanmayı çalışacaksın."
+     },
      {
       "kind": "visual",
       "title": "Üç çubuk, üç sonuç",
@@ -1052,6 +1096,18 @@
       "explanation": "Üç toplam koşulunun hepsi gerekir. Örneğin 3, 4, 8'de $8 + 3 > 4$ sağlanır ama $3 + 4 < 8$'dir; üçgen kurulmaz. Bu yüzden iki küçük kenarın toplamını en büyük kenarla karşılaştırmak yeterli ve güvenlidir."
      },
      {
+      "kind": "example",
+      "title": "Üçgen kurar mı?",
+      "example": "Uzunlukları $4$ cm, $6$ cm ve $9$ cm olan üç çubukla üçgen kurulabilir mi?",
+      "explanation": "**1. adım:** En büyük kenarı seç: $9$.\n\n**2. adım:** Diğer iki kenarı topla: $4 + 6 = 10$.\n\n**3. adım:** Toplamı en büyük kenarla karşılaştır: $10 > 9$. Toplam en büyük kenardan kesin büyük olduğu için kısa kenarların uçları tepede buluşur.\n\nBu koşul sağlanınca diğer kenarlar için de koşul sağlanır. Sonuç: üçgen kurulabilir."
+     },
+     {
+      "kind": "example",
+      "title": "Sınır durumu tuzağı",
+      "example": "Aşağıdaki uzunluk üçlülerinden hangileriyle üçgen çizilebilir?\n\nI. $6$, $6$, $12$\nII. $6$, $7$, $12$\nIII. $1$, $11$, $11$",
+      "explanation": "Her üçlüde iki küçük kenarı topla ve en büyük kenarla karşılaştır.\n\n**I.** En büyük $12$; $6 + 6 = 12$. Toplam en büyük kenara eşit, çubuklar düz çizgiye yatar: üçgen **olmaz**.\n\n**II.** En büyük $12$; $6 + 7 = 13 > 12$: üçgen **olur**.\n\n**III.** En büyük $11$; diğer iki kenar $1$ ve $11$. $1 + 11 = 12 > 11$: üçgen **olur**. Kısa kenar çok kısa olsa da koşul sağlanır.\n\nTuzak, eşitlik durumudur. Sonuç: II ve III."
+     },
+     {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
@@ -1198,6 +1254,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Kenar aralığı nedir?",
+      "text": "İki kenarı bilinen bir üçgende üçüncü kenar tek bir değer değil, bir **aralıktır**. Örneğin kenarları $3$ cm ve $8$ cm olan bir üçgende üçüncü kenar, iki kenarın farkı olan $5$'ten büyük, toplamı olan $11$'den küçük olmalıdır. Kısa kenar $3$ cm iken uzun kenarın ucuna ulaşmak için üçüncü kenar en az $5$'ten uzun olmalı; çok uzarsa da iki kenar onu kapatamaz. Üçüncü kenar tam sayı istenirse bu aralıktaki tam sayılar sayılır: $6, 7, 8, 9, 10$. Bu alt konuda aralığı yazmayı, tam sayı değerlerini saymayı ve çevreyi bulmayı çalışacaksın."
+     },
+     {
       "kind": "rule",
       "title": "Kenar aralığı",
       "items": [
@@ -1218,6 +1279,18 @@
       ],
       "answer": 0,
       "explanation": "Uçlar dahil değildir; değerler 6, 7, 8, 9, 10, 11'dir. Sayı: $11 - 6 + 1 = 6$."
+     },
+     {
+      "kind": "example",
+      "title": "İki aralığın kesişimi",
+      "example": "Bir $x$ kenarı, kenarları $4$ cm ve $9$ cm olan bir üçgenin üçüncü kenarıdır. Aynı $x$ kenarı, kenarları $5$ cm ve $7$ cm olan başka bir üçgenin de üçüncü kenarıdır. $x$ tam sayı olduğuna göre kaç farklı değer alabilir?",
+      "explanation": "**1. üçgen:** $9 - 4 < x < 9 + 4$ yani $5 < x < 13$.\n\n**2. üçgen:** $7 - 5 < x < 7 + 5$ yani $2 < x < 12$.\n\n**Kesişim:** $x$ iki koşulu aynı anda sağlamalıdır. Alt sınırın büyüğü $5$, üst sınırın küçüğü $12$'dir: $5 < x < 12$.\n\n**Sayım:** Tam sayılar $6, 7, 8, 9, 10, 11$'dir. Sayısı $11 - 6 + 1 = 6$. Üst sınır $12$ dahil olmadığı için $12$ sayılmaz."
+     },
+     {
+      "kind": "example",
+      "title": "Kenar aralığını yazmak",
+      "example": "İki kenarı $4$ cm ve $11$ cm olan bir üçgenin üçüncü kenarı santimetre cinsinden bir tam sayıdır. Bu kenar kaç farklı değer alabilir?",
+      "explanation": "**1. adım:** Üçüncü kenar, iki kenarın farkından büyük ve toplamından küçüktür: $11 - 4 = 7$ ve $11 + 4 = 15$. Aralık $7 < x < 15$ olur.\n\n**2. adım:** Uçlar dahil değildir. En küçük tam sayı $8$, en büyük tam sayı $14$'tür.\n\n**3. adım:** Değerleri say: $8, 9, 10, 11, 12, 13, 14$. Formülle: $14 - 8 + 1 = 7$. Üçüncü kenar $7$ farklı değer alır."
      },
      {
       "kind": "blank",

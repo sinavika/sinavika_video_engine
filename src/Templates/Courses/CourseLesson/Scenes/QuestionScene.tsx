@@ -125,8 +125,11 @@ const FigureSolution: React.FC<{question: Question; stepStarts: number[]; answer
 	);
 };
 
-/** A worked question: read, a counted pause to think (`think`, seconds into the scene), then the solution step by step. */
-export const QuestionScene: React.FC<{question: Question; stepStarts: number[]; think?: {at: number; seconds: number}; section: string; number: string; reading?: ReadingCues; stepCues?: StepCues[]}> = ({question, stepStarts, think, section, number, reading, stepCues = []}) => {
+/**
+ * A worked question: read, a counted pause to think (`think`, seconds into the scene), then the solution step by step.
+ * `heading` replaces "Soru 2.3" in the studio heading (a camp lesson's cold open shows a question it solves later).
+ */
+export const QuestionScene: React.FC<{question: Question; stepStarts: number[]; think?: {at: number; seconds: number}; section: string; number: string; heading?: string; reading?: ReadingCues; stepCues?: StepCues[]}> = ({question, stepStarts, think, section, number, heading, reading, stepCues = []}) => {
 	const {colors, typography} = useTheme();
 	const {u, isLandscape, contentWidth, contentHeight} = useVideoLayout();
 	const seconds = useSceneSeconds();
@@ -171,7 +174,7 @@ export const QuestionScene: React.FC<{question: Question; stepStarts: number[]; 
 	return (
 		<SafeArea chrome={!studio} gap={SPACING.lg}>
 			{studio ? (
-				<StudioHeading badge={question.style ?? 'Soru'} title={`Soru ${number}`} />
+				<StudioHeading badge={question.style ?? 'Soru'} title={heading ?? `Soru ${number}`} />
 			) : (
 				<div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0}}>
 					<Badge lesson size={TYPE.label}>

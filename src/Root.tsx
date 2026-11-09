@@ -4,6 +4,7 @@ import {AppScreenComposition} from './Compositions/AppScreenComposition';
 import {GoogleAdsComposition} from './Ads/Google/GoogleAdsComposition';
 import {StoreComposition} from './Compositions/StoreComposition';
 import {UIUXComposition} from './UIUX/UIUXComposition';
+import {VisualClipComposition} from './Compositions/VisualClipComposition';
 import {WorkFigureComposition} from './Compositions/WorkFigureComposition';
 import {ImageCategoryFolder} from './Compositions/ImageCompositions';
 import {TemplateCompositions} from './Compositions/TemplateCompositions';
@@ -18,6 +19,7 @@ const CATEGORIES = [...new Set(TEMPLATES.map((template) => template.category))];
  * AppScreens: the drawn mobile app screens, as pictures.
  * Store: App Store and Google Play screenshots and the Play feature graphic.
  * Works: one lesson figure as the app shows it (Renderers/WorkFigureRenderer).
+ * Promos: one lesson figure alone as a 4K clip, for promos that show the camps' animations.
  */
 export const Root: React.FC = () => (
 	<>
@@ -26,6 +28,7 @@ export const Root: React.FC = () => (
 		<GoogleAdsComposition />
 		<UIUXComposition />
 		<WorkFigureComposition />
+		<VisualClipComposition />
 		<Folder name="Images">
 			{IMAGE_CATEGORIES.map((category) => (
 				<ImageCategoryFolder key={category} category={category} templates={imageVariantsOf(category)} />

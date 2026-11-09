@@ -1,9 +1,9 @@
 import React from 'react';
 import {useAccent, useColors, useModuleColors, useT, useUI, UIProvider} from '../Context';
 import {Icon, type UIIconName} from '../Icons';
-import {alpha, MODULES, moduleGradient, moduleInk, MODULE_ORDER, type ModuleKey} from '../ModuleIdentity';
+import {alpha, MODULES, moduleGradient, moduleInk, type ModuleKey} from '../ModuleIdentity';
 import {UI_CANVAS, UI_RADIUS, UI_SHADOW} from '../Tokens';
-import {Button, Chip, Dots, Glow, Logo, Stack, Steps, Text, Tile, Watermark} from './Shared';
+import {Button, Chip, Glow, Logo, Stack, Steps, Text, Watermark} from './Shared';
 
 /**
  * Mobile parts. The layout follows the app as it is today (the user's own
@@ -146,21 +146,6 @@ export const ModuleSlide: React.FC<{module: ModuleKey; height?: number; title?: 
 				{action ?? t(identity.slide.action)}
 			</Button>
 		</div>
-	);
-};
-
-/** The hub carousel: one slide per module, dots in the module colours. */
-export const ModuleCarousel: React.FC<{active?: ModuleKey; height?: number}> = ({active = 'exam', height}) => {
-	const index = MODULE_ORDER.indexOf(active);
-	// One slide at the full content width, the dots below tell there are more. The next slide peeking in at the
-	// edge read as a slide that did not sit right (owner, 26 Oct 2026).
-	return (
-		<Stack gap={12}>
-			<div style={{position: 'relative', height: height ?? 196}}>
-				<ModuleSlide module={active} height={height} />
-			</div>
-			<Dots count={MODULE_ORDER.length} active={index} colors={MODULE_ORDER.map((key) => (MODULES[key].color.light))} />
-		</Stack>
 	);
 };
 
@@ -341,14 +326,3 @@ export const TourOverlay: React.FC<{hole: {x: number; y: number; w: number; h: n
 	);
 };
 
-/** Tile + text row used inside cards to label a module's item. */
-export const ModuleLine: React.FC<{module: ModuleKey; title: string; sub?: string; right?: React.ReactNode}> = ({module, title, sub, right}) => (
-	<Stack row gap={12}>
-		<Tile module={module} size={38} />
-		<Stack grow gap={1}>
-			<Text role="headline">{title}</Text>
-			{sub ? <Text role="small">{sub}</Text> : null}
-		</Stack>
-		{right}
-	</Stack>
-);

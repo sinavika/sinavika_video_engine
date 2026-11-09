@@ -69,6 +69,11 @@
     "cards": [
      {
       "kind": "concept",
+      "title": "Üçgende alan nedir?",
+      "text": "**Alan**, bir şeklin düzlemde kapladığı yerin ölçüsüdür; birimkare (cm², m²) ile ifade edilir. Üçgen biçimli bir bayrağın kumaşı ya da üçgen bir arsanın büyüklüğü, üçgenin alanıdır. TYT geometride üçgenin alanı hem doğrudan sorulur hem de oran, benzerlik ve koordinat sorularının temelini oluşturur.\n\nFikir basittir: $6$ cm ve $4$ cm kenarlı dikdörtgenin alanı $6 \\cdot 4 = 24$ cm²'dir. Köşegeni çizersen iki eş dik üçgen oluşur; her birinin alanı $12$ cm², yani dikdörtgenin yarısıdır. Üçgenin alanını **taban**, **yükseklik** ve **ikiye bölme** üzerine kurarız."
+     },
+     {
+      "kind": "concept",
       "title": "Taban ve yükseklik",
       "text": "Bir kenarı **taban** seçersin. Karşı köşeden bu kenarın doğrusuna indirilen dikmenin uzunluğu o tabana ait **yüksekliktir**. Alan:\n\n$A = \\frac{a \\cdot h_a}{2}$\n\nÜç kenar da taban olabilir ve hepsi aynı alanı verir: $\\frac{a h_a}{2} = \\frac{b h_b}{2} = \\frac{c h_c}{2}$. Üç yükseklik, **diklik merkezi** denen tek bir noktada kesişir.",
       "narration": "Yükseklik, köşeden taban doğrusuna inen en kısa yoldur. Formüldeki $\\frac{1}{2}$, taban ve yüksekliği aynı olan dikdörtgenin alanının yarısı kadar olmasından gelir. Üç hesap da aynı alanı verdiği için $a h_a = b h_b = c h_c = 2A$ sabittir: taban büyüdükçe ona ait yükseklik küçülür. Birçok soruda yapılacak hamle budur: alanı iki farklı tabanla yaz ve eşitle."
@@ -194,6 +199,18 @@
       ],
       "answer": 0,
       "explanation": "Doğru. Yükseklik, köşenin taban doğrusuna uzaklığıdır; dikme ayağının üçgenin içinde kalması gerekmez. Taban ve yükseklik doğru ölçülmüşse formül değişmez."
+     },
+     {
+      "kind": "example",
+      "title": "Taban ve yükseklikle alan",
+      "example": "$ABC$ üçgeninde $|BC| = 10$ cm ve $[BC]$'ye ait yükseklik $6$ cm'dir. Alanı bulalım.",
+      "explanation": "1) Taban $|BC| = 10$, bu tabana ait yükseklik $6$.\n2) $A = \\frac{\\text{taban} \\cdot \\text{yükseklik}}{2} = \\frac{10 \\cdot 6}{2}$.\n3) $A = 30$ cm². İkiye bölmeyi unutma: $60$ aynı taban ve yükseklikli dikdörtgenin alanıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Aynı alan, iki taban",
+      "example": "$ABC$ üçgeninde $|BC| = 8$ cm, $[BC]$'ye ait yükseklik $6$ cm ve $|AC| = 12$ cm'dir. $[AC]$'ye ait yükseklik kaç santimetredir?",
+      "explanation": "1) Alanı $[BC]$ tabanıyla yaz: $\\frac{8 \\cdot 6}{2} = 24$ cm².\n2) Alan tektir; $[AC]$ tabanıyla da $24$ olmalı: $\\frac{12 \\cdot h}{2} = 24$.\n3) $6h = 24$, buradan $h = 4$ cm.\n4) Kontrol: taban $8$'den $12$'ye büyüdü, yükseklik $6$'dan $4$'e küçüldü; $a h_a = b h_b = 2A$ sabittir."
      },
      {
       "kind": "question",
@@ -448,6 +465,22 @@
     "cards": [
      {
       "kind": "concept",
+      "title": "Dik ve eşkenar üçgende alan nedir?",
+      "text": "**Dik üçgen** bir açısı $90°$ olan, **eşkenar üçgen** üç kenarı eşit olan üçgendir. Bu iki özel üçgende yükseklik ya hazırdır ya da kenardan kolayca bulunur; bu yüzden alan çok kısa hesaplanır.\n\nBasit sayılarla: dik kenarları $3$ ve $4$ olan dik üçgende bir dik kenar taban, öbürü yüksektir; alan $\\frac{3 \\cdot 4}{2} = 6$. Eşkenar üçgende ise yükseklik, kenara bağlı tek bir sayıdır; yani alan yalnız kenarın uzunluğuna bağlıdır. Bu bölümde dik üçgenin yüksekliklerini, eşkenarın yükseklik ve alanını ve Viviani özelliğini çalışacağız."
+     },
+     {
+      "kind": "predict",
+      "title": "Dikdörtgenin yarısı",
+      "prompt": "Dik kenarları $6$ cm ve $8$ cm olan dik üçgenin alanı, kenarları $6$ cm ve $8$ cm olan dikdörtgenin alanının yarısıdır.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Doğru. Dikdörtgenin alanı $48$ cm²'dir; köşegeni onu iki eş dik üçgene böler, her birinin alanı $24$ cm²'dir."
+     },
+     {
+      "kind": "concept",
       "title": "Dik üçgende alan",
       "text": "Dik üçgende iki dik kenar birbirine diktir: biri taban olunca diğeri doğrudan yüksekliktir.\n\n$A = \\frac{b \\cdot c}{2}$ ($b$, $c$ dik kenarlar)\n\nHipotenüs ($a$) taban seçilirse aynı alan $\\frac{a \\cdot h_a}{2}$ olur; buradan hipotenüse ait yükseklik $h_a = \\frac{b \\cdot c}{a}$. Hipotenüse ait **kenarortay** ise hipotenüsün yarısıdır; yükseklikle karıştırma.",
       "narration": "Dik kenarlarla alan hesabı en hızlı yoldur; ek yükseklik çizmene gerek kalmaz. Hipotenüse ait yüksekliği ise alanı iki yoldan yazarak bulursun. Örneğin 6-8-10 üçgeninde alan $24$, hipotenüse ait yükseklik $\\frac{6 \\cdot 8}{10} = 4{,}8$, hipotenüse ait kenarortay $\\frac{10}{2} = 5$. Üç değer birbirinden farklıdır."
@@ -598,6 +631,18 @@
        }
       ],
       "explanation": "$A = \\frac{a^2\\sqrt{3}}{4}$: $a = 2$ için $\\sqrt{3}$, $a = 4$ için $\\frac{16\\sqrt{3}}{4} = 4\\sqrt{3}$, $a = 6$ için $\\frac{36\\sqrt{3}}{4} = 9\\sqrt{3}$, $a = 8$ için $\\frac{64\\sqrt{3}}{4} = 16\\sqrt{3}$."
+     },
+     {
+      "kind": "example",
+      "title": "Eşkenar üçgenin alanı",
+      "example": "Bir kenarı $10$ cm olan eşkenar üçgenin yüksekliğini ve alanını bulalım.",
+      "explanation": "1) Eşkenarda yükseklik tabanı ikiye böler; Pisagor ile $h = \\frac{a\\sqrt{3}}{2} = \\frac{10\\sqrt{3}}{2} = 5\\sqrt{3}$ cm.\n2) Alan $= \\frac{a \\cdot h}{2} = \\frac{10 \\cdot 5\\sqrt{3}}{2} = 25\\sqrt{3}$ cm².\n3) Kontrol: $\\frac{a^2\\sqrt{3}}{4} = \\frac{100\\sqrt{3}}{4} = 25\\sqrt{3}$."
+     },
+     {
+      "kind": "example",
+      "title": "Dik üçgen: alan ve yükseklik",
+      "example": "Dik kenarları $9$ cm ve $12$ cm olan dik üçgende alanı, hipotenüse ait yüksekliği ve hipotenüse ait kenarortayı bulalım.",
+      "explanation": "1) Hipotenüs Pisagor'dan $\\sqrt{9^2 + 12^2} = 15$ cm.\n2) Alan $= \\frac{9 \\cdot 12}{2} = 54$ cm².\n3) Aynı alanı hipotenüs tabanıyla yaz: $\\frac{15 \\cdot h}{2} = 54$, buradan $h = \\frac{108}{15} = 7{,}2$ cm.\n4) Hipotenüse ait kenarortay hipotenüsün yarısıdır: $\\frac{15}{2} = 7{,}5$ cm.\nÜç değer farklıdır; yüksekliği kenarortayla karıştırma."
      },
      {
       "kind": "blank",
@@ -909,6 +954,11 @@
     "title": "İki kenar ve aradaki açı; Heron",
     "cards": [
      {
+      "kind": "concept",
+      "title": "İki kenar ve açıyla alan nedir?",
+      "text": "Yükseklik verilmediğinde üçgenin alanı iki yolla bulunur: **iki kenar ve aradaki açı** ile ya da **üç kenar** ile (**Heron**). İkisi de yüksekliği dolaylı olarak bulmanın yoludur.\n\nBasit sayılarla: kenarları $4$ ve $6$, aradaki açı $90°$ ise üçgen diktir ve alan $\\frac{4 \\cdot 6}{2} = 12$'dir. Açı $30°$'ye küçülürse $6$ kenarının $4$ tabanına olan yüksekliği $6 \\cdot \\frac{1}{2} = 3$ olur; alan $\\frac{4 \\cdot 3}{2} = 6$'ya iner. Yükseklik, kenar ile açının **sinüsünün** çarpımıdır; kenar-sinüs bağıntısı buradan gelir."
+     },
+     {
       "kind": "rule",
       "title": "Kenar-sinüs alan bağıntısı",
       "items": [
@@ -1012,6 +1062,18 @@
       ],
       "answer": 0,
       "explanation": "Doğru. $\\sin 30° = \\sin 150° = \\frac{1}{2}$ olduğundan her iki durumda alan $\\frac{1}{2} \\cdot 6 \\cdot 10 \\cdot \\frac{1}{2} = 15$ cm²'dir."
+     },
+     {
+      "kind": "example",
+      "title": "Kenar-sinüs: doğrudan kullanım",
+      "example": "$ABC$ üçgeninde $|AB| = 5$ cm, $|AC| = 8$ cm ve $m(\\widehat{BAC}) = 30°$'dir. Alanı bulalım.",
+      "explanation": "1) $30°$'lik açı $|AB|$ ile $|AC|$'nin arasındadır; bağıntıyı doğrudan kullanabiliriz.\n2) $A = \\frac{1}{2} \\cdot 5 \\cdot 8 \\cdot \\sin 30°$.\n3) $\\sin 30° = \\frac{1}{2}$ olduğundan $A = \\frac{1}{2} \\cdot 40 \\cdot \\frac{1}{2} = 10$ cm²."
+     },
+     {
+      "kind": "example",
+      "title": "Geniş açıda kenar-sinüs",
+      "example": "İki kenarı $3$ cm ve $8$ cm, bu kenarlar arasındaki açı $120°$ olan üçgenin alanını bulalım.",
+      "explanation": "1) Açı geniştir; sinüs değerini bütünleyen açıdan al: $\\sin 120° = \\sin(180° - 120°) = \\sin 60° = \\frac{\\sqrt{3}}{2}$.\n2) $A = \\frac{1}{2} \\cdot 3 \\cdot 8 \\cdot \\frac{\\sqrt{3}}{2}$.\n3) $\\frac{1}{2} \\cdot 24 \\cdot \\frac{\\sqrt{3}}{2} = 6\\sqrt{3}$ cm².\nTuzak: $\\sin 120°$'yi $\\sin 30°$ ya da negatif almak."
      },
      {
       "kind": "question",
@@ -1270,6 +1332,11 @@
     "title": "Alan oranları",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Alan oranı nedir?",
+      "text": "**Alan oranı** soruları, iki üçgenin alanını tek tek hesaplamadan birbirine oranla bulmayı amaçlar. Bunun için ortak **yükseklik**, ortak **taban**, ortak **açı**, **kenarortay** ve **ağırlık merkezi** gibi kavramlardan yararlanırız.\n\nBasit bir durum: tabanları $3$ ve $6$, ortak yükseklikleri $4$ olan iki üçgenin alanları $\\frac{3 \\cdot 4}{2} = 6$ ve $\\frac{6 \\cdot 4}{2} = 12$'dir. Oran $1 : 2$, yani tabanların oranıdır; ortak yükseklik ve $\\frac{1}{2}$ sadeleşir. Sınavda çoğu zaman alanı hesaplamadan yalnız bu oranı kurarsın."
+     },
+     {
       "kind": "visual",
       "title": "Aynı yükseklik, oranlı alan",
       "visual": {
@@ -1398,6 +1465,17 @@
       "narration": "$A$ köşesinden $[BC]$ üzerindeki $D$'ye bir doğru çizince $ABD$ ve $ADC$ üçgenlerinin yüksekliği aynı olur: $A$'nın $BC$'ye uzaklığı $h$. Alanlar $\\frac{m \\cdot h}{2}$ ve $\\frac{n \\cdot h}{2}$ olduğundan oranları $\\frac{m}{n}$'dir. Tersi de geçerli: tabanı ortak olan üçgenlerin alanları yükseklikleriyle orantılıdır. Tepe noktası tabana paralel bir doğru üzerinde kayarsa yükseklik değişmez, alan da değişmez."
      },
      {
+      "kind": "predict",
+      "title": "Tabanı iki katı olan üçgen",
+      "prompt": "Yüksekliği ortak olan iki üçgenden, tabanı diğerinin $2$ katı olanın alanı da $2$ katıdır.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Doğru. Ortak yükseklik $h$ ise alanlar $\\frac{a \\cdot h}{2}$ ve $\\frac{2a \\cdot h}{2}$ olur; oran $1 : 2$, yani tabanlar oranıdır."
+     },
+     {
       "kind": "rule",
       "title": "Alan oranı kuralları",
       "items": [
@@ -1426,6 +1504,18 @@
       ],
       "answer": 0,
       "explanation": "Doğru. Kenarortay tabanı iki eş parçaya ayırır ve iki üçgenin yüksekliği ortaktır; alanlar eşit çıkar."
+     },
+     {
+      "kind": "example",
+      "title": "Ortak yükseklik: parça ve bütün",
+      "example": "$ABC$ üçgeninde $D \\in [BC]$, $|BD| = 4$ cm, $|DC| = 6$ cm ve $A(ABC) = 50$ cm²'dir. $A(ADC)$ kaç santimetrekaredir?",
+      "explanation": "1) $ADC$ ve $ABC$ üçgenlerinin yüksekliği ortaktır: $A$'dan $BC$'ye inen dikme.\n2) Alanlar tabanlarla orantılıdır: $\\frac{A(ADC)}{A(ABC)} = \\frac{|DC|}{|BC|}$.\n3) $|BC| = 4 + 6 = 10$ cm, oran $\\frac{6}{10} = \\frac{3}{5}$.\n4) $A(ADC) = 50 \\cdot \\frac{3}{5} = 30$ cm²."
+     },
+     {
+      "kind": "example",
+      "title": "Ortak açı ile alan oranı",
+      "example": "$ABC$ üçgeninde $D \\in [AB]$, $E \\in [AC]$, $|AD| = 2$ cm, $|DB| = 4$ cm, $|AE| = 3$ cm, $|EC| = 1$ cm ve $A(ABC) = 48$ cm²'dir. $A(ADE)$ kaç santimetrekaredir?",
+      "explanation": "1) $ADE$ ve $ABC$ üçgenleri $A$ açısını paylaşır; alanlar kenar-sinüsle yazılınca $\\frac{1}{2}$ ve $\\sin A$ sadeleşir: $\\frac{A(ADE)}{A(ABC)} = \\frac{|AD| \\cdot |AE|}{|AB| \\cdot |AC|}$.\n2) Bütün kenarlar: $|AB| = 2 + 4 = 6$, $|AC| = 3 + 1 = 4$ (tuzak: payda parçaların toplamıdır).\n3) Oran: $\\frac{2}{6} \\cdot \\frac{3}{4} = \\frac{1}{4}$.\n4) $A(ADE) = 48 \\cdot \\frac{1}{4} = 12$ cm²."
      },
      {
       "kind": "question",
@@ -1965,6 +2055,11 @@
     "title": "Benzerlikte alan",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Benzerlikte alan nedir?",
+      "text": "İki üçgen **benzerse** açıları eşit, karşılıklı kenarları orantılıdır; biri diğerinin büyütülmüş ya da küçültülmüş hâlidir. Kenarların oranına **benzerlik oranı** ($k$) denir. Bu konu, ölçek değişince alanın nasıl değiştiğini anlatır.\n\nBasit sayılarla: dik kenarları $3$ ve $4$ olan dik üçgenin alanı $\\frac{3 \\cdot 4}{2} = 6$'dır. Kenarları iki katına çıkarırsak dik kenarlar $6$ ve $8$ olur; alan $\\frac{6 \\cdot 8}{2} = 24$ olur. Kenarlar $2$ katı, alan $4$ katı oldu. Alan iki uzunluğun çarpımı olduğu için ölçek iki kez etki eder."
+     },
+     {
       "kind": "rule",
       "title": "Oranın karesi",
       "items": [
@@ -1991,6 +2086,12 @@
       ],
       "answer": 0,
       "explanation": "Doğru. Benzerlik oranı $3$ olduğundan alanlar oranı $3^2 = 9$'dur."
+     },
+     {
+      "kind": "example",
+      "title": "Alandan kenara dönüş",
+      "example": "Benzer iki üçgenin alanları $18$ cm² ve $50$ cm²'dir. Küçük üçgenin bir kenarı $6$ cm ise büyük üçgende karşılık gelen kenar kaç santimetredir?",
+      "explanation": "1) Alanlar oranı benzerlik oranının karesidir: $\\frac{18}{50} = \\frac{9}{25} = k^2$.\n2) Kenar oranını bulmak için kök al: $k = \\frac{3}{5}$ (küçük : büyük).\n3) Küçük kenar $6$ cm, büyük kenar $x$ olsun: $\\frac{6}{x} = \\frac{3}{5}$, yani $x = 10$ cm.\nTuzak: alan oranını doğrudan kenar oranı sanmak. Kenara dönerken karekök almak gerekir."
      },
      {
       "kind": "question",

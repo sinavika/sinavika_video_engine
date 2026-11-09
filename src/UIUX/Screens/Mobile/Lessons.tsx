@@ -340,8 +340,18 @@ export const TopicBadge: React.FC<{index: number; state: MicroState; size?: numb
 	);
 };
 
+/**
+ * Set by the web and tablet players: a step screen then draws only its
+ * content, inside the player's own frame. One step drawing, three platforms.
+ */
+const EmbedContext = React.createContext(false);
+export const EmbedStep: React.FC<{children: React.ReactNode}> = ({children}) => <EmbedContext.Provider value>{children}</EmbedContext.Provider>;
+
 /** The phone of a micro-lesson: status bar, optional step bar, content and a foot with the actions. */
-const Screen: React.FC<{bar?: React.ReactNode; foot?: React.ReactNode; gap?: number; center?: boolean; overlay?: React.ReactNode; children: React.ReactNode}> = ({bar, foot, gap = 14, center, overlay, children}) => (
+export const Screen: React.FC<{bar?: React.ReactNode; foot?: React.ReactNode; gap?: number; center?: boolean; overlay?: React.ReactNode; children: React.ReactNode}> = ({bar, foot, gap = 14, center, overlay, children}) =>
+	React.useContext(EmbedContext) ? (
+		<div style={{display: 'flex', flexDirection: 'column', gap}}>{children}</div>
+	) : (
 	<UIProvider module="lessons">
 		<Phone overlay={overlay}>
 			{bar}
@@ -351,7 +361,7 @@ const Screen: React.FC<{bar?: React.ReactNode; foot?: React.ReactNode; gap?: num
 	</UIProvider>
 );
 
-const StepBar: React.FC<{done: number; count?: number}> = ({done, count}) => (
+export const StepBar: React.FC<{done: number; count?: number}> = ({done, count}) => (
 	<Stack row gap={14} style={{padding: '6px 18px 10px', flexShrink: 0}}>
 		<RoundButton />
 		<Segments done={done} count={count} />
@@ -367,13 +377,13 @@ const TitleBar: React.FC<{text: string; icon?: UIIconName}> = ({text, icon = 'le
 	</Stack>
 );
 
-const Main: React.FC<{children: string}> = ({children}) => (
+export const Main: React.FC<{children: string}> = ({children}) => (
 	<Button size="lg" block>
 		{children}
 	</Button>
 );
 
-const Ghost: React.FC<{children: string; icon?: UIIconName}> = ({children, icon}) => (
+export const Ghost: React.FC<{children: string; icon?: UIIconName}> = ({children, icon}) => (
 	<Button tone="ghost" size="lg" block icon={icon}>
 		{children}
 	</Button>

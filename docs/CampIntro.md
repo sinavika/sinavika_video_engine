@@ -51,7 +51,7 @@ On sahne var. Her sahne kendi seslendirmesinin süresi kadar ekranda kalır ve o
 
 **Kanca.** Yüz yirmi soru. Yüz altmış beş dakika. Ve tek bir sabah. TYT tam olarak bu. Bu videoda sınavı baştan sona tanıyacak, sonra kampı nasıl kurduğumuzu göreceksin. Hazırsan başlıyoruz.
 
-**Bölüm 0.** Merhaba, ben SinoAI. Sınavika'nın YKS kampına hoş geldin. Bu, TYT kampının sıfırıncı bölümü. Bugün konu anlatmıyoruz; önce haritayı çiziyoruz ki her dersin nereye oturduğunu bil.
+**Bölüm 0.** Sınavika'nın YKS kampına hoş geldin! Bu, TYT kampının sıfırıncı bölümü. Bugün konu anlatmıyoruz; önce haritayı çiziyoruz ki her dersin nereye oturduğunu bil.
 
 **Sınav.** TYT, yani Temel Yeterlilik Testi, YKS'nin ilk oturumu. Dört testten oluşur. Türkçe kırk soru. Sosyal Bilimler yirmi soru: tarih, coğrafya, felsefe ve din kültürü. Temel Matematik kırk soru. Fen Bilimleri yirmi soru: fizik, kimya ve biyoloji. Toplam yüz yirmi soru için yüz altmış beş dakikan var; soru başına bir dakikadan biraz fazla. Yani TYT, bilgi kadar hız ve dikkat de ister.
 
@@ -73,7 +73,7 @@ On sahne var. Her sahne kendi seslendirmesinin süresi kadar ekranda kalır ve o
 
 **Kanca.** Yüz altmış soru. Yüz seksen dakika. Ama hepsini çözmen gerekmiyor. AYT'nin ilk sırrı bu: sadece senin testlerin. Bu videoda AYT'yi baştan sona tanıyacak, sonra kampın haritasını göreceksin.
 
-**Bölüm 0.** Merhaba, ben SinoAI. Sınavika'nın YKS kampına hoş geldin. Bu, AYT kampının sıfırıncı bölümü. TYT'de temeli attıysan şimdi alan derslerine geçiyoruz; önce sınavı ve haritayı tanıyalım.
+**Bölüm 0.** Sınavika'nın YKS kampına hoş geldin! Bu, AYT kampının sıfırıncı bölümü. TYT'de temeli attıysan şimdi alan derslerine geçiyoruz; önce sınavı ve haritayı tanıyalım.
 
 **Sınav.** AYT, yani Alan Yeterlilik Testleri, YKS'nin ikinci oturumu. Dört testten oluşur. Türk Dili ve Edebiyatı, Sosyal Bilimler bir testi kırk soru: yirmi dört edebiyat, on tarih, altı coğrafya. Sosyal Bilimler iki testi kırk soru: tarih, coğrafya, felsefe grubu ve din kültürü. Matematik kırk soru. Fen Bilimleri kırk soru: on dört fizik, on üç kimya, on üç biyoloji. Süre yüz seksen dakika. Ama sen yalnızca puan türünün istediği testleri çözersin.
 

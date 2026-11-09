@@ -67,6 +67,11 @@
     "title": "Kiriş ve teğet",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Çember ve Daire nedir?",
+      "text": "**Çember**, bir noktaya (merkez) eşit uzaklıktaki noktaların oluşturduğu eğridir; bu uzaklığa **yarıçap** denir. **Daire** ise çemberin ve iç bölgesinin birlikte adıdır. Tekerlek, saat kadranı ya da pizza günlük hayattaki örneklerdir. TYT geometride her yıl çember sorusu çıkar; çoğu, merkezden bir yarıçap çizince ortaya çıkan dik üçgenle çözülür. İlk bölümde çemberin **kiriş** (iki noktayı birleştiren parça) ve **teğet** (tek noktada değen doğru) ile kurduğu dik üçgenleri öğreneceksin."
+     },
+     {
       "kind": "visual",
       "title": "İki dik açı",
       "visual": {
@@ -217,6 +222,17 @@
       "narration": "Kirişler merkeze yaklaştıkça uzar, merkezden uzaklaştıkça kısalır. Merkeze eşit uzaklıktaki kirişler eşit uzunluktadır. Teğetin çembere değdiği noktaya değme noktası denir."
      },
      {
+      "kind": "predict",
+      "title": "Kiriş uzadıkça ne olur?",
+      "prompt": "Bir çemberde kiriş uzadıkça merkeze uzaklığı artar.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 1,
+      "explanation": "Yanlış. Çap en uzun kirişdir ve merkezden geçer; uzaklığı $0$'dır. $d = \\sqrt{r^2 - m^2}$ olduğundan yarım kiriş $m$ büyüdükçe $d$ küçülür: uzun kiriş merkeze daha yakındır."
+     },
+     {
       "kind": "rule",
       "title": "Kiriş ve teğet kuralları",
       "items": [
@@ -229,15 +245,16 @@
       "narration": "Bu beş kural iki dik üçgenden çıkar: biri kirişe inen dikmenin kurduğu üçgen, öbürü teğetin kurduğu üçgendir. Çember sorusunda bir şey bulamadığında önce yarıçapı çiz ve dik açıyı ara. Dik açıyı bulduğunda Pisagor ya da 3-4-5, 5-12-13, 6-8-10 gibi bilinen üçgenler işi bitirir."
      },
      {
-      "kind": "predict",
-      "title": "Kiriş uzadıkça ne olur?",
-      "prompt": "Bir çemberde kiriş uzadıkça merkeze uzaklığı artar.",
-      "choices": [
-       "Doğru",
-       "Yanlış"
-      ],
-      "answer": 1,
-      "explanation": "Yanlış. Çap en uzun kirişdir ve merkezden geçer; uzaklığı $0$'dır. $d = \\sqrt{r^2 - m^2}$ olduğundan yarım kiriş $m$ büyüdükçe $d$ küçülür: uzun kiriş merkeze daha yakındır."
+      "kind": "example",
+      "title": "Merkezin kirişe uzaklığı",
+      "example": "Yarıçapı $10$ cm olan bir çemberde $16$ cm uzunluğunda bir kiriş çizilmiştir. Merkezin bu kirişe uzaklığı kaç santimetredir?",
+      "explanation": "Merkezden kirişe inen dikme kirişi ortalar: yarım kiriş $m = 16 \\div 2 = 8$ cm. Merkez, dikmenin ayağı ve kirişin bir ucu dik üçgen kurar; hipotenüs yarıçap ($10$), dik kenarlar $d$ ve $8$'dir. Pisagor'dan $d^2 = 10^2 - 8^2 = 100 - 64 = 36$, yani $d = 6$ cm."
+     },
+     {
+      "kind": "example",
+      "title": "Kirişin uzunluğu",
+      "example": "Yarıçapı $5$ cm olan bir çemberde merkeze $3$ cm uzaklıktaki kirişin uzunluğu kaç santimetredir?",
+      "explanation": "Dik üçgenin hipotenüsü yarıçap ($5$), bir dik kenarı merkezin uzaklığı ($3$), öbür dik kenarı yarım kiriştir. $m^2 = 5^2 - 3^2 = 25 - 9 = 16$, yani $m = 4$ cm. Dikme kirişi ortaladığı için kirişin tamamı $2 \\cdot 4 = 8$ cm'dir. Tuzak: $4$'te durmak; o yalnız yarım kiriştir."
      },
      {
       "kind": "question",
@@ -761,6 +778,11 @@
     "title": "Çemberde açılar",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Çemberde açılar nedir?",
+      "text": "Çemberin bir parçasına **yay** denir; tam çember $360°$'dir. Köşesi merkezde olan açıya **merkez açı**, köşesi çember üzerinde olan açıya **çevre açı** denir. Bir doğru çembere değip bir kirişle açı yapıyorsa bu açıya **teğet-kiriş açısı** denir. Hepsinin ortak noktası, bir yayı görmeleridir. Basit sayıyla: $90°$'lik bir yayı gören merkez açı $90°$, çevre açı $45°$'dir. Bu bölümde açıları yaylar üzerinden hesaplayacaksın."
+     },
+     {
       "kind": "visual",
       "title": "Merkez açı, çevre açı",
       "visual": {
@@ -892,6 +914,18 @@
       ],
       "answer": 0,
       "explanation": "Doğru. İkisi de aynı yayın yarısını ölçer; yayın yarısı tek bir değerdir. Çemberin kendi yayının öbür yanındaki açılar ise bütünler olur."
+     },
+     {
+      "kind": "example",
+      "title": "Merkez açıdan çevre açıya",
+      "example": "$O$ merkezli bir çemberde $m(\\widehat{AOB}) = 140°$ ve $C$ noktası büyük $AB$ yayı üzerindedir. $m(\\widehat{ACB})$ kaç derecedir?",
+      "explanation": "$\\widehat{AOB}$ merkez açıdır; gördüğü küçük $AB$ yayı $140°$'dir. $C$ büyük yay üzerinde olduğundan $\\widehat{ACB}$ de bu küçük yayı görür. Çevre açı, gördüğü yayın yarısıdır: $140° \\div 2 = 70°$. Kontrol: merkez açı, çevre açının iki katıdır; $2 \\cdot 70° = 140°$."
+     },
+     {
+      "kind": "example",
+      "title": "Hangi yayı görüyor?",
+      "example": "Bir çemberde küçük $AB$ yayı $80°$'dir. $C$ noktası bu küçük yay üzerindeyse $m(\\widehat{ACB})$ kaç derecedir?",
+      "explanation": "Çevre açı, köşesini içermeyen yayı görür. $C$ küçük yay üzerinde olduğundan $\\widehat{ACB}$ büyük yayı görür: $360° - 80° = 280°$. Açı bu yayın yarısıdır: $280° \\div 2 = 140°$. Kontrol: $C$ büyük yay üzerinde olsaydı açı $80° \\div 2 = 40°$ olurdu; $C$ karşı yaya geçince açılar bütünler olur: $40° + 140° = 180°$. Tuzak: yayı değil, açıyı doğrudan $80°$'nin yarısı sanmak."
      },
      {
       "kind": "question",
@@ -1530,6 +1564,11 @@
     "title": "Çevre ve yay",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Çevre ve yay nedir?",
+      "text": "Çemberin **çevresi**, çember boyunca bir tam tur attığında aldığın yolun uzunluğudur. **Yay**, çemberin bir parçasıdır ve onu gören merkez açıyla ölçülür. Basit düşün: tam tur $360°$ çevrenin tamamıdır; $180°$ yarısı, $90°$ dörtte biridir. Çevresi $24$ cm olan bir çemberde $90°$'lik yay $6$ cm olur. Bu bölümde çevreyi, yay uzunluğunu, tekerlek ve dişli çark problemlerini çözeceksin."
+     },
+     {
       "kind": "rule",
       "title": "Çevre ve yay uzunluğu",
       "items": [
@@ -1559,6 +1598,18 @@
       ],
       "answer": 0,
       "explanation": "Doğru. $\\frac{90°}{360°} = \\frac{1}{4}$ olduğundan yay uzunluğu $2\\pi r \\cdot \\frac{1}{4} = \\frac{\\pi r}{2}$'dir."
+     },
+     {
+      "kind": "example",
+      "title": "Yay uzunluğu",
+      "example": "Yarıçapı $9$ cm olan bir çemberde merkez açısı $120°$ olan yayın uzunluğu kaç santimetredir?",
+      "explanation": "Önce çemberin çevresini yaz: $2\\pi \\cdot 9 = 18\\pi$ cm. Yayın merkez açısı $120°$ olduğundan yay, çevrenin $\\frac{120°}{360°} = \\frac{1}{3}$'ü kadardır. Yay uzunluğu $18\\pi \\cdot \\frac{1}{3} = 6\\pi$ cm'dir."
+     },
+     {
+      "kind": "example",
+      "title": "Dilimin çevresi",
+      "example": "Yarıçapı $6$ cm ve merkez açısı $60°$ olan daire diliminin çevresi kaç santimetredir?",
+      "explanation": "Dilimin çevresi sınırın tamamıdır: yay ile iki yarıçap. Yay: $2\\pi \\cdot 6 \\cdot \\frac{60°}{360°} = 2\\pi$ cm. İki yarıçap: $6 + 6 = 12$ cm. Çevre $2\\pi + 12$ cm'dir. Tuzak: yalnız yay uzunluğunu yazıp düz kenarları unutmak."
      },
      {
       "kind": "question",
@@ -1837,6 +1888,11 @@
     "title": "Daire ve dilim alanı",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Daire ve dilim alanı nedir?",
+      "text": "**Alan**, bir bölgenin kapladığı yerdir ve kare birimle ölçülür. **Daire**, çemberin ve iç bölgesinin birlikte adıdır. Dairenin parçaları sınavda şunlardır: **dilim** (pizzadan bir parça), **halka** (iki iç içe çember arasındaki bölge) ve **daire kesmesi** (kiriş ile yay arasındaki bölge). Sezgi: yarıçap $2$ katına çıkarsa daire $4$ kat büyür; $90°$'lik dilim dairenin dörtte biridir. Bu bölümde bu parçaların alanlarını bulacaksın."
+     },
+     {
       "kind": "rule",
       "title": "Alan formülleri",
       "items": [
@@ -1891,6 +1947,12 @@
       },
       "caption": "Kesme sorularında önce dilimi, sonra $OAB$ üçgenini hesapla.",
       "narration": "Dik açılı bir dilimde üçgenin dik kenarları yarıçaptır; alanı $\\frac{r \\cdot r}{2}$'dir. $60°$'lik dilimde $OA = OB$ ve açı $60°$ olduğundan üçgen eşkenardır; alanı $\\frac{r^2\\sqrt{3}}{4}$'tür. Başka açılarda üçgenin alanını soru verir ya da özel üçgenlerle bulursun."
+     },
+     {
+      "kind": "example",
+      "title": "Dilimin alanı",
+      "example": "Yarıçapı $9$ cm olan bir dairede merkez açısı $40°$ olan daire diliminin alanı kaç santimetrekaredir?",
+      "explanation": "Önce dairenin alanını bul: $\\pi r^2 = \\pi \\cdot 81 = 81\\pi$. Dilim, dairenin açı oranı kadarıdır: $\\frac{40°}{360°} = \\frac{1}{9}$. Dilimin alanı $81\\pi \\cdot \\frac{1}{9} = 9\\pi$ cm²'dir. Her adımda tam daire alanını yazıp oranla çarpmak, yarıçapı yanlışlıkla bir kez kullanma hatasını önler."
      },
      {
       "kind": "example",

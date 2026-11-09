@@ -315,6 +315,18 @@
       "why": "Bölgeler eksenlerin dışında kalan açık bölgelerdir. Apsisi ya da ordinatı 0 olan nokta eksen üzerindedir. Bu yüzden bölge aralığı yazarken eşitlik asla alınmaz; hep $>$ ya da $<$ kullanılır."
      },
      {
+      "kind": "example",
+      "title": "Noktanın bölgesini bulma",
+      "example": "$A(-3, 5)$, $B(4, -2)$ ve $C(-6, -1)$ noktalarının bölgelerini bulalım.",
+      "explanation": "Yalnız işaretlere bakarız. $A$: apsis negatif, ordinat pozitif; nokta II. bölgededir. $B$: apsis pozitif, ordinat negatif; nokta IV. bölgededir. $C$: ikisi de negatif; nokta III. bölgededir. Sayıların büyüklüğü bölgeyi değiştirmez, yalnız işaret belirleyicidir. Koordinatlardan biri 0 olsaydı nokta eksen üzerinde olurdu ve hiçbir bölgede sayılmazdı."
+     },
+     {
+      "kind": "example",
+      "title": "Bölgeden aralık bulma",
+      "example": "$P(k - 2,\\ 6 - 2k)$ noktası IV. bölgededir. $k$'nın alabileceği en küçük tam sayı değeri kaçtır?",
+      "explanation": "IV. bölgede apsis pozitif, ordinat negatiftir. Apsis için $k - 2 > 0$, yani $k > 2$. Ordinat için $6 - 2k < 0$, yani $k > 3$. İkisi aynı anda sağlanmalıdır; ortak aralık $k > 3$'tür. Sınır değer olan 3 dahil değildir: $k = 3$ için $P(1, 0)$ olur ve nokta $x$ ekseni üzerinde kalır. Aralığa giren en küçük tam sayı 4'tür. Kontrol: $k = 4$ için $P(2, -2)$, gerçekten IV. bölgededir."
+     },
+     {
       "kind": "question",
       "question": {
        "style": "KPSS tarzı",
@@ -383,6 +395,11 @@
     "title": "İki nokta arasındaki uzaklık",
     "narration": "",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "İki nokta arasındaki uzaklık nedir?",
+      "text": "İki nokta arasındaki uzaklık, bu noktaları birleştiren doğru parçasının uzunluğudur. Basit bir durum: $O(0, 0)$ noktasından $(3, 4)$ noktasına gitmek için 3 birim sağa, 4 birim yukarı gidersin. Bu iki hareket bir dik üçgenin dik kenarlarıdır; doğrudan yol hipotenüstür ve 3-4-5 üçgeninden 5 birim olur. Koordinatlarla uzaklık bulmak, bu dik üçgeni her nokta çiftine uygulamaktır. KPSS'de uzaklık hem tek başına hem de kenarortay, çevre ve alan sorularının içinde çıkar."
+     },
      {
       "kind": "rule",
       "title": "Uzaklık formülü",
@@ -495,6 +512,12 @@
       "narration": "8, 15, 17 bir Pisagor üçlüsüdür. Sınavda 3-4-5, 5-12-13, 6-8-10, 8-15-17 gibi üçlüleri tanırsan karekök hesabını yapmadan sonuca gidersin."
      },
      {
+      "kind": "example",
+      "title": "İki çözümlü uzaklık",
+      "example": "$A(1, 2)$ ve $B(a, 6)$ noktaları arasındaki uzaklık 5 birimdir. $a$'nın alabileceği değerler toplamı kaçtır?",
+      "explanation": "Uzaklık denklemini kurarız: $(a - 1)^2 + (6 - 2)^2 = 5^2$. Buradan $(a - 1)^2 + 16 = 25$ ve $(a - 1)^2 = 9$ olur. Karekök alırken iki işaret de geçerlidir: $a - 1 = 3$ ya da $a - 1 = -3$; yani $a = 4$ ya da $a = -2$. İki nokta da koşulu sağlar: $B$, $A$'nın sağında ya da solunda olabilir. Değerler toplamı $4 + (-2) = 2$'dir. Tuzak, yalnız pozitif kökü alıp ikinci çözümü atlamaktır."
+     },
+     {
       "kind": "blank",
       "title": "Bilinmeyen koordinat",
       "prompt": "$A(2, k)$ ve $B(5, 7)$ noktaları arasındaki uzaklık 5 birimdir ve $k < 7$'dir. $k$ kaçtır?",
@@ -566,6 +589,11 @@
     "title": "Orta nokta",
     "narration": "",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Orta nokta nedir?",
+      "text": "Orta nokta, bir doğru parçasını eşit iki parçaya bölen noktadır. Sayı doğrusunda 2 ile 10'un tam ortası $\\frac{2 + 10}{2} = 6$'dır. Düzlemde aynı işlemi iki yönde ayrı ayrı yaparsın: uçların $x$'lerinin ortası ve $y$'lerinin ortası. $(2, 4)$ ile $(10, 8)$ uçlarının ortası $(6, 6)$'dır. Orta nokta; kenarortay, paralelkenar köşesi ve simetri sorularında karşına çıkar."
+     },
      {
       "kind": "rule",
       "title": "Orta nokta formülü",
@@ -670,6 +698,12 @@
       "explanation": "$M = \\frac{A + B}{2}$ olduğundan $2M = A + B$ ve $B = 2M - A$ olur. Her koordinat için ayrı ayrı uygulanır."
      },
      {
+      "kind": "example",
+      "title": "Orta nokta ve uzaklık birlikte",
+      "example": "$A(-1, 3)$, $B(5, 7)$ ve $C(5, 1)$ noktaları veriliyor. $[AB]$'nin orta noktası $M$ ile $C$ arasındaki uzaklığı bulalım.",
+      "explanation": "Önce orta noktayı buluruz: apsis $\\frac{-1 + 5}{2} = 2$, ordinat $\\frac{3 + 7}{2} = 5$; $M(2, 5)$. Şimdi $M$ ile $C(5, 1)$ arasındaki farklara bakarız: yatay fark $5 - 2 = 3$, dikey fark $1 - 5 = -4$. Uzaklık $\\sqrt{3^2 + (-4)^2} = \\sqrt{25} = 5$ birimdir. Birleşik sorularda önce ara nokta bulunur, sonra uzaklık hesaplanır; sıra karışmasın."
+     },
+     {
       "kind": "question",
       "question": {
        "style": "KPSS tarzı",
@@ -771,8 +805,11 @@
     "narration": "",
     "cards": [
      {
-      "kind": "visual",
-      "title": "Eğim üçgeni",
+      "kind": "concept",
+      "title": "Eğim nedir?",
+      "text": "Eğim, bir doğrunun ne kadar dik olduğunu söyleyen sayıdır: doğru üzerinde yatayda 1 birim ilerlerken dikeyde ne kadar yükseldiğini ya da alçaldığını gösterir. Bir doğruda yatayda 3 birim giderken dikeyde 2 birim yükseliyorsa eğim $\\frac{2}{3}$'tür. Aynı oran doğru üzerindeki her iki nokta çifti için aynı çıkar. Yükselen doğruda eğim pozitif, alçalan doğruda negatiftir. Eğim, doğru denklemi, paralellik ve diklik sorularının temelidir.",
+      "caption": "P'den Q'ya: 3 birim sağa, 2 birim yukarı.",
+      "narration": "Doğru üzerinde P ve Q noktalarını alalım. P'den Q'ya gitmek için yatayda 3, dikeyde 2 birim ilerlemek gerekir; eğim dikey farkın yatay farka oranı olan $\\frac{2}{3}$'tür. Doğrunun $x$ ekseniyle yaptığı $\\alpha$ açısı, P'deki dik üçgenin açısına yöndeş olduğu için eşittir; eğim bu açının tanjantıdır.",
       "visual": {
        "kind": "geometry",
        "view": [
@@ -902,9 +939,7 @@
          "arcs": 1
         }
        ]
-      },
-      "caption": "P'den Q'ya: 3 birim sağa, 2 birim yukarı.",
-      "narration": "Doğru üzerinde P ve Q noktalarını alalım. P'den Q'ya gitmek için yatayda 3, dikeyde 2 birim ilerlemek gerekir; eğim dikey farkın yatay farka oranı olan $\\frac{2}{3}$'tür. Doğrunun $x$ ekseniyle yaptığı $\\alpha$ açısı, P'deki dik üçgenin açısına yöndeş olduğu için eşittir; eğim bu açının tanjantıdır."
+      }
      },
      {
       "kind": "rule",
@@ -999,6 +1034,12 @@
       "explanation": "$2x - y + 4 = 0$ için $y = 2x + 4$, $m = 2$. $x + 2y - 6 = 0$ için $m = -\\frac{1}{2}$. $y = b$ yatay, $x = c$ dikey doğrudur."
      },
      {
+      "kind": "example",
+      "title": "İki noktadan eğim",
+      "example": "$A(-1, 5)$ ve $B(3, -3)$ noktalarından geçen doğrunun eğimini bulalım.",
+      "explanation": "Dikey fark: $-3 - 5 = -8$. Yatay fark: $3 - (-1) = 4$. Eğim $\\frac{-8}{4} = -2$. Eğim negatif olduğu için doğru sağa doğru alçalır. Noktaların sırasını değiştirirsen yatay fark $-4$, dikey fark $8$ olur ve eğim yine $-2$ çıkar; önemli olan pay ve paydada aynı sırayı kullanmaktır."
+     },
+     {
       "kind": "guided",
       "title": "Eğim açısından denklem",
       "stem": "Eğim açısı $135^\\circ$ olan ve $A(-2, 6)$ noktasından geçen doğru için adımları tamamla.",
@@ -1037,6 +1078,12 @@
         "explanation": "$y = 0$ için $x - 4 = 0$, $x = 4$."
        }
       ]
+     },
+     {
+      "kind": "example",
+      "title": "Eğimden bilinmeyen koordinat",
+      "example": "Eğimi $\\frac{3}{4}$ olan doğru $A(2, m)$ ve $B(6, 1)$ noktalarından geçiyor. $m$ kaçtır?",
+      "explanation": "Eğim tanımını yazarız: $\\frac{1 - m}{6 - 2} = \\frac{3}{4}$. Payda 4 olduğundan pay 3 olmalıdır: $1 - m = 3$, yani $m = -2$. Kontrol: $A(2, -2)$ ve $B(6, 1)$ için dikey fark 3, yatay fark 4; eğim $\\frac{3}{4}$ çıkar."
      },
      {
       "kind": "question",
@@ -1100,6 +1147,11 @@
     "title": "Doğru denklemi",
     "narration": "",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Doğru denklemi nedir?",
+      "text": "Doğru denklemi, doğru üzerindeki bütün noktaların sağladığı, doğrunun dışındaki hiçbir noktanın sağlamadığı bağıntıdır. $y = 2x + 1$ için: $x = 0$ iken $y = 1$, $x = 1$ iken $y = 3$, $x = 2$ iken $y = 5$. $(0, 1)$, $(1, 3)$ ve $(2, 5)$ aynı doğrunun noktalarıdır; $x$ bir artınca $y$ iki artar, yani eğim 2'dir. Bir doğruyu yazmak için eğimi ile bir noktasını ya da iki noktasını bilmek yeter. KPSS'de bu denklemler eksenleri kesme noktası, alan ve kesişim sorularında çıkar."
+     },
      {
       "kind": "visual",
       "title": "Eğim değişince doğru nasıl döner?",
@@ -1165,6 +1217,12 @@
       "example": "$3x + 4y - 24 = 0$ doğrusu ile koordinat eksenlerinin sınırladığı üçgenin alanı kaç birimkaredir? Doğrunun eğimi kaçtır?",
       "explanation": "$y = 0$ için $3x = 24$, $x = 8$: doğru $x$ eksenini $(8, 0)$'da keser. $x = 0$ için $4y = 24$, $y = 6$: $y$ eksenini $(0, 6)$'da keser. Dik üçgenin dik kenarları 8 ve 6'dır; alan $\\frac{8 \\cdot 6}{2} = 24$ birimkare. Eğim $-\\frac{a}{b} = -\\frac{3}{4}$; doğru sağa doğru alçalır, $(0, 6)$'dan $(8, 0)$'a iner.",
       "narration": "Eksenlerle sınırlanan alan sorularında önce iki kesim noktasını bulursun; orijin ile birlikte bir dik üçgen oluşur. Taban ve yükseklik kesim noktalarının mutlak değerleridir, işaretleri alanı etkilemez."
+     },
+     {
+      "kind": "example",
+      "title": "İki noktadan denklem",
+      "example": "$A(2, 3)$ ve $B(6, 11)$ noktalarından geçen doğru $y$ eksenini hangi ordinatta keser?",
+      "explanation": "Önce eğimi buluruz: $m = \\frac{11 - 3}{6 - 2} = 2$. Nokta-eğim denklemini $A$ ile yazarız: $y - 3 = 2(x - 2)$. Parantezi açarsak $y = 2x - 1$ olur. $y$ eksenini kestiği yerde $x = 0$'dır, bu yüzden $y = -1$. Kontrol: $B(6, 11)$ için $2\\cdot 6 - 1 = 11$ olur, denklem doğrudur."
      },
      {
       "kind": "blank",
@@ -1304,6 +1362,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Paralel ve dik doğrular nedir?",
+      "text": "**Paralel** doğrular hiç kesişmez; aynı dikliktedir, yani eğimleri eşittir. **Dik** doğrular birbirini $90^\\circ$ ile keser. Fikri bir yürüyüşle görelim: bir doğruda 1 birim sağa gidince 2 birim yükseliyorsa eğim 2'dir. Bu yürüyüşü $90^\\circ$ döndürürsen 2 birim sola gidip 1 birim yükselirsin: eğim $-\\frac{1}{2}$ olur. Yani dik doğruda eğim ters çevrilir ve işaret değişir. Paralellik ve diklik, doğru denklemlerini eğimlerle karşılaştırarak çözülür."
+     },
+     {
       "kind": "rule",
       "title": "Paralel ve dik",
       "items": [
@@ -1346,6 +1409,12 @@
       "example": "$A(1, 2)$ ve $B(4, 8)$ noktalarından geçen doğruya dik olan ve $C(6, 1)$ noktasından geçen doğrunun denklemini yazalım.",
       "explanation": "$m_{AB} = \\frac{8 - 2}{4 - 1} = 2$. Dik doğrunun eğimi $-\\frac{1}{2}$. $C(6, 1)$'den geçtiği için $y - 1 = -\\frac{1}{2}(x - 6)$, yani $y = -\\frac{x}{2} + 4$. Düzenlersek $x + 2y - 8 = 0$. Kontrol: $C$'de $6 + 2 - 8 = 0$.",
       "narration": "Dik doğru sorularında sıra hep aynıdır: verilen doğrunun eğimi, dik eğimi, nokta-eğim denklemi. Son denklemi verilen noktayla kontrol et."
+     },
+     {
+      "kind": "example",
+      "title": "Genel biçimde paralel ve dik",
+      "example": "$2x + 3y - 6 = 0$ doğrusuna $A(3, -1)$ noktasından çizilen paralel ve dik doğruların denklemlerini yazalım.",
+      "explanation": "Paralel doğruda katsayılar aynı kalır: $2x + 3y + d = 0$. $A(3, -1)$'i yazalım: $6 - 3 + d = 0$, $d = -3$. Paralel doğru $2x + 3y - 3 = 0$. Dik doğruda katsayılar yer değiştirir ve biri işaret değiştirir: $3x - 2y + d = 0$. $A$'yı yazalım: $9 + 2 + d = 0$, $d = -11$. Dik doğru $3x - 2y - 11 = 0$. Kontrol: verilen doğrunun eğimi $-\\frac{2}{3}$, dik doğrunun eğimi $\\frac{3}{2}$; çarpım $-1$."
      },
      {
       "kind": "predict",
@@ -1569,6 +1638,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Noktanın doğruya uzaklığı nedir?",
+      "text": "Bir noktanın doğruya uzaklığı, noktadan doğruya **dik** inen doğru parçasının uzunluğudur; çünkü doğruya en kısa yol dik yoldur. Basit durumlar: $P(0, 3)$ noktasının $x$ eksenine ($y = 0$) uzaklığı 3'tür; $P(4, 0)$ noktasının $x = 1$ doğrusuna uzaklığı $4 - 1 = 3$'tür. Doğru eğikse bu dik yolu hesaplamak için bir formül gerekir. Dikin doğruyu kestiği nokta, doğru üzerindeki en yakın noktadır. KPSS'de hem uzaklık hem de en yakın nokta soruları çıkar."
+     },
+     {
       "kind": "rule",
       "title": "Noktanın doğruya uzaklığı",
       "items": [
@@ -1667,6 +1741,12 @@
       "example": "$P(-2, 4)$ noktasının $3x - 4y - 8 = 0$ doğrusuna uzaklığını bulalım.",
       "explanation": "Pay: $|3\\cdot(-2) - 4\\cdot 4 - 8| = |-6 - 16 - 8| = |-30| = 30$. Payda: $\\sqrt{3^2 + (-4)^2} = 5$. Uzaklık $\\frac{30}{5} = 6$ birimdir. Paydaki sayı negatif çıktı; mutlak değer onu pozitif yaptı.",
       "narration": "Payın işareti noktanın doğrunun hangi yanında olduğunu söyler, uzaklığı değil. Uzaklık bir uzunluk olduğu için mutlak değerle pozitif yapılır."
+     },
+     {
+      "kind": "example",
+      "title": "Denklemi düzenleyerek uzaklık",
+      "example": "$y = \\frac{3}{4}x - 1$ doğrusunun $P(0, -6)$ noktasına uzaklığını bulalım.",
+      "explanation": "Formül $ax + by + c = 0$ biçimini ister, bu yüzden önce denklemi düzenleriz. İki tarafı 4 ile çarparız: $4y = 3x - 4$, yani $3x - 4y - 4 = 0$. Pay: $|3\\cdot 0 - 4\\cdot(-6) - 4| = |24 - 4| = 20$. Payda: $\\sqrt{3^2 + (-4)^2} = \\sqrt{25} = 5$. Uzaklık $\\frac{20}{5} = 4$ birimdir. Denklemi düzenlemeden katsayıları okursak $\\frac{3}{4}$ ve $-1$ gibi yanlış değerlerle formüle gireriz ve sonuç tutmaz."
      },
      {
       "kind": "mistake",

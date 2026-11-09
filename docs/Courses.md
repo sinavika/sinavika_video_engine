@@ -285,6 +285,7 @@ Tek yer: [`src/Courses/CourseDesign.ts`](../src/Courses/CourseDesign.ts) (`COURS
 | `process` | Coğrafya, fizik, kimya, biyoloji, matematik | Bir süreç evre evre, gerçekten olurken: heyelan, erozyon, karst, kaynaklar, kayaç döngüsü, volkan, buzul, kıyı, rüzgâr, çözülme, sel, çığ; hâl değişimi, ısı aktarımı, basınç; mitoz, karbon döngüsü; alan modeli, sayı doğrusu. Ayrıntı aşağıda | SVG (kendi) |
 | `matching` | Her ders (özellikle sözel) | Eşleştirme: solda terimler, sağda eşleri karışık sırada; anlatım bir eşe gelince çizgisi çizilir ve kalır (parçalar `p1…`) | — |
 | `flipcards` | Her ders (özellikle sözel) | Dönen kartlar: önde terim, anlatım gelince kart dönüp örneği ya da açıklamayı gösterir; arka yüzde terim küçük başlık olarak kalır (parçalar `p1…`) | — |
+| `ordering` | Her ders | Sıralama: solda numaralı yerler, yanında adımlar karışık sırada (hiçbiri kendi yerinde değil); anlatım bir adıma gelince adım yerine kayar, öbürleri yer açar, numarası yanar. Adımlar doğru sırada yazılır (parçalar `p1…`, 3–6 adım). Uygulamanın sıralama adımının videodaki karşılığı | — |
 | `picture` | Tarih, biyoloji, edebiyat | Lisansı kayıtlı resim ya da fotoğraf: belgesel gibi yavaşça yaklaşır; `regions` (resmin payı olarak `[sol, üst, sağ, alt]` ve etiket) anlatım işaret edince kamerayı oraya götürür, çerçeveler ve adını yazar; resim kareyi doldurmazsa boşluğu bulanık kopyası doldurur. `aspect` dosyanın en/boy oranıdır. Yatay videoda tam kadraj | — |
 
 Görsel galerisi: `samples/Courses/VisualGallery.json` (`npm run stills -- --job samples/Courses/VisualGallery.json`). Canlandırılmış görseller, beat'ler ve tahmin kartı: `samples/Courses/AnimatedVisuals.json`.
@@ -346,6 +347,31 @@ Fen ve matematik süreçleri: `phasechange` (`kati`, `erime`, `sivi`, `kaynama`,
 ### Önce tahmin, sonra gösterim (`predict` kartı)
 
 "Eğim artarsa ne olur?" gibi kısa bir soru okunur (`narration`), isteğe bağlı şıklarla; ardından geri sayımlı bir düşünme süresi (`thinkSeconds`, sessiz); sonra soru kenara çekilir ve görsel beat'leriyle oynar; en sonda açıklama (`explanation`, `explanationNarration`) gelir ve doğru şık yanar.
+
+### Sıra sende (`practice` kartı)
+
+Uygulamadaki eşleştirme, kart çevirme ve sıralama adımlarının videodaki karşılığı (8 Kasım 2026). Tahta (`matching`, `flipcards` ya da `ordering`) baştan ekrandadır, çünkü sorunun kendisidir. Sahnenin akışı:
+
+1. Girişi okunur (`narration`).
+2. Görevi şablon söyler: "Önce sen eşleştir." / "Kartları çevirmeden önce arkasında ne yazdığını sen söyle." / "Önce sen sırala." Ardından "Birkaç saniye düşün." gelir (`PRACTICE_TASKS`, LessonSpeech).
+3. Yanda geri sayım işler (`thinkSeconds`, varsayılan 5).
+4. Her beat cevaplarını verir: çizgi çizilir, kart döner, adım yerine kayar. Yandaki sayaç "2/5 Kontrol" diye ilerler.
+
+```json
+{"kind": "practice", "title": "Bunalımın zinciri", "visual": {"kind": "ordering", "items": [{"label": "Borsa çöktü"}, {"label": "Bankalar battı"}, {"label": "İşsizlik"}]},
+ "narration": "Bunalımı bir zincir olarak izleyelim.", "beats": [{"narration": "Önce borsa çöktü…", "focus": ["p1"]}, {"narration": "…", "focus": ["p2", "p3"]}]}
+```
+
+Kurallar:
+- **Her öğenin cevabı söylenir:** tahtadaki her öğeye odaklanan bir beat olmalı; şema bunu ister.
+- **Önce öğret, sonra sor** (uygulamanın kuralı, 5 Kasım 2026):
+  - Bölümün ilk kartı "Sıra sende" olamaz; `check` bunu sorun sayar.
+  - Tahtanın öğelerinin yarısından azı bölümde daha önce anlatılmışsa `check` öneri verir: öğrenci tahmin etmeye zorlanmasın, az önce öğrendiğini hatırlasın.
+- **Giriş cevabı söylemez.**
+- **Derste en çok iki kart,** her bölümde en çok bir kart: her kart yaklaşık 5–8 sn düşünme süresi ekler.
+- **Works'e eski biçimiyle gider:** görsel kartı olarak (`worksCard`, WorksView). Sıralama tahtası akış (`flow`) olarak gider; API bunları kendi eşleştirme, kart ve sıralama adımlarına çevirir. Works sözleşmesi değişmez.
+
+`npm run curriculum -- audit` her dersin "Sıra sende" sayısını ve ilk sorudan önceki çözümlü örnek sayısını raporlar.
 
 **3B.** `solid`, `molecule3d` ve `earthquake` (`block3d`) three.js ile çizilir (@remotion/three). Her kare kare numarasından hesaplanır; render WebGL için ANGLE kullanır (`VideoRenderer` ve `remotion.config.ts`). 3B'yi derinliğin anlamaya katkı sağladığı yerde kullanın: cisimler ve açınımlar, molekül şekilleri, fay blokları.
 
@@ -409,8 +435,21 @@ Bir **kamp**, bir sınav dersinin bütün konularının sırayla yayımlanan ser
 
 **YouTube dersinin akışı** (`CampLesson`):
 
-1. **SinoAI karşılaması**, kamp kartının üzerinde (ders renginde): "Merhaba, ben SinoAI. Sınavika'nın TYT Türkçe kampına hoş geldin! …". Karşılama kamp verisinden üretilir ve her derste aynı kalıptadır.
-2. Dersin kancası ve "bu videoda" (CourseLesson'ın açılışı).
+0. **Soğuk açılış** (`lesson.opening`, 8 Kasım 2026'dan beri):
+   - Her ders farklı açılır. Açılışın üç türü var (`kind`, sahibin kuralı):
+     - `question`: kavramsal bir soru, ekranda dersin sınav sorusuyla;
+     - `mistake`: çoğu öğrencinin düştüğü tuzak, ekranda dersin sınav sorusuyla;
+     - `visual`: hareketli bir problem; dersin görsel kartı (savaş düzeni, heyelan, deprem, kan dolaşımı…) adımlarını açılış boyunca oynatır.
+   - Soru ekrandayken cevap verilmez; başlıkta "Bu soruyu derste çözeceğiz" yazar.
+   - `narration` 5–40 sözcüktür, hedef 5–10 saniye. İzleyiciye kalması için bir neden verir: bildiği bir çelişki ya da tuzak. "Merhaba", "ben SinoAI" ve "bu videoda" yoktur.
+   - Kart, kartın kimliğiyle seçilir (`s3-c2`: 3. bölüm, 2. kart). Şema kartın türünü denetler: soru açılışında soru kartı, görsel açılışta görsel kart olmalı.
+   - Neden: 8 Kasım analizinde izleyicilerin dörtte üçü 30. saniyeye kadar, öğretim başlamadan ayrılıyordu ([analiz](Analiz/2026-11-08-Kamp-ve-Reels-Analizi.md)).
+   - Denetimler:
+     - `check`: açılışı olmayan kamp dersini, uzun açılışı, selamı ve aynı kampta başka bir dersin de söylediği cümleyi uyarır ([OpeningVariety.ts](../src/Courses/OpeningVariety.ts)).
+     - [CampOpenings.test.ts](../tests/Courses/CampOpenings.test.ts): bütün kampları aynı kurallarla tutar; sekiz dersten büyük her kampta en az iki açılış türü olmalı.
+     - Yayımlanmış 15 TYT Türkçe dersi açılışsız kalır (sahip).
+1. **SinoAI karşılaması**, kamp kartının üzerinde (ders renginde), tek nefeste: "Sınavika'nın TYT Türkçe kampına hoş geldin! Bugün kampın ikinci dersindeyiz: Söz Yorumu." Kamp verisinden üretilir ve her derste aynı kalıptadır. "Merhaba, ben SinoAI", "geçen derste…" ve "hazırsan başlayalım" yoktur (8 Kasım 2026).
+2. "Bu videoda" (CourseLesson'ın açılışı). Açılış varsa kanca yerine onun kısa vaadi (`promise`, en çok 25 sözcük) söylenir; yoksa dersin kancası.
 3. Bölümler. Her bölüm açılışında başlık ayrı bir satır olarak söylenir ("İkinci bölüm: Mecaz anlam."). Ardından kartlar, beat'li şekiller, tahmin kartları ve adım adım çözülen sorular gelir.
 4. Özet.
 5. **Kamp görevi**: 1-3 görev ve "Sıradaki ders" kartı (son derste "Kamp tamamlandı").

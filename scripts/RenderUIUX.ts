@@ -41,6 +41,7 @@ if (values.inventory) {
 	const platforms: [UIPlatform, string][] = [
 		['mobile', 'Mobil uygulama'],
 		['web', 'Web paneli ve web giriş/onboarding'],
+		['tablet', 'Tablet (iPad ve Android tablet, kalem)'],
 		['site', 'Web sitesi (giriş öncesi)'],
 	];
 	const lines = [
@@ -81,11 +82,13 @@ const FOLDER: Record<UIPlatform, string> = {
 	mobile: 'mobil',
 	web: 'web-panel',
 	site: 'web-site',
+	tablet: 'tablet',
 };
 const BOARD_COLUMNS: Record<UIPlatform, number> = {
 	mobile: 5,
 	web: 3,
 	site: 4,
+	tablet: 2,
 };
 const langs = (values.lang === 'both' ? ['tr', 'en'] : [values.lang]) as UILang[];
 const modes = (values.mode === 'both' ? ['light', 'dark'] : [values.mode]) as UIMode[];
@@ -112,7 +115,7 @@ for (const lang of langs)
 					inputProps,
 					puppeteerInstance: browser,
 				});
-				const scale = screen.platform === 'mobile' ? UI_CANVAS.mobile.scale : UI_CANVAS.web.scale;
+				const scale = screen.platform === 'mobile' ? UI_CANVAS.mobile.scale : screen.platform === 'tablet' ? UI_CANVAS.tablet.scale : UI_CANVAS.web.scale;
 				await renderStill({
 					composition,
 					serveUrl,

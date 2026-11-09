@@ -14,7 +14,7 @@ import {sceneChapters, type Chapter} from '../Scenes/SceneChapter';
 import {VOICE_LEAD_SECONDS, type VoiceClips} from '../Scenes/Voiceover';
 import {AUDIO_LEVELS, ffmpeg, masterFilter, measureLoudness} from '../Services/AudioLeveling';
 import type {SpeechBackend} from '../Services/ElevenLabsSpeech';
-import {musicPieceFor, writeMusicBed} from '../Services/MusicLibrary';
+import {beatsFrom, musicPieceFor, writeMusicBed} from '../Services/MusicLibrary';
 import {analyzeBeats, tempoHint} from '../Services/BeatGrid';
 import {templateScenes} from '../Templates/TemplateDefinition';
 import {outputRoot, saveNumberedOutput} from '../Services/OutputFile';
@@ -232,7 +232,7 @@ const attachSoundtrack = async (job: ResolvedVideoJob, serveUrl: string): Promis
 		const cues = soundtrackCues(job);
 		const outputPath = path.join(serveUrl, 'public', soundtrackSrc);
 		await mkdir(path.dirname(outputPath), {recursive: true});
-		if (job.soundtrackMusic) await writeMusicBed({description: job.soundtrackMusic, videoSeconds: cues.durationSeconds, publicDirectory: PUBLIC_DIRECTORY, outputPath, piece: job.musicPiece});
+		if (job.soundtrackMusic) await writeMusicBed({description: job.soundtrackMusic, videoSeconds: cues.durationSeconds, publicDirectory: PUBLIC_DIRECTORY, outputPath, piece: job.musicPiece, fromSeconds: job.soundtrackFrom});
 		else await writeSoundtrack(cues, outputPath, job.soundtrackStyle);
 		return {...job, inputProps: {...job.inputProps, soundtrackSrc}};
 	} catch (error) {
@@ -252,9 +252,9 @@ const attachBeats = async (job: ResolvedVideoJob): Promise<ResolvedVideoJob> => 
 		const scenes = job.template.buildScenes(job.inputProps.content, job.inputProps.voiceClips);
 		// Each cut may move by up to a beat (0.5 s at 120 BPM); the piece is picked long enough for all of them.
 		const seconds = job.durationInFrames / job.fps + scenes.length * 0.6;
-		const piece = await musicPieceFor(job.soundtrackMusic, seconds, PUBLIC_DIRECTORY);
+		const piece = await musicPieceFor(job.soundtrackMusic, seconds, PUBLIC_DIRECTORY, undefined, job.soundtrackFrom);
 		const {beats} = await analyzeBeats(piece, tempoHint(job.soundtrackMusic));
-		return withBeats(job, beats, piece);
+		return withBeats(job, beatsFrom(beats, job.soundtrackFrom), piece);
 	} catch (error) {
 		throw new VideoRenderError('rendering', error);
 	}

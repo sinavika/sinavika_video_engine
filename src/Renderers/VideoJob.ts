@@ -82,6 +82,8 @@ const VideoJobSchema = z.object({
 				lesson: z.string().trim().min(1).max(24).optional(),
 				exams: z.array(z.string().trim().min(1).max(10)).max(4).optional(),
 				glyph: z.string().trim().min(1).max(4).optional(),
+				/** A camp cover's hook line (CampCover), instead of the lesson's hook headline or the reel's dare. */
+				hook: z.string().trim().min(1).max(40).optional(),
 			}),
 		])
 		.optional(),
@@ -90,8 +92,10 @@ const VideoJobSchema = z.object({
 	 * `{music: "..."}` describes the music in words and has it made for this
 	 * video (ElevenLabs Music, see Services/MusicLibrary); `true` or a style name
 	 * uses the music the engine composes itself (Services/SoundtrackComposer).
+	 * `from` starts the piece that many seconds in, past a quiet intro (owner,
+	 * 9 Nov 2026: "müzik geç başlıyor"), keeping the piece an owner liked.
 	 */
-	soundtrack: z.union([z.boolean(), z.enum(SOUNDTRACK_STYLE_KEYS), z.object({music: z.string().trim().min(20).max(900)})]).default(false),
+	soundtrack: z.union([z.boolean(), z.enum(SOUNDTRACK_STYLE_KEYS), z.object({music: z.string().trim().min(20).max(900), from: z.number().min(0).max(20).default(0)})]).default(false),
 	/** Validated against the chosen template's content schema. */
 	content: z.unknown(),
 });
@@ -121,6 +125,8 @@ export type ResolvedVideoJob = {
 	soundtrackStyle: SoundtrackStyleKey;
 	/** A description of the music to have made for this video, instead of the engine's own. */
 	soundtrackMusic: string | null;
+	/** Seconds into the made piece the video's music starts at. */
+	soundtrackFrom: number;
 	/** What the job asks of the narrator, or null for a silent video. */
 	voiceover: VoiceoverRequest | null;
 	/** Who ended up narrating. Set once the voice-over has been generated. */
@@ -211,6 +217,7 @@ export const resolveVideoJob = (raw: unknown): ResolvedVideoJob => {
 		soundtrack: job.soundtrack !== false,
 		soundtrackStyle: typeof job.soundtrack === 'string' ? job.soundtrack : DEFAULT_SOUNDTRACK_STYLE,
 		soundtrackMusic: typeof job.soundtrack === 'object' ? job.soundtrack.music : null,
+		soundtrackFrom: typeof job.soundtrack === 'object' ? job.soundtrack.from : 0,
 		voiceover:
 			job.voiceover === false
 				? null

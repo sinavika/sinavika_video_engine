@@ -4,7 +4,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {z} from 'zod';
 import {assertProductCopy} from '../Configurations/ProductMessaging';
-import {POST_TYPE_NAMES, SOCIAL_PLATFORMS} from '../Configurations/SocialPlan';
+import {POST_TYPE_NAMES} from '../Configurations/SocialPlan';
 import {assertSpecialDayCopy} from '../Configurations/SpecialDay';
 import {VIDEO_COVER} from '../Configurations/VideoCover';
 import {socialCopy} from './PlatformCopies';
@@ -26,6 +26,55 @@ const MEDIA_TYPES: Record<string, string> = {'.png': 'image/png', '.jpg': 'image
 
 const SourceKeySchema = z.object({kind: z.string().min(1).max(32), key: z.string().min(1).max(128)});
 
+/** Written in Post.json when the account is still to be chosen (`instagram/?`); submitting it fails. */
+export const UNCHOSEN_ACCOUNT = '?';
+
+/**
+ * One account the post goes to. Accounts are chosen one by one: a platform can
+ * have several (Instagram sinavika.tr and sinavika.yks) and there is no default.
+ * Name it by `accountId` (from `npm run social -- accounts`) or by
+ * `account: "platform/name"`, e.g. `instagram/sinavika.yks`; the client turns
+ * the name into the id before sending.
+ */
+const SocialTargetSchema = z
+	.object({
+		accountId: z.uuid().optional(),
+		account: z
+			.string()
+			.regex(/^[a-z]+\/.+$/, 'account must be "platform/name", e.g. instagram/sinavika.yks')
+			.optional(),
+		postType: z.enum(POST_TYPE_NAMES).optional(),
+		/** This account's own hour (left out, the post's). Chosen from the account's Buffer hours (`GET accounts` → postingSchedule); Buffer publishes exactly then. */
+		scheduledAt: z.iso.datetime({offset: true}).optional(),
+		caption: z.string().max(5000).optional(),
+	})
+	.strict()
+	.refine((target) => Boolean(target.accountId) !== Boolean(target.account), 'Give exactly one of accountId or account.');
+type SocialTarget = z.infer<typeof SocialTargetSchema>;
+
+/** An account as `GET accounts` returns it (only what the client needs). */
+type SocialAccount = {id: string; platform: string; name: string};
+
+/** Turns `platform/name` targets into account ids; an unknown or unchosen account stops the submit with the choices. */
+export const resolveTargets = (targets: SocialTarget[], accounts: SocialAccount[]) => {
+	const choices = accounts.map((account) => `${account.platform}/${account.name}`).join(', ');
+	const seen = new Set<string>();
+	return targets.map(({account, accountId, ...rest}, index) => {
+		let id = accountId;
+		if (account) {
+			const [platform, ...nameParts] = account.split('/');
+			const name = nameParts.join('/');
+			if (name === UNCHOSEN_ACCOUNT) throw new Error(`targets[${index}]: ${platform} hesabı seçilmedi. Seçenekler: ${choices}`);
+			const match = accounts.find((candidate) => candidate.platform === platform && candidate.name.toLocaleLowerCase('tr') === name.toLocaleLowerCase('tr'));
+			if (!match) throw new Error(`targets[${index}]: "${account}" hesabı yok. Seçenekler: ${choices}`);
+			id = match.id;
+		}
+		if (seen.has(id!)) throw new Error(`targets[${index}]: aynı hesap iki kez verilmiş.`);
+		seen.add(id!);
+		return {accountId: id!, ...rest};
+	});
+};
+
 export const SocialPostSchema = z.object({
 	title: z.string().min(1).max(100),
 	caption: z.string().min(1).max(5000),
@@ -44,20 +93,10 @@ export const SocialPostSchema = z.object({
 	/** The moment of the video to use as its cover frame where the platform allows choosing one. */
 	coverOffsetMs: z.number().int().min(0).max(600_000).optional(),
 	/**
-	 * Where the post goes: the platform, the real post type there (left out, it
-	 * follows from the media), and the platform's own hour (left out, the
-	 * post's). Empty means every active account the media fits.
+	 * The accounts the post goes to, at least one, each with its real post type
+	 * there (left out, it follows from the media). There is no default account.
 	 */
-	targets: z
-		.array(
-			z.object({
-				platform: z.enum(SOCIAL_PLATFORMS),
-				postType: z.enum(POST_TYPE_NAMES).optional(),
-				scheduledAt: z.iso.datetime({offset: true}).optional(),
-				caption: z.string().max(5000).optional(),
-			}),
-		)
-		.default([]),
+	targets: z.array(SocialTargetSchema).min(1, 'Choose at least one account (targets[].account or targets[].accountId).'),
 	sources: z.array(SourceKeySchema).default([]),
 	replacesPostId: z.uuid().optional(),
 });
@@ -126,7 +165,10 @@ export const createSocialHubClient = (options: {apiUrl?: string; apiKey?: string
 		importSources: async (items: SocialSource[]) => request<{created: number; updated: number}>('POST', 'sources/import', {items: z.array(SocialSourceSchema).min(1).parse(items)}),
 		/** Uploads the media and creates the post, waiting for approval. Media paths resolve against `baseDirectory`. */
 		submit: async (rawPost: unknown, baseDirectory = process.cwd()) => {
-			const {media, cover, ...payload} = SocialPostSchema.parse(rawPost);
+			const {media, cover, targets, ...rest} = SocialPostSchema.parse(rawPost);
+			const needsNames = targets.some((target) => target.account);
+			const accounts = needsNames ? ((await request<SocialAccount[]>('GET', 'accounts')) ?? []) : [];
+			const payload = {...rest, targets: resolveTargets(targets, accounts)};
 			// Product and module names follow the brand's advertising copy (Configurations/ProductMessaging); a wrong name never leaves.
 			for (const warning of assertProductCopy([payload.title, payload.caption, ...payload.targets.map((target) => target.caption)])) console.warn(`  Metin uyarısı: "${warning.term}" · ${warning.message}`);
 			// On a national or religious holiday nothing advertises: no brand name, product or call, only the logo (Configurations/SpecialDay).

@@ -30,7 +30,8 @@ describe('sample jobs', () => {
 	it.each(sampleFiles)('%s resolves to a renderable composition', (file) => {
 		const job = resolveVideoJob(readSample(file));
 		expect(job.compositionId).toBe(`${job.template.id}-${job.formatId}`);
-		expect(job.durationInFrames).toBeGreaterThan(job.fps * 10);
+		// At least ten seconds, or the template's own shorter minimum (the 8–12 s flash reel).
+		expect(job.durationInFrames).toBeGreaterThan(job.fps * Math.min(10, job.template.targetSeconds?.min ?? 10));
 		expect(job.width % 2).toBe(0);
 		expect(job.height % 2).toBe(0);
 	});

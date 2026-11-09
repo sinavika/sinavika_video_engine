@@ -214,6 +214,8 @@ export const numberedPartNames = (visual: CourseVisual): string[] | null => {
 			return visual.regions.map((region) => region.name);
 		case 'matching':
 			return count('p', visual.pairs.length);
+		case 'ordering':
+			return count('p', visual.items.length);
 		case 'lever':
 			return [...count('f', visual.forces.length), ...count('a', visual.forces.length), 'pivot', 'weight', 'sum'];
 		case 'centreOfMass':

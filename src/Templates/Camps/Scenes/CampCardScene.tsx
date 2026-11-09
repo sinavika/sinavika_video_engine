@@ -91,8 +91,8 @@ export const CampCardScene: React.FC<{script: LessonScript; camp: CampEpisode; p
 						<Animated animation={{preset: 'slide', direction: 'right', distance: 40}}>
 							<div style={{display: 'flex', alignItems: 'center', gap: u(12), padding: `${u(10)}px ${u(22)}px ${u(10)}px ${u(16)}px`, borderRadius: u(999), backgroundColor: withAlpha(ink, 0.16), color: ink, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: u(30), lineHeight: 1}}>
 								<Icon name="sparkles" size={34} color={ink} />
-								<span>SinoAI</span>
-								<span style={{opacity: 0.75, fontWeight: 600}}>· Hoş geldin</span>
+								{/* No narrator name in camps (owner, 9 Nov 2026: "kampta SinoAI adlandırması kullanılmayacak"). */}
+								<span>Hoş geldin</span>
 							</div>
 						</Animated>
 					) : (

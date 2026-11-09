@@ -1,7 +1,7 @@
 import {readdirSync, readFileSync} from 'node:fs';
 import path from 'node:path';
 import {describe, expect, it} from 'vitest';
-import {WORKS_WRITTEN_DIRECTORY, WrittenLessonSchema, writtenIssues, type WrittenLesson} from '../../src/Courses/WorksWritten';
+import {WORKS_WRITTEN_DIRECTORY, WrittenLessonSchema, writtenIssues, writtenWarnings, type WrittenLesson} from '../../src/Courses/WorksWritten';
 import type {WorksView} from '../../src/Courses/WorksView';
 
 const ROOT = path.resolve(__dirname, '..', '..', 'Curriculum', WORKS_WRITTEN_DIRECTORY);
@@ -98,7 +98,7 @@ describe('Works written lessons', () => {
 		const issues = writtenIssues(
 			lesson({
 				sections: [
-					{subtopic: 'MAT_X_01', title: 'Bir', cards: [{kind: 'classify', prompt: 'Ayır.', groups: [{label: 'Tek', items: ['3']}, {label: 'Çift', items: ['4']}]}, rule, rule, rule, rule, question(0), mistake]},
+					{subtopic: 'MAT_X_01', title: 'Bir', cards: [{kind: 'classify', prompt: 'Ayır.', groups: [{label: 'Tek', items: ['3']}, {label: 'Çift', items: ['4']}]}, rule, rule, rule, rule, rule, question(0), mistake]},
 					{
 						subtopic: 'MAT_X_02',
 						subtopics: ['MAT_X_03'],
@@ -109,7 +109,7 @@ describe('Works written lessons', () => {
 			}),
 			view,
 		);
-		expect(issues.some((issue) => issue.includes('4 reading cards in a row'))).toBe(true);
+		expect(issues.some((issue) => issue.includes('5 reading cards in a row'))).toBe(true);
 		expect(issues.some((issue) => issue.includes('a classify card before anything is taught'))).toBe(true);
 		expect(issues.some((issue) => issue.includes("wrong choice's note gives the answer away"))).toBe(true);
 	});
@@ -140,6 +140,39 @@ describe('Works written lessons', () => {
 			}),
 		).not.toThrow();
 		expect(() => lesson({sections: [{subtopic: 'MAT_X_01', title: 'Bir', cards: [{kind: 'rule', title: 'K', items: ['K.']}, {kind: 'split', word: 'göz', cuts: [3]}]}]})).toThrow();
+	});
+
+	it('warns when a lesson or a section does not open with a definition, a formula comes before its meaning, or questions come before worked examples', () => {
+		const formula = {kind: 'rule', title: 'Formül', items: ['$\\overline{AB} = 10A + B$']};
+		const warnings = writtenWarnings(
+			lesson({
+				sections: [
+					{subtopic: 'MAT_X_01', title: 'Bir', cards: [formula, question(0), mistake]},
+					{subtopic: 'MAT_X_02', subtopics: ['MAT_X_03'], title: 'İki', cards: [{kind: 'concept', title: 'Tanım', text: 'Tanım.'}, {kind: 'example', title: 'Örnek', example: 'Örnek.', explanation: 'Kısa.'}, question(2), statement(0)]},
+				],
+			}),
+			view,
+		);
+		expect(warnings.some((warning) => warning.startsWith('s1: the lesson does not open with a definition'))).toBe(true);
+		expect(warnings.some((warning) => warning.includes('s1 (Bir): the section does not open with a definition'))).toBe(true);
+		expect(warnings.some((warning) => warning.includes('a formula before its meaning'))).toBe(true);
+		expect(warnings.some((warning) => warning.includes('s2 (İki) c3: 0 worked example(s)'))).toBe(true);
+	});
+
+	it('is satisfied by a definition, the meaning before the formula and two full worked examples before the first question', () => {
+		const solution = 'Önce sayıyı basamaklarına ayır: onlar basamağı A, birler basamağı B. Sonra her rakamı basamak değeriyle çarp ve topla; böylece 10A + B bulunur. Son olarak sonucu verilen koşulla karşılaştır.';
+		const worked = {kind: 'example', title: 'Örnek', example: '$\\overline{AB} + \\overline{BA}$ toplamını bul.', explanation: solution};
+		const opening = [{kind: 'concept', title: 'Konu nedir?', text: 'Bir sayının her rakamı bir basamakta durur ve değerini o basamaktan alır; aynı rakam onlar basamağında on kat değer taşır.'},{kind: 'rule', title: 'Formül', items: ['$\\overline{AB} = 10A + B$']}, worked, worked];
+		const warnings = writtenWarnings(
+			lesson({
+				sections: [
+					{subtopic: 'MAT_X_01', title: 'Bir', cards: [...opening, question(0), mistake]},
+					{subtopic: 'MAT_X_02', subtopics: ['MAT_X_03'], title: 'İki', cards: [...opening, question(2), statement(0)]},
+				],
+			}),
+			view,
+		);
+		expect(warnings).toEqual([]);
 	});
 
 	it('refuses fields the API does not read, such as video beats', () => {

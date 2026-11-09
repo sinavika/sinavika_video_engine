@@ -64,7 +64,7 @@ describe('UI/UX screens', () => {
 	it('has unique ids that match their platform', () => {
 		const ids = UI_SCREENS.map((screen) => screen.id);
 		expect(new Set(ids).size).toBe(ids.length);
-		for (const screen of UI_SCREENS) expect(screen.id[0], screen.id).toBe({mobile: 'm', web: 'w', site: 's'}[screen.platform]);
+		for (const screen of UI_SCREENS) expect(screen.id[0], screen.id).toBe({mobile: 'm', web: 'w', site: 's', tablet: 't'}[screen.platform]);
 	});
 
 	it('covers every module on mobile and web', () => {
@@ -74,11 +74,46 @@ describe('UI/UX screens', () => {
 		}
 	});
 
+	it('draws every mobile module beyond its full state: empty, first visit, done, limit or failure', () => {
+		const state = /-(bos|ilk|yok|bitti|hak|okunamadi|dunden|baglanti)$/;
+		for (const key of MODULE_KEYS) {
+			const states = UI_SCREENS.filter((screen) => screen.platform === 'mobile' && screen.module === key && state.test(screen.id));
+			expect(states.length, key).toBeGreaterThan(0);
+		}
+		for (const id of ['m-hub-plansiz', 'm-hub-gun-bitti', 'm-hub-abonelik-bitti']) expect(UI_SCREENS.some((screen) => screen.id === id), id).toBe(true);
+	});
+
+	it('keeps mobile, web and tablet in step: every key feature and state has its drawing on each platform', () => {
+		// feature: [mobile, web, tablet or null when the phone layout serves the tablet]
+		const parity: Record<string, [string, string, string | null]> = {
+			home: ['m-hub-moduller', 'w-panel-anasayfa', 't-hub-moduller'],
+			homeNoPlan: ['m-hub-plansiz', 'w-panel-anasayfa-plansiz', 't-hub-plansiz'],
+			homeDone: ['m-hub-gun-bitti', 'w-panel-anasayfa-gun-bitti', 't-hub-gun-bitti'],
+			homeExpired: ['m-hub-abonelik-bitti', 'w-panel-anasayfa-abonelik-bitti', 't-hub-abonelik-bitti'],
+			planDay: ['m-plan-bugun', 'w-plan-bugun', 't-plan-hafta'],
+			results: ['m-deneme-sonuclar', 'w-deneme-sonuclar', null],
+			resultsEmpty: ['m-deneme-sonuclar-bos', 'w-deneme-sonuclar-bos', null],
+			examSubmit: ['m-deneme-teslim', 'w-deneme-teslim', 't-deneme-klavye'],
+			examDone: ['m-deneme-detay-bitti', 'w-deneme-detay-bitti', null],
+			examAdd: ['m-deneme-ekle', 'w-deneme-ekle', null],
+			statistics: ['m-istatistik', 'w-istatistik', 't-istatistik-pano'],
+			quizMistakes: ['m-test-yanlislar', 'w-test-yanlislar', 't-test-cozumler-iki-panel'],
+			stepGroup: ['m-ders-grupla', 'w-ders-grupla', null],
+			stepMatch: ['m-ders-eslestir', 'w-ders-eslestir', null],
+			stepFormula: ['m-ders-formul', 'w-ders-formul', null],
+			stepSection: ['m-ders-bolum', 'w-ders-bolum', null],
+		};
+		const ids = new Set(UI_SCREENS.map((screen) => screen.id));
+		for (const [feature, platforms] of Object.entries(parity)) {
+			for (const id of platforms) if (id) expect(ids.has(id), `${feature}: ${id}`).toBe(true);
+		}
+	});
+
 	it('sizes site pages by their height and the rest by the canvas', () => {
 		for (const screen of UI_SCREENS) {
-			const size = screenSize(screen.platform, screen.height);
+			const size = screenSize(screen.platform, screen.height, screen.portrait);
 			if (screen.platform === 'site') expect(screen.height, screen.id).toBeGreaterThan(800);
-			expect(size.width, screen.id).toBe(screen.platform === 'mobile' ? 390 : 1440);
+			expect(size.width, screen.id).toBe(screen.platform === 'mobile' ? 390 : screen.platform === 'tablet' ? (screen.portrait ? 834 : 1194) : 1440);
 		}
 	});
 

@@ -78,6 +78,11 @@
     "cards": [
      {
       "kind": "concept",
+      "title": "Bölme ve bölünebilme nedir?",
+      "text": "**Bölme**, bir sayıyı eşit paylara ayırmaktır; artan kısma **kalan** denir. **Bölünebilme** ise bölmeyi yapmadan, sayının rakamlarına bakarak tam bölünüp bölünmediğini ya da kalanı anlama yoludur. KPSS Matematik'te hem doğrudan soru hem de harfli sayı ve problem sorularının içinde sürekli karşına çıkar. Günlük hayattan örnek: 47 cevizi 6 kişiye paylaştırırsan herkese 7 ceviz düşer ve 5 ceviz artar. Bu bölümde bölünen, bölen, bölüm ve kalanın birbirine nasıl bağlandığını öğreneceksin."
+     },
+     {
+      "kind": "concept",
       "title": "Bölmenin dört parçası",
       "text": "**Bölünen = bölen × bölüm + kalan**. $A$, $B$, $C$, $K$ doğal sayı ve $B \\neq 0$ olmak üzere $A = B \\cdot C + K$ yazılır. Kalan her zaman **bölenden küçüktür**: $0 \\le K < B$. Kalan 0 ise bölünen bölene **tam bölünür**.",
       "narration": "Bölme işleminin dört parçası vardır: bölünen ($A$), bölen ($B$), bölüm ($C$) ve kalan ($K$). Aralarındaki bağ tek bir eşitliktir: $A = B \\cdot C + K$. Örneğin 47'yi 6'ya böldüğünde bölüm 7, kalan 5 olur; çünkü $6 \\cdot 7 = 42$ ve $42 + 5 = 47$. Kalanın tek şartı vardır: 0'dan küçük olamaz ve bölenden her zaman küçüktür. Kalan 0 ise bölünen, bölene tam bölünür. Bu konudaki her soru, bu eşitliği doğru yazmakla başlar.",
@@ -113,6 +118,18 @@
        null,
        "Kalan en çok $B - 1$ olabilir; burada bu değer 11'dir. 11, 12'den küçük olduğu için mümkündür."
       ]
+     },
+     {
+      "kind": "example",
+      "title": "Bölünen kaçtır?",
+      "example": "Bir $A$ doğal sayısı 8'e bölündüğünde bölüm 5, kalan 3'tür. $A$ kaçtır?",
+      "explanation": "Bölme eşitliği: bölünen = bölen × bölüm + kalan. Değerleri yerine koy: $A = 8 \\cdot 5 + 3$. Önce çarpma: $8 \\cdot 5 = 40$. Sonra kalanı ekle: $40 + 3 = 43$. Sağlama: 43'ü 8'e bölünce bölüm 5, kalan 3 çıkar; kalan 3, bölen 8'den küçüktür."
+     },
+     {
+      "kind": "example",
+      "title": "Bölüm verilen sayının sınırları",
+      "example": "Bir doğal sayı 7'ye bölündüğünde bölüm 5 çıkıyor. Bu sayı en az ve en çok kaç olabilir?",
+      "explanation": "Sayıyı $A = 7 \\cdot 5 + K$ olarak yaz. Kalan $K$, 7'den küçük olmalıdır: $0 \\le K \\le 6$. En küçük sayı için $K = 0$: $A = 35$. En büyük sayı için $K = 6$: $A = 41$. Yani sayı 35 ile 41 arasındadır. Sağlama: $41 = 7 \\cdot 5 + 6$, ama $42 = 7 \\cdot 6$ olduğundan bölüm 6 olur."
      },
      {
       "kind": "blank",
@@ -295,6 +312,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Art arda bölme nedir?",
+      "text": "Art arda bölme, bir sayının önce bir sayıya bölünüp çıkan **bölümün** yeniden başka bir sayıya bölünmesidir. Amaç, ilk sayının bölenlerin çarpımına bölümünden kalanı bulmaktır. Basit örnek: 23'ü 3'e böl: bölüm 7, kalan 2. Bölümü 7'yi 2'ye böl: bölüm 3, kalan 1. Doğrudan 23'ü 6'ya bölersen bölüm 3, kalan 5 çıkar. Bu kalan, ilk bölen × ikinci kalan + ilk kalan olarak da bulunur: $3 \\cdot 1 + 2 = 5$."
+     },
+     {
       "kind": "visual",
       "title": "Eşitlikleri birleştir",
       "visual": {
@@ -336,6 +358,18 @@
        "latex": "A = b_1 b_2\\, C + (b_1 k_2 + k_1)",
        "caption": "Örnek: 3 · 4 + 2 = 14 (bölenler 3 ve 7)"
       }
+     },
+     {
+      "kind": "example",
+      "title": "İki bölmeyi birleştir",
+      "example": "$A$ sayısı 4'e bölündüğünde bölüm $B$, kalan 3; $B$ sayısı 5'e bölündüğünde bölüm $C$, kalan 2'dir. $A$'nın 20'ye bölümünden kalan kaçtır?",
+      "explanation": "Eşitlikleri yaz: $A = 4B + 3$ ve $B = 5C + 2$. $B$'nin yerine koy: $A = 4(5C + 2) + 3$. Parantezi dağıt: $A = 20C + 8 + 3 = 20C + 11$. 11, 20'den küçük olduğu için kalan 11'dir. Kısa yol: ilk bölen × ikinci kalan + ilk kalan $= 4 \\cdot 2 + 3 = 11$."
+     },
+     {
+      "kind": "example",
+      "title": "Kalan bölenler çarpımına en yakınken",
+      "example": "$A$ sayısı 6'ya bölündüğünde bölüm $B$, kalan 5; $B$ sayısı 4'e bölündüğünde bölüm $C$, kalan 3'tür. $A$'nın 24'e bölümünden kalan kaçtır?",
+      "explanation": "Eşitlikleri yaz: $A = 6B + 5$ ve $B = 4C + 3$. $B$'nin yerine koy: $A = 6(4C + 3) + 5$. Dağıt: $A = 24C + 18 + 5 = 24C + 23$. 23, 24'ten küçük olduğu için kalan 23'tür. Kısa yol: $6 \\cdot 3 + 5 = 23$. Bu, mümkün olan en büyük kalandır (24 − 1)."
      },
      {
       "kind": "findError",
@@ -469,6 +503,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "2, 5 ve 10 ile bölünebilme nedir?",
+      "text": "2, 5 ve 10 ile bölünebilme, sayının **yalnız son rakamına** bakılarak anlaşılır. Neden: 10 sayısı hem 2'ye hem 5'e bölünür; sayının birler basamağı dışındaki kısmı 10'un katıdır ve kalanı değiştirmez. Örnek: 1347 = 1340 + 7. 1340, 10'un katı olduğundan 2, 5 ve 10 ile tam bölünür; geriye son rakam 7 kalır. Bu yüzden 1347'nin kalanını son rakam 7 belirler."
+     },
+     {
       "kind": "visual",
       "title": "Son rakama bakılanlar",
       "visual": {
@@ -582,6 +621,12 @@
       "narration": "Kalanı verilen harfli sayılarda önce harfin hangi rakamları alabileceğini yaz. 5 için son rakamın 5'e bölümünden kalanı arıyorsun, 10 için ise son rakamın kendisini. Aynı kalan iki farklı rakamla sağlanabilir (4 ve 9); bu yüzden 5'li sorularda genellikle iki durum çıkar."
      },
      {
+      "kind": "example",
+      "title": "Birleşik koşul: 2 ve 5",
+      "example": "Üç basamaklı $\\overline{72a}$ sayısı 2 ile tam bölünüyor ve 5'e bölümünden kalan 3'tür. $a$ kaçtır?",
+      "explanation": "5'e bölümden kalan, son rakamın 5'e bölümünden kalandır. Kalanı 3 olan rakamlar 3 ve 8'dir; yani $a = 3$ ya da $a = 8$. 2 ile tam bölünmek için son rakam çift olmalıdır; 3 tek olduğundan elenir. Geriye $a = 8$ kalır. Sayı 728'dir: $728 = 2 \\cdot 364$ ve $728 = 5 \\cdot 145 + 3$."
+     },
+     {
       "kind": "question",
       "question": {
        "style": "KPSS tarzı",
@@ -627,6 +672,11 @@
     "title": "4 ve 8 ile bölünebilme",
     "narration": "",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "4 ve 8 ile bölünebilme nedir?",
+      "text": "4 ve 8 ile bölünebilmede yalnız sayının **son basamaklarına** bakılır. Neden: 100 sayısı 4'e, 1000 sayısı 8'e tam bölünür; bu yüzden yüzler (8 için binler) ve daha büyük basamaklar kalanı değiştirmez. Örnek: 5312 = 5300 + 12; 5300, 4'ün katıdır, geriye 12 kalır ve 12 de 4'e bölünür. Bu yüzden 5312, 4'e tam bölünür. 8 için aynı mantık son üç basamakla uygulanır."
+     },
      {
       "kind": "rule",
       "title": "Son iki, son üç basamak",
@@ -687,6 +737,12 @@
       "narration": "Kalanı bulurken sayının tamamını bölmen gerekmez. 8'e kalan için son üç basamağı, 4'e kalan için son iki basamağı al ve yalnız onu böl. Aynı sayının 4'e ve 8'e kalanı farklı çıkabilir; çünkü bakılan basamak sayısı farklıdır."
      },
      {
+      "kind": "example",
+      "title": "4 ile bölünen harfli sayı",
+      "example": "Üç basamaklı $\\overline{6a4}$ sayısı 4 ile tam bölünüyor. $a$'nın alabileceği değerlerin toplamı kaçtır?",
+      "explanation": "4 için son iki basamağa bakılır: $\\overline{a4} = 10a + 4$. $10 = 4 \\cdot 2 + 2$ olduğundan $10a$'nın 4'e bölümünden kalan $2a$'nın kalanıdır; 4'ün kalanı 0'dır. $10a + 4$'ün 4'e bölünmesi için $2a$ sayısı 4'ün katı olmalıdır; yani $a$ çift olmalıdır: 0, 2, 4, 6, 8. Sayılar 604, 624, 644, 664 ve 684'tür. Toplam $0 + 2 + 4 + 6 + 8 = 20$."
+     },
+     {
       "kind": "blank",
       "title": "Harfli sayıda 8 kuralı",
       "prompt": "Dört basamaklı $\\overline{7a36}$ sayısı 8 ile tam bölünebiliyor. $a$'nın alabileceği değerlerin toplamı kaçtır?",
@@ -742,6 +798,11 @@
         "changes": "ÖSYM'nin 4 ile bölünebilme ve başka bir bölenle kalanı birlikte veren kalıbı örnek alındı; bölen, kalan ve istenen değer bu ders için yazıldı."
        }
       }
+     },
+     {
+      "kind": "concept",
+      "title": "Garanti nedir?",
+      "text": "'Garanti' sorusunda şansa güvenmezsin; **en kötü durumu** düşünürsün. Küçük bir örnek: 1'den 10'a kadar 10 kart var ve 5'in katı olan bir kart istiyorsun. 5'in katı olan 2 kart (5 ve 10) vardır, olmayan 8 kart vardır. En şanssız kişi önce 8 uygunsuz kartın hepsini çeker. 9. kart ise kesinlikle 5'in katı olur. Yani garanti için 8 + 1 = 9 kart gerekir: **uygunsuz kartların sayısı + 1**."
      },
      {
       "kind": "concept",
@@ -822,6 +883,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "3 ve 9 ile bölünebilme nedir?",
+      "text": "3 ve 9 ile bölünebilmede son rakama değil, **bütün rakamlara** bakılır. Neden: 10, 100, 1000 gibi basamak değerleri 9'un katından 1 fazladır (10 = 9 + 1, 100 = 99 + 1). Bu yüzden her rakamın katkısı, rakamın kendisi kadar kalır. Örnek: 234 = 2 · 99 + 3 · 9 + (2 + 3 + 4). Rakamlar toplamı 9'dur; 234 sayısı 9'a tam bölünür ($234 = 9 \\cdot 26$). Aynı toplam 3 için de kullanılır."
+     },
+     {
       "kind": "rule",
       "title": "Rakamlar toplamı",
       "items": [
@@ -858,6 +924,12 @@
       "example": "4 118 727 sayısının 9'a ve 3'e bölümünden kalanları bulunuz.",
       "explanation": "Rakamlar toplamı $4 + 1 + 1 + 8 + 7 + 2 + 7 = 30$. $30 = 9 \\cdot 3 + 3$ olduğundan 9'a bölümden kalan 3'tür. 30, 3'ün katı olduğundan 3'e bölümden kalan 0'dır.",
       "narration": "Aynı toplam hem 3 hem 9 için kullanılır; yalnız bölen değişir. Toplamı bir kez bul, sonra önce 9'a sonra 3'e böl. 9'a kalanın 3 çıkması, 3'e kalanın 0 çıkmasıyla çelişmez: kalan 3 olan bir sayı 3'ün katıdır."
+     },
+     {
+      "kind": "example",
+      "title": "3 ile bölünen harfli sayı",
+      "example": "Üç basamaklı $\\overline{4a7}$ sayısı 3 ile tam bölünüyor. $a$'nın alabileceği değerlerin toplamı kaçtır?",
+      "explanation": "3 ile bölünmek için rakamlar toplamı 3'ün katı olmalıdır: $4 + a + 7 = 11 + a$. $a$ bir rakam (0-9) olduğundan $11 + a$ sayısı 11 ile 20 arasındadır. Bu aralıkta 3'ün katları 12, 15 ve 18'dir; buradan $a = 1$, $a = 4$ ve $a = 7$ bulunur. Sayılar 417, 447 ve 477'dir. Toplam $1 + 4 + 7 = 12$."
      },
      {
       "kind": "blank",
@@ -979,6 +1051,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Bileşik sayılarla bölünebilme nedir?",
+      "text": "6, 12, 15, 18, 36 ve 45 gibi **bileşik** sayılarla bölünebilme için yeni bir kural ezberlenmez. Bölen, **aralarında asal** çarpanlarına ayrılır ve sayı her çarpanın kuralını birlikte sağlıyorsa bölünür. Basit bir örnek: 30 sayısı çifttir, rakamları toplamı 3'tür; yani hem 2'ye hem 3'e bölünür. Bu yüzden 6'ya da bölünür: $30 = 6 \\cdot 5$. KPSS'de bu bilgi genellikle harfli sayı sorularında iki kuralı birlikte kullandırır."
+     },
+     {
       "kind": "rule",
       "title": "Aralarında asal çarpanlar",
       "items": [
@@ -1073,6 +1150,18 @@
       "title": "Birden fazla kural gerekince sıra",
       "text": "Bir soruda birden çok kural gerekiyorsa önce **son rakam** kuralına (2, 5, 10), sonra **son iki basamak** (4), sonra **son üç basamak** (8), en sonda **tüm basamaklar** (3, 9, 11) kuralına bak. Böylece harfli rakamın seçeneklerini en başta daraltırsın. Ardışık iki pozitif tam sayı aralarında asaldır: 8 ile 9 gibi.",
       "narration": "Harfli sayılarda sıra önemlidir. Örneğin 15 için önce 5 kuralını uygularsın: son rakam yalnız 0 ya da 5 olabilir. Sonra her seçenek için rakamlar toplamının 3'ün katı olmasını arar ve ikinci harfi bulursun. Böyle yapınca iki bilinmeyenli bir soru, birkaç küçük durum denemesine döner. Her durumu ayrı ayrı yaz ve en sonda soruda istenen ifadeyi (toplam, fark, en büyük değer) hesapla."
+     },
+     {
+      "kind": "example",
+      "title": "6 ile bölünen harfli sayı",
+      "example": "Üç basamaklı $\\overline{45a}$ sayısı 6 ile tam bölünüyor. $a$'nın alabileceği değerlerin toplamı kaçtır?",
+      "explanation": "$6 = 2 \\cdot 3$; sayı hem 2'ye hem 3'e bölünmelidir. 2 kuralı: son rakam $a$ çift olmalı (0, 2, 4, 6, 8). 3 kuralı: rakamlar toplamı $4 + 5 + a = 9 + a$ sayısı 3'ün katı olmalı; yani $a$ = 0, 3, 6 ya da 9. Her iki koşulu sağlayan değerler 0 ve 6'dır. Sayılar 450 ve 456. Toplam $0 + 6 = 6$."
+     },
+     {
+      "kind": "example",
+      "title": "36'ya bölünen harfli sayı",
+      "example": "Dört basamaklı $\\overline{12a4}$ sayısı 36 ile tam bölünüyor. $a$ kaçtır?",
+      "explanation": "$36 = 4 \\cdot 9$ ve 4 ile 9 aralarında asaldır. 4 kuralı: son iki basamak $\\overline{a4} = 10a + 4$ sayısı 4'ün katı olmalı; bu, $a$'nın çift olmasını gerektirir. 9 kuralı: rakamlar toplamı $1 + 2 + a + 4 = 7 + a$ sayısı 9'un katı olmalı. $a$ bir rakam olduğundan $7 + a = 9$ ya da $7 + a = 18$ olabilir. İkincisinde $a = 11$ çıkar, rakam olmaz. Yani $a = 2$; bu çifttir. Sayı 1224'tür ve $1224 = 36 \\cdot 34$."
      },
      {
       "kind": "multi",
@@ -1459,6 +1548,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Kalanlarla işlem nedir?",
+      "text": "Kalanlarla işlem, sayıların kendisini bilmeden yalnız **kalanlarıyla** toplama, çıkarma ve çarpma yapıp yeni kalanı bulmaktır. KPSS'de büyük sayılar ve harfli ifadeler verilir; kalan kuralı uzun hesabı kısaltır. Küçük bir örnek: 17 ve 23, 5'e bölününce kalanlar 2 ve 3 olur. Toplamları 40'ın kalanı 0'dır; kalanların toplamı $2 + 3 = 5$ de 5'e bölününce 0 verir. Çarpımları 391'in kalanı 1'dir; kalanların çarpımı $2 \\cdot 3 = 6$ da 5'e bölününce 1 verir."
+     },
+     {
       "kind": "rule",
       "title": "Kalanlarla işlem",
       "items": [
@@ -1490,6 +1584,18 @@
        null,
        "Kalanlar toplanıp bölenle karşılaştırılır; 9, 7'den büyük olduğu için 7'ye bölümünden kalan 2'dir."
       ]
+     },
+     {
+      "kind": "example",
+      "title": "Katlı ifade ve sabit terim",
+      "example": "$a$ doğal sayısının 9'a bölümünden kalan 7'dir. $4a + 5$ ifadesinin 9'a bölümünden kalan kaçtır?",
+      "explanation": "Katsayı kalanla çarpılır: $4 \\cdot 7 = 28$. Sabit terim eklenir: $28 + 5 = 33$. 33, 9'dan büyük olduğu için tekrar bölünür: $33 = 9 \\cdot 3 + 6$. Kalan 6'dır. Sağlama: $a = 7$ için $4a + 5 = 33$ ve kalan 6'dır."
+     },
+     {
+      "kind": "example",
+      "title": "Kalanları toplamak",
+      "example": "$x$ doğal sayısının 5'e bölümünden kalan 3, $y$ doğal sayısının 5'e bölümünden kalan 4'tür. $x + y$ toplamının 5'e bölümünden kalan kaçtır?",
+      "explanation": "Toplamın kalanı, kalanların toplamının kalanıdır. Kalanları topla: $3 + 4 = 7$. 7, bölen 5'ten büyük olduğu için bir kez daha böl: $7 = 5 \\cdot 1 + 2$. Kalan 2'dir. Sağlama: $x = 8$ ve $y = 9$ için $x + y = 17 = 5 \\cdot 3 + 2$."
      },
      {
       "kind": "blank",

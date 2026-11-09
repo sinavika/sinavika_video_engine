@@ -34,6 +34,7 @@ import {LevelSelect} from './Advertisements/LevelSelect/LevelSelect';
 import {AppShowcase} from './Advertisements/AppShowcase/AppShowcase';
 import {CampIntro} from './Camps/CampIntro/CampIntro';
 import {CampLesson} from './Camps/CampLesson/CampLesson';
+import {CampFlash} from './Camps/CampFlash/CampFlash';
 import {CampShort} from './Camps/CampShort/CampShort';
 import {CourseLesson} from './Courses/CourseLesson/CourseLesson';
 import {CourseShort} from './Courses/CourseShort/CourseShort';
@@ -92,6 +93,7 @@ export const TEMPLATES: readonly AnyTemplateDefinition[] = [
 	CourseShort,
 	CampLesson,
 	CampShort,
+	CampFlash,
 	CampIntro,
 ];
 

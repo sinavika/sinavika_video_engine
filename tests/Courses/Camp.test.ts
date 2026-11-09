@@ -16,6 +16,7 @@ import {chapterTimestamp, formatChapters, sceneChapters} from '../../src/Scenes/
 import type {TemplateScene} from '../../src/Scenes/ScenePlan';
 import {CAMP_SCENE_IDS} from '../../src/Templates/Camps/Scenes/CampChrome';
 import {CampLesson, CampScriptSchema} from '../../src/Templates/Camps/CampLesson/CampLesson';
+import {CampFlash} from '../../src/Templates/Camps/CampFlash/CampFlash';
 import {CampShort} from '../../src/Templates/Camps/CampShort/CampShort';
 import {CourseLesson} from '../../src/Templates/Courses/CourseLesson/CourseLesson';
 import {LessonLayoutProvider} from '../../src/Templates/Courses/CourseLesson/Scenes/LessonChrome';
@@ -88,14 +89,14 @@ describe('camp templates', () => {
 		expect(lessonNarrations(script).at(-1)).toBe(script.camp!.task.narration);
 	});
 
-	it('wraps the lesson: SinoAI welcome first, spoken section titles, camp task before the promotion, a chapter per part', () => {
+	it('wraps the lesson: camp welcome first, spoken section titles, camp task before the promotion, a chapter per part', () => {
 		const lesson = CourseLesson.buildScenes(script);
 		const camp = CampLesson.buildScenes(script);
 		const ids = camp.map((item) => item.id);
 		expect(ids.slice(0, 2)).toEqual([CAMP_SCENE_IDS.card, 'intro']);
 		expect(ids.slice(-2)).toEqual([CAMP_SCENE_IDS.task, OUTRO_SCENE_ID]);
 		expect(camp.length).toBe(lesson.length + 2);
-		expect(camp[0].voice?.[0].text).toMatch(/^Merhaba, ben SinoAI\. Sınavika'nın TYT Türkçe kampına hoş geldin!/);
+		expect(camp[0].voice?.[0].text).toMatch(/^Sınavika'nın TYT Türkçe kampına hoş geldin!/);
 		expect(camp.find((item) => item.id === 's2')?.voice?.map((slot) => slot.id)).toEqual(['s2-title', 's2']);
 		expect(camp.find((item) => item.id === 's2')?.voice?.[0].text).toBe('İkinci bölüm: Mecaz Anlam.');
 		expect(camp.filter((item) => item.chapter).map((item) => item.chapter)).toEqual(['Giriş', ...script.lesson.sections.map((section) => section.title), 'Özet', 'Kamp görevi']);
@@ -104,10 +105,28 @@ describe('camp templates', () => {
 		expect(camp.find((item) => item.id === CAMP_SCENE_IDS.task)?.voice?.[0].text).toBe(script.camp!.task.narration);
 	});
 
+	it('opens on one of its questions with lesson.opening: unsolved, then the camp card, then the promise instead of the hook', () => {
+		const ids = (kind: string) => script.lesson.sections.flatMap((section, sectionIndex) => section.cards.flatMap((card, cardIndex) => (card.kind === kind ? [`s${sectionIndex + 1}-c${cardIndex + 1}`] : [])));
+		const opening = {kind: 'mistake' as const, card: ids('question')[0], narration: 'Şu soruya bak. Çoğu öğrenci burada yanılır.', promise: 'Bu derste mecazı ayırmayı öğreneceksin.'};
+		const opened = CampScriptSchema.parse({...script, lesson: {...script.lesson, opening}});
+		const camp = CampLesson.buildScenes(opened);
+		expect(camp.slice(0, 3).map((item) => item.id)).toEqual(['opening', CAMP_SCENE_IDS.card, 'intro']);
+		expect(camp[0].voice?.map((slot) => slot.text)).toEqual([opening.narration]);
+		expect(camp[0].seconds).toBeGreaterThanOrEqual(5);
+		expect(camp[2].voice?.map((slot) => slot.text)).toEqual([opening.promise]);
+		expect(camp.filter((item) => item.chapter)[0]).toMatchObject({id: 'opening', chapter: 'Giriş'});
+		expect(camp.find((item) => item.id === CAMP_SCENE_IDS.card)?.chapter).toBeUndefined();
+		// A question opening needs a question card, a visual opening a visual card.
+		const visual = ids('visual')[0];
+		expect(CampScriptSchema.safeParse({...script, lesson: {...script.lesson, opening: {...opening, card: visual}}}).success).toBe(false);
+		if (visual) expect(CampScriptSchema.safeParse({...script, lesson: {...script.lesson, opening: {...opening, kind: 'visual', card: visual}}}).success).toBe(true);
+		expect(CampScriptSchema.safeParse({...script, lesson: {...script.lesson, opening: {...opening, card: 's99-c1'}}}).success).toBe(false);
+	});
+
 	it('says ordinals, the welcome of a later lesson and section titles in Turkish', () => {
 		expect([1, 2, 4, 10, 15, 40, 99].map(turkishOrdinal)).toEqual(['birinci', 'ikinci', 'dördüncü', 'onuncu', 'on beşinci', 'kırkıncı', 'doksan dokuzuncu']);
 		const later = {...script.camp!, number: 4, previous: 'Deyim ve Atasözü', next: 'Paragraf'};
-		expect(campWelcomeNarration(later, {title: 'Cümlede Anlam', lessonName: 'Türkçe'})).toContain('Bugün kampın dördüncü dersindeyiz: Cümlede Anlam. Geçen derste Deyim ve Atasözü konusunu işlemiştik.');
+		expect(campWelcomeNarration(later, {title: 'Cümlede Anlam', lessonName: 'Türkçe'})).toBe("Sınavika'nın TYT Türkçe kampına hoş geldin! Bugün kampın dördüncü dersindeyiz: Cümlede Anlam.");
 		expect(campWelcomeNarration({...later, welcome: 'Kendi sözlerim.'}, {title: 'x', lessonName: 'y'})).toBe('Kendi sözlerim.');
 		expect(sectionTitleNarration(11, 'Sözcüğün bağlamdaki anlamı')).toBe('On ikinci bölüm: Sözcüğün bağlamdaki anlamı.');
 	});
@@ -228,19 +247,36 @@ describe('narration cuts and the challenge reel', () => {
 		expect(cuts[1].startSeconds).toBe(cuts[0].endSeconds);
 	});
 
-	it('builds the reel from rounds: the first question from the first frame, each round asked, counted and answered, one score ask, no promotion', () => {
+	it('builds the flash reel: the dare and the first round said, then a silent YouTube card, within 7-12 s', () => {
+		const rounds = [
+			{sentence: 'Bu haber cesaretini **kırdı**.', question: 'Kırdı: gerçek mi, mecaz mı?', choices: ['Gerçek', 'Mecaz'], answer: 1, why: 'Kırmak burada **azaltmak** demek.'},
+			{sentence: 'Sandalyenin **ayağı** kırık.', question: 'Ayağı: yan anlam mı, mecaz mı?', choices: ['Yan anlam', 'Mecaz'], answer: 0, why: 'Bağ korunuyor.'},
+		];
+		const script = LessonScriptSchema.parse({...CAMP_SCRIPT_SAMPLE, short: {...CAMP_SCRIPT_SAMPLE.short, hook: 'Üç soru, üçü de tuzak', rounds}});
+		const scenes = CampFlash.buildScenes(script);
+		expect(scenes.map((scene) => scene.id)).toEqual(['round-1', 'camp-link']);
+		expect(scenes[0].voice?.map((line) => line.id)).toEqual(['hook', 'round-1-q', 'round-1-a']);
+		expect(scenes[1]).toMatchObject({silent: true});
+		const total = scenes.reduce((sum, scene) => sum + scene.seconds, 0);
+		expect(total).toBeGreaterThanOrEqual(7);
+		expect(total).toBeLessThanOrEqual(12);
+		expect(CampFlash.buildScenes(LessonScriptSchema.parse({...CAMP_SCRIPT_SAMPLE, short: {...CAMP_SCRIPT_SAMPLE.short, rounds: undefined}}))).toEqual([]);
+	});
+
+	it('builds the reel from rounds: the hook said first, each round asked, counted and answered, one score ask, no promotion', () => {
 		const rounds = [
 			{sentence: 'Bu haber cesaretini **kırdı**.', question: 'Kırdı: gerçek mi, mecaz mı?', choices: ['Gerçek', 'Mecaz'], answer: 1, why: 'Kırmak burada **azaltmak** demek.'},
 			{sentence: 'Bize **tatlı** bir söz söyledi.', question: 'Tatlı: gerçek mi, mecaz mı?', choices: ['Gerçek', 'Mecaz'], answer: 1, why: 'Hoşa giden demek.'},
 			{sentence: 'Sandalyenin **ayağı** kırık.', question: 'Ayağı: yan anlam mı, mecaz mı?', choices: ['Yan anlam', 'Mecaz'], answer: 0, why: 'Bağ korunuyor.'},
 		];
-		const script = LessonScriptSchema.parse({...CAMP_SCRIPT_SAMPLE, short: {...CAMP_SCRIPT_SAMPLE.short, rounds}});
+		const script = LessonScriptSchema.parse({...CAMP_SCRIPT_SAMPLE, short: {...CAMP_SCRIPT_SAMPLE.short, hook: 'Üç soru, üçü de tuzak', rounds}});
 		const scenes = CampShort.buildScenes(script);
 		expect(scenes.map((scene) => scene.id)).toEqual(['round-1', 'round-2', 'round-3', 'score']);
 		expect(scenes.some((scene) => scene.id === OUTRO_SCENE_ID)).toBe(false);
 		const round = scenes.find((scene) => scene.id === 'round-1')!;
-		// The hook is shown over the first question, never said: the question is the first thing heard.
-		expect(round.voice?.map((line) => line.text)).toEqual(['Bu haber cesaretini kırdı. Kırdı: gerçek mi, mecaz mı?', 'Mecaz! Kırmak burada azaltmak demek.']);
+		// The hook opens the reel on the whole screen and is said first (8 Nov 2026); then the question.
+		expect(round.voice?.map((line) => line.text)).toEqual(['Üç soru, üçü de tuzak.', 'Bu haber cesaretini kırdı. Kırdı: gerçek mi, mecaz mı?', 'Mecaz! Kırmak burada azaltmak demek.']);
+		expect(scenes.find((scene) => scene.id === 'round-2')?.voice).toHaveLength(2);
 		expect(scenes.at(-1)?.voice?.[0].text).toBe(CHALLENGE_SCORE_LINE);
 		expect(LessonScriptSchema.safeParse({...CAMP_SCRIPT_SAMPLE, short: {...CAMP_SCRIPT_SAMPLE.short, rounds: [...rounds, rounds[0]]}}).success).toBe(false);
 		expect(LessonScriptSchema.safeParse({...CAMP_SCRIPT_SAMPLE, short: {...CAMP_SCRIPT_SAMPLE.short, rounds: [{...rounds[0], answer: 4}, ...rounds.slice(1)]}}).success).toBe(false);

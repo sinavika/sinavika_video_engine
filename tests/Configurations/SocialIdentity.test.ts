@@ -27,7 +27,7 @@ const AppEndCard = componentOf(appEndScenes(true)[0].element);
  * landscape piece, holiday videos end on the logo alone (Configurations/
  * SpecialDay), and the camp lessons end on the next lesson (YouTube series).
  */
-const OWN_ENDING = new Set(['GoogleVideoAd', 'AppShowcase', 'RepublicDay', 'AtaturkMemorial', 'Basogretmen', 'CampIntro', 'CampLesson', 'CampShort', 'CourseLesson', 'CourseShort']);
+const OWN_ENDING = new Set(['GoogleVideoAd', 'AppShowcase', 'RepublicDay', 'AtaturkMemorial', 'Basogretmen', 'CampIntro', 'CampLesson', 'CampShort', 'CampFlash', 'CourseLesson', 'CourseShort']);
 
 describe('the one app card every reel ends on', () => {
 	const endingTemplates = TEMPLATES.filter((template) => !OWN_ENDING.has(template.id));

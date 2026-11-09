@@ -74,6 +74,12 @@
     "cards": [
      {
       "kind": "concept",
+      "title": "Çarpanlara ayırma nedir?",
+      "text": "**Çarpanlara ayırma**, bir toplamı çarpım biçiminde yazmaktır. Sayılarla: $12 + 18 = 30$ ve $6 \\cdot (2 + 3) = 30$; iki yazılış aynı sayıyı verir, ikincisi çarpımdır. Her gün 12 TL'lik ve 18 TL'lik iki ürünü aynı sayıda ($n$ tane) alıyorsan toplam $12n + 18n = 6n \\cdot 5$ olur. KPSS'de başlı başına az soru gelir ama üslü sayılarda, denklemlerde, sadeleştirmede ve değer bulma sorularında hep işine yarar.",
+      "caption": "12 + 18 = 6 · (2 + 3)"
+     },
+     {
+      "kind": "concept",
       "title": "Özdeşlik ve çarpanlara ayırma",
       "text": "Değişkenin aldığı **her değer** için doğru olan eşitliğe **özdeşlik** denir. Denklem ise yalnız bazı değerler için doğrudur: $(a + b)^2 = a^2 + 2ab + b^2$ bir özdeşlik, $x + 2 = 5$ bir denklemdir. **Çarpanlara ayırma**, toplam biçimindeki ifadeyi çarpım biçimine getirmektir; dağılma özelliğinin tersidir: $3(2x + 1) = 6x + 3$ olduğundan $6x + 3 = 3(2x + 1)$.",
       "caption": "Çarpanlara ayırma, dağılmanın tersidir",
@@ -106,6 +112,18 @@
        "latex": "ax + ay + bx + by = (a + b)(x + y)",
        "caption": "a(x + y) + b(x + y): iki gruptan aynı parantez çıkar"
       }
+     },
+     {
+      "kind": "example",
+      "title": "Ortak çarpanı dışarı alma",
+      "example": "$12x^2 + 18x$ ifadesini çarpanlarına ayırın.",
+      "explanation": "Katsayıların en büyük ortak böleni 6'dır: 12 ve 18, 6'ya bölünür. Değişken kısmında $x^2$ ve $x$ var, ortak olan en küçük kuvvet $x$'tir. Ortak çarpan $6x$ olur. Her terimi ona böl: $12x^2 \\div 6x = 2x$ ve $18x \\div 6x = 3$. Sonuç $6x(2x + 3)$. Kontrol: $6x \\cdot 2x = 12x^2$ ve $6x \\cdot 3 = 18x$."
+     },
+     {
+      "kind": "example",
+      "title": "Gruplama: parantez aynı çıkmıyorsa",
+      "example": "$ab + 3 + 3a + b$ ifadesini çarpanlarına ayırın.",
+      "explanation": "Ortak çarpan yok; dört terim var. Yazıldığı sırayla gruplarsan $(ab + 3) + (3a + b)$ olur ve iki grupta ortak çarpan bulunmaz, parantezler aynı çıkmaz. Terimleri yeniden sırala: $ab + b + 3a + 3$. Şimdi $b(a + 1) + 3(a + 1)$ elde edilir; parantezler aynıdır. Ortak parantezi dışarı al: $(a + 1)(b + 3)$. Kontrol: $(a + 1)(b + 3) = ab + 3a + b + 3$."
      },
      {
       "kind": "blank",
@@ -224,6 +242,12 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "İki kare farkı nedir?",
+      "text": "İki sayının karesi arasındaki fark, o sayıların farkı ile toplamının çarpımına eşittir. Sayılarla: $5^2 - 3^2 = 25 - 9 = 16$. Aynı sonuç $(5 - 3)(5 + 3) = 2 \\cdot 8 = 16$ ile de bulunur. Bu bölümde bu özdeşliği cebirde ayırmak için, sayısal hesabı kısaltmak için ve toplamı ile farkı verilen sayılarda kullanacaksın. Aradaki işaret çıkarmadır; toplam olursa özdeşlik çalışmaz.",
+      "caption": "5² − 3² = (5 − 3)(5 + 3) = 16"
+     },
+     {
       "kind": "rule",
       "title": "İki kare farkı",
       "items": [
@@ -243,7 +267,13 @@
       "kind": "example",
       "title": "Çarpımı farka çevirme",
       "example": "$102 \\cdot 98$ çarpımını iki kare farkıyla hesaplayın.",
-      "explanation": "102 ve 98, 100'ün 2 üstü ve 2 altıdır: $102 \\cdot 98 = (100 + 2)(100 - 2) = 100^2 - 2^2 = 10\\,000 - 4 = 9996$."
+      "explanation": "102 ve 98 sayılarına bak: ikisi de 100'e 2 uzaklıkta; biri 100'ün 2 üstü, öteki 2 altı. Bu yüzden $102 = 100 + 2$ ve $98 = 100 - 2$ yazılır. Çarpım $(100 + 2)(100 - 2)$ olur ve bu, $(a + b)(a - b) = a^2 - b^2$ kalıbıdır ($a = 100$, $b = 2$). Buradan $100^2 - 2^2 = 10\\,000 - 4 = 9996$ bulunur. Kontrol: $102 \\cdot 98 = 102 \\cdot 100 - 102 \\cdot 2 = 10\\,200 - 204 = 9996$."
+     },
+     {
+      "kind": "example",
+      "title": "Önce ortak çarpan, sonra iki kare farkı",
+      "example": "$20a^2 - 180$ ifadesini çarpanlarına ayırın.",
+      "explanation": "İki terim de 20'ye bölünür; önce ortak çarpanı dışarı al: $20a^2 - 180 = 20(a^2 - 9)$. Parantezin içi bir iki kare farkıdır: $a^2 - 9 = a^2 - 3^2 = (a - 3)(a + 3)$. Sonuç $20(a - 3)(a + 3)$. Kontrol: $(a - 3)(a + 3) = a^2 - 9$ ve $20(a^2 - 9) = 20a^2 - 180$. Ortak çarpanı unutup doğrudan ayırmaya çalışırsan $20a^2$ bir tam kare olmadığı için takılırsın."
      },
      {
       "kind": "predict",
@@ -397,6 +427,12 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Tam kare özdeşlikleri nedir?",
+      "text": "Bir toplamın ya da farkın kendisiyle çarpımına **tam kare** denir. Sayılarla: $(3 + 4)^2 = 7^2 = 49$. Bu sayı $3^2 + 4^2 = 25$ değildir; aradaki 24, $2 \\cdot 3 \\cdot 4$'ten gelir: $9 + 24 + 16 = 49$. Bu bölümde $(a + b)^2$ ve $(a - b)^2$ açılımlarını, kareler toplamını toplam, fark ve çarpımdan bulmayı ve $x$ ile $\\frac{1}{x}$ içeren ifadeleri çalışacaksın.",
+      "caption": "(3 + 4)² = 9 + 24 + 16 = 49"
+     },
+     {
       "kind": "visual",
       "title": "Bir toplamın karesi",
       "visual": {
@@ -434,11 +470,29 @@
       "narration": "Bir toplamın karesi; birincinin karesi, iki kat çarpım ve ikincinin karesinin toplamıdır: $a^2 + 2ab + b^2$. Farkın karesinde ortadaki terim $-2ab$ olur. Özdeşliği ters çevirerek kareler toplamını bulabilirsin: $a^2 + b^2 = (a + b)^2 - 2ab$ ya da $a^2 + b^2 = (a - b)^2 + 2ab$. $(a - b)^2$'yi toplam ve çarpımdan bulmak için $(a + b)^2 - 4ab$ kullanılır. $x$ ile $\\frac{1}{x}$ birbirinin çarpmaya göre tersi olduğundan çarpımları 1'dir; bu yüzden ortadaki terim $+2$ ya da $-2$ olur."
      },
      {
+      "kind": "predict",
+      "title": "Farkın karesinin ortası",
+      "context": "$(a - b)^2$ açılırken",
+      "prompt": "Ortadaki terim $-2ab$ olur. Doğru mu?",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$(a - b)^2 = (a - b)(a - b) = a^2 - ab - ab + b^2 = a^2 - 2ab + b^2$. Sayıyla: $a = 5$, $b = 2$ için $(5 - 2)^2 = 9$ ve $25 - 20 + 4 = 9$."
+     },
+     {
       "kind": "concept",
       "title": "Tam kare üç terimliyi tanı",
       "text": "Bir üç terimlinin **birinci ve üçüncü terimlerinin kareköklerinin çarpımının 2 katı ortadaki terime eşitse** ifade tam karedir. $x^2 + 10x + 25$: karekökler $x$ ve 5; $2 \\cdot x \\cdot 5 = 10x$ olduğundan $(x + 5)^2$. Ortadaki terim negatifse üçüncü terim yine pozitiftir: $9a^2 - 12a + 4 = (3a - 2)^2$.",
       "caption": "$4x^2 + 12x + 9 = (2x + 3)^2$",
       "narration": "Tam kare ifadede birinci ve üçüncü terimler hiçbir zaman negatif olamaz, çünkü bir ifadenin karesi negatif olmaz. Ortadaki terimin işareti, parantez içindeki işareti belirler. MEB anlatımında bu özdeşlik, alanı $4x^2 + 12x + 9$ olan bir karenin kenarını bulmak için kullanılır: kenar $2x + 3$ birimdir."
+     },
+     {
+      "kind": "example",
+      "title": "Toplamın karesini açma",
+      "example": "$(x + 3)^2$ ifadesini açın.",
+      "explanation": "$a = x$ ve $b = 3$ alınır. Birinci terimin karesi $x^2$, iki kat çarpım $2 \\cdot x \\cdot 3 = 6x$, ikinci terimin karesi $3^2 = 9$. Üçünü topla: $x^2 + 6x + 9$. Kontrol: $x = 1$ için $(1 + 3)^2 = 16$ ve $1 + 6 + 9 = 16$."
      },
      {
       "kind": "classify",
@@ -463,6 +517,12 @@
        }
       ],
       "explanation": "$x^2 + 6x + 16$: $2 \\cdot x \\cdot 4 = 8x \\neq 6x$. $4x^2 + 10x + 9$: $2 \\cdot 2x \\cdot 3 = 12x \\neq 10x$. $x^2 - 8x - 16$: üçüncü terim negatif olduğu için hiçbir ifadenin karesi olamaz."
+     },
+     {
+      "kind": "example",
+      "title": "x + 1/x verilince kareler toplamı",
+      "example": "$x + \\frac{1}{x} = 5$ ise $x^2 + \\frac{1}{x^2}$ kaçtır?",
+      "explanation": "Verilen eşitliğin her iki tarafının karesini al: $\\left(x + \\frac{1}{x}\\right)^2 = 25$. Sol tarafı aç: $x^2 + 2 \\cdot x \\cdot \\frac{1}{x} + \\frac{1}{x^2}$. Çarpım $x \\cdot \\frac{1}{x} = 1$ olduğundan ortadaki terim 2 olur: $x^2 + 2 + \\frac{1}{x^2} = 25$. $+2$ karşı tarafa $-2$ olarak geçer: $x^2 + \\frac{1}{x^2} = 23$."
      },
      {
       "kind": "mistake",
@@ -709,6 +769,12 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "İki küp toplamı ve farkı nedir?",
+      "text": "Bir sayının küpü, sayının kendisiyle üç kez çarpımıdır: $2^3 = 8$, $3^3 = 27$. İki küpün farkı ya da toplamı da çarpım biçiminde yazılabilir. Sayılarla görelim: $3^3 - 2^3 = 27 - 8 = 19$. Aynı sonuç $(3 - 2)(3^2 + 3 \\cdot 2 + 2^2) = 1 \\cdot 19 = 19$ ile bulunur. Bu bölümde bu ayırmanın genel hâlini, ikinci parantezin kurallarını ve toplam, fark ya da çarpım verilince değer bulmayı çalışacaksın.",
+      "caption": "27 − 8 = 19 = (3 − 2)(9 + 6 + 4)"
+     },
+     {
       "kind": "rule",
       "title": "Küplerin toplamı ve farkı",
       "items": [
@@ -722,6 +788,12 @@
        "latex": "x^3 - 8 = (x - 2)(x^2 + 2x + 4)",
        "caption": "8 = 2³: iki küp farkı"
       }
+     },
+     {
+      "kind": "example",
+      "title": "Küp toplamını ayırma",
+      "example": "$x^3 + 27$ ifadesini çarpanlarına ayırın.",
+      "explanation": "$27 = 3^3$ olduğundan ifade iki küp toplamıdır: $a = x$, $b = 3$. Kural: $a^3 + b^3 = (a + b)(a^2 - ab + b^2)$. Yerine yazınca $(x + 3)(x^2 - 3x + 9)$ olur. Kontrol: $(x + 3)(x^2 - 3x + 9) = x^3 - 3x^2 + 9x + 3x^2 - 9x + 27 = x^3 + 27$. İkinci parantez daha fazla ayrılmaz."
      },
      {
       "kind": "example",
@@ -857,6 +929,12 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Özdeşliklerden yararlanma nedir?",
+      "text": "Bu bölümde öğrendiğin özdeşlikleri üç terimlileri ayırmak, kesirli ifadeleri sadeleştirmek ve bir ifadenin en küçük değerini bulmak için kullanacaksın. Fikir basit: $(x + 2)(x + 3)$ açılınca $x^2 + 5x + 6$ olur; 2 ile 3'ün çarpımı 6, toplamı 5'tir. Üç terimliyi ayırmak bu açılımı geri izlemektir. Sadeleştirmede pay ve paydanın ortak çarpanları silinir. Tam kareye tamamlamada ifade 'bir kare + sabit' biçimine getirilir.",
+      "caption": "Çarpımı c, toplamı b olan iki sayı: x² + bx + c"
+     },
+     {
       "kind": "rule",
       "title": "Üç terimliyi ayır, kareye tamamla",
       "items": [
@@ -896,6 +974,12 @@
       },
       "caption": "$x^2 - x - 6$ için çiftler",
       "narration": "Çarpımı $-6$ olan tüm çiftleri yazıp toplamı $-1$ olanı seçersin. Çarpım negatifse iki sayının işareti farklıdır; toplam negatifse mutlak değerce büyük olan negatiftir. Burada $-3$ ve $2$ tutuyor, yani $x^2 - x - 6 = (x - 3)(x + 2)$."
+     },
+     {
+      "kind": "example",
+      "title": "Üç terimliyi ayırma",
+      "example": "$x^2 + 2x - 15$ ifadesini çarpanlarına ayırın.",
+      "explanation": "Sabit terim $-15$, $x$'in katsayısı $2$. Çarpımı $-15$ olan çiftleri yaz: $(-3, 5)$, $(3, -5)$, $(-1, 15)$, $(1, -15)$. Toplamları sırasıyla $2$, $-2$, $14$, $-14$ olur. Toplamı $2$ olan çift $-3$ ve $5$'tir. Bu yüzden $x^2 + 2x - 15 = (x - 3)(x + 5)$. Kontrol: $(x - 3)(x + 5) = x^2 + 5x - 3x - 15 = x^2 + 2x - 15$."
      },
      {
       "kind": "example",

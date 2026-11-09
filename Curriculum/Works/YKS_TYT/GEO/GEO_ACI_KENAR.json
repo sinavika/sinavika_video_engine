@@ -31,7 +31,7 @@
    },
    {
     "note": "Kenarortayı iki katına uzatarak kenarortay uzunluğunun aralığını bulma yöntemini ikinci bir sayısal örnekle tekrar et.",
-    "done": "Bölüm 3'te yöntem önce kavram ve şekil kartlarında anlatıldı. Sonra ikinci sayısal örnek kartında (|AB| = 9, |AC| = 15) uzatma baştan yapıldı: ABE üçgeninin kenarları 9, 15 ve 2V_a alınıp 4 ile 11 arasındaki 8 değer bulundu. Ters yönlü soru ve hata bulma kartı da eklendi."
+    "done": "Bölüm 3'te yöntem önce tanım, tahmin ve şekil kartlarında anlatıldı. Blank sorusundan önce iki çözümlü örnek geldi: |AB| = 5, |AC| = 11 için kenarortay aralığı ve V_a = 6, |AB| = 7 için ters yönde kenar aralığı. Sonra 'bir örnek daha' kartında (|AB| = 9, |AC| = 15) uzatma baştan yapıldı: ABE üçgeninin kenarları 9, 15 ve 2V_a alınıp 4 ile 11 arasındaki 8 değer bulundu. Ters yönlü soru ve hata bulma kartı da eklendi."
    }
   ],
   "fixes": [
@@ -66,6 +66,11 @@
     "cards": [
      {
       "kind": "concept",
+      "title": "Açı–kenar bağıntıları nedir?",
+      "text": "Bir üçgenin açıları ile kenarları birbirinden bağımsız değildir: **açı büyüdükçe karşısındaki kenar da uzar**. Bir pergelin kollarını açtığını düşün: açı büyüdükçe uçlar birbirinden uzaklaşır. Örneğin açıları 90°, 60° ve 30° olan bir üçgende en uzun kenar 90°'lik açının karşısındadır, en kısa kenar 30°'lik açının karşısındadır.\nBu bölümde iki şey yapacaksın: açılara bakarak kenarları sıralamak ve kenarlara bakarak açının dar, dik ya da geniş olduğunu anlamak. Örneğin kenarları 3, 4 ve 5 olan üçgende en uzun kenarın karşısındaki açı diktir. TYT'de bu bilgi hem sıralama hem de 'kaç tam sayı değeri alır?' sorularında kullanılır."
+     },
+     {
+      "kind": "concept",
       "title": "Büyük açının karşısında büyük kenar",
       "text": "Bir üçgende **büyük açının karşısındaki kenar büyük**, küçük açının karşısındaki kenar küçüktür. Tersi de doğrudur: uzun kenarın karşısında büyük açı bulunur. Eşit açıların karşısındaki kenarlar eşittir (ikizkenar üçgen).\n$m(\\widehat{A}) > m(\\widehat{B}) > m(\\widehat{C}) \\Leftrightarrow a > b > c$",
       "narration": "Açı büyüdükçe karşısındaki kenar uzar; pergelin kolları açıldıkça uçlar uzaklaşır. Kenarları sıralamak için önce açılara bak. İç açılar toplamının 180° olduğunu kullanıp eksik açıyı bul. Sonra en büyük açının karşısındaki kenarı en uzun, en küçük açının karşısındakini en kısa kabul et. Bu karşılaştırma aynı üçgenin içinde geçerlidir. Açıları aynı olan iki farklı (benzer) üçgende karşılıklı kenarlar eşit olmak zorunda değildir; biri diğerinin büyütülmüşü olabilir."
@@ -80,6 +85,18 @@
        "Eksik açıyı bulmak için $A + B + C = 180°$ yazılır.",
        "Her kenar, adını taşımayan köşenin karşısındadır: $|BC|$ ile $A$, $|AC|$ ile $B$, $|AB|$ ile $C$ karşılıklıdır."
       ]
+     },
+     {
+      "kind": "example",
+      "title": "Örnek 1: açılardan kenar sıralaması",
+      "example": "$ABC$ üçgeninde $m(\\widehat{A}) = 80°$ ve $m(\\widehat{B}) = 60°$ olduğuna göre kenarları küçükten büyüğe sıralayın.",
+      "explanation": "Önce eksik açıyı bul: $m(\\widehat{C}) = 180° - 80° - 60° = 40°$. Büyük açının karşısında büyük kenar bulunur. $A$'nın karşısı $|BC|$, $B$'nin karşısı $|AC|$, $C$'nin karşısı $|AB|$'dir. Açılar $40° < 60° < 80°$ olduğundan kenarlar $|AB| < |AC| < |BC|$ olur."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek 2: açılar x cinsinden verilmiş",
+      "example": "$ABC$ üçgeninde $m(\\widehat{A}) = x + 30°$, $m(\\widehat{B}) = 2x - 10°$ ve $m(\\widehat{C}) = 3x - 20°$'dir. Kenarları küçükten büyüğe sıralayın.",
+      "explanation": "İç açılar toplamı: $(x + 30) + (2x - 10) + (3x - 20) = 6x = 180$, yani $x = 30$. Açılar $m(\\widehat{A}) = 60°$, $m(\\widehat{B}) = 50°$, $m(\\widehat{C}) = 70°$ olur. Her kenar karşısındaki köşeyle eşlenir: $|BC|$ ile $A$, $|AC|$ ile $B$, $|AB|$ ile $C$. Açılar $50° < 60° < 70°$ olduğundan kenarlar $|AC| < |BC| < |AB|$ olur. Tuzak: kenar adındaki harfle açıyı karıştırmak; $|AC|$, $C$'nin değil $B$'nin karşısındadır."
      },
      {
       "kind": "blank",
@@ -705,6 +722,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "İç nokta ve dış açı nedir?",
+      "text": "Üçgenin içinde bir $P$ noktası seçip köşelere $[PA]$, $[PB]$ ve $[PC]$ doğru parçalarını çizersin. Bu bölümde iki konu var: ($1$) $P$'den köşelere uzaklıkların toplamı hangi değerler arasında kalır; ($2$) bir kenar uzatılınca oluşan **dış açı** iç açılarla nasıl ilişkilidir ve $P$'nin köşelere baktığı açı $m(\\widehat{BPC})$ ile $m(\\widehat{A})$ nasıl karşılaştırılır.\nGünlük örnek: üç evin köşelerde olduğu üçgen bir arsanın ortasına bir elektrik direği dikip her eve ayrı kablo çekersin. Kabloların toplam uzunluğu arsanın çevresiyle ve yarı çevresiyle karşılaştırılır. Sınavda genelde 'bu değer olabilir mi?' ya da 'kaç tam sayı değeri alır?' diye sorulur."
+     },
+     {
       "kind": "predict",
       "title": "Tahmin: içeriden gidersen",
       "context": "$ABC$ üçgeninin çevresi 24 cm'dir. Üçgenin içinde bir $P$ noktası seçip $P$'den üç köşeye düz yollar çiziyoruz.",
@@ -858,6 +880,18 @@
       },
       "caption": "$P$ içteyse: $u < |PA| + |PB| + |PC| < 2u$ ($2u$ çevre); ayrıca $m(\\widehat{BPC}) > m(\\widehat{A})$.",
       "narration": "Alt sınır: $PAB$ üçgeninde $|PA| + |PB| > |AB|$. Üç üçgen için bunu yazıp toplarsan, uzaklıklar toplamının iki katı çevreden büyük çıkar; yani toplam yarı çevreden büyüktür. Üst sınır: $|PB| + |PC| < |AB| + |AC|$; içteki yol dıştakinden kısadır. Üçünü toplayınca uzaklıklar toplamı çevreden küçük çıkar. Açılarda ise tersi geçerlidir: $\\widehat{BPC}$, $\\widehat{A}$'dan büyüktür."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek 1: köşelere uzaklıklar toplamı",
+      "example": "Çevresi $36$ cm olan bir $ABC$ üçgeninin iç noktası $P$ için $|PA| + |PB| + |PC|$ toplamı tam sayı olduğuna göre kaç farklı değer alabilir?",
+      "explanation": "Çevre $2u = 36$ olduğundan yarı çevre $u = 18$. İç nokta için $u < \\text{toplam} < 2u$, yani $18 < \\text{toplam} < 36$. Uçlar dahil değil. Değerler $19, 20, \\ldots, 35$: $36 - 18 - 1 = $ **17** tane."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek 2: iki köşe için sınır",
+      "example": "$P$ noktası $ABC$ üçgeninin içindedir. $|AB| = 8$ cm, $|AC| = 11$ cm ve $|BC| = 10$ cm'dir. $|PB| + |PC|$ toplamı tam sayı olduğuna göre kaç farklı değer alabilir?",
+      "explanation": "Üst sınır için içteki yol dıştakinden kısadır: $|PB| + |PC| < |AB| + |AC| = 19$. Alt sınır için $PBC$ üçgeninde üçgen eşitsizliği: $|PB| + |PC| > |BC| = 10$. Demek ki $10 < |PB| + |PC| < 19$. Uçlar dahil değil; $P$ içte olduğundan ne 10 ne 19 olur. Değerler $11, 12, \\ldots, 18$: $19 - 10 - 1 = $ **8** tane."
      },
      {
       "kind": "blank",
@@ -1211,9 +1245,26 @@
     "cards": [
      {
       "kind": "concept",
+      "title": "Kenarortay nedir?",
+      "text": "Bir üçgende bir köşeyi karşı kenarın **orta noktasına** birleştiren doğru parçasına **kenarortay** denir. Bu bölümde kenarortayın alabileceği değerleri bulacaksın.\nBasit bir durum: $|AB| = 4$ cm ve $|AC| = 10$ cm olsun. $B$ ve $C$, $A$'dan aynı yöne doğru uzansın (açı $0°$, üçgen çökmüş): $B$ 4, $C$ 10 uzaklıkta, orta nokta 7 uzaklıkta; kenarortay 7 cm. Şimdi $B$ ters yöne doğru uzansın (açı $180°$): $B$ −4, $C$ 10 konumunda, orta nokta 3 uzaklıkta; kenarortay 3 cm. Gerçek üçgende açı bu iki uç arasındadır; kenarortay da 3 ile 7 arasında kalır, uçlar dahil değildir."
+     },
+     {
+      "kind": "concept",
       "title": "Kenarortayı iki katına uzat",
       "text": "$ABC$ üçgeninde $[AD]$, $A$'dan çizilen kenarortay olsun ($D$, $[BC]$'nin orta noktası). $AD$'yi $D$'nin ötesine $|DE| = |AD|$ olacak biçimde uzat. $D$ hem $[BC]$'nin hem $[AE]$'nin orta noktasıdır; köşegenleri birbirini ortalayan $ABEC$ dörtgeni paralelkenardır. Bu yüzden $|BE| = |AC| = b$.",
       "narration": "Böylece $ABE$ üçgeni kurulur: kenarları $c$, $b$ ve $2V_a$. Bu üçgene üçgen eşitsizliği yazarsan kenarortay uzunluğu için iki sınır çıkar."
+     },
+     {
+      "kind": "predict",
+      "title": "Tahmin: kenarortay 5 olabilir mi?",
+      "context": "Bir üçgende $|AB| = 4$ cm ve $|AC| = 10$ cm'dir. $A$'dan karşı kenarın orta noktasına çizilen kenarortay bu iki kenara bağlı olarak değişir.",
+      "prompt": "Bu üçgende kenarortayın uzunluğu 5 cm olabilir mi?",
+      "choices": [
+       "Evet, olabilir",
+       "Hayır, olamaz"
+      ],
+      "answer": 0,
+      "explanation": "Uç durumlarda kenarortay 7 ve 3 cm bulunur. Üçgen çökmeden önce aradaki her değer alınabildiğinden 5 cm bu aralıktadır. Bunu şimdi kurala bağlayalım."
      },
      {
       "kind": "visual",
@@ -1362,6 +1413,18 @@
       "explanation": "$ABE$ üçgeninde $2V_a < b + c$ olduğundan, ikiye bölünce $V_a < \\frac{b + c}{2}$ çıkar. Eşitlik hiçbir zaman olmaz."
      },
      {
+      "kind": "example",
+      "title": "Örnek 1: kenarortay aralığı",
+      "example": "$ABC$ üçgeninde $|AB| = 5$ cm ve $|AC| = 11$ cm'dir. $A$ köşesine ait kenarortayın uzunluğu tam sayı olduğuna göre kaç farklı değer alabilir?",
+      "explanation": "Kenarortay $[AD]$'yi $D$'nin ötesine $|DE| = |AD|$ olacak biçimde uzat. $ABEC$ paralelkenar olduğundan $|BE| = |AC| = 11$. $ABE$ üçgeninin kenarları $5$, $11$ ve $2V_a$'dır. Üçgen eşitsizliği: $11 - 5 < 2V_a < 11 + 5$, yani $6 < 2V_a < 16$. İkiye bölünce $3 < V_a < 8$ olur. Uçlar dahil değil. Değerler $4, 5, 6, 7$: **4** tane."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek 2: kenarortaydan kenar aralığına",
+      "example": "$ABC$ üçgeninde $A$ köşesine ait kenarortay $6$ cm ve $|AB| = 7$ cm'dir. $|AC|$ tam sayı olduğuna göre kaç farklı değer alabilir?",
+      "explanation": "Kenarortayı $D$'nin ötesine aynı uzunlukta uzat; $ABE$ üçgeninin kenarları $7$, $|AC|$ ve $2 \\cdot 6 = 12$ olur. Üçgen eşitsizliği: $|12 - 7| < |AC| < 12 + 7$, yani $5 < |AC| < 19$. Uçlar dahil değil: 5'te ve 19'da üçgen çöker. Değerler $6, 7, \\ldots, 18$: $19 - 5 - 1 = $ **13** tane."
+     },
+     {
       "kind": "blank",
       "title": "Üst sınır",
       "prompt": "$|AB| = 7$ cm ve $|AC| = 13$ cm olan bir $ABC$ üçgeninde $A$'dan çizilen kenarortay $V_a$ için üst sınırı yaz.",
@@ -1385,7 +1448,7 @@
      },
      {
       "kind": "example",
-      "title": "İkinci örnek: yöntemi baştan uygula",
+      "title": "Bir örnek daha: yöntemi baştan uygula",
       "example": "$ABC$ üçgeninde $|AB| = 9$ cm ve $|AC| = 15$ cm'dir. $A$ köşesine ait kenarortayın uzunluğu tam sayı olduğuna göre kaç farklı değer alabilir?",
       "explanation": "Kenarortay $[AD]$'yi $D$'nin ötesine $|DE| = |AD|$ olacak biçimde uzat. $ABEC$ paralelkenar olduğundan $|BE| = |AC| = 15$. $ABE$ üçgeninin kenarları $9$, $15$ ve $2V_a$'dır. Üçgen eşitsizliği: $15 - 9 < 2V_a < 15 + 9$, yani $6 < 2V_a < 24$. İkiye bölünce $3 < V_a < 12$ olur. Sınırlar dahil değil. Değerler $4, 5, \\ldots, 11$: **8** tane."
      },

@@ -67,6 +67,12 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Mantık nedir?",
+      "text": "Mantık, ifadelerin doğru ya da yanlış olduğunu **kesin kurallarla** inceleyen ve ifadeleri birleştirerek yeni hükümler kuran konudur. Bu derste doğru ya da yanlış olduğu kesin söylenebilen ifadelere **önerme**, onları birleştiren sözcüklere (değil, ve, veya, ise) **bağlaç** diyeceğiz.\n\nSınavda önemlidir, çünkü ÖSYM bu konudan düzenli olarak soru sorar ve kalıp hep benzerdir: günlük bir durumdan önermeler verilir, bileşik önermenin değeri söylenir ve bileşenler sorulur. Günlük örnek: \"Yağmur yağarsa şemsiye açarım\" cümlesinde sözün ne zaman bozulacağını düşünürsün; mantık bu düşünmeyi kurala bağlar.",
+      "caption": "Mantıkta önemli olan, bir ifadenin doğruluk değerinin kesin olmasıdır."
+     },
+     {
       "kind": "predict",
       "title": "Önerme mi?",
       "context": "\"Asal olan her sayı tek sayıdır.\"",
@@ -125,6 +131,18 @@
        "$n$ önermenin **$2^n$** farklı doğruluk durumu vardır."
       ],
       "narration": "Doğru bir önermenin doğruluk değeri 1, yanlış olanınki 0'dır. Doğruluk değerleri aynı olan iki önerme denktir. Bir önermenin değili hükmünü tersine çevirir: p doğruysa p değil yanlıştır. Değilin değili önermenin kendisidir; tabloda p, p′ ve (p′)′ sütunlarına bakarsan birinci ve üçüncü sütunun aynı olduğunu görürsün. n tane önerme için $2^n$ farklı doğruluk durumu vardır: bir önerme için 2, iki önerme için 4, üç önerme için 8 satırlık tablo gerekir."
+     },
+     {
+      "kind": "example",
+      "title": "Önerme mi, değil mi?",
+      "example": "\"Bir haftada 7 gün vardır.\" ve \"Kapıyı kapatır mısın?\" ifadelerinden hangisi bir önermedir?",
+      "explanation": "Adım 1: Ölçüt: ifadeye \"doğru\" ya da \"yanlış\" diyebiliyor muyum?\nAdım 2: \"Bir haftada 7 gün vardır.\" kesin bir hükümdür ve doğrudur. Bu yüzden önermedir ve doğruluk değeri 1'dir.\nAdım 3: \"Kapıyı kapatır mısın?\" bir soru cümlesidir. Soruya doğru ya da yanlış denemez, bu yüzden önerme değildir.\nSonuç: Yalnız ilk ifade önermedir. Yanlış olsaydı da (örneğin \"Bir haftada 8 gün vardır.\") kesin bir hüküm olduğu için önerme sayılırdı."
+     },
+     {
+      "kind": "example",
+      "title": "Değilin değili",
+      "example": "$p$: \"9 asal sayıdır.\" önermesi için $(p')'$ önermesinin doğruluk değeri nedir?",
+      "explanation": "Adım 1: 9 sayısı 3'e bölünür, asal değildir. Bu yüzden $p \\equiv 0$.\nAdım 2: Değil, hükmü tersine çevirir: $p' \\equiv 1$. Yani \"9 asal sayı değildir.\" doğrudur.\nAdım 3: Bir kez daha değil alınca $(p')' \\equiv 0$ olur.\nAdım 4: Bu, $(p')' \\equiv p$ kuralıyla uyumludur. Tuzak: iki değil görünce hepsini \"doğru\" sanmak; iki değil birbirini götürür ve önermenin kendisi kalır."
      },
      {
       "kind": "tap",
@@ -263,6 +281,11 @@
     "title": "Değil, ve, veya, ya da",
     "narration": "",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Bağlaç nedir?",
+      "text": "Değil, ve, veya, ya da gibi sözcüklerle önermeleri birleştirmeye **bağlaç** kullanmak denir. Birleştirilmiş önermeye **bileşik önerme** denir. Bileşik önermenin doğruluk değeri, parçalarının doğruluk değerlerine ve bağlacın kuralına bağlıdır.\n\nGünlük örnek: \"Ali gelir **ve** Veli gelir\" demek ikisinin de gelmesini ister; \"Ali gelir **veya** Veli gelir\" demek en az birinin gelmesine yeter. Bu bölümde her bağlacın bu kuralını doğruluk tablosuyla kesinleştirecek, değil alırken bağlacın nasıl değiştiğini (De Morgan) göreceksin."
+     },
      {
       "kind": "visual",
       "title": "Bağlaçların tablosu",
@@ -513,6 +536,18 @@
       "narration": "Üç önerme olduğundan $2^3 = 8$ satır gerekir. Dördüncü sütun $q$ veya $r$'yi, beşinci sütun $p$ ve ($q$ veya $r$)'yi verir. Altıncı sütunda önce $p \\wedge q$ ve $p \\wedge r$ hesaplanır, sonra veya ile birleştirilir. İki sütun her satırda aynı değeri verir: 1, 1, 1, 0, 0, 0, 0, 0. Bu yüzden iki ifade denktir. Aynı yöntemle veya'nın ve üzerine dağıldığını da kendin doğrulayabilirsin."
      },
      {
+      "kind": "example",
+      "title": "Ve ile veya aynı önermelerde",
+      "example": "$p$: \"8 çift sayıdır.\" $q$: \"8 asal sayıdır.\" önermeleri için $p \\wedge q$ ve $p \\vee q$ önermelerinin doğruluk değerleri nedir?",
+      "explanation": "Adım 1: 8 çift olduğundan $p \\equiv 1$. 8, 2'ye bölündüğü için asal değildir, bu yüzden $q \\equiv 0$.\nAdım 2: Ve bağlacı yalnız ikisi de doğruyken doğrudur. Burada $q$ yanlış olduğundan $p \\wedge q \\equiv 1 \\wedge 0 \\equiv 0$.\nAdım 3: Veya bağlacı yalnız ikisi de yanlışken yanlıştır. Burada $p$ doğru olduğundan $p \\vee q \\equiv 1 \\vee 0 \\equiv 1$.\nAdım 4: Aynı iki önermeden ve yanlış, veya doğru çıktı. Bu, tabloda ikinci satırın tam karşılığıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Veya yanlışsa her iki parça yanlıştır",
+      "example": "$p \\vee q$ önermesi yanlış, $r$ önermesi doğru olduğuna göre $(p' \\wedge q') \\wedge r$ önermesinin doğruluk değeri nedir?",
+      "explanation": "Adım 1: Veya bağlacı yalnız bir durumda yanlıştır: ikisi de yanlışken. Bu yüzden $p \\equiv 0$ ve $q \\equiv 0$ olmalıdır.\nAdım 2: Değilleri alınca $p' \\equiv 1$ ve $q' \\equiv 1$ olur.\nAdım 3: $r \\equiv 1$ olarak verilmişti.\nAdım 4: Üç parça da doğru olduğundan ve bağlacıyla birleşimleri doğrudur: $1 \\wedge 1 \\wedge 1 \\equiv 1$. Tuzak: $p \\vee q$ yanlışsa yalnız birinin değil, ikisinin birden yanlış olduğunu fark etmek."
+     },
+     {
       "kind": "blank",
       "title": "Bileşik önermeyi hesapla",
       "prompt": "$p \\equiv 0$, $q \\equiv 1$, $r \\equiv 1$ iken $(p \\vee q) \\wedge r'$ önermesinin doğruluk değeri kaçtır?",
@@ -661,6 +696,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Koşullu önerme nedir?",
+      "text": "\"$p$ ise $q$\" biçimindeki bileşik önermeye **koşullu önerme**, \"$p$ ancak ve ancak $q$\" biçimindeki önermeye **iki yönlü koşullu önerme** denir. Günlük hayatta bunlar birer sözdür: \"Sınavı kazanırsan sana bisiklet alacağım.\" Söz, ancak sınav kazanıldığı hâlde bisiklet alınmazsa bozulmuş olur.\n\nBu bölümde sözün hangi durumlarda doğru, hangi durumlarda yanlış sayıldığını doğruluk tablosuyla bulacaksın. Ayrıca bir koşullu önermenin **karşıtı**, **tersi** ve **karşıt tersi** kavramlarını ayırıp hangisinin ona denk olduğunu göreceksin."
+     },
+     {
       "kind": "visual",
       "title": "İse ve ancak ve ancak",
       "visual": {
@@ -789,6 +829,18 @@
       },
       "caption": "3. ve 4. sütunlar aynı: $p \\Rightarrow q \\equiv p' \\vee q$. 3. ve 5. sütunu ve ile birleştirince 6. sütun çıkar.",
       "narration": "Üçüncü ve dördüncü sütunlar her satırda aynı olduğundan $p \\Rightarrow q \\equiv p' \\vee q$ doğrulanır. İkinci denklik için üçüncü sütun ($p \\Rightarrow q$) ile beşinci sütunu ($q \\Rightarrow p$) ve ile birleştir: 1 ve 1 = 1, 0 ve 1 = 0, 1 ve 0 = 0, 1 ve 1 = 1. Sonuç 1, 0, 0, 1 olur; bu da altıncı sütunla ($p \\Leftrightarrow q$) aynıdır. Yani $p \\Leftrightarrow q \\equiv (p \\Rightarrow q) \\wedge (q \\Rightarrow p)$."
+     },
+     {
+      "kind": "example",
+      "title": "Koşullu önermeyi hesaplayalım",
+      "example": "$p$: \"6 asal sayıdır.\" $q$: \"6 çift sayıdır.\" önermeleri için $p \\Rightarrow q$ ve $q \\Rightarrow p$ önermelerinin doğruluk değerleri nedir?",
+      "explanation": "Adım 1: 6 asal değildir, bu yüzden $p \\equiv 0$. 6 çifttir, bu yüzden $q \\equiv 1$.\nAdım 2: $p \\Rightarrow q$ için $0 \\Rightarrow 1$ olur. İse bağlacı yalnız sol taraf doğru, sağ taraf yanlışken yanlıştır; burada sol taraf yanlış olduğundan önerme doğrudur: $p \\Rightarrow q \\equiv 1$.\nAdım 3: $q \\Rightarrow p$ için $1 \\Rightarrow 0$ olur. Sol taraf doğru, sağ taraf yanlış olduğundan önerme yanlıştır: $q \\Rightarrow p \\equiv 0$.\nAdım 4: Aynı iki önermeden kurulan $p \\Rightarrow q$ ile karşıtı $q \\Rightarrow p$ farklı değerler aldı. Yani karşıt, asıl önermeye denk değildir."
+     },
+     {
+      "kind": "example",
+      "title": "Yanlış ise önermesinden bilgi çıkaralım",
+      "example": "$p \\Rightarrow q$ önermesi yanlış olduğuna göre $(q \\Rightarrow p) \\vee q'$ önermesinin doğruluk değeri nedir?",
+      "explanation": "Adım 1: İse bağlacı yalnız bir durumda yanlıştır: sol taraf doğru, sağ taraf yanlış. Bu yüzden $p \\equiv 1$ ve $q \\equiv 0$ olmalıdır.\nAdım 2: $q \\Rightarrow p$ için $0 \\Rightarrow 1$ olur; sol taraf yanlış olduğundan değeri 1'dir.\nAdım 3: $q' \\equiv 0' \\equiv 1$ olur.\nAdım 4: Veya bağlacında en az biri doğruysa sonuç doğrudur: $1 \\vee 1 \\equiv 1$. Bu iki parçadan biri doğru olunca diğerine bakmak bile gerekmezdi."
      },
      {
       "kind": "blank",
@@ -1186,6 +1238,12 @@
     "cards": [
      {
       "kind": "concept",
+      "title": "Açık önerme nedir?",
+      "text": "Bazı ifadelerde bir boşluk, yani değişken vardır: \"x sayısı 5'ten büyüktür.\" Bu ifade, x'e bir değer verilmeden doğru da yanlış da değildir. x yerine 7 yazarsan doğru, 3 yazarsan yanlış olur. Böyle ifadelere **açık önerme** denir.\n\nBasit bir örnek: x değeri 1'den 8'e kadar olan sayılardan biri olsun. \"x, 5'ten büyüktür\" ifadesini doğru yapan değerler 6, 7 ve 8'dir. Bu değerlerin kümesine **doğruluk kümesi** denir.\n\nBu bölümde ayrıca \"her\" ve \"bazı\" sözcükleriyle kurulan **niceleyicili** önermeleri ve bunların değilini göreceksin. Bu sözcükler, boşluğa bütün değerler için mi yoksa en az bir değer için mi bakıldığını söyler.",
+      "caption": "Açık önerme: değişken içerir. Doğruluk kümesi: onu doğru yapan değerlerin kümesi."
+     },
+     {
+      "kind": "concept",
       "title": "Açık önerme ve doğruluk kümesi",
       "text": "İçinde en az bir değişken bulunan ve değişkene verilen değerlere göre doğru ya da yanlış olduğu belirlenen ifadelere **açık önerme** denir; $p(x)$ ile gösterilir. Örnek: $p(x)$: \"$x$ bir tam sayı, $x^2 = 9$\".\n\nBir açık önermeyi **doğrulayan** elemanların kümesine **doğruluk kümesi** denir. $a$ doğruluk kümesindeyse $p(a) \\equiv 1$, değilse $p(a) \\equiv 0$ olur. Her denklem ve her eşitsizlik bir açık önermedir; çözüm kümesi doğruluk kümesidir.",
       "narration": "$p(x)$: $x^2 = 9$ açık önermesinde $x = 3$ koyarsan $9 = 9$ doğru olur, yani $p(3) \\equiv 1$. $x = 2$ koyarsan $4 = 9$ yanlıştır, yani $p(2) \\equiv 0$. Tam sayılarda doğruluk kümesi $\\{-3, 3\\}$ olur; ama değişken pozitif tam sayı olsaydı doğruluk kümesi yalnız $\\{3\\}$ olurdu. Demek ki doğruluk kümesi hem açık önermeye hem de değişkenin içinde dolaştığı kümeye (evrene) bağlıdır."
@@ -1195,6 +1253,12 @@
       "title": "Doğruluk kümesini bulalım",
       "example": "$p(x)$: $x \\in \\mathbb{Z}^+$, $2x - 1 < 7$ açık önermesinin doğruluk kümesi nedir?",
       "explanation": "$2x - 1 < 7$ eşitsizliğinde $2x < 8$, yani $x < 4$ bulunur. $x$ pozitif tam sayı olduğundan doğruluk kümesi $\\{1, 2, 3\\}$ olur. Kontrol: $p(3)$ için $2 \\cdot 3 - 1 = 5 < 7$ doğrudur, $p(1) \\equiv 1$ ve $p(2) \\equiv 1$ de öyledir. $p(4)$ için $2 \\cdot 4 - 1 = 7 < 7$ yanlıştır, $p(4) \\equiv 0$."
+     },
+     {
+      "kind": "example",
+      "title": "Tam sayılarda doğruluk kümesi",
+      "example": "$p(x)$: $x \\in \\mathbb{Z}$, $x^2 < 10$ açık önermesinin doğruluk kümesi kaç elemanlıdır?",
+      "explanation": "Adım 1: Karesi 10'dan küçük olan tam sayıları arıyoruz. Değişken pozitif değil, tüm tam sayılar olduğundan negatif değerleri de denemeliyiz.\nAdım 2: $x = 3$ için $3^2 = 9 < 10$ doğrudur. $x = 4$ için $4^2 = 16 < 10$ yanlıştır. Demek ki pozitif tarafta $1, 2, 3$ uygundur.\nAdım 3: Negatif sayıların karesi de pozitiftir: $(-3)^2 = 9 < 10$ doğru, $(-4)^2 = 16$ yanlıştır. Bu yüzden $-1, -2, -3$ de uygundur. $x = 0$ için $0 < 10$ doğrudur.\nAdım 4: Doğruluk kümesi $\\{-3, -2, -1, 0, 1, 2, 3\\}$ olur ve 7 elemanlıdır. Tuzak: yalnız pozitif sayılara bakıp 3 eleman bulmak ya da 0'ı unutmak."
      },
      {
       "kind": "blank",

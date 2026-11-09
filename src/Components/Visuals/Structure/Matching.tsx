@@ -7,6 +7,7 @@ import {useFigureFont, useReveal, useSceneSeconds, useVisualPalette, type Visual
 import type {CourseVisual} from '../VisualSchema';
 import {UNFOCUSED_FADE, useBeatStartFor, useElementState} from '../VisualTimeline';
 import {wrappedLines} from '../../Typography/TextMeasure';
+import {shuffledSlots} from './BoardShuffle';
 
 type Matching = Extract<CourseVisual, {kind: 'matching'}>;
 
@@ -20,37 +21,11 @@ const FOCUS_GROWTH = 0.04;
  */
 const CHIP_PADDING = 30;
 
-/** A small seeded random generator (mulberry32), so a board is shuffled the same way in every frame and render. */
-const seeded = (seed: number) => () => {
-	seed = (seed + 0x6d2b79f5) | 0;
-	let value = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-	value = (value + Math.imul(value ^ (value >>> 7), 61 | value)) ^ value;
-	return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
-};
-
 /**
  * Where each right-hand partner stands: a shuffle seeded by the pairs' text, so the same board always looks the same.
- * No partner stands level with its term, and from four pairs on the order is not a plain rotation either (every item
- * one place lower, 29 Oct 2026: a student read the pattern instead of the content). Two or three pairs can only rotate.
+ * No partner stands level with its term, and from four pairs on the order is not a plain rotation either (BoardShuffle).
  */
-export const matchingSlots = (pairs: readonly {left: string; right: string}[]): number[] => {
-	const count = pairs.length;
-	const text = pairs.map((pair) => pair.left + '|' + pair.right).join('#');
-	let hash = 2166136261;
-	for (let index = 0; index < text.length; index++) hash = Math.imul(hash ^ text.charCodeAt(index), 16777619);
-	const random = seeded(hash);
-	const isRotation = (slots: number[]) => slots.every((slot, pair) => slot === (pair + slots[0]) % count);
-	for (let attempt = 0; attempt < 200; attempt++) {
-		const slots = Array.from({length: count}, (_, index) => index);
-		for (let index = count - 1; index > 0; index--) {
-			const other = Math.floor(random() * (index + 1));
-			[slots[index], slots[other]] = [slots[other], slots[index]];
-		}
-		const deranged = slots.every((slot, pair) => slot !== pair);
-		if (deranged && (count < 4 || !isRotation(slots))) return slots;
-	}
-	return Array.from({length: count}, (_, pair) => (pair + 1) % count);
-};
+export const matchingSlots = (pairs: readonly {left: string; right: string}[]): number[] => shuffledSlots(pairs.map((pair) => pair.left + '|' + pair.right));
 
 /**
  * The type size of a board's items (in layout units): as large as 40, as long as every item, wrapped to the chip's

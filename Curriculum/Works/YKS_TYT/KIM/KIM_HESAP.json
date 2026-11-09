@@ -197,6 +197,18 @@
       "explanation": "Sıcaklık 0 °C ise ya da 'normal' deniyorsa 22,4 L/mol; sıcaklık 25 °C ise ya da 'oda koşulları' deniyorsa 24,5 L/mol kullanılır."
      },
      {
+      "kind": "example",
+      "title": "Örnek 1: 9 g su",
+      "example": "9 g $\\text{H}_2\\text{O}$ örneğinde kaç mol molekül, kaç tane molekül ve kaç tane atom vardır? ($\\text{H}_2\\text{O}$: 18 g/mol, $N_A = 6 \\cdot 10^{23}$)",
+      "explanation": "1. Önce mole çevir: $n = m/M = 9/18 = 0{,}5$ mol.\n2. Molekül sayısı: $N = n \\cdot N_A = 0{,}5 \\cdot 6 \\cdot 10^{23} = 3 \\cdot 10^{23}$.\n3. Her $\\text{H}_2\\text{O}$ molekülünde 2 H ve 1 O, yani 3 atom vardır. Atom sayısı $3 \\cdot 3 \\cdot 10^{23} = 9 \\cdot 10^{23}$ olur.\n4. Kontrol: 0,5 mol su 1,5 mol atom içerir; $1{,}5 \\cdot 6 \\cdot 10^{23} = 9 \\cdot 10^{23}$.\nAtom sayısı molekül sayısının 3 katıdır; ikisini karıştırma."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek 2: gazda toplam atom ve H atomu",
+      "example": "Normal şartlarda 5,6 L $\\text{NH}_3$ gazında toplam kaç mol atom vardır? Kaç tane H atomu bulunur? ($N_A = 6 \\cdot 10^{23}$)",
+      "explanation": "1. Gaz hacmini mole çevir: $n = V/22{,}4 = 5{,}6/22{,}4 = 0{,}25$ mol $\\text{NH}_3$.\n2. Her $\\text{NH}_3$ molekülünde 1 N ve 3 H, yani 4 atom vardır. Toplam atom: $0{,}25 \\cdot 4 = 1$ mol.\n3. H atomu mol sayısı: $0{,}25 \\cdot 3 = 0{,}75$ mol.\n4. H atomu sayısı: $0{,}75 \\cdot 6 \\cdot 10^{23} = 4{,}5 \\cdot 10^{23}$.\nTuzak: Soru 'molekül' mi 'atom' mı istiyor, bunu oku; molekül mol sayısını formüldeki atom sayısıyla çarpmadan atoma geçme."
+     },
+     {
       "kind": "blank",
       "title": "Oda koşullarında mol",
       "prompt": "25 °C ve 1 atm'de 49 L gaz kaç mol gaz içerir? (1 mol gaz = 24,5 L)",
@@ -514,6 +526,18 @@
       }
      },
      {
+      "kind": "example",
+      "title": "Örnek 1: kalıpsız denkleştirme",
+      "example": "$\\text{Al}(k) + \\text{O}_2(g) \\rightarrow \\text{Al}_2\\text{O}_3(k)$ denklemini en küçük tam sayılarla denkleştir.",
+      "explanation": "1. Sağda 2 Al ve 3 O var; solda 1 Al ve 2 O.\n2. Oksijende $\\text{O}_2$ çift sayıda, $\\text{Al}_2\\text{O}_3$ üç oksijen verir. 2 ile 3'ün en küçük ortak katı 6'dır: $3\\text{O}_2$ (6 O) ve $2\\text{Al}_2\\text{O}_3$ (6 O) yazılır.\n3. Sağda artık $2 \\cdot 2 = 4$ Al var; sola $4\\text{Al}$ yazılır.\n4. Denklem: $4\\text{Al} + 3\\text{O}_2 \\rightarrow 2\\text{Al}_2\\text{O}_3$.\n5. Kontrol: Al 4 = 4, O 6 = 6."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek 2: içinde oksijen olan yakıt",
+      "example": "$\\text{C}_2\\text{H}_5\\text{OH}(s) + \\text{O}_2(g) \\rightarrow \\text{CO}_2(g) + \\text{H}_2\\text{O}(g)$ denklemini denkleştir.",
+      "explanation": "1. C: solda 2 C var; sağa $2\\text{CO}_2$ yazılır.\n2. H: solda 6 H var ($\\text{C}_2\\text{H}_5\\text{OH}$ içinde $5 + 1$); her $\\text{H}_2\\text{O}$ 2 H taşıdığından $3\\text{H}_2\\text{O}$ yazılır.\n3. O: sağda $2 \\cdot 2 + 3 \\cdot 1 = 7$ O var. Soldaki alkolün kendisinde 1 O var, geri kalan $7 - 1 = 6$ O atomu $\\text{O}_2$'den gelmeli: $3\\text{O}_2$.\n4. Denklem: $\\text{C}_2\\text{H}_5\\text{OH} + 3\\text{O}_2 \\rightarrow 2\\text{CO}_2 + 3\\text{H}_2\\text{O}$.\nTuzak: Yakıtta oksijen varsa $x + y/4$ kalıbı doğrudan uygulanmaz; yakıttaki oksijeni saymayı unutma."
+     },
+     {
       "kind": "blank",
       "title": "Kalıbı uygula",
       "prompt": "Aşağıdaki denklemde $\\text{O}_2$'nin katsayısı kaçtır?",
@@ -826,6 +850,41 @@
      },
      {
       "kind": "example",
+      "title": "Isınma örneği: mol sayıları verilmiş",
+      "example": "3 mol $\\text{H}_2$ ile 2 mol $\\text{O}_2$, $2\\text{H}_2(g) + \\text{O}_2(g) \\rightarrow 2\\text{H}_2\\text{O}(g)$ denklemine göre tam verimle tepkimeye giriyor. Sınırlayıcı hangisidir, kaç g $\\text{H}_2\\text{O}$ oluşur, kaç mol hangi madde artar? ($\\text{H}_2\\text{O}$: 18 g/mol)",
+      "explanation": "1. Mol ÷ katsayı: $\\text{H}_2$ için $3/2 = 1{,}5$, $\\text{O}_2$ için $2/1 = 2$. En küçük $\\text{H}_2$ olduğundan sınırlayıcı $\\text{H}_2$'dir.\n2. $\\text{H}_2$'nin 3 molü tamamen biter. Denklemde $\\text{H}_2 : \\text{H}_2\\text{O} = 2 : 2$ olduğundan 3 mol $\\text{H}_2\\text{O}$ oluşur; kütlesi $3 \\cdot 18 = 54$ g.\n3. Harcanan $\\text{O}_2$: $\\text{H}_2 : \\text{O}_2 = 2 : 1$ olduğundan $3/2 = 1{,}5$ mol. Artan $\\text{O}_2 = 2 - 1{,}5 = 0{,}5$ mol.",
+      "visual": {
+       "kind": "table",
+       "header": [
+        "Mol",
+        "Başlangıç",
+        "Değişim",
+        "Son"
+       ],
+       "rows": [
+        [
+         "H₂",
+         "3",
+         "−3",
+         "0"
+        ],
+        [
+         "O₂",
+         "2",
+         "−1,5",
+         "0,5"
+        ],
+        [
+         "H₂O",
+         "0",
+         "+3",
+         "3"
+        ]
+       ]
+      }
+     },
+     {
+      "kind": "example",
       "title": "Örnek 1: kütleler verilmiş",
       "example": "$11{,}2$ g $\\text{N}_2$ ile $3$ g $\\text{H}_2$, $\\text{N}_2(g) + 3\\text{H}_2(g) \\rightarrow 2\\text{NH}_3(g)$ denklemine göre tam verimle tepkimeye giriyor. Kaç g $\\text{NH}_3$ oluşur, hangi madde kaç gram artar? ($\\text{N}$: 14, $\\text{H}$: 1)",
       "explanation": "Mol sayıları: $n_{\\text{N}_2} = 11{,}2/28 = 0{,}4$, $n_{\\text{H}_2} = 3/2 = 1{,}5$. Mol ÷ katsayı: $\\text{N}_2$ için $0{,}4$, $\\text{H}_2$ için $1{,}5/3 = 0{,}5$. En küçük $\\text{N}_2$ olduğundan **$\\text{N}_2$ sınırlayıcıdır**. Tablo yandaki gibi doldurulur: $\\text{N}_2$ tamamen biter (−0,4), $\\text{H}_2$ ise $3 \\cdot 0{,}4 = 1{,}2$ mol harcanır, son 0,3 mol; $\\text{NH}_3$ $2 \\cdot 0{,}4 = 0{,}8$ mol olur. Kütleler: $\\text{NH}_3 = 0{,}8 \\cdot 17 = 13{,}6$ g, artan $\\text{H}_2 = 0{,}3 \\cdot 2 = 0{,}6$ g. Kontrol: $11{,}2 + 3 = 14{,}2 = 13{,}6 + 0{,}6$.",
@@ -1058,6 +1117,12 @@
     "cards": [
      {
       "kind": "concept",
+      "title": "Verim nedir?",
+      "text": "Bir fırıncı hamuru 10 ekmek çıkaracak kadar hazırlıyor, ama fırından 8 ekmek çıkıyor. Çıkması gereken 10 ekmek **teorik** miktardır, gerçekte çıkan 8 ekmek **gerçek** miktardır. 8 ekmek 10 ekmeğin %80'idir; verim %80'dir. Tepkimelerde de denkleme göre oluşması gereken ürüne ulaşamayabiliriz; verim bu kaybı yüzdeyle anlatır. Girenler saf değilse yalnız saf kısım tepkimeye girer, bu da elde edilen ürünü azaltır.",
+      "narration": "Örneğin teorik miktar 20 g, gerçek miktar 10 g ise tepkimenin verimi yarıdır, yani %50. Gerçek miktar teorik miktardan büyük olamaz. Aşağıdaki kartta bu fikir kısa bir bağıntıyla yazılacak."
+     },
+     {
+      "kind": "concept",
       "title": "Teorik ve gerçek verim",
       "text": "Sınırlayıcı bileşenin tamamı tepkimeye girseydi denkleme göre oluşacak ürüne **teorik verim** denir. Deneyde gerçekten elde edilen ürün **gerçek verimdir**. Çoğunlukla gerçek verim teorik verimden azdır; eşitse tepkime **tam verimlidir**. İkisinin oranı yüzde verimi verir.",
       "narration": "Gerçek verimin düşük çıkmasının nedenleri şunlardır: girenlerin saf olmaması, yan ürün oluşması, tepkimenin tersinir olması, ürünün saflaştırma sırasında kaybolması, sıcaklık ve basınç gibi ortam koşulları, kişisel hatalar ve cihaz hataları. Gerçek verim ile teorik verim aynı birimde (gram, mol ya da L) olmalıdır; bölmeden önce birimleri eşitle.",
@@ -1096,6 +1161,12 @@
       "title": "Örnek: yüzde verim",
       "example": "$20$ g $\\text{CaCO}_3$ ısıtıldığında $\\text{CaCO}_3(k) \\rightarrow \\text{CaO}(k) + \\text{CO}_2(g)$ tepkimesine göre $6{,}6$ g $\\text{CO}_2$ elde ediliyor. Tepkimenin verimi yüzde kaçtır? ($\\text{CaCO}_3$: 100, $\\text{CO}_2$: 44 g/mol)",
       "explanation": "Önce teorik verim: $n_{\\text{CaCO}_3} = 20/100 = 0{,}2$ mol; denkleme göre $0{,}2$ mol $\\text{CO}_2$ oluşmalıdır. Kütlesi $0{,}2 \\cdot 44 = 8{,}8$ g teorik verimdir. Gerçek verim $6{,}6$ g. Yüzde verim: $\\dfrac{6{,}6}{8{,}8} \\cdot 100 = \\%75$."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek: sınırlayıcı ve verim birlikte",
+      "example": "$5{,}6$ g $\\text{N}_2$ ile $1{,}5$ g $\\text{H}_2$, $\\text{N}_2(g) + 3\\text{H}_2(g) \\rightarrow 2\\text{NH}_3(g)$ denklemine göre %50 verimle tepkimeye giriyor. Kaç g $\\text{NH}_3$ elde edilir? ($\\text{N}$: 14, $\\text{H}$: 1)",
+      "explanation": "1. Mol sayıları: $n_{\\text{N}_2} = 5{,}6/28 = 0{,}2$ mol, $n_{\\text{H}_2} = 1{,}5/2 = 0{,}75$ mol.\n2. Mol ÷ katsayı: $\\text{N}_2$ için $0{,}2/1 = 0{,}2$, $\\text{H}_2$ için $0{,}75/3 = 0{,}25$. En küçük $\\text{N}_2$ olduğundan sınırlayıcı $\\text{N}_2$'dir.\n3. Teorik verim: $\\text{N}_2 : \\text{NH}_3 = 1 : 2$ olduğundan $0{,}4$ mol $\\text{NH}_3$ oluşur. Kütlesi $0{,}4 \\cdot 17 = 6{,}8$ g teorik verimdir.\n4. Gerçek verim: $6{,}8 \\cdot 50/100 = 3{,}4$ g.\nTuzak: Teorik verimi artan $\\text{H}_2$'ye göre hesaplarsan fazla ürün bulursun."
      },
      {
       "kind": "blank",

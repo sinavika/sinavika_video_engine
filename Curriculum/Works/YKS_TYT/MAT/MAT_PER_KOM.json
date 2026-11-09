@@ -72,6 +72,16 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Permütasyon ve Kombinasyon nedir?",
+      "text": "**Permütasyon ve kombinasyon**, bir şeyi kaç farklı biçimde seçebileceğimizi ya da sıralayabileceğimizi **saymanın** yoludur. Tek bir soru yol gösterir: **sıra önemli mi?** 8 kişiden başkan ve yardımcı seçerken sıra önemlidir (permütasyon); 2 kişilik komite seçerken önemli değildir (kombinasyon). TYT'de her yıl bu konudan soru gelir; rakamlı sayılar, sıralama, seçim ve yol sayma en sık görülen kalıplardır. Günlük hayatta 4 haneli bir şifrenin kaç farklı biçimde belirlenebileceğini bulmak da aynı fikre dayanır."
+     },
+     {
+      "kind": "concept",
+      "title": "Saymanın temeli: toplama, çarpma, faktöriyel",
+      "text": "Bu alt konu, bir işin kaç farklı biçimde yapılabileceğini bulmanın en temel yolunu anlatır. 2 gömlek ve 3 pantolonun kombinlerini tek tek yazarsan 6 tane bulursun: her gömleğin yanına 3 pantolon gelir, $2 \\cdot 3 = 6$. Seçenekler birbirinin yerine geçiyorsa ('ya da') toplanır, adımlar art arda yapılıyorsa ('ve') çarpılır. 1'den $n$'ye kadar sayıların çarpımına **faktöriyel** denir ve $n$ nesnenin sıralanış sayısını verir. Bu bölümde toplama ve çarpma ilkelerini, faktöriyeli ve rakamlarla sayı yazmayı çalışacaksın."
+     },
+     {
       "kind": "rule",
       "title": "Ya da toplar, ve çarpar",
       "items": [
@@ -113,6 +123,18 @@
       "text": "$n! = 1 \\cdot 2 \\cdot 3 \\cdots n$. Örneğin $5! = 120$. **0! = 1** ve **1! = 1** kabul edilir. Faktöriyelli kesirlerde büyük olanı küçüğün çarpanı olarak aç: $\\frac{8!}{6!} = \\frac{8 \\cdot 7 \\cdot 6!}{6!} = 56$.",
       "caption": "Faktöriyeller çıkarılmaz ve bölünmez; büyüğü, küçüğü içerecek biçimde açılır.",
       "narration": "Faktöriyel, 1'den n'ye kadar ardışık sayıların çarpımıdır ve n farklı nesnenin sıralanış sayısını verir. 0! = 1 olması bir kabuldür; 'hiçbir nesneyi tek bir biçimde sıralarız' diye düşünebilirsin. Kesirlerde 8!/6! ifadesini 8! = 8 · 7 · 6! biçiminde açarsan 6!'ler sadeleşir. Faktöriyelde asal çarpan sorusu da gelir: 29! sayısında 3'ün en büyük kuvvetini bulmak için 29'u 3'e bölerken elde edilen bölümler toplanır: 29 ÷ 3 → 9, 9 ÷ 3 → 3, 3 ÷ 3 → 1; 9 + 3 + 1 = 13. Yani 29! = A · 3¹³ ve A, 3'e bölünmez."
+     },
+     {
+      "kind": "example",
+      "title": "Faktöriyelli ifadeyi sadeleştirmek",
+      "example": "$\\frac{8!}{6! \\cdot 2!}$ ifadesinin değerini bulunuz.",
+      "explanation": "Faktöriyeller çıkarılıp bölünmez; büyük olan, küçüğü içerecek biçimde açılır. 1) $8! = 8 \\cdot 7 \\cdot 6!$ yazılır. 2) Paydaki ve paydadaki $6!$ sadeleşir: $\\frac{8 \\cdot 7}{2!}$. 3) $2! = 2$ olduğundan $\\frac{56}{2} = 28$."
+     },
+     {
+      "kind": "example",
+      "title": "Toplama ve çarpmayı birlikte kullanmak",
+      "example": "A şehrinden B şehrine 2 yol, B'den C şehrine 3 yol vardır. Ayrıca A'dan C'ye B'ye uğramadan giden 1 yol bulunur. A'dan C'ye kaç farklı yoldan gidilir?",
+      "explanation": "Önce rotaları ayır. 1) B üzerinden gitmek art arda iki adımdır: A'dan B'ye 2, B'den C'ye 3 seçenek, çarpılır: $2 \\cdot 3 = 6$ yol. 2) Doğrudan rota ayrı bir seçenektir: 1 yol. 3) Yolcu ya B üzerinden ya da doğrudan gider; bu iki rota birbirinin yerine geçtiği için toplanır: $6 + 1 = 7$."
      },
      {
       "kind": "blank",
@@ -363,6 +385,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Permütasyon nedir?",
+      "text": "**Permütasyon**, nesneleri **sıra önemli** olacak biçimde seçip dizmenin yollarını sayar. A, B, C kişilerinden 2'sini sıraya dizelim: AB, BA, AC, CA, BC, CB olmak üzere **6** farklı dizilim vardır; AB ile BA farklı sayılır. Aynı sonuca ilk yere 3, ikinci yere kalan 2 kişiyi koyarak da ulaşırız: $3 \\cdot 2 = 6$. Bu bölümde sıralamayı, belirli kişilerin yan yana, uçta ya da 'önce' gelmesi gibi koşulları sayacaksın."
+     },
+     {
       "kind": "predict",
       "title": "Sıra önemli mi?",
       "context": "8 kişilik bir kulüpten bir başkan ve bir başkan yardımcısı seçilecek.",
@@ -406,6 +433,18 @@
        "Koşullu yerler varsa **önce onları** doldur."
       ],
       "narration": "n nesneden r tanesini sıralamanın yolu, n'den başlayarak r tane azalan sayıyı çarpmaktır. P(8, 3) = 8 · 7 · 6 = 336. Denklem sorularında P(n, 2) = n(n − 1) diye açarsın: 5 · P(8, 3) = 8 · P(n, 2) ise 5 · 336 = 8 · n(n − 1), yani n(n − 1) = 210 ve n = 15. A'nın B'den önce gelmesi isteniyorsa bütün sıralamaların yarısını alırsın, çünkü her sıralamanın bir de A ile B'nin yer değiştirdiği eşi vardır. Koşullu yerler varsa önce onları doldurursun."
+     },
+     {
+      "kind": "example",
+      "title": "Görev dağıtımı: P(5, 3)",
+      "example": "5 kişilik bir gruptan başkan, başkan yardımcısı ve sekreter seçilecektir. Her kişi yalnız bir görev alabileceğine göre kaç farklı seçim yapılabilir?",
+      "explanation": "Görevler farklı olduğundan sıra önemlidir. 1) Başkan 5 kişiden biridir: 5 seçenek. 2) Başkan görev aldığı için yardımcı kalan 4 kişiden biridir: 4 seçenek. 3) Sekreter kalan 3 kişiden biridir: 3 seçenek. Adımlar art arda olduğundan çarpılır: $5 \\cdot 4 \\cdot 3 = 60$. Bu, $P(5, 3) = \\frac{5!}{2!} = 60$ demektir."
+     },
+     {
+      "kind": "example",
+      "title": "Biri başta olmasın",
+      "example": "5 kişi bir sıraya giriyor. Ece sıranın başında olmayacağına göre kaç farklı sıralanış vardır?",
+      "explanation": "'Olmasın' koşulunda tümleyeni kullan. 1) Koşulsuz bütün sıralamalar: $5! = 120$. 2) Ece'nin başta olduğu sıralamalar: Ece'nin yeri belli, kalan 4 kişi $4! = 24$ biçimde sıralanır. 3) İstenen: $120 - 24 = 96$. Doğrudan da bulunur: Ece başa gelmeyecek, kalan 4 yerden birine oturur; $4 \\cdot 4! = 96$."
      },
      {
       "kind": "blank",
@@ -664,6 +703,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Tekrarlı ve dairesel permütasyon nedir?",
+      "text": "**Tekrarlı permütasyon**, içinde özdeş nesneler olan sıralamaları sayar. AAB harflerini düşün: AAB, ABA, BAA olmak üzere yalnız **3** dizilim vardır; harfler farklı olsaydı $3! = 6$ olurdu. İki A özdeş olduğundan yer değiştirmeleri yeni bir dizilim vermez. **Dairesel permütasyon** ise başı ve sonu olmayan, masa ya da halka gibi dizilimleri sayar. 3 kişi yuvarlak masaya oturduğunda herkes bir sandalye kayarsa düzen aynı kalır; bu yüzden sayı düz sıradakinden azdır. Bu bölümde özdeşleri bölmeyi, yuvarlak masayı ve kolyeyi göreceksin."
+     },
+     {
       "kind": "predict",
       "title": "Özdeş harfler",
       "context": "ANNE kelimesinin harflerinin yerleri değiştiriliyor.",
@@ -686,6 +730,18 @@
        "Kolye ya da anahtarlık **ters çevrilebiliyorsa** ayrıca 2'ye böl."
       ],
       "narration": "Özdeş nesneler yer değiştirince yeni bir dizilim oluşmaz. Bu yüzden $n!$ değerini, özdeş nesnelerin sayılarının faktöriyellerine bölersin. ANNE kelimesinde iki N var: $\\frac{4!}{2!} = 12$. $n_1$ tanesi özdeş, $n_2$ tanesi özdeş ... diye giden bir durumda formül $\\frac{n!}{n_1! \\cdot n_2! \\cdots}$ olur. Kelimenin yalnız bir kısmı kullanılıyorsa hangi harflerin dışarıda kaldığına göre durumlara ayır. Yuvarlak bir masada ise başlangıç noktası yoktur; bir kişiyi sabitleyip kalanları sıralarsın: $(n-1)!$. Kolye gibi ters çevrilebilen dizilimlerde ayrıca 2'ye bölersin."
+     },
+     {
+      "kind": "example",
+      "title": "Özdeş harfleri bölmek",
+      "example": "ELELE kelimesinin harflerinin yerleri değiştirilerek 5 harfli kaç farklı kelime yazılabilir?",
+      "explanation": "Harfleri say: E harfi 3 kez, L harfi 2 kez geçer. 1) Harfler farklı olsaydı $5! = 120$ dizilim olurdu. 2) Üç özdeş E kendi aralarında $3!$ biçimde yer değiştirir ve bu yeni dizilim oluşturmaz; iki özdeş L için de $2!$. 3) Bu yüzden böleriz: $\\frac{5!}{3! \\cdot 2!} = \\frac{120}{12} = 10$."
+     },
+     {
+      "kind": "example",
+      "title": "Yan yana olan özdeş harfler",
+      "example": "ANNE kelimesinin harfleri, iki N yan yana olacak biçimde kaç farklı sıralanır?",
+      "explanation": "Yan yana olması istenen iki N'yi tek bir blok say. Birimler: A, E ve [NN] blok olmak üzere 3 tanedir. 1) 3 birim kendi aralarında $3! = 6$ biçimde sıralanır. 2) İki N özdeş olduğundan blok içinde yer değiştirmek yeni bir dizilim oluşturmaz; blok içi 1 biçimdir. Toplam $6 \\cdot 1 = 6$. Farklı kişilerde blok içi $2!$ ile çarpılırdı; özdeşlerde çarpılmaz."
      },
      {
       "kind": "blank",
@@ -868,6 +924,12 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Kombinasyon ve geometrik sayma nedir?",
+      "text": "**Kombinasyon**, sıranın önemli olmadığı seçimleri sayar: bir komite, bir ekip, bir el sıkışma. A, B, C kişilerinden 2 kişi seçelim: AB, AC, BC olmak üzere **3** seçim vardır. Sıra önemli olsaydı AB ve BA ayrı sayılırdı ve 6 olurdu; her seçim 2 kez sayıldığı için 6'yı 2'ye böleriz. **Geometrik sayma** ise nokta, doğru, üçgen ve köşegen sayılarını bu seçimlerle bulur: iki nokta bir doğruyu, üç nokta bir üçgeni belirler. Bu bölümde seçim sayma, kombinasyonun özellikleri, geometrik sayma ve ızgara yolları var.",
+      "caption": "Sıra önemsizse seçim sayısı, sıralı sayımın tekrarlara bölünmüş halidir."
+     },
+     {
       "kind": "predict",
       "title": "El sıkışma",
       "context": "5 kişilik bir grupta herkes, diğer herkesle birer kez el sıkışıyor.",
@@ -890,6 +952,18 @@
        "\"Mutlaka olsun\" → onu ekle, kalanlardan seç. \"Olmasın\" → onu çıkar, kalanlardan seç."
       ],
       "narration": "$n$ kişiden $r$ kişilik bir grup seçmenin yolu $\\binom{n}{r} = \\frac{n!}{r! \\cdot (n-r)!}$'dir. Pratikte $r$ tane azalan sayıyı çarpıp $r!$'e bölersin: $\\binom{8}{3} = \\frac{8 \\cdot 7 \\cdot 6}{6} = 56$. Permütasyonla bağı şu: $P(n, r) = \\binom{n}{r} \\cdot r!$; yani önce seçersin, sonra seçilenleri sıralarsın. ÖSYM 2021'de $\\binom{n}{r} = \\binom{n}{n-r}$ özelliğini sordu: 5 kişiyi seçmek ile 11 kişiyi seçmek aynı sayıyı veriyorsa sınıf 16 kişiliktir, 3 kişiyi seçmek de $\\binom{16}{3} = 560$ yapar. Biri mutlaka grupta olacaksa onu gruba koyup kalanları seçersin; olmayacaksa onu çıkarıp kalanlardan seçersin."
+     },
+     {
+      "kind": "example",
+      "title": "Komite seçimi",
+      "example": "6 kişilik bir gruptan, görev ayrımı olmayan 2 kişilik bir komite kaç farklı biçimde seçilir?",
+      "explanation": "Komitede görev ayrımı yoktur; Ali ile Can seçmek ile Can ile Ali seçmek aynı komitedir. Bu yüzden sıra önemsizdir ve kombinasyon kullanılır. 1) Sıralı seçseydik $6 \\cdot 5 = 30$ olurdu. 2) Her ikili 2 kez sayıldığı için 2'ye böleriz: $\\frac{30}{2} = 15$. Yani $\\binom{6}{2} = 15$."
+     },
+     {
+      "kind": "example",
+      "title": "Birleşik seçim: erkek ve kız",
+      "example": "4 erkek ve 3 kız öğrenci arasından 2 erkek ve 1 kızdan oluşan 3 kişilik bir ekip kaç farklı biçimde seçilir?",
+      "explanation": "Ekipte sıra yoktur, seçim iki bağımsız adımdır. 1) 4 erkekten 2'si seçilir: $\\binom{4}{2} = \\frac{4 \\cdot 3}{2} = 6$. 2) 3 kızdan 1'i seçilir: $\\binom{3}{1} = 3$. İki adım art arda yapıldığı için sonuçlar çarpılır: $6 \\cdot 3 = 18$. Seçim sayıları toplanmaz, çünkü ekip hem erkekleri hem de kızı içerir."
      },
      {
       "kind": "blank",

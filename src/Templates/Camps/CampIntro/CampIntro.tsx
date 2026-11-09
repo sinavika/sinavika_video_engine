@@ -140,7 +140,7 @@ const SAMPLE: z.input<typeof CampIntroSchema> = {
 	series: 'YKS kampı · TYT',
 	episode: {title: 'Başlamadan önce', label: 'Bölüm 0 · Sınavı ve kampı tanıyoruz'},
 	hook: {beats: ['120 soru.', '165 dakika.', 'Tek bir sabah.'], narration: 'Yüz yirmi soru. Yüz altmış beş dakika. Ve tek bir sabah. Teyete tam olarak bu. Hazırsan başlıyoruz.'},
-	welcome: {narration: 'Merhaba, ben SinoAI. Kampın sıfırıncı bölümüne hoş geldin. Bugün konu anlatmıyoruz, önce haritayı çiziyoruz.'},
+	welcome: {narration: 'Kampın sıfırıncı bölümüne hoş geldin. Bugün konu anlatmıyoruz, önce haritayı çiziyoruz.'},
 	anatomy: {questions: 120, minutes: 165, tests: [{name: 'Türkçe', questions: 40, lesson: 'TRK'}, {name: 'Sosyal Bilimler', questions: 20, lesson: 'TAR'}, {name: 'Temel Matematik', questions: 40, lesson: 'MAT'}, {name: 'Fen Bilimleri', questions: 20, lesson: 'FIZ'}], narration: 'Teyete dört testten oluşur: Türkçe kırk, Sosyal Bilimler yirmi, Temel Matematik kırk ve Fen Bilimleri yirmi soru. Toplam yüz yirmi soru için yüz altmış beş dakikan var.'},
 	net: {example: {right: 40, wrong: 8}, narration: 'Puanını netin belirler. Dört yanlış bir doğruyu götürür, boş bıraktığın soru ise hiçbir şey kaybettirmez.'},
 	score: {focus: 'TYT', cards: [{title: 'Ön lisans', text: 'TYT puanı tek başına kullanılır.'}, {title: 'Lisans', text: 'YKS puanının yüzde kırkı TYT’den gelir.'}], narration: 'Teyete puanı ön lisans tercihlerinde tek başına kullanılır; lisans tercihlerinde ise yekase puanının yüzde kırkını oluşturur.'},

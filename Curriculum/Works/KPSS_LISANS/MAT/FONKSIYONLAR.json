@@ -81,6 +81,11 @@
       "narration": "Bağıntı, iki küme arasındaki herhangi bir eşleme topluluğudur. Fonksiyon bu bağıntıların kuralı sıkı olanıdır: tanım kümesinde açıkta eleman kalmaz ve her elemanın tek görüntüsü vardır. Sıralı ikili $(x, y)$'de ilk bileşen tanım kümesinden, ikincisi değer kümesinden alınır. Bu yüzden $B$'den $A$'ya yazılmış ikililer $A$'dan $B$'ye fonksiyon belirtmez."
      },
      {
+      "kind": "concept",
+      "title": "Doğum ayı örneği",
+      "text": "Bir sınıftaki her öğrencinin **tek bir** doğum ayı vardır: hiç kimse iki ayda doğmaz, ayı olmayan öğrenci de yoktur. Ama iki öğrenci aynı ayda doğabilir ve hiç kimsenin doğmadığı bir ay olabilir. Fonksiyon tam böyle bir eşlemedir: öğrenciler $A$, aylar $B$ olur. Sayarak görelim: 2 öğrenci ve 3 ay varsa her öğrenci için 3 seçenek vardır, yani $3 \\cdot 3 = 9$ farklı eşleme yazılır. Bu fikir, aşağıdaki fonksiyon sayısı formülünün temelidir."
+     },
+     {
       "kind": "rule",
       "title": "Her eleman, tek görüntü",
       "items": [
@@ -177,6 +182,18 @@
       "explanation": "İlk iki kümede 1, 2, 3'ün hepsi eşleniyor ve her birinin tek görüntüsü var; aynı görüntüye gitmeleri sorun değil. Diğerlerinde ya 3 açıkta kalıyor, ya 1'in iki görüntüsü var, ya da ikililer $B$'den $A$'ya yazılmış."
      },
      {
+      "kind": "example",
+      "title": "Fonksiyon mu, değil mi?",
+      "example": "$A = \\{1, 2, 3\\}$ ve $B = \\{a, b, c\\}$ için $f = \\{(1, a), (2, c), (3, a)\\}$ bir fonksiyon mudur?",
+      "explanation": "Önce $A$'nın her elemanının eşlenip eşlenmediğine bak: 1, 2 ve 3'ün üçü de eşleniyor. Sonra her birinin tek görüntüsü olup olmadığına bak: $f(1) = a$, $f(2) = c$, $f(3) = a$. 1 ve 3 aynı görüntüye gidiyor ama bu serbesttir. $B$'deki $b$ açıkta kalıyor ama bu da serbesttir. İki koşul sağlandığı için $f$ bir fonksiyondur."
+     },
+     {
+      "kind": "example",
+      "title": "Fonksiyon sayısını bulma",
+      "example": "$A = \\{1, 2\\}$ ve $B = \\{x, y, z\\}$ olsun. $A$'dan $B$'ye kaç fonksiyon yazılır? $\\{(1, x), (1, y), (2, z)\\}$ bir fonksiyon mudur?",
+      "explanation": "1'in görüntüsü için 3 seçenek, 2'nin görüntüsü için de 3 seçenek vardır; seçimler birbirinden bağımsız olduğundan çarpılır: $3 \\cdot 3 = 3^2 = 9$. Verilen kümede ise 1'in iki görüntüsü var ($x$ ve $y$); her elemanın tek görüntüsü olması gerektiğinden bu küme fonksiyon değildir."
+     },
+     {
       "kind": "question",
       "question": {
        "style": "KPSS tarzı",
@@ -256,6 +273,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Tanım, değer ve görüntü kümesi nedir?",
+      "text": "Bir sınıftaki her öğrencinin doğum ayını düşün. Öğrenciler **tanım kümesi**, 12 ay **değer kümesi**, içlerinden gerçekten birinin doğduğu aylar ise **görüntü kümesidir**. Bazı aylarda kimse doğmamış olabilir; bu aylar değer kümesinde kalır ama görüntü kümesine girmez. Aynı ayda doğan iki öğrenci olsa da o ay görüntü kümesinde bir kez yazılır. Bu bölümde bu üç kümeyi sıralı ikililerden ve kurallardan bulmayı öğreneceksin."
+     },
+     {
       "kind": "rule",
       "title": "Üç küme",
       "items": [
@@ -272,6 +294,12 @@
       "title": "Sonlu fonksiyonda üç küme",
       "example": "$f = \\{(m, 3), (n, 5), (p, 3), (r, 7)\\}$ ve değer kümesi $B = \\{1, 3, 5, 7, 9\\}$ ise tanım, değer ve görüntü kümesini yazın.",
       "explanation": "Tanım kümesi ikililerin ilk bileşenleridir: $\\{m, n, p, r\\}$. Değer kümesi verilmiştir: $\\{1, 3, 5, 7, 9\\}$. Görüntüler $3, 5, 3, 7$; 3 iki kez çıkar ama kümede bir kez yazılır: $f(A) = \\{3, 5, 7\\}$. Görüntü kümesi değer kümesinin alt kümesidir; 1 ile 9 açıkta kalır."
+     },
+     {
+      "kind": "example",
+      "title": "Kuralla verilen sonlu fonksiyon",
+      "example": "$f: \\{-1, 0, 1\\} \\to \\mathbb{Z}$, $f(x) = x^2 + 1$ fonksiyonunun görüntü kümesini ve eleman sayısını bulun.",
+      "explanation": "Her elemanı kurala yaz: $f(-1) = (-1)^2 + 1 = 2$, $f(0) = 0 + 1 = 1$, $f(1) = 1 + 1 = 2$. Görüntüler $2, 1, 2$ olur. 2 iki kez çıkar ama kümede bir kez yazılır: $f(A) = \\{1, 2\\}$. Görüntü kümesinin eleman sayısı 2'dir; tanım kümesi 3 elemanlı olduğu hâlde görüntü kümesi daha küçüktür."
      },
      {
       "kind": "mistake",
@@ -400,6 +428,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Fonksiyon değeri nedir?",
+      "text": "Fonksiyon bir makine gibidir: içine bir sayı atarsın, kurala göre bir sayı çıkar. $f(x) = 2x + 1$ makinesine 3'ü atarsan $2 \\cdot 3 + 1 = 7$ çıkar; bunu $f(3) = 7$ diye yazarız. Yani $f(a)$, kuralda $x$ yerine $a$ yazmaktır. Kural içerideki bir ifadeyle ($f(2x - 1)$ gibi) verildiğinde makineye giren sayı $x$ değil o ifadedir; bu yüzden dikkat gerekir. Sınavda fonksiyon konusunun en çok sorulan alt konusu budur."
+     },
+     {
       "kind": "rule",
       "title": "İçini eşitle",
       "items": [
@@ -414,6 +447,18 @@
        "latex": "f(2x - 1) = 6x + 1, \\quad 2x - 1 = 5 \\Rightarrow x = 3",
        "caption": "İçteki ifadeyi istenen sayıya eşitle"
       }
+     },
+     {
+      "kind": "example",
+      "title": "Doğrudan değer bulma",
+      "example": "$f(x) = 3x - 2$ olduğuna göre $f(4) + f(-1)$ kaçtır?",
+      "explanation": "$f(4)$ için kuralda $x$ yerine 4 yazılır: $3 \\cdot 4 - 2 = 10$. $f(-1)$ için $x$ yerine $-1$ yazılır: $3 \\cdot (-1) - 2 = -5$. Toplam: $10 + (-5) = 5$. Negatif sayı yazarken parantez kullanmak işaret hatasını önler."
+     },
+     {
+      "kind": "example",
+      "title": "İçi ifade olan fonksiyon",
+      "example": "$f(2x + 3) = 4x + 1$ olduğuna göre $f(7)$ kaçtır?",
+      "explanation": "Fonksiyona giren ifade $2x + 3$'tür; $f(7)$ için bunu 7'ye eşitle: $2x + 3 = 7$, $2x = 4$, $x = 2$. Bu $x$ değerini sağ tarafa yaz: $4 \\cdot 2 + 1 = 9$. Yani $f(7) = 9$. Sağ tarafa doğrudan 7 yazsaydık $29$ bulurduk; bu yanlıştır çünkü sağdaki $x$ fonksiyona giren sayı değildir."
      },
      {
       "kind": "mistake",
@@ -647,6 +692,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Doğrusal fonksiyon nedir?",
+      "text": "Doğrusal fonksiyon, girdi her 1 arttığında çıktının **hep aynı miktar** değiştiği fonksiyondur. Taksiyi düşün: açılış ücreti 10 TL, her km için 5 TL. 0 km'de 10 TL, 1 km'de 15 TL, 2 km'de 20 TL olur. Her km'de 5 TL artış **eğim**, 0 km'deki 10 TL **başlangıç değeridir**. Kural $f(x) = 5x + 10$ biçimindedir ve grafiği bir doğrudur. Sınavda bu fonksiyonlar genellikle benzin, su ya da ücret gibi gerçek durumlarla sorulur."
+     },
+     {
       "kind": "rule",
       "title": "Doğrusal fonksiyon",
       "items": [
@@ -662,6 +712,12 @@
       "title": "İki noktadan fonksiyon",
       "example": "Grafiği $(1, 5)$ ve $(4, 14)$ noktalarından geçen doğrusal fonksiyonu bulun.",
       "explanation": "Eğim: $m = \\frac{14 - 5}{4 - 1} = 3$. Noktalardan birini kurala yaz: $5 = 3 \\cdot 1 + n$, $n = 2$. Fonksiyon $f(x) = 3x + 2$; başlangıç değeri $f(0) = 2$."
+     },
+     {
+      "kind": "example",
+      "title": "Azalan doğrusal fonksiyon",
+      "example": "Grafiği $(0, 30)$ ve $(5, 20)$ noktalarından geçen doğrusal $f$ için $f(10)$ kaçtır? $f(x) = 0$ ise $x$ kaçtır?",
+      "explanation": "Eğim: $m = \\frac{20 - 30}{5 - 0} = -2$. Başlangıç değeri $f(0) = 30$ olduğundan $n = 30$ ve $f(x) = -2x + 30$. Buradan $f(10) = -20 + 30 = 10$. $f(x) = 0$ için $-2x + 30 = 0$, $x = 15$. Eğim negatif olduğu için fonksiyon azalandır ve grafiğin çizilen kısmının ötesinde de aynı eğimle sürer."
      },
      {
       "kind": "blank",
@@ -840,6 +896,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Bire bir ve örten nedir?",
+      "text": "Sinemada 3 kişiye 3 koltuk verildiğini düşün. Herkes ayrı bir koltuğa oturuyorsa eşleme **bire birdir**: iki kişi aynı koltuğu paylaşmaz. Hiç boş koltuk kalmıyorsa eşleme **örtendir**: değer kümesinin her elemanına ulaşılır. Bire birlik görüntülerin farklı olmasıyla, örtenlik de değer kümesinin tamamen dolmasıyla ilgilidir. Bu bölümde bu iki özelliği karşı örnekle sınamayı ve ikisinin bir arada olduğu durumu öğreneceksin."
+     },
+     {
       "kind": "rule",
       "title": "Bire bir, örten",
       "items": [
@@ -856,6 +917,12 @@
       "title": "Karşı örnek bulma",
       "example": "$f: \\mathbb{R} \\to \\mathbb{R}$, $f(x) = x^2 - 4$ fonksiyonu bire bir midir? $g(x) = 3x - 4$ için de sorun.",
       "explanation": "$f(-3) = 9 - 4 = 5$ ve $f(3) = 9 - 4 = 5$; $-3 \\neq 3$ olduğu hâlde görüntüler eşit, bu yüzden $f$ bire bir **değildir**. $g$ için $a \\neq b$ ise $3a \\neq 3b$, yani $3a - 4 \\neq 3b - 4$: $g$ bire birdir. $g$ ayrıca her $y$ için $x = \\frac{y + 4}{3}$ ile örtendir."
+     },
+     {
+      "kind": "example",
+      "title": "Sonlu fonksiyonda iki özellik",
+      "example": "$f: \\{1, 2, 3\\} \\to \\{a, b, c\\}$, $f = \\{(1, a), (2, b), (3, b)\\}$ fonksiyonu bire bir midir, örten midir?",
+      "explanation": "Bire birlik için görüntülere bak: $f(2) = f(3) = b$ olduğundan farklı iki eleman aynı görüntüye gidiyor; $f$ bire bir değildir. Örtenlik için görüntü kümesini yaz: $f(A) = \\{a, b\\}$. Değer kümesi $\\{a, b, c\\}$ olduğundan $c$ açıkta kalıyor; $f$ örten de değildir. Ayrıca eleman sayıları eşitken bire bir olmayan fonksiyonun örten olmadığına dikkat et."
      },
      {
       "kind": "mistake",
@@ -996,6 +1063,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Bileşke ve ters fonksiyon nedir?",
+      "text": "**Bileşke**, iki fonksiyonu art arda çalıştırmaktır: çıkan sonuç ikinci fonksiyona girer. Sabah önce çorap, sonra ayakkabı giymek gibi sıra önemlidir. **Ters fonksiyon** ise yapılan işlemi geri alır: ayakkabıyı önce, çorabı sonra çıkarırsın. Sayılarla: $f$ her sayıya 1 ekliyorsa, tersi her sayıdan 1 çıkarır. $f$ 4'ü 5'e götürüyorsa tersi 5'i 4'e geri getirir. Sınavda bileşke ve ters fonksiyon, fonksiyon değeri sorularının birleşik hâlidir."
+     },
+     {
       "kind": "rule",
       "title": "Art arda ve geri",
       "items": [
@@ -1052,6 +1124,12 @@
       "title": "Bileşke ifadesi",
       "example": "$f(x) = 3x - 1$ ve $g(x) = x^2$ için $(f \\circ g)(x)$ ve $(g \\circ f)(x)$ ifadelerini yazın; $x = 2$'deki değerlerini karşılaştırın.",
       "explanation": "$(f \\circ g)(x) = f(x^2) = 3x^2 - 1$. $(g \\circ f)(x) = g(3x - 1) = (3x - 1)^2$. $x = 2$ için: $3 \\cdot 4 - 1 = 11$ ve $(6 - 1)^2 = 25$. Sıra değişince sonuç değişir."
+     },
+     {
+      "kind": "example",
+      "title": "Bileşkeden bilinmeyen bulma",
+      "example": "$f(x) = x + 2$ ve $g(x) = 3x - 1$ için $(g \\circ f)(a) = 17$ ise $a$ kaçtır?",
+      "explanation": "$(g \\circ f)(a) = g(f(a))$ olduğundan önce içteki $f$ uygulanır: $f(a) = a + 2$. Bu ifade $g$'de $x$ yerine yazılır: $g(a + 2) = 3(a + 2) - 1 = 3a + 5$. Eşitliği kur: $3a + 5 = 17$, $3a = 12$, $a = 4$. Kontrol: $f(4) = 6$ ve $g(6) = 17$ ✓."
      },
      {
       "kind": "question",

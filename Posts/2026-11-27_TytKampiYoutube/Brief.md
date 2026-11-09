@@ -40,3 +40,9 @@ TYT kampı YouTube’da, ücretsiz. 🎬 Konu konu, ders ders, soru soru; SinoAI
 
 - **Red notu:** "kamp tanıtımında coğrafya ve tarihteki güçlü animasyonel ekranları telefon ekranına uygun ekle; YouTube olduğu belli olsun; müzik çok iyi; son ekranda indir değil YouTube tanıtım ekranı"
 - **Değişen:** Kesitler: volkan, Malazgirt, 18 Mart, heyelan; telefonu tam dolduran, kamerası kayan çekimler ve YouTube oynatıcısının kırmızı çubuğu. Kanal sayfasında YouTube logosu ve kırmızı Abone ol. Son ekran: YouTube kanal kartı (indir yok). Müzik aynı.
+
+## 9 Kasım revizyonu
+
+- **Red notu:** "muzik geç başlıyor. onun dışında iyi "sinoai" anlatıyor kaldır. bunsonra kampta sino ai adlandırması kullanılmayacak. senaryo iyi bozma."
+- **Müzik:** aynı parça (sahibin beğendiği), ilk 4,8 sn'si atlanarak çalınır (`soundtrack.from: 4.8`): parçanın ilk 1,5 sn'si sessizdi, asıl girişi 5,5 sn'deydi. Artık müzik ilk saniyede duyulur.
+- **SinoAI kalktı:** "SinoAI anlatıyor, sen öğreniyorsun." → "Biz anlatıyoruz, sen öğreniyorsun." (ses: "Kampta biz anlatıyoruz, sen öğreniyorsun."); klip etiketi "SinoAI karşılıyor" → "TYT Türkçe · Kamp tanıtımı"; klipteki "SinoAI · Hoş geldin" rozeti kırpıldı (`crop.top 0.12`); açıklamadan "SinoAI anlatıyor" çıktı. Senaryonun geri kalanı aynı.

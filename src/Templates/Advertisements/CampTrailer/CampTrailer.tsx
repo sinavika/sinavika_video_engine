@@ -1,6 +1,7 @@
 import React from 'react';
 import {z} from 'zod';
 import {AbsoluteFill, Img, interpolate, OffthreadVideo, Sequence, staticFile, useVideoConfig} from 'remotion';
+import {YOUTUBE_RED, YouTubeMark} from '../../../Components/Illustrations/YouTubeMark';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
 import {SoundEffect} from '../../../Components/Sounds/SoundEffect';
 import {Text} from '../../../Components/Typography/Text';
@@ -35,11 +36,15 @@ const narration = z.string().trim().min(1).max(170);
  * A shot from a rendered camp lesson (16:9, under public/Media). With `crop` it is drawn for the phone: the figure
  * (between `top` and `bottom`, fractions of the frame's height, without the lesson's bars) as a big band across the
  * middle of the screen, `width` of the frame wide, over a blurred copy of itself; the window moves from `from` to `to`
- * (fractions of the width left over) like a documentary camera.
+ * (fractions of the width left over) like a documentary camera. With `phone` the clip is already drawn for the phone
+ * (the engine's VisualClip with a window: the scene alone, its band filling the screen, its own camera move) and fills
+ * the screen as it is: cut from a rendered lesson the scene was a band across the middle, and an 8K clip cut here took
+ * too long to decode (owner, 1 Nov 2026: "telefon ekranına uygun render et"; 5 Nov 2026).
  */
 const ShotSchema = z.object({
 	src: z.string().min(1),
 	label: plainText(30),
+	phone: z.boolean().optional(),
 	crop: z
 		.object({
 			top: z.number().min(0).max(0.5),
@@ -78,23 +83,6 @@ const BLACK = '#000000';
 const WHITE = '#FFFFFF';
 const ORANGE = '#EA580C';
 const DARK = '#0F0F12';
-/** YouTube's red: the player bar, the logo and the subscribe button say "this is YouTube". */
-const YOUTUBE_RED = '#FF0000';
-
-/** The YouTube mark: a red rounded play button and the word. */
-const YouTubeMark: React.FC<{size: number}> = ({size}) => {
-	const {u} = useVideoLayout();
-	return (
-		<div style={{display: 'flex', alignItems: 'center', gap: u(size * 0.22)}}>
-			<div style={{width: u(size * 1.42), height: u(size), borderRadius: u(size * 0.28), background: YOUTUBE_RED, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-				<div style={{width: 0, height: 0, borderTop: `${u(size * 0.22)}px solid transparent`, borderBottom: `${u(size * 0.22)}px solid transparent`, borderLeft: `${u(size * 0.36)}px solid ${WHITE}`, marginLeft: u(size * 0.06)}} />
-			</div>
-			<Text size={size * 0.92} weight={TYPE.weights.kinetic} color={WHITE} style={{letterSpacing: '-0.03em', lineHeight: 1}}>
-				YouTube
-			</Text>
-		</div>
-	);
-};
 
 /**
  * A lesson's figure for the phone, on the whole screen (the stage's ground): a blurred, darkened copy fills it, the
@@ -135,6 +123,35 @@ const BleedShot: React.FC<{shot: Shot; length: number}> = ({shot, length}) => {
 	);
 };
 
+/**
+ * A clip drawn for the phone on the whole screen, as a YouTube player shows it: the mark and the lesson's name over
+ * a dark fade near the bottom, then the red progress bar.
+ */
+const PhoneShot: React.FC<{shot: Shot; length: number}> = ({shot, length}) => {
+	const {height} = useVideoConfig();
+	const {u} = useVideoLayout();
+	const seconds = useSeconds();
+	const progress = Math.min(1, seconds / Math.max(0.1, length));
+	const bar = 20 + 60 * progress;
+	const barTop = height - u(300);
+	return (
+		<AbsoluteFill style={{background: BLACK, overflow: 'hidden'}}>
+			<OffthreadVideo muted src={staticFile(shot.src)} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}} />
+			<div style={{position: 'absolute', left: 0, right: 0, bottom: 0, height: u(560), background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.78) 70%)'}} />
+			<div style={{position: 'absolute', left: u(44), right: u(44), top: barTop - u(90), display: 'flex', alignItems: 'center', gap: u(22)}}>
+				<YouTubeMark size={40} />
+				<Text size={34} weight={TYPE.weights.display} color="rgba(255,255,255,0.92)" style={{whiteSpace: 'nowrap'}}>
+					{shot.label}
+				</Text>
+			</div>
+			<div style={{position: 'absolute', left: 0, right: 0, top: barTop, height: u(10), background: 'rgba(255,255,255,0.3)'}}>
+				<div style={{width: `${bar.toFixed(2)}%`, height: '100%', background: YOUTUBE_RED}} />
+				<div style={{position: 'absolute', left: `calc(${bar.toFixed(2)}% - ${u(14)}px)`, top: -u(9), width: u(28), height: u(28), borderRadius: '50%', background: YOUTUBE_RED}} />
+			</div>
+		</AbsoluteFill>
+	);
+};
+
 /** The letterboxed picture: full canvas width, 16:9. */
 const FRAME = {x: 0, y: 500, w: 952, h: 535};
 
@@ -145,7 +162,7 @@ const Letterbox: React.FC<{shot: Shot; length: number; word?: string; wordAt?: n
 	const land = ease(Math.max(0, Math.min(1, (seconds - wordAt) / 0.14)));
 	return (
 		<>
-			{shot.crop ? null : (
+			{shot.crop || shot.phone ? null : (
 				<>
 					<div style={{position: 'absolute', left: u(FRAME.x - 40), top: u(FRAME.y), width: u(FRAME.w + 80), height: u(FRAME.h), overflow: 'hidden', background: BLACK}}>
 						<OffthreadVideo muted src={staticFile(shot.src)} style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${push})`}} />
@@ -160,7 +177,7 @@ const Letterbox: React.FC<{shot: Shot; length: number; word?: string; wordAt?: n
 			{word && seconds >= wordAt ? (
 				<At y={250} w={952}>
 					<div style={{transform: `scale(${interpolate(land, [0, 1], [1.25, 1])})`, opacity: land, filter: land < 1 ? `blur(${u((1 - land) * 8)}px)` : undefined}}>
-						<Text variant="display" size={110} weight={TYPE.weights.kinetic} color={WHITE} align="center" style={{letterSpacing: '-0.02em', textShadow: shot.crop ? '0 6px 30px rgba(0,0,0,0.85)' : undefined}}>
+						<Text variant="display" size={110} weight={TYPE.weights.kinetic} color={WHITE} align="center" style={{letterSpacing: '-0.02em', textShadow: shot.crop || shot.phone ? '0 6px 30px rgba(0,0,0,0.85)' : undefined}}>
 							{word}
 						</Text>
 					</div>
@@ -176,7 +193,7 @@ const shotStarts = (words: string[], shots: Shot[], cues: number[], total: numbe
 	return Array.from({length: count}, (_, index) => (index === 0 ? 0 : cues[index] ?? (index * total) / count));
 };
 
-/** The cropped shots on the whole phone screen, each in its own time (the ground under the montage's words). */
+/** The cropped and phone shots on the whole phone screen, each in its own time (the ground under the montage's words). */
 const MontageGround: React.FC<{words: string[]; shots: Shot[]; cues: number[]; total: number}> = ({words, shots, cues, total}) => {
 	const {fps} = useVideoConfig();
 	const starts = shotStarts(words, shots, cues, total);
@@ -188,9 +205,9 @@ const MontageGround: React.FC<{words: string[]; shots: Shot[]; cues: number[]; t
 				// The last shot holds to the end of the scene: the scene is longer than its line by the voice's tail, and
 				// stopping at the line left a black gap of ~0.4 s before the next scene (1 Nov 2026).
 				const last = index === starts.length - 1;
-				return shot.crop ? (
+				return shot.crop || shot.phone ? (
 					<Sequence key={index} from={Math.round(start * fps)} durationInFrames={last ? undefined : Math.max(1, Math.round((end - start) * fps))}>
-						<BleedShot shot={shot} length={end - start} />
+						{shot.phone ? <PhoneShot shot={shot} length={end - start} /> : <BleedShot shot={shot} length={end - start} />}
 					</Sequence>
 				) : null;
 			})}

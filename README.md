@@ -369,14 +369,21 @@ npm run social -- import-sources --file samples/Social/Sources.json
 
 | Komut | Ne yapar |
 | --- | --- |
-| `accounts` | Aktif hesaplar ve Buffer'ın her biri için önerdiği saatler |
+| `accounts` | Aktif hesaplar (`id`, platform, ad) ve Buffer'ın her biri için önerdiği saatler |
 | `plan` | Standart haftalık plandan tarihli takvim: gün, saat (Buffer'dan), içerik türü, format, platformlar. Kurallar: [docs/SocialPlan.md](docs/SocialPlan.md) |
 | `submit` | Gönderi dosyasındaki medyayı yükler, gönderiyi "onay bekliyor" olarak oluşturur |
 | `calendar` | Tarih aralığındaki plan, hesap bazında durumla |
 | `revisions` | Adminin reddettiği, yeniden hazırlanacak gönderiler ve notları |
 | `sources`, `import-sources` | Kaynak veriler (soru, konu, hook) ve kullanıldı bilgisi |
 
-Gönderi dosyası [`samples/Social/Post.json`](samples/Social/Post.json) biçimindedir; `media` yolları dosyanın bulunduğu klasöre göredir, `scheduledAt` saat dilimiyle yazılır (`+03:00`). `targets` her platformun gerçek gönderi türünü (`reel`, `carousel`, `short`…) ve kendi saatini taşır; plan komutunun ürettiği `targets` olduğu gibi kullanılır. Videonun yanındaki `_Kapak.png` kendiliğinden kapak olarak yüklenir. Reddedilen bir gönderinin yerine hazırlananda `replacesPostId` eskisinin kimliğidir. Bir kaynak yalnız bir gönderide kullanılabilir; API ikinci kullanımı reddeder.
+Gönderi dosyası [`samples/Social/Post.json`](samples/Social/Post.json) biçimindedir; `media` yolları dosyanın bulunduğu klasöre göredir, `scheduledAt` saat dilimiyle yazılır (`+03:00`).
+
+**Hedefler hesap seçer, platform değil (5 Kasım 2026, sahip kararı).** Aynı platformda birden çok hesap var (ör. Instagram `sinavika.tr` ve `sinavika.yks`); gönderi yalnız seçilen hesaplara gider.
+- Post.json'da her hedef bir hesaptır: `{"account": "instagram/sinavika.yks", "postType": "reel"}` ya da `{"accountId": "<id>", …}`. `npm run social -- accounts` hesapları `platform/ad` ve kimliğiyle listeler; istemci adı kimliğe çevirip API'ye yalnız `accountId` gönderir. `platform` alanı kaldırıldı.
+- En az bir hesap zorunludur ve **varsayılan hesap yoktur** (sahip kararı): her gönderide hangi hesaplara gideceği o gönderi için seçilir. Kampanya iskeleti hedefleri `instagram/?` gibi boş bırakır; seçilmeden `submit` durur ve seçenekleri yazar. Emin olunmayan hesap seçilmez, sahibe sorulur.
+- Saat: admin onaylayınca her hesap tam yazılan saatte planlanır (hedefin `scheduledAt` alanı, yoksa gönderinin). Saatler Buffer'ın önerdiği saatlerden seçilir: `npm run social -- accounts` her hesabın saatlerini gösterir (API: `GET accounts` → `postingSchedule`). Buffer kuyruğu kullanılmaz.
+
+Bu biçim canlıda (API 5 Kasım 2026'da yayınlandı). Videonun yanındaki `_Kapak.png` kendiliğinden kapak olarak yüklenir. Reddedilen bir gönderinin yerine hazırlananda `replacesPostId` eskisinin kimliğidir. Bir kaynak yalnız bir gönderide kullanılabilir; API ikinci kullanımı reddeder.
 
 `.env`: `SINAVIKA_API_URL` ve `SINAVIKA_SOCIALHUB_KEY` (sunucudaki `SocialHub__ClaudeApiKey` ile aynı). İstemci: [`src/Services/SocialHubClient.ts`](src/Services/SocialHubClient.ts). Sunucu tarafı ve uçlar: Sınavika deposunda `docs/social-hub-integration.md`.
 

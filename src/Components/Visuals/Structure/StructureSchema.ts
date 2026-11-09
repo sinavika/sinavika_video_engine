@@ -208,6 +208,22 @@ export const STRUCTURE_VISUALS = [
       .max(6),
   }),
   /**
+   * Any lesson: steps, events or causes to put in their order (the app's ordering step on video). `items` are written
+   * in the right order and stand shuffled on the board (BoardShuffle); when a beat focuses one (parts p1…, in the right
+   * order) it moves to its place and takes its number. Without beats they move one after another.
+   */
+  z
+    .object({
+      kind: z.literal("ordering"),
+      items: z.array(NodeSchema).min(3).max(6),
+    })
+    .refine(
+      (visual) =>
+        new Set(visual.items.map((item) => item.label)).size ===
+        visual.items.length,
+      { path: ["items"], message: "ordering: every item needs its own label." },
+    ),
+  /**
    * Statistics, geography: a pie chart (daire grafiği). Slices (parts p1…) open one after another or when a beat
    * shows or focuses them; each names itself with its value, its share (`percent`) or its central angle (`angle`).
    */

@@ -191,6 +191,13 @@
       "narration": "Dairesel yolda yol ile yer değiştirme arasındaki fark çok belirgindir. Yol, yörünge boyunca ölçülür; yer değiştirme iki nokta arasındaki düz çizgidir."
      },
      {
+      "kind": "example",
+      "title": "Gidip geri dönen yürüyüş",
+      "example": "Bir kişi doğrusal bir yolda önce $10$ m kuzeye, sonra aynı doğru üzerinde $4$ m güneye yürüyor. Aldığı yol ve yer değiştirmesinin büyüklüğü kaç m'dir?",
+      "explanation": "Alınan yol, gidilen bütün metrelerin toplamıdır: $10 + 4 = 14$ m. Yer değiştirme için yönleri hesaba katarız: kuzeyi pozitif alırsak $+10 - 4 = +6$ m, yani $6$ m kuzeydir. Hareket tek doğru üzerinde olsa bile yön değiştirdiği için yol ($14$ m) yer değiştirmeden ($6$ m) büyüktür.",
+      "narration": "Yol ile yer değiştirmenin büyüklüğü yalnız yön değiştirmeyen doğrusal harekette eşittir."
+     },
+     {
       "kind": "classify",
       "title": "Skaler mi, vektörel mi?",
       "prompt": "Büyüklükleri yönü olup olmamasına göre ayır.",
@@ -318,6 +325,13 @@
     "title": "Sürat, hız, ivme",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Sürat, hız ve ivme nedir?",
+      "text": "**Sürat**, bir cismin birim zamanda ne kadar **yol** aldığını söyler: 2 saatte 100 km giden araç saatte 50 km yol alır. **Hız** ise birim zamanda ne kadar **yer değiştirdiğini** ve hangi yönde gittiğini söyler. **İvme**, hızın ne kadar çabuk değiştiğini anlatır: hızı her saniye 3 m/s artan cismin ivmesi 3 m/s²'dir. Bu bölümde bu üç kavramı ve ortalama değerleri ayırt etmeyi öğreneceksin.",
+      "caption": "Sürat yolla, hız yer değiştirmeyle, ivme hız değişimiyle ilgilidir.",
+      "narration": "Sürat yön söylemez, hız yön söyler. İvme ise hızın kendisi değil, değişme hızıdır. Sınavda bu üçünün karıştırılması en sık tuzaktır."
+     },
+     {
       "kind": "predict",
       "title": "Gün sonunda eve dönen kişi",
       "context": "Bir kişi sabah evinden çıkıp gün boyunca toplam $18$ km yürüyor ve $9$ saat sonra aynı kapıya dönüyor.",
@@ -354,6 +368,20 @@
       "text": "**Ortalama hız**: toplam yer değiştirmenin toplam zamana oranı, $v_{ort} = \\frac{\\Delta x}{\\Delta t}$ (vektörel). **Ortalama sürat**: toplam yolun toplam zamana oranı, $\\frac{\\text{toplam yol}}{\\text{toplam zaman}}$ (skaler). Yol, yer değiştirmenin büyüklüğünden küçük olamayacağı için ortalama sürat, ortalama hızın büyüklüğünden küçük olamaz.",
       "caption": "Gidip dönen cismin ortalama hızı sıfır, ortalama sürati sıfırdan büyüktür.",
       "narration": "Ortalama değerlerde her zaman toplam büyüklükleri kullan: toplam yer değiştirme ya da toplam yol, bir de toplam zaman. Hızların ortalamasını alıp bölmek çoğu zaman yanlış sonuç verir. Trafikteki yeşil dalga levhaları da ortalama sürat değerini gösterir; levhadaki ortalama sürate uygun giden sürücü, sıradaki kırmızı ışıklara yakalanmadan yolculuğunu yapabilir."
+     },
+     {
+      "kind": "example",
+      "title": "Bisikletçinin sürati",
+      "example": "Bir bisikletçi doğrusal yolda $3$ dakikada $900$ m gidiyor. Sürati kaç m/s ve kaç km/h'tir?",
+      "explanation": "Önce süreyi saniyeye çevir: $3$ dakika $= 180$ s. Sürat, yolun zamana oranıdır: $\\frac{900}{180} = 5$ m/s. m/s'den km/h'ye geçerken $3{,}6$ ile çarpılır: $5 \\cdot 3{,}6 = 18$ km/h.",
+      "narration": "Birimleri aynı sisteme getirmeden bölme yapma."
+     },
+     {
+      "kind": "example",
+      "title": "Doğuya gidip batıya dönen kişi",
+      "example": "Bir kişi doğuya $60$ m'yi $20$ s'de, hemen ardından batıya $20$ m'yi $20$ s'de yürüyor. Ortalama sürati ve ortalama hızı kaçtır?",
+      "explanation": "Toplam yol $60 + 20 = 80$ m, toplam süre $40$ s olduğundan ortalama sürat $\\frac{80}{40} = 2$ m/s'dir. Yer değiştirme için doğuyu pozitif alırsak $+60 - 20 = +40$ m bulunur. Ortalama hız $\\frac{40}{40} = 1$ m/s ve yönü doğudur. Kişi yön değiştirdiği için ortalama sürat ($2$ m/s) ortalama hızın büyüklüğünden ($1$ m/s) büyük çıkmıştır.",
+      "narration": "Yön değiştiren harekette yol ile yer değiştirmeyi ayrı ayrı hesapla."
      },
      {
       "kind": "blank",
@@ -624,6 +652,25 @@
     "cards": [
      {
       "kind": "concept",
+      "title": "Hareket grafikleri nedir?",
+      "text": "**Hareket grafiği**, bir cismin konumunun, hızının ya da ivmesinin zamanla nasıl değiştiğini gösteren çizimdir. Her saniye 2 m ilerleyen bir cismi düşün: 1 s'de 2 m, 2 s'de 4 m, 3 s'de 6 m. Bu noktaları işaretleyip birleştirirsen düz, yukarı doğru giden bir çizgi elde edersin. Üç grafik türü vardır: **konum-zaman (x-t)**, **hız-zaman (v-t)** ve **ivme-zaman (a-t)**. Sınavda grafiğin eğiminden ve altındaki alandan bilgi okuman istenir.",
+      "caption": "Grafik, hareketi tek bakışta okumamızı sağlar.",
+      "narration": "Bir grafiği okurken önce eksenlerin neyi gösterdiğine bak. Aynı çizgi, hangi eksenlerde çizildiğine göre bambaşka bir hareketi anlatır."
+     },
+     {
+      "kind": "predict",
+      "title": "Dik çizgi, büyük hız",
+      "context": "Bir cismin konum-zaman grafiği düz bir çizgidir.",
+      "prompt": "Çizgi ne kadar dikse cismin hızı o kadar büyüktür.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Dik çizgi, aynı sürede konumun daha çok değişmesi demektir. 1 s'de 5 m ilerleyen cisim, 1 s'de 2 m ilerleyenden daha hızlıdır."
+     },
+     {
+      "kind": "concept",
       "title": "Eğim ve alan",
       "text": "Her grafikte iki işlem yapılır. **Eğim** (dikey değişim / yatay değişim) ve **alan** (grafik ile zaman ekseni arasında kalan bölge). **x-t** grafiğinin eğimi **hız**dır. **v-t** grafiğinin eğimi **ivme**, alanı **yer değiştirme**dir. **a-t** grafiğinin alanı **hız değişimi**dir: $\\Delta v = a \\cdot t$. Zaman ekseninin altında kalan alan negatif sayılır.",
       "caption": "x-t → eğim: hız; v-t → eğim: ivme, alan: yer değiştirme; a-t → alan: hız değişimi.",
@@ -821,6 +868,13 @@
       },
       "explanation": "Eğim: 0–4 s'de $\\frac{12}{4} = +3$; 4–7 s'de 0; 7–9 s'de $\\frac{0-12}{2} = -6$ m/s². Bunlar a-t grafiğinin üç yatay parçasıdır. Alan: $\\frac{4 \\cdot 12}{2} = 24$ m, $3 \\cdot 12 = 36$ m ve $\\frac{2 \\cdot 12}{2} = 12$ m; toplam yer değiştirme $72$ m. Geri dönüş: a-t alanları $3 \\cdot 4 = +12$, $0$ ve $-6 \\cdot 2 = -12$ m/s hız değişimini verir; hız $0 \\to 12 \\to 12 \\to 0$ olur.",
       "narration": "Grafikten grafiğe geçerken önce eğim hesapla, sonra gerekirse alan. v-t'den a-t'ye geçmek için her doğru parçasının eğimini yaz. v-t'nin alanından yer değiştirme, a-t'nin alanından hız değişimi bulursun."
+     },
+     {
+      "kind": "example",
+      "title": "Yön değiştiren cisim",
+      "example": "Bir cismin hız-zaman grafiğinde $0$–$2$ s arasında hız $+6$ m/s, $2$–$4$ s arasında $-3$ m/s sabittir. $0$–$4$ s aralığında yer değiştirme ve alınan yol kaç m'dir?",
+      "explanation": "v-t grafiğinde alan yer değiştirmeyi verir. $0$–$2$ s'de dikdörtgenin alanı $2 \\cdot 6 = +12$ m'dir. $2$–$4$ s'de hız negatiftir ve şekil zaman ekseninin altında kalır: $2 \\cdot (-3) = -6$ m. Yer değiştirme $12 - 6 = 6$ m'dir. Alınan yolda alanların büyüklükleri toplanır: $12 + 6 = 18$ m.",
+      "narration": "Eksenin altındaki alan yer değiştirmeden çıkarılır, ama yola eklenir."
      },
      {
       "kind": "guided",
@@ -1298,6 +1352,13 @@
       "narration": "Ay'da astronot daha kolay zıplar çünkü ağırlığı azalmıştır; ama kütlesi, yani eylemsizliği aynıdır: kuvvet uygulamadıkça duran astronot yine yerinde durur ve ona ivme kazandırmak için yine aynı kuvvet gerekir."
      },
      {
+      "kind": "example",
+      "title": "Uzaklık ve kütle değişince çekim",
+      "example": "İki cisim arasındaki kütle çekim kuvveti $F$'tir. Cisimlerden birinin kütlesi $2$ katına çıkarılır, aralarındaki uzaklık $3$ katına çıkarılırsa kuvvet kaç $F$ olur?",
+      "explanation": "Bağıntı $F = G\\,\\frac{M_A \\cdot M_B}{d^2}$'dir. Kütlelerden biri 2 katına çıkınca payı 2 katına çıkar, kuvvet $2F$ olur. Uzaklık 3 katına çıkınca $d^2$ 9 katına çıkar ve kuvvet $\\frac{1}{9}$'una iner. İki etki birlikte uygulanırsa yeni kuvvet $F' = F \\cdot 2 \\cdot \\frac{1}{9} = \\frac{2F}{9}$ olur.",
+      "narration": "Değişimleri tek tek yaz, sonra çarp: kütle çarpanı payda, uzaklığın karesi paydadadır."
+     },
+     {
       "kind": "mistake",
       "title": "Kütle ile ağırlık",
       "wrong": "Kütle ile ağırlık aynı şeydir; Ay'a gidince ikisi de altıda birine iner.",
@@ -1631,6 +1692,13 @@
     "title": "Newton'un yasaları",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Newton'un yasaları nedir?",
+      "text": "**Newton'un yasaları**, bir cisme kuvvet etki ettiğinde ya da etmediğinde nasıl hareket edeceğini anlatan üç temel kuraldır. Önce sezgiyi düşün: aynı kuvvetle itilen boş bir alışveriş arabası dolu olandan daha çok hızlanır. Kütle iki katına çıkarsa aynı kuvvetle ivme yarıya iner. Bu bölümde eylemsizliği, kuvvet-kütle-ivme ilişkisini ve etki-tepkiyi öğreneceksin. Sınavda net kuvvetin sıfır olup olmadığına ve etki-tepki çiftlerine sık sık soru gelir.",
+      "caption": "Kuvvet hareketi başlatmaz; hızı değiştirir.",
+      "narration": "Bu üç yasa, otobüsteki savrulmadan roketin yükselmesine kadar pek çok olayı açıklar. Önce olayı gözlemle, sonra hangi yasanın devrede olduğuna karar ver."
+     },
+     {
       "kind": "predict",
       "title": "Otobüs ani fren yapınca",
       "context": "Ayakta, hiçbir yere tutunmadan giden bir yolcunun bulunduğu otobüs aniden fren yapıyor.",
@@ -1735,6 +1803,13 @@
       "example": "Kütlesi $3$ kg olan bir cisme yatayda sağa $24$ N, sola $6$ N'lik iki kuvvet ve sola $6$ N'lik sürtünme kuvveti etki ediyor. Cismin ivmesi kaç m/s² ve hangi yöndedir?",
       "explanation": "Serbest cisim diyagramı: yatayda sağa $24$ N; sola $6 + 6 = 12$ N. Düşeyde ağırlık ile normal kuvvet birbirini götürür. Net kuvvet $24 - 12 = 12$ N sağadır. $a = \\frac{12}{3} = 4$ m/s², sağa doğrudur.",
       "narration": "Önce her kuvveti yönüyle yaz, sonra zıt yönlüleri çıkar. Bulduğun net kuvvet ivmenin yönünü de verir."
+     },
+     {
+      "kind": "example",
+      "title": "Sabit hızla giden araç",
+      "example": "Kütlesi $1000$ kg olan bir araç düz yolda sabit hızla gidiyor. Motorun ileri yönlü kuvveti $2000$ N ise araca etki eden sürtünme ve hava direncinin toplamı kaç N'dir? Aracın ivmesi kaçtır?",
+      "explanation": "Hız sabit olduğundan ivme $0$'dır. $F_{net} = m \\cdot a = 1000 \\cdot 0 = 0$ olur. Yatayda ileri $2000$ N'lik motor kuvveti ile geri yönlü direnç kuvvetleri birbirini dengelemelidir. Bu yüzden direnç toplamı $2000$ N'dir. Sabit hızla gitmek için motor kuvvetinin sıfır olması gerekmez; net kuvvetin sıfır olması gerekir.",
+      "narration": "Hareket ediyor diye net kuvvet vardır sanma. Hız değişmiyorsa net kuvvet sıfırdır."
      },
      {
       "kind": "blank",
@@ -2089,6 +2164,20 @@
        }
       ],
       "explanation": "Yağ, rulman ve parafin sürtünmeyi azaltır. Zincir, tırtıl ve kum ise sürtünmeyi artırır."
+     },
+     {
+      "kind": "example",
+      "title": "Kinetik sürtünme kuvveti",
+      "example": "Yatay zeminde kayan $20$ kg kütleli bir sandığın zeminle arasındaki kinetik sürtünme katsayısı $0{,}3$'tür. Sürtünme kuvveti kaç N'dir? ($g = 10$ m/s²)",
+      "explanation": "Yatay zeminde başka düşey kuvvet yoktur, bu yüzden normal kuvvet ağırlığa eşittir: $N = m \\cdot g = 20 \\cdot 10 = 200$ N. Kayan cisimde kinetik sürtünme $f_k = \\mu_k \\cdot N = 0{,}3 \\cdot 200 = 60$ N'dir. Sandığın hızı ya da hangi yüzünün yere değdiği bu sonucu değiştirmez.",
+      "narration": "Sürtünme sorularında önce normal kuvveti bul, sonra katsayıyla çarp."
+     },
+     {
+      "kind": "example",
+      "title": "Kayacak mı, kaymayacak mı?",
+      "example": "$10$ kg kütleli bir blokla yatay zemin arasındaki statik sürtünme katsayısı $0{,}5$, kinetik sürtünme katsayısı $0{,}4$'tür. Blok önce $30$ N'lik, sonra $60$ N'lik yatay kuvvetle itiliyor. Her iki durumda sürtünme kuvveti kaç N'dir? ($g = 10$ m/s²)",
+      "explanation": "Normal kuvvet $N = 10 \\cdot 10 = 100$ N'dir. Statik sürtünmenin alabileceği en büyük değer $0{,}5 \\cdot 100 = 50$ N'dir. $30$ N bu sınırın altında olduğundan blok kıpırdamaz ve sürtünme uygulanan kuvvete eşit olur: $30$ N. $60$ N sınırı aştığı için blok kayar ve sürtünme kinetik olur: $0{,}4 \\cdot 100 = 40$ N. Bu durumda net kuvvet $60 - 40 = 20$ N'dir.",
+      "narration": "Önce cismin kayıp kaymadığına karar ver; hangi sürtünmeyi kullanacağın buna bağlıdır."
      },
      {
       "kind": "question",

@@ -1,7 +1,7 @@
 import {campWelcomeNarration, sectionTitleNarration, type CampEpisode} from '../../../Courses/Camp';
 import {COURSE_VOICE_MODEL} from '../../../Configurations/Voices';
 import {COURSE_DESIGN} from '../../../Courses/CourseDesign';
-import {LessonScriptSchema, type LessonScript} from '../../../Courses/LessonScript';
+import {LessonScriptSchema, openingCard, type LessonScript} from '../../../Courses/LessonScript';
 import {CAMP_SCRIPT_SAMPLE} from '../../../Courses/LessonScriptSample';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
@@ -11,6 +11,8 @@ import {cuesInLine, spreadCues} from '../../../Courses/LessonCue';
 import {courseLessonTheme} from '../../../Themes/LessonAccent';
 import {CourseLesson} from '../../Courses/CourseLesson/CourseLesson';
 import {LessonChrome, LessonLayoutProvider} from '../../Courses/CourseLesson/Scenes/LessonChrome';
+import {LessonCardScene} from '../../Courses/CourseLesson/Scenes/LessonCardScene';
+import {QuestionScene} from '../../Courses/CourseLesson/Scenes/QuestionScene';
 import {defineTemplate} from '../../TemplateDefinition';
 import {CAMP_SCENE_IDS, SectionVoiceOrb, StudioBand} from '../Scenes/CampChrome';
 import {CampCardScene} from '../Scenes/CampCardScene';
@@ -20,10 +22,17 @@ import {CampTaskScene} from '../Scenes/CampTaskScene';
 export const CampScriptSchema = LessonScriptSchema.refine((script) => script.camp !== undefined, {path: ['camp'], message: 'A camp lesson needs its camp fields (Courses/Camp).'});
 
 const SECTION_OPENING = /^s\d+$/;
+/** The cold open: a question or a figure of the lesson on screen before the camp card (lesson.opening). */
+const OPENING_SCENE_ID = 'opening';
+/** The shortest cold open: the first five seconds are the hook (owner, 8 Nov 2026). */
+const OPENING_MIN_SECONDS = 5;
+/** Where the opening's question stays unsolved: its steps never come. */
+const NEVER = 1e6;
 
 /** The scenes that open a chapter, and the chapter's title. Ids are CourseLesson's own and the camp's. */
 const campChapterTitle = (script: LessonScript, sceneId: string): string | undefined => {
-	if (sceneId === CAMP_SCENE_IDS.card) return 'Giriş';
+	if (sceneId === OPENING_SCENE_ID) return 'Giriş';
+	if (sceneId === CAMP_SCENE_IDS.card) return script.lesson.opening ? undefined : 'Giriş';
 	if (SECTION_OPENING.test(sceneId)) return script.lesson.sections[Number(sceneId.slice(1)) - 1]?.title;
 	if (sceneId === 'summary') return 'Özet';
 	if (sceneId === CAMP_SCENE_IDS.task) return 'Kamp görevi';
@@ -41,8 +50,9 @@ const campOf = (script: LessonScript): CampEpisode => {
 /**
  * The lesson's scenes (CourseLesson) inside the camp's frame:
  *
- *   welcome   SinoAI greets the viewer on the camp card: camp, lesson number, what is coming (campWelcomeNarration)
- *   intro     the lesson's hook and "bu videoda"
+ *   opening   with `lesson.opening`: a question of the lesson, unsolved, or a figure in motion (5–15 s)
+ *   welcome   SinoAI greets the viewer on the camp card: camp and lesson number in one breath (campWelcomeNarration)
+ *   intro     the lesson's hook and "bu videoda"; after an opening, its `promise` instead of the hook
  *   sections  each opens with its title spoken on its own (sectionTitleNarration), then the lesson's own words
  *   summary, camp task with the next lesson, promotion
  *
@@ -95,10 +105,44 @@ const buildScenes = (script: LessonScript, voiceClips: VoiceClips = {}): Templat
 		return {...scene, seconds: Math.round((scene.seconds + title.seconds) * 10) / 10, voice, element};
 	};
 
+	// The cold open (8 Nov 2026): a question on screen from the first second, its answer kept for the lesson, or
+	// a figure that plays its beats through the opening line.
+	const open = script.lesson.opening;
+	const openCard = open ? openingCard(script.lesson.sections, open) : undefined;
+	const opening: TemplateScene[] = [];
+	if (open && openCard) {
+		const line = say(OPENING_SCENE_ID, open.narration, estimate(open.narration, OPENING_MIN_SECONDS), OPENING_MIN_SECONDS);
+		const beats = openCard.kind === 'visual' ? openCard.beats.length : 0;
+		const beatStarts = Array.from({length: beats}, (_, index) => 0.4 + ((line.seconds - 0.8) * index) / Math.max(1, beats));
+		const beatEnds = [...beatStarts.slice(1), line.seconds];
+		opening.push({
+			id: OPENING_SCENE_ID,
+			seconds: line.seconds,
+			label: 'Açılış',
+			voice: [line],
+			element: (
+				<>
+					<LessonChrome script={script} />
+					{openCard.kind === 'question' ? (
+						<QuestionScene question={openCard.question} stepStarts={openCard.question.steps.map(() => NEVER)} section="" number="" heading="Bu soruyu derste çözeceğiz" />
+					) : (
+						<LessonCardScene card={openCard} section="" number="" beatStarts={beatStarts} beatEnds={beatEnds} sceneSeconds={line.seconds} />
+					)}
+				</>
+			),
+		});
+	}
+	// After an opening the hook's long narration gives way to the short promise, said over "Bu videoda".
+	const withPromise = (scene: TemplateScene): TemplateScene => {
+		if (scene.id !== 'intro' || !open) return scene;
+		const promise = say('promise', open.promise, estimate(open.promise, 4), 4);
+		return {...scene, seconds: promise.seconds, voice: [promise]};
+	};
+
 	const outroAt = lesson.findIndex((scene) => scene.id === OUTRO_SCENE_ID);
 	const body = outroAt === -1 ? lesson : lesson.slice(0, outroAt);
 	const outro = outroAt === -1 ? [] : lesson.slice(outroAt);
-	return [welcome, ...body.map(withSpokenTitle), task, ...outro].map((scene) => {
+	return [...opening, welcome, ...body.map(withPromise).map(withSpokenTitle), task, ...outro].map((scene) => {
 		const chapter = campChapterTitle(script, scene.id);
 		// Camp lessons are drawn in the studio layout (owner's choice, 31 Oct 2026; LessonChrome's LessonLayout).
 		const element = <LessonLayoutProvider layout="studio">{scene.element}</LessonLayoutProvider>;

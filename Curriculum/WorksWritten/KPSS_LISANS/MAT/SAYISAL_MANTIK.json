@@ -75,6 +75,18 @@
     "title": "Sayı örüntüleri",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Sayısal Mantık nedir?",
+      "text": "Sayısal mantık, verilen sayı, şekil, tablo ya da kurallardan **akıl yürüterek** bir sonuca ulaşma becerisidir. KPSS Matematik testinin son sorularında çıkar ve formül ezberinden çok kuralı keşfetmeyi ölçer. Günlük hayatta bir otobüs tarifesinin düzenini fark etmek ya da 'her gün bir öncekinden 2 sayfa fazla oku' planının sonunda kaç sayfa okuyacağını bulmak buna benzer. Sınavda örneğin 'ilk sırada 12 koltuk, sonraki her sırada 2 fazla' diye başlayan bir salon sorusu gelir: kuralı bulur, istenen terime ulaşırsın.",
+      "narration": "Bu derste altı tür soru göreceksin: sayı örüntüleri, şekil örüntüleri, tablo ve grafik yorumlama, yerleştirme, eşleştirme ve sayısal akıl yürütme. Her birinde önce kuralı keşfeder, sonra uygularsın."
+     },
+     {
+      "kind": "concept",
+      "title": "Sayı örüntüsü nedir?",
+      "text": "Sayı örüntüsü, terimleri bir **kurala** göre sıralanmış sayı dizisidir: 3, 5, 7, 9, … gibi. Burada her terim öncekinden 2 fazladır. Çalışacağın kavramlar: ardışık terimlerin **farkı**, **farkların farkı** ve terimler arasındaki **oran**. Amaç, ilk birkaç terime bakıp kuralı bulmak, sonra sıradaki ya da istenen terimi hesaplamaktır.",
+      "narration": "Bir diziyi görünce önce farklara bakarsın. Fark sabitse kural basittir; değilse farkların farkına ya da oranlara geçersin."
+     },
+     {
       "kind": "rule",
       "title": "Kuralı bul",
       "items": [
@@ -157,6 +169,13 @@
       "example": "5, 8, 11, … biçiminde ilerleyen dizinin ilk 12 terimini topla.",
       "explanation": "İlk terim 5, artış 3, terim sayısı 12. Toplam $12 \\cdot 5 + 3 \\cdot (0 + 1 + \\cdots + 11) = 60 + 3 \\cdot 66 = 258$. Kontrol: son terim $5 + 11 \\cdot 3 = 38$ ve $\\frac{(5 + 38) \\cdot 12}{2} = 258$.",
       "narration": "Toplamı iki parçada düşün: her terimde bulunan ilk terim 12 kez gelir, $12 \\cdot 5 = 60$ eder. Artışlar ise 0, 3, 6, …, 33 diye gider; bu $3 \\cdot (0 + 1 + \\cdots + 11) = 3 \\cdot 66 = 198$ eder. İki parçayı toplayınca 258 bulursun. İlk ve son terimin ortalamasını terim sayısıyla çarpmak da aynı sonucu verir."
+     },
+     {
+      "kind": "example",
+      "title": "Farkların kendisi büyüyorsa",
+      "example": "2, 3, 5, 9, 17, … dizisinde sıradaki terim kaçtır?",
+      "explanation": "Farklar: $1, 2, 4, 8$. Bu farklar sabit değil; farkların farkı da (1, 2, 4) sabit değil. Ama her fark bir öncekinin 2 katıdır. Sıradaki fark $16$, terim $17 + 16 = 33$. Kontrol: terimler $2^0 + 1,\\ 2^1 + 1,\\ 2^2 + 1,\\ \\ldots$ biçimindedir; sıradaki $2^5 + 1 = 33$.",
+      "narration": "Farklar da bir kurala uyabilir. Farkların farkı sabit çıkmıyorsa farkların oranına bakarsın; burada her fark bir öncekinin iki katıdır."
      },
      {
       "kind": "blank",
@@ -311,6 +330,20 @@
       "explanation": "$3 \\cdot 10 + 1 = 31$. Kuralı 1 kare için de dene: $3 + 1 = 4$ doğru çıkıyor."
      },
      {
+      "kind": "example",
+      "title": "Noktalardan kural",
+      "example": "Noktalarla kurulan bir örüntüde 1. şekilde 3, 2. şekilde 5, 3. şekilde 7 nokta vardır. 10. şekilde kaç nokta bulunur?",
+      "explanation": "Dizi 3, 5, 7: her adımda 2 nokta ekleniyor, yani kural $2n + c$ biçiminde. $n = 1$ için $2 + c = 3$, buradan $c = 1$. Kural: $2n + 1$. Kontrol: $n = 3$ için $7$, doğru. $n = 10$ için $2 \\cdot 10 + 1 = 21$ nokta.",
+      "narration": "Adımlar arası farkı bulursun, sabiti ilk adımdan çıkarırsın ve kuralı en az bir başka adımda denersin. Sonra istenen adımı doğrudan hesaplarsın."
+     },
+     {
+      "kind": "example",
+      "title": "Farklar sabit değilse",
+      "example": "Şekil örüntüsünde 1. adımda 2, 2. adımda 6, 3. adımda 12, 4. adımda 20 kare vardır. 8. adımda kaç kare bulunur?",
+      "explanation": "Dizi 2, 6, 12, 20. Farklar 4, 6, 8: sabit değil; farkların farkı 2 ile sabit. Terimler $1 \\cdot 2,\\ 2 \\cdot 3,\\ 3 \\cdot 4,\\ 4 \\cdot 5$ biçimindedir: kural $n(n + 1)$. Kuralı dene: $n = 2$ için $2 \\cdot 3 = 6$ doğru. $n = 8$ için $8 \\cdot 9 = 72$ kare.",
+      "narration": "Farklar sabit değilse doğrusal bir kural aramak yanlış olur. Farkların farkı sabitse terimler bir çarpım ya da kare ifadesine benzer; terimleri çarpım olarak yazmak kuralı gösterir."
+     },
+     {
       "kind": "blank",
       "title": "Kibrit üçgenleri",
       "prompt": "Kibrit çöpleriyle yan yana üçgenler diziliyor; komşu üçgenler bir kenarı ortak kullanıyor. 1 üçgen için 3, 2 üçgen için 5, 3 üçgen için 7 çöp gerekiyor. 20 üçgen için kaç çöp gerekir?",
@@ -395,6 +428,18 @@
     "title": "Tablo ve grafik yorumlama",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Tablo ve grafik yorumlama nedir?",
+      "text": "Tablo ve grafik yorumlama, sayıların tablo ya da grafik olarak verildiği sorularda **doğru bilgiyi okuyup** hesaplamaktır. KPSS'de en çok daire grafiği ve yüzdeli tablolar çıkar. Çalışacağın kavramlar: dilimin **payı**, merkez açı, yüzde ve toplam. Günlük hayatta bir aile bütçesinin harcama grafiğine bakıp 'kira gelirin yüzde kaçı?' diye sormaya benzer.",
+      "narration": "Grafik soruları çoğu zaman hesaptan çok okuma işidir: hangi bilgi toplama, hangisi dilime aittir? Önce bunu ayır, sonra hesapla."
+     },
+     {
+      "kind": "concept",
+      "title": "Daire grafiği: bütün 360°'dir",
+      "text": "Daire grafiği bir bütünü dilimlere böler. Tam daire 360°'dir ve bütünün tamamını (%100) gösterir. Yarım daire 180° ile bütünün yarısını (%50), çeyrek daire 90° ile dörtte birini (%25) gösterir. Yani açı büyüdükçe dilim büyür: dilimin payı, açısının 360°'ye oranıdır. Toplam 200 kişiyse 90°'lik dilim 200'ün dörtte biri, yani 50 kişidir. Aşağıdaki kural bu sezginin kısa yazılışıdır.",
+      "narration": "Önce basit durumlara bak: tam daire, yarım daire, çeyrek daire. Bu üç durumu bilen biri her açıyı bir kesre çevirebilir; kural yalnızca bu düşüncenin harflerle yazılmış halidir."
+     },
+     {
       "kind": "rule",
       "title": "Daire grafiği",
       "items": [
@@ -439,6 +484,20 @@
       ],
       "answer": 0,
       "explanation": "$\\frac{72}{360} = \\frac{1}{5} = %20$. Ya da $72 \\div 3{,}6 = 20$."
+     },
+     {
+      "kind": "example",
+      "title": "Açıdan kişi sayısına",
+      "example": "Bir daire grafiğinde bir dilimin merkez açısı 90°'dir. Grafik toplam 240 kişiyi gösterdiğine göre bu dilimde kaç kişi vardır?",
+      "explanation": "90° tam dairenin $\\frac{90}{360} = \\frac{1}{4}$ kadarıdır. Dilimdeki kişi sayısı, toplamın dörtte biridir: $240 \\cdot \\frac{1}{4} = 60$. Kontrol: dört tane 90°'lik dilim 360° eder ve 4 dilim $4 \\cdot 60 = 240$ kişiyi verir.",
+      "narration": "Önce dilimin bütündeki payını bul, sonra payı toplamla çarp. Yarım daire yarıyı, çeyrek daire dörtte biri gösterdiğinden pay çoğu zaman basit bir kesirdir."
+     },
+     {
+      "kind": "example",
+      "title": "Açı ve yüzde birlikte",
+      "example": "Bir daire grafiğinde A dilimi bütünün %30'u, B dilimi 90°'dir. Toplam 200 kişi olduğuna göre C diliminde kaç kişi vardır?",
+      "explanation": "B diliminin payı $\\frac{90}{360} = \\frac{1}{4}$, yani %25. A ile B birlikte $30 + 25 = 55$ yüzde eder. C bütünün %45'idir. C'deki kişi sayısı $200 \\cdot \\frac{45}{100} = 90$. Yöntem: açıları ya da yüzdeleri aynı birime çevir, kalanı toplamdan çıkar.",
+      "narration": "İki farklı birim verildiğinde önce hepsini yüzdeye ya da hepsini açıya çevir. Dilimlerin toplamı bütündür; bilinmeyen dilim kalandır."
      },
      {
       "kind": "blank",
@@ -613,6 +672,12 @@
     "title": "Sıralama ve yerleştirme",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Sıralama ve yerleştirme nedir?",
+      "text": "Sıralama ve yerleştirme soruları, verilen sayıları **kurallara uyarak** şekle ya da tabloya yerleştirmeni ister: 'her kenarın toplamı eşit olsun' gibi. Çalışacağın kavramlar: eşit toplamlar, bir sayının **kaç toplamda yer aldığı** ve en büyük ya da en küçük değerin **gerçekten kurulabildiği**. Günlük hayatta bir masaya kişileri, herkesin yanındakilerle toplam yaşı eşit olacak biçimde oturtmaya benzer.",
+      "narration": "Çözümün özü sayma: hangi sayı kaç kez toplanıyor? Bunu bulunca toplam eşitliği tek bir denkleme iner."
+     },
+     {
       "kind": "rule",
       "title": "Kaç kez sayılıyor?",
       "items": [
@@ -621,6 +686,20 @@
        "En büyük ya da en küçük toplam için çok sayılan yerlere **büyük** ya da **küçük** sayıları koy."
       ],
       "narration": "Yerleştirme sorularında kenar ya da satır toplamları eşit isteniyorsa bütün kenar toplamlarını birlikte toplarsın. Bu toplamda bazı sayılar birden fazla sayılır: bir üçgenin köşesindeki sayı iki kenarda, kenar ortasındaki sayı yalnız bir kenarda yer alır. Toplamı en büyük yapmak için çok sayılan yerlere büyük sayıları koyarsın. Ama bulduğun değerin gerçekten kurulabildiğini ve bölünebilirlik koşulunu da kontrol etmelisin."
+     },
+     {
+      "kind": "example",
+      "title": "Satır toplamları eşit",
+      "example": "1'den 9'a kadar sayılar 3×3 bir tablonun karelerine birer kez yazılıyor ve her satırın toplamı eşit oluyor. Satır toplamı kaçtır?",
+      "explanation": "Sayıların toplamı $1 + 2 + \\cdots + 9 = 45$. Üç satır birlikte bütün kareleri tam bir kez kapsar; her sayı yalnız bir satırda yer alır. Bu yüzden $3S = 45$ ve $S = 15$. Bu soruda hiçbir sayı iki kez sayılmaz; üçgen ya da köşegen düzeneklerinde ise köşeler birden fazla toplamda yer alır.",
+      "narration": "Önce her sayının kaç toplamda yer aldığını belirlersin. Burada herkes bir kez sayıldığından işlem basittir; sonraki örneklerde sayma sayısı değişir."
+     },
+     {
+      "kind": "example",
+      "title": "Köşe sayıları sorunu",
+      "example": "Bir üçgenin köşelerine ve kenar orta noktalarına 2, 3, 4, 5, 6 ve 8 sayıları birer kez yazılıyor; her kenardaki üç sayının toplamı eşit. Bu eşit toplam en çok kaç olabilir?",
+      "explanation": "Sayıların toplamı 28. Köşeler iki kez sayıldığından $3S = 28 + K$ ($K$: köşeler toplamı). $K$ en çok $8 + 6 + 5 = 19$ olabilir, ama $28 + 19 = 47$ üçe bölünmez. $K = 18$ için 46 da bölünmez. $K = 17$ için $45$, yani $S = 15$ olur. Kuralım: köşeler 8, 5, 4 ve ortalar 2, 6, 3: $8 + 2 + 5 = 5 + 6 + 4 = 4 + 3 + 8 = 15$. $S = 16$ için $K = 20$ gerekir; bu mümkün değildir. En büyük değer 15'tir.",
+      "narration": "En büyük değeri bulurken iki şeyi birlikte kontrol edersin: köşeler toplamı üçe bölünme koşulunu sağlamalı ve yerleşim gerçekten kurulabilmelidir. Sınırdaki değerler bölünebilirlikten elenebilir."
      },
      {
       "kind": "question",
@@ -723,6 +802,12 @@
     "title": "Eşleştirme ve gruplama",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Eşleştirme ve gruplama nedir?",
+      "text": "Eşleştirme ve gruplama soruları, kişileri ya da nesneleri verilen **ipuçlarına** göre özelliklerle eşleştirmeni ister. İpuçlarının çoğu olumsuzdur: 'Ayla tenis oynamıyor' gibi. Burada çalışacağın kavramlar: **tablo kurmak**, olumsuz bilgiyle **kutu kapatmak** ve **kesin** ile **olabilir** ayrımı. Günlük hayatta üç arkadaşın hangi sırada oturduğunu ipuçlarından bulmaya benzer.",
+      "narration": "Bu soru türünde tahmin yürütmezsin; ipuçlarını tabloya işler ve elenenleri kapatırsın. Geriye kalan, tek seçenektir."
+     },
+     {
       "kind": "rule",
       "title": "Tabloya dök",
       "items": [
@@ -731,6 +816,20 @@
        "Bir satırda ya da sütunda **tek** boş kutu kalırsa o eşleşme **kesindir**."
       ],
       "narration": "Eşleştirme sorularında kişileri satırlara, seçenekleri sütunlara yazdığın bir tablo kurarsın. Her olumsuz bilgi bir kutuyu kapatır. Bir satırda ya da sütunda tek bir açık kutu kaldığında o eşleşme kesindir; o kişi ve o seçenek başka yerlerden silinir. Bu adım çoğu zaman zincirleme olarak bütün tabloyu çözer."
+     },
+     {
+      "kind": "example",
+      "title": "Tabloyla eşleştirme",
+      "example": "Deniz, Ece ve Fatih'in her biri kedi, köpek ve kuştan farklı birini besliyor. Deniz kuş beslemiyor. Ece ne kedi ne de kuş besliyor. Fatih hangi hayvanı besler?",
+      "explanation": "Satırlara kişileri, sütunlara hayvanları yaz. Ece'nin kedi ve kuş kutuları kapalı: tek açık kutu köpek, yani Ece köpek besler. Köpek sütunu dolduğundan Deniz için köpek kapanır. Deniz'in kuş kutusu da kapalı olduğundan ona kedi kalır. Geriye kuş kalır: Fatih kuş besler.",
+      "narration": "Her olumsuz bilgi bir kutuyu kapatır. Bir satırda tek açık kutu kalınca o eşleşme kesindir ve zincirleme olarak diğerlerini çözer."
+     },
+     {
+      "kind": "example",
+      "title": "Kesin mi, olabilir mi?",
+      "example": "Ali, Bora ve Cem'in her biri mavi, yeşil ve kırmızıdan farklı bir renk tişört giyiyor. Ali mavi, Bora kırmızı giymiyor. Hangisi kesinlikle doğrudur: 'Bora mavi giyer' mi, 'Ali ve Cem'den biri kırmızı giyer' mi?",
+      "explanation": "Ali yeşil ya da kırmızı, Bora mavi ya da yeşil giyer. Geçerli durumlar: (Ali yeşil, Bora mavi, Cem kırmızı), (Ali kırmızı, Bora mavi, Cem yeşil), (Ali kırmızı, Bora yeşil, Cem mavi). 'Bora mavi giyer' ilk iki durumda doğru, üçüncüde yanlıştır: yalnız olabilir. 'Ali ve Cem'den biri kırmızı giyer' üç durumda da doğrudur: kesinlikle doğru olan budur.",
+      "narration": "Önce bilgileri sağlayan bütün durumları yaz. Kesinlikle doğru ifade her durumda doğru olandır; tek bir karşı örnek bulursan ifade elenir."
      },
      {
       "kind": "question",
@@ -852,6 +951,12 @@
     "title": "Sayısal akıl yürütme",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Sayısal akıl yürütme nedir?",
+      "text": "Sayısal akıl yürütme, verilen birkaç **koşulu birleştirerek** bilinmeyen bir sayıya ulaşma becerisidir. Üç temel araç kullanırsın: tekrar eden ilişkilerde **ilk terimleri yazmak**, sıralı sayılarda **en küçük ve en büyük sınırları** bulup arada kalanı sıkıştırmak, döngü ve aralık sorularında **başlangıcı doğru saymak**. Örneğin 10 metrelik bir yola 2 metre arayla ağaç dikilirse 5 aralık, 6 ağaç olur.",
+      "narration": "Bu bölümde sorular tek bir formülle çözülmez; verilen bilgileri sırayla kullanırsın. Küçük sayılarla denemek ve ilk terimleri yazmak çoğu zaman kuralı kendiliğinden gösterir."
+     },
+     {
       "kind": "rule",
       "title": "Koşulları birleştir",
       "items": [
@@ -860,6 +965,20 @@
        "Döngüde kaçıncı kez olduğunu sayarken **başlangıcı** birinci say."
       ],
       "narration": "Sayısal akıl yürütme sorularında koşulları birleştirirsin. Tekrar eden bir ilişki varsa ilk birkaç terimi yazarsın; çoğu zaman bir desen ortaya çıkar. Sıralı sayılarda en küçük ve en büyük sınırları bulursun; aradaki sayılar bu sınırlara sıkışır. Döngülerde kaçıncı kez olduğunu sayarken başlangıcı birinci kez sayarsın; bu yüzden $n$ aralıkta $n + 1$ nokta bulunur."
+     },
+     {
+      "kind": "example",
+      "title": "Ardışık toplamlardan desen",
+      "example": "Dört daireli bir apartmanda ardışık her iki dairede toplam 9 kişi yaşıyor. 1. dairede 4 kişi olduğuna göre apartmanda toplam kaç kişi yaşar?",
+      "explanation": "İlk terimlerden başla. 1. daire 4 kişi. 1. ve 2. daire toplamı 9 olduğundan 2. daire $9 - 4 = 5$ kişi. 2. ve 3. toplamı 9 olduğundan 3. daire $9 - 5 = 4$ kişi. 3. ve 4. toplamı 9 olduğundan 4. daire 5 kişi. Toplam: $4 + 5 + 4 + 5 = 18$. Kısa yol: dört daire, her biri 9 kişilik iki çift oluşturur; $2 \\cdot 9 = 18$.",
+      "narration": "Tekrar eden bir ilişki varsa ilk birkaç terimi yazarsın. Burada sayılar 4, 5, 4, 5 diye döner. Deseni görünce uzun hesaba gerek kalmaz; daireleri ikişerli gruplamak toplamı doğrudan verir."
+     },
+     {
+      "kind": "example",
+      "title": "Sınırlarla sıkıştırma",
+      "example": "Birbirinden farklı üç pozitif tam sayının toplamı 9'dur. Bu sayıların en büyüğü en az kaç olabilir?",
+      "explanation": "Sayılar $a < b < c$ olsun. $c = 3$ olsaydı en büyük toplam $1 + 2 + 3 = 6$ olurdu; 9'a ulaşılamaz. $c = 4$ olursa $a + b = 5$ ve $a < b < 4$ gerekir: $2 + 3 = 5$ uygundur. Sayılar 2, 3 ve 4'tür. Demek ki en büyük sayı en az 4'tür.",
+      "narration": "Sıkıştırma sorularında önce 'en büyük sayı küçük olsaydı ne olurdu?' diye denersin. Küçük bir değer toplamı yetiştiremiyorsa o değer elenir. İlk uygun değer bulununca yerleşimin gerçekten kurulabildiğini göstermek gerekir."
      },
      {
       "kind": "question",

@@ -124,4 +124,6 @@ export const UI_SHADOW = {
 export const UI_CANVAS = {
 	mobile: {width: 390, height: 844, scale: 3},
 	web: {width: 1440, height: 900, scale: 2},
+	/** iPad 11" in landscape (the pen's wide layout, ≥ 900 pt); portrait screens swap the sides (834 × 1194). */
+	tablet: {width: 1194, height: 834, scale: 2},
 } as const;

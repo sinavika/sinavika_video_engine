@@ -3,7 +3,8 @@
  * Posts wait for an admin's approval there; this tool cannot approve or publish.
  *
  *   npm run social -- accounts
- *       The active accounts and the hours Buffer suggests for each.
+ *       The active accounts as platform/name with their id (what Post.json
+ *       targets name; there is no default account) and their Buffer hours.
  *
  *   npm run social -- submit --post Posts/2026-11-02_Gunun_Sorusu.json [--post ...]
  *       Uploads the media of each post file and creates the post (see
@@ -64,7 +65,7 @@ const {values, positionals} = parseArgs({
 
 const POST_STATUS = ['onay bekliyor', 'onaylandı', 'reddedildi'];
 const TARGET_STATUS = ['bekliyor', 'gönderiliyor', 'planlandı', 'yayınlandı', 'başarısız'];
-type Target = {platform: string; postType?: string; scheduledAt?: string; coverFrameApplied?: boolean; status: number; error?: string | null; publishedUrl?: string | null};
+type Target = {platform: string; accountName?: string; postType?: string; scheduledAt?: string; coverFrameApplied?: boolean; status: number; error?: string | null; publishedUrl?: string | null};
 type Post = {id: string; hasCover?: boolean; title: string; category: string; lesson?: string | null; scheduledAt: string; status: number; reviewNote?: string | null; targets: Target[]; sources?: {kind: string; key: string}[]};
 
 const localTime = (iso: string) => new Date(iso).toLocaleString('tr-TR', {timeZone: 'Europe/Istanbul', dateStyle: 'medium', timeStyle: 'short'});
@@ -73,7 +74,7 @@ const describePost = (post: Post) =>
 	post.targets
 		.map(
 			(target) =>
-				`    ${target.platform.padEnd(10)} ${(target.postType ?? '').padEnd(9)} ${target.scheduledAt ? localTime(target.scheduledAt).slice(-5) : '     '}  ${TARGET_STATUS[target.status]}` +
+				`    ${`${target.platform}/${target.accountName ?? ''}`.padEnd(24)} ${(target.postType ?? '').padEnd(9)} ${target.scheduledAt ? localTime(target.scheduledAt).slice(-5) : '     '}  ${TARGET_STATUS[target.status]}` +
 				`${target.coverFrameApplied ? '  kapak karesi' : post.hasCover ? '  kapak elle' : ''}${target.error ? `: ${target.error}` : ''}${target.publishedUrl ? `  ${target.publishedUrl}` : ''}`,
 		)
 		.join('\n');
@@ -86,9 +87,9 @@ try {
 	const client = createSocialHubClient();
 
 	if (command === 'accounts') {
-		const accounts = (await client.accounts()) as {platform: string; name: string; postingSchedule?: {day: string; times: string[]}[]}[];
+		const accounts = (await client.accounts()) as {id: string; platform: string; name: string; postingSchedule?: {day: string; times: string[]}[]}[];
 		print(accounts, () =>
-			accounts.map((account) => `${account.platform.padEnd(10)} ${account.name}\n    ${(account.postingSchedule ?? []).filter((slot) => slot.times.length > 0).map((slot) => `${slot.day} ${slot.times.join(' ')}`).join(' · ')}`).join('\n'),
+			accounts.map((account) => `${`${account.platform}/${account.name}`.padEnd(24)} ${account.id}\n    ${(account.postingSchedule ?? []).filter((slot) => slot.times.length > 0).map((slot) => `${slot.day} ${slot.times.join(' ')}`).join(' · ')}`).join('\n'),
 		);
 	} else if (command === 'plan') {
 		const accounts = (await client.accounts().catch(() => [])) as AccountSchedule[];

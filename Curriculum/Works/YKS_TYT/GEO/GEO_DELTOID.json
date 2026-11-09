@@ -64,8 +64,25 @@
      {
       "kind": "concept",
       "title": "Deltoid nedir?",
+      "text": "**Deltoid**, komşu kenarları ikişer ikişer eşit olan dörtgendir; biçimi bir uçurtmaya benzer. Üstte birbirine eşit iki kenar, altta da birbirine eşit iki başka kenar vardır. TYT geometrisinde deltoid, köşegenleri dik kesiştiği için açı, dik üçgen, Pisagor ve alan sorularında sık karşına çıkar. Günlük hayatta uçurtma, pencere süsü ya da bir ok ucu deltoide örnektir. Bu bölümde deltoidin kenar, açı ve simetri özelliklerini öğreneceksin."
+     },
+     {
+      "kind": "concept",
+      "title": "Deltoidin köşeleri ve kenarları",
       "text": "Komşu kenarları ikişer ikişer eşit olan dörtgene **deltoid** denir: $|AB| = |AD|$ ve $|CB| = |CD|$. Eş kenarların buluştuğu köşeler $A$ ve $C$'dir. $B$ ve $D$ ise eş kenarların buluşmadığı köşelerdir. Şekil bir uçurtmaya benzer.",
       "narration": "Eş kenarlar **yan yana** olmalıdır. Karşılıklı kenarlar eşit olsaydı şekil paralelkenar olurdu. Deltoidde ise bir köşeden çıkan iki kenar birbirine eşittir. Derste köşeleri hep aynı düzenle kullanacağız: $A$ üstte, $C$ altta, $B$ ve $D$ yanlarda."
+     },
+     {
+      "kind": "predict",
+      "title": "Bu dörtgen deltoid mi?",
+      "context": "Kenarları sırayla $|AB| = 4$, $|BC| = 7$, $|CD| = 7$, $|DA| = 4$ cm olan bir $ABCD$ dörtgeni düşün.",
+      "prompt": "Bu dörtgen bir deltoiddir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Doğru. $|AB| = |AD| = 4$ ve $|CB| = |CD| = 7$ olduğundan eşit kenarlar yan yana gelir; komşu kenarları ikişer ikişer eşit olan dörtgen deltoiddir."
      },
      {
       "kind": "visual",
@@ -267,6 +284,18 @@
       "wrong": "Deltoidde iki köşegen de birbirini ortalar.",
       "right": "Yalnız simetri ekseni $[AC]$, $[BD]$'yi ortalar. $[BD]$ genelde $[AC]$'yi ortalamaz; iki köşegen birbirini ortalıyorsa şekil eşkenar dörtgendir.",
       "why": "Köşegenlerin birbirini ortalaması paralelkenar özelliğidir. Uçurtmada $O$ noktasının üstündeki ve altındaki parçalar farklı uzunluktadır."
+     },
+     {
+      "kind": "example",
+      "title": "Dörtgenin açıları",
+      "example": "$ABCD$ deltoidinde $|AB| = |AD|$, $|CB| = |CD|$, $m(\\widehat{A}) = 100°$ ve $m(\\widehat{C}) = 40°$'dir. $m(\\widehat{B})$ kaç derecedir?",
+      "explanation": "Eş kenarlar $A$ ve $C$'de buluşur; eşit açılar buluşmadıkları köşelerdedir: $m(\\widehat{B}) = m(\\widehat{D})$. Dörtgenin iç açıları toplamı $360°$ olduğundan $100 + 40 + 2 \\cdot m(\\widehat{B}) = 360$. Buradan $2 \\cdot m(\\widehat{B}) = 220$ ve $m(\\widehat{B}) = 110°$. Kontrol: $100 + 40 + 110 + 110 = 360$."
+     },
+     {
+      "kind": "example",
+      "title": "Parçalı açıdan açı toplamı",
+      "example": "$ABCD$ deltoidinde $|AB| = |AD|$, $|CB| = |CD|$, $m(\\widehat{ABD}) = 35°$ ve $m(\\widehat{CBD}) = 20°$'dir. $m(\\widehat{A}) + m(\\widehat{C})$ kaç derecedir?",
+      "explanation": "$B$ açısı iki parçadan oluşur: $m(\\widehat{B}) = 35 + 20 = 55°$. $B$ ve $D$ açıları eşit olduğundan $m(\\widehat{D}) = 55°$. $A$ ile $C$'yi ayrı ayrı bulmaya gerek yok: iç açılar toplamı $360°$ olduğundan $A + C = 360 - 55 - 55 = 250°$. Kontrol: köşegenler dik olduğundan $ABO$ üçgeninde $\\widehat{BAO} = 90 - 35 = 55°$, yani $A = 110°$; $CBO$ üçgeninde $\\widehat{BCO} = 90 - 20 = 70°$, yani $C = 140°$. Toplam $110 + 140 = 250°$."
      },
      {
       "kind": "question",
@@ -594,6 +623,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Deltoidde köşegenler nedir?",
+      "text": "**Köşegen**, dörtgenin karşılıklı köşelerini birleştiren doğru parçasıdır. Deltoidin iki köşegeni vardır: eş kenarların buluştuğu köşeleri birleştiren simetri ekseni ve öbür köşegen. Uçurtmanın uzun ve kısa çıtası gibi düşün: uzun çıta kısa çıtayı dik keser ve tam ortasından geçer. Kısa çıta 12 cm ise ortadaki kesişim noktasının iki yanında 6'şar cm kalır. Bu yüzden deltoid dik üçgenlere ayrılır ve kenar, köşegen ya da çevre hesabı Pisagor'a dönüşür. Bu bölümde köşegen parçalarından kenar, kenarlardan köşegen bulmayı çalışacaksın."
+     },
+     {
       "kind": "rule",
       "title": "Köşegenlerden dik üçgenler",
       "items": [
@@ -689,6 +723,18 @@
       "wrong": "$ABO$ dik üçgeninde $|AB|^2 = |AO|^2 + |BD|^2$ yazılır.",
       "right": "$|AB|^2 = |AO|^2 + |BO|^2$ ve $|BO| = \\frac{|BD|}{2}$. Dik kenar $[BD]$'nin tamamı değil, yarısıdır.",
       "why": "Dik açı $O$ köşesindedir. $ABO$'nun dik kenarları $[AO]$ ve $[BO]$'dur; $[BD]$ ise iki dik üçgene yayılmıştır."
+     },
+     {
+      "kind": "example",
+      "title": "Köşegen parçasını bulma",
+      "example": "$ABCD$ deltoidinde $|AB| = |AD| = 10$ cm ve $|BD| = 12$ cm'dir. $O$ köşegenlerin kesişim noktası olduğuna göre $|AO|$ kaç santimetredir?",
+      "explanation": "$[AC]$, $[BD]$'yi dik keser ve ortalar: $|BO| = 12 : 2 = 6$. $ABO$ dik üçgeninde dik kenarlar $|AO|$ ve $6$, hipotenüs $|AB| = 10$'dur. Pisagor ile $|AO| = \\sqrt{10^2 - 6^2} = \\sqrt{64} = 8$. Aynı sonuç $6$-$8$-$10$ üçlüsünden ($3$-$4$-$5$'in $2$ katı) de çıkar."
+     },
+     {
+      "kind": "example",
+      "title": "İki dik üçgenle köşegen",
+      "example": "$ABCD$ deltoidinde $|AB| = |AD| = 13$ cm, $|CB| = |CD| = 20$ cm ve $|BD| = 24$ cm'dir. $|AC|$ kaç santimetredir?",
+      "explanation": "$|BO| = 24 : 2 = 12$. $ABO$ dik üçgeninde $|AO| = \\sqrt{13^2 - 12^2} = 5$ ($5$-$12$-$13$ üçlüsü). $CBO$ dik üçgeninde $|OC| = \\sqrt{20^2 - 12^2} = \\sqrt{256} = 16$ ($12$-$16$-$20$, $3$-$4$-$5$'in $4$ katı). Şekil dışbükey olduğundan $|AC| = |AO| + |OC| = 5 + 16 = 21$. Tuzak: kenarları ya da $|BD|$'yi köşegene eklememelisin; $O$'daki iki ayrı dik üçgenin dik kenarlarını bulup birleştiriyorsun."
      },
      {
       "kind": "blank",
@@ -1380,6 +1426,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Deltoidin alanı nedir?",
+      "text": "**Alan**, bir şeklin kapladığı yüzeyin ölçüsüdür. Deltoidin köşegenleri birbirine dik olduğu için alanı köşegenlerle çok kolay bulunur. Basit bir örnek: köşegenleri 4 cm ve 6 cm olan bir deltoidi, kenarları 4 cm ve 6 cm olan bir dikdörtgenin içine yerleştirirsen deltoid bu dikdörtgenin yarısını kaplar. Dikdörtgenin alanı 24 cm² ise deltoidin alanı 12 cm²'dir. Bu bölümde alanı köşegenlerle bulacak, eksik köşegeni dik üçgenlerden çıkaracak ve içbükey deltoide bakacaksın."
+     },
+     {
       "kind": "visual",
       "title": "Köşegenlerin çarpımının yarısı",
       "visual": {
@@ -1519,6 +1570,18 @@
       ],
       "answer": 0,
       "explanation": "Doğru. $\\frac{6\\sqrt{2} \\cdot 6\\sqrt{2}}{2} = \\frac{72}{2} = 36$; bu, kenar karesine eşittir."
+     },
+     {
+      "kind": "example",
+      "title": "Köşegenlerden alan",
+      "example": "Köşegenleri $10$ cm ve $7$ cm olan bir deltoidin alanı kaç santimetrekaredir?",
+      "explanation": "Alan köşegenlerin çarpımının yarısıdır. Önce köşegenleri çarparız: $10 \\cdot 7 = 70$. Sonra ikiye böleriz: $70 : 2 = 35$. Alan $35$ cm²'dir."
+     },
+     {
+      "kind": "example",
+      "title": "Eksik köşegeni bulup alan hesaplama",
+      "example": "$ABCD$ deltoidinde $|AB| = |AD| = 15$ cm, $|CB| = |CD| = 20$ cm ve $|BD| = 24$ cm'dir. Alanı bulalım.",
+      "explanation": "Alan için iki köşegen gerekir; $|BD| = 24$ verilmiş, $|AC|$ eksik. Simetri ekseni $[BD]$'yi ortalar: $|BO| = 12$. $ABO$ dik üçgeninde $|AO| = \\sqrt{15^2 - 12^2} = \\sqrt{81} = 9$. $CBO$ dik üçgeninde $|OC| = \\sqrt{20^2 - 12^2} = \\sqrt{256} = 16$. Şekil dışbükey olduğundan $|AC| = 9 + 16 = 25$. Alan $= \\frac{25 \\cdot 24}{2} = 300$ cm². Kontrol: iki üçgenin alanı $\\frac{24 \\cdot 9}{2} + \\frac{24 \\cdot 16}{2} = 108 + 192 = 300$."
      },
      {
       "kind": "blank",

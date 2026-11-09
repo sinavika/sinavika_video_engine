@@ -80,6 +80,11 @@
     "title": "Küme ve eleman",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Kümeler nedir?",
+      "text": "**Küme**, neyin içinde olup neyin olmadığı kesin bilinen nesneler topluluğudur. Sınıftaki öğrenciler, alfabemizdeki ünlü harfler ya da 10'dan küçük asal sayılar birer kümedir; kümedeki her nesneye **eleman** denir. 'Güzel şarkılar' küme değildir, çünkü neyin güzel olduğu kişiye göre değişir. Örnek: $A = \\{2, 3, 5, 7\\}$ kümesinde 5 bir elemandır ($5 \\in A$), 6 değildir ($6 \\notin A$). KPSS'de kümeler çoğu zaman alt küme sayma, birleşim ve kesişim, Venn şemalı problemler olarak gelir. Bu bölümde kümeyi yazmayı, eleman saymayı ve eşit ile denk kümeleri ayırt etmeyi çalışacaksın."
+     },
+     {
       "kind": "rule",
       "title": "Küme nasıl yazılır?",
       "items": [
@@ -101,6 +106,12 @@
       "title": "Aralıkta kaç eleman?",
       "example": "$A = \\{x \\mid x = 3k,\\ k \\text{ pozitif tam sayı}\\}$ kümesinin 50'den küçük kaç elemanı vardır?",
       "explanation": "Elemanlar $3k$ biçimindedir: 3, 6, 9, … Koşul $3k < 50$ olduğundan $k < \\frac{50}{3}$, yani $k$ en çok 16 olabilir. $k$ pozitif tam sayı olduğuna göre $k = 1, 2, \\ldots, 16$; kümenin 50'den küçük 16 elemanı vardır (en büyüğü $3 \\cdot 16 = 48$). Genel yol: ortak özelliği $k$ için eşitsizliğe çevir, $k$'nın alabileceği en küçük ve en büyük tam sayıyı bul, sonra **son − ilk + 1** hesapla."
+     },
+     {
+      "kind": "example",
+      "title": "Uç değerlere dikkat",
+      "example": "$A = \\{x \\mid x = 2k - 1,\\ k \\in \\mathbb{Z}\\}$ kümesinin 11 ile 40 arasındaki ($11 \\le x \\le 40$) kaç elemanı vardır?",
+      "explanation": "Koşulu $k$ için eşitsizliğe çeviririz: $11 \\le 2k - 1 \\le 40$. Her tarafa 1 eklersek $12 \\le 2k \\le 41$, ikiye bölersek $6 \\le k \\le 20,5$ olur. $k$ tam sayı olduğundan $k = 6, 7, \\ldots, 20$. Eleman sayısı son − ilk + 1 $= 20 - 6 + 1 = 15$. Kontrol: en küçük eleman $2 \\cdot 6 - 1 = 11$, en büyük eleman $2 \\cdot 20 - 1 = 39$; 40 tek sayı olmadığı için dışarıda kalır."
      },
      {
       "kind": "blank",
@@ -248,6 +259,11 @@
     "title": "Alt kümeler",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Alt küme nedir?",
+      "text": "Bir kümenin elemanlarından bazılarını (hepsini ya da hiçbirini de) alıp yeni bir küme kurarsan, bu yeni küme ilk kümenin **alt kümesidir**. Örnek: $A = \\{1, 2, 3\\}$ için $\\{1, 2\\}$ bir alt kümedir, $\\{1, 4\\}$ değildir, çünkü 4, $A$'da yok. Alt küme kurarken her eleman için tek bir karar verirsin: alıyorum ya da almıyorum. İki elemanlı $\\{1, 2\\}$ için bu kararlarla $\\emptyset$, $\\{1\\}$, $\\{2\\}$, $\\{1, 2\\}$ olmak üzere 4 alt küme çıkar. Bu bölümde alt küme ve öz alt küme sayısını, belirli elemanların bulunduğu ya da bulunmadığı alt kümeleri ve alt küme ilişkisini çalışacaksın."
+     },
+     {
       "kind": "rule",
       "title": "Alt küme sayısı",
       "items": [
@@ -315,6 +331,18 @@
        "Bazı kitaplar $\\subset$ işaretini eşitliğe izin veren alt küme için de kullanır; soruda 'öz' sözcüğü varsa eşitlik dışlanır."
       ],
       "narration": "Alt küme, bir kümenin bütün elemanlarının başka bir kümede de bulunmasıdır. Eşitlik de buna dahildir: her küme kendisinin alt kümesidir. Eşitliğin dışlandığı durum öz alt kümedir. Eleman bir nesnedir, alt küme ise bir kümedir; bu yüzden $1 \\subseteq A$ yazmak yanlış, $\\{1\\} \\subseteq A$ yazmak doğrudur. Ayrıca iki küme birbirinin alt kümesi ise eşittir."
+     },
+     {
+      "kind": "example",
+      "title": "Alt küme ve öz alt küme sayısı",
+      "example": "$B = \\{x \\mid x \\text{ asal sayı},\\ x < 12\\}$ kümesinin kaç alt kümesi, kaç öz alt kümesi vardır?",
+      "explanation": "Önce kümeyi listeleriz: 1 asal sayı değildir, bu yüzden $B = \\{2, 3, 5, 7, 11\\}$ ve $s(B) = 5$. Her eleman için iki seçenek vardır: alt kümede bulunur ya da bulunmaz. Alt küme sayısı $2^5 = 32$'dir. Öz alt küme, kümenin kendisi hariç alt kümedir: $32 - 1 = 31$."
+     },
+     {
+      "kind": "example",
+      "title": "Öz alt küme sayısından eleman sayısı",
+      "example": "Bir kümenin öz alt küme sayısı 63 ise bu kümenin eleman sayısı kaçtır?",
+      "explanation": "Öz alt küme sayısı $2^n - 1$'dir. $2^n - 1 = 63$ ise $2^n = 64$ olur. $64 = 2^6$ olduğundan $n = 6$'dır. Kontrol: 6 elemanlı kümenin alt küme sayısı $2^6 = 64$, kümenin kendisi hariç $63$ öz alt küme eder."
      },
      {
       "kind": "multi",
@@ -512,6 +540,11 @@
     "title": "Birleşim, kesişim, fark, tümleyen",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Küme işlemleri nedir?",
+      "text": "**Birleşim** iki kümedeki elemanların hepsini, **kesişim** ikisinde de bulunanları, **fark** birinde olup ötekinde olmayanları, **tümleyen** ise evrensel kümede olup verilen kümede olmayanları toplar. Örnek: $A = \\{1, 2, 3\\}$ ve $B = \\{3, 4\\}$ ise $A \\cup B = \\{1, 2, 3, 4\\}$, $A \\cap B = \\{3\\}$, $A \\setminus B = \\{1, 2\\}$. Evrensel küme $E = \\{1, 2, 3, 4, 5\\}$ ise $A' = \\{4, 5\\}$ olur. Bu bölümde dört işlemi, simetrik farkı, eleman sayısı formülünü ve tam sayı aralıklarındaki uç sorunlarını çalışacaksın."
+     },
+     {
       "kind": "visual",
       "title": "İki kümenin Venn şeması",
       "visual": {
@@ -605,6 +638,18 @@
       "wrong": "$A \\setminus B$ ile $B \\setminus A$ her zaman aynı kümedir.",
       "right": "$A \\neq B$ ise $A \\setminus B \\neq B \\setminus A$; fark işleminin değişme özelliği yoktur.",
       "why": "$A = \\{1, 2, 3\\}$ ve $B = \\{3, 4\\}$ için $A \\setminus B = \\{1, 2\\}$, $B \\setminus A = \\{4\\}$; bölgeler farklıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Dört işlemi uygulamak",
+      "example": "$E = \\{1, 2, \\ldots, 8\\}$, $A = \\{1, 2, 3, 4, 5\\}$ ve $B = \\{4, 5, 6, 7\\}$ ise $A \\cup B$, $A \\cap B$, $A \\setminus B$, $A'$ ve $A \\triangle B$ kümelerini bul.",
+      "explanation": "Birleşim iki kümedeki bütün elemanlardır: $A \\cup B = \\{1, 2, 3, 4, 5, 6, 7\\}$. Kesişim ikisinde de olanlardır: $A \\cap B = \\{4, 5\\}$. Fark, $A$'dan ortakları atar: $A \\setminus B = \\{1, 2, 3\\}$. Tümleyen, $E$'de olup $A$'da olmayanlardır: $A' = \\{6, 7, 8\\}$. Simetrik fark yalnız birinde olanlardır: $A \\setminus B = \\{1, 2, 3\\}$ ile $B \\setminus A = \\{6, 7\\}$ birleşir: $A \\triangle B = \\{1, 2, 3, 6, 7\\}$."
+     },
+     {
+      "kind": "example",
+      "title": "Formülle fark ve simetrik fark",
+      "example": "$s(A) = 12$, $s(B) = 9$ ve $s(A \\cup B) = 15$ ise $s(A \\setminus B)$ ve $s(A \\triangle B)$ kaçtır?",
+      "explanation": "Önce kesişimi bulalım: $s(A \\cup B) = s(A) + s(B) - s(A \\cap B)$ olduğundan $15 = 12 + 9 - s(A \\cap B)$ ve $s(A \\cap B) = 6$. $A \\setminus B$, $A$'dan ortak elemanların çıkarılmasıdır: $12 - 6 = 6$. Benzer biçimde $s(B \\setminus A) = 9 - 6 = 3$. Simetrik fark iki dış bölgenin birleşimidir: $s(A \\triangle B) = 6 + 3 = 9$. Kontrol: $s(A \\cup B) = 6 + 6 + 3 = 15$."
      },
      {
       "kind": "blank",
@@ -817,6 +862,11 @@
     "title": "Kartezyen çarpım",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Kartezyen çarpım nedir?",
+      "text": "**Kartezyen çarpım**, iki kümenin elemanlarından kurulan **sıralı ikililer** kümesidir. Sıralı ikilide birinci sırada birinci kümeden, ikinci sırada ikinci kümeden bir eleman bulunur ve sıra önemlidir: $(1, 2)$ ile $(2, 1)$ farklıdır. Örnek: $A = \\{1, 2\\}$ ve $B = \\{x, y, z\\}$ için her $A$ elemanı her $B$ elemanıyla eşlenir: 1 için üç ikili, 2 için üç ikili; toplam $2 \\cdot 3 = 6$ ikili. Bu bölümde ikilileri yazmayı, saymayı ve koşullu ikilileri bulmayı çalışacaksın."
+     },
+     {
       "kind": "rule",
       "title": "Sıralı ikililer",
       "items": [
@@ -857,6 +907,18 @@
        ]
       },
       "narration": "$A$ kartezyen çarpım $B$, birinci bileşeni $A$'dan, ikinci bileşeni $B$'den alınan bütün sıralı ikililerdir. Tablo bunu satır ve sütun olarak gösterir: satırlar $A$'nın, sütunlar $B$'nin elemanlarıdır, her hücre bir ikilidir. Eleman sayısı iki kümenin eleman sayılarının çarpımıdır. İki sıralı ikilinin eşit olması için hem birinci hem ikinci bileşenlerin eşit olması gerekir; bu da denklem kurmanı sağlar."
+     },
+     {
+      "kind": "example",
+      "title": "Kartezyen çarpımı yazmak",
+      "example": "$A = \\{1, 2\\}$ ve $B = \\{a, b, c\\}$ için $A \\times B$ kümesini yaz, eleman sayısını bul. $A \\times B = B \\times A$ midir?",
+      "explanation": "$A$'nın her elemanını $B$'nin her elemanıyla eşleriz: $A \\times B = \\{(1, a), (1, b), (1, c), (2, a), (2, b), (2, c)\\}$. Eleman sayısı $2 \\cdot 3 = 6$'dır. $B \\times A$ de 6 elemanlıdır ama ikililerin sırası değişir: $(a, 1)$ ile $(1, a)$ farklı ikililerdir. Bu yüzden $A \\times B \\neq B \\times A$."
+     },
+     {
+      "kind": "example",
+      "title": "Eleman sayısından alt küme sayısına",
+      "example": "$A = \\{1, 2, 3\\}$ ve $s(A \\times B) = 12$ ise $B$ kümesinin kaç alt kümesi vardır?",
+      "explanation": "Kartezyen çarpımın eleman sayısı $s(A \\times B) = s(A) \\cdot s(B)$ olduğundan $3 \\cdot s(B) = 12$ ve $s(B) = 4$ bulunur. Eleman sayısı 4 olan kümenin alt küme sayısı $2^4 = 16$'dır. Yani önce çarpımdan eleman sayısını, sonra eleman sayısından alt küme sayısını buldun."
      },
      {
       "kind": "blank",
@@ -994,6 +1056,11 @@
     "title": "Venn şemaları ve küme problemleri",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Küme problemi nedir?",
+      "text": "**Küme problemi**, bir topluluğun (sınıf, grup, müşteriler) bazı özelliklere göre bölündüğü sözel sorudur. Bunu çözmek için topluluğu Venn şemasında bölgelere ayırırsın. Örnek: 10 kişilik bir grupta 6 kişi çay, 5 kişi kahve içiyor ve herkes en az birini içiyor. $6 + 5 = 11$ olduğundan bir kişi iki kez sayılmıştır: hem çay hem kahve içen 1 kişi vardır. Bu bölümde 'yalnız', 'en az biri' ve 'hiçbiri' ifadelerini, iki ve üç kümeli problemleri çalışacaksın."
+     },
+     {
       "kind": "rule",
       "title": "Bölgelere ayır",
       "items": [
@@ -1098,6 +1165,12 @@
       "title": "İki kümeli problem",
       "example": "50 kişilik bir grupta 30 kişi İngilizce, 25 kişi Almanca biliyor; 8 kişi hiçbirini bilmiyor. İki dili de bilen kaç kişi vardır?",
       "explanation": "En az birini bilenler: $50 - 8 = 42$. Birleşim formülü: $42 = 30 + 25 - s(A \\cap B)$, yani $s(A \\cap B) = 55 - 42 = 13$. Kontrol: yalnız İngilizce $30 - 13 = 17$, yalnız Almanca $25 - 13 = 12$, ikisi birden 13, hiçbiri 8; $17 + 12 + 13 + 8 = 50$."
+     },
+     {
+      "kind": "example",
+      "title": "Yalnız bir testi yapanlar",
+      "example": "45 öğrencili bir sınıfta 28 öğrenci matematik, 20 öğrenci fen testini yapmıştır. İki testi de yapan 7 öğrenci vardır. Yalnız bir testi yapan kaç öğrenci vardır?",
+      "explanation": "Verilen 28 ve 20 sayıları ortak bölgeyi de içerir. Yalnız matematik: $28 - 7 = 21$. Yalnız fen: $20 - 7 = 13$. Yalnız bir testi yapanlar bu iki bölgenin toplamıdır: $21 + 13 = 34$. Kontrol için hiçbirini yapmayanları da bulalım: en az birini yapanlar $28 + 20 - 7 = 41$, hiçbirini yapmayanlar $45 - 41 = 4$. Bölgeler: $21 + 7 + 13 + 4 = 45$ eder, yani her öğrenci tek bir bölgede sayılmıştır."
      },
      {
       "kind": "question",

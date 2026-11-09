@@ -1,6 +1,6 @@
 import {z} from 'zod';
 import {entryRef, sectionRefs, type ChecklistEntry} from './Curriculum';
-import type {LessonScript} from './LessonScript';
+import type {LessonCard, LessonScript} from './LessonScript';
 
 /** Where the Works views go: Curriculum/Works/<CATEGORY>/<LESSON>/<TOPIC>.json, one per checklist topic. */
 export const WORKS_DIRECTORY = 'Works';
@@ -49,6 +49,17 @@ const interleave = (lists: readonly (readonly string[])[], limit: number) => {
 };
 
 /**
+ * A card as Works knows it. A practice card (video only, 8 Nov 2026) goes over as the visual card it was: Works asks
+ * its own way (the API turns a matching board, flip cards and a `flow` into its match, flip and ordering steps), so
+ * an ordering board goes as the flow of its items, in their right order.
+ */
+export const worksCard = (card: LessonCard): unknown => {
+	if (card.kind !== 'practice') return card;
+	const visual = card.visual.kind === 'ordering' ? {kind: 'flow', nodes: card.visual.items} : card.visual;
+	return {kind: 'visual', title: card.title, visual, narration: card.narration, beats: card.beats};
+};
+
+/**
  * The Works view of `entry` from the scripts given (any scripts; only the ones that teach its subtopics are used),
  * or the subtopics still taught nowhere. Subtopics the topic's own script leaves out on purpose (`outOfScope`, with
  * its reason) are not asked for. Sections follow the topic's subtopic order.
@@ -62,7 +73,7 @@ export const worksViewOf = (entry: ChecklistEntry, sources: readonly Source[]): 
 		source.script.lesson.sections.flatMap((section, sectionIndex): Found[] => {
 			const refs = new Set(sectionRefs(source.script.topic.category, source.script.topic.lesson, section));
 			const matched = codes.filter((code) => refs.has(entryRef(entry, code)));
-			const content = {title: section.title, narration: section.narration, cards: section.cards};
+			const content = {title: section.title, narration: section.narration, cards: section.cards.map(worksCard)};
 			if (matched.length > 0) return [{source, sourceIndex, sectionIndex, at: codes.indexOf(matched[0]), section: {subtopic: matched[0], subtopics: matched.slice(1), ...content}}];
 			// A section without a subtopic (overview, mixed practice) stays where it was in the topic's own script.
 			return refs.size === 0 && own.includes(source) ? [{source, sourceIndex, sectionIndex, at: Infinity, section: {subtopics: [], ...content}}] : [];

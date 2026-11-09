@@ -53,6 +53,7 @@ Kaçınılacaklar: [ör. "fiyat yok", "geçen seferki gibi olmasın"]
 ### Müzik ve ses tasarımı
 
 - **Müzik her video için ayrı yaptırılır** (ElevenLabs Music): iş dosyasında müzik sözle tarif edilir, `"soundtrack": {"music": "…"}`. Tarif videonun havasını, temposunu, çalgılarını ve "No vocals" koşulunu içerir; iki tanıtım aynı tarifi kullanmaz. Parça bir kez üretilir ve `public/Music/` altında saklanır; yeniden render kredi harcamaz. (`src/Services/MusicLibrary.ts`)
+  - Parça sessiz ya da çok yavaş açılıyorsa (bazı parçalar 1–5 sn sessizlikle başlar), aynı parçayı koruyup girişini atla: `"soundtrack": {"music": "…", "from": 4.8}`. Vuruşlar da kaydırılır, kesmeler müzikte kalır. Göndermeden önce parçanın ilk saniyelerini dinle (sahip, 9 Kasım 2026: "müzik geç başlıyor").
 - Motorun kendi bestelediği müzik (`"soundtrack": true` ya da `Bright` / `Pulse`) yedektir; tanıtım videolarında kullanılmaz (Ekim 2026'da beğenilmedi).
 - **Seviyeler tek yerdedir** (`AUDIO_LEVELS`, `src/Services/AudioLeveling.ts`): seslendirme karışıma −20 LUFS / en fazla −4 dBTP ile girer, müzik −36 LUFS ile (sesin 16 dB altında). Konuşma servisleri sesi tam seviyede verir; seviyelenmeden müzikle toplanırsa karışım taşar ve cızırtı duyulur. Karışım mastering öncesi −0,3 dBTP'yi aşarsa render uyarı verir.
 - Ana çıkış **−14 LUFS, −1,5 dBTP**; önce ölçülür, sonra tek sabit kazançla ayarlanır.

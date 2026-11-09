@@ -2,7 +2,7 @@ import {COURSE_VOICE_MODEL} from '../../../Configurations/Voices';
 import {COURSE_DESIGN} from '../../../Courses/CourseDesign';
 import {CAMP_SCRIPT_SAMPLE} from '../../../Courses/LessonScriptSample';
 import type {ChallengeRound, LessonScript} from '../../../Courses/LessonScript';
-import {CHALLENGE_SCORE_LINE, spokenRoundAsk, spokenRoundReveal} from '../../../Courses/LessonSpeech';
+import {CHALLENGE_SCORE_LINE, spokenHook, spokenRoundAsk, spokenRoundReveal} from '../../../Courses/LessonSpeech';
 import {estimateReadingSeconds} from '../../../Scenes/SceneDuration';
 import {OUTRO_SCENE_ID} from '../../../Scenes/AppEndScene';
 import type {TemplateScene} from '../../../Scenes/ScenePlan';
@@ -17,19 +17,26 @@ import {ChallengeRoundScene} from './Scenes/ChallengeRoundScene';
 import {ChallengeScoreScene} from './Scenes/ChallengeScoreScene';
 
 /**
- * The challenge reel (docs/CourseNarration.md §10): the first question from
- * the first frame, the hook shown over it but not said; each round asked,
- * counted down and answered; one ask for the score. No separate title card
- * and no promotion: those were 5–7 s and 12–13 s of standing still
- * (outside review, 27 Oct 2026).
+ * The challenge reel (docs/CourseNarration.md §10): the hook said over the
+ * whole screen in big type from the first frame (about 1.5 s), then each
+ * round asked, counted down and answered; one ask for the score. The
+ * 27 Oct reels showed the hook small and silent over the first question and
+ * held viewers 4–8 s (8 Nov 2026 analysis, docs/Analiz): the first second
+ * now moves and speaks. No title card and no promotion: those were 5–7 s
+ * and 12–13 s of standing still (outside review, 27 Oct 2026).
  */
 const challengeScenes = (script: LessonScript, rounds: readonly ChallengeRound[], voiceClips: VoiceClips): TemplateScene[] => {
 	const say = createNarrator(voiceClips, script.script);
 	const estimate = (text: string, min: number) => estimateReadingSeconds([text], {baseSeconds: 0.6, minSeconds: min, maxSeconds: 30});
 	const {roundThinkSeconds: think, roundRevealSeconds} = COURSE_DESIGN.camp;
 
+	const hookText = spokenHook(script.short.hook);
+	const hook = say('hook', hookText, estimate(hookText, 1.2), 1.2);
+
 	const scenes: TemplateScene[] = rounds.map((round, index) => {
 		const id = `round-${index + 1}`;
+		const opening = index === 0 ? hook : undefined;
+		const lead = opening?.seconds ?? 0;
 		const askText = spokenRoundAsk(round);
 		const asked = say(`${id}-q`, askText, estimate(askText, 2), 2);
 		const ask = {...asked, seconds: asked.seconds + think};
@@ -37,17 +44,17 @@ const challengeScenes = (script: LessonScript, rounds: readonly ChallengeRound[]
 		const reveal = say(`${id}-a`, revealText, estimate(revealText, roundRevealSeconds), roundRevealSeconds);
 		return {
 			id,
-			seconds: ask.seconds + reveal.seconds,
+			seconds: lead + ask.seconds + reveal.seconds,
 			label: `Soru ${index + 1}`,
-			voice: [ask, reveal],
+			voice: opening ? [opening, ask, reveal] : [ask, reveal],
 			element: (
 				<ChallengeRoundScene
 					round={round}
 					index={index}
 					total={rounds.length}
 					title={script.title}
-					hook={index === 0 ? script.short.hook : undefined}
-					timing={{thinkAt: asked.seconds, thinkSeconds: think, revealAt: ask.seconds}}
+					hook={opening ? {text: script.short.hook, seconds: lead} : undefined}
+					timing={{thinkAt: lead + asked.seconds, thinkSeconds: think, revealAt: lead + ask.seconds}}
 				/>
 			),
 		};
@@ -81,7 +88,7 @@ export const CampShort = defineTemplate({
 	id: 'CampShort',
 	category: 'Courses',
 	title: 'Kamp Reels (Kısa Video)',
-	description: '30 saniyelik kamp reels: ilk karede soru, en fazla üç tuzaklı soru, geri sayım, tek satır cevap ve yoruma skor çağrısı. Turu olmayan senaryoda konu özeti kartları.',
+	description: '30 saniyelik kamp reels: ilk karede tam ekran seslendirilen kanca, en fazla üç tuzaklı soru, geri sayım, tek satır cevap ve yoruma skor çağrısı. Turu olmayan senaryoda konu özeti kartları.',
 	contentSchema: CampScriptSchema,
 	sampleContent: CAMP_SCRIPT_SAMPLE,
 	defaultTheme: COURSE_DESIGN.theme,

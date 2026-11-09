@@ -63,6 +63,11 @@
     "title": "İç açıortay",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Açıortay nedir?",
+      "text": "**Açıortay**, bir açıyı iki eş açıya ayıran ışındır. $80°$'lik bir açının açıortayı onu $40°$ ve $40°$'ye böler.\n\nGünlük hayattan örnek: üçgen biçimli bir kâğıdın bir köşesini, iki kenarı üst üste gelecek biçimde katlarsan katlama çizgisi o köşenin açıortayı olur. Üçgenin her köşesinde bir iç açıortay vardır; dış açıları bölen dış açıortaylar da çizilebilir.\n\nTYT geometride açıortay; açı hesabında, kenar oranında, alanda ve uzunlukta karşına çıkar. Bu derste dört şeyi öğreneceksin: iç açıortay ve eşit uzaklık, açıortay teoremi, dış açıortay ve açıortay uzunluğu."
+     },
+     {
       "kind": "visual",
       "title": "İki kenara eşit uzaklık",
       "visual": {
@@ -216,6 +221,21 @@
       "narration": "$A$ açısının açıortayı üzerinde bir $P$ noktası alıp $P$'den iki kola dikmeler indirelim: $[PH]$ ve $[PK]$. $APH$ ile $APK$ dik üçgenlerinde hipotenüs $[AP]$ ortaktır ve $A$'daki iki açı eşittir ($\\alpha$). Hipotenüsü ve bir dar açısı eşit olan dik üçgenler eştir; bu yüzden $|PH| = |PK| = d$ olur. Eşlikten $|AH| = |AK|$ sonucu da çıkar. Açıortayın kollara eşit uzaklık özelliği tam olarak bu eşlikten gelir."
      },
      {
+      "kind": "predict",
+      "title": "Açıortay açıyı nasıl böler?",
+      "prompt": "Açıortay, bir açıyı her zaman iki eşit açıya böler.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "Açıortayın tanımı budur: açıyı ölçüleri eşit iki açıya ayıran ışın. $60°$'lik açının açıortayı onu $30°$ ve $30°$'ye böler. Karıştırılan şey, karşı kenarı eşit bölmedir; o yalnız ikizkenarda geçerlidir.",
+      "choiceFeedback": [
+       null,
+       "Eşit bölme açıortayın tanımıdır. Karşı kenarın eşit bölünmesi ise başka bir şeydir ve her üçgende geçerli değildir."
+      ]
+     },
+     {
       "kind": "concept",
       "title": "Açıortay ve iç teğet çember",
       "text": "Bir üçgenin bir iç açısını iki eş parçaya ayıran ışına **iç açıortay** denir. Her üçgenin üç iç açıortayı vardır ve üçü de **tek bir noktada** kesişir: iki açıortayın kesiştiği noktadan üçüncü açıortay da geçer. Bu nokta üç kenara da eşit uzaklıktadır, **iç teğet çemberin merkezidir** ve her zaman üçgenin içinde kalır.\n\nKâğıt katlama: üçgen biçimli kâğıtta $[AB]$ kenarını $[BC]$'nin üzerine gelecek biçimde katlarsan, açtığında görülen katlama çizgisi $B$ köşesinin iç açıortayıdır.",
@@ -247,6 +267,18 @@
        null,
        "Açıortaylar köşeden karşı kenara üçgenin içinden gider; kesişimleri de içeridedir."
       ]
+     },
+     {
+      "kind": "example",
+      "title": "Eşit uzaklık ve açı",
+      "example": "$P$ noktası, $m(\\widehat{RAS}) = 80°$ olan açının açıortayı üzerindedir. $P$'den $[AR$'ye inilen dikmenin ayağı $H$ ve $|PH| = 6$ birimdir. $P$'nin $[AS$'ye uzaklığı kaç birimdir ve $m(\\widehat{APH})$ kaç derecedir?",
+      "explanation": "Açıortay üzerindeki nokta açının iki koluna eşit uzaklıktadır. $P$'nin $[AR$'ye uzaklığı $6$ olduğundan $[AS$'ye uzaklığı da $6$ birimdir.\n\nAçıortay $80°$'yi $40°$ ve $40°$'ye böler: $m(\\widehat{PAH}) = 40°$.\n\n$APH$ dik üçgeninde $H$'deki açı $90°$'dir. Dar açılar toplamı $90°$ olduğundan $m(\\widehat{APH}) = 90° - 40° = 50°$ bulunur."
+     },
+     {
+      "kind": "example",
+      "title": "İki açıortayın kesişimi",
+      "example": "$ABC$ üçgeninde $m(\\widehat{B}) = 50°$ ve $m(\\widehat{C}) = 70°$'dir. $[BD]$ ve $[CE]$ iç açıortaylar, $I$ de bunların kesişim noktasıdır. $m(\\widehat{BIC})$ kaç derecedir?",
+      "explanation": "$A$ açısı: $180° - (50° + 70°) = 60°$.\n\nAçıortaylar $B$ ve $C$ açılarını yarıya böler: $m(\\widehat{IBC}) = 25°$ ve $m(\\widehat{ICB}) = 35°$.\n\n$IBC$ üçgeninin iç açıları toplamı $180°$ olduğundan $m(\\widehat{BIC}) = 180° - (25° + 35°) = 120°$ bulunur.\n\nKısa yol: $m(\\widehat{BIC}) = 90° + \\frac{m(\\widehat{A})}{2} = 90° + 30° = 120°$. İki yol da aynı sonucu verir."
      },
      {
       "kind": "question",
@@ -788,6 +820,12 @@
     "title": "Açıortay teoremi",
     "cards": [
      {
+      "kind": "concept",
+      "title": "İç açıortay teoremi nedir?",
+      "text": "İç açıortay, üçgende karşı kenarı bir noktada keser ve bu noktayla kenarı iki parçaya ayırır. **İç açıortay teoremi** bu iki parçanın nasıl bir oranda olduğunu söyler: parçalar, açıyı oluşturan komşu kenarların oranındadır.\n\nBasit sayılarla düşün: komşu kenarlar $3$ ve $6$ ise oran $1:2$'dir. Karşı kenar $9$ ise parçalar $3$ ve $6$ olur; uzun kenarın yanındaki parça uzun çıkar. Komşu kenarlar eşitse ($4$ ve $4$) parçalar da eşit olur.\n\nBu bölümde oranı kurmayı, parçaları bulmayı ve alan oranına geçmeyi çalışacaksın.",
+      "narration": "Teoremin özü şudur: büyük komşu kenar, karşı kenarda büyük bir parça alır. Aşağıdaki şekil ve kuralda bunun ispatını ve formüllerini göreceksin."
+     },
+     {
       "kind": "predict",
       "title": "Bölme noktası nerede?",
       "context": "$ABC$ üçgeninde $|AB| = 6$, $|AC| = 9$ ve $[AD]$ iç açıortaydır ($D \\in [BC]$).",
@@ -947,6 +985,18 @@
        "Kısa kenarın yanındaki parça kısadır; $b = c$ ise $m = n$ olur."
       ],
       "narration": "Teoremi kurarken oranın hangi kenarla hangi parçayı eşleştirdiğine dikkat et: $[AB]$ kenarının yanındaki parça $[BD]$'dir, bu yüzden $|BD|$ ile $|AB|$ aynı tarafa yazılır. Parçaları $k$ ile göstermek, özellikle bir parçanın verilip diğerinin sorulduğu sorularda içler dışlar çarpımından daha hızlıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Açıortay teoremi: ilk örnek",
+      "example": "$ABC$ üçgeninde $[AD]$ iç açıortaydır, $D \\in [BC]$, $|AB| = 6$, $|AC| = 10$ ve $|BC| = 16$ birimdir. $|BD|$ ve $|DC|$ kaç birimdir?",
+      "explanation": "Teorem: $\\frac{|BD|}{|DC|} = \\frac{|AB|}{|AC|} = \\frac{6}{10} = \\frac{3}{5}$.\n\nParçaları $|BD| = 3k$ ve $|DC| = 5k$ diye göster. Toplamları $|BC|$'dir: $3k + 5k = 16$ → $k = 2$.\n\nBöylece $|BD| = 6$ ve $|DC| = 10$ birimdir. Kısa kenar $[AB]$'nin yanındaki parça kısa çıktı, oranın yönü doğru."
+     },
+     {
+      "kind": "example",
+      "title": "Parçaların farkı verilmiş",
+      "example": "$ABC$ üçgeninde $[AD]$ iç açıortaydır, $D \\in [BC]$, $|AB| = 10$ ve $|AC| = 15$ birimdir. $|DC| - |BD| = 3$ birim olduğuna göre $|BC|$ kaç birimdir?",
+      "explanation": "Teorem: $\\frac{|BD|}{|DC|} = \\frac{10}{15} = \\frac{2}{3}$. Parçaları $|BD| = 2k$ ve $|DC| = 3k$ diye göster.\n\nFark: $3k - 2k = k = 3$. Demek ki $|BD| = 6$ ve $|DC| = 9$.\n\n$|BC| = |BD| + |DC| = 6 + 9 = 15$ birimdir.\n\nTuzak: toplam verilmediği için $|BC|$'yi doğrudan oranlardan çıkaramazsın; önce $k$'yi farktan bulmak gerekir."
      },
      {
       "kind": "blank",
@@ -1702,6 +1752,18 @@
       ]
      },
      {
+      "kind": "example",
+      "title": "Dış açıortay teoremi: ilk örnek",
+      "example": "$ABC$ üçgeninde $|AB| = 3$, $|AC| = 5$ ve $|BC| = 4$ birimdir. $A$'daki dış açıortay $CB$ doğrusunu $E$'de kesiyor. $|EB|$ kaç birimdir?",
+      "explanation": "Kısa kenar $[AB]$ olduğundan $E$, $B$'nin ötesindedir. $|EB| = y$ dersek $|EC| = y + 4$ olur.\n\nDış açıortay teoremi: $\\frac{|EB|}{|EC|} = \\frac{|AB|}{|AC|}$ → $\\frac{y}{y + 4} = \\frac{3}{5}$.\n\nİçler dışlar çarpımı: $5y = 3y + 12$ → $2y = 12$ → $y = 6$.\n\nBöylece $|EB| = 6$ birimdir. Kontrol: $\\frac{6}{10} = \\frac{3}{5}$ ✓."
+     },
+     {
+      "kind": "example",
+      "title": "Dış açıortay: kısa kenar tarafı",
+      "example": "$ABC$ üçgeninde $|AB| = 8$, $|AC| = 5$ ve $|BC| = 6$ birimdir. $A$'daki dış açıortay $BC$ doğrusunu $E$'de kesiyor. $|EB|$ kaç birimdir?",
+      "explanation": "Önce $E$'nin yerini belirle: kısa kenar $[AC]$ olduğundan $E$, $C$'nin ötesindedir. $|EC| = y$ dersek $|EB| = y + 6$ olur.\n\nDış açıortay teoremi: $\\frac{|EB|}{|EC|} = \\frac{|AB|}{|AC|}$ → $\\frac{y + 6}{y} = \\frac{8}{5}$.\n\nİçler dışlar çarpımı: $5y + 30 = 8y$ → $y = 10$. Buradan $|EB| = 16$ bulunur.\n\nKontrol: $\\frac{16}{10} = \\frac{8}{5}$ ✓."
+     },
+     {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
@@ -2077,6 +2139,12 @@
     "subtopic": "GEO_ACIORTAY_04",
     "title": "Açıortay uzunluğu",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Açıortay uzunluğu nedir?",
+      "text": "Köşeden çıkıp karşı kenarı kesen açıortay doğru parçasının boyuna **açıortay uzunluğu** denir. Açıortay teoremi yalnız karşı kenarın nasıl bölündüğünü verir; boyu ise ayrı bir bağıntıyla bulunur.\n\nBasit bir durumla anlayalım: kenarları $5$, $5$, $6$ olan ikizkenar üçgende tepeden çizilen açıortay tabanı $3$ ve $3$'e böler ve tabana diktir. Pisagor'dan uzunluk $\\sqrt{5^2 - 3^2} = 4$ çıkar. Aşağıdaki formül bu hesabı her üçgene genelleştirir: komşu kenarların çarpımı $25$, parçaların çarpımı $9$, fark $16$ ve kökü $4$'tür.",
+      "narration": "Bu bölümde iki adımı hep birlikte kullanacaksın: önce açıortay teoremiyle parçaları bul, sonra uzunluk formülüne koy. Basit ikizkenar örneği, formülün neden böyle olduğunu kontrol etmek için de işe yarar."
+     },
      {
       "kind": "rule",
       "title": "Açıortay uzunluğu formülü",

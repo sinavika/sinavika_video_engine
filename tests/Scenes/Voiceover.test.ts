@@ -211,11 +211,22 @@ describe.each(TEMPLATES.map((template) => [template.id, template] as const))('%s
 		template.buildScenes(narrated.inputProps.content, clips).filter((scene) => !scene.silent).forEach((scene) => {
 			const lines = scene.voice?.length ?? 0;
 			// A worked question also keeps its counted pause to think after it is read.
-			const think = scene.voice?.some((slot) => slot.id.endsWith('-read')) ? COURSE_DESIGN.pacing.questionThinkSeconds : 0;
+			// A challenge round's question keeps its silent countdown too (one second on the flash reel).
+			const roundThink = template.id === 'CampFlash' ? COURSE_DESIGN.camp.flashThinkSeconds : COURSE_DESIGN.camp.roundThinkSeconds;
+			// A prediction and a practice board ("Sıra sende") keep their card's countdown.
+			const think = (scene.voice?.some((slot) => slot.id.endsWith('-read')) ? COURSE_DESIGN.pacing.questionThinkSeconds : 0) + (scene.voice?.some((slot) => /^round-\d+-q$/.test(slot.id)) ? roundThink : 0) + cardThinkSeconds(narrated.inputProps.content, scene.id);
 			expect(scene.seconds, scene.id).toBeCloseTo(lines * (12.25 + VOICE_LEAD_SECONDS + VOICE_TAIL_SECONDS) + think, 5);
 		});
 	});
 });
+
+/** The countdown a lesson card keeps after it is asked: a prediction's or a practice board's `thinkSeconds`. */
+const cardThinkSeconds = (content: unknown, sceneId: string): number => {
+	const at = /^s(\d+)-c(\d+)$/.exec(sceneId);
+	const lesson = (content as {lesson?: {sections: {cards: {kind: string; thinkSeconds?: number}[]}[]}})?.lesson;
+	const card = at && lesson ? lesson.sections[Number(at[1]) - 1]?.cards[Number(at[2]) - 1] : undefined;
+	return card && (card.kind === 'practice' || card.kind === 'predict') ? (card.thinkSeconds ?? 0) : 0;
+};
 
 describe('voice catalogue', () => {
 	it('has a brand voice list made only of native Turkish women', () => {

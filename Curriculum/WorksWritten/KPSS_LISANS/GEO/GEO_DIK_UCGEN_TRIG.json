@@ -70,6 +70,11 @@
     "title": "Pisagor teoremi ve üçlüler",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Dik Üçgen ve Trigonometri nedir?",
+      "text": "**Dik üçgen**, bir açısı 90° olan üçgendir. Dik açının karşısındaki en uzun kenara **hipotenüs**, diğer iki kenara **dik kenar** denir. **Trigonometri** ise dik üçgenin dar açıları ile kenar uzunlukları arasındaki oranları inceler. KPSS Geometri'de uzunluk, yükseklik ve alan soruları sık sık bir dik üçgene dayanır. Günlük hayattan bir örnek: duvara dayanmış bir merdiven, yer ve duvarla birlikte bir dik üçgen oluşturur. Bu bölümde ilk araç olan **Pisagor teoremini** öğreneceksin: iki dik kenarın karelerinin toplamı hipotenüsün karesine eşittir. Basit bir durum: dik kenarlar 3 ve 4 ise $9 + 16 = 25$ olduğundan hipotenüs 5'tir."
+     },
+     {
       "kind": "visual",
       "title": "Aynı dört üçgen, iki dizilim",
       "visual": {
@@ -505,6 +510,34 @@
       "narration": "Teoremi ezber değil, az önceki alan eşitliği olarak düşün. Hipotenüs hep dik açının karşısındadır ve eşitliğin tek başına duran tarafıdır; hangi kenarı aradığına bakarak toplama ya da çıkarma yaparsın. Tersi de işe yarar: MEB örneğindeki 5, 12, 13 kenarlı üçgende $13^2 = 5^2 + 12^2$ olduğundan 13'ün karşısındaki açı 90°'dir. Bir üçgenin dik olup olmadığını anlamak için en uzun kenarın karesini diğer ikisinin kareleri toplamıyla karşılaştır."
      },
      {
+      "kind": "predict",
+      "title": "Hipotenüs kaç?",
+      "context": "Dik kenarları 5 cm ve 12 cm olan bir dik üçgen düşün.",
+      "prompt": "Bu üçgenin hipotenüsü 17 cm'dir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 1,
+      "explanation": "$5^2 + 12^2 = 25 + 144 = 169$ ve hipotenüs $\\sqrt{169} = 13$ cm'dir. 17, dik kenarların toplamıdır; Pisagor'da kenarlar değil kareleri toplanır.",
+      "choiceFeedback": [
+       "Kenar uzunluklarını toplamışsın; hipotenüs için kareleri topla ve karekök al.",
+       null
+      ]
+     },
+     {
+      "kind": "example",
+      "title": "Hipotenüsü bulmak",
+      "example": "Dik kenarları 9 cm ve 12 cm olan bir dik üçgenin hipotenüsü kaç cm'dir?",
+      "explanation": "Hipotenüs aranıyor, bu yüzden dik kenarların kareleri toplanır: $c^2 = 9^2 + 12^2 = 81 + 144 = 225$. Karekök alınır: $c = 15$ cm. Bu, 3-4-5 üçlüsünün 3 katıdır ($3\\cdot 3, 3\\cdot 4, 3\\cdot 5$). Üçlüyü tanısaydın kök almadan da bulabilirdin."
+     },
+     {
+      "kind": "example",
+      "title": "Köşegenden dikdörtgenin çevresi",
+      "example": "Kısa kenarı 9 cm, köşegeni 15 cm olan bir dikdörtgenin çevresi kaç cm'dir?",
+      "explanation": "Köşegen dikdörtgeni iki dik üçgene böler; köşegen hipotenüs, kenarlar dik kenarlardır. Uzun kenar $b$ olsun: $9^2 + b^2 = 15^2$, yani $b^2 = 225 - 81 = 144$ ve $b = 12$ cm. Dik kenar aranırken hipotenüsün karesinden çıkarılır. Çevre $= 2\\cdot(9 + 12) = 42$ cm. Kontrol: 9-12-15, 3-4-5'in 3 katıdır."
+     },
+     {
       "kind": "concept",
       "title": "Sık çıkan üçlüler",
       "text": "Bu dört üçlüyü ve katlarını tanırsan kök almadan sonuca gidersin. Üçlünün her sayısını aynı sayıyla çarparsan yine bir Pisagor üçlüsü elde edersin.",
@@ -843,6 +876,11 @@
     "title": "Öklid bağıntıları",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Öklid bağıntıları nedir?",
+      "text": "Dik üçgende dik açının köşesinden hipotenüse bir **yükseklik** indirirsen hipotenüs iki parçaya ayrılır ve üç tane birbirine benzer dik üçgen oluşur. **Öklid bağıntıları**, bu benzerlikten çıkan ve yüksekliği, dik kenarları ve hipotenüsün parçalarını birbirine bağlayan eşitliklerdir. Basit bir durum: parçalar 1 ve 4 birimse yükseklik 2 birimdir, çünkü $\\frac{1}{2} = \\frac{2}{4}$: yükseklik, iki parçanın \"orta orantılısıdır\". Bu bölümde hangi kenar için hangi parçanın alınacağını öğreneceksin."
+     },
+     {
       "kind": "visual",
       "title": "Yükseklik üç benzer üçgen doğurur",
       "visual": {
@@ -1030,6 +1068,18 @@
        }
       ],
       "explanation": "Yükseklik iki parçanın çarpımıdır; bir dik kenar ise kendi ucundaki parça ile hipotenüsün tamamının çarpımıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Yüksekliği iki parçadan bulmak",
+      "example": "Dik açıdan hipotenüse indirilen yükseklik, hipotenüsü 9 ve 16 birimlik iki parçaya ayırıyor. Yükseklik ve hipotenüs kaç birimdir?",
+      "explanation": "Yüksekliğin karesi parçaların çarpımıdır: $h^2 = 9\\cdot 16 = 144$, bu yüzden $h = 12$ birim. Hipotenüs iki parçanın toplamıdır: $9 + 16 = 25$ birim. Kontrol: yükseklik, parçalarla 9-12-15 ve 12-16-20 üçgenlerini oluşturur; $15^2 + 20^2 = 225 + 400 = 625 = 25^2$."
+     },
+     {
+      "kind": "example",
+      "title": "Hipotenüs ve bir parça verilirse",
+      "example": "ABC dik üçgeninde A dik açıdır ve $[AH] \\perp [BC]$'dir. $|BH| = 5$ birim ve $|BC| = 20$ birim olduğuna göre $|AB|$ ve $|AC|$ kaç birimdir?",
+      "explanation": "$|BC| = 20$ hipotenüsün **tamamıdır**, bir parça değildir. AB'nin ucu B'dedir, yanındaki parça BH'dir: $|AB|^2 = |BH|\\cdot|BC| = 5\\cdot 20 = 100$, $|AB| = 10$. Diğer parça $|HC| = 20 - 5 = 15$. AC'nin ucu C'dedir: $|AC|^2 = |HC|\\cdot|BC| = 15\\cdot 20 = 300$, $|AC| = 10\\sqrt{3}$. Kontrol: $|AB|^2 + |AC|^2 = 100 + 300 = 400 = 20^2$."
      },
      {
       "kind": "blank",
@@ -1405,6 +1455,11 @@
     "title": "30-60-90 üçgeni",
     "cards": [
      {
+      "kind": "concept",
+      "title": "30-60-90 üçgeni nedir?",
+      "text": "**30-60-90 üçgeni**, açıları 30°, 60° ve 90° olan dik üçgendir. Kenarı 2 birim olan bir eşkenar üçgeni yüksekliğiyle ikiye bölersen bu üçgeni elde edersin: hipotenüs 2, kısa dik kenar 1, uzun dik kenar $\\sqrt{3}$. Yani kenarları $1 : \\sqrt{3} : 2$ oranındadır. KPSS'de eşkenar üçgenin yüksekliği ve kare içindeki eşkenar üçgen sorularında bu üçgen karşına çıkar."
+     },
+     {
       "kind": "visual",
       "title": "Eşkenar üçgenin yarısı",
       "visual": {
@@ -1577,6 +1632,18 @@
        }
       ],
       "explanation": "Kenarlar $1 : \\sqrt{3} : 2$ oranındadır; eşkenar üçgenin yüksekliği, yarım üçgenin 60°'nin karşısındaki kenarıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Kısa kenarı verilen 30-60-90",
+      "example": "30°'nin karşısındaki kenarı 7 cm olan bir 30-60-90 üçgeninin diğer iki kenarı kaç cm'dir?",
+      "explanation": "30°'nin karşısındaki kenar $a = 7$'dir. Hipotenüs bunun 2 katıdır: $2a = 14$ cm. 60°'nin karşısındaki dik kenar $a\\sqrt{3} = 7\\sqrt{3}$ cm. Kontrol: $7^2 + (7\\sqrt{3})^2 = 49 + 147 = 196 = 14^2$."
+     },
+     {
+      "kind": "example",
+      "title": "Yüksekliği verilen eşkenar üçgen",
+      "example": "Yüksekliği $6\\sqrt{3}$ cm olan bir eşkenar üçgenin çevresi kaç cm'dir?",
+      "explanation": "Yükseklik eşkenar üçgeni iki tane 30-60-90 üçgenine böler. Yükseklik 60°'nin karşısındaki kenardır: $a\\sqrt{3} = 6\\sqrt{3}$ olduğundan $a = 6$. Bu $a$, kenarın yarısıdır (30°'nin karşısı). Kenar $2a = 12$ cm. Üç kenar eşit olduğundan çevre $3\\cdot 12 = 36$ cm. Kontrol: kenarı 12 olan eşkenar üçgenin yüksekliği $\\frac{12\\sqrt{3}}{2} = 6\\sqrt{3}$."
      },
      {
       "kind": "blank",
@@ -1935,6 +2002,11 @@
     "title": "45-45-90 üçgeni",
     "cards": [
      {
+      "kind": "concept",
+      "title": "45-45-90 üçgeni nedir?",
+      "text": "**45-45-90 üçgeni**, iki dar açısı da 45° olan dik üçgendir; yani **ikizkenar dik üçgendir** ve iki dik kenarı eşittir. Bir karenin köşegeni çizildiğinde kare iki tane 45-45-90 üçgenine bölünür. Basit bir durum: dik kenarları 1 birim ise hipotenüsün karesi $1 + 1 = 2$ olur, hipotenüs $\\sqrt{2}$'dir. Bu bölümde bu oranı kullanarak kenar ve alan bulacaksın."
+     },
+     {
       "kind": "visual",
       "title": "Karenin yarısı",
       "visual": {
@@ -2107,6 +2179,12 @@
        }
       ],
       "explanation": "30-60-90 eşkenar üçgenin, 45-45-90 karenin yarısıdır; ikisini oranlarından da ayırt edebilirsin."
+     },
+     {
+      "kind": "example",
+      "title": "Çevresi verilen ikizkenar dik üçgen",
+      "example": "Çevresi $12 + 6\\sqrt{2}$ cm olan bir ikizkenar dik üçgenin alanı kaç cm²'dir?",
+      "explanation": "Dik kenarlara $a$ dersek hipotenüs $a\\sqrt{2}$ olur. Çevre $a + a + a\\sqrt{2} = a(2 + \\sqrt{2})$. Verilen çevre $12 + 6\\sqrt{2} = 6(2 + \\sqrt{2})$ olduğundan $a = 6$ cm bulunur. Alan $= \\frac{a\\cdot a}{2} = \\frac{36}{2} = 18$ cm². Kontrol: hipotenüs $6\\sqrt{2}$, çevre $6 + 6 + 6\\sqrt{2} = 12 + 6\\sqrt{2}$."
      },
      {
       "kind": "blank",
@@ -2282,6 +2360,11 @@
     "title": "Trigonometrik oranlar",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Trigonometrik oranlar nedir?",
+      "text": "Dik üçgende bir **dar açıyı** seçtiğinde kenarların birbirine **oranları** yalnızca o açıya bağlıdır; üçgen büyüse ya da küçülse değişmez. Bu oranlara **trigonometrik oranlar** denir: sin, cos, tan ve cot. Örnek: 3-4-5 üçgeninde ve onun 2 katı olan 6-8-10 üçgeninde, aynı açı için karşı kenarın hipotenüse oranı $\\frac{3}{5} = \\frac{6}{10}$'dur. Bu bölümde oranların tanımını, tümler açı ilişkisini ve 30°, 45°, 60°'nin değerlerini öğreneceksin."
+     },
+     {
       "kind": "visual",
       "title": "Karşı, komşu, hipotenüs",
       "visual": {
@@ -2384,6 +2467,12 @@
       "narration": "Sinüs ve kosinüs hipotenüse bölündüğü için dar açılarda 1'den küçüktür; tanjant ve kotanjant hipotenüs içermez, 1'den büyük olabilir. Birim çember (yarıçapı 1 olan çember) üzerindeki K(x, y) noktası için dik üçgende Pisagor'dan $x^2 + y^2 = 1$ olur: apsis kosinüs, ordinat sinüs rolündedir. MEB örneğinde apsisi $\\frac{4}{5}$ olan nokta için $y^2 = 1 - \\frac{16}{25} = \\frac{9}{25}$ ve $y = \\pm\\frac{3}{5}$ çıkar."
      },
      {
+      "kind": "example",
+      "title": "Dik üçgenden dört oran",
+      "example": "Dik kenarları 7 cm ve 24 cm olan bir dik üçgende 7 cm'lik kenarın karşısındaki açı $\\alpha$'dır. $\\sin\\alpha$, $\\cos\\alpha$ ve $\\tan\\alpha$ değerlerini bulun.",
+      "explanation": "Önce hipotenüsü bul: $\\sqrt{7^2 + 24^2} = \\sqrt{625} = 25$ cm (7-24-25 üçlüsü). $\\alpha$'ya göre karşı kenar 7, komşu kenar 24, hipotenüs 25'tir. $\\sin\\alpha = \\frac{\\text{karşı}}{\\text{hipotenüs}} = \\frac{7}{25}$, $\\cos\\alpha = \\frac{\\text{komşu}}{\\text{hipotenüs}} = \\frac{24}{25}$, $\\tan\\alpha = \\frac{\\text{karşı}}{\\text{komşu}} = \\frac{7}{24}$. Kontrol: $\\frac{49}{625} + \\frac{576}{625} = 1$."
+     },
+     {
       "kind": "blank",
       "title": "Tanjantı oku",
       "prompt": "Dik kenarları 9 cm ve 12 cm olan bir dik üçgende 9 cm'lik kenarın karşısındaki açı $\\alpha$'dır. $\\tan\\alpha$ kaçtır?",
@@ -2403,6 +2492,12 @@
        }
       ],
       "explanation": "$\\tan\\alpha = \\frac{\\text{karşı}}{\\text{komşu}} = \\frac{9}{12} = \\frac{3}{4}$. Hipotenüs 15 olduğundan $\\sin\\alpha = \\frac{9}{15} = \\frac{3}{5}$ da bulunur."
+     },
+     {
+      "kind": "example",
+      "title": "Hipotenüs ve tanjant birlikte",
+      "example": "Bir dik üçgende $\\alpha$ dar açıdır, $\\tan\\alpha = \\frac{3}{4}$ ve hipotenüs 20 cm'dir. $\\alpha$'nın karşısındaki kenar kaç cm'dir?",
+      "explanation": "$\\tan\\alpha = \\frac{\\text{karşı}}{\\text{komşu}} = \\frac{3}{4}$ olduğundan karşı kenar $3k$, komşu kenar $4k$ yazılır. Pisagor'dan hipotenüs $\\sqrt{9k^2 + 16k^2} = 5k$ olur (3-4-5 üçlüsü). Hipotenüs 20 olduğundan $5k = 20$ ve $k = 4$. Karşı kenar $3k = 12$ cm bulunur. Kontrol: komşu kenar 16 cm; $12^2 + 16^2 = 144 + 256 = 400 = 20^2$."
      },
      {
       "kind": "match",

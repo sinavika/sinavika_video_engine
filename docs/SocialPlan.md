@@ -55,7 +55,8 @@ Her içeriğin iki etiketi vardır: **içerik kategorisi** (soru çözümü, kon
 | Story (tek görsel veya video) | `story` | — | — | — |
 | Metin | — | — | — | `text` |
 
-- **Instagram + TikTok:** aynı içerik, aynı dosyalar. Açıklama platforma göre ayrı yazılabilir (`targets[].caption`).
+- **Hedef hesaptır:** gönderi platforma değil, `GET accounts` listesindeki hesaba gönderilir (`"account": "instagram/sinavika.yks"` ya da `accountId`). Aynı platformda birden çok hesap var (Instagram `sinavika.tr` ve `sinavika.yks`, TikTok `sinavikatr` ve `sinavika.yks`); her biri ayrı seçilir, seçilmeyen hesaba gitmez. **Varsayılan hesap yoktur** (sahip, 5 Kasım 2026): plan yalnız platformu ve türü söyler, hesap her gönderi için seçilir. Belli değilse sahibe sorulur.
+- **Instagram + TikTok:** aynı içerik, aynı dosyalar. Açıklama hesaba göre ayrı yazılabilir (`targets[].caption`).
 - **YouTube:** bağımsız içerik üretilmez. Yalnız Salı, Cuma ve Pazar videoları Shorts olarak gider; görsel ve kaydırmalı gönderi hiçbir zaman gitmez. `title` video başlığıdır.
 - **Instagram Story:** günün ana gönderisini destekler, aynısını tekrar etmez.
 - **LinkedIn:** yalnız tanıtım, marka ve hook içerikleri. Ders anlatımı, soru çözümü, mini test paylaşılmaz. Yalnız gerçek özellikler ve doğrulanmış başarılar anlatılır.
@@ -70,6 +71,8 @@ Her içeriğin iki etiketi vardır: **içerik kategorisi** (soru çözümü, kon
 ## 3. Yayın saatleri
 
 Saatler Buffer'da her hesap için tanımlı yayın saatlerinden alınır (`npm run social -- accounts`).
+
+> **Saat kuralı (5 Kasım 2026):** admin onaylayınca her hesap **tam yazılan saatte** planlanır: hedefin `scheduledAt` alanı, yoksa gönderinin. Buffer kuyruğu kullanılmaz; kuyruk gönderileri sıradaki boş saate koyup planlanan günden kaydırıyordu (iki günde bir planlanan gönderiler aynı güne yığıldı). Saatler aşağıdaki kurallarla Buffer'ın önerdiği saatlerden seçilir (`npm run social -- accounts`; API `GET accounts` → `postingSchedule`).
 
 - **Her platform kendi Buffer saatinde yayınlar.** Aynı video Instagram'da Instagram'ın, YouTube'da YouTube'un saatinde çıkar.
 - Buffer saatleri hesap başına tanımlıdır, gönderi türü başına değil: aynı hesaptaki Reel ile kaydırmalı gönderi o hesabın saatlerini paylaşır. Buffer API'sinde gönderi türüne göre ayrı saat yoktur.
@@ -175,7 +178,7 @@ Kaydırmalı gönderi, tekli görsel, Story ve video kapağı ayrı türlerdir; 
 
 ### Onay bekleyen gönderiyi değiştirme (30 Ekim 2026)
 
-> **Durum:** Uçlar API kodunda hazır ama canlıda değil. API yayını ve mig127, mig128, mig129 migration'ları sahibin onayıyla canlıya alınana kadar bu uçlara istek atılmaz. Motor tarafında (`SocialHubClient`, `npm run social`) henüz karşılığı yok; sahip söyleyince eklenir. Tam belge: API deposunda `docs/frontend/claude-social-hub-api.md`.
+> **Durum:** Uçlar canlıda. Motor tarafında (`SocialHubClient`, `npm run social`) `hold`/`PUT`/`PATCH` karşılığı henüz yok; sahip söyleyince eklenir. Tam belge: API deposunda `docs/frontend/claude-social-hub-api.md`.
 
 **Sahibin kuralı:**
 - Claude yalnız onay bekleyen gönderiye dokunur. Onaylı, reddedilmiş, geri çekilmiş ya da Buffer'a gitmiş gönderiye dokunamaz.
@@ -203,9 +206,9 @@ Kaydırmalı gönderi, tekli görsel, Story ve video kapağı ayrı türlerdir; 
 | `POST posts/validate` | `POST posts` ile aynı gövdeyi kaydetmeden denetler | — |
 
 **`PUT` ayrıntıları:**
-- **Payload:** `{reason, title, caption, hashtags, coverOffsetMs, targets: [{platform, postType?, caption?}]}`.
+- **Payload:** `{reason, title, caption, hashtags, coverOffsetMs, targets: [{accountId, postType?, caption?}]}`.
 - **`files`:** 1–10 dosyadır ve eskilerin hepsinin yerine geçer.
-- **`targets`:** yalnız gönderide olan platformları değiştirir. Gönderide olmayan bir platform 400 döner.
+- **`targets`:** yalnız gönderide olan hesapları (`accountId`) değiştirir. Gönderide olmayan hesap 400 döner; hesap ekleyip çıkarmak adminin işidir. `PATCH` hedefleri de `accountId` ile verilir.
 - **Tam yenileme:** `hashtags` gönderilmezse temizlenir; `cover` gönderilmezse kapak kalkar.
 
 **`PATCH`:** `hashtags: ""` hashtag'leri temizler. Hiçbir şey değişmiyorsa 400 "Değişen metin yok." döner.
@@ -233,7 +236,7 @@ npm run social -- calendar --from 2026-11-01 --to 2026-12-01
 npm run social -- revisions
 ```
 
-Plan dosyasındaki her satır hazırlanacak bir içeriğin brifingidir: tarih, kanal, içerik türü, format, tema, boyut, kaynak türü ve `targets` (platform, gönderi türü, o platformun saati). `targets` gönderi dosyasına olduğu gibi kopyalanır. `npm run render` videoyu kapağıyla birlikte `Outputs/Videos` altına kaydeder; gönderi dosyasında videoyu göstermek yeterlidir, yanındaki kapak kendiliğinden yüklenir.
+Plan dosyasındaki her satır hazırlanacak bir içeriğin brifingidir: tarih, kanal, içerik türü, format, tema, boyut, kaynak türü ve `targets` (hesap, gönderi türü, o hesabın saati). Kampanya iskeleti bunları Post.json'a `"account": "instagram/?"` olarak yazar; teslimden önce `?` yerine hesap adı yazılır (en az bir hesap zorunlu, varsayılan yok). `npm run render` videoyu kapağıyla birlikte `Outputs/Videos` altına kaydeder; gönderi dosyasında videoyu göstermek yeterlidir, yanındaki kapak kendiliğinden yüklenir.
 
 ## Video kalitesi
 

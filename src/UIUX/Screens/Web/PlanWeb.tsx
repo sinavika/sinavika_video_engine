@@ -1,59 +1,12 @@
 import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
-import {Icon} from '../../Icons';
 import {MODULES, type ModuleKey} from '../../ModuleIdentity';
 import {Bar, Bars, Button, Card, Chip, List, ListRow, Ring, Sparkline, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
 import {Grid, Immersive, ModuleHead, Panel, WCard} from '../../Parts/Web';
-import {PlanTask} from '../Mobile/Plan';
 
 /** Web Ders Planı: today, schedule, suggestions, statistics, progress, settings and the focus session. */
 
 const PLAN_TABS = (t: (tr: string, en: string) => string) => [t('Bugün', 'Today'), t('Program', 'Schedule'), t('Öneriler', 'Suggestions'), t('İstatistik', 'Statistics'), t('İlerleme', 'Progress'), t('Ayarlar', 'Settings')];
-
-export const WebPlanTodayScreen: React.FC = () => {
-	const t = useT();
-	const colors = useColors();
-	const mod = useModuleColors('studyPlan');
-	return (
-		<Panel active="studyPlan">
-			<ModuleHead module="studyPlan" tab={0} tabs={PLAN_TABS(t)} title={t('Bugün · Perşembe 15 Ekim', 'Today · Thursday 15 Oct')} sub={t('3 görev · 90 dakika hedef · seri 5 gün', '3 tasks · 90-minute goal · 5-day streak')} actions={<Button tone="module" module="studyPlan" icon="clock">{t('Odak sayacı', 'Focus timer')}</Button>} />
-			<Grid columns="1.5fr 1fr">
-				<WCard title={t('Görevler', 'Tasks')} action={t('+ Görev ekle', '+ Add task')}>
-					<Stack gap={10}>
-						<PlanTask module="lessons" title={t('Sözcükte Anlam', 'Word meaning')} meta={t('Dersler · 3 mikro ders · 8 dk · tamamlandı 09:40', 'Lessons · 3 micro-lessons · 8 min · done 09:40')} done />
-						<PlanTask module="tests" title={t('Problemler · Orta', 'Problems · Medium')} meta={t('20 soru · 25 dk · denemeden önerildi', '20 questions · 25 min · from your exam')} now />
-						<PlanTask module="flashcards" title={t('Kimya kartları', 'Chemistry cards')} meta={t('20 kart · 10 dk', '20 cards · 10 min')} />
-						<PlanTask module="lessons" title={t('Bugün tekrar · 5 adım', 'Review today · 5 steps')} meta={t('Dersler · yanlış yaptığın adımlar · 4 dk', 'Lessons · steps you missed · 4 min')} />
-					</Stack>
-				</WCard>
-				<Stack gap={18}>
-					<Card padding={20}>
-						<Stack row gap={18}>
-							<Ring value={0.33} size={100} stroke={10} color={mod.color} track={mod.track}>
-								<Text role="section">1/3</Text>
-							</Ring>
-							<Stack gap={4}>
-								<Text role="section">{t('45 dk kaldı', '45 min left')}</Text>
-								<Text role="small">{t('Bugünkü hedef 90 dk', 'Goal today 90 min')}</Text>
-								<Chip tone="module" module="studyPlan" icon="flame">
-									{t('Seri 5 gün', '5-day streak')}
-								</Chip>
-							</Stack>
-						</Stack>
-					</Card>
-					<Card tone="module" module="studyPlan" padding={18}>
-						<Stack row gap={10} align="flex-start">
-							<Icon name="sparkles" size={18} color={mod.color} />
-							<Text role="small" color={colors.ink2}>
-								<b style={{color: colors.ink}}>{t('Plan önerisi:', 'Plan tip:')}</b> {t('Dün planın %80’ini yaptın. Cuma yükünü biraz azalttık, Pazar tekrar gününü koruduk.', 'You did 80% yesterday. We eased Friday and kept Sunday for review.')}
-							</Text>
-						</Stack>
-					</Card>
-				</Stack>
-			</Grid>
-		</Panel>
-	);
-};
 
 export const WebPlanScheduleScreen: React.FC = () => {
 	const t = useT();
@@ -290,3 +243,6 @@ export const WebPlanFocusScreen: React.FC = () => {
 		</Immersive>
 	);
 };
+
+/** Bugün moved to StudyWeb (shared plan parts); this name stays for the promo templates. */
+export {WebPlanTodayScreen} from './StudyWeb';

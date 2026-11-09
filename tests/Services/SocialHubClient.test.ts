@@ -2,7 +2,7 @@ import {mkdtempSync, writeFileSync} from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {describe, expect, it} from 'vitest';
-import {SocialHubError, SocialPostSchema, createSocialHubClient} from '../../src/Services/SocialHubClient';
+import {SocialHubError, SocialPostSchema, createSocialHubClient, resolveTargets} from '../../src/Services/SocialHubClient';
 
 const post = {
 	title: 'Günün sorusu',
@@ -12,7 +12,14 @@ const post = {
 	lesson: 'Matematik',
 	scheduledAt: '2026-11-02T20:00:00+03:00',
 	media: ['soru.png', 'cozum.png'],
+	targets: [{accountId: '851ddafa-a231-489f-bbe5-61e1e324a8fa'}],
 };
+
+const ACCOUNTS = [
+	{id: '57d41f15-43e2-4b02-a6dc-84c5392ace82', platform: 'instagram', name: 'sinavika.tr'},
+	{id: '851ddafa-a231-489f-bbe5-61e1e324a8fa', platform: 'instagram', name: 'sinavika.yks'},
+	{id: '179f1c83-ccd6-48bd-974e-50eb71a2871d', platform: 'tiktok', name: 'sinavika.yks'},
+];
 
 const recordingFetch = (status = 200, body: unknown = {id: 'post-1', status: 0}) => {
 	const calls: {url: string; init: RequestInit}[] = [];
@@ -24,16 +31,24 @@ const recordingFetch = (status = 200, body: unknown = {id: 'post-1', status: 0})
 };
 
 describe('SocialPostSchema', () => {
-	it('accepts a complete post and defaults targets and sources', () => {
-		expect(SocialPostSchema.parse(post)).toMatchObject({targets: [], sources: []});
+	it('accepts a complete post and defaults sources', () => {
+		expect(SocialPostSchema.parse(post)).toMatchObject({sources: []});
 	});
 
-	it('requires an explicit time zone, media and known platforms', () => {
+	it('needs at least one account and names each one by id or platform/name, never by platform alone', () => {
+		expect(SocialPostSchema.safeParse({...post, targets: []}).success).toBe(false);
+		expect(SocialPostSchema.safeParse({...post, targets: undefined}).success).toBe(false);
+		expect(SocialPostSchema.safeParse({...post, targets: [{platform: 'instagram'}]}).success).toBe(false);
+		expect(SocialPostSchema.safeParse({...post, targets: [{account: 'instagram'}]}).success).toBe(false);
+		expect(SocialPostSchema.safeParse({...post, targets: [{account: 'instagram/sinavika.yks', accountId: ACCOUNTS[1].id}]}).success).toBe(false);
+		expect(SocialPostSchema.safeParse({...post, targets: [{account: 'instagram/sinavika.yks', postType: 'reel'}]}).success).toBe(true);
+	});
+
+	it('requires an explicit time zone, media and known post types', () => {
 		expect(SocialPostSchema.safeParse({...post, scheduledAt: '2026-11-02T20:00:00'}).success).toBe(false);
 		expect(SocialPostSchema.safeParse({...post, media: Array(11).fill('a.png')}).success).toBe(false);
-		expect(SocialPostSchema.safeParse({...post, targets: [{platform: 'instagram', postType: 'shorts'}]}).success).toBe(false);
-		expect(SocialPostSchema.safeParse({...post, targets: [{platform: 'tiktok', scheduledAt: '2026-11-02T09:47:00'}]}).success).toBe(false);
-		expect(SocialPostSchema.safeParse({...post, targets: [{platform: 'facebook'}]}).success).toBe(false);
+		expect(SocialPostSchema.safeParse({...post, targets: [{account: 'instagram/sinavika.yks', postType: 'shorts'}]}).success).toBe(false);
+		expect(SocialPostSchema.safeParse({...post, targets: [{account: 'tiktok/sinavika.yks', scheduledAt: '2026-11-02T09:47:00'}]}).success).toBe(false);
 		expect(SocialPostSchema.safeParse({...post, replacesPostId: 'not-an-id'}).success).toBe(false);
 	});
 });
@@ -64,19 +79,37 @@ describe('createSocialHubClient', () => {
 		expect(await files[1].text()).toBe('second');
 	});
 
-	it('sends each platform its post type and hour, and a text post without media', async () => {
-		const {calls, fake} = recordingFetch();
+	it('turns platform/name into account ids from GET accounts and sends only accountId', async () => {
+		const calls: {url: string; init: RequestInit}[] = [];
+		const fake = (async (url: string | URL | Request, init?: RequestInit) => {
+			calls.push({url: String(url), init: init ?? {}});
+			return new Response(JSON.stringify(String(url).endsWith('/accounts') ? ACCOUNTS : {id: 'post-1', status: 0}), {status: 200});
+		}) as typeof fetch;
 		const client = createSocialHubClient({apiKey: 'secret', fetch: fake});
-		const targets = [
-			{platform: 'instagram', postType: 'story'},
-			{platform: 'tiktok', postType: 'photo', scheduledAt: '2026-11-02T09:47:00+03:00'},
-		];
 
-		await client.submit({...post, media: [], targets: [{platform: 'linkedin', postType: 'text'}]});
-		const text = calls[0].init.body as FormData;
-		expect(text.getAll('files')).toHaveLength(0);
-		expect(JSON.parse(text.get('payload') as string).targets).toEqual([{platform: 'linkedin', postType: 'text'}]);
-		expect(SocialPostSchema.parse({...post, targets}).targets).toEqual(targets);
+		await client.submit({...post, media: [], targets: [{account: 'instagram/sinavika.yks', postType: 'story'}, {account: 'tiktok/Sinavika.YKS', postType: 'photo', caption: 'TikTok metni'}]});
+
+		expect(calls.map((call) => call.url.split('/').pop())).toEqual(['accounts', 'posts']);
+		const form = calls[1].init.body as FormData;
+		expect(form.getAll('files')).toHaveLength(0);
+		expect(JSON.parse(form.get('payload') as string).targets).toEqual([
+			{accountId: ACCOUNTS[1].id, postType: 'story'},
+			{accountId: ACCOUNTS[2].id, postType: 'photo', caption: 'TikTok metni'},
+		]);
+	});
+
+	it('sends an accountId as it is, without asking for the accounts', async () => {
+		const {calls, fake} = recordingFetch();
+		await createSocialHubClient({apiKey: 'secret', fetch: fake}).submit({...post, media: []});
+		expect(calls).toHaveLength(1);
+		expect(JSON.parse((calls[0].init.body as FormData).get('payload') as string).targets).toEqual([{accountId: ACCOUNTS[1].id}]);
+	});
+
+	it('stops on an unchosen, unknown or repeated account and lists the choices', () => {
+		expect(() => resolveTargets([{account: 'instagram/?'}], ACCOUNTS)).toThrow(/instagram hesabı seçilmedi.*instagram\/sinavika\.tr, instagram\/sinavika\.yks/);
+		expect(() => resolveTargets([{account: 'instagram/sinavika.kpss'}], ACCOUNTS)).toThrow(/"instagram\/sinavika\.kpss" hesabı yok/);
+		expect(() => resolveTargets([{account: 'tiktok/sinavika.tr'}], ACCOUNTS)).toThrow(/hesabı yok/);
+		expect(() => resolveTargets([{account: 'instagram/sinavika.yks'}, {accountId: ACCOUNTS[1].id}], ACCOUNTS)).toThrow(/iki kez/);
 	});
 
 	it('uploads the cover saved with a video apart from the media, with its cover frame', async () => {

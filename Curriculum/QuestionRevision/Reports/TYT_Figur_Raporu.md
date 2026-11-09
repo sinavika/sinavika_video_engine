@@ -434,7 +434,7 @@ Motoru bekleyen 4 soru SQL'e girmez: üçü çok serili grafik (M2.16), biri kü
 1. Revizyon kaydında figür motorun görseli olarak yazılır. Eski figürler `Tools/figure_to_visual.py` ile çevrildi; korunan 22 eski figür de taşındı.
 2. `check_revisions.py` görselleri motorun şemasıyla listeler. `render_figures.py` bunları motorun çizicisiyle (`Tools/RenderFigures.ts` → `WorkFigureRenderer`) açık ve koyu tema SVG olarak çizer, `stills.json`'a yazar.
 3. `check_revisions.py` yeniden çalışır. FigureCheck görseli API'nin Works aktarımındaki çeviricisiyle figüre çevirir, hazır resmi bağlar ve API'nin kayıt denetiminden geçirir.
-4. `build_sql.py` figürü türü, verisi ve hazır resim adresleriyle yazar. Adres, dosya içeriğinin SHA-256 özetidir: `https://sinavikasblobs.blob.core.windows.net/work-figure-stills/<sha256>.svg`.
+4. `build_sql.py` figürü türü, verisi ve hazır resim adresleriyle yazar. Adres, dosya içeriğinin SHA-256 özetidir: `https://sinavikablobsgwc.blob.core.windows.net/work-figure-stills/<sha256>.svg` (taban `paths.py` `STILL_BASE_URL`; 4 Kasım 2026'dan beri Frankfurt hesabı).
 
 **Tür eşlemesi (139 figür):**
 

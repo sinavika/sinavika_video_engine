@@ -61,6 +61,11 @@
     "title": "Tanımlı işlem",
     "cards": [
      {
+      "kind": "concept",
+      "title": "İşlem nedir?",
+      "text": "**İşlem**, bir kümeden alınan iki elemana bir kural uygulayıp yine bir eleman üreten kuraldır. Toplama, çıkarma ve çarpma bildiğin işlemlerdir. TYT'de ÖSYM ise $\\ast$, $\\triangle$, $\\oplus$ gibi yeni bir sembol uydurur ve kuralını soruda verir: örneğin $a \\ast b = 2a + b$ der. Bu kural 'ilk sayıyı 2 ile çarp, ikinciyi ekle' demektir: $3 \\ast 4$ için $2 \\cdot 3 + 4 = 10$ çıkar. Bu tür sorular her yıl çıkar ve ezber istemez; kuralı doğru sırayla uygulayan çözer. Bu bölümde tanımlı işlemde harflerin yerine sayı koymayı, sırayı ve parantezi doğru kullanmayı öğreneceksin."
+     },
+     {
       "kind": "rule",
       "title": "Kuralı harfiyen uygula",
       "items": [
@@ -76,6 +81,12 @@
       "title": "Aynı iki sayı, farklı sıra",
       "example": "$a \\oplus b = a^2 - 2b$ işlemi için $4 \\oplus 3$ ve $3 \\oplus 4$ değerlerini bul.",
       "explanation": "$4 \\oplus 3$: $a = 4$, $b = 3$ yazılır → $4^2 - 2 \\cdot 3 = 16 - 6 = 10$.\n$3 \\oplus 4$: $a = 3$, $b = 4$ yazılır → $3^2 - 2 \\cdot 4 = 9 - 8 = 1$.\nAynı iki sayı farklı sırayla yazılınca sonuç değişti ($10 \\neq 1$). Tanımda ilk konum her zaman $a$, ikinci konum her zaman $b$'dir; bu işlemin değişme özelliği yoktur."
+     },
+     {
+      "kind": "example",
+      "title": "Parantezin yeri sonucu değiştirir",
+      "example": "$a \\otimes b = ab - a + 2$ işlemine göre $(2 \\otimes 3) \\otimes 1$ ile $2 \\otimes (3 \\otimes 1)$ değerlerini bul.",
+      "explanation": "Soldaki: önce parantez. $2 \\otimes 3$ için $a = 2$, $b = 3$: $6 - 2 + 2 = 6$. Sonra $6 \\otimes 1$ için $a = 6$, $b = 1$: $6 - 6 + 2 = 2$.\nSağdaki: önce parantez. $3 \\otimes 1$ için $a = 3$, $b = 1$: $3 - 3 + 2 = 2$. Sonra $2 \\otimes 2$ için $a = 2$, $b = 2$: $4 - 2 + 2 = 4$.\nSonuçlar farklı ($2 \\neq 4$). Parantezden çıkan sayı hangi tarafta olursa olsun bir sonraki işlemde o tarafın yerine yazılır; bu yüzden parantezin yeri sonucu değiştirebilir."
      },
      {
       "kind": "blank",
@@ -294,6 +305,11 @@
     "title": "Kapalılık, değişme ve birleşme",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Kapalılık, değişme ve birleşme nedir?",
+      "text": "Bir işlemin davranışını üç soruyla sınarız. **Kapalılık**: kümeden iki eleman alıp işlem yapınca sonuç hâlâ kümede mi? Doğal sayılarda $3 - 5 = -2$ kümenin dışına çıkar, çıkarma kapalı değildir. **Değişme**: elemanların yerini değiştirince sonuç aynı mı? $2 + 3 = 3 + 2$ aynıdır ama $5 - 3 \\neq 3 - 5$. **Birleşme**: üç eleman varken parantezi hangi ikiliye koyduğumuz sonucu değiştirir mi? $(8 - 4) - 2 = 2$ iken $8 - (4 - 2) = 6$ çıkar, yani çıkarmada birleşme yoktur. Bu bölümde aynı üç soruyu ÖSYM'nin uydurduğu işlemler için sorup cevaplayacaksın."
+     },
+     {
       "kind": "rule",
       "title": "Kapalılık, değişme, birleşme",
       "items": [
@@ -365,6 +381,18 @@
        "highlightColumn": 2
       },
       "explanation": "Soldan gruplarsak $1 - 2 = -1$, sonra $-1 - 3 = -4$. Sağdan gruplarsak $2 - 3 = -1$, sonra $1 - (-1) = 2$. $-4 \\neq 2$: çıkarma işleminin **birleşme özelliği yoktur**. Tek bir karşı örnek yeter."
+     },
+     {
+      "kind": "example",
+      "title": "Değişme: karşı örnekle yıkmak",
+      "example": "$a \\ast b = 2a + b$ işlemi değişmeli midir? $1 \\ast 2$ ile $2 \\ast 1$ değerlerini karşılaştır.",
+      "explanation": "1) $1 \\ast 2$: $a = 1$, $b = 2$ yazılır → $2 \\cdot 1 + 2 = 4$.\n2) $2 \\ast 1$: $a = 2$, $b = 1$ yazılır → $2 \\cdot 2 + 1 = 5$.\n3) $4 \\neq 5$ olduğundan tek bir karşı örnek bulduk: işlem değişmeli değildir.\nGenel bakışla da görülür: $b \\ast a = 2b + a$, ifade $2a + b$'den farklıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Kapalılık: küme değişince sonuç değişir",
+      "example": "$a \\ast b = |a - b|$ işlemi $A = \\{0, 1, 2\\}$ kümesinde kapalı mıdır? Aynı işlem $B = \\{1, 2, 3\\}$ kümesinde kapalı mıdır?",
+      "explanation": "$A$ için bütün ikilileri dene: $|0 - 0| = 0$, $|0 - 1| = 1$, $|0 - 2| = 2$, $|1 - 1| = 0$, $|1 - 2| = 1$, $|2 - 2| = 0$ (sıra değişince $|a - b|$ değişmez). Hepsi $A$'nın elemanı: $A$'da kapalı.\n$B$ için: $|1 - 1| = 0$ ve $0 \\notin B$. Tek bir sonuç kümenin dışına çıktığı için işlem $B$'de kapalı değildir.\nİşlem aynı olsa da küme değişince kapalılık değişebilir; kümedeki **bütün** ikilileri kontrol et."
      },
      {
       "kind": "question",
@@ -537,6 +565,11 @@
     ],
     "title": "Birim, ters ve yutan eleman",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Birim, ters ve yutan eleman nedir?",
+      "text": "**Birim eleman**, işleme girdiği sayıyı hiç değiştirmeyen elemandır: toplamada 0 ($5 + 0 = 5$), çarpmada 1 ($5 \\cdot 1 = 5$). Bir elemanın **tersi**, onunla işleme girince birimi veren elemandır: toplamada 5'in tersi $-5$ (çünkü $5 + (-5) = 0$), çarpmada 5'in tersi $\\frac{1}{5}$ (çünkü $5 \\cdot \\frac{1}{5} = 1$). **Yutan eleman** ise girdiği her işlemi kendisine çevirir: çarpmada 0, çünkü $5 \\cdot 0 = 0$. Tanımlı işlemlerde bu elemanlar 0 ve 1 olmayabilir; işlemin kuralından bulunur. Bu bölümde üçünü nasıl bulacağını ve birbirine karıştırmamayı öğreneceksin."
+     },
      {
       "kind": "rule",
       "title": "Birim ve ters",
@@ -799,6 +832,11 @@
     "title": "İşlem tablosu",
     "cards": [
      {
+      "kind": "concept",
+      "title": "İşlem tablosu nedir?",
+      "text": "Elemanları az olan bir kümede işlemin bütün sonuçları bir **tabloda** yazılabilir. Soldaki sütun $a$'yı, üstteki satır $b$'yi gösterir; satır ile sütunun kesiştiği kutu $a \\ast b$ sonucudur. Örneğin 2'nin satırı ile 3'ün sütununun kesiştiği kutuya bakarsan $2 \\ast 3$'ü bulursun. Yani tabloda hesap yapmazsın, **okursun**. Bu bölümde tablonun şeklinden değişmeyi, kapalılığı, birimi, tersi ve yutan elemanı nasıl okuyacağını göreceksin. ÖSYM tablo sorularında çoğu zaman tek bir kutuyu okumak yetmez; özelliği tablonun görünüşünden çıkarmak gerekir."
+     },
+     {
       "kind": "visual",
       "title": "Tabloyu oku",
       "visual": {
@@ -885,6 +923,18 @@
        }
       ],
       "explanation": "Simetri değişmeyi, içerideki elemanlar kapalılığı, başlığın tekrarı birimi, tek elemanla dolu satır ve sütun yutan elemanı gösterir."
+     },
+     {
+      "kind": "example",
+      "title": "Tablodan değer oku",
+      "example": "Tabloda $\\ast$ işlemi verilmiş: satırlar $a$, sütunlar $b$. $(2 \\ast 3) \\ast 4$ değerini bul.",
+      "explanation": "1) Önce parantez: 2'nin satırına git, 3. sütuna bak. Kesişimde 2 yazar, yani $2 \\ast 3 = 2$.\n2) Sonuç artık yeni $a$'dır: $2 \\ast 4$ için yine 2'nin satırına git, 4. sütuna bak. Kesişimde 3 yazar.\n3) Böylece $(2 \\ast 3) \\ast 4 = 2 \\ast 4 = 3$.\nİlk sonucu ikinci işlemde satır olarak kullanmayı unutma."
+     },
+     {
+      "kind": "example",
+      "title": "Birim, ters ve işlem birlikte",
+      "example": "Aynı tabloda birim elemanı bul, 2'nin tersini belirle ve $2^{-1} \\ast 4$ değerini hesapla.",
+      "explanation": "1) Birim: satırı başlık satırının (1, 2, 3, 4), sütunu başlık sütununun aynısı olan eleman. 3'ün satırı 1, 2, 3, 4 ve sütunu da öyle: birim 3.\n2) 2'nin tersi: 2'nin satırı 4, 1, 2, 3. Birim olan 3, 4. sütunda; $2 \\ast 4 = 3$. Yani 2'nin tersi 4.\n3) Sorulan $2^{-1} \\ast 4 = 4 \\ast 4$. 4'ün satırı 2, 3, 4, 1; 4. sütunda 1 yazar.\nSonuç 1. Tuzak: tersi birimle karıştırıp 3 demek. Ters 4'tür, birim 3'tür."
      },
      {
       "kind": "guided",

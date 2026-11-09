@@ -121,6 +121,7 @@ import {QuadrantVisual} from './Structure/Quadrant';
 import {StackVisual, stackFrame} from './Structure/Stack';
 import {FlipCardVisual} from './Structure/FlipCard';
 import {MatchingVisual} from './Structure/Matching';
+import {OrderingVisual} from './Structure/Ordering';
 import {PieVisual} from './Structure/Pie';
 import {AssemblyVisual} from './Structure/Assembly';
 import {KinshipVisual} from './Civics/Kinship';
@@ -492,6 +493,8 @@ const VisualOfKind: React.FC<VisualBoxProps & {visual: CourseVisualSpec}> = ({vi
 			return <MatchingVisual visual={visual} {...box} />;
 		case 'flipcards':
 			return <FlipCardVisual visual={visual} {...box} />;
+		case 'ordering':
+			return <OrderingVisual visual={visual} {...box} />;
 		case 'dynamics':
 			return <DynamicsVisual visual={visual} {...box} />;
 		case 'equation':

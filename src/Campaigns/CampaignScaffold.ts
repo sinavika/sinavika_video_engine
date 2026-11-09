@@ -10,9 +10,10 @@
  */
 import {PLAN_TIME_ZONE, POST_TYPES} from '../Configurations/SocialPlan';
 import {specialDaysOn} from '../Configurations/SpecialDay';
+import {UNCHOSEN_ACCOUNT} from '../Services/SocialHubClient';
 import type {PlannedSlot, PlannedTarget} from '../Services/SocialPlanner';
 
-/** A platform, its real post type there and the hour it publishes at: what a Post.json target carries. */
+/** A platform, its real post type there and the hour it publishes at. Post.json gets one target per platform with the account still to choose (`instagram/?`). */
 type FeedTarget = Pick<PlannedTarget, 'platform' | 'postType' | 'scheduledAt'>;
 import type {CampaignFeed, CampaignStory} from './CampaignTypes';
 import * as October from './Tanitim2026Ekim';
@@ -56,6 +57,7 @@ const brief = (entry: CampaignFeed, targets: FeedTarget[], replaces?: ExistingPo
 		`# ${entry.title}`,
 		'',
 		`- **Tarih:** ${entry.date} · ${targets.map((target) => `${target.platform} ${target.postType} ${target.scheduledAt.slice(11, 16)}`).join(' · ')}${entry.time ? ' (günün kendi saati, Buffer programı değil)' : ''}`,
+		`- **Hesaplar:** Post.json'da \`${targets[0]?.platform ?? 'instagram'}/${UNCHOSEN_ACCOUNT}\` yerine hesap yazılır (\`npm run social -- accounts\`); varsayılan hesap yok, seçilmeden teslim edilmez.`,
 		`- **Tür:** ${entry.kind} · **Modül:** ${entry.module} · **Tanıtılan:** ${entry.promotes}`,
 		...specialDayLines(entry.date),
 		...(entry.pillar ? [`- **Sütun:** ${entry.pillar} · **Huni:** ${entry.funnel ?? '-'} · **Hook türü:** ${entry.hookType ?? '-'} · **İzlenecek metrik:** ${entry.metric ?? '-'}`] : []),
@@ -119,7 +121,7 @@ export const scaffoldCampaign = (id: CampaignId, slots: PlannedSlot[], existing:
 			scheduledAt: entry.time ? at(entry.date, entry.time) : slot.scheduledAt,
 			...(replaces ? {replacesPostId: replaces.id} : {}),
 			media: plannedMedia(entry, entry.kind),
-			targets: targets.map(({platform, postType, scheduledAt}) => ({platform, postType, scheduledAt})),
+			targets: targets.map(({platform, postType, scheduledAt}) => ({account: `${platform}/${UNCHOSEN_ACCOUNT}`, postType, scheduledAt})),
 		};
 		files.push({path: `${folder}/Brief.md`, content: brief(entry, targets, replaces)});
 		files.push({path: `${folder}/Post.json`, content: `${JSON.stringify(post, null, 2)}\n`});
@@ -137,7 +139,7 @@ export const scaffoldCampaign = (id: CampaignId, slots: PlannedSlot[], existing:
 			category: 'PromoStory',
 			scheduledAt,
 			media: plannedMedia(story, 'story'),
-			targets: slot.targets.map((target) => ({platform: target.platform, postType: target.postType, scheduledAt: story.time ? scheduledAt : target.scheduledAt})),
+			targets: slot.targets.map((target) => ({account: `${target.platform}/${UNCHOSEN_ACCOUNT}`, postType: target.postType, scheduledAt: story.time ? scheduledAt : target.scheduledAt})),
 		};
 		files.push({path: `${folder}/Brief.md`, content: [`# Hikâye · ${story.date}`, '', `- **Saat:** ${scheduledAt.slice(11, 16)} (Instagram; Buffer TikTok hikâyesi paylaşamaz)`, `- **Destekler:** ${supported?.title ?? story.supports}`, ...specialDayLines(story.date), '', `## Hook`, '', `**${story.hook}**`, '', '## Görsel', '', story.visual, ''].join('\n')});
 		files.push({path: `${folder}/Post.json`, content: `${JSON.stringify(post, null, 2)}\n`});

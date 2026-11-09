@@ -24,7 +24,7 @@ import {REEL_STANDARD} from '../../src/Configurations/ReelStandard';
 describe('template registry', () => {
 	it('contains the education and advertisement templates with unique ids', () => {
 		const ids = TEMPLATES.map((template) => template.id);
-		expect(ids).toEqual(['QuestionSolution', 'TopicExplanation', 'QuickRevision', 'ConceptExplanation', 'ExamPreparation', 'AppPromotion', 'ExamJourney', 'SinoAIFilm', 'ProfilePicker', 'OrbReveal', 'Keynote', 'KineticType', 'RepublicDay', 'NightDesk', 'FlatMorph', 'CountdownChat', 'BeforeAfter', 'SlotSpin', 'TearCalendar', 'FocusTimer', 'StudyReceipt', 'SplitDay', 'ThreeModes', 'AtaturkMemorial', 'NotebookDoodle', 'PrintShop', 'GroupChat', 'StudyForecast', 'PuzzleGap', 'ScanViewfinder', 'PovText', 'CardTrick', 'Basogretmen', 'BlockWeek', 'CampTrailer', 'DualScreen', 'LevelSelect', 'GoogleVideoAd', 'AppShowcase', 'CourseLesson', 'CourseShort', 'CampLesson', 'CampShort', 'CampIntro']);
+		expect(ids).toEqual(['QuestionSolution', 'TopicExplanation', 'QuickRevision', 'ConceptExplanation', 'ExamPreparation', 'AppPromotion', 'ExamJourney', 'SinoAIFilm', 'ProfilePicker', 'OrbReveal', 'Keynote', 'KineticType', 'RepublicDay', 'NightDesk', 'FlatMorph', 'CountdownChat', 'BeforeAfter', 'SlotSpin', 'TearCalendar', 'FocusTimer', 'StudyReceipt', 'SplitDay', 'ThreeModes', 'AtaturkMemorial', 'NotebookDoodle', 'PrintShop', 'GroupChat', 'StudyForecast', 'PuzzleGap', 'ScanViewfinder', 'PovText', 'CardTrick', 'Basogretmen', 'BlockWeek', 'CampTrailer', 'DualScreen', 'LevelSelect', 'GoogleVideoAd', 'AppShowcase', 'CourseLesson', 'CourseShort', 'CampLesson', 'CampShort', 'CampFlash', 'CampIntro']);
 		expect(new Set(ids).size).toBe(ids.length);
 		expect(findTemplate('Nope')).toBeUndefined();
 	});
@@ -42,6 +42,12 @@ describe('template registry', () => {
 		}
 	});
 });
+
+/**
+ * Reels that end on their own link instead of the app card and run under ten seconds by design: the flash reel
+ * (8–12 s; camp accounts link to the free YouTube camp, never the app: owner, 5 and 8 Nov 2026).
+ */
+const FLASH = new Set(['CampFlash']);
 
 describe.each(TEMPLATES.map((template) => [template.id, template] as const))('%s', (_id, template) => {
 	const content = template.contentSchema.parse(template.sampleContent);
@@ -61,11 +67,11 @@ describe.each(TEMPLATES.map((template) => [template.id, template] as const))('%s
 
 	it('builds scenes with unique ids and positive durations, ending with the outro', () => {
 		const scenes = template.buildScenes(content);
-		expect(scenes.length).toBeGreaterThanOrEqual(3);
+		expect(scenes.length).toBeGreaterThanOrEqual(FLASH.has(template.id) ? 2 : 3);
 		expect(new Set(scenes.map((scene) => scene.id)).size).toBe(scenes.length);
 		scenes.forEach((scene) => expect(scene.seconds).toBeGreaterThan(0));
 		// Special-day templates (10 Kasım, 24 Kasım) have no app card at all: no outro in their content.
-		if (content && typeof content === 'object' && 'outro' in content) expect(scenes.at(-1)?.id).toBe('outro');
+		if (content && typeof content === 'object' && 'outro' in content && !FLASH.has(template.id)) expect(scenes.at(-1)?.id).toBe('outro');
 	});
 
 	it('is deterministic: the same content gives the same timing', () => {
@@ -76,7 +82,7 @@ describe.each(TEMPLATES.map((template) => [template.id, template] as const))('%s
 	it('keeps the same length in seconds at every supported fps', () => {
 		const seconds = SUPPORTED_FPS.map((fps) => templateDurationInFrames(template, content, fps) / fps);
 		seconds.forEach((value) => expect(Math.abs(value - seconds[0])).toBeLessThan(0.5));
-		expect(templateDurationInFrames(template, content, DEFAULT_FPS)).toBeGreaterThan(DEFAULT_FPS * 10);
+		expect(templateDurationInFrames(template, content, DEFAULT_FPS)).toBeGreaterThan(DEFAULT_FPS * (FLASH.has(template.id) ? 7 : 10));
 	});
 
 	it('drops the outro when the content disables it', () => {

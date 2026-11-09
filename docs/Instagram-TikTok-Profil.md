@@ -72,3 +72,34 @@ Sahip: "Evet, hepsini uygula" (biyografide yapay zekâ çağrışımı olmadan; 
 | TikTok açıklamaları ve kapakları | Yapılamaz: TikTok Studio açıklama ve kapağı "günde bir kez ve paylaşımdan sonraki ilk 7 gün içinde" düzenletiyor; sorunlu 8 video ve 4 kamera videosu daha eski |
 
 Sahibin telefondan yapacakları: Instagram bağlantıları (§2 tablosu), sabitlenenler, 4 kamera reels'inin kapağı, TikTok hedef biyografisi ve bağlantısı, eski gönderilerin arşivi.
+
+## 4. YKS kampı hesapları: 5 Kasım 2026
+
+Sahip, 5 Kasım: bu iki hesap **YouTube'daki ücretsiz YKS kampının tanıtım sayfası**. Uygulama reklamı yok: biyografide ve paylaşımlarda SinoAI, indirme çağrısı, fiyat, uygulama bağlantısı olmaz. Kamp YouTube'da ücretsiz diye sunulur. Profil resimlerini sahip yükledi (lacivert zemin, turuncu simge). Hesaplar Chrome'un **sinavika** profilinde açık.
+
+| Alan | Instagram [@sinavika.yks](https://www.instagram.com/sinavika.yks/) | TikTok [@sinavika.yks](https://www.tiktok.com/@sinavika.yks) |
+|---|---|---|
+| Ad | Sınavika YKS Kampı | Sınavika.yks → **Sınavika YKS Kampı** yapılacak: TikTok adı 7 günde bir değiştiriyor, 12 Kasım 2026'dan sonra |
+| Hesap | Profesyonel, kategori Eğitim (profilde görünüyor), herkese açık, hesap önerileri açık | Kişisel, herkese açık, yorumlar herkese açık |
+| Biyografi | Yayında (126/150), aşağıda | Yayında (68/80), aşağıda |
+| Bağlantı | Yalnız YouTube kampı; sahip, uygulamadan | İşletme hesabına geçince yalnız YouTube kampı; sahip, uygulamadan |
+
+Instagram biyografisi:
+
+```
+🎯 YKS kampı: TYT ve AYT dersleri
+▶️ Bütün dersler YouTube'da ücretsiz
+📚 Kısa konu anlatımı · Soru çözümü
+👇 Kampa buradan katıl
+```
+
+TikTok biyografisi (web'de emojisiz): `Ücretsiz YKS kampı: TYT ve AYT dersleri YouTube'da, özetleri burada.`
+
+İki metin de `checkProductCopy` denetiminden geçti. İlk metinler (aynı gün, SinoAI'li uygulama tanıtımı) sahip "reklam olmayacak" deyince değiştirildi. TikTok yeni metni web'de ilk iki denemede kaydetmedi (istek 200 döndü, metin eski kaldı); üçüncü kayıt ~1 dk sonra yayına girdi.
+
+Sahibin telefondan yapacakları:
+
+1. Instagram bağlantısı: yalnız YouTube kampı, `https://www.youtube.com/@sinavika` ya da kanaldaki "YKS Kampı · Sınavika" oynatma listesi.
+2. TikTok: Ayarlar › Hesap › İşletme hesabına geç, kategori Eğitim. Sonra aynı YouTube bağlantısı. İşletme hesabı yalnız ticari müzik kitaplığını kullanır; videolarımızın sesi kendimizin, sorun değil.
+
+Not: YouTube'da şu an yalnız TYT Türkçe kampı var; biyografi kampın kapsamını (TYT ve AYT) anlatıyor.

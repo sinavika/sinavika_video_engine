@@ -190,8 +190,12 @@ const teaches = (card: WrittenCard) =>
 /** Asking cards that need the topic taught first ("önce öğret, sonra sor"); a prediction may come before on purpose. */
 const NEEDS_TEACHING = new Set(['blank', 'findError', 'match', 'classify', 'tap', 'split', 'multi', 'flip', 'guided']);
 
-/** The most reading cards in a row before something asks the student to do something. */
-const MAX_READING_RUN = 3;
+/**
+ * The most reading cards in a row before something asks the student to do something. Four since 5 Nov 2026: a section
+ * now opens with its definition, the meaning and then the formula (owner's teaching order), which leaves room for one
+ * figure before the first check.
+ */
+const MAX_READING_RUN = 4;
 
 /** Plain words of rich text: emphasis marks and formula dollars dropped, for searching. */
 const plain = (text: string) => text.replace(/\*\*/g, '').replace(/\$/g, '').toLocaleLowerCase('tr');
@@ -246,7 +250,8 @@ const cardTexts = (card: WrittenCard): string[] => {
 
 /** Lessons whose formulas the video read aloud ("A B artı B A"); in writing they are formulas. */
 const FORMULA_LESSONS = new Set(['MAT', 'GEO', 'FIZ', 'KIM']);
-const SPOKEN_OPERATOR = /(?<!\p{L})(artı|eksi|bölü|çarpı)(?!\p{L})/iu;
+/** "10 A artı B" is a formula read aloud; "eksi işareti", "iki eksi birbirini götürür" are the names of a sign, not a formula. */
+const SPOKEN_OPERATOR = /(?<!\p{L})(artı|eksi(?!\s+(?:işaret|birbirini|sayı))|bölü|çarpı)(?!\p{L})/iu;
 const SPOKEN_YEAR = /(?<!\p{L})(bin\s+(?:dokuz|sekiz|yedi|altı|beş|dört|üç|iki)?\s*yüz|iki\s+bin)(?!\p{L})/iu;
 const VIDEO_WORDS = /(?<!\p{L})(birazdan|az sonra|bir sonraki ders\p{L}*|videoda|ekranda|cevabımız|dinleyelim|izleyelim)(?!\p{L})/iu;
 const NAMES_LETTER = /(?:cevap|yanıt|doğru (?:seçenek|şık))\s*(?:\*\*)?\s*[A-E](?:\*\*)?(?!\p{L})/iu;
@@ -269,6 +274,58 @@ const givesAwayBeyond = (text: string, option: string, given: string) => givesAw
 
 /** Cards whose text is example language for the student to work on ("Toplantı birazdan başlıyor."), not the lesson's voice. */
 const EXAMPLE_LANGUAGE = new Set(['question', 'tap', 'multi', 'classify', 'match', 'split', 'blank', 'guided', 'findError', 'flip']);
+
+/** Cards that ask an exam-like question; worked examples come before the first of them in a section. */
+const EXAM_STEPS = new Set(['question', 'blank', 'guided', 'findError', 'multi']);
+
+/** Worked examples before the first question of a section: numeric lessons need a few, others at least one (owner, 5 Nov 2026). */
+const MIN_WORKED_EXAMPLES = {formula: 2, other: 1};
+
+/** A worked example shows the whole solution, not a one-line answer. */
+const MIN_WORKED_SOLUTION = 120;
+
+const FORMULA_TEXT = /\$[^$]*[=<>≤≥][^$]*\$/u;
+
+/** A definition says in words what the formula means: at least this many characters outside the formulas. */
+const MIN_MEANING_WORDS = 80;
+
+const carriesFormula = (card: WrittenCard) =>
+	(('visual' in card && card.visual?.kind === 'formula') ||
+		[card.kind === 'rule' ? card.items.join(' ') : '', card.kind === 'concept' ? card.text : '', card.kind === 'example' ? card.example : ''].some((text) => FORMULA_TEXT.test(text)));
+
+/**
+ * The teaching order the owner asked for on 5 Nov 2026 ("konu tanımı olmadan direk içeriğe dalınmış", "direk formüle
+ * girilmiş", "konu anlatımı sonrası direk soru; önce birkaç soru çözümlü anlatım olmalı"): the lesson and every section
+ * open with a definition, a numeric section explains the idea before its formula, and worked examples come before the
+ * first question. These are warnings, not refusals: a lesson that breaks them still replaces the video view (it is
+ * better than the view), and the production line treats them as things to fix in its next pass.
+ */
+export const writtenWarnings = (written: WrittenLesson, view: WorksView): string[] => {
+	const warnings: string[] = [];
+	const formulas = FORMULA_LESSONS.has(view.topic.lesson);
+	const sections = written.lesson.sections;
+	if (sections[0]?.cards[0]?.kind !== 'concept') warnings.push(`s1: the lesson does not open with a definition of the topic; start with a concept card ("${written.title} nedir?").`);
+	sections.forEach((section, sectionIndex) => {
+		const where = `s${sectionIndex + 1} (${section.title})`;
+		if (section.subtopic && section.cards[0]?.kind !== 'concept') warnings.push(`${where}: the section does not open with a definition; start with a concept card that says what the subtopic is.`);
+		if (formulas) {
+			// The meaning is a definition in words; a small worked case inside it ("$|AB| = 4$ cm olsun") is fine.
+			const firstFormula = section.cards.findIndex((card) => card.kind !== 'concept' && carriesFormula(card));
+			const firstConcept = section.cards.findIndex((card) => card.kind === 'concept');
+			const opening = section.cards[firstConcept];
+			const words = opening?.kind === 'concept' ? opening.text.replace(/\$[^$]*\$/g, '').replace(/\*\*/g, '').trim().length : 0;
+			if (firstFormula >= 0 && (firstConcept < 0 || firstConcept > firstFormula)) warnings.push(`${where} c${firstFormula + 1}: a formula before its meaning; explain the idea in words and with a simple case first, then give the formula.`);
+			else if (firstConcept >= 0 && words < MIN_MEANING_WORDS) warnings.push(`${where} c${firstConcept + 1}: the definition is mostly formula; say in words what it means before the symbols.`);
+		}
+		const firstExam = section.cards.findIndex((card) => EXAM_STEPS.has(card.kind));
+		if (firstExam >= 0) {
+			const worked = section.cards.slice(0, firstExam).filter((card) => card.kind === 'example' && card.explanation.length >= MIN_WORKED_SOLUTION).length;
+			const needed = formulas ? MIN_WORKED_EXAMPLES.formula : MIN_WORKED_EXAMPLES.other;
+			if (worked < needed) warnings.push(`${where} c${firstExam + 1}: ${worked} worked example(s) before the first question; give at least ${needed}, each with its full solution step by step.`);
+		}
+	});
+	return warnings;
+};
 
 /**
  * What keeps a written lesson from replacing its topic's view: another topic, a subtopic lost or foreign, a section
@@ -306,7 +363,8 @@ export const writtenIssues = (written: WrittenLesson, view: WorksView): string[]
 		let taught = false;
 		section.cards.forEach((card, cardIndex) => {
 			const at = `${where} c${cardIndex + 1}`;
-			run = teaches(card) ? run + 1 : 0;
+			// Worked examples are guided practice before the questions (owner, 5 Nov 2026); they do not add to a run of reading.
+			run = teaches(card) ? (card.kind === 'example' ? run : run + 1) : 0;
 			if (run === MAX_READING_RUN + 1) issues.push(`${at}: ${run} reading cards in a row; let the student do something in between.`);
 			if (NEEDS_TEACHING.has(card.kind) && !taught) issues.push(`${at}: a ${card.kind} card before anything is taught in the section; teach first, then ask.`);
 			taught = taught || teaches(card);

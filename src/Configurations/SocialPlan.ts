@@ -7,7 +7,7 @@ import type {VideoFormatId} from './VideoFormats';
  * monthly calendar is generated from this file (see Services/SocialPlanner.ts);
  * changing the plan means changing it here and nowhere else.
  */
-export const SOCIAL_PLATFORMS = ['instagram', 'tiktok', 'youtube', 'linkedin'] as const;
+const SOCIAL_PLATFORMS = ['instagram', 'tiktok', 'youtube', 'linkedin'] as const;
 export type SocialPlatform = (typeof SOCIAL_PLATFORMS)[number];
 
 export const WEEKDAYS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'] as const;

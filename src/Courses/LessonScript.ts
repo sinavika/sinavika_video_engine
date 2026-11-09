@@ -4,7 +4,7 @@ import {latex, plainText, richText} from '../Schemas/RichText';
 import {RevisionCardSchema} from '../Templates/Education/QuickRevision/QuickRevisionSchema';
 import {CampEpisodeSchema} from './Camp';
 import {estimateNarrationSeconds, VOICE_LEAD_SECONDS, VOICE_TAIL_SECONDS} from '../Scenes/Voiceover';
-import {CHALLENGE_SCORE_LINE, isSpoken, isWholeSentence, spokenPredictAsk, spokenQuestion, spokenRoundAsk, spokenRoundReveal, THINK_PROMPT} from './LessonSpeech';
+import {CHALLENGE_SCORE_LINE, isSpoken, isWholeSentence, spokenPracticeAsk, spokenPredictAsk, spokenQuestion, spokenHook, spokenRoundAsk, spokenRoundReveal, THINK_PROMPT} from './LessonSpeech';
 import {COURSE_DESIGN} from './CourseDesign';
 
 /**
@@ -77,6 +77,16 @@ export const QuestionSchema = z
 
 export type Question = z.infer<typeof QuestionSchema>;
 
+/** The interactive boards a practice card can be (the app's match, flip and ordering steps). */
+export const PRACTICE_VISUALS = ['matching', 'flipcards', 'ordering'] as const;
+
+/** Items of a practice board that no beat answers (focuses): p3 for a third pair no sentence gives. */
+export const unansweredItems = (visual: CourseVisual, beats: readonly {focus: readonly string[]}[]): string[] => {
+	const count = visual.kind === 'matching' ? visual.pairs.length : visual.kind === 'flipcards' ? visual.cards.length : visual.kind === 'ordering' ? visual.items.length : 0;
+	const focused = new Set(beats.flatMap((beat) => beat.focus.map((name) => name.toLocaleLowerCase('tr'))));
+	return Array.from({length: count}, (_, index) => `p${index + 1}`).filter((name) => !focused.has(name));
+};
+
 /**
  * The visual told in beats: after the card's own narration, each beat's
  * sentence is spoken while the figure does what the beat says (shows, points
@@ -128,11 +138,46 @@ export const LessonCardSchema = z.discriminatedUnion('kind', [
 			explanationNarration: narration,
 		})
 		.refine((card) => card.answer === undefined || card.answer < card.choices.length, {path: ['answer'], message: 'answer must be the index of one of the choices.'}),
+	/**
+	 * Your turn ("Sıra sende"): the app's interactive steps on video (8 Nov 2026). A matching board, flip cards or an
+	 * ordering board is on screen from the start; the lead-in and the task are said (LessonSpeech: spokenPracticeAsk),
+	 * a countdown gives the viewer time to answer in their head, then each beat gives one answer (a line drawn, a card
+	 * turned, an item moved to its place) with its reason. Every item is answered by a beat that focuses it.
+	 */
+	z
+		.object({
+			kind: z.literal('practice'),
+			title: plainText(70),
+			visual: CourseVisualSchema.refine((visual) => (PRACTICE_VISUALS as readonly string[]).includes(visual.kind), {message: `A practice card's board is one of ${PRACTICE_VISUALS.join(', ')}.`}),
+			thinkSeconds: z.number().min(3).max(10).default(5),
+			/** Said before the task: what the board is about. */
+			narration,
+			beats: z.array(VisualBeatSchema).min(1).max(10),
+		})
+		.refine((card) => unansweredItems(card.visual, card.beats).length === 0, {path: ['beats'], message: 'Every item of the board needs a beat that focuses it (its answer).'}),
 	/** A worked question. */
 	z.object({kind: z.literal('question'), question: QuestionSchema}),
 ]);
 
+
 export type LessonCard = z.infer<typeof LessonCardSchema>;
+
+/** The ways a camp lesson may open (lesson.opening.kind). */
+export const OPENING_KINDS = ['question', 'mistake', 'visual'] as const;
+
+type OpeningCard = Extract<LessonCard, {kind: 'question'}> | Extract<LessonCard, {kind: 'visual'}>;
+
+/**
+ * The card a cold open shows: "s3-c2" is the second card of the third section. A question or mistake opening needs
+ * a question card, a visual opening a visual card; anything else is undefined.
+ */
+export const openingCard = (sections: readonly {cards: readonly LessonCard[]}[], opening: {kind: (typeof OPENING_KINDS)[number]; card: string}): OpeningCard | undefined => {
+	const match = /^s(\d+)-c(\d+)$/u.exec(opening.card);
+	const card = match ? sections[Number(match[1]) - 1]?.cards[Number(match[2]) - 1] : undefined;
+	if (!card) return undefined;
+	if (opening.kind === 'visual') return card.kind === 'visual' ? card : undefined;
+	return card.kind === 'question' ? card : undefined;
+};
 
 export const LessonSectionSchema = z.object({
 	/** The subtopic (LessonMikro) the section covers, when it covers one. */
@@ -230,6 +275,23 @@ export const LessonScriptSchema = z
 		/** The YouTube lesson. */
 		lesson: z.object({
 			hook: z.object({headline: plainText(80), narration}),
+			/**
+			 * A camp lesson's cold open (8 Nov 2026), one of three kinds so lessons do not all open alike (owner):
+			 *   question  a conceptual question; `card` is one of the lesson's exam questions, shown without its answer
+			 *   mistake   the trap most students fall into; `card` is a question card, shown without its answer
+			 *   visual    a problem seen in motion; `card` is a visual card, its figure played through its beats
+			 * `narration` (at most 40 words; aim for 5–10 s) gives the viewer a reason to stay, never "Merhaba, ben
+			 * SinoAI". Then the camp card, then `promise` (at most 25 words) over "Bu videoda" instead of the hook.
+			 * YouTube viewers left camp lessons in the first 30 s, before any teaching (docs/Analiz, 8 Nov 2026).
+			 */
+			opening: z
+				.object({
+					kind: z.enum(OPENING_KINDS),
+					card: z.string().regex(/^s\d+-c\d+$/u, 'a card id, e.g. s3-c2'),
+					narration,
+					promise: narration,
+				})
+				.optional(),
 			/** What the viewer will be able to do; shown on the opening. */
 			objectives: z.array(plainText(90)).min(2).max(6),
 			sections: z.array(LessonSectionSchema).min(2).max(14),
@@ -273,7 +335,8 @@ export const LessonScriptSchema = z
 		path: ['lesson', 'sections'],
 		message: 'A lesson needs at least one worked question.',
 	})
-	.refine((script) => !script.short.question || script.short.question.answer < script.short.question.options.length, {path: ['short', 'question', 'answer'], message: 'answer must be the index of one of the options.'});
+	.refine((script) => !script.short.question || script.short.question.answer < script.short.question.options.length, {path: ['short', 'question', 'answer'], message: 'answer must be the index of one of the options.'})
+	.refine((script) => !script.lesson.opening || openingCard(script.lesson.sections, script.lesson.opening) !== undefined, {path: ['lesson', 'opening', 'card'], message: 'opening.card must be the id (s3-c2: section 3, card 2) of a question card, or of a visual card for a visual opening.'});
 
 export type LessonScript = z.infer<typeof LessonScriptSchema>;
 
@@ -288,6 +351,7 @@ export const lessonNarrations = (script: LessonScript): string[] => [
 			// What the template reads besides the script: the question as written and the choices (LessonSpeech).
 			if (card.kind === 'question') return [card.question.narration, `${spokenQuestion(card.question)} ${THINK_PROMPT}`, ...card.question.steps.map((step) => step.narration)];
 			if (card.kind === 'predict') return [spokenPredictAsk(card), ...card.beats.map((beat) => beat.narration), card.explanationNarration];
+			if (card.kind === 'practice') return [spokenPracticeAsk(card), ...card.beats.map((beat) => beat.narration)];
 			return [card.narration, ...('beats' in card ? card.beats.map((beat) => beat.narration) : [])];
 		}),
 	]),
@@ -296,7 +360,7 @@ export const lessonNarrations = (script: LessonScript): string[] => [
 ];
 
 export const shortNarrations = (script: LessonScript): string[] =>
-	script.short.rounds?.length ? [...script.short.rounds.flatMap((round) => [spokenRoundAsk(round), spokenRoundReveal(round)]), CHALLENGE_SCORE_LINE] : summaryShortNarrations(script);
+	script.short.rounds?.length ? [spokenHook(script.short.hook), ...script.short.rounds.flatMap((round) => [spokenRoundAsk(round), spokenRoundReveal(round)]), CHALLENGE_SCORE_LINE] : summaryShortNarrations(script);
 
 /** The spoken lines of a summary reel (CourseShort cards). */
 const summaryShortNarrations = (script: LessonScript): string[] => [
@@ -309,25 +373,39 @@ const summaryShortNarrations = (script: LessonScript): string[] => [
 /** Estimated spoken length in seconds, before any audio exists: the voice's measured pace (estimateNarrationSeconds). */
 export const estimatedSeconds = (texts: readonly string[]): number => texts.reduce((total, text) => total + estimateNarrationSeconds(text) + VOICE_LEAD_SECONDS + VOICE_TAIL_SECONDS, 0);
 
-/** A dare shown over the first question: read in one glance. */
+/** The dare said over the whole screen in the reel's first second: read in one glance. */
 const CHALLENGE_HOOK_MAX_LENGTH = 40;
 
 /**
- * A challenge reel's length before any audio: each line at the measured rate
+ * A challenge reel's length before any audio: the hook and each line at the measured rate
  * plus the voice's lead and tail, each round's silent countdown.
  */
-const estimatedChallengeSeconds = (rounds: readonly ChallengeRound[]): number =>
-	[...rounds.flatMap((round) => [spokenRoundAsk(round), spokenRoundReveal(round)]), CHALLENGE_SCORE_LINE].reduce((total, text) => total + words(text) / COURSE_DESIGN.camp.challengeWordsPerSecond + VOICE_LEAD_SECONDS + VOICE_TAIL_SECONDS, 0) +
+const estimatedChallengeSeconds = (hook: string, rounds: readonly ChallengeRound[]): number =>
+	[spokenHook(hook), ...rounds.flatMap((round) => [spokenRoundAsk(round), spokenRoundReveal(round)]), CHALLENGE_SCORE_LINE].reduce((total, text) => total + words(text) / COURSE_DESIGN.camp.challengeWordsPerSecond + VOICE_LEAD_SECONDS + VOICE_TAIL_SECONDS, 0) +
 	rounds.length * COURSE_DESIGN.camp.roundThinkSeconds;
 
 /** Where a challenge reel would run long or open slowly. */
 const challengeIssues = (script: LessonScript, rounds: readonly ChallengeRound[]): string[] => {
 	const issues: string[] = [];
-	if (script.short.hook.length > CHALLENGE_HOOK_MAX_LENGTH) issues.push(`The reel's hook is shown over the first question; keep it to ${CHALLENGE_HOOK_MAX_LENGTH} characters: "${script.short.hook}".`);
+	if (script.short.hook.length > CHALLENGE_HOOK_MAX_LENGTH) issues.push(`The reel's hook opens it in big type; keep it to ${CHALLENGE_HOOK_MAX_LENGTH} characters: "${script.short.hook}".`);
 	rounds.forEach((round, index) => {
 		const said = words(spokenRoundAsk(round)) + words(spokenRoundReveal(round));
 		if (said > 14) issues.push(`Round ${index + 1} says ${said} words; about 12 keeps it near 9 s.`);
 	});
+	return issues;
+};
+
+/** A cold open is said in about 15 s, its promise in about 10 s. */
+const OPENING_MAX_WORDS = 40;
+const PROMISE_MAX_WORDS = 25;
+
+/** Where a camp lesson would open slowly: no cold open, or one too long to keep the first 30 seconds moving. */
+const openingIssues = (script: LessonScript): string[] => {
+	const opening = script.lesson.opening;
+	if (!opening) return ['The camp lesson has no cold open (lesson.opening): open on one of its exam questions and name the trap.'];
+	const issues: string[] = [];
+	if (words(opening.narration) > OPENING_MAX_WORDS) issues.push(`The cold open says ${words(opening.narration)} words; keep it to ${OPENING_MAX_WORDS} (about 15 s).`);
+	if (words(opening.promise) > PROMISE_MAX_WORDS) issues.push(`The opening's promise says ${words(opening.promise)} words; keep it to ${PROMISE_MAX_WORDS}.`);
 	return issues;
 };
 
@@ -339,20 +417,72 @@ const challengeIssues = (script: LessonScript, rounds: readonly ChallengeRound[]
 export const reviewScript = (script: LessonScript, subtopicCodes: readonly string[] = []) => {
 	const lessonSeconds = estimatedSeconds(lessonNarrations(script));
 	const rounds = script.short.rounds ?? [];
-	const shortSeconds = rounds.length > 0 ? estimatedChallengeSeconds(rounds) : estimatedSeconds(shortNarrations(script));
+	const shortSeconds = rounds.length > 0 ? estimatedChallengeSeconds(script.short.hook, rounds) : estimatedSeconds(shortNarrations(script));
 	const shortTarget = rounds.length > 0 ? COURSE_DESIGN.length.challenge : COURSE_DESIGN.length.short;
 	const covered = new Set([...script.lesson.sections.flatMap((section) => [section.subtopic, ...section.subtopics]), ...script.outOfScope.flatMap((group) => group.codes)].filter(Boolean));
 	const issues: string[] = [];
 	if (lessonSeconds < COURSE_DESIGN.length.lesson.min) issues.push(`The lesson reads in about ${Math.round(lessonSeconds / 60)} min; the target is at least ${COURSE_DESIGN.length.lesson.min / 60} min.`);
 	if (shortSeconds < shortTarget.min || shortSeconds > shortTarget.max) issues.push(`The short reads in about ${Math.round(shortSeconds)} s; the target is ${shortTarget.min}-${shortTarget.max} s.`);
 	if (rounds.length > 0) issues.push(...challengeIssues(script, rounds));
+	if (script.camp) issues.push(...openingIssues(script));
 	const missing = subtopicCodes.filter((code) => !covered.has(code));
 	if (missing.length > 0) issues.push(`Subtopics without a section: ${missing.join(', ')}.`);
 	const questions = script.lesson.sections.flatMap((section) => section.cards).filter((card) => card.kind === 'question').length;
 	if (questions < 3) issues.push(`Only ${questions} worked question(s); three or more cover the exam's approaches better.`);
-	issues.push(...answerPatternIssues(script), ...mistakeIssues(script), ...worksIssues(script), ...spokenTextIssues(script), ...stageIssues(script));
-	return {lessonSeconds, shortSeconds, questions, issues, suggestions: [...processVisualSuggestions(script), ...longSentenceSuggestions(script)]};
+	issues.push(...answerPatternIssues(script), ...mistakeIssues(script), ...worksIssues(script), ...spokenTextIssues(script), ...stageIssues(script), ...practiceIssues(script));
+	return {lessonSeconds, shortSeconds, questions, issues, suggestions: [...processVisualSuggestions(script), ...longSentenceSuggestions(script), ...practiceSuggestions(script)]};
 };
+
+/** Every string in a card (its texts, its figure's labels, its narration), for what a section has already said. */
+const cardStrings = (value: unknown): string[] =>
+	typeof value === 'string' ? [value] : Array.isArray(value) ? value.flatMap(cardStrings) : value && typeof value === 'object' ? Object.values(value).flatMap(cardStrings) : [];
+
+/** Word stems (first five letters of words of four or more): Turkish suffixes do not hide a word said before. */
+const stems = (text: string): Set<string> =>
+	new Set(
+		text
+			.replace(/[*$_`]/g, '')
+			.toLocaleLowerCase('tr')
+			.split(/[^\p{L}\p{N}]+/u)
+			.filter((word) => word.length >= 4)
+			.map((word) => word.slice(0, 5)),
+	);
+
+/** What a practice board asks about: a matching board's terms, flip cards' faces, an ordering board's items. */
+const boardItems = (visual: CourseVisual): string[] =>
+	visual.kind === 'matching' ? visual.pairs.map((pair) => `${pair.left} ${pair.right}`) : visual.kind === 'flipcards' ? visual.cards.map((card) => card.front) : visual.kind === 'ordering' ? visual.items.map((item) => item.label) : [];
+
+/**
+ * How much of a practice board the section taught before it: the share of its items with a word already said or
+ * shown in the section. The app's rule carries over (owner, 5 Nov 2026: teach first, then ask): a board asks for what
+ * was just taught, it does not make the viewer guess.
+ */
+export const practiceTaughtShare = (section: {narration: string; cards: readonly LessonCard[]}, cardIndex: number): number => {
+	const card = section.cards[cardIndex];
+	if (card?.kind !== 'practice') return 1;
+	const said = stems([section.narration, ...section.cards.slice(0, cardIndex).flatMap(cardStrings)].join(' '));
+	const items = boardItems(card.visual);
+	return items.length === 0 ? 1 : items.filter((item) => [...stems(item)].some((stem) => said.has(stem))).length / items.length;
+};
+
+/** Less than this share of a board taught before it is a guess, not practice (practiceTaughtShare). */
+export const PRACTICE_TAUGHT_SHARE = 0.5;
+
+/** A practice board that opens its section asks before anything is taught. */
+export const practiceIssues = (script: LessonScript): string[] =>
+	script.lesson.sections.flatMap((section, sectionIndex) =>
+		section.cards[0]?.kind === 'practice' ? [`s${sectionIndex + 1}-c1: a practice board opens the section; teach first, then ask (move it after the cards that teach it).`] : [],
+	);
+
+/** A practice board whose items the section has mostly not taught yet. */
+export const practiceSuggestions = (script: LessonScript): string[] =>
+	script.lesson.sections.flatMap((section, sectionIndex) =>
+		section.cards.flatMap((card, cardIndex) => {
+			if (card.kind !== 'practice' || cardIndex === 0) return [];
+			const share = practiceTaughtShare(section, cardIndex);
+			return share < PRACTICE_TAUGHT_SHARE ? [`s${sectionIndex + 1}-c${cardIndex + 1}: only ${Math.round(share * 100)}% of the practice board was taught before it; teach its items first or make it a visual card.`] : [];
+		}),
+	);
 
 /** A spoken sentence longer than this many words leaves the voice no room to breathe (41 of 24,606 in Oct 2026). */
 const MAX_SPOKEN_WORDS = 30;

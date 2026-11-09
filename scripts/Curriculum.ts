@@ -81,9 +81,10 @@ import {readVideoJob} from '../src/Renderers/VideoJobFile';
 import {visualKitOf} from '../src/Courses/CourseDesign';
 import {CHECKLIST_STAGES, CURRICULUM_DIRECTORY, STAGE_LABELS, TWIN_LESSONS, entryRef, nextEntry, subtopicCoverage, taughtRefs, unknownSubtopics, type ChecklistEntry, type ChecklistStage, type TeachingScript} from '../src/Courses/Curriculum';
 import {LessonScriptSchema, ignoredFields, mapNameIssues, reviewScript, type LessonScript} from '../src/Courses/LessonScript';
+import {openingVarietyIssues} from '../src/Courses/OpeningVariety';
 import {GEO_FILES, GEO_LAYERS} from '../src/Configurations/GeoData';
 import {WORKS_DIRECTORY, worksViewOf} from '../src/Courses/WorksView';
-import {WORKS_WRITTEN_DIRECTORY, WrittenLessonSchema, writtenIssues} from '../src/Courses/WorksWritten';
+import {WORKS_WRITTEN_DIRECTORY, WrittenLessonSchema, writtenIssues, writtenWarnings} from '../src/Courses/WorksWritten';
 import {MEDIA_CREDITS_FILE, MEDIA_DIRECTORY, MediaCreditsSchema} from '../src/Courses/MediaLibrary';
 import {dataFoldersIn, educationDataDirectory, importCurriculum, masterLessonList, readChecklist, topicSources, writeChecklist} from '../src/Courses/CurriculumImport';
 import {pastExamFile, readPastExamQuestions, summarizePastExam} from '../src/Courses/PastExamQuestion';
@@ -283,6 +284,12 @@ if (command === 'import') {
 		const campFile = path.join(CURRICULUM, CAMPS_DIRECTORY, `${script.camp.id}.json`);
 		if (!existsSync(campFile)) issues.push(`Camp ${script.camp.id} has no plan at Curriculum/${CAMPS_DIRECTORY}/${script.camp.id}.json.`);
 		else issues.push(...campMismatches(CampSchema.parse(JSON.parse(await readFile(campFile, 'utf8'))), script.topic.code, script.camp));
+		const opening = script.lesson.opening;
+		if (opening) {
+			const campId = script.camp.id;
+			const others = (await readScripts()).filter(({file, script: other}) => file !== own && other.camp?.id === campId && other.lesson.opening);
+			issues.push(...openingVarietyIssues(opening, others.map(({script: other}) => ({name: other.title, opening: other.lesson.opening!}))));
+		}
 	}
 	const creditsFile = path.join(ROOT, 'public', MEDIA_DIRECTORY, MEDIA_CREDITS_FILE);
 	const credited = new Set(existsSync(creditsFile) ? MediaCreditsSchema.parse(JSON.parse(await readFile(creditsFile, 'utf8'))).entries.map((item) => item.file) : []);
@@ -397,6 +404,7 @@ if (command === 'import') {
 	const written = new Set<string>();
 	const counts = new Map<string, {views: number; topics: number; open: string[]; lessons: number}>();
 	const refused: string[] = [];
+	const warned: string[] = [];
 	for (const entry of entries) {
 		const lesson = TWIN_LESSONS[entry.lesson] ?? entry.lesson;
 		const result = worksViewOf(
@@ -413,9 +421,11 @@ if (command === 'import') {
 			if (existsSync(writtenFile)) {
 				const parsed = WrittenLessonSchema.safeParse(JSON.parse(await readFile(writtenFile, 'utf8')));
 				const issues = parsed.success ? writtenIssues(parsed.data, result.view) : parsed.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`);
-				if (issues.length === 0) {
+				if (parsed.success && issues.length === 0) {
 					output = parsed.data;
 					count.lessons += 1;
+					const warnings = writtenWarnings(parsed.data, result.view);
+					if (warnings.length > 0) warned.push(`${entry.category}/${entry.lesson}/${entry.topic}:\n${warnings.map((warning) => `    - ${warning}`).join('\n')}`);
 				} else refused.push(`${entry.category}/${entry.lesson}/${entry.topic}:\n${issues.map((issue) => `    - ${issue}`).join('\n')}`);
 			}
 			if (!dry) {
@@ -440,6 +450,7 @@ if (command === 'import') {
 		count.open.slice(0, 8).forEach((item) => console.log(`  · yarım: ${item}`));
 		if (count.open.length > 8) console.log(`  · … ${count.open.length - 8} yarım konu daha`);
 	});
+	if (warned.length > 0) console.log(`\nÖğretim sırası uyarıları (yazılı ders yine kullanıldı; üretim hattı bir sonraki geçişte düzeltir), ${warned.length} konu:\n  ${warned.join('\n  ')}`);
 	if (refused.length > 0) {
 		console.error(`\nYazılı ders kullanılmadı, videodan kurulan dosya yazıldı (Curriculum/${WORKS_WRITTEN_DIRECTORY}):\n  ${refused.join('\n  ')}`);
 		process.exitCode = 1;
@@ -541,11 +552,11 @@ if (command === 'import') {
 		'',
 		'## Derslerin kart ve görsel karışımı',
 		'',
-		'"Görselsiz kural" ve "tablo payı" yüksek, "tahmin" ve "örnek" düşük olan dersler kart ekleme ve genişletmenin ilk adaylarıdır. "Süreç önerisi": anlatımın andığı bir süreci gösteren görsel yok (`curriculum check` "?" satırları).',
+		'"Görselsiz kural" ve "tablo payı" yüksek; "tahmin", "sıra sende" ve "örnek" düşük olan dersler kart ekleme ve genişletmenin ilk adaylarıdır. "Süreç önerisi": anlatımın andığı bir süreci gösteren görsel yok (`curriculum check` "?" satırları).',
 		'',
-		'| Ders | Kod | Kart | Soru | Tahmin | Örnek | Hata | Görselsiz kural | Görsel | Tablo payı | Süreç önerisi |',
-		'|---|---|---|---|---|---|---|---|---|---|---|',
-		...mixes.map((mix) => `| ${mix.lesson} | ${mix.code} | ${mix.cards} | ${mix.questions} | ${mix.predicts} | ${mix.examples} | ${mix.mistakes} | ${mix.rulesWithoutFigure} | ${mix.figures} | %${Math.round(mix.tableShare * 100)} | ${mix.suggestions} |`),
+		'| Ders | Kod | Kart | Soru | Tahmin | Sıra sende | Örnek | İlk sorudan önce örnek | Hata | Görselsiz kural | Görsel | Tablo payı | Süreç önerisi |',
+		'|---|---|---|---|---|---|---|---|---|---|---|---|---|',
+		...mixes.map((mix) => `| ${mix.lesson} | ${mix.code} | ${mix.cards} | ${mix.questions} | ${mix.predicts} | ${mix.practices} | ${mix.examples} | ${mix.examplesBeforeQuestion} | ${mix.mistakes} | ${mix.rulesWithoutFigure} | ${mix.figures} | %${Math.round(mix.tableShare * 100)} | ${mix.suggestions} |`),
 		'',
 	];
 	const report = path.join(CURRICULUM, 'Production', 'DersDenetimi.md');

@@ -6,7 +6,8 @@ import type {LessonScript} from './LessonScript';
  * drifts towards the same sentences and the same questions. The audit lists:
  *   - sentences said in more than one lesson (the short fixed formulas of a question are allowed);
  *   - question stems that are nearly the same in two places;
- *   - each lesson's mix of cards and figures, so thin spots (rules with no figure, no prediction) stand out.
+ *   - each lesson's mix of cards and figures, so thin spots (rules with no figure, no prediction, no your-turn board,
+ *     no worked example before the first question) stand out.
  * It reports; it does not block anything.
  */
 
@@ -123,6 +124,9 @@ export const lessonMix = (script: LessonScript) => {
 		cards: cards.length,
 		questions: count('question'),
 		predicts: count('predict'),
+		practices: count('practice'),
+		/** Worked examples before the lesson's first question (owner's teaching order, 5 Nov 2026: solved first, then asked). */
+		examplesBeforeQuestion: cards.slice(0, Math.max(0, cards.findIndex((card) => card.kind === 'question'))).filter((card) => card.kind === 'example').length,
 		examples: count('example'),
 		mistakes: count('mistake'),
 		rulesWithoutFigure: cards.filter((card) => card.kind === 'rule' && !card.visual).length,

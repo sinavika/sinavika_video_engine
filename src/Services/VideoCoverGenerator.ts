@@ -4,6 +4,7 @@ import {CAMPS_DIRECTORY} from '../Courses/Camp';
 import {CURRICULUM_DIRECTORY} from '../Courses/Curriculum';
 import {renderImage} from '../Images/Renderers/ImageRenderer';
 import {contentList, contentText, type ResolvedVideoJob} from '../Renderers/VideoJob';
+import {COVER_HOOK_LIMIT} from '../Images/Templates/Thumbnails/CampCover';
 
 /**
  * Builds and renders the cover of a video: the one cover standard
@@ -25,7 +26,17 @@ const plain = (text: string, limit: number): string => {
 	return `${cut.slice(0, Math.max(cut.lastIndexOf(' '), 1)).trimEnd()}…`;
 };
 
-type CampContent = {camp?: {name: string; number: number; total: number}; topic?: {lesson: string}; title?: string; exams?: string[]};
+type CampContent = {camp?: {name: string; number: number; total: number}; topic?: {lesson: string}; title?: string; exams?: string[]; lesson?: {hook?: {headline?: string}}; short?: {hook?: string}};
+
+/**
+ * The hook on a camp cover: the job's own, else the reel's dare on a reel and the lesson's hook headline on a
+ * lesson, when it fits one cover line (COVER_HOOK_LIMIT letters; never shortened, a cut hook sells nothing).
+ */
+const campHook = (job: ResolvedVideoJob, content: CampContent): string | undefined => {
+	const requested = job.cover && typeof job.cover === 'object' ? job.cover.hook : undefined;
+	const own = plain((job.template.id === 'CampShort' ? content.short?.hook : content.lesson?.hook?.headline) ?? '', 200);
+	return requested ?? (own && own.length <= COVER_HOOK_LIMIT ? own : undefined);
+};
 
 /** Every lesson title of a camp, from its plan (Curriculum/Camps), by the camp's name: its covers share one title size. */
 const campTitles = (name: string): string[] => {
@@ -64,6 +75,7 @@ const campCoverJob = (job: ResolvedVideoJob) => {
 			series: campTitles(content.camp.name),
 			exams: content.exams ?? [],
 			kind: job.template.id === 'CampShort' ? 'Kısa tekrar' : 'Konu anlatımı',
+			hook: campHook(job, content),
 		},
 	};
 };

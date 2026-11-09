@@ -1,6 +1,6 @@
 import React from 'react';
 import {z} from 'zod';
-import {AbsoluteFill, Img, interpolate, OffthreadVideo, Sequence, staticFile, useVideoConfig} from 'remotion';
+import {AbsoluteFill, Audio, Img, interpolate, OffthreadVideo, Sequence, staticFile, useVideoConfig} from 'remotion';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
 import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {SoundEffect} from '../../../Components/Sounds/SoundEffect';
@@ -21,17 +21,38 @@ import {Morph, type Shape} from '../PromoKit/PromoMotion';
  * teachers in chalk; the board travels through time from chalk to today's
  * classroom screen (drawn, no photographs); and the question "who taught you
  * your first letter?". Warm and hopeful, unlike 10 Kasım and 29 Ekim.
+ * With `archive.speech` his own voice (a cut of a public-domain recording) follows the narration over the archive,
+ * each word appearing as he says it (owner, 9 Nov 2026: the quiet pictures after the narration were too empty).
  */
 
 const narration = z.string().trim().min(1).max(200);
-const ShotSchema = z.object({src: z.string().min(1), kind: z.enum(['image', 'video']), seconds: z.number().min(1).max(8), rate: z.number().min(0.25).max(1).default(0.6)});
+/**
+ * An archive picture or film: `caption` names the place and day in small letters, `focus` is where a landscape
+ * picture is cut for the phone (CSS object-position).
+ */
+const ShotSchema = z.object({src: z.string().min(1), kind: z.enum(['image', 'video']), seconds: z.number().min(1).max(8), rate: z.number().min(0.25).max(1).default(0.6), caption: plainText(40).optional(), focus: z.string().max(20).optional()});
+
+/** A cut of his recorded voice: `from`/`to` in seconds into the recording, each word with the second (from the cut's start) it is said at. */
+const SpeechSchema = z.object({
+	src: z.string().default('Media/History/ataturk-10-yil-nutku-1933.ogg'),
+	source: plainText(48),
+	from: z.number().min(0),
+	to: z.number().positive(),
+	words: z.array(z.object({text: plainText(24), at: z.number().min(0)})).min(1).max(30),
+});
+
+/** Quiet after the narration before his voice comes in, and after his last word. */
+const SPEECH_LEAD = 0.6;
+const SPEECH_TAIL = 0.8;
 
 const BasogretmenSchema = z.object({
 	/** The opening lines, written in chalk one after another. */
 	chalk: z.object({lines: z.array(plainText(22)).min(2).max(3)}),
-	archive: z.object({date: plainText(20), title: plainText(20), credit: plainText(40), shots: z.array(ShotSchema).min(1).max(3), dateNarration: narration, narration}),
-	quote: z.object({opening: plainText(16), words: plainText(48), author: plainText(28), seconds: z.number().min(5).max(10).default(8)}),
-	time: z.object({from: z.number().int(), to: z.number().int(), letters: plainText(20), narration}),
+	archive: z.object({date: plainText(20), title: plainText(20), credit: plainText(40), shots: z.array(ShotSchema).min(1).max(7), dateNarration: narration, narration, speech: SpeechSchema.optional()}),
+	/** His words to teachers, in chalk; over `photo` (an archive picture, darkened) instead of the slate when given. */
+	quote: z.object({opening: plainText(16), words: plainText(48), author: plainText(28), seconds: z.number().min(5).max(10).default(8), photo: ShotSchema.optional()}),
+	/** From his day to ours: the drawn classroom, or with `film` an archive film of the young under the counting years. */
+	time: z.object({from: z.number().int(), to: z.number().int(), letters: plainText(20), narration, film: ShotSchema.optional()}),
 	thanks: z.object({question: plainText(30), ask: plainText(44), line: plainText(44), narration}),
 	script: VoiceScriptSchema,
 });
@@ -85,12 +106,25 @@ const ChalkScene: React.FC<{content: Content}> = ({content}) => {
 	);
 };
 
+/** How an archive picture is shown: sepia, cut for the phone at its `focus`, pushed in slowly as `progress` runs 0→1. */
+const archiveLook = (shot: z.infer<typeof ShotSchema>, progress: number): React.CSSProperties => ({
+	width: '100%',
+	height: '100%',
+	objectFit: 'cover',
+	objectPosition: shot.focus ?? 'center',
+	transform: `scale(${1.04 + 0.08 * Math.min(1, progress)})`,
+	filter: 'grayscale(1) sepia(0.45) contrast(1.05) brightness(0.95)',
+});
+
 /** Archive pictures one after another, warm and slow, a gentle push in, with the date over them. */
-const ArchiveScene: React.FC<{content: Content; seconds: number}> = ({content, seconds: total}) => {
+const ArchiveScene: React.FC<{content: Content; seconds: number; speechAt?: number}> = ({content, seconds: total, speechAt}) => {
 	const {u} = useVideoLayout();
 	const {fps} = useVideoConfig();
 	const seconds = useSeconds();
-	const title = ease(interpolate(seconds, [0.6, 1.4], [0, 1], CLAMP));
+	const speech = content.archive.speech;
+	// The date and title make room for his words just before he speaks.
+	const leave = speech && speechAt !== undefined ? interpolate(seconds, [speechAt - 0.6, speechAt], [1, 0], CLAMP) : 1;
+	const title = ease(interpolate(seconds, [0.6, 1.4], [0, 1], CLAMP)) * leave;
 	let start = 0;
 	return (
 		<AbsoluteFill style={{background: '#000'}}>
@@ -100,10 +134,18 @@ const ArchiveScene: React.FC<{content: Content; seconds: number}> = ({content, s
 				const length = index === content.archive.shots.length - 1 ? Math.max(shot.seconds, total - from) : shot.seconds;
 				start += length;
 				const local = Math.max(0, seconds - from);
-				const look: React.CSSProperties = {width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${1.04 + 0.08 * Math.min(1, local / length)})`, filter: 'grayscale(1) sepia(0.45) contrast(1.05) brightness(0.95)'};
+				const look = archiveLook(shot, local / length);
+				const caption = ease(interpolate(local, [0.5, 1.2], [0, 1], CLAMP));
 				return (
 					<Sequence key={index} from={Math.round(from * fps)} durationInFrames={Math.round(length * fps)}>
 						{shot.kind === 'image' ? <Img src={staticFile(shot.src)} style={look} /> : <OffthreadVideo muted src={staticFile(shot.src)} playbackRate={shot.rate} style={look} />}
+						{shot.caption ? (
+							<div style={{position: 'absolute', left: u(40), right: u(40), top: u(150), opacity: caption * 0.9}}>
+								<Text size={30} weight={TYPE.weights.display} color={CHALK} align="center" style={{textShadow: '0 2px 12px rgba(0,0,0,0.9)'}}>
+									{shot.caption}
+								</Text>
+							</div>
+						) : null}
 					</Sequence>
 				);
 			})}
@@ -119,13 +161,50 @@ const ArchiveScene: React.FC<{content: Content; seconds: number}> = ({content, s
 						</Text>
 					</div>
 				</At>
+				{/* The credit leaves with the title: his words take the lower part of the screen. */}
 				<At x={40} y={1300} w={872}>
-					<Text size={22} weight={TYPE.weights.strong} color="rgba(255,255,255,0.6)">
+					<Text size={22} weight={TYPE.weights.strong} color={`rgba(255,255,255,${(0.6 * leave).toFixed(3)})`}>
 						{content.archive.credit}
 					</Text>
 				</At>
+				{speech && speechAt !== undefined ? <SpeechWords speech={speech} at={speechAt} /> : null}
 			</PromoStage>
+			{speech && speechAt !== undefined ? (
+				<Sequence from={Math.round(speechAt * fps)} durationInFrames={Math.round((speech.to - speech.from + SPEECH_TAIL) * fps)}>
+					<Audio src={staticFile(speech.src)} trimBefore={Math.round(speech.from * fps)} trimAfter={Math.round(speech.to * fps)} volume={1} />
+				</Sequence>
+			) : null}
 		</AbsoluteFill>
+	);
+};
+
+/** His words over the archive, each one appearing as he says it, with where the voice comes from above them. */
+const SpeechWords: React.FC<{speech: z.infer<typeof SpeechSchema>; at: number}> = ({speech, at}) => {
+	const {u} = useVideoLayout();
+	const t = useSeconds() - at;
+	const source = ease(interpolate(t, [-0.2, 0.4], [0, 1], CLAMP));
+	return (
+		<At x={40} y={760} w={872}>
+			<div style={{display: 'flex', flexDirection: 'column', gap: u(22)}}>
+				<div style={{opacity: source * 0.85}}>
+					<Text size={28} weight={TYPE.weights.strong} color={CHALK_YELLOW} style={{letterSpacing: '0.05em'}}>
+						{speech.source}
+					</Text>
+				</div>
+				<div style={{display: 'flex', flexWrap: 'wrap', columnGap: u(18), rowGap: u(4)}}>
+					{speech.words.map((word, position) => {
+						const p = ease(interpolate(t, [word.at - 0.05, word.at + 0.35], [0, 1], CLAMP));
+						return (
+							<span key={position} style={{opacity: p, transform: `translateY(${(1 - p) * u(14)}px)`, filter: p < 1 ? `blur(${u((1 - p) * 4)}px)` : undefined}}>
+								<Text variant="display" size={66} weight={TYPE.weights.display} color={WHITE} style={{lineHeight: 1.14, textShadow: '0 4px 24px rgba(0,0,0,0.9)'}}>
+									{word.text}
+								</Text>
+							</span>
+						);
+					})}
+				</div>
+			</div>
+		</At>
 	);
 };
 
@@ -134,8 +213,17 @@ const QuoteScene: React.FC<{content: Content}> = ({content}) => {
 	const quote = content.quote;
 	const wordsAt = 0.3 + writing(quote.opening, 12) + 0.35;
 	const authorAt = wordsAt + writing(quote.words, 18) + 0.5;
+	const seconds = useSeconds();
+	const ground = quote.photo ? (
+		<AbsoluteFill style={{background: '#000'}}>
+			{quote.photo.kind === 'image' ? <Img src={staticFile(quote.photo.src)} style={archiveLook(quote.photo, seconds / quote.seconds)} /> : <OffthreadVideo muted src={staticFile(quote.photo.src)} playbackRate={quote.photo.rate} style={archiveLook(quote.photo, seconds / quote.seconds)} />}
+			<AbsoluteFill style={{background: 'rgba(12,9,4,0.62)'}} />
+		</AbsoluteFill>
+	) : (
+		<Board />
+	);
 	return (
-		<PromoStage ground={<Board />}>
+		<PromoStage ground={ground}>
 			<At y={480} w={952}>
 				<div style={{display: 'flex', flexDirection: 'column', gap: u(40), padding: `0 ${u(30)}px`}}>
 					<Chalk text={quote.opening} at={0.3} perSecond={12} size={120} weight={TYPE.weights.kinetic} />
@@ -162,6 +250,22 @@ const TimeScene: React.FC<{content: Content; seconds: number}> = ({content, seco
 	const desks = ease(interpolate(seconds, [0.5, 1.2], [0, 1], CLAMP));
 	const stage = seconds < third ? 0 : seconds < 2 * third ? 1 : 2;
 	const ink = [CHALK, '#1E3A8A', '#38BDF8'][stage];
+	const film = content.time.film;
+	if (film) {
+		return (
+			<AbsoluteFill style={{background: '#000'}}>
+				{film.kind === 'image' ? <Img src={staticFile(film.src)} style={archiveLook(film, seconds / total)} /> : <OffthreadVideo muted src={staticFile(film.src)} playbackRate={film.rate} style={archiveLook(film, seconds / total)} />}
+				<AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(12,9,4,0.75) 0%, transparent 35%, transparent 70%, rgba(12,9,4,0.8) 100%)'}} />
+				<PromoStage ground={null}>
+					<At y={170} w={952}>
+						<Text variant="display" size={140} weight={TYPE.weights.kinetic} color={WHITE} align="center" style={{fontVariantNumeric: 'tabular-nums lining-nums', lineHeight: 1, textShadow: '0 6px 30px rgba(0,0,0,0.8)'}}>
+							{String(year)}
+						</Text>
+					</At>
+				</PromoStage>
+			</AbsoluteFill>
+		);
+	}
 	return (
 		<PromoStage ground={<AbsoluteFill style={{background: '#0B1C30'}} />}>
 			{/* The classroom: a navy wall (no brown), the rows of desks drawn simply. */}
@@ -264,13 +368,17 @@ const buildScenes = (content: Content, voiceClips: VoiceClips = {}): TemplateSce
 	const date = say('date', content.archive.dateNarration, 3, 2.5);
 	// The pictures fill the time of the two lines; the second line holds on long enough for them.
 	const shots = content.archive.shots.reduce((sum, shot) => sum + shot.seconds, 0);
-	const call = say('call', content.archive.narration, Math.max(5, shots - date.seconds), Math.max(4, shots - date.seconds));
+	const speech = content.archive.speech;
+	// With his voice after the narration, the narration keeps its own length and his words fill the rest of the pictures.
+	const call = speech ? say('call', content.archive.narration, 6, 4) : say('call', content.archive.narration, Math.max(5, shots - date.seconds), Math.max(4, shots - date.seconds));
+	const speechAt = speech ? date.seconds + call.seconds + SPEECH_LEAD : undefined;
+	const archiveSeconds = speech && speechAt !== undefined ? Math.round(Math.max(shots, speechAt + speech.to - speech.from + SPEECH_TAIL) * 10) / 10 : date.seconds + call.seconds;
 	const time = say('time', content.time.narration, 6, 6);
 	const thanks = say('thanks', content.thanks.narration, 8, 8.5);
 	// Atatürk first (owner, 1 Nov 2026: "video Atatürk ile başlamalı, tüyler ürpertmeli"): his portrait and the date, his
 	// words to teachers, and only then the chalk lines.
 	return [
-		{id: 'archive', seconds: date.seconds + call.seconds, label: 'Arşiv', voice: [date, call], element: <ArchiveScene content={content} seconds={date.seconds + call.seconds} />},
+		{id: 'archive', seconds: archiveSeconds, label: 'Arşiv', voice: [date, call], element: <ArchiveScene content={content} seconds={archiveSeconds} speechAt={speechAt} />},
 		{id: 'quote', seconds: content.quote.seconds, label: 'Söz', silent: true, element: <QuoteScene content={content} />},
 		{id: 'chalk', seconds: chalkSeconds, label: 'Tebeşir', silent: true, element: <ChalkScene content={content} />},
 		{id: 'time', seconds: time.seconds, label: 'Zaman', voice: [time], element: <TimeScene content={content} seconds={time.seconds} />},

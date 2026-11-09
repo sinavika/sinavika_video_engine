@@ -2,7 +2,7 @@ import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
 import {Icon} from '../../Icons';
 import {MODULES} from '../../ModuleIdentity';
-import {Bar, Bars, Button, Card, Chip, List, ListRow, OptionRow, Ring, Segmented, Sparkline, Stack, Text, Tile} from '../../Parts/Shared';
+import {Bar, Button, Card, Chip, List, OptionRow, Ring, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
 import {Grid, Immersive, ModuleBanner, ModuleHead, Panel, WCard} from '../../Parts/Web';
 
 /** Web Denemeler: exams, my exams with calendar, details, solving, results, analysis, solutions and statistics. */
@@ -253,39 +253,6 @@ export const WebExamSolveScreen: React.FC = () => {
 	);
 };
 
-export const WebResultsScreen: React.FC = () => {
-	const t = useT();
-	return (
-		<Panel active="exam">
-			<ModuleHead module="exam" tab={2} title={t('Sonuçlar', 'Results')} sub={t('Netlerin, sıralaman ve gelişimin', 'Your scores, rank and progress')} />
-			<Grid columns="1fr 1.4fr">
-				<WCard title={t('Net eğrin', 'Score trend')}>
-					<Text role="num" size={34}>
-						78,5
-					</Text>
-					<Chip tone="success" icon="trend">
-						{t('+14,5 net · 6 deneme', '+14.5 · 6 exams')}
-					</Chip>
-					<div style={{marginTop: 16}}>
-						<Sparkline points={[0.2, 0.32, 0.28, 0.5, 0.62, 0.8]} width={360} height={140} color={MODULES.exam.color.light} />
-					</div>
-				</WCard>
-				<List>
-					{[
-						[t('TYT Deneme 4', 'TYT Exam 4'), t('12 Ekim · sıralama 8.214', '12 Oct · rank 8,214'), '78,5', '+6,5'],
-						[t('AYT Sayısal Deneme 2', 'AYT Science Exam 2'), t('5 Ekim · sıralama 11.902', '5 Oct · rank 11,902'), '41,25', '+3'],
-						[t('TYT Deneme 3', 'TYT Exam 3'), t('28 Eylül · sıralama 9.877', '28 Sep · rank 9,877'), '72', '+4,75'],
-						[t('Paragraf Branş', 'Reading Subject'), t('21 Eylül', '21 Sep'), '31', '—'],
-						[t('TYT Deneme 2', 'TYT Exam 2'), t('14 Eylül · sıralama 12.004', '14 Sep · rank 12,004'), '67,25', '+3,25'],
-					].map(([title, sub, score, delta]) => (
-						<ListRow key={title} module="exam" title={title} subtitle={sub} trailing={<Stack row gap={18}><Stack align="flex-end" gap={1}><Text role="section">{score}</Text><Text role="meta" color="#059669">{delta}</Text></Stack><Button tone="moduleSoft" module="exam" size="sm">{t('Analiz', 'Analysis')}</Button></Stack>} />
-					))}
-				</List>
-			</Grid>
-		</Panel>
-	);
-};
-
 export const WebResultScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
@@ -432,52 +399,6 @@ export const WebSolutionsScreen: React.FC = () => {
 						</Button>
 					</Stack>
 				</Card>
-			</Grid>
-		</Panel>
-	);
-};
-
-export const WebStatsScreen: React.FC = () => {
-	const t = useT();
-	const mod = useModuleColors('exam');
-	return (
-		<Panel active="exam">
-			<ModuleHead module="exam" tab={2} tabs={[t('Denemeler', 'Exams'), t('Denemelerim', 'My exams'), t('İstatistik', 'Statistics')]} title={t('İstatistik', 'Statistics')} sub={t('Netlerin, sürelerin ve gelişimin', 'Your scores, timing and progress')} />
-			<Grid columns="repeat(4, 1fr)" gap={14}>
-				{[[t('Çözülen deneme', 'Exams taken'), '6'], [t('Ortalama net', 'Average score'), '71,4'], [t('En iyi sıralama', 'Best rank'), '8.214'], [t('Çalışma süresi', 'Study time'), t('42 sa', '42 h')]].map(([label, value]) => (
-					<Card key={label} padding={18}>
-						<Text role="meta">{label}</Text>
-						<Text role="num" size={28}>
-							{value}
-						</Text>
-					</Card>
-				))}
-			</Grid>
-			<Grid columns="1.2fr 1fr">
-				<WCard title={t('Derslere göre net gelişimi', 'Score by subject')}>
-					<Stack gap={14}>
-						{LESSONS.map(([tr, en, score, total, color]) => (
-							<Stack key={tr} row gap={14}>
-								<Text role="headline" style={{width: 150}}>
-									{t(tr, en)}
-								</Text>
-								<Sparkline points={[0.3, 0.38, 0.35, 0.5, score / total]} width={220} height={40} color={color} fill={false} />
-								<Text role="headline" style={{width: 70, textAlign: 'right'}}>
-									{String(score).replace('.', ',')}
-								</Text>
-								<Chip tone="success" size="sm">
-									+{(score / 10).toFixed(1).replace('.', ',')}
-								</Chip>
-							</Stack>
-						))}
-					</Stack>
-				</WCard>
-				<WCard title={t('Soru başına süre', 'Time per question')}>
-					<Bars values={[0.5, 0.7, 0.9, 0.6]} labels={[t('Türkçe', 'Tur.'), t('Sosyal', 'Soc.'), t('Mat', 'Maths'), t('Fen', 'Sci.')]} highlight={2} color={mod.color} height={140} barWidth={48} />
-					<Text role="small" style={{marginTop: 12}}>
-						{t('Matematikte soru başına 1 dk 48 sn harcıyorsun; hedef 1 dk 20 sn.', 'Maths takes 1:48 per question; target 1:20.')}
-					</Text>
-				</WCard>
 			</Grid>
 		</Panel>
 	);

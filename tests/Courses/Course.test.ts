@@ -142,7 +142,7 @@ describe('lesson script', () => {
 	it('requires a worked question and an answer that is one of the options', () => {
 		const withoutQuestions = {...LESSON_SCRIPT_SAMPLE, lesson: {...LESSON_SCRIPT_SAMPLE.lesson, sections: LESSON_SCRIPT_SAMPLE.lesson.sections.map((section) => ({...section, cards: section.cards.filter((card) => card.kind !== 'question')})).filter((section) => section.cards.length > 0)}};
 		expect(LessonScriptSchema.safeParse(withoutQuestions).success).toBe(false);
-		const question = script.lesson.sections[2].cards[1];
+		const question = script.lesson.sections[2].cards[2];
 		expect(question.kind).toBe('question');
 		if (question.kind === 'question') expect(question.question.options[question.question.answer]).toContain('sıcak** davrandı');
 	});

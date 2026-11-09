@@ -76,6 +76,25 @@ export const LESSON_SCRIPT_SAMPLE: z.input<typeof LessonScriptSchema> = {
 						narration: 'Terim anlam, bir sözcüğün bir bilim, sanat ya da meslek alanında kazandığı özel anlamdır. Geometride açı, iki ışının oluşturduğu şekli anlatır; bu bir terimdir.',
 					},
 					{
+						kind: 'practice',
+						title: 'Hangi anlam?',
+						visual: {
+							kind: 'matching',
+							titles: ['Cümle', 'Anlam'],
+							pairs: [
+								{left: 'Pencereyi **açık** bırak.', right: 'Gerçek anlam'},
+								{left: 'Çok **açık** konuştu.', right: 'Mecaz anlam'},
+								{left: 'Dar **açı** çizdi.', right: 'Terim anlam'},
+							],
+						},
+						narration: 'Üç cümle, üç farklı anlam.',
+						beats: [
+							{narration: 'Pencereyi açık bırak: açık, kapalı olmayan demek. Gerçek anlam.', focus: ['p1']},
+							{narration: 'Çok açık konuştu: saklamadan, dürüstçe. Mecaz anlam.', focus: ['p2']},
+							{narration: 'Dar açı ise geometrinin sözcüğü: terim anlam.', focus: ['p3']},
+						],
+					},
+					{
 						kind: 'question',
 						question: {
 							style: 'TYT tarzı',
@@ -135,5 +154,15 @@ export const CAMP_SCRIPT_SAMPLE: z.input<typeof LessonScriptSchema> = {
 			items: ['Bugün okuduğun bir metinde **üç mecaz** sözcük bul.', 'Uygulamada Sözcükte Anlam testinden **10 soru** çöz.', 'Yanlış yaptığın soruları **gerçek–mecaz** ayrımıyla yeniden oku.'],
 			narration: 'Kamp görevin hazır. Bugün okuduğun bir metinde üç mecaz sözcük bul. Uygulamada Sözcükte Anlam testinden on soru çöz. Yanlış yaptığın soruları gerçek ve mecaz ayrımıyla yeniden oku. Bir sonraki derste söz yorumuyla devam ediyoruz.',
 		},
+	},
+};
+
+/** A camp lesson whose reel is a challenge: the flash reel (CampFlash) needs its rounds. */
+export const CAMP_FLASH_SAMPLE: z.input<typeof LessonScriptSchema> = {
+	...CAMP_SCRIPT_SAMPLE,
+	short: {
+		...CAMP_SCRIPT_SAMPLE.short,
+		hook: 'Üç soru, üçü de tuzak.',
+		rounds: [{"sentence": "Domates henüz **olgun** değil.", "question": "Olgunun karşıtı ne?", "choices": ["Olgun değil", "Ham"], "answer": 1, "why": "Olumsuzluk **karşıtlık** değil."}, {"sentence": "Bugün **biraz** yorgunum.", "question": "Nitel mi, nicel mi?", "choices": ["Nitel", "Nicel"], "answer": 1, "why": "**Miktar** bildiriyor."}],
 	},
 };

@@ -110,10 +110,22 @@ def sources_of(ref):
     return pack, sub_names
 
 
+#: 'video': temel, videodan kurulan Works dosyasıdır (ilk yazım). 'yazili': temel, konunun bugünkü yazılı dersidir (sonraki geçişler; iyileştirmeler korunur).
+BASE_MODE = {'value': 'video'}
+
+
 def package_of(ref, previous=None, problems=None):
-    base = base_of(ref)
+    written_path = os.path.join(WRITTEN, ref + '.json')
+    if BASE_MODE['value'] == 'yazili' and os.path.exists(written_path):
+        base = json.load(open(written_path, encoding='utf-8'))
+        notes = [a['note'] for a in base.get('written', {}).get('additions', [])]
+        kind = 'yazili'
+    else:
+        base = base_of(ref)
+        notes = (base.get('works') or {}).get('additions', [])
+        kind = 'video'
     pack, sub_names = sources_of(ref)
-    body = {'konu': ref, 'altKonular': sub_names, 'worksNotlari': (base.get('works') or {}).get('additions', []),
+    body = {'konu': ref, 'temelTuru': kind, 'altKonular': sub_names, 'worksNotlari': notes,
             'temel': compact({k: v for k, v in base.items() if k != 'works'}), 'kaynaklar': pack}
     if previous is not None:
         body['oncekiCikti'] = previous
@@ -127,6 +139,7 @@ HIGH_EFFORT = {'MAT', 'GEO', 'FIZ', 'KIM'}
 
 def params_of(model, body):
     text = ('Konu paketi aşağıda. ' + ('Bu bir düzeltme turu: yalnız `sorunlar`ı gider, `oncekiCikti`nın geri kalanını koru. ' if 'sorunlar' in body else '')
+            + ('`temel` zaten yazılı derstir: içeriğini, etkileşimli kartlarını ve düzeltmelerini koru; yönergedeki öğretim sırasına göre eksikleri tamamla (tanım, anlam, çözümlü örnekler) ve hataları düzelt. ' if body.get('temelTuru') == 'yazili' else '')
             + 'Yönergeye göre yazılı dersi yaz; yalnız JSON döndür.\n\n' + json.dumps(body, ensure_ascii=False))
     effort = 'high' if body['konu'].split('/')[1] in HIGH_EFFORT else 'medium'
     return {'model': MODELS[model], 'max_tokens': 128000, 'thinking': {'type': 'adaptive'}, 'output_config': {'effort': effort},
@@ -232,19 +245,24 @@ def check(target, refs):
             continue
         run = subprocess.run(['npx', 'tsx', 'scripts/Curriculum.ts', 'works', category, '--topic', ','.join(present), '--dry', '--written', os.path.abspath(target)],
                              cwd=ENGINE, capture_output=True, text=True, encoding='utf-8', shell=os.name == 'nt')
-        found, current = {}, None
+        found, current, warning = {}, None, False
         for line in (run.stdout + run.stderr).splitlines():
+            if line.startswith('Öğretim sırası uyarıları'):
+                warning = True
+            elif line.startswith('Yazılı ders kullanılmadı'):
+                warning = False
             m = re.match(r'^\s{2}(\S+/\S+/\S+):$', line)
             if m:
                 current = m.group(1)
-                found[current] = []
+                found.setdefault(current, [])
             elif current and line.startswith('    - '):
-                found[current].append(line[6:])
+                found[current].append(('uyarı: ' if warning else '') + line[6:])
         for ref in present:
             issues[ref] = found.get(ref, [])
     json.dump(issues, open(ISSUES, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-    failed = {r: v for r, v in issues.items() if r in refs and v}
-    print(f'{len(refs)} konu denetlendi: {len(refs) - len(failed)} geçti, {len(failed)} sorunlu')
+    failed = {r: v for r, v in issues.items() if r in refs and any(not p.startswith('uyarı: ') for p in v)}
+    warned = {r: v for r, v in issues.items() if r in refs and v and r not in failed}
+    print(f'{len(refs)} konu denetlendi: {len(refs) - len(failed) - len(warned)} temiz, {len(warned)} yalnız öğretim sırası uyarılı, {len(failed)} reddedilen')
     for ref, problems in failed.items():
         print(f'  {ref}: {len(problems)} sorun — {problems[0][:160]}')
 
@@ -374,6 +392,11 @@ Yalnız sorunları gideren **JSON yamaları** döndür:
   - "gives the answer away": açıklama doğru cevabı söylemesin; yalnız o şıkkın neden yanlış olduğunu anlatsın.
   - "belongs to the video": video sözünü çıkar.
   - "Two sections share a subtopic": bölümlerin subtopic ve subtopics alanlarını temeldeki gibi ayrı tut.
+  - "uyarı:" ile başlayanlar öğretim sırası uyarılarıdır:
+    - "does not open with a definition": bölümün başına (`add`, sıra 0) alt konuyu tanımlayan bir `concept` kartı ekle.
+    - "a formula before its meaning": formül kartından önce fikri sözle ve basit sayılarla anlatan bir `concept` kartı ekle.
+    - "worked example(s) before the first question": ilk sorudan önce tam çözümlü `example` kartları ekle.
+- Yamalar sırayla uygulanır ve her `add` sonraki indeksleri kaydırır. Bu yüzden ekleme yamalarını dersin **sonundan başına** doğru sırala: büyük bölüm ve kart indeksleri önce.
 - Yalnız JSON döndür."""
 
 
@@ -416,7 +439,9 @@ def submit_patches(model, target, refs):
     for ref in refs:
         lesson = json.load(open(os.path.join(target, *ref.split('/')) + '.json', encoding='utf-8'))
         text = 'Yama turu. Yalnız JSON döndür.\n\n' + json.dumps({'konu': ref, 'sorunlar': issues[ref], 'ders': lesson}, ensure_ascii=False)
-        requests.append({'custom_id': custom_id(ref), 'params': {'model': MODELS[model], 'max_tokens': 64000, 'thinking': {'type': 'adaptive'}, 'output_config': {'effort': 'medium'},
+        # Çözümlü örnek ekleyen yamada hesap doğruluğu önemli: sayısal derslerde yüksek düşünme düzeyi.
+        effort = 'high' if ref.split('/')[1] in HIGH_EFFORT and any(p.startswith('uyarı: ') for p in issues[ref]) else 'medium'
+        requests.append({'custom_id': custom_id(ref), 'params': {'model': MODELS[model], 'max_tokens': 128000, 'thinking': {'type': 'adaptive'}, 'output_config': {'effort': effort},
                                                                  'system': [{'type': 'text', 'text': system, 'cache_control': {'type': 'ephemeral'}}], 'messages': [{'role': 'user', 'content': text}]}})
     batch_id = api.submit_batch(requests)
     with open(STATE, 'a', encoding='utf-8') as handle:
@@ -473,7 +498,9 @@ def main():
     parser.add_argument('--model', choices=list(MODELS))
     parser.add_argument('--hedef', default=WRITTEN)
     parser.add_argument('--etiket', default='')
+    parser.add_argument('--temel', choices=['video', 'yazili'], default='video', help='video: ilk yazım; yazili: bugünkü yazılı ders üzerinden yeni geçiş')
     args = parser.parse_args()
+    BASE_MODE['value'] = args.temel
     if args.komut == 'paket':
         for ref in refs_of(args.konular):
             path = os.path.join(OUT, 'Paketler', *ref.split('/')) + '.json'

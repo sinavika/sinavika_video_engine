@@ -1,9 +1,10 @@
 import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
-import {Icon} from '../../Icons';
+import {Icon, type UIIconName} from '../../Icons';
 import {MODULES} from '../../ModuleIdentity';
-import {AppHeader, BottomBar, Content, FocusHeader, ModuleScreen, ModuleSlide, PageTitle, SectionTitle} from '../../Parts/Mobile';
-import {Bar, Button, Card, Chip, List, ListRow, OptionRow, Ring, Segmented, Sparkline, Stack, Text, Tile} from '../../Parts/Shared';
+import {AppHeader, BottomBar, Content, FocusHeader, ModuleScreen, ModuleSlide, PageTitle, SectionTitle, Sheet} from '../../Parts/Mobile';
+import {NetBars} from '../../Parts/Study';
+import {Bar, Button, Card, Chip, Field, List, ListRow, OptionRow, Ring, Segmented, Sparkline, Stack, Text, Tile} from '../../Parts/Shared';
 
 /** Denemeler: practice exams, results, analysis and solutions. Tabs: Denemeler · Denemelerim · Modüller · Sonuçlar · Profil. */
 
@@ -267,36 +268,297 @@ export const MyExamsScreen: React.FC = () => {
 	);
 };
 
+
+const BigTile: React.FC<{icon: UIIconName; title: string; sub: string; tall?: boolean; tone?: 'module' | 'plain'}> = ({icon, title, sub, tall, tone = 'plain'}) => {
+	const colors = useColors();
+	const mod = useModuleColors('exam');
+	return (
+		<div style={{flex: 1, height: tall ? '100%' : undefined, minHeight: tall ? 0 : 92, boxSizing: 'border-box', borderRadius: 22, padding: 14, background: tone === 'module' ? mod.wash : colors.card, border: `1px solid ${tone === 'module' ? mod.line : colors.line}`, display: 'flex', flexDirection: tall ? 'column' : 'row', alignItems: tall ? 'flex-start' : 'center', justifyContent: tall ? 'space-between' : 'space-between', gap: 10}}>
+			{tall ? <Tile module="exam" icon={icon} size={48} solid /> : null}
+			<Stack gap={2} grow>
+				<Text role="headline" size={15.5}>
+					{title}
+				</Text>
+				<Text role="small">{sub}</Text>
+			</Stack>
+			{tall ? null : <Tile module="exam" icon={icon} size={40} />}
+		</div>
+	);
+};
+
+/**
+ * Sonuçlar (revised 5 Nov 2026): the student's nets as bars across exams
+ * (own exams added by hand drawn hatched), then the three ways in: Sınavika
+ * denemelerim, Analizlerim, Deneme ekle. Data: GET statistics exams (net per
+ * attempt); Deneme ekle needs a new endpoint (external exam result).
+ */
 export const ExamResultsScreen: React.FC = () => {
 	const t = useT();
-	const lang = useT()('tr', 'en');
+	const colors = useColors();
 	return (
 		<ModuleScreen module="exam" tab={2}>
-			<Content>
-				<PageTitle module="exam" title={t('Sonuçlar', 'Results')} />
+			<Content gap={12}>
+				<PageTitle module="exam" title={t('Sonuçlar', 'Results')} right={<Chip tone="outline" icon="info">{t('Nasıl hesaplanır?', 'How it works')}</Chip>} />
 				<Card padding={16}>
-					<Stack row justify="space-between" align="flex-end">
-						<Stack gap={2}>
-							<Text role="meta">{t('Net eğrin · son 6 deneme', 'Score trend · last 6')}</Text>
-							<Text role="num">{num(78.5, lang)}</Text>
-							<Chip tone="success" icon="trend">
-								{t('+14,5 net', '+14.5')}
-							</Chip>
+					<Stack gap={12}>
+						<Stack row justify="space-between">
+							<Stack gap={1}>
+								<Text role="headline" size={16}>
+									{t('TYT net gelişimim', 'My TYT nets')}
+								</Text>
+								<Text role="small">{t('Son 5 deneme · çizgili: dışarıda çözdüğün', 'Last 5 · hatched: solved elsewhere')}</Text>
+							</Stack>
+							<div style={{width: 112}}>
+								<Segmented items={['TYT', 'AYT']} module="exam" />
+							</div>
 						</Stack>
-						<Sparkline points={[0.2, 0.32, 0.28, 0.5, 0.62, 0.8]} width={170} height={78} color={MODULES.exam.color.light} />
+						<NetBars items={[[t('D2', 'E2'), 64], [t('D3', 'E3'), 72], [t('Yayın', 'Pub.'), 69.5, true], [t('D4', 'E4'), 78.5], [t('D5', 'E5'), 84.25]]} />
+						<Stack row gap={8} style={{padding: '8px 12px', borderRadius: 14, background: colors.successSoft}}>
+							<Icon name="trend" size={16} color={colors.successInk} />
+							<Text role="small" weight={700} color={colors.successInk}>
+								{t('Son 4 denemede +20,25 net', '+20.25 nets over the last 4')}
+							</Text>
+						</Stack>
 					</Stack>
 				</Card>
+				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '92px 92px', gap: 10}}>
+					<div style={{gridRow: 'span 2'}}>
+						<BigTile tall tone="module" icon="exam" title={t('Sınavika denemelerim', 'My Sınavika exams')} sub={t('6 deneme · sonuç belgeleri', '6 exams · result documents')} />
+					</div>
+					<BigTile icon="chart" title={t('Analizlerim', 'My analyses')} sub={t('Net kaybettiğin konular', 'Topics that cost nets')} />
+					<BigTile icon="plus" title={t('Deneme ekle', 'Add an exam')} sub={t('Dışarıda çözdüğün', 'Solved elsewhere')} />
+				</div>
+				<SectionTitle title={t('Son sonuçlar', 'Latest results')} action={t('Tümü', 'All')} />
 				<List>
 					{[
-						[t('TYT Deneme 4', 'TYT Exam 4'), t('12 Ekim · sıralama 8.214', '12 Oct · rank 8,214'), '78,5', '+6,5'],
-						[t('AYT Sayısal Deneme 2', 'AYT Science Exam 2'), t('5 Ekim · sıralama 11.902', '5 Oct · rank 11,902'), '41,25', '+3'],
-						[t('TYT Deneme 3', 'TYT Exam 3'), t('28 Eylül · sıralama 9.877', '28 Sep · rank 9,877'), '72', '+4,75'],
-						[t('Paragraf Branş', 'Reading Subject'), t('21 Eylül', '21 Sep'), '31', '—'],
+						[t('TYT Deneme 5', 'TYT Exam 5'), t('19 Ekim · sıralama 6.870', '19 Oct · rank 6,870'), '84,25', '+5,75'],
+						[t('TYT Deneme 4', 'TYT Exam 4'), t('12 Ekim · sıralama 8.214', '12 Oct · rank 8,214'), '78,5', '+9'],
 					].map(([title, sub, score, delta]) => (
-						<ListRow key={title} module="exam" title={title} subtitle={sub} trailing={<Stack align="flex-end" gap={2}><Text role="headline" size={16}>{score}</Text><Text role="meta" color="#059669">{delta}</Text></Stack>} />
+						<ListRow key={title} module="exam" title={title} subtitle={sub} trailing={<Stack align="flex-end" gap={2}><Text role="headline" size={16}>{score}</Text><Text role="meta" color={colors.successInk}>{delta}</Text></Stack>} />
 					))}
 				</List>
 			</Content>
+		</ModuleScreen>
+	);
+};
+
+/** Handing in: the app's own sheet instead of the grey system dialog; blanks and flags listed, one tap back to them. */
+export const ExamSubmitScreen: React.FC = () => {
+	const t = useT();
+	const colors = useColors();
+	const mod = useModuleColors('exam');
+	return (
+		<ModuleScreen
+			module="exam"
+			noTabBar
+			header={<FocusHeader title="0:12:40" sub={t('Temel Matematik', 'Basic Maths')} progress={0.9} />}
+			overlay={
+				<Sheet height={520}>
+					<Stack align="center" gap={8} style={{paddingTop: 4}}>
+						<Tile module="exam" icon="checkCircle" size={52} solid />
+						<Text role="section" size={20} align="center">
+							{t('Denemeyi teslim et?', 'Hand in the exam?')}
+						</Text>
+						<Text role="small" align="center">
+							{t('Teslim edince cevaplar değişmez; sonuç ve çözümler hemen açılır.', 'Answers lock when you hand in; results open at once.')}
+						</Text>
+					</Stack>
+					<Stack row gap={8}>
+						{[
+							['36', t('cevaplı', 'answered'), colors.ink],
+							['4', t('boş', 'blank'), colors.warningInk],
+							['2', t('işaretli', 'flagged'), mod.ink],
+						].map(([value, label, color]) => (
+							<Stack key={label} align="center" gap={1} style={{flex: 1, padding: '10px 0', borderRadius: 16, background: colors.line2}}>
+								<Text role="num" size={24} color={color}>
+									{value}
+								</Text>
+								<Text role="meta">{label}</Text>
+							</Stack>
+						))}
+					</Stack>
+					<Stack gap={8}>
+						<Text role="meta">{t('Boş sorular', 'Blank questions')}</Text>
+						<Stack row gap={8}>
+							{['12', '27', '33', '38'].map((number) => (
+								<div key={number} style={{width: 44, height: 40, borderRadius: 12, border: `1.5px solid ${colors.warning}`, background: colors.warningSoft, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+									<Text role="headline" color={colors.warningInk}>
+										{number}
+									</Text>
+								</div>
+							))}
+						</Stack>
+					</Stack>
+					<div style={{flex: 1}} />
+					<Stack row gap={10}>
+						<Button tone="ghost" size="lg" style={{flex: 1}}>
+							{t('Boşlara dön', 'Back to blanks')}
+						</Button>
+						<Button tone="module" module="exam" size="lg" style={{flex: 1}}>
+							{t('Teslim et', 'Hand in')}
+						</Button>
+					</Stack>
+				</Sheet>
+			}
+		>
+			<Content tabBar={false}>
+				<Chip>{t('Soru 40 / 40', 'Question 40 / 40')}</Chip>
+			</Content>
+		</ModuleScreen>
+	);
+};
+
+/** A finished exam's detail: the result first, then the three ways in; no "Denemeye gir" and no reminder any more. */
+export const ExamDoneDetailScreen: React.FC = () => {
+	const t = useT();
+	const colors = useColors();
+	const mod = useModuleColors('exam');
+	return (
+		<ModuleScreen module="exam" noTabBar header={<AppHeader left="back" title={t('Deneme detayı', 'Exam detail')} right={<div style={{width: 40}} />} />}>
+			<Content tabBar={false} gap={12}>
+				<Stack gap={6}>
+					<Stack row gap={6}>
+						<Chip tone="module" module="exam" size="sm">
+							{t('Branş · TYT', 'Subject · TYT')}
+						</Chip>
+						<Chip tone="success" icon="check" size="sm">
+							{t('Tamamlandı · 3 Kas', 'Done · 3 Nov')}
+						</Chip>
+					</Stack>
+					<Text role="title">{t('TYT Temel Matematik Denemesi · Kasım 2026', 'TYT Basic Maths · November 2026')}</Text>
+				</Stack>
+				<Card padding={16} tone="module" module="exam">
+					<Stack row gap={16}>
+						<Ring value={0.27} size={84} stroke={9} color={mod.color} track={mod.track}>
+							<Stack align="center" gap={0}>
+								<Text role="headline" size={20}>
+									10,75
+								</Text>
+								<Text role="meta">net</Text>
+							</Stack>
+						</Ring>
+						<Stack grow gap={8}>
+							<Stack row justify="space-between">
+								{[
+									['14', t('doğru', 'right'), colors.successInk],
+									['13', t('yanlış', 'wrong'), colors.errorInk],
+									['13', t('boş', 'blank'), colors.ink2],
+								].map(([value, label, color]) => (
+									<Stack key={label} align="center" gap={0}>
+										<Text role="headline" size={18} color={color}>
+											{value}
+										</Text>
+										<Text role="meta">{label}</Text>
+									</Stack>
+								))}
+							</Stack>
+							<Text role="small">{t('Katılanların %41’inden iyi · 52 dk', 'Better than 41% · 52 min')}</Text>
+						</Stack>
+					</Stack>
+				</Card>
+				<Stack gap={8}>
+					<Button tone="module" module="exam" size="lg" block icon="file">
+						{t('Sonuç belgesi', 'Result document')}
+					</Button>
+					<Stack row gap={8}>
+						<Button tone="moduleSoft" module="exam" style={{flex: 1}} icon="checkCircle">
+							{t('Çözümler', 'Solutions')}
+						</Button>
+						<Button tone="moduleSoft" module="exam" style={{flex: 1}} icon="chart">
+							{t('Analiz', 'Analysis')}
+						</Button>
+					</Stack>
+				</Stack>
+				<SectionTitle title={t('Net kaybettiğin konular', 'Topics that cost you')} />
+				<List>
+					{[
+						[t('Problemler', 'Word problems'), t('6 soru · 4 yanlış', '6 questions · 4 wrong'), 'tests'],
+						[t('Üslü sayılar', 'Exponents'), t('3 soru · 2 yanlış', '3 questions · 2 wrong'), 'lessons'],
+					].map(([title, sub, module]) => (
+						<ListRow key={title} module={module as 'tests'} icon={module === 'tests' ? 'quiz' : 'book'} title={title} subtitle={sub} trailing={<Button tone="moduleSoft" module={module as 'tests'} size="sm">{module === 'tests' ? t('Test', 'Quiz') : t('Ders', 'Lesson')}</Button>} chevron={false} />
+					))}
+				</List>
+			</Content>
+		</ModuleScreen>
+	);
+};
+
+/** Deneme ekle: a result solved elsewhere (publisher, name, date, right/wrong per subject); net counted live. New API. */
+export const ExamAddExternalScreen: React.FC = () => {
+	const t = useT();
+	const colors = useColors();
+	const mod = useModuleColors('exam');
+	const rows: [string, string, number, number, number][] = [
+		[t('Türkçe', 'Turkish'), '40', 32, 5, 30.75],
+		[t('Sosyal', 'Social'), '20', 14, 3, 13.25],
+		[t('Matematik', 'Maths'), '40', 18, 6, 16.5],
+		[t('Fen', 'Science'), '20', 9, 4, 8],
+	];
+	const Box: React.FC<{value: number; tone?: string}> = ({value, tone}) => (
+		<div style={{width: 52, height: 40, borderRadius: 12, border: `1.5px solid ${colors.line}`, background: colors.card, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+			<Text role="headline" size={16} color={tone} tnum>
+				{value}
+			</Text>
+		</div>
+	);
+	return (
+		<ModuleScreen module="exam" noTabBar header={<AppHeader left="close" title={t('Deneme ekle', 'Add an exam')} right={<div style={{width: 40}} />} />}>
+			<Content tabBar={false} gap={12}>
+				<Text role="small">{t('Dışarıda çözdüğün denemenin sonucunu gir; net gelişimine ve Ders Planı’na eklenir.', 'Enter a result from another exam; it joins your trend and plan.')}</Text>
+				<Field label={t('Yayın', 'Publisher')} value={t('Örnek Yayınları', 'Sample Publishing')} icon="book" />
+				<Stack row gap={10}>
+					<div style={{flex: 1}}>
+						<Field label={t('Deneme', 'Exam')} value="TYT 3" />
+					</div>
+					<div style={{flex: 1}}>
+						<Field label={t('Tarih', 'Date')} value={t('2 Kasım', '2 Nov')} icon="calendar" />
+					</div>
+				</Stack>
+				<Card padding={14}>
+					<Stack gap={10}>
+						<Stack row gap={10}>
+							<Text role="meta" style={{flex: 1}}>
+								{t('Ders', 'Subject')}
+							</Text>
+							<Text role="meta" style={{width: 52}} align="center">
+								{t('Doğru', 'Right')}
+							</Text>
+							<Text role="meta" style={{width: 52}} align="center">
+								{t('Yanlış', 'Wrong')}
+							</Text>
+							<Text role="meta" style={{width: 48}} align="right">
+								Net
+							</Text>
+						</Stack>
+						{rows.map(([name, total, right, wrong, net]) => (
+							<Stack key={name} row gap={10}>
+								<Stack style={{flex: 1}} gap={0}>
+									<Text role="headline" size={14.5}>
+										{name}
+									</Text>
+									<Text role="meta">{total} {t('soru', 'q')}</Text>
+								</Stack>
+								<Box value={right} tone={colors.successInk} />
+								<Box value={wrong} tone={colors.errorInk} />
+								<Text role="headline" size={15} style={{width: 48}} align="right" color={mod.ink} tnum>
+									{net.toLocaleString('tr-TR')}
+								</Text>
+							</Stack>
+						))}
+						<Stack row justify="space-between" style={{paddingTop: 8, borderTop: `1px solid ${colors.line2}`}}>
+							<Text role="headline">{t('Toplam net', 'Total net')}</Text>
+							<Text role="section" color={mod.ink}>
+								68,5
+							</Text>
+						</Stack>
+					</Stack>
+				</Card>
+			</Content>
+			<BottomBar>
+				<Button tone="module" module="exam" size="lg" block>
+					{t('Kaydet', 'Save')}
+				</Button>
+			</BottomBar>
 		</ModuleScreen>
 	);
 };

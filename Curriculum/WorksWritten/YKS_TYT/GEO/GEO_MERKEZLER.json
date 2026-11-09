@@ -62,6 +62,11 @@
     "title": "Beş merkez, bir tablo",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Üçgende Merkezler nedir?",
+      "text": "Üçgenin köşelerinden ve kenarlarından geçen özel doğrular vardır: kenarortay, yükseklik, iç açıortay ve kenar orta dikme. Bu doğru ailelerinin her biri tek bir noktada kesişir ve bu noktalara üçgenin **merkezleri** denir. Beş merkez vardır: ağırlık, çevrel çember, iç teğet çember, diklik ve dış teğet çember merkezi. TYT geometride sorular genellikle hangi merkezden söz edildiğini bulmayı, merkezin üçgende nerede kaldığını ve onun gördüğü açıları ya da uzunlukları ister. Günlük bir örnek: üç köye eşit uzaklıkta bir su deposu yapılacaksa bu nokta çevrel çemberin merkezi olur. Basit bir durum: eşkenar üçgende bu merkezlerin hepsi aynı noktadadır. Bu derste her merkezi önce tanıyacak, sonra çözümlü örneklerle kullanacaksın."
+     },
+     {
       "kind": "visual",
       "title": "Hangi doğrular, hangi merkez",
       "visual": {
@@ -108,6 +113,18 @@
       "text": "Bir köşeyi karşı kenarın **orta noktasına** birleştiren doğru parçasına **kenarortay** denir. Üç kenarortay üçgenin içinde tek noktada kesişir: bu nokta **ağırlık merkezi** $G$'dir. $G$, her kenarortayı **köşeden başlayarak** $2 : 1$ oranında böler: $|AG| = 2 \\cdot |GD|$, yani $|AG| = \\frac{2}{3}|AD|$ ve $|GD| = \\frac{1}{3}|AD|$.",
       "caption": "Üç kenarortay üçgeni **eşit alanlı 6 küçük üçgene** ayırır.",
       "narration": "Kenarortay yükseklik değildir; kenara dik olmak zorunda değildir. Görevi alanı yarıya bölmektir: $|BD| = |DC|$ ve iki küçük üçgenin yüksekliği ortak olduğu için $A(ABD) = A(ADC)$. Aynı mantıkla $G$'yi köşelere birleştirince üç eşit alan, kenar orta noktalarıyla birleştirince altı eşit alan oluşur: $A(GDC) = \\frac{A(ABC)}{6}$. Kenarortayın uzunluğu alanı belirlemez; alanı bulmak için taban ve o tabana ait yükseklik gerekir."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek: kenarortayı oranla bölmek",
+      "example": "$ABC$ üçgeninde $[AD]$ kenarortaydır ve $G$ ağırlık merkezidir. $|AD| = 21$ cm olduğuna göre $|AG|$ ve $|GD|$ kaç santimetredir?",
+      "explanation": "Ağırlık merkezi kenarortayı köşeden başlayarak $2 : 1$ oranında böler. Kenarortay $2 + 1 = 3$ eşit parçaya ayrılır ve her parça $\\frac{21}{3} = 7$ cm'dir. Köşeden başlayan uzun parça $|AG| = 2 \\cdot 7 = 14$ cm'dir. Kısa parça $|GD| = 7$ cm'dir. Kontrol: $14 + 7 = 21$ cm."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek: kenarortay, ağırlık merkezi ve alan",
+      "example": "$ABC$ üçgeninde $G$ ağırlık merkezi, $D$ ise $[BC]$'nin orta noktasıdır. $A(ABC) = 72$ cm² olduğuna göre $A(AGC)$ ve $A(GDC)$ kaç santimetrekaredir?",
+      "explanation": "$G$'yi üç köşeye birleştirince üçgen eşit alanlı üç parçaya ayrılır. Her parçanın alanı $\\frac{72}{3} = 24$ cm²'dir; yani $A(AGC) = 24$ cm². $[GD]$ kenarortay üzerinde olduğundan $A(GBC)$, $A(GBD)$ ve $A(GDC)$ olarak ikiye bölünür. $D$ orta nokta olduğu için iki parça eşittir: $A(GDC) = \\frac{24}{2} = 12$ cm². Kontrol: $72 \\div 6 = 12$. Altı küçük üçgenin her birinin alanı 12 cm²'dir."
      },
      {
       "kind": "blank",
@@ -329,6 +346,11 @@
     "title": "Çevrel çember merkezi",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Çevrel çember merkezi nedir?",
+      "text": "Bir üçgenin üç köşesinden de geçen çembere **çevrel çember** denir. Merkezi $O$, kenar orta dikmelerinin kesişimidir ve üç köşeye de aynı uzaklıktadır; bu uzaklık $R$ yarıçapıdır. Günlük bir örnek: üç köyün de aynı uzaklıkta olması gereken bir su deposu. Sayı örneği: kenarları 3, 4 ve 5 olan üçgen diktir. Çevrel çember, hipotenüs olan 5'i çap kabul eder ve yarıçap 2,5 birim olur. Sınavda $O$'nun konumu, $R$ ve $O$'daki açılar sorulur. Bu bölümde bunları öğreneceksin."
+     },
+     {
       "kind": "visual",
       "title": "Üç köşeden geçen çember",
       "visual": {
@@ -529,6 +551,18 @@
        null,
        "Önce kenarlar arasında Pisagor bağıntısı var mı diye bak: $6^2 + 8^2$ neye eşit?"
       ]
+     },
+     {
+      "kind": "example",
+      "title": "Örnek: dik üçgende çevrel yarıçap",
+      "example": "Dik kenar uzunlukları $9$ cm ve $12$ cm olan dik üçgenin çevrel çemberinin yarıçapını bulalım.",
+      "explanation": "Önce hipotenüsü Pisagor ile bulalım: $\\sqrt{9^2 + 12^2} = \\sqrt{225} = 15$ cm. Dik üçgende çevrel merkez hipotenüsün orta noktasıdır. Bu yüzden hipotenüs çemberin çapıdır. Yarıçap çapın yarısıdır: $R = \\frac{15}{2} = 7{,}5$ cm."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek: ikizkenar üçgenle açı bulma",
+      "example": "$O$, dar açılı $ABC$ üçgeninin çevrel çemberinin merkezidir ve $m(\\widehat{BAC}) = 48°$'dir. $m(\\widehat{OBC})$ kaç derecedir?",
+      "explanation": "Merkez açı, aynı yayı gören çevre açının iki katıdır: $m(\\widehat{BOC}) = 2 \\cdot 48° = 96°$. $|OB| = |OC| = R$ olduğundan $OBC$ ikizkenar üçgendir ve taban açıları eşittir. Taban açısı $\\frac{180° - 96°}{2} = 42°$ bulunur. Yani $m(\\widehat{OBC}) = 42°$. Bu kalıpta önce merkez açıyı, sonra ikizkenar üçgenin taban açısını bul."
      },
      {
       "kind": "question",
@@ -791,6 +825,11 @@
     "title": "İç teğet çember merkezi",
     "cards": [
      {
+      "kind": "concept",
+      "title": "İç teğet çember merkezi nedir?",
+      "text": "Bir üçgenin üç kenarına da **içeriden** değen çembere **iç teğet çember** denir. Merkezi $I$, iç açıortayların kesişimidir ve üç kenara da aynı uzaklıktadır; bu uzaklık $r$ yarıçapıdır. $I$ her üçgende üçgenin içindedir. Günlük bir örnek: üçgen biçimli bir odada, üç duvara da değen yuvarlak bir halı. Sayı örneği: kenarları 3, 4 ve 5 olan üçgenin içine çizilebilecek en büyük çemberin yarıçapı 1 birimdir. Sınavda $r$, teğet uzunlukları ve alan ilişkisi sorulur. Bu bölümde bunların hepsini adım adım çalışacağız."
+     },
+     {
       "kind": "visual",
       "title": "Kenarlara değen çember",
       "visual": {
@@ -957,6 +996,18 @@
        "**Dik üçgende** (dik kenarlar $a$, $b$; hipotenüs $c$): $r = \\frac{a + b - c}{2}$."
       ],
       "narration": "Dik üçgen kısa yolunun nedeni şudur: dik açılı köşe, iç teğet merkezi ve iki teğet noktası kenarı $r$ olan bir kare oluşturur. Bu yüzden dik köşeden çıkan teğet uzunluğu $r$'ye eşittir. Aynı teğet uzunluğu $u - c$ olduğundan $r = u - c = \\frac{a + b + c}{2} - c = \\frac{a + b - c}{2}$ elde edilir. Dik açı yoksa kare oluşmaz ve bu formül kullanılamaz; o durumda $r = \\frac{A(ABC)}{u}$ yazılır."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek: köşelerden teğet uzunlukları",
+      "example": "$|AB| = 6$, $|BC| = 7$ ve $|AC| = 9$ cm olan üçgenin iç teğet çemberi için her köşeden çıkan teğet uzunluklarını bulalım.",
+      "explanation": "Yarı çevre $u = \\frac{6 + 7 + 9}{2} = 11$ cm'dir. Her köşedeki teğet uzunluğu, yarı çevreden o köşenin karşısındaki kenar çıkarılarak bulunur. $A$'dan $11 - 7 = 4$, $B$'den $11 - 9 = 2$, $C$'den $11 - 6 = 5$ cm çıkar. Kontrol: $|AB| = 4 + 2 = 6$, $|BC| = 2 + 5 = 7$, $|AC| = 4 + 5 = 9$. Üç kenar da tutuyor."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek: çevreden alanı bulmak",
+      "example": "Çevresi $24$ cm olan bir $ABC$ üçgeninin iç teğet çemberinin yarıçapı $3$ cm'dir. Üçgenin alanı kaç santimetrekaredir?",
+      "explanation": "Alan bağıntısı $A = r \\cdot u$ olarak yazılır ve burada $u$ **yarı çevredir**. Yarı çevre $u = \\frac{24}{2} = 12$ cm'dir. Alan $A = 3 \\cdot 12 = 36$ cm² bulunur. Tuzak: çevreyi doğrudan yazıp $3 \\cdot 24 = 72$ bulmak yanlıştır. Çünkü $r$ ile çarpılan değer çevrenin yarısıdır."
      },
      {
       "kind": "blank",
@@ -1221,6 +1272,11 @@
     "title": "Diklik merkezi",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Diklik merkezi nedir?",
+      "text": "Bir köşeden karşı kenara (gerekirse uzantısına) indirilen dik doğru parçasına **yükseklik** denir. Üç yükseklik tek bir noktada kesişir; bu nokta **diklik merkezi** $H$'dir. Sınavda $H$'nin üçgenin içinde, köşede ya da dışında kalması ve $H$'nin gördüğü açılar sorulur. Basit bir durum: kenarları 3, 4 ve 5 olan dik üçgende iki dik kenar zaten birer yüksekliktir. Bu iki yükseklik dik açılı köşede kesişir, yani $H$ o köşenin kendisidir. Günlük hayatta üç direğin yere dik durduğunu ve gölgelerinin kesiştiği yeri düşünebilirsin. Bu bölümde $H$'nin konumunu ve $\\widehat{BHC}$ açısını öğreneceksin."
+     },
+     {
       "kind": "visual",
       "title": "Üç yükseklik",
       "visual": {
@@ -1407,6 +1463,18 @@
       ]
      },
      {
+      "kind": "example",
+      "title": "Örnek: dar açılı üçgende $BHC$ açısı",
+      "example": "$ABC$ dar açılı üçgeninde $H$ diklik merkezidir ve $m(\\widehat{BAC}) = 60°$'dir. $m(\\widehat{BHC})$ kaç derecedir?",
+      "explanation": "$B$ ve $C$'den inen yüksekliklerin ayakları $E$ ve $F$ olsun. $AEHF$ dörtgeninde $E$ ve $F$'de $90°$'lik iki açı vardır. Dörtgenin iç açıları toplamı $360°$ olduğundan $m(\\widehat{EHF}) = 360° - 90° - 90° - 60° = 120°$ bulunur. $\\widehat{BHC}$, $\\widehat{EHF}$'nin ters açısıdır ve ona eşittir. Yani $m(\\widehat{BHC}) = 120° = 180° - 60°$."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek: diklik merkezi ve açılar",
+      "example": "$ABC$ dar açılı üçgeninde $O$ çevrel merkez, $H$ diklik merkezidir. $m(\\widehat{BAC}) = 50°$ olduğuna göre $m(\\widehat{BOC})$ ile $m(\\widehat{BHC})$ arasındaki fark kaç derecedir?",
+      "explanation": "Çevrel merkez için merkez açı çevre açının iki katıdır: $m(\\widehat{BOC}) = 2 \\cdot 50° = 100°$. Diklik merkezi için $m(\\widehat{BHC}) = 180° - 50° = 130°$ olur. Fark $130° - 100° = 30°$'dir. Tuzak: iki merkezin kuralı farklıdır. $2 \\cdot m(\\widehat{A})$ yalnız $O$ için, $180° - m(\\widehat{A})$ yalnız $H$ için kullanılır."
+     },
+     {
       "kind": "question",
       "question": {
        "style": "TYT tarzı",
@@ -1509,6 +1577,11 @@
     "subtopic": "GEO_MERKEZLER_04",
     "title": "Dış teğet çember merkezi",
     "cards": [
+     {
+      "kind": "concept",
+      "title": "Dış teğet çember merkezi nedir?",
+      "text": "Bir üçgenin bir kenarına **dışarıdan**, diğer iki kenarın uzantılarına da değen çembere **dış teğet çember** denir. Merkezi $J$, üç kenar doğrusuna da eşit uzaklıktadır ve her zaman üçgenin **dışında** kalır. Her üçgenin her köşesine karşı bir tane olmak üzere üç dış teğet çemberi vardır. İç teğet çember üçgenin içine yerleşirken dış teğet çember bir kenarın dış tarafına yaslanır. Günlük bir örnek: üçgen biçimli bir tarlanın bir kenarına yaslanmış yuvarlak bir havuz düşün. Basit bir sayı örneği: kenarları 3, 4 ve 5 olan üçgenin çevresi 12'dir. Köşeden çıkan teğetler çevrenin yarısı kadardır, yani 6 birimdir. Bu bölümde $J$'nin açısını ve teğet uzunluklarını öğreneceksin."
+     },
      {
       "kind": "visual",
       "title": "Dışarıdan değen çember",
@@ -1666,6 +1739,21 @@
       "narration": "Açı bağıntısı şöyle çıkar. $B$'deki dış açı $180° - m(\\widehat{B})$'dir ve dış açıortay onu ikiye böler: $m(\\widehat{JBC}) = 90° - \\frac{m(\\widehat{B})}{2}$. Benzer şekilde $m(\\widehat{JCB}) = 90° - \\frac{m(\\widehat{C})}{2}$. $BJC$ üçgeninde üçüncü açı $\\frac{B + C}{2} = 90° - \\frac{A}{2}$ olur. $[BC]$ üzerindeki teğet uzunlukları için $B$'den çıkan teğetler eşit olduğundan $|BK| = |BT| = |AT| - |AB| = u - c$ yazılır."
      },
      {
+      "kind": "predict",
+      "title": "Doğru mu, yanlış mı?",
+      "prompt": "Dış teğet çemberin merkezi $J$ hiçbir üçgende üçgenin içinde olamaz.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$J$, iki dış açıortayın kesişimidir. Dış açıortaylar üçgenin dışına uzandığı için kesişimleri de her zaman üçgenin dışında kalır.",
+      "choiceFeedback": [
+       null,
+       "Dış açıortayların hangi tarafa uzandığını düşün: üçgenin içinden mi geçerler?"
+      ]
+     },
+     {
       "kind": "visual",
       "title": "İç ve dış teğet merkezi",
       "visual": {
@@ -1721,6 +1809,18 @@
        }
       ],
       "explanation": "Dört açı bağıntısı dört farklı merkeze aittir. Soruda hangi merkezin geçtiğine bakıp bağıntıyı seç."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek: dış teğet çemberde teğet uzunlukları",
+      "example": "$|AB| = 6$, $|BC| = 8$ ve $|AC| = 10$ birim olan $ABC$ üçgeninde $A$'ya karşı dış teğet çember $[AB$ ışınına $T$, $[BC]$ kenarına $K$ noktasında değiyor. $|AT|$ ve $|BK|$ kaçtır?",
+      "explanation": "Çevre $6 + 8 + 10 = 24$, yarı çevre $u = 12$'dir. $A$'dan çıkan iki teğet eşittir ve toplamları çevreye eşittir; her biri çevrenin yarısıdır: $|AT| = u = 12$. $B$'den çıkan iki teğet de eşittir: $|BK| = |BT| = |AT| - |AB| = 12 - 6 = 6$. Kontrol: $|CK| = 12 - 10 = 2$ ve $|BK| + |CK| = 6 + 2 = 8 = |BC|$."
+     },
+     {
+      "kind": "example",
+      "title": "Örnek: iç ve dış teğet merkezin açıları",
+      "example": "$ABC$ üçgeninde $m(\\widehat{BAC}) = 80°$'dir. $I$ iç teğet çemberin, $J$ ise $A$'ya karşı dış teğet çemberin merkezi olduğuna göre $m(\\widehat{BIC})$ ve $m(\\widehat{BJC})$ kaç derecedir?",
+      "explanation": "Önce $\\frac{m(\\widehat{A})}{2} = 40°$ bulunur. İç teğet merkezde $+$ işareti kullanılır: $m(\\widehat{BIC}) = 90° + 40° = 130°$. Dış teğet merkezde $-$ işareti kullanılır: $m(\\widehat{BJC}) = 90° - 40° = 50°$. Kontrol: iki açının toplamı $130° + 50° = 180°$ eder; bu toplam her üçgende $180°$'dir. İşareti karıştırırsan bu kontrol tutmaz."
      },
      {
       "kind": "question",

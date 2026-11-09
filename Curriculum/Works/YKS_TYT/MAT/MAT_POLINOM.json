@@ -66,6 +66,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Polinomlar nedir?",
+      "text": "**Polinom**, $x$'in doğal sayı kuvvetlerinin birer sayıyla çarpılıp toplanmasıyla oluşan ifadedir. Örneğin $3x^2 + 5x - 1$ bir polinomdur: 3, 5 ve $-1$ **katsayılardır**, en büyük üs olan 2 ise polinomun **derecesidir**. $\\frac{1}{x}$ ya da $\\sqrt{x}$ içeren ifadeler polinom değildir. Basit bir fikir: $x$ yerine 1 yazarsan her $x^n$ 1 olur ve geriye katsayıların toplamı kalır: $3 + 5 - 1 = 7$. TYT'de polinom soruları bu kısa yollarla hızlı çözülür: bölmeden kalanı bulmak, çarpanı denetlemek, katsayıları toplamak. Bu bölümde polinomun parçalarını ve derece kavramını öğreneceksin."
+     },
+     {
       "kind": "rule",
       "title": "Polinomun parçaları",
       "items": [
@@ -75,6 +80,18 @@
        "$P(1)$ = **katsayılar toplamı**, $P(0)$ = **sabit terim**."
       ],
       "narration": "Polinomda $x$'in kuvvetleri doğal sayı olmalıdır. $\\frac{1}{x}$, $\\sqrt{x}$, $x^{-2}$ ya da $2^x$ içeren ifadeler polinom değildir. En büyük üs polinomun derecesidir, o terimin katsayısı baş katsayıdır, $x$ içermeyen terim ise sabit terimdir. İki kısa yol: $P(1)$ katsayılar toplamını, $P(0)$ sabit terimi verir."
+     },
+     {
+      "kind": "example",
+      "title": "Derece, baş katsayı ve sabit terim",
+      "example": "$P(x) = 4x^5 - 3x^2 + x - 7$ polinomunun derecesini, baş katsayısını, sabit terimini ve katsayılar toplamını bulun.",
+      "explanation": "1. adım: En büyük üs 5 olduğundan derece 5'tir.\n2. adım: Derecesi en büyük olan terim $4x^5$; baş katsayı 4'tür.\n3. adım: $x$ içermeyen terim $-7$; sabit terim $-7$'dir. Bu $P(0) = -7$ ile de bulunur.\n4. adım: Katsayılar toplamı $P(1)$'dir: $4 - 3 + 1 - 7 = -5$."
+     },
+     {
+      "kind": "example",
+      "title": "Bileşik durum: katsayı yok olunca derece düşer",
+      "example": "$P(x) = (m - 3)x^3 + 2x^2 - 5$ polinomunun derecesi 2 ve baş katsayısı 2 olduğuna göre $m$ kaçtır? Bu polinomda $P(1)$ kaçtır?",
+      "explanation": "1. adım: Derece 2 olacaksa $x^3$ terimi yok olmalıdır; yani katsayısı sıfırdır: $m - 3 = 0$, $m = 3$.\n2. adım: Polinom $2x^2 - 5$ olur. En büyük üs 2 olduğundan derece 2, baş katsayı 2'dir; koşullar sağlanıyor.\n3. adım: Katsayılar toplamı $P(1)$'dir: $2 \\cdot 1^2 - 5 = -3$.\nTuzak: $m - 3$'ü katsayı sanıp $m = 2$ almak yanlıştır; derece koşulu $x^3$'ün katsayısının sıfır olmasını ister."
      },
      {
       "kind": "question",
@@ -379,6 +396,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Polinomlarda işlemler nedir?",
+      "text": "Polinomlarla de sayılardaki gibi toplama, çıkarma ve çarpma yapılır. En basit örnek: $(x + 1) + (x + 2) = 2x + 3$; aynı dereceli terimler toplanır. Çarpmada $(x + 1)(x + 2) = x^2 + 3x + 2$ olur. Her iki çarpan birinci dereceden, sonuç ikinci derecedendir: $1 + 1 = 2$. Bir polinomu başka bir polinomun içine yazmak da bir işlemdir; $P(x + 1)$ gibi ifadelerde $x$ yerine parantezin içi yazılır. Bu bölümde bu işlemlerde **derecenin** nasıl değiştiğini öğreneceksin."
+     },
+     {
       "kind": "rule",
       "title": "İşlem ve derece",
       "items": [
@@ -394,6 +416,12 @@
       "title": "İki polinomun çarpımı",
       "example": "$P(x) = 6x^3 - 4x^2 + 5$ ve $Q(x) = -2x^2 + 5x$ için $R(x) = P(x) \\cdot Q(x)$ polinomunu ve derecesini bulun.",
       "explanation": "$P$'nin her terimi $Q$'nun her terimiyle çarpılır:\n- $6x^3 \\cdot (-2x^2) = -12x^5$ ve $6x^3 \\cdot 5x = 30x^4$\n- $-4x^2 \\cdot (-2x^2) = 8x^4$ ve $-4x^2 \\cdot 5x = -20x^3$\n- $5 \\cdot (-2x^2) = -10x^2$ ve $5 \\cdot 5x = 25x$\nAynı dereceliler toplanır: $R(x) = -12x^5 + 38x^4 - 20x^3 - 10x^2 + 25x$. Derece $3 + 2 = 5$ olur."
+     },
+     {
+      "kind": "example",
+      "title": "P(x + 1) ifadesini bulma",
+      "example": "$P(x) = x^2 - 3x + 1$ olduğuna göre $P(x + 1)$ polinomunu bulun ve derecesini söyleyin.",
+      "explanation": "1. adım: $P(x)$'te $x$'in olduğu her yere $x + 1$ yazılır: $P(x + 1) = (x + 1)^2 - 3(x + 1) + 1$.\n2. adım: Parantezleri aç: $(x + 1)^2 = x^2 + 2x + 1$ ve $-3(x + 1) = -3x - 3$.\n3. adım: Hepsini topla: $x^2 + 2x + 1 - 3x - 3 + 1 = x^2 - x - 1$.\nDerece 2'dir; iç ifade $x + 1$ birinci dereceden olduğu için derece değişmedi. Kontrol: $x = 0$ için $P(1) = 1 - 3 + 1 = -1$ ve $x^2 - x - 1$ ifadesi 0'da $-1$ verir ✓."
      },
      {
       "kind": "blank",
@@ -566,6 +594,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Polinom bölmesi ve kalan nedir?",
+      "text": "Sayılarda $17 \\div 5$ işleminin bölümü 3, kalanı 2'dir ve $17 = 5 \\cdot 3 + 2$ yazılır. Polinomlarda da aynı fikir geçerlidir: bölünen, bölen ile bölümün çarpımına **kalanın** eklenmesiyle bulunur. Sayılarda kalan bölenden küçük olur; polinomlarda kalanın **derecesi** bölenin derecesinden küçük olur. Polinomu $(x - 2)$ gibi birinci dereceden bir ifadeye bölünce kalan bir sayıdır ve bunu bölme yapmadan bulabilirsin: $x$ yerine 2 yazarsın. Bu bölümde bölme eşitliğini, uzun bölmeyi ve kalan teoremini göreceksin."
+     },
+     {
       "kind": "rule",
       "title": "Bölme eşitliği ve uzun bölme",
       "items": [
@@ -607,6 +640,12 @@
         ]
        ]
       }
+     },
+     {
+      "kind": "example",
+      "title": "Eksik terimleri sıfırla yaz",
+      "example": "$P(x) = x^3 - 8$ polinomunu $(x - 2)$ ile bölün; bölümü ve kalanı bulun.",
+      "explanation": "Uzun bölmeden önce eksik terimleri 0 katsayıyla yazarız: $x^3 + 0x^2 + 0x - 8$.\n1. adım: $x^3 \\div x = x^2$. $x^2(x - 2) = x^3 - 2x^2$. Çıkarınca $2x^2 + 0x - 8$ kalır.\n2. adım: $2x^2 \\div x = 2x$. $2x(x - 2) = 2x^2 - 4x$. Çıkarınca $4x - 8$ kalır.\n3. adım: $4x \\div x = 4$. $4(x - 2) = 4x - 8$. Çıkarınca kalan 0 olur.\nBölüm $x^2 + 2x + 4$, kalan 0. Kontrol: $P(2) = 8 - 8 = 0$ olduğundan kalan sıfırdır ✓."
      },
      {
       "kind": "blank",
@@ -898,6 +937,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Çarpan teoremi nedir?",
+      "text": "**Çarpan teoremi**, kalan teoreminin özel durumudur. Sayılarda $12 \\div 4$ işleminin kalanı 0 olduğu için 4, 12'nin çarpanıdır. Polinomlarda da aynı fikir geçerlidir: $P(x)$'i $(x - a)$'ya böldüğünde kalan 0 çıkıyorsa $(x - a)$, $P(x)$'in **çarpanıdır** ve $a$ sayısı $P$'nin **köküdür**. Kalan $P(a)$ olduğundan, çarpan olup olmadığını bölme yapmadan $x$ yerine $a$ yazarak anlarsın. Örneğin $x^2 - 9$ için $x = 3$ yazınca $9 - 9 = 0$ çıkar; $(x - 3)$ bir çarpandır. Bu bölümde çarpanı verilen polinomlarda bilinmeyen katsayıyı bulacaksın."
+     },
+     {
       "kind": "rule",
       "title": "Kalan sıfır = çarpan",
       "items": [
@@ -907,6 +951,18 @@
        "İki çarpan verilirse **iki denklem** kurulur."
       ],
       "narration": "$P(a) = 0$ ise $x - a$, $P(x)$'in bir çarpanıdır ve $a$, $P$'nin köküdür. Bir çarpan verildiğinde onu sıfır yapan değeri $x$ yerine yazar ve sonucu sıfıra eşitlersin. $x + 2$ çarpansa $P(-2) = 0$'dır. İki çarpan verilirse iki denklem kurarsın."
+     },
+     {
+      "kind": "example",
+      "title": "Çarpan olması bilinmeyeni verir",
+      "example": "$P(x) = x^2 + kx - 10$ polinomunun bir çarpanı $(x - 2)$ olduğuna göre $k$ kaçtır?",
+      "explanation": "1. adım: $(x - 2)$ çarpansa $P(2) = 0$ olmalıdır; çünkü kalan sıfırdır.\n2. adım: $x$ yerine 2 yaz: $2^2 + 2k - 10 = 4 + 2k - 10 = 2k - 6$.\n3. adım: $2k - 6 = 0$ olduğundan $k = 3$.\nKontrol: $P(x) = x^2 + 3x - 10 = (x - 2)(x + 5)$; gerçekten $(x - 2)$ çarpandır ✓."
+     },
+     {
+      "kind": "example",
+      "title": "Çarpan işareti tuzağı",
+      "example": "$P(x) = 2x^3 + x^2 + ax - 3$ polinomunun bir çarpanı $(x + 1)$ olduğuna göre $a$ kaçtır?",
+      "explanation": "1. adım: $(x + 1)$ çarpan olduğundan $P(-1) = 0$ olmalıdır. Böleni sıfır yapan değer $-1$'dir, $+1$ değil.\n2. adım: $x$ yerine $-1$ yaz: $2(-1)^3 + (-1)^2 + a(-1) - 3$. Tek kuvvette işaret negatif kalır: $-2 + 1 - a - 3$.\n3. adım: Sadeleştir: $-4 - a = 0$, yani $a = -4$.\nKontrol: $a = -4$ için $P(-1) = -2 + 1 + 4 - 3 = 0$ ✓."
      },
      {
       "kind": "question",

@@ -2,141 +2,8 @@ import React from 'react';
 import {useColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {alpha, MODULES, MODULE_ORDER, moduleGradient, type ModuleKey} from '../../ModuleIdentity';
-import {Avatar, Bar, Button, Card, Chip, Field, List, ListRow, Ring, Segmented, Skeleton, Sparkline, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
-import {Grid, ModuleBanner, Panel, WCard} from '../../Parts/Web';
-import {PlanTask} from '../Mobile/Plan';
-
-/** Web panel: home, all modules, notifications, profile, plan, support, payment, tour and states. */
-
-const HomeBody: React.FC = () => {
-	const t = useT();
-	const colors = useColors();
-	return (
-		<>
-			<Stack row justify="space-between" align="flex-end">
-				<Stack gap={2}>
-					<Text role="small" size={14}>
-						{t('Perşembe, 15 Ekim · Günaydın Ayşe', 'Thursday, 15 Oct · Good morning, Ayşe')}
-					</Text>
-					<Text role="title" size={30}>
-						{t('Bugün ne çalışalım?', 'What shall we study today?')}
-					</Text>
-				</Stack>
-				<Stack row gap={8}>
-					{(['lessons', 'exam', 'sinoAi', 'studyPlan'] as ModuleKey[]).map((key) => (
-						<Chip key={key} tone="module" module={key} icon={MODULES[key].icon} style={{height: 34, fontSize: 13}}>
-							{t(MODULES[key].name)}
-						</Chip>
-					))}
-				</Stack>
-			</Stack>
-			<Grid columns="1.6fr 1fr">
-				<Stack gap={18}>
-					<div id="w-hero">
-						<ModuleBanner module="lessons" over={t('Bugünün adımı · 1/3', 'Today’s step · 1/3')} title={t('Paragraf: ana fikir', 'Reading: the main idea')} text={t('Geçen denemede bu konuda 3 net kaybettin. 4 mikro ders, yaklaşık 12 dakika.', 'You lost 3 points here last exam. 4 micro-lessons, about 12 minutes.')} action={t('Başla', 'Start')} height={190} />
-					</div>
-					<WCard title={t('Bugünün planı', 'Today’s plan')} action={t('Ders Planı’na git', 'Open study plan')}>
-						<Stack gap={8}>
-							<PlanTask module="lessons" title={t('Sözcükte Anlam', 'Word meaning')} meta={t('Dersler · 3 mikro ders · 8 dk', 'Lessons · 3 micro-lessons · 8 min')} done />
-							<PlanTask module="tests" title={t('Problemler · Orta', 'Problems · Medium')} meta={t('20 soru · 25 dk', '20 questions · 25 min')} now />
-							<PlanTask module="flashcards" title={t('Kimya kartları', 'Chemistry cards')} meta={t('20 kart · 10 dk', '20 cards · 10 min')} />
-						</Stack>
-					</WCard>
-				</Stack>
-				<Stack gap={18}>
-					<Card padding={18}>
-						<Stack row gap={16}>
-							<Ring value={0.5} size={82} stroke={8} color={MODULES.studyPlan.color.light}>
-								<Text role="headline">45 dk</Text>
-							</Ring>
-							<Stack gap={3} grow>
-								<Text role="section">{t('Bugünkü hedef 90 dk', 'Goal today: 90 min')}</Text>
-								<Text role="small">{t('1/3 görev tamam · seri 5 gün', '1/3 done · 5-day streak')}</Text>
-							</Stack>
-						</Stack>
-					</Card>
-					<WCard title={t('Son denemen', 'Last exam')} action={t('Sonuçlar', 'Results')}>
-						<Stack row justify="space-between" align="flex-end">
-							<Stack gap={3}>
-								<Text role="meta">{t('TYT Deneme 4 · 12 Ekim', 'TYT Exam 4 · 12 Oct')}</Text>
-								<Text role="num" size={32}>
-									78,5
-								</Text>
-								<Chip tone="success" icon="trend">
-									+6,5 net
-								</Chip>
-							</Stack>
-							<Sparkline points={[0.2, 0.32, 0.28, 0.5, 0.62, 0.8]} width={170} height={74} color={MODULES.exam.color.light} />
-						</Stack>
-					</WCard>
-					<div style={{borderRadius: 22, padding: 18, background: colors.card, border: `1px solid ${colors.line}`, display: 'flex', alignItems: 'center', gap: 12}}>
-						<Tile module="sinoAi" size={44} />
-						<Stack grow gap={2}>
-							<Text role="headline">
-								{t('Takıldığın yer mi var?', 'Stuck somewhere?')}
-							</Text>
-							<Text role="small">
-								{t('SinoAI hedefini bilerek anlatır.', 'SinoAI explains with your goal in mind.')}
-							</Text>
-						</Stack>
-						<Button size="sm" tone="dark">{t('Sor', 'Ask')}</Button>
-					</div>
-				</Stack>
-			</Grid>
-			<Grid columns="repeat(6, 1fr)" gap={12}>
-				{MODULE_ORDER.filter((key) => key !== 'sinoAi').map((key) => (
-					<Card key={key} padding={14} style={{background: `linear-gradient(180deg, ${colors.card} 40%, ${alpha(MODULES[key].color.light, 0.1)})`}}>
-						<Stack gap={10}>
-							<Tile module={key} size={38} />
-							<Text role="headline" size={14}>
-								{t(MODULES[key].name)}
-							</Text>
-						</Stack>
-					</Card>
-				))}
-			</Grid>
-		</>
-	);
-};
-
-export const WebHomeScreen: React.FC = () => (
-	<Panel active="home">
-		<HomeBody />
-	</Panel>
-);
-
-/** First visit: one tip on the day's step; the modules explain themselves where they are first opened. */
-export const WebTourScreen: React.FC = () => {
-	const t = useT();
-	const colors = useColors();
-	return (
-		<Panel
-			active="home"
-			overlay={
-				<div style={{position: 'absolute', inset: 0, zIndex: 30}}>
-					<div style={{position: 'absolute', left: 280, top: 162, width: 690, height: 206, borderRadius: 28, boxShadow: '0 0 0 4px rgba(255,255,255,0.95), 0 0 0 3000px rgba(11,28,48,0.6)'}} />
-					<div style={{position: 'absolute', left: 300, top: 392, width: 440, borderRadius: 22, background: colors.card, padding: 20}}>
-						<div style={{position: 'absolute', left: 60, top: -8, width: 16, height: 16, background: colors.card, transform: 'rotate(45deg)'}} />
-						<Text role="over" color={colors.brandDeep}>
-							{t('İpucu', 'Tip')}
-						</Text>
-						<Text role="section" style={{marginTop: 6}}>
-							{t('Her gün buradan başla', 'Start here every day')}
-						</Text>
-						<Text role="body" style={{marginTop: 4}}>
-							{t('Planına ve son denemene göre bugün yapman gereken tek şey burada. Modüller solda, hep aynı yerde.', 'The one thing to do today, from your plan and last exam. Modules are on the left, always in the same place.')}
-						</Text>
-						<Stack row justify="flex-end" style={{marginTop: 14}}>
-							<Button size="sm">{t('Anladım', 'Got it')}</Button>
-						</Stack>
-					</div>
-				</div>
-			}
-		>
-			<HomeBody />
-		</Panel>
-	);
-};
+import {Avatar, Bar, Button, Card, Chip, Field, List, ListRow, Segmented, Skeleton, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
+import {Grid, Panel, WCard} from '../../Parts/Web';
 
 export const WebModulesScreen: React.FC = () => {
 	const t = useT();
@@ -736,3 +603,5 @@ export const WebStatesScreen: React.FC = () => {
 	);
 };
 
+/** The home moved to StudyWeb (shared Bugün parts); this name stays for the promo templates. */
+export {WebHomeScreen} from './StudyWeb';

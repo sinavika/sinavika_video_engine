@@ -126,12 +126,12 @@ export const StudioBand: React.FC<{plan: ScenePlan; chapters: readonly {id: stri
 	);
 };
 
-/** The reel's top bar: the camp pill, then the story bar of the cards. */
+/** The reel's top bar: the camp pill, then the story bar of the cards; below the platforms' own top bar (REEL_SAFE_AREA). */
 export const CampShortChrome: React.FC<{plan: ScenePlan; camp: CampEpisode}> = ({plan, camp}) => {
 	const {u} = useVideoLayout();
 	const white = '#FFFFFF';
 	return (
-		<ChromeBar>
+		<ChromeBar reel>
 			<CampPill camp={camp} compact />
 			<div style={{flex: 1, display: 'flex', padding: `${u(14)}px ${u(18)}px`, borderRadius: u(40), backgroundColor: withAlpha('#000000', 0.34)}}>
 				<InkProvider ink={{text: white, muted: white, emphasis: white}}>

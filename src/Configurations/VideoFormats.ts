@@ -52,6 +52,15 @@ export const VIDEO_FORMATS = {
 	},
 } as const satisfies Record<string, VideoFormat>;
 
+/**
+ * Where a reel's words may go on Instagram Reels, TikTok and YouTube Shorts, in reference pixels of a 1080×1920 video.
+ * Measured on an iPhone (owner's screenshots, 8 Nov 2026): the platform's top bar (back arrow, "Reels · Arkadaşlar",
+ * TikTok's search bar) covers the top ~220 px; the like/comment/share column the right ~165 px from the middle down;
+ * the account name, caption and TikTok's avatar the bottom ~470 px; and a tall phone fills its screen by cutting
+ * ~50 px off each side. The format's own `safeArea` above is for frames nothing sits on (exports, YouTube).
+ */
+export const REEL_SAFE_AREA: EdgeInsets = {top: 240, right: 170, bottom: 480, left: 110};
+
 export type VideoFormatId = keyof typeof VIDEO_FORMATS;
 export const VIDEO_FORMAT_IDS = Object.keys(VIDEO_FORMATS) as [VideoFormatId, ...VideoFormatId[]];
 

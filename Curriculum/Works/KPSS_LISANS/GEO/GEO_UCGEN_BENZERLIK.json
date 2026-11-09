@@ -71,6 +71,16 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Üçgende Eşlik ve Benzerlik nedir?",
+      "text": "Geometride iki üçgeni karşılaştırmanın iki yolu vardır. Biri **eşlik**: üçgenler birbirinin üstüne tam oturur, yani biçimleri ve boyutları aynıdır. Öbürü **benzerlik**: biçim aynıdır ama boyut değişebilir, biri öbürünün büyütülmüşüdür. KPSS Geometri'de şekilli soruların büyük bölümü bu iki fikre dayanır; çünkü eş ya da benzer üçgeni bulunca bilinmeyen kenar veya açı kolayca çıkar. Günlük hayattan örnek: bir fotoğrafın aynı boyda kopyası eştir, büyütülmüş kopyası ise benzerdir."
+     },
+     {
+      "kind": "concept",
+      "title": "Eşlik nedir?",
+      "text": "İki üçgen birbirinin üstüne konunca tam oturuyorsa eştir: bütün kenarları ve açıları karşılıklı eşit olur. Her seferinde altı bilgiyi (üç kenar, üç açı) kontrol etmek gerekmez; birkaç bilgi yeter. Bu bölümde kenar-kenar-kenar (KKK) kuralını öğreneceksin: üç kenar karşılıklı eşitse üçgenler eştir. Örneğin kenarları 3, 4 ve 5 birim olan iki üçgen birbirinin tıpatıp aynısıdır. Eşliği yazarken harflerin sırası da önemlidir; onu da göreceksin."
+     },
+     {
       "kind": "predict",
       "title": "Kenarlar eşitse açılar?",
       "prompt": "Üç kenarı karşılıklı eşit iki üçgenin açıları da karşılıklı eşit olur.",
@@ -282,6 +292,12 @@
       "explanation": "Üç kenar karşılıklı eşit olduğundan KKK ile $ABC \\cong DEF$. Bu eşlikte C köşesi F köşesine karşılık gelir; eş üçgenlerde karşılıklı açılar eşit olduğundan $2x + 10 = 3x - 20$ olur ve $x = 30$ bulunur. $m(\\widehat{ACB}) = 2 \\cdot 30 + 10 = 70°$."
      },
      {
+      "kind": "example",
+      "title": "Köşelerin eşleşmesi",
+      "example": "$ABC$ ve $DEF$ üçgenlerinde $|AB| = 7$, $|BC| = 9$, $|CA| = 11$, $|DE| = 11$, $|EF| = 7$ ve $|FD| = 9$ birimdir. $m(\\widehat{ABC}) = 62°$ ise ölçüsü 62° olan hangi açı vardır?",
+      "explanation": "Kenarlar aynı sırada yazılmadığı için önce eşleştirilir. 7 birimlik kenarlar $[AB]$ ve $[EF]$, 9 birimlikler $[BC]$ ve $[FD]$, 11 birimlikler $[CA]$ ve $[DE]$'dir. $B$ köşesi $[AB]$ ile $[BC]$'nin ortak ucudur; $[EF]$ ile $[FD]$'nin ortak ucu $F$'dir. Demek $B \\leftrightarrow F$. KKK ile $ABC \\cong EFD$ olur. Eş üçgenlerde karşılıklı açılar eşit olduğundan $m(\\widehat{DFE}) = 62°$."
+     },
+     {
       "kind": "blank",
       "title": "Sıra sende",
       "prompt": "$|AB| = |DE|$, $|BC| = |EF|$ ve $|CA| = |FD|$ olan $ABC$ ve $DEF$ üçgenlerinde $m(\\widehat{BAC}) = (4y - 15)°$ ve $m(\\widehat{EDF}) = (2y + 25)°$ ise $m(\\widehat{EDF})$ kaç derecedir?",
@@ -312,6 +328,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "KAK eşliği nedir?",
+      "text": "KAK, iki kenar ve bu kenarların arasındaki açı karşılıklı eşit olduğunda iki üçgenin eş olduğunu söyler. İki çubuğu belli bir açıyla birleştirirsen üçüncü kenar kendiliğinden belirlenir: örneğin 3 cm ve 4 cm'lik çubuklar 90°'de birleşirse hep aynı üçgen çıkar. Bu bölümde açının **iki kenarın arasında** olmasının neden şart olduğunu, ters açılarla KAK'ı ve açı arada değilse (KKA) neler olduğunu göreceksin."
+     },
+     {
       "kind": "rule",
       "title": "KAK eşliği",
       "items": [
@@ -319,6 +340,18 @@
        "Kesişen iki doğru parçası birbirini ortalıyorsa ters açılar sayesinde KAK hazırdır."
       ],
       "narration": "İki kenarı ve bu iki kenarın arasındaki açısı karşılıklı eşit olan iki üçgen eştir; buna kenar-açı-kenar, kısaca KAK eşliği denir. Sık görülen durum: iki doğru parçası kesişip birbirini ortalıyorsa karşılıklı üçgenlerde iki kenar eşittir. Aradaki açılar da ters açı olduğu için eşittir, KAK hazırdır. Paralelkenarın köşegenleri de birbirini ortaladığından bu kalıbı orada da görürsün."
+     },
+     {
+      "kind": "predict",
+      "title": "Köşegenler ve KAK",
+      "context": "$ABCD$ paralelkenarında köşegenler $E$ noktasında kesişir; köşegenler birbirini ortalar.",
+      "prompt": "$AEB$ ve $CED$ üçgenleri KAK ile eştir.",
+      "choices": [
+       "Doğru",
+       "Yanlış"
+      ],
+      "answer": 0,
+      "explanation": "$|AE| = |EC|$ ve $|BE| = |ED|$'dir. Aralarındaki $\\widehat{AEB}$ ve $\\widehat{CED}$ açıları ters açı olduğundan eşittir. İki kenar ve arasındaki açı eşit: KAK."
      },
      {
       "kind": "visual",
@@ -458,16 +491,16 @@
       "why": "Pergel örneğinde aynı 4, 3 ve 40° değerleriyle C ve C′ olmak üzere iki farklı üçgen çizildi."
      },
      {
-      "kind": "predict",
-      "title": "Köşegenler ve KAK",
-      "context": "$ABCD$ paralelkenarında köşegenler $E$ noktasında kesişir; köşegenler birbirini ortalar.",
-      "prompt": "$AEB$ ve $CED$ üçgenleri KAK ile eştir.",
-      "choices": [
-       "Doğru",
-       "Yanlış"
-      ],
-      "answer": 0,
-      "explanation": "$|AE| = |EC|$ ve $|BE| = |ED|$'dir. Aralarındaki $\\widehat{AEB}$ ve $\\widehat{CED}$ açıları ters açı olduğundan eşittir. İki kenar ve arasındaki açı eşit: KAK."
+      "kind": "example",
+      "title": "KAK ile bilinmeyen kenar",
+      "example": "$ABC$ ve $DEF$ üçgenlerinde $|AB| = |DE|$, $|AC| = |DF|$ ve $m(\\widehat{BAC}) = m(\\widehat{EDF}) = 50°$'dir. $|BC| = 4x - 3$ ve $|EF| = 2x + 9$ birim ise $|BC|$ kaç birimdir?",
+      "explanation": "Eşit açı $A$ ve $D$'dedir; bu açıyı oluşturan kenarlar $[AB]$, $[AC]$ ve $[DE]$, $[DF]$ karşılıklı eşittir. Yani açı iki kenarın arasındadır: KAK ile $ABC \\cong DEF$. $[BC]$ ile $[EF]$ karşılıklı kenarlardır: $4x - 3 = 2x + 9$, $2x = 12$, $x = 6$. $|BC| = 4 \\cdot 6 - 3 = 21$ birim."
+     },
+     {
+      "kind": "example",
+      "title": "Ortalanan doğru parçaları",
+      "example": "$[AC]$ ve $[BD]$ doğru parçaları $E$ noktasında kesişir. $|AE| = |EC|$, $|BE| = |ED|$, $m(\\widehat{BAC}) = 35°$ ve $m(\\widehat{AEB}) = 80°$'dir. $m(\\widehat{EDC})$ kaç derecedir?",
+      "explanation": "$\\widehat{AEB}$ ve $\\widehat{CED}$ ters açı olduğundan eşittir. İki kenar eşit ve aradaki açılar eşit: KAK ile $AEB \\cong CED$ ($A \\leftrightarrow C$, $E \\leftrightarrow E$, $B \\leftrightarrow D$). $AEB$ üçgeninde $m(\\widehat{ABE}) = 180° - 35° - 80° = 65°$. $B$ köşesi $D$'ye karşılık geldiğinden $m(\\widehat{EDC}) = m(\\widehat{ABE}) = 65°$."
      },
      {
       "kind": "question",
@@ -808,6 +841,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "AKA eşliği nedir?",
+      "text": "AKA, bir kenar ve o kenarın iki ucundaki açılar karşılıklı eşit olduğunda üçgenlerin eş olduğunu söyler. Bir kenarı çizip iki ucundan belirli açılarla doğrular çizersen doğrular tek bir noktada buluşur; üçgen belli olur. Örneğin 5 cm'lik kenarın uçlarına 40° ve 60° çizersen hep aynı üçgen çıkar. Bu bölümde eşit kenarın doğru konumda olmasını ve dik açılı şekillerde tümler açılarla eşlik bulmayı çalışacağız."
+     },
+     {
       "kind": "rule",
       "title": "AKA eşliği",
       "items": [
@@ -855,6 +893,18 @@
        }
       ],
       "explanation": "Üç açı eşitse üçgenler yalnız benzerdir; boyutları farklı olabilir. KKA'da açı kenarların arasında olmadığı için iki farklı üçgen çıkabilir."
+     },
+     {
+      "kind": "example",
+      "title": "AKA ile bilinmeyen kenar",
+      "example": "$ABC$ ve $DEF$ üçgenlerinde $m(\\widehat{A}) = m(\\widehat{D}) = 40°$, $m(\\widehat{B}) = m(\\widehat{E}) = 75°$ ve $|AB| = |DE| = 8$ birimdir. $|AC| = 3x + 1$ ve $|DF| = x + 9$ ise $|AC|$ kaç birimdir?",
+      "explanation": "Eşit kenarlar $[AB]$ ve $[DE]$'dir; uçlarındaki açılar ($A$, $B$ ve $D$, $E$) karşılıklı eşittir. Kenar iki açının arasında olduğundan AKA ile $ABC \\cong DEF$. Karşılıklı kenarlar $[AC]$ ve $[DF]$'dir: $3x + 1 = x + 9$, $2x = 8$, $x = 4$. $|AC| = 3 \\cdot 4 + 1 = 13$ birim."
+     },
+     {
+      "kind": "example",
+      "title": "Eşit kenar doğru konumda mı?",
+      "example": "$ABC$ ve $DEF$ üçgenlerinde $m(\\widehat{A}) = m(\\widehat{D}) = 50°$, $m(\\widehat{B}) = m(\\widehat{E}) = 60°$, $|BC| = 6$ ve $|DE| = 6$ birimdir. Bu bilgilerle $ABC \\cong DEF$ denebilir mi?",
+      "explanation": "Önce üçüncü açılar bulunur: iki üçgende de $180° - 50° - 60° = 70°$, yani $m(\\widehat{C}) = m(\\widehat{F}) = 70°$. $|BC|$, $A$ açısının (50°) karşısındadır. $|DE|$ ise $F$ açısının (70°) karşısındadır. Eşit kenarlar eşit açılara göre aynı konumda değildir; AKA kurulamaz ve eşlik denemez. Yalnız açılar eşit olduğundan üçgenlerin benzer olduğu söylenebilir."
      },
      {
       "kind": "question",
@@ -1212,6 +1262,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Benzerlik nedir?",
+      "text": "İki üçgenin açıları karşılıklı eşit ve kenarları orantılıysa üçgenler benzerdir: biri öbürünün büyütülmüşü ya da küçültülmüşüdür. Fotokopide büyütme buna örnektir; biçim aynı kalır, yalnız boyut değişir. Kenarları 3, 4, 5 olan üçgenle kenarları 6, 8, 10 olan üçgen benzerdir. Bu bölümde benzerliğin üç yolunu (AA, KKK, KAK) ve ortak açılı iç içe üçgenleri çalışacağız."
+     },
+     {
       "kind": "visual",
       "title": "Büyüyen üçgen",
       "visual": {
@@ -1399,11 +1454,6 @@
       "narration": "İki açısı karşılıklı eşit olan iki üçgen benzerdir; buna açı-açı (AA) benzerliği deriz. Üç kenarı orantılı olan üçgenler benzerdir (KKK benzerliği). İki kenarı orantılı ve bu kenarların arasındaki açısı eşit olan üçgenler de benzerdir (KAK benzerliği). Benzerliği yazarken eşit açıları aynı sıraya koy; oranları kurarken hangi kenarın hangisiyle eşleştiğini bu sıra söyler."
      },
      {
-      "kind": "concept",
-      "title": "Ortak açılı iç içe üçgen",
-      "text": "Üç açısı eşit üçgenler benzerdir ama boyutları farklı olabilir; bu yüzden eş olmak zorunda değildir. İç içe iki üçgende bir açı ortaksa ve bir açı daha eşitse, örneğin $m(\\widehat{ABD}) = m(\\widehat{ACB})$ ise $ABD \\sim ACB$ olur. Karşılıklı kenarları oranla: $\\frac{|AB|}{|AC|} = \\frac{|AD|}{|AB|}$. İçler dışlar çarpımından $|AB|^2 = |AD| \\cdot |AC|$ çıkar. $|AB|$ hem küçük hem büyük üçgende 'orta terim' olduğu için karesi görünür."
-     },
-     {
       "kind": "predict",
       "title": "KKK ile benzerlik",
       "context": "$ABC$ üçgeninin kenarları 6, 8 ve 10 birim; $DEF$ üçgeninin kenarları 9, 12 ve 15 birimdir.",
@@ -1416,11 +1466,28 @@
       "explanation": "$\\frac{6}{9} = \\frac{8}{12} = \\frac{10}{15} = \\frac{2}{3}$: üç kenar orantılı, KKK benzerliği ve $k = \\frac{2}{3}$."
      },
      {
+      "kind": "concept",
+      "title": "Ortak açılı iç içe üçgen",
+      "text": "Üç açısı eşit üçgenler benzerdir ama boyutları farklı olabilir; bu yüzden eş olmak zorunda değildir. İç içe iki üçgende bir açı ortaksa ve bir açı daha eşitse, örneğin $m(\\widehat{ABD}) = m(\\widehat{ACB})$ ise $ABD \\sim ACB$ olur. Karşılıklı kenarları oranla: $\\frac{|AB|}{|AC|} = \\frac{|AD|}{|AB|}$. İçler dışlar çarpımından $|AB|^2 = |AD| \\cdot |AC|$ çıkar. $|AB|$ hem küçük hem büyük üçgende 'orta terim' olduğu için karesi görünür."
+     },
+     {
       "kind": "mistake",
       "title": "Üç açı eşitse eş mi?",
       "wrong": "Üç açısı karşılıklı eşit olan iki üçgen eştir.",
       "right": "Üç açısı eşit üçgenler **benzerdir**; eş olmaları için bir kenarın da eşit olması gerekir.",
       "why": "Bir üçgeni büyütmek açıları değiştirmez ama kenarları değiştirir; büyütülmüş üçgen eş değil, benzerdir."
+     },
+     {
+      "kind": "example",
+      "title": "AA ile bilinmeyen kenar",
+      "example": "$ABC$ ve $DEF$ üçgenlerinde $m(\\widehat{A}) = m(\\widehat{D}) = 50°$, $m(\\widehat{B}) = m(\\widehat{E}) = 70°$, $|AB| = 6$, $|DE| = 9$ ve $|BC| = 10$ birimdir. $|EF|$ kaç birimdir?",
+      "explanation": "İki açı karşılıklı eşit: AA ile $ABC \\sim DEF$. Eşit açılar aynı sırada olduğundan $A \\leftrightarrow D$, $B \\leftrightarrow E$, $C \\leftrightarrow F$. Karşılıklı kenarlar $[AB] \\leftrightarrow [DE]$ ve $[BC] \\leftrightarrow [EF]$'dir. Oran: $\\frac{6}{9} = \\frac{10}{|EF|}$. İçler dışlar: $6 \\cdot |EF| = 90$, $|EF| = 15$ birim."
+     },
+     {
+      "kind": "example",
+      "title": "Ortak açılı iç içe üçgen",
+      "example": "Şekilde $D$ noktası $[AC]$ üzerindedir, $m(\\widehat{ABD}) = m(\\widehat{ACB})$, $|AD| = 2$ ve $|DC| = 6$ birimdir. $|AB|$ kaç birimdir?",
+      "explanation": "$A$ açısı iki üçgende ortaktır ve $m(\\widehat{ABD}) = m(\\widehat{ACB})$: AA ile $ABD \\sim ACB$. Karşılıklı kenarlar: $\\frac{|AB|}{|AC|} = \\frac{|AD|}{|AB|}$, yani $|AB|^2 = |AD| \\cdot |AC|$. Burada $|AC|$ tüm kenardır: $|AC| = |AD| + |DC| = 2 + 6 = 8$ ($|DC|$'yi kullanma). $|AB|^2 = 2 \\cdot 8 = 16$ ve $|AB| = 4$ birim."
      },
      {
       "kind": "blank",
@@ -1619,6 +1686,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Benzerlik oranı nedir?",
+      "text": "Benzer iki üçgende karşılıklı kenarların oranı hep aynıdır; bu sabit sayıya benzerlik oranı denir. Kenarları 3, 4, 5 olan üçgenle kenarları 6, 8, 10 olan üçgende 3'ün 6'ya, 4'ün 8'e, 5'in 10'a oranı hep yarımdır. Oranı bilirsen bilinmeyen bir kenarı orantıyla bulursun. Bu bölümde paralel doğru parçasından doğan benzer üçgenleri, orta tabanı ve yamukta kelebek benzerliğini çalışacağız."
+     },
+     {
       "kind": "rule",
       "title": "Benzerlik oranı",
       "items": [
@@ -1633,6 +1705,18 @@
       "kind": "concept",
       "title": "Temel orantı ve orta taban",
       "text": "$D \\in [AB]$, $E \\in [AC]$ ve $DE \\parallel BC$ ise $ADE \\sim ABC$ olur. Buradan temel orantı teoremi gelir: $\\frac{|AD|}{|DB|} = \\frac{|AE|}{|EC|}$. Ayrıca $\\frac{|AD|}{|AB|} = \\frac{|AE|}{|AC|} = \\frac{|DE|}{|BC|}$. $D$ ve $E$ kenarların orta noktalarıysa $[DE]$ **orta tabandır**: $DE \\parallel BC$ ve $|DE| = \\frac{|BC|}{2}$ olur, yani $k = \\frac{1}{2}$."
+     },
+     {
+      "kind": "example",
+      "title": "Paralel doğru parçasıyla benzerlik",
+      "example": "$D \\in [AB]$, $E \\in [AC]$ ve $[DE] \\parallel [BC]$'dir. $|AD| = 4$, $|AB| = 10$ ve $|DE| = 6$ birim ise $|BC|$ kaç birimdir?",
+      "explanation": "$DE \\parallel BC$ olduğundan karşılıklı açılar eşittir ve $A$ açısı ortaktır: $ADE \\sim ABC$. Oran küçük kenar / büyük kenar olarak kurulur: $\\frac{|AD|}{|AB|} = \\frac{|DE|}{|BC|}$, yani $\\frac{4}{10} = \\frac{6}{|BC|}$. İçler dışlar: $4 \\cdot |BC| = 60$, $|BC| = 15$ birim. Benzerlik oranı $k = \\frac{2}{5}$'tir."
+     },
+     {
+      "kind": "example",
+      "title": "Tuzak: parça mı, tüm kenar mı?",
+      "example": "$D \\in [AB]$, $E \\in [AC]$ ve $[DE] \\parallel [BC]$'dir. $|AD| = 3$, $|DB| = 6$ ve $|BC| = 12$ birim ise $|DE|$ kaç birimdir?",
+      "explanation": "Tuzak: $|DE|$'nin oranı $\\frac{3}{6}$ ile kurulmaz. $|DE|$'nin karşılığı $|BC|$, $|AD|$'nin karşılığı ise $|AB|$'dir. Önce $|AB| = 3 + 6 = 9$ bulunur. $\\frac{|AD|}{|AB|} = \\frac{|DE|}{|BC|}$ yazılır: $\\frac{3}{9} = \\frac{|DE|}{12}$, buradan $|DE| = 4$ birim olur. $\\frac{3}{6}$ kullansaydın 6 bulurdun, bu yanlış olurdu."
      },
      {
       "kind": "blank",
@@ -2054,6 +2138,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Thales teoremi nedir?",
+      "text": "Thales teoremi, paralel doğruların kendilerini kesen doğruları orantılı parçalara böldüğünü söyler. Eşit aralıklı çizgili bir defterde iki eğik çizgi çekersen iki çizgi üzerinde de parçalar aynı oranda çıkar: biri 1 : 2 oranında bölünürse öbürü de 1 : 2 oranında bölünür. Üçgendeki temel orantı bunun özel hâlidir. Bu bölümde oranı hangi parçalarla kuracağını ve fark ile oranı karıştırma tuzağını çalışacağız."
+     },
+     {
       "kind": "rule",
       "title": "Thales teoremi",
       "items": [
@@ -2265,6 +2354,18 @@
       ],
       "answer": 0,
       "explanation": "Thales hem parça/parça hem parça/tüm oranını verir; ikisi de aynı orantıdan gelir. Önemli olan her oranı kendi kesenin parçalarıyla kurmaktır."
+     },
+     {
+      "kind": "example",
+      "title": "Thales ile bilinmeyen parça",
+      "example": "$d_1 \\parallel d_2 \\parallel d_3$ doğrularını iki kesen böler. Birinci kesende üst parça 2, alt parça 5 birimdir. İkinci kesende üst parça 6 birim ise ikinci kesenin alt parçası kaç birimdir?",
+      "explanation": "Thales teoremine göre paralel doğrular kesenleri orantılı böler: üst parça / alt parça oranı iki kesende de aynıdır. $\\frac{2}{5} = \\frac{6}{x}$ yazılır. İçler dışlar: $2x = 30$, $x = 15$ birim. Oran sabittir, fark değil: farkı (3) sabit sanıp 9 bulsaydın yanlış olurdu."
+     },
+     {
+      "kind": "example",
+      "title": "Parça/tüm oranı ile Thales",
+      "example": "$d_1 \\parallel d_2 \\parallel d_3$'tür. Bir kesende $d_1$ ile $d_2$ arasındaki parça 4, $d_1$ ile $d_3$ arasındaki toplam uzunluk 10 birimdir. İkinci kesende $d_1$ ile $d_2$ arasındaki parça 6 birim ise ikinci kesende $d_1$ ile $d_3$ arasındaki toplam uzunluk kaç birimdir?",
+      "explanation": "Oranı parça/tüm olarak da kurabiliriz, ama iki kesende de aynı türde kurmalıyız. $\\frac{4}{10} = \\frac{6}{x}$ olur. İçler dışlar: $4x = 60$, $x = 15$ birim. Tuzak: 10 alt parça değil tüm uzunluktur. Doğrulama: ikinci kesenin alt parçası $15 - 6 = 9$ ve $\\frac{4}{6} = \\frac{6}{9}$ olduğundan sonuç tutarlıdır."
      },
      {
       "kind": "question",
@@ -2562,6 +2663,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Alan oranı nedir?",
+      "text": "Benzer şekillerde uzunluklar aynı oranda değişir, alan ise farklı davranır; çünkü alan iki boyutlu bir büyüklüktür. Kenarı 1 birim olan karenin alanı 1, kenarı 2 birim olan karenin alanı 4'tür: kenar iki kat olmuş, alan iki kattan fazla büyümüş. Üçgenlerde de benzer bir durum vardır. Bu bölümde benzerlik oranı ile alanların oranı arasındaki ilişkiyi, oranı doğru kenarlara göre kurmayı ve taralı bölge sorularını çalışacağız."
+     },
+     {
       "kind": "predict",
       "title": "Kenar iki kat, alan?",
       "context": "Büyük üçgenin kenarları, köşedeki küçük üçgenin kenarlarının 2 katı.",
@@ -2797,6 +2903,18 @@
       },
       "caption": "Uzunluklar k, alan k² oranında değişir.",
       "narration": "Kenar, çevre, yükseklik, kenarortay ve açıortay gibi **uzunluklar** $k$ oranında değişir. Alan iki boyutlu bir büyüklüktür; hem tabanı hem yüksekliği etkilediği için $k \\cdot k = k^2$ olur. Tabloda $k = 3$ alınmış: uzunluklar 3 katına çıkarken alan 9 katına çıkıyor."
+     },
+     {
+      "kind": "example",
+      "title": "Alan oranı: doğrudan kullanım",
+      "example": "Benzer iki üçgenin benzerlik oranı $\\frac{3}{5}$'tir. Küçük üçgenin alanı 18 birimkare ise büyük üçgenin alanı kaç birimkaredir?",
+      "explanation": "Uzunluk oranı $k = \\frac{3}{5}$ ise alanların oranı $k^2 = \\frac{9}{25}$'tir. Küçük alan / büyük alan $= \\frac{9}{25}$ olduğundan $\\frac{18}{A} = \\frac{9}{25}$ ve $9A = 450$, $A = 50$ birimkare bulunur. Alanda oran kare alınır; $\\frac{3}{5}$ ile hesaplasaydın 30 bulurdun, bu yanlış olurdu."
+     },
+     {
+      "kind": "example",
+      "title": "Alan oranı: paralel doğru ve taralı bölge",
+      "example": "$[DE] \\parallel [BC]$, $D \\in [AB]$, $|AD| = 3$ ve $|DB| = 1$ birimdir. $A(ABC) = 64$ birimkare ise $DECB$ dörtgeninin alanı kaç birimkaredir?",
+      "explanation": "$ADE \\sim ABC$ benzerliği vardır. Oran tüm kenara göre kurulur: $|AB| = 3 + 1 = 4$, yani $k = \\frac{3}{4}$. Alanların oranı $k^2 = \\frac{9}{16}$ olur. $A(ADE) = 64 \\cdot \\frac{9}{16} = 36$ birimkaredir. Dörtgen, büyük üçgenden küçük üçgen çıkarılınca kalır: $64 - 36 = 28$ birimkare."
      },
      {
       "kind": "question",

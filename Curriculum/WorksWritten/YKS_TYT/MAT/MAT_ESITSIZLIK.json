@@ -66,6 +66,11 @@
     "title": "Aralıklar ve sayı doğrusu",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Basit Eşitsizlikler nedir?",
+      "text": "Eşitsizlik, iki ifadenin eşit olmadığını; biri diğerinden küçük ya da büyük olduğunu söyleyen ifadedir. Günlük hayatta her yerde karşına çıkar: bir asansör en fazla 600 kg taşır, bir bilete 18 yaşından büyük olanlar girer, bir ilacı günde en az 2 kez içmek gerekir. Eşitsizliğin çözümü tek bir sayı değil, çoğu zaman bir **aralıktır**: sayı doğrusunda yan yana duran sonsuz çoklukta sayı. TYT'de eşitsizlik sorularının hemen hepsi bir aralığı okumaya, aralıktaki tam sayıları saymaya ve aralıkla işlem yapmaya dayanır. Bu bölümde önce aralığın ne olduğunu, uçlarının dahil olup olmadığını ve sayı doğrusunda nasıl gösterildiğini öğreneceksin."
+     },
+     {
       "kind": "visual",
       "title": "Aralık gösterimleri",
       "visual": {
@@ -199,6 +204,12 @@
       "narration": "Aralığın iki tarafı eşit uzaklıkta değilse karşıt çiftleri sildikten sonra kalan sayıları toplarsın. Örneğin $[-3, 5]$ aralığında $-3$'ten $3$'e kadar olan sayılar toplamı 0 yapar, geriye $4 + 5 = 9$ kalır."
      },
      {
+      "kind": "example",
+      "title": "Uçlar tam sayı değilken",
+      "example": "$-2{,}5 < x \\le 3{,}1$ aralığında kaç tam sayı vardır?",
+      "explanation": "Uçlar tam sayı olmadığı için $b - a$ gibi bir formüle güvenmeyiz; aralığa giren en küçük ve en büyük tam sayıyı buluruz. Sol uç $-2{,}5$ hariçtir ve aralığa giren en küçük tam sayı $-2$'dir ($-3$, $-2{,}5$'ten küçüktür, girmez). Sağ uç $3{,}1$ dahildir; aralığa giren en büyük tam sayı $3$'tür ($4$, $3{,}1$'den büyüktür, girmez). Tam sayılar $-2, -1, 0, 1, 2, 3$: **6 tane**."
+     },
+     {
       "kind": "blank",
       "title": "Toplamı bul",
       "prompt": "$(-5, 2]$ aralığındaki tam sayıların toplamı kaçtır?",
@@ -266,6 +277,11 @@
     "title": "Eşitsizlikte işlemler",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Eşitsizlik işlemleri nedir?",
+      "text": "Eşitsizlik işlemleri, elimizde bir sayı yerine bir sayı aralığı olduğunda o aralıkla işlem yapmayı anlatır. Önce basit bir sayıyla bak: 3 < 5 doğrudur. İki tarafa 2 eklersen 5 < 7 olur, yön korunur. İki tarafı 2 ile çarparsan 6 < 10 olur, yön yine korunur. İki tarafı −1 ile çarparsan −3 ve −5 elde edersin; −3 > −5 olduğundan yön döner. Sınavda bu kurallar hep bir bağlam içinde sorulur: bir değerin alabileceği en küçük ve en büyük değer, bir ifadenin aralığı ya da aralıktaki tam sayı sayısı. Çözerken her adımda yönün korunup korunmadığına dikkat etmen gerekir."
+     },
+     {
       "kind": "rule",
       "title": "Yönü ne değiştirir?",
       "items": [
@@ -296,6 +312,18 @@
       "wrong": "$2 < x < 6$ ve $1 < y < 3$ ise taraf tarafa çıkarırız: $1 < x - y < 3$.",
       "right": "$-3 < -y < -1$ olur; toplayınca $-1 < x - y < 5$ bulunur.",
       "why": "Sına: $x = 2{,}5$ ve $y = 2{,}9$ seçersen $x - y = -0{,}4$ olur; bu $1$'den küçüktür. Çıkarmada uçlar çapraz gider: üst uçtan alt uç, alt uçtan üst uç çıkarılır. Bunu görmek yerine $-y$ ile toplamak daha güvenlidir."
+     },
+     {
+      "kind": "example",
+      "title": "Önce çarp, sonra çıkar",
+      "example": "$2 < x < 5$ olduğuna göre $3x - 4$ hangi aralıktadır?",
+      "explanation": "İşlemleri sırayla ve üç kısma birden uygularız. Önce üç kısmı 3 ile çarparız; 3 pozitif olduğu için yön korunur: $6 < 3x < 15$. Sonra üç kısımdan 4 çıkarırız: $2 < 3x - 4 < 11$. Uçlar açık olduğundan 2 ve 11 alınmaz. Sına: $x = 3$ için $3x - 4 = 5$ olur ve aralığın içindedir."
+     },
+     {
+      "kind": "example",
+      "title": "Çıkarmayı toplamaya çevir",
+      "example": "$-3 < x < 2$ ve $1 < y < 3$ olduğuna göre $x - y$ hangi aralıktadır?",
+      "explanation": "İki eşitsizliği taraf tarafa çıkarmayız; çıkarma sırayı bozar. Bunun yerine $-y$'nin aralığını bulalım: $1 < y < 3$ ifadesini $-1$ ile çarparsak yön değişir ve uçlar yer değiştirir: $-3 < -y < -1$. Şimdi $x$ ve $-y$ aralıklarını taraf tarafa toplarız: alt uçlar $-3 + (-3) = -6$, üst uçlar $2 + (-1) = 1$. Sonuç: $-6 < x - y < 1$. Sına: $x = 1{,}9$ ve $y = 1{,}1$ için $x - y = 0{,}8$ olur ve aralığın içindedir."
      },
      {
       "kind": "findError",
@@ -579,6 +607,11 @@
      {
       "kind": "concept",
       "title": "Birinci dereceden eşitsizlik nedir?",
+      "text": "Eşitsizliği bir terazi gibi düşün: sol kefe sağ kefeden hafif. Terazinin iki kefesine de aynı ağırlığı koyarsan denge bozulmaz; yani 3 < 5 iken 2 eklersen 5 < 7 yine doğrudur. İki tarafı 2 ile çarparsan 6 < 10 de doğrudur. Ama iki tarafı −1 ile çarparsan 3 ve 5 yerine −3 ve −5 elde edersin; −3, −5'ten büyüktür, yani yön döner. Bu bölümün konusu tam olarak bu: hangi işlem eşitsizliğin yönünü korur, hangisi bozar? Toplama, çıkarma, pozitifle çarpma güvenlidir; negatifle çarpma yönü çevirir; taraf tarafa çıkarma ise hiç güvenli değildir."
+     },
+     {
+      "kind": "concept",
+      "title": "Birinci dereceden eşitsizlik nedir?",
       "text": "$a \\ne 0$ olmak üzere $ax + b < 0$, $ax + b > 0$, $ax + b \\le 0$, $ax + b \\ge 0$ biçimindeki eşitsizliklere **birinci dereceden bir bilinmeyenli eşitsizlik** denir. Çözümü denklemdeki gibi $x$'i yalnız bırakarak bulursun; tek fark, **negatif** bir sayıyla çarpıp bölerken yönü çevirmendir. Çözüm çoğu zaman bir aralıktır: $x \\le -2$ için $(-\\infty, -2]$. $ax + by \\le c$ gibi iki bilinmeyenli eşitsizliğin çözümü ise sıralı ikililerden oluşan bir bölgedir; bunu son bölümde göreceğiz.",
       "narration": "Çözüm yolu dört adımdır. Önce bilinmeyenli terimleri bir yana, sayıları öbür yana topla. Sonra $x$'in katsayısına böl; katsayı negatifse yönü çevir. Çözümü aralık olarak yaz. Son olarak sına: çözüm tek bir sayı olmadığı için aralığın içinden bir, dışından bir değer denemek iyi bir alışkanlıktır."
      },
@@ -613,6 +646,12 @@
       "wrong": "$-2x \\geq 4$ ise $x \\geq -2$ olur.",
       "right": "Eksiyle bölünce yön değişir: $x \\leq -2$. Sına: $x = 0$ için $0 \\geq 4$ **yanlış**, demek ki 0 çözüm değil.",
       "why": "Çözümü bulunca aralığın içinden ve dışından birer değer dene. İçteki sağlamalı, dıştaki sağlamamalı: $x = -3$ için $6 \\ge 4$ doğrudur."
+     },
+     {
+      "kind": "example",
+      "title": "Parantezli eşitsizlik",
+      "example": "$2(x - 1) + 3 \\ge 7x - 7$ eşitsizliğini sağlayan **en büyük** tam sayıyı bulalım.",
+      "explanation": "Önce parantezi açarız: $2x - 2 + 3 \\ge 7x - 7$, yani $2x + 1 \\ge 7x - 7$. $x$'li terimleri sağa, sayıları sola toplarız: $1 + 7 \\ge 7x - 2x$, yani $8 \\ge 5x$. İki tarafı 5'e böleriz (pozitif, yön değişmez): $x \\le \\frac{8}{5} = 1{,}6$. Çözüm $(-\\infty, 1{,}6]$ olur; en büyük tam sayı **1**'dir. Sına: $x = 1$ için $3 \\ge 0$ doğru, $x = 2$ için $5 \\ge 7$ yanlıştır."
      },
      {
       "kind": "guided",
@@ -882,6 +921,11 @@
     "title": "Eşitsizlik sistemleri",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Eşitsizlik sistemi nedir?",
+      "text": "Eşitsizlik sistemi, iki ya da daha fazla eşitsizliğin **aynı anda** sağlanmasının istendiği durumdur. Günlük hayattan bir örnek: bir oyun parkına 6 yaşından büyük ve 12 yaşından küçük çocuklar giriyor olsun. 8 yaşındaki çocuk iki koşulu da sağlar, girer; 5 yaşındaki çocuk birinci koşulu sağlamaz, giremez; 13 yaşındaki ikinciyi sağlamaz, giremez. Sistemin çözümü, bütün koşulları birlikte sağlayan sayılardır. Bu bölümde her koşulu ayrı çözüp ortak kısmı bulmayı ve iki bilinmeyenli eşitsizliğin çözüm bölgesini göreceksin."
+     },
+     {
       "kind": "rule",
       "title": "Sistem nasıl çözülür?",
       "items": [
@@ -949,6 +993,18 @@
       ],
       "answer": 0,
       "explanation": "$x \\ge 5$ olan her sayı zaten 2'den büyüktür; ortak kısım $[5, \\infty)$ olur. 5 ikinci koşulda dahil, birinciyi de sağladığı için çözümdedir."
+     },
+     {
+      "kind": "example",
+      "title": "İki eşitsizliği birlikte çözme",
+      "example": "$x - 3 > 1$ ve $2x < 14$ eşitsizliklerini birlikte sağlayan $x$ tam sayılarını bulalım.",
+      "explanation": "Birinci eşitsizliğe 3 ekleriz: $x > 4$. İkinciyi 2'ye böleriz; 2 pozitif olduğu için yön değişmez: $x < 7$. 've' iki koşulun aynı anda sağlanması demektir, bu yüzden ortak kısmı alırız: $4 < x < 7$. İki uç da açık olduğundan 4 ve 7 alınmaz; tam sayılar 5 ve 6 olur. Sına: $x = 5$ için $5 - 3 = 2 > 1$ ve $10 < 14$ doğrudur."
+     },
+     {
+      "kind": "example",
+      "title": "Negatif katsayılı sistem",
+      "example": "$5 - x \\ge 1$ ve $2x + 3 > -3$ eşitsizliklerini birlikte sağlayan tam sayıların toplamı kaçtır?",
+      "explanation": "Birinci eşitsizlik: iki taraftan 5 çıkarınca $-x \\ge -4$ olur. İki tarafı $-1$ ile çarpınca yön değişir: $x \\le 4$. İkinci eşitsizlik: 3 çıkarınca $2x > -6$, 2'ye bölünce (pozitif, yön korunur) $x > -3$. Sistemde iki koşul birlikte sağlanır, kesişimi alırız: $-3 < x \\le 4$. $-3$ hariç, 4 dahildir; tam sayılar $-2, -1, 0, 1, 2, 3, 4$. $-2$ ile $2$, $-1$ ile $1$ birbirini götürür; kalan $0 + 3 + 4 = 7$. Toplam **7**."
      },
      {
       "kind": "question",

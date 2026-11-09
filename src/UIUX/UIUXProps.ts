@@ -22,8 +22,11 @@ export const UIUXBoardPropsSchema = z.object({
 });
 export type UIUXBoardProps = z.infer<typeof UIUXBoardPropsSchema>;
 
-/** Board layout: each screen drawn at this width, with its title above. */
-export const BOARD = {mobileWidth: 390, webWidth: 720, gap: 48, padding: 72, header: 150, caption: 64} as const;
+/** Board layout: each screen drawn at this width, with its title above. Tablet portrait cells keep the landscape cells' height. */
+export const BOARD = {mobileWidth: 390, webWidth: 720, tabletWidth: 900, tabletPortraitWidth: 449, gap: 48, padding: 72, header: 150, caption: 64} as const;
 
-export const screenSize = (platform: 'mobile' | 'web' | 'site', height?: number): {width: number; height: number} =>
-	platform === 'mobile' ? {width: UI_CANVAS.mobile.width, height: UI_CANVAS.mobile.height} : {width: UI_CANVAS.web.width, height: height ?? UI_CANVAS.web.height};
+export const screenSize = (platform: 'mobile' | 'web' | 'site' | 'tablet', height?: number, portrait?: boolean): {width: number; height: number} => {
+	if (platform === 'mobile') return {width: UI_CANVAS.mobile.width, height: UI_CANVAS.mobile.height};
+	if (platform === 'tablet') return portrait ? {width: UI_CANVAS.tablet.height, height: UI_CANVAS.tablet.width} : {width: UI_CANVAS.tablet.width, height: UI_CANVAS.tablet.height};
+	return {width: UI_CANVAS.web.width, height: height ?? UI_CANVAS.web.height};
+};

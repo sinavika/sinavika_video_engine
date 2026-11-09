@@ -33,9 +33,15 @@ export const COURSE_DESIGN = {
 		/**
 		 * A challenge reel (CampShort rounds). The 71–106 s camp reels of 26 Oct were
 		 * judged to lose viewers in the first seconds and before the last question
-		 * (outside review, 27 Oct 2026): at most three questions, under 30 s.
+		 * (outside review, 27 Oct 2026): at most three questions, under 30 s. The spoken hook that opens the reel
+		 * since 8 Nov 2026 adds about 1.7 s, so the ceiling is 32 s; the rounds themselves keep their old budget.
 		 */
-		challenge: {min: 18, max: 30},
+		challenge: {min: 18, max: 32},
+		/**
+		 * A flash reel (CampFlash): the problem in the first 2 s, its solution by about 7 s, the link on in the last 2 s
+		 * (owner, 8 Nov 2026: "ilk testlerde 8–12 saniyelik videoları dene").
+		 */
+		flash: {min: 7, max: 12},
 	},
 	/** The camp layer (Templates/Camps) on top of the lesson and the short. */
 	camp: {
@@ -48,6 +54,10 @@ export const COURSE_DESIGN = {
 		 * give 3–5 s of total guessing time; ours stays above that counting the reading.
 		 */
 		roundThinkSeconds: 2,
+		/** The flash reel's pause to think: one second, the question has been read with its choices on screen. */
+		flashThinkSeconds: 1,
+		/** The flash reel's closing card, silent: the free camp on YouTube. */
+		flashEndSeconds: 2,
 		/**
 		 * The shortest a round's answer stays after the voice. The answer and its
 		 * one-line why are said in about 2 s; the old 3 s floor and longer whys left

@@ -150,11 +150,28 @@ export const isSpoken = (shown: string, spoken: string): boolean => normalise(sp
 /** A beat is said on its own line: it has to be a whole sentence, or the voice stops mid-thought. */
 export const isWholeSentence = (text: string): boolean => /[.!?…]["”']?$/.test(text.trim());
 
+/**
+ * The task of a practice card, said after its lead-in (LessonScript `practice`), and the word shown beside the board.
+ * The template says them, so every practice card asks the same way and a script never writes its own.
+ */
+export const PRACTICE_TASKS = {
+	matching: {said: 'Önce sen eşleştir.', shown: 'Eşleştir'},
+	flipcards: {said: 'Kartları çevirmeden önce arkasında ne yazdığını sen söyle.', shown: 'Arkasını tahmin et'},
+	ordering: {said: 'Önce sen sırala.', shown: 'Sırala'},
+} as const;
+
+/** A practice card as it is asked: its lead-in, the task and the cue to think. */
+export const spokenPracticeAsk = (card: {narration: string; visual: {kind: string}}): string =>
+	[card.narration, PRACTICE_TASKS[card.visual.kind as keyof typeof PRACTICE_TASKS]?.said, THINK_PROMPT].filter(Boolean).join(' ');
+
 /** A challenge round as it is asked: the sentence, then the question, both as written. */
 export const spokenRoundAsk = (round: ChallengeRound): string => `${sentence(spokenScreenText(round.sentence))} ${sentence(spokenScreenText(round.question))}`;
 
 /** The answer of a round and why: "Ham! Olumsuzluk karşıtlık değil.". */
 export const spokenRoundReveal = (round: ChallengeRound): string => `${spokenScreenText(round.choices[round.answer])}! ${sentence(spokenScreenText(round.why))}`;
+
+/** A challenge reel's dare as it is said over its opening: "Üç soru, üçü de tuzak.". */
+export const spokenHook = (hook: string): string => sentence(spokenScreenText(hook));
 
 /** The one ask at the end of a challenge reel: the score in the comments. */
 export const CHALLENGE_SCORE_LINE = 'Kaçta kaç? Yoruma yaz.';

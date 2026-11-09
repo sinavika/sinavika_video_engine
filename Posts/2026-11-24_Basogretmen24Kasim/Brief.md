@@ -41,3 +41,9 @@ Bir tebeşir, bir kara tahta, bir millet. 24 Kasım 1928’de Başöğretmen ola
 
 - **Red notu:** "video atatürk ile başlamalı tüyler ürpertmeli. çok daha duygusal ağlamaklı olmalı."
 - **Değişen:** Atatürk arşiviyle açılır (24 Kasım 1928 · Başöğretmen), ardından öğretmenlere sözü, sonra tebeşir, zaman ve teşekkür. "Öğretmenini etiketle" çağrısı yerine "Bugün ona bir teşekkür borçluyuz." Sahneler yavaşça geçer; müzik daha duygusal.
+
+## 9 Kasım revizyonu
+
+- **Red notu:** "video sakın bozma çok iyi sadece 10 saniye ile 22 saniyeye kadar çok boş buraya atatürk seslendirmesi ile alakalı bir şey konabilir ilgili konuda atatürkün sesinden bir şey varsa…"
+- **Değişen:** yalnız arşiv bölümünün sessiz kısmı. Anlatımın ardından Atatürk'ün kendi sesi gelir: Onuncu Yıl Nutku (29 Ekim 1933, kamu malı ses kaydı, `Media/History/ataturk-10-yil-nutku-1933.ogg`, Credits.json'da kayıtlı), kayıtta 220,2–231,55 sn: "Türk milletinin yürümekte olduğu terakki ve medeniyet yolunda, elinde ve kafasında tuttuğu meşale, müspet ilimdir." Sözcükler söylendikçe ekranda belirir; üstünde küçük kaynak satırı "Atatürk’ün sesinden · Onuncu Yıl Nutku, 1933". Tarih ve başlık o an çekilir. Geri kalan her şey aynı.
+- Sözcük zamanları ElevenLabs Scribe dökümünden alındı; metin nutkun resmî metniyle aynı.

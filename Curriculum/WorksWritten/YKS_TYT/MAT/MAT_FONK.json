@@ -69,6 +69,11 @@
     "title": "Fonksiyon nedir?",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Fonksiyonlar nedir?",
+      "text": "**Fonksiyon**, bir kümedeki her elemanı başka bir kümedeki **tek bir** elemanla eşleyen kuraldır. Günlük hayattan bir örnek: her öğrencinin bir okul numarası vardır; öğrenci girer, numara çıkar. Bir öğrencinin iki numarası olamaz, numarasız öğrenci de kalmaz. TYT'de fonksiyonlar formülle verilen işlemler, grafik okuma, bileşke ve ters fonksiyon olarak sorulur. Bu bölümde fonksiyonun ne olduğunu, tanım, değer ve görüntü kümelerini öğreneceksin."
+     },
+     {
       "kind": "rule",
       "title": "Fonksiyonun iki şartı",
       "items": [
@@ -155,6 +160,18 @@
        }
       ],
       "explanation": "Tanım kümesi girdileri, değer kümesi çıktıların bulunabileceği geniş kümeyi, görüntü kümesi ise gerçekten kullanılan çıktıları verir. Grafikte y değerleri görüntü kümesini oluşturur."
+     },
+     {
+      "kind": "example",
+      "title": "Fonksiyon ve görüntü kümesi",
+      "example": "$A = \\{1, 2, 3\\}$ ve $B = \\{x, y, z\\}$ olmak üzere $f = \\{(1, x), (2, x), (3, y)\\}$ bağıntısı A'dan B'ye fonksiyon mudur? Görüntü kümesi nedir?",
+      "explanation": "Birinci şart: A'nın her elemanı eşlenmiş mi? 1, 2 ve 3 birinci bileşen olarak yazılmış; açıkta eleman yok. İkinci şart: her eleman tek bir elemana mı gidiyor? 1 yalnız $x$'e, 2 yalnız $x$'e, 3 yalnız $y$'ye gidiyor. 1 ve 2'nin aynı $x$'e gitmesi fonksiyonu bozmaz. Bağıntı bir fonksiyondur. Görüntü kümesi gerçekten eşlenen elemanlardır: $f(A) = \\{x, y\\}$. $z$ değer kümesinde olduğu hâlde görüntü değildir."
+     },
+     {
+      "kind": "example",
+      "title": "Hangi bağıntılar fonksiyon?",
+      "example": "$A = \\{1, 2, 3\\}$ ve $B = \\{a, b, c\\}$ olmak üzere $r_1 = \\{(1,a),(2,b),(3,b)\\}$, $r_2 = \\{(1,a),(2,b),(2,c),(3,c)\\}$ ve $r_3 = \\{(1,c),(3,a)\\}$ bağıntılarından hangileri A'dan B'ye fonksiyondur?",
+      "explanation": "Her bağıntıda iki şarta bakılır. $r_1$: 1, 2 ve 3'ün hepsi birinci bileşen olarak var ve her biri tek elemana gidiyor. 2 ile 3'ün aynı $b$'ye gitmesi serbesttir; $r_1$ fonksiyondur. $r_2$: 2 hem $b$'ye hem $c$'ye gidiyor; bir elemanın iki görüntüsü olamaz, fonksiyon değildir. $r_3$: 2 hiçbir elemanla eşlenmemiş; tanım kümesinde açıkta eleman kalamaz, fonksiyon değildir. Yalnız $r_1$ fonksiyondur. İpucu: önce açıkta eleman var mı, sonra bir elemandan iki ok çıkıyor mu diye bak."
      },
      {
       "kind": "blank",
@@ -255,6 +272,11 @@
     "title": "Fonksiyon değeri ve işlemler",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Fonksiyon değeri nedir?",
+      "text": "**Fonksiyon değeri**, fonksiyona bir sayı verdiğinde çıkan sonuçtur. Kuralı 'sayıyı 3 ile çarp, 2 çıkar' olan fonksiyona 4'ü verirsen 10, 0'ı verirsen −2 çıkar. İki fonksiyonla işlemde her birinin değerini ayrı bulur, sonra işlemi yaparsın: f(3) = 7 ve g(3) = 2 ise toplamın 3'teki değeri 9, çarpımın değeri 14'tür. Bu bölümde fonksiyon değerini bulmayı, f(2x − 1) gibi kurallarla çalışmayı ve fonksiyonlarla işlemleri öğreneceksin."
+     },
+     {
       "kind": "rule",
       "title": "Yerine koy",
       "items": [
@@ -273,6 +295,12 @@
       "example": "$f(2x + 1) = 4x^2 + 4x + 5$ olduğuna göre $f(3)$ kaçtır?",
       "explanation": "$4x^2 + 4x + 5 = (2x + 1)^2 + 4$ yazılır, çünkü $(2x + 1)^2 = 4x^2 + 4x + 1$. Parantezin içi $2x + 1$ yerine $x$ konursa $f(x) = x^2 + 4$ olur. Buradan $f(3) = 9 + 4 = 13$. Kontrol: $2x + 1 = 3$ için $x = 1$ ve $4 + 4 + 5 = 13$.",
       "narration": "İki yol var: ya parantezin içini 3 yapan $x$'i bulursun, ya da sağ tarafı $(2x + 1)$ cinsinden yazıp $f(x)$ kuralını çıkarırsın. Kural çıkarma yolu, birden çok değer istendiğinde daha hızlıdır."
+     },
+     {
+      "kind": "example",
+      "title": "Birleşik durum: f ile g toplamı",
+      "example": "$f(x) = x^2 - 1$ ve $g(x + 1) = 2x + 3$ olduğuna göre $(f + g)(4)$ kaçtır?",
+      "explanation": "$(f + g)(4) = f(4) + g(4)$ olur. $f(4) = 16 - 1 = 15$. $g(4)$ için parantezin içi 4 olmalı: $x + 1 = 4$ ise $x = 3$ ve $g(4) = 2 \\cdot 3 + 3 = 9$. Dikkat: $g(x + 1)$'de $x$ yerine 4 yazılırsa $g(5) = 11$ bulunur ve cevap yanlış çıkar. Toplam: $15 + 9 = 24$."
      },
      {
       "kind": "blank",
@@ -443,6 +471,11 @@
     "title": "Grafik",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Fonksiyonun grafiği nedir?",
+      "text": "Bir fonksiyonun **grafiği**, (x, f(x)) noktalarının koordinat düzlemindeki çizimidir. Girdi yatay eksende, çıktı düşey eksendedir. f(x) = 2x − 4 için x = 3 girince 2 çıkar; grafik (3, 2) noktasından geçer. Doğrusal bir grafikte x bir artınca y hep aynı miktar değişir. 2x − 4'te her adımda 2 artar ve bu değişim eğimdir. TYT'de grafikten değer okuma ve hangi aralıkta hangi fonksiyonun büyük olduğunu bulma sık sorulur."
+     },
+     {
       "kind": "visual",
       "title": "Grafikten oku",
       "visual": {
@@ -531,6 +564,18 @@
       "wrong": "$f(a)$ değerini okumak için $a$ sayısını y ekseninde arayıp x ekseninden okumak gerekir.",
       "right": "$a$ girdidir ve x eksenindedir. $x = a$ doğrusundan grafiğe çıkılır, kesim noktasının y'si $f(a)$'dır.",
       "why": "Tanım kümesinin elemanları yatay eksende, görüntü kümesinin elemanları düşey eksendedir. $f(x)$ hep y değeridir; bu yüzden girdiyi y'de aramak yanlış değeri okutur."
+     },
+     {
+      "kind": "example",
+      "title": "Eksenleri kestiği noktalar",
+      "example": "$f(x) = 2x - 4$ doğrusal fonksiyonunun grafiği eksenleri hangi noktalarda keser? $f(5)$ kaçtır?",
+      "explanation": "Grafik x eksenini keserken $y = 0$ olur: $2x - 4 = 0$ ise $x = 2$ ve nokta $(2, 0)$'dır. Grafik y eksenini keserken $x = 0$ olur: $f(0) = -4$ ve nokta $(0, -4)$'tür. $f(5)$ için x ekseninde 5'ten düşey çıkılır: $f(5) = 2 \\cdot 5 - 4 = 6$. Girdi x ekseninde, çıktı y eksenindedir."
+     },
+     {
+      "kind": "example",
+      "title": "İki noktadan doğrusal fonksiyon",
+      "example": "Doğrusal $f$ fonksiyonunun grafiği $(0, -2)$ ve $(3, 4)$ noktalarından geçiyor. $f(x) > 0$ eşitsizliğini sağlayan $x$ değerleri hangi aralıktadır?",
+      "explanation": "Eğim $m = \\frac{4 - (-2)}{3 - 0} = 2$. Grafik $(0, -2)$'den geçtiği için $n = -2$ ve $f(x) = 2x - 2$ olur. $f(x) = 0$ için $x = 1$ bulunur; grafik x eksenini $x = 1$'de keser. Eğim pozitif olduğundan grafik $x = 1$'in sağında x ekseninin üstündedir. Bu yüzden $f(x) > 0$ için $x > 1$ olur. Kontrol: $f(2) = 2 > 0$ ve $f(0) = -2 < 0$."
      },
      {
       "kind": "question",
@@ -894,6 +939,11 @@
     "title": "Bire bir ve örten",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Bire bir ve örten nedir?",
+      "text": "**Bire bir** fonksiyonda farklı girdiler farklı çıktılara gider. Bir sınıfta herkes ayrı bir sıraya oturuyorsa eşleme bire birdir. **Örten** fonksiyonda değer kümesinde açıkta eleman kalmaz. Sınıftaki bütün sıralar doluysa eşleme örtendir. İki özellik birbirinden bağımsızdır: bir fonksiyon yalnız birini sağlayabilir, ikisini birden sağlayabilir ya da hiçbirini sağlamayabilir. Bu bölümde bire bir ve örtenliği tanımayı, fonksiyon sayısını saymayı öğreneceksin."
+     },
+     {
       "kind": "rule",
       "title": "Bire bir, örten, sayma",
       "items": [
@@ -948,6 +998,12 @@
       "example": "$s(A) = 2$ ve $s(B) = 5$ olduğuna göre A'dan B'ye tanımlı fonksiyon, sabit fonksiyon ve bire bir fonksiyon sayılarını bulunuz.",
       "explanation": "A'nın iki elemanının her biri 5 yere gidebilir: $5^2 = 25$ fonksiyon. Sabit fonksiyonda iki eleman da aynı yere gider ve 5 değer seçilebilir: 5 fonksiyon. Bire birde birinci eleman 5 yere, ikincisi kalan 4 yere gider: $5 \\cdot 4 = 20$. Bu, $P(5, 2) = 20$'dir. Bire bir fonksiyonlar 25 fonksiyonun içindedir: $20 \\leq 25$.",
       "narration": "Fonksiyon sayısında taban değer kümesinin eleman sayısı, üs tanım kümesinin eleman sayısıdır. Bire bir saymak permütasyondur: $P(n, m) = n(n-1)\\cdots(n-m+1)$."
+     },
+     {
+      "kind": "example",
+      "title": "Fonksiyonu bir sayma ve bire birlik örneği",
+      "example": "$f: \\mathbb{R} \\to \\mathbb{R}$, $f(x) = x^2 - 4x$ fonksiyonu bire bir midir, örten midir?",
+      "explanation": "Bire birlik için farklı iki girdinin aynı çıktıyı verip vermediğine bakılır. $f(0) = 0$ ve $f(4) = 16 - 16 = 0$ olduğundan 0 ve 4 farklı olduğu hâlde görüntüleri aynıdır; fonksiyon **bire bir değildir**. Grafikte $y = 0$ yatay doğrusu parabolü iki noktada keser. Örtenlik için $f(x) = (x - 2)^2 - 4 \\geq -4$ yazılır. Görüntü kümesi $[-4, \\infty)$ olur ve $-5$ gibi değerler açıkta kalır. Bu yüzden fonksiyon **örten de değildir**."
      },
      {
       "kind": "blank",
@@ -1050,6 +1106,11 @@
     "title": "Bileşke",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Bileşke nedir?",
+      "text": "**Bileşke**, iki fonksiyonun arka arkaya çalıştırılmasıdır. Önce bir fonksiyon sayıya uygulanır, çıkan sonuç ikinci fonksiyona girer. Örneğin birinci makine sayıyı 2 ile çarpıyor, ikinci makine 1 ekliyorsa 3 sayısı önce 6 olur, sonra 7 olur. Makinelerin sırası değişirse 3 önce 4, sonra 8 olur; yani sıra sonucu değiştirir. Bu bölümde bileşkeyi içten dışa hesaplamayı, kuralını bulmayı ve grafikten okumayı öğreneceksin."
+     },
+     {
       "kind": "rule",
       "title": "İçten dışa",
       "items": [
@@ -1076,6 +1137,12 @@
       "wrong": "$f \\circ g$ ile $g \\circ f$ her zaman aynı sonucu verir.",
       "right": "Genellikle farklıdırlar: $f(x) = 2x + 1$, $g(x) = x^2 - 3$ için $x = 1$'de $f \\circ g$ değeri $-3$, $g \\circ f$ değeri 6'dır.",
       "why": "Önce çalışan fonksiyon farklı olduğundan ikinci fonksiyona giren sayı da farklı olur. Bileşkede değişme özelliği yoktur."
+     },
+     {
+      "kind": "example",
+      "title": "Bileşkeden içteki fonksiyonu bulmak",
+      "example": "$f(x) = 2x - 3$ ve $(f \\circ g)(x) = 4x^2 + 1$ olduğuna göre $g(2)$ kaçtır?",
+      "explanation": "$(f \\circ g)(x) = f(g(x)) = 2g(x) - 3$ olur. Bu ifade $4x^2 + 1$'e eşittir: $2g(x) - 3 = 4x^2 + 1$. Buradan $2g(x) = 4x^2 + 4$ ve $g(x) = 2x^2 + 2$ bulunur. Değer: $g(2) = 2 \\cdot 4 + 2 = 10$. Kontrol: $f(g(2)) = f(10) = 17$ ve $4 \\cdot 4 + 1 = 17$ olduğundan sonuç doğrudur."
      },
      {
       "kind": "blank",
@@ -1272,6 +1339,11 @@
     "title": "Ters fonksiyon",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Ters fonksiyon nedir?",
+      "text": "**Ters fonksiyon**, bir fonksiyonun yaptığı işi geri alan fonksiyondur. Kuralı 'sayıya 5 ekle' olan fonksiyon 2'yi 7 yapar. Tersi 'sayıdan 5 çıkar' olur ve 7'yi yeniden 2 yapar. Çıktıdan girdiye dönebilmek için her çıktının tek bir girdisi olmalı ve açıkta çıktı kalmamalıdır; yani fonksiyon bire bir ve örten olmalıdır. Bu bölümde ters fonksiyonu bulmayı, ters değer hesaplamayı ve bileşkenin tersini öğreneceksin. Sınavda ters fonksiyon değeri sık sorulur."
+     },
+     {
       "kind": "rule",
       "title": "Geri al",
       "items": [
@@ -1319,6 +1391,12 @@
       "example": "$f(x) = \\frac{3x + 1}{x - 2}$ fonksiyonunun tersini kalıpla bulunuz.",
       "explanation": "$a = 3$, $b = 1$, $c = 1$, $d = -2$. $f^{-1}(x) = \\frac{-dx + b}{cx - a} = \\frac{2x + 1}{x - 3}$. Kontrol: $y = \\frac{3x + 1}{x - 2}$ ise $y(x - 2) = 3x + 1$, $x(y - 3) = 2y + 1$ ve $x = \\frac{2y + 1}{y - 3}$. Sayısal kontrol: $f(3) = 10$ ve $f^{-1}(10) = \\frac{21}{7} = 3$.",
       "narration": "Payda sabiti $d$ negatif olduğunda $-d$ pozitif olur; işaret hatası en sık burada yapılır."
+     },
+     {
+      "kind": "example",
+      "title": "f(x + 1) verilince ters değer",
+      "example": "$f(x + 1) = 2x + 5$ olduğuna göre $f^{-1}(9)$ kaçtır?",
+      "explanation": "$f^{-1}(9) = a$ demek $f(a) = 9$ demektir. Parantezin içi $x + 1 = a$ olmalı. $f(x + 1) = 2x + 5 = 9$ denkleminden $x = 2$ bulunur. Bu durumda $a = x + 1 = 3$ olur. Kontrol: kural $f(x) = 2(x - 1) + 5 = 2x + 3$ biçimindedir ve $f(3) = 9$ çıkar. Tuzak: $x = 2$'de durup cevabı 2 sanmak; $f$'nin girdisi $x + 1$'dir, yani 3."
      },
      {
       "kind": "blank",

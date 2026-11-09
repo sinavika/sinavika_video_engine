@@ -1,6 +1,7 @@
 import React from 'react';
 import {z} from 'zod';
 import {Text} from '../../../Components/Typography/Text';
+import {textWidth} from '../../../Components/Typography/TextMeasure';
 import {BRAND_TYPOGRAPHY} from '../../../Configurations/BrandTypography';
 import {courseLessonColor} from '../../../Configurations/LessonColors';
 import {COVER_STANDARD as C} from '../../../Configurations/SocialIdentity';
@@ -11,6 +12,9 @@ import {useTheme} from '../../../Themes/ThemeContext';
 import {BrandCover, coverIssues, seriesTitleOf, useCoverLayout, useSeriesTitle, type BrandCoverText} from '../../Components/BrandCover';
 import {useImageLayout} from '../../Components/ImageFrame';
 import {defineImageTemplate} from '../../ImageTemplateDefinition';
+
+/** The longest hook a camp cover carries (letters). */
+export const COVER_HOOK_LIMIT = 40;
 
 const CampCoverSchema = z
 	.object({
@@ -32,6 +36,12 @@ const CampCoverSchema = z
 		exams: z.array(plainText(10)).max(4).default([]),
 		/** What the video is, in two or three words: "Konu anlatımı", "Hızlı tekrar". */
 		kind: plainText(24).default('Konu anlatımı'),
+		/**
+		 * The one line that gives a reason to click, under the topic: the lesson's question or trap ("Fabrika nereye
+		 * kurulur?", "Üç soru, üçü de tuzak."). Camp lessons were shown 4–7 thousand times and clicked 0.3–0.5 % with
+		 * the topic alone (8 Nov 2026 analysis); a thumbnail sells one promise.
+		 */
+		hook: plainText(COVER_HOOK_LIMIT).optional(),
 		/** The intro's lessons (codes): a dot in each lesson's colour instead of the progress. */
 		lessons: z.array(z.string().min(1).max(20)).max(16).default([]),
 	})
@@ -39,6 +49,31 @@ const CampCoverSchema = z
 	.refine((content) => !content.emphasis || content.title.includes(content.emphasis), {path: ['emphasis'], message: 'emphasis must be a part of the title.'});
 
 type Content = z.infer<typeof CampCoverSchema>;
+
+/** Type size of the hook line, reference pixels; it steps down only if a long hook would not fit its column. */
+const HOOK_SIZE = 58;
+
+/** Where the hook band sits: right under this cover's title. Its top and bottom, in actual pixels. */
+const hookBand = (layout: ReturnType<typeof useCoverLayout>, u: (value: number) => number) => {
+	const top = layout.textBottom + u(30);
+	return {top, bottom: top + u(HOOK_SIZE * 1.1 + 28)};
+};
+
+/** The hook in the lesson's colour on a white band right under the title. One line, never cut: a long hook gets a smaller size. */
+const CoverHook: React.FC<{hook: string; text: BrandCoverText; title: {size: number; lines: number}; colour: string}> = ({hook, text, title, colour}) => {
+	const {u} = useImageLayout();
+	const layout = useCoverLayout(text, {titleSize: title.size, reserveLines: title.lines});
+	const padding = 28;
+	const room = layout.textWidth / u(1) - padding * 2;
+	const size = Math.min(HOOK_SIZE, (HOOK_SIZE * room) / Math.max(1, textWidth(hook, {size: HOOK_SIZE, weight: BRAND_TYPOGRAPHY.weights.kinetic})));
+	return (
+		<div style={{position: 'absolute', left: layout.left, top: hookBand(layout, u).top, maxWidth: layout.textWidth, padding: `${u(14)}px ${u(padding)}px`, borderRadius: u(22), background: '#FFFFFF'}}>
+			<Text size={size} weight={BRAND_TYPOGRAPHY.weights.kinetic} color={colour} style={{lineHeight: 1.1, whiteSpace: 'nowrap'}}>
+				{hook}
+			</Text>
+		</div>
+	);
+};
 
 /** A lesson's colour lifted for a dark ground (as on dark themes, courseLessonTheme), so even a deep colour shows. */
 const lifted = (code: string): string | undefined => {
@@ -56,7 +91,8 @@ const LessonNumber: React.FC<{content: Content; text: BrandCoverText; onNavy: bo
 	const place: React.CSSProperties = layout.wide
 		? {position: 'absolute', right: width - layout.right, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-end', maxWidth: width * 0.36}
 		: // Under the room of the camp's longest title: the same place on every lesson of the camp.
-		  {position: 'absolute', left: layout.left, top: layout.reserveBottom + u(72), width: layout.right - layout.left, display: 'flex', flexDirection: 'column', alignItems: 'flex-start'};
+		  // A hook pushes it down when this title and its hook reach below the longest title's room.
+		  {position: 'absolute', left: layout.left, top: Math.max(layout.reserveBottom, content.hook ? hookBand(layout, u).bottom : 0) + u(72), width: layout.right - layout.left, display: 'flex', flexDirection: 'column', alignItems: 'flex-start'};
 	// The current lesson is brand orange on navy; on a lesson's colour orange can clash, so it is white there.
 	const current = onNavy ? C.mark : '#FFFFFF';
 	const row = (dots: React.ReactNode) => <div style={{display: 'flex', flexWrap: 'wrap', gap: u(dot * 0.5), marginTop: u(34), maxWidth: layout.wide ? width * 0.36 : layout.right - layout.left, justifyContent: layout.wide ? 'flex-end' : 'flex-start'}}>{dots}</div>;
@@ -88,7 +124,8 @@ const LessonNumber: React.FC<{content: Content; text: BrandCoverText; onNavy: bo
  * The cover of every camp video, YouTube lesson and reel (owner, 29 Oct 2026:
  * "çok iyi olmuş, sakın bozma"). The one cover layout (Images/Components/
  * BrandCover): the logo top left, the camp as the label, the exams, the
- * topic, and the series' part: the lesson number and the camp's progress.
+ * topic, the lesson's hook under it (8 Nov 2026), and the series' part: the
+ * lesson number and the camp's progress.
  * One title size and fixed places for the whole camp (`series`). A lesson's
  * cover stands on the lesson's own colour, so a lesson is found by its colour
  * on the channel; the camp's intro stands on brand navy with a dot
@@ -103,6 +140,7 @@ const CampCoverImage: React.FC<{content: Content}> = ({content}) => {
 	return (
 		<BrandCover {...text} ground={colour ?? C.ground} titleSize={title.size} reserveLines={title.lines}>
 			<LessonNumber content={content} text={text} onNavy={!colour} title={title} />
+			{content.hook ? <CoverHook hook={content.hook} text={text} title={title} colour={colour ?? C.ground} /> : null}
 		</BrandCover>
 	);
 };
@@ -113,7 +151,7 @@ export const CampCover = defineImageTemplate({
 	title: 'Kapak: kamp dersi',
 	description: 'Kamp kapağı: ders renginde zemin (tanıtımda lacivert), sol üstte logo, kamp etiketi, konu, dev ders numarası ve kampın ilerlemesi.',
 	contentSchema: CampCoverSchema,
-	sampleContent: {lessonCode: 'TRK', camp: 'TYT Türkçe kampı', number: 1, total: 15, title: 'Sözcükte Anlam', exams: ['YKS', 'TYT']},
+	sampleContent: {lessonCode: 'TRK', camp: 'TYT Türkçe kampı', number: 1, total: 15, title: 'Sözcükte Anlam', exams: ['YKS', 'TYT'], hook: 'Ağır bavul mu, ağır söz mü?'},
 	defaultTheme: 'SinavikaDark',
 	defaultSize: 'Landscape',
 	outputName: (content) => `Kapak ${content.camp} ${content.number} ${content.title}`,

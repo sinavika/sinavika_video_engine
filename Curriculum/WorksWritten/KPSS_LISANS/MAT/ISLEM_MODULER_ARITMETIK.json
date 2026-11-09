@@ -102,6 +102,12 @@
       "narration": "Ekle $4 \\triangle 3$ yazıldığında $4$ soldadır, yani $a$ olur. Aynı mantıkla $(x+1)$ soldaysa $a$ yerine parantezin tamamı yazılır; parantezi unutmak işaret hatalarına yol açar."
      },
      {
+      "kind": "example",
+      "title": "İç içe işlem ve denklem",
+      "example": "Pozitif tam sayılar kümesinde $a \\diamond b = a^2 - b$ işlemi tanımlanıyor. $(2 \\diamond 1) \\diamond 3$ işleminin sonucunu ve $x \\diamond 2 = 7$ eşitliğini sağlayan $x$ değerini bulun.",
+      "explanation": "**İç içe işlem:** Önce parantezin içi: $2 \\diamond 1 = 2^2 - 1 = 3$. Bu sonuç dış işlemde birinci sayı olur: $3 \\diamond 3 = 3^2 - 3 = 6$.\n**Denklem:** $x \\diamond 2 = x^2 - 2 = 7$ ise $x^2 = 9$ olur, yani $x = 3$ ya da $x = -3$.\nİşlem pozitif tam sayılar kümesinde tanımlı olduğundan $-3$ kümeye ait değildir; $x = 3$ olur.\nSağlama: $3 \\diamond 2 = 9 - 2 = 7$."
+     },
+     {
       "kind": "blank",
       "title": "Sıra sende",
       "prompt": "$a \\triangle b = 2a + b^2$ olduğuna göre sonucu yaz.",
@@ -302,6 +308,12 @@
     "title": "İşlemin özellikleri",
     "cards": [
      {
+      "kind": "concept",
+      "title": "İşlemin özellikleri nedir?",
+      "text": "İşlemin özellikleri, bir işlemin sayılarla nasıl davrandığını gösteren üç sorudur. **Değişme:** sayıların yeri değişince sonuç değişir mi? Toplamada $5 + 3 = 3 + 5$ olur, çıkarmada $5 - 3 \\neq 3 - 5$. **Birim eleman:** bir sayıyı hiç değiştirmeyen eleman var mı? Toplamada 0 vardır, çünkü $5 + 0 = 5$. **Ters eleman:** bir sayıyı birim elemana götüren eş var mı? Toplamada $5 + (-5) = 0$ olduğundan 5'in tersi $-5$'tir. KPSS'de bu üç soru yeni tanımlanmış işlemler için sorulur; sen de işlemi tanımından sınarsın.",
+      "narration": "Bildiğin toplama ve çarpmayı ölçü al. Yeni bir işlemde birim ve ters eleman değişebilir, o yüzden her özelliği tanımla yeniden sınamalısın."
+     },
+     {
       "kind": "rule",
       "title": "Değişme, birim, ters",
       "items": [
@@ -364,6 +376,12 @@
       "example": "Tam sayılar kümesinde çarpma işlemi için 'her elemanın tersi vardır' önermesi doğru mudur?",
       "explanation": "Çarpmanın birim elemanı 1'dir. 2'nin tersi $x$ ise $2 \\cdot x = 1$ olmalıdır; bu durumda $x = \\frac{1}{2}$ olur ve bu bir tam sayı değildir. Ters eleman **aynı küme içinde** aranır. Bu **tek örnek**, önermeyi çürütmeye yeter (0'ın da çarpma tersi yoktur). Toplama için ise her $a$'nın tersi $-a$ bir tam sayıdır.",
       "narration": "Önermeyi çürütmek için bütün elemanları denemene gerek yok. Tersi bulunmayan tek bir eleman gösterdiğinde 'her elemanın tersi var' ifadesi yanlış olur. Bu, I-II-III sorularında en hızlı yoldur."
+     },
+     {
+      "kind": "example",
+      "title": "Birim ve ters: 0 değil birim",
+      "example": "Gerçel sayılarda $a \\ast b = a + b + 3$ işlemi tanımlanıyor. Birim elemanı ve 4'ün tersini bulun.",
+      "explanation": "**Birim eleman:** Her $a$ için $a \\ast e = a$ olmalı: $a + e + 3 = a$, buradan $e = -3$. İşlem simetrik olduğundan $e \\ast a = a$ de sağlanır. Birim eleman **$-3$**'tür.\n**Ters eleman:** 4'ün tersi $x$ ise $4 \\ast x = e$ olmalı: $4 + x + 3 = -3$, buradan $x = -10$.\nTuzak: sonucu 0'a eşitleyip $x = -7$ bulmak. Sağlama: $4 \\ast (-7) = 0$ ve bu birim eleman değildir. Doğru sağlama: $4 \\ast (-10) = -3$."
      },
      {
       "kind": "question",
@@ -634,6 +652,12 @@
     "cards": [
      {
       "kind": "concept",
+      "title": "Modüler aritmetik nedir?",
+      "text": "Bir şey belli aralıklarla başa dönüyorsa, son konumunu **bölmenin kalanı** belirler. Saat kadranı 12'de, haftanın günleri 7'de başa döner. Akrep 10'dayken 5 saat sonra 15'i değil 3'ü gösterir; çünkü 12 saat dolunca kadran yeniden başlar. Bu konuda çalışacağın kavramlar **kalan**, **denklik** ve **döngü**dür. Kalan, bölenden küçüktür: 0 ile bölen − 1 arasında bir sayıdır. KPSS'de gün, saat, tur ve kuvvet kalanı soruları bu fikre dayanır.",
+      "narration": "Büyük bir sayıyla uğraşmak yerine onun kalanıyla çalışırsın. Örneğin 100 gün sonrası sorulduğunda 100 günün 14 tam haftası günü değiştirmez; yalnız artan günler önemlidir."
+     },
+     {
+      "kind": "concept",
       "title": "Denklik ve kalan",
       "text": "$A$ sayısının $B$'ye bölümünden kalan $K$ ise $A \\equiv K \\pmod B$ yazılır: '$A$, mod $B$'ye göre $K$'ya denktir.' Örnek: $38 = 6 \\cdot 6 + 2$ olduğundan $38 \\equiv 2 \\pmod 6$. Kalan her zaman 0 ile $B - 1$ arasındadır. Modüler aritmetik bölünebilme kuralları konusu değil, **kalanlarla işlem** konusudur.",
       "visual": {
@@ -685,6 +709,12 @@
        "highlightColumn": 4
       },
       "narration": "Tekrarlayan her şey bir moddur: haftanın günleri 7'de, saat kadranı 12'de, tam bir tur 360 derecede başa döner. Kuvvetlerin kalanları da belli bir döngüyle tekrar eder. Tabloda 2'nin kuvvetlerinin 5'e kalanı 2, 4, 3, 1 diye gider ve 1'e gelince başa döner; döngü uzunluğu 4'tür."
+     },
+     {
+      "kind": "example",
+      "title": "Gün sayma: ilk adım",
+      "example": "Bugün cuma ise 45 gün sonra hangi gündür?",
+      "explanation": "Haftanın günleri 7'de bir tekrar eder. $45 = 6 \\cdot 7 + 3$ olduğundan $45 \\equiv 3 \\pmod 7$.\nTam haftalar (42 gün) günü değiştirmez; yalnız kalan 3 gün kadar ilerlenir.\nCumadan 3 gün say: cumartesi (1), pazar (2), **pazartesi** (3).\nBugün sayılmaz; sayma ertesi günden başlar."
      },
      {
       "kind": "example",

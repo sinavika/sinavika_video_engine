@@ -19,4 +19,6 @@ FIGURE_CHECK = os.path.join(OUTPUT, "FigureCheck", "bin", "Release", "net8.0", "
 EDUCATION_DATA = os.environ.get("EGITIM_VERILERI") or os.path.join(os.path.expanduser("~"), "Desktop", "EgitimVerileri")
 FIGURES = os.path.join(OUTPUT, "Figures")
 # Motorun hazır resimleri API'nin kabına içeriklerinin SHA-256 özetiyle yüklenir (API: ContentFigureStillRules).
-STILL_BASE_URL = "https://sinavikasblobs.blob.core.windows.net/work-figure-stills/"
+# Canlı hesap 4 Kasım 2026'dan beri Frankfurt'taki sinavikablobsgwc; eski sinavikasblobs silindi.
+# API kayıtta adresi zaten kendi kabına çevirir, ama motor çıktıları da doğru adresi taşısın.
+STILL_BASE_URL = "https://sinavikablobsgwc.blob.core.windows.net/work-figure-stills/"

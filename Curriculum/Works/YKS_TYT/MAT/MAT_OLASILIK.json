@@ -69,6 +69,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Olasılık nedir?",
+      "text": "**Olasılık**, bir olayın gerçekleşme şansını 0 ile 1 arasında bir sayıyla gösterir. 0 hiç olamayacak, 1 mutlaka olacak demektir. Bu bölümde üç kavramla çalışacaksın: **örnek uzay** (bir denemenin bütün olası sonuçları), **olay** (bizim istediğimiz sonuçlar) ve **basit olasılık** (istenen sonuç sayısının tüm sonuç sayısına oranı). Günlük hayattan örnek: bir zar atıldığında 6 sonuç vardır ve bunların 3'ü çifttir; çift gelme şansı 6 sonuçta 3, yani yarımdır. TYT'de olasılık hemen her yıl sorulur ve çoğu soruda saymayla birleşir."
+     },
+     {
       "kind": "predict",
       "title": "Üç para mı, bir para üç kez mi?",
       "context": "Üç para birlikte havaya atılıyor. Başka bir deneyde tek bir para art arda 3 kez atılıyor.",
@@ -133,6 +138,18 @@
        "Zarlar ve paralar ayırt edilir: (2, 6) ile (6, 2) **ayrı** sonuçlardır."
       ],
       "narration": "Olasılık, istenen durumların sayısının bütün durumların sayısına oranıdır; ama bu oran yalnız sonuçlar eş olasılıklıysa geçerlidir. Bir torbada 1 kırmızı ve 9 mavi top varsa \"kırmızı ya da mavi\" sonuçları eş olasılıklı değildir; eş olasılıklı olan toplardır. Olasılık negatif olamaz ve 1'i geçemez. Farklı nesneler birlikte atılırsa sonuç sayıları çarpılır. İki zarda birinci ve ikinci zar ayırt edildiği için (2, 6) ile (6, 2) iki ayrı sonuçtur. Her soruda önce $s(E)$'yi, sonra istenen durumları yaz."
+     },
+     {
+      "kind": "example",
+      "title": "Zarda çift sayı",
+      "example": "Hilesiz bir zar atılıyor. Üst yüze çift sayı gelme olasılığı kaçtır?",
+      "explanation": "1. adım: Örnek uzayı yaz: $E = \\{1, 2, 3, 4, 5, 6\\}$, yani 6 eş olasılıklı sonuç.\n2. adım: İstenen olayı yaz: $A = \\{2, 4, 6\\}$, yani 3 sonuç.\n3. adım: İstenen durum sayısını tüm durum sayısına böl: $P(A) = \\frac{3}{6} = \\frac{1}{2}$."
+     },
+     {
+      "kind": "example",
+      "title": "Çarpımı 12 olan iki zar",
+      "example": "İki hilesiz zar birlikte atılıyor. Üst yüzlerdeki sayıların çarpımının 12 olma olasılığı kaçtır?",
+      "explanation": "1. adım: İki zarda $6 \\cdot 6 = 36$ eş olasılıklı sıralı çift vardır.\n2. adım: Çarpımı 12 olan çiftleri yaz: (2, 6), (3, 4), (4, 3), (6, 2). (1, 12) olamaz, çünkü zarda 12 yoktur.\n3. adım: (2, 6) ile (6, 2) ayrı sonuçlardır, bu yüzden 4 çift sayılır.\n4. adım: $P = \\frac{4}{36} = \\frac{1}{9}$.\nTuzak: Sırayı önemsemeyip (3, 4) ile (4, 3)'ü tek saymak 3 durum verir ve yanlış sonuca götürür."
      },
      {
       "kind": "blank",
@@ -465,6 +482,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Tümleyen ve ayrık olay nedir?",
+      "text": "Bir olayın **tümleyeni**, o olayın gerçekleşmediği bütün durumlardır. Zar atınca 5 gelmesinin şansı 6 sonuçtan 1'idir; 5 gelmemesinin şansı 6 sonuçtan 5'idir. İkisi birlikte bütün durumları kapsar, yani toplamları 1 eder. İki olay aynı anda gerçekleşemiyorsa bunlara **ayrık olaylar** denir. Zarda \"1 gelmesi\" ile \"6 gelmesi\" ayrıktır; \"çift gelmesi\" ile \"6 gelmesi\" ayrık değildir, çünkü 6 ikisinde de vardır. Bu bölümde \"gelmeme\", \"en az bir\" ve \"ya da\" sorularını bu iki fikirle çözeceksin."
+     },
+     {
       "kind": "rule",
       "title": "Tümleyen ve ayrık olaylar",
       "items": [
@@ -515,6 +537,18 @@
        null,
        "Ortak sonuç yok; kesişim boş olduğundan kesişim çıkarmaya gerek yoktur."
       ]
+     },
+     {
+      "kind": "example",
+      "title": "Tümleyen olasılığı",
+      "example": "Hilesiz bir zar atılıyor. Zarın 4'ten büyük gelmeme olasılığı kaçtır?",
+      "explanation": "1. adım: 4'ten büyük gelmesi olayı $\\{5, 6\\}$ olup 2 sonuçtur. Olasılığı $\\frac{2}{6} = \\frac{1}{3}$.\n2. adım: \"Gelmeme\" bu olayın tümleyenidir ve olasılıklar toplamı 1 eder: $1 - \\frac{1}{3} = \\frac{2}{3}$.\nKontrol: 4'ten büyük olmayanlar $\\{1, 2, 3, 4\\}$, yani 4 sonuçtur ve $\\frac{4}{6} = \\frac{2}{3}$."
+     },
+     {
+      "kind": "example",
+      "title": "Çift ya da 3'ün katı",
+      "example": "1'den 10'a kadar numaralanmış 10 karttan biri rastgele çekiliyor. Kartın numarasının çift ya da 3'ün katı olma olasılığı kaçtır?",
+      "explanation": "1. adım: Çift numaralar 2, 4, 6, 8, 10 olmak üzere 5 tanedir.\n2. adım: 3'ün katları 3, 6, 9 olmak üzere 3 tanedir.\n3. adım: 6 hem çifttir hem 3'ün katıdır; iki listede de geçtiği için iki kez sayıldı. Olaylar ayrık değildir, kesişimi bir kez çıkarırız: $5 + 3 - 1 = 7$ kart.\n4. adım: $P = \\frac{7}{10}$.\nKontrol: Kartlar 2, 3, 4, 6, 8, 9, 10 olup 7 tanedir."
      },
      {
       "kind": "question",
@@ -764,6 +798,11 @@
     "narration": "",
     "cards": [
      {
+      "kind": "concept",
+      "title": "Bağımsız ve bağımlı olay nedir?",
+      "text": "İki olaydan birinin sonucu öbürünün şansını değiştirmiyorsa olaylar **bağımsızdır**. Para ile zarı birlikte atmak buna örnektir: paranın yazı gelmesi zarın 6 gelme şansını etkilemez. Birinin sonucu ötekinin şansını değiştiriyorsa olaylar **bağımlıdır**. Torbada 2 kırmızı ve 2 mavi top olsun. İlk çekilen kırmızı top geri konmazsa ikinci çekilişte torbada 3 top kalır ve kırmızı şansı değişir. Bu bölümde iki olayın birlikte gerçekleşme olasılığını, bağımsız ve bağımlı durumlarda ayrı ayrı bulmayı öğreneceksin."
+     },
+     {
       "kind": "predict",
       "title": "Para hatırlar mı?",
       "context": "Hilesiz bir para art arda 4 kez atılıyor ve 4'ünde de yazı geliyor.",
@@ -820,6 +859,18 @@
        "\"En az biri\" = 1 − \"hiçbiri\"."
       ],
       "narration": "Bağımsız iki olayın birlikte gerçekleşme olasılığı, olasılıklarının çarpımıdır. Kısaca \"ve\" çarpar, ayrık durumlar arasındaki \"ya da\" toplar. Yalnız birinin gerçekleşmesi istenirse iki durumu ayrı ayrı hesaplayıp toplarsın: A olur B olmaz, ya da A olmaz B olur. Bir torbadan çekilen top geri konmazsa olaylar bağımlı olur; ikinci çekilişte hem toplam hem istenen sayısı değişir. Bir olayın olmama olasılığını $1 - p$ ile bulmak, \"yalnız biri\" ve \"en az biri\" sorularında işini kolaylaştırır."
+     },
+     {
+      "kind": "example",
+      "title": "Art arda iki zar",
+      "example": "Hilesiz bir zar art arda iki kez atılıyor. İlk zarın çift, ikinci zarın 6 gelme olasılığı kaçtır?",
+      "explanation": "1. adım: İki atış birbirini etkilemez, yani olaylar bağımsızdır.\n2. adım: İlk zarın çift gelme olasılığı $\\frac{3}{6} = \\frac{1}{2}$.\n3. adım: İkinci zarın 6 gelme olasılığı $\\frac{1}{6}$.\n4. adım: Bağımsız olaylarda \"ve\" çarpar: $\\frac{1}{2} \\cdot \\frac{1}{6} = \\frac{1}{12}$.\nKontrol: 36 sonucun içinde ilk zar 2, 4 ya da 6, ikinci zar 6 olan 3 durum vardır; $\\frac{3}{36} = \\frac{1}{12}$."
+     },
+     {
+      "kind": "example",
+      "title": "Torbadan iadesiz iki çekiliş",
+      "example": "Bir torbada 4 kırmızı ve 2 mavi top vardır. Geri konmadan art arda 2 top çekiliyor. İlk topun mavi, ikinci topun kırmızı olma olasılığı kaçtır?",
+      "explanation": "1. adım: İlk çekilişte 6 top var, 2 tanesi mavi: olasılık $\\frac{2}{6}$.\n2. adım: Mavi top geri konmadığı için torbada 5 top kalır ve 4 tanesi kırmızıdır: olasılık $\\frac{4}{5}$.\n3. adım: Olaylar bağımlı olduğundan ikinci kesir yeni torbaya göre yazılır ve kesirler çarpılır: $\\frac{2}{6} \\cdot \\frac{4}{5} = \\frac{8}{30} = \\frac{4}{15}$.\nTuzak: Top geri konsaydı $\\frac{2}{6} \\cdot \\frac{4}{6} = \\frac{2}{9}$ çıkardı; bu, iadesiz çekilişte yanlış olur."
      },
      {
       "kind": "question",
