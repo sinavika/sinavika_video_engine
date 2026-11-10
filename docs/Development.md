@@ -22,6 +22,33 @@ import etmez; video tarafı da `src/Images` altındaki hiçbir şeyi. İkisi yal
 Görsel tarafının videodan aldığı iki şey vardır ve ikisi de altyapıdır: derlenmiş paket (`bundleProject`) ve
 doğrulama hatası sınıfı (`VideoJobValidationError`).
 
+### Render süresi ve ilerleme göstergesi (10 Kasım 2026)
+
+**Başlamadan önce:** `npm run render` tahmini süreyi ve bitiş saatini yazar. Örnek:
+
+```
+Tahmini süre: ~1 sa 27 dk (3840x2160, 56.490 kare = 31 dk video; son 3 render'a göre). Bitiş ~15:36.
+```
+
+Tahmin `Outputs/Checks/RenderTimes.jsonl` dosyasındaki eski render'lardan gelir. Her tam render bittiğinde buraya kare başına süresini yazar. Aynı boyut ve aynı şablon önce aranır; ortanca değer kullanılır. Kayıt yoksa dayanak ilk ölçümdür: TYT Matematik 02, 4K, 56.490 kare, 5.273 sn.
+
+**Çalışırken:** her satırda şunlar görünür:
+- aşama: seslendirme, hazırlık, kareler, kodlama, ses ve denetim;
+- ilerleme çubuğu;
+- kare sayısı;
+- geçen süre, kalan süre ve bitiş saati.
+
+Kalan süre kareler çizildikçe gerçek hıza geçer; karelerin %5'i bitince yalnız ölçülen hız kullanılır. Terminalde tek satır her saniye yenilenir. Arka planda (çıktı dosyaya ya da başka bir programa giderken) her %5'te ve en az dakikada bir satır yazılır. `--json` olayları `forecast`, `progress` (`remainingSeconds`, `finishAt` ile), `done` ve `error`'dur.
+
+**Başka pencereden izleme:** Her tam render durumunu birkaç saniyede bir `Outputs/Checks/RenderStatus/<ad>.json` dosyasına yazar. `npm run render-status` şunları listeler:
+- çalışan render'lar;
+- son 24 saatte bitenler;
+- 3 dakikadır güncellenmeyen ("durmuş olabilir") işler.
+
+Kod: `src/Renderers/RenderEstimate.ts`, `scripts/RenderStatus.ts`, testler `tests/Renderers/RenderEstimate.test.ts`.
+
+Aynı iş sırasında bir hata da düzeldi. Duran ekran kapısı (`StillScreenGate`) `--frames` verilmeyen her render'ı önizleme sanıyordu ve hiçbir derste çalışmıyordu. Kapının çalışmadığı dönemde render edilen dersler denetlendi: TYT Matematik 00, 01 ve 02 temiz.
+
 
 ## Klasör haritası ve adlandırma (29 Ekim 2026, 31 Ekim'de güncellendi)
 

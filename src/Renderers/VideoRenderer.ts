@@ -28,7 +28,8 @@ import {durationWarnings, resolveVideoJob, voiceLines, withBeats, withVoiceClips
 const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const PUBLIC_DIRECTORY = path.join(PROJECT_ROOT, 'public');
 
-export type RenderStage = 'voiceover' | 'bundling' | 'rendering' | 'encoding';
+/** `finishing`: after the frames, the sound is mastered and checked (finishFile). */
+export type RenderStage = 'voiceover' | 'bundling' | 'rendering' | 'encoding' | 'finishing';
 
 export type RenderProgress = {
 	stage: RenderStage;
@@ -329,6 +330,8 @@ export const openRenderBrowser = (): Promise<HeadlessBrowser> => openBrowser('ch
 export const renderVideo = async (rawJob: unknown, options: RenderOptions): Promise<RenderResult> => {
 	const startedAt = Date.now();
 	const {job, serveUrl, outputPath, coverPath, composition, warnings} = await prepare(rawJob, options);
+	// The frames this render draws: a preview's range, or the whole video (Remotion counts a range's frames only).
+	const frameCount = options.frameRange ? options.frameRange[1] - options.frameRange[0] + 1 : composition.durationInFrames;
 
 	try {
 		await renderMedia({
@@ -356,10 +359,11 @@ export const renderVideo = async (rawJob: unknown, options: RenderOptions): Prom
 					progress,
 					renderedFrames,
 					encodedFrames,
-					totalFrames: composition.durationInFrames,
+					totalFrames: frameCount,
 				}),
 		});
 		const sound = job.inputProps.soundtrackSrc ? 'mix' : Object.keys(job.inputProps.voiceClips).length > 0 ? 'speech' : 'none';
+		options.onProgress?.({stage: 'finishing', progress: 0, totalFrames: frameCount});
 		warnings.push(...(await finishFile(outputPath, sound)));
 	} catch (error) {
 		throw new VideoRenderError('rendering', error);

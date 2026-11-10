@@ -15,7 +15,11 @@
  * A whole camp or course lesson is refused while its script has still screens (StillScreenGate, owner 9 Nov 2026);
  * --allow-still-screens renders it anyway. Single frames and frame ranges are previews and are not checked.
  *
- * With --json every line on stdout is a JSON event (progress, done, error),
+ * Before a render starts it says how long it will take (from the renders saved before it, RenderEstimate), and while
+ * it runs it shows a progress bar with the time gone, the time left and when it ends. The status is also written to
+ * Outputs/Checks/RenderStatus/<name>.json, so `npm run render-status` shows it from another window or session.
+ *
+ * With --json every line on stdout is a JSON event (forecast, progress, done, error),
  * which is what a parent process such as the .NET backend should read.
  * Exit codes: 0 success, 2 invalid job, 1 render failure.
  */
@@ -28,6 +32,8 @@ import {VideoJobValidationError} from '../src/Renderers/VideoJob';
 import {readVideoJob} from '../src/Renderers/VideoJobFile';
 import {stillScreenGate} from '../src/Renderers/StillScreenGate';
 import {renderFrame, renderVideo, renderVideoToOutputs, type RenderProgress} from '../src/Renderers/VideoRenderer';
+import {resolveVideoJob} from '../src/Renderers/VideoJob';
+import {forecastLine, forecastRender, readRenderTimes, RenderClock, saveRenderTiming, statusLine, writeRenderStatus, type RenderStatus, type RenderStatusFile} from '../src/Renderers/RenderEstimate';
 
 const {values} = parseArgs({
 	options: {
@@ -43,22 +49,57 @@ const {values} = parseArgs({
 
 const emit = (event: Record<string, unknown>) => console.log(JSON.stringify(event));
 
-const reportProgress = () => {
-	let last = '';
+/** How often a person's progress line is repeated when nothing else changed, and how often the status file is written. */
+const LINE_EVERY_MILLISECONDS = 60_000;
+const STATUS_EVERY_MILLISECONDS = 5_000;
+
+/**
+ * Progress for people and machines. In a terminal one line redraws itself every second; written to a file or read by
+ * another program (the Render session runs it in the background) a line comes at every 5 % and at least once a
+ * minute. Machines get every percent as a JSON event with the time left. The status file follows the same clock.
+ */
+const reportProgress = (clock: RenderClock, onStatus: (status: RenderStatus) => void, retarget: (frames: number) => void) => {
+	let lastKey = '';
+	let lastLine = 0;
+	let lastStatus = 0;
+	let targeted = false;
+	const live = process.stdout.isTTY && !values.json;
 	return (progress: RenderProgress) => {
-		const percent = Math.floor(progress.progress * 100);
-		// One line per percent for machines, one per ten percent for people.
-		const key = `${progress.stage}:${values.json ? percent : Math.floor(percent / 10)}`;
-		if (key === last) return;
-		last = key;
+		if (!targeted && progress.totalFrames) {
+			targeted = true;
+			retarget(progress.totalFrames);
+		}
+		const status = clock.update(progress);
+		const now = Date.now();
+		if (now - lastStatus >= STATUS_EVERY_MILLISECONDS || progress.stage === 'finishing') {
+			lastStatus = now;
+			onStatus(status);
+		}
+		const percent = Math.floor(status.fraction * 100);
 		if (values.json) {
-			emit({type: 'progress', ...progress, percent});
+			const key = `${progress.stage}:${Math.floor(progress.progress * 100)}`;
+			if (key === lastKey) return;
+			lastKey = key;
+			emit({type: 'progress', ...progress, percent: Math.floor(progress.progress * 100), elapsedSeconds: Math.round(status.elapsedSeconds), remainingSeconds: status.remainingSeconds === undefined ? undefined : Math.round(status.remainingSeconds), finishAt: status.finishAt});
 			return;
 		}
-		const frames = progress.totalFrames ? ` (${progress.renderedFrames}/${progress.totalFrames} kare)` : '';
-		console.log(`[${progress.stage}] %${percent}${frames}`);
+		if (live) {
+			if (now - lastLine < 1000 && progress.stage === status.stage && lastKey === progress.stage) return;
+			lastLine = now;
+			lastKey = progress.stage;
+			process.stdout.write(`\r${statusLine(status).padEnd(110)}`);
+			return;
+		}
+		const key = `${status.stage}:${Math.floor(percent / 5)}`;
+		if (key === lastKey && now - lastLine < LINE_EVERY_MILLISECONDS) return;
+		lastKey = key;
+		lastLine = now;
+		console.log(statusLine(status));
 	};
 };
+
+/** Marks the status file failed; set once the render has a status file. */
+let failed: (message: string) => void = () => undefined;
 
 const main = async (): Promise<number> => {
 	const frameRange = values.frames?.match(/^(\d+)-(\d+)$/);
@@ -70,11 +111,31 @@ const main = async (): Promise<number> => {
 	try {
 		const job = readVideoJob(values.job);
 		// A whole lesson is not rendered while its script has still screens (owner, 9 Nov 2026); previews are.
-		const preview = values.frame !== undefined || frameRange !== null;
+		// `frameRange` is undefined without --frames: compared with `!== null` every render counted as a preview, and the
+		// still screen gate never ran (found 10 Nov 2026 while adding the render clock).
+		const preview = values.frame !== undefined || Boolean(frameRange);
 		const still = preview || values['allow-still-screens'] ? [] : stillScreenGate(job as {template?: unknown; content?: unknown});
 		if (still.length > 0) throw new VideoJobValidationError(still);
+		// The forecast: frames from the job as resolved now (narration estimates or cached voice), the pace from saved renders.
+		const fields = job as {name?: unknown; output?: unknown};
+		const name = typeof fields.name === 'string' && fields.name ? fields.name : path.basename(values.job, path.extname(values.job));
+		const whole = !preview;
+		const planned = resolveVideoJob(job);
+		const history = readRenderTimes();
+		const forecastFor = (frames: number) => forecastRender(history, {template: planned.template.id, width: planned.width, height: planned.height, frames});
+		const plannedFrames = frameRange ? Number(frameRange[2]) - Number(frameRange[1]) + 1 : planned.durationInFrames;
+		const clock = new RenderClock(values.frame === undefined ? forecastFor(plannedFrames) : undefined);
+		const startedAt = new Date().toISOString();
+		const statusFile = (status: RenderStatus, state: RenderStatusFile['state'], message?: string) =>
+			whole ? writeRenderStatus({...status, name, output: values.out ?? (typeof fields.output === 'string' ? fields.output : undefined), pid: process.pid, state, startedAt, updatedAt: new Date().toISOString(), message}) : undefined;
+		if (values.frame === undefined) {
+			const forecast = forecastFor(plannedFrames);
+			if (values.json) emit({type: 'forecast', ...forecast, frames: plannedFrames});
+			else console.log(forecastLine(forecast, {width: planned.width, height: planned.height, frames: plannedFrames, fps: planned.fps}));
+		}
+		failed = (message) => statusFile(clock.status(), 'failed', message);
 		const options = {
-			onProgress: reportProgress(),
+			onProgress: reportProgress(clock, (status) => statusFile(status, 'running'), (frames) => clock.setForecast(forecastFor(frameRange ? plannedFrames : frames))),
 			concurrency: values.concurrency ? Number(values.concurrency) : undefined,
 			frameRange: frameRange ? ([Number(frameRange[1]), Number(frameRange[2])] as [number, number]) : undefined,
 		};
@@ -93,6 +154,12 @@ const main = async (): Promise<number> => {
 		const chaptersPath = result.chapters.length > 0 && values.frame === undefined && !frameRange ? `${result.outputPath.slice(0, result.outputPath.length - path.extname(result.outputPath).length)}.chapters.txt` : null;
 		if (chaptersPath) await writeFile(chaptersPath, `${formatChapters(result.chapters)}\n`);
 
+		if (process.stdout.isTTY && !values.json) process.stdout.write('\n');
+		const done = clock.status();
+		statusFile({...done, fraction: 1, remainingSeconds: 0, finishAt: new Date().toISOString()}, 'done');
+		// Only whole renders teach the forecast: a preview's few frames pay the fixed costs of a whole video.
+		if (whole && values.frame === undefined)
+			saveRenderTiming({at: new Date().toISOString(), name, template: planned.template.id, width: result.width, height: result.height, frames: result.durationInFrames, stages: clock.stageSeconds(), totalSeconds: result.elapsedMilliseconds / 1000});
 		if (values.json) {
 			emit({type: 'done', ...result, chaptersPath});
 		} else {
@@ -110,6 +177,7 @@ const main = async (): Promise<number> => {
 		return 0;
 	} catch (error) {
 		const invalid = error instanceof VideoJobValidationError || error instanceof SyntaxError;
+		failed(error instanceof Error ? error.message : String(error));
 		if (values.json) {
 			emit({
 				type: 'error',
