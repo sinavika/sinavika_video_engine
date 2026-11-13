@@ -32,18 +32,18 @@
 | 5 | Gezinme | Adres ekranı anlatır | Uygulama kuralı | Web rotaları ekranı adlandırır; bildirim doğru ekranı açar. |
 | 6 | Gezinme | Konum izi | Bizde var | Web üst çubuğu: Dersler › Türkçe › |
 | 7 | Hareket | Aşırı hareket yok | Uygulama kuralı | Bir ekranda en çok 1–2 öğe hareket eder. |
-| 8 | Hareket | Ortak hareket süreleri | Uygulama kuralı | Süreler tek yerde (kısa, orta); her bileşen kendi süresini seçmez. |
+| 8 | Hareket | Ortak hareket süreleri | Uygulama kuralı | Süreler tek yerde (`UI_MOTION`, `Hareket-Standardi.md`); her bileşen kendi süresini seçmez. |
 | 9 | Hareket | Hareketi azalt | Uygulama kuralı | Sistem ayarı açıksa geçişler kısalır, sürekli animasyon durur. |
-| 10 | Hareket | Yükleniyor durumu | Bizde var | Sayfa şeklinde iskelet (m-durum-hata, w-panel-durumlar). |
+| 10 | Hareket | Yükleniyor durumu | Uygulama kuralı | Ortada dönen saatli logo; içerik varsa yerinde kalır, üstte küçük gösterge. İskelet yok (sahibin kararı, 11 Kasım 2026). |
 | 11 | Hareket | Hover yerine dokunma | Bizde var | Hiçbir ana eylem yalnız üzerine gelince görünmez. |
-| 12 | Hareket | Sürekli animasyon | Uygulama kuralı | Yalnız yükleniyor göstergesinde. |
+| 12 | Hareket | Sürekli animasyon | Uygulama kuralı | Yalnız yükleniyor logosunda ve SinoAI'nin "düşünüyor" noktalarında. |
 | 13 | Hareket | Hafif animasyon özellikleri | Uygulama kuralı | Web: transform ve opacity ile. |
-| 14 | Hareket | Yumuşatma eğrileri | Uygulama kuralı | Gelişte yavaşlayan, gidişte hızlanan eğri. |
+| 14 | Hareket | Yumuşatma eğrileri | Uygulama kuralı | Giriş ve çıkış yavaş biten eğriyle, ease-in yok (10 Kasım 2026, `Hareket-Standardi.md`). |
 | 15 | Yerleşim | Katman sırası ölçeği | Uygulama kuralı | Web: z-index tek ölçekten. |
 | 16 | Yerleşim | Taşan içerik kesilmez | Uygulama kuralı | İçerik kutusuna sığar; en büyük yazı ayarında denenir. |
 | 17 | Yerleşim | Sabit öğeler ve güvenli alan | Uygulama kuralı | Yüzen sekme çubuğu güvenli alana göre; son satır altında kalmaz. |
 | 18 | Yerleşim | Katman bağlamı | Uygulama kuralı | Web. |
-| 19 | Yerleşim | İçerik zıplamaz | Bizde var | Slaytlar sabit yükseklikte; iskeletler gelen içeriğin şeklinde. |
+| 19 | Yerleşim | İçerik zıplamaz | Bizde var | Slaytlar sabit yükseklikte; API'ye bağlı düğmelerin yeri baştan ayrılır (11 Kasım 2026). |
 | 20 | Yerleşim | Mobil tarayıcı yüksekliği | Uygulama kuralı | Web: 100vh yerine dvh. |
 | 21 | Yerleşim | Okuma genişliği | Uygulama kuralı | Okuma metni satırda 45–75 karakter; web oynatıcıda 700 px sütun. |
 | 22 | Dokunma | Dokunma hedefi 44 pt / 48 dp | Bizde var | Rehber §4. |
@@ -102,7 +102,7 @@
 | 75 | Yazı | Font kayması | Uygulama kuralı | Web: yedek fontla yer ayrılır. |
 | 76 | Yazı | Okuma kontrastı | Bizde var | Testle. |
 | 77 | Yazı | Başlık ayrımı | Bizde var | Boy ve kalınlık farkı. |
-| 78 | Geri bildirim | Beklemeye göre gösterge | Bizde var | Kısa işte gösterge yanıp sönmez; iskelet ve dönen işaret. |
+| 78 | Geri bildirim | Beklemeye göre gösterge | Bizde var | Kısa işte gösterge yanıp sönmez; ortada dönen saatli logo ve düğmede dönen işaret. |
 | 79 | Geri bildirim | Boş durum | Bizde var | Ne, neden, tek eylem. |
 | 80 | Geri bildirim | Hatadan kurtulma | Bizde var | Tekrar dene; cevaplar güvende. |
 | 81 | Geri bildirim | Adım göstergesi | Bizde var | Onboarding 1/5, mikro ders adım çubuğu. |

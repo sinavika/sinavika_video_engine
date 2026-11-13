@@ -20,7 +20,7 @@ const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), 
  * episode 0 shows moments of its own lessons): the reference is replaced by the script file, so the moment always
  * shows the lesson as it is now.
  */
-const withScripts = (value: unknown): unknown => {
+export const withScripts = (value: unknown): unknown => {
 	if (Array.isArray(value)) return value.map(withScripts);
 	if (!value || typeof value !== 'object') return value;
 	const entries = Object.entries(value as Record<string, unknown>);

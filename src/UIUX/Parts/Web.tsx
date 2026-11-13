@@ -132,11 +132,31 @@ const Topbar: React.FC<{crumb?: string; countdown?: string}> = ({crumb, countdow
 	);
 };
 
+/**
+ * Set by the tablet frame: a web page then draws only its page (no menu, no
+ * top bar) inside the tablet. The tablet shows the very same page as the web,
+ * so the two can never drift apart.
+ */
+const PanelEmbedContext = React.createContext(false);
+export const PanelInTablet: React.FC<{children: React.ReactNode}> = ({children}) => <PanelEmbedContext.Provider value>{children}</PanelEmbedContext.Provider>;
+
+/** True inside the tablet frame: the page is shorter (834 pt), so charts take less height. */
+export const useInTablet = (): boolean => React.useContext(PanelEmbedContext);
+
 /** The panel frame: menu, top bar and the page. A module page gets the module's wash at the top. */
 export const Panel: React.FC<{active: PanelItem; children: React.ReactNode; crumb?: string; overlay?: React.ReactNode; countdown?: string}> = ({active, children, crumb, overlay, countdown}) => {
 	const colors = useColors();
 	const isModule = (MODULE_ORDER as readonly string[]).includes(active);
 	const mod = useModuleColors(isModule ? (active as ModuleKey) : 'exam');
+	const inTablet = React.useContext(PanelEmbedContext);
+	if (inTablet) {
+		return (
+			<UIProvider module={isModule ? (active as ModuleKey) : undefined}>
+				<div style={{flex: 1, minHeight: 0, overflow: 'hidden', padding: '0 28px 22px', display: 'flex', flexDirection: 'column', gap: 14}}>{children}</div>
+				{overlay}
+			</UIProvider>
+		);
+	}
 	return (
 		<UIProvider module={isModule ? (active as ModuleKey) : undefined} web>
 			<div style={{position: 'relative', width: W, height: H, display: 'flex', background: colors.bg, overflow: 'hidden'}}>

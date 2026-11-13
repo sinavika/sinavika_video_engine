@@ -68,7 +68,7 @@ export const SummaryCameraScreen: React.FC = () => {
 				<div style={{position: 'relative', flex: 1, margin: '12px 0'}}>
 					<div style={{position: 'absolute', left: 24, right: 24, top: 50, height: 420, borderRadius: 8, background: '#F5F1E8', transform: 'rotate(-2deg)', padding: 22, boxSizing: 'border-box'}}>
 						<Text role="headline" color="#1E293B">
-							14. f(x) = (3x² − 2)⁴ {t('için', 'for')} f′(1) {t('kaçtır?', '?')}
+							14. f(x) = (3x² − 2)⁴ {t('için', 'for')} f'(1) {t('kaçtır?', '?')}
 						</Text>
 						<Text role="body" color="#1E293B" style={{marginTop: 12}}>
 							A) 12 · B) 24 · C) 36 · D) 48 · E) 60
@@ -169,9 +169,9 @@ export const SummaryResultScreen: React.FC = () => {
 				<SectionTitle title={t('Adım adım çözüm', 'Step by step')} />
 				<Stack gap={10}>
 					{[
-						[t('Zincir kuralını uygula', 'Apply the chain rule'), "f′(x) = 4(3x² − 2)³ · 6x"],
+						[t('Zincir kuralını uygula', 'Apply the chain rule'), "f'(x) = 4(3x² − 2)³ · 6x"],
 						[t('İçi hesapla (x = 1)', 'Inner value (x = 1)'), '3 · 1² − 2 = 1'],
-						[t('Yerine koy', 'Substitute'), "f′(1) = 4 · 1³ · 6 = 24"],
+						[t('Yerine koy', 'Substitute'), "f'(1) = 4 · 1³ · 6 = 24"],
 					].map(([title, formula], index) => (
 						<Stack key={title} row gap={12} align="flex-start">
 							<div style={{width: 26, height: 26, borderRadius: 13, background: mod.color, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>

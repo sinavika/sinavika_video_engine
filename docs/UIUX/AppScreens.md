@@ -1,8 +1,8 @@
 # Mobil Uygulama Ekranları
 
-Sınavika mobil uygulamasının ekranları bu projede **çizim olarak** durur: uygulamanın kodundan (`sinavika/sinavika_mobile_reactnative`) alınan renk, ölçü, sekme çubuğu ve Türkçe metinlerle yeniden çizilmiştir. Ekran görüntüsü dosyası tutulmaz; bir ekran bir kez çizilir ve videoda, görselde ya da tek başına aynı görünür.
+Videolarda ve görsellerde görünen uygulama ekranları **UI/UX çizimlerinin kendisidir** (`src/UIUX`, `npm run uiux` ile Desktop\Sinavika-UIUX3'e çıkan ekranlar). Her ad bir UI/UX ekran kimliğine bağlıdır. Tasarım orada değişince kamp videoları, reklamlar, mağaza görselleri ve paylaşımlar bir sonraki render'da yeni ekranı alır; ayrıca güncellenecek bir kopya yoktur. Ekran görüntüsü dosyası tutulmaz.
 
-Son eşitleme: 13 Ekim 2026 (uygulama deposunun 9 Ekim 2026 tarihli hali).
+10 Kasım 2026'ya kadar bu ekranlar uygulama kodundan elle yeniden çizilmiş ayrı kopyalardı ve tasarımın gerisinde kalmıştı. O kopyalar silindi. Elle çizim olarak yalnız mağaza görsellerinin dile göre değişen SinoAI sohbeti kaldı (`Screens/AssistantScreens.tsx`, `StoreListing` verisiyle).
 
 ## Yapı
 
@@ -11,28 +11,27 @@ Son eşitleme: 13 Ekim 2026 (uygulama deposunun 9 Ekim 2026 tarihli hali).
 | [`AppScreenTokens.ts`](../../src/Components/AppScreens/AppScreenTokens.ts) | Uygulamanın açık ve koyu renkleri, ölçüleri, yazı boyutları. Tek kaynak. |
 | [`AppModules.ts`](../../src/Components/AppScreens/AppModules.ts) | Modüller ve her modülün sekme çubuğu (uygulamadaki adlarıyla). |
 | [`AppScreenParts.tsx`](../../src/Components/AppScreens/AppScreenParts.tsx) | Ortak parçalar: kart, etiket, düğme, ikon, ilerleme çubuğu, turuncu çağrı kartı, liste satırı, ekran çerçevesi. |
-| [`Screens/`](../../src/Components/AppScreens/Screens) | Ekranların kendisi, modül ailesine göre dosyalanmış. |
-| [`AppScreenRegistry.ts`](../../src/Components/AppScreens/AppScreenRegistry.ts) | Adıyla seçilebilen tüm ekranlar. İçerik dosyaları bu adları kullanır. |
+| [`AppScreenRegistry.tsx`](../../src/Components/AppScreens/AppScreenRegistry.tsx) | Adıyla seçilebilen tüm ekranlar ve her birinin UI/UX ekran kimliği. İçerik dosyaları bu adları kullanır. |
 | [`PhoneFrame.tsx`](../../src/Components/AppScreens/PhoneFrame.tsx) | Projenin tek telefonu; video ve görsel aynı telefonu kullanır. |
 
 Ekranlar 390×844'lük sabit bir tuvale çizilir (uygulamanın tasarım boyutu) ve gösterildiği yere bütün olarak ölçeklenir.
 
 ## Ekranlar
 
-| Ad | Modül | Ekran | Ne gösterir |
+| Ad | Modül | UI/UX ekranı | Ne gösterir |
 | --- | --- | --- | --- |
-| `Home` | Modüller | Modüller | Uygulamanın ana ekranı: tüm modüller tek yerde |
-| `ExamHome` | Denemeler | Denemeler ana sayfa | Deneme listesi, ders ve konu gelişimi |
-| `Exam` | Denemeler | Deneme çözümü | Süreli bir denemede soru çözme |
-| `Analysis` | Denemeler | İstatistikler | Net trendi, genel gelişim, başarı oranı |
-| `SmartSummaryHome` | Akıllı Özet | Akıllı Özet ana sayfa | Soru analizi, video analizi, geçmiş analizler |
-| `SmartSummary` | Akıllı Özet | Soru analizi | Soru görselinden çözüm, kazanım ve hata analizi |
-| `SinoAi` | SinoAI | SinoAI | Sınav koçuyla sohbet |
-| `Flashcards` | Bilgi Kartları | Kart oturumu | Kartı çevir, bilme düzeyini işaretle |
-| `Lessons` | Dersler | Dersler | Mikro dersler, konu ağacı, öğrenme rotası |
-| `Tests` | Testler | Testler | Adım adım konu testleri ve ilerleme |
-| `StudyPlan` | Ders Planı | Bugün | Günün görevleri ve çalışma serisi |
-| `StudyProgress` | Ders Planı | İlerleme | Haftalık çalışma süresi ve Compass konu ilerlemesi |
+| `Home` | Modüller | `m-hub-moduller` | Ana ekran: günün planı, sıradaki görev, modüller |
+| `ExamHome` | Denemeler | `m-deneme-vitrin` | Canlı deneme, devam eden deneme, öneriler |
+| `Exam` | Denemeler | `m-deneme-coz` | Süreli bir denemede soru çözme |
+| `Analysis` | Denemeler | `m-deneme-gelisim` | Net trendi ve derslere göre gelişim |
+| `SmartSummaryHome` | Akıllı Özet | `m-ozet-vitrin` | Soru analizi, video analizi, geçmiş analizler |
+| `SmartSummary` | Akıllı Özet | `m-ozet-sonuc` | Soru görselinden çözüm, kazanım ve hata analizi |
+| `SinoAi` | SinoAI | `m-sino-sohbet` | SinoAI ile sohbet |
+| `Flashcards` | Bilgi Kartları | `m-kart-on` | Kartı çevir, bilme düzeyini işaretle |
+| `Lessons` | Dersler | `m-ders-vitrin` | Mikro dersler, konular, tekrar |
+| `Tests` | Testler | `m-test-vitrin` | Konu testleri: Kolay, Orta, Zor |
+| `StudyPlan` | Ders Planı | `m-plan-bugun` | Günün görevleri ve çalışma serisi |
+| `StudyProgress` | Ders Planı | `m-plan-ilerleme` | Haftalık çalışma süresi ve konu ilerlemesi |
 
 Her ekran uygulamanın **açık** ve **koyu** temasında, **Türkçe** ve **İngilizce** çizilebilir (dil: `PhoneFrame lang`, `AppLanguageProvider`; modül, sekme ve kart adları uygulamanın en-US kataloğundan). Ekranlar telefonda 390 nokta genişliğindedir; `TabletFrame` aynı ekranları daha geniş bir tuvale yayar (`AppCanvasProvider`). `PhoneFrame variant="android"` dinamik ada yerine kamera deliğiyle çizer (Google Play görselleri için). Her modül, uygulamadaki gibi beş sekmeli kendi sekme çubuğunu taşır (ortada her zaman "Modüller"); ana ekranda ve SinoAI'de sekme çubuğu yoktur.
 

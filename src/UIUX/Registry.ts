@@ -16,6 +16,7 @@ import * as Sino from './Screens/Mobile/SinoAI';
 import * as SiteP from './Screens/Site/Site';
 import * as TLearn from './Screens/Tablet/Learn';
 import * as TSolve from './Screens/Tablet/Solve';
+import * as TParity from './Screens/Tablet/Parity';
 import * as TWide from './Screens/Tablet/Wide';
 import * as WAssist from './Screens/Web/AssistWeb';
 import * as WExam from './Screens/Web/ExamWeb';
@@ -291,6 +292,12 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	tablet('t-deneme-coz-dikey', 'Tablet · Denemeler', 'Deneme çözme · dikey', 'ExamStudentSolve', TSolve.ExamPortraitScreen, 'Dikey: şıklar üç sütun, Taslak kâğıdı alt yarıda. Parmakla çizim açık olduğu için Kaydır/Çiz anahtarı araç çubuğunda.', 'exam', true),
 	tablet('t-deneme-cozum-notlar', 'Tablet · Denemeler', 'Çözüm · notlarım', 'ExamSolutionBookletReview', TSolve.ExamSolutionNotesScreen, 'Çözümlerde öğrencinin kendi işaretleri salt okunur geri gelir (göster/gizle); taslağı resmî çözümün yanında.', 'exam'),
 	tablet('t-deneme-kalem-ipucu', 'Tablet · Denemeler', 'Kalem · ilk açılış ipucu', 'ExamStudentSolve', TSolve.PenTipScreen, 'Kalemli tablette ilk çözümde tek ipucu, Soruya yaz düğmesinde. Tur yok.', 'exam'),
+	tablet('t-deneme-detay', 'Tablet · Denemeler', 'Deneme detayı', 'ExamStudentPublicDetail', TParity.ExamDetailTabletScreen, 'Canlı deneme açılmadan önce: kalan süre ve Hatırlat (web ile aynı sayfa).', 'exam'),
+	tablet('t-deneme-teslim', 'Tablet · Denemeler', 'Teslim onayı', 'ExamStudentSolve', TParity.ExamSubmitTabletScreen, 'Web ile aynı pencere; klavyede Enter / Esc.', 'exam'),
+	tablet('t-deneme-detay-bitti', 'Tablet · Denemeler', 'Biten denemenin detayı', 'ExamStudentPublicDetail', TParity.ExamDoneTabletScreen, '', 'exam'),
+	tablet('t-deneme-sonuclar', 'Tablet · Denemeler', 'Sonuçlar', 'ExamResultsHub', TParity.ResultsTabletScreen, 'Net sütunları, üç giriş satırı, son sonuçlar tablosu.', 'exam'),
+	tablet('t-deneme-sonuclar-bos', 'Tablet · Denemeler', 'Sonuçlar · henüz deneme yok', 'ExamResultsHub', TParity.ResultsEmptyTabletScreen, '', 'exam'),
+	tablet('t-deneme-ekle', 'Tablet · Denemeler', 'Deneme ekle', 'ExamExternalResult (yeni)', TParity.ExamAddTabletScreen, 'Yeni API gerekir.', 'exam'),
 	tablet('t-test-coz-taslak', 'Tablet · Testler', 'Test çözme · taslak kâğıdı', 'QuizSolve', TSolve.TestScratchScreen, 'Yeni: Testler’e taslak kâğıdı. Anında geri bildirim soru sütununda, işlem yanda kalır.', 'tests'),
 	tablet('t-test-coz-yanlis', 'Tablet · Testler', 'Yanlış cevap · taslağı göster', 'QuizSolve', TSolve.TestWrongScratchScreen, 'Yanlışta taslak yerinde kalır; “Taslağımı SinoAI’ye göster” yalnız öğrenci isterse gönderir ve okunanı önce gösterir.', 'tests'),
 	tablet('t-test-sekilli-soru', 'Tablet · Testler', 'Şekilli soru · şekle yaz', 'QuizSolve', TSolve.TestFigureScreen, 'Kalem şeklin üstüne yazar: açı, bulunan değer. Şıklar sağ sütunda, elenenler çizili.', 'tests'),
@@ -299,19 +306,24 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	tablet('t-ders-soru-eleme', 'Tablet · Dersler', 'Adım · TYT tarzı soru · eleme', 'WorkMikro', TLearn.LessonQuestionTabletScreen, 'Şıklar kalemle elenir, seçilen daire içinde; cevap yine dokunarak verilir.', 'lessons'),
 	tablet('t-ders-bosluk-el-yazisi', 'Tablet · Dersler', 'Adım · Boşluk doldur · el yazısı', 'WorkMikro', TLearn.LessonFillTabletScreen, 'Kalemle kutuya yazılır, okunan sözcük gösterilir, sonra kontrol edilir. Klavye her zaman seçenek.', 'lessons'),
 	tablet('t-ders-notlarim', 'Tablet · Dersler', 'Notlarım', 'WorkNotes (yeni)', TLearn.LessonNotesTabletScreen, 'Yeni ekran: konunun tüm kenar notları ve taslakları mikro derse göre; dokununca adımına götürür. PDF olarak alınabilir.', 'lessons'),
+	tablet('t-ders-grupla', 'Tablet · Dersler', 'Adım · Grupla', 'WorkMikro', TParity.LessonGroupTabletScreen, 'Mobilin adım çizimi tablet oynatıcısında (EmbedStep).', 'lessons'),
+	tablet('t-ders-eslestir', 'Tablet · Dersler', 'Adım · Eşleştir', 'WorkMikro', TParity.LessonMatchTabletScreen, '', 'lessons'),
+	tablet('t-ders-formul', 'Tablet · Dersler', 'Adım · Formül ve tablo', 'WorkMikro', TParity.LessonFormulaTabletScreen, '', 'lessons'),
+	tablet('t-ders-bolum', 'Tablet · Dersler', 'Bölüm başı', 'WorkMikro', TParity.LessonSectionTabletScreen, '', 'lessons'),
 	tablet('t-kart-el-yazisi', 'Tablet · Bilgi Kartları', 'Kart · önce kendin yaz', 'FlashcardSession', TLearn.CardWriteTabletScreen, 'Ön yüzde isteğe bağlı yazma alanı; kontrol edilmez, cevapla öğrenci kendisi karşılaştırır.', 'flashcards'),
-	tablet('t-hub-moduller', 'Tablet · Modüller', 'Ana ekran · yatay', 'ModuleHubHome', TLearn.HubTabletScreen, 'Telefonun Bugün düzeni iki sütunda: solda selam, günün planı ve iki eylem kartı; sağda hafta ve iki ölçü, tekrar, modüller.'),
-	tablet('t-hub-plansiz', 'Tablet · Modüller', 'Ana ekran · planı olmayan öğrenci', 'ModuleHubHome', TLearn.HubTabletNoPlanScreen, 'Kayıt cevaplarıyla Planımı hazırla; ilk mikro ders plansız başlar.'),
-	tablet('t-hub-gun-bitti', 'Tablet · Modüller', 'Ana ekran · günün planı bitti', 'ModuleHubHome', TLearn.HubTabletDoneScreen, ''),
-	tablet('t-hub-abonelik-bitti', 'Tablet · Modüller', 'Ana ekran · deneme süresi bitti', 'ModuleHubHome', TLearn.HubTabletExpiredScreen, 'Ödeme yoksa erişim yok; ilerleme korunur.'),
+	tablet('t-hub-moduller', 'Tablet · Modüller', 'Ana ekran · yatay', 'ModuleHubHome', TParity.HubTabletScreen, 'Web ana sayfasının kendisi tablet çerçevesinde (PanelInTablet): aynı Bugün düzeni, aynı parçalar.'),
+	tablet('t-hub-plansiz', 'Tablet · Modüller', 'Ana ekran · planı olmayan öğrenci', 'ModuleHubHome', TParity.HubTabletNoPlanScreen, 'Kayıt cevaplarıyla Planımı hazırla; ilk mikro ders plansız başlar.'),
+	tablet('t-hub-gun-bitti', 'Tablet · Modüller', 'Ana ekran · günün planı bitti', 'ModuleHubHome', TParity.HubTabletDoneScreen, ''),
+	tablet('t-hub-abonelik-bitti', 'Tablet · Modüller', 'Ana ekran · deneme süresi bitti', 'ModuleHubHome', TParity.HubTabletExpiredScreen, 'Ödeme yoksa erişim yok; ilerleme korunur.'),
 	tablet('t-kalem-ayarlar', 'Tablet · Kalem', 'Profil · Kalem ve çizim', 'ProfileSettings (yeni bölüm)', TLearn.PenSettingsScreen, 'Parmakla çizim, kalemde çift dokunuş, varsayılan renk ve kalınlık, taslak yeri, çözümlerde notlar, notların saklandığı yer.'),
 	/* Tablet without the pen (5 Nov 2026): keyboard, two panes, side panel, week, dashboard, Split View. */
 	tablet('t-deneme-klavye', 'Tablet · Kalemsiz', 'Deneme · klavye ve soru haritası', 'ExamStudentSolve', TWide.ExamKeyboardScreen, 'Bağlı klavyede A–E cevaplar, oklar gezdirir, İ işaretler; soru haritası yatayda hep açık.', 'exam'),
 	tablet('t-ders-sinoai-panel', 'Tablet · Kalemsiz', 'Ders adımı · SinoAI yan panelde', 'WorkMikro', TWide.LessonSinoPanelScreen, 'SinoAI adımı kapatmadan yanda açılır ve adımı bilir; uyarı satırı panelin altında.', 'lessons'),
 	tablet('t-ders-konular-iki-panel', 'Tablet · Kalemsiz', 'Dersler · konular iki panel', 'WorkCatalog + WorkSub', TWide.LessonTopicsSplitScreen, 'Konu listesi solda kalır, seçilen konunun girişi ve mikro dersleri sağda; konu değiştirmek tek dokunuş.', 'lessons'),
-	tablet('t-test-cozumler-iki-panel', 'Tablet · Kalemsiz', 'Testler · çözümler iki panel', 'QuizSolutions', TWide.TestSolutionsSplitScreen, 'Soru listesi doğru/yanlış/boş işaretli solda, çözüm sağda.', 'tests'),
+	tablet('t-test-yanlislar', 'Tablet · Testler', 'Yanlışlarım', 'QuizSolutions', TParity.WrongReviewTabletScreen, 'Web Yanlışlarım sayfası tablette: soru ızgarası solda, çözüm sağda.', 'tests'),
+	tablet('t-plan-bugun', 'Tablet · Kalemsiz', 'Ders Planı · Bugün', 'StudyPlanHome', TParity.PlanDayTabletScreen, 'Web Ders Planı · Bugün sayfası tablette: Gün/Hafta/Ay, süzgeçler, görev kartları.', 'studyPlan'),
 	tablet('t-plan-hafta', 'Tablet · Kalemsiz', 'Ders Planı · hafta', 'StudyPlanSchedule', TWide.PlanWeekScreen, 'Haftanın yedi günü yan yana, görevler sürüklenerek taşınır; bugünün görevleri sağda.', 'studyPlan'),
-	tablet('t-istatistik-pano', 'Tablet · Kalemsiz', 'İstatistikler · pano', 'ProfileStatistics', TWide.StatisticsDashboardScreen, 'Web ve telefonla aynı parçalar: dört ölçü, haftalık yığılı çalışma ve değer kutusu, halka, en verimli saatler ısı haritası.'),
+	tablet('t-istatistik-pano', 'Tablet · Kalemsiz', 'İstatistiklerim', 'ProfileStatistics', TParity.StatsTabletScreen, 'Web İstatistiklerim sayfasının kendisi tablette.'),
 	tablet('t-bolunmus-ekran', 'Tablet · Kalemsiz', 'Bölünmüş ekran', 'Uygulama geneli', TWide.SplitViewScreen, 'Split View / Stage Manager: pencere 600 pt altına inince telefon düzeni; süre ve oturum kesilmez.'),
 ];
 

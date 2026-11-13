@@ -2,10 +2,10 @@ import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
 import {Icon} from '../../Icons';
 import {MODULES, type ModuleKey} from '../../ModuleIdentity';
-import {Button, Card, Chip, OptionRow, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
+import {Button, Chip, OptionRow, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
 import {QuestionStrip, RoundButton, SideRail, SolveBar, Tablet, TimerProgress} from '../../Parts/Tablet';
 import {UI_RADIUS, UI_SHADOW} from '../../Tokens';
-import {HEATMAP_SAMPLE, KpiCard, PlanTaskCard, StudyBars, StudyDonut, StudyHeatmap} from '../../Parts/Study';
+import {PlanTaskCard} from '../../Parts/Study';
 import {PlanTodayScreen} from '../Mobile/Plan';
 import {AGIR_QUESTION, Kind, MICRO_LESSONS, microStates, Rich, TOPIC, WORK_TOPICS} from '../Mobile/Lessons';
 
@@ -337,65 +337,6 @@ export const PlanWeekScreen: React.FC = () => {
 	);
 };
 
-/* ------------------------------------------------------------------ Statistics dashboard */
-
-export const StatisticsDashboardScreen: React.FC = () => {
-	const t = useT();
-	const colors = useColors();
-	const days = [t('Pzt', 'Mon'), t('Sal', 'Tue'), t('Çar', 'Wed'), t('Per', 'Thu'), t('Cum', 'Fri'), t('Cmt', 'Sat'), t('Paz', 'Sun')];
-	return (
-		<Tablet>
-			<Stack gap={14} style={{flex: 1, padding: '12px 28px 24px', boxSizing: 'border-box'}}>
-				<Stack row justify="space-between">
-					<Stack row gap={12}>
-						<RoundButton icon="left" />
-						<Text role="title" size={26}>
-							{t('İstatistiklerim', 'My statistics')}
-						</Text>
-					</Stack>
-					<div style={{width: 360}}>
-						<Segmented items={[t('Bu hafta', 'This week'), t('Son 30 gün', 'Last 30 days'), t('Tümü', 'All')]} active={1} />
-					</div>
-				</Stack>
-				<Stack row gap={12}>
-					<KpiCard compact icon="clock" label={t('Çalışma süresi', 'Study time')} value={t('19 sa 40 dk', '19 h 40 m')} delta="%22" />
-					<KpiCard compact icon="quiz" label={t('Çözülen soru', 'Questions')} value="742" delta="%31" />
-					<KpiCard compact icon="target" label={t('Doğru oranı', 'Accuracy')} value="%62" delta="%6" />
-					<KpiCard compact icon="trend" label={t('TYT net', 'TYT net')} value="84,25" delta="5,75" />
-				</Stack>
-				<Stack row gap={14} align="stretch" style={{flex: 1, minHeight: 0}}>
-					<Pane style={{flex: 1.15}}>
-						<Text role="headline" size={16}>
-							{t('Haftalık çalışma', 'Weekly study')}
-						</Text>
-						<StudyBars height={170} active={2} tooltip={{title: t('3. hafta', 'Week 3'), rows: [[t('Planlanan', 'Planned'), t('6 sa', '6 h')], [t('Çalışılan', 'Studied'), t('6 sa 5 dk', '6 h 5 m')]]}} bars={WEEKS(t)} />
-						<StudyDonut size={120} center={t('19 sa', '19 h')} sub={t('toplam', 'total')} parts={[['lessons', 520], ['tests', 370], ['exam', 260], ['flashcards', 125]]} />
-					</Pane>
-					<Pane style={{flex: 1}}>
-						<Text role="headline" size={16}>
-							{t('En verimli saatlerin', 'Your best hours')}
-						</Text>
-						<StudyHeatmap cells={HEATMAP_SAMPLE} days={days} hours={['06', '09', '12', '15', '18', '20', '22', '24']} cell={34} />
-						<Card tone="soft" padding={12} style={{marginTop: 'auto'}}>
-							<Text role="small" color={colors.ink2}>
-								{t('Hafta içi 18:00–20:00 arası en çok doğru yapıyorsun; Ders Planı zor dersleri bu saate koyar. Fizik en zayıf dersin: bu hafta 2 Fizik görevi eklendi.', 'You are most accurate 18:00–20:00; the plan puts hard subjects there.')}
-							</Text>
-						</Card>
-					</Pane>
-				</Stack>
-			</Stack>
-		</Tablet>
-	);
-};
-
-const WEEKS = (t: (tr: string, en: string) => string) => [
-	{label: t('1. hf', 'W1'), parts: [['lessons', 80], ['tests', 60], ['exam', 40], ['flashcards', 20]] as [ModuleKey, number][]},
-	{label: t('2. hf', 'W2'), parts: [['lessons', 110], ['tests', 70], ['exam', 0], ['flashcards', 30]] as [ModuleKey, number][]},
-	{label: t('3. hf', 'W3'), parts: [['lessons', 90], ['tests', 85], ['exam', 165], ['flashcards', 25]] as [ModuleKey, number][]},
-	{label: t('4. hf', 'W4'), parts: [['lessons', 130], ['tests', 70], ['exam', 0], ['flashcards', 50]] as [ModuleKey, number][]},
-	{label: t('Bu hf', 'Now'), parts: [['lessons', 110], ['tests', 85], ['exam', 55], ['flashcards', 0]] as [ModuleKey, number][]},
-];
-
 /* ------------------------------------------------------------------ Split View */
 
 /** Split View / Stage Manager: next to another app the window is phone-wide, so the app shows its phone layout as is. */
@@ -422,79 +363,6 @@ export const SplitViewScreen: React.FC = () => {
 						</Text>
 					</div>
 				</div>
-			</Stack>
-		</Tablet>
-	);
-};
-
-/* ------------------------------------------------------------------ Testler · two panes */
-
-export const TestSolutionsSplitScreen: React.FC = () => {
-	const t = useT();
-	const colors = useColors();
-	const mod = useModuleColors('tests');
-	const rows: [number, 'ok' | 'no' | 'empty'][] = [
-		[1, 'ok'],
-		[2, 'ok'],
-		[3, 'no'],
-		[4, 'no'],
-		[5, 'ok'],
-		[6, 'no'],
-		[7, 'no'],
-		[8, 'empty'],
-		[9, 'no'],
-		[10, 'ok'],
-	];
-	return (
-		<Tablet module="tests" wash>
-			<Stack row align="stretch" style={{flex: 1, minHeight: 0}}>
-				<SideRail module="tests" active={2} />
-				<Stack gap={10} style={{width: 330, flexShrink: 0, padding: '18px 16px', borderRight: `1px solid ${colors.line}`, boxSizing: 'border-box'}}>
-					<Text role="meta">{t('Temel Kavramlar · Kolay', 'Basics · Easy')}</Text>
-					<Text role="title" size={22}>
-						{t('Çözümler · 5 / 20', 'Solutions · 5 / 20')}
-					</Text>
-					<Segmented items={[t('Yanlış', 'Wrong'), t('Boş', 'Blank'), t('Tümü', 'All')]} active={2} module="tests" />
-					<Stack gap={4}>
-						{rows.map(([number, state]) => (
-							<Stack key={number} row gap={12} style={{padding: '9px 10px', borderRadius: 14, background: number === 3 ? mod.soft : 'transparent'}}>
-								<div style={{width: 28, height: 28, borderRadius: 9, background: state === 'ok' ? colors.successSoft : state === 'no' ? colors.errorSoft : colors.line2, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-									<Icon name={state === 'ok' ? 'check' : state === 'no' ? 'x' : 'minus'} size={15} color={state === 'ok' ? colors.successInk : state === 'no' ? colors.errorInk : colors.muted} />
-								</div>
-								<Text role="headline" size={14.5} style={{flex: 1}} color={number === 3 ? mod.ink : colors.ink}>
-									{t(`Soru ${number}`, `Question ${number}`)}
-								</Text>
-								<Text role="meta">{state === 'ok' ? '' : t('%50 bildi', '50% got it')}</Text>
-							</Stack>
-						))}
-					</Stack>
-				</Stack>
-				<Stack gap={12} style={{flex: 1, padding: '22px 30px', boxSizing: 'border-box'}}>
-					<Text role="meta">{t('Soru 3 / 20', 'Question 3 / 20')}</Text>
-					<Text role="body" size={19} weight={600} color={colors.ink} style={{lineHeight: '30px'}}>
-						{t('Aşağıdakilerden hangisi tam sayıdır ama doğal sayı değildir?', 'Which is an integer but not a natural number?')}
-					</Text>
-					<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 9}}>
-						<OptionRow letter="A" text="−4" state="correct" />
-						<OptionRow letter="B" text="0" />
-						<OptionRow letter="C" text="3/2" state="wrong" />
-						<OptionRow letter="D" text="7" />
-					</div>
-					<Pane>
-						<Text role="headline">{t('Çözüm', 'Solution')}</Text>
-						<Text role="body">{t('Doğal sayılar 0 ve pozitif tam sayılardır. −4 tam sayıdır ama negatif olduğu için doğal değildir; 3/2 tam sayı değildir.', 'Natural numbers are 0 and the positive integers.')}</Text>
-					</Pane>
-					<Stack row gap={10} style={{marginTop: 'auto'}}>
-						<Button tone="moduleSoft" module="lessons" icon="book">
-							{t('Konuyu çalış', 'Study the topic')}
-						</Button>
-						<div style={{flex: 1}} />
-						<Button tone="ghost" icon="left" />
-						<Button tone="module" module="tests" iconRight="right">
-							{t('Sonraki yanlış', 'Next mistake')}
-						</Button>
-					</Stack>
-				</Stack>
 			</Stack>
 		</Tablet>
 	);

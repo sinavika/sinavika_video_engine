@@ -49,6 +49,33 @@ Kod: `src/Renderers/RenderEstimate.ts`, `scripts/RenderStatus.ts`, testler `test
 
 Aynı iş sırasında bir hata da düzeldi. Duran ekran kapısı (`StillScreenGate`) `--frames` verilmeyen her render'ı önizleme sanıyordu ve hiçbir derste çalışmıyordu. Kapının çalışmadığı dönemde render edilen dersler denetlendi: TYT Matematik 00, 01 ve 02 temiz.
 
+### Hareket ve sıralama (10 Kasım 2026)
+
+Videodaki hareketin kuralları. Kaynak: [emilkowalski/skills](https://github.com/emilkowalski/skills) (MIT) choreograph ve review-animations kuralları, videoya uyarlandı. Uygulamanın (web, mobil) hareket standardı ayrıdır: [`docs/UIUX/Hareket-Standardi.md`](UIUX/Hareket-Standardi.md). Reel'lerin hareket dili `ReelStandard.motion` ve `PromoMotion` içinde.
+
+**Kurallar**
+- **Anlatım önce gelir.** Bir öğe, anlatımda adı geçtiği anda girer (`cues`, vuruşlar). Sabit aralıklı sıra (`0.8 + index * 0.9`) yalnız ipucu olmayan işler için yedektir.
+- **Her sahnenin bir ana öğesi vardır.** Önce o gelir; destek öğeleri ondan sonra, süsler en son gelir. Süs, ana öğeyle aynı anda girmez.
+- **Bir kapsayıcı tek girişle gelir.** Hem kart hem içindeki satırlar ayrı ayrı canlanmaz.
+- **Okunan metin yerinden oynamaz.** Soru, şık, formül ya da tablo yerine oturunca durur; yeni bilgi yanına eklenir. Bu, "her 2 sn'de yeni bilgi" kuralını tamamlar: hareket bilgiyi taşır, okunan şey sabit kalır.
+- **Çıkış girişten kısadır.** `Animated` girişi `MOTION_DURATIONS.base` (0,5 sn), çıkışı `fast` (0,3 sn) ile yapar. Bir grup birlikte çıkar.
+- **Sıfırdan büyüme yok.** Ölçekli giriş en az 0,5'ten başlar; sakin kartlar 0,8–0,96'dan.
+- **Zıplama yok.** `Easing.back`, `bounce` ve `elastic` kullanılmaz; bunlar hedefin altına ve üstüne sallanır. Tek bir varış vurgusu için `overshoot` eğrisi kalır. O yalnız bir kez ve yaklaşık %2 aşar; tekrar eden harekette (her saniye yenilenen sayı gibi) kullanılmaz.
+- **Hareket kareye bağlıdır.** CSS `transition`, `animation` ve `@keyframes` kullanılmaz. Bunlar tarayıcının saatiyle çalışır; render edilen kare onları rastgele bir anda yakalar.
+
+**Otomatik denetim:** [`tests/Animations/MotionRules.test.ts`](../tests/Animations/MotionRules.test.ts) `src` içindeki kodu tarar. Şunlarda düşer:
+- CSS geçişi ya da keyframe;
+- `back`, `bounce` ya da `elastic` eğrisi;
+- 0,5'in altındaki bir ölçekten giriş;
+- çıkışı girişten uzun süren jeton.
+
+Taranmayanlar: `src/UIUX` (durağan çizim) ve `Html5Banner.ts` (canlı HTML reklam).
+
+İlk taramada tek ihlal bulundu: düşünme süresinin sayacı (`Countdown`) her saniye `Easing.back(2)` ile sallanıyordu. Artık yumuşak iniyor. Etkilenen yerler:
+- kamp dersinin soru, tahmin ve "Sıra sende" sahneleri;
+- kamp kısalarının meydan okuma turu;
+- `CountdownChat` reklamı.
+
 
 ## Klasör haritası ve adlandırma (29 Ekim 2026, 31 Ekim'de güncellendi)
 

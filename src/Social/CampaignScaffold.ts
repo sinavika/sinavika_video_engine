@@ -89,15 +89,15 @@ const formatOf = (kind: CampaignFeed['kind']) => (kind === 'reel' ? 'Video' : ki
  * Where and when an entry goes out. Normally the plan's targets (each platform
  * at its Buffer hour). An entry with its own `time` publishes every platform at
  * that hour; if its kind differs from the plan's format that day (10 Kasım: a
- * reel on a carousel day), the platforms follow the kind: Instagram and TikTok,
- * plus YouTube Shorts for a video.
+ * reel on a carousel day), the platforms follow the kind: Instagram and TikTok.
+ * Campaign posts are ads, so they never go to YouTube Shorts.
  */
 const feedTargets = (entry: CampaignFeed, slot: PlannedSlot): FeedTarget[] => {
 	const format = formatOf(entry.kind);
 	if (slot.format === format && !entry.time) return slot.targets;
 	if (!entry.time) throw new Error(`${entry.date} planda ${slot.format}; ${entry.id} ${entry.kind} olacaksa kendi saatini (time) yazmalı.`);
 	const postTypes: Partial<Record<FeedTarget['platform'], string>> = POST_TYPES[format];
-	const platforms = format === 'Video' ? (['instagram', 'tiktok', 'youtube'] as const) : (['instagram', 'tiktok'] as const);
+	const platforms = ['instagram', 'tiktok'] as const;
 	return platforms.map((platform) => ({platform, postType: postTypes[platform]!, scheduledAt: at(entry.date, entry.time!)}));
 };
 

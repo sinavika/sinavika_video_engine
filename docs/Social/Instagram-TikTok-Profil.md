@@ -1,6 +1,6 @@
 # Instagram ve TikTok profilleri
 
-Hesaplar: Instagram [@sinavika.tr](https://www.instagram.com/sinavika.tr/) (doğrulanmış, kategori Eğitim, 36 gönderi, 1.117 takipçi), TikTok [@sinavikatr](https://www.tiktok.com/@sinavikatr) (26 video, 11 takipçi). Kurallar: [BrandIdentity.md](../Brand/BrandIdentity.md), [SocialStrategy.md](SocialStrategy.md) (UTM, `utm_content=bio`), [ProductMessaging.ts](../../src/Configurations/ProductMessaging.ts) (`checkProductCopy`), profil resimleri `Desktop\Sinavika-Logo\sosyal-medya\profil` (her platformda A, turuncu zemin). YouTube için [YouTube-Kanal.md](YouTube-Kanal.md).
+Hesaplar: Instagram [@sinavika.tr](https://www.instagram.com/sinavika.tr/) (doğrulanmış, kategori Eğitim, 36 gönderi, 1.117 takipçi), TikTok [@sinavika.tr](https://www.tiktok.com/@sinavika.tr) (10 Kasım 2026’ya kadar @sinavikatr) (26 video, 11 takipçi). Kurallar: [BrandIdentity.md](../Brand/BrandIdentity.md), [SocialStrategy.md](SocialStrategy.md) (UTM, `utm_content=bio`), [ProductMessaging.ts](../../src/Configurations/ProductMessaging.ts) (`checkProductCopy`), profil resimleri `Desktop\Sinavika-Logo\sosyal-medya\profil` (her platformda A, turuncu zemin). YouTube için [YouTube-Kanal.md](YouTube-Kanal.md).
 
 ## 1. İnceleme: 1 Kasım 2026
 
@@ -23,7 +23,7 @@ Kural dışı sözcük geçen Instagram açıklamaları: "Koçuna sor" (koç), "
 
 | Alan | Durum | Sorun |
 |---|---|---|
-| Ad, kullanıcı adı, profil resmi | Sınavika, sinavikatr, A (turuncu) | Doğru (Ekim raporundaki "fotoğraf boş" notu çözülmüş) |
+| Ad, kullanıcı adı, profil resmi | Sınavika, sinavika.tr (10 Kasım’dan önce sinavikatr), A (turuncu) | Doğru (Ekim raporundaki "fotoğraf boş" notu çözülmüş) |
 | Biyografi | "Türkiye geneli kaliteli yayınevlerinden online denemeler. Mobil uygulamayı indir hemen başla." | Eski ürün anlatımı; 94 karakter, sınır 80 |
 | Bağlantı | Yok | Web'de alan yok; uygulamadan (işletme hesabı) eklenir |
 | Açıklamalar | 26 video tarandı | 8 videoda kural dışı sözcük (quiz ×3, koç ×2, Compass, "Sınavika da", ALES) |

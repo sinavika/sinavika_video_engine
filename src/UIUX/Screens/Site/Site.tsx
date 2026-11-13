@@ -838,7 +838,7 @@ const SinoGuest: React.FC = () => {
 				</Text>
 				<div style={{width: 760, borderRadius: 28, background: colors.card, border: `1px solid ${colors.line}`, boxShadow: '0 20px 40px -28px rgba(15,23,42,0.3)', padding: '18px 14px 12px 22px', boxSizing: 'border-box'}}>
 					<Text role="body" size={16} color={colors.subtle}>
-						{t('f(x) = (3x² − 2)⁴ için f′(1) kaçtır?', 'What is f′(1) for f(x) = (3x² − 2)⁴?')}
+						{t("f(x) = (3x² − 2)⁴ için f'(1) kaçtır?", "What is f'(1) for f(x) = (3x² − 2)⁴?")}
 					</Text>
 					<Stack row gap={8} style={{marginTop: 14}}>
 						<Stack row gap={6} style={{height: 34, padding: '0 12px', borderRadius: 17, border: `1px solid ${colors.line}`}}>

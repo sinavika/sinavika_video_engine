@@ -33,11 +33,14 @@ describe('weekly plan', () => {
 		expect(count((entry) => entry.content === 'Promotion')).toBe(1);
 	});
 
-	it('sends only the three short videos to YouTube, and never a carousel or image', () => {
+	it('sends only lesson videos to YouTube Shorts: never an ad video, a carousel or an image', () => {
 		const youtube = WEEKDAYS.filter((day) => WEEKLY_PLAN[day].some((entry) => entry.platforms.includes('youtube')));
-		expect(youtube).toEqual(['tue', 'fri', 'sun']);
+		expect(youtube).toEqual(['tue', 'sun']);
 		entries.filter((entry) => entry.platforms.includes('youtube')).forEach((entry) => expect(entry.format).toBe('Video'));
-		entries.filter((entry) => entry.channel === 'Feed' && entry.format === 'Video').forEach((entry) => expect(entry.platforms).toContain('youtube'));
+		entries.filter((entry) => entry.content === 'Promotion' || entry.content === 'PromoReel').forEach((entry) => expect(entry.platforms).not.toContain('youtube'));
+		entries
+			.filter((entry) => entry.channel === 'Feed' && entry.format === 'Video' && entry.content !== 'Promotion' && entry.content !== 'PromoReel')
+			.forEach((entry) => expect(entry.platforms).toContain('youtube'));
 	});
 
 	it('keeps LinkedIn separate: three promotional posts, no lessons or questions', () => {

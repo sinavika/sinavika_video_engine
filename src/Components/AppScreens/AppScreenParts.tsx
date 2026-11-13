@@ -16,6 +16,9 @@ export const AppModeProvider: React.FC<{mode: AppMode; children: React.ReactNode
 
 export const useAppColors = (): AppColors => APP_PALETTES[useContext(AppModeContext)];
 
+/** The theme the screens are drawn in (light or dark). */
+export const useAppMode = (): AppMode => useContext(AppModeContext);
+
 /** The app's languages (its tr-TR and en-US catalogues). */
 const APP_LANGUAGES = ['tr', 'en'] as const;
 export type AppLanguage = (typeof APP_LANGUAGES)[number];
@@ -109,21 +112,6 @@ export const AppText: React.FC<AppTextProps> = ({size = 'body', weight = 500, co
 	);
 };
 
-/** The small capital label above a card's title ("DENEMELERİM", "ANA AKSİYON"). */
-export const AppOverline: React.FC<{color?: string; children: React.ReactNode}> = ({color, children}) => {
-	const colors = useAppColors();
-	return (
-		<AppText size="overline" weight={700} color={color ?? colors.muted} style={{letterSpacing: '0.06em', textTransform: 'uppercase'}}>
-			{children}
-		</AppText>
-	);
-};
-
-export const AppCard: React.FC<{padding?: number; style?: React.CSSProperties; children: React.ReactNode}> = ({padding = APP_LAYOUT.cardPadding, style, children}) => {
-	const colors = useAppColors();
-	return <div style={{boxSizing: 'border-box', padding, borderRadius: APP_LAYOUT.cardRadius, backgroundColor: colors.card, border: `1px solid ${colors.outline}`, ...style}}>{children}</div>;
-};
-
 type ChipTone = 'primary' | 'soft' | 'neutral' | 'success';
 
 export const AppChip: React.FC<{tone?: ChipTone; children: React.ReactNode}> = ({tone = 'soft', children}) => {
@@ -140,79 +128,6 @@ export const AppChip: React.FC<{tone?: ChipTone; children: React.ReactNode}> = (
 				{children}
 			</AppText>
 		</div>
-	);
-};
-
-export const AppButton: React.FC<{tone?: 'primary' | 'neutral'; grow?: boolean; children: React.ReactNode}> = ({tone = 'primary', grow = false, children}) => {
-	const colors = useAppColors();
-	const primary = tone === 'primary';
-	return (
-		<div style={{flex: grow ? 1 : undefined, alignSelf: grow ? undefined : 'flex-start', padding: grow ? '13px 0' : '9px 16px', borderRadius: grow ? 14 : 999, backgroundColor: primary ? colors.primary : colors.surface, textAlign: 'center'}}>
-			<AppText size="label" weight={700} color={primary ? colors.onPrimary : colors.text}>
-				{children}
-			</AppText>
-		</div>
-	);
-};
-
-/** A module icon on its soft orange disc, as on the hub tiles. */
-export const AppIconDisc: React.FC<{icon: AppIconName; size?: number}> = ({icon, size = 40}) => {
-	const colors = useAppColors();
-	return (
-		<div style={{width: size, height: size, borderRadius: size / 2, backgroundColor: colors.primarySoft, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-			<AppIcon name={icon} size={size * 0.52} color={colors.onPrimarySoft} />
-		</div>
-	);
-};
-
-export const AppProgressBar: React.FC<{share: number; height?: number}> = ({share, height = 6}) => {
-	const colors = useAppColors();
-	return (
-		<div style={{height, borderRadius: height / 2, backgroundColor: colors.surface, overflow: 'hidden', flex: 1}}>
-			<div style={{width: `${Math.round(share * 100)}%`, height: '100%', borderRadius: height / 2, backgroundColor: colors.primary}} />
-		</div>
-	);
-};
-
-/** The orange call-to-action card at the top of a module's home. */
-export const AppPromoCard: React.FC<{label: string; title: string; description: string; action: string}> = ({label, title, description, action}) => {
-	const colors = useAppColors();
-	return (
-		<div style={{boxSizing: 'border-box', padding: 18, borderRadius: 22, background: `linear-gradient(135deg, #EA580C, ${colors.primaryContainer})`, display: 'flex', flexDirection: 'column', gap: 8}}>
-			<AppOverline color="rgba(255, 255, 255, 0.85)">{label}</AppOverline>
-			<AppText size="title" weight={800} color="#FFFFFF">
-				{title}
-			</AppText>
-			<AppText size="label" color="rgba(255, 255, 255, 0.92)">
-				{description}
-			</AppText>
-			<div style={{alignSelf: 'flex-start', marginTop: 6, padding: '8px 14px', borderRadius: 999, backgroundColor: '#FFFFFF'}}>
-				<AppText size={12.5} weight={700} color="#EA580C">
-					{action}
-				</AppText>
-			</div>
-		</div>
-	);
-};
-
-/** A card with an icon, a title and a line of text, optionally leading somewhere. */
-export const AppListRow: React.FC<{icon: AppIconName; title: string; subtitle?: string; trailing?: React.ReactNode}> = ({icon, title, subtitle, trailing}) => {
-	const colors = useAppColors();
-	return (
-		<AppCard padding={13} style={{display: 'flex', alignItems: 'center', gap: 12}}>
-			<AppIconDisc icon={icon} />
-			<div style={{flex: 1, minWidth: 0}}>
-				<AppText size={15} weight={700}>
-					{title}
-				</AppText>
-				{subtitle ? (
-					<AppText size="caption" color={colors.muted}>
-						{subtitle}
-					</AppText>
-				) : null}
-			</div>
-			{trailing ?? <AppIcon name="chevron" size={18} color={colors.muted} />}
-		</AppCard>
 	);
 };
 

@@ -131,7 +131,7 @@ Her sonuç ve analiz bir eylemle biter: konu satırında "Mikro ders" (Dersler r
 
 ### 5.5 Durumlar
 
-Boş (ne, neden, tek eylem), yükleniyor (iskelet), hata ("bu bizden kaynaklı", tek eylem), çevrimdışı (ince sarı şerit). Ham "Not Found", GUID, enum adı ve hata ayıklama bilgisi asla gösterilmez.
+Boş (ne, neden, tek eylem), yükleniyor (ortada dönen saatli logo; içerik varsa yerinde kalır, üstte küçük gösterge; iskelet yok, 11 Kasım 2026), hata ("bu bizden kaynaklı", tek eylem), çevrimdışı (ince sarı şerit). Ham "Not Found", GUID, enum adı ve hata ayıklama bilgisi asla gösterilmez.
 
 ### 5.6 Abonelik
 
@@ -187,8 +187,9 @@ Testler (`tests/UIUX/UIUX.test.ts`) şunları denetler:
 Çizimde görünmeyen ama uygulamada şart olan kurallar. Kaynak: UI UX Pro Max'in 119 UX kuralıyla karşılaştırma (`UX-Kurallari.md`).
 
 **Hareket**
-- Bir ekranda en çok 1–2 öğe hareket eder; sürekli animasyon yalnız yükleniyor göstergesinde.
-- Süreler ortak hareket jetonlarından gelir; gelişte yavaşlayan, gidişte hızlanan eğri.
+- Bütün değerler ve kurallar: [`Hareket-Standardi.md`](Hareket-Standardi.md) (jetonlar `src/UIUX/Tokens.ts` → `UI_MOTION`, `UI_MOTION_MOMENTS`).
+- Bir ekranda en çok 1–2 öğe hareket eder; sürekli animasyon yalnız yükleniyor göstergesinde ve SinoAI'nin "düşünüyor" noktalarında.
+- Süreler ortak hareket jetonlarından gelir; giriş ve çıkış yavaş biten eğriyle (ease-in yok, 10 Kasım 2026), çıkış girişten kısa.
 - Sistemde "hareketi azalt" açıksa geçişler kısalır, paralaks ve sürekli animasyon durur.
 - Modüller slaytları kendiliğinden dönmez; noktalara dokunarak da geçilir.
 
@@ -217,7 +218,7 @@ Testler (`tests/UIUX/UIUX.test.ts`) şunları denetler:
 - Web 375, 768, 1024 ve 1440 px'te denenir; yatay kaydırma olmaz.
 
 **Geri bildirim**
-- Kısa işte yükleniyor göstergesi yanıp sönmez; uzun işte sayfa şeklinde iskelet.
+- Kısa işte yükleniyor göstergesi yanıp sönmez; yükleme her yerde ortada dönen saatli logo (iskelet yok, 11 Kasım 2026).
 - Kısa bildirim (toast) 3–5 saniye kalır, hata için kullanılmaz.
 - Boş aramada öneri ve ders listesi gösterilir.
 

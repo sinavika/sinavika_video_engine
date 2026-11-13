@@ -204,7 +204,7 @@ export const WebSummaryNewScreen: React.FC = () => {
 				<Card padding={20}>
 					<div style={{height: 320, borderRadius: 16, background: '#F5F1E8', padding: 24, boxSizing: 'border-box', position: 'relative'}}>
 						<Text role="section" color="#1E293B">
-							14. f(x) = (3x² − 2)⁴ {t('için', 'for')} f′(1) {t('kaçtır?', '?')}
+							14. f(x) = (3x² − 2)⁴ {t('için', 'for')} f'(1) {t('kaçtır?', '?')}
 						</Text>
 						<Text role="body" color="#1E293B" style={{marginTop: 14}}>
 							A) 12 · B) 24 · C) 36 · D) 48 · E) 60
@@ -257,7 +257,7 @@ export const WebSummaryDetailScreen: React.FC = () => {
 					<Card padding={16}>
 						<div style={{height: 160, borderRadius: 14, background: '#F5F1E8', padding: 16, boxSizing: 'border-box'}}>
 							<Text role="headline" color="#1E293B">
-								14. f(x) = (3x² − 2)⁴ {t('için', 'for')} f′(1) {t('kaçtır?', '?')}
+								14. f(x) = (3x² − 2)⁴ {t('için', 'for')} f'(1) {t('kaçtır?', '?')}
 							</Text>
 						</div>
 					</Card>
@@ -281,9 +281,9 @@ export const WebSummaryDetailScreen: React.FC = () => {
 				<WCard title={t('Adım adım çözüm', 'Step by step')}>
 					<Stack gap={16}>
 						{[
-							[t('Zincir kuralını uygula', 'Apply the chain rule'), "f′(x) = 4(3x² − 2)³ · 6x"],
+							[t('Zincir kuralını uygula', 'Apply the chain rule'), "f'(x) = 4(3x² − 2)³ · 6x"],
 							[t('İçi hesapla (x = 1)', 'Inner value (x = 1)'), '3 · 1² − 2 = 1'],
-							[t('Yerine koy', 'Substitute'), "f′(1) = 4 · 1³ · 6 = 24"],
+							[t('Yerine koy', 'Substitute'), "f'(1) = 4 · 1³ · 6 = 24"],
 						].map(([title, formula], index) => (
 							<Stack key={title} row gap={14} align="flex-start">
 								<Stack align="center" justify="center" style={{width: 32, height: 32, borderRadius: 16, background: mod.color}}>

@@ -1,11 +1,10 @@
 import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
-import {MODULES, type ModuleKey} from '../../ModuleIdentity';
-import {AppHeader} from '../../Parts/Mobile';
-import {ActionCard, KpiCard, TodayCard, WeekStrip, type HubState} from '../../Parts/Study';
+import {MODULES} from '../../ModuleIdentity';
+
 import {HandText, Highlight, InkCheck, InkLayer, InkLine, InkLoop, InkUnderline, PEN, usePen, type PenColor} from '../../Parts/Ink';
-import {Bar, Button, Card, Chip, Segmented, Stack, Steps, Text, Tile, Toggle} from '../../Parts/Shared';
+import {Bar, Button, Card, Chip, Segmented, Stack, Steps, Text, Toggle} from '../../Parts/Shared';
 import {InkNote, PenToolbar, RoundButton, Scratchpad, SideRail, SolveBar, Tablet} from '../../Parts/Tablet';
 import {UI_RADIUS, UI_SHADOW} from '../../Tokens';
 import {AGIR_QUESTION, CONCEPT, Kind, ListenPill, microStates, MICRO_LESSONS, Rich, RolePill, TOPIC, WORK_LESSONS, Words} from '../Mobile/Lessons';
@@ -21,12 +20,12 @@ import {InkOption} from './Solve';
 /* ------------------------------------------------------------------ lesson frame */
 
 /** A micro-lesson step on a tablet: step bar on top, the step in a reading column, a margin for ink on the right. */
-const LessonStep: React.FC<{done: number; count?: number; title: string; children: React.ReactNode; margin?: React.ReactNode; foot?: React.ReactNode; overlay?: boolean; toolbar?: React.ReactNode}> = ({done, count = 5, title, children, margin, foot, overlay = true, toolbar}) => {
+export const LessonStep: React.FC<{done: number; count?: number; title: string; topic?: string; children: React.ReactNode; margin?: React.ReactNode; foot?: React.ReactNode; overlay?: boolean; toolbar?: React.ReactNode}> = ({done, count = 5, title, topic = TOPIC.title, children, margin, foot, overlay = true, toolbar}) => {
 	const colors = useColors();
 	const mod = useModuleColors('lessons');
 	return (
 		<Tablet module="lessons" wash>
-			<SolveBar title={title} sub={`${TOPIC.title} · ${done + 1} / ${count}`} center={<div style={{width: 300}}><Steps count={count} done={done + 1} color={mod.color} /></div>} overlay={overlay} />
+			<SolveBar title={title} sub={`${topic} · ${done + 1} / ${count}`} center={<div style={{width: 300}}><Steps count={count} done={done + 1} color={mod.color} /></div>} overlay={overlay} />
 			<Stack row gap={18} align="stretch" style={{flex: 1, minHeight: 0, padding: '4px 22px 26px'}}>
 				{toolbar}
 				<div style={{position: 'relative', flex: 1, display: 'flex', borderRadius: UI_RADIUS.xl, background: colors.card, border: `1px solid ${colors.line}`, boxShadow: UI_SHADOW.card, overflow: 'hidden'}}>
@@ -42,7 +41,7 @@ const LessonStep: React.FC<{done: number; count?: number; title: string; childre
 	);
 };
 
-const Main: React.FC<{children: string; icon?: UIIconName}> = ({children, icon}) => (
+export const Main: React.FC<{children: string; icon?: UIIconName}> = ({children, icon}) => (
 	<Stack row justify="space-between">
 		<Button tone="ghost" icon="sparkles" module="sinoAi">
 			SinoAI’ye sor
@@ -416,106 +415,6 @@ export const CardWriteTabletScreen: React.FC = () => {
 };
 
 /* ------------------------------------------------------------------ Modüller */
-
-/** A module in the tablet hub grid: tile, name, today's status (same as the phone's grid). */
-const HubTile: React.FC<{module: ModuleKey; status: string}> = ({module, status}) => {
-	const colors = useColors();
-	const t = useT();
-	return (
-		<Stack row gap={10} style={{padding: '10px 12px', borderRadius: 18, background: colors.card, border: `1px solid ${colors.line}`}}>
-			<Tile module={module} size={38} />
-			<Stack grow gap={0}>
-				<Text role="headline" size={14}>
-					{t(MODULES[module].name)}
-				</Text>
-				<Text role="meta">{status}</Text>
-			</Stack>
-		</Stack>
-	);
-};
-
-/**
- * Modüller in landscape (8 Nov 2026): the phone's "Bugün" home in two
- * columns. Left: greeting, today's plan (or its state), the two action
- * cards. Right: the week with two KPIs, review, the modules.
- */
-const HubTabletBody: React.FC<{state?: HubState}> = ({state = 'plan'}) => {
-	const t = useT();
-	const colors = useColors();
-	const statuses: [ModuleKey, string][] = [
-		['exam', t('Cumartesi canlı', 'Live Saturday')],
-		['lessons', t('1 konu sürüyor', '1 topic going')],
-		['tests', t('1 test hazır', '1 quiz ready')],
-		['studyPlan', state === 'noPlan' ? t('Plan yok', 'No plan') : t('Bugün 2 / 5', 'Today 2 / 5')],
-		['smartSummary', t('Bu ay 7 / 30', '7 / 30 this month')],
-		['flashcards', t('32 kart bugün', '32 due today')],
-	];
-	return (
-		<Tablet>
-			<div style={{padding: '0 18px'}}>
-				<AppHeader />
-			</div>
-			<Stack row gap={22} align="stretch" style={{flex: 1, minHeight: 0, padding: '6px 32px 28px'}}>
-				<Stack gap={16} style={{flex: 1.25, minWidth: 0}}>
-					<Stack row justify="space-between" align="flex-end">
-						<Stack gap={4}>
-							<Text role="title" size={28}>
-								{t('Günaydın Ayşe', 'Good morning, Ayşe')}
-							</Text>
-							<Stack row gap={6}>
-								<Icon name="target" size={15} color={colors.ink2} />
-								<Text role="small" color={colors.ink2}>
-									{t('Hedef', 'Goal')} <b style={{color: colors.ink}}>{t('TYT · 227 gün kaldı', 'TYT · 227 days left')}</b>
-								</Text>
-							</Stack>
-						</Stack>
-						<Chip tone="warning" icon="flame">
-							{t('5 gün', '5 days')}
-						</Chip>
-					</Stack>
-					<TodayCard state={state} />
-					<Stack row gap={14} align="stretch">
-						{state === 'noPlan' ? (
-							<ActionCard module="lessons" over={t('İlk adımın', 'First step')} title={t('Gerçek anlam', 'Literal meaning')} line={t('TYT Türkçe · 4 dk', 'TYT Turkish · 4 min')} action={t('Başla', 'Start')} icon="book" />
-						) : (
-							<ActionCard module="lessons" over={t('Kaldığın yerden', 'Continue')} title={t('Mecaz anlam', 'Figurative meaning')} line={t('Sözcükte Anlam · 2/5 adım', 'Word meaning · 2/5 steps')} action={state === 'expired' ? t('Kilitli', 'Locked') : t('Devam et', 'Continue')} icon={state === 'expired' ? 'lock' : 'book'} />
-						)}
-						<ActionCard module="exam" over={t('Sıradaki deneme', 'Next exam')} title={t('TYT Deneme 5', 'TYT Exam 5')} line={t('Cumartesi 10:00 · 12.480 kişi', 'Saturday 10:00 · 12,480 joined')} action={t('Hatırlat', 'Remind me')} icon="exam" />
-					</Stack>
-				</Stack>
-				<Stack gap={14} style={{width: 420, flexShrink: 0}}>
-					<div style={{borderRadius: 24, background: colors.card, border: `1px solid ${colors.line}`, padding: 14, display: 'flex', flexDirection: 'column', gap: 12}}>
-						<WeekStrip done={state === 'noPlan' ? [] : state === 'done' ? [0, 1, 2, 3] : [0, 1, 2]} share={state === 'done' ? 1 : state === 'noPlan' ? 0 : 0.4} />
-						<Stack row gap={10}>
-							<KpiCard compact icon="clock" label={t('Bu hafta', 'This week')} value={state === 'noPlan' ? '—' : t('4 sa 10 dk', '4 h 10 m')} delta={state === 'noPlan' ? undefined : '%22'} />
-							<KpiCard compact icon="target" label={t('Doğru oranı', 'Accuracy')} value={state === 'noPlan' ? '—' : '%62'} delta={state === 'noPlan' ? undefined : '%6'} />
-						</Stack>
-					</div>
-					<Stack row gap={10} style={{padding: '12px 14px', borderRadius: 20, background: colors.card, border: `1px solid ${colors.line}`}}>
-						<Tile module="lessons" icon="refresh" size={38} />
-						<Stack grow gap={0}>
-							<Text role="headline">{t('Bugün tekrar · 5 adım, 32 kart', 'Review · 5 steps, 32 cards')}</Text>
-							<Text role="meta">{t('yaklaşık 12 dk', 'about 12 min')}</Text>
-						</Stack>
-						<Button tone="moduleSoft" module="lessons" size="sm">
-							{t('Başla', 'Start')}
-						</Button>
-					</Stack>
-					<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10}}>
-						{statuses.map(([key, status]) => (
-							<HubTile key={key} module={key} status={status} />
-						))}
-					</div>
-				</Stack>
-			</Stack>
-		</Tablet>
-	);
-};
-
-export const HubTabletScreen: React.FC = () => <HubTabletBody />;
-export const HubTabletNoPlanScreen: React.FC = () => <HubTabletBody state="noPlan" />;
-export const HubTabletDoneScreen: React.FC = () => <HubTabletBody state="done" />;
-export const HubTabletExpiredScreen: React.FC = () => <HubTabletBody state="expired" />;
 
 /* ------------------------------------------------------------------ Kalem ayarları */
 

@@ -162,8 +162,11 @@ export const WebExamDetailScreen: React.FC = () => {
 								</Text>
 							</Stack>
 						))}
-						<Button size="lg" block icon="play" style={{marginTop: 8}}>
-							{t('Denemeye başla', 'Start exam')}
+						<Text role="small" align="center" style={{marginTop: 8}}>
+							{t('Cumartesi 10:00’da açılır · 2 gün 4 saat kaldı', 'Opens Saturday 10:00 · 2 days 4 hours left')}
+						</Text>
+						<Button tone="module" module="exam" size="lg" block icon="bell">
+							{t('Hatırlat', 'Remind me')}
 						</Button>
 					</Stack>
 				</WCard>

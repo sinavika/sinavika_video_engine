@@ -1,6 +1,6 @@
 # YouTube metni: TYT Matematik kampı · Bölüm 0
 
-Video: `Outputs/Camps/YKS/TYT/Matematik/00_Tanitim/Tanitim_YouTube.mp4` (4K, 48 MB) · Kapak: `Outputs/Camps/YKS/TYT/Matematik/00_Tanitim/Tanitim_YouTube_Kapak.png` (kamp kapağı, "BÖLÜM 00"). `Tanitim_YouTube_Eski*` dosyaları eski render, yüklenmez.
+Video: `Outputs/Camps/YKS/TYT/Matematik/00_Tanitim/Tanitim_YouTube.mp4` (4K, 48 MB) · Kapak: `Outputs/Camps/YKS/TYT/Matematik/00_Tanitim/Tanitim_YouTube_Kapak.png` (10 Kasım: ders kapaklarıyla aynı mavi kamp kapağı, "BÖLÜM · Tanıtım 00 / 23", kanca "%20 zam, %20 indirim. Fiyat aynı mı?"; sahibin isteği. Eski lacivert kapak `Tanitim_YouTube_Kapak_Lacivert.png`, videonun açılış karesi o). `Tanitim_YouTube_Eski*` dosyaları eski render, yüklenmez.
 
 ## Başlık
 
@@ -21,6 +21,7 @@ TYT Matematik kampının sıfırıncı bölümünde konu anlatmıyoruz; önce ha
 ✅ Her dersten sonra test ve haftada bir deneme
 
 ⏭️ Kampın ilk dersi: Temel Kavramlar. Kanala abone ol, hiçbir dersi kaçırma! 🔔
+▶️ İlk ders: https://youtu.be/Dzo7rY2EMYE
 🗺️ TYT kampının genel tanıtımı, Bölüm 0: https://youtu.be/-YSeFFxDOhM
 
 📲 Kampın testleri ve Ders Planı Sınavika'da:

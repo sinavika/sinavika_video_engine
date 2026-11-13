@@ -671,7 +671,7 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 | 508 | Paragraf Tamamlama `YDT_PARAGRAPH_COMPLETION` | 6 | · | · | · | · | — | 0 (0 / 0) |
 | 509 | Okuma ve Çıkarım Becerileri `YDT_READING_INFERENCE` | 7 | · | · | · | · | — | 0 (0 / 0) |
 
-## KPSS · KPSS Lisans (0/97 video)
+## KPSS · KPSS Lisans (0/107 video)
 
 ### Türkçe (TRK)
 
@@ -680,125 +680,135 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 | 510 | Sözcükte Anlam `SOZCUKTE_ANLAM` | 28 | ✓ | ✓ | · | · | ✓ | 211 (179 / 16) |
 | 511 | Cümlede Anlam `CUMLEDE_ANLAM` | 42 | ✓ | ✓ | · | · | ✓ | 291 (273 / 38) |
 | 512 | Paragraf Bilgisi `PARAGRAFTA_ANLAM` | 18 | ✓ | ✓ | · | · | ✓ | 382 (329 / 183) |
-| 513 | Sözcükte Yapı `YAPI_BILGISI` | 5 | ✓ | ✓ | · | · | ✓ | 100 (96 / 11) |
-| 514 | Ses Bilgisi `SES_BILGISI` | 13 | ✓ | ✓ | · | · | ✓ | 104 (101 / 9) |
-| 515 | İsimler `ISIMLER` | 15 | ✓ | ✓ | · | · | ✓ | 67 (63 / 5) |
-| 516 | Sıfatlar `SIFATLAR` | 10 | ✓ | ✓ | · | · | ✓ | 114 (112 / 4) |
-| 517 | Zamirler `ZAMIRLER` | 8 | ✓ | ✓ | · | · | ✓ | 99 (99 / 2) |
-| 518 | Zarflar `ZARFLAR` | 6 | ✓ | ✓ | · | · | ✓ | 151 (148 / 1) |
-| 519 | Edat, Bağlaç ve Ünlem `EDAT_BAGLAC_UNLEM` | 8 | ✓ | ✓ | · | · | ✓ | 217 (216 / 3) |
-| 520 | Fiiller `FIILLER` | 14 | ✓ | ✓ | · | · | ✓ | 38 (38 / 4) |
-| 521 | Fiilimsiler `FIILIMSILER` | 7 | ✓ | ✓ | · | · | ✓ | 113 (112 / 4) |
-| 522 | Fiilde Çatı `FIILDE_CATI` | 11 | ✓ | ✓ | · | · | ✓ | 33 (31 / 1) |
-| 523 | Cümlenin Ögeleri `CUMLENIN_OGELERI` | 1 | ✓ | ✓ | · | · | ✓ | 69 (66 / 8) |
-| 524 | Cümle Türleri `CUMLE_TURLERI` | 1 | ✓ | ✓ | · | · | ✓ | 28 (25 / 3) |
-| 525 | Anlatım Bozukluğu `ANLATIM_BOZUKLUKLARI` | 17 | ✓ | ✓ | · | · | ✓ | 35 (34 / 8) |
-| 526 | Yazım Kuralları `YAZIM_KURALLARI` | 9 | ✓ | ✓ | · | · | ✓ | 109 (104 / 13) |
-| 527 | Noktalama İşaretleri `NOKTALAMA_ISARETLERI` | 12 | ✓ | ✓ | · | · | ✓ | 89 (85 / 10) |
-| 528 | Söz Sanatları `SOZ_SANATLARI` | 10 | ✓ | ✓ | · | · | ✓ | 13 (11 / 3) |
-| 529 | Sözel Mantık `SOZEL_MUHAKEME_MANTIK` | 1 | ✓ | ✓ | · | · | ✓ | 41 (34 / 26) |
+| 513 | Paragraf Bilgisi `PARAGRAF` | 21 | · | · | · | · | — | 0 (0 / 0) |
+| 514 | Sözcükte Yapı `YAPI_BILGISI` | 5 | ✓ | ✓ | · | · | ✓ | 100 (96 / 11) |
+| 515 | Ses Bilgisi `SES_BILGISI` | 13 | ✓ | ✓ | · | · | ✓ | 104 (101 / 9) |
+| 516 | İsimler `ISIMLER` | 15 | ✓ | ✓ | · | · | ✓ | 67 (63 / 5) |
+| 517 | Sıfatlar `SIFATLAR` | 10 | ✓ | ✓ | · | · | ✓ | 114 (112 / 4) |
+| 518 | Zamirler `ZAMIRLER` | 8 | ✓ | ✓ | · | · | ✓ | 99 (99 / 2) |
+| 519 | Zarflar `ZARFLAR` | 6 | ✓ | ✓ | · | · | ✓ | 151 (148 / 1) |
+| 520 | Edat, Bağlaç ve Ünlem `EDAT_BAGLAC_UNLEM` | 8 | ✓ | ✓ | · | · | ✓ | 217 (216 / 3) |
+| 521 | Fiiller `FIILLER` | 14 | ✓ | ✓ | · | · | ✓ | 38 (38 / 4) |
+| 522 | Fiilimsiler `FIILIMSILER` | 7 | ✓ | ✓ | · | · | ✓ | 113 (112 / 4) |
+| 523 | Fiilde Çatı `FIILDE_CATI` | 11 | ✓ | ✓ | · | · | ✓ | 33 (31 / 1) |
+| 524 | Cümlenin Ögeleri `CUMLENIN_OGELERI` | 1 | ✓ | ✓ | · | · | ✓ | 69 (66 / 8) |
+| 525 | Cümle Türleri `CUMLE_TURLERI` | 1 | ✓ | ✓ | · | · | ✓ | 28 (25 / 3) |
+| 526 | Anlatım Bozukluğu `ANLATIM_BOZUKLUKLARI` | 17 | ✓ | ✓ | · | · | ✓ | 35 (34 / 8) |
+| 527 | Yazım Kuralları `YAZIM_KURALLARI` | 9 | ✓ | ✓ | · | · | ✓ | 109 (104 / 13) |
+| 528 | Noktalama İşaretleri `NOKTALAMA_ISARETLERI` | 12 | ✓ | ✓ | · | · | ✓ | 89 (85 / 10) |
+| 529 | Söz Sanatları `SOZ_SANATLARI` | 10 | ✓ | ✓ | · | · | ✓ | 13 (11 / 3) |
+| 530 | Sözel Mantık `SOZEL_MUHAKEME_MANTIK` | 1 | ✓ | ✓ | · | · | ✓ | 41 (34 / 26) |
 
 ### Matematik (MAT)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 530 | Temel Kavramlar `TEMEL_KAVRAMLAR` | 13 | ✓ | ✓ | · | · | ✓ | 153 (130 / 24) |
-| 531 | Bölme ve Bölünebilme `BOLME_BOLUNEBILME` | 11 | ✓ | ✓ | · | · | ✓ | 101 (98 / 6) |
-| 532 | Asal Çarpanlara Ayırma `ASAL_CARPANLARA_AYIRMA` | 6 | ✓ | ✓ | · | · | — | 52 (48 / 5) |
-| 533 | OBEB–OKEK `EBOB_EKOK` | 7 | ✓ | ✓ | · | · | ✓ | 180 (176 / 7) |
-| 534 | Rasyonel Sayılar `RASYONEL_SAYILAR` | 2 | ✓ | ✓ | · | · | ✓ | 64 (59 / 6) |
-| 535 | Basit Eşitsizlikler `BASIT_ESITSIZLIKLER` | 6 | ✓ | ✓ | · | · | — | 46 (42 / 11) |
-| 536 | Mutlak Değer `MUTLAK_DEGER` | 5 | ✓ | ✓ | · | · | ✓ | 57 (53 / 7) |
-| 537 | Üslü Sayılar `USLU_SAYILAR` | 7 | ✓ | ✓ | · | · | ✓ | 70 (67 / 11) |
-| 538 | Köklü Sayılar `KOKLU_SAYILAR` | 7 | ✓ | ✓ | · | · | ✓ | 38 (38 / 2) |
-| 539 | Çarpanlara Ayırma `CARPANLARA_AYIRMA` | 6 | ✓ | ✓ | · | · | ✓ | 37 (34 / 5) |
-| 540 | Oran–Orantı `ORAN_ORANTI` | 7 | ✓ | ✓ | · | · | ✓ | 92 (89 / 7) |
-| 541 | Birinci Dereceden Denklemler `DENKLEMLER` | 5 | ✓ | ✓ | · | · | ✓ | 127 (117 / 15) |
-| 542 | Problemler `PROBLEMLER` | 14 | ✓ | ✓ | · | · | ✓ | 548 (508 / 82) |
-| 543 | Kümeler `KUMELER` | 11 | ✓ | ✓ | · | · | ✓ | 57 (53 / 8) |
-| 544 | İşlem ve Modüler Aritmetik `ISLEM_MODULER_ARITMETIK` | 2 | ✓ | ✓ | · | · | ✓ | 17 (12 / 7) |
-| 545 | Fonksiyon `FONKSIYONLAR` | 10 | ✓ | ✓ | · | · | ✓ | 26 (20 / 9) |
-| 546 | Permütasyon, Kombinasyon ve Olasılık `PERMUTASYON_KOMBINASYON_OLASILIK` | 8 | ✓ | ✓ | · | · | ✓ | 63 (58 / 18) |
-| 547 | Sayısal Mantık `SAYISAL_MANTIK` | 6 | ✓ | ✓ | · | · | — | 172 (161 / 29) |
+| 531 | Temel Kavramlar `TEMEL_KAVRAMLAR` | 13 | ✓ | ✓ | · | · | ✓ | 153 (130 / 24) |
+| 532 | Bölme ve Bölünebilme `BOLME_BOLUNEBILME` | 11 | ✓ | ✓ | · | · | ✓ | 101 (98 / 6) |
+| 533 | Asal Çarpanlara Ayırma `ASAL_CARPANLARA_AYIRMA` | 6 | ✓ | ✓ | · | · | — | 52 (48 / 5) |
+| 534 | OBEB–OKEK `EBOB_EKOK` | 7 | ✓ | ✓ | · | · | ✓ | 180 (176 / 7) |
+| 535 | Rasyonel Sayılar `RASYONEL_SAYILAR` | 2 | ✓ | ✓ | · | · | ✓ | 64 (59 / 6) |
+| 536 | Basit Eşitsizlikler `BASIT_ESITSIZLIKLER` | 6 | ✓ | ✓ | · | · | — | 46 (42 / 11) |
+| 537 | Mutlak Değer `MUTLAK_DEGER` | 5 | ✓ | ✓ | · | · | ✓ | 57 (53 / 7) |
+| 538 | Üslü Sayılar `USLU_SAYILAR` | 7 | ✓ | ✓ | · | · | ✓ | 70 (67 / 11) |
+| 539 | Köklü Sayılar `KOKLU_SAYILAR` | 7 | ✓ | ✓ | · | · | ✓ | 38 (38 / 2) |
+| 540 | Çarpanlara Ayırma `CARPANLARA_AYIRMA` | 6 | ✓ | ✓ | · | · | ✓ | 37 (34 / 5) |
+| 541 | Oran–Orantı `ORAN_ORANTI` | 7 | ✓ | ✓ | · | · | ✓ | 92 (89 / 7) |
+| 542 | Birinci Dereceden Denklemler `DENKLEMLER` | 5 | ✓ | ✓ | · | · | ✓ | 127 (117 / 15) |
+| 543 | Problemler `PROBLEMLER` | 14 | ✓ | ✓ | · | · | ✓ | 548 (508 / 82) |
+| 544 | Kümeler `KUMELER` | 11 | ✓ | ✓ | · | · | ✓ | 57 (53 / 8) |
+| 545 | İşlem ve Modüler Aritmetik `ISLEM_MODULER_ARITMETIK` | 2 | ✓ | ✓ | · | · | ✓ | 17 (12 / 7) |
+| 546 | Fonksiyon `FONKSIYONLAR` | 10 | ✓ | ✓ | · | · | ✓ | 26 (20 / 9) |
+| 547 | Permütasyon, Kombinasyon ve Olasılık `PERMUTASYON_KOMBINASYON_OLASILIK` | 8 | ✓ | ✓ | · | · | ✓ | 63 (58 / 18) |
+| 548 | Sayısal Mantık `SAYISAL_MANTIK` | 6 | ✓ | ✓ | · | · | — | 172 (161 / 29) |
 
 ### Tarih (TAR)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 548 | İslamiyet Öncesi Türk Tarihi `TAR_ISLAM_ONCESI` | 15 | ✓ | ✓ | · | · | ✓ | 696 (669 / 15) |
-| 549 | Türk-İslam Tarihi `TAR_ILK_TURK_ISLAM` | 13 | ✓ | ✓ | · | · | ✓ | 659 (649 / 17) |
-| 550 | Türkiye Tarihi `TAR_TURKIYE` | 9 | ✓ | ✓ | · | · | ✓ | 541 (537 / 7) |
-| 551 | Osmanlı Devleti Kuruluş Dönemi `TAR_OSM_KURULUS` | 11 | ✓ | ✓ | · | · | ✓ | 934 (932 / 4) |
-| 552 | Osmanlı Devleti Yükselme Dönemi `TAR_OSM_YUKSELME` | 12 | ✓ | ✓ | · | · | ✓ | 147 (139 / 4) |
-| 553 | Osmanlı Devleti Kültür ve Medeniyeti `TAR_OSM_KULTUR_UYGARLIK` | 13 | ✓ | ✓ | · | · | ✓ | 1369 (1345 / 41) |
-| 554 | Osmanlı Devleti Duraklama Dönemi `TAR_OSM_17` | 11 | ✓ | ✓ | · | · | ✓ | 633 (629 / 5) |
-| 555 | Osmanlı Devleti Gerileme Dönemi `TAR_OSM_18` | 10 | ✓ | ✓ | · | · | ✓ | 626 (622 / 9) |
-| 556 | Osmanlı Devleti Dağılma Dönemi `TAR_OSM_19` | 14 | ✓ | ✓ | · | · | ✓ | 659 (639 / 41) |
-| 557 | Mustafa Kemal Atatürk’ün Hayatı `TAR_ATATURK_HAYATI` | 9 | ✓ | ✓ | · | · | ✓ | 34 (27 / 7) |
-| 558 | Millî Mücadele Dönemi `TAR_MILLI_MUCADELE` | 24 | ✓ | ✓ | · | · | ✓ | 1118 (1084 / 69) |
-| 559 | Cumhuriyet Dönemi İç Politika `TAR_CUMHURIYET_IC` | 10 | ✓ | ✓ | · | · | ✓ | 299 (296 / 18) |
-| 560 | Atatürk Dönemi Dış Politika `TAR_ATATURK_DIS_POLITIKA` | 9 | ✓ | ✓ | · | · | ✓ | 180 (175 / 18) |
-| 561 | Atatürk İlkeleri `TAR_ATATURK_ILKELERI` | 10 | ✓ | ✓ | · | · | ✓ | 286 (283 / 18) |
-| 562 | Atatürk İnkılapları `TAR_ATATURK_INKILAPLARI` | 13 | ✓ | ✓ | · | · | ✓ | 244 (235 / 26) |
-| 563 | Çağdaş Türk ve Dünya Tarihi `TAR_CAGDAS_TURK_DUNYA` | 9 | ✓ | ✓ | · | · | — | 253 (245 / 27) |
+| 549 | İslamiyet Öncesi Türk Tarihi `TAR_ISLAM_ONCESI` | 15 | ✓ | ✓ | · | · | ✓ | 696 (669 / 15) |
+| 550 | Türk-İslam Tarihi `TAR_ILK_TURK_ISLAM` | 13 | ✓ | ✓ | · | · | ✓ | 659 (649 / 17) |
+| 551 | Türkiye Tarihi `TAR_TURKIYE` | 9 | ✓ | ✓ | · | · | ✓ | 541 (537 / 7) |
+| 552 | Osmanlı Devleti Kuruluş Dönemi `TAR_OSM_KURULUS` | 11 | ✓ | ✓ | · | · | ✓ | 934 (932 / 4) |
+| 553 | Osmanlı Devleti Yükselme Dönemi `TAR_OSM_YUKSELME` | 12 | ✓ | ✓ | · | · | ✓ | 147 (139 / 4) |
+| 554 | Osmanlı Devleti Kültür ve Medeniyeti `TAR_OSM_KULTUR_UYGARLIK` | 13 | ✓ | ✓ | · | · | ✓ | 1369 (1345 / 41) |
+| 555 | Osmanlı Devleti Duraklama Dönemi `TAR_OSM_17` | 11 | ✓ | ✓ | · | · | ✓ | 633 (629 / 5) |
+| 556 | Osmanlı Devleti Gerileme Dönemi `TAR_OSM_18` | 10 | ✓ | ✓ | · | · | ✓ | 626 (622 / 9) |
+| 557 | Avrupa’daki Gelişmelerin Osmanlı Devleti’ne Etkileri `TAR_OSM_AVRUPA_ETKI` | 9 | · | · | · | · | — | 0 (0 / 0) |
+| 558 | Osmanlı Devleti Dağılma Dönemi `TAR_OSM_19` | 14 | ✓ | ✓ | · | · | ✓ | 659 (639 / 41) |
+| 559 | Mustafa Kemal Atatürk’ün Hayatı `TAR_ATATURK_HAYATI` | 9 | ✓ | ✓ | · | · | ✓ | 34 (27 / 7) |
+| 560 | I. Dünya Savaşı ve Sonuçları `TAR_1_DUNYA_SAVASI` | 7 | · | · | · | · | — | 0 (0 / 0) |
+| 561 | Mondros Ateşkes Antlaşması ve Cemiyetler `TAR_MONDROS_CEMIYETLER` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 562 | Kurtuluş Savaşı Hazırlık Dönemi `TAR_KURTULUS_HAZIRLIK` | 8 | · | · | · | · | — | 0 (0 / 0) |
+| 563 | I. TBMM Dönemi `TAR_TBMM_1` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 564 | Kurtuluş Savaşı Muharebeler Dönemi `TAR_KURTULUS_MUHAREBELER` | 9 | · | · | · | · | — | 0 (0 / 0) |
+| 565 | Millî Mücadele Dönemi `TAR_MILLI_MUCADELE` | 24 | ✓ | ✓ | · | · | ✓ | 1118 (1084 / 69) |
+| 566 | Cumhuriyet Dönemi İç Politika `TAR_CUMHURIYET_IC` | 10 | ✓ | ✓ | · | · | ✓ | 299 (296 / 18) |
+| 567 | Atatürk Dönemi Dış Politika `TAR_ATATURK_DIS_POLITIKA` | 9 | ✓ | ✓ | · | · | ✓ | 180 (175 / 18) |
+| 568 | Atatürk İlkeleri `TAR_ATATURK_ILKELERI` | 10 | ✓ | ✓ | · | · | ✓ | 286 (283 / 18) |
+| 569 | Atatürk İnkılapları `TAR_ATATURK_INKILAPLARI` | 13 | ✓ | ✓ | · | · | ✓ | 244 (235 / 26) |
+| 570 | Çağdaş Türk ve Dünya Tarihi `TAR_CAGDAS_TURK_DUNYA` | 9 | ✓ | ✓ | · | · | — | 253 (245 / 27) |
 
 ### Geometri (GEO)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 564 | Doğruda Açılar `GEO_DOGRU_ACI` | 7 | ✓ | ✓ | · | · | ✓ | 85 (85 / 1) |
-| 565 | Üçgende Açılar `GEO_UCGEN_ACI` | 6 | ✓ | ✓ | · | · | ✓ | 67 (67 / 4) |
-| 566 | Üçgende Açı-Kenar Bağıntıları `GEO_ACI_KENAR` | 4 | ✓ | ✓ | · | · | ✓ | 6 (6 / 1) |
-| 567 | Üçgende Eşlik ve Benzerlik `GEO_UCGEN_BENZERLIK` | 7 | ✓ | ✓ | · | · | ✓ | 10 (10 / 1) |
-| 568 | Üçgenin Yardımcı Elemanları `GEO_YARDIMCI_ELEMANLAR` | 8 | ✓ | ✓ | · | · | ✓ | 11 (11 / 0) |
-| 569 | Dik Üçgen ve Trigonometri `GEO_DIK_UCGEN_TRIG` | 9 | ✓ | ✓ | · | · | ✓ | 44 (44 / 3) |
-| 570 | Üçgenin Alanı `GEO_UCGEN_ALAN` | 6 | ✓ | ✓ | · | · | ✓ | 16 (12 / 7) |
-| 571 | Çokgenler `GEO_COKGEN` | 5 | ✓ | ✓ | · | · | ✓ | 10 (8 / 3) |
-| 572 | Çember `GEO_CEMBER` | 11 | ✓ | ✓ | · | · | ✓ | 21 (18 / 7) |
-| 573 | Prizmalar `GEO_PRIZMALAR` | 7 | ✓ | ✓ | · | · | ✓ | 11 (10 / 3) |
-| 574 | Doğrunun Analitik İncelenmesi `GEO_ANALITIK` | 8 | ✓ | ✓ | · | · | ✓ | 27 (22 / 7) |
+| 571 | Doğruda Açılar `GEO_DOGRU_ACI` | 7 | ✓ | ✓ | · | · | ✓ | 85 (85 / 1) |
+| 572 | Üçgende Açılar `GEO_UCGEN_ACI` | 6 | ✓ | ✓ | · | · | ✓ | 67 (67 / 4) |
+| 573 | Üçgende Açı-Kenar Bağıntıları `GEO_ACI_KENAR` | 4 | ✓ | ✓ | · | · | ✓ | 6 (6 / 1) |
+| 574 | Üçgende Eşlik ve Benzerlik `GEO_UCGEN_BENZERLIK` | 7 | ✓ | ✓ | · | · | ✓ | 10 (10 / 1) |
+| 575 | Üçgenin Yardımcı Elemanları `GEO_YARDIMCI_ELEMANLAR` | 8 | ✓ | ✓ | · | · | ✓ | 11 (11 / 0) |
+| 576 | Dik Üçgen ve Trigonometri `GEO_DIK_UCGEN_TRIG` | 9 | ✓ | ✓ | · | · | ✓ | 44 (44 / 3) |
+| 577 | Üçgenin Alanı `GEO_UCGEN_ALAN` | 6 | ✓ | ✓ | · | · | ✓ | 16 (12 / 7) |
+| 578 | Çokgenler `GEO_COKGEN` | 5 | ✓ | ✓ | · | · | ✓ | 10 (8 / 3) |
+| 579 | Dörtgenler `GEO_DORTGEN` | 8 | · | · | · | · | — | 0 (0 / 0) |
+| 580 | Çember `GEO_CEMBER` | 11 | ✓ | ✓ | · | · | ✓ | 21 (18 / 7) |
+| 581 | Prizmalar `GEO_PRIZMALAR` | 7 | ✓ | ✓ | · | · | ✓ | 11 (10 / 3) |
+| 582 | Piramitler `GEO_PIRAMITLER` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 583 | Silindir `GEO_SILINDIR` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 584 | Doğrunun Analitik İncelenmesi `GEO_ANALITIK` | 8 | ✓ | ✓ | · | · | ✓ | 27 (22 / 7) |
 
 ### Coğrafya (COG)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 575 | Türkiye’nin Coğrafi Konumu `COG_KONUM` | 4 | ✓ | ✓ | · | · | ✓ | 625 (610 / 6) |
-| 576 | Türkiye’nin Özel Tarihlerdeki Durumu `COG_OZEL_TARIH` | 9 | ✓ | ✓ | · | · | ✓ | 20 (12 / 4) |
-| 577 | Türkiye’nin Jeolojik Zamanlardaki Durumu `COG_JEOLOJIK_ZAMAN` | 8 | ✓ | ✓ | · | · | ✓ | 12 (9 / 2) |
-| 578 | Türkiye’de İç Kuvvetler `COG_IC_KUVVETLER` | 8 | ✓ | ✓ | · | · | ✓ | 16 (12 / 5) |
-| 579 | Türkiye’de Dış Kuvvetler `COG_DIS_KUVVETLER` | 7 | ✓ | ✓ | · | · | ✓ | 29 (24 / 5) |
-| 580 | Türkiye’de Başlıca Yüzey Şekilleri `COG_YUZEY_SEKILLERI` | 8 | ✓ | ✓ | · | · | ✓ | 347 (342 / 23) |
-| 581 | Türkiye’nin Su Varlığı `COG_SU_VARLIGI` | 8 | ✓ | ✓ | · | · | ✓ | 20 (17 / 6) |
-| 582 | Türkiye’de Topraklar `COG_TOPRAKLAR` | 7 | ✓ | ✓ | · | · | ✓ | 29 (26 / 8) |
-| 583 | Türkiye’de Bitkiler `COG_BITKILER` | 8 | ✓ | ✓ | · | · | ✓ | 156 (152 / 7) |
-| 584 | Türkiye’nin İklimi `COG_IKLIM` | 9 | ✓ | ✓ | · | · | ✓ | 700 (691 / 11) |
-| 585 | Türkiye’de Doğal Afetler `COG_DOGAL_AFETLER` | 9 | ✓ | ✓ | · | · | ✓ | 16 (15 / 4) |
-| 586 | Türkiye’de Nüfus `COG_NUFUS` | 8 | ✓ | ✓ | · | · | ✓ | 159 (150 / 19) |
-| 587 | Türkiye’de Göçler ve Mekânsal Etkileri `COG_GOCLER` | 8 | ✓ | ✓ | · | · | ✓ | 68 (66 / 6) |
-| 588 | Türkiye’de Yerleşme `COG_YERLESME` | 7 | ✓ | ✓ | · | · | ✓ | 502 (496 / 6) |
-| 589 | Türkiye’de Tarım ve Ekonomi `COG_TARIM_EKONOMI` | 11 | ✓ | ✓ | · | · | ✓ | 331 (325 / 20) |
-| 590 | Türkiye’de Hayvancılık `COG_HAYVANCILIK` | 8 | ✓ | ✓ | · | · | ✓ | 315 (311 / 9) |
-| 591 | Türkiye’de Madenler ve Enerji Kaynakları `COG_MADEN_ENERJI` | 15 | ✓ | ✓ | · | · | ✓ | 307 (301 / 21) |
-| 592 | Türkiye’de Sanayi `COG_SANAYI` | 10 | ✓ | ✓ | · | · | ✓ | 491 (488 / 13) |
-| 593 | Türkiye’de Ulaşım `COG_ULASIM` | 9 | ✓ | ✓ | · | · | ✓ | 823 (814 / 9) |
-| 594 | Türkiye’de Ticaret `COG_TICARET` | 7 | ✓ | ✓ | · | · | ✓ | 186 (184 / 5) |
-| 595 | Türkiye’de Turizm `COG_TURIZM` | 9 | ✓ | ✓ | · | · | ✓ | 316 (304 / 11) |
-| 596 | Türkiye’de Bölgeler `COG_BOLGELER` | 11 | ✓ | ✓ | · | · | ✓ | 320 (315 / 7) |
-| 597 | Türkiye’nin Jeopolitik Konumu `COG_JEOPOLITIK` | 7 | ✓ | ✓ | · | · | ✓ | 20 (16 / 8) |
+| 585 | Türkiye’nin Coğrafi Konumu `COG_KONUM` | 4 | ✓ | ✓ | · | · | ✓ | 625 (610 / 6) |
+| 586 | Türkiye’nin Özel Tarihlerdeki Durumu `COG_OZEL_TARIH` | 9 | ✓ | ✓ | · | · | ✓ | 20 (12 / 4) |
+| 587 | Türkiye’nin Jeolojik Zamanlardaki Durumu `COG_JEOLOJIK_ZAMAN` | 8 | ✓ | ✓ | · | · | ✓ | 12 (9 / 2) |
+| 588 | Türkiye’de İç Kuvvetler `COG_IC_KUVVETLER` | 8 | ✓ | ✓ | · | · | ✓ | 16 (12 / 5) |
+| 589 | Türkiye’de Dış Kuvvetler `COG_DIS_KUVVETLER` | 7 | ✓ | ✓ | · | · | ✓ | 29 (24 / 5) |
+| 590 | Türkiye’de Başlıca Yüzey Şekilleri `COG_YUZEY_SEKILLERI` | 8 | ✓ | ✓ | · | · | ✓ | 347 (342 / 23) |
+| 591 | Türkiye’nin Su Varlığı `COG_SU_VARLIGI` | 8 | ✓ | ✓ | · | · | ✓ | 20 (17 / 6) |
+| 592 | Türkiye’de Topraklar `COG_TOPRAKLAR` | 7 | ✓ | ✓ | · | · | ✓ | 29 (26 / 8) |
+| 593 | Türkiye’de Bitkiler `COG_BITKILER` | 8 | ✓ | ✓ | · | · | ✓ | 156 (152 / 7) |
+| 594 | Türkiye’nin İklimi `COG_IKLIM` | 9 | ✓ | ✓ | · | · | ✓ | 700 (691 / 11) |
+| 595 | Türkiye’de Doğal Afetler `COG_DOGAL_AFETLER` | 9 | ✓ | ✓ | · | · | ✓ | 16 (15 / 4) |
+| 596 | Türkiye’de Nüfus `COG_NUFUS` | 8 | ✓ | ✓ | · | · | ✓ | 159 (150 / 19) |
+| 597 | Türkiye’de Göçler ve Mekânsal Etkileri `COG_GOCLER` | 8 | ✓ | ✓ | · | · | ✓ | 68 (66 / 6) |
+| 598 | Türkiye’de Yerleşme `COG_YERLESME` | 7 | ✓ | ✓ | · | · | ✓ | 502 (496 / 6) |
+| 599 | Türkiye’de Tarım ve Ekonomi `COG_TARIM_EKONOMI` | 11 | ✓ | ✓ | · | · | ✓ | 331 (325 / 20) |
+| 600 | Türkiye’de Hayvancılık `COG_HAYVANCILIK` | 8 | ✓ | ✓ | · | · | ✓ | 315 (311 / 9) |
+| 601 | Türkiye’de Madenler ve Enerji Kaynakları `COG_MADEN_ENERJI` | 15 | ✓ | ✓ | · | · | ✓ | 307 (301 / 21) |
+| 602 | Türkiye’de Sanayi `COG_SANAYI` | 10 | ✓ | ✓ | · | · | ✓ | 491 (488 / 13) |
+| 603 | Türkiye’de Ulaşım `COG_ULASIM` | 9 | ✓ | ✓ | · | · | ✓ | 823 (814 / 9) |
+| 604 | Türkiye’de Ticaret `COG_TICARET` | 7 | ✓ | ✓ | · | · | ✓ | 186 (184 / 5) |
+| 605 | Türkiye’de Turizm `COG_TURIZM` | 9 | ✓ | ✓ | · | · | ✓ | 316 (304 / 11) |
+| 606 | Türkiye’de Bölgeler `COG_BOLGELER` | 11 | ✓ | ✓ | · | · | ✓ | 320 (315 / 7) |
+| 607 | Türkiye’nin Jeopolitik Konumu `COG_JEOPOLITIK` | 7 | ✓ | ✓ | · | · | ✓ | 20 (16 / 8) |
 
 ### Vatandaşlık (VAT)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 598 | Hukukun Temel Kavramları `VAT_HUKUK_TEMEL` | 9 | ✓ | ✓ | · | · | ✓ | 420 (395 / 23) |
-| 599 | Anayasa Hukukuna Giriş `VAT_ANAYASA_GIRIS_TARIH` | 11 | ✓ | ✓ | · | · | ✓ | 414 (410 / 12) |
-| 600 | Temel Hak ve Hürriyetler `VAT_TEMEL_HAKLAR` | 2 | ✓ | ✓ | · | · | ✓ | 268 (262 / 8) |
-| 601 | Yasama `VAT_YASAMA` | 6 | ✓ | ✓ | · | · | ✓ | 375 (369 / 14) |
-| 602 | Yürütme `VAT_YURUTME` | 5 | ✓ | ✓ | · | · | ✓ | 379 (369 / 15) |
-| 603 | Yargı `VAT_YARGI` | 9 | ✓ | ✓ | · | · | ✓ | 376 (368 / 16) |
-| 604 | İdare Hukuku `VAT_IDARE_HUKUKU` | 4 | ✓ | ✓ | · | · | ✓ | 820 (807 / 26) |
-| 605 | Güncel Bilgiler `VAT_GUNCEL_BILGILER` | 13 | ✓ | ✓ | · | · | ✓ | 1520 (1508 / 43) |
-| 606 | Temel Ekonomi Bilgisi `VAT_EKONOMI` | 3 | ✓ | ✓ | · | · | — | 203 (203 / 2) |
+| 608 | Hukukun Temel Kavramları `VAT_HUKUK_TEMEL` | 9 | ✓ | ✓ | · | · | ✓ | 420 (395 / 23) |
+| 609 | Anayasa Hukukuna Giriş `VAT_ANAYASA_GIRIS_TARIH` | 11 | ✓ | ✓ | · | · | ✓ | 414 (410 / 12) |
+| 610 | Temel Hak ve Hürriyetler `VAT_TEMEL_HAKLAR` | 2 | ✓ | ✓ | · | · | ✓ | 268 (262 / 8) |
+| 611 | Yasama `VAT_YASAMA` | 6 | ✓ | ✓ | · | · | ✓ | 375 (369 / 14) |
+| 612 | Yürütme `VAT_YURUTME` | 5 | ✓ | ✓ | · | · | ✓ | 379 (369 / 15) |
+| 613 | Yargı `VAT_YARGI` | 9 | ✓ | ✓ | · | · | ✓ | 376 (368 / 16) |
+| 614 | İdare Hukuku `VAT_IDARE_HUKUKU` | 4 | ✓ | ✓ | · | · | ✓ | 820 (807 / 26) |
+| 615 | Güncel Bilgiler `VAT_GUNCEL_BILGILER` | 13 | ✓ | ✓ | · | · | ✓ | 1520 (1508 / 43) |
+| 616 | Temel Ekonomi Bilgisi `VAT_EKONOMI` | 3 | ✓ | ✓ | · | · | — | 203 (203 / 2) |
 
 ## KPSS · KPSS Önlisans (0/81 video)
 
@@ -806,112 +816,112 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 607 | Sözcükte Anlam `SOZCUKTE_ANLAM` | 15 | ✓ | ✓ | · | · | ✓ | 1242 (1241 / 18) |
-| 608 | Cümlede Anlam `CUMLEDE_ANLAM` | 19 | ✓ | ✓ | · | · | ✓ | 2600 (2594 / 34) |
-| 609 | Paragraf Bilgisi `PARAGRAF` | 21 | ✓ | ✓ | · | · | ✓ | 1074 (1061 / 144) |
-| 610 | Sözcükte Yapı `YAPI_BILGISI` | 8 | ✓ | ✓ | · | · | ✓ | 682 (682 / 4) |
-| 611 | Ses Bilgisi `SES_BILGISI` | 12 | ✓ | ✓ | · | · | ✓ | 553 (552 / 6) |
-| 612 | İsimler `ISIMLER` | 5 | ✓ | ✓ | · | · | ✓ | 75 (75 / 1) |
-| 613 | Sıfatlar `SIFATLAR` | 7 | ✓ | ✓ | · | · | ✓ | 85 (84 / 2) |
-| 614 | Zamirler `ZAMIRLER` | 7 | ✓ | ✓ | · | · | ✓ | 20 (20 / 2) |
-| 615 | Zarflar `ZARFLAR` | 5 | ✓ | ✓ | · | · | ✓ | 215 (214 / 3) |
-| 616 | Edat, Bağlaç ve Ünlem `EDAT_BAGLAC_UNLEM` | 6 | ✓ | ✓ | · | · | ✓ | 94 (92 / 0) |
-| 617 | Fiiller `FIILLER` | 8 | ✓ | ✓ | · | · | ✓ | 88 (88 / 0) |
-| 618 | Fiilimsiler `FIILIMSILER` | 5 | ✓ | ✓ | · | · | ✓ | 571 (571 / 6) |
-| 619 | Fiilde Çatı `FIILDE_CATI` | 4 | ✓ | ✓ | · | · | ✓ | 190 (189 / 1) |
-| 620 | Cümlenin Ögeleri `CUMLENIN_OGELERI` | 8 | ✓ | ✓ | · | · | ✓ | 615 (614 / 10) |
-| 621 | Cümle Türleri `CUMLE_TURLERI` | 8 | ✓ | ✓ | · | · | ✓ | 151 (150 / 3) |
-| 622 | Anlatım Bozukluğu `ANLATIM_BOZUKLUGU` | 11 | ✓ | ✓ | · | · | ✓ | 449 (448 / 7) |
-| 623 | Yazım Kuralları `YAZIM_KURALLARI` | 10 | ✓ | ✓ | · | · | ✓ | 975 (974 / 11) |
-| 624 | Noktalama İşaretleri `NOKTALAMA` | 13 | ✓ | ✓ | · | · | ✓ | 795 (794 / 9) |
-| 625 | Söz Sanatları `SOZ_SANATLARI` | 9 | ✓ | ✓ | · | · | ✓ | 22 (22 / 4) |
-| 626 | Sözel Mantık `SOZEL_MANTIK` | 8 | ✓ | ✓ | · | · | ✓ | 183 (179 / 29) |
+| 617 | Sözcükte Anlam `SOZCUKTE_ANLAM` | 15 | ✓ | ✓ | · | · | ✓ | 1242 (1241 / 18) |
+| 618 | Cümlede Anlam `CUMLEDE_ANLAM` | 19 | ✓ | ✓ | · | · | ✓ | 2600 (2594 / 34) |
+| 619 | Paragraf Bilgisi `PARAGRAF` | 21 | ✓ | ✓ | · | · | ✓ | 1074 (1061 / 144) |
+| 620 | Sözcükte Yapı `YAPI_BILGISI` | 8 | ✓ | ✓ | · | · | ✓ | 682 (682 / 4) |
+| 621 | Ses Bilgisi `SES_BILGISI` | 12 | ✓ | ✓ | · | · | ✓ | 553 (552 / 6) |
+| 622 | İsimler `ISIMLER` | 5 | ✓ | ✓ | · | · | ✓ | 75 (75 / 1) |
+| 623 | Sıfatlar `SIFATLAR` | 7 | ✓ | ✓ | · | · | ✓ | 85 (84 / 2) |
+| 624 | Zamirler `ZAMIRLER` | 7 | ✓ | ✓ | · | · | ✓ | 20 (20 / 2) |
+| 625 | Zarflar `ZARFLAR` | 5 | ✓ | ✓ | · | · | ✓ | 215 (214 / 3) |
+| 626 | Edat, Bağlaç ve Ünlem `EDAT_BAGLAC_UNLEM` | 6 | ✓ | ✓ | · | · | ✓ | 94 (92 / 0) |
+| 627 | Fiiller `FIILLER` | 8 | ✓ | ✓ | · | · | ✓ | 88 (88 / 0) |
+| 628 | Fiilimsiler `FIILIMSILER` | 5 | ✓ | ✓ | · | · | ✓ | 571 (571 / 6) |
+| 629 | Fiilde Çatı `FIILDE_CATI` | 4 | ✓ | ✓ | · | · | ✓ | 190 (189 / 1) |
+| 630 | Cümlenin Ögeleri `CUMLENIN_OGELERI` | 8 | ✓ | ✓ | · | · | ✓ | 615 (614 / 10) |
+| 631 | Cümle Türleri `CUMLE_TURLERI` | 8 | ✓ | ✓ | · | · | ✓ | 151 (150 / 3) |
+| 632 | Anlatım Bozukluğu `ANLATIM_BOZUKLUGU` | 11 | ✓ | ✓ | · | · | ✓ | 449 (448 / 7) |
+| 633 | Yazım Kuralları `YAZIM_KURALLARI` | 10 | ✓ | ✓ | · | · | ✓ | 975 (974 / 11) |
+| 634 | Noktalama İşaretleri `NOKTALAMA` | 13 | ✓ | ✓ | · | · | ✓ | 795 (794 / 9) |
+| 635 | Söz Sanatları `SOZ_SANATLARI` | 9 | ✓ | ✓ | · | · | ✓ | 22 (22 / 4) |
+| 636 | Sözel Mantık `SOZEL_MANTIK` | 8 | ✓ | ✓ | · | · | ✓ | 183 (179 / 29) |
 
 ### Matematik (MAT)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 627 | Temel Kavramlar `TEMEL_KAVRAMLAR` | 8 | ✓ | ✓ | · | · | ✓ | 361 (360 / 20) |
-| 628 | Bölme ve Bölünebilme `BOLME_BOLUNEBILME` | 4 | ✓ | ✓ | · | · | ✓ | 1078 (1076 / 9) |
-| 629 | Asal Çarpanlara Ayırma `ASAL_CARPANLARA_AYIRMA` | 4 | ✓ | ✓ | · | · | — | 306 (306 / 2) |
-| 630 | OBEB–OKEK `EBOB_EKOK` | 4 | ✓ | ✓ | · | · | ✓ | 1118 (1118 / 2) |
-| 631 | Rasyonel Sayılar `RASYONEL_SAYILAR` | 6 | ✓ | ✓ | · | · | ✓ | 392 (389 / 9) |
-| 632 | Basit Eşitsizlikler `BASIT_ESITSIZLIKLER` | 4 | ✓ | ✓ | · | · | ✓ | 235 (233 / 3) |
-| 633 | Mutlak Değer `MUTLAK_DEGER` | 4 | ✓ | ✓ | · | · | ✓ | 300 (298 / 4) |
-| 634 | Üslü Sayılar `USLU_SAYILAR` | 4 | ✓ | ✓ | · | · | ✓ | 321 (319 / 16) |
-| 635 | Köklü Sayılar `KOKLU_SAYILAR` | 4 | ✓ | ✓ | · | · | ✓ | 214 (214 / 2) |
-| 636 | Çarpanlara Ayırma `CARPANLARA_AYIRMA` | 4 | ✓ | ✓ | · | · | ✓ | 216 (216 / 1) |
-| 637 | Oran–Orantı `ORAN_ORANTI` | 6 | ✓ | ✓ | · | · | ✓ | 591 (587 / 5) |
-| 638 | Birinci Dereceden Denklemler `DENKLEMLER` | 4 | ✓ | ✓ | · | · | ✓ | 717 (715 / 13) |
-| 639 | Problemler `PROBLEMLER` | 8 | ✓ | ✓ | · | · | ✓ | 2257 (2252 / 53) |
-| 640 | Kümeler `KUMELER` | 6 | ✓ | ✓ | · | · | ✓ | 271 (271 / 10) |
-| 641 | İşlem ve Modüler Aritmetik `ISLEM_MODULER_ARITMETIK` | 2 | ✓ | ✓ | · | · | ✓ | 88 (88 / 9) |
-| 642 | Fonksiyon `FONKSIYONLAR` | 5 | ✓ | ✓ | · | · | ✓ | 27 (25 / 7) |
-| 643 | Permütasyon, Kombinasyon ve Olasılık `PERMUTASYON_KOMBINASYON_OLASILIK` | 6 | ✓ | ✓ | · | · | ✓ | 262 (261 / 16) |
-| 644 | Sayısal Mantık `SAYISAL_MANTIK` | 6 | ✓ | ✓ | · | · | — | 414 (411 / 25) |
+| 637 | Temel Kavramlar `TEMEL_KAVRAMLAR` | 8 | ✓ | ✓ | · | · | ✓ | 361 (360 / 20) |
+| 638 | Bölme ve Bölünebilme `BOLME_BOLUNEBILME` | 4 | ✓ | ✓ | · | · | ✓ | 1078 (1076 / 9) |
+| 639 | Asal Çarpanlara Ayırma `ASAL_CARPANLARA_AYIRMA` | 4 | ✓ | ✓ | · | · | — | 306 (306 / 2) |
+| 640 | OBEB–OKEK `EBOB_EKOK` | 4 | ✓ | ✓ | · | · | ✓ | 1118 (1118 / 2) |
+| 641 | Rasyonel Sayılar `RASYONEL_SAYILAR` | 6 | ✓ | ✓ | · | · | ✓ | 392 (389 / 9) |
+| 642 | Basit Eşitsizlikler `BASIT_ESITSIZLIKLER` | 4 | ✓ | ✓ | · | · | ✓ | 235 (233 / 3) |
+| 643 | Mutlak Değer `MUTLAK_DEGER` | 4 | ✓ | ✓ | · | · | ✓ | 300 (298 / 4) |
+| 644 | Üslü Sayılar `USLU_SAYILAR` | 4 | ✓ | ✓ | · | · | ✓ | 321 (319 / 16) |
+| 645 | Köklü Sayılar `KOKLU_SAYILAR` | 4 | ✓ | ✓ | · | · | ✓ | 214 (214 / 2) |
+| 646 | Çarpanlara Ayırma `CARPANLARA_AYIRMA` | 4 | ✓ | ✓ | · | · | ✓ | 216 (216 / 1) |
+| 647 | Oran–Orantı `ORAN_ORANTI` | 6 | ✓ | ✓ | · | · | ✓ | 591 (587 / 5) |
+| 648 | Birinci Dereceden Denklemler `DENKLEMLER` | 4 | ✓ | ✓ | · | · | ✓ | 717 (715 / 13) |
+| 649 | Problemler `PROBLEMLER` | 8 | ✓ | ✓ | · | · | ✓ | 2257 (2252 / 53) |
+| 650 | Kümeler `KUMELER` | 6 | ✓ | ✓ | · | · | ✓ | 271 (271 / 10) |
+| 651 | İşlem ve Modüler Aritmetik `ISLEM_MODULER_ARITMETIK` | 2 | ✓ | ✓ | · | · | ✓ | 88 (88 / 9) |
+| 652 | Fonksiyon `FONKSIYONLAR` | 5 | ✓ | ✓ | · | · | ✓ | 27 (25 / 7) |
+| 653 | Permütasyon, Kombinasyon ve Olasılık `PERMUTASYON_KOMBINASYON_OLASILIK` | 6 | ✓ | ✓ | · | · | ✓ | 262 (261 / 16) |
+| 654 | Sayısal Mantık `SAYISAL_MANTIK` | 6 | ✓ | ✓ | · | · | — | 414 (411 / 25) |
 
 ### Tarih (TAR)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 645 | İslamiyet Öncesi Türk Tarihi `TAR_ISLAM_ONCESI` | 9 | ✓ | ✓ | · | · | ✓ | 674 (673 / 11) |
-| 646 | Türkiye Tarihi `TAR_TURKIYE` | 7 | ✓ | ✓ | · | · | ✓ | 534 (534 / 7) |
-| 647 | Türk-İslam Tarihi `TAR_ILK_TURK_ISLAM` | 7 | ✓ | ✓ | · | · | ✓ | 653 (651 / 14) |
-| 648 | Osmanlı Devleti’nin Genel Özellikleri `TAR_OSM_GENEL` | 7 | ✓ | ✓ | · | · | ✓ | 1032 (1031 / 9) |
-| 649 | Osmanlı Devleti’nin Kültür ve Uygarlığı `TAR_OSM_KULTUR_UYGARLIK` | 8 | ✓ | ✓ | · | · | ✓ | 1443 (1440 / 26) |
-| 650 | Osmanlı Devleti Duraklama Dönemi `TAR_OSM_17` | 6 | ✓ | ✓ | · | · | ✓ | 618 (618 / 6) |
-| 651 | Osmanlı Devleti Gerileme Dönemi `TAR_OSM_18` | 5 | ✓ | ✓ | · | · | ✓ | 619 (618 / 6) |
-| 652 | Avrupa’daki Gelişmelerin Osmanlı Devleti’ne Etkileri `TAR_OSM_AVRUPA_ETKI` | 9 | ✓ | ✓ | · | · | ✓ | 27 (26 / 7) |
-| 653 | Osmanlı Devleti Dağılma ve Çöküş Dönemi `TAR_OSM_19` | 10 | ✓ | ✓ | · | · | ✓ | 933 (929 / 30) |
-| 654 | Türkiye Cumhuriyeti İnkılap Tarihi `TAR_INKILAP` | 5 | ✓ | ✓ | · | · | ✓ | 93 (93 / 9) |
-| 655 | I. Dünya Savaşı ve Sonuçları `TAR_1_DUNYA_SAVASI` | 7 | ✓ | ✓ | · | · | ✓ | 46 (46 / 10) |
-| 656 | Mondros Ateşkes Antlaşması ve Cemiyetler `TAR_MONDROS_CEMIYETLER` | 5 | ✓ | ✓ | · | · | ✓ | 165 (161 / 8) |
-| 657 | Kurtuluş Savaşı Hazırlık Dönemi `TAR_KURTULUS_HAZIRLIK` | 8 | ✓ | ✓ | · | · | ✓ | 213 (211 / 23) |
-| 658 | I. TBMM Dönemi `TAR_TBMM_1` | 6 | ✓ | ✓ | · | · | ✓ | 393 (392 / 4) |
-| 659 | Kurtuluş Savaşı Muharebeler Dönemi `TAR_KURTULUS_MUHAREBELER` | 9 | ✓ | ✓ | · | · | ✓ | 360 (358 / 18) |
-| 660 | Atatürk İlkeleri `TAR_ATATURK_ILKELERI` | 7 | ✓ | ✓ | · | · | ✓ | 277 (277 / 16) |
-| 661 | İnkılaplar Dönemi `TAR_ATATURK_INKILAPLARI` | 5 | ✓ | ✓ | · | · | ✓ | 373 (373 / 27) |
-| 662 | Cumhuriyet Dönemi Dış Politika `TAR_ATATURK_DIS_POLITIKA` | 7 | ✓ | ✓ | · | · | ✓ | 203 (202 / 21) |
-| 663 | Çağdaş Türk ve Dünya Tarihi `TAR_CAGDAS_TURK_DUNYA` | 9 | ✓ | ✓ | · | · | — | 218 (215 / 20) |
+| 655 | İslamiyet Öncesi Türk Tarihi `TAR_ISLAM_ONCESI` | 9 | ✓ | ✓ | · | · | ✓ | 674 (673 / 11) |
+| 656 | Türkiye Tarihi `TAR_TURKIYE` | 7 | ✓ | ✓ | · | · | ✓ | 534 (534 / 7) |
+| 657 | Türk-İslam Tarihi `TAR_ILK_TURK_ISLAM` | 7 | ✓ | ✓ | · | · | ✓ | 653 (651 / 14) |
+| 658 | Osmanlı Devleti’nin Genel Özellikleri `TAR_OSM_GENEL` | 7 | ✓ | ✓ | · | · | ✓ | 1032 (1031 / 9) |
+| 659 | Osmanlı Devleti’nin Kültür ve Uygarlığı `TAR_OSM_KULTUR_UYGARLIK` | 8 | ✓ | ✓ | · | · | ✓ | 1443 (1440 / 26) |
+| 660 | Osmanlı Devleti Duraklama Dönemi `TAR_OSM_17` | 6 | ✓ | ✓ | · | · | ✓ | 618 (618 / 6) |
+| 661 | Osmanlı Devleti Gerileme Dönemi `TAR_OSM_18` | 5 | ✓ | ✓ | · | · | ✓ | 619 (618 / 6) |
+| 662 | Avrupa’daki Gelişmelerin Osmanlı Devleti’ne Etkileri `TAR_OSM_AVRUPA_ETKI` | 9 | ✓ | ✓ | · | · | ✓ | 27 (26 / 7) |
+| 663 | Osmanlı Devleti Dağılma ve Çöküş Dönemi `TAR_OSM_19` | 10 | ✓ | ✓ | · | · | ✓ | 933 (929 / 30) |
+| 664 | Türkiye Cumhuriyeti İnkılap Tarihi `TAR_INKILAP` | 5 | ✓ | ✓ | · | · | ✓ | 93 (93 / 9) |
+| 665 | I. Dünya Savaşı ve Sonuçları `TAR_1_DUNYA_SAVASI` | 7 | ✓ | ✓ | · | · | ✓ | 46 (46 / 10) |
+| 666 | Mondros Ateşkes Antlaşması ve Cemiyetler `TAR_MONDROS_CEMIYETLER` | 5 | ✓ | ✓ | · | · | ✓ | 165 (161 / 8) |
+| 667 | Kurtuluş Savaşı Hazırlık Dönemi `TAR_KURTULUS_HAZIRLIK` | 8 | ✓ | ✓ | · | · | ✓ | 213 (211 / 23) |
+| 668 | I. TBMM Dönemi `TAR_TBMM_1` | 6 | ✓ | ✓ | · | · | ✓ | 393 (392 / 4) |
+| 669 | Kurtuluş Savaşı Muharebeler Dönemi `TAR_KURTULUS_MUHAREBELER` | 9 | ✓ | ✓ | · | · | ✓ | 360 (358 / 18) |
+| 670 | Atatürk İlkeleri `TAR_ATATURK_ILKELERI` | 7 | ✓ | ✓ | · | · | ✓ | 277 (277 / 16) |
+| 671 | İnkılaplar Dönemi `TAR_ATATURK_INKILAPLARI` | 5 | ✓ | ✓ | · | · | ✓ | 373 (373 / 27) |
+| 672 | Cumhuriyet Dönemi Dış Politika `TAR_ATATURK_DIS_POLITIKA` | 7 | ✓ | ✓ | · | · | ✓ | 203 (202 / 21) |
+| 673 | Çağdaş Türk ve Dünya Tarihi `TAR_CAGDAS_TURK_DUNYA` | 9 | ✓ | ✓ | · | · | — | 218 (215 / 20) |
 
 ### Geometri (GEO)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 664 | Doğruda Açılar `GEO_DOGRU_ACI` | 4 | ✓ | ✓ | · | · | ✓ | 552 (552 / 3) |
-| 665 | Üçgenler `GEO_UCGENLER` | 4 | ✓ | ✓ | · | · | ✓ | 390 (390 / 0) |
-| 666 | Üçgende Açı-Kenar Bağıntıları `GEO_ACI_KENAR` | 3 | ✓ | ✓ | · | · | ✓ | 22 (22 / 0) |
-| 667 | Üçgende Eşlik `GEO_UCGEN_ESLIK` | 5 | ✓ | ✓ | · | · | ✓ | 4 (4 / 0) |
-| 668 | Üçgenin Yardımcı Elemanları `GEO_YARDIMCI_ELEMANLAR` | 5 | ✓ | ✓ | · | · | ✓ | 14 (14 / 0) |
-| 669 | Dik Üçgen ve Trigonometri `GEO_DIK_UCGEN_TRIG` | 5 | ✓ | ✓ | · | · | ✓ | 228 (228 / 0) |
-| 670 | Üçgenin Alanı `GEO_UCGEN_ALAN` | 4 | ✓ | ✓ | · | · | ✓ | 11 (10 / 3) |
-| 671 | Çokgenler `GEO_COKGEN` | 4 | ✓ | ✓ | · | · | ✓ | 8 (8 / 2) |
-| 672 | Dörtgenler `GEO_DORTGEN` | 8 | ✓ | ✓ | · | · | ✓ | 26 (26 / 6) |
-| 673 | Çember `GEO_CEMBER` | 6 | ✓ | ✓ | · | · | ✓ | 21 (20 / 4) |
-| 674 | Prizmalar `GEO_PRIZMALAR` | 6 | ✓ | ✓ | · | · | ✓ | 7 (7 / 5) |
-| 675 | Piramitler `GEO_PIRAMITLER` | 4 | ✓ | ✓ | · | · | ✓ | 4 (4 / 0) |
-| 676 | Silindir `GEO_SILINDIR` | 4 | ✓ | ✓ | · | · | ✓ | 5 (5 / 1) |
-| 677 | Doğrunun Analitik İncelenmesi `GEO_ANALITIK` | 6 | ✓ | ✓ | · | · | ✓ | 65 (64 / 5) |
+| 674 | Doğruda Açılar `GEO_DOGRU_ACI` | 4 | ✓ | ✓ | · | · | ✓ | 552 (552 / 3) |
+| 675 | Üçgenler `GEO_UCGENLER` | 4 | ✓ | ✓ | · | · | ✓ | 390 (390 / 0) |
+| 676 | Üçgende Açı-Kenar Bağıntıları `GEO_ACI_KENAR` | 3 | ✓ | ✓ | · | · | ✓ | 22 (22 / 0) |
+| 677 | Üçgende Eşlik `GEO_UCGEN_ESLIK` | 5 | ✓ | ✓ | · | · | ✓ | 4 (4 / 0) |
+| 678 | Üçgenin Yardımcı Elemanları `GEO_YARDIMCI_ELEMANLAR` | 5 | ✓ | ✓ | · | · | ✓ | 14 (14 / 0) |
+| 679 | Dik Üçgen ve Trigonometri `GEO_DIK_UCGEN_TRIG` | 5 | ✓ | ✓ | · | · | ✓ | 228 (228 / 0) |
+| 680 | Üçgenin Alanı `GEO_UCGEN_ALAN` | 4 | ✓ | ✓ | · | · | ✓ | 11 (10 / 3) |
+| 681 | Çokgenler `GEO_COKGEN` | 4 | ✓ | ✓ | · | · | ✓ | 8 (8 / 2) |
+| 682 | Dörtgenler `GEO_DORTGEN` | 8 | ✓ | ✓ | · | · | ✓ | 26 (26 / 6) |
+| 683 | Çember `GEO_CEMBER` | 6 | ✓ | ✓ | · | · | ✓ | 21 (20 / 4) |
+| 684 | Prizmalar `GEO_PRIZMALAR` | 6 | ✓ | ✓ | · | · | ✓ | 7 (7 / 5) |
+| 685 | Piramitler `GEO_PIRAMITLER` | 4 | ✓ | ✓ | · | · | ✓ | 4 (4 / 0) |
+| 686 | Silindir `GEO_SILINDIR` | 4 | ✓ | ✓ | · | · | ✓ | 5 (5 / 1) |
+| 687 | Doğrunun Analitik İncelenmesi `GEO_ANALITIK` | 6 | ✓ | ✓ | · | · | ✓ | 65 (64 / 5) |
 
 ### Coğrafya (COG)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 678 | Türkiye’nin Coğrafi Konumu `COG_KONUM` | 4 | ✓ | ✓ | · | · | ✓ | 627 (626 / 11) |
-| 679 | Türkiye’nin İklimi ve Bitki Örtüsü `COG_IKLIM_BITKI` | 6 | ✓ | ✓ | · | · | ✓ | 939 (935 / 15) |
-| 680 | Türkiye Beşerî Coğrafyası `COG_NUFUS_YERLESME` | 8 | ✓ | ✓ | · | · | ✓ | 673 (668 / 27) |
-| 681 | Türkiye’nin Yeryüzü Şekilleri `COG_YER_SEKILLERI` | 9 | ✓ | ✓ | · | · | ✓ | 380 (379 / 39) |
-| 682 | Türkiye’nin Ekonomik Coğrafyası `COG_EKONOMIK` | 16 | ✓ | ✓ | · | · | ✓ | 2759 (2750 / 77) |
-| 683 | Türkiye’nin Coğrafi Bölgeleri `COG_BOLGELER` | 11 | ✓ | ✓ | · | · | ✓ | 336 (334 / 9) |
+| 688 | Türkiye’nin Coğrafi Konumu `COG_KONUM` | 4 | ✓ | ✓ | · | · | ✓ | 627 (626 / 11) |
+| 689 | Türkiye’nin İklimi ve Bitki Örtüsü `COG_IKLIM_BITKI` | 6 | ✓ | ✓ | · | · | ✓ | 939 (935 / 15) |
+| 690 | Türkiye Beşerî Coğrafyası `COG_NUFUS_YERLESME` | 8 | ✓ | ✓ | · | · | ✓ | 673 (668 / 27) |
+| 691 | Türkiye’nin Yeryüzü Şekilleri `COG_YER_SEKILLERI` | 9 | ✓ | ✓ | · | · | ✓ | 380 (379 / 39) |
+| 692 | Türkiye’nin Ekonomik Coğrafyası `COG_EKONOMIK` | 16 | ✓ | ✓ | · | · | ✓ | 2759 (2750 / 77) |
+| 693 | Türkiye’nin Coğrafi Bölgeleri `COG_BOLGELER` | 11 | ✓ | ✓ | · | · | ✓ | 336 (334 / 9) |
 
 ### Vatandaşlık ve Güncel Bilgiler (VAT)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 684 | Vatandaşlık `VAT_VATANDASLIK` | 25 | ✓ | ✓ | · | · | ✓ | 3069 (3060 / 90) |
-| 685 | Güncel Bilgiler `VAT_GUNCEL_BILGILER` | 11 | ✓ | ✓ | · | · | ✓ | 1131 (1124 / 45) |
-| 686 | Değerlendirme `VAT_DEGERLENDIRME` | 6 | ✓ | ✓ | · | · | — | 27 (27 / 0) |
-| 687 | Temel Ekonomi Bilgisi `VAT_EKONOMI` | 3 | ✓ | ✓ | · | · | — | 215 (215 / 2) |
+| 694 | Vatandaşlık `VAT_VATANDASLIK` | 25 | ✓ | ✓ | · | · | ✓ | 3069 (3060 / 90) |
+| 695 | Güncel Bilgiler `VAT_GUNCEL_BILGILER` | 11 | ✓ | ✓ | · | · | ✓ | 1131 (1124 / 45) |
+| 696 | Değerlendirme `VAT_DEGERLENDIRME` | 6 | ✓ | ✓ | · | · | — | 27 (27 / 0) |
+| 697 | Temel Ekonomi Bilgisi `VAT_EKONOMI` | 3 | ✓ | ✓ | · | · | — | 215 (215 / 2) |
 
 ## KPSS · KPSS Ortaöğretim (0/81 video)
 
@@ -919,112 +929,112 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 688 | Sözcükte Anlam `SOZCUKTE_ANLAM` | 15 | ✓ | ✓ | · | · | ✓ | 1242 (1241 / 18) |
-| 689 | Cümlede Anlam `CUMLEDE_ANLAM` | 19 | ✓ | ✓ | · | · | ✓ | 2600 (2594 / 34) |
-| 690 | Paragraf Bilgisi `PARAGRAF` | 21 | ✓ | ✓ | · | · | ✓ | 1074 (1061 / 144) |
-| 691 | Sözcükte Yapı `YAPI_BILGISI` | 8 | ✓ | ✓ | · | · | ✓ | 682 (682 / 4) |
-| 692 | Ses Bilgisi `SES_BILGISI` | 12 | ✓ | ✓ | · | · | ✓ | 553 (552 / 6) |
-| 693 | İsimler `ISIMLER` | 5 | ✓ | ✓ | · | · | ✓ | 75 (75 / 1) |
-| 694 | Sıfatlar `SIFATLAR` | 7 | ✓ | ✓ | · | · | ✓ | 85 (84 / 2) |
-| 695 | Zamirler `ZAMIRLER` | 7 | ✓ | ✓ | · | · | ✓ | 20 (20 / 2) |
-| 696 | Zarflar `ZARFLAR` | 5 | ✓ | ✓ | · | · | ✓ | 215 (214 / 3) |
-| 697 | Edat, Bağlaç ve Ünlem `EDAT_BAGLAC_UNLEM` | 6 | ✓ | ✓ | · | · | ✓ | 94 (92 / 0) |
-| 698 | Fiiller `FIILLER` | 8 | ✓ | ✓ | · | · | ✓ | 88 (88 / 0) |
-| 699 | Fiilimsiler `FIILIMSILER` | 5 | ✓ | ✓ | · | · | ✓ | 571 (571 / 6) |
-| 700 | Fiilde Çatı `FIILDE_CATI` | 4 | ✓ | ✓ | · | · | ✓ | 190 (189 / 1) |
-| 701 | Cümlenin Ögeleri `CUMLENIN_OGELERI` | 8 | ✓ | ✓ | · | · | ✓ | 615 (614 / 10) |
-| 702 | Cümle Türleri `CUMLE_TURLERI` | 8 | ✓ | ✓ | · | · | ✓ | 151 (150 / 3) |
-| 703 | Anlatım Bozukluğu `ANLATIM_BOZUKLUGU` | 11 | ✓ | ✓ | · | · | ✓ | 449 (448 / 7) |
-| 704 | Yazım Kuralları `YAZIM_KURALLARI` | 10 | ✓ | ✓ | · | · | ✓ | 975 (974 / 11) |
-| 705 | Noktalama İşaretleri `NOKTALAMA` | 13 | ✓ | ✓ | · | · | ✓ | 795 (794 / 9) |
-| 706 | Söz Sanatları `SOZ_SANATLARI` | 9 | ✓ | ✓ | · | · | ✓ | 22 (22 / 4) |
-| 707 | Sözel Mantık `SOZEL_MANTIK` | 8 | ✓ | ✓ | · | · | ✓ | 183 (179 / 29) |
+| 698 | Sözcükte Anlam `SOZCUKTE_ANLAM` | 15 | ✓ | ✓ | · | · | ✓ | 1242 (1241 / 18) |
+| 699 | Cümlede Anlam `CUMLEDE_ANLAM` | 19 | ✓ | ✓ | · | · | ✓ | 2600 (2594 / 34) |
+| 700 | Paragraf Bilgisi `PARAGRAF` | 21 | ✓ | ✓ | · | · | ✓ | 1074 (1061 / 144) |
+| 701 | Sözcükte Yapı `YAPI_BILGISI` | 8 | ✓ | ✓ | · | · | ✓ | 682 (682 / 4) |
+| 702 | Ses Bilgisi `SES_BILGISI` | 12 | ✓ | ✓ | · | · | ✓ | 553 (552 / 6) |
+| 703 | İsimler `ISIMLER` | 5 | ✓ | ✓ | · | · | ✓ | 75 (75 / 1) |
+| 704 | Sıfatlar `SIFATLAR` | 7 | ✓ | ✓ | · | · | ✓ | 85 (84 / 2) |
+| 705 | Zamirler `ZAMIRLER` | 7 | ✓ | ✓ | · | · | ✓ | 20 (20 / 2) |
+| 706 | Zarflar `ZARFLAR` | 5 | ✓ | ✓ | · | · | ✓ | 215 (214 / 3) |
+| 707 | Edat, Bağlaç ve Ünlem `EDAT_BAGLAC_UNLEM` | 6 | ✓ | ✓ | · | · | ✓ | 94 (92 / 0) |
+| 708 | Fiiller `FIILLER` | 8 | ✓ | ✓ | · | · | ✓ | 88 (88 / 0) |
+| 709 | Fiilimsiler `FIILIMSILER` | 5 | ✓ | ✓ | · | · | ✓ | 571 (571 / 6) |
+| 710 | Fiilde Çatı `FIILDE_CATI` | 4 | ✓ | ✓ | · | · | ✓ | 190 (189 / 1) |
+| 711 | Cümlenin Ögeleri `CUMLENIN_OGELERI` | 8 | ✓ | ✓ | · | · | ✓ | 615 (614 / 10) |
+| 712 | Cümle Türleri `CUMLE_TURLERI` | 8 | ✓ | ✓ | · | · | ✓ | 151 (150 / 3) |
+| 713 | Anlatım Bozukluğu `ANLATIM_BOZUKLUGU` | 11 | ✓ | ✓ | · | · | ✓ | 449 (448 / 7) |
+| 714 | Yazım Kuralları `YAZIM_KURALLARI` | 10 | ✓ | ✓ | · | · | ✓ | 975 (974 / 11) |
+| 715 | Noktalama İşaretleri `NOKTALAMA` | 13 | ✓ | ✓ | · | · | ✓ | 795 (794 / 9) |
+| 716 | Söz Sanatları `SOZ_SANATLARI` | 9 | ✓ | ✓ | · | · | ✓ | 22 (22 / 4) |
+| 717 | Sözel Mantık `SOZEL_MANTIK` | 8 | ✓ | ✓ | · | · | ✓ | 183 (179 / 29) |
 
 ### Matematik (MAT)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 708 | Temel Kavramlar `TEMEL_KAVRAMLAR` | 8 | ✓ | ✓ | · | · | ✓ | 361 (360 / 20) |
-| 709 | Bölme ve Bölünebilme `BOLME_BOLUNEBILME` | 4 | ✓ | ✓ | · | · | ✓ | 1078 (1076 / 9) |
-| 710 | Asal Çarpanlara Ayırma `ASAL_CARPANLARA_AYIRMA` | 4 | ✓ | ✓ | · | · | — | 306 (306 / 2) |
-| 711 | OBEB–OKEK `EBOB_EKOK` | 4 | ✓ | ✓ | · | · | ✓ | 1118 (1118 / 2) |
-| 712 | Rasyonel Sayılar `RASYONEL_SAYILAR` | 6 | ✓ | ✓ | · | · | ✓ | 392 (389 / 9) |
-| 713 | Basit Eşitsizlikler `BASIT_ESITSIZLIKLER` | 4 | ✓ | ✓ | · | · | ✓ | 235 (233 / 3) |
-| 714 | Mutlak Değer `MUTLAK_DEGER` | 4 | ✓ | ✓ | · | · | ✓ | 300 (298 / 4) |
-| 715 | Üslü Sayılar `USLU_SAYILAR` | 4 | ✓ | ✓ | · | · | ✓ | 321 (319 / 16) |
-| 716 | Köklü Sayılar `KOKLU_SAYILAR` | 4 | ✓ | ✓ | · | · | ✓ | 214 (214 / 2) |
-| 717 | Çarpanlara Ayırma `CARPANLARA_AYIRMA` | 4 | ✓ | ✓ | · | · | ✓ | 216 (216 / 1) |
-| 718 | Oran–Orantı `ORAN_ORANTI` | 6 | ✓ | ✓ | · | · | ✓ | 591 (587 / 5) |
-| 719 | Birinci Dereceden Denklemler `DENKLEMLER` | 4 | ✓ | ✓ | · | · | ✓ | 717 (715 / 13) |
-| 720 | Problemler `PROBLEMLER` | 8 | ✓ | ✓ | · | · | ✓ | 2257 (2252 / 53) |
-| 721 | Kümeler `KUMELER` | 6 | ✓ | ✓ | · | · | ✓ | 271 (271 / 10) |
-| 722 | İşlem ve Modüler Aritmetik `ISLEM_MODULER_ARITMETIK` | 2 | ✓ | ✓ | · | · | ✓ | 88 (88 / 9) |
-| 723 | Fonksiyon `FONKSIYONLAR` | 5 | ✓ | ✓ | · | · | ✓ | 27 (25 / 7) |
-| 724 | Permütasyon, Kombinasyon ve Olasılık `PERMUTASYON_KOMBINASYON_OLASILIK` | 6 | ✓ | ✓ | · | · | ✓ | 262 (261 / 16) |
-| 725 | Sayısal Mantık `SAYISAL_MANTIK` | 6 | ✓ | ✓ | · | · | — | 414 (411 / 25) |
+| 718 | Temel Kavramlar `TEMEL_KAVRAMLAR` | 8 | ✓ | ✓ | · | · | ✓ | 361 (360 / 20) |
+| 719 | Bölme ve Bölünebilme `BOLME_BOLUNEBILME` | 4 | ✓ | ✓ | · | · | ✓ | 1078 (1076 / 9) |
+| 720 | Asal Çarpanlara Ayırma `ASAL_CARPANLARA_AYIRMA` | 4 | ✓ | ✓ | · | · | — | 306 (306 / 2) |
+| 721 | OBEB–OKEK `EBOB_EKOK` | 4 | ✓ | ✓ | · | · | ✓ | 1118 (1118 / 2) |
+| 722 | Rasyonel Sayılar `RASYONEL_SAYILAR` | 6 | ✓ | ✓ | · | · | ✓ | 392 (389 / 9) |
+| 723 | Basit Eşitsizlikler `BASIT_ESITSIZLIKLER` | 4 | ✓ | ✓ | · | · | ✓ | 235 (233 / 3) |
+| 724 | Mutlak Değer `MUTLAK_DEGER` | 4 | ✓ | ✓ | · | · | ✓ | 300 (298 / 4) |
+| 725 | Üslü Sayılar `USLU_SAYILAR` | 4 | ✓ | ✓ | · | · | ✓ | 321 (319 / 16) |
+| 726 | Köklü Sayılar `KOKLU_SAYILAR` | 4 | ✓ | ✓ | · | · | ✓ | 214 (214 / 2) |
+| 727 | Çarpanlara Ayırma `CARPANLARA_AYIRMA` | 4 | ✓ | ✓ | · | · | ✓ | 216 (216 / 1) |
+| 728 | Oran–Orantı `ORAN_ORANTI` | 6 | ✓ | ✓ | · | · | ✓ | 591 (587 / 5) |
+| 729 | Birinci Dereceden Denklemler `DENKLEMLER` | 4 | ✓ | ✓ | · | · | ✓ | 717 (715 / 13) |
+| 730 | Problemler `PROBLEMLER` | 8 | ✓ | ✓ | · | · | ✓ | 2257 (2252 / 53) |
+| 731 | Kümeler `KUMELER` | 6 | ✓ | ✓ | · | · | ✓ | 271 (271 / 10) |
+| 732 | İşlem ve Modüler Aritmetik `ISLEM_MODULER_ARITMETIK` | 2 | ✓ | ✓ | · | · | ✓ | 88 (88 / 9) |
+| 733 | Fonksiyon `FONKSIYONLAR` | 5 | ✓ | ✓ | · | · | ✓ | 27 (25 / 7) |
+| 734 | Permütasyon, Kombinasyon ve Olasılık `PERMUTASYON_KOMBINASYON_OLASILIK` | 6 | ✓ | ✓ | · | · | ✓ | 262 (261 / 16) |
+| 735 | Sayısal Mantık `SAYISAL_MANTIK` | 6 | ✓ | ✓ | · | · | — | 414 (411 / 25) |
 
 ### Tarih (TAR)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 726 | İslamiyet Öncesi Türk Tarihi `TAR_ISLAM_ONCESI` | 9 | ✓ | ✓ | · | · | ✓ | 674 (673 / 11) |
-| 727 | Türkiye Tarihi `TAR_TURKIYE` | 7 | ✓ | ✓ | · | · | ✓ | 534 (534 / 7) |
-| 728 | Türk-İslam Tarihi `TAR_ILK_TURK_ISLAM` | 7 | ✓ | ✓ | · | · | ✓ | 653 (651 / 14) |
-| 729 | Osmanlı Devleti’nin Genel Özellikleri `TAR_OSM_GENEL` | 7 | ✓ | ✓ | · | · | ✓ | 1032 (1031 / 9) |
-| 730 | Osmanlı Devleti’nin Kültür ve Uygarlığı `TAR_OSM_KULTUR_UYGARLIK` | 8 | ✓ | ✓ | · | · | ✓ | 1443 (1440 / 26) |
-| 731 | Osmanlı Devleti Duraklama Dönemi `TAR_OSM_17` | 6 | ✓ | ✓ | · | · | ✓ | 618 (618 / 6) |
-| 732 | Osmanlı Devleti Gerileme Dönemi `TAR_OSM_18` | 5 | ✓ | ✓ | · | · | ✓ | 619 (618 / 6) |
-| 733 | Avrupa’daki Gelişmelerin Osmanlı Devleti’ne Etkileri `TAR_OSM_AVRUPA_ETKI` | 9 | ✓ | ✓ | · | · | ✓ | 27 (26 / 7) |
-| 734 | Osmanlı Devleti Dağılma ve Çöküş Dönemi `TAR_OSM_19` | 10 | ✓ | ✓ | · | · | ✓ | 933 (929 / 30) |
-| 735 | Türkiye Cumhuriyeti İnkılap Tarihi `TAR_INKILAP` | 5 | ✓ | ✓ | · | · | ✓ | 93 (93 / 9) |
-| 736 | I. Dünya Savaşı ve Sonuçları `TAR_1_DUNYA_SAVASI` | 7 | ✓ | ✓ | · | · | ✓ | 46 (46 / 10) |
-| 737 | Mondros Ateşkes Antlaşması ve Cemiyetler `TAR_MONDROS_CEMIYETLER` | 5 | ✓ | ✓ | · | · | ✓ | 165 (161 / 8) |
-| 738 | Kurtuluş Savaşı Hazırlık Dönemi `TAR_KURTULUS_HAZIRLIK` | 8 | ✓ | ✓ | · | · | ✓ | 213 (211 / 23) |
-| 739 | I. TBMM Dönemi `TAR_TBMM_1` | 6 | ✓ | ✓ | · | · | ✓ | 393 (392 / 4) |
-| 740 | Kurtuluş Savaşı Muharebeler Dönemi `TAR_KURTULUS_MUHAREBELER` | 9 | ✓ | ✓ | · | · | ✓ | 360 (358 / 18) |
-| 741 | Atatürk İlkeleri `TAR_ATATURK_ILKELERI` | 7 | ✓ | ✓ | · | · | ✓ | 277 (277 / 16) |
-| 742 | İnkılaplar Dönemi `TAR_ATATURK_INKILAPLARI` | 5 | ✓ | ✓ | · | · | ✓ | 373 (373 / 27) |
-| 743 | Cumhuriyet Dönemi Dış Politika `TAR_ATATURK_DIS_POLITIKA` | 7 | ✓ | ✓ | · | · | ✓ | 203 (202 / 21) |
-| 744 | Çağdaş Türk ve Dünya Tarihi `TAR_CAGDAS_TURK_DUNYA` | 9 | ✓ | ✓ | · | · | — | 218 (215 / 20) |
+| 736 | İslamiyet Öncesi Türk Tarihi `TAR_ISLAM_ONCESI` | 9 | ✓ | ✓ | · | · | ✓ | 674 (673 / 11) |
+| 737 | Türkiye Tarihi `TAR_TURKIYE` | 7 | ✓ | ✓ | · | · | ✓ | 534 (534 / 7) |
+| 738 | Türk-İslam Tarihi `TAR_ILK_TURK_ISLAM` | 7 | ✓ | ✓ | · | · | ✓ | 653 (651 / 14) |
+| 739 | Osmanlı Devleti’nin Genel Özellikleri `TAR_OSM_GENEL` | 7 | ✓ | ✓ | · | · | ✓ | 1032 (1031 / 9) |
+| 740 | Osmanlı Devleti’nin Kültür ve Uygarlığı `TAR_OSM_KULTUR_UYGARLIK` | 8 | ✓ | ✓ | · | · | ✓ | 1443 (1440 / 26) |
+| 741 | Osmanlı Devleti Duraklama Dönemi `TAR_OSM_17` | 6 | ✓ | ✓ | · | · | ✓ | 618 (618 / 6) |
+| 742 | Osmanlı Devleti Gerileme Dönemi `TAR_OSM_18` | 5 | ✓ | ✓ | · | · | ✓ | 619 (618 / 6) |
+| 743 | Avrupa’daki Gelişmelerin Osmanlı Devleti’ne Etkileri `TAR_OSM_AVRUPA_ETKI` | 9 | ✓ | ✓ | · | · | ✓ | 27 (26 / 7) |
+| 744 | Osmanlı Devleti Dağılma ve Çöküş Dönemi `TAR_OSM_19` | 10 | ✓ | ✓ | · | · | ✓ | 933 (929 / 30) |
+| 745 | Türkiye Cumhuriyeti İnkılap Tarihi `TAR_INKILAP` | 5 | ✓ | ✓ | · | · | ✓ | 93 (93 / 9) |
+| 746 | I. Dünya Savaşı ve Sonuçları `TAR_1_DUNYA_SAVASI` | 7 | ✓ | ✓ | · | · | ✓ | 46 (46 / 10) |
+| 747 | Mondros Ateşkes Antlaşması ve Cemiyetler `TAR_MONDROS_CEMIYETLER` | 5 | ✓ | ✓ | · | · | ✓ | 165 (161 / 8) |
+| 748 | Kurtuluş Savaşı Hazırlık Dönemi `TAR_KURTULUS_HAZIRLIK` | 8 | ✓ | ✓ | · | · | ✓ | 213 (211 / 23) |
+| 749 | I. TBMM Dönemi `TAR_TBMM_1` | 6 | ✓ | ✓ | · | · | ✓ | 393 (392 / 4) |
+| 750 | Kurtuluş Savaşı Muharebeler Dönemi `TAR_KURTULUS_MUHAREBELER` | 9 | ✓ | ✓ | · | · | ✓ | 360 (358 / 18) |
+| 751 | Atatürk İlkeleri `TAR_ATATURK_ILKELERI` | 7 | ✓ | ✓ | · | · | ✓ | 277 (277 / 16) |
+| 752 | İnkılaplar Dönemi `TAR_ATATURK_INKILAPLARI` | 5 | ✓ | ✓ | · | · | ✓ | 373 (373 / 27) |
+| 753 | Cumhuriyet Dönemi Dış Politika `TAR_ATATURK_DIS_POLITIKA` | 7 | ✓ | ✓ | · | · | ✓ | 203 (202 / 21) |
+| 754 | Çağdaş Türk ve Dünya Tarihi `TAR_CAGDAS_TURK_DUNYA` | 9 | ✓ | ✓ | · | · | — | 218 (215 / 20) |
 
 ### Geometri (GEO)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 745 | Doğruda Açılar `GEO_DOGRU_ACI` | 4 | ✓ | ✓ | · | · | ✓ | 552 (552 / 3) |
-| 746 | Üçgenler `GEO_UCGENLER` | 4 | ✓ | ✓ | · | · | ✓ | 390 (390 / 0) |
-| 747 | Üçgende Açı-Kenar Bağıntıları `GEO_ACI_KENAR` | 3 | ✓ | ✓ | · | · | ✓ | 22 (22 / 0) |
-| 748 | Üçgende Eşlik `GEO_UCGEN_ESLIK` | 5 | ✓ | ✓ | · | · | ✓ | 4 (4 / 0) |
-| 749 | Üçgenin Yardımcı Elemanları `GEO_YARDIMCI_ELEMANLAR` | 5 | ✓ | ✓ | · | · | ✓ | 14 (14 / 0) |
-| 750 | Dik Üçgen ve Trigonometri `GEO_DIK_UCGEN_TRIG` | 5 | ✓ | ✓ | · | · | ✓ | 228 (228 / 0) |
-| 751 | Üçgenin Alanı `GEO_UCGEN_ALAN` | 4 | ✓ | ✓ | · | · | ✓ | 11 (10 / 3) |
-| 752 | Çokgenler `GEO_COKGEN` | 4 | ✓ | ✓ | · | · | ✓ | 8 (8 / 2) |
-| 753 | Dörtgenler `GEO_DORTGEN` | 8 | ✓ | ✓ | · | · | ✓ | 26 (26 / 6) |
-| 754 | Çember `GEO_CEMBER` | 6 | ✓ | ✓ | · | · | ✓ | 21 (20 / 4) |
-| 755 | Prizmalar `GEO_PRIZMALAR` | 6 | ✓ | ✓ | · | · | ✓ | 7 (7 / 5) |
-| 756 | Piramitler `GEO_PIRAMITLER` | 4 | ✓ | ✓ | · | · | ✓ | 4 (4 / 0) |
-| 757 | Silindir `GEO_SILINDIR` | 4 | ✓ | ✓ | · | · | ✓ | 5 (5 / 1) |
-| 758 | Doğrunun Analitik İncelenmesi `GEO_ANALITIK` | 6 | ✓ | ✓ | · | · | ✓ | 65 (64 / 5) |
+| 755 | Doğruda Açılar `GEO_DOGRU_ACI` | 4 | ✓ | ✓ | · | · | ✓ | 552 (552 / 3) |
+| 756 | Üçgenler `GEO_UCGENLER` | 4 | ✓ | ✓ | · | · | ✓ | 390 (390 / 0) |
+| 757 | Üçgende Açı-Kenar Bağıntıları `GEO_ACI_KENAR` | 3 | ✓ | ✓ | · | · | ✓ | 22 (22 / 0) |
+| 758 | Üçgende Eşlik `GEO_UCGEN_ESLIK` | 5 | ✓ | ✓ | · | · | ✓ | 4 (4 / 0) |
+| 759 | Üçgenin Yardımcı Elemanları `GEO_YARDIMCI_ELEMANLAR` | 5 | ✓ | ✓ | · | · | ✓ | 14 (14 / 0) |
+| 760 | Dik Üçgen ve Trigonometri `GEO_DIK_UCGEN_TRIG` | 5 | ✓ | ✓ | · | · | ✓ | 228 (228 / 0) |
+| 761 | Üçgenin Alanı `GEO_UCGEN_ALAN` | 4 | ✓ | ✓ | · | · | ✓ | 11 (10 / 3) |
+| 762 | Çokgenler `GEO_COKGEN` | 4 | ✓ | ✓ | · | · | ✓ | 8 (8 / 2) |
+| 763 | Dörtgenler `GEO_DORTGEN` | 8 | ✓ | ✓ | · | · | ✓ | 26 (26 / 6) |
+| 764 | Çember `GEO_CEMBER` | 6 | ✓ | ✓ | · | · | ✓ | 21 (20 / 4) |
+| 765 | Prizmalar `GEO_PRIZMALAR` | 6 | ✓ | ✓ | · | · | ✓ | 7 (7 / 5) |
+| 766 | Piramitler `GEO_PIRAMITLER` | 4 | ✓ | ✓ | · | · | ✓ | 4 (4 / 0) |
+| 767 | Silindir `GEO_SILINDIR` | 4 | ✓ | ✓ | · | · | ✓ | 5 (5 / 1) |
+| 768 | Doğrunun Analitik İncelenmesi `GEO_ANALITIK` | 6 | ✓ | ✓ | · | · | ✓ | 65 (64 / 5) |
 
 ### Coğrafya (COG)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 759 | Türkiye’nin Coğrafi Konumu `COG_KONUM` | 4 | ✓ | ✓ | · | · | ✓ | 627 (626 / 11) |
-| 760 | Türkiye’nin İklimi ve Bitki Örtüsü `COG_IKLIM_BITKI` | 6 | ✓ | ✓ | · | · | ✓ | 939 (935 / 15) |
-| 761 | Türkiye Beşerî Coğrafyası `COG_NUFUS_YERLESME` | 8 | ✓ | ✓ | · | · | ✓ | 673 (668 / 27) |
-| 762 | Türkiye’nin Yeryüzü Şekilleri `COG_YER_SEKILLERI` | 9 | ✓ | ✓ | · | · | ✓ | 380 (379 / 39) |
-| 763 | Türkiye’nin Ekonomik Coğrafyası `COG_EKONOMIK` | 16 | ✓ | ✓ | · | · | ✓ | 2759 (2750 / 77) |
-| 764 | Türkiye’nin Coğrafi Bölgeleri `COG_BOLGELER` | 11 | ✓ | ✓ | · | · | ✓ | 336 (334 / 9) |
+| 769 | Türkiye’nin Coğrafi Konumu `COG_KONUM` | 4 | ✓ | ✓ | · | · | ✓ | 627 (626 / 11) |
+| 770 | Türkiye’nin İklimi ve Bitki Örtüsü `COG_IKLIM_BITKI` | 6 | ✓ | ✓ | · | · | ✓ | 939 (935 / 15) |
+| 771 | Türkiye Beşerî Coğrafyası `COG_NUFUS_YERLESME` | 8 | ✓ | ✓ | · | · | ✓ | 673 (668 / 27) |
+| 772 | Türkiye’nin Yeryüzü Şekilleri `COG_YER_SEKILLERI` | 9 | ✓ | ✓ | · | · | ✓ | 380 (379 / 39) |
+| 773 | Türkiye’nin Ekonomik Coğrafyası `COG_EKONOMIK` | 16 | ✓ | ✓ | · | · | ✓ | 2759 (2750 / 77) |
+| 774 | Türkiye’nin Coğrafi Bölgeleri `COG_BOLGELER` | 11 | ✓ | ✓ | · | · | ✓ | 336 (334 / 9) |
 
 ### Vatandaşlık ve Güncel Bilgiler (VAT)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 765 | Vatandaşlık `VAT_VATANDASLIK` | 25 | ✓ | ✓ | · | · | ✓ | 3069 (3060 / 90) |
-| 766 | Güncel Bilgiler `VAT_GUNCEL_BILGILER` | 11 | ✓ | ✓ | · | · | ✓ | 1131 (1124 / 45) |
-| 767 | Değerlendirme `VAT_DEGERLENDIRME` | 6 | ✓ | ✓ | · | · | — | 27 (27 / 0) |
-| 768 | Temel Ekonomi Bilgisi `VAT_EKONOMI` | 3 | ✓ | ✓ | · | · | — | 215 (215 / 2) |
+| 775 | Vatandaşlık `VAT_VATANDASLIK` | 25 | ✓ | ✓ | · | · | ✓ | 3069 (3060 / 90) |
+| 776 | Güncel Bilgiler `VAT_GUNCEL_BILGILER` | 11 | ✓ | ✓ | · | · | ✓ | 1131 (1124 / 45) |
+| 777 | Değerlendirme `VAT_DEGERLENDIRME` | 6 | ✓ | ✓ | · | · | — | 27 (27 / 0) |
+| 778 | Temel Ekonomi Bilgisi `VAT_EKONOMI` | 3 | ✓ | ✓ | · | · | — | 215 (215 / 2) |
 
 ## US_ACT · Enhanced ACT (0/19 video)
 
@@ -1032,45 +1042,45 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 769 | Production of Writing `PRODUCTION_WRITING` | 8 | · | · | · | · | — | 16 (16 / 0) |
-| 770 | Knowledge of Language `KNOWLEDGE_LANGUAGE` | 7 | · | · | · | · | — | 7 (7 / 0) |
-| 771 | Conventions of Standard English `CONVENTIONS_STANDARD_ENGLISH` | 9 | · | · | · | · | — | 16 (16 / 0) |
+| 779 | Production of Writing `PRODUCTION_WRITING` | 8 | · | · | · | · | — | 16 (16 / 0) |
+| 780 | Knowledge of Language `KNOWLEDGE_LANGUAGE` | 7 | · | · | · | · | — | 7 (7 / 0) |
+| 781 | Conventions of Standard English `CONVENTIONS_STANDARD_ENGLISH` | 9 | · | · | · | · | — | 16 (16 / 0) |
 
 ### Mathematics (MATH)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 772 | Number and Quantity `NUMBER_QUANTITY` | 11 | · | · | · | · | — | 5 (5 / 0) |
-| 773 | Algebra `ALGEBRA` | 10 | · | · | · | · | — | 7 (7 / 0) |
-| 774 | Functions `FUNCTIONS` | 13 | · | · | · | · | — | 8 (8 / 0) |
-| 775 | Geometry `GEOMETRY` | 10 | · | · | · | · | — | 8 (8 / 0) |
-| 776 | Statistics and Probability `STATISTICS_PROBABILITY` | 10 | · | · | · | · | — | 5 (5 / 0) |
-| 777 | Integrating Essential Skills `ESSENTIAL_SKILLS` | 8 | · | · | · | · | — | 8 (8 / 0) |
+| 782 | Number and Quantity `NUMBER_QUANTITY` | 11 | · | · | · | · | — | 5 (5 / 0) |
+| 783 | Algebra `ALGEBRA` | 10 | · | · | · | · | — | 7 (7 / 0) |
+| 784 | Functions `FUNCTIONS` | 13 | · | · | · | · | — | 8 (8 / 0) |
+| 785 | Geometry `GEOMETRY` | 10 | · | · | · | · | — | 8 (8 / 0) |
+| 786 | Statistics and Probability `STATISTICS_PROBABILITY` | 10 | · | · | · | · | — | 5 (5 / 0) |
+| 787 | Integrating Essential Skills `ESSENTIAL_SKILLS` | 8 | · | · | · | · | — | 8 (8 / 0) |
 
 ### Reading (READING)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 778 | Key Ideas and Details `KEY_IDEAS_DETAILS` | 9 | · | · | · | · | — | 13 (13 / 0) |
-| 779 | Craft and Structure `CRAFT_STRUCTURE` | 7 | · | · | · | · | — | 8 (8 / 0) |
-| 780 | Integration of Knowledge and Ideas `INTEGRATION_KNOWLEDGE_IDEAS` | 8 | · | · | · | · | — | 6 (6 / 0) |
+| 788 | Key Ideas and Details `KEY_IDEAS_DETAILS` | 9 | · | · | · | · | — | 13 (13 / 0) |
+| 789 | Craft and Structure `CRAFT_STRUCTURE` | 7 | · | · | · | · | — | 8 (8 / 0) |
+| 790 | Integration of Knowledge and Ideas `INTEGRATION_KNOWLEDGE_IDEAS` | 8 | · | · | · | · | — | 6 (6 / 0) |
 
 ### Science Reasoning (SCIENCE)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 781 | Interpretation of Data `INTERPRETATION_DATA` | 10 | · | · | · | · | — | 6 (6 / 0) |
-| 782 | Scientific Investigation `SCIENTIFIC_INVESTIGATION` | 9 | · | · | · | · | — | 3 (3 / 0) |
-| 783 | Evaluating Scientific Arguments and Models with Evidence `EVALUATING_ARGUMENTS_MODELS` | 9 | · | · | · | · | — | 3 (3 / 0) |
+| 791 | Interpretation of Data `INTERPRETATION_DATA` | 10 | · | · | · | · | — | 6 (6 / 0) |
+| 792 | Scientific Investigation `SCIENTIFIC_INVESTIGATION` | 9 | · | · | · | · | — | 3 (3 / 0) |
+| 793 | Evaluating Scientific Arguments and Models with Evidence `EVALUATING_ARGUMENTS_MODELS` | 9 | · | · | · | · | — | 3 (3 / 0) |
 
 ### Writing (WRITING)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 784 | Ideas and Analysis `IDEAS_ANALYSIS` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 785 | Development and Support `DEVELOPMENT_SUPPORT` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 786 | Organization `ORGANIZATION` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 787 | Language Use and Conventions `LANGUAGE_USE_CONVENTIONS` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 794 | Ideas and Analysis `IDEAS_ANALYSIS` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 795 | Development and Support `DEVELOPMENT_SUPPORT` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 796 | Organization `ORGANIZATION` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 797 | Language Use and Conventions `LANGUAGE_USE_CONVENTIONS` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP 2-D Art and Design (0/3 video)
 
@@ -1078,9 +1088,9 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 788 | Investigate Materials, Processes, and Ideas `BIG_IDEA_1` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 789 | Make Art and Design `BIG_IDEA_2` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 790 | Present Art and Design `BIG_IDEA_3` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 798 | Investigate Materials, Processes, and Ideas `BIG_IDEA_1` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 799 | Make Art and Design `BIG_IDEA_2` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 800 | Present Art and Design `BIG_IDEA_3` | 4 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP 3-D Art and Design (0/3 video)
 
@@ -1088,9 +1098,9 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 791 | Investigate Materials, Processes, and Ideas `BIG_IDEA_1` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 792 | Make Art and Design `BIG_IDEA_2` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 793 | Present Art and Design `BIG_IDEA_3` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 801 | Investigate Materials, Processes, and Ideas `BIG_IDEA_1` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 802 | Make Art and Design `BIG_IDEA_2` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 803 | Present Art and Design `BIG_IDEA_3` | 4 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP African American Studies (0/4 video)
 
@@ -1098,10 +1108,10 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 794 | Origins of the African Diaspora `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 795 | Freedom, Enslavement, and Resistance `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 796 | The Practice of Freedom `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 797 | Movements and Debates `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 804 | Origins of the African Diaspora `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 805 | Freedom, Enslavement, and Resistance `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 806 | The Practice of Freedom `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 807 | Movements and Debates `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Art History (0/10 video)
 
@@ -1109,16 +1119,16 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 798 | Global Prehistory, 30,000–500 BCE `U01` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 799 | Ancient Mediterranean, 3500 BCE–300 CE `U02` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 800 | Early Europe and Colonial Americas, 200–1750 CE `U03` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 801 | Later Europe and Americas, 1750–1980 CE `U04` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 802 | Indigenous Americas, 1000 BCE–1980 CE `U05` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 803 | Africa, 1100–1980 CE `U06` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 804 | West and Central Asia, 500 BCE–1980 CE `U07` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 805 | South, East, and Southeast Asia, 300 BCE–1980 CE `U08` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 806 | The Pacific, 700–1980 CE `U09` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 807 | Global Contemporary, 1980 CE–Present `U10` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 808 | Global Prehistory, 30,000–500 BCE `U01` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 809 | Ancient Mediterranean, 3500 BCE–300 CE `U02` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 810 | Early Europe and Colonial Americas, 200–1750 CE `U03` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 811 | Later Europe and Americas, 1750–1980 CE `U04` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 812 | Indigenous Americas, 1000 BCE–1980 CE `U05` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 813 | Africa, 1100–1980 CE `U06` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 814 | West and Central Asia, 500 BCE–1980 CE `U07` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 815 | South, East, and Southeast Asia, 300 BCE–1980 CE `U08` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 816 | The Pacific, 700–1980 CE `U09` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 817 | Global Contemporary, 1980 CE–Present `U10` | 4 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Biology (0/8 video)
 
@@ -1126,14 +1136,14 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 808 | Chemistry of Life `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 809 | Cells `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 810 | Cellular Energetics `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 811 | Cell Communication and Cell Cycle `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 812 | Heredity `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 813 | Gene Expression and Regulation `U06` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 814 | Natural Selection `U07` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 815 | Ecology `U08` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 818 | Chemistry of Life `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 819 | Cells `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 820 | Cellular Energetics `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 821 | Cell Communication and Cell Cycle `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 822 | Heredity `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 823 | Gene Expression and Regulation `U06` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 824 | Natural Selection `U07` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 825 | Ecology `U08` | 6 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Business with Personal Finance (0/6 video)
 
@@ -1141,12 +1151,12 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 816 | Businesses, Competition, and New Ideas `U01` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 817 | Marketing `U02` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 818 | Personal Saving and Borrowing `U03A` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 819 | Business Finance and Accounting `U03B` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 820 | Management and Strategy `U04` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 821 | Personal Goals, Budgeting, and Investing `U05` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 826 | Businesses, Competition, and New Ideas `U01` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 827 | Marketing `U02` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 828 | Personal Saving and Borrowing `U03A` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 829 | Business Finance and Accounting `U03B` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 830 | Management and Strategy `U04` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 831 | Personal Goals, Budgeting, and Investing `U05` | 6 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Calculus AB (0/8 video)
 
@@ -1154,14 +1164,14 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 822 | Limits and Continuity `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 823 | Differentiation: Definition and Fundamental Properties `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 824 | Differentiation: Composite, Implicit, and Inverse Functions `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 825 | Contextual Applications of Differentiation `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 826 | Analytical Applications of Differentiation `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 827 | Integration and Accumulation of Change `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 828 | Differential Equations `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 829 | Applications of Integration `U08` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 832 | Limits and Continuity `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 833 | Differentiation: Definition and Fundamental Properties `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 834 | Differentiation: Composite, Implicit, and Inverse Functions `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 835 | Contextual Applications of Differentiation `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 836 | Analytical Applications of Differentiation `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 837 | Integration and Accumulation of Change `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 838 | Differential Equations `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 839 | Applications of Integration `U08` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Calculus BC (0/10 video)
 
@@ -1169,16 +1179,16 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 830 | Limits and Continuity `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 831 | Differentiation: Definition and Fundamental Properties `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 832 | Differentiation: Composite, Implicit, and Inverse Functions `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 833 | Contextual Applications of Differentiation `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 834 | Analytical Applications of Differentiation `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 835 | Integration and Accumulation of Change `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 836 | Differential Equations `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 837 | Applications of Integration `U08` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 838 | Parametric Equations, Polar Coordinates, and Vector-Valued Functions `U09` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 839 | Infinite Sequences and Series `U10` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 840 | Limits and Continuity `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 841 | Differentiation: Definition and Fundamental Properties `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 842 | Differentiation: Composite, Implicit, and Inverse Functions `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 843 | Contextual Applications of Differentiation `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 844 | Analytical Applications of Differentiation `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 845 | Integration and Accumulation of Change `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 846 | Differential Equations `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 847 | Applications of Integration `U08` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 848 | Parametric Equations, Polar Coordinates, and Vector-Valued Functions `U09` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 849 | Infinite Sequences and Series `U10` | 6 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Chemistry (0/9 video)
 
@@ -1186,15 +1196,15 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 840 | Atomic Structure and Properties `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 841 | Compound Structure and Properties `U02` | 7 | · | · | · | · | — | 0 (0 / 0) |
-| 842 | Properties of Substances and Mixtures `U03` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 843 | Chemical Reactions `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 844 | Kinetics `U05` | 7 | · | · | · | · | — | 0 (0 / 0) |
-| 845 | Thermochemistry `U06` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 846 | Equilibrium `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 847 | Acids and Bases `U08` | 7 | · | · | · | · | — | 0 (0 / 0) |
-| 848 | Thermodynamics and Electrochemistry `U09` | 7 | · | · | · | · | — | 0 (0 / 0) |
+| 850 | Atomic Structure and Properties `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 851 | Compound Structure and Properties `U02` | 7 | · | · | · | · | — | 0 (0 / 0) |
+| 852 | Properties of Substances and Mixtures `U03` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 853 | Chemical Reactions `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 854 | Kinetics `U05` | 7 | · | · | · | · | — | 0 (0 / 0) |
+| 855 | Thermochemistry `U06` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 856 | Equilibrium `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 857 | Acids and Bases `U08` | 7 | · | · | · | · | — | 0 (0 / 0) |
+| 858 | Thermodynamics and Electrochemistry `U09` | 7 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Chinese Language and Culture (0/6 video)
 
@@ -1202,12 +1212,12 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 849 | Families and Communities `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 850 | Language and Culture `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 851 | Art and Creativity `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 852 | Science and Technology `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 853 | Contemporary Life `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 854 | Global Contexts `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 859 | Families and Communities `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 860 | Language and Culture `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 861 | Art and Creativity `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 862 | Science and Technology `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 863 | Contemporary Life `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 864 | Global Contexts `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Comparative Government and Politics (0/5 video)
 
@@ -1215,11 +1225,11 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 855 | Political Systems, Regimes, and Governments `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 856 | Political Institutions `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 857 | Political Culture and Participation `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 858 | Party and Electoral Systems and Citizen Organizations `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 859 | Political and Economic Changes and Development `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 865 | Political Systems, Regimes, and Governments `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 866 | Political Institutions `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 867 | Political Culture and Participation `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 868 | Party and Electoral Systems and Citizen Organizations `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 869 | Political and Economic Changes and Development `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Computer Science A (0/4 video)
 
@@ -1227,10 +1237,10 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 860 | Using Objects and Methods `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 861 | Selection and Iteration `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 862 | Class Creation `U03` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 863 | Data Collections `U04` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 870 | Using Objects and Methods `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 871 | Selection and Iteration `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 872 | Class Creation `U03` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 873 | Data Collections `U04` | 6 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Computer Science Principles (0/5 video)
 
@@ -1238,11 +1248,11 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 864 | Creative Development `BIG_IDEA_1` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 865 | Data `BIG_IDEA_2` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 866 | Algorithms and Programming `BIG_IDEA_3` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 867 | Computer Systems and Networks `BIG_IDEA_4` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 868 | Impact of Computing `BIG_IDEA_5` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 874 | Creative Development `BIG_IDEA_1` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 875 | Data `BIG_IDEA_2` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 876 | Algorithms and Programming `BIG_IDEA_3` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 877 | Computer Systems and Networks `BIG_IDEA_4` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 878 | Impact of Computing `BIG_IDEA_5` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Cybersecurity (0/5 video)
 
@@ -1250,11 +1260,11 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 869 | Introduction to Security `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 870 | Securing Physical Spaces `U02` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 871 | Securing Networks `U03` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 872 | Securing Devices `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 873 | Securing Applications and Data `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 879 | Introduction to Security `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 880 | Securing Physical Spaces `U02` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 881 | Securing Networks `U03` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 882 | Securing Devices `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 883 | Securing Applications and Data `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Drawing (0/3 video)
 
@@ -1262,9 +1272,9 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 874 | Investigate Materials, Processes, and Ideas `BIG_IDEA_1` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 875 | Make Art and Design `BIG_IDEA_2` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 876 | Present Art and Design `BIG_IDEA_3` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 884 | Investigate Materials, Processes, and Ideas `BIG_IDEA_1` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 885 | Make Art and Design `BIG_IDEA_2` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 886 | Present Art and Design `BIG_IDEA_3` | 4 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP English Language and Composition (0/4 video)
 
@@ -1272,10 +1282,10 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 877 | Rhetorical Situation `RHETORICAL_SITUATION` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 878 | Claims and Evidence `CLAIMS_EVIDENCE` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 879 | Reasoning and Organization `REASONING_ORGANIZATION` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 880 | Style `STYLE` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 887 | Rhetorical Situation `RHETORICAL_SITUATION` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 888 | Claims and Evidence `CLAIMS_EVIDENCE` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 889 | Reasoning and Organization `REASONING_ORGANIZATION` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 890 | Style `STYLE` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP English Literature and Composition (0/9 video)
 
@@ -1283,15 +1293,15 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 881 | Short Fiction I `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 882 | Poetry I `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 883 | Longer Fiction or Drama I `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 884 | Short Fiction II `U04` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 885 | Poetry II `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 886 | Longer Fiction or Drama II `U06` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 887 | Short Fiction III `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 888 | Poetry III `U08` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 889 | Longer Fiction or Drama III `U09` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 891 | Short Fiction I `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 892 | Poetry I `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 893 | Longer Fiction or Drama I `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 894 | Short Fiction II `U04` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 895 | Poetry II `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 896 | Longer Fiction or Drama II `U06` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 897 | Short Fiction III `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 898 | Poetry III `U08` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 899 | Longer Fiction or Drama III `U09` | 6 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Environmental Science (0/9 video)
 
@@ -1299,15 +1309,15 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 890 | The Living World: Ecosystems `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 891 | The Living World: Biodiversity `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 892 | Populations `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 893 | Earth Systems and Resources `U04` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 894 | Land and Water Use `U05` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 895 | Energy Resources and Consumption `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 896 | Atmospheric Pollution `U07` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 897 | Aquatic and Terrestrial Pollution `U08` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 898 | Global Change `U09` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 900 | The Living World: Ecosystems `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 901 | The Living World: Biodiversity `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 902 | Populations `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 903 | Earth Systems and Resources `U04` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 904 | Land and Water Use `U05` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 905 | Energy Resources and Consumption `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 906 | Atmospheric Pollution `U07` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 907 | Aquatic and Terrestrial Pollution `U08` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 908 | Global Change `U09` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP European History (0/9 video)
 
@@ -1315,15 +1325,15 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 899 | Renaissance and Exploration `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 900 | Age of Reformation `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 901 | Absolutism and Constitutionalism `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 902 | Scientific, Philosophical, and Political Developments `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 903 | Conflict, Crisis, and Reaction in the Late 18th Century `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 904 | Industrialization and Its Effects `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 905 | 19th-Century Perspectives and Political Developments `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 906 | 20th-Century Global Conflicts `U08` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 907 | Cold War and Contemporary Europe `U09` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 909 | Renaissance and Exploration `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 910 | Age of Reformation `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 911 | Absolutism and Constitutionalism `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 912 | Scientific, Philosophical, and Political Developments `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 913 | Conflict, Crisis, and Reaction in the Late 18th Century `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 914 | Industrialization and Its Effects `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 915 | 19th-Century Perspectives and Political Developments `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 916 | 20th-Century Global Conflicts `U08` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 917 | Cold War and Contemporary Europe `U09` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP French Language and Culture (0/6 video)
 
@@ -1331,12 +1341,12 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 908 | Families and Communities `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 909 | Language and Culture `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 910 | Art and Creativity `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 911 | Science and Technology `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 912 | Contemporary Life `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 913 | Global Contexts `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 918 | Families and Communities `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 919 | Language and Culture `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 920 | Art and Creativity `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 921 | Science and Technology `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 922 | Contemporary Life `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 923 | Global Contexts `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP German Language and Culture (0/6 video)
 
@@ -1344,12 +1354,12 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 914 | Families and Communities `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 915 | Language and Culture `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 916 | Art and Creativity `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 917 | Science and Technology `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 918 | Contemporary Life `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 919 | Global Contexts `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 924 | Families and Communities `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 925 | Language and Culture `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 926 | Art and Creativity `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 927 | Science and Technology `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 928 | Contemporary Life `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 929 | Global Contexts `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Human Geography (0/7 video)
 
@@ -1357,13 +1367,13 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 920 | Thinking Geographically `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 921 | Population and Migration Patterns and Processes `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 922 | Cultural Patterns and Processes `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 923 | Political Patterns and Processes `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 924 | Agriculture and Rural Land-Use Patterns and Processes `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 925 | Cities and Urban Land-Use Patterns and Processes `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 926 | Industrial and Economic Development Patterns and Processes `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 930 | Thinking Geographically `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 931 | Population and Migration Patterns and Processes `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 932 | Cultural Patterns and Processes `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 933 | Political Patterns and Processes `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 934 | Agriculture and Rural Land-Use Patterns and Processes `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 935 | Cities and Urban Land-Use Patterns and Processes `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 936 | Industrial and Economic Development Patterns and Processes `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Italian Language and Culture (0/6 video)
 
@@ -1371,12 +1381,12 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 927 | Families and Communities `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 928 | Language and Culture `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 929 | Art and Creativity `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 930 | Science and Technology `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 931 | Contemporary Life `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 932 | Global Contexts `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 937 | Families and Communities `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 938 | Language and Culture `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 939 | Art and Creativity `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 940 | Science and Technology `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 941 | Contemporary Life `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 942 | Global Contexts `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Japanese Language and Culture (0/6 video)
 
@@ -1384,12 +1394,12 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 933 | Families and Communities `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 934 | Language and Culture `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 935 | Art and Creativity `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 936 | Science and Technology `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 937 | Contemporary Life `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 938 | Global Contexts `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 943 | Families and Communities `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 944 | Language and Culture `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 945 | Art and Creativity `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 946 | Science and Technology `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 947 | Contemporary Life `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 948 | Global Contexts `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Latin (0/6 video)
 
@@ -1397,12 +1407,12 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 939 | Teacher's Choice—Latin Prose `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 940 | Pliny's Letters: Eruption of Mt. Vesuvius `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 941 | Pliny's Letters and Teacher's Choice—Latin Prose `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 942 | Teacher's Choice—Latin Poetry and Vergil's Aeneid `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 943 | Vergil, Aeneid `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 944 | Course Project and Teacher's Choice—Latin Poetry `U06` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 949 | Teacher's Choice—Latin Prose `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 950 | Pliny's Letters: Eruption of Mt. Vesuvius `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 951 | Pliny's Letters and Teacher's Choice—Latin Prose `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 952 | Teacher's Choice—Latin Poetry and Vergil's Aeneid `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 953 | Vergil, Aeneid `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 954 | Course Project and Teacher's Choice—Latin Poetry `U06` | 6 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Macroeconomics (0/6 video)
 
@@ -1410,12 +1420,12 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 945 | Basic Economic Concepts `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 946 | Economic Indicators and the Business Cycle `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 947 | National Income and Price Determination `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 948 | Financial Sector `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 949 | Long-Run Consequences of Stabilization Policies `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 950 | Open Economy—International Trade and Finance `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 955 | Basic Economic Concepts `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 956 | Economic Indicators and the Business Cycle `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 957 | National Income and Price Determination `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 958 | Financial Sector `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 959 | Long-Run Consequences of Stabilization Policies `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 960 | Open Economy—International Trade and Finance `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Microeconomics (0/6 video)
 
@@ -1423,12 +1433,12 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 951 | Basic Economic Concepts `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 952 | Supply and Demand `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 953 | Production, Cost, and the Perfect Competition Model `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 954 | Imperfect Competition `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 955 | Factor Markets `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 956 | Market Failure and the Role of Government `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 961 | Basic Economic Concepts `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 962 | Supply and Demand `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 963 | Production, Cost, and the Perfect Competition Model `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 964 | Imperfect Competition `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 965 | Factor Markets `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 966 | Market Failure and the Role of Government `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Music Theory (0/8 video)
 
@@ -1436,14 +1446,14 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 957 | Music Fundamentals I: Pitch, Major Scales, Rhythm, Meter, and Expression `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 958 | Music Fundamentals II: Minor Scales, Melody, Timbre, and Texture `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 959 | Music Fundamentals III: Triads and Seventh Chords `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 960 | Harmony and Voice Leading I: Chord Function, Cadence, and Phrase `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 961 | Harmony and Voice Leading II: Chord Progressions and Predominant Function `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 962 | Harmony and Voice Leading III: Embellishments, Motives, and Melodic Devices `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 963 | Harmony and Voice Leading IV: Secondary Function `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 964 | Modes and Form `U08` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 967 | Music Fundamentals I: Pitch, Major Scales, Rhythm, Meter, and Expression `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 968 | Music Fundamentals II: Minor Scales, Melody, Timbre, and Texture `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 969 | Music Fundamentals III: Triads and Seventh Chords `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 970 | Harmony and Voice Leading I: Chord Function, Cadence, and Phrase `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 971 | Harmony and Voice Leading II: Chord Progressions and Predominant Function `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 972 | Harmony and Voice Leading III: Embellishments, Motives, and Melodic Devices `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 973 | Harmony and Voice Leading IV: Secondary Function `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 974 | Modes and Form `U08` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Physics 1: Algebra-Based (0/8 video)
 
@@ -1451,14 +1461,14 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 965 | Kinematics `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 966 | Force and Translational Dynamics `U02` | 7 | · | · | · | · | — | 0 (0 / 0) |
-| 967 | Work, Energy, and Power `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 968 | Linear Momentum `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 969 | Torque and Rotational Dynamics `U05` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 970 | Energy and Momentum of Rotating Systems `U06` | 7 | · | · | · | · | — | 0 (0 / 0) |
-| 971 | Oscillations `U07` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 972 | Fluids `U08` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 975 | Kinematics `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 976 | Force and Translational Dynamics `U02` | 7 | · | · | · | · | — | 0 (0 / 0) |
+| 977 | Work, Energy, and Power `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 978 | Linear Momentum `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 979 | Torque and Rotational Dynamics `U05` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 980 | Energy and Momentum of Rotating Systems `U06` | 7 | · | · | · | · | — | 0 (0 / 0) |
+| 981 | Oscillations `U07` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 982 | Fluids `U08` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Physics 2: Algebra-Based (0/7 video)
 
@@ -1466,13 +1476,13 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 973 | Thermodynamics `U09` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 974 | Electric Force, Field, and Potential `U10` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 975 | Electric Circuits `U11` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 976 | Magnetism and Electromagnetism `U12` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 977 | Geometric Optics `U13` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 978 | Waves, Sound, and Physical Optics `U14` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 979 | Modern Physics `U15` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 983 | Thermodynamics `U09` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 984 | Electric Force, Field, and Potential `U10` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 985 | Electric Circuits `U11` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 986 | Magnetism and Electromagnetism `U12` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 987 | Geometric Optics `U13` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 988 | Waves, Sound, and Physical Optics `U14` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 989 | Modern Physics `U15` | 6 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Physics C: Electricity and Magnetism (0/6 video)
 
@@ -1480,12 +1490,12 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 980 | Electric Charges, Fields, and Gauss's Law `U08` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 981 | Electric Potential `U09` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 982 | Conductors and Capacitors `U10` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 983 | Electric Circuits `U11` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 984 | Magnetic Fields and Electromagnetism `U12` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 985 | Electromagnetic Induction `U13` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 990 | Electric Charges, Fields, and Gauss's Law `U08` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 991 | Electric Potential `U09` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 992 | Conductors and Capacitors `U10` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 993 | Electric Circuits `U11` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 994 | Magnetic Fields and Electromagnetism `U12` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 995 | Electromagnetic Induction `U13` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Physics C: Mechanics (0/7 video)
 
@@ -1493,13 +1503,13 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 986 | Kinematics `U01` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 987 | Force and Translational Dynamics `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 988 | Work, Energy, and Power `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 989 | Linear Momentum `U04` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 990 | Torque and Rotational Dynamics `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 991 | Energy and Momentum of Rotating Systems `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 992 | Oscillations `U07` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 996 | Kinematics `U01` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 997 | Force and Translational Dynamics `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 998 | Work, Energy, and Power `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 999 | Linear Momentum `U04` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1000 | Torque and Rotational Dynamics `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1001 | Energy and Momentum of Rotating Systems `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1002 | Oscillations `U07` | 4 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Precalculus (0/4 video)
 
@@ -1507,10 +1517,10 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 993 | Polynomial and Rational Functions `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 994 | Exponential and Logarithmic Functions `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 995 | Trigonometric and Polar Functions `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 996 | Functions Involving Parameters, Vectors, and Matrices `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1003 | Polynomial and Rational Functions `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1004 | Exponential and Logarithmic Functions `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1005 | Trigonometric and Polar Functions `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1006 | Functions Involving Parameters, Vectors, and Matrices `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Psychology (0/5 video)
 
@@ -1518,11 +1528,11 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 997 | Biological Bases of Behavior `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 998 | Cognition `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 999 | Development and Learning `U03` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 1000 | Social Psychology and Personality `U04` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 1001 | Mental and Physical Health `U05` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1007 | Biological Bases of Behavior `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1008 | Cognition `U02` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1009 | Development and Learning `U03` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1010 | Social Psychology and Personality `U04` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1011 | Mental and Physical Health `U05` | 6 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Research (0/4 video)
 
@@ -1530,10 +1540,10 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1002 | Question and Explore `BIG_IDEA_1` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1003 | Understand and Analyze `BIG_IDEA_2` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1004 | Evaluate Multiple Perspectives `BIG_IDEA_3` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1005 | Synthesize Ideas `BIG_IDEA_4` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1012 | Question and Explore `BIG_IDEA_1` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1013 | Understand and Analyze `BIG_IDEA_2` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1014 | Evaluate Multiple Perspectives `BIG_IDEA_3` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1015 | Synthesize Ideas `BIG_IDEA_4` | 4 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Seminar (0/5 video)
 
@@ -1541,11 +1551,11 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1006 | Question and Explore `BIG_IDEA_1` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1007 | Understand and Analyze `BIG_IDEA_2` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1008 | Evaluate Multiple Perspectives `BIG_IDEA_3` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1009 | Synthesize Ideas `BIG_IDEA_4` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1010 | Team, Transform, and Transmit `BIG_IDEA_5` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1016 | Question and Explore `BIG_IDEA_1` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1017 | Understand and Analyze `BIG_IDEA_2` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1018 | Evaluate Multiple Perspectives `BIG_IDEA_3` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1019 | Synthesize Ideas `BIG_IDEA_4` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1020 | Team, Transform, and Transmit `BIG_IDEA_5` | 4 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Spanish Language and Culture (0/6 video)
 
@@ -1553,12 +1563,12 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1011 | Families and Communities `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 1012 | Language and Culture `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1013 | Art and Creativity `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1014 | Science and Technology `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1015 | Contemporary Life `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1016 | Global Contexts `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1021 | Families and Communities `U01` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1022 | Language and Culture `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1023 | Art and Creativity `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1024 | Science and Technology `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1025 | Contemporary Life `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1026 | Global Contexts `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Spanish Literature and Culture (0/8 video)
 
@@ -1566,14 +1576,14 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1017 | La época medieval `U01` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1018 | El siglo XVI `U02` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1019 | El siglo XVII `U03` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1020 | La literatura romántica, realista y naturalista `U04` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1021 | La Generación del 98 y el Modernismo `U05` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1022 | Teatro y poesía del siglo XX `U06` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1023 | El Boom latinoamericano `U07` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1024 | Escritores contemporáneos de Estados Unidos y España `U08` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1027 | La época medieval `U01` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1028 | El siglo XVI `U02` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1029 | El siglo XVII `U03` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1030 | La literatura romántica, realista y naturalista `U04` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1031 | La Generación del 98 y el Modernismo `U05` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1032 | Teatro y poesía del siglo XX `U06` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1033 | El Boom latinoamericano `U07` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1034 | Escritores contemporáneos de Estados Unidos y España `U08` | 4 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP Statistics (0/5 video)
 
@@ -1581,11 +1591,11 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1025 | Exploring One-Variable Data and Collecting Data `U01` | 7 | · | · | · | · | — | 0 (0 / 0) |
-| 1026 | Probability, Random Variables, and Probability Distributions `U02` | 8 | · | · | · | · | — | 0 (0 / 0) |
-| 1027 | Inference for Categorical Data: Proportions `U03` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 1028 | Inference for Quantitative Data: Means `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1029 | Regression Analysis `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1035 | Exploring One-Variable Data and Collecting Data `U01` | 7 | · | · | · | · | — | 0 (0 / 0) |
+| 1036 | Probability, Random Variables, and Probability Distributions `U02` | 8 | · | · | · | · | — | 0 (0 / 0) |
+| 1037 | Inference for Categorical Data: Proportions `U03` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1038 | Inference for Quantitative Data: Means `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1039 | Regression Analysis `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP United States Government and Politics (0/5 video)
 
@@ -1593,11 +1603,11 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1030 | Foundations of American Democracy `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1031 | Interactions Among Branches of Government `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1032 | Civil Liberties and Civil Rights `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1033 | American Political Ideologies and Beliefs `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1034 | Political Participation `U05` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1040 | Foundations of American Democracy `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1041 | Interactions Among Branches of Government `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1042 | Civil Liberties and Civil Rights `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1043 | American Political Ideologies and Beliefs `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1044 | Political Participation `U05` | 6 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP United States History (0/9 video)
 
@@ -1605,15 +1615,15 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1035 | Period 1: 1491–1607 `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1036 | Period 2: 1607–1754 `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1037 | Period 3: 1754–1800 `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1038 | Period 4: 1800–1848 `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1039 | Period 5: 1844–1877 `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1040 | Period 6: 1865–1898 `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1041 | Period 7: 1890–1945 `U07` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 1042 | Period 8: 1945–1980 `U08` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 1043 | Period 9: 1980–Present `U09` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1045 | Period 1: 1491–1607 `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1046 | Period 2: 1607–1754 `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1047 | Period 3: 1754–1800 `U03` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1048 | Period 4: 1800–1848 `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1049 | Period 5: 1844–1877 `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1050 | Period 6: 1865–1898 `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1051 | Period 7: 1890–1945 `U07` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1052 | Period 8: 1945–1980 `U08` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1053 | Period 9: 1980–Present `U09` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_AP · AP World History: Modern (0/9 video)
 
@@ -1621,15 +1631,15 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1044 | The Global Tapestry `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1045 | Networks of Exchange `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1046 | Land-Based Empires `U03` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1047 | Transoceanic Interconnections `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1048 | Revolutions `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1049 | Consequences of Industrialization `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1050 | Global Conflict `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1051 | Cold War and Decolonization `U08` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1052 | Globalization `U09` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1054 | The Global Tapestry `U01` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1055 | Networks of Exchange `U02` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1056 | Land-Based Empires `U03` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1057 | Transoceanic Interconnections `U04` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1058 | Revolutions `U05` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1059 | Consequences of Industrialization `U06` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1060 | Global Conflict `U07` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1061 | Cold War and Decolonization `U08` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1062 | Globalization `U09` | 6 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_GRE · GRE General Test (0/8 video)
 
@@ -1637,24 +1647,24 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1053 | Reading Comprehension `READING_COMPREHENSION` | 19 | · | · | · | · | — | 0 (0 / 0) |
-| 1054 | Text Completion `TEXT_COMPLETION` | 11 | · | · | · | · | — | 0 (0 / 0) |
-| 1055 | Sentence Equivalence `SENTENCE_EQUIVALENCE` | 8 | · | · | · | · | — | 0 (0 / 0) |
+| 1063 | Reading Comprehension `READING_COMPREHENSION` | 19 | · | · | · | · | — | 0 (0 / 0) |
+| 1064 | Text Completion `TEXT_COMPLETION` | 11 | · | · | · | · | — | 0 (0 / 0) |
+| 1065 | Sentence Equivalence `SENTENCE_EQUIVALENCE` | 8 | · | · | · | · | — | 0 (0 / 0) |
 
 ### Quantitative Reasoning (QUANT)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1056 | Arithmetic `ARITHMETIC` | 17 | · | · | · | · | — | 0 (0 / 0) |
-| 1057 | Algebra `ALGEBRA` | 15 | · | · | · | · | — | 0 (0 / 0) |
-| 1058 | Geometry `GEOMETRY` | 14 | · | · | · | · | — | 0 (0 / 0) |
-| 1059 | Data Analysis `DATA_ANALYSIS` | 19 | · | · | · | · | — | 0 (0 / 0) |
+| 1066 | Arithmetic `ARITHMETIC` | 17 | · | · | · | · | — | 0 (0 / 0) |
+| 1067 | Algebra `ALGEBRA` | 15 | · | · | · | · | — | 0 (0 / 0) |
+| 1068 | Geometry `GEOMETRY` | 14 | · | · | · | · | — | 0 (0 / 0) |
+| 1069 | Data Analysis `DATA_ANALYSIS` | 19 | · | · | · | · | — | 0 (0 / 0) |
 
 ### Analytical Writing (ANALYTICAL_WRITING)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1060 | Analyze an Issue `ISSUE_ANALYSIS` | 12 | · | · | · | · | — | 0 (0 / 0) |
+| 1070 | Analyze an Issue `ISSUE_ANALYSIS` | 12 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_LSAT · LSAT (0/16 video)
 
@@ -1662,32 +1672,32 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1061 | Argument Structure and Relationships `ARGUMENT_STRUCTURE` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1062 | Inference and Conclusions `INFERENCE_CONCLUSIONS` | 3 | · | · | · | · | — | 0 (0 / 0) |
-| 1063 | Assumptions and Flaws `ASSUMPTIONS_FLAWS` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1064 | Evidence and Argument Impact `EVIDENCE_IMPACT` | 3 | · | · | · | · | — | 0 (0 / 0) |
-| 1065 | Principles, Rules, and Analogy `PRINCIPLES_ANALOGY` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1066 | Disagreement and Positions `DISAGREEMENT_POSITIONS` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1067 | Explanations and Causal Reasoning `EXPLANATIONS` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1071 | Argument Structure and Relationships `ARGUMENT_STRUCTURE` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1072 | Inference and Conclusions `INFERENCE_CONCLUSIONS` | 3 | · | · | · | · | — | 0 (0 / 0) |
+| 1073 | Assumptions and Flaws `ASSUMPTIONS_FLAWS` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1074 | Evidence and Argument Impact `EVIDENCE_IMPACT` | 3 | · | · | · | · | — | 0 (0 / 0) |
+| 1075 | Principles, Rules, and Analogy `PRINCIPLES_ANALOGY` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1076 | Disagreement and Positions `DISAGREEMENT_POSITIONS` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1077 | Explanations and Causal Reasoning `EXPLANATIONS` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ### Reading Comprehension (READING_COMPREHENSION)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1068 | Main Idea and Explicit Information `MAIN_IDEA_INFORMATION` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1069 | Inference and Context `INFERENCE_CONTEXT` | 3 | · | · | · | · | — | 0 (0 / 0) |
-| 1070 | Organization, Structure, and Author Attitude `STRUCTURE_ATTITUDE` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1071 | Application and New Information `APPLICATION_NEW_INFORMATION` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1072 | Comparative Reading `COMPARATIVE_READING` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1078 | Main Idea and Explicit Information `MAIN_IDEA_INFORMATION` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1079 | Inference and Context `INFERENCE_CONTEXT` | 3 | · | · | · | · | — | 0 (0 / 0) |
+| 1080 | Organization, Structure, and Author Attitude `STRUCTURE_ATTITUDE` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1081 | Application and New Information `APPLICATION_NEW_INFORMATION` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1082 | Comparative Reading `COMPARATIVE_READING` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ### Argumentative Writing (ARGUMENTATIVE_WRITING)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1073 | Prewriting Analysis `PREWRITING_ANALYSIS` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1074 | Argument Construction `ARGUMENT_CONSTRUCTION` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1075 | Addressing Other Perspectives `COUNTERPERSPECTIVES` | 3 | · | · | · | · | — | 0 (0 / 0) |
-| 1076 | Organization and Written Expression `ORGANIZATION_LANGUAGE` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1083 | Prewriting Analysis `PREWRITING_ANALYSIS` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1084 | Argument Construction `ARGUMENT_CONSTRUCTION` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1085 | Addressing Other Perspectives `COUNTERPERSPECTIVES` | 3 | · | · | · | · | — | 0 (0 / 0) |
+| 1086 | Organization and Written Expression `ORGANIZATION_LANGUAGE` | 4 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_MCAT · MCAT (0/53 video)
 
@@ -1695,99 +1705,99 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1077 | Amino Acids and Proteins `AMINO_ACIDS_PROTEINS` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 1078 | Enzymes `ENZYMES` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1079 | Bioenergetics and Metabolism `BIOENERGETICS_METABOLISM` | 9 | · | · | · | · | — | 0 (0 / 0) |
-| 1080 | Nucleic Acids and Gene Expression `NUCLEIC_ACIDS_GENE_EXPRESSION` | 7 | · | · | · | · | — | 0 (0 / 0) |
+| 1087 | Amino Acids and Proteins `AMINO_ACIDS_PROTEINS` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1088 | Enzymes `ENZYMES` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1089 | Bioenergetics and Metabolism `BIOENERGETICS_METABOLISM` | 9 | · | · | · | · | — | 0 (0 / 0) |
+| 1090 | Nucleic Acids and Gene Expression `NUCLEIC_ACIDS_GENE_EXPRESSION` | 7 | · | · | · | · | — | 0 (0 / 0) |
 
 ### Biology (BIOLOGY)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1081 | Cell Biology `CELL_BIOLOGY` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 1082 | Genetics and Evolution `GENETICS_EVOLUTION` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 1083 | Microbiology `MICROBIOLOGY` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1084 | Nervous and Endocrine Systems `NERVOUS_ENDOCRINE` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1085 | Cardiovascular and Respiratory Systems `CARDIOVASCULAR_RESPIRATORY` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1086 | Digestive and Renal Systems `DIGESTIVE_RENAL` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1087 | Immune and Lymphatic Systems `IMMUNE_LYMPHATIC` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1088 | Musculoskeletal System `MUSCULOSKELETAL` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1089 | Reproduction and Development `REPRODUCTION_DEVELOPMENT` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1090 | Homeostasis and Organ-System Integration `HOMEOSTASIS_INTEGRATION` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1091 | Cell Biology `CELL_BIOLOGY` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1092 | Genetics and Evolution `GENETICS_EVOLUTION` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1093 | Microbiology `MICROBIOLOGY` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1094 | Nervous and Endocrine Systems `NERVOUS_ENDOCRINE` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1095 | Cardiovascular and Respiratory Systems `CARDIOVASCULAR_RESPIRATORY` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1096 | Digestive and Renal Systems `DIGESTIVE_RENAL` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1097 | Immune and Lymphatic Systems `IMMUNE_LYMPHATIC` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1098 | Musculoskeletal System `MUSCULOSKELETAL` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1099 | Reproduction and Development `REPRODUCTION_DEVELOPMENT` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1100 | Homeostasis and Organ-System Integration `HOMEOSTASIS_INTEGRATION` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ### General Chemistry (GENERAL_CHEMISTRY)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1091 | Atomic Structure and Periodicity `ATOMIC_STRUCTURE_PERIODICITY` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1092 | Bonding and Molecular Structure `BONDING_MOLECULAR_STRUCTURE` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1093 | Stoichiometry and Chemical Reactions `STOICHIOMETRY_REACTIONS` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1094 | Thermochemistry and Kinetics `THERMOCHEMISTRY_KINETICS` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1095 | Equilibrium and Acid-Base Chemistry `EQUILIBRIUM_ACID_BASE` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 1096 | Solutions and Electrochemistry `SOLUTIONS_ELECTROCHEMISTRY` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1101 | Atomic Structure and Periodicity `ATOMIC_STRUCTURE_PERIODICITY` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1102 | Bonding and Molecular Structure `BONDING_MOLECULAR_STRUCTURE` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1103 | Stoichiometry and Chemical Reactions `STOICHIOMETRY_REACTIONS` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1104 | Thermochemistry and Kinetics `THERMOCHEMISTRY_KINETICS` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1105 | Equilibrium and Acid-Base Chemistry `EQUILIBRIUM_ACID_BASE` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1106 | Solutions and Electrochemistry `SOLUTIONS_ELECTROCHEMISTRY` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ### Organic Chemistry (ORGANIC_CHEMISTRY)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1097 | Structure and Stereochemistry `STRUCTURE_STEREOCHEMISTRY` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1098 | Functional Groups and Nomenclature `FUNCTIONAL_GROUPS_NOMENCLATURE` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1099 | Reaction Principles `REACTION_PRINCIPLES` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1100 | Carbonyl Chemistry `CARBONYL_CHEMISTRY` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1101 | Separation and Laboratory Techniques `LAB_TECHNIQUES` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1107 | Structure and Stereochemistry `STRUCTURE_STEREOCHEMISTRY` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1108 | Functional Groups and Nomenclature `FUNCTIONAL_GROUPS_NOMENCLATURE` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1109 | Reaction Principles `REACTION_PRINCIPLES` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1110 | Carbonyl Chemistry `CARBONYL_CHEMISTRY` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1111 | Separation and Laboratory Techniques `LAB_TECHNIQUES` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ### Physics (PHYSICS)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1102 | Mechanics `MECHANICS` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1103 | Work and Energy `WORK_ENERGY` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1104 | Fluids `FLUIDS` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1105 | Electricity and Circuits `ELECTRICITY_CIRCUITS` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1106 | Waves and Sound `WAVES_SOUND` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1107 | Light and Optics `LIGHT_OPTICS` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1108 | Atomic and Nuclear Physics `ATOMIC_NUCLEAR` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1112 | Mechanics `MECHANICS` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1113 | Work and Energy `WORK_ENERGY` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1114 | Fluids `FLUIDS` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1115 | Electricity and Circuits `ELECTRICITY_CIRCUITS` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1116 | Waves and Sound `WAVES_SOUND` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1117 | Light and Optics `LIGHT_OPTICS` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1118 | Atomic and Nuclear Physics `ATOMIC_NUCLEAR` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ### Psychology (PSYCHOLOGY)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1109 | Sensation and Perception `SENSATION_PERCEPTION` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1110 | Cognition and Consciousness `COGNITION_CONSCIOUSNESS` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1111 | Learning and Memory `LEARNING_MEMORY` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 1112 | Motivation, Emotion, and Stress `MOTIVATION_EMOTION_STRESS` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1113 | Identity and Personality `IDENTITY_PERSONALITY` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1114 | Behavior and Behavior Change `BEHAVIOR_CHANGE` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1115 | Psychological Disorders `PSYCHOLOGICAL_DISORDERS` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1119 | Sensation and Perception `SENSATION_PERCEPTION` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1120 | Cognition and Consciousness `COGNITION_CONSCIOUSNESS` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1121 | Learning and Memory `LEARNING_MEMORY` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1122 | Motivation, Emotion, and Stress `MOTIVATION_EMOTION_STRESS` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1123 | Identity and Personality `IDENTITY_PERSONALITY` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1124 | Behavior and Behavior Change `BEHAVIOR_CHANGE` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1125 | Psychological Disorders `PSYCHOLOGICAL_DISORDERS` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ### Sociology (SOCIOLOGY)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1116 | Social Interaction and Groups `SOCIAL_INTERACTION_GROUPS` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1117 | Culture and Socialization `CULTURE_SOCIALIZATION` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1118 | Social Structure and Institutions `SOCIAL_STRUCTURE_INSTITUTIONS` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1119 | Demographics `DEMOGRAPHICS` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1120 | Social Stratification and Inequality `STRATIFICATION_INEQUALITY` | 6 | · | · | · | · | — | 0 (0 / 0) |
-| 1121 | Health and Social Inequality `HEALTH_DISPARITIES` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1126 | Social Interaction and Groups `SOCIAL_INTERACTION_GROUPS` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1127 | Culture and Socialization `CULTURE_SOCIALIZATION` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1128 | Social Structure and Institutions `SOCIAL_STRUCTURE_INSTITUTIONS` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1129 | Demographics `DEMOGRAPHICS` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1130 | Social Stratification and Inequality `STRATIFICATION_INEQUALITY` | 6 | · | · | · | · | — | 0 (0 / 0) |
+| 1131 | Health and Social Inequality `HEALTH_DISPARITIES` | 4 | · | · | · | · | — | 0 (0 / 0) |
 
 ### Critical Analysis and Reasoning Skills (CARS)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1122 | Foundations of Comprehension `FOUNDATIONS_COMPREHENSION` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1123 | Reasoning Within the Text `REASONING_WITHIN_TEXT` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1124 | Reasoning Beyond the Text `REASONING_BEYOND_TEXT` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1132 | Foundations of Comprehension `FOUNDATIONS_COMPREHENSION` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1133 | Reasoning Within the Text `REASONING_WITHIN_TEXT` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1134 | Reasoning Beyond the Text `REASONING_BEYOND_TEXT` | 5 | · | · | · | · | — | 0 (0 / 0) |
 
 ### Scientific Inquiry and Reasoning (SCIENTIFIC_REASONING)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1125 | Knowledge of Scientific Concepts and Principles `KNOWLEDGE_SCIENTIFIC_PRINCIPLES` | 3 | · | · | · | · | — | 0 (0 / 0) |
-| 1126 | Scientific Reasoning and Problem-Solving `SCIENTIFIC_REASONING_PROBLEM_SOLVING` | 4 | · | · | · | · | — | 0 (0 / 0) |
-| 1127 | Reasoning about the Design and Execution of Research `RESEARCH_DESIGN_EXECUTION` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1128 | Data-Based and Statistical Reasoning `DATA_STATISTICAL_REASONING` | 5 | · | · | · | · | — | 0 (0 / 0) |
-| 1129 | General Mathematical Concepts and Techniques `GENERAL_MATHEMATICAL_TECHNIQUES` | 14 | · | · | · | · | — | 0 (0 / 0) |
+| 1135 | Knowledge of Scientific Concepts and Principles `KNOWLEDGE_SCIENTIFIC_PRINCIPLES` | 3 | · | · | · | · | — | 0 (0 / 0) |
+| 1136 | Scientific Reasoning and Problem-Solving `SCIENTIFIC_REASONING_PROBLEM_SOLVING` | 4 | · | · | · | · | — | 0 (0 / 0) |
+| 1137 | Reasoning about the Design and Execution of Research `RESEARCH_DESIGN_EXECUTION` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1138 | Data-Based and Statistical Reasoning `DATA_STATISTICAL_REASONING` | 5 | · | · | · | · | — | 0 (0 / 0) |
+| 1139 | General Mathematical Concepts and Techniques `GENERAL_MATHEMATICAL_TECHNIQUES` | 14 | · | · | · | · | — | 0 (0 / 0) |
 
 ## US_SAT · Digital SAT (0/8 video)
 
@@ -1795,16 +1805,16 @@ Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullan�
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1130 | Information and Ideas `INFORMATION_IDEAS` | 4 | · | · | · | · | — | 527 (527 / 0) |
-| 1131 | Craft and Structure `CRAFT_STRUCTURE` | 3 | · | · | · | · | — | 453 (453 / 0) |
-| 1132 | Expression of Ideas `EXPRESSION_IDEAS` | 2 | · | · | · | · | — | 384 (384 / 0) |
-| 1133 | Standard English Conventions `STANDARD_ENGLISH_CONVENTIONS` | 2 | · | · | · | · | — | 420 (420 / 0) |
+| 1140 | Information and Ideas `INFORMATION_IDEAS` | 4 | · | · | · | · | — | 527 (527 / 0) |
+| 1141 | Craft and Structure `CRAFT_STRUCTURE` | 3 | · | · | · | · | — | 453 (453 / 0) |
+| 1142 | Expression of Ideas `EXPRESSION_IDEAS` | 2 | · | · | · | · | — | 384 (384 / 0) |
+| 1143 | Standard English Conventions `STANDARD_ENGLISH_CONVENTIONS` | 2 | · | · | · | · | — | 420 (420 / 0) |
 
 ### Math (MATH)
 
 | Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |
 | ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |
-| 1134 | Algebra `ALGEBRA` | 5 | · | · | · | · | — | 454 (377 / 0) |
-| 1135 | Advanced Math `ADVANCED_MATH` | 3 | · | · | · | · | — | 384 (306 / 0) |
-| 1136 | Problem-Solving and Data Analysis `PROBLEM_SOLVING_DATA_ANALYSIS` | 7 | · | · | · | · | — | 388 (306 / 0) |
-| 1137 | Geometry and Trigonometry `GEOMETRY_TRIGONOMETRY` | 4 | · | · | · | · | — | 300 (222 / 0) |
+| 1144 | Algebra `ALGEBRA` | 5 | · | · | · | · | — | 454 (377 / 0) |
+| 1145 | Advanced Math `ADVANCED_MATH` | 3 | · | · | · | · | — | 384 (306 / 0) |
+| 1146 | Problem-Solving and Data Analysis `PROBLEM_SOLVING_DATA_ANALYSIS` | 7 | · | · | · | · | — | 388 (306 / 0) |
+| 1147 | Geometry and Trigonometry `GEOMETRY_TRIGONOMETRY` | 4 | · | · | · | · | — | 300 (222 / 0) |

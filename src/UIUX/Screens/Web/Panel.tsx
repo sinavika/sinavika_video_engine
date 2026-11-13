@@ -1,7 +1,7 @@
 import React from 'react';
 import {useColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
-import {alpha, MODULES, MODULE_ORDER, moduleGradient, type ModuleKey} from '../../ModuleIdentity';
+import {alpha, MODULES, MODULE_ORDER, type ModuleKey} from '../../ModuleIdentity';
 import {Avatar, Bar, Button, Card, Chip, Field, List, ListRow, Segmented, Skeleton, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
 import {Grid, Panel, WCard} from '../../Parts/Web';
 
@@ -24,26 +24,24 @@ export const WebModulesScreen: React.FC = () => {
 					{t('Tüm modüller', 'All modules')}
 				</Text>
 				<Text role="small" size={14}>
-					{t('Her modülün kendi rengi var: kartta, menüde ve sekmede aynı renk. SinoAI sade ve renksiz.', 'Every module has its colour on its card, menu and tabs. SinoAI stays plain.')}
+					{t('Her modülün kendi rengi var: simgede, menüde ve sekmede aynı renk. Ana sayfadaki kutucuklarla aynı düzen.', 'Each module keeps its colour on its icon, menu and tabs.')}
 				</Text>
 			</Stack>
 			<Grid columns="repeat(4, 1fr)">
 				{MODULE_ORDER.map((key) => (
-					<div key={key} style={{gridColumn: key === 'sinoAi' ? 'span 2' : undefined, borderRadius: 24, overflow: 'hidden', background: colors.card, border: `1px solid ${colors.line}`, display: 'flex', flexDirection: key === 'sinoAi' ? 'row' : 'column'}}>
-						<div style={{position: 'relative', height: key === 'sinoAi' ? undefined : 120, width: key === 'sinoAi' ? 240 : undefined, background: key === 'sinoAi' ? colors.line2 : moduleGradient(key), overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-							{key === 'sinoAi' ? null : <div style={{position: 'absolute', right: -30, top: -40, width: 150, height: 150, borderRadius: 75, background: 'rgba(255,255,255,0.14)'}} />}
-							<div style={{width: 64, height: 64, borderRadius: 22, background: key === 'sinoAi' ? colors.card : 'rgba(255,255,255,0.22)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-								<Icon name={MODULES[key].icon} size={32} color={key === 'sinoAi' ? colors.ink : '#FFFFFF'} />
-							</div>
-						</div>
-						<Stack gap={6} style={{padding: '14px 16px 16px', flex: 1}}>
+					<Stack key={key} gap={10} style={{gridColumn: key === 'sinoAi' ? 'span 2' : undefined, padding: 18, borderRadius: 22, background: colors.card, border: `1px solid ${colors.line}`}}>
+						<Stack row justify="space-between" align="flex-start">
+							<Tile module={key} size={48} />
+							<Icon name="right" size={18} color={colors.subtle} />
+						</Stack>
+						<Stack gap={2}>
 							<Text role="section">{t(MODULES[key].name)}</Text>
 							<Text role="small">{t(MODULES[key].tagline)}</Text>
-							<Chip tone="module" module={key} size="sm" style={{marginTop: 4}}>
-								{status[key]}
-							</Chip>
 						</Stack>
-					</div>
+						<Chip tone="module" module={key} size="sm" style={{alignSelf: 'flex-start'}}>
+							{status[key]}
+						</Chip>
+					</Stack>
 				))}
 			</Grid>
 		</Panel>

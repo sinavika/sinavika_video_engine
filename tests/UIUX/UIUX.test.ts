@@ -84,28 +84,29 @@ describe('UI/UX screens', () => {
 	});
 
 	it('keeps mobile, web and tablet in step: every key feature and state has its drawing on each platform', () => {
-		// feature: [mobile, web, tablet or null when the phone layout serves the tablet]
-		const parity: Record<string, [string, string, string | null]> = {
+		// feature: [mobile, web, tablet]: the three are drawn for every key feature and state
+		const parity: Record<string, [string, string, string]> = {
 			home: ['m-hub-moduller', 'w-panel-anasayfa', 't-hub-moduller'],
 			homeNoPlan: ['m-hub-plansiz', 'w-panel-anasayfa-plansiz', 't-hub-plansiz'],
 			homeDone: ['m-hub-gun-bitti', 'w-panel-anasayfa-gun-bitti', 't-hub-gun-bitti'],
 			homeExpired: ['m-hub-abonelik-bitti', 'w-panel-anasayfa-abonelik-bitti', 't-hub-abonelik-bitti'],
-			planDay: ['m-plan-bugun', 'w-plan-bugun', 't-plan-hafta'],
-			results: ['m-deneme-sonuclar', 'w-deneme-sonuclar', null],
-			resultsEmpty: ['m-deneme-sonuclar-bos', 'w-deneme-sonuclar-bos', null],
-			examSubmit: ['m-deneme-teslim', 'w-deneme-teslim', 't-deneme-klavye'],
-			examDone: ['m-deneme-detay-bitti', 'w-deneme-detay-bitti', null],
-			examAdd: ['m-deneme-ekle', 'w-deneme-ekle', null],
+			planDay: ['m-plan-bugun', 'w-plan-bugun', 't-plan-bugun'],
+			results: ['m-deneme-sonuclar', 'w-deneme-sonuclar', 't-deneme-sonuclar'],
+			resultsEmpty: ['m-deneme-sonuclar-bos', 'w-deneme-sonuclar-bos', 't-deneme-sonuclar-bos'],
+			examDetail: ['m-deneme-detay', 'w-deneme-detay', 't-deneme-detay'],
+			examSubmit: ['m-deneme-teslim', 'w-deneme-teslim', 't-deneme-teslim'],
+			examDone: ['m-deneme-detay-bitti', 'w-deneme-detay-bitti', 't-deneme-detay-bitti'],
+			examAdd: ['m-deneme-ekle', 'w-deneme-ekle', 't-deneme-ekle'],
 			statistics: ['m-istatistik', 'w-istatistik', 't-istatistik-pano'],
-			quizMistakes: ['m-test-yanlislar', 'w-test-yanlislar', 't-test-cozumler-iki-panel'],
-			stepGroup: ['m-ders-grupla', 'w-ders-grupla', null],
-			stepMatch: ['m-ders-eslestir', 'w-ders-eslestir', null],
-			stepFormula: ['m-ders-formul', 'w-ders-formul', null],
-			stepSection: ['m-ders-bolum', 'w-ders-bolum', null],
+			quizMistakes: ['m-test-yanlislar', 'w-test-yanlislar', 't-test-yanlislar'],
+			stepGroup: ['m-ders-grupla', 'w-ders-grupla', 't-ders-grupla'],
+			stepMatch: ['m-ders-eslestir', 'w-ders-eslestir', 't-ders-eslestir'],
+			stepFormula: ['m-ders-formul', 'w-ders-formul', 't-ders-formul'],
+			stepSection: ['m-ders-bolum', 'w-ders-bolum', 't-ders-bolum'],
 		};
 		const ids = new Set(UI_SCREENS.map((screen) => screen.id));
 		for (const [feature, platforms] of Object.entries(parity)) {
-			for (const id of platforms) if (id) expect(ids.has(id), `${feature}: ${id}`).toBe(true);
+			for (const id of platforms) expect(ids.has(id), `${feature}: ${id}`).toBe(true);
 		}
 	});
 

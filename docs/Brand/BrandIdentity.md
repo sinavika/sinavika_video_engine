@@ -449,7 +449,7 @@ Bu bölüm içerik motoru reposuna (`sinavika_video_engine`) özgüdür. Sosyal 
 | --- | --- |
 | Web | sinavika.com |
 | Instagram | `sinavika.tr` |
-| TikTok | `sinavikatr` |
+| TikTok | `sinavika.tr` (10 Kasım 2026’ya kadar `sinavikatr`) |
 | YouTube | `Sinavika` |
 | LinkedIn | henüz Buffer'a bağlı değil |
 | Mağazalar | App Store ve Google Play |

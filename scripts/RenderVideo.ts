@@ -14,6 +14,8 @@
  *
  * A whole camp or course lesson is refused while its script has still screens (StillScreenGate, owner 9 Nov 2026);
  * --allow-still-screens renders it anyway. Single frames and frame ranges are previews and are not checked.
+ * With SINAVIKA_CAMP_RENDER_GATE=on in .env a whole camp video is rendered only from the script version approved in
+ * the admin panel (CampApprovalGate), and the server is told when its YouTube video is rendered.
  *
  * Before a render starts it says how long it will take (from the renders saved before it, RenderEstimate), and while
  * it runs it shows a progress bar with the time gone, the time left and when it ends. The status is also written to
@@ -31,6 +33,7 @@ import {parseArgs} from 'node:util';
 import {VideoJobValidationError} from '../src/Renderers/VideoJob';
 import {readVideoJob} from '../src/Renderers/VideoJobFile';
 import {stillScreenGate} from '../src/Renderers/StillScreenGate';
+import {campApprovalGate, reportCampRender} from '../src/Renderers/CampApprovalGate';
 import {renderFrame, renderVideo, renderVideoToOutputs, type RenderProgress} from '../src/Renderers/VideoRenderer';
 import {resolveVideoJob} from '../src/Renderers/VideoJob';
 import {forecastLine, forecastRender, readRenderTimes, RenderClock, saveRenderTiming, statusLine, writeRenderStatus, type RenderStatus, type RenderStatusFile} from '../src/Renderers/RenderEstimate';
@@ -116,6 +119,9 @@ const main = async (): Promise<number> => {
 		const preview = values.frame !== undefined || Boolean(frameRange);
 		const still = preview || values['allow-still-screens'] ? [] : stillScreenGate(job as {template?: unknown; content?: unknown});
 		if (still.length > 0) throw new VideoJobValidationError(still);
+		// A camp video shows the version the owner approved (on once the scripts are on the server, CampApprovalGate).
+		const camp = preview ? {issues: []} : await campApprovalGate(values.job);
+		if (camp.issues.length > 0) throw new VideoJobValidationError(camp.issues);
 		// The forecast: frames from the job as resolved now (narration estimates or cached voice), the pace from saved renders.
 		const fields = job as {name?: unknown; output?: unknown};
 		const name = typeof fields.name === 'string' && fields.name ? fields.name : path.basename(values.job, path.extname(values.job));
@@ -157,6 +163,14 @@ const main = async (): Promise<number> => {
 		if (process.stdout.isTTY && !values.json) process.stdout.write('\n');
 		const done = clock.status();
 		statusFile({...done, fraction: 1, remainingSeconds: 0, finishAt: new Date().toISOString()}, 'done');
+		if (camp.approval?.reported) {
+			try {
+				await reportCampRender(camp.approval);
+			} catch (error) {
+				// The video is there; only the notice failed, and it can be sent again on its own.
+				console.error(`Uyarı: render bildirimi gönderilemedi (${error instanceof Error ? error.message : String(error)}). Yeniden: npm run camp -- rendered --job ${values.job}`);
+			}
+		}
 		// Only whole renders teach the forecast: a preview's few frames pay the fixed costs of a whole video.
 		if (whole && values.frame === undefined)
 			saveRenderTiming({at: new Date().toISOString(), name, template: planned.template.id, width: result.width, height: result.height, frames: result.durationInFrames, stages: clock.stageSeconds(), totalSeconds: result.elapsedMilliseconds / 1000});

@@ -111,7 +111,7 @@ export const WebSinoChatScreen: React.FC = () => {
 				<Stack align="flex-end">
 					<div style={{maxWidth: 520, padding: '12px 18px', borderRadius: 22, background: colors.line2}}>
 						<Text role="body" size={15.5} color={colors.ink}>
-							{t('f(x) = (3x² − 2)⁴ için f′(1) sorusunda neden 6x ile çarpıyoruz?', 'Why multiply by 6x in f′(1) for f(x) = (3x² − 2)⁴?')}
+							{t("f(x) = (3x² − 2)⁴ için f'(1) sorusunda neden 6x ile çarpıyoruz?", "Why multiply by 6x in f'(1) for f(x) = (3x² − 2)⁴?")}
 						</Text>
 					</div>
 				</Stack>
@@ -123,7 +123,7 @@ export const WebSinoChatScreen: React.FC = () => {
 						</Text>
 						<div style={{padding: '14px 18px', borderRadius: 14, background: colors.line2}}>
 							<Text role="headline" size={16}>
-								f′(x) = 4(3x² − 2)³ · 6x → f′(1) = 24
+								f'(x) = 4(3x² − 2)³ · 6x → f'(1) = 24
 							</Text>
 						</div>
 						<Text role="body" size={16} color={colors.ink} style={{lineHeight: '26px'}}>

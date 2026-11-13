@@ -75,7 +75,11 @@ export type PlanEntry = {
 };
 
 const FEED = ['instagram', 'tiktok'] as const;
-/** Short videos also go out as YouTube Shorts; carousels and images never do. */
+/**
+ * Lesson videos also go out as YouTube Shorts. Ad videos (Promotion, PromoReel)
+ * never do: since 10 Nov 2026 Shorts carry only lesson content, and ads reach
+ * YouTube only as unlisted Google Ads uploads (docs/Social/YouTube-Kanal.md §10).
+ */
 const FEED_VIDEO = ['instagram', 'tiktok', 'youtube'] as const;
 const STORY = ['instagram'] as const;
 const LINKEDIN = ['linkedin'] as const;
@@ -100,7 +104,7 @@ export const WEEKLY_PLAN: Record<Weekday, readonly PlanEntry[]> = {
 		{channel: 'Story', content: 'Story', format: 'StoryImage', platforms: STORY, brief: 'Çoktan seçmeli soru / Cevap etkileşimi'},
 	],
 	fri: [
-		{channel: 'Feed', content: 'Promotion', format: 'Video', platforms: FEED_VIDEO, brief: 'Uygulama özellikleri, kullanım alanları ve öğrenciye faydaları'},
+		{channel: 'Feed', content: 'Promotion', format: 'Video', platforms: FEED, brief: 'Uygulama özellikleri, kullanım alanları ve öğrenciye faydaları'},
 		{channel: 'Story', content: 'Story', format: 'StoryImage', platforms: STORY, brief: 'Sınavika uygulama özelliği / Tanıtım'},
 		{channel: 'LinkedIn', content: 'LinkedInBrand', format: 'LandscapeImage', platforms: LINKEDIN, brief: 'Sınavika’nın gelişimi, vizyonu, yenilikleri ve girişim hikâyesi'},
 	],
@@ -123,7 +127,7 @@ export const WEEKLY_PLAN: Record<Weekday, readonly PlanEntry[]> = {
  */
 const PROMO_WEEKLY_PLAN: Record<Weekday, readonly PlanEntry[]> = {
 	mon: [
-		{channel: 'Feed', content: 'PromoReel', format: 'Video', platforms: FEED_VIDEO, brief: 'Tanıtım reels: tek modül ya da tek özellik, kullanıcı kazandıran hook'},
+		{channel: 'Feed', content: 'PromoReel', format: 'Video', platforms: FEED, brief: 'Tanıtım reels: tek modül ya da tek özellik, kullanıcı kazandıran hook'},
 		{channel: 'Story', content: 'PromoStory', format: 'StoryImage', platforms: STORY, brief: 'Günün reels’ine çağrı'},
 	],
 	tue: [
@@ -131,7 +135,7 @@ const PROMO_WEEKLY_PLAN: Record<Weekday, readonly PlanEntry[]> = {
 		{channel: 'Story', content: 'PromoStory', format: 'StoryImage', platforms: STORY, brief: 'Günün gönderisine çağrı'},
 	],
 	wed: [
-		{channel: 'Feed', content: 'PromoReel', format: 'Video', platforms: FEED_VIDEO, brief: 'Tanıtım reels'},
+		{channel: 'Feed', content: 'PromoReel', format: 'Video', platforms: FEED, brief: 'Tanıtım reels'},
 		{channel: 'Story', content: 'PromoStory', format: 'StoryImage', platforms: STORY, brief: 'Günün reels’ine çağrı'},
 	],
 	thu: [
@@ -139,7 +143,7 @@ const PROMO_WEEKLY_PLAN: Record<Weekday, readonly PlanEntry[]> = {
 		{channel: 'Story', content: 'PromoStory', format: 'StoryImage', platforms: STORY, brief: 'Günün gönderisine çağrı'},
 	],
 	fri: [
-		{channel: 'Feed', content: 'PromoReel', format: 'Video', platforms: FEED_VIDEO, brief: 'Tanıtım reels'},
+		{channel: 'Feed', content: 'PromoReel', format: 'Video', platforms: FEED, brief: 'Tanıtım reels'},
 		{channel: 'Story', content: 'PromoStory', format: 'StoryImage', platforms: STORY, brief: 'Günün reels’ine çağrı'},
 	],
 	sat: [
@@ -147,7 +151,7 @@ const PROMO_WEEKLY_PLAN: Record<Weekday, readonly PlanEntry[]> = {
 		{channel: 'Story', content: 'PromoStory', format: 'StoryImage', platforms: STORY, brief: 'Günün gönderisine çağrı'},
 	],
 	sun: [
-		{channel: 'Feed', content: 'PromoReel', format: 'Video', platforms: FEED_VIDEO, brief: 'Tanıtım reels'},
+		{channel: 'Feed', content: 'PromoReel', format: 'Video', platforms: FEED, brief: 'Tanıtım reels'},
 		{channel: 'Story', content: 'PromoStory', format: 'StoryImage', platforms: STORY, brief: 'Günün reels’ine çağrı'},
 	],
 };

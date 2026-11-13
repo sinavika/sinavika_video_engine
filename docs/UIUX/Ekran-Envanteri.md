@@ -3,7 +3,7 @@
 Bu dosya `npm run uiux -- --inventory docs/UIUX/Ekran-Envanteri.md` ile çizim kaydından (`src/UIUX/Registry.ts`) üretilir; elle düzenlenmez.
 Her satır bir çizimi, gerçek uygulamadaki karşılığını ("Rota") ve değişikliğin nedenini gösterir. "yeni" bugün olmayan ekrandır.
 
-Toplam 248 çizim: mobil uygulama 129, web paneli ve web giriş/onboarding 79, tablet (ipad ve android tablet, kalem) 26, web sitesi (giriş öncesi) 14.
+Toplam 259 çizim: mobil uygulama 129, web paneli ve web giriş/onboarding 79, tablet (ipad ve android tablet, kalem) 37, web sitesi (giriş öncesi) 14.
 
 ## Mobil uygulama
 
@@ -391,6 +391,12 @@ Toplam 248 çizim: mobil uygulama 129, web paneli ve web giriş/onboarding 79, t
 | `t-deneme-coz-dikey` | Deneme çözme · dikey | `ExamStudentSolve` | Dikey: şıklar üç sütun, Taslak kâğıdı alt yarıda. Parmakla çizim açık olduğu için Kaydır/Çiz anahtarı araç çubuğunda. |
 | `t-deneme-cozum-notlar` | Çözüm · notlarım | `ExamSolutionBookletReview` | Çözümlerde öğrencinin kendi işaretleri salt okunur geri gelir (göster/gizle); taslağı resmî çözümün yanında. |
 | `t-deneme-kalem-ipucu` | Kalem · ilk açılış ipucu | `ExamStudentSolve` | Kalemli tablette ilk çözümde tek ipucu, Soruya yaz düğmesinde. Tur yok. |
+| `t-deneme-detay` | Deneme detayı | `ExamStudentPublicDetail` | Canlı deneme açılmadan önce: kalan süre ve Hatırlat (web ile aynı sayfa). |
+| `t-deneme-teslim` | Teslim onayı | `ExamStudentSolve` | Web ile aynı pencere; klavyede Enter / Esc. |
+| `t-deneme-detay-bitti` | Biten denemenin detayı | `ExamStudentPublicDetail` | — |
+| `t-deneme-sonuclar` | Sonuçlar | `ExamResultsHub` | Net sütunları, üç giriş satırı, son sonuçlar tablosu. |
+| `t-deneme-sonuclar-bos` | Sonuçlar · henüz deneme yok | `ExamResultsHub` | — |
+| `t-deneme-ekle` | Deneme ekle | `ExamExternalResult (yeni)` | Yeni API gerekir. |
 
 ### Tablet · Testler
 
@@ -409,6 +415,10 @@ Toplam 248 çizim: mobil uygulama 129, web paneli ve web giriş/onboarding 79, t
 | `t-ders-soru-eleme` | Adım · TYT tarzı soru · eleme | `WorkMikro` | Şıklar kalemle elenir, seçilen daire içinde; cevap yine dokunarak verilir. |
 | `t-ders-bosluk-el-yazisi` | Adım · Boşluk doldur · el yazısı | `WorkMikro` | Kalemle kutuya yazılır, okunan sözcük gösterilir, sonra kontrol edilir. Klavye her zaman seçenek. |
 | `t-ders-notlarim` | Notlarım | `WorkNotes (yeni)` | Yeni ekran: konunun tüm kenar notları ve taslakları mikro derse göre; dokununca adımına götürür. PDF olarak alınabilir. |
+| `t-ders-grupla` | Adım · Grupla | `WorkMikro` | Mobilin adım çizimi tablet oynatıcısında (EmbedStep). |
+| `t-ders-eslestir` | Adım · Eşleştir | `WorkMikro` | — |
+| `t-ders-formul` | Adım · Formül ve tablo | `WorkMikro` | — |
+| `t-ders-bolum` | Bölüm başı | `WorkMikro` | — |
 
 ### Tablet · Bilgi Kartları
 
@@ -420,7 +430,7 @@ Toplam 248 çizim: mobil uygulama 129, web paneli ve web giriş/onboarding 79, t
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `t-hub-moduller` | Ana ekran · yatay | `ModuleHubHome` | Telefonun Bugün düzeni iki sütunda: solda selam, günün planı ve iki eylem kartı; sağda hafta ve iki ölçü, tekrar, modüller. |
+| `t-hub-moduller` | Ana ekran · yatay | `ModuleHubHome` | Web ana sayfasının kendisi tablet çerçevesinde (PanelInTablet): aynı Bugün düzeni, aynı parçalar. |
 | `t-hub-plansiz` | Ana ekran · planı olmayan öğrenci | `ModuleHubHome` | Kayıt cevaplarıyla Planımı hazırla; ilk mikro ders plansız başlar. |
 | `t-hub-gun-bitti` | Ana ekran · günün planı bitti | `ModuleHubHome` | — |
 | `t-hub-abonelik-bitti` | Ana ekran · deneme süresi bitti | `ModuleHubHome` | Ödeme yoksa erişim yok; ilerleme korunur. |
@@ -438,9 +448,20 @@ Toplam 248 çizim: mobil uygulama 129, web paneli ve web giriş/onboarding 79, t
 | `t-deneme-klavye` | Deneme · klavye ve soru haritası | `ExamStudentSolve` | Bağlı klavyede A–E cevaplar, oklar gezdirir, İ işaretler; soru haritası yatayda hep açık. |
 | `t-ders-sinoai-panel` | Ders adımı · SinoAI yan panelde | `WorkMikro` | SinoAI adımı kapatmadan yanda açılır ve adımı bilir; uyarı satırı panelin altında. |
 | `t-ders-konular-iki-panel` | Dersler · konular iki panel | `WorkCatalog + WorkSub` | Konu listesi solda kalır, seçilen konunun girişi ve mikro dersleri sağda; konu değiştirmek tek dokunuş. |
-| `t-test-cozumler-iki-panel` | Testler · çözümler iki panel | `QuizSolutions` | Soru listesi doğru/yanlış/boş işaretli solda, çözüm sağda. |
+
+### Tablet · Testler
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `t-test-yanlislar` | Yanlışlarım | `QuizSolutions` | Web Yanlışlarım sayfası tablette: soru ızgarası solda, çözüm sağda. |
+
+### Tablet · Kalemsiz
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `t-plan-bugun` | Ders Planı · Bugün | `StudyPlanHome` | Web Ders Planı · Bugün sayfası tablette: Gün/Hafta/Ay, süzgeçler, görev kartları. |
 | `t-plan-hafta` | Ders Planı · hafta | `StudyPlanSchedule` | Haftanın yedi günü yan yana, görevler sürüklenerek taşınır; bugünün görevleri sağda. |
-| `t-istatistik-pano` | İstatistikler · pano | `ProfileStatistics` | Web ve telefonla aynı parçalar: dört ölçü, haftalık yığılı çalışma ve değer kutusu, halka, en verimli saatler ısı haritası. |
+| `t-istatistik-pano` | İstatistiklerim | `ProfileStatistics` | Web İstatistiklerim sayfasının kendisi tablette. |
 | `t-bolunmus-ekran` | Bölünmüş ekran | `Uygulama geneli` | Split View / Stage Manager: pencere 600 pt altına inince telefon düzeni; süre ve oturum kesilmez. |
 
 ## Web sitesi (giriş öncesi)

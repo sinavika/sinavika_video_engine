@@ -120,6 +120,108 @@ export const UI_SHADOW = {
 	brand: '0 14px 28px -14px rgba(234, 88, 12, 0.6)',
 } as const;
 
+/**
+ * Motion of the apps (web and mobile): one table, as for colour and type
+ * (docs/UIUX/Hareket-Standardi.md). The drawings are still pictures; these
+ * values are what the apps copy into their own motion files (CSS variables,
+ * Reanimated constants). Adapted 10 Nov 2026 from emilkowalski/skills (MIT).
+ *
+ * Rules the numbers carry:
+ * - Every curve slows at the end (ease-out) or moves in and out (on-screen
+ *   moves). No ease-in in the interface: it feels late.
+ * - Product UI stays under 300 ms; only sheets and full-screen moves are longer.
+ * - Exits are shorter than entrances and leave the way they came.
+ * - Nothing grows from zero: entrances start at 0.96 scale with opacity 0.
+ * - Only transform and opacity move.
+ */
+export const UI_MOTION = {
+	/** cubic-bezier control points; web: `cubic-bezier(...)`, Reanimated: `Easing.bezier(...)`. */
+	easing: {
+		/** Entrances, exits, presses: fast start, soft landing. */
+		out: [0.23, 1, 0.32, 1],
+		/** Something already on screen moving to a new place (tab pill, reorder). */
+		inOut: [0.77, 0, 0.175, 1],
+		/** Bottom sheets and drawers (iOS sheet feel). */
+		sheet: [0.32, 0.72, 0, 1],
+	},
+	/** Milliseconds. */
+	duration: {
+		press: 140,
+		toggle: 180,
+		popover: 180,
+		menu: 200,
+		/** A card, row or message appearing. */
+		enter: 240,
+		/** Screen push within a module. */
+		screen: 280,
+		modal: 280,
+		sheet: 320,
+		/** Exits: about two thirds of the entrance. */
+		exit: 180,
+		/** The longest product-UI move without a stated reason. */
+		max: 300,
+	},
+	/** Gap between items appearing in turn; a whole group finishes within `groupMax`. */
+	stagger: {step: 50, groupMax: 300},
+	/** Distances in points (pt / dp / CSS px). */
+	distance: {
+		/** Rows, cards, messages rising in. */
+		enter: 8,
+		/** Toasts and small floating panels. */
+		float: 12,
+	},
+	scale: {
+		/** Pressed button or card. */
+		press: 0.97,
+		/** Where entrances start (never 0). */
+		enter: 0.96,
+	},
+	/** Reanimated `withSpring` settings (duration in ms; no bounce in product UI). */
+	spring: {
+		settle: {duration: 400, dampingRatio: 1},
+		/** Back to place after a cancelled drag: carries the finger's speed. */
+		snapBack: {duration: 400, dampingRatio: 0.8},
+		sheet: {duration: 300, dampingRatio: 0.8},
+	},
+	/** Drags: the finger is followed 1:1; on release a spring takes over with its speed. */
+	gesture: {
+		/** Share of the travel past which a sheet or card closes. */
+		dismissDistance: 0.45,
+		/** Or a flick faster than this (pt per second). */
+		dismissVelocity: 500,
+		/** Pull past the edge moves this fraction of the finger (rubber band). */
+		rubberBand: 0.2,
+		/** Smallest touch target (pt; Android 48 dp). */
+		minTarget: 44,
+	},
+	/** "Reduce motion" on: keep fades, drop movement and scale, at most this long. */
+	reduced: {duration: 150},
+} as const;
+
+/**
+ * Ready-made moments of Sınavika (docs/UIUX/Hareket-Standardi.md §3). `haptic`
+ * fires on the same frame as the change, once per action, and is never the only
+ * feedback. `none` means the moment must not animate (frequent or keyboard-driven).
+ */
+export const UI_MOTION_MOMENTS = {
+	tabSwitch: {animate: 'none', haptic: 'selection'},
+	optionSelect: {animate: 'press', haptic: 'selection'},
+	/** Testler and Dersler only: a deneme shows no right or wrong while it is solved (UIUX-Rehberi §5.4.1). */
+	answerCorrect: {animate: 'tick + soft green fill, 240 ms', haptic: 'impactLight'},
+	answerWrong: {animate: 'cross + red fill, no shake, 240 ms', haptic: 'notificationWarning'},
+	nextQuestion: {animate: 'old out 180 ms, new in 240 ms from 8 pt right', haptic: 'none'},
+	taskDone: {animate: 'tick draws in 240 ms, row fades to done', haptic: 'notificationSuccess'},
+	progressGain: {animate: 'bar fills 600 ms out-easing once, number counts with it', haptic: 'none'},
+	badgeEarned: {animate: 'badge in from 0.96 + fade 320 ms, one-time glow', haptic: 'notificationSuccess'},
+	sinoMessage: {animate: 'message rises 8 pt, 240 ms; text streams, never typed letter by letter twice', haptic: 'none'},
+	sinoThinking: {animate: 'three dots, the only looping motion besides loading', haptic: 'none'},
+	sheet: {animate: 'sheet curve 320 ms; follows the finger; closes on 45 % or a flick', haptic: 'none'},
+	/** Owner 11 Nov 2026: no skeletons. First load: the clock logo turning in the middle of the page or section. */
+	loading: {animate: 'clock logo turning in the middle of the page or section, no skeleton', haptic: 'none'},
+	/** Content already shown: it stays; a small indicator at the top. */
+	refreshing: {animate: 'content stays, small indicator at the top', haptic: 'none'},
+} as const;
+
 /** Canvas sizes, in points. Pictures are rendered at 3x (mobile) and 2x (web). */
 export const UI_CANVAS = {
 	mobile: {width: 390, height: 844, scale: 3},

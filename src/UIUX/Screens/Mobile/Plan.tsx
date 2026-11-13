@@ -74,24 +74,22 @@ export const PlanTodayScreen: React.FC = () => {
 	const colors = useColors();
 	const mod = useModuleColors('studyPlan');
 	return (
-		<ModuleScreen
-			module="studyPlan"
-			tab={0}
-			overlay={
-				<div style={{position: 'absolute', right: 20, bottom: 110, width: 56, height: 56, borderRadius: 28, background: mod.action, boxShadow: UI_SHADOW.float, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 6}}>
-					<Icon name="plus" size={26} color="#FFFFFF" />
-				</div>
-			}
-		>
+		<ModuleScreen module="studyPlan" tab={0}>
 			<Content gap={12}>
-				<Stack row justify="space-between">
-					<Text role="title" size={26}>
-						{t('Bugün', 'Today')}
-					</Text>
-					<div style={{width: 196}}>
-						<Segmented items={[t('Gün', 'Day'), t('Hafta', 'Week'), t('Ay', 'Month')]} module="studyPlan" />
-					</div>
-				</Stack>
+				<PageTitle
+					module="studyPlan"
+					title={t('Bugün', 'Today')}
+					right={
+						<Stack row gap={8}>
+							<div style={{width: 168}}>
+								<Segmented items={[t('Gün', 'Day'), t('Hafta', 'Week'), t('Ay', 'Month')]} module="studyPlan" />
+							</div>
+							<div style={{width: 40, height: 40, borderRadius: 20, background: mod.action, boxShadow: UI_SHADOW.card, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+								<Icon name="plus" size={22} color="#FFFFFF" />
+							</div>
+						</Stack>
+					}
+				/>
 				<FilterChips items={[t('Tümü · 5', 'All · 5'), t('Dersler', 'Lessons'), t('Testler', 'Quizzes'), t('Denemeler', 'Exams'), t('Tekrar', 'Review'), t('Kendi görevlerim', 'My tasks')]} />
 				<DayRings />
 				<Stack gap={8}>

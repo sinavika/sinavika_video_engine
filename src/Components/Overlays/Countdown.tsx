@@ -20,7 +20,8 @@ export const Countdown: React.FC<{left: number; total: number; label?: string; s
 	const second = Math.max(1, Math.ceil(left));
 	// How far into the current second: 0 when it has just begun.
 	const into = 1 - (left - Math.floor(left) || 1);
-	const pop = interpolate(into, [0, 0.25], [1.28, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.back(2))});
+	// A soft landing, no overshoot: a bouncing number every second read as restless (motion rules, 10 Nov 2026).
+	const pop = interpolate(into, [0, 0.25], [1.28, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
 	return (
 		<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(14)}}>
 			<div style={{position: 'relative', width: size, height: size}}>

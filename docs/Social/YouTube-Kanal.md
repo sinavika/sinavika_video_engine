@@ -72,7 +72,7 @@ Sınavika, SinoAI, YKS, TYT, AYT, KPSS, YKS kampı, TYT kampı, AYT kampı, KPSS
 | App Store | https://apps.apple.com/tr/app/id6762061768?l=tr |
 | Google Play | https://play.google.com/store/apps/details?id=com.sinavika.mobile |
 | Instagram | https://www.instagram.com/sinavika.tr |
-| TikTok | https://www.tiktok.com/@sinavikatr |
+| TikTok | https://www.tiktok.com/@sinavika.tr |
 | LinkedIn | https://www.linkedin.com/company/sinavika |
 
 Kanal başlığında ilk bağlantı görünür; bu yüzden web sitesi ilk sıradadır. Uygulama adresleri video açıklamalarındakiyle aynıdır. X hesabı eklenmedi: adresi verilmedi.
@@ -169,3 +169,58 @@ Studio tuzakları (ek):
 
 Studio tuzağı (ek): Planlama penceresinde takvimden güne tıklamak bazen tarihi değiştirmiyor. Tarih kutusuna "10 Kas 2026" yazıp Enter'a bas; saati listeden seç.
 
+## 9. TYT Matematik Ders 1–2 ve Bölüm 0 kapağı: 10 Kasım 2026
+
+İstek: "01 02 yüklendi, 00'ın da kapağını güncelle matematik kapakları gibi olsun; 01 02'nin açıklama, kapak vb. işlemlerini yap."
+
+| Video | Kimlik | Yayın |
+|---|---|---|
+| Bölüm 0 · Matematiğe başlarken | S9bPjvzsidk | 11 Kasım 19:00 |
+| Ders 1 · Temel Kavramlar | Dzo7rY2EMYE | 11 Kasım 20:00 (sahip 18:00 seçmişti; Bölüm 0'dan sonra çıksın diye) |
+| Ders 2 · Sayı Basamakları | XJUa35Pf-z0 | 12 Kasım 18:00 |
+
+- Bölüm 0'ın kapağı lacivert tanıtım kapağından ders kapaklarının mavi görünümüne geçti: aynı CampCover, MAT rengi, "BÖLÜM · Tanıtım", "00 / 23", kanca "%20 zam, %20 indirim. Fiyat aynı mı?". Dosya `Outputs/Camps/YKS/TYT/Matematik/00_Tanitim/Tanitim_YouTube_Kapak.png`; eski lacivert kapak `Tanitim_YouTube_Kapak_Lacivert.png` (videonun açılış karesi hâlâ o). Açıklamasına "▶️ İlk ders" bağlantısı eklendi.
+- Ders 1–2'nin iş notlarındaki açıklamalar senaryolar yeniden yazılmadan önce hazırlanmıştı (eski bölüm listesi, soru sayıları, "overlineABC" yazım hatası, Türkçe kampının Bölüm 0 bağlantısı). Render edilen senaryoya göre yeniden yazıldı: bölümler `*.chapters.txt` dosyasından, soru sayıları 16 ve 13, "Kampı baştan izle" Matematik Bölüm 0'a.
+- Not: Bölüm 0 kapağı motorda hâlâ lacivert çiziliyor (CampLessonIntro → tanıtım kapağı). Diğer kampların Bölüm 0'ı da ders kapağı görünümünde olacaksa kapak kuralının motorda değişmesi gerekir; bu yükleme için kapak elle çizildi.
+
+Studio tuzağı (ek): Sayfa açılır açılmaz yazılan başlık/açıklama bazen kaydedilmiyor ("Kaydet" henüz etkin değilken). Yazdıktan sonra kaydet, sayfayı yeniden aç ve açıklamanın özetini dosyayla karşılaştır.
+
+## 10. YouTube Shorts: kamp içerikleri (10 Kasım 2026, sahibin kararı)
+
+- **Kasım 2026, reklam Short'larının son ayı.** Onaylı reklam Short'ları (11, 13, 15, 16, 18, 20, 22, 23, 24, 25, 27, 29 Kasım) Buffer'da kalıyor.
+- **Aralık'tan itibaren** YouTube Shorts'a yalnızca sinavika.yks'teki ders içerikleri (kamp reels'leri) gider. **sinavika.tr hesaplarına giden reklam içerikleri (Promotion, PromoReel, kampanya gönderileri) YouTube'a hiç gönderilmez.** Tek istisna Google Ads reklam videoları: onlar YouTube'a zaten **liste dışı** ekleniyor, o iş ayrı ve SocialHub'dan geçmez.
+- Motor bunu uygular: haftalık planda (`SocialPlan.ts`) Promotion ve PromoReel yalnızca Instagram + TikTok; kampanya iskeleti (`CampaignScaffold.ts`) YouTube hedefi koymaz; `SocialPlanner.test.ts` bunu korur.
+- **Kamp reels'i gönderilirken** `youtube/Sinavika` (short) hedefi her zaman eklenir. Hedefin kendi açıklaması (`caption`) dersin bağlantısını verir: ders yayındaysa `https://youtu.be/<id>`, değilse "kanalda, TYT <ders> Kampı oynatma listesinde".
+- **Saat (çakışma yok):** YouTube Short'u sinavika.yks Instagram reels'iyle aynı saate konur. O saatin 90 dakika yakınında kanalda başka bir paylaşım varsa (reklam Short'u ya da uzun ders), günün öteki sinavika.yks Buffer saati kullanılır, o da doluysa YouTube'un Buffer saati. Her saat Buffer'ın önerdiği saatlerden seçilir.
+- **Yayından sonra** Studio'da Short'un kapağı ve "İlgili video" (dersin kendisi) elle girilir. Buffer bunları gönderemiyor.
+- **10 Kasım'da yeniden gönderildi:** Türkçe 4–15 ve Matematik 1–7, 11–30 Kasım arası 19 gönderi (24 Kasım boş). Matematik 3–7'nin dersleri henüz yüklenmedi; açıklamaları oynatma listesine yönlendiriyor. Ders yüklenince "İlgili video" Studio'dan bağlanır.
+
+## 11. Short → ders geçişi (11 Kasım 2026)
+
+Her kamp Short'u kendi dersine bağlanır. İzleyici Short'tan tam derse iki yoldan geçer:
+
+1. **İlgili video:** Short'un altında oynatıcının üstünde çıkan bağlantı. Studio'da Short'un sayfasındaki "İlgili video" alanından seçilir, Short'a bir kez bağlanır.
+2. **Açıklamadaki bağlantı:** "Dersin tamamı ücretsiz: https://youtu.be/<ders id>". Buffer'dan giden Short'larda bu metin SocialHub gönderisinin YouTube hedefindeki `caption` alanından gelir. Elle yüklenen Short'lara Studio'da aynı metin girilir.
+
+Akış böyle döner: Short merak uyandırır, İlgili video derse taşır, dersin bitiş ekranı sonraki derse götürür. Bölüm 0'ın açıklaması da kampın ilk dersine bağlantı verir.
+
+**Her kamp Short'u için yapılacaklar** (Buffer kapak ve İlgili video gönderemiyor, ikisi de elle girilir):
+
+- **Başlık:** "TYT <Ders>: <Konu>, hızlı tekrar" (ör. "Türkçe: Söz Yorumu, hızlı tekrar").
+- **Açıklama:** reels metni, ders bağlantısı ve etiketler. Ders henüz yüklenmediyse açıklama oynatma listesine yönlendirir. Ders yüklenince açıklama güncellenir ve İlgili video bağlanır.
+- **Kapak:** `Outputs/Camps/YKS/TYT/<Ders>/<NN_Konu>/<Konu>_Reels_Kapak.png` dosyası "Küçük resim › Dosya yükle" ile yüklenir. Reklam Short'larında kapak `Posts/<tarih>_<Ad>/Media/<Ad>_Kapak.png` dosyasıdır. Özel gün videoları (10 Kasım gibi) kapaksız kalır.
+- **İlgili video:** "İlgili video" alanında ders aranıp seçilir. Arama kutusu ilk harfleri yutar: tümünü seçip (Ctrl+A) yeniden yaz, sonra Enter.
+- **Kaydet ve doğrula:** sayfayı yenile; başlık, açıklama ve İlgili video duruyor mu, bak. Studio'nun listesinde özel kapaklı videoların küçük resmi `mqdefault.jpg` olur; otomatik karede `mq1`, `mq2` gibi görünür.
+
+**11 Kasım'da yapılanlar:**
+
+| Short | Durum | Kapak | İlgili video |
+|---|---|---|---|
+| Türkçe: Sözcükte Anlam, hızlı tekrar (0sQHzyIx2SI) | planlı, 12 Kasım (sahip yükledi) | eklendi | Kamp Ders 1 |
+| Türkçe: Söz Yorumu, hızlı tekrar (OogRzDtATII) | planlı, 12 Kasım (sahip yükledi) | eklendi | Kamp Ders 2 |
+| Türkçe: Deyim ve Atasözü, hızlı tekrar (jsslp79mhgo) | planlı, 12 Kasım (sahip yükledi) | eklendi | Kamp Ders 3 |
+| Türkçe: Cümlede Anlam, hızlı tekrar (qIvXPZw1FLk) | yayında, Buffer | eklendi | Kamp Ders 4 |
+| 1, 2, 4, 6, 8, 9 Kasım reklam Short'ları | yayında | eklendi | yok (reklam) |
+| 10 Kasım: Saat 09.05 | yayında | kapaksız (özel gün) | yok |
+
+Sahibin elle yüklediği üç Short'un başlıkları dosya adıydı ("Sozcukte Anlam Reels" gibi); seri başlıklarıyla değiştirildi ve açıklamaları girildi.

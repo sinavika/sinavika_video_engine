@@ -1,9 +1,9 @@
 import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
-import {Icon, type UIIconName} from '../../Icons';
+import {Icon} from '../../Icons';
 import {MODULES} from '../../ModuleIdentity';
 import {AppHeader, BottomBar, Content, FocusHeader, ModuleScreen, ModuleSlide, PageTitle, SectionTitle, Sheet} from '../../Parts/Mobile';
-import {NetBars} from '../../Parts/Study';
+import {EntryRow, NetBars} from '../../Parts/Study';
 import {Bar, Button, Card, Chip, Field, List, ListRow, OptionRow, Ring, Segmented, Sparkline, Stack, Text, Tile} from '../../Parts/Shared';
 
 /** Denemeler: practice exams, results, analysis and solutions. Tabs: Denemeler · Denemelerim · Modüller · Sonuçlar · Profil. */
@@ -125,8 +125,11 @@ export const ExamDetailScreen: React.FC = () => {
 				</Card>
 			</Content>
 			<BottomBar>
-				<Button size="lg" block icon="play">
-					{t('Denemeye başla', 'Start exam')}
+				<Text role="small" align="center">
+					{t('Cumartesi 10:00’da açılır · 2 gün 4 saat kaldı', 'Opens Saturday 10:00 · 2 days 4 hours left')}
+				</Text>
+				<Button tone="module" module="exam" size="lg" block icon="bell">
+					{t('Hatırlat', 'Remind me')}
 				</Button>
 			</BottomBar>
 		</ModuleScreen>
@@ -269,23 +272,6 @@ export const MyExamsScreen: React.FC = () => {
 };
 
 
-const BigTile: React.FC<{icon: UIIconName; title: string; sub: string; tall?: boolean; tone?: 'module' | 'plain'}> = ({icon, title, sub, tall, tone = 'plain'}) => {
-	const colors = useColors();
-	const mod = useModuleColors('exam');
-	return (
-		<div style={{flex: 1, height: tall ? '100%' : undefined, minHeight: tall ? 0 : 92, boxSizing: 'border-box', borderRadius: 22, padding: 14, background: tone === 'module' ? mod.wash : colors.card, border: `1px solid ${tone === 'module' ? mod.line : colors.line}`, display: 'flex', flexDirection: tall ? 'column' : 'row', alignItems: tall ? 'flex-start' : 'center', justifyContent: tall ? 'space-between' : 'space-between', gap: 10}}>
-			{tall ? <Tile module="exam" icon={icon} size={48} solid /> : null}
-			<Stack gap={2} grow>
-				<Text role="headline" size={15.5}>
-					{title}
-				</Text>
-				<Text role="small">{sub}</Text>
-			</Stack>
-			{tall ? null : <Tile module="exam" icon={icon} size={40} />}
-		</div>
-	);
-};
-
 /**
  * Sonuçlar (revised 5 Nov 2026): the student's nets as bars across exams
  * (own exams added by hand drawn hatched), then the three ways in: Sınavika
@@ -321,13 +307,11 @@ export const ExamResultsScreen: React.FC = () => {
 						</Stack>
 					</Stack>
 				</Card>
-				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '92px 92px', gap: 10}}>
-					<div style={{gridRow: 'span 2'}}>
-						<BigTile tall tone="module" icon="exam" title={t('Sınavika denemelerim', 'My Sınavika exams')} sub={t('6 deneme · sonuç belgeleri', '6 exams · result documents')} />
-					</div>
-					<BigTile icon="chart" title={t('Analizlerim', 'My analyses')} sub={t('Net kaybettiğin konular', 'Topics that cost nets')} />
-					<BigTile icon="plus" title={t('Deneme ekle', 'Add an exam')} sub={t('Dışarıda çözdüğün', 'Solved elsewhere')} />
-				</div>
+				<Stack gap={8}>
+					<EntryRow module="exam" strong icon="exam" title={t('Sınavika denemelerim', 'My Sınavika exams')} sub={t('6 deneme · sonuç belgeleri', '6 exams · result documents')} />
+					<EntryRow module="exam" icon="chart" title={t('Analizlerim', 'My analyses')} sub={t('Net kaybettiğin konular', 'Topics that cost nets')} />
+					<EntryRow module="exam" icon="plus" title={t('Deneme ekle', 'Add an exam')} sub={t('Dışarıda çözdüğün denemenin sonucu', 'A result from another exam')} />
+				</Stack>
 				<SectionTitle title={t('Son sonuçlar', 'Latest results')} action={t('Tümü', 'All')} />
 				<List>
 					{[

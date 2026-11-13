@@ -48,8 +48,15 @@ export const WeekStrip: React.FC<{today?: number; done?: number[]; share?: numbe
 	);
 };
 
-/** One of the two big action cards: the module's tint on top, a title, one line and one verb. */
-export const ActionCard: React.FC<{module: ModuleKey; over: string; title: string; line: string; action: string; icon?: UIIconName}> = ({module, over, title, line, action, icon}) => {
+/** What an action card shows above its button: progress, a countdown, or why it is locked. */
+type ActionMeter = {progress: number; label: string} | {countdown: [string, string][]} | {locked: string};
+
+/**
+ * One of the two big action cards: over-line, title, one line, a meter that
+ * says something (how far, how long until), one verb. Same part on phone,
+ * tablet and web.
+ */
+export const ActionCard: React.FC<{module: ModuleKey; over: string; title: string; line: string; action: string; icon?: UIIconName; meter?: ActionMeter}> = ({module, over, title, line, action, icon, meter}) => {
 	const colors = useColors();
 	const mod = useModuleColors(module);
 	return (
@@ -64,8 +71,44 @@ export const ActionCard: React.FC<{module: ModuleKey; over: string; title: strin
 				{title}
 			</Text>
 			<Text role="small">{line}</Text>
-			<div style={{height: 64, borderRadius: 16, background: mod.soft, margin: '4px 0', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-				<Tile module={module} icon={icon} size={42} solid />
+			<div style={{minHeight: 64, boxSizing: 'border-box', borderRadius: 16, background: mod.soft, margin: '4px 0', padding: '10px 12px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 8}}>
+				{meter && 'progress' in meter ? (
+					<>
+						<Stack row justify="space-between">
+							<Text role="small" weight={700} color={mod.ink}>
+								{meter.label}
+							</Text>
+							<Text role="meta" weight={800} color={mod.ink}>
+								%{Math.round(meter.progress * 100)}
+							</Text>
+						</Stack>
+						<Bar value={Math.max(meter.progress, 0.02)} color={mod.color} track={colors.card} height={8} />
+					</>
+				) : meter && 'countdown' in meter ? (
+					<Stack row gap={6} justify="center">
+						{meter.countdown.map(([value, unit]) => (
+							<Stack key={unit} align="center" gap={0} style={{flex: 1, padding: '4px 0', borderRadius: 10, background: colors.card}}>
+								<Text role="headline" size={17} tnum>
+									{value}
+								</Text>
+								<Text role="meta" size={12}>
+									{unit}
+								</Text>
+							</Stack>
+						))}
+					</Stack>
+				) : meter && 'locked' in meter ? (
+					<Stack row gap={8} justify="center">
+						<Icon name="lock" size={16} color={mod.ink} />
+						<Text role="small" weight={700} color={mod.ink}>
+							{meter.locked}
+						</Text>
+					</Stack>
+				) : (
+					<Stack align="center">
+						<Tile module={module} icon={icon} size={42} solid />
+					</Stack>
+				)}
 			</div>
 			<Button tone="module" module={module} size="sm" block>
 				{action}
@@ -499,3 +542,21 @@ export const HEATMAP_SAMPLE: number[][] = [
 	[0.3, 0.6, 0.75, 0.7, 0.4, 0.3, 0, 0],
 	[0.25, 0.55, 0.7, 0.5, 0, 0, 0.3, 0.2],
 ];
+
+/** A way into a module area as one full-width row: tile, title, one line, chevron (results entries on phone and web). */
+export const EntryRow: React.FC<{module: ModuleKey; icon: UIIconName; title: string; sub: string; strong?: boolean}> = ({module, icon, title, sub, strong}) => {
+	const colors = useColors();
+	const mod = useModuleColors(module);
+	return (
+		<Stack row gap={14} style={{padding: '14px 16px', borderRadius: 20, background: strong ? mod.wash : colors.card, border: `1px solid ${strong ? mod.line : colors.line}`}}>
+			<Tile module={module} icon={icon} size={42} solid={strong} />
+			<Stack grow gap={1}>
+				<Text role="headline" size={15.5}>
+					{title}
+				</Text>
+				<Text role="small">{sub}</Text>
+			</Stack>
+			<Icon name="right" size={18} color={colors.subtle} />
+		</Stack>
+	);
+};
