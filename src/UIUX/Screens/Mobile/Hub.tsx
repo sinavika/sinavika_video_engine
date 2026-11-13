@@ -67,7 +67,7 @@ const HubBody: React.FC<{scrolled?: boolean; state?: HubState}> = ({scrolled, st
 							<Stack row gap={6}>
 								<Icon name="target" size={15} color={colors.ink2} />
 								<Text role="small" color={colors.ink2}>
-									{t('Hedef', 'Goal')} <b style={{color: colors.ink}}>{t('TYT · 227 gün kaldı', 'TYT · 227 days left')}</b>
+									{t('Hedef', 'Goal')} <b style={{color: colors.ink}}>{t('TYT · 245 gün kaldı', 'TYT · 245 days left')}</b>
 								</Text>
 							</Stack>
 						</Stack>

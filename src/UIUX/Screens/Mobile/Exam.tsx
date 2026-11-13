@@ -276,7 +276,7 @@ export const MyExamsScreen: React.FC = () => {
  * Sonuçlar (revised 5 Nov 2026): the student's nets as bars across exams
  * (own exams added by hand drawn hatched), then the three ways in: Sınavika
  * denemelerim, Analizlerim, Deneme ekle. Data: GET statistics exams (net per
- * attempt); Deneme ekle needs a new endpoint (external exam result).
+ * attempt); Deneme ekle uses GET/POST student/external-exams.
  */
 export const ExamResultsScreen: React.FC = () => {
 	const t = useT();
@@ -467,7 +467,7 @@ export const ExamDoneDetailScreen: React.FC = () => {
 	);
 };
 
-/** Deneme ekle: a result solved elsewhere (publisher, name, date, right/wrong per subject); net counted live. New API. */
+/** Deneme ekle: a result solved elsewhere (publisher, name, date, right/wrong per subject); net counted live (student/external-exams). */
 export const ExamAddExternalScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();

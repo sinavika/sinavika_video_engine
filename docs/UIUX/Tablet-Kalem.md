@@ -17,7 +17,7 @@ Kaynak: `src/shared/annotations` ve Denemeler'in çözüm ekranları (okundu, de
 | Kayıt | Sunucuya senkron (deneme notları) |
 | Yerleşim | `compact` < 600, `tabletPortrait` 600–899, `tabletWide` ≥ 900 pt; geniş modda taslak sağda %38 |
 | Kapı | `isAnnotationDevice` = yerel tablet ve genişlik ≥ 600 |
-| Eksik | Testler (Quiz) ve Dersler (Works v4) kalemsiz |
+| Testler ve Dersler | 14 Kasım güncellemesi: kalem artık `QuizSolveScreen` ve `WorkMikroScreen`'de var; notlar `student/notes` (hedef Deneme / Test / Dersler, katman taslak / soru üstü / kenar notu) ile hesapta; `WorkNotesScreen` (Notlarım) ve `ProfilePenSettingsScreen` (Kalem ve çizim) var |
 
 ## 2. Çizilen ekranlar (16)
 
@@ -35,7 +35,7 @@ Kaynak: `src/shared/annotations` ve Denemeler'in çözüm ekranları (okundu, de
 | | `t-ders-tanim-not` | Tanım · kenar notu | **Yeni.** Okuma sütunu + sağda 290 pt kenar boşluğu; fosforlu kalem ve not adıma kayıtlı |
 | | `t-ders-soru-eleme` | TYT tarzı soru · eleme | Şıklar kalemle elenir; cevap yine dokunarak verilir |
 | | `t-ders-bosluk-el-yazisi` | Boşluk doldur · el yazısı | Kalemle kutuya yazılır, okunan sözcük gösterilir, sonra Kontrol et; Klavyeyle yaz her zaman var |
-| | `t-ders-notlarim` | Notlarım | **Yeni ekran.** Konunun tüm notları mikro derse göre; dokununca adımına gider; PDF olarak al |
+| | `t-ders-notlarim` | Notlarım | Konunun tüm notları mikro derse göre; dokununca adımına gider (`WorkNotes`, API `student/notes/works`) |
 | Bilgi Kartları | `t-kart-el-yazisi` | Önce kendin yaz | Ön yüzde isteğe bağlı yazma alanı; kontrol edilmez |
 | Modüller | `t-hub-moduller` | Modüller · yatay | İki slayt yan yana, kartlar dört sütun; kalemli modüllerde "Kalem" etiketi |
 | Kalem | `t-kalem-ayarlar` | Profil · Kalem ve çizim | Ayarların tamamı (§3.6) |
@@ -97,17 +97,17 @@ Kalem yoksa (parmakla kullanılan tablet) ekranlar aynı kalır; Parmakla çizim
 - Yanlış cevapta "Taslağımı SinoAI'ye göster": yalnız öğrenci isterse gönderilir; SinoAI önce okuduğu satırları gösterir, sonra hatayı anlatır.
 - Taslak hiçbir zaman kendiliğinden gönderilmez. SinoAI kotası olağan kurallarla düşer.
 
-## 4. Mobil ekip için işler
+## 4. Mobil ekip için işler (durum: 14 Kasım)
 
-1. **Testler'e kalem**: `QuizSolve` ekranına `scratchpad` ve `questionOverlay` hostları (Denemeler'deki panel ve katman bileşenleri yeniden kullanılır). Not anahtarı: test oturumu + soru.
-2. **Dersler'e kalem**: `WorkMikro` adımlarına `questionOverlay` (adımın tamamı) ve kenar boşluğu; Question adımlarında `scratchpad`. Not anahtarı: mikro ders + adım.
-3. **Notlarım** ekranı (`WorkNotes`, yeni rota): konuya göre not listesi ve adıma derin bağlantı.
+1. ✔ **Testler'e kalem** (yapıldı): `QuizSolve` ekranına `scratchpad` ve `questionOverlay` hostları (Denemeler'deki panel ve katman bileşenleri yeniden kullanılır). Not anahtarı: test oturumu + soru.
+2. ✔ **Dersler'e kalem** (yapıldı): `WorkMikro` adımlarına `questionOverlay` (adımın tamamı) ve kenar boşluğu; Question adımlarında `scratchpad`. Not anahtarı: mikro ders + adım.
+3. ✔ **Notlarım** ekranı (yapıldı: `WorkNotes`): konuya göre not listesi ve adıma derin bağlantı.
 4. **Kalem çizer, parmak kaydırır**: dokunuş türüne göre ayrım; mod anahtarı yalnız parmakla çizimde.
-5. **Ayarlar**: Profil'e "Kalem ve çizim" bölümü (§3.6), cihazda saklanır, hesapla eşitlenir.
+5. ✔ **Ayarlar** (yapıldı: `ProfilePenSettings`): Profil'e "Kalem ve çizim" bölümü (§3.6), cihazda saklanır, hesapla eşitlenir.
 6. **El yazısı tanıma**: Boşluk doldur adımında, cihazda.
 7. **Yan ray ve geniş yerleşim**: `tabletWide`'da modül sekmeleri yan raya, içerik 1080 pt.
 
-API ekibine (devir ayrı md ile): Quiz ve Works notları için deneme notlarıyla aynı biçimde saklama ve senkron (soru / adım anahtarı, sürüm, silme). Bugünkü deneme notu uç noktaları örnek alınır; yeni tablo ve göç sahibin onayıyla.
+API (yapıldı): `api/student/notes` — `GET` (hedef + kapsam + since), `PUT` (toplu, en çok 50), `GET works` ve `works/subs/{lessonSubId}` (Notlarım), `GET/PUT settings` (kalem ayarları). Web bu notları henüz göstermiyor; çözüm sayfasında salt okunur gösterilmesi önerilir (Uyum-Raporu-2026-11-13 madde 6).
 
 ## 5. Kurallar (çizimlerde uygulandı)
 

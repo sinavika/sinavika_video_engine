@@ -176,7 +176,7 @@ const NoPlanCard: React.FC = () => {
 			</Stack>
 			<Stack gap={6} style={{padding: '10px 12px', borderRadius: 16, background: plan.wash}}>
 				{[
-					[t('Sınavın', 'Exam'), t('TYT · 227 gün', 'TYT · 227 days')],
+					[t('Sınavın', 'Exam'), t('TYT · 245 gün', 'TYT · 245 days')],
 					[t('Haftada', 'Per week'), t('5 gün · günde 90 dk', '5 days · 90 min a day')],
 					[t('Zorlandığın', 'Hard for you'), t('Matematik, Fizik', 'Maths, Physics')],
 				].map(([label, value]) => (
