@@ -3,7 +3,7 @@ import {useColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {MODULES, type ModuleKey} from '../../ModuleIdentity';
 import {AppHeader, BottomBar, Content, ModuleScreen, PageTitle, Phone, SectionTitle, TabBar} from '../../Parts/Mobile';
-import {Avatar, Bar, Button, Card, Chip, Field, List, ListRow, Segmented, Skeleton, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
+import {Avatar, Bar, Button, Card, Chip, Field, List, ListRow, Segmented, LoadingLogo, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
 
 /** Profil (slot 5 of every module), plan and packages, settings, notifications, support and the empty / error states. */
 
@@ -629,17 +629,7 @@ export const ErrorStateScreen: React.FC = () => {
 				</Stack>
 				<PageTitle module="exam" title={t('Denemelerim', 'My exams')} />
 				<Card padding={14}>
-					<Stack gap={14}>
-						{[80].map((width) => (
-							<Stack key={width} row gap={12}>
-								<Skeleton width={44} height={44} radius={14} />
-								<Stack grow gap={8}>
-									<Skeleton width={`${width}%`} />
-									<Skeleton width={`${width - 30}%`} height={10} />
-								</Stack>
-							</Stack>
-						))}
-					</Stack>
+					<LoadingLogo size={36} label={t('Denemelerin yükleniyor', 'Loading your exams')} />
 				</Card>
 				<Card padding={14} style={{textAlign: 'center'}}>
 					<Stack align="center" gap={8}>

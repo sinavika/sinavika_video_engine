@@ -1,6 +1,6 @@
 # UI/UX geçmişi: denetimler, kararlar, açık işler
 
-15–29 Ekim 2026 arasındaki dört raporun özeti (9 Kasım'da tek dosyada toplandı; ayrıntılı ilk sürümleri git geçmişinde). Güncel kurallar [UIUX-Rehberi.md](UIUX-Rehberi.md), [Modul-Kimligi.md](Modul-Kimligi.md), [Adlandirma-Kurallari.md](Adlandirma-Kurallari.md) ve [Ekran-Envanteri.md](Ekran-Envanteri.md) dosyalarındadır. 3 Kasım sonrası işler: [UX-Kurallari.md](UX-Kurallari.md), [Revizyon-2026-11-05.md](Revizyon-2026-11-05.md), [Tablet-Kalem.md](Tablet-Kalem.md).
+15 Ekim – 14 Kasım 2026 arasındaki denetim ve revizyonların özeti. Ekim raporları 9 Kasım'da, 5 Kasım revizyonu ve 13 Kasım uyum raporu 14 Kasım'da bu dosyaya katıldı; ayrıntılı ilk sürümleri git geçmişinde. Güncel kurallar [UIUX-Rehberi.md](UIUX-Rehberi.md), [Modul-Kimligi.md](Modul-Kimligi.md), [Adlandirma-Kurallari.md](Adlandirma-Kurallari.md), [Tablet-Kalem.md](Tablet-Kalem.md), [UX-Kurallari.md](UX-Kurallari.md), [Hareket-Standardi.md](Hareket-Standardi.md) ve [Ekran-Envanteri.md](Ekran-Envanteri.md) dosyalarındadır.
 
 ## 1. İlk denetim (15 Ekim)
 
@@ -116,11 +116,89 @@
   - "Netimi bilmiyorum" seçilirse plan, sınavın ortalama netiyle kurulur;
   - hub turu tek ipucu (`m-hub-ipucu`, web'de `w-panel-tur`).
 
-## 4. Hâlâ açık olanlar
+## 4. Revizyon: Bugün düzeni ve yeni ekranlar (5 Kasım)
+
+**Kaynaklar:** canlı test ekran görüntüleri (`Desktop\sinavika-ss-canli-20261103`, 3–4 Kasım), sahibin gönderdiği örnek uygulamanın dört ekranı, mobil kod (yalnız okundu).
+
+**Örnekten alınan:** yalnız bilgi düzeni; markası, rengi, maskotu ve koç özelliği alınmadı.
+- Ana ekran önce "bugün" sorusunu cevaplar: hafta şeridi, günün planı ve sıradaki görev, iki eylem kartı, sonra modüller. Modül slayt karuseli kalktı (sahip onayı).
+- Görev kartı "nereden, ne, ne kadar" söyler; her kartta tek fiil (Başla, Devam et, Hatırlat, Teslim et).
+- Sonuçlar: net sütunları, üç giriş ve **Deneme ekle** (dışarıda çözülen deneme).
+- İlk hafta: sıfır duvarı ("0 dk") yerine ilk üç adım.
+- Renk kuralı değişmedi: modül rengi modülde, turuncu marka yüzeylerinde.
+
+**Çizilenler:**
+- Mobilde 5 ekran yerinde revize edildi (`m-hub-moduller`, `m-hub-moduller-kaydir`, `m-hub-ipucu`, `m-plan-bugun`, `m-deneme-sonuclar`).
+- Mobilde 17 yeni ekran çizildi: görev ekle ve işlemleri, teslim onayı, biten deneme, deneme ekle, Dersler adımları (Grupla, Eşleştir, Çevir, Seç, Çoklu, Yazmalı, Formül, Bölüm başı), yanlışlarım, istatistiklerim ve ilk hafta.
+- Canlı hatalar ve UX notları bu ekranlarda kapatıldı: kutuda kesilen metin, formül çizimi, gri Android penceresi, biten denemede "Denemeye gir".
+- Durum ekranları da çizildi (sahip: "boşluk kalmasın"). Kural [UIUX-Rehberi.md](UIUX-Rehberi.md) §5.5'te.
+
+## 5. Üç platform tek yapı (8 ve 12 Kasım)
+
+**8 Kasım** (sahip: "tablet, web, mobil birbiriyle uyumlu"):
+- Ortak parçalar `Parts/Study.tsx`'e taşındı; ders adımları web ve tablet oynatıcısında mobilin çizimiyle gelir (`EmbedStep`).
+- Fikir görsellerinden ölçü kartı, yığılı sütun ve değer kutusu, halka, en verimli saatler ısı haritası alındı. Renkleri, "Premium" çağrısı ve dil seçici alınmadı.
+- Web'in eski ana sayfa, plan günü, sonuçlar ve istatistik çizimleri silindi; `w-deneme-istatistik` artık `w-istatistik`. Tanıtım şablonları (`src/Templates`) eski adlarla yeni çizimleri gösterir.
+
+**12 Kasım** (sahip: "yüzde yüz uyum"):
+- Tam ekran tablet, web sayfasının kendisini gösterir (`PanelInTablet`); ayrı yazılmış tablet kopyaları silindi (`t-test-cozumler-iki-panel` artık `t-test-yanlislar`).
+- Eşlik testi her özelliği ve hâli üç platformda ister. Kural [UIUX-Rehberi.md](UIUX-Rehberi.md) §5.7, tablete özgü kalanlar [Tablet-Kalem.md](Tablet-Kalem.md) §6.
+
+## 6. API · mobil · web uyum denetimi (13–14 Kasım)
+
+**Kapsam:** salt okuma. API (102 denetleyici, 844 uç), mobil ve web istemcileri, tasarım kayıt listesi.
+
+**Bulgular:**
+- Mobil ve web'in çağırdığı bütün yollar API'de var; tek istisna aşağıdaki transcript fonksiyonu.
+- Tasarım belgelerindeki "yeni API gerekir" notları eskimişti. Dış deneme, görev nedeni ve miktarı, en verimli saatler, modül payları, zorunlu güncelleme, Testler ve Dersler'de kalem API'de zaten vardı.
+
+**Tasarım tarafında kapatılanlar (14 Kasım):**
+- Eskimiş notlar düzeltildi.
+- Kayıt listesindeki 46 rota uygulamanın gerçek adına çevrildi; web sayfa yollarında eşleşmeyen kalmadı.
+- Uygulamada olup çizimi olmayan 10 mobil ve 11 web ekranı çizildi; metinler uygulamaların Türkçe kataloglarından.
+- Sınava kalan gün örneği her yerde 245.
+
+**Bilinçli ayrımlar (sorun değil):**
+- Bildirimler, ödeme (web iyzico, mobil mağaza), misafir girişi ve hesap birleştirme platforma özgü.
+- Zorunlu güncelleme yalnız mobilde.
+
+## 7. Hâlâ açık olanlar
 
 **Sahibin kararı ya da onayı gerekenler:**
 - **SQL 13:** 2.511 testin adından "tarama"yı kaldırır; canlı veritabanına yazar.
 - **Denemede cevap değiştirme:** gerçek sınavdaki gibi değiştirilebilsin mi? API değişikliği gerektirir.
+- **Tüm modüller sayfası:** `w-panel-moduller` çizili, web'de `/student/moduller` sayfası yok. Ya web ekibi sayfayı ekler ya çizim kaldırılır.
+- **8 Kasım ekran karşılaştırmasının bulduğu çelişkiler** (rapor `Desktop\Sinavika-UIUX3\docs\Ekran-Karsilastirma-2026-11-08.md`):
+  - Konu tek ders olarak kesintisiz mi akacak? Öyleyse bölüm başı ve mikro ders bitti çizimleri (`m-ders-bolum`, `m-ders-mikro-bitti`, `w-ders-mikro-bitti`) konu düzeyine çevrilir.
+  - Onboarding'de sıra: çizim "plan → hesap → 3 gün ücretsiz → ilk mikro ders", rapordaki karar "sınav → kısa sorular → ödeme".
+  - Dersler ve Testler ana ekranında halkalı ızgara mı (27 Ekim kararı), çubuklu liste mi?
+  - Eski yönlendirme rotalarının silinmesi ve mobilde genel arama.
+
+**Mobil ekip:**
+1. **Denemeden çıkma:** web "Kaydet ve çık", mobil "teslim etmeden çıkarsan deneme iptal olur" (`exitCancels`). API kaldığı yerden devamı destekliyor (`GET student/exams/attempts/{id}/state`). Mobil, web gibi devam ettirmeli.
+2. **Testte cevap:** mobil seç + "Cevapla"; web ve tasarım tek dokunuş.
+3. **Ölü fonksiyon:** `fetchLensSessionTranscript` API'de olmayan bir uca bağlı ve hiçbir ekrandan çağrılmıyor; silinmeli ya da API'ye uç eklenmeli.
+4. **Bilgi Kartları sayısı:** web toplam yeni kartı, mobil bugünün tekrarını söylüyor. Tasarım ikisinde de "bugün tekrar zamanı gelen" sayısı. Web de bu sayıya geçmeli.
+5. **Revizyon ekranlarının sırası:**
+   - önce Bugün ana ekranı ve Ders Planı · Bugün;
+   - sonra canlı hataları kapatan ekranlar;
+   - sonra istatistikler ve ilk hafta;
+   - sonra görev ekle ve işlemleri.
+   Tabletteki açık işler [Tablet-Kalem.md](Tablet-Kalem.md) §4'te.
+6. **Kalem renkleri:** kod paletinde turuncu var; tasarımda yok ([Tablet-Kalem.md](Tablet-Kalem.md) §3.2).
+7. **Mikro dersten çıkış:** "İlerlemen kaydedildi" kısa bildirimi yok.
+
+**Web ekibi:**
+- Çözüm sayfasında kalem notlarını salt okunur göstermek (`student/notes`).
+- Profile "Geri bildirimlerim" ve şifre değiştirme eklemek; mobilde ikisi de var.
+- Deneme çözerken çevrimdışı cevap kuyruğu ve "cevapların saklanır" metni.
+
+**API ekibi (kullanılmayan uçlar):**
+- `student/preference/*`;
+- eski `studentexam/exams/*`;
+- `studentsubscriptionpackagemobile/ad-free/*`;
+- `studentevent/event-bus-info`, kök `studentsupport`, `studentprofilenotification` GET;
+- `api/students/statistics` takma adı (eski mobil sürüm mağazadan kalkınca).
 
 **API'ye sorular:**
 1. Kayıt şifresiz (yalnız kod ve ad) yapılabiliyor mu? Yapılamıyorsa şifre adımı geri gelir.

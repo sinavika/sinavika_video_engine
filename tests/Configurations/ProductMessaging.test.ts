@@ -74,9 +74,8 @@ describe('product messaging', () => {
 			for (const lang of ['tr', 'en'] as const) {
 				const headline = slide.headline[lang].replace(/\*/g, '');
 				// A Turkish headline with commas is a series of commands; the English one follows the same slide.
-				if (slide.headline.tr.includes(',')) expect(headline, slide.file.tr).toMatch(/[.!]$/);
-				if (slide.tool) expect(slide.tool.text[lang], slide.file.tr).toMatch(/\.$/);
-				expect(slide.subline[lang], slide.file.tr).toMatch(/[.!?]$/);
+				if (slide.headline.tr.includes(',')) expect(headline, slide.file).toMatch(/[.!]$/);
+				expect(slide.subline[lang], slide.file).toMatch(/[.!?]$/);
 			}
 		}
 	});

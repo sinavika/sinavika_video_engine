@@ -1,7 +1,6 @@
 import React from 'react';
 import {findScreen} from '../../UIUX/Registry';
 import {UIProvider} from '../../UIUX/Context';
-import type {AppModuleName} from './AppModules';
 import {useAppCanvas, useAppLanguage, useAppMode} from './AppScreenParts';
 import {APP_SCREEN} from './AppScreenTokens';
 
@@ -19,7 +18,6 @@ import {APP_SCREEN} from './AppScreenTokens';
  */
 type AppScreenEntry = {
 	Component: React.FC;
-	module: AppModuleName;
 	/** The UI/UX drawing shown (docs/UIUX/Ekran-Envanteri.md). */
 	uiux: string;
 	/** What the screen is, for catalogues and file names. */
@@ -51,21 +49,21 @@ const drawing = (id: string): React.FC => {
 	return Drawing;
 };
 
-const entry = (uiux: string, module: AppModuleName, title: string, description: string): AppScreenEntry => ({Component: drawing(uiux), module, uiux, title, description});
+const entry = (uiux: string, title: string, description: string): AppScreenEntry => ({Component: drawing(uiux), uiux, title, description});
 
 export const APP_SCREENS = {
-	Home: entry('m-hub-moduller', 'Hub', 'Modüller', 'Ana ekran: günün planı, sıradaki görev ve bütün modüller.'),
-	ExamHome: entry('m-deneme-vitrin', 'Exam', 'Denemeler ana sayfa', 'Canlı deneme, devam eden deneme ve öneriler.'),
-	Exam: entry('m-deneme-coz', 'Exam', 'Deneme çözümü', 'Süreli bir denemede soru çözme.'),
-	Analysis: entry('m-deneme-gelisim', 'Exam', 'Ders gelişimi', 'Net trendi ve derslere göre gelişim.'),
-	SmartSummaryHome: entry('m-ozet-vitrin', 'SmartSummary', 'Akıllı Özet ana sayfa', 'Soru analizi, video analizi ve geçmiş analizler.'),
-	SmartSummary: entry('m-ozet-sonuc', 'SmartSummary', 'Soru analizi', 'Soru görselinden çözüm, kazanım ve hata analizi.'),
-	SinoAi: entry('m-sino-sohbet', 'SinoAi', 'SinoAI', 'SinoAI ile sohbet.'),
-	Flashcards: entry('m-kart-on', 'Flashcards', 'Kart oturumu', 'Bilgi kartını çevir, bilme düzeyini işaretle.'),
-	Lessons: entry('m-ders-vitrin', 'Lessons', 'Dersler', 'Mikro dersler, konular ve tekrar.'),
-	Tests: entry('m-test-vitrin', 'Tests', 'Testler', 'Konu testleri: Kolay, Orta, Zor.'),
-	StudyPlan: entry('m-plan-bugun', 'StudyPlan', 'Ders Planı', 'Günün görevleri ve çalışma serisi.'),
-	StudyProgress: entry('m-plan-ilerleme', 'StudyPlan', 'İlerleme', 'Haftalık çalışma süresi ve konu ilerlemesi.'),
+	Home: entry('m-hub-moduller', 'Modüller', 'Ana ekran: günün planı, sıradaki görev ve bütün modüller.'),
+	ExamHome: entry('m-deneme-vitrin', 'Denemeler ana sayfa', 'Canlı deneme, devam eden deneme ve öneriler.'),
+	Exam: entry('m-deneme-coz', 'Deneme çözümü', 'Süreli bir denemede soru çözme.'),
+	Analysis: entry('m-deneme-gelisim', 'Ders gelişimi', 'Net trendi ve derslere göre gelişim.'),
+	SmartSummaryHome: entry('m-ozet-vitrin', 'Akıllı Özet ana sayfa', 'Soru analizi, video analizi ve geçmiş analizler.'),
+	SmartSummary: entry('m-ozet-sonuc', 'Soru analizi', 'Soru görselinden çözüm, kazanım ve hata analizi.'),
+	SinoAi: entry('m-sino-sohbet', 'SinoAI', 'SinoAI ile sohbet.'),
+	Flashcards: entry('m-kart-on', 'Kart oturumu', 'Bilgi kartını çevir, bilme düzeyini işaretle.'),
+	Lessons: entry('m-ders-vitrin', 'Dersler', 'Mikro dersler, konular ve tekrar.'),
+	Tests: entry('m-test-vitrin', 'Testler', 'Konu testleri: Kolay, Orta, Zor.'),
+	StudyPlan: entry('m-plan-bugun', 'Ders Planı', 'Günün görevleri ve çalışma serisi.'),
+	StudyProgress: entry('m-plan-ilerleme', 'İlerleme', 'Haftalık çalışma süresi ve konu ilerlemesi.'),
 } as const satisfies Record<string, AppScreenEntry>;
 
 export type AppScreenName = keyof typeof APP_SCREENS;

@@ -2,7 +2,7 @@ import React from 'react';
 import {useColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {alpha, MODULES, MODULE_ORDER, type ModuleKey} from '../../ModuleIdentity';
-import {Avatar, Bar, Button, Card, Chip, Field, List, ListRow, Segmented, Skeleton, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
+import {Avatar, Bar, Button, Card, Chip, Field, List, ListRow, Segmented, LoadingLogo, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
 import {Grid, Panel, WCard} from '../../Parts/Web';
 
 export const WebModulesScreen: React.FC = () => {
@@ -538,18 +538,8 @@ export const WebStatesScreen: React.FC = () => {
 						<Button>{t('İlk denemeni seç', 'Pick your first exam')}</Button>
 					</Stack>
 				</Card>
-				<Card padding={24}>
-					<Stack gap={16}>
-						{[80, 60, 70, 50].map((width) => (
-							<Stack key={width} row gap={12}>
-								<Skeleton width={44} height={44} radius={14} />
-								<Stack grow gap={8}>
-									<Skeleton width={`${width}%`} />
-									<Skeleton width={`${width - 30}%`} height={10} />
-								</Stack>
-							</Stack>
-						))}
-					</Stack>
+				<Card padding={24} style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+					<LoadingLogo label={t('Sayfa yükleniyor', 'Loading the page')} />
 				</Card>
 				<Card padding={28} style={{textAlign: 'center'}}>
 					<Stack align="center" gap={12}>

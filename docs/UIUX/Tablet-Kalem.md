@@ -1,8 +1,8 @@
-# Tablet ve kalem: çizimler ve özelleştirmeler
+# Tablet: kalem, geniş ekran ve üç platform uyumu
 
-Güncelleme: 4 Kasım 2026. Çizimler: `src/UIUX/Screens/Tablet/`, parçalar `src/UIUX/Parts/Tablet.tsx` ve `src/UIUX/Parts/Ink.tsx`. Görseller: `Desktop\Sinavika-UIUX3\acik\tablet`, `koyu\tablet`, panolar 37–42.
+Güncelleme: 14 Kasım 2026. Çizimler: `src/UIUX/Screens/Tablet/` (37 ekran, `t-` kimlikli), parçalar `src/UIUX/Parts/Tablet.tsx` ve `src/UIUX/Parts/Ink.tsx`. Görseller: `Desktop\Sinavika-UIUX3\acik\tablet`, `koyu\tablet` ve tablet panoları.
 
-Bu belge mobil uygulama ekibine (sinavika_mobile_reactnative) devir notudur. Motor yalnız tasarımı çizer; kod mobil repoda yazılır.
+Bu belge mobil uygulama ekibinin (sinavika_mobile_reactnative) tablet kurallarıdır. Motor yalnız tasarımı çizer; kod mobil repoda yazılır.
 
 ## 1. Bugün uygulamada ne var
 
@@ -19,7 +19,7 @@ Kaynak: `src/shared/annotations` ve Denemeler'in çözüm ekranları (okundu, de
 | Kapı | `isAnnotationDevice` = yerel tablet ve genişlik ≥ 600 |
 | Testler ve Dersler | 14 Kasım güncellemesi: kalem artık `QuizSolveScreen` ve `WorkMikroScreen`'de var; notlar `student/notes` (hedef Deneme / Test / Dersler, katman taslak / soru üstü / kenar notu) ile hesapta; `WorkNotesScreen` (Notlarım) ve `ProfilePenSettingsScreen` (Kalem ve çizim) var |
 
-## 2. Çizilen ekranlar (16)
+## 2. Kalem ekranları (16)
 
 | Pano | Kimlik | Ekran | Ne gösteriyor |
 |---|---|---|---|
@@ -37,7 +37,7 @@ Kaynak: `src/shared/annotations` ve Denemeler'in çözüm ekranları (okundu, de
 | | `t-ders-bosluk-el-yazisi` | Boşluk doldur · el yazısı | Kalemle kutuya yazılır, okunan sözcük gösterilir, sonra Kontrol et; Klavyeyle yaz her zaman var |
 | | `t-ders-notlarim` | Notlarım | Konunun tüm notları mikro derse göre; dokununca adımına gider (`WorkNotes`, API `student/notes/works`) |
 | Bilgi Kartları | `t-kart-el-yazisi` | Önce kendin yaz | Ön yüzde isteğe bağlı yazma alanı; kontrol edilmez |
-| Modüller | `t-hub-moduller` | Modüller · yatay | İki slayt yan yana, kartlar dört sütun; kalemli modüllerde "Kalem" etiketi |
+| Modüller | `t-hub-moduller` | Ana ekran · yatay | Web ana sayfasının kendisi (Bugün düzeni, §7); kalemli modüllerde "Kalem" etiketi |
 | Kalem | `t-kalem-ayarlar` | Profil · Kalem ve çizim | Ayarların tamamı (§3.6) |
 
 ## 3. Tablet için özelleştirme önerileri
@@ -106,8 +106,9 @@ Kalem yoksa (parmakla kullanılan tablet) ekranlar aynı kalır; Parmakla çizim
 5. ✔ **Ayarlar** (yapıldı: `ProfilePenSettings`): Profil'e "Kalem ve çizim" bölümü (§3.6), cihazda saklanır, hesapla eşitlenir.
 6. **El yazısı tanıma**: Boşluk doldur adımında, cihazda.
 7. **Yan ray ve geniş yerleşim**: `tabletWide`'da modül sekmeleri yan raya, içerik 1080 pt.
+8. **Kalemsiz tablet** (§6): iki panelli konular, klavyeli deneme, SinoAI yan paneli, haftalık plan.
 
-API (yapıldı): `api/student/notes` — `GET` (hedef + kapsam + since), `PUT` (toplu, en çok 50), `GET works` ve `works/subs/{lessonSubId}` (Notlarım), `GET/PUT settings` (kalem ayarları). Web bu notları henüz göstermiyor; çözüm sayfasında salt okunur gösterilmesi önerilir (Uyum-Raporu-2026-11-13 madde 6).
+API (yapıldı): `api/student/notes` — `GET` (hedef + kapsam + since), `PUT` (toplu, en çok 50), `GET works` ve `works/subs/{lessonSubId}` (Notlarım), `GET/PUT settings` (kalem ayarları). Web bu notları henüz göstermiyor; çözüm sayfasında salt okunur gösterilmesi önerilir (web ekibinin açık işi, [UIUX-Gecmis.md](UIUX-Gecmis.md) §7).
 
 ## 5. Kurallar (çizimlerde uygulandı)
 
@@ -115,3 +116,35 @@ API (yapıldı): `api/student/notes` — `GET` (hedef + kapsam + since), `PUT` (
 - El yazısı yazı tipi değil, tek çizgili kalem izi (`HandText`); marka yazı tipi yalnız Manrope.
 - Yazı en küçük 12 pt, okuma metni tablette 18–20 pt.
 - Turlar yok: kalem için tek ipucu, ilk karşılaşmada.
+
+## 6. Kalemsiz tablet (7 ekran)
+
+Kalemi olmayan öğrenci de tabletin genişliğinden yararlanır.
+
+| Kimlik | Ekran | Özelleştirme |
+|---|---|---|
+| `t-deneme-klavye` | Deneme · klavye | Bağlı klavye: A–E cevaplar, ←/→ gezer, İ işaretler, ⌫ siler, ⌘/ kısayolları gösterir; soru haritası yatayda hep açık |
+| `t-ders-sinoai-panel` | SinoAI yan panel | SinoAI adımı kapatmadan yanda açılır ve adımı bilir |
+| `t-ders-konular-iki-panel` | Konular iki panel | Liste solda kalır, seçilen konu sağda |
+| `t-plan-hafta` | Hafta | Yedi gün yan yana, görev sürükle-bırakla taşınır, bugün sağda |
+| `t-bolunmus-ekran` | Bölünmüş ekran | Split View / Stage Manager: pencere 600 pt altında telefon düzeni; deneme süresi ve oturum kesilmez |
+| `t-plan-bugun` | Ders Planı · Bugün | Web plan sayfasının kendisi (§7) |
+| `t-istatistik-pano` | İstatistiklerim | Web İstatistiklerim sayfasının kendisi (§7) |
+
+Çizimsiz kurallar:
+- Yatayda modül sekmeleri yan raya geçer (`tabletWide` ≥ 900 pt), içerik en çok 1080 pt.
+- Okuma metni tablette 18–20 pt; satır en çok ~760 pt.
+- Sırala ve Grupla adımlarında tablette sürükle-bırak da çalışır; dokunma yolu kalır.
+- Klavye kısayolları ekran okuyucuya duyurulur; her kısayolun dokunma karşılığı vardır.
+- Kamera (Akıllı Özet) tablette yatay çekimi de kabul eder.
+
+## 7. Tablet = web sayfasının kendisi
+
+Sahip, 12 Kasım 2026: "tablet, web ve mobil yüzde yüz uyum içinde olmalı." Ortak sayfalar tablet için ayrı çizilmez:
+- Tam ekran tablet, web sayfasının kendisini uygulamanın üst çubuğunun altında gösterir (`PanelInTablet`; web kenar menüsü ve üst çubuğu çizilmez). Web'de yapılan her düzeltme tablete de geçer.
+- Tablet ekranı daha kısa olduğu için (834 pt) grafikler daha alçak çizilir (`useInTablet`); içerik ve sıra aynıdır.
+- Ders adımları tablet oynatıcısında da mobilin adım çizimiyle gelir (`EmbedStep`).
+- Bu yolla çizilenler: ana ekran ve dört hâli, Ders Planı günü, sonuçlar ve boş hâli, deneme detayı, teslim onayı, biten deneme, deneme ekle, istatistikler, yanlışlarım, Grupla, Eşleştir, Formül, Bölüm başı.
+- Tablete özgü kalanlar: kalem (§2), klavyeli deneme, iki panelli konular, SinoAI yan paneli, haftalık plan, bölünmüş ekran (§6).
+
+Eşlik testi ve üç platform kuralı: [UIUX-Rehberi.md](UIUX-Rehberi.md) §5.7.

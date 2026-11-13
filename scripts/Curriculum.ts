@@ -15,6 +15,9 @@
  *       The next topics to work on, in production order.
  *
  *   npm run curriculum -- mark <topic id or CATEGORY/LESSON/TOPIC> --stage prepared [--file Curriculum/Scripts/...json] [--undo]
+ *   npm run curriculum -- mark INTRO:<camp id> --stage published [--undo]
+ *       --stage published records a video that went out on YouTube (the Render session publishes); a camp's episode 0
+ *       is marked with INTRO:<camp id>.
  *       Records a stage as done (today) or, with --undo, as not done.
  *
  *   npm run curriculum -- brief <topic id or CATEGORY/LESSON/TOPIC>
@@ -204,17 +207,27 @@ if (command === 'import') {
 	}
 } else if (command === 'mark') {
 	if (!target) {
-		console.error('Kullanım: npm run curriculum -- mark <konu id | KATEGORİ/DERS/KONU> --stage prepared|used|youtube|short [--file yol] [--undo]');
+		console.error('Kullanım: npm run curriculum -- mark <konu id | KATEGORİ/DERS/KONU | INTRO:<kamp>> --stage prepared|used|youtube|short|published [--file yol] [--undo]');
 		process.exit(2);
 	}
 	const stage = stageOf(values.stage);
 	const checklist = await readChecklist(CURRICULUM);
-	const entry = findEntry(checklist.entries, target);
-	entry.status[stage] = values.undo ? null : new Date().toISOString();
-	const fileKey = stage === 'prepared' ? 'script' : stage === 'youtube' ? 'youtube' : stage === 'short' ? 'short' : null;
-	if (values.file && fileKey) entry.files[fileKey] = values.file;
-	await writeChecklist(CURRICULUM, checklist);
-	console.log(`${entry.lessonName}: ${entry.topicName} → ${STAGE_LABELS[stage]} ${values.undo ? 'geri alındı' : 'işaretlendi'}.`);
+	if (target.startsWith('INTRO:')) {
+		const camp = target.slice('INTRO:'.length);
+		if (stage !== 'published') throw new Error('Bölüm 0 için yalnız --stage published işaretlenir.');
+		if (!existsSync(path.join(CURRICULUM, 'Camps', `${camp}.json`))) throw new Error(`${camp}: Curriculum/Camps içinde böyle bir kamp yok.`);
+		if (values.undo) delete checklist.intros[camp];
+		else checklist.intros[camp] = {published: new Date().toISOString()};
+		await writeChecklist(CURRICULUM, checklist);
+		console.log(`${camp} Bölüm 0 → ${STAGE_LABELS[stage]} ${values.undo ? 'geri alındı' : 'işaretlendi'}.`);
+	} else {
+		const entry = findEntry(checklist.entries, target);
+		entry.status[stage] = values.undo ? null : new Date().toISOString();
+		const fileKey = stage === 'prepared' ? 'script' : stage === 'youtube' ? 'youtube' : stage === 'short' ? 'short' : null;
+		if (values.file && fileKey) entry.files[fileKey] = values.file;
+		await writeChecklist(CURRICULUM, checklist);
+		console.log(`${entry.lessonName}: ${entry.topicName} → ${STAGE_LABELS[stage]} ${values.undo ? 'geri alındı' : 'işaretlendi'}.`);
+	}
 } else if (command === 'brief') {
 	const listed = findEntry((await readChecklist(CURRICULUM)).entries, target);
 	// The data keeps changing on the Desktop: its files and counts are read now, not taken from the last import.
@@ -355,7 +368,7 @@ if (command === 'import') {
 			const marks = CHECKLIST_STAGES.map((stage) => (entry?.status[stage] ? '✓' : '·')).join(' ');
 			console.log(`  ${String(index + 1).padStart(2)}. ${marks}  ${lesson.title}  ${lesson.topic}  · soru ${entry?.sources.questionCount ?? 0}${entry?.sources.explanation ? '' : ' · anlatım yok'}`);
 		});
-		console.log(`  (H K YT KV: ${CHECKLIST_STAGES.map((stage) => STAGE_LABELS[stage]).join(', ')})`);
+		console.log(`  (H K YT KV Y: ${CHECKLIST_STAGES.map((stage) => STAGE_LABELS[stage]).join(', ')})`);
 	} else {
 		console.error('Kullanım: npm run curriculum -- camp create|show ...');
 		process.exit(2);

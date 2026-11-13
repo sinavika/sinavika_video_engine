@@ -71,35 +71,23 @@ npm run screens -- --screen Exam --screen SinoAi --mode dark
 
 Dosyalar `Outputs/AppScreens/<Ekran>_<tema>[_Telefon].png` adıyla yazılır ve her çalıştırmada yenilenir (katalogdur, numaralı üretim değildir). Çıplak ekran 1170×2532 pikseldir: gerçek bir telefon ekran görüntüsünün çözünürlüğü.
 
-**4. Kendi içeriğiyle ekran.** Üç ekran örnek veri yerine gerçek içerik alabilir; bir şablon bunları doğrudan içe aktarıp kullanır:
-
-| Ekran | Değiştirilebilen içerik |
-| --- | --- |
-| `ExamSolveScreen` | soru, seçenekler, işaretli seçenek, ders, soru numarası, kalan süre |
-| `SmartSummaryScreen` | soru, çözüm adımları, kazanım, hata analizi |
-| `SinoAiScreen` | soru ve cevap paragrafları |
-| `FlashcardScreen` | kart türü, ders, ön yüz, sıra |
+**4. Kendi içeriğiyle ekran.** Yalnız `SinoAiScreen` (`Screens/AssistantScreens.tsx`) örnek veri yerine gerçek içerik alır: soru ve cevap paragrafları (`chat`). Mağaza görselleri bunu dile göre doldurur. Öteki ekranlar UI/UX çizimidir; içeriği değiştirmek için çizim `src/UIUX`'te değiştirilir.
 
 ## Kurallar
 
 - **Metinler uygulamanındır.** Başlık, sekme adı, düğme ve açıklamalar uygulamanın Türkçe kataloğundan alınır; uydurulmaz. Uygulamada adı "Akıllı Özet" olan modüle içerikte "Lens" denmez (web adı farklıdır, bkz. [`BrandIdentity.md`](../Brand/BrandIdentity.md)).
 - **Sayılar örnektir.** Net, süre, görev ve ilerleme sayıları ürün gösterimi içindir ve birbiriyle tutarlıdır (86 doğru, 30 yanlış → 78,5 net). Başarı iddiası gibi sunulmaz, metinde tekrar edilmez.
-- **Renk ve ölçü elle yazılmaz.** Bir ekran yalnız `AppScreenTokens` ve `AppScreenParts` üzerinden çizilir.
+- **Renk ve ölçü elle yazılmaz.** Ekranlar UI/UX çizimleridir; renk ve ölçü `src/UIUX/Tokens.ts` ve `ModuleIdentity.ts`'ten gelir. `AppScreenTokens` yalnız telefon çerçevesi, tuval ölçüsü ve elle çizilen SinoAI mağaza sohbeti içindir.
 - **Ekran adları sabittir.** İçerik dosyaları bu adlara bağlıdır; bir ad değiştirilmez, yeni ekran yeni adla eklenir. Ad listesi bir testle kilitlidir.
 - **Uygulamada olmayan ekran çizilmez.** Yeni bir özellik uygulamaya geldiğinde önce kodundan doğrulanır, sonra çizilir.
 
 ## Yeni ekran eklemek
 
-1. Uygulama deposunda ekranın yapısına ve `src/core/i18n/catalogs/tr-TR` altındaki metinlerine bak.
-2. `Screens/` altında ilgili dosyaya ekranı `AppScreenFrame` ve ortak parçalarla çiz; modülünü ve etkin sekmesini belirt.
-3. `AppScreenRegistry.ts` içine bir satır ekle.
-4. `npm run screens -- --screen <Ad> --mode both` ile bak; testlerdeki ad listesini güncelle.
+1. Ekran `src/UIUX`'te yoksa önce orada çizilir ([UIUX-Rehberi.md](UIUX-Rehberi.md) §6).
+2. `AppScreenRegistry.tsx`'teki `APP_SCREENS` listesine bir satır eklenir: ad, UI/UX kimliği, modül, başlık, açıklama.
+3. `npm run screens -- --screen <Ad> --mode both` ile bakılır; testlerdeki ad listesi güncellenir.
 
-Uygulamanın rengi, ölçüsü ya da sekme adı değişirse yalnız `AppScreenTokens.ts` ya da `AppModules.ts` güncellenir; bütün ekranlar birlikte değişir.
-
-## Uygulama ekranları ve UI/UX çizimleri
-
-Bu belgedeki ekranlar uygulamanın **bugünkü** halini çizer (mağaza görselleri, videolar). Yeniden tasarım çizimleri ayrı bir servistedir: `src/UIUX` (`npm run uiux`). Modül renkleri ve adları orada tek dosyada tanımlıdır (`src/UIUX/ModuleIdentity.ts`); uygulama yeni tasarıma geçtikçe bu ekranlar da aynı kimliği kullanmalıdır. Ayrıntı: [UIUX/UIUX-Rehberi.md](UIUX-Rehberi.md), [UIUX/Modul-Kimligi.md](Modul-Kimligi.md).
+Modül renkleri ve adları tek dosyadadır (`src/UIUX/ModuleIdentity.ts`, bkz. [Modul-Kimligi.md](Modul-Kimligi.md)); orada değişince bütün ekranlar birlikte değişir.
 
 ## Mağaza görselleri (App Store ve Google Play)
 

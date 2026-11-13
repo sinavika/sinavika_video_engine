@@ -187,7 +187,7 @@ export const importCurriculum = async ({lessonList, data, curriculum}: ImportPat
 	// The checklist: new topics are added, progress on existing ones is kept.
 	const checklistFile = path.join(curriculum, 'Production', 'Checklist.json');
 	// Only the progress is read back, so a checklist written by an older import still counts.
-	const ProgressSchema = z.object({entries: z.array(ChecklistEntrySchema.pick({id: true, status: true, files: true, notes: true}))});
+	const ProgressSchema = z.object({entries: z.array(ChecklistEntrySchema.pick({id: true, status: true, files: true, notes: true})), intros: ChecklistSchema.shape.intros});
 	const previous = existsSync(checklistFile) ? ProgressSchema.parse(JSON.parse(await readFile(checklistFile, 'utf8'))) : null;
 	const previousById = new Map(previous?.entries.map((entry) => [entry.id, entry]) ?? []);
 
@@ -215,14 +215,14 @@ export const importCurriculum = async ({lessonList, data, curriculum}: ImportPat
 					topicName: topic.name,
 					subtopics: topic.subtopics,
 					sources,
-					status: kept?.status ?? {prepared: null, used: null, youtube: null, short: null},
+					status: kept?.status ?? {prepared: null, used: null, youtube: null, short: null, published: null},
 					files: kept?.files ?? {},
 					...(kept?.notes ? {notes: kept.notes} : {}),
 				});
 			}
 		}
 	}
-	const checklist: Checklist = {schemaVersion: 1, generatedFrom: 'Sources/LessonList.csv', entries};
+	const checklist: Checklist = {schemaVersion: 1, generatedFrom: 'Sources/LessonList.csv', entries, intros: previous?.intros ?? {}};
 	await writeChecklist(curriculum, checklist);
 	await writeFile(path.join(curriculum, 'Production', 'ImportReport.json'), `${JSON.stringify(report, null, 2)}\n`);
 	return report;
@@ -240,7 +240,7 @@ export const checklistMarkdown = (checklist: Checklist): string => {
 		'Bu dosya `npm run curriculum` ile `Checklist.json` dosyasından üretilir; elle düzenlemeyin.',
 		'Her satır bir konu (LessonSub): bir YouTube eğitim videosu ve bir kısa özet videosu.',
 		'',
-		'Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullanıldı · **YT** YouTube videosu üretildi · **KV** kısa video üretildi · **Anlatım** konu anlatımı var mı · **Soru** konuya bağlı soru (cevaplı / ÖSYM).',
+		'Sütunlar: **H** hazırlandı (metin ve sahne planı) · **K** kaynaklar kullanıldı · **YT** YouTube videosu üretildi · **KV** kısa video üretildi · **Y** YouTube’da yayında (Bölüm 0’lar aşağıda) · **Anlatım** konu anlatımı var mı · **Soru** konuya bağlı soru (cevaplı / ÖSYM).',
 		'',
 	];
 	let category = '';
@@ -251,17 +251,22 @@ export const checklistMarkdown = (checklist: Checklist): string => {
 			lesson = '';
 			const inCategory = checklist.entries.filter((item) => item.category === category);
 			const done = inCategory.filter((item) => item.status.youtube).length;
-			out.push('', `## ${entry.exam} · ${entry.categoryName} (${done}/${inCategory.length} video)`);
+			const published = inCategory.filter((item) => item.status.published).length;
+			out.push('', `## ${entry.exam} · ${entry.categoryName} (${done}/${inCategory.length} video, ${published} yayında)`);
 		}
 		if (entry.lesson !== lesson) {
 			lesson = entry.lesson;
-			out.push('', `### ${entry.lessonName} (${entry.lesson})`, '', '| Sıra | Konu | Alt başlık | H | K | YT | KV | Anlatım | Soru |', '| ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | ---: |');
+			out.push('', `### ${entry.lessonName} (${entry.lesson})`, '', '| Sıra | Konu | Alt başlık | H | K | YT | KV | Y | Anlatım | Soru |', '| ---: | --- | ---: | :-: | :-: | :-: | :-: | :-: | :-: | ---: |');
 		}
 		const {status, sources} = entry;
 		out.push(
 			`| ${entry.order} | ${entry.topicName} \`${entry.topic}\` | ${entry.subtopics.length} | ${CHECKLIST_STAGES.map((stage) => tick(status[stage])).join(' | ')} | ${sources.explanation ? '✓' : '—'} | ${sources.questionCount} (${sources.answeredCount} / ${sources.pastExamCount}) |`,
 		);
 	}
+	const intros = Object.entries(checklist.intros).filter(([, intro]) => intro.published);
+	out.push('', `## Bölüm 0 (${intros.length} yayında)`, '');
+	if (intros.length === 0) out.push('Henüz yayında Bölüm 0 yok.');
+	for (const [camp, intro] of intros.sort(([a], [b]) => a.localeCompare(b))) out.push(`- \`${camp}\`: ${intro.published!.slice(0, 10)}`);
 	return `${out.join('\n')}\n`;
 };
 

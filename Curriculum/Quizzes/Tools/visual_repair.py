@@ -246,6 +246,18 @@ def fiyat(usage):
                   + usage.get("output_tokens", 0) * c) / 1e6
 
 
+def tablo_dolar_kacir(v):
+    """Motor tabloda tek "$"ı formül başlangıcı sayar ("Fiyat ($)"): kapanmamış dolar ters bölüyle kaçırılır."""
+    if v.get("kind") != "table":
+        return
+
+    def kacir(x):
+        kacmamis = len(re.findall(r"(?<!\\)\$", x))
+        return re.sub(r"(?<!\\)\$", lambda _: "\\$", x) if kacmamis % 2 == 1 else x
+    v["header"] = [kacir(x) for x in v.get("header") or []]
+    v["rows"] = [[kacir(x) for x in r] for r in v.get("rows") or []]
+
+
 def figur_paragrafi(kok):
     """{{fig:kod}} kendi paragrafında durur: önünde ve arkasında boş satır."""
     kok = re.sub(r"[ \t]*\n?[ \t]*(\{\{fig:[A-Za-z0-9_\-]+\}\})[ \t]*\n?[ \t]*", r"\n\n\1\n\n", kok)
@@ -315,6 +327,7 @@ def topla(argv):
         for f in figurler:
             # Vurgulu sütun cevabı ele verir (yönerge); model koysa da kaldırılır.
             (f.get("visual") or {}).pop("highlightColumn", None)
+            tablo_dolar_kacir(f.get("visual") or {})
             # Hareket işaretleri (yol okları, "x = h") durağan resimde cevabı ele verebilir.
             if (f.get("visual") or {}).get("kind") in ("pulley", "gears", "lever") and "motion" in f["visual"]:
                 f["visual"]["motion"] = False

@@ -1,6 +1,6 @@
 # UX kuralları karşılaştırması
 
-3 Kasım 2026. UI UX Pro Max'in 119 UX kuralı (MIT lisanslı `ux-guidelines.csv`), Sınavika'nın tasarım sistemiyle karşılaştırıldı. Araç kurulmadı; yalnız kural listesi okundu. Kurallar Türkçeye özetlenerek aktarıldı.
+3 Kasım 2026 (14 Kasım'da ana ekranın Bugün düzenine göre güncellendi). UI UX Pro Max'in 119 UX kuralı (MIT lisanslı `ux-guidelines.csv`), Sınavika'nın tasarım sistemiyle karşılaştırıldı. Araç kurulmadı; yalnız kural listesi okundu. Kurallar Türkçeye özetlenerek aktarıldı.
 
 ## Özet
 
@@ -43,12 +43,12 @@
 | 16 | Yerleşim | Taşan içerik kesilmez | Uygulama kuralı | İçerik kutusuna sığar; en büyük yazı ayarında denenir. |
 | 17 | Yerleşim | Sabit öğeler ve güvenli alan | Uygulama kuralı | Yüzen sekme çubuğu güvenli alana göre; son satır altında kalmaz. |
 | 18 | Yerleşim | Katman bağlamı | Uygulama kuralı | Web. |
-| 19 | Yerleşim | İçerik zıplamaz | Bizde var | Slaytlar sabit yükseklikte; API'ye bağlı düğmelerin yeri baştan ayrılır (11 Kasım 2026). |
+| 19 | Yerleşim | İçerik zıplamaz | Bizde var | Kartlar sabit yükseklikte; API'ye bağlı düğmelerin yeri baştan ayrılır (11 Kasım 2026). |
 | 20 | Yerleşim | Mobil tarayıcı yüksekliği | Uygulama kuralı | Web: 100vh yerine dvh. |
 | 21 | Yerleşim | Okuma genişliği | Uygulama kuralı | Okuma metni satırda 45–75 karakter; web oynatıcıda 700 px sütun. |
 | 22 | Dokunma | Dokunma hedefi 44 pt / 48 dp | Bizde var | Rehber §4. |
 | 23 | Dokunma | Dokunma hedefleri arası 8 px | Uygulama kuralı | Yan yana düğme ve çipler arasında en az 8 px. |
-| 24 | Dokunma | Sistem hareketiyle çakışma | Uygulama kuralı | Yatay kaydırma yalnız Modüller slaytlarında; noktalara dokunarak da geçilir. |
+| 24 | Dokunma | Sistem hareketiyle çakışma | Uygulama kuralı | Yatay kaydırma yalnız hafta şeridinde ve süzgeç çiplerinde. |
 | 25 | Dokunma | Dokunma gecikmesi | Uygulama kuralı | Web: touch-action. |
 | 26 | Dokunma | Çekip yenileme | Uygulama kuralı | Yalnız listelerde; çözme ve oynatıcı ekranlarında kapalı. |
 | 27 | Dokunma | Titreşim | Uygulama kuralı | Doğru cevapta hafif, yanlışta uyarı titreşimi. |
@@ -132,7 +132,7 @@
 | 105 | Erişilebilirlik | Yardım hep aynı yerde | Bizde var | Destek menüde ve Profil'de; oynatıcıda SinoAI'ye sor hep sağda. |
 | 106 | Formlar | Aynı bilgi iki kez istenmez | Bizde var | Onboarding bilgileri plana ve hesaba taşınır. |
 | 107 | Erişilebilirlik | Erişilebilir giriş | Eklendi | Apple/Google, kodla giriş, "Kodu yapıştır"; şifre yöneticisi ve yapıştırma açık. |
-| 108 | Hareket | Kendiliğinden dönen içerik | Uygulama kuralı | Modüller slaytları kendiliğinden dönmez. |
+| 108 | Hareket | Kendiliğinden dönen içerik | Uygulama kuralı | Hiçbir içerik kendiliğinden dönmez ya da kaymaz. |
 | 109 | Formlar | Form hata özeti | Uygulama kuralı | Web: uzun formda üstte özet, odak oraya. |
 | 110 | Yazı | Başlık satır dengesi | Uygulama kuralı | Web, isteğe bağlı. |
 | 111 | Yerleşim | Uzun kelime ve adres taşmaz | Uygulama kuralı | Satır içinde kırılır. |

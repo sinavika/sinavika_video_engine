@@ -12,7 +12,7 @@ export const APP_SCREEN = {width: 390, height: 844} as const;
 export const APP_MODES = ['light', 'dark'] as const;
 export type AppMode = (typeof APP_MODES)[number];
 
-export type AppColors = {
+type AppColors = {
 	background: string;
 	/** Cards and sheets. */
 	card: string;
@@ -74,24 +74,3 @@ export const APP_PALETTES: Record<AppMode, AppColors> = {
 		error: '#F87171',
 	},
 };
-
-/** The app's layout measures, in canvas pixels. */
-export const APP_LAYOUT = {
-	screenPadding: 20,
-	stackGap: 12,
-	cardRadius: 16,
-	cardPadding: 16,
-	statusBarHeight: 54,
-	tabBarBottomInset: 26,
-} as const;
-
-/** The app's type sizes, in canvas pixels. */
-export const APP_TYPE = {
-	pageTitle: 28,
-	title: 21,
-	headline: 17,
-	body: 14.5,
-	label: 13,
-	caption: 11.5,
-	overline: 11.5,
-} as const;

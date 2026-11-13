@@ -147,7 +147,7 @@ const SAMPLE: z.input<typeof CampIntroSchema> = {
 	camp: {lessons: [{code: 'TRK', name: 'Türkçe', topics: 15}, {code: 'MAT', name: 'Matematik', topics: 23}], first: 'TRK', cadence: 'Hemen her gün yeni bir ders', narration: 'Kampta her konu için bir YouTube dersi ve bir kısa video var. Türkçe ile başlıyoruz.'},
 	episodeParts: {title: 'Her ders aynı düzende', parts: [{icon: 'playCircle', title: 'YouTube dersi', text: 'On, on beş dakikada konu ve ÖSYM tarzı sorular.'}, {icon: 'zap', title: 'Kısa video', text: 'Dört soruluk hızlı tekrar.'}], narration: 'Her ders aynı düzende ilerler: önce YouTube dersi, sonra kısa bir tekrar videosu.'},
 	method: {title: 'Kampı böyle takip et', steps: ['Dersi izle', 'Aynı gün testini çöz', 'Haftaya tekrar et'], narration: 'Dersi izle, aynı gün testini çöz, bir hafta sonra tekrar et.'},
-	app: {title: 'Kampı Sınavika’da sürdür', screens: [{screen: 'Home', caption: 'Bütün modüller tek yerde'}, {screen: 'Tests', caption: 'Konu testleri'}], narration: 'Kampı Sınavika ile birlikte kurduk; testler ve planın uygulamada seni bekliyor.'},
+	app: {title: 'Kampı Sınavika’da sürdür', screens: [{screen: 'Home', caption: 'Bugün ne çalışacağın hazır'}, {screen: 'Tests', caption: 'Konu testleri'}], narration: 'Kampı Sınavika ile birlikte kurduk; testler ve planın uygulamada seni bekliyor.'},
 	closing: {next: {lesson: 'Türkçe · Ders 1', title: 'Sözcükte Anlam', code: 'TRK'}, narration: 'İlk dersimiz Sözcükte Anlam. Kanala abone ol, bir sonraki videoda görüşmek üzere.'},
 };
 

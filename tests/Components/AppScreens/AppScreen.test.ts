@@ -1,5 +1,5 @@
 import {describe, expect, it} from 'vitest';
-import {APP_MODULES} from '../../../src/Components/AppScreens/AppModules';
+import {UI_SCREENS} from '../../../src/UIUX/Registry';
 import {APP_SCREENS, APP_SCREEN_NAMES} from '../../../src/Components/AppScreens/AppScreenRegistry';
 import {APP_PALETTES, APP_SCREEN} from '../../../src/Components/AppScreens/AppScreenTokens';
 import {phoneHeight} from '../../../src/Components/AppScreens/PhoneFrame';
@@ -15,36 +15,15 @@ describe('app screen registry', () => {
 		expect(APP_SCREEN_NAMES).toEqual(['Home', 'ExamHome', 'Exam', 'Analysis', 'SmartSummaryHome', 'SmartSummary', 'SinoAi', 'Flashcards', 'Lessons', 'Tests', 'StudyPlan', 'StudyProgress']);
 	});
 
-	it('describes every screen and ties it to a module of the app', () => {
+	it('shows a current UI/UX phone drawing for every name', () => {
+		const ids = new Set(UI_SCREENS.map((screen) => screen.id));
 		for (const name of APP_SCREEN_NAMES) {
 			const screen = APP_SCREENS[name];
 			expect(typeof screen.Component, name).toBe('function');
-			expect(Object.keys(APP_MODULES), name).toContain(screen.module);
+			expect(ids.has(screen.uiux) && screen.uiux.startsWith('m-'), name).toBe(true);
 			expect(screen.title.length, name).toBeGreaterThan(2);
 			expect(screen.description.length, name).toBeGreaterThan(10);
 		}
-	});
-
-	it('covers every module of the app with at least one screen', () => {
-		const covered = new Set(APP_SCREEN_NAMES.map((name) => APP_SCREENS[name].module));
-		expect([...covered].sort()).toEqual(Object.keys(APP_MODULES).sort());
-	});
-});
-
-describe('app modules', () => {
-	it('gives each module the app’s five tabs with "Modüller" in the middle and "Profil" last', () => {
-		for (const [name, module] of Object.entries(APP_MODULES)) {
-			if (!module.tabs) continue;
-			expect(module.tabs, name).toHaveLength(5);
-			expect(module.tabs[2].label, name).toBe('Modüller');
-			expect(module.tabs[4].label, name).toBe('Profil');
-		}
-		expect(APP_MODULES.Hub.tabs).toBeNull();
-		expect(APP_MODULES.SinoAi.tabs).toBeNull();
-	});
-
-	it('uses the app’s own module names', () => {
-		expect(Object.values(APP_MODULES).map((module) => module.title)).toEqual(['Modüller', 'Denemeler', 'Akıllı Özet', 'Bilgi Kartları', 'Dersler', 'Testler', 'Ders Planı', 'SinoAI']);
 	});
 });
 

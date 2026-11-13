@@ -113,8 +113,10 @@ export const ChecklistEntrySchema = z.object({
 			youtube: Stage,
 			/** Kısa video üretildi. */
 			short: Stage,
+			/** YouTube'da yayında: the Render session publishes; the date it went out is kept here (owner, 14 Nov 2026). */
+			published: Stage,
 		})
-		.default({prepared: null, used: null, youtube: null, short: null}),
+		.default({prepared: null, used: null, youtube: null, short: null, published: null}),
 	/**
 	 * Files produced for the topic, relative to the project root. `scripts` lists every script that teaches the
 	 * topic's subtopics when there is more than one (one KPSS video set serves three levels, see `subtopicCoverage`);
@@ -127,19 +129,22 @@ export const ChecklistEntrySchema = z.object({
 export type ChecklistEntry = z.infer<typeof ChecklistEntrySchema>;
 export type ChecklistStage = keyof ChecklistEntry['status'];
 
-export const CHECKLIST_STAGES = ['prepared', 'used', 'youtube', 'short'] as const satisfies readonly ChecklistStage[];
+export const CHECKLIST_STAGES = ['prepared', 'used', 'youtube', 'short', 'published'] as const satisfies readonly ChecklistStage[];
 
 export const STAGE_LABELS: Record<ChecklistStage, string> = {
 	prepared: 'Hazırlandı',
 	used: 'Kullanıldı',
 	youtube: 'YouTube videosu üretildi',
 	short: 'Kısa video üretildi',
+	published: "YouTube'da yayında",
 };
 
 export const ChecklistSchema = z.object({
 	schemaVersion: z.literal(1),
 	generatedFrom: z.string(),
 	entries: z.array(ChecklistEntrySchema),
+	/** Each camp's episode 0 (it has no topic of its own): when it went out on YouTube, by camp id. */
+	intros: z.record(z.string(), z.object({published: Stage})).default({}),
 });
 
 export type Checklist = z.infer<typeof ChecklistSchema>;

@@ -479,9 +479,25 @@ export const Dots: React.FC<{count: number; active: number; colors?: string[]}> 
 	);
 };
 
-export const Skeleton: React.FC<{width?: number | string; height?: number; radius?: number}> = ({width = '100%', height = 12, radius = 6}) => {
+/** First-load state (owner, 11 Nov 2026: no skeletons): the clock icon of the logo in the middle of the section, a ring arc turning around it. */
+export const LoadingLogo: React.FC<{size?: number; label?: string}> = ({size = 44, label}) => {
 	const colors = useColors();
-	return <div style={{width, height, borderRadius: radius, background: colors.line2}} />;
+	const accent = useAccent();
+	const source = staticFile('Brand/SinavikaIcon.svg');
+	const ring = size + 18;
+	return (
+		<Stack align="center" gap={10}>
+			<div style={{position: 'relative', width: ring, height: ring}}>
+				<div style={{position: 'absolute', inset: 0, borderRadius: '50%', border: `3px solid ${colors.line}`, borderTopColor: accent.color, transform: 'rotate(40deg)'}} />
+				<div style={{position: 'absolute', left: 9, top: 9, width: size, height: size, backgroundColor: accent.color, maskImage: `url("${source}")`, WebkitMaskImage: `url("${source}")`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center'}} />
+			</div>
+			{label ? (
+				<Text role="small" align="center">
+					{label}
+				</Text>
+			) : null}
+		</Stack>
+	);
 };
 
 /** A step progress line of n segments. */
