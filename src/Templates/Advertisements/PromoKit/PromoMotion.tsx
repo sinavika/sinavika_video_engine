@@ -5,7 +5,7 @@ import {SoundEffect} from '../../../Components/Sounds/SoundEffect';
 import type {SoundEffectId} from '../../../Configurations/SoundEffects';
 
 /**
- * The motion language of the Kasım 2026 reels (docs/Social/Reels-Kurgu-Fikirleri.md):
+ * The motion language of the Kasım 2026 reels (docs/Social/SocialCreativePlaybook.md §3):
  * every shot is made out of the previous one, a finger drives each change, the
  * camera moves in on what is being said, and fast moves blur along their
  * speed. Everything is a pure function of the frame, so any frame renders on

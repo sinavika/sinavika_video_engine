@@ -1,28 +1,12 @@
 # Kasım 2026 tanıtım kampanyası · 1–30 Kasım
 
-**Durum (30 Ekim 2026):** Bütün içerik üretildi ve sahibin onayına gönderildi (SocialHub, Pending): 20 reels, 6 kaydırmalı gönderi, 4 görsel, 30 hikâye. Reels'lerin kurgu dili ve ses efektleri: [`Reels-Kurgu-Fikirleri.md`](../Social/Reels-Kurgu-Fikirleri.md).
+**Durum (14 Kasım 2026):** Bütün içerik üretildi ve SocialHub'a teslim edildi; onay ve yayın durumu SocialHub'dadır (`npm run social -- calendar`). Reels'ler [`SocialCreativePlaybook.md`](../Social/SocialCreativePlaybook.md) §3'teki hareket diliyle ve ses efektleriyle yapıldı. Revizyonların ayrıntısı her gönderinin `Brief.md` dosyasında ve git geçmişinde.
 
-- **30 Ekim akşamı yeniden gönderim:** Sahip 60 gönderinin hepsini reddetti. Bu bir inceleme reddi değildi; not yalnız ".". Aynı gün iki karar geldi:
-  - Videolara altyazı eklenmeyecek (altyazı alanı daraltıyor).
-  - Hepsi yeniden onaya gönderilecek.
-
-  Her `Post.json`'a reddedilen gönderinin kimliği `replacesPostId` olarak yazıldı. 40 görsel olduğu gibi yeniden gönderildi. 20 reels altyazısız, ses efektli ve lacivert zeminle yeniden render edilip gönderildi; 10 Kasım'da zaten altyazı yoktu.
-- **1 Kasım incelemesi (22 red):**
-  - **Yeniden gönderilen 12:** açık notlu redlerin hepsi düzeltilip reddedilenlerin yerine gönderildi.
-    - 9 Kasım reels ve hikâyesi: yeni hook.
-    - 10 ve 24 Kasım: Atatürk'le açılış, daha duygusal kurgu.
-    - 11 ve 13 Kasım: SinoAI cümle ortasında; 11'de defter üç dersten, 13'te yeni müzik.
-    - 12 ve 26 Kasım: yeni hook.
-    - 19 Kasım: carousel'e dönüştü.
-    - 24 Kasım hikâyesi: etiketleme çağrısı yok.
-    - 27 Kasım: tam ekran Coğrafya/Tarih animasyonları, YouTube kanal kartı.
-    - 28 Kasım: sorular büyük, cevap kartı küçük.
-    - Ayrıntılar her gönderinin `Brief.md` dosyasında ("1 Kasım revizyonu").
-  - **Hikâyesiz kalan 10 gün:** "." notlu 10 hikâye gönderilmez. Sahip, 1 Kasım: "O günler hikâyesiz."
-    - Günler: 8, 12, 14, 18, 19, 23, 26, 28, 29 ve 30 Kasım.
-    - `revisions` bu redleri listelemeye devam eder; bu beklenen bir durumdur.
-  - **Aralık:** KPSS çalışan hook'u için reels istendi ([`2026-12-Tanitim-Notlari.md`](2026-12-Tanitim-Notlari.md)).
-- **24 Kasım arşivi:** 1928 kara tahta fotoğrafı indirilmedi (indirme sahibin onayı ister). Video depodaki kamu malı portreyi ve 1933 filmini kullanır; kaynak satırı "Arşiv görüntüleri · kamu malı". Onay gelirse fotoğraf eklenir.
+- **Altyazı yok** (sahip, 30 Ekim): videolara anlatım altyazısı eklenmez; alanı daraltıyor.
+- **Hikâyesiz günler** (sahip, 1 Kasım: "O günler hikâyesiz."): 8, 12, 14, 18, 19, 23, 26, 28, 29 ve 30 Kasım. Bu günlerin "." notlu hikâyeleri gönderilmez; `revisions` onları listelemeye devam eder, bu beklenen bir durumdur.
+- **Aralık'a kalan:** KPSS çalışan hook'u için reels istendi ([`Hook-Listesi.md`](../Social/Hook-Listesi.md), "Sahibin istekleri").
+- **24 Kasım arşivi:** 1928 kara tahta fotoğrafı indirilmedi (indirme sahibin onayı ister). Video depodaki kamu malı portreyi ve 1933 filmini kullanır; kaynak satırı "Arşiv görüntüleri · kamu malı".
+- **YouTube:** Kasım, reklam Short'larının son ayıdır; Aralık'tan itibaren reklam videoları YouTube'a gitmez ([`SocialPlan.md`](../Social/SocialPlan.md) §1).
 
 - **Tek kaynak:** [`src/Social/Campaigns/Tanitim2026Kasim.ts`](../../src/Social/Campaigns/Tanitim2026Kasim.ts). Kavram, hook ve alternatifleri, sahne akışı, seslendirme taslağı, müzik tarifi, açıklama, hashtag, sütun, huni ve metrik oradadır.
 - **Gönderi taslakları:** `Posts/2026-11-<gün>_<Ad>/`, her biri `Brief.md` ve `Post.json`. Komut: `npm run social -- campaign --campaign tanitim-2026-11`.
@@ -57,7 +41,7 @@
 
   "Ücretsiz başla / dene / kullan" yazılmaz.
 - **Saatler:** Bütün günler Buffer saatlerini kullanır (sahip, 29 Ekim). Instagram'ın cumartesi ve pazar saati yok; o günlerde TikTok'un saati kullanılır.
-- **Özel günlerin saati:** Yalnız 10 ve 24 Kasım kendi saatinde çıkar. Sahip bu iki gün için daha iyi saat önermemi istedi; öneriler §4'te.
+- **Özel günlerin saati:** Yalnız 10 ve 24 Kasım kendi saatinde çıkar (§4).
 
 ## 2. Takvim
 
@@ -177,37 +161,7 @@ Test bunu denetler.
 - Gönderiler `PromoDeck` ile yapılır. Beş yeni görünüş eklenir: `mood`, `prompt`, `diagnosis`, `flow`, `checklist`. Kapak boş kalmaz; 2. sayfa ikinci hook'tur.
 - Her gönderi yayın öncesi kontrol listesinden geçer ([`SocialCreativePlaybook.md`](../Social/SocialCreativePlaybook.md) §10).
 
-## 6. Üretim sırası ve iş yükü
+## 6. Açık kararlar
 
-- 20 yeni reels şablonu, 5 yeni gönderi görünüşü ve 30 hikâye görseli üretilecek.
-- Gönderiler yayından en az bir hafta önce hazır olmalı. 1–8 Kasım için zaman dar: 1 Kasım reels'i 3 gün sonra yayında.
-- **Önerilen sıra:**
-  1. 1–3 Kasım.
-  2. 4–8 Kasım.
-  3. 10 Kasım (arşiv kesitleri ve onay için erken).
-  4. 9–15 Kasım.
-  5. 24 Kasım (fotoğraf kaynağı ve lisansı için erken).
-  6. Kalanlar haftalık partilerle.
-- Her parti teslim edilince admin panelinden onaylanır. Reddedilen gönderi notuyla geri gelir ve `replacesPostId` ile yeniden gönderilir.
-
-## 7. Üretimden önce doğrulanacaklar
-
-| Gün | Doğrulanacak |
-|---|---|
-| 6 Kas | Ders Planı › İlerleme ekranında haftalık deneme, test ve odak süresi gerçekten görünüyor mu? Görünmüyorsa fişin satırları gerçek alanlara göre değişir |
-| 1, 3, 18 Kas | "Deneme sonucu → eksik konu → bugünün görevi" akışı uygulamada nasıl görünüyor? Hangi ekranlar? |
-| 4 Kas | Ders Planı'ndaki odak süresi ekranı ve süre seçenekleri |
-| 9 Kas | SinoAI'deki Hızlı, Dengeli ve Derin seviyeleri uygulamada aynı adlarla mı? |
-| 13 Kas | SinoAI'nin kişisel deneme seçenekleri (tam ve branş) |
-| 15 Kas | sinavika.com'da hesap açmadan SinoAI hâlâ açık mı? |
-| 29 Kas | Deneme sonucu telefona bildirim olarak geliyor mu? |
-| 30 Kas | Testler'de seviye seçimi; Kolay, Orta ve Zor'un her biri 20 soru mu? |
-| 10 Kas | Onuncu Yıl Nutku'ndan kullanılacak kesitler ve dökümü |
-| 24 Kas | 1928 kara tahta fotoğraflarının Commons kaynağı ve lisansı |
-| 19 Kas | Haberlere göre KPSS Ortaöğretim sonuçları 19 Kasım'da açıklanıyor. ÖSYM'den doğrulanırsa o günün hikâyesi buna çevrilebilir |
-
-## 8. Açık kararlar
-
-1. **Özel gün saatleri.** Öneri: 10 Kasım reels ve hikâye 09.05; 24 Kasım reels 08.00, hikâye 12.30 (§4). Sahip onaylarsa kesinleşir.
-2. **Fiyat ve indirim.** Ayın son cuma günü için fiyat ya da indirim kampanyası planlanmadı, çünkü fiyatlar doğrulanmadı.
-3. **Tekrar eden seri.** Topluluk içeriklerinde aynı şablonla haftalık bir seri, üretim yükünü azaltır. Bu, tanıtımların her seferinde yeni olması kuralının bir istisnası olur; sahibin iznini gerektirir.
+1. **Fiyat ve indirim.** Ay sonu için fiyat ya da indirim kampanyası planlanmadı, çünkü fiyatlar doğrulanmadı.
+2. **Tekrar eden seri.** Topluluk içeriklerinde aynı şablonla haftalık bir seri üretim yükünü azaltır. Bu, tanıtımların her seferinde yeni olması kuralının bir istisnası olur; sahibin iznini gerektirir.

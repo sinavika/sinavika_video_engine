@@ -49,7 +49,7 @@ export const REEL_STANDARD = {
 	/** No narration subtitles (owner, 30 Oct 2026: they crowd the frame); the hook and the screen's own words carry it with the sound off. */
 	subtitles: false,
 	/**
-	 * The motion language since 30 Oct 2026 (docs/Social/Reels-Kurgu-Fikirleri.md,
+	 * The motion language since 30 Oct 2026 (docs/Social/SocialCreativePlaybook.md §3,
 	 * from the best prompts on prompt-motion.com): cuts land on the music's
 	 * beat (Scenes/Rhythm); each shot is made out of the previous one where it
 	 * can be (PromoMotion `Morph`); a fingertip causes each change on a screen

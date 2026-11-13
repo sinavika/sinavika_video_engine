@@ -93,7 +93,7 @@ Taranmayanlar: `src/UIUX` (durağan çizim) ve `Html5Banner.ts` (canlı HTML rek
 | `Outputs/` | Bütün çıktılar, git dışında, modül modül: `Camps/`, `Quizzes/`, `Exams/`, `Works/`, `Checks/` (kareler, taramalar, ön izlemeler, ses denemeleri, viral kontrolü); genel `Videos/` ve `Images/` (numaralı), `Covers/`, `Brand/` |
 | `Posts/` | Sosyal medya gönderileri, gönderi başına bir klasör (`<tarih>_<Ad>/`: Brief, Job, Post ve medyası `Media/`); ay planları `Posts/Plans/`. Sosyal kodu `src/Social/` |
 | `Curriculum/` | Eğitim içeriğinin işi, modül modül (aşağıdaki harita); ortak Python ve bütün yollar `Curriculum/Tools/` |
-| `docs/` | Belgeler konu klasörlerinde: `Courses/` (ders ve kamp videoları, anlatım, renkler, matematik okunuşu, Works notları), `Social/` (strateji, plan, kurgu, kimlik standardı, kanallar), `Brand/` (marka kimliği, ürün dili, tipografi), `Ads/` (reklam brifi, mağaza metni, `GoogleAds/`), `UIUX/` (tasarım sistemi, ekranlar, geçmiş), `Campaigns/` (ay kampanyaları), `Analiz/` (veri raporları, `YYYY-AA-GG-Konu.md`). Kökte yalnız `Development.md` durur. Biten işin raporu ayrı dosyada bekletilmez: kararı ve açık kalanı ilgili belgeye katılır, ayrıntısı git geçmişinde kalır |
+| `docs/` | Belgeler konu klasörlerinde: `Courses/` (ders ve kamp videoları, anlatım, renkler, matematik okunuşu ve kartları; Works'ün belgesi `Curriculum/Works/README.md`), `Social/` (strateji, plan, kurgu, kimlik standardı, kanallar), `Brand/` (marka kimliği, ürün dili, tipografi), `Ads/` (reklam brifi, mağaza metni, `GoogleAds/`), `UIUX/` (tasarım sistemi, ekranlar, geçmiş), `Campaigns/` (ay kampanyaları), `Analiz/` (veri raporları, `YYYY-AA-GG-Konu.md`). Kökte yalnız `Development.md` durur. Biten işin raporu ayrı dosyada bekletilmez: kararı ve açık kalanı ilgili belgeye katılır, ayrıntısı git geçmişinde kalır. **Ölü kopya yok** (sahip, 14 Kasım 2026): bir şey yeniden üretilince eskisi silinir, yenisi konur; silme yalnız Geri Dönüşüm Kutusu'na (PowerShell `Microsoft.VisualBasic.FileIO.FileSystem` `DeleteFile`/`DeleteDirectory`, `SendToRecycleBin`; `rm`, `Remove-Item`, `git clean` yok), silinenlerin tam yol listesi `Outputs/Checks/Temizlik-<tarih>-<Alan>.md` |
 
 ## Modül haritası (9 Kasım 2026)
 
@@ -102,7 +102,7 @@ Motor, API'deki (`Services/Exams`, `Quizzes`, `Works`, `SocialHubs`) ve mobildek
 | Modül | İş (git) | Kod ve araç | Çıktı (git dışı) | Belge | Oturum |
 | --- | --- | --- | --- | --- | --- |
 | Kamp | `Curriculum/Camps`, `Scripts`, `Jobs`, `Production`, `Sources` | `src/Courses`, `src/Templates/Camps`, `npm run curriculum` | `Outputs/Camps/<Sınav>/<Bölüm>/<Ders>/<NN>_<Konu>/` | `docs/Courses/` | Kamp senaryoları iyileştirmeleri; render: Render |
-| Quiz | `Curriculum/Quizzes` (Revisions, Reports, Pilot, kurallar) | `Curriculum/Quizzes/Tools` | `Outputs/Quizzes/` (Data, Results, Figures, Work, FigureCheck) | `Curriculum/Quizzes/CalismaPlani.md`, `YazimKurallari.md` | Quiz iyileştirilmesi |
+| Quiz | `Curriculum/Quizzes` (Revisions, plan, kurallar, onarım yönergesi) | `Curriculum/Quizzes/Tools` | `Outputs/Quizzes/` (Data, Results, Figures, Work, FigureCheck) | `Curriculum/Quizzes/CalismaPlani.md`, `YazimKurallari.md` | Quiz iyileştirilmesi |
 | Deneme | `Curriculum/Exams` (plan, `<ay>/<kitapçık>/<ders>.jsonl`) | `Curriculum/Exams/Tools` | `Outputs/Exams/` (katalog, Work, Results, Figures) | `Curriculum/Exams/DenemePlani.md`, `YONERGE.md` | Exam iyileştirilmesi |
 | Works | `Curriculum/Works`, `Curriculum/WorksWritten` | `src/Works`, `npm run figures`, `WorksWritten/Tools/works_batch.py` | `Outputs/Works/Figures` (manifest), `Outputs/Works/Written` | `docs/Courses/Works-*.md`, README'ler | Works iyileştirilmesi |
 | Sosyal medya | `Posts/<tarih>_<Ad>/` (medya `Media/` içinde) | `src/Social` (kampanyalar `src/Social/Campaigns`), `npm run social` | gönderinin `Media/` klasörü; kamp reels'i `Outputs/Camps` | `docs/Social/`, `docs/Campaigns/`, `docs/Analiz/` | Sosyal Medya Yönetimi |
@@ -306,7 +306,7 @@ Mevcut temalar değişmez (`tests/Images/Image.test.ts` bunu denetler). Görsel 
 yalnızca `ThemeRegistry` içindeki temaları kullanır, bu yüzden bir palet videoları ancak siz onu orada bir tema
 olarak kaydederseniz etkiler.
 
-## Claude ile içerik üretimi (sonraki faz)
+## Claude ile içerik üretimi
 
 Motor şimdiden bu akışa uygun: LLM kod değil, şemaya uyan **veri** üretir.
 
@@ -335,42 +335,18 @@ sandbox'ta derlenip render edilmeli ve insan onayından geçmelidir.
 
 ## Bilinen kısıtlar
 
-- **Görsel örneklerindeki ekranlar yer tutucudur.** Gerçek uygulama/web ekran görüntüleri verilmedi; tanıtım
-  tasarımları tarafsız iskelet ekranlarla render edildi. Örnek metinler (web adresi, fiyat, kampanya, "ücretsiz
-  dene") de yer tutucudur.
-- **Mağaza rozetleri düz metindir.** App Store / Google Play logoları tescilli olduğu için çizilmedi.
-- **Görsellerde taşma denetimi `FitBox` içindeki içerik içindir.** Sabit boyutlu öğelerin birbirine binmesi
-  otomatik yakalanmaz; yeni bir tasarım dört boyutta gözle kontrol edilmelidir.
-- **Başlangıç paletleri marka kararı değildir** (`MidnightGoldV1`, `FreshMintV1`); mekanizmayı göstermek içindir.
+14 Kasım 2026'da gözden geçirildi; artık geçerli olmayan maddeler (ücretsiz ses planı, yer tutucu ekranlar, metin mağaza rozetleri, varsayım marka renkleri) çıkarıldı.
 
-- **Türkçe (ana dili) sesler ücretli plan ister.** Ücretsiz planda ElevenLabs kütüphane seslerini API'den
-  kullandırmaz (402 `paid_plan_required`). O durumda seslendirme hata verir; çok dilli yedek ses yalnızca işte
-  `"voiceover": {"standIn": true}` denirse kullanılır ve ana dili Türkçe olan bir seslendirmen gibi duyulmaz.
-- **Ücretsiz planın çıktısı ticari kullanıma uygun değildir** (ElevenLabs lisansı ücretli planla gelir) ve dönem
-  başına 10.000 karakterle sınırlıdır; bir video kabaca 700–1.100 karakter harcar.
-- **Ses seçimi kulakla doğrulanmadı.** `BRAND_VOICES` sırası kütüphane verisine (açıklama, kullanım amacı,
-  yaygınlık) göre kuruldu. `npm run voices` bağlantılarından ya da `npm run voices -- --audition "..." --brand`
-  ile dinleyip sırayı düzenleyin.
-- **Satır sınırları karakter zamanlarından gelir.** Sınır iki satır arasındaki duraklamanın ortasına konur ve
-  uçlar iki karelik geçişle yumuşatılır; çok kısa duraklamalarda komşu satırın nefesi duyulabilir.
-- **`seed` yalnızca en iyi çabadır:** aynı metin yeniden üretilirse biraz farklı duyulabilir (Eleven v3'te daha
-  belirgin). Önbellek, render edilmiş bir videonun sesini sabit tutar. İstikrar
-  gereken içerikte işte `"model": "stable"` kullanın.
-- **Seslendirme ağ gerektirir** (önbellekte olmayan metinler için) ve anlatım metni ElevenLabs'e gönderilir.
-- **Formül okuma en iyi çabadır.** Okul düzeyi ifadeler okunur; karmaşık ifadelerde `narration` verin.
-- **Altyazı yok.** Satır metinleri ve süreleri elde olduğu için eklenebilir. Reklam müziği ElevenLabs Music ile
-  her reklam için ayrı üretilir; ders videolarında müzik yoktur.
-- **Ses ile ekran eşlemesi kelime düzeyindedir (ders videoları):** kartın parçaları seslendirmedeki kelime
-  zamanlarıyla söylendikleri anda gelir (`Courses/LessonCue.ts`). Eski eğitim şablonlarında eşleme sahne
-  düzeyindedir.
-- **Marka renkleri varsayımdır.** Logo gerçek Sınavika logosudur (`public/Brand/SinavikaLogo.png`), ama
-  `SinavikaBrand` temasındaki renkler henüz resmî marka renkleri değildir.
-- **Görseller yalnızca `public/` içinden ya da URL'den okunur.** URL'li görsel render sırasında ağ gerektirir.
-  SVG görsellerin içindeki yazılar sistem fontuyla çizilir.
-- **Studio'da "Can't save default props" uyarısı** beklenen bir durumdur: varsayılan props dosyadaki sabit bir
-  nesne değil, şemadan geçirilmiş örnek içeriktir. Props panelinde düzenleme ve önizleme çalışır.
+- **Seslendirme ağ gerektirir** (önbellekte olmayan metinler için) ve anlatım metni ElevenLabs'e gönderilir. Plan ve sesler: Pro plan, marka sesi Doğa (`BRAND_VOICES`).
+- **`seed` yalnızca en iyi çabadır:** aynı metin yeniden üretilirse biraz farklı duyulabilir. Önbellek, render edilmiş bir videonun sesini sabit tutar. İstikrar gereken içerikte işte `"model": "stable"` kullanın.
+- **Satır sınırları karakter zamanlarından gelir.** Sınır iki satır arasındaki duraklamanın ortasına konur ve uçlar iki karelik geçişle yumuşatılır; çok kısa duraklamalarda komşu satırın nefesi duyulabilir.
+- **Formül okuması kurallıdır.** Okuyucu formülü ağaç olarak çözer ([`MatematikOkunus.md`](Courses/MatematikOkunus.md)); tabloda olmayan bir yapı çıkarsa işte `narration` verilir.
+- **Altyazı yok, eklenmez** (sahibin kararı, 30 Ekim 2026). Reklam müziği ElevenLabs Music ile her reklama ayrı üretilir; ders videolarında müzik yoktur.
+- **Ses ile ekran eşlemesi:** ders videolarında kelime düzeyindedir (`Courses/LessonCue.ts`); eski eğitim şablonlarında sahne düzeyindedir.
+- **Görsellerde taşma denetimi `FitBox` içindeki içerik içindir.** Sabit boyutlu öğelerin birbirine binmesini yalnız sosyal gönderilerde `checkLayout` yakalar; yeni bir tasarım dört boyutta gözle de kontrol edilir.
+- **Başlangıç paletleri marka kararı değildir** (`MidnightGoldV1`, `FreshMintV1`, `src/Themes/Palettes.ts`); mekanizmayı göstermek içindir.
+- **Görseller yalnızca `public/` içinden ya da URL'den okunur.** URL'li görsel render sırasında ağ gerektirir. SVG görsellerin içindeki yazılar sistem fontuyla çizilir.
+- **Studio'da "Can't save default props" uyarısı** beklenen bir durumdur: varsayılan props şemadan geçirilmiş örnek içeriktir.
 - **Sahne geçişleri fade ve slide ile sınırlıdır** (sahneler ortak, sabit bir arka plan üzerinde saydamdır).
-- **Eğitim şablonlarının diyagramları basittir** (akış, döngü, kavram haritası, formül, görsel). Ders videolarında
-  ise grafik, geometri, 3B katı cisim, harita, süreç ve fizik/kimya simülasyonları vardır (`Components/Visuals/`).
-- **Süre tahmini sezgiseldir** (kelime sayısı). Seslendirme gelene kadar `durationSeconds` ile elle ayarlanabilir.
+- **Süre tahmini seslendirme gelene kadar sezgiseldir** (kelime sayısı); render süresi tahmini ise eski render'lardan gelir.
 - **Render tek makinede, tek süreçte çalışır.** Eşzamanlı iş sayısını çağıran taraf sınırlamalıdır.

@@ -2,6 +2,8 @@
 
 Bu yönerge, YouTube kamp dersinin senaryosunu (`Curriculum/Scripts/<Kategori>/<Ders>/<Konu>.json`) baştan yazan modele verilir (`Curriculum/Production/Tools/camp_script_batch.py`). Senaryo, Sınavika'nın insansız, animasyonlu ders videosunu üretir: her kart ekranda bir sahne, her anlatım cümlesi seslendirilir.
 
+Yönergenin yanında modele motorun sözleşmesi gider (`camp_contract.mts`): senaryo şeması ve otomatik denetim, matematik görsellerinin şemaları ve bitmiş bir ders örneği. Sözleşme bugün yalnız matematik görsellerini verir; başka bir ders yazdırılmadan önce o dersin görselleri sözleşmeye eklenir. Çıktı `camp_check.mts` ile denetlenir. Temiz senaryo `Curriculum/Scripts`'e alınır ve kamp API'sine yeni sürüm olarak gider (`npm run camp -- push`, `docs/Courses/Courses.md` §8). Ardından `Outputs/Camps/Scripts/<etiket>/` taslağı silinir.
+
 ## 1. Hedef
 
 Türkiye'nin önde gelen YKS ve KPSS kanallarındaki tam konu anlatımları kadar eksiksiz, onlardan daha düzenli bir ders. Öğrenci videoyu bitirdiğinde konuda açık kalmamalı: her alt konu tanımıyla, anlamıyla, kuralıyla, çözümlü örnekleriyle ve kolaydan zora sorularıyla işlenmiş olmalı. Ders öğrenciyle konuşur ("sen" dili), dikkatini dağıtmaz, her birkaç saniyede ekrana yeni bir şey getirir.
@@ -9,14 +11,14 @@ Türkiye'nin önde gelen YKS ve KPSS kanallarındaki tam konu anlatımları kada
 ## 2. Kaynaklar ve doğruluk
 
 - Pakette verilenler: MEB konu anlatımı (asıl kaynak), ÖSYM'nin 2018–2026 çıkmış soruları (o konudan, yıl ve cevaplarıyla), soru havuzundan örnekler, konunun resmî alt konu listesi, dersin bugünkü senaryosu ve denetimde bulunan eksikler.
-- Bu kaynakların dışında yalnız lise matematiğinin herkesçe bilinen, doğrulanabilir bilgisini kullan. Uydurma istatistik, uydurma "ÖSYM şu yıl şunu sordu" cümlesi yok. Yıl anan her cümle paketteki listeyle tutmalı; emin değilsen yıl verme.
+- Bu kaynakların dışında yalnız dersin lise düzeyinde herkesçe bilinen, doğrulanabilir bilgisini kullan. Uydurma istatistik, uydurma "ÖSYM şu yıl şunu sordu" cümlesi yok. Yıl anan her cümle paketteki listeyle tutmalı; emin değilsen yıl verme.
 - ÖSYM ve MEB metinleri yalnız kalıp ve referanstır, hiçbir soru kökü, şık dizisi ya da örnek birebir alınmaz. Bağlamı, sayıları ve soruyu kendin kur.
 - Her soruyu, her örneği, her "şunu seçen şunu bulur" açıklamasını kendin baştan çöz. Tuzak olarak adı geçen değer şıklarda olmalı ve o hata gerçekten o değeri vermeli.
 
 ## 3. Dersin akışı
 
-1. **Açılış (`lesson.opening`)**: soru, hata ya da görselle başlar; tek bir soru sorar, iki soru birleştirilmez. Selam, "ben SinoAI", "geçen derste", "bu videoda" yok.
-2. **Bölümler**: resmî alt konuların hepsi bir bölümde işlenir (`subtopic` / `subtopics`). Kardeş alt konular aynı bölümde toplanabilir. En çok 14 bölüm, bölümde en çok 14 kart.
+1. **Açılış (`lesson.opening`)**: soru, hata ya da görselle başlar; tek bir soru sorar, iki soru birleştirilmez. Selam, "ben SinoAI", "geçen derste", "bu videoda" yok. Açılışın hiçbir cümlesi kamptaki başka bir dersin açılışında geçmez; denetim aynı cümleyi sorun sayar.
+2. **Bölümler**: resmî alt konuların hepsi bir bölümde işlenir (`subtopic` / `subtopics`). Kardeş alt konular aynı bölümde toplanabilir; bir bölüm en çok 8 alt konu listeler. En çok 14 bölüm, bölümde en çok 14 kart.
 3. **Her bölümün içi, bu sırayla:**
    - **Tanım** (`concept`): kavram ne, ne değil. Bölümün ilk kartı tanım ya da anlamı gösteren bir görsel olur.
    - **Anlam** (görsel ya da `predict`): formülden önce neden böyle olduğunu gösteren bir sahne: sayı doğrusu, alan modeli, tablo, grafik, terazi.
@@ -33,11 +35,12 @@ Türkiye'nin önde gelen YKS ve KPSS kanallarındaki tam konu anlatımları kada
 ## 4. Sorular
 
 - **Merdiven**: her bölümde kolay (tek kural) → orta (iki adım) → ÖSYM tarzı (bağlam, çok koşul, okuma) sırası.
-- **ÖSYM tarzı**: gerçek hayattan bir durum, yeni tanımlanmış bir kavram ya da çok koşullu bir yapı; kök çoğu zaman 40–80 sözcük. Paketteki ÖSYM sorularının kalıplarını tanı ve her kalıptan özgün birer soru yaz.
+- **ÖSYM tarzı**: gerçek hayattan bir durum, yeni tanımlanmış bir kavram ya da çok koşullu bir yapı; kök çoğu zaman 40–80 sözcük. Paketteki ÖSYM sorularının kalıplarını tanı ve her kalıptan özgün birer soru yaz. Uzun kök kamp ekranına (16:9) sığmalı: denetim yazının küçüldüğü kökü bildirir; liste ya da veri varsa onu `context`'e taşı.
 - **Şekil**: grafikten, tablodan, sayı doğrusundan ya da şekilden okunan sorularda şekil `question.figure` ile verilir (ör. fonksiyon grafiği `plot`, veri `table`/`pie`/`plot` sütunları). Şekli yazıyla anlatıp şekilsiz soru sorma. Köke "yukarıdaki/aşağıdaki şekil" yazma; ekranda yeri değişir: "şekildeki", "tablodaki", "verilen" de.
 - **ÖSYM'ye yakınlık**: ÖSYM sorusunun hikâyesini ve cümle kalıbını taşıma ("tahtadaki eşitliği defterine yazarken…", "hangi üçü binerse binsin…"). Fikri al, bağlamı, kurguyu ve soruyu değiştir. Kökün sözcük dörtlüleri ÖSYM metniyle %20'den fazla örtüşmemeli.
 - **Şıklar**: beş şık; sayısal şıklar küçükten büyüğe. Dersteki doğru cevaplar A–E arasında dengeli dağılır (E de cevap olur), ardışık üç aynı harf ya da düzenli tekrar yok.
 - **Adımlar**: her adım tek bir iş yapar, anlatımı tam cümledir. Son adım cevabı söyler; şık eleme (`eliminate`) gerçekten o adımın gösterdiği şıkları eler.
+- **Hesap**: motor senaryodaki sayısal eşitlikleri (formüller, tablo hücreleri, "2 · 4 = 8") hesaplar; tutmayan eşitlik sorun sayılır. Bilerek yanlış olan yalnız hata kartının yanlış inancı, şıklar ve tırnak içindeki önermedir.
 - `origin.changes`: neyin örnek alındığını ve neyin özgün olduğunu yaz.
 
 ## 5. Ekran ve dikkat

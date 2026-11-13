@@ -23,3 +23,16 @@ export const StoreScreenshotPropsSchema = z.object({
 });
 export type StoreScreenshotProps = z.infer<typeof StoreScreenshotPropsSchema>;
 
+/** New store concepts (14 Nov 2026): look, kind and size; rendered for the owner's review board. */
+export const STORE_CONCEPT_ID = 'StoreConcept';
+
+export const StoreConceptPropsSchema = z.object({
+	concept: z.enum(['defter', 'turuncu', 'lacivert']).default('defter'),
+	kind: z.enum(['shot', 'search', 'header', 'feature']).default('shot'),
+	/** First three iPhone shots: 0 Bugün, 1 adım adım, 2 net. */
+	slide: z.number().int().min(0).max(2).default(0),
+	lang: z.enum(STORE_LANGUAGES).default('tr'),
+	width: z.number().int().positive().max(6000).default(1206),
+	height: z.number().int().positive().default(2622),
+});
+export type StoreConceptProps = z.infer<typeof StoreConceptPropsSchema>;

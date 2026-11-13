@@ -427,13 +427,31 @@ Merkezi tanım: [`src/Configurations/GeoData.ts`](../../src/Configurations/GeoDa
 
 Dördünün içeriği aynı senaryodur. Seslendirme marka sesiyle (Lisa) ve metin bütün olarak üretilir; sahneler sese göre uzar.
 
-## 8. Sonraki adımlar
+## 8. Kamp API: senaryoların asıl yeri
 
-1. İlk konunun (TYT Türkçe · Sözcükte Anlam, 13 alt başlık) tam senaryosunu yazmak; `check --mark`.
-2. Örnek YouTube videosu ve kısa videoyu üretip birlikte değerlendirmek; kart süreleri ve görsel payını buna göre ayarlamak.
-3. Bölge tablosunun (TurkeyRegions.ts) bir coğrafya öğretmenince kontrolü; eksik akarsuların eklenmesi.
-4. Tarih ve biyoloji için kullanılacak görselleri seçip lisanslarıyla kütüphaneye almak.
-5. Konu anlatımı paketi olmayan konular (ör. TYT'de 68 konu) için anlatımın hangi kaynaktan doğrulanacağına karar vermek.
+10 Kasım 2026'dan beri kamp senaryolarının asıl kaydı Sınavika API'sindedir (`api/claude/camp`). Her konu bir kayıt, her düzeltme yeni ve değişmez bir sürümdür. Sahip admin panelinde okur, kart kart yorum yazar, düzeltir ve onaylar. Sözleşme (entity'ler, durumlar, uçlar): API deposu `docs/camps/Claude-Kamp-API.md`. Motorun ilk isterleri (10 Kasım) bu sözleşmeye dönüştü; ayrıntısı git geçmişinde.
+
+Motor tarafı `npm run camp` (`scripts/Camp.ts`, istemci `src/Courses/CampApiClient.ts`):
+
+| Komut | İş |
+|---|---|
+| `camp sync [--apply]` | `Curriculum/Camps` planlarını ve Bölüm 0'ları gönderir; `--apply` olmadan yalnız farkı yazar |
+| `camp import [--camp <kamp>] [--apply]` | Sunucuda sürümü olmayan senaryoların ilk sürümü (`Imported`) |
+| `camp status`, `camp todo` | Durumlar; sahibin istekleri, açık yorumlar, denetim bekleyen admin düzeltmeleri |
+| `camp hold` / `release` | Düzeltmeye başlamadan senaryoyu almak ya da sürümsüz geri vermek |
+| `camp push <kamp>/<KOD> --reason "…"` | Yereldeki dosyayı yeni sürüm olarak gönderir; motor denetimi sorun bulursa reddedilir |
+| `camp pull <kamp>/<KOD> [--approved]` | Sunucudaki sürümü yerel dosyaya yazar |
+| `camp check-admin-edits`, `camp recheck` | Sahibin panelde düzelttiği sürümleri motorla denetler, raporu gönderir |
+
+Kurallar:
+- Canlıya yazan her komut `--apply` ister; araç onaylayamaz, arşivleyemez, yayımlandı diyemez. Canlı yazma sahibin onayıyla yapılır.
+- **Render kapısı** (`CampApprovalGate`): `.env` içinde `SINAVIKA_CAMP_RENDER_GATE=on` iken bir kamp dersi, yereldeki senaryonun hash'i onaylı sürümün hash'iyle aynı değilse render edilmez. Kapı bugün kapalı.
+- Video yükleme yoktur (sahip, 10 Kasım: 4K dosyalar 1–3 GB); YouTube'a sahip yükler.
+
+**Açık işler (8 Kasım öncesinden):**
+1. Bölge tablosunun (`TurkeyRegions.ts`) bir coğrafya öğretmenince kontrolü; eksik akarsuların eklenmesi.
+2. Tarih ve biyoloji için kullanılacak görselleri seçip lisanslarıyla kütüphaneye almak (`public/Media/Credits.json`).
+3. Konu anlatımı paketi olmayan konular (ör. TYT'de 68 konu) için anlatımın hangi kaynaktan doğrulanacağına karar vermek.
 
 ## 9. Kamplar
 
@@ -458,7 +476,7 @@ Bir **kamp**, bir sınav dersinin bütün konularının sırayla yayımlanan ser
      - `check`: açılışı olmayan kamp dersini, uzun açılışı, selamı ve aynı kampta başka bir dersin de söylediği cümleyi uyarır ([OpeningVariety.ts](../../src/Courses/OpeningVariety.ts)).
      - [CampOpenings.test.ts](../../tests/Courses/CampOpenings.test.ts): bütün kampları aynı kurallarla tutar; sekiz dersten büyük her kampta en az iki açılış türü olmalı.
      - Yayımlanmış 15 TYT Türkçe dersi açılışsız kalır (sahip).
-1. **SinoAI karşılaması**, kamp kartının üzerinde (ders renginde), tek nefeste: "Sınavika'nın TYT Türkçe kampına hoş geldin! Bugün kampın ikinci dersindeyiz: Söz Yorumu." Kamp verisinden üretilir ve her derste aynı kalıptadır. "Merhaba, ben SinoAI", "geçen derste…" ve "hazırsan başlayalım" yoktur (8 Kasım 2026).
+1. **Kamp karşılaması**, kamp kartının üzerinde (ders renginde), tek nefeste: "Sınavika'nın TYT Türkçe kampına hoş geldin! Bugün kampın ikinci dersindeyiz: Söz Yorumu." Kamp verisinden üretilir ve her derste aynı kalıptadır. "Merhaba, ben SinoAI", "geçen derste…" ve "hazırsan başlayalım" yoktur (8 Kasım 2026).
 2. "Bu videoda" (CourseLesson'ın açılışı). Açılış varsa kanca yerine onun kısa vaadi (`promise`, en çok 25 sözcük) söylenir; yoksa dersin kancası.
 3. Bölümler. Her bölüm açılışında başlık ayrı bir satır olarak söylenir ("İkinci bölüm: Mecaz anlam."). Ardından kartlar, beat'li şekiller, tahmin kartları ve adım adım çözülen sorular gelir.
 4. Özet.
@@ -474,7 +492,7 @@ Kartlar arasında 0,7 saniyelik yumuşak geçiş vardır; yeni bölüm, özet ve
 - **Şekil kartı**: açıklama başlığın altında (en çok 3 satır, ölçülür), şekil kalan bütün yüksekliği alır. Klasiğe göre yaklaşık 1,5 kat büyüktür. Dik bir şekil açıklamasının yanında durur; açıklaması yoksa ortalanır.
 - **Yazı kartları** (kural, kavram, örnek, hata): satır en çok ~60 harf; boş yer varsa yazı %15'e kadar büyür.
 - **Soru**: şekilsiz soru okunurken ve düşünme süresinde ortada (kısaysa biraz büyük) durur, geri sayım sağındadır. İlk çözüm adımıyla soru sola kayar, çözüm paneli sağdan gelir. Şekilli soruda şekil okurken gerektiği için iki sütun baştan kalır.
-- **Bölüm açılışı**: bölüm numarası, başlık ve dersin bölüm listesi (bitenler işaretli, şu anki vurgulu; uzun derslerde şu ankinin çevresindeki 7 bölüm). Sağda SinoAI küresi.
+- **Bölüm açılışı**: bölüm numarası, başlık ve dersin bölüm listesi (bitenler işaretli, şu anki vurgulu; uzun derslerde şu ankinin çevresindeki 7 bölüm). Sağda ses küresi.
 - **Kamp kartı**: kamp kapağıyla aynı düzen: kamp adı ve sınavlar etikette, konu en büyük, altında "Ders N / toplam" ve kampın ilerlemesi.
 - **Özet**: maddeler iki sütunda numaralı, uyarılar altta.
 

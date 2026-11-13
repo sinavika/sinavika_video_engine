@@ -1,38 +1,21 @@
 # Instagram ve TikTok profilleri
 
-Hesaplar: Instagram [@sinavika.tr](https://www.instagram.com/sinavika.tr/) (doğrulanmış, kategori Eğitim, 36 gönderi, 1.117 takipçi), TikTok [@sinavika.tr](https://www.tiktok.com/@sinavika.tr) (10 Kasım 2026’ya kadar @sinavikatr) (26 video, 11 takipçi). Kurallar: [BrandIdentity.md](../Brand/BrandIdentity.md), [SocialStrategy.md](SocialStrategy.md) (UTM, `utm_content=bio`), [ProductMessaging.ts](../../src/Configurations/ProductMessaging.ts) (`checkProductCopy`), profil resimleri `Desktop\Sinavika-Logo\sosyal-medya\profil` (her platformda A, turuncu zemin). YouTube için [YouTube-Kanal.md](YouTube-Kanal.md).
+Hesapların ayarları, yayındaki metinler ve sahibin telefondan yapacakları. YouTube için [YouTube-Kanal.md](YouTube-Kanal.md).
 
-## 1. İnceleme: 1 Kasım 2026
+- **Kurallar:** [BrandIdentity.md](../Brand/BrandIdentity.md), [SocialStrategy.md](SocialStrategy.md) §6 (UTM, `utm_content=bio`), [ProductMessaging.ts](../../src/Configurations/ProductMessaging.ts) (`checkProductCopy`). Profil metinleri ve açıklamalar bu denetimden geçer: "koç", Türkçe "quiz", "Kitaplık", Compass, "Sınavika da/Sınavikada" ve sunulmayan sınavlar (ÖABT, AGS, ALES, DHBT) geçmez. Biyografide "yapay zekâ destekli" yazılmaz; kendimizi SinoAI ile anlatırız (sahip, 1 Kasım 2026).
+- **Profil resimleri:** `Desktop\Sinavika-Logo\sosyal-medya\profil`. sinavika.tr: A, turuncu zemin. sinavika.yks: lacivert zemin, turuncu simge.
+- **Hesaplar** Chrome'un **sinavika** profilinde açık. SocialHub'daki hesap adları için [SocialPlan.md](SocialPlan.md) §2.
 
-### Instagram
+| Hesap | Görevi |
+|---|---|
+| Instagram [@sinavika.tr](https://www.instagram.com/sinavika.tr/) (doğrulanmış, kategori Eğitim) | Uygulama ve web tanıtımı |
+| TikTok [@sinavika.tr](https://www.tiktok.com/@sinavika.tr) (10 Kasım 2026'ya kadar @sinavikatr) | Uygulama ve web tanıtımı |
+| Instagram [@sinavika.yks](https://www.instagram.com/sinavika.yks/) | YouTube'daki ücretsiz YKS kampının tanıtım sayfası |
+| TikTok [@sinavika.yks](https://www.tiktok.com/@sinavika.yks) | YouTube'daki ücretsiz YKS kampının tanıtım sayfası |
 
-| Alan | Durum | Sorun |
-|---|---|---|
-| Ad, kullanıcı adı, profil resmi | Sınavika, sinavika.tr, A (turuncu) | Doğru |
-| Biyografi | "🎯 YKS & KPSS Hazırlık / 📖 Lisans • Ön Lisans • Ortaöğretim / 📝 Denemeler • Analiz • Gelişim / Mobil uygulamayı indir hemen başla." | SinoAI ve YouTube kampı yok; "hemen başla" eski çağrı |
-| Bağlantılar | Android App, www.sinavika.com, Apple App | Web sitesi UTM'siz ve ikinci sırada; YouTube yok. **Bağlantılar yalnız Instagram uygulamasından düzenlenebiliyor** |
-| Sabitlenenler | "Deneme çöz", "Eksiğini gör", "Koçuna sor" (Ekim başı üçlüsü) | "Koçuna sor" görselinde ve açıklamasında "sınav koçu" var; koç ifadesi kullanılmıyor |
-| Öne çıkan hikâyeler | Yok | Kapakları hazır: `sosyal-medya\instagram-one-cikanlar` |
-| Açıklamalar | 36 gönderi tarandı | 8 gönderide kural dışı sözcük (aşağıda); 1'inde fiyat |
-| Eski tasarım | Alt sıralarda ~10 gönderi eski logolu ve eski üslupta | "Ayda 550 TL → 99 TL", ekranda "COMPASS", "Hemen indir başla" |
-| Kamera reels'leri | 3'ünde görüntüde "YKS, KPSS, ALES, DGS" | ALES sunulmuyor; video değişmez |
+## 1. sinavika.tr
 
-Kural dışı sözcük geçen Instagram açıklamaları: "Koçuna sor" (koç), "Notunu at, quiz olsun" (quiz), "SinoAI'ye sadece soru sorma" (quiz), "Yapay zekâ çok…" (quiz), "Ölç. Öğren. Geliş." (koç), "Deneme bir yerde…" (koç), "Sınavika da Denemeyi çözdün" (yazım), "Sınavikada Deneme…" (yazım, Compass). "Bir deneme kitabına verilen parayla…" Premium ve "aylık 99 TL" diyor.
-
-### TikTok
-
-| Alan | Durum | Sorun |
-|---|---|---|
-| Ad, kullanıcı adı, profil resmi | Sınavika, sinavika.tr (10 Kasım’dan önce sinavikatr), A (turuncu) | Doğru (Ekim raporundaki "fotoğraf boş" notu çözülmüş) |
-| Biyografi | "Türkiye geneli kaliteli yayınevlerinden online denemeler. Mobil uygulamayı indir hemen başla." | Eski ürün anlatımı; 94 karakter, sınır 80 |
-| Bağlantı | Yok | Web'de alan yok; uygulamadan (işletme hesabı) eklenir |
-| Açıklamalar | 26 video tarandı | 8 videoda kural dışı sözcük (quiz ×3, koç ×2, Compass, "Sınavika da", ALES) |
-
-## 2. Metinler
-
-Sahip, 1 Kasım: "yapay zekâ destekli" çağrışımı istenmiyor; kendimizi SinoAI ile anlatırız (hafıza: `feedback-no-ai-wording-marketing`). İlk öneri buna göre değişti.
-
-Instagram biyografisi (134/150), **yayında**:
+**Instagram biyografisi** (yayında, 134/150):
 
 ```
 🎯 YKS (TYT, AYT) ve KPSS hazırlığı
@@ -41,9 +24,7 @@ Instagram biyografisi (134/150), **yayında**:
 ▶️ Ücretsiz TYT kampı YouTube'da
 ```
 
-TikTok biyografisi, hedef metin (70/80): `YKS ve KPSS'ye hazırlan, SinoAI'ye sor. Ücretsiz TYT kampı YouTube'da`. TikTok web'de emoji içeren biyografiyi "Bir şeyler ters gitti" diyerek reddetti; emojisiz kayıt ~1 dk gecikmeyle yayına giriyor. Denemeler sırasında son kalan metin **yayında**: `YKS ve KPSS'ye hazırlan, takıldığında SinoAI'ye sor.` Hedef metin uygulamadan girilecek.
-
-Instagram bağlantıları (sahip, telefondan), bu sırayla:
+**Instagram bağlantıları**, bu sırayla (yalnız Instagram uygulamasından düzenlenebiliyor):
 
 | Başlık | Adres |
 |---|---|
@@ -52,39 +33,25 @@ Instagram bağlantıları (sahip, telefondan), bu sırayla:
 | Google Play | `https://play.google.com/store/apps/details?id=com.sinavika.mobile` |
 | YouTube TYT kampı | `https://www.youtube.com/@sinavika` |
 
-TikTok bağlantısı (sahip, uygulamadan): `https://sinavika.com/?utm_source=tiktok&utm_medium=social&utm_campaign=2026-11-tanitim&utm_content=bio`
+**TikTok biyografisi:** yayındaki metin `YKS ve KPSS'ye hazırlan, takıldığında SinoAI'ye sor.` Hedef metin (70/80): `YKS ve KPSS'ye hazırlan, SinoAI'ye sor. Ücretsiz TYT kampı YouTube'da`; uygulamadan girilecek.
 
-Açıklama düzeltmeleri YouTube'dakiyle aynı: quiz → test, kitaplık → kütüphane, koç → yapay zekâ çalışma asistanı, "Sınavika da/Sınavikada" → "Sınavika'da", Compass → Ders Planı'ndaki İlerleme. Metnin geri kalanına dokunulmaz.
+**TikTok bağlantısı** (işletme hesabında, uygulamadan): `https://sinavika.com/?utm_source=tiktok&utm_medium=social&utm_campaign=2026-11-tanitim&utm_content=bio`
 
-Sabitlenenler önerisi: "Deneme çöz / Eksiğini gör / Koçuna sor" üçlüsünün sabiti kaldırılır; yerine "Netin sana yalan söylüyor" (Ekim'in en iyi reels'i), "Soracak kimse yok mu?" (misafir SinoAI) ve "Sınava hazırlanmak için 7 uygulama mı? Bir tane yeter." sabitlenir.
+**Sabitlenenler önerisi:** "Deneme çöz / Eksiğini gör / Koçuna sor" üçlüsünün sabiti kaldırılır ("Koçuna sor" görselinde "sınav koçu" var). Yerine "Netin sana yalan söylüyor" (Ekim'in en iyi reels'i), "Soracak kimse yok mu?" (misafir SinoAI) ve "Sınava hazırlanmak için 7 uygulama mı? Bir tane yeter." sabitlenir.
 
-## 3. Uygulama: 1 Kasım 2026
+**Eski içerik (1 Kasım incelemesi):** Instagram'ın alt sıralarında ~10 gönderi eski logolu ve eski üslupta ("Ayda 550 TL → 99 TL", ekranda "COMPASS", "Hemen indir başla"); 3 kamera reels'inin görüntüsünde "YKS, KPSS, ALES, DGS" yazıyor. Videolar düzenlenemez; arşivlemek sahibin kararı. Instagram'daki 8 kural dışı açıklama 1 Kasım'da düzeltildi. TikTok'ta 8 videonun açıklaması düzeltilemedi: TikTok açıklamayı yalnız paylaşımdan sonraki ilk 7 gün içinde düzenletiyor.
 
-Sahip: "Evet, hepsini uygula" (biyografide yapay zekâ çağrışımı olmadan; kamera videolarına YouTube kapakları; arşivlemeyi sahip yapacak).
+## 2. sinavika.yks (YKS kampı hesapları)
 
-| İş | Sonuç |
-|---|---|
-| Instagram biyografisi | Yayında, profilde doğrulandı |
-| Instagram'da 8 açıklama | Hepsi düzeltildi ve sayfa yeniden açılarak doğrulandı. "Koç" yerine SinoAI yazıldı ("SinoAI'ye sor", "takıldığın yerde SinoAI'ye sor"); quiz → test; Kitaplığında → kütüphanende ("SinoAI'ye sadece soru sorma" gönderisinde de vardı); "Sınavika da", "Sınavikada", Compass düzeltildi |
-| Instagram sabitlenenler | Web menüsünde sabitleme yok → sahip, uygulamadan |
-| Instagram kamera reels kapakları | Web düzenleme penceresinde kapak yok → sahip, uygulamadan (Düzenle › Kapağı düzenle › film rulosundan). Dosyalar: `Outputs/Covers/youtube-shorts/kamera-*_Kapak.jpg` |
-| TikTok biyografisi | Kısmen: yayındaki metin kurallara uygun ama YouTube kampını anmıyor; hedef metin uygulamadan |
-| TikTok açıklamaları ve kapakları | Yapılamaz: TikTok Studio açıklama ve kapağı "günde bir kez ve paylaşımdan sonraki ilk 7 gün içinde" düzenletiyor; sorunlu 8 video ve 4 kamera videosu daha eski |
+Sahip, 5 Kasım 2026: bu iki hesap YouTube'daki ücretsiz YKS kampının tanıtım sayfasıdır. **Uygulama reklamı yok:** biyografide ve paylaşımlarda SinoAI, indirme çağrısı, fiyat ve uygulama bağlantısı olmaz. Kamp YouTube'da ücretsiz diye sunulur. Paylaşım düzeni (her gün bir kamp reels'i): [SocialPlan.md](SocialPlan.md) §1.
 
-Sahibin telefondan yapacakları: Instagram bağlantıları (§2 tablosu), sabitlenenler, 4 kamera reels'inin kapağı, TikTok hedef biyografisi ve bağlantısı, eski gönderilerin arşivi.
-
-## 4. YKS kampı hesapları: 5 Kasım 2026
-
-Sahip, 5 Kasım: bu iki hesap **YouTube'daki ücretsiz YKS kampının tanıtım sayfası**. Uygulama reklamı yok: biyografide ve paylaşımlarda SinoAI, indirme çağrısı, fiyat, uygulama bağlantısı olmaz. Kamp YouTube'da ücretsiz diye sunulur. Profil resimlerini sahip yükledi (lacivert zemin, turuncu simge). Hesaplar Chrome'un **sinavika** profilinde açık.
-
-| Alan | Instagram [@sinavika.yks](https://www.instagram.com/sinavika.yks/) | TikTok [@sinavika.yks](https://www.tiktok.com/@sinavika.yks) |
+| Alan | Instagram | TikTok |
 |---|---|---|
-| Ad | Sınavika YKS Kampı | Sınavika.yks → **Sınavika YKS Kampı** yapılacak: TikTok adı 7 günde bir değiştiriyor, 12 Kasım 2026'dan sonra |
-| Hesap | Profesyonel, kategori Eğitim (profilde görünüyor), herkese açık, hesap önerileri açık | Kişisel, herkese açık, yorumlar herkese açık |
-| Biyografi | Yayında (126/150), aşağıda | Yayında (68/80), aşağıda |
-| Bağlantı | Yalnız YouTube kampı; sahip, uygulamadan | İşletme hesabına geçince yalnız YouTube kampı; sahip, uygulamadan |
+| Ad | Sınavika YKS Kampı | Sınavika.yks → **Sınavika YKS Kampı** yapılacak (TikTok adı 7 günde bir değiştirir; 12 Kasım'dan sonra açık) |
+| Hesap | Profesyonel, kategori Eğitim, herkese açık, hesap önerileri açık | Kişisel, herkese açık, yorumlar herkese açık |
+| Bağlantı | Yalnız YouTube kampı | İşletme hesabına geçince yalnız YouTube kampı |
 
-Instagram biyografisi:
+Instagram biyografisi (yayında, 126/150):
 
 ```
 🎯 YKS kampı: TYT ve AYT dersleri
@@ -93,13 +60,19 @@ Instagram biyografisi:
 👇 Kampa buradan katıl
 ```
 
-TikTok biyografisi (web'de emojisiz): `Ücretsiz YKS kampı: TYT ve AYT dersleri YouTube'da, özetleri burada.`
+TikTok biyografisi (yayında, 68/80): `Ücretsiz YKS kampı: TYT ve AYT dersleri YouTube'da, özetleri burada.`
 
-İki metin de `checkProductCopy` denetiminden geçti. İlk metinler (aynı gün, SinoAI'li uygulama tanıtımı) sahip "reklam olmayacak" deyince değiştirildi. TikTok yeni metni web'de ilk iki denemede kaydetmedi (istek 200 döndü, metin eski kaldı); üçüncü kayıt ~1 dk sonra yayına girdi.
+## 3. Sahibin telefondan yapacakları
 
-Sahibin telefondan yapacakları:
+Web'den yapılamayan işler. Yapıldıkça bu listeden silinir.
 
-1. Instagram bağlantısı: yalnız YouTube kampı, `https://www.youtube.com/@sinavika` ya da kanaldaki "YKS Kampı · Sınavika" oynatma listesi.
-2. TikTok: Ayarlar › Hesap › İşletme hesabına geç, kategori Eğitim. Sonra aynı YouTube bağlantısı. İşletme hesabı yalnız ticari müzik kitaplığını kullanır; videolarımızın sesi kendimizin, sorun değil.
+1. Instagram sinavika.tr: §1'deki bağlantılar, sabitlenenler, 4 kamera reels'inin kapağı (Düzenle › Kapağı düzenle › film rulosundan; dosyalar `Outputs/Covers/youtube-shorts/kamera-*_Kapak.jpg`), eski gönderilerin arşivi.
+2. TikTok sinavika.tr: hedef biyografi ve bağlantı.
+3. Instagram sinavika.yks: bağlantı, `https://www.youtube.com/@sinavika` ya da "YKS Kampı · Sınavika" oynatma listesi.
+4. TikTok sinavika.yks: Ayarlar › Hesap › İşletme hesabına geç (kategori Eğitim), sonra aynı YouTube bağlantısı; ad "Sınavika YKS Kampı". İşletme hesabı yalnız ticari müzik kitaplığını kullanır; videolarımızın sesi kendimizin, sorun değil.
 
-Not: YouTube'da şu an yalnız TYT Türkçe kampı var; biyografi kampın kapsamını (TYT ve AYT) anlatıyor.
+## 4. Web'de çalışırken
+
+- TikTok web, emoji içeren biyografiyi "Bir şeyler ters gitti" diyerek reddeder; emojisiz kayıt ~1 dakika gecikmeyle yayına girer. İstek 200 dönse bile metin eski kalabilir: profili yeniden açıp kontrol et.
+- Instagram web'de sabitleme, bağlantı ve reels kapağı düzenleme yok; bunlar uygulamadan yapılır.
+- TikTok Studio açıklama ve kapağı günde bir kez ve paylaşımdan sonraki ilk 7 gün içinde düzenletir.

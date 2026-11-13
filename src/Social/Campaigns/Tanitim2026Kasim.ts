@@ -535,7 +535,7 @@ export const CAMPAIGN_FEED: readonly CampaignFeed[] = [
 		altHooks: ['Mesai bitti, ders başlıyor.', 'Az zaman, net plan.'],
 		template: 'PromoDeck/floating',
 		// 1 Kasım: "hook iyi ama kaydırmalı bir yapı olabilir" → 5 sayfalık carousel (kapak, mesaiden sonra plan, deneme,
-		// kartlar, kapanış). Aynı hook'la Aralık için bir reels de istendi (docs/Campaigns/2026-12-Tanitim-Notlari.md).
+		// kartlar, kapanış). Aynı hook'la Aralık için bir reels de istendi (docs/Social/Hook-Listesi.md, Sahibin istekleri).
 		reference: 'Yüzen kartlar: akşam saatinde telefon, çevresinde kısa görev kartları',
 		slides: ['Başlık: "KPSS’ye çalışırken işe de gidiyorsan, bu senin için." Vurgu: "senin". Akşam saatinde telefon, Ders Planı’nın kısa görevleri kartlar hâlinde çevresinde: "Vatandaşlık · 20 dk", "Tarih tekrarı · 15 dk". Tool kutusu: Ders Planı’nın tool cümlesi.'],
 		caption: 'KPSS’ye çalışırken işe de gidiyorsan, bu senin için. İşten sonra 1 saatin varsa Ders Planı bugün ne çalışacağını gösterir; denemede nerede kaybettiğini görürsün, Bilgi Kartları yolda tekrar ettirir. Kaydır, kaydet ve mesaiden sonra çalışan arkadaşına gönder.',

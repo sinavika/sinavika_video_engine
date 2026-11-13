@@ -1,6 +1,6 @@
 # Sınavika sosyal medya stratejisi: vizyon, hedefler ve büyüme sistemi
 
-Sınavika'nın sosyal medyada neden var olduğu, nereye gitmek istediği, kime konuştuğu, neyi ölçtüğü ve içeriği nasıl ürettiği. Planlar ([`SocialPlan.md`](SocialPlan.md)), kreatif kurallar ([`SocialCreativePlaybook.md`](SocialCreativePlaybook.md)), görsel kurallar ([`Sosyal-Gorsel-Kurallari.md`](Sosyal-Gorsel-Kurallari.md)) ve marka dili ([`BrandIdentity.md`](../Brand/BrandIdentity.md)) bu belgeye hizmet eder. Dayandığı kaynaklar ve onlardan ne alındığı: [`SocialResources.md`](SocialResources.md).
+Sınavika'nın sosyal medyada neden var olduğu, nereye gitmek istediği, kime konuştuğu, neyi ölçtüğü ve içeriği nasıl ürettiği. Planlar ([`SocialPlan.md`](SocialPlan.md)), kreatif kurallar ([`SocialCreativePlaybook.md`](SocialCreativePlaybook.md)), görsel kurallar ([`Sosyal-Kimlik-Standardi.md`](Sosyal-Kimlik-Standardi.md)) ve marka dili ([`BrandIdentity.md`](../Brand/BrandIdentity.md)) bu belgeye hizmet eder. Dayandığı kaynaklar ve onlardan ne alındığı: [`SocialResources.md`](SocialResources.md).
 
 **Tarih:** 29 Ekim 2026 · **Durum:** taslak. Rakamlar ve tarihler öneridir; sahip onaylayınca kesinleşir. İlk ay (Kasım 2026) başlangıç değerleri ölçüldükten sonra hedefler yeniden ayarlanır.
 
@@ -8,8 +8,11 @@ Sınavika'nın sosyal medyada neden var olduğu, nereye gitmek istediği, kime k
 | --- | --- |
 | Bu belge | Vizyon, hedef, kitle, içerik sütunları, ölçüm, üretim döngüsü, topluluk |
 | [`SocialCreativePlaybook.md`](SocialCreativePlaybook.md) | Hook, video kurgusu, kaydırmalı yapı, açıklama ve sosyal SEO, test, kontrol listesi |
-| [`SocialPlan.md`](SocialPlan.md) | Haftalık plan, gönderi türleri, saatler, teslim |
-| [`Sosyal-Gorsel-Kurallari.md`](Sosyal-Gorsel-Kurallari.md) | Izgara, seri gönderi, vurgu, boş alan, video kareleri |
+| [`SocialPlan.md`](SocialPlan.md) | Haftalık plan, hesaplar, gönderi türleri, saatler, teslim, video kalitesi |
+| [`Sosyal-Kimlik-Standardi.md`](Sosyal-Kimlik-Standardi.md) | Sabit kapak, bitiş kartı, mağaza rozetleri, punto, ızgara, vurgu, video kareleri |
+| [`Hook-Listesi.md`](Hook-Listesi.md) | Gelecek ayların hook taslakları ve sahibin istekleri |
+| [`Instagram-TikTok-Profil.md`](Instagram-TikTok-Profil.md), [`YouTube-Kanal.md`](YouTube-Kanal.md) | Hesapların ayarları, metinleri ve elle yapılan işler |
+| `docs/Campaigns/` | Ay kampanyalarının planı (Kasım: [`2026-11-Tanitim.md`](../Campaigns/2026-11-Tanitim.md)) |
 | [`AdPrompt.md`](../Ads/AdPrompt.md) | Tanıtım videosu brifi |
 | [`BrandIdentity.md`](../Brand/BrandIdentity.md), [`ProductMessaging.md`](../Brand/ProductMessaging.md) | Marka sesi, adlar, yasaklı ifadeler |
 
@@ -85,7 +88,7 @@ Her gönderi tek bir sütuna aittir. Sütun, gönderinin `Brief.md` dosyasına y
 
 - **Önce değer.** Eğitim markası satıcı gibi değil, kaynak gibi konuşur. Ücretsiz öğretici içerik güveni kurar; tanıtım bu güvenin üzerine gelir (TikTok eğitim pazarlaması rehberi). Ürün sütunu da değer gösterir: "Bu soruyu SinoAI ile 3 adımda çöz."
 - **Kaynak ve doğruluk.** Öğren ve Strateji sütunlarının içerikleri yalnız SocialHub kaynaklarından ya da kamp senaryolarından gelir. ÖSYM ve MEB içerikleri örnek ve kaynak olarak kullanılır, kelimesi kelimesine kopyalanmaz. Soru ve cevap teslimden önce doğrulanır.
-- **Durum (29 Ekim):** Sahip 19 Ekim'de eğitim içeriği paylaşımını durdurdu. Kasım'da Öğren sütununun hangi ölçüde açılacağı sahibin kararıdır (§10).
+- **Durum (14 Kasım):** sinavika.tr hesaplarında eğitim içeriği 19 Ekim'den beri durdu; Kasım yalnız tanıtımdır. Öğren sütunu kamp hesaplarında (Instagram ve TikTok `sinavika.yks`, YouTube Shorts) her gün bir kamp reels'iyle yürüyor (9 Kasım'dan; [`SocialPlan.md`](SocialPlan.md) §1). sinavika.tr'de ne zaman açılacağı sahibin kararıdır (§10).
 
 ---
 
@@ -231,7 +234,7 @@ Araştır → Planla → Üret → Onayla ve dağıt → Ölç ve öğren → (y
 | Nerede | Ne | Durum |
 | --- | --- | --- |
 | Engine | `Brief.md` şablonuna sütun, huni aşaması, hook türü, izlenecek metrik ve UTM alanları | Kasım planıyla başlar |
-| Engine | Hook kütüphanesi: onaylanan ve reddedilen hook'lar türleriyle ([`SocialCreativePlaybook.md`](SocialCreativePlaybook.md) §2) | Başladı |
+| Engine | Hook kütüphanesi: onaylanan ve reddedilen hook'lar türleriyle ([`SocialCreativePlaybook.md`](SocialCreativePlaybook.md) §2), taslaklar [`Hook-Listesi.md`](Hook-Listesi.md) | Başladı |
 | Engine | UTM bağlantısı üreten yardımcı ve teslimde UTM kontrolü | Yapılacak |
 | API (başka ajan) | SocialHub'a gönderi başına performans verisi (platform ve Buffer analizleri); admin panelde sütun ve hook türüne göre rapor; gönderide `pillar` alanı | md raporuyla istenecek |
 | Sahip | Buffer yayın saatlerinin öğrencinin akşam saatlerine (18:00–23:00) göre 4–6 hafta denenmesi; profil metni ve UTM'li bio bağlantısı; LinkedIn'in Buffer'a bağlanması | Sahibin işi |
@@ -240,7 +243,7 @@ Araştır → Planla → Üret → Onayla ve dağıt → Ölç ve öğren → (y
 
 ## 10. Açık kararlar
 
-1. **Eğitim içeriğinin geri dönüşü.** Kasım için karar verildi: yalnız tanıtım (sahip, 29 Ekim; plan [`Campaigns/2026-11-Tanitim.md`](../Campaigns/2026-11-Tanitim.md)). Aralık ve sonrası için öneri: Öğren sütunu kamp içeriklerinden (CampShort, ders özetleri, tuzaklar) yeniden açılsın.
+1. **sinavika.tr'de eğitim içeriği.** Kasım yalnız tanıtım (sahip, 29 Ekim). Kamp içerikleri 9 Kasım'dan beri kamp hesaplarında. Açık soru: sinavika.tr Aralık'ta da yalnız tanıtım mı olacak?
 2. **1 milyon hedefinin tanımı ve tarihi.** Öneri: toplam takipçi, 2028 sonu.
 3. **İngilizce hesaplar.** Öneri: Faz 3 (2027'nin ikinci yarısı), SAT ve ACT içerikleriyle.
 4. **Ücretli dağıtım.** Organik olarak iyi giden videoların Spark Ads ya da Meta ile büyütülmesi ve bütçesi.

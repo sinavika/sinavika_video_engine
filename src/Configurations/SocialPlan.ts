@@ -78,7 +78,7 @@ const FEED = ['instagram', 'tiktok'] as const;
 /**
  * Lesson videos also go out as YouTube Shorts. Ad videos (Promotion, PromoReel)
  * never do: since 10 Nov 2026 Shorts carry only lesson content, and ads reach
- * YouTube only as unlisted Google Ads uploads (docs/Social/YouTube-Kanal.md §10).
+ * YouTube only as unlisted Google Ads uploads (docs/Social/YouTube-Kanal.md §4).
  */
 const FEED_VIDEO = ['instagram', 'tiktok', 'youtube'] as const;
 const STORY = ['instagram'] as const;

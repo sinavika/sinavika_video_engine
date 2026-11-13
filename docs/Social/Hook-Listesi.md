@@ -2,7 +2,7 @@
 
 Reels ve gönderi açılışları için hook havuzu. Burada taslak olarak durur, üzerine çalışılır. Seçilen hook ay kampanyasına (`src/Social/Campaigns/`) taşınınca durumu "kampanyada" olur.
 
-**Hook kuralları** (kaynak: [SocialCreativePlaybook.md](SocialCreativePlaybook.md) §11, `REEL_STANDARD`, hafızadaki reels ve hook kuralları):
+**Hook kuralları** (özet; kuralların kendisi [SocialCreativePlaybook.md](SocialCreativePlaybook.md) §2 ve §11, sayılar `REEL_STANDARD`):
 
 - **Biçim:** En fazla 5 kelime, ekranda en çok 1,8 saniye. Seslendirmenin ilk sözü de odur.
 - **İçerik:** Bir inancı sarsar ya da bir acıyı adlandırır. Özellik saymaz ("fotoğrafını çek" gibi kalıplardan kaçın).
@@ -128,8 +128,13 @@ Her modül için birkaç hook. Kaynak: mobil uygulamanın ekranları (`sinavika_
 
 **Önerilen sıra (ilk deneme):** D1, AO2, BK1, TS2, DP2, S2. Her biri bir inancı sarsıyor ya da bir acıyı adlandırıyor; aynı modül arka arkaya gelmiyor.
 
-### Diğer Aralık başlıkları
+### Sahibin istekleri
 
-- **KPSS çalışan reels'i:** "KPSS’ye çalışırken işe de gidiyorsan, bu senin için." ([2026-12-Tanitim-Notlari.md](../Campaigns/2026-12-Tanitim-Notlari.md)). Bu hook 8 kelime, kural 5 kelime. Sahip hook'u beğendiği için ekranda kısa hâli ("İşten sonra KPSS mi?") kullanılabilir, uzun hâli seslendirmede söylenir. Karar sahibin.
+Aralık planı yazılırken bunlar plana alınır. Sahip ekledikçe buraya yazılır.
 
-Sahip ekledikçe buraya yazılır.
+- **KPSS çalışan reels'i** (sahip, 1 Kasım 2026, 19 Kasım gönderisinin red notu: "Bu hook için video hazırlansın.")
+  - Hook: **"KPSS’ye çalışırken işe de gidiyorsan, bu senin için."** Sahip hook'u beğendi.
+  - Kasım'da bu hook 5 sayfalık bir karusel oldu (`Posts/2026-11-19_KpssCalisan`). Reels aynı derdi anlatır: mesaiden sonra 1 saat. Sırayla Ders Planı'nın KPSS görevleri, deneme sonucu ve yolda kart tekrarı gösterilir.
+  - Hook 8 kelime, kural 5 kelime. Ekranda kısa hâli ("İşten sonra KPSS mi?") kullanılabilir, uzun hâli seslendirmede söylenir. Karar sahibin.
+  - KPSS ekranları: `kpssPlan`, `kpssLoss`, `kpssCard`. YKS'ye ait ekranlar (`planToday`'deki kimya kartı gibi) kullanılmaz.
+  - Yeni bir konsept, görünüm ve müzik ister; şablon tekrar kullanılmaz ([`SocialCreativePlaybook.md`](SocialCreativePlaybook.md) §9, §11).

@@ -22,8 +22,6 @@ EDUCATION_DATA = os.environ.get("EGITIM_VERILERI") or os.path.join(os.path.expan
 # Quiz
 QUIZZES = os.path.join(CURRICULUM, "Quizzes")
 QUIZ_REVISIONS = os.path.join(QUIZZES, "Revisions")
-QUIZ_REPORTS = os.path.join(QUIZZES, "Reports")
-QUIZ_PILOT = os.path.join(QUIZZES, "Pilot")
 QUIZ_OUTPUT = os.path.join(OUTPUTS, "Quizzes")
 QUIZ_DATA = os.path.join(QUIZ_OUTPUT, "Data")
 QUIZ_RESULTS = os.path.join(QUIZ_OUTPUT, "Results")

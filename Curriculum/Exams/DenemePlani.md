@@ -1,114 +1,96 @@
-# Deneme kitapçıkları: plan ve durum
+# Deneme kitapçıkları: plan ve kurallar
 
-Sınavika'nın aylık sabit denemeleri için soru kitapçıkları hazırlanır. Bu belge planı, akışı ve durumu tutar; ay ay güncellenir.
+Sınavika'nın aylık sabit denemeleri için soru kitapçıkları hazırlanır. Bu belge her ay için geçerli yapıyı, dağılımı, akışı ve kuralları tutar. Ayın kitapçık listesi ve konu adetleri o ayın `plan.md` dosyasındadır; bu dosyayı `exam_plan.py` üretir (Kasım: [2026-11/plan.md](2026-11/plan.md)). Ajanların yazım yönergesi [YONERGE.md](YONERGE.md).
 
-## 1. Ne değişti (2 Kasım 2026)
+## 1. Yapı
 
-- **Denemeler artık sabit.** Her sınavın şablonu (`ExamTemplate`) ayda kaç genel ve kaç bölüm denemesi olduğunu söyler. Erişim o ayla sınırlıdır.
-- **Eski denemeler silindi.** Sistem ve AdminTest denemeleri, kitapçıkları ve soruları temizlendi (sinavika `docs/sql/15–16`). SinoAI'nin kişisel branş denemeleri (73 kitapçık) kaldı; bu işe girmez.
-- **Deneme nasıl açılır:** admin, hazır bir kitapçığı şablon slotuna atar (`POST /api/AdminExamCalendar/assignments`).
+- **Denemeler sabittir.** Her sınavın şablonu (`ExamTemplate`) ayda kaç genel ve kaç bölüm denemesi olduğunu söyler; erişim o ayla sınırlıdır.
+  - YKS, KPSS Lisans, Önlisans ve Ortaöğretim şablonlarında ayda 1 genel deneme ve her bölüm için 1 bölüm denemesi vardır.
+  - YDT yoktur.
+- **Bir ay 19 kitapçıktır, 1.280 soru kaydıdır:**
+  - YKS 10 kitapçık, 560 soru: TYT genel ve 4 TYT bölümü; AYT genel ve 4 AYT bölümü.
+  - KPSS her düzeyde 3 kitapçık, 240 soru: genel (GY 60 + GK 60), GY ve GK.
+- **Deneme nasıl açılır:** admin, hazır kitapçığı panelde ayın slotuna atar. Atanınca kitapçık "Sınav aşamasında" (4) olur; ay başladıysa deneme yayına girer.
 - **Atanabilir kitapçık:**
   - sistem kaynaklı ve "Tamamlandı" durumunda;
   - aynı sınava ait ve başka denemede kullanılmamış;
-  - bölümleri slotla birebir: genel deneme oturumun bütün bölümleri, bölüm denemesi yalnız o bölüm;
-  - her bölümde soru sayısı kadar slot; boş slot ve cevapsız soru yok.
+  - bölümleri slotla birebir;
+  - her bölümde soru sayısı kadar dolu ve cevaplı slot;
+  - resmi eksik motor görseli içermez.
+- **Yayınevi her zaman Sınavika'dır** (sahip kararı, 2 Kasım 2026). Yalnız Sınavika'ya izin veren abonelik paketindeki öğrenci, yayınevi boş bir denemeye giremez. API, Claude'un oluşturduğu her kitapçığa Sınavika yazar.
+- **KPSS Ortaöğretim, Önlisans'ın aynasıdır** (sahip kararı, 2 Kasım 2026): "herkesin kendi sorusu ama soru aynı olsun."
+  - Ortaöğretim planı Önlisans'ınkinin slot slot kopyasıdır.
+  - Sorular `exam_mirror.py` ile kopyalanır; her kayıt kendi slotunu, soru kimliğini, kodunu ve Ortaöğretim kataloğunun konu kimliklerini alır.
+  - Ortaöğretim için ayrıca yazılmaz.
+  - Denetim bir soruyu aynasıyla benzer saymaz.
 
-## 2. Kasım 2026
+## 2. Dağılım
 
-Şablonların hepsi ayda 1 genel + her bölüm için 1 bölüm denemesi. YDT yok.
-
-| Sınav | Kitapçıklar | Soru |
-|---|---|---|
-| YKS | TYT genel (Türkçe 40, Sosyal 20, Temel Matematik 40, Fen 20) + 4 TYT bölüm; AYT genel (4 × 40) + 4 AYT bölüm | 560 |
-| KPSS Lisans | genel (GY 60 + GK 60) + GY + GK | 240 |
-| KPSS Önlisans | aynı yapı | 240 |
-| KPSS Ortaöğretim | aynı yapı; sorular Önlisans'ınkiyle aynı (ayna) | 240 kayıt |
-
-Toplam: 19 kitapçık, 1.280 soru kaydı; 1.040'ı ayrı yazılan soru. Ayrıntı ve konu adetleri: [2026-11/plan.md](2026-11/plan.md).
-
-**Ortaöğretim = Önlisans (sahip kararı, 2 Kasım 2026):** "kpss önlisans ile ortaöğretim soruları bir olsun … herkesin kendi sorusu ama soru aynı olsun."
-- İki sınavın konu ağacı ve bölümleri birebir aynı.
-- Ortaöğretim kitapçıklarının planı Önlisans'ınkinin slot slot kopyasıdır: konu, mikro, zorluk ve doğru harf aynı.
-- Sorular `exam_mirror.py` ile kopyalanır. Her kayıt kendi kitapçığının slotunu, soru kimliğini ve kodunu, Ortaöğretim kataloğunun konu kimliklerini alır.
-- Denetim bir soruyu aynasıyla benzer saymaz.
-
-## 3. Dağılım
-
-- **Ders soru sayıları** canlıdaki `CategorySectionLessons` kaydından gelir. Örnek: TYT Sosyal'de Tarih, Coğrafya, Felsefe ve Din 5'er; KPSS GK'de Tarih 27, Coğrafya 18, Vatandaşlık 15.
+- **Ders soru sayıları** canlıdaki `CategorySectionLessons` kaydından gelir (ör. TYT Sosyal'de dört ders 5'er; KPSS GK'de Tarih 27, Coğrafya 18, Vatandaşlık 15).
 - **Konu adetleri ÖSYM çıkmışlarıyla orantılıdır.**
   - Kaynak: `EgitimVerileri/<sınav>/CikmisSorular/<ders>.jsonl`.
   - Bir dersin aydaki bütün kopyaları (genel + bölüm) birlikte en büyük kalan yöntemiyle paylaştırılır, sonra kopyalara dengeli dağıtılır.
   - ÖSYM'nin sormadığı konu gelmez.
-  - AYT Tarih-2 ve Coğrafya-2, ÖSYM verisinde Tarih-1 ve Coğrafya-1 ile birlikte tutulur; aynı konu kodlarıyla dağıtılır.
+  - AYT Tarih-2 ve Coğrafya-2, Tarih-1 ve Coğrafya-1'in ÖSYM verisiyle dağıtılır.
 - **Mikro konu** ÖSYM sıklığıyla önerilir; yazar konu içinde değiştirebilir.
 - **Zorluk:** her ders bloğunda yaklaşık %30 kolay, %45 orta, %25 zor.
-- **Cevap anahtarı:** bölüm içinde A–E dengeli; aynı harf üst üste üç kez gelmez. Slotun `PreferredCorrectOptionKey` alanına yazılır.
+- **Cevap anahtarı:** bölüm içinde A–E dengeli; aynı harf üst üste üç kez gelmez.
 - **Sıra:** bölüm dersleri canlıdaki sırayla; ders içinde konular katalog sırasıyla. Türkçe'de sıra anlam → dil bilgisi → paragraf → sözel mantık.
 
-## 4. Akış
+## 3. Akış
 
-Deneme araçları `Tools/` içinde, quiz ile ortak araçlar ve bütün yollar (`engine_paths.py`) `Curriculum/Tools` içinde; ajanların yönergesi [YONERGE.md](YONERGE.md).
+Deneme araçları `Tools/` içindedir; ortak araçlar ve bütün yollar (`engine_paths.py`) `Curriculum/Tools` içindedir.
 
 1. `exam_catalog.py`: canlıdan salt okunur katalog çeker (şablonlar, bölümler, konu ağacı, mevcut kodlar).
-2. `exam_plan.py <ay>`: kitapçıkları ve slotları planlar → `<ay>/plan.json`, `plan.md`.
-   - Kimlikler sabit ad alanlı UUID'dir.
-   - Soru kodu ders öneki + 6 rakamdır (API'nin deneme kodu biçimi); kitapçık kodu 8 karakterdir. İkisi de canlıdakilerle çakışmaz.
-3. **Yazım:** kitapçık × ders birimleri ajanlara verilir. Her birimde `exam_show.py` → `exam_sources.py` (ÖSYM ve deneme kitapları) → üretici (`exam_generator.py`) → `check_exams.py --ders` → `exam_preview.py`.
+2. `exam_plan.py <ay>`: kitapçıkları ve slotları planlar; `<ay>/plan.json` ve `plan.md` yazar. Kimlikler sabit ad alanlı UUID'dir; soru kodu ders öneki + 6 rakamdır, kitapçık kodu 8 karakterdir.
+3. **Yazım:** kitapçık × ders birimleri ajanlara verilir. Akış: `exam_show.py` → `exam_sources.py` → üretici (`exam_generator.py`) → `check_exams.py --ders` → `exam_preview.py`. Ayrıntı: [YONERGE.md](YONERGE.md).
 4. **Ana oturum:**
-   - `check_exams.py <ay>`: plan uyumu, quiz denetimleri, API'nin figür denetimi, ay içinde ve kaynakla benzerlik;
+   - `exam_mirror.py <ay>` (Önlisans bittikten sonra);
+   - `check_exams.py <ay>`: plan uyumu, metin ve işaretleme, API'nin figür denetimi (FigureCheck), ay içinde ve kaynakla benzerlik;
    - `render_figures.py Exams/<ay>/<kitapçık>`;
    - yeniden `check_exams.py`.
-5. `build_exam_sql.py <ay>`: tek transaction, ön koşullar, satır sayısı denetimleri ve son doğrulama.
-   - `ekle.sql`, `geri_al.sql`, `yuklenecek-resimler.json`.
-   - Kitapçıklar "Tamamlandı" yazılır.
-6. `dry_run_exam_sql.py <ay>`: LocalDB'de canlı şemanın kopyasıyla denenir.
-   - ekle → beklenenle birebir → API atama kuralları → ikinci ekleme durur → pasif mikroyla durur → atanmışken geri alma durur → geri al → boş hâl.
-7. **Onaydan sonra (2 Kasım'dan beri API ile; SQL ile doğrudan yazılmaz, sahip kararı):**
-   - `upload_stills.py Exams/<ay> --yukle` ile hazır resimler yüklenir; `--var-mi` ile depoda olduğu doğrulanır;
-   - `exam_api.py <ay> --kuru`: istekler `dryRun` ile gönderilir (API'nin bütün kuralları; yanıtta yayınevi Sınavika olmalı);
-   - `exam_api.py <ay> --canli`: istek başına bir kitapçık (`POST api/claude/booklets`); göndermeden önce kod canlıda aranır; sonunda `GET api/claude/booklets/{id}` ile geri okunur;
-   - geri alma: `exam_api.py <ay> --geri-al` (denemeye atanmış kitapçığı API silmez);
-   - kitapçıklar admin panelinden ayın slotlarına atanır.
-   - `build_exam_sql.py` ve `dry_run_exam_sql.py` yerel denemede kalır (LocalDB'de canlı şemanın kopyası).
+5. **İsteğe bağlı yerel prova:** `build_exam_sql.py` ve `dry_run_exam_sql.py`, LocalDB'de canlı şemanın kopyasıyla dener. Canlıya SQL ile yazılmaz.
+6. **Canlı, sahibin onayıyla, yalnız API ile:**
+   - `upload_stills.py Exams/<ay> --yukle`, sonra `--var-mi`;
+   - `exam_api.py <ay> --kuru`: `dryRun`; yanıtta yayınevi Sınavika olmalı, resim bekleyen soru olmamalı;
+   - `exam_api.py <ay> --canli`: istek başına bir kitapçık (`POST api/claude/booklets`). Göndermeden önce kod canlıda aranır; sonunda `GET api/claude/booklets/{id}` ile geri okunur ve canlı kimlikler `Results/<ay>/api/yazilanlar.json`'a yazılır;
+   - geri alma: `exam_api.py <ay> --geri-al` (atanmış kitapçığı API silmez);
+   - kitapçıkları sahip panelde ayın slotlarına atar.
+7. **Canlıdaki bir soruyu düzeltmek:** `api/claude/questions/revisions`. Önce dışa aktarılır, sonra `dryRun`, sonra yazılır ve geri okunur. Doğru şıkkın harfi, soru ve şık kimlikleri değişmez.
 
-## Kural: ölü kopya bırakılmaz (sahip, 14 Kasım 2026)
+## 4. Kurallar ve dersler
 
-- Bir şey yeniden üretildiğinde eskisi silinir, yenisi konur.
-- Bu kural kitapçık, figür, soru, json ve rapor için geçerlidir.
-- Silme Geri Dönüşüm Kutusu'na yapılır.
-- Silinmeden önce dosyayı kodun, manifestin ya da işlerin okumadığı denetlenir.
-- Ön izleme çizimleri ve ara denetim çıktıları iş bitince silinir.
+- **Figürden taviz yok.**
+  - Kök bir tabloya, haritaya ya da şekle dayanıyorsa figür vardır; soru sözele çevrilmez.
+  - Motor görseli (tür 58) soruda kabul edilir, ama hazır resmi yüklenmeden kitapçık atanamaz.
+  - Taralı bölge motorda dolgulu çizilir.
+  - `table` hücresi en çok 40, başlığı en çok 30 karakterdir.
+- **Güncel bilgiler** (KPSS Vatandaşlık, kitapçık başına 4–5 soru): yalnız kalıcı ve kesin olgular yazılır, 2025 ortasına kadar. Gerekçede olgunun yılı yazılır.
+- **Büyük istek bölünür.** 560 soruluk tek istek ağ geçidinin yaklaşık 240 saniyelik sınırına takıldı (504) ve hiçbir şey yazmadı. Bir kitapçığın yazımı 18–133 saniye sürer.
+- **Ölü kopya bırakılmaz** (sahip, 14 Kasım 2026).
+  - Bir şey yeniden üretilince eskisi silinir.
+  - Silme Geri Dönüşüm Kutusu'na yapılır; önce dosyayı kodun, manifestin ya da işlerin okumadığı denetlenir.
+  - Ön izlemeler, `_ders` ara denetimleri ve kuru çalıştırma yanıtları iş bitince silinir.
+  - Silinenlerin listesi `Outputs/Checks` altına yazılır.
 
-## 5. Durum
+## 5. Aylar
 
-| Tarih | Durum |
-|---|---|
-| 2 Kas 2026 | Yapı incelendi. Katalog, plan ve araçlar hazır. Hat iki sınama sorusuyla uçtan uca denendi: denetim, motor çizimi, SQL ve LocalDB'nin yedi adımı. Yazım başladı. |
-| 2 Kas 2026 | Ortaöğretim, Önlisans'ın aynası oldu; Ortaöğretim ajanları durduruldu. 596/1.280 kayıt yazıldı. |
-| 2 Kas 2026 | **Kasım hazır, canlıya yazılmadı.** 19 kitapçık, 1.280 soru (1.040 yazılan + 240 Ortaöğretim aynası), 240 figür (motor resimli). `check_exams` bütün ay hatasız. `ekle.sql` LocalDB'de 7 adımı geçti. 428 resim dosyası (54 MB) yerel denetimde tamam. Koni sorusunda (AYT-MAT GEO 8) motor hatası yüzünden yalnız yarıçap etiketli. |
-| 2 Kas 2026 | Motor 8 çizim hatasını düzeltti (koni ve 3B ölçüler, molekül, pil, yüzde çubuğu, zar, hazne, çember etiketleri, koyu tema). Koni sorusu yeniden iki ölçülü. Ayın 240 figürü yeni motorla yeniden çizildi; ay hatasız, `ekle.sql` LocalDB'de 7 adımı yeniden geçti, 428 resim (54 MB) hazır. Canlıya yazılmadı. |
-| 2 Kas 2026 | **Kasım canlıda.** Sahip: "kasım kitapçıklarını canlıya al ama api ile". 428 resim yüklendi (depoda eksik 0). API'de yayınevi düzeltmesi yayına çıktı (her Claude kitapçığı Sınavika). Kuru çalıştırma temiz geçti. İlk yazım 10 kitapçıklık istekle ağ geçidinde 504 verdi; hiçbir şey yazılmadığı iki kez denetlendi. Sonra istek başına bir kitapçıkla 19 kitapçık yazıldı (18–133 sn). API ve veritabanından doğrulandı: 19 Tamamlandı, Sınavika, sistem; 1.280 soru, cevap ve çözüm; 240 figürün hepsi resimli; 162 işaretleme. Panelde atama bekliyor. |
-
-## 6. Açık konular
-
-- **Güncel bilgiler** (KPSS Vatandaşlık, ders başına 4–5 soru): yalnız kalıcı ve kesin olgular yazılıyor (2025 ortasına kadar). Canlıdan önce sahibinin gözden geçirmesi önerilir.
-- **Kitapçık ataması:** admin panelinden yapılır. İstenirse API ile de yapılabilir; bu da ayrı onay ister.
-- **Motor görseli (58) olan sorular:** enerji diyagramı ve pil gibi C# karşılığı olmayan motor görselleri soruya tür 58 olarak yazılır.
-  - API oturumunun bildirdiğine göre, sorularda 58 kabulü, `AnyAwaitsStill` ve `ExamStudentService` 2 Kasım 07:58Z'den beri canlıda.
-  - Resmi eksik 58'li kitapçık denemeye atanamıyor; deneme elle de yayına alınamıyor.
-  - Canlıdan önce bir deneme ekranında 58'li bir sorunun resmiyle göründüğü doğrulanır.
-- **Taralı bölge:** API dönüştürücüsü motor geometrisindeki taralı bölgeyi taşımıyordu. API oturumu 2 Kasım'da düzeltti; değişiklik 08:25Z'den beri canlıda (Works aktarımında da geçerli).
-  - Dolgulu çokgen, dolgulu çember ya da daire dilimi artık `shaded:true` olur. Grafikte `area` alanı ve `rectangles` şeritleri de taralı sayılır.
-  - Dolgusuz (`fill:false`) çokgen taralı sayılmaz.
-  - FigureCheck 2 Kasım'da bu kodla yeniden derlendi.
-- **Motor çizim istekleri:** 2 Kasım'da iletilen 8 istek aynı gün düzeltildi (motor oturumu). Kalan küçük kusur: Zn–Ag pilinde "tuz köprüsü" yazısının ilk harfi köprünün iç kenarına değiyor; okunuyor.
-- **Canlıdaki TYT quiz konileri:** 7 koni figürü (GEO_KATI_01–03) eski hatayla çizildi. Yalnız resim adreslerini değiştiren ayrı bir küçük güncelleme gerekiyor (ayrı onay).
+- **Kasım 2026: canlıda.**
+  - 2 Kasım'da API ile yazıldı: 19 kitapçık; 1.280 soru (1.040 yazılan + 240 Ortaöğretim aynası); 240 resimli figür.
+  - 9 Kasım'da panelde atandı; 19 kitapçık "Sınav aşamasında".
+- **Eski üretimden kalan sorular (13 Kasım):**
+  - Destek talebi 49CDD64E üzerine, Ağustos üretiminden kalan ve görsele atıf yapıp figürü olmayan 25 deneme sorusu figürle yeniden yazıldı.
+  - API revizyonuyla canlıya yazıldı ve doğrulandı.
+  - İş dosyası: `Outputs/Exams/Work/Repairs/2026-11-13/onarim.py`.
+- **Aralık 2026: yapılacak.**
+  1. `exam_catalog.py` ile katalogu tazele.
+  2. `exam_plan.py 2026-12` çalıştır.
+  3. Kasım'la aynı akışı izle.
+  - Sorular Kasım'dakilerden farklı olmalıdır. `check_exams` yalnız ay içi benzerliği denetler; önceki aylarla karşılaştırma için Kasım dosyaları da benzerlik havuzuna eklenmelidir.
 
 ## Revizyon geçmişi
 
 | Rev | Tarih | Değişiklik |
 |---|---|---|
-| 1 | 2 Kas 2026 | İlk sürüm: yeni deneme yapısı, Kasım planı, araçlar, akış. |
-| 2 | 2 Kas 2026 | Ortaöğretim = Önlisans (ayna); motor görseli (58) için API koşulu; motor çizim istekleri. |
-| 3 | 2 Kas 2026 | Kasım'ın bütün kitapçıkları yazıldı, denetlendi ve LocalDB'de denendi; taralı bölge API'de çözüldü; koni için geçici çözüm. |
-| 4 | 2 Kas 2026 | Kasım API ile canlıya alındı (`exam_api.py`); canlı yazım yolu API oldu; motor düzeltmeleriyle figürler yeniden çizildi. |
+| 1–4 | 2 Kas 2026 | İlk sürüm; Ortaöğretim aynası; Kasım yazıldı, denendi ve API ile canlıya alındı. |
+| 5 | 14 Kas 2026 | Kalıcı belgeye indirildi: günlük durum satırları ve kapanmış açık konular çıkarıldı (ayrıntı git geçmişinde). Yayınevi, 504, tablo sınırları, onarım ve ölü kopya kuralı eklendi. Aralık için yapılacaklar yazıldı. |

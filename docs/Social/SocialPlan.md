@@ -22,26 +22,26 @@ Plan bir stratejiye hizmet eder. Vizyon, 1 milyon takipçi hedefi, içerik sütu
 | Salı | Konu anlatımı | Video | aynı video | Kısa bilgi / Reels yönlendirmesi | — |
 | Çarşamba | Hook / Sınav taktiği | Tekli görsel | — | Sınav taktiği / Mini bilgi | Ürün tanıtımı |
 | Perşembe | Soru çözümü (Türkçe veya başka ders) | Kaydırmalı | — | Çoktan seçmeli soru | — |
-| Cuma | Sınavika tanıtımı | Video | aynı video | Uygulama özelliği | Marka / Girişim tanıtımı |
+| Cuma | Sınavika tanıtımı | Video | — (reklam YouTube'a gitmez) | Uygulama özelliği | Marka / Girişim tanıtımı |
 | Cumartesi | Zor soru / Mini test | Kaydırmalı | — | Mini test / Doğru cevap | — |
 | Pazar | Haftalık tekrar | Video | aynı video | Haftalık tekrar / Motivasyon | — |
 
-Haftalık toplam: 7 ana gönderi (Instagram ve TikTok'ta aynı içerik), 7 Story, 3 YouTube Shorts, 3 LinkedIn gönderisi. Aylık takvim aynı düzenin tekrarıdır; ayın 29–31. günleri de haftanın gününe göre dolar.
+Haftalık toplam: 7 ana gönderi (Instagram ve TikTok'ta aynı içerik), 7 Story, 2 YouTube Shorts (Salı ve Pazar eğitim videoları), 3 LinkedIn gönderisi. Aylık takvim aynı düzenin tekrarıdır; ayın 29–31. günleri de haftanın gününe göre dolar.
 
-### Tanıtım planı (Ekim 2026'dan)
+**YouTube'a yalnız ders içeriği gider** (sahip, 10 Kasım 2026). Reklam videoları (Promotion, PromoReel, kampanya gönderileri) YouTube'a hiç gönderilmez; Google Ads videoları YouTube'a liste dışı ayrıca yüklenir ve SocialHub'dan geçmez. Motor bunu uygular: `SocialPlan.ts`'de reklam türleri yalnız Instagram + TikTok'tur, kampanya iskeleti (`CampaignScaffold.ts`) YouTube hedefi koymaz, `SocialPlanner.test.ts` korur. Shorts'un kanal tarafı: [`YouTube-Kanal.md`](YouTube-Kanal.md) §4.
+
+### Tanıtım planı (sinavika.tr)
 
 Eğitim içeriği paylaşılmayan dönemlerde `PROMO_WEEKLY_PLAN` kullanılır:
-- Haftada 4 reels: Pazartesi, Çarşamba, Cuma, Pazar. Instagram, TikTok ve YouTube Shorts.
+- Haftada 4 reels: Pazartesi, Çarşamba, Cuma, Pazar. Instagram ve TikTok.
 - Haftada 3 gönderi: Salı ve Cumartesi kaydırmalı, Perşembe tek görsel.
 - Her gün 1 Instagram hikâyesi. Buffer TikTok hikâyesi paylaşamaz.
 
-Yalnız mobil uygulama ve web sitesi tanıtılır; hook'lar kullanıcı kazanmaya yöneliktir. Takvim:
+Yalnız mobil uygulama ve web sitesi tanıtılır; hook'lar kullanıcı kazanmaya yöneliktir. Gün gün içerik ayın kampanya dosyasındadır (`src/Social/Campaigns/`); ayın planı `docs/Campaigns/` altında (Kasım: [2026-11-Tanitim.md](../Campaigns/2026-11-Tanitim.md)), hook taslakları [`Hook-Listesi.md`](Hook-Listesi.md)'nde. Takvim:
 
 ```
-npm run social -- plan --plan tanitim --from 2026-10-17 --to 2026-11-01
+npm run social -- plan --plan tanitim --from 2026-12-01 --to 2027-01-01
 ```
-
-Gün gün içerik kampanya dosyasındadır (`src/Social/`). Plan belgesi: [Campaigns/2026-11-Tanitim.md](../Campaigns/2026-11-Tanitim.md).
 
 ### Kamp hesapları (sinavika.yks)
 
@@ -51,7 +51,8 @@ Instagram ve TikTok `sinavika.yks` hesapları YouTube'daki ücretsiz YKS kampın
 - **Saat:** her hesap kendi Buffer saatinde; günün iki saatinden geç olanı seçilir (öğrenci akşam aktif). Saat hedefin `scheduledAt` alanına yazılır.
 - **Video:** kamp reels'i `CampShort` şablonuyla, dersin senaryosundaki `short` bölümünden render edilir: tam ekran sesli kanca, üç tur, YouTube kartı. Kapak render ile birlikte çıkar. Şablon değişince eski render'lar silinir ve yeniden render edilir (motor var olan dosyanın üzerine yazmaz).
 - **Açıklama:** ilk satır kanca ve öğretilen tuzak; ardından "TYT <Ders> kampı · Ders N/M. Dersin tamamı YouTube'da, ücretsiz: Sınavika'yı ara." Dersin YouTube'da gerçekten yayında olması gerekir.
-- 9 Kasım 2026 düzeni: TYT Türkçe 3–15 (9, 11–22 Kasım), TYT Matematik 1–7 (23, 25–30 Kasım). Gönderiler `Posts/<tarih>_TytTurkce…` ve `Posts/<tarih>_TytMatematik…`.
+- **YouTube Shorts:** her kamp reels'i `youtube/Sinavika` (short) hedefini de taşır; hedefin açıklaması dersin bağlantısını verir, saati çakışma kuralıyla seçilir ([`YouTube-Kanal.md`](YouTube-Kanal.md) §4).
+- **Kasım 2026 düzeni:** TYT Türkçe 3–15 (9, 11–22 Kasım), TYT Matematik 1–7 (23, 25–30 Kasım). Gönderiler `Posts/<tarih>_TytTurkce…` ve `Posts/<tarih>_TytMatematik…`.
 
 ## 2. Gönderi türleri
 
@@ -87,13 +88,13 @@ Saatler Buffer'da her hesap için tanımlı yayın saatlerinden alınır (`npm r
 - **Her platform kendi Buffer saatinde yayınlar.** Aynı video Instagram'da Instagram'ın, YouTube'da YouTube'un saatinde çıkar.
 - Buffer saatleri hesap başına tanımlıdır, gönderi türü başına değil: aynı hesaptaki Reel ile kaydırmalı gönderi o hesabın saatlerini paylaşır. Buffer API'sinde gönderi türüne göre ayrı saat yoktur.
 - Bir platformun o gün Buffer saati yoksa, gönderinin ana saatini kullanır: sırayla Instagram, TikTok, YouTube, LinkedIn içinde saati olan ilk hesabınki.
-- Hiçbir hesabın saati yoksa plandaki yedek saat kullanılır: ana gönderi 20:00, LinkedIn 09:30. Takvimde bunlar `*` ile işaretlenir.
+- Hiçbir hesabın saati yoksa plandaki yedek saat kullanılır (`PLAN_TIMING.fallbackTime`): ana gönderi 20:00, Story 12:30, LinkedIn 09:30. Takvimde bunlar `*` ile işaretlenir.
 - Story, günün ana gönderisinden 3 saat önce yayınlanır (en erken 07:00).
 - Tüm saatler İstanbul saatidir ve teslimde `+03:00` ile yazılır.
 - **Saat kuralı:** Bütün gönderiler Buffer saatlerini kullanır (sahip, 29 Ekim 2026).
   - Tek istisna, anı belli olan özel günlerdir. Bu günler kampanya dosyasındaki `time` alanıyla kendi saatinde çıkar, ör. 10 Kasım 09.05.
   - Özel gün saatini sahip onaylar ya da daha iyisini önerir.
-- Saatler test edilerek iyileştirilir. Öğrencinin aktif olduğu akşam saatleri (18:00–23:00) 4–6 hafta denenir; Buffer'daki programı sahip değiştirir. Sonuç haftalık raporda okunur ([`SocialStrategy.md`](SocialStrategy.md) §9).
+- Saatler test edilerek iyileştirilir. Öğrencinin aktif olduğu akşam saatleri (18:00–23:00) 4–6 hafta denenir; Buffer'daki programı sahip değiştirir. Sonuç haftalık raporda okunur ([`SocialStrategy.md`](SocialStrategy.md) §6).
 
 ## 4. Tasarım ve renk
 
@@ -120,6 +121,8 @@ Turuncu her tasarımda marka rengi olarak kalır. Ders yalnız küçük vurgular
 | Sosyal | Tarih, Coğrafya, Felsefe, Din Kültürü, Vatandaşlık | `#4D7C0F` | `#BEF264` |
 | Yabancı dil | İngilizce, Almanca, Fransızca | `#0E7490` | `#67E8F9` |
 
+Kamp ve ders videoları ders başına kendi rengini kullanır (`COURSE_LESSON_COLORS`, [`CourseColors.md`](../Courses/CourseColors.md)); beş aile sosyal gönderilerin küçük vurgularındadır (`LESSON_GROUPS`, [`LessonColors.ts`](../../src/Configurations/LessonColors.ts)).
+
 Neden böyle: her derse ayrı renk yerine beş aile seçildi, çünkü az sayıda sabit renk akışta hızla öğrenilir ve marka bütünlüğünü bozmaz. Tonlar markanın antrasit ve turuncusunun yanında duran koyu "mürekkep" tonlarıdır; hiçbiri uygulamadaki durum renkleriyle ya da ayrılmış morla aynı değildir ve hepsi üstündeki yazıyla 4,5:1 kontrastı sağlar. Ders–renk eşlemesi için yerleşik bir standart yoktur (yaygın eğilim matematik için mavi, fen için yeşildir); bu yüzden seçim bir kez yapılıp sabitlenmiştir. Ders, işteki `lesson` alanından ya da içerikteki `subject` alanından otomatik alınır.
 
 ## 5. Görsel türleri
@@ -128,7 +131,7 @@ Kaydırmalı gönderi, tekli görsel, Story ve video kapağı ayrı türlerdir; 
 
 | Tür | Boyut | Kural |
 | --- | --- | --- |
-| Kaydırmalı gönderi | 1080×1350 | İlk görsel hook'u taşıyan güçlü bir kapaktır ve boş kalmaz. İkinci görsel ikinci hook'tur, çünkü Instagram gönderiyi yeniden gösterirken 2. görselden açabilir. Son görsel sonuç ve tek çağrıdır. Sayfa sayacı (`1/5`) ve ilerleme çubuğu **yoktur**; bunları Instagram ve TikTok kendi arayüzünde gösterir. Kapakta kısa bir "Kaydır" çağrısı olabilir (sahip, 31 Ekim 2026); iç sayfalarda kaydırma oku yoktur. İçeriğin parçası olan `01`, `02`, `03` kural numaraları kalır. Ayrıntı: [`SocialCreativePlaybook.md`](SocialCreativePlaybook.md) §5. |
+| Kaydırmalı gönderi | 1080×1350 | 2–10 görsel. Sayfa sayacı (`1/5`) ve ilerleme çubuğu yoktur, iç sayfalarda kaydırma oku yoktur; içeriğin parçası olan `01`, `02`, `03` kural numaraları kalır. Sayfa sayfa yapı: [`SocialCreativePlaybook.md`](SocialCreativePlaybook.md) §5. |
 | Tekli görsel | 1080×1350 | Kaydırmaya işaret eden hiçbir öğe (ok, sayaç, "kaydır" çağrısı) bulunmaz. |
 | Story | 1080×1920 | Tek görsel veya tek video. Günün ana gönderisinin kopyası olmaz. |
 | Video kapağı | videonun boyutu | Yalnız videonun kapağıdır; kaydırmalı gönderinin görseli olarak kullanılmaz ve medya listesine girmez. |
@@ -139,7 +142,7 @@ Kaydırmalı gönderi, tekli görsel, Story ve video kapağı ayrı türlerdir; 
 - Kapak, videoyla aynı numara altında kaydedilir: `03_Turkce_Ses_Olaylari.mp4` ve `03_Turkce_Ses_Olaylari_Kapak.png`.
 - Teslimde kapak videoyla birlikte, medya listesinden ayrı olarak API'ye yüklenir.
 - **Platformlar ayrı yüklenen kapak görselini kabul etmez.** Buffer üzerinden yapılabilen tek şey, videonun bir karesini kapak olarak seçmektir (Instagram Reels ve TikTok). Bu yüzden kapak, videonun ilk 0,2 saniyesinde ekranda tutulur ve platforma kapak karesi olarak bu an (100. milisaniye) bildirilir.
-- YouTube Shorts'ta API ile kapak seçilemez. Kapak görseli orada elle ayarlamak için saklanır; API bunu "uygulandı" saymaz.
+- YouTube Shorts'ta API ile kapak seçilemez. Kapak görseli orada elle ayarlamak için saklanır; API bunu "uygulandı" saymaz. Studio'da nasıl yüklendiği: [`YouTube-Kanal.md`](YouTube-Kanal.md) §4.
 
 | Platform | Kapak nasıl uygulanır |
 | --- | --- |
@@ -237,11 +240,11 @@ Kaydırmalı gönderi, tekli görsel, Story ve video kapağı ayrı türlerdir; 
 ## 10. Komutlar
 
 ```bash
-npm run social -- plan --month 2026-11 --out Posts/Plans/2026-11.json
+npm run social -- plan --month 2026-12 --out Posts/Plans/2026-12.json
 npm run social -- sources --kind Question --unused
 npm run image -- --job Jobs/soru.json --theme SinavikaLight --size Portrait
 npm run render -- --job Jobs/konu.json
-npm run social -- submit --post Posts/2026-11-03_tue.json
+npm run social -- submit --post Posts/<tarih>_<Ad>/Post.json
 npm run social -- calendar --from 2026-11-01 --to 2026-12-01
 npm run social -- revisions
 ```

@@ -4,9 +4,9 @@ Kamp derslerinin (YouTube) ve reels'lerinin nasıl konuştuğu, nasıl açılıp
 
 Çoğu kural koddadır ve her derse kendiliğinden uygulanır. Senaryo yazan kişinin işi §4'tedir. Renkler: [CourseColors.md](CourseColors.md). Akış ve şemalar: [Courses.md](Courses.md).
 
-## 1. Açılış: SinoAI karşılar
+## 1. Açılış: kamp karşılaması
 
-Kamp dersi dersin kendi sorularından biriyle açılır (soğuk açılış, `lesson.opening`; [Courses.md](Courses.md) "YouTube dersinin akışı"). Ardından sunucu karşılaması gelir. Sunucu **SinoAI**'dir. Karşılama kamp verisinden üretilir, her derste aynı kalıptadır ve senaryoya yazılmaz (`campWelcomeNarration`, [Camp.ts](../../src/Courses/Camp.ts)).
+Kamp dersi dersin kendi sorularından biriyle açılır (soğuk açılış, `lesson.opening`; [Courses.md](Courses.md) "YouTube dersinin akışı"). Ardından kamp karşılaması gelir. Anlatıcı kendini tanıtmaz ve kamplarda SinoAI adıyla anılmaz (sahip, 8–9 Kasım 2026). Karşılama kamp verisinden üretilir, her derste aynı kalıptadır ve senaryoya yazılmaz (`campWelcomeNarration`, [Camp.ts](../../src/Courses/Camp.ts)).
 
 > Sınavika'nın TYT Türkçe kampına hoş geldin! Bugün kampın dördüncü dersindeyiz: Cümlede Anlam.
 
@@ -17,7 +17,7 @@ Kamp dersi dersin kendi sorularından biriyle açılır (soğuk açılış, `les
 
 - **İlk ders:** kampın ne olduğunu anlatır ("Bu kampta Türkçe konularının hepsini sırayla ve soru çözerek işleyeceğiz").
 - **Son ders:** "kampın son dersi" der.
-- **Ekranda:** kamp kartı (ders renginde). Üstte "SinoAI · Hoş geldin", ortada kampın adı, "Ders 4 / 15" ve kampın ilerleme noktaları. Yanda **SinoAI'nin ses küresi** (voice orb) durur: anlatımın ses şiddetine göre büyüyüp küçülür, içindeki ders rengi tonları döner ve konuşurken hızlanır ([VoiceOrb.tsx](../../src/Components/Overlays/VoiceOrb.tsx)). Küre bölüm açılışlarında da başlığın yanında konuşur. Ses seviyesi son üçte bir saniyenin ortalamasıdır ve küre en çok yüzde 7 büyür; her heceyle zıplamaz, cümleyle nefes alır.
+- **Ekranda:** kamp kartı (ders renginde). Üstte "Hoş geldin", ortada kampın adı, "Ders 4 / 15" ve kampın ilerleme noktaları. Yanda **ses küresi** (voice orb) durur: anlatımın ses şiddetine göre büyüyüp küçülür, içindeki ders rengi tonları döner ve konuşurken hızlanır ([VoiceOrb.tsx](../../src/Components/Overlays/VoiceOrb.tsx)). Küre bölüm açılışlarında da başlığın yanında konuşur. Ses seviyesi son üçte bir saniyenin ortalamasıdır ve küre en çok yüzde 7 büyür; her heceyle zıplamaz, cümleyle nefes alır.
 - **Özel karşılama:** bir derse özel söz gerekiyorsa senaryodaki `camp.welcome` alanı karşılamanın yerine geçer.
 - Karşılamadan sonra dersin kancası (`lesson.hook`) gelir: öğrenciye soru soran bir giriş.
 

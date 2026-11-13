@@ -1,6 +1,6 @@
 # Matematik kartları ve görselleri (9 Kasım 2026)
 
-Bu belge, TYT Matematik senaryolarının yeniden yazılmasından sonra motora eklenen kartları ve görselleri anlatır. İsteklerin kaynağı: [docs/Analiz/2026-11-09-TYT-Matematik-Kart-Altyapi-Notu.md](../Analiz/2026-11-09-TYT-Matematik-Kart-Altyapi-Notu.md).
+Bu belge, TYT Matematik senaryolarının yeniden yazılmasından sonra motora eklenen kartları ve görselleri anlatır. İsteklerin kaynağı: kamp senaryosu oturumunun 9 Kasım devir notu (karşılananlar bu belgeye işlendi, açık kalanlar §6'da; notun kendisi git geçmişinde).
 
 Ana kural: çizimdeki her işareti, rakamı ve sayıyı motor hesaplar. Senaryo yalnız sayıları ve parçaları verir. Böylece işaret tablosundaki bir işaret, bölmedeki bir basamak ya da olasılıktaki bir sayım anlatımla çelişemez. Hesaplar `src/Components/Visuals/Mathematics/MathWork.ts` içindedir. Şema, çizilemeyecek veriyi geri çevirir; örneğin eksik kritik noktası olan işaret tablosunu.
 
@@ -134,3 +134,11 @@ Engelleyici (`!`, "Hazırlandı" olmaz):
   - kamp dersi 16:9 ve dikey ders;
   - yerleşmiş ve giriş karesi;
   - yerleşim uyarısı sıfır olmalı.
+
+## 6. Açık istekler
+
+Kamp senaryosu oturumunun 9 Kasım devir notundan, henüz yapılmamış olanlar (14 Kasım 2026'da notla karşılaştırıldı):
+
+1. **Konuyu iki videoya bölmek.** Bugün bir konu bir senaryodur ve kampta bir kez geçer. Çok büyük konular (Problemler 13 bölüm, 40 dk; Temel Kavramlar) için aynı `topic` koduyla iki senaryo ve iki bölüm ("Problemler 1/2"). Uzun derste bölüm geçişinde dikkat tazeleyen bir öğe de istenmişti: "3/13" ya da kısa ara özet.
+2. **ÖSYM'ye yakınlık denetimi.** Soru kökleri `EgitimVerileri/YKS/TYT/CikmisSorular/*.jsonl` ile sözcük dörtlüsü (4-gram) örtüşmesine göre karşılaştırılır: 0,20'nin üstü elle bakılır, 0,80 neredeyse kopyadır. "ÖSYM 20xx'te … sordu" cümlesinin yılı, konusu ve içeriği listeyle tutmalıdır. Bugün yalnız senaryo oturumunun kendi betikleriyle yapılıyor; `camp_check`'e ya da `curriculum check`'e taşınacak.
+3. **Duran ekran için otomatik öneri.** Anlatımın söylediği anlamlı sözcüklerden ekranda kalın yapılacakları seçen bir araç (`curriculum fix-still --dry` gibi). Senaryo oturumunun denemesinde 35 uyarının 19'unu kendisi çözdü.

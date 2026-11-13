@@ -16,7 +16,7 @@
  *   npm run image -- --job a.json --json
  *
  * Portrait and square PNGs also get `<ad>_izgara.png`: the posts cut to the Instagram profile's 3:4 tile, three a
- * row, with the icon corner shaded (docs/Social/Sosyal-Gorsel-Kurallari.md §1). `--no-grid` skips it.
+ * row, with the icon corner shaded (docs/Social/Sosyal-Kimlik-Standardi.md §5). `--no-grid` skips it.
  *       One JSON line per result on stdout, for a parent process.
  *
  * Exit codes: 0 success, 2 invalid job, 1 render failure.

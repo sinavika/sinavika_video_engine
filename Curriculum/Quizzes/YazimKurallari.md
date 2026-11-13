@@ -2,7 +2,7 @@
 
 Yalnız quiz soruları (`UsageKind = 2`) revize edilir. **Deneme sorularına dokunulmaz.** Sıra: YKS (TYT → AYT), sonra KPSS (Lisans → Önlisans → Ortaöğretim); YDT kaldırıldı. Her sınavda ders ders, her derste konu konu.
 
-Bu kuralların otomatik denetlenebilenleri `Tools/check_revisions.py` (metin, işaretleme, çözüm) ve `Tools/FigureCheck` (API'nin kendi figür ve işaretleme kodu) ile denetlenir. Denetimden geçmeyen soru veritabanına yazılmaz.
+Bu kuralların otomatik denetlenebilenleri `Curriculum/Tools/check_revisions.py` (metin, işaretleme, çözüm) ve `Curriculum/Tools/FigureCheck` (API'nin kendi figür ve işaretleme kodu) ile denetlenir. Denetimden geçmeyen soru veritabanına yazılmaz.
 
 ## Kayıt
 
@@ -47,7 +47,7 @@ Web ve mobil kökü ve şıkları şöyle çizer (`normalizeQuestionMarkup` + `r
 - Figür, soru gerçekten görsele dayanıyorsa kullanılır. Kök “tablo, grafik, şekil, harita” diyorsa figür vardır; figür yoksa bu ifadeler kullanılmaz.
 - Kökte `{{fig:kod}}` atfı figürün yerini gösterir; kod yalnız harf, rakam, `_` ve `-` içerir (ör. `fig1`).
 - **Figürü motor çizer (1 Kasım 2026 kararı).** Figür motorun görsel şemasıyla (`src/Components/Visuals/VisualSchema.ts`) yazılır; motor açık ve koyu tema için SVG üretir ve bu çizim soruya hazır resim olarak bağlanır. C# çizicisine yeni tür eklenmez. `Image` (0) türü kullanılmaz.
-- **Figürden taviz verilmez.** Soru çizime dayanıyorsa figürle yazılır. Gereken öğe motorda yoksa soru sözele çevrilmez: öğe [Reports/TYT_Figur_Raporu.md](Reports/TYT_Figur_Raporu.md) §6'daki istek listesine yazılır ve soru o öğe gelene kadar canlıya yazılmaz.
+- **Figürden taviz verilmez.** Soru çizime dayanıyorsa figürle yazılır. Gereken öğe motorda yoksa soru sözele çevrilmez: kayda `motorIstegi` yazılır, öğe merkez oturuma (Sınavika Video Engine kurulumu) iletilir ve [CalismaPlani.md](CalismaPlani.md#açık-kalanlar)'daki açık listeye girer; soru o öğe gelene kadar canlıya yazılmaz.
 - Ölçekli geometride sayısal etiketler çizimle uyuşur (uzunluk ±%5, açı ±2°); ÖSYM tarzı ölçeksiz şekilde `"toScale": false`.
 - “Taralı” deniyorsa figürde taralı bölge vardır (Venn `shaded`, geometri `shaded: true`).
 - Metindeki görsel atıfları `FigureCheck` ile API'nin kayıt denetiminden geçer. Bir dersin bütün figürleri motorun açık ve koyu tema SVG'leriyle toplu görüntüde gözle kontrol edilir: yazı kesilmez, telefon genişliğinde (≈360 px) okunur.
@@ -62,7 +62,7 @@ Web ve mobil kökü ve şıkları şöyle çizer (`normalizeQuestionMarkup` + `r
 ## Kaynak kullanımı
 
 - **İzin:** EgitimVerileri'ndeki sorular için örnek ve referans alma izni var; birebir kopyalanmaz. Her soru, örnekler üzerinde düşünülerek yeniden türetilir.
-- Her konuya başlamadan önce `Tools/show_sources.py <ders> <konu>` ile `EgitimVerileri/<SINAV>/<Kategori>/Sorular/<DERS>/<KONU>.jsonl` incelenir. Sıra: **test kitapları** (soru bankası, dörtdörtlük, tarama testi, MEB beceri ve kelime kitapları, kamp kitabı) önce; **ÖSYM çıkmış soruları** kök ve şık yapısı için. Soru tipi, kök kalıbı, şık yapısı ve zorluk bunlardan alınır.
+- Her konuya başlamadan önce `Curriculum/Quizzes/Tools/show_sources.py <ders> <konu>` ile `EgitimVerileri/<SINAV>/<Kategori>/Sorular/<DERS>/<KONU>.jsonl` incelenir. Sıra: **test kitapları** (soru bankası, dörtdörtlük, tarama testi, MEB beceri ve kelime kitapları, kamp kitabı) önce; **ÖSYM çıkmış soruları** kök ve şık yapısı için. Soru tipi, kök kalıbı, şık yapısı ve zorluk bunlardan alınır.
 - **Quiz için referans alınmaz:** deneme kitapları (başlığında “deneme” geçenler) ve sistemin kendi ürettiği kitapçıklar (“… Kitapçık”, cevap kaynağı `sinavika-bank`). Araç bunları göstermez.
 - Bilgi içeren derslerde (tarih, coğrafya, fen, din, felsefe…) olgular `KonuAnlatimi/<DERS>/<KONU>.json` anlatım ve MEB bilgi paketlerinden doğrulanır (`--anlatim`).
 - Kaynak cümleleri aynen kopyalanmaz; yeni parça ve şıklar yazılır. Kaynağın OCR bozuklukları ve kayıp altı çizgileri revizyona taşınmaz; cevabı olmayan ya da şüpheli kaynak sorusu model alınmaz.
@@ -70,6 +70,10 @@ Web ve mobil kökü ve şıkları şöyle çizer (`normalizeQuestionMarkup` + `r
 
 ## Yazma
 
-- Her ders (ya da büyük derste her konu) için ayrı SQL: tek transaction, dışa aktarılan kök özetiyle ön koşul, her adımda satır sayısı denetimi; yanında geri alma betiği.
-- Her SQL önce LocalDB'de geçici veritabanında uçtan uca denenir (güncelle → doğrula → geri al → ilk hâlle aynı).
-- Canlıya yazma her ders için ayrı onayla yapılır.
+- Canlıya yazım Claude içerik API'siyle yapılır (2 Kasım 2026'dan beri; sinavika `docs/claude/Claude-Icerik-API.md`), doğrudan SQL ile değil:
+  1. Hazır resimler önce yüklenir (`figures/stills`); adres içeriğin SHA-256 özetidir.
+  2. Sorular canlıdan dışa aktarılır (`questions/export`). Bu eski hâl geri alma verisidir ve saklanır.
+  3. Revizyon önce `dryRun` ile gönderilir; kök özeti (`expectedStemHash`) değişmişse ya da resim düşecekse API reddeder.
+  4. Sonra tek işlemde yazılır ve canlıdan geri okunarak doğrulanır.
+- Geri alma: dışa aktarılan eski hâl, yeni kök özetiyle revizyon olarak geri gönderilir.
+- Canlıya yazma her parti (ders ya da konu) için ayrı onayla yapılır.

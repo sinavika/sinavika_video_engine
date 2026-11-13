@@ -11,7 +11,7 @@ Her kampın ilk videosu "0" diye numaralanır ve kampın ilk dersinden önce yay
 | TYT | [`Curriculum/Jobs/yks-tyt-turkce-kampi/00-tyt-kampi-tanitim-youtube.json`](../../Curriculum/Jobs/yks-tyt-turkce-kampi/00-tyt-kampi-tanitim-youtube.json) | TYT Türkçe kampının 1. dersinden (Sözcükte Anlam) önce |
 | AYT | [`Curriculum/Jobs/yks-ayt-edebiyat-kampi/00-ayt-kampi-tanitim-youtube.json`](../../Curriculum/Jobs/yks-ayt-edebiyat-kampi/00-ayt-kampi-tanitim-youtube.json) | AYT Edebiyat kampının 1. dersinden (Anlam Bilgisi) önce |
 
-Render: `npm run render -- --job <iş dosyası>`. Çıktı 4K, 16:9, YouTube içindir. Seslendirmeyi SinoAI yapar (Doğa, Eleven v4). Kamp kuralı gereği müzik yoktur. YouTube bölümleri (chapters) kendiliğinden çıkar.
+Render: `npm run render -- --job <iş dosyası>`. Çıktı 4K, 16:9, YouTube içindir. Seslendirme Doğa'nın sesiyle (Eleven v4); anlatıcı SinoAI adıyla anılmaz. Kamp kuralı gereği müzik yoktur. YouTube bölümleri (chapters) kendiliğinden çıkar.
 
 ## 1. Şablonun yapısı
 
@@ -19,7 +19,7 @@ On sahne var. Her sahne kendi seslendirmesinin süresi kadar ekranda kalır ve o
 
 | # | Sahne | Ekranda | YouTube bölümü |
 |---|---|---|---|
-| 1 | Kanca | Lacivert zeminde iki-dört kısa vuruş ("120 soru." "165 dakika." "Tek bir sabah."), sonuncusu turuncu; SinoAI küresi | Giriş |
+| 1 | Kanca | Lacivert zeminde iki-dört kısa vuruş ("120 soru." "165 dakika." "Tek bir sabah."), sonuncusu turuncu; ses küresi | Giriş |
 | 2 | Bölüm 0 | Dev turuncu "0", seri adı, başlık; kampın ders renklerinden bir şerit; logo | — |
 | 3 | Sınav | Sınavın her sorusu bir kare: test test, ders renginde dolar; yanda test adları ve sayıları; köşede dakika halkası | Sınav nasıl? |
 | 4 | Net | Dört kırmızı ✗ = üstü çizilen bir yeşil ✓; formül; boş soru kuralı; örnek hesap sayarak iner | Net nasıl hesaplanır? |

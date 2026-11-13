@@ -34,7 +34,7 @@ export const COVER_STANDARD = {
 	/**
 	 * One title size per cover shape, in reference pixels: every cover of that
 	 * shape sets its title the same size, so covers side by side read as one
-	 * series (docs/Social/Sosyal-Gorsel-Kurallari.md §2). tall = 9:16 reel, portrait =
+	 * series (docs/Social/Sosyal-Kimlik-Standardi.md §4). tall = 9:16 reel, portrait =
 	 * 4:5 or square post, wide = 16:9 YouTube.
 	 */
 	titleSizes: {tall: 124, portrait: 96, wide: 136},

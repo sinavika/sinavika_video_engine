@@ -6,11 +6,11 @@ Sınavika için veri odaklı video ve görsel üretim motoru. Bir JSON işi (job
 Video ve görsel üretimi iki ayrı alandır: kendi şablonları, şemaları, kayıtları ve renderer'ları vardır. İkisi
 aynı tasarım sistemini (temalar, tipografi, bileşenler, marka, logo) paylaşır.
 
-- **Video: 5 eğitim template'i:** soru çözümü, konu anlatımı, hızlı tekrar, kavram açıklama, sınav hazırlığı
-- **Görsel: 12 kategoride 18 tasarım:** mobil ve web tanıtımı, soru, konu, hook, özellik, infografik, sınav
+- **Video: 46 şablon** (`npm run schema` listeler): kamp dersleri ve reels'leri (`CampLesson`, `CampShort`, `CampFlash`, `CampIntro`, `CampLessonIntro`), ders videoları (`CourseLesson`, `CourseShort`), eğitim şablonları (soru çözümü, konu anlatımı, hızlı tekrar, kavram açıklama, sınav hazırlığı), tanıtım ve reklam filmleri, özel gün anmaları
+- **Görsel: 13 kategoride 23 tasarım:** mobil ve web tanıtımı, soru, konu, hook, özellik, infografik, sınav
   taktikleri, kaydırmalı seri, duyuru, kampanya, video kapağı
 - **Numaralı çıktılar:** `Outputs/Videos/01_Matematik_Denklem_Cozumu.mp4`, `Outputs/Images/01_...png`
-- **6 tema:** template'lerden bağımsız; her template her temayla çalışır
+- **2 tema:** `SinavikaLight` ve `SinavikaDark` (yalnız Sınavika görünümü; eski temalar 31 Ekim 2026'da kaldırıldı)
 - **3 format:** 9:16, 16:9, 1:1 (720p – 2160p, 24/25/30/50/60 fps)
 - **Seslendirme:** ElevenLabs ile Türkçe anlatım; içerik türüne göre ses profili, sahne süreleri sese göre ayarlanır
 - **LaTeX**, Türkçe karakterler, görselli sorular, otomatik taşma kontrolü
@@ -39,9 +39,19 @@ Seslendirme için ElevenLabs API anahtarı gerekir. `.env.example` dosyasını `
 | `npm run image -- --job <job.json> --out <görsel.png>` | Görseli tam olarak verilen yola yazar |
 | `npm run cover -- --job <video-işi.json> [--out <kapak.png> \| --out-dir <klasör>]` | Videoyu render etmeden yalnız kapağını üretir (kamp kapağı, kamp tanıtımı ya da video kapağı) |
 | `npm run render -- --job <job.json> --out <kare.png> --frame 120` | Tek kare render eder |
-| `npm run screens [-- --mode both --device]` | Mobil uygulama ekranlarını PNG olarak `Outputs/AppScreens` altına çıkarır |
+| `npm run screens [-- --mode both --device]` | Videolarda kullanılan uygulama ekranlarını (UI/UX çizimleri) PNG olarak `Outputs/AppScreens` altına çıkarır |
 | `npm run uiux [-- --only m-deneme --lang en]` | UI/UX çizimlerini (mobil, web paneli, site; açık ve koyu ayrı; ekranlar ve panolar) `Desktop\Sinavika-UIUX3\acik|koyu` altına çıkarır; `--mode light|dark|both`. Ayrıntı: [docs/UIUX/UIUX-Rehberi.md](docs/UIUX/UIUX-Rehberi.md) |
 | `npm run google-ads [-- --lang tr --exam yks --platform mobile]` | Google Ads setini (YKS/KPSS, mobil uygulama/web sitesi, TR/EN; 3 boyut görsel, metinsiz kopyalar, HTML5 zip, metin CSV, logolar) `Desktop\Sinavika-GoogleAds` altına çıkarır. Plan: [docs/Ads/GoogleAds/Icerik-Plani.md](docs/Ads/GoogleAds/Icerik-Plani.md) |
+| `npm run render-status` | Çalışan ve son 24 saatte biten render'ları, kalan süreyi ve durmuş olabilecek işleri gösterir ([Development.md](docs/Development.md)) |
+| `npm run camp -- <komut>` | Kamp senaryolarını Sınavika API'sinde yönetir (`api/claude/camp`): eşitleme, sürüm gönderme, yorumlar; canlıya yalnız `--apply` ile yazar |
+| `npm run sweep -- <kamp\|senaryo\|all>` | Kamp derslerinin riskli karelerini çizer ve yerleşim bekçisiyle denetler |
+| `npm run store [-- --source real]` | App Store ve Google Play görsellerini (TR + EN, her boyut) çıkarır |
+| `npm run apple-ads` | Apple Ads setini `Desktop\Sinavika-AppleAds` altına çıkarır |
+| `npm run google-ads-video` | Google Ads videolarını (`GoogleVideoAd`) render eder |
+| `npm run figures` | Works görsellerini uygulama için SVG/WebP olarak çizer (açık ve koyu) |
+| `npm run sound-effects` | Eksik ses efektlerini ElevenLabs ile üretir (kredi harcar; `--relevel` harcamaz) |
+| `npm run promo-variants -- --dir Posts/<tarih>_<Ad>` | Bir tanıtım reels'inin her tanıtım sesiyle bir sürümünü yazar |
+| `npm run dead-code` | Kullanılmayan dışa aktarımları listeler (`--fix` gereksiz `export`'ları kaldırır) |
 | `npm run render -- ... --concurrency 4 --json` | Paralel sekme sayısı; makine tarafından okunabilir çıktı |
 | `npm run validate -- <job.json> [...]` | Render etmeden doğrular, süreyi raporlar |
 | `npm run validate -- <job.json> --narration` | Ayrıca seslendirme metnini satır satır yazdırır |
@@ -215,10 +225,10 @@ Görsellerin girdisi de düz bir JSON nesnesidir:
 
 | Alan | Değerler | Varsayılan |
 | --- | --- | --- |
-| `category` | Aşağıdaki 12 kategoriden biri | zorunlu |
+| `category` | Aşağıdaki 13 kategoriden biri | zorunlu |
 | `variant` | Kategorinin bir tasarımı | kategorinin ilk tasarımı |
 | `size` | `Square` 1080×1080, `Portrait` 1080×1350, `Story` 1080×1920, `Landscape` 1920×1080 ya da `{"width": 1200, "height": 628}` | tasarımın kendi boyutu |
-| `theme` | Videolarla aynı 6 tema | tasarımın kendi teması |
+| `theme` | Videolarla aynı temalar (`SinavikaLight`, `SinavikaDark`) | tasarımın kendi teması |
 | `palette` | Kayıtlı palet adı ya da satır içi palet nesnesi; temanın renklerinin yerine geçer | yok |
 | `format` | `png`, `jpeg`, `webp` | `png` |
 | `quality` | JPEG kalitesi, 1–100 (varsayılan en yüksek; PNG zaten kayıpsız) | 100 |
@@ -326,14 +336,14 @@ Ders ve konu listesine bağlı üretim: `Curriculum/` (katalog, üretim kontrol 
 ## Tanıtım videosu
 
 `AppPromotion` şablonu Sınavika mobil uygulamasını tanıtır: dev hareketli yazıyla giriş, uygulamanın gerçek ekranlarını gezen tek telefon ve
-mağaza adlı kapanış. Ekran çizimleri [src/Components/AppScreens](src/Components/AppScreens) içindedir ve mobil uygulamanın kodundan yeniden çizilmiştir.
+mağaza adlı kapanış. Telefondaki ekranlar UI/UX çizimlerinin kendisidir ([docs/UIUX/AppScreens.md](docs/UIUX/AppScreens.md)); tasarım değişince bir sonraki render'a kendiliğinden gelir.
 
 `ExamJourney` şablonu telefon göstermek yerine bir denemeyi oynatır: süre başlar, bir soru işaretlenir, sonuç kendini çizen bir çizgi olur,
 en zayıf ders işaretlenir ve uygulama en sonda görünür. Düz renk blokları (turuncu, açık, koyu lacivert) ve itmeli geçişler kullanır;
-`AppPromotion`'ın koyu sahnesinin bilerek tersidir. Anlatım altyazı olarak da gösterilir (`"subtitles": false` ile kapatılır).
+`AppPromotion`'ın koyu sahnesinin bilerek tersidir. Videolarda altyazı yoktur (sahibin kararı, 30 Ekim 2026).
 
 **Her tanıtım videosu kendine özgüdür.** Aynı ürün için arka arkaya iki tanıtım aynı şablonla, aynı görünümle ve aynı müzikle yapılmaz;
-yeni fikir yeni bir şablon olarak eklenir. Müzik de değişir: `"soundtrack": "Pulse"` (stiller: `Bright`, `Pulse`; `true` = `Bright`).
+yeni fikir yeni bir şablon olarak eklenir. Müzik her reklam için ElevenLabs Music ile ayrı üretilir: `"soundtrack": {"music": "<müzik tarifi>"}`. Kodla üretilen eski stiller (`Bright`, `Pulse`) yeni reklamda kullanılmaz.
 
 ```bash
 npm run render -- --job samples/AppPromotion.json
@@ -343,8 +353,8 @@ npm run render -- --job samples/AppPromotion.json
 npm run render -- --job samples/ExamJourney.json
 ```
 
-- `"fps": 60` ile akıcı hareket, `"soundtrack": true` ile kodla üretilen özgün müzik ve ses tasarımı eklenir; ses −14 LUFS'e ayarlanır.
-- Uygulama ekranları merkezi bir katalogdur (11 ekran, açık ve koyu tema); videoda, telefonlu görsellerde (`appScreen`) ve tek başına kullanılır: `npm run screens`. Ayrıntı: [docs/UIUX/AppScreens.md](docs/UIUX/AppScreens.md).
+- `"fps": 60` ile akıcı hareket; anlatım müziğe karışmadan önce seviyelenir, ses −14 LUFS'e ayarlanır.
+- Uygulama ekranları merkezi bir katalogdur (12 ad, her biri bir UI/UX çizimi; açık ve koyu); videoda, telefonlu görsellerde (`appScreen`) ve tek başına kullanılır: `npm run screens`. Ayrıntı: [docs/UIUX/AppScreens.md](docs/UIUX/AppScreens.md).
 - Tanıtım videolarının standart brifi: [docs/Ads/AdPrompt.md](docs/Ads/AdPrompt.md). Marka kimliği: [docs/Brand/BrandIdentity.md](docs/Brand/BrandIdentity.md).
 
 ## Sosyal medya teslimi (SocialHub)
@@ -431,31 +441,4 @@ Her çağrı kendi tarayıcısını açar ve yalnızca kendi çıktı dosyasına
 
 ## Proje yapısı
 
-```
-src/
-  Configurations/   Video formatları, FPS, kalite, güvenli alanlar; marka kuralları; ses kataloğu ve profilleri
-  Themes/           Tasarım token'ları, 6 tema, tema kaydı, renk paletleri, font yükleme
-  Animations/       Saf animasyon matematiği: süreler, easing, preset → CSS
-  Components/
-    Animations/     Animated, Stagger, Typewriter, Highlight, DrawPath, ProgressBar
-    Typography/     Text, RichText, MathExpression, Badge
-    Layouts/        VideoFrame, SafeArea, FitBox, Card, Callout, ThemeBackground
-    Illustrations/  Illustration (akış, döngü, formül, görsel), ConceptMap, Icon
-    Overlays/       BrandMark, SegmentedProgress
-  Scenes/           Sahne planlama, süre tahmini, geçişler, seslendirme modeli, ortak kapanış sahnesi
-  Schemas/          Ortak Zod şemaları: zengin metin, okunacak metin, görsel, video props
-  Templates/        Video: TemplateDefinition, TemplateRegistry, Education/<Template>/
-  Images/           Görsel: ImageTemplateDefinition, ImageTemplateRegistry,
-                    Templates/<Kategori>/, Schemas/, Renderers/, Components/ (mockup'lar, çerçeve, CTA)
-  Compositions/     Video ve görsel şablonlarını Remotion composition'larına bağlar
-  Services/         ElevenLabs konuşma servisi, ses seçimi, seslendirme üretimi; numaralı çıktı kaydı (OutputFiles)
-  Renderers/        VideoJob (doğrulama) ve VideoRenderer (MP4/PNG)
-  Root.tsx          Kayıtlı bütün template'ler × bütün formatlar
-samples/            Her video template'i için örnek iş; samples/Images/ altında her görsel tasarımı için örnek iş
-Outputs/            Numaralı video ve görsel çıktıları (git dışında)
-scripts/            Komut satırı araçları
-tests/              Birim testleri (*.test.ts) ve render testleri (*.render.ts)
-public/             Görsellerin okunduğu statik klasör
-```
-
-Mimari kararlar, yeni template/tema ekleme adımları ve yol haritası için: [docs/Development.md](docs/Development.md)
+Klasör haritası, modül haritası (hangi oturum nerede çalışır), mimari kararlar ve yeni şablon, tasarım ya da tema ekleme adımları tek yerde: [docs/Development.md](docs/Development.md).

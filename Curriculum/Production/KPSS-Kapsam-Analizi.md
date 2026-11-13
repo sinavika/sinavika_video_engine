@@ -188,4 +188,4 @@
 - Vatandaşlık anlatımı 2017 anayasa değişikliğinden sonraki Cumhurbaşkanlığı hükümet sistemine göredir (kanun hükmünde kararname yerine Cumhurbaşkanlığı kararnamesi); eski düzen yalnız Türk anayasa tarihi içinde anlatılır.
 - Seviyeler arasında zorluk farkı olan konularda bölüm, temel kuraldan başlayıp Lisans düzeyindeki soru tiplerine kadar çıkar.
 - Sorular KPSS'in üç seviyesinin ÖSYM çıkmış sorularından örnek alınarak yeniden kurulur; birebir kopyalanmaz.
-- **Works (API) için:** KPSS senaryosu birden çok seviyenin konusunu besler. Bir seviyenin konusu için Works içeriği, `alsoTeaches` alanında o seviyenin alt konusunu adlandıran bölümlerden toplanmalıdır; ayrıntı `docs/Courses/Works-Aktarim-Notlari.md` içinde.
+- **Works (API) için:** KPSS senaryosu birden çok seviyenin konusunu besler. Bir seviyenin konusu için Works içeriği, `alsoTeaches` alanında o seviyenin alt konusunu adlandıran bölümlerden toplanmalıdır; ayrıntı `Curriculum/Works/README.md` içinde, "Kapsam kararları" başlığı altında.

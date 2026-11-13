@@ -1,6 +1,6 @@
 # Sosyal medya kreatif rehberi: hook, kurgu, metin ve test
 
-Bir gönderinin dikkat çekmesi, izletmesi, öğretmesi ve harekete geçirmesi için uyulan kurallar. Strateji ve hedefler [`SocialStrategy.md`](SocialStrategy.md), görsel kurallar [`Sosyal-Gorsel-Kurallari.md`](Sosyal-Gorsel-Kurallari.md), marka dili [`BrandIdentity.md`](../Brand/BrandIdentity.md) içindedir. Kaynaklar: [`SocialResources.md`](SocialResources.md). **Tarih:** 29 Ekim 2026.
+Bir gönderinin dikkat çekmesi, izletmesi, öğretmesi ve harekete geçirmesi için uyulan kurallar. Strateji ve hedefler [`SocialStrategy.md`](SocialStrategy.md), görsel kurallar [`Sosyal-Kimlik-Standardi.md`](Sosyal-Kimlik-Standardi.md), yayın planı ve teslim [`SocialPlan.md`](SocialPlan.md), marka dili [`BrandIdentity.md`](../Brand/BrandIdentity.md) içindedir. Hook taslakları [`Hook-Listesi.md`](Hook-Listesi.md)'nde birikir. Kaynaklar: [`SocialResources.md`](SocialResources.md). **Tarih:** 29 Ekim 2026, son güncelleme 14 Kasım 2026.
 
 ## 1. Temel ilke
 
@@ -59,7 +59,7 @@ Her gönderi için **farklı türlerden üç hook adayı** yazılır. Seçilen h
 2. **Gövde.**
    - Tek fikir anlatılır. Her 1,2–2 saniyede yeni bir görsel bilgi gelir: kelime, şekil ya da ekran hareketi.
    - 2 saniyeden uzun durağan kare olmaz. 27 Ekim'deki dış değerlendirmede 5–8 saniyelik durağan başlık ve açıklama kartları en büyük kayıptı.
-   - Ekrandaki yazı 0,1 saniyede tam görünür ([`Sosyal-Gorsel-Kurallari.md`](Sosyal-Gorsel-Kurallari.md) §6).
+   - Ekrandaki yazı 0,1 saniyede tam görünür ([`Sosyal-Kimlik-Standardi.md`](Sosyal-Kimlik-Standardi.md) §7).
 3. **Kapanış.**
    - **Tek** çağrı yapılır.
    - Her reels aynı uygulama kartıyla (`AppEndCard`) biter; kart 3 saniye sürer ([`Sosyal-Kimlik-Standardi.md`](Sosyal-Kimlik-Standardi.md) §2).
@@ -74,10 +74,19 @@ Her gönderi için **farklı türlerden üç hook adayı** yazılır. Seçilen h
 - Seslendirmede boşluk ya da kesik cümle olmaz. 29 Ekim'deki admin notu: Doğa bazı yerlerde "konuşacak gibi olup vazgeçmiş". Bu yüzden teslimden önce Scribe dökümü ve dalga biçimi kontrol edilir.
 
 **Süre**
-- **Tanıtım:** 15–35 saniye.
+- **Tanıtım reels'i:** içerik en fazla 15 saniye, bitiş kartıyla en fazla 18 saniye (§11).
 - **Eğitim kısa videosu:** içerik ne kadar gerektiriyorsa; hedef 20–60 saniye, uzatma yok. Kamp kısa videosunda en fazla 3 zor soru, ilk soru ilk karede.
-- Instagram ve YouTube Shorts 3 dakikaya kadar video kabul eder. Süre, içerik onu doldurabiliyorsa uzar.
+- Instagram ve YouTube Shorts 3 dakikaya kadar video kabul eder. Eğitim videosunda süre, içerik onu doldurabiliyorsa uzar.
 - Sonu başa bağlanan (tekrar izletilen) videolar Shorts ve TikTok'ta izlenme süresini artırır. Doğal düşüyorsa kullanılır.
+
+**Hareket dili** (30 Ekim 2026'dan; Kasım reels'leri bu dille yapıldı). Kaynak: [prompt-motion.com](https://prompt-motion.com/)'daki en iyi örneklerin ortak ilkeleri; prompt'lar kopyalanmadı, özü uyarlandı.
+- **Her plan bir öncekinden doğar.** Mümkünse kesme yerine şekil dönüşümü: bir hap, kart ya da daire boyut, köşe ve renk değiştirerek sonraki sahneye taşınır (`PromoMotion` `Morph`).
+- **Ritim ızgarası.** Kesmeler ve önemli anlar müziğin vuruşuna oturur; müzik ölçülür, sahne geçişleri en yakın vuruşa kaydırılır (`Scenes/Rhythm`, [`BeatGrid.ts`](../../src/Services/BeatGrid.ts)).
+- **Parmak her değişikliği sürer.** Ekran kendi kendine değişmez; bir dokunuş değiştirir (`Tap`).
+- **Kamera anlatılana yaklaşır.** Anlatılan kart kareyi doldurana kadar yakınlaşılır; küçük telefon yazısı okunur olur (`CameraZoom`).
+- **Hızlı harekette bulanıklık,** hareketin yönünde ve hızına göre.
+- **Yasak liste** (`REEL_STANDARD.motion.banned`): parçacık patlaması, parıltı ve lens parlaması, kamera sarsıntısı, RGB kayması, çapraz geçiş, zıplayan yumuşatma; 0,5 saniyeden uzun duraklama.
+- **Her hareketin sesi vardır** (sahip, 30 Ekim: "efektsel sesleri unutma"). Liste tek yerde: [`SoundEffects.ts`](../../src/Configurations/SoundEffects.ts). Dosyalar bir kez ElevenLabs Sound Effects ile üretilir (`npm run sound-effects`, yalnız eksikler) ve `public/SoundEffects/` altında durur; oynatıcı [`SoundEffect`](../../src/Components/Sounds/SoundEffect.tsx). Hareket parçaları sesini kendi çalar (`Tap`, `Morph`, `CameraZoom`, `Slam`, `TypeOn`; `sound={null}` susturur); şablon kendine özgü sesleri ekler. ElevenLabs 0,5 saniyeden kısa ses üretmez; `tests/Configurations/SoundEffects.test.ts` bunu ve dosyaların varlığını denetler.
 
 **Paylaşım**
 - Aynı dikey video Instagram, TikTok ve YouTube Shorts'a gider.
@@ -86,7 +95,7 @@ Her gönderi için **farklı türlerden üç hook adayı** yazılır. Seçilen h
 ## 4. Uzun YouTube dersi
 
 - **İlk 30 saniye,** başlığın ve küçük resmin verdiği sözü tutar. YouTube, 30 saniye sonra kalan izleyiciyi açılışın başlıkla uyumu sayar.
-- SinoAI karşılaması korunur (sahibin kuralı, [`CourseNarration.md`](../Courses/CourseNarration.md) §1). Karşılama kısa tutulur ve dersin kancası hemen arkasından gelir.
+- Kamp dersi dersin kendi sorusuyla açılır, ardından kısa kamp karşılaması gelir ("Sınavika'nın TYT Türkçe kampına hoş geldin!", `campWelcomeNarration`). Anlatıcı kendini tanıtmaz ve kamplarda SinoAI adıyla anılmaz (sahip, 8–9 Kasım 2026).
 - İlk 30 saniyedeki tutma, kanalın benzer uzunluktaki videolarından düşükse önce kancayı öne almak denenir. Değişiklik sahibe önerilir.
 - **Kitleyi elde tutma raporu:**
   - En iyi anlar ("top moments") gelecek derslerde daha öne alınır.
@@ -99,7 +108,7 @@ Her gönderi için **farklı türlerden üç hook adayı** yazılır. Seçilen h
 
 - **1. slayt:** Hook başlığıdır, büyük ve tek fikirlidir. Boş kalmaz (31 Ekim admin notu). Kapakta kısa bir "Kaydır" çağrısı kullanılabilir (sahip, 31 Ekim). Sayfa sayacı ve ilerleme çubuğu kullanılmaz.
 - **2. slayt:** İkinci hook'tur. Instagram gönderiyi ikinci kez gösterirken 2. slayttan açabilir; bu slayt da tek başına durdurmalıdır.
-- **Gövde:** 5–10 slayt; her slaytta tek fikir, aynı başlık boyutu ve hizası ([`Sosyal-Gorsel-Kurallari.md`](Sosyal-Gorsel-Kurallari.md) §2).
+- **Gövde:** 5–10 slayt; her slaytta tek fikir, aynı başlık boyutu ve hizası ([`Sosyal-Kimlik-Standardi.md`](Sosyal-Kimlik-Standardi.md) §4).
 - **Son slayt:** Sonuç ve tek çağrı: kaydet, arkadaşına gönder ya da yorumda cevapla.
 - Kaydırmalı gönderiler kaydırma oranı ve kaydetmeyle öne çıkar. Bu yüzden ders ve strateji içerikleri için en iyi biçimdir.
 
@@ -162,7 +171,7 @@ Bir uzun içerikten en az beş parça çıkarılır (Buffer). Bir kamp dersinden
 
 ## 10. Yayın öncesi kontrol listesi
 
-Her gönderi teslimden önce bu listeden geçer. Ek olarak [`BrandIdentity.md`](../Brand/BrandIdentity.md) §16 ve [`Sosyal-Gorsel-Kurallari.md`](Sosyal-Gorsel-Kurallari.md) uygulanır.
+Her gönderi teslimden önce bu listeden geçer. Ek olarak [`BrandIdentity.md`](../Brand/BrandIdentity.md) §16 ve [`Sosyal-Kimlik-Standardi.md`](Sosyal-Kimlik-Standardi.md) uygulanır.
 
 1. Gönderinin sütunu, huni aşaması ve hedef metriği brifte yazılı mı?
 2. Hook ilk saniyede görüntü, yazı ve sesle birlikte geliyor mu? İçerik hook'un sözünü tutuyor mu?

@@ -74,10 +74,15 @@ Anlamla ilgili okuma kazanımları:
 | Felsefe | 10. sınıf: felsefeyi tanıma, felsefe ile düşünme, temel konular, okuma-yazma; 11. sınıf: felsefe tarihi (MÖ 6. yy – 20. yy) | TYT 13 ve AYT 14 konu: felsefenin alanları ve felsefe tarihi | Aynı kapsam, adlar farklı |
 | Mantık, Sosyoloji, Psikoloji | Okunamadı (yazı tipi) | AYT 4 + 6 + 4 konu | Kontrol edilmedi |
 
-## 4. Önerilen işler
+## 4. Kararlar ve açık işler (14 Kasım 2026)
 
-1. **TYT Türkçe kampı listesi kalsın.** 15 konunun hepsi ya belgede ya da ÖSYM sorularında var. Ses Bilgisi ve Sözcükte Yapı, ÖSYM soru derlemesinde ayrı başlık olarak duruyor.
-2. **Söz Yorumu dersi,** konunun resmî karşılıklarını bir cümleyle anar: "kelime gruplarının bağlamdaki anlamı" ve "açık ve örtük ileti". Deyim ve atasözünün ayrıntısı 3. derse, cümle yorumu 4. derse kalır.
-3. **Eksik olabilecek küçük konular:** standart dil, ağız, şive, lehçe (9. sınıf; bir TYT dersinin içine bir kart olarak girebilir) ve geometride Dönüşümler (AYT).
-4. **Kalan iş:** Mantık, Sosyoloji ve Psikoloji sayfaları görüntüden okunup karşılaştırılmalı.
-5. **2027 belgesi çıkınca** (beklenen tarih kasım sonu) bu karşılaştırma yeniden yapılmalı.
+Yapılanlar:
+- **TYT Türkçe kampı listesi kaldı.** 15 konunun hepsi ya belgede ya da ÖSYM sorularında var.
+- **Söz Yorumu dersi resmî karşılığı anıyor:** "kelime gruplarının bağlamdaki anlamı" ve "açık ve örtük ileti".
+
+Açık kalanlar:
+1. **Eksik olabilecek küçük konular:**
+   - Standart dil, ağız, şive, lehçe (9. sınıf): bir TYT Türkçe dersine kart olarak girebilir. Bugün hiçbir TYT Türkçe senaryosunda yok.
+   - Geometride Dönüşümler (12.4, AYT): ders listesinde yok.
+2. **Mantık, Sosyoloji ve Psikoloji** sayfaları görüntüden okunup karşılaştırılmalı.
+3. **2027 belgesi çıkınca** (beklenen tarih kasım sonu) bu karşılaştırma yeniden yapılmalı.

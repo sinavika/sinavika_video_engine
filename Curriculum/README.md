@@ -26,7 +26,7 @@ Burada git'e giren iş durur. Üretilen ve canlıdan çekilen her şey `Outputs/
 
 ## Quiz
 
-- `Quizzes/` · uygulamadaki quiz sorularının revizyonu: revize sorular (`Revisions/`), kurallar (`YazimKurallari.md`), raporlar, pilot ve quiz araçları (`Tools/`). Figürleri motor çizer. Plan: [Quizzes/CalismaPlani.md](Quizzes/CalismaPlani.md).
+- `Quizzes/` · uygulamadaki quiz sorularının revizyonu: revize sorular (`Revisions/`), kurallar (`YazimKurallari.md`), eksik görsel onarımı yönergesi ve quiz araçları (`Tools/`). Figürleri motor çizer. Plan: [Quizzes/CalismaPlani.md](Quizzes/CalismaPlani.md).
 - Çıktı: `Outputs/Quizzes/` (çekilen veri, sonuçlar ve SQL, figürler, çalışma kuyruğu, FigureCheck derlemesi).
 
 ## Deneme

@@ -107,6 +107,7 @@ D.run()
     - geometride dolgulu çokgen (`poly`, varsayılan dolgulu), dolgulu çember ya da daire dilimi;
     - grafikte `area` ya da `rectangles`.
     - Dolgusuz (`fill: false`) çokgen taralı sayılmaz.
+  - `table` hücresi en çok 40, başlığı en çok 30 karakterdir; uzun metin sütunlara bölünür.
 - **Motorun çizemediği gerekli figür:** `fig="motor:<tür>: <eksik öğe>"`. Soru sözele çevrilmez ve bekletilir. Dar tutulur.
 
 ## 5. Yasaklar
