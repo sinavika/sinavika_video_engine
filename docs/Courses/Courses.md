@@ -66,8 +66,11 @@ Sıra her zaman aynıdır: **önce metin ve sahne senaryosu**, sonra görseller 
 | `Desktop\EgitimVerileri\VeriEnvanteri.md` | Veri envanteri: kategori ve ders bazında sayılar | — |
 | `Curriculum/Camps/<kamp>.json` | Kamp planları | ✓ |
 | `Curriculum/Scripts/` | Senaryolar | ✓ |
+| `Outputs/Camps/Scripts/<etiket>/` | `camp_script_batch.py` toplu yazım çıktısı; gözden geçirilip `Curriculum/Scripts`'e alınınca silinir. `harcama.jsonl` ve `batches.jsonl` kalır | — |
 | `public/Media/` + `Credits.json` | Lisansı kayıtlı görseller | ✓ |
 | `public/Geo/` | Harita verileri (GeoJSON / TopoJSON) | ✓ |
+
+**Ölü kopya bırakılmaz (sahip, 14 Kasım 2026).** Bir senaryo, paket, döküm, still ya da rapor yeniden üretilince eskisi silinir, yerine yenisi konur. Silmeden önce hiçbir işin, kodun ya da testin onu okumadığı denetlenir; silme Geri Dönüşüm Kutusu'na yapılır (kalıcı silme yok) ve taşınanların tam listesi `Outputs/Checks/Temizlik-<tarih>-<alan>.md` dosyasına yazılır. Eski bir senaryo sürümü gerekirse git geçmişinden ya da kamp API'sinin sürüm geçmişinden alınır.
 
 **Veri masaüstünde, kopyası yok (31 Ekim 2026).** Eğitim verisi `Desktop\EgitimVerileri`'de durur ve sürekli güncellenir; motor onu doğrudan okur, `Curriculum/Data` kopyası kaldırıldı. Ders listesinin aslı `Desktop\lesson.csv`'dir (veri hattı her yeni satırı ona ve kopyalarına yazar). `brief` konu anlatımını, soru havuzunu ve çıkmış soruları her çağrıda masaüstünden okur; kontrol listesindeki `sources` son `import`'un anlık görüntüsüdür ve `npm run curriculum -- import` ile tazelenir. Başka bir yer `EGITIM_VERILERI` ve `LESSON_LIST` ortam değişkenleriyle verilir.
 

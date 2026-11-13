@@ -4,7 +4,7 @@ Kamp senaryosu oturumundan "Sınavika Video Engine kurulumu" oturumuna devir not
 
 ## 1. Senaryolar nerede, durumları ne?
 
-- Yeni senaryolar: `Outputs/Camps/Scripts/tyt-mat-21/` (21 ders) ve `Outputs/Camps/Scripts/pilot-kontrol/` (`MAT_FONK`, `MAT_TEMEL`). **`Curriculum/Scripts/YKS_TYT/MAT/` içine henüz kopyalanmadı**; sahip onayı bekleniyor.
+- Yeni senaryolar: 23 dersin hepsi `Curriculum/Scripts/YKS_TYT/MAT/` içinde (9 Kasım gece kopyalandı). `Outputs/Camps/Scripts` altındaki ara kopyalar 14 Kasım'da Geri Dönüşüm Kutusu'na taşındı.
 - 23 dersin hepsi `npx tsx Curriculum/Production/Tools/camp_check.mts <klasör>` kontrolünden sorunsuz geçiyor: şema, `reviewScript`, duran ekran (≤ 10 sn), süre ve kısa video. Tek istisna: İkinci Derece'de 7 yanlış "akarsu aşındırması" önerisi (bkz. §4.1).
 - 361 sorunun hepsi elle yeniden çözüldü; şekiller metinle karşılaştırıldı. ÖSYM yıl iddiaları çıkmış soru listesiyle doğrulandı. ÖSYM metnine yakın 13 soru kendi cümlelerimizle yeniden yazıldı.
 

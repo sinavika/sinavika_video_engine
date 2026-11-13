@@ -71,6 +71,14 @@ Deneme araçları `Tools/` içinde, quiz ile ortak araçlar ve bütün yollar (`
    - kitapçıklar admin panelinden ayın slotlarına atanır.
    - `build_exam_sql.py` ve `dry_run_exam_sql.py` yerel denemede kalır (LocalDB'de canlı şemanın kopyası).
 
+## Kural: ölü kopya bırakılmaz (sahip, 14 Kasım 2026)
+
+- Bir şey yeniden üretildiğinde eskisi silinir, yenisi konur.
+- Bu kural kitapçık, figür, soru, json ve rapor için geçerlidir.
+- Silme Geri Dönüşüm Kutusu'na yapılır.
+- Silinmeden önce dosyayı kodun, manifestin ya da işlerin okumadığı denetlenir.
+- Ön izleme çizimleri ve ara denetim çıktıları iş bitince silinir.
+
 ## 5. Durum
 
 | Tarih | Durum |

@@ -91,6 +91,8 @@ YDT kaldırıldı; YDT soruları revize edilmez. Her derste konu konu ilerlenir.
 - **Görsel atfı, figür yok:** 3.026 soru tabloya/grafiğe/şekle atıf yapıyor ama figürü yok. Soru görsele gerçekten dayanıyorsa figür eklenir, dayanmıyorsa atıf kaldırılır.
 - **Figürler:** Quiz'de yalnız 444 soruda figür var (çoğu tablo ve zaman çizelgesi).
 - **Alt konu:** System quiz sorularının hiçbirinde alt konu yok (45.540); hepsine atanacak.
+- **Ölü kopya bırakılmaz (sahip, 14 Kasım 2026):** bir şey yeniden üretildiğinde eskisi silinir, yerine yenisi konur. Ön izleme, ara liste ve yedek işi bitince Geri Dönüşüm Kutusu'na taşınır (kalıcı silme yok). Canlıya yazılmış partinin dışa aktarılan eski hâli (geri alma verisi) ve yazım kaydı kalır.
+- **Eksik görsel onarımı (13 Kasım 2026):** canlıda kökü tabloya, grafiğe, şekle atıf yapan ama figürü olmayan test soruları `Tools/visual_repair.py` ile Claude API (Batch) üzerinden onarılır; yönerge `GorselOnarimYonergesi.md`. Sıra AYT, sonra KPSS; her canlı parti ayrı onayla.
 - **Hız:** Pilotta 211 soru tek tek çözülerek revize edildi. 43.005 tekil soru bu yöntemle uzun sürer; dersler birbirinden bağımsız olduğu için paralel yürütülebilir (her ders kendi klasörüne yazar, çakışma olmaz).
 
 ## Revizyon geçmişi
@@ -102,3 +104,4 @@ YDT kaldırıldı; YDT soruları revize edilmez. Her derste konu konu ilerlenir.
 | 3 | 1 Kasım 2026 akşamı | Motor figürü hattı kuruldu (`figure_to_visual.py`, `render_figures.py`, `RenderFigures.ts`, FigureCheck'te API'nin çeviricisi, SQL'de hazır resim sütunları). TYT'nin 139 figürü motora taşındı. |
 | 4 | 1 Kasım 2026 gecesi | TYT figür turu: 444 figür, `geometry_figures.py` (ölçekli geometri), `apply_figures.py` (ek dosyasını kayıtlara işler), FigureCheck'te ölçek denetimi. |
 | 5 | 2 Kasım 2026 | TYT'nin tamamı canlıda. AYT başladı: konu bazlı paralel iş, `check_revisions --konu`, atomik üretici yazımı, `fig="motor:…"`. |
+| 6 | 14 Kasım 2026 | Eksik görsel onarımı (`visual_repair.py`, Claude API Batch; pilot 18 soru canlıda). Ölü kopya kuralı; eski ön izleme ve yedekler Geri Dönüşüm Kutusu'na taşındı (liste `Outputs/Checks/2026-11-14-Quiz-Temizlik.md`). |
