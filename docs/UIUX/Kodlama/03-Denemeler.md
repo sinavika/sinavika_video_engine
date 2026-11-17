@@ -6,28 +6,59 @@ Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çi
 
 Kısaltmalar: `mod` = Denemeler modül renkleri (`useModuleColors('exam')`), `colors` = tema jetonları (`UI_COLORS`). Ölçüler pt (mobil) ve CSS px (web). Metinler `TR` / `EN` biçimindedir. Çizimdeki ad, sayı ve tarihler örnektir.
 
+> **Sahip kararları (17 Kasım 2026). Bu kararlarla çelişen ekran çizmek ya da kodlamak tasarım hatasıdır.** Kaynak: web deposunda `docs/UIUX/Tasarim-Uyum-Plani.md` §9.3 madde 15–16.
+> - **Renk zeytin yeşili:** `#4D7C0F` / koyu `#A3E635`, gradyan `#65A30D`, düğme `#4D7C0F`. Hiçbir modül turuncu değildir.
+> - **Web hap sekmeleri beş:** Denemeler · Denemelerim · Sonuçlar · Çözümler · İstatistik. Mobil tab bar aynı kalır.
+> - **İptal yolu yok:** çıkış her zaman ara ver penceresi. Cevap teslime kadar değiştirilebilir ve boşaltılabilir ("Cevabı boşalt").
+> - **Vitrin şeridi aylık deneme setinden gelir:**
+>   - yaklaşan: "Yaklaşan · Cumartesi 10:00", kalan süre ("2 gün 4 saat kaldı") ve Hatırlat;
+>   - açık: "Canlı · Türkiye geneli" (ya da "Bölüm denemesi"), kapanış tarihi ve Başla.
+>   - Katılımcı sayısı yalnız API verirse (100 ve üstü) görünür. "Senin için" yerine **"Bu ay sırada"** listesi.
+> - **Süreler kurala göre yazılır:** devam eden kartında "1 saat 14 dk kaldı" ("74 dk" yazılmaz).
+> - **Hatırlatma tek dokunuş:** seçenek sayfası yok. Kuruluyken dokunmak kapatır; sonuç kısa bildirimle söylenir. Denemelerim satırında "Hatırlat" ya da "Hatırlatma açık" çipi.
+> - **Detay alt çubuğu deneme penceresine göre değişir:**
+>   - yaklaşan: "Açılış Cumartesi 10:00 · 2 gün 4 saat kaldı" ve Hatırlat;
+>   - açık: "Açık · kapanmasına 13 gün 4 saat kaldı" ve Başla (`m-deneme-detay-acik`);
+>   - pencere dışında: pasif Başla ve nedeni (`m-deneme-detay-kapali`).
+>   - Mobil Denemelerim sekmesinde "Yaklaşan · N".
+> - **Sonuçlar:**
+>   - Net sütunlarının etiketi tarihtir ("19 Eki"); dışarıda çözülen "Dışarıda" yazar ve çizgilidir.
+>   - Webde altta ÖSYM düzeninde tablo: ders netleri, toplam net, Puan, satır sonunda "Analiz"; dışarıda çözülen satırda onaylı "Sil".
+>   - Gelişim şeridi yalnız artışta yeşildir; düşüşte nötrdür, kırmızı olmaz.
+>   - Mobilde çizgili sütuna dokununca bilgi ve "Sil" açılır (`m-deneme-sonuclar-disarida`).
+> - **Analiz:**
+>   - Test çipi konunun testindeki gerçek soru sayısını gösterir ("N soru"; testler 20 soruya sabit değil). Test yoksa çip pasiftir.
+>   - "Bu hafta planıma ekle"den sonra düğme modülün yumuşak tonunda "Planına eklendi" olur ve kısa bildirim çıkar (`m-deneme-analiz-eklendi`).
+> - **Kitapçık (mobil):**
+>   - Tümü / Yanlışlar · N / Boşlar · N sorunun üstündedir; kitapçık Yanlışlar ile açılır.
+>   - Alt çubuğun ortasında "Yalnız yanlışlar · N" yazar.
+>   - Koyu dolu "SinoAI'ye sor", altında "Derse git". Web çözüm panelinde de "SinoAI'ye sor" var.
+> - **İstatistiklerim:**
+>   - Web "PDF olarak al" tarayıcının yazdırma penceresini açar.
+>   - Mobil ilk haftada düğmeler hedef modülün yumuşak tonundadır. Deneme adımı ayın sıradaki denemesine bağlıdır. Ders ve test adımlarının alt satırı şimdilik geneldir.
+
 ---
 
 ## 1. Modül özeti
 
-**Ne işe yarar.** Denemeler gerçek sınavın provasıdır. Öğrenci Türkiye geneli (canlı) ve branş denemelerine girer, süreli ve odaklı çözer, teslim eder. Sonra sonucunu, sıralamasını, çözümleri ve net kaybettiği konuları görür. Her analiz bir eylemle biter: Mikro ders (Dersler), test (Testler), Bu hafta planıma ekle (Ders Planı). Öğrenci dışarıda çözdüğü denemeleri de ekleyebilir; net gelişimi tek grafikte birleşir. İstatistiklerim sayfası bütün modüllerin çalışma süresini, doğru oranını ve netleri gösterir.
+**Ne işe yarar.** Denemeler gerçek sınavın provasıdır. Öğrenci Türkiye geneli (canlı) ve branş denemelerine girer, süreli ve odaklı çözer, teslim eder. Sonra sonucunu, sıralamasını, çözümleri ve net kaybettiği konuları görür. Her analiz bir eylemle biter: Konu anlatımı (Dersler), test (Testler), Bu hafta planıma ekle (Ders Planı). Öğrenci dışarıda çözdüğü denemeleri de ekleyebilir; net gelişimi tek grafikte birleşir. İstatistiklerim sayfası bütün modüllerin çalışma süresini, doğru oranını ve netleri gösterir.
 
 **Temel kural (UIUX-Rehberi §5.4.1).** Deneme çözülürken doğru ya da yanlış **gösterilmez**. Şık yalnız "seçili" görünür (`OptionRow state="selected"`). Doğru/yanlış, renk, tik, çarpı, titreşim (`answerCorrect`/`answerWrong`) yalnız teslimden sonra çözümlerde açılır. Çözme ekranında yalnız şık seçme ve sonraki soru hareketleri vardır (`Hareket-Standardi.md`).
 
-**Renk (ModuleIdentity.ts, modül anahtarı `exam`).** Denemeler tek turuncu modüldür.
+**Renk (ModuleIdentity.ts, modül anahtarı `exam`).** Denemeler zeytin yeşilidir (sahip, 17 Kasım 2026: turuncu marka rengiyle karışıyordu; hiçbir modül turuncu değildir).
 
 | Jeton | Açık tema | Koyu tema |
 |---|---|---|
-| `color` (kimlik: ikon, halka, çubuk, sekme hapı ikonu) | `#E8590C` | `#FB8A3C` |
-| `action` (düğme dolgusu, beyaz yazı 4,8:1; iki temada aynı) | `#C54C0A` | `#C54C0A` |
-| `ink` (modül renginde yazı, `moduleInk`) | `#A23E08` | `#FCB380` |
-| gradyan ikinci durak (`gradientTo`) | `#F59E0B` | `#F59E0B` |
-| `wash` %7 / koyu %12,6 | `rgba(232,89,12,0.07)` | `rgba(251,138,60,0.126)` |
-| `soft` %12 / %21,6 (ikon kutusu, çip, aktif sekme hapı) | `rgba(232,89,12,0.12)` | `rgba(251,138,60,0.216)` |
-| `track` %16 / %28,8 (halka ve çubuk izi) | `rgba(232,89,12,0.16)` | `rgba(251,138,60,0.288)` |
-| `line` %24 / %43,2 (modül renkli kenar) | `rgba(232,89,12,0.24)` | `rgba(251,138,60,0.432)` |
+| `color` (kimlik: ikon, halka, çubuk, sekme hapı ikonu) | `#4D7C0F` | `#A3E635` |
+| `action` (düğme dolgusu, beyaz yazı 5,0:1; koyulaştırma gerekmez; iki temada aynı) | `#4D7C0F` | `#4D7C0F` |
+| `ink` (modül renginde yazı, `moduleInk`) | `#3E630C` | `#C3EF7C` |
+| gradyan ikinci durak (`gradientTo`) | `#65A30D` | `#65A30D` |
+| `wash` %7 / koyu %12,6 | `rgba(77,124,15,0.07)` | `rgba(163,230,53,0.126)` |
+| `soft` %12 / %21,6 (ikon kutusu, çip, aktif sekme hapı) | `rgba(77,124,15,0.12)` | `rgba(163,230,53,0.216)` |
+| `track` %16 / %28,8 (halka ve çubuk izi) | `rgba(77,124,15,0.16)` | `rgba(163,230,53,0.288)` |
+| `line` %24 / %43,2 (modül renkli kenar) | `rgba(77,124,15,0.24)` | `rgba(163,230,53,0.432)` |
 
-Başka modüle götüren düğme o modülün rengindedir (Modul-Kimligi §4): Mikro ders / Konuyu çalış / Ders → Dersler (`#0284C7`, düğme `#0277B3`, yazı açık `#015C8B` koyu `#88D7FB`); Test / 20 soru → Testler (`#4F46E5`, düğme `#4F46E5`, yazı açık `#473FCE` koyu `#ADB4FA`); Plana ekle → Ders Planı (`#0D9488`, düğme `#0C857A`, yazı açık `#09685F` koyu `#81E5D9`). Doğru yeşil (`success*`), yanlış kırmızı (`error*`), boş ve işaretli sarı (`warning*`); bunlar modül renginde gösterilmez.
+Başka modüle götüren düğme o modülün rengindedir (Modul-Kimligi §4): Konu anlatımı / Konuyu çalış / Ders → Dersler (`#0284C7`, düğme `#0277B3`, yazı açık `#015C8B` koyu `#88D7FB`); Test / 20 soru → Testler (`#4F46E5`, düğme `#4F46E5`, yazı açık `#473FCE` koyu `#ADB4FA`); Plana ekle → Ders Planı (`#0D9488`, düğme `#0C857A`, yazı açık `#09685F` koyu `#81E5D9`). Doğru yeşil (`success*`), yanlış kırmızı (`error*`), boş ve işaretli sarı (`warning*`); bunlar modül renginde gösterilmez.
 
 **Mobil sekme çubuğu (Modul-Kimligi §6).**
 
@@ -165,7 +196,7 @@ Toplam 50 çizim: mobil 22, web 15, tablet 13.
 
 1. `m-deneme-detay-bitti` (ya da Sonuçlar listesindeki satır) → **Sonuç belgesi** / **Result document** → sonuç belgesi [push] (`ExamResultDocument`). API: `GET StudentScoringExam/result-document/{scoringResultId}` (ya da `…/by-attempt/{attemptId}`; 202 = hazırlanıyor).
 2. **Çözümler** / **Solutions** → `m-deneme-cozumler` [push] → soru satırı → `m-deneme-cozum` [push, odak]. API: `GET StudentQuestionSolution/cards`, `GET StudentQuestionSolution/review/{examAttemptId}`.
-3. **Analiz** / **Analysis** → `m-deneme-analiz` [push]. Satırdaki **Mikro ders** → Dersler'de konunun mikro dersi [modül değişimi, push]; **20 soru** → Testler'de konunun testi; alttaki **Bu hafta planıma ekle** → Ders Planı'na görev ekler (API: study-plan `tasks` `POST`), başarıda kısa bildirim ve düğme "Planına eklendi" hâline geçer (metin çizilmedi).
+3. **Analiz** / **Analysis** → `m-deneme-analiz` [push]. Satırdaki **Konu anlatımı** → Dersler'de konunun anlatımı [modül değişimi, push]; **20 soru** → Testler'de konunun testi; alttaki **Bu hafta planıma ekle** → Ders Planı'na görev ekler (API: study-plan `tasks` `POST`), başarıda kısa bildirim ve düğme "Planına eklendi" hâline geçer (metin çizilmedi).
 4. `m-deneme-net` (bir denemenin neti) → konu satırında **Konuyu çalış** (Dersler) ve **Test** (Testler). API: `GET student/statistics/exams/{examAttemptId}?includeMikro=` (202 = işleniyor, yoklama en çok ~2 dk).
 5. Web: `w-deneme-detay-bitti` ve `w-deneme-sonuc` aynı eylemleri yan yana kolonlarda verir.
 
@@ -211,11 +242,13 @@ Toplam 50 çizim: mobil 22, web 15, tablet 13.
 
 ### 4.1 `m-deneme-vitrin` Denemeler · web: `w-deneme-vitrin`
 
+- **Modül istatistik kartı (sahip kararı, 17 Kasım 2026):** her modül vitrininde aynı çerçeveli "Bu hafta" kartı (`ModuleWeekCard`; uygulamada `ProfileModuleStatisticsCard` / `ModuleStatisticsCard`). Tanımı [04-Dersler.md](04-Dersler.md) §4.1 madde 3'tedir: süre, geçen haftaya göre değişim, son 7 günün çubukları, üç kutu; bu hafta çalışma yoksa tek sakin satır. Yeri: canlı deneme slaytının hemen altında; mobil tam genişlik, web üst satırın üçüncü sütunu (banner 1,5fr · devam eden 1fr · kart 1fr). Kutular: "Biten deneme" / "Exams done" 2; "Son net" / "Last net" "78,5 (+3,25)"; "Seri" / "Streak" "5 gün".
+
 - **Görseller:** `acik/mobil/m-deneme-vitrin.png`, `koyu/mobil/m-deneme-vitrin.png`, `en/acik/mobil/m-deneme-vitrin.png`; web `acik/web-panel/w-deneme-vitrin.png`, `koyu/web-panel/…`, `en/acik/web-panel/…`.
 - **Çerçeve:** `AppHeader` varsayılan (solda profil, sağda zil ve kırmızı sayaç rozeti; logo yok). Sekme çubuğu var, aktif yuva 1. Arka plan modül yıkaması (`mod.wash` → `colors.bg`, %34'te biter). Alt düğme alanı yok.
 - **Yerleşim (yukarıdan aşağı), `Content` boşluğu 14, kenar 18:**
   1. `PageTitle module="exam"`: üstte modül çipi (`Chip tone="module" size="sm"`, `exam` ikonu, "Denemeler" / "Practice exams"), altında başlık **Denemeler** / **Practice exams** (`title` rolü, 24 pt).
-  2. `ModuleSlide module="exam" height=186`: modül gradyanı (`#E8590C → #F59E0B`, 135°), köşe 26, iç boşluk 20, iki ışık dairesi ve saydam `exam` filigranı.
+  2. `ModuleSlide module="exam" height=186`: modül gradyanı (`#4D7C0F → #65A30D`, 135°), köşe 26, iç boşluk 20, iki ışık dairesi ve saydam `exam` filigranı.
      - Üst satır (`over`, beyaz %85): **Canlı · Türkiye geneli** / **Live · nationwide**.
      - Başlık (`hero` 24, beyaz): deneme adı, örn. **TYT Deneme 5** / **TYT Exam 5**.
      - Satır (`small`, beyaz %90): **Cumartesi 10:00 · 120 soru · 165 dk · 12.480 kişi** / **Saturday 10:00 · 120 questions · 165 min · 12,480 students**.
@@ -285,9 +318,9 @@ Toplam 50 çizim: mobil 22, web 15, tablet 13.
   4. `SectionTitle` **Net kaybettiğin konular** / **Topics that cost you**.
   5. `List`, satır `ListRow` (ok yok): Testler satırı `quiz` kutusu, **Problemler** / **Word problems**, **6 soru · 4 yanlış** / **6 questions · 4 wrong**, sağda `Button moduleSoft module="tests" sm` **Test** / **Quiz**; Dersler satırı `book` kutusu, **Üslü sayılar** / **Exponents**, **3 soru · 2 yanlış**, sağda `Button moduleSoft module="lessons" sm` **Ders** / **Lesson**.
 - **Veri:** sonuç kartı `StudentScoringExam/result-cards` (net, D/Y/B, yüzdelik, süre, tamamlanma tarihi); konular `student/statistics/exams/{examAttemptId}`.
-- **Etkileşimler:** Sonuç belgesi → belge [push]; Çözümler → `m-deneme-cozumler` [push] (ya da doğrudan bu denemenin kitapçığı `m-deneme-cozum`); Analiz → `m-deneme-analiz` / `m-deneme-net` [push]; Test → Testler konu testi; Ders → Dersler konu mikro dersi.
+- **Etkileşimler:** Sonuç belgesi → belge [push]; Çözümler → `m-deneme-cozumler` [push] (ya da doğrudan bu denemenin kitapçığı `m-deneme-cozum`); Analiz → `m-deneme-analiz` / `m-deneme-net` [push]; Test → Testler konu testi; Ders → Dersler'de konunun anlatımı.
 - **Hâller:** sonuç hazırlanıyorsa kartın yerinde `LoadingLogo` ve "Sonucun hazırlanıyor" (çizilmedi; bugün yoklama 20 × 3 sn); çözümler hazır değilse Çözümler düğmesi `disabled` ve altında neden.
-- **Web farkı (`w-deneme-detay-bitti`):** `ModuleHead tab=1` (Denemelerim hapı aktif), başlık deneme adı, alt satır **Tamamlandı · 3 Kasım · 52 dk**, sağda `Chip success check` **Tamamlandı** / **Done**. İki kolon `1fr 1.2fr`: solda `WCard` içinde 110 px halka (10 px `mod.color` kenar), `title` 24 **10,75** + `meta` net; sağında üç sayı (`title` 22); **Katılanların %41’inden iyi** / **Better than 41% of participants**; **Sonuç belgesi** (module lg block), **Çözümler** + **Analiz** (moduleSoft). Sağda `WCard` **Net kaybettiğin konular**: üç satır (`Tile` 40 + başlık + alt satır + `moduleSoft sm` düğme): Testler **Problemler** · **Test çöz** / **Solve a quiz**; Dersler **Üslü sayılar** · **Mikro ders** / **Micro-lesson**; Ders Planı (`calendar`) **Plana ekle** / **Add to plan** · **İkisini bu haftaya koy** / **Put both into this week** · **Ekle** / **Add**.
+- **Web farkı (`w-deneme-detay-bitti`):** `ModuleHead tab=1` (Denemelerim hapı aktif), başlık deneme adı, alt satır **Tamamlandı · 3 Kasım · 52 dk**, sağda `Chip success check` **Tamamlandı** / **Done**. İki kolon `1fr 1.2fr`: solda `WCard` içinde 110 px halka (10 px `mod.color` kenar), `title` 24 **10,75** + `meta` net; sağında üç sayı (`title` 22); **Katılanların %41’inden iyi** / **Better than 41% of participants**; **Sonuç belgesi** (module lg block), **Çözümler** + **Analiz** (moduleSoft). Sağda `WCard` **Net kaybettiğin konular**: üç satır (`Tile` 40 + başlık + alt satır + `moduleSoft sm` düğme): Testler **Problemler** · **Test çöz** / **Solve a quiz**; Dersler **Üslü sayılar** · **Konu anlatımı** / **Topic lesson**; Ders Planı (`calendar`) **Plana ekle** / **Add to plan** · **İkisini bu haftaya koy** / **Put both into this week** · **Ekle** / **Add**.
 - **Tablet:** web sayfasının kendisi.
 - **Kurallar (canlı hata #3, Registry notu):** biten denemede **Denemeye gir** ve **Hatırlat** yoktur. Sıra: önce sonuç, sonra Sonuç belgesi, Çözümler, Analiz, sonra net kaybettiren konular.
 
@@ -489,10 +522,10 @@ Ayrıntı ve kalem kuralları: [Tablet-Kalem.md](../Tablet-Kalem.md) §2, §3, �
 - **Çerçeve:** `AppHeader left="back"`, başlık **Eksik konu analizi** / **Gap analysis**. Sekme çubuğu, aktif yuva 4.
 - **Yerleşim (boşluk 12):**
   1. `Card tone="module"` iç boşluk 14: `sparkles` 20 `mod.color` ve `small` `ink2` **Bu 3 konuyu bu hafta çalışırsan yaklaşık 5 net kazanabilirsin.** / **Study these 3 this week and gain about 5 points.**
-  2. `List`, her satır iç boşluk 14, üste hizalı: sıra kutusu 28 × 28, köşe 9, `errorSoft`, `headline` 13 `errorInk` (**1**); içerik (boşluk 6): üst satır ad (`headline`, **Problemler** / **Problems**) ve sağda `headline` `errorInk` **−3,25 net**; `small` **Matematik · yüzde ve oran** / **Maths · ratios**; çip satırı (boşluk 6): `Chip module="lessons" book sm` **Mikro ders** / **Micro-lesson**, `Chip module="tests" quiz sm` **20 soru** / **20 questions**.
+  2. `List`, her satır iç boşluk 14, üste hizalı: sıra kutusu 28 × 28, köşe 9, `errorSoft`, `headline` 13 `errorInk` (**1**); içerik (boşluk 6): üst satır ad (`headline`, **Problemler** / **Problems**) ve sağda `headline` `errorInk` **−3,25 net**; `small` **Matematik · yüzde ve oran** / **Maths · ratios**; çip satırı (boşluk 6): `Chip module="lessons" book sm` **Konu anlatımı** / **Topic lesson**, `Chip module="tests" quiz sm` **20 soru** / **20 questions**.
   3. `Button size="lg" block icon="plus"` **Bu hafta planıma ekle** / **Add to this week’s plan** (çizimde birincil düğme; modül içinde `mod.action` dolgu).
-- **Veri:** `student/statistics/exams/{examAttemptId}` (konu, ders, kaybedilen net, D/Y/B); "kazanabilirsin" tahmini: API'de doğrulanmalı (yoksa cümle gösterilmez). Mikro ders hedefi: konu → Dersler mikro ders eşlemesi (`lessonMikroId → workMikroId`, UIUX-Gecmis §7 açık soru). Test hedefi: Testler konu testi; yoksa çip pasif ve "Bu konunun testi henüz yok."
-- **Etkileşimler:** Mikro ders → Dersler mikro ders [push, modül değişimi]; 20 soru → Testler test başlangıcı; planıma ekle → `POST` study-plan `tasks` (konu başına görev; kaynak `ReasonCode` deneme analizi), `loading`, başarıda düğme `success` görünümünde **Planına eklendi** (doğrulanmadı) ve kısa bildirim; ikinci basış yeni görev açmaz.
+- **Veri:** `student/statistics/exams/{examAttemptId}` (konu, ders, kaybedilen net, D/Y/B); "kazanabilirsin" tahmini: API'de doğrulanmalı (yoksa cümle gösterilmez). Konu anlatımı hedefi: konu → Dersler bölüm eşlemesi (`lessonMikroId → workMikroId`, UIUX-Gecmis §7 açık soru). Test hedefi: Testler konu testi; yoksa çip pasif ve "Bu konunun testi henüz yok."
+- **Etkileşimler:** Konu anlatımı → Dersler'de konu [push, modül değişimi]; 20 soru → Testler test başlangıcı; planıma ekle → `POST` study-plan `tasks` (konu başına görev; kaynak `ReasonCode` deneme analizi), `loading`, başarıda düğme `success` görünümünde **Planına eklendi** (doğrulanmadı) ve kısa bildirim; ikinci basış yeni görev açmaz.
 - **Hâller:** işleniyor (202) → `LoadingLogo` ve "Analizin hazırlanıyor"; kayıp konu yoksa `StateBlock tone="success"` "Bu denemede net kaybettiren konu yok" (doğrulanmadı).
 - **Kurallar:** analiz eylemle biter (UIUX-Rehberi §5.4). Çip renkleri hedef modülün rengidir.
 
@@ -580,7 +613,7 @@ Ayrıntı ve kalem kuralları: [Tablet-Kalem.md](../Tablet-Kalem.md) §2, §3, �
 - **Yerleşim (boşluk 12):**
   1. `Card tone="soft"` iç boşluk 18, boşluk 6: `over` **İlk haftan** / **Your first week**; `title` 21 **Grafiklerin ilk çalışmanla dolmaya başlar** / **Your charts fill in from your first session**; `small` **Bu üç adımdan sonra çalışma süren, doğru oranın ve net gelişimin burada.** / **After these three steps your time, accuracy and nets appear here.**; `Bar` 8 pt (1/3); `meta` **1 / 3 tamamlandı** / **1 / 3 done**.
   2. Üç adım kartı (iç boşluk 14, köşe 20, `card`, `line` kenar): `Tile` 42 modül rengi; başlık `headline` ve `small` alt satır; sağda `Button moduleSoft sm` hedef modül renginde. Biten adım %65 opak, başlığın üstü çizili, sağda `checkCircle` 22 `successInk`.
-     - Dersler: **İlk mikro dersini bitir** / **Finish your first micro-lesson** · **Sözcükte Anlam · 4 dk** · (bitti).
+     - Dersler: **İlk konuna başla** / **Start your first topic** · **Sözcükte Anlam · 33 dk** · (bitti).
      - Testler: **Bir test çöz** / **Solve a quiz** · **Temel Kavramlar · Kolay · 20 soru** · **Başla** / **Start**.
      - Denemeler: **İlk denemene katıl** / **Join your first exam** · **TYT Deneme 5 · Cumartesi 10:00** · **Hatırlat** / **Remind**.
 - **Veri:** `engagement/today` ve istatistik özeti (ilk hafta = yeterli veri yok); adım hedefleri öneri uçlarından.
@@ -665,12 +698,12 @@ Ayrıntı ve kalem kuralları: [Tablet-Kalem.md](../Tablet-Kalem.md) §2, §3, �
 | D17 | birim | ikisi | deneme ekle | 32 D 5 Y, 40 soru; 38 D 5 Y | Net 30,75 (EN 30.75); ikincide değer 35'e sınırlanır ya da alan hatası |
 | D18 | e2e | ikisi | deneme ekle | Kaydet | `POST student/external-exams` bir kez; Sonuçlar'da çizgili sütun |
 | D19 | görsel | ikisi | `m-deneme-sonuclar`, `-bos` | Dolu ve boş | NetBars değer sütunun üstünde, dışarıdaki çizgili; boşta sıfır grafik yok |
-| D20 | e2e | ikisi | analiz | Mikro ders, 20 soru, Bu hafta planıma ekle | Dersler ve Testler doğru konuyu açar; plan görevi bir kez oluşur |
+| D20 | e2e | ikisi | analiz | Konu anlatımı, 20 soru, Bu hafta planıma ekle | Dersler ve Testler doğru konuyu açar; plan görevi bir kez oluşur |
 | D21 | bileşen | ikisi | çözümler | Yanlışlar süzgeci | Yalnız yanlış sorular; renk yanında sözcük; ekran okuyucu "46, yanlış" |
 | D22 | görsel | ikisi | `m-istatistik`, `w-istatistik`, `m-istatistik-ilk` | Dolu ve ilk hafta | Yüzde TR `%62`, EN `62%`; ilk haftada üç adım, sıfır yok |
 | D23 | erişilebilirlik | ikisi | çözme, teslim | VoiceOver / TalkBack ile bir deneme baştan sona | Şıklar "A, 24, seçili" okunur; ikon düğmelerin adı var; sayaç son 1 dk'da bir kez duyurulur |
 | D24 | erişilebilirlik | ikisi | tümü | En büyük yazı boyutu, iPhone SE | Soru, şık, alt çubuk ve alt sayfa kesilmez; liste sekme çubuğunun altına girmez |
-| D25 | erişilebilirlik | ikisi | tümü | Kontrast ölçümü | Metin 4,5:1 (`mod.ink` açık `#A23E08`, koyu `#FCB380`; düğme `#C54C0A` beyazla 4,8:1) |
+| D25 | erişilebilirlik | ikisi | tümü | Kontrast ölçümü | Metin 4,5:1 (`mod.ink` açık `#3E630C`, koyu `#C3EF7C`; düğme `#4D7C0F` beyazla 5,0:1) |
 | D26 | görsel | tablet | `t-deneme-*` | Yatay/dikey, kalemli/kalemsiz | Tablet-Kalem.md kuralları; ortak sayfalar web sayfasıyla aynı |
 | D27 | e2e | ikisi | detay | Silinmiş deneme bağlantısı | Modül kökü ve "Bu içerik artık yok" kısa bildirimi |
 
@@ -682,8 +715,8 @@ Kaynak: 17 Kasım 2026 okuması (değiştirilmedi). Mobil kök `C:\Users\onurc\D
 
 **Çözme, çıkış, süre (en önemlileri)**
 
-1. **Mobilde çıkış denemeyi iptal ediyor.** Başlıktaki `x` "Denemeyi iptal et" penceresini, diğer geri yolları (`beforeRemove`) "Teslim etmeden çıkarsan deneme iptal olur; kullandığın hak geri gelmez." penceresini açıyor; seçenekler Vazgeç / İptal et ve çık / Tamamla. Kurallar kartı da aynı şeyi söylüyor (`exam.list.rules.exitCancels`, `presentation/components/ExamStudentRulesCard.tsx`). Çizim ve Navigasyon §4: ara ver, sonra kaldığın yerden devam. API devamı destekliyor (`GET student/exams/attempts/{id}/state`).
-2. **Mobilde arka plan 5 dk sonra denemeyi bitiriyor.** `EXAM_BACKGROUND_GRACE_MS = 5 * 60_000` (`model/session/examStudentBackgroundGrace.ts`); süre dolunca `auto_away` ile otomatik tamamlanıyor. Çizim: "süre arka planda işler", çıkıp dönülebilir.
+1. **Mobilde çıkış denemeyi iptal ediyor.** Başlıktaki `x` "Denemeyi iptal et" penceresini, diğer geri yolları (`beforeRemove`) "Teslim etmeden çıkarsan deneme iptal olur; kullandığın hak geri gelmez." penceresini açıyor; seçenekler Vazgeç / İptal et ve çık / Tamamla. Kurallar kartı da aynı şeyi söylüyor (`exam.list.rules.exitCancels`, `presentation/components/ExamStudentRulesCard.tsx`). Çizim ve Navigasyon §4: ara ver, sonra kaldığın yerden devam. API devamı destekliyor (`GET student/exams/attempts/{id}/state`). **Karar (sahip, 17 Kasım 2026):** çizim geçerli; mobil web gibi kaldığı yerden devam ettirir, "Ara ver" penceresi açılır, iptal ana yol değildir (web deposu `docs/UIUX/Tasarim-Uyum-Plani.md` §9.1 madde 3).
+2. **Mobilde arka plan 5 dk sonra denemeyi bitiriyor.** `EXAM_BACKGROUND_GRACE_MS = 5 * 60_000` (`model/session/examStudentBackgroundGrace.ts`); süre dolunca `auto_away` ile otomatik tamamlanıyor. Çizim: "süre arka planda işler", çıkıp dönülebilir. **Karar (17 Kasım 2026):** 5 dakika sonra otomatik bitirme madde 1'deki kararla birlikte kalkar.
 3. **Web'de çevrimdışı kuyruk yok.** Cevap seçilince hemen gönderiliyor (2 deneme, 400 ms); başarısızsa seçim geri alınıyor ve "Bağlantı yok. Tekrar deneyin." çıkıyor (`exam-sessions/…/useExamSolveSession.ts`). Çizimdeki "Bağlantı koparsa cevapların saklanır" ve `m-deneme-baglanti` davranışı web'de yok. Mobilde kuyruk var (`model/session/pendingExamSolutions.ts`, `model/transport/submitExamSolutionReliable.ts`).
 4. **Web'de `beforeunload` yok**; sekme kapatma korumasız (Navigasyon §6.2 ile aynı).
 5. **Web çıkış düğmesi "Kaydet ve çık"** (`exam-sessions.ts` `pause`); çizimde **Ara ver**. Davranış (süre işler, devam edilir) çizimle uyumlu; ara ver penceresi yok, doğrudan Denemelerim'e gidiyor.
@@ -706,7 +739,7 @@ Kaynak: 17 Kasım 2026 okuması (değiştirilmedi). Mobil kök `C:\Users\onurc\D
 **Sonuçlar, analiz, çözümler**
 
 18. **Web Sonuçlar'da net sütunları yok:** "Net eğrin" çizgi grafiği (`Sparkline`) ve ÖSYM tarzı tablo var; üç giriş satırı (Sınavika denemelerim, Analizlerim, Deneme ekle) yerine başlıkta **Deneme ekle** düğmesi (`exam-results/pages/ExamResultsPage.tsx`). Mobil sütunlar çizimle uyumlu (`ExamResultsNetBarsCard.tsx`), ama dışarıdaki denemeler "Son sonuçlar" listesinde satır olarak yok.
-19. **Analizden plana ekleme mobilde yok** (`statistics/screens/*`: yalnız "Konuyu çalış" ve "Test"). Web'de "İlk {count} konuyu planıma ekle" var. Mobil analizde "Mikro ders / 20 soru" çipleri ve "yaklaşık 5 net" ipucu yok.
+19. **Analizden plana ekleme mobilde yok** (`statistics/screens/*`: yalnız "Konuyu çalış" ve "Test"). Web'de "İlk {count} konuyu planıma ekle" var. Mobil analizde "Konu anlatımı / 20 soru" çipleri ve "yaklaşık 5 net" ipucu yok.
 20. **Analiz çipindeki soru sayısı:** Düzeltildi (17 Kasım 2026): "20 soru" (Testler'de bir seviye testi 20 sorudur); UIUX-Rehberi §5.4 buna göre güncellendi. Web çizimi ve kod "Test" yazıyor; "20 soru" olmalı.
 21. **Web sonuç detayında net halkası ve derslere göre çubuklar yok**; ÖSYM belgesi ve konu listesi var (`exam-results/pages/ExamResultDetailPage.tsx`). Çizimdeki **Karşılaştır** yok.
 22. **Çözümlerde SinoAI'ye sor yok** (iki istemci). Mobil kitapçıkta Tümü / Yanlışlar / Boşlar süzgeci yok (`solutions/screens/ExamSolutionBookletReviewScreen.tsx`). Web çözümde kalem notları gösterilmiyor (UIUX-Gecmis §7 açık iş).
@@ -715,7 +748,7 @@ Kaynak: 17 Kasım 2026 okuması (değiştirilmedi). Mobil kök `C:\Users\onurc\D
 **İstatistikler**
 
 24. **Web İstatistiklerim'de "PDF olarak al" yok** (`statistics/pages/StatisticsPage.tsx`).
-25. **Mobil İstatistiklerim'de modül halkası (donut) var**; mobil çizimde yok (web çiziminde var). Mobil ilk hafta adım metni "İlk konunu çalış", çizim "İlk mikro dersini bitir"; mobilde üç adımın düğmesi de **Başla** (çizimde Denemeler adımı **Hatırlat**).
+25. **Mobil İstatistiklerim'de modül halkası (donut) var**; mobil çizimde yok (web çiziminde var). Mobil ilk hafta adım metni "İlk konunu çalış", çizim "İlk konuna başla"; mobilde üç adımın düğmesi de **Başla** (çizimde Denemeler adımı **Hatırlat**).
 
 **Çizim içi küçük farklar (olgu)**
 

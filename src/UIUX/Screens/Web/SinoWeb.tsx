@@ -1,7 +1,8 @@
 import React from 'react';
 import {useColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
-import {Chip, List, ListRow, Segmented, Stack, Text} from '../../Parts/Shared';
+import {Card, Chip, List, ListRow, Segmented, Stack, Text} from '../../Parts/Shared';
+import {StateBlock} from '../../Parts/Study';
 import {Panel} from '../../Parts/Web';
 import {UI_SHADOW} from '../../Tokens';
 
@@ -130,7 +131,7 @@ export const WebSinoChatScreen: React.FC = () => {
 							{t('Bu konu son denemende 1 net kaybettirdi. İstersen benzer 3 soruyla pekiştirelim.', 'This cost you 1 point last exam. Want 3 similar questions?')}
 						</Text>
 						<Stack row gap={16}>
-							{(['bookmark', 'refresh', 'cards', 'quiz'] as UIIconName[]).map((icon) => (
+							{(['refresh', 'copy', 'upload', 'thumbUp', 'thumbDown'] as UIIconName[]).map((icon) => (
 								<Icon key={icon} name={icon} size={18} color={colors.muted} />
 							))}
 						</Stack>
@@ -170,7 +171,7 @@ export const WebSinoStudyScreen: React.FC = () => {
 						{t('Bugün ne üretelim?', 'What shall we make today?')}
 					</Text>
 					<Text role="small" size={14} align="center">
-						{t('Kaynağını seç: notun, PDF’in ya da bir konu. Bu ay 4 / 20 üretim.', 'Pick a source: notes, a PDF or a topic. 4 / 20 this month.')}
+						{t('Kaynağını seç: notun, PDF’in ya da bir konu. Kullanım %40.', 'Pick a source: notes, a PDF or a topic. Used 40%.')}
 					</Text>
 				</Stack>
 				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10}}>
@@ -200,16 +201,42 @@ export const WebSinoLibraryScreen: React.FC = () => {
 						{t('Kütüphanen', 'Your library')}
 					</Text>
 					<div style={{width: 400}}>
-						<Segmented items={[t('Tümü', 'All'), t('Test · 4', 'Quizzes · 4'), t('Deste · 2', 'Decks · 2'), t('Özet · 6', 'Notes · 6')]} />
+						<Segmented items={[t('Tümü · 13', 'All · 13'), t('Test · 4', 'Quizzes · 4'), t('Deste · 2', 'Decks · 2'), t('Özet · 6', 'Notes · 6')]} />
 					</div>
 				</Stack>
 				<List>
-					<ListRow module="tests" title={t('Mol kavramı testi', 'Mole quiz')} subtitle={t('10 soru · bugün · Testler’de çöz', '10 questions · today')} />
-					<ListRow module="flashcards" title={t('Osmanlı kartları', 'Ottoman cards')} subtitle={t('24 kart · Bilgi Kartları’na eklendi', '24 cards · in Flashcards')} />
-					<ListRow module="studyPlan" title={t('Türev haftalık planı', 'Derivatives weekly plan')} subtitle={t('5 gün · Ders Planı’na eklendi', '5 days · added to plan')} />
-					<ListRow icon="note" plainIcon title={t('Hücre bölünmesi özeti', 'Cell division notes')} subtitle={t('PDF · 2 sayfa', 'PDF · 2 pages')} />
-					<ListRow module="exam" title={t('Kişisel deneme · Matematik', 'Personal exam · Maths')} subtitle={t('30 soru · Denemeler’de çöz', '30 questions')} />
+					<ListRow module="tests" title={t('Mol kavramı testi', 'Mole quiz')} subtitle={t('10 soru · Kimya · bugün', '10 questions · Chemistry · today')} />
+					<ListRow module="flashcards" title={t('Osmanlı kartları', 'Ottoman cards')} subtitle={t('24 kart · Tarih · dün', '24 cards · History · yesterday')} />
+					<ListRow module="studyPlan" title={t('Türev haftalık planı', 'Derivatives weekly plan')} subtitle={t('5 gün · Matematik · 14 Eki', '5 days · Maths · 14 Oct')} />
+					<ListRow icon="note" plainIcon title={t('Hücre bölünmesi özeti', 'Cell division notes')} subtitle={t('Özet · Biyoloji · 12 Eki', 'Notes · Biology · 12 Oct')} />
+					<ListRow module="exam" title={t('Kişisel deneme · Matematik', 'Personal exam · Maths')} subtitle={t('30 soru · Matematik · 10 Eki', '30 questions · Maths · 10 Oct')} />
 				</List>
+			</div>
+		</SinoFrame>
+	);
+};
+
+/** The monthly quota (shared with Akıllı Özet) is used up: the block sits in the chat column; the composer is off. */
+export const WebSinoLimitScreen: React.FC = () => {
+	const t = useT();
+	const colors = useColors();
+	return (
+		<SinoFrame>
+			<div style={{width: 720, flex: 1, display: 'flex', flexDirection: 'column', gap: 16, paddingTop: 40}}>
+				<StateBlock module="sinoAi" icon="clock" title={t('Bu ayın SinoAI hakkın doldu', 'This month’s SinoAI quota is used up')} text={t('1 Aralık’ta yenilenir; hak Akıllı Özet ile ortaktır. Sohbetlerin ve ürettiklerin kütüphanende duruyor.', 'It renews on 1 December and is shared with Smart Summary. Your chats and work stay in your library.')} action={t('Kütüphaneme git', 'Open my library')} />
+				<Card padding={16} tone="soft">
+					<Stack gap={6}>
+						<Text role="headline">{t('Bu arada', 'Meanwhile')}</Text>
+						<Text role="small" color={colors.ink2}>
+							{t('Takıldığın konunun anlatımı ya da testi hakkından düşmez.', 'Topic lessons and quizzes don’t use this quota.')}
+						</Text>
+					</Stack>
+				</Card>
+				<div style={{flex: 1}} />
+				<div data-ui="disabled" style={{height: 56, borderRadius: 28, background: colors.line2, display: 'flex', alignItems: 'center', padding: '0 22px', opacity: 0.6}}>
+					<Text role="small">{t('1 Aralık’ta yeniden sorabilirsin', 'You can ask again on 1 December')}</Text>
+				</div>
+				<Disclaimer />
 			</div>
 		</SinoFrame>
 	);

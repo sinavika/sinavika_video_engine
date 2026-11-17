@@ -4,7 +4,7 @@ import {Icon, type UIIconName} from '../../Icons';
 import {AppHeader, Content, Phone, SectionTitle} from '../../Parts/Mobile';
 import {Card, List, ListRow, Stack, Text, Toggle} from '../../Parts/Shared';
 import {AndroidCard, AndroidShade, AppIcon, IslandCompact, IslandExpanded, IslandMinimal, LiveActivity, LockScreen, ModuleThumb, Notice, ProgressSegments, Specimen, SysRing, useMaterial, useModule, useModuleText, useShade} from '../../Parts/System';
-import {moduleAction} from '../../ModuleIdentity';
+import {alpha, moduleAction, MODULES} from '../../ModuleIdentity';
 
 /**
  * Notifications, Live Activities, the Dynamic Island, Android 16 Live Updates
@@ -172,16 +172,16 @@ export const IslandSheetScreen: React.FC = () => {
 									</Stack>
 								</IslandExpanded>
 							</Specimen>
-							<Specimen label={t('Genişletilmiş · mikro ders', 'Expanded · micro-lesson')} note={t('Adım ilerlemesi ve kaldığın yer; bitince “Tamamlandı” ile kapanır.', 'Step progress and where you are; closes with “Done” at the end.')}>
+							<Specimen label={t('Genişletilmiş · konu', 'Expanded · topic')} note={t('Adım ilerlemesi ve kaldığın yer; bitince “Tamamlandı” ile kapanır.', 'Step progress and where you are; closes with “Done” at the end.')}>
 								<IslandExpanded>
 									<Stack row gap={12}>
-										<SysRing value={0.6} size={46} stroke={5} color={lessons}>
-											<White size={13}>3/5</White>
+										<SysRing value={0.13} size={46} stroke={5} color={lessons}>
+											<White size={13}>4/30</White>
 										</SysRing>
 										<Stack grow gap={2}>
-											<White size={15}>{t('Mecaz anlam', 'Figurative meaning')}</White>
+											<White size={15}>{t('Sözcükte Anlam', 'Word meaning')}</White>
 											<White size={13} weight={600} color="rgba(255,255,255,0.7)">
-												{t('Sözcükte Anlam · 4 dk kaldı', 'Word meaning · 4 min left')}
+												{t('Türkçe · 29 dk kaldı', 'Turkish · 29 min left')}
 											</White>
 										</Stack>
 										<div style={{height: 34, padding: '0 14px', borderRadius: 17, background: moduleAction('lessons'), display: 'flex', alignItems: 'center'}}>
@@ -261,7 +261,7 @@ export const RichNotificationsScreen: React.FC = () => {
 				title={t('Deneme sonucun hazır', 'Your exam result is ready')}
 				body={t('TYT Deneme 5: 78,5 net, geçen denemeden +6,5. En çok Geometri’de kazandın.', 'TYT Exam 5: 78.5 nets, +6.5 on last time. Your biggest gain: Geometry.')}
 				thumb={
-					<div style={{width: 52, height: 52, borderRadius: 13, background: 'rgba(232, 89, 12, 0.14)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+					<div style={{width: 52, height: 52, borderRadius: 13, background: alpha(MODULES.exam.color.light, 0.14), display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 						<MiniBars values={[0.55, 0.64, 0.72, 0.84]} color={exam} />
 					</div>
 				}
@@ -293,7 +293,7 @@ export const ExpandedNotificationScreen: React.FC = () => {
 					<div style={{position: 'absolute', inset: 0, background: mode === 'dark' ? 'rgba(0,0,0,0.45)' : 'rgba(255,255,255,0.35)', backdropFilter: 'blur(14px)'}} />
 					<Stack gap={10} style={{position: 'absolute', top: 120, left: 12, right: 12}}>
 						<div style={{borderRadius: 26, background: m.bg, overflow: 'hidden'}}>
-							<Stack gap={12} style={{padding: 16, background: mode === 'dark' ? 'rgba(232, 89, 12, 0.16)' : 'rgba(232, 89, 12, 0.08)'}}>
+							<Stack gap={12} style={{padding: 16, background: alpha(MODULES.exam.color.light, mode === 'dark' ? 0.16 : 0.08)}}>
 								<Stack row justify="space-between" align="flex-end">
 									<Stack gap={0}>
 										<Text role="meta" size={12} color={exam}>
@@ -411,7 +411,7 @@ export const AndroidLiveUpdateScreen: React.FC = () => {
 				</Stack>
 			</div>
 			<AndroidCard first icon="exam" color={exam} app="Sınavika" time={t('şimdi', 'now')} title={t('Deneme sonucun hazır', 'Your exam result is ready')} body={t('TYT Deneme 5: 78,5 net, +6,5.', 'TYT Exam 5: 78.5 nets, +6.5.')}>
-				<div style={{height: 92, borderRadius: 16, background: 'rgba(232, 89, 12, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+				<div style={{height: 92, borderRadius: 16, background: alpha(MODULES.exam.color.light, 0.12), display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 					<MiniBars values={[0.48, 0.58, 0.66, 0.74, 0.86]} color={exam} height={60} />
 				</div>
 			</AndroidCard>
@@ -474,7 +474,7 @@ export const HomeWidgetsScreen: React.FC = () => {
 	const plan = useModule('studyPlan');
 	const examText = useModuleText('exam');
 	const tasks: [string, string, boolean][] = [
-		[t('Mecaz anlam', 'Figurative meaning'), t('Dersler · 4 dk', 'Lessons · 4 min'), true],
+		[t('Sözcükte Anlam', 'Word meaning'), t('Dersler · 4 dk', 'Lessons · 4 min'), true],
 		[t('Problemler · Orta', 'Problems · Medium'), t('Testler · 20 soru', 'Tests · 20 questions'), false],
 		[t('12 kart', '12 cards'), t('Bilgi Kartları · 5 dk', 'Flashcards · 5 min'), false],
 	];
@@ -611,7 +611,7 @@ export const AndroidWidgetsScreen: React.FC = () => {
 	const wallpaper = dark ? 'linear-gradient(170deg, #3B2A22 0%, #17110E 60%, #0C0907 100%)' : 'linear-gradient(170deg, #FFD9C0 0%, #F7B98F 45%, #C9A28A 100%)';
 	const widget: React.CSSProperties = {background: surface, borderRadius: 28, padding: 16, boxSizing: 'border-box'};
 	const tasks: [string, string, boolean][] = [
-		[t('Mecaz anlam', 'Figurative meaning'), t('Dersler · 4 dk', 'Lessons · 4 min'), true],
+		[t('Sözcükte Anlam', 'Word meaning'), t('Dersler · 4 dk', 'Lessons · 4 min'), true],
 		[t('Problemler · Orta', 'Problems · Medium'), t('Testler · 20 soru', 'Tests · 20 questions'), false],
 		[t('12 kart', '12 cards'), t('Bilgi Kartları · 5 dk', 'Flashcards · 5 min'), false],
 	];

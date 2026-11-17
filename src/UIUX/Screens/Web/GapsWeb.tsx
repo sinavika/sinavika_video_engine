@@ -2,11 +2,12 @@ import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {type ModuleKey} from '../../ModuleIdentity';
-import {Bar, Button, Chip, Stack, Text, Tile} from '../../Parts/Shared';
+import {Bar, Button, Card, Chip, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
 import {EntryRow} from '../../Parts/Study';
 import {Grid, Immersive, ModuleHead, Panel, WCard} from '../../Parts/Web';
-import {EmbedStep, WORK_LESSONS, WORK_TOPICS} from '../Mobile/Lessons';
+import {EmbedStep, WORK_TOPICS} from '../Mobile/Lessons';
 import {LessonReviewSessionScreen} from '../Mobile/Gaps';
+import {FLAGGED_QUESTIONS, SOLVED_QUIZZES} from '../Mobile/Learn';
 import {SUMMARY_TABS} from './AssistWeb';
 import {Back, Main, StudyPlayer} from './LessonsWeb';
 
@@ -121,41 +122,13 @@ export const WebExamStartScreen: React.FC = () => {
 	);
 };
 
-/* ------------------------------------------------------------------ Dersler · dersler listesi, tekrar oturumu */
-
-export const WebLessonsListScreen: React.FC = () => {
-	const t = useT();
-	const mod = useModuleColors('lessons');
-	return (
-		<Panel active="lessons">
-			<ModuleHead module="lessons" tab={0} title={t('Dersler', 'Lessons')} sub={t('TYT · 10 ders · 168 konu', 'TYT · 10 subjects · 168 topics')} />
-			<Grid columns="1fr 1fr 1fr">
-				{WORK_LESSONS.map(([tr, en, done, total, topics]) => (
-					<WCard key={tr}>
-						<Stack gap={10}>
-							<Stack row gap={12}>
-								<Tile module="lessons" icon="book" size={42} />
-								<Stack grow gap={1}>
-									<Text role="headline" size={16}>
-										{t(tr, en)}
-									</Text>
-									<Text role="small">{t(`${topics} konu`, `${topics} topics`)}</Text>
-								</Stack>
-							</Stack>
-							<Bar value={Math.max(done / total, 0.02)} color={mod.color} track={mod.track} height={7} />
-							<Text role="meta">{t(`${done} / ${total} mikro ders`, `${done} / ${total} micro-lessons`)}</Text>
-						</Stack>
-					</WCard>
-				))}
-			</Grid>
-		</Panel>
-	);
-};
+/* ------------------------------------------------------------------ Dersler · tekrar oturumu */
 
 export const WebLessonReviewSessionScreen: React.FC = () => (
 	<StudyPlayer
-		done={1}
-		step="tekrar 2 / 5"
+		step={2}
+		review={5}
+		section="Tekrar"
 		nav={
 			<>
 				<Back>Tekrarı kapat</Back>
@@ -218,7 +191,7 @@ export const WebSummaryHistoryScreen: React.FC = () => {
 	const t = useT();
 	return (
 		<Panel active="smartSummary">
-			<ModuleHead module="smartSummary" tab={3} tabs={SUMMARY_TABS(t)} title={t('Geçmiş analizler', 'Past analyses')} sub={t('Bu ay 7 / 30', '7 / 30 this month')} />
+			<ModuleHead module="smartSummary" tab={3} tabs={SUMMARY_TABS(t)} title={t('Geçmiş analizler', 'Past analyses')} sub={t('Kullanım %40', 'Used 40%')} />
 			<WCard>
 				{[
 					[t('Türev · zincir kuralı', 'Derivative · chain rule'), t('Matematik · soru analizi · 3 Kas', 'Maths · question · 3 Nov'), 'image'],
@@ -348,7 +321,7 @@ export const WebExamSolutionsListScreen: React.FC = () => {
 	const t = useT();
 	return (
 		<Panel active="exam">
-			<ModuleHead module="exam" tab={2} title={t('Soru çözümleri', 'Solutions')} sub={t('Girdiğin denemelerin soruları, cevapların ve çözümleri', 'Questions, your answers and solutions')} />
+			<ModuleHead module="exam" tab={3} title={t('Soru çözümleri', 'Solutions')} sub={t('Girdiğin denemelerin soruları, cevapların ve çözümleri', 'Questions, your answers and solutions')} />
 			<WCard>
 				{[
 					[t('TYT Deneme 5', 'TYT Exam 5'), t('19 Ekim · 12 yanlış, 6 boş', '19 Oct · 12 wrong, 6 blank')],
@@ -373,34 +346,88 @@ export const WebExamSolutionsListScreen: React.FC = () => {
 	);
 };
 
-export const WebTestSolutionsListScreen: React.FC = () => {
+/**
+ * Web Çözümler, same as the phone (owner, 17 Nov 2026): filters Tümü ·
+ * Yanlışlar · N · İşaretli and the review-quiz card; each row has
+ * "Yanlışlarım" on its right. A solved review quiz is "Konu · Tekrar".
+ * İşaretli rows open the question in Yanlışlarım under "Tümü"; one of an
+ * unfinished quiz is locked: "Test bitince açılır".
+ */
+const WebSolutions: React.FC<{flagged?: boolean}> = ({flagged}) => {
 	const t = useT();
+	const colors = useColors();
 	return (
 		<Panel active="tests">
 			<ModuleHead module="tests" tab={2} title={t('Çözümler', 'Solutions')} sub={t('Çözdüğün testler; yanlışlarına tek tıkla dön', 'Your solved quizzes')} />
-			<WCard>
-				{[
-					[t('Temel Kavramlar · Kolay', 'Basics · Easy'), t('5 / 20 doğru · 3 Kas', '5 / 20 · 3 Nov')],
-					[t('Fizik Bilimine Giriş · Kolay', 'Intro to physics · Easy'), t('14 / 20 doğru · 3 Kas', '14 / 20 · 3 Nov')],
-					[t('Problemler · Orta', 'Problems · Medium'), t('16 / 20 doğru · 2 Kas', '16 / 20 · 2 Nov')],
-				].map(([title, sub]) => (
-					<Row
-						key={title}
-						module="tests"
-						icon="quiz"
-						title={title}
-						sub={sub}
-						right={
-							<Button tone="moduleSoft" module="tests" size="sm">
-								{t('Yanlışlarım', 'My mistakes')}
+			<Stack gap={16}>
+				<WCard>
+					<Stack gap={8}>
+						<div style={{maxWidth: 460}}>
+							<Segmented items={[t('Tümü', 'All'), t('Yanlışlar · 9', 'Wrong · 9'), t('İşaretli · 3', 'Flagged · 3')]} active={flagged ? 2 : 0} module="tests" />
+						</div>
+						<div>
+							{flagged
+								? FLAGGED_QUESTIONS.map(([tr, en, qTr, qEn, open]) => (
+										<Row
+											key={tr}
+											module="tests"
+											icon="bookmark"
+											title={t(tr, en)}
+											sub={t(qTr, qEn)}
+											right={
+												open ? (
+													<Button tone="moduleSoft" module="tests" size="sm">
+														{t('Soruyu aç', 'Open question')}
+													</Button>
+												) : (
+													<Stack row gap={5}>
+														<Icon name="lock" size={14} color={colors.subtle} />
+														<Text role="meta">{t('Test bitince açılır', 'Opens when the quiz ends')}</Text>
+													</Stack>
+												)
+											}
+										/>
+									))
+								: SOLVED_QUIZZES.map(([tr, en, score, dayTr, dayEn]) => (
+										<Row
+											key={tr}
+											module="tests"
+											icon={tr.endsWith('Tekrar') ? 'refresh' : 'quiz'}
+											title={t(tr, en)}
+											sub={`${score} ${t('doğru', 'right')} · ${t(dayTr, dayEn)}`}
+											right={
+												<Button tone="moduleSoft" module="tests" size="sm">
+													{t('Yanlışlarım', 'My mistakes')}
+												</Button>
+											}
+										/>
+									))}
+						</div>
+					</Stack>
+				</WCard>
+				{flagged ? null : (
+					<Card tone="module" module="tests" padding={18}>
+						<Stack row gap={14}>
+							<Tile module="tests" icon="refresh" size={40} />
+							<Stack grow gap={1}>
+								<Text role="headline">{t('Yanlışlarından tekrar testi', 'Review quiz from your mistakes')}</Text>
+								<Text role="small">{t('Yanlışlarından 10 soruluk bir tekrar testi hazır.', 'A 10-question review quiz from your mistakes is ready.')}</Text>
+							</Stack>
+							<Button tone="module" module="tests">
+								{t('Başla', 'Start')}
 							</Button>
-						}
-					/>
-				))}
-			</WCard>
+						</Stack>
+					</Card>
+				)}
+			</Stack>
 		</Panel>
 	);
 };
+
+export const WebTestSolutionsListScreen: React.FC = () => <WebSolutions />;
+
+/** Çözümler › İşaretli on the web. */
+export const WebTestSolutionsFlaggedScreen: React.FC = () => <WebSolutions flagged />;
 
 export const WebTestTopicsAllScreen: React.FC = () => {
 	const t = useT();

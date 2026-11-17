@@ -3,6 +3,7 @@ import {useColors, useModuleColors, useT} from '../../Context';
 import {Icon} from '../../Icons';
 import {MODULES} from '../../ModuleIdentity';
 import {Bar, Button, Card, Chip, List, OptionRow, Ring, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
+import {ModuleWeekCard} from '../../Parts/Study';
 import {Grid, Immersive, ModuleBanner, ModuleHead, Panel, WCard} from '../../Parts/Web';
 
 /** Web Denemeler: exams, my exams with calendar, details, solving, results, analysis, solutions and statistics. */
@@ -51,19 +52,30 @@ export const WebExamHomeScreen: React.FC = () => {
 					</Button>
 				}
 			/>
-			<Grid columns="2fr 1fr">
-				<ModuleBanner module="exam" over={t('Canlı · Türkiye geneli · Cumartesi 10:00', 'Live · nationwide · Saturday 10:00')} title={t('TYT Deneme 5', 'TYT Exam 5')} text={t('120 soru · 165 dk · 12.480 kişi katılıyor · sonuç 2 saat sonra', '120 questions · 165 min · 12,480 students · results in 2 hours')} action={t('Hatırlat', 'Remind me')} />
+			<Grid columns="1.5fr 1fr 1fr">
+				<ModuleBanner module="exam" over={t('Yaklaşan · Türkiye geneli · Cumartesi 10:00', 'Upcoming · nationwide · Saturday 10:00')} title={t('TYT Deneme 5', 'TYT Exam 5')} text={t('120 soru · 165 dk · 2 gün 4 saat kaldı', '120 questions · 165 min · 2 days 4 hours left')} action={t('Hatırlat', 'Remind me')} />
 				<Card padding={20} tone="moduleLine" module="exam">
 					<Stack gap={10}>
 						<Text role="over" color={examInk}>
 							{t('Devam eden', 'In progress')}
 						</Text>
 						<Text role="section">{t('AYT Sayısal Deneme 3', 'AYT Science Exam 3')}</Text>
-						<Text role="small">{t('Fen Bilimleri · 48 / 80 soru · 74 dk kaldı', 'Science · 48 / 80 · 74 min left')}</Text>
+						<Text role="small">{t('Fen Bilimleri · 48 / 80 soru · 1 saat 14 dk kaldı', 'Science · 48 / 80 · 1 h 14 min left')}</Text>
 						<Bar value={0.6} color={MODULES.exam.color.light} />
 						<Button block>{t('Kaldığın yerden devam et', 'Resume')}</Button>
 					</Stack>
 				</Card>
+				<ModuleWeekCard
+					module="exam"
+					time={t('3 sa 40 dk', '3 h 40 m')}
+					change={12}
+					bars={[0, 45, 0, 0, 120, 0, 55]}
+					stats={[
+						[t('Biten deneme', 'Exams done'), '2'],
+						[t('Son net', 'Last net'), t('78,5 (+3,25)', '78.5 (+3.25)')],
+						[t('Seri', 'Streak'), t('5 gün', '5 days')],
+					]}
+				/>
 			</Grid>
 			<Stack row gap={8}>
 				{[t('Tümü', 'All'), 'TYT', 'AYT', t('Branş', 'Subject'), t('Ücretsiz', 'Free')].map((label, index) => (
@@ -73,9 +85,9 @@ export const WebExamHomeScreen: React.FC = () => {
 				))}
 			</Stack>
 			<Grid columns="repeat(3, 1fr)" gap={14}>
-				<ExamCard title={t('TYT Deneme 4 · Tekrar', 'TYT Exam 4 · Retake')} sub={t('Eksiklerin üzerinden', 'Built on your gaps')} meta="120 · 165 dk" tag={t('Önerilen', 'Suggested')} />
+				<ExamCard title={t('TYT Fen Bilimleri', 'TYT Science')} sub={t('Bölüm denemesi · 31 Ekim’e kadar açık', 'Section exam · open until 31 Oct')} meta="20 · 30 dk" tag={t('Canlı', 'Live')} />
 				<ExamCard title={t('AYT Sayısal Deneme 3', 'AYT Science Exam 3')} sub={t('Matematik, Fen', 'Maths, Science')} meta="80 · 180 dk" />
-				<ExamCard title={t('Paragraf Branş', 'Reading Subject')} sub={t('Türkçe', 'Turkish')} meta="40 · 50 dk" tag={t('Yeni', 'New')} />
+				<ExamCard title={t('Paragraf Branş', 'Reading Subject')} sub={t('Türkçe', 'Turkish')} meta="40 · 50 dk" />
 				<ExamCard title={t('Problemler Branş', 'Problems Subject')} sub={t('Matematik', 'Maths')} meta="30 · 45 dk" tag={t('Ücretsiz', 'Free')} />
 				<ExamCard title={t('TYT Deneme 3', 'TYT Exam 3')} sub={t('Arşiv · sıralama açık', 'Archive')} meta="120 · 165 dk" />
 				<ExamCard title={t('Fen Branş', 'Science Subject')} sub={t('Fizik, Kimya, Biyoloji', 'Physics, Chemistry, Biology')} meta="20 · 30 dk" />
@@ -150,7 +162,7 @@ export const WebExamDetailScreen: React.FC = () => {
 	const t = useT();
 	return (
 		<Panel active="exam" crumb={t('Denemeler ›', 'Exams ›')}>
-			<ModuleBanner module="exam" over={t('TYT · Türkiye geneli', 'TYT · Nationwide')} title={t('TYT Deneme 5', 'TYT Exam 5')} text={t('Cumartesi 17 Ekim, 10:00. Sonuçlar 2 saat sonra; sıralaman 12.480 kişi içinde.', 'Saturday 17 Oct, 10:00. Results in 2 hours; ranked among 12,480.')} action={t('Hatırlat', 'Remind me')} />
+			<ModuleBanner module="exam" over={t('TYT · Türkiye geneli', 'TYT · Nationwide')} title={t('TYT Deneme 5', 'TYT Exam 5')} text={t('Cumartesi 17 Ekim, 10:00. Sonuçlar 2 saat sonra açıklanır.', 'Saturday 17 Oct, 10:00. Results in 2 hours.')} action={t('Hatırlat', 'Remind me')} />
 			<Grid columns="1.3fr 1fr">
 				<WCard title={t('Bölümler', 'Sections')}>
 					<List>
@@ -183,7 +195,7 @@ export const WebExamDetailScreen: React.FC = () => {
 							</Stack>
 						))}
 						<Text role="small" align="center" style={{marginTop: 8}}>
-							{t('Cumartesi 10:00’da açılır · 2 gün 4 saat kaldı', 'Opens Saturday 10:00 · 2 days 4 hours left')}
+							{t('Açılış Cumartesi 10:00 · 2 gün 4 saat kaldı', 'Opens Saturday 10:00 · 2 days 4 hours left')}
 						</Text>
 						<Button tone="module" module="exam" size="lg" block icon="bell">
 							{t('Hatırlat', 'Remind me')}
@@ -383,15 +395,15 @@ export const WebSolutionsScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	return (
-		<Panel active="exam" crumb={t('Sonuçlar ›', 'Results ›')}>
+		<Panel active="exam" crumb={t('Çözümler ›', 'Solutions ›')}>
 			<ModuleHead
 				module="exam"
-				tab={2}
+				tab={3}
 				title={t('Çözümler · TYT Deneme 4', 'Solutions · TYT Exam 4')}
 				sub={t('Temel Matematik', 'Basic Maths')}
 				actions={
 					<div style={{width: 320}}>
-						<Segmented items={[t('Tümü', 'All'), t('Yanlışlar · 12', 'Wrong · 12'), t('Boşlar', 'Blank')]} active={1} module="exam" />
+						<Segmented items={[t('Tümü', 'All'), t('Yanlışlar · 12', 'Wrong · 12'), t('Boşlar · 3', 'Blank · 3')]} active={1} module="exam" />
 					</div>
 				}
 			/>

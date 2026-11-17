@@ -517,7 +517,7 @@ export const LessonReviewSessionScreen: React.FC = () => {
 	const mod = useModuleColors('lessons');
 	return (
 		<Screen
-			bar={<StepBar done={1} count={5} />}
+			bar={<StepBar done={1} review={5} />}
 			foot={
 				<>
 					<Stack row gap={8} style={{padding: '10px 14px', borderRadius: 14, background: colors.successSoft}}>

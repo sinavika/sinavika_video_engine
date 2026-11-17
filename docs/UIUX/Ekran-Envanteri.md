@@ -3,7 +3,7 @@
 Bu dosya `npm run uiux -- --inventory docs/UIUX/Ekran-Envanteri.md` ile çizim kaydından (`src/UIUX/Registry.ts`) üretilir; elle düzenlenmez.
 Her satır bir çizimi, gerçek uygulamadaki karşılığını ("Rota") ve değişikliğin nedenini gösterir. "yeni" bugün olmayan ekrandır.
 
-Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, tablet (ipad ve android tablet, kalem) 37, web sitesi (giriş öncesi) 14, akıllı saat (apple watch ve wear os) 12, paylaşım kartları (hikâye ve gönderi) 10.
+Toplam 328 çizim: mobil uygulama 162, web paneli ve web giriş/onboarding 93, tablet (ipad ve android tablet, kalem) 37, web sitesi (giriş öncesi) 14, akıllı saat (apple watch ve wear os) 12, paylaşım kartları (hikâye ve gönderi) 10.
 
 ## Mobil uygulama
 
@@ -12,10 +12,10 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `m-hub-moduller` | Modüller (ana ekran) | `ModuleHubHome` | Ana ekran (5 Kas 2026 revizyonu): önce “bugün ne yapacağım”. Selam, hedef ve seri; hafta şeridi (bugünün halkası); günün planı ve sıradaki görev tek düğmeyle; iki eylem kartı (kaldığın yer, sıradaki deneme); modüller üç sütun. Veri: engagement/today, study-plan calendar, works continue, yaklaşan deneme. |
+| `m-hub-moduller` | Modüller (ana ekran) | `ModuleHubHome` | Ana ekran (5 Kas 2026 revizyonu; 17 Kas sahip kararları): önce “bugün ne yapacağım”. Selamın üstünde tarih yok; hedef selamın karşısında, seri hedefin altında. Hafta şeridi (bugünün halkası); günün planı ve sıradaki görev tek düğmeyle; iki eylem kartı (kaldığın yer, sıradaki deneme); modüller üç sütun. Veri: engagement/today, study-plan calendar, works continue, yaklaşan deneme. |
 | `m-hub-moduller-kaydir` | Modüller · aşağı kaydırılmış | `ModuleHubHome` | Modüller ızgarası, SinoAI, Bugün tekrar (Dersler adımları + Bilgi Kartları) ve Destek. |
 | `m-hub-ipucu` | İlk açılış ipucu | `ModuleHubHome` | İlk açılışta tek ipucu, günün planı kartında. Tur yok. |
-| `m-hub-plansiz` | Ana ekran · planı olmayan öğrenci | `ModuleHubHome` | Plan kartı kayıttaki cevapları gösterir ve tek düğmeyle planı hazırlar; ilk mikro ders plansız da başlar. |
+| `m-hub-plansiz` | Ana ekran · planı olmayan öğrenci | `ModuleHubHome` | Plan kartı kayıttaki cevapları gösterir ve tek düğmeyle planı hazırlar; ilk konu plansız da başlar. |
 | `m-hub-gun-bitti` | Ana ekran · günün planı bitti | `ModuleHubHome` | Bitti kartı: görev, dakika, seri; Yarına bak ve isteğe bağlı fazladan 10 soru. |
 | `m-hub-abonelik-bitti` | Ana ekran · deneme süresi bitti | `ModuleHubHome` | Ödeme yoksa erişim yok: ilerleme korunur, modüller kilitli; Paketleri gör ve mağaza alımını geri yükle. |
 
@@ -44,45 +44,49 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 | `m-onb-4-dersler` | Onboarding 4 · Zorlandığın dersler | `Onboarding · OnboardingStudyWeakStep` | İsteğe bağlı; planda bu derslere daha çok yer ayrılır. |
 | `m-onb-5-plan` | Onboarding 5 · Planın hazır | `Onboarding · plan özeti (OnboardingStudyWeakStep sonrası)` | Hafta modül renkleriyle; bugünkü ilk görev somut. İlerleme çubuğu planı kuran beş adımı sayar. |
 | `m-onb-6-hesap` | Planını kaydet | `AuthRegister` | Hesap ödeme ekranından önce: önce emeğin güvene alınır. Apple ve Google önde, e-posta ikincil. |
-| `m-onb-7-deneme` | 3 gün ücretsiz | `Onboarding · OnboardingTrialStep` | Bugün, hatırlatma günü ve ücret günü açıkça. Başlayınca öğrenci bugünkü ilk mikro derse girer. |
-| `m-onb-8-bildirim` | Bildirim izni · ilk mikro dersten sonra | `—` | İzin, ilk mikro ders bitince ve hatırlatmanın değeri belliyken istenir; sistem penceresinden önce kendi açıklamamız. |
+| `m-onb-7-deneme` | 3 gün ücretsiz | `Onboarding · OnboardingTrialStep` | Bugün, hatırlatma günü ve ücret günü açıkça. Başlayınca öğrenci bugünkü ilk konuya girer. |
+| `m-onb-8-bildirim` | Bildirim izni · ilk çalışmadan sonra | `—` | İzin, ilk çalışma bitince ve hatırlatmanın değeri belliyken istenir; sistem penceresinden önce kendi açıklamamız. |
 
 ### Denemeler
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `m-deneme-vitrin` | Denemeler | `ExamDashboard` | Canlı deneme slaytı, devam eden deneme ve öneriler. |
+| `m-deneme-vitrin` | Denemeler | `ExamDashboard` | Aylık deneme setinden şerit (yaklaşan: tarih, kalan süre, Hatırlat; açık: Canlı, kapanış, Başla), devam eden deneme (1 saat 14 dk kaldı), Bu ay sırada. |
 | `m-deneme-katalog` | Tüm denemeler | `ExamDashboard (tüm denemeler)` | — |
-| `m-deneme-detay` | Deneme detayı | `ExamStudentPublicDetail` | — |
+| `m-deneme-detay` | Deneme detayı | `ExamStudentPublicDetail` | Yaklaşan: Açılış Cumartesi 10:00 · kalan süre, Hatırlat (tek dokunuş; yeniden dokunmak kapatır). |
+| `m-deneme-detay-acik` | Deneme detayı · açık | `ExamStudentPublicDetail` | Açık · kapanmasına kalan süre ve Başla. |
+| `m-deneme-detay-kapali` | Deneme detayı · süre dışında | `ExamStudentPublicDetail` | Pencere dışında Başla pasif, nedeni üstünde. |
 | `m-deneme-detay-bitti` | Biten denemenin detayı | `ExamStudentPublicDetail` | Canlı hata #3: biten denemede “Denemeye gir” ve hatırlatma yok; önce sonuç, sonra Sonuç belgesi, Çözümler, Analiz ve net kaybettiren konular. |
 | `m-deneme-baslangic` | Başlamadan önce | `ExamStudentStarting` | — |
-| `m-deneme-coz` | Deneme çözme | `ExamStudentSolve` | Odak modu: sekme çubuğu yok, süre ve soru haritası üstte. Doğru ve yanlış teslimden sonra açılır. |
+| `m-deneme-coz` | Deneme çözme | `ExamStudentSolve` | Odak modu: sekme çubuğu yok, süre ve soru haritası üstte. Cevap teslime kadar değişir ve boşaltılır; çıkış her zaman ara ver penceresi, iptal yolu yok. Doğru ve yanlış teslimden sonra açılır. |
 | `m-deneme-teslim` | Teslim onayı | `ExamStudentSolve` | Gri sistem penceresi yerine uygulamanın alt sayfası: cevaplı, boş, işaretli sayıları ve boş soruların numaraları; Boşlara dön / Teslim et. |
-| `m-deneme-baglanti` | Deneme · bağlantı koptu | `ExamStudentSolve` | Cevaplar telefonda saklanır, süre işler, bağlanınca kendiliğinden gönderilir; bekleyen cevap sayısı. |
+| `m-deneme-baglanti` | Deneme · bağlantı koptu | `ExamStudentSolve` | Ortak “gönderilecek” görünümü: seçilen şık kilitli, altında nötr satır; süre işler, bağlanınca kendiliğinden gönderilir. |
 | `m-deneme-denemelerim` | Denemelerim | `MyExams · ExamMyExams` | Yaklaşan, devam eden ve biten denemeler; takvim aynı sekmede. |
 | `m-deneme-ay` | Geçmiş ay | `ExamMonth` | Geçmiş bir ayın deneme haritası: girilenlerin neti, sonuç ve çözüm; kaçırılan yazılı. |
 | `m-deneme-sonuclar` | Sonuçlar | `ExamResultsHub · ExamResultsList` | Net gelişimi sütunlarla (değer sütunun üstünde, dışarıda çözülen çizgili), üç giriş: Sınavika denemelerim, Analizlerim, Deneme ekle; son sonuçlar. |
+| `m-deneme-sonuclar-disarida` | Sonuçlar · dışarıda çözülen | `ExamResultsHub` | Çizgili sütuna dokununca: ne olduğu ve Sil (onaylı). |
 | `m-deneme-sonuclar-bos` | Sonuçlar · henüz deneme yok | `ExamResultsHub · ExamResultsList` | İlk denemeden önce: ne birikeceği, sıradaki deneme ve Deneme ekle. |
 | `m-deneme-ekle` | Deneme ekle | `ExamExternalResult` | Dışarıda çözülen denemenin sonucu (yayın, ad, tarih, ders ders doğru/yanlış, net canlı hesaplanır). API: student/external-exams. |
 | `m-deneme-sonuc` | Sonuç | `ExamResultDocument · ExamResults` | — |
-| `m-deneme-analiz` | Eksik konu analizi | `ExamStatsLessonOverview · ExamStatistics` | Analiz eylemle biter: mikro ders, test, plana ekle. |
+| `m-deneme-analiz` | Eksik konu analizi | `ExamStatsLessonOverview · ExamStatistics` | Analiz eylemle biter: konu anlatımı, konunun testinin gerçek soru sayısı (test yoksa pasif), plana ekle. |
+| `m-deneme-analiz-eklendi` | Eksik konu analizi · plana eklendi | `ExamStatsLessonOverview` | Düğme modül yumuşak tonunda Planına eklendi; kısa bildirim. |
 | `m-deneme-gelisim` | Ders gelişimi | `ExamStatsLessonTrend` | — |
 | `m-deneme-net` | Deneme neti | `ExamStatsExamNet` | Toplam net, ders ders D/Y/B ve net kaybettiren konular (Konuyu çalış, Test). |
 | `m-deneme-cozumler` | Çözümler | `ExamSolutionExamCards` | — |
-| `m-deneme-cozum` | Soru çözümü | `ExamSolutionBookletReview` | — |
+| `m-deneme-cozum` | Soru çözümü | `ExamSolutionBookletReview` | Tümü / Yanlışlar · N / Boşlar · N sorunun üstünde, Yanlışlar ile açılır; koyu SinoAI’ye sor, altında Derse git. |
 
 ### Dersler
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `m-ders-vitrin` | Dersler | `WorkHome · WorkOverview` | Kaldığın yerden (GET continue), bugünkü tekrar (GET reviews) ve sınavın dersleri mikro ders ilerlemesiyle (GET lessons). |
+| `m-ders-vitrin` | Dersler | `WorkHome · WorkOverview` | Kaydırılan slaytlar (Kaldığın yerden, Tekrar, Ders çalış), modülün haftası (istatistik kartı) ve sınavın dersleri yüzde ilerlemeyle (GET lessons). |
 | `m-ders-ilk` | Dersler · ilk giriş | `WorkHome · WorkOverview` | Kaldığın yer henüz yok: kayıtta zorlandığın dersten ilk konu ve Dersler’in nasıl işlediği üç satırda. |
-| `m-ders-konular` | Konular | `WorkLesson · WorkCatalog` | Dersin konuları müfredat sırasıyla: mikro ders sayısı, süre, ilerleme ve ilk denemede doğru oranı. |
+| `m-ders-konular` | Konular | `WorkLesson · WorkCatalog` | Ders hapları, Tümü / Süren / Biten süzgeci; konular müfredat sırasıyla: adım sayısı, süre, yüzde ilerleme ve ilk denemede doğru. Konuya basınca oynatıcı kaldığın yerden açılır. |
 | `m-ders-tekrar` | Tekrar | `WorkReviewHome · WorkReview` | İlk denemede yanlış yapılan adımlar 1, 3 ve 7 gün sonra; her adım tek denemede. |
 | `m-ders-tekrar-bos` | Tekrar · bugün yok | `WorkReviewHome` | Sıradaki tekrarın günü ve adım sayısı; kaldığın derse dönüş. |
 | `m-ders-tekrar-oturum` | Tekrar oturumu | `WorkReviewSession` | Tekrarda bir adım: tekrar sırası, kaynağı, tek deneme; doğruysa bir sonraki aralık yazılır. |
-| `m-ders-konu-girisi` | Konu girişi | `WorkSub` | Kanca, video ve mikro derslerin yol haritası; tek düğme sıradaki mikro derse götürür. Video yoksa satır gizlenir. |
 | `m-ders-tanim` | Adım · Tanım | `WorkMikro` | Concept: cümle sözcük kartlarında, vurgulu sözcüğün rolü; Dinle. |
+| `m-ders-baglanti` | Oynatıcı · bağlantı yok | `WorkMikro` | Ortak “gönderilecek” görünümü (Dersler, Testler, Denemeler aynı): adım seçimle kilitli, doğru/yanlış yok; altında nötr satır “Bağlantı yok; cevabın kaydedildi. Bağlanınca gönderilecek.”; Devam açık. Tek merkezi kuyruk. |
 | `m-ders-ornek` | Adım · Örnek | `WorkMikro` | Example: örnek cümle, açıklama ve dikkat notu. |
 | `m-ders-kural` | Adım · Kural | `WorkMikro` | Rule: numaralı kural listesi. |
 | `m-ders-gorsel` | Adım · Görsel | `WorkMikro` | Visual: merkezi figür (burada karşılaştırma tablosu) ve kısa açıklama. |
@@ -93,56 +97,60 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 | `m-ders-cevir` | Adım · Çevir | `WorkMikro` | Arka yüzde içeriğin açıklaması da görünür; Biliyordum / Bilmiyordum kartın içinde. |
 | `m-ders-sec` | Adım · Seç (sözcüğe dokun) | `WorkMikro` | Cümlenin sözcükleri dokunulabilir; seçilen sayısı yazılı. |
 | `m-ders-coklu` | Adım · Çoklu seçim | `WorkMikro` | Sonuçta yanlış seçilen ve kaçırılan ayrı işaretli. |
-| `m-ders-sirala` | Adım · Sırala | `WorkMikro` | Order: adımlara sırayla dokunulur; sürükleme gerekmez. |
+| `m-ders-sirala` | Adım · Sırala | `WorkMikro` | Order: basılı tutup sürükle ya da sırayla dokun; Baştan diz. |
 | `m-ders-bosluk` | Adım · Boşluk doldur | `WorkMikro` | FillBlank: tek deneme; yanlışta doğru sözcük ve nedeni gösterilir, adım tekrar listesine girer. |
 | `m-ders-yazmali` | Adım · Yazmalı boşluk | `WorkMikro` | Satırdaki boşluk giriş alanının kendisi; klavye açıkken Kontrol et klavyenin üstünde. |
 | `m-ders-formul` | Adım · Formül ve tablo | `WorkMikro` | Kesir üst üste, eksi kesrin önünde; kök çizgisi içini örter; üs harfe yakın; tablo hücresi en az 15 pt. |
-| `m-ders-bolum` | Bölüm başı | `WorkMikro` | Bölümün ne öğreteceği, bölüm haritası ve Önceki bölüm düğmesi. |
-| `m-ders-soru` | Adım · TYT tarzı soru | `WorkMikro` | Question: her yanlışta bir çözüm adımı açılır, öğrenci yeniden seçer; kalan deneme yazılı. SinoAI’ye sor. |
+| `m-ders-soru` | Adım · Sınav tarzı soru | `WorkMikro` | Question: her yanlışta bir çözüm adımı açılır, öğrenci yeniden seçer; kalan deneme yazılı. SinoAI’ye sor. |
 | `m-ders-sekilli-soru` | Adım · Şekilli soru | `WorkMikro` | Question ve soru şekli (figure): şekil kökle birlikte, şıklardan önce. |
-| `m-ders-mikro-bitti` | Mikro ders bitti | `WorkMikro (mikro ders sonu)` | İlk denemede doğru sayısı, akılda kalacak tek cümle, tekrar listesine girenler ve sıradaki mikro ders. |
-| `m-ders-konu-sonu` | Konu sonu | `WorkSubSummary` | Özet, dikkat notları, kamp görevi; Testler’in Kolay seviyesine geçiş (Testler renginde). |
-| `m-ders-hak` | Günlük konu hakkı | `WorkSub (PAYWALL)` | Abonelik yokken ya da günün konu hakkı bitince alt sayfa; ödeme marka yüzeyi olduğu için düğmesi turuncu. |
+| `m-ders-konu-sonu` | Konu sonu | `WorkSubSummary` | İlk denemede doğru sayısı ve Paylaş; özet, dikkat notları, kamp görevi; Testler’in Kolay seviyesine geçiş (Testler renginde); Konuyu baştan oku, Konulara dön; içerik anketi (Beğendim / Beğenmedim). |
+| `m-ders-hak` | Günlük konu hakkı | `WorkSub (PAYWALL)` | Abonelik yokken ya da günün konu hakkı bitince alt sayfa; metin konu adı içermez; arkada düz zemin (oynatıcı açılamadı, giriş ekranı yok). Ödeme marka yüzeyi olduğu için düğmesi turuncu. |
 
 ### Testler
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `m-test-vitrin` | Testler | `QuizHome` | Senin için hazır test ve ders listesi. |
-| `m-test-konular` | Konular | `QuizCatalog` | — |
-| `m-test-detay` | Test seviyeleri | `QuizLessonSub · QuizOverview` | Kolay, Orta, Zor · 20’şer soru. |
-| `m-test-coz` | Doğru cevap | `QuizSolve` | Anında geri bildirim: doğru şık, kısa çözüm. |
-| `m-test-coz-yanlis` | Yanlış cevap | `QuizSolve` | Doğru şık ve nedeni; konunun mikro dersine (Dersler renginde) ya da SinoAI’ye geçiş. |
-| `m-test-yanlislar` | Yanlışlarım | `QuizReview` | İlk yanlıştan açılır; Yanlış / Boş / Tümü; konuyu çalış (Dersler renginde) ve Sonraki yanlış. |
+| `m-test-vitrin` | Testler | `QuizHome` | Kaydırılan slaytlar (Senin için hazır, kaldığın yer, konular) ve noktalar; modül istatistik kartı; dersler çubuklu listede. |
+| `m-test-konular` | Konular | `QuizCatalog` | Bütün derslerin açılır ağacı; açık derste konular ve üç seviye. |
+| `m-test-detay` | Test seviyeleri | `QuizLessonSub · QuizOverview` | Ders çipleri, konu, bu dersteki hafta kartı; Kolay, Orta, Zor · 20’şer soru; satırda Tekrar / Devam et / Başla ya da kilit. |
+| `m-test-coz` | Doğru cevap | `QuizSolve` | Anında geri bildirim (tek dokunuş): doğru şık, kısa çözüm; soru meta satırında İşaretle. |
+| `m-test-coz-yanlis` | Yanlış cevap | `QuizSolve` | Doğru şık ve nedeni; konunun anlatımına (Dersler renginde) ya da SinoAI’ye geçiş. |
+| `m-test-baglanti` | Bağlantı yok | `QuizSolve` | Cevap merkezi kuyrukta; seçili şık kalır, doğru/yanlış gönderilince görünür; ortak not ve Devam. |
+| `m-test-bitir-bekliyor` | Testi bitir · bekleyen cevap | `QuizSolve` | Bekleyen cevap varken test bitmez; alt sayfada uyarı ve Tamam. |
+| `m-test-yanlislar` | Yanlışlarım | `QuizReview` | İlk yanlıştan açılır; Yanlış / Boş / Tümü (boş süzgeç soluk, dokunulmaz); numara satırı yalnız süzgeçtekiler; İşaretli düğmesi; Bu soruyu paylaş, SinoAI’ye sor; konuyu çalış (Dersler renginde) ve Sonraki yanlış. |
+| `m-test-yanlislar-son` | Yanlışlarım · son yanlış | `QuizReview` | Süzgeçteki son soruda ana düğme Bitti; Çözümler’e döner. |
+| `m-test-yanlislar-dogru` | Yanlışlarım · yanlış yok | `QuizReview` | Yanlış yoksa ilk boştan, o da yoksa Tümü süzgeciyle 1. sorudan açılır; boş süzgeçler soluk. |
 | `m-test-bitti` | Test bitti | `QuizComplete` | — |
-| `m-test-cozumler` | Çözümler | `QuizSolutions · QuizReview` | — |
+| `m-test-cozumler` | Çözümler | `QuizSolutions · QuizReview` | Tümü · Yanlışlar · N · İşaretli; tekrar testi satırı “Konu · Tekrar”; hazırsa tekrar testi kartı. |
+| `m-test-cozumler-isaretli` | Çözümler · İşaretli | `QuizSolutions` | İşaretli soru Yanlışlarım’da Tümü süzgeciyle açılır; bitmemiş testin sorusu kilitli: Test bitince açılır. |
 | `m-test-cozumler-bos` | Çözümler · henüz test yok | `QuizSolutions` | Senin için hazır testle başla. |
 
 ### Ders Planı
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `m-plan-bugun` | Bugün | `StudyPlanHome` | Örnek takvim yapısı: Gün/Hafta/Ay, modül süzgeçleri, hafta halkaları, günün yüzdesi ve süre; her görev kaynağını (sınav · ders · neden), konusunu, modül rozetini ve miktarını (soru, mikro ders, kart) ya da saatini söyler. + kendi görevin. |
+| `m-plan-bugun` | Bugün | `StudyPlanHome` | Örnek takvim yapısı: Gün/Hafta/Ay, modül süzgeçleri, hafta halkaları, günün yüzdesi ve süre; her görev kaynağını (sınav · ders · neden), konusunu, modül rozetini ve miktarını (soru, dakika, kart) ya da saatini söyler. + kendi görevin. |
 | `m-plan-yok` | Planı olmayan öğrenci | `StudyPlanHome (StudyPlanNoPlanEmpty)` | Planın ne yaptığı, kayıt cevaplarından örnek bir gün; Planımı hazırla ya da kendim kurayım. |
 | `m-plan-dunden` | Dünden kalan görevler | `StudyPlanHome` | Biten olmayan görev sessizce kaybolmaz: Bugüne ekle ya da haftaya yay (PATCH schedule). |
 | `m-plan-gorev-ekle` | Görev ekle | `StudyPlanManualTaskSheet` | Kendi görevin: tür, ders ve konu, not, gün ve saat, süre (POST study-plan tasks). |
-| `m-plan-gorev-islem` | Görev işlemleri | `StudyPlanTaskActionSheet` | Görevi başlat (modül renginde), odak sayacıyla başla, yarına taşı, yaptım olarak işaretle, bugünden kaldır (PATCH status / schedule). |
+| `m-plan-gorev-islem` | Görev işlemleri | `StudyPlanTaskActionSheet` | Ana düğme görevin modülüne göre (Konuya başla, Testi başlat, Denemeye geç, Kartlara başla); odak sayacıyla başla (25 + 5 dk), yarına taşı, saati değiştir, yaptım, bugünden kaldır. |
+| `m-plan-gorev-islem-kendi` | Görev işlemleri · kendi görevin | `StudyPlanTaskActionSheet` | İçeriği olmayan görevde ana düğme Odak sayacıyla başla (25 dk + 5 dk mola); Yarına taşı, Saati değiştir, Yaptım, Bugünden kaldır. |
 | `m-plan-odak` | Odak sayacı | `StudyPlanFocus` | — |
 | `m-plan-ilerleme` | İlerleme | `StudyPlanProgressHome` | — |
 | `m-plan-konu` | Konu ilerlemesi | `StudyPlanLessonProgress` | — |
-| `m-plan-program` | Program | `StudyPlanSchedule · StudyPlanPlan` | — |
+| `m-plan-program` | Program | `StudyPlanSchedule · StudyPlanPlan` | Başlıkta Düzenle (Planım) ve Haftanı paylaş. |
 | `m-plan-ayarlar` | Plan ayarları | `StudyPlanCreate` | — |
 
 ### Akıllı Özet
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `m-ozet-vitrin` | Akıllı Özet | `LensHome · LensAnalyses` | Geçmişte konu başlığı; kalan kota yazılı. |
-| `m-ozet-yukle` | Soru yükle | `LensNew · LensUpload` | — |
-| `m-ozet-kamera` | Kamera | `LensCamera` | — |
-| `m-ozet-isleniyor` | Analiz ediliyor | `LensSessionProgress` | — |
-| `m-ozet-sonuc` | Çözüm | `LensSessionDetail` | — |
-| `m-ozet-hak` | Aylık hak doldu | `LensHome` | Yenilenme tarihi, geçmiş analizler açık; SinoAI’ye yönlendirme. |
+| `m-ozet-vitrin` | Akıllı Özet | `LensHome · LensAnalyses` | Geçmişte konu başlığı; başlıkta Kullanım %N (SinoAI ile ortak hak, aylık sayı yok); Tümü yok. |
+| `m-ozet-yukle` | Soru yükle | `LensNew · LensUpload` | Fotoğraf ya da galeri (PDF yok); Neler alacaksın? bilgi satırları. |
+| `m-ozet-kamera` | Kamera | `LensCamera` | Mod çipi yok; tek soru çekilir. |
+| `m-ozet-isleniyor` | Analiz ediliyor | `LensSessionProgress` | İptal yok; kapatmak analizi durdurmaz. |
+| `m-ozet-sonuc` | Çözüm | `LensSessionDetail` | Kart yapma yok; Konuyu çalış (Dersler · konu); Benzer 5 soru konunun testini açar; en altta Sorunun fotoğrafı. |
+| `m-ozet-hak` | Aylık hak doldu | `LensHome` | Kullanım %100; yenilenme tarihi, geçmiş analizler açık; SinoAI’ye yönlendirme yok. |
 | `m-ozet-okunamadi` | Fotoğraf okunamadı | `LensUpload` | Neden ve üç çekim ipucu; hak düşmedi. |
 | `m-ozet-pdf` | Analiz PDF | `LensSessionPdf` | PDF önizlemesi, sayfa sayısı; Paylaş ve PDF aç. |
 | `m-ozet-video` | Video analizi | `LensVideo` | — |
@@ -151,26 +159,30 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `m-kart-vitrin` | Bilgi Kartları | `FlashcardMain` | Sekmeler Kartlar · Bugün · Kaydedilenler. |
+| `m-kart-vitrin` | Bilgi Kartları | `FlashcardMain` | Sekmeler Kartlar · Bugün · Kaydedilenler. Dersler sınav başına bölümlü (başlık sınav adı, sağda N ders). |
+| `m-kart-vitrin-ilk` | Bilgi Kartları · ilk kullanım | `FlashcardMain` | N yeni kart seni bekliyor · Yeni kartlara başla; ders satırlarında Yeni. |
+| `m-kart-desteler` | Ders · desteler | `FlashcardLesson` | Ders özeti (N deste · %X öğrenildi + halka); deste satırı: konu, x/y kart · %z, N zayıf. |
 | `m-kart-bugun` | Bugün | `FlashcardToday` | — |
-| `m-kart-bitti` | Bugün · kartlar bitti | `FlashcardToday` | Kaç kart, kaçını bildin, yarın kaç kart; kart serisi. |
+| `m-kart-bugun-bos` | Bugün · tekrar yok | `FlashcardToday` | Bugün tekrar edilecek kart yok · Derslere git. |
+| `m-kart-bitti` | Bugün · kartlar bitti | `FlashcardToday` | Bugün modunda oturum sonu: kaç kart, kaçını bildin, yarın kaç kart; kart serisi. |
+| `m-kart-deste-bitti` | Deste bitti | `FlashcardSession` | Deste ve kaydedilenler oturumunun sonu; altında içerik anketi. |
 | `m-kart-on` | Kart oturumu · ön yüz | `FlashcardSession` | — |
 | `m-kart-arka` | Kart oturumu · cevap | `FlashcardSession` | — |
-| `m-kart-kaydedilen` | Kaydedilenler | `FlashcardSavedTab` | — |
+| `m-kart-kaydedilen` | Kaydedilenler | `FlashcardSavedTab` | Kaydettiğin N kart (yer imi); ders çipiyle süzülünce Kaydedilenleri tekrar et o dersle açılır. |
 
 ### SinoAI
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
 | `m-sino-ana` | SinoAI | `SinoAi` | — |
-| `m-sino-sohbet` | SinoAI · sohbet | `SinoAiChat` | — |
+| `m-sino-sohbet` | SinoAI · sohbet | `SinoAiChat` | Yanıt eylemleri: yeniden üret, kopyala, paylaş, beğen, beğenme. |
 | `m-sino-calisma` | SinoAI · çalışma | `SinoAiChat (Çalışma)` | Deneme, tekrar kartları, test ve çalışma planı üretimi; kota yazılı. |
 | `m-sino-sonuc` | SinoAI · üretim sonucu | `SinoAiChat (Çalışma sonucu)` | Eylemler kartın içinde: Testi aç (Testler renginde), Değiştir. |
-| `m-sino-kutuphane` | SinoAI · kütüphane | `SinoAiLibrary` | — |
+| `m-sino-kutuphane` | SinoAI · kütüphane | `SinoAiLibrary` | Tümü · Test · Deste · Özet sayılarla; satır N soru · ders · tarih; plan satırı yalnız Tümü’de. |
 | `m-sino-kaynaklar` | SinoAI · kaynaklarım | `SinoAiSources` | Kaynak ekle; okundu/okunuyor; 90 gün kuralı; çalışma notları. |
 | `m-sino-not` | SinoAI · çalışma notu | `SinoAiStudyNote` | Önemli noktalar ve terimler; Kart yap, Test üret; uyarı satırı. |
-| `m-sino-menu` | SinoAI · menü | `SinoAiChat (menü)` | Arama, yeni sohbet, kütüphane ve gün gün sohbetler. |
-| `m-sino-hak` | SinoAI · günlük hak doldu | `SinoAi` | Ne zaman yenileneceği, kütüphane açık; mikro ders ve testler bu hakkı kullanmaz. |
+| `m-sino-menu` | SinoAI · menü | `SinoAiChat (menü)` | Arama, yeni sohbet, kütüphane, Kaynaklarım, gün gün sohbetler; altta kullanım çubuğu ve SinoAI’den çık. |
+| `m-sino-hak` | SinoAI · aylık hak doldu | `SinoAi` | Hak aylık ve Akıllı Özet ile ortak: yenilenme tarihi, Kütüphaneme git, Bu arada kartı. |
 
 ### Profil ve hesap
 
@@ -217,7 +229,7 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 |---|---|---|---|
 | `m-bildirim-canli-deneme` | Canlı etkinlik · deneme başlıyor | `iOS Live Activity (ActivityKit)` | Yeni: canlı denemeye 15 dk kala kilit ekranında geri sayım, katılan sayısı ve Hazırım. Uygulama simgesi yok (Apple), modül simgesi var. Sunucu push-to-start ile başlatır, deneme başlayınca biter. |
 | `m-bildirim-canli-odak` | Canlı etkinlik · odak oturumu | `iOS Live Activity (ActivityKit)` | Yeni: odak sayacı kilit ekranında; tek düğme (Duraklat) uygulamayı açmadan çalışır (App Intents, Apple: tek etkileşimli öğe). Öğrenci başlatır, süre bitince hemen kapanır. |
-| `m-bildirim-ada` | Dynamic Island hâlleri | `iOS Live Activity (ActivityKit)` | Kompakt, minimal (iki etkinlik), genişletilmiş deneme ve mikro ders. Deneme sürerken soru, kalan süre ve boşlar. |
+| `m-bildirim-ada` | Dynamic Island hâlleri | `iOS Live Activity (ActivityKit)` | Kompakt, minimal (iki etkinlik), genişletilmiş deneme ve konu. Deneme sürerken soru, kalan süre ve boşlar. |
 | `m-bildirim-seri` | Canlı etkinlik · akşam serisi | `iOS Live Activity (ActivityKit)` | Yeni: yalnız o gün çalışılmadıysa 20:00’de; gerçek son (23:59) ve tek kısa yol (12 kart · 5 dk). Sahte aciliyet yok. |
 | `m-bildirim-zengin` | Zengin bildirimler | `UNNotificationContent + attachment` | Yeni: her bildirim tek bilgi ve modül renginde küçük görsel (net sütunları, modül simgesi). Metinler sen dilinde, sayı somut. |
 | `m-bildirim-genis` | Bildirim · uzun basınca | `Notification Content Extension` | Yeni: deneme sonucu bildirimi açılınca ders ders net ve iki eylem (Yanlışlarımı çalış, Planıma ekle). Yalnız uygulamayı açan eylem yok: bildirime dokunmak açar. |
@@ -271,9 +283,9 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `w-panel-anasayfa` | Ana sayfa | `/student/dashboard` | Mobil ile aynı Bugün düzeni: selam, hedef ve seri; günün planı ve sıradaki görev; hafta şeridi ve iki ölçü; Kaldığın yerden, Sıradaki deneme, Bugün tekrar. |
+| `w-panel-anasayfa` | Ana sayfa | `/student/dashboard` | Mobil ile aynı Bugün düzeni: selam ve altında hedef (tarih yok); sağda seri ve Paylaş. Her satır aynı iki sütun (1,3 / 1), satırdaki kartlar eş boy: günün planı + hafta; Kaldığın yerden ve Sıradaki deneme sol sütunda, Bugün tekrar sağda; Bu hafta + Modüller. |
 | `w-panel-tur` | İlk giriş ipucu | `/student/dashboard` | İlk girişte tek ipucu, günün adımının üstünde. |
-| `w-panel-anasayfa-plansiz` | Ana sayfa · planı olmayan öğrenci | `/student/dashboard` | Plan kartı kayıt cevaplarını gösterir, Planımı hazırla; ilk mikro ders plansız başlar. |
+| `w-panel-anasayfa-plansiz` | Ana sayfa · planı olmayan öğrenci | `/student/dashboard` | Plan kartı kayıt cevaplarını gösterir, Planımı hazırla; ilk konu plansız başlar. |
 | `w-panel-anasayfa-gun-bitti` | Ana sayfa · günün planı bitti | `/student/dashboard` | — |
 | `w-panel-anasayfa-abonelik-bitti` | Ana sayfa · deneme süresi bitti | `/student/dashboard` | Ödeme yoksa erişim yok; ilerleme korunur. |
 | `w-panel-moduller` | Tüm modüller | `/student/moduller (yeni sayfa: web uygulamasında yok)` | — |
@@ -325,7 +337,7 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 | `w-deneme-detay-bitti` | Biten denemenin detayı | `/student/sinav/[examId]` | Önce sonuç, sonra belge, çözüm, analiz ve net kaybettiren konular. |
 | `w-deneme-coz` | Deneme çözme (odak) | `/student/sinav/coz/[examUserId]` | — |
 | `w-deneme-teslim` | Teslim onayı | `/student/sinav/coz/[examUserId]` | Mobil ile aynı: cevaplı, boş, işaretli; boş numaralar; Enter / Esc. |
-| `w-deneme-sonuclar` | Sonuçlar | `/student/sinav-sonuclari` | — |
+| `w-deneme-sonuclar` | Sonuçlar | `/student/sinav-sonuclari` | Sütun etiketleri tarih, dışarıdaki Dışarıda; ÖSYM düzeninde tablo (ders netleri, toplam net, Puan), satır sonunda Analiz, dışarıdakinde Sil. |
 | `w-deneme-sonuclar-bos` | Sonuçlar · henüz deneme yok | `/student/sinav-sonuclari` | — |
 | `w-deneme-ekle` | Deneme ekle | `/student/sinav-sonuclari` | API: student/external-exams. |
 | `w-deneme-sonuc` | Sonuç ve analiz | `/student/sinav-sonuclari/[snapshotId]` | — |
@@ -336,19 +348,17 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `w-istatistik` | İstatistiklerim | `/student/raporlarim` | Satırlarda ders adı. |
+| `w-istatistik` | İstatistiklerim | `/student/raporlarim` | Satırlarda ders adı. Hesap sayfası (modül değil, mobildeki gibi). |
 
 ### Web · Dersler
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
 | `w-ders-vitrin` | Dersler | `/student/ders-cal` | Kaldığın yerden, bugünkü tekrar ve sınavın dersleri; henüz içeriği olmayan ders “Yakında”. |
-| `w-ders-dersler` | Dersler listesi | `/student/ders-cal/ders` | — |
-| `w-ders-konular` | Konular | `/student/ders-cal/ders/[lessonMainId]` | Dersin konuları: mikro ders, süre, ilerleme, ilk denemede doğru; yanda ders ilerlemesi. |
+| `w-ders-konular` | Konular | `/student/ders-cal/ders · /ders/[lessonMainId]` | Ders hapları ve Tümü / Süren / Biten süzgeci; konular: adım, süre, yüzde ilerleme, ilk denemede doğru; yanda ders ilerlemesi. |
 | `w-ders-tekrar` | Tekrar | `/student/ders-cal/tekrar` | Günü gelen adımlar; 1, 3 ve 7 gün aralıkla. |
 | `w-ders-tekrar-oturum` | Tekrar oturumu | `/student/ders-cal/tekrar/oturum` | Mobilin tekrar adımı oynatıcıda. |
-| `w-ders-konu-girisi` | Konu girişi | `/student/ders-cal/konu/[lessonSubId]` | Panelin içinde iki sütun: kanca, hedefler, video ve devam düğmesi; yanda mikro derslerin yol haritası. |
-| `w-ders-tanim` | Oynatıcı · Tanım | `/student/ders-cal/mikro/[workMikroId]` | Solda mikro dersler, ortada 700 px adım, sağda Bu mikro derste ve SinoAI. |
+| `w-ders-tanim` | Oynatıcı · Tanım | `/student/ders-cal/mikro/[workMikroId]` | Ortada 700 px adım, üstte konu boyu ilerleme (Adım x / y), sağda Bu konuda ve SinoAI. Parça zaman çizelgesi yok. |
 | `w-ders-tahmin` | Oynatıcı · Önce sen tahmin et | `/student/ders-cal/mikro/[workMikroId]` | — |
 | `w-ders-bosluk` | Oynatıcı · Boşluk doldur | `/student/ders-cal/mikro/[workMikroId]` | Tek deneme; yanlışta doğru sözcük ve nedeni. |
 | `w-ders-dogru-yanlis` | Oynatıcı · Doğru mu, yanlış mı? | `/student/ders-cal/mikro/[workMikroId]` | — |
@@ -356,29 +366,33 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 | `w-ders-grupla` | Oynatıcı · Grupla | `/student/ders-cal/mikro/[workMikroId]` | Mobilin adım çizimi oynatıcının içinde (EmbedStep). |
 | `w-ders-eslestir` | Oynatıcı · Eşleştir | `/student/ders-cal/mikro/[workMikroId]` | — |
 | `w-ders-formul` | Oynatıcı · Formül ve tablo | `/student/ders-cal/mikro/[workMikroId]` | — |
-| `w-ders-bolum` | Oynatıcı · Bölüm başı | `/student/ders-cal/mikro/[workMikroId]` | — |
-| `w-ders-soru` | Oynatıcı · TYT tarzı soru | `/student/ders-cal/mikro/[workMikroId]` | Yanlış şıktan sonra çözüm adımı açılır, öğrenci yeniden seçer; 1–5 tuşları. |
-| `w-ders-mikro-bitti` | Mikro ders bitti | `/student/ders-cal/mikro/[workMikroId]` | — |
-| `w-ders-konu-sonu` | Konu sonu | `/student/ders-cal/konu/[lessonSubId]/ozet` | Özet, dikkat notları, kamp görevi ve Testler’e geçiş. |
-| `w-ders-akis` | Akış panosu | `—` | Konu girişi → mikro dersler → konu sonu → Testler ve Kartlar; yanlışlar Tekrar’a. |
+| `w-ders-soru` | Oynatıcı · Sınav tarzı soru | `/student/ders-cal/mikro/[workMikroId]` | Yanlış şıktan sonra çözüm adımı açılır, öğrenci yeniden seçer; 1–5 tuşları. |
+| `w-ders-konu-sonu` | Konu sonu | `/student/ders-cal/konu/[lessonSubId]/ozet` | İlk denemede doğru ve Paylaş; özet, dikkat notları, kamp görevi, Testler’e geçiş; Konuyu baştan oku, Konulara dön; içerik anketi. |
+| `w-ders-akis` | Akış panosu | `—` | Konuya dokun → oynatıcı (kaldığın adımdan, bölüm geçişi aynı ekranda) → konu sonu → Testler ve Kartlar; yanlışlar Tekrar’a. |
 
 ### Web · Testler
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
 | `w-test-vitrin` | Testler | `/student/testler` | — |
-| `w-test-konular` | Ders konuları | `/student/testler/[lessonMainId]` | — |
+| `w-test-konular` | Ders konuları | `/student/testler/[lessonMainId]` | Ders çipleri yok; sağ üstte Tüm dersler Testler vitrinine döner. |
 | `w-test-konular-tum` | Konular | `/student/testler/konular` | Konu konu Kolay, Orta, Zor ilerlemesi. |
-| `w-test-cozumler` | Çözümler | `/student/testler/cozumler` | — |
+| `w-test-cozumler` | Çözümler | `/student/testler/cozumler` | Mobildeki süzgeç ve tekrar testi kartı; satır sağında Yanlışlarım; tekrar testi satırı “Konu · Tekrar”. |
+| `w-test-cozumler-isaretli` | Çözümler · İşaretli | `/student/testler/cozumler` | Soruyu aç → Yanlışlarım, Tümü süzgeci; bitmemiş testin sorusu: Test bitince açılır. |
 | `w-test-coz` | Test çözme · doğru | `/student/testler/quiz/[quizId]` | — |
-| `w-test-coz-yanlis` | Test çözme · yanlış | `/student/testler/quiz/[quizId]` | Doğru şık ve nedeni; konunun mikro dersine ya da SinoAI’ye geçiş. |
-| `w-test-yanlislar` | Yanlışlarım | `/student/testler/cozumler/[attemptId]` | İlk yanlıştan açılır; soru ızgarası solda. |
+| `w-test-coz-yanlis` | Test çözme · yanlış | `/student/testler/quiz/[quizId]` | Doğru şık ve nedeni; konunun anlatımına ya da SinoAI’ye geçiş. |
+| `w-test-baglanti` | Test çözme · bağlantı yok | `/student/testler/quiz/[quizId]` | Ortak çevrimdışı not; bekleyen cevap varken Testi bitir bitirmez, uyarı düğmenin yanında. |
+| `w-test-yanlislar` | Yanlışlarım | `/student/testler/cozumler/[attemptId]` | İlk yanlıştan açılır; ızgara bütün soruları gösterir (doğrular yeşil), süzgeç Sonraki’nin gezdiği soruları seçer. |
+| `w-test-yanlislar-son` | Yanlışlarım · son yanlış | `/student/testler/cozumler/[attemptId]` | Süzgeçteki son soruda Bitti; Çözümler’e döner. |
 
 ### Web · Ders Planı
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `w-plan-bugun` | Bugün | `/student/ders-plani` | — |
+| `w-plan-bugun` | Bugün | `/student/ders-plani` | Kart gövdesi içeriği açar, sağ üstteki daire tamamlar, … Diğer işlemler. |
+| `w-plan-gorev-menu` | Bugün · Diğer işlemler | `/student/ders-plani` | Odak sayacıyla başla, Yarına taşı, Saati değiştir, Bugünden kaldır. |
+| `w-plan-yok` | Planı olmayan öğrenci | `/student/ders-plani` | Ortalı kutu (Planımı hazırla · 1 dk, Kendi planımı kuracağım), sağda örnek gün. |
+| `w-plan-dunden` | Dünden kalan görevler | `/student/ders-plani` | Dünden kalan kutusu sol kartın üstünde: Haftaya yay, Bugüne ekle. |
 | `w-plan-program` | Program | `/student/ders-plani/program` | — |
 | `w-plan-oneriler` | Öneriler | `/student/ders-plani/oneriler` | — |
 | `w-plan-istatistik` | İstatistik | `/student/ders-plani/istatistik` | — |
@@ -392,7 +406,7 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 |---|---|---|---|
 | `w-ozet-vitrin` | Akıllı Özet | `/student/lens` | Geçmişte konu başlığı. |
 | `w-ozet-gecmis` | Geçmiş analizler | `/student/lens/gecmis` | — |
-| `w-ozet-yeni` | Yeni analiz | `/student/lens/yeni` | — |
+| `w-ozet-yeni` | Yeni analiz | `/student/lens/yeni` | Çıktı seçimi yok; not alanı ve ipuçları; Analizi başlat. |
 | `w-ozet-detay` | Analiz detayı | `/student/lens/analiz/[id]` | — |
 | `w-ozet-video` | Video analizi | `/student/lens/video/[id]` | — |
 
@@ -400,10 +414,10 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `w-kart-vitrin` | Bilgi Kartları | `/student/flashcard` | — |
+| `w-kart-vitrin` | Bilgi Kartları | `/student/flashcard` | Yeni deste düğmesi yok (deste oluşturma yok). |
 | `w-kart-bugun` | Bugün | `/student/flashcard/bugun` | — |
-| `w-kart-gozat` | Gözat | `/student/flashcard/browse` | — |
-| `w-kart-oturum` | Kart oturumu (odak) | `/student/flashcard/session` | — |
+| `w-kart-gozat` | Gözat | `/student/flashcard/browse` | Deste seçimi ızgaranın üstünde çip satırı; x/y kart · %z ve Bu desteyi çalış. |
+| `w-kart-oturum` | Kart oturumu (odak) | `/student/flashcard/session` | Boşluk: çevir · 1–3: puanla; ←/→ ile kart gezme yok. |
 | `w-kart-kaydedilen` | Kaydedilenler | `/student/flashcard/kaydedilenler` | — |
 
 ### Web · SinoAI
@@ -411,6 +425,7 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
 | `w-sino-sohbet` | SinoAI sohbet | `/student/sinoai` | Solda geçmiş, ortada tek sohbet sütunu. |
+| `w-sino-hak` | SinoAI · aylık hak doldu | `/student/sinoai` | Hak doldu bloğu sohbet sütununda; yazma alanı kapalı. |
 | `w-sino-calisma` | SinoAI çalışma | `/student/sinoai/uret` | — |
 | `w-sino-kutuphane` | SinoAI kütüphane | `/student/sinoai/kutuphane` | — |
 | `w-sino-kaynaklar` | Kaynaklarım | `/student/sinoai/kaynaklarim` | — |
@@ -441,7 +456,7 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 |---|---|---|---|
 | `t-test-coz-taslak` | Test çözme · taslak kâğıdı | `QuizSolve` | Yeni: Testler’e taslak kâğıdı. Anında geri bildirim soru sütununda, işlem yanda kalır. |
 | `t-test-coz-yanlis` | Yanlış cevap · taslağı göster | `QuizSolve` | Yanlışta taslak yerinde kalır; “Taslağımı SinoAI’ye göster” yalnız öğrenci isterse gönderir ve okunanı önce gösterir. |
-| `t-test-sekilli-soru` | Şekilli soru · şekle yaz | `QuizSolve` | Kalem şeklin üstüne yazar: açı, bulunan değer. Şıklar sağ sütunda, elenenler çizili. |
+| `t-test-sekilli-soru` | Şekilli soru · şekle yaz | `QuizSolve` | Kalem şeklin üstüne yazar: açı, bulunan değer. Şıklar sağ sütunda, elenenler çizili. Cevap şıkka tek dokunuşla; Cevapla düğmesi yok. |
 
 ### Tablet · Dersler
 
@@ -449,13 +464,12 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 |---|---|---|---|
 | `t-ders-vitrin` | Dersler · yatay | `WorkHome` | Yatayda sekme çubuğu yerine yan ray. Kaldığın yer ve tekrar yan yana, dersler üç sütun; Notlarım üstte. |
 | `t-ders-tanim-not` | Adım · Tanım · kenar notu | `WorkMikro` | Yeni: Dersler’e kalem. Okuma sütunu ve sağda kenar boşluğu; fosforlu kalem ve not adıma kayıtlı. |
-| `t-ders-soru-eleme` | Adım · TYT tarzı soru · eleme | `WorkMikro` | Şıklar kalemle elenir, seçilen daire içinde; cevap yine dokunarak verilir. |
+| `t-ders-soru-eleme` | Adım · Sınav tarzı soru · eleme | `WorkMikro` | Şıklar kalemle elenir, seçilen daire içinde; cevap yine dokunarak verilir. |
 | `t-ders-bosluk-el-yazisi` | Adım · Boşluk doldur · el yazısı | `WorkMikro` | Kalemle kutuya yazılır, okunan sözcük gösterilir, sonra kontrol edilir. Klavye her zaman seçenek. |
-| `t-ders-notlarim` | Notlarım | `WorkNotes` | Konunun tüm kenar notları ve taslakları mikro derse göre; dokununca adımına götürür. API: student/notes/works. |
+| `t-ders-notlarim` | Notlarım | `WorkNotes` | Konunun tüm kenar notları ve taslakları bölüme göre; dokununca adımına götürür. API: student/notes/works. |
 | `t-ders-grupla` | Adım · Grupla | `WorkMikro` | Mobilin adım çizimi tablet oynatıcısında (EmbedStep). |
 | `t-ders-eslestir` | Adım · Eşleştir | `WorkMikro` | — |
 | `t-ders-formul` | Adım · Formül ve tablo | `WorkMikro` | — |
-| `t-ders-bolum` | Bölüm başı | `WorkMikro` | — |
 
 ### Tablet · Bilgi Kartları
 
@@ -467,8 +481,8 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `t-hub-moduller` | Ana ekran · yatay | `ModuleHubHome` | Web ana sayfasının kendisi tablet çerçevesinde (PanelInTablet): aynı Bugün düzeni, aynı parçalar. |
-| `t-hub-plansiz` | Ana ekran · planı olmayan öğrenci | `ModuleHubHome` | Kayıt cevaplarıyla Planımı hazırla; ilk mikro ders plansız başlar. |
+| `t-hub-moduller` | Ana ekran · yatay | `ModuleHubHome` | Web ana sayfasının kendisi tablet çerçevesinde (PanelInTablet): aynı Bugün düzeni. Hedef ve seri selamın karşısında yan yana; Modüller kartında Tümü yok, altında SinoAI ve Destek yan yana (sol menü yok). |
+| `t-hub-plansiz` | Ana ekran · planı olmayan öğrenci | `ModuleHubHome` | Kayıt cevaplarıyla Planımı hazırla; ilk konu plansız başlar. |
 | `t-hub-gun-bitti` | Ana ekran · günün planı bitti | `ModuleHubHome` | — |
 | `t-hub-abonelik-bitti` | Ana ekran · deneme süresi bitti | `ModuleHubHome` | Ödeme yoksa erişim yok; ilerleme korunur. |
 
@@ -483,14 +497,15 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
 | `t-deneme-klavye` | Deneme · klavye ve soru haritası | `ExamStudentSolve` | Bağlı klavyede A–E cevaplar, oklar gezdirir, İ işaretler; soru haritası yatayda hep açık. |
-| `t-ders-sinoai-panel` | Ders adımı · SinoAI yan panelde | `WorkMikro` | SinoAI adımı kapatmadan yanda açılır ve adımı bilir; uyarı satırı panelin altında. |
-| `t-ders-konular-iki-panel` | Dersler · konular iki panel | `WorkCatalog + WorkSub` | Konu listesi solda kalır, seçilen konunun girişi ve mikro dersleri sağda; konu değiştirmek tek dokunuş. |
+| `t-ders-sinoai-panel` | Ders adımı · SinoAI yan panelde | `WorkMikro` | 400 pt panel, adımı kapatmadan açılır; SinoAI sohbet oturumunun kendi üst çubuğu (menü, Sohbet · Çalışma, yeni sohbet); uyarı satırı panelin altında. |
+| `t-ders-konular-iki-panel` | Dersler · konular iki panel | `WorkCatalog + WorkSub` | Konu listesi solda kalır, seçilen konunun özeti ve Bu konuda listesi sağda; konu değiştirmek tek dokunuş. |
 
 ### Tablet · Testler
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `t-test-yanlislar` | Yanlışlarım | `QuizReview` | Web Yanlışlarım sayfası tablette: soru ızgarası solda, çözüm sağda. |
+| `t-test-yanlislar` | Yanlışlarım | `QuizReview` | Web Yanlışlarım sayfası tablette: 5 sütunlu ızgara solda (bütün sorular), çözüm sağda. |
+| `t-test-yanlislar-son` | Yanlışlarım · son yanlış | `QuizReview` | Son yanlışta Bitti; Çözümler’e döner. |
 
 ### Tablet · Kalemsiz
 
@@ -589,7 +604,7 @@ Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, t
 | `p-deneme-gonderi` | Deneme sonucu · gönderi | `ShareCard (mobil: görünümden PNG · web: next/og)` | Aynı içerik 1080 × 1080; istatistikten ilk üçü. |
 | `p-seri-hikaye` | Seri rozeti · hikâye | `ShareCard (mobil: görünümden PNG · web: next/og)` | 3 · 7 · 14 · 30 gün basamakları: ulaşılan beyaz ve tikli, sıradaki kesikli. Marka yüzeyi (turuncu). |
 | `p-seri-gonderi` | Seri rozeti · gönderi | `ShareCard (mobil: görünümden PNG · web: next/og)` | Aynı içerik 1080 × 1080. |
-| `p-konu-hikaye` | Konu bitirme · hikâye | `ShareCard (mobil: görünümden PNG · web: next/og)` | Dersler: konu adı, mikro ders ve adım sayısı, ilk denemede doğru oranı. |
+| `p-konu-hikaye` | Konu bitirme · hikâye | `ShareCard (mobil: görünümden PNG · web: next/og)` | Dersler: konu adı, adım sayısı, ilk denemede doğru oranı. |
 | `p-konu-gonderi` | Konu bitirme · gönderi | `ShareCard (mobil: görünümden PNG · web: next/og)` | Aynı içerik 1080 × 1080. |
 | `p-hafta-hikaye` | Haftalık özet · hikâye | `ShareCard (mobil: görünümden PNG · web: next/og)` | Ders Planı: haftalık süre, günlük sütunlar (en çok çalışılan gün beyaz), soru, deneme, seri. |
 | `p-hafta-gonderi` | Haftalık özet · gönderi | `ShareCard (mobil: görünümden PNG · web: next/og)` | Aynı içerik 1080 × 1080. |

@@ -74,7 +74,7 @@ Gönderi biçiminde bileşenler aynıdır; ölçü kartlarından ilk üçü gös
 |---|---|---|
 | Deneme sonucu | Son 5 denemenin net sütunları (D1…D5). Geçmiş denemeler `rgba(255,255,255,0.4)`, bugünkü beyaz; değer sütunun üstünde, etiket altında (32 px). En düşük deneme %30, en yüksek tam boy, arası doğrusal: fark okunur. Altında "En iyi ders: Türkçe · 31,25 net" hapı | Sütun alanı 136 px, sütunlar arası 18, köşe 18 |
 | Seri rozeti | "ROZET BASAMAKLARI": 3 · 7 · 14 · 30 gün. Ulaşılan beyaz, tik ve turuncu yazı; ulaşılmamış yarı saydam ve kesikli çerçeve. Altında "SON 7 GÜN": bugünden geriye 7 gün, etiketler o günden (paylaşım cumartesi yapıldıysa Pa…Ct); çalışılan gün beyaz ve tikli | Basamak 128 px (yazı 40, tik 44); gün 96 px (yazı 34, tik 30); aralar 16 |
-| Konu bitirme | "MİKRO DERSLER · 5 / 5": her mikro ders bir sayaç, biten beyaz ve tikli | Sayaç 170 px (yazı 40, tik 44) |
+| Konu bitirme | "BÖLÜMLER · 5 / 5": her bölüm bir sayaç, biten beyaz ve tikli | Sayaç 170 px (yazı 40, tik 44) |
 | Haftalık özet | Günlük dakika sütunları; en çok çalışılan gün beyaz | Sütun alanı 260 px |
 | Bu soruyu çözdüm | Beyaz soru kutusu panelin kalanını doldurur: soru 46 px (satır 1.35), şıklar iki sütunda 42 px (kutu iç boşluğu 26 × 32, köşe 26), altında not 32 px | Kutu iç boşluğu 56 |
 
@@ -160,12 +160,12 @@ Kesin hex değerleri `src/UIUX/ModuleIdentity.ts`'teki `moduleAction` ile hesapl
 - Gölge, `filter`, bulanıklık, maske ve karmaşık SVG yok. Simgeler basit çizgi SVG ya da PNG.
 - Kesikli çerçeve (`border-style: dashed`) Satori'de çalışır; çalışmazsa düz 3 px çerçeve kullanılır.
 - Görsel boyutu sabit: 1080 × 1920 ve 1080 × 1080. Telefonda görünüm bu boyutta ekran dışında çizilip kaydedilir.
-- Sahte veri yerine gelecek alanlar. Ek API alanı gerekmedi: son netler sonuç kartlarından, gün dizisi ve mikro ders sayısı mevcut verilerden gelir.
+- Sahte veri yerine gelecek alanlar. Ek API alanı gerekmedi: son netler sonuç kartlarından, gün dizisi ve bölüm sayısı mevcut verilerden gelir.
 
 | Kart | Alanlar |
 |---|---|
 | Deneme sonucu | deneme adı, net, önceki denemeye fark, doğru / yanlış / boş, en iyi ders ve neti, son 5 denemenin adı ve neti |
 | Seri | gün sayısı, son 7 günün süresi ve soru sayısı, son 7 günün çalışılan günleri, sıradaki basamak |
-| Konu bitirme | ders, konu, mikro ders sayısı ve bitenler, adım sayısı, ilk denemede doğru oranı, toplam süre |
+| Konu bitirme | ders, konu, bölüm sayısı ve bitenler, adım sayısı, ilk denemede doğru oranı, toplam süre |
 | Haftalık özet | tarih aralığı, toplam süre, günlük dakikalar, çözülen soru, deneme sayısı, seri |
 | Bu soruyu çözdüm | ders, konu, soru metni ya da görseli, şıklar, süre, seviye |

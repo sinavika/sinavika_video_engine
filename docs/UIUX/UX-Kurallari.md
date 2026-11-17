@@ -105,7 +105,7 @@
 | 78 | Geri bildirim | Beklemeye göre gösterge | Bizde var | Kısa işte gösterge yanıp sönmez; ortada dönen saatli logo ve düğmede dönen işaret. |
 | 79 | Geri bildirim | Boş durum | Bizde var | Ne, neden, tek eylem. |
 | 80 | Geri bildirim | Hatadan kurtulma | Bizde var | Tekrar dene; cevaplar güvende. |
-| 81 | Geri bildirim | Adım göstergesi | Bizde var | Onboarding 1/5, mikro ders adım çubuğu. |
+| 81 | Geri bildirim | Adım göstergesi | Bizde var | Onboarding 1/5, ders oynatıcısında konu boyu adım çubuğu ("Adım x / y"). |
 | 82 | Geri bildirim | Kısa bildirim (toast) | Uygulama kuralı | 3–5 sn; hata için kullanılmaz. |
 | 83 | Geri bildirim | Onay mesajı | Bizde var | Kısa ve somut. |
 | 84 | İçerik | Uzun içerik | Uygulama kuralı | Üç noktayla kısalır, açılabilir. |

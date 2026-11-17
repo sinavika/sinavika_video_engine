@@ -75,7 +75,7 @@
 **Renk:**
 - Ortak parçalar rengi bağlamdan alır (`useAccent`).
 - Her modülün düğme rengi (`moduleAction`) beyaz yazıyla 4,5:1 tutar.
-- Test, iki şeyi denetler: Denemeler dışındaki modüllerde turuncu yok, düğme kontrastı 4,5:1.
+- Test, iki şeyi denetler: Denemeler dışındaki modüllerde turuncu yok, düğme kontrastı 4,5:1. (17 Kasım 2026: Denemeler zeytin yeşiline geçti; istisna kalktı, test bütün modüllere bakar.)
 
 **Diğer:**
 - Test yanlış cevap ekranı.
@@ -162,6 +162,19 @@
 - Bildirimler, ödeme (web iyzico, mobil mağaza), misafir girişi ve hesap birleştirme platforma özgü.
 - Zorunlu güncelleme yalnız mobilde.
 
+## 6b. Sahip kararları: Bugün ve Dersler (17 Kasım)
+
+Uygulama oturumu ("api+web+mobil", web deposu `docs/UIUX/Tasarim-Uyum-Plani.md` §9.1 madde 6–7 ve §9.3) sahibin kararlarını iletti; çizim ve Kodlama belgeleri buna göre düzeltildi. Sahip bunları tasarım hatası saydı; tekrarlanmaması için kurallar UIUX-Rehberi §0 "Tasarım hataları"nda.
+
+- **Bugün:** selamın üstünde tarih yok; mobil ve tablette hedef selamın karşısında, seri telefonda hedefin altında, tablette yanında; web ve tablette her satır aynı 1,3 / 1 sütunu izler, aynı satırdaki kartlar eş boy; web seri "Paylaş" düğmesi; tablet Modüller kartında "Tümü" yok, SinoAI ve Destek altta yan yana; Akıllı Özet kutusunda ve web Tüm modüller sayfasında "Bu ay 7 / 30" yok; deneme kartındaki kişi sayısı 100'ün altında yazılmaz; yüklenirken kayma yok.
+- **Dersler:** konu tek derstir (1 Kasım kararı yeniden onaylandı). Kaldırılan çizimler: `m-ders-konu-girisi`, `w-ders-konu-girisi`, `m-ders-bolum`, `w-ders-bolum`, `t-ders-bolum`, `m-ders-mikro-bitti`, `w-ders-mikro-bitti` (PNG'leri Geri Dönüşüm Kutusu'nda, kayıt `Outputs/Checks`). İlerleme konu boyunca tek çubuk ("Adım x / y"); web oynatıcısında sol zaman çizelgesi yok; "mikro ders" hiçbir metinde yok (test bunu denetler). Eklenenler: konu sonu ekleri (paylaş, "Konuyu baştan oku", "Konulara dön", ilk denemede doğru, anket), Konular'da ders hapları ve "Tümü / Süren / Biten" süzgeci, Sırala'da sürükleme, vitrinde kaydırılan slaytlar ve modül istatistik kartı, ortak "gönderilecek" notu (`m-ders-baglanti`, `PendingSyncNote`).
+- **Adım türü adı:** "TYT tarzı soru" → "Sınav tarzı soru" / "Exam-style question".
+- **Tekrar süresi:** API'de (`reviews/summary` → `estimatedMinutes`; adım 45 sn, kart 15 sn, yukarı yuvarlanır).
+- **Testler:** dersler çubuklu liste (27 Ekim halkalı ızgara kararı kalktı; §7'deki açık soru kapandı); mobil vitrin kaydırılan slaytlar + noktalar; seviye ekranında ders çipleri, "Bu dersteki haftan" kartı ve satır düğmeleri (Tekrar / Devam et / Başla / kilit); mobil Konular bütün derslerin açılır ağacı; Yanlışlarım'da "Bu soruyu paylaş" ve "SinoAI'ye sor"; soru işaretleme (`FlagButton`) çözme ekranında ve Yanlışlarım'da; Çözümler'de "İşaretli" ve "Yanlışlarından tekrar testi" kalır; tablet şekilli soruda "Cevapla" kalktı, tablet yanlış cevapta "Devam" var.
+- **Testler uç hâlleri (17 Kasım, §9.3 madde 12–14):** Yanlışlarım son yanlışta "Bitti" (`m/w/t-test-yanlislar-son`); yanlış yoksa ilk boş, o da yoksa 1. soru "Tümü" ile (`m-test-yanlislar-dogru`); içi boş süzgeç soluk ve dokunulmaz; web/tablet ızgarası bütün sorular, telefon numara satırı yalnız süzgeç. Çözümler › İşaretli (`m/w-test-cozumler-isaretli`), bitmemiş testin sorusu "Test bitince açılır"; web Çözümler'de süzgeç ve tekrar testi kartı; tekrar testi satırı "Konu · Tekrar". Testler çevrimdışı notu ve "Testi bitir" uyarısı (`m-test-baglanti`, `m-test-bitir-bekliyor`, `w-test-baglanti`). Web ders sayfasında ders çipleri yok, "Tüm dersler". Kalıcı kural: UIUX-Rehberi §0 "Uç hâller de çizilir".
+- **Vitrin istatistik kartı:** her modül vitrininde aynı çerçeveli kart (`ModuleWeekCard`). **Çevrimdışı:** adım kilitli + nötr satır (`PendingSyncNote`), Testler ve Denemeler de aynı. **Web `/student/ders-cal/ders`** Konular sekmesi; `w-ders-dersler` kaldırıldı.
+- **Deneme çıkışı:** mobil de kaldığı yerden devam ettirir ("Ara ver"); arka planda 5 dakika sonra otomatik bitirme kalkar.
+
 ## 7. Hâlâ açık olanlar
 
 **Sahibin kararı ya da onayı gerekenler:**
@@ -169,14 +182,14 @@
 - **Denemede cevap değiştirme:** gerçek sınavdaki gibi değiştirilebilsin mi? API değişikliği gerektirir.
 - **Tüm modüller sayfası:** `w-panel-moduller` çizili, web'de `/student/moduller` sayfası yok. Ya web ekibi sayfayı ekler ya çizim kaldırılır.
 - **8 Kasım ekran karşılaştırmasının bulduğu çelişkiler** (rapor `Desktop\Sinavika-UIUX3\docs\Ekran-Karsilastirma-2026-11-08.md`):
-  - Konu tek ders olarak kesintisiz mi akacak? Öyleyse bölüm başı ve mikro ders bitti çizimleri (`m-ders-bolum`, `m-ders-mikro-bitti`, `w-ders-mikro-bitti`) konu düzeyine çevrilir.
+  - ~~Konu tek ders olarak kesintisiz mi akacak?~~ Kapandı (17 Kasım 2026): evet; bölüm başı, mikro ders bitti ve konu girişi çizimleri kaldırıldı (§6b).
   - Onboarding'de sıra: çizim "plan → hesap → 3 gün ücretsiz → ilk mikro ders", rapordaki karar "sınav → kısa sorular → ödeme".
-  - Dersler ve Testler ana ekranında halkalı ızgara mı (27 Ekim kararı), çubuklu liste mi?
+  - ~~Dersler ve Testler ana ekranında halkalı ızgara mı, çubuklu liste mi?~~ Kapandı (17 Kasım 2026): çubuklu liste.
   - Eski yönlendirme rotalarının silinmesi ve mobilde genel arama.
 
 **Mobil ekip:**
-1. **Denemeden çıkma:** web "Kaydet ve çık", mobil "teslim etmeden çıkarsan deneme iptal olur" (`exitCancels`). API kaldığı yerden devamı destekliyor (`GET student/exams/attempts/{id}/state`). Mobil, web gibi devam ettirmeli.
-2. **Testte cevap:** mobil seç + "Cevapla"; web ve tasarım tek dokunuş.
+1. **Denemeden çıkma (karar 17 Kasım: mobil de kaldığı yerden devam ettirir):** web "Kaydet ve çık", mobil "teslim etmeden çıkarsan deneme iptal olur" (`exitCancels`). API kaldığı yerden devamı destekliyor (`GET student/exams/attempts/{id}/state`). Mobil, web gibi devam ettirmeli.
+2. **Testte cevap (karar 17 Kasım: her yerde tek dokunuş):** mobil seç + "Cevapla"; web ve tasarım tek dokunuş.
 3. **Ölü fonksiyon:** `fetchLensSessionTranscript` API'de olmayan bir uca bağlı ve hiçbir ekrandan çağrılmıyor; silinmeli ya da API'ye uç eklenmeli.
 4. **Bilgi Kartları sayısı:** web toplam yeni kartı, mobil bugünün tekrarını söylüyor. Tasarım ikisinde de "bugün tekrar zamanı gelen" sayısı. Web de bu sayıya geçmeli.
 5. **Revizyon ekranlarının sırası:**

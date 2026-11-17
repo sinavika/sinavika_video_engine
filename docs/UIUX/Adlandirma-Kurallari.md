@@ -58,7 +58,7 @@ Ana ekran **Modüller**'dir (hub): üstte modül slaytları, altında modül kar
 | Compass, Pusula | Eski mobil modül, site metinleri | **Ders Planı › İlerleme** | Mobilde eski rotalar `StudyPlanProgress`'e yönleniyor. |
 | Ders Çalış | Web menüsü, SEO metinleri, API ve yönetim paneli belgeleri | **Dersler** | Fiil olarak ("ders çalış") buton ve sloganda kullanılabilir. Kod adı `Works`, web rotası `ders-cal` kalır. |
 | Parola | Giriş, kayıt ve hesap güvenliği | **Şifre** | Tek kelime: şifre, şifremi unuttum, yeni şifre. |
-| Öğrenme rotası, Konu ağacı, Geçmiş (Dersler) | Eski Dersler ekranları | **Konular**, **Tekrar** | Dersler'in yapısı: ders → konu → mikro ders → adım. |
+| Öğrenme rotası, Konu ağacı, Geçmiş (Dersler) | Eski Dersler ekranları | **Konular**, **Tekrar** | Dersler'in yapısı: ders → konu → adım; konu tek derstir, "mikro ders" yazılmaz (17 Kasım 2026). |
 | Kelime Kartları, Knowledge cards | Web, mobil EN | **Bilgi Kartları** / Flashcards | |
 | Sınavika AI | Web | **SinoAI** | |
 | Sınavlarım | Web menüsü, mobil deneme sekmesi | **Denemelerim** | §4'teki "deneme / sınav" ayrımı. |

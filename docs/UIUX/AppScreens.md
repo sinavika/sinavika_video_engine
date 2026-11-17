@@ -27,7 +27,7 @@ Ekranlar 390×844'lük sabit bir tuvale çizilir (uygulamanın tasarım boyutu) 
 | `SmartSummary` | Akıllı Özet | `m-ozet-sonuc` | Soru görselinden çözüm, kazanım ve hata analizi |
 | `SinoAi` | SinoAI | `m-sino-sohbet` | SinoAI ile sohbet |
 | `Flashcards` | Bilgi Kartları | `m-kart-on` | Kartı çevir, bilme düzeyini işaretle |
-| `Lessons` | Dersler | `m-ders-vitrin` | Mikro dersler, konular, tekrar |
+| `Lessons` | Dersler | `m-ders-vitrin` | Konular adım adım, kaldığın yerden ve tekrar |
 | `Tests` | Testler | `m-test-vitrin` | Konu testleri: Kolay, Orta, Zor |
 | `StudyPlan` | Ders Planı | `m-plan-bugun` | Günün görevleri ve çalışma serisi |
 | `StudyProgress` | Ders Planı | `m-plan-ilerleme` | Haftalık çalışma süresi ve konu ilerlemesi |

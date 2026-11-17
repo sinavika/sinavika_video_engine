@@ -16,30 +16,39 @@ import {ActionCard, TodayCard, WeekStrip, type HubState} from '../../Parts/Study
  * GET study-plan calendar (week strip), GET works continue, GET exams upcoming.
  */
 
-/** The status line under each module tile: what waits in the module today. */
-const STATUS: Record<ModuleKey, [string, string]> = {
+/**
+ * The status line under each module tile: what waits in the module today.
+ * Every line has a data source; a number the system does not have is not
+ * drawn (owner, 17 Nov 2026). "1 test hazır" = topics whose lessons are done
+ * and whose quizzes are not (GET student/quizzes/summary readyTopicCount).
+ * Akıllı Özet has no monthly limit, so its tile has no line.
+ */
+const STATUS: Record<ModuleKey, [string, string] | undefined> = {
 	exam: ['Cumartesi canlı', 'Live on Saturday'],
 	lessons: ['1 konu sürüyor', '1 topic in progress'],
 	tests: ['1 test hazır', '1 quiz ready'],
 	studyPlan: ['Bugün 2 / 5', 'Today 2 / 5'],
-	smartSummary: ['Bu ay 7 / 30', '7 / 30 this month'],
+	smartSummary: undefined,
 	flashcards: ['32 kart bugün', '32 due today'],
 	sinoAi: ['Sor', 'Ask'],
 };
 
 /** A module in the compact grid: tile, name, today's status. */
-const ModuleTile: React.FC<{module: ModuleKey; status: string}> = ({module, status}) => {
+const ModuleTile: React.FC<{module: ModuleKey}> = ({module}) => {
 	const colors = useColors();
 	const t = useT();
+	const status = STATUS[module];
 	return (
 		<Stack align="center" gap={5} style={{padding: '10px 6px 8px', borderRadius: 20, background: colors.card, border: `1px solid ${colors.line}`}}>
 			<Tile module={module} size={40} />
 			<Text role="headline" size={13.5} align="center" style={{lineHeight: '17px'}}>
 				{t(MODULES[module].name)}
 			</Text>
-			<Text role="meta" size={12} align="center">
-				{status}
-			</Text>
+			{status ? (
+				<Text role="meta" size={12} align="center">
+					{t(status[0], status[1])}
+				</Text>
+			) : null}
 		</Stack>
 	);
 };
@@ -50,31 +59,33 @@ const HubBody: React.FC<{scrolled?: boolean; state?: HubState}> = ({scrolled, st
 	const grid: ModuleKey[] = ['exam', 'lessons', 'tests', 'studyPlan', 'smartSummary', 'flashcards'];
 	const page = (
 		<>
-			<Stack key="hello" row justify="space-between" align="flex-end">
-				<Stack gap={4}>
-					<Text role="title" size={23}>
-						{t('Günaydın Ayşe', 'Good morning, Ayşe')}
-					</Text>
-					<Stack row gap={6}>
+			{/* Owner, 17 Nov 2026: no date above the greeting; the goal sits on the greeting's line, right; the streak goes under the goal (alone, it takes the goal's place). The right side keeps its place while data loads. */}
+			<Stack key="hello" row justify="space-between" align="flex-start" gap={10}>
+				<Text role="title" size={23} style={{whiteSpace: 'nowrap'}}>
+					{t('Günaydın Ayşe', 'Good morning, Ayşe')}
+				</Text>
+				<Stack gap={4} align="flex-end" style={{paddingTop: 2}}>
+					<Stack row gap={5}>
 						<Icon name="target" size={15} color={colors.ink2} />
-						<Text role="small" color={colors.ink2}>
-							{t('Hedef', 'Goal')} <b style={{color: colors.ink}}>{t('TYT · 245 gün kaldı', 'TYT · 245 days left')}</b>
+						<Text role="small" color={colors.ink2} style={{whiteSpace: 'nowrap'}}>
+							{t('Hedef ', '')}
+							<b style={{color: colors.ink}}>{t('TYT · 245 gün', 'TYT · 245 days')}</b>
 						</Text>
 					</Stack>
+					<Chip tone="warning" icon="flame">
+						{t('5 gün', '5 days')}
+					</Chip>
 				</Stack>
-				<Chip tone="warning" icon="flame">
-					{t('5 gün', '5 days')}
-				</Chip>
 			</Stack>
 			<WeekStrip done={state === 'noPlan' ? [] : state === 'done' ? [0, 1, 2, 3] : [0, 1, 2]} share={state === 'done' ? 1 : state === 'noPlan' ? 0 : 0.4} />
 			<TodayCard state={state} />
 			<Stack row gap={10} align="stretch">
-				{state === 'noPlan' ? <ActionCard module="lessons" over={t('İlk adımın', 'First step')} title={t('Gerçek anlam', 'Literal meaning')} line={t('TYT Türkçe · ilk mikro ders', 'TYT Turkish · first micro-lesson')} action={t('Başla', 'Start')} icon="book" meter={{progress: 0, label: t('6 adım · 4 dk', '6 steps · 4 min')}} /> : <ActionCard module="lessons" over={t('Kaldığın yerden', 'Continue')} title={t('Mecaz anlam', 'Figurative meaning')} line={t('Sözcükte Anlam · 4 dk kaldı', 'Word meaning · 4 min left')} action={state === 'expired' ? t('Paketleri gör', 'See plans') : t('Devam et', 'Continue')} icon="book" meter={state === 'expired' ? {locked: t('Abone olunca açılır', 'Opens with a plan')} : {progress: 0.4, label: t('2 / 5 adım', '2 / 5 steps')}} />}
+				{state === 'noPlan' ? <ActionCard module="lessons" over={t('İlk adımın', 'First step')} title={t('Sözcükte Anlam', 'Word meaning')} line={t('TYT Türkçe · ilk konun', 'TYT Turkish · your first topic')} action={t('Başla', 'Start')} icon="book" meter={{progress: 0, label: t('30 adım · 33 dk', '30 steps · 33 min')}} /> : <ActionCard module="lessons" over={t('Kaldığın yerden', 'Continue')} title={t('Sözcükte Anlam', 'Word meaning')} line={t('Türkçe · 29 dk kaldı', 'Turkish · 29 min left')} action={state === 'expired' ? t('Paketleri gör', 'See plans') : t('Devam et', 'Continue')} icon="book" meter={state === 'expired' ? {locked: t('Abone olunca açılır', 'Opens with a plan')} : {progress: 0.13, label: t('Adım 4 / 30', 'Step 4 / 30')}} />}
 				<ActionCard
 					module="exam"
 					over={t('Sıradaki deneme', 'Next exam')}
 					title={t('TYT Deneme 5', 'TYT Exam 5')}
-					line={t('Cumartesi 10:00 · 12.480 kişi', 'Saturday 10:00 · 12,480 joined')}
+					line={t('Cumartesi 10:00 · 12.480 kişi', 'Saturday 10:00 · 12,480 people')}
 					action={t('Hatırlat', 'Remind me')}
 					icon="exam"
 					meter={{
@@ -91,13 +102,13 @@ const HubBody: React.FC<{scrolled?: boolean; state?: HubState}> = ({scrolled, st
 				<SectionTitle title={t('Modüller', 'Modules')} />
 				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10}}>
 					{grid.slice(0, 3).map((key) => (
-						<ModuleTile key={key} module={key} status={t(STATUS[key][0], STATUS[key][1])} />
+						<ModuleTile key={key} module={key} />
 					))}
 				</div>
 			</Stack>
 			<div key="modules-2" style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10}}>
 				{grid.slice(3).map((key) => (
-					<ModuleTile key={key} module={key} status={t(STATUS[key][0], STATUS[key][1])} />
+					<ModuleTile key={key} module={key} />
 				))}
 			</div>
 			<Stack row gap={12} style={{padding: 14, borderRadius: 22, background: colors.card, border: `1px solid ${colors.line}`}}>
@@ -162,8 +173,8 @@ const HubBody: React.FC<{scrolled?: boolean; state?: HubState}> = ({scrolled, st
 					</div>
 				</Content>
 			) : (
-				<Content tabBar={false} gap={14}>
-					<FitList gap={14}>{blocks}</FitList>
+				<Content tabBar={false} gap={12}>
+					<FitList gap={12}>{blocks}</FitList>
 				</Content>
 			)}
 		</>
@@ -176,7 +187,7 @@ export const HubScreen: React.FC = () => (
 	</Phone>
 );
 
-/** New student without a plan: the plan card asks for one minute; the first micro-lesson needs no plan. */
+/** New student without a plan: the plan card asks for one minute; the first topic needs no plan. */
 export const HubNoPlanScreen: React.FC = () => (
 	<Phone>
 		<HubBody state="noPlan" />

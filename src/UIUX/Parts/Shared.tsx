@@ -2,7 +2,7 @@ import React from 'react';
 import {Img, staticFile} from 'remotion';
 import {BRAND} from '../../Configurations/Brand';
 import {useTheme} from '../../Themes/ThemeContext';
-import {TintProvider, useAccent, useColors, useModuleColors, useOnTint, useUI} from '../Context';
+import {TintProvider, useAccent, useColors, useModuleColors, useOnTint, useT, useUI} from '../Context';
 import {Icon, type UIIconName} from '../Icons';
 import {alpha, MODULES, moduleGradient, type ModuleKey} from '../ModuleIdentity';
 import {UI_RADIUS, UI_SHADOW, UI_TYPE, type UITypeRole} from '../Tokens';
@@ -352,7 +352,12 @@ export const Field: React.FC<FieldProps> = ({label, value, placeholder, icon, tr
 	);
 };
 
-export const Segmented: React.FC<{items: string[]; active?: number; module?: ModuleKey; dark?: boolean}> = ({items, active = 0, module, dark}) => {
+/**
+ * A segmented filter. `off` lists the items that have nothing in them (a
+ * "Boş · 0" filter): drawn faint and not tappable, so a tap never opens an
+ * empty list (17 Nov 2026).
+ */
+export const Segmented: React.FC<{items: string[]; active?: number; module?: ModuleKey; dark?: boolean; off?: number[]}> = ({items, active = 0, module, dark, off = []}) => {
 	const colors = useColors();
 	const mod = useModuleColors(module);
 	const {typography} = useTheme();
@@ -363,6 +368,7 @@ export const Segmented: React.FC<{items: string[]; active?: number; module?: Mod
 				return (
 					<div
 						key={item}
+						data-ui={off.includes(index) && !on ? 'disabled' : undefined}
 						style={{
 							flex: 1,
 							height: 34,
@@ -376,7 +382,8 @@ export const Segmented: React.FC<{items: string[]; active?: number; module?: Mod
 							whiteSpace: 'nowrap',
 							padding: '0 10px',
 							background: on ? (dark ? colors.ink : colors.card) : 'transparent',
-							color: on ? (dark ? colors.bg : module ? mod.ink : colors.ink) : colors.muted,
+							color: on ? (dark ? colors.bg : module ? mod.ink : colors.ink) : off.includes(index) ? colors.subtle : colors.muted,
+							opacity: off.includes(index) && !on ? 0.6 : 1,
 							boxShadow: on && !dark ? '0 1px 3px rgba(15, 23, 42, 0.12)' : undefined,
 						}}
 					>
@@ -543,3 +550,42 @@ export const Watermark: React.FC<{icon: UIIconName; size?: number; right?: numbe
 
 /** Glow circles behind gradient cards: the translucent layers of the module colour. */
 export const Glow: React.FC<{size?: number; top?: number; right?: number; opacity?: number}> = ({size = 220, top = -90, right = -70, opacity = 0.14}) => <div data-ui="decor" style={{position: 'absolute', top, right, width: size, height: size, borderRadius: size / 2, background: `rgba(255, 255, 255, ${opacity})`}} />;
+
+/**
+ * The one "to send" look for every module that queues answers offline
+ * (Dersler, Testler, Denemeler; one central queue in both apps, owner 17 Nov
+ * 2026): under the locked step or question, one neutral line, like the review
+ * note: 13 pt in the module's ink, no icon, no red, no banner. "Devam" stays
+ * open. The line goes when the answer is sent; nothing else moves.
+ */
+export const PendingSyncNote: React.FC<{module?: ModuleKey; reveal?: boolean}> = ({module, reveal}) => {
+	const t = useT();
+	const accent = useAccent(module);
+	// Testler shows right and wrong only after the server checks the answer: `reveal` says the right answer shows then.
+	return (
+		<Text role="meta" size={13} color={accent.ink} ui="pending-sync">
+			{reveal ? t('Bağlantı yok; cevabın kaydedildi. Bağlanınca gönderilecek, doğrusu o zaman görünür.', 'No connection; your answer is saved. It will be sent when you reconnect, and the right answer shows then.') : t('Bağlantı yok; cevabın kaydedildi. Bağlanınca gönderilecek.', 'No connection; your answer is saved. It will be sent when you reconnect.')}
+		</Text>
+	);
+};
+
+/**
+ * The flag on a test question (owner, 17 Nov 2026): on the solve screen and in
+ * Yanlışlarım, at the right of the question's meta line. Off: outline pill,
+ * "İşaretle", bookmark in ink2. On: module soft pill, "İşaretli", bookmark in
+ * the module ink. One tap toggles; flagged questions gather under Çözümler ›
+ * İşaretli. Never the only signal: the word changes with the colour.
+ */
+export const FlagButton: React.FC<{on?: boolean; module?: ModuleKey}> = ({on, module = 'tests'}) => {
+	const t = useT();
+	const colors = useColors();
+	const mod = useModuleColors(module);
+	return (
+		<div data-ui="flag" style={{display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 16, boxSizing: 'border-box', background: on ? mod.soft : colors.card, border: on ? `1.5px solid ${mod.line}` : `1.5px solid ${colors.line}`, flexShrink: 0}}>
+			<Icon name="bookmark" size={15} color={on ? mod.ink : colors.ink2} />
+			<Text role="small" size={13} weight={700} color={on ? mod.ink : colors.ink2}>
+				{on ? t('İşaretli', 'Flagged') : t('İşaretle', 'Flag')}
+			</Text>
+		</div>
+	);
+};

@@ -8,12 +8,13 @@ import {Grid, Panel, WCard} from '../../Parts/Web';
 export const WebModulesScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
-	const status: Record<ModuleKey, string> = {
+	// Every status has a data source (owner, 17 Nov 2026): Akıllı Özet has no monthly limit, so it has no chip; Testler shows ready quizzes (quizzes/summary readyTopicCount), as on the home tile.
+	const status: Record<ModuleKey, string | undefined> = {
 		exam: t('Cumartesi: TYT Deneme 5', 'Sat: TYT Exam 5'),
 		lessons: t('3 ders sürüyor', '3 in progress'),
-		tests: '35 / 100',
+		tests: t('1 test hazır', '1 quiz ready'),
 		studyPlan: t('Bugün 1/3', 'Today 1/3'),
-		smartSummary: t('Bu ay 7 / 30', '7 / 30 this month'),
+		smartSummary: undefined,
 		flashcards: t('32 kart bugün', '32 due today'),
 		sinoAi: t('Hedefini bilir', 'Knows your goal'),
 	};
@@ -38,9 +39,11 @@ export const WebModulesScreen: React.FC = () => {
 							<Text role="section">{t(MODULES[key].name)}</Text>
 							<Text role="small">{t(MODULES[key].tagline)}</Text>
 						</Stack>
-						<Chip tone="module" module={key} size="sm" style={{alignSelf: 'flex-start'}}>
-							{status[key]}
-						</Chip>
+						{status[key] ? (
+							<Chip tone="module" module={key} size="sm" style={{alignSelf: 'flex-start'}}>
+								{status[key]}
+							</Chip>
+						) : null}
 					</Stack>
 				))}
 			</Grid>

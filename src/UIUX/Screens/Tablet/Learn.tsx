@@ -4,33 +4,32 @@ import {Icon, type UIIconName} from '../../Icons';
 import {MODULES} from '../../ModuleIdentity';
 
 import {HandText, Highlight, InkCheck, InkLayer, InkLine, InkLoop, InkUnderline, PEN, usePen, type PenColor} from '../../Parts/Ink';
-import {Bar, Button, Card, Chip, Segmented, Stack, Steps, Text, Toggle} from '../../Parts/Shared';
+import {Bar, Button, Card, Chip, Segmented, Stack, Text, Toggle} from '../../Parts/Shared';
 import {InkNote, PenToolbar, RoundButton, Scratchpad, SideRail, SolveBar, Tablet} from '../../Parts/Tablet';
 import {UI_RADIUS, UI_SHADOW} from '../../Tokens';
-import {AGIR_QUESTION, CONCEPT, Kind, ListenPill, microStates, MICRO_LESSONS, Rich, RolePill, TOPIC, WORK_LESSONS, Words} from '../Mobile/Lessons';
+import {AGIR_QUESTION, CONCEPT, Kind, ListenPill, Rich, RolePill, sectionStates, TOPIC, TOPIC_SECTIONS, TopicProgress, WORK_LESSONS, Words} from '../Mobile/Lessons';
 import {InkOption} from './Solve';
 
 /**
  * Dersler (Works), Bilgi Kartları, Modüller and the pen settings on a
- * tablet. In a micro-lesson the pen works on every step: highlight the
+ * tablet. In the lesson player the pen works on every step: highlight the
  * definition, write in the margin, cross options out, answer a blank in
  * handwriting. Notes stay with the step and come back in Notlarım.
  */
 
 /* ------------------------------------------------------------------ lesson frame */
 
-/** A micro-lesson step on a tablet: step bar on top, the step in a reading column, a margin for ink on the right. */
-export const LessonStep: React.FC<{done: number; count?: number; title: string; topic?: string; children: React.ReactNode; margin?: React.ReactNode; foot?: React.ReactNode; overlay?: boolean; toolbar?: React.ReactNode}> = ({done, count = 5, title, topic = TOPIC.title, children, margin, foot, overlay = true, toolbar}) => {
+/** A lesson step on a tablet: the topic's progress on top ("Adım x / y", never part by part), the step in a reading column, a margin for ink on the right. */
+export const LessonStep: React.FC<{done: number; title: string; topic?: string; children: React.ReactNode; margin?: React.ReactNode; foot?: React.ReactNode; overlay?: boolean; toolbar?: React.ReactNode}> = ({done, title, topic = TOPIC.title, children, margin, foot, overlay = true, toolbar}) => {
 	const colors = useColors();
-	const mod = useModuleColors('lessons');
 	return (
 		<Tablet module="lessons" wash>
 			<SolveBar
 				title={title}
-				sub={`${topic} · ${done + 1} / ${count}`}
+				sub={topic}
 				center={
-					<div style={{width: 300}}>
-						<Steps count={count} done={done + 1} color={mod.color} />
+					<div style={{width: 340}}>
+						<TopicProgress step={TOPIC.before + done + 1} />
 					</div>
 				}
 				overlay={overlay}
@@ -96,7 +95,7 @@ export const LessonsHomeTabletScreen: React.FC = () => {
 								{TOPIC.hook}
 							</Text>
 							<Text role="small" weight={600} color="#FFFFFF">
-								1 / 13 · {t('sıradaki: Mecaz anlam', 'next: Figurative meaning')}
+								{t(`Adım 4 / ${TOPIC.steps} · ${TOPIC.minutes - 4} dk kaldı`, `Step 4 / ${TOPIC.steps} · ${TOPIC.minutes - 4} min left`)}
 							</Text>
 							<div style={{flex: 1}} />
 							<Stack row gap={10}>
@@ -117,7 +116,7 @@ export const LessonsHomeTabletScreen: React.FC = () => {
 							</Stack>
 							<Text role="small">{t('İlk denemede yanlış yaptığın adımlar. Her biri tek denemede.', 'Steps you missed on the first try. One try each.')}</Text>
 							<Stack row gap={8} wrap>
-								{['TYT tarzı soru', 'Boşluk doldur', 'Önce sen tahmin et'].map((kind) => (
+								{['Sınav tarzı soru', 'Boşluk doldur', 'Önce sen tahmin et'].map((kind) => (
 									<Chip key={kind} size="sm" tone="outline">
 										{kind}
 									</Chip>
@@ -143,9 +142,7 @@ export const LessonsHomeTabletScreen: React.FC = () => {
 										</Text>
 									</Stack>
 									<Bar value={done / total} color={mod.color} track={mod.track} />
-									<Text role="small">
-										{done} / {total} {t('mikro ders', 'micro-lessons')}
-									</Text>
+									<Text role="small">{done ? t(`%${Math.round((done / total) * 100)} tamamlandı`, `${Math.round((done / total) * 100)}% done`) : t('Başlamadın', 'Not started')}</Text>
 								</Stack>
 							</Card>
 						))}
@@ -188,7 +185,7 @@ export const LessonConceptTabletScreen: React.FC = () => {
 				</>
 			}
 		>
-			<Kind>Mecaz anlam · 1 / 5</Kind>
+			<Kind>Mecaz anlam</Kind>
 			<Text role="title" size={30} style={{lineHeight: '38px'}}>
 				{CONCEPT.title}
 			</Text>
@@ -210,12 +207,12 @@ export const LessonConceptTabletScreen: React.FC = () => {
 	);
 };
 
-/** TYT tarzı soru: options eliminated with the pen before choosing; the step's hint after a wrong try. */
+/** Sınav tarzı soru: options eliminated with the pen before choosing; the step's hint after a wrong try. */
 export const LessonQuestionTabletScreen: React.FC = () => {
 	const colors = useColors();
 	return (
-		<LessonStep done={4} title="TYT tarzı soru" toolbar={<PenToolbar vertical tool="pen" color="red" width="medium" clear={false} style={{alignSelf: 'center'}} />} foot={<Main icon="check">Cevapla</Main>}>
-			<Kind>TYT tarzı · 5 / 5</Kind>
+		<LessonStep done={4} title="Sınav tarzı soru" toolbar={<PenToolbar vertical tool="pen" color="red" width="medium" clear={false} style={{alignSelf: 'center'}} />} foot={<Main icon="check">Cevapla</Main>}>
+			<Kind>Sınav tarzı</Kind>
 			<Text role="headline" size={21} weight={700} color={colors.ink} style={{lineHeight: '31px'}}>
 				Aşağıdaki cümlelerin hangisinde <Highlight>ağır</Highlight> sözcüğü mecaz anlamda kullanılmıştır?
 			</Text>
@@ -242,7 +239,7 @@ export const LessonFillTabletScreen: React.FC = () => {
 	const mod = useModuleColors('lessons');
 	return (
 		<LessonStep done={3} title="Boşluk doldur" overlay={false} foot={<Main icon="check">Kontrol et</Main>}>
-			<Kind>Boşluk doldur · 4 / 5</Kind>
+			<Kind>Boşluk doldur</Kind>
 			<Text role="title" size={26} style={{lineHeight: '36px', maxWidth: 760}}>
 				Sözcüğün bir benzetme sonucu gerçek anlamından tamamen uzaklaşarak kazandığı anlama ______ anlam denir.
 			</Text>
@@ -279,11 +276,11 @@ export const LessonFillTabletScreen: React.FC = () => {
 	);
 };
 
-/** Notlarım: every note and scratchpad of a topic, by micro-lesson; open one to go back to its step. */
+/** Notlarım: every note and scratchpad of a topic, grouped by section; open one to go back to its step. */
 export const LessonNotesTabletScreen: React.FC = () => {
 	const colors = useColors();
 	const mod = useModuleColors('lessons');
-	const states = microStates(1);
+	const states = sectionStates(1);
 	const notes: [string, string, string, (ink: string) => React.ReactNode][] = [
 		[
 			'Mecaz anlam',
@@ -299,7 +296,7 @@ export const LessonNotesTabletScreen: React.FC = () => {
 		],
 		[
 			'Mecaz anlam',
-			'TYT tarzı soru · eleme',
+			'Sınav tarzı soru · eleme',
 			'Bugün',
 			() => (
 				<>
@@ -371,10 +368,10 @@ export const LessonNotesTabletScreen: React.FC = () => {
 					<Stack row gap={18} align="stretch" style={{flex: 1, minHeight: 0}}>
 						<Card padding={14} style={{width: 280, flexShrink: 0}}>
 							<Text role="over" style={{padding: '4px 6px 10px'}}>
-								Mikro dersler
+								Bölümler
 							</Text>
 							<Stack gap={2}>
-								{MICRO_LESSONS.slice(0, 8).map(([name], index) => (
+								{TOPIC_SECTIONS.slice(0, 8).map(([name], index) => (
 									<Stack key={name} row gap={10} style={{padding: '9px 8px', borderRadius: 12, background: index === 1 ? mod.soft : 'transparent'}}>
 										<div style={{width: 10, height: 10, borderRadius: 5, background: states[index] === 'done' ? mod.color : states[index] === 'now' ? mod.color : colors.line}} />
 										<Text role="small" weight={index === 1 ? 800 : 600} color={index === 1 ? mod.ink : colors.ink2} style={{flex: 1}}>

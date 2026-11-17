@@ -3,9 +3,28 @@
 Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çizim kodu: `sinavika_video_engine/src/UIUX/Screens/Mobile/Assist.tsx` (`Summary*`), `Screens/Mobile/States.tsx` (`SummaryQuotaScreen`, `SummaryFailedScreen`), `Screens/Mobile/Gaps.tsx` (`SummaryPdfScreen`), `Screens/Web/AssistWeb.tsx` (`WebSummary*`), `Screens/Web/GapsWeb.tsx` (`WebSummaryHistoryScreen`), `Parts/Study.tsx` (`StateBlock`)
 Önce oku: [README](README.md) (ortak kurallar, ekran tanımı biçimi, testler) ve [Navigasyon](Navigasyon.md).
 
+
+> **Sahip kararları (17 Kasım 2026). Bu kararlarla çelişen ekran çizmek ya da kodlamak tasarım hatasıdır.** Kaynak: web deposunda `docs/UIUX/Tasarim-Uyum-Plani.md` §9.1 madde 12, §9.3 madde 19.
+> - **Hak:** sistemde aylık sayı yoktur; hak SinoAI ile ortak bir yüzdedir. Gösterim:
+>   - mobilde başlık çipi "Kullanım %40";
+>   - webde alt başlıkta "kullanım %40";
+>   - hak dolunca `m-ozet-hak` "Kullanım %100" gösterir ve "Bu arada SinoAI'ye sor" çıkmaz.
+> - **Analizden kart üretimi yoktur:** mobilde "Bilgi kartı yap", webde "Kart yap" yoktur.
+> - **"Bu konuda devam et":** yalnız "Konuyu çalış" vardır; meta satırı "Dersler · konu adı" olur, süre yazılmaz.
+> - **"Benzer 5 soru":** konunun testini Testler'de açar.
+> - **PDF kaynak yoktur:** mobilde "Fotoğraf ya da galeri", webde "JPG, PNG, WEBP" yazar.
+> - **Kamera:** "Tek soru", "Sayfa" ve "Video" mod çipleri yoktur.
+> - **Web yeni analiz:**
+>   - "Ne istiyorsun?" çıktı seçimi yoktur; not alanı ve ipuçları vardır.
+>   - Düğmeler: "Kamerayla çek" ve "Analizi başlat" ("· 1 hak" eki yok).
+> - **İşleniyor:** iptal yoktur; ekranı kapatmak analizi durdurmaz.
+> - **Mobil çözüm:** sorunun fotoğrafı en altta, "Sorunun fotoğrafı" başlığıyla durur.
+> - **Mobil vitrin:** "Tümü" bağlantısı yoktur; liste zaten tamdır.
+> - **Mobil yükleme sayfası:** başlık "Neler alacaksın?" olur. Altındaki satırlar seçim değil, bilgidir; üçüncü satır "Sık yapılan hata".
+
 ## 1. Modül özeti
 
-- **Ne işe yarar:** Öğrenci takıldığı sorunun fotoğrafını çeker ya da dosyasını yükler; Akıllı Özet adım adım çözümü, cevabı, kazanımı ve sık yapılan hatayı verir, sonra konuya devam yolunu (mikro ders, kart, benzer sorular, SinoAI) açar. Ders videosundan bölüm ve soru üretimi de buradadır. Ana iş: soru yükle → çözümü oku → konuda devam et.
+- **Ne işe yarar:** Öğrenci takıldığı sorunun fotoğrafını çeker ya da dosyasını yükler; Akıllı Özet adım adım çözümü, cevabı, kazanımı ve sık yapılan hatayı verir, sonra konuya devam yolunu (konu anlatımı, kart, benzer sorular, SinoAI) açar. Ders videosundan bölüm ve soru üretimi de buradadır. Ana iş: soru yükle → çözümü oku → konuda devam et.
 - **Anahtar:** `smartSummary` · kod adları: API `Lenses`, rota `/api/student/lens/sessions`, web özelliği `lens`, mobil modül `lens`, rota öneki `Lens`. Kullanıcı "Lens" sözcüğünü hiçbir ekranda görmez; görünen ad "Akıllı Özet" / "Smart Summary".
 - **Renk (`ModuleIdentity.ts`):**
 
@@ -171,7 +190,7 @@ Tablet çizimi yok; tablet web düzenini kullanır (600 pt altında telefon düz
   4. Kazanım kartı `Card tone="module"` 14: `over` "Kazanım" / "Skill" (`mod.color`); metin (`small` `ink2`) "İç içe fonksiyonda türev: dıştakinin türevi × içtekinin türevi. AYT’de her yıl 1–2 soru."
   5. Sık hata kartı `Card` 14, 1,5 px `warningSoft` kenar: `over` "Sık hata" / "Common mistake" (`warningInk`); metin "İçteki fonksiyonun türevini (6x) çarpmayı unutmak."
   6. `SectionTitle` "Bu konuda devam et" / "Keep going on this topic".
-  7. `List`: `ListRow module="lessons" icon="book"` "Konuyu çalış" / "Study the topic" — "Dersler · Türev · 6 mikro ders"; `ListRow module="flashcards" icon="cards"` "Bilgi kartı yap" / "Make flashcards" — "Bu çözümden 3 kart" / "3 cards from this solution".
+  7. `List`: `ListRow module="lessons" icon="book"` "Konuyu çalış" / "Study the topic" — "Dersler · Türev · 18 dk"; `ListRow module="flashcards" icon="cards"` "Bilgi kartı yap" / "Make flashcards" — "Bu çözümden 3 kart" / "3 cards from this solution".
   8. `BottomBar` (aralık 10, eşit): `moduleSoft` Testler `quiz` "Benzer 5 soru" / "5 similar"; `dark` `sparkles` "SinoAI’ye sor" / "Ask SinoAI".
 - **Veri:** `GET student/lens/sessions/{id}?outputDetail=full`: `modelCorrectAnswer` (cevap çipi), `modelSolutionText` (adımlara bölünür; adım başlığı ve formül ayrımı API'de doğrulanmalı), `modelLearningOutcome` (kazanım), `modelMistakeAnalysis` (sık hata), `confidenceScore`; konu ve ders adı; "Bu konuda devam et" satırları `practice-target` ve Dersler konu eşlemesinden (mikro ders sayısı kaynağı doğrulanmalı).
 - **Etkileşimler:** §3.4. Formül kutusuna uzun basma → kopyala (doğrulanmadı). Geri → `m-ozet-vitrin`.

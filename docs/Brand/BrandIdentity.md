@@ -379,7 +379,7 @@ Sınavika'nın yedi modülünün her birinin bir kimlik rengi vardır. Öğrenci
 
 | Modül | Renk | Koyu tema |
 |---|---|---|
-| Denemeler | `#E8590C` | `#FB8A3C` |
+| Denemeler | `#4D7C0F` | `#A3E635` |
 | Dersler | `#0284C7` | `#38BDF8` |
 | Testler | `#4F46E5` | `#818CF8` |
 | Ders Planı | `#0D9488` | `#2DD4BF` |

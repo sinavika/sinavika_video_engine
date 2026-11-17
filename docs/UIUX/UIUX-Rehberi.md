@@ -17,9 +17,32 @@ Web (Next.js + Tailwind), mobil ve tablet (React Native) ve içerik motoru için
 - **Açık ve koyu tema ayrı set:** her ekran iki temada çizilir, `acik/` ve `koyu/` klasörlerine ayrı yazılır; çizimler temayı kendisi seçmez.
 - **Ön tanıtım yok:** özellikler ilk karşılaşıldıkları yerde tek satırlık ipucuyla anlatılır.
 
+### Tasarım hataları: bir daha yapılmaz (sahip, 17 Kasım 2026)
+
+Bugün ekranında sahibin tasarım hatası saydığı yerler. Her yeni ve değişen çizim bunlara göre denetlenir.
+
+- **Sütun düzeni:** bir ekrandaki kart satırları aynı sütun oranını izler. İki küçük kart gerekiyorsa üstteki kartın sütununu birlikte doldururlar; satır satır farklı oran kullanılmaz. Sütun içeriğe göre genişlemez (`minmax(0, …)`).
+- **Eş boy:** aynı satırdaki kartlar eş boydur; kısa kartın altında boşluk bırakılmaz.
+- **Zıplama yok:** yüklenirken hiçbir parça boy ya da yer değiştirmez. Veri bekleyen kartın bekleme hâli gerçek kartla aynı boyda çizilir; geç gelen satırın (hedef, seri, şerit) yeri baştan bellidir.
+- **Uydurma sayı yok:** sistemde karşılığı olmayan sayı ya da etiket çizilmez; önce veri kaynağı sorulur. Örnek: Akıllı Özet'te aylık sınır yok, "Bu ay 7 / 30" çizilmez.
+- **Selamın üstünde tarih yok:** gereksiz bilgi.
+- **Konu tek derstir (Dersler):** konu girişi, bölüm başı ya da "bölüm bitti" ara ekranı çizilmez; ilerleme konu boyunca tek çubuk ve "Adım x / y"; web oynatıcısında parça zaman çizelgesi yok; hiçbir metinde "mikro ders" yazılmaz (sahip, 1 ve 17 Kasım 2026).
+- **Sınava bağlı ad yok:** genel bir öğe sınav adıyla adlandırılmaz ("TYT tarzı soru" değil "Sınav tarzı soru" / "Exam-style question"). Sınava özgü ad yalnız o sınavın kendi ekranında yazılır.
+- **Hesaplanan sayı API'den gelir:** tahmini süreler (tekrar: adım başına 45 sn, kart başına 15 sn, yukarı yuvarlanır) API'de hesaplanır; çizimdeki örnek sayılar bu kurala uyar.
+- **Çevrimdışı tek görünüm:** "gönderilecek" hâli Dersler, Testler ve Denemeler'de aynı nötr satırdır (`PendingSyncNote`, şerit ya da kırmızı yok); modül başına ayrı tasarım yapılmaz. Testler sonucu sunucu gönderince gösterdiği için "doğrusu o zaman görünür" ekini (`reveal`) kullanır.
+- **Uç hâller de çizilir (17 Kasım 2026):** bir ekran yalnız ortadaki dolu hâliyle çizilmez. Her liste ve gezinen ekran için şunlar da çizilir ya da Kodlama belgesinde tek tek yazılır:
+  - **son öğe:** son soruda düğme ne olur ("Sonraki yanlış" → "Bitti");
+  - **boş süzgeç:** içi boş süzgeç soluk ve dokunulmaz, ekran hangi soruda açılır;
+  - **eksik veri:** veri yoksa satır görünmez, yer zıplamaz;
+  - **çevrimdışı:** ortak not ve engellenen eylemin uyarısı ("Testi bitir").
+  Örnek: `m/w/t-test-yanlislar-son`, `m-test-yanlislar-dogru`, `m-test-baglanti`, `m-test-bitir-bekliyor`.
+- **Cevap tek dokunuş:** test ve deneme şıkkına dokunmak cevaptır; hiçbir platformda "Cevapla" düğmesi çizilmez (tablet dahil).
+- **Ders listesi çubuklu:** Dersler ve Testler vitrininde dersler çubuklu listeyle gösterilir; halkalı ızgara yok.
+- **Önce karar kontrolü:** sahibin verdiği bir kararla çelişebilecek ekran çizilmeden önce karar kontrol edilir: bu bölüm, ilgili Kodlama belgesinin üstündeki karar kutusu ve web deposundaki `docs/UIUX/Tasarim-Uyum-Plani.md` §9.
+
 ## Hiyerarşi kuralı (Dersler, Testler, Bilgi Kartları)
 
-İçeriğe erişim her zaman **ders (lesson main) → konu (lesson sub) → içerik** sırasıyla olur. Bu üç modülün ilk ekranı yalnız dersleri listeler (Türkçe, Matematik…); konular, testler ve desteler dersin seçilmesinden sonra açılır. Dersler'de konu, mikro derslere (2–6 dk) bölünür; mikro ders adımlardan oluşur. Bugün ve plan kartları doğrudan bir konuya götürebilir, ama ana liste her zaman derstir.
+İçeriğe erişim her zaman **ders (lesson main) → konu (lesson sub) → içerik** sırasıyla olur. Bu üç modülün ilk ekranı yalnız dersleri listeler (Türkçe, Matematik…); konular, testler ve desteler dersin seçilmesinden sonra açılır. Dersler'de konu **tek derstir** (sahip, 1 ve 17 Kasım 2026): öğrenci konuyu adım adım, kaldığı yerden çalışır; API'deki bölümler (`WorkMikro`) ayrı birim olarak gösterilmez, "mikro ders" yazılmaz, konu girişi / bölüm başı / bölüm bitti ara ekranı yoktur; konu adımlardan oluşur. Bugün ve plan kartları doğrudan bir konuya götürebilir, ama ana liste her zaman derstir.
 
 ## 1. Bilgi mimarisi
 
@@ -43,7 +66,7 @@ Modül sırası her yerde aynıdır: Denemeler, Dersler, Testler, Ders Planı, A
 - **Üst çubuk:** solda profil, sağda bildirim zili ve sayaç (kırmızı rozet). Logo ortada yalnız Modüller ana ekranında ve marka ekranlarında; modül sayfası kendini sayfa başlığıyla adlandırır. Alt sayfalarda solda geri, ortada başlık.
 - **Tab bar:** beş yuva. Yuva 1 modülün kendisi, yuva 2 ana işi, yuva 3 Modüller, yuva 4 kayıtlar ya da ikinci işi, yuva 5 Profil. Etiketler sığdığı kadar yer alır. Tam tablo `Modul-Kimligi.md` §6'da.
 - **Sayfa başlığı:** modül çipi (renkli ikon ve ad) ve büyük başlık. Öğrenci hangi modülde olduğunu her ekranda görür.
-- **Odak ekranları** (deneme/test çözme, mikro ders, kart oturumu, odak sayacı, kamera): tab bar yok; üstte çıkış, başlık, süre ve ilerleme.
+- **Odak ekranları** (deneme/test çözme, ders oynatıcısı, kart oturumu, odak sayacı, kamera): tab bar yok; üstte çıkış, başlık, süre ve ilerleme.
 - **"Daha fazla" yok.** Hakkında, Destek, güvenlik ve diğer ayarlar Profil'de.
 - **SinoAI** tam ekran: solda menü (geçmiş ve kütüphane), ortada Sohbet · Çalışma geçişi, sağda yeni sohbet.
 
@@ -118,21 +141,21 @@ Kaynak: `src/UIUX/Parts`. Web ve mobil aynı adları ve varyantları kullanır. 
 
 ### 5.3 Onboarding
 
-- **Mobil:** Karşılama → sınav ve oturum → mevcut ve hedef net ("Netimi bilmiyorum" seçeneğiyle) → tempo ve günler → zorlanılan dersler → **planın hazır** (6. ekran) → planını kaydet (Apple ve Google önde) → 3 gün ücretsiz → bugünkü ilk mikro ders.
+- **Mobil:** Karşılama → sınav ve oturum → mevcut ve hedef net ("Netimi bilmiyorum" seçeneğiyle) → tempo ve günler → zorlanılan dersler → **planın hazır** (6. ekran) → planını kaydet (Apple ve Google önde) → 3 gün ücretsiz → bugünkü ilk konu.
 - İlerleme çubuğu yalnız planı kuran beş adımı sayar.
 - Plan, hesap ve ödemeden önce gösterilir. "Hesabın hazır" ara ekranı ve ön tanıtım turu yoktur.
-- Bildirim izni ilk mikro ders bitince, kendi açıklama ekranımızla istenir.
+- Bildirim izni ilk çalışmadan sonra, kendi açıklama ekranımızla istenir.
 - **Web:** aynı beş adım ve paket seçimi. Web'de deneme süresi yoktur; "Şimdilik paket seçme" seçeneği vardır.
 
 ### 5.4 Analizden eyleme
 
-Her sonuç ve analiz bir eylemle biter: konu satırında "Mikro ders" (Dersler renginde) ve "20 soru" (Testler renginde; bir seviye testi); altında "Bu hafta planıma ekle". Testte yanlış cevaptan sonra da aynı yol vardır: doğru şık ve nedeni, konunun mikro dersi, SinoAI'ye sor.
+Her sonuç ve analiz bir eylemle biter: konu satırında "Konu anlatımı" (Dersler renginde) ve "20 soru" (Testler renginde; bir seviye testi); altında "Bu hafta planıma ekle". Testte yanlış cevaptan sonra da aynı yol vardır: doğru şık ve nedeni, konunun anlatımı, SinoAI'ye sor.
 
 ### 5.4.1 Deneme ve test geri bildirimi
 
 - **Deneme** gerçek sınavın provasıdır. Çözerken doğru ya da yanlış gösterilmez; şık yalnız seçili görünür. Sonuçlar teslimden sonra çözümlerde açılır.
 - **Testler** öğrenme içindir. Doğru ve yanlış anında gösterilir.
-- **Dersler'in adımları:** seçme, doğru/yanlış, sıralama ve boşluk doldurma tek denemedir; yanlışta doğrusu ve nedeni gösterilir. TYT tarzı soruda her yanlış bir çözüm adımı açar ve öğrenci yeniden seçer. İlk denemede yanlış yapılan adım Tekrar'a girer (1, 3, 7 gün); bu bir ceza değil, nötr bir notla söylenir.
+- **Dersler'in adımları:** seçme, doğru/yanlış, sıralama ve boşluk doldurma tek denemedir; yanlışta doğrusu ve nedeni gösterilir. Sınav tarzı soruda her yanlış bir çözüm adımı açar ve öğrenci yeniden seçer. İlk denemede yanlış yapılan adım Tekrar'a girer (1, 3, 7 gün); bu bir ceza değil, nötr bir notla söylenir.
 - **Bugün tekrar:** Ders Planı'nda Dersler tekrarı ve Bilgi Kartları tek kartta.
 - **Test seviyeleri:** Kolay, Orta, Zor; her biri 20 soru. "Tarama" iç bir kavramdır, öğrenciye gösterilmez.
 - **SinoAI üretim sonucu:** Eylemler kartın içinde gerçek düğmedir: ana düğme dolu ("Testi aç"), ikincil düğme çerçeveli ("Değiştir").
@@ -158,7 +181,7 @@ Mobil, web ve tablet aynı özelliği aynı parçalarla çizer (sahip, 8 ve 12 K
 - **Ortak parçalar** `Parts/Study.tsx`'tedir (§4). Bir parça değişince üç platform birlikte değişir.
 - **Ders adımları tek kaynak:** web ve tablet oynatıcısı mobilin adım çizimini kendi çerçevesinde gösterir (`EmbedStep`). Yeni adım türü bir kez çizilir.
 - **Tablet = web sayfası:** tam ekran tablet, web sayfasının kendisini uygulamanın üst çubuğunun altında gösterir (`PanelInTablet`; kenar menü ve web üst çubuğu çizilmez). Tablet ekranı kısa olduğu için grafikler alçak çizilir (`useInTablet`); içerik ve sıra aynıdır. 600 pt altında (Split View) tablet telefon düzenini kullanır. Tablete özgü ekranlar `Tablet-Kalem.md`'de.
-- **Eşlik testi** (`tests/UIUX/UIUX.test.ts`, "keeps mobile, web and tablet in step"): ana ekran ve dört hâli, Ders Planı günü, sonuçlar ve boş hâli, deneme detayı, teslim onayı, biten deneme, deneme ekle, istatistikler, yanlışlarım ve Grupla, Eşleştir, Formül, Bölüm başı adımları üç platformda (`m-`, `w-`, `t-`) çizili olmalı. Biri eksikse test düşer.
+- **Eşlik testi** (`tests/UIUX/UIUX.test.ts`, "keeps mobile, web and tablet in step"): ana ekran ve dört hâli, Ders Planı günü, sonuçlar ve boş hâli, deneme detayı, teslim onayı, biten deneme, deneme ekle, istatistikler, yanlışlarım ve Grupla, Eşleştir, Formül adımları üç platformda (kaldırılan konu girişi, bölüm başı ve bölüm bitti ekranlarının olmadığı ayrı testte) (`m-`, `w-`, `t-`) çizili olmalı. Biri eksikse test düşer.
 
 ### 5.8 Ekranların veri kaynağı (API)
 
@@ -207,7 +230,7 @@ Testler (`tests/UIUX/UIUX.test.ts`) şunları denetler:
 
 - Modül tablosunun eksiksiz olması.
 - Renklerin ayrı ve beyaz yazıya uygun olması; düğme yazısının iki temada 4,5:1 olması.
-- Denemeler dışındaki modül ekranlarında marka turuncusu olmaması.
+- Hiçbir modül ekranında marka turuncusu ya da Denemeler'in eski turuncusu olmaması (17 Kasım 2026'dan beri istisna yok).
 - Gövde yazısının en az 16 pt ve 1,5 satır aralığında, hiçbir yazının 12 pt'nin altında olmaması.
 - SinoAI yazma kutularının altında yapay zekâ notunun olması.
 - Eski adların ("Lens", "Kelime Kartları" vb.) ekranda geçmemesi.

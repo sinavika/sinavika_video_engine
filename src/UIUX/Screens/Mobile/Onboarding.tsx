@@ -10,8 +10,8 @@ import {UI_RADIUS, UI_SHADOW} from '../../Tokens';
  * Onboarding. Five steps build the plan (exam and sessions, current and target
  * score, pace and days, subjects that need support, the plan itself); the
  * progress bar counts only these. Then the account saves the plan and the
- * store trial starts, and the student lands in the first micro-lesson of
- * today's plan. Notifications are asked after that first micro-lesson, tips
+ * store trial starts, and the student lands in the first topic of
+ * today's plan. Notifications are asked after that first study session, tips
  * appear where a feature is first met: no tutorial up front.
  * Selections are a dark frame with a tick; orange is only the main button.
  */
@@ -313,7 +313,7 @@ export const OnbPlanScreen: React.FC = () => {
 							{t('Bugünkü ilk görevin', 'Your first task today')}
 						</Text>
 						<Text role="headline">{t('Türkçe · Sözcükte Anlam', 'Turkish · Word meaning')}</Text>
-						<Text role="small">{t('Dersler · ilk 3 mikro ders · 8 dk', 'Lessons · first 3 micro-lessons · 8 min')}</Text>
+						<Text role="small">{t('Dersler · ilk konu · 8 dk', 'Lessons · first topic · 8 min')}</Text>
 					</Stack>
 					<Icon name="right" size={18} color={colors.subtle} />
 				</Stack>
@@ -407,7 +407,7 @@ export const OnbAccountScreen: React.FC = () => {
 };
 
 /**
- * Notification permission, asked right after the first micro-lesson, when a
+ * Notification permission, asked right after the first study session, when a
  * reminder is worth something; our own pre-prompt comes before the system's.
  */
 export const OnbNotificationsScreen: React.FC = () => (
@@ -427,7 +427,7 @@ const NotificationsAsk: React.FC = () => {
 					<Icon name="bell" size={44} color={mod.color} />
 				</div>
 				<Chip tone="success" icon="checkCircle">
-					{t('İlk mikro dersin bitti', 'First micro-lesson done')}
+					{t('İlk çalışman bitti', 'First session done')}
 				</Chip>
 				<Text role="hero" align="center">
 					{t('Yarın 08:30’da hatırlatalım mı?', 'Shall we remind you at 08:30 tomorrow?')}

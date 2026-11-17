@@ -1,7 +1,8 @@
 import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
 import {Icon} from '../../Icons';
-import {Bar, Button, Card, Chip, Levels, OptionRow, Stack, TEST_LEVELS, Text, Tile} from '../../Parts/Shared';
+import {Bar, Button, Card, Chip, FlagButton, Levels, OptionRow, PendingSyncNote, Stack, TEST_LEVELS, Text, Tile} from '../../Parts/Shared';
+import {ModuleWeekCard} from '../../Parts/Study';
 import {Grid, Immersive, ModuleBanner, ModuleHead, Panel} from '../../Parts/Web';
 
 /** Testler (Quizzes) on the web panel. */
@@ -24,7 +25,20 @@ export const WebTestsHomeScreen: React.FC = () => {
 				}
 			/>
 			<Grid columns="1fr 2fr">
-				<ModuleBanner module="tests" over={t('Senin için hazır', 'Ready for you')} title={t('Problemler · Orta', 'Problems · Medium')} text={t('Denemede en çok net kaybettiğin konu. 20 soru, anında açıklama.', 'Where you lost most. 20 questions, instant feedback.')} action={t('Teste başla', 'Start quiz')} />
+				<Stack gap={14}>
+					<ModuleBanner module="tests" over={t('Senin için hazır', 'Ready for you')} title={t('Problemler · Orta', 'Problems · Medium')} text={t('Denemede en çok net kaybettiğin konu. 20 soru, anında açıklama.', 'Where you lost most. 20 questions, instant feedback.')} action={t('Teste başla', 'Start quiz')} />
+					<ModuleWeekCard
+						module="tests"
+						time={t('1 sa 50 dk', '1 h 50 m')}
+						change={9}
+						bars={[15, 25, 0, 20, 30, 10, 10]}
+						stats={[
+							[t('Çözülen soru', 'Questions solved'), '140'],
+							[t('Başarı', 'Success'), t('%72', '72%')],
+							[t('Seri', 'Streak'), t('5 gün', '5 days')],
+						]}
+					/>
+				</Stack>
 				<Grid columns="1fr 1fr" gap={14}>
 					{[
 						['Türkçe', 'Turkish', 12, 30],
@@ -61,7 +75,18 @@ export const WebTestTopicsScreen: React.FC = () => {
 	const mod = useModuleColors('tests');
 	return (
 		<Panel active="tests" crumb={t('Testler ›', 'Quizzes ›')}>
-			<ModuleHead module="tests" tab={1} title={t('Matematik', 'Maths')} sub={t('25 konu · 9 tamamlandı', '25 topics · 9 complete')} />
+			{/* No lesson chips here (owner, 17 Nov 2026): the lesson is picked from the Testler home list; "Tüm dersler" goes back there. */}
+			<ModuleHead
+				module="tests"
+				tab={1}
+				title={t('Matematik', 'Maths')}
+				sub={t('25 konu · 9 tamamlandı', '25 topics · 9 complete')}
+				actions={
+					<Button tone="ghost" icon="left">
+						{t('Tüm dersler', 'All lessons')}
+					</Button>
+				}
+			/>
 			<Grid columns="repeat(3, 1fr)" gap={14}>
 				{[
 					['Temel kavramlar', 'Basics', 3],
@@ -102,9 +127,12 @@ export const WebTestSolveScreen: React.FC = () => {
 			sub={t('Soru 4 / 20', 'Question 4 / 20')}
 			progress={0.4}
 			right={
-				<Chip tone="success" icon="check">
-					{t('3 doğru', '3 right')}
-				</Chip>
+				<Stack row gap={10}>
+					<FlagButton />
+					<Chip tone="success" icon="check">
+						{t('3 doğru', '3 right')}
+					</Chip>
+				</Stack>
 			}
 		>
 			<Stack gap={16} style={{flex: 1, padding: '40px 160px'}}>
@@ -143,7 +171,7 @@ export const WebTestSolveScreen: React.FC = () => {
 	);
 };
 
-/** A wrong answer: the right option, why, and where to go next (the topic's micro-lesson, SinoAI). */
+/** A wrong answer: the right option, why, and where to go next (the topic's lesson, SinoAI). */
 export const WebTestSolveWrongScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
@@ -189,7 +217,7 @@ export const WebTestSolveWrongScreen: React.FC = () => {
 						</Stack>
 						<Stack row gap={10}>
 							<Button module="lessons" tone="moduleSoft" icon="book">
-								{t('Bu konunun mikro dersi · 4 dk', 'This topic’s micro-lesson · 4 min')}
+								{t('Bu konunun anlatımı', 'This topic’s lesson')}
 							</Button>
 							<Button tone="ghost" icon="sparkles">
 								{t('SinoAI’ye sor', 'Ask SinoAI')}
@@ -197,6 +225,62 @@ export const WebTestSolveWrongScreen: React.FC = () => {
 							<div style={{flex: 1}} />
 							<Button size="lg">{t('Devam', 'Continue')}</Button>
 						</Stack>
+					</Stack>
+				</Card>
+			</Stack>
+		</Immersive>
+	);
+};
+
+/**
+ * Testler offline on the web (owner, 17 Nov 2026): the last answer waits in
+ * the central queue, right and wrong show after it is sent, and "Testi bitir"
+ * does not end the quiz while an answer waits: the warning shows above it.
+ */
+export const WebTestOfflineScreen: React.FC = () => {
+	const t = useT();
+	const colors = useColors();
+	const mod = useModuleColors('tests');
+	return (
+		<Immersive
+			module="tests"
+			title={t('Problemler · Orta', 'Problems · Medium')}
+			sub={t('Soru 20 / 20', 'Question 20 / 20')}
+			progress={1}
+			right={
+				<Stack row gap={10}>
+					<FlagButton />
+					<Chip tone="success" icon="check">
+						{t('15 doğru', '15 right')}
+					</Chip>
+				</Stack>
+			}
+		>
+			<Stack gap={16} style={{flex: 1, padding: '40px 160px'}}>
+				<Stack row gap={5}>
+					{[1, 1, 3, 1, 1, 1, 1, 3, 1, 2].map((state, index) => (
+						<div key={index} style={{flex: 1, height: 7, borderRadius: 4, background: state === 1 ? colors.success : state === 3 ? colors.error : state === 2 ? mod.color : colors.line2}} />
+					))}
+				</Stack>
+				<Text role="body" size={20} weight={600} color={colors.ink} style={{lineHeight: '30px', marginTop: 10}}>
+					{t('Bir işçi günde 8 saat çalışarak bir işi 6 günde bitiriyor. Günde 12 saat çalışırsa kaç günde bitirir?', 'Working 8 hours a day a worker ends a job in 6 days. How many days at 12 hours a day?')}
+				</Text>
+				<Grid columns="1fr 1fr" gap={12} style={{maxWidth: 760}}>
+					<OptionRow letter="A" text="3" />
+					<OptionRow letter="B" text="4" state="selected" module="tests" />
+					<OptionRow letter="C" text="5" />
+					<OptionRow letter="D" text="9" />
+				</Grid>
+				<PendingSyncNote module="tests" reveal />
+				<Card padding={16} style={{maxWidth: 760}}>
+					<Stack row gap={14}>
+						<Icon name="info" size={20} color={colors.ink2} />
+						<Text role="small" color={colors.ink} style={{flex: 1}}>
+							{t('Bekleyen cevapların henüz gönderilmedi. Bağlantı gelince testi bitirebilirsin.', 'Your waiting answers have not been sent yet. You can end the quiz once you are back online.')}
+						</Text>
+						<Button tone="module" module="tests" size="lg">
+							{t('Testi bitir', 'End quiz')}
+						</Button>
 					</Stack>
 				</Card>
 			</Stack>

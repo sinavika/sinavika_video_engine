@@ -85,8 +85,8 @@ Bütün yollar `/{locale}/student/...` altındadır (`tr` varsayılan, `en`). Ge
 | Tüm modüller | `moduller` (bugün `dashboard`'a yönlenir) | `w-panel-moduller` |
 | Denemeler | `sinavlarim`, `denemelerim`, `sinav/[examId]`, `sinav/[examId]/basla`, `sinav-sonuclari`, `sinav-sonuclari/[snapshotId]`, `soru-cozumleri`, `soru-cozumleri/[examAttemptId]`, `raporlarim` | `w-deneme-*`, `w-istatistik` |
 | Deneme çözme (odak) | `sinav/coz/[examUserId]` | `w-deneme-coz`, `w-deneme-teslim` |
-| Dersler | `ders-cal`, `ders-cal/ders`, `ders-cal/ders/[lessonMainId]`, `ders-cal/konu/[lessonSubId]`, `.../ozet`, `ders-cal/tekrar` | `w-ders-*` |
-| Ders oynatıcı (odak) | `ders-cal/mikro/[workMikroId]`, `ders-cal/tekrar/oturum` | `w-ders-tanim` … `w-ders-mikro-bitti`, `w-ders-tekrar-oturum` |
+| Dersler | `ders-cal`, `ders-cal/ders` (Konular sekmesi: ilk dersin konuları), `ders-cal/ders/[lessonMainId]`, `ders-cal/konu/[lessonSubId]` (konuya yönlendirir; sayfa yok), `.../ozet`, `ders-cal/tekrar` | `w-ders-*` |
+| Ders oynatıcı (odak) | `ders-cal/mikro/[workMikroId]`, `ders-cal/tekrar/oturum` | `w-ders-tanim` … `w-ders-soru`, `w-ders-tekrar-oturum` |
 | Testler | `testler`, `testler/konular?main=&sub=`, `testler/cozumler`, `testler/cozumler/[attemptId]` | `w-test-*` |
 | Test çözme (odak) | `testler/quiz/[quizId]` | `w-test-coz`, `w-test-coz-yanlis` |
 | Ders Planı | `ders-plani`, `.../program`, `.../oneriler`, `.../istatistik`, `.../ilerleme`, `.../ayarlar` | `w-plan-*` |
@@ -113,10 +113,10 @@ Kurallar:
 |---|---|---|---|
 | **İtme (push)** | `StackTransition.detail`: sağdan 280 ms, kenardan kaydırarak geri | sayfa geçişi (`StudentMainTransition`), içerik 240 ms solar ve 8 px yükselir | Liste → detay, modül içi alt sayfa |
 | **Tam ekran akış** | `StackTransition.fullScreenFlow` (alttan, `fullScreenModal`) | odak düzeni | Giriş ve kayıt, SinoAI, onboarding |
-| **Odak oturumu** | `StackTransition.focusedSession`: kaydırarak geri kapalı, sekme çubuğu yok | `(immersive)` yolu | Deneme ve test çözme, mikro ders, tekrar oturumu, kart oturumu, odak sayacı, kamera |
+| **Odak oturumu** | `StackTransition.focusedSession`: kaydırarak geri kapalı, sekme çubuğu yok | `(immersive)` yolu | Deneme ve test çözme, ders oynatıcısı, tekrar oturumu, kart oturumu, odak sayacı, kamera |
 | **Alt sayfa** | `AppSheet`: 320 ms sayfa eğrisi, parmağı izler, %45 ya da 500 pt/sn fiskeyle kapanır | `Overlay` (ortada pencere ya da sağdan panel) | Görev ekle ve görev işlemleri, giriş isteyen eylem, seçim listeleri |
 | **Onay penceresi** | `AppDialog`: 0,96 ölçekten 280 ms | `ConfirmDialog` | Geri alınamaz işlem: teslim et, sil, hesabı kapat, oturumu bitir |
-| **Yerinde değişim (replace)** | `navigation.replace` / `reset` | `router.replace` | Kapıdan geçince (giriş → ana ekran), adım akışı bitince (test bitti, mikro ders bitti, teslim edildi). Geri tuşu bitmiş akışa dönmez |
+| **Yerinde değişim (replace)** | `navigation.replace` / `reset` | `router.replace` | Kapıdan geçince (giriş → ana ekran), adım akışı bitince (test bitti, teslim edildi). Geri tuşu bitmiş akışa dönmez |
 | **Sekme değişimi** | animasyon yok, seçim titreşimi | hap sekme, animasyon yok | Modül yuvaları |
 
 Kurallar:
@@ -140,12 +140,12 @@ Sistem geri tuşu (Android) ve kenardan kaydırma (iOS) **her ekranda** çalış
 | Detay ekranı | Bir önceki ekrana döner; liste kaydırma yeri korunur |
 | Alt sayfa, pencere | Yalnız kendisini kapatır. Karartmaya dokunma da kapatır; zorunlu kapılar hariç |
 | **Deneme çözme** (`ExamStudentSolve`, `w-deneme-coz`) | Hemen çıkmaz. "Ara ver" penceresi açılır: **Devam et** (birincil) ve **Ara ver, sonra devam ederim**. Ara verilince cevaplar kayıtlıdır, süre sunucuda işlemeye devam eder; çizimdeki kural `03-Denemeler.md`'de. Web'de tarayıcıdan çıkış ve sekme kapatma `beforeunload` uyarısıyla korunur |
-| Test çözme, mikro ders, tekrar oturumu, kart oturumu | Onay istemeden çıkar. Verilen her cevap zaten kaydedilmiştir. Geri dönünce aynı soru ya da adım açılır |
+| Test çözme, ders oynatıcısı, tekrar oturumu, kart oturumu | Onay istemeden çıkar. Verilen her cevap zaten kaydedilmiştir. Geri dönünce aynı soru ya da adım açılır |
 | Odak sayacı (`StudyPlanFocus`) | "Odağı bitir?" penceresi: **Devam et** / **Bitir**. Bitirilirse geçen süre kaydedilir |
 | Kamera (`LensCamera`) | Kamerayı kapatır, Soru yükle ekranına döner |
 | Onboarding adımı | Bir önceki adıma döner; cevaplar korunur. İlk adımda Karşılama'ya döner |
 | Giriş ve kayıt akışı | Kapat (`x`) Karşılama'ya ya da geldiği ekrana döner. Kod ekranında geri e-posta alanına döner, e-posta dolu kalır |
-| Bitmiş akış ekranı (test bitti, mikro ders bitti, teslim edildi, ödeme sonucu) | Akışın başına değil, akışın açıldığı listeye döner. Geri ile çözme ekranına dönülmez |
+| Bitmiş akış ekranı (test bitti, konu sonu, teslim edildi, ödeme sonucu) | Akışın başına değil, akışın açıldığı listeye döner. Geri ile çözme ekranına dönülmez |
 | Zorunlu güncelleme (`m-durum-guncelleme`) | Kapatılamaz; tek eylem mağazaya gider. Kullanıcının çıkış yolu uygulamayı kapatmaktır |
 
 ## 5. Kapılar ve sıralama
@@ -238,7 +238,7 @@ Olgu listesidir. Her madde §6.1'deki bir kuralla çelişir.
 | Mobil | `SubscriptionRequiredGate.tsx` (RN `Modal`) | Açıkken iOS'ta yığına itilen ekran görünmüyor (kod yorumunda yazıyor) | 6 |
 | Mobil | `ThemeProvider` | Tema okunana kadar `null` çiziyor (en çok 800 ms boş ekran) | 2 |
 | Mobil | `src/app/AppErrorBoundary.tsx` | Tek hata sınırı; modül düzeyinde sınır yok | 7 |
-| Mobil | NetInfo yalnız deneme çözmede | Test, mikro ders ve kart oturumunda ağ kopması izlenmiyor | 5 |
+| Mobil | NetInfo yalnız deneme çözmede | Test, ders oynatıcısı ve kart oturumunda ağ kopması izlenmiyor | 5 |
 | Web | `infrastructure/api/apiRequest.ts` | Varsayılan zaman aşımı yok. Yalnız Akıllı Özet süre veriyor | 2 |
 | Web | `StudentAppAccessGuard` (`/me`) | İlk girişte `/me` asılı kalırsa tam ekran yükleme bitmiyor | 2, 6 |
 | Web | `RouteProgressBar` | Gezinme başarısız olunca %92'de kalıyor | 8 |
@@ -268,7 +268,7 @@ Testler iki repoda da üst düzey `tests/` altındadır ve `src` yapısını izl
 | N3 | süreç | Etkin sekmeye yeniden dokunma | Detaydaysa sekme köküne döner |
 | N4 | süreç | Sekme değiştirip geri gelme | Önceki ekran ve kaydırma yeri korunur |
 | N5 | süreç | Her odak ekranında geri tuşu | §4 tablosundaki davranış; deneme ve odakta pencere, diğerlerinde kayıtlı çıkış |
-| N6 | süreç | Biten akıştan (test bitti, mikro ders bitti, teslim) geri | Çözme ekranına dönülmez; akışı açan liste açılır |
+| N6 | süreç | Biten akıştan (test bitti, konu sonu, teslim) geri | Çözme ekranına dönülmez; akışı açan liste açılır |
 | N7 | süreç | Alt sayfa açıkken ondan gezinme | Önce sayfa kapanır, sonra hedef açılır; hedef görünür (iOS) |
 | N8 | süreç | Her bildirim türüne dokunma (soğuk açılış ve açıkken) | 11. dosyadaki tabloda yazan ekran; geri tuşu modül köküne |
 | N9 | süreç | Silinmiş hedefe bildirim | Modül kökü ve "Bu içerik artık yok" bildirimi |

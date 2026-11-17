@@ -29,13 +29,13 @@ Kaynak: `src/shared/annotations` ve Denemeler'in çözüm ekranları (okundu, de
 | | `t-deneme-cozum-notlar` | Çözüm · notlarım | Öğrencinin işaretleri salt okunur, göster/gizle; taslağı resmî çözümün yanında |
 | | `t-deneme-kalem-ipucu` | İlk açılış ipucu | Kalemli tablette ilk çözümde tek ipucu, Soruya yaz düğmesinde |
 | Testler | `t-test-coz-taslak` | Taslak kâğıdı | **Yeni.** Anında geri bildirim soru sütununda, işlem yanda kalır |
-| | `t-test-coz-yanlis` | Yanlış · taslağı göster | Taslak yerinde kalır; "Taslağımı SinoAI'ye göster" ve konunun mikro dersi |
+| | `t-test-coz-yanlis` | Yanlış · taslağı göster | Taslak yerinde kalır; "Taslağımı SinoAI'ye göster" ve konunun anlatımı |
 | | `t-test-sekilli-soru` | Şekle yaz | Kalem şeklin üstüne yazar; şıklar sağ sütunda |
 | Dersler | `t-ders-vitrin` | Dersler · yatay | Sekme çubuğu yerine yan ray; kaldığın yer ve tekrar yan yana, dersler üç sütun, Notlarım üstte |
 | | `t-ders-tanim-not` | Tanım · kenar notu | **Yeni.** Okuma sütunu + sağda 290 pt kenar boşluğu; fosforlu kalem ve not adıma kayıtlı |
-| | `t-ders-soru-eleme` | TYT tarzı soru · eleme | Şıklar kalemle elenir; cevap yine dokunarak verilir |
+| | `t-ders-soru-eleme` | Sınav tarzı soru · eleme | Şıklar kalemle elenir; cevap yine dokunarak verilir |
 | | `t-ders-bosluk-el-yazisi` | Boşluk doldur · el yazısı | Kalemle kutuya yazılır, okunan sözcük gösterilir, sonra Kontrol et; Klavyeyle yaz her zaman var |
-| | `t-ders-notlarim` | Notlarım | Konunun tüm notları mikro derse göre; dokununca adımına gider (`WorkNotes`, API `student/notes/works`) |
+| | `t-ders-notlarim` | Notlarım | Konunun tüm notları bölüme göre; dokununca adımına gider (`WorkNotes`, API `student/notes/works`) |
 | Bilgi Kartları | `t-kart-el-yazisi` | Önce kendin yaz | Ön yüzde isteğe bağlı yazma alanı; kontrol edilmez |
 | Modüller | `t-hub-moduller` | Ana ekran · yatay | Web ana sayfasının kendisi (Bugün düzeni, §7); kalemli modüllerde "Kalem" etiketi |
 | Kalem | `t-kalem-ayarlar` | Profil · Kalem ve çizim | Ayarların tamamı (§3.6) |
@@ -67,9 +67,9 @@ Kaynak: `src/shared/annotations` ve Denemeler'in çözüm ekranları (okundu, de
 
 ### 3.4 Notlar soruya ve adıma bağlı
 
-- Her not bir yere bağlı: deneme sorusu, test sorusu ya da mikro ders adımı. Aynı soruya dönünce not geri gelir.
+- Her not bir yere bağlı: deneme sorusu, test sorusu ya da ders adımı. Aynı soruya dönünce not geri gelir.
 - Çözümlerde öğrencinin notları **salt okunur** gösterilir, göster/gizle düğmesiyle (ayarda varsayılan açık).
-- Dersler'de **Notlarım**: konunun bütün notları tek yerde, mikro derse göre; PDF olarak alınabilir (mevcut markalı PDF şablonuyla).
+- Dersler'de **Notlarım**: konunun bütün notları tek yerde, bölüme göre; PDF olarak alınabilir (mevcut markalı PDF şablonuyla).
 
 ### 3.5 Kalemle cevap
 
@@ -100,7 +100,7 @@ Kalem yoksa (parmakla kullanılan tablet) ekranlar aynı kalır; Parmakla çizim
 ## 4. Mobil ekip için işler (durum: 14 Kasım)
 
 1. ✔ **Testler'e kalem** (yapıldı): `QuizSolve` ekranına `scratchpad` ve `questionOverlay` hostları (Denemeler'deki panel ve katman bileşenleri yeniden kullanılır). Not anahtarı: test oturumu + soru.
-2. ✔ **Dersler'e kalem** (yapıldı): `WorkMikro` adımlarına `questionOverlay` (adımın tamamı) ve kenar boşluğu; Question adımlarında `scratchpad`. Not anahtarı: mikro ders + adım.
+2. ✔ **Dersler'e kalem** (yapıldı): `WorkMikro` adımlarına `questionOverlay` (adımın tamamı) ve kenar boşluğu; Question adımlarında `scratchpad`. Not anahtarı: bölüm (`workMikroId`) + adım.
 3. ✔ **Notlarım** ekranı (yapıldı: `WorkNotes`): konuya göre not listesi ve adıma derin bağlantı.
 4. **Kalem çizer, parmak kaydırır**: dokunuş türüne göre ayrım; mod anahtarı yalnız parmakla çizimde.
 5. ✔ **Ayarlar** (yapıldı: `ProfilePenSettings`): Profil'e "Kalem ve çizim" bölümü (§3.6), cihazda saklanır, hesapla eşitlenir.
@@ -144,7 +144,7 @@ Sahip, 12 Kasım 2026: "tablet, web ve mobil yüzde yüz uyum içinde olmalı." 
 - Tam ekran tablet, web sayfasının kendisini uygulamanın üst çubuğunun altında gösterir (`PanelInTablet`; web kenar menüsü ve üst çubuğu çizilmez). Web'de yapılan her düzeltme tablete de geçer.
 - Tablet ekranı daha kısa olduğu için (834 pt) grafikler daha alçak çizilir (`useInTablet`); içerik ve sıra aynıdır.
 - Ders adımları tablet oynatıcısında da mobilin adım çizimiyle gelir (`EmbedStep`).
-- Bu yolla çizilenler: ana ekran ve dört hâli, Ders Planı günü, sonuçlar ve boş hâli, deneme detayı, teslim onayı, biten deneme, deneme ekle, istatistikler, yanlışlarım, Grupla, Eşleştir, Formül, Bölüm başı.
+- Bu yolla çizilenler: ana ekran ve dört hâli, Ders Planı günü, sonuçlar ve boş hâli, deneme detayı, teslim onayı, biten deneme, deneme ekle, istatistikler, yanlışlarım, Grupla, Eşleştir, Formül (Bölüm başı 17 Kasım 2026 sahip kararıyla kaldırıldı).
 - Tablete özgü kalanlar: kalem (§2), klavyeli deneme, iki panelli konular, SinoAI yan paneli, haftalık plan, bölünmüş ekran (§6).
 
 Eşlik testi ve üç platform kuralı: [UIUX-Rehberi.md](UIUX-Rehberi.md) §5.7.

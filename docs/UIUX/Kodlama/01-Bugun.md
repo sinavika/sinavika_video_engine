@@ -16,7 +16,7 @@ Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çi
 | Ders Planı (`studyPlan`) | `#0D9488` / `#2DD4BF` | `#0C857A` | `#09685F` / `#81E5D9` | %12 / %21,6 |
 | Testler (`tests`) | `#4F46E5` / `#818CF8` | `#4F46E5` | `#473FCE` / `#ADB4FA` | %12 / %21,6 |
 | Dersler (`lessons`) | `#0284C7` / `#38BDF8` | `#0277B3` | `#015C8B` / `#88D7FB` | %12 / %21,6 |
-| Denemeler (`exam`) | `#E8590C` / `#FB8A3C` | `#C54C0A` | `#A23E08` / `#FCB380` | %12 / %21,6 |
+| Denemeler (`exam`) | `#4D7C0F` / `#A3E635` | `#4D7C0F` | `#3E630C` / `#C3EF7C` | %12 / %21,6 |
 | Bilgi Kartları (`flashcards`) | `#DB2777` / `#F472B6` | `#DB2777` | `#A41D59` / `#F8AAD3` | %12 / %21,6 |
 | Akıllı Özet (`smartSummary`) | `#7C3AED` / `#A78BFA` | `#7C3AED` | `#6931C9` / `#C6B4FC` | %12 / %21,6 |
 | SinoAI (`sinoAi`) | `#475569` / `#CBD5E1` | `#475569` | `#475569` / `#DDE4EC` | %12 / %21,6 |
@@ -82,8 +82,8 @@ Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çi
 | Gün bitti · "Fazladan 10 soru / 10 extra questions" | `m-test-vitrin` | push | Testler renginde |
 | Deneme süresi bitti · "Paketleri gör / See plans" | `m-profil-paketler` (web `w-panel-abonelik`) | push | Profil belgesine ait |
 | Deneme süresi bitti · "Mağaza aboneliğini geri yükle / Restore a store purchase" | mağaza geri yükleme (sistem) | sistem penceresi | yalnız mobil; Profil belgesine ait |
-| Eylem kartı "Kaldığın yerden" · "Devam et / Continue" | kalınan mikro dersin adımı (`WorkMikro`: `m-ders-tanim` … `m-ders-soru`) | push (Dersler yığını) | |
-| Eylem kartı "İlk adımın" · "Başla / Start" (plansız) | ilk mikro dersin ilk adımı (`WorkMikro`) | push | ilk mikro ders plansız başlar |
+| Eylem kartı "Kaldığın yerden" · "Devam et / Continue" | kalınan konunun kalınan adımı (`WorkMikro`: `m-ders-tanim` … `m-ders-soru`) | push (Dersler yığını) | |
+| Eylem kartı "İlk adımın" · "Başla / Start" (plansız) | ilk konunun ilk adımı (`WorkMikro`) | push | ilk konu plansız başlar |
 | Eylem kartı (abonelik bitti) · "Paketleri gör" | `m-profil-paketler` | push | |
 | Eylem kartı "Sıradaki deneme" (kartın kendisi) | `m-deneme-detay` | push (Denemeler yığını) | |
 | Eylem kartı "Sıradaki deneme" · "Hatırlat / Remind me" | hatırlatma kurulur, ekran değişmez | durum değişimi | API'de doğrulanmalı; bugünkü kod düğme metnini deneme hâline göre değiştirir (§7) |
@@ -111,10 +111,13 @@ Ortak ölçüler: telefon tuvali 390 × 844 pt, durum çubuğu 50 pt. İçerik a
 - **Görseller:** `acik/mobil/m-hub-moduller.png`, `koyu/mobil/m-hub-moduller.png`, `en/acik/mobil/m-hub-moduller.png`; `acik/web-panel/w-panel-anasayfa.png`, `koyu/web-panel/w-panel-anasayfa.png`; `acik/tablet/t-hub-moduller.png`
 - **Çerçeve:** `AppHeader` (yükseklik 52, yan 14): solda profil simgesi (`user` 22 pt, 40 pt daire, zeminsiz), ortada logo (yükseklik 24, marka turuncusu; koyu temada `#F97316`), sağda zil (`bell` 22 pt, 40 pt daire) ve rozet. Rozet: en az 18 × 18, köşe 9, `#DC2626`, yazı beyaz 800 (12 pt taban), üstten 2 sağdan 0, yan iç boşluk 4. Modül sekme çubuğu yok. Alt düğme alanı yok. Arka plan `bg` (`#F7F7F8` / `#0F1115`), yıkama yok.
 - **Yerleşim (yukarıdan aşağı):** Sayfa dikey kayar. Üstte yalnız tam sığan bloklar görünür; bir blok yarım kesilmez (`FitList`).
-  1. **Selam satırı** (yatay, alta hizalı, iki yana yaslı):
-     - Solda `title` 23 pt: "Günaydın Ayşe" / "Good morning, Ayşe". Ad öğrencinin adından; saat 05–12 Günaydın, 12–18 İyi günler, diğer saatler İyi akşamlar (bugünkü kodun kuralı).
-     - Altında 4 pt arayla `target` ikonu 15 pt `ink2` ve `small` `ink2`: "Hedef **TYT · 245 gün kaldı**" / "Goal **TYT · 245 days left**" (kalın kısım `ink`). Sınav adı ve kalan gün en yakın resmi sınav takviminden.
-     - Sağda `Chip tone="warning"` `flame` ikonlu: "5 gün" / "5 days" (yükseklik 28, yan 11, yazı 13/700, `warningSoft` zemin, `warningInk` yazı). Seri 0 ise çip yok.
+  1. **Selam satırı** (yatay, üste hizalı, iki yana yaslı, aralık 10). Selamın üstünde tarih yoktur (sahip, 17 Kasım 2026).
+     - Solda `title` 23 pt, tek satır: "Günaydın Ayşe" / "Good morning, Ayşe". Ad öğrencinin adından; saat 05–12 Günaydın, 12–18 İyi günler, diğer saatler İyi akşamlar (bugünkü kodun kuralı).
+     - Sağda, selamın aynı satırında ve tam karşısında, sağa hizalı dikey küme (aralık 4, üstten 2):
+       - Hedef: `target` ikonu 15 pt `ink2` ve `small` `ink2`, tek satır: "Hedef **TYT · 245 gün**" / "**TYT · 245 days**" (kalın kısım `ink`; EN'de "Goal" sözcüğü yazılmaz, satır sığsın diye). Sınav adı ve kalan gün en yakın resmi sınav takviminden.
+       - Altında seri: `Chip tone="warning"` `flame` ikonlu "5 gün" / "5 days" (yükseklik 28, yan 11, yazı 13/700, `warningSoft` zemin, `warningInk` yazı). Seri 0 ise çip yok.
+       - Yalnız biri varsa (hedef ya da seri) o, selamın karşısında tek başına durur.
+     - Sağ küme veri gelmeden de yerini tutar (en az selam satırı boyu); hedef ya da seri sonradan gelince selam ve altındaki bloklar kaymaz.
   2. **Hafta şeridi** `WeekStrip` (Pazartesi–Pazar, bugünkü hafta):
      - 7 sütun, her biri 46 pt genişlik, üst 8 alt 9 iç boşluk, köşe 22. Bugünün sütunu `card` zemin ve kart gölgesi.
      - Gün adı `meta`: "Pzt Sal Çar Per Cum Cmt Paz" / "Mon Tue Wed Thu Fri Sat Sun"; bugün `brandDeep` 800, diğerleri `muted` 600.
@@ -129,10 +132,10 @@ Ortak ölçüler: telefon tuvali 390 × 844 pt, durum çubuğu 50 pt. İçerik a
      - Başlık `section` 17 pt, satır 22. Altında `small` tek satır (gerekirse iki).
      - Ölçü kutusu: en az 64 pt, köşe 16, modül `soft` zemin, dış boşluk 4/0, iç 10/12.
      - Altta `Button tone="module" size="sm" block`.
-     - **Sol kart (Dersler):** "Kaldığın yerden" / "Continue"; "Mecaz anlam" / "Figurative meaning"; "Sözcükte Anlam · 4 dk kaldı" / "Word meaning · 4 min left"; ölçü: solda `small` 700 Dersler `ink` "2 / 5 adım" / "2 / 5 steps", sağda `meta` 800 yüzde (`%40` / `40%`), altında 8 pt `Bar` (dolu Dersler `color`, iz `card`, en az %2); düğme "Devam et" / "Continue".
-     - **Sağ kart (Denemeler):** "Sıradaki deneme" / "Next exam"; "TYT Deneme 5" / "TYT Exam 5"; "Cumartesi 10:00 · 12.480 kişi" / "Saturday 10:00 · 12,480 joined"; ölçü: üç kutu yan yana (aralık 6, her biri esnek, üst/alt 4, köşe 10, `card` zemin): `headline` 17 eşit genişlikli sayı + `meta` 12 birim: "2 gün", "4 saat", "15 dk" / "2 days", "4 hours", "15 min"; düğme "Hatırlat" / "Remind me".
+     - **Sol kart (Dersler):** "Kaldığın yerden" / "Continue"; konu adı "Sözcükte Anlam" / "Word meaning"; "Türkçe · 29 dk kaldı" / "Turkish · 29 min left"; ölçü: solda `small` 700 Dersler `ink` "Adım 4 / 30" / "Step 4 / 30" (konu boyunca), sağda `meta` 800 yüzde (`%13` / `13%`), altında 8 pt `Bar` (dolu Dersler `color`, iz `card`, en az %2); düğme "Devam et" / "Continue".
+     - **Sağ kart (Denemeler):** "Sıradaki deneme" / "Next exam"; "TYT Deneme 5" / "TYT Exam 5"; "Cumartesi 10:00 · 12.480 kişi" / "Saturday 10:00 · 12,480 people" (kişi sayısı: yaklaşan denemede açılış hatırlatıcısı kuranlar, açılmış denemede girenler; **100'ün altında yazılmaz**, o zaman satır yalnız "Cumartesi 10:00"); ölçü: üç kutu yan yana (aralık 6, her biri esnek, üst/alt 4, köşe 10, `card` zemin): `headline` 17 eşit genişlikli sayı + `meta` 12 birim: "2 gün", "4 saat", "15 dk" / "2 days", "4 hours", "15 min"; düğme "Hatırlat" / "Remind me".
   5. **Modüller başlığı ve ilk sıra** birlikte (başlık asla sayfanın altında tek başına kalmaz): `SectionTitle` `section` "Modüller" / "Modules"; altında 10 pt arayla 3 sütunlu ızgara (aralık 10): Denemeler, Dersler, Testler.
-  6. **İkinci sıra:** Ders Planı, Akıllı Özet, Bilgi Kartları. Modül kutusu (`ModuleTile`): ortalı, iç boşluk 10/6/8, köşe 20, `card` zemin, 1 pt `line` kenar, öğeler arası 5. `Tile` 40 pt; ad `headline` 13,5 pt (satır 17) ortalı; durum etiketi `meta` 12 pt `muted` ortalı. Örnek durumlar: Denemeler "Cumartesi canlı" / "Live on Saturday"; Dersler "1 konu sürüyor" / "1 topic in progress"; Testler "1 test hazır" / "1 quiz ready"; Ders Planı "Bugün 2 / 5" / "Today 2 / 5"; Akıllı Özet "Bu ay 7 / 30" / "7 / 30 this month"; Bilgi Kartları "32 kart bugün" / "32 due today".
+  6. **İkinci sıra:** Ders Planı, Akıllı Özet, Bilgi Kartları. Modül kutusu (`ModuleTile`): ortalı, iç boşluk 10/6/8, köşe 20, `card` zemin, 1 pt `line` kenar, öğeler arası 5. `Tile` 40 pt; ad `headline` 13,5 pt (satır 17) ortalı; durum etiketi `meta` 12 pt `muted` ortalı. Örnek durumlar: Denemeler "Cumartesi canlı" / "Live on Saturday"; Dersler "1 konu sürüyor" / "1 topic in progress"; Testler "1 test hazır" / "1 quiz ready" (Dersler'de anlatımı biten ama testinden hiçbiri tamamlanmamış konu sayısı); Ders Planı "Bugün 2 / 5" / "Today 2 / 5"; Bilgi Kartları "32 kart bugün" / "32 due today". **Akıllı Özet kutusunda durum satırı yoktur**: sistemde aylık sınır yok, "Bu ay 7 / 30" gibi bir sayı çizilmez (sahip, 17 Kasım 2026). Satırdaki kutular eş boydur.
   7. **SinoAI kartı** (tam genişlik, satır): iç boşluk 14, köşe 22, `card`, `line` kenar, aralık 12. `Tile` SinoAI 44 pt; "SinoAI" `headline`; `small` "Takıldığın yerde hedefini bilerek anlatır" / "Explains with your goal in mind"; sağda `right` 20 pt `subtle`.
   8. **Bugün tekrar** kartı: iç boşluk 16, köşe 22, `card`, `line` kenar, satır arası 10.
      - Başlık satırı: `headline` "Bugün tekrar" / "Review today", sağda `meta` "yaklaşık 12 dk" / "about 12 min".
@@ -144,26 +147,36 @@ Ortak ölçüler: telefon tuvali 390 × 844 pt, durum çubuğu 50 pt. İçerik a
   - Hedef satırı: öğrencinin hedef sınav alt kategorileri (profil kategori) + resmi sınav takvimi (`Categories/exam-calendar`); en yakın sınavın kısa adı ("TYT (Temel Yeterlilik Testi)" → "TYT") ve kalan gün; gün 0 ise saat ve dakika. Takvim "tahmini" ise "~245 gün".
   - Hafta şeridi, bugünün planı, sıradaki görev: `GET student/study-plan/calendar` (bu hafta). Görev durumu: 0 bekliyor, 1 tamamlandı, 2 atlandı, 3 ertelendi. Sıradaki görev = bugünün ilk bekleyen görevi (saati olan önce, saate göre; sonra önceliğe göre). Plan yoksa yanıtta `noPlan`.
   - Kaldığın yerden: `GET student/works/continue` (`title`, `lessonSubName`, `completedBlockCount`, `blockCount`, `workMikroId`).
-  - Sıradaki deneme: Denemeler ay özeti (bugünkü kod `fetchExamMonth`, `.../month?year=&month=`): odak adımı olan ilk şablonun odak adımı (`title`, `questionCount`, `durationMinutes`, `examId`, `state`). Katılımcı sayısı ve geri sayım: API'de doğrulanmalı.
-  - Bugün tekrar: `GET student/works/reviews?take=50` (adım sayısı), Bilgi Kartları ana özeti `.../flashcard/home?weakUnits=false` (bugünkü kart sayısı). "yaklaşık 12 dk": API'de doğrulanmalı.
-  - Modül durum etiketleri yalnız bu ekranın zaten çektiği veriden üretilir; ek istek atılmaz. Testler ("1 test hazır") ve Akıllı Özet ("Bu ay 7 / 30") için kaynak: API'de doğrulanmalı (Akıllı Özet: mevcut kota ucu).
+  - Sıradaki deneme: Denemeler ay özeti (bugünkü kod `fetchExamMonth`, `.../month?year=&month=`): odak adımı olan ilk şablonun odak adımı (`title`, `questionCount`, `durationMinutes`, `examId`, `state`). Katılımcı sayısı: aynı adımın `participantCount` alanı (yerelde eklendi, sonraki toplu yayında; 100'ün altında gösterilmez). Geri sayım: adımın `opensAtUtc` alanı. Alan yoksa o parça görünmez.
+  - Bugün tekrar: `GET student/works/reviews?take=50` (adım sayısı), Bilgi Kartları ana özeti `.../flashcard/home?weakUnits=false` (bugünkü kart sayısı `todayCount`). "yaklaşık 12 dk" = `works/reviews/summary` `estimatedMinutes` (adım başına 45 sn, yukarı yuvarlanır) + `flashcard/home` `todayEstimatedMinutes` (kart başına 15 sn); alanlar sonraki toplu yayında, yoksa süre yazılmaz.
+  - Modül durum etiketleri: Testler "1 test hazır" = `GET student/quizzes/summary` `readyTopicCount` (sonraki toplu yayın; yoksa satır görünmez). Akıllı Özet: etiket yok. Diğerleri bu ekranın zaten çektiği veriden.
+  - Kural: sistemde karşılığı olmayan sayı ya da etiket çizilmez ve kodlanmaz; önce veri kaynağı sorulur.
   - Bildirim rozeti: okunmamış bildirim sayısı (bildirim bağlamı); 9'dan büyükse "9+".
   - Erişim: modül hakları (entitlements); hiçbir modül açık değilse "deneme süresi bitti" hâli.
 - **Etkileşimler:** §3.2 tablosu. Her dokunulabilir öğenin dokunma alanı en az 44 pt (iOS) / 48 dp (Android); `sm` düğme görünürde 36 pt olsa da dokunma alanı genişletilir. Kartın tamamı ve kartın düğmesi aynı yere gider (eylem kartı). Basılı durumda kart/düğme 0,97 ölçek, 140 ms (`UI_MOTION.scale.press`, `duration.press`).
 - **Hâller:**
   - İlk yükleme: içerik yokken sayfanın ortasında `LoadingLogo` (dönen saatli logo); iskelet yok. Kaynağı henüz gelmeyen tek kartın yerinde o kartın `LoadingLogo`'su durur, diğerleri dolar.
+  - **Kayma (zıplama) yok** (sahip, 17 Kasım 2026): yüklenirken hiçbir parça boy ya da yer değiştirmez.
+    - Veri bekleyen kartın bekleme hâli gerçek kartla aynı boyda çizilir; "Bugünün planı" bekleme kutusu son ölçülen boyda durur.
+    - Hafta şeridi veri gelmeden de çizilir (günler ve tarihler istemciden).
+    - Selam satırının sağ tarafı (hedef, seri) baştan yer tutar; webde hedef satırının yeri baştan ayrılır.
+    - Mobilde son görülen ana ekran öğrenci başına bellekte tutulur; dönüşte hemen çizilir, sonra tazelenir.
   - Yenileme: içerik yerinde kalır, üstte küçük gösterge.
   - Bir kaynak düşerse yalnız o kart önceki hâlinde kalır; hiçbiri gelmezse ortak hata hâli `m-durum-hata` ("Tekrar dene").
   - Plan yok → `m-hub-plansiz`; gün bitti → `m-hub-gun-bitti`; erişim bitti → `m-hub-abonelik-bitti`; ilk açılış → `m-hub-ipucu`.
   - Bugün tekrar: adım ve kart ikisi de 0 ise kart çizilmez (mobil); web'de sakin bir satır (bugünkü web kodu).
   - Hedef sınav seçilmemiş öğrenci: hedef sınav seçim penceresi açılır, ipucu bekler (bugünkü kodun davranışı; çizimi yok).
 - **Web farkı (`w-panel-anasayfa`):** `Panel active="home"`: sol menü 260 px, üst çubuk 68 px, sayfa iç boşluğu 22/28/28, bloklar arası 18. Web'de gövde, küçük ve meta yazılar 1 pt büyüktür.
-  1. Başlık satırı: `small` 14 tarih "Perşembe, 15 Ekim" / "Thursday, 15 October"; `title` 30 "Günaydın Ayşe"; hedef satırı aynı; sağda `Chip warning flame` "5 gün seri" / "5-day streak".
+  1. Başlık satırı (tarih yok): `title` 30 "Günaydın Ayşe"; altında hedef satırı "Hedef **TYT · 245 gün kaldı**" / "Goal **TYT · 245 days left**" (yeri baştan ayrılır). Sağda, alta hizalı, aralık 10: `Chip warning flame` "5 gün seri" / "5-day streak" ve `Button tone="soft" size="sm"` `upload` ikonlu "Paylaş" / "Share" (seri paylaşım kartı; hikâye ya da gönderi seçilir, Paylaşım kartları belgesi). Paylaş yalnız webdedir (bilerek ayrılan yer, sahip 17 Kasım 2026).
   2. İki sütun `1.3fr 1fr` (aralık 18): solda `TodayCard`; sağda `WCard` (iç boşluk 20) içinde `WeekStrip` ve altında iki `KpiCard compact` yan yana: "Bu hafta" / "This week" (`clock`) "4 sa 10 dk" / "4 h 10 m", değişim çipi "↗ %22"; "Doğru oranı" / "Accuracy" (`target`) "%62", "↗ %6". `KpiCard compact`: köşe 22, iç 12/14, ikon dairesi 30, sayı `num` 22.
-  3. Üç sütun `1fr 1fr 1.1fr`: Dersler eylem kartı, Denemeler eylem kartı, `WCard` "Bugün tekrar" (sağ üstte `small` 700 "yaklaşık 12 dk"; satırlarda `Tile` 40).
-  4. İki sütun `1.3fr 1fr`: `WCard` "Bu hafta" / "This week" (sağda "İstatistiklerim" / "My statistics"): `StudyBars` yükseklik 110 (tablette 56), yedi gün modüllere göre yığılı (Dersler, Testler, Denemeler, Bilgi Kartları), bugün (Per) öne çıkar; ipucu kutusu "Perşembe · Planlanan 90 dk · Çalışılan 45 dk" / "Thursday · Planned 90 min · Studied 45 min". `WCard` "Modüller" / "Modules" (sağda "Tümü" / "All"): 3 sütun ızgara (aralık 10), her öğe satır: iç 9/10, köşe 14, `line` kenar, `Tile` 30, ad `headline` 13,5 tek satır. SinoAI bu kartta yoktur (sol menüde var).
+  3. Aynı iki sütun `minmax(0, 1.3fr) minmax(0, 1fr)`: sol sütunda Dersler ve Denemeler eylem kartları yan yana (`1fr 1fr`, aralık 18), birlikte "Bugünün planı" genişliğinde; sağ sütunda `WCard` "Bugün tekrar" takvim kartı genişliğinde (sağ üstte `small` 700 "yaklaşık 12 dk"; satırlarda `Tile` 40). Üç kart eş boy.
+  4. Aynı iki sütun: `WCard` "Bu hafta" / "This week" (sağda "İstatistiklerim" / "My statistics"): `StudyBars` yükseklik 110 (tablette 56), yedi gün modüllere göre yığılı (Dersler, Testler, Denemeler, Bilgi Kartları), bugün (Per) öne çıkar; ipucu kutusu "Perşembe · Planlanan 90 dk · Çalışılan 45 dk" / "Thursday · Planned 90 min · Studied 45 min". `WCard` "Modüller" / "Modules" (iç 16; sağda "Tümü" / "All"): 3 eşit sütun ızgara (`repeat(3, minmax(0, 1fr))`, aralık 6), her öğe satır: iç 6/7, köşe 14, `line` kenar, aralık 6, `Tile` 24, ad `headline` 13 tek satır. SinoAI bu kartta yoktur (sol menüde var). İki kart eş boy.
+  - **Sütun kuralı:** bütün satırlar aynı iki sütunu izler (1,3 / 1); satır satır farklı oran kullanılmaz. Sütun içeriğe göre genişlemez (`minmax(0, …)`). Aynı satırdaki kartlar eş boydur (`align-items: stretch`); "Bugünün planı" takvim kartıyla, "Bugün tekrar" eylem kartlarıyla aynı yükseklikte.
   - Klavye: menü, kartlar ve düğmeler sekme sırasıyla görsel sıradadır; odak halkası 2 px `ink`, 3 px boşluk. Üst çubukta "Ctrl K" arama.
-- **Tablet farkı (`t-hub-moduller`):** 1194 × 834 yatay tuval, durum çubuğu 30. Üstte mobil `AppHeader` (yan 18; profil, logo, zil). Altında web sayfasının içeriği aynen (yan 28, alt 22, bloklar arası 14); sol menü ve web üst çubuğu yok; `StudyBars` yükseklik 56. Yıkama yok. Altta ev çubuğu (200 × 5).
+- **Tablet farkı (`t-hub-moduller`):** 1194 × 834 yatay tuval, durum çubuğu 30. Üstte mobil `AppHeader` (yan 18; profil, logo, zil). Altında web sayfasının içeriği aynen (yan 28, alt 22, bloklar arası 14); sol menü ve web üst çubuğu yok; `StudyBars` yükseklik 56. Farklar (sahip, 17 Kasım 2026):
+  - Başlık: `title` 30 "Günaydın Ayşe" solda; hedef satırı ve seri çipi selamın aynı satırında, sağda, yan yana (aralık 12). Paylaş düğmesi yok.
+  - Modüller kartında "Tümü" yok (altı modül zaten kartta; mobilde Tüm modüller ekranı yok).
+  - Modüller kartının altında (aralık 10) ayrı satırda iki kart yan yana (`1fr 1fr`, aralık 10): SinoAI ve Destek. Kart: iç 9/12, köşe 20, `card`, `line` kenar, kart gölgesi, aralık 12; solda 30 pt kutu (SinoAI `Tile`; Destek `line2` zemin, `headset` 16 `ink2`), `headline` ad, sağda `right` 18 `subtle`. Tablette sol menü olmadığı için bu iki kart buradadır. Yıkama yok. Altta ev çubuğu (200 × 5).
 - **Kurallar:**
   - Sıra her platformda aynı: selam → hafta → bugünün planı → eylemler → modüller → SinoAI → tekrar → destek (web'de iki/üç sütuna yayılır, sıra korunur).
   - Modül sırası her yerde: Denemeler, Dersler, Testler, Ders Planı, Akıllı Özet, Bilgi Kartları, SinoAI.
@@ -208,12 +221,12 @@ Ortak ölçüler: telefon tuvali 390 × 844 pt, durum çubuğu 50 pt. İçerik a
     - Kayıt cevapları kutusu: iç 10/12, köşe 16, Ders Planı `wash` zemin, satır arası 6; üç satır (solda `small` etiket, sağda `small` 700 `ink` değer): "Sınavın · TYT · 245 gün" / "Exam · TYT · 245 days"; "Haftada · 5 gün · günde 90 dk" / "Per week · 5 days · 90 min a day"; "Zorlandığın · Matematik, Fizik" / "Hard for you · Maths, Physics". Altında `meta`: "Bunları kayıtta söyledin; istersen değiştirirsin." / "From your sign-up; you can change them."
     - `Button tone="module"` Ders Planı, `md`, tam genişlik, `sparkles` ikonlu: "Planımı hazırla" / "Build my plan".
     - Altında ortalı `small` 700 Ders Planı `ink` bağlantı: "Kendi planımı kuracağım" / "I'll make my own".
-  - Sol eylem kartı: "İlk adımın" / "First step"; "Gerçek anlam" / "Literal meaning"; "TYT Türkçe · ilk mikro ders" / "TYT Turkish · first micro-lesson"; ölçü "6 adım · 4 dk" / "6 steps · 4 min", `%0`; düğme "Başla" / "Start". İlk mikro ders kayıtta zorlandığın dersten gelir.
+  - Sol eylem kartı: "İlk adımın" / "First step"; "Sözcükte Anlam" / "Word meaning"; "TYT Türkçe · ilk konun" / "TYT Turkish · your first topic"; ölçü "30 adım · 33 dk" / "30 steps · 33 min", `%0`; düğme "Başla" / "Start". İlk konu kayıtta zorlandığın dersten gelir.
   - Ders Planı kutusunun durum etiketi: veri yoksa yok (bugünkü kod "Plan yok").
   - Web: KPI'lar "—", değişim çipi yok; "Bu hafta" grafiği boş, ipucu kutusu yok.
 - **Veri:** Kayıt cevapları (sınav, haftalık gün ve dakika, zorlanılan dersler) onboarding'de kaydedilen değerlerden; sınav kalan gün takvimden. Haftalık gün/dakika ve zorlanılan dersler için okuma ucu: API'de doğrulanmalı.
-- **Etkileşimler:** "Planımı hazırla" → plan bu cevaplarla kurulur → `m-plan-bugun` (düğme loading iken kilitli). "Kendi planımı kuracağım" → `POST student/study-plan/manual` → `m-plan-program`; hata: kısa bildirim, kart yerinde. "Başla" → ilk mikro ders.
-- **Kurallar:** İlk mikro ders plansız da başlar. Çıkmaz sokak yok: kart neden plan olmadığını söyler ve tek ana eylem sunar.
+- **Etkileşimler:** "Planımı hazırla" → plan bu cevaplarla kurulur → `m-plan-bugun` (düğme loading iken kilitli). "Kendi planımı kuracağım" → `POST student/study-plan/manual` → `m-plan-program`; hata: kısa bildirim, kart yerinde. "Başla" → ilk konu, oynatıcıda ilk adımdan.
+- **Kurallar:** İlk konu plansız da başlar. Çıkmaz sokak yok: kart neden plan olmadığını söyler ve tek ana eylem sunar.
 
 ### `m-hub-gun-bitti` Ana ekran · günün planı bitti · web: `w-panel-anasayfa-gun-bitti` · tablet: `t-hub-gun-bitti`
 
@@ -236,8 +249,9 @@ Ortak ölçüler: telefon tuvali 390 × 844 pt, durum çubuğu 50 pt. İçerik a
     - 46 pt kutu (köşe 15, `card`), `lock` 22 pt `brandDeep`; yanında `section` 17 "3 günlük deneme süren bitti" / "Your 3-day trial has ended" ve `small` `ink2` "Planın, ilerlemen ve notların duruyor. Abone olunca kaldığın yerden devam edersin." / "Your plan, progress and notes are kept."
     - `Button` birincil (marka `action` `#C2410C`), `md`, tam genişlik: "Paketleri gör" / "See plans".
     - Ortalı `meta`: "Mağaza aboneliğini geri yükle" / "Restore a store purchase" (yalnız mobil).
-  - Sol eylem kartı: başlık ve satır aynı ("Kaldığın yerden · Mecaz anlam"), ölçü kutusunda `lock` 16 + `small` 700 Dersler `ink` "Abone olunca açılır" / "Opens with a plan"; düğme "Paketleri gör" / "See plans" (Dersler renginde).
-  - Sıradaki deneme kartı aynı kalır (geri sayım ve "Hatırlat").
+  - Sol eylem kartı: başlık ve satır aynı ("Kaldığın yerden · Sözcükte Anlam"), ölçü kutusunda `lock` 16 + `small` 700 Dersler `ink` "Abone olunca açılır" / "Opens with a plan"; düğme "Paketleri gör" / "See plans" (Dersler renginde).
+  - Sıradaki deneme kartı: düğme deneme durumuna göre (Başla / Devam et / Sonucu gör / Hatırlat); açılmamışsa geri sayım kutuları ve "Hatırlat".
+  - Sıradaki görevin "Başla" düğmesi görevin kaynağını doğrudan açar (test, konu, deneme); API'nin `launch` bilgisi kullanılır.
   - Modül kutuları kilitlidir (Registry notu: "modüller kilitli"); çizimde kilit işareti ayrıca gösterilmez.
 - **Veri:** Erişim: modül hakları; hepsi kapalı ve oturum doğrulanmışsa bu hâl.
 - **Etkileşimler:** "Paketleri gör" → `m-profil-paketler` (web `w-panel-abonelik`, Profil belgesi). "Mağaza aboneliğini geri yükle" → mağaza geri yükleme; başarıda ekran `m-hub-moduller`'e döner. Kilitli modül kutusu → paket bilgisi.
@@ -249,7 +263,7 @@ Ortak ölçüler: telefon tuvali 390 × 844 pt, durum çubuğu 50 pt. İçerik a
 - **Çerçeve:** `Panel active="modules"` (sol menüde "Tüm modüller" aktif).
 - **Yerleşim:**
   - `title` 30 "Tüm modüller" / "All modules"; `small` 14 "Her modülün kendi rengi var: simgede, menüde ve sekmede aynı renk. Ana sayfadaki kutucuklarla aynı düzen." / "Each module keeps its colour on its icon, menu and tabs."
-  - 4 sütunlu ızgara (aralık 18), yedi kart; SinoAI 2 sütun kaplar. Kart: iç 18, köşe 22, `card`, `line` kenar, aralık 10. Üstte `Tile` 48 ve sağda `right` 18 `subtle`; `section` modül adı; `small` modülün tek satırı (tagline: "Deneme çöz, sonucunu gör", "Konuyu adım adım öğren", "Adım adım konu testleri", "Haftalık programın ve görevlerin", "Soru görselinden analiz al", "Kartlarla öğrenmeye devam et", "Soru çöz, özet çıkar, çalışma üret"); `Chip tone="module" size="sm"` durum: "Cumartesi: TYT Deneme 5" / "Sat: TYT Exam 5", "3 ders sürüyor" / "3 in progress", "35 / 100", "Bugün 1/3" / "Today 1/3", "Bu ay 7 / 30" / "7 / 30 this month", "32 kart bugün" / "32 due today", "Hedefini bilir" / "Knows your goal".
+  - 4 sütunlu ızgara (aralık 18), yedi kart; SinoAI 2 sütun kaplar. Kart: iç 18, köşe 22, `card`, `line` kenar, aralık 10. Üstte `Tile` 48 ve sağda `right` 18 `subtle`; `section` modül adı; `small` modülün tek satırı (tagline: "Deneme çöz, sonucunu gör", "Konuyu adım adım öğren", "Adım adım konu testleri", "Haftalık programın ve görevlerin", "Soru görselinden analiz al", "Kartlarla öğrenmeye devam et", "Soru çöz, özet çıkar, çalışma üret"); `Chip tone="module" size="sm"` durum: "Cumartesi: TYT Deneme 5" / "Sat: TYT Exam 5", "3 ders sürüyor" / "3 in progress", "1 test hazır" / "1 quiz ready", "Bugün 1/3" / "Today 1/3", Akıllı Özet'te çip yok, "32 kart bugün" / "32 due today", "Hedefini bilir" / "Knows your goal".
 - **Etkileşimler:** Kart → modülün web ana sayfası (§3.2 web yolları).
 
 ## 5. Takılma ve kilitlenme önlemleri
@@ -296,6 +310,14 @@ Ortak ölçüler: telefon tuvali 390 × 844 pt, durum çubuğu 50 pt. İçerik a
 | 26 | görsel | tablet | `t-hub-*` | Dört hâl | `acik/tablet/t-hub-*.png` ile aynı (web sayfası, menüsüz) |
 | 27 | birim | ikisi | yüzde | TR ve EN | TR `%40`, EN `40%`; değişim çipi TR `%22` |
 | 28 | e2e | mobil | geri sayım | Uygulamayı arka plana al, 5 dk sonra dön | Sayaç doğru değerde; arka planda tik yok |
+| 29 | görsel | ikisi | ana ekran | Selam satırı | Selamın üstünde tarih yok; mobil ve tablette hedef selamın karşısında, seri telefonda hedefin altında, tablette yanında |
+| 30 | görsel | web | `w-panel-anasayfa` | Kart kenarlarının x konumu | Üç satırda sol ve sağ sütun kenarları aynı x'te (1,3 / 1); eylem kartı ikilisi "Bugünün planı" genişliğinde |
+| 31 | görsel | ikisi | ana ekran | Aynı satırdaki kartların yüksekliği | Eşit (±1 px); kısa kartın altında dış boşluk yok |
+| 32 | birim | ikisi | katılımcı sayısı | `participantCount` 99, 100, yok | 99 ve yokta satır yalnız saat; 100'de "100 kişi" |
+| 33 | birim | ikisi | Akıllı Özet kutusu | Herhangi bir veri | Durum satırı çizilmez |
+| 34 | görsel | ikisi | yükleme | Yavaş ağ (3G); veriler sırayla gelir | Hiçbir kart boy ya da yer değiştirmez (CLS 0); hafta şeridi baştan çizili; hedef/seri yeri baştan ayrılmış |
+| 35 | görsel | tablet | `t-hub-moduller` | Modüller kartı | "Tümü" yok; altında SinoAI ve Destek yan yana |
+| 36 | görsel | web | `w-panel-anasayfa` | Seri ≥ eşik | Seri çipinin yanında "Paylaş"; menü hikâye/gönderi |
 
 ## 7. Çizim ile bugünkü kod arasındaki farklar
 
@@ -304,7 +326,7 @@ Mobil kök: `C:\Users\onurc\Desktop\sinavika_mobile_reactnative\src`. Web kök: 
 1. **Eylem kartında ölçü yok (mobil).** `shared/components/study/StudyActionCard.tsx` ölçü kutusunda yalnız modül simgesini (`solid`) gösterir; ilerleme çubuğu ve yüzde, deneme geri sayımı (gün/saat/dk) ve kilit nedeni yoktur. Web `components/study/StudyParts` için aynı durum doğrulanmadı.
 2. **Erişim bitti metinleri.** Mobil `core/i18n/catalogs/tr-TR/study.ts`: başlık "Erişim süren bitti" (çizim "3 günlük deneme süren bitti"); "Mağaza aboneliğini geri yükle" bağlantısı `TodayPlanCard.tsx`'te yok. Kilitli Dersler kartının düğmesi "Kilitli" (`hub.action.locked`), çizimde "Paketleri gör" ve ölçüde "Abone olunca açılır".
 3. **Plan yok kartı.** Mobil ve web yalnız "Sınavın" satırını gösterir (`ModuleHubHomeScreen.tsx` `rows`, `features/dashboard/pages/DashboardPage.tsx`); "Haftada" ve "Zorlandığın" satırları yok. Not metni farklı ("Plan sınav tarihine ve günlük süreye göre kurulur; istediğin an değiştirirsin."). "Planımı hazırla" mobilde `StudyPlanCreate` (plan ayarları), web'de `/student/baslangic` (onboarding) açar; çizimde kayıt cevaplarıyla tek dokunuşta plan kurar. Plansız ilk eylem kartı başlığı "Derslere başla" / "Konu konu, adım adım" (çizim: ilk mikro dersin adı ve "6 adım · 4 dk").
-4. **Modül durum etiketleri.** Kod: Denemeler "Bu ay {done} / {total}", Dersler "Konu sürüyor", Ders Planı "Bugün d/t" ya da "Plan yok", Bilgi Kartları "{n} kart bugün"; Testler ve Akıllı Özet için etiket yok (`catalogs/tr-TR/hub.ts` `status`). Çizim: "Cumartesi canlı", "1 konu sürüyor", "1 test hazır", "Bu ay 7 / 30".
+4. **Modül durum etiketleri.** Kod: Denemeler "Bu ay {done} / {total}", Dersler "Konu sürüyor", Ders Planı "Bugün d/t" ya da "Plan yok", Bilgi Kartları "{n} kart bugün"; Testler ve Akıllı Özet için etiket yok (`catalogs/tr-TR/hub.ts` `status`). Çizim: "Cumartesi canlı", "1 konu sürüyor", "1 test hazır"; Akıllı Özet'te etiket yok (17 Kasım kararı, çizim düzeltildi).
 5. **SinoAI kartı.** Mobilde SinoAI ızgaranın altında tek başına bir `ModuleHubTile` (ortalı kutu, durum "Hedefini bilerek anlatır") olarak çizilir ve yalnız SinoAI açıkken görünür; çizimde satır kartı (44 pt kutu, başlık, "Takıldığın yerde hedefini bilerek anlatır", ok).
 6. **Bugün tekrar.** Mobil satır metni "Dersler · tekrar zamanı gelen" (çizim "Dersler · ilk denemede yanlış"); başlıkta "yaklaşık 12 dk" yok. Dersler "Başla" `WorkReview`'u, Bilgi Kartları "Başla" `FlashcardToday`'i açar (oturumu değil).
 7. **Sıradaki görev "Başla".** Mobil görevi doğrudan açmaz; Ders Planı'nı `startTaskId` ile açar (`openStudyPlanHome`). Web `studyPlanFocusPath(id)` (odak sayacı) açar. Çizim: görevin kaynağı açılır.
@@ -315,5 +337,13 @@ Mobil kök: `C:\Users\onurc\Desktop\sinavika_mobile_reactnative\src`. Web kök: 
 12. **Hafta şeridi plansızken.** Mobil kod hafta verisi yoksa şeridi hiç çizmez; çizimde plansız öğrencide boş şerit görünür.
 13. **Tab bar orta yuva.** Mobil `app/navigation/MainTabBar.tsx` orta yuvayı yükseltir (`CENTER_LIFT`, büyük ikon kutusu, `apps` ikonu); çizimde düz, 42 pt `line2` daire ve `grid` ikonu.
 14. **İpucu deposu.** Mobil işaret cihaz başına (`sinavika_hub_tour_v1`), web öğrenci başına; çizim kuralı tek ipucu, bir kez (fark değil, bilgi).
-15. **Kodda olup çizimi olmayanlar.** Hedef sınav seçim penceresi (`hub/presentation/components/ModuleHubTargetExamCard.tsx`), "Oturum gerekli" kartı (`ModuleHubSessionNotice.tsx`), paket dışı modüle dokununca "Erişim" uyarısı (`useModuleHubNavigation.ts`), web'de seri paylaşma düğmesi (`ShareCardButton`, seri eşiği üstünde).
-16. **Doğrulanamayanlar.** "Hatırlat" düğmesinin API'si, deneme katılımcı sayısı, "Bugün tekrar" süresi, Testler ve Akıllı Özet durum etiketlerinin kaynağı ve "Planımı hazırla"nın kayıt cevaplarıyla tek dokunuşta plan kuran ucu: API'de doğrulanmalı.
+15. **Kodda olup çizimi olmayanlar.** Hedef sınav seçim penceresi (`hub/presentation/components/ModuleHubTargetExamCard.tsx`), "Oturum gerekli" kartı (`ModuleHubSessionNotice.tsx`), paket dışı modüle dokununca "Erişim" uyarısı (`useModuleHubNavigation.ts`), web'de seri paylaşma düğmesi (`ShareCardButton`, seri eşiği üstünde; 17 Kasım'dan beri çizimde de var).
+16. **Doğrulanamayanlar.** "Hatırlat" düğmesinin API'si ve "Planımı hazırla"nın kayıt cevaplarıyla tek dokunuşta plan kuran ucu: API'de doğrulanmalı. Katılımcı sayısı, "Bugün tekrar" süresi, Testler "hazır test" sayısı ve plansız kartın satırları API'ye yerelde eklendi (sonraki toplu yayın; `Tasarim-Uyum-Plani.md` §9.1 madde 6).
+17. **Sahip kararları, 17 Kasım 2026 (Bugün).** Kaynak: web deposunda `docs/UIUX/Tasarim-Uyum-Plani.md` §9.1 madde 6 ve §9.3. Çizim bunlara göre düzeltildi:
+    - Selamın üstündeki tarih satırı kalktı (mobil, web, tablet).
+    - Mobil ve tablette hedef selamın karşısında; seri telefonda hedefin altında, tablette yanında.
+    - Web ve tablette satırlar aynı iki sütunu izler; ikinci satır `1fr 1fr 1.1fr` değil.
+    - Aynı satırdaki kartlar eş boy.
+    - Web seri "Paylaş" düğmesi çizimde.
+    - Tablet: Modüller kartında "Tümü" yok; SinoAI ve Destek altta yan yana.
+    - Akıllı Özet kutusunda "Bu ay 7 / 30" yok; web Tüm modüller sayfasında da yok (Testler çipi "1 test hazır").

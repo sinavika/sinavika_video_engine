@@ -3,6 +3,7 @@ import {UIProvider, useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {AppHeader, BottomBar, Content, FocusHeader, ModuleScreen, ModuleSlide, PageTitle, Phone, SectionTitle} from '../../Parts/Mobile';
 import {Bar, Button, Card, Chip, Dots, List, ListRow, Ring, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
+import {ModuleWeekCard, StateBlock} from '../../Parts/Study';
 import {UI_SHADOW} from '../../Tokens';
 
 /** Akıllı Özet (Lens), Bilgi Kartları and SinoAI. */
@@ -27,7 +28,7 @@ export const SummaryHomeScreen: React.FC = () => {
 					title={t('Akıllı Özet', 'Smart Summary')}
 					right={
 						<Chip tone="module" module="smartSummary">
-							{t('Bu ay 7 / 30', '7 / 30 this month')}
+							{t('Kullanım %40', 'Used 40%')}
 						</Chip>
 					}
 				/>
@@ -35,7 +36,7 @@ export const SummaryHomeScreen: React.FC = () => {
 					<ModuleSlide module="smartSummary" height={176} />
 					<Dots count={2} active={0} colors={[mod.color, mod.color]} />
 				</Stack>
-				<SectionTitle title={t('Geçmiş analizler', 'Past analyses')} action={t('Tümü', 'All')} />
+				<SectionTitle title={t('Geçmiş analizler', 'Past analyses')} />
 				<Segmented items={[t('Soru analizleri', 'Questions'), t('Video analizleri', 'Videos')]} dark />
 				<List>
 					{[
@@ -99,13 +100,6 @@ export const SummaryCameraScreen: React.FC = () => {
 					</div>
 				</div>
 				<Stack gap={14} style={{padding: '0 0 40px'}}>
-					<Stack row justify="center" gap={8}>
-						{[t('Tek soru', 'One question'), t('Sayfa', 'Page'), t('Video', 'Video')].map((label, index) => (
-							<Chip key={label} tone={index ? 'glass' : 'moduleSolid'} module="smartSummary">
-								{label}
-							</Chip>
-						))}
-					</Stack>
 					<Stack row justify="space-between" style={{padding: '0 44px'}}>
 						<div style={{width: 48, height: 48, borderRadius: 24, background: 'rgba(255,255,255,0.14)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 							<Icon name="image" size={22} color="#FFFFFF" />
@@ -139,7 +133,7 @@ export const SummaryProcessingScreen: React.FC = () => {
 					{t('Sorunu okuyoruz', 'Reading your question')}
 				</Text>
 				<Text role="body" align="center">
-					{t('Yaklaşık 20 saniye. Ekranı kapatsan da bitince haber veririz.', 'About 20 seconds. We notify you if you leave.')}
+					{t('Yaklaşık 20 saniye. Kapatsan da analiz sürer; bitince haber veririz.', 'About 20 seconds. Closing does not stop it; we tell you when it is ready.')}
 				</Text>
 				<Card padding={14} style={{width: '100%', textAlign: 'left'}}>
 					<Stack gap={12}>
@@ -237,9 +231,18 @@ export const SummaryResultScreen: React.FC = () => {
 				</Card>
 				<SectionTitle title={t('Bu konuda devam et', 'Keep going on this topic')} />
 				<List>
-					<ListRow module="lessons" icon="book" title={t('Konuyu çalış', 'Study the topic')} subtitle={t('Dersler · Türev · 6 mikro ders', 'Lessons · Derivatives · 6 micro-lessons')} />
-					<ListRow module="flashcards" icon="cards" title={t('Bilgi kartı yap', 'Make flashcards')} subtitle={t('Bu çözümden 3 kart', '3 cards from this solution')} />
+					<ListRow module="lessons" icon="book" title={t('Konuyu çalış', 'Study the topic')} subtitle={t('Dersler · Türev', 'Lessons · Derivatives')} />
 				</List>
+				{/* No card making from an analysis; "Benzer 5 soru" opens the topic's quiz in Testler. The photo closes the page. */}
+				<SectionTitle title={t('Sorunun fotoğrafı', 'Photo of the question')} />
+				<div style={{height: 150, borderRadius: 16, background: '#F5F1E8', padding: 16, boxSizing: 'border-box'}}>
+					<Text role="headline" color="#1E293B">
+						14. f(x) = (3x² − 2)⁴ {t('için', 'for')} f'(1) {t('kaçtır?', '?')}
+					</Text>
+					<Text role="small" color="#1E293B" style={{marginTop: 10}}>
+						A) 12 · B) 24 · C) 36 · D) 48 · E) 60
+					</Text>
+				</div>
 			</Content>
 			<BottomBar border>
 				<Stack row gap={10}>
@@ -261,7 +264,7 @@ export const SummaryUploadScreen: React.FC = () => {
 	return (
 		<ModuleScreen module="smartSummary" tab={1}>
 			<Content gap={12}>
-				<PageTitle module="smartSummary" title={t('Soru yükle', 'Upload')} sub={t('Fotoğraf, galeri ya da PDF', 'Photo, gallery or PDF')} />
+				<PageTitle module="smartSummary" title={t('Soru yükle', 'Upload')} sub={t('Fotoğraf ya da galeri', 'Photo or gallery')} />
 				<Card padding={24} style={{border: `2px dashed ${mod.line}`, background: mod.wash, boxShadow: 'none', textAlign: 'center'}}>
 					<Stack align="center" gap={12}>
 						<Tile module="smartSummary" icon="camera" size={58} solid />
@@ -281,11 +284,11 @@ export const SummaryUploadScreen: React.FC = () => {
 						</Stack>
 					</Stack>
 				</Card>
-				<SectionTitle title={t('Ne istiyorsun?', 'What do you need?')} />
+				<SectionTitle title={t('Neler alacaksın?', 'What you get')} />
 				<List>
-					<ListRow module="smartSummary" icon="checkCircle" title={t('Adım adım çözüm', 'Step-by-step solution')} subtitle={t('Cevap, kazanım ve sık hata', 'Answer, skill and common mistake')} />
-					<ListRow module="smartSummary" icon="note" title={t('Konu özeti', 'Topic summary')} subtitle={t('Sorunun konusunu tek sayfada', 'The topic on one page')} />
-					<ListRow module="smartSummary" icon="quiz" title={t('Benzer sorular', 'Similar questions')} subtitle={t('Testler’e 5 soru ekler', 'Adds 5 questions to Quizzes')} />
+					<ListRow module="smartSummary" icon="checkCircle" title={t('Adım adım çözüm', 'Step-by-step solution')} subtitle={t('Cevap ve kazanım', 'Answer and skill')} chevron={false} />
+					<ListRow module="smartSummary" icon="note" title={t('Konu özeti', 'Topic summary')} subtitle={t('Sorunun konusunu tek sayfada', 'The topic on one page')} chevron={false} />
+					<ListRow module="smartSummary" icon="info" title={t('Sık yapılan hata', 'Common mistake')} subtitle={t('Bu soruda en çok nerede yanılınır', 'Where most people slip on it')} chevron={false} />
 				</List>
 			</Content>
 		</ModuleScreen>
@@ -328,43 +331,151 @@ export const SummaryVideoScreen: React.FC = () => {
 
 /* ------------------------------------------------------------------ Bilgi Kartları */
 
-export const CardsHomeScreen: React.FC = () => {
+/**
+ * Bilgi Kartları home (owner, 17 Nov 2026): lessons grouped by exam (heading
+ * the exam name, "N ders" on the right), like the Testler and Dersler homes.
+ * First use: the slide says how many new cards wait and starts them; lesson
+ * rows carry "Yeni".
+ */
+const CARD_LESSONS: [string, string, string, number, number, number][] = [
+	['TYT', 'Kimya', 'Chemistry', 3, 0.62, 12],
+	['TYT', 'Tarih', 'History', 4, 0.42, 10],
+	['TYT', 'Türkçe', 'Turkish', 2, 0.55, 6],
+	['TYT', 'Coğrafya', 'Geography', 2, 0.9, 4],
+	['AYT', 'Biyoloji', 'Biology', 2, 0.3, 0],
+	['AYT', 'Edebiyat', 'Literature', 1, 0.25, 0],
+];
+
+const CardsHome: React.FC<{first?: boolean}> = ({first}) => {
 	const t = useT();
-	const lessons: [string, string, number, number, number][] = [
-		['Kimya', 'Chemistry', 3, 0.62, 12],
-		['Tarih', 'History', 4, 0.42, 10],
-		['Türkçe', 'Turkish', 2, 0.55, 6],
-		['Coğrafya', 'Geography', 2, 0.9, 4],
-		['Biyoloji', 'Biology', 2, 0.3, 0],
-		['İngilizce', 'English', 1, 0.25, 0],
-	];
+	const colors = useColors();
+	const exams = ['TYT', 'AYT'];
 	return (
 		<ModuleScreen module="flashcards" tab={0}>
 			<Content gap={12}>
 				<PageTitle module="flashcards" title={t('Bilgi Kartları', 'Flashcards')} />
-				<ModuleSlide module="flashcards" height={160} />
-				<SectionTitle title={t('Dersler', 'Subjects')} sub={t('Önce dersi seç, desteler içinde', 'Pick a subject; decks are inside')} />
+				{first ? <ModuleSlide module="flashcards" height={160} label={t('İlk kartların', 'Your first cards')} title={t('140 yeni kart seni bekliyor', '140 new cards are waiting')} text={t('Günde 20 yeni kart; unutmadan önce yeniden sorarız.', '20 new cards a day; we ask again before you forget.')} action={t('Yeni kartlara başla', 'Start new cards')} /> : <ModuleSlide module="flashcards" height={160} />}
+				{first ? null : (
+					<ModuleWeekCard
+						module="flashcards"
+						time={t('45 dk', '45 min')}
+						change={-6}
+						bars={[5, 10, 0, 8, 12, 0, 10]}
+						stats={[
+							[t('Çalışılan kart', 'Cards studied'), '210'],
+							[t('Başarı', 'Success'), t('%81', '81%')],
+							[t('Seri', 'Streak'), t('5 gün', '5 days')],
+						]}
+					/>
+				)}
+				{exams.map((exam) => {
+					const rows = CARD_LESSONS.filter((row) => row[0] === exam);
+					return (
+						<Stack key={exam} gap={8}>
+							<Stack row justify="space-between" style={{padding: '0 4px'}}>
+								<Text role="section" size={17}>
+									{exam}
+								</Text>
+								<Text role="meta">{t(`${rows.length} ders`, `${rows.length} subjects`)}</Text>
+							</Stack>
+							<List>
+								{rows.map(([, tr, en, decks, value, due]) => (
+									<ListRow
+										key={tr}
+										module="flashcards"
+										icon="book"
+										title={t(tr, en)}
+										subtitle={first ? t(`${decks} deste`, `${decks} decks`) : t(`${decks} deste · %${Math.round(value * 100)} öğrenildi`, `${decks} decks · ${Math.round(value * 100)}% learnt`)}
+										trailing={
+											<Stack row gap={8}>
+												{first ? (
+													<Chip tone="module" module="flashcards" size="sm">
+														{t('Yeni', 'New')}
+													</Chip>
+												) : due ? (
+													<Chip tone="module" module="flashcards" size="sm">
+														{due} {t('bugün', 'today')}
+													</Chip>
+												) : null}
+												<Icon name="right" size={18} color={colors.subtle} />
+											</Stack>
+										}
+									/>
+								))}
+							</List>
+						</Stack>
+					);
+				})}
+			</Content>
+		</ModuleScreen>
+	);
+};
+
+export const CardsHomeScreen: React.FC = () => <CardsHome />;
+
+/** First use: no card studied yet. */
+export const CardsHomeFirstScreen: React.FC = () => <CardsHome first />;
+
+/**
+ * A lesson's decks (drawn 17 Nov 2026; sizes as m-test-konular): the lesson
+ * summary box with a ring, then one row per deck: cards icon, topic name,
+ * "x/y kart · %z", "N zayıf" when some cards keep slipping.
+ */
+export const CardsDecksScreen: React.FC = () => {
+	const t = useT();
+	const mod = useModuleColors('flashcards');
+	const decks: [string, string, number, number, number][] = [
+		['Mol kavramı', 'The mole', 18, 24, 3],
+		['Atom modelleri', 'Atomic models', 12, 20, 0],
+		['Periyodik sistem', 'Periodic table', 6, 22, 5],
+	];
+	return (
+		<ModuleScreen module="flashcards" tab={0} header={<AppHeader left="back" title={t('Kimya', 'Chemistry')} right={<div style={{width: 40}} />} />}>
+			<Content gap={12}>
+				<Card tone="moduleLine" module="flashcards" padding={16}>
+					<Stack row gap={14}>
+						<Ring value={0.62} size={60} stroke={6} color={mod.color} track={mod.track}>
+							<Text role="meta" weight={800}>
+								{t('%62', '62%')}
+							</Text>
+						</Ring>
+						<Stack grow gap={2}>
+							<Text role="headline">{t('TYT Kimya', 'TYT Chemistry')}</Text>
+							<Text role="small">{t('3 deste · %62 öğrenildi', '3 decks · 62% learnt')}</Text>
+						</Stack>
+					</Stack>
+				</Card>
 				<List>
-					{lessons.map(([tr, en, decks, value, due]) => (
+					{decks.map(([tr, en, known, total, weak]) => (
 						<ListRow
 							key={tr}
 							module="flashcards"
-							icon="book"
+							icon="cards"
 							title={t(tr, en)}
-							subtitle={t(`${decks} deste · %${Math.round(value * 100)} öğrenildi`, `${decks} decks · ${Math.round(value * 100)}% learnt`)}
+							subtitle={t(`${known}/${total} kart · %${Math.round((known / total) * 100)}`, `${known}/${total} cards · ${Math.round((known / total) * 100)}%`)}
 							trailing={
-								<Stack row gap={8}>
-									{due ? (
-										<Chip tone="module" module="flashcards" size="sm">
-											{due} {t('bugün', 'today')}
-										</Chip>
-									) : null}
-									<Icon name="right" size={18} color="#94A3B8" />
-								</Stack>
+								weak ? (
+									<Chip tone="warning" size="sm">
+										{t(`${weak} zayıf`, `${weak} weak`)}
+									</Chip>
+								) : undefined
 							}
 						/>
 					))}
 				</List>
+			</Content>
+		</ModuleScreen>
+	);
+};
+
+/** Nothing due today: one line and the way to the lessons. */
+export const CardsTodayEmptyScreen: React.FC = () => {
+	const t = useT();
+	return (
+		<ModuleScreen module="flashcards" tab={1}>
+			<Content gap={12}>
+				<PageTitle module="flashcards" title={t('Bugün', 'Today')} />
+				<StateBlock module="flashcards" icon="checkCircle" title={t('Bugün tekrar edilecek kart yok', 'No cards due today')} text={t('Yeni kartlar derslerin içinde; tekrar zamanı gelen kart burada görünür.', 'New cards are inside the subjects; due cards show here.')} action={t('Derslere git', 'Go to subjects')} />
 			</Content>
 		</ModuleScreen>
 	);
@@ -518,7 +629,7 @@ export const CardsSavedScreen: React.FC = () => {
 	return (
 		<ModuleScreen module="flashcards" tab={2}>
 			<Content gap={12}>
-				<PageTitle module="flashcards" title={t('Kaydedilenler', 'Saved')} sub={t('Yıldızladığın 24 kart', '24 starred cards')} />
+				<PageTitle module="flashcards" title={t('Kaydedilenler', 'Saved')} sub={t('Kaydettiğin 24 kart', '24 saved cards')} />
 				<Stack row gap={8}>
 					{[t('Tümü', 'All'), t('Kimya', 'Chemistry'), t('Tarih', 'History'), t('Türkçe', 'Turkish')].map((label, index) => (
 						<Chip key={label} tone={index ? 'outline' : 'moduleSolid'} module="flashcards">
@@ -536,6 +647,7 @@ export const CardsSavedScreen: React.FC = () => {
 						<ListRow key={tr} module="flashcards" icon="bookmark" title={t(tr, en)} subtitle={t(lessonTr, lessonEn)} />
 					))}
 				</List>
+				{/* With a lesson chip chosen, the review opens with that lesson only. */}
 				<Button tone="module" module="flashcards" size="lg" block icon="play">
 					{t('Kaydedilenleri tekrar et', 'Review saved cards')}
 				</Button>

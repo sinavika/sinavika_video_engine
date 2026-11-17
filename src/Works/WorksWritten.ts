@@ -399,6 +399,7 @@ export const writtenIssues = (written: WrittenLesson, view: WorksView): string[]
 	const viewNotes = view.works?.additions ?? [];
 	const answered = new Set(written.written.additions.map((addition) => addition.note));
 	viewNotes.filter((note) => !answered.has(note)).forEach((note) => issues.push(`Works note not answered: "${note}".`));
-	written.written.additions.filter((addition) => !viewNotes.includes(addition.note)).forEach((addition) => issues.push(`"${addition.note}" is not one of the topic's Works notes.`));
+	// Camp scripts carry no Works notes since 9 Nov 2026 (camp and Works separated): the written lesson's own record then stands.
+	if (viewNotes.length > 0) written.written.additions.filter((addition) => !viewNotes.includes(addition.note)).forEach((addition) => issues.push(`"${addition.note}" is not one of the topic's Works notes.`));
 	return issues;
 };

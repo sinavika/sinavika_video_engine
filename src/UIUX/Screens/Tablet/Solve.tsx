@@ -414,9 +414,12 @@ export const TestWrongScratchScreen: React.FC = () => {
 								{t('Taslağımı SinoAI’ye göster', 'Show my working to SinoAI')}
 							</Button>
 							<Button tone="module" module="lessons" icon="book" style={{flex: 1}}>
-								{t('İş problemleri mikro dersi', 'Work problems lesson')}
+								{t('İş problemleri konusu', 'Work problems topic')}
 							</Button>
 						</Stack>
+						<Button tone="module" module="tests" size="lg" block iconRight="right">
+							{t('Devam', 'Continue')}
+						</Button>
 					</Stack>
 				</QuestionCard>
 				<Scratchpad width={454} height="100%" page={t('Soru 5 · 1 / 1', 'Q 5 · 1 / 1')}>
@@ -510,12 +513,13 @@ export const TestFigureScreen: React.FC = () => {
 					</Stack>
 					<Stack gap={9} style={{width: 260, flexShrink: 0, justifyContent: 'center'}}>
 						<InkOption letter="A" text="50" mark="strike" />
-						<InkOption letter="B" text="60" mark="loop" state="selected" color="blue" />
+						<InkOption letter="B" text="60" mark="loop" color="blue" />
 						<InkOption letter="C" text="70" mark="strike" />
 						<InkOption letter="D" text="80" mark="strike" />
-						<Button block style={{marginTop: 10}}>
-							{t('Cevapla', 'Answer')}
-						</Button>
+						{/* One tap answers everywhere (owner, 17 Nov 2026): no "Cevapla" button; ink on the options is not an answer. */}
+						<Text role="meta" style={{marginTop: 10}}>
+							{t('Cevap için şıkka dokun; kalem işareti cevap sayılmaz.', 'Tap an option to answer; ink is not an answer.')}
+						</Text>
 					</Stack>
 				</QuestionCard>
 			</Stack>

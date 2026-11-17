@@ -181,7 +181,8 @@ export const ModuleHead: React.FC<{module: ModuleKey; tab?: number; tabs?: strin
 	const t = useT();
 	const mod = useModuleColors(module);
 	const identity = MODULES[module];
-	const names = tabs ?? (identity.tabs ? identity.tabs.map((item) => t(item.label)) : []);
+	// Web Denemeler has five tabs (owner, 17 Nov 2026): the app's three plus Çözümler and İstatistik.
+	const names = tabs ?? (module === 'exam' ? [t('Denemeler', 'Exams'), t('Denemelerim', 'My exams'), t('Sonuçlar', 'Results'), t('Çözümler', 'Solutions'), t('İstatistik', 'Statistics')] : identity.tabs ? identity.tabs.map((item) => t(item.label)) : []);
 	return (
 		<Stack gap={14}>
 			{names.length ? (

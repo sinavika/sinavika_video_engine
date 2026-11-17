@@ -128,8 +128,13 @@ for (const job of jobs) {
 }
 if (relinked) console.log(`${relinked} görsel çizilmeden aynı resme bağlandı.`);
 const tooSmall = (row: ManifestRow | undefined) => row?.textPx !== undefined && row.textPx < WORK_FIGURE_MIN_TEXT_PX;
+// A row whose files no longer hold the picture it recorded: a figure linked to another's still, then that other figure
+// changed and was drawn again into the same files (17 Nov 2026: GEO_ANALITIK s2c2 showed s2c1's new drawing and the
+// import refused it). It is drawn again into its own files.
+const fileHash = (file: string) => createHash('sha256').update(readFileSync(file)).digest('hex');
+const overwritten = (row: ManifestRow | undefined) => Boolean(row && existsSync(row.light) && existsSync(row.dark) && (fileHash(row.light) !== row.sha256.light || fileHash(row.dark) !== row.sha256.dark));
 const pending = jobs
-	.filter((job) => values.force || redraw.has(job.entry.visual.kind) || (values.small && tooSmall(manifest[keyOf(job)])) || manifest[keyOf(job)]?.hash !== hashOf(job) || !existsSync(manifest[keyOf(job)].light))
+	.filter((job) => values.force || redraw.has(job.entry.visual.kind) || (values.small && tooSmall(manifest[keyOf(job)])) || manifest[keyOf(job)]?.hash !== hashOf(job) || !existsSync(manifest[keyOf(job)].light) || overwritten(manifest[keyOf(job)]))
 	.slice(0, values.limit ? Number(values.limit) : undefined);
 console.log(`${jobs.length} görsel; çizilecek ${pending.length}.`);
 
@@ -176,7 +181,14 @@ const worker = async () => {
 		}
 	}
 };
-await Promise.all(Array.from({length: Math.max(1, Number(values.concurrency))}, worker));
+const workers = () => Promise.all(Array.from({length: Math.max(1, Number(values.concurrency))}, worker));
+await workers();
+// Figures linked to a still this run drew again now show the new picture: drawn into their own files as well.
+pending.push(...jobs.filter((job) => overwritten(manifest[keyOf(job)])));
+if (pending.length) {
+	console.log(`${pending.length} görselin bağlı olduğu resim yeniden çizildi; kendi resmi çiziliyor.`);
+	await workers();
+}
 save();
 // Text under 1/45 of the width cannot be read on a phone (contract §2), and text over text cannot be read anywhere: the
 // kinds that still draw either, among this run's figures, for their visuals' own fix.

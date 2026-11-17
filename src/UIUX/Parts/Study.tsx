@@ -118,11 +118,11 @@ export const ActionCard: React.FC<{module: ModuleKey; over: string; title: strin
 };
 
 /** Today's plan on the home screen: progress and the next task with its own button; other states below. */
-export const TodayCard: React.FC<{state?: HubState}> = ({state = 'plan'}) => {
+export const TodayCard: React.FC<{state?: HubState; wide?: boolean}> = ({state = 'plan', wide}) => {
 	const t = useT();
 	const colors = useColors();
 	const plan = useModuleColors('studyPlan');
-	if (state === 'noPlan') return <NoPlanCard />;
+	if (state === 'noPlan') return <NoPlanCard wide={wide} />;
 	if (state === 'done') return <DayDoneCard />;
 	if (state === 'expired') return <ExpiredCard />;
 	return (
@@ -157,7 +157,8 @@ export const TodayCard: React.FC<{state?: HubState}> = ({state = 'plan'}) => {
 };
 
 /** No plan yet (new student): what the plan knows already, one button, and a first step that needs no plan. */
-const NoPlanCard: React.FC = () => {
+/** `wide` (web, tablet): the two ways sit in one row, so the card keeps its row height. */
+const NoPlanCard: React.FC<{wide?: boolean}> = ({wide}) => {
 	const t = useT();
 	const colors = useColors();
 	const plan = useModuleColors('studyPlan');
@@ -189,12 +190,25 @@ const NoPlanCard: React.FC = () => {
 				))}
 				<Text role="meta">{t('Bunları kayıtta söyledin; istersen değiştirirsin.', 'From your sign-up; you can change them.')}</Text>
 			</Stack>
-			<Button tone="module" module="studyPlan" block icon="sparkles">
-				{t('Planımı hazırla', 'Build my plan')}
-			</Button>
-			<Text role="small" align="center" weight={700} color={plan.ink}>
-				{t('Kendi planımı kuracağım', 'I’ll make my own')}
-			</Text>
+			{wide ? (
+				<Stack row gap={16}>
+					<Button tone="module" module="studyPlan" icon="sparkles" style={{flex: 1}}>
+						{t('Planımı hazırla', 'Build my plan')}
+					</Button>
+					<Text role="small" weight={700} color={plan.ink}>
+						{t('Kendi planımı kuracağım', 'I’ll make my own')}
+					</Text>
+				</Stack>
+			) : (
+				<>
+					<Button tone="module" module="studyPlan" block icon="sparkles">
+						{t('Planımı hazırla', 'Build my plan')}
+					</Button>
+					<Text role="small" align="center" weight={700} color={plan.ink}>
+						{t('Kendi planımı kuracağım', 'I’ll make my own')}
+					</Text>
+				</>
+			)}
 		</div>
 	);
 };
@@ -275,9 +289,14 @@ export const FilterChips: React.FC<{items: string[]; active?: number; module?: M
 /**
  * A plan task card (study-plan calendar task): where it comes from on top
  * (exam · lesson · module), the topic in bold, the module badge, and how much
- * it is (questions, micro-lessons, cards) or its time on the right.
+ * it is (questions, steps, cards) or its time on the right.
  */
-export const PlanTaskCard: React.FC<{module: ModuleKey | 'own'; source: string; title: string; amount: string; badge?: string; done?: boolean; now?: boolean}> = ({module, source, title, amount, badge, done, now}) => {
+/**
+ * A plan task. The body opens the task's content; the circle at the top right
+ * marks it done. `more` (web) adds the "Diğer işlemler" button beside the
+ * circle: Odak sayacıyla başla, Yarına taşı, Saati değiştir, Bugünden kaldır.
+ */
+export const PlanTaskCard: React.FC<{module: ModuleKey | 'own'; source: string; title: string; amount: string; badge?: string; done?: boolean; now?: boolean; more?: boolean}> = ({module, source, title, amount, badge, done, now, more}) => {
 	const colors = useColors();
 	const t = useT();
 	const key: ModuleKey = module === 'own' ? 'studyPlan' : module;
@@ -293,7 +312,14 @@ export const PlanTaskCard: React.FC<{module: ModuleKey | 'own'; source: string; 
 						{title}
 					</Text>
 				</Stack>
-				<div style={{width: 26, height: 26, borderRadius: 13, border: done ? undefined : `2px solid ${colors.line}`, background: done ? colors.success : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>{done ? <Icon name="check" size={15} color="#FFFFFF" /> : null}</div>
+				<Stack row gap={6}>
+					{more && !done ? (
+						<div data-ui="more" style={{width: 26, height: 26, borderRadius: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+							<Icon name="more" size={20} color={colors.ink2} stroke={3} />
+						</div>
+					) : null}
+					<div style={{width: 26, height: 26, borderRadius: 13, border: done ? undefined : `2px solid ${colors.line}`, background: done ? colors.success : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>{done ? <Icon name="check" size={15} color="#FFFFFF" /> : null}</div>
+				</Stack>
 			</Stack>
 			<Stack row justify="space-between">
 				<Stack row gap={8}>
@@ -556,5 +582,51 @@ export const EntryRow: React.FC<{module: ModuleKey; icon: UIIconName; title: str
 			</Stack>
 			<Icon name="right" size={18} color={colors.subtle} />
 		</Stack>
+	);
+};
+
+/**
+ * A module's week (ModuleStatisticsCard in both apps, GET statistics per
+ * module): study time with the change against last week, the last seven days
+ * as small bars, and three module figures. Empty week: one calm line. Every
+ * module home has this framed card (owner, 17 Nov 2026): Dersler, Denemeler,
+ * Testler, Bilgi Kartları, and Ders Planı's progress page.
+ */
+export const ModuleWeekCard: React.FC<{module: ModuleKey; time: string; change: number; bars: number[]; stats: [string, string][]; lesson?: boolean}> = ({module, time, change, bars, stats, lesson}) => {
+	const colors = useColors();
+	const t = useT();
+	const mod = useModuleColors(module);
+	const top = Math.max(...bars, 1);
+	return (
+		<div style={{borderRadius: 22, background: colors.card, border: `1px solid ${colors.line}`, boxShadow: UI_SHADOW.card, padding: 14, display: 'flex', flexDirection: 'column', gap: 10}}>
+			<Stack row justify="space-between" align="flex-end" gap={12}>
+				<Stack gap={2}>
+					<Text role="over" color={mod.ink}>
+						{lesson ? t('Bu dersteki haftan', 'Your week in this subject') : t('Bu hafta', 'This week')}
+					</Text>
+					<Text role="headline" size={18}>
+						{time} <span style={{fontSize: 13, fontWeight: 600, color: colors.muted}}>{t('çalışma', 'studied')}</span>
+					</Text>
+					<Text role="meta" color={change > 0 ? colors.successInk : colors.ink2}>
+						{change > 0 ? t(`%${change} artış · geçen haftaya göre`, `${change}% up · vs last week`) : change < 0 ? t(`%${-change} azalış · geçen haftaya göre`, `${-change}% down · vs last week`) : t('Geçen haftayla aynı', 'Same as last week')}
+					</Text>
+				</Stack>
+				<Stack row gap={4} align="flex-end" style={{height: 44}}>
+					{bars.map((value, index) => (
+						<div key={index} style={{width: 9, height: Math.max((value / top) * 44, 4), borderRadius: 3, background: value ? mod.color : colors.line}} />
+					))}
+				</Stack>
+			</Stack>
+			<Stack row gap={8}>
+				{stats.map(([label, value]) => (
+					<Stack key={label} gap={1} grow style={{padding: '8px 10px', borderRadius: 14, background: colors.line2}}>
+						<Text role="meta">{label}</Text>
+						<Text role="headline" size={15}>
+							{value}
+						</Text>
+					</Stack>
+				))}
+			</Stack>
+		</div>
 	);
 };

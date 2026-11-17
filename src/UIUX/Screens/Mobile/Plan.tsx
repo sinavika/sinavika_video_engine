@@ -4,7 +4,7 @@ import {Icon, type UIIconName} from '../../Icons';
 import {MODULES, type ModuleKey} from '../../ModuleIdentity';
 import {AppHeader, BottomBar, Content, FitList, FocusHeader, ModuleScreen, PageTitle, SectionTitle, Sheet} from '../../Parts/Mobile';
 import {Bar, Bars, Button, Card, Chip, Field, List, ListRow, Pct, Ring, Segmented, Sparkline, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
-import {FilterChips, PlanTaskCard} from '../../Parts/Study';
+import {FilterChips, ModuleWeekCard, PlanTaskCard} from '../../Parts/Study';
 import {UI_SHADOW} from '../../Tokens';
 
 /** Ders Planı: today, focus timer, progress, schedule and plan settings. Tabs: Bugün · İlerleme · Modüller · Program · Profil. */
@@ -107,7 +107,8 @@ export const PlanTodayScreen: React.FC = () => {
 					</div>
 				</Stack>
 				<FitList gap={9}>
-					<PlanTaskCard module="lessons" source={t('TYT Türkçe · Dersler', 'TYT Turkish · Lessons')} title={t('Sözcükte Anlam', 'Word meaning')} amount={t('3 mikro ders · 8 dk', '3 micro-lessons · 8 min')} done />
+					{/* No "Çalışmaya devam et" or "Bugün tekrar" card here (Bugün tekrar lives on the home screen); an empty day never reads "0 görev · 0 dk". */}
+					<PlanTaskCard module="lessons" source={t('TYT Türkçe · Dersler', 'TYT Turkish · Lessons')} title={t('Sözcükte Anlam', 'Word meaning')} amount={t('Kaldığın yerden · 8 dk', 'From where you left off · 8 min')} done />
 					<PlanTaskCard module="tests" source={t('TYT Matematik · denemende net kaybettin', 'TYT Maths · you lost nets here')} title={t('Problemler · Orta', 'Problems · Medium')} amount={t('20 soru · 25 dk', '20 questions · 25 min')} now />
 					<PlanTaskCard module="flashcards" source={t('TYT Kimya · Bilgi Kartları', 'TYT Chemistry · Flashcards')} title={t('Mol kavramı', 'The mole')} amount={t('20 kart · 10 dk', '20 cards · 10 min')} />
 					<PlanTaskCard module="exam" source={t('Sınavika · Türkiye geneli', 'Sınavika · nationwide')} title={t('TYT Deneme 5', 'TYT Exam 5')} amount="10:00 – 12:45" badge={t('Canlı deneme', 'Live exam')} />
@@ -152,6 +153,7 @@ export const PlanAddTaskScreen: React.FC = () => {
 							<Pill label={t('Diğer', 'Other')} />
 						</Stack>
 					</Stack>
+					{/* No title field: the task's name comes from the topic, lesson or note. "Ders ve konu" is required only for Konu çalış, Soru çöz and Tekrar. */}
 					<Field label={t('Ders ve konu', 'Subject and topic')} value={t('TYT Türkçe · Paragraf', 'TYT Turkish · Reading')} icon="book" trailing={<Icon name="down" size={18} color={colors.muted} />} />
 					<Field label={t('Not (isteğe bağlı)', 'Note (optional)')} value={t('Paragraf kitabı · 2 test', 'Reading book · 2 tests')} icon="edit" />
 					<Stack gap={8}>
@@ -187,8 +189,14 @@ export const PlanAddTaskScreen: React.FC = () => {
 	);
 };
 
-/** Long-press or tap on a task: start, start with focus, move to tomorrow, mark done (PATCH status / schedule). */
-export const PlanTaskActionScreen: React.FC = () => {
+/**
+ * Long-press or tap on a task (owner, 17 Nov 2026). The main button names the
+ * task's module: "Konuya başla", "Testi başlat", "Denemeye geç", "Kartlara
+ * başla"; an own task with no content starts the focus timer instead. Focus is
+ * always 25 min + 5 min break (no Pomodoro / one-block choice). Rows: focus,
+ * move to tomorrow, change the time, mark done, remove from today.
+ */
+const TaskActions: React.FC<{own?: boolean}> = ({own}) => {
 	const t = useT();
 	const colors = useColors();
 	const Row: React.FC<{icon: UIIconName; label: string; sub?: string; tone?: string}> = ({icon, label, sub, tone}) => (
@@ -209,14 +217,26 @@ export const PlanTaskActionScreen: React.FC = () => {
 			module="studyPlan"
 			tab={0}
 			overlay={
-				<Sheet height={560}>
-					<PlanTaskCard module="tests" source={t('TYT Matematik · denemende net kaybettin', 'TYT Maths · you lost nets here')} title={t('Problemler · Orta', 'Problems · Medium')} amount={t('20 soru · 25 dk', '20 questions · 25 min')} />
-					<Button tone="module" module="tests" size="lg" block icon="play">
-						{t('Testi başlat', 'Start the quiz')}
-					</Button>
+				<Sheet height={own ? 560 : 612}>
+					{own ? (
+						<>
+							<PlanTaskCard module="own" source={t('Kendi görevin', 'Your own task')} title={t('Paragraf kitabı · 2 test', 'Reading book · 2 tests')} amount="18:00 – 18:40" />
+							<Button tone="module" module="studyPlan" size="lg" block icon="clock">
+								{t('Odak sayacıyla başla', 'Start with the focus timer')}
+							</Button>
+						</>
+					) : (
+						<>
+							<PlanTaskCard module="tests" source={t('TYT Matematik · denemende net kaybettin', 'TYT Maths · you lost nets here')} title={t('Problemler · Orta', 'Problems · Medium')} amount={t('20 soru · 25 dk', '20 questions · 25 min')} />
+							<Button tone="module" module="tests" size="lg" block icon="play">
+								{t('Testi başlat', 'Start the quiz')}
+							</Button>
+						</>
+					)}
 					<Stack gap={0}>
-						<Row icon="clock" label={t('Odak sayacıyla başla', 'Start with the focus timer')} sub={t('25 dk odak, sonra 5 dk mola', '25 min focus, then a 5 min break')} />
+						{own ? null : <Row icon="clock" label={t('Odak sayacıyla başla', 'Start with the focus timer')} sub={t('25 dk odak, sonra 5 dk mola', '25 min focus, then a 5 min break')} />}
 						<Row icon="calendar" label={t('Yarına taşı', 'Move to tomorrow')} sub={t('Planın kalan günlere göre yeniden dağılır', 'The rest of your plan adjusts')} />
+						<Row icon="history" label={t('Saati değiştir', 'Change the time')} />
 						<Row icon="check" label={t('Yaptım olarak işaretle', 'Mark as done')} sub={t('Uygulama dışında çözdüysen', 'If you did it outside the app')} />
 						<Row icon="trash" label={t('Bugünden kaldır', 'Remove from today')} tone={colors.errorInk} />
 					</Stack>
@@ -230,6 +250,11 @@ export const PlanTaskActionScreen: React.FC = () => {
 		</ModuleScreen>
 	);
 };
+
+export const PlanTaskActionScreen: React.FC = () => <TaskActions />;
+
+/** An own task with no content: the main button is the focus timer. */
+export const PlanOwnTaskActionScreen: React.FC = () => <TaskActions own />;
 
 export const PlanFocusScreen: React.FC = () => {
 	const t = useT();
@@ -284,6 +309,17 @@ export const PlanProgressScreen: React.FC = () => {
 			<Content gap={12}>
 				<PageTitle module="studyPlan" title={t('İlerleme', 'Progress')} />
 				<Segmented items={[t('Bu hafta', 'This week'), t('Bu ay', 'This month'), t('Tümü', 'All')]} module="studyPlan" />
+				<ModuleWeekCard
+					module="studyPlan"
+					time={t('6 sa 30 dk', '6 h 30 m')}
+					change={22}
+					bars={[60, 75, 50, 45, 90, 30, 40]}
+					stats={[
+						[t('Biten görev', 'Tasks done'), '12/15'],
+						[t('Plan uyumu', 'Plan kept'), t('%80', '80%')],
+						[t('Seri', 'Streak'), t('5 gün', '5 days')],
+					]}
+				/>
 				<Card padding={16}>
 					<Stack row justify="space-between" align="flex-start">
 						<Stack gap={2}>
@@ -425,6 +461,15 @@ export const PlanScheduleScreen: React.FC = () => {
 						</Stack>
 					}
 				/>
+				{/* Planım is edited and the week shared from Program (owner, 17 Nov 2026), not from Bugün. */}
+				<Stack row gap={8}>
+					<Button tone="soft" size="sm" icon="edit">
+						{t('Düzenle', 'Edit')}
+					</Button>
+					<Button tone="soft" size="sm" icon="upload">
+						{t('Haftanı paylaş', 'Share your week')}
+					</Button>
+				</Stack>
 				<Card padding={10}>
 					<Stack row gap={4} style={{paddingLeft: 40}}>
 						{['P', 'S', 'Ç', 'P', 'C', 'C', 'P'].map((day, index) => (

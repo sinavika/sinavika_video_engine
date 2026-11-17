@@ -5,6 +5,29 @@ Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çi
 
 Kod adı: modül anahtarı `flashcards`; API `Flashcards` (`/api/student/flashcard`), web özellik klasörü `flashcard`, mobil modül `flashcard`, mobil rota öneki `Flashcard`. Ekranda yalnız "Bilgi Kartları" / "Flashcards"; "Kelime Kartları", "Knowledge cards" asla.
 
+
+> **Sahip kararları (17 Kasım 2026). Bu kararlarla çelişen ekran çizmek ya da kodlamak tasarım hatasıdır.** Kaynak: web deposunda `docs/UIUX/Tasarim-Uyum-Plani.md` §9.3 madde 18.
+> - **Deste oluşturma yok:** web vitrininde "Yeni deste" düğmesi yoktur.
+> - **Mobil vitrin:** dersler sınav başına bölümlüdür (başlık sınav adı, sağda "N ders"); Testler ve Dersler vitriniyle aynıdır.
+> - **Ders → desteler** (`m-kart-desteler`):
+>   - üstte ders özeti kutusu: "N deste · %X öğrenildi" ve halka;
+>   - altta deste satırları: kartlar ikonu, konu adı, "x/y kart · %z", gerekiyorsa "N zayıf" çipi;
+>   - ölçüler `m-test-konular` ile aynıdır.
+> - **Hâller:**
+>   - İlk kullanımda vitrinde "N yeni kart seni bekliyor" ve "Yeni kartlara başla" yazar; ders satırlarında "Yeni" çipi bulunur (`m-kart-vitrin-ilk`).
+>   - Bugün'de tekrar edilecek kart yoksa "Bugün tekrar edilecek kart yok" ve "Derslere git" görünür (`m-kart-bugun-bos`).
+> - **Kaydedilenler:**
+>   - Alt satır "Kaydettiğin N kart" yazar ("Yıldızladığın" değil); simge yer imidir.
+>   - Ders çipiyle süzülünce "Kaydedilenleri tekrar et" o dersle açılır.
+> - **Oturum sonu:**
+>   - Bugün modunda oturum, Bugün sayfasının bitti hâliyle biter (`m-kart-bitti`).
+>   - Deste ve kaydedilenler oturumu aynı blokla, "Deste bitti" başlığıyla biter; altında içerik anketi vardır (`m-kart-deste-bitti`).
+> - **Web Gözat:**
+>   - Deste seçimi kart ızgarasının üstünde çip satırıdır.
+>   - Altında "x/y kart · %z" satırı ve "Bu desteyi çalış" düğmesi bulunur.
+> - **Klavye:** oturumda ←/→ ile kart gezme yoktur; mobilde de oklar kalktı. Alt satır "Boşluk: çevir · 1–3: puanla" yazar.
+> - **EN metinler:** cevap etiketi "Don’t know"; modül adı her yerde "Flashcards".
+
 ## 1. Modül özeti
 
 - **Ne işe yarar:** aralıklı tekrar kartları. Öğrenci bugün tekrar zamanı gelen kartları çevirir, cevabı görür ve ne kadar hatırladığını işaretler (Bilmiyorum, Emin değilim, Biliyorum); sistem kartın bir sonraki tekrar zamanını buna göre seçer. Ders → konu → deste sırasıyla göz atar, kartları kaydeder. Ana iş: günün tekrarını bitirmek.
@@ -106,6 +129,8 @@ Bilgi Kartları'nda elle kart yazma ekranı çizilmedi. Desteler iki yoldan geli
 ## 4. Ekranlar
 
 ### `m-kart-vitrin` Bilgi Kartları · web: `w-kart-vitrin`
+
+- **Modül istatistik kartı (sahip kararı, 17 Kasım 2026):** her modül vitrininde aynı çerçeveli "Bu hafta" kartı (`ModuleWeekCard`; uygulamada `ProfileModuleStatisticsCard` / `ModuleStatisticsCard`). Tanımı [04-Dersler.md](04-Dersler.md) §4.1 madde 3'tedir: süre, geçen haftaya göre değişim, son 7 günün çubukları, üç kutu; bu hafta çalışma yoksa tek sakin satır. Yeri: slaytın hemen altında; web'de banner'ın yanında (1,6fr / 1fr). Kutular: "Çalışılan kart" / "Cards studied" 210; "Başarı" %81; "Seri" "5 gün". Değişim negatifse "%6 azalış · geçen haftaya göre" (`ink2`, kırmızı değil).
 
 - **Görseller:** `acik/mobil/m-kart-vitrin.png`, `koyu/mobil/m-kart-vitrin.png`, `en/acik/mobil/m-kart-vitrin.png`; `acik/web-panel/w-kart-vitrin.png`, `koyu/web-panel/w-kart-vitrin.png`, `en/acik/web-panel/w-kart-vitrin.png`
 - **Çerçeve:** `AppHeader` varsayılan (solda profil, sağda zil ve sayaç). Tab bar var, aktif yuva 1. Modül yıkaması `linear-gradient(180deg, wash 0%, bg 34%)`. Alt düğme alanı yok.

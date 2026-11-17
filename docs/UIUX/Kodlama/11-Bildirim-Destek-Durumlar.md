@@ -21,7 +21,7 @@ Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çi
 | `w-panel-bildirimler` | web | Bildirimler | `/student/bildirimler` | `src/features/notifications/pages/NotificationsPage.tsx` | dolu |
 | `m-bildirimler-bos` | mobil | Bildirim yok | `NotificationInbox` | aynı ekranın `ListEmptyComponent` | boş |
 | `m-bildirim-ayarlar` | mobil | Bildirim ayarları | `ProfileNotificationSettings` | `src/modules/profile/presentation/screens/ProfileNotificationSettingsScreen.tsx` | dolu |
-| `m-onb-8-bildirim` | mobil | Bildirim izni · ilk mikro dersten sonra | `—` | yok (bugün `NotificationStudyPlanPromptHost.tsx` onay penceresi) | izin sorusu |
+| `m-onb-8-bildirim` | mobil | Bildirim izni · ilk çalışmadan sonra | `—` | yok (bugün `NotificationStudyPlanPromptHost.tsx` onay penceresi) | izin sorusu |
 | `m-bildirim-canli-deneme` | mobil (iOS) | Canlı etkinlik · deneme başlıyor | `iOS Live Activity (ActivityKit)` | yok | §4.4 özet |
 | `m-bildirim-canli-odak` | mobil (iOS) | Canlı etkinlik · odak oturumu | `iOS Live Activity (ActivityKit)` | yok | §4.4 özet |
 | `m-bildirim-ada` | mobil (iOS) | Dynamic Island hâlleri | `iOS Live Activity (ActivityKit)` | yok | §4.4 özet |
@@ -89,10 +89,10 @@ Bilinmeyen tür → `m-bildirimler` / `w-panel-bildirimler`; boş ya da kırık 
 - Gizli önizleme açıkken bildirim yalnız türünü söyler ("Deneme sonucun hazır"); net ve puan yazılmaz (Saat-Bildirim §1 kural 9).
 
 ### 3.3 Bildirim izni isteme
-1. İzin **ilk mikro ders bitince** istenir, onboarding'de ya da ilk açılışta değil: `m-ders-mikro-bitti` → `m-onb-8-bildirim` [tam ekran modal, bir kez].
+1. İzin **ilk çalışmadan sonra** istenir (öğrenci oynatıcıdan ilk kez çıkınca ya da ilk konu sonunda), onboarding'de ya da ilk açılışta değil: → `m-onb-8-bildirim` [tam ekran modal, bir kez]. Ara "bitti" ekranı yoktur (Dersler sahip kararı, 17 Kasım 2026).
 2. Önce kendi açıklama ekranımız; `Bildirimleri aç` → sistem izin penceresi (`Notifications.requestPermissionsAsync`) → izin verilirse cihaz kaydı `POST StudentNotificationMobile/devices/register` (girişliyse `devices/link`) ve deneme bitiş hatırlatması kurulur.
 3. `Şimdi değil` → ekran kapanır, sistem penceresi açılmaz. Yeniden sorma kuralı (bugünkü kod): 7 gün sonra, en çok iki kez; sistem izni reddedildiyse bir daha sorulmaz.
-4. Her iki düğmeden sonra öğrenci mikro ders bitti akışına (sıradaki mikro ders) döner (doğrulanmadı).
+4. Her iki düğmeden sonra öğrenci geldiği yere (Konular, vitrin ya da konu sonu) döner (doğrulanmadı).
 5. İzin kapalıysa `m-bildirim-ayarlar` üstünde not ve `Telefon ayarlarını aç`.
 6. Ölçüm: `notification_permission` (`granted`) olayı (Saat-Bildirim §9).
 7. Web: tarayıcı bildirimi için kendi kartımız (bugünkü `WebPushEnableCard.tsx`); web için zaman kuralı çizilmedi.
@@ -174,7 +174,7 @@ Ayrıntı, API ve kabul ölçütleri: [Saat-Bildirim.md](../Saat-Bildirim.md) §
 |---|---|---|---|---|
 | `m-bildirim-canli-deneme` | Deneme adı, `CANLI`/`LIVE`, 40 pt geri sayım "14:32", "sonra başlıyor · 12.480 kişi hazır", ilerleme çubuğu, `Hazırım`/`I'm ready` (`moduleAction('exam')`); altında Ders Planı bildirimi | Sunucu push-to-start, 15 dk kala; deneme başlayınca biter | `Hazırım` → `m-deneme-detay` | §7 |
 | `m-bildirim-canli-odak` | 86 px halka (Testler rengi) "18:42 kaldı", "ODAK · 25 DK", görev adı, "8 / 20 soru · bugün 2 / 5 görev", tek düğme `Duraklat` | Öğrenci (yerel); süre bitince ya da `Bitir` | `Duraklat` uygulamayı açmadan (App Intents); karta dokunma → `m-plan-odak` | §7 |
-| `m-bildirim-ada` | Kompakt (halka + süre), minimal (iki etkinlik), genişletilmiş deneme ("Soru 34 / 120 · 12 boş", 1:42:18) ve mikro ders ("3/5", `Devam`) | Etkinlikle aynı | deneme → `m-deneme-coz`; mikro ders `Devam` → `m-ders-*` kaldığı adım | §7 |
+| `m-bildirim-ada` | Kompakt (halka + süre), minimal (iki etkinlik), genişletilmiş deneme ("Soru 34 / 120 · 12 boş", 1:42:18) ve konu ("4/30", `Devam`) | Etkinlikle aynı | deneme → `m-deneme-coz`; konu `Devam` → oynatıcı, kaldığı adım | §7 |
 | `m-bildirim-seri` | "Serin 5 gün", "Bugünün 10 dakikası kaldı · gün 23:59’da biter", hafta şeridi, tek kısa yol "12 kart · 5 dk" (`moduleAction('flashcards')`) | Sunucu 20:00, yalnız o gün çalışılmadıysa; 23:59 ya da çalışma kaydıyla biter | kısa yol → `m-kart-on` | §5, §7 |
 | `m-bildirim-zengin` | Her bildirimde tek bilgi ve sağda 52 px modül renkli görsel (deneme: net sütunları; diğerleri modül simgesi) | Sunucu push | §3.2 tablosu | §5 |
 | `m-bildirim-genis` | Uzun basınca deneme sonucu: "78,5 net", "+6,5", ders ders çubuk ve fark; eylemler `Yanlışlarımı çalış`, `Sosyal’i planıma ekle` | — | eylemler: yanlışlar → `m-deneme-cozum`; plana ekle → `m-plan-bugun` (doğrulanmadı) | §5 |
@@ -185,13 +185,13 @@ Ayrıntı, API ve kabul ölçütleri: [Saat-Bildirim.md](../Saat-Bildirim.md) §
 
 Ortak kurallar: canlı etkinlik yalnız gerçek saati olan iş için; uygulama simgesi canlı etkinliğe konmaz; sahte aciliyet yok ("hemen", "kaçırma", "son şans" yasak); aynı şey için ikinci bildirim yok.
 
-### 4.5 `m-onb-8-bildirim` Bildirim izni · ilk mikro dersten sonra
+### 4.5 `m-onb-8-bildirim` Bildirim izni · ilk çalışmadan sonra
 
 - **Görseller:** `acik/mobil/m-onb-8-bildirim.png`, `koyu/…`, `en/acik/…`
 - **Çerçeve:** başlık çubuğu yok; tab bar yok; zemin `linear-gradient(180deg, Dersler wash %7 0%, bg 50%)` (Dersler'in içinden açıldığı için Dersler rengi). `BottomBar` iki düğme.
 - **Yerleşim (ortalı, üstten 60, aralık 16):**
   1. 96 × 96 köşe 32 `card` kutu, `UI_SHADOW.float`, `bell` 44 Dersler rengi (`#0284C7` / `#38BDF8`).
-  2. `Chip tone="success" icon="checkCircle"` `İlk mikro dersin bitti`/`First micro-lesson done`.
+  2. `Chip tone="success" icon="checkCircle"` `İlk çalışman bitti`/`First session done`.
   3. `hero` "Yarın 08:00’de hatırlatalım mı?" / "Shall we remind you at 08:00 tomorrow?" (saat öğrencinin plan saatinden).
   4. `body` "Günün planını sabah, deneme sonucunu açıklanınca haber veririz. Gece 22:00–08:00 sessiz." / "Your plan in the morning, exam results when ready. Quiet 22:00–08:00." (saatler için bkz. §7 çelişki).
   5. Örnek `Card` boşluk 12, tam genişlik, sola hizalı: iki satır `Tile` 32 + `headline` 13,5 + zaman `meta`: Ders Planı "Bugünün planı hazır" 08:00; Denemeler "Sonucun hazır: TYT Deneme 4" 12:24.
@@ -350,7 +350,7 @@ Kaynak: UIUX-Rehberi §5.5 ve §8, `UI_MOTION_MOMENTS.loading` / `refreshing`, �
 | 11 | e2e | mobil | `m-bildirim-ayarlar` | SinoAI üretimleri anahtarını aç | `PUT StudentProfileNotification/me` `pushTypes.sinoAiReady=true` |
 | 12 | e2e | mobil | `m-bildirim-ayarlar` | Ağ kapalıyken anahtar | Eski değere döner; hata satırı |
 | 13 | e2e | API+mobil | sınırlar | Aynı gün 3 hatırlatma tetikle; 23:00'te push | 3. gitmez; 23:00 push 08:00'e ertelenir |
-| 14 | e2e | mobil | `m-onb-8-bildirim` | İlk mikro dersi bitir | İzin ekranı açılır; sistem penceresi `Bildirimleri aç`'tan sonra |
+| 14 | e2e | mobil | `m-onb-8-bildirim` | İlk çalışmadan çık | İzin ekranı açılır; sistem penceresi `Bildirimleri aç`'tan sonra |
 | 15 | e2e | mobil | `m-onb-8-bildirim` | `Şimdi değil` | Sistem penceresi açılmaz; 7 gün içinde yeniden sorulmaz |
 | 16 | e2e | mobil | `m-destek-yeni` | Konu seç, başlık+açıklama yaz, `Gönder`'e iki kez dokun | Tek `POST StudentSupport`; talep no gösterilir |
 | 17 | bileşen | mobil | `m-destek-yeni` | Açıklama boş gönder | Alan hatası, istek yok |
@@ -375,7 +375,7 @@ Kaynak: UIUX-Rehberi §5.5 ve §8, `UI_MOTION_MOMENTS.loading` / `refreshing`, �
 Mobil kök: `C:\Users\onurc\Desktop\sinavika_mobile_reactnative\src\`. Web kök: `C:\Users\onurc\source\repos\sinavika_frontend_student\src\`.
 
 **Bildirimler**
-1. Bildirim izni bugün ilk mikro dersten sonra değil, öğrenci bir modülden ana sayfaya dönünce uygulama içi istek sırasının ilki olarak sorulur ve tam ekran açıklama değil onay penceresidir ("Çalışma planını sana hatırlatalım mı?", `Evet, hatırlat` / `Şimdi değil`; `modules/notifications/presentation/components/NotificationStudyPlanPromptHost.tsx`). `m-onb-8-bildirim` ekranı kodda yok.
+1. Bildirim izni bugün ilk çalışmadan hemen sonra değil, öğrenci bir modülden ana sayfaya dönünce uygulama içi istek sırasının ilki olarak sorulur ve tam ekran açıklama değil onay penceresidir ("Çalışma planını sana hatırlatalım mı?", `Evet, hatırlat` / `Şimdi değil`; `modules/notifications/presentation/components/NotificationStudyPlanPromptHost.tsx`). `m-onb-8-bildirim` ekranı kodda yok.
 2. `m-bildirimler-bos` `Bildirim ayarları` düğmesi bugün telefonun sistem ayarlarını açıyor (`Linking.openSettings`), `m-bildirim-ayarlar`'ı değil (`NotificationInboxScreen.tsx`).
 3. Bildirim listesinde `Bu hafta` gruplaması yok; tek düz liste (`NotificationInboxScreen.tsx`).
 4. `m-bildirim-ayarlar`: kodda `Odak oturumu` anahtarı ve `Saat` bölümü yok; `Kart tekrarı` alt yazısı "Bugün çalıştıysan, 17:00'de" (çizim "Tekrar zamanı gelince"); `Günün planı` varsayılanı kodda kapalı, çizimde ve Saat-Bildirim §4'te açık (`modules/profile/application/profilePushSettings.ts`).

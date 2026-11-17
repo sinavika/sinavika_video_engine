@@ -19,7 +19,7 @@ Belge ile PNG çelişirse çizim kodu esastır. Çizimlerdeki ad, sayı, tarih v
 | [01-Bugun.md](01-Bugun.md) | Modüller ana ekranı (Bugün): dört hâl, ipucu, kaydırılmış hâl; web ana sayfa; tablet |
 | [02-Giris-Onboarding.md](02-Giris-Onboarding.md) | Karşılama, oturum aç, kod, kayıt, şifremi unuttum, onboarding beş adımı ve plan; web giriş ve onboarding |
 | [03-Denemeler.md](03-Denemeler.md) | Denemeler: vitrin, canlı deneme, çözme, teslim, sonuç, çözümler, analiz, deneme ekle; İstatistikler |
-| [04-Dersler.md](04-Dersler.md) | Dersler: ders, konu, mikro ders, adım türleri, oynatıcı, Tekrar |
+| [04-Dersler.md](04-Dersler.md) | Dersler: ders, konu (tek ders), adım türleri, oynatıcı, Tekrar, ortak "gönderilecek" şeridi |
 | [05-Testler.md](05-Testler.md) | Testler: ders, konu, seviye, çözme, sonuç, çözümler |
 | [06-Ders-Plani.md](06-Ders-Plani.md) | Ders Planı: gün, hafta, ay, görevler, görev ekle, odak, dünden kalan |
 | [07-Akilli-Ozet.md](07-Akilli-Ozet.md) | Akıllı Özet: yükleme, kamera, işleniyor, sonuç, okunamadı, hak |
@@ -114,7 +114,7 @@ Değerler `src/UIUX/Tokens.ts` ve `src/UIUX/ModuleIdentity.ts` dosyalarından ge
 
 | Modül | Anahtar | `color` (açık / koyu) | `action` (dolgu, iki tema) |
 |---|---|---|---|
-| Denemeler | `exam` | `#E8590C` / `#FB8A3C` | `#C54C0A` |
+| Denemeler | `exam` | `#4D7C0F` / `#A3E635` | `#4D7C0F` |
 | Dersler | `lessons` | `#0284C7` / `#38BDF8` | `#0277B3` |
 | Testler | `tests` | `#4F46E5` / `#818CF8` | `#4F46E5` |
 | Ders Planı | `studyPlan` | `#0D9488` / `#2DD4BF` | `#0C857A` |
@@ -223,7 +223,7 @@ Sekme değişiminde animasyon yoktur, seçim titreşimi vardır.
   - Pasif yuva: ikon ve etiket `muted`, 10 pt 600.
   - Etiket tek satırdır, kesilmez. Yuva tabloları `Modul-Kimligi.md` §6'da ve her modül dosyasının §1'inde.
 - **Odak ekranları:**
-  - Deneme ve test çözme, mikro ders, kart oturumu, odak sayacı ve kamera.
+  - Deneme ve test çözme, ders oynatıcısı, kart oturumu, odak sayacı ve kamera.
   - Sekme çubuğu yoktur. Üstte `FocusHeader` vardır:
     - sol çıkış (`x`, 40 pt daire);
     - ortada başlık (`headline` 16) ve üstünde `meta` alt yazı;
@@ -321,6 +321,7 @@ Sekme değişiminde animasyon yoktur, seçim titreşimi vardır.
   - 375, 768, 1024 ve 1440 px'te denenir; yatay kaydırma olmaz.
   - 1024 px altında sol menü daraltılır ya da çekmeceye döner.
   - Geniş ekranda tek bir blok ortada bırakılmaz; ana içerik ve yan bilgi iki sütundur.
+  - Bir sayfadaki kart satırları aynı sütun oranını izler (ör. ana sayfa `minmax(0, 1.3fr) minmax(0, 1fr)`). İki küçük kart gerekiyorsa bir sütunu birlikte doldururlar (iç ızgara); satır satır farklı oran kullanılmaz. Aynı satırdaki kartlar eş boydur (`align-items: stretch`).
 - **Tablet:**
   - Tablet web sayfasının kendisini gösterir (`PanelInTablet`): menü ve web üst çubuğu çizilmez.
   - 600 pt altında (iPad Split View, `t-bolunmus-ekran`) telefon düzeni kullanılır.
@@ -337,6 +338,8 @@ Belgelerde bileşen adları çizim kodundaki adlardır. Uygulamada **ikinci bir 
 | `List` / `ListRow` | `AppCatalogGroupRow`, `AppCatalogParentRow`, `AppCatalogLeafRow` (genel satır bileşeni yok) | `Card` içinde satırlar (genel satır bileşeni yok) |
 | `Chip`, `FilterChips` | `AppBadge`, `AppFilterChip` | `ModuleChip`, `ModuleFilterChip` |
 | `Segmented` | `AppSegmentedControl` | profil sekmeleri elle (`role="tablist"`) |
+| `ModuleWeekCard` (vitrin "Bu hafta" kartı; Dersler, Denemeler, Testler, Bilgi Kartları, Ders Planı İlerleme) | `ProfileModuleStatisticsCard` (`framed`; her modülde aynı çerçeveli kart) | `ModuleStatisticsCard` |
+| `PendingSyncNote` (çevrimdışı "gönderilecek" satırı; Dersler, Testler, Denemeler; Testler `reveal`: "…, doğrusu o zaman görünür.") | tek merkezi kuyruğun ortak satırı (kurulacak) | aynı (kurulacak) |
 | `Field` | `AppTextField`, `AppSelect` | `Input`, `PasswordInput`, `CodeInput`, `FormError` |
 | `Ring`, `Bar` | `AppProgressRing`, `AppProgressBar` | `ProgressRing`, `LinearProgress` |
 | `Sheet` | `AppSheet` | `Overlay` |
@@ -360,7 +363,7 @@ Belgelerde bileşen adları çizim kodundaki adlardır. Uygulamada **ikinci bir 
 | `Tile` | Yuvarlatılmış kare ikon kutusu. **Varsayılan** 42. **Renk:** modül `soft` zemin ve modül `color` ikon; `solid` iken `action` zemin ve beyaz ikon. |
 | `List` / `ListRow` | Tek kart içinde satırlar, satır arası `line2` çizgi. **Satır:** boşluk 12 / 14; sol `Tile` (38); başlık `headline`; alt yazı `small`; sağda sağ ok ya da `trailing`. |
 | `Ring`, `Bar`, `Steps`, `Dots` | İlerleme. **İz** `track`, **dolgu** modül `color`. Çubuk yüksekliği ekran belgesinde yazar. |
-| `Segmented` | İki-üç seçenekli geçiş (Gün · Hafta · Ay, TYT · AYT). **Seçili** `card` hap. |
+| `Segmented` | İki-üç seçenekli geçiş (Gün · Hafta · Ay, TYT · AYT). **Seçili** `card` hap. İçi boş öğe (`off`, "Boş · 0") soluk ve dokunulmaz. |
 | `Field` | **Etiket** her zaman görünür. **Hata** alanın altında, uyarı simgesiyle, alana özel cümleyle. **Şifre alanında** göster/gizle. |
 | `OptionRow` | Şık satırı. **Harf kutusu:** seçili `action`, doğru `#047857`, yanlış `#DC2626`. |
 | `LoadingLogo` | Ortada dönen saatli logo (44) ve altında isteğe bağlı yazı. İskelet ekran kullanılmaz. |
@@ -375,6 +378,7 @@ Ayrıntı [Navigasyon.md](Navigasyon.md) §6'dadır. Her ekranda şunlar geçerl
 2. İstek sürerken ekran donmaz. İlk yüklemede ortada `LoadingLogo` döner. İçerik varsa yerinde kalır, üstte küçük gösterge çıkar.
 3. Her isteğin zaman aşımı vardır: mobil istemcide okuma 25 sn, gönderim 60 sn, Akıllı Özet 180 sn; web istemcisinde de aynı değerler. Süre dolunca hata hâli ve "Tekrar dene" gösterilir; sonsuz dönen gösterge olmaz.
 4. Gönderen düğme `loading` iken kilitlidir. Aynı işlem iki kez gitmez; sunucu tarafında da tekrar güvenli olmalıdır. API'ye bağlı düğmenin yeri baştan ayrılır, cevap gelene kadar pasif durur; sayfa zıplamaz.
+   - Yüklenirken hiçbir parça boy ya da yer değiştirmez (sahip, 17 Kasım 2026). Veri bekleyen kartın bekleme hâli gerçek kartla aynı boyda çizilir; geç gelen satırın (hedef, seri, hafta şeridi) yeri baştan bellidir.
 5. Gezinme beklemez: önce ekran açılır, veri ekranın içinde yüklenir. `await` gezinmeyi bloklamaz.
 6. Çözme, oynatıcı ve kart oturumunda cevap anında yerel olarak saklanır. Uygulama kapanınca, ağ kopunca ya da arka plana geçince kaldığı yerden devam eder.
 7. Ağ yoksa ince sarı "çevrimdışı" şeridi çıkar. Kaydedilmiş içerik açılır, gönderimler kuyruğa girer.
@@ -398,6 +402,8 @@ Her modül dosyasının §6'sı ekran ve süreç testlerini listeler. Bunlara ek
 | Dil | TR ve EN'de bütün metinler çevrilmiştir; çeviri anahtarı ya da Türkçe metin İngilizce ekranda kalmaz. Yüzde ve sayı biçimi dile uyar. |
 | Tema | Açık ve koyu temada her yazı okunur. Ham renk kullanılmaz, jetonlar kullanılır. |
 | Yerleşim | En küçük telefon (iPhone SE, 375 × 667) ve en büyük yazı ayarında yazı kesilmez, üst üste binmez. Son öğe sekme çubuğunun üstüne kaydırılabilir. Web 375 / 768 / 1024 / 1440 px'te yatay kaydırma yok. |
+| Kayma | Yavaş ağda veri parça parça gelirken hiçbir blok yer ya da boy değiştirmez (web: CLS 0; mobil: ilk ve son çerçevede blok konumları aynı). Aynı satırdaki kartlar eş boy, sütun kenarları satırdan satıra aynı x'te. |
+| Veri | Ekrandaki her sayı ve etiketin API'de bir alanı vardır; alan yoksa o parça görünmez, yerine uydurma değer yazılmaz. |
 | Hâller | Ekranın bütün hâlleri (boş, ilk, hata, çevrimdışı, hak doldu …) tetiklenebilir ve çizimdekiyle aynıdır. |
 | Gezinme | Ekrana giriş yolları ve çıkışı (geri, kapat, sekme) çalışır. Bildirim ve bağlantı doğru ekranı açar. |
 | Kilitlenme | Yavaş ağda (3G), ağ yokken ve zaman aşımında ekran donmaz. Çift dokunuş tek istek gönderir. |

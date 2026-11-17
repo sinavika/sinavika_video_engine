@@ -3,9 +3,26 @@
 Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çizim kodu: `sinavika_video_engine/src/UIUX/Screens/Mobile/Plan.tsx`, `Screens/Mobile/States.tsx` (`PlanNoneScreen`, `PlanMissedScreen`), `Screens/Web/PlanWeb.tsx`, `Screens/Web/StudyWeb.tsx` (`WebPlanTodayScreen`, `ReviewCard`), `Screens/Tablet/Parity.tsx` (`PlanDayTabletScreen`), `Screens/Tablet/Wide.tsx` (`PlanWeekScreen`), `Screens/Mobile/Hub.tsx` (Bugün tekrar kartı), `Parts/Study.tsx` (`WeekStrip`, `FilterChips`, `PlanTaskCard`, `StateBlock`, `TodayCard`)
 Önce oku: [README](README.md) (ortak kurallar, ekran tanımı biçimi, testler) ve [Navigasyon](Navigasyon.md).
 
+> **Sahip kararları (17 Kasım 2026). Bu kararlarla çelişen ekran çizmek ya da kodlamak tasarım hatasıdır.** Kaynak: web deposunda `docs/UIUX/Tasarim-Uyum-Plani.md` §9.3 madde 17.
+> - **Görev işlemleri:**
+>   - Ana düğmenin fiili görevin modülüne göre değişir: "Konuya başla", "Testi başlat", "Denemeye geç", "Kartlara başla".
+>   - İçeriği bağlanmamış (kendi) görevde ana düğme "Odak sayacıyla başla"dır (`m-plan-gorev-islem-kendi`).
+>   - "Saati değiştir" satırı vardır.
+>   - Odak her zaman 25 dk çalışma + 5 dk moladır; Pomodoro / Tek parça seçim sayfası yoktur.
+> - **Mobil Program başlığında "Düzenle" (Planım) ve "Haftanı paylaş" vardır.** Bugün ekranında yoktur.
+> - **Görev ekle:**
+>   - Başlık alanı yoktur; görevin adı konudan, dersten ya da nottan üretilir.
+>   - "Ders ve konu" yalnız Konu çalış, Soru çöz ve Tekrar'da zorunludur.
+>   - Webde aynı alanlar iletişim kutusunda gelir.
+> - **Web görev kartı:**
+>   - Kartın gövdesi içeriği açar; sağ üstteki daire görevi tamamlar.
+>   - "…" Diğer işlemler menüsünde Odak sayacıyla başla, Yarına taşı, Saati değiştir ve Bugünden kaldır vardır (`w-plan-gorev-menu`).
+> - **Web plan yok ve dünden kalan hâlleri:** `w-plan-yok` ortalı kutuyla açılır, sağda örnek gün durur. `w-plan-dunden`'de dünden kalan kutusu sol kartın üstündedir.
+> - **Bugün ekranında "Çalışmaya devam et" ve "Bugün tekrar" kartları yoktur** (Bugün tekrar ana ekrandadır). Boş günde "0 görev · 0 dk" yazılmaz.
+
 ## 1. Modül özeti
 
-- **Ne işe yarar:** Öğrencinin her gününe sınav tarihine, boş günlerine ve zorlandığı derslere göre görev koyar. Her görev nereden geldiğini (neden), ne olduğunu (konu, modül) ve ne kadar olduğunu (soru, mikro ders, kart, dakika ya da saat) söyler. Öğrencinin ana işi: bugünün görevlerini sırayla başlatmak, bitirmek, kaçanı yeniden yerleştirmek.
+- **Ne işe yarar:** Öğrencinin her gününe sınav tarihine, boş günlerine ve zorlandığı derslere göre görev koyar. Her görev nereden geldiğini (neden), ne olduğunu (konu, modül) ve ne kadar olduğunu (soru, dakika, kart ya da saat) söyler. Öğrencinin ana işi: bugünün görevlerini sırayla başlatmak, bitirmek, kaçanı yeniden yerleştirmek.
 - **Anahtar:** `studyPlan` · kod adları: API `StudyPlans`, rota `/api/student/study-plan`, web özelliği `study-plan`, mobil modül `studyPlan`, rota öneki `StudyPlan`.
 - **Renk (`ModuleIdentity.ts`):**
 
@@ -20,7 +37,7 @@ Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çi
 | `line` %24 / %43,2 (modül kenarı) | `rgba(13,148,136,.24)` | `rgba(45,212,191,.432)` |
 | Gradyan ikinci durak | `#34D399` | `#34D399` |
 
-- **Görev kartları kendi modülünün rengindedir**, Ders Planı renginde değil: Dersler `#0284C7`, Testler `#4F46E5`, Denemeler `#E8590C`, Bilgi Kartları `#DB2777`. "Kendi görevin" gri (`line2` zemin, `ink2` yazı). Bir görevi başlatan düğme görevin modülünün `action` rengindedir (Testi başlat = Testler `#4F46E5`).
+- **Görev kartları kendi modülünün rengindedir**, Ders Planı renginde değil: Dersler `#0284C7`, Testler `#4F46E5`, Denemeler `#4D7C0F`, Bilgi Kartları `#DB2777`. "Kendi görevin" gri (`line2` zemin, `ink2` yazı). Bir görevi başlatan düğme görevin modülünün `action` rengindedir (Testi başlat = Testler `#4F46E5`).
 - **Mobil sekme çubuğu (Modul-Kimligi §6):**
 
 | Yuva | Etiket TR / EN | İkon | Hedef |
@@ -70,7 +87,7 @@ Başka belgelerde tanımlı, bu modülün verisini gösteren çizimler: `m-hub-m
 3. Plan yoksa (`GET student/study-plan` plan yok ya da `needs-onboarding`) → aynı ekranda `m-plan-yok` hâli (§3.5).
 4. Dünden biten olmayan görev varsa → üstte "Dünden kalan" kutusu (§3.6).
 5. Görev kartına dokunma → `m-plan-gorev-islem` [alt sayfa]. Web: karttaki eylemler ve "Diğer işlemler" menüsü (çizimde web alt sayfası yok; aynı eylemler açılır menüde verilir).
-6. "Testi başlat" (görevin modül adıyla: "Mikro derse başla", "Kartlara başla" gibi; çizimde yalnız Testler örneği var, diğer modüllerin fiil metni doğrulanmadı) → `GET student/study-plan/tasks/{id}/launch` → dönen `resourceType` / `resourceId` / `launchKind` ile ilgili modülün ekranı [push; o modülün yığınına]. `isLocked = true` ise kilit nedeni (`lockReason`) kısa bildirimle yazılır, ekran açılmaz; abonelik kilidinde paket kapısı açılır.
+6. "Testi başlat" (görevin modül adıyla: "Konuya başla", "Kartlara başla" gibi; çizimde yalnız Testler örneği var, diğer modüllerin fiil metni doğrulanmadı) → `GET student/study-plan/tasks/{id}/launch` → dönen `resourceType` / `resourceId` / `launchKind` ile ilgili modülün ekranı [push; o modülün yığınına]. `isLocked = true` ise kilit nedeni (`lockReason`) kısa bildirimle yazılır, ekran açılmaz; abonelik kilidinde paket kapısı açılır.
 7. Modül ekranından dönünce (geri) `m-plan-bugun` görünür ve takvim yenilenir; görev modülde bittiyse (`completionSource`) kart "bitti" görünür (tik, üstü çizili, opaklık 0,62).
 8. Hata: launch başarısızsa "Görev açılamadı." kısa bildirim; bağlantı yoksa bildirim + çevrimdışı şeridi. Alt sayfa açık kalır.
 
@@ -154,7 +171,7 @@ Başka belgelerde tanımlı, bu modülün verisini gösteren çizimler: `m-hub-m
 - **Yerleşim:**
   1. `StateBlock module="studyPlan" icon="calendar"`: 22 / 18 / 20 boşluk, köşe 24, `card` zemin, `line` kenar, `card` gölge, ortalı. 64 pt ikon kutusu (köşe 22, `mod.soft` zemin, `calendar` 30 `mod.color`). Başlık "Henüz planın yok" / "No plan yet" (`section` 18). Metin "Sınav tarihine, boş günlerine ve zorlandığın derslere göre her güne görev koyarız; denemeden sonra kendini günceller." / "We put tasks on each day from your exam date, free days and weak subjects; it updates after every exam." (`body` 15 / 22). Ana düğme `Button tone="module" block`: "Planımı hazırla · 1 dk" / "Build my plan · 1 min". İkincil yazı düğmesi (`small` 700 `mod.ink`): "Kendi planımı kuracağım" / "I’ll make my own".
   2. `SectionTitle` "Örnek bir gün" / "A sample day"; alt yazı "Kayıttaki cevaplarına göre" / "From your sign-up answers".
-  3. İki örnek `PlanTaskCard`, opaklık 0,85, aralık 8: "TYT Matematik · Dersler" / "Temel Kavramlar" / "3 mikro ders · 12 dk"; "TYT Fizik · Testler" / "Fizik Bilimine Giriş · Kolay" / "20 soru · 25 dk". Bu kartlar dokunulmaz (eylem yok).
+  3. İki örnek `PlanTaskCard`, opaklık 0,85, aralık 8: "TYT Matematik · Dersler" / "Temel Kavramlar" / "İlk konu · 12 dk"; "TYT Fizik · Testler" / "Fizik Bilimine Giriş · Kolay" / "20 soru · 25 dk". Bu kartlar dokunulmaz (eylem yok).
   4. Ortalı `meta` `muted`: "Plan hazırlanınca bu görevler takvimine yerleşir." / "These go into your calendar once the plan is ready."
 - **Veri:** plan durumu `GET student/study-plan` / `GET .../needs-onboarding`; örnek gün kayıt cevaplarından (`GET .../profile-prefill`); örnek görevlerin konu adları için kaynak API'de doğrulanmalı.
 - **Etkileşimler:** "Planımı hazırla · 1 dk" → plan oluşturma (`StudyPlanCreate`) [push] → `POST .../generate` → `m-plan-bugun` [replace]. "Kendi planımı kuracağım" → `POST .../manual` (düğme `loading`, kilitli) → `m-plan-bugun`.
@@ -241,6 +258,8 @@ Başka belgelerde tanımlı, bu modülün verisini gösteren çizimler: `m-hub-m
 - **Kurallar:** renkli hücrede renk tek bilgi değildir; erişilebilir ad görev adını ve modülü okur.
 
 ### 4.8 `m-plan-ilerleme` İlerleme · web: `w-plan-ilerleme`, `w-plan-istatistik`
+
+- **Modül istatistik kartı (sahip kararı, 17 Kasım 2026):** her modül vitrininde aynı çerçeveli "Bu hafta" kartı (`ModuleWeekCard`; uygulamada `ProfileModuleStatisticsCard` / `ModuleStatisticsCard`). Tanımı [04-Dersler.md](04-Dersler.md) §4.1 madde 3'tedir: süre, geçen haftaya göre değişim, son 7 günün çubukları, üç kutu; bu hafta çalışma yoksa tek sakin satır. Yeri: dönem seçicinin altında; web'de sağ sütunun en üstünde. Kutular: "Biten görev" / "Tasks done" "12/15"; "Plan uyumu" / "Plan kept" %80; "Seri" "5 gün".
 - **Görseller:** `acik/mobil/m-plan-ilerleme.png`, `koyu/mobil/m-plan-ilerleme.png`; `acik/web-panel/w-plan-ilerleme.png`, `acik/web-panel/w-plan-istatistik.png` (koyu ve EN eşleri).
 - **Çerçeve:** sekme yuvası 2 "İlerleme".
 - **Yerleşim (mobil):**
@@ -273,7 +292,7 @@ Başka belgelerde tanımlı, bu modülün verisini gösteren çizimler: `m-hub-m
 - **Kullanıldığı yerler:** `m-plan-bugun`, `m-plan-yok`, `m-plan-dunden`, `m-plan-gorev-islem`, `w-plan-bugun`, `t-plan-bugun`, `t-plan-hafta`.
 - **Ölçü:** 12 / 14 boşluk, köşe 20, `card` zemin, 1,5 px kenar (`now` iken görevin modül `line`'ı ve `card` gölge, değilse `line`), iç aralık 8.
 - **Üst satır:** solda kaynak (`meta` 12,5): "<sınav> <ders> · <neden ya da modül>", örn. "TYT Matematik · denemende net kaybettin"; altında konu (`headline` 15,5). Sağda 26 pt daire: boşsa 2 px `line` kenar; bittiyse `success` dolgu ve beyaz `check` 15.
-- **Alt satır:** solda `Tile` 26 (görev modülü; kendi görevinde yok) ve rozet (3 / 10 boşluk, köşe 8, `over` 12): varsayılan modül adı (`mod.soft` zemin, `mod.ink` yazı) ya da `badge` ("Canlı deneme", "Dünden"); kendi görevinde "Kendi görevin" / "Your task" (`line2` zemin, `ink2`). Sağda miktar (`small` 600 `ink2`): "20 soru · 25 dk", "3 mikro ders · 8 dk", "20 kart · 10 dk" ya da saat aralığı "10:00 – 12:45".
+- **Alt satır:** solda `Tile` 26 (görev modülü; kendi görevinde yok) ve rozet (3 / 10 boşluk, köşe 8, `over` 12): varsayılan modül adı (`mod.soft` zemin, `mod.ink` yazı) ya da `badge` ("Canlı deneme", "Dünden"); kendi görevinde "Kendi görevin" / "Your task" (`line2` zemin, `ink2`). Sağda miktar (`small` 600 `ink2`): "20 soru · 25 dk", "Kaldığın yerden · 8 dk", "20 kart · 10 dk" ya da saat aralığı "10:00 – 12:45".
 - **Bitti:** opaklık 0,62, konu üstü çizili.
 - **Veri eşlemesi:** kaynak = sınav kategorisi + ders adı + `reasonCode` metni (`own` Kendi görevin, `examMistakes` denemende net kaybettin, `quizMistakes` testte zorlandın, `spacedReview` tekrar zamanı, `weakTopic` zayıf konun, `exam` bu ayın denemesi, `plan` = modül adı); miktar = `questionCount` + `durationMinutes` ya da `startTime`–bitiş. Kilitli görev (`lockReason`): rozetin yanında `lock` ikonu (çizimde yok; doğrulanmadı).
 - **Erişilebilirlik:** tek erişilebilir öğe; okunan metin "Konu, kaynak, miktar, durum"; yuvarlak ayrı düğme ("<konu> görevini tamamla").

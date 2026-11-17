@@ -106,12 +106,26 @@ describe('UI/UX screens', () => {
 			stepGroup: ['m-ders-grupla', 'w-ders-grupla', 't-ders-grupla'],
 			stepMatch: ['m-ders-eslestir', 'w-ders-eslestir', 't-ders-eslestir'],
 			stepFormula: ['m-ders-formul', 'w-ders-formul', 't-ders-formul'],
-			stepSection: ['m-ders-bolum', 'w-ders-bolum', 't-ders-bolum'],
 		};
 		const ids = new Set(UI_SCREENS.map((screen) => screen.id));
 		for (const [feature, platforms] of Object.entries(parity)) {
 			for (const id of platforms) expect(ids.has(id), `${feature}: ${id}`).toBe(true);
 		}
+	});
+
+	it('draws a topic as one lesson: no topic intro, section start or part-done screen (owner, 17 Nov 2026)', () => {
+		const ids = UI_SCREENS.map((screen) => screen.id);
+		for (const removed of ['m-ders-konu-girisi', 'w-ders-konu-girisi', 'm-ders-bolum', 'w-ders-bolum', 't-ders-bolum', 'm-ders-mikro-bitti', 'w-ders-mikro-bitti']) expect(ids, removed).not.toContain(removed);
+	});
+
+	it('draws the edge states of Testler: last mistake, no mistake, flagged, offline (owner, 17 Nov 2026)', () => {
+		const ids = UI_SCREENS.map((screen) => screen.id);
+		for (const id of ['m-test-yanlislar-son', 'w-test-yanlislar-son', 't-test-yanlislar-son', 'm-test-yanlislar-dogru', 'm-test-cozumler-isaretli', 'w-test-cozumler-isaretli', 'm-test-baglanti', 'm-test-bitir-bekliyor', 'w-test-baglanti']) expect(ids, id).toContain(id);
+	});
+
+	it('draws the Denemeler states the app uses: open and closed detail, plan added, hatched result (owner, 17 Nov 2026)', () => {
+		const ids = UI_SCREENS.map((screen) => screen.id);
+		for (const id of ['m-deneme-detay-acik', 'm-deneme-detay-kapali', 'm-deneme-analiz-eklendi', 'm-deneme-sonuclar-disarida']) expect(ids, id).toContain(id);
 	});
 
 	it('sizes site pages by their height and the rest by the canvas', () => {
@@ -132,21 +146,25 @@ describe('UI/UX screens', () => {
 				const text = html.replace(/<[^>]*>/g, ' ');
 				if (lang === 'en') expect(text, `${screen.id} en`).not.toMatch(/%\d/);
 				else expect(text, `${screen.id} tr`).not.toMatch(/\d%(?![\w’'])/);
+				// A topic is one lesson (owner, 1 and 17 Nov 2026): the student never reads "mikro ders".
+				expect(text, `${screen.id} ${lang}`).not.toMatch(/mikro ?ders|micro-?lesson/i);
 			}
 		}
 		// Drawing every screen twice takes ~6 s when the whole suite runs in parallel: past vitest's 5 s default.
 	}, 60_000);
 
-	it('paints no brand orange on module screens: their accent is the module colour (Denemeler is orange itself)', () => {
-		const brandOrange = /#EA580C|#C2410C|#F97316|rgba\(234, 88, 12|rgba\(194, 65, 12/i;
+	it('paints no brand orange on module screens: their accent is the module colour (no module is orange since 17 Nov 2026)', () => {
+		// Brand orange, and Denemeler's old orange (#E8590C, #FB8A3C, button #C54C0A), which became olive green.
+		const brandOrange = /#EA580C|#C2410C|#F97316|rgba\(234, 88, 12|rgba\(194, 65, 12|#E8590C|#FB8A3C|#C54C0A|rgba\(232, 89, 12|rgba\(251, 138, 60/i;
 		// The daily-quota sheet is a payment surface, which stays brand orange.
 		const paymentSurfaces = ['m-ders-hak'];
-		for (const screen of UI_SCREENS.filter((entry) => entry.module && entry.module !== 'exam' && !paymentSurfaces.includes(entry.id))) {
+		for (const screen of UI_SCREENS.filter((entry) => entry.module && !paymentSurfaces.includes(entry.id))) {
 			// The logo is always orange (the web panel's menu carries it on every page).
 			const html = renderToStaticMarkup(React.createElement(UIProvider, {children: React.createElement(screen.Component)})).replaceAll('background-color:#EA580C;mask-image', '');
 			expect(html, screen.id).not.toMatch(brandOrange);
 		}
-	});
+		// Drawing every module screen takes ~7 s when the whole suite runs in parallel: past vitest's 5 s default.
+	}, 60_000);
 
 	it('tells the student under every SinoAI composer that SinoAI is an AI and can be wrong', () => {
 		for (const id of ['m-sino-ana', 'm-sino-sohbet', 'm-sino-calisma', 'w-sino-sohbet', 'w-sino-calisma']) {

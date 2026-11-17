@@ -2,6 +2,7 @@ import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
 import {MODULES, type ModuleKey} from '../../ModuleIdentity';
 import {Bar, Bars, Button, Card, Chip, List, ListRow, Pct, Ring, Sparkline, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
+import {ModuleWeekCard} from '../../Parts/Study';
 import {Grid, Immersive, ModuleHead, Panel, WCard} from '../../Parts/Web';
 
 /** Web Ders Planı: today, schedule, suggestions, statistics, progress, settings and the focus session. */
@@ -111,10 +112,10 @@ export const WebPlanSuggestionsScreen: React.FC = () => {
 			<Grid columns="1fr 1fr 1fr">
 				{(
 					[
-						['exam', t('Denemeden', 'From your exam'), t('Problemler', 'Problems'), t('Son denemede −3,25 net. 2 mikro ders + 1 test.', '−3.25 last exam. 2 lessons + 1 quiz.')],
+						['exam', t('Denemeden', 'From your exam'), t('Problemler', 'Problems'), t('Son denemede −3,25 net. 1 konu + 1 test.', '−3.25 last exam. 1 topic + 1 quiz.')],
 						['studyPlan', t('Tekrar zamanı', 'Due for review'), t('Türev · Zincir kuralı', 'Chain rule'), t('3 gün önce %45 başarı. 15 dk tekrar.', '45% three days ago. 15-minute review.')],
 						['flashcards', t('Unutma eğrisi', 'Forgetting curve'), t('Osmanlı kartları', 'Ottoman cards'), t('10 kart unutulmak üzere.', '10 cards about to slip.')],
-						['lessons', t('Dersler’den', 'From Lessons'), t('Sözcükte Anlam · Terim anlam', 'Word meaning · Terms'), t('Sıradaki mikro ders, 2 dakika.', 'Your next micro-lesson, 2 minutes.')],
+						['lessons', t('Dersler’den', 'From Lessons'), t('Sözcükte Anlam', 'Word meaning'), t('Kaldığın yerden, 29 dakika kaldı.', 'Where you left off, 29 minutes left.')],
 						['tests', t('Seviye atla', 'Level up'), t('Paragraf · Zor', 'Reading · Hard'), t('Orta seviyeyi %90 ile geçtin.', 'You passed Medium with 90%.')],
 						['sinoAi', 'SinoAI', t('Kişisel deneme', 'Personal exam'), t('Eksiklerinden 30 soruluk deneme.', 'A 30-question exam on your gaps.')],
 					] as [ModuleKey, string, string, string][]
@@ -215,6 +216,17 @@ export const WebPlanProgressScreen: React.FC = () => {
 					<Text role="small">{t('Bu hızla hedefine sınavdan 3 hafta önce ulaşıyorsun.', 'At this pace you reach it 3 weeks before the exam.')}</Text>
 				</WCard>
 				<Stack gap={18}>
+					<ModuleWeekCard
+						module="studyPlan"
+						time={t('6 sa 30 dk', '6 h 30 m')}
+						change={22}
+						bars={[60, 75, 50, 45, 90, 30, 40]}
+						stats={[
+							[t('Biten görev', 'Tasks done'), '12/15'],
+							[t('Plan uyumu', 'Plan kept'), t('%80', '80%')],
+							[t('Seri', 'Streak'), t('5 gün', '5 days')],
+						]}
+					/>
 					<Grid columns="1fr 1fr" gap={12}>
 						{[
 							['38', t('Tamamlandı', 'Done'), colors.success],

@@ -2,9 +2,9 @@ import React from 'react';
 import {UIProvider, useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {AppHeader, BottomBar, Content, FitList, FocusHeader, ModuleScreen, PageTitle, Phone, SectionTitle} from '../../Parts/Mobile';
-import {Button, Card, Chip, List, ListRow, OptionRow, Stack, Text, Tile} from '../../Parts/Shared';
+import {Button, Card, Chip, List, ListRow, OptionRow, PendingSyncNote, Stack, Text, Tile} from '../../Parts/Shared';
 import {PlanTaskCard, StateBlock, WeekStrip} from '../../Parts/Study';
-import {WORK_LESSONS} from './Lessons';
+import {TopicSurvey, WORK_LESSONS} from './Lessons';
 
 /**
  * The states every screen needs besides "full" (gap pass, 5 Nov 2026): no
@@ -27,7 +27,7 @@ export const PlanNoneScreen: React.FC = () => {
 				<SectionTitle title={t('Örnek bir gün', 'A sample day')} sub={t('Kayıttaki cevaplarına göre', 'From your sign-up answers')} />
 				<FitList gap={8}>
 					<div style={{opacity: 0.85}}>
-						<PlanTaskCard module="lessons" source={t('TYT Matematik · Dersler', 'TYT Maths · Lessons')} title={t('Temel Kavramlar', 'Basic concepts')} amount={t('3 mikro ders · 12 dk', '3 micro-lessons · 12 min')} />
+						<PlanTaskCard module="lessons" source={t('TYT Matematik · Dersler', 'TYT Maths · Lessons')} title={t('Temel Kavramlar', 'Basic concepts')} amount={t('İlk konu · 12 dk', 'First topic · 12 min')} />
 					</div>
 					<div style={{opacity: 0.85}}>
 						<PlanTaskCard module="tests" source={t('TYT Fizik · Testler', 'TYT Physics · Quizzes')} title={t('Fizik Bilimine Giriş · Kolay', 'Intro to physics · Easy')} amount={t('20 soru · 25 dk', '20 q · 25 min')} />
@@ -73,7 +73,7 @@ export const PlanMissedScreen: React.FC = () => {
 				</Stack>
 				<Stack gap={8}>
 					<PlanTaskCard module="tests" source={t('Dün · TYT Matematik', 'Yesterday · TYT Maths')} title={t('Problemler · Orta', 'Problems · Medium')} amount={t('20 soru · 25 dk', '20 q · 25 min')} badge={t('Dünden', 'Yesterday')} />
-					<PlanTaskCard module="lessons" source={t('Bugün · TYT Türkçe', 'Today · TYT Turkish')} title={t('Söz Yorumu', 'Interpreting sayings')} amount={t('3 mikro ders · 10 dk', '3 micro-lessons · 10 min')} now />
+					<PlanTaskCard module="lessons" source={t('Bugün · TYT Türkçe', 'Today · TYT Turkish')} title={t('Söz Yorumu', 'Interpreting sayings')} amount={t('Kaldığın yerden · 10 dk', 'From where you left off · 10 min')} now />
 				</Stack>
 			</Content>
 		</ModuleScreen>
@@ -106,26 +106,12 @@ export const ExamResultsEmptyScreen: React.FC = () => {
 	);
 };
 
-/** Connection lost during an exam: answers are kept on the phone, the timer keeps running, sync is automatic. */
+/** Connection lost during an exam: the shared "to send" line under the question (same as Dersler and Testler); the timer keeps running, sending is automatic. */
 export const ExamOfflineScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	return (
 		<ModuleScreen module="exam" noTabBar header={<FocusHeader title="1:31:02" sub={t('Temel Matematik', 'Basic Maths')} progress={0.45} />}>
-			<Stack row gap={10} style={{margin: '0 16px', padding: '10px 14px', borderRadius: 16, background: colors.warningSoft}}>
-				<Icon name="wifi" size={18} color={colors.warningInk} />
-				<Stack grow gap={1}>
-					<Text role="headline" size={14} color={colors.warningInk}>
-						{t('Bağlantı koptu', 'Connection lost')}
-					</Text>
-					<Text role="meta" color={colors.ink2}>
-						{t('Cevapların telefonda saklanıyor; süre işliyor. Bağlanınca kendiliğinden gönderilir.', 'Answers are kept on the phone; the timer runs. They are sent when you reconnect.')}
-					</Text>
-				</Stack>
-				<Chip size="sm" tone="warning">
-					{t('3 bekliyor', '3 waiting')}
-				</Chip>
-			</Stack>
 			<Content tabBar={false} gap={12} padding="14px 18px 10px">
 				<Chip>{t('Soru 22 / 40', 'Question 22 / 40')}</Chip>
 				<Text role="body" size={17} weight={600} color={colors.ink} style={{lineHeight: '26px'}}>
@@ -135,6 +121,7 @@ export const ExamOfflineScreen: React.FC = () => {
 				<OptionRow letter="B" text="21" state="selected" module="exam" />
 				<OptionRow letter="C" text="23" />
 				<OptionRow letter="D" text="25" />
+				<PendingSyncNote module="exam" />
 			</Content>
 			<BottomBar border>
 				<Stack row gap={10}>
@@ -170,17 +157,17 @@ export const LessonsFirstVisitScreen: React.FC = () => {
 						{t('Temel Kavramlar', 'Basic concepts')}
 					</Text>
 					<Text role="small" color="#FFFFFF">
-						{t('Matematik’te zorlandığını söyledin. İlk mikro ders 4 dk, 6 adım.', 'You said maths is hard for you. First micro-lesson: 4 min, 6 steps.')}
+						{t('Matematik’te zorlandığını söyledin. Konu adım adım ilerler; istediğin yerde bırakırsın.', 'You said maths is hard for you. The topic goes step by step; stop wherever you like.')}
 					</Text>
 					<Button tone="white" icon="play" style={{alignSelf: 'flex-start', marginTop: 8, color: mod.action}}>
-						{t('İlk mikro dersi başlat', 'Start the first micro-lesson')}
+						{t('Konuya başla', 'Start the topic')}
 					</Button>
 				</div>
 				<Card padding={14}>
 					<Stack gap={10}>
 						<Text role="headline">{t('Dersler nasıl işler?', 'How lessons work')}</Text>
 						{[
-							['book', t('Her konu kısa mikro derslerden oluşur', 'Each topic is a few short micro-lessons')],
+							['book', t('Her konu kısa adımlardan oluşur; kaldığın yerden sürer', 'Each topic is short steps; it resumes where you left off')],
 							['checkCircle', t('Her adımda sen de cevaplarsın', 'You answer at every step')],
 							['refresh', t('İlk denemede yanlışların 1, 3 ve 7 gün sonra tekrar gelir', 'Misses come back after 1, 3 and 7 days')],
 						].map(([icon, line]) => (
@@ -230,14 +217,21 @@ export const TestsSolutionsEmptyScreen: React.FC = () => {
 	);
 };
 
-export const CardsDoneScreen: React.FC = () => {
+/**
+ * Session end. Today mode: the Bugün page's done state. A deck or saved-cards
+ * session ends with the same block titled "Deste bitti" and the content
+ * survey under it (owner, 17 Nov 2026).
+ */
+const CardsDone: React.FC<{deck?: boolean}> = ({deck}) => {
 	const t = useT();
 	const colors = useColors();
 	return (
-		<ModuleScreen module="flashcards" tab={1}>
+		<ModuleScreen module="flashcards" tab={deck ? 0 : 1}>
 			<Content gap={12}>
-				<PageTitle module="flashcards" title={t('Bugün', 'Today')} />
-				<StateBlock module="flashcards" icon="checkCircle" tone="success" title={t('Bugünkü kartlar bitti', 'Today’s cards are done')} text={t('32 kartı tekrar ettin; 27’sini biliyordun. Yarın 18 kart tekrar zamanına gelecek.', 'You reviewed 32 cards and knew 27. 18 come due tomorrow.')} action={t('Kaydettiklerime bak', 'Open my saved cards')} second={t('Yeni bir desteye başla', 'Start a new deck')} />
+				<PageTitle module="flashcards" title={deck ? t('Mol kavramı', 'The mole') : t('Bugün', 'Today')} />
+				{deck ? <StateBlock module="flashcards" icon="checkCircle" tone="success" title={t('Deste bitti', 'Deck done')} text={t('24 kartı çalıştın; 18’ini biliyordun. Bilmediklerin tekrar zamanında yeniden gelir.', 'You studied 24 cards and knew 18. The rest come back when due.')} action={t('Desteye dön', 'Back to the deck')} second={t('Derse dön', 'Back to the subject')} /> : null}
+				{deck ? <TopicSurvey /> : null}
+				{deck ? null : <StateBlock module="flashcards" icon="checkCircle" tone="success" title={t('Bugünkü kartlar bitti', 'Today’s cards are done')} text={t('32 kartı tekrar ettin; 27’sini biliyordun. Yarın 18 kart tekrar zamanına gelecek.', 'You reviewed 32 cards and knew 27. 18 come due tomorrow.')} action={t('Kaydettiklerime bak', 'Open my saved cards')} second={t('Yeni bir desteye başla', 'Start a new deck')} />}
 				<Stack row gap={8} justify="center">
 					<Icon name="flame" size={16} color={colors.warningInk} />
 					<Text role="small" color={colors.warningInk} weight={700}>
@@ -248,6 +242,11 @@ export const CardsDoneScreen: React.FC = () => {
 		</ModuleScreen>
 	);
 };
+
+export const CardsDoneScreen: React.FC = () => <CardsDone />;
+
+/** A deck (or saved-cards) session ended. */
+export const CardsDeckDoneScreen: React.FC = () => <CardsDone deck />;
 
 /* ------------------------------------------------------------------ Akıllı Özet */
 
@@ -261,11 +260,11 @@ export const SummaryQuotaScreen: React.FC = () => {
 					title={t('Akıllı Özet', 'Smart Summary')}
 					right={
 						<Chip tone="module" module="smartSummary">
-							{t('Bu ay 30 / 30', '30 / 30 this month')}
+							{t('Kullanım %100', 'Used 100%')}
 						</Chip>
 					}
 				/>
-				<StateBlock module="smartSummary" icon="clock" title={t('Bu ayın analiz hakkı doldu', 'This month’s analyses are used up')} text={t('Hakların 1 Aralık’ta yenilenir. Geçmiş analizlerin ve çözümlerin açık kalır.', 'They renew on 1 December. Past analyses stay open.')} action={t('Geçmiş analizlerim', 'My past analyses')} second={t('Bu arada SinoAI’ye sor', 'Ask SinoAI meanwhile')} />
+				<StateBlock module="smartSummary" icon="clock" title={t('Kullanım hakkın doldu', 'Your quota is used up')} text={t('Hakkın SinoAI ile ortak ve 1 Aralık’ta yenilenir. Geçmiş analizlerin ve çözümlerin açık kalır.', 'Shared with SinoAI; it renews on 1 December. Past analyses stay open.')} action={t('Geçmiş analizlerim', 'My past analyses')} />
 			</Content>
 		</ModuleScreen>
 	);
@@ -306,19 +305,19 @@ export const SinoLimitScreen: React.FC = () => {
 			<Phone>
 				<AppHeader left="menu" title="SinoAI" right={<div style={{width: 40}} />} />
 				<Content tabBar={false} gap={12}>
-					<StateBlock module="sinoAi" icon="clock" title={t('Bugünkü SinoAI hakkın doldu', 'Today’s SinoAI limit is reached')} text={t('Yarın 00:00’da yenilenir. Sohbetlerin ve ürettiğin testler kütüphanende duruyor.', 'It renews at midnight. Your chats and generated quizzes stay in your library.')} action={t('Kütüphaneme git', 'Open my library')} />
+					<StateBlock module="sinoAi" icon="clock" title={t('Bu ayın SinoAI hakkın doldu', 'This month’s SinoAI quota is used up')} text={t('1 Aralık’ta yenilenir; hak Akıllı Özet ile ortaktır. Sohbetlerin ve ürettiklerin kütüphanende duruyor.', 'It renews on 1 December and is shared with Smart Summary. Your chats and work stay in your library.')} action={t('Kütüphaneme git', 'Open my library')} />
 					<Card padding={14} tone="soft">
 						<Stack gap={6}>
 							<Text role="headline">{t('Bu arada', 'Meanwhile')}</Text>
 							<Text role="small" color={colors.ink2}>
-								{t('Takıldığın konunun mikro dersi ya da testi hakkından düşmez.', 'Micro-lessons and quizzes don’t use this limit.')}
+								{t('Takıldığın konunun anlatımı ya da testi hakkından düşmez.', 'Topic lessons and quizzes don’t use this limit.')}
 							</Text>
 						</Stack>
 					</Card>
 				</Content>
 				<div style={{padding: '0 18px 30px'}}>
 					<div data-ui="disabled" style={{height: 50, borderRadius: 25, background: colors.line2, display: 'flex', alignItems: 'center', padding: '0 18px', opacity: 0.6}}>
-						<Text role="small">{t('Yarın yeniden sorabilirsin', 'You can ask again tomorrow')}</Text>
+						<Text role="small">{t('1 Aralık’ta yeniden sorabilirsin', 'You can ask again on 1 December')}</Text>
 					</div>
 				</div>
 			</Phone>

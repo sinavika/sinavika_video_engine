@@ -60,7 +60,7 @@ export const APP_SCREENS = {
 	SmartSummary: entry('m-ozet-sonuc', 'Soru analizi', 'Soru görselinden çözüm, kazanım ve hata analizi.'),
 	SinoAi: entry('m-sino-sohbet', 'SinoAI', 'SinoAI ile sohbet.'),
 	Flashcards: entry('m-kart-on', 'Kart oturumu', 'Bilgi kartını çevir, bilme düzeyini işaretle.'),
-	Lessons: entry('m-ders-vitrin', 'Dersler', 'Mikro dersler, konular ve tekrar.'),
+	Lessons: entry('m-ders-vitrin', 'Dersler', 'Konular adım adım, kaldığın yerden ve tekrar.'),
 	Tests: entry('m-test-vitrin', 'Testler', 'Konu testleri: Kolay, Orta, Zor.'),
 	StudyPlan: entry('m-plan-bugun', 'Ders Planı', 'Günün görevleri ve çalışma serisi.'),
 	StudyProgress: entry('m-plan-ilerleme', 'İlerleme', 'Haftalık çalışma süresi ve konu ilerlemesi.'),

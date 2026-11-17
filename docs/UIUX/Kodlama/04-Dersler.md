@@ -3,12 +3,24 @@
 Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çizim kodu: `sinavika_video_engine/src/UIUX/Screens/Mobile/Lessons.tsx`, `Mobile/LessonSteps.tsx`, `Mobile/States.tsx` (Dersler), `Mobile/Gaps.tsx` (`LessonReviewSessionScreen`), `Mobile/Learn.tsx` (yalnız yeniden dışa aktarım), `Web/LessonsWeb.tsx`, `Web/GapsWeb.tsx` (Dersler), `Web/StudyWeb.tsx` (dört yeni adım türü), `Tablet/Learn.tsx`, `Tablet/Wide.tsx` ve `Tablet/Parity.tsx` (ders ekranları)
 Önce oku: [README](README.md) (ortak kurallar, ekran tanımı biçimi, testler) ve [Navigasyon](Navigasyon.md).
 
+> **Sahip kararları (1 Kasım 2026, 17 Kasım'da yeniden onaylandı). Bu kararlarla çelişen ekran çizmek ya da kodlamak tasarım hatasıdır.**
+> - **Konu tek derstir.** Öğrenci konuyu parçalara bölünmüş görmez. "Konu girişi", "Bölüm başı" ve "Mikro ders bitti" ara ekranları **yoktur**; mikro ders parçalı ilerleme çubuğu ve web oynatıcısının sol "mikro dersler" zaman çizelgesi **yoktur**.
+> - Konuya basınca oynatıcı **kalınan adımdan** açılır. İlerleme bütün konu boyunca sayılır: tek çubuk ve "Adım x / y".
+> - Bölüm sınırı (API'nin `WorkMikro` parçası) oynatıcının içinde, **ara ekransız** geçilir. Bölüm adı yalnız adım üstündeki küçük satırda (`Kind`) ve web başlığının ikinci satırında görünür.
+> - Metinlerde **"mikro ders" geçmez.** API adları (`WorkMikro`, `workMikroId`, `mikroCount`) yalnız kodda kalır.
+> - Çizime eklenen dört ek (uygulamada vardı, kalıyor): konu sonu ekleri (paylaş, "Konuyu baştan oku", "Konulara dön", ilk denemede doğru, içerik anketi); Konular'da ders hapları ve "Tümü / Süren / Biten" süzgeci; Sırala'da basılı tutup sürükleme (dokunarak sıralama ve "Baştan diz" de kalır); vitrinde modül istatistik kartı ve kaydırılan slaytlar.
+> - Çevrimdışı cevap kuyruğu bütün proje için **tek merkezi yapıdır** (Dersler, Testler, Denemeler; mobil ve web). "Gönderilecek" hâli tek ortak görünümdür: adım kilitli, altında nötr satır, "Devam" açık (§4.16).
+> - Vitrin istatistik kartı (`ModuleWeekCard`) bütün modül vitrinlerinde aynı çerçeveli karttır.
+> - Web `/student/ders-cal/ders` Konular sekmesidir (sahip, 17 Kasım 2026): mobildeki Konular gibi ilk dersin konularını açar (`w-ders-konular`). Ayrı ders kartı ızgarası (`w-ders-dersler`) yoktur; ders kartları vitrinde. Web hap sekmeleri: Dersler → `/ders-cal`, Konular → `/ders-cal/ders`, Tekrar → `/ders-cal/tekrar`.
+> - Tablette yanlış cevaptan sonra SinoAI adımın yanında panel olarak açılır (`t-ders-sinoai-panel`).
+> - Kaynak: web deposunda `docs/UIUX/Tasarim-Uyum-Plani.md` §9.1 madde 7 ve §9.3 madde 7. Yeni bir Dersler ekranı çizilmeden ya da kodlanmadan önce bu kutu okunur.
+
 Bu belgede "çizim" `src/UIUX` kodudur, "bugünkü kod" mobil (`sinavika_mobile_reactnative/src/modules/works`) ve web (`sinavika_frontend_student/src/features/works`) kodudur. Adım ekranlarındaki ders içeriği (Sözcükte Anlam, TYT Türkçe kampının 1. dersi) örnektir ve sunucudan gelir. Adım çizimlerinin çerçeve metinleri ("Devam", "Kontrol et") çizimde yalnız Türkçe yazılmıştır (`t()` yok). Bu yüzden EN PNG'lerde de Türkçe görünür. EN karşılıkları mobil `en-US/work` kataloğundan alındı; katalogda olmayanlar "EN: doğrulanmadı" diye işaretlidir.
 
 ## 1. Modül özeti
 
-- **Ne işe yarar:** öğrenci bir konuyu kısa mikro derslerle, adım adım öğrenir. Her adımda okur ya da cevaplar. İlk denemede yanlış yaptığı adımlar 1, 3 ve 7 gün sonra Tekrar'da yeniden gelir.
-- **Hiyerarşi:** ders (`LessonMain`, ör. Türkçe) → konu (`LessonSub`, ör. Sözcükte Anlam) → mikro ders (`WorkMikro`, 2–6 dk, ör. Mecaz anlam) → adım (`Block`, ör. Tanım). Ana liste her zaman derstir (UIUX-Rehberi "Hiyerarşi kuralı"). Bugün ve plan kartları doğrudan bir konuya götürebilir.
+- **Ne işe yarar:** öğrenci bir konuyu tek ders olarak, adım adım öğrenir; istediği yerde bırakır, kaldığı adımdan sürdürür. Her adımda okur ya da cevaplar. İlk denemede yanlış yaptığı adımlar 1, 3 ve 7 gün sonra Tekrar'da yeniden gelir.
+- **Hiyerarşi:** ders (`LessonMain`, ör. Türkçe) → konu (`LessonSub`, ör. Sözcükte Anlam) → adım (`Block`, ör. Tanım). API konuyu bölümlere (`WorkMikro`, ör. Mecaz anlam) ayırır; öğrenci bölümü ayrı bir birim olarak görmez, yalnız adımın üstünde adını okur. Ana liste her zaman derstir (UIUX-Rehberi "Hiyerarşi kuralı"). Bugün ve plan kartları doğrudan bir konuya götürebilir.
 - **Kod adları:** anahtar `lessons`; API `Works`, uç `/api/student/works`; web klasörü `works`; mobil modül `works`, rota öneki `Work`.
 
 **Renk** (`ModuleIdentity.ts`, `moduleTint`, `moduleInk`, `moduleAction`):
@@ -37,7 +49,7 @@ Bu belgede "çizim" `src/UIUX` kodudur, "bugünkü kod" mobil (`sinavika_mobile_
 | 4 | Tekrar / Review | `refresh` | `m-ders-tekrar` (`WorkReview` → `WorkReviewHome`) |
 | 5 | Profil / Profile | `user` | Profil |
 
-Oynatıcı (`WorkMikro`) ve tekrar oturumu (`WorkReviewSession`) odak ekranıdır: tab bar gizlenir.
+Oynatıcı (`WorkMikro` rotası; konunun bütün adımları) ve tekrar oturumu (`WorkReviewSession`) odak ekranıdır: tab bar gizlenir.
 
 **Web:**
 - Sol menüde "Modüller" başlığı altında ikinci sırada "Dersler" (`book` ikonu).
@@ -59,16 +71,11 @@ Eşleşen ekranlar yan yana sıralıdır. "Bugünkü kod" sütunu: M = mobil `sr
 | `m-ders-ilk` | mobil | Dersler · ilk giriş | `WorkHome · WorkOverview` | yok (ayrı ilk giriş hâli yok) | ilk |
 | `w-ders-vitrin` | web | Dersler | `/student/ders-cal` | W `pages/WorksHomePage.tsx` | dolu |
 | `t-ders-vitrin` | tablet | Dersler · yatay | `WorkHome` | M `WorkOverviewScreen` + `ModuleTabRailFrame` (Notlarım düğmesi var) | dolu |
-| `w-ders-dersler` | web | Dersler listesi | `/student/ders-cal/ders` | W `pages/WorksLessonPage.tsx` (bu yol ilk dersin konularını açar, liste yok) | dolu |
 | `m-ders-konular` | mobil | Konular | `WorkLesson · WorkCatalog` | M `screens/WorkLessonScreen.tsx`, `screens/WorkCatalogScreen.tsx`, `components/WorkBrowseTree.tsx` | dolu |
 | `w-ders-konular` | web | Konular | `/student/ders-cal/ders/[lessonMainId]` | W `pages/WorksLessonPage.tsx` | dolu, "Yakında" |
 | `t-ders-konular-iki-panel` | tablet | Konular iki panel | `WorkCatalog + WorkSub` | M `components/WorkTopicsSplit.tsx`, `WorkTopicPane.tsx` | dolu |
-| `m-ders-konu-girisi` | mobil | Konu girişi | `WorkSub` | yok (`WorkSubScreen` doğrudan mikro dersi açar) | dolu |
-| `w-ders-konu-girisi` | web | Konu girişi | `/student/ders-cal/konu/[lessonSubId]` | yok (`WorksSubPage` doğrudan oynatıcıya yönlendirir) | dolu |
 | `m-ders-hak` | mobil | Günlük konu hakkı | `WorkSub (PAYWALL)` | M `components/WorkGateBanner.tsx`, `WorkAccessLocked.tsx` (alt sayfa değil) | hak |
-| `m-ders-bolum` | mobil | Bölüm başı | `WorkMikro` | yok | bölüm başı |
-| `w-ders-bolum` | web | Oynatıcı · Bölüm başı | `/student/ders-cal/mikro/[workMikroId]` | yok | bölüm başı |
-| `t-ders-bolum` | tablet | Bölüm başı | `WorkMikro` | yok | bölüm başı |
+| `m-ders-baglanti` | mobil | Oynatıcı · bağlantı yok | `WorkMikro` | yok (merkezi kuyruk kurulacak, §4.16) | gönderilecek |
 | `m-ders-tanim` | mobil | Adım · Tanım | `WorkMikro` | M `screens/WorkMikroScreen.tsx`, `components/WorkBlockView.tsx` (Concept) | dolu |
 | `w-ders-tanim` | web | Oynatıcı · Tanım | `/student/ders-cal/mikro/[workMikroId]` | W `pages/WorksMikroPage.tsx`, `components/WorkBlockView.tsx` | dolu |
 | `t-ders-tanim-not` | tablet | Tanım · kenar notu | `WorkMikro` | M `WorkMikroScreen` (kalem, kenar notu 290 pt) | kalem açık |
@@ -86,9 +93,9 @@ Eşleşen ekranlar yan yana sıralıdır. "Bugünkü kod" sütunu: M = mobil `sr
 | `w-ders-bosluk` | web | Oynatıcı · Boşluk doldur | aynı | W `WorkInteractiveBlock` | yanlış |
 | `t-ders-bosluk-el-yazisi` | tablet | Boşluk doldur · el yazısı | `WorkMikro` | M `components/WorkFillBlankHandwriting.tsx` | kalemle yazıldı |
 | `m-ders-yazmali` | mobil | Adım · Yazmalı boşluk | `WorkMikro` | M `WorkBlockView` (FillBlank metin girişi) | klavye açık |
-| `m-ders-soru` | mobil | Adım · TYT tarzı soru | `WorkMikro` | M `WorkBlockView` (Question) | 1. yanlış |
-| `w-ders-soru` | web | Oynatıcı · TYT tarzı soru | aynı | W `WorkInteractiveBlock` | 1. yanlış |
-| `t-ders-soru-eleme` | tablet | TYT tarzı soru · eleme | `WorkMikro` | M `WorkMikroScreen` (adıma yaz, taslak) | kalemle eleme |
+| `m-ders-soru` | mobil | Adım · Sınav tarzı soru | `WorkMikro` | M `WorkBlockView` (Question) | 1. yanlış |
+| `w-ders-soru` | web | Oynatıcı · Sınav tarzı soru | aynı | W `WorkInteractiveBlock` | 1. yanlış |
+| `t-ders-soru-eleme` | tablet | Sınav tarzı soru · eleme | `WorkMikro` | M `WorkMikroScreen` (adıma yaz, taslak) | kalemle eleme |
 | `m-ders-sekilli-soru` | mobil | Adım · Şekilli soru | `WorkMikro` | M `WorkBlockView` + `ContentFigureView` | boş |
 | `m-ders-grupla` | mobil | Adım · Grupla | `WorkMikro` | M `components/steps/WorkGroupStep.tsx` | yarıda |
 | `w-ders-grupla` | web | Oynatıcı · Grupla | aynı | W `components/steps/WorkGroupStep.tsx` | yarıda |
@@ -102,8 +109,6 @@ Eşleşen ekranlar yan yana sıralıdır. "Bugünkü kod" sütunu: M = mobil `sr
 | `m-ders-formul` | mobil | Adım · Formül ve tablo | `WorkMikro` | M `ContentRichText` (KaTeX), figür tablosu | dolu |
 | `w-ders-formul` | web | Oynatıcı · Formül ve tablo | aynı | W `WorkBlockView` | dolu |
 | `t-ders-formul` | tablet | Adım · Formül ve tablo | `WorkMikro` | M aynı | dolu |
-| `m-ders-mikro-bitti` | mobil | Mikro ders bitti | `WorkMikro (mikro ders sonu)` | yok (sıradaki mikro derse ara ekransız geçilir) | bitti |
-| `w-ders-mikro-bitti` | web | Mikro ders bitti | aynı | yok | bitti |
 | `m-ders-konu-sonu` | mobil | Konu sonu | `WorkSubSummary` | M `screens/WorkSubSummaryScreen.tsx` | bitti |
 | `w-ders-konu-sonu` | web | Konu sonu | `/student/ders-cal/konu/[lessonSubId]/ozet` | W `pages/WorksSummaryPage.tsx` | bitti |
 | `m-ders-tekrar` | mobil | Tekrar | `WorkReviewHome · WorkReview` | M `screens/WorkReviewScreen.tsx` | dolu |
@@ -114,6 +119,8 @@ Eşleşen ekranlar yan yana sıralıdır. "Bugünkü kod" sütunu: M = mobil `sr
 | `t-ders-notlarim` | tablet | Notlarım | `WorkNotes` | M `screens/WorkNotesScreen.tsx` | dolu |
 | `w-ders-akis` | web | Akış panosu | — | yok (pano; ekran değil) | — |
 
+Kaldırılan çizimler (17 Kasım 2026, sahip kararı): `w-ders-dersler`, `m-ders-konu-girisi`, `w-ders-konu-girisi`, `m-ders-bolum`, `w-ders-bolum`, `t-ders-bolum`, `m-ders-mikro-bitti`, `w-ders-mikro-bitti`. Kodda karşılıkları da yoktur ve eklenmez.
+
 Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'e aittir; tanımları [Paylasim-Kartlari.md](../Paylasim-Kartlari.md)'dedir.
 
 ## 3. Süreçler (akışlar)
@@ -121,20 +128,19 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
 ### 3.1 Konuyu öğrenmek (ana akış)
 
 1. `m-ders-vitrin` / `w-ders-vitrin`. Öğrenci bir ders satırına dokunur → `m-ders-konular` / `w-ders-konular` [push; web: sayfa]. API `GET lessons/{lessonMainId}/subs`.
-2. Bir konu satırına dokunur ("Devam et" / "Başla") → `m-ders-konu-girisi` / `w-ders-konu-girisi` [push]. API `GET subs/{lessonSubId}`.
-   - Bitmiş konuda (`nextWorkMikroId = null`) konu girişi yerine `m-ders-konu-sonu` açılır [replace].
-3. Konu girişinde "{sıradaki mikro ders} ile devam et" → oynatıcı, sıradaki mikro dersin ilk adımı ya da kalınan adım [push, odak geçişi; tab bar gizlenir].
-   - API `GET mikros/{id}`. `progress` boşsa `POST mikros/{id}/start`.
-   - Günlük konu hakkı burada düşer: bir konuda günün ilk başlatması bir hak harcar, aynı gün aynı konunun diğer mikro dersleri harcamaz.
+2. Bir konu satırına dokunur ("Devam et" / "Başla") → **oynatıcı, kalınan adımdan** [push, odak geçişi; tab bar gizlenir]. Ara ekran yoktur.
+   - API `GET subs/{lessonSubId}` → `nextWorkMikroId` ve `progress.currentBlockKey`; oynatıcı o bölümü yükler (`GET mikros/{id}`) ve kalınan adıma gider. `progress` boşsa `POST mikros/{id}/start`.
+   - Bitmiş konuda (`nextWorkMikroId = null`) `m-ders-konu-sonu` açılır [replace].
+   - Günlük konu hakkı burada düşer: bir konuda günün ilk başlatması bir hak harcar; aynı gün aynı konunun diğer bölümleri harcamaz.
    - Hak yoksa ya da abonelik yoksa `403 PAYWALL` döner → `m-ders-hak` alt sayfası (§4.6).
-4. Her adımda:
+3. Her adımda:
    - Anlatım adımı (Tanım, Örnek, Kural, Görsel) → "Devam". API `POST mikros/{id}/position` (`blockKey`, `timeSpentSeconds`).
    - Etkileşimli adım → cevap. API `POST blocks/{blockId}/answer`. Yanıt `isFinal: true` olana kadar adımda kalınır, "Devam" pasiftir.
-5. Son adımdan sonra "Devam" → `POST mikros/{id}/complete` → `m-ders-mikro-bitti` [aynı ekranda içerik değişir].
-   - "{Sıradaki} geç" → sıradaki mikro dersin ilk adımı [replace].
-   - "Konu haritasına dön" → konu girişi [geri].
-6. Son mikro dersin bitiş ekranından sonra → `m-ders-konu-sonu` [replace]. API `GET subs/{lessonSubId}/summary`.
+   - Üstteki çubuk ve "Adım x / y" bütün konu üzerinden ilerler (x = konuda bu adımın sırası, y = konunun bütün adımları).
+4. **Bölüm sınırı:** bir bölümün son adımından sonra "Devam" → `POST mikros/{id}/complete` ve **aynı oynatıcıda** sıradaki bölümün ilk adımı [adım geçişi, `nextQuestion` hareketi; ekran değişmez]. Bitti, özet ya da "sıradaki" ekranı gösterilmez; yalnız adım üstündeki bölüm adı değişir.
+5. Konunun son adımından sonra → `m-ders-konu-sonu` [replace]. API `GET subs/{lessonSubId}/summary`.
    - "Kolay seviye testi · 20 soru · ~25 dk" → Testler, konunun Kolay testi [modül değişimi].
+   - "Konuyu baştan oku" → oynatıcı, konunun ilk adımı. "Konulara dön" → `m-ders-konular`.
 7. **Hata dalı:**
    - Veri gelmezse yerinde hata kutusu ve "Tekrar dene".
    - Cevap gönderilemezse adımın altında kırmızı tek satır. Seçim geri alınmaz, düğme yeniden açılır.
@@ -154,12 +160,12 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
    - Doğru ama "Tahmin ediyorum" işaretli → aşama ilerlemez.
    - Yanlış → aşama başa döner, 1 gün sonra yeniden gelir. Yanılınan parçalar `focus` olur.
 3. "Sonraki" sıradaki adıma geçer. Son adımda "Bitir" → `m-ders-tekrar` [geri]. Liste boşalınca Tekrar'a dönülür.
-4. Bugün adım yoksa `m-ders-tekrar-bos`. "Kaldığın derse dön" → kaldığın mikro ders (`GET continue`). Kalınan yer yoksa → `m-ders-vitrin`.
+4. Bugün adım yoksa `m-ders-tekrar-bos`. "Kaldığın derse dön" → kaldığın konu, kaldığın adımdan (`GET continue`). Kalınan yer yoksa → `m-ders-vitrin`.
 
 ### 3.3 Kaldığın yerden devam
 
 - `GET continue` → `{workMikroId, title, lessonSubId, lessonSubName, lessonMainName, completedBlockCount, blockCount, remainingMinutes}`. Yanıt 204 ise kalınan yer yok → vitrinde `m-ders-ilk` hâli.
-- "Devam et" → oynatıcı. Oynatıcı `progress.currentBlockKey` ile aynı anahtarlı adımdan açılır. Tamamlanmış mikro ders baştan açılır.
+- "Devam et" → oynatıcı. Oynatıcı `progress.currentBlockKey` ile aynı anahtarlı adımdan açılır. Bitmiş konu konu sonunu açar; "Konuyu baştan oku" ilk adımdan açar.
 - Önceki cevaplar `blocks[].answer`'dan geri yüklenir. Cevaplanmış adım kapalı (sonuç görünür) gelir.
 - Tabletteki Notlarım'dan nota dokununca o adım (`blockKey`) açılır.
 
@@ -178,7 +184,8 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
 - **Adım çubuğu (`StepBar`):**
   - Satır iç boşluğu 6 / 18 / 10, aralık 14.
   - Solda yuvarlak ✕ (`RoundButton`): 38 pt, `card` zemin, 1 px `line` kenar, ikon `x` 17 pt `ink2`. Erişilebilir adı "Dersi kapat" / "Close lesson".
-  - Sağda `Segments`: mikro dersin adım sayısı kadar parça, aralık 5, yükseklik 7, köşe tam. Biten parça modül `color`. Şimdiki parça yarı yarıya: soldan %50 `color`, sağ yarı `line`. Gelecek parçalar `line`.
+  - Sağda `TopicProgress` (esnek genişlik, aralık 10): **tek sürekli çubuk** (yükseklik 7, köşe tam, dolgu modül `color`, iz `track`, değer = x / y) ve sağında `meta` 13 pt 800 modül `ink` "Adım x / y" / "Step x / y". x = konuda bu adımın sırası, y = konunun bütün adımları. Parça parça çubuk çizilmez.
+  - Tekrar oturumunda aynı bileşen oturumun sayısıyla: "Tekrar 2 / 5" / "Review 2 / 5".
 - **İçerik:** iç boşluk 8 / 20 / 12, dikey aralık 14 (ekrana göre 10–14). Taşan içerik kayar.
 - **Alt alan (foot):** iç boşluk 10 / 20 / 30, aralık 10. Ana düğme `lg` (54 pt), tam genişlik, modül `action`.
 - **Yeni adım türlerinin alt alanı** (`LessonSteps.tsx` `Foot`, Grupla, Eşleştir, Çevir, Seç, Çoklu, Formül), soldan sağa:
@@ -189,7 +196,7 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
   - Ana düğme gereken seçim tamamlanmadan `disabled` tondadır: `line` zemin, `subtle` yazı.
 
 **Adım üst metni:**
-- `Kind` satırı: `over` rolü, 12,5 pt, 800, büyük harf, modül `ink`. Biçim "{mikro ders adı ya da adım türü} · {adım} / {adım sayısı}" (ör. "MECAZ ANLAM · 1 / 5").
+- `Kind` satırı: `over` rolü, 12,5 pt, 800, büyük harf, modül `ink`. İçerik bölümün adı ya da adım türü (ör. "MECAZ ANLAM", "ÖNCE SEN TAHMİN ET"); **sayı yazılmaz**, ilerleme üstteki çubuktadır. Bölüm değişince yalnız bu satır değişir.
 - `Title`: `title` rolü, 24 pt (yeni türlerde 22), satır yüksekliği 1,25.
 
 **Şık (`Choice`):**
@@ -222,7 +229,7 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
   - Cevap verilince adım kapanır (`isFinal: true`).
   - Yanlışta doğru şık ya da sözcük yeşil, öğrencinin seçimi kırmızı gösterilir. Altta "Doğrusu: …" başlıklı kırmızı kutu nedeni söyler.
   - Doğruda yeşil kutu çıkar ("Doğru tahmin", "Doğru, bu ifade yanlış" gibi içerikten gelen başlık).
-- **TYT tarzı soru:** her yanlışta bir çözüm adımı açılır ve öğrenci yeniden seçer.
+- **Sınav tarzı soru:** her yanlışta bir çözüm adımı açılır ve öğrenci yeniden seçer.
   - Deneme hakkı = çözüm adımı sayısı + 1 (en az 2).
   - Yanlış şık kırmızı kalır ve yeniden seçilemez.
   - Hak bitince ya da doğru bulununca doğru şık ve bütün çözüm adımları açılır.
@@ -243,39 +250,35 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
 | Yanlış cevap | çarpı ve kırmızı dolgu, 240 ms, sallanma yok | uyarı (`notificationWarning`) |
 | Adım geçişi ("Devam") | eski adım 180 ms'de soluklaşarak çıkar, yeni adım 8 pt sağdan 240 ms'de gelir (`nextQuestion`); kaydırma en üste döner | yok |
 | "Önceki adım" | aynı hareket ters yönde, yeni adım soldan gelir (Hareket-Standardi §1 "çıkış geldiği yöne gider" kuralından; çizimde ayrıca tanımlı değil) | yok |
-| İlerleme çubuğu | biten parça 600 ms'de bir kez dolar (`progressGain`) | yok |
+| İlerleme çubuğu | çubuk bir adım kadar 600 ms'de ilerler (`progressGain`) | yok |
 | Geri bildirim kutusu | 8 pt yükselerek 240 ms (`distance.enter`, `duration.enter`; genel giriş kuralı); ekran kutuya kayar (bugünkü mobil kod 120 ms sonra sona kaydırır) | yok |
 
 - Titreşim değişimle aynı karede, cevap başına bir kez verilir. Hiçbir zaman tek geri bildirim değildir: renk ve metin her zaman vardır.
 - "Hareketi azalt" açıkken kayma kalkar, yalnız 150 ms soluklaşma kalır.
 - Web'de klavyeyle tetiklenen geçişler canlanmaz (Hareket-Standardi §4).
 
-**Oynatıcı çerçevesi, web** (`StudyPlayer`, `LessonsWeb.tsx`): 1440 × 900 tuval. Sol menü ve web üst çubuğu yoktur. Üç sütun:
-- **Sol, mikro dersler (`MicroTimeline`):**
-  - 290 px, `card` zemin, sağda 1 px `line`, iç boşluk 22, aralık 10.
-  - Üstte `Kind` konu adı ("SÖZCÜKTE ANLAM").
-  - Altında konunun bütün mikro dersleri `MapRow` olarak: nokta 28, satır 44, ad 14 pt. Şimdiki satırda sağda "{n} adım".
+**Oynatıcı çerçevesi, web** (`StudyPlayer`, `LessonsWeb.tsx`): 1440 × 900 tuval. Sol menü ve web üst çubuğu yoktur. İki sütun; **solda zaman çizelgesi yoktur** (17 Kasım kararı).
 - **Orta, adım:**
   - Üst şerit 76 px, `card` zemin, alt kenar `line`, yan boşluk 28, aralık 16. İçinde soldan:
     - ✕ (38)
-    - başlık: mikro ders adı (`headline` 16, 800) ve altında "{konu} · adım 2 / 5" (`small` 13,5, `ink2`)
-    - sağda 300 px `Segments` (yükseklik 8)
+    - başlık: konu adı (`headline` 16, 800, ör. "Sözcükte Anlam") ve altında "{ders} · {bölüm}" (`small` 13,5, `ink2`, ör. "Türkçe · Mecaz anlam")
+    - sağda 380 px `TopicProgress` (yükseklik 8, yazı 13,5): tek çubuk ve "Adım x / y"
   - Adım sütunu 700 px, ortalı. Üst boşluk 28, alt 12, aralık 14.
-  - Adım çizimi mobil çizimin kendisidir, ölçeklenir: Tanım ×1,15; Tahmin, Boşluk, Doğru/Yanlış, Sırala ×1,1; Soru ve Mikro ders bitti ×1,05.
+  - Adım çizimi mobil çizimin kendisidir, ölçeklenir: Tanım ×1,15; Tahmin, Boşluk, Doğru/Yanlış, Sırala ×1,1; Soru ×1,05.
   - Alt eylem satırı 700 px, iç boşluk 12 / 0 / 24, iki uca yaslı: solda ghost `lg` "Önceki adım" (`left` ikonu), sağda ana `lg` düğme.
-- **Sağ, "Bu mikro derste" (`LessonSide`):**
+- **Sağ, "Bu konuda" (`LessonSide`):**
   - 310 px, `card` zemin, solda 1 px `line`, iç boşluk 22, aralık 12.
-  - `Kind` gri "BU MİKRO DERSTE".
-  - İki kart (köşe 14, iç boşluk 14): "TANIM" + tanımın kısa hâli; "SIK HATA" + sık hata.
-  - `VideoRow` "Videoda izle" "1:38 – 4:18".
-  - En altta ghost tam genişlik "SinoAI’ye sor" (`sparkles`).
+  - `Kind` gri "BU KONUDA" / "IN THIS TOPIC".
+  - İki kart (köşe 14, iç boşluk 14): "TANIM" / "DEFINITION" + tanımın kısa hâli; "SIK HATA" / "COMMON MISTAKE" + sık hata.
+  - `VideoRow` "Videoda izle" / "Watch the video" "1:38 – 4:18".
+  - En altta ghost tam genişlik "SinoAI’ye sor" / "Ask SinoAI" (`sparkles`).
 - **Klavye:** 1–5 şık seçer (A–E). Enter etkin ana düğmeye basar. Odak halkası 2 px. Başka kısayol çizimde ve kurallarda tanımlı değil.
 
 **Oynatıcı çerçevesi, tablet** (`LessonStep`, `Tablet/Learn.tsx`): 1194 × 834, modül yıkamalı.
 - **Üst çubuk (`SolveBar`, 64 pt, yan boşluk 22, aralık 14):**
   - ✕
-  - meta "{konu} · {adım} / {adım sayısı}" ve altında başlık (`headline` 16)
-  - ortada 300 pt `Steps` (5 pt parçalar, biten ve şimdiki adım dolu)
+  - meta konu adı ve altında başlık (bölüm adı ya da adım türü, `headline` 16)
+  - ortada 340 pt `TopicProgress`: tek çubuk ve "Adım x / y" (parça yok)
   - sağda iki yuvarlak etiketli düğme: "Taslak kâğıdı" / "Scratchpad" (`notebook`) ve "Soruya yaz" / "Write on question" (`pen`; kalem açıkken dolu)
 - **Gövde:** satır, aralık 18, iç boşluk 4 / 22 / 26.
   - İsteğe bağlı solda dikey kalem araç çubuğu (`PenToolbar`).
@@ -286,7 +289,7 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
 **Mobil adım çiziminin web ve tablette gösterilmesi (`EmbedStep`):**
 - Web ve tablet oynatıcısı mobil adım ekranını `EmbedStep` içinde çağırır. Adım ekranı o zaman yalnız içeriğini çizer: durum çubuğu, `StepBar` ve alt alan çizilmez.
 - Çerçeve, ilerleme ve düğmeler oynatıcınındır.
-- Uygulamada da adım bileşeni tek kaynaktır. Adım içeriği bileşeni çerçeveden ayrı yazılır, üç platform aynı bileşeni kendi çerçevesinde kullanır. Yeni adım türü bir kez yazılır (UIUX-Rehberi §5.7). Eşlik testi Grupla, Eşleştir, Formül ve Bölüm başını üç platformda arar.
+- Uygulamada da adım bileşeni tek kaynaktır. Adım içeriği bileşeni çerçeveden ayrı yazılır, üç platform aynı bileşeni kendi çerçevesinde kullanır. Yeni adım türü bir kez yazılır (UIUX-Rehberi §5.7). Eşlik testi Grupla, Eşleştir ve Formülü üç platformda arar; kaldırılan ekranların (konu girişi, bölüm başı, mikro ders bitti) olmadığını ve hiçbir çizimde "mikro ders" yazmadığını da denetler (`tests/UIUX/UIUX.test.ts`).
 
 ### 4.1 `m-ders-vitrin` Dersler · web: `w-ders-vitrin` · tablet: `t-ders-vitrin`
 
@@ -298,36 +301,32 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
   - Mobil: `AppHeader` (solda profil, ortada boş, sağda zil ve kırmızı sayaç). Yüzen tab bar, aktif yuva 1 "Dersler". Arka plan modül yıkaması (`wash` → `bg`, %34'te biter).
 - **Yerleşim, mobil** (`Content` aralık 12, yan boşluk 18, alt 108):
   1. `PageTitle`: modül çipi "Dersler" (`book`, `sm`) ve başlık `title` 24 "Dersler" / "Lessons".
-  2. `ModuleSlide` (yükseklik 158, köşe 26, modül gradyanı, saydam `book` filigranı):
-     - Etiket "Kaldığın yerden" / "Pick up where you left off".
-     - Başlık "Mecaz anlam" / "Figurative meaning" (`hero` 24, beyaz). Veri: `continue.title`.
-     - Metin "Sözcükte Anlam · 2/5 adım · 3 dakika kaldı" / "Word meaning · step 2/5 · 3 minutes left". Veri: `lessonSubName`, `completedBlockCount / blockCount`, `remainingMinutes`.
-     - Beyaz `sm` düğme "Devam et" / "Continue" (yazısı modül `ink` açık değeri).
-  3. Tekrar kartı (`Card`, iç boşluk 14, satır aralık 12):
-     - `Tile` `refresh` 40.
-     - `headline` "Tekrar zamanı" / "Time to review".
-     - `small` "5 adım · yaklaşık 4 dk" / "5 steps · about 4 min". Süre = adım × 45 sn, en az 1 dk.
-     - Sağda `moduleSoft` `sm` "Başla" / "Start".
+  2. **Kaydırılan slaytlar** (`ModuleHomePagedSlides`; çizimde ilk slayt ve altında sayfa noktaları `Dots`, 3 nokta, aktif nokta 18 × 6 modül `color`, diğerleri 6 × 6 `line`, aralık 5). Slayt: `ModuleSlide`, yükseklik 150, köşe 26, modül gradyanı, saydam `book` filigranı. Sıra:
+     1. "Kaldığın yerden" / "Continue": başlık konu adı ("Sözcükte Anlam", `hero` 24 beyaz; veri `continue.lessonSubName`), metin "Türkçe · 29 dk kaldı" / "Turkish · 29 min left" (`lessonMainName`, `remainingMinutes`), beyaz `sm` "Devam et" / "Continue". Kalınan yer yoksa bu slayt yoktur.
+     2. "Tekrar" / "Review": "Bugün {n} adım seni bekliyor", "İlk denemede yanlış yaptığın adımlar yeniden soruluyor.", "Tekrara başla". `dueCount = 0` ise yoktur.
+     3. "Ders çalış" / "Study": "Bir konu seç", "Konuları adım adım, etkileşimli çalış.", "Konulara git". Her zaman vardır.
+     - Slaytlar yatay kaydırılır (sayfa sayfa), noktalar sayfayı gösterir. Tek slayt varsa nokta çizilmez.
+  3. **Modül istatistik kartı** (`ModuleWeekCard`, uygulamada `ProfileModuleStatisticsCard moduleKey="lessons"`): köşe 22, `card`, `line` kenar, kart gölgesi, iç boşluk 14, aralık 10.
+     - Solda `over` modül `ink` "Bu hafta" / "This week"; `headline` 18 "2 sa 15 dk" + 13 pt `muted` "çalışma" / "studied"; `meta` `successInk` "%18 artış · geçen haftaya göre" / "18% up · vs last week" (azalışta "%N azalış", eşitse "Geçen haftayla aynı", ilk haftada "İlk haftan").
+     - Sağda son 7 günün çubukları: 9 px genişlik, en çok 44 px, aralık 4, köşe 3; çalışılan gün modül `color`, boş gün `line` (en az 4 px).
+     - Altta üç kutu (aralık 8; iç boşluk 8 / 10, köşe 14, `line2` zemin): `meta` etiket + `headline` 15 değer: "Biten konu" / "Topics done" "3"; "Başarı" / "Success" "%78"; "Seri" / "Streak" "5 gün".
+     - Bu hafta çalışma yoksa kart tek sakin satırdır: "Bu hafta henüz çalışma yok. Çalıştıkça süren, sayıların ve son 7 günün burada birikir." Sıfır yazılmaz.
   4. `SectionTitle` "TYT", alt yazı "10 ders · 168 konu" / "10 subjects · 168 topics". Sınav bölümü (`categorySubName`) başına bir başlık.
   5. `List`, her ders bir `ListRow`:
      - `Tile` `book` 38.
      - Başlık ders adı.
-     - Alt yazı "15 konu · 14 / 125 mikro ders" / "15 topics · 14 / 125 micro-lessons".
+     - Alt yazı "15 konu · %11 tamamlandı" / "15 topics · 11% done"; başlanmamışsa yalnız "22 konu".
      - Sağda 56 pt `Bar` (yükseklik 6, en az %2 dolu, `color` / `track`) ve `right` oku 18 `subtle`.
 - **Yerleşim, web** (`Panel`, sol menüde Dersler aktif):
   1. `ModuleHead`:
      - Hap sekmeler Dersler (aktif, `action` zemin, beyaz yazı) · Konular · Tekrar, her biri 36 px.
-     - Başlık kartı: başlık "Dersler" / "Lessons", alt yazı "Konuları mikro derslerle, adım adım öğren" / "Learn each topic in micro-lessons, step by step".
+     - Başlık kartı: başlık "Dersler" / "Lessons", alt yazı "Her konuyu adım adım, etkileşimli öğren" / "Learn each topic step by step".
      - Sağda ghost "Konu ara" / "Find topic" (`search`).
   2. `Grid` 1,5fr / 1fr:
-     - `ModuleBanner`: "Kaldığın yerden" · "Mecaz anlam" · "Türkçe · Sözcükte Anlam · 2 / 5 adım · 3 dakika kaldı" / "Turkish · Word meaning · step 2 / 5 · 3 minutes left" · beyaz "Devam et".
-     - `WCard` "Tekrar zamanı":
-       - `Tile` 48.
-       - "Bugün 5 adım" / "5 steps today" (`section`).
-       - "İlk denemede yanlış yaptığın adımlar, yaklaşık 4 dakika." / "Steps you missed, about 4 minutes."
-       - Tam genişlik "Tekrara başla" / "Start review".
+     - `ModuleBanner` (kaydırılan slaytların ilki; web'de de aynı üç slayt): "Kaldığın yerden" · "Sözcükte Anlam" · "Türkçe · Adım 4 / 30 · 29 dakika kaldı" / "Turkish · Step 4 / 30 · 29 minutes left" · beyaz "Devam et".
+     - Modül istatistik kartı (`ModuleWeekCard`, mobildekiyle aynı içerik; web `features/statistics/components/ModuleStatisticsCard.tsx`).
   3. Satır "TYT" (`section`), sağda "10 ders · 168 konu".
-  4. 4 sütun ızgara (aralık 14). Ders kartı (`Card` 16): `Tile` 40, ad ve sağda "15 konu", `Bar` 6, "14 / 125 mikro ders".
+  4. 4 sütun ızgara (aralık 14). Ders kartı (`Card` 16): `Tile` 40, ad ve sağda "15 konu", `Bar` 6, "%11 tamamlandı" / "11% done" (başlanmamışsa "Başlamadın" / "Not started").
   5. Satır "AYT" + ders kartı ("Türk Dili ve Edebiyatı · 16 konu" ve ok). İçeriği olmayan ders gri kart (`line2` zemin, `muted` yazı) ve `Chip` "Yakında" / "Soon"; tıklanmaz.
 - **Yerleşim, tablet** (`SideRail` aktif Dersler; içerik en çok 1080, iç boşluk 18 / 32 / 26, aralık 18):
   - Üst satır: modül çipi + başlık 28 "Dersler". Sağda yuvarlak "Notlarım" / "My notes" (`notebook`) ve arama.
@@ -335,22 +334,23 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
     - Kaldığın yer: gradyan, oran 1,3, köşe 24, iç boşluk 22.
       - "Kaldığın yerden · Sözcükte Anlam" / "Continue · …".
       - Kanca cümlesi 24 pt beyaz.
-      - "1 / 13 · sıradaki: Mecaz anlam" / "next: Figurative meaning".
+      - "Adım 4 / 30 · 29 dk kaldı" / "Step 4 / 30 · 29 min left".
       - Beyaz "Devam et" (`play`) ve cam çip "3 notun var" / "3 notes" (`pen`).
     - Bugünkü tekrar: kart 20.
       - "Bugünkü tekrar" / "Today’s review" ve sayı çipi.
       - "İlk denemede yanlış yaptığın adımlar. Her biri tek denemede." / "Steps you missed on the first try. One try each."
       - Adım türü çipleri (outline).
       - `moduleSoft` "Tekrara başla".
-  - "Sınavının dersleri" / "Your exam’s lessons": 3 sütun ders kartı. Kartta ad 16, "{n} konu", `Bar`, "{bitti} / {toplam} mikro ders".
+  - "Sınavının dersleri" / "Your exam’s lessons": 3 sütun ders kartı. Kartta ad 16, "{n} konu", `Bar`, "%11 tamamlandı" ya da "Başlamadın".
   - Son hücre gri kart: `pen` ikonu, "Kalem hazır" / "Pen ready", "Her adımda altını çizebilir, kenara yazabilirsin." / "Underline and write in the margin on every step." Yalnız kalemli tablette.
 - **Veri:**
   - `GET continue` (204 → yok)
   - `GET reviews/summary` (`dueCount`) ve `GET reviews?take=50`
-  - `GET lessons`: `[{categorySubId, categorySubName, lessons: [{lessonMainId, name, subCount, completedSubCount, mikroCount, completedMikroCount}]}]`
+  - `GET lessons`: `[{categorySubId, categorySubName, lessons: [{lessonMainId, name, subCount, completedSubCount, mikroCount, completedMikroCount}]}]`. Yüzde = tamamlanan / toplam (adım ya da bölüm sayısından; hangisi olduğu API'de doğrulanmalı); öğrenciye yalnız yüzde gösterilir.
+  - İstatistik kartı: modül istatistik ucu (uygulamalardaki `ProfileModuleStatisticsCard` / `ModuleStatisticsCard` ne kullanıyorsa o).
   - "N ders · M konu" toplamı istemcide hesaplanır.
 - **Etkileşimler:**
-  - "Devam et" → oynatıcı, `continue.workMikroId` [push].
+  - "Devam et" → oynatıcı, kalınan adımdan (`continue.workMikroId`, `currentBlockKey`) [push].
   - "Başla" ve "Tekrara başla" → `m-ders-tekrar-oturum` [push].
   - Ders satırı → `m-ders-konular`, o ders seçili [push].
   - Web "Konu ara" → panel araması (Ctrl K).
@@ -376,71 +376,73 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
   2. Gradyan kart (köşe 24, iç boşluk 18, aralık 6):
      - `over` "Buradan başla" / "Start here", beyaz %90.
      - `title` 22 "Temel Kavramlar" / "Basic concepts".
-     - `small` beyaz "Matematik’te zorlandığını söyledin. İlk mikro ders 4 dk, 6 adım." / "You said maths is hard for you. First micro-lesson: 4 min, 6 steps."
-     - Beyaz düğme (`play`, yazı `action`) "İlk mikro dersi başlat" / "Start the first micro-lesson".
+     - `small` beyaz "Matematik’te zorlandığını söyledin. Konu adım adım ilerler; istediğin yerde bırakırsın." / "You said maths is hard for you. The topic goes step by step; stop wherever you like."
+     - Beyaz düğme (`play`, yazı `action`) "Konuya başla" / "Start the topic".
   3. `Card` 14: `headline` "Dersler nasıl işler?" / "How lessons work". Üç satır, ikon 18 modül `color`, `small` `ink2`:
-     - `book` "Her konu kısa mikro derslerden oluşur" / "Each topic is a few short micro-lessons"
+     - `book` "Her konu kısa adımlardan oluşur; kaldığın yerden sürer" / "Each topic is short steps; it resumes where you left off"
      - `checkCircle` "Her adımda sen de cevaplarsın" / "You answer at every step"
      - `refresh` "İlk denemede yanlışların 1, 3 ve 7 gün sonra tekrar gelir" / "Misses come back after 1, 3 and 7 days"
   4. `SectionTitle` "TYT" · "10 ders · 168 konu", sağda eylem "Tümü" / "All".
   5. Ders satırları. Alt yazı "15 konu · henüz başlamadın" / "15 topics · not started yet" (sıfır sayı yazılmaz). Bar yok.
 - **Veri:**
   - `GET continue` boş (204).
-  - Önerilen konu: kayıtta seçilen zorlanılan dersin ilk konusu (onboarding cevabı) ve o konunun ilk mikro dersi (`GET subs/{id}` → `nextWorkMikroId`, `stepCount`, `estimatedMinutes`).
+  - Önerilen konu: kayıtta seçilen zorlanılan dersin ilk konusu (onboarding cevabı); oynatıcı konunun ilk adımından açılır (`GET subs/{id}` → `nextWorkMikroId`).
   - Kayıt cevabını veren uç: API'de doğrulanmalı.
 - **Etkileşimler:**
-  - "İlk mikro dersi başlat" → oynatıcı [push]. Plan olmasa da başlar.
+  - "Konuya başla" → oynatıcı, konunun ilk adımı [push]. Plan olmasa da başlar.
   - "Tümü" → `m-ders-konular`.
   - Satır → konular.
 - **Kurallar:**
   - Ön tanıtım yoktur; üç satır bu ekranda bir kez görünür.
-  - İlk mikro ders bitince bu hâl bir daha gelmez (artık `continue` doludur).
+  - İlk adım cevaplanınca bu hâl bir daha gelmez (artık `continue` doludur).
 
-### 4.3 `m-ders-konular` Konular · web: `w-ders-konular`, `w-ders-dersler` · tablet: `t-ders-konular-iki-panel`
+### 4.3 `m-ders-konular` Konular · web: `w-ders-konular` · tablet: `t-ders-konular-iki-panel`
 
 - **Görseller:**
   - `acik/mobil/m-ders-konular.png`, `koyu/mobil/...`, `en/acik/mobil/...`
-  - `acik/web-panel/w-ders-konular.png`, `acik/web-panel/w-ders-dersler.png`
+  - `acik/web-panel/w-ders-konular.png`
   - `acik/tablet/t-ders-konular-iki-panel.png`
 - **Çerçeve, mobil:**
-  - `AppHeader`: solda geri (kartlı 40 pt daire), ortada başlık ders adı ("Türkçe" / "Turkish", `section`), sağda boşluk (zil yok).
+  - `AppHeader`: solda geri (kartlı 40 pt daire), ortada başlık "Konular" / "Topics" (`section`), sağda boşluk (zil yok).
   - Tab bar aktif yuva 2 "Konular". Modül yıkaması.
 - **Yerleşim, mobil** (aralık 12):
+  0. **Ders hapları** (`FilterChips`, yatay kayar, aralık 8): sınavın dersleri ("Türkçe", "Matematik", "Tarih", …). Hap: iç boşluk 8 / 14, köşe 14; seçili hap modül `action` zemin ve beyaz `small` 700, diğerleri `card` zemin, `line` kenar, `ink2`. Dokununca liste o dersin konularına geçer, ekran değişmez.
   1. Ders özeti, `Card tone="module"` (`wash` zemin, `line` kenar, iç boşluk 14):
      - `headline` "TYT Türkçe · 15 konu" / "TYT Turkish · 15 topics".
-     - `small` "14 / 125 mikro ders · ilk denemede %75" / "14 / 125 micro-lessons · 75% first try".
+     - `small` "%11 tamamlandı · ilk denemede %75" / "11% done · 75% first try".
      - Sağda `Ring` 48, kalınlık 5, `color` / `track`, ortada `meta` 800 "%11" / "11%".
+  1b. **Süzgeç** (`Segmented`, modül renginde): "Tümü" / "All" · "Süren (1)" / "In progress (1)" · "Biten (0)" / "Done (0)". Sayılar konulardan istemcide sayılır. Seçili süzgeçte konu yoksa "Bu filtrede konu yok." / "No topics in this filter."
   2. Konu listesi, `Card` iç boşluk 6. Her satır: iç boşluk 10 / 8, köşe 14, satırlar arası `line2`, süren konunun satırı `wash` zemin.
      - Solda `TopicBadge` 34. Bitti: `action` dolgu ve beyaz tik. Süren: `card` zemin, 2,5 px `color` halka, numara `ink`. Başlamadı: `line2` zemin, numara `muted`.
-     - Ortada konu adı (`headline`) ve `meta`. Süren konu "1 / 13 mikro ders · ilk denemede %75". Başlamamış konu "7 mikro ders · 21 dk" / "7 micro-lessons · 21 min".
+     - Ortada konu adı (`headline`) ve `meta`. Süren konu "%10 tamamlandı · ilk denemede %75" / "10% done · 75% first try". Başlamamış konu "18 adım · 21 dk" / "18 steps · 21 min".
      - Sağda süren konuda `module` `sm` "Devam et" / "Continue", diğerlerinde `right` oku.
 - **Yerleşim, web** (`w-ders-konular`):
   - Üst çubukta konum izi "Dersler ›".
-  - `ModuleHead`: sekme Konular aktif, başlık "Türkçe", alt yazı "TYT · 15 konu · 14 / 125 mikro ders".
+  - `ModuleHead`: sekme Konular aktif, başlık "Türkçe", alt yazı "TYT · 15 konu · %11 tamamlandı" / "TYT · 15 topics · 11% done".
+  - Altında tek satır: solda ders hapları (mobildekiyle aynı), sağda 380 px süzgeç "Tümü · Süren (1) · Biten (0)".
   - `Grid` 2fr / 1fr:
     - Solda konu kartı. Satırlar iç boşluk 14, rozet 36, ad + `small` meta. 120 px `Bar`. Sağda süren konuda `module` "Devam et", diğerlerinde ghost "Başla" / "Start".
     - Sağda iki `WCard`:
-      - "Türkçe ilerlemen" / "Your Turkish progress": `Ring` 92 (kalınlık 9) "%11". "1 konu başladı · 14 mikro ders bitti", "İlk denemede doğru: %75", "Bu hafta 1 sa 20 dk".
+      - "Türkçe ilerlemen" / "Your Turkish progress": `Ring` 92 (kalınlık 9) "%11". "1 konu sürüyor · 0 konu bitti" / "1 topic in progress · 0 done", "İlk denemede doğru: %75", "Bu hafta 1 sa 20 dk".
       - "Tekrar": "Türkçe’den 4 adım bugün tekrar zamanında." / "4 Turkish steps are due today."
-- **Yerleşim, web** (`w-ders-dersler`, `/student/ders-cal/ders`):
-  - `ModuleHead` (sekme Dersler aktif), "Dersler", "TYT · 10 ders · 168 konu".
-  - 3 sütun `WCard`: `Tile` 42, ad 16, "{n} konu", `Bar` 7, "{bitti} / {toplam} mikro ders".
+- **Web yolu:** `/student/ders-cal/ders` Konular sekmesidir ve ilk dersin konularını açar (aynı `w-ders-konular` sayfası; ders hapları ders değiştirir, yol `/ders/[lessonMainId]` olur). Ayrı ders listesi sayfası yoktur (sahip, 17 Kasım 2026).
 - **Yerleşim, tablet** (`t-ders-konular-iki-panel`, yan ray aktif Konular):
   - **Sol panel** (340 pt, sağ kenar `line`):
     - "TYT" (`meta`), "Türkçe" (`title` 24), "15 konu · ilk denemede %80".
-    - Konu satırları: iç boşluk 11 / 12, köşe 16. Seçili satır `soft` zemin. 28 pt numara halkası. Ad 14,5 ve "{n} mikro ders · {dk} dk · {k} bitti".
+    - Konu satırları: iç boşluk 11 / 12, köşe 16. Seçili satır `soft` zemin. 28 pt numara halkası. Ad 14,5 ve süren konuda "%10 tamamlandı", diğerlerinde "{n} adım · {dk} dk".
   - **Sağ panel** (iç boşluk 22 / 30):
-    - Gradyan konu kartı: "Sözcükte Anlam · 13 mikro ders", kanca 24, beyaz "Mecaz anlamla devam et", cam çip "Konu videosu · 21:38". Sağda 200 × 112 video kutusu (`playCircle` 44).
-    - "Mikro dersler": 2 sütun kart (köşe 16). 26 pt rozet, ad 14, "{adım} adım · {dk} dk". Şimdiki mikro ders `color` kenarlı.
+    - Gradyan konu kartı: "Sözcükte Anlam · 30 adım · 33 dk", kanca 24, beyaz "Kaldığın yerden devam et" / "Continue where you left off", cam çip "Konu videosu · 21:38". Sağda 200 × 112 video kutusu (`playCircle` 44).
+    - "Bu konuda" / "In this topic": konunun öğrettikleri, 2 sütun satır (köşe 16, `card`, `line` kenar). Solda 18 pt ikon: işlenmişse `checkCircle` modül `color`, değilse `check` `subtle`; ad 14. Sayı, adım ya da süre yazılmaz; satırlar dokunulmaz (parça seçtirilmez).
     - Altta "Konu listesi solda kalır; konu değiştirmek tek dokunuş." / "Topics stay on the left."
 - **Veri:**
   - `GET lessons/{lessonMainId}/subs` → `[{lessonSubId, name, orderIndex, isAvailable, mikroCount, completedMikroCount, estimatedMinutes, state (0/1/2), answeredCount, firstTryCorrectCount}]`.
   - İlk denemede oranı = `firstTryCorrectCount / answeredCount`. Cevap yoksa yazılmaz.
   - Tablet sağ paneli `GET subs/{lessonSubId}`.
 - **Etkileşimler:**
-  - Satır ya da "Devam et" / "Başla" → `m-ders-konu-girisi` [push].
+  - Satır ya da "Devam et" / "Başla" → oynatıcı, kalınan adımdan (başlanmamışsa ilk adımdan) [push, odak geçişi]. Bitmiş konu → `m-ders-konu-sonu`.
+  - Ders hapı → o dersin konuları (aynı ekran). Süzgeç → liste daralır (aynı ekran).
   - `isAvailable: false` konu gri, "Yakında"; dokunulmaz.
-  - Tablette satır sağ paneli değiştirir, ekran değişmez.
+  - Tablette satır sağ paneli değiştirir, ekran değişmez; sağ paneldeki düğme oynatıcıyı açar.
   - Geri → `m-ders-vitrin`.
 - **Hâller:**
   - Yükleniyor `LoadingLogo`.
@@ -448,83 +450,19 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
   - Hata → "Tekrar dene".
 - **Kurallar:** konular müfredat sırasıyla (`orderIndex`) dizilir. Süren konu tek "Devam et" düğmesini taşır.
 
-### 4.4 `m-ders-konu-girisi` Konu girişi · web: `w-ders-konu-girisi`
+### 4.4 ve 4.5 Kaldırıldı: Konu girişi ve Bölüm başı
 
-- **Görseller:** `acik/mobil/m-ders-konu-girisi.png`, `koyu/...`, `en/...`; `acik/web-panel/w-ders-konu-girisi.png`
-- **Çerçeve, mobil:**
-  - Tab bar yok, yıkama yok.
-  - Üst satır (`TitleBar`, iç boşluk 6 / 18 / 10): solda 38 pt geri düğmesi (`left`), yanında `headline` 15 800 "Türkçe · TYT" (ders · sınav).
-  - Alt alan: ana `lg` düğme.
-- **Yerleşim, mobil:**
-  1. `Hero` (köşe 22, iç boşluk 18, gradyan):
-     - `over` beyaz %92 "Sözcükte Anlam · 13 mikro ders".
-     - Kanca `title` 21 beyaz "Sözcüğün anlamını sözlük değil, cümle belirler."
-     - `small` 14 600 beyaz "1 / 13 tamamlandı · sıradaki: Mecaz anlam".
-  2. `VideoRow` (iç boşluk 12, köşe 16, `line` kenar):
-     - 76 × 48 siyah önizleme (`ink` zemin, `play` 18).
-     - "Videoyu izle · 21:38" (`headline` 15 800).
-     - "Mecaz anlam bölümü 1:38'de" (`small` 13 `ink2`).
-     - **Video yoksa (`videoUrl = null`) satır gizlenir.**
-  3. Yol haritası: mikro dersler `MapRow` (nokta 32, satır 42, aralık 12).
-     - Bitti: `action` dolgu ve tik. Şimdiki: 2 px `color` halka, ad `ink`. Gelecek: `line2`.
-     - Noktalar arası 2 px dikey çizgi; biten satırdan sonra `color`, değilse `line`.
-     - Sağda "{n} adım" (`meta` 13 `muted`).
-     - İlk 8 satırdan sonra "… +5 mikro ders" satırı (`muted`).
-  4. Alt alan: "Mecaz anlam ile devam et" (EN: doğrulanmadı; biçim "{sıradaki mikro ders} ile devam et").
-- **Yerleşim, web:**
-  - Konum izi "Dersler › Türkçe ›". `Grid` 1fr / 1,05fr, aralık 22.
-  - **Sol sütun:**
-    - `Hero` (başlık 28).
-    - "Bu konuda" kartı (iç boşluk 20): `checkCircle` 18 ve hedefler, ör. "Gerçek, yan, mecaz ve terim anlamı ayırmak", "Bağlam sorularını adım adım çözmek".
-    - `VideoRow` (16).
-    - Tam genişlik `lg` "Mecaz anlam ile devam et".
-  - **Sağ sütun:** kart 22, "Yol haritası · 13 mikro ders · 34 dk", bütün mikro dersler (nokta 30, satır 42).
-- **Veri:** `GET subs/{lessonSubId}`:
-  - `name`, `hook`, `objectives[]`, `videoUrl`, `videoDurationSeconds`, `estimatedMinutes`
-  - `mikroCount`, `completedMikroCount`, `nextWorkMikroId`
-  - `mikros[] {workMikroId, title, orderIndex, isAvailable, stepCount, estimatedMinutes, videoStartSeconds, state, completedStepCount}`
-  - "Mecaz anlam bölümü 1:38'de" = sıradaki mikro dersin `videoStartSeconds` değeri.
-- **Etkileşimler:**
-  - Ana düğme → `nextWorkMikroId` oynatıcısı [push, odak geçişi]. `POST start` hak düşürür; 403 PAYWALL → `m-ders-hak`.
-  - Video satırı → video, ilgili saniyeden.
-  - Bitmiş mikro ders satırına dokunmak o mikro dersi baştan açar (doğrulanmadı: çizimde satırlar düğme gibi işaretli değil).
-  - Geri → Konular.
-- **Hâller:** yükleniyor `LoadingLogo`; hata "Tekrar dene"; hak → `m-ders-hak`.
-- **Kurallar:** tek ana düğme vardır, mikro ders seçtirilmez. Öğrenci sıradakine gider.
-
-### 4.5 `m-ders-bolum` Bölüm başı · web: `w-ders-bolum` · tablet: `t-ders-bolum`
-
-- **Görseller:** `acik/mobil/m-ders-bolum.png`, `acik/web-panel/w-ders-bolum.png`, `acik/tablet/t-ders-bolum.png` (+ koyu, en)
-- **Çerçeve:**
-  - Mobil: `StepBar` (8 parça, hiçbiri dolu değil, ilk parça yarım).
-  - Alt alan iki eşit düğme: ghost "Önceki bölüm" (`left`) ve ana "Başla".
-  - Web: nav "Önceki bölüm" / "Başla", şeritte "bölüm 2 / 4", çubukta yarım parça yok (`current={false}`).
-  - Tablet: alt satırda yalnız "Başla", kalem kapalı.
-- **Yerleşim:**
-  1. `Kind` "Bölüm 2 / 4 · Sözcükte Anlam".
-  2. `Title` 26 "Anlam aktarmaları".
-  3. `body` `ink2`: bölümün ne öğrettiği + "8 adım · yaklaşık 6 dk."
-  4. "Bu bölümde" kartı: `over` başlık, üç satır, `check` 16 modül `color` + `body` 15 (ör. "Ad aktarması (mecaz-ı mürsel)").
-  5. Bölüm haritası: dört satır (iç boşluk 10 / 12, köşe 16, aralık 8). 28 pt rozet: bitti tik, şimdiki halka, gelecek numara. Şimdiki satır `wash` zemin, `line` kenar. Gelecek satır adı `muted`. Biten satırda sağda `meta` "Tekrar bak".
-- **Veri:**
-  - API'de "bölüm" adım türü yoktur (WorkBlockKind 0–14).
-  - Bölüm = mikro ders gruplaması mı, yoksa ayrı bir kayıt mı: API'de doğrulanmalı.
-  - Bölüm hedefleri ve adım sayısı için alan: API'de doğrulanmalı.
-- **Etkileşimler:**
-  - "Başla" → bölümün ilk adımı.
-  - "Önceki bölüm" → önceki bölümün başı.
-  - "Tekrar bak" → o bölümün ilk adımı.
-- **Kurallar:** öğrenci önceki bölüme her zaman dönebilir (canlı testteki eksik).
+`m-ders-konu-girisi`, `w-ders-konu-girisi`, `m-ders-bolum`, `w-ders-bolum` ve `t-ders-bolum` sahip kararıyla kaldırıldı (17 Kasım 2026). Konuya basınca oynatıcı açılır; bölüm sınırı oynatıcının içinde geçilir (§3.1 adım 4). Kanca, video ve "Bu konuda" bilgisi oynatıcının sağ panelinde (web), tabletin iki panelinde ve vitrin slaytındadır. Bu ekranlar ya da benzeri bir ara ekran kodlanmaz.
 
 ### 4.6 `m-ders-hak` Günlük konu hakkı
 
 - **Görseller:** `acik/mobil/m-ders-hak.png`, `koyu/...`, `en/...`
-- **Çerçeve:** arkada konu girişi (`TitleBar` "Türkçe · TYT", `Hero`, `VideoRow`). Üstünde karartma `rgba(11,28,48,0.45)` ve alt sayfa.
+- **Çerçeve:** arkada **düz zemin** (`bg`): oynatıcı açılamadı (403 PAYWALL) ve giriş ekranı yoktur. Üstünde karartma `rgba(11,28,48,0.45)` ve alt sayfa.
 - **Yerleşim** (`Sheet` yükseklik 372, üst köşeler 28, iç boşluk 10 / 20 / 34, aralık 14; marka bağlamı, modül rengi yok):
   1. Tutamak 40 × 5.
   2. `Tile` `lock` 52, ikon `ink2`.
   3. `title` 22 "Bugünkü konu hakkın doldu".
-  4. `body` "Bugün Sözcükte Anlam'ı çalıştın. Yarın yeni bir konuya başlayabilirsin; aboneliğinle her gün istediğin kadar konu çalışırsın."
+  4. `body` "Bugünkü konu hakkını kullandın. Yarın yeni bir konuya başlayabilirsin; aboneliğinle her gün istediğin kadar konu çalışırsın." **Konu adı yazılmaz:** hangi konunun hakkı harcadığı istemcide bilinmez (uygulamada da böyle, 17 Kasım).
   5. Boşluk.
   6. Ana `lg` tam genişlik "Paketleri gör" (marka `action` `#C2410C`).
   7. Ghost `lg` "Yarın devam ederim".
@@ -535,11 +473,12 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
   - Konu adı istemcide bilinir.
 - **Etkileşimler:**
   - "Paketleri gör" → Profil › Paketler (`ProfileAvailablePackages`, `sourceModule: 'works'`) [push].
-  - "Yarın devam ederim", karartmaya dokunma ya da aşağı çekme → alt sayfa kapanır, konu girişinde kalınır.
+  - "Yarın devam ederim", karartmaya dokunma ya da aşağı çekme → alt sayfa kapanır, öğrenci geldiği listeye (Konular ya da vitrin) döner.
 - **Kurallar:**
   - Yenilenme zamanı yazılır (yarın).
-  - Mikro dersler ve testler SinoAI hakkını kullanmaz.
-  - Bugün başlatılmış konunun diğer mikro dersleri hak harcamaz, bu alt sayfa onlarda çıkmaz.
+  - Konu anlatımı ve testler SinoAI hakkını kullanmaz.
+  - Bugün başlatılmış konuya aynı gün yeniden girmek hak harcamaz; bu alt sayfa çıkmaz.
+  - Çizimde alt sayfanın arkasında oynatıcının ilk adımı durur (giriş ekranı yok).
 
 ### 4.7 Anlatım adımları
 
@@ -565,7 +504,7 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
   - Sağda 290 pt "Kenar notu" alanı, el yazısı notlar.
   - Altta `InkNote` "Notların bu adıma kayıtlı".
   - Alt satır "SinoAI’ye sor" + "Devam".
-  - Not anahtarı: mikro ders + adım (`student/notes`, hedef Dersler, katman kenar notu).
+  - Not anahtarı: bölüm (`workMikroId`) + adım (`student/notes`, hedef Dersler, katman kenar notu).
 
 #### `m-ders-ornek` Adım · Örnek (Example)
 
@@ -669,19 +608,21 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
 #### `m-ders-sirala` Adım · Sırala (Order) · web: `w-ders-sirala`
 
 - **Görseller:** `acik/mobil/m-ders-sirala.png`, `acik/web-panel/w-ders-sirala.png`
-- **Çerçeve:** `StepBar` şimdiki 2 / 5. Mobil alt alan ghost tam genişlik "Baştan diz" / "Start over" (`refresh`). Web nav: solda "Baştan diz", sağda "Kontrol et".
+- **Çerçeve:** `StepBar` "Adım 24 / 30". Mobil alt alan ghost tam genişlik "Baştan diz" / "Start over" (`refresh`). Web nav: solda "Baştan diz", sağda "Kontrol et".
 - **Yerleşim:**
-  1. `Kind` "Sözcüğün bağlamdaki anlamı · 2 / 5".
+  1. `Kind` "Sözcüğün bağlamdaki anlamı".
   2. `Title` "Bağlam sorusunu çözerken hangi sırayla ilerlersin?"
-  3. `body` 15 `ink2` "Adımlara sırayla dokun; yanlış dokunursan geri al." (mobil katalog: "Adımlara sırayla dokun." / EN doğrulanmadı).
+  3. `body` 15 `ink2` "Basılı tutup sürükle ya da adımlara sırayla dokun." (mobil katalog: "Adımlara sırayla dokun ya da basılı tutup yerine sürükle." / EN doğrulanmadı).
   4. Satırlar (aralık 8; iç boşluk 12 / 14, köşe 14, `card` zemin):
      - Solda 30 pt daire: sıra verilmemişse 1,5 px kesikli `subtle` halka. Verilmişse `action` dolgu ve beyaz sıra numarası.
      - Sıra verilen satırın kenarı 1,5 px modül `line`, diğerlerininki 1,5 px gri `line` (`colors.line`).
      - Satırda ad `headline` 15 700 ve açıklama `small` 13 `muted`.
+     - Sağda tutamak: `menu` ikonu 18 pt `subtle` (sürüklenen satırda modül `ink`).
+     - **Sürüklenen satır:** basılı tutunca kalkar: 10 px yana kayar, −1,5° döner, gölge `0 16px 30px -12px rgba(11,28,48,0.35)`, kenar modül `line`; diğer satırlar yer açar (240 ms, `easing.out`). Bırakınca yerine oturur ve sıra numaraları yeniden yazılır. Basılı tutma süresi ve titreşim (`selection`) uygulamanın sürükle kuralından.
 - **Öğrenci ne yapar:**
   - Satırlara doğru sırayla dokunur; her dokunuş sıradaki numarayı verir.
   - Numaralı satıra yeniden dokunmak o numarayı ve sonrakileri geri alır. "Baştan diz" hepsini siler.
-  - Sürükleme gerekmez. Mobilde basılı tutup sürüklemek ek yoldur.
+  - Ya da satırı basılı tutup yerine sürükler (mobil ve web; web'de fareyle sürükleme, klavyede ↑↓ ile taşıma). İki yol aynı sonucu verir; dokunarak sıralama erişilebilirlik için hep vardır.
   - Bütün satırlar numaralanınca "Kontrol et" açılır.
 - **Geri bildirim:** tek deneme.
   - Sonuçta satırlar doğru sırayla dizilir. Doğru yerde olan yeşil kenarlı, yanlış yerde olan uyarı kenarlı.
@@ -736,14 +677,14 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
 - **Geri bildirim:** tek deneme; Boşluk doldur ile aynı.
 - **Kurallar:** "Kontrol et" boş girişte pasiftir. Klavye açıkken kaydırmadan görünür.
 
-#### `m-ders-soru` Adım · TYT tarzı soru (Question) · web: `w-ders-soru` · tablet: `t-ders-soru-eleme`, `t-ders-sinoai-panel`
+#### `m-ders-soru` Adım · Sınav tarzı soru (Question) · web: `w-ders-soru` · tablet: `t-ders-soru-eleme`, `t-ders-sinoai-panel`
 
 - **Görseller:** `acik/mobil/m-ders-soru.png`, `acik/web-panel/w-ders-soru.png`, `acik/tablet/t-ders-soru-eleme.png`, `acik/tablet/t-ders-sinoai-panel.png`
 - **Çerçeve:**
   - Mobil: `StepBar` şimdiki 5 / 5. Alt alan ghost tam genişlik "SinoAI’ye sor" (`sparkles`). İçerik aralığı 10.
   - Web nav: solda "Önceki adım", sağda `small` `ink2` "Başka bir şık seç ya da 1–5 tuşlarını kullan".
 - **Yerleşim** (çizim ilk yanlıştan sonraki hâli gösterir):
-  1. `Kind` "TYT tarzı · 5 / 5".
+  1. `Kind` "Sınav tarzı".
   2. Soru kökü `headline` 16 / 22 700 `ink`, kalınlar 800.
   3. Beş şık A–E `Choice` 14 pt, aralık 8. Mobilde tek sütun, web'de iki sütun. Yanlış seçilen C kırmızı.
   4. `Feedback hint` başlık "Çözüm adımı 1 / 3" + ilk çözüm adımı. Mobil katalog başlığı "İpucu {n}" / "Hint {n}".
@@ -758,7 +699,7 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
   - **İlk denemede yanlış** yapılmışsa adım Tekrar'a girer, nötr not gösterilir.
   - Her yanlışta uyarı titreşimi, doğruda hafif darbe.
 - **Veri:** `kind = 7`, `payload {stem, options[], style?, context?, guide?}`. Her yanıtta `attemptCount`, `isFinal`, `revealedSteps[]`, `feedback`. Kapanınca `correctIndex`, `explanation`.
-- **SinoAI'ye sor:** yanlıştan sonra görünür. SinoAI'yi konu ve adımın kısa metniyle taslak soruyla açar. SinoAI hakkını kullanır, mikro ders kullanmaz.
+- **SinoAI'ye sor:** yanlıştan sonra görünür. SinoAI'yi konu ve adımın kısa metniyle taslak soruyla açar. SinoAI hakkını kullanır, konu hakkını kullanmaz.
 - **Tablet (`t-ders-soru-eleme`):**
   - Kalem araç çubuğu (kırmızı kalem). Soru kökü 21 / 31, hedef sözcük fosforlu.
   - Şıkların üstü kalemle çizilerek elenir. Seçilen şık daire içine alınır.
@@ -766,15 +707,15 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
   - **Cevap yine dokunarak verilir;** kalem işareti cevap sayılmaz.
   - Soru adımında "Taslak kâğıdı" açılabilir.
 - **Tablet SinoAI paneli (`t-ders-sinoai-panel`):**
-  - Üst çubukta kalem düğmeleri yok, sağda "SinoAI" yuvarlak düğmesi açık. Çubuk 260 pt, %90 dolu.
+  - Üst çubukta kalem düğmeleri yok, sağda "SinoAI" yuvarlak düğmesi açık (paneli bu düğme kapatır). Ortada `TopicProgress` "Adım 26 / 30".
   - Solda adım (yanlış C kırmızı, sağ altta modül "Yeniden seç").
   - Sağda 400 pt panel:
-    - başlık "SinoAI" ve "Bu adımı biliyor", ✕
+    - **SinoAI sohbet oturumunun kendi üst çubuğu** (`SinoTop`; uygulamada `SinoAiChatHeader`, `SinoAiSidePanel` içinde): solda menü (geçmiş), ortada "Sohbet · Çalışma" sekmeleri (araçlar açık değilse "SinoAI" başlığı), sağda yeni sohbet. "Bu adımı biliyor" alt başlığı yoktur; adım bağlamı sohbetin ilk mesajıyla gider.
     - sohbet balonları; öğrencininki `ink` zemin, sağda
     - öneri çipleri ("Bir örnek daha ver", "Gerçek ile yan anlam farkı")
     - yazma kutusu "SinoAI’ye sor"
     - altında "SinoAI hata yapabilir; önemli bilgileri doğrula."
-  - Panel adımı kapatmadan açılır, ✕ ile kapanır.
+  - Panel adımı kapatmadan açılır. Kitaplık, kaynaklar ve çalışma notu SinoAI yığınında tam ekran açılır (uygulama `SinoAiSidePanel`).
 
 #### `m-ders-sekilli-soru` Adım · Şekilli soru
 
@@ -789,7 +730,7 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
   - **Şekil kökle birlikte, şıklardan önce gelir.**
   - Şekil ölçüleri sayılarla uyumlu çizilir.
   - Şeklin `alt` metni okunur.
-- **Geri bildirim:** TYT tarzı soru ile aynı.
+- **Geri bildirim:** Sınav tarzı soru ile aynı.
 - **Veri:** `kind = 7`, `block.figure`.
 
 #### `m-ders-grupla` Adım · Grupla (Group) · web: `w-ders-grupla` · tablet: `t-ders-grupla`
@@ -881,62 +822,40 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
 - **Öğrenci:** işaretler, "Kontrol et", sonra "Devam".
 - **Veri:** `kind = 13`. İstek `{choiceIndexes}`. Yanıt `correctIndexes`, `items`.
 
-### 4.9 `m-ders-mikro-bitti` Mikro ders bitti · web: `w-ders-mikro-bitti`
+### 4.9 Kaldırıldı: Mikro ders bitti
 
-- **Görseller:** `acik/mobil/m-ders-mikro-bitti.png`, `acik/web-panel/w-ders-mikro-bitti.png` (+ koyu, en)
-- **Çerçeve:**
-  - Mobil: adım çubuğu yok. İçerik dikeyde ortalı, aralık 12.
-  - Alt alan: ana "Terim anlama geç" ("{sıradaki} geç"; EN: doğrulanmadı) ve ghost "Konu haritasına dön".
-  - Web: zaman çizelgesinde biten mikro ders tikli, şeritte "tamamlandı", çubuk tam dolu. Nav: solda ghost "Konu haritası" (`tree`), sağda "Terim anlama geç".
-- **Yerleşim:**
-  1. `Kind` ortalı "Mecaz anlam tamamlandı".
-  2. `num` 50 ortalı "3 / 4": ilk denemede doğru / etkileşimli adım.
-  3. `ScoreDots`: etkileşimli adım başına 40 pt daire, aralık 8. Doğru `success` ve beyaz tik, ilk denemede yanlış `error` ve beyaz çarpı.
-  4. `body` 14,5 ortalı `ink2` "tahmin · boşluk · doğru mu ilk denemede doğru".
-  5. "Aklında kalsın" kartı: `Kind` gri + tek cümle `body` 15 600.
-  6. Tekrar satırı (iç boşluk 12, köşe 16, `soft` zemin, nötr):
-     - `refresh` 20 `ink`
-     - `headline` 14,5 800 `ink` "1 adım tekrar listende" (mobil katalog `reviewAdded`: "{n} adım tekrar listende" / EN doğrulanmadı)
-     - `small` `ink2` "\"Ağır\" sorusunu yarın yeniden soracağız." (katalog notu: "Bunları yarın yeniden soracağız; tekrar, öğrenmenin parçası.")
-     - İlk denemede yanlış yoksa satır gizlenir.
-  7. Sıradaki kartı (iç boşluk 12): 32 pt halkalı numara, "Sıradaki: Terim anlam" (`headline` 15 800), "2 adım · 2 dk" (`muted`).
-- **Veri:** `POST mikros/{id}/complete` → `{interactiveCount, answeredCount, firstTryCorrectCount, reviewItemCount, timeSpentSeconds, isSubCompleted, nextWorkMikroId, nextWorkMikroTitle}`.
-  - Nokta dizisi adım sonuçlarından istemcide kurulur.
-  - "Aklında kalsın" cümlesinin alanı: API'de doğrulanmalı.
-  - Sıradakinin adım ve dakikası `GET subs/{id}` → `mikros[]`.
-- **Etkileşimler:**
-  - Ana düğme → sıradaki mikro ders [replace].
-  - "Konu haritasına dön" → `m-ders-konu-girisi` [geri].
-  - `isSubCompleted` ise ana düğme konu sonuna gider (metin: doğrulanmadı).
-- **Hareket:** bloklar ortak sıralı giriş kuralıyla gelir: 50 ms arayla, grup 300 ms içinde (Hareket-Standardi §1; çizimde ayrıca tanımlı değil). Titreşim yok.
-- **Kurallar:**
-  - Tekrar satırı ceza değildir: kırmızı yok, ikon `refresh`.
-  - Sıfır yazılmaz: hiç etkileşim yoksa skor bloğu gizlenir.
+`m-ders-mikro-bitti` ve `w-ders-mikro-bitti` sahip kararıyla kaldırıldı (17 Kasım 2026). Bölüm bitince oynatıcı sıradaki bölümün ilk adımına aynı ekranda geçer; bitti, skor ya da "sıradaki" ekranı gösterilmez. İlk denemede doğru sayısı konu sonunda bir kez yazılır (§4.10). `POST mikros/{id}/complete` yine çağrılır; yanıtı ekranda gösterilmez.
 
 ### 4.10 `m-ders-konu-sonu` Konu sonu · web: `w-ders-konu-sonu`
 
 - **Görseller:** `acik/mobil/m-ders-konu-sonu.png`, `acik/web-panel/w-ders-konu-sonu.png` (+ koyu, en)
 - **Çerçeve:**
-  - Mobil: `TitleBar` ✕ + "Sözcükte Anlam · 13 / 13". Alt alan Testler renginde `lg` tam genişlik düğme, `quiz` ikonu, "Kolay seviye testi · 20 soru · ~25 dk" (EN: "Easy quiz · {count} questions · ~{minutes} min").
+  - Mobil: `TitleBar` ✕ + konu adı ("Sözcükte Anlam"). Alt alan, yukarıdan aşağı:
+    - Testler renginde `lg` tam genişlik düğme, `quiz` ikonu, "Kolay seviye testi · 20 soru · ~25 dk" (EN: "Easy quiz · {count} questions · ~{minutes} min").
+    - İki eşit ghost düğme yan yana (aralık 10): "Konuyu baştan oku" / "Read the topic again" (`refresh`) ve "Konulara dön" / "Back to topics".
   - Web: konum izi "Dersler › Türkçe › Sözcükte Anlam ›".
-- **Yerleşim, mobil** (aralık 12):
+- **Yerleşim, mobil** (aralık 12; içerik kayar, telefonda her bloğun ilk satırları görünür):
   1. `Title` "Toparlayalım" / "Let’s wrap up".
-  2. Özet kartı (iç boşluk 14, aralık 7): maddeler `small` 13,5, kalınlar 800.
-  3. `Feedback hint` "Dikkat" / "Watch out": uyarılar alt alta.
-  4. "Kamp görevi" / "Camp task" kartı: `Kind` + numaralı maddeler.
+  2. Satır (iki uca yaslı): `small` 13,5 `ink2` "30 adımın **26**'sı ilk denemede doğru" (mobil katalog: "{answered} etkileşimin {firstTry} tanesi ilk denemede doğru" / "{firstTry} of {answered} interactions right on the first try"); sağda `moduleSoft` Dersler `sm` "Paylaş" / "Share" (`upload` ikonu). Paylaş, konu bitirme kartını (`p-konu-hikaye` / `p-konu-gonderi`) hikâye ya da gönderi olarak açar; telefonda paylaşım menüsü, bilgisayarda PNG.
+  3. Özet kartı (iç boşluk 14, aralık 7): maddeler `small` 13,5, kalınlar 800.
+  4. `Feedback hint` "Dikkat" / "Watch out": uyarılar alt alta.
+  5. "Kamp görevi" / "Camp task" kartı: `Kind` + numaralı maddeler.
+  6. **İçerik anketi** (`TopicSurvey`; uygulamada `FeedbackContentEndSurvey target="Work"`): kart (iç boşluk 14, aralık 10), sağ üstte `x` 16 `muted` (kapat). `headline` 15 "Bu konu anlatımı nasıldı?" / "How was this lesson?"; iki eşit ghost `sm` düğme "Beğendim" / "Liked" ve "Beğenmedim" / "Disliked". Seçimden sonra isteğe bağlı yorum alanı ("İstersen nedenini yaz (isteğe bağlı)"), "Gönder" / "Geç"; sonra "Teşekkürler, cevabın kaydedildi." Yalnız konu tamamen bitince ve bir kez gösterilir.
 - **Yerleşim, web:**
-  - Üstte `Kind` "Sözcükte Anlam · 13 / 13 mikro ders" ve `display` 32 "Toparlayalım". Sağda `Chip success` `checkCircle` "İlk denemede %75 doğru" / "75% right first time".
+  - Üstte `Kind` "Sözcükte Anlam · 30 / 30 adım" ve `display` 32 "Toparlayalım". Sağda `Chip success` `checkCircle` "30 adımın 26’sı ilk denemede doğru" / "26 of 30 steps right first time" ve `moduleSoft` `sm` "Paylaş" (`upload`).
   - `Grid` 1,4fr / 1fr:
     - Solda özet kartı (iç boşluk 24): `check` 18 yeşil + `body` 16.
-    - Sağda "Dikkat" kutusu, "Kamp görevi" kartı ve Testler renginde test düğmesi.
+    - Sağda "Dikkat" kutusu, "Kamp görevi" kartı, Testler renginde test düğmesi, altında iki ghost düğme ("Konuyu baştan oku", "Konulara dön") ve içerik anketi kartı.
 - **Veri:**
   - `GET subs/{lessonSubId}/summary` → `{name, points[], warnings[], taskItems[], mikroCount, completedMikroCount, answeredCount, firstTryCorrectCount}`.
   - Kolay testin kimliği, soru sayısı ve süresi: Testler uçlarından (doğrulanmadı hangi uç).
+  - Anket: içerik sonu geri bildirim ucu (uygulamadaki `FeedbackContentEndSurvey`, hedef `Work`, `targetId` konunun `workSubId`'si).
 - **Etkileşimler:**
   - Test düğmesi → Testler, konunun Kolay testi [modül değişimi].
-  - ✕ → Konular (ya da açıldığı yer).
-  - Paylaşım kartı (`p-konu-hikaye`) konu bitince sunulur: yer ve düğme çizimde yok, doğrulanmadı.
-- **Kurallar:** test düğmesi Testler renginde (`#4F46E5`), Dersler renginde değil.
+  - "Konuyu baştan oku" → oynatıcı, konunun ilk adımı [push]. Cevaplar sıfırlanmaz; yeniden okuma içindir.
+  - "Konulara dön" ve ✕ → Konular (ya da açıldığı yer).
+  - "Paylaş" → paylaşım kartı (Paylasim-Kartlari.md).
+- **Kurallar:** test düğmesi Testler renginde (`#4F46E5`), Dersler renginde değil. "İlk denemede doğru" sayısı yalnız burada yazılır; sıfırsa satır gizlenir, paylaş kalır.
 
 ### 4.11 `m-ders-tekrar` Tekrar · web: `w-ders-tekrar`
 
@@ -950,8 +869,8 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
      - `small` "Yaklaşık 4 dakika · tek denemede" / "About 4 minutes · one try each".
      - Tam genişlik ana düğme "Tekrara başla" / "Start review".
   3. `List`, satır başına bir adım:
-     - Başlık adım türü ("TYT tarzı soru", "Boşluk doldur" …).
-     - Alt yazı "{mikro ders} · {konu}".
+     - Başlık adım türü ("Sınav tarzı soru", "Boşluk doldur" …).
+     - Alt yazı "{bölüm} · {konu}" (ör. "Mecaz anlam · Sözcükte Anlam").
      - Sağda `Chip module sm` "1. tekrar" / "Round 1".
   4. Satır: `calendar` 16 `muted` + `small` "Yarın 3 adım daha gelecek." / "3 more steps tomorrow." Yarın adım yoksa gizlenir.
 - **Yerleşim, web:**
@@ -961,8 +880,8 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
     - Sağda liste. Her satırda adım türünün ikonu (`Tile` 40): soru `quiz`, boşluk `edit`, tahmin `bulb`, doğru/yanlış `checkCircle`, sırala `list`.
 - **Veri:** `GET reviews/summary` (`dueCount`, `dueTomorrowCount`) ve `GET reviews?take=50` → `[{workMikroId, mikroTitle, lessonSubName, stage, dueAtUtc, reason, focus[], block}]`.
   - Aşama çipi `stage + 1`.
-  - Süre = adım × 45 sn.
-  - Adım türü adı `block.kind`'dan gelir. Adlar oynatıcıdaki adlarla aynıdır: Önce sen tahmin et, Doğru mu yanlış mı?, Sırala, TYT tarzı soru, Boşluk doldur, Eşleştir, Grupla, Seç, Çoklu seçim, Çevir.
+  - Süre = `reviews/summary` → `estimatedMinutes` (API, adım başına 45 sn, yukarı yuvarlanır: 5 adım ≈ 4 dk). İstemci hesaplamaz.
+  - Adım türü adı `block.kind`'dan gelir. Adlar oynatıcıdaki adlarla aynıdır: Önce sen tahmin et, Doğru mu yanlış mı?, Sırala, Sınav tarzı soru, Boşluk doldur, Eşleştir, Grupla, Seç, Çoklu seçim, Çevir.
 - **Etkileşimler:**
   - "Tekrara başla" → `m-ders-tekrar-oturum` [push, odak].
   - Satırlar bilgi amaçlıdır, dokunulmaz (çizimde ok yok).
@@ -979,21 +898,21 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
      - `body` 15 "Yanlış yaptığın adımlar burada 1, 3 ve 7 gün sonra karşına çıkar. Sıradaki tekrar yarın: 4 adım." / "Steps you miss come back after 1, 3 and 7 days. Next review tomorrow: 4 steps."
      - `module` tam genişlik "Kaldığın derse dön" / "Back to your lesson".
 - **Veri:** `dueCount = 0`. Sıradaki tekrar günü ve adım sayısı: `dueTomorrowCount`. Yarından sonraki ilk gün için alan: API'de doğrulanmalı.
-- **Etkileşimler:** düğme → kaldığın mikro ders (`GET continue`). Kalınan yer yoksa → `m-ders-vitrin`.
+- **Etkileşimler:** düğme → kaldığın konu, kaldığın adımdan (`GET continue`). Kalınan yer yoksa → `m-ders-vitrin`.
 - **Kurallar:** sıfır sayı yazılmaz. Yarın da adım yoksa ikinci cümle "İlk denemede yanlış çözdüğün adımlar 1, 3 ve 7 gün sonra burada yeniden sorulur." olur.
 
 ### 4.13 `m-ders-tekrar-oturum` Tekrar oturumu · web: `w-ders-tekrar-oturum`
 
 - **Görseller:** `acik/mobil/m-ders-tekrar-oturum.png`, `acik/web-panel/w-ders-tekrar-oturum.png`
 - **Çerçeve:**
-  - Mobil: `StepBar` 5 parça (oturumun adım sayısı), şimdiki 2.
+  - Mobil: `StepBar` oturum sayısıyla: tek çubuk ve "Tekrar 2 / 5" / "Review 2 / 5".
   - Alt alan:
     - Yeşil not kutusu: iç boşluk 10 / 14, köşe 14, `successSoft`, `checkCircle` 18 + `small` 700 `successInk` "3 gün sonra yeniden sorulacak." / "It will be asked again in 3 days."
     - Ana `lg` "Sonraki" / "Next". Son adımda "Bitir" / "Finish".
-  - Web: oynatıcı çerçevesi, şerit "tekrar 2 / 5", nav "Tekrarı kapat" / "Close review" ve "Sonraki". Adım `EmbedStep` ile mobilden.
+  - Web: oynatıcı çerçevesi; başlığın ikinci satırı "Türkçe · Tekrar", sağda "Tekrar 2 / 5" çubuğu; nav "Tekrarı kapat" / "Close review" ve "Sonraki". Adım `EmbedStep` ile mobilden.
 - **Yerleşim:**
   1. Çip satırı: `Chip module sm` `refresh` "Tekrar · 2 / 5" ve `Chip outline sm` "1. tekrar".
-  2. `meta` modül `ink` "Sözcükte Anlam · Mecaz anlam" (konu · mikro ders). Neden "tahmin" ya da "bilmiyordun" ise sona eklenir: "· Tahmin" / "· Bilmiyordun".
+  2. `meta` modül `ink` "Sözcükte Anlam · Mecaz anlam" (konu · bölüm). Neden "tahmin" ya da "bilmiyordun" ise sona eklenir: "· Tahmin" / "· Bilmiyordun".
   3. Adımın kendi içeriği (örnekte Doğru mu, yanlış mı?, doğru cevaplanmış).
   4. `Kind` gri "Tek denemede · yaklaşık 45 sn".
 - **Öğrenci:** adımı bir kez cevaplar.
@@ -1009,10 +928,10 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
 - **Yerleşim:**
   - Üst satır: `meta` "TYT Türkçe · Sözcükte Anlam", `title` 28 "Notlarım" / "My notes".
   - Sağda `Segmented` "Tümü · 4" · "Kenar notları" · "Taslaklar" (mobil katalog: "Tümü · {n}" · "Adım notları" · "Taslaklar") ve ghost "PDF olarak al" (`file`).
-  - **Solda 280 pt kart "Mikro dersler":** satırlar (iç boşluk 9 / 8, köşe 12). 10 pt durum noktası. Seçili satır `soft` zemin, `ink` 800. Notu olan satırda `pen` 14.
+  - **Solda 280 pt kart "Bölümler" / "Sections":** satırlar (iç boşluk 9 / 8, köşe 12). 10 pt durum noktası. Seçili satır `soft` zemin, `ink` 800. Notu olan satırda `pen` 14.
   - **Sağda iki sütun not kartı:**
     - Üst 140 pt noktalı kâğıt üstünde notun küçük resmi.
-    - Altta mikro ders adı (`headline`), adım ve katman ("Tanım · kenar notu"), gün ("Bugün" / "Dün"), ok.
+    - Altta bölüm adı (`headline`), adım ve katman ("Tanım · kenar notu"), gün ("Bugün" / "Dün"), ok.
 - **Veri:** `GET student/notes/works` ve `GET student/notes/works/subs/{lessonSubId}`.
 - **Etkileşimler:** not kartı → oynatıcı, o adımdan (`WorkMikro {workMikroId, blockKey}`). "PDF olarak al" → markalı PDF.
 - **Hâller:** boş → "Henüz notun yok" / "Tablette kalemle adıma, kenara ya da taslak kâğıdına yazdığın notlar konuya göre burada toplanır."
@@ -1020,13 +939,27 @@ Paylaşım kartları `p-konu-hikaye` ve `p-konu-gonderi` (konu bitirme) Dersler'
 ### 4.15 `w-ders-akis` Akış panosu (web)
 
 Ekran değildir, akışı anlatan panodur. İçeriği §3.1 ile aynıdır. Kutular sırayla:
-1. "Konu girişi" ("Devam et") → "Mikro ders · 2–6 dk" (dokuz adım türü: Concept/Tanım, Example/Örnek, Rule/Kural, Visual/Görsel, Choice/Önce sen tahmin et, TrueFalse/Doğru mu yanlış mı?, Order/Sırala, FillBlank/Boşluk doldur, Question/TYT tarzı soru) → "Mikro ders bitti".
+1. "Konuya dokun" (oynatıcı kaldığın adımdan açılır; giriş ekranı yok) → "Oynatıcı · Adım 1 → 30" (dokuz adım türü: Concept/Tanım, Example/Örnek, Rule/Kural, Visual/Görsel, Choice/Önce sen tahmin et, TrueFalse/Doğru mu yanlış mı?, Order/Sırala, FillBlank/Boşluk doldur, Question/Sınav tarzı soru; "bölüm geçişi aynı ekranda") → "son adım" → "Konu sonu" (özet, dikkat, kamp görevi, paylaş, anket, teste geçiş).
 2. Yan dallar:
    - "ilk denemede yanlış" → "Tekrar" (1, 3, 7 gün)
-   - "TYT sorusunda yanlış" → "Çözüm adımları"
-   - "son mikro dersten sonra" → "Konu sonu" → Testler, Bilgi Kartları, Video.
+   - "Sınav tarzı soruda yanlış" → "Çözüm adımları"
+   - Konu sonundan "testlere ve kartlara" → Testler, Bilgi Kartları, Video.
 
 Kural: etkileşimli adımın cevabını sunucu denetler. İstemci doğru cevabı önceden bilmez.
+
+### 4.16 `m-ders-baglanti` Bağlantı yok · gönderilecek (ortak görünüm)
+
+- **Görseller:** `acik/mobil/m-ders-baglanti.png` (+ koyu, en). Aynı görünüm `m-deneme-baglanti`'de.
+- **Bir tane görünüm, üç modül:** Dersler, Testler ve Denemeler'de çevrimdışı cevap aynı merkezi kuyruğa girer (web ve mobil; sahip kararı 17 Kasım 2026). "Gönderilecek" hâli her yerde aynıdır (`PendingSyncNote`, `Parts/Shared.tsx`); modül başına ayrı tasarım, şerit, alt sayfa ya da diyalog yapılmaz.
+- **Görünüm:**
+  - Adım (ya da soru) öğrencinin seçimiyle **kilitlidir**; doğru ya da yanlış gösterilmez. Seçilen şık modül renginde: kenar 1,5 px modül `line`, zemin `wash`, harf kutusu modül `action` ve beyaz harf.
+  - Altında **nötr tek satır** (tekrar notuyla aynı dil): `meta` 13 pt, modül `ink`, ikon yok, kırmızı ya da sarı yok: "Bağlantı yok; cevabın kaydedildi. Bağlanınca gönderilecek." / "No connection; your answer is saved. It will be sent when you reconnect."
+  - "Devam" açıktır; öğrenci sıradaki adıma geçebilir.
+- **Davranış:**
+  - Bağlanınca kuyruk sırayla gönderilir; adımın sonucu (doğru, yanlış, geri bildirim) o adıma dönülünce görünür. Satır cevap gidince kalkar; ekranın geri kalanı yer değiştirmez.
+  - Kuyruk cihazda kalıcıdır: uygulama kapanıp açılınca da gider. Her cevap tekrar güvenlidir.
+  - Ham hata, kod ya da "senkron" sözcüğü yazılmaz.
+- **Denemeler'de:** süre işlemeye devam eder; satır sorunun şıklarının altındadır.
 
 ## 5. Takılma ve kilitlenme önlemleri
 
@@ -1035,20 +968,21 @@ Kural: etkileşimli adımın cevabını sunucu denetler. İstemci doğru cevabı
   - Cevap gidene kadar şıklar ve "Kontrol et" kilitlidir (`busy`). Çift dokunuş tek istek gönderir.
   - İstek sunucuya hiç ulaşmadıysa bir kez kendiliğinden yeniden denenir. Yine olmazsa adımın altında kırmızı satır çıkar, seçim geri açılır.
   - Kapanmış adıma gelen cevap aynı sonucu döner (sunucu tarafı güvenli).
-  - README §7.6 gereği cevap yerelde de saklanır. Ağ yokken verilen cevap kuyruğa girer, bağlanınca gönderilir; o arada adım "gönderilecek" hâlinde kalır, sonuç gösterilmez. Bu davranış bugünkü kodda yoktur (§7).
+  - README §7.6 gereği cevap yerelde de saklanır. Ağ yokken verilen cevap **projenin tek merkezi kuyruğuna** girer (Dersler, Testler, Denemeler aynı yapı), bağlanınca gönderilir; o arada adım "gönderilecek" hâlinde kalır ve ortak "gönderilecek" satırı görünür (§4.16). Bu davranış bugünkü kodda yoktur (§7).
 - **Oynatıcıdan çıkıp dönünce aynı adım:**
   - Açılışta `progress.currentBlockKey` adımına gidilir. Cevaplanmış adımlar sonuçlarıyla gelir.
   - Uygulama arka plana geçip dönünce oynatıcı yeniden yüklenmez, aynı adımda kalır.
   - Adımda geçen süre yalnız ön plandayken sayılır.
-- **Çekip yenileme oynatıcıda kapalıdır:** adım ekranlarında, tekrar oturumunda ve konu girişinde `RefreshControl` yoktur. Çekip yenileme yalnız vitrin, Konular ve Tekrar listesindedir (UIUX-Rehberi §8).
+- **Çekip yenileme oynatıcıda kapalıdır:** adım ekranlarında ve tekrar oturumunda `RefreshControl` yoktur. Çekip yenileme yalnız vitrin, Konular ve Tekrar listesindedir (UIUX-Rehberi §8).
 - **İlerlenemeyen adım:** etkileşimli adım `isFinal` olmadan "Devam" pasiftir. Nedeni ekranda yazar ("Bir şık seç", "2 kart kaldı"). Hiçbir zaman sebepsiz kilitli düğme kalmaz.
-- **İçerik güncellenince:** yeni sürümde adım kimliği değişir. Eski adıma cevap `404 WORK_STEP_NOT_PUBLISHED` döner. Öğrenci sıkışmaz (README §7.1): hata satırının "Tekrar dene"si mikro dersi yeniden yükler (`GET mikros/{id}`). Konum, `key`'i değişmeyen adımlarda korunur (API §7).
+- **İçerik güncellenince:** yeni sürümde adım kimliği değişir. Eski adıma cevap `404 WORK_STEP_NOT_PUBLISHED` döner. Öğrenci sıkışmaz (README §7.1): hata satırının "Tekrar dene"si o bölümü yeniden yükler (`GET mikros/{id}`); öğrenci aynı konuda kalır. Konum, `key`'i değişmeyen adımlarda korunur (API §7).
 - **Hak (403 PAYWALL):** yalnız `start`, `answer`, `position`, `complete` dönebilir. Oynatıcıda gelirse `m-ders-hak` alt sayfası açılır, alt sayfa her zaman kapanabilir.
 - **Zaman aşımı:** okuma 25 sn, gönderim 60 sn (README §7.3). Süre dolunca "Bağlantı sorunu oldu. Biraz sonra tekrar dene." ve "Tekrar dene". Gösterge sonsuz dönmez.
 - **Geri tuşu:**
   - Oynatıcıda Android geri ve iOS kenardan kaydırma ✕ ile aynıdır (`useWorkTopicExit`).
-  - Konu girişi, Konular ve Tekrar'da bir önceki ekran.
+  - Konular ve Tekrar'da bir önceki ekran.
   - Alt sayfada önce alt sayfa kapanır.
+- **Bölüm geçişi:** bölümün son adımında "Devam" ekranı değiştirmez; `complete` arka planda gider, sıradaki bölüm yüklenirken buton `loading` olur, içerik yerinde kalır (kayma yok). `complete` düşerse kuyruğa girer, öğrenci sıradaki adıma geçer.
 - **Uzun listeler:** Konular ve Tekrar listesi sanallaştırılmış listeyle kurulur (`FlatList`; web'de gerekirse sanallaştırma). Tekrar en çok 50 adım getirir.
 - **Klavye:**
   - Yazmalı boşlukta klavye açılınca "Kontrol et" klavyenin üstünde kalır (`KeyboardAvoidingView`).
@@ -1060,22 +994,22 @@ Kural: etkileşimli adımın cevabını sunucu denetler. İstemci doğru cevabı
 | No | Tür | Platform | Ekran | Adımlar | Beklenen sonuç |
 |---|---|---|---|---|---|
 | 1 | görsel | ikisi | `m-ders-vitrin`, `w-ders-vitrin` | Örnek veriyle aç; TR/EN × açık/koyu ekran görüntüsü al | PNG ile yerleşim, metin, renk aynı |
-| 2 | e2e | ikisi | vitrin | `continue` 204 döndür | `m-ders-ilk` hâli; "İlk mikro dersi başlat" oynatıcıyı açar |
-| 3 | bileşen | ikisi | vitrin | Tekrar `dueCount = 0` | Tekrar kartı görünmez |
+| 2 | e2e | ikisi | vitrin | `continue` 204 döndür | `m-ders-ilk` hâli; "Konuya başla" oynatıcıyı konunun ilk adımından açar |
+| 3 | bileşen | ikisi | vitrin | Tekrar `dueCount = 0`; kalınan yer var | Slaytlar "Kaldığın yerden" ve "Ders çalış" (2 nokta); Tekrar slaytı yok |
 | 4 | e2e | ikisi | Konular | Ders satırına dokun | Konular sırayla; süren konuda tek "Devam et"; `isAvailable: false` gri "Yakında", dokunulmaz |
 | 5 | birim | ikisi | Konular | `answeredCount = 0` | "ilk denemede" yazısı yok; "%0" yazmaz |
 | 6 | birim | ikisi | Konular | Yüzde biçimi | TR `%11`, EN `11%` |
-| 7 | e2e | ikisi | konu girişi | Konuya dokun | Konu girişi açılır; tek ana düğme sıradaki mikro dersi adıyla yazar; `videoUrl` boşsa video satırı yok |
+| 7 | e2e | ikisi | Konular → oynatıcı | Süren konuya dokun | Ara ekran açılmaz; oynatıcı `currentBlockKey` adımından açılır; üstte "Adım x / y" konu boyunca |
 | 8 | e2e | ikisi | `m-ders-hak` | `start` 403 PAYWALL döndür | Alt sayfa açılır; "Paketleri gör" marka turuncusu; "Yarın devam ederim" ve aşağı çekme kapatır |
-| 9 | e2e | ikisi | oynatıcı | Bir mikro dersi baştan sona geç | Her anlatım adımında `position`, her etkileşimde `answer`, sonda `complete`; sonra `m-ders-mikro-bitti` |
-| 10 | bileşen | ikisi | adım çubuğu | 5 adımlı mikro derste 2. adım | 1 parça dolu, 2. parça yarım, 3 parça boş |
+| 9 | e2e | ikisi | oynatıcı | Bir bölümün son adımında "Devam" | `complete` gider; aynı ekranda sıradaki bölümün ilk adımı; bitti/özet ekranı yok; çubuk bir adım ilerler, yalnız `Kind` satırı değişir |
+| 10 | bileşen | ikisi | adım çubuğu | 30 adımlı konuda 24. adım | Tek çubuk %80 dolu; "Adım 24 / 30"; parça yok; `Kind`'da sayı yok |
 | 11 | bileşen | ikisi | Tahmin | Yanlış şıkka dokun | Seçilen kırmızı, doğru yeşil, kırmızı kutu ve neden, nötr tekrar notu; şıklar kilitli; "Devam" açık |
 | 12 | bileşen | ikisi | Doğru/Yanlış | Yanlış cevap | Tek deneme; "Bu ifade doğru/yanlış." ve neden |
-| 13 | bileşen | ikisi | Sırala | Dördüne sırayla dokun, birini geri al, "Baştan diz" | Numaralar doğru güncellenir; "Kontrol et" yalnız hepsi numaralıyken açık; sonuçta doğru sıra |
+| 13 | bileşen | ikisi | Sırala | Dördüne sırayla dokun, birini geri al, "Baştan diz"; sonra bir satırı basılı tutup sürükle | Numaralar doğru güncellenir; sürüklenen satır kalkar, diğerleri yer açar, bırakınca sıra yeniden yazılır; "Kontrol et" yalnız hepsi sıralıyken açık; sonuçta doğru sıra |
 | 14 | bileşen | ikisi | Boşluk doldur | Yanlış haba dokun | Boşlukta doğru sözcük yeşil; seçilen hap kırmızı; "Doğrusu: …" kutusu; adım kapanır |
 | 15 | bileşen | ikisi | Yazmalı boşluk | " AĞIR " yaz | Doğru sayılır (büyük harf ve boşluk önemsiz); klavye açıkken "Kontrol et" görünür |
-| 16 | bileşen | ikisi | TYT tarzı soru | 3 çözüm adımlı soruda iki yanlış, sonra doğru | Her yanlışta bir çözüm adımı açılır, yanlış şık kilitli, kalan hak yazılı; doğruda "Çözüm adımları" kartı; adım Tekrar'a girer |
-| 17 | bileşen | ikisi | TYT tarzı soru | 4 kez yanlış | Hak biter; doğru şık ve bütün çözüm adımları açılır |
+| 16 | bileşen | ikisi | Sınav tarzı soru | 3 çözüm adımlı soruda iki yanlış, sonra doğru | Her yanlışta bir çözüm adımı açılır, yanlış şık kilitli, kalan hak yazılı; doğruda "Çözüm adımları" kartı; adım Tekrar'a girer |
+| 17 | bileşen | ikisi | Sınav tarzı soru | 4 kez yanlış | Hak biter; doğru şık ve bütün çözüm adımları açılır |
 | 18 | bileşen | ikisi | Grupla | Kartları yerleştir, birini geri al | Metin kesilmez; kalan kart sayısı canlı; "Kontrol et" hepsi yerleşince açık |
 | 19 | bileşen | ikisi | Eşleştir | Üç eş kur | Eşler aynı numara; yalnız Dersler renk tonları; "Kontrol et" kaydırmadan görünür |
 | 20 | bileşen | ikisi | Çevir | Bir karta "Bilmiyordum" | "1 kart tekrar listene eklendi."; "Tahmin ediyorum" düğmesi yok |
@@ -1089,13 +1023,13 @@ Kural: etkileşimli adımın cevabını sunucu denetler. İstemci doğru cevabı
 | 28 | e2e | mobil | oynatıcı | Adımda aşağı çek | Yenileme olmaz |
 | 29 | e2e | mobil | oynatıcı | Android geri tuşu | Konudan çıkılır; Konular'dan açıldıysa Konular'a dönülür |
 | 30 | e2e | web | oynatıcı | Klavyeyle 1–5 ve Enter | Şık seçilir; Enter etkin ana düğmeye basar; odak halkası 2 px görünür |
-| 31 | e2e | ikisi | Mikro ders bitti | 4 etkileşimden 1'i ilk denemede yanlış | "3 / 4", dört nokta (bir kırmızı), "1 adım tekrar listende" nötr satır, sıradaki kartı |
-| 32 | e2e | ikisi | Mikro ders bitti | Hepsi ilk denemede doğru | Tekrar satırı yok |
-| 33 | e2e | ikisi | Konu sonu | Son mikro dersi bitir | "Toparlayalım", Dikkat, Kamp görevi; test düğmesi Testler renginde ve konunun Kolay testini açar |
+| 31 | birim | ikisi | bütün ekranlar | Metinleri tara (TR ve EN) | "mikro ders" / "micro-lesson" hiçbir yerde yok |
+| 32 | e2e | ikisi | gezinme | Konu → oynatıcı → bölüm sonu → konu sonu | Konu girişi, bölüm başı ya da bölüm bitti ekranı hiç açılmaz |
+| 33 | e2e | ikisi | Konu sonu | Konunun son adımını bitir | "Toparlayalım", "30 adımın 26'sı ilk denemede doğru", Paylaş, özet, Dikkat, Kamp görevi, anket; test düğmesi Testler renginde; "Konuyu baştan oku" ilk adımı, "Konulara dön" Konular'ı açar |
 | 34 | e2e | ikisi | Tekrar | `reviews` 5 öğe, `dueTomorrowCount` 3 | "Bugün 5 adım", "Yaklaşık 4 dakika", aşama çipleri, "Yarın 3 adım daha gelecek." |
-| 35 | e2e | ikisi | Tekrar boş | `reviews` boş | `m-ders-tekrar-bos`; "Kaldığın derse dön" kalınan mikro dersi açar |
+| 35 | e2e | ikisi | Tekrar boş | `reviews` boş | `m-ders-tekrar-bos`; "Kaldığın derse dön" kalınan konuyu kalınan adımdan açar |
 | 36 | e2e | ikisi | Tekrar oturumu | Bir doğru, bir yanlış cevap | Doğruda "3 gün sonra yeniden sorulacak." yeşil; yanlışta nötr "1 gün sonra"; her adım tek deneme; son adımda "Bitir" Tekrar'a döner |
-| 37 | görsel | web | `w-ders-*` oynatıcı | Grupla, Eşleştir, Formül, Bölüm başı | Adım içeriği mobil bileşenin aynısı; çerçeve web oynatıcısınınki (sol mikro dersler, sağ "Bu mikro derste") |
+| 37 | görsel | web | `w-ders-*` oynatıcı | Grupla, Eşleştir, Formül | Adım içeriği mobil bileşenin aynısı; çerçeve web oynatıcısınınki (solda zaman çizelgesi yok, sağda "Bu konuda") |
 | 38 | görsel | tablet | `t-ders-*` | Aynı dört adım | Mobil adım bileşeni tablet çerçevesinde; alt satırda "SinoAI’ye sor" ve ana düğme |
 | 39 | erişilebilirlik | ikisi | bütün adımlar | Ekran okuyucu | ✕ "Dersi kapat", geri "Önceki adım", "Tahmin ediyorum" adlı; ilerleme çubuğu `progressbar` değeriyle; geri bildirim kutusu canlı bölge |
 | 40 | erişilebilirlik | ikisi | bütün adımlar | En büyük yazı ayarı, iPhone SE | Şık, kart ve grup metni kesilmez; ana düğme ekranda kalır |
@@ -1103,24 +1037,32 @@ Kural: etkileşimli adımın cevabını sunucu denetler. İstemci doğru cevabı
 | 42 | erişilebilirlik | mobil | bütün dokunulabilir öğeler | Ölç | ≥ 44 pt (iOS) / 48 dp (Android) |
 | 43 | dil | ikisi | bütün ekranlar | EN | Çerçeve metinleri İngilizce; ders içeriği sunucudan geldiği dilde |
 | 44 | e2e | tablet | `t-ders-tanim-not` | Kenar notu yaz, çık, dön | Not aynı adımda geri gelir; Notlarım'da görünür; nota dokununca o adım açılır |
+| 45 | e2e | ikisi | Konular | Ders hapına dokun; "Süren" süzgecini seç | Liste aynı ekranda o dersin konularına geçer; yalnız süren konular kalır; boşsa "Bu filtrede konu yok." |
+| 46 | görsel | ikisi | vitrin | İstatistik kartı, bu hafta çalışma var / yok | Süre, değişim ("%18 artış"), 7 gün çubuğu, üç kutu; çalışma yoksa tek sakin satır, sıfır yazılmaz |
+| 47 | e2e | mobil | vitrin | Slaytları yatay kaydır | Sayfa sayfa geçer; noktalar sayfayı gösterir; tek slaytta nokta yok |
+| 48 | e2e | ikisi | Konu sonu | Anket: "Beğendim", sonra "Geç" | Yorum alanı açılır; "Geç" teşekkür satırına geçer; anket konu başına bir kez |
+| 49 | e2e | ikisi | çevrimdışı | Uçak modunda iki cevap ver, uygulamayı kapat, aç, bağlan | Adım seçimle kilitli, doğru/yanlış yok; nötr satır "Bağlantı yok; cevabın kaydedildi. Bağlanınca gönderilecek."; "Devam" açık; açılışta satır durur; bağlanınca cevaplar sırayla gider, satır kalkar; ekran kaymaz |
+| 50 | görsel | üçü | Dersler, Testler, Denemeler | Çevrimdışı hâl | Üç modülde aynı görünüm (`PendingSyncNote`) |
 
 ## 7. Çizim ile bugünkü kod arasındaki farklar
 
+**17 Kasım 2026 kararıyla kapananlar** (kod zaten doğruydu, çizim düzeltildi; bu maddeler için kodda iş yok): mobil 1, 2, 4, 7, 8, 11, 14, 18; web 19, 20, 22, 25, 27 (konu başlığı), 30. Aşağıda bu maddeler "Kapandı" diye işaretlidir; diğerleri açıktır.
+
 **Mobil** (`sinavika_mobile_reactnative/src/modules/works/presentation/`):
 
-1. **Konu girişi yok.** `screens/WorkSubScreen.tsx` konuyu yükler ve hemen `WorkMikro`'yu açar (`navigation.replace`); kanca, video ve yol haritası ekranı (`m-ders-konu-girisi`) gösterilmez. Bu ekranın kodu yalnız tabletin iki panelinde, `components/WorkTopicPane.tsx` içinde var.
-2. **Mikro ders bitti ekranı yok.** `screens/WorkMikroScreen.tsx` `complete` sonrasında sıradaki mikro derse ya da konu sonuna doğrudan geçer (`navigation.replace`); `completion` verisi ekranda gösterilmez.
+1. **Kapandı (17 Kasım): konu girişi yok, olmayacak.** `screens/WorkSubScreen.tsx` konuyu yükler ve hemen `WorkMikro`'yu açar (`navigation.replace`); kanca, video ve yol haritası ekranı (`m-ders-konu-girisi`) gösterilmez. Bu ekranın kodu yalnız tabletin iki panelinde, `components/WorkTopicPane.tsx` içinde var.
+2. **Kapandı (17 Kasım): bölüm bitti ekranı yok, olmayacak.** `screens/WorkMikroScreen.tsx` `complete` sonrasında sıradaki mikro derse ya da konu sonuna doğrudan geçer (`navigation.replace`); `completion` verisi ekranda gösterilmez.
 3. **İlk denemede yanlış → Tekrar notu oynatıcıda yok.** `components/WorkBlockView.tsx` `Feedback` yalnız tahminle doğru bulunan adım için not yazar ("Tahminle doğru buldun…"). Yanlış cevapta Tekrar'a girdiği söylenmez.
-4. **İlerleme çubuğu farklı.**
-   - Çizim: mikro dersin adımları parça parça, şimdiki parça yarım.
+4. **Kapandı (17 Kasım): ilerleme çubuğu.** Çizim artık kodla aynı.
+   - Eski çizim: bölümün adımları parça parça, şimdiki parça yarım.
    - Kod (`components/WorkStepPlayerFrame.tsx`): bütün konu üzerinden tek sürekli çubuk (6 pt) ve "Adım {n} / {toplam}". Üstte konu adı yazar.
 5. **Adım geçiş hareketi yok.** `WorkMikroScreen` adım değişince yalnız en üste kaydırır (`scrollTo`, animasyonsuz). `nextQuestion` hareketi uygulanmamış.
 6. **Alt alan tutarsızlığı.**
    - Çizimdeki dokuz temel adım ekranında tek "Devam" düğmesi var.
    - Yeni türlerin çiziminde (`LessonSteps.tsx`) geri, "?" ve ana düğme var.
    - Kod bütün adımlarda geri ikonu, "Tahmin ediyorum" ikonu ve "Devam" / "Bitir" gösterir. "Kontrol et" adımın içinde, ayrı düğmedir.
-7. **Sırala:** çizimde alt alanda yalnız "Baştan diz" var. Kodda "Baştan diz" ve "Kontrol et" içerikte yan yana; ayrıca sürükleme açık ("Adımlara sırayla dokun ya da basılı tutup yerine sürükle.").
-8. **Vitrin yerleşimi farklı.**
+7. **Kapandı (17 Kasım): Sırala'da sürükleme çizime eklendi.** Kalan küçük fark: çizimde "Baştan diz" alt alanda, "Kontrol et" web'de nav'da; kodda ikisi içerikte yan yana. Eski not: çizimde alt alanda yalnız "Baştan diz" vardı. Kodda "Baştan diz" ve "Kontrol et" içerikte yan yana; ayrıca sürükleme açık ("Adımlara sırayla dokun ya da basılı tutup yerine sürükle.").
+8. **Kapandı (17 Kasım): vitrin slaytları ve istatistik kartı çizime eklendi.** Kalan: kodda ders listesi halka ızgarası (`ModuleLessonRingGrid`); sahip kararıyla (17 Kasım) çubuklu liste olacak, kod değişecek.
    - Çizim: `ModuleSlide`, Tekrar kartı, TYT ders listesi.
    - Kod (`screens/WorkOverviewScreen.tsx`):
      - kaydırılan vitrin (`ModuleHomePagedSlides`): Kaldığın yerden, "Bugün {n} adım seni bekliyor" ve "Bir konu seç" slaytları
@@ -1130,48 +1072,47 @@ Kural: etkileşimli adımın cevabını sunucu denetler. İstemci doğru cevabı
 10. **Günlük konu hakkı alt sayfa değil.** 403 PAYWALL `classifyWorkError` → `components/WorkGateBanner.tsx` ya da `WorkAccessLocked.tsx` tam ekran kapı olarak gösterilir.
     - Başlık "Erişimin sınırlı", metin sunucudan, düğme "Paketleri gör".
     - "Bugünkü konu hakkın doldu" başlığı ve "Yarın devam ederim" yok.
-11. **Konular ekranı farklı.**
+11. **Kapandı (17 Kasım): ders hapları ve süzgeç çizime eklendi.**
     - Kod (`components/WorkBrowseTree.tsx`): ders çipleri, "{sınav} {ders} · {n} konu" özeti, `AppProgressRing` (renk `colors.primary`; modül rengi olup olmadığı doğrulanmadı) ve çizimde olmayan "Tümü / Süren (n) / Biten (n)" süzgeci.
     - Konu satırında "Devam et" düğmesi yerine satırın kendisi dokunulur (doğrulanmadı).
 12. **Tekrar oturumu:**
     - Çizimde "Tekrar · 2 / 5" ve "1. tekrar" çipleri, ana düğme "Sonraki".
-    - Kod (`screens/WorkReviewSessionScreen.tsx`): üst satır "Tekrar", ilerleme "Adım n / toplam", adım üstünde "{konu} · {mikro ders} · {neden}". Ana düğme "Devam" / "Bitir" ("Sonraki" anahtarı katalogda var, kullanılmıyor).
+    - Kod (`screens/WorkReviewSessionScreen.tsx`): üst satır "Tekrar", ilerleme "Adım n / toplam", adım üstünde "{konu} · {bölüm} · {neden}". Ana düğme "Devam" / "Bitir" ("Sonraki" anahtarı katalogda var, kullanılmıyor).
     - Sonraki aralık notu yeşil kutu değil, düz metin.
-13. **Tekrar listesindeki tür adları farklı** (`screens/WorkReviewScreen.tsx` `KIND_LABEL`, `review.kinds`):
+13. **Tekrar listesindeki tür adları farklı** ("Sınav tarzı soru" / "Exam-style question" kapandı, 17 Kasım: adım türü adı sınava bağlı yazılmaz; sınava özgü ad yalnız o sınavın kendi ekranında) (`screens/WorkReviewScreen.tsx` `KIND_LABEL`, `review.kinds`):
 
     | Kod | Çizim |
     |---|---|
-    | "Sınav tarzı soru" | "TYT tarzı soru" |
     | "Çoktan seçmeli" | "Önce sen tahmin et" |
     | "Doğru parçayı seç" | "Seç" |
     | "Birden çok doğru" | "Çoklu seçim" |
     | "Kartlar" | "Çevir" |
 
-14. **Bölüm başı (`m-ders-bolum`) yok.** API'de bölüm adım türü yok, kodda "Önceki bölüm" yolu yok. Kod mikro dersleri konu içinde "bölüm" sayar, ara ekran göstermez.
+14. **Kapandı (17 Kasım): bölüm başı yok, olmayacak.** API'de bölüm adım türü yok, kodda "Önceki bölüm" yolu yok. Kod mikro dersleri konu içinde "bölüm" sayar, ara ekran göstermez.
 15. **Ek ayır (Split, `steps/WorkSplitStep.tsx`)** kodda ve API'de var, çizimi yok.
-16. **Cevap yerelde saklanmıyor.** `hooks/useWorkMikroPlayer.ts` cevabı yalnız sunucuya gönderir: ağa hiç ulaşmayan istekte bir kez yeniden dener. Kuyruk ve çevrimdışı hâl yok (README §7.6).
+16. **Cevap yerelde saklanmıyor (açık; karar: tek merkezi kuyruk, §4.16).** `hooks/useWorkMikroPlayer.ts` cevabı yalnız sunucuya gönderir: ağa hiç ulaşmayan istekte bir kez yeniden dener. Kuyruk ve çevrimdışı hâl yok (README §7.6).
 17. **Tablet SinoAI yan paneli (`t-ders-sinoai-panel`)** kodda görülmedi. Yanlış cevaptan sonra `SinoAiAskButton` SinoAI'yi ayrı açar.
-18. **Konu sonu:**
+18. **Kapandı (17 Kasım): konu sonu ekleri çizime eklendi** (istatistik satırı, paylaş, "Konuyu baştan oku", "Konulara dön", anket). Eski not:
     - Kodda (`screens/WorkSubSummaryScreen.tsx`) çizimde olmayan bir istatistik satırı var: "{answered} etkileşimin {firstTry} tanesi ilk denemede doğru". Ayrıca paylaşım kartı düğmesi, "Konuyu baştan oku" ve "Konulara dön" var.
     - Çizimde yalnız test düğmesi var.
 
 **Web** (`sinavika_frontend_student/src/features/works/`):
 
-19. **Konu girişi yok.** `pages/WorksSubPage.tsx` `/konu/[lessonSubId]`'de sayfa göstermez, oynatıcıya ya da `/ozet`'e yönlendirir. `sub.*` çeviri anahtarları kullanılmıyor.
-20. **Oynatıcı yerleşimi farklı.**
+19. **Kapandı (17 Kasım): konu girişi yok, olmayacak.** `pages/WorksSubPage.tsx` `/konu/[lessonSubId]`'de sayfa göstermez, oynatıcıya ya da `/ozet`'e yönlendirir. `sub.*` çeviri anahtarları kullanılmıyor.
+20. **Kısmen kapandı (17 Kasım): sol zaman çizelgesi yok, konu boyu çubuk; çizim kodla aynı.** Kalanlar:
     - Kod (`components/WorkStepPlayerFrame.tsx`): sol mikro ders zaman çizelgesi yok. Adım çubuğu parçalı değil, konu boyunca ince çubuk ve "Adım {n} / {toplam}".
-    - Sağ panel `MikroAside` var ama başlığı "Bu derste" (çizim "Bu mikro derste") ve yalnız `xl` genişlikte görünür.
+    - Sağ panel `MikroAside` başlığı "Bu derste"; çizim "Bu konuda". Panel yalnız `xl` genişlikte görünür.
     - Okuma sütunu `max-w-2xl` (672 px; çizim 700 px).
 21. **Klavye kısayolları yok.** works içinde `keydown` işleyicisi yok; 1–5 ve Enter çalışmıyor (yalnız boşluk doldur formunda Enter gönderir).
-22. **Mikro ders bitti ekranı yok.** `pages/WorksMikroPage.tsx` `complete` sonrası sıradakine yönlendirir. `player.reviewAdded`, `reviewAddedNote`, `firstTryNote` anahtarları kullanılmıyor.
+22. **Kapandı (17 Kasım): bölüm bitti ekranı yok, olmayacak.** `pages/WorksMikroPage.tsx` `complete` sonrası sıradakine yönlendirir. `player.reviewAdded`, `reviewAddedNote`, `firstTryNote` anahtarları kullanılmıyor.
 23. **Yanlış → Tekrar notu yok.** `components/WorkInteractiveBlock.tsx` yanlışta "Bu sefer olmadı." ve nedeni gösterir; Tekrar'a girdiği söylenmez.
-24. **`/student/ders-cal/ders` farklı.** Çizim (`w-ders-dersler`): Dersler sekmesinde ders kartları ızgarası. Kod (`pages/WorksLessonPage.tsx`): ilk dersin konularını açar ve hap sekme "Konular" bu yola bağlı (`src/constants/studentModuleRoutes.ts`).
-25. **Konular sayfası:** kodda çizimde olmayan ders hapları satırı var. İlerleme kartı "{n} / {m} konu tamamlandı" der (çizim "14 mikro ders bitti"; "Bu hafta 1 sa 20 dk" kodda yok).
+24. **Kapandı (17 Kasım): `/student/ders-cal/ders` uygulamadaki gibi kalır; `w-ders-dersler` çizimden kaldırıldı.** Eski not: Çizim (`w-ders-dersler`): Dersler sekmesinde ders kartları ızgarası. Kod (`pages/WorksLessonPage.tsx`): ilk dersin konularını açar ve hap sekme "Konular" bu yola bağlı (`src/constants/studentModuleRoutes.ts`).
+25. **Kapandı (17 Kasım): ders hapları çizimde.** Kalan: süzgeç (Tümü / Süren / Biten) web kodunda yok; İlerleme kartı "{n} / {m} konu tamamlandı" der (çizim "1 konu sürüyor · 0 konu bitti"; "Bu hafta 1 sa 20 dk" kodda yok).
 26. **Abonelik ve hak:** `components/WorkAccessGate.tsx` başlığı "Erişimin sınırlı", düğmeleri "Aboneliklerim", "Paketleri incele", "Konulara dön". Çizimdeki "Bugünkü konu hakkın doldu" alt sayfası yok. Hak kapısı yalnız oynatıcıda.
 27. **Vitrin:**
-    - "Kaldığın yerden" kartının başlığı konu adı (çizimde mikro ders adı). "{n} dakika kaldı" anahtarı kullanılmıyor.
+    - "Kaldığın yerden" kartının başlığı konu adı (çizim de artık konu adı). "{n} dakika kaldı" anahtarı kullanılmıyor.
     - Tekrar sayısı `reviews/summary` yerine `getWorkReviews(50).length`'ten.
     - İlk giriş hâli yerine "Henüz hedef sınavın seçili değil…" boş hâli var.
 28. **Hata metni:** ağ hatasında `apiRequest`'in uzun geliştirici metni ("Sunucuya bağlanılamadı. … .env …") `getWorksErrorMessage` ile ekrana geçebilir (`lib/worksError.ts`). README §7.8'e aykırı.
 29. **Zaman aşımı:** works çağrıları `timeoutMs` vermiyor; varsayılan süre doğrulanmadı.
-30. **Konu sonu:** kodda "Konuyu baştan oku", paylaşım kartı ve `ContentEndSurvey` var. Uyarı kutusunun başlığı "Sık yapılan hatalar" (çizimde "Dikkat").
+30. **Kapandı (17 Kasım): konu sonu ekleri çizimde.** Kalan: kodda "Konuyu baştan oku", paylaşım kartı ve `ContentEndSurvey` var. Uyarı kutusunun başlığı "Sık yapılan hatalar" (çizimde "Dikkat").

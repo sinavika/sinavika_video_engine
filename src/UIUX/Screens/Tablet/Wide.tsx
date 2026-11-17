@@ -2,12 +2,13 @@ import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
 import {Icon} from '../../Icons';
 import {MODULES, type ModuleKey} from '../../ModuleIdentity';
-import {Button, Chip, OptionRow, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
+import {Button, Chip, OptionRow, Segmented, Stack, Text} from '../../Parts/Shared';
 import {QuestionStrip, RoundButton, SideRail, SolveBar, Tablet, TimerProgress} from '../../Parts/Tablet';
 import {UI_RADIUS, UI_SHADOW} from '../../Tokens';
 import {PlanTaskCard} from '../../Parts/Study';
 import {PlanTodayScreen} from '../Mobile/Plan';
-import {AGIR_QUESTION, Kind, MICRO_LESSONS, microStates, Rich, TOPIC, WORK_TOPICS} from '../Mobile/Lessons';
+import {SinoTop} from '../Mobile/SinoAI';
+import {AGIR_QUESTION, Kind, Rich, sectionStates, TOPIC, TOPIC_SECTIONS, TopicProgress, WORK_TOPICS} from '../Mobile/Lessons';
 
 /**
  * Tablet without the pen: what a big screen adds for every student, with or
@@ -121,7 +122,6 @@ export const ExamKeyboardScreen: React.FC = () => {
 
 export const LessonSinoPanelScreen: React.FC = () => {
 	const colors = useColors();
-	const lessons = useModuleColors('lessons');
 	const Bubble: React.FC<{me?: boolean; children: React.ReactNode}> = ({me, children}) => (
 		<div style={{alignSelf: me ? 'flex-end' : 'flex-start', maxWidth: '88%', padding: '10px 13px', borderRadius: me ? '16px 16px 4px 16px' : '16px 16px 16px 4px', background: me ? colors.ink : colors.line2}}>
 			<Text role="body" size={14.5} color={me ? colors.bg : colors.ink} style={{lineHeight: '21px'}}>
@@ -133,18 +133,18 @@ export const LessonSinoPanelScreen: React.FC = () => {
 		<Tablet module="lessons" wash>
 			<SolveBar
 				pen={false}
-				title="TYT tarzı soru"
-				sub={`${TOPIC.title} · 5 / 5`}
+				title="Sınav tarzı soru"
+				sub={TOPIC.title}
 				center={
-					<div style={{width: 260, height: 5, borderRadius: 3, background: colors.line2}}>
-						<div style={{width: '90%', height: '100%', borderRadius: 3, background: lessons.color}} />
+					<div style={{width: 300}}>
+						<TopicProgress step={26} />
 					</div>
 				}
 				right={<RoundButton icon="sparkles" on label="SinoAI" />}
 			/>
 			<Stack row gap={20} align="stretch" style={{flex: 1, minHeight: 0, padding: '4px 22px 26px'}}>
 				<Pane style={{flex: 1}}>
-					<Kind>TYT tarzı · 5 / 5</Kind>
+					<Kind>Sınav tarzı</Kind>
 					<Text role="headline" size={20} weight={700} color={colors.ink} style={{lineHeight: '30px'}}>
 						<Rich text={AGIR_QUESTION.stem} />
 					</Text>
@@ -160,14 +160,10 @@ export const LessonSinoPanelScreen: React.FC = () => {
 					</Stack>
 				</Pane>
 				<Pane style={{width: 400, flexShrink: 0, padding: 0, gap: 0}}>
-					<Stack row gap={10} style={{padding: '14px 18px', borderBottom: `1px solid ${colors.line2}`}}>
-						<Tile module="sinoAi" size={34} />
-						<Stack grow gap={0}>
-							<Text role="headline">SinoAI</Text>
-							<Text role="meta">Bu adımı biliyor</Text>
-						</Stack>
-						<Icon name="x" size={20} color={colors.ink2} />
-					</Stack>
+					{/* The chat session's own top bar (SinoAiChatHeader), as in the app's SinoAiSidePanel; the step stays open on the left. The panel closes with the SinoAI button in the step bar. */}
+					<div style={{padding: '10px 6px 0', borderBottom: `1px solid ${colors.line2}`}}>
+						<SinoTop />
+					</div>
 					<Stack gap={10} style={{flex: 1, padding: 16}}>
 						<Bubble me>Neden C yanlış? Kamyon da zor çıkıyor.</Bubble>
 						<Bubble>
@@ -201,7 +197,7 @@ export const LessonTopicsSplitScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const mod = useModuleColors('lessons');
-	const states = microStates(1);
+	const states = sectionStates(1);
 	return (
 		<Tablet module="lessons" wash>
 			<Stack row align="stretch" style={{flex: 1, minHeight: 0}}>
@@ -213,7 +209,7 @@ export const LessonTopicsSplitScreen: React.FC = () => {
 					</Text>
 					<Text role="small">{t('15 konu · ilk denemede %80', '15 topics · 80% first try')}</Text>
 					<Stack gap={4} style={{marginTop: 8}}>
-						{WORK_TOPICS.map(([name, micro, done, minutes], index) => (
+						{WORK_TOPICS.map(([name, steps, done, minutes], index) => (
 							<Stack key={name} row gap={12} style={{padding: '11px 12px', borderRadius: 16, background: index === 0 ? mod.soft : 'transparent'}}>
 								<div style={{width: 28, height: 28, borderRadius: 14, border: `2px solid ${index === 0 ? mod.color : colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxSizing: 'border-box'}}>
 									<Text role="meta" weight={800} color={index === 0 ? mod.ink : colors.muted}>
@@ -224,9 +220,7 @@ export const LessonTopicsSplitScreen: React.FC = () => {
 									<Text role="headline" size={14.5} color={index === 0 ? mod.ink : colors.ink}>
 										{name}
 									</Text>
-									<Text role="meta">
-										{micro} mikro ders · {minutes} dk{done ? ` · ${done} bitti` : ''}
-									</Text>
+									<Text role="meta">{done ? t(`%${Math.round((done / steps) * 100)} tamamlandı`, `${Math.round((done / steps) * 100)}% done`) : t(`${steps} adım · ${minutes} dk`, `${steps} steps · ${minutes} min`)}</Text>
 								</Stack>
 							</Stack>
 						))}
@@ -236,14 +230,14 @@ export const LessonTopicsSplitScreen: React.FC = () => {
 					<div style={{borderRadius: 24, padding: 22, background: mod.gradient, display: 'flex', gap: 20, alignItems: 'center'}}>
 						<Stack gap={6} grow>
 							<Text role="over" color="rgba(255,255,255,0.9)">
-								{TOPIC.title} · 13 mikro ders
+								{`${TOPIC.title} · ${TOPIC.steps} ${t('adım', 'steps')} · ${TOPIC.minutes} ${t('dk', 'min')}`}
 							</Text>
 							<Text role="title" size={24} color="#FFFFFF">
 								{TOPIC.hook}
 							</Text>
 							<Stack row gap={10} style={{marginTop: 6}}>
 								<Button tone="white" icon="play" style={{color: mod.action}}>
-									Mecaz anlamla devam et
+									{t('Kaldığın yerden devam et', 'Continue where you left off')}
 								</Button>
 								<Chip tone="glass" icon="video">
 									{`Konu videosu · ${TOPIC.video}`}
@@ -254,27 +248,15 @@ export const LessonTopicsSplitScreen: React.FC = () => {
 							<Icon name="playCircle" size={44} color="#FFFFFF" />
 						</div>
 					</div>
-					<Text role="section">Mikro dersler</Text>
+					{/* A topic is one lesson: no list of parts. "Bu konuda" says what the topic teaches; the player opens where the student left off. */}
+					<Text role="section">{t('Bu konuda', 'In this topic')}</Text>
 					<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10}}>
-						{MICRO_LESSONS.slice(0, 10).map(([name, steps, minutes], index) => (
-							<Stack key={name} row gap={10} style={{padding: '10px 12px', borderRadius: 16, background: colors.card, border: `1px solid ${states[index] === 'now' ? mod.color : colors.line}`}}>
-								<div style={{width: 26, height: 26, borderRadius: 13, background: states[index] === 'done' ? mod.action : colors.line2, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-									{states[index] === 'done' ? (
-										<Icon name="check" size={14} color="#FFFFFF" />
-									) : (
-										<Text role="meta" weight={800}>
-											{index + 1}
-										</Text>
-									)}
-								</div>
-								<Stack grow gap={0}>
-									<Text role="headline" size={14}>
-										{name}
-									</Text>
-									<Text role="meta">
-										{steps} adım · {minutes} dk
-									</Text>
-								</Stack>
+						{TOPIC_SECTIONS.slice(0, 10).map(([name], index) => (
+							<Stack key={name} row gap={10} style={{padding: '10px 12px', borderRadius: 16, background: colors.card, border: `1px solid ${colors.line}`}}>
+								<Icon name={states[index] === 'done' ? 'checkCircle' : 'check'} size={18} color={states[index] === 'done' ? mod.color : colors.subtle} />
+								<Text role="headline" size={14} style={{flex: 1}}>
+									{name}
+								</Text>
 							</Stack>
 						))}
 					</div>
@@ -295,7 +277,7 @@ export const PlanWeekScreen: React.FC = () => {
 	const tasks: [number, ModuleKey, string, string, boolean?][] = [
 		[0, 'lessons', t('Gerçek anlam', 'Literal meaning'), t('8 dk', '8 min'), true],
 		[0, 'tests', t('Sayılar', 'Numbers'), t('20 soru', '20 q'), true],
-		[1, 'lessons', t('Mecaz anlam', 'Figurative meaning'), t('10 dk', '10 min'), true],
+		[1, 'lessons', t('Sözcükte Anlam', 'Word meaning'), t('10 dk', '10 min'), true],
 		[1, 'flashcards', t('Mol', 'The mole'), t('20 kart', '20 cards'), true],
 		[2, 'tests', t('Paragraf', 'Paragraphs'), t('20 soru', '20 q'), true],
 		[2, 'exam', t('Paragraf branş', 'Paragraph exam'), t('40 soru', '40 q')],

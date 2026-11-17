@@ -74,7 +74,7 @@ export const AppleTodayScreen: React.FC = () => {
 export const ApplePlanScreen: React.FC = () => {
 	const t = useT();
 	const rows: [string, string, string, boolean][] = [
-		[t('Mecaz anlam', 'Figurative meaning'), t('Dersler · 4 dk', 'Lessons · 4 min'), lessons, true],
+		[t('Sözcükte Anlam', 'Word meaning'), t('Dersler · 4 dk', 'Lessons · 4 min'), lessons, true],
 		[t('Problemler', 'Problems'), t('Testler · 20 soru', 'Tests · 20 q'), tests, false],
 		[t('12 kart', '12 cards'), t('Kartlar · 5 dk', 'Cards · 5 min'), cards, false],
 	];
@@ -84,9 +84,7 @@ export const ApplePlanScreen: React.FC = () => {
 				{rows.map(([title, sub, color, done]) => (
 					<WatchCard key={title} padding="8px 10px">
 						<Stack row gap={9}>
-							<div style={{width: 24, height: 24, borderRadius: 12, border: done ? 'none' : `2.5px solid ${color}`, background: done ? color : 'transparent', boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-								{done ? <Icon name="check" size={14} color="#000" stroke={3.2} /> : null}
-							</div>
+							<div style={{width: 24, height: 24, borderRadius: 12, border: done ? 'none' : `2.5px solid ${color}`, background: done ? color : 'transparent', boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>{done ? <Icon name="check" size={14} color="#000" stroke={3.2} /> : null}</div>
 							<Stack grow gap={0}>
 								<Text role="headline" size={14} color={done ? WATCH_MUTED : WATCH_INK} style={{textDecoration: done ? 'line-through' : undefined}}>
 									{title}

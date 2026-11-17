@@ -320,16 +320,16 @@ const TopicCard: React.FC<{square?: boolean}> = ({square}) => {
 							<Icon name="check" size={square ? 60 : 74} color={moduleAction('lessons')} stroke={3} />
 						</div>
 						<T size={square ? 88 : 104} weight={800} color="#FFFFFF" style={{lineHeight: 1.05}}>
-							{t('Mecaz anlam', 'Figurative meaning')}
+							{t('Sözcükte Anlam', 'Word meaning')}
 						</T>
 					</div>
 					<T size={SHARE.type.body} weight={600} color="rgba(255,255,255,0.9)">
-						{t('5 mikro ders, 42 adım.', '5 micro-lessons, 42 steps.')}
+						{t('TYT Türkçe · 42 adım.', 'TYT Turkish · 42 steps.')}
 					</T>
 					{square ? null : (
 						<>
 							<T size={SHARE.type.label} weight={800} color="rgba(255,255,255,0.85)" style={{letterSpacing: '0.06em', marginTop: 12}}>
-								{t('MİKRO DERSLER · 5 / 5', 'MICRO-LESSONS · 5 / 5')}
+								{t('BÖLÜMLER · 5 / 5', 'SECTIONS · 5 / 5')}
 							</T>
 							<Counters items={['1', '2', '3', '4', '5']} done={5} fill={moduleAction('lessons')} height={170} />
 						</>
@@ -337,7 +337,7 @@ const TopicCard: React.FC<{square?: boolean}> = ({square}) => {
 				</>
 			}
 			stats={[
-				{icon: 'layers', value: '5', label: t('mikro ders', 'micro-lessons')},
+				{icon: 'layers', value: '42', label: t('adım', 'steps')},
 				{icon: 'checkCircle', value: t('%88', '88%'), label: t('ilk denemede doğru', 'right first time')},
 				{icon: 'clock', value: t('34 dk', '34 min'), label: t('toplam', 'in total')},
 			]}

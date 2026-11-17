@@ -13,8 +13,8 @@
  * - A button that opens another module is in that module's colour (Testi aç
  *   is Testler indigo wherever it sits).
  * - Brand orange is only for brand surfaces: the logo, sign-in and sign-up,
- *   onboarding, payment and subscription, profile and the public site.
- *   Denemeler's own colour is orange, so it is the one orange module.
+ *   onboarding, payment and subscription, profile and the public site. No
+ *   module is orange: Denemeler moved to olive green (owner, 17 Nov 2026).
  * - Tints are the identity colour at fixed opacities (see `moduleTint`), not
  *   new colours: "saydam" layers of the same hue.
  */
@@ -53,8 +53,9 @@ export const MODULES: Record<ModuleKey, ModuleIdentity> = {
 		name: {tr: 'Denemeler', en: 'Practice exams'},
 		tagline: {tr: 'Deneme çöz, sonucunu gör', en: 'Take an exam, see your result'},
 		icon: 'exam',
-		color: {light: '#E8590C', dark: '#FB8A3C'},
-		gradientTo: '#F59E0B',
+		// Olive green since 17 Nov 2026 (owner): orange read as the brand colour.
+		color: {light: '#4D7C0F', dark: '#A3E635'},
+		gradientTo: '#65A30D',
 		code: {api: 'Exams · ExamStudents · Scorings · QuestionSolutions · Statistics', route: '/api/StudentExamStudent', web: 'exams · exam-sessions · exam-results · question-solutions · statistics', mobile: 'exam', mobilePrefix: 'Exam'},
 		tabs: [
 			{label: {tr: 'Denemeler', en: 'Exams'}, icon: 'exam'},
@@ -226,8 +227,8 @@ export const ACTION_CONTRAST = 4.5;
  * The fill of a module's buttons: the light identity colour, darkened in 5 %
  * steps until white text reads at 4.5:1. The same in both themes, because the
  * lighter dark-theme colours left white text at 1.5–3.0:1 (UI/UX review,
- * 29 Oct 2026). Dersler #0277B3, Ders Planı #0C857A, Denemeler #C54C0A; the
- * others already pass.
+ * 29 Oct 2026). Dersler #0277B3, Ders Planı #0C857A; the others, Denemeler
+ * #4D7C0F among them, already pass.
  */
 export const moduleAction = (key: ModuleKey): string => {
 	const base = MODULES[key].color.light;

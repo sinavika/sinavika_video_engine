@@ -5,7 +5,7 @@ Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çi
 
 ## 1. Modül özeti
 
-- **Ne işe yarar:** Öğrencinin uygulamaya ilk girişi ve hesabı. Mobilde karşılama, planı kuran beş adım, planın hazır ekranı, planı kaydeden hesap, 3 günlük mağaza denemesi, bugünkü ilk mikro ders ve ondan sonra bildirim izni. Ayrıca oturum açma (Apple, Google, e-posta kodu), kod ekranı, kayıt, şifremi unuttum ve misafir için hesap alt sayfası. Web'de giriş/kayıt iki yarım düzende, onboarding beş adım ve paket seçimiyle.
+- **Ne işe yarar:** Öğrencinin uygulamaya ilk girişi ve hesabı. Mobilde karşılama, planı kuran beş adım, planın hazır ekranı, planı kaydeden hesap, 3 günlük mağaza denemesi, bugünkü ilk konu ve ilk çalışmadan sonra bildirim izni. Ayrıca oturum açma (Apple, Google, e-posta kodu), kod ekranı, kayıt, şifremi unuttum ve misafir için hesap alt sayfası. Web'de giriş/kayıt iki yarım düzende, onboarding beş adım ve paket seçimiyle.
 - **Öğrencinin ana işi:** İki dakikada kendi planını görmek, sonra hesabını ve denemesini başlatmak. Plan, hesap ve ödemeden önce gösterilir (UIUX-Rehberi §5.3).
 - **Renk:** Marka yüzeyi (Modul-Kimligi §1). Modül rengi yok; vurgu marka turuncusu:
   - `brand` `#EA580C` / koyu `#F97316`: logo, odaklı alan kenarı, kod kutusu odağı, ilerleme çubuğu, karşılama başlığının ikinci satırı.
@@ -38,7 +38,7 @@ Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çi
 | `m-onb-6-hesap` | mobil | Planını kaydet | `AuthRegister` | yok | dolu |
 | `w-onb-6-paket` | web | Web onboarding 6 · Paketini seç | `/student/baslangic` | `OnboardingPage.tsx` (adım 5) | dolu |
 | `m-onb-7-deneme` | mobil | 3 gün ücretsiz | `Onboarding · OnboardingTrialStep` | `.../steps/OnboardingTrialStep.tsx` (paket ekranı) | dolu |
-| `m-onb-8-bildirim` | mobil | Bildirim izni · ilk mikro dersten sonra | — | yok (izin modülden dönüşte: `NotificationStudyPlanPromptHost`) | dolu |
+| `m-onb-8-bildirim` | mobil | Bildirim izni · ilk çalışmadan sonra | — | yok (izin modülden dönüşte: `NotificationStudyPlanPromptHost`) | dolu |
 | `m-giris-oturum-ac` | mobil | Oturum aç veya kaydol | `AuthLogin` | `src/modules/auth/presentation/guest/screens/AuthLoginScreen.tsx` | dolu |
 | `w-giris` | web | Giriş yap | `/student/login` | `src/features/auth/pages/LoginPage.tsx` | dolu |
 | `m-giris-kod` | mobil | Doğrulama kodu | `AuthLogin` | `AuthLoginScreen.tsx` (`otp` adımı) | dolu |
@@ -68,8 +68,8 @@ Geçiş türleri: adımlar arası **replace** (onboarding tek ekran içinde adı
    - "Google ile devam et" → Google penceresi → `POST StudentAuth/google/register` → 8. adım.
    - "E-posta ile devam et" → `m-kayit-eposta` [push] → "Devam et" → `POST StudentAuth/email-login` (`email`) → `m-giris-kod` → 6 hane → `POST StudentAuth/email-login` (`email`, `code`) → yeni hesapsa `m-kayit-bilgiler` → "Hesabımı oluştur" (`name` ile) → 8. adım.
    - Sistem penceresinden vazgeçilirse hata gösterilmez; ekran yerinde kalır.
-8. `m-onb-7-deneme` → "3 gün ücretsiz başla / Start 3 free days" → mağaza alım penceresi [modal, Profil belgesi]. Başarı → bugünkü planın ilk mikro dersi (`WorkMikro`, ilk adım ekranı ör. `m-ders-tanim`) [replace: onboarding kapanır]. Vazgeçme → ekran yerinde. "Paketleri karşılaştır / Compare plans" → `m-profil-paketler` [push].
-9. İlk mikro ders biter → `m-ders-mikro-bitti` → `m-onb-8-bildirim` [push]. "Bildirimleri aç" → sistem izin penceresi; "Şimdi değil" → izin sorulmaz. Sonraki ekran çizimde tanımlı değil (doğrulanmadı); bugünkü kod ana ekrana girer.
+8. `m-onb-7-deneme` → "3 gün ücretsiz başla / Start 3 free days" → mağaza alım penceresi [modal, Profil belgesi]. Başarı → bugünkü planın ilk konusu, oynatıcıda ilk adımdan (`WorkMikro`, ör. `m-ders-tanim`) [replace: onboarding kapanır]. Vazgeçme → ekran yerinde. "Paketleri karşılaştır / Compare plans" → `m-profil-paketler` [push].
+9. İlk çalışma biter (öğrenci oynatıcıdan ilk kez çıkar ya da ilk konu sonuna ulaşır; ara "bitti" ekranı yok) → `m-onb-8-bildirim` [push]. "Bildirimleri aç" → sistem izin penceresi; "Şimdi değil" → izin sorulmaz. Sonraki ekran çizimde tanımlı değil (doğrulanmadı); bugünkü kod ana ekrana girer.
 - **Geri:** Karşılamadan geri yok (Android geri uygulamayı kapatır). Diğer adımlarda sol üstteki geri ve sistem geri bir önceki adıma döner; cevaplar korunur. Ödeme ekranından cevaplara dönülebilir.
 - **Yarıda bırakma:** Adım ve cevaplar her değişimde cihaza yazılır (karşılama hariç); uygulama kapanırsa aynı adımdan devam edilir. Sınav kataloğu değiştiyse geçersiz seçimler düşer. Plan bir kez kurulur; geri dönülüp yeniden ilerlenirse yeniden kurulmaz.
 
@@ -195,7 +195,7 @@ Ortak ölçüler (mobil): tuval 390 × 844 pt, durum çubuğu 50. `BottomBar`: i
 - **Görseller:** `acik/mobil/m-onb-5-plan.png`, `koyu/...`, `en/...`; `acik/web-panel/w-onb-5-plan.png`
 - **Yerleşim:** Adım 5/5. Çip "Hazır" / "Ready"; başlık "YKS planın hazır" / "Your YKS plan is ready" (sınav adı veriden); metin "48 netten 78 nete, günde 3 saatlik dengeli tempoyla." / "From 48 to 78, at a balanced 3 hours a day."
   - `WeekPlan` kartı (`Card` iç 14): üst satır `section` 15 "Bu hafta" / "This week" + `Chip` "12–18 Ekim" / "12–18 Oct"; yedi sütun (genişlik 44, aralık 5): gün `meta` (bugün `ink`), tarih dairesi 30 (bugün `ink` dolgu, `bg` yazı; `headline` 13), altında en çok 3 görev bloğu (38 × 24, köşe 8, modül rengi %16 zemin, solda 3 pt modül rengi çizgi). Altta açıklama: 8 pt kare (köşe 3) + `meta` modül adı: Dersler, Testler, Denemeler, Bilgi Kartları.
-  - İlk görev kartı `Card tone="moduleLine"` Dersler (iç 14; `card` zemin, 1,5 pt Dersler `line`, gölge): `Tile` Dersler 42; `over` Dersler `ink` "Bugünkü ilk görevin" / "Your first task today"; `headline` "Türkçe · Sözcükte Anlam" / "Turkish · Word meaning"; `small` "Dersler · ilk 3 mikro ders · 8 dk" / "Lessons · first 3 micro-lessons · 8 min"; sağda ok.
+  - İlk görev kartı `Card tone="moduleLine"` Dersler (iç 14; `card` zemin, 1,5 pt Dersler `line`, gölge): `Tile` Dersler 42; `over` Dersler `ink` "Bugünkü ilk görevin" / "Your first task today"; `headline` "Türkçe · Sözcükte Anlam" / "Turkish · Word meaning"; `small` "Dersler · ilk konu · 8 dk" / "Lessons · first topic · 8 min"; sağda ok.
   - Düğme "Planımı kaydet" / "Save my plan".
 - **Veri:** Plan tamamlama yanıtı (haftalık saat, ilk hafta görev sayısı, sınava kalan gün, günlere göre görevler). Modül renkleri görev türünden.
 - **Etkileşimler:** İlk görev kartı dokunulmaz (bilgi; hesap ve deneme önce gelir). "Planımı kaydet" → `m-onb-6-hesap` (zaten oturum açıksa `m-onb-7-deneme`; doğrulanmadı).
@@ -224,19 +224,19 @@ Ortak ölçüler (mobil): tuval 390 × 844 pt, durum çubuğu 50. `BottomBar`: i
 - **Etkileşimler:** §3.1/8. Mağaza alımı ve "Paketleri karşılaştır" Profil belgesine aittir.
 - **Kurallar:** Üç tarih açık (bugün, 2. gün hatırlatma, 3. gün ücret). Ödemeden geçiş yok.
 
-### `m-onb-8-bildirim` Bildirim izni · ilk mikro dersten sonra
+### `m-onb-8-bildirim` Bildirim izni · ilk çalışmadan sonra
 
 - **Görseller:** `acik/mobil/m-onb-8-bildirim.png`, `koyu/...`, `en/...`
 - **Çerçeve:** Üst çubuk yok, tab bar yok. Dersler bağlamı: zemin `linear-gradient(180deg, Dersler wash 0%, bg 50%)`.
 - **Yerleşim:** İçerik ortalı, üst 60, aralık 16:
   - 96 pt kutu (köşe 32, `card`, gölge `float`), `bell` 44 Dersler `color`.
-  - `Chip tone="success"` `checkCircle`: "İlk mikro dersin bitti" / "First micro-lesson done".
+  - `Chip tone="success"` `checkCircle`: "İlk çalışman bitti" / "First session done".
   - `hero` ortalı: "Yarın 08:00’de hatırlatalım mı?" / "Shall we remind you at 08:00 tomorrow?"
   - `body` ortalı: "Günün planını sabah, deneme sonucunu açıklanınca haber veririz. Gece 22:00–08:00 sessiz." / "Your plan in the morning, exam results when ready. Quiet 22:00–08:00."
   - Örnek bildirimler `Card` (iç 12, tam genişlik, sola yaslı; satır arası 8): `Tile` 32 Ders Planı + `headline` 13,5 "Bugünün planı hazır" / "Today's plan is ready" + `meta` "08:00"; `Tile` Denemeler + "Sonucun hazır: TYT Deneme 4" / "Your result: TYT Exam 4" + "12:24".
   - `BottomBar`: birincil `lg` (Dersler `action`) "Bildirimleri aç" / "Turn on notifications"; `ghost` `lg` "Şimdi değil" / "Not now".
 - **Etkileşimler:** "Bildirimleri aç" → sistem izin penceresi; izin verilirse cihaz jetonu kaydedilir (API'de doğrulanmalı). "Şimdi değil" → sistem penceresi açılmaz, istek sonra tekrar sorulabilir (kaç gün sonra: doğrulanmadı).
-- **Kurallar:** Sistem penceresinden önce kendi açıklamamız. İzin onboarding'de değil, ilk mikro ders bitince sorulur. Sessiz saat ve saat bilgisi Saat-Bildirim.md ile aynı olmalı (bkz. §7).
+- **Kurallar:** Sistem penceresinden önce kendi açıklamamız. İzin onboarding'de değil, ilk çalışmadan sonra sorulur. Sessiz saat ve saat bilgisi Saat-Bildirim.md ile aynı olmalı (bkz. §7).
 
 ### `m-giris-oturum-ac` Oturum aç veya kaydol · web: `w-giris`
 
@@ -350,7 +350,7 @@ Ortak ölçüler (mobil): tuval 390 × 844 pt, durum çubuğu 50. `BottomBar`: i
 |---|---|---|---|---|---|
 | 1 | görsel | mobil | tüm `m-giris-*`, `m-kayit-*`, `m-sifre-*`, `m-onb-*` | Açık, koyu, EN | `acik/`, `koyu/`, `en/acik/mobil/<id>.png` ile yan yana aynı |
 | 2 | görsel | web | `w-giris`, `w-giris-kod`, `w-kayit`, `w-sifre-*`, `w-onb-*` | 1440 × 900 açık ve koyu | `web-panel/<id>.png` ile aynı |
-| 3 | e2e | mobil | 3.1 | Karşılama → 5 adım → plan → Apple → deneme → mağaza (test ortamı) | İlk mikro ders açılır; bitince bildirim izni ekranı |
+| 3 | e2e | mobil | 3.1 | Karşılama → 5 adım → plan → Apple → deneme → mağaza (test ortamı) | Bugünkü ilk konu oynatıcıda açılır; ilk çalışmadan sonra bildirim izni ekranı |
 | 4 | e2e | mobil | 3.1 | E-posta yolu: kod → ad → deneme | Hesap açılır, ad kaydolur, deneme ekranı |
 | 5 | e2e | mobil | onboarding | 3. adımda uygulamayı kapat, aç | 3. adım ve önceki cevaplar geri gelir |
 | 6 | e2e | mobil | onboarding | "Devam et"e iki kez hızlı dokun | Yalnız bir adım ilerler |
@@ -379,7 +379,7 @@ Ortak ölçüler (mobil): tuval 390 × 844 pt, durum çubuğu 50. `BottomBar`: i
 Mobil kök: `C:\Users\onurc\Desktop\sinavika_mobile_reactnative\src`. Web kök: `C:\Users\onurc\source\repos\sinavika_frontend_student\src`.
 
 1. **Mobil onboarding sırası farklı.** `app/onboarding/config/onboardingSteps.ts`: karşılama → (bölge) → sınav → net → tempo → dersler → ödeme. Ayrı "Planın hazır" ekranı (`m-onb-5-plan`) yok; plan özeti ödeme ekranının üstünde (`OnboardingTrialStep.tsx`, `StudyPlanOnboardingSummaryCard`). Hesap ekranı (`m-onb-6-hesap`) yok: satın alma hesapsız yapılır, erişim cihaza bağlanır; hesap isteği sonra uygulama içinde gelir (`registerReminderStore`). İlerleme çubuğu planı değil ödeme adımını 5. sayar.
-2. **İlk mikro ders ve bildirim izni.** Satın almadan sonra ana ekrana girilir, ilk mikro ders açılmaz. Bildirim izni ilk mikro dersten sonra değil, öğrenci bir modülden ana ekrana döndüğünde sorulur (`infrastructure/engagement/inAppAskQueue.ts`, `app/navigation/RootNavigator.tsx`). Metinler farklı: "Çalışma planını sana hatırlatalım mı?" / "Evet, hatırlat" / "Şimdi değil" (`catalogs/tr-TR/onboarding.ts`).
+2. **İlk konu ve bildirim izni.** Satın almadan sonra ana ekrana girilir, ilk konu açılmaz. Bildirim izni ilk çalışmadan hemen sonra değil, öğrenci bir modülden ana ekrana döndüğünde sorulur (`infrastructure/engagement/inAppAskQueue.ts`, `app/navigation/RootNavigator.tsx`). Metinler farklı: "Çalışma planını sana hatırlatalım mı?" / "Evet, hatırlat" / "Şimdi değil" (`catalogs/tr-TR/onboarding.ts`).
 3. **Tek giriş ekranı, varsayılan şifre.** `AuthLogin` ve `AuthRegister` aynı ekranı açar (`RootNavigator.tsx`). `AuthLoginScreen.tsx` varsayılan adımı e-posta + şifre (`step = 'password'`); kod yolu "Şifren yok mu? Kodla devam et" bağlantısıyla ikincil (kod adımından dönüş "Şifrenle giriş yap"). Çizimde e-posta kodu varsayılan, şifre ikincil ("Şifrenle giriş yap"). Ad soran `m-kayit-bilgiler` ekranı kodda yok (DTO'da `name` var). "Hesap oluştur" alt satırı ve "Planını kaydet" çipi yok; ekranda yasal onay cümlesi ve "Paketlere dön" bağlantısı var.
 4. **Misafir alt sayfası.** `AuthEntrySheet.tsx` ortalı bir pencere (`AppDialog`, en çok 380 pt), alt sayfa değil; metin "Devam etmek için giriş yap" / "Hesabınla giriş yapabilir veya ücretsiz kayıt oluşturabilirsin."
 5. **Gün kısaltmaları.** Mobil tempo adımında günler tek harf: "P S Ç P C C P" (EN "M …") (`catalogs/tr-TR/onboarding.ts` `dayMon…daySun`); çizimde "Pzt … Paz".

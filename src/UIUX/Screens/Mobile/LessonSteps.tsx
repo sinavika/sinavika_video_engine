@@ -3,16 +3,16 @@ import {useColors, useModuleColors, useUI} from '../../Context';
 import {Icon} from '../../Icons';
 import {Button, Stack, Text} from '../../Parts/Shared';
 import {UI_SHADOW} from '../../Tokens';
-import {Feedback, Ghost, Kind, Main, PlainCard, Rich, Screen, StepBar, Title} from './Lessons';
+import {Feedback, Kind, PlainCard, Rich, Screen, StepBar, Title} from './Lessons';
 
 /**
  * Dersler step types that are live in the app (live test, 3 Nov 2026) but had
  * no drawing: Grupla, Eşleştir, Çevir, Seç, Çoklu seçim, yazmalı Boşluk,
- * formula and table steps, and the section start. Each drawing also fixes
+ * formula and table steps. Each drawing also fixes
  * what the live test found: full text in group boxes, bold target words,
  * "Kontrol et" always visible, the inline blank is the input itself, real
- * fractions and roots, readable table cells, a way back to the previous
- * section.
+ * fractions and roots, readable table cells. A section boundary has no page
+ * of its own (owner, 17 Nov 2026): the player moves on.
  */
 
 /* ------------------------------------------------------------------ parts */
@@ -92,7 +92,7 @@ export const LessonGroupScreen: React.FC = () => {
 		</div>
 	);
 	return (
-		<Screen bar={<StepBar done={2} count={6} />} foot={<Foot action="Kontrol et" disabled note="2 kart kaldı" />} gap={11}>
+		<Screen bar={<StepBar done={2} />} foot={<Foot action="Kontrol et" disabled note="2 kart kaldı" />} gap={11}>
 			<Kind>Grupla · 3 / 6</Kind>
 			<Title size={22}>Koyu sözcük gerçek mi, mecaz mı?</Title>
 			<Text role="small" color={colors.ink2}>
@@ -138,7 +138,7 @@ export const LessonMatchScreen: React.FC = () => {
 		</div>
 	);
 	return (
-		<Screen bar={<StepBar done={3} count={6} />} foot={<Foot action="Kontrol et" disabled note="1 eşleşme kaldı" />} gap={11}>
+		<Screen bar={<StepBar done={3} />} foot={<Foot action="Kontrol et" disabled note="1 eşleşme kaldı" />} gap={11}>
 			<Kind>Eşleştir · 4 / 6</Kind>
 			<Title size={22}>Anlam türünü örneğiyle eşleştir</Title>
 			<Text role="small" color={colors.ink2}>
@@ -180,7 +180,7 @@ export const LessonFlipScreen: React.FC = () => {
 		</div>
 	);
 	return (
-		<Screen bar={<StepBar done={3} count={6} />} foot={<Foot action="Devam" note="1 kart tekrar listene eklendi" />} gap={11}>
+		<Screen bar={<StepBar done={3} />} foot={<Foot action="Devam" note="1 kart tekrar listene eklendi" />} gap={11}>
 			<Kind>Çevir · 4 / 6</Kind>
 			<Title size={22}>Önce hatırla, sonra çevir</Title>
 			<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10}}>
@@ -226,7 +226,7 @@ export const LessonPickWordsScreen: React.FC = () => {
 		['damladı.', false],
 	];
 	return (
-		<Screen bar={<StepBar done={2} count={6} />} foot={<Foot action="Kontrol et" />} gap={12}>
+		<Screen bar={<StepBar done={2} />} foot={<Foot action="Kontrol et" />} gap={12}>
 			<Kind>Yansıma sözcükler · 3 / 6</Kind>
 			<Title size={22}>Yansımayı bul</Title>
 			<Text role="small" color={colors.ink2}>
@@ -263,7 +263,7 @@ export const LessonMultiScreen: React.FC = () => {
 		['ses', false, 'miss'],
 	];
 	return (
-		<Screen bar={<StepBar done={4} count={6} />} foot={<Foot action="Devam" />} gap={10}>
+		<Screen bar={<StepBar done={4} />} foot={<Foot action="Devam" />} gap={10}>
 			<Kind>Çoklu seçim · 5 / 6</Kind>
 			<Title size={22}>Hangileri somut anlamlıdır?</Title>
 			<Text role="small" color={colors.ink2}>
@@ -322,7 +322,7 @@ export const LessonTypedBlankScreen: React.FC = () => {
 	const mod = useModuleColors('lessons');
 	return (
 		<Screen
-			bar={<StepBar done={4} count={6} />}
+			bar={<StepBar done={4} />}
 			foot={
 				<div style={{margin: '0 -20px -30px'}}>
 					<div style={{padding: '0 20px 10px'}}>
@@ -381,7 +381,7 @@ export const LessonFormulaScreen: React.FC = () => {
 	const mod = useModuleColors('lessons');
 	const cell: React.CSSProperties = {padding: '9px 10px', borderBottom: `1px solid ${colors.line2}`, fontSize: 15, color: colors.ink, fontWeight: 600};
 	return (
-		<Screen bar={<StepBar done={1} count={5} />} foot={<Foot action="Devam" />} gap={12}>
+		<Screen bar={<StepBar done={1} />} foot={<Foot action="Devam" />} gap={12}>
 			<Kind>Temel Kavramlar · 2 / 5</Kind>
 			<Title size={22}>Sayı kümeleri</Title>
 			<PlainCard gap={8}>
@@ -421,71 +421,6 @@ export const LessonFormulaScreen: React.FC = () => {
 				</table>
 			</div>
 			<Text role="meta">Tablo yana kayar; hücre yazısı en az 15 pt.</Text>
-		</Screen>
-	);
-};
-
-/* ------------------------------------------------------------------ Section start */
-
-export const LessonSectionScreen: React.FC = () => {
-	const colors = useColors();
-	const mod = useModuleColors('lessons');
-	const sections: [string, 'done' | 'now' | 'next'][] = [
-		['Gerçek ve mecaz', 'done'],
-		['Anlam aktarmaları', 'now'],
-		['Ses ve yansıma', 'next'],
-		['Bağlamda anlam', 'next'],
-	];
-	return (
-		<Screen
-			bar={<StepBar done={0} count={8} />}
-			foot={
-				<Stack row gap={10}>
-					<div style={{flex: 1}}>
-						<Ghost icon="left">Önceki bölüm</Ghost>
-					</div>
-					<div style={{flex: 1}}>
-						<Main>Başla</Main>
-					</div>
-				</Stack>
-			}
-			gap={14}
-		>
-			<Kind>Bölüm 2 / 4 · Sözcükte Anlam</Kind>
-			<Title size={26}>Anlam aktarmaları</Title>
-			<Text role="body" color={colors.ink2}>
-				Bir sözcüğün yerine, onunla ilgisi olan başka bir sözcüğü kullanmak. 8 adım · yaklaşık 6 dk.
-			</Text>
-			<PlainCard gap={10}>
-				<Text role="over">Bu bölümde</Text>
-				{['Ad aktarması (mecaz-ı mürsel)', 'Dolaylama ve güzel adlandırma', 'Kişileştirme ve somutlama'].map((line) => (
-					<Stack key={line} row gap={10}>
-						<Icon name="check" size={16} color={mod.color} />
-						<Text role="body" size={15} color={colors.ink}>
-							{line}
-						</Text>
-					</Stack>
-				))}
-			</PlainCard>
-			<Stack gap={8}>
-				{sections.map(([name, state], index) => (
-					<Stack key={name} row gap={12} style={{padding: '10px 12px', borderRadius: 16, background: state === 'now' ? mod.wash : 'transparent', border: `1px solid ${state === 'now' ? mod.line : colors.line}`}}>
-						<div style={{width: 28, height: 28, borderRadius: 14, background: state === 'done' ? mod.action : state === 'now' ? colors.card : colors.line2, border: state === 'now' ? `2px solid ${mod.color}` : undefined, display: 'flex', alignItems: 'center', justifyContent: 'center', boxSizing: 'border-box'}}>
-							{state === 'done' ? (
-								<Icon name="check" size={14} color="#FFFFFF" />
-							) : (
-								<Text role="meta" weight={800}>
-									{index + 1}
-								</Text>
-							)}
-						</div>
-						<Text role="headline" style={{flex: 1}} color={state === 'next' ? colors.muted : colors.ink}>
-							{name}
-						</Text>
-						{state === 'done' ? <Text role="meta">Tekrar bak</Text> : null}
-					</Stack>
-				))}
-			</Stack>
 		</Screen>
 	);
 };

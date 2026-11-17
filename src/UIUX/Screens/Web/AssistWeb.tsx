@@ -1,8 +1,9 @@
 import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
-import {Icon, type UIIconName} from '../../Icons';
-import {Bar, Button, Card, Chip, List, ListRow, Pct, Ring, Stack, Text, Tile} from '../../Parts/Shared';
+import {Icon} from '../../Icons';
+import {Bar, Button, Card, Chip, Field, List, ListRow, Pct, Ring, Stack, Text, Tile} from '../../Parts/Shared';
 import {Grid, Immersive, ModuleBanner, ModuleHead, Panel, WCard} from '../../Parts/Web';
+import {ModuleWeekCard} from '../../Parts/Study';
 import {UI_SHADOW} from '../../Tokens';
 
 /** Web Bilgi Kartları, Akıllı Özet and SinoAI. */
@@ -12,25 +13,27 @@ export const WebCardsHomeScreen: React.FC = () => {
 	const mod = useModuleColors('flashcards');
 	return (
 		<Panel active="flashcards">
-			<ModuleHead
-				module="flashcards"
-				tab={0}
-				tabs={[t('Kartlar', 'Cards'), t('Bugün', 'Today'), t('Gözat', 'Browse'), t('Kaydedilenler', 'Saved')]}
-				title={t('Bilgi Kartları', 'Flashcards')}
-				sub={t('6 deste · 32 kart bugün tekrar bekliyor', '6 decks · 32 due today')}
-				actions={
-					<Button tone="ghost" icon="plus">
-						{t('Yeni deste', 'New deck')}
-					</Button>
-				}
-			/>
-			<ModuleBanner module="flashcards" over={t('Bugün tekrar', 'Review today')} title={t('32 kart seni bekliyor', '32 cards are due')} text={t('Unutmak üzere olduğun kartlar. Yaklaşık 8 dakika; seri 7 gün.', 'Cards you are about to forget. About 8 minutes; 7-day streak.')} action={t('Tekrara başla', 'Start review')}>
-				<Ring value={0.37} size={110} stroke={10} color="#FFFFFF" track="rgba(255,255,255,0.3)">
-					<Text role="section" color="#FFFFFF">
-						12/32
-					</Text>
-				</Ring>
-			</ModuleBanner>
+			<ModuleHead module="flashcards" tab={0} tabs={[t('Kartlar', 'Cards'), t('Bugün', 'Today'), t('Gözat', 'Browse'), t('Kaydedilenler', 'Saved')]} title={t('Bilgi Kartları', 'Flashcards')} sub={t('6 deste · 32 kart bugün tekrar bekliyor', '6 decks · 32 due today')} />
+			<Grid columns="1.6fr 1fr">
+				<ModuleBanner module="flashcards" over={t('Bugün tekrar', 'Review today')} title={t('32 kart seni bekliyor', '32 cards are due')} text={t('Unutmak üzere olduğun kartlar. Yaklaşık 8 dakika; seri 7 gün.', 'Cards you are about to forget. About 8 minutes; 7-day streak.')} action={t('Tekrara başla', 'Start review')}>
+					<Ring value={0.37} size={110} stroke={10} color="#FFFFFF" track="rgba(255,255,255,0.3)">
+						<Text role="section" color="#FFFFFF">
+							12/32
+						</Text>
+					</Ring>
+				</ModuleBanner>
+				<ModuleWeekCard
+					module="flashcards"
+					time={t('45 dk', '45 min')}
+					change={-6}
+					bars={[5, 10, 0, 8, 12, 0, 10]}
+					stats={[
+						[t('Çalışılan kart', 'Cards studied'), '210'],
+						[t('Başarı', 'Success'), t('%81', '81%')],
+						[t('Seri', 'Streak'), t('5 gün', '5 days')],
+					]}
+				/>
+			</Grid>
 			<Grid columns="repeat(3, 1fr)" gap={14}>
 				{[
 					['Kimya', 'Chemistry', 3, 0.62, 12],
@@ -92,29 +95,47 @@ export const WebCardsBrowseScreen: React.FC = () => {
 						</Stack>
 					))}
 				</Card>
-				<Grid columns="repeat(3, 1fr)" gap={14}>
-					{[
-						['1 mol nedir?', 'What is 1 mole?', 'Tanım', 'Definition'],
-						['Avogadro sayısı kaçtır?', 'Avogadro’s number?', 'Sayı', 'Number'],
-						['Mol kütlesi nasıl bulunur?', 'Molar mass?', 'Formül', 'Formula'],
-						['Normal koşullarda 1 mol gaz kaç L?', '1 mol gas at STP?', 'Sayı', 'Number'],
-						['Mol – tanecik ilişkisi', 'Moles and particles', 'İlişki', 'Relation'],
-						['Mol – kütle ilişkisi', 'Moles and mass', 'İlişki', 'Relation'],
-					].map(([tr, en, kindTr, kindEn]) => (
-						<Card key={tr} padding={18} style={{minHeight: 150}}>
-							<Stack gap={12}>
-								<Chip tone="module" module="flashcards" size="sm">
-									{t(kindTr, kindEn)}
-								</Chip>
-								<Text role="section">{t(tr, en)}</Text>
-								<Stack row gap={6}>
-									<Icon name="bookmark" size={16} color={colors.subtle} />
-									<Text role="meta">{t('Kaydet', 'Save')}</Text>
+				{/* Deck choice is a chip row above the card grid; the deck's line and "Bu desteyi çalış" under it (owner, 17 Nov 2026). */}
+				<Stack gap={14}>
+					<Stack row gap={8} wrap>
+						{[t('Mol kavramı', 'The mole'), t('Atom modelleri', 'Atomic models'), t('Periyodik sistem', 'Periodic table')].map((label, index) => (
+							<Chip key={label} tone={index ? 'outline' : 'moduleSolid'} module="flashcards" style={{height: 34, fontSize: 13}}>
+								{label}
+							</Chip>
+						))}
+					</Stack>
+					<Stack row justify="space-between">
+						<Text role="small" weight={700}>
+							{t('18/24 kart · %75', '18/24 cards · 75%')}
+						</Text>
+						<Button tone="module" module="flashcards" icon="play">
+							{t('Bu desteyi çalış', 'Study this deck')}
+						</Button>
+					</Stack>
+					<Grid columns="repeat(3, 1fr)" gap={14}>
+						{[
+							['1 mol nedir?', 'What is 1 mole?', 'Tanım', 'Definition'],
+							['Avogadro sayısı kaçtır?', 'Avogadro’s number?', 'Sayı', 'Number'],
+							['Mol kütlesi nasıl bulunur?', 'Molar mass?', 'Formül', 'Formula'],
+							['Normal koşullarda 1 mol gaz kaç L?', '1 mol gas at STP?', 'Sayı', 'Number'],
+							['Mol – tanecik ilişkisi', 'Moles and particles', 'İlişki', 'Relation'],
+							['Mol – kütle ilişkisi', 'Moles and mass', 'İlişki', 'Relation'],
+						].map(([tr, en, kindTr, kindEn]) => (
+							<Card key={tr} padding={18} style={{minHeight: 150}}>
+								<Stack gap={12}>
+									<Chip tone="module" module="flashcards" size="sm">
+										{t(kindTr, kindEn)}
+									</Chip>
+									<Text role="section">{t(tr, en)}</Text>
+									<Stack row gap={6}>
+										<Icon name="bookmark" size={16} color={colors.subtle} />
+										<Text role="meta">{t('Kaydet', 'Save')}</Text>
+									</Stack>
 								</Stack>
-							</Stack>
-						</Card>
-					))}
-				</Grid>
+							</Card>
+						))}
+					</Grid>
+				</Stack>
 			</Grid>
 		</Panel>
 	);
@@ -156,6 +177,7 @@ export const WebCardSessionScreen: React.FC = () => {
 						</Stack>
 					))}
 				</Stack>
+				{/* No ←/→ to the previous or next card (removed on mobile too). */}
 				<Text role="meta">{t('Boşluk: çevir · 1–3: puanla', 'Space: flip · 1–3: rate')}</Text>
 			</Stack>
 		</Immersive>
@@ -171,7 +193,7 @@ export const WebCardsSavedScreen: React.FC = () => {
 				tab={3}
 				tabs={[t('Kartlar', 'Cards'), t('Bugün', 'Today'), t('Gözat', 'Browse'), t('Kaydedilenler', 'Saved')]}
 				title={t('Kaydedilenler', 'Saved')}
-				sub={t('Yıldızladığın 24 kart', '24 starred cards')}
+				sub={t('Kaydettiğin 24 kart', '24 saved cards')}
 				actions={
 					<Button tone="module" module="flashcards" icon="play">
 						{t('Hepsini tekrar et', 'Review all')}
@@ -202,7 +224,7 @@ export const WebSummaryHomeScreen: React.FC = () => {
 	const mod = useModuleColors('smartSummary');
 	return (
 		<Panel active="smartSummary">
-			<ModuleHead module="smartSummary" tab={0} tabs={SUMMARY_TABS(t)} title={t('Akıllı Özet', 'Smart Summary')} sub={t('Sorunun fotoğrafından adım adım çözüm ve konu özeti · bu ay 7 / 30', 'Step-by-step solutions from a photo · 7 / 30 this month')} />
+			<ModuleHead module="smartSummary" tab={0} tabs={SUMMARY_TABS(t)} title={t('Akıllı Özet', 'Smart Summary')} sub={t('Sorunun fotoğrafından adım adım çözüm ve konu özeti · kullanım %40', 'Step-by-step solutions from a photo · used 40%')} />
 			<Grid columns="1fr 1.3fr">
 				<Card padding={34} style={{border: `2px dashed ${mod.line}`, background: mod.wash, boxShadow: 'none', textAlign: 'center'}}>
 					<Stack align="center" gap={14}>
@@ -211,14 +233,14 @@ export const WebSummaryHomeScreen: React.FC = () => {
 							{t('Soru görselini sürükle ya da seç', 'Drop or choose a question image')}
 						</Text>
 						<Text role="small" align="center">
-							{t('JPG, PNG, PDF · tek soru en iyi sonucu verir.', 'JPG, PNG, PDF · one question works best.')}
+							{t('JPG, PNG, WEBP · tek soru en iyi sonucu verir.', 'JPG, PNG, WEBP · one question works best.')}
 						</Text>
 						<Stack row gap={10}>
 							<Button tone="module" module="smartSummary" icon="upload">
 								{t('Dosya seç', 'Choose file')}
 							</Button>
-							<Button tone="ghost" icon="phone">
-								{t('Telefonla çek', 'Use phone')}
+							<Button tone="ghost" icon="camera">
+								{t('Kamerayla çek', 'Use camera')}
 							</Button>
 						</Stack>
 					</Stack>
@@ -279,27 +301,22 @@ export const WebSummaryNewScreen: React.FC = () => {
 					</Stack>
 				</Card>
 				<Stack gap={16}>
-					<WCard title={t('Ne istiyorsun?', 'What do you need?')}>
-						<Stack gap={10}>
-							{(
-								[
-									['checkCircle', t('Adım adım çözüm', 'Step-by-step solution'), true],
-									['note', t('Konu özeti', 'Topic summary'), true],
-									['quiz', t('Benzer 5 soru', '5 similar questions'), false],
-								] as [UIIconName, string, boolean][]
-							).map(([icon, label, on]) => (
-								<Stack key={label} row gap={12} style={{padding: 14, borderRadius: 16, border: `1.5px solid ${on ? mod.color : colors.line}`, background: on ? mod.wash : colors.card}}>
-									<Tile module="smartSummary" icon={icon} size={36} />
-									<Text role="headline" style={{flex: 1}}>
-										{label}
+					{/* No output choice: every analysis gives the solution, the topic summary and the common mistake. Note and tips stay. */}
+					<Field label={t('Not (isteğe bağlı)', 'Note (optional)')} value={t('B ile C arasında kaldım', 'Torn between B and C')} icon="edit" />
+					<WCard title={t('İpuçları', 'Tips')}>
+						<Stack gap={8}>
+							{[t('Tek soru çek; şıklar görünsün', 'One question, options visible'), t('Işık yansımasın, gölge düşmesin', 'Avoid glare and shadows'), t('Yazı düz dursun', 'Keep the text straight')].map((tip) => (
+								<Stack key={tip} row gap={10}>
+									<Icon name="check" size={16} color={mod.ink} />
+									<Text role="small" color={colors.ink2}>
+										{tip}
 									</Text>
-									<div style={{width: 22, height: 22, borderRadius: 7, background: on ? mod.action : 'transparent', border: on ? undefined : `2px solid ${colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{on ? <Icon name="check" size={14} color="#FFFFFF" /> : null}</div>
 								</Stack>
 							))}
 						</Stack>
 					</WCard>
 					<Button tone="module" module="smartSummary" size="lg" block icon="sparkles">
-						{t('Analizi başlat · 1 hak', 'Start analysis · 1 credit')}
+						{t('Analizi başlat', 'Start analysis')}
 					</Button>
 				</Stack>
 			</Grid>
@@ -382,9 +399,6 @@ export const WebSummaryDetailScreen: React.FC = () => {
 						<Stack row gap={10}>
 							<Button tone="moduleSoft" module="tests" icon="quiz">
 								{t('Benzer 5 soru', '5 similar questions')}
-							</Button>
-							<Button tone="moduleSoft" module="flashcards" icon="cards">
-								{t('Kart yap', 'Make a card')}
 							</Button>
 						</Stack>
 					</Stack>

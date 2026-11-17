@@ -11,13 +11,13 @@ Sınavika'nın yedi modülünün her birinin bir **kimlik rengi** vardır. Bu be
 - Öğrenci hangi modülde olduğunu yazıyı okumadan, renkten anlar.
 - Aynı modül her yerde aynı renktedir: hub kartı, slayt, sekme, sayfa zemini, bildirim, plan görevi, e-posta ikonu, mağaza görseli, sosyal medya.
 - Modülün içinde "bu ekranı" gösteren her şey modülün rengindedir: ikon kutuları, sekme hapı, slayt, ilerleme, seçili durumlar ve **ana düğme**.
-- Turuncu yalnız marka yüzeylerindedir: logo, giriş ve kayıt, onboarding, ödeme ve abonelik, profil, site. Denemeler'in kendi rengi turuncu olduğu için turuncu modül yalnız Denemeler'dir.
+- Turuncu yalnız marka yüzeylerindedir: logo, giriş ve kayıt, onboarding, ödeme ve abonelik, profil, site. **Hiçbir modülün rengi turuncu değildir:** Denemeler turuncuyken marka rengiyle karışıyordu, 17 Kasım 2026'da zeytin yeşiline geçti (sahip kararı).
 
 ## 2. Renkler
 
 | Modül | Anahtar (`moduleKey`) | Açık tema | Koyu tema | Gradyan ikinci durak |
 |---|---|---|---|---|
-| Denemeler | `exam` | `#E8590C` | `#FB8A3C` | `#F59E0B` |
+| Denemeler | `exam` | `#4D7C0F` | `#A3E635` | `#65A30D` |
 | Dersler | `lessons` | `#0284C7` | `#38BDF8` | `#22D3EE` |
 | Testler | `tests` | `#4F46E5` | `#818CF8` | `#8B5CF6` |
 | Ders Planı | `studyPlan` | `#0D9488` | `#2DD4BF` | `#34D399` |
@@ -30,7 +30,7 @@ Sınavika'nın yedi modülünün her birinin bir **kimlik rengi** vardır. Bu be
 
 | Modül | Düğme rengi | Beyaz yazıyla |
 |---|---|---|
-| Denemeler | `#C54C0A` | 4,8:1 |
+| Denemeler | `#4D7C0F` (koyulaştırma gerekmez) | 5,0:1 |
 | Dersler | `#0277B3` | 4,9:1 |
 | Testler | `#4F46E5` | 6,3:1 |
 | Ders Planı | `#0C857A` | 4,5:1 |
@@ -71,11 +71,11 @@ Koyu temada opaklık 1,8 ile çarpılır; aynı görünür yoğunluk korunur.
 
 **Kullanılmaz**
 
-- Turuncu: modül ekranında turuncu düğme, çip, halka ya da bağlantı olmaz (Denemeler hariç). Test, Denemeler dışındaki modül ekranlarında marka turuncusunu arar.
-- Başka modülü açan düğme **o modülün** rengindedir: konu sonundaki "Kolay seviye testi" ve SinoAI'deki "Testi aç" Testler renginde, yanlış cevaptan sonraki "Mikro ders" Dersler renginde.
+- Turuncu: modül ekranında turuncu düğme, çip, halka ya da bağlantı olmaz; istisna yok (Denemeler dahil, 17 Kasım 2026). Test, bütün modül ekranlarında marka turuncusunu ve Denemeler'in eski turuncusunu (`#E8590C`, `#FB8A3C`, `#C54C0A`) arar.
+- Başka modülü açan düğme **o modülün** rengindedir: konu sonundaki "Kolay seviye testi" ve SinoAI'deki "Testi aç" Testler renginde, yanlış cevaptan sonraki "Konu anlatımı" Dersler renginde.
 - Uzun gövde metni: modül renginde paragraf yazılmaz.
 - Durum: "doğru" yeşil, "yanlış" kırmızıdır; modül renginde gösterilmez.
-- Bir ekranda başka bir modülün rengi yalnız o modüle bağlantı verirken görünür. Örnek: deneme analizindeki "Mikro ders" çipi Dersler renginde, "10 soru" çipi Testler renginde.
+- Bir ekranda başka bir modülün rengi yalnız o modüle bağlantı verirken görünür. Örnek: deneme analizindeki "Konu anlatımı" çipi Dersler renginde, "10 soru" çipi Testler renginde.
 
 ## 5. Merkezi kod: her serviste tek dosya
 

@@ -2,14 +2,19 @@ import React from 'react';
 import {UIProvider, useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {AppHeader, Content, ModuleScreen, ModuleSlide, PageTitle, Phone, SectionTitle, Sheet} from '../../Parts/Mobile';
-import {Bar, Button, Card, Chip, List, ListRow, Pct, Ring, Stack, Text, Tile} from '../../Parts/Shared';
+import {FilterChips, ModuleWeekCard} from '../../Parts/Study';
+import {Bar, Button, Card, Chip, Dots, List, ListRow, Pct, PendingSyncNote, Ring, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
 
 /**
- * Dersler (Works): a topic is taught as micro-lessons, each a short run of
- * steps the student works through. The API's shapes (docs/frontend/
- * student-works-api.md in the API repo): lessons → topics → micro-lessons →
- * steps (Concept, Example, Rule, Visual, Choice, TrueFalse, Order, Question,
- * FillBlank), plus Kaldığın yerden (continue) and Tekrar (review, 1-3-7 days).
+ * Dersler (Works): a topic is one lesson, a run of steps the student works
+ * through (owner, 1 Nov 2026, confirmed 17 Nov). The API keeps the topic in
+ * parts (micro-lessons) but the student never sees them: no topic intro, no
+ * section start, no "part done" screen, no part-by-part progress. Tapping a
+ * topic opens the player where the student left off; progress counts over the
+ * whole topic ("Adım x / y"); a section boundary is crossed inside the player.
+ * The word "mikro ders" never appears. Step kinds: Concept, Example, Rule,
+ * Visual, Choice, TrueFalse, Order, Question, FillBlank, plus Kaldığın yerden
+ * (continue) and Tekrar (review, 1-3-7 days).
  * The look follows the owner's reference (docs/Ders-akisi-referans.html in the
  * delivery folder): a thin step bar, the step in capitals, a bold title, white
  * cards, feedback as a soft box inside the content and one Dersler-blue
@@ -19,10 +24,10 @@ import {Bar, Button, Card, Chip, List, ListRow, Pct, Ring, Stack, Text, Tile} fr
 
 /* ------------------------------------------------------------------ data */
 
-export type MicroState = 'done' | 'now' | 'next';
+export type SectionState = 'done' | 'now' | 'next';
 
-/** The 13 micro-lessons of Sözcükte Anlam: title, steps, minutes. */
-export const MICRO_LESSONS: [string, number, number][] = [
+/** The sections of Sözcükte Anlam (the API's micro-lessons): title, steps, minutes. Drawn only as notes' groups and the topic's "Bu konuda" list. */
+export const TOPIC_SECTIONS: [string, number, number][] = [
 	['Gerçek anlam', 2, 2],
 	['Mecaz anlam', 5, 4],
 	['Terim anlam', 2, 2],
@@ -38,11 +43,16 @@ export const MICRO_LESSONS: [string, number, number][] = [
 	['Anlam değişmesi', 1, 2],
 ];
 
-/** Micro-lesson states with the given one (0-based) in progress. */
-export const microStates = (now: number): MicroState[] => MICRO_LESSONS.map((_, index) => (index < now ? 'done' : index === now ? 'now' : 'next'));
+/** Section states with the given one (0-based) in progress. */
+export const sectionStates = (now: number): SectionState[] => TOPIC_SECTIONS.map((_, index) => (index < now ? 'done' : index === now ? 'now' : 'next'));
 
 export const TOPIC = {
 	title: 'Sözcükte Anlam',
+	/** Steps and minutes of the whole topic; progress always counts over these. */
+	steps: 30,
+	minutes: 33,
+	/** Steps done before the sample steps (the Gerçek anlam section). */
+	before: 2,
 	hook: 'Sözcüğün anlamını sözlük değil, cümle belirler.',
 	video: '21:38',
 };
@@ -69,7 +79,7 @@ export const SUMMARY = {
 	task: ['Bugün okuduğun bir metinde üç mecaz ve bir yan anlamlı sözcük bul.', 'Tutmak, kırmak ya da açmak ile farklı anlamda üç cümle kur.', "Sınavika'da Sözcükte Anlam testinden 20 soru çöz."],
 };
 
-/** Lesson mains of the student's exams with their micro-lesson progress (GET lessons). */
+/** Lesson mains of the student's exams: name, done and total steps (drawn as a percentage), topics (GET lessons). */
 export const WORK_LESSONS: [string, string, number, number, number][] = [
 	['Türkçe', 'Turkish', 14, 125, 15],
 	['Matematik', 'Maths', 6, 164, 23],
@@ -78,19 +88,19 @@ export const WORK_LESSONS: [string, string, number, number, number][] = [
 	['Biyoloji', 'Biology', 0, 61, 10],
 ];
 
-/** Topics of TYT Türkçe (GET lessons/{id}/subs): name, micro-lessons, done, minutes, first-try share. */
+/** Topics of TYT Türkçe (GET lessons/{id}/subs): name, steps, done steps, minutes, first-try share. */
 export const WORK_TOPICS: [string, number, number, number, number | null][] = [
-	['Sözcükte Anlam', 13, 1, 34, 0.75],
-	['Söz Yorumu', 7, 0, 21, null],
-	['Deyim ve Atasözü', 9, 0, 26, null],
-	['Cümlede Anlam', 8, 0, 24, null],
-	['Paragrafta Anlatım Teknikleri', 10, 0, 30, null],
-	['Paragrafta Yapı', 8, 0, 25, null],
+	['Sözcükte Anlam', 30, 3, 33, 0.75],
+	['Söz Yorumu', 18, 0, 21, null],
+	['Deyim ve Atasözü', 22, 0, 26, null],
+	['Cümlede Anlam', 20, 0, 24, null],
+	['Paragrafta Anlatım Teknikleri', 26, 0, 30, null],
+	['Paragrafta Yapı', 21, 0, 25, null],
 ];
 
-/** Due review steps (GET reviews): step kind, micro-lesson, topic, stage. */
+/** Due review steps (GET reviews): step kind, section, topic, stage. */
 export const REVIEWS: [string, string, string, number][] = [
-	['TYT tarzı soru', 'Mecaz anlam', 'Sözcükte Anlam', 1],
+	['Sınav tarzı soru', 'Mecaz anlam', 'Sözcükte Anlam', 1],
 	['Boşluk doldur', 'Mecaz anlam', 'Sözcükte Anlam', 1],
 	['Önce sen tahmin et', 'Terim anlam', 'Sözcükte Anlam', 2],
 	['Doğru mu, yanlış mı?', 'Ana düşünce', 'Söz Yorumu', 3],
@@ -124,20 +134,23 @@ export const RoundButton: React.FC<{icon?: UIIconName; size?: number}> = ({icon 
 	);
 };
 
-/** The step bar: done steps blue, the current one half blue. */
-export const Segments: React.FC<{done: number; count?: number; height?: number; current?: boolean}> = ({done, count = 5, height = 7, current = true}) => {
-	const colors = useColors();
+/** Progress over the whole topic: one bar and "Adım x / y" (never part by part). A review session passes its own count and label. */
+export const TopicProgress: React.FC<{step: number; total?: number; label?: [string, string]; height?: number; size?: number}> = ({step, total = TOPIC.steps, label = ['Adım', 'Step'], height = 7, size = 13}) => {
+	const t = useT();
 	const mod = useModuleColors('lessons');
 	return (
-		<Stack row gap={5} grow>
-			{Array.from({length: count}, (_, index) => (
-				<div key={index} style={{flex: 1, height, borderRadius: height, background: index < done ? mod.color : index === done && current ? `linear-gradient(90deg, ${mod.color} 50%, ${colors.line} 50%)` : colors.line}} />
-			))}
+		<Stack row gap={10} grow>
+			<div style={{flex: 1}}>
+				<Bar value={step / total} color={mod.color} track={mod.track} height={height} />
+			</div>
+			<Text role="meta" size={size} weight={800} color={mod.ink} style={{whiteSpace: 'nowrap'}}>
+				{t(`${label[0]} ${step} / ${total}`, `${label[1]} ${step} / ${total}`)}
+			</Text>
 		</Stack>
 	);
 };
 
-/** The step kind in capitals: "MECAZ ANLAM · 1 / 5". */
+/** The step kind or section in capitals: "MECAZ ANLAM". No part-by-part count: progress is the topic bar. */
 export const Kind: React.FC<{children: string; muted?: boolean; size?: number; align?: 'center'}> = ({children, muted, size = 12.5, align}) => {
 	const colors = useColors();
 	const mod = useModuleColors('lessons');
@@ -161,12 +174,14 @@ export const PlainCard: React.FC<{children: React.ReactNode; gap?: number; paddi
 	</Card>
 );
 
-export type OptionLook = 'idle' | 'ok' | 'no';
+export type OptionLook = 'idle' | 'ok' | 'no' | 'picked';
 
-/** An answer: letter box and text; right is green, wrong red. */
+/** An answer: letter box and text; right is green, wrong red; `picked` is a choice waiting to be sent (offline): module colour, no right or wrong. */
 export const Choice: React.FC<{letter?: string; text: React.ReactNode; look?: OptionLook; size?: number; center?: boolean}> = ({letter, text, look = 'idle', size = 15, center}) => {
 	const colors = useColors();
+	const mod = useModuleColors('lessons');
 	const tone = {
+		picked: {line: mod.line, fill: mod.wash, box: mod.action, boxInk: '#FFFFFF'},
 		idle: {line: colors.line, fill: colors.card, box: colors.line2, boxInk: colors.muted},
 		// Solid boxes keep the light theme's strong colour in both themes: white reads on them (4.5:1).
 		ok: {line: colors.success, fill: colors.successSoft, box: '#047857', boxInk: '#FFFFFF'},
@@ -249,34 +264,6 @@ export const ListenPill: React.FC<{time?: string}> = ({time = '0:12'}) => {
 	);
 };
 
-/** One row of the timeline map: dot, name, steps; the line to the next row is blue once done. */
-export const MapRow: React.FC<{index: number; name: string; state: MicroState; meta?: string; last?: boolean; dot?: number; size?: number; height?: number}> = ({index, name, state, meta, last, dot = 32, size = 15, height = 42}) => {
-	const colors = useColors();
-	const mod = useModuleColors('lessons');
-	return (
-		<div style={{position: 'relative', display: 'flex', alignItems: 'center', gap: 12, height}}>
-			{last ? null : <div style={{position: 'absolute', left: dot / 2 - 1, top: height / 2 + dot / 2 - 2, height: height - dot + 4, width: 2, background: state === 'done' ? mod.color : colors.line}} />}
-			<div style={{width: dot, height: dot, borderRadius: dot / 2, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', boxSizing: 'border-box', background: state === 'done' ? mod.action : state === 'now' ? colors.card : colors.line2, border: state === 'now' ? `2px solid ${mod.color}` : undefined, zIndex: 1}}>
-				{state === 'done' ? (
-					<Icon name="check" size={dot * 0.48} color="#FFFFFF" />
-				) : (
-					<Text role="meta" size={dot * 0.4} weight={800} color={state === 'now' ? mod.ink : colors.muted}>
-						{index}
-					</Text>
-				)}
-			</div>
-			<Text role="headline" size={size} weight={700} color={state === 'now' ? mod.ink : colors.ink} style={{flex: 1, minWidth: 0}}>
-				{name}
-			</Text>
-			{meta ? (
-				<Text role="meta" size={size - 2} weight={700} color={colors.muted}>
-					{meta}
-				</Text>
-			) : null}
-		</div>
-	);
-};
-
 export const VideoRow: React.FC<{title: string; sub: string; size?: number}> = ({title, sub, size = 15}) => {
 	const colors = useColors();
 	return (
@@ -296,36 +283,8 @@ export const VideoRow: React.FC<{title: string; sub: string; size?: number}> = (
 	);
 };
 
-export const Hero: React.FC<{size?: number}> = ({size = 21}) => {
-	const mod = useModuleColors('lessons');
-	return (
-		<div style={{borderRadius: 22, padding: 18, background: mod.gradient, display: 'flex', flexDirection: 'column', gap: 6}}>
-			<Text role="over" size={12.5} weight={800} color="rgba(255,255,255,0.92)">{`${TOPIC.title} · 13 mikro ders`}</Text>
-			<Text role="title" size={size} color="#FFFFFF" style={{lineHeight: `${size * 1.25}px`}}>
-				{TOPIC.hook}
-			</Text>
-			<Text role="small" size={14} weight={600} color="#FFFFFF">
-				1 / 13 tamamlandı · sıradaki: Mecaz anlam
-			</Text>
-		</div>
-	);
-};
-
-export const ScoreDots: React.FC<{marks: ('ok' | 'no')[]; size?: number}> = ({marks, size = 40}) => {
-	const colors = useColors();
-	return (
-		<Stack row gap={8} justify="center">
-			{marks.map((mark, index) => (
-				<div key={index} style={{width: size, height: size, borderRadius: size / 2, background: mark === 'ok' ? colors.success : colors.error, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-					<Icon name={mark === 'ok' ? 'check' : 'x'} size={size * 0.45} color="#FFFFFF" />
-				</div>
-			))}
-		</Stack>
-	);
-};
-
 /** A topic's place in its lesson: check when done, a blue ring when in progress, its number otherwise. */
-export const TopicBadge: React.FC<{index: number; state: MicroState; size?: number}> = ({index, state, size = 34}) => {
+export const TopicBadge: React.FC<{index: number; state: SectionState; size?: number}> = ({index, state, size = 34}) => {
 	const colors = useColors();
 	const mod = useModuleColors('lessons');
 	return (
@@ -348,7 +307,7 @@ export const TopicBadge: React.FC<{index: number; state: MicroState; size?: numb
 const EmbedContext = React.createContext(false);
 export const EmbedStep: React.FC<{children: React.ReactNode}> = ({children}) => <EmbedContext.Provider value>{children}</EmbedContext.Provider>;
 
-/** The phone of a micro-lesson: status bar, optional step bar, content and a foot with the actions. */
+/** The phone of the lesson player: status bar, optional step bar, content and a foot with the actions. */
 export const Screen: React.FC<{bar?: React.ReactNode; foot?: React.ReactNode; gap?: number; center?: boolean; overlay?: React.ReactNode; children: React.ReactNode}> = ({bar, foot, gap = 14, center, overlay, children}) =>
 	React.useContext(EmbedContext) ? (
 		<div style={{display: 'flex', flexDirection: 'column', gap}}>{children}</div>
@@ -362,10 +321,11 @@ export const Screen: React.FC<{bar?: React.ReactNode; foot?: React.ReactNode; ga
 		</UIProvider>
 	);
 
-export const StepBar: React.FC<{done: number; count?: number}> = ({done, count}) => (
+/** The player's top bar: close and the topic's progress (`done` steps of the sample section done). A review session passes its own count. */
+export const StepBar: React.FC<{done: number; review?: number}> = ({done, review}) => (
 	<Stack row gap={14} style={{padding: '6px 18px 10px', flexShrink: 0}}>
 		<RoundButton />
-		<Segments done={done} count={count} />
+		{review ? <TopicProgress step={done + 1} total={review} label={['Tekrar', 'Review']} /> : <TopicProgress step={TOPIC.before + done + 1} />}
 	</Stack>
 );
 
@@ -400,19 +360,22 @@ export const LessonsHomeScreen: React.FC = () => {
 		<ModuleScreen module="lessons" tab={0}>
 			<Content gap={12}>
 				<PageTitle module="lessons" title={t('Dersler', 'Lessons')} />
-				<ModuleSlide module="lessons" height={158} />
-				<Card padding={14}>
-					<Stack row gap={12}>
-						<Tile module="lessons" icon="refresh" size={40} />
-						<Stack grow gap={1}>
-							<Text role="headline">{t('Tekrar zamanı', 'Time to review')}</Text>
-							<Text role="small">{t('5 adım · yaklaşık 4 dk', '5 steps · about 4 min')}</Text>
-						</Stack>
-						<Button tone="moduleSoft" module="lessons" size="sm">
-							{t('Başla', 'Start')}
-						</Button>
-					</Stack>
-				</Card>
+				{/* Swiped slides (GET continue, GET reviews): Kaldığın yerden, Tekrar, Ders çalış; the dots show the page. */}
+				<Stack gap={8}>
+					<ModuleSlide module="lessons" height={150} label={t('Kaldığın yerden', 'Continue')} title={TOPIC.title} text={t(`Türkçe · ${TOPIC.minutes - 4} dk kaldı`, `Turkish · ${TOPIC.minutes - 4} min left`)} action={t('Devam et', 'Continue')} />
+					<Dots count={3} active={0} />
+				</Stack>
+				<ModuleWeekCard
+					module="lessons"
+					time={t('2 sa 15 dk', '2 h 15 m')}
+					change={18}
+					bars={[20, 35, 0, 25, 40, 15, 0]}
+					stats={[
+						[t('Biten konu', 'Topics done'), '3'],
+						[t('Biten adım', 'Steps done'), '42'],
+						[t('Seri', 'Streak'), t('5 gün', '5 days')],
+					]}
+				/>
 				<SectionTitle title="TYT" sub={t('10 ders · 168 konu', '10 subjects · 168 topics')} />
 				<List>
 					{WORK_LESSONS.map(([tr, en, done, total, topics]) => (
@@ -421,7 +384,7 @@ export const LessonsHomeScreen: React.FC = () => {
 							module="lessons"
 							icon="book"
 							title={t(tr, en)}
-							subtitle={t(`${topics} konu · ${done} / ${total} mikro ders`, `${topics} topics · ${done} / ${total} micro-lessons`)}
+							subtitle={done ? t(`${topics} konu · %${Math.round((done / total) * 100)} tamamlandı`, `${topics} topics · ${Math.round((done / total) * 100)}% done`) : t(`${topics} konu`, `${topics} topics`)}
 							trailing={
 								<Stack row gap={10}>
 									<div style={{width: 56}}>
@@ -445,13 +408,15 @@ export const LessonsTopicsScreen: React.FC = () => {
 	const colors = useColors();
 	const mod = useModuleColors('lessons');
 	return (
-		<ModuleScreen module="lessons" tab={1} header={<AppHeader left="back" title={t('Türkçe', 'Turkish')} right={<div style={{width: 40}} />} />}>
+		<ModuleScreen module="lessons" tab={1} header={<AppHeader left="back" title={t('Konular', 'Topics')} right={<div style={{width: 40}} />} />}>
 			<Content gap={12}>
+				{/* Lesson pills switch the lesson; the filter narrows the list (Tümü / Süren / Biten). */}
+				<FilterChips module="lessons" items={WORK_LESSONS.map(([tr, en]) => t(tr, en))} />
 				<Card tone="module" module="lessons" padding={14}>
 					<Stack row justify="space-between">
 						<Stack gap={2}>
 							<Text role="headline">{t('TYT Türkçe · 15 konu', 'TYT Turkish · 15 topics')}</Text>
-							<Text role="small">{t('14 / 125 mikro ders · ilk denemede %75', '14 / 125 micro-lessons · 75% first try')}</Text>
+							<Text role="small">{t('%11 tamamlandı · ilk denemede %75', '11% done · 75% first try')}</Text>
 						</Stack>
 						<Ring value={0.11} size={48} stroke={5} color={mod.color} track={mod.track}>
 							<Text role="meta" weight={800}>
@@ -460,15 +425,16 @@ export const LessonsTopicsScreen: React.FC = () => {
 						</Ring>
 					</Stack>
 				</Card>
+				<Segmented items={[t('Tümü', 'All'), t('Süren (1)', 'In progress (1)'), t('Biten (0)', 'Done (0)')]} active={0} module="lessons" />
 				<Card padding={6}>
 					{WORK_TOPICS.map(([name, count, done, minutes, firstTry], index) => {
-						const state: MicroState = done > 0 ? 'now' : 'next';
+						const state: SectionState = done > 0 ? 'now' : 'next';
 						return (
 							<Stack key={name} row gap={12} style={{padding: '10px 8px', borderRadius: 14, background: state === 'now' ? mod.wash : undefined, borderTop: index ? `1px solid ${colors.line2}` : undefined}}>
 								<TopicBadge index={index + 1} state={state} />
 								<Stack grow gap={1}>
 									<Text role="headline">{name}</Text>
-									<Text role="meta">{state === 'now' ? t(`${done} / ${count} mikro ders · ilk denemede %${Math.round((firstTry ?? 0) * 100)}`, `${done} / ${count} micro-lessons · ${Math.round((firstTry ?? 0) * 100)}% first try`) : t(`${count} mikro ders · ${minutes} dk`, `${count} micro-lessons · ${minutes} min`)}</Text>
+									<Text role="meta">{state === 'now' ? t(`%${Math.round((done / count) * 100)} tamamlandı · ilk denemede %${Math.round((firstTry ?? 0) * 100)}`, `${Math.round((done / count) * 100)}% done · ${Math.round((firstTry ?? 0) * 100)}% first try`) : t(`${count} adım · ${minutes} dk`, `${count} steps · ${minutes} min`)}</Text>
 								</Stack>
 								{state === 'now' ? (
 									<Button tone="module" module="lessons" size="sm">
@@ -508,11 +474,11 @@ export const LessonsReviewScreen: React.FC = () => {
 					</Stack>
 				</Card>
 				<List>
-					{REVIEWS.map(([kind, micro, topic, stage]) => (
+					{REVIEWS.map(([kind, section, topic, stage]) => (
 						<ListRow
-							key={`${kind}${micro}`}
+							key={`${kind}${section}`}
 							title={kind}
-							subtitle={`${micro} · ${topic}`}
+							subtitle={`${section} · ${topic}`}
 							trailing={
 								<Chip tone="module" module="lessons" size="sm">
 									{t(`${stage}. tekrar`, `Round ${stage}`)}
@@ -530,41 +496,13 @@ export const LessonsReviewScreen: React.FC = () => {
 	);
 };
 
-/* ------------------------------------------------------------------ konu girişi */
-
-export const LessonTopicIntroScreen: React.FC = () => {
-	const colors = useColors();
-	const states = microStates(1);
-	return (
-		<Screen bar={<TitleBar text="Türkçe · TYT" />} foot={<Main>Mecaz anlam ile devam et</Main>}>
-			<Hero />
-			<VideoRow title={`Videoyu izle · ${TOPIC.video}`} sub="Mecaz anlam bölümü 1:38'de" />
-			<div>
-				{MICRO_LESSONS.slice(0, 8).map(([name, steps], index) => (
-					<MapRow key={name} index={index + 1} name={name} state={states[index]} meta={`${steps} adım`} />
-				))}
-				<Stack row gap={12} style={{height: 40}}>
-					<div style={{width: 32, height: 32, borderRadius: 16, background: colors.line2, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-						<Text role="meta" size={13} weight={800}>
-							…
-						</Text>
-					</div>
-					<Text role="headline" size={15} weight={700} color={colors.muted}>
-						+5 mikro ders
-					</Text>
-				</Stack>
-			</div>
-		</Screen>
-	);
-};
-
 /* ------------------------------------------------------------------ Concept · tanım */
 
 export const ConceptContent: React.FC<{size?: number}> = ({size = 1}) => {
 	const colors = useColors();
 	return (
 		<>
-			<Kind size={12.5 * size}>Mecaz anlam · 1 / 5</Kind>
+			<Kind size={12.5 * size}>Mecaz anlam</Kind>
 			<Title size={24 * size}>{CONCEPT.title}</Title>
 			<Text role="body" size={16 * size} style={{lineHeight: `${24 * size}px`}}>
 				<Rich text={CONCEPT.text} color={colors.ink} />
@@ -587,13 +525,34 @@ export const LessonConceptScreen: React.FC = () => (
 	</Screen>
 );
 
+/**
+ * Offline in the player, the one shared "to send" look (Dersler, Testler,
+ * Denemeler; owner 17 Nov 2026): the step is locked with the student's choice,
+ * no right or wrong yet; under it one neutral line; "Devam" stays open. The
+ * answer waits in the one central queue and is sent on reconnect.
+ */
+export const LessonOfflineScreen: React.FC = () => {
+	const mod = useModuleColors('lessons');
+	return (
+		<Screen bar={<StepBar done={1} />} foot={<Main>Devam</Main>}>
+			<Kind>Önce sen tahmin et</Kind>
+			<Title>
+				Hangi cümlede <span style={{color: mod.ink}}>soğuk</span> sözcüğü mecaz anlamda?
+			</Title>
+			<Choice letter="A" text="Soğuk suyla yüzünü yıkadı." />
+			<Choice letter="B" text="Bize soğuk bir bakış attı." look="picked" />
+			<PendingSyncNote />
+		</Screen>
+	);
+};
+
 /* ------------------------------------------------------------------ Example · örnek */
 
 export const ExampleContent: React.FC<{size?: number}> = ({size = 1}) => {
 	const colors = useColors();
 	return (
 		<>
-			<Kind size={12.5 * size}>Terim anlam · 2 / 2</Kind>
+			<Kind size={12.5 * size}>Terim anlam</Kind>
 			<Title size={24 * size}>Örnek</Title>
 			<PlainCard gap={10}>
 				<Text role="title" size={19 * size} style={{lineHeight: `${27 * size}px`}}>
@@ -613,7 +572,7 @@ export const ExampleContent: React.FC<{size?: number}> = ({size = 1}) => {
 };
 
 export const LessonExampleScreen: React.FC = () => (
-	<Screen bar={<StepBar done={1} count={2} />} foot={<Main>Devam</Main>}>
+	<Screen bar={<StepBar done={1} />} foot={<Main>Devam</Main>}>
 		<ExampleContent />
 	</Screen>
 );
@@ -627,7 +586,7 @@ export const RuleContent: React.FC<{size?: number}> = ({size = 1}) => {
 	const mod = useModuleColors('lessons');
 	return (
 		<>
-			<Kind size={12.5 * size}>Eş sesli sözcükler · 1 / 2</Kind>
+			<Kind size={12.5 * size}>Eş sesli sözcükler</Kind>
 			<Title size={24 * size}>Kural</Title>
 			<PlainCard gap={14}>
 				{RULE_ITEMS.map((item, index) => (
@@ -649,7 +608,7 @@ export const RuleContent: React.FC<{size?: number}> = ({size = 1}) => {
 };
 
 export const LessonRuleScreen: React.FC = () => (
-	<Screen bar={<StepBar done={0} count={2} />} foot={<Main>Devam</Main>}>
+	<Screen bar={<StepBar done={0} />} foot={<Main>Devam</Main>}>
 		<RuleContent />
 	</Screen>
 );
@@ -677,7 +636,7 @@ export const VisualContent: React.FC<{size?: number}> = ({size = 1}) => {
 	);
 	return (
 		<>
-			<Kind size={12.5 * size}>Temel ve yan anlam · 1 / 2</Kind>
+			<Kind size={12.5 * size}>Temel ve yan anlam</Kind>
 			<Title size={24 * size}>Bağ kopmuyor</Title>
 			<Card tone="flat" radius={18} padding={0} style={{overflow: 'hidden', display: 'grid', gridTemplateColumns: '1fr 1fr'}}>
 				{head('Temel anlam', 'ilk akla gelen')}
@@ -706,7 +665,7 @@ export const VisualContent: React.FC<{size?: number}> = ({size = 1}) => {
 };
 
 export const LessonVisualScreen: React.FC = () => (
-	<Screen bar={<StepBar done={0} count={2} />} foot={<Main>Devam</Main>}>
+	<Screen bar={<StepBar done={0} />} foot={<Main>Devam</Main>}>
 		<VisualContent />
 	</Screen>
 );
@@ -718,7 +677,7 @@ export const PredictContent: React.FC<{size?: number}> = ({size = 1}) => {
 	const mod = useModuleColors('lessons');
 	return (
 		<>
-			<Kind size={12.5 * size}>Önce sen tahmin et · 2 / 5</Kind>
+			<Kind size={12.5 * size}>Önce sen tahmin et</Kind>
 			<Title size={24 * size}>
 				Hangi cümlede <span style={{color: mod.ink}}>soğuk</span> sözcüğü mecaz anlamda?
 			</Title>
@@ -768,7 +727,7 @@ export const FillContent: React.FC<{size?: number}> = ({size = 1}) => {
 	];
 	return (
 		<>
-			<Kind size={12.5 * size}>Boşluk doldur · 3 / 5</Kind>
+			<Kind size={12.5 * size}>Boşluk doldur</Kind>
 			<Title size={24 * size}>Cümleyi mecaz anlamla tamamla</Title>
 			<PlainCard>
 				<Text role="headline" size={18 * size} weight={800} style={{lineHeight: `${32 * size}px`}}>
@@ -804,7 +763,7 @@ export const LessonFillScreen: React.FC = () => (
 
 export const TrueFalseContent: React.FC<{size?: number}> = ({size = 1}) => (
 	<>
-		<Kind size={12.5 * size}>Sık yapılan hata · 4 / 5</Kind>
+		<Kind size={12.5 * size}>Sık yapılan hata</Kind>
 		<Title size={24 * size}>Bu ifade doğru mu?</Title>
 		<PlainCard>
 			<Text role="title" size={19 * size} style={{lineHeight: `${26 * size}px`}}>
@@ -840,14 +799,15 @@ export const OrderContent: React.FC<{size?: number}> = ({size = 1}) => {
 	];
 	return (
 		<>
-			<Kind size={12.5 * size}>Sözcüğün bağlamdaki anlamı · 2 / 5</Kind>
+			<Kind size={12.5 * size}>Sözcüğün bağlamdaki anlamı</Kind>
 			<Title size={24 * size}>Bağlam sorusunu çözerken hangi sırayla ilerlersin?</Title>
 			<Text role="body" size={15 * size} color={colors.ink2}>
-				Adımlara sırayla dokun; yanlış dokunursan geri al.
+				Basılı tutup sürükle ya da adımlara sırayla dokun.
 			</Text>
 			<Stack gap={8}>
-				{steps.map(([label, detail, order]) => (
-					<Stack key={label} row gap={12} style={{padding: '12px 14px', borderRadius: 14, border: `1.5px solid ${order ? mod.line : colors.line}`, background: colors.card}}>
+				{steps.map(([label, detail, order], index) => (
+					// The third card is being dragged: lifted, tilted, with a shadow; the others make room.
+					<Stack key={label} row gap={12} style={{padding: '12px 14px', borderRadius: 14, border: `1.5px solid ${order || index === 2 ? mod.line : colors.line}`, background: colors.card, ...(index === 2 ? {transform: 'translateX(10px) rotate(-1.5deg)', boxShadow: '0 16px 30px -12px rgba(11,28,48,0.35)'} : {})}}>
 						<div style={{width: 30, height: 30, borderRadius: 15, boxSizing: 'border-box', border: order ? undefined : `1.5px dashed ${colors.subtle}`, background: order ? mod.action : undefined, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
 							{order ? (
 								<Text role="meta" size={13} weight={800} color="#FFFFFF">
@@ -855,7 +815,7 @@ export const OrderContent: React.FC<{size?: number}> = ({size = 1}) => {
 								</Text>
 							) : null}
 						</div>
-						<Stack gap={1}>
+						<Stack gap={1} grow>
 							<Text role="headline" size={15 * size} weight={700}>
 								{label}
 							</Text>
@@ -863,6 +823,7 @@ export const OrderContent: React.FC<{size?: number}> = ({size = 1}) => {
 								{detail}
 							</Text>
 						</Stack>
+						<Icon name="menu" size={18 * size} color={index === 2 ? mod.ink : colors.subtle} />
 					</Stack>
 				))}
 			</Stack>
@@ -871,19 +832,19 @@ export const OrderContent: React.FC<{size?: number}> = ({size = 1}) => {
 };
 
 export const LessonOrderScreen: React.FC = () => (
-	<Screen bar={<StepBar done={1} />} foot={<Ghost icon="refresh">Baştan diz</Ghost>}>
+	<Screen bar={<StepBar done={21} />} foot={<Ghost icon="refresh">Baştan diz</Ghost>}>
 		<OrderContent />
 	</Screen>
 );
 
-/* ------------------------------------------------------------------ Question · TYT tarzı soru */
+/* ------------------------------------------------------------------ Question · Sınav tarzı soru */
 
 /** After a wrong answer the next solution step opens; the student picks again (steps + 1 tries). */
 export const QuestionContent: React.FC<{size?: number; grid?: boolean}> = ({size = 1, grid}) => {
 	const colors = useColors();
 	return (
 		<>
-			<Kind size={12.5 * size}>TYT tarzı · 5 / 5</Kind>
+			<Kind size={12.5 * size}>Sınav tarzı</Kind>
 			<Text role="headline" size={16 * size} weight={700} color={colors.ink} style={{lineHeight: `${22 * size}px`}}>
 				<Rich text={AGIR_QUESTION.stem} />
 			</Text>
@@ -944,8 +905,8 @@ export const TriangleFigure: React.FC<{width?: number}> = ({width = 280}) => {
 export const LessonFigureQuestionScreen: React.FC = () => {
 	const colors = useColors();
 	return (
-		<Screen bar={<StepBar done={2} count={4} />} gap={10}>
-			<Kind>Açılar ve üçgenler · 3 / 4</Kind>
+		<Screen bar={<StepBar done={2} />} gap={10}>
+			<Kind>Açılar ve üçgenler</Kind>
 			<Text role="headline" size={16} weight={700} color={colors.ink} style={{lineHeight: '22px'}}>
 				<Rich text="Şekildeki ABC üçgeninde verilenlere göre **x** kaç derecedir?" />
 			</Text>
@@ -961,98 +922,38 @@ export const LessonFigureQuestionScreen: React.FC = () => {
 	);
 };
 
-/* ------------------------------------------------------------------ mikro ders bitti */
-
-export const MicroDoneContent: React.FC<{size?: number}> = ({size = 1}) => {
-	const colors = useColors();
-	const mod = useModuleColors('lessons');
-	return (
-		<>
-			<Kind align="center" size={12.5 * size}>
-				Mecaz anlam tamamlandı
-			</Kind>
-			<Text role="num" size={50 * size} align="center">
-				3 / 4
-			</Text>
-			<ScoreDots marks={['ok', 'ok', 'ok', 'no']} size={40 * size} />
-			<Text role="body" size={14.5 * size} align="center" color={colors.ink2}>
-				tahmin · boşluk · doğru mu ilk denemede doğru
-			</Text>
-			<PlainCard gap={6}>
-				<Kind muted size={12 * size}>
-					Aklında kalsın
-				</Kind>
-				<Text role="body" size={15 * size} weight={600} color={colors.ink}>
-					<Rich text={SUMMARY.remember} />
-				</Text>
-			</PlainCard>
-			<Stack row gap={12} style={{padding: 12, borderRadius: 16, background: mod.soft}}>
-				<Icon name="refresh" size={20 * size} color={mod.ink} />
-				<Stack gap={1} grow>
-					<Text role="headline" size={14.5 * size} weight={800} color={mod.ink}>
-						1 adım tekrar listende
-					</Text>
-					<Text role="small" size={13 * size} color={colors.ink2}>
-						"Ağır" sorusunu yarın yeniden soracağız.
-					</Text>
-				</Stack>
-			</Stack>
-			<PlainCard gap={0} padding={12} style={{flexDirection: 'row', alignItems: 'center', gap: 12}}>
-				<div style={{width: 32, height: 32, borderRadius: 16, boxSizing: 'border-box', border: `2px solid ${mod.color}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-					<Text role="meta" size={13} weight={800} color={mod.ink}>
-						3
-					</Text>
-				</div>
-				<Stack gap={0} grow>
-					<Text role="headline" size={15 * size} weight={800}>
-						Sıradaki: Terim anlam
-					</Text>
-					<Text role="small" size={13 * size} color={colors.muted}>
-						2 adım · 2 dk
-					</Text>
-				</Stack>
-			</PlainCard>
-		</>
-	);
-};
-
-export const LessonMicroDoneScreen: React.FC = () => (
-	<Screen
-		foot={
-			<>
-				<Main>Terim anlama geç</Main>
-				<Ghost>Konu haritasına dön</Ghost>
-			</>
-		}
-		gap={12}
-		center
-	>
-		<MicroDoneContent />
-	</Screen>
-);
-
 /* ------------------------------------------------------------------ konu sonu */
 
-export const TopicDoneContent: React.FC<{size?: number}> = ({size = 1}) => {
+/** `short` (phone): the first lines of each block, so the survey shows above the actions; the rest is below on scroll. */
+export const TopicDoneContent: React.FC<{size?: number; short?: boolean}> = ({size = 1, short}) => {
 	const colors = useColors();
 	return (
 		<>
 			<Title size={24 * size}>Toparlayalım</Title>
+			{/* First-try stat and the share card button (ShareCardButton, story or post). */}
+			<Stack row justify="space-between" gap={10}>
+				<Text role="small" size={13.5 * size} color={colors.ink2}>
+					30 adımın <b style={{color: colors.ink}}>26</b>'sı ilk denemede doğru
+				</Text>
+				<Button tone="moduleSoft" module="lessons" size="sm" icon="upload">
+					Paylaş
+				</Button>
+			</Stack>
 			<PlainCard gap={7} padding={14}>
-				{SUMMARY.points.map((point) => (
+				{SUMMARY.points.slice(0, short ? 3 : undefined).map((point) => (
 					<Text key={point} role="small" size={13.5 * size} color={colors.ink}>
 						<Rich text={point} />
 					</Text>
 				))}
 			</PlainCard>
 			<Feedback tone="hint" title="Dikkat" size={13.5 * size}>
-				{SUMMARY.warnings.map((warning) => (
+				{SUMMARY.warnings.slice(0, short ? 1 : undefined).map((warning) => (
 					<div key={warning}>{warning}</div>
 				))}
 			</Feedback>
 			<PlainCard gap={6} padding={14}>
 				<Kind size={12 * size}>Kamp görevi</Kind>
-				{SUMMARY.task.map((item, index) => (
+				{SUMMARY.task.slice(0, short ? 2 : undefined).map((item, index) => (
 					<Text key={item} role="small" size={13.5 * size} color={colors.ink}>{`${index + 1}. ${item}`}</Text>
 				))}
 			</PlainCard>
@@ -1060,17 +961,51 @@ export const TopicDoneContent: React.FC<{size?: number}> = ({size = 1}) => {
 	);
 };
 
+/** The content-end survey (shown once, when the whole topic is done): liked or not, then an optional comment. */
+export const TopicSurvey: React.FC<{size?: number}> = ({size = 1}) => {
+	const colors = useColors();
+	return (
+		<PlainCard gap={10} padding={14} style={{position: 'relative'}}>
+			<div style={{position: 'absolute', right: 10, top: 10}}>
+				<Icon name="x" size={16} color={colors.muted} />
+			</div>
+			<Text role="headline" size={15 * size}>
+				Bu konu anlatımı nasıldı?
+			</Text>
+			<Stack row gap={10}>
+				<Button tone="ghost" size="sm" style={{flex: 1}}>
+					Beğendim
+				</Button>
+				<Button tone="ghost" size="sm" style={{flex: 1}}>
+					Beğenmedim
+				</Button>
+			</Stack>
+		</PlainCard>
+	);
+};
+
 export const LessonTopicDoneScreen: React.FC = () => (
 	<Screen
-		bar={<TitleBar text={`${TOPIC.title} · 13 / 13`} icon="x" />}
+		bar={<TitleBar text={TOPIC.title} icon="x" />}
 		foot={
-			<Button module="tests" size="lg" block icon="quiz">
-				Kolay seviye testi · 20 soru · ~25 dk
-			</Button>
+			<>
+				<Button module="tests" size="lg" block icon="quiz">
+					Kolay seviye testi · 20 soru · ~25 dk
+				</Button>
+				<Stack row gap={10}>
+					<Button tone="ghost" icon="refresh" style={{flex: 1}}>
+						Konuyu baştan oku
+					</Button>
+					<Button tone="ghost" style={{flex: 1}}>
+						Konulara dön
+					</Button>
+				</Stack>
+			</>
 		}
 		gap={12}
 	>
-		<TopicDoneContent />
+		<TopicDoneContent short />
+		<TopicSurvey />
 	</Screen>
 );
 
@@ -1081,7 +1016,6 @@ export const LessonQuotaScreen: React.FC = () => {
 	const colors = useColors();
 	return (
 		<Screen
-			bar={<TitleBar text="Türkçe · TYT" />}
 			overlay={
 				<UIProvider module={undefined}>
 					<Sheet height={372}>
@@ -1089,7 +1023,7 @@ export const LessonQuotaScreen: React.FC = () => {
 						<Text role="title" size={22}>
 							Bugünkü konu hakkın doldu
 						</Text>
-						<Text role="body">Bugün Sözcükte Anlam'ı çalıştın. Yarın yeni bir konuya başlayabilirsin; aboneliğinle her gün istediğin kadar konu çalışırsın.</Text>
+						<Text role="body">Bugünkü konu hakkını kullandın. Yarın yeni bir konuya başlayabilirsin; aboneliğinle her gün istediğin kadar konu çalışırsın.</Text>
 						<div style={{flex: 1}} />
 						<Button size="lg" block>
 							Paketleri gör
@@ -1101,8 +1035,8 @@ export const LessonQuotaScreen: React.FC = () => {
 				</UIProvider>
 			}
 		>
-			<Hero />
-			<VideoRow title={`Videoyu izle · ${TOPIC.video}`} sub="Mecaz anlam bölümü 1:38'de" />
+			{/* Behind the sheet a plain ground: the player could not open (403 PAYWALL), and there is no intro page. The body names no topic: the client does not know which topic used today's allowance. */}
+			<div />
 		</Screen>
 	);
 };

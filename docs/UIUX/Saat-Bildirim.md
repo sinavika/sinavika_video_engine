@@ -46,7 +46,7 @@ Kurallar (hepsi zorunlu):
    - canlı deneme başlangıcı;
    - odak oturumu;
    - deneme sürerken kalan süre;
-   - mikro ders;
+   - ders oynatıcısı (konu);
    - günün sonu (seri).
    Tanıtım ve genel hatırlatma bu yüzeylere konmaz.
 2. **Günde en çok 2 hatırlatma.** Canlı etkinlik ve deneme sonucu bu sayıya girmez. Sınır sunucuda uygulanır.
@@ -212,12 +212,12 @@ Her iş bir kontrol grubuyla açılır (§9).
 | Canlı deneme başlangıcı | Sunucu, push-to-start, 15 dk kala | Deneme başlayınca | Geri sayım, katılan sayısı, Hazırım | Kompakt: modül simgesi + süre |
 | Deneme sürüyor | Uygulama, deneme başlayınca | Teslim ya da süre bitince | Soru, kalan süre, boş sayısı | Genişletilmiş: soru 34/120, 1:42:18, 12 boş |
 | Odak oturumu | Uygulama (yerel) | Süre bitince ya da uygulamada Bitir | Halka, kalan süre, soru ilerlemesi; tek düğme: Duraklat | Kompakt: halka + süre |
-| Mikro ders | Uygulama (yerel) | Ders bitince | Adım 3/5, kalan dakika, Devam | Genişletilmiş |
+| Konu (ders oynatıcısı) | Uygulama (yerel) | Konu bitince ya da oynatıcıdan çıkınca | Adım 4/30, kalan dakika, Devam | Genişletilmiş |
 | Akşam serisi | Sunucu, push-to-start, 20:00 | 23:59 ya da çalışma yapılınca | Seri, tek kısa yol (12 kart) | — |
 
 **Apple kuralları:**
 - **Uygulamanın tam simgesi konmaz.** Kartta modül simgesi durur; reklam ve tanıtım yok.
-- **Tek etkileşimli öğe tercih edilir.** Odakta Duraklat, denemede Hazırım, mikro derste Devam, seride tek kısa yol.
+- **Tek etkileşimli öğe tercih edilir.** Odakta Duraklat, denemede Hazırım, derste Devam, seride tek kısa yol.
 - Yazılar orta (medium) ya da daha kalın ağırlıktadır.
 - Kenar boşluğu 14 pt.
 - Kompakt ve minimal hâl 28 pt'lik bir daireye sığar; adanın arka planı siyahtır ve değiştirilmez.

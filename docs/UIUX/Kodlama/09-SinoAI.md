@@ -3,6 +3,24 @@
 Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çizim kodu: `sinavika_video_engine/src/UIUX/Screens/Mobile/SinoAI.tsx`, `Screens/Mobile/States.tsx` (`SinoLimitScreen`), `Screens/Mobile/Gaps.tsx` (`SinoSourcesScreen`, `SinoStudyNoteScreen`), `Screens/Web/SinoWeb.tsx`, `Screens/Web/GapsWeb.tsx` (`WebSinoSourcesScreen`, `WebSinoStudyNoteScreen`), `Parts/Study.tsx` (`StateBlock`)
 Önce oku: [README](README.md) (ortak kurallar, ekran tanımı biçimi, testler) ve [Navigasyon](Navigasyon.md).
 
+
+> **Sahip kararları (17 Kasım 2026). Bu kararlarla çelişen ekran çizmek ya da kodlamak tasarım hatasıdır.** Kaynak: web deposunda `docs/UIUX/Tasarim-Uyum-Plani.md` §9.1 madde 13, §9.3 madde 20.
+> - **Hak aylıktır ve Akıllı Özet ile ortaktır:**
+>   - Hak dolunca ekran "Bu ayın SinoAI hakkın doldu" ve yenilenme tarihini yazar ("Bugünkü hakkın doldu / Yarın 00:00" yazılmaz). "Kütüphaneme git" ve "Bu arada" kartı kalır.
+>   - Çalışma sayfasının alt yazısında "Kullanım %X" yazar ("Bu ay 4 / 20 üretim" yazılmaz).
+>   - Webde hak doldu bloğu sohbet sütunundadır ve yazma alanı kapalıdır (`w-sino-hak`).
+> - **Menü (geçmiş çekmecesi):** Kaynaklarım satırı, altta kullanım çubuğu ve "SinoAI'den çık" vardır.
+> - **Yanıt eylemleri:** yeniden üret, kopyala, paylaş, beğen, beğenme.
+> - **Üretim kartı:**
+>   - modül kutusu, özet başlığı ve "20 soru · Matematik" satırı (zorluk yazılmaz);
+>   - modül renginde "Testi aç" ve yanında "Değiştir";
+>   - "Sırada ne var?" öneri çipleri yoktur.
+> - **Kütüphanen:**
+>   - Süzgeç: Tümü · Test · Deste · Özet, sayılarla.
+>   - Satır alt yazısı "N soru · ders · tarih" ("Testler'de çöz" eki yok).
+>   - Plan satırı yalnız Tümü'de görünür.
+>   - Webde destenin kartları Kütüphanen sayfasında `?kosu=` ile açılır.
+
 ## 1. Modül özeti
 
 - **Ne işe yarar:** Öğrencinin hedefini ve son denemesini bilerek soru çözen, konu anlatan ve çalışma üreten (deneme, test, tekrar kartları, çalışma planı, özet) sohbet asistanı. İki kipi var: **Sohbet** (soru-cevap) ve **Çalışma** (üretim). Ana iş: takıldığı yeri sormak ya da kendine çalışma üretmek ve üretileni ilgili modülde açmak.
@@ -182,12 +200,12 @@ Kısaltmalar: **M** = `sinavika_mobile_reactnative/src/modules/sinoai/presentati
 - **Çerçeve:** `SinoAI` modülünde; `AppHeader` solda `menu`, ortada "SinoAI"; `Content` sekmesiz, aralık 12.
 - **Yerleşim:**
   1. `StateBlock module="sinoAi" icon="clock"` (ikon kutusu gri `soft`): "Bugünkü SinoAI hakkın doldu" / "Today’s SinoAI limit is reached"; "Yarın 00:00’da yenilenir. Sohbetlerin ve ürettiğin testler kütüphanende duruyor." / "It renews at midnight. Your chats and generated quizzes stay in your library."; ana düğme "Kütüphaneme git" / "Open my library" (`module` tonu: `#475569` zemin, beyaz yazı).
-  2. `Card tone="soft"` 14: "Bu arada" / "Meanwhile" (`headline`) ve "Takıldığın konunun mikro dersi ya da testi hakkından düşmez." / "Micro-lessons and quizzes don’t use this limit." (`small` `ink2`).
+  2. `Card tone="soft"` 14: "Bu arada" / "Meanwhile" (`headline`) ve "Takıldığın konunun anlatımı ya da testi hakkından düşmez." / "Topic lessons and quizzes don’t use this limit." (`small` `ink2`).
   3. En altta (0 / 18 / 30 boşluk) kilitli yazma kutusu: 50 yükseklik, köşe 25, `line2` zemin, opaklık 0,6, `small` "Yarın yeniden sorabilirsin" / "You can ask again tomorrow". Dokunulmaz.
 - **Veri:** `GET student/sinoai/usage` (ya da `capabilities.usage`): `state = exhausted`, `resetsAtUtc`. Yenilenme metni bu alandan üretilir: aynı gün değilse tarih ("1 Aralık’ta yenilenir"), ertesi gün ise "Yarın 00:00’da" (biçim kuralı doğrulanmadı).
 - **Etkileşimler:** "Kütüphaneme git" → `m-sino-kutuphane` [push]; `menu` → `m-sino-menu` (geçmiş okunabilir).
 - **Web farkı:** çizilmedi; sohbet sütununda aynı `StateBlock`, `Composer` kilitli.
-- **Kurallar:** hak dolduğunda yenilenme zamanı ve etkilenmeyen haklar (mikro ders, testler) yazılır; geçmiş ve kütüphane açık kalır.
+- **Kurallar:** hak dolduğunda yenilenme zamanı ve etkilenmeyen haklar (konu anlatımı, testler) yazılır; geçmiş ve kütüphane açık kalır.
 
 ## 5. Takılma ve kilitlenme önlemleri
 

@@ -21,7 +21,8 @@ const IconButton: React.FC<{icon: UIIconName}> = ({icon}) => {
 };
 
 /** Top bar: menu, the mode switch (Sohbet · Çalışma) as plain text tabs, new chat. */
-const SinoTop: React.FC<{active?: number}> = ({active = 0}) => {
+/** The SinoAI chat session's own top bar (menu, Sohbet · Çalışma, new chat); the tablet side panel uses it too. */
+export const SinoTop: React.FC<{active?: number}> = ({active = 0}) => {
 	const colors = useColors();
 	const t = useT();
 	return (
@@ -171,8 +172,9 @@ export const SinoChatScreen: React.FC = () => {
 					<Text role="body" size={15.5} color={colors.ink} style={{lineHeight: '24px'}}>
 						{t('x = 1 için içerisi 1 olur, sonuç 24. Bu konu son denemende 1 net kaybettirdi.', 'At x = 1 the inside is 1, so the answer is 24. This cost you 1 point last exam.')}
 					</Text>
+					{/* Reply actions as in the app: regenerate, copy, share, like, dislike. */}
 					<Stack row gap={14}>
-						{(['bookmark', 'refresh', 'cards'] as UIIconName[]).map((icon) => (
+						{(['refresh', 'copy', 'upload', 'thumbUp', 'thumbDown'] as UIIconName[]).map((icon) => (
 							<Icon key={icon} name={icon} size={18} color={colors.muted} />
 						))}
 					</Stack>
@@ -206,7 +208,7 @@ export const SinoStudyScreen: React.FC = () => {
 				<Text role="title" size={22}>
 					{t('Ne üretelim?', 'What shall we make?')}
 				</Text>
-				<Text role="small">{t('Kaynak olarak notunu, PDF’ini ya da bir konuyu seç. Bu ay 4 / 20.', 'Use your notes, a PDF or a topic. 4 / 20 this month.')}</Text>
+				<Text role="small">{t('Kaynak olarak notunu, PDF’ini ya da bir konuyu seç. Kullanım %40.', 'Use your notes, a PDF or a topic. Used 40%.')}</Text>
 				<div style={{height: 6}} />
 				{tools.map(([icon, tr, en, subTr, subEn], index) => (
 					<Stack key={tr} row gap={14} style={{padding: '14px 4px', borderTop: index ? `1px solid ${colors.line2}` : undefined}}>
@@ -229,7 +231,7 @@ export const SinoStudyScreen: React.FC = () => {
  * real buttons, "Testi aç" filled and "Değiştir" outlined. Before, "Değişiklik
  * iste" and a copy icon sat under the card as loose text and the next options
  * hung alone at the bottom (UI/UX review, 25 Oct 2026). What to make next
- * follows right under the card.
+ * No "Sırada ne var?" suggestion chips (owner, 17 Nov 2026).
  */
 export const SinoStudyResultScreen: React.FC = () => {
 	const t = useT();
@@ -256,11 +258,11 @@ export const SinoStudyResultScreen: React.FC = () => {
 						<Tile module="tests" size={44} />
 						<Stack grow gap={2}>
 							<Text role="headline">{t('Zincir kuralı testi', 'Chain rule test')}</Text>
-							<Text role="small">{t('20 soru · Orta · Matematik', '20 questions · Medium · Maths')}</Text>
+							<Text role="small">{t('20 soru · Matematik', '20 questions · Maths')}</Text>
 						</Stack>
 					</Stack>
 					<Stack row gap={10} style={{marginTop: 14}}>
-						<Button size="md" module="tests" icon="play">
+						<Button size="md" tone="module" module="tests" icon="play">
 							{t('Testi aç', 'Open test')}
 						</Button>
 						<Button size="md" tone="ghost" icon="edit">
@@ -268,16 +270,6 @@ export const SinoStudyResultScreen: React.FC = () => {
 						</Button>
 					</Stack>
 				</Card>
-				<Text role="over" style={{marginTop: 6}}>
-					{t('Sırada ne var?', 'What next?')}
-				</Text>
-				<Stack row wrap gap={8}>
-					{[t('Aynı konudan kart üret', 'Make cards on it'), t('Konuyu kısaca anlat', 'Explain it briefly'), t('Kişisel deneme', 'Personal exam')].map((label) => (
-						<Chip key={label} tone="outline">
-							{label}
-						</Chip>
-					))}
-				</Stack>
 			</Content>
 			<Composer placeholder={t('Ya da ne istediğini yaz…', 'Or describe what you need…')} />
 		</SinoPhone>
@@ -290,13 +282,14 @@ export const SinoLibraryScreen: React.FC = () => {
 		<SinoPhone>
 			<AppHeader left="back" title={t('Kütüphanen', 'Your library')} right={<div style={{width: 40}} />} />
 			<Content tabBar={false} gap={12}>
-				<Segmented items={[t('Tümü', 'All'), t('Test · 4', 'Quizzes · 4'), t('Deste · 2', 'Decks · 2'), t('Özet · 6', 'Notes · 6')]} />
+				{/* Rows read "N soru · ders · tarih"; the plan row shows only under Tümü. */}
+				<Segmented items={[t('Tümü · 13', 'All · 13'), t('Test · 4', 'Quizzes · 4'), t('Deste · 2', 'Decks · 2'), t('Özet · 6', 'Notes · 6')]} />
 				<List>
-					<ListRow module="tests" title={t('Mol kavramı testi', 'Mole quiz')} subtitle={t('10 soru · bugün', '10 questions · today')} />
-					<ListRow module="flashcards" title={t('Osmanlı kartları', 'Ottoman cards')} subtitle={t('24 kart · Bilgi Kartları’nda', '24 cards · in Flashcards')} />
-					<ListRow module="studyPlan" title={t('Türev haftalık planı', 'Derivatives weekly plan')} subtitle={t('5 gün · Ders Planı’na eklendi', '5 days · added to plan')} />
-					<ListRow icon="note" plainIcon title={t('Hücre bölünmesi özeti', 'Cell division notes')} subtitle={t('PDF · 2 sayfa', 'PDF · 2 pages')} />
-					<ListRow module="exam" title={t('Kişisel deneme · Matematik', 'Personal exam · Maths')} subtitle={t('30 soru', '30 questions')} />
+					<ListRow module="tests" title={t('Mol kavramı testi', 'Mole quiz')} subtitle={t('10 soru · Kimya · bugün', '10 questions · Chemistry · today')} />
+					<ListRow module="flashcards" title={t('Osmanlı kartları', 'Ottoman cards')} subtitle={t('24 kart · Tarih · dün', '24 cards · History · yesterday')} />
+					<ListRow module="studyPlan" title={t('Türev haftalık planı', 'Derivatives weekly plan')} subtitle={t('5 gün · Matematik · 14 Eki', '5 days · Maths · 14 Oct')} />
+					<ListRow icon="note" plainIcon title={t('Hücre bölünmesi özeti', 'Cell division notes')} subtitle={t('Özet · Biyoloji · 12 Eki', 'Notes · Biology · 12 Oct')} />
+					<ListRow module="exam" title={t('Kişisel deneme · Matematik', 'Personal exam · Maths')} subtitle={t('30 soru · Matematik · 10 Eki', '30 questions · Maths · 10 Oct')} />
 				</List>
 			</Content>
 		</SinoPhone>
@@ -325,6 +318,7 @@ export const SinoMenuScreen: React.FC = () => {
 						</Stack>
 						<Row icon="newChat" label={t('Yeni sohbet', 'New chat')} strong />
 						<Row icon="layers" label={t('Kütüphanen', 'Your library')} />
+						<Row icon="file" label={t('Kaynaklarım', 'My sources')} />
 						<Text role="over" style={{margin: '14px 8px 4px'}}>
 							{t('Bugün', 'Today')}
 						</Text>
@@ -342,7 +336,19 @@ export const SinoMenuScreen: React.FC = () => {
 							</Text>
 						))}
 						<div style={{flex: 1}} />
-						<Row icon="settings" label={t('SinoAI ayarları', 'SinoAI settings')} />
+						{/* Usage is one monthly percentage shared with Akıllı Özet. */}
+						<Stack gap={6} style={{padding: '8px 8px 4px'}}>
+							<Stack row justify="space-between">
+								<Text role="meta">{t('Kullanım', 'Usage')}</Text>
+								<Text role="meta" weight={700} color={colors.ink}>
+									{t('%40', '40%')}
+								</Text>
+							</Stack>
+							<div style={{height: 6, borderRadius: 3, background: colors.line2}}>
+								<div style={{width: '40%', height: '100%', borderRadius: 3, background: colors.ink2}} />
+							</div>
+						</Stack>
+						<Row icon="logout" label={t('SinoAI’den çık', 'Leave SinoAI')} />
 					</div>
 				</div>
 			}

@@ -110,6 +110,11 @@ Her kartta yalnız burada yazan alanlar bulunur; başka alan (ör. `beats`, `thi
 ```
 `narration`, kartın altında "Konu anlatımı" başlığıyla okunan açıklamadır. Ekrandaki maddeleri tekrar etmez, açar.
 
+**Örnek kartında satır düzeni** (17 Kasım; ekranda tek paragraf okunmuyor):
+- `example` içinde örnek soru varsa her şık kendi satırındadır: kökten sonra `\n(A) …\n(B) …`. Şıklar tek paragrafa gömülmez.
+- `explanation` adım adım çözümse her adım kendi satırındadır: `1. …\n2. …\n3. …`. Adımlar tek blokta yazılmaz.
+- **Çözüm gerekçe verir.** "A, B: yanlış · Cevap C" gibi yalnız harf ve hüküm yazan adım yazılmaz. Her adım neden doğru ya da yanlış olduğunu söyler.
+
 **Soran kartlar**
 ```jsonc
 {"kind": "predict", "title": "≤70", "context": "≤400?", "prompt": "≤200", "choices": ["≤80", "… 2-4"], "answer": 0, "explanation": "≤700", "choiceFeedback": [null, "…"]?, "visual": {…}? }   // görsel cevaptan sonra açılır

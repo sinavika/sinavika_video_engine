@@ -1,16 +1,20 @@
 import React from 'react';
 import {UIProvider, useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
-import {Bar, Button, Card, Chip, Pct, Ring, Stack, Text, Tile} from '../../Parts/Shared';
+import {Bar, Button, Card, Chip, Pct, Ring, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
 import {Grid, ModuleBanner, ModuleHead, Panel, WCard} from '../../Parts/Web';
 import {UI_CANVAS, UI_SHADOW} from '../../Tokens';
-import {ConceptContent, Feedback, FillContent, Hero, Kind, MapRow, MICRO_LESSONS, MicroDoneContent, microStates, OrderContent, PlainCard, PredictContent, QuestionContent, REVIEWS, Rich, RoundButton, Segments, SUMMARY, TOPIC, TopicBadge, TrueFalseContent, VideoRow, WORK_LESSONS, WORK_TOPICS} from '../Mobile/Lessons';
+import {ConceptContent, Feedback, FillContent, Kind, OrderContent, PlainCard, PredictContent, QuestionContent, REVIEWS, Rich, RoundButton, SUMMARY, TOPIC, TopicBadge, TopicProgress, TopicSurvey, TrueFalseContent, VideoRow, WORK_LESSONS, WORK_TOPICS} from '../Mobile/Lessons';
+import {FilterChips, ModuleWeekCard} from '../../Parts/Study';
 
 /**
- * Dersler on the web panel. The browsing pages (lessons, topics, review, the
- * topic intro) sit in the panel frame; a micro-lesson opens the player: the
- * micro-lessons as a timeline on the left, the step in the middle in the
- * mobile step's look (~700 px), "Bu mikro derste" and SinoAI on the right.
+ * Dersler on the web panel. The browsing pages (lessons, topics, review) sit
+ * in the panel frame; a topic opens the player where the student left off:
+ * the step in the middle in the mobile step's look (~700 px), progress over
+ * the whole topic on top ("Adım x / y"), "Bu konuda" and SinoAI on the right.
+ * A topic is one lesson (owner, 1 and 17 Nov 2026): no topic intro, no
+ * section start, no part-done page, no part timeline; "mikro ders" is never
+ * written.
  */
 
 const COLUMN = 700;
@@ -27,7 +31,7 @@ export const WebLessonsHomeScreen: React.FC = () => {
 				module="lessons"
 				tab={0}
 				title={t('Dersler', 'Lessons')}
-				sub={t('Konuları mikro derslerle, adım adım öğren', 'Learn each topic in micro-lessons, step by step')}
+				sub={t('Her konuyu adım adım, etkileşimli öğren', 'Learn each topic step by step')}
 				actions={
 					<Button tone="ghost" icon="search">
 						{t('Konu ara', 'Find topic')}
@@ -35,19 +39,19 @@ export const WebLessonsHomeScreen: React.FC = () => {
 				}
 			/>
 			<Grid columns="1.5fr 1fr">
-				<ModuleBanner module="lessons" over={t('Kaldığın yerden', 'Pick up where you left off')} title={t('Mecaz anlam', 'Figurative meaning')} text={t('Türkçe · Sözcükte Anlam · 2 / 5 adım · 3 dakika kaldı', 'Turkish · Word meaning · step 2 / 5 · 3 minutes left')} action={t('Devam et', 'Continue')} />
-				<WCard title={t('Tekrar zamanı', 'Time to review')}>
-					<Stack gap={14}>
-						<Stack row gap={14}>
-							<Tile module="lessons" icon="refresh" size={48} />
-							<Stack gap={2} grow>
-								<Text role="section">{t('Bugün 5 adım', '5 steps today')}</Text>
-								<Text role="small">{t('İlk denemede yanlış yaptığın adımlar, yaklaşık 4 dakika.', 'Steps you missed, about 4 minutes.')}</Text>
-							</Stack>
-						</Stack>
-						<Button block>{t('Tekrara başla', 'Start review')}</Button>
-					</Stack>
-				</WCard>
+				{/* The banner is the first of the swiped slides (Kaldığın yerden, Tekrar, Ders çalış), as on the phone. */}
+				<ModuleBanner module="lessons" over={t('Kaldığın yerden', 'Pick up where you left off')} title={TOPIC.title} text={t(`Türkçe · Adım 4 / ${TOPIC.steps} · ${TOPIC.minutes - 4} dakika kaldı`, `Turkish · Step 4 / ${TOPIC.steps} · ${TOPIC.minutes - 4} minutes left`)} action={t('Devam et', 'Continue')} />
+				<ModuleWeekCard
+					module="lessons"
+					time={t('2 sa 15 dk', '2 h 15 m')}
+					change={18}
+					bars={[20, 35, 0, 25, 40, 15, 0]}
+					stats={[
+						[t('Biten konu', 'Topics done'), '3'],
+						[t('Biten adım', 'Steps done'), '42'],
+						[t('Seri', 'Streak'), t('5 gün', '5 days')],
+					]}
+				/>
 			</Grid>
 			<Stack row justify="space-between" align="flex-end">
 				<Text role="section">TYT</Text>
@@ -64,7 +68,7 @@ export const WebLessonsHomeScreen: React.FC = () => {
 									<Text role="meta">{t(`${topics} konu`, `${topics} topics`)}</Text>
 								</Stack>
 								<Bar value={Math.max(done / total, 0.02)} color={mod.color} track={mod.track} height={6} />
-								<Text role="meta">{t(`${done} / ${total} mikro ders`, `${done} / ${total} micro-lessons`)}</Text>
+								<Text role="meta">{done ? t(`%${Math.round((done / total) * 100)} tamamlandı`, `${Math.round((done / total) * 100)}% done`) : t('Başlamadın', 'Not started')}</Text>
 							</Stack>
 						</Stack>
 					</Card>
@@ -103,7 +107,14 @@ export const WebLessonsTopicsScreen: React.FC = () => {
 	const mod = useModuleColors('lessons');
 	return (
 		<Panel active="lessons" crumb={t('Dersler ›', 'Lessons ›')}>
-			<ModuleHead module="lessons" tab={1} title={t('Türkçe', 'Turkish')} sub={t('TYT · 15 konu · 14 / 125 mikro ders', 'TYT · 15 topics · 14 / 125 micro-lessons')} />
+			<ModuleHead module="lessons" tab={1} title={t('Türkçe', 'Turkish')} sub={t('TYT · 15 konu · %11 tamamlandı', 'TYT · 15 topics · 11% done')} />
+			{/* Lesson pills switch the lesson; the filter narrows the list. */}
+			<Stack row justify="space-between" gap={18}>
+				<FilterChips module="lessons" items={WORK_LESSONS.map(([tr, en]) => t(tr, en))} />
+				<div style={{width: 380, flexShrink: 0}}>
+					<Segmented items={[t('Tümü', 'All'), t('Süren (1)', 'In progress (1)'), t('Biten (0)', 'Done (0)')]} active={0} module="lessons" />
+				</div>
+			</Stack>
 			<Grid columns="2fr 1fr">
 				<Card padding={8}>
 					{WORK_TOPICS.map(([name, count, done, minutes, firstTry], index) => {
@@ -113,7 +124,7 @@ export const WebLessonsTopicsScreen: React.FC = () => {
 								<TopicBadge index={index + 1} state={now ? 'now' : 'next'} size={36} />
 								<Stack grow gap={2}>
 									<Text role="headline">{name}</Text>
-									<Text role="small">{now ? t(`${done} / ${count} mikro ders · ilk denemede %${Math.round((firstTry ?? 0) * 100)}`, `${done} / ${count} micro-lessons · ${Math.round((firstTry ?? 0) * 100)}% first try`) : t(`${count} mikro ders · ${minutes} dk`, `${count} micro-lessons · ${minutes} min`)}</Text>
+									<Text role="small">{now ? t(`%${Math.round((done / count) * 100)} tamamlandı · ilk denemede %${Math.round((firstTry ?? 0) * 100)}`, `${Math.round((done / count) * 100)}% done · ${Math.round((firstTry ?? 0) * 100)}% first try`) : t(`${count} adım · ${minutes} dk`, `${count} steps · ${minutes} min`)}</Text>
 								</Stack>
 								<div style={{width: 120}}>
 									<Bar value={Math.max(done / count, 0.02)} color={mod.color} track={mod.track} height={6} />
@@ -140,7 +151,7 @@ export const WebLessonsTopicsScreen: React.FC = () => {
 								</Text>
 							</Ring>
 							<Stack gap={8}>
-								<Text role="small">{t('1 konu başladı · 14 mikro ders bitti', '1 topic started · 14 micro-lessons done')}</Text>
+								<Text role="small">{t('1 konu sürüyor · 0 konu bitti', '1 topic in progress · 0 done')}</Text>
 								<Text role="small">{t('İlk denemede doğru: %75', 'Right first time: 75%')}</Text>
 								<Text role="small">{t('Bu hafta 1 sa 20 dk', '1 h 20 min this week')}</Text>
 							</Stack>
@@ -181,12 +192,12 @@ export const WebLessonsReviewScreen: React.FC = () => {
 					</Stack>
 				</Card>
 				<Card padding={8}>
-					{REVIEWS.map(([kind, micro, topic, stage], index) => (
-						<Stack key={`${kind}${micro}`} row gap={14} style={{padding: '14px 14px', borderTop: index ? `1px solid ${colors.line2}` : undefined}}>
+					{REVIEWS.map(([kind, section, topic, stage], index) => (
+						<Stack key={`${kind}${section}`} row gap={14} style={{padding: '14px 14px', borderTop: index ? `1px solid ${colors.line2}` : undefined}}>
 							<Tile module="lessons" icon={(['quiz', 'edit', 'bulb', 'checkCircle', 'list'] as UIIconName[])[index]} size={40} />
 							<Stack grow gap={2}>
 								<Text role="headline">{kind}</Text>
-								<Text role="small">{`${micro} · ${topic}`}</Text>
+								<Text role="small">{`${section} · ${topic}`}</Text>
 							</Stack>
 							<Chip tone="module" module="lessons" size="sm">
 								{t(`${stage}. tekrar`, `Round ${stage}`)}
@@ -199,76 +210,19 @@ export const WebLessonsReviewScreen: React.FC = () => {
 	);
 };
 
-/* ------------------------------------------------------------------ konu girişi */
-
-export const WebLessonTopicIntroScreen: React.FC = () => {
-	const t = useT();
-	const colors = useColors();
-	const mod = useModuleColors('lessons');
-	const states = microStates(1);
-	return (
-		<Panel active="lessons" crumb={t('Dersler › Türkçe ›', 'Lessons › Turkish ›')}>
-			<Grid columns="1fr 1.05fr" gap={22} style={{alignItems: 'start'}}>
-				<Stack gap={16}>
-					<Hero size={28} />
-					<PlainCard gap={10} padding={20}>
-						<Kind muted>Bu konuda</Kind>
-						{['Gerçek, yan, mecaz ve terim anlamı ayırmak', 'Bağlamdaki anlam sorularını adım adım çözmek'].map((goal) => (
-							<Stack key={goal} row gap={10}>
-								<Icon name="checkCircle" size={18} color={mod.color} />
-								<Text role="body" color={colors.ink}>
-									{goal}
-								</Text>
-							</Stack>
-						))}
-					</PlainCard>
-					<VideoRow title={`Videoyu izle · ${TOPIC.video}`} sub="Mecaz anlam bölümü 1:38'de" size={16} />
-					<Button size="lg" block>
-						Mecaz anlam ile devam et
-					</Button>
-				</Stack>
-				<PlainCard gap={8} padding={22}>
-					<Kind muted size={12.5}>
-						Yol haritası · 13 mikro ders · 34 dk
-					</Kind>
-					<div>
-						{MICRO_LESSONS.map(([name, steps], index) => (
-							<MapRow key={name} index={index + 1} name={name} state={states[index]} meta={`${steps} adım`} dot={30} size={15} height={42} last={index === MICRO_LESSONS.length - 1} />
-						))}
-					</div>
-				</PlainCard>
-			</Grid>
-		</Panel>
-	);
-};
-
 /* ------------------------------------------------------------------ oynatıcı */
 
-const MicroTimeline: React.FC<{now: number}> = ({now}) => {
-	const colors = useColors();
-	const states = microStates(now);
-	return (
-		<div style={{width: 290, flexShrink: 0, background: colors.card, borderRight: `1px solid ${colors.line}`, padding: '22px 22px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 10}}>
-			<Kind size={12.5}>{TOPIC.title}</Kind>
-			<div>
-				{MICRO_LESSONS.map(([name, steps], index) => (
-					<MapRow key={name} index={index + 1} name={name} state={states[index]} meta={states[index] === 'now' ? `${steps} adım` : undefined} dot={28} size={14} height={44} last={index === MICRO_LESSONS.length - 1} />
-				))}
-			</div>
-		</div>
-	);
-};
-
 const LessonSide: React.FC = () => {
+	const t = useT();
 	const colors = useColors();
 	return (
 		<div style={{width: 310, flexShrink: 0, background: colors.card, borderLeft: `1px solid ${colors.line}`, padding: 22, boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 12}}>
 			<Kind muted size={12.5}>
-				Bu mikro derste
+				{t('Bu konuda', 'In this topic')}
 			</Kind>
 			<PlainCard gap={5} padding={14} style={{borderRadius: 14}}>
 				<Kind muted size={11.5}>
-					Tanım
+					{t('Tanım', 'Definition')}
 				</Kind>
 				<Text role="small" size={14} color={colors.ink}>
 					Benzetme ya da ilgiyle gerçek anlamdan <b>tamamen uzaklaşma</b>.
@@ -276,40 +230,42 @@ const LessonSide: React.FC = () => {
 			</PlainCard>
 			<PlainCard gap={5} padding={14} style={{borderRadius: 14}}>
 				<Kind muted size={11.5}>
-					Sık hata
+					{t('Sık hata', 'Common mistake')}
 				</Kind>
 				<Text role="small" size={14} color={colors.ink}>
 					Somut sözcükler de mecaz olabilir: <b>sıcak</b> bir karşılama.
 				</Text>
 			</PlainCard>
-			<VideoRow title="Videoda izle" sub="1:38 – 4:18" size={14.5} />
+			<VideoRow title={t('Videoda izle', 'Watch the video')} sub="1:38 – 4:18" size={14.5} />
 			<div style={{flex: 1}} />
 			<Button tone="ghost" icon="sparkles" block>
-				SinoAI’ye sor
+				{t('SinoAI’ye sor', 'Ask SinoAI')}
 			</Button>
 		</div>
 	);
 };
 
-/** The player page: timeline, the step column with its bar and the actions, and "Bu mikro derste". */
-export const StudyPlayer: React.FC<{now?: number; done: number; current?: boolean; step: string; nav: React.ReactNode; center?: boolean; children: React.ReactNode}> = ({now = 1, done, current = true, step, nav, center, children}) => {
+/**
+ * The player page: the step column with the topic's progress on top and the
+ * actions below, "Bu konuda" on the right. `step` is the step's place in the
+ * whole topic; the section name is the second line (a section boundary is
+ * crossed here, without a page of its own).
+ */
+export const StudyPlayer: React.FC<{step: number; review?: number; section?: string; nav: React.ReactNode; center?: boolean; children: React.ReactNode}> = ({step, review, section = 'Mecaz anlam', nav, center, children}) => {
 	const colors = useColors();
 	return (
 		<UIProvider module="lessons" web>
 			<div style={{width: UI_CANVAS.web.width, height: UI_CANVAS.web.height, display: 'flex', background: colors.bg, overflow: 'hidden'}}>
-				<MicroTimeline now={now} />
 				<div style={{flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column'}}>
 					<Stack row gap={16} style={{height: 76, padding: '0 28px', borderBottom: `1px solid ${colors.line}`, background: colors.card, flexShrink: 0}}>
 						<RoundButton />
 						<Stack gap={0} grow>
 							<Text role="headline" size={16} weight={800}>
-								Mecaz anlam
+								{TOPIC.title}
 							</Text>
-							<Text role="small" size={13.5} color={colors.ink2}>{`${TOPIC.title} · ${step}`}</Text>
+							<Text role="small" size={13.5} color={colors.ink2}>{`Türkçe · ${section}`}</Text>
 						</Stack>
-						<div style={{width: 300}}>
-							<Segments done={done} current={current} height={8} />
-						</div>
+						<div style={{width: 380}}>{review ? <TopicProgress step={step} total={review} label={['Tekrar', 'Review']} height={8} size={13.5} /> : <TopicProgress step={step} height={8} size={13.5} />}</div>
 					</Stack>
 					<div style={{flex: 1, minHeight: 0, display: 'flex', justifyContent: 'center', overflow: 'hidden'}}>
 						<div style={{width: COLUMN, padding: '28px 0 12px', display: 'flex', flexDirection: 'column', gap: 14, justifyContent: center ? 'center' : undefined}}>{children}</div>
@@ -336,8 +292,7 @@ export const Main: React.FC<{children: string}> = ({children}) => <Button size="
 
 export const WebLessonConceptScreen: React.FC = () => (
 	<StudyPlayer
-		done={0}
-		step="adım 1 / 5"
+		step={TOPIC.before + 1}
 		nav={
 			<>
 				<Back />
@@ -351,8 +306,7 @@ export const WebLessonConceptScreen: React.FC = () => (
 
 export const WebLessonPredictScreen: React.FC = () => (
 	<StudyPlayer
-		done={1}
-		step="adım 2 / 5"
+		step={TOPIC.before + 2}
 		nav={
 			<>
 				<Back />
@@ -366,8 +320,7 @@ export const WebLessonPredictScreen: React.FC = () => (
 
 export const WebLessonFillScreen: React.FC = () => (
 	<StudyPlayer
-		done={2}
-		step="adım 3 / 5"
+		step={TOPIC.before + 3}
 		nav={
 			<>
 				<Back />
@@ -381,8 +334,7 @@ export const WebLessonFillScreen: React.FC = () => (
 
 export const WebLessonTrueFalseScreen: React.FC = () => (
 	<StudyPlayer
-		done={3}
-		step="adım 4 / 5"
+		step={TOPIC.before + 4}
 		nav={
 			<>
 				<Back />
@@ -398,8 +350,7 @@ export const WebLessonQuestionScreen: React.FC = () => {
 	const colors = useColors();
 	return (
 		<StudyPlayer
-			done={4}
-			step="adım 5 / 5"
+			step={TOPIC.before + 5}
 			nav={
 				<>
 					<Back />
@@ -416,9 +367,8 @@ export const WebLessonQuestionScreen: React.FC = () => {
 
 export const WebLessonOrderScreen: React.FC = () => (
 	<StudyPlayer
-		now={11}
-		done={1}
-		step="adım 2 / 5"
+		step={24}
+		section="Sözcüğün bağlamdaki anlamı"
 		nav={
 			<>
 				<Back icon="refresh">Baştan diz</Back>
@@ -427,24 +377,6 @@ export const WebLessonOrderScreen: React.FC = () => (
 		}
 	>
 		<OrderContent size={1.1} />
-	</StudyPlayer>
-);
-
-export const WebLessonMicroDoneScreen: React.FC = () => (
-	<StudyPlayer
-		now={2}
-		done={5}
-		current={false}
-		step="tamamlandı"
-		center
-		nav={
-			<>
-				<Back icon="tree">Konu haritası</Back>
-				<Main>Terim anlama geç</Main>
-			</>
-		}
-	>
-		<MicroDoneContent size={1.05} />
 	</StudyPlayer>
 );
 
@@ -457,14 +389,19 @@ export const WebLessonTopicDoneScreen: React.FC = () => {
 		<Panel active="lessons" crumb={t('Dersler › Türkçe › Sözcükte Anlam ›', 'Lessons › Turkish › Word meaning ›')}>
 			<Stack row justify="space-between" align="flex-end">
 				<Stack gap={4}>
-					<Kind>{`${TOPIC.title} · 13 / 13 mikro ders`}</Kind>
+					<Kind>{`${TOPIC.title} · ${TOPIC.steps} / ${TOPIC.steps} adım`}</Kind>
 					<Text role="display" size={32}>
 						Toparlayalım
 					</Text>
 				</Stack>
-				<Chip tone="success" icon="checkCircle">
-					{t('İlk denemede %75 doğru', '75% right first time')}
-				</Chip>
+				<Stack row gap={10}>
+					<Chip tone="success" icon="checkCircle">
+						{t('30 adımın 26’sı ilk denemede doğru', '26 of 30 steps right first time')}
+					</Chip>
+					<Button tone="moduleSoft" module="lessons" size="sm" icon="upload">
+						{t('Paylaş', 'Share')}
+					</Button>
+				</Stack>
 			</Stack>
 			<Grid columns="1.4fr 1fr" gap={22} style={{alignItems: 'start'}}>
 				<PlainCard gap={12} padding={24}>
@@ -492,6 +429,15 @@ export const WebLessonTopicDoneScreen: React.FC = () => {
 					<Button module="tests" size="lg" block icon="quiz">
 						Kolay seviye testi · 20 soru · ~25 dk
 					</Button>
+					<Stack row gap={10}>
+						<Button tone="ghost" icon="refresh" style={{flex: 1}}>
+							{t('Konuyu baştan oku', 'Read the topic again')}
+						</Button>
+						<Button tone="ghost" style={{flex: 1}}>
+							{t('Konulara dön', 'Back to topics')}
+						</Button>
+					</Stack>
+					<TopicSurvey />
 				</Stack>
 			</Grid>
 		</Panel>
@@ -555,7 +501,7 @@ const STEP_KINDS: [string, string, UIIconName][] = [
 	['TrueFalse', 'Doğru mu, yanlış mı?', 'checkCircle'],
 	['Order', 'Sırala', 'refresh'],
 	['FillBlank', 'Boşluk doldur', 'edit'],
-	['Question', 'TYT tarzı soru', 'quiz'],
+	['Question', 'Sınav tarzı soru', 'quiz'],
 ];
 
 export const WebLessonFlowBoardScreen: React.FC = () => {
@@ -572,21 +518,21 @@ export const WebLessonFlowBoardScreen: React.FC = () => {
 						<Text role="display" size={30}>
 							Bir konunun akışı
 						</Text>
-						<Text role="body">Konu mikro derslere bölünür; her mikro ders öğrenciyle konuşan adımlarla ilerler.</Text>
+						<Text role="body">Konu tek derstir: öğrenciyle konuşan adımlarla baştan sona ilerler; kalınan yerden açılır.</Text>
 					</Stack>
-					<Text role="meta">Örnek: TYT Türkçe · Sözcükte Anlam · 13 mikro ders</Text>
+					<Text role="meta">{`Örnek: TYT Türkçe · ${TOPIC.title} · ${TOPIC.steps} adım`}</Text>
 				</Stack>
 
 				<Stack row align="stretch" gap={0}>
-					<FlowBox title="Konu girişi" text="Kanca cümlesi, hedefler, video ve mikro derslerin yol haritası." icon="target" tone="module" />
-					<Arrow label="Devam et" />
+					<FlowBox title="Konuya dokun" text="Oynatıcı kaldığın adımdan açılır; giriş ekranı yok." icon="target" tone="module" />
+					<Arrow label="açılır" />
 					<div style={{flex: 1, borderRadius: 22, border: `2px dashed ${mod.line}`, background: mod.wash, padding: 14, display: 'flex', flexDirection: 'column', gap: 10}}>
 						<Stack row justify="space-between">
 							<Text role="headline" color={mod.ink}>
-								Mikro ders · 2–6 dk
+								{`Oynatıcı · Adım 1 → ${TOPIC.steps}`}
 							</Text>
 							<Chip tone="module" module="lessons" size="sm" icon="refresh">
-								13 kez, sırayla
+								bölüm geçişi aynı ekranda
 							</Chip>
 						</Stack>
 						<Stack row gap={6} wrap>
@@ -608,8 +554,8 @@ export const WebLessonFlowBoardScreen: React.FC = () => {
 							Her adım senaryodaki bir kart. Etkileşimli adımın cevabını sunucu denetler; anlatım adımları dinlenebilir.
 						</Text>
 					</div>
-					<Arrow label="adımlar bitti" />
-					<FlowBox title="Mikro ders bitti" text="İlk denemede kaç doğru, akılda kalacak tek cümle, sıradaki mikro ders." icon="award" tone="soft" width={200} />
+					<Arrow label="son adım" />
+					<FlowBox title="Konu sonu" text="Özet, dikkat notları, kamp görevi, paylaş, anket; teste geçiş." icon="checkCircle" tone="module" width={200} />
 				</Stack>
 
 				<Stack row align="flex-start" gap={0}>
@@ -621,33 +567,20 @@ export const WebLessonFlowBoardScreen: React.FC = () => {
 						</Stack>
 						<div style={{width: 24}} />
 						<Stack gap={8} align="center" style={{width: 250}}>
-							<Arrow vertical label="TYT sorusunda yanlış" />
+							<Arrow vertical label="Sınav tarzı soruda yanlış" />
 							<FlowBox title="Çözüm adımları" text="Her yanlışta bir çözüm adımı açılır; öğrenci yeniden seçer. Adımlar bitince doğru şık gösterilir." icon="bulb" tone="soft" width={250} />
 						</Stack>
 						<div style={{flex: 1}} />
 					</Stack>
 					<Stack gap={8} align="center" style={{width: 200}}>
-						<Arrow vertical label="son mikro dersten sonra" />
-						<FlowBox title="Konu sonu" text="Özet, dikkat notları ve kamp görevi; teste geçiş." icon="checkCircle" tone="module" width={200} />
-					</Stack>
-				</Stack>
-
-				<Stack row gap={14} align="center" style={{marginTop: -8}}>
-					<Stack row gap={8} style={{padding: '8px 14px', borderRadius: 14, background: colors.card, border: `1px solid ${colors.line}`, marginLeft: 430}}>
-						<Icon name="refresh" size={16} color={mod.color} />
-						<Text role="small" weight={700} color={colors.ink2}>
-							Mikro ders bitti → sonraki mikro ders
-						</Text>
-					</Stack>
-					<div style={{flex: 1}} />
-					<Stack align="center" style={{width: 200}}>
 						<Arrow vertical label="testlere ve kartlara" />
 					</Stack>
 				</Stack>
+
 				<Stack row justify="flex-end" gap={14} align="flex-start" style={{marginTop: -10}}>
 					<FlowBox title="Testler" text="Kolay, Orta, Zor · 20'şer soru. Konu sonundan doğrudan Kolay'a." icon="quiz" tone="tests" width={250} />
 					<FlowBox title="Bilgi Kartları" text="Konunun kartları Bilgi Kartları'nda; tekrar orada da sürer." icon="cards" tone="cards" width={250} />
-					<FlowBox title="Video" text={`Aynı ders ${TOPIC.video}; mikro dersten ilgili bölüme atlanır.`} icon="video" tone="soft" width={250} />
+					<FlowBox title="Video" text={`Aynı ders ${TOPIC.video}; adımdan ilgili yere atlanır.`} icon="video" tone="soft" width={250} />
 				</Stack>
 			</div>
 		</UIProvider>

@@ -4,9 +4,9 @@ import {AppHeader} from '../../Parts/Mobile';
 import {PanelInTablet} from '../../Parts/Web';
 import {Tablet} from '../../Parts/Tablet';
 import {EmbedStep} from '../Mobile/Lessons';
-import {LessonFormulaScreen, LessonGroupScreen, LessonMatchScreen, LessonSectionScreen} from '../Mobile/LessonSteps';
+import {LessonFormulaScreen, LessonGroupScreen, LessonMatchScreen} from '../Mobile/LessonSteps';
 import {WebExamDetailScreen} from '../Web/ExamWeb';
-import {SubmitDialog, WebExamAddScreen, WebExamDoneDetailScreen, WebHomeDoneScreen, WebHomeExpiredScreen, WebHomeNoPlanScreen, WebHomeScreen, WebPlanTodayScreen, WebResultsEmptyScreen, WebResultsScreen, WebStatsScreen, WebTestWrongReviewScreen} from '../Web/StudyWeb';
+import {SubmitDialog, WebExamAddScreen, WebExamDoneDetailScreen, WebHomeDoneScreen, WebHomeExpiredScreen, WebHomeNoPlanScreen, WebHomeScreen, WebPlanTodayScreen, WebResultsEmptyScreen, WebResultsScreen, WebStatsScreen, WebTestWrongReviewLastScreen, WebTestWrongReviewScreen} from '../Web/StudyWeb';
 import {LessonStep, Main} from './Learn';
 import {ExamKeyboardScreen} from './Wide';
 
@@ -108,33 +108,32 @@ export const WrongReviewTabletScreen: React.FC = () => (
 	</TabletPage>
 );
 
+export const WrongReviewLastTabletScreen: React.FC = () => (
+	<TabletPage module="tests">
+		<WebTestWrongReviewLastScreen />
+	</TabletPage>
+);
+
 /* ------------------------------------------------------------------ Dersler · the new step types in the tablet player */
 
 export const LessonGroupTabletScreen: React.FC = () => (
-	<LessonStep done={2} count={6} title="Grupla" foot={<Main>Kontrol et</Main>}>
+	<LessonStep done={2} title="Grupla" foot={<Main>Kontrol et</Main>}>
 		<EmbedStep>
 			<LessonGroupScreen />
 		</EmbedStep>
 	</LessonStep>
 );
 export const LessonMatchTabletScreen: React.FC = () => (
-	<LessonStep done={3} count={6} title="Eşleştir" foot={<Main>Kontrol et</Main>}>
+	<LessonStep done={3} title="Eşleştir" foot={<Main>Kontrol et</Main>}>
 		<EmbedStep>
 			<LessonMatchScreen />
 		</EmbedStep>
 	</LessonStep>
 );
 export const LessonFormulaTabletScreen: React.FC = () => (
-	<LessonStep done={1} count={5} title="Sayı kümeleri" topic="Temel Kavramlar" foot={<Main>Devam</Main>}>
+	<LessonStep done={1} title="Sayı kümeleri" topic="Temel Kavramlar" foot={<Main>Devam</Main>}>
 		<EmbedStep>
 			<LessonFormulaScreen />
-		</EmbedStep>
-	</LessonStep>
-);
-export const LessonSectionTabletScreen: React.FC = () => (
-	<LessonStep done={0} count={8} title="Bölüm başı" overlay={false} foot={<Main>Başla</Main>}>
-		<EmbedStep>
-			<LessonSectionScreen />
 		</EmbedStep>
 	</LessonStep>
 );
